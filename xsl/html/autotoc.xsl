@@ -157,6 +157,11 @@
   </xsl:call-template>
 </xsl:template>
 
+<xsl:template name="component.toc.separator">
+  <!-- Customize to output something between
+       component.toc and first output -->
+</xsl:template>
+
 <xsl:template name="section.toc">
   <xsl:param name="toc-context" select="."/>
   <xsl:param name="toc.title.p" select="true()"/>
@@ -171,6 +176,10 @@
   </xsl:call-template>
 </xsl:template>
 
+<xsl:template name="section.toc.separator">
+  <!-- Customize to output something between
+       section.toc and first output -->
+</xsl:template>
 <!-- ==================================================================== -->
 
 <xsl:template name="subtoc">

@@ -124,6 +124,7 @@
       <xsl:call-template name="component.toc">
         <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
       </xsl:call-template>
+      <xsl:call-template name="component.toc.separator"/>
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:call-template name="process.footnotes"/>
@@ -173,6 +174,7 @@
       <xsl:call-template name="component.toc">
         <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
       </xsl:call-template>
+      <xsl:call-template name="component.toc.separator"/>
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:call-template name="process.footnotes"/>
@@ -239,6 +241,7 @@
       <xsl:call-template name="component.toc">
         <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
       </xsl:call-template>
+      <xsl:call-template name="component.toc.separator"/>
     </xsl:if>
 
     <xsl:apply-templates/>
