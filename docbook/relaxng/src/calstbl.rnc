@@ -379,6 +379,7 @@ div {
     & db.rowsep.attribute?
     & attribute frame { "all" | "bottom" | "none" | "sides" | "top" | "topbot" }?
     & attribute pgwide { "0" | "1" }?
+    & attribute rowheader { "firstcol" | "norowheader" }?
 
    db.cals.table.info = db._info.title.onlyreq
 
@@ -411,6 +412,7 @@ div {
     & db.rowsep.attribute?
     & attribute frame { "all" | "bottom" | "none" | "sides" | "top" | "topbot" }?
     & attribute pgwide { "0" | "1" }?
+    & attribute rowheader { "firstcol" | "norowheader" }?
 
    db.cals.informaltable.info = db._info.title.forbidden
 
