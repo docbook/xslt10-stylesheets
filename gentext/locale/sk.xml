@@ -6,15 +6,20 @@
 
 <doc:localeinfo xmlns="">
 <authorgroup>
-  <author><firstname>Stanislav</firstname>Visnovsky<surname></surname>
+  <author><firstname>Stanislav</firstname><surname>Visnovsky</surname>
           <affiliation><address><email>visnovsky@nenya.ms.mff.cuni.cz</email></address>
           </affiliation>
   </author>
+  <author><firstname>Matej</firstname><surname>Pivoluska</surname>
+  	<affiliation><address><email>pivoluska@matftyz.cz</email></address>
+        </affiliation>
+  </author>
+  	
 </authorgroup>
 </doc:localeinfo>
 
-<gentext key="Abstract" text="Obsah"/>
-<gentext key="abstract" text="Obsah"/>
+<gentext key="Abstract" text="Abstrakt"/>
+<gentext key="abstract" text="Abstrakt"/>
 <gentext key="Answer" text="A:"/>
 <gentext key="answer" text="A:"/>
 <gentext key="Appendix" text="Dodatok"/>
@@ -38,8 +43,8 @@
 <gentext key="dedication" text="Venovanie"/>
 <gentext key="Edition" text="Vydanie"/>
 <gentext key="edition" text="Vydanie"/>
-<gentext key="Equation" text="Rovnice"/>
-<gentext key="equation" text="Rovnice"/>
+<gentext key="Equation" text="Rovnica"/>
+<gentext key="equation" text="Rovnica"/>
 <gentext key="Example" text="Príklad"/>
 <gentext key="example" text="Príklad"/>
 <gentext key="Figure" text="Obrázok"/>
@@ -74,7 +79,7 @@
 <gentext key="preface" text="Úvod"/>
 <gentext key="Procedure" text="Postup"/>
 <gentext key="procedure" text="Postup"/>
-<gentext key="ProductionSet" text="Production"/> <!-- en -->
+<gentext key="ProductionSet" text="Produkcia"/>
 <gentext key="Published" text="Vydané"/>
 <gentext key="published" text="Vydané"/>
 <gentext key="Question" text="Q:"/>
@@ -93,11 +98,11 @@
 <gentext key="revhistory" text="Prehľad revízií"/>
 <gentext key="Revision" text="Revízia"/>
 <gentext key="revision" text="Revízia"/>
-<gentext key="sect1" text="Section"/> <!-- en -->
-<gentext key="sect2" text="Section"/> <!-- en -->
-<gentext key="sect3" text="Section"/> <!-- en -->
-<gentext key="sect4" text="Section"/> <!-- en -->
-<gentext key="sect5" text="Section"/> <!-- en -->
+<gentext key="sect1" text="Oddiel"/>
+<gentext key="sect2" text="Oddiel"/>
+<gentext key="sect3" text="Oddiel"/>
+<gentext key="sect4" text="Oddiel"/>
+<gentext key="sect5" text="Oddiel"/>
 <gentext key="Section" text="Oddiel"/>
 <gentext key="section" text="oddiel"/>
 <gentext key="See" text="Pozri"/>
@@ -108,9 +113,9 @@
 <gentext key="Set" text="Nastaviť"/>
 <gentext key="set" text="Nastaviť"/>
 <gentext key="SetIndex" text="Nastaviť index"/>
-<gentext key="setindex" text="Nastaviť index"/>
-<gentext key="Sidebar" text=""/>
-<gentext key="sidebar" text="boční lišta"/>
+<gentext key="setindex" text="nastaviť index"/>
+<gentext key="Sidebar" text="Marginália"/>
+<gentext key="sidebar" text="marginália"/>
 <gentext key="Step" text="Krok"/>
 <gentext key="step" text="krok"/>
 <gentext key="Table" text="Tabuľka"/>
@@ -126,8 +131,8 @@
 <gentext key="by" text=""/>
 <gentext key="Edited" text="Vydané"/>
 <gentext key="edited" text="Vydané"/>
-<gentext key="Editedby" text="Vydané"/>
-<gentext key="editedby" text="Vydané"/>
+<gentext key="Editedby" text="Zostavil: "/>
+<gentext key="editedby" text="Zostavil: "/>
 <gentext key="in" text="v"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
@@ -136,8 +141,8 @@
 <gentext key="Notes" text="Poznámky"/>
 <gentext key="Pgs" text="Str."/>
 <gentext key="pgs" text="Str."/>
-<gentext key="Revisedby" text="Revised by: "/>
-<gentext key="revisedby" text="Revised by: "/> <!-- en -->
+<gentext key="Revisedby" text="Revidoval: "/>
+<gentext key="revisedby" text="Revidoval: "/>
 <gentext key="TableNotes" text="Poznámky"/>
 <gentext key="tablenotes" text="Poznámky"/>
 <gentext key="TableofContents" text="Obsah"/>
@@ -158,20 +163,20 @@
 <gentext key="listofunknown" text="Zoznam neznámeho"/>
 
 <gentext key="nav-home" text="Domov"/>
-<gentext key="nav-next" text="Nasleduj&#250;ci"/>
+<gentext key="nav-next" text="Nasledujúci"/>
 <gentext key="nav-next-sibling" text="Rýchlo dopredu"/>
 <gentext key="nav-prev" text="Predchádzajúci"/>
 <gentext key="nav-prev-sibling" text="Rýchlo nazpät"/>
 <gentext key="nav-up" text="Hore"/>
 
-<gentext key="sectioncalled" text="the section called"/> <!-- en -->
-<gentext key="Draft"         text="Draft"/> <!-- en -->
-<gentext key="above"         text="above"/> <!-- en -->
-<gentext key="below"         text="below"/> <!-- en -->
-<gentext key="index symbols" text="Symbols"/> <!-- en -->
+<gentext key="sectioncalled" text="oddiel nazvaný"/>
+<gentext key="Draft" text="Koncept"/>
+<gentext key="above" text="nad"/> 
+<gentext key="below" text="pod"/> 
+<gentext key="index symbols" text="Symboly"/>
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
+<gentext key="lowercase.alpha" text="aáäbcčdďeéfghiíjklĺľmnňoóôpqrŕsštťuúvwxyýzž"/> 
+<gentext key="uppercase.alpha" text="AÁÄBCČDĎEÉFGHIÍJKLĹĽMNŇOÓÔPQRŔSŠTŤUÚVWXYÝZŽ"/> 
 
 <dingbat key="startquote" text="“"/>
 <dingbat key="endquote" text="”"/>
