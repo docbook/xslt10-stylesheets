@@ -222,7 +222,7 @@
     <xsl:with-param name="method" select="$method"/>
     <xsl:with-param name="encoding" select="$encoding"/>
     <xsl:with-param name="indent" select="'no'"/>
-    <xsl:with-param name="omit-xml-declaration" select="'yes'"/>
+    <xsl:with-param name="omit-xml-declaration" select="'no'"/>
     <xsl:with-param name="standalone" select="'no'"/>
     <xsl:with-param name="doctype-public"/>
     <xsl:with-param name="doctype-system"/>
