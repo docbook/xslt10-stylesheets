@@ -454,7 +454,7 @@ Not a URI -- instead must be just a filesystem pathname, e.g.,
   "*Absolute path to base DocBook XSL Stylesheets doc directory.
 Not a URI -- instead must be just a filesystem pathname, e.g.,
 
-  /usr/share/doc/docbook-xsl/docsrc
+  /usr/share/doc/docbook-xsl
    or
   c:/my-xml-stuff/docbook-xsl-1.62.4"
   :type 'string
