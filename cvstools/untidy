@@ -5,7 +5,7 @@ my $opts = join(" ", @ARGV);
 
 my $content = "";
 
-open (F, "tidy $opts $filename |");
+open (F, "/usr/bin/tidy $opts $filename |");
 while (<F>) {
     $content .= $_;
 }
