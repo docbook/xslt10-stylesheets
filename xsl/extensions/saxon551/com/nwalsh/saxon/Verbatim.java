@@ -475,9 +475,11 @@ public class Verbatim {
   private static void setupCallouts(Context context) {
     boolean useGraphics = false;
     boolean useUnicode = false;
+    boolean useDingbats = false;
 
     int unicodeStart = 48;
     int unicodeMax = 0;
+    int dingbatMax = 10;
 
     // Hardcoded defaults
     defaultColumn = 60;
@@ -506,8 +508,12 @@ public class Verbatim {
     varString = getVariable(context, "callout.graphics");
     useGraphics = !(varString.equals("0") || varString.equals(""));
 
-      // Use unicode at all?
+    // Use unicode at all?
     varString = getVariable(context, "callout.unicode");
+    useUnicode = !(varString.equals("0") || varString.equals(""));
+
+    // Use dingbats at all?
+    varString = getVariable(context, "callout.dingbats");
     useUnicode = !(varString.equals("0") || varString.equals(""));
 
     if (useGraphics) {
@@ -556,6 +562,9 @@ public class Verbatim {
 
       fCallout = new FormatUnicodeCallout(unicodeStart,
 					  unicodeMax,
+					  foStylesheet);
+    } else if (useDingbats) {
+      fCallout = new FormatDingbatCallout(dingbatMax,
 					  foStylesheet);
     } else {
       fCallout = new FormatTextCallout(foStylesheet);
