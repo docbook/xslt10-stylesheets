@@ -5,7 +5,8 @@
                 xmlns:stbl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.Table"
                 xmlns:xtbl="com.nwalsh.xalan.Table"
                 xmlns:lxslt="http://xml.apache.org/xslt"
-                exclude-result-prefixes="doc stbl xtbl lxslt"
+                xmlns:ptbl="http://nwalsh.com/xslt/ext/xsltproc/python/Table"
+                exclude-result-prefixes="doc stbl xtbl lxslt ptbl"
                 version='1.0'>
 
 <xsl:include href="../common/table.xsl"/>
@@ -178,6 +179,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
         </xsl:when>
         <xsl:when test="function-available('xtbl:adjustColumnWidths')">
           <xsl:copy-of select="xtbl:adjustColumnWidths($colspecs)"/>
+        </xsl:when>
+        <xsl:when test="function-available('ptbl:adjustColumnWidths')">
+          <xsl:copy-of select="ptbl:adjustColumnWidths($colspecs)"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:message terminate="yes">
