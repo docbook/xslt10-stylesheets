@@ -23,7 +23,7 @@
     </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="title">
-    <xsl:apply-templates select="$node" mode="title.markup"/>
+    <xsl:apply-templates select="$node" mode="object.title.markup"/>
   </xsl:variable>
 
   <xsl:if test="$passivetex.extensions != 0">
