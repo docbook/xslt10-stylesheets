@@ -40,7 +40,8 @@ open (F, "ChangeLog");
 while (<F>) {
     chop;
     $date = $1 if /^(\d+-\d+-\d+)/;
-    $found = 1 if /^\s+\* \S+: Version $version/;
+    $found = 1 if /^\s+\* \S+: Version $version\s+/;
+    $found = 1 if /^\s+\* \S+: Version $version\s*$/;
     last if $found;
 }
 
