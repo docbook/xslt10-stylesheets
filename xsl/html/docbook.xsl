@@ -1,7 +1,8 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+		xmlns:db="http://docbook.org/docbook-ng"
                 xmlns:exsl="http://exslt.org/common"
-                exclude-result-prefixes="exsl"
+                exclude-result-prefixes="db exsl"
                 version='1.0'>
 
 <xsl:output method="html"
@@ -408,6 +409,39 @@ body { background-image: url('</xsl:text>
 	<xsl:copy-of select="@*"/>
 	<xsl:apply-templates mode="stripNS"/>
       </xsl:copy>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="db:link" mode="stripNS">
+  <xsl:variable xmlns:xlink="http://www.w3.org/1999/xlink"
+		name="href" select="@xlink:href|@href"/>
+  <xsl:choose>
+    <xsl:when test="$href != '' and not(starts-with($href,'#'))">
+      <ulink url="{$href}">
+	<xsl:for-each select="@*">
+	  <xsl:if test="local-name(.) != 'href'">
+	    <xsl:copy/>
+	  </xsl:if>
+	</xsl:for-each>
+	<xsl:apply-templates mode="stripNS"/>
+      </ulink>
+    </xsl:when>
+    <xsl:when test="$href != '' and starts-with($href,'#')">
+      <link linkend="{substring-after($href,'#')}">
+	<xsl:for-each select="@*">
+	  <xsl:if test="local-name(.) != 'href'">
+	    <xsl:copy/>
+	  </xsl:if>
+	</xsl:for-each>
+	<xsl:apply-templates mode="stripNS"/>
+      </link>
+    </xsl:when>
+    <xsl:otherwise>
+      <link>
+	<xsl:copy-of select="@*"/>
+	<xsl:apply-templates mode="stripNS"/>
+      </link>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
