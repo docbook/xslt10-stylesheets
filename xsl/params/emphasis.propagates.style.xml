@@ -9,7 +9,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='emphasis.propagates.style.frag'><xsl:param name="emphasis.propagates.style" select="1"/></src:fragment>
+<src:fragment id='emphasis.propagates.style.frag'>
+<xsl:param name="emphasis.propagates.style" select="1"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
