@@ -934,18 +934,30 @@
     </xsl:call-template>
   </xsl:variable>
 
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="$presentation = 'table'">
-      <xsl:apply-templates select="." mode="seglist-table"/>
+      <fo:block id="{$id}">
+        <xsl:apply-templates select="." mode="seglist-table"/>
+      </fo:block>
     </xsl:when>
     <xsl:when test="$presentation = 'list'">
-      <xsl:apply-templates/>
+      <fo:block id="{$id}">
+        <xsl:apply-templates/>
+      </fo:block>
     </xsl:when>
     <xsl:when test="$segmentedlist.as.table != 0">
-      <xsl:apply-templates select="." mode="seglist-table"/>
+      <fo:block id="{$id}">
+        <xsl:apply-templates select="." mode="seglist-table"/>
+      </fo:block>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates/>
+      <fo:block id="{$id}">
+        <xsl:apply-templates/>
+      </fo:block>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -962,7 +974,12 @@
 </xsl:template>
 
 <xsl:template match="seglistitem">
-  <xsl:apply-templates/>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+  <fo:block id="{$id}">
+    <xsl:apply-templates/>
+  </fo:block>
 </xsl:template>
 
 <xsl:template match="seg">
@@ -1011,7 +1028,10 @@
 </xsl:template>
 
 <xsl:template match="seglistitem" mode="seglist-table">
-  <fo:table-row>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+  <fo:table-row id="{$id}">
     <xsl:apply-templates mode="seglist-table"/>
   </fo:table-row>
 </xsl:template>
