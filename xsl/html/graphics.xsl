@@ -95,7 +95,58 @@
   <xsl:variable name="width">
     <xsl:choose>
       <xsl:when test="@scale"><xsl:value-of select="@scale"/>%</xsl:when>
-      <xsl:when test="@width"><xsl:value-of select="@width"/></xsl:when>
+      <xsl:when test="@width">
+        <xsl:variable name="w-magnitude">
+          <xsl:call-template name="length-magnitude">
+            <xsl:with-param name="length" select="@width"/>
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:variable name="w-units">
+          <xsl:call-template name="length-units">
+            <xsl:with-param name="length" select="@width"/>
+            <xsl:with-param name="default.units" select="'px'"/>
+          </xsl:call-template>
+        </xsl:variable>
+
+        <xsl:choose>
+          <xsl:when test="$w-units = '%'">
+            <xsl:value-of select="@width"/>
+          </xsl:when>
+          <xsl:when test="$w-units = 'cm'">
+            <xsl:value-of select="round(($w-magnitude div 2.54) * 100)"/>
+          </xsl:when>
+          <xsl:when test="$w-units = 'mm'">
+            <xsl:value-of select="round(($w-magnitude div 25.4) * 100)"/>
+          </xsl:when>
+          <xsl:when test="$w-units = 'in'">
+            <xsl:value-of select="round($w-magnitude * 100)"/>
+          </xsl:when>
+          <xsl:when test="$w-units = 'pt'">
+            <xsl:value-of select="round(($w-magnitude div 72) * 100)"/>
+          </xsl:when>
+          <xsl:when test="$w-units = 'pc'">
+            <xsl:value-of select="round(($w-magnitude div 6) * 100)"/>
+          </xsl:when>
+          <xsl:when test="$w-units = 'px'">
+            <xsl:value-of select="$w-magnitude"/>
+          </xsl:when>
+          <xsl:when test="$w-units = 'em'">
+            <xsl:message>
+              <xsl:text>Relative units (ems) are not supported on widths.  </xsl:text>
+              <xsl:text>Using 12pt/em.</xsl:text>
+            </xsl:message>
+            <xsl:value-of select="round((($w-magnitude * 12) div 72) * 100)"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:message>
+              <xsl:text>Unrecognized unit given for width: </xsl:text>
+              <xsl:value-of select="$w-units"/>
+              <xsl:text>. Treating as px.</xsl:text>
+              <xsl:value-of select="$w-magnitude"/>
+            </xsl:message>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
       <xsl:otherwise></xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -103,7 +154,58 @@
   <xsl:variable name="height">
     <xsl:choose>
       <xsl:when test="@scale"></xsl:when>
-      <xsl:when test="@depth"><xsl:value-of select="@depth"/></xsl:when>
+      <xsl:when test="@depth">
+        <xsl:variable name="d-magnitude">
+          <xsl:call-template name="length-magnitude">
+            <xsl:with-param name="length" select="@depth"/>
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:variable name="d-units">
+          <xsl:call-template name="length-units">
+            <xsl:with-param name="length" select="@depth"/>
+            <xsl:with-param name="default.units" select="'px'"/>
+          </xsl:call-template>
+        </xsl:variable>
+
+        <xsl:choose>
+          <xsl:when test="$d-units = '%'">
+            <xsl:value-of select="@depth"/>
+          </xsl:when>
+          <xsl:when test="$d-units = 'cm'">
+            <xsl:value-of select="round(($d-magnitude div 2.54) * 100)"/>
+          </xsl:when>
+          <xsl:when test="$d-units = 'mm'">
+            <xsl:value-of select="round(($d-magnitude div 25.4) * 100)"/>
+          </xsl:when>
+          <xsl:when test="$d-units = 'in'">
+            <xsl:value-of select="round($d-magnitude * 100)"/>
+          </xsl:when>
+          <xsl:when test="$d-units = 'pt'">
+            <xsl:value-of select="round(($d-magnitude div 72) * 100)"/>
+          </xsl:when>
+          <xsl:when test="$d-units = 'pc'">
+            <xsl:value-of select="round(($d-magnitude div 6) * 100)"/>
+          </xsl:when>
+          <xsl:when test="$d-units = 'px'">
+            <xsl:value-of select="$d-magnitude"/>
+          </xsl:when>
+          <xsl:when test="$d-units = 'em'">
+            <xsl:message>
+              <xsl:text>Relative units (ems) are not supported on depths.  </xsl:text>
+              <xsl:text>Using 12pt/em.</xsl:text>
+            </xsl:message>
+            <xsl:value-of select="round((($d-magnitude * 12) div 72) * 100)"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:message>
+              <xsl:text>Unrecognized unit given for depth: </xsl:text>
+              <xsl:value-of select="$d-units"/>
+              <xsl:text>. Treating as px.</xsl:text>
+              <xsl:value-of select="$d-magnitude"/>
+            </xsl:message>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
       <xsl:otherwise></xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
