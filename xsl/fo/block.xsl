@@ -241,9 +241,9 @@
 
 <xsl:template match="revhistory">
   <fo:table table-layout="fixed">
-    <fo:table-column column-number="1" column-width="33%"/>
-    <fo:table-column column-number="2" column-width="33%"/>
-    <fo:table-column column-number="3" column-width="33%"/>
+    <fo:table-column column-number="1" column-width="proportional-column-width(1)"/>
+    <fo:table-column column-number="2" column-width="proportional-column-width(1)"/>
+    <fo:table-column column-number="3" column-width="proportional-column-width(1)"/>
     <fo:table-body>
       <fo:table-row>
         <fo:table-cell number-columns-spanned="3">

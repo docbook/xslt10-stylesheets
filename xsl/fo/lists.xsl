@@ -492,7 +492,8 @@
 <xsl:template name="simplelist.table.columns">
   <xsl:param name="cols" select="1"/>
   <xsl:param name="curcol" select="1"/>
-  <fo:table-column column-number="{$curcol}"/>
+  <fo:table-column column-number="{$curcol}"
+                   column-width="proportional-column-width(1)"/>
   <xsl:if test="$curcol &lt; $cols">
     <xsl:call-template name="simplelist.table.columns">
       <xsl:with-param name="cols" select="$cols"/>
@@ -769,8 +770,8 @@
 <xsl:template match="segmentedlist" mode="seglist-table">
   <xsl:apply-templates select="title" mode="list.title.mode" />
   <fo:table>
-    <fo:table-column column-number="1"/>
-    <fo:table-column column-number="2"/>
+    <fo:table-column column-number="1" column-width="proportional-column-width(1)"/>
+    <fo:table-column column-number="2" column-width="proportional-column-width(1)"/>
     <fo:table-header>
       <fo:table-row>
         <xsl:apply-templates select="segtitle" mode="seglist-table"/>
