@@ -1173,6 +1173,8 @@
   </xsl:if>
 </xsl:template>
 
+<!-- ==================================================================== -->
+
 <xsl:template match="*" mode="running.head.mode">
   <xsl:param name="master-reference" select="'unknown'"/>
   <xsl:param name="gentext-key" select="'TableofContents'"/>
@@ -1408,7 +1410,7 @@
                     or $master-reference = 'back-draft'
                     or $master-reference = 'index-draft'">
       <fo:static-content flow-name="xsl-region-after-{$flow-name}-first">
-        <xsl:call-template name="foot.blank">
+        <xsl:call-template name="foot.empty">
           <xsl:with-param name="master-reference" select="$master-reference"/>
           <xsl:with-param name="gentext-key" select="$gentext-key"/>
           <xsl:with-param name="draft" select="$draft"/>
@@ -1639,6 +1641,26 @@
   </xsl:if>
 </xsl:template>
 
+<xsl:template name="foot.empty">
+  <xsl:param name="master-reference" select="'unknown'"/>
+  <xsl:param name="gentext-key" select="'TableofContents'"/>
+  <xsl:param name="draft"/>
+
+  <xsl:variable name="align-odd">
+    <xsl:choose>
+      <xsl:when test="$double.sided != 0">right</xsl:when>
+      <xsl:otherwise>center</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:if test="$footers.on.blank.pages != 0">
+    <fo:block text-align="{$align-odd}" margin-left="{$title.margin.left}">
+      <xsl:call-template name="foot.sep.rule"/>
+      <fo:page-number/>
+    </fo:block>
+  </xsl:if>
+</xsl:template>
+
 <xsl:template name="foot.even">
   <xsl:param name="master-reference" select="'unknown'"/>
   <xsl:param name="gentext-key" select="'TableofContents'"/>
@@ -1673,6 +1695,19 @@
     <xsl:call-template name="foot.sep.rule"/>
     <fo:page-number/>
   </fo:block>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template name="page.number.format">
+  <xsl:param name="element" select="local-name(.)"/>
+
+  <xsl:choose>
+    <xsl:when test="$element = 'toc'">i</xsl:when>
+    <xsl:when test="$element = 'preface'">i</xsl:when>
+    <xsl:when test="$element = 'dedication'">i</xsl:when>
+    <xsl:otherwise>1</xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
