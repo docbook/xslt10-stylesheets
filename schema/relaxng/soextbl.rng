@@ -1,140 +1,230 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<grammar datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
-<!-- XML EXCHANGE TABLE MODEL DECLARATION MODULE -->
-<!-- This set of declarations defines the XML version of the Exchange
-     Table Model as of the date shown in the Formal Public Identifier
-     (FPI) for this entity.
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:rng="http://relaxng.org/ns/structure/1.0"
+         xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+         xmlns:s="http://www.ascc.net/xml/schematron"
+         xmlns:doc="http://nwalsh.com/xmlns/documentation"
+         xmlns:db="http://nwalsh.com/xmlns/docbook-grammar-structure"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 
-     This set of declarations may be referred to using a public external
-     entity declaration and reference as shown in the following three
-     lines:
+<rng:div doc:docbook="yes" xmlns="">
+<partinfo>
+<releaseinfo
+   role="cvs">$Id$</releaseinfo>
+<title>XML Exchange Table Model</title>
+<productname>DocBook</productname>
+<productnumber>4.2</productnumber>
+<releaseinfo role="filename">soextbl</releaseinfo>
+</partinfo>
+<partintro>
+<para>This set of declarations defines the XML version of the Exchange
+Table Model as of the date shown in the Formal Public Identifier
+(FPI) for this entity.</para>
 
-     <!ENTITY % calstblx
-       PUBLIC "-//OASIS//DTD XML Exchange Table Model 19990315//EN">
-       %calstblx;
+<para>This set of declarations may be referred to using a public external
+entity declaration and reference as shown in the following three
+lines:</para>
 
-     If various parameter entities used within this set of declarations
-     are to be given non-default values, the appropriate declarations
-     should be given before calling in this package (i.e., before the
-     "%calstblx;" reference).
--->
-<!-- The motivation for this XML version of the Exchange Table Model
-     is simply to create an XML version of the SGML Exchange Table
-     Model. By design, no effort has been made to "improve" the model.
+<screen><![CDATA[<!ENTITY % calstblx
+  PUBLIC "-//OASIS//DTD XML Exchange Table Model 19990315//EN">
+  %calstblx;]]></screen>
 
-     This XML version incorporates the logical bare minimum changes
-     necessary to make the Exchange Table Model a valid XML DTD.
--->
-<!-- The XML version of the Exchange Table Model differs from
-     the SGML version in the following ways:
+<para>If various parameter entities used within this set of declarations
+are to be given non-default values, the appropriate declarations
+should be given before calling in this package (i.e., before the
+"%calstblx;" reference).</para>
 
-     The following parameter entities have been removed:
+<para>The motivation for this XML version of the Exchange Table Model
+is simply to create an XML version of the SGML Exchange Table
+Model. By design, no effort has been made to "improve" the model.</para>
 
-       - tbl.table.excep, tbl.hdft.excep, tbl.row.excep, tbl.entry.excep
-         There are no exceptions in XML. The following normative statement
-         is made in lieu of exceptions: the exchange table model explicitly
-         forbids a table from occurring within another table. If the
-         content model of an entry includes a table element, then this
-         cannot be enforced by the DTD, but it is a deviation from the
-         exchange table model to include a table within a table.
+<para>This XML version incorporates the logical bare minimum changes
+necessary to make the Exchange Table Model a valid XML DTD.</para>
 
-       - tbl.hdft.name, tbl.hdft.mdl, tbl.hdft.excep, tbl.hdft.att
-         The motivation for these elements was to change the table
-         header/footer elements. Since XML does not allow element declarations
-         to contain name groups, and the exchange table model does not
-         allow a table to contain footers, the continued presence of these
-         attributes seems unnecessary.
+<para>The XML version of the Exchange Table Model differs from
+the SGML version in the following ways:</para>
 
-     The following parameter entity has been added:
+<para>The following parameter entities have been removed:</para>
 
-       - tbl.thead.att
-         This entity parameterizes the attributes on thead. It replaces
-         the tbl.hdft.att parameter entity.
+<itemizedlist>
+<listitem>
+<para>tbl.table.excep, tbl.hdft.excep, tbl.row.excep, tbl.entry.excep</para>
+<para>
+There are no exceptions in XML. The following normative statement
+is made in lieu of exceptions: the exchange table model explicitly
+forbids a table from occurring within another table. If the
+content model of an entry includes a table element, then this
+cannot be enforced by the DTD, but it is a deviation from the
+exchange table model to include a table within a table.</para>
+</listitem>
 
-     Other miscellaneous changes:
+<listitem>
+<para>tbl.hdft.name, tbl.hdft.mdl, tbl.hdft.excep, tbl.hdft.att</para>
+<para>
+The motivation for these elements was to change the table
+header/footer elements. Since XML does not allow element declarations
+to contain name groups, and the exchange table model does not
+allow a table to contain footers, the continued presence of these
+attributes seems unnecessary.</para>
+</listitem>
+</itemizedlist>
 
-       - Tag ommission indicators have been removed
-       - Comments have been removed from declarations
-       - NUMBER attributes have been changed to NMTOKEN
-       - NUTOKEN attributes have been to changed to NMTOKEN
-       - Removed the grouping characters around the content model
-         parameter entry for the 'entry' element. This is necessary
-         so that an entry can contain #PCDATA and be defined as an
-         optional, repeatable OR group beginning with #PCDATA.
--->
-<!-- This entity includes a set of element and attribute declarations
-     that partially defines the Exchange table model.  However, the model
-     is not well-defined without the accompanying natural language
-     description of the semantics (meanings) of these various elements,
-     attributes, and attribute values.  The semantic writeup, also available
-     from SGML Open, should be used in conjunction with this entity.
--->
-<!-- In order to use the Exchange table model, various parameter entity
-     declarations are required.  A brief description is as follows:
+<para>The following parameter entity has been added:</para>
 
-     ENTITY NAME      WHERE USED              WHAT IT IS
+<itemizedlist>
+<listitem>
+<para>tbl.thead.att</para>
+<para>This entity parameterizes the attributes on thead. It replaces
+the tbl.hdft.att parameter entity.</para>
+</listitem>
+</itemizedlist>
 
-     %yesorno         In ATTLIST of:          An attribute declared value
-                      almost all elements     for a "boolean" attribute
+<para>Other miscellaneous changes:</para>
 
-     %paracon         In content model of:    The "text" (logical content)
-                      <entry>                 of the model group for <entry>
+<itemizedlist>
+<listitem>
+<para>Tag ommission indicators have been removed</para>
+</listitem>
 
-     %titles          In content model of:    The "title" part of the model
-                      table element           group for the table element
+<listitem>
+<para>Comments have been removed from declarations</para>
+</listitem>
 
-     %tbl.table.name  In declaration of:      The name of the "table"
-                      table element           element
+<listitem>
+<para>NUMBER attributes have been changed to NMTOKEN</para>
+</listitem>
 
-     %tbl.table-titles.mdl In content model of: The model group for the title
-                      table elements          part of the content model for
-                                              table element
+<listitem>
+<para>NUTOKEN attributes have been to changed to NMTOKEN</para>
+</listitem>
 
-     %tbl.table.mdl   In content model of:    The model group for the content
-                      table elements          model for table element,
-                                              often (and by default) defined
-                                              in terms of %tbl.table-titles.mdl
-                                              and tgroup
+<listitem>
+<para>Removed the grouping characters around the content model
+parameter entry for the 'entry' element. This is necessary
+so that an entry can contain #PCDATA and be defined as an
+optional, repeatable OR group beginning with #PCDATA.</para>
+</listitem>
+</itemizedlist>
 
-     %tbl.table.att   In ATTLIST of:          Additional attributes on the
-                      table element           table element
+<para>This entity includes a set of element and attribute declarations
+that partially defines the Exchange table model.  However, the model
+is not well-defined without the accompanying natural language
+description of the semantics (meanings) of these various elements,
+attributes, and attribute values.  The semantic writeup, also available
+from SGML Open, should be used in conjunction with this entity.</para>
 
-     %bodyatt         In ATTLIST of:          Additional attributes on the
-                      table element           table element (for backward
-                                              compatibility with the SGML
-                                              model)
+<para>In order to use the Exchange table model, various parameter entity
+declarations are required.  A brief description is as follows:</para>
 
-     %tbl.tgroup.mdl  In content model of:    The model group for the content
-                      <tgroup>                model for <tgroup>
+<informaltable>
+<tgroup cols="3">
+<thead>
+  <row>
+    <entry>Entity Name</entry>
+    <entry>Where Used</entry>
+    <entry>What It Is</entry>
+  </row>
+</thead>
+<tbody>
+  <row>
+    <entry>%yesorno</entry>
+    <entry>In ATTLIST of: almost all elements </entry>
+    <entry>An attribute declared value for a "boolean" attribute</entry>
+  </row>
+  <row>
+    <entry>%paracon</entry>
+    <entry>In the content model of <sgmltag>entry</sgmltag></entry>
+    <entry>The "text" (logical content) of the model group for
+           <sgmltag>entry</sgmltag></entry>
+  </row>
+  <row>
+    <entry>%titles</entry>
+    <entry>In content model of: table element</entry>
+    <entry>The "title" part of the model group for the table element</entry>
+  </row>
+  <row>
+    <entry>%tbl.table.name</entry>
+    <entry>In declaration of: table element</entry>
+    <entry>The name of the "table" element</entry>
+  </row>
+  <row>
+    <entry>%tbl.table-titles.mdl</entry>
+    <entry>In content model of: table elements</entry>
+    <entry>The model group for the title part of the content model for
+           table element</entry>
+  </row>
+  <row>
+    <entry>%tbl.table.mdl</entry>
+    <entry>In content model of: table elements</entry>
+    <entry>The model group for the content model for table element, often (and by
+           default) defined in terms of %tbl.table-titles.mdl and tgroup</entry>
+  </row>
+  <row>
+    <entry>%tbl.table.att</entry>
+    <entry>In ATTLIST of: table element</entry>
+    <entry>Additional attributes on the table element</entry>
+  </row>
+  <row>
+    <entry>%bodyatt</entry>
+    <entry>In ATTLIST of: table element</entry>
+    <entry>Additional attributes on the table element (for backward compatibility
+           with the SGML model)</entry>
+  </row>
+  <row>
+    <entry>%tbl.tgroup.mdl</entry>
+    <entry>In content model of: <sgmltag>tgroup</sgmltag></entry>
+    <entry>The model group for the content model for <sgmltag>tgroup</sgmltag></entry>
+  </row>
+  <row>
+    <entry>%tbl.tgroup.att</entry>
+    <entry>In ATTLIST of: <sgmltag>tgroup</sgmltag></entry>
+    <entry>Additional attributes on the <sgmltag>tgroup</sgmltag> element</entry>
+  </row>
+  <row>
+    <entry>%tbl.thead.att</entry>
+    <entry>In ATTLIST of: <sgmltag>thead</sgmltag></entry>
+    <entry>Additional attributes on the <sgmltag>thead</sgmltag> element</entry>
+  </row>
+  <row>
+    <entry>%tbl.tbody.att</entry>
+    <entry>In ATTLIST of: <sgmltag>tbody</sgmltag></entry>
+    <entry>Additional attributes on the <sgmltag>tbody</sgmltag> element</entry>
+  </row>
+  <row>
+    <entry>%tbl.colspec.att</entry>
+    <entry>In ATTLIST of: <sgmltag>colspec</sgmltag></entry>
+    <entry>Additional attributes on the <sgmltag>colspec</sgmltag> element</entry>
+  </row>
+  <row>
+    <entry>%tbl.row.mdl</entry>
+    <entry>In content model of: <sgmltag>row</sgmltag></entry>
+    <entry>The model group for the content model for <sgmltag>row</sgmltag></entry>
+  </row>
+  <row>
+    <entry>%tbl.row.att</entry>
+    <entry>In ATTLIST of: <sgmltag>row</sgmltag></entry>
+    <entry>Additional attributes on the <sgmltag>row</sgmltag> element</entry>
+  </row>
+  <row>
+    <entry>%tbl.entry.mdl</entry>
+    <entry>In content model of: <sgmltag>entry</sgmltag></entry>
+    <entry>The model group for the content model for <sgmltag>entry</sgmltag></entry>
+  </row>
+  <row>
+    <entry>%tbl.entry.att</entry>
+    <entry>In ATTLIST of: <sgmltag>entry</sgmltag></entry>
+    <entry>Additional attributes on the <sgmltag>entry</sgmltag> element</entry>
+  </row>
+</tbody>
+</tgroup>
+</informaltable>
 
-     %tbl.tgroup.att  In ATTLIST of:          Additional attributes on the
-                      <tgroup>                <tgroup> element
+<para>This set of declarations will use the default definitions shown below
+for any of these parameter entities that are not declared before this
+set of declarations is referenced.</para>
+</partintro>
+</rng:div>
 
-     %tbl.thead.att   In ATTLIST of:          Additional attributes on the
-                      <thead>                 <thead> element
-
-     %tbl.tbody.att   In ATTLIST of:          Additional attributes on the
-                      <tbody>                 <tbody> element
-
-     %tbl.colspec.att In ATTLIST of:          Additional attributes on the
-                      <colspec>               <colspec> element
-
-     %tbl.row.mdl     In content model of:    The model group for the content
-                      <row>                   model for <row>
-
-     %tbl.row.att     In ATTLIST of:          Additional attributes on the
-                      <row>                   <row> element
-
-     %tbl.entry.mdl   In content model of:    The model group for the content
-                      <entry>                 model for <entry>
-
-     %tbl.entry.att   In ATTLIST of:          Additional attributes on the
-                      <entry>                 <entry> element
-
-     This set of declarations will use the default definitions shown below
-     for any of these parameter entities that are not declared before this
-     set of declarations is referenced.
--->
 <!-- These definitions are not directly related to the table model, but are
      used in the default CALS table model and may be defined elsewhere (and
      prior to the inclusion of this table module) in the referencing DTD. -->
