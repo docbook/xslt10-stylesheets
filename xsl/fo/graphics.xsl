@@ -42,6 +42,7 @@ FIXME: make is.graphic.* work correctly depending on the backend!
                 or $format = 'GIF'
                 or $format = 'GIF87a'
                 or $format = 'GIF89a'
+                or $format = 'TIFF'
                 or $format = 'BMP'">1</xsl:if>
 </xsl:template>
 
@@ -52,6 +53,8 @@ FIXME: make is.graphic.* work correctly depending on the backend!
                 or $ext = 'jpeg'
                 or $ext = 'jpg'
                 or $ext = 'gif'
+                or $ext = 'tif'
+                or $ext = 'tiff'
                 or $ext = 'bmp'">1</xsl:if>
 </xsl:template>
 
