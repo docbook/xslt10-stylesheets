@@ -173,11 +173,11 @@
 </xsl:template>
 
 <xsl:template match="author" mode="titlepage.mode">
-  <fo:wrapper>
+  <fo:block>
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="person.name"/>
     <xsl:apply-templates select="affiliation" mode="titlepage.mode"/>
-  </fo:wrapper>
+  </fo:block>
 </xsl:template>
 
 <xsl:template match="authorblurb" mode="titlepage.mode">
