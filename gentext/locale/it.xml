@@ -5,15 +5,25 @@
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo xmlns="">
-<!-- FIXME: list the real contributors
 <authorgroup>
-  <author><firstname>Norman</firstname><surname>Walsh</surname>
-          <affiliation><address><email>ndw@nwalsh.com</email></address>
+  <author><firstname>Andrea</firstname><surname>RIZZI</surname>
+          <affiliation><address><email>a.rizzi@sns.it</email></address>
           </affiliation>
   </author>
 </authorgroup>
--->
 </doc:localeinfo>
+
+<gentext key="index symbols" text="Simboli"/>
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuwxyz"/>
+<gentext key="ProductionSet" text="Produzione"/>
+<gentext key="sect1" text="Sezione"/>
+<gentext key="sect2" text="Sezione"/>
+<gentext key="sect3" text="Sezione"/>
+<gentext key="sect4" text="Sezione"/>
+<gentext key="sect5" text="Sezione"/>
+<gentext key="sectioncalled" text="la sezione chiamata"/>
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
+
 
 <gentext key="Abstract" text="Estratto"/>
 <gentext key="abstract" text="Estratto"/>
@@ -23,8 +33,6 @@
 <gentext key="appendix" text="appendice"/>
 <gentext key="Article" text="Articolo"/>
 <gentext key="article" text="Articolo"/>
-<gentext key="Audience" text="Pubblico"/>
-<gentext key="audience" text="Pubblico"/>
 <gentext key="Bibliography" text="Bibliografia"/>
 <gentext key="bibliography" text="Bibliografia"/>
 <gentext key="Book" text="Libro"/>
@@ -54,8 +62,6 @@
 <gentext key="glosssee" text="Vedi"/>
 <gentext key="glossseealso" text="Vedi anche"/>
 <gentext key="GlossSeeAlso" text="Vedi anche"/>
-<gentext key="History" text="Diario"/>
-<gentext key="history" text="Diario"/>
 <gentext key="Important" text="Importante"/>
 <gentext key="important" text="Importante"/>
 <gentext key="IMPORTANT" text="IMPORTANTE"/>
@@ -65,21 +71,15 @@
 <gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text="Note legali"/>
 <gentext key="legalnotice" text="Note legali"/>
-<gentext key="Level" text="Livello"/>
-<gentext key="level" text="Livello"/>
 <gentext key="MsgAud" text="Pubblico"/>
 <gentext key="msgaud" text="Pubblico"/>
 <gentext key="MsgLevel" text="Livello"/>
 <gentext key="msglevel" text="Livello"/>
 <gentext key="MsgOrig" text="Origine"/>
 <gentext key="msgorig" text="Origine"/>
-<gentext key="name" text="Nome"/>
-<gentext key="Name" text="Nome"/>
 <gentext key="Note" text="Nota"/>
 <gentext key="NOTE" text="NOTA"/>
 <gentext key="note" text="Nota"/>
-<gentext key="origin" text="Origine"/>
-<gentext key="Origin" text="Origine"/>
 <gentext key="Part" text="Parte"/>
 <gentext key="part" text="Parte"/>
 <gentext key="Preface" text="Prefazione"/>
@@ -130,7 +130,6 @@
 
 <gentext key="and" text="e"/>
 <gentext key="by" text="di"/>
-<gentext key="called" text="intitolato"/>
 <gentext key="Edited" text="A cura"/>
 <gentext key="edited" text="A cura"/>
 <gentext key="Editedby" text="A cura di"/>
@@ -149,7 +148,6 @@
 <gentext key="tablenotes" text="Note"/>
 <gentext key="TableofContents" text="Sommario"/>
 <gentext key="tableofcontents" text="Sommario"/>
-<gentext key="the" text="il"/>
 <gentext key="unexpectedelementname" text="Nome elemento inaspettato"/>
 <gentext key="unsupported" text="non supportato"/>
 <gentext key="xrefto" text="riferimento a"/>
@@ -179,7 +177,9 @@
 <dingbat key="bullet" text="&#x2022;"/>
 
 <context name="title">
+<template name="varlistentry"/>
 
+<template name="answer">%t</template>
 <template name="abstract">%t</template>
 <template name="appendix"><Appendix/> %n. %t</template>
 <template name="article">%t</template>
@@ -222,6 +222,12 @@
 <template name="partintro">%t</template>
 <template name="preface">%t</template>
 <template name="procedure">%t</template>
+<template name="procedure.formal"><Procedure/> %n. %t</template>
+<template name="productionset">%t</template>
+<template name="productionset.formal"><ProductionSet/> %n</template>
+<template name="qandaentry">%t</template>
+<template name="question">%t</template>
+<template name="refentry">%t</template>
 <template name="qandadiv">%t</template>
 <template name="qandaset">%t</template>
 <template name="reference">%t</template>
@@ -246,6 +252,7 @@
 <context name="title-unnumbered">
 
 <template name="appendix">%t</template>
+<template name="bridgehead">%t</template>
 <template name="chapter">%t</template>
 <template name="sect1">%t</template>
 <template name="sect2">%t</template>
@@ -260,6 +267,7 @@
 <context name="title-numbered">
 
 <template name="appendix"><Appendix/> %n. %t</template>
+<template name="bridgehead">%n. %t</template>
 <template name="chapter"><Chapter/> %n. %t</template>
 <template name="sect1">%n. %t</template>
 <template name="sect2">%n. %t</template>
@@ -315,6 +323,8 @@
 
 <context name="xref">
 
+
+<template name="answer"><Answer/> %n</template>
 <template name="appendix"><Appendix/> %n. %t</template>
 <template name="article">%t</template>
 <template name="bibliography">%t</template>
@@ -322,6 +332,7 @@
 <template name="chapter"><Chapter/> %n. %t</template>
 <template name="colophon">%t</template>
 <template name="dedication">%t</template>
+<template name="equation"><Equation/> %n</template>
 <template name="example"><Example/> %n. %t</template>
 <template name="figure"><Figure/> %n. %t</template>
 <template name="glossary">%t</template>
@@ -329,34 +340,42 @@
 <template name="listitem">%n</template>
 <template name="part"><Part/> %n. %t</template>
 <template name="preface">%t</template>
+<template name="procedure"><Procedure/> %n</template>
+<template name="qandadiv">%t</template>
+<template name="qandaentry"><Question/> %n</template>
+<template name="qandaset">%t</template>
+<template name="question"><Question/> %n</template>
 <template name="reference">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
 <template name="table"><Table/> %n. %t</template>
+<template name="varlistentry">%n</template>
 
 </context>
-
+    
 <context name="section-xref">
 
-<template name="sect1">&#x201C;%t&#x201D;</template>
-<template name="sect2">&#x201C;%t&#x201D;</template>
-<template name="sect3">&#x201C;%t&#x201D;</template>
-<template name="sect4">&#x201C;%t&#x201D;</template>
-<template name="sect5">&#x201C;%t&#x201D;</template>
-<template name="section">&#x201C;%t&#x201D;</template>
-<template name="simplesect">&#x201C;%t&#x201D;</template>
+<template name="bridgehead"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="sect1"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="sect2"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="sect3"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="sect4"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="sect5"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="section"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="simplesect"><sectioncalled/> &#x201C;%t&#x201D;</template>
 
 </context>
 
 <context name="section-xref-numbered">
 
+<template name="bridgehead"><Section/> %n</template>
 <template name="sect1"><Section/> %n</template>
 <template name="sect2"><Section/> %n</template>
 <template name="sect3"><Section/> %n</template>
 <template name="sect4"><Section/> %n</template>
 <template name="sect5"><Section/> %n</template>
 <template name="section"><Section/> %n</template>
-<template name="simplesect">&#x201C;%t&#x201D;</template>
+<template name="simplesect"><sectioncalled/>&#x201C;%t&#x201D;</template>
 
 </context>
 
