@@ -409,6 +409,88 @@ title of the element. This does not include the label.
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="preface|chapter|appendix" mode="titleabbrev.markup">
+  <xsl:param name="allow-anchors" select="0"/>
+  <xsl:param name="verbose" select="1"/>
+
+  <xsl:variable name="titleabbrev" select="(docinfo/titleabbrev
+                                           |prefaceinfo/titleabbrev
+                                           |chapterinfo/titleabbrev
+                                           |appendixinfo/titleabbrev
+                                           |titleabbrev)[1]"/>
+
+  <xsl:choose>
+    <xsl:when test="$titleabbrev">
+      <xsl:apply-templates select="$titleabbrev" mode="title.markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+      </xsl:apply-templates>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="." mode="title.markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+        <xsl:with-param name="verbose" select="$verbose"/>
+      </xsl:apply-templates>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="article" mode="titleabbrev.markup">
+  <xsl:param name="allow-anchors" select="0"/>
+  <xsl:param name="verbose" select="1"/>
+
+  <xsl:variable name="titleabbrev" select="(artheader/titleabbrev
+                                           |articleinfo/titleabbrev
+                                           |titleabbrev)[1]"/>
+
+  <xsl:choose>
+    <xsl:when test="$titleabbrev">
+      <xsl:apply-templates select="$titleabbrev" mode="title.markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+      </xsl:apply-templates>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="." mode="title.markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+        <xsl:with-param name="verbose" select="$verbose"/>
+      </xsl:apply-templates>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="section
+                     |sect1|sect2|sect3|sect4|sect5
+                     |refsect1|refsect2|refsect3
+                     |simplesect"
+              mode="titleabbrev.markup">
+  <xsl:param name="allow-anchors" select="0"/>
+  <xsl:param name="verbose" select="1"/>
+
+  <xsl:variable name="titleabbrev" select="(sectioninfo/titleabbrev
+                                      |sect1info/titleabbrev
+                                      |sect2info/titleabbrev
+                                      |sect3info/titleabbrev
+                                      |sect4info/titleabbrev
+                                      |sect5info/titleabbrev
+                                      |refsect1info/titleabbrev
+                                      |refsect2info/titleabbrev
+                                      |refsect3info/titleabbrev
+                                      |titleabbrev)[1]"/>
+
+  <xsl:choose>
+    <xsl:when test="$titleabbrev">
+      <xsl:apply-templates select="$titleabbrev" mode="title.markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+      </xsl:apply-templates>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="." mode="title.markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+        <xsl:with-param name="verbose" select="$verbose"/>
+      </xsl:apply-templates>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="titleabbrev" mode="title.markup">
   <xsl:param name="allow-anchors" select="0"/>
 
