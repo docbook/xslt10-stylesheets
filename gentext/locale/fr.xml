@@ -193,8 +193,8 @@
 
 <dingbat key="startquote" text="&#x00AB;&#x00A0;"/>
 <dingbat key="endquote" text="&#x00A0;&#x00BB;"/>
-<dingbat key="nestedstartquote" text="&#x00AB;&#x00A0;"/>
-<dingbat key="nestedendquote" text="&#x00A0;&#x00BB;"/>
+<dingbat key="nestedstartquote" text="&#x201C;"/>
+<dingbat key="nestedendquote" text="&#x201D;"/>
 <dingbat key="singlestartquote" text="&#x2039;"/>
 <dingbat key="singleendquote" text="&#x203A;"/>
 
