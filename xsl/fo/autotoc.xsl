@@ -458,11 +458,10 @@
   <xsl:call-template name="toc.line"/>
 </xsl:template>
 
-<xsl:template match="index"
-              mode="toc">
+<xsl:template match="index" mode="toc">
   <xsl:param name="toc-context" select="."/>
 
-  <xsl:if test="* or $generate.index">
+  <xsl:if test="* or $generate.index != 0">
     <xsl:call-template name="toc.line"/>
   </xsl:if>
 </xsl:template>
