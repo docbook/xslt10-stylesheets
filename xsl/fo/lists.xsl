@@ -361,10 +361,32 @@
 </xsl:template>
 
 <xsl:template match="step">
+  <xsl:variable name="depth" select="count(ancestor::substeps)"/>
+  <xsl:variable name="type" select="$depth mod 5"/>
+
   <fo:list-item>
     <fo:list-item-label end-indent="label-end()">
       <fo:block>
-        <xsl:number count="step" format="1."/>
+        <xsl:choose>
+          <xsl:when test="$depth = 0">
+            <xsl:number count="step" format="1."/>
+          </xsl:when>
+          <xsl:when test="$type = 1">
+            <xsl:number count="step" format="a."/>
+          </xsl:when>
+          <xsl:when test="$type = 2">
+            <xsl:number count="step" format="i."/>
+          </xsl:when>
+          <xsl:when test="$type = 3">
+            <xsl:number count="step" format="A."/>
+          </xsl:when>
+          <xsl:when test="$type = 4">
+            <xsl:number count="step" format="I."/>
+          </xsl:when>
+          <xsl:when test="$type = 0">
+            <xsl:number count="step" format="1."/>
+          </xsl:when>
+        </xsl:choose>
       </fo:block>
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">

@@ -424,7 +424,21 @@
 </xsl:template>
 
 <xsl:template match="substeps">
-  <ol><xsl:apply-templates/></ol>
+  <xsl:variable name="depth" select="count(ancestor::substeps)"/>
+  <xsl:variable name="type" select="$depth mod 5"/>
+  <xsl:variable name="numeration">
+    <xsl:choose>
+      <xsl:when test="$type = 0">a</xsl:when>
+      <xsl:when test="$type = 1">i</xsl:when>
+      <xsl:when test="$type = 2">A</xsl:when>
+      <xsl:when test="$type = 3">I</xsl:when>
+      <xsl:when test="$type = 4">1</xsl:when>
+    </xsl:choose>
+  </xsl:variable>
+
+  <ol type="{$numeration}">
+    <xsl:apply-templates/>
+  </ol>
 </xsl:template>
 
 <xsl:template match="step">
