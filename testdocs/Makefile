@@ -29,7 +29,7 @@ DSSSLINDEXER	?= perl $(DSSSLROOT)/bin/collateindex.pl
 XSLPARAM	?=
 
 # what to use to format XSL FO
-FO_FORMATTER	?= xep
+FO_FORMATTER	?= tex
 
 
 # ======================================================================
@@ -91,35 +91,26 @@ else
 	$(JADE) fo $(DSSSLPRINT) $< -o $@
 endif
 
+ifeq ($(MODE),dsssl)
 .xml.tex:
 ifeq ($(VALIDATE),1)
 	$(XJPARSE) $<
 endif
-ifeq ($(MODE),xsl)
-	@echo "don't know how to make TeX with XSL, is it useful?" >&2
-	exit 1
-else
 	$(JADE) tex $(DSSSLPRINT) $< -o $@
 endif
 
+ifeq ($(MODE),dsssl)
 .tex.dvi:
-ifeq ($(MODE),xsl)
-	@echo "don't know how to do this in XSL, is it useful?" >&2
-	exit 1
-else
 	jadetex $<
 endif
 
-.tex.pdf:
 ifeq ($(MODE),xsl)
-	@echo "don't know how to do this in XSL, is it useful?" >&2
-	exit 1
-else
+.tex.pdf:
 	pdfjadetex $<
 endif
 
-.fo.pdf:
 ifeq ($(MODE),xsl)
+.fo.pdf:
 ifeq ($(FO_FORMATTER),tex)
 	pdftex "&pdfxmltex" $<
 	@if [ `grep Rerun $(basename $@).log | wc -l` -gt 0 ]; then \
@@ -139,10 +130,7 @@ else
 endif				# xep
 endif				# fop
 endif				# tex
-else				# dsssl
-	@echo "don't know how to do this in DSSSL, is it useful?" >&2
-	exit 1
-endif
+endif				# xsl
 
 
 # ======================================================================
