@@ -1,12 +1,7 @@
-<?xml version="1.0"?>
-<grammar xmlns="http://relaxng.org/ns/structure/0.9"
-         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
-	 xmlns:dtd="http://www.oasis-open.org/docbook/relaxng/dtdannotations"
-         ns="">
-
-<dtd:comment> XML EXCHANGE TABLE MODEL DECLARATION MODULE </dtd:comment>
-
-<dtd:comment> This set of declarations defines the XML version of the Exchange
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" xmlns="http://relaxng.org/ns/structure/0.9" xmlns:a="http://relaxng.org/ns/compatibility/annotations/0.9">
+<!-- XML EXCHANGE TABLE MODEL DECLARATION MODULE -->
+<!-- This set of declarations defines the XML version of the Exchange
      Table Model as of the date shown in the Formal Public Identifier
      (FPI) for this entity.
 
@@ -14,25 +9,23 @@
      entity declaration and reference as shown in the following three
      lines:
 
-     &lt;!ENTITY % calstblx
-       PUBLIC "-//OASIS//DTD XML Exchange Table Model 19990315//EN"&gt;
+     <!ENTITY % calstblx
+       PUBLIC "-//OASIS//DTD XML Exchange Table Model 19990315//EN">
        %calstblx;
 
      If various parameter entities used within this set of declarations
      are to be given non-default values, the appropriate declarations
      should be given before calling in this package (i.e., before the
      "%calstblx;" reference).
-</dtd:comment>
-
-<dtd:comment> The motivation for this XML version of the Exchange Table Model
+-->
+<!-- The motivation for this XML version of the Exchange Table Model
      is simply to create an XML version of the SGML Exchange Table
      Model. By design, no effort has been made to "improve" the model.
 
      This XML version incorporates the logical bare minimum changes
      necessary to make the Exchange Table Model a valid XML DTD.
-</dtd:comment>
-
-<dtd:comment> The XML version of the Exchange Table Model differs from
+-->
+<!-- The XML version of the Exchange Table Model differs from
      the SGML version in the following ways:
 
      The following parameter entities have been removed:
@@ -68,17 +61,15 @@
          parameter entry for the 'entry' element. This is necessary
          so that an entry can contain #PCDATA and be defined as an
          optional, repeatable OR group beginning with #PCDATA.
-</dtd:comment>
-
-<dtd:comment> This entity includes a set of element and attribute declarations
+-->
+<!-- This entity includes a set of element and attribute declarations
      that partially defines the Exchange table model.  However, the model
      is not well-defined without the accompanying natural language
      description of the semantics (meanings) of these various elements,
      attributes, and attribute values.  The semantic writeup, also available
      from SGML Open, should be used in conjunction with this entity.
-</dtd:comment>
-
-<dtd:comment> In order to use the Exchange table model, various parameter entity
+-->
+<!-- In order to use the Exchange table model, various parameter entity
      declarations are required.  A brief description is as follows:
 
      ENTITY NAME      WHERE USED              WHAT IT IS
@@ -87,7 +78,7 @@
                       almost all elements     for a "boolean" attribute
 
      %paracon         In content model of:    The "text" (logical content)
-                      &lt;entry>                 of the model group for &lt;entry>
+                      <entry>                 of the model group for <entry>
 
      %titles          In content model of:    The "title" part of the model
                       table element           group for the table element
@@ -114,63 +105,56 @@
                                               model)
 
      %tbl.tgroup.mdl  In content model of:    The model group for the content
-                      &lt;tgroup>                model for &lt;tgroup>
+                      <tgroup>                model for <tgroup>
 
      %tbl.tgroup.att  In ATTLIST of:          Additional attributes on the
-                      &lt;tgroup>                &lt;tgroup> element
+                      <tgroup>                <tgroup> element
 
      %tbl.thead.att   In ATTLIST of:          Additional attributes on the
-                      &lt;thead>                 &lt;thead> element
+                      <thead>                 <thead> element
 
      %tbl.tbody.att   In ATTLIST of:          Additional attributes on the
-                      &lt;tbody>                 &lt;tbody> element
+                      <tbody>                 <tbody> element
 
      %tbl.colspec.att In ATTLIST of:          Additional attributes on the
-                      &lt;colspec>               &lt;colspec> element
+                      <colspec>               <colspec> element
 
      %tbl.row.mdl     In content model of:    The model group for the content
-                      &lt;row>                   model for &lt;row>
+                      <row>                   model for <row>
 
      %tbl.row.att     In ATTLIST of:          Additional attributes on the
-                      &lt;row>                   &lt;row> element
+                      <row>                   <row> element
 
      %tbl.entry.mdl   In content model of:    The model group for the content
-                      &lt;entry>                 model for &lt;entry>
+                      <entry>                 model for <entry>
 
      %tbl.entry.att   In ATTLIST of:          Additional attributes on the
-                      &lt;entry>                 &lt;entry> element
+                      <entry>                 <entry> element
 
      This set of declarations will use the default definitions shown below
      for any of these parameter entities that are not declared before this
      set of declarations is referenced.
-</dtd:comment>
-
-<dtd:comment> These definitions are not directly related to the table model, but are
-     used in the default CALS table model and may be defined elsewhere (and
-     prior to the inclusion of this table module) in the referencing DTD. </dtd:comment>
-
-<dtd:pe-decl name="yesorno">NMTOKEN</dtd:pe-decl>
-<dtd:comment> no if zero(s), yes if any other value </dtd:comment>
-
-<define name="titles">
-  <optional>
-    <ref name="title.element"/>
-  </optional>
-</define>
-
-<dtd:pe-decl name="pcd">#PCDATA</dtd:pe-decl>
-
-<define name="paracon">
-  <text/>
-</define>
-
-<!--
-<dtd:pe-decl name="paracon"><dtd:pe-ref name="pcd"/></dtd:pe-decl>
 -->
-
-<dtd:comment> default for use in entry content </dtd:comment>
-
-<dtd:comment>
+<!-- These definitions are not directly related to the table model, but are
+     used in the default CALS table model and may be defined elsewhere (and
+     prior to the inclusion of this table module) in the referencing DTD. -->
+  <define name="yesorno">
+    <data type="NMTOKEN"/>
+  </define>
+<!-- no if zero(s), yes if any other value -->
+  <define name="titles">
+    <optional>
+      <ref name="title"/>
+    </optional>
+  </define>
+  <define name="pcd">
+    <text/>
+  </define>
+  <define name="paracon">
+    <ref name="pcd"/>
+  </define>
+<!-- default for use in entry content -->
+<!--
 The parameter entities as defined below change and simplify the CALS table
 model as published (as part of the Example DTD) in MIL-HDBK-28001.  The
 resulting simplified DTD has support from the SGML Open vendors and is
@@ -185,83 +169,38 @@ current application.
 Note, however, that changes may have significant effect on the ability to
 interchange table information.  These changes may manifest themselves
 in useability, presentation, and possible structure information degradation.
-</dtd:comment>
-
-<dtd:pe-decl name="tbl.table.name">table</dtd:pe-decl>
-<dtd:pe-decl name="tbl.table-titles.mdl">%titles;,</dtd:pe-decl>
-<dtd:pe-decl name="tbl.table-main.mdl">tgroup+</dtd:pe-decl>
-<dtd:pe-decl name="tbl.table.mdl">%tbl.table-titles.mdl; %tbl.table-main.mdl;</dtd:pe-decl>
-
-<define name="tbl.table.mdl">
-  <group>
+-->
+  <define name="tbl.table-titles.mdl">
     <ref name="titles"/>
+  </define>
+  <define name="tbl.table-main.mdl">
     <oneOrMore>
-      <ref name="tgroup.element"/>
+      <ref name="tgroup"/>
     </oneOrMore>
-  </group>
-</define>
-
-<define name="tbl.table.att">
-  <optional>
-    <attribute name="pgwide" dtd:type="%yesorno;"/>
-  </optional>
-</define>
-
-<define name="bodyatt">
-  <notAllowed/>
-</define>
-
-<define name="tbl.tgroup.mdl">
-  <zeroOrMore>
-    <ref name="colspec.element"/>
-  </zeroOrMore>
-  <optional>
-    <ref name="thead.element"/>
-  </optional>
-  <ref name="tbody.element"/>
-</define>
-
-<define name="tbl.tgroup.att">
-  <notAllowed/>
-</define>
-
-<define name="tbl.thead.att">
-  <notAllowed/>
-</define>
-
-<define name="tbl.tbody.att">
-  <notAllowed/>
-</define>
-
-<define name="tbl.colspec.att">
-  <notAllowed/>
-</define>
-
-<define name="tbl.row.mdl">
-  <oneOrMore>
-    <ref name="entry.element"/>
-  </oneOrMore>
-</define>
-
-<define name="tbl.row.att">
-  <notAllowed/>
-</define>
-
-<define name="tbl.entry.mdl">
-  <zeroOrMore>
-    <group>
-      <ref name="paracon"/>
-    </group>
-  </zeroOrMore>
-</define>
-
-<define name="tbl.entry.att">
-  <notAllowed/>
-</define>
-
-<dtd:comment> =====  Element and attribute declarations follow. =====  </dtd:comment>
-
-<dtd:comment>
+  </define>
+  <define name="tbl.table.att">
+    <optional>
+      <attribute name="pgwide">
+        <ref name="yesorno"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tbl.tgroup.mdl">
+    <zeroOrMore>
+      <ref name="colspec"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="thead"/>
+    </optional>
+    <ref name="tbody"/>
+  </define>
+  <define name="tbl.row.mdl">
+    <oneOrMore>
+      <ref name="entry"/>
+    </oneOrMore>
+  </define>
+<!-- =====  Element and attribute declarations follow. =====  -->
+<!--
      Default declarations previously defined in this entity and
      referenced below include:
      ENTITY % tbl.table.name       "table"
@@ -269,291 +208,285 @@ in useability, presentation, and possible structure information degradation.
      ENTITY % tbl.table.mdl        "%tbl.table-titles; tgroup+"
      ENTITY % tbl.table.att        "
                         pgwide          %yesorno;       #IMPLIED "
-</dtd:comment>
-
-<define name="table.element" dtd:name="%tbl.table.name;">
-  <element name="table">
-    <group>
+-->
+  <define name="table">
+    <element name="table">
+      <ref name="table.attlist"/>
       <ref name="tbl.table.mdl"/>
-    </group>
-  </element>
-</define>
-
-<define name="table.attlist" dtd:name="%tbl.table.name;">
-  <optional>
-    <attribute name="frame">
-      <choice>
-        <value>top</value>
-        <value>bottom</value>
-        <value>topbot</value>
-        <value>all</value>
-        <value>sides</value>
-        <value>none</value>
-      </choice>
-    </attribute>
-  </optional>
-  <optional>
-    <attribute name="colsep" dtd:type="%yesorno;"/>
-  </optional>
-  <optional>
-    <attribute name="rowsep" dtd:type="%yesorno;"/>
-  </optional>
-  <ref name="tbl.table.att"/>
-  <ref name="bodyatt"/>
-</define>
-
-<dtd:comment>
+    </element>
+  </define>
+  <define name="table.attlist" combine="interleave">
+    <optional>
+      <attribute name="frame">
+        <choice>
+          <value>top</value>
+          <value>bottom</value>
+          <value>topbot</value>
+          <value>all</value>
+          <value>sides</value>
+          <value>none</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="colsep">
+        <ref name="yesorno"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="rowsep">
+        <ref name="yesorno"/>
+      </attribute>
+    </optional>
+    <ref name="tbl.table.att"/>
+    <ref name="bodyatt"/>
+  </define>
+<!--
      Default declarations previously defined in this entity and
      referenced below include:
      ENTITY % tbl.tgroup.mdl    "colspec*,thead?,tbody"
      ENTITY % tbl.tgroup.att    ""
-</dtd:comment>
-
-<define name="tgroup.element">
-  <element name="tgroup">
-    <group>
+-->
+  <define name="tgroup">
+    <element name="tgroup">
+      <ref name="tgroup.attlist"/>
       <ref name="tbl.tgroup.mdl"/>
-    </group>
-  </element>
-</define>
-
-<define name="tgroup.attlist">
-  <attribute name="cols">
-    <data type="NMTOKEN"/>
-  </attribute>
-  <optional>
-    <attribute name="colsep" dtd:type="%yesorno;"/>
-  </optional>
-  <optional>
-    <attribute name="rowsep" dtd:type="%yesorno;"/>
-  </optional>
-  <optional>
-    <attribute name="align">
-      <choice>
-        <value>right</value>
-        <value>left</value>
-        <value>center</value>
-        <value>justify</value>
-        <value>char</value>
-      </choice>
+    </element>
+  </define>
+  <define name="tgroup.attlist" combine="interleave">
+    <attribute name="cols">
+      <data type="NMTOKEN"/>
     </attribute>
-  </optional>
-  <ref name="tbl.tgroup.att"/>
-</define>
-
-<dtd:comment>
+    <optional>
+      <attribute name="colsep">
+        <ref name="yesorno"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="rowsep">
+        <ref name="yesorno"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="align">
+        <choice>
+          <value>left</value>
+          <value>right</value>
+          <value>center</value>
+          <value>justify</value>
+          <value>char</value>
+        </choice>
+      </attribute>
+    </optional>
+    <ref name="tbl.tgroup.att"/>
+  </define>
+<!--
      Default declarations previously defined in this entity and
      referenced below include:
      ENTITY % tbl.colspec.att   ""
-</dtd:comment>
-
-<define name="colspec.element">
-  <element name="colspec">
-    <notAllowed/>
-  </element>
-</define>
-
-<define name="colspec.attlist">
-  <optional>
-    <attribute name="colnum">
-      <data type="NMTOKEN"/>
-    </attribute>
-  </optional>
-  <optional>
-    <attribute name="colname">
-      <data type="NMTOKEN"/>
-    </attribute>
-  </optional>
-  <optional>
-    <attribute name="colwidth"/>
-  </optional>
-  <optional>
-    <attribute name="colsep" dtd:type="%yesorno;"/>
-  </optional>
-  <optional>
-    <attribute name="rowsep" dtd:type="%yesorno;"/>
-  </optional>
-  <optional>
-    <attribute name="align">
-      <choice>
-        <value>right</value>
-        <value>left</value>
-        <value>center</value>
-        <value>justify</value>
-        <value>char</value>
-      </choice>
-    </attribute>
-  </optional>
-  <optional>
-    <attribute name="char"/>
-  </optional>
-  <optional>
-    <attribute name="charoff">
-      <data type="NMTOKEN"/>
-    </attribute>
-  </optional>
-  <ref name="tbl.colspec.att"/>
-</define>
-
-<dtd:comment>
+-->
+  <define name="colspec">
+    <element name="colspec">
+      <ref name="colspec.attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="colspec.attlist" combine="interleave">
+    <optional>
+      <attribute name="colnum">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="colname">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="colwidth"/>
+    </optional>
+    <optional>
+      <attribute name="colsep">
+        <ref name="yesorno"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="rowsep">
+        <ref name="yesorno"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="align">
+        <choice>
+          <value>left</value>
+          <value>right</value>
+          <value>center</value>
+          <value>justify</value>
+          <value>char</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="char"/>
+    </optional>
+    <optional>
+      <attribute name="charoff">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+    <ref name="tbl.colspec.att"/>
+  </define>
+<!--
      Default declarations previously defined in this entity and
      referenced below include:
      ENTITY % tbl.thead.att      ""
-</dtd:comment>
-
-<define name="thead.element">
-  <element name="thead">
-    <group>
+-->
+  <define name="thead">
+    <element name="thead">
+      <ref name="thead.attlist"/>
       <oneOrMore>
-        <ref name="row.element"/>
+        <ref name="row"/>
       </oneOrMore>
-    </group>
-  </element>
-</define>
-
-<define name="thead.attlist">
-  <optional>
-    <attribute name="valign">
-      <choice>
-        <value>top</value>
-        <value>middle</value>
-        <value>bottom</value>
-      </choice>
-    </attribute>
-  </optional>
-  <ref name="tbl.thead.att"/>
-</define>
-
-<dtd:comment>
+    </element>
+  </define>
+  <define name="thead.attlist" combine="interleave">
+    <optional>
+      <attribute name="valign">
+        <choice>
+          <value>top</value>
+          <value>middle</value>
+          <value>bottom</value>
+        </choice>
+      </attribute>
+    </optional>
+    <ref name="tbl.thead.att"/>
+  </define>
+<!--
      Default declarations previously defined in this entity and
      referenced below include:
      ENTITY % tbl.tbody.att     ""
-</dtd:comment>
-
-<define name="tbody.element">
-  <element name="tbody">
-    <group>
+-->
+  <define name="tbody">
+    <element name="tbody">
+      <ref name="tbody.attlist"/>
       <oneOrMore>
-        <ref name="row.element"/>
+        <ref name="row"/>
       </oneOrMore>
-    </group>
-  </element>
-</define>
-
-<define name="tbody.attlist">
-  <optional>
-    <attribute name="valign">
-      <choice>
-        <value>top</value>
-        <value>middle</value>
-        <value>bottom</value>
-      </choice>
-    </attribute>
-  </optional>
-  <ref name="tbl.tbody.att"/>
-</define>
-
-<dtd:comment>
+    </element>
+  </define>
+  <define name="tbody.attlist" combine="interleave">
+    <optional>
+      <attribute name="valign">
+        <choice>
+          <value>top</value>
+          <value>middle</value>
+          <value>bottom</value>
+        </choice>
+      </attribute>
+    </optional>
+    <ref name="tbl.tbody.att"/>
+  </define>
+<!--
      Default declarations previously defined in this entity and
      referenced below include:
      ENTITY % tbl.row.mdl       "entry+"
      ENTITY % tbl.row.att       ""
-</dtd:comment>
-
-<define name="row.element">
-  <element name="row">
-    <group>
+-->
+  <define name="row">
+    <element name="row">
+      <ref name="row.attlist"/>
       <ref name="tbl.row.mdl"/>
-    </group>
-  </element>
-</define>
-
-<define name="row.attlist">
-  <optional>
-    <attribute name="rowsep" dtd:type="%yesorno;"/>
-  </optional>
-  <optional>
-    <attribute name="valign">
-      <choice>
-        <value>top</value>
-        <value>middle</value>
-        <value>bottom</value>
-      </choice>
-    </attribute>
-  </optional>
-  <ref name="tbl.row.att"/>
-</define>
-
-<dtd:comment>
+    </element>
+  </define>
+  <define name="row.attlist" combine="interleave">
+    <optional>
+      <attribute name="rowsep">
+        <ref name="yesorno"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="valign">
+        <choice>
+          <value>top</value>
+          <value>middle</value>
+          <value>bottom</value>
+        </choice>
+      </attribute>
+    </optional>
+    <ref name="tbl.row.att"/>
+  </define>
+<!--
      Default declarations previously defined in this entity and
      referenced below include:
      ENTITY % paracon           "#PCDATA"
      ENTITY % tbl.entry.mdl     "(%paracon;)*"
      ENTITY % tbl.entry.att     ""
-</dtd:comment>
-
-<define name="entry.element">
-  <element name="entry">
-    <ref name="tbl.entry.mdl"/>
-  </element>
-</define>
-
-<define name="entry.attlist">
-  <optional>
-    <attribute name="colname">
-      <data type="NMTOKEN"/>
-    </attribute>
-  </optional>
-  <optional>
-    <attribute name="namest">
-      <data type="NMTOKEN"/>
-    </attribute>
-  </optional>
-  <optional>
-    <attribute name="nameend">
-      <data type="NMTOKEN"/>
-    </attribute>
-  </optional>
-  <optional>
-    <attribute name="morerows">
-      <data type="NMTOKEN"/>
-    </attribute>
-  </optional>
-  <optional>
-    <attribute name="colsep" dtd:type="%yesorno;"/>
-  </optional>
-  <optional>
-    <attribute name="rowsep" dtd:type="%yesorno;"/>
-  </optional>
-  <optional>
-    <attribute name="align">
-      <choice>
-        <value>right</value>
-        <value>left</value>
-        <value>center</value>
-        <value>justify</value>
-        <value>char</value>
-      </choice>
-    </attribute>
-  </optional>
-  <optional>
-    <attribute name="char"/>
-  </optional>
-  <optional>
-    <attribute name="charoff">
-      <data type="NMTOKEN"/>
-    </attribute>
-  </optional>
-  <optional>
-    <attribute name="valign">
-      <choice>
-        <value>top</value>
-        <value>middle</value>
-        <value>bottom</value>
-      </choice>
-    </attribute>
-  </optional>
-  <ref name="tbl.entry.att"/>
-</define>
-
+-->
+  <define name="entry">
+    <element name="entry">
+      <ref name="entry.attlist"/>
+      <ref name="tbl.entry.mdl"/>
+    </element>
+  </define>
+  <define name="entry.attlist" combine="interleave">
+    <optional>
+      <attribute name="colname">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="namest">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="nameend">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="morerows">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="colsep">
+        <ref name="yesorno"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="rowsep">
+        <ref name="yesorno"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="align">
+        <choice>
+          <value>left</value>
+          <value>right</value>
+          <value>center</value>
+          <value>justify</value>
+          <value>char</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="char"/>
+    </optional>
+    <optional>
+      <attribute name="charoff">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="valign">
+        <choice>
+          <value>top</value>
+          <value>middle</value>
+          <value>bottom</value>
+        </choice>
+      </attribute>
+    </optional>
+    <ref name="tbl.entry.att"/>
+  </define>
 </grammar>

@@ -1,15 +1,14 @@
-<?xml version="1.0"?>
-<grammar xmlns="http://relaxng.org/ns/structure/0.9"
-         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
-	 xmlns:dtd="http://www.oasis-open.org/docbook/relaxng/dtdannotations"
-         ns="">
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+         xmlns="http://relaxng.org/ns/structure/0.9"
+         xmlns:a="http://relaxng.org/ns/compatibility/annotations/0.9">
 
-<dtd:comment> ...................................................................... </dtd:comment>
-<dtd:comment> DocBook XML character entities module V4.1.2 ........................... </dtd:comment>
-<dtd:comment> File dbcentx.mod ..................................................... </dtd:comment>
+<!-- ...................................................................... -->
+<!-- DocBook XML character entities module V4.1.2 ........................... -->
+<!-- File dbcentx.mod ..................................................... -->
 
-<dtd:comment> Copyright 1992-2000 HaL Computer Systems, Inc.,
-     O'Reilly &#38; Associates, Inc., ArborText, Inc., Fujitsu Software
+<!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
+     O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
      Corporation, Norman Walsh, and the Organization for the Advancement
      of Structured Information Standards (OASIS).
 
@@ -31,182 +30,12 @@
      Please direct all questions, bug reports, or suggestions for
      changes to the docbook@lists.oasis-open.org mailing list. For more
      information, see http://www.oasis-open.org/docbook/.
-</dtd:comment>
+-->
 
-<dtd:comment> ...................................................................... </dtd:comment>
+<!-- ...................................................................... -->
 
-<dtd:comment> This module contains the entity declarations for the standard ISO
-     entity sets used by DocBook.
-
-     In DTD driver files referring to this module, please use an entity
-     declaration that uses the public identifier shown below:
-
-     &#60;!ENTITY % dbcent PUBLIC
-     "-//OASIS//ENTITIES DocBook XML Character Entities V4.1.2//EN"
-     "dbcentx.mod">
-     %dbcent;
-
-     See the documentation for detailed information on the parameter
-     entity and module scheme used in DocBook, customizing DocBook and
-     planning for interchange, and changes made since the last release
-     of DocBook.
-</dtd:comment>
-
-<dtd:comment> ...................................................................... </dtd:comment>
-
-<dtd:pe-decl name="ISOamsa.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOamsa.module"/>
-<dtd:pe-decl name="ISOamsa"
-             public="ISO 8879:1986//ENTITIES Added Math Symbols: Arrow Relations//EN//XML"
-             system="ent/iso-amsa.ent"/>
-<dtd:pe-ref name="ISOamsa"/>
-<dtd:marked-section end="ISOamsa.module"/>
-
-<dtd:pe-decl name="ISOamsb.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOamsb.module"/>
-<dtd:pe-decl name="ISOamsb"
-             public="ISO 8879:1986//ENTITIES Added Math Symbols: Binary Operators//EN//XML"
-             system="ent/iso-amsb.ent"/>
-<dtd:pe-ref name="ISOamsb"/>
-<dtd:marked-section end="ISOamsb.module"/>
-
-<dtd:pe-decl name="ISOamsc.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOamsc.module"/>
-<dtd:pe-decl name="ISOamsc"
-             public="ISO 8879:1986//ENTITIES Added Math Symbols: Delimiters//EN//XML"
-             system="ent/iso-amsc.ent"/>
-<dtd:pe-ref name="ISOamsc"/>
-<dtd:marked-section end="ISOamsc.module"/>
-
-<dtd:pe-decl name="ISOamsn.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOamsn.module"/>
-<dtd:pe-decl name="ISOamsn"
-             public="ISO 8879:1986//ENTITIES Added Math Symbols: Negated Relations//EN//XML"
-             system="ent/iso-amsn.ent"/>
-<dtd:pe-ref name="ISOamsn"/>
-<dtd:marked-section end="ISOamsn.module"/>
-
-<dtd:pe-decl name="ISOamso.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOamso.module"/>
-<dtd:pe-decl name="ISOamso"
-             public="ISO 8879:1986//ENTITIES Added Math Symbols: Ordinary//EN//XML"
-             system="ent/iso-amso.ent"/>
-<dtd:pe-ref name="ISOamso"/>
-<dtd:marked-section end="ISOamso.module"/>
-
-<dtd:pe-decl name="ISOamsr.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOamsr.module"/>
-<dtd:pe-decl name="ISOamsr"
-             public="ISO 8879:1986//ENTITIES Added Math Symbols: Relations//EN//XML"
-             system="ent/iso-amsr.ent"/>
-<dtd:pe-ref name="ISOamsr"/>
-<dtd:marked-section end="ISOamsr.module"/>
-
-<dtd:pe-decl name="ISObox.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISObox.module"/>
-<dtd:pe-decl name="ISObox"
-             public="ISO 8879:1986//ENTITIES Box and Line Drawing//EN//XML"
-             system="ent/iso-box.ent"/>
-<dtd:pe-ref name="ISObox"/>
-<dtd:marked-section end="ISObox.module"/>
-
-<dtd:pe-decl name="ISOcyr1.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOcyr1.module"/>
-<dtd:pe-decl name="ISOcyr1"
-             public="ISO 8879:1986//ENTITIES Russian Cyrillic//EN//XML"
-             system="ent/iso-cyr1.ent"/>
-<dtd:pe-ref name="ISOcyr1"/>
-<dtd:marked-section end="ISOcyr1.module"/>
-
-<dtd:pe-decl name="ISOcyr2.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOcyr2.module"/>
-<dtd:pe-decl name="ISOcyr2"
-             public="ISO 8879:1986//ENTITIES Non-Russian Cyrillic//EN//XML"
-             system="ent/iso-cyr2.ent"/>
-<dtd:pe-ref name="ISOcyr2"/>
-<dtd:marked-section end="ISOcyr2.module"/>
-
-<dtd:pe-decl name="ISOdia.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOdia.module"/>
-<dtd:pe-decl name="ISOdia"
-             public="ISO 8879:1986//ENTITIES Diacritical Marks//EN//XML"
-             system="ent/iso-dia.ent"/>
-<dtd:pe-ref name="ISOdia"/>
-<dtd:marked-section end="ISOdia.module"/>
-
-<dtd:pe-decl name="ISOgrk1.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOgrk1.module"/>
-<dtd:pe-decl name="ISOgrk1"
-             public="ISO 8879:1986//ENTITIES Greek Letters//EN//XML"
-             system="ent/iso-grk1.ent"/>
-<dtd:pe-ref name="ISOgrk1"/>
-<dtd:marked-section end="ISOgrk1.module"/>
-
-<dtd:pe-decl name="ISOgrk2.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOgrk2.module"/>
-<dtd:pe-decl name="ISOgrk2"
-             public="ISO 8879:1986//ENTITIES Monotoniko Greek//EN//XML"
-             system="ent/iso-grk2.ent"/>
-<dtd:pe-ref name="ISOgrk2"/>
-<dtd:marked-section end="ISOgrk2.module"/>
-
-<dtd:pe-decl name="ISOgrk3.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOgrk3.module"/>
-<dtd:pe-decl name="ISOgrk3"
-             public="ISO 8879:1986//ENTITIES Greek Symbols//EN//XML"
-             system="ent/iso-grk3.ent"/>
-<dtd:pe-ref name="ISOgrk3"/>
-<dtd:marked-section end="ISOgrk3.module"/>
-
-<dtd:pe-decl name="ISOgrk4.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOgrk4.module"/>
-<dtd:pe-decl name="ISOgrk4"
-             public="ISO 8879:1986//ENTITIES Alternative Greek Symbols//EN//XML"
-             system="ent/iso-grk4.ent"/>
-<dtd:pe-ref name="ISOgrk4"/>
-<dtd:marked-section end="ISOgrk4.module"/>
-
-<dtd:pe-decl name="ISOlat1.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOlat1.module"/>
-<dtd:pe-decl name="ISOlat1"
-             public="ISO 8879:1986//ENTITIES Added Latin 1//EN//XML"
-             system="ent/iso-lat1.ent"/>
-<dtd:pe-ref name="ISOlat1"/>
-<dtd:marked-section end="ISOlat1.module"/>
-
-<dtd:pe-decl name="ISOlat2.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOlat2.module"/>
-<dtd:pe-decl name="ISOlat2"
-             public="ISO 8879:1986//ENTITIES Added Latin 2//EN//XML"
-             system="ent/iso-lat2.ent"/>
-<dtd:pe-ref name="ISOlat2"/>
-<dtd:marked-section end="ISOlat2.module"/>
-
-<dtd:pe-decl name="ISOnum.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOnum.module"/>
-<dtd:pe-decl name="ISOnum"
-             public="ISO 8879:1986//ENTITIES Numeric and Special Graphic//EN//XML"
-             system="ent/iso-num.ent"/>
-<dtd:pe-ref name="ISOnum"/>
-<dtd:marked-section end="ISOnum.module"/>
-
-<dtd:pe-decl name="ISOpub.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOpub.module"/>
-<dtd:pe-decl name="ISOpub"
-             public="ISO 8879:1986//ENTITIES Publishing//EN//XML"
-             system="ent/iso-pub.ent"/>
-<dtd:pe-ref name="ISOpub"/>
-<dtd:marked-section end="ISOpub.module"/>
-
-<dtd:pe-decl name="ISOtech.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="ISOtech.module"/>
-<dtd:pe-decl name="ISOtech"
-             public="ISO 8879:1986//ENTITIES General Technical//EN//XML"
-             system="ent/iso-tech.ent"/>
-<dtd:pe-ref name="ISOtech"/>
-<dtd:marked-section end="ISOtech.module"/>
-
-<dtd:comment> End of DocBook XML character entity sets module V4.1.2 ................. </dtd:comment>
-<dtd:comment> ...................................................................... </dtd:comment>
+<!-- This module usually contains the entity declarations for the
+     standard ISO entity sets used by DocBook. However, there is no
+     RELAX NG equivalent, so this file is empty. -->
 
 </grammar>

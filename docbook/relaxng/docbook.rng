@@ -1,35 +1,37 @@
-<?xml version="1.0"?>
-<grammar xmlns="http://relaxng.org/ns/structure/0.9"
-         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
-	 xmlns:dtd="http://www.oasis-open.org/docbook/relaxng/dtdannotations"
-         ns="">
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+         xmlns="http://relaxng.org/ns/structure/0.9"
+         xmlns:a="http://relaxng.org/ns/compatibility/annotations/0.9">
 
   <start>
     <choice>
-      <ref name='set.element'/>
-      <ref name='book.element'/>
-      <ref name='chapter.element'/>
-      <ref name='appendix.element'/>
-      <ref name='part.element'/>
-      <ref name='reference.element'/>
-      <ref name='refentry.element'/>
-      <ref name='article.element'/>
-      <ref name='section.element'/>
-      <ref name='sect1.element'/>
-      <ref name='sect2.element'/>
-      <ref name='sect3.element'/>
-      <ref name='sect4.element'/>
-      <ref name='sect5.element'/>
-      <ref name="para.element"/>
+      <ref name="set"/>
+      <ref name="setindex"/>
+      <ref name="book"/>
+      <ref name="part"/>
+      <ref name="reference"/>
+      <ref name="preface"/>
+      <ref name="chapter"/>
+      <ref name="appendix"/>
+      <ref name="article"/>
+      <ref name="bibliography"/>
+      <ref name="glossary"/>
+      <ref name="index"/>
+      <ref name="refentry"/>
+      <ref name="sect1"/>
+      <ref name="sect2"/>
+      <ref name="sect3"/>
+      <ref name="sect4"/>
+      <ref name="sect5"/>
+      <ref name="section"/>
     </choice>
   </start>
 
-<dtd:comment> ...................................................................... </dtd:comment>
-<dtd:comment> DocBook XML DTD V4.1.2 ................................................. </dtd:comment>
-<dtd:comment> File docbookx.dtd .................................................... </dtd:comment>
-
-<dtd:comment> Copyright 1992-2000 HaL Computer Systems, Inc.,
-     O'Reilly &#38; Associates, Inc., ArborText, Inc., Fujitsu Software
+<!-- ...................................................................... -->
+<!-- DocBook XML DTD V4.1.2 ................................................. -->
+<!-- File docbookx.dtd .................................................... -->
+<!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
+     O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
      Corporation, Norman Walsh, and the Organization for the Advancement
      of Structured Information Standards (OASIS).
 
@@ -51,11 +53,9 @@
      Please direct all questions, bug reports, or suggestions for 
      changes to the docbook@lists.oasis-open.org mailing list. For more
      information, see http://www.oasis-open.org/docbook/.
-</dtd:comment>
-
-<dtd:comment> ...................................................................... </dtd:comment>
-
-<dtd:comment> This is the driver file for V4.1.2 of the DocBook DTD.
+-->
+<!-- ...................................................................... -->
+<!-- This is the driver file for V4.1.2 of the DocBook DTD.
      Please use the following formal public identifier to identify it:
 
      "-//OASIS//DTD DocBook XML V4.1.2//EN"
@@ -64,14 +64,14 @@
      you are using DocBook directly, use the FPI in the DOCTYPE
      declaration:
 
-     &#60;!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+     <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                     "http://www.oasis-open.org/docbook/xml/4.0/docbookx.dtd"
                     [...]>
 
      Or, if you have a higher-level driver file that customizes DocBook,
      use the FPI in the parameter entity declaration:
 
-     &#60;!ENTITY % DocBookDTD PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+     <!ENTITY % DocBookDTD PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                 "http://www.oasis-open.org/docbook/xml/4.0/docbookx.dtd">
      %DocBookDTD;
 
@@ -79,85 +79,28 @@
      entity and module scheme used in DocBook, customizing DocBook and
      planning for interchange, and changes made since the last release
      of DocBook.
-</dtd:comment>
+-->
+<!-- ...................................................................... -->
 
-<dtd:comment> ...................................................................... </dtd:comment>
-<dtd:comment> Notation declarations ................................................ </dtd:comment>
+<!-- Notation declarations ................................................ -->
+  <include href="dbnotn.rng"/>
 
-<dtd:pe-decl name="dbnotn.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="dbnotn.module"/>
-<dtd:pe-decl name="dbnotn"
-             public="-//OASIS//ENTITIES DocBook XML Notations V4.1.2//EN"
-             system="dbnotnx.mod"/>
-<dtd:pe-ref name="dbnotn"/>
-<dtd:marked-section end="dbnotn.module"/>
+<!-- ...................................................................... -->
+<!-- ISO character entity sets ............................................ -->
+<!-- euro sign, U+20AC NEW -->
+  <include href="dbcent.rng"/>
 
-<include href="dbnotn.rng"/>
+<!-- DTD modules .......................................................... -->
+<!-- Information pool .............. -->
+  <include href="dbpool.rng"/>
 
-<dtd:comment> ...................................................................... </dtd:comment>
-<dtd:comment> ISO character entity sets ............................................ </dtd:comment>
+<!-- Document hierarchy ............ -->
+  <include href="dbhier.rng"/>
 
-<dtd:pe-decl name="dbcent.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="dbcent.module"/>
-<dtd:entity-decl name="euro">&amp;#x20AC;</dtd:entity-decl><dtd:comment> euro sign, U+20AC NEW </dtd:comment>
-<dtd:pe-decl name="dbcent"
-             public="-//OASIS//ENTITIES DocBook XML Character Entities V4.1.2//EN"
-             system="dbcentx.mod"/>
-<dtd:pe-ref name="dbcent"/>
-<dtd:marked-section end="dbcent.module"/>
+<!-- ...................................................................... -->
+<!-- Other general entities ............................................... -->
+  <include href="dbgenent.rng"/>
 
-<include href="dbcent.rng"/>
-
-<dtd:comment> ...................................................................... </dtd:comment>
-<dtd:comment> DTD modules .......................................................... </dtd:comment>
-
-<dtd:comment> Information pool .............. </dtd:comment>
-
-<dtd:pe-decl name="dbpool.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="dbpool.module"/>
-<dtd:pe-decl name="dbpool"
-             public="-//OASIS//ENTITIES DocBook XML Information Pool V4.1.2//EN"
-             system="dbpoolx.mod"/>
-<dtd:pe-ref name="dbpool"/>
-<dtd:marked-section end="dbpool.module"/>
-
-<include href="dbpool.rng"/>
-
-<dtd:comment> Redeclaration placeholder ..... </dtd:comment>
-
-<dtd:pe-decl name="intermod.redecl.module">IGNORE</dtd:pe-decl>
-<dtd:marked-section start="intermod.redecl.module"/>
-<dtd:comment> Defining rdbmods here makes some buggy XML parsers happy. </dtd:comment>
-<dtd:pe-decl name="rdbmods"/>
-<dtd:pe-ref name="rdbmods"/>
-<dtd:marked-section end="intermod.redecl.module"/>
-
-<dtd:comment> Document hierarchy ............ </dtd:comment>
-
-<dtd:pe-decl name="dbhier.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="dbhier.module"/>
-<dtd:pe-decl name="dbhier"
-             public="-//OASIS//ENTITIES DocBook XML Hierarchy V4.1.2//EN"
-             system="dbhierx.mod"/>
-<dtd:pe-ref name="dbhier"/>
-<dtd:marked-section end="dbhier.module"/>
-
-<include href="dbhier.rng"/>
-
-<dtd:comment> ...................................................................... </dtd:comment>
-<dtd:comment> Other general entities ............................................... </dtd:comment>
-
-<dtd:pe-decl name="dbgenent.module">INCLUDE</dtd:pe-decl>
-<dtd:marked-section start="dbgenent.module"/>
-<dtd:pe-decl name="dbgenent"
-             public="-//OASIS//ENTITIES DocBook XML Additional General Entities V4.1.2//EN"
-             system="dbgenent.mod"/>
-<dtd:pe-ref name="dbgenent"/>
-<dtd:marked-section end="dbgenent.module"/>
-
-<include href="dbgenent.rng"/>
-
-<dtd:comment> End of DocBook XML DTD V4.1.2 .......................................... </dtd:comment>
-<dtd:comment> ...................................................................... </dtd:comment>
-
+<!-- End of DocBook XML DTD V4.1.2 .......................................... -->
+<!-- ...................................................................... -->
 </grammar>
