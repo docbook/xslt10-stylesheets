@@ -99,47 +99,6 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template name="gentext.xref.text">
-  <xsl:param name="element.name" select="name(.)"/>
-  <xsl:param name="default"></xsl:param>
-  <xsl:param name="lang">
-    <xsl:call-template name="l10n.language"/>
-  </xsl:param>
-
-  <xsl:variable name="l10n.text">
-    <xsl:choose>
-      <xsl:when test="$local.l10n.xml//l:i18n/l:l10n[@language=$lang]/l:xref[@element=$element.name]">
-        <xsl:value-of select="($local.l10n.xml/l:i18n/l:l10n[@language=$lang]/l:xref[@element=$element.name])[1]/@text"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="($l10n.xml/l:i18n/l:l10n[@language=$lang]/l:xref[@element=$element.name])[1]/@text"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <xsl:choose>
-    <xsl:when test="$l10n.text=''">
-      <xsl:choose>
-        <xsl:when test="$default=''">
-          <xsl:message>
-            <xsl:text>No "</xsl:text>
-            <xsl:value-of select="$lang"/>
-            <xsl:text>" cross reference text for "</xsl:text>
-            <xsl:value-of select="$element.name"/>
-            <xsl:text>" exists and no default specified.</xsl:text>
-          </xsl:message>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$default"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="$l10n.text"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
 <xsl:template name="gentext">
   <xsl:param name="key" select="local-name(.)"/>
   <xsl:param name="lang">
