@@ -63,7 +63,7 @@ default namespace = "http://docbook.org/docbook-ng"
 
 # ======================================================================
 
-db._any           = element * { db._any.attribute*, (text | db._any)* }
+db._any           = element * - db:* { db._any.attribute*, (text, db._any)* }
 db._any.attribute = attribute * { text }
 
 # ======================================================================
@@ -221,6 +221,7 @@ db.technical.inlines =
  | db.option
  | db.optional
  | db.package
+ | db.property
 
 db.error.inlines =
    db.errorcode
@@ -1825,7 +1826,7 @@ div {
 
 # ======================================================================
 
-db.mediaobject.contentmodel =
+db.mediaobject.content =
    db.videoobject | db.audioobject | db.imageobject | db.textobject
 
 # ======================================================================
@@ -1849,7 +1850,7 @@ div {
       element mediaobject {
          db.mediaobject.attlist,
          db.mediaobject.info,
-         db.mediaobject.contentmodel+
+         db.mediaobject.content+
       }
 }
 
@@ -1874,7 +1875,7 @@ div {
       element inlinemediaobject {
          db.inlinemediaobject.attlist,
          db.inlinemediaobject.info,
-         db.mediaobject.contentmodel+
+         db.mediaobject.content+
       }
 }
 
@@ -1930,6 +1931,10 @@ div {
 
 # ======================================================================
 
+db.imageobject.content = db.imagedata
+
+# ======================================================================
+
 [
    db:refname [ "imageobject" ]
    db:refpurpose [ "" ]
@@ -1949,7 +1954,7 @@ div {
       element imageobject {
          db.imageobject.attlist,
          db.imageobject.info,
-         db.imagedata
+         db.imageobject.content
       }
 }
 
@@ -2092,7 +2097,7 @@ div {
 
 # ======================================================================
 
-db.equation.contentmodel = db.mediaobject+
+db.equation.content = db.mediaobject
 
 # ======================================================================
 
@@ -2119,7 +2124,7 @@ div {
       element equation {
          db.equation.attlist,
          db.equation.info,
-         db.equation.contentmodel
+         db.equation.content+
       }
 }
 
@@ -2144,13 +2149,9 @@ div {
       element informalequation {
          db.informalequation.attlist,
          db.informalequation.info,
-         db.equation.contentmodel
+         db.equation.content+
       }
 }
-
-# ======================================================================
-
-db.inlineequation.contentmodel = db.inlinemediaobject+
 
 # ======================================================================
 
@@ -2170,7 +2171,7 @@ div {
    db.inlineequation =
       element inlineequation {
          db.inlineequation.attlist,
-         db.inlineequation.contentmodel
+         db.equation.content+
       }
 }
 
@@ -5379,6 +5380,28 @@ div {
    db.optional =
       element optional {
          db.optional.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "property" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   db.property.role.attribute = attribute role { text }
+
+   db.property.attlist =
+      db.property.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.property =
+      element property {
+         db.property.attlist,
          db.all.inlines*
       }
 }
