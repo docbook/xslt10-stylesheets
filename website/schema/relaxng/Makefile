@@ -1,16 +1,40 @@
 include ../../../cvstools/Makefile.incl
 
-SCHEMADIR=../../../schema
-RELAXNG=$(SCHEMADIR)/relaxng
-DOCBOOKRNG=/share/doctypes/docbook42/relaxng
+VPATH=../dtd
 
-all: websitedb.rng
+RDDLNS=http://www.rddl.org/
+XLINKNS=http://www.w3.org/1999/xlink
+HTMLNS=http://www.w3.org/1999/xhtml
 
-config.xml: union.xml
-	$(XSLT) $(RELAXNG)/simple/config.xml $(SCHEMADIR)/tools/union-config.xsl $@ \
-                union.xml=/sourceforge/docbook/website/schema/relaxng/union.xml
+SED=sed
+SED_OPTS=-i # edit files in place
 
-websitedb.rng: config.xml
-	$(XSLT) $(DOCBOOKRNG)/docbook.rng $(SCHEMADIR)/tools/configure.xsl $@ \
-                config=/sourceforge/docbook/website/schema/relaxng/$<
+RNCFILES=autolayout.rnc layout.rnc website.rnc website-full.rnc website-custom.rnc
 
+all: $(RNCFILES)
+
+autolayout.rng: autolayout.dtd
+	$(RUNTRANG) $< $@
+
+layout.rng: layout.dtd
+	$(RUNTRANG) $< $@
+
+website-%.rng: website-%.dtd
+	$(RUNTRANG) \
+	  -i xmlns:rddl=$(RDDLNS) -i xmlns:xlink=$(XLINKNS) -i xmlns:html=$(HTMLNS) \
+	  $< $@
+
+website.rng: ../dtd/website.dtd
+	$(RUNTRANG) \
+	  -i xmlns:rddl=$(RDDLNS) -i xmlns:xlink=$(XLINKNS) -i xmlns:html=$(HTMLNS) \
+	  $< $@
+
+../dtd/website.dtd:
+	make -C ../dtd
+
+%.rnc: %.rng
+	$(RUNTRANG) $< $@
+	$(SED) $(SED_OPTS) 's/start \+= \+webpage \+| \+article/start = webpage/' $@
+
+clean:
+	rm -f *.rng *.rnc *.dtd
