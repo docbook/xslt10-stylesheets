@@ -116,8 +116,11 @@
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
+    <xsl:attribute name="format">
+      <xsl:call-template name="page.number.format"/>
+    </xsl:attribute>
     <xsl:if test="$double.sided != 0">
-      <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+      <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
     </xsl:if>
 
     <xsl:apply-templates select="." mode="running.head.mode">
@@ -411,8 +414,11 @@
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
+    <xsl:attribute name="format">
+      <xsl:call-template name="page.number.format"/>
+    </xsl:attribute>
     <xsl:if test="$double.sided != 0">
-      <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+      <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
     </xsl:if>
 
     <xsl:apply-templates select="." mode="running.head.mode">
