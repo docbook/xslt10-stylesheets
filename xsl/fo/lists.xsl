@@ -439,7 +439,10 @@
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
   <fo:list-item>
     <fo:list-item-label end-indent="label-end()">
-      <fo:block id="{$id}">
+      <fo:block id="{$id}"
+space-before.optimum="1em"
+space-before.minimum="0.8em"
+space-before.maximum="1.2em">
         <xsl:apply-templates select="." mode="number">
           <xsl:with-param name="recursive" select="0"/>
         </xsl:apply-templates>
