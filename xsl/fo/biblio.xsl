@@ -21,7 +21,7 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="not(parent::*) or parent::book">
+    <xsl:when test="not(parent::*) or parent::part or parent::book">
       <xsl:variable name="master-reference">
         <xsl:call-template name="select.pagemaster"/>
       </xsl:variable>
