@@ -362,8 +362,16 @@
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="@termlength"/>
-            <xsl:text>em * 0.60</xsl:text>
-          </xsl:otherwise>
+	    <xsl:choose>
+	      <!-- workaround for passivetex lack of support for non-constant expressions -->
+	      <xsl:when test="$passivetex.extensions != 0">
+		<xsl:text>em</xsl:text>
+	      </xsl:when>
+	      <xsl:otherwise>
+		<xsl:text>em * 0.60</xsl:text>
+	      </xsl:otherwise>
+	    </xsl:choose>
+	  </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
@@ -371,7 +379,15 @@
           <xsl:with-param name="terms" select="varlistentry/term"/>
           <xsl:with-param name="maxlength" select="$variablelist.max.termlength"/>
         </xsl:call-template>
-        <xsl:text>em * 0.60</xsl:text>
+	<xsl:choose>
+	  <!-- workaround for passivetex lack of support for non-constant expressions -->
+	  <xsl:when test="$passivetex.extensions != 0">
+	    <xsl:text>em</xsl:text>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:text>em * 0.60</xsl:text>
+	  </xsl:otherwise>
+	</xsl:choose>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -384,6 +400,19 @@
 -->
 
   <xsl:variable name="label-separation">1em</xsl:variable>
+  <xsl:variable name="distance-between-starts">
+    <xsl:choose>
+      <!-- workaround for passivetex lack of support for non-constant expressions -->
+      <xsl:when test="$passivetex.extensions != 0">
+	<xsl:value-of select="$termlength"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="$termlength"/>
+	<xsl:text>+</xsl:text>
+	<xsl:value-of select="$label-separation"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <xsl:if test="title">
     <xsl:apply-templates select="title" mode="list.title.mode"/>
@@ -409,7 +438,7 @@
     <xsl:when test="ancestor::listitem">
       <fo:list-block id="{$id}"
                      provisional-distance-between-starts=
-                        "{$termlength}+{$label-separation}"
+                        "{$distance-between-starts}"
                      provisional-label-separation="{$label-separation}">
         <xsl:copy-of select="$content"/>
       </fo:list-block>
@@ -417,7 +446,7 @@
     <xsl:otherwise>
       <fo:list-block id="{$id}"
                      provisional-distance-between-starts=
-                        "{$termlength}+{$label-separation}"
+                        "{$distance-between-starts}"
                      provisional-label-separation="{$label-separation}"
                      xsl:use-attribute-sets="list.block.spacing">
         <xsl:copy-of select="$content"/>
