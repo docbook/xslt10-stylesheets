@@ -161,7 +161,10 @@
 <!ENTITY % tables.role.attrib "%role.attrib;">
 
 <!-- Add label and role attributes to table and informaltable -->
-<!ENTITY % bodyatt "%label.attrib;">
+<!ENTITY % bodyatt "
+		floatstyle	CDATA			#IMPLIED
+                %label.attrib;"
+>
 
 <!-- Add common attributes to Table, TGroup, TBody, THead, TFoot, Row, 
      EntryTbl, and Entry (and InformalTable element). -->

@@ -3603,7 +3603,10 @@ in the text (no (0) value, the default)
 
 <![%cals.table.module;[
 <!-- Add label and role attributes to table and informaltable -->
-<!ENTITY % bodyatt "%label.attrib;">
+<!ENTITY % bodyatt "
+		floatstyle	CDATA			#IMPLIED
+                %label.attrib;"
+>
 
 <!-- Add common attributes to Table, TGroup, TBody, THead, TFoot, Row,
      EntryTbl, and Entry (and InformalTable element). -->
