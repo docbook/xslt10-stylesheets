@@ -99,16 +99,78 @@
 
 <xsl:template match="biblioentry">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
-  <fo:block id="{$id}" xsl:use-attribute-sets="normal.para.spacing">
-    <xsl:apply-templates mode="bibliography.mode"/>
-  </fo:block>
+  <xsl:choose>
+    <xsl:when test="string(.) = ''">
+      <xsl:variable name="bib" select="document($bibliography.collection)"/>
+      <xsl:variable name="entry" select="$bib/bibliography/*[@id=$id][1]"/>
+      <xsl:choose>
+        <xsl:when test="$entry">
+          <xsl:apply-templates select="$entry"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:message>
+            <xsl:text>No bibliography entry: </xsl:text>
+            <xsl:value-of select="$id"/>
+            <xsl:text> found in </xsl:text>
+            <xsl:value-of select="$bibliography.collection"/>
+          </xsl:message>
+          <fo:block id="{$id}" xsl:use-attribute-sets="normal.para.spacing">
+            <xsl:text>Error: no bibliography entry: </xsl:text>
+            <xsl:value-of select="$id"/>
+            <xsl:text> found in </xsl:text>
+            <xsl:value-of select="$bibliography.collection"/>
+          </fo:block>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:block id="{$id}" xsl:use-attribute-sets="normal.para.spacing">
+        <xsl:apply-templates mode="bibliography.mode"/>
+      </fo:block>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="bibliomixed">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
-  <fo:block id="{$id}" xsl:use-attribute-sets="normal.para.spacing">
-    <xsl:apply-templates mode="bibliomixed.mode"/>
-  </fo:block>
+  <xsl:choose>
+    <xsl:when test="string(.) = ''">
+      <xsl:variable name="bib" select="document($bibliography.collection)"/>
+      <xsl:variable name="entry" select="$bib/bibliography/*[@id=$id][1]"/>
+      <xsl:choose>
+        <xsl:when test="$entry">
+          <xsl:apply-templates select="$entry"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:message>
+            <xsl:text>No bibliography entry: </xsl:text>
+            <xsl:value-of select="$id"/>
+            <xsl:text> found in </xsl:text>
+            <xsl:value-of select="$bibliography.collection"/>
+          </xsl:message>
+          <fo:block id="{$id}" xsl:use-attribute-sets="normal.para.spacing">
+            <xsl:text>Error: no bibliography entry: </xsl:text>
+            <xsl:value-of select="$id"/>
+            <xsl:text> found in </xsl:text>
+            <xsl:value-of select="$bibliography.collection"/>
+          </fo:block>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:block id="{$id}" xsl:use-attribute-sets="normal.para.spacing">
+        <xsl:choose>
+          <xsl:when test="local-name(*[1]) = 'abbrev'">
+            <xsl:apply-templates select="*[position()&gt;1]|text()"
+                                 mode="bibliomixed.mode"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates mode="bibliomixed.mode"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </fo:block>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->

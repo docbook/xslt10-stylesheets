@@ -175,11 +175,41 @@
   <!-- handles both biblioentry and bibliomixed -->
   <xsl:text>[</xsl:text>
   <xsl:choose>
-    <xsl:when test="local-name(*[1]) = 'abbrev'">
-      <xsl:apply-templates select="*[1]"/>
+    <xsl:when test="string(.) = ''">
+      <xsl:variable name="bib" select="document($bibliography.collection)"/>
+      <xsl:variable name="id" select="@id"/>
+      <xsl:variable name="entry" select="$bib/bibliography/*[@id=$id][1]"/>
+      <xsl:choose>
+        <xsl:when test="$entry">
+          <xsl:choose>
+            <xsl:when test="local-name($entry/*[1]) = 'abbrev'">
+              <xsl:apply-templates select="$entry/*[1]"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="@id"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:message>
+            <xsl:text>No bibliography entry: </xsl:text>
+            <xsl:value-of select="$id"/>
+            <xsl:text> found in </xsl:text>
+            <xsl:value-of select="$bibliography.collection"/>
+          </xsl:message>
+          <xsl:value-of select="@id"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:value-of select="@id"/>
+      <xsl:choose>
+        <xsl:when test="local-name(*[1]) = 'abbrev'">
+          <xsl:apply-templates select="*[1]"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="@id"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
   <xsl:text>]</xsl:text>
