@@ -16,11 +16,7 @@
 </xsl:template>
 
 <xsl:template match="processing-instruction('dbhtml')">
-  <xsl:if test="$using.chunker">
-    <xsl:processing-instruction name="dbhtml">
-      <xsl:value-of select="."/>
-    </xsl:processing-instruction>
-  </xsl:if>
+  <!-- nop -->
 </xsl:template>
 
 <!-- ==================================================================== -->

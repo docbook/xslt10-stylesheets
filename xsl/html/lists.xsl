@@ -503,14 +503,7 @@
           <xsl:apply-templates select="$members[position()=$cell]"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:choose>
-            <xsl:when test="$using.chunker != 0">
-              <xsl:text>&#160;</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:text>&#160;</xsl:text>
         </xsl:otherwise>
       </xsl:choose>
     </td>
@@ -562,14 +555,7 @@
           <xsl:apply-templates select="$members[position()=$cell]"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:choose>
-            <xsl:when test="$using.chunker != 0">
-              <xsl:text>&#160;</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:text>&#160;</xsl:text>
         </xsl:otherwise>
       </xsl:choose>
     </td>
