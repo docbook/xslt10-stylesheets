@@ -315,6 +315,8 @@
 <template name="index">%t</template>
 <template name="part"><Part/> %n. %t</template>
 <template name="preface">%t</template>
+<template name="question"><Question/> %n</template>
+<template name="answer"><Answer/> %n</template>
 <template name="reference">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
