@@ -119,6 +119,10 @@
   </xsl:if>
 </xsl:template>
 
+<xsl:template name="process.chunk.footnotes">
+  <!-- nop -->
+</xsl:template>
+
 <xsl:template match="footnote" mode="process.footnote.mode">
   <div class="{name(.)}">
     <xsl:apply-templates/>

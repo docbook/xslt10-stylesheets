@@ -27,6 +27,7 @@
       <xsl:call-template name="section.toc"/>
     </xsl:if>
     <xsl:apply-templates/>
+    <xsl:call-template name="process.chunk.footnotes"/>
   </div>
 </xsl:template>
 
@@ -76,6 +77,7 @@
       <xsl:call-template name="section.toc"/>
     </xsl:if>
     <xsl:apply-templates/>
+    <xsl:call-template name="process.chunk.footnotes"/>
   </div>
 </xsl:template>
 
