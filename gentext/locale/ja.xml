@@ -302,6 +302,7 @@
 
 <context name="xref">
 
+<template name="answer"><Answer/> %n</template>
 <template name="appendix"><Appendix/>%n</template>
 <template name="article">%t</template>
 <template name="bibliography">%t</template>
@@ -315,6 +316,12 @@
 <template name="index">%t</template>
 <template name="part"><Part/> %n. %t</template>
 <template name="preface">%t</template>
+<template name="procedure"><Procedure/> %n</template>
+<template name="qandadiv">%t</template>
+<template name="qandaentry"><Question/> %n</template>
+<template name="qandaset">%t</template>
+<template name="qandaset">%t</template>
+<template name="question"><Question/> %n</template>
 <template name="reference">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
