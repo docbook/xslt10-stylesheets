@@ -12,8 +12,12 @@ ldocbook.html: ldocbook.xml ldocbook.xsl
 ldocbook.xml: ldocbook.xweb ../wdocbook.xsl
 	$(XSLT) $< ../wdocbook.xsl $@
 
-ldocbook.xsl: ldocbook.xweb ../tangle.xsl
-	$(XSLT) $< ../tangle.xsl $@
+ldocbook.xsl: ldocbook.xweb ../xtangle.xsl
+	$(XSLT) $< ../xtangle.xsl $@
+
+realclean: clean
+	rm -f ldocbook.xsl
 
 clean:
-	rm -f ldocbook.html ldocbook.xml ldocbook.xsl
+	rm -f ldocbook.html ldocbook.xml
+

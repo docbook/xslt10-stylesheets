@@ -1,46 +1,65 @@
 include ../cvstools/Makefile.incl
 
-all: tangle.xsl weave.xsl wdocbook.xsl
+all: tangle.xsl weave.xsl wdocbook.xsl xtangle.xsl
 	$(MAKE) -C html
+	$(MAKE) -C example
 
-xml: tangle.xml weave.xml wdocbook.xml
+xml: tangle.xml weave.xml
+	$(MAKE) -C html xml
+	$(MAKE) -C example xml
 
-html: xml tangle.html weave.html wdocbook.html
+html: xml tangle.html weave.html
+	$(MAKE) -C html html
+	$(MAKE) -C example html
 
-tangle.html: tangle.xml html/ldocbook.xsl
+%.html: %.xml html/ldocbook.xsl
 	$(XSLT) $< html/ldocbook.xsl $@
 
-tangle.xml: tangle.xweb wdocbook.xsl
-	$(XSLT) $< wdocbook.xsl $@
+%.fo: %.xml fo/ldocbook.xsl
+	$(XSLT) $< fo/ldocbook.xsl $@
+
+%.pdf: %.fo
+	xep $< $@
+	rm -f $@
 
 # Can this rule be improved? Ideally bootstrap-tangle should only be
 # required if tangle.xsl doesn't exist. If it exists but is out-of-date
 # it can rebuild itself.
-tangle.xsl: tangle.xweb bootstrap-tangle.xsl
-	$(XSLT) $< bootstrap-tangle.xsl .temp.xsl
-	$(XSLT) $< .temp.xsl tangle.xsl
-	rm -f .temp.xsl
+xtangle.xsl: tangle.xweb bootstrap-tangle.xsl
+	$(XSLT) $< bootstrap-tangle.xsl .boot.tangle.xsl
+	$(XSLT) $< .boot.tangle.xsl $@ top=xtop
+	rm -f .boot.tangle.xsl
 
-weave.html: weave.xml html/ldocbook.xsl
-	$(XSLT)  $< html/ldocbook.xsl $@
+tangle.xsl: tangle.xweb xtangle.xsl
+	$(XSLT) $< xtangle.xsl $@
+
+tangle.xml: tangle.xweb wdocbook.xsl
+	$(XSLT) $< wdocbook.xsl $@
+
+weave.xsl: weave.xweb xtangle.xsl
+	$(XSLT)  $< xtangle.xsl $@
 
 weave.xml: weave.xweb wdocbook.xsl
 	$(XSLT)  $< wdocbook.xsl $@
 	xjparse $@
 
-weave.xsl: weave.xweb tangle.xsl
-	$(XSLT)  $< tangle.xsl $@
+wdocbook.xsl: weave.xweb xtangle.xsl weave.xsl
+	$(XSLT) $< xtangle.xsl $@ top=wdocbook
 
-wdocbook.html: wdocbook.xml wdocbook.xsl
-	$(XSLT) $< wdocbook.xsl $@
-
-wdocbook.xml: wdocbook.xweb wdocbook.xsl
-	$(XSLT) $< wdocbook.xsl $@
-
-wdocbook.xsl: wdocbook.xweb tangle.xsl
-	$(XSLT) $< tangle.xsl $@
+realclean: clean
+	rm -f xtangle.xsl
+	rm -f weave.xsl wdocbook.xsl
+	rm -f tangle.xsl
+	$(MAKE) -C html realclean
+	$(MAKE) -C fo realclean
+	$(MAKE) -C example realclean
 
 clean:
-	rm -f weave.{xsl,xml,html}
-	rm -f tangle.{xsl,xml,html}
-	rm -f wdocbook.{xsl,xml,html}
+	rm -f weave.{xml,html,fo,pdf}
+	rm -f tangle.{xml,html,fo,pdf}
+	$(MAKE) -C html clean
+	$(MAKE) -C fo clean
+	$(MAKE) -C example clean
+
+
+

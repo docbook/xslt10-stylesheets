@@ -1,99 +1,282 @@
+<!DOCTYPE article [
+<!ENTITY xweb "<acronym>XWEB</acronym>">
+]>
 <article xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
          xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-<title>Tangle.xsl</title>
+<articleinfo>
+<title>Tangle</title>
+<subtitle>Part of
+<citetitle>Literate Programming in XML</citetitle></subtitle>
+<pubdate>05 Oct 2001</pubdate>
+<releaseinfo role="meta">
+$Id$
+</releaseinfo>
 
-<src:topfragment id="top" default-exclude-result-prefixes="xsl">
-<src:passthrough>
-&lt;!DOCTYPE xsl:stylesheet [
-&lt;!ENTITY nl "&lt;xsl:text>&#xA;&lt;/xsl:text>">
-]>
-</src:passthrough>
+<revhistory>
+<revision>
+<revnumber>0.1</revnumber>
+<date>05 Oct 2001</date>
+<authorinitials>ndw</authorinitials>
+<revremark>Initial draft.</revremark>
+</revision>
+</revhistory>
+
+<author><firstname>Norman</firstname><surname>Walsh</surname>
+</author>
+</articleinfo>
+
+<!-- ============================================================ -->
+
+<para>The <filename>tangle.xsl</filename> stylesheet transforms an
+&xweb; document into a <quote>source code</quote> document. This
+is a relatively straightforward process: starting with the top fragment,
+all of the source fragments are simply stitched together, discarding any
+intervening documentation.</para>
+
+<para>The resulting <quote>tangled</quote> document is ready for use
+by the appropriate processor.</para>
+
+<section><title>The Stylesheet</title>
+
+<para>This &xweb; document contains the source for two stylesheets,
+<filename>tangle.xsl</filename> and <filename>xtangle.xsl</filename>.
+Both stylesheets produce tangled sources, the latter is a simple
+customization of the former for producing XML vocabularies.</para>
+
+<para>Each of these stylesheets performs some initialization, sets
+the output method appropriately, begins processing at the root template,
+and processes fragments, copying the content appropriately.</para>
+
+<section><title>The <filename>tangle.xsl</filename> Stylesheet</title>
+
+<para>The tangle stylesheet produces text output.</para>
+
+<src:fragment id="top" mundane-result-prefixes="xsl">
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
                 exclude-result-prefixes="src"
                 version="1.0">
 
-  <xsl:include href="VERSION"/>
+  <src:fragref linkend="init"/>
 
-  <src:fragref linkend="space"/>
-  <src:fragref linkend="output"/>
+  <xsl:output method="text"/>
+
   <src:fragref linkend="root.template"/>
-  <src:fragref linkend="text"/>
-  <src:fragref linkend="default"/>
-  <src:fragref linkend="rest"/>
+  <src:fragref linkend="process-fragments"/>
+  <src:fragref linkend="copy-elements"/>
 </xsl:stylesheet>
-</src:topfragment>
+</src:fragment>
+</section>
 
-<section><title>Stuff</title>
+<section><title>The <filename>xtangle.xsl</filename> Stylesheet</title>
 
-<src:fragment id="space">
-<xsl:preserve-space elements="*"/>
+<para>The xtangle stylesheet produces XML output.</para>
+
+<src:fragment id="xtop" mundane-result-prefixes="xsl">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+                exclude-result-prefixes="src"
+                version="1.0">
+
+  <src:fragref linkend="init"/>
+
+  <xsl:output method="xml"/>
+
+  <src:fragref linkend="root.template"/>
+  <src:fragref linkend="process-fragments"/>
+  <src:fragref linkend="copy-elements"/>
+  <src:fragref linkend="copy-xml-constructs"/>
+</xsl:stylesheet>
+</src:fragment>
+</section>
+</section>
+
+<section><title>Initialization</title>
+
+<para>The stylesheet initializes the processor by loading its version
+information (stored in a separate file because it is shared by several
+stylesheets) and telling the processor to preserve whitespace on all
+input elements.</para>
+
+<para>The stylesheet also constructs a key for the ID values used on
+fragments. Because &xweb; documents do not have to be valid according
+to any particular DTD or Schema, the stylesheet cannot rely on having
+the IDs identified as type ID in the source document.</para>
+
+<src:fragment id="init">
+  <xsl:include href="VERSION"/>
+  <xsl:preserve-space elements="*"/>
+
+  <xsl:key name="fragment" match="src:fragment" use="@id"/>
+
+  <xsl:param name="top" select="'top'"/>
+
 </src:fragment>
 
-<src:fragment id="output">
-<xsl:output method="xml"/>
-</src:fragment>
+</section>
+
+<section><title>The Root Template</title>
+
+<para>The root template begins processing at the root of the &xweb;
+document. It outputs a couple of informative comments and then
+directs the processor to transform the <sgmltag>src:fragment</sgmltag>
+element with the <varname>$top</varname> ID.</para>
+
+<para>Source code fragments in the &xweb; document are not required
+to be sequential, so it is necessary to distinguish one fragment
+as the primary starting point.</para>
 
 <src:fragment id="root.template">
 <xsl:template match="/">
-  <xsl:text>&#xA;</xsl:text>
-  <xsl:comment>
-    <xsl:text> This file was generated by tangle.xsl version </xsl:text>
-    <xsl:value-of select="$VERSION"/>
-    <xsl:text>. Do not edit! </xsl:text>
-  </xsl:comment>
-  <xsl:text>&#xA;</xsl:text>
-  <xsl:comment> See http://sourceforge.net/projects/docbook/ </xsl:comment>
-  <xsl:apply-templates select="//src:topfragment"/>
+  <xsl:apply-templates select="key('fragment', $top)"/>
 </xsl:template>
 </src:fragment>
+</section>
 
-<src:fragment id="text">
-<xsl:template match="text()"/>
-</src:fragment>
+<section><title>Processing Fragments</title>
 
-<src:fragment id="default">
-<xsl:template match="*">
-  <xsl:apply-templates/>
-</xsl:template>
-</src:fragment>
+<para>In order to <quote>tangle</quote> an &xweb; document, we need
+only copy the contents of the fragments to the result tree.
+Processing <sgmltag>src:fragment</sgmltag> elements is easy, simply copy
+their children:</para>
 
-<src:fragment id="rest">
-<xsl:template match="src:topfragment">
-  <xsl:apply-templates mode="copy"/>
-</xsl:template>
-
+<src:fragment id="process-fragments">
 <xsl:template match="src:fragment">
   <xsl:apply-templates mode="copy"/>
 </xsl:template>
+</src:fragment>
+</section>
 
-<xsl:template match="*" mode="copy">
-  <xsl:variable name="node" select="."/>
-  <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
-    <xsl:for-each select="namespace::*">
-      <xsl:if test="string(.) != namespace-uri($node)">
-        <xsl:copy/>
-      </xsl:if>
-    </xsl:for-each>
-    <xsl:copy-of select="@*"/>
-    <xsl:apply-templates mode="copy"/>
-  </xsl:element>
-</xsl:template>
+<section><title>Copying Elements</title>
 
+<para>Copying elements to the result tree can be divided into four
+cases: <link linkend="s.copy-passthrough">copying passthrough elements</link>,
+<link linkend="s.copy-fragref">copying fragment references</link>, and
+<link linkend="s.copy-default">copying everything else</link>.</para>
+
+<src:fragment id="copy-elements">
+<src:fragref linkend="copy-passthrough"/>
+<src:fragref linkend="copy-fragref"/>
+<src:fragref linkend="copy-default"/>
+</src:fragment>
+
+<section id="s.copy-passthrough">
+<title>Copying <sgmltag>src:passthrough</sgmltag></title>
+
+<para>Passthrough elements contain text that is intended to appear
+literally in the result tree. We use XSLT
+<quote>disable-output-escaping</quote> to copy it without
+interpretation:</para>
+
+<src:fragment id="copy-passthrough">
 <xsl:template match="src:passthrough" mode="copy">
   <xsl:value-of disable-output-escaping="yes" select="."/>
 </xsl:template>
+</src:fragment>
+</section>
 
+<section id="s.copy-fragref">
+<title>Copying <sgmltag>src:fragref</sgmltag></title>
+
+<para>With a unique exception, copying fragment references is
+straightforward: find the fragment that is identified by the
+cross-reference and process it.
+</para>
+
+<para>The single exception arises only in the processing of
+<sgmltag>src:fragref</sgmltag> elements in the <sgmltag>weave.xweb</sgmltag>
+document. There is a single template in the <quote>weave</quote> program
+that needs to copy a literal <sgmltag>src:fragref</sgmltag> element to the
+result tree. That is the <emphasis>only</emphasis> time the
+<xref linkend="doe-fragref"/> branch is executed.
+</para>
+
+<src:fragment id="copy-fragref">
 <xsl:template match="src:fragref" mode="copy">
   <xsl:variable name="node" select="."/>
   <xsl:choose>
+    <src:fragref linkend="doe-fragref"/>
+    <src:fragref linkend="normal-fragref"/>
+  </xsl:choose>
+</xsl:template>
+</src:fragment>
+
+<section><title>Copying Normal Fragment References</title>
+
+<para>To copy a normal fragment reference, identify what the
+<sgmltag class="attribute">linkend</sgmltag> attribute points to,
+make sure it is valid, and process it.</para>
+
+<src:fragment id="normal-fragref">    <xsl:otherwise>
+      <xsl:variable name="fragment" select="key('fragment', @linkend)"/>
+      <src:fragref linkend="fragref-unique"/>
+      <src:fragref linkend="fragref-isfragment"/>
+      <xsl:apply-templates select="$fragment"/>
+    </xsl:otherwise></src:fragment>
+
+<section><title>Fragment is Unique</title>
+
+<para>Make sure that the <sgmltag class="attribute">linkend</sgmltag>
+attribute points to exactly one node in the source tree. It is an error
+if no element exists with that ID value or if more than one exists.</para>
+
+<src:fragment id="fragref-unique">      <xsl:if test="count($fragment) != 1">
+        <xsl:message terminate="yes">
+          <xsl:text>Link to fragment "</xsl:text>
+          <xsl:value-of select="@linkend"/>
+          <xsl:text>" does not uniquely identify a single fragment.</xsl:text>
+        </xsl:message>
+      </xsl:if></src:fragment>
+
+</section>
+
+<section><title>Fragment is a <sgmltag>src:fragment</sgmltag></title>
+
+<para>Make sure that the <sgmltag class="attribute">linkend</sgmltag>
+attribute points to a <sgmltag>src:fragment</sgmltag> element.</para>
+
+<para>FIXME: this code should test the namespace name of the $fragment</para>
+
+<src:fragment id="fragref-isfragment">
+<xsl:if test="local-name($fragment) != 'fragment'">
+  <xsl:message terminate="yes">
+    <xsl:text>Link "</xsl:text>
+    <xsl:value-of select="@linkend"/>
+    <xsl:text>" does not point to a src:fragment.</xsl:text>
+  </xsl:message>
+</xsl:if>
+</src:fragment>
+</section>
+</section>
+</section>
+
+<section><title>Copying Disable-Output-Escaping Fragment References</title>
+
+<para>A <sgmltag>src:fragref</sgmltag> that specifies
+<sgmltag class="attribute">disable-output-escaping</sgmltag> is treated
+essentially as if it was
+<link linkend="s.copy-default">any other element</link>. The only
+exception is that the
+<sgmltag class="attribute">disable-output-escaping</sgmltag> attribute
+is not copied.</para>
+
+<para>Because <application>tangle</application> and
+<application>weave</application> are XSLT stylesheets that process
+XSLT stylesheets, processing <sgmltag>src:fragref</sgmltag> poses
+a unique challenge.</para>
+
+<para>In ordinary <application>tangle</application> processing, they
+are expanded and replaced with the content of the fragment that they
+point to. But when <filename>weave.xweb</filename> is tangled, they
+must be copied through literally. The
+<sgmltag class="attribute">disable-output-escaping</sgmltag> attribute
+provides the hook that allows this.
+</para>
+
+<src:fragment id="doe-fragref">
     <xsl:when test="@disable-output-escaping='yes'">
-      <xsl:element name="{name(.)}" namespace="namespace-uri(.)">
-        <xsl:for-each select="namespace::*">
-          <xsl:if test="string(.) != namespace-uri($node)">
-            <xsl:copy/>
-          </xsl:if>
-        </xsl:for-each>
+      <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
+        <src:fragref linkend="copy-namespaces"/>
         <xsl:for-each select="@*">
           <xsl:if test="not(name(.) = 'disable-output-escaping')">
             <xsl:copy/>
@@ -101,21 +284,101 @@
         </xsl:for-each>
         <xsl:apply-templates mode="copy"/>
       </xsl:element>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:variable name="linkend" select="@linkend"/>
-      <xsl:variable name="fragment" select="//src:fragment[@id=$linkend]"/>
-      <xsl:apply-templates select="$fragment"/>
-    </xsl:otherwise>
-  </xsl:choose>
+    </xsl:when></src:fragment>
+</section>
+
+<section id="s.copy-default">
+<title>Copying Everything Else</title>
+
+<para>Everything else is copied verbatim. This is a five step process:
+</para>
+
+<orderedlist>
+<listitem><para>Save a copy of the context node in
+<literal>$node</literal> so that we can refer to it later from
+inside an <sgmltag>xsl:for-each</sgmltag>.</para>
+</listitem>
+<listitem><para>Construct a new node in the result tree with
+the same qualified name and namespace as the context node.</para>
+</listitem>
+<listitem><para>Copy the namespace nodes on the context node to the
+new node in the result tree. We must do this manually because the
+&xweb; file may have broken the content of this element into several
+separate fragments. Breaking things into separate fragments makes it
+impossible for the XSLT processor to always construct the right namespace
+nodes automatically.</para>
+</listitem>
+<listitem><para>Copy the attributes.
+</para></listitem>
+<listitem><para>Copy the children.
+</para></listitem>
+</orderedlist>
+
+<src:fragment id="copy-default">
+<xsl:template match="*" mode="copy">
+  <xsl:variable name="node" select="."/>
+  <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
+    <src:fragref linkend="copy-namespaces"/>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates mode="copy"/>
+  </xsl:element>
+</xsl:template>
+</src:fragment>
+
+<para>For non-XML source docuements, this template will never match
+because there will be no XML elements in the source fragments.</para>
+
+<section><title>Copy Namespaces</title>
+
+<para>Copying the namespaces is a simple loop over the elements on
+the <literal>namespace</literal> axis, with one wrinkle.</para>
+
+<para>It is an error to copy a namespace node onto an element if a
+namespace node is already present for that namespace.  The fact that
+we're running this loop in a context where we've constructed the
+result node explicitly in the correct namespace means that attempting
+to copy that namespace node again will produce an error. We work
+around this problem by explicitly testing for that namespace and not
+copying it.
+</para>
+
+<src:fragment id="copy-namespaces">
+  <xsl:for-each select="namespace::*">
+    <xsl:if test="string(.) != namespace-uri($node)">
+      <xsl:copy/>
+    </xsl:if>
+  </xsl:for-each>
+</src:fragment>
+
+</section>
+</section>
+</section>
+
+<section><title>Copy XML Constructs</title>
+
+<para>In the <filename>xtangle.xsl</filename> stylesheet, we also want
+to preserve XML constructs (processing instructions and comments) that
+we encounter in the fragments.</para>
+
+<para>Note that many implementations of XSLT do not provide comments in
+the source document (they are discarded before building the tree), in which
+case the comments cannot be preserved.</para>
+
+<src:fragment id="copy-xml-constructs">
+<xsl:template match="processing-instruction()" mode="copy">
+  <xsl:processing-instruction name='{name(.)}'>
+    <xsl:value-of select="."/>
+  </xsl:processing-instruction>
 </xsl:template>
 
-<xsl:template match="src:comment" mode="copy">
+<xsl:template match="comment()" mode="copy">
   <xsl:comment>
     <xsl:value-of select="."/>
   </xsl:comment>
 </xsl:template>
 </src:fragment>
+
 </section>
+
 </article>
 
