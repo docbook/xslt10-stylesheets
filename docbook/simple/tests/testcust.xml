@@ -1,0 +1,8 @@
+<!DOCTYPE article SYSTEM "../sdocbook-custom.dtd">
+<article>
+<articleinfo>
+  <title>Article Title</title>
+  <titleabbrev>Title</titleabbrev>
+</articleinfo>
+<para>Paragraph.</para>
+</article>
