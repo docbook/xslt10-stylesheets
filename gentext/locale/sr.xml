@@ -337,509 +337,437 @@
 <gentext key="hyphenation-remain-character-count" text="2"/>
 
 <context name="styles">
-<template name="person-name" 
-          text="&#1080;&#1084;&#1077;-&#1087;&#1088;&#1077;&#1079;&#1080;&#1084;&#1077;"/>
+<template name="person-name">&#1080;&#1084;&#1077;-&#1087;&#1088;&#1077;&#1079;&#1080;&#1084;&#1077;</template>
 </context>
 
 <context name="title">
 
-<template name="abstract" text="%t"/>
-<template name="answer" text="%t"/>
-<template name="appendix" 
-text="&#1044;&#1086;&#1076;&#1072;&#1090;&#1072;&#1082;&#160;%n.&#160;%t"/>
-<template name="article" text="%t"/>
-<template name="authorblurb" text="%t"/>
+<template name="abstract">%t</template>
+<template name="answer">%t</template>
+<template name="appendix">&#1044;&#1086;&#1076;&#1072;&#1090;&#1072;&#1082;&#160;%n.&#160;%t</template>
+<template name="article">%t</template>
+<template name="authorblurb">%t</template>
 
-<template name="bibliodiv" text="%t"/>
-<template name="biblioentry" text="%t"/>
-<template name="bibliography" text="%t"/>
-<template name="bibliomixed" text="%t"/>
-<template name="bibliomset" text="%t"/>
-<template name="biblioset" text="%t"/>
-<template name="blockquote" text="%t"/>
-<template name="book" text="%t"/>
-<template name="calloutlist" text="%t"/>
+<template name="bibliodiv">%t</template>
+<template name="biblioentry">%t</template>
+<template name="bibliography">%t</template>
+<template name="bibliomixed">%t</template>
+<template name="bibliomset">%t</template>
+<template name="biblioset">%t</template>
+<template name="blockquote">%t</template>
+<template name="book">%t</template>
+<template name="calloutlist">%t</template>
 
-<template name="caution" text="%t"/>
-<template name="chapter" 
-text="&#1055;&#1086;&#1075;&#1083;&#1072;&#1074;&#1113;&#1077;&#160;%n.&#160;%t"/>
-<template name="colophon" text="%t"/>
-<template name="dedication" text="%t"/>
-<template name="equation" 
-text="&#1032;&#1077;&#1076;&#1085;&#1072;&#1095;&#1080;&#1085;&#1072;&#160;%n.&#160;%t"/>
-<template name="example" 
-text="&#1055;&#1088;&#1080;&#1084;&#1077;&#1088;&#160;%n.&#160;%t"/>
-<template name="figure" 
-text="&#1060;&#1080;&#1075;&#1091;&#1088;&#1072;&#160;%n.&#160;%t"/>
-<template name="formalpara" text="%t"/>
-<template name="glossary" text="%t"/>
+<template name="caution">%t</template>
+<template name="chapter">&#1055;&#1086;&#1075;&#1083;&#1072;&#1074;&#1113;&#1077;&#160;%n.&#160;%t</template>
+<template name="colophon">%t</template>
+<template name="dedication">%t</template>
+<template name="equation">&#1032;&#1077;&#1076;&#1085;&#1072;&#1095;&#1080;&#1085;&#1072;&#160;%n.&#160;%t</template>
+<template name="example">&#1055;&#1088;&#1080;&#1084;&#1077;&#1088;&#160;%n.&#160;%t</template>
+<template name="figure">&#1060;&#1080;&#1075;&#1091;&#1088;&#1072;&#160;%n.&#160;%t</template>
+<template name="formalpara">%t</template>
+<template name="glossary">%t</template>
 
-<template name="glossdiv" text="%t"/>
-<template name="glossentry" text="%t"/>
-<template name="important" text="%t"/>
-<template name="index" text="%t"/>
-<template name="indexdiv" text="%t"/>
-<template name="itemizedlist" text="%t"/>
-<template name="legalnotice" text="%t"/>
-<template name="listitem" text=""/>
-<template name="lot" text="%t"/>
+<template name="glossdiv">%t</template>
+<template name="glossentry">%t</template>
+<template name="important">%t</template>
+<template name="index">%t</template>
+<template name="indexdiv">%t</template>
+<template name="itemizedlist">%t</template>
+<template name="legalnotice">%t</template>
+<template name="listitem"></template>
+<template name="lot">%t</template>
 
-<template name="msg" text="%t"/>
-<template name="msgexplan" text="%t"/>
-<template name="msgmain" text="%t"/>
-<template name="msgrel" text="%t"/>
-<template name="msgset" text="%t"/>
-<template name="msgsub" text="%t"/>
-<template name="note" text="%t"/>
-<template name="orderedlist" text="%t"/>
-<template name="part" text="&#1044;&#1077;&#1086;&#160;%n.&#160;%t"/>
+<template name="msg">%t</template>
+<template name="msgexplan">%t</template>
+<template name="msgmain">%t</template>
+<template name="msgrel">%t</template>
+<template name="msgset">%t</template>
+<template name="msgsub">%t</template>
+<template name="note">%t</template>
+<template name="orderedlist">%t</template>
+<template name="part">&#1044;&#1077;&#1086;&#160;%n.&#160;%t</template>
 
-<template name="partintro" text="%t"/>
-<template name="preface" text="%t"/>
-<template name="procedure" text="%t"/>
-<template name="procedure.formal" 
-text="&#1055;&#1088;&#1086;&#1094;&#1077;&#1076;&#1091;&#1088;&#1072;&#160;%n.&#160;%t"/>
-<template name="productionset" text="%t"/>
-<template name="productionset.formal" text="Production&#160;%n" 
-lang="en"/>
-<template name="qandadiv" text="%t"/>
-<template name="qandaentry" text="%t"/>
-<template name="qandaset" text="%t"/>
+<template name="partintro">%t</template>
+<template name="preface">%t</template>
+<template name="procedure">%t</template>
+<template name="procedure.formal">&#1055;&#1088;&#1086;&#1094;&#1077;&#1076;&#1091;&#1088;&#1072;&#160;%n.&#160;%t</template>
+<template name="productionset">%t</template>
+<template name="productionset.formal">Production&#160;%n" 
+lang="en</template>
+<template name="qandadiv">%t</template>
+<template name="qandaentry">%t</template>
+<template name="qandaset">%t</template>
 
-<template name="question" text="%t"/>
-<template name="refentry" text="%t"/>
-<template name="reference" text="%t"/>
-<template name="refsection" text="%t"/>
-<template name="refsect1" text="%t"/>
-<template name="refsect2" text="%t"/>
-<template name="refsect3" text="%t"/>
-<template name="refsynopsisdiv" text="%t"/>
-<template name="refsynopsisdivinfo" text="%t"/>
+<template name="question">%t</template>
+<template name="refentry">%t</template>
+<template name="reference">%t</template>
+<template name="refsection">%t</template>
+<template name="refsect1">%t</template>
+<template name="refsect2">%t</template>
+<template name="refsect3">%t</template>
+<template name="refsynopsisdiv">%t</template>
+<template name="refsynopsisdivinfo">%t</template>
 
-<template name="segmentedlist" text="%t"/>
-<template name="set" text="%t"/>
-<template name="setindex" text="%t"/>
-<template name="sidebar" text="%t"/>
-<template name="step" text="%t"/>
-<template name="table" 
-text="&#1058;&#1072;&#1073;&#1077;&#1083;&#1072;&#160;%n.&#160;%t"/>
-<template name="task" text="%t"/>
-<template name="tip" text="%t"/>
-<template name="toc" text="%t"/>
+<template name="segmentedlist">%t</template>
+<template name="set">%t</template>
+<template name="setindex">%t</template>
+<template name="sidebar">%t</template>
+<template name="step">%t</template>
+<template name="table">&#1058;&#1072;&#1073;&#1077;&#1083;&#1072;&#160;%n.&#160;%t</template>
+<template name="task">%t</template>
+<template name="tip">%t</template>
+<template name="toc">%t</template>
 
-<template name="variablelist" text="%t"/>
-<template name="varlistentry" text=""/>
-<template name="warning" text="%t"/>
+<template name="variablelist">%t</template>
+<template name="varlistentry"></template>
+<template name="warning">%t</template>
 
 </context>
 
 <context name="title-unnumbered">
 
-<template name="appendix" text="%t"/>
-<template name="article/appendix" text="%t"/>
-<template name="bridgehead" text="%t"/>
-<template name="chapter" text="%t"/>
+<template name="appendix">%t</template>
+<template name="article/appendix">%t</template>
+<template name="bridgehead">%t</template>
+<template name="chapter">%t</template>
 
-<template name="sect1" text="%t"/>
-<template name="sect2" text="%t"/>
-<template name="sect3" text="%t"/>
-<template name="sect4" text="%t"/>
-<template name="sect5" text="%t"/>
-<template name="section" text="%t"/>
-<template name="simplesect" text="%t"/>
+<template name="sect1">%t</template>
+<template name="sect2">%t</template>
+<template name="sect3">%t</template>
+<template name="sect4">%t</template>
+<template name="sect5">%t</template>
+<template name="section">%t</template>
+<template name="simplesect">%t</template>
 
 </context>
 
 <context name="title-numbered">
 
-<template name="appendix" 
-text="&#1044;&#1086;&#1076;&#1072;&#1090;&#1072;&#1082;&#160;%n.&#160;%t"/>
-<template name="article/appendix" text="%n.&#160;%t"/>
-<template name="bridgehead" text="%n.&#160;%t"/>
-<template name="chapter" 
-text="&#1055;&#1086;&#1075;&#1083;&#1072;&#1074;&#1113;&#1077;&#160;%n.&#160;%t"/>
-<template name="sect1" text="%n.&#160;%t"/>
-<template name="sect2" text="%n.&#160;%t"/>
-<template name="sect3" text="%n.&#160;%t"/>
-<template name="sect4" text="%n.&#160;%t"/>
-<template name="sect5" text="%n.&#160;%t"/>
+<template name="appendix">&#1044;&#1086;&#1076;&#1072;&#1090;&#1072;&#1082;&#160;%n.&#160;%t</template>
+<template name="article/appendix">%n.&#160;%t</template>
+<template name="bridgehead">%n.&#160;%t</template>
+<template name="chapter">&#1055;&#1086;&#1075;&#1083;&#1072;&#1074;&#1113;&#1077;&#160;%n.&#160;%t</template>
+<template name="sect1">%n.&#160;%t</template>
+<template name="sect2">%n.&#160;%t</template>
+<template name="sect3">%n.&#160;%t</template>
+<template name="sect4">%n.&#160;%t</template>
+<template name="sect5">%n.&#160;%t</template>
 
-<template name="section" text="%n.&#160;%t"/>
-<template name="simplesect" text="%t"/>
+<template name="section">%n.&#160;%t</template>
+<template name="simplesect">%t</template>
 
 </context>
 
 <context name="subtitle">
 
-<template name="appendix" text="%s"/>
-<template name="article" text="%s"/>
-<template name="bibliodiv" text="%s"/>
-<template name="biblioentry" text="%s"/>
-<template name="bibliography" text="%s"/>
+<template name="appendix">%s</template>
+<template name="article">%s</template>
+<template name="bibliodiv">%s</template>
+<template name="biblioentry">%s</template>
+<template name="bibliography">%s</template>
 
-<template name="bibliomixed" text="%s"/>
-<template name="bibliomset" text="%s"/>
-<template name="biblioset" text="%s"/>
-<template name="book" text="%s"/>
-<template name="chapter" text="%s"/>
-<template name="colophon" text="%s"/>
-<template name="dedication" text="%s"/>
-<template name="glossary" text="%s"/>
-<template name="glossdiv" text="%s"/>
+<template name="bibliomixed">%s</template>
+<template name="bibliomset">%s</template>
+<template name="biblioset">%s</template>
+<template name="book">%s</template>
+<template name="chapter">%s</template>
+<template name="colophon">%s</template>
+<template name="dedication">%s</template>
+<template name="glossary">%s</template>
+<template name="glossdiv">%s</template>
 
-<template name="index" text="%s"/>
-<template name="indexdiv" text="%s"/>
-<template name="lot" text="%s"/>
-<template name="part" text="%s"/>
-<template name="partintro" text="%s"/>
-<template name="preface" text="%s"/>
-<template name="refentry" text="%s"/>
-<template name="reference" text="%s"/>
-<template name="refsection" text="%s"/>
+<template name="index">%s</template>
+<template name="indexdiv">%s</template>
+<template name="lot">%s</template>
+<template name="part">%s</template>
+<template name="partintro">%s</template>
+<template name="preface">%s</template>
+<template name="refentry">%s</template>
+<template name="reference">%s</template>
+<template name="refsection">%s</template>
 
-<template name="refsect1" text="%s"/>
-<template name="refsect2" text="%s"/>
-<template name="refsect3" text="%s"/>
-<template name="refsynopsisdiv" text="%s"/>
-<template name="sect1" text="%s"/>
-<template name="sect2" text="%s"/>
-<template name="sect3" text="%s"/>
-<template name="sect4" text="%s"/>
-<template name="sect5" text="%s"/>
+<template name="refsect1">%s</template>
+<template name="refsect2">%s</template>
+<template name="refsect3">%s</template>
+<template name="refsynopsisdiv">%s</template>
+<template name="sect1">%s</template>
+<template name="sect2">%s</template>
+<template name="sect3">%s</template>
+<template name="sect4">%s</template>
+<template name="sect5">%s</template>
 
-<template name="section" text="%s"/>
-<template name="set" text="%s"/>
-<template name="setindex" text="%s"/>
-<template name="sidebar" text="%s"/>
-<template name="simplesect" text="%s"/>
-<template name="toc" text="%s"/>
+<template name="section">%s</template>
+<template name="set">%s</template>
+<template name="setindex">%s</template>
+<template name="sidebar">%s</template>
+<template name="simplesect">%s</template>
+<template name="toc">%s</template>
 
 </context>
 
 <context name="xref">
 
-<template name="abstract" text="%t"/>
-<template name="answer" text="&#1054;:&#160;%n"/>
-<template name="appendix" text="%t"/>
-<template name="article" text="%t"/>
-<template name="authorblurb" text="%t"/>
-<template name="bibliodiv" text="%t"/>
-<template name="bibliography" text="%t"/>
-<template name="bibliomset" text="%t"/>
-<template name="biblioset" text="%t"/>
-<template name="blockquote" text="%t"/>
+<template name="abstract">%t</template>
+<template name="answer">&#1054;:&#160;%n</template>
+<template name="appendix">%t</template>
+<template name="article">%t</template>
+<template name="authorblurb">%t</template>
+<template name="bibliodiv">%t</template>
+<template name="bibliography">%t</template>
+<template name="bibliomset">%t</template>
+<template name="biblioset">%t</template>
+<template name="blockquote">%t</template>
 
-<template name="book" text="%t"/>
-<template name="calloutlist" text="%t"/>
-<template name="caution" text="%t"/>
-<template name="chapter" text="%t"/>
-<template name="colophon" text="%t"/>
-<template name="constraintdef" text="%t"/>
-<template name="dedication" text="%t"/>
-<template name="equation" text="%t"/>
-<template name="example" text="%t"/>
+<template name="book">%t</template>
+<template name="calloutlist">%t</template>
+<template name="caution">%t</template>
+<template name="chapter">%t</template>
+<template name="colophon">%t</template>
+<template name="constraintdef">%t</template>
+<template name="dedication">%t</template>
+<template name="equation">%t</template>
+<template name="example">%t</template>
 
-<template name="figure" text="%t"/>
-<template name="formalpara" text="%t"/>
-<template name="glossary" text="%t"/>
-<template name="glossdiv" text="%t"/>
-<template name="important" text="%t"/>
-<template name="index" text="%t"/>
-<template name="indexdiv" text="%t"/>
-<template name="itemizedlist" text="%t"/>
-<template name="legalnotice" text="%t"/>
+<template name="figure">%t</template>
+<template name="formalpara">%t</template>
+<template name="glossary">%t</template>
+<template name="glossdiv">%t</template>
+<template name="important">%t</template>
+<template name="index">%t</template>
+<template name="indexdiv">%t</template>
+<template name="itemizedlist">%t</template>
+<template name="legalnotice">%t</template>
 
-<template name="listitem" text="%n"/>
-<template name="lot" text="%t"/>
-<template name="msg" text="%t"/>
-<template name="msgexplan" text="%t"/>
-<template name="msgmain" text="%t"/>
-<template name="msgrel" text="%t"/>
-<template name="msgset" text="%t"/>
-<template name="msgsub" text="%t"/>
-<template name="note" text="%t"/>
+<template name="listitem">%n</template>
+<template name="lot">%t</template>
+<template name="msg">%t</template>
+<template name="msgexplan">%t</template>
+<template name="msgmain">%t</template>
+<template name="msgrel">%t</template>
+<template name="msgset">%t</template>
+<template name="msgsub">%t</template>
+<template name="note">%t</template>
 
-<template name="orderedlist" text="%t"/>
-<template name="part" text="%t"/>
-<template name="partintro" text="%t"/>
-<template name="preface" text="%t"/>
-<template name="procedure" text="%t"/>
-<template name="productionset" text="%t"/>
-<template name="qandadiv" text="%t"/>
-<template name="qandaentry" text="&#1055;:&#160;%n"/>
-<template name="qandaset" text="%t"/>
+<template name="orderedlist">%t</template>
+<template name="part">%t</template>
+<template name="partintro">%t</template>
+<template name="preface">%t</template>
+<template name="procedure">%t</template>
+<template name="productionset">%t</template>
+<template name="qandadiv">%t</template>
+<template name="qandaentry">&#1055;:&#160;%n</template>
+<template name="qandaset">%t</template>
 
-<template name="question" text="&#1055;:&#160;%n"/>
-<template name="reference" text="%t"/>
-<template name="refsynopsisdiv" text="%t"/>
-<template name="segmentedlist" text="%t"/>
-<template name="set" text="%t"/>
-<template name="setindex" text="%t"/>
-<template name="sidebar" text="%t"/>
-<template name="table" text="%t"/>
-<template name="tip" text="%t"/>
+<template name="question">&#1055;:&#160;%n</template>
+<template name="reference">%t</template>
+<template name="refsynopsisdiv">%t</template>
+<template name="segmentedlist">%t</template>
+<template name="set">%t</template>
+<template name="setindex">%t</template>
+<template name="sidebar">%t</template>
+<template name="table">%t</template>
+<template name="tip">%t</template>
 
-<template name="toc" text="%t"/>
-<template name="variablelist" text="%t"/>
-<template name="varlistentry" text="%n"/>
-<template name="warning" text="%t"/>
-<template name="page.citation" text=" [%p]"/>
-<template name="page" 
-text="(&#1089;&#1090;&#1088;&#1072;&#1085;&#1072; %p)"/>
-<template name="pageabbrev" text="(&#1089;&#1090;&#1088;. %p)"/>
-<template name="Page" 
-text="&#1057;&#1090;&#1088;&#1072;&#1085;&#1072; %p"/>
-<template name="bridgehead" 
-text="&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
-&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;"/>
+<template name="toc">%t</template>
+<template name="variablelist">%t</template>
+<template name="varlistentry">%n</template>
+<template name="warning">%t</template>
+<template name="page.citation"> [%p]</template>
+<template name="page">(&#1089;&#1090;&#1088;&#1072;&#1085;&#1072; %p)</template>
+<template name="pageabbrev">(&#1089;&#1090;&#1088;. %p)</template>
+<template name="Page">&#1057;&#1090;&#1088;&#1072;&#1085;&#1072; %p</template>
+<template name="bridgehead">&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
+&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;</template>
 
-<template name="refsection" 
-text="&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
-&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;"/>
-<template name="refsect1" 
-text="&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
-&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;"/>
-<template name="refsect2" 
-text="&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
-&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;"/>
-<template name="refsect3" 
-text="&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
-&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;"/>
-<template name="sect1" 
-text="&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
-&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;"/>
-<template name="sect2" 
-text="&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
-&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;"/>
-<template name="sect3" 
-text="&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
-&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;"/>
-<template name="sect4" 
-text="&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
-&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;"/>
-<template name="sect5" 
-text="&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
-&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;"/>
+<template name="refsection">&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
+&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;</template>
+<template name="refsect1">&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
+&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;</template>
+<template name="refsect2">&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
+&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;</template>
+<template name="refsect3">&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
+&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;</template>
+<template name="sect1">&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
+&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;</template>
+<template name="sect2">&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
+&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;</template>
+<template name="sect3">&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
+&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;</template>
+<template name="sect4">&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
+&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;</template>
+<template name="sect5">&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
+&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;</template>
 
-<template name="section" 
-text="&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
-&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;"/>
-<template name="simplesect" 
-text="&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
-&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;"/>
+<template name="section">&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
+&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;</template>
+<template name="simplesect">&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
+&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;</template>
 
 </context>
 
 <context name="xref-number">
 
-<template name="answer" text="&#1054;:&#160;%n"/>
-<template name="appendix" 
-text="&#1044;&#1086;&#1076;&#1072;&#1090;&#1072;&#1082;&#160;%n"/>
-<template name="bridgehead" 
-text="&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n"/>
-<template name="chapter" 
-text="&#1055;&#1086;&#1075;&#1083;&#1072;&#1074;&#1113;&#1077;&#160;%n"/>
-<template name="equation" 
-text="&#1032;&#1077;&#1076;&#1085;&#1072;&#1095;&#1080;&#1085;&#1072;&#160;%n"/>
+<template name="answer">&#1054;:&#160;%n</template>
+<template name="appendix">&#1044;&#1086;&#1076;&#1072;&#1090;&#1072;&#1082;&#160;%n</template>
+<template name="bridgehead">&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n</template>
+<template name="chapter">&#1055;&#1086;&#1075;&#1083;&#1072;&#1074;&#1113;&#1077;&#160;%n</template>
+<template name="equation">&#1032;&#1077;&#1076;&#1085;&#1072;&#1095;&#1080;&#1085;&#1072;&#160;%n</template>
 
-<template name="example" 
-text="&#1055;&#1088;&#1080;&#1084;&#1077;&#1088;&#160;%n"/>
-<template name="figure" 
-text="&#1060;&#1080;&#1075;&#1091;&#1088;&#1072;&#160;%n"/>
-<template name="part" text="&#1044;&#1077;&#1086;&#160;%n"/>
-<template name="procedure" 
-text="&#1055;&#1088;&#1086;&#1094;&#1077;&#1076;&#1091;&#1088;&#1072;&#160;%n"/>
-<template name="productionset" text="Production&#160;%n" lang="en"/>
-<template name="qandadiv" text="&#1055; &#1080; &#1054;&#160;%n"/>
-<template name="qandaentry" text="&#1055;:&#160;%n"/>
-<template name="question" text="&#1055;:&#160;%n"/>
-<template name="sect1" 
-text="&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n"/>
+<template name="example">&#1055;&#1088;&#1080;&#1084;&#1077;&#1088;&#160;%n</template>
+<template name="figure">&#1060;&#1080;&#1075;&#1091;&#1088;&#1072;&#160;%n</template>
+<template name="part">&#1044;&#1077;&#1086;&#160;%n</template>
+<template name="procedure">&#1055;&#1088;&#1086;&#1094;&#1077;&#1076;&#1091;&#1088;&#1072;&#160;%n</template>
+<template name="productionset">Production&#160;%n" lang="en</template>
+<template name="qandadiv">&#1055; &#1080; &#1054;&#160;%n</template>
+<template name="qandaentry">&#1055;:&#160;%n</template>
+<template name="question">&#1055;:&#160;%n</template>
+<template name="sect1">&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n</template>
 
-<template name="sect2" 
-text="&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n"/>
-<template name="sect3" 
-text="&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n"/>
-<template name="sect4" 
-text="&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n"/>
-<template name="sect5" 
-text="&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n"/>
-<template name="section" 
-text="&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n"/>
-<template name="table" 
-text="&#1058;&#1072;&#1073;&#1077;&#1083;&#1072;&#160;%n"/>
+<template name="sect2">&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n</template>
+<template name="sect3">&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n</template>
+<template name="sect4">&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n</template>
+<template name="sect5">&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n</template>
+<template name="section">&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n</template>
+<template name="table">&#1058;&#1072;&#1073;&#1077;&#1083;&#1072;&#160;%n</template>
 
 </context>
 
 <context name="xref-number-and-title">
 
-<template name="appendix" 
-text="&#1044;&#1086;&#1076;&#1072;&#1090;&#1072;&#1082;&#160;%n, %t"/>
+<template name="appendix">&#1044;&#1086;&#1076;&#1072;&#1090;&#1072;&#1082;&#160;%n, %t</template>
 
-<template name="bridgehead" 
-text="&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n, 
-&#8222;%t&#8220;"/>
-<template name="chapter" 
-text="&#1055;&#1086;&#1075;&#1083;&#1072;&#1074;&#1113;&#1077;&#160;%n, 
-%t"/>
-<template name="equation" 
-text="&#1032;&#1077;&#1076;&#1085;&#1072;&#1095;&#1080;&#1085;&#1072;&#160;%n, 
-&#8222;%t&#8220;"/>
-<template name="example" 
-text="&#1055;&#1088;&#1080;&#1084;&#1077;&#1088;&#160;%n, 
-&#8222;%t&#8220;"/>
-<template name="figure" 
-text="&#1060;&#1080;&#1075;&#1091;&#1088;&#1072;&#160;%n, 
-&#8222;%t&#8220;"/>
-<template name="part" text="&#1044;&#1077;&#1086;&#160;%n, 
-&#8222;%t&#8220;"/>
-<template name="procedure" 
-text="&#1055;&#1088;&#1086;&#1094;&#1077;&#1076;&#1091;&#1088;&#1072;&#160;%n, 
-&#8222;%t&#8220;"/>
-<template name="productionset" text="Production&#160;%n, 
-&#8222;%t&#8220;" lang="en"/>
-<template name="qandadiv" text="&#1055; &#1080; &#1054;&#160;%n, 
-&#8222;%t&#8220;"/>
+<template name="bridgehead">&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n, 
+&#8222;%t&#8220;</template>
+<template name="chapter">&#1055;&#1086;&#1075;&#1083;&#1072;&#1074;&#1113;&#1077;&#160;%n, 
+%t</template>
+<template name="equation">&#1032;&#1077;&#1076;&#1085;&#1072;&#1095;&#1080;&#1085;&#1072;&#160;%n, 
+&#8222;%t&#8220;</template>
+<template name="example">&#1055;&#1088;&#1080;&#1084;&#1077;&#1088;&#160;%n, 
+&#8222;%t&#8220;</template>
+<template name="figure">&#1060;&#1080;&#1075;&#1091;&#1088;&#1072;&#160;%n, 
+&#8222;%t&#8220;</template>
+<template name="part">&#1044;&#1077;&#1086;&#160;%n, 
+&#8222;%t&#8220;</template>
+<template name="procedure">&#1055;&#1088;&#1086;&#1094;&#1077;&#1076;&#1091;&#1088;&#1072;&#160;%n, 
+&#8222;%t&#8220;</template>
+<template name="productionset">Production&#160;%n, 
+&#8222;%t&#8220;" lang="en</template>
+<template name="qandadiv">&#1055; &#1080; &#1054;&#160;%n, 
+&#8222;%t&#8220;</template>
 
-<template name="refsect1" 
-text="&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
-&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;"/>
-<template name="refsect2" 
-text="&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
-&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;"/>
-<template name="refsect3" 
-text="&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
-&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;"/>
-<template name="refsection" 
-text="&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
-&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;"/>
-<template name="sect1" 
-text="&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n, 
-&#8222;%t&#8220;"/>
-<template name="sect2" 
-text="&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n, 
-&#8222;%t&#8220;"/>
-<template name="sect3" 
-text="&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n, 
-&#8222;%t&#8220;"/>
-<template name="sect4" 
-text="&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n, 
-&#8222;%t&#8220;"/>
-<template name="sect5" 
-text="&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n, 
-&#8222;%t&#8220;"/>
+<template name="refsect1">&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
+&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;</template>
+<template name="refsect2">&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
+&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;</template>
+<template name="refsect3">&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
+&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;</template>
+<template name="refsection">&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
+&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;</template>
+<template name="sect1">&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n, 
+&#8222;%t&#8220;</template>
+<template name="sect2">&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n, 
+&#8222;%t&#8220;</template>
+<template name="sect3">&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n, 
+&#8222;%t&#8220;</template>
+<template name="sect4">&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n, 
+&#8222;%t&#8220;</template>
+<template name="sect5">&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n, 
+&#8222;%t&#8220;</template>
 
-<template name="section" 
-text="&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n, 
-&#8222;%t&#8220;"/>
-<template name="simplesect" 
-text="&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
-&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;"/>
-<template name="table" 
-text="&#1058;&#1072;&#1073;&#1077;&#1083;&#1072;&#160;%n, 
-&#8222;%t&#8220;"/>
+<template name="section">&#1054;&#1076;&#1077;&#1113;&#1072;&#1082;&#160;%n, 
+&#8222;%t&#8220;</template>
+<template name="simplesect">&#1086;&#1076;&#1077;&#1113;&#1072;&#1082; &#1087;&#1086;&#1076; 
+&#1080;&#1084;&#1077;&#1085;&#1086;&#1084; &#8222;%t&#8220;</template>
+<template name="table">&#1058;&#1072;&#1073;&#1077;&#1083;&#1072;&#160;%n, 
+&#8222;%t&#8220;</template>
 
 </context>
 
 <context name="authorgroup">
 
-<template name="sep" text=", "/>
-<template name="sep2" text=" &#1080; "/>
-<template name="seplast" text=", &#1080; "/>
+<template name="sep">, </template>
+<template name="sep2"> &#1080; </template>
+<template name="seplast">, &#1080; </template>
 
 </context>
 
 <context name="glossary">
 
-<template name="see" text="&#1042;&#1080;&#1076;&#1080; "/>
-<template name="seealso" text="&#1042;&#1080;&#1076;&#1080; 
-&#1090;&#1072;&#1082;&#1086;&#1106;&#1077; "/>
+<template name="see">&#1042;&#1080;&#1076;&#1080; </template>
+<template name="seealso">&#1042;&#1080;&#1076;&#1080; 
+&#1090;&#1072;&#1082;&#1086;&#1106;&#1077; </template>
 
 </context>
 
 <context name="msgset">
 
-<template name="MsgAud" 
-text="&#1055;&#1091;&#1073;&#1083;&#1080;&#1082;&#1072;: "/>
-<template name="MsgLevel" text="&#1053;&#1080;&#1074;&#1086;: "/>
-<template name="MsgOrig" 
-text="&#1048;&#1079;&#1074;&#1086;&#1088;: "/>
+<template name="MsgAud">&#1055;&#1091;&#1073;&#1083;&#1080;&#1082;&#1072;: </template>
+<template name="MsgLevel">&#1053;&#1080;&#1074;&#1086;: </template>
+<template name="MsgOrig">&#1048;&#1079;&#1074;&#1086;&#1088;: </template>
 
 </context>
 
 <context name="datetime">
 
-<template name="format" text="d.m.Y."/>
+<template name="format">d.m.Y.</template>
 
 </context>
 
 <context name="datetime-full">
 
-<template name="January" 
-text="&#1112;&#1072;&#1085;&#1091;&#1072;&#1088;"/>
-<template name="February" 
-text="&#1092;&#1077;&#1073;&#1088;&#1091;&#1072;&#1088;"/>
-<template name="March" text="&#1084;&#1072;&#1088;&#1090;"/>
-<template name="April" text="&#1072;&#1087;&#1088;&#1080;&#1083;"/>
-<template name="May" text="&#1084;&#1072;&#1112;"/>
+<template name="January">&#1112;&#1072;&#1085;&#1091;&#1072;&#1088;</template>
+<template name="February">&#1092;&#1077;&#1073;&#1088;&#1091;&#1072;&#1088;</template>
+<template name="March">&#1084;&#1072;&#1088;&#1090;</template>
+<template name="April">&#1072;&#1087;&#1088;&#1080;&#1083;</template>
+<template name="May">&#1084;&#1072;&#1112;</template>
 
-<template name="June" text="&#1112;&#1091;&#1085;"/>
-<template name="July" text="&#1112;&#1091;&#1083;"/>
-<template name="August" 
-text="&#1072;&#1074;&#1075;&#1091;&#1089;&#1090;"/>
-<template name="September" 
-text="&#1089;&#1077;&#1087;&#1090;&#1077;&#1084;&#1073;&#1072;&#1088;"/>
-<template name="October" 
-text="&#1086;&#1082;&#1090;&#1086;&#1073;&#1072;&#1088;"/>
-<template name="November" 
-text="&#1085;&#1086;&#1074;&#1077;&#1084;&#1073;&#1072;&#1088;"/>
-<template name="December" 
-text="&#1076;&#1077;&#1094;&#1077;&#1084;&#1073;&#1072;&#1088;"/>
-<template name="Monday" 
-text="&#1087;&#1086;&#1085;&#1077;&#1076;&#1077;&#1113;&#1072;&#1082;"/>
-<template name="Tuesday" 
-text="&#1091;&#1090;&#1086;&#1088;&#1072;&#1082;"/>
+<template name="June">&#1112;&#1091;&#1085;</template>
+<template name="July">&#1112;&#1091;&#1083;</template>
+<template name="August">&#1072;&#1074;&#1075;&#1091;&#1089;&#1090;</template>
+<template name="September">&#1089;&#1077;&#1087;&#1090;&#1077;&#1084;&#1073;&#1072;&#1088;</template>
+<template name="October">&#1086;&#1082;&#1090;&#1086;&#1073;&#1072;&#1088;</template>
+<template name="November">&#1085;&#1086;&#1074;&#1077;&#1084;&#1073;&#1072;&#1088;</template>
+<template name="December">&#1076;&#1077;&#1094;&#1077;&#1084;&#1073;&#1072;&#1088;</template>
+<template name="Monday">&#1087;&#1086;&#1085;&#1077;&#1076;&#1077;&#1113;&#1072;&#1082;</template>
+<template name="Tuesday">&#1091;&#1090;&#1086;&#1088;&#1072;&#1082;</template>
 
-<template name="Wednesday" 
-text="&#1089;&#1088;&#1077;&#1076;&#1072;"/>
-<template name="Thursday" 
-text="&#1095;&#1077;&#1090;&#1074;&#1088;&#1090;&#1072;&#1082;"/>
-<template name="Friday" text="&#1087;&#1077;&#1090;&#1072;&#1082;"/>
-<template name="Saturday" 
-text="&#1089;&#1091;&#1073;&#1086;&#1090;&#1072;"/>
-<template name="Sunday" 
-text="&#1085;&#1077;&#1076;&#1077;&#1113;&#1072;"/>
+<template name="Wednesday">&#1089;&#1088;&#1077;&#1076;&#1072;</template>
+<template name="Thursday">&#1095;&#1077;&#1090;&#1074;&#1088;&#1090;&#1072;&#1082;</template>
+<template name="Friday">&#1087;&#1077;&#1090;&#1072;&#1082;</template>
+<template name="Saturday">&#1089;&#1091;&#1073;&#1086;&#1090;&#1072;</template>
+<template name="Sunday">&#1085;&#1077;&#1076;&#1077;&#1113;&#1072;</template>
 
 </context>
 
 <context name="datetime-abbrev">
 
-<template name="Jan" text="&#1112;&#1072;&#1085;"/>
-<template name="Feb" text="&#1092;&#1077;&#1073;"/>
+<template name="Jan">&#1112;&#1072;&#1085;</template>
+<template name="Feb">&#1092;&#1077;&#1073;</template>
 
-<template name="Mar" text="&#1084;&#1072;&#1088;"/>
-<template name="Apr" text="&#1072;&#1087;&#1088;"/>
-<template name="May" text="&#1084;&#1072;&#1112;"/>
-<template name="Jun" text="&#1112;&#1091;&#1085;"/>
-<template name="Jul" text="&#1112;&#1091;&#1083;"/>
-<template name="Aug" text="&#1072;&#1074;&#1075;"/>
-<template name="Sep" text="&#1089;&#1077;&#1087;"/>
-<template name="Oct" text="&#1086;&#1082;&#1090;"/>
-<template name="Nov" text="&#1085;&#1086;&#1074;"/>
+<template name="Mar">&#1084;&#1072;&#1088;</template>
+<template name="Apr">&#1072;&#1087;&#1088;</template>
+<template name="May">&#1084;&#1072;&#1112;</template>
+<template name="Jun">&#1112;&#1091;&#1085;</template>
+<template name="Jul">&#1112;&#1091;&#1083;</template>
+<template name="Aug">&#1072;&#1074;&#1075;</template>
+<template name="Sep">&#1089;&#1077;&#1087;</template>
+<template name="Oct">&#1086;&#1082;&#1090;</template>
+<template name="Nov">&#1085;&#1086;&#1074;</template>
 
-<template name="Dec" text="&#1076;&#1077;&#1094;"/>
-<template name="Mon" text="&#1087;&#1086;&#1085;"/>
-<template name="Tue" text="&#1091;&#1090;&#1086;"/>
-<template name="Wed" text="&#1089;&#1088;&#1077;"/>
-<template name="Thu" text="&#1095;&#1077;&#1090;"/>
-<template name="Fri" text="&#1087;&#1077;&#1090;"/>
-<template name="Sat" text="&#1089;&#1091;&#1073;"/>
-<template name="Sun" text="&#1085;&#1077;&#1076;"/>
+<template name="Dec">&#1076;&#1077;&#1094;</template>
+<template name="Mon">&#1087;&#1086;&#1085;</template>
+<template name="Tue">&#1091;&#1090;&#1086;</template>
+<template name="Wed">&#1089;&#1088;&#1077;</template>
+<template name="Thu">&#1095;&#1077;&#1090;</template>
+<template name="Fri">&#1087;&#1077;&#1090;</template>
+<template name="Sat">&#1089;&#1091;&#1073;</template>
+<template name="Sun">&#1085;&#1077;&#1076;</template>
 
 </context>
 
 <context name="htmlhelp">
-<template name="langcode" text="0x081a Serbian (Cyrillic)"/>
+<template name="langcode">0x081a Serbian (Cyrillic)</template>
 </context>
 
 </locale>
