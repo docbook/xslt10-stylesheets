@@ -14,6 +14,10 @@
           <affiliation><address><email>toganm@users.sourceforge.net</email></address>
           </affiliation>
   </author>
+  <author><firstname>Serkan</firstname><surname>Kenar</surname>
+          <affiliation><address><email>serkan@ieee.metu.edu.tr</email></address>
+          </affiliation>
+  </author>
 </authorgroup>
 </doc:localeinfo>
 
@@ -22,7 +26,7 @@
 <gentext key="Answer" text="Cevap:"/>
 <gentext key="answer" text="Cevap:"/>
 <gentext key="Appendix" text="Ek"/>
-<gentext key="appendix" text="ek"/>
+<gentext key="appendix" text="Ek"/>
 <gentext key="Article" text="Makale"/>
 <gentext key="article" text="Makale"/>
 <gentext key="Bibliography" text="Kaynakça"/>
@@ -33,7 +37,7 @@
 <gentext key="Caution" text="Dikkat"/>
 <gentext key="caution" text="Dikkat"/>
 <gentext key="Chapter" text="Bölüm"/>
-<gentext key="chapter" text="bölüm"/>
+<gentext key="chapter" text="Bölüm"/>
 <gentext key="Colophon" text="Kitap hakkında"/>
 <gentext key="colophon" text="Kitap hakkında"/>
 <gentext key="Copyright" text="Telif Hakkı"/>
@@ -65,9 +69,9 @@
 <gentext key="legalnotice" text="Yasal Uyarı"/>
 <gentext key="MsgAud" text="Hedef Okuyucu"/>
 <gentext key="msgaud" text="Hedef Okuyucu"/>
-<gentext key="MsgLevel" text="Level"/>
+<gentext key="MsgLevel" text="Düzey"/>
 <gentext key="msglevel" text="Düzey"/>
-<gentext key="MsgOrig" text="Düzey"/>
+<gentext key="MsgOrig" text="Kaynak"/>
 <gentext key="msgorig" text="Kaynak"/>
 <gentext key="NOTE" text="NOT"/>
 <gentext key="Note" text="Not"/>
@@ -95,8 +99,8 @@
 <gentext key="refname" text="Referans Adı"/>
 <gentext key="RefSection" text=""/>
 <gentext key="refsection" text=""/>
-<gentext key="RefSynopsisDiv" text="Synopsis"/>
-<gentext key="refsynopsisdiv" text="Synopsis"/>
+<gentext key="RefSynopsisDiv" text="Özet"/>
+<gentext key="refsynopsisdiv" text="Özet"/>
 <gentext key="RevHistory" text="Baskı Tarihçesi"/>
 <gentext key="revhistory" text="Baskı Tarihçesi"/>
 <gentext key="revision" text="Baskı"/>
@@ -108,7 +112,7 @@
 <gentext key="sect5" text="Kısım"/>
 <gentext key="section" text="Kısım"/>
 <gentext key="Section" text="Kısım"/>
-<gentext key="see" text="Bkz."/>
+<gentext key="see" text="bkz."/>
 <gentext key="See" text="Bkz."/>
 <gentext key="seealso" text="Bkz."/>
 <gentext key="Seealso" text="Bakınız"/>
@@ -118,7 +122,7 @@
 <gentext key="setindex" text="Takım Dizini"/>
 <gentext key="SetIndex" text="Takım Dizini"/>
 <gentext key="Sidebar" text=""/>
-<gentext key="sidebar" text=""/>
+<gentext key="sidebar" text="kenar çubuğu"/>
 <gentext key="step" text="adım"/>
 <gentext key="Step" text="Adım"/>
 <gentext key="Table" text="Tablo"/>
