@@ -3828,7 +3828,8 @@ in the text (no (0) value, the default)
 
 <!ENTITY % funcprototype.element "INCLUDE">
 <![%funcprototype.element;[
-<!ELEMENT funcprototype %ho; (funcdef, (void | varargs | paramdef+))>
+<!ELEMENT funcprototype %ho; (funcdef, (void|varargs|(paramdef+, varargs?)))>
+
 <!--end of funcprototype.element-->]]>
 
 <!ENTITY % funcprototype.attlist "INCLUDE">
