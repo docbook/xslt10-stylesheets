@@ -1,27 +1,24 @@
 include ../../cvstools/Makefile.incl
 
-SPECVER=4.2
-
-ifeq ($(SPECVER),)
-SPECSEP=
-else
-SPECSEP=-
-endif
+XJPARSE=/home/ndw/bin/xjparse
 
 HTMLSTYLE=/projects/oasis/spectools/stylesheets/oasis-docbook-html.xsl
-FOSTYLE=/projects/oasis/spectools/stylesheets/oasis-docbook-fo.xsl
+FOSTYLE=fo.xsl
 
 XSLPARAM=""
 
-cs-docbook-docbook.html: cs-docbook-docbook.xml
-	$(XJPARSE) $<
-	$(XSLT) $< $(HTMLSTYLE) $(XSLPARAM)
+all: docbook.html
 
-cs-docbook-docbook.pdf: cs-docbook-docbook.xml
+docbook.html: docbook.xml
 	$(XJPARSE) $<
-	$(XSLT) $< $(FOSTYLE) cs-docbook-docbook$(SPECSEP)$(SPECVER).fo $(XSLPARAM)
-	xep cs-docbook-docbook$(SPECSEP)$(SPECVER).fo
-	rm -f cs-docbook-docbook$(SPECSEP)$(SPECVER).fo
+	$(XSLT) $< $(HTMLSTYLE) $@ $(XSLPARAM)
+
+docbook.fo: docbook.xml
+	$(XJPARSE) $<
+	$(XSLT) $< $(FOSTYLE) docbook.fo $(XSLPARAM)
+
+docbook.pdf: docbook.fo
+	xep $<
 
 clean:
 	$(RM) *.html

@@ -1,10 +1,10 @@
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
-                  "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!DOCTYPE article [
 <!ENTITY name "wd-docbook-docbook">
 <!ENTITY version "4.3b4">
 <!ENTITY standard "Working Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker/">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
+<!ENTITY root "http://docbook.org/">
 ]>
 <article status="&standard;">
 <articleinfo>
@@ -19,7 +19,7 @@ $Id$
 <releaseinfo role="product"><ulink url="&name;-&version;.html">HTML</ulink></releaseinfo>
 <releaseinfo role="product"><ulink url="&name;-&version;.pdf">PDF</ulink></releaseinfo>
 
-<releaseinfo role="location">http://www.oasis-open.org/docbook/specs</releaseinfo>
+<releaseinfo role="location">&root;specs</releaseinfo>
 
 <title>The DocBook Document Type</title>
 
@@ -34,7 +34,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>26 Sep 2003</pubdate>
+<pubdate>30 Sep 2003</pubdate>
 
 <copyright><year>2001</year><year>2002</year><year>2003</year>
 <holder>
@@ -73,7 +73,7 @@ message.
 </para>
 
 <para>The errata page for this specification is at
-<ulink url="http://www.oasis-open.org/docbook/specs/docbook-errata.html"/>.
+<ulink url="&root;/specs/docbook-errata.html"/>.
 </para>
 </legalnotice>
 </articleinfo>
@@ -128,11 +128,13 @@ document.</para>
 <title>The DocBook Document Type V4.3</title>
 
 <para>The DocBook document type is distributed for
-<ulink url="http://www.oasis-open.org/docbook/xml/">XML</ulink> and
-<ulink url="http://www.oasis-open.org/docbook/sgml/">SGML</ulink>
+<ulink url="&root;xml/">XML</ulink> and
+<ulink url="&root;sgml/">SGML</ulink>
 from the
 <ulink url="http://www.oasis-open.org/docbook/">DocBook site</ulink> at
-<ulink url="http://www.oasis-open.org/">OASIS</ulink>.
+<ulink url="http://www.oasis-open.org/">OASIS</ulink>. DocBook is also available from
+the mirror on
+<ulink url="http://docbook.org/"/>.
 </para>
 
 <section id="s.b4">
@@ -143,7 +145,7 @@ from the
 
 <para>Each of the changes made between DocBook V4.2b3 and DocBook XML V4.3b4
 is summarized here. For complete details, consult the individual RFEs and
-the <ulink url="http://www.oasis-open.org/docbook/#meetings">meeting
+the <ulink url="&root;meetings">meeting
 minutes</ulink>.</para>
 
 </section>
@@ -223,7 +225,7 @@ Added <sgmltag>StepAlternatives</sgmltag>.
 
 <para>Each of the changes made between DocBook V4.2b2 and DocBook XML V4.3b3
 is summarized here. For complete details, consult the individual RFEs and
-the <ulink url="http://www.oasis-open.org/docbook/#meetings">meeting
+the <ulink url="&root;meetings">meeting
 minutes</ulink>.</para>
 
 </section>
@@ -283,7 +285,7 @@ duplicate attribute declarations for some table-related elements.
 
 <para>Each of the changes made between DocBook V4.2 and DocBook XML V4.3b2
 is summarized here. For complete details, consult the individual RFEs and
-the <ulink url="http://www.oasis-open.org/docbook/#meetings">meeting
+the <ulink url="$root;meetings">meeting
 minutes</ulink>.</para>
 
 <para>There was no public beta 1 release.</para>
@@ -357,7 +359,7 @@ new values for pubwork (2003 Jan)</para>
 
 <section><title>Release Notes</title>
 
-<para>This is a first beta release by the editor. It has no normative
+<para>This is a beta release by the editor. It has no normative
 status and may contain bugs.</para>
 
 </section>
@@ -372,7 +374,7 @@ them into DocBook V5.0.
 
 <para>Each of the changes proposed is summarized here. For complete
 details, consult the individual RFEs and the <ulink
-url="http://www.oasis-open.org/docbook/#meetings">meeting
+url="&root;meetings">meeting
 minutes</ulink>.</para>
 
 <itemizedlist spacing="compact">
@@ -446,7 +448,7 @@ into DocBook V6.0.
 
 <para>Each of the changes proposed is summarized here. For complete
 details, consult the individual RFEs and the <ulink
-url="http://www.oasis-open.org/docbook/#meetings">meeting
+url="&root;meetings">meeting
 minutes</ulink>.</para>
 
 <itemizedlist spacing="compact">
@@ -601,8 +603,16 @@ of the DocBook web page
 
 <para>
 <revhistory>
-<revision role="http://www.oasis-open.org/docbook/specs/wd-docbook-docbook-4.3b2.html">
-  <revnumber>Working Draft &ldquo;Beta 2&rdquo; (Beta 1 was never released.)</revnumber>
+<revision role="&root;specs/wd-docbook-docbook-4.3b4.html">
+  <revnumber>Working Draft “Beta 4”</revnumber>
+  <date>30 Sep 2003</date>
+</revision>
+<revision role="&root;specs/wd-docbook-docbook-4.3b3.html">
+  <revnumber>Working Draft “Beta 3”</revnumber>
+  <date>26 Sep 2003</date>
+</revision>
+<revision>
+  <revnumber>Working Draft “Beta 2” (Beta 1 was never released.)</revnumber>
   <date>15 Aug 2003</date>
 </revision>
 </revhistory>
