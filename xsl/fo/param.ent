@@ -120,6 +120,7 @@
 <!ENTITY qandadiv.autolabel SYSTEM "../params/qandadiv.autolabel.xml">
 <!ENTITY refentry.generate.name SYSTEM "../params/refentry.generate.name.xml">
 <!ENTITY refentry.generate.title SYSTEM "../params/refentry.generate.title.xml">
+<!ENTITY refentry.pagebreak SYSTEM "../params/refentry.pagebreak.xml">
 <!ENTITY refentry.title.properties SYSTEM "../params/refentry.title.properties.xml">
 <!ENTITY refentry.xref.manvolnum SYSTEM "../params/refentry.xref.manvolnum.xml">
 <!ENTITY region.after.extent SYSTEM "../params/region.after.extent.xml">
