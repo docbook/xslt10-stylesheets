@@ -6,10 +6,15 @@
 <xsl:import href="docbook.xsl"/>
 <xsl:import href="chunk-common.xsl"/>
 
+<xsl:param name="onechunk" select="0"/>
+
 <!-- ==================================================================== -->
 
 <xsl:template name="process-chunk-element">
   <xsl:choose>
+    <xsl:when test="$onechunk != 0">
+      <xsl:apply-imports/>
+    </xsl:when>
     <xsl:when test="$chunk.first.sections = 0">
       <xsl:call-template name="chunk-first-section-with-parent"/>
     </xsl:when>
