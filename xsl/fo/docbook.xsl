@@ -112,10 +112,7 @@
     </xsl:choose>
   </xsl:variable>
 
-  <fo:root font-family="{$body.font.family}"
-           font-size="{$body.font.size}"
-           text-align="{$alignment}"
-           line-height="{$line-height}">
+  <fo:root xsl:use-attribute-sets="root.properties">
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language">
         <xsl:with-param name="target" select="/*[1]"/>
