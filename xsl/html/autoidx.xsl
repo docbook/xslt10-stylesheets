@@ -428,15 +428,18 @@
   <xsl:param name="scope" select="."/>
   <xsl:param name="role" select="''"/>
 
-  <dt>
-  <xsl:text>(</xsl:text>
-  <xsl:call-template name="gentext">
-    <xsl:with-param name="key" select="'seealso'"/>
-  </xsl:call-template>
-  <xsl:text> </xsl:text>
-  <xsl:value-of select="seealso"/>
-  <xsl:text>)</xsl:text>
-  </dt>
+  <xsl:for-each select="seealso">
+    <xsl:sort select="translate(., &lowercase;, &uppercase;)"/>
+    <dt>
+    <xsl:text>(</xsl:text>
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="'seealso'"/>
+    </xsl:call-template>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="."/>
+    <xsl:text>)</xsl:text>
+    </dt>
+  </xsl:for-each>
 </xsl:template>
 
 <xsl:template match="*" mode="index-title-content">
