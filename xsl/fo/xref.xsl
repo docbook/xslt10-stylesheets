@@ -90,7 +90,7 @@
     </xsl:otherwise>
   </xsl:choose>
 
-  <xsl:if test="$insert.xref.page.number != 0">
+  <xsl:if test="$insert.xref.page.number != 0 or local-name($target) = 'para'">
     <xsl:apply-templates select="$target" mode="page.citation">
       <xsl:with-param name="id" select="@linkend"/>
     </xsl:apply-templates>
@@ -467,6 +467,44 @@
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
   </xsl:apply-templates>
+</xsl:template>
+
+<xsl:template match="para" mode="xref-to">
+  <xsl:param name="referrer"/>
+  <xsl:param name="xrefstyle"/>
+
+  <xsl:variable name="context" select="(ancestor::simplesect
+                                       |ancestor::section
+                                       |ancestor::sect1
+                                       |ancestor::sect2
+                                       |ancestor::sect3
+                                       |ancestor::sect4
+                                       |ancestor::sect5
+                                       |ancestor::refsection
+                                       |ancestor::refsect1
+                                       |ancestor::refsect2
+                                       |ancestor::refsect3
+                                       |ancestor::chapter
+                                       |ancestor::appendix
+                                       |ancestor::preface
+                                       |ancestor::partintro
+                                       |ancestor::dedication
+                                       |ancestor::colophon
+                                       |ancestor::bibliography
+                                       |ancestor::index
+                                       |ancestor::glossary
+                                       |ancestor::glossentry
+                                       |ancestor::listitem
+                                       |ancestor::varlistentry)[last()]"/>
+
+  <xsl:apply-templates select="$context" mode="xref-to"/>
+<!--
+  <xsl:apply-templates select="." mode="object.xref.markup">
+    <xsl:with-param name="purpose" select="'xref'"/>
+    <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+    <xsl:with-param name="referrer" select="$referrer"/>
+  </xsl:apply-templates>
+-->
 </xsl:template>
 
 <!-- ==================================================================== -->
