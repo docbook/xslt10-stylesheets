@@ -15,12 +15,16 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="itemizedlist">
+  <xsl:variable name="itemsymbol">
+    <xsl:call-template name="list.itemsymbol"/>
+  </xsl:variable>
+
   <div class="{name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:if test="title">
       <xsl:apply-templates select="title"/>
     </xsl:if>
-    <ul>
+    <ul type="{$itemsymbol}">
       <xsl:if test="@spacing='compact'">
         <xsl:attribute name="compact">
           <xsl:value-of select="@spacing"/>
@@ -33,6 +37,60 @@
 
 <xsl:template match="itemizedlist/title">
   <p><b><xsl:apply-templates/></b></p>
+</xsl:template>
+
+<xsl:template match="itemizedlist/listitem">
+  <xsl:variable name="mark" select="../@mark"/>
+  <xsl:variable name="override" select="@override"/>
+
+  <xsl:variable name="usemark">
+    <xsl:choose>
+      <xsl:when test="$override != ''">
+	<xsl:value-of select="$override"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="$mark"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="cssmark">
+    <xsl:choose>
+      <xsl:when test="$usemark = 'bullet'">disc</xsl:when>
+      <xsl:when test="$usemark = 'box'">square</xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="$usemark"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <li>
+    <xsl:if test="$css.decoration = '1' and $cssmark != ''">
+      <xsl:attribute name="style">
+	<xsl:text>list-style-type: </xsl:text>
+	<xsl:value-of select="$cssmark"/>
+      </xsl:attribute>
+    </xsl:if>
+
+    <!-- we can't just drop the anchor in since some browsers (Opera)
+         get confused about line breaks if we do. So if the first child
+         is a para, assume the para will put in the anchor. Otherwise,
+         put the anchor in anyway. -->
+    <xsl:if test="local-name(child::*[1]) != 'para'">
+      <xsl:call-template name="anchor"/>
+    </xsl:if>
+
+    <xsl:choose>
+      <xsl:when test="$show.revisionflag and @revisionflag">
+	<div class="{@revisionflag}">
+	  <xsl:apply-templates/>
+	</div>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </li>
 </xsl:template>
 
 <xsl:template name="orderedlist-starting-number">
@@ -120,6 +178,35 @@
   <p><b><xsl:apply-templates/></b></p>
 </xsl:template>
 
+<xsl:template match="orderedlist/listitem">
+  <li>
+    <xsl:if test="@override">
+      <xsl:attribute name="value">
+        <xsl:value-of select="@override"/>
+      </xsl:attribute>
+    </xsl:if>
+
+    <!-- we can't just drop the anchor in since some browsers (Opera)
+         get confused about line breaks if we do. So if the first child
+         is a para, assume the para will put in the anchor. Otherwise,
+         put the anchor in anyway. -->
+    <xsl:if test="local-name(child::*[1]) != 'para'">
+      <xsl:call-template name="anchor"/>
+    </xsl:if>
+
+    <xsl:choose>
+      <xsl:when test="$show.revisionflag and @revisionflag">
+	<div class="{@revisionflag}">
+	  <xsl:apply-templates/>
+	</div>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </li>
+</xsl:template>
+
 <xsl:template match="variablelist">
   <xsl:variable name="presentation">
     <xsl:call-template name="dbhtml-attribute">
@@ -195,59 +282,6 @@
 
 <xsl:template match="variablelist/title">
   <p><b><xsl:apply-templates/></b></p>
-</xsl:template>
-
-<xsl:template match="listitem">
-  <xsl:variable name="mark" select="ancestor-or-self::*/@mark"/>
-  <xsl:variable name="override" select="@override"/>
-
-  <xsl:variable name="usemark">
-    <xsl:choose>
-      <xsl:when test="$override != ''">
-	<xsl:value-of select="$override"/>
-      </xsl:when>
-      <xsl:otherwise>
-	<xsl:value-of select="$mark"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:variable name="cssmark">
-    <xsl:choose>
-      <xsl:when test="$usemark = 'bullet'">disc</xsl:when>
-      <xsl:when test="$usemark = 'box'">square</xsl:when>
-      <xsl:otherwise>
-	<xsl:value-of select="$usemark"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <li>
-    <xsl:if test="$css.decoration = '1' and $cssmark != ''">
-      <xsl:attribute name="style">
-	<xsl:text>list-style-type: </xsl:text>
-	<xsl:value-of select="$cssmark"/>
-      </xsl:attribute>
-    </xsl:if>
-
-    <!-- we can't just drop the anchor in since some browsers (Opera)
-         get confused about line breaks if we do. So if the first child
-         is a para, assume the para will put in the anchor. Otherwise,
-         put the anchor in anyway. -->
-    <xsl:if test="local-name(child::*[1]) != 'para'">
-      <xsl:call-template name="anchor"/>
-    </xsl:if>
-
-    <xsl:choose>
-      <xsl:when test="$show.revisionflag and @revisionflag">
-	<div class="{@revisionflag}">
-	  <xsl:apply-templates/>
-	</div>
-      </xsl:when>
-      <xsl:otherwise>
-	<xsl:apply-templates/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </li>
 </xsl:template>
 
 <xsl:template match="listitem" mode="xref">
