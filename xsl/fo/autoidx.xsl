@@ -75,14 +75,14 @@
                                              substring(&primary;, 1, 1)))]"/>
   <fo:block>
     <xsl:if test="$others">
-      <fo:block font-size="16pt"
-                font-weight="bold"
-                keep-with-next.within-column="always"
-                space-before="1em">
-        <xsl:call-template name="gentext">
-          <xsl:with-param name="key" select="'index symbols'"/>
-        </xsl:call-template>
-      </fo:block>
+      <xsl:call-template name="indexdiv.title">
+        <xsl:with-param name="titlecontent">
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'index symbols'"/>
+          </xsl:call-template>
+        </xsl:with-param>
+      </xsl:call-template>
+
       <fo:block>
         <xsl:apply-templates select="$others[count(.|key('primary',
                                      &primary;)[&scope;][1]) = 1]"
@@ -113,12 +113,11 @@
                 [count(.|key('primary', &primary;)[&scope;][1]) = 1]">
     <fo:block>
       <xsl:if test="contains(concat(&lowercase;, &uppercase;), $key)">
-        <fo:block font-size="16pt"
-                  font-weight="bold"
-                  keep-with-next.within-column="always"
-                  space-before="1em">
-          <xsl:value-of select="translate($key, &lowercase;, &uppercase;)"/>
-        </fo:block>
+        <xsl:call-template name="indexdiv.title">
+          <xsl:with-param name="titlecontent">
+            <xsl:value-of select="translate($key, &lowercase;, &uppercase;)"/>
+          </xsl:with-param>
+        </xsl:call-template>
       </xsl:if>
       <fo:block>
         <xsl:apply-templates select="key('letter', $key)[&scope;]
