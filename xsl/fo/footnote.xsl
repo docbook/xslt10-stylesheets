@@ -17,7 +17,7 @@
 
 <xsl:template name="format.footnote.mark">
   <xsl:param name="mark" select="'?'"/>
-  <fo:inline font-size="90%">
+  <fo:inline xsl:use-attribute-sets="superscript.properties">
     <xsl:choose>
       <xsl:when test="$fop.extensions != 0">
         <xsl:attribute name="vertical-align">super</xsl:attribute>
@@ -47,6 +47,7 @@
               <xsl:apply-templates select="." mode="footnote.number"/>
             </xsl:with-param>
           </xsl:call-template>
+          <xsl:text> </xsl:text>
         </fo:inline>
         <fo:footnote-body font-family="{$body.fontset}"
                           font-size="{$footnote.font.size}"
@@ -91,10 +92,13 @@
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:variable name="pfoot" select="preceding::footnote[not(@label)]"/>
-      <xsl:variable name="ptfoot" select="preceding::tgroup//footnote"/>
-      <xsl:variable name="fnum" select="count($pfoot) - count($ptfoot) + 1"/>
-
+      <xsl:variable name="fnum">
+        <!-- FIXME: list in @from is probably not complete -->
+        <xsl:number level="any" 
+                    from="chapter|appendix|preface|article|refentry|bibliography" 
+                    count="footnote[not(@label)][not(ancestor::tgroup)]|ulink[$ulink.footnotes != 0][@url != .][not(ancestor::footnote)]" 
+                    format="1"/>
+      </xsl:variable>
       <xsl:choose>
         <xsl:when test="string-length($footnote.number.symbols) &gt;= $fnum">
           <xsl:value-of select="substring($footnote.number.symbols, $fnum, 1)"/>
