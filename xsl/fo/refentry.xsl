@@ -90,7 +90,7 @@
   </fo:page-sequence>
 </xsl:template>
 
-<xsl:template match="reference/docinfo"></xsl:template>
+<xsl:template match="reference/docinfo|refentry/refentryinfo"></xsl:template>
 <xsl:template match="reference/title"></xsl:template>
 <xsl:template match="reference/subtitle"></xsl:template>
 
