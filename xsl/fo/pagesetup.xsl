@@ -13,8 +13,8 @@
                            page-height="{$page.height}"
                            margin-top="{$page.margin.top}"
                            margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.outer}"
-                           margin-right="{$page.margin.inner}">
+                           margin-left="{$page.margin.inner}"
+                           margin-right="{$page.margin.outer}">
       <fo:region-body
                       margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"/>
@@ -30,8 +30,8 @@
                            page-height="{$page.height}"
                            margin-top="{$page.margin.top}"
                            margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.outer}"
-                           margin-right="{$page.margin.inner}">
+                           margin-left="{$page.margin.inner}"
+                           margin-right="{$page.margin.outer}">
       <fo:region-body
                       margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"/>
@@ -80,7 +80,7 @@
                            margin-top="{$page.margin.top}"
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$page.margin.inner}"
-                           margin-right="{$page.margin.inner}">
+                           margin-right="{$page.margin.outer}">
       <fo:region-body
                       margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"/>
@@ -96,8 +96,8 @@
                            page-height="{$page.height}"
                            margin-top="{$page.margin.top}"
                            margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.outer}"
-                           margin-right="{$page.margin.inner}">
+                           margin-left="{$page.margin.inner}"
+                           margin-right="{$page.margin.outer}">
       <fo:region-body
                       column-count="{$column.count}"
                       margin-bottom="{$body.margin.bottom}"
@@ -149,7 +149,7 @@
                            margin-top="{$page.margin.top}"
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$page.margin.inner}"
-                           margin-right="{$page.margin.inner}">
+                           margin-right="{$page.margin.outer}">
       <fo:region-body
                       column-count="1"
                       margin-bottom="{$body.margin.bottom}"
