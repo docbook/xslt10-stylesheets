@@ -64,6 +64,8 @@ default namespace = "http://docbook.org/docbook-ng/absinthe"
 
 # ======================================================================
 
+anyAttribute = attribute * { text }
+
 id.attribute        = attribute id { xsd:ID }
 
 xml.lang.attribute  = attribute xml:lang { text }
@@ -95,6 +97,7 @@ revision.attribute    = attribute revision    { text }
 security.attribute    = attribute security    { text }
 userlevel.attribute   = attribute userlevel   { text }
 vendor.attribute      = attribute vendor      { text }
+version.attribute     = attribute version     { text }
 
 # ======================================================================
 
@@ -113,6 +116,7 @@ common.attributes =
   remap.attribute?,
   xreflabel.attribute?,
   revisionflag.attribute?,
+  version.attribute?,
   effectivity.attributes
 
 common.attributes.idreq =
@@ -122,6 +126,7 @@ common.attributes.idreq =
   remap.attribute?,
   xreflabel.attribute?,
   revisionflag.attribute?,
+  version.attribute?,
   effectivity.attributes
 
 common.linking.attributes.req =
@@ -530,12 +535,6 @@ bibliographic.elements =
  | db.productnumber
  | db.publishername
 
-db.info = element info { docbook.title, info.elements* }
-db.info.titlereq = element info { docbook.titlereq, info.elements* }
-db.info.titleonly = element info { docbook.titleonly, info.elements* }
-db.info.titleonlyreq = element info { docbook.titleonlyreq, info.elements* }
-db.info.titleforbidden = element info { info.elements* }
-
 docbook.info = (docbook.titlereq?, db.info.titleforbidden?) | db.info?
 docbook.info.titlereq = (docbook.titlereq, db.info.titleforbidden?) | db.info.titlereq
 docbook.info.titleonly = (docbook.titleonly, db.info.titleforbidden?) | db.info.titleonly
@@ -600,6 +599,130 @@ ctrl:alternate-define [
       rng:ref [ name = "db.info" ]
    ]
 ]
+
+# ======================================================================
+
+[
+   db:refname [ "info" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   local.info.attributes = empty
+
+   info.role.attribute = attribute role { text }
+
+   info.attr =
+      info.role.attribute?
+    & common.attributes
+    & local.info.attributes
+
+   db.info =
+      element info {
+         info.attr,
+         docbook.title,
+         info.elements*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "info" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   local.info.titlereq.attributes = empty
+
+   info.titlereq.role.attribute = attribute role { text }
+
+   info.titlereq.attr =
+      info.titlereq.role.attribute?
+    & common.attributes
+    & local.info.titlereq.attributes
+
+   db.info.titlereq =
+      element info {
+         info.titlereq.attr,
+         docbook.titlereq,
+         info.elements*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "info" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   local.info.titleonly.attributes = empty
+
+   info.titleonly.role.attribute = attribute role { text }
+
+   info.titleonly.attr =
+      info.titleonly.role.attribute?
+    & common.attributes
+    & local.info.titleonly.attributes
+
+   db.info.titleonly =
+      element info {
+         info.titleonly.attr,
+         docbook.titleonly,
+         info.elements*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "info" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   local.info.titleonlyreq.attributes = empty
+
+   info.titleonlyreq.role.attribute = attribute role { text }
+
+   info.titleonlyreq.attr =
+      info.titleonlyreq.role.attribute?
+    & common.attributes
+    & local.info.titleonlyreq.attributes
+
+   db.info.titleonlyreq =
+      element info {
+         info.titleonlyreq.attr,
+         docbook.titleonlyreq,
+         info.elements*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "info" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   local.info.titleforbidden.attributes = empty
+
+   info.titleforbidden.role.attribute = attribute role { text }
+
+   info.titleforbidden.attr =
+      info.titleforbidden.role.attribute?
+    & common.attributes
+    & local.info.titleforbidden.attributes
+
+   db.info.titleforbidden =
+      element info {
+         info.titleforbidden.attr,
+         info.elements*
+      }
+}
 
 # ======================================================================
 
@@ -4321,7 +4444,7 @@ div {
 
    local.othercredit.attributes = empty
 
-   othercredit.class.attrib = attribute class {
+   othercredit.class.attribute = attribute class {
       "copyeditor"
     | "graphicdesigner"
     | "other"
@@ -4336,7 +4459,7 @@ div {
       othercredit.role.attribute?
     & common.attributes
     & common.linking.attributes
-    & othercredit.class.attrib
+    & othercredit.class.attribute
     & local.othercredit.attributes
 
    db.othercredit =
@@ -4556,7 +4679,7 @@ div {
 
    local.productname.attributes = empty
 
-   productname.class.attrib = attribute class {
+   productname.class.attribute = attribute class {
       "copyright" | "registered" | "service" | "trade"
    }?
 
@@ -4566,7 +4689,7 @@ div {
       productname.role.attribute?
     & common.attributes
     & common.linking.attributes
-    & productname.class.attrib
+    & productname.class.attribute
     & local.productname.attributes
 
    db.productname =
@@ -4943,7 +5066,7 @@ div {
 
    local.application.attributes = empty
 
-   application.class.attrib = attribute class { "hardware" | "software" }
+   application.class.attribute = attribute class { "hardware" | "software" }
 
    application.role.attribute = attribute role { text }
 
@@ -4951,7 +5074,7 @@ div {
       application.role.attribute?
     & common.attributes
     & common.linking.attributes
-    & application.class.attrib
+    & application.class.attribute
     & local.application.attributes
 
    db.application =
@@ -5050,7 +5173,7 @@ div {
 
    local.database.attributes = empty
 
-   database.class.attrib =
+   database.class.attribute =
       attribute class {
          "altkey"
        | "constraint"
@@ -5078,7 +5201,7 @@ div {
       database.role.attribute?
     & common.attributes
     & common.linking.attributes
-    & database.class.attrib?
+    & database.class.attribute?
     & local.database.attributes
 
    db.database =
@@ -5248,8 +5371,8 @@ div {
 
    local.filename.attributes = empty
 
-   filename.path.attrib = attribute path { text }
-   filename.class.attrib =
+   filename.path.attribute = attribute path { text }
+   filename.class.attribute =
       attribute class {
          "devicefile"
        | "directory"
@@ -5266,8 +5389,8 @@ div {
       filename.role.attribute?
     & common.attributes
     & common.linking.attributes
-    & filename.path.attrib?
-    & filename.class.attrib?
+    & filename.path.attribute?
+    & filename.class.attribute?
     & local.filename.attributes
 
    db.filename =
@@ -5691,7 +5814,7 @@ div {
 
    local.code.attributes = empty
 
-   code.language.attrib = attribute language { text }
+   code.language.attribute = attribute language { text }
 
    code.role.attribute = attribute role { text }
 
@@ -5699,7 +5822,7 @@ div {
       code.role.attribute?
     & common.attributes
     & common.linking.attributes
-    & code.language.attrib?
+    & code.language.attribute?
     & local.code.attributes
 
    db.code =
@@ -5719,7 +5842,7 @@ div {
 
    local.constant.attributes = empty
 
-   constant.class.attrib = attribute class { "limit" }
+   constant.class.attribute = attribute class { "limit" }
 
    constant.role.attribute = attribute role { text }
 
@@ -5727,7 +5850,7 @@ div {
       constant.role.attribute?
     & common.attributes
     & common.linking.attributes
-    & constant.class.attrib?
+    & constant.class.attribute?
     & local.constant.attributes
 
    db.constant =
@@ -5926,7 +6049,7 @@ div {
 
    local.parameter.attributes = empty
 
-   parameter.class.attrib = attribute class { "command" | "function" | "option" }
+   parameter.class.attribute = attribute class { "command" | "function" | "option" }
 
    parameter.role.attribute = attribute role { text }
 
@@ -5934,7 +6057,7 @@ div {
       parameter.role.attribute?
     & common.attributes
     & common.linking.attributes
-    & parameter.class.attrib?
+    & parameter.class.attribute?
     & local.parameter.attributes
 
    db.parameter =
@@ -5987,7 +6110,7 @@ div {
 
    local.replaceable.attributes = empty
 
-   replaceable.class.attrib =
+   replaceable.class.attribute =
       attribute class { "command" | "function" | "option" | "parameter" }
 
    replaceable.role.attribute = attribute role { text }
@@ -5996,7 +6119,7 @@ div {
       replaceable.role.attribute?
     & common.attributes
     & common.linking.attributes
-    & replaceable.class.attrib?
+    & replaceable.class.attribute?
     & local.replaceable.attributes
 
    db.replaceable =
@@ -6041,7 +6164,7 @@ div {
 
    local.tag.attributes = empty
 
-   tag.class.attrib =
+   tag.class.attribute =
       attribute class {
          "attribute"
        | "attvalue"
@@ -6063,7 +6186,7 @@ div {
       tag.role.attribute?
     & common.attributes
     & common.linking.attributes
-    & tag.class.attrib
+    & tag.class.attribute
     & local.tag.attributes
 
    db.tag =
@@ -6083,7 +6206,7 @@ div {
 
    local.symbol.attributes = empty
 
-   symbol.class.attrib = attribute class { "limit" }?
+   symbol.class.attribute = attribute class { "limit" }?
 
    symbol.role.attribute = attribute role { text }
 
@@ -6091,7 +6214,7 @@ div {
       symbol.role.attribute?
     & common.attributes
     & common.linking.attributes
-    & symbol.class.attrib
+    & symbol.class.attribute
     & local.symbol.attributes
 
    db.symbol =
@@ -6115,7 +6238,7 @@ div {
 
    local.systemitem.attributes = empty
 
-   systemitem.class.attrib =
+   systemitem.class.attribute =
       attribute class {
          "daemon"
        | "domainname"
@@ -6145,7 +6268,7 @@ div {
       systemitem.role.attribute?
     & common.attributes
     & common.linking.attributes
-    & systemitem.class.attrib?
+    & systemitem.class.attribute?
     & local.systemitem.attributes
 
    db.systemitem =
@@ -6165,7 +6288,7 @@ div {
 
    local.uri.attributes = empty
 
-   uri.type.attrib = attribute type { text }?
+   uri.type.attribute = attribute type { text }?
 
    uri.role.attribute = attribute role { text }
 
@@ -6173,7 +6296,7 @@ div {
       uri.role.attribute?
     & common.attributes
     & common.linking.attributes
-    & uri.type.attrib
+    & uri.type.attribute
     & local.uri.attributes
 
    db.uri =
@@ -6429,7 +6552,7 @@ div {
 
    local.citetitle.attributes = empty
 
-   citetitle.pubwork.attrib =
+   citetitle.pubwork.attribute =
       attribute pubwork {
          "article"
        | "bbs"
@@ -6457,7 +6580,7 @@ div {
       citetitle.role.attribute?
     & common.attributes
     & common.linking.attributes
-    & citetitle.pubwork.attrib?
+    & citetitle.pubwork.attribute?
     & local.citetitle.attributes
 
    db.citetitle =
@@ -6627,7 +6750,7 @@ div {
 
    local.trademark.attributes = empty
 
-   trademark.class.attrib =
+   trademark.class.attribute =
       attribute class { "copyright" | "registered" | "service" | "trade" }
 
    trademark.role.attribute = attribute role { text }
@@ -6636,7 +6759,7 @@ div {
       trademark.role.attribute?
     & common.attributes
     & common.linking.attributes
-    & trademark.class.attrib?
+    & trademark.class.attribute?
     & local.trademark.attributes
 
    db.trademark =
