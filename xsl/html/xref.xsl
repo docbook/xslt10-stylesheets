@@ -230,6 +230,10 @@
   <xsl:apply-templates select="." mode="object.xref.markup"/>
 </xsl:template>
 
+<xsl:template match="listitem" mode="xref-to">
+  <xsl:apply-templates select="." mode="object.xref.markup"/>
+</xsl:template>
+
 <xsl:template match="section|simplesect
                      |sect1|sect2|sect3|sect4|sect5
                      |refsect1|refsect2|refsect3" mode="xref-to">
@@ -276,6 +280,15 @@
   </xsl:call-template>
   <xsl:text> </xsl:text>
   <xsl:apply-templates select="." mode="number"/>
+</xsl:template>
+
+<xsl:template match="varlistentry" mode="xref-to">
+  <xsl:apply-templates select="term[1]" mode="xref-to"/>
+</xsl:template>
+
+<xsl:template match="varlistentry/term" mode="xref-to">
+  <!-- to avoid the comma that will be generated if there are several terms -->
+  <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="co" mode="xref-to">

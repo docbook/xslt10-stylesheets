@@ -157,27 +157,25 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="section|simplesect
-                     |sect1|sect2|sect3|sect4|sect5
-                     |refsect1|refsect2|refsect3
-                     |bridgehead"
-              mode="object.xref.markup">
-  <xsl:variable name="template">
-    <xsl:apply-templates select="." mode="object.xref.template"/>
-  </xsl:variable>
-
-<!--
-  <xsl:message>
-    <xsl:text>object.xref.markup: </xsl:text>
-    <xsl:value-of select="local-name(.)"/>
-    <xsl:text>: </xsl:text>
-    <xsl:value-of select="$template"/>
-  </xsl:message>
--->
-
-  <xsl:call-template name="substitute-markup">
-    <xsl:with-param name="template" select="$template"/>
-  </xsl:call-template>
+<xsl:template match="listitem" mode="object.xref.markup">
+  <xsl:choose>
+    <xsl:when test="parent::orderedlist">
+      <xsl:variable name="template">
+        <xsl:apply-templates select="." mode="object.xref.template"/>
+      </xsl:variable>
+      <xsl:call-template name="substitute-markup">
+        <xsl:with-param name="template" select="$template"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message>
+        <xsl:text>Xref is only supported to listitems in an</xsl:text>
+        <xsl:text> orderedlist: </xsl:text>
+        <xsl:value-of select="@id"/>
+      </xsl:message>
+      <xsl:text>???</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ============================================================ -->
