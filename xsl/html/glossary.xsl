@@ -144,6 +144,7 @@ GlossEntry ::=
   <xsl:variable name="otherterm" select="@otherterm"/>
   <xsl:variable name="targets" select="//node()[@id=$otherterm]"/>
   <xsl:variable name="target" select="$targets[1]"/>
+
   <dd>
     <p>
       <xsl:call-template name="gentext.template">
@@ -151,10 +152,17 @@ GlossEntry ::=
         <xsl:with-param name="name" select="'see'"/>
       </xsl:call-template>
       <xsl:choose>
-        <xsl:when test="@otherterm">
+        <xsl:when test="$target">
           <a href="#{@otherterm}">
             <xsl:apply-templates select="$target" mode="xref"/>
           </a>
+        </xsl:when>
+        <xsl:when test="$otherterm != '' and not($target)">
+          <xsl:message>
+            <xsl:text>Warning: glosssee @otherterm reference not found: </xsl:text>
+            <xsl:value-of select="$otherterm"/>
+          </xsl:message>
+          <xsl:apply-templates/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates/>
@@ -186,10 +194,17 @@ GlossEntry ::=
   <xsl:variable name="target" select="$targets[1]"/>
 
   <xsl:choose>
-    <xsl:when test="@otherterm">
+    <xsl:when test="$target">
       <a href="#{@otherterm}">
         <xsl:apply-templates select="$target" mode="xref"/>
       </a>
+    </xsl:when>
+    <xsl:when test="$otherterm != '' and not($target)">
+      <xsl:message>
+        <xsl:text>Warning: glossseealso @otherterm reference not found: </xsl:text>
+        <xsl:value-of select="$otherterm"/>
+      </xsl:message>
+      <xsl:apply-templates/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:apply-templates/>
