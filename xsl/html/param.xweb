@@ -339,6 +339,7 @@ url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http:
 &htmlhelp.button.next;
 &htmlhelp.button.prev;
 &htmlhelp.button.zoom;
+&htmlhelp.use.hhk;
 &htmlhelp.only;
 </reference>
 
@@ -471,6 +472,7 @@ around all these parameters.</para>
 <src:fragref linkend="htmlhelp.show.favorities.frag"/>
 <src:fragref linkend="htmlhelp.show.menu.frag"/>
 <src:fragref linkend="htmlhelp.title.frag"/>
+<src:fragref linkend="htmlhelp.use.hhk.frag"/>
 <src:fragref linkend="inherit.keywords.frag"/>
 <src:fragref linkend="label.from.part.frag"/>
 <src:fragref linkend="linenumbering.everyNth.frag"/>
