@@ -20,6 +20,17 @@
   descriptions for changes in the project CVS repository.</para>
 
   <section>
+    <title>Release 1.68.1</title>
+    <para>This is a minor bug-fix update to the 1.68.0 release. The
+    main thing it fixes is a build error that caused the XSLT Java
+    extensions to be jarred up with the wrong package
+    structure. Thanks to Jens Stavnstrup for quickly reporting the
+    problem, and to Mauritz Jeanson for investigating and reporting
+    the cause.</para>
+  </section>
+  <!-- end of notes for 1.68.1 release -->
+
+  <section>
     <title>Release 1.68.0</title>
     <para>This release includes some features changes, particularly
     for FO/PDF output, and a number of bug fixes.
