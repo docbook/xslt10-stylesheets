@@ -43,10 +43,30 @@
 
 <xsl:template match="itemizedlist/listitem">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+
+  <xsl:variable name="itemsymbol">
+    <xsl:call-template name="list.itemsymbol">
+      <xsl:with-param name="node" select="parent::itemizedlist"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:message>symbol: <xsl:value-of select="$itemsymbol"/></xsl:message>
+
   <fo:list-item id="{$id}" xsl:use-attribute-sets="list.item.spacing">
     <fo:list-item-label end-indent="label-end()">
       <fo:block>
-        <xsl:text>&#x2022;</xsl:text>
+        <xsl:choose>
+          <xsl:when test="$itemsymbol='disc'">&#x2022;</xsl:when>
+          <xsl:when test="$itemsymbol='bullet'">&#x2022;</xsl:when>
+          <!-- why do these symbols not work? -->
+          <!--
+          <xsl:when test="$itemsymbol='circle'">&#x2218;</xsl:when>
+          <xsl:when test="$itemsymbol='round'">&#x2218;</xsl:when>
+          <xsl:when test="$itemsymbol='square'">&#x2610;</xsl:when>
+          <xsl:when test="$itemsymbol='box'">&#x2610;</xsl:when>
+          -->
+          <xsl:otherwise>&#x2022;</xsl:otherwise>
+        </xsl:choose>
       </fo:block>
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
@@ -99,7 +119,14 @@
   <fo:list-item id="{$id}" xsl:use-attribute-sets="list.item.spacing">
     <fo:list-item-label end-indent="label-end()">
       <fo:block>
-        <xsl:number count="listitem" format="{$type}"/>
+        <xsl:choose>
+          <xsl:when test="@override">
+            <xsl:number value="@override" format="{$type}"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:number count="listitem" format="{$type}"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </fo:block>
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
