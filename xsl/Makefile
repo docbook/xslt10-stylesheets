@@ -21,6 +21,11 @@ all:	xhtml RELEASE-NOTES.html
 RELEASE-NOTES.html: RELEASE-NOTES.xml
 	$(XSLT) $< html/docbook.xsl $@
 
+RELEASE-NOTES.pdf: RELEASE-NOTES.xml
+	$(XSLT) $< fo/docbook.xsl RELEASE-NOTES.fo
+	xep RELEASE-NOTES.fo
+	rm -f RELEASE-NOTES.fo
+
 xhtml:
 	$(MAKE) -C xhtml
 
