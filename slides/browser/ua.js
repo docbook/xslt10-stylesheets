@@ -1,13 +1,31 @@
 /*
-ua.js revision 0.200 2001-12-03
+ * ua.js
+ * $Revision: 1.2 $ $Date: 2003/02/07 16:04:17 $
+ */
 
-Contributor(s): Bob Clary, Netscape Communications, Copyright 2001
-
-Netscape grants you a royalty free license to use, modify and 
-distribute this software provided that this copyright notice 
-appears on all copies.  This software is provided "AS IS," 
-without a warranty of any kind.
-*/
+/* ***** BEGIN LICENSE BLOCK *****
+ * Version: MPL 1.1/GPL 2.0/LGPL 2.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ * The Original Code is Netscape code.
+ *
+ * The Initial Developer of the Original Code is
+ * Netscape Corporation.
+ * Portions created by the Initial Developer are Copyright (C) 2001
+ * the Initial Developer. All Rights Reserved.
+ *
+ * Contributor(s): Bob Clary <bclary@netscape.com>
+ *
+ * ***** END LICENSE BLOCK ***** */
 
 function xbDetectBrowser()
 {
@@ -59,16 +77,20 @@ function xbDetectBrowser()
   else if (ua.indexOf('gecko') != -1)
   {
     navigator.family = 'gecko';
-    var rvStart = navigator.userAgent.indexOf('rv:') + 3;
-    var rvEnd = navigator.userAgent.indexOf(')', rvStart);
-    var rv = navigator.userAgent.substring(rvStart, rvEnd);
-    var decIndex = rv.indexOf('.');
-    if (decIndex != -1)
+    var rvStart = ua.indexOf('rv:');
+    var rvEnd   = ua.indexOf(')', rvStart);
+    var rv      = ua.substring(rvStart+3, rvEnd);
+    var rvParts = rv.split('.');
+    var rvValue = 0;
+    var exp     = 1;
+
+    for (var i = 0; i < rvParts.length; i++)
     {
-      rv = rv.replace(/\./g, '')
-      rv = rv.substring(0, decIndex-1) + '.' + rv.substr(decIndex)
+      var val = parseInt(rvParts[i]);
+      rvValue += val / exp;
+      exp *= 100;
     }
-    navigator.version = parseFloat(rv);
+    navigator.version = rvValue;
 
     if (ua.indexOf('netscape') != -1)
       navigator.org = 'netscape';
