@@ -165,7 +165,7 @@ div {
    constraint.attlist =
       constraint.role.attribute?
     & common.attributes
-    & common.linking.attributes
+    & common.linking.attributes.req
     & local.constraint.attributes
 
    db.constraint =
