@@ -34,7 +34,7 @@ $(SPECBASE).fo: $(SPECROOT).xml valid
 	$(XSLT) $< $(FOSTYLE) $(SPECBASE).fo $(FOPARAM)
 
 $(SPECBASE).pdf: $(SPECBASE).fo
-	xep $(SPECBASE).fo
+	xep -2 $(SPECBASE).fo
 	rm -f $(SPECBASE).fo
 
 clean:
