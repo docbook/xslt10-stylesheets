@@ -37,7 +37,7 @@
                            page-height="{$page.height}"
                            margin-top="{$page.margin.top}"
                            margin-bottom="{$page.margin.bottom}"
-			   margin-left="{$page.margin.outer} - {$title.margin.left}"
+                           margin-left="{$page.margin.outer} - {$title.margin.left}"
                            margin-right="{$page.margin.inner}">
       <fo:region-body display-align="center"
                       margin-bottom="{$body.margin.bottom}"
@@ -60,7 +60,7 @@
                            page-height="{$page.height}"
                            margin-top="{$page.margin.top}"
                            margin-bottom="{$page.margin.bottom}"
-			   margin-left="{$page.margin.inner} - {$title.margin.left}"
+                           margin-left="{$page.margin.inner} - {$title.margin.left}"
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
@@ -80,7 +80,7 @@
                            page-height="{$page.height}"
                            margin-top="{$page.margin.top}"
                            margin-bottom="{$page.margin.bottom}"
-			   margin-left="{$page.margin.inner} - {$title.margin.left}"
+                           margin-left="{$page.margin.inner} - {$title.margin.left}"
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
@@ -101,7 +101,7 @@
                            margin-top="{$page.margin.top}"
                            margin-bottom="{$page.margin.bottom}"
                            margin-right="{$page.margin.inner}"
-			   margin-left="{$page.margin.outer} - {$title.margin.left}">
+                           margin-left="{$page.margin.outer} - {$title.margin.left}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.titlepage}"
@@ -121,7 +121,7 @@
                            page-height="{$page.height}"
                            margin-top="{$page.margin.top}"
                            margin-bottom="{$page.margin.bottom}"
-			       margin-left="{$page.margin.inner} - {$title.margin.left}"
+                           margin-left="{$page.margin.inner} - {$title.margin.left}"
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
@@ -133,7 +133,7 @@
                         display-align="before"/>
       <fo:region-after region-name="xsl-region-after-first"
                        extent="{$region.after.extent}"
-                        display-align="after"/>
+                       display-align="after"/>
     </fo:simple-page-master>
 
     <fo:simple-page-master master-name="lot-odd"
@@ -406,7 +406,7 @@
                            margin-top="{$page.margin.top}"
                            margin-bottom="{$page.margin.bottom}"
                            margin-right="{$page.margin.inner}"
-			   margin-left="{$page.margin.outer}">
+                           margin-left="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.index}"
@@ -427,7 +427,7 @@
                              page-height="{$page.height}"
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
-			     margin-left="{$page.margin.outer} - {$title.margin.left}"
+                             margin-left="{$page.margin.outer} - {$title.margin.left}"
                              margin-right="{$page.margin.inner}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}">
@@ -457,7 +457,7 @@
                              page-height="{$page.height}"
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
-			     margin-left="{$page.margin.inner} - {$title.margin.left}"
+                             margin-left="{$page.margin.inner} - {$title.margin.left}"
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
@@ -488,7 +488,7 @@
                              page-height="{$page.height}"
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
-			     margin-left="{$page.margin.inner} - {$title.margin.left}"
+                             margin-left="{$page.margin.inner} - {$title.margin.left}"
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
@@ -520,7 +520,7 @@
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
                              margin-right="{$page.margin.inner}"
-			     margin-left="{$page.margin.outer} - {$title.margin.left}">
+                             margin-left="{$page.margin.outer} - {$title.margin.left}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.titlepage}"
@@ -551,7 +551,7 @@
                              page-height="{$page.height}"
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
-			     margin-left="{$page.margin.inner} - {$title.margin.left}"
+                             margin-left="{$page.margin.inner} - {$title.margin.left}"
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
@@ -582,7 +582,7 @@
                              page-height="{$page.height}"
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
-			     margin-left="{$page.margin.inner} - {$title.margin.left}"
+                             margin-left="{$page.margin.inner} - {$title.margin.left}"
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
@@ -614,7 +614,7 @@
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
                              margin-right="{$page.margin.inner}"
-			     margin-left="{$page.margin.outer} - {$title.margin.left}">
+                             margin-left="{$page.margin.outer} - {$title.margin.left}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.lot}"
@@ -645,7 +645,7 @@
                              page-height="{$page.height}"
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
-			     margin-left="{$page.margin.inner} - {$title.margin.left}"
+                             margin-left="{$page.margin.inner} - {$title.margin.left}"
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
@@ -676,7 +676,7 @@
                              page-height="{$page.height}"
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
-			     margin-left="{$page.margin.inner} - {$title.margin.left}"
+                             margin-left="{$page.margin.inner} - {$title.margin.left}"
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
@@ -708,7 +708,7 @@
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
                              margin-right="{$page.margin.inner}"
-			     margin-left="{$page.margin.outer} - {$title.margin.left}">
+                             margin-left="{$page.margin.outer} - {$title.margin.left}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.front}"
@@ -739,7 +739,7 @@
                              page-height="{$page.height}"
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
-			     margin-left="{$page.margin.inner} - {$title.margin.left}"
+                             margin-left="{$page.margin.inner} - {$title.margin.left}"
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
@@ -770,7 +770,7 @@
                              page-height="{$page.height}"
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
-			     margin-left="{$page.margin.inner} - {$title.margin.left}"
+                             margin-left="{$page.margin.inner} - {$title.margin.left}"
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
@@ -802,7 +802,7 @@
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
                              margin-right="{$page.margin.inner}"
-			     margin-left="{$page.margin.outer} - {$title.margin.left}">
+                             margin-left="{$page.margin.outer} - {$title.margin.left}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.body}"
@@ -833,7 +833,7 @@
                              page-height="{$page.height}"
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
-			     margin-left="{$page.margin.inner} - {$title.margin.left}"
+                             margin-left="{$page.margin.inner} - {$title.margin.left}"
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
@@ -864,7 +864,7 @@
                              page-height="{$page.height}"
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
-			     margin-left="{$page.margin.inner} - {$title.margin.left}"
+                             margin-left="{$page.margin.inner} - {$title.margin.left}"
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
@@ -896,7 +896,7 @@
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
                              margin-right="{$page.margin.inner}"
-			     margin-left="{$page.margin.outer} - {$title.margin.left}">
+                             margin-left="{$page.margin.outer} - {$title.margin.left}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.back}"
@@ -927,7 +927,7 @@
                              page-height="{$page.height}"
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
-			     margin-left="{$page.margin.inner} - {$title.margin.left}"
+                             margin-left="{$page.margin.inner}"
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
@@ -958,7 +958,7 @@
                              page-height="{$page.height}"
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
-			     margin-left="{$page.margin.inner} - {$title.margin.left}"
+                             margin-left="{$page.margin.inner}"
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
@@ -990,7 +990,7 @@
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
                              margin-right="{$page.margin.inner}"
-			     margin-left="{$page.margin.outer} - {$title.margin.left}">
+			     margin-left="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.index}"
@@ -1364,7 +1364,7 @@
 
   <xsl:choose>
       <xsl:when test="$pageclass = 'index'">
-	  <xsl:attribute name="margin-left">0</xsl:attribute>
+          <xsl:attribute name="margin-left">0</xsl:attribute>
       </xsl:when>
   </xsl:choose>
 
@@ -1597,7 +1597,7 @@
 
   <xsl:choose>
       <xsl:when test="$pageclass = 'index'">
-	  <xsl:attribute name="margin-left">0</xsl:attribute>
+          <xsl:attribute name="margin-left">0</xsl:attribute>
       </xsl:when>
   </xsl:choose>
 
