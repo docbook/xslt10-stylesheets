@@ -1,0 +1,319 @@
+<!DOCTYPE book [
+<!ENTITY % param.ent SYSTEM "param.ent">
+%param.ent;
+]>
+<book xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+      xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<bookinfo>
+<title>FO Parameter Reference</title>
+<releaseinfo role="meta">
+$Id$
+</releaseinfo>
+<author>
+  <surname>Walsh</surname>
+  <firstname>Norman</firstname>
+</author>
+<copyright>
+  <year>1999</year>
+  <year>2000</year>
+  <year>2001</year>
+  <holder>Norman Walsh</holder>
+</copyright>
+</bookinfo>
+
+<preface><title>Introduction</title>
+
+<para>This is technical reference documentation for the DocBook XSL
+Stylesheets; it documents (some of) the parameters, templates, and
+other elements of the stylesheets.</para>
+
+<para>This reference describes each of the HTML Stylesheet parameters.
+These are the <quote>easily customizable</quote> parts of the stylesheet.
+If you want to specify an alternate value for one or more of these
+parameters, you can do so in a <quote>driver</quote> stylesheet.</para>
+
+<para>For example, if you want to change the <literal>html.stylesheet</literal>
+to <filename>reference.css</filename>, you might create a driver
+stylesheet like this:</para>
+
+<programlisting><![CDATA[<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                version='1.0'>
+
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/fo/docbook.xsl"/>
+
+  <xsl:param name="html.stylesheet">reference.css</xsl:param>
+
+</xsl:stylesheet>]]></programlisting>
+
+<para>Naturally, you have to change the
+<sgmltag class='attribute'>href</sgmltag> attribute on
+<literal>&lt;xsl:import&gt;</literal> to point to
+<filename>docbook.xsl</filename> on your system. (Or
+<filename>chunk.xsl</filename>, if you're using chunking.)</para>
+
+<para>This is not intended to be <quote>user</quote> documentation.
+It is provided for developers writing customization layers for the
+stylesheets, and for anyone who's interested in <quote>how it
+works</quote>.</para>
+
+<para>Although I am trying to be thorough, this documentation is known
+to be incomplete. Don't forget to read the source, too :-)</para>
+</preface>
+
+<reference><title>The Parameters</title>
+&admon.graphics;
+&admon.graphics.extension;
+&admon.graphics.path;
+&admonition.title.properties;
+&alignment;
+&appendix.autolabel;
+&arbortext.extensions;
+&author.othername.in.middle;
+&biblioentry.item.separator;
+&bibliography.collection;
+&body.font.family;
+&body.font.master;
+&body.font.size;
+&body.margin.bottom;
+&body.margin.top;
+&callout.defaultcolumn;
+&callout.graphics;
+&callout.graphics.extension;
+&callout.graphics.number.limit;
+&callout.graphics.path;
+&callout.unicode;
+&callout.unicode.font;
+&callout.unicode.number.limit;
+&callout.unicode.start.character;
+&callouts.extension;
+&chapter.autolabel;
+&column.count;
+&component.title.properties;
+&default.table.width;
+&default.units;
+&dingbat.font.family;
+&double.sided;
+&footnote.font.size;
+&fop.extensions;
+&formal.object.properties;
+&formal.procedures;
+&formal.title.properties;
+&format.variablelist.as.list;
+&funcsynopsis.decoration;
+&funcsynopsis.style;
+&generate.book.equation.lot;
+&generate.book.example.lot;
+&generate.book.figure.lot;
+&generate.book.table.lot;
+&generate.book.toc;
+&generate.component.toc;
+&generate.division.equation.lot;
+&generate.division.example.lot;
+&generate.division.figure.lot;
+&generate.division.table.lot;
+&generate.division.toc;
+&generate.index;
+&graphic.default.extension;
+&html.stylesheet;
+&html.stylesheet.type;
+&hyphenate;
+&insert.xref.page.number;
+&label.from.part;
+&linenumbering.everyNth;
+&linenumbering.extension;
+&linenumbering.separator;
+&linenumbering.width;
+&list.block.spacing;
+&list.item.spacing;
+&make.single.year.ranges;
+&make.year.ranges;
+&monospace.font.family;
+&monospace.verbatim.properties;
+&nominal.table.width;
+&normal.para.spacing;
+&page.height;
+&page.height.portrait;
+&page.margin.bottom;
+&page.margin.inner;
+&page.margin.outer;
+&page.margin.top;
+&page.orientation;
+&page.width;
+&page.width.portrait;
+&paper.type;
+&part.autolabel;
+&passivetex.extensions;
+&preface.autolabel;
+&process.empty.source.toc;
+&process.source.toc;
+&qanda.inherit.numeration;
+&qandadiv.autolabel;
+&refentry.generate.name;
+&refentry.xref.manvolnum;
+&region.after.extent;
+&region.before.extent;
+&rootid;
+&runinhead.default.title.end.punct;
+&runinhead.title.end.punct;
+&sans.font.family;
+&section.autolabel;
+&section.label.includes.component.label;
+&show.comments;
+&stylesheet.result.type;
+&tablecolumns.extension;
+&textinsert.extension;
+&title.font.family;
+&toc.margin.properties;
+&use.extensions;
+&verbatim.properties;
+&xep.extensions;
+&xref.properties;
+&table.border.thickness;
+&table.border.padding;
+&table.border.style;
+&table.border.color;
+&title.margin.left;
+
+</reference>
+
+<appendix><title>The Stylesheet</title>
+
+<para>The <filename>param.xsl</filename> stylesheet is just a wrapper
+around all these parameters.</para>
+
+<src:fragment id="top" default-exclude-result-prefixes="xsl">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                exclude-result-prefixes="src"
+                version='1.0'>
+
+<!-- This file is generated from param.xweb; do not edit this file! -->
+
+<!-- ********************************************************************
+     $Id$
+     ********************************************************************
+
+     This file is part of the XSL DocBook Stylesheet distribution.
+     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
+     and other information.
+
+     ******************************************************************** -->
+
+<src:fragref linkend="admon.graphics"/>
+<src:fragref linkend="admon.graphics.extension"/>
+<src:fragref linkend="admon.graphics.path"/>
+<src:fragref linkend="admonition.title.properties"/>
+<src:fragref linkend="alignment"/>
+<src:fragref linkend="appendix.autolabel"/>
+<src:fragref linkend="arbortext.extensions"/>
+<src:fragref linkend="author.othername.in.middle"/>
+<src:fragref linkend="biblioentry.item.separator"/>
+<src:fragref linkend="bibliography.collection"/>
+<src:fragref linkend="body.font.family"/>
+<src:fragref linkend="body.font.master"/>
+<src:fragref linkend="body.font.size"/>
+<src:fragref linkend="body.margin.bottom"/>
+<src:fragref linkend="body.margin.top"/>
+<src:fragref linkend="callout.defaultcolumn"/>
+<src:fragref linkend="callout.graphics"/>
+<src:fragref linkend="callout.graphics.extension"/>
+<src:fragref linkend="callout.graphics.number.limit"/>
+<src:fragref linkend="callout.graphics.path"/>
+<src:fragref linkend="callout.unicode"/>
+<src:fragref linkend="callout.unicode.font"/>
+<src:fragref linkend="callout.unicode.number.limit"/>
+<src:fragref linkend="callout.unicode.start.character"/>
+<src:fragref linkend="callouts.extension"/>
+<src:fragref linkend="chapter.autolabel"/>
+<src:fragref linkend="column.count"/>
+<src:fragref linkend="component.title.properties"/>
+<src:fragref linkend="default.table.width"/>
+<src:fragref linkend="default.units"/>
+<src:fragref linkend="dingbat.font.family"/>
+<src:fragref linkend="double.sided"/>
+<src:fragref linkend="footnote.font.size"/>
+<src:fragref linkend="fop.extensions"/>
+<src:fragref linkend="formal.object.properties"/>
+<src:fragref linkend="formal.procedures"/>
+<src:fragref linkend="formal.title.properties"/>
+<src:fragref linkend="format.variablelist.as.list"/>
+<src:fragref linkend="funcsynopsis.decoration"/>
+<src:fragref linkend="funcsynopsis.style"/>
+<src:fragref linkend="generate.book.equation.lot"/>
+<src:fragref linkend="generate.book.example.lot"/>
+<src:fragref linkend="generate.book.figure.lot"/>
+<src:fragref linkend="generate.book.table.lot"/>
+<src:fragref linkend="generate.book.toc"/>
+<src:fragref linkend="generate.component.toc"/>
+<src:fragref linkend="generate.division.equation.lot"/>
+<src:fragref linkend="generate.division.example.lot"/>
+<src:fragref linkend="generate.division.figure.lot"/>
+<src:fragref linkend="generate.division.table.lot"/>
+<src:fragref linkend="generate.division.toc"/>
+<src:fragref linkend="generate.index"/>
+<src:fragref linkend="graphic.default.extension"/>
+<src:fragref linkend="html.stylesheet"/>
+<src:fragref linkend="html.stylesheet.type"/>
+<src:fragref linkend="hyphenate"/>
+<src:fragref linkend="insert.xref.page.number"/>
+<src:fragref linkend="label.from.part"/>
+<src:fragref linkend="linenumbering.everyNth"/>
+<src:fragref linkend="linenumbering.extension"/>
+<src:fragref linkend="linenumbering.separator"/>
+<src:fragref linkend="linenumbering.width"/>
+<src:fragref linkend="list.block.spacing"/>
+<src:fragref linkend="list.item.spacing"/>
+<src:fragref linkend="make.single.year.ranges"/>
+<src:fragref linkend="make.year.ranges"/>
+<src:fragref linkend="monospace.font.family"/>
+<src:fragref linkend="monospace.verbatim.properties"/>
+<src:fragref linkend="nominal.table.width"/>
+<src:fragref linkend="normal.para.spacing"/>
+<src:fragref linkend="page.height"/>
+<src:fragref linkend="page.height.portrait"/>
+<src:fragref linkend="page.margin.bottom"/>
+<src:fragref linkend="page.margin.inner"/>
+<src:fragref linkend="page.margin.outer"/>
+<src:fragref linkend="page.margin.top"/>
+<src:fragref linkend="page.orientation"/>
+<src:fragref linkend="page.width"/>
+<src:fragref linkend="page.width.portrait"/>
+<src:fragref linkend="paper.type"/>
+<src:fragref linkend="part.autolabel"/>
+<src:fragref linkend="passivetex.extensions"/>
+<src:fragref linkend="preface.autolabel"/>
+<src:fragref linkend="process.empty.source.toc"/>
+<src:fragref linkend="process.source.toc"/>
+<src:fragref linkend="qanda.inherit.numeration"/>
+<src:fragref linkend="qandadiv.autolabel"/>
+<src:fragref linkend="refentry.generate.name"/>
+<src:fragref linkend="refentry.xref.manvolnum"/>
+<src:fragref linkend="region.after.extent"/>
+<src:fragref linkend="region.before.extent"/>
+<src:fragref linkend="rootid"/>
+<src:fragref linkend="runinhead.default.title.end.punct"/>
+<src:fragref linkend="runinhead.title.end.punct"/>
+<src:fragref linkend="sans.font.family"/>
+<src:fragref linkend="section.autolabel"/>
+<src:fragref linkend="section.label.includes.component.label"/>
+<src:fragref linkend="show.comments"/>
+<src:fragref linkend="stylesheet.result.type"/>
+<src:fragref linkend="tablecolumns.extension"/>
+<src:fragref linkend="textinsert.extension"/>
+<src:fragref linkend="title.font.family"/>
+<src:fragref linkend="toc.margin.properties"/>
+<src:fragref linkend="use.extensions"/>
+<src:fragref linkend="verbatim.properties"/>
+<src:fragref linkend="xep.extensions"/>
+<src:fragref linkend="xref.properties"/>
+<src:fragref linkend="table.border.thickness"/>
+<src:fragref linkend="table.border.padding"/>
+<src:fragref linkend="table.border.style"/>
+<src:fragref linkend="table.border.color"/>
+<src:fragref linkend="title.margin.left"/>
+
+</xsl:stylesheet>
+</src:fragment>
+
+</appendix>
+
+</book>
