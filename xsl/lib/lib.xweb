@@ -1,36 +1,20 @@
-<?xml version='1.0'?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
-                exclude-result-prefixes="doc"
-                version='1.0'>
-
-<!-- ********************************************************************
-     $Id$
-     ********************************************************************
-
-     This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
-     and other information.
-
-     This module implements DTD-independent functions
-
-     ******************************************************************** -->
-
-<doc:reference xmlns="">
-<referenceinfo>
-<releaseinfo role="meta">
-$Id$
+<book xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+      xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<bookinfo>
+<title>XSL Library Template Reference</title>
+<releaseinfo role="cvs">$Id$
 </releaseinfo>
-<author><surname>Walsh</surname>
-<firstname>Norman</firstname></author>
-<copyright><year>1999</year><year>2000</year>
-<holder>Norman Walsh</holder>
+<corpauthor>DocBook Open Repository Team</corpauthor>
+<copyright>
+  <year>1999</year>
+  <year>2000</year>
+  <year>2001</year>
+  <year>2002</year>
+  <holder>Norman Walsh</holder>
 </copyright>
-</referenceinfo>
-<title>Library Template Reference</title>
+</bookinfo>
 
-<partintro>
-<section><title>Introduction</title>
+<preface><title>Introduction</title>
 
 <para>This is technical reference documentation for the DocBook XSL
 Stylesheets; it documents (some of) the parameters, templates, and
@@ -43,10 +27,21 @@ works</quote>.</para>
 
 <para>Although I am trying to be thorough, this documentation is known
 to be incomplete. Don't forget to read the source, too :-)</para>
-</section>
-</partintro>
-</doc:reference>
 
+</preface>
+
+<reference>
+<title>General Library Templates</title>
+
+<refentry id="dot.count">
+<refnamediv>
+<refname>dot.count</refname>
+<refpurpose>Returns the number of <quote>.</quote> characters in a string</refpurpose>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
+<programlisting><src:fragment id='dot.count.frag'>
 <xsl:template name="dot.count">
   <!-- Returns the number of "." characters in a string -->
   <xsl:param name="string"></xsl:param>
@@ -63,9 +58,22 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+</src:fragment></programlisting>
+
+</refsect1>
+</refentry>
 
 <!-- ================================================================== -->
 
+<refentry id="copy-string">
+<refnamediv>
+<refname>copy-string</refname>
+<refpurpose>Returns <quote>count</quote> copies of a string</refpurpose>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
+<programlisting><src:fragment id='copy-string.frag'>
 <xsl:template name="copy-string">
   <!-- returns 'count' copies of 'string' -->
   <xsl:param name="string"></xsl:param>
@@ -88,19 +96,27 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+</src:fragment></programlisting>
+
+</refsect1>
+</refentry>
 
 <!-- ====================================================================== -->
 
-<doc:template name="string.subst" xmlns="">
+<refentry id="string.subst">
+<refnamediv>
+<refname>string.subst</refname>
 <refpurpose>Substitute one text string for another in a string</refpurpose>
-<refdescription>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
 <para>The <function>string.subst</function> template replaces all
 occurances of <parameter>target</parameter> in <parameter>string</parameter>
 with <parameter>replacement</parameter> and returns the result.
 </para>
-</refdescription>
-</doc:template>
 
+<programlisting><src:fragment id='string.subst.frag'>
 <xsl:template name="string.subst">
   <xsl:param name="string"></xsl:param>
   <xsl:param name="target"></xsl:param>
@@ -125,12 +141,21 @@ with <parameter>replacement</parameter> and returns the result.
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+</src:fragment></programlisting>
+
+</refsect1>
+</refentry>
 
 <!-- ================================================================== -->
 
-<doc:template name="xpointer.idref" xmlns="">
+<refentry id="xpointer.idref">
+<refnamediv>
+<refname>xpointer.idref</refname>
 <refpurpose>Extract IDREF from an XPointer</refpurpose>
-<refdescription>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
 <para>The <function>xpointer.idref</function> template returns the
 ID portion of an XPointer which is a pointer to an ID within the current
 document, or the empty string if it is not.</para>
@@ -138,9 +163,8 @@ document, or the empty string if it is not.</para>
 <quote>foo</quote> when passed either <literal>#foo</literal>
 or <literal>#xpointer(id('foo'))</literal>, otherwise it returns
 the empty string.</para>
-</refdescription>
-</doc:template>
 
+<programlisting><src:fragment id='xpointer.idref.frag'>
 <xsl:template name="xpointer.idref">
   <xsl:param name="xpointer">http://...</xsl:param>
   <xsl:choose>
@@ -155,18 +179,27 @@ the empty string.</para>
     <!-- otherwise it's a pointer to some other document -->
   </xsl:choose>
 </xsl:template>
+</src:fragment></programlisting>
+
+</refsect1>
+</refentry>
+
 
 <!-- ================================================================== -->
 
-<doc:template name="length-magnitude" xmlns="">
+<refentry id="lengt-magnitude">
+<refnamediv>
+<refname>length-magnitude</refname>
 <refpurpose>Return the unqualified dimension from a length specification</refpurpose>
-<refdescription>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
 <para>The <function>length-magnitude</function> template returns the
 unqualified length ("20" for "20pt") from a dimension.
 </para>
-</refdescription>
-</doc:template>
 
+<programlisting><src:fragment id='length-magnitude.frag'>
 <xsl:template name="length-magnitude">
   <xsl:param name="length" select="'0pt'"/>
 
@@ -190,18 +223,26 @@ unqualified length ("20" for "20pt") from a dimension.
     </xsl:when>
   </xsl:choose>
 </xsl:template>
+</src:fragment></programlisting>
+
+</refsect1>
+</refentry>
 
 <!-- ================================================================== -->
 
-<doc:template name="length-units" xmlns="">
+<refentry id="length-units">
+<refnamediv>
+<refname>length-units</refname>
 <refpurpose>Return the units from a length specification</refpurpose>
-<refdescription>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
 <para>The <function>length-units</function> template returns the
 units ("pt" for "20pt") from a length. If no units are supplied on the
 length, the <parameter>defauilt.units</parameter> are returned.</para>
-</refdescription>
-</doc:template>
 
+<programlisting><src:fragment id='length-units.frag'>
 <xsl:template name="length-units">
   <xsl:param name="length" select="'0pt'"/>
   <xsl:param name="default.units" select="'pt'"/>
@@ -223,19 +264,27 @@ length, the <parameter>defauilt.units</parameter> are returned.</para>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+</src:fragment></programlisting>
+
+</refsect1>
+</refentry>
 
 <!-- ================================================================== -->
 
-<doc:template name="length-spec" xmlns="">
+<refentry id="length-spec">
+<refnamediv>
+<refname>length-spec</refname>
 <refpurpose>Return a fully qualified length specification</refpurpose>
-<refdescription>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
 <para>The <function>length-spec</function> template returns the
 qualified length from a dimension. If an unqualified length is given,
 the <parameter>default.units</parameter> will be added to it.
 </para>
-</refdescription>
-</doc:template>
 
+<programlisting><src:fragment id='length-spec.frag'>
 <xsl:template name="length-spec">
   <xsl:param name="length" select="'0pt'"/>
   <xsl:param name="default.units" select="'pt'"/>
@@ -271,12 +320,22 @@ the <parameter>default.units</parameter> will be added to it.
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+</src:fragment></programlisting>
+
+</refsect1>
+</refentry>
+
 
 <!-- ================================================================== -->
 
-<doc:template name="pi-attribute" xmlns="">
+<refentry id="pi-attribute">
+<refnamediv>
+<refname>pi-attribute</refname>
 <refpurpose>Extract a pseudo-attribute from a PI</refpurpose>
-<refdescription>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
 <para>The <function>pi-attribute</function> template extracts a pseudo-attribute
 from a processing instruction. For example, given the PI
 <quote><literal>&lt;?foo bar="1" baz='red'?&gt;</literal></quote>,</para>
@@ -288,9 +347,8 @@ from a processing instruction. For example, given the PI
 attribute that it finds. Presented with processing instructions that
 contain badly formed pseudo-attributes (missing or unbalanced quotes,
 for example), the template may silently return erroneous results.</para>
-</refdescription>
-</doc:template>
 
+<programlisting><src:fragment id='pi-attribute.frag'>
 <xsl:template name="pi-attribute">
   <xsl:param name="pis" select="processing-instruction('')"/>
   <xsl:param name="attribute">filename</xsl:param>
@@ -321,18 +379,26 @@ for example), the template may silently return erroneous results.</para>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+</src:fragment></programlisting>
+
+</refsect1>
+</refentry>
 
 <!-- ================================================================== -->
 
-<doc:template name="lookup.key" xmlns="">
+<refentry id="lookup.key">
+<refnamediv>
+<refname>lookup.key</refname>
 <refpurpose>Retrieve the value associated with a particular key in a table</refpurpose>
-<refdescription>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
 <para>Given a table of space-delimited key/value pairs,
 the <function>lookup.key</function> template extracts the value associated
 with a particular key.</para>
-</refdescription>
-</doc:template>
 
+<programlisting><src:fragment id='lookup.key.frag'>
 <xsl:template name="lookup.key">
   <xsl:param name="key" select="''"/>
   <xsl:param name="table" select="''"/>
@@ -360,18 +426,26 @@ with a particular key.</para>
     </xsl:choose>
   </xsl:if>
 </xsl:template>
+</src:fragment></programlisting>
+
+</refsect1>
+</refentry>
 
 <!-- ================================================================== -->
 
-<doc:template name="xpath.location" xmlns="">
+<refentry id="xpath.location">
+<refnamediv>
+<refname>xpath.location</refname>
 <refpurpose>Calculate the XPath child-sequence to the current node</refpurpose>
-<refdescription>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
 <para>The <function>xpath.location</function> template calculates the
 absolute path from the root of the tree to the current element node.
 </para>
-</refdescription>
-</doc:template>
 
+<programlisting><src:fragment id='xpath.location.frag'>
 <xsl:template name="xpath.location">
   <xsl:param name="node" select="."/>
   <xsl:param name="path" select="''"/>
@@ -395,5 +469,151 @@ absolute path from the root of the tree to the current element node.
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+</src:fragment></programlisting>
+
+</refsect1>
+</refentry>
+
+</reference>
+
+<reference>
+<title>Relative URI Functions</title>
+
+<partintro><title>Introduction</title>
+
+<para>These functions manipulate relative URI references.</para>
+
+<para>The following assumptions must hold true:</para>
+
+<orderedlist>
+<listitem>
+<para>All URIs are relative.</para>
+</listitem>
+<listitem>
+<para>No URI contains the <quote><literal>../</literal></quote> sequence
+which would effectively move <quote>up</quote> the hierarchy.</para>
+</listitem>
+</orderedlist>
+
+<para>If these assumptions do not hold, the results are unpredictable.</para>
+
+</partintro>
+
+<refentry id="count.uri.path.depth">
+<refnamediv>
+<refname>count.uri.path.depth</refname>
+<refpurpose>Count the number of path components in a relative URI</refpurpose>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
+<para>This function counts the number of path components in a relative URI.</para>
+
+<programlisting><src:fragment id='count.uri.path.depth.frag'>
+<xsl:template name="count.uri.path.depth">
+  <xsl:param name="filename" select="''"/>
+  <xsl:param name="count" select="0"/>
+
+  <xsl:choose>
+    <xsl:when test="contains($filename, '/')">
+      <xsl:call-template name="count.uri.path.depth">
+        <xsl:with-param name="filename" select="substring-after($filename, '/')"/>
+        <xsl:with-param name="count" select="$count + 1"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$count"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+</src:fragment></programlisting>
+
+</refsect1>
+</refentry>
+
+<refentry id="trim.common.uri.paths">
+<refnamediv>
+<refname>trim.common.uri.paths</refname>
+<refpurpose>Trim common leading path components from a relative URI</refpurpose>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
+<para>This function trims common leading path components from a relative URI.</para>
+
+<programlisting><src:fragment id='trim.common.uri.paths.frag'>
+<xsl:template name="trim.common.uri.paths">
+  <xsl:param name="uriA" select="''"/>
+  <xsl:param name="uriB" select="''"/>
+  <xsl:param name="return" select="'A'"/>
+
+  <xsl:choose>
+    <xsl:when test="contains($uriA, '/') and contains($uriB, '/')
+                    and substring-before($uriA, '/') = substring-before($uriB, '/')">
+      <xsl:call-template name="trim.common.uri.paths">
+        <xsl:with-param name="uriA" select="substring-after($uriA, '/')"/>
+        <xsl:with-param name="uriB" select="substring-after($uriB, '/')"/>
+        <xsl:with-param name="return" select="$return"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:choose>
+        <xsl:when test="$return = 'A'">
+          <xsl:value-of select="$uriA"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$uriB"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+</src:fragment></programlisting>
+
+</refsect1>
+</refentry>
+
+</reference>
+
+<appendix><title>The Stylesheet</title>
+
+<para>The <filename>lib.xsl</filename> stylesheet is just a wrapper
+around these functions.</para>
+
+<src:fragment id="top" mundane-result-prefixes="xsl">
+
+<!-- ********************************************************************
+     $Id$
+     ********************************************************************
+
+     This file is part of the XSL DocBook Stylesheet distribution.
+     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
+     and other information.
+
+     This module implements DTD-independent functions
+
+     ******************************************************************** -->
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+                exclude-result-prefixes="src"
+                version='1.0'>
+
+<src:fragref linkend="dot.count.frag"/>
+<src:fragref linkend="copy-string.frag"/>
+<src:fragref linkend="string.subst.frag"/>
+<src:fragref linkend="xpointer.idref.frag"/>
+<src:fragref linkend="length-magnitude.frag"/>
+<src:fragref linkend="length-units.frag"/>
+<src:fragref linkend="length-spec.frag"/>
+<src:fragref linkend="pi-attribute.frag"/>
+<src:fragref linkend="lookup.key.frag"/>
+<src:fragref linkend="xpath.location.frag"/>
+<src:fragref linkend="count.uri.path.depth.frag"/>
+<src:fragref linkend="trim.common.uri.paths.frag"/>
 
 </xsl:stylesheet>
+</src:fragment>
+
+</appendix>
+</book>
