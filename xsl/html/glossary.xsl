@@ -15,9 +15,13 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="glossary">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+  <div class="{name(.)}">
+    <xsl:if test="$generate.id.attributes != 0">
+      <xsl:attribute name="id">
+        <xsl:call-template name="object.id"/>
+      </xsl:attribute>
+    </xsl:if>
 
-  <div id="{$id}" class="{name(.)}">
     <xsl:call-template name="glossary.titlepage"/>
 
     <xsl:choose>
@@ -215,7 +219,6 @@ GlossEntry ::=
 <!-- Glossary collection -->
 
 <xsl:template match="glossary[@role='auto']" priority="2">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
   <xsl:variable name="terms" select="//glossterm[not(parent::glossdef)]|//firstterm"/>
   <xsl:variable name="collection" select="document($glossary.collection, .)"/>
 
@@ -226,7 +229,13 @@ GlossEntry ::=
     </xsl:message>
   </xsl:if>
 
-  <div id="{$id}" class="{name(.)}">
+  <div class="{name(.)}">
+    <xsl:if test="$generate.id.attributes != 0">
+      <xsl:attribute name="id">
+        <xsl:call-template name="object.id"/>
+      </xsl:attribute>
+    </xsl:if>
+
     <xsl:call-template name="glossary.titlepage"/>
 
     <xsl:choose>
