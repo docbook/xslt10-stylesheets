@@ -190,6 +190,7 @@ generate.section.toc.level;
 &glossterm.width;
 &glossary.as.blocks;
 &glosslist.as.blocks;
+&glossentry.show.acronym;
 </reference>
 
 <reference><title>Miscellaneous</title>
@@ -204,6 +205,7 @@ generate.section.toc.level;
 &blockquote.properties;
 &ulink.show;
 &ulink.footnotes;
+&ulink.footnote.number.format;
 &ulink.hyphenate;
 &shade.verbatim;
 &shade.verbatim.style;
@@ -212,6 +214,10 @@ generate.section.toc.level;
 &menuchoice.separator;
 &menuchoice.menu.separator;
 &default.float.class;
+&footnote.number.format;
+&table.footnote.number.format;
+&footnote.number.symbols;
+&table.footnote.number.symbols;
 </reference>
 
 <reference><title>Graphics</title>
@@ -444,12 +450,12 @@ around all these parameters.</para>
 <src:fragref linkend="bibliography.collection.frag"/>
 <src:fragref linkend="bibliography.numbered.frag"/>
 <src:fragref linkend="blockquote.properties.frag"/>
-<src:fragref linkend="bridgehead.in.toc.frag"/>
 <src:fragref linkend="body.font.family.frag"/>
 <src:fragref linkend="body.font.master.frag"/>
 <src:fragref linkend="body.font.size.frag"/>
 <src:fragref linkend="body.margin.bottom.frag"/>
 <src:fragref linkend="body.margin.top.frag"/>
+<src:fragref linkend="bridgehead.in.toc.frag"/>
 <src:fragref linkend="callout.defaultcolumn.frag"/>
 <src:fragref linkend="callout.graphics.extension.frag"/>
 <src:fragref linkend="callout.graphics.frag"/>
@@ -486,6 +492,8 @@ around all these parameters.</para>
 <src:fragref linkend="footer.rule.frag"/>
 <src:fragref linkend="footers.on.blank.pages.frag"/>
 <src:fragref linkend="footnote.font.size.frag"/>
+<src:fragref linkend="footnote.number.format.frag"/>
+<src:fragref linkend="footnote.number.symbols.frag"/>
 <src:fragref linkend="fop.extensions.frag"/>
 <src:fragref linkend="formal.object.properties.frag"/>
 <src:fragref linkend="formal.procedures.frag"/>
@@ -499,6 +507,7 @@ around all these parameters.</para>
 <src:fragref linkend="generate.toc.frag"/>
 <src:fragref linkend="glossary.as.blocks.frag"/>
 <src:fragref linkend="glossary.collection.frag"/>
+<src:fragref linkend="glossentry.show.acronym.frag"/>
 <src:fragref linkend="glosslist.as.blocks.frag"/>
 <src:fragref linkend="glossterm.auto.link.frag"/>
 <src:fragref linkend="glossterm.separation.frag"/>
@@ -595,6 +604,8 @@ around all these parameters.</para>
 <src:fragref linkend="table.cell.border.style.frag"/>
 <src:fragref linkend="table.cell.border.thickness.frag"/>
 <src:fragref linkend="table.cell.padding.frag"/>
+<src:fragref linkend="table.footnote.number.format.frag"/>
+<src:fragref linkend="table.footnote.number.symbols.frag"/>
 <src:fragref linkend="table.frame.border.color.frag"/>
 <src:fragref linkend="table.frame.border.style.frag"/>
 <src:fragref linkend="table.frame.border.thickness.frag"/>
@@ -609,6 +620,7 @@ around all these parameters.</para>
 <src:fragref linkend="toc.indent.width.frag"/>
 <src:fragref linkend="toc.margin.properties.frag"/>
 <src:fragref linkend="toc.section.depth.frag"/>
+<src:fragref linkend="ulink.footnote.number.format.frag"/>
 <src:fragref linkend="ulink.footnotes.frag"/>
 <src:fragref linkend="ulink.hyphenate.frag"/>
 <src:fragref linkend="ulink.show.frag"/>
