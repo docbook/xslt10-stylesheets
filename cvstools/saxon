@@ -7,17 +7,25 @@
 #
 
 DONE=0
-VERSION=651
+VERSION=652
+EXTVERSION=643
 DEBUG=0
 JAR=0
-#XARG=""
-#YARG=""
-#RARG=""
-XARG="-x com.sun.resolver.tools.ResolvingXMLReader"
-YARG="-y com.sun.resolver.tools.ResolvingXMLReader"
-RARG="-r com.sun.resolver.tools.CatalogResolver"
+XARG=""
+YARG=""
+RARG=""
 MEMORY=""
 QUIET=0
+
+# identify the directory for DocBook XSL
+for dir in "/sourceforge/docbook/xsl" \
+           `dirname $0/../xsl` \
+           "/usr/share/sgml/docbook/stylesheet/xsl/nwalsh" ; do
+  if [ -d "$dir" ]; then
+    DOCBOOKXSL="$dir"
+    break
+  fi
+done
 
 while [ "$DONE" = "0" ]; do
     case $1 in
@@ -26,6 +34,9 @@ while [ "$DONE" = "0" ]; do
 		;;
 	-j)	JAR=1;
 	        echo "Using jar file for extension classes"
+		shift;
+		;;
+	-652)	VERSION=652;
 		shift;
 		;;
 	-651)	VERSION=651;
@@ -38,35 +49,6 @@ while [ "$DONE" = "0" ]; do
 		shift;
 		;;
 	-643)	VERSION=643;
-		shift;
-		;;
-	-642)	VERSION=642;
-		shift;
-		;;
-	-64)	VERSION=64;
-		shift;
-		;;
-	-63)	VERSION=63;
-		shift;
-		;;
-	-622)	VERSION=622;
-		shift;
-		;;
-	-621)	VERSION=621;
-		shift;
-		;;
-	-62)	VERSION=62;
-		shift;
-		;;
-	-61)	VERSION=61;
-		shift;
-		;;
-	-6)	VERSION=6;
-		RARG=""
-		shift;
-		;;
-	-5)	VERSION=5;
-		RARG=""
 		shift;
 		;;
 	-x)     shift;
@@ -88,10 +70,13 @@ while [ "$DONE" = "0" ]; do
         -q)     shift
 		QUIET=1
 		;;
+        -X)     shift
+		DOCBOOKXSL="$1";
+		shift;
+		;;
 	-*)	DONE=1;
-		echo "Unexpected arguments!";
-		echo "  $*"
-		exit;
+		echo "unexpected argument: $*" 1>&2
+		exit 1
 		;;
 	*)	DONE=1
     esac
@@ -109,114 +94,138 @@ if [ "$OUTPUT" != "" ]; then
   OUTPUT="-o $OUTPUT"
 fi
 
+if [ ! -d "$DOCBOOKXSL" ]; then
+  echo "DocBook XSL dir '$DOCBOOKXSL' doesn't exist" 1>&2
+  echo "  Try using the '-X <dir>' argument" 1>&2
+  exit 1
+fi
+
 case $VERSION in
-   651)	SAXON="/usr/local/java/saxon-6.5.1/saxon.jar"
-	SAXON_DEBUG="/usr/local/java/saxon-6.5.1/.classes"
-	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon643/.classes";
-	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon643.jar"
-	fi
+   652|651|65|644|643)
+        :                       # handled normally below
 	;;
-   65)	SAXON="/usr/local/java/saxon-6.5/saxon.jar"
-	SAXON_DEBUG="/usr/local/java/saxon-6.4.3/.classes"
-	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon643/.classes";
-	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon65.jar"
-	fi
-	;;
-   644)	SAXON="/usr/local/java/saxon-6.4.4/saxon.jar"
-	SAXON_DEBUG="/usr/local/java/saxon-6.4.3/.classes"
-	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon643/.classes";
-	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon644.jar"
-	fi
-	;;
-   643)	SAXON="/usr/local/java/saxon-6.4.3/saxon.jar"
-	SAXON_DEBUG="/usr/local/java/saxon-6.4.3/.classes"
-	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon643/.classes";
-	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon643.jar"
-	fi
-	;;
-   642)	SAXON="/usr/local/java/saxon-6.4.2/saxon.jar"
-	SAXON_DEBUG="/usr/local/java/saxon-6.4.2/.classes"
-	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon642/.classes";
-	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon642.jar"
-	fi
-	;;
-   64)	SAXON="/usr/local/java/saxon-6.4/saxon.jar"
-	SAXON_DEBUG="/usr/local/java/saxon-6.4/.classes"
-	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon64/.classes";
-	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon64.jar"
-	fi
-	;;
-   63)	SAXON="/usr/local/java/saxon-6.3/saxon.jar"
-	SAXON_DEBUG="/usr/local/java/saxon-6.3/.classes"
-	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon63/.classes";
-	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon63.jar"
-	fi
-	;;
-  622)	SAXON="/usr/local/java/saxon-6.2.2/saxon.jar"
-	SAXON_DEBUG="/usr/local/java/saxon-6.2.2/.classes"
-	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61/.classes";
-	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61.jar"
-	fi
-	;;
-  621)	SAXON="/usr/local/java/saxon-6.2.1/saxon.jar"
-	SAXON_DEBUG="/usr/local/java/saxon-6.2.1/.classes"
-	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61/.classes";
-	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61.jar"
-	fi
-	;;
-   62)	SAXON="/usr/local/java/saxon-6.2/saxon.jar"
-	SAXON_DEBUG="/usr/local/java/saxon-6.2/.classes"
-	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61/.classes";
-	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61.jar"
-	fi
-	;;
-   61)	SAXON="/usr/local/java/saxon-6.1/saxon.jar"
-	SAXON_DEBUG="/usr/local/java/saxon-6.1/.classes"
-	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61/.classes";
-	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61.jar"
-	fi
-	;;
-    6)	SAXON="/usr/local/java/saxon-6.0.2/saxon.jar"
-	SAXON_DEBUG="/usr/local/java/saxon-6.0.2/.classes"
-	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon6/.classes";
-	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon6.jar"
-	fi
-	;;
-    5)	SAXON="/usr/local/java/saxon-5.5.1/saxon.jar"
-	SAXON_DEBUG="/usr/local/java/saxon-5.5.1/.classes"
-	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon551/.classes";
-	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon551.jar"
-	fi
-	;;
-    *)	echo "Unexpected Saxon version $VERSION"
-	exit
+    *)	echo "unexpected Saxon version $VERSION" 1>&2
+	exit 1
 	;;
 esac
 
-if [ "$DEBUG" = "1" ]; then
-  SAXON="$SAXON_DEBUG:$SAXON"
+DOTTEDVERSION=`echo $VERSION | sed -e 's/\([0-9]\)\([0-9]\)/\1.\2/g;' | sed -e 's/\([0-9]\)\([0-9]\)/\1.\2/g;'`
+
+##
+## locate saxon.jar
+##
+for jar in "/usr/local/java/saxon-$DOTTEDVERSION/saxon.jar" \
+           "/usr/local/share/java/saxon-$DOTTEDVERSION/saxon.jar" \
+           "/usr/share/java/saxon-$DOTTEDVERSION.jar" \
+           "/usr/local/java/saxon/saxon.jar" \
+           "/usr/local/share/java/saxon/saxon.jar" \
+           "/usr/share/java/saxon.jar"; do
+  if [ -f "$jar" ]; then
+    SAXON="$jar"
+    break
+  fi
+done
+if [ ! -f "$SAXON" ]; then
+  echo "warning: cannot locate Saxon JAR file" 1>&2
 fi
 
-JAXP="${JAXP:-/projects/sun/resolver/.classes}:"
+
+##
+## DocBook extensions
+##
+if [ "$JAR" = "1" ]; then
+  NDWEXT="$DOCBOOKXSL/extensions/saxon$EXTVERSION.jar"
+
+  if [ ! -f "$NDWEXT" ]; then
+    echo "warning: cannot locate DocBook XSL Saxon extensions ($NDWEXT)" 1>&2
+  fi
+else
+  NDWEXT="$DOCBOOKXSL/extensions/saxon$EXTVERSION/.classes";
+
+  if [ ! -d "$NDWEXT" ]; then
+    echo "warning: cannot locate DocBook XSL Saxon extensions ($NDWEXT)" 1>&2
+  fi
+fi
+
+##
+## Saxon debugging stuff
+##
+if [ "$DEBUG" = "1" ]; then
+  for try in "/usr/local/java/saxon-$DOTTEDVERSION/.classes" \
+             "/usr/local/share/java/saxon-$DOTTEDVERSION/.classes" \
+             "/usr/share/java/saxon-$DOTTEDVERSION/.classes"; do
+    if [ -d "$try" ]; then
+        SAXON="$try:$SAXON"
+    fi
+  done
+fi
+
+##
+## optionally replace the URI resolver with the Sun
+## resolver classes, not yet available to the public?
+##
+for path in "/projects/sun/resolver/.classes" ; do
+  if [ -f "$path" -o -d "$path" ]; then
+    SUN="$path"
+    break
+  fi
+done
+
+if [ -f "$SUN" -o -d "$SUN" ]; then
+  # use the sun resolver
+  if [ ! "$XARG" ]; then
+    XARG="-x com.sun.resolver.tools.ResolvingXMLReader"
+  fi
+  if [ ! "$YARG" ]; then
+    YARG="-y com.sun.resolver.tools.ResolvingXMLReader"
+  fi
+  if [ ! "$RARG" ]; then
+    RARG="-r com.sun.resolver.tools.CatalogResolver"
+  fi
+fi
+
+##
+## locate Xerces classpath
+##
+if [ ! "$XERCES" ]; then
+  for path in "/projects/apache/xml-xerces/java/build/classes" \
+              "/usr/local/share/java/xerces.jar" \
+              "/usr/local/java/xerces.jar" \
+              "/usr/share/java/xerces.jar"; do
+    if [ -f "$path" -o -d "$path" ]; then
+      XERCES="$path"
+    fi
+  done
+fi
+if [ ! "$XERCES" ]; then
+  echo "warning: cannot locate Xerces (xerces.jar)" 1>&2
+fi
+
+##
+## locate JAXP classpath
+##
+if [ ! "$JAXP" ]; then
+  for path in "/usr/local/share/java/jaxp.jar" \
+              "/usr/local/share/java/jaxp.jar" \
+              "/usr/local/java/jaxp.jar" \
+              "/usr/local/jaxp-1.1/jaxp.jar" \
+              "/usr/local/share/java/jaxp-1.1/jaxp.jar" \
+              "/usr/share/java/jaxp.jar"; do
+    if [ -f "$path" -o -d "$path" ]; then
+      JAXP="$path"
+    fi
+  done
+fi
+if [ ! "$JAXP" ]; then
+  echo "warning: cannot locate JAXP (jaxp.jar), using /projects/sun/resolver/.classes" 1>&2
+  JAXP="/projects/sun/resolver/.classes"
+fi
+
 RESOLVER="${RESOLVER:-/projects/sun/resolver/.classes}:"
-XERCES="${XERCES:-/projects/apache/xml-xerces/java/build/classes}:"
 
-CLASSPATH=$SAXON:$NDWEXT:$JAXP$RESOLVER$XERCES$CLASSPATH
+CLASSPATH=$SAXON:$NDWEXT:$JAXP:$RESOLVER$XERCES:$CLASSPATH
 
-#echo $CLASSPATH
+# echo "classpath is $CLASSPATH"
 
 if [ "$QUIET" = "0" ]; then
   echo saxon$VERSION $OUTPUT $XMLSRC $XMLSTY $@
@@ -236,6 +245,7 @@ java $MEMORY $FOO \
      -cp $CLASSPATH \
      -Djavax.xml.parsers.DocumentBuilderFactory=$DBFACTORY \
      -Djavax.xml.parsers.SAXParserFactory=$SPFACTORY \
+     -Djavax.xml.transform.TransformerFactory=$TRANSFACTORY \
      com.icl.saxon.StyleSheet \
      $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY $@
 
