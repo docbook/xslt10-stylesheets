@@ -79,17 +79,22 @@ $Id$
       </warning>
 
         <para>Your choice of an XSLT engine may depend a lot on the
-        environment you'll be running the engine in. Many DocBook
-        users who need or want to use a non-Java application are using
-        Daniel Veillard's C-based implementation, xsltproc (the
-        command line processor packaged with libxslt, the XSLT C
-        library for Gnome, <ulink url="http://xmlsoft.org/XSLT/"
-        >http://xmlsoft.org/XSLT/</ulink>). It's very fast, and also a
-        good choice because Veillard monitors the DocBook mailing
-        lists to field usage and troubleshooting questions and
-        responds very quickly to bug reports. But one current
-        limitation it has is that it doesn't yet support Norm Walsh's
-        DocBook-specific XSLT extension functions.</para>
+	  environment you'll be running the engine in. Many DocBook
+	  users who need or want to use a non-Java application are using
+	  Daniel Veillard's C-based implementation, xsltproc (the
+	  command line processor packaged with libxslt, the XSLT C
+	  library for Gnome, <ulink url="http://xmlsoft.org/XSLT/"
+	    >http://xmlsoft.org/XSLT/</ulink>). It's very fast, and also a
+	  good choice because Veillard monitors the DocBook mailing
+	  lists to field usage and troubleshooting questions and
+	  responds very quickly to bug reports. (And the libxslt site
+	  features a <ulink url="http://xmlsoft.org/XSLT/docbook.html"
+	    >DocBook page</ulink> that, among other things, includes a
+	  shell script you can use to automatically generate <ulink
+	    url="http://xmlsoft.org/catalog.html" >XML catalogs</ulink>
+	  for DocBook.) But one current limitation xsltproc has is that
+	  it doesn't yet support Norm Walsh's DocBook-specific XSLT
+	  extension functions.</para>
 
       <para>The current Java-based XSLT engine of choice for many
       DocBook users seems to be Michael Kay's Saxon (<ulink
