@@ -48,8 +48,8 @@
       <xsl:otherwise>
         <!-- can't do this one step: attributes are unordered! -->
         <xsl:variable name="lang-scope"
-                      select="(ancestor-or-self::*[@lang]
-                               |ancestor-or-self::*[@xml:lang])[last()]"/>
+                      select="($target/ancestor-or-self::*[@lang]
+                           |$target/ancestor-or-self::*[@xml:lang])[last()]"/>
         <xsl:variable name="lang-attr"
                       select="($lang-scope/@lang | $lang-scope/@xml:lang)[1]"/>
 
