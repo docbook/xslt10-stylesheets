@@ -24,13 +24,15 @@
       <title
 	     named-template="component.title"
 	     param:node="ancestor-or-self::article[1]"
+	     fo:text-align="center"
 	     fo:margin-left="-4pc"
 	     fo:keep-with-next="always"
 	     fo:font-size="&hsize5;"
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
     <subtitle
-	      fo:font-family="{$title.font.family}"/>
+	      fo:font-family="{$title.font.family}"
+	      fo:text-align="center"/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -63,12 +65,14 @@
       <title
 	     named-template="division.title"
 	     param:node="ancestor-or-self::set[1]"
+	     fo:text-align="center"
 	     fo:font-size="&hsize5;"
 	     fo:space-before="&hsize5space;"
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
     <subtitle
-	      fo:font-family="{$title.font.family}"/>
+	      fo:font-family="{$title.font.family}"
+	      fo:text-align="center"/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -101,11 +105,13 @@
       <title
 	     named-template="division.title"
 	     param:node="ancestor-or-self::book[1]"
+	     fo:text-align="center"
 	     fo:font-size="&hsize5;"
 	     fo:space-before="&hsize5space;"
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
       <subtitle
+		fo:text-align="center"
 		fo:font-size="&hsize4;"
 		fo:space-before="&hsize4space;"
 		fo:font-family="{$title.font.family}"/>
@@ -151,11 +157,13 @@
       <title
 	     named-template="division.title"
 	     param:node="ancestor-or-self::part[1]"
+	     fo:text-align="center"
 	     fo:font-size="&hsize5;"
 	     fo:space-before="&hsize5space;"
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
     <subtitle
+	      fo:text-align="center"
 	      fo:font-size="&hsize4;"
 	      fo:space-before="&hsize4space;"
 	      fo:font-weight='bold'
@@ -179,12 +187,14 @@
 <t:titlepage element="partintro" wrapper="fo:block">
   <t:titlepage-content side="recto">
     <title
+	   fo:text-align="center"
 	   fo:font-size="&hsize3;"
 	   fo:font-weight="bold"
 	   fo:margin-left="-4pc"
 	   fo:space-before="1em"
 	   fo:font-family="{$title.font.family}"/>
     <subtitle
+	      fo:text-align="center"
 	      fo:font-size="&hsize2;"
 	      fo:font-weight="bold"
 	      fo:font-style="italic"
@@ -221,12 +231,14 @@
       <title
 	     named-template="division.title"
 	     param:node="ancestor-or-self::reference[1]"
+	     fo:text-align="center"
 	     fo:font-size="&hsize5;"
 	     fo:space-before="&hsize5space;"
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
     <subtitle
-	      fo:font-family="{$title.font.family}"/>
+	      fo:font-family="{$title.font.family}"
+	      fo:text-align="center"/>
     <corpauthor/>
     <authorgroup/>
     <author/>
