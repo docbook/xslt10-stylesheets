@@ -102,11 +102,6 @@
       <xsl:otherwise>[could not find document title]</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:variable name="docinfo" 
-                select="*[1]/artheader
-                        |*[1]/articleinfo
-                        |*[1]/sectioninfo
-                        |*[1]/sect1info"/>
 
   <fo:root font-family="Times Roman"
            font-size="12pt"
