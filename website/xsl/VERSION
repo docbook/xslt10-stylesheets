@@ -1,8 +1,0 @@
-<?xml version='1.0'?>
-<!DOCTYPE stylesheet [
-<!ENTITY VERSION SYSTEM "../VERSION">
-]>
-<stylesheet xmlns="http://www.w3.org/1999/XSL/Transform"
-            version='1.0'>
-<param name="VERSION">&VERSION;</param>
-</stylesheet>
