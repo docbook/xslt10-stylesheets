@@ -1,5 +1,7 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:exsl="http://exslt.org/common"
+                exclude-result-prefixes="exsl"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -24,6 +26,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="para">
+  <xsl:variable name="the-p">
   <p>
     <xsl:if test="position() = 1 and parent::listitem">
       <xsl:call-template name="anchor">
@@ -34,6 +37,12 @@
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </p>
+  </xsl:variable>
+
+  <xsl:copy-of select="$the-p"/>
+<!--
+  <xsl:apply-templates select="exsl:node-set($the-p)" mode="unwrap.p"/>
+-->
 </xsl:template>
 
 <xsl:template match="simpara">

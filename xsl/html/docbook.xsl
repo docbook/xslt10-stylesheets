@@ -61,6 +61,7 @@
 <xsl:include href="pi.xsl"/>
 <xsl:include href="ebnf.xsl"/>
 <xsl:include href="chunker.xsl"/>
+<xsl:include href="html-rtf.xsl"/>
 
 <!-- ==================================================================== -->
 
