@@ -3,6 +3,7 @@
 		version="1.0">
 
 <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/html/chunk.xsl"/>
+<xsl:include href="../../VERSION"/>
 
 <xsl:include href="param.xsl"/>
 <xsl:include href="jscript.xsl"/>
