@@ -17,8 +17,10 @@ namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
 db.toplevel.optional.sections |= db.sect1*
-
 db.toplevel.required.sections |= db.sect1+
+
+db.article.optional.components |= db.sect1*
+db.article.required.components |= db.sect1+
 
 # ======================================================================
 
