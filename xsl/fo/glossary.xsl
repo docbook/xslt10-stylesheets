@@ -108,7 +108,7 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="book/glossary|/glossary" priority="2">
+<xsl:template match="book/glossary|part/glossary|/glossary" priority="2">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
