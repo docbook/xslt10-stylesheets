@@ -4,14 +4,6 @@
 
 <xsl:import href="slides.xsl"/>
 
-<xsl:output method="html"/>
-
-<xsl:param name="css-stylesheet">w3c.css</xsl:param>
-<xsl:param name="output.indent" select="'yes'"/>
-<xsl:param name="debug" select="0"/>
-
-<xsl:strip-space elements="slides foil section"/>
-
 <xsl:template name="overlayDiv.attributes"/>
 
 <xsl:template name="logo">
@@ -30,7 +22,7 @@
           <title><xsl:value-of select="title"/></title>
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
-              <xsl:call-template name="css-stylesheet"/>
+              <xsl:call-template name="css.stylesheet"/>
             </xsl:attribute>
           </link>
           <link rel="top">
@@ -56,7 +48,7 @@
           <xsl:call-template name="body.attributes"/>
 
           <div class="navhead">
-            <table class="navbar" cellspacing="0" cellpadding="0" border="{$debug}"
+            <table class="navbar" cellspacing="0" cellpadding="0" border="0"
                    width="97%" summary="Navigation buttons">
               <tr valign="top">
                 <td align="left">
@@ -115,7 +107,7 @@
   </xsl:variable>
 
   <div class="navhead">
-    <table class="navbar" cellspacing="0" cellpadding="0" border="{$debug}" width="97%"
+    <table class="navbar" cellspacing="0" cellpadding="0" border="0" width="97%"
            summary="Navigation buttons">
       <tr valign="top">
         <td align="left">
@@ -123,15 +115,26 @@
         </td>
         <td valign="top" nowrap="nowrap" width="150">
           <div align="right">
-            <img src="{$graphics.dir}/bleft.png" border="0" width="32" height="32"
-                 alt=" "/>
+            <img border="0" width="32" height="32" alt=" ">
+              <xsl:attribute name="src">
+                <xsl:call-template name="w3c.bleft.image"/>
+              </xsl:attribute>
+            </img>
             <a rel="contents" href="toc.html" accesskey="C">
-              <img src="{$graphics.dir}/toc.png" border="0" width="32" height="32"
-                   alt=" Contents" title="Table of Contents"/>
+              <img border="0" width="32" height="32"
+                   alt=" Contents" title="Table of Contents">
+                <xsl:attribute name="src">
+                  <xsl:call-template name="w3c.toc.image"/>
+                </xsl:attribute>
+              </img>
             </a>
             <a rel="next" href="{$nextfile}" accesskey="N">
-              <img src="{$graphics.dir}/right.png" border="0" width="32" height="32"
-                   alt=" Next" title="{$nextfoil/title}"/>
+              <img border="0" width="32" height="32"
+                   alt=" Next" title="{$nextfoil/title}">
+                <xsl:attribute name="src">
+                  <xsl:call-template name="w3c.right.image"/>
+                </xsl:attribute>
+              </img>
             </a>
           </div>
         </td>
@@ -156,27 +159,25 @@
 
   <div class="navfoot">
     <hr class="foot"/>
-    <table class="footer" cellspacing="0" cellpadding="0" border="{$debug}" width="97%"
+    <table class="footer" cellspacing="0" cellpadding="0" border="0" width="97%"
            summary="footer">
       <tr valign="bottom">
         <td>&#160;</td>
-        <td align="right">
-          <p class="index">
-            <xsl:value-of select="count(preceding::foil)
-                                  + count(preceding::section)
-                                  + count(ancestor::section)
-                                  + 1"/>
-            <xsl:text> of </xsl:text>
-            <xsl:value-of select="count(//foil|//section) + 1"/>
-          </p>
-        </td>
+        <td>&#160;</td>
         <td valign="top" nowrap="nowrap" width="150">
           <div align="right">
-            <img src="{$graphics.dir}/bleft.png" border="0" width="32" height="32"
-                 alt=" "/>
+            <img border="0" width="32" height="32" alt=" ">
+              <xsl:attribute name="src">
+                <xsl:call-template name="w3c.bleft.image"/>
+              </xsl:attribute>
+            </img>
             <a rel="next" href="{$nextfile}" accesskey="N">
-              <img src="{$graphics.dir}/right.png" border="0" width="32" height="32"
-                   alt=" Next" title="{$nextfoil/title}"/>
+              <img border="0" width="32" height="32"
+                   alt=" Next" title="{$nextfoil/title}">
+                <xsl:attribute name="src">
+                  <xsl:call-template name="w3c.right.image"/>
+                </xsl:attribute>
+              </img>
             </a>
           </div>
         </td>
@@ -213,7 +214,7 @@
   </xsl:variable>
 
   <div class="navhead">
-    <table class="navbar" cellspacing="0" cellpadding="0" border="{$debug}" width="97%"
+    <table class="navbar" cellspacing="0" cellpadding="0" border="0" width="97%"
            summary="Navigation buttons">
       <tr valign="top">
         <td align="left">
@@ -222,16 +223,28 @@
         <td valign="top" nowrap="nowrap" width="150">
           <div align="right">
             <a rel="previous" href="{$prevfile}" accesskey="P">
-              <img src="{$graphics.dir}/left.png" border="0" width="32" height="32"
-                   alt=" Previous" title="{$prevfoil/title}"/>
+              <img border="0" width="32" height="32"
+                   alt=" Previous" title="{$prevfoil/title}">
+                <xsl:attribute name="src">
+                  <xsl:call-template name="w3c.left.image"/>
+                </xsl:attribute>
+              </img>
             </a>
             <a rel="contents" href="toc.html" accesskey="C">
-              <img src="{$graphics.dir}/toc.png" border="0" width="32" height="32"
-                   alt=" Contents" title="Table of Contents"/>
+              <img border="0" width="32" height="32"
+                   alt=" Contents" title="Table of Contents">
+                <xsl:attribute name="src">
+                  <xsl:call-template name="w3c.toc.image"/>
+                </xsl:attribute>
+              </img>
             </a>
             <a rel="next" href="{$nextfile}" accesskey="N">
-              <img src="{$graphics.dir}/right.png" border="0" width="32" height="32"
-                   alt=" Next" title="{$nextfoil/title}"/>
+              <img border="0" width="32" height="32"
+                   alt=" Next" title="{$nextfoil/title}">
+                <xsl:attribute name="src">
+                  <xsl:call-template name="w3c.right.image"/>
+                </xsl:attribute>
+              </img>
             </a>
           </div>
         </td>
@@ -274,7 +287,7 @@
 
   <div class="navfoot">
     <hr class="foot"/>
-    <table class="footer" cellspacing="0" cellpadding="0" border="{$debug}" width="97%"
+    <table class="footer" cellspacing="0" cellpadding="0" border="0" width="97%"
            summary="footer">
       <tr valign="bottom">
         <td>
@@ -302,18 +315,26 @@
                                   + count(ancestor::section)
                                   + 1"/>
             <xsl:text> of </xsl:text>
-            <xsl:value-of select="count(//foil|//section) + 1"/>
+            <xsl:value-of select="count(//foil|//section)"/>
           </p>
         </td>
         <td valign="top" nowrap="nowrap" width="150">
           <div align="right">
             <a rel="previous" href="{$prevfile}" accesskey="P">
-              <img src="{$graphics.dir}/left.png" border="0" width="32" height="32"
-                   alt=" Previous" title="{$prevfoil/title}"/>
+              <img border="0" width="32" height="32"
+                   alt=" Previous" title="{$prevfoil/title}">
+                <xsl:attribute name="src">
+                  <xsl:call-template name="w3c.left.image"/>
+                </xsl:attribute>
+              </img>
             </a>
             <a rel="next" href="{$nextfile}" accesskey="N">
-              <img src="{$graphics.dir}/right.png" border="0" width="32" height="32"
-                   alt=" Next" title="{$nextfoil/title}"/>
+              <img border="0" width="32" height="32"
+                   alt=" Next" title="{$nextfoil/title}">
+                <xsl:attribute name="src">
+                  <xsl:call-template name="w3c.right.image"/>
+                </xsl:attribute>
+              </img>
             </a>
           </div>
         </td>
@@ -352,7 +373,7 @@
   </xsl:variable>
 
   <div class="navhead">
-    <table class="navbar" cellspacing="0" cellpadding="0" border="{$debug}" width="97%"
+    <table class="navbar" cellspacing="0" cellpadding="0" border="0" width="97%"
            summary="Navigation buttons">
       <tr valign="top">
         <td align="left">
@@ -361,23 +382,38 @@
         <td valign="top" nowrap="nowrap" width="150">
           <div align="right">
             <a rel="previous" href="{$prevfile}" accesskey="P">
-              <img src="{$graphics.dir}/left.png" border="0" width="32" height="32"
-                   alt=" Previous" title="{$prevfoil/title}"/>
+              <img border="0" width="32" height="32"
+                   alt=" Previous" title="{$prevfoil/title}">
+                <xsl:attribute name="src">
+                  <xsl:call-template name="w3c.left.image"/>
+                </xsl:attribute>
+              </img>
             </a>
             <a rel="contents" href="toc.html" accesskey="C">
-              <img src="{$graphics.dir}/toc.png" border="0" width="32" height="32"
-                   alt=" Contents" title="Table of Contents"/>
+              <img border="0" width="32" height="32"
+                   alt=" Contents" title="Table of Contents">
+                <xsl:attribute name="src">
+                  <xsl:call-template name="w3c.toc.image"/>
+                </xsl:attribute>
+              </img>
             </a>
             <xsl:choose>
               <xsl:when test="$nextfoil != ''">
                 <a rel="next" href="{$nextfile}" accesskey="N">
-                  <img src="{$graphics.dir}/right.png" border="0" width="32" height="32"
-                       alt=" Next" title="{$nextfoil/title}"/>
+                  <img border="0" width="32" height="32"
+                       alt=" Next" title="{$nextfoil/title}">
+                    <xsl:attribute name="src">
+                      <xsl:call-template name="w3c.right.image"/>
+                    </xsl:attribute>
+                  </img>
                 </a>
               </xsl:when>
               <xsl:otherwise>
-                <img src="{$graphics.dir}/bright.png" border="0" width="32" height="32"
-                     alt=" The End."/>
+                <img border="0" width="32" height="32" alt=" The End.">
+                  <xsl:attribute name="src">
+                    <xsl:call-template name="w3c.bright.image"/>
+                  </xsl:attribute>
+                </img>
               </xsl:otherwise>
             </xsl:choose>
           </div>
@@ -417,7 +453,7 @@
 
   <div class="navfoot">
     <hr class="foot"/>
-    <table class="footer" cellspacing="0" cellpadding="0" border="{$debug}" width="97%"
+    <table class="footer" cellspacing="0" cellpadding="0" border="0" width="97%"
            summary="footer">
       <tr valign="bottom">
         <td>
@@ -443,27 +479,38 @@
             <xsl:value-of select="count(preceding::foil)
                                   + count(preceding::section)
                                   + count(ancestor::section)
-                                  + 2"/>
+                                  + 1"/>
             <xsl:text> of </xsl:text>
-            <xsl:value-of select="count(//foil|//section) + 1"/>
+            <xsl:value-of select="count(//foil|//section)"/>
           </p>
         </td>
         <td valign="top" nowrap="nowrap" width="150">
           <div align="right">
             <a rel="previous" href="{$prevfile}" accesskey="P">
-              <img src="{$graphics.dir}/left.png" border="0" width="32" height="32"
-                   alt=" Previous" title="{$prevfoil/title}"/>
+              <img border="0" width="32" height="32"
+                   alt=" Previous" title="{$prevfoil/title}">
+                  <xsl:attribute name="src">
+                    <xsl:call-template name="w3c.left.image"/>
+                  </xsl:attribute>
+                </img>
             </a>
             <xsl:choose>
               <xsl:when test="$nextfoil != ''">
                 <a rel="next" href="{$nextfile}" accesskey="N">
-                  <img src="{$graphics.dir}/right.png" border="0" width="32" height="32"
-                       alt=" Next" title="{$nextfoil/title}"/>
+                  <img border="0" width="32" height="32"
+                       alt=" Next" title="{$nextfoil/title}">
+                  <xsl:attribute name="src">
+                    <xsl:call-template name="w3c.right.image"/>
+                  </xsl:attribute>
+                </img>
                 </a>
               </xsl:when>
               <xsl:otherwise>
-                <img src="{$graphics.dir}/bright.png" border="0" width="32" height="32"
-                     alt=" The End."/>
+                <img border="0" width="32" height="32" alt=" The End.">
+                  <xsl:attribute name="src">
+                    <xsl:call-template name="w3c.bright.image"/>
+                  </xsl:attribute>
+                </img>
               </xsl:otherwise>
             </xsl:choose>
           </div>
