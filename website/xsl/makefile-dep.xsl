@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
-<xsl:param name="prefix" select="''"/>
+<xsl:param name="filename-prefix" select="''"/>
 
 <xsl:output method="text"/>
 
@@ -30,7 +30,7 @@
   <xsl:apply-templates select="." mode="calculate-dir"/>
 -->
   <xsl:value-of select="@dir"/>
-  <xsl:value-of select="$prefix"/>
+  <xsl:value-of select="$filename-prefix"/>
   <xsl:value-of select="@filename"/>
   <xsl:text>: </xsl:text>
   <xsl:value-of select="@page"/>
@@ -44,7 +44,7 @@
 -->
   <xsl:if test="@filename">
     <xsl:value-of select="@dir"/>
-    <xsl:value-of select="$prefix"/>
+    <xsl:value-of select="$filename-prefix"/>
     <xsl:value-of select="@filename"/>
     <xsl:text>: </xsl:text>
     <xsl:value-of select="@page"/>
@@ -58,7 +58,7 @@
   <xsl:apply-templates select="." mode="calculate-dir"/>
 -->
   <xsl:value-of select="@dir"/>
-  <xsl:value-of select="$prefix"/>
+  <xsl:value-of select="$filename-prefix"/>
   <xsl:value-of select="@filename"/>
   <xsl:text> </xsl:text>
 </xsl:template>
@@ -69,7 +69,7 @@
 -->
   <xsl:if test="@filename">
     <xsl:value-of select="@dir"/>
-    <xsl:value-of select="$prefix"/>
+    <xsl:value-of select="$filename-prefix"/>
     <xsl:value-of select="@filename"/>
     <xsl:text> </xsl:text>
   </xsl:if>
