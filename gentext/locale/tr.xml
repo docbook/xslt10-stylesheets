@@ -169,10 +169,10 @@
 <gentext key="nav-up" text="Yukarı"/>
 
 <gentext key="sectioncalled"       text=""/>
-<gentext key="Draft"         text="Draft"/> <!-- en -->
-<gentext key="above"         text="above"/> <!-- en -->
-<gentext key="below"         text="below"/> <!-- en -->
-<gentext key="index symbols"            text="Semboler"/>
+<gentext key="Draft"         text="Taslak"/> 
+<gentext key="above"         text="üstünde"/> 
+<gentext key="below"         text="altında"/> 
+<gentext key="index symbols"            text="Semboller"/>
 
 <gentext key="lowercase.alpha" text="abcçdefgğhıijklmnoöprsştuüvyz"/>
 <gentext key="uppercase.alpha" text="ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ"/>
