@@ -19,6 +19,7 @@
 <!ATTLIST %l10n;
 	%xmlns;		CDATA	#FIXED %uri;
 	language	CDATA	#REQUIRED
+	english-language-name	CDATA	#IMPLIED
 >
 
 <!ELEMENT %gentext; EMPTY>
@@ -42,4 +43,5 @@
 <!ATTLIST %template;
 	name		CDATA	#REQUIRED
 	text		CDATA	#REQUIRED
+	style		CDATA	#IMPLIED
 >
