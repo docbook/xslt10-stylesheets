@@ -120,6 +120,16 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="blockquote/title">
+  <div class="blockquote-title">
+    <p>
+      <b>
+        <xsl:apply-templates/>
+      </b>
+    </p>
+  </div>
+</xsl:template>
+
 <xsl:template match="epigraph">
   <div class="{name(.)}">
     <xsl:apply-templates select="para"/>
