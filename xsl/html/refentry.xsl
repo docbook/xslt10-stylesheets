@@ -104,13 +104,27 @@
 <xsl:template match="refnamediv">
   <div class="{name(.)}">
     <xsl:call-template name="anchor"/>
-    <xsl:if test="$refentry.generate.name != 0">
-      <h2>
-        <xsl:call-template name="gentext">
-          <xsl:with-param name="key" select="'RefName'"/>
-        </xsl:call-template>
-      </h2>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="$refentry.generate.name != 0">
+        <h2>
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'RefName'"/>
+          </xsl:call-template>
+        </h2>
+      </xsl:when>
+      <xsl:when test="$refentry.generate.title != 0">
+        <h2>
+          <xsl:choose>
+            <xsl:when test="../refmeta/refentrytitle">
+              <xsl:apply-templates select="../refmeta/refentrytitle"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="refname[1]"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </h2>
+      </xsl:when>
+    </xsl:choose>
     <p>
       <xsl:apply-templates/>
     </p>
