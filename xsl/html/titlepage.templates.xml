@@ -6,8 +6,8 @@
 
 <t:titlepage element="article" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"/>
-    <subtitle predicate="[1]"/>
+    <title/>
+    <subtitle/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -38,8 +38,8 @@
 
 <t:titlepage element="set" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"/>
-    <subtitle predicate="[1]"/>
+    <title/>
+    <subtitle/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -70,8 +70,8 @@
 
 <t:titlepage element="book" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"/>
-    <subtitle predicate="[1]"/>
+    <title/>
+    <subtitle/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -102,8 +102,8 @@
 
 <t:titlepage element="part" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"/>
-    <subtitle predicate="[1]"/>
+    <title/>
+    <subtitle/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -131,8 +131,8 @@
 
 <t:titlepage element="partintro" wrapper="div">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"/>
-    <subtitle predicate="[1]"/>
+    <title/>
+    <subtitle/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -162,8 +162,8 @@
 
 <t:titlepage element="reference" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"/>
-    <subtitle predicate="[1]"/>
+    <title/>
+    <subtitle/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -194,11 +194,11 @@
 
   <t:titlepage element="dedication" wrapper="div" class="titlepage">
     <t:titlepage-content side="recto">
-    <title predicate="[1]"
+    <title
 	   force="1"
 	   named-template="component.title"
 	   param:node="ancestor-or-self::dedication[1]"/>
-    <subtitle predicate="[1]"/>
+    <subtitle/>
     </t:titlepage-content>
 
   <t:titlepage-content side="verso">
@@ -218,8 +218,8 @@
 
 <t:titlepage element="preface" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"/>
-    <subtitle predicate="[1]"/>
+    <title/>
+    <subtitle/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -249,8 +249,8 @@
 
 <t:titlepage element="chapter" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"/>
-    <subtitle predicate="[1]"/>
+    <title/>
+    <subtitle/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -280,8 +280,8 @@
 
 <t:titlepage element="appendix" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"/>
-    <subtitle predicate="[1]"/>
+    <title/>
+    <subtitle/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -311,8 +311,8 @@
 
 <t:titlepage element="section" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"/>
-    <subtitle predicate="[1]"/>
+    <title/>
+    <subtitle/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -341,8 +341,8 @@
 
 <t:titlepage element="sect1" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"/>
-    <subtitle predicate="[1]"/>
+    <title/>
+    <subtitle/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -371,8 +371,8 @@
 
 <t:titlepage element="sect2" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"/>
-    <subtitle predicate="[1]"/>
+    <title/>
+    <subtitle/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -401,8 +401,8 @@
 
 <t:titlepage element="sect3" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"/>
-    <subtitle predicate="[1]"/>
+    <title/>
+    <subtitle/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -431,8 +431,8 @@
 
 <t:titlepage element="sect4" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"/>
-    <subtitle predicate="[1]"/>
+    <title/>
+    <subtitle/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -461,8 +461,8 @@
 
 <t:titlepage element="sect5" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"/>
-    <subtitle predicate="[1]"/>
+    <title/>
+    <subtitle/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -491,8 +491,8 @@
 
 <t:titlepage element="simplesect" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"/>
-    <subtitle predicate="[1]"/>
+    <title/>
+    <subtitle/>
     <corpauthor/>
     <authorgroup/>
     <author/>
@@ -523,11 +523,11 @@
 
 <t:titlepage element="bibliography" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"
+    <title
 	   force="1"
 	   named-template="component.title"
 	   param:node="ancestor-or-self::bibliography[1]"/>
-    <subtitle predicate="[1]"/>
+    <subtitle/>
   </t:titlepage-content>
 
   <t:titlepage-content side="verso">
@@ -547,11 +547,11 @@
 
 <t:titlepage element="glossary" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"
+    <title
 	   force="1"
 	   named-template="component.title"
 	   param:node="ancestor-or-self::glossary[1]"/>
-    <subtitle predicate="[1]"/>
+    <subtitle/>
   </t:titlepage-content>
 
   <t:titlepage-content side="verso">
@@ -571,11 +571,11 @@
 
 <t:titlepage element="index" wrapper="div" class="titlepage">
   <t:titlepage-content side="recto">
-    <title predicate="[1]"
+    <title
 	   force="1"
 	   named-template="component.title"
 	   param:node="ancestor-or-self::index[1]"/>
-    <subtitle predicate="[1]"/>
+    <subtitle/>
   </t:titlepage-content>
 
   <t:titlepage-content side="verso">
