@@ -127,6 +127,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &section.autolabel.max.depth;
 &section.label.includes.component.label;
 &label.from.part;
+&component.label.includes.part.label;
 </reference>
 
 <!--
@@ -459,6 +460,7 @@ around all these parameters.</para>
 <src:fragref linkend="chunk.separate.lots.frag"/>
 <src:fragref linkend="citerefentry.link.frag"/>
 <src:fragref linkend="collect.xref.targets.frag"/>
+<src:fragref linkend="component.label.includes.part.label.frag"/>
 <src:fragref linkend="css.decoration.frag"/>
 <src:fragref linkend="current.docid.frag"/>
 <src:fragref linkend="default.float.class.frag"/>

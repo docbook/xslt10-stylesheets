@@ -138,6 +138,7 @@ generate.section.toc.level;
 &section.autolabel.max.depth;
 &section.label.includes.component.label;
 &label.from.part;
+&component.label.includes.part.label;
 </reference>
 
 <reference><title>XSLT Processing</title>
@@ -547,6 +548,7 @@ around all these parameters.</para>
 <src:fragref linkend="column.gap.lot.frag"/>
 <src:fragref linkend="column.gap.titlepage.frag"/>
 <src:fragref linkend="compact.list.item.spacing.frag"/>
+<src:fragref linkend="component.label.includes.part.label.frag"/>
 <src:fragref linkend="component.title.properties.frag"/>
 <src:fragref linkend="current.docid.frag"/>
 <src:fragref linkend="default.float.class.frag"/>
