@@ -6,6 +6,10 @@
 
 <xsl:param name="titlefoil.html" select="'titlefoil.html'"/>
 
+<xsl:param name="ns4" select="0"/>
+<xsl:param name="ie5" select="0"/>
+<xsl:param name="multiframe" select="0"/>
+
 <xsl:template match="slides">
   <xsl:variable name="title">
     <xsl:choose>
