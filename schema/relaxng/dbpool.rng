@@ -2920,6 +2920,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
         <element name="blockquote">
           <ref name="blockquote.attlist"/>
           <optional>
+            <ref name="blockinfo"/>
+          </optional>
+          <optional>
             <ref name="title"/>
           </optional>
           <optional>
