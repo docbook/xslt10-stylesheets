@@ -86,20 +86,17 @@
   <xsl:variable name="firstch" select="(*[name(.)!='label'])[1]"/>
   <xsl:variable name="restch" select="(*[name(.)!='label'])[position()!=1]"/>
   <xsl:variable name="id">
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select="parent::*"/>
-    </xsl:call-template>
+    <xsl:call-template name="object.id"/>
   </xsl:variable>
 
   <div class="{name(.)}">
     <p>
-      <a name="{$id}">
-        <b>
-          <xsl:apply-templates select="." mode="label.markup"/>
-          <xsl:text> </xsl:text>
-        </b>
-        <xsl:apply-templates select="$firstch" mode="no.wrapper.mode"/>
-      </a>
+      <a name="{$id}"/>
+      <b>
+        <xsl:apply-templates select="." mode="label.markup"/>
+        <xsl:text> </xsl:text>
+      </b>
+      <xsl:apply-templates select="$firstch" mode="no.wrapper.mode"/>
     </p>
     <xsl:apply-templates select="$restch"/>
   </div>
@@ -108,9 +105,13 @@
 <xsl:template match="answer">
   <xsl:variable name="firstch" select="(*[name(.)!='label'])[1]"/>
   <xsl:variable name="restch" select="(*[name(.)!='label'])[position()!=1]"/>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
 
   <div class="{name(.)}">
     <p>
+      <a name="{$id}"/>
       <b>
         <xsl:apply-templates select="." mode="label.markup"/>
         <xsl:text> </xsl:text>
@@ -167,20 +168,13 @@
 
 <xsl:template match="question" mode="qandatoc.mode">
   <xsl:variable name="firstch" select="(*[name(.)!='label'])[1]"/>
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select="parent::*"/>
-    </xsl:call-template>
-  </xsl:variable>
 
   <dt>
     <xsl:apply-templates select="." mode="label.markup"/>
     <xsl:text> </xsl:text>
     <a>
       <xsl:attribute name="href">
-        <xsl:call-template name="href.target">
-          <xsl:with-param name="object" select="parent::*"/>
-        </xsl:call-template>
+        <xsl:call-template name="href.target"/>
       </xsl:attribute>
       <xsl:value-of select="$firstch"/>
     </a>
