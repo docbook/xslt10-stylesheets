@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding="utf-8"?>
+<!DOCTYPE slides PUBLIC "-//Norman Walsh//DTD Slides XML V3.1.0//EN"
+                 "../schema/dtd/slides.dtd">
+<slides>
+
+<slidesinfo>
+<title>GITK - Generalized Interface ToolKit</title>
+<subtitle>Dynamically generated multi-modal application interfaces</subtitle>
+<titleabbrev>GITK</titleabbrev>
+
+<authorgroup>
+<author>
+<honorific>Dipl. Inf</honorific>
+<firstname>Stefan</firstname>
+<surname>Kost</surname>
+</author>
+
+<othercredit>
+<honorific>Prof. Dr</honorific>
+<firstname>Wolfgang</firstname>
+<surname>Wünschmann</surname>
+<contrib>Betreuer der Arbeit</contrib>
+<affiliation>
+<orgname>TU Dresden</orgname>
+<orgdiv>FB Informatik, Institut für Angewandte
+Informatik</orgdiv>
+</affiliation>
+</othercredit>
+
+<othercredit>
+<honorific>Prof. Dr</honorific>
+<firstname>Klaus</firstname>
+<surname>Bastian</surname>
+<contrib>Betreuer der Arbeit</contrib>
+<affiliation>
+<orgname>HTWK Leipzig</orgname>
+<orgdiv>FB IMN</orgdiv>
+</affiliation>
+</othercredit>
+</authorgroup>
+
+<releaseinfo role="version">0.2.0</releaseinfo>
+<copyright>
+<year>2003</year>
+<holder>Stefan Kost</holder>
+</copyright>
+<pubdate>16.12.2003</pubdate>
+</slidesinfo>
+
+<foilgroup><title>Foilgroup Title</title>
+<subtitle>Foilgroup Subtitle</subtitle>
+<para>Some premable.</para>
+<foil><title>Foil Title</title>
+<subtitle>Foil Subtitle</subtitle>
+<para>Foil content</para>
+</foil>
+</foilgroup>
+</slides>
