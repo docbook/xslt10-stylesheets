@@ -1,6 +1,9 @@
-.PHONY: doc saxon643 saxon644 saxon65 saxon651 xalan2
+.PHONY: doc saxon8 saxon643 saxon644 saxon65 saxon651 xalan2
 
 all: jars
+
+saxon8:
+	$(MAKE) -C saxon8/.classes
 
 saxon643:
 	$(MAKE) -C saxon643/.classes
@@ -17,7 +20,8 @@ saxon651: saxon643
 xalan2:
 	$(MAKE) -C xalan2/.classes
 
-jars: saxon643 saxon644 xalan2
+jars: saxon8 saxon643 saxon644 xalan2
+	$(MAKE) -C saxon8/.classes jar
 	$(MAKE) -C saxon643/.classes jar
 	cp saxon643.jar saxon644.jar
 	cp saxon643.jar saxon65.jar
@@ -25,5 +29,6 @@ jars: saxon643 saxon644 xalan2
 	$(MAKE) -C xalan2/.classes jar
 
 clean:
+	$(MAKE) -C saxon8/.classes clean
 	$(MAKE) -C saxon643/.classes clean
 	$(MAKE) -C xalan2/.classes clean
