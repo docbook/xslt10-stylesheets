@@ -19,7 +19,7 @@
       <xsl:value-of select="$source.css.dir"/>
       <xsl:text>/</xsl:text>
     </xsl:when>
-    <xsl:when test="css.stylesheet.dir != ''">
+    <xsl:when test="$css.stylesheet.dir != ''">
       <xsl:value-of select="$css.stylesheet.dir"/>
       <xsl:text>/</xsl:text>
     </xsl:when>
