@@ -97,7 +97,8 @@
     </xsl:call-template>
   </xsl:variable>
   <fo:block font-size="16pt" font-weight="bold"
-            font-family="{$title.font.family}">
+            font-family="{$title.font.family}"
+            keep-with-next.within-column="always">
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
