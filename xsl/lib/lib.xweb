@@ -187,7 +187,7 @@ the empty string.</para>
 
 <!-- ================================================================== -->
 
-<refentry id="lengt-magnitude">
+<refentry id="length-magnitude">
 <refnamediv>
 <refname>length-magnitude</refname>
 <refpurpose>Return the unqualified dimension from a length specification</refpurpose>
@@ -245,12 +245,13 @@ length, the <parameter>defauilt.units</parameter> are returned.</para>
 <programlisting><src:fragment id='length-units.frag'>
 <xsl:template name="length-units">
   <xsl:param name="length" select="'0pt'"/>
-  <xsl:param name="default.units" select="'pt'"/>
+  <xsl:param name="default.units" select="'px'"/>
   <xsl:variable name="magnitude">
     <xsl:call-template name="length-magnitude">
       <xsl:with-param name="length" select="$length"/>
     </xsl:call-template>
   </xsl:variable>
+
   <xsl:variable name="units">
     <xsl:value-of select="substring($length, string-length($magnitude)+1)"/>
   </xsl:variable>
@@ -287,12 +288,14 @@ the <parameter>default.units</parameter> will be added to it.
 <programlisting><src:fragment id='length-spec.frag'>
 <xsl:template name="length-spec">
   <xsl:param name="length" select="'0pt'"/>
-  <xsl:param name="default.units" select="'pt'"/>
+  <xsl:param name="default.units" select="'px'"/>
+
   <xsl:variable name="magnitude">
     <xsl:call-template name="length-magnitude">
       <xsl:with-param name="length" select="$length"/>
     </xsl:call-template>
   </xsl:variable>
+
   <xsl:variable name="units">
     <xsl:value-of select="substring($length, string-length($magnitude)+1)"/>
   </xsl:variable>
@@ -325,6 +328,83 @@ the <parameter>default.units</parameter> will be added to it.
 </refsect1>
 </refentry>
 
+<!-- ================================================================== -->
+
+<refentry id="length-in-points">
+<refnamediv>
+<refname>length-in-points</refname>
+<refpurpose>Returns the size, in points, of a specified length</refpurpose>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
+<para>The <function>length-in-points</function> template converts a length
+specification to points and returns that value as an unqualified
+number.
+</para>
+
+<caution>
+<para>There is no way for the template to infer the size of an
+<literal>em</literal>. It relies on the default <parameter>em.size</parameter>
+which is initially <literal>10</literal> (for 10pt).</para>
+
+<para>Similarly, converting pixesl to points relies on the
+<parameter>pixels.per.inch</parameter> parameter which is initially
+<literal>90</literal>.
+</para>
+</caution>
+
+<programlisting><src:fragment id='length-in-points.frag'>
+<xsl:template name="length-in-points">
+  <xsl:param name="length" select="'0pt'"/>
+  <xsl:param name="em.size" select="10"/>
+  <xsl:param name="pixels.per.inch" select="90"/>
+
+  <xsl:variable name="magnitude">
+    <xsl:call-template name="length-magnitude">
+      <xsl:with-param name="length" select="$length"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="units">
+    <xsl:value-of select="substring($length, string-length($magnitude)+1)"/>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$units = 'pt'">
+      <xsl:value-of select="$magnitude"/>
+    </xsl:when>
+    <xsl:when test="$units = 'cm'">
+      <xsl:value-of select="$magnitude div 2.54 * 72.0"/>
+    </xsl:when>
+    <xsl:when test="$units = 'mm'">
+      <xsl:value-of select="$magnitude div 25.4 * 72.0"/>
+    </xsl:when>
+    <xsl:when test="$units = 'in'">
+      <xsl:value-of select="$magnitude * 72.0"/>
+    </xsl:when>
+    <xsl:when test="$units = 'pc'">
+      <xsl:value-of select="$magnitude div 6.0 * 72.0"/>
+    </xsl:when>
+    <xsl:when test="$units = 'px'">
+      <xsl:value-of select="$magnitude div $pixels.per.inch * 72.0"/>
+    </xsl:when>
+    <xsl:when test="$units = 'em'">
+      <xsl:value-of select="$magnitude * $em.size"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message>
+        <xsl:text>Unrecognized unit of measure: </xsl:text>
+        <xsl:value-of select="$units"/>
+        <xsl:text>.</xsl:text>
+      </xsl:message>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+</src:fragment></programlisting>
+
+</refsect1>
+</refentry>
 
 <!-- ================================================================== -->
 
@@ -606,6 +686,7 @@ around these functions.</para>
 <src:fragref linkend="length-magnitude.frag"/>
 <src:fragref linkend="length-units.frag"/>
 <src:fragref linkend="length-spec.frag"/>
+<src:fragref linkend="length-in-points.frag"/>
 <src:fragref linkend="pi-attribute.frag"/>
 <src:fragref linkend="lookup.key.frag"/>
 <src:fragref linkend="xpath.location.frag"/>
