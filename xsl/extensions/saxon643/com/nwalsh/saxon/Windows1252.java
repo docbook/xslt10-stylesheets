@@ -5,25 +5,62 @@ import com.icl.saxon.charcode.PluggableCharacterSet;
 
 /**
  *
+ * $Id$
+ *
  * File:      Windows1252CharacterSet.java
  * Created:   May 26 2004
  * Author:    Pontus Haglund
  * Project:   Venus
  *
+ * This class extends Saxon 6.5.x with the windows-1252 character set.
  *
- * This class extends Saxon 6.5.3 with the windows-1252 character set
+ * It is particularly useful when  generating HTML Help for
+ * Western European Languages.
+ *
+ * To use this class for generating HTML Help output with the
+ * DocBook XSL stylesheets, complete the following steps;
  *              
- * 1. Make sure saxon.jar is in your CLASSPATH
- * 2. Compile file javac Windows1252CharacterSet.java  
- * 3. Create a directory structure $(PATH)/com/icl/saxon/charcode
- *    and make sure $(PATH) is in your CLASSPATH
- * 4. Put Windows1252CharacterSet.class into $(PATH)/com/icl/saxon/charcode
- * 5. Add the following 4 lines to your customization layer
+ * 1. Make sure that the Saxon 6.5.x jar file and the jar file for
+ *    the DocBook XSL Java extensions are in your CLASSPATH
+ *
+ * 2. Create a DocBook XSL customization layer -- a file named
+ *    "mystylesheet.xsl" or whatever -- that, at a minimum,
+ *    contains the following:
  * 
- * <xsl:param name="htmlhelp.encoding">com.icl.saxon.charcode.Windows1252CharacterSet</xsl:param>
- * <xsl:param name="default.encoding">com.icl.saxon.charcode.Windows1252CharacterSet</xsl:param>
- * <xsl:param name="chunker.output.encoding">com.icl.saxon.charcode.Windows1252CharacterSet</xsl:param>
- * <xsl:param name="saxon.character.representation" select="native"></xsl:param>
+ *      <xsl:stylesheet
+ *        xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+ *        version='1.0'>
+ *        <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/htmlhelp/htmlhelp.xsl"/>
+ *        <xsl:output method="html" encoding="WINDOWS-1252" indent="no"/>
+ *        <xsl:param name="htmlhelp.encoding" select="WINDOWS-1252"></xsl:param>
+ *        <xsl:param name="chunker.output.encoding" select="WINDOWS-1252"></xsl:param>
+ *        <xsl:param name="saxon.character.representation" select="native"></xsl:param>
+ *      </xsl:stylesheet>
+ *
+ * 3. Invoke Saxon with the "encoding.windows-1252" Java system
+ *    property set to "com.nwalsh.saxon.Windows1252"; for example:
+ *
+ *      java \
+ *        -Dencoding.windows-1252=com.nwalsh.saxon.Windows1252 \
+ *      com.icl.saxon.StyleSheet \
+ *      mydoc.xml mystylesheet.xsl
+ *
+ *    Or, for a more complete "real world" case showing other
+ *    options you'll typically want to use:
+ *
+ *      java \
+ *        -Dencoding.windows-1252=com.nwalsh.saxon.Windows1252 \
+ *        -Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl \
+ *        -Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl \
+ *        -Djavax.xml.transform.TransformerFactory=com.icl.saxon.TransformerFactoryImpl \
+ *      com.icl.saxon.StyleSheet \
+ *        -x org.apache.xml.resolver.tools.ResolvingXMLReader \
+ *        -y org.apache.xml.resolver.tools.ResolvingXMLReader \
+ *        -r org.apache.xml.resolver.tools.CatalogResolver \
+ *      mydoc.xml mystylesheet.xsl
+ *
+ *   In both cases, the "mystylesheet.xsl" file should be a DocBook
+ *   customization layer containing the parameters show in step 2.
  *
  */
 
