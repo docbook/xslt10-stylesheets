@@ -205,6 +205,7 @@
 <!-- Glossary collection -->
 
 <xsl:template match="glossary[@role='auto']" priority="2">
+  <xsl:variable name="collection" select="document($glossary.collection, .)"/>
   <xsl:if test="$glossary.collection = ''">
     <xsl:message>
       <xsl:text>Warning: processing automatic glossary </xsl:text>
