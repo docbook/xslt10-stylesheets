@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook XML notations module V4.1.1 .................................... -->
+<!-- DocBook XML notations module V4.1.2 .................................... -->
 <!-- File dbnotnx.mod ..................................................... -->
 
 <!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
@@ -36,7 +36,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbnotn PUBLIC
-     "-//OASIS//ENTITIES DocBook XML Notations V4.1.1//EN"
+     "-//OASIS//ENTITIES DocBook XML Notations V4.1.2//EN"
      "dbnotnx.mod">
      %dbnotn;
 
@@ -93,5 +93,5 @@
 <!NOTATION WPG		SYSTEM "WPG"> <!--WordPerfect Graphic format-->
 <!NOTATION linespecific	SYSTEM "linespecific">
 
-<!-- End of DocBook XML notations module V4.1.1 ............................. -->
+<!-- End of DocBook XML notations module V4.1.2 ............................. -->
 <!-- ...................................................................... -->
