@@ -26,6 +26,12 @@
 <xsl:template match="para">
   <xsl:variable name="p">
     <p>
+      <xsl:if test="@role and $para.propagates.style != 0">
+        <xsl:attribute name="class">
+          <xsl:value-of select="@role"/>
+        </xsl:attribute>
+      </xsl:if>
+
       <xsl:if test="position() = 1 and parent::listitem">
         <xsl:call-template name="anchor">
           <xsl:with-param name="node" select="parent::listitem"/>
@@ -52,6 +58,12 @@
 <xsl:template match="simpara">
   <!-- see also listitem/simpara in lists.xsl -->
   <p>
+    <xsl:if test="@role and $para.propagates.style != 0">
+      <xsl:attribute name="class">
+        <xsl:value-of select="@role"/>
+      </xsl:attribute>
+    </xsl:if>
+
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </p>
@@ -59,6 +71,12 @@
 
 <xsl:template match="formalpara">
   <p>
+    <xsl:if test="@role and $para.propagates.style != 0">
+      <xsl:attribute name="class">
+        <xsl:value-of select="@role"/>
+      </xsl:attribute>
+    </xsl:if>
+
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </p>

@@ -203,3 +203,4 @@
 <!ENTITY use.role.as.xrefstyle SYSTEM "../params/use.role.as.xrefstyle.xml">
 <!ENTITY use.svg SYSTEM "../params/use.svg.xml">
 <!ENTITY variablelist.as.table SYSTEM "../params/variablelist.as.table.xml">
+<!ENTITY para.propagates.style SYSTEM "../params/para.propagates.style.xml">
