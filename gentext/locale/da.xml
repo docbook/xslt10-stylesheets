@@ -164,8 +164,10 @@
 <gentext key="nav-prev-sibling" text="hurtigt tilbage"/>
 <gentext key="nav-up" text="op"/>
 
+<gentext key="Draft"         text="Kladde"/>
+<gentext key="above"         text="over"/>
+<gentext key="below"         text="under"/>
 <gentext key="sectioncalled"       text="afsnittet der hedder"/>
-
 <gentext key="index symbols"            text="symboler"/>
 
 <gentext key="lowercase.alpha"
@@ -385,6 +387,7 @@
 <template name="variablelist">%t</template>
 <template name="varlistentry">%n</template>
 <template name="warning">%t</template>
+<template name="page.citation"> [%p]</template>
 
 </context>
 
