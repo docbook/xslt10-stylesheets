@@ -465,6 +465,7 @@
 <template name="equation"><Equation/>&#160;%n, <startquote/>%t<endquote/></template>
 <template name="example"><Example/>&#160;%n, <startquote/>%t<endquote/></template>
 <template name="figure"><Figure/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="part"><Part/>&#160;%n, <startquote/>%t<endquote/></template>
 <template name="procedure"><Procedure/>&#160;%n, <startquote/>%t<endquote/></template>
 <template name="productionset"><ProductionSet/>&#160;%n, <startquote/>%t<endquote/></template>
 <template name="qandadiv"><Qandadiv/>&#160;%n, <startquote/>%t<endquote/></template>
