@@ -19,6 +19,11 @@
   <xsl:param name="base.name" select="''"/>
 
   <xsl:choose>
+    <!-- put Saxon first to work around a bug in libxslt -->
+    <xsl:when test="element-available('saxon:output')">
+      <!-- Saxon doesn't make the chunks relative -->
+      <xsl:value-of select="concat($base.dir,$base.name)"/>
+    </xsl:when>
     <xsl:when test="element-available('exsl:document')">
       <!-- EXSL document does make the chunks relative, I think -->
       <xsl:choose>
@@ -29,10 +34,6 @@
           <xsl:value-of select="$base.name"/>
         </xsl:otherwise>
       </xsl:choose>
-    </xsl:when>
-    <xsl:when test="element-available('saxon:output')">
-      <!-- Saxon doesn't make the chunks relative -->
-      <xsl:value-of select="concat($base.dir,$base.name)"/>
     </xsl:when>
     <xsl:when test="element-available('xalanredirect:write')">
       <!-- Xalan doesn't make the chunks relative -->
