@@ -69,7 +69,7 @@
 		|%linespecific.class;	|%synop.class;
 		|%para.class;		|%informal.class;
 		|%formal.class;		|%compound.class;
-		|%descobj.class;">
+		|%descobj.class;        |speakernotes">
 
 <!-- ====================================================================== -->
 <!-- Add screen back into the DTD -->
@@ -87,7 +87,7 @@
 
 <!-- ====================================================================== -->
 
-<!ELEMENT slides (speakernotes?, slidesinfo, (foil+|section+))>
+<!ELEMENT slides (slidesinfo, speakernotes?, (foil+|section+))>
 <!ATTLIST slides
 		%label.attrib;
 		%status.attrib;
@@ -126,7 +126,6 @@
 >
 
 <!ELEMENT foil (foilinfo?, title, subtitle?, titleabbrev?,
-                speakernotes?,
                 (%divcomponent.mix;)+)>
 
 <!ATTLIST foil
