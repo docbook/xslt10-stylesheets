@@ -76,7 +76,7 @@
     </xsl:when>
     <xsl:otherwise>
       <fo:block id="{$id}"
-                xsl:use-attribute-sets="informal.table.properties">
+                xsl:use-attribute-sets="informaltable.properties">
         <fo:table table-layout="fixed"
                   xsl:use-attribute-sets="table.table.properties">
           <xsl:attribute name="width">
@@ -182,7 +182,6 @@
   </xsl:variable>
   <fo:table-cell xsl:use-attribute-sets="table.cell.padding">
     <xsl:call-template name="table.cell.properties">
-      <xsl:with-param name="bgcolor.pi" select="$bgcolor"/>
       <xsl:with-param name="bgcolor.pi" select="$bgcolor"/>
     </xsl:call-template>
     <fo:block>
