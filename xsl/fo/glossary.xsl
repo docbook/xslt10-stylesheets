@@ -24,6 +24,12 @@
   </fo:block>
 </xsl:template>
 
+<xsl:template match="glossdiv/title"/>
+<xsl:template match="glossdiv/subtitle"/>
+<xsl:template match="glossdiv/titleabbrev"/>
+
+<!-- ==================================================================== -->
+
 <xsl:template name="make-glossary">
   <xsl:param name="divs" select="glossdiv"/>
   <xsl:param name="entries" select="glossentry"/>
@@ -141,18 +147,6 @@
 <xsl:template match="glossary/subtitle"></xsl:template>
 <xsl:template match="glossary/titleabbrev"></xsl:template>
 
-<xsl:template match="glossary/title" mode="component.title.mode">
-  <fo:block xsl:use-attribute-sets="component.title.properties">
-    <xsl:apply-templates/>
-  </fo:block>
-</xsl:template>
-
-<xsl:template match="glossary/subtitle" mode="component.title.mode">
-  <fo:block font-size="18pt" font-weight="bold" font-style="italic">
-    <xsl:apply-templates/>
-  </fo:block>
-</xsl:template>
-
 <!-- ==================================================================== -->
 
 <xsl:template match="glosslist">
@@ -205,39 +199,6 @@
       </fo:list-block>
     </xsl:otherwise>
   </xsl:choose>
-</xsl:template>
-
-<!-- ==================================================================== -->
-
-<xsl:template match="glossdiv/title">
-  <fo:block font-size="16pt" font-weight="bold">
-    <xsl:apply-templates/>
-  </fo:block>
-</xsl:template>
-
-<!-- ==================================================================== -->
-
-<xsl:template match="glossentry" mode="xref">
-  <xsl:apply-templates select="./glossterm[1]" mode="xref"/>
-</xsl:template>
-
-<xsl:template match="glossterm" mode="xref">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select="parent::glossentry"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <fo:basic-link internal-destination="{$id}"
-                 xsl:use-attribute-sets="xref.properties">
-    <xsl:apply-templates/>
-  </fo:basic-link>
-
-  <xsl:if test="$insert.xref.page.number != 0">
-    <xsl:apply-templates select="parent::glossentry" mode="page.citation">
-      <xsl:with-param name="id" select="$id"/>
-    </xsl:apply-templates>
-  </xsl:if>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -443,8 +404,10 @@
                             or self::subtitle
                             or self::glossentry)]"/>
 
-  <xsl:apply-templates select="title|subtitle"/>
+  <xsl:call-template name="glossdiv.titlepage"/>
+
   <xsl:apply-templates select="$preamble"/>
+
   <fo:list-block provisional-distance-between-starts="{$width}"
                  provisional-label-separation="{$glossterm.separation}"
                  xsl:use-attribute-sets="normal.para.spacing">
@@ -469,7 +432,8 @@
                             or self::subtitle
                             or self::glossentry)]"/>
 
-  <xsl:apply-templates select="title|subtitle"/>
+  <xsl:call-template name="glossdiv.titlepage"/>
+
   <xsl:apply-templates select="$preamble"/>
 
   <xsl:for-each select="glossentry">
@@ -496,7 +460,7 @@
                             or self::subtitle
                             or self::glossentry)]"/>
 
-  <xsl:apply-templates select="title|subtitle"/>
+  <xsl:call-template name="glossdiv.titlepage"/>
 
   <xsl:apply-templates select="$preamble"/>
 
@@ -533,7 +497,35 @@ GlossEntry ::=
 
     <fo:list-item-label end-indent="label-end()">
       <fo:block>
-        <xsl:apply-templates select="glossterm" mode="glossary.as.list"/>
+        <xsl:choose>
+          <xsl:when test="$glossentry.show.acronym = 'primary'">
+            <xsl:choose>
+              <xsl:when test="acronym|abbrev">
+                <xsl:apply-templates select="acronym|abbrev" mode="glossary.as.list"/>
+                <xsl:text> (</xsl:text>
+                <xsl:apply-templates select="glossterm" mode="glossary.as.list"/>
+                <xsl:text>)</xsl:text>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:apply-templates select="glossterm" mode="glossary.as.list"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+
+          <xsl:when test="$glossentry.show.acronym = 'yes'">
+            <xsl:apply-templates select="glossterm" mode="glossary.as.list"/>
+
+            <xsl:if test="acronym|abbrev">
+              <xsl:text> (</xsl:text>
+              <xsl:apply-templates select="acronym|abbrev" mode="glossary.as.list"/>
+              <xsl:text>)</xsl:text>
+            </xsl:if>
+          </xsl:when>
+
+          <xsl:otherwise>
+            <xsl:apply-templates select="glossterm" mode="glossary.as.list"/>
+          </xsl:otherwise>
+        </xsl:choose>
         <xsl:apply-templates select="indexterm"/>
       </fo:block>
     </fo:list-item-label>
@@ -546,12 +538,17 @@ GlossEntry ::=
 
 <xsl:template match="glossentry/glossterm" mode="glossary.as.list">
   <xsl:apply-templates/>
+  <xsl:if test="following-sibling::glossterm">, </xsl:if>
 </xsl:template>
 
 <xsl:template match="glossentry/acronym" mode="glossary.as.list">
+  <xsl:apply-templates/>
+  <xsl:if test="following-sibling::acronym|following-sibling::abbrev">, </xsl:if>
 </xsl:template>
 
 <xsl:template match="glossentry/abbrev" mode="glossary.as.list">
+  <xsl:apply-templates/>
+  <xsl:if test="following-sibling::acronym|following-sibling::abbrev">, </xsl:if>
 </xsl:template>
 
 <xsl:template match="glossentry/revhistory" mode="glossary.as.list">
@@ -647,7 +644,7 @@ GlossEntry ::=
                             or self::subtitle
                             or self::glossentry)]"/>
 
-  <xsl:apply-templates select="title|subtitle"/>
+  <xsl:call-template name="glossdiv.titlepage"/>
 
   <xsl:apply-templates select="$preamble"/>
 
@@ -677,7 +674,38 @@ GlossEntry ::=
         </xsl:choose>
       </xsl:with-param>
     </xsl:call-template>
-    <xsl:apply-templates select="glossterm" mode="glossary.as.blocks"/>
+
+    <xsl:choose>
+      <xsl:when test="$glossentry.show.acronym = 'primary'">
+        <xsl:choose>
+          <xsl:when test="acronym|abbrev">
+            <xsl:apply-templates select="acronym|abbrev" mode="glossary.as.blocks"/>
+            <xsl:text> (</xsl:text>
+            <xsl:apply-templates select="glossterm" mode="glossary.as.blocks"/>
+            <xsl:text>)</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="glossterm" mode="glossary.as.blocks"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+
+      <xsl:when test="$glossentry.show.acronym = 'yes'">
+        <xsl:apply-templates select="glossterm" mode="glossary.as.blocks"/>
+
+        <xsl:if test="acronym|abbrev">
+          <xsl:text> (</xsl:text>
+          <xsl:apply-templates select="acronym|abbrev" mode="glossary.as.blocks"/>
+          <xsl:text>)</xsl:text>
+        </xsl:if>
+      </xsl:when>
+
+      <xsl:otherwise>
+        <xsl:apply-templates select="glossterm" mode="glossary.as.blocks"/>
+      </xsl:otherwise>
+    </xsl:choose>
+
+    <xsl:apply-templates select="indexterm"/>
   </fo:block>
 
   <fo:block margin-left="0.25in">
@@ -686,7 +714,18 @@ GlossEntry ::=
 </xsl:template>
 
 <xsl:template match="glossentry/glossterm" mode="glossary.as.blocks">
-  <fo:inline><xsl:apply-templates/></fo:inline>
+  <xsl:apply-templates/>
+  <xsl:if test="following-sibling::glossterm">, </xsl:if>
+</xsl:template>
+
+<xsl:template match="glossentry/acronym" mode="glossary.as.blocks">
+  <xsl:apply-templates/>
+  <xsl:if test="following-sibling::acronym|following-sibling::abbrev">, </xsl:if>
+</xsl:template>
+
+<xsl:template match="glossentry/abbrev" mode="glossary.as.blocks">
+  <xsl:apply-templates/>
+  <xsl:if test="following-sibling::acronym|following-sibling::abbrev">, </xsl:if>
 </xsl:template>
 
 <xsl:template match="glossentry/glosssee" mode="glossary.as.blocks">
