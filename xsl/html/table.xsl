@@ -534,6 +534,24 @@
     </xsl:if>
   </xsl:variable>
 
+  <xsl:variable name="bgcolor">
+    <xsl:if test="processing-instruction('dbhtml')">
+      <xsl:call-template name="dbhtml-attribute">
+	<xsl:with-param name="pis" select="processing-instruction('dbhtml')"/>
+	<xsl:with-param name="attribute" select="'bgcolor'"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+
+  <xsl:variable name="class">
+    <xsl:if test="processing-instruction('dbhtml')">
+      <xsl:call-template name="dbhtml-attribute">
+	<xsl:with-param name="pis" select="processing-instruction('dbhtml')"/>
+	<xsl:with-param name="attribute" select="'class'"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+
   <tr>
     <xsl:call-template name="tr.attributes">
       <xsl:with-param name="rownum">
@@ -544,6 +562,18 @@
     <xsl:if test="$row-height != ''">
       <xsl:attribute name="height">
         <xsl:value-of select="$row-height"/>
+      </xsl:attribute>
+    </xsl:if>
+
+    <xsl:if test="$bgcolor != ''">
+      <xsl:attribute name="bgcolor">
+        <xsl:value-of select="$bgcolor"/>
+      </xsl:attribute>
+    </xsl:if>
+
+    <xsl:if test="$class != ''">
+      <xsl:attribute name="class">
+        <xsl:value-of select="$class"/>
       </xsl:attribute>
     </xsl:if>
 
