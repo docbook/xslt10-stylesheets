@@ -91,7 +91,7 @@
 		"sidebar %local.compound.class;">
 
 <!ENTITY % local.genobj.class "">
-<!ENTITY % genobj.class "anchor">
+<!ENTITY % genobj.class "anchor %local.genobj.class;">
 
 <!ENTITY % local.descobj.class "">
 <!ENTITY % descobj.class
@@ -123,7 +123,7 @@
 		%local.tech.char.class;">
 
 <!ENTITY % local.base.char.class "">
-<!ENTITY % base.char.class "">
+<!ENTITY % base.char.class "anchor %local.base.char.class;">
 
 <!ENTITY % local.docinfo.char.class "">
 <!ENTITY % docinfo.char.class
@@ -300,7 +300,8 @@
 <!ENTITY % simple.replaceable.element "INCLUDE">
 <![%simple.replaceable.element;[
 <!ELEMENT replaceable (#PCDATA 
-		| %link.char.class; 
+		| %link.char.class;
+                | %base.char.class;
 		| inlinemediaobject)*>
 ]]>
 
