@@ -226,6 +226,7 @@ public class Verbatim {
     setupLineNumbering(context);
 
     try {
+      NamePool namePool = context.getController().getNamePool();
       LineCountEmitter lcEmitter = new LineCountEmitter();
       rtf.replay(lcEmitter);
       int numLines = lcEmitter.lineCount();
@@ -238,7 +239,6 @@ public class Verbatim {
 	? (int) Math.floor(log10numLines + 1)
 	: width;
 
-      NamePool namePool = context.getController().getNamePool();
       NumberLinesEmitter nlEmitter = new NumberLinesEmitter(namePool,
 							    listingModulus,
 							    listingWidth,
