@@ -22,13 +22,13 @@ doc: sdocbook.dtd
 	dtdparse --title "Simplified DocBook DTD" \
                  --output sdocbook.xml \
                  --decl /usr/lib/sgml/declaration/xml.dcl \
-                 --public "-//OASIS//DTD Simplified DocBook XML V1.0b2//EN" \
-                 --system "http://www.oasis-open.org/docbook/xml/simple/1.0b2/sdocbook.dtd" \
+                 --public "-//OASIS//DTD Simplified DocBook XML V1.0CR2//EN" \
+                 --system "http://www.oasis-open.org/docbook/xml/simple/1.0CR2/sdocbook.dtd" \
                  --nounexpanded sdocbook.dtd
 	dtdformat --html --noentities --nonotations sdocbook.xml
 
 refdoc: sdocbookref.dtd
-	dtdparse --title "Simplified DocBook RefEntry DTD" --output sdocbookref.xml --decl /usr/lib/sgml/declaration/xml.dcl --public "-//OASIS//DTD Simplified DocBook RefEntry XML V1.0b2//EN" --system "http://www.oasis-open.org/docbook/xml/simple/1.0b2/sdocbookref.dtd" --nounexpanded sdocbookref.dtd
+	dtdparse --title "Simplified DocBook RefEntry DTD" --output sdocbookref.xml --decl /usr/lib/sgml/declaration/xml.dcl --public "-//OASIS//DTD Simplified DocBook RefEntry XML V1.0CR2//EN" --system "http://www.oasis-open.org/docbook/xml/simple/1.0CR2/sdocbookref.dtd" --nounexpanded sdocbookref.dtd
 	dtdformat --html --noentities --nonotations sdocbookref.xml
 
 clean:
