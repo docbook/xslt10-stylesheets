@@ -138,7 +138,7 @@
                      padding-start="0.2em"
                      padding-end="0.2em"
                      baseline-shift="0.1em"
-                     font-family="Times"
+                     font-family="{$body.font.family}"
                      font-weight="bold"
                      font-size="75%">
             <xsl:value-of select="$conum"/>
@@ -182,7 +182,7 @@
                  padding-start="0.2em"
                  padding-end="0.2em"
                  baseline-shift="0.1em"
-                 font-family="Times"
+                 font-family="{$body.font.family}"
                  font-weight="bold"
                  font-size="75%"><xsl:value-of select="$conum"/></fo:inline>
     </xsl:otherwise>
