@@ -24,7 +24,7 @@
             space-before.maximum="2em"
             space-after.minimum="1em"
             space-after.optimum="1.5em"
-            space-after.maximum="2em">
+            space-after.maximum="2em"
             keep-with-previous.within-column="always">
     <xsl:call-template name="formal.object.heading">
        <xsl:with-param name="title">
