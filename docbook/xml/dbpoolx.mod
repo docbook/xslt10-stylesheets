@@ -6356,7 +6356,19 @@ OtherCredit. -->
 				|field
 				|key1
 				|key2
-				|record)	#IMPLIED
+				|record
+                                |index
+                                |view
+                                |primarykey
+                                |secondarykey
+                                |foreignkey
+                                |altkey
+                                |procedure
+                                |datatype
+                                |constraint
+                                |rule
+                                |user
+                                |group)	#IMPLIED
 		%moreinfo.attrib;
 		%common.attrib;
 		%database.role.attrib;
