@@ -1,0 +1,19 @@
+01 February 1999
+
+Backwards-incompatible changes to DocBook that are planned for V5.0:
+
+- The Coords attribute will be removed from AreaSet.
+
+- ArtHeader will be dropped from BiblioEntry
+
+- Contents attribute will be removed from BookInfo and SetInfo
+
+- The %indexdivcomponent.mix; will be restricted.  Numbered figures
+  and other elements inappropriate for an Index or SetIndex will be
+  removed.
+
+- RevHistory will be removed from GlossTerm
+
+- Constant Class will be removed from SystemItem
+
+- Graphic and InlineGraphic will be removed

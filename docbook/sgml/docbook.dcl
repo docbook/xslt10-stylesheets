@@ -1,6 +1,6 @@
 <!SGML  "ISO 8879:1986"
   -- ...................................................................... --
-  -- DocBook SGML declaration V3.0 ........................................ --
+  -- DocBook SGML declaration V3.1 ........................................ --
   -- file docbook.dcl ..................................................... --
 
 CHARSET
@@ -61,8 +61,8 @@ SYNTAX
 	NAMING
 		LCNMSTRT ""
 		UCNMSTRT ""
-		LCNMCHAR ".-"
-		UCNMCHAR ".-"
+		LCNMCHAR ".-_"
+		UCNMCHAR ".-_"
 		NAMECASE
 			GENERAL YES
 			ENTITY  NO
@@ -101,6 +101,6 @@ FEATURES
 
 APPINFO NONE
 
-  -- End of DocBook SGML declaration V3.0 ................................. --
+  -- End of DocBook SGML declaration V3.1 ................................. --
   -- ...................................................................... --
 >

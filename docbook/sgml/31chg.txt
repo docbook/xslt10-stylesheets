@@ -1,0 +1,77 @@
+01 February 1999
+
+Changes from DocBook V3.0 to DocBook V3.1:
+
+Markup:
+
+- Added optional title to MsgSet 
+
+- Add FAQ as a class value to Article 
+
+- Cleaned up, and significantly loosened, the content model of Book.
+
+- Added Colophon to Book.
+
+- Added inline Constant for marking up constants and limits
+
+- Added inline VarName for marking up variable names
+
+- Added several elements to the content model of ArtHeader that were
+  accidentally left out in 3.0: Graphic, LegalNotice, ModeSpec,
+  SubjectSet, KeywordSet, and ITermSet.
+
+- Add LinkEnd to LoTEntry.
+
+- Sets are no longer required to contain at least two books.
+
+- Added pagewide attribute to Figure. 
+
+- Added recursive Divisions.
+
+- Added Subtitle to divisions (Set, Book, etc.), components, and
+  sections.  It may occur outside of *Info elements.
+
+- Added person name elements to Address.
+
+- Added Class attribute to LiteralLayout indicating Monospaced or
+  Normal font.
+
+- Added ULink to docinfo.char.mix.
+
+- Added RevHistory to GlossEntry.
+
+- Added CmdLength attribute to CmdSynopsis to indicate Command length
+
+- Added Title, TitleAbbrev, and SubTitle outside ArtHeader; ArtHeader
+  is now optional.
+
+- Added QAndASet, MediaObject, and InlineMediaObject.
+
+- Added IndexTerm to the content model of many elements.  This makes
+  it easier to store small, valid components.  Previously, IndexTerms
+  were only valid if the root element had the appropriate inclusion.
+
+Other:
+
+- Added underscore (_) to the list of acceptable name characters.
+  (Underscores can now be used in IDs.)
+
+- The public identifiers have changed.  The owner identifier is now
+  "-//OASIS//".
+
+- Parameterized element and attribute declarations separately.
+
+- Notation and character entity declarations now have their own modules.
+
+- Fixed erroneous comment marking the end of the programlistingco.module.
+
+- Fixed unused parameter entities: local.keyaction.attrib,
+  country.role.attrib, local.areaset.attrib, local.bibliomixed.attrib,
+
+- Removed unused parameter entities local.setinfo.char.mix, yes.attval,
+  and linkendsreq.attrib.
+
+- Parameterized inclusions and exclusions for easy removal.
+
+- General coding and comment cleanup.
+

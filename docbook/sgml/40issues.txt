@@ -1,4 +1,4 @@
-6 January 1997
+01 February 1999
 
 Backwards-incompatible changes to DocBook that are planned for V4.0:
 

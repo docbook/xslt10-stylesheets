@@ -328,4 +328,3 @@ of the current application.
         valign          (top|middle|bottom)                     #IMPLIED
         %secur;
 >
-

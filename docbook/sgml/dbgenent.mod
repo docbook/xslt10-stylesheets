@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook additional general entities V3.0 ............................. -->
+<!-- DocBook additional general entities V3.1 ............................. -->
 <!-- File dbgenent.mod .................................................... -->
 
 <!-- You can edit this file to add the following:
@@ -21,5 +21,5 @@
        %all-titles;
 -->
 
-<!-- End of DocBook additional general entities V3.0 ...................... -->
+<!-- End of DocBook additional general entities V3.1 ...................... -->
 <!-- ...................................................................... -->
