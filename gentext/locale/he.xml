@@ -233,6 +233,7 @@
 <template name="question">%t</template>
 <template name="refentry">%t</template>
 <template name="reference">%t</template>
+<template name="refsection">%t</template>
 <template name="refsect1">%t</template>
 <template name="refsect2">%t</template>
 <template name="refsect3">%t</template>
@@ -306,6 +307,7 @@
 <template name="preface">%s</template>
 <template name="refentry">%s</template>
 <template name="reference">%s</template>
+<template name="refsection">%s</template>
 <template name="refsect1">%s</template>
 <template name="refsect2">%s</template>
 <template name="refsect3">%s</template>
@@ -374,6 +376,7 @@
 <template name="qandaset">%t</template>
 <template name="question"><Question/>&#160;%n</template>
 <template name="reference">%t</template>
+<template name="refsection">%t</template>
 <template name="refsect1">%t</template>
 <template name="refsect2">%t</template>
 <template name="refsect3">%t</template>
@@ -395,6 +398,7 @@
 <context name="section-xref">
 
 <template name="bridgehead"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="refsection"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="refsect1"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="refsect2"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="refsect3"><sectioncalled/> &#x201C;%t&#x201D;</template>
@@ -411,6 +415,7 @@
 <context name="section-xref-numbered">
 
 <template name="bridgehead"><Section/> %n</template>
+<template name="refsection"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="refsect1"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="refsect2"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="refsect3"><sectioncalled/> &#x201C;%t&#x201D;</template>
