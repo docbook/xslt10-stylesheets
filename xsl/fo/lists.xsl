@@ -16,7 +16,17 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="itemizedlist">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <xsl:variable name="label-width">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'label-width'"/>
+    </xsl:call-template>
+  </xsl:variable>
 
   <xsl:if test="title">
     <xsl:apply-templates select="title" mode="list.title.mode"/>
@@ -25,8 +35,15 @@
   <xsl:apply-templates select="*[not(self::listitem or self::title)]"/>
 
   <fo:list-block id="{$id}" xsl:use-attribute-sets="list.block.spacing"
-                 provisional-distance-between-starts="1.5em"
                  provisional-label-separation="0.2em">
+    <xsl:attribute name="provisional-distance-between-starts">
+      <xsl:choose>
+        <xsl:when test="$label-width != ''">
+          <xsl:value-of select="$label-width"/>
+        </xsl:when>
+        <xsl:otherwise>1.5em</xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
     <xsl:apply-templates select="listitem"/>
   </fo:list-block>
 </xsl:template>
@@ -89,7 +106,17 @@
 </xsl:template>
 
 <xsl:template match="orderedlist">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <xsl:variable name="label-width">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'label-width'"/>
+    </xsl:call-template>
+  </xsl:variable>
 
   <xsl:if test="title">
     <xsl:apply-templates select="title" mode="list.title.mode"/>
@@ -98,15 +125,20 @@
   <xsl:apply-templates select="*[not(self::listitem or self::title)]"/>
 
   <fo:list-block id="{$id}" xsl:use-attribute-sets="list.block.spacing"
-                 provisional-distance-between-starts="2em"
                  provisional-label-separation="0.2em">
+    <xsl:attribute name="provisional-distance-between-starts">
+      <xsl:choose>
+        <xsl:when test="$label-width != ''">
+          <xsl:value-of select="$label-width"/>
+        </xsl:when>
+        <xsl:otherwise>2em</xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
     <xsl:apply-templates select="listitem"/>
   </fo:list-block>
 </xsl:template>
 
-<xsl:template match="orderedlist/listitem">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
-
+<xsl:template match="orderedlist/listitem" mode="item-number">
   <xsl:variable name="numeration">
     <xsl:call-template name="list.numeration">
       <xsl:with-param name="node" select="parent::orderedlist"/>
@@ -131,17 +163,26 @@
     </xsl:choose>
   </xsl:variable>
 
+  <xsl:variable name="item-number">
+    <xsl:call-template name="orderedlist-item-number"/>
+  </xsl:variable>
+
+  <xsl:if test="parent::orderedlist/@inheritnum='inherit'
+                and ancestor::listitem[parent::orderedlist]">
+    <xsl:apply-templates select="ancestor::listitem[parent::orderedlist][1]"
+                         mode="item-number"/>
+  </xsl:if>
+
+  <xsl:number value="$item-number" format="{$type}"/>
+</xsl:template>
+
+<xsl:template match="orderedlist/listitem">
+  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+
   <xsl:variable name="item.contents">
     <fo:list-item-label end-indent="label-end()">
       <fo:block>
-        <xsl:choose>
-          <xsl:when test="@override">
-            <xsl:number value="@override" format="{$type}"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:number count="listitem" format="{$type}"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:apply-templates select="." mode="item-number"/>
       </fo:block>
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">

@@ -96,29 +96,6 @@
   </li>
 </xsl:template>
 
-<xsl:template name="orderedlist-starting-number">
-  <xsl:param name="list" select="."/>
-  <xsl:choose>
-    <xsl:when test="$list/@continuation != 'continues'">1</xsl:when>
-    <xsl:otherwise>
-      <xsl:variable name="prevlist"
-                    select="$list/preceding::orderedlist[1]"/>
-      <xsl:choose>
-        <xsl:when test="count($prevlist) = 0">2</xsl:when>
-        <xsl:otherwise>
-          <xsl:variable name="prevlength" select="count($prevlist/listitem)"/>
-          <xsl:variable name="prevstart">
-            <xsl:call-template name="orderedlist-starting-number">
-              <xsl:with-param name="list" select="$prevlist"/>
-            </xsl:call-template>
-          </xsl:variable>
-          <xsl:value-of select="$prevstart + $prevlength"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
 <xsl:template match="orderedlist">
   <xsl:variable name="start">
     <xsl:choose>
