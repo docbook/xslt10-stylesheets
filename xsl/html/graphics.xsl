@@ -899,9 +899,13 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
         </xsl:call-template>
       </xsl:variable>
 
+      <xsl:variable name="phrases"
+                    select="ancestor::mediaobject/textobject[phrase]
+                            |ancestor::mediaobjectco/textobject[phrase]"/>
+
       <xsl:call-template name="process.image">
         <xsl:with-param name="alt">
-          <xsl:apply-templates select="(../../textobject[not(@role) or @role!='tex']/phrase)[1]"/>
+          <xsl:apply-templates select="$phrases[not(@role) or @role!='tex'][1]"/>
         </xsl:with-param>
         <xsl:with-param name="longdesc">
           <xsl:call-template name="write.longdesc">
