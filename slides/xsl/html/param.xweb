@@ -1088,6 +1088,30 @@ that you will ever need to change this parameter.</para>
 </refsect1>
 </refentry>
 
+<refentry id="xbLibrary.js">
+<refmeta>
+<refentrytitle>xbLibrary.js</refentrytitle>
+<refmiscinfo role="type">filename</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>xbLibrary.js</refname>
+<refpurpose>xbLibrary JavaScript file</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='xbLibrary.js.frag'>
+<xsl:param name="xbLibrary.js" select="'xbLibrary.js'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>Specifies the filename of the xbLibrary JavaScript file. It's unlikely
+that you will ever need to change this parameter.</para>
+
+</refsect1>
+</refentry>
+
 <refentry id="xbCollapsibleLists.js">
 <refmeta>
 <refentrytitle>xbCollapsibleLists.js</refentrytitle>
