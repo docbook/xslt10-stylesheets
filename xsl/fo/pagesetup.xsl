@@ -163,25 +163,25 @@
     <!-- setup for title-page, 1 column -->
     <fo:page-sequence-master master-name="titlepage1">
       <fo:repeatable-page-master-alternatives>
-        <fo:conditional-page-master-reference master-name="first1"/>
+        <fo:conditional-page-master-reference master-reference="first1"/>
       </fo:repeatable-page-master-alternatives>
     </fo:page-sequence-master>
 
     <!-- setup for single-sided, 1 column -->
     <fo:page-sequence-master master-name="oneside1">
       <fo:repeatable-page-master-alternatives>
-        <fo:conditional-page-master-reference master-name="simple1"/>
+        <fo:conditional-page-master-reference master-reference="simple1"/>
       </fo:repeatable-page-master-alternatives>
     </fo:page-sequence-master>
 
     <!-- setup for double-sided, 1 column -->
     <fo:page-sequence-master master-name="twoside1">
       <fo:repeatable-page-master-alternatives>
-        <fo:conditional-page-master-reference master-name="blank"
+        <fo:conditional-page-master-reference master-reference="blank"
                                               blank-or-not-blank="blank"/>
-        <fo:conditional-page-master-reference master-name="right1"
+        <fo:conditional-page-master-reference master-reference="right1"
                                               odd-or-even="odd"/>
-        <fo:conditional-page-master-reference master-name="left1"
+        <fo:conditional-page-master-reference master-reference="left1"
                                               odd-or-even="even"/>
       </fo:repeatable-page-master-alternatives>
     </fo:page-sequence-master>
@@ -189,25 +189,25 @@
     <!-- setup for title-page, 2 column -->
     <fo:page-sequence-master master-name="titlepage2">
       <fo:repeatable-page-master-alternatives>
-        <fo:conditional-page-master-reference master-name="first2"/>
+        <fo:conditional-page-master-reference master-reference="first2"/>
       </fo:repeatable-page-master-alternatives>
     </fo:page-sequence-master>
 
     <!-- setup for single-sided, 2 column -->
     <fo:page-sequence-master master-name="oneside2">
       <fo:repeatable-page-master-alternatives>
-        <fo:conditional-page-master-reference master-name="simple2"/>
+        <fo:conditional-page-master-reference master-reference="simple2"/>
       </fo:repeatable-page-master-alternatives>
     </fo:page-sequence-master>
 
     <!-- setup for double-sided, 2 column -->
     <fo:page-sequence-master master-name="twoside2">
       <fo:repeatable-page-master-alternatives>
-        <fo:conditional-page-master-reference master-name="blank"
+        <fo:conditional-page-master-reference master-reference="blank"
                                               blank-or-not-blank="blank"/>
-        <fo:conditional-page-master-reference master-name="right2"
+        <fo:conditional-page-master-reference master-reference="right2"
                                               odd-or-even="odd"/>
-        <fo:conditional-page-master-reference master-name="left2"
+        <fo:conditional-page-master-reference master-reference="left2"
                                               odd-or-even="even"/>
       </fo:repeatable-page-master-alternatives>
     </fo:page-sequence-master>
@@ -302,26 +302,26 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="*" mode="running.head.mode">
-  <xsl:param name="master-name" select="'unknown'"/>
+  <xsl:param name="master-reference" select="'unknown'"/>
   <!-- by default, nothing -->
   <xsl:choose>
-    <xsl:when test="$master-name='titlepage1'">
+    <xsl:when test="$master-reference='titlepage1'">
     </xsl:when>
-    <xsl:when test="$master-name='oneside1'">
+    <xsl:when test="$master-reference='oneside1'">
     </xsl:when>
-    <xsl:when test="$master-name='twoside1'">
+    <xsl:when test="$master-reference='twoside1'">
     </xsl:when>
-    <xsl:when test="$master-name='titlepage2'">
+    <xsl:when test="$master-reference='titlepage2'">
     </xsl:when>
-    <xsl:when test="$master-name='oneside2'">
+    <xsl:when test="$master-reference='oneside2'">
     </xsl:when>
-    <xsl:when test="$master-name='twoside2'">
+    <xsl:when test="$master-reference='twoside2'">
     </xsl:when>
   </xsl:choose>
 </xsl:template>
 
 <xsl:template match="chapter|appendix" mode="running.head.mode">
-  <xsl:param name="master-name" select="'unknown'"/>
+  <xsl:param name="master-reference" select="'unknown'"/>
   <xsl:variable name="head">
     <fo:block font-size="{$body.font.size}">
       <xsl:apply-templates select="." mode="object.title.markup"/>
@@ -329,15 +329,15 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="$master-name='titlepage1'"></xsl:when>
-    <xsl:when test="$master-name='oneside1'">
+    <xsl:when test="$master-reference='titlepage1'"></xsl:when>
+    <xsl:when test="$master-reference='oneside1'">
       <fo:static-content flow-name="xsl-region-before">
         <fo:block text-align="center">
           <xsl:copy-of select="$head"/>
         </fo:block>
       </fo:static-content>
     </xsl:when>
-    <xsl:when test="$master-name='twoside1'">
+    <xsl:when test="$master-reference='twoside1'">
       <fo:static-content flow-name="xsl-region-before-left">
         <fo:block text-align="right">
           <xsl:copy-of select="$head"/>
@@ -349,15 +349,15 @@
         </fo:block>
       </fo:static-content>
     </xsl:when>
-    <xsl:when test="$master-name='titlepage2'"></xsl:when>
-    <xsl:when test="$master-name='oneside2'">
+    <xsl:when test="$master-reference='titlepage2'"></xsl:when>
+    <xsl:when test="$master-reference='oneside2'">
       <fo:static-content flow-name="xsl-region-before">
         <fo:block text-align="center">
           <xsl:copy-of select="$head"/>
         </fo:block>
       </fo:static-content>
     </xsl:when>
-    <xsl:when test="$master-name='twoside2'">
+    <xsl:when test="$master-reference='twoside2'">
       <fo:static-content flow-name="xsl-region-before-left">
         <fo:block text-align="right">
           <xsl:copy-of select="$head"/>
@@ -373,21 +373,21 @@
 </xsl:template>
 
 <xsl:template match="*" mode="running.foot.mode">
-  <xsl:param name="master-name" select="'unknown'"/>
+  <xsl:param name="master-reference" select="'unknown'"/>
   <xsl:variable name="foot">
     <fo:page-number/>
   </xsl:variable>
   <!-- by default, the page number -->
   <xsl:choose>
-    <xsl:when test="$master-name='titlepage1'"></xsl:when>
-    <xsl:when test="$master-name='oneside1'">
+    <xsl:when test="$master-reference='titlepage1'"></xsl:when>
+    <xsl:when test="$master-reference='oneside1'">
       <fo:static-content flow-name="xsl-region-after">
         <fo:block text-align="center" font-size="{$body.font.size}">
           <xsl:copy-of select="$foot"/>
         </fo:block>
       </fo:static-content>
     </xsl:when>
-    <xsl:when test="$master-name='twoside1'">
+    <xsl:when test="$master-reference='twoside1'">
       <fo:static-content flow-name="xsl-region-after-left">
         <fo:block text-align="left" font-size="{$body.font.size}">
           <xsl:copy-of select="$foot"/>
@@ -399,15 +399,15 @@
         </fo:block>
       </fo:static-content>
     </xsl:when>
-    <xsl:when test="$master-name='titlepage2'"></xsl:when>
-    <xsl:when test="$master-name='oneside2'">
+    <xsl:when test="$master-reference='titlepage2'"></xsl:when>
+    <xsl:when test="$master-reference='oneside2'">
       <fo:static-content flow-name="xsl-after-before">
         <fo:block text-align="center" font-size="{$body.font.size}">
           <xsl:copy-of select="$foot"/>
         </fo:block>
       </fo:static-content>
     </xsl:when>
-    <xsl:when test="$master-name='twoside2'">
+    <xsl:when test="$master-reference='twoside2'">
       <fo:static-content flow-name="xsl-region-after-left">
         <fo:block text-align="left" font-size="{$body.font.size}">
           <xsl:copy-of select="$foot"/>
@@ -421,8 +421,8 @@
     </xsl:when>
     <xsl:otherwise>
       <xsl:message>
-        <xsl:text>Unexpected master-name (</xsl:text>
-        <xsl:value-of select="$master-name"/>
+        <xsl:text>Unexpected master-reference (</xsl:text>
+        <xsl:value-of select="$master-reference"/>
         <xsl:text>) in running.foot.mode for </xsl:text>
         <xsl:value-of select="name(.)"/>
         <xsl:text>. No footer generated.</xsl:text>

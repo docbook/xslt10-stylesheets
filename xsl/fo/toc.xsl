@@ -19,7 +19,7 @@
      the case that a page-sequence is required. Is that true? -->
 
 <xsl:template match="toc">
-  <xsl:variable name="master-name">
+  <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
 
@@ -28,7 +28,7 @@
       <xsl:if test="$process.source.toc != 0">
         <!-- if the toc isn't empty, process it -->
         <fo:page-sequence hyphenate="{$hyphenate}"
-                          master-name="{$master-name}">
+                          master-reference="{$master-reference}">
           <xsl:attribute name="language">
             <xsl:call-template name="l10n.language"/>
           </xsl:attribute>
@@ -37,10 +37,10 @@
           </xsl:if>
 
           <xsl:apply-templates select="." mode="running.head.mode">
-            <xsl:with-param name="master-name" select="$master-name"/>
+            <xsl:with-param name="master-reference" select="$master-reference"/>
           </xsl:apply-templates>
           <xsl:apply-templates select="." mode="running.foot.mode">
-            <xsl:with-param name="master-name" select="$master-name"/>
+            <xsl:with-param name="master-reference" select="$master-reference"/>
           </xsl:apply-templates>
 
           <fo:flow flow-name="xsl-region-body">
@@ -55,7 +55,7 @@
     <xsl:otherwise>
       <xsl:if test="$process.empty.source.toc != 0">
         <fo:page-sequence hyphenate="{$hyphenate}"
-                          master-name="{$master-name}">
+                          master-reference="{$master-reference}">
           <xsl:attribute name="language">
             <xsl:call-template name="l10n.language"/>
           </xsl:attribute>
@@ -64,10 +64,10 @@
           </xsl:if>
 
           <xsl:apply-templates select="." mode="running.head.mode">
-            <xsl:with-param name="master-name" select="$master-name"/>
+            <xsl:with-param name="master-reference" select="$master-reference"/>
           </xsl:apply-templates>
           <xsl:apply-templates select="." mode="running.foot.mode">
-            <xsl:with-param name="master-name" select="$master-name"/>
+            <xsl:with-param name="master-reference" select="$master-reference"/>
           </xsl:apply-templates>
 
           <fo:flow flow-name="xsl-region-body">
