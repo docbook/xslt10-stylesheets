@@ -226,15 +226,14 @@
     </xsl:choose>
 
     <xsl:apply-templates select="thead"/>
-    <xsl:apply-templates select="tbody"/>
     <xsl:apply-templates select="tfoot"/>
+    <xsl:apply-templates select="tbody"/>
 
     <xsl:if test=".//footnote">
       <tbody class="footnotes">
         <tr>
           <td colspan="{@cols}">
-            <xsl:apply-templates select=".//footnote" 
-                                 mode="table.footnote.mode"/>
+            <xsl:apply-templates select=".//footnote" mode="table.footnote.mode"/>
           </td>
         </tr>
       </tbody>
