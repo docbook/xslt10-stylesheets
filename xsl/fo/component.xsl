@@ -187,22 +187,11 @@
     <xsl:attribute name="format">
       <xsl:call-template name="page.number.format"/>
     </xsl:attribute>
-    <xsl:choose>
-      <xsl:when test="not(preceding::chapter
-                          or preceding::preface
-                          or preceding::appendix
-                          or preceding::article
-                          or preceding::dedication
-                          or parent::part
-                          or parent::reference)">
-        <!-- if there is a preceding component or we're in a part, the -->
-        <!-- page numbering will already be adjusted -->
-        <xsl:attribute name="initial-page-number">1</xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$double.sided != 0">
-        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
-      </xsl:when>
-    </xsl:choose>
+
+    <!-- Page numbering for a preface doesn't restart; it continues from the ToC -->
+    <xsl:if test="$double.sided != 0">
+      <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
+    </xsl:if>
 
     <xsl:apply-templates select="." mode="running.head.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
@@ -257,7 +246,6 @@
     </xsl:attribute>
     <xsl:choose>
       <xsl:when test="not(preceding::chapter
-                          or preceding::preface
                           or preceding::appendix
                           or preceding::article
                           or preceding::dedication
@@ -324,7 +312,6 @@
     </xsl:attribute>
     <xsl:choose>
       <xsl:when test="not(preceding::chapter
-                          or preceding::preface
                           or preceding::appendix
                           or preceding::article
                           or preceding::dedication
