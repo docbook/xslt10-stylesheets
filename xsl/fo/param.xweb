@@ -67,6 +67,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &admon.textlabel;
 &admonition.title.properties;
 &admonition.properties;
+&graphical.admonition.properties;
+&nongraphical.admonition.properties;
 </reference>
 
 <reference><title>Callouts</title>
@@ -510,6 +512,8 @@ around all these parameters.</para>
 <src:fragref linkend="admon.textlabel.frag"/>
 <src:fragref linkend="admonition.properties.frag"/>
 <src:fragref linkend="admonition.title.properties.frag"/>
+<src:fragref linkend="graphical.admonition.properties.frag"/>
+<src:fragref linkend="nongraphical.admonition.properties.frag"/>
 <src:fragref linkend="alignment.frag"/>
 <src:fragref linkend="appendix.autolabel.frag"/>
 <src:fragref linkend="arbortext.extensions.frag"/>
