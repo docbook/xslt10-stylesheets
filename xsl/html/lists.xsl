@@ -755,7 +755,7 @@
 </xsl:template>
 
 <xsl:template match="seg">
-  <xsl:variable name="segnum" select="position()"/>
+  <xsl:variable name="segnum" select="count(preceding-sibling::seg)+1"/>
   <xsl:variable name="seglist" select="ancestor::segmentedlist"/>
   <xsl:variable name="segtitles" select="$seglist/segtitle"/>
 
