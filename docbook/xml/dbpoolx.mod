@@ -634,6 +634,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!-- xml:base: base URI -->
 
+<![%sgml.features;[
+<!ENTITY % xml-base.attrib "">
+]>
 <!ENTITY % xml-base.attrib
 	"xml:base	CDATA		#IMPLIED">
 
