@@ -297,7 +297,7 @@
       <xsl:otherwise>
         <xsl:call-template name="longest.term">
           <xsl:with-param name="terms" select="varlistentry/term"/>
-          <xsl:with-param name="maxlength" select="$vlist.max.termwidth"/>
+          <xsl:with-param name="maxlength" select="$variablelist.max.termlength"/>
         </xsl:call-template>
         <xsl:text>em * 0.50</xsl:text>
       </xsl:otherwise>
