@@ -68,6 +68,30 @@ DocBook elements handled by the imported stylesheet.</para>
 </src:fragment>
 
 </section>
+
+<section><title>The Chunking HTML Stylesheet</title>
+
+<para>The stylesheet performs some initialization and establishes
+templates for the Literate Programming elements that can appear in
+the documentation. Most of the documentation elements will be
+DocBook elements handled by the imported stylesheet.</para>
+
+<src:fragment id="top-chunk" mundane-result-prefixes="xsl fo verb">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+                xmlns:verb="com.nwalsh.saxon.Verbatim"
+                exclude-result-prefixes="verb src"
+                version="1.0">
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/html/chunk.xsl"/>
+
+  <src:fragref linkend="init"/>
+  <src:fragref linkend="proc-html-fragment"/>
+  <src:fragref linkend="proc-html-fragref"/>
+</xsl:stylesheet>
+</src:fragment>
+
+</section>
+
 <section><title>The FO Stylesheet</title>
 
 <para>The stylesheet performs some initialization and establishes
