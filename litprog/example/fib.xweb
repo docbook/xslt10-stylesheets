@@ -13,6 +13,20 @@ implementation of the Fibonacci series in Perl. The principal
 motivation for this document is to demonstrate the use of Literate XML.
 </para>
 
+<section><title>Recursive Definition</title>
+
+<para>The Fibonacci series begins: 1 1 2 3 5 8 13... Each member of
+the series, after the first two, is the sum of the preceding two
+members.</para>
+
+<para>This can be implemented recursively by calculating the preceding
+two members of the series and returning their sum:</para>
+
+<src:fragment id="sub.fib.recursion">
+&amp;fib($n-2) + &amp;fib($n-1);
+</src:fragment>
+</section>
+
 <section><title>The <function>fib</function> Function</title>
 
 <para>The heart of this program is the recursive function that
@@ -32,24 +46,9 @@ sub fib {
     }
 }
 </src:fragment>
-
-<section><title>Recursive Definition</title>
-
-<para>The Fibonacci series begins: 1 1 2 3 5 8 13... Each member of
-the series, after the first two, is the sum of the preceding two
-members.</para>
-
-<para>This can be implemented recursively by calculating the preceding
-two members of the series and returning their sum:</para>
-
-<src:fragment id="sub.fib.recursion">
-&amp;fib($n-2) + &amp;fib($n-1);
-</src:fragment>
-
-</section>
 </section>
 
-<section><title>Preamble</title>
+<section><title>Code Preamble</title>
 
 <para>The program preamble simply establishes a default location for
 the Perl executable and informs the interpreter that we want to use
