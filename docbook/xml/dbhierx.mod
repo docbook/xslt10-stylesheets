@@ -80,6 +80,9 @@
 <!ENTITY % local.refentry.class "">
 <!ENTITY % refentry.class	"refentry %local.refentry.class;">
 
+<!ENTITY % local.section.class "">
+<!ENTITY % section.class	"section %local.section.class;">
+
 <!ENTITY % local.nav.class "">
 <!ENTITY % nav.class		"toc|lot|index|glossary|bibliography
 				%local.nav.class;">
@@ -190,8 +193,8 @@
 
 <!ENTITY % bookcomponent.content
 	"((%divcomponent.mix;)+,
-	(sect1*|(%refentry.class;)*|simplesect*|section*))
-	| (sect1+|(%refentry.class;)+|simplesect+|section+)">
+	(sect1*|(%refentry.class;)*|simplesect*|(%section.class;)*))
+	| (sect1+|(%refentry.class;)+|simplesect+|(%section.class;)+)">
 
 <!-- ...................................................................... -->
 <!-- Set and SetInfo ...................................................... -->
@@ -1246,8 +1249,8 @@ change will not be made after all. -->
 			(%sect.title.content;),
 			(%nav.class;)*,
 			(((%divcomponent.mix;)+,
- 			  ((%refentry.class;)*|section*|simplesect*))
-			 | (%refentry.class;)+|section+|simplesect+),
+ 			  ((%refentry.class;)*|(%section.class;)*|simplesect*))
+			 | (%refentry.class;)+|(%section.class;)+|simplesect+),
 			(%nav.class;)*)
 		%ubiq.inclusion;>
 <!--end of section.element-->]]>
