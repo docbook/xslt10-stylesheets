@@ -105,11 +105,14 @@
 <!ENTITY % dbcent.module "INCLUDE">
 <![%dbcent.module;[
 
+<!ENTITY % dbcent.euro "INCLUDE">
+<![%dbcent.euro;[
 <![%sgml.features;[
 <!ENTITY euro SDATA "[euro  ]"><!-- euro sign -->
 ]]>
 <![%xml.features;[
 <!ENTITY euro "&#x20AC;"><!-- euro sign, U+20AC NEW -->
+]]>
 ]]>
 
 <!ENTITY % dbcent PUBLIC
