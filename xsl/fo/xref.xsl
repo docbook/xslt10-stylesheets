@@ -89,6 +89,12 @@
       </fo:basic-link>
     </xsl:otherwise>
   </xsl:choose>
+
+  <xsl:if test="$insert.xref.page.number != 0">
+    <xsl:apply-templates select="$target" mode="page.citation">
+      <xsl:with-param name="id" select="@linkend"/>
+    </xsl:apply-templates>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="*" mode="endterm">
@@ -656,20 +662,19 @@
   <xsl:call-template name="inline.monoseq"/>
 </xsl:template>
 
-<xsl:template name="insert.page.citation">
+<xsl:template match="*" mode="page.citation">
   <xsl:param name="id" select="'???'"/>
-  <xsl:if test="$insert.xref.page.number">
-    <xsl:text> </xsl:text>
-    <fo:inline keep-together.within-line="always">
-      <xsl:text>[</xsl:text>
-      <xsl:call-template name="gentext">
-        <xsl:with-param name="key" select="'page.citation'"/>
-      </xsl:call-template>
-      <xsl:text> </xsl:text>
-      <fo:page-number-citation ref-id="{$id}"/>
-      <xsl:text>]</xsl:text>
-    </fo:inline>
-  </xsl:if>
+
+  <fo:inline keep-together.within-line="always">
+    <xsl:call-template name="substitute-markup">
+      <xsl:with-param name="template">
+        <xsl:call-template name="gentext.template">
+          <xsl:with-param name="name" select="'page.citation'"/>
+          <xsl:with-param name="context" select="'xref'"/>
+        </xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
+  </fo:inline>
 </xsl:template>
 
 <xsl:template match="*" mode="pagenumber.markup">
