@@ -17,9 +17,6 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-mediaobject.content |= any.svg
-inlinemediaobject.content |= any.svg
-
 extension.blocks |= html.form
 extension.inlines |= html.input | html.button | html.label | html.select | html.textarea
 
