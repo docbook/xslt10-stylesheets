@@ -3,6 +3,7 @@
 FORMAT=$1; shift
 DSSSL=$1; shift
 SOURCE=$1; shift
+# optional args later
 
 # find jade in the path
 JADE=`command -v jade`
@@ -24,12 +25,22 @@ elif [ -f /sourceforge/docbook/dsssl/catalog ]; then
   CATALOGS="$CATALOGS -c /sourceforge/docbook/dsssl/catalog"
 fi
 
+# sanity checks
+if [ ! -f $DSSSL ]; then
+    echo "cannot DSSSL stylesheet $DSSSL" 1>&2
+    exit 1
+fi
+if [ ! -f $SOURCE ]; then
+    echo "cannot SGML/XML source $SOURCE" 1>&2
+    exit 1
+fi
+
 # optional extra catalogs
 if [ -f /share/doctypes/catalog ]; then
     CATALOGS="$CATALOGS -c /share/doctypes/catalog"
 fi
 
-# if jade && file is XML, add the XML catalog
+# if jade && file is XML, add the XML catalog, set SP_ENCODING
 if [ `basename $JADE` = jade ] && [ ${SOURCE%.xml} != $SOURCE ]; then
   for file in /usr/share/sgml/declaration/xml.dcl \
               /usr/share/sgml/declaration/xml.decl \
@@ -40,7 +51,8 @@ if [ `basename $JADE` = jade ] && [ ${SOURCE%.xml} != $SOURCE ]; then
       break
     fi
   done
+  export SP_ENCODING=xml
 fi
 
-echo $JADE $CATALOGS -t $FORMAT -d $DSSSL $* $DECL $SOURCE
-exec $JADE $CATALOGS -t $FORMAT -d $DSSSL $* $DECL $SOURCE
+echo $ENV $JADE -E1 $CATALOGS -t $FORMAT -d $DSSSL $* $DECL $SOURCE
+exec $JADE -E1 $CATALOGS -t $FORMAT -d $DSSSL $* $DECL $SOURCE
