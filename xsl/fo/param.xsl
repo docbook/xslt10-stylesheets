@@ -1145,6 +1145,19 @@ extensions will be used. At present, this consists of PDF bookmarks.
 </doc:param>
 
 <!-- ==================================================================== -->
+<xsl:param name="xep.extensions" select="0" doc:type='boolean'/>
+
+<doc:param name="xep.extensions" xmlns="">
+<refpurpose>Enable XEP extensions?</refpurpose>
+<refdescription>
+<para>If non-zero,
+<ulink url="http://www.renderx.com/">XEP</ulink>
+extensions will be used. XEP extensions consists of PDF bookmarks and document information.
+</para>
+</refdescription>
+</doc:param>
+
+<!-- ==================================================================== -->
 <xsl:param name="default.units" select="'pt'" doc:type='list'
            doc:list='cm mm in pt pc px em'/>
 
