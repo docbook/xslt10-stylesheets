@@ -1135,7 +1135,7 @@ pointed to by the link is one of the elements listed in
 <xsl:template name="orderedlist-starting-number">
   <xsl:param name="list" select="."/>
   <xsl:choose>
-    <xsl:when test="$list/@continuation != 'continues'">1</xsl:when>
+    <xsl:when test="not($list/@continuation = 'continues')">1</xsl:when>
     <xsl:otherwise>
       <xsl:variable name="prevlist"
                     select="$list/preceding::orderedlist[1]"/>
