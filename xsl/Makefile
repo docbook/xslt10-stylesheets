@@ -1,8 +1,6 @@
 include ../cvstools/Makefile.incl
 
 CVS2LOG=../cvstools/cvs2log
-MERGELOGS=../cvstools/mergechangelogs
-NEXTVERSION=../cvstools/nextversion
 NEXTVER=
 DIFFVER=
 ZIPVER=
