@@ -84,6 +84,14 @@
   <xsl:value-of select="."/>
 </xsl:template>
 
+<xsl:template name="body.attributes">
+  <xsl:attribute name="bgcolor">white</xsl:attribute>
+  <xsl:attribute name="text">black</xsl:attribute>
+  <xsl:attribute name="link">#0000FF</xsl:attribute>
+  <xsl:attribute name="vlink">#840084</xsl:attribute>
+  <xsl:attribute name="alink">#0000FF</xsl:attribute>
+</xsl:template>
+
 <xsl:template name="head.content">
   <xsl:param name="node" select="."/>
 
@@ -198,7 +206,8 @@
       <xsl:with-param name="node" select="$doc"/>
     </xsl:call-template>
   </head>
-  <body xsl:use-attribute-sets="body.attrs">
+  <body>
+    <xsl:call-template name="body.attributes"/>
     <xsl:call-template name="user.header.content">
       <xsl:with-param name="node" select="$doc"/>
     </xsl:call-template>

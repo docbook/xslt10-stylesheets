@@ -908,7 +908,8 @@ its parent.
       <xsl:with-param name="next" select="$next"/>
     </xsl:call-template>
 
-    <body xsl:use-attribute-sets="body.attrs">
+    <body>
+      <xsl:call-template name="body.attributes"/>
       <xsl:call-template name="user.header.navigation"/>
 
       <xsl:call-template name="header.navigation">
