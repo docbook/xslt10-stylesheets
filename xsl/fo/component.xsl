@@ -72,6 +72,7 @@
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
+
   <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
@@ -83,13 +84,27 @@
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
+
     <xsl:if test="$double.sided != 0">
       <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+    </xsl:if>
+
+    <!-- if there is a preceding component or we're in a part, the -->
+    <!-- page numbering will already be adjusted -->
+    <xsl:if test="not(preceding::chapter
+                      or preceding::preface
+                      or preceding::appendix
+                      or preceding::article
+                      or preceding::dedication
+                      or parent::part
+                      or parent::reference)">
+      <xsl:attribute name="initial-page-number">1</xsl:attribute>
     </xsl:if>
 
     <xsl:apply-templates select="." mode="running.head.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
+
     <xsl:apply-templates select="." mode="running.foot.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
@@ -113,6 +128,7 @@
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
+
   <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
@@ -124,13 +140,27 @@
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
+
     <xsl:if test="$double.sided != 0">
       <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+    </xsl:if>
+
+    <!-- if there is a preceding component or we're in a part, the -->
+    <!-- page numbering will already be adjusted -->
+    <xsl:if test="not(preceding::chapter
+                      or preceding::preface
+                      or preceding::appendix
+                      or preceding::article
+                      or preceding::dedication
+                      or parent::part
+                      or parent::reference)">
+      <xsl:attribute name="initial-page-number">1</xsl:attribute>
     </xsl:if>
 
     <xsl:apply-templates select="." mode="running.head.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
+
     <xsl:apply-templates select="." mode="running.foot.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
@@ -152,6 +182,7 @@
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
+
   <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
@@ -163,13 +194,27 @@
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
+
     <xsl:if test="$double.sided != 0">
       <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+    </xsl:if>
+
+    <!-- if there is a preceding component or we're in a part, the -->
+    <!-- page numbering will already be adjusted -->
+    <xsl:if test="not(preceding::chapter
+                      or preceding::preface
+                      or preceding::appendix
+                      or preceding::article
+                      or preceding::dedication
+                      or parent::part
+                      or parent::reference)">
+      <xsl:attribute name="initial-page-number">1</xsl:attribute>
     </xsl:if>
 
     <xsl:apply-templates select="." mode="running.head.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
+
     <xsl:apply-templates select="." mode="running.foot.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
@@ -197,10 +242,13 @@
 <xsl:template match="preface/titleabbrev"></xsl:template>
 <xsl:template match="preface/subtitle"></xsl:template>
 
+<!-- ==================================================================== -->
+
 <xsl:template match="chapter">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
+
   <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
@@ -212,18 +260,26 @@
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
 
-    <!-- if there is a preceding chapter or this chapter appears in a part, the -->
-    <!-- page numbering will already be adjusted -->
-    <xsl:if test="not(preceding::chapter) and not(parent::part)">
-      <xsl:attribute name="initial-page-number">1</xsl:attribute>
-    </xsl:if>
     <xsl:if test="$double.sided != 0">
       <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+    </xsl:if>
+
+    <!-- if there is a preceding component or we're in a part, the -->
+    <!-- page numbering will already be adjusted -->
+    <xsl:if test="not(preceding::chapter
+                      or preceding::preface
+                      or preceding::appendix
+                      or preceding::article
+                      or preceding::dedication
+                      or parent::part
+                      or parent::reference)">
+      <xsl:attribute name="initial-page-number">1</xsl:attribute>
     </xsl:if>
 
     <xsl:apply-templates select="." mode="running.head.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
+
     <xsl:apply-templates select="." mode="running.foot.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
@@ -250,10 +306,13 @@
 <xsl:template match="chapter/titleabbrev"></xsl:template>
 <xsl:template match="chapter/subtitle"></xsl:template>
 
+<!-- ==================================================================== -->
+
 <xsl:template match="appendix">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
+
   <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
@@ -264,13 +323,27 @@
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
+
     <xsl:if test="$double.sided != 0">
       <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+    </xsl:if>
+
+    <!-- if there is a preceding component or we're in a part, the -->
+    <!-- page numbering will already be adjusted -->
+    <xsl:if test="not(preceding::chapter
+                      or preceding::preface
+                      or preceding::appendix
+                      or preceding::article
+                      or preceding::dedication
+                      or parent::part
+                      or parent::reference)">
+      <xsl:attribute name="initial-page-number">1</xsl:attribute>
     </xsl:if>
 
     <xsl:apply-templates select="." mode="running.head.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
+
     <xsl:apply-templates select="." mode="running.foot.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
@@ -299,76 +372,11 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="dedication" mode="component.number">
-  <xsl:param name="add.space" select="false()"/>
-</xsl:template>
-
-<xsl:template match="preface" mode="component.number">
-  <xsl:param name="add.space" select="false()"/>
-</xsl:template>
-
-<xsl:template match="chapter" mode="component.number">
-  <xsl:param name="add.space" select="false()"/>
-  <xsl:choose>
-    <xsl:when test="@label">
-      <xsl:value-of select="@label"/>
-      <xsl:text>.</xsl:text>
-      <xsl:if test="$add.space">
-        <xsl:call-template name="gentext.space"/>
-      </xsl:if>
-    </xsl:when>
-    <xsl:when test="$chapter.autolabel">
-      <xsl:number from="book" count="chapter" format="1."/>
-      <xsl:if test="$add.space">
-        <xsl:call-template name="gentext.space"/>
-      </xsl:if>
-    </xsl:when>
-    <xsl:otherwise></xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-<xsl:template match="appendix" mode="component.number">
-  <xsl:param name="add.space" select="false()"/>
-  <xsl:choose>
-    <xsl:when test="@label">
-      <xsl:value-of select="@label"/>
-      <xsl:text>.</xsl:text>
-      <xsl:if test="$add.space">
-        <xsl:call-template name="gentext.space"/>
-      </xsl:if>
-    </xsl:when>
-    <xsl:when test="$chapter.autolabel">
-      <xsl:number from="book" count="appendix" format="A."/>
-      <xsl:if test="$add.space">
-        <xsl:call-template name="gentext.space"/>
-      </xsl:if>
-    </xsl:when>
-    <xsl:otherwise></xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-<xsl:template match="article" mode="component.number">
-  <xsl:param name="add.space" select="false()"/>
-</xsl:template>
-
-<xsl:template match="bibliography" mode="component.number">
-  <xsl:param name="add.space" select="false()"/>
-</xsl:template>
-
-<xsl:template match="glossary" mode="component.number">
-  <xsl:param name="add.space" select="false()"/>
-</xsl:template>
-
-<xsl:template match="index" mode="component.number">
-  <xsl:param name="add.space" select="false()"/>
-</xsl:template>
-
-<!-- ==================================================================== -->
-
 <xsl:template match="article">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
+
   <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
@@ -379,13 +387,27 @@
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
+
     <xsl:if test="$double.sided != 0">
       <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+    </xsl:if>
+
+    <!-- if there is a preceding component or we're in a part, the -->
+    <!-- page numbering will already be adjusted -->
+    <xsl:if test="not(preceding::chapter
+                      or preceding::preface
+                      or preceding::appendix
+                      or preceding::article
+                      or preceding::dedication
+                      or parent::part
+                      or parent::reference)">
+      <xsl:attribute name="initial-page-number">1</xsl:attribute>
     </xsl:if>
 
     <xsl:apply-templates select="." mode="running.head.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
+
     <xsl:apply-templates select="." mode="running.foot.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>

@@ -34,6 +34,7 @@
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
+
   <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster">
       <xsl:with-param name="column.count"
