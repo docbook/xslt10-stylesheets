@@ -18,7 +18,7 @@
 <gentext key="Answer" text="A:"/>
 <gentext key="answer" text="A:"/>
 <gentext key="Appendix" text="Appendix"/>
-<gentext key="appendix" text="appendix"/>
+<gentext key="appendix" text="Appendix"/>
 <gentext key="Article" text="Article"/>
 <gentext key="article" text="Article"/>
 <gentext key="Bibliography" text="Bibliography"/>
@@ -29,7 +29,7 @@
 <gentext key="Caution" text="Caution"/>
 <gentext key="caution" text="Caution"/>
 <gentext key="Chapter" text="Chapter"/>
-<gentext key="chapter" text="chapter"/>
+<gentext key="chapter" text="Chapter"/>
 <gentext key="Colophon" text="Colophon"/>
 <gentext key="colophon" text="Colophon"/>
 <gentext key="Copyright" text="Copyright"/>
