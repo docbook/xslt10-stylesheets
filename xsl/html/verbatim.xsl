@@ -21,8 +21,9 @@
 
 <xsl:template match="programlisting|screen|synopsis">
   <xsl:param name="suppress-numbers" select="'0'"/>
-  <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
 
   <xsl:call-template name="anchor"/>
 
@@ -67,7 +68,6 @@
 
 <xsl:template match="literallayout">
   <xsl:param name="suppress-numbers" select="'0'"/>
-  <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
 
   <xsl:variable name="rtf">
     <xsl:apply-templates/>
@@ -143,7 +143,6 @@
 
 <xsl:template match="address">
   <xsl:param name="suppress-numbers" select="'0'"/>
-  <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
 
   <xsl:variable name="rtf">
     <xsl:apply-templates/>
@@ -246,19 +245,16 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
-
   <xsl:choose>
-    <xsl:when test="contains($vendor, 'SAXON ')">
+    <xsl:when test="function-available('sverb:numberLines')">
       <xsl:copy-of select="sverb:numberLines($rtf)"/>
     </xsl:when>
-    <xsl:when test="contains($vendor, 'Apache Software Foundation')">
+    <xsl:when test="function-available('xverb:numberLines')">
       <xsl:copy-of select="xverb:numberLines($rtf)"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:message terminate="yes">
-        <xsl:text>Don't know how to do line numbering with </xsl:text>
-        <xsl:value-of select="$vendor"/>
+        <xsl:text>No numberLines function available.</xsl:text>
       </xsl:message>
     </xsl:otherwise>
   </xsl:choose>
