@@ -541,15 +541,35 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
+  <xsl:variable name="titleabbrev">
+    <xsl:apply-templates select="." mode="titleabbrev.markup"/>
+  </xsl:variable>
+
   <fo:block id='{$id}'>
+    <xsl:if test="$passivetex.extensions != 0">
+      <fotex:bookmark xmlns:fotex="http://www.tug.org/fotex" 
+                      fotex-bookmark-level="{count(ancestor::*)+2}" 
+                      fotex-bookmark-label="{$id}">
+        <xsl:value-of select="$titleabbrev"/>
+      </fotex:bookmark>
+    </xsl:if>
+
+    <xsl:if test="$axf.extensions != 0">
+      <xsl:attribute name="axf:outline-level">
+        <xsl:value-of select="count(ancestor::*)+2"/>
+      </xsl:attribute>
+      <xsl:attribute name="axf:outline-expand">false</xsl:attribute>
+      <xsl:attribute name="axf:outline-title">
+        <xsl:value-of select="$titleabbrev"/>
+      </xsl:attribute>
+    </xsl:if>
+
     <xsl:call-template name="section.heading">
       <xsl:with-param name="level" select="2"/>
       <xsl:with-param name="title">
         <xsl:apply-templates select="." mode="object.title.markup"/>
       </xsl:with-param>
-      <xsl:with-param name="titleabbrev">
-        <xsl:apply-templates select="." mode="titleabbrev.markup"/>
-      </xsl:with-param>
+      <xsl:with-param name="titleabbrev" select="$titleabbrev"/>
     </xsl:call-template>
 
     <xsl:apply-templates/>
