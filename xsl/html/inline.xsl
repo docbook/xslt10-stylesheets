@@ -134,14 +134,14 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:param>
-  <tt class="{local-name(.)}">
+  <code class="{local-name(.)}">
     <xsl:if test="@dir">
       <xsl:attribute name="dir">
         <xsl:value-of select="@dir"/>
       </xsl:attribute>
     </xsl:if>
     <xsl:copy-of select="$content"/>
-  </tt>
+  </code>
 </xsl:template>
 
 <xsl:template name="inline.boldseq">
@@ -214,25 +214,25 @@
                          or local-name(../..) = 'example'
                          or local-name(../..) = 'table'
                          or local-name(../..) = 'formalpara')">
-      <tt class="{local-name(.)}">
+      <code class="{local-name(.)}">
         <xsl:if test="@dir">
           <xsl:attribute name="dir">
             <xsl:value-of select="@dir"/>
           </xsl:attribute>
         </xsl:if>
         <xsl:copy-of select="$content"/>
-      </tt>
+      </code>
     </xsl:when>
     <xsl:otherwise>
       <strong class="{local-name(.)}">
-        <tt>
+        <code>
           <xsl:if test="@dir">
             <xsl:attribute name="dir">
               <xsl:value-of select="@dir"/>
             </xsl:attribute>
           </xsl:if>
           <xsl:copy-of select="$content"/>
-        </tt>
+        </code>
       </strong>
     </xsl:otherwise>
   </xsl:choose>
@@ -248,14 +248,14 @@
     </xsl:call-template>
   </xsl:param>
   <em class="{local-name(.)}">
-    <tt>
+    <code>
       <xsl:if test="@dir">
         <xsl:attribute name="dir">
           <xsl:value-of select="@dir"/>
         </xsl:attribute>
       </xsl:if>
       <xsl:copy-of select="$content"/>
-    </tt>
+    </code>
   </em>
 </xsl:template>
 
@@ -931,7 +931,7 @@
     </xsl:choose>
   </xsl:param>
 
-  <tt class="sgmltag-{$class}">
+  <code class="sgmltag-{$class}">
     <xsl:choose>
       <xsl:when test="$class='attribute'">
         <xsl:apply-templates/>
@@ -991,7 +991,7 @@
         <xsl:apply-templates/>
       </xsl:otherwise>
     </xsl:choose>
-  </tt>
+  </code>
 </xsl:template>
 
 <xsl:template match="email">
