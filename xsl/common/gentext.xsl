@@ -71,8 +71,11 @@
 <xsl:template match="section|sect1|sect2|sect3|sect4|sect5|simplesect
                      |bridgehead"
               mode="object.title.template">
+  <xsl:variable name="is.numbered">
+    <xsl:call-template name="label.this.section"/>
+  </xsl:variable>
   <xsl:choose>
-    <xsl:when test="$section.autolabel != 0">
+    <xsl:when test="$is.numbered != 0">
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'title-numbered'"/>
         <xsl:with-param name="name">
@@ -132,7 +135,7 @@
 
 <xsl:template match="section|sect1|sect2|sect3|sect4|sect5" 
               mode="is.autonumber">
-  <xsl:value-of select="$section.autolabel"/>
+  <xsl:call-template name="label.this.section"/>
 </xsl:template>
 
 <xsl:template match="figure|example|table|equation" mode="is.autonumber">
