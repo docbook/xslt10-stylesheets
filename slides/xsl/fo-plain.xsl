@@ -16,7 +16,6 @@
 </i18n>
 
 <xsl:param name="page.orientation" select="'landscape'"/>
-<xsl:param name="double.sided" select="1"/>
 
 <xsl:param name="slide.title.font.family" select="'Helvetica'"/>
 <xsl:param name="slide.font.family" select="'Helvetica'"/>
@@ -62,57 +61,68 @@
 <xsl:template name="user.pagemasters">
   <fo:page-sequence-master master-name="twoside1-with-titlepage">
     <fo:repeatable-page-master-alternatives>
-      <fo:conditional-page-master-reference master-name="first1"
+      <fo:conditional-page-master-reference master-reference="first1"
                                             page-position="first"/>
-      <fo:conditional-page-master-reference master-name="blank"
+      <fo:conditional-page-master-reference master-reference="blank"
                                             blank-or-not-blank="blank"/>
-      <fo:conditional-page-master-reference master-name="right1"
+      <fo:conditional-page-master-reference master-reference="right1"
                                             odd-or-even="odd"/>
-      <fo:conditional-page-master-reference master-name="left1"
+      <fo:conditional-page-master-reference master-reference="left1"
                                             odd-or-even="even"/>
     </fo:repeatable-page-master-alternatives>
   </fo:page-sequence-master>
 
   <fo:page-sequence-master master-name="oneside1-with-titlepage">
     <fo:repeatable-page-master-alternatives>
-      <fo:conditional-page-master-reference master-name="first1"
+      <fo:conditional-page-master-reference master-reference="first1"
                                             page-position="first"/>
-      <fo:conditional-page-master-reference master-name="simple1"/>
+      <fo:conditional-page-master-reference master-reference="simple1"/>
     </fo:repeatable-page-master-alternatives>
   </fo:page-sequence-master>
 </xsl:template>
 
+<xsl:template match="*" mode="running.head.mode">
+  <xsl:param name="master-reference" select="'unknown'"/>
+  <!-- use the section title if there is one -->
+  <fo:static-content flow-name="xsl-region-before">
+    <fo:block text-align="center" font-size="14pt">
+      <xsl:apply-templates select="ancestor-or-self::section"
+                           mode="object.title.markup"/>
+    </fo:block>
+  </fo:static-content>
+</xsl:template>
+
 <xsl:template match="*" mode="running.foot.mode">
-  <xsl:param name="master-name" select="'unknown'"/>
+  <xsl:param name="master-reference" select="'unknown'"/>
   <xsl:variable name="foot">
     <fo:page-number/>
   </xsl:variable>
   <!-- by default, the page number -->
   <xsl:choose>
-    <xsl:when test="$master-name='titlepage1'"></xsl:when>
-    <xsl:when test="$master-name='oneside1-with-titlepage'">
+    <xsl:when test="$master-reference='titlepage1'"></xsl:when>
+    <xsl:when test="$master-reference='oneside1-with-titlepage'">
       <fo:static-content flow-name="xsl-region-after">
-        <fo:block text-align="center" font-size="10pt">
+        <fo:block text-align="center" font-size="14pt">
           <xsl:copy-of select="$foot"/>
         </fo:block>
       </fo:static-content>
     </xsl:when>
-    <xsl:when test="$master-name='twoside1-with-titlepage'">
+    <xsl:when test="$master-reference='twoside1-with-titlepage'">
       <fo:static-content flow-name="xsl-region-after-left">
-        <fo:block text-align="left" font-size="10pt">
+        <fo:block text-align="left" font-size="14pt">
           <xsl:copy-of select="$foot"/>
         </fo:block>
       </fo:static-content>
       <fo:static-content flow-name="xsl-region-after-right">
-        <fo:block text-align="right" font-size="10pt">
+        <fo:block text-align="right" font-size="14pt">
           <xsl:copy-of select="$foot"/>
         </fo:block>
       </fo:static-content>
     </xsl:when>
     <xsl:otherwise>
       <xsl:message>
-        <xsl:text>Unexpected master-name (</xsl:text>
-        <xsl:value-of select="$master-name"/>
+        <xsl:text>Unexpected master-reference (</xsl:text>
+        <xsl:value-of select="$master-reference"/>
         <xsl:text>) in running.foot.mode for </xsl:text>
         <xsl:value-of select="name(.)"/>
         <xsl:text>. No footer generated.</xsl:text>
@@ -142,24 +152,21 @@
 </xsl:template>
 
 <xsl:template match="slides">
-  <xsl:variable name="master-name">
+  <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
 
   <fo:page-sequence hyphenate="{$hyphenate}"
-                    master-name="{$master-name}">
+                    master-reference="{$master-reference}">
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
-    <xsl:if test="$double.sided != 0">
-      <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
-    </xsl:if>
 
     <xsl:apply-templates select="." mode="running.head.mode">
-      <xsl:with-param name="master-name" select="$master-name"/>
+      <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="." mode="running.foot.mode">
-      <xsl:with-param name="master-name" select="$master-name"/>
+      <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
     <fo:flow flow-name="xsl-region-body"
              xsl:use-attribute-sets="slides.properties">
@@ -184,24 +191,21 @@
 <!-- ============================================================ -->
 
 <xsl:template match="section">
-  <xsl:variable name="master-name">
+  <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
 
   <fo:page-sequence hyphenate="{$hyphenate}"
-                    master-name="{$master-name}">
+                    master-reference="{$master-reference}">
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
-    <xsl:if test="$double.sided != 0">
-      <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
-    </xsl:if>
 
     <xsl:apply-templates select="." mode="running.head.mode">
-      <xsl:with-param name="master-name" select="$master-name"/>
+      <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="." mode="running.foot.mode">
-      <xsl:with-param name="master-name" select="$master-name"/>
+      <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
     <fo:flow flow-name="xsl-region-body"
              xsl:use-attribute-sets="slides.properties">
