@@ -17,69 +17,76 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="section">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
-  <xsl:variable name="renderas">
-    <xsl:choose>
-      <xsl:when test="@renderas = 'sect1'">1</xsl:when>
-      <xsl:when test="@renderas = 'sect2'">2</xsl:when>
-      <xsl:when test="@renderas = 'sect3'">3</xsl:when>
-      <xsl:when test="@renderas = 'sect4'">4</xsl:when>
-      <xsl:when test="@renderas = 'sect5'">5</xsl:when>
-      <xsl:otherwise><xsl:value-of select="''"/></xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <xsl:variable name="level">
-    <xsl:choose>
-      <xsl:when test="$renderas != ''">
-        <xsl:value-of select="$renderas"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="section.level"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <!-- xsl:use-attribute-sets takes only a Qname, not a variable -->
   <xsl:choose>
-    <xsl:when test="$level = 1">
-      <fo:block id="{$id}"
-                xsl:use-attribute-sets="section.level1.properties">
-        <xsl:call-template name="section.content"/>
-      </fo:block>
-    </xsl:when>
-    <xsl:when test="$level = 2">
-      <fo:block id="{$id}"
-                xsl:use-attribute-sets="section.level2.properties">
-        <xsl:call-template name="section.content"/>
-      </fo:block>
-    </xsl:when>
-    <xsl:when test="$level = 3">
-      <fo:block id="{$id}"
-                xsl:use-attribute-sets="section.level3.properties">
-        <xsl:call-template name="section.content"/>
-      </fo:block>
-    </xsl:when>
-    <xsl:when test="$level = 4">
-      <fo:block id="{$id}"
-                xsl:use-attribute-sets="section.level4.properties">
-        <xsl:call-template name="section.content"/>
-      </fo:block>
-    </xsl:when>
-    <xsl:when test="$level = 5">
-      <fo:block id="{$id}"
-                xsl:use-attribute-sets="section.level5.properties">
-        <xsl:call-template name="section.content"/>
-      </fo:block>
+    <xsl:when test="$rootid = @id">
+      <xsl:call-template name="section.page.sequence"/>
     </xsl:when>
     <xsl:otherwise>
-      <fo:block id="{$id}"
-                xsl:use-attribute-sets="section.level6.properties">
-        <xsl:call-template name="section.content"/>
-      </fo:block>
+      <xsl:variable name="id">
+        <xsl:call-template name="object.id"/>
+      </xsl:variable>
+
+      <xsl:variable name="renderas">
+        <xsl:choose>
+          <xsl:when test="@renderas = 'sect1'">1</xsl:when>
+          <xsl:when test="@renderas = 'sect2'">2</xsl:when>
+          <xsl:when test="@renderas = 'sect3'">3</xsl:when>
+          <xsl:when test="@renderas = 'sect4'">4</xsl:when>
+          <xsl:when test="@renderas = 'sect5'">5</xsl:when>
+          <xsl:otherwise><xsl:value-of select="''"/></xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+
+      <xsl:variable name="level">
+        <xsl:choose>
+          <xsl:when test="$renderas != ''">
+            <xsl:value-of select="$renderas"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="section.level"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+
+      <!-- xsl:use-attribute-sets takes only a Qname, not a variable -->
+      <xsl:choose>
+        <xsl:when test="$level = 1">
+          <fo:block id="{$id}"
+                    xsl:use-attribute-sets="section.level1.properties">
+            <xsl:call-template name="section.content"/>
+          </fo:block>
+        </xsl:when>
+        <xsl:when test="$level = 2">
+          <fo:block id="{$id}"
+                    xsl:use-attribute-sets="section.level2.properties">
+            <xsl:call-template name="section.content"/>
+          </fo:block>
+        </xsl:when>
+        <xsl:when test="$level = 3">
+          <fo:block id="{$id}"
+                    xsl:use-attribute-sets="section.level3.properties">
+            <xsl:call-template name="section.content"/>
+          </fo:block>
+        </xsl:when>
+        <xsl:when test="$level = 4">
+          <fo:block id="{$id}"
+                    xsl:use-attribute-sets="section.level4.properties">
+            <xsl:call-template name="section.content"/>
+          </fo:block>
+        </xsl:when>
+        <xsl:when test="$level = 5">
+          <fo:block id="{$id}"
+                    xsl:use-attribute-sets="section.level5.properties">
+            <xsl:call-template name="section.content"/>
+          </fo:block>
+        </xsl:when>
+        <xsl:otherwise>
+          <fo:block id="{$id}"
+                    xsl:use-attribute-sets="section.level6.properties">
+            <xsl:call-template name="section.content"/>
+          </fo:block>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -104,7 +111,7 @@
   <xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="section[not(parent::*) or $rootid = @id]">
+<xsl:template match="section[not(parent::*)]" name="section.page.sequence">
   <xsl:variable name="id">
     <xsl:call-template name="object.id">
       <xsl:with-param name="object" select="ancestor::reference"/>
