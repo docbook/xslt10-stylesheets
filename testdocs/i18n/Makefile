@@ -14,9 +14,10 @@ XSLPARAM=
 FORMATTER=xep
 
 XMLFILES=book.xml af.xml ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml \
-         et.xml eu.xml fi.xml fr.xml hu.xml id.xml it.xml ja.xml ko.xml nl.xml \
-         nn.xml no.xml pl.xml pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml \
-         sr.xml sv.xml test.xml th.xml tr.xml uk.xml xh.xml zh_cn.xml zh_tw.xml
+  et.xml eu.xml fi.xml fr.xml he.xml hu.xml id.xml it.xml ja.xml ko.xml \
+  lt.xml nl.xml nn.xml no.xml pl.xml pt.xml pt_br.xml ro.xml ru.xml \
+  sk.xml sl.xml sr.xml sv.xml th.xml tr.xml uk.xml vi.xml xh.xml \
+  zh_cn.xml zh_tw.xml
 
 all: book.html book.pdf
 

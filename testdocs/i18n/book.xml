@@ -1,5 +1,6 @@
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
           "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY af.xml SYSTEM "af.xml">
 <!ENTITY ca.xml SYSTEM "ca.xml">
 <!ENTITY cs.xml SYSTEM "cs.xml">
 <!ENTITY da.xml SYSTEM "da.xml">
@@ -11,11 +12,13 @@
 <!ENTITY eu.xml SYSTEM "eu.xml">
 <!ENTITY fi.xml SYSTEM "fi.xml">
 <!ENTITY fr.xml SYSTEM "fr.xml">
+<!ENTITY he.xml SYSTEM "he.xml">
 <!ENTITY hu.xml SYSTEM "hu.xml">
 <!ENTITY id.xml SYSTEM "id.xml">
 <!ENTITY it.xml SYSTEM "it.xml">
 <!ENTITY ja.xml SYSTEM "ja.xml">
 <!ENTITY ko.xml SYSTEM "ko.xml">
+<!ENTITY lit.xml SYSTEM "lt.xml">
 <!ENTITY nl.xml SYSTEM "nl.xml">
 <!ENTITY nn.xml SYSTEM "nn.xml">
 <!ENTITY no.xml SYSTEM "no.xml">
@@ -28,8 +31,10 @@
 <!ENTITY sl.xml SYSTEM "sl.xml">
 <!ENTITY sr.xml SYSTEM "sr.xml">
 <!ENTITY sv.xml SYSTEM "sv.xml">
+<!ENTITY th.xml SYSTEM "th.xml">
 <!ENTITY tr.xml SYSTEM "tr.xml">
 <!ENTITY uk.xml SYSTEM "uk.xml">
+<!ENTITY vi.xml SYSTEM "vi.xml">
 <!ENTITY xh.xml SYSTEM "xh.xml">
 <!ENTITY zh_cn.xml SYSTEM "zh_cn.xml">
 <!ENTITY zh_tw.xml SYSTEM "zh_tw.xml">
@@ -50,6 +55,7 @@ style sheets.</para>
 
 </preface>
 
+&af.xml;
 &ca.xml;
 &cs.xml;
 &da.xml;
@@ -61,11 +67,13 @@ style sheets.</para>
 &eu.xml;
 &fi.xml;
 &fr.xml;
+&he.xml;
 &hu.xml;
 &id.xml;
 &it.xml;
 &ja.xml;
 &ko.xml;
+&lit.xml;
 &nl.xml;
 &nn.xml;
 &no.xml;
@@ -78,8 +86,10 @@ style sheets.</para>
 &sl.xml;
 &sr.xml;
 &sv.xml;
+&th.xml;
 &tr.xml;
 &uk.xml;
+&vi.xml;
 &xh.xml;
 &zh_cn.xml;
 &zh_tw.xml;
