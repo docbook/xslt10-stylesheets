@@ -444,7 +444,7 @@
     <xsl:call-template name="section.heading">
       <xsl:with-param name="level" select="2"/>
       <xsl:with-param name="title">
-        <xsl:apply-templates select="." mode="title.markup"/>
+        <xsl:apply-templates select="." mode="object.title.markup"/>
       </xsl:with-param>
     </xsl:call-template>
 
