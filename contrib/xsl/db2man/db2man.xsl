@@ -220,8 +220,15 @@
   <xsl:text>\fR</xsl:text>
 </xsl:template>
 
-<xsl:template match="article">
-  <xsl:apply-templates select="refentry"/>
+<xsl:template match="/">
+  <xsl:choose>
+    <xsl:when test="//refentry">
+      <xsl:apply-templates select="//refentry"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message>No refentry elements!</xsl:message>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
