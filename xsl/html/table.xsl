@@ -120,6 +120,30 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="tgroup">
+  <xsl:variable name="summary">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'table-summary'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="cellspacing">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'cellspacing'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="cellpadding">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbhtml')[1]"/>
+      <xsl:with-param name="attribute" select="'cellpadding'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <table>
     <xsl:choose>
       <!-- If there's a textobject/phrase for the table summary, use it -->
@@ -131,45 +155,10 @@
 
       <!-- If there's a <?dbhtml table-summary="foo"?> PI, use it for
            the HTML table summary attribute -->
-      <xsl:when test="processing-instruction('dbhtml')">
-        <xsl:variable name="summary">
-          <xsl:call-template name="dbhtml-attribute">
-            <xsl:with-param name="pis"
-                            select="processing-instruction('dbhtml')"/>
-            <xsl:with-param name="attribute" select="'table-summary'"/>
-          </xsl:call-template>
-        </xsl:variable>
-        <xsl:if test="$summary != ''">
-          <xsl:attribute name="summary">
-            <xsl:value-of select="$summary"/>
-          </xsl:attribute>
-        </xsl:if>
-
-        <xsl:variable name="cellspacing">
-          <xsl:call-template name="dbhtml-attribute">
-            <xsl:with-param name="pis"
-                            select="processing-instruction('dbhtml')"/>
-            <xsl:with-param name="attribute" select="'cellspacing'"/>
-          </xsl:call-template>
-        </xsl:variable>
-        <xsl:if test="$cellspacing != ''">
-          <xsl:attribute name="cellspacing">
-            <xsl:value-of select="$cellspacing"/>
-          </xsl:attribute>
-        </xsl:if>
-
-        <xsl:variable name="cellpadding">
-          <xsl:call-template name="dbhtml-attribute">
-            <xsl:with-param name="pis"
-                            select="processing-instruction('dbhtml')[1]"/>
-            <xsl:with-param name="attribute" select="'cellpadding'"/>
-          </xsl:call-template>
-        </xsl:variable>
-        <xsl:if test="$cellpadding != ''">
-          <xsl:attribute name="cellpadding">
-            <xsl:value-of select="$cellpadding"/>
-          </xsl:attribute>
-        </xsl:if>
+      <xsl:when test="$summary != ''">
+        <xsl:attribute name="summary">
+          <xsl:value-of select="$summary"/>
+        </xsl:attribute>
       </xsl:when>
 
       <!-- Otherwise, if there's a title, use that -->
@@ -182,6 +171,32 @@
       <!-- Otherwise, forget the whole idea -->
       <xsl:otherwise><!-- nevermind --></xsl:otherwise>
     </xsl:choose>
+
+    <xsl:if test="$cellspacing != '' or $html.cellspacing != ''">
+      <xsl:attribute name="cellspacing">
+        <xsl:choose>
+          <xsl:when test="$cellspacing != ''">
+            <xsl:value-of select="$cellspacing"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$html.cellspacing"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:attribute>
+    </xsl:if>
+
+    <xsl:if test="$cellpadding != '' or $html.cellpadding != ''">
+      <xsl:attribute name="cellpadding">
+        <xsl:choose>
+          <xsl:when test="$cellpadding != ''">
+            <xsl:value-of select="$cellpadding"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$html.cellpadding"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:attribute>
+    </xsl:if>
 
     <xsl:if test="../@pgwide=1">
       <xsl:attribute name="width">100%</xsl:attribute>
@@ -463,6 +478,12 @@
   </xsl:variable>
 
   <tr>
+    <xsl:call-template name="tr.attributes">
+      <xsl:with-param name="rownum">
+        <xsl:number from="tgroup" count="row"/>
+      </xsl:with-param>
+    </xsl:call-template>
+
     <xsl:if test="$row-height != ''">
       <xsl:attribute name="height">
         <xsl:value-of select="$row-height"/>
@@ -934,6 +955,21 @@
       </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<!-- ====================================================================== -->
+
+<xsl:template name="tr.attributes">
+  <xsl:param name="row" select="."/>
+  <xsl:param name="rownum" select="0"/>
+
+  <!-- by default, do nothing. But you might want to say:
+
+  <xsl:if test="$rownum mod 2 = 0">
+    <xsl:attribute name="class">oddrow</xsl:attribute>
+  </xsl:if>
+
+  -->
 </xsl:template>
 
 </xsl:stylesheet>
