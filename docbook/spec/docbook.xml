@@ -1,6 +1,6 @@
 <!DOCTYPE article [
 <!ENTITY name "wd-docbook-docbook">
-<!ENTITY version "4.4CR3">
+<!ENTITY version "4.4CR4">
 <!ENTITY standard "Working Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
@@ -34,7 +34,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>17 Dec 2004</pubdate>
+<pubdate>22 Dec 2004</pubdate>
 
 <copyright><year>2001</year><year>2002</year><year>2003</year><year>2004</year>
 <holder>
@@ -48,7 +48,7 @@ Standards [OASIS]. All Rights Reserved.
 particularly well suited to books and papers about computer hardware
 and software (though it is by no means limited to these applications).
 </para>
-<para>The Version 4.4CR3 release is a maintenance release. It introduces
+<para>The Version 4.4CR4 release is a maintenance release. It introduces
 no backwards-incompatible changes.</para>
 </abstract>
 
@@ -94,9 +94,9 @@ both
 <ulink url="http://xml.coverpages.org/general.html#overview">SGML</ulink>.
 It is unofficially available in other forms as well.</para>
 
-<para>The Version 4.4CR3 release is a maintainance release. It introduces
+<para>The Version 4.4CR4 release is a maintainance release. It introduces
 no backwards-incompatible changes. All valid DocBook 4.3 documents are
-also valid DocBook 4.4CR3 documents.</para>
+also valid DocBook 4.4CR4 documents.</para>
 
 <para>The genesis of this release is a bug in the catalog files for
 DocBook V4.3. The Committee decided to produce a 4.4 release, incorporating
@@ -130,17 +130,48 @@ document.</para>
 </section>
 
 <section id="docbook">
-<title>The DocBook Document Type V4.4CR3</title>
+<title>The DocBook Document Type V4.4CR4</title>
 
 <para>The DocBook document type is distributed for
 <ulink url="&root;xml/">XML</ulink> and
 <ulink url="&root;sgml/">SGML</ulink>
 from the
 <ulink url="http://www.oasis-open.org/docbook/">DocBook site</ulink> at
-<ulink url="http://www.oasis-open.org/">OASIS</ulink>. DocBook is also available from
+<ulink url="http://www.oasis-open.org/">OASIS</ulink>.
+DocBook is also available from
 the mirror on
 <ulink url="http://docbook.org/"/>.
 </para>
+
+<section id="s.cscr4">
+<title>Changes in DocBook V4.4CR4</title>
+
+<para>There are no backwards-incompatible changes in this release.
+</para>
+
+<para>Each of the changes made between DocBook V4.4CR3 and DocBook V4.4CR4
+is summarized here. For complete details, consult the individual RFEs and
+the <ulink url="&root;minutes">meeting minutes</ulink>.</para>
+
+<section id="scr4.bugs">
+<title>Bug Fixes</title>
+<itemizedlist spacing="compact">
+<listitem><para>The <sgmltag class="attribute">rowheader</sgmltag> attribute
+was accidentally declared twice on <sgmltag>informaltable</sgmltag>. That
+bug has been fixed.</para>
+</listitem>
+</itemizedlist>
+</section>
+
+<section id="scr4.enhancements">
+<title>Enhancements</title>
+
+<itemizedlist spacing="compact">
+<listitem><para>None.
+</para></listitem>
+</itemizedlist>
+</section>
+</section>
 
 <section id="s.cscr3">
 <title>Changes in DocBook V4.4CR3</title>
@@ -731,6 +762,10 @@ of the DocBook web page
 
 <para>
 <revhistory>
+<revision role="&root;specs/wd-docbook-docbook-4.4CR4.html">
+  <revnumber>Working Draft “Candidate Release 4”</revnumber>
+  <date>22 Dec 2004</date>
+</revision>
 <revision role="&root;specs/wd-docbook-docbook-4.4CR3.html">
   <revnumber>Working Draft “Candidate Release 3”</revnumber>
   <date>17 Dec 2004</date>
