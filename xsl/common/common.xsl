@@ -907,7 +907,13 @@ recursive process.</para>
     
         <xsl:variable name="useobject">
           <xsl:choose>
-          <!-- The phrase is never used -->
+            <!-- The phrase is used only when contains TeX Math and output is FO -->
+            <xsl:when test="name($object)='textobject' and $object/phrase
+                            and $object/@role='tex' and $stylesheet.result.type = 'fo'
+                            and $tex.math.in.alt != ''">
+              <xsl:text>1</xsl:text> 
+            </xsl:when>
+            <!-- The phrase is never used -->
             <xsl:when test="name($object)='textobject' and $object/phrase">
               <xsl:text>0</xsl:text>
             </xsl:when>
@@ -921,6 +927,14 @@ recursive process.</para>
             <xsl:when test="name($object)='textobject'
 	                    and $object[not(@role) or @role!='tex']">
               <xsl:text>1</xsl:text>
+            </xsl:when>
+            <!-- don't use graphic when output is FO, TeX Math is used 
+                 and there is math in alt element -->
+            <xsl:when test="$object/ancestor::equation and 
+                            $object/ancestor::equation/alt[@role='tex']
+                            and $stylesheet.result.type = 'fo'
+                            and $tex.math.in.alt != ''">
+              <xsl:text>0</xsl:text>
             </xsl:when>
             <!-- If there's only one object, use it -->
             <xsl:when test="$count = 1 and count($olist) = 1">
