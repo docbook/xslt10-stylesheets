@@ -148,7 +148,7 @@
 
 <!ENTITY % local.xref.char.class "">
 <!ENTITY % xref.char.class
-		"footnoteref|xref %local.xref.char.class;">
+		"footnoteref|xref|biblioref %local.xref.char.class;">
 
 <!ENTITY % local.gen.char.class "">
 <!ENTITY % gen.char.class
@@ -393,7 +393,7 @@ f. Just BlockQuote; no other informal objects.
 <!ENTITY % blockquote.exclusion "-(epigraph)">
 <!ENTITY % remark.exclusion "-(remark|%ubiq.mix;)">
 <!ENTITY % glossterm.exclusion "-(glossterm)">
-<!ENTITY % links.exclusion "-(link|olink|ulink|xref)">
+<!ENTITY % links.exclusion "-(link|olink|ulink|xref|biblioref)">
 ]]><!-- sgml.features -->
 
 <!-- not [sgml.features[ -->
@@ -8062,6 +8062,32 @@ OtherCredit. -->
 >
 <!--end of xref.attlist-->]]>
 <!--end of xref.module-->]]>
+
+<!ENTITY % biblioref.module "INCLUDE">
+<![%biblioref.module;[
+<!ENTITY % local.biblioref.attrib "">
+<!ENTITY % biblioref.role.attrib "%role.attrib;">
+
+<!ENTITY % biblioref.element "INCLUDE">
+<![%biblioref.element;[
+<!ELEMENT biblioref %ho; EMPTY>
+<!--end of biblioref.element-->]]>
+
+<!ENTITY % biblioref.attlist "INCLUDE">
+<![%biblioref.attlist;[
+<!ATTLIST biblioref
+		endterm		IDREF		#IMPLIED
+		xrefstyle	CDATA		#IMPLIED
+		units		CDATA		#IMPLIED
+		begin		CDATA		#IMPLIED
+		end		CDATA		#IMPLIED
+		%common.attrib;
+		%linkendreq.attrib;
+		%biblioref.role.attrib;
+		%local.biblioref.attrib;
+>
+<!--end of biblioref.attlist-->]]>
+<!--end of biblioref.module-->]]>
 
 <!-- Ubiquitous elements .................................................. -->
 
