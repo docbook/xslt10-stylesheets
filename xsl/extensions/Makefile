@@ -1,27 +1,32 @@
-.PHONY: doc saxon551 saxon6 saxon61 xalan2
+.PHONY: doc saxon551 saxon6 saxon61 saxon63 xalan2
 
-all: saxon551 saxon6 saxon61 xalan2
+all: saxon551 saxon6 saxon61 saxon63 xalan2
 
 saxon551:
-	cd saxon551/.classes && make
+	make -C saxon551/.classes
 
 saxon6:
-	cd saxon6/.classes && make
+	make -C saxon6/.classes
 
 saxon61:
-	cd saxon61/.classes && make
+	make -C saxon61/.classes
+
+saxon63:
+	make -C saxon63/.classes
 
 xalan2:
-	cd xalan2/.classes && make
+	make -C xalan2/.classes
 
-jars: saxon551 saxon6 saxon61 xalan2
-	cd saxon551/.classes && make jar
-	cd saxon6/.classes && make jar
-	cd saxon61/.classes && make jar
-	cd xalan2/.classes && make jar
+jars: saxon551 saxon6 saxon61 saxon63 xalan2
+	make -C saxon551/.classes jar
+	make -C saxon6/.classes jar
+	make -C saxon61/.classes jar
+	make -C saxon63/.classes jar
+	make -C xalan2/.classes jar
 
 clean:
-	cd saxon551/.classes && make clean
-	cd saxon6/.classes && make clean
-	cd saxon61/.classes && make clean
-	cd xalan2/.classes && make clean
+	make -C saxon551/.classes clean
+	make -C saxon6/.classes clean
+	make -C saxon61/.classes clean
+	make -C saxon63/.classes clean
+	make -C xalan2/.classes clean
