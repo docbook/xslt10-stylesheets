@@ -67,6 +67,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/htmlhelp.alias.file.xml \
        ../params/htmlhelp.autolabel.xml \
        ../params/htmlhelp.chm.xml \
+       ../params/htmlhelp.default.topic.xml \
        ../params/htmlhelp.encoding.xml \
        ../params/htmlhelp.enumerate.images.xml \
        ../params/htmlhelp.force.map.and.alias.xml \

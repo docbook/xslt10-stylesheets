@@ -80,19 +80,26 @@
 Compiled file=</xsl:text><xsl:value-of select="$htmlhelp.chm"/><xsl:text>
 Contents file=</xsl:text><xsl:value-of select="$htmlhelp.hhc"/><xsl:text>
 Default topic=</xsl:text>
- <xsl:call-template name="make-relative-filename">
-   <xsl:with-param name="base.dir" select="$base.dir"/>
-   <xsl:with-param name="base.name">
-     <xsl:choose>
-       <xsl:when test="$rootid != ''">
-         <xsl:apply-templates select="key('id',$rootid)" mode="chunk-filename"/>
-       </xsl:when>
-       <xsl:otherwise>
-         <xsl:apply-templates select="/" mode="chunk-filename"/>
-       </xsl:otherwise>
-     </xsl:choose>
-   </xsl:with-param>
- </xsl:call-template>
+<xsl:choose>
+  <xsl:when test="$htmlhelp.default.topic != ''">
+    <xsl:value-of select="$htmlhelp.default.topic"/>
+  </xsl:when>
+  <xsl:otherwise>
+    <xsl:call-template name="make-relative-filename">
+      <xsl:with-param name="base.dir" select="$base.dir"/>
+      <xsl:with-param name="base.name">
+        <xsl:choose>
+          <xsl:when test="$rootid != ''">
+            <xsl:apply-templates select="key('id',$rootid)" mode="chunk-filename"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="/" mode="chunk-filename"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:otherwise>
+</xsl:choose>
 <xsl:text>
 Display compile progress=No
 Full-text search=Yes
