@@ -1,7 +1,16 @@
 <!-- ====================================================================== -->
-<!-- Website Layout DTD V2.1b1
+<!-- Website Layout DTD V2.2
      Part of the Website distribution
      http://sourceforge.net/projects/docbook/
+
+     Please use the following formal public identifier to identify it:
+
+     "-//Norman Walsh//DTD Website Layout V2.2//EN"
+
+     For example:
+
+     <!DOCTYPE layout PUBLIC "-//Norman Walsh//DTD Website Layout V2.2//EN"
+                     "http://docbook.sourceforge.net/release/website/2.2/layout.dtd">
 
      Please direct all questions and comments about this DTD to
      Norman Walsh, <ndw@nwalsh.com>.
@@ -74,5 +83,5 @@
 
 <!ELEMENT summary (#PCDATA)*>
 
-<!-- End of layout.dtd V2.2b1 ............................................. -->
+<!-- End of layout.dtd V2.2 ............................................... -->
 <!-- ...................................................................... -->
