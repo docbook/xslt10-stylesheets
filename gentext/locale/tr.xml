@@ -559,4 +559,67 @@
 <template name="langcode">0x041f Turkish</template>
 </context>
 
+<letters>
+  <l i="-1"/>	
+  <l i="0">Semboller</l>
+  <l i="1">A</l>
+  <l i="1">a</l>
+  <l i="2">B</l>
+  <l i="2">b</l>
+  <l i="3">C</l>
+  <l i="3">c</l>
+  <l i="4">Ç</l>
+  <l i="4">ç</l>
+  <l i="5">D</l>
+  <l i="5">d</l>
+  <l i="6">E</l>
+  <l i="6">e</l>
+  <l i="7">F</l>
+  <l i="7">f</l>
+  <l i="8">G</l>
+  <l i="8">g</l>
+  <l i="9">Ğ</l>
+  <l i="9">ğ</l>
+  <l i="10">H</l>
+  <l i="10">h</l>
+  <l i="11">I</l>
+  <l i="11">ı</l>
+  <l i="12">İ</l>
+  <l i="12">i</l>
+  <l i="13">J</l>
+  <l i="13">j</l>
+  <l i="14">K</l>
+  <l i="14">k</l>
+  <l i="15">L</l>
+  <l i="15">l</l>
+  <l i="16">M</l>
+  <l i="16">m</l>
+  <l i="17">N</l>
+  <l i="17">n</l>
+  <l i="18">O</l>
+  <l i="18">o</l>
+  <l i="19">Ö</l>
+  <l i="19">ö</l>
+  <l i="20">P</l>
+  <l i="20">p</l>
+  <l i="21">R</l>
+  <l i="21">r</l>
+  <l i="22">S</l>
+  <l i="22">s</l>
+  <l i="23">Ş</l>
+  <l i="23">ş</l>
+  <l i="24">T</l>
+  <l i="24">t</l>
+  <l i="25">U</l>
+  <l i="25">u</l>
+  <l i="26">Ü</l>
+  <l i="26">ü</l>
+  <l i="27">V</l>
+  <l i="27">v</l>
+  <l i="28">Y</l>
+  <l i="28">y</l>
+  <l i="29">Z</l>
+  <l i="29">z</l>
+</letters>
+
 </locale>
