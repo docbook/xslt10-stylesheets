@@ -110,7 +110,14 @@
 
     <xsl:call-template name="component.separator"/>
     <xsl:call-template name="preface.titlepage"/>
-    <xsl:if test="$generate.preface.toc != '0'">
+
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:if test="contains($toc.params, 'toc')">
       <xsl:call-template name="component.toc"/>
     </xsl:if>
     <xsl:apply-templates/>
@@ -150,7 +157,13 @@
 
     <xsl:call-template name="component.separator"/>
     <xsl:call-template name="chapter.titlepage"/>
-    <xsl:if test="$generate.chapter.toc != '0'">
+
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:if test="contains($toc.params, 'toc')">
       <xsl:call-template name="component.toc"/>
     </xsl:if>
     <xsl:apply-templates/>
@@ -190,7 +203,13 @@
 
     <xsl:call-template name="component.separator"/>
     <xsl:call-template name="appendix.titlepage"/>
-    <xsl:if test="$generate.appendix.toc != '0'">
+
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:if test="contains($toc.params, 'toc')">
       <xsl:call-template name="component.toc"/>
     </xsl:if>
     <xsl:apply-templates/>
@@ -316,7 +335,13 @@
     </xsl:if>
 
     <xsl:call-template name="article.titlepage"/>
-    <xsl:if test="$generate.article.toc != '0'">
+
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:if test="contains($toc.params, 'toc')">
       <xsl:call-template name="component.toc"/>
     </xsl:if>
     <xsl:apply-templates/>

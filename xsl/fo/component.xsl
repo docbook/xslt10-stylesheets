@@ -177,9 +177,16 @@
     <fo:flow flow-name="xsl-region-body">
       <xsl:call-template name="component.separator"/>
       <xsl:call-template name="preface.titlepage"/>
-      <xsl:if test="$generate.component.toc">
+
+      <xsl:variable name="toc.params">
+        <xsl:call-template name="find.path.params">
+          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:if test="contains($toc.params, 'toc')">
         <xsl:call-template name="component.toc"/>
       </xsl:if>
+
       <xsl:apply-templates/>
     </fo:flow>
   </fo:page-sequence>
@@ -224,7 +231,13 @@
     <fo:flow flow-name="xsl-region-body">
       <xsl:call-template name="component.separator"/>
       <xsl:call-template name="chapter.titlepage"/>
-      <xsl:if test="$generate.component.toc">
+
+      <xsl:variable name="toc.params">
+        <xsl:call-template name="find.path.params">
+          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:if test="contains($toc.params, 'toc')">
         <xsl:call-template name="component.toc"/>
       </xsl:if>
       <xsl:apply-templates/>
@@ -265,7 +278,13 @@
     <fo:flow flow-name="xsl-region-body">
       <xsl:call-template name="component.separator"/>
       <xsl:call-template name="appendix.titlepage"/>
-      <xsl:if test="$generate.component.toc">
+
+      <xsl:variable name="toc.params">
+        <xsl:call-template name="find.path.params">
+          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:if test="contains($toc.params, 'toc')">
         <xsl:call-template name="component.toc"/>
       </xsl:if>
       <xsl:apply-templates/>
@@ -373,7 +392,13 @@
 
     <fo:flow flow-name="xsl-region-body">
       <xsl:call-template name="article.titlepage"/>
-      <xsl:if test="$generate.component.toc">
+
+      <xsl:variable name="toc.params">
+        <xsl:call-template name="find.path.params">
+          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:if test="contains($toc.params, 'toc')">
         <xsl:call-template name="component.toc"/>
       </xsl:if>
       <xsl:apply-templates/>
