@@ -33,7 +33,9 @@
       <xsl:apply-templates/>
 
       <xsl:if test="count(indexentry) = 0 and count(indexdiv) = 0">
-        <xsl:call-template name="generate-index"/>
+        <xsl:call-template name="generate-index">
+          <xsl:with-param name="scope" select="(ancestor::book|/)[last()]"/>
+        </xsl:call-template>
       </xsl:if>
 
       <xsl:if test="not(parent::article)">
@@ -62,7 +64,9 @@
       <xsl:apply-templates/>
 
       <xsl:if test="count(indexentry) = 0 and count(indexdiv) = 0">
-        <xsl:call-template name="generate-setindex"/>
+        <xsl:call-template name="generate-index">
+          <xsl:with-param name="scope" select="/"/>
+        </xsl:call-template>
       </xsl:if>
 
       <xsl:if test="not(parent::article)">
