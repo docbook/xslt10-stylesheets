@@ -14,6 +14,24 @@
             encoding="ISO-8859-1"
             indent="no"/>
 
+<!--
+  named templates for bold and italic. call like:
+
+  <xsl:apply-templates name="bold" />
+  or,
+  <xsl:apply-templates name="bold" select="node-you-want" />
+-->
+<xsl:template name="bold">
+  <xsl:text>\fB</xsl:text>
+  <xsl:value-of select="."/>
+  <xsl:text>\fR</xsl:text>
+</xsl:template>
+
+<xsl:template name="italic">
+  <xsl:text>\fI</xsl:text>
+  <xsl:value-of select="."/>
+  <xsl:text>\fR</xsl:text>
+</xsl:template>
 
 <xsl:template match="refsect2">
   <xsl:text>
