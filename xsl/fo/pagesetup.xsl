@@ -2073,7 +2073,24 @@
 <xsl:template name="set.flow.properties">
   <xsl:param name="element" select="local-name(.)"/>
   <xsl:param name="master-reference" select="''"/>
-  <!-- customize this template to set attribute on fo:flow -->
+
+  <!-- This template is called after each <fo:flow> starts. -->
+  <!-- Customize this template to set attributes on fo:flow -->
+
+  <xsl:choose>
+    <xsl:when test="$master-reference = 'body' or
+                    $element = 'preface' or
+                    ($master-reference = 'back' and
+                    $element = 'appendix')">
+      <xsl:attribute name="start-indent">
+        <xsl:value-of select="$body.start.indent"/>
+      </xsl:attribute>
+      <xsl:attribute name="end-indent">
+        <xsl:value-of select="$body.end.indent"/>
+      </xsl:attribute>
+    </xsl:when>
+  </xsl:choose>
+
 </xsl:template>
 <!-- ==================================================================== -->
 
