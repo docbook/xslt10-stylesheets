@@ -26,16 +26,18 @@
   <xsl:param name="colnum" select="0"/>
 
   <xsl:variable name="rowsep">
-    <xsl:call-template name="calculate.rowsep">
+    <xsl:call-template name="inherited.table.attribute">
       <xsl:with-param name="entry" select="NOT-AN-ELEMENT-NAME"/>
       <xsl:with-param name="colnum" select="$colnum"/>
+      <xsl:with-param name="attribute" select="'rowsep'"/>
     </xsl:call-template>
   </xsl:variable>
 
   <xsl:variable name="colsep">
-    <xsl:call-template name="calculate.colsep">
+    <xsl:call-template name="inherited.table.attribute">
       <xsl:with-param name="entry" select="NOT-AN-ELEMENT-NAME"/>
       <xsl:with-param name="colnum" select="$colnum"/>
+      <xsl:with-param name="attribute" select="'colsep'"/>
     </xsl:call-template>
   </xsl:variable>
 
@@ -427,16 +429,50 @@
   </xsl:variable>
 
   <xsl:variable name="rowsep">
-    <xsl:call-template name="calculate.rowsep">
+    <xsl:call-template name="inherited.table.attribute">
       <xsl:with-param name="entry" select="."/>
       <xsl:with-param name="colnum" select="$entry.colnum"/>
+      <xsl:with-param name="attribute" select="'rowsep'"/>
     </xsl:call-template>
   </xsl:variable>
 
   <xsl:variable name="colsep">
-    <xsl:call-template name="calculate.colsep">
+    <xsl:call-template name="inherited.table.attribute">
       <xsl:with-param name="entry" select="."/>
       <xsl:with-param name="colnum" select="$entry.colnum"/>
+      <xsl:with-param name="attribute" select="'colsep'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="valign">
+    <xsl:call-template name="inherited.table.attribute">
+      <xsl:with-param name="entry" select="."/>
+      <xsl:with-param name="colnum" select="$entry.colnum"/>
+      <xsl:with-param name="attribute" select="'valign'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="align">
+    <xsl:call-template name="inherited.table.attribute">
+      <xsl:with-param name="entry" select="."/>
+      <xsl:with-param name="colnum" select="$entry.colnum"/>
+      <xsl:with-param name="attribute" select="'align'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="char">
+    <xsl:call-template name="inherited.table.attribute">
+      <xsl:with-param name="entry" select="."/>
+      <xsl:with-param name="colnum" select="$entry.colnum"/>
+      <xsl:with-param name="attribute" select="'char'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="charoff">
+    <xsl:call-template name="inherited.table.attribute">
+      <xsl:with-param name="entry" select="."/>
+      <xsl:with-param name="colnum" select="$entry.colnum"/>
+      <xsl:with-param name="attribute" select="'charoff'"/>
     </xsl:call-template>
   </xsl:variable>
 
@@ -485,32 +521,31 @@
           </xsl:attribute>
         </xsl:if>
 
-        <xsl:if test="@align">
+        <xsl:if test="$align != ''">
           <xsl:attribute name="align">
-            <xsl:value-of select="@align"/>
+            <xsl:value-of select="$align"/>
           </xsl:attribute>
         </xsl:if>
 
-        <xsl:if test="@char">
-          <xsl:attribute name="char">
-            <xsl:value-of select="@char"/>
-          </xsl:attribute>
-        </xsl:if>
-
-        <xsl:if test="@charoff">
-          <xsl:attribute name="charoff">
-            <xsl:value-of select="@charoff"/>
-          </xsl:attribute>
-        </xsl:if>
-
-        <xsl:if test="@valign">
+        <xsl:if test="$valign != ''">
           <xsl:attribute name="valign">
-            <xsl:value-of select="@valign"/>
+            <xsl:value-of select="$valign"/>
           </xsl:attribute>
         </xsl:if>
 
-        <xsl:if test="not(preceding-sibling::*)
-                      and ancestor::row/@id">
+        <xsl:if test="$char != ''">
+          <xsl:attribute name="char">
+            <xsl:value-of select="$char"/>
+          </xsl:attribute>
+        </xsl:if>
+
+        <xsl:if test="$charoff != ''">
+          <xsl:attribute name="charoff">
+            <xsl:value-of select="$charoff"/>
+          </xsl:attribute>
+        </xsl:if>
+
+        <xsl:if test="not(preceding-sibling::*) and ancestor::row/@id">
           <xsl:call-template name="anchor">
             <xsl:with-param name="node" select="ancestor::row[1]"/>
           </xsl:call-template>
@@ -624,7 +659,7 @@
   <xsl:param name="cols" select="1"/>
   <xsl:param name="count" select="1"/>
   <xsl:choose>
-    <xsl:when test="$count>$cols"></xsl:when>
+    <xsl:when test="$count &gt; $cols"></xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="generate.col">
         <xsl:with-param name="countcol" select="$count"/>

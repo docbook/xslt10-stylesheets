@@ -62,16 +62,18 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   <xsl:param name="colnum" select="0"/>
 
   <xsl:variable name="rowsep">
-    <xsl:call-template name="calculate.rowsep">
+    <xsl:call-template name="inherited.table.attribute">
       <xsl:with-param name="entry" select="NOT-AN-ELEMENT-NAME"/>
       <xsl:with-param name="colnum" select="$colnum"/>
+      <xsl:with-param name="attribute" select="'rowsep'"/>
     </xsl:call-template>
   </xsl:variable>
 
   <xsl:variable name="colsep">
-    <xsl:call-template name="calculate.colsep">
+    <xsl:call-template name="inherited.table.attribute">
       <xsl:with-param name="entry" select="NOT-AN-ELEMENT-NAME"/>
       <xsl:with-param name="colnum" select="$colnum"/>
+      <xsl:with-param name="attribute" select="'colsep'"/>
     </xsl:call-template>
   </xsl:variable>
 
@@ -93,13 +95,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       </xsl:call-template>
     </xsl:if>
     <fo:block>
-      <!--
       <xsl:text>e(</xsl:text>
       <xsl:value-of select="$rowsep"/>
       <xsl:text>,</xsl:text>
       <xsl:value-of select="$colsep"/>
       <xsl:text>)</xsl:text>
-      -->
     </fo:block>
   </fo:table-cell>
 </xsl:template>
@@ -406,16 +406,50 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   </xsl:variable>
 
   <xsl:variable name="rowsep">
-    <xsl:call-template name="calculate.rowsep">
+    <xsl:call-template name="inherited.table.attribute">
       <xsl:with-param name="entry" select="."/>
       <xsl:with-param name="colnum" select="$entry.colnum"/>
+      <xsl:with-param name="attribute" select="'rowsep'"/>
     </xsl:call-template>
   </xsl:variable>
 
   <xsl:variable name="colsep">
-    <xsl:call-template name="calculate.colsep">
+    <xsl:call-template name="inherited.table.attribute">
       <xsl:with-param name="entry" select="."/>
       <xsl:with-param name="colnum" select="$entry.colnum"/>
+      <xsl:with-param name="attribute" select="'colsep'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="valign">
+    <xsl:call-template name="inherited.table.attribute">
+      <xsl:with-param name="entry" select="."/>
+      <xsl:with-param name="colnum" select="$entry.colnum"/>
+      <xsl:with-param name="attribute" select="'valign'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="align">
+    <xsl:call-template name="inherited.table.attribute">
+      <xsl:with-param name="entry" select="."/>
+      <xsl:with-param name="colnum" select="$entry.colnum"/>
+      <xsl:with-param name="attribute" select="'align'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="char">
+    <xsl:call-template name="inherited.table.attribute">
+      <xsl:with-param name="entry" select="."/>
+      <xsl:with-param name="colnum" select="$entry.colnum"/>
+      <xsl:with-param name="attribute" select="'char'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="charoff">
+    <xsl:call-template name="inherited.table.attribute">
+      <xsl:with-param name="entry" select="."/>
+      <xsl:with-param name="colnum" select="$entry.colnum"/>
+      <xsl:with-param name="attribute" select="'charoff'"/>
     </xsl:call-template>
   </xsl:variable>
 
@@ -490,35 +524,42 @@ to be incomplete. Don't forget to read the source, too :-)</para>
           </xsl:attribute>
         </xsl:if>
 
-        <xsl:if test="@valign">
+        <xsl:if test="$valign != ''">
           <xsl:attribute name="display-align">
             <xsl:choose>
-              <xsl:when test="@valign='top'">before</xsl:when>
-              <xsl:when test="@valign='middle'">center</xsl:when>
-              <xsl:when test="@valign='bottom'">after</xsl:when>
+              <xsl:when test="$valign='top'">before</xsl:when>
+              <xsl:when test="$valign='middle'">center</xsl:when>
+              <xsl:when test="$valign='bottom'">after</xsl:when>
+              <xsl:otherwise>
+                <xsl:message>
+                  <xsl:text>Unexpected valign value: </xsl:text>
+                  <xsl:value-of select="$valign"/>
+                  <xsl:text>, center used.</xsl:text>
+                </xsl:message>
+                <xsl:text>center</xsl:text>
+              </xsl:otherwise>
             </xsl:choose>
           </xsl:attribute>
         </xsl:if>
 
-        <xsl:if test="@align">
+        <xsl:if test="$align != ''">
           <xsl:attribute name="text-align">
-            <xsl:value-of select="@align"/>
+            <xsl:value-of select="$align"/>
+          </xsl:attribute>
+        </xsl:if>
+
+        <xsl:if test="$char != ''">
+          <xsl:attribute name="text-align">
+            <xsl:value-of select="$char"/>
           </xsl:attribute>
         </xsl:if>
 
 <!--
-        <xsl:if test="@char">
-          <xsl:attribute name="char">
-            <xsl:value-of select="@char"/>
-          </xsl:attribute>
-        </xsl:if>
-
         <xsl:if test="@charoff">
           <xsl:attribute name="charoff">
             <xsl:value-of select="@charoff"/>
           </xsl:attribute>
         </xsl:if>
-
 -->
 
         <fo:block>
