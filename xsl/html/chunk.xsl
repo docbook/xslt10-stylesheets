@@ -1074,11 +1074,17 @@
         </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates select="key('id',$rootid)"/>
+          <xsl:if test="$tex.math.in.alt != ''">
+            <xsl:apply-templates select="key('id',$rootid)" mode="collect.tex.math"/>
+          </xsl:if>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
       <xsl:apply-templates select="/" mode="process.root"/>
+      <xsl:if test="$tex.math.in.alt != ''">
+        <xsl:apply-templates select="/" mode="collect.tex.math"/>
+      </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
