@@ -397,7 +397,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -427,7 +429,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -456,7 +460,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -485,7 +491,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -515,7 +523,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -544,7 +554,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -573,7 +585,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -603,7 +617,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -632,7 +648,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -661,7 +679,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -691,7 +711,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -720,7 +742,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -749,7 +773,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -779,7 +805,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -808,7 +836,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -837,7 +867,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -867,7 +899,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -896,7 +930,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
@@ -925,7 +961,9 @@
         <xsl:if test="$draft.watermark.image != ''
                       and $fop.extensions = 0">
           <xsl:attribute name="background-image">
-            <xsl:value-of select="$draft.watermark.image"/>
+            <xsl:call-template name="fo-external-image">
+              <xsl:with-param name="filename" select="$draft.watermark.image"/>
+            </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="background-attachment">fixed</xsl:attribute>
           <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
