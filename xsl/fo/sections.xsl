@@ -518,11 +518,11 @@
 
   <xsl:variable name="level">
     <xsl:choose>
-      <xsl:when test="@renderas = 'sect1'">2</xsl:when>
-      <xsl:when test="@renderas = 'sect2'">3</xsl:when>
-      <xsl:when test="@renderas = 'sect3'">4</xsl:when>
-      <xsl:when test="@renderas = 'sect4'">5</xsl:when>
-      <xsl:when test="@renderas = 'sect5'">6</xsl:when>
+      <xsl:when test="@renderas = 'sect1'">1</xsl:when>
+      <xsl:when test="@renderas = 'sect2'">2</xsl:when>
+      <xsl:when test="@renderas = 'sect3'">3</xsl:when>
+      <xsl:when test="@renderas = 'sect4'">4</xsl:when>
+      <xsl:when test="@renderas = 'sect5'">5</xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$clevel"/>
       </xsl:otherwise>
