@@ -190,7 +190,7 @@
   <xsl:text>\fB</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
 </xsl:template>
 
-<xsl:template match="replaceable">
+<xsl:template match="replaceable|varname">
   <xsl:text>\fI</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
 </xsl:template>
 
