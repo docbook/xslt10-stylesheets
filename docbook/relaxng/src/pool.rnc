@@ -1352,7 +1352,12 @@ div {
     & db.spacing.attribute?
     & attribute continuation { "continues" | "restarts" }?
     & attribute inheritnum { "ignore" | "inherit" }?
-    & attribute numeration { text }?
+    & attribute numeration {
+       "arabic"
+     | "upperalpha"
+     | "loweralpha"
+     | "upperroman"
+     | "lowerroman" }?
 
    db.orderedlist.info = db._info.title.only
 
