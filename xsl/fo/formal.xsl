@@ -208,70 +208,10 @@
     </xsl:choose>
   </xsl:variable>
 
-  <!-- Get align value from internal mediaobject -->
-  <xsl:variable name="align">
-    <xsl:if test="mediaobject|mediaobjectco|screenshot|graphic|graphicco">
-      <xsl:variable name="olist" select="mediaobject/imageobject
-                                         |mediaobject/imageobjectco
-                                         |mediaobject/videoobject
-                                         |mediaobject/audioobject
-                                         |mediaobject/textobject
-
-                                         |mediaobjectco/imageobject
-                                         |mediaobjectco/imageobjectco
-                                         |mediaobjectco/videoobject
-                                         |mediaobjectco/audioobject
-                                         |mediaobjectco/textobject
-
-                                         |screenshot/mediaobject/imageobject
-                                         |screenshot/mediaobject/imageobjectco
-                                         |screenshot/mediaobject/videoobject
-                                         |screenshot/mediaobject/audioobject
-                                         |screenshot/mediaobject/textobject
-
-                                         |screenshot/mediaobjectco/imageobject
-                                         |screenshot/mediaobjectco/imageobjectco
-                                         |screenshot/mediaobjectco/videoobject
-                                         |screenshot/mediaobjectco/audioobject
-                                         |screenshot/mediaobjectco/textobject
-
-                                         |graphic
-                                         |graphicco/graphic
-                                         |screenshot/graphic
-                                         |screenshot/graphicco/graphic"/>
-
-      <xsl:variable name="object.index">
-        <xsl:call-template name="select.mediaobject.index">
-          <xsl:with-param name="olist" select="$olist"/>
-          <xsl:with-param name="count" select="1"/>
-        </xsl:call-template>
-      </xsl:variable>
-
-      <xsl:variable name="object" select="$olist[position() = $object.index]"/>
-
-      <xsl:value-of select="$object/imagedata[@align][1]/@align"/>
-    </xsl:if>
-  </xsl:variable>
-
-
   <xsl:variable name="figure">
-    <xsl:choose>
-      <xsl:when test="$align != ''">
-        <fo:block>
-          <xsl:attribute name="text-align">
-            <xsl:value-of select="$align"/>
-          </xsl:attribute>
-          <xsl:call-template name="formal.object">
-            <xsl:with-param name="placement" select="$placement"/>
-          </xsl:call-template>
-        </fo:block>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="formal.object">
-          <xsl:with-param name="placement" select="$placement"/>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:call-template name="formal.object">
+      <xsl:with-param name="placement" select="$placement"/>
+    </xsl:call-template>
   </xsl:variable>
 
   <xsl:choose>
