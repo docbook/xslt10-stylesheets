@@ -52,8 +52,8 @@ build/	cntimage.gif
 Note that you can still compile the htmlhelp.hhp file. The
 applets .class files are not needed or included in the chm.
 
-This stylesheet was tested with 1.55.0 of the docbook xsls,
-but probably works with more recent versions.
+This stylesheet was tested with 1.64.1 of the docbook xsls,
+but may work with later versions.
 
 Known Limitation: The indexterms in the index tab are
 currently not sorted. This can be fixed by tweaking the
@@ -69,5 +69,5 @@ http://www.mvps.org/htmlhelpcenter/hhjapplt.htm
 This is a contrib file and carries no guarantee.
 
 David Cramer
-dcramer@broadjump.com
-david@thingbag.net
+dcramer A T motive D O T com
+david A T thingbag D O T net
