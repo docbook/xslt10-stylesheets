@@ -1,6 +1,7 @@
 include ../cvstools/Makefile.incl
 
-all: tangle.html weave.html litprog.html
+all: tangle.html weave.html wdocbook.html
+	$(MAKE) -C html
 
 tangle.html: tangle.xml litprog.xsl
 	$(XSLT) $< litprog.xsl $@
@@ -26,11 +27,11 @@ weave.xml: weave.xweb weave.xsl
 weave.xsl: weave.xweb tangle.xsl
 	$(XSLT)  $< tangle.xsl $@
 
-litprog.html: litprog.xml litprog.xsl
-	$(XSLT) $< litprog.xsl $@
+wdocbook.html: wdocbook.xml wdocbook.xsl
+	$(XSLT) $< wdocbook.xsl $@
 
-litprog.xml: litprog.xweb weave.xsl
+wdocbook.xml: wdocbook.xweb weave.xsl
 	$(XSLT) $< weave.xsl $@
 
-litprog.xsl: litprog.xweb tangle.xsl
+wdocbook.xsl: wdocbook.xweb tangle.xsl
 	$(XSLT) $< tangle.xsl $@
