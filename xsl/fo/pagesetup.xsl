@@ -1286,6 +1286,16 @@
       </xsl:call-template>
     </fo:block>
   </fo:static-content>
+
+  <xsl:call-template name="footnote-separator"/>
+</xsl:template>
+
+<xsl:template name="footnote-separator">
+  <fo:static-content flow-name="xsl-footnote-separator">
+    <fo:block>
+      <fo:leader color="black" leader-pattern="rule" leader-length="1in"/>
+    </fo:block>
+  </fo:static-content>
 </xsl:template>
 
 <xsl:template name="header.table">
