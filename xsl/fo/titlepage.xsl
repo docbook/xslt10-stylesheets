@@ -149,6 +149,9 @@
 <xsl:attribute-set name="list.of.examples.titlepage.recto.style"/>
 <xsl:attribute-set name="list.of.examples.contents.titlepage.verso.style"/>
 
+<xsl:attribute-set name="list.of.procedures.titlepage.recto.style"/>
+<xsl:attribute-set name="list.of.procedures.contents.titlepage.verso.style"/>
+
 <xsl:attribute-set name="list.of.unknowns.titlepage.recto.style"/>
 <xsl:attribute-set name="list.of.unknowns.contents.titlepage.verso.style"/>
 

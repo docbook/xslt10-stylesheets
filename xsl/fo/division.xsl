@@ -371,6 +371,41 @@
     </fo:page-sequence>
   </xsl:if>
 
+  <xsl:if test="contains($toc.params,'procedure') and .//procedure">
+    <fo:page-sequence hyphenate="{$hyphenate}"
+                      format="i"
+                      master-reference="{$lot-master-reference}">
+      <xsl:attribute name="language">
+        <xsl:call-template name="l10n.language"/>
+      </xsl:attribute>
+      <xsl:attribute name="format">
+        <xsl:call-template name="page.number.format">
+          <xsl:with-param name="element" select="'toc'"/>
+        </xsl:call-template>
+      </xsl:attribute>
+      <xsl:if test="$double.sided != 0">
+        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
+      </xsl:if>
+
+      <xsl:apply-templates select="." mode="running.head.mode">
+        <xsl:with-param name="master-reference" select="$lot-master-reference"/>
+        <xsl:with-param name="gentext-key" select="'ListofProcedures'"/>
+      </xsl:apply-templates>
+
+      <xsl:apply-templates select="." mode="running.foot.mode">
+        <xsl:with-param name="master-reference" select="$lot-master-reference"/>
+        <xsl:with-param name="gentext-key" select="'ListofProcedures'"/>
+      </xsl:apply-templates>
+
+      <fo:flow flow-name="xsl-region-body">
+        <xsl:call-template name="list.of.titles">
+          <xsl:with-param name="titles" select="'procedure'"/>
+          <xsl:with-param name="nodes" select=".//procedure[title]"/>
+        </xsl:call-template>
+      </fo:flow>
+    </fo:page-sequence>
+  </xsl:if>
+
   <xsl:apply-templates select="$content"/>
 </xsl:template>
 

@@ -1032,6 +1032,35 @@
     </t:titlepage-before>
   </t:titlepage>
 
+  <t:titlepage element="list.of.procedures" wrapper="fo:block">
+    <t:titlepage-content side="recto">
+      <title
+	     force="1"
+	     named-template="gentext"
+	     param:key="'ListofProcedures'"
+             fo:space-before.minimum="1em"
+             fo:space-before.optimum="1.5em"
+             fo:space-before.maximum="2em"
+	     fo:space-after="0.5em"
+	     fo:margin-left="{$title.margin.left}"
+	     fo:font-size="&hsize3;"
+	     fo:font-weight="bold"
+	     fo:font-family="{$title.font.family}"/>
+    </t:titlepage-content>
+
+    <t:titlepage-content side="verso">
+    </t:titlepage-content>
+
+    <t:titlepage-separator>
+    </t:titlepage-separator>
+
+    <t:titlepage-before side="recto">
+    </t:titlepage-before>
+
+    <t:titlepage-before side="verso">
+    </t:titlepage-before>
+  </t:titlepage>
+
   <t:titlepage element="list.of.unknowns" wrapper="fo:block">
     <t:titlepage-content side="recto">
       <title
