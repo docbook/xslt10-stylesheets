@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="1.0">
-  <xs:include schemaLocation="dbnotn.xsd"/>
-  <xs:include schemaLocation="dbcent.xsd"/>
-  <xs:include schemaLocation="dbpool.xsd"/>
-  <xs:include schemaLocation="dbhier.xsd"/>
-</xs:schema>

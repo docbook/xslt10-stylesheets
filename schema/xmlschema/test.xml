@@ -1,6 +1,0 @@
-<article id="article">
-<title>Article Title</title>
-<indexterm id="foo" class="startofrange"><primary>Meaningless</primary></indexterm>
-<para>Some text.<footnote><para>This is a footnote.</para></footnote></para>
-<indexterm startref="foo" class="endofrange"/>
-</article>
