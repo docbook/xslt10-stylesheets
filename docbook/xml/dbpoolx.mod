@@ -2680,6 +2680,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!ENTITY % example.attlist "INCLUDE">
 <![%example.attlist;[
 <!ATTLIST example
+		floatstyle	CDATA			#IMPLIED
 		%label.attrib;
 		%width.attrib;
 		%common.attrib;
@@ -2702,6 +2703,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!ENTITY % informalexample.attlist "INCLUDE">
 <![%informalexample.attlist;[
 <!ATTLIST informalexample
+		floatstyle	CDATA			#IMPLIED
 		%width.attrib;
 		%common.attrib;
 		%informalexample.role.attrib;
@@ -3015,6 +3017,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <![%figure.attlist;[
 <!ATTLIST figure
 		float		%yesorno.attvals;	'0'
+		floatstyle	CDATA			#IMPLIED
 		pgwide      	%yesorno.attvals;       #IMPLIED
 		%label.attrib;
 		%common.attrib;
@@ -3043,6 +3046,7 @@ in the text (no (0) value, the default)
 -->
 <!ATTLIST informalfigure
 		float		%yesorno.attvals;	"0"
+		floatstyle	CDATA			#IMPLIED
 		pgwide      	%yesorno.attvals;       #IMPLIED
 		%label.attrib;
 		%common.attrib;
@@ -3492,6 +3496,7 @@ in the text (no (0) value, the default)
 <!ENTITY % equation.attlist "INCLUDE">
 <![%equation.attlist;[
 <!ATTLIST equation
+		floatstyle	CDATA			#IMPLIED
 		%label.attrib;
 	 	%common.attrib;
 		%equation.role.attrib;
@@ -3513,6 +3518,7 @@ in the text (no (0) value, the default)
 <!ENTITY % informalequation.attlist "INCLUDE">
 <![%informalequation.attlist;[
 <!ATTLIST informalequation
+		floatstyle	CDATA			#IMPLIED
 		%common.attrib;
 		%informalequation.role.attrib;
 		%local.informalequation.attrib;
