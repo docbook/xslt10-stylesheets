@@ -32,6 +32,12 @@
 <xsl:template match="alt">
 </xsl:template>
 
+<xsl:template match="mathphrase">
+  <fo:inline>
+    <xsl:apply-templates/>
+  </fo:inline>
+</xsl:template>
+
 <!-- "Support" for MathML -->
 
 <xsl:template match="mml:*" xmlns:mml="http://www.w3.org/1998/Math/MathML">
