@@ -1,0 +1,3 @@
+ - Update stylesheets in xsl subdirectory so that they generate
+   exactly what docbook-menu expects, without any additional
+   postprocessing needed.
