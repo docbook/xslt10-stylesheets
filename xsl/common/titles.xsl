@@ -653,12 +653,6 @@ title of the element. This does not include the label.
     <xsl:otherwise>
       <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
 
-      <xsl:if test="$target/title or $target/*/title">
-	<xsl:attribute name="title">
-	  <xsl:apply-templates select="$target" mode="xref-title"/>
-	</xsl:attribute>
-      </xsl:if>
-
       <xsl:apply-templates select="$target" mode="xref-to">
 	<xsl:with-param name="referrer" select="."/>
 	<xsl:with-param name="xrefstyle">
