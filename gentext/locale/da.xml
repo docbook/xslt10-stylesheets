@@ -10,6 +10,10 @@
           <affiliation><address><email>erik@binghamton.edu</email></address>
           </affiliation>
   </author>
+  <author><firstname>Jens</firstname><surname>Stavnstrup</surname>
+          <affiliation><address><email>js@ddre.dk</email></address>
+	  </affiliation>
+  </author>
 </authorgroup>
 </doc:localeinfo>
 
@@ -180,6 +184,10 @@
 <dingbat key="nestedstartquote" text="&#x2018;"/>
 <dingbat key="nestedendquote" text="&#x2019;"/>
 <dingbat key="bullet" text="&#x2022;"/>
+
+<gentext key="hyphenation-character" text="-"/>
+<gentext key="hyphenation-push-character-count" text="2"/>
+<gentext key="hyphenation-remain-character-count" text="2"/>
 
 <context name="styles">
 
@@ -453,6 +461,48 @@
 <template name="MsgAud"><MsgAud/>: </template>
 <template name="MsgLevel"><MsgLevel/>: </template>
 <template name="MsgOrig"><MsgOrig/>: </template>
+</context>
+
+<context name="datetime">
+<template name="format">d/m/Y</template>
+<template name="January">Januar</template>
+<template name="February">Februar</template>
+<template name="March">Marts</template>
+<template name="April">April</template>
+<template name="May">Maj</template>
+<template name="June">Juni</template>
+<template name="July">July</template>
+<template name="August">August</template>
+<template name="September">September</template>
+<template name="October">Oktober</template>
+<template name="November">November</template>
+<template name="December">December</template>
+<template name="Jan">Jan</template>
+<template name="Feb">Feb</template>
+<template name="Mar">Mar</template>
+<template name="Apr">Apr</template>
+<template name="May">Maj</template>
+<template name="Jun">Jun</template>
+<template name="Jul">Jul</template>
+<template name="Aug">Aug</template>
+<template name="Sep">Sep</template>
+<template name="Oct">Okt</template>
+<template name="Nov">Nov</template>
+<template name="Dec">Dec</template>
+<template name="Monday">Mandag</template>
+<template name="Tuesday">Tirsdag</template>
+<template name="Wednesday">Onsdag</template>
+<template name="Thursday">Torsdag</template>
+<template name="Friday">Fredag</template>
+<template name="Saturday">L&#xF8;rdag</template>
+<template name="Sunday">S&#xF8;ndag</template>
+<template name="Mon">Man</template>
+<template name="Tue">Tir</template>
+<template name="Wed">ins</template>
+<template name="Thu">Tor</template>
+<template name="Fri">Fre</template>
+<template name="Sat">L&#xF8;r</template>
+<template name="Sun">S&#xF8;n</template>
 </context>
 
 <context name="htmlhelp">
