@@ -189,7 +189,8 @@
          |(caption, (col*|colgroup*), thead?, tfoot?, (tbody+|tr+)))">
 
 <!ENTITY % informal.tbl.table.mdl
-	"(graphic+|mediaobject+|tgroup+)
+	"(textobject*,
+          (graphic+|mediaobject+|tgroup+))
          | ((col*|colgroup*), thead?, tfoot?, (tbody+|tr+))">
 
 <!-- Attributes for Table (including HTML ones) -->
