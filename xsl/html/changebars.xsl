@@ -52,6 +52,7 @@ span.off     {  }
                     or local-name(.) = 'literal'
                     or local-name(.) = 'member'
                     or local-name(.) = 'glossterm'
+                    or local-name(.) = 'sgmltag'
                     or local-name(.) = 'quote'
                     or local-name(.) = 'emphasis'
                     or local-name(.) = 'command'
