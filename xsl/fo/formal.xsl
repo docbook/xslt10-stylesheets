@@ -491,7 +491,7 @@
       <xsl:for-each select="tgroup">
         <xsl:variable name="prop-columns"
                       select=".//colspec[contains(@colwidth, '*')]"/>
-        <fo:table border-collapse="collapse">
+        <fo:table xsl:use-attribute-sets="table.table.properties">
           <xsl:call-template name="table.frame"/>
           <xsl:if test="following-sibling::tgroup">
             <xsl:attribute name="border-bottom-width">0pt</xsl:attribute>
@@ -632,35 +632,35 @@
     <xsl:for-each select="tgroup">
       <xsl:variable name="prop-columns"
                     select=".//colspec[contains(@colwidth, '*')]"/>
-      <fo:table 
-                border-collapse="collapse"
-                xsl:use-attribute-sets="informal.object.properties">
-        <xsl:call-template name="table.frame"/>
-        <xsl:if test="following-sibling::tgroup">
-          <xsl:attribute name="border-bottom-width">0pt</xsl:attribute>
-          <xsl:attribute name="border-bottom-style">none</xsl:attribute>
-          <xsl:attribute name="padding-bottom">0pt</xsl:attribute>
-          <xsl:attribute name="margin-bottom">0pt</xsl:attribute>
-          <xsl:attribute name="space-after">0pt</xsl:attribute>
-          <xsl:attribute name="space-after.minimum">0pt</xsl:attribute>
-          <xsl:attribute name="space-after.optimum">0pt</xsl:attribute>
-          <xsl:attribute name="space-after.maximum">0pt</xsl:attribute>
-        </xsl:if>
-        <xsl:if test="preceding-sibling::tgroup">
-          <xsl:attribute name="border-top-width">0pt</xsl:attribute>
-          <xsl:attribute name="border-top-style">none</xsl:attribute>
-          <xsl:attribute name="padding-top">0pt</xsl:attribute>
-          <xsl:attribute name="margin-top">0pt</xsl:attribute>
-          <xsl:attribute name="space-before">0pt</xsl:attribute>
-          <xsl:attribute name="space-before.minimum">0pt</xsl:attribute>
-          <xsl:attribute name="space-before.optimum">0pt</xsl:attribute>
-          <xsl:attribute name="space-before.maximum">0pt</xsl:attribute>
-        </xsl:if>
-        <xsl:if test="count($prop-columns) != 0">
-          <xsl:attribute name="table-layout">fixed</xsl:attribute>
-        </xsl:if>
-        <xsl:apply-templates select="."/>
-      </fo:table>
+      <fo:block xsl:use-attribute-sets="informal.object.properties">
+	<fo:table xsl:use-attribute-sets="table.table.properties">
+	  <xsl:call-template name="table.frame"/>
+	  <xsl:if test="following-sibling::tgroup">
+	    <xsl:attribute name="border-bottom-width">0pt</xsl:attribute>
+	    <xsl:attribute name="border-bottom-style">none</xsl:attribute>
+	    <xsl:attribute name="padding-bottom">0pt</xsl:attribute>
+	    <xsl:attribute name="margin-bottom">0pt</xsl:attribute>
+	    <xsl:attribute name="space-after">0pt</xsl:attribute>
+	    <xsl:attribute name="space-after.minimum">0pt</xsl:attribute>
+	    <xsl:attribute name="space-after.optimum">0pt</xsl:attribute>
+	    <xsl:attribute name="space-after.maximum">0pt</xsl:attribute>
+	  </xsl:if>
+	  <xsl:if test="preceding-sibling::tgroup">
+	    <xsl:attribute name="border-top-width">0pt</xsl:attribute>
+	    <xsl:attribute name="border-top-style">none</xsl:attribute>
+	    <xsl:attribute name="padding-top">0pt</xsl:attribute>
+	    <xsl:attribute name="margin-top">0pt</xsl:attribute>
+	    <xsl:attribute name="space-before">0pt</xsl:attribute>
+	    <xsl:attribute name="space-before.minimum">0pt</xsl:attribute>
+	    <xsl:attribute name="space-before.optimum">0pt</xsl:attribute>
+	    <xsl:attribute name="space-before.maximum">0pt</xsl:attribute>
+	  </xsl:if>
+	  <xsl:if test="count($prop-columns) != 0">
+	    <xsl:attribute name="table-layout">fixed</xsl:attribute>
+	  </xsl:if>
+	  <xsl:apply-templates select="."/>
+	</fo:table>
+      </fo:block>
     </xsl:for-each>
   </xsl:variable>
 
