@@ -82,7 +82,7 @@
     </xsl:variable>
 
     <xsl:variable name="title">
-      <xsl:apply-templates select="$section" mode="title.markup"/>
+      <xsl:apply-templates select="$section" mode="object.title.markup"/>
     </xsl:variable>
 
     <xsl:if test="$passivetex.extensions != 0">
