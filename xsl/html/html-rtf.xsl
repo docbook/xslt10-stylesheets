@@ -32,11 +32,12 @@
   </xsl:copy>
 </xsl:template>
 
-<xsl:template match="p" mode="insert.html.p">
+<xsl:template xmlns:html="http://www.w3.org/1999/xhtml"
+              match="html:p|p" mode="insert.html.p">
   <xsl:param name="mark" select="'?'"/>
   <xsl:copy>
     <xsl:copy-of select="@*"/>
-    <xsl:if test="not(preceding::p)">
+    <xsl:if test="not(preceding::p|preceding::html:p)">
       <xsl:copy-of select="$mark"/>
     </xsl:if>
     <xsl:apply-templates mode="insert.html.p">
@@ -106,7 +107,8 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="p" mode="unwrap.p">
+<xsl:template xmlns:html="http://www.w3.org/1999/xhtml"
+              match="html:p|p" mode="unwrap.p">
   <!-- xmlns:html is necessary for the xhtml stylesheet case -->
   <xsl:variable name="blocks" xmlns:html="http://www.w3.org/1999/xhtml"
                 select="address|blockquote|div|hr|h1|h2|h3|h4|h5|h6
