@@ -4,5 +4,5 @@ OLDVER=
 NEWVER=
 
 distrib:
-	$(MAKE) -C ../spec SPEVER=$(NEWVER)
+	$(MAKE) -C ../spec SPECVER=$(NEWVER)
 	$(DTDDISTRIB) -d -v $(OLDVER) -n $(NEWVER)
