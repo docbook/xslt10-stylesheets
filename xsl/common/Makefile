@@ -56,7 +56,7 @@ zh_tw.xml: ../../gentext/locale/zh_tw.xml $(GENSTYLE)
 
 %.xml:
 	$(XJPARSE) -w $<
-	$(XSLT) $< ../../gentext/xsl/xsl.xsl $@
+	$(XSLT) ../../gentext/locale/en.xml ../../gentext/xsl/xsl.xsl $@ locale.file=$@
 
 clean:
 	rm -f *.ent *.xml
