@@ -63,6 +63,8 @@
 <xsl:include href="chunker.xsl"/>
 <xsl:include href="html-rtf.xsl"/>
 
+<xsl:param name="stylesheet.result.type" select="'html'"/>
+
 <!-- ==================================================================== -->
 
 <xsl:key name="id" match="*" use="@id"/>

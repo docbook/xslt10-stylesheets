@@ -68,6 +68,8 @@
 <xsl:include href="passivetex.xsl"/>
 <xsl:include href="xep.xsl"/>
 
+<xsl:param name="stylesheet.result.type" select="'fo'"/>
+
 <!-- ==================================================================== -->
 
 <xsl:key name="id" match="*" use="@id"/>
