@@ -1215,7 +1215,7 @@ will be passed through to the HTML as a class attribute on a
 <xsl:param name="olink.outline.ext" select="'.olink'" doc:type='string'/>
 <xsl:param name="olink.pubid" select="'pubid='" doc:type='string'/>
 <xsl:param name="olink.sysid" select="'sysid='" doc:type='string'/>
-<xsl:param name="olink.resolver" select="'/cgi-bin/olink?'" doc:type='string'/>
+<xsl:param name="olink.resolver" select="'/cgi-bin/olink'" doc:type='string'/>
 
 <xsl:param name="shade.verbatim" select="0" doc:type="boolean"/>
 
