@@ -133,10 +133,10 @@ div {
    db.glosssee =
       [
          s:rule [
-            context = "db:glosssee[@linkend]"
+            context = "db:glosssee[@otherterm]"
             s:assert [
-               test = "local-name(//*[@id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/docbook-ng/absinthe'"
-               "@linkend on glosssee must point to a glossentry."
+               test = "local-name(//*[@id=current()/@otherterm]) = 'glossentry' and namespace-uri(//*[@id=current()/@otherterm]) = 'http://docbook.org/docbook-ng'"
+               "@otherterm on glosssee must point to a glossentry."
             ]
          ]
       ]
@@ -168,10 +168,10 @@ div {
    db.glossseealso =
       [
          s:rule [
-            context = "db:glossseealso[@linkend]"
+            context = "db:glossseealso[@otherterm]"
             s:assert [
-               test = "local-name(//*[@id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/docbook-ng/absinthe'"
-               "@linkend on glossseealso must point to a glossentry."
+               test = "local-name(//*[@id=current()/@otherterm]) = 'glossentry' and namespace-uri(//*[@id=current()/@otherterm]) = 'http://docbook.org/docbook-ng'"
+               "@otherterm on glossseealso must point to a glossentry."
             ]
          ]
       ]
@@ -205,7 +205,7 @@ div {
          s:rule [
             context = "db:firstterm[@linkend]"
             s:assert [
-               test = "local-name(//*[@id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/docbook-ng/absinthe'"
+               test = "local-name(//*[@id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/docbook-ng'"
                "@linkend on firstterm must point to a glossentry."
             ]
          ]
@@ -240,7 +240,7 @@ div {
          s:rule [
             context = "db:glossterm[@linkend]"
             s:assert [
-               test = "local-name(//*[@id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/docbook-ng/absinthe'"
+               test = "local-name(//*[@id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/docbook-ng'"
                "@linkend on glossterm must point to a glossentry."
             ]
          ]
