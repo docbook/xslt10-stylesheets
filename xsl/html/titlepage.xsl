@@ -367,9 +367,47 @@
 </xsl:template>
 
 <xsl:template match="legalnotice " mode="titlepage.mode">
-  <div class="{local-name(.)}">
-    <xsl:apply-templates mode="titlepage.mode"/>
-  </div>
+  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+  <xsl:choose>
+    <xsl:when test="$generate.legalnotice.link != 0">
+      <xsl:variable name="filename">
+        <xsl:call-template name="make-relative-filename">
+          <xsl:with-param name="base.dir" select="$base.dir"/>
+          <xsl:with-param name="base.name" select="concat('ln-',$id,$html.ext)"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:variable name="title">
+        <xsl:apply-templates select="." mode="title.markup"/>
+      </xsl:variable>
+
+      <a href="{$filename}">
+        <xsl:copy-of select="$title"/>
+      </a>
+
+      <xsl:call-template name="write.chunk">
+        <xsl:with-param name="filename" select="$filename"/>
+        <xsl:with-param name="content">
+          <html>
+            <head>
+              <title><xsl:value-of select="$title"/></title>
+            </head>
+            <body>
+              <xsl:call-template name="body.attributes"/>
+              <div class="{local-name(.)}">
+                <xsl:apply-templates mode="titlepage.mode"/>
+              </div>
+            </body>
+          </html>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <div class="{local-name(.)}">
+        <xsl:apply-templates mode="titlepage.mode"/>
+      </div>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="legalnotice/title" mode="titlepage.mode">
