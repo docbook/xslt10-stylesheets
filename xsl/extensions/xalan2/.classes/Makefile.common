@@ -1,4 +1,8 @@
-CLASSPATH=$(CLASSBASE):/projects/apache/xml-xalan/java/build/xalan.jar:/projects/apache/xml-xalan/java/bin/xerces.jar:/projects/apache/xml-xalan/java/bin/bsf.jar:/usr/local/jaxp-1.1/jaxp.jar:/usr/local/jaxp-1.1/parser.jar
+#CLASSPATH=$(CLASSBASE):/projects/apache/xml-xalan/java/build/xalan.jar:/projects/apache/xml-xalan/java/bin/xerces.jar:/projects/apache/xml-xalan/java/bin/bsf.jar:/usr/local/jaxp-1.1/jaxp.jar:/usr/local/jaxp-1.1/parser.jar
+
+XALANROOT=/usr/local/java/xalan-j_2_3_1
+
+CLASSPATH=$(CLASSBASE):$(XALANROOT)/bin/xalan.jar:$(XALANROOT)/bin/xml-apis.jar:$(XALANROOT)/bin/xercesImpl.jar:/usr/local/jaxp-1.1/jaxp.jar:/usr/local/jaxp-1.1/parser.jar
 
 all: $(CLASSFILES)
 	-@for f in $(SUBDIRS); do \
