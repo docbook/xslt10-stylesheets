@@ -42,8 +42,8 @@
   <xsl:choose>
     <xsl:when test="count($target) = 0">
       <xsl:message>
-	<xsl:text>XRef to nonexistent id: </xsl:text>
-	<xsl:value-of select="@linkend"/>
+        <xsl:text>XRef to nonexistent id: </xsl:text>
+        <xsl:value-of select="@linkend"/>
       </xsl:message>
       <xsl:text>???</xsl:text>
     </xsl:when>
@@ -952,15 +952,29 @@
                   <xsl:choose>
                     <!-- Was current.docid parameter set? -->
                     <xsl:when test="$current.docid != ''">
-                      <xsl:for-each select="$target.database" >
-                        <xsl:call-template name="targetpath" >
-                          <xsl:with-param name="dirnode" select="key('targetdoc-key', $current.docid)/parent::dir"/>
-                          <xsl:with-param name="targetdoc" select="$seek.targetdoc"/>
-                        </xsl:call-template>
-                      </xsl:for-each >
+                      <!-- Was it found in the database? -->
+                      <xsl:variable name="currentdoc.key" >
+                        <xsl:for-each select="$target.database" >
+                          <xsl:value-of select="key('targetdoc-key',
+                                                $current.docid)/@targetdoc" />
+                        </xsl:for-each>
+                      </xsl:variable>
+                      <xsl:choose>
+                        <xsl:when test="$currentdoc.key != ''">
+                          <xsl:for-each select="$target.database" >
+                            <xsl:call-template name="targetpath" >
+                              <xsl:with-param name="dirnode" select="key('targetdoc-key', $current.docid)/parent::dir"/>
+                              <xsl:with-param name="targetdoc" select="$seek.targetdoc"/>
+                            </xsl:call-template>
+                          </xsl:for-each >
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:message>Olink error: cannot compute relative sitemap path because $current.docid '<xsl:value-of select="$current.docid"/>' not found in target database</xsl:message>
+                        </xsl:otherwise>
+                      </xsl:choose>
                     </xsl:when>
                     <xsl:otherwise>
-                      <xsl:message>Olink warning: cannot compute relative sitemap path without $current.docid parameter</xsl:message>
+                      <xsl:message>Olink error: cannot compute relative sitemap path without $current.docid parameter</xsl:message>
                     </xsl:otherwise>
                   </xsl:choose> 
                   <!-- In either case, add baseuri from its document entry-->
