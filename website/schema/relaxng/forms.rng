@@ -2,7 +2,6 @@
 <grammar xmlns="http://relaxng.org/ns/structure/1.0"
          xmlns:rng="http://relaxng.org/ns/structure/1.0"
          xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
-         xmlns:s="http://www.ascc.net/xml/schematron"
          xmlns:doc="http://nwalsh.com/xmlns/documentation"
          xmlns:db="http://nwalsh.com/xmlns/docbook-grammar-structure"
          xmlns:html="http://www.w3.org/1999/xhtml"
