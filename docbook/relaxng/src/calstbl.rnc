@@ -281,9 +281,79 @@ div {
          db.entrytbl.attlist,
          db.colspec*,
          db.spanspec*,
-         db.cals.thead?,
-         db.cals.tbody
+         db.cals.entrytbl.thead?,
+         db.cals.entrytbl.tbody
       }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "thead" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   db.cals.entrytbl.thead.role.attribute = attribute role { text }
+
+   db.cals.entrytbl.thead.attlist =
+      db.cals.entrytbl.thead.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.valign.attribute?
+
+   db.cals.entrytbl.thead =
+      element thead {
+         db.cals.entrytbl.thead.attlist,
+         db.colspec*,
+         db.entrytbl.row+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "tbody" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   db.cals.entrytbl.tbody.role.attribute = attribute role { text }
+
+   db.cals.entrytbl.tbody.attlist =
+      db.cals.entrytbl.tbody.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.valign.attribute?
+
+   db.cals.entrytbl.tbody =
+      element tbody {
+         db.cals.entrytbl.tbody.attlist,
+         db.entrytbl.row+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "row" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   db.entrytbl.row.role.attribute = attribute role { text }
+
+   db.entrytbl.row.attlist =
+      db.entrytbl.row.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.rowsep.attribute?
+    & db.valign.attribute?
+
+   db.entrytbl.row = element row {
+      db.entrytbl.row.attlist,
+      db.entry+
+   }
 }
 
 # ======================================================================
@@ -293,6 +363,9 @@ div {
    db:refpurpose [ "" ]
 ]
 div {
+
+   ctrl:exclude [ from="db.cals.table" exclude="db.cals.table" ]
+   ctrl:exclude [ from="db.cals.table" exclude="db.cals.informaltable" ]
 
    db.cals.table.role.attribute = attribute role { text }
 
