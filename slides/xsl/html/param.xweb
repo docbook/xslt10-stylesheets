@@ -180,6 +180,31 @@ document with the &lt;?dbhtml?&gt; pseudo-attribute
 </refsect1>
 </refentry>
 
+<refentry id="foilgroup.toc">
+<refmeta>
+<refentrytitle>foilgroup.toc</refentrytitle>
+<refmiscinfo role="type">boolean</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>foilgroup.toc</refname>
+<refpurpose>Put ToC on foilgroup pages?</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='foilgroup.toc.frag'>
+<xsl:param name="foilgroup.toc" select="1"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>If non-zero, a ToC will be placed on foilgroup pages (after any
+other content).
+</para>
+
+</refsect1>
+</refentry>
+
 <refentry id="output.indent">
 <refmeta>
 <refentrytitle>output.indent</refentrytitle>
@@ -1310,6 +1335,7 @@ around all these parameters.</para>
 <src:fragref linkend="css.stylesheet.frag"/>
 <src:fragref linkend="css.stylesheet.dir.frag"/>
 <src:fragref linkend="dynamic.toc.frag"/>
+<src:fragref linkend="foilgroup.toc.frag"/>
 <src:fragref linkend="graphics.dir.frag"/>
 <src:fragref linkend="hidetoc.image.frag"/>
 <src:fragref linkend="home.image.frag"/>
