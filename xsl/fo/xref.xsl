@@ -72,6 +72,8 @@
     </xsl:when>
 
     <xsl:otherwise>
+      <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
+
       <fo:basic-link internal-destination="{@linkend}"
                      xsl:use-attribute-sets="xref.properties">
         <xsl:apply-templates select="$target" mode="xref-to">
@@ -88,6 +90,8 @@
           </xsl:with-param>
         </xsl:apply-templates>
       </fo:basic-link>
+
+      <xsl:apply-templates select="$target" mode="xref-to-suffix"/>
     </xsl:otherwise>
   </xsl:choose>
 
@@ -142,6 +146,9 @@
 </xsl:template>
 
 <!--- ==================================================================== -->
+
+<xsl:template match="*" mode="xref-to-prefix"/>
+<xsl:template match="*" mode="xref-to-suffix"/>
 
 <xsl:template match="*" mode="xref-to">
   <xsl:param name="referrer"/>
@@ -289,13 +296,20 @@
   </xsl:apply-templates>
 </xsl:template>
 
+<xsl:template match="biblioentry|bibliomixed" mode="xref-to-prefix">
+  <xsl:text>[</xsl:text>
+</xsl:template>
+
+<xsl:template match="biblioentry|bibliomixed" mode="xref-to-suffix">
+  <xsl:text>]</xsl:text>
+</xsl:template>
+
 <xsl:template match="biblioentry|bibliomixed" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
   <xsl:param name="verbose" select="1"/>
 
   <!-- handles both biblioentry and bibliomixed -->
-  <xsl:text>[</xsl:text>
   <xsl:choose>
     <xsl:when test="string(.) = ''">
       <xsl:variable name="bib" select="document($bibliography.collection,.)"/>
@@ -342,7 +356,6 @@
       </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
-  <xsl:text>]</xsl:text>
 </xsl:template>
 
 <xsl:template match="glossary" mode="xref-to">
