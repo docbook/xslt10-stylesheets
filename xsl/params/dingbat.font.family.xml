@@ -10,7 +10,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='dingbat.font.family.frag'>
-<xsl:param name="dingbat.font.family" select="'&quot;Times Roman&quot;,serif'"/>
+<xsl:param name="dingbat.font.family" select="'serif'"/>
 </src:fragment>
 </refsynopsisdiv>
 
