@@ -4,8 +4,9 @@ CVS2LOG=../cvstools/cvs2log
 NEXTVER=
 DIFFVER=
 ZIPVER=
-RELVER := $(shell grep "<fm:Version" VERSION | sed "s/ *<\/\?fm:Version>//g")
 CVSCHECK := $(shell cvs -n update 2>&1 | grep -v ^cvs | cut -c3-)
+RELVER := $(shell grep "<fm:Version" VERSION | sed "s/ *<\/\?fm:Version>//g")
+TAGVER := $(shell echo "V$(RELVER)" | sed "s/\.//g")
 SFRELID=
 
 DIRS=common html fo extensions htmlhelp javahelp
@@ -45,10 +46,15 @@ endif
 
 newversion:
 ifeq ($(CVSCHECK),)
+ifeq ($(DIFFVER),)
+	@echo "DIFFVER must be specified."
+else
 ifeq ($(NEXTVER),$(RELVER))
+	cvs tag $(TAGVER)
 	$(MAKE) DIFFVER=$(DIFFVER) distrib
 else
 	@echo "VERSION $(RELVER) doesn't match specified version $(NEXTVER)."
+endif
 endif
 else
 	@echo "CVS is not up-to-date! ($(CVSCHECK))"
