@@ -104,7 +104,7 @@
 
 <!-- ====================================================================== -->
 
-<!ENTITY % only-in-full-nav-class "">
+<!ENTITY % only-in-full-nav.class "">
 
 <!ENTITY % slides.mod SYSTEM "slides.mod">
 %slides.mod;
