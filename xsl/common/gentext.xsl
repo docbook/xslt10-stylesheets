@@ -101,9 +101,16 @@
 <!-- ============================================================ -->
 
 <xsl:template match="*" mode="object.xref.template">
+  <xsl:param name="purpose"/>
+  <xsl:param name="xrefstyle"/>
+  <xsl:param name="referrer"/>
+
   <xsl:call-template name="gentext.template">
     <xsl:with-param name="context" select="'xref'"/>
     <xsl:with-param name="name" select="local-name(.)"/>
+    <xsl:with-param name="purpose" select="$purpose"/>
+    <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+    <xsl:with-param name="referrer" select="$referrer"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -173,14 +180,27 @@
 <!-- ============================================================ -->
 
 <xsl:template match="*" mode="object.xref.markup">
+  <xsl:param name="purpose"/>
+  <xsl:param name="xrefstyle"/>
+  <xsl:param name="referrer"/>
+
   <xsl:variable name="template">
-    <xsl:apply-templates select="." mode="object.xref.template"/>
+    <xsl:apply-templates select="." mode="object.xref.template">
+      <xsl:with-param name="purpose" select="$purpose"/>
+      <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+      <xsl:with-param name="referrer" select="$referrer"/>
+    </xsl:apply-templates>
   </xsl:variable>
 
 <!--
   <xsl:message>
     <xsl:text>object.xref.markup: </xsl:text>
     <xsl:value-of select="local-name(.)"/>
+    <xsl:text>(</xsl:text>
+    <xsl:value-of select="$xrefstyle"/>
+    <xsl:text>, </xsl:text>
+    <xsl:value-of select="$purpose"/>
+    <xsl:text>)</xsl:text>
     <xsl:text>: [</xsl:text>
     <xsl:value-of select="$template"/>
     <xsl:text>]</xsl:text>
@@ -188,6 +208,9 @@
 -->
 
   <xsl:call-template name="substitute-markup">
+    <xsl:with-param name="purpose" select="$purpose"/>
+    <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+    <xsl:with-param name="referrer" select="$referrer"/>
     <xsl:with-param name="template" select="$template"/>
   </xsl:call-template>
 </xsl:template>
@@ -222,6 +245,9 @@
   <xsl:param name="subtitle" select="''"/>
   <xsl:param name="label" select="''"/>
   <xsl:param name="pagenumber" select="''"/>
+  <xsl:param name="purpose"/>
+  <xsl:param name="xrefstyle"/>
+  <xsl:param name="referrer"/>
 
   <xsl:choose>
     <xsl:when test="contains($template, '%')">
@@ -230,48 +256,104 @@
              select="substring(substring-after($template, '%'), 1, 1)"/>
       <xsl:choose>
         <xsl:when test="$candidate = 't'">
-          <xsl:choose>
-            <xsl:when test="$title != ''">
-              <xsl:value-of select="$title"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:apply-templates select="." mode="title.markup">
-                <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
-              </xsl:apply-templates>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:apply-templates select="." mode="insert.title.markup">
+            <xsl:with-param name="purpose" select="$purpose"/>
+            <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+            <xsl:with-param name="title">
+              <xsl:choose>
+                <xsl:when test="$title != ''">
+                  <xsl:copy-of select="$title"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:apply-templates select="." mode="title.markup">
+                    <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+                  </xsl:apply-templates>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:with-param>
+          </xsl:apply-templates>
         </xsl:when>
         <xsl:when test="$candidate = 's'">
-          <xsl:choose>
-            <xsl:when test="$subtitle != ''">
-              <xsl:value-of select="$subtitle"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:apply-templates select="." mode="subtitle.markup">
-                <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
-              </xsl:apply-templates>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:apply-templates select="." mode="insert.subtitle.markup">
+            <xsl:with-param name="purpose" select="$purpose"/>
+            <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+            <xsl:with-param name="subtitle">
+              <xsl:choose>
+                <xsl:when test="$subtitle != ''">
+                  <xsl:copy-of select="$subtitle"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:apply-templates select="." mode="subtitle.markup">
+                    <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+                  </xsl:apply-templates>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:with-param>
+          </xsl:apply-templates>
         </xsl:when>
         <xsl:when test="$candidate = 'n'">
-          <xsl:choose>
-            <xsl:when test="$label != ''">
-              <xsl:value-of select="$label"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:apply-templates select="." mode="label.markup"/>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:apply-templates select="." mode="insert.label.markup">
+            <xsl:with-param name="purpose" select="$purpose"/>
+            <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+            <xsl:with-param name="label">
+              <xsl:choose>
+                <xsl:when test="$label != ''">
+                  <xsl:copy-of select="$label"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:apply-templates select="." mode="label.markup"/>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:with-param>
+          </xsl:apply-templates>
         </xsl:when>
-        <xsl:when test="$candidate = 'p' ">
-          <xsl:choose>
-            <xsl:when test="$pagenumber != ''">
-              <xsl:value-of select="$pagenumber"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:apply-templates select="." mode="pagenumber.markup"/>
-            </xsl:otherwise>
-          </xsl:choose>
+        <xsl:when test="$candidate = 'p'">
+          <xsl:apply-templates select="." mode="insert.pagenumber.markup">
+            <xsl:with-param name="purpose" select="$purpose"/>
+            <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+            <xsl:with-param name="pagenumber">
+              <xsl:choose>
+                <xsl:when test="$pagenumber != ''">
+                  <xsl:copy-of select="$pagenumber"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:apply-templates select="." mode="pagenumber.markup"/>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:with-param>
+          </xsl:apply-templates>
+        </xsl:when>
+        <xsl:when test="$candidate = 'd'">
+          <xsl:apply-templates select="." mode="insert.direction.markup">
+            <xsl:with-param name="purpose" select="$purpose"/>
+            <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+            <xsl:with-param name="direction">
+              <xsl:choose>
+                <xsl:when test="$referrer">
+                  <xsl:variable name="referent-is-below">
+                    <xsl:for-each select="preceding::xref">
+                      <xsl:if test="generate-id(.) = generate-id($referrer)">1</xsl:if>
+                    </xsl:for-each>
+                  </xsl:variable>
+                  <xsl:choose>
+                    <xsl:when test="$referent-is-below = ''">
+                      <xsl:call-template name="gentext">
+                        <xsl:with-param name="key" select="'above'"/>
+                      </xsl:call-template>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:call-template name="gentext">
+                        <xsl:with-param name="key" select="'below'"/>
+                      </xsl:call-template>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:message>Attempt to use %d in gentext with no referrer!</xsl:message>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:with-param>
+          </xsl:apply-templates>
         </xsl:when>
         <xsl:when test="$candidate = '%' ">
           <xsl:text>%</xsl:text>
@@ -291,6 +373,9 @@
         <xsl:with-param name="subtitle" select="$subtitle"/>
         <xsl:with-param name="label" select="$label"/>
         <xsl:with-param name="pagenumber" select="$label"/>
+        <xsl:with-param name="purpose" select="$purpose"/>
+        <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+        <xsl:with-param name="referrer" select="$referrer"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
