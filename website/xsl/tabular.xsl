@@ -104,7 +104,7 @@
   <html>
     <xsl:apply-templates select="head" mode="head.mode"/>
     <xsl:apply-templates select="config" mode="head.mode"/>
-    <body xsl:use-attribute-sets="body.attributes">
+    <body xsl:use-attribute-sets="body.attributes" class="tabular">
 
       <div id="{$id}" class="{name(.)}">
         <a name="{$id}"/>
