@@ -16,14 +16,23 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-status.attribute = attribute status { text }
-label.attribute = attribute label { text }
+db.status.attribute = attribute status { text }
+db.label.attribute = attribute label { text }
 
 # ======================================================================
 
-divisions = db.part
+db.optional.sections = db.section* | db.simplesect*
 
-components =
+db.required.sections = db.section+ | db.simplesect+
+
+db.blocks.or.sections =
+  (db.all.blocks+, db.optional.sections) | db.required.sections
+
+# ======================================================================
+
+db.divisions = db.part
+
+db.components =
    db.dedication
  | db.preface
  | db.chapter
@@ -31,15 +40,15 @@ components =
  | db.article
  | db.colophon
 
-navigation.components = notAllowed
+db.navigation.components = notAllowed
 
-component.contentmodel =
-  navigation.components*, blocks.or.sections, navigation.components*
+db.component.contentmodel =
+  db.navigation.components*, db.blocks.or.sections, db.navigation.components*
 
 # ======================================================================
 
-setindex.components = notAllowed
-toc.components = notAllowed
+db.setindex.components = notAllowed
+db.toc.components = notAllowed
 
 # ======================================================================
 
@@ -49,29 +58,26 @@ toc.components = notAllowed
 ]
 div {
 
-   local.set.attributes = empty
+   db.set.status.attribute = db.status.attribute
 
-   set.status.attribute = status.attribute
+   db.set.role.attribute = attribute role { text }
 
-   set.role.attribute = attribute role { text }
+   db.set.attlist =
+      db.set.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.set.status.attribute?
 
-   set.attlist =
-      set.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & set.status.attribute?
-    & local.set.attributes
-
-   set.info = docbook.info.titlereq
+   db.set.info = db._info.title.req
 
    db.set =
       element set {
-         set.attlist,
-         set.info,
-         toc.components?,
+         db.set.attlist,
+         db.set.info,
+         db.toc.components?,
          (db.set|db.book)+,
-         setindex.components?
+         db.setindex.components?
       }
 }
 
@@ -83,27 +89,24 @@ div {
 ]
 div {
 
-   local.book.attributes = empty
+   db.book.status.attribute = db.status.attribute
 
-   book.status.attribute = status.attribute
+   db.book.role.attribute = attribute role { text }
 
-   book.role.attribute = attribute role { text }
+   db.book.attlist =
+      db.book.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.book.status.attribute?
 
-   book.attlist =
-      book.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & book.status.attribute?
-    & local.book.attributes
-
-   book.info = docbook.info.titlereq
+   db.book.info = db._info.title.req
 
    db.book =
       element book {
-         book.attlist,
-         book.info,
-         (navigation.components | components | divisions)+
+         db.book.attlist,
+         db.book.info,
+         (db.navigation.components | db.components | db.divisions)+
       }
 }
 
@@ -115,27 +118,24 @@ div {
 ]
 div {
 
-   local.dedication.attributes = empty
+   db.dedication.status.attribute = db.status.attribute
 
-   dedication.status.attribute = status.attribute
+   db.dedication.role.attribute = attribute role { text }
 
-   dedication.role.attribute = attribute role { text }
+   db.dedication.attlist =
+      db.dedication.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.dedication.status.attribute?
 
-   dedication.attlist =
-      dedication.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & dedication.status.attribute?
-    & local.dedication.attributes
-
-   dedication.info = docbook.info
+   db.dedication.info = db._info
 
    db.dedication =
       element dedication {
-         dedication.attlist,
-         dedication.info,
-         blocks+
+         db.dedication.attlist,
+         db.dedication.info,
+         db.all.blocks+
       }
 }
 
@@ -147,27 +147,24 @@ div {
 ]
 div {
 
-   local.colophon.attributes = empty
+   db.colophon.status.attribute = db.status.attribute
 
-   colophon.status.attribute = status.attribute
+   db.colophon.role.attribute = attribute role { text }
 
-   colophon.role.attribute = attribute role { text }
+   db.colophon.attlist =
+      db.colophon.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.colophon.status.attribute?
 
-   colophon.attlist =
-      colophon.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & colophon.status.attribute?
-    & local.colophon.attributes
-
-   colophon.info = docbook.info
+   db.colophon.info = db._info
 
    db.colophon =
       element colophon {
-         colophon.attlist,
-         colophon.info,
-         blocks+
+         db.colophon.attlist,
+         db.colophon.info,
+         db.all.blocks+
       }
 }
 
@@ -179,27 +176,24 @@ div {
 ]
 div {
 
-   local.appendix.attributes = empty
+   db.appendix.status.attribute = db.status.attribute
 
-   appendix.status.attribute = status.attribute
+   db.appendix.role.attribute = attribute role { text }
 
-   appendix.role.attribute = attribute role { text }
+   db.appendix.attlist =
+      db.appendix.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.appendix.status.attribute?
 
-   appendix.attlist =
-      appendix.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & appendix.status.attribute?
-    & local.appendix.attributes
-
-   appendix.info = docbook.info.titlereq
+   db.appendix.info = db._info.title.req
 
    db.appendix =
       element appendix {
-         appendix.attlist,
-         appendix.info,
-         component.contentmodel
+         db.appendix.attlist,
+         db.appendix.info,
+         db.component.contentmodel
       }
 }
 
@@ -211,33 +205,30 @@ div {
 ]
 div {
 
-   local.chapter.attributes = empty
+   db.chapter.status.attribute = db.status.attribute
 
-   chapter.status.attribute = status.attribute
+   db.chapter.role.attribute = attribute role { text }
 
-   chapter.role.attribute = attribute role { text }
+   db.chapter.attlist =
+      db.chapter.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.chapter.status.attribute?
 
-   chapter.attlist =
-      chapter.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & chapter.status.attribute?
-    & local.chapter.attributes
-
-   chapter.info = docbook.info.titlereq
+   db.chapter.info = db._info.title.req
 
    db.chapter =
       element chapter {
-         chapter.attlist,
-         chapter.info,
-         component.contentmodel
+         db.chapter.attlist,
+         db.chapter.info,
+         db.component.contentmodel
       }
 }
 
 # ======================================================================
 
-part.components = navigation.components | components
+db.part.components = db.navigation.components | db.components
 
 # ======================================================================
 
@@ -247,28 +238,25 @@ part.components = navigation.components | components
 ]
 div {
 
-   local.part.attributes = empty
+   db.part.status.attribute = db.status.attribute
 
-   part.status.attribute = status.attribute
+   db.part.role.attribute = attribute role { text }
 
-   part.role.attribute = attribute role { text }
+   db.part.attlist =
+      db.part.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.part.status.attribute?
 
-   part.attlist =
-      part.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & part.status.attribute?
-    & local.part.attributes
-
-   part.info = docbook.info.titlereq
+   db.part.info = db._info.title.req
 
    db.part =
       element part {
-         part.attlist,
-         part.info,
+         db.part.attlist,
+         db.part.info,
          db.partintro?,
-         part.components+
+         db.part.components+
       }
 }
 
@@ -280,27 +268,24 @@ div {
 ]
 div {
 
-   local.preface.attributes = empty
+   db.preface.status.attribute = db.status.attribute
 
-   preface.status.attribute = status.attribute
+   db.preface.role.attribute = attribute role { text }
 
-   preface.role.attribute = attribute role { text }
+   db.preface.attlist =
+      db.preface.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.preface.status.attribute?
 
-   preface.attlist =
-      preface.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & preface.status.attribute?
-    & local.preface.attributes
-
-   preface.info = docbook.info
+   db.preface.info = db._info
 
    db.preface =
       element preface {
-         preface.attlist,
-         preface.info,
-         component.contentmodel
+         db.preface.attlist,
+         db.preface.info,
+         db.component.contentmodel
       }
 }
 
@@ -312,38 +297,26 @@ div {
 ]
 div {
 
-   local.partintro.attributes = empty
+   db.partintro.status.attribute = db.status.attribute
 
-   partintro.status.attribute = status.attribute
+   db.partintro.role.attribute = attribute role { text }
 
-   partintro.role.attribute = attribute role { text }
+   db.partintro.attlist =
+      db.partintro.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.partintro.status.attribute?
 
-   partintro.attlist =
-      partintro.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & partintro.status.attribute?
-    & local.partintro.attributes
-
-   partintro.info = docbook.info
+   db.partintro.info = db._info
 
    db.partintro =
       element partintro {
-         partintro.attlist,
-         partintro.info,
-         blocks.or.sections
+         db.partintro.attlist,
+         db.partintro.info,
+         db.blocks.or.sections
       }
 }
-
-# ======================================================================
-
-sections.optional = db.section* | db.simplesect*
-
-sections.required = db.section+ | db.simplesect+
-
-blocks.or.sections =
-  (blocks+, sections.optional) | sections.required
 
 # ======================================================================
 
@@ -353,27 +326,24 @@ blocks.or.sections =
 ]
 div {
 
-   local.section.attributes = empty
+   db.section.status.attribute = db.status.attribute
 
-   section.status.attribute = status.attribute
+   db.section.role.attribute = attribute role { text }
 
-   section.role.attribute = attribute role { text }
+   db.section.attlist =
+      db.section.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.section.status.attribute?
 
-   section.attlist =
-      section.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & section.status.attribute?
-    & local.section.attributes
-
-   section.info = docbook.info.titlereq
+   db.section.info = db._info.title.req
 
    db.section =
       element section {
-         section.attlist,
-         section.info,
-         blocks.or.sections
+         db.section.attlist,
+         db.section.info,
+         db.blocks.or.sections
       }
 }
 
@@ -385,27 +355,24 @@ div {
 ]
 div {
 
-   local.simplesect.attributes = empty
+   db.simplesect.status.attribute = db.status.attribute
 
-   simplesect.status.attribute = status.attribute
+   db.simplesect.role.attribute = attribute role { text }
 
-   simplesect.role.attribute = attribute role { text }
+   db.simplesect.attlist =
+      db.simplesect.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.simplesect.status.attribute?
 
-   simplesect.attlist =
-      simplesect.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & simplesect.status.attribute?
-    & local.simplesect.attributes
-
-   simplesect.info = docbook.info.titlereq
+   db.simplesect.info = db._info.title.req
 
    db.simplesect =
       element simplesect {
-         simplesect.attlist,
-         simplesect.info,
-         blocks+
+         db.simplesect.attlist,
+         db.simplesect.info,
+         db.all.blocks+
       }
 }
 
@@ -417,27 +384,24 @@ div {
 ]
 div {
 
-   local.ackno.attributes = empty
+   db.ackno.role.attribute = attribute role { text }
 
-   ackno.role.attribute = attribute role { text }
-
-   ackno.attlist =
-      ackno.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.ackno.attributes
+   db.ackno.attlist =
+      db.ackno.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.ackno =
       element ackno {
-         ackno.attlist,
-         para.blocks+
+         db.ackno.attlist,
+         db.para.blocks+
       }
 }
 
 # ======================================================================
 
-article.components.optional = db.section* | db.simplesect*
-article.components.required = db.section+ | db.simplesect+
+db.article.optional.components = db.section* | db.simplesect*
+db.article.required.components = db.section+ | db.simplesect+
 
 # ======================================================================
 
@@ -447,11 +411,9 @@ article.components.required = db.section+ | db.simplesect+
 ]
 div {
 
-   local.article.attributes = empty
+   db.article.status.attribute = db.status.attribute
 
-   article.status.attribute = status.attribute
-
-   article.class.attribute =
+   db.article.class.attribute =
       attribute class {
          "faq"
        | "journalarticle"
@@ -461,26 +423,27 @@ div {
        | "whitepaper"
       }
 
-   article.role.attribute = attribute role { text }
+   db.article.role.attribute = attribute role { text }
 
-   article.attlist =
-      article.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & article.status.attribute?
-    & article.class.attribute?
-    & local.article.attributes
+   db.article.attlist =
+      db.article.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.article.status.attribute?
+    & db.article.class.attribute?
 
-   article.info = docbook.info.titlereq
+   db.article.info = db._info.title.req
 
    db.article =
       element article {
-         article.attlist,
-         article.info,
-         navigation.components*,
-         ((blocks+, article.components.optional) | article.components.required),
-         (db.appendix | navigation.components | db.ackno)*
+         db.article.attlist,
+         db.article.info,
+         db.navigation.components*,
+         ((db.all.blocks+,
+            db.article.optional.components)
+          | db.article.required.components),
+         (db.appendix | db.navigation.components | db.ackno)*
       }
 }
 

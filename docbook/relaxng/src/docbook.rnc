@@ -19,9 +19,9 @@ default namespace = "http://docbook.org/docbook-ng"
 
 start = db.set
         | db.book
-	| divisions
-	| components
-	| navigation.components
+	| db.divisions
+	| db.components
+	| db.navigation.components
 	| db.section
 	| db.para
 
@@ -41,4 +41,4 @@ include "msgset.rnc"
 include "qandaset.rnc"
 include "mathml.rnc"
 include "svg.rnc"
-#include "htmlform.rnc"
+include "htmlform.rnc"

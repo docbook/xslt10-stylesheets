@@ -17,11 +17,11 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-equation.content |= any.mml
-inlineequation.content |= any.mml
+db.equation.content |= db._any.mml
+db.inlineequation.content |= db._any.mml
 
-any.mml =
-   element mml:* {
-      anyAttribute*,
-      (text | any.mml)*
-   }
+db._any.mml =
+  element mml:* {
+    db._any.attribute*,
+    (text | db._any)*
+  }

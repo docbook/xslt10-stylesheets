@@ -16,8 +16,8 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-technical.inlines |= db.nonterminal
-technical.blocks |= db.productionset | db.constraintdef
+db.technical.inlines |= db.nonterminal
+db.technical.blocks |= db.productionset | db.constraintdef
 
 # ======================================================================
 
@@ -27,22 +27,19 @@ technical.blocks |= db.productionset | db.constraintdef
 ]
 div {
 
-   local.productionset.attributes = empty
+   db.productionset.role.attribute = attribute role { text }
 
-   productionset.role.attribute = attribute role { text }
+   db.productionset.attlist =
+      db.productionset.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   productionset.attlist =
-      productionset.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.productionset.attributes
-
-   productionset.info = docbook.info.titleonly
+   db.productionset.info = db._info.title.only
 
    db.productionset =
       element productionset {
-         productionset.attlist,
-         productionset.info,
+         db.productionset.attlist,
+         db.productionset.info,
          (db.production|db.productionrecap)+
       }
 }
@@ -55,19 +52,16 @@ div {
 ]
 div {
 
-   local.production.attributes = empty
+   db.production.role.attribute = attribute role { text }
 
-   production.role.attribute = attribute role { text }
-
-   production.attlist =
-      production.role.attribute?
-    & common.attributes.idreq
-    & common.linking.attributes
-    & local.production.attributes
+   db.production.attlist =
+      db.production.role.attribute?
+    & db.common.idreq.attributes
+    & db.common.linking.attributes
 
    db.production =
       element production {
-         production.attlist,
+         db.production.attlist,
          db.lhs,
          db.rhs,
          db.constraint*
@@ -82,19 +76,16 @@ div {
 ]
 div {
 
-   local.lhs.attributes = empty
+   db.lhs.role.attribute = attribute role { text }
 
-   lhs.role.attribute = attribute role { text }
-
-   lhs.attlist =
-      lhs.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.lhs.attributes
+   db.lhs.attlist =
+      db.lhs.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.lhs =
       element lhs {
-         lhs.attlist,
+         db.lhs.attlist,
          text
       }
 }
@@ -107,19 +98,16 @@ div {
 ]
 div {
 
-   local.rhs.attributes = empty
+   db.rhs.role.attribute = attribute role { text }
 
-   rhs.role.attribute = attribute role { text }
-
-   rhs.attlist =
-      rhs.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.rhs.attributes
+   db.rhs.attlist =
+      db.rhs.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.rhs =
       element rhs {
-         rhs.attlist,
+         db.rhs.attlist,
          (text|db.nonterminal|db.lineannotation|db.sbr)*
       }
 }
@@ -132,20 +120,17 @@ div {
 ]
 div {
 
-   local.nonterminal.attributes = empty
+   db.nonterminal.role.attribute = attribute role { text }
 
-   nonterminal.role.attribute = attribute role { text }
-
-   nonterminal.attlist =
-      nonterminal.role.attribute?
-    & common.attributes
-    & common.linking.attributes
+   db.nonterminal.attlist =
+      db.nonterminal.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
     & attribute def { text }
-    & local.nonterminal.attributes
 
    db.nonterminal =
       element nonterminal {
-         nonterminal.attlist,
+         db.nonterminal.attlist,
          text
       }
 }
@@ -158,19 +143,16 @@ div {
 ]
 div {
 
-   local.constraint.attributes = empty
+   db.constraint.role.attribute = attribute role { text }
 
-   constraint.role.attribute = attribute role { text }
-
-   constraint.attlist =
-      constraint.role.attribute?
-    & common.attributes
-    & common.linking.attributes.req
-    & local.constraint.attributes
+   db.constraint.attlist =
+      db.constraint.role.attribute?
+    & db.common.attributes
+    & db.common.req.linking.attributes
 
    db.constraint =
       element constraint {
-         constraint.attlist,
+         db.constraint.attlist,
          empty
       }
 }
@@ -183,19 +165,16 @@ div {
 ]
 div {
 
-   local.productionrecap.attributes = empty
+   db.productionrecap.role.attribute = attribute role { text }
 
-   productionrecap.role.attribute = attribute role { text }
-
-   productionrecap.attlist =
-      productionrecap.role.attribute?
-    & common.attributes
-    & common.linking.attributes.req
-    & local.productionrecap.attributes
+   db.productionrecap.attlist =
+      db.productionrecap.role.attribute?
+    & db.common.attributes
+    & db.common.req.linking.attributes
 
    db.productionrecap =
       element productionrecap {
-         productionrecap.attlist,
+         db.productionrecap.attlist,
          empty
       }
 }
@@ -208,23 +187,20 @@ div {
 ]
 div {
 
-   local.constraintdef.attributes = empty
+   db.constraintdef.role.attribute = attribute role { text }
 
-   constraintdef.role.attribute = attribute role { text }
+   db.constraintdef.attlist =
+      db.constraintdef.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   constraintdef.attlist =
-      constraintdef.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.constraintdef.attributes
-
-   constraintdef.info = docbook.info.titleonly
+   db.constraintdef.info = db._info.title.only
 
    db.constraintdef =
       element constraintdef {
-         constraintdef.attlist,
-         constraintdef.info,
-         blocks+
+         db.constraintdef.attlist,
+         db.constraintdef.info,
+         db.all.blocks+
       }
 }
 

@@ -17,7 +17,7 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-list.blocks |= db.qandaset
+db.list.blocks |= db.qandaset
 
 # ======================================================================
 
@@ -27,24 +27,21 @@ list.blocks |= db.qandaset
 ]
 div {
 
-   local.qandaset.attributes = empty
+   db.qandaset.role.attribute = attribute role { text }
 
-   qandaset.role.attribute = attribute role { text }
-
-   qandaset.attlist =
-      qandaset.role.attribute?
-    & common.attributes
-    & common.linking.attributes
+   db.qandaset.attlist =
+      db.qandaset.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
     & attribute defaultlabel { "none" | "number" | "qanda" }?
-    & local.qandaset.attributes
 
-   qandaset.info = docbook.info.titleonly
+   db.qandaset.info = db._info.title.only
 
    db.qandaset =
       element qandaset {
-         qandaset.attlist,
-         qandaset.info,
-         blocks*,
+         db.qandaset.attlist,
+         db.qandaset.info,
+         db.all.blocks*,
          (db.qandadiv+ | db.qandaentry+)
       }
 }
@@ -57,23 +54,20 @@ div {
 ]
 div {
 
-   local.qandadiv.attributes = empty
+   db.qandadiv.role.attribute = attribute role { text }
 
-   qandadiv.role.attribute = attribute role { text }
+   db.qandadiv.attlist =
+      db.qandadiv.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   qandadiv.attlist =
-      qandadiv.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.qandadiv.attributes
-
-   qandadiv.info = docbook.info.titleonly
+   db.qandadiv.info = db._info.title.only
 
    db.qandadiv =
       element qandadiv {
-         qandadiv.attlist,
-         qandadiv.info,
-         blocks*,
+         db.qandadiv.attlist,
+         db.qandadiv.info,
+         db.all.blocks*,
          (db.qandadiv+ | db.qandaentry+)
       }
 }
@@ -86,22 +80,19 @@ div {
 ]
 div {
 
-   local.qandaentry.attributes = empty
+   db.qandaentry.role.attribute = attribute role { text }
 
-   qandaentry.role.attribute = attribute role { text }
+   db.qandaentry.attlist =
+      db.qandaentry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   qandaentry.attlist =
-      qandaentry.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.qandaentry.attributes
-
-   qandaentry.info = docbook.info.titleforbidden
+   db.qandaentry.info = db._info.title.forbidden
 
    db.qandaentry =
       element qandaentry {
-         qandaentry.attlist,
-         qandaentry.info,
+         db.qandaentry.attlist,
+         db.qandaentry.info,
          db.question,
          db.answer*
       }
@@ -115,21 +106,18 @@ div {
 ]
 div {
 
-   local.question.attributes = empty
+   db.question.role.attribute = attribute role { text }
 
-   question.role.attribute = attribute role { text }
-
-   question.attlist =
-      question.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.question.attributes
+   db.question.attlist =
+      db.question.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.question =
       element question {
-         question.attlist,
+         db.question.attlist,
          db.label?,
-         blocks+
+         db.all.blocks+
       }
 }
 
@@ -141,21 +129,18 @@ div {
 ]
 div {
 
-   local.answer.attributes = empty
+   db.answer.role.attribute = attribute role { text }
 
-   answer.role.attribute = attribute role { text }
-
-   answer.attlist =
-      answer.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.answer.attributes
+   db.answer.attlist =
+      db.answer.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.answer =
       element answer {
-         answer.attlist,
+         db.answer.attlist,
          db.label?,
-         blocks+
+         db.all.blocks+
       }
 }
 
@@ -167,20 +152,17 @@ div {
 ]
 div {
 
-   local.label.attributes = empty
+   db.label.role.attribute = attribute role { text }
 
-   label.role.attribute = attribute role { text }
-
-   label.attlist =
-      label.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.label.attributes
+   db.label.attlist =
+      db.label.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.label =
       element label {
-         label.attlist,
-         docbook.text
+         db.label.attlist,
+         db._text
       }
 }
 

@@ -17,8 +17,8 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-extension.blocks |= html.form
-extension.inlines |= html.input | html.button | html.label | html.select | html.textarea
+db.extension.blocks |= db.html.form
+db.extension.inlines |= db.html.input | db.html.button | db.html.label | db.html.select | db.html.textarea
 
 # ======================================================================
 
@@ -28,25 +28,22 @@ extension.inlines |= html.input | html.button | html.label | html.select | html.
 ]
 div {
 
-   local.html.form.attributes = empty
-
-   html.form.attlist =
-      html.attrs
+   db.html.form.attlist =
+      db.html.attrs
     & attribute action { text }
     & attribute method { "GET" | "POST" }?
     & attribute onsubmit { text }?
     & attribute onreset { text }?
-    & local.html.form.attributes
 
-   html.form =
+   db.html.form =
       element html:form {
-         html.form.attlist,
-         ( blocks
-          | html.input
-          | html.button
-          | html.label
-          | html.select
-          | html.textarea )+
+         db.html.form.attlist,
+         ( db.all.blocks
+          | db.html.input
+          | db.html.button
+          | db.html.label
+          | db.html.select
+          | db.html.textarea )+
       }
 }
 
@@ -58,10 +55,8 @@ div {
 ]
 div {
 
-   local.html.input.attributes = empty
-
-   html.input.attlist =
-      html.attrs
+   db.html.input.attlist =
+      db.html.attrs
     & attribute type {
        "text"
      | "password"
@@ -89,11 +84,10 @@ div {
     & attribute onblur { text }?
     & attribute onselect { text }?
     & attribute onchange { text }?
-    & local.html.input.attributes
 
-   html.input =
+   db.html.input =
       element html:input {
-         html.input.attlist,
+         db.html.input.attlist,
          empty
       }
 }
@@ -106,10 +100,8 @@ div {
 ]
 div {
 
-   local.html.button.attributes = empty
-
-   html.button.attlist =
-      html.attrs
+   db.html.button.attlist =
+      db.html.attrs
     & attribute name { text }?
     & attribute value { text }?
     & attribute type { "button" | "submit" | "reset" }?
@@ -118,12 +110,11 @@ div {
     & attribute accesskey { text }?
     & attribute onfocus { text }?
     & attribute onblur { text }?
-    & local.html.button.attributes
 
-   html.button =
+   db.html.button =
       element html:button {
-         html.button.attlist,
-         inlines*
+         db.html.button.attlist,
+         db.all.inlines*
       }
 }
 
@@ -135,19 +126,16 @@ div {
 ]
 div {
 
-   local.html.label.attributes = empty
-
-   html.label.attlist =
-      html.attrs
+   db.html.label.attlist =
+      db.html.attrs
     & attribute accesskey { text }?
     & attribute onfocus { text }?
     & attribute onblur { text }?
-    & local.html.label.attributes
 
-   html.label =
+   db.html.label =
       element html:label {
-         html.label.attlist,
-         inlines*
+         db.html.label.attlist,
+         db.all.inlines*
       }
 }
 
@@ -159,10 +147,8 @@ div {
 ]
 div {
 
-   local.html.select.attributes = empty
-
-   html.select.attlist =
-      html.attrs
+   db.html.select.attlist =
+      db.html.attrs
     & attribute name { text }?
     & attribute size { text }?
     & attribute multiple { "multiple" }?
@@ -171,12 +157,11 @@ div {
     & attribute onfocus { text }?
     & attribute onblur { text }?
     & attribute onchange { text }?
-    & local.html.select.attributes
 
-   html.select =
+   db.html.select =
       element html:select {
-         html.select.attlist,
-         html.option+
+         db.html.select.attlist,
+         db.html.option+
       }
 }
 
@@ -188,18 +173,15 @@ div {
 ]
 div {
 
-   local.html.option.attributes = empty
-
-   html.option.attlist =
-      html.attrs
+   db.html.option.attlist =
+      db.html.attrs
     & attribute selected { "selected" }?
     & attribute disabled { "disabled" }?
     & attribute value { text }?
-    & local.html.option.attributes
 
-   html.option =
+   db.html.option =
       element html:option {
-         html.option.attlist,
+         db.html.option.attlist,
          text
       }
 }
@@ -212,10 +194,8 @@ div {
 ]
 div {
 
-   local.html.textarea.attributes = empty
-
-   html.textarea.attlist =
-      html.attrs
+   db.html.textarea.attlist =
+      db.html.attrs
     & attribute name { text }?
     & attribute rows { text }
     & attribute cols { text }
@@ -227,11 +207,10 @@ div {
     & attribute onblur { text }?
     & attribute onselect { text }?
     & attribute onchange { text }?
-    & local.html.textarea.attributes
 
-   html.textarea =
+   db.html.textarea =
       element html:textarea {
-         html.textarea.attlist,
+         db.html.textarea.attlist,
          text
       }
 }

@@ -17,20 +17,21 @@ default namespace = "http://docbook.org/docbook-ng"
 
 start |= db.setindex
 
-ubiq.inlines |= db.indexterm
-indexing.inlines |= db.indexterm
-blocks.nopara |= db.indexterm
-navigation.components |= db.index
-setindex.components |= db.setindex
+db.ubiq.inlines |= db.indexterm
+db.indexing.inlines |= db.indexterm
+db.nopara.blocks |= db.indexterm
+db.navigation.components |= db.index
+db.setindex.components |= db.setindex
 
-info.elements |= db.itermset
+db.info.elements |= db.itermset
 
-significance.attribute = attribute significance { "normal" | "preferred" }
-zone.attribute = attribute zone { xsd:IDREFS }
-pagenum.attribute = attribute pagenum { text }
-scope.attribute = attribute scope { "all" | "global" | "local" }
+# ======================================================================
 
-sortas.attribute = attribute sortas { text }
+db.significance.attribute = attribute significance { "normal" | "preferred" }
+db.zone.attribute         = attribute zone { xsd:IDREFS }
+db.pagenum.attribute      = attribute pagenum { text }
+db.scope.attribute        = attribute scope { "all" | "global" | "local" }
+db.sortas.attribute       = attribute sortas { text }
 
 # ======================================================================
 
@@ -40,26 +41,23 @@ sortas.attribute = attribute sortas { text }
 ]
 div {
 
-   local.itermset.attributes = empty
+   db.itermset.role.attribute = attribute role { text }
 
-   itermset.role.attribute = attribute role { text }
-
-   itermset.attlist =
-      itermset.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.itermset.attributes
+   db.itermset.attlist =
+      db.itermset.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.itermset =
       element itermset {
-         itermset.attlist,
-         indexterm.singular+
+         db.itermset.attlist,
+         db.indexterm.singular+
       }
 }
 
 # ======================================================================
 
-indexterm.contentmodel =
+db.indexterm.contentmodel =
    db.primary?,
    ((db.secondary,
       ((db.tertiary, (db.see | db.seealso+)?)
@@ -76,25 +74,22 @@ indexterm.contentmodel =
 ]
 div {
 
-   local.indexterm.singular.attributes = empty
+   db.indexterm.singular.role.attribute = attribute role { text }
 
-   indexterm.singular.role.attribute = attribute role { text }
-
-   indexterm.singular.attlist =
-      indexterm.singular.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & significance.attribute?
-    & zone.attribute?
-    & pagenum.attribute?
-    & scope.attribute?
+   db.indexterm.singular.attlist =
+      db.indexterm.singular.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.significance.attribute?
+    & db.zone.attribute?
+    & db.pagenum.attribute?
+    & db.scope.attribute?
     & attribute class { "singular" }?
-    & local.indexterm.singular.attributes
 
-   indexterm.singular =
+   db.indexterm.singular =
       element indexterm {
-         indexterm.singular.attlist,
-         indexterm.contentmodel
+         db.indexterm.singular.attlist,
+         db.indexterm.contentmodel
       }
 }
 
@@ -106,25 +101,22 @@ div {
 ]
 div {
 
-   local.indexterm.startofrange.attributes = empty
+   db.indexterm.startofrange.role.attribute = attribute role { text }
 
-   indexterm.startofrange.role.attribute = attribute role { text }
-
-   indexterm.startofrange.attlist =
-      indexterm.startofrange.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & significance.attribute?
-    & zone.attribute?
-    & pagenum.attribute?
-    & scope.attribute?
+   db.indexterm.startofrange.attlist =
+      db.indexterm.startofrange.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.significance.attribute?
+    & db.zone.attribute?
+    & db.pagenum.attribute?
+    & db.scope.attribute?
     & attribute class { "startofrange" }
-    & local.indexterm.startofrange.attributes
 
-   indexterm.startofrange =
+   db.indexterm.startofrange =
       element indexterm {
-         indexterm.startofrange.attlist,
-         indexterm.contentmodel
+         db.indexterm.startofrange.attlist,
+         db.indexterm.contentmodel
       }
 }
 
@@ -136,21 +128,18 @@ div {
 ]
 div {
 
-   local.indexterm.endofrange.attributes = empty
+   db.indexterm.endofrange.role.attribute = attribute role { text }
 
-   indexterm.endofrange.role.attribute = attribute role { text }
-
-   indexterm.endofrange.attlist =
-      indexterm.endofrange.role.attribute?
-    & common.attributes
-    & common.linking.attributes
+   db.indexterm.endofrange.attlist =
+      db.indexterm.endofrange.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
     & attribute class { "endofrange" }
     & attribute startref { xsd:IDREF }
-    & local.indexterm.endofrange.attributes
 
-   indexterm.endofrange =
+   db.indexterm.endofrange =
       element indexterm {
-         indexterm.endofrange.attlist,
+         db.indexterm.endofrange.attlist,
          empty
       }
 }
@@ -162,9 +151,10 @@ div {
    db:refpurpose [ "" ]
 ]
 div {
-
-   db.indexterm = (indexterm.singular|indexterm.startofrange|indexterm.endofrange)
-
+   db.indexterm =
+      db.indexterm.singular
+    |db.indexterm.startofrange
+    |db.indexterm.endofrange
 }
 
 # ======================================================================
@@ -175,21 +165,18 @@ div {
 ]
 div {
 
-   local.primary.attributes = empty
+   db.primary.role.attribute = attribute role { text }
 
-   primary.role.attribute = attribute role { text }
-
-   primary.attlist =
-      primary.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & sortas.attribute?
-    & local.primary.attributes
+   db.primary.attlist =
+      db.primary.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.sortas.attribute?
 
    db.primary =
       element primary {
-         primary.attlist,
-         inlines*
+         db.primary.attlist,
+         db.all.inlines*
       }
 }
 
@@ -201,21 +188,18 @@ div {
 ]
 div {
 
-   local.secondary.attributes = empty
+   db.secondary.role.attribute = attribute role { text }
 
-   secondary.role.attribute = attribute role { text }
-
-   secondary.attlist =
-      secondary.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & sortas.attribute?
-    & local.secondary.attributes
+   db.secondary.attlist =
+      db.secondary.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.sortas.attribute?
 
    db.secondary =
       element secondary {
-         secondary.attlist,
-         inlines*
+         db.secondary.attlist,
+         db.all.inlines*
       }
 }
 
@@ -227,21 +211,18 @@ div {
 ]
 div {
 
-   local.tertiary.attributes = empty
+   db.tertiary.role.attribute = attribute role { text }
 
-   tertiary.role.attribute = attribute role { text }
-
-   tertiary.attlist =
-      tertiary.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & sortas.attribute?
-    & local.tertiary.attributes
+   db.tertiary.attlist =
+      db.tertiary.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.sortas.attribute?
 
    db.tertiary =
       element tertiary {
-         tertiary.attlist,
-         inlines*
+         db.tertiary.attlist,
+         db.all.inlines*
       }
 }
 
@@ -253,20 +234,17 @@ div {
 ]
 div {
 
-   local.see.attributes = empty
+   db.see.role.attribute = attribute role { text }
 
-   see.role.attribute = attribute role { text }
-
-   see.attlist =
-      see.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.see.attributes
+   db.see.attlist =
+      db.see.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.see =
       element see {
-         see.attlist,
-         inlines*
+         db.see.attlist,
+         db.all.inlines*
       }
 }
 
@@ -278,20 +256,17 @@ div {
 ]
 div {
 
-   local.seealso.attributes = empty
+   db.seealso.role.attribute = attribute role { text }
 
-   seealso.role.attribute = attribute role { text }
-
-   seealso.attlist =
-      seealso.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.seealso.attributes
+   db.seealso.attlist =
+      db.seealso.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.seealso =
       element seealso {
-         seealso.attlist,
-         inlines*
+         db.seealso.attlist,
+         db.all.inlines*
       }
 }
 
@@ -303,27 +278,24 @@ div {
 ]
 div {
 
-   local.index.attributes = empty
+   db.index.status.attribute = db.status.attribute
 
-   index.status.attribute = status.attribute
+   db.index.role.attribute = attribute role { text }
 
-   index.role.attribute = attribute role { text }
+   db.index.attlist =
+      db.index.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.index.status.attribute?
 
-   index.attlist =
-      index.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & index.status.attribute?
-    & local.index.attributes
-
-   index.info = docbook.info
+   db.index.info = db._info
 
    db.index =
       element index {
-         index.attlist,
-         index.info,
-         blocks*,
+         db.index.attlist,
+         db.index.info,
+         db.all.blocks*,
          (db.indexdiv* | db.indexentry* | db.segmentedlist)
       }
 }
@@ -336,27 +308,24 @@ div {
 ]
 div {
 
-   local.setindex.attributes = empty
+   db.setindex.status.attribute = db.status.attribute
 
-   setindex.status.attribute = status.attribute
+   db.setindex.role.attribute = attribute role { text }
 
-   setindex.role.attribute = attribute role { text }
+   db.setindex.attlist =
+      db.setindex.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.setindex.status.attribute?
 
-   setindex.attlist =
-      setindex.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & setindex.status.attribute?
-    & local.setindex.attributes
-
-   setindex.info = docbook.info
+   db.setindex.info = db._info
 
    db.setindex =
       element setindex {
-         setindex.attlist,
-         setindex.info,
-         blocks*,
+         db.setindex.attlist,
+         db.setindex.info,
+         db.all.blocks*,
          (db.indexdiv* | db.indexentry*)
       }
 }
@@ -369,27 +338,24 @@ div {
 ]
 div {
 
-   local.indexdiv.attributes = empty
+   db.indexdiv.status.attribute = db.status.attribute
 
-   indexdiv.status.attribute = status.attribute
+   db.indexdiv.role.attribute = attribute role { text }
 
-   indexdiv.role.attribute = attribute role { text }
+   db.indexdiv.attlist =
+      db.indexdiv.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.indexdiv.status.attribute?
 
-   indexdiv.attlist =
-      indexdiv.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & indexdiv.status.attribute?
-    & local.indexdiv.attributes
-
-   indexdiv.info = docbook.info.titlereq
+   db.indexdiv.info = db._info.title.req
 
    db.indexdiv =
       element indexdiv {
-         indexdiv.attlist,
-         indexdiv.info,
-         blocks*,
+         db.indexdiv.attlist,
+         db.indexdiv.info,
+         db.all.blocks*,
          (db.indexentry+|db.segmentedlist)
       }
 }
@@ -402,19 +368,16 @@ div {
 ]
 div {
 
-   local.indexentry.attributes = empty
+   db.indexentry.role.attribute = attribute role { text }
 
-   indexentry.role.attribute = attribute role { text }
-
-   indexentry.attlist =
-      indexentry.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.indexentry.attributes
+   db.indexentry.attlist =
+      db.indexentry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.indexentry =
       element indexentry {
-         indexentry.attlist,
+         db.indexentry.attlist,
          db.primaryie,
          (db.seeie | db.seealsoie)*,
          (db.secondaryie, (db.seeie | db.seealsoie | db.tertiaryie)*)*
@@ -429,20 +392,17 @@ div {
 ]
 div {
 
-   local.primaryie.attributes = empty
+   db.primaryie.role.attribute = attribute role { text }
 
-   primaryie.role.attribute = attribute role { text }
-
-   primaryie.attlist =
-      primaryie.role.attribute?
-    & common.attributes
-    & linkends.attribute?
-    & local.primaryie.attributes
+   db.primaryie.attlist =
+      db.primaryie.role.attribute?
+    & db.common.attributes
+    & db.linkends.attribute?
 
    db.primaryie =
       element primaryie {
-         primaryie.attlist,
-         inlines*
+         db.primaryie.attlist,
+         db.all.inlines*
       }
 }
 
@@ -454,20 +414,17 @@ div {
 ]
 div {
 
-   local.secondaryie.attributes = empty
+   db.secondaryie.role.attribute = attribute role { text }
 
-   secondaryie.role.attribute = attribute role { text }
-
-   secondaryie.attlist =
-      secondaryie.role.attribute?
-    & common.attributes
-    & linkends.attribute?
-    & local.secondaryie.attributes
+   db.secondaryie.attlist =
+      db.secondaryie.role.attribute?
+    & db.common.attributes
+    & db.linkends.attribute?
 
    db.secondaryie =
       element secondaryie {
-         secondaryie.attlist,
-         inlines*
+         db.secondaryie.attlist,
+         db.all.inlines*
       }
 }
 
@@ -479,20 +436,17 @@ div {
 ]
 div {
 
-   local.tertiaryie.attributes = empty
+   db.tertiaryie.role.attribute = attribute role { text }
 
-   tertiaryie.role.attribute = attribute role { text }
-
-   tertiaryie.attlist =
-      tertiaryie.role.attribute?
-    & common.attributes
-    & linkends.attribute?
-    & local.tertiaryie.attributes
+   db.tertiaryie.attlist =
+      db.tertiaryie.role.attribute?
+    & db.common.attributes
+    & db.linkends.attribute?
 
    db.tertiaryie =
       element tertiaryie {
-         tertiaryie.attlist,
-         inlines*
+         db.tertiaryie.attlist,
+         db.all.inlines*
       }
 }
 
@@ -504,20 +458,17 @@ div {
 ]
 div {
 
-   local.seeie.attributes = empty
+   db.seeie.role.attribute = attribute role { text }
 
-   seeie.role.attribute = attribute role { text }
-
-   seeie.attlist =
-      seeie.role.attribute?
-    & common.attributes
-    & linkend.attribute?
-    & local.seeie.attributes
+   db.seeie.attlist =
+      db.seeie.role.attribute?
+    & db.common.attributes
+    & db.linkend.attribute?
 
    db.seeie =
       element seeie {
-         seeie.attlist,
-         inlines*
+         db.seeie.attlist,
+         db.all.inlines*
       }
 }
 
@@ -529,19 +480,16 @@ div {
 ]
 div {
 
-   local.seealsoie.attributes = empty
+   db.seealsoie.role.attribute = attribute role { text }
 
-   seealsoie.role.attribute = attribute role { text }
-
-   seealsoie.attlist =
-      seealsoie.role.attribute?
-    & common.attributes
-    & linkends.attribute?
-    & local.seealsoie.attributes
+   db.seealsoie.attlist =
+      db.seealsoie.role.attribute?
+    & db.common.attributes
+    & db.linkends.attribute?
 
    db.seealsoie =
       element seealsoie {
-         seealsoie.attlist,
-         inlines*
+         db.seealsoie.attlist,
+         db.all.inlines*
       }
 }

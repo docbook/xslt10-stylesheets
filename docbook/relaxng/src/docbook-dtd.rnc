@@ -11,6 +11,8 @@
 #
 # ======================================================================
 
+# What is this file for!?
+
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 namespace rng  = "http://relaxng.org/ns/structure/1.0"
 namespace s = "http://www.ascc.net/xml/schematron"
@@ -19,19 +21,17 @@ default namespace = "http://docbook.org/docbook-ng"
 
 start = db.set
         | db.book
-	| divisions
-	| components
-	| navigation.components
+	| db.divisions
+	| db.components
+	| db.navigation.components
 	| db.section
 	| db.para
 
 include "hier.rnc"
 include "refentry.rnc"
 include "pool.rnc" {
-   table.info = docbook.info.titleonlyreq
-
    db.table = element table {
-      common.attributes,
+      db.common.attributes,
       attribute rowsep { text }?,
       attribute ondblclick { text }?,
       attribute onkeydown { text }?,
@@ -61,18 +61,20 @@ include "pool.rnc" {
       attribute onmouseout { text }?,
       attribute onmousemove { text }?,
       attribute style { text }?,
-      attribute xml:lang { text }?,
       attribute border { text }?,
       attribute cellpadding { text }?,
       attribute tocentry { text }?,
-      ((table.info, db.indexterm*, db.textobject*,
+      ((db.table.info, db.indexterm*, db.textobject*,
          (db.mediaobject+|db.tgroup+))
        |(db.caption, (db.col*|db.colgroup*),
           db.thead?, db.tfoot?, (db.tbody+|db.tr+)))
    }
+}
+
+   db.table.info = db._info.title.onlyreq
 
    db.caption = element caption {
-      common.attributes,
+      db.common.attributes,
       attribute ondblclick { text }?,
       attribute onkeydown { text }?,
       attribute onkeyup { text }?,
@@ -82,17 +84,16 @@ include "pool.rnc" {
       attribute onmouseout { text }?,
       attribute onmousemove { text }?,
       attribute style { text }?,
-      attribute xml:lang { text }?,
       attribute onkeypress { text }?,
       attribute onmousedown { text }?,
       attribute onclick { text }?,
       attribute title { text }?,
       attribute class { text }?,
-      (inlines* | blocks*)
+      (db.all.inlines* | db.all.blocks*)
    }
 
    db.tgroup = element tgroup {
-      common.attributes,
+      db.common.attributes,
       attribute rowsep { text }?,
       attribute ondblclick { text }?,
       attribute cols { text },
@@ -112,13 +113,12 @@ include "pool.rnc" {
       attribute onmouseout { text }?,
       attribute style { text }?,
       attribute onmousemove { text }?,
-      attribute xml:lang { text }?,
       attribute char { text }?,
       (db.colspec*, db.spanspec*, db.thead?, db.tfoot?, db.tbody)
    }
 
    db.thead = element thead {
-      common.attributes,
+      db.common.attributes,
       attribute ondblclick { text }?,
       attribute onkeydown { text }?,
       attribute onkeyup { text }?,
@@ -128,7 +128,6 @@ include "pool.rnc" {
       attribute onmouseout { text }?,
       attribute onmousemove { text }?,
       attribute style { text }?,
-      attribute xml:lang { text }?,
       attribute onkeypress { text }?,
       attribute onmousedown { text }?,
       attribute onclick { text }?,
@@ -138,7 +137,7 @@ include "pool.rnc" {
    }
 
    db.tfoot = element tfoot {
-      common.attributes,
+      db.common.attributes,
       attribute ondblclick { text }?,
       attribute onkeydown { text }?,
       attribute onkeyup { text }?,
@@ -148,7 +147,6 @@ include "pool.rnc" {
       attribute onmouseout { text }?,
       attribute onmousemove { text }?,
       attribute style { text }?,
-      attribute xml:lang { text }?,
       attribute onkeypress { text }?,
       attribute onmousedown { text }?,
       attribute onclick { text }?,
@@ -158,7 +156,7 @@ include "pool.rnc" {
    }
 
    db.tbody = element tbody {
-      common.attributes,
+      db.common.attributes,
       attribute ondblclick { text }?,
       attribute onkeydown { text }?,
       attribute onkeyup { text }?,
@@ -168,7 +166,6 @@ include "pool.rnc" {
       attribute onmouseout { text }?,
       attribute onmousemove { text }?,
       attribute style { text }?,
-      attribute xml:lang { text }?,
       attribute onkeypress { text }?,
       attribute onmousedown { text }?,
       attribute onclick { text }?,
@@ -305,7 +302,7 @@ include "pool.rnc" {
       attribute onclick { text }?,
       attribute title { text }?,
       attribute class { text }?,
-      (inlines* | blocks*)
+      (db.all.inlines* | db.all.blocks*)
    }
 
    db.td = element td {
@@ -338,11 +335,11 @@ include "pool.rnc" {
       attribute onclick { text }?,
       attribute title { text }?,
       attribute class { text }?,
-      (inlines* | blocks*)
+      (db.all.inlines* | db.all.blocks*)
    }
 
    db.row = element row {
-      common.attributes,
+      db.common.attributes,
       attribute rowsep { text }?,
       attribute ondblclick { text }?,
       attribute onkeydown { text }?,
@@ -353,7 +350,6 @@ include "pool.rnc" {
       attribute onmouseout { text }?,
       attribute onmousemove { text }?,
       attribute style { text }?,
-      attribute xml:lang { text }?,
       attribute onkeypress { text }?,
       attribute onmousedown { text }?,
       attribute onclick { text }?,
@@ -363,7 +359,7 @@ include "pool.rnc" {
    }
 
    db.entry = element entry {
-      common.attributes,
+      db.common.attributes,
       attribute rowsep { text }?,
       attribute spanname { text }?,
       attribute ondblclick { text }?,
@@ -387,10 +383,9 @@ include "pool.rnc" {
       attribute onmouseout { text }?,
       attribute onmousemove { text }?,
       attribute style { text }?,
-      attribute xml:lang { text }?,
       attribute char { text }?,
       attribute morerows { text }?,
-      (inlines* | blocks*)
+      (db.all.inlines* | db.all.blocks*)
    }
 
    db.entrytbl = element entrytbl {
@@ -421,7 +416,7 @@ include "pool.rnc" {
       attribute char { text }?,
       (db.colspec*, db.spanspec*, db.thead?, db.tbody)
    }
-}
+
 include "glossary.rnc"
 include "bibliography.rnc"
 include "index.rnc"

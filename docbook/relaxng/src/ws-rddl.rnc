@@ -18,8 +18,8 @@ namespace xlink = "http://www.w3.org/1999/xlink"
 namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
 default namespace = "http://docbook.org/docbook-ng"
 
-rddl |= rddl.resource
-inlines |= rddl
+ws.rddl |= ws.rddl.resource
+db.all.inlines |= rddl
 
 # ======================================================================
 
@@ -29,11 +29,12 @@ inlines |= rddl
 ]
 div {
 
-   rddl.resource =
+   ws.rddl.resource =
       element rddl:resource {
-         id.attribute?,
-         xml.lang.attribute?,
-         xml.base.attribute?,
+         attribute id { xsd:ID }?,
+         attribute version { text }?,
+         attribute xml:lang { text }?,
+         attribute xml:base { text }?,
 
          [ a:defaultValue = "simple" ]
          attribute xlink:type { "simple" }?,
@@ -52,6 +53,6 @@ div {
          [ a:defaultValue = "none" ]
          attribute xlink:actuate { "none" }?,
 
-         inlines*
+         db.all.inlines*
       }
 }

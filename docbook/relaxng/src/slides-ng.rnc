@@ -16,9 +16,9 @@ default namespace = "http://docbook.org/docbook-ng"
 
 include "sdocbook.rnc" {
    start = db.slides
-
-   blocks |= db.speakernotes | db.screen
 }
+
+db.all.blocks |= db.speakernotes | db.screen
 
 [
    db:refname [ "slides" ]
@@ -26,22 +26,19 @@ include "sdocbook.rnc" {
 ]
 div {
 
-   local.slides.attributes = empty
+   db.slides.role.attribute = attribute role { text }
 
-   slides.role.attribute = attribute role { text }
+   db.slides.attlist =
+      db.slides.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   slides.attlist =
-      slides.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.slides.attributes
-
-   slides.info = docbook.info.titlereq
+   db.slides.info = db._info.title.req
 
    db.slides =
       element slides {
-         slides.attlist,
-         slides.info,
+         db.slides.attlist,
+         db.slides.info,
          db.speakernotes?,
          db.foil*,
          db.foilgroup*
@@ -54,23 +51,20 @@ div {
 ]
 div {
 
-   local.foilgroup.attributes = empty
+   db.foilgroup.role.attribute = attribute role { text }
 
-   foilgroup.role.attribute = attribute role { text }
+   db.foilgroup.attlist =
+      db.foilgroup.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   foilgroup.attlist =
-      foilgroup.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.foilgroup.attributes
-
-   foilgroup.info = docbook.info.titlereq
+   db.foilgroup.info = db._info.title.req
 
    db.foilgroup =
       element foilgroup {
-         foilgroup.attlist,
-         foilgroup.info,
-         blocks*,
+         db.foilgroup.attlist,
+         db.foilgroup.info,
+         db.all.blocks*,
          db.foil+
       }
 }
@@ -81,23 +75,20 @@ div {
 ]
 div {
 
-   local.foil.attributes = empty
+   db.foil.role.attribute = attribute role { text }
 
-   foil.role.attribute = attribute role { text }
+   db.foil.attlist =
+      db.foil.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   foil.attlist =
-      foil.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.foil.attributes
-
-   foil.info = docbook.info.titlereq
+   db.foil.info = db._info.title.req
 
    db.foil =
       element foil {
-         foil.attlist,
-         foil.info,
-         blocks*
+         db.foil.attlist,
+         db.foil.info,
+         db.all.blocks*
       }
 }
 
@@ -107,22 +98,19 @@ div {
 ]
 div {
 
-   local.speakernotes.attributes = empty
+   db.speakernotes.role.attribute = attribute role { text }
 
-   speakernotes.role.attribute = attribute role { text }
+   db.speakernotes.attlist =
+      db.speakernotes.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   speakernotes.attlist =
-      speakernotes.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.speakernotes.attributes
-
-   speakernotes.info = docbook.info.titlereq
+   db.speakernotes.info = db._info.title.req
 
    db.speakernotes =
       element speakernotes {
-         speakernotes.attlist,
-         speakernotes.info,
-         blocks*
+         db.speakernotes.attlist,
+         db.speakernotes.info,
+         db.all.blocks*
       }
 }

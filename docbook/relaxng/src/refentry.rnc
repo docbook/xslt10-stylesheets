@@ -18,12 +18,12 @@ default namespace = "http://docbook.org/docbook-ng"
 
 start |= db.refentry
 
-divisions |= db.reference
+db.divisions |= db.reference
 
-part.components |= db.refentry | db.reference
+db.part.components |= db.refentry | db.reference
 
-article.components.optional |= db.refentry*
-article.components.required |= db.refentry+
+db.article.optional.components |= db.refentry*
+db.article.required.components |= db.refentry+
 
 # ======================================================================
 
@@ -33,24 +33,21 @@ article.components.required |= db.refentry+
 ]
 div {
 
-   local.reference.attributes = empty
+   db.reference.role.attribute = attribute role { text }
 
-   reference.role.attribute = attribute role { text }
+   db.reference.attlist =
+      db.reference.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.status.attribute?
+    & db.label.attribute?
 
-   reference.attlist =
-      reference.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & status.attribute?
-    & label.attribute?
-    & local.reference.attributes
-
-   reference.info = docbook.info.titlereq
+   db.reference.info = db._info.title.req
 
    db.reference =
       element reference {
-         reference.attlist,
-         reference.info,
+         db.reference.attlist,
+         db.reference.info,
          db.partintro?,
          db.refentry+
       }
@@ -58,12 +55,12 @@ div {
 
 # ======================================================================
 
-refsections.optional = db.refsection* | db.simplesect*
+db.optional.refsections = db.refsection* | db.simplesect*
 
-refsections.required = db.refsection+ | db.simplesect*
+db.required.refsections = db.refsection+ | db.simplesect*
 
-blocks.or.refsections =
-  (blocks+, refsections.optional) | refsections.required
+db.blocks.or.refsections =
+  (db.all.blocks+, db.optional.refsections) | db.required.refsections
 
 # ======================================================================
 
@@ -73,25 +70,22 @@ blocks.or.refsections =
 ]
 div {
 
-   local.refentry.attributes = empty
+   db.refentry.role.attribute = attribute role { text }
 
-   refentry.role.attribute = attribute role { text }
+   db.refentry.attlist =
+      db.refentry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.status.attribute?
+    & db.label.attribute?
 
-   refentry.attlist =
-      refentry.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & status.attribute?
-    & label.attribute?
-    & local.refentry.attributes
-
-   refentry.info = docbook.info.titleforbidden
+   db.refentry.info = db._info.title.forbidden
 
    db.refentry =
       element refentry {
-         refentry.attlist,
+         db.refentry.attlist,
          db.indexterm*,
-         refentry.info,
+         db.refentry.info,
          db.refmeta?,
          db.refnamediv+,
          db.refsynopsisdiv?,
@@ -107,19 +101,16 @@ div {
 ]
 div {
 
-   local.refmeta.attributes = empty
+   db.refmeta.role.attribute = attribute role { text }
 
-   refmeta.role.attribute = attribute role { text }
-
-   refmeta.attlist =
-      refmeta.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.refmeta.attributes
+   db.refmeta.attlist =
+      db.refmeta.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.refmeta =
       element refmeta {
-         refmeta.attlist,
+         db.refmeta.attlist,
          db.indexterm*,
          db.refentrytitle,
          db.manvolnum?,
@@ -131,26 +122,23 @@ div {
 # ======================================================================
 
 [
-   db:refname [ "refmiscinfo" ]
+   db:refname [ "db.refmiscinfo" ]
    db:refpurpose [ "" ]
 ]
 div {
 
-   local.refmiscinfo.attributes = empty
+   db.refmiscinfo.role.attribute = attribute role { text }
 
-   refmiscinfo.role.attribute = attribute role { text }
-
-   refmiscinfo.attlist =
-      refmiscinfo.role.attribute?
-    & common.attributes
-    & common.linking.attributes
+   db.refmiscinfo.attlist =
+      db.refmiscinfo.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
     & attribute class { text }?
-    & local.refmiscinfo.attributes
 
    db.refmiscinfo =
       element refmiscinfo {
-         refmiscinfo.attlist,
-         docbook.text
+         db.refmiscinfo.attlist,
+         db._text
       }
 }
 
@@ -162,19 +150,16 @@ div {
 ]
 div {
 
-   local.refnamediv.attributes = empty
+   db.refnamediv.role.attribute = attribute role { text }
 
-   refnamediv.role.attribute = attribute role { text }
-
-   refnamediv.attlist =
-      refnamediv.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.refnamediv.attributes
+   db.refnamediv.attlist =
+      db.refnamediv.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.refnamediv =
       element refnamediv {
-         refnamediv.attlist,
+         db.refnamediv.attlist,
          db.refdescriptor?,
          db.refname+,
          db.refpurpose,
@@ -190,20 +175,17 @@ div {
 ]
 div {
 
-   local.refdescriptor.attributes = empty
+   db.refdescriptor.role.attribute = attribute role { text }
 
-   refdescriptor.role.attribute = attribute role { text }
-
-   refdescriptor.attlist =
-      refdescriptor.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.refdescriptor.attributes
+   db.refdescriptor.attlist =
+      db.refdescriptor.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.refdescriptor =
       element refdescriptor {
-         refdescriptor.attlist,
-         inlines*
+         db.refdescriptor.attlist,
+         db.all.inlines*
       }
 }
 
@@ -215,20 +197,17 @@ div {
 ]
 div {
 
-   local.refname.attributes = empty
+   db.refname.role.attribute = attribute role { text }
 
-   refname.role.attribute = attribute role { text }
-
-   refname.attlist =
-      refname.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.refname.attributes
+   db.refname.attlist =
+      db.refname.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.refname =
       element refname {
-         refname.attlist,
-         inlines*
+         db.refname.attlist,
+         db.all.inlines*
       }
 }
 
@@ -240,20 +219,17 @@ div {
 ]
 div {
 
-   local.refpurpose.attributes = empty
+   db.refpurpose.role.attribute = attribute role { text }
 
-   refpurpose.role.attribute = attribute role { text }
-
-   refpurpose.attlist =
-      refpurpose.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.refpurpose.attributes
+   db.refpurpose.attlist =
+      db.refpurpose.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.refpurpose =
       element refpurpose {
-         refpurpose.attlist,
-         inlines*
+         db.refpurpose.attlist,
+         db.all.inlines*
       }
 }
 
@@ -265,19 +241,16 @@ div {
 ]
 div {
 
-   local.refclass.attributes = empty
+   db.refclass.role.attribute = attribute role { text }
 
-   refclass.role.attribute = attribute role { text }
-
-   refclass.attlist =
-      refclass.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.refclass.attributes
+   db.refclass.attlist =
+      db.refclass.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.refclass =
       element refclass {
-         refclass.attlist,
+         db.refclass.attlist,
          (text | db.application)*
       }
 }
@@ -290,23 +263,20 @@ div {
 ]
 div {
 
-   local.refsynopsisdiv.attributes = empty
+   db.refsynopsisdiv.role.attribute = attribute role { text }
 
-   refsynopsisdiv.role.attribute = attribute role { text }
+   db.refsynopsisdiv.attlist =
+      db.refsynopsisdiv.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   refsynopsisdiv.attlist =
-      refsynopsisdiv.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.refsynopsisdiv.attributes
-
-   refsynopsisdiv.info = docbook.info
+   db.refsynopsisdiv.info = db._info
 
    db.refsynopsisdiv =
       element refsynopsisdiv {
-         refsynopsisdiv.attlist,
-         refsynopsisdiv.info,
-         blocks.or.refsections
+         db.refsynopsisdiv.attlist,
+         db.refsynopsisdiv.info,
+         db.blocks.or.refsections
       }
 }
 
@@ -318,24 +288,21 @@ div {
 ]
 div {
 
-   local.refsection.attributes = empty
+   db.refsection.role.attribute = attribute role { text }
 
-   refsection.role.attribute = attribute role { text }
+   db.refsection.attlist =
+      db.refsection.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.status.attribute?
+    & db.label.attribute?
 
-   refsection.attlist =
-      refsection.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & status.attribute?
-    & label.attribute?
-    & local.refsection.attributes
-
-   refsection.info = docbook.info.titlereq
+   db.refsection.info = db._info.title.req
 
    db.refsection =
       element refsection {
-         refsection.attlist,
-         refsection.info,
-         blocks.or.refsections
+         db.refsection.attlist,
+         db.refsection.info,
+         db.blocks.or.refsections
       }
 }

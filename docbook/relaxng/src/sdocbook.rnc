@@ -17,37 +17,39 @@ default namespace = "http://docbook.org/docbook-ng"
 start = db.article
 
 include "hier.rnc" {
-   sections.optional = db.section*
-   sections.required = db.section+
+   db.optional.sections = db.section*
+   db.required.sections = db.section+
 
-   article.components.optional = db.section*
-   article.components.required = db.section+
+   db.article.optional.components = db.section*
+   db.article.required.components = db.section+
 
    db.ackno = notAllowed
+
+   db.article =
+      element article {
+         db.article.attlist,
+         db.article.info,
+         ((db.all.blocks+,
+            db.article.optional.components)
+          | db.article.required.components),
+         (db.appendix | db.navigation.components | db.ackno)*
+      }
 }
 
 include "bibliography.rnc" {
-   db.article =
-      element article {
-         article.attlist,
-         article.info,
-         ((blocks+, article.components.optional) | article.components.required),
-         (db.appendix | navigation.components | db.ackno)*
-      }
-
    db.bibliography =
       element bibliography {
-         bibliography.attlist,
-         bibliography.info,
-         blocks*,
+         db.bibliography.attlist,
+         db.bibliography.info,
+         db.all.blocks*,
          (db.bibliodiv+ | db.bibliomixed+)
       }
 
    db.bibliodiv =
       element bibliodiv {
-         bibliodiv.attlist,
-         bibliodiv.info,
-         blocks*,
+         db.bibliodiv.attlist,
+         db.bibliodiv.info,
+         db.all.blocks*,
          db.bibliomixed+
       }
 }
@@ -56,21 +58,21 @@ include "calstbl.rnc"
 include "htmltbl.rnc"
 
 include "pool.rnc" {
-   common.attributes =
-      id.attribute?,
-      xml.lang.attribute?,
-      xml.base.attribute?,
-      revisionflag.attribute?,
-      version.attribute?
+   db.common.attributes =
+      attribute id { xsd:ID }?,
+      attribute version { text }?,
+      attribute xml:lang { text }?,
+      attribute xml:base { text }?,
+      attribute revisionflag { "changed" | "added" | "deleted" | "off" }?
 
-   common.attributes.idreq =
-      id.attribute,
-      xml.lang.attribute?,
-      xml.base.attribute?,
-      revisionflag.attribute?,
-      version.attribute?
+   db.common.idreq.attributes =
+      attribute id { xsd:ID },
+      attribute version { text }?,
+      attribute xml:lang { text }?,
+      attribute xml:base { text }?,
+      attribute revisionflag { "changed" | "added" | "deleted" | "off" }?
 
-   info.elements =
+   db.info.elements =
       db.abstract
     | db.author
     | db.authorgroup
@@ -89,8 +91,8 @@ include "pool.rnc" {
     | db.subjectset
     | db.volumenum
 
-   bibliographic.elements =
-      info.elements
+   db.bibliographic.elements =
+      db.info.elements
     | db.abbrev
     | db.affiliation
     | db.citetitle
@@ -101,32 +103,32 @@ include "pool.rnc" {
     | db.title
     | db.titleabbrev
 
-   list.blocks = db.itemizedlist|db.orderedlist|db.variablelist
-   admonition.blocks = db.note
-   verbatim.blocks = db.literallayout|db.programlisting
-   para.blocks = db.para
-   publishing.blocks = db.blockquote|db.sidebar
-   graphic.blocks = db.mediaobject
-   informal.blocks = db.informaltable
-   formal.blocks = db.example|db.figure|db.table
-   technical.blocks = empty
-   synopsis.blocks = empty
+   db.list.blocks = db.itemizedlist|db.orderedlist|db.variablelist
+   db.admonition.blocks = db.note
+   db.verbatim.blocks = db.literallayout|db.programlisting
+   db.para.blocks = db.para
+   db.publishing.blocks = db.blockquote|db.sidebar
+   db.graphic.blocks = db.mediaobject
+   db.informal.blocks = db.informaltable
+   db.formal.blocks = db.example|db.figure|db.table
+   db.technical.blocks = empty
+   db.synopsis.blocks = empty
 
-   blocks.nopara =
-      list.blocks
-    | admonition.blocks
-    | formal.blocks
-    | informal.blocks
-    | publishing.blocks
-    | graphic.blocks
-    | technical.blocks
-    | verbatim.blocks
-    | synopsis.blocks
+   db.nopara.blocks =
+      db.list.blocks
+    | db.admonition.blocks
+    | db.formal.blocks
+    | db.informal.blocks
+    | db.publishing.blocks
+    | db.graphic.blocks
+    | db.technical.blocks
+    | db.verbatim.blocks
+    | db.synopsis.blocks
     | db.revhistory
 
-   ubiq.inlines = db.inlinemediaobject
+   db.ubiq.inlines = db.inlinemediaobject
 
-   publishing.inlines =
+   db.publishing.inlines =
       db.abbrev
     | db.acronym
     | db.emphasis
@@ -135,62 +137,62 @@ include "pool.rnc" {
     | db.phrase
     | db.quote
 
-   os.inlines =
+   db.os.inlines =
       db.filename
     | db.command
     | db.computeroutput
     | db.userinput
 
-   programming.inlines = empty
-   product.inlines = db.trademark
+   db.programming.inlines = empty
+   db.product.inlines = db.trademark
 
-   bibliography.inlines =
+   db.bibliography.inlines =
       db.citetitle
     | db.author
     | db.personname
     | db.orgname
     | db.editor
 
-   markup.inlines = db.literal|db.email
+   db.markup.inlines = db.literal | db.email
 
-   technical.inlines = db.replaceable | db.option | db.systemitem
-   error.inlines = empty
-   oo.inlines = empty
+   db.technical.inlines = db.replaceable | db.option | db.systemitem
+   db.error.inlines = empty
+   db.oo.inlines = empty
 
-   link.inlines = db.xref
+   db.link.inlines = db.xref
 
-   gui.inlines = empty
-   keyboard.inlines = empty
-   math.inlines = empty
+   db.gui.inlines = empty
+   db.keyboard.inlines = empty
+   db.math.inlines = empty
 
    # ======================================================================
 
-   person.author = db.personname
-   credit.contentmodel = person.author
+   db.person.author.contentmodel = db.personname
+   db.credit.contentmodel = db.person.author.contentmodel
 
    db.abbrev =
       element abbrev {
-         abbrev.attlist,
-         (docbook.text | db.trademark)*
+         db.abbrev.attlist,
+         (db._text | db.trademark)*
       }
 
    db.acronym =
       element acronym {
-         acronym.attlist,
-         (docbook.text | db.trademark)*
+         db.acronym.attlist,
+         (db._text | db.trademark)*
       }
 
    db.affiliation =
       element affiliation {
-         affiliation.attlist,
+         db.affiliation.attlist,
          db.jobtitle*,
          db.orgname?
       }
 
    db.para =
       element para {
-         para.attlist,
-         para.info,
-         inlines*
+         db.para.attlist,
+         db.para.info,
+         db.all.inlines*
       }
 }

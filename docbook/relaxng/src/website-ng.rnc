@@ -23,15 +23,15 @@ include "ws-rddl.rnc"
 
 include "sdocbook.rnc" {
    start = ws.webpage
-
-   inlines |= db.tag
-
-   list.blocks |= db.simplelist
-
-   blocks |= ws.webtoc | ws.rss
-
-   link.inlines |= db.olink
 }
+
+db.list.blocks |= db.simplelist
+
+db.all.blocks |= ws.webtoc | ws.rss
+
+db.link.inlines |= db.olink
+
+db.all.inlines |= db.tag
 
 # ======================================================================
 
@@ -41,14 +41,11 @@ include "sdocbook.rnc" {
 ]
 div {
 
-   local.olink.attributes = empty
+   db.olink.role.attribute = attribute role { text }
 
-   olink.role.attribute = attribute role { text }
-
-   olink.attlist =
-      olink.role.attribute?
-    & common.attributes
-    & local.olink.attributes
+   db.olink.attlist =
+      db.olink.role.attribute?
+    & db.common.attributes
     & attribute linkmode { xsd:IDREF }?
     & attribute localinfo { text }?
     & attribute type { text }?
@@ -58,8 +55,8 @@ div {
 
    db.olink =
       element olink {
-         olink.attlist,
-         inlines*
+         db.olink.attlist,
+         db.all.inlines*
       }
 }
 
@@ -71,23 +68,20 @@ div {
 ]
 div {
 
-   local.webpage.attributes = empty
+   ws.webpage.role.attribute = attribute role { text }
 
-   webpage.role.attribute = attribute role { text }
-
-   webpage.attlist =
-      webpage.role.attribute?
-    & common.attributes.idreq
-    & common.linking.attributes
-    & local.webpage.attributes
+   ws.webpage.attlist =
+      ws.webpage.role.attribute?
+    & db.common.idreq.attributes
+    & db.common.linking.attributes
     & attribute navto { "yes" | "no" }?
 
    ws.webpage =
       element ws:webpage {
-         webpage.attlist,
+         ws.webpage.attlist,
          ws.config*,
          ws.head,
-         component.contentmodel,
+         db.component.contentmodel,
          db.appendix*,
          db.bibliography*
       }
@@ -101,19 +95,16 @@ div {
 ]
 div {
 
-   local.head.attributes = empty
+   ws.head.role.attribute = attribute role { text }
 
-   head.role.attribute = attribute role { text }
-
-   head.attlist =
-      head.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.head.attributes
+   ws.head.attlist =
+      ws.head.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    ws.head =
       element ws:head {
-         head.attlist,
+         ws.head.attlist,
          db.title,
          db.titleabbrev?,
          db.subtitle?,
@@ -141,14 +132,14 @@ div {
 ]
 div {
 
-   meta.attlist =
+   ws.meta.attlist =
       attribute http-equiv { text }?
     & attribute name { text }?
     & attribute content { text }
 
    ws.meta =
       element ws:meta {
-         meta.attlist,
+         ws.meta.attlist,
          empty
       }
 }
@@ -161,7 +152,7 @@ div {
 ]
 div {
 
-   headlink.attlist =
+   ws.headlink.attlist =
       attribute href { text }?
     & attribute media { text }?
     & attribute name { text }?
@@ -173,7 +164,7 @@ div {
 
    ws.headlink =
       element ws:headlink {
-         headlink.attlist,
+         ws.headlink.attlist,
          empty
       }
 }
@@ -186,14 +177,14 @@ div {
 ]
 div {
 
-   script.attlist =
+   ws.script.attlist =
       attribute src { text }?
     & attribute language { text }?
     & attribute type { text }?
 
    ws.script =
       element ws:script {
-         script.attlist,
+         ws.script.attlist,
          text
       }
 }
@@ -206,13 +197,13 @@ div {
 ]
 div {
 
-   style.attlist =
+   ws.style.attlist =
       attribute src { text }?
     & attribute type { text }?
 
    ws.style =
       element ws:style {
-         style.attlist,
+         ws.style.attlist,
          text
       }
 }
@@ -225,15 +216,15 @@ div {
 ]
 div {
 
-   config.attlist =
-      common.attributes
+   ws.config.attlist =
+      db.common.attributes
     & attribute param { text }
     & attribute value { text }
     & attribute altval { text }?
 
    ws.config =
       element ws:config {
-         config.attlist,
+         ws.config.attlist,
          empty
       }
 }
@@ -246,13 +237,13 @@ div {
 ]
 div {
 
-   summary.attlist =
-      common.attributes
+   ws.summary.attlist =
+      db.common.attributes
 
    ws.summary =
       element ws:summary {
-         summary.attlist,
-         inlines*
+         ws.summary.attlist,
+         db.all.inlines*
       }
 }
 
@@ -264,13 +255,13 @@ div {
 ]
 div {
 
-   base.attlist =
+   ws.base.attlist =
       attribute href { text }
     & attribute target { text }?
 
    ws.base =
       element ws:base {
-         base.attlist,
+         ws.base.attlist,
          empty
       }
 }
@@ -283,12 +274,12 @@ div {
 ]
 div {
 
-   keywords.attlist =
-      common.attributes
+   ws.keywords.attlist =
+      db.common.attributes
 
    ws.keywords =
       element ws:keywords {
-         keywords.attlist,
+         ws.keywords.attlist,
          text
       }
 }
@@ -301,12 +292,12 @@ div {
 ]
 div {
 
-   webtoc.attlist =
-      common.attributes
+   ws.webtoc.attlist =
+      db.common.attributes
 
    ws.webtoc =
       element ws:webtoc {
-         webtoc.attlist,
+         ws.webtoc.attlist,
          empty
       }
 }
@@ -319,13 +310,13 @@ div {
 ]
 div {
 
-   rss.attlist =
-      common.attributes
+   ws.rss.attlist =
+      db.common.attributes
     & attribute feed { text }
 
    ws.rss =
       element ws:rss {
-         rss.attlist,
+         ws.rss.attlist,
          empty
       }
 }

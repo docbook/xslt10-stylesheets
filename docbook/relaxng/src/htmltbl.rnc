@@ -16,19 +16,19 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-table.choice |= html.table
-informaltable.choice |= html.informaltable
+db.table.choice |= db.html.table
+db.informaltable.choice |= db.html.informaltable
 
-html.coreattrs &=
+db.html.coreattrs &=
   attribute class { text }?,
   attribute style { text }?,
   attribute title { text }?
 
-html.i18n &=
+db.html.i18n &=
   attribute lang { text }?,
   attribute dir { "ltr" | "rtl" }?
 
-html.events &=
+db.html.events &=
   attribute onclick { text }?,
   attribute ondblclick { text }?,
   attribute onmousedown { text }?,
@@ -40,28 +40,28 @@ html.events &=
   attribute onkeydown { text }?,
   attribute onkeyup { text }?
 
-html.attrs &= html.coreattrs, html.i18n, html.events
+db.html.attrs &= db.html.coreattrs, db.html.i18n, db.html.events
 
-html.cellhalign &=
+db.html.cellhalign &=
   attribute align { "left" | "center" | "right" | "justify" | "char" }?,
   attribute char { text }?,
   attribute charoff { text }?
 
-html.cellvalign &=
+db.html.cellvalign &=
   attribute valign { "top" | "middle" | "bottom" | "baseline" }?
 
-html.table.model =
-   html.caption,
-   (html.col* | html.colgroup*),
-   html.thead?,
-   html.tfoot?,
-   (html.tbody+ | html.tr+)
+db.html.table.model =
+   db.html.caption,
+   (db.html.col* | db.html.colgroup*),
+   db.html.thead?,
+   db.html.tfoot?,
+   (db.html.tbody+ | db.html.tr+)
 
-html.informaltable.model =
-   (html.col* | html.colgroup*),
-   html.thead?,
-   html.tfoot?,
-   (html.tbody+ | html.tr+)
+db.html.informaltable.model =
+   (db.html.col* | db.html.colgroup*),
+   db.html.thead?,
+   db.html.tfoot?,
+   (db.html.tbody+ | db.html.tr+)
 
 # ======================================================================
 
@@ -71,10 +71,8 @@ html.informaltable.model =
 ]
 div {
 
-   local.html.table.attributes = empty
-
-   html.table.attlist =
-      html.attrs
+   db.html.table.attlist =
+      db.html.attrs
     & attribute summary { text }?
     & attribute width { text }?
     & attribute border { text }?
@@ -92,12 +90,11 @@ div {
     & attribute rules { "none" | "groups" | "rows" | "cols" | "all" }?
     & attribute cellspacing { text }?
     & attribute cellpadding { text }?
-    & local.html.table.attributes
 
-   html.table =
+   db.html.table =
       element table {
-         html.table.attlist,
-         html.table.model
+         db.html.table.attlist,
+         db.html.table.model
       }
 }
 
@@ -109,10 +106,8 @@ div {
 ]
 div {
 
-   local.html.informaltable.attributes = empty
-
-   html.informaltable.attlist =
-      html.attrs
+   db.html.informaltable.attlist =
+      db.html.attrs
     & attribute summary { text }?
     & attribute width { text }?
     & attribute border { text }?
@@ -130,12 +125,11 @@ div {
     & attribute rules { "none" | "groups" | "rows" | "cols" | "all" }?
     & attribute cellspacing { text }?
     & attribute cellpadding { text }?
-    & local.html.informaltable.attributes
 
-   html.informaltable =
+   db.html.informaltable =
       element informaltable {
-         html.informaltable.attlist,
-         html.informaltable.model
+         db.html.informaltable.attlist,
+         db.html.informaltable.model
       }
 }
 
@@ -147,15 +141,12 @@ div {
 ]
 div {
 
-   local.caption.attributes = empty
+   db.html.caption.attlist =
+      db.html.attrs
 
-   html.caption.attlist =
-      html.attrs
-    & local.caption.attributes
-
-   html.caption =
+   db.html.caption =
       element caption {
-         html.caption.attlist,
+         db.html.caption.attlist,
          text
       }
 }
@@ -168,19 +159,16 @@ div {
 ]
 div {
 
-   local.col.attributes = empty
-
-   html.col.attlist =
-      html.attrs
+   db.html.col.attlist =
+      db.html.attrs
     & attribute span { text }?
     & attribute width { text }?
-    & html.cellhalign
-    & html.cellvalign
-    & local.col.attributes
+    & db.html.cellhalign
+    & db.html.cellvalign
 
-   html.col =
+   db.html.col =
       element col {
-         html.col.attlist,
+         db.html.col.attlist,
          empty
       }
 }
@@ -193,20 +181,17 @@ div {
 ]
 div {
 
-   local.colgroup.attributes = empty
-
-   html.colgroup.attlist =
-      html.attrs
+   db.html.colgroup.attlist =
+      db.html.attrs
     & attribute span { text }?
     & attribute width { text }?
-    & html.cellhalign
-    & html.cellvalign
-    & local.colgroup.attributes
+    & db.html.cellhalign
+    & db.html.cellvalign
 
-   html.colgroup =
+   db.html.colgroup =
       element colgroup {
-         html.colgroup.attlist,
-         html.col*
+         db.html.colgroup.attlist,
+         db.html.col*
       }
 }
 
@@ -218,18 +203,15 @@ div {
 ]
 div {
 
-   local.html.thead.attributes = empty
+   db.html.thead.attlist =
+      db.html.attrs
+    & db.html.cellhalign
+    & db.html.cellvalign
 
-   html.thead.attlist =
-      html.attrs
-    & html.cellhalign
-    & html.cellvalign
-    & local.html.thead.attributes
-
-   html.thead =
+   db.html.thead =
       element thead {
-         html.thead.attlist,
-         html.tr+
+         db.html.thead.attlist,
+         db.html.tr+
       }
 }
 
@@ -241,18 +223,15 @@ div {
 ]
 div {
 
-   local.html.tfoot.attributes = empty
+   db.html.tfoot.attlist =
+      db.html.attrs
+    & db.html.cellhalign
+    & db.html.cellvalign
 
-   html.tfoot.attlist =
-      html.attrs
-    & html.cellhalign
-    & html.cellvalign
-    & local.html.tfoot.attributes
-
-   html.tfoot =
+   db.html.tfoot =
       element tfoot {
-         html.tfoot.attlist,
-         html.tr+
+         db.html.tfoot.attlist,
+         db.html.tr+
       }
 }
 
@@ -264,18 +243,15 @@ div {
 ]
 div {
 
-   local.html.tbody.attributes = empty
+   db.html.tbody.attlist =
+      db.html.attrs
+    & db.html.cellhalign
+    & db.html.cellvalign
 
-   html.tbody.attlist =
-      html.attrs
-    & html.cellhalign
-    & html.cellvalign
-    & local.html.tbody.attributes
-
-   html.tbody =
+   db.html.tbody =
       element tbody {
-         html.tbody.attlist,
-         html.tr+
+         db.html.tbody.attlist,
+         db.html.tr+
       }
 }
 
@@ -287,18 +263,15 @@ div {
 ]
 div {
 
-   local.tr.attributes = empty
+   db.html.tr.attlist =
+      db.html.attrs
+    & db.html.cellhalign
+    & db.html.cellvalign
 
-   html.tr.attlist =
-      html.attrs
-    & html.cellhalign
-    & html.cellvalign
-    & local.tr.attributes
-
-   html.tr =
+   db.html.tr =
       element tr {
-         html.tr.attlist,
-         (html.th | html.td)+
+         db.html.tr.attlist,
+         (db.html.th | db.html.td)+
       }
 }
 
@@ -310,24 +283,21 @@ div {
 ]
 div {
 
-   local.th.attributes = empty
-
-   html.th.attlist =
-      html.attrs
+   db.html.th.attlist =
+      db.html.attrs
     & attribute abbr { text }?
     & attribute axis { text }?
     & attribute headers { text }?
     & attribute scope { text }?
     & attribute rowspan { text }?
     & attribute colspan { text }?
-    & html.cellhalign
-    & html.cellvalign
-    & local.th.attributes
+    & db.html.cellhalign
+    & db.html.cellvalign
 
-   html.th =
+   db.html.th =
       element th {
-         html.th.attlist,
-         (inlines* | blocks*)
+         db.html.th.attlist,
+         (db.all.inlines* | db.all.blocks*)
       }
 }
 
@@ -339,24 +309,21 @@ div {
 ]
 div {
 
-   local.td.attributes = empty
-
-   html.td.attlist =
-      html.attrs
+   db.html.td.attlist =
+      db.html.attrs
     & attribute abbr { text }?
     & attribute axis { text }?
     & attribute headers { text }?
     & attribute scope { text }?
     & attribute rowspan { text }?
     & attribute colspan { text }?
-    & html.cellhalign
-    & html.cellvalign
-    & local.td.attributes
+    & db.html.cellhalign
+    & db.html.cellvalign
 
-   html.td =
+   db.html.td =
       element td {
-         html.td.attlist,
-         (inlines* | blocks*)
+         db.html.td.attlist,
+         (db.all.inlines* | db.all.blocks*)
       }
 }
 

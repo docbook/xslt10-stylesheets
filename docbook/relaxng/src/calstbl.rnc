@@ -17,18 +17,18 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-table.choice |= cals.table
-informaltable.choice |= cals.informaltable
+db.table.choice |= db.cals.table
+db.informaltable.choice |= db.cals.informaltable
 
-char.attribute = attribute char { text }
-charoff.attribute = attribute charoff { text }
-colsep.attribute = attribute colsep { text }
-rowsep.attribute = attribute rowsep { text }
-align.attribute =
+db.char.attribute = attribute char { text }
+db.charoff.attribute = attribute charoff { text }
+db.colsep.attribute = attribute colsep { text }
+db.rowsep.attribute = attribute rowsep { text }
+db.align.attribute =
   attribute align { "center" | "char" | "justify" | "left" | "right" }
-valign.attribute = attribute valign { "bottom" | "middle" | "top" }
-spanname.attribute = attribute spanname { text }
-colname.attribute = attribute colname { text }
+db.valign.attribute = attribute valign { "bottom" | "middle" | "top" }
+db.spanname.attribute = attribute spanname { text }
+db.colname.attribute = attribute colname { text }
 
 # ======================================================================
 
@@ -38,31 +38,28 @@ colname.attribute = attribute colname { text }
 ]
 div {
 
-   local.tgroup.attributes = empty
+   db.tgroup.role.attribute = attribute role { text }
 
-   tgroup.role.attribute = attribute role { text }
-
-   tgroup.attlist =
-      tgroup.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & char.attribute?
-    & charoff.attribute?
+   db.tgroup.attlist =
+      db.tgroup.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.char.attribute?
+    & db.charoff.attribute?
     & attribute tgroupstyle { text }?
     & attribute cols { xsd:integer }
-    & colsep.attribute?
-    & rowsep.attribute?
-    & align.attribute?
-    & local.tgroup.attributes
+    & db.colsep.attribute?
+    & db.rowsep.attribute?
+    & db.align.attribute?
 
    db.tgroup =
       element tgroup {
-         tgroup.attlist,
+         db.tgroup.attlist,
          db.colspec*,
          db.spanspec*,
-         cals.thead?,
-         cals.tfoot?,
-         cals.tbody
+         db.cals.thead?,
+         db.cals.tfoot?,
+         db.cals.tbody
       }
 }
 
@@ -74,27 +71,24 @@ div {
 ]
 div {
 
-   local.colspec.attributes = empty
+   db.colspec.role.attribute = attribute role { text }
 
-   colspec.role.attribute = attribute role { text }
-
-   colspec.attlist =
-      colspec.role.attribute?
-    & common.attributes
-    & common.linking.attributes
+   db.colspec.attlist =
+      db.colspec.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
     & attribute colnum { xsd:integer }?
-    & char.attribute?
-    & colsep.attribute?
+    & db.char.attribute?
+    & db.colsep.attribute?
     & attribute colwidth { text }?
-    & charoff.attribute?
-    & colname.attribute?
-    & rowsep.attribute?
-    & align.attribute?
-    & local.colspec.attributes
+    & db.charoff.attribute?
+    & db.colname.attribute?
+    & db.rowsep.attribute?
+    & db.align.attribute?
 
    db.colspec =
       element colspec {
-         colspec.attlist,
+         db.colspec.attlist,
          empty
       }
 }
@@ -107,27 +101,24 @@ div {
 ]
 div {
 
-   local.spanspec.attributes = empty
+   db.spanspec.role.attribute = attribute role { text }
 
-   spanspec.role.attribute = attribute role { text }
-
-   spanspec.attlist =
-      spanspec.role.attribute?
-    & common.attributes
-    & common.linking.attributes
+   db.spanspec.attlist =
+      db.spanspec.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
     & attribute namest { text }
     & attribute nameend { text }
-    & spanname.attribute
-    & char.attribute?
-    & colsep.attribute?
-    & charoff.attribute?
-    & rowsep.attribute?
-    & align.attribute?
-    & local.spanspec.attributes
+    & db.spanname.attribute
+    & db.char.attribute?
+    & db.colsep.attribute?
+    & db.charoff.attribute?
+    & db.rowsep.attribute?
+    & db.align.attribute?
 
    db.spanspec =
       element spanspec {
-         spanspec.attlist,
+         db.spanspec.attlist,
          empty
       }
 }
@@ -140,20 +131,17 @@ div {
 ]
 div {
 
-   local.cals.thead.attributes = empty
+   db.cals.thead.role.attribute = attribute role { text }
 
-   cals.thead.role.attribute = attribute role { text }
+   db.cals.thead.attlist =
+      db.cals.thead.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.valign.attribute?
 
-   cals.thead.attlist =
-      cals.thead.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & valign.attribute?
-    & local.cals.thead.attributes
-
-   cals.thead =
+   db.cals.thead =
       element thead {
-         cals.thead.attlist,
+         db.cals.thead.attlist,
          db.colspec*,
          db.row+
       }
@@ -167,20 +155,17 @@ div {
 ]
 div {
 
-   local.cals.tfoot.attributes = empty
+   db.cals.tfoot.role.attribute = attribute role { text }
 
-   cals.tfoot.role.attribute = attribute role { text }
+   db.cals.tfoot.attlist =
+      db.cals.tfoot.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.valign.attribute?
 
-   cals.tfoot.attlist =
-      cals.tfoot.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & valign.attribute?
-    & local.cals.tfoot.attributes
-
-   cals.tfoot =
+   db.cals.tfoot =
       element tfoot {
-         cals.tfoot.attlist,
+         db.cals.tfoot.attlist,
          db.colspec*,
          db.row+
       }
@@ -194,20 +179,17 @@ div {
 ]
 div {
 
-   local.cals.tbody.attributes = empty
+   db.cals.tbody.role.attribute = attribute role { text }
 
-   cals.tbody.role.attribute = attribute role { text }
+   db.cals.tbody.attlist =
+      db.cals.tbody.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.valign.attribute?
 
-   cals.tbody.attlist =
-      cals.tbody.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & valign.attribute?
-    & local.cals.tbody.attributes
-
-   cals.tbody =
+   db.cals.tbody =
       element tbody {
-         cals.tbody.attlist,
+         db.cals.tbody.attlist,
          db.row+
       }
 }
@@ -220,20 +202,17 @@ div {
 ]
 div {
 
-   local.row.attributes = empty
+   db.row.role.attribute = attribute role { text }
 
-   row.role.attribute = attribute role { text }
-
-   row.attlist =
-      row.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & rowsep.attribute?
-    & valign.attribute?
-    & local.row.attributes
+   db.row.attlist =
+      db.row.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.rowsep.attribute?
+    & db.valign.attribute?
 
    db.row = element row {
-      row.attlist,
+      db.row.attlist,
       (db.entry | db.entrytbl)+
    }
 }
@@ -246,31 +225,28 @@ div {
 ]
 div {
 
-   local.entry.attributes = empty
+   db.entry.role.attribute = attribute role { text }
 
-   entry.role.attribute = attribute role { text }
-
-   entry.attlist =
-      entry.role.attribute?
-    & common.attributes
-    & common.linking.attributes
+   db.entry.attlist =
+      db.entry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
     & attribute nameend { text }?
-    & valign.attribute?
-    & char.attribute?
-    & colsep.attribute?
-    & charoff.attribute?
+    & db.valign.attribute?
+    & db.char.attribute?
+    & db.colsep.attribute?
+    & db.charoff.attribute?
     & attribute morerows { xsd:integer }?
     & attribute spanname { text }?
     & attribute namest { text }?
-    & colname.attribute?
-    & rowsep.attribute?
+    & db.colname.attribute?
+    & db.rowsep.attribute?
     & attribute rotate { text }?
-    & align.attribute?
-    & local.entry.attributes
+    & db.align.attribute?
 
    db.entry = element entry {
-      entry.attlist,
-      (inlines* | blocks*)
+      db.entry.attlist,
+      (db.all.inlines* | db.all.blocks*)
    }
 }
 
@@ -282,34 +258,31 @@ div {
 ]
 div {
 
-   local.entrytbl.attributes = empty
+   db.entrytbl.role.attribute = attribute role { text }
 
-   entrytbl.role.attribute = attribute role { text }
-
-   entrytbl.attlist =
-      entrytbl.role.attribute?
-    & common.attributes
-    & common.linking.attributes
+   db.entrytbl.attlist =
+      db.entrytbl.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
     & attribute nameend { text }?
-    & char.attribute?
-    & charoff.attribute?
+    & db.char.attribute?
+    & db.charoff.attribute?
     & attribute spanname { text }?
     & attribute namest { text }?
     & attribute tgroupstyle { text }?
     & attribute cols { xsd:integer }?
-    & colsep.attribute?
-    & rowsep.attribute?
-    & colname.attribute?
-    & align.attribute?
-    & local.entrytbl.attributes
+    & db.colsep.attribute?
+    & db.rowsep.attribute?
+    & db.colname.attribute?
+    & db.align.attribute?
 
    db.entrytbl =
       element entrytbl {
-         entrytbl.attlist,
+         db.entrytbl.attlist,
          db.colspec*,
          db.spanspec*,
-         cals.thead?,
-         cals.tbody
+         db.cals.thead?,
+         db.cals.tbody
       }
 }
 
@@ -321,28 +294,25 @@ div {
 ]
 div {
 
-   local.cals.table.attributes = empty
+   db.cals.table.role.attribute = attribute role { text }
 
-   cals.table.role.attribute = attribute role { text }
-
-   cals.table.attlist =
-      cals.table.role.attribute?
-    & common.attributes
-    & common.linking.attributes
+   db.cals.table.attlist =
+      db.cals.table.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
     & attribute tabstyle { text }?
     & attribute orient { "land" | "port" }?
-    & colsep.attribute?
-    & rowsep.attribute?
+    & db.colsep.attribute?
+    & db.rowsep.attribute?
     & attribute frame { "all" | "bottom" | "none" | "sides" | "top" | "topbot" }?
     & attribute pgwide { "0" | "1" }?
-    & local.cals.table.attributes
 
-   cals.table.info = docbook.info.titleonlyreq
+   db.cals.table.info = db._info.title.onlyreq
 
-   cals.table = element table {
-      cals.table.attlist,
-      cals.table.info,
-      indexing.inlines*,
+   db.cals.table = element table {
+      db.cals.table.attlist,
+      db.cals.table.info,
+      db.indexing.inlines*,
       db.textobject*,
       (db.mediaobject+|db.tgroup+)
    }
@@ -356,29 +326,26 @@ div {
 ]
 div {
 
-   local.cals.informaltable.attributes = empty
+   db.cals.informaltable.role.attribute = attribute role { text }
 
-   cals.informaltable.role.attribute = attribute role { text }
-
-   cals.informaltable.attlist =
-      cals.informaltable.role.attribute?
-    & common.attributes
-    & common.linking.attributes
+   db.cals.informaltable.attlist =
+      db.cals.informaltable.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
     & attribute tabstyle { text }?
     & attribute orient { "land" | "port" }?
-    & colsep.attribute?
-    & rowsep.attribute?
+    & db.colsep.attribute?
+    & db.rowsep.attribute?
     & attribute frame { "all" | "bottom" | "none" | "sides" | "top" | "topbot" }?
     & attribute pgwide { "0" | "1" }?
-    & local.cals.informaltable.attributes
 
-   cals.informaltable.info = docbook.info.titleforbidden
+   db.cals.informaltable.info = db._info.title.forbidden
 
-   cals.informaltable =
+   db.cals.informaltable =
       element informaltable {
-         cals.informaltable.attlist,
-         cals.informaltable.info,
-         indexing.inlines*,
+         db.cals.informaltable.attlist,
+         db.cals.informaltable.info,
+         db.indexing.inlines*,
          db.textobject*,
          (db.mediaobject+|db.tgroup+)
       }

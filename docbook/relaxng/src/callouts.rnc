@@ -17,19 +17,18 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-publishing.inlines |= db.coref
-list.blocks |= db.calloutlist
-verbatim.blocks |= db.programlistingco
-verbatim.blocks |= db.screenco
-computeroutput.inlines |= db.co
-verbatim.inlines |= db.co
-prompt.inlines |= db.co
-systemitem.inlines |= db.co
-computeroutput.inlines |= db.co
-userinput.inlines |= db.co
-replaceable.inlines |= db.co
+db.publishing.inlines |= db.coref
+db.list.blocks |= db.calloutlist
+db.verbatim.blocks |= db.programlistingco | db.screenco
+db.computeroutput.inlines |= db.co
+db.verbatim.inlines |= db.co
+db.prompt.inlines |= db.co
+db.systemitem.inlines |= db.co
+db.computeroutput.inlines |= db.co
+db.userinput.inlines |= db.co
+db.replaceable.inlines |= db.co
 
-mediaobject.content |= db.imageobjectco
+db.mediaobject.content |= db.imageobjectco
 
 # ======================================================================
 
@@ -37,7 +36,7 @@ ctrl:other-attribute [ name="area.units.attrib"
                        enum-name="area.units-enum.attribute"
                        other-name="area.units-other.attributes" ]
 
-area.units-enum.attribute =
+db.area.units-enum.attribute =
    attribute units {
       "calspair"
     | "linecolumn"
@@ -45,12 +44,12 @@ area.units-enum.attribute =
     | "linerange"
    }?
 
-area.units-other.attributes =
+db.area.units-other.attributes =
    attribute units { "other" }?,
    attribute otherunits { xsd:NMTOKEN }
 
-area.units.attrib =
-   (area.units-enum.attribute | area.units-other.attributes)
+db.area.units.attribute =
+   (db.area.units-enum.attribute | db.area.units-other.attributes)
 
 # ======================================================================
 
@@ -60,23 +59,20 @@ area.units.attrib =
 ]
 div {
 
-   local.calloutlist.attributes = empty
+   db.calloutlist.role.attribute = attribute role { text }
 
-   calloutlist.role.attribute = attribute role { text }
+   db.calloutlist.attlist =
+      db.calloutlist.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   calloutlist.attlist =
-      calloutlist.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.calloutlist.attributes
-
-   calloutlist.info = docbook.info.titleonly
+   db.calloutlist.info = db._info.title.only
 
    db.calloutlist =
       element calloutlist {
-         calloutlist.attlist,
-         calloutlist.info,
-         blocks*,
+         db.calloutlist.attlist,
+         db.calloutlist.info,
+         db.all.blocks*,
          db.callout+
       }
 }
@@ -89,20 +85,17 @@ div {
 ]
 div {
 
-   local.callout.attributes = empty
+   db.callout.role.attribute = attribute role { text }
 
-   callout.role.attribute = attribute role { text }
-
-   callout.attlist =
-      callout.role.attribute?
-    & common.attributes
+   db.callout.attlist =
+      db.callout.role.attribute?
+    & db.common.attributes
     & attribute arearefs { xsd:IDREFS }
-    & local.callout.attributes
 
    db.callout =
       element callout {
-         callout.attlist,
-         blocks+
+         db.callout.attlist,
+         db.all.blocks+
       }
 }
 
@@ -114,22 +107,19 @@ div {
 ]
 div {
 
-   local.programlistingco.attributes = empty
+   db.programlistingco.role.attribute = attribute role { text }
 
-   programlistingco.role.attribute = attribute role { text }
+   db.programlistingco.attlist =
+      db.programlistingco.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   programlistingco.attlist =
-      programlistingco.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.programlistingco.attributes
-
-   programlistingco.info = docbook.info.titleforbidden
+   db.programlistingco.info = db._info.title.forbidden
 
    db.programlistingco =
       element programlistingco {
-         programlistingco.attlist,
-         programlistingco.info,
+         db.programlistingco.attlist,
+         db.programlistingco.info,
          db.areaspec,
          db.programlisting,
          db.calloutlist*
@@ -144,20 +134,17 @@ div {
 ]
 div {
 
-   local.areaspec.attributes = empty
+   db.areaspec.role.attribute = attribute role { text }
 
-   areaspec.role.attribute = attribute role { text }
-
-   areaspec.attlist =
-      areaspec.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & area.units.attrib
-    & local.areaspec.attributes
+   db.areaspec.attlist =
+      db.areaspec.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.area.units.attribute
 
    db.areaspec =
       element areaspec {
-         areaspec.attlist,
+         db.areaspec.attlist,
          (db.area | db.areaset)+
       }
 }
@@ -170,22 +157,19 @@ div {
 ]
 div {
 
-   local.area.attributes = empty
+   db.area.role.attribute = attribute role { text }
 
-   area.role.attribute = attribute role { text }
-
-   area.attlist =
-      area.role.attribute?
-    & common.attributes.idreq
-    & area.units.attrib
+   db.area.attlist =
+      db.area.role.attribute?
+    & db.common.idreq.attributes
+    & db.area.units.attribute
     & attribute linkends { xsd:IDREFS }?
     & attribute label { text }?
     & attribute coords { text }
-    & local.area.attributes
 
    db.area =
       element area {
-         area.attlist,
+         db.area.attlist,
          empty
       }
 }
@@ -198,20 +182,17 @@ div {
 ]
 div {
 
-   local.areaset.attributes = empty
+   db.areaset.role.attribute = attribute role { text }
 
-   areaset.role.attribute = attribute role { text }
-
-   areaset.attlist =
-      areaset.role.attribute?
-    & common.attributes.idreq
-    & area.units.attrib
+   db.areaset.attlist =
+      db.areaset.role.attribute?
+    & db.common.idreq.attributes
+    & db.area.units.attribute
     & attribute label { text }?
-    & local.areaset.attributes
 
    db.areaset =
       element areaset {
-         areaset.attlist,
+         db.areaset.attlist,
          db.area+
       }
 }
@@ -224,22 +205,19 @@ div {
 ]
 div {
 
-   local.screenco.attributes = empty
+   db.screenco.role.attribute = attribute role { text }
 
-   screenco.role.attribute = attribute role { text }
+   db.screenco.attlist =
+      db.screenco.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   screenco.attlist =
-      screenco.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.screenco.attributes
-
-   screenco.info = docbook.info.titleforbidden
+   db.screenco.info = db._info.title.forbidden
 
    db.screenco =
       element screenco {
-         screenco.attlist,
-         screenco.info,
+         db.screenco.attlist,
+         db.screenco.info,
          db.areaspec,
          db.screen,
          db.calloutlist*
@@ -254,22 +232,19 @@ div {
 ]
 div {
 
-   local.imageobjectco.attributes = empty
+   db.imageobjectco.role.attribute = attribute role { text }
 
-   imageobjectco.role.attribute = attribute role { text }
+   db.imageobjectco.attlist =
+      db.imageobjectco.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   imageobjectco.attlist =
-      imageobjectco.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.imageobjectco.attributes
-
-   imageobjectco.info = docbook.info.titleforbidden
+   db.imageobjectco.info = db._info.title.forbidden
 
    db.imageobjectco =
       element imageobjectco {
-         imageobjectco.attlist,
-         imageobjectco.info,
+         db.imageobjectco.attlist,
+         db.imageobjectco.info,
          db.areaspec,
          db.imageobject,
          db.calloutlist*
@@ -284,20 +259,17 @@ div {
 ]
 div {
 
-   local.co.attributes = empty
+   db.co.role.attribute = attribute role { text }
 
-   co.role.attribute = attribute role { text }
-
-   co.attlist =
-      co.role.attribute?
-    & common.attributes.idreq
+   db.co.attlist =
+      db.co.role.attribute?
+    & db.common.idreq.attributes
     & attribute linkends { xsd:IDREFS }?
     & attribute label { text }?
-    & local.co.attributes
 
    db.co =
       element co {
-         co.attlist,
+         db.co.attlist,
          empty
       }
 }
@@ -310,20 +282,17 @@ div {
 ]
 div {
 
-   local.coref.attributes = empty
+   db.coref.role.attribute = attribute role { text }
 
-   coref.role.attribute = attribute role { text }
-
-   coref.attlist =
-      coref.role.attribute?
-    & common.attributes
-    & attribute linkend { xsd:IDREF }
+   db.coref.attlist =
+      db.coref.role.attribute?
+    & db.common.attributes
+    & db.linkend.attribute
     & attribute label { text }?
-    & local.coref.attributes
 
    db.coref =
       element coref {
-         coref.attlist,
+         db.coref.attlist,
          empty
       }
 }

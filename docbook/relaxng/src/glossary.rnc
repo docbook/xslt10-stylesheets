@@ -15,15 +15,17 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-general.inlines |= glossary.inlines
-list.blocks |= db.glosslist
-navigation.components |= db.glossary
+db.general.inlines |= db.glossary.inlines
+db.list.blocks |= db.glosslist
+db.navigation.components |= db.glossary
 
-glossary.inlines =
+db.glossary.inlines =
    db.firstterm
  | db.glossterm
 
-baseform.attribute = attribute baseform { text }?
+# ======================================================================
+
+db.baseform.attribute = attribute baseform { text }?
 
 # ======================================================================
 
@@ -33,23 +35,20 @@ baseform.attribute = attribute baseform { text }?
 ]
 div {
 
-   local.glosslist.attributes = empty
+   db.glosslist.role.attribute = attribute role { text }
 
-   glosslist.role.attribute = attribute role { text }
+   db.glosslist.attlist =
+      db.glosslist.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   glosslist.attlist =
-      glosslist.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.glosslist.attributes
-
-   glosslist.info = docbook.info.titleonly
+   db.glosslist.info = db._info.title.only
 
    db.glosslist =
       element glosslist {
-         glosslist.attlist,
-         glosslist.info?,
-         blocks*,
+         db.glosslist.attlist,
+         db.glosslist.info?,
+         db.all.blocks*,
          db.glossentry+
       }
 }
@@ -62,20 +61,17 @@ div {
 ]
 div {
 
-   local.glossentry.attributes = empty
+   db.glossentry.role.attribute = attribute role { text }
 
-   glossentry.role.attribute = attribute role { text }
-
-   glossentry.attlist =
-      glossentry.role.attribute?
-    & common.attributes
-    & common.linking.attributes
+   db.glossentry.attlist =
+      db.glossentry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
     & attribute sortas { text }?
-    & local.glossentry.attributes
 
    db.glossentry =
       element glossentry {
-         glossentry.attlist,
+         db.glossentry.attlist,
          db.glossterm,
          db.acronym?,
          db.abbrev?,
@@ -92,21 +88,18 @@ div {
 ]
 div {
 
-   local.glossdef.attributes = empty
+   db.glossdef.role.attribute = attribute role { text }
 
-   glossdef.role.attribute = attribute role { text }
-
-   glossdef.attlist =
-      glossdef.role.attribute?
-    & common.attributes
-    & common.linking.attributes
+   db.glossdef.attlist =
+      db.glossdef.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
     & attribute subject { text }?
-    & local.glossdef.attributes
 
    db.glossdef =
       element glossdef {
-         glossdef.attlist,
-         blocks+,
+         db.glossdef.attlist,
+         db.all.blocks+,
          db.glossseealso*
       }
 }
@@ -119,16 +112,13 @@ div {
 ]
 div {
 
-   local.glosssee.attributes = empty
+   db.glosssee.role.attribute = attribute role { text }
 
-   glosssee.role.attribute = attribute role { text }
-
-   glosssee.attlist =
-      glosssee.role.attribute?
-    & common.attributes
-    & common.linking.attributes
+   db.glosssee.attlist =
+      db.glosssee.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
     & attribute otherterm { xsd:IDREF }?
-    & local.glosssee.attributes
 
    db.glosssee =
       [
@@ -141,8 +131,8 @@ div {
          ]
       ]
       element glosssee {
-         glosssee.attlist,
-         inlines*
+         db.glosssee.attlist,
+         db.all.inlines*
       }
 }
 
@@ -154,16 +144,13 @@ div {
 ]
 div {
 
-   local.glossseealso.attributes = empty
+   db.glossseealso.role.attribute = attribute role { text }
 
-   glossseealso.role.attribute = attribute role { text }
-
-   glossseealso.attlist =
-      glossseealso.role.attribute?
-    & common.attributes
-    & common.linking.attributes
+   db.glossseealso.attlist =
+      db.glossseealso.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
     & attribute otherterm { xsd:IDREF }?
-    & local.glossseealso.attributes
 
    db.glossseealso =
       [
@@ -176,8 +163,8 @@ div {
          ]
       ]
       element glossseealso {
-         glossseealso.attlist,
-         inlines*
+         db.glossseealso.attlist,
+         db.all.inlines*
       }
 }
 
@@ -189,16 +176,13 @@ div {
 ]
 div {
 
-   local.firstterm.attributes = empty
+   db.firstterm.role.attribute = attribute role { text }
 
-   firstterm.role.attribute = attribute role { text }
-
-   firstterm.attlist =
-      firstterm.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & baseform.attribute
-    & local.firstterm.attributes
+   db.firstterm.attlist =
+      db.firstterm.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.baseform.attribute
 
    db.firstterm =
       [
@@ -211,8 +195,8 @@ div {
          ]
       ]
       element firstterm {
-         firstterm.attlist,
-         inlines*
+         db.firstterm.attlist,
+         db.all.inlines*
       }
 }
 
@@ -224,16 +208,13 @@ div {
 ]
 div {
 
-   local.glossterm.attributes = empty
+   db.glossterm.role.attribute = attribute role { text }
 
-   glossterm.role.attribute = attribute role { text }
-
-   glossterm.attlist =
-      glossterm.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & baseform.attribute
-    & local.glossterm.attributes
+   db.glossterm.attlist =
+      db.glossterm.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.baseform.attribute
 
    db.glossterm =
       [
@@ -246,8 +227,8 @@ div {
          ]
       ]
       element glossterm {
-         glossterm.attlist,
-         inlines*
+         db.glossterm.attlist,
+         db.all.inlines*
       }
 }
 
@@ -259,27 +240,24 @@ div {
 ]
 div {
 
-   local.glossary.attributes = empty
+   db.glossary.status.attribute = db.status.attribute
 
-   glossary.status.attribute = status.attribute
+   db.glossary.role.attribute = attribute role { text }
 
-   glossary.role.attribute = attribute role { text }
+   db.glossary.attlist =
+      db.glossary.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.glossary.status.attribute?
 
-   glossary.attlist =
-      glossary.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & glossary.status.attribute?
-    & local.glossary.attributes
-
-   glossary.info = docbook.info
+   db.glossary.info = db._info
 
    db.glossary =
       element glossary {
-         glossary.attlist,
-         glossary.info,
-         blocks*,
+         db.glossary.attlist,
+         db.glossary.info,
+         db.all.blocks*,
          (db.glossdiv+ | db.glossentry+),
          db.bibliography?
       }
@@ -293,27 +271,24 @@ div {
 ]
 div {
 
-   local.glossdiv.attributes = empty
+   db.glossdiv.status.attribute = db.status.attribute
 
-   glossdiv.status.attribute = status.attribute
+   db.glossdiv.role.attribute = attribute role { text }
 
-   glossdiv.role.attribute = attribute role { text }
+   db.glossdiv.attlist =
+      db.glossdiv.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.glossdiv.status.attribute?
 
-   glossdiv.attlist =
-      glossdiv.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & glossdiv.status.attribute?
-    & local.glossdiv.attributes
-
-   glossdiv.info = docbook.info.titlereq
+   db.glossdiv.info = db._info.title.req
 
    db.glossdiv =
       element glossdiv {
-         glossdiv.attlist,
-         glossdiv.info,
-         blocks*,
+         db.glossdiv.attlist,
+         db.glossdiv.info,
+         db.all.blocks*,
          db.glossentry+
       }
 }

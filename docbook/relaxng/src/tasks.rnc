@@ -16,9 +16,9 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-technical.blocks |= db.task
+db.technical.blocks |= db.task
 
-task.info = docbook.info.titleonly
+db.task.info = db._info.title.only
 
 # ======================================================================
 
@@ -28,20 +28,17 @@ task.info = docbook.info.titleonly
 ]
 div {
 
-   local.task.attributes = empty
+   db.task.role.attribute = attribute role { text }
 
-   task.role.attribute = attribute role { text }
-
-   task.attlist =
-      task.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.task.attributes
+   db.task.attlist =
+      db.task.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.task =
       element task {
-         task.attlist,
-         task.info,
+         db.task.attlist,
+         db.task.info,
          db.tasksummary?,
          db.taskprerequisites?,
          db.procedure,
@@ -58,23 +55,20 @@ div {
 ]
 div {
 
-   local.tasksummary.attributes = empty
+   db.tasksummary.role.attribute = attribute role { text }
 
-   tasksummary.role.attribute = attribute role { text }
+   db.tasksummary.attlist =
+      db.tasksummary.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   tasksummary.attlist =
-      tasksummary.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.tasksummary.attributes
-
-   tasksummary.info = docbook.info.titleonly
+   db.tasksummary.info = db._info.title.only
 
    db.tasksummary =
       element tasksummary {
-         tasksummary.attlist,
-         tasksummary.info,
-         blocks+
+         db.tasksummary.attlist,
+         db.tasksummary.info,
+         db.all.blocks+
       }
 }
 
@@ -86,23 +80,20 @@ div {
 ]
 div {
 
-   local.taskprerequisites.attributes = empty
+   db.taskprerequisites.role.attribute = attribute role { text }
 
-   taskprerequisites.role.attribute = attribute role { text }
+   db.taskprerequisites.attlist =
+      db.taskprerequisites.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   taskprerequisites.attlist =
-      taskprerequisites.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.taskprerequisites.attributes
-
-   taskprerequisites.info = docbook.info.titleonly
+   db.taskprerequisites.info = db._info.title.only
 
    db.taskprerequisites =
       element taskprerequisites {
-         taskprerequisites.attlist,
-         taskprerequisites.info,
-         blocks+
+         db.taskprerequisites.attlist,
+         db.taskprerequisites.info,
+         db.all.blocks+
       }
 }
 
@@ -114,22 +105,19 @@ div {
 ]
 div {
 
-   local.taskrelated.attributes = empty
+   db.taskrelated.role.attribute = attribute role { text }
 
-   taskrelated.role.attribute = attribute role { text }
+   db.taskrelated.attlist =
+      db.taskrelated.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   taskrelated.attlist =
-      taskrelated.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.taskrelated.attributes
-
-   taskrelated.info = docbook.info.titleonly
+   db.taskrelated.info = db._info.title.only
 
    db.taskrelated =
       element taskrelated {
-         taskrelated.attlist,
-         taskrelated.info,
-         blocks+
+         db.taskrelated.attlist,
+         db.taskrelated.info,
+         db.all.blocks+
       }
 }

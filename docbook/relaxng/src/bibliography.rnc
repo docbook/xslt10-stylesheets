@@ -16,15 +16,17 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-navigation.components |= db.bibliography
+db.navigation.components |= db.bibliography
 
-list.blocks |= db.bibliolist
+db.list.blocks |= db.bibliolist
 
-info.elements |= db.bibliomisc | db.bibliomset | db.bibliorelation | db.biblioset
+db.info.elements |= db.bibliomisc | db.bibliomset | db.bibliorelation | db.biblioset
 
-link.inlines |= db.biblioref
+db.link.inlines |= db.biblioref
 
-relation.attribute = attribute relation { text }
+# ======================================================================
+
+db.relation.attribute = attribute relation { text }
 
 # ======================================================================
 
@@ -34,20 +36,17 @@ relation.attribute = attribute relation { text }
 ]
 div {
 
-   local.biblioentry.attributes = empty
+   db.biblioentry.role.attribute = attribute role { text }
 
-   biblioentry.role.attribute = attribute role { text }
-
-   biblioentry.attlist =
-      biblioentry.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.biblioentry.attributes
+   db.biblioentry.attlist =
+      db.biblioentry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.biblioentry =
       element biblioentry {
-         biblioentry.attlist,
-         bibliographic.elements+
+         db.biblioentry.attlist,
+         db.bibliographic.elements+
       }
 }
 
@@ -59,20 +58,17 @@ div {
 ]
 div {
 
-   local.bibliomixed.attributes = empty
+   db.bibliomixed.role.attribute = attribute role { text }
 
-   bibliomixed.role.attribute = attribute role { text }
-
-   bibliomixed.attlist =
-      bibliomixed.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.bibliomixed.attributes
+   db.bibliomixed.attlist =
+      db.bibliomixed.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.bibliomixed =
       element bibliomixed {
-         bibliomixed.attlist,
-         (text | bibliographic.elements)*
+         db.bibliomixed.attlist,
+         (text | db.bibliographic.elements)*
       }
 }
 
@@ -84,23 +80,20 @@ div {
 ]
 div {
 
-   local.biblioset.attributes = empty
+   db.biblioset.relation.attrib = db.relation.attribute
 
-   biblioset.relation.attrib = relation.attribute
+   db.biblioset.role.attribute = attribute role { text }
 
-   biblioset.role.attribute = attribute role { text }
-
-   biblioset.attlist =
-      biblioset.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & biblioset.relation.attrib?
-    & local.biblioset.attributes
+   db.biblioset.attlist =
+      db.biblioset.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.biblioset.relation.attrib?
 
    db.biblioset =
       element biblioset {
-         biblioset.attlist,
-         bibliographic.elements+
+         db.biblioset.attlist,
+         db.bibliographic.elements+
       }
 }
 
@@ -112,23 +105,20 @@ div {
 ]
 div {
 
-   local.bibliomset.attributes = empty
+   db.bibliomset.relation.attrib = db.relation.attribute
 
-   bibliomset.relation.attrib = relation.attribute
+   db.bibliomset.role.attribute = attribute role { text }
 
-   bibliomset.role.attribute = attribute role { text }
-
-   bibliomset.attlist =
-      bibliomset.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & bibliomset.relation.attrib?
-    & local.bibliomset.attributes
+   db.bibliomset.attlist =
+      db.bibliomset.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.bibliomset.relation.attrib?
 
    db.bibliomset =
       element bibliomset {
-         bibliomset.attlist,
-         (docbook.text | bibliographic.elements)*
+         db.bibliomset.attlist,
+         (db._text | db.bibliographic.elements)*
       }
 }
 
@@ -140,20 +130,17 @@ div {
 ]
 div {
 
-   local.bibliomisc.attributes = empty
+   db.bibliomisc.role.attribute = attribute role { text }
 
-   bibliomisc.role.attribute = attribute role { text }
-
-   bibliomisc.attlist =
-      bibliomisc.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.bibliomisc.attributes
+   db.bibliomisc.attlist =
+      db.bibliomisc.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.bibliomisc =
       element bibliomisc {
-         bibliomisc.attlist,
-         docbook.text
+         db.bibliomisc.attlist,
+         db._text
       }
 }
 
@@ -165,27 +152,24 @@ div {
 ]
 div {
 
-   local.bibliography.attributes = empty
+   db.bibliography.status.attrib = db.status.attribute
 
-   bibliography.status.attrib = status.attribute
+   db.bibliography.role.attribute = attribute role { text }
 
-   bibliography.role.attribute = attribute role { text }
+   db.bibliography.attlist =
+      db.bibliography.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.bibliography.status.attrib?
 
-   bibliography.attlist =
-      bibliography.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & bibliography.status.attrib?
-    & local.bibliography.attributes
-
-   bibliography.info = docbook.info
+   db.bibliography.info = db._info
 
    db.bibliography =
       element bibliography {
-         bibliography.attlist,
-         bibliography.info,
-         blocks*,
+         db.bibliography.attlist,
+         db.bibliography.info,
+         db.all.blocks*,
          (db.bibliodiv+ | (db.biblioentry | db.bibliomixed)+)
       }
 }
@@ -198,27 +182,24 @@ div {
 ]
 div {
 
-   local.bibliodiv.attributes = empty
+   db.bibliodiv.status.attrib = db.status.attribute
 
-   bibliodiv.status.attrib = status.attribute
+   db.bibliodiv.role.attribute = attribute role { text }
 
-   bibliodiv.role.attribute = attribute role { text }
+   db.bibliodiv.attlist =
+      db.bibliodiv.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.bibliodiv.status.attrib?
 
-   bibliodiv.attlist =
-      bibliodiv.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & label.attribute?
-    & bibliodiv.status.attrib?
-    & local.bibliodiv.attributes
-
-   bibliodiv.info = docbook.info.titlereq
+   db.bibliodiv.info = db._info.title.req
 
    db.bibliodiv =
       element bibliodiv {
-         bibliodiv.attlist,
-         bibliodiv.info,
-         blocks*,
+         db.bibliodiv.attlist,
+         db.bibliodiv.info,
+         db.all.blocks*,
          (db.biblioentry | db.bibliomixed)+
       }
 }
@@ -231,23 +212,20 @@ div {
 ]
 div {
 
-   local.bibliolist.attributes = empty
+   db.bibliolist.role.attribute = attribute role { text }
 
-   bibliolist.role.attribute = attribute role { text }
+   db.bibliolist.attlist =
+      db.bibliolist.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   bibliolist.attlist =
-      bibliolist.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.bibliolist.attributes
-
-   bibliolist.info = docbook.info.titleonly
+   db.bibliolist.info = db._info.title.only
 
    db.bibliolist =
       element bibliolist {
-         bibliolist.attlist,
-         bibliolist.info?,
-         blocks*,
+         db.bibliolist.attlist,
+         db.bibliolist.info?,
+         db.all.blocks*,
          (db.biblioentry | db.bibliomixed)+
       }
 }
@@ -260,24 +238,21 @@ div {
 ]
 div {
 
-   local.biblioref.attributes = empty
+   db.biblioref.role.attribute = attribute role { text }
 
-   biblioref.role.attribute = attribute role { text }
-
-   biblioref.attlist =
-      biblioref.role.attribute?
-    & common.attributes
-    & common.linking.attributes
+   db.biblioref.attlist =
+      db.biblioref.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
     & attribute xrefstyle { text }?
     & attribute endterm { xsd:IDREF }?
     & attribute units { xsd:token }?
     & attribute begin {xsd:token }?
     & attribute end { xsd:token }?
-    & local.biblioref.attributes
 
    db.biblioref =
       element biblioref {
-         biblioref.attlist,
+         db.biblioref.attlist,
          empty
       }
 }

@@ -15,8 +15,8 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-navigation.components |= db.toc
-toc.components |= db.toc
+db.navigation.components |= db.toc
+db.toc.components |= db.toc
 
 # ======================================================================
 
@@ -26,23 +26,20 @@ toc.components |= db.toc
 ]
 div {
 
-   local.toc.attributes = empty
+   db.toc.role.attribute = attribute role { text }
 
-   toc.role.attribute = attribute role { text }
+   db.toc.attlist =
+      db.toc.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   toc.attlist =
-      toc.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.toc.attributes
-
-   toc.info = docbook.info.titleonly
+   db.toc.info = db._info.title.only
 
    db.toc =
       element toc {
-         toc.attlist,
-         toc.info,
-         blocks*,
+         db.toc.attlist,
+         db.toc.info,
+         db.all.blocks*,
          (db.tocdiv | db.tocentry)*
       }
 }
@@ -55,24 +52,21 @@ div {
 ]
 div {
 
-   local.tocdiv.attributes = empty
+   db.tocdiv.role.attribute = attribute role { text }
 
-   tocdiv.role.attribute = attribute role { text }
-
-   tocdiv.attlist =
-      tocdiv.role.attribute?
-    & common.attributes
+   db.tocdiv.attlist =
+      db.tocdiv.role.attribute?
+    & db.common.attributes
     & attribute pagenum { text }?
-    & linkend.attribute?
-    & local.tocdiv.attributes
+    & db.linkend.attribute?
 
-   tocdiv.info = docbook.info
+   db.tocdiv.info = db._info
 
    db.tocdiv =
       element tocdiv {
-         tocdiv.attlist,
-         tocdiv.info,
-         blocks*,
+         db.tocdiv.attlist,
+         db.tocdiv.info,
+         db.all.blocks*,
          (db.tocdiv | db.tocentry)+
       }
 }
@@ -85,21 +79,18 @@ div {
 ]
 div {
 
-   local.tocentry.attributes = empty
+   db.tocentry.role.attribute = attribute role { text }
 
-   tocentry.role.attribute = attribute role { text }
-
-   tocentry.attlist =
-      tocentry.role.attribute?
-    & common.attributes
+   db.tocentry.attlist =
+      db.tocentry.role.attribute?
+    & db.common.attributes
     & attribute pagenum { text }?
-    & linkend.attribute?
-    & local.tocentry.attributes
+    & db.linkend.attribute?
 
    db.tocentry =
       element tocentry {
-         tocentry.attlist,
-         inlines*
+         db.tocentry.attlist,
+         db.all.inlines*
       }
 }
 

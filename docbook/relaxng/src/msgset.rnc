@@ -16,7 +16,7 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-technical.blocks |= db.msgset
+db.technical.blocks |= db.msgset
 
 # ======================================================================
 
@@ -26,22 +26,19 @@ technical.blocks |= db.msgset
 ]
 div {
 
-   local.msgset.attributes = empty
+   db.msgset.role.attribute = attribute role { text }
 
-   msgset.role.attribute = attribute role { text }
+   db.msgset.attlist =
+      db.msgset.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   msgset.attlist =
-      msgset.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.msgset.attributes
-
-   msgset.info = docbook.info.titleonly
+   db.msgset.info = db._info.title.only
 
    db.msgset =
       element msgset {
-         msgset.attlist,
-         msgset.info,
+         db.msgset.attlist,
+         db.msgset.info,
          (db.msgentry+|db.simplemsgentry+)
       }
 }
@@ -54,19 +51,16 @@ div {
 ]
 div {
 
-   local.msgentry.attributes = empty
+   db.msgentry.role.attribute = attribute role { text }
 
-   msgentry.role.attribute = attribute role { text }
-
-   msgentry.attlist =
-      msgentry.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.msgentry.attributes
+   db.msgentry.attlist =
+      db.msgentry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.msgentry =
       element msgentry {
-         msgentry.attlist,
+         db.msgentry.attlist,
          db.msg+,
          db.msginfo?,
          db.msgexplan*
@@ -81,22 +75,19 @@ div {
 ]
 div {
 
-   local.simplemsgentry.attributes = empty
+   db.simplemsgentry.role.attribute = attribute role { text }
 
-   simplemsgentry.role.attribute = attribute role { text }
-
-   simplemsgentry.attlist =
-      simplemsgentry.role.attribute?
-    & common.attributes
-    & common.linking.attributes
+   db.simplemsgentry.attlist =
+      db.simplemsgentry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
     & attribute audience { text }
     & attribute origin { text }
     & attribute level { text }
-    & local.simplemsgentry.attributes
 
    db.simplemsgentry =
       element simplemsgentry {
-         simplemsgentry.attlist,
+         db.simplemsgentry.attlist,
          db.msgtext,
          db.msgexplan+
       }
@@ -110,22 +101,19 @@ div {
 ]
 div {
 
-   local.msg.attributes = empty
+   db.msg.role.attribute = attribute role { text }
 
-   msg.role.attribute = attribute role { text }
+   db.msg.attlist =
+      db.msg.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   msg.attlist =
-      msg.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.msg.attributes
-
-   msg.info = docbook.info.titleonly
+   db.msg.info = db._info.title.only
 
    db.msg =
       element msg {
-         msg.attlist,
-         msg.info,
+         db.msg.attlist,
+         db.msg.info,
          db.msgmain,
          (db.msgsub|db.msgrel)*
       }
@@ -139,22 +127,19 @@ div {
 ]
 div {
 
-   local.msgmain.attributes = empty
+   db.msgmain.role.attribute = attribute role { text }
 
-   msgmain.role.attribute = attribute role { text }
+   db.msgmain.attlist =
+      db.msgmain.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   msgmain.attlist =
-      msgmain.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.msgmain.attributes
-
-   msgmain.info = docbook.info.titleonly
+   db.msgmain.info = db._info.title.only
 
    db.msgmain =
       element msgmain {
-         msgmain.attlist,
-         msgmain.info,
+         db.msgmain.attlist,
+         db.msgmain.info,
          db.msgtext
       }
 }
@@ -167,22 +152,19 @@ div {
 ]
 div {
 
-   local.msgsub.attributes = empty
+   db.msgsub.role.attribute = attribute role { text }
 
-   msgsub.role.attribute = attribute role { text }
+   db.msgsub.attlist =
+      db.msgsub.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   msgsub.attlist =
-      msgsub.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.msgsub.attributes
-
-   msgsub.info = docbook.info.titleonly
+   db.msgsub.info = db._info.title.only
 
    db.msgsub =
       element msgsub {
-         msgsub.attlist,
-         msgsub.info,
+         db.msgsub.attlist,
+         db.msgsub.info,
          db.msgtext
       }
 }
@@ -195,22 +177,19 @@ div {
 ]
 div {
 
-   local.msgrel.attributes = empty
+   db.msgrel.role.attribute = attribute role { text }
 
-   msgrel.role.attribute = attribute role { text }
+   db.msgrel.attlist =
+      db.msgrel.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   msgrel.attlist =
-      msgrel.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.msgrel.attributes
-
-   msgrel.info = docbook.info.titleonly
+   db.msgrel.info = db._info.title.only
 
    db.msgrel =
       element msgrel {
-         msgrel.attlist,
-         msgrel.info,
+         db.msgrel.attlist,
+         db.msgrel.info,
          db.msgtext
       }
 }
@@ -223,20 +202,17 @@ div {
 ]
 div {
 
-   local.msgtext.attributes = empty
+   db.msgtext.role.attribute = attribute role { text }
 
-   msgtext.role.attribute = attribute role { text }
-
-   msgtext.attlist =
-      msgtext.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.msgtext.attributes
+   db.msgtext.attlist =
+      db.msgtext.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.msgtext =
       element msgtext {
-         msgtext.attlist,
-         blocks+
+         db.msgtext.attlist,
+         db.all.blocks+
       }
 }
 
@@ -248,19 +224,16 @@ div {
 ]
 div {
 
-   local.msginfo.attributes = empty
+   db.msginfo.role.attribute = attribute role { text }
 
-   msginfo.role.attribute = attribute role { text }
-
-   msginfo.attlist =
-      msginfo.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.msginfo.attributes
+   db.msginfo.attlist =
+      db.msginfo.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.msginfo =
       element msginfo {
-         msginfo.attlist,
+         db.msginfo.attlist,
          (db.msglevel|db.msgorig|db.msgaud)*
       }
 }
@@ -273,20 +246,17 @@ div {
 ]
 div {
 
-   local.msglevel.attributes = empty
+   db.msglevel.role.attribute = attribute role { text }
 
-   msglevel.role.attribute = attribute role { text }
-
-   msglevel.attlist =
-      msglevel.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.msglevel.attributes
+   db.msglevel.attlist =
+      db.msglevel.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.msglevel =
       element msglevel {
-         msglevel.attlist,
-         docbook.text
+         db.msglevel.attlist,
+         db._text
       }
 }
 
@@ -298,20 +268,17 @@ div {
 ]
 div {
 
-   local.msgorig.attributes = empty
+   db.msgorig.role.attribute = attribute role { text }
 
-   msgorig.role.attribute = attribute role { text }
-
-   msgorig.attlist =
-      msgorig.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.msgorig.attributes
+   db.msgorig.attlist =
+      db.msgorig.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.msgorig =
       element msgorig {
-         msgorig.attlist,
-         docbook.text
+         db.msgorig.attlist,
+         db._text
       }
 }
 
@@ -323,20 +290,17 @@ div {
 ]
 div {
 
-   local.msgaud.attributes = empty
+   db.msgaud.role.attribute = attribute role { text }
 
-   msgaud.role.attribute = attribute role { text }
-
-   msgaud.attlist =
-      msgaud.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.msgaud.attributes
+   db.msgaud.attlist =
+      db.msgaud.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
    db.msgaud =
       element msgaud {
-         msgaud.attlist,
-         docbook.text
+         db.msgaud.attlist,
+         db._text
       }
 }
 
@@ -348,23 +312,20 @@ div {
 ]
 div {
 
-   local.msgexplan.attributes = empty
+   db.msgexplan.role.attribute = attribute role { text }
 
-   msgexplan.role.attribute = attribute role { text }
+   db.msgexplan.attlist =
+      db.msgexplan.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
 
-   msgexplan.attlist =
-      msgexplan.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.msgexplan.attributes
-
-   msgexplan.info = docbook.info.titleonly
+   db.msgexplan.info = db._info.title.only
 
    db.msgexplan =
       element msgexplan {
-         msgexplan.attlist,
-         msgexplan.info,
-         blocks+
+         db.msgexplan.attlist,
+         db.msgexplan.info,
+         db.all.blocks+
       }
 }
 

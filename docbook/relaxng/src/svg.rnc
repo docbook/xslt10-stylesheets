@@ -17,10 +17,10 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-imageobject.content |= any.svg
+db.imageobject.content |= db._any.svg
 
-any.svg =
-   element svg:* {
-      anyAttribute*,
-      (text | any.svg)*
-   }
+db._any.svg =
+  element svg:* {
+    db._any.attribute*,
+    (text | db._any)*
+  }
