@@ -225,7 +225,7 @@
       </xsl:attribute>
     </xsl:if>
 
-    <xsl:if test="../@pgwide=1">
+    <xsl:if test="../@pgwide=1 or local-name(.) = 'entrytbl'">
       <xsl:attribute name="width">100%</xsl:attribute>
     </xsl:if>
 
