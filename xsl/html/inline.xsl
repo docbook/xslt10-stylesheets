@@ -1,7 +1,8 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xlink='http://www.w3.org/1999/xlink'
-                exclude-result-prefixes="xlink"
+                xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks"
+                exclude-result-prefixes="xlink suwl"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -20,63 +21,74 @@
     <xsl:apply-templates/>
   </xsl:param>
 
-  <xsl:choose>
-    <xsl:when test="$node/@xlink:href
-                    and (not($node/@xlink:type) or $node/@xlink:type='simple')">
-      <a>
-        <xsl:if test="@xlink.title">
-          <xsl:attribute name="title">
-            <xsl:value-of select="@xlink:title"/>
-          </xsl:attribute>
-        </xsl:if>
+  <xsl:variable name="link">
+    <xsl:choose>
+      <xsl:when test="$node/@xlink:href
+                      and (not($node/@xlink:type) or $node/@xlink:type='simple')">
+        <a>
+          <xsl:if test="@xlink.title">
+            <xsl:attribute name="title">
+              <xsl:value-of select="@xlink:title"/>
+            </xsl:attribute>
+          </xsl:if>
 
-        <xsl:attribute name="href">
-          <xsl:choose>
-            <!-- if the href starts with # and does not contain an "(" -->
-            <!-- or if the href starts with #xpointer(id(, it's just an ID -->
-            <xsl:when test="starts-with(@xlink:href,'#')
-                            and (not(contains(@xlink:href,'&#40;'))
-                            or starts-with(@xlink:href,'#xpointer&#40;id&#40;'))">
-              <xsl:variable name="idref">
-                <xsl:call-template name="xpointer.idref">
-                  <xsl:with-param name="xpointer" select="@xlink:href"/>
-                </xsl:call-template>
-              </xsl:variable>
-
-              <xsl:variable name="targets" select="key('id',$idref)"/>
-              <xsl:variable name="target" select="$targets[1]"/>
-
-              <xsl:call-template name="check.id.unique">
-                <xsl:with-param name="linkend" select="@linkend"/>
-              </xsl:call-template>
-
-              <xsl:choose>
-                <xsl:when test="count($target) = 0">
-                  <xsl:message>
-                    <xsl:text>XLink to nonexistent id: </xsl:text>
-                    <xsl:value-of select="$idref"/>
-                  </xsl:message>
-                  <xsl:text>???</xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:call-template name="href.target">
-                    <xsl:with-param name="object" select="$target"/>
+          <xsl:attribute name="href">
+            <xsl:choose>
+              <!-- if the href starts with # and does not contain an "(" -->
+              <!-- or if the href starts with #xpointer(id(, it's just an ID -->
+              <xsl:when test="starts-with(@xlink:href,'#')
+                              and (not(contains(@xlink:href,'&#40;'))
+                              or starts-with(@xlink:href,'#xpointer&#40;id&#40;'))">
+                <xsl:variable name="idref">
+                  <xsl:call-template name="xpointer.idref">
+                    <xsl:with-param name="xpointer" select="@xlink:href"/>
                   </xsl:call-template>
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:when>
+                </xsl:variable>
 
-            <!-- otherwise it's a URI -->
-            <xsl:otherwise>
-              <xsl:value-of select="@xlink:href"/>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:attribute>
+                <xsl:variable name="targets" select="key('id',$idref)"/>
+                <xsl:variable name="target" select="$targets[1]"/>
+
+                <xsl:call-template name="check.id.unique">
+                  <xsl:with-param name="linkend" select="@linkend"/>
+                </xsl:call-template>
+
+                <xsl:choose>
+                  <xsl:when test="count($target) = 0">
+                    <xsl:message>
+                      <xsl:text>XLink to nonexistent id: </xsl:text>
+                      <xsl:value-of select="$idref"/>
+                    </xsl:message>
+                    <xsl:text>???</xsl:text>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:call-template name="href.target">
+                      <xsl:with-param name="object" select="$target"/>
+                    </xsl:call-template>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:when>
+
+              <!-- otherwise it's a URI -->
+              <xsl:otherwise>
+                <xsl:value-of select="@xlink:href"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:attribute>
+          <xsl:copy-of select="$content"/>
+        </a>
+      </xsl:when>
+      <xsl:otherwise>
         <xsl:copy-of select="$content"/>
-      </a>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="function-available('suwl:unwrapLinks')">
+      <xsl:copy-of select="suwl:unwrapLinks($link)"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:copy-of select="$content"/>
+      <xsl:copy-of select="$link"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

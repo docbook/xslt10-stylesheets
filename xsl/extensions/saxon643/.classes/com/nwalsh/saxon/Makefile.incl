@@ -14,5 +14,7 @@ NumberLinesEmitter.class \
 Table.class \
 Text.class \
 TextFactory.class \
+UnwrapLinks.class \
+UnwrapLinksEmitter.class \
 Verbatim.class 
 
