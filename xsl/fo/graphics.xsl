@@ -33,7 +33,7 @@
       <xsl:text> PNG PDF JPG JPEG linespecific </xsl:text>
     </xsl:when>
     <xsl:when test="$fop.extensions != 0">
-      <xsl:text> BMP GIF TIFF SVG PNG PDF JPG JPEG linespecific </xsl:text>
+      <xsl:text> BMP GIF TIFF SVG PNG EPS JPG JPEG linespecific </xsl:text>
     </xsl:when>
     <xsl:when test="$arbortext.extensions != 0">
       <xsl:text> PNG PDF JPG JPEG linespecific GIF GIF87a GIF89a TIFF BMP </xsl:text>
