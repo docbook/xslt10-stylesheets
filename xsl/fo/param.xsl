@@ -1108,6 +1108,19 @@ and sorted index terms.
 </doc:param>
 
 <!-- ==================================================================== -->
+<xsl:param name="arbortext.extensions" select="0" doc:type='boolean'/>
+
+<doc:param name="arbortext.extensions" xmlns="">
+<refpurpose>Enable Arbortext extensions?</refpurpose>
+<refdescription>
+<para>If non-zero,
+<ulink url="http://www.arbortext.com/">Arbortext</ulink>
+extensions will be used.
+</para>
+</refdescription>
+</doc:param>
+
+<!-- ==================================================================== -->
 <xsl:param name="fop.extensions" select="0" doc:type='boolean'/>
 
 <doc:param name="fop.extensions" xmlns="">
