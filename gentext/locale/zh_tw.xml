@@ -110,26 +110,26 @@
 <gentext key="warning"        text="&#x8B66;&#x544A;"/>
 <gentext key="Warning"        text="&#x8B66;&#x544A;"/>
 
+<gentext key="Edited"         text="&#x7DE8;&#x8F2F;"/>
+<gentext key="Editedby"       text="&#x7DE8;&#x8F2F;"/>
+<gentext key="Notes"          text="&#x6CE8;"/>
+<gentext key="Pgs"            text="&#x9801;"/>
+<gentext key="Revisedby"      text="&#x4FEE;&#x8A02;"/>
+<gentext key="TableNotes"     text="&#x6CE8;&#x91CB;"/>
 <gentext key="TableofContents"
          text="&#x5167;&#x5BB9;&#x76EE;&#x9304;"/>
 <gentext key="and"            text="&#x4E14;"/>
 <gentext key="by"             text="&#x7531;"/>
-<gentext key="Edited"         text="&#x7DE8;&#x8F2F;"/>
-<gentext key="Editedby"       text="&#x7DE8;&#x8F2F;"/>
 <gentext key="in"             text="&#x5728;"/>
-<gentext key="lastlistcomma" text=","/>
-<gentext key="listcomma" text=","/>
+<gentext key="lastlistcomma"  text=","/>
+<gentext key="listcomma"      text=","/>
 <gentext key="nonexistantelement"
-<gentext key="Notes"          text="&#x6CE8;"/>
-<gentext key="TableNotes"     text="&#x6CE8;&#x91CB;"/>
          text="&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x5143;&#x7D20;"/>
 <gentext key="page.citation"  text="&#x9801;"/>
-<gentext key="Pgs"            text="&#x9801;"/>
 <gentext key="unexpectedelementname"
+         text="&#x975E;&#x9810;&#x671F;&#x7684;&#x5143;&#x7D20;&#x540D;"/>
 <gentext key="unsupported"    text="&#x672A;&#x652F;&#x63F4;"/>
 <gentext key="xrefto"         text="&#x53C3;&#x7167;"/>
-         text="&#x975E;&#x9810;&#x671F;&#x7684;&#x5143;&#x7D20;&#x540D;"/>
-<gentext key="Revisedby"      text="&#x4FEE;&#x8A02;"/>
 
 <gentext key="ListofEquations" text="&#x516C;&#x5F0F;&#x76EE;&#x9304;"/>
 <gentext key="ListofExamples" text="&#x7BC4;&#x4F8B;&#x76EE;&#x9304;"/>
