@@ -363,6 +363,15 @@ f. Just BlockQuote; no other informal objects.
 <!ENTITY % mediaobject.mix
 		"videoobject|audioobject|imageobject %local.mediaobject.mix;">
 
+<!ENTITY % local.listpreamble.mix "">
+<!ENTITY % listpreamble.mix
+		"                  	 %admon.class;
+		|%linespecific.class;	|%synop.class;
+		|%para.class;		|%informal.class;
+		|%genobj.class;		|%descobj.class;
+		|%ndxterm.class;        |beginpage
+		%local.listpreamble.mix;">
+
 <!-- Character-level mixtures ............................................. -->
 
 <![%sgml.features;[
@@ -2124,7 +2133,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % itemizedlist.element "INCLUDE">
 <![%itemizedlist.element;[
-<!ELEMENT itemizedlist %ho; ((%formalobject.title.content;)?, listitem+)>
+<!ELEMENT itemizedlist %ho; ((%formalobject.title.content;)?,
+ 			    (%listpreamble.mix;)*, listitem+)>
+
 <!--end of itemizedlist.element-->]]>
 
 <!-- Spacing: Whether the vertical space in the list should be
@@ -2152,7 +2163,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % orderedlist.element "INCLUDE">
 <![%orderedlist.element;[
-<!ELEMENT orderedlist %ho; ((%formalobject.title.content;)?, listitem+)>
+<!ELEMENT orderedlist %ho; ((%formalobject.title.content;)?,
+ 			    (%listpreamble.mix;)*, listitem+)>
+
 <!--end of orderedlist.element-->]]>
 
 <!-- Numeration: Style of ListItem numbered; default is expected
@@ -2370,7 +2383,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % variablelist.element "INCLUDE">
 <![%variablelist.element;[
-<!ELEMENT variablelist %ho; ((%formalobject.title.content;)?, varlistentry+)>
+<!ELEMENT variablelist %ho; ((%formalobject.title.content;)?,
+ 			    (%listpreamble.mix;)*, varlistentry+)>
 <!--end of variablelist.element-->]]>
 
 <!-- TermLength: Length beyond which the presentation engine
