@@ -45,9 +45,9 @@
     <xsl:if test="string-length(@key) &lt;  2"><xsl:text> </xsl:text></xsl:if>
     <xsl:if test="string-length(@key) &lt;  1"><xsl:text> </xsl:text></xsl:if>
 
-    <xsl:text> "</xsl:text>
+    <xsl:text disable-output-escaping="yes"> "</xsl:text>
     <xsl:value-of select="@text"/>
-    <xsl:text>"</xsl:text>
+    <xsl:text disable-output-escaping="yes">"</xsl:text>
     <xsl:text disable-output-escaping="yes">&gt;&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
