@@ -359,7 +359,6 @@ zero by default, so this is simply the page-master region-left.
 </reference>
 
 <reference><title>Property Sets</title>
-&component.title.properties;
 &formal.object.properties;
 &formal.title.properties;
 &informal.object.properties;

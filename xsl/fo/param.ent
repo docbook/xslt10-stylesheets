@@ -34,7 +34,6 @@
 <!ENTITY column.count.lot SYSTEM "../params/column.count.lot.xml">
 <!ENTITY column.count.titlepage SYSTEM "../params/column.count.titlepage.xml">
 <!ENTITY compact.list.item.spacing SYSTEM "../params/compact.list.item.spacing.xml">
-<!ENTITY component.title.properties SYSTEM "../params/component.title.properties.xml">
 <!ENTITY current.docid SYSTEM "../params/current.docid.xml">
 <!ENTITY default.table.width SYSTEM "../params/default.table.width.xml">
 <!ENTITY default.units SYSTEM "../params/default.units.xml">
