@@ -58,6 +58,11 @@
 </xsl:template>
 
 <xsl:template name="tocentry">
+  <xsl:if test="@revisionflag">
+    <xsl:attribute name="revisionflag">
+      <xsl:value-of select="@revisionflag"/>
+    </xsl:attribute>
+  </xsl:if>
   <xsl:choose>
     <xsl:when test="@href">
       <xsl:call-template name="tocentry.href"/>
