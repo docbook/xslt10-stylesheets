@@ -5,21 +5,23 @@
          ns="">
 
   <start>
-    <ref name='set.element'/>
-    <ref name='book.element'/>
-    <ref name='chapter.element'/>
-    <ref name='appendix.element'/>
-    <ref name='article.element'/>
-    <ref name='part.element'/>
-    <ref name='reference.element'/>
-    <ref name='refentry.element'/>
-    <ref name='section.element'/>
-    <ref name='sect1.element'/>
-    <ref name='sect2.element'/>
-    <ref name='sect3.element'/>
-    <ref name='sect4.element'/>
-    <ref name='sect5.element'/>
-    <ref name="para.element"/>
+    <choice>
+      <ref name='set.element'/>
+      <ref name='book.element'/>
+      <ref name='chapter.element'/>
+      <ref name='appendix.element'/>
+      <ref name='part.element'/>
+      <ref name='reference.element'/>
+      <ref name='refentry.element'/>
+      <ref name='article.element'/>
+      <ref name='section.element'/>
+      <ref name='sect1.element'/>
+      <ref name='sect2.element'/>
+      <ref name='sect3.element'/>
+      <ref name='sect4.element'/>
+      <ref name='sect5.element'/>
+      <ref name="para.element"/>
+    </choice>
   </start>
 
 <dtd:comment> ...................................................................... </dtd:comment>
@@ -153,7 +155,7 @@
 <dtd:pe-ref name="dbgenent"/>
 <dtd:marked-section end="dbgenent.module"/>
 
-<include href="dbgenent.mod"/>
+<include href="dbgenent.rng"/>
 
 <dtd:comment> End of DocBook XML DTD V4.1.2 .......................................... </dtd:comment>
 <dtd:comment> ...................................................................... </dtd:comment>
