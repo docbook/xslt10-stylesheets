@@ -231,13 +231,13 @@
 </xsl:template>
 
 <xsl:template match="foilgroup">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
   <xsl:param name="thisfoilgroup">
     <xsl:apply-templates select="." mode="filename"/>
   </xsl:param>
+
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
 
   <xsl:variable name="nextfoil" select="foil[1]"/>
   <xsl:variable name="lastfoil" select="(descendant::foil|following::foil)[last()]"/>
@@ -248,97 +248,97 @@
     <xsl:with-param name="filename" select="concat($base.dir, $thisfoilgroup)"/>
     <xsl:with-param name="content">
       <html>
-      <head>
-        <title><xsl:value-of select="title"/></title>
-        <xsl:if test="$css.stylesheet != ''">
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
-        </xsl:if>
-        <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
+	<head>
+	  <title><xsl:value-of select="title"/></title>
+	  <xsl:if test="$css.stylesheet != ''">
+	    <link type="text/css" rel="stylesheet">
+	      <xsl:attribute name="href">
+		<xsl:call-template name="css.stylesheet"/>
+	      </xsl:attribute>
+	    </link>
+	  </xsl:if>
+	  <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
-        <xsl:call-template name="links">
-          <xsl:with-param name="prev" select="$prevfoil"/>
-          <xsl:with-param name="next" select="$nextfoil"/>
-        </xsl:call-template>
+	  <xsl:call-template name="links">
+	    <xsl:with-param name="prev" select="$prevfoil"/>
+	    <xsl:with-param name="next" select="$nextfoil"/>
+	  </xsl:call-template>
+	  
+	  <xsl:if test="$keyboard.nav != 0">
+	    <script language="javascript" type="text/javascript">
+	      <xsl:text> </xsl:text>
+	    </script>
+	  </xsl:if>
 
-        <xsl:if test="$keyboard.nav != 0">
-            <script language="javascript" type="text/javascript">
-            <xsl:text> </xsl:text>
-          </script>
-        </xsl:if>
-
-        <xsl:if test="$keyboard.nav != 0">
-          <xsl:call-template name="ua.js"/>
-          <xsl:call-template name="xbDOM.js">
-              <xsl:with-param name="language" select="'javascript'"/>
-          </xsl:call-template>
-            <xsl:call-template name="xbLibrary.js"/>
-            <script language="javascript" type="text/javascript">
-              <xsl:text disable-output-escaping="yes">
+	  <xsl:if test="$keyboard.nav != 0">
+	    <xsl:call-template name="ua.js"/>
+	    <xsl:call-template name="xbDOM.js">
+	      <xsl:with-param name="language" select="'javascript'"/>
+	    </xsl:call-template>
+	    <xsl:call-template name="xbLibrary.js"/>
+	    <script language="javascript" type="text/javascript">
+	      <xsl:text disable-output-escaping="yes">
                 &lt;!--
                 xblibrary = new xbLibrary('../browser');
                 // --&gt;
               </xsl:text>
             </script>
-          <xsl:call-template name="xbStyle.js"/>
-          <xsl:call-template name="xbCollapsibleLists.js"/>
-          <xsl:call-template name="slides.js">
-              <xsl:with-param name="language" select="'javascript'"/>
-          </xsl:call-template>
-        </xsl:if>
-      </head>
-      <body class="foilgroup">
-        <xsl:call-template name="body.attributes"/>
-        <xsl:if test="$keyboard.nav != 0">
-          <xsl:attribute name="onkeypress">
-            <xsl:text>navigate(event)</xsl:text>
-          </xsl:attribute>
-        </xsl:if>
+	    <xsl:call-template name="xbStyle.js"/>
+	    <xsl:call-template name="xbCollapsibleLists.js"/>
+	    <xsl:call-template name="slides.js">
+	      <xsl:with-param name="language" select="'javascript'"/>
+	    </xsl:call-template>
+	  </xsl:if>
+	</head>
+	<body class="foilgroup">
+	  <xsl:call-template name="body.attributes"/>
+	  <xsl:if test="$keyboard.nav != 0">
+	    <xsl:attribute name="onkeypress">
+	      <xsl:text>navigate(event)</xsl:text>
+	    </xsl:attribute>
+	  </xsl:if>
 
-        <table border="0" width="100%" summary="Navigation and body table"
-               cellpadding="0" cellspacing="0">
-          <tr>
-            <td>&#160;</td>
-            <td><xsl:apply-templates select="." mode="header"/></td>
-          </tr>
+	  <table border="0" width="100%" summary="Navigation and body table"
+		 cellpadding="0" cellspacing="0">
+	    <tr>
+	      <td>&#160;</td>
+	      <td><xsl:apply-templates select="." mode="header"/></td>
+	    </tr>
+	    
+	    <tr>
+	      <td width="{$toc.width}" valign="top" align="left">
+		<xsl:if test="$toc.bg.color != ''">
+		  <xsl:attribute name="bgcolor">
+		    <xsl:value-of select="$toc.bg.color"/>
+		  </xsl:attribute>
+		</xsl:if>
+		
+		<xsl:call-template name="vertical-navigation">
+		  <xsl:with-param name="last" select="$lastfoil"/>
+		  <xsl:with-param name="prev" select="$prevfoil"/>
+		  <xsl:with-param name="next" select="$nextfoil"/>
+		</xsl:call-template>
+		
+	      </td>
+	      <td valign="top" align="left">
+		<xsl:if test="$body.bg.color != ''">
+		  <xsl:attribute name="bgcolor">
+		    <xsl:value-of select="$body.bg.color"/>
+		  </xsl:attribute>
+		</xsl:if>
 
-          <tr>
-            <td width="{$toc.width}" valign="top" align="left">
-	      <xsl:if test="$toc.bg.color != ''">
-		<xsl:attribute name="bgcolor">
-		  <xsl:value-of select="$toc.bg.color"/>
-		</xsl:attribute>
-	      </xsl:if>
+		<div class="{name(.)}">
+		  <xsl:apply-templates/>
+		</div>
+	      </td>
+	    </tr>
 
-              <xsl:call-template name="vertical-navigation">
-                <xsl:with-param name="last" select="$lastfoil"/>
-                <xsl:with-param name="prev" select="$prevfoil"/>
-                <xsl:with-param name="next" select="$nextfoil"/>
-              </xsl:call-template>
-
-            </td>
-            <td valign="top" align="left">
-	      <xsl:if test="$body.bg.color != ''">
-		<xsl:attribute name="bgcolor">
-		  <xsl:value-of select="$body.bg.color"/>
-		</xsl:attribute>
-	      </xsl:if>
-
-              <div class="{name(.)}">
-                <xsl:apply-templates/>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td>&#160;</td>
-            <td><xsl:apply-templates select="." mode="footer"/></td>
-          </tr>
-        </table>
-      </body>
+	    <tr>
+	      <td>&#160;</td>
+	      <td><xsl:apply-templates select="." mode="footer"/></td>
+	    </tr>
+	  </table>
+	</body>
       </html>
     </xsl:with-param>
   </xsl:call-template>
@@ -371,97 +371,97 @@
     <xsl:with-param name="filename" select="concat($base.dir, $thisfoil)"/>
     <xsl:with-param name="content">
       <html>
-      <head>
-        <title><xsl:value-of select="title"/></title>
-        <xsl:if test="$css.stylesheet != ''">
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
-        </xsl:if>
-        <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
+	<head>
+	  <title><xsl:value-of select="title"/></title>
+	  <xsl:if test="$css.stylesheet != ''">
+	    <link type="text/css" rel="stylesheet">
+	      <xsl:attribute name="href">
+		<xsl:call-template name="css.stylesheet"/>
+	      </xsl:attribute>
+	    </link>
+	  </xsl:if>
+	  <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
-        <xsl:call-template name="links">
-          <xsl:with-param name="prev" select="$prevfoil"/>
-          <xsl:with-param name="next" select="$nextfoil"/>
-        </xsl:call-template>
+	  <xsl:call-template name="links">
+	    <xsl:with-param name="prev" select="$prevfoil"/>
+	    <xsl:with-param name="next" select="$nextfoil"/>
+	  </xsl:call-template>
 
-        <xsl:if test="$keyboard.nav != 0">
-            <script language="javascript" type="text/javascript">
-            <xsl:text> </xsl:text>
-          </script>
-        </xsl:if>
+	  <xsl:if test="$keyboard.nav != 0">
+	    <script language="javascript" type="text/javascript">
+	      <xsl:text> </xsl:text>
+	    </script>
+	  </xsl:if>
 
-        <xsl:if test="$keyboard.nav != 0">
-          <xsl:call-template name="ua.js"/>
-          <xsl:call-template name="xbDOM.js">
-              <xsl:with-param name="language" select="'javascript'"/>
-          </xsl:call-template>
-            <xsl:call-template name="xbLibrary.js"/>
-            <script language="javascript" type="text/javascript">
-              <xsl:text disable-output-escaping="yes">
+	  <xsl:if test="$keyboard.nav != 0">
+	    <xsl:call-template name="ua.js"/>
+	    <xsl:call-template name="xbDOM.js">
+	      <xsl:with-param name="language" select="'javascript'"/>
+	    </xsl:call-template>
+	    <xsl:call-template name="xbLibrary.js"/>
+	    <script language="javascript" type="text/javascript">
+	      <xsl:text disable-output-escaping="yes">
                 &lt;!--
                 xblibrary = new xbLibrary('../browser');
                 // --&gt;
               </xsl:text>
             </script>
-          <xsl:call-template name="xbStyle.js"/>
-          <xsl:call-template name="xbCollapsibleLists.js"/>
-          <xsl:call-template name="slides.js">
-              <xsl:with-param name="language" select="'javascript'"/>
-          </xsl:call-template>
-        </xsl:if>
-      </head>
-      <body class="foil">
-        <xsl:call-template name="body.attributes"/>
-        <xsl:if test="$keyboard.nav != 0">
-          <xsl:attribute name="onkeypress">
-            <xsl:text>navigate(event)</xsl:text>
-          </xsl:attribute>
-        </xsl:if>
+	    <xsl:call-template name="xbStyle.js"/>
+	    <xsl:call-template name="xbCollapsibleLists.js"/>
+	    <xsl:call-template name="slides.js">
+	      <xsl:with-param name="language" select="'javascript'"/>
+	    </xsl:call-template>
+	  </xsl:if>
+	</head>
+	<body class="foil">
+	  <xsl:call-template name="body.attributes"/>
+	  <xsl:if test="$keyboard.nav != 0">
+	    <xsl:attribute name="onkeypress">
+	      <xsl:text>navigate(event)</xsl:text>
+	    </xsl:attribute>
+	  </xsl:if>
 
-        <table border="0" width="100%" summary="Navigation and body table"
-               cellpadding="0" cellspacing="0">
-          <tr>
-            <td>&#160;</td>
-            <td><xsl:apply-templates select="." mode="header"/></td>
-          </tr>
+	  <table border="0" width="100%" summary="Navigation and body table"
+		 cellpadding="0" cellspacing="0">
+	    <tr>
+	      <td>&#160;</td>
+	      <td><xsl:apply-templates select="." mode="header"/></td>
+	    </tr>
 
-          <tr>
-            <td width="{$toc.width}" valign="top" align="left">
-	      <xsl:if test="$toc.bg.color != ''">
-		<xsl:attribute name="bgcolor">
-		  <xsl:value-of select="$toc.bg.color"/>
-		</xsl:attribute>
-	      </xsl:if>
+	    <tr>
+	      <td width="{$toc.width}" valign="top" align="left">
+		<xsl:if test="$toc.bg.color != ''">
+		  <xsl:attribute name="bgcolor">
+		    <xsl:value-of select="$toc.bg.color"/>
+		  </xsl:attribute>
+		</xsl:if>
 
-              <xsl:call-template name="vertical-navigation">
-                <xsl:with-param name="last" select="$lastfoil"/>
-                <xsl:with-param name="prev" select="$prevfoil"/>
-                <xsl:with-param name="next" select="$nextfoil"/>
-              </xsl:call-template>
+		<xsl:call-template name="vertical-navigation">
+		  <xsl:with-param name="last" select="$lastfoil"/>
+		  <xsl:with-param name="prev" select="$prevfoil"/>
+		  <xsl:with-param name="next" select="$nextfoil"/>
+		</xsl:call-template>
 
-            </td>
-            <td valign="top" align="left">
-	      <xsl:if test="$body.bg.color != ''">
-		<xsl:attribute name="bgcolor">
-		  <xsl:value-of select="$body.bg.color"/>
-		</xsl:attribute>
-	      </xsl:if>
+	      </td>
+	      <td valign="top" align="left">
+		<xsl:if test="$body.bg.color != ''">
+		  <xsl:attribute name="bgcolor">
+		    <xsl:value-of select="$body.bg.color"/>
+		  </xsl:attribute>
+		</xsl:if>
 
-              <div class="{name(.)}">
-                <xsl:apply-templates/>
-              </div>
-            </td>
-          </tr>
+		<div class="{name(.)}">
+		  <xsl:apply-templates/>
+		</div>
+	      </td>
+	    </tr>
 
-          <tr>
-            <td>&#160;</td>
-            <td><xsl:apply-templates select="." mode="footer"/></td>
-          </tr>
-        </table>
-      </body>
+	    <tr>
+	      <td>&#160;</td>
+	      <td><xsl:apply-templates select="." mode="footer"/></td>
+	    </tr>
+	  </table>
+	</body>
       </html>
     </xsl:with-param>
   </xsl:call-template>
