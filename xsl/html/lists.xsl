@@ -306,6 +306,14 @@
   <!-- nop -->
 </xsl:template>
 
+<xsl:template match="itemizedlist/titleabbrev|orderedlist/titleabbrev">
+  <!--nop-->
+</xsl:template>
+
+<xsl:template match="variablelist/titleabbrev">
+  <!--nop-->
+</xsl:template>
+
 <xsl:template match="listitem" mode="xref">
   <xsl:number format="1"/>
 </xsl:template>
