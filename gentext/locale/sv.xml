@@ -91,8 +91,8 @@
 <gentext key="refsection" text=""/>
 <gentext key="RefSynopsisDiv" text="Synopsis"/>
 <gentext key="refsynopsisdiv" text="Synopsis"/> <!-- en -->
-<gentext key="RevHistory" text="Revisions Historik;"/>
-<gentext key="revhistory" text="Revisions Historik;"/>
+<gentext key="RevHistory" text="Revisionshistorik"/>
+<gentext key="revhistory" text="Revisionshistorik"/>
 <gentext key="Revision" text="Revision"/>
 <gentext key="revision" text="Revision"/>
 <gentext key="sect1" text="Section"/> <!-- en -->
@@ -103,9 +103,9 @@
 <gentext key="Section" text="Avsnitt"/>
 <gentext key="section" text="avsnitt"/>
 <gentext key="See" text="Se"/>
-<gentext key="see" text="Se"/>
+<gentext key="see" text="se"/>
 <gentext key="SeeAlso" text="Se &#196;ven"/>
-<gentext key="seealso" text="Se &#196;ven"/>
+<gentext key="seealso" text="se &#228;ven"/>
 <gentext key="Seealso" text="Se &#228;ven"/>
 <gentext key="Set" text="Set"/>
 <gentext key="set" text="Set"/>
@@ -127,14 +127,14 @@
 <gentext key="and" text="och"/>
 <gentext key="by" text="av"/>
 <gentext key="called" text="kallas"/>
-<gentext key="edited" text="Redigerad"/>
 <gentext key="Edited" text="Redigerad"/>
+<gentext key="edited" text="Redigerad"/>
 <gentext key="Editedby" text="Redigerad av"/>
 <gentext key="editedby" text="Redigerad av"/>
 <gentext key="in" text="i"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
-<gentext key="nonexistantelement" text="non-existant element"/>
+<gentext key="nonexistantelement" text="icke-existerande element"/>
 <gentext key="Notes" text="Noter"/>
 <gentext key="notes" text="Noter"/>
 <gentext key="Pgs" text="Sid."/>
@@ -146,26 +146,26 @@
 <gentext key="TableofContents" text="Inneh&#229;llsf&#246;rteckning"/>
 <gentext key="tableofcontents" text="Inneh&#229;llsf&#246;rteckning"/>
 <gentext key="the" text=""/>
-<gentext key="unexpectedelementname" text="Unexpected element name"/>
+<gentext key="unexpectedelementname" text="Ov&#228;ntat elementnamn"/>
 <gentext key="unsupported" text="unsupported"/>
-<gentext key="xrefto" text="xref till"/>
+<gentext key="xrefto" text="korsreferens till"/>
 
-<gentext key="listofequations" text="Ekvationsf&#246;rteckning"/>
 <gentext key="ListofEquations" text="Ekvationsf&#246;rteckning"/>
+<gentext key="listofequations" text="Ekvationsf&#246;rteckning"/>
 <gentext key="ListofExamples" text="Exempelf&#246;rteckning"/>
 <gentext key="listofexamples" text="Exempelf&#246;rteckning"/>
 <gentext key="ListofFigures" text="Figurf&#246;rteckning"/>
 <gentext key="listoffigures" text="Figurf&#246;rteckning"/>
-<gentext key="listoftables" text="Tabellf&#246;rteckning"/>
 <gentext key="ListofTables" text="Tabellf&#246;rteckning"/>
+<gentext key="listoftables" text="Tabellf&#246;rteckning"/>
 <gentext key="ListofUnknown" text="F&#246;rteckning av ok&#228;nda"/>
 <gentext key="listofunknown" text="F&#246;rteckning av ok&#228;nda"/>
 
 <gentext key="nav-home" text="Hem"/>
 <gentext key="nav-next" text="N&#228;sta"/>
-<gentext key="nav-next-sibling" text="Snabbt bak&#229;t"/>
+<gentext key="nav-next-sibling" text="Snabbt fram&#229;t"/>
 <gentext key="nav-prev" text="F&#246;reg&#229;ende"/>
-<gentext key="nav-prev-sibling" text="Snabbt fram&#229;t"/>
+<gentext key="nav-prev-sibling" text="Snabbt bak&#229;t"/>
 <gentext key="nav-up" text="Upp"/>
 
 <gentext key="sectioncalled" text="the section called"/> <!-- en -->
@@ -476,6 +476,54 @@
 <template name="MsgAud"><MsgAud/>: </template>
 <template name="MsgLevel"><MsgLevel/>: </template>
 <template name="MsgOrig"><MsgOrig/>: </template>
+</context>
+
+<context name="datetime">
+<template name="format">d-m-Y</template>
+</context>
+
+<context name="datetime-full">
+<template name="January">Januari</template>
+<template name="February">Februari</template>
+<template name="March">Mars</template>
+<template name="April">April</template>
+<template name="May">Maj</template>
+<template name="June">Juni</template>
+<template name="July">Juli</template>
+<template name="August">Augusti</template>
+<template name="September">September</template>
+<template name="October">Oktober</template>
+<template name="November">November</template>
+<template name="December">December</template>
+<template name="Monday">M&#229;ndag</template>
+<template name="Tuesday">Tisdag</template>
+<template name="Wednesday">Onsdag</template>
+<template name="Thursday">Torsdag</template>
+<template name="Friday">Fredag</template>
+<template name="Saturday">L&#246;rdag</template>
+<template name="Sunday">S&#246;ndag</template>
+</context>
+
+<context name="datetime-abbrev">
+<template name="Jan">Jan</template>
+<template name="Feb">Feb</template>
+<template name="Mar">Mar</template>
+<template name="Apr">Apr</template>
+<template name="May">Maj</template>
+<template name="Jun">Jun</template>
+<template name="Jul">Jul</template>
+<template name="Aug">Aug</template>
+<template name="Sep">Sep</template>
+<template name="Oct">Okt</template>
+<template name="Nov">Nov</template>
+<template name="Dec">Dec</template>
+<template name="Mon">Mon</template>
+<template name="Tue">Tis</template>
+<template name="Wed">Ons</template>
+<template name="Thu">Tor</template>
+<template name="Fri">Fre</template>
+<template name="Sat">L&#246;r</template>
+<template name="Sun">S&#246;n</template>
 </context>
 
 <context name="htmlhelp">
