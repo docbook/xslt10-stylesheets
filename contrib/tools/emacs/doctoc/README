@@ -1,0 +1,48 @@
+DOCbook Table Of Contents -- doctoc
+===================================
+
+Overview
+--------
+
+The doctoc package provides a navigation aid for editing richly
+structured DocBook documents with (X)Emacs. It generates a table of
+contents (TOC) for the current buffer using an external perl script at
+the moment. The TOC is displayed in a seperate buffer with a suiteable
+major mode to jump to the respective destination.
+
+Most of the current implementation was meant to be a prototype but
+turned out to be extremely useful for me already. Speed is no issue
+compared to PSGML's parsing time.
+
+Installation
+------------
+
+Put toc.pl somewhere in your $PATH. It needs perl5 with XML::Parser
+module. Installation instructions for doctoc.el can be found directly
+in the file. It can be byte-compiled, but that's not neccesary,
+haven't seen any noticeable delay caused by doctoc.el in comparison to
+toc.pl.
+
+Future Plans
+------------
+
+1. Removal of XEmacs specific stuff
+2. Use autoloads, customize package, other Emacs conventions
+3. Check if PSGMLs parse tree can/should be used
+4. Support for parsed external entities, i.e. documents split into
+   multiple files, with single TOC (not possible with XML::Parser)
+5. Look into using speedbar
+6. ID/IDREF display/selection in TOC
+
+Credits
+-------
+
+I do miss RefTeX's/AucTeX's elaborate features, all ideas borrowed
+there.
+
+Contact
+-------
+
+Please use the SourceForge facilities (DocBook open repository
+project) or contact me at Jens.Emmerich@itp.uni-leipzig.de and be
+patient.
