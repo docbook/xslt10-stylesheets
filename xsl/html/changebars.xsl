@@ -27,6 +27,8 @@ span.off     {  }
 <xsl:template match="*[@revisionflag]">
   <xsl:choose>
     <xsl:when test="local-name(.) = 'para'
+                    or local-name(.) = 'simpara'
+                    or local-name(.) = 'formalpara'
                     or local-name(.) = 'section'
                     or local-name(.) = 'sect1'
                     or local-name(.) = 'sect2'
