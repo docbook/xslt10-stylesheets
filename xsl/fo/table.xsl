@@ -273,9 +273,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   <xsl:variable name="group" select="$row/parent::*[1]"/>
   <xsl:variable name="frame" select="ancestor::tgroup/parent::*/@frame"/>
 
-  <xsl:param name="content">
+  <xsl:variable name="content">
     <xsl:apply-templates/>
-  </xsl:param>
+  </xsl:variable>
 
   <fo:table-cell>
     <xsl:choose>
