@@ -1135,7 +1135,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % simplemsgentry.element "INCLUDE">
 <![ %simplemsgentry.element; [
-<!ELEMENT simplemsgentry (msgtext, msgexplan)>
+<!ELEMENT simplemsgentry (msgtext, msgexplan+)>
 <!--end of simplemsgentry.element-->]]>
 
 <!ENTITY % simplemsgentry.attlist "INCLUDE">
