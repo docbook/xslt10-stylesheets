@@ -395,9 +395,9 @@
 
   <xsl:variable name="viewport">
     <xsl:choose>
-      <xsl:when test="inlinegraphic
-                      | ancestor::inlinemediaobject
-                      | ancestor::inlineequation">0</xsl:when>
+      <xsl:when test="local-name(.) = 'inlinegraphic'
+                      or ancestor::inlinemediaobject
+                      or ancestor::inlineequation">0</xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$make.graphic.viewport"/>
       </xsl:otherwise>
