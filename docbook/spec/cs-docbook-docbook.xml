@@ -378,16 +378,16 @@ than the requirements for maintaining customer information.</para>
 <ulink url="http://www.oasis-open.org/committees/ciq/ciq.shtml#5">xNL</ulink>
 markup with the following simple transformation:</para>
 
-<informaltable frame="none">
-<tgroup cols="2">
-<colspec colsep="1"/>
+<informaltable frame="all">
+<tgroup cols="2" colsep="1" rowsep="1">
+<?dbhtml cellpadding="5px"?>
 <thead>
-<row rowsep="1">
+<row>
   <entry>DocBook Element</entry>
   <entry>QIC xNL Element</entry>
 </row>
 </thead>
-<tbody>
+<tbody valign="top">
 <row>
   <entry><sgmltag>honorific</sgmltag></entry>
   <entry><sgmltag>title</sgmltag></entry>
@@ -428,18 +428,17 @@ Core mapping for DocBook</ulink>
 (<ulink url="http://lists.oasis-open.org/archives/docbook-tc/200203/msg00010.html">as
 amended</ulink>).</para>
 
-<informaltable frame="none">
-<tgroup cols="3">
-<colspec colsep="1"/>
-<colspec colsep="1"/>
+<informaltable frame="all">
+<tgroup cols="3" colsep="1" rowsep="1">
+<?dbhtml cellpadding="5px"?>
 <thead>
-<row rowsep="1">
+<row>
   <entry>DC Element</entry>
   <entry>DC Label</entry>
   <entry>DocBook Element(s)</entry>
 </row>
 </thead>
-<tbody>
+<tbody valign="top">
 <row>
   <entry>Title</entry>
   <entry>Title</entry>
