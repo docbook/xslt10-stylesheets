@@ -170,7 +170,7 @@ fi
 ## From SAXON documentation:
 ##
 ## SAXON comes with a bundled XML parser, a modified copy of the
-## Ælfred parser, adapted to notify comments to the application. SAXON
+## AElred parser, adapted to notify comments to the application. SAXON
 ## has been tested successfully in the past with Xerces, Lark, SUN
 ## Project X, Crimson, Oracle XML, xerces, xml4j, and xp. Use of a
 ## SAX2-compliant parser is preferred, as SAX1 does not allow XML
@@ -225,13 +225,7 @@ TRANSFACTORY=com.icl.saxon.TransformerFactoryImpl
 ## resolver classes
 ## FIXME: do we specifically *not* want to use the sun resolver?
 ##
-for path in $RESOLVER \
-	    "/projects/apache/xml-commons/java/build/classes" ; do
-  if [ -f "$path" -o -d "$path" ]; then
-    RESOLVER="$path"
-    break
-  fi
-done
+RESOLVER=`findresolver`
 if [ -f "$RESOLVER" -o -d "$RESOLVER" ]; then
   # use the apache resolver
   XARG=${XARG:--x org.apache.xml.resolver.tools.ResolvingXMLReader}
