@@ -859,7 +859,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 		|authorgroup|authorinitials|bibliomisc|biblioset
 		|collab|confgroup|contractnum|contractsponsor
 		|copyright|corpauthor|corpname|date|edition
-		|editor|invpartnumber|isbn|issn|biblioid|citebiblioid|issuenum|orgname
+		|editor|invpartnumber|isbn|issn|issuenum|orgname
+		|biblioid|citebiblioid|bibliosource|bibliorelation|bibliocoverage
 		|othercredit|pagenums|printhistory|productname
 		|productnumber|pubdate|publisher|publishername
 		|pubsnumber|releaseinfo|revhistory|seriesvolnums
@@ -5119,6 +5120,16 @@ in the text (no (0) value, the default)
 <!--end of issn.module-->]]>
 
 <!-- BiblioId ................. -->
+<!ENTITY % biblio.class.attrib
+		"class	(uri
+                         |doi
+                         |isbn
+                         |issn
+                         |libraryofcongress
+                         |pubnumber
+                         |other)	#IMPLIED
+		otherclass	CDATA	#IMPLIED"
+>
 
 <!ENTITY % biblioid.module "INCLUDE">
 <![%biblioid.module;[
@@ -5133,8 +5144,7 @@ in the text (no (0) value, the default)
 <!ENTITY % biblioid.attlist "INCLUDE">
 <![%biblioid.attlist;[
 <!ATTLIST biblioid
-		class	(urn|doi|isbn|issn|pubnumber|other)	#IMPLIED
-		otherclass	CDATA	#IMPLIED
+		%biblio.class.attrib;
 		%common.attrib;
 		%biblioid.role.attrib;
 		%local.biblioid.attrib;
@@ -5157,14 +5167,101 @@ in the text (no (0) value, the default)
 <!ENTITY % citebiblioid.attlist "INCLUDE">
 <![%citebiblioid.attlist;[
 <!ATTLIST citebiblioid
-		class	(urn|doi|isbn|issn|pubnumber|other)	#IMPLIED
-		otherclass	CDATA	#IMPLIED
+		%biblio.class.attrib;
 		%common.attrib;
 		%citebiblioid.role.attrib;
 		%local.citebiblioid.attrib;
 >
 <!--end of citebiblioid.attlist-->]]>
 <!--end of citebiblioid.module-->]]>
+
+<!-- BiblioSource ................. -->
+
+<!ENTITY % bibliosource.module "INCLUDE">
+<![%bibliosource.module;[
+<!ENTITY % local.bibliosource.attrib "">
+<!ENTITY % bibliosource.role.attrib "%role.attrib;">
+
+<!ENTITY % bibliosource.element "INCLUDE">
+<![%bibliosource.element;[
+<!ELEMENT bibliosource %ho; (%docinfo.char.mix;)*>
+<!--end of bibliosource.element-->]]>
+
+<!ENTITY % bibliosource.attlist "INCLUDE">
+<![%bibliosource.attlist;[
+<!ATTLIST bibliosource
+		%biblio.class.attrib;
+		%common.attrib;
+		%bibliosource.role.attrib;
+		%local.bibliosource.attrib;
+>
+<!--end of bibliosource.attlist-->]]>
+<!--end of bibliosource.module-->]]>
+
+<!-- BiblioRelation ................. -->
+
+<!ENTITY % bibliorelation.module "INCLUDE">
+<![%bibliorelation.module;[
+<!ENTITY % local.bibliorelation.attrib "">
+<!ENTITY % local.bibliorelation.types "">
+<!ENTITY % bibliorelation.role.attrib "%role.attrib;">
+
+<!ENTITY % bibliorelation.element "INCLUDE">
+<![%bibliorelation.element;[
+<!ELEMENT bibliorelation %ho; (%docinfo.char.mix;)*>
+<!--end of bibliorelation.element-->]]>
+
+<!ENTITY % bibliorelation.attlist "INCLUDE">
+<![%bibliorelation.attlist;[
+<!ATTLIST bibliorelation
+		%biblio.class.attrib;
+                type     (isversionof
+                         |hasversion
+                         |isreplacedby
+                         |replaces
+                         |isrequiredby
+                         |requires
+                         |ispartof
+                         |haspart
+                         |isreferencedby
+                         |references
+                         |isformatof
+                         |hasformat
+                         |other
+                         %local.bibliorelation.types;)       #IMPLIED
+		othertype	CDATA	#IMPLIED
+		%common.attrib;
+		%bibliorelation.role.attrib;
+		%local.bibliorelation.attrib;
+>
+<!--end of bibliorelation.attlist-->]]>
+<!--end of bibliorelation.module-->]]>
+
+<!-- BiblioCoverage ................. -->
+
+<!ENTITY % bibliocoverage.module "INCLUDE">
+<![%bibliocoverage.module;[
+<!ENTITY % local.bibliocoverage.attrib "">
+<!ENTITY % bibliocoverage.role.attrib "%role.attrib;">
+
+<!ENTITY % bibliocoverage.element "INCLUDE">
+<![%bibliocoverage.element;[
+<!ELEMENT bibliocoverage %ho; (%docinfo.char.mix;)*>
+<!--end of bibliocoverage.element-->]]>
+
+<!ENTITY % bibliocoverage.attlist "INCLUDE">
+<![%bibliocoverage.attlist;[
+<!ATTLIST bibliocoverage
+		spatial	(dcmipoint|iso3166|dcmibox|tgn|other)	#IMPLIED
+		otherspatial	CDATA	#IMPLIED
+		temporal (dcmiperiod|w3c-dtf|other) #IMPLIED
+		othertemporal	CDATA	#IMPLIED
+		%common.attrib;
+		%bibliocoverage.role.attrib;
+		%local.bibliocoverage.attrib;
+>
+<!--end of bibliocoverage.attlist-->]]>
+<!--end of bibliocoverage.module-->]]>
 
 <!-- InvPartNumber .................... -->
 
