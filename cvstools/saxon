@@ -33,7 +33,6 @@ while [ "$DONE" = "0" ]; do
 		shift;
 		;;
 	-j)	JAR=1;
-	        echo "Using jar file for extension classes"
 		shift;
 		;;
 	-652)	VERSION=652;
@@ -218,41 +217,6 @@ if [ -f "$RESOLVER" -o -d "$RESOLVER" ]; then
   if [ ! "$RARG" ]; then
     RARG="-r org.apache.xml.resolver.tools.CatalogResolver"
   fi
-fi
-
-##
-## locate Xerces classpath
-##
-if [ ! "$XERCES" ]; then
-  for path in "/projects/apache/xml-xerces/java/build/classes" \
-              "/usr/local/share/java/xerces.jar" \
-              "/usr/local/java/xerces.jar" \
-              "/usr/share/java/xerces.jar"; do
-    if [ -f "$path" -o -d "$path" ]; then
-      XERCES="$path"
-    fi
-  done
-fi
-if [ ! "$XERCES" ]; then
-  echo "warning: cannot locate Xerces (xerces.jar)" 1>&2
-fi
-
-##
-## locate JAXP classpath
-##
-if [ ! "$JAXP" ]; then
-  for path in "/usr/local/share/java/jaxp.jar" \
-              "/usr/local/java/jaxp.jar" \
-              "/usr/local/jaxp-1.1/jaxp.jar" \
-              "/usr/local/share/java/jaxp-1.1/jaxp.jar" \
-              "/usr/share/java/jaxp.jar"; do
-    if [ -f "$path" -o -d "$path" ]; then
-      JAXP="$path"
-    fi
-  done
-fi
-if [ ! "$JAXP" ]; then
-  echo "warning: cannot locate JAXP (jaxp.jar)" 1>&2
 fi
 
 CLASSPATH=$SAXON:$NDWEXT:$JAXP:$RESOLVER:$XERCES:$CLASSPATH
