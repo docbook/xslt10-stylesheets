@@ -191,11 +191,15 @@ title of the element. This does not include the label.
   <xsl:variable name="refentrytitle" select="$refmeta//refentrytitle"/>
   <xsl:variable name="refnamediv" select=".//refnamediv"/>
   <xsl:variable name="refname" select="$refnamediv//refname"/>
+  <xsl:variable name="refdesc" select="$refnamediv//refdescriptor"/>
 
   <xsl:variable name="title">
     <xsl:choose>
       <xsl:when test="$refentrytitle">
         <xsl:apply-templates select="$refentrytitle[1]" mode="title.markup"/>
+      </xsl:when>
+      <xsl:when test="$refdesc">
+        <xsl:apply-templates select="$refdesc" mode="title.markup"/>
       </xsl:when>
       <xsl:when test="$refname">
         <xsl:apply-templates select="$refname[1]" mode="title.markup"/>
@@ -207,7 +211,7 @@ title of the element. This does not include the label.
   <xsl:copy-of select="$title"/>
 </xsl:template>
 
-<xsl:template match="refentrytitle|refname" mode="title.markup">
+<xsl:template match="refentrytitle|refname|refdescriptor" mode="title.markup">
   <xsl:param name="allow-anchors" select="0"/>
   <xsl:choose>
     <xsl:when test="$allow-anchors != 0">

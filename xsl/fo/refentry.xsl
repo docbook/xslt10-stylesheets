@@ -353,6 +353,9 @@
         <xsl:when test="../refmeta/refentrytitle">
           <xsl:apply-templates select="../refmeta/refentrytitle"/>
         </xsl:when>
+	<xsl:when test="refdescriptor">
+          <xsl:apply-templates select="refdescriptor[1]"/>
+	</xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates select="refname[1]"/>
         </xsl:otherwise>
@@ -360,17 +363,25 @@
       <xsl:apply-templates select="refpurpose"/>
     </fo:block>
 
+    <!-- what was this for?
     <fo:block>
-      <xsl:for-each select="refname">
-        <xsl:apply-templates select="."/>
-        <xsl:if test="following-sibling::refname">
-          <xsl:text>, </xsl:text>
-        </xsl:if>
-      </xsl:for-each>
+      <xsl:choose>
+	<xsl:when test="refdescriptor">
+	  <xsl:apply-templates select="refdescriptor"/>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:for-each select="refname">
+	    <xsl:apply-templates select="."/>
+	    <xsl:if test="following-sibling::refname">
+	      <xsl:text>, </xsl:text>
+	    </xsl:if>
+	  </xsl:for-each>
+	</xsl:otherwise>
+      </xsl:choose>
     </fo:block>
+    -->
   </fo:block>
 </xsl:template>
-
 
 <xsl:template match="refname">
   <xsl:apply-templates/>
@@ -386,7 +397,7 @@
 </xsl:template>
 
 <xsl:template match="refdescriptor">
-  <!-- todo: finish this -->
+  <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="refclass">
