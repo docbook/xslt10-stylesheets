@@ -393,7 +393,6 @@
 </xsl:template>
 
 <xsl:template match="emphasis">
-  <xsl:call-template name="inline.italicseq"/>
   <xsl:choose>
     <xsl:when test="@role='bold'">
       <xsl:call-template name="inline.boldseq"/>
