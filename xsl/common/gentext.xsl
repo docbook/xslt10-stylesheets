@@ -181,8 +181,9 @@
   <xsl:message>
     <xsl:text>object.xref.markup: </xsl:text>
     <xsl:value-of select="local-name(.)"/>
-    <xsl:text>: </xsl:text>
+    <xsl:text>: [</xsl:text>
     <xsl:value-of select="$template"/>
+    <xsl:text>]</xsl:text>
   </xsl:message>
 -->
 
@@ -221,14 +222,14 @@
   <xsl:param name="subtitle" select="''"/>
   <xsl:param name="label" select="''"/>
   <xsl:param name="pagenumber" select="''"/>
-  
+
   <xsl:choose>
     <xsl:when test="contains($template, '%')">
       <xsl:value-of select="substring-before($template, '%')"/>
       <xsl:variable name="candidate"
              select="substring(substring-after($template, '%'), 1, 1)"/>
       <xsl:choose>
-        <xsl:when test="$candidate = 't' ">
+        <xsl:when test="$candidate = 't'">
           <xsl:choose>
             <xsl:when test="$title != ''">
               <xsl:value-of select="$title"/>
@@ -240,7 +241,7 @@
             </xsl:otherwise>
           </xsl:choose>
         </xsl:when>
-        <xsl:when test="$candidate = 's' ">
+        <xsl:when test="$candidate = 's'">
           <xsl:choose>
             <xsl:when test="$subtitle != ''">
               <xsl:value-of select="$subtitle"/>
@@ -252,7 +253,7 @@
             </xsl:otherwise>
           </xsl:choose>
         </xsl:when>
-        <xsl:when test="$candidate = 'n' ">
+        <xsl:when test="$candidate = 'n'">
           <xsl:choose>
             <xsl:when test="$label != ''">
               <xsl:value-of select="$label"/>
@@ -290,8 +291,7 @@
         <xsl:with-param name="subtitle" select="$subtitle"/>
         <xsl:with-param name="label" select="$label"/>
         <xsl:with-param name="pagenumber" select="$label"/>
-      </xsl:call-template>  
-        
+      </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="$template"/>
