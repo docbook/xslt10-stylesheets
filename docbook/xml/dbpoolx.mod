@@ -169,7 +169,7 @@
                 |classname|methodname|interfacename|exceptionname
                 |ooclass|oointerface|ooexception
                 |command|computeroutput
-		|database|email|envar|errorcode|errorname|errortype|filename
+		|database|email|envar|errorcode|errorname|errortype|errortext|filename
 		|function|guibutton|guiicon|guilabel|guimenu|guimenuitem
 		|guisubmenu|hardware|interface|keycap
 		|keycode|keycombo|keysym|literal|constant|markup|medialabel
@@ -5999,6 +5999,26 @@ OtherCredit. -->
 >
 <!--end of errorname.attlist-->]]>
 <!--end of errorname.module-->]]>
+
+<!ENTITY % errortext.module "INCLUDE">
+<![%errortext.module;[
+<!ENTITY % local.errortext.attrib "">
+<!ENTITY % errortext.role.attrib "%role.attrib;">
+
+<!ENTITY % errortext.element "INCLUDE">
+<![%errortext.element;[
+<!ELEMENT errortext %ho; (%smallcptr.char.mix;)*>
+<!--end of errortext.element-->]]>
+
+<!ENTITY % errortext.attlist "INCLUDE">
+<![%errortext.attlist;[
+<!ATTLIST errortext
+		%common.attrib;
+		%errortext.role.attrib;
+		%local.errortext.attrib;
+>
+<!--end of errortext.attlist-->]]>
+<!--end of errortext.module-->]]>
 
 <!ENTITY % errortype.module "INCLUDE">
 <![%errortype.module;[
