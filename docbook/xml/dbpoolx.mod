@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook XML information pool module V4.4b1 ............................. -->
+<!-- DocBook XML information pool module V4.4CR1 ............................. -->
 <!-- File dbpoolx.mod ..................................................... -->
 
 <!-- Copyright 1992-2004 HaL Computer Systems, Inc.,
@@ -8344,5 +8344,5 @@ OtherCredit. -->
 <!--end of seeseealso.module-->]]>
 <!--end of indexterm.content.module-->]]>
 
-<!-- End of DocBook XML information pool module V4.4b1 ...................... -->
+<!-- End of DocBook XML information pool module V4.4CR1 ...................... -->
 <!-- ...................................................................... -->
