@@ -304,6 +304,9 @@
   <!-- xsl:use-attribute-sets takes only a Qname, not a variable -->
   <fo:block>
     <xsl:choose>
+      <xsl:when test="preceding-sibling::refnamediv">
+	<!-- no title on secondary refnamedivs! -->
+      </xsl:when>
       <xsl:when test="$section.level = 1">
         <fo:block xsl:use-attribute-sets="refentry.title.properties">
           <fo:block xsl:use-attribute-sets="section.title.level1.properties">
@@ -348,7 +351,10 @@
       </xsl:otherwise>
     </xsl:choose>
 
-    <fo:block space-after="1em">
+    <fo:block>
+      <xsl:if test="not(following-sibling::refnamediv)">
+	<xsl:attribute name="space-after">1em</xsl:attribute>
+      </xsl:if>
       <xsl:choose>
         <xsl:when test="../refmeta/refentrytitle">
           <xsl:apply-templates select="../refmeta/refentrytitle"/>
