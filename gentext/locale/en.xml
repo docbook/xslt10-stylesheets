@@ -439,6 +439,25 @@
 
 </context>
 
+<context name="xref-number-and-title">
+
+<template name="bridgehead"><Section/>&#160;%n, &#x201C;%t&#x201D;</template>
+<template name="refsection"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="refsect1"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="refsect2"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="refsect3"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="sect1"><Section/>&#160;%n, &#x201C;%t&#x201D;</template>
+<template name="sect2"><Section/>&#160;%n, &#x201C;%t&#x201D;</template>
+<template name="sect3"><Section/>&#160;%n, &#x201C;%t&#x201D;</template>
+<template name="sect4"><Section/>&#160;%n, &#x201C;%t&#x201D;</template>
+<template name="sect5"><Section/>&#160;%n, &#x201C;%t&#x201D;</template>
+<template name="section"><Section/>&#160;%n, &#x201C;%t&#x201D;</template>
+<template name="simplesect"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="chapter"><Chapter/>&#160;%n, %t</template>
+<template name="appendix"><Appendix/>&#160;%n, %t</template>
+
+</context>
+
 <context name="authorgroup">
 <template name="sep"><listcomma/> </template>
 <template name="sep2"> <and/> </template>
