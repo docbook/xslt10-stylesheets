@@ -605,7 +605,7 @@
   </xsl:variable>
 
   <xsl:variable name="title">
-    <xsl:apply-templates select="." mode="title.markup"/>
+    <xsl:apply-templates select="." mode="object.title.markup"/>
   </xsl:variable>
 
   <xsl:variable name="titleabbrev">
