@@ -1,0 +1,21 @@
+<refentry>
+<refmeta>
+<refentrytitle>generate.book.toc</refentrytitle>
+<refmiscinfo role="type">boolean</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>generate.book.toc</refname>
+<refpurpose>FIXME:</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id="generate.book.toc"><xsl:param name="generate.book.toc" select="1"/></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:
+</para>
+
+</refsect1>
+</refentry>

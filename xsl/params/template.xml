@@ -1,0 +1,20 @@
+<refentry>
+<refmeta>
+<refentrytitle>[[NAME]]</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>[[NAME]]</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id="[[NAME]]"><xsl:param name="[[NAME]]" select=""/></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>

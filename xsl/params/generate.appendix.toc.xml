@@ -1,0 +1,21 @@
+<refentry>
+<refmeta>
+<refentrytitle>generate.appendix.toc</refentrytitle>
+<refmiscinfo role="type">boolean</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>generate.appendix.toc</refname>
+<refpurpose>FIXME:</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id="generate.appendix.toc"><xsl:param name="generate.appendix.toc" select="1"/></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:
+</para>
+
+</refsect1>
+</refentry>

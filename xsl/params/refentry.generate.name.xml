@@ -1,0 +1,22 @@
+<refentry>
+<refmeta>
+<refentrytitle>refentry.generate.name</refentrytitle>
+<refmiscinfo role="type">boolean</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>refentry.generate.name</refname>
+<refpurpose>Output NAME header before 'RefName'(s)?</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id="refentry.generate.name"><xsl:param name="refentry.generate.name" select="1"/></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>If true (non-zero), a "NAME" section title is output before the list
+of 'RefName's.
+</para>
+
+</refsect1>
+</refentry>
