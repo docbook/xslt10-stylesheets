@@ -118,6 +118,11 @@
     </xsl:call-template>
   </xsl:variable>
   <p>
+    <xsl:if test="@role and $para.propagates.style != 0">
+      <xsl:attribute name="class">
+        <xsl:value-of select="@role"/>
+      </xsl:attribute>
+    </xsl:if>
     <sup>
       <xsl:text>[</xsl:text>
       <a name="{$name}" href="{$href}">
