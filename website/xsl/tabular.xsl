@@ -128,8 +128,12 @@
             </xsl:attribute>
           </xsl:if>
           <tr>
-            <td><img src="{$table.spacer.image}" alt=" " width="1" height="1"/></td>
-            <xsl:call-template name="hspacer"/>
+            <td xsl:use-attribute-sets="table.navigation.cell.properties">
+              <img src="{$table.spacer.image}" alt=" " width="1" height="1"/>
+            </td>
+            <xsl:call-template name="hspacer">
+              <xsl:with-param name="vspacer" select="1"/>
+            </xsl:call-template>
             <td rowspan="2" xsl:use-attribute-sets="table.body.cell.properties">
               <xsl:if test="$navbodywidth != ''">
                 <xsl:attribute name="width">
@@ -199,6 +203,7 @@
 </xsl:template>
 
 <xsl:template name="hspacer">
+  <xsl:param name="vspacer" select="0"/>
   <!-- nop -->
 </xsl:template>
 
