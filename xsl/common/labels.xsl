@@ -23,10 +23,13 @@ element label.</para>
 </xsl:template>
 
 <xsl:template match="*" mode="label.markup">
-  <xsl:message>
-    <xsl:text>Request for label of unexpected element: </xsl:text>
-    <xsl:value-of select="name(.)"/>
-  </xsl:message>
+  <xsl:param name="verbose" select="1"/>
+  <xsl:if test="$verbose">
+    <xsl:message>
+      <xsl:text>Request for label of unexpected element: </xsl:text>
+      <xsl:value-of select="name(.)"/>
+    </xsl:message>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="set|book" mode="label.markup">
