@@ -1,12 +1,12 @@
 XSLT=../cvstools/saxon
 XJPARSE=../cvstools/xjparse
 
-SOURCES=af.xml bg.xml bn.xml ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml \
+SOURCES=af.xml bg.xml bn.xml bs.xml ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml \
 	et.xml fi.xml fr.xml hu.xml id.xml it.xml ja.xml ko.xml nl.xml  \
 	no.xml pl.xml pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml \
 	sr.xml sr_Latn.xml sv.xml tr.xml zh_cn.xml zh_tw.xml
 
-DSSSLENT=dbl1af.ent dbl1bg.ent dbl1bn.ent dbl1ca.ent dbl1cs.ent dbl1da.ent \
+DSSSLENT=dbl1af.ent dbl1bg.ent dbl1bn.ent dbl1bs.ent dbl1ca.ent dbl1cs.ent dbl1da.ent \
 	 dbl1de.ent dbl1el.ent dbl1en.ent dbl1es.ent dbl1et.ent dbl1fi.ent \
 	 dbl1fr.ent dbl1hu.ent dbl1id.ent dbl1it.ent dbl1ja.ent dbl1ko.ent \
          dbl1nl.ent dbl1no.ent dbl1pl.ent dbl1pt.ent dbl1ro.ent \
@@ -25,6 +25,7 @@ dsssl-files: $(DSSSLENT)
 dbl1af.ent: locale/af.xml
 dbl1bg.ent: locale/bg.xml
 dbl1bn.ent: locale/bn.xml
+dbl1bs.ent: locale/bs.xml
 dbl1ca.ent: locale/ca.xml
 dbl1cs.ent: locale/cs.xml
 dbl1da.ent: locale/da.xml
