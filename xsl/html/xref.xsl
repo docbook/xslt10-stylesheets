@@ -933,14 +933,14 @@
 
       <xsl:choose>
         <xsl:when test="$href != ''">
-          <a href="{$href}">
+          <a href="{$href}" class="olink">
             <xsl:copy-of select="$hottext"/>
           </a>
           <xsl:copy-of select="$olink.page.citation"/>
           <xsl:copy-of select="$olink.docname.citation"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:copy-of select="$hottext"/>
+          <span class="olink"><xsl:copy-of select="$hottext"/></span>
           <xsl:copy-of select="$olink.page.citation"/>
           <xsl:copy-of select="$olink.docname.citation"/>
         </xsl:otherwise>
@@ -990,7 +990,7 @@
     
       <xsl:choose>
         <xsl:when test="$href != ''">
-          <a href="{$href}">
+          <a href="{$href}" class="olink">
             <xsl:call-template name="olink.hottext"/>
           </a>
         </xsl:when>
