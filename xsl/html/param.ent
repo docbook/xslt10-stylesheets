@@ -187,6 +187,7 @@
 <!ENTITY runinhead.title.end.punct SYSTEM "../params/runinhead.title.end.punct.xml">
 <!ENTITY saxon.character.representation SYSTEM "../params/saxon.character.representation.xml">
 <!ENTITY section.autolabel SYSTEM "../params/section.autolabel.xml">
+<!ENTITY section.autolabel.max.depth SYSTEM "../params/section.autolabel.max.depth.xml">
 <!ENTITY section.label.includes.component.label SYSTEM "../params/section.label.includes.component.label.xml">
 <!ENTITY segmentedlist.as.table SYSTEM "../params/segmentedlist.as.table.xml">
 <!ENTITY shade.verbatim SYSTEM "../params/shade.verbatim.xml">
