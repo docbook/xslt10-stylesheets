@@ -1,4 +1,7 @@
 include ../cvstools/Makefile.incl
+ZIPVER=
+MERGEVER=
+NEWVER=
 
 all: slides.dtd
 
@@ -6,8 +9,8 @@ slides.dtd: slides-custom.dtd
 	$(FLATTEN) $< > $@
 
 check:
-	$(XJPARSE) test.xml
-	$(XJPARSE) testcust.xml
+	$(XJPARSE) tests/test.xml
+	$(XJPARSE) tests/testcust.xml
 
 test: check
 	$(SAXON) test.xml xsl/slides.xsl
@@ -21,12 +24,42 @@ test: check
 
 distrib: check
 	$(CVS2LOG) -w
-	$(MERGECHANGELOGS) > WhatsNew
+ifeq ($(MERGEVER),)
+	$(MERGELOGS) > WhatsNew
+else
+	$(MERGELOGS) -v $(MERGEVER) > WhatsNew
+endif
 
 newversion:
-	nextversion
+ifeq ($NEWVER),)
+	$(NEXTVERSION)
+else
+	$(NEXTVERSION) -v $(NEWVER)
+endif
 	make distrib
 
-clean:
-	rm -rf slides
-	rm -f *.html slides.xml
+zip: distrib
+ifeq ($(ZIPVER),)
+	@echo You must specify ZIPVER for the zip target
+else
+	make -C tests clean
+	rm -rf /tmp/slides-$(ZIPVER)
+	rm -f /tmp/tar.exclude
+	rm -f /tmp/slides-$(ZIPVER).tar.gz
+	rm -f /tmp/slides-$(ZIPVER).zip
+	mkdir /tmp/slides-$(ZIPVER)
+	touch /tmp/tar.exclude
+	find . -print | grep /CVS$$ | cut -c3- >> /tmp/tar.exclude
+	find . -print | grep /CVS/ | cut -c3- >> /tmp/tar.exclude
+	find . -print | grep .classes | cut -c3- >> /tmp/tar.exclude
+	find . -print | grep .cvskeep | cut -c3- >> /tmp/tar.exclude
+	find . -print | grep "~$$" | cut -c3- >> /tmp/tar.exclude
+	find . -type f -name "#*"  | cut -c3- >> /tmp/tar.exclude
+	find . -type f -name ".cvsignore"  | cut -c3- >> /tmp/tar.exclude
+	find . -type f -name "Makefile*"   | cut -c3- >> /tmp/tar.exclude
+	find . -type f -name "README.CVS"   | cut -c3- >> /tmp/tar.exclude
+	tar cf - * --exclude-from /tmp/tar.exclude | (cd /tmp/slides-$(ZIPVER); tar xf -)
+	cd /tmp && tar cf - slides-$(ZIPVER) | gzip > slides-$(ZIPVER).tar.gz
+	cd /tmp && zip -rpD slides-$(ZIPVER).zip slides-$(ZIPVER)
+	rm -f tar.exclude
+endif
