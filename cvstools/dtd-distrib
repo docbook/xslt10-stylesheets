@@ -1,0 +1,95 @@
+#!/usr/bin/perl -- # -*- Perl -*-
+
+use strict;
+use Getopt::Std;
+use vars qw($opt_v $opt_n $opt_d);
+
+select STDOUT; $| = 1;
+
+my $usage = "Usage: $0 [-d] [-v version] [-n newversion]\n";
+
+die $usage if ! getopts('dv:n:');
+my $oldversion = $opt_v || undef;
+my $newversion = $opt_n || undef;
+
+die $usage if !$oldversion || !$newversion;
+
+die "You must be in the DocBook DTD directory.\n"
+    unless -f "docbook.dtd" || -f "docbookx.dtd";
+
+my @cvsbad = `cvs -n update 2>&1 | grep -v ^cvs`;
+if (@cvsbad) {
+    print STDERR @cvsbad;
+    die "CVS is not up-to-date!\n";
+}
+
+my $xml = -f "docbookx.dtd";
+my $distribdir = "docbook-$newversion";
+$distribdir = "docbook-xml-$newversion" if $xml;
+my $distribroot = "/tmp/$distribdir";
+
+if ($opt_d) {
+    print "Making distribution for $newversion\n";
+    system("rm -rf $distribroot");
+    mkdir($distribroot, 0755) || die "Failed to create $distribroot.\n";
+} else {
+    print "Changing $oldversion to $newversion\n";
+}
+
+opendir (DIR, ".");
+while (my $name = readdir(DIR)) {
+    next if -d $name;
+    next if $name =~ /\~$/;
+    next if $name eq '.cvsignore';
+    next if $name eq 'Makefile';
+    next if $name =~ /^test\./;
+    my $file = $name;
+
+    open (F, $file);
+    read (F, $_, -s $file);
+    close (F);
+
+    my $newfile = $file;
+    $newfile = "$distribroot/$name" if $opt_d;
+
+    s/$oldversion/$newversion/sg;
+
+    open (F, ">$newfile");
+    print F $_;
+    close (F);
+}
+closedir (DIR);
+
+if ($opt_d && !$xml) {
+    opendir (DIR, "../xml");
+    while (my $name = readdir(DIR)) {
+	next if -d $name;
+	next if $name =~ /\~$/;
+	next if $name eq '.cvsignore';
+	next if $name eq 'Makefile';
+	next if $name =~ /^test\./;
+	my $file = "../xml/$name";
+
+	open (F, $file);
+	read (F, $_, -s $file);
+	close (F);
+
+	my $newfile = $file;
+	$newfile = "$distribroot/$name" if $opt_d;
+
+	s/$oldversion/$newversion/sg;
+
+	if (! -f $newfile) {
+	    open (F, ">$newfile");
+	    print F $_;
+	    close (F);
+	}
+    }
+    closedir (DIR);
+}
+
+if ($opt_d) {
+    chdir ("/tmp");
+    system ("tar cf - $distribdir | gzip > $distribdir.tar.gz");
+    system ("zip -rpD $distribdir.zip $distribdir");
+}
