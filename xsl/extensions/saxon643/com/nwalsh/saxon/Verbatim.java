@@ -63,6 +63,8 @@ public class Verbatim {
   private static int modulus = 0;
   /** The width (in characters) of line numbers (for padding). */
   private static int width = 0;
+  /** The starting line number. */
+  private static int startinglinenumber = 1;
   /** The separator between the line number and the verbatim text. */
   private static String separator = "";
 
@@ -140,6 +142,9 @@ public class Verbatim {
    * <dt><code>linenumbering.separator</code></dt>
    * <dd>Specifies the string that separates line numbers from lines
    * in the program listing. (builtin default: " ").</dd>
+   * <dt><code>linenumbering.startinglinenumber</code></dt>
+   * <dd>Specifies the initial line number
+   * in the program listing. (builtin default: "1").</dd>
    * <dt><code>stylesheet.result.type</code></dt>
    * <dd>Specifies the stylesheet result type. The value is either 'fo'
    * (for XSL Formatting Objects) or it isn't. (builtin default: html).</dd>
@@ -152,6 +157,7 @@ public class Verbatim {
     // Hardcoded defaults
     modulus = 5;
     width = 3;
+    startinglinenumber = 1;
     separator = " ";
     foStylesheet = false;
 
@@ -171,6 +177,14 @@ public class Verbatim {
       width = Integer.parseInt(varString);
     } catch (NumberFormatException nfe) {
       System.out.println("$linenumbering.width is not a number: " + varString);
+    }
+
+    // Get the startinglinenumber
+    varString = getVariable(context, "linenumbering.startinglinenumber");
+    try {
+      startinglinenumber = Integer.parseInt(varString);
+    } catch (NumberFormatException nfe) {
+      System.out.println("$linenumbering.startinglinenumber is not a number: " + varString);
     }
 
     // Get the separator
@@ -245,6 +259,7 @@ public class Verbatim {
       NamePool namePool = controller.getNamePool();
       NumberLinesEmitter nlEmitter = new NumberLinesEmitter(controller,
 							    namePool,
+							    startinglinenumber,
 							    listingModulus,
 							    listingWidth,
 							    separator,

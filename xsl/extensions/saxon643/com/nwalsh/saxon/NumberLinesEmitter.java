@@ -63,6 +63,9 @@ public class NumberLinesEmitter extends CopyEmitter {
   /** The XHTML namespace name. */
   protected static String xhURI = "http://www.w3.org/1999/xhtml";
 
+  /** The first line number will be <code>startinglinenumber</code>. */
+  protected int startinglinenumber = 1;
+
   /** Every <code>modulus</code> line will be numbered. */
   protected int modulus = 5;
 
@@ -85,6 +88,7 @@ public class NumberLinesEmitter extends CopyEmitter {
    */
   public NumberLinesEmitter(Controller controller,
 			    NamePool namePool,
+			    int startingLineNumber,
 			    int modulus,
 			    int width,
 			    String separator,
@@ -94,6 +98,7 @@ public class NumberLinesEmitter extends CopyEmitter {
     firstElement = true;
 
     this.modulus = modulus;
+    this.startinglinenumber = startingLineNumber;
     this.width = width;
     this.separator = separator;
     this.foStylesheet = foStylesheet;
@@ -108,7 +113,8 @@ public class NumberLinesEmitter extends CopyEmitter {
 
     if (lineNumber == 0) {
       // The first line is always numbered
-      formatLineNumber(++lineNumber);
+      lineNumber = startinglinenumber;
+      formatLineNumber(lineNumber);
     }
 
     // Walk through the text node looking for newlines
