@@ -43,6 +43,32 @@
                         display-align="after"/>
     </fo:simple-page-master>
 
+    <!-- one sided, single column, draft mode -->
+    <fo:simple-page-master master-name="draft1"
+                           page-width="{$page.width}"
+                           page-height="{$page.height}"
+                           margin-top="{$page.margin.top}"
+                           margin-bottom="{$page.margin.bottom}"
+                           margin-left="{$page.margin.inner}"
+                           margin-right="{$page.margin.outer}">
+      <fo:region-body margin-bottom="{$body.margin.bottom}"
+                      margin-top="{$body.margin.top}">
+        <xsl:if test="$draft.watermark.image != ''">
+          <xsl:attribute name="background-image">
+            <xsl:value-of select="$draft.watermark.image"/>
+          </xsl:attribute>
+          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+        </xsl:if>
+      </fo:region-body>
+      <fo:region-before extent="{$region.before.extent}"
+                        display-align="after"/>
+      <fo:region-after extent="{$region.after.extent}"
+                        display-align="after"/>
+    </fo:simple-page-master>
+
     <!-- for left-hand/even pages in twosided mode, single column -->
     <fo:simple-page-master master-name="left1"
                            page-width="{$page.width}"
@@ -192,6 +218,13 @@
       </fo:repeatable-page-master-alternatives>
     </fo:page-sequence-master>
 
+    <!-- setup for single-sided, 1 column -->
+    <fo:page-sequence-master master-name="onesidedraft1">
+      <fo:repeatable-page-master-alternatives>
+        <fo:conditional-page-master-reference master-reference="draft1"/>
+      </fo:repeatable-page-master-alternatives>
+    </fo:page-sequence-master>
+
     <!-- setup for double-sided, 1 column -->
     <fo:page-sequence-master master-name="twoside1">
       <fo:repeatable-page-master-alternatives>
@@ -310,6 +343,9 @@
 <xsl:template name="select.singlesided.pagemaster">
   <xsl:param name="element" select="local-name(.)"/>
   <xsl:choose>
+    <xsl:when test="ancestor-or-self::*[@status][1]/@status = 'draft'">
+      <xsl:text>onesidedraft1</xsl:text>
+    </xsl:when>
     <xsl:when test="$element='set' or $element='book' or $element='part'">
       <xsl:text>titlepage1</xsl:text>
     </xsl:when>
