@@ -913,14 +913,16 @@ object is recognized as a graphic.</para>
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:variable name="has.ext" select="contains($filename, '.') != ''"/>
+  <xsl:variable name="real.ext">
+    <xsl:call-template name="filename-extension">
+      <xsl:with-param name="filename" select="$filename"/>
+    </xsl:call-template>
+  </xsl:variable>
 
   <xsl:variable name="ext">
     <xsl:choose>
-      <xsl:when test="contains($filename, '.')">
-        <xsl:call-template name="filename-extension">
-          <xsl:with-param name="filename" select="$filename"/>
-        </xsl:call-template>
+      <xsl:when test="$real.ext != ''">
+        <xsl:value-of select="$real.ext"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$graphic.default.extension"/>
@@ -935,7 +937,7 @@ object is recognized as a graphic.</para>
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="not($has.ext)">
+    <xsl:when test="$real.ext = ''">
       <xsl:choose>
         <xsl:when test="$ext != ''">
           <xsl:value-of select="$filename"/>
