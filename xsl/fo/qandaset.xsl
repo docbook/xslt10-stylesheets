@@ -157,6 +157,7 @@
         <xsl:otherwise>
           <fo:block>
             <xsl:apply-templates select="." mode="label.markup"/>
+            <xsl:text>.</xsl:text> <!-- FIXME: Hack!!! This should be in the locale! -->
           </fo:block>
         </xsl:otherwise>
       </xsl:choose>
@@ -204,7 +205,14 @@
         </xsl:when>
         <xsl:otherwise>
           <fo:block>
-            <xsl:apply-templates select="." mode="label.markup"/>
+            <!-- FIXME: Hack!!! This should be in the locale! -->
+            <xsl:variable name="answer.label">
+              <xsl:apply-templates select="." mode="label.markup"/>
+            </xsl:variable>
+            <xsl:copy-of select="$answer.label"/>
+            <xsl:if test="string($answer.label) != ''">
+              <xsl:text>.</xsl:text>
+            </xsl:if>
           </fo:block>
         </xsl:otherwise>
       </xsl:choose>
