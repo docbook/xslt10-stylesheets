@@ -174,7 +174,7 @@ body { background-image: url('</xsl:text>
        /* I think that's just a bit too distracting for the reader... */
        /* background-attachment: fixed; */
        /* background-position: center center; */
-</xsl:text>
+     }</xsl:text>
     </style>
   </xsl:if>
   <xsl:apply-templates select="." mode="head.keywords.content"/>
