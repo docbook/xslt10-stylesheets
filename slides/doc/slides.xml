@@ -24,7 +24,7 @@ these options are and how to use them.</para>
 <section id="ch.stylesheet">
 <title>Choose a Stylesheet</title>
 
-<para>At the highest level, you can choose one of four stylesheets:</para>
+<para>At the highest level, you can choose one of five stylesheets:</para>
 
 <itemizedlist>
 <listitem>
@@ -35,6 +35,12 @@ per slide.
 
 <listitem>
 <para><filename>frames.xsl</filename> produces slides in HTML using frames.
+</para>
+</listitem>
+
+<listitem>
+<para><filename>tables.xsl</filename> produces slides in HTML using tables, one page
+per slide.
 </para>
 </listitem>
 
@@ -54,8 +60,27 @@ page per slide, for print using XSL Formatting Objects.
 
 </section>
 
-<section id="ch.browser">
-<title>Choose a Browser</title>
+<section id="ch.params">
+<title>Choose your Parameters</title>
 
+<para>The <ulink url="param.html">parameter reference</ulink> summarizes the
+parameters that you can set to change the features of the slides.</para>
+
+<para>Be aware that some features require JavaScript. Some effort has been taken
+to assure that these features work across different browsers on different platforms,
+but it is possible that older browsers will not render slides that use JavaScript
+correctly.</para>
+
+</section>
+
+<section id="ch.process">
+<title>Process the Slides</title>
+
+<para>Run your slides source through your favorite XSLT processor using the stylesheet
+and parameters you selected.</para>
+
+<para>View the results in your favorite browser.</para>
+
+</section>
 
 </article>
