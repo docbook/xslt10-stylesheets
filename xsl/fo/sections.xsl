@@ -247,21 +247,42 @@
 <!-- ==================================================================== -->
 
 <xsl:template name="section.heading">
-  <xsl:param name="level">1</xsl:param>
-  <xsl:param name="title"></xsl:param>
-  <xsl:variable name="fsize">
+  <xsl:param name="level" select="1"/>
+  <xsl:param name="title"/>
+
+  <fo:block xsl:use-attribute-sets="section.title.properties">
     <xsl:choose>
-      <xsl:when test="$level=1">18</xsl:when>
-      <xsl:when test="$level=2">16</xsl:when>
-      <xsl:when test="$level=3">14</xsl:when>
-      <xsl:when test="$level=4">12</xsl:when>
-      <xsl:when test="$level=5">12</xsl:when>
-      <xsl:otherwise>10</xsl:otherwise>
+      <xsl:when test="$level=1">
+        <fo:block xsl:use-attribute-sets="section.title.level1.properties">
+          <xsl:copy-of select="$title"/>
+        </fo:block>
+      </xsl:when>
+      <xsl:when test="$level=2">
+        <fo:block xsl:use-attribute-sets="section.title.level2.properties">
+          <xsl:copy-of select="$title"/>
+        </fo:block>
+      </xsl:when>
+      <xsl:when test="$level=3">
+        <fo:block xsl:use-attribute-sets="section.title.level3.properties">
+          <xsl:copy-of select="$title"/>
+        </fo:block>
+      </xsl:when>
+      <xsl:when test="$level=4">
+        <fo:block xsl:use-attribute-sets="section.title.level4.properties">
+          <xsl:copy-of select="$title"/>
+        </fo:block>
+      </xsl:when>
+      <xsl:when test="$level=5">
+        <fo:block xsl:use-attribute-sets="section.title.level5.properties">
+          <xsl:copy-of select="$title"/>
+        </fo:block>
+      </xsl:when>
+      <xsl:otherwise>
+        <fo:block xsl:use-attribute-sets="section.title.level6.properties">
+          <xsl:copy-of select="$title"/>
+        </fo:block>
+      </xsl:otherwise>
     </xsl:choose>
-  </xsl:variable>
-  <fo:block xsl:use-attribute-sets="section.title.properties"
-            font-size="{$fsize}pt">
-    <xsl:copy-of select="$title"/>
     <fo:marker marker-class-name="section.head.marker">
       <xsl:copy-of select="$title"/>
     </fo:marker>
