@@ -13,7 +13,8 @@ body                  { font-family: sans-serif;
 
 .slidesinfo h1.title  { color: blue;
                       }
-
+.slidesinfo h2.subtitle  { color: blue; 
+                      }
 .slidesinfo h1.author { color: green;
                       }
 
@@ -50,7 +51,7 @@ body                  { font-family: sans-serif;
 			margin-top: 0pt;
                       }
 
-.foil pre             { font-size: 18pt;
+.foil pre             { font-size: 16pt;
                       }
 
 .foil-body            { margin-left: 0.5in;
@@ -101,7 +102,7 @@ body                  { font-family: sans-serif;
 
 /* General navigation formatting */
 
-.link-text            { font-weight: bold
+.link-text            { font-weight: bold;
                         font-size: 10pt;
                       }
 
