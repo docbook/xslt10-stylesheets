@@ -632,4 +632,28 @@
 
 <!-- ==================================================================== -->
 
+<t:titlepage element="setindex" wrapper="div" class="titlepage">
+  <t:titlepage-content side="recto">
+    <title
+	   force="1"
+	   named-template="component.title"
+	   param:node="ancestor-or-self::setindex[1]"/>
+    <subtitle/>
+  </t:titlepage-content>
+
+  <t:titlepage-content side="verso">
+  </t:titlepage-content>
+
+  <t:titlepage-separator>
+  </t:titlepage-separator>
+
+  <t:titlepage-before side="recto">
+  </t:titlepage-before>
+
+  <t:titlepage-before side="verso">
+  </t:titlepage-before>
+</t:titlepage>
+
+<!-- ==================================================================== -->
+
 </t:templates>
