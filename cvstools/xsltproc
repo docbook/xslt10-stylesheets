@@ -25,10 +25,10 @@ if [ "$DEBUG" = "1" ]; then
 fi
 
 if [ "$QUIET" = "0" ]; then
-    echo xsltproc $OPTS $@
+    echo xsltproc $OPTS "$@"
 fi
 
-/usr/local/bin/xsltproc --catalogs $OPTS $@
+/usr/local/bin/xsltproc --catalogs $OPTS "$@"
 
 if [ $? != 0 ]; then
   echo ""
