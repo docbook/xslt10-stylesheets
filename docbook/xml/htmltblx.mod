@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook XML HTML Table Module V4.3CR3 ................................... -->
+<!-- DocBook XML HTML Table Module V4.3 ................................... -->
 <!-- File htmltblx.mod .................................................... -->
 
 <!-- Copyright 2003 ArborText, Inc., Norman Walsh, Sun Microsystems, Inc.,
@@ -43,7 +43,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % htmltbl PUBLIC
-     "-//OASIS//ELEMENTS DocBook XML HTML Tables V4.3CR3//EN"
+     "-//OASIS//ELEMENTS DocBook XML HTML Tables V4.3//EN"
      "htmltblx.mod">
      %htmltbl;
 
