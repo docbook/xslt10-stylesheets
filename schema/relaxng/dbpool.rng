@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0"
          xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+         xmlns:s="http://www.ascc.net/xml/schematron"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 
 <!-- ...................................................................... -->
@@ -2545,6 +2546,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
       <oneOrMore>
         <ref name="footnote.mix"/>
       </oneOrMore>
+      <s:assert test="count(.//footnote) = 0"/>
     </element>
   </define>
 <!--end of footnote.element-->
@@ -9034,6 +9036,8 @@ OtherCredit. -->
       <zeroOrMore>
         <ref name="word.char.mix"/>
       </zeroOrMore>
+      <s:assert test="not(@linkend)
+                      or local-name(//*[@id=current()/@linkend]) = 'glossentry'"/>
     </element>
   </define>
 <!--end of firstterm.element-->
@@ -9080,6 +9084,8 @@ OtherCredit. -->
       <zeroOrMore>
         <ref name="para.char.mix"/>
       </zeroOrMore>
+      <s:assert test="not(@linkend)
+                      or local-name(//*[@id=current()/@linkend]) = 'glossentry'"/>
     </element>
   </define>
 <!--end of glossterm.element-->
@@ -9523,6 +9529,10 @@ OtherCredit. -->
           </oneOrMore>
         </choice>
       </optional>
+      <s:assert test="not(@startref) or @class='endofrange'"/>
+      <s:assert test="not(@startref) or count(node()) = 0"/>
+      <s:assert test="not(@startref)
+                      or local-name(//*[@id=current()/@startref]) = 'indexterm'"/>
     </element>
   </define>
 <!--end of indexterm.element-->
