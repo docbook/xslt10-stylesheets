@@ -187,11 +187,16 @@ Title=</xsl:text>
 <xsl:text>,"</xsl:text>
 <xsl:value-of select="$default.topic"/>
 <xsl:text>",</xsl:text>
-<xsl:if test="$htmlhelp.button.home != 0">
-  <xsl:text>"</xsl:text>
-  <xsl:value-of select="$htmlhelp.button.home.url"/>
-  <xsl:text>"</xsl:text>
-</xsl:if>
+<xsl:text>"</xsl:text>
+<xsl:choose>
+  <xsl:when test="$htmlhelp.button.home != 0">
+    <xsl:value-of select="$htmlhelp.button.home.url"/>
+  </xsl:when>
+  <xsl:otherwise>
+    <xsl:value-of select="$default.topic"/>
+  </xsl:otherwise>
+</xsl:choose>
+<xsl:text>"</xsl:text>
 <xsl:text>,</xsl:text>
 <xsl:if test="$htmlhelp.button.jump1 != 0">
   <xsl:text>"</xsl:text>
