@@ -718,11 +718,12 @@ db.info.elements =
 db.bibliographic.elements =
    db.info.elements
  | db.abbrev
+ | db.citerefentry
  | db.citetitle
+ | db.citebiblioid
  | db.personname
  | db.subtitle
  | db.title
- | db.titleabbrev
 
 # ======================================================================
 
