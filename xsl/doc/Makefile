@@ -32,9 +32,11 @@ reference.html: reference.xml $(RSTYLE) ../lib/lib.xml common/common.xml \
 	$(XJPARSE) $(VPATH)/$<
 	$(XSLT) $(PROCOPT) $< $(RSTYLE) $@ $(XSLTOPT)
 
-index.html: documentation.xml $(BSTYLE) reference.xml
+index.html: documentation.xml $(BSTYLE) reference.xml \
+            publishing.xml extensions.xml templates.xml html/param.xml \
+            tools/profiling.xml htmlhelp.xml
 	$(XJPARSE) $(VPATH)/$<
-	$(XSLT) $(PROCOPT) $< $(BSTYLE) $@ $(XSLTOPT)
+	$(XSLT) $(PROCOPT) $< $(BSTYLE) $(XSLTOPT)
 
 clean:
 	rm -f *.html
