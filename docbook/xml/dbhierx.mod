@@ -1795,7 +1795,7 @@ change will not be made after all. -->
 <!ELEMENT refentry %ho; (beginpage?,
                     (%ndxterm.class;)*,
                     refentryinfo?, refmeta?, (remark|%link.char.class;)*,
-                    refnamediv, refsynopsisdiv?, (refsect1+|refsection+))
+                    refnamediv+, refsynopsisdiv?, (refsect1+|refsection+))
 		%ubiq.inclusion;>
 <!--end of refentry.element-->]]>
 
