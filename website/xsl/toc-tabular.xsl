@@ -101,8 +101,8 @@
 
   <xsl:variable name="page" select="."/>
   <xsl:variable name="target"
-                select="($page/descendant-or-self::tocentry[@tocskip = '0']
-                       |$page/following::tocentry[@tocskip='0'])[1]"/>
+                select="($page/descendant-or-self::tocentry[@tocskip and @tocskip = '0']
+                       |$page/following::tocentry[@tocskip and @tocskip='0'])[1]"/>
 
   <xsl:variable name="depth" select="count(ancestor::*)-1"/>
 
