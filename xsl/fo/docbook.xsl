@@ -202,6 +202,12 @@
     </xsl:choose>
   </xsl:variable>
   
+  <!-- Include all id values in XEP output -->
+  <xsl:if test="$xep.extensions != 0">
+    <xsl:processing-instruction 
+     name="xep-pdf-drop-unused-destinations">false</xsl:processing-instruction>
+  </xsl:if>
+
   <fo:root xsl:use-attribute-sets="root.properties">
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language">
