@@ -1,0 +1,12 @@
+<?xml version='1.0'?>
+<!DOCTYPE slides PUBLIC "-//Norman Walsh//DTD Slides XML V3.0b1//EN"
+                 "http://docbook.sourceforge.net/release/slides/3.0b1/slides.dtd">
+<slides>
+<slidesinfo>
+<title>Presentation Title</title>
+</slidesinfo>
+<foil><title>Foil Title</title>
+<para>Foil content</para>
+</foil>
+</slides>
+

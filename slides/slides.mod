@@ -10,7 +10,8 @@
                                                                             -->
 <!-- ====================================================================== -->
 
-<!ELEMENT slides (slidesinfo, speakernotes?, (foil+|section+))>
+<!ELEMENT slides (slidesinfo, speakernotes?, foil*, foilgroup*)>
+
 <!ATTLIST slides
 		%label.attrib;
 		%status.attrib;
@@ -28,22 +29,22 @@
 		%role.attrib;
 >
 
-<!ELEMENT section (sectioninfo?, title, subtitle?, titleabbrev?,
-                   speakernotes?,
+<!ELEMENT foilgroup (foilgroupinfo?, title, subtitle?, titleabbrev?,
+                   (%divcomponent.mix;)*,
                    foil+)>
-<!ATTLIST section
+<!ATTLIST foilgroup
 		%label.attrib;
 		%status.attrib;
 		%common.attrib;
 		%role.attrib;
 >
 
-<!ELEMENT sectioninfo ((mediaobject
+<!ELEMENT foilgroupinfo ((mediaobject
 		       | legalnotice
                        | subjectset | keywordset
                        | %bibliocomponent.mix;)+)>
 
-<!ATTLIST sectioninfo
+<!ATTLIST foilgroupinfo
 		%common.attrib;
 		%role.attrib;
 >

@@ -1,143 +1,115 @@
-.slidesinfo           { text-align: center }
-.slidesinfo h1.title  { color: blue;
-                        font-family: Arial;
+/* General formatting */
+
+body                  { font-family: sans-serif;
                         font-weight: bold;
                       }
+
+.copyright            { color: #7F7F7F;
+                      }
+
+/* Title page formatting */
+
+.slidesinfo           { text-align: center; }
+
+.slidesinfo h1.title  { color: blue;
+                      }
+
 .slidesinfo h1.author { color: green;
                       }
 
-.section              { font-family: sans-serif;
-                        font-size: 14pt;
-                        font-weight: bold;
+.slidesinfo .copyright { color: black;
                       }
-.section   h1.title   { text-align: center;
-                        color: red;
-                        font-family: Arial;
+
+
+/* ToC page formatting */
+
+.tocpage h1.title     { color: blue;
+			text-align: center;
                       }
-.foil                 { font-family: sans-serif;
-                        font-size: 14pt;
-                        font-weight: bold;
+
+.tocpage a            { text-decoration: none; }
+.tocpage a:link       { color: blue; }
+.tocpage a:visited    { color: blue; }
+
+.toc-body             { margin-left: 0.5in;
+                        margin-right: 0.5in;
                       }
-.foil      h1.title   { text-align: center;
+
+/* Foil page formatting */
+
+.foil                 { font-size: 16pt;
+                      }
+.foil h1.title        { text-align: center;
                         color: blue;
-                        font-family: Arial;
 			padding-top: 0pt;
 			margin-top: 0pt;
                       }
-.foil      h2.subtitle   { text-align: center;
+.foil h2.subtitle     { text-align: center;
                         color: blue;
-                        font-family: Arial;
 			padding-top: 0pt;
 			margin-top: 0pt;
                       }
 
-.mediaobject          { text-align: center;
+.foil pre             { font-size: 18pt;
                       }
 
-/* ====================================================================== */
-
-span.navheader        { font-family: sans-serif;
-                        font-size: 10pt;
-                        font-weight: bold;
-                        color: black;
+.foil-body            { margin-left: 0.5in;
+                        margin-right: 0.5in;
                       }
 
-span.navfooter        { font-family: sans-serif;
-                        font-size: 8pt;
+/* Foilgroup page formatting */
+
+.foilgroup            { font-size: 16pt;
                       }
-
-/* ====================================================================== */
-
-.toc                  { font-weight: bold;
-                        font-size: 10pt;
-                      }
-
-.toc a                { text-decoration: none; }
-.toc a:link           { color: blue; }
-.toc a:visited        { color: blue; }
-
-.toc .toc-section a         { color: red; }
-.toc .toc-section a:link    { color: red; }
-.toc .toc-section a:visited { color: red; }
-
-.toc .toc-titlefoil a         { color: black; }
-.toc .toc-titlefoil a:link    { color: black; }
-.toc .toc-titlefoil a:visited { color: black; }
-
-.toc .toc-foil a         { color: blue; }
-.toc .toc-foil a:link    { color: blue; }
-.toc .toc-foil a:visited { color: blue; }
-
-.toc-slidesinfo       { font-family: sans-serif;
-                        font-weight: bold;
-                        text-align: center;
-                      }
-
-.toc-titlefoil        { font-family: sans-serif;
-                        font-weight: bold;
-                        text-align: center;
-                      }
-
-.toc-section          { font-family: sans-serif;
-                        margin-left: 0.25in;
-                        text-indent: -0.25in;
-	                font-weight: bold;
+.foilgroup h1.title   { text-align: center;
                         color: red;
+			padding-top: 0pt;
+			margin-top: 0pt;
                       }
-
-.toc-foil             { font-family: sans-serif;
-                        font-size: 10pt;
-                        margin-left: 0.25in;
-                        text-indent: -0.4in;
-	                font-weight: bold;
+.foilgroup h2.subtitle { text-align: center;
                         color: blue;
+			padding-top: 0pt;
+			margin-top: 0pt;
                       }
 
-/* ====================================================================== */
+.foilgroup-body       { margin-left: 0.5in;
+                        margin-right: 0.5in;
+                      }
 
-.ttoc                 {
+/* Navigation header formatting */
+
+.navhead              { border-bottom: 1px solid black;
+                        margin-bottom: 10px;
+                        padding-bottom: 4px;
+                      }
+
+.navhead hr.top-nav-sep { display: none; }
+
+.navhead .slidestitle { font-weight: normal;
                         font-size: 10pt;
-			color: white;
+                        font-style: italic;
                       }
 
-.ttoc a               { text-decoration: none; }
-.ttoc a:link          { color: white }
-.ttoc a:visited       { color: white }
+/* Navigation footer formatting */
 
-.ttoc-title           {
+.navfoot              { border-top: 1px solid black;
+                        margin-top: 10px;
+                        padding-top: 4px;
+                      }
+
+.navfoot hr.bottom-nav-sep { display: none; }
+
+/* General navigation formatting */
+
+.link-text            { font-weight: bold
                         font-size: 10pt;
                       }
 
-.ttoc-section         {
-                        font-size: 10pt;
-                      }
 
-.ttoc-foil            {
-                        font-size: 10pt;
-                      }
+.link-text a          { text-decoration: none; }
+.link-text a:link     { color: blue; }
+.link-text a:visited  { color: blue; }
 
-/* ====================================================================== */
+.no-link-text         { color: #7F7F7F; }
 
-body.topnavigation       { margin-top: 5px;
-                           margin-left: 10px;
-                           margin-right: 10px;
-                         }
-
-body.foil                { margin-top: 5px;
-                           margin-left: 10px;
-                           margin-right: 10px;
-                         }
-
-body.botnavigation       { margin-top: 0px;
-                           padding-top: 0px;
-                           margin-left: 10px;
-                           margin-right: 10px;
-                         }
-
-/* ====================================================================== */
-
-div.vnav              {
-                        margin-top: 2in;
-                      }
-
-/* ====================================================================== */
+/* EOF */

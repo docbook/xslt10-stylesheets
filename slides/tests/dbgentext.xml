@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <!DOCTYPE slides SYSTEM "../slides.dtd">
-<?dbhtml graphics-dir="../graphics" css-stylesheet="../browser/slides.css"?>
+<?dbhtml graphics-dir="../graphics" css-stylesheet-dir="../browser"?>
 <?dbhtml script-dir="../browser"?>
 <slides>
 <slidesinfo>
@@ -19,7 +19,13 @@
              <holder>Sun Microsystems, Inc.</holder></copyright>
 </slidesinfo>
 
-<section><title>The Problem</title>
+<foil><title>Introduction</title>
+<para>This is the introductory slide</para>
+</foil>
+
+<foilgroup><title>The Problem</title>
+
+<para>This is one the foilgroup slide.</para>
 
 <foil><title>Generated Text</title>
 <itemizedlist>
@@ -54,8 +60,8 @@ naturally
 </itemizedlist>
 </foil>
 
-</section>
-<section><title>A Solution</title>
+</foilgroup>
+<foilgroup><title>A Solution</title>
 
 <foil><title>The Old Solution</title>
 
@@ -114,8 +120,8 @@ is taken from an independently maintained lookup table:</para>
 </itemizedlist>
 </foil>
 
-</section>
-<section><title>A Better Solution</title>
+</foilgroup>
+<foilgroup><title>A Better Solution</title>
 
 <foil><title>Use Markup Templates</title>
 
@@ -176,9 +182,9 @@ subtitle of the component, respectively.</para>
 ]]></screen>
 </foil>
 
-</section>
+</foilgroup>
 
-<section><title>Resources</title>
+<foilgroup><title>Resources</title>
 <foil><title>Resources</title>
 <itemizedlist>
 <listitem><para><ulink url="http://www.oasis-open.org/docbook/"/>, the
@@ -195,5 +201,5 @@ queries.
 </para></listitem>
 </itemizedlist>
 </foil>
-</section>
+</foilgroup>
 </slides>

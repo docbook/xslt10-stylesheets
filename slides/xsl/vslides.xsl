@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
-<xsl:import href="slides.xsl"/>
+<xsl:import href="slides-common.xsl"/>
 
 <xsl:param name="toc.width" select="100"/>
 
@@ -12,9 +12,14 @@
 <xsl:param name="but-prev.png" select="'but-prev.png'"/>
 <xsl:param name="but-rewind.png" select="'but-rewind.png'"/>
 <xsl:param name="but-xfforward.png" select="'but-xfforward.png'"/>
+<xsl:param name="but-xinfo.png" select="'but-xinfo.png'"/>
 <xsl:param name="but-xnext.png" select="'but-xnext.png'"/>
 <xsl:param name="but-xprev.png" select="'but-xprev.png'"/>
 <xsl:param name="but-xrewind.png" select="'but-xrewind.png'"/>
+
+<!-- overrides for this stylesheet -->
+<xsl:param name="titlefoil.html" select="'index.html'"/>
+<xsl:param name="toc.width" select="20"/>
 
 <!-- ============================================================ -->
 
@@ -32,28 +37,13 @@
             </xsl:attribute>
           </link>
 
-          <link rel="top">
-            <xsl:attribute name="href">
-              <xsl:apply-templates select="/slides" mode="filename"/>
-            </xsl:attribute>
-            <xsl:attribute name="title">
-              <xsl:value-of select="/slides/slidesinfo/title[1]"/>
-            </xsl:attribute>
-          </link>
-
-          <xsl:for-each select="section">
-            <link rel="section">
-              <xsl:attribute name="href">
-                <xsl:apply-templates select="." mode="filename"/>
-              </xsl:attribute>
-              <xsl:attribute name="title">
-                <xsl:value-of select="title[1]"/>
-              </xsl:attribute>
-            </link>
-          </xsl:for-each>
+          <xsl:call-template name="links">
+            <xsl:with-param name="next" select="/slides"/>
+            <xsl:with-param name="tocfile" select="$toc.html"/>
+          </xsl:call-template>
 
           <xsl:if test="$keyboard.nav != 0">
-            <script language="JavaScript1.2"/>
+            <script language="JavaScript1.2" type="text/javascript"/>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0">
@@ -87,25 +77,19 @@
               <td bgcolor="{$toc.bg.color}" width="{$toc.width}"
                   valign="top" align="left">
 
-                <xsl:variable name="first" select="(/slides/section|/slides/foil)[1]"/>
-
                 <xsl:call-template name="vertical-navigation">
-                  <xsl:with-param name="first"/>
-                  <xsl:with-param name="prev"/>
                   <xsl:with-param name="next" select="/slides"/>
-                  <xsl:with-param name="last" select="(//foil)[last()]"/>
+                  <xsl:with-param name="tocfile"/>
                 </xsl:call-template>
 
               </td>
               <td bgcolor="{$body.bg.color}" valign="top" align="left">
                 <div class="{name(.)}">
-                  <h1 class="title">
-                    <a href="{$titlefoil.html}">
-                      <xsl:value-of select="/slides/slidesinfo/title"/>
-                    </a>
-                  </h1>
 
-                  <xsl:apply-templates select="." mode="toc"/>
+                  <div class="toc-body">
+                    <xsl:call-template name="toc-body"/>
+                  </div>
+
                 </div>
               </td>
             </tr>
@@ -135,6 +119,27 @@
               <xsl:call-template name="css.stylesheet"/>
             </xsl:attribute>
           </link>
+
+          <xsl:call-template name="links">
+            <xsl:with-param name="next" select="(/slides/foil|/slides/foilgroup)[1]"/>
+            <xsl:with-param name="tocfile" select="$toc.html"/>
+          </xsl:call-template>
+
+          <xsl:if test="$keyboard.nav != 0">
+            <script language="JavaScript1.2" type="text/javascript"/>
+          </xsl:if>
+
+          <xsl:if test="$keyboard.nav != 0">
+            <xsl:call-template name="ua.js"/>
+            <xsl:call-template name="xbDOM.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+            <xsl:call-template name="xbStyle.js"/>
+            <xsl:call-template name="xbCollapsibleLists.js"/>
+            <xsl:call-template name="slides.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+          </xsl:if>
         </head>
         <body class="titlepage">
           <xsl:call-template name="body.attributes"/>
@@ -152,8 +157,8 @@
 
                 <xsl:call-template name="vertical-navigation">
                   <xsl:with-param name="first"/>
-                  <xsl:with-param name="last" select="(following::section|following::foil)[last()]"/>
-                  <xsl:with-param name="next" select="(following::section|following::foil)[1]"/>
+                  <xsl:with-param name="last" select="(following::foilgroup|following::foil)[last()]"/>
+                  <xsl:with-param name="next" select="(following::foilgroup|following::foil)[1]"/>
                 </xsl:call-template>
 
               </td>
@@ -175,27 +180,21 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="section">
+<xsl:template match="foilgroup">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
-  <xsl:variable name="snumber">
-    <xsl:number count="section" level="any"/>
-  </xsl:variable>
-
-  <xsl:variable name="thissection">
-    <xsl:text>section</xsl:text>
-    <xsl:number value="$snumber" format="01"/>
-    <xsl:text>.html</xsl:text>
-  </xsl:variable>
+  <xsl:param name="thisfoilgroup">
+    <xsl:apply-templates select="." mode="filename"/>
+  </xsl:param>
 
   <xsl:variable name="nextfoil" select="foil[1]"/>
   <xsl:variable name="lastfoil" select="(descendant::foil|following::foil)[last()]"/>
   <xsl:variable name="prevfoil" select="(preceding::foil|/slides)[last()]"/>
 
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="concat($base.dir, $thissection)"/>
+    <xsl:with-param name="filename" select="concat($base.dir, $thisfoilgroup)"/>
     <xsl:with-param name="content">
       <head>
         <title><xsl:value-of select="title"/></title>
@@ -204,8 +203,29 @@
             <xsl:call-template name="css.stylesheet"/>
           </xsl:attribute>
         </link>
+
+        <xsl:call-template name="links">
+          <xsl:with-param name="prev" select="$prevfoil"/>
+          <xsl:with-param name="next" select="$nextfoil"/>
+        </xsl:call-template>
+
+        <xsl:if test="$keyboard.nav != 0">
+          <script language="JavaScript1.2" type="text/javascript"/>
+        </xsl:if>
+
+        <xsl:if test="$keyboard.nav != 0">
+          <xsl:call-template name="ua.js"/>
+          <xsl:call-template name="xbDOM.js">
+            <xsl:with-param name="language" select="'JavaScript'"/>
+          </xsl:call-template>
+          <xsl:call-template name="xbStyle.js"/>
+          <xsl:call-template name="xbCollapsibleLists.js"/>
+          <xsl:call-template name="slides.js">
+            <xsl:with-param name="language" select="'JavaScript'"/>
+          </xsl:call-template>
+        </xsl:if>
       </head>
-      <body class="section">
+      <body class="foilgroup">
         <xsl:call-template name="body.attributes"/>
 
         <table border="0" width="100%" summary="Navigation and body table"
@@ -250,19 +270,19 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
-  <xsl:variable name="section" select="ancestor::section"/>
+  <xsl:variable name="foilgroup" select="ancestor::foilgroup"/>
 
   <xsl:variable name="thisfoil">
     <xsl:apply-templates select="." mode="filename"/>
   </xsl:variable>
 
   <xsl:variable name="nextfoil" select="(following::foil
-                                        |following::section)[1]"/>
+                                        |following::foilgroup)[1]"/>
 
   <xsl:variable name="lastfoil" select="following::foil[last()]"/>
 
   <xsl:variable name="prevfoil" select="(preceding-sibling::foil[1]
-                                        |parent::section[1]
+                                        |parent::foilgroup[1]
                                         |/slides)[last()]"/>
 
   <xsl:call-template name="write.chunk">
@@ -270,11 +290,33 @@
     <xsl:with-param name="content">
       <head>
         <title><xsl:value-of select="title"/></title>
+
         <link type="text/css" rel="stylesheet">
           <xsl:attribute name="href">
             <xsl:call-template name="css.stylesheet"/>
           </xsl:attribute>
         </link>
+
+        <xsl:call-template name="links">
+          <xsl:with-param name="prev" select="$prevfoil"/>
+          <xsl:with-param name="next" select="$nextfoil"/>
+        </xsl:call-template>
+
+        <xsl:if test="$keyboard.nav != 0">
+          <script language="JavaScript1.2" type="text/javascript"/>
+        </xsl:if>
+
+        <xsl:if test="$keyboard.nav != 0">
+          <xsl:call-template name="ua.js"/>
+          <xsl:call-template name="xbDOM.js">
+            <xsl:with-param name="language" select="'JavaScript'"/>
+          </xsl:call-template>
+          <xsl:call-template name="xbStyle.js"/>
+          <xsl:call-template name="xbCollapsibleLists.js"/>
+          <xsl:call-template name="slides.js">
+            <xsl:with-param name="language" select="'JavaScript'"/>
+          </xsl:call-template>
+        </xsl:if>
       </head>
       <body class="foil">
         <xsl:call-template name="body.attributes"/>
@@ -323,12 +365,12 @@
       <tr>
         <td align="left">
           <xsl:apply-templates select="/slides/slidesinfo/copyright"
-                               mode="slide.navigation.mode"/>
+                               mode="slide.footer.mode"/>
         </td>
         <td align="right">
           <xsl:value-of select="count(preceding::foil)
-                                + count(preceding::section)
-                                + count(ancestor::section)
+                                + count(preceding::foilgroup)
+                                + count(ancestor::foilgroup)
                                 + 1"/>
         </td>
       </tr>
@@ -344,11 +386,11 @@
         <td align="center">
           <xsl:text>Slide </xsl:text>
           <xsl:value-of select="count(preceding::foil)
-                                + count(preceding::section)
-                                + count(ancestor::section)
+                                + count(preceding::foilgroup)
+                                + count(ancestor::foilgroup)
                                 + 1"/>
           <xsl:text> of </xsl:text>
-          <xsl:value-of select="count(//foil) + count(//section)"/>
+          <xsl:value-of select="count(//foil) + count(//foilgroup)"/>
         </td>
       </tr>
     </table>
@@ -364,6 +406,7 @@
   <xsl:param name="prev"/>
   <xsl:param name="last"/>
   <xsl:param name="next"/>
+  <xsl:param name="tocfile" select="$toc.html"/>
 
   <div class="vnav">
     <xsl:choose>
@@ -382,7 +425,7 @@
         </a>
       </xsl:when>
       <xsl:otherwise>
-        <img>
+        <img alt="First">
           <xsl:attribute name="src">
             <xsl:call-template name="graphics-file">
               <xsl:with-param name="image" select="$but-xrewind.png"/>
@@ -408,7 +451,7 @@
         </a>
       </xsl:when>
       <xsl:otherwise>
-        <img>
+        <img alt="Previous">
           <xsl:attribute name="src">
             <xsl:call-template name="graphics-file">
               <xsl:with-param name="image" select="$but-xprev.png"/>
@@ -434,7 +477,7 @@
         </a>
       </xsl:when>
       <xsl:otherwise>
-        <img>
+        <img alt="Last">
           <xsl:attribute name="src">
             <xsl:call-template name="graphics-file">
               <xsl:with-param name="image" select="$but-xnext.png"/>
@@ -460,7 +503,7 @@
         </a>
       </xsl:when>
       <xsl:otherwise>
-        <img>
+        <img alt="Next">
           <xsl:attribute name="src">
             <xsl:call-template name="graphics-file">
               <xsl:with-param name="image" select="$but-xfforward.png"/>
@@ -473,15 +516,28 @@
     <br/>
     <br/>
 
-    <a href="{$toc.html}">
-      <img border="0" alt="ToC">
-        <xsl:attribute name="src">
-          <xsl:call-template name="graphics-file">
-            <xsl:with-param name="image" select="$but-info.png"/>
-          </xsl:call-template>
-        </xsl:attribute>
-      </img>
-    </a>
+    <xsl:choose>
+      <xsl:when test="$tocfile != ''">
+        <a href="{$tocfile}">
+          <img border="0" alt="ToC">
+            <xsl:attribute name="src">
+              <xsl:call-template name="graphics-file">
+                <xsl:with-param name="image" select="$but-info.png"/>
+              </xsl:call-template>
+            </xsl:attribute>
+          </img>
+        </a>
+      </xsl:when>
+      <xsl:otherwise>
+        <img border="0" alt="ToC">
+          <xsl:attribute name="src">
+            <xsl:call-template name="graphics-file">
+              <xsl:with-param name="image" select="$but-xinfo.png"/>
+            </xsl:call-template>
+          </xsl:attribute>
+        </img>
+      </xsl:otherwise>
+    </xsl:choose>
   </div>
 </xsl:template>
 

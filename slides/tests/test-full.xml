@@ -6,7 +6,7 @@
   <copyright><year>2001</year><holder>Norman Walsh</holder></copyright>
 </slidesinfo>
 
-<section><title>Section 1</title>
+<foilgroup><title>Section 1</title>
 
 <foil><title>Test Slides Title 1</title>
 <para>...<keycombo><keycap>X</keycap></keycombo></para>
@@ -19,8 +19,8 @@ this is a screen
 </screen>
 </foil>
 
-</section>
-<section><title>Section 2</title>
+</foilgroup>
+<foilgroup><title>Section 2</title>
 
 <foil><title>Test Slides Title 1</title>
 <para>...</para>
@@ -33,6 +33,6 @@ this is a screen
 </screen>
 </foil>
 
-</section>
+</foilgroup>
 
 </slides>

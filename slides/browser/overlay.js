@@ -19,7 +19,7 @@ var overlayIE  = document.all ? 1 : 0;
 var overlayNS6 = document.getElementById && !document.all ? 1 : 0;
 
 var overlayPadX = 15;
-var overlayPadY = 5;
+var overlayPadY = 15;
 var overlayDelay = 60;
 
 var overlayCorner = 'ur'; // ul, ll, ur, lr, uc, lc, cl, cr
@@ -47,19 +47,21 @@ function overlayRefresh() {
         }
 
 	overlayH  = overlayDiv.offsetHeight;
-	overlayW  = overlayDiv.offsetWidth;
+	overlayW  = body.offsetWidth; // overlayDiv.offsetWidth;
 	contentH  = body.offsetHeight;
     } else if (overlayNS4) {
 	overlayLy = window.innerHeight;
 	overlayLx = window.innerWidth;
 	overlayH  = document.overlayDiv.clip.height;
-	overlayW  = document.overlayDiv.clip.width;
+	overlayW  = body.clip.width; // document.overlayDiv.clip.width;
 	contentH  = body.clip.height;
     } else if (overlayNS6) {
+	var odiv = document.getElementById('overlayDiv');
+
 	overlayLy = window.innerHeight;
 	overlayLx = window.innerWidth;
-	overlayH  = document.getElementById('overlayDiv').offsetHeight;
-	overlayW  = document.getElementById('overlayDiv').offsetWidth;
+	overlayH  = odiv.offsetHeight;
+	overlayW  = body.offsetWidth; // odiv.offsetWidth;
 	contentH  = body.offsetHeight;
     }
 
@@ -108,9 +110,11 @@ function overlayRefresh() {
 	var div = document.getElementById("overlayDiv");
 	var leftpx = overlayX;
 	var toppx = overlayY+window.pageYOffset;
+	var widthpx = overlayW;
 
 	div.style.left = leftpx + "px";
 	div.style.top = toppx + "px";
+	div.style.width = widthpx + "px";
 
 	if (contentH > overlayLy) {
 	    div.style.visibility = "hidden";

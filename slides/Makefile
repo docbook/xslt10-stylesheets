@@ -5,7 +5,7 @@ NEWVER=
 
 all: slides.dtd
 
-slides.dtd: slides-custom.dtd
+slides.dtd: slides-custom.dtd slides.mod
 	$(FLATTEN) $< > $@
 
 check:
