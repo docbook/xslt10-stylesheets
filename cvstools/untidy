@@ -20,6 +20,7 @@ if ($content eq '') {
 }
 
 $content =~ s/(<a\s[^>]+>)\s+/$1/sg;
+$content =~ s/\s+(<\/a>)/$1/sg;
 
 open (F, ">$filename");
 print F $content;
