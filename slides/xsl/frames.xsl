@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
-<xsl:import href="linear.xsl"/>
+<xsl:import href="slides.xsl"/>
 
 <xsl:param name="titlefoil.html" select="'titlefoil.html'"/>
 
