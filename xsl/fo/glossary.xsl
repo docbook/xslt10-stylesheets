@@ -568,8 +568,15 @@ GlossEntry ::=
       <xsl:with-param name="name" select="'see'"/>
     </xsl:call-template>
     <xsl:choose>
-      <xsl:when test="@otherterm">
+      <xsl:when test="$target">
         <xsl:apply-templates select="$target" mode="xref"/>
+      </xsl:when>
+      <xsl:when test="$otherterm != '' and not($target)">
+        <xsl:message>
+          <xsl:text>Warning: glosssee @otherterm reference not found: </xsl:text>
+          <xsl:value-of select="$otherterm"/>
+        </xsl:message>
+        <xsl:apply-templates mode="glossary.as.list"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates mode="glossary.as.list"/>
@@ -605,8 +612,15 @@ GlossEntry ::=
   <xsl:variable name="target" select="$targets[1]"/>
 
   <xsl:choose>
-    <xsl:when test="@otherterm">
+    <xsl:when test="$target">
       <xsl:apply-templates select="$target" mode="xref"/>
+    </xsl:when>
+    <xsl:when test="$otherterm != '' and not($target)">
+      <xsl:message>
+        <xsl:text>Warning: glossseealso @otherterm reference not found: </xsl:text>
+        <xsl:value-of select="$otherterm"/>
+      </xsl:message>
+      <xsl:apply-templates mode="glossary.as.list"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:apply-templates mode="glossary.as.list"/>
@@ -685,8 +699,15 @@ GlossEntry ::=
     <xsl:with-param name="name" select="'see'"/>
   </xsl:call-template>
   <xsl:choose>
-    <xsl:when test="@otherterm">
+    <xsl:when test="$target">
       <xsl:apply-templates select="$target" mode="xref"/>
+    </xsl:when>
+    <xsl:when test="$otherterm != '' and not($target)">
+      <xsl:message>
+        <xsl:text>Warning: glosssee @otherterm reference not found: </xsl:text>
+        <xsl:value-of select="$otherterm"/>
+      </xsl:message>
+      <xsl:apply-templates mode="glossary.as.blocks"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:apply-templates mode="glossary.as.blocks"/>
@@ -721,8 +742,15 @@ GlossEntry ::=
   <xsl:variable name="target" select="$targets[1]"/>
 
   <xsl:choose>
-    <xsl:when test="@otherterm">
+    <xsl:when test="$target">
       <xsl:apply-templates select="$target" mode="xref"/>
+    </xsl:when>
+    <xsl:when test="$otherterm != '' and not($target)">
+      <xsl:message>
+        <xsl:text>Warning: glossseealso @otherterm reference not found: </xsl:text>
+        <xsl:value-of select="$otherterm"/>
+      </xsl:message>
+      <xsl:apply-templates mode="glossary.as.blocks"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:apply-templates mode="glossary.as.blocks"/>
