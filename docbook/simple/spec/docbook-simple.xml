@@ -8,11 +8,11 @@
 
 <articleinfo>
 <productname>wd-docbook-simple</productname>
-<productnumber>1.1CR2</productnumber>
+<productnumber>1.1</productnumber>
 
-<releaseinfo role="product"><ulink url="wd-docbook-simple-1.1CR2.xml">XML</ulink></releaseinfo>
-<releaseinfo role="product"><ulink url="wd-docbook-simple-1.1CR2.html">HTML</ulink></releaseinfo>
-<releaseinfo role="product"><ulink url="wd-docbook-simple-1.1CR2.pdf">PDF</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="wd-docbook-simple-1.1.xml">XML</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="wd-docbook-simple-1.1.html">HTML</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="wd-docbook-simple-1.1.pdf">PDF</ulink></releaseinfo>
 
 <releaseinfo role="location">http://docbook.org/specs</releaseinfo>
 
@@ -29,9 +29,10 @@
 </editor>
 </authorgroup>
 
-<pubdate>21 Oct 2004</pubdate>
+<pubdate>01 Apr 2004</pubdate>
 
 <copyright><year>2001</year><year>2002</year><year>2003</year><year>2004</year>
+<year>2005</year>
 <holder>The Organization for the Advancement of Structured Information
 Standards [OASIS]. All Rights Reserved.
 </holder></copyright>
@@ -127,7 +128,7 @@ document.</para>
 </section>
 
 <section id="docbook">
-<title>The Simplified DocBook Document Type V1.1CR2</title>
+<title>The Simplified DocBook Document Type V1.1</title>
 
 <para>The Simplified DocBook document type is a subset of
 <xref linkend="bib.docbook43"/>.
@@ -142,8 +143,8 @@ It is distributed from the
 <para>To use this document type, specify the public and system identifiers
 in your document type declaration. For example:</para>
 
-<screen><![CDATA[<!DOCTYPE article PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.1CR2//EN"
-                  "http://docbook.org/xml/simple/1.1CR2/sdocbook.dtd">]]></screen>
+<screen><![CDATA[<!DOCTYPE article PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.1//EN"
+                  "http://docbook.org/xml/simple/1.1/sdocbook.dtd">]]></screen>
 
 <para>Naturally, you can include an internal subset if you wish.</para>
 
@@ -151,11 +152,18 @@ in your document type declaration. For example:</para>
 public and system identifiers of this module's customization layer in your own. For
 example:</para>
 
-<screen><![CDATA[<!DOCTYPE % sdocbook PUBLIC "-//OASIS//DTD Simplified DocBook XML Customization V1.1CR2//EN"
-                  "http://docbook.org/xml/simple/1.1CR2/sdocbook-custom.dtd">
+<screen><![CDATA[<!DOCTYPE % sdocbook PUBLIC "-//OASIS//DTD Simplified DocBook XML Customization V1.1//EN"
+                  "http://docbook.org/xml/simple/1.1/sdocbook-custom.dtd">
 %sdocbook;]]></screen>
 
 </section>
+</section>
+
+<section id="s.changes11">
+<title>Changes in Simplified DocBook V1.1</title>
+
+<para>There are no technical changes in the V1.1 official release.</para>
+
 </section>
 
 <section id="s.changescr2">
@@ -258,7 +266,8 @@ the formulation of this &standard;:</para>
 <appendix id="a.notices">
 <title>Notices</title>
 
-<para>Copyright &#169; 2001, 2002, 2003, 2004 OASIS Open, Inc. All Rights Reserved.
+<para>Copyright &#169; 2001, 2002, 2003, 2004, 2005
+OASIS Open, Inc. All Rights Reserved.
 </para>
 
 <para>OASIS takes no position regarding the validity
@@ -333,6 +342,10 @@ of the DocBook web page
 <title>Revision History</title>
 
 <para><revhistory>
+<revision>
+<revnumber>1.1</revnumber>
+<date>01 Apr 2005</date>
+</revision>
 <revision>
 <revnumber>1.1CR2</revnumber>
 <date>21 Oct 2004</date>
