@@ -1254,6 +1254,10 @@ year range is <quote>1991-1992</quote> but discretely it's
     <xsl:value-of select="$firstyear"/>
     <xsl:text>, </xsl:text>
     <xsl:value-of select="$nextyear"/>
+    <xsl:text>, </xsl:text>
+    <xsl:value-of select="$print.ranges"/>
+    <xsl:text>, </xsl:text>
+    <xsl:value-of select="$single.year.ranges"/>
     <xsl:text> (</xsl:text>
     <xsl:value-of select="$years[1]"/>
     <xsl:text>)</xsl:text>
