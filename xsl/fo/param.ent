@@ -179,3 +179,5 @@
 <!ENTITY table.frame.border.color SYSTEM "../params/table.frame.border.color.xml">
 <!ENTITY table.frame.border.style SYSTEM "../params/table.frame.border.style.xml">
 <!ENTITY table.frame.border.thickness SYSTEM "../params/table.frame.border.thickness.xml">
+<!ENTITY header.content.properties SYSTEM "../params/header.content.properties.xml">
+<!ENTITY footer.content.properties SYSTEM "../params/footer.content.properties.xml">
