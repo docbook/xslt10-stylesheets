@@ -5,8 +5,13 @@
 <slidesinfo>
 <title>Presentation Title</title>
 </slidesinfo>
+<foilgroup><title>Foilgroup Title</title>
+<subtitle>Foilgroup Subtitle</subtitle>
+<para>Some premable.</para>
 <foil><title>Foil Title</title>
+<subtitle>Foil Subtitle</subtitle>
 <para>Foil content</para>
 </foil>
+</foilgroup>
 </slides>
 
