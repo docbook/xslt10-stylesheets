@@ -91,9 +91,11 @@
           </xsl:when>
           <xsl:otherwise>
             <div class="{name(.)}">
-              <xsl:call-template name="number.rtf.lines">
-                <xsl:with-param name="rtf" select="$rtf"/>
-              </xsl:call-template>
+              <p>
+                <xsl:call-template name="number.rtf.lines">
+                  <xsl:with-param name="rtf" select="$rtf"/>
+                </xsl:call-template>
+              </p>
             </div>
           </xsl:otherwise>
         </xsl:choose>
@@ -108,7 +110,9 @@
           </xsl:when>
           <xsl:otherwise>
             <div class="{name(.)}">
-              <xsl:copy-of select="$rtf"/>
+              <p>
+                <xsl:copy-of select="$rtf"/>
+              </p>
             </div>
           </xsl:otherwise>
         </xsl:choose>
@@ -135,7 +139,7 @@
 <xsl:template match="literallayout[not(@class)
                                    or @class != 'monospaced']//text()">
   <xsl:call-template name="make-verbatim">
-    <xsl:with-param name="text" select="."/>
+    <xsl:with-param name="text" select="translate(.,' ','&#160;')"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -153,15 +157,19 @@
                     and $use.extensions != '0'
                     and $linenumbering.extension != '0'">
       <div class="{name(.)}">
-        <xsl:call-template name="number.rtf.lines">
-          <xsl:with-param name="rtf" select="$rtf"/>
-        </xsl:call-template>
+        <p>
+          <xsl:call-template name="number.rtf.lines">
+            <xsl:with-param name="rtf" select="$rtf"/>
+          </xsl:call-template>
+        </p>
       </div>
     </xsl:when>
 
     <xsl:otherwise>
       <div class="{name(.)}">
-        <xsl:apply-templates/>
+        <p>
+          <xsl:apply-templates/>
+        </p>
       </div>
     </xsl:otherwise>
   </xsl:choose>
@@ -260,78 +268,41 @@
 
 <xsl:template match="address//text()">
   <xsl:call-template name="make-verbatim">
-    <xsl:with-param name="text" select="."/>
+    <xsl:with-param name="text" select="translate(.,' ','&#160;')"/>
   </xsl:call-template>
 </xsl:template>
 
 <xsl:template name="make-verbatim">
   <xsl:param name="text" select="''"/>
-
-  <xsl:variable name="starts-with-space"
-                select="substring($text, 1, 1) = ' '"/>
-
-  <xsl:variable name="starts-with-nl"
-                select="substring($text, 1, 1) = '&#xA;'"/>
-
-  <xsl:variable name="before-space">
-    <xsl:if test="contains($text, ' ')">
-      <xsl:value-of select="substring-before($text, ' ')"/>
-    </xsl:if>
-  </xsl:variable>
-
-  <xsl:variable name="before-nl">
-    <xsl:if test="contains($text, '&#xA;')">
-      <xsl:value-of select="substring-before($text, '&#xA;')"/>
-    </xsl:if>
-  </xsl:variable>
-
   <xsl:choose>
-    <xsl:when test="$starts-with-space">
-      <xsl:text>&#160;</xsl:text>
-      <xsl:call-template name="make-verbatim">
-        <xsl:with-param name="text" select="substring($text,2)"/>
-      </xsl:call-template>
-    </xsl:when>
-
-    <xsl:when test="$starts-with-nl">
-      <br/><xsl:text>&#xA;</xsl:text>
-      <xsl:call-template name="make-verbatim">
-        <xsl:with-param name="text" select="substring($text,2)"/>
-      </xsl:call-template>
-    </xsl:when>
-
-    <!-- if the string before a space is shorter than the string before
-         a newline, fix the space...-->
-    <xsl:when test="$before-space != ''
-                    and ((string-length($before-space)
-                          &lt; string-length($before-nl))
-                          or $before-nl = '')">
-      <xsl:value-of select="$before-space"/>
-      <xsl:text>&#160;</xsl:text>
-      <xsl:call-template name="make-verbatim">
-        <xsl:with-param name="text" select="substring-after($text, ' ')"/>
-      </xsl:call-template>
-    </xsl:when>
-
-    <!-- if the string before a newline is shorter than the string before
-         a space, fix the newline...-->
-    <xsl:when test="$before-nl != ''
-                    and ((string-length($before-nl)
-                          &lt; string-length($before-space))
-                          or $before-space = '')">
-      <xsl:value-of select="$before-nl"/>
-      <br/><xsl:text>&#xA;</xsl:text>
-      <xsl:call-template name="make-verbatim">
-        <xsl:with-param name="text" select="substring-after($text, '&#xA;')"/>
-      </xsl:call-template>
-    </xsl:when>
-
-    <!-- the string before the newline and the string before the
-         space are the same; which means they must both be empty -->
-    <xsl:otherwise>
+    <xsl:when test="not(contains($text, '&#xA;'))">
       <xsl:value-of select="$text"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="len" select="string-length($text)"/>
+      <xsl:choose>
+        <xsl:when test="$len = 1">
+          <br/><xsl:text>&#xA;</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="half" select="$len div 2"/>
+          <xsl:call-template name="make-verbatim">
+            <xsl:with-param name="text" select="substring($text, 1,
+$half)"/>
+          </xsl:call-template>
+          <xsl:call-template name="make-verbatim">
+            <xsl:with-param name="text"
+                            select="substring($text, ($half + 1), $len)"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
+
+
+
+
+
