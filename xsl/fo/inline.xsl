@@ -205,6 +205,10 @@
   <xsl:call-template name="inline.charseq"/>
 </xsl:template>
 
+<xsl:template match="errortext">
+  <xsl:call-template name="inline.charseq"/>
+</xsl:template>
+
 <xsl:template match="envar">
   <xsl:call-template name="inline.monoseq"/>
 </xsl:template>
