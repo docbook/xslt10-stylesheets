@@ -149,7 +149,6 @@
 </xsl:template>
 
 <xsl:template match="inlinegraphic">
-  <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
   <xsl:variable name="filename">
     <xsl:choose>
       <xsl:when test="@entityref">
@@ -171,16 +170,15 @@
         <xsl:when test="$use.extensions != '0'
                         and $textinsert.extension != '0'">
           <xsl:choose>
-            <xsl:when test="contains($vendor, 'SAXON')">
+            <xsl:when test="element-available('stext:insertfile')">
               <stext:insertfile href="{$filename}"/>
             </xsl:when>
-            <xsl:when test="contains($vendor, 'Apache Software Foundation')">
+            <xsl:when test="element-available('xtext:insertfile')">
               <xtext:insertfile href="{$filename}"/>
             </xsl:when>
             <xsl:otherwise>
               <xsl:message terminate="yes">
-                <xsl:text>Don't know how to insert files with </xsl:text>
-                <xsl:value-of select="$vendor"/>
+                <xsl:text>No insertfile extension available.</xsl:text>
               </xsl:message>
             </xsl:otherwise>
           </xsl:choose>
@@ -239,7 +237,6 @@
 </xsl:template>
 
 <xsl:template match="imagedata">
-  <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
   <xsl:variable name="filename">
     <xsl:call-template name="mediaobject.filename">
       <xsl:with-param name="object" select=".."/>
@@ -252,16 +249,15 @@
         <xsl:when test="$use.extensions != '0'
                         and $textinsert.extension != '0'">
           <xsl:choose>
-            <xsl:when test="contains($vendor, 'SAXON')">
+            <xsl:when test="element-available('stext:insertfile')">
               <stext:insertfile href="{$filename}"/>
             </xsl:when>
-            <xsl:when test="contains($vendor, 'Apache Software Foundation')">
+            <xsl:when test="element-available('xtext:insertfile')">
               <xtext:insertfile href="{$filename}"/>
             </xsl:when>
             <xsl:otherwise>
               <xsl:message terminate="yes">
-                <xsl:text>Don't know how to insert files with </xsl:text>
-                <xsl:value-of select="$vendor"/>
+                <xsl:text>No insertfile extension available.</xsl:text>
               </xsl:message>
             </xsl:otherwise>
           </xsl:choose>
