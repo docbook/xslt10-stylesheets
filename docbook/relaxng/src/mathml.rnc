@@ -18,7 +18,6 @@ namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
 db.equation.content |= db._any.mml
-db.inlineequation.content |= db._any.mml
 
 db._any.mml =
   element mml:* {
