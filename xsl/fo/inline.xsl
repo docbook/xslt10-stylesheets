@@ -189,7 +189,8 @@
   <xsl:param name="content">
     <xsl:apply-templates/>
   </xsl:param>
-  <fo:inline>
+
+  <fo:inline xsl:use-attribute-sets="superscript.properties">
     <xsl:if test="@dir">
       <xsl:attribute name="direction">
         <xsl:choose>
@@ -214,7 +215,8 @@
   <xsl:param name="content">
     <xsl:apply-templates/>
   </xsl:param>
-  <fo:inline>
+
+  <fo:inline xsl:use-attribute-sets="subscript.properties">
     <xsl:if test="@dir">
       <xsl:attribute name="direction">
         <xsl:choose>
