@@ -54,5 +54,5 @@ if [ `basename $JADE` = jade ] && [ ${SOURCE%.xml} != $SOURCE ]; then
   export SP_ENCODING=xml
 fi
 
-echo $ENV $JADE -E1 $CATALOGS -t $FORMAT -d $DSSSL $* $DECL $SOURCE
-exec $JADE -E1 $CATALOGS -t $FORMAT -d $DSSSL $* $DECL $SOURCE
+echo $ENV $JADE -E5 $CATALOGS -t $FORMAT -d $DSSSL $* $DECL $SOURCE
+exec $JADE -E5 $CATALOGS -t $FORMAT -d $DSSSL $* $DECL $SOURCE
