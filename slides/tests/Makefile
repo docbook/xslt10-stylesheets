@@ -1,7 +1,7 @@
 include ../../cvstools/Makefile.incl
-NOFRAMESTYLE=../xsl/slides.xsl
-FRAMESTYLE=../xsl/frames.xsl
-FOSTYLE=../xsl/fo-plain.xsl
+NOFRAMESTYLE=../xsl/html/slides.xsl
+FRAMESTYLE=../xsl/html/frames.xsl
+FOSTYLE=../xsl/fo/plain.xsl
 VARS=
 FORMATTER=xep
 BROWSER=
@@ -45,7 +45,6 @@ ifeq ($(TIDY),1)
 endif
 
 %.fo : %.xml
-	make -C ../xsl
 ifeq ($(FORMATTER),tex)
 	saxon $< $(FOSTYLE) $@ passivetex.extensions=1 $(VARS)
 else
