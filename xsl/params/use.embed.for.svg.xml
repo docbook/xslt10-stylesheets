@@ -10,7 +10,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='use.embed.for.svg.frag'>
-<xsl:param name="use.embed.for.svg" select="1"/>
+<xsl:param name="use.embed.for.svg" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 
