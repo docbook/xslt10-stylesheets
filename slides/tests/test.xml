@@ -1,6 +1,7 @@
 <?xml version='1.0'?>
-<!DOCTYPE slides SYSTEM "../slides.dtd">
-<slides>
+<slides
+                xmlns:html='http://www.w3.org/1999/xhtml'
+>
 <slidesinfo>
   <title>Test Slides Title</title>
   <copyright><year>2001</year><holder>Norman Walsh</holder></copyright>
@@ -31,6 +32,17 @@ this is a screen
 <screen>
 this is a screen
 </screen>
+</foil>
+
+<foil><title>Test Slides Title 3</title>
+<para>...</para>
+<screen>
+this is a screen
+</screen>
+
+<html:p>This foil contains some XHTML:</html:p>
+<html:ol><html:li>item 1</html:li><html:li>item 2</html:li></html:ol>
+
 </foil>
 
 </section>
