@@ -284,6 +284,9 @@ body { background-image: url('</xsl:text>
 
 <xsl:template match="*" mode="process.root">
   <xsl:variable name="doc" select="self::*"/>
+
+  <xsl:call-template name="root.messages"/>
+
   <html>
   <head>
     <xsl:call-template name="head.content">
@@ -304,6 +307,11 @@ body { background-image: url('</xsl:text>
     </xsl:call-template>
   </body>
   </html>
+</xsl:template>
+
+<xsl:template name="root.messages">
+  <!-- redefine this any way you'd like to output messages -->
+  <!-- DO NOT OUTPUT ANYTHING FROM THIS TEMPLATE -->
 </xsl:template>
 
 <!-- ==================================================================== -->
