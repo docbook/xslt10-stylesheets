@@ -18,7 +18,7 @@
         srccredit="O'Reilly &amp; Associates/Dover Archives"/>
     </imageobject>
     <textobject><phrase>The DocBook: TDG Duck</phrase></textobject>
-    <textobject>
+    <textobject role="text">
 <para>The bird on the cover of <citetitle>DocBook: The Definitive
 Guide</citetitle> is a wood duck.  Often considered one of the most
 beautiful ducks in North America, the mail wood duck has a metallic

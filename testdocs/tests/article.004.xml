@@ -14,9 +14,30 @@
 <abstract>
 <para>This is the abstract.</para>
 <para>It has several paras.</para>
-<para>It has several paras.</para>
+<para>It has several paras. One of the paras is long because it contains
+the same sentence repeated many times. One of the paras is long because it contains
+the same sentence repeated many times. One of the paras is long because it contains
+the same sentence repeated many times. One of the paras is long because it contains
+the same sentence repeated many times. One of the paras is long because it contains
+the same sentence repeated many times. One of the paras is long because it contains
+the same sentence repeated many times. One of the paras is long because it contains
+the same sentence repeated many times. One of the paras is long because it contains
+the same sentence repeated many times. One of the paras is long because it contains
+the same sentence repeated many times. </para>
 </abstract>
 <copyright><year>2002</year><holder>No one in particular</holder></copyright>
+<legalnotice>
+<para>This is the legal notice. It says you can do whatever you please with
+this content. It says it many times. It says you can do whatever you please with
+this content. It says you can do whatever you please with
+this content. It says you can do whatever you please with
+this content. It says you can do whatever you please with
+this content. It says you can do whatever you please with
+this content. It says you can do whatever you please with
+this content. It says you can do whatever you please with
+this content. It says you can do whatever you please with
+this content.</para>
+</legalnotice>
 </articleinfo>
 
 <para>This is an article tests.</para>

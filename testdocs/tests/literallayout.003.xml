@@ -10,6 +10,12 @@
 </author>
 </articleinfo>
 
+<literallayout>LiteralLayout: This is a test
+  Only a test.
+Had this been a real emegency,
+  We would have fled in terror
+And you would not have been informed.</literallayout>
+
 <literallayout class="monospaced">LiteralLayout(monospaced): This is a test
   Only a test.
 Had this been a real emegency,

@@ -117,13 +117,16 @@ Some abstract. Some abstract. Some abstract. Some abstract.
 </sect1>
 </partintro>
 
-<chapter id="chap1"><title>First Chapter</title>
+<chapter id="chap1">
+<title>First Chapter</title>
+<titleabbrev>F. Chap</titleabbrev>
 
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 
 <section id="c1s1"><title>First Section</title>
+<titleabbrev>F. Sect</titleabbrev>
 
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
