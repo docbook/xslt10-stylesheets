@@ -209,7 +209,23 @@
   </div>
 </xsl:template>
 
-<xsl:template match="refsection/title|refsect1/title">
+<xsl:template match="refsection/title">
+  <!-- the ID is output in the block.object call for refsect1 -->
+  <xsl:variable name="level" select="count(ancestor-or-self::refsection)"/>
+  <xsl:variable name="hlevel">
+    <xsl:choose>
+      <xsl:when test="$level &gt; 5">6</xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$level+1"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:element name="h{$hlevel}">
+    <xsl:apply-templates/>
+  </xsl:element>
+</xsl:template>
+
+<xsl:template match="refsect1/title">
   <!-- the ID is output in the block.object call for refsect1 -->
   <h2>
     <xsl:apply-templates/>
