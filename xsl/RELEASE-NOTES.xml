@@ -207,6 +207,12 @@ instead of being off by one.
 attribute as the division class.
 </para>
 </listitem>
+
+<listitem>
+<para>Fixed bug in <filename>html2xhtml.xsl</filename> that was causing the
+XHTML chunker to output HTML instead of XHTML.
+</para>
+</listitem>
 </itemizedlist>
 
 <itemizedlist><title>Release 1.55.0</title>
