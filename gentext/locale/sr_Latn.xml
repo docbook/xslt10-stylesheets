@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <!-- there is no doctype for these files, they are WF only -->
-<locale language="sr_Latn"
+<locale language="sr_latn"
         english-language-name="Serbian in Latin script"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
