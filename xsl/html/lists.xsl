@@ -249,6 +249,7 @@
 
     <xsl:choose>
       <xsl:when test="$presentation = 'table'">
+	<xsl:apply-templates select="*[not(local-name(.) = 'varlistentry')]"/>
         <table border="0">
           <xsl:if test="$list-width != ''">
             <xsl:attribute name="width">
@@ -273,6 +274,7 @@
         </table>
       </xsl:when>
       <xsl:otherwise>
+        <xsl:apply-templates select="*[not(local-name(.) = 'varlistentry')]"/>
         <dl>
           <xsl:apply-templates select="varlistentry"/>
         </dl>
