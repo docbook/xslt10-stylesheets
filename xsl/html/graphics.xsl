@@ -727,6 +727,11 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
     </xsl:when>
     <xsl:otherwise>
       <div>
+        <xsl:if test="@align">
+          <xsl:attribute name="align">
+            <xsl:value-of select="@align"/>
+          </xsl:attribute>
+        </xsl:if>
         <xsl:call-template name="anchor"/>
         <xsl:call-template name="process.image"/>
       </div>
@@ -784,43 +789,35 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 <!-- ==================================================================== -->
 
 <xsl:template match="mediaobject|mediaobjectco">
+
+  <xsl:variable name="olist" select="imageobject|imageobjectco
+                     |videoobject|audioobject
+                     |textobject"/>
+
+  <xsl:variable name="object.index">
+    <xsl:call-template name="select.mediaobject.index">
+      <xsl:with-param name="olist" select="$olist"/>
+      <xsl:with-param name="count" select="1"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="object" select="$olist[position() = $object.index]"/>
+
+  <xsl:variable name="align">
+    <xsl:value-of select="$object/imagedata[@align][1]/@align"/>
+  </xsl:variable>
+
   <div class="{name(.)}">
+    <xsl:if test="$align != '' ">
+      <xsl:attribute name="align">
+        <xsl:value-of select="$align"/>
+      </xsl:attribute>
+    </xsl:if>
     <xsl:if test="@id">
       <a name="{@id}"/>
     </xsl:if>
-    <xsl:choose>
-      <xsl:when test="$use.role.for.mediaobject != 0 
-                 and $preferred.mediaobject.role != ''
-                 and (imageobject|imageobjectco
-                     |videoobject|audioobject
-                     |textobject)[@role = $preferred.mediaobject.role]"> 
-        <xsl:call-template name="select.mediaobject">
-	  <xsl:with-param name="olist"
-                 select="(imageobject|imageobjectco
-                     |videoobject|audioobject
-                     |textobject)[@role = $preferred.mediaobject.role]"/> 
-	</xsl:call-template>
-      </xsl:when>
-      <xsl:when test="$use.role.for.mediaobject != 0 
-                 and (imageobject|imageobjectco
-                     |videoobject|audioobject
-		     |textobject)[@role = 'html']">
-        <xsl:call-template name="select.mediaobject">
-	  <xsl:with-param name="olist"
-                 select="(imageobject|imageobjectco
-                     |videoobject|audioobject
-		     |textobject)[@role = 'html']"/>
-	</xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="select.mediaobject">
-	  <xsl:with-param name="olist"
-                 select="imageobject|imageobjectco
-                     |videoobject|audioobject
-		     |textobject"/>
-	</xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
+
+    <xsl:apply-templates select="$object"/>
     <xsl:apply-templates select="caption"/>
   </div>
 </xsl:template>
