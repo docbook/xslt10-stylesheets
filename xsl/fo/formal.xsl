@@ -302,8 +302,8 @@
 <xsl:template name="table.frame">
   <xsl:variable name="frame">
     <xsl:choose>
-      <xsl:when test="@frame">
-        <xsl:value-of select="@frame"/>
+      <xsl:when test="../@frame">
+        <xsl:value-of select="../@frame"/>
       </xsl:when>
       <xsl:otherwise>all</xsl:otherwise>
     </xsl:choose>
