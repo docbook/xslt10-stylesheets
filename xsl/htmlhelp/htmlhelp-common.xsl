@@ -817,7 +817,9 @@ Title=</xsl:text>
 
 <!-- no separate HTML page with index -->
 <xsl:template match="index"/>   
+<xsl:template match="setindex"/>   
 <xsl:template match="index" mode="toc"/>
+<xsl:template match="setindex" mode="toc"/>
 
 <xsl:template match="indexterm">
   <xsl:choose>
