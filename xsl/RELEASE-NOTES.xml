@@ -5,7 +5,7 @@
 <article>
 <articleinfo>
 <title>DocBook XSL Stylesheet Release Notes</title>
-<pubdate>08 Oct 2002</pubdate>
+<pubdate>17 Nov 2002</pubdate>
 <releaseinfo role="cvs">$Id$
 </releaseinfo>
 
@@ -17,6 +17,70 @@
 This file documents (mostly) changes to the public APIs. What,
 exactly, counts as a public API is still somewhat in question, but it
 includes at least the global parameters.</para>
+
+<itemizedlist><title>Release 1.58.0</title>
+
+<para>The 1.58.0 adds some initial support for extensions in xsltproc, adds
+a few features, and fixes bugs.
+</para>
+
+<listitem>
+<para>This release contains the first attempt at extension support for xsltproc.
+The only extension available to date is the one that adjusts table column widths.
+Run <filename>extensions/xsltproc/python/xslt.py</filename>.
+</para>
+</listitem>
+
+<listitem>
+<para>Fixed bugs in calculation of adjusted column widths to correct for rounding
+errors.
+</para>
+</listitem>
+
+<listitem>
+<para>Support nested <sgmltag>refsection</sgmltag> elements correctly.
+</para>
+</listitem>
+
+<listitem>
+<para>Reworked <literal>gentext.template</literal> to take context into consideration.
+The name of elements in localization files is now an xpath-like context list, not
+just a simple name.
+</para>
+</listitem>
+
+<listitem>
+<para>Made some improvements to bibliography formatting.
+</para>
+</listitem>
+
+<listitem>
+<para>Improved graphical formatting of admonitions.
+</para>
+</listitem>
+
+<listitem>
+<para>Added support for <sgmltag>entrytbl</sgmltag>.
+</para>
+</listitem>
+
+<listitem>
+<para>Support spanning index terms.
+</para>
+</listitem>
+
+<listitem>
+<para>Support <sgmltag>bibliosource</sgmltag>.
+</para>
+</listitem>
+</itemizedlist>
+
+<itemizedlist><title>Release 1.57.0</title>
+<listitem>
+<para>The 1.57.0 release wasn't documented here. Oops.
+</para>
+</listitem>
+</itemizedlist>
 
 <itemizedlist><title>Release 1.56.0</title>
 
