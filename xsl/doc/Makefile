@@ -1,5 +1,5 @@
 include ../../cvstools/Makefile.incl
-XSLT=xalan
+XSLT=saxon
 XSLTOPT=
 PROCOPT=
 
