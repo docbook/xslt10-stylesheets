@@ -535,7 +535,7 @@
         <xsl:with-param name="title" select="$title"/>
         <xsl:with-param name="subtitle" select="$subtitle"/>
         <xsl:with-param name="label" select="$label"/>
-        <xsl:with-param name="pagenumber" select="$label"/>
+        <xsl:with-param name="pagenumber" select="$pagenumber"/>
         <xsl:with-param name="purpose" select="$purpose"/>
         <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
         <xsl:with-param name="referrer" select="$referrer"/>
