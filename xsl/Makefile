@@ -19,6 +19,7 @@ all:	xhtml RELEASE-NOTES.html
 	done
 
 RELEASE-NOTES.html: RELEASE-NOTES.xml
+	$(XJPARSE) $<
 	$(XSLT) $< docsrc/doc-link-docbook.xsl $@
 
 RELEASE-NOTES.pdf: RELEASE-NOTES.xml
