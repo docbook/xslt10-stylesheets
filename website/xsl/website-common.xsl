@@ -23,6 +23,7 @@
 <xsl:include href="param.xsl"/>
 <xsl:include href="head.xsl"/>
 <xsl:include href="rss.xsl"/>
+<xsl:include href="olink.xsl"/>
 
 <xsl:preserve-space elements="*"/>
 <xsl:strip-space elements="website webpage"/>
@@ -500,91 +501,6 @@ node.</para>
 
 <!-- ==================================================================== -->
 
-<xsl:template match="olink">
-  <xsl:variable name="xmlfile"
-                select="document(unparsed-entity-uri(@targetdocent),$autolayout)"/>
-  <xsl:variable name="webpage"
-                select="$xmlfile/webpage"/>
-  <xsl:variable name="tocentry"
-                select="$autolayout//*[$webpage/@id=@id]"/>
-
-  <xsl:variable name="dir">
-    <xsl:choose>
-      <xsl:when test="starts-with($tocentry/@dir, '/')">
-        <xsl:value-of select="substring($tocentry/@dir, 2)"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$tocentry/@dir"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-<!--
-  <xsl:message>Olink for <xsl:value-of select="unparsed-entity-uri(@targetdocent)"/></xsl:message>
-  <xsl:message>Page id <xsl:value-of select="$webpage/@id"/></xsl:message>
--->
-
-  <xsl:choose>
-    <xsl:when test="@type = 'embed'">
-      <xsl:apply-templates select="$xmlfile"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <!-- @type = 'replace' or @type = 'new' -->
-      <a>
-        <xsl:if test="@id">
-          <xsl:attribute name="name">
-            <xsl:value-of select="@id"/>
-          </xsl:attribute>
-        </xsl:if>
-
-<!--
-        <xsl:message>
-          <xsl:text>href: </xsl:text>
-          <xsl:call-template name="root-rel-path"/>
-          <xsl:text>::</xsl:text>
-          <xsl:value-of select="$dir"/>
-          <xsl:text>::</xsl:text>
-          <xsl:value-of select="$filename-prefix"/>
-          <xsl:text>::</xsl:text>
-          <xsl:value-of select="$tocentry/@filename"/>
-          <xsl:text>::</xsl:text>
-          <xsl:if test="@localinfo">
-            <xsl:text>#</xsl:text>
-            <xsl:value-of select="@localinfo"/>
-          </xsl:if>
-        </xsl:message>
--->
-
-        <xsl:attribute name="href">
-          <xsl:call-template name="root-rel-path"/>
-          <xsl:value-of select="$dir"/>
-          <xsl:value-of select="$filename-prefix"/>
-          <xsl:value-of select="$tocentry/@filename"/>
-          <xsl:if test="@localinfo">
-            <xsl:text>#</xsl:text>
-            <xsl:value-of select="@localinfo"/>
-          </xsl:if>
-        </xsl:attribute>
-
-        <xsl:if test="@type = 'new'">
-          <xsl:attribute name="target">_blank</xsl:attribute>
-        </xsl:if>
-
-        <xsl:choose>
-          <xsl:when test="count(node()) = 0">
-            <xsl:apply-templates select="$webpage/head/title"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </a>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-<!-- ==================================================================== -->
-
 <xsl:template name="page.uri">
   <xsl:param name="href" select="''"/>
   <xsl:param name="page" select="ancestor-or-self::tocentry"/>
@@ -757,4 +673,126 @@ node.</para>
   <xsl:value-of select="$tocentry/following-sibling::tocentry[last()]/@id"/>
 </xsl:template>
 
+<xsl:template match="autolayout" mode="collect.targets">
+  <targetset>
+    <xsl:apply-templates mode="olink.mode"/>
+  </targetset>
+</xsl:template>
+
+<xsl:template match="toc|tocentry|notoc" mode="olink.mode">
+    <xsl:text>&#10;</xsl:text>
+    <xsl:call-template name="tocentry"/>
+    <xsl:apply-templates select="tocentry" mode="olink.mode"/>
+</xsl:template>
+
+
+<xsl:template name="tocentry" mode="olink.mode">
+  <xsl:choose>
+    <xsl:when test="@href">
+      <!-- no op -->
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:if test="not(@page)">
+        <xsl:message terminate="yes">
+          <xsl:text>All toc entries must have a page attribute.</xsl:text>
+        </xsl:message>
+      </xsl:if>
+    
+      <xsl:variable name="page" select="document(@page,.)"/>
+    
+      <xsl:if test="not($page/*[1]/@id)">
+        <xsl:message terminate="yes">
+          <xsl:value-of select="@page"/>
+          <xsl:text>: missing ID.</xsl:text>
+        </xsl:message>
+      </xsl:if>
+    
+      <xsl:variable name="id" select="$page/*[1]/@id"/>
+    
+      <xsl:variable name="filename">
+        <xsl:choose>
+          <xsl:when test="@filename">
+            <xsl:value-of select="@filename"/>
+          </xsl:when>
+          <xsl:when test="/layout/config[@param='default-filename']">
+            <xsl:value-of select="(/layout/config[@param='default-filename'])[1]/@value"/>
+          </xsl:when>
+          <xsl:otherwise>index.html</xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+    
+      <xsl:variable name="dir" select="@dir"/>
+    
+      <xsl:if test="$filename = ''">
+        <xsl:message terminate="yes">
+          <xsl:value-of select="@page"/>
+          <xsl:text>: missing filename.</xsl:text>
+        </xsl:message>
+      </xsl:if>
+    
+    <!--
+      <xsl:message>
+        <xsl:value-of select="@page"/>
+        <xsl:text>: </xsl:text>
+        <xsl:if test="$dir != ''">
+          <xsl:value-of select="$dir"/>
+        </xsl:if>
+        <xsl:value-of select="$filename"/>
+      </xsl:message>
+    -->
+    
+      <document>
+        <xsl:attribute name="targetdoc">
+          <xsl:value-of select="$id"/>
+        </xsl:attribute>
+        <xsl:attribute name="baseuri">
+          <xsl:value-of select="$filename"/>
+        </xsl:attribute>
+        <xsl:if test="$dir != ''">
+          <xsl:attribute name="dir">
+            <xsl:value-of select="$dir"/>
+          </xsl:attribute>
+        </xsl:if>
+    
+        <xsl:apply-templates select="$page" mode="olink.mode"/>
+      </document>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="webpage" mode="olink.mode">
+  <xsl:call-template name="div"/>
+</xsl:template>
+
+<xsl:template match="webpage" mode="xref-to" >
+  <xsl:param name="referrer"/>
+  <xsl:param name="xrefstyle"/>
+
+  <xsl:apply-templates select="." mode="object.xref.markup">
+    <xsl:with-param name="purpose" select="'xref'"/>
+    <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+    <xsl:with-param name="referrer" select="$referrer"/>
+  </xsl:apply-templates>
+  <!-- FIXME: What about "in Chapter X"? -->
+</xsl:template>
+
+<xsl:template match="webpage" mode="title.markup">
+  <xsl:param name="allow-anchors" select="0"/>
+  <xsl:apply-templates select=".//head/title"
+                       mode="title.markup">
+    <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+  </xsl:apply-templates>
+</xsl:template>
+
+<xsl:param name="local.l10n.xml" select="document('')" />
+<l:i18n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"> 
+  <l:l10n language="en">
+    <l:context name="title">
+      <l:template name="webpage" text="%t"/>
+    </l:context>
+    <l:context name="xref">
+      <l:template name="webpage" text="%t"/>
+    </l:context>
+  </l:l10n>
+</l:i18n>
 </xsl:stylesheet>
