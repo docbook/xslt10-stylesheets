@@ -1,4 +1,4 @@
-<?xml version='1.0'?>
+<?xml version='1.0' encoding='utf-8' ?>
 <!-- there is no doctype for these files, they are WF only -->
 <locale language="lt"
         english-language-name="Lithuanian"
@@ -10,6 +10,10 @@
           <affiliation><address><email>nikolajus@avc.lt</email></address>
           </affiliation>
   </author>
+  <author><firstname>Kęstutis</firstname><surname>Biliūnas</surname>
+          <affiliation><address><email>kebil@kaunas.init.lt</email></address>
+          </affiliation>
+  </author>
 </authorgroup>
 </doc:localeinfo>
 
@@ -18,7 +22,7 @@
 <gentext key="Answer" text="Ats:"/>
 <gentext key="answer" text="Ats:"/>
 <gentext key="Appendix" text="Priedas"/>
-<gentext key="appendix" text="priedas"/>
+<gentext key="appendix" text="Priedas"/>
 <gentext key="Article" text="Straipsnis"/>
 <gentext key="article" text="Straipsnis"/>
 <gentext key="Bibliography" text="Bibliografija"/>
@@ -29,11 +33,11 @@
 <gentext key="Caution" text="Atsargiai"/>
 <gentext key="caution" text="Atsargiai"/>
 <gentext key="Chapter" text="Skyrius"/>
-<gentext key="chapter" text="skyrius"/>
-<gentext key="Colophon" text="&#x012E;&#x017E;anga &#x012F; knyg&#x0105;"/>
-<gentext key="colophon" text="&#x012E;&#x017E;anga &#x012F; knyg&#x0150;"/>
-<gentext key="Copyright" text="Autorin&#x0117;s teis&#x0117;s"/>
-<gentext key="copyright" text="Autorin&#x0117;s teis&#x0117;s"/>
+<gentext key="chapter" text="Skyrius"/>
+<gentext key="Colophon" text="Knygos metrika"/>
+<gentext key="colophon" text="Knygos metrika"/>
+<gentext key="Copyright" text="Autorinės teisės"/>
+<gentext key="copyright" text="Autorinės teisės"/>
 <gentext key="Dedication" text="Dedikacija"/>
 <gentext key="dedication" text="Dedikacija"/>
 <gentext key="Edition" text="Leidimas"/>
@@ -44,41 +48,45 @@
 <gentext key="example" text="Pavyzdys"/>
 <gentext key="Figure" text="Pav."/>
 <gentext key="figure" text="Pav."/>
-<gentext key="Glossary" text="Termin&#x0173; &#x017E;odyn&#x0117;lis"/>
-<gentext key="glossary" text="Termin&#x0173; &#x017E;odyn&#x0117;lis"/>
-<gentext key="GlossSee" text="Termin&#x0105; &#x017E;r."/>
-<gentext key="glosssee" text="Termin&#x0105; &#x017E;r."/>
-<gentext key="GlossSeeAlso" text="Taip pat &#x017E;r."/>
-<gentext key="glossseealso" text="Taip pat &#x017E;r."/>
+<gentext key="Glossary" text="Terminų žodynas"/>
+<gentext key="glossary" text="Terminų žodynas"/>
+<gentext key="GlossSee" text="Žr."/>
+<gentext key="glosssee" text="Žr."/>
+<gentext key="GlossSeeAlso" text="Taip pat žr."/>
+<gentext key="glossseealso" text="Taip pat žr."/>
 <gentext key="IMPORTANT" text="SVARBU"/>
 <gentext key="important" text="Svarbu"/>
 <gentext key="Important" text="Svarbu"/>
-<gentext key="Index" text="Rodykl&#x0117;"/>
-<gentext key="index" text="Rodykl&#x0117;"/>
+<gentext key="Index" text="Rodyklė"/>
+<gentext key="index" text="Rodyklė"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
-<gentext key="LegalNotice" text="Teisin&#x0117; pastaba"/>
-<gentext key="legalnotice" text="Teisin&#x0117; pastaba"/>
+<gentext key="LegalNotice" text="Teisinė pastaba"/>
+<gentext key="legalnotice" text="Teisinė pastaba"/>
 <gentext key="MsgAud" text="Auditorija"/>
 <gentext key="msgaud" text="Auditorija"/>
 <gentext key="MsgLevel" text="Lygmuo"/>
 <gentext key="msglevel" text="Lygmuo"/>
-<gentext key="MsgOrig" text="Kilm&#x0117;"/>
-<gentext key="msgorig" text="Kilm&#x0117;"/>
+<gentext key="MsgOrig" text="Kilmė"/>
+<gentext key="msgorig" text="Kilmė"/>
 <gentext key="NOTE" text="PASTABA"/>
 <gentext key="Note" text="Pastaba"/>
 <gentext key="note" text="Pastaba"/>
 <gentext key="Part" text="Dalis"/>
 <gentext key="part" text="Dalis"/>
-<gentext key="Preface" text="&#x012E;&#x017E;anga"/>
-<gentext key="preface" text="&#x012E;&#x017E;anga"/>
-<gentext key="Procedure" text="Proced&#x016B;ra"/>
-<gentext key="procedure" text="Proced&#x016B;ra"/>
-<gentext key="ProductionSet" text="Production"/>
-<gentext key="Published" text="I&#x0161;leistas"/>
-<gentext key="published" text="I&#x0161;leistas"/>
-<gentext key="Question" text="Klausimas:"/>
-<gentext key="question" text="Klausimas:"/>
+<gentext key="Preface" text="Įvadas"/>
+<gentext key="preface" text="Įvadas"/>
+<gentext key="Procedure" text="Procedūra"/>
+<gentext key="procedure" text="Procedūra"/>
+<gentext key="ProductionSet" text="Produkcija"/>
+<gentext key="PubDate" text="Išleidimo data"/>
+<gentext key="pubdate" text="Išleidimo data"/>
+<gentext key="Published" text="Išleistas"/>
+<gentext key="published" text="Išleistas"/>
+<gentext key="Qandadiv" text="Klaus. ir Ats."/>
+<gentext key="qandadiv" text="Klaus. ir Ats."/>
+<gentext key="Question" text="Klaus.:"/>
+<gentext key="question" text="Klaus.:"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
 <gentext key="Reference" text="Nuoroda"/>
@@ -87,10 +95,10 @@
 <gentext key="refname" text="Pavadinimas"/>
 <gentext key="RefSection" text=""/>
 <gentext key="refsection" text=""/>
-<gentext key="RefSynopsisDiv" text="Trumpa ap&#x017E;valga"/>
-<gentext key="refsynopsisdiv" text="Trumpa ap&#x017E;valga"/>
-<gentext key="RevHistory" text="Pataisym&#x0173; istorija"/>
-<gentext key="revhistory" text="Pataisym&#x0173; istorija"/>
+<gentext key="RefSynopsisDiv" text="Trumpa apžvalga"/>
+<gentext key="refsynopsisdiv" text="Trumpa apžvalga"/>
+<gentext key="RevHistory" text="Pataisymų istorija"/>
+<gentext key="revhistory" text="Pataisymų istorija"/>
 <gentext key="revision" text="Pataisytas leidimas"/>
 <gentext key="Revision" text="Pataisytas leidimas"/>
 <gentext key="sect1" text="Skyrius"/>
@@ -100,82 +108,96 @@
 <gentext key="sect5" text="Skyrius"/>
 <gentext key="section" text="Skyrius"/>
 <gentext key="Section" text="Skyrius"/>
-<gentext key="see" text="&#x017E;r."/>             <!-- uncapitalized -->
-<gentext key="seealso" text="&#x017E;r."/>    <!-- uncapitalized -->
-<gentext key="set" text="Set"/>
-<gentext key="Set" text="Set"/>
-<gentext key="setindex" text="Set Index"/>
-<gentext key="SetIndex" text="Set Index"/>
+<gentext key="see" text="žr."/>             <!-- uncapitalized -->
+<gentext key="See" text="Žr."/>
+<gentext key="seealso" text="taip pat žr."/>    <!-- uncapitalized -->
+<gentext key="Seealso" text="Taip pat žr."/>
+<gentext key="SeeAlso" text="Taip pat žr."/>
+<gentext key="set" text="Set"/>			<!-- en -->
+<gentext key="Set" text="Set"/>			<!-- en -->
+<gentext key="setindex" text="Set Index"/>	<!-- en -->
+<gentext key="SetIndex" text="Set Index"/>	<!-- en -->
 <gentext key="Sidebar" text=""/>
-<gentext key="sidebar" text="sidebar"/>
-<gentext key="step" text="&#x017E;ingsnis"/>
-<gentext key="Step" text="&#x017D;ingsnis"/>
-<gentext key="Table" text="Lentel&#x0117;"/>
-<gentext key="table" text="Lentel&#x0117;"/>
+<gentext key="sidebar" text="sidebar"/>		<!-- en -->
+<gentext key="step" text="žingsnis"/>
+<gentext key="Step" text="Žingsnis"/>
+<gentext key="Table" text="Lentelė"/>
+<gentext key="table" text="Lentelė"/>
 <gentext key="tip" text="Patarimas"/>
 <gentext key="TIP" text="PATARIMAS"/>
 <gentext key="Tip" text="Patarimas"/>
-<gentext key="Warning" text="&#x012E;sp&#x0117;jimas"/>
-<gentext key="warning" text="&#x012E;sp&#x0117;jimas"/>
-<gentext key="WARNING" text="&#x012E;SP&#x0116;JIMAS"/>
+<gentext key="Warning" text="Įspėjimas"/>
+<gentext key="warning" text="Įspėjimas"/>
+<gentext key="WARNING" text="ĮSPĖJIMAS"/>
 
 <gentext key="and" text="ir"/>
-<gentext key="by" text="by"/>
+<gentext key="by" text=""/>
+<gentext key="called" text="called"/>		<!-- en -->
 <gentext key="Edited" text="Redaguotas"/>
 <gentext key="edited" text="Redaguotas"/>
-<gentext key="Editedby" text="Redaguotas:"/>
-<gentext key="editedby" text="Redaguotas:"/>
-<gentext key="in" text="in"/>
+<gentext key="Editedby" text="Redagavo"/>
+<gentext key="editedby" text="Redagavo"/>
+<gentext key="in" text=""/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
 <gentext key="nonexistantelement" text="neegzistuojantis elementas"/>
 <gentext key="notes" text="Pastabos"/>
 <gentext key="Notes" text="Pastabos"/>
-<gentext key="Pgs" text="Pgs."/>
-<gentext key="pgs" text="Pgs."/>
-<gentext key="Revisedby" text="Patais&#x0117;: "/>
-<gentext key="revisedby" text="Patais&#x0117;: "/>
-<gentext key="TableNotes" text="Lentel&#x0117;s pastabos"/>
-<gentext key="tablenotes" text="Lentel&#x0117;s pastabos"/>
-<gentext key="TableofContents" text="T&#x016B;rinys"/>
-<gentext key="tableofcontents" text="T&#x016B;rinys"/>
-<gentext key="unexpectedelementname" text="Unexpected element name"/>
+<gentext key="Pgs" text="P."/>
+<gentext key="pgs" text="P."/>
+<gentext key="Revisedby" text="Pataisė: "/>
+<gentext key="revisedby" text="Pataisė: "/>
+<gentext key="TableNotes" text="Pastabos"/>
+<gentext key="tablenotes" text="Pastabos"/>
+<gentext key="TableofContents" text="Turinys"/>
+<gentext key="tableofcontents" text="Turinys"/>
+<gentext key="the" text=""/>
+<gentext key="unexpectedelementname" text="Nenumatyto elemento pavadinimas"/>
 <gentext key="unsupported" text="nepalaikomas"/>
-<gentext key="xrefto" text="xref to"/>
+<gentext key="xrefto" text="xref į"/>
 
-<gentext key="listofequations" text="Lyg&#x010D;i&#x0173; s&#x0105;ra&#x0161;as"/>
-<gentext key="ListofEquations" text="Lyg&#x010D;i&#x0173; s&#x0105;ra&#x0161;as"/>
-<gentext key="ListofExamples" text="Pavyzd&#x017E;i&#x0173; s&#x0105;ra&#x0161;as"/>
-<gentext key="listofexamples" text="Pavyzd&#x017E;i&#x0173; s&#x0105;ra&#x0161;as"/>
-<gentext key="ListofFigures" text="Pav. s&#x0105;ra&#x0161;as"/>
-<gentext key="listoffigures" text="Pav. s&#x0105;ra&#x0161;as"/>
-<gentext key="listoftables" text="Lenteli&#x0173; s&#x0105;ra&#x0161;as"/>
-<gentext key="ListofTables" text="Lenteli&#x0173; s&#x0105;ra&#x0161;as"/>
-<gentext key="ListofUnknown" text="Ne&#x017E;inomas s&#x0105;ra&#x0161;as"/>
-<gentext key="listofunknown" text="Ne&#x017E;inomas s&#x0105;ra&#x0161;as"/>
+<gentext key="listofequations" text="Lygčių sąrašas"/>
+<gentext key="ListofEquations" text="Lygčių sąrašas"/>
+<gentext key="ListofExamples" text="Pavyzdžių sąrašas"/>
+<gentext key="listofexamples" text="Pavyzdžių sąrašas"/>
+<gentext key="ListofFigures" text="Paveikslų sąrašas"/>
+<gentext key="listoffigures" text="Paveikslų sąrašas"/>
+<gentext key="ListofProcedures" text="Procedūrų sąrašas"/>
+<gentext key="listofprocedures" text="Procedūrų sąrašas"/>
+<gentext key="listoftables" text="Lentelių sąrašas"/>
+<gentext key="ListofTables" text="Lentelių sąrašas"/>
+<gentext key="ListofUnknown" text="Nežinomas sąrašas"/>
+<gentext key="listofunknown" text="Nežinomas sąrašas"/>
 
-<gentext key="nav-home" text="Namai"/>
+<gentext key="nav-home" text="Į pradžią"/>
 <gentext key="nav-next" text="Sekantis"/>
-<gentext key="nav-next-sibling" text="Fast Forward"/>
-<gentext key="nav-prev" text="Paskesnis"/>
-<gentext key="nav-prev-sibling" text="Fast Backward"/>
-<gentext key="nav-up" text="&#x012E; vir&#x0161;&#x0173;"/>
-<gentext key="nav-toc" text="ToC"/>
+<gentext key="nav-next-sibling" text="Spartus pirmyn"/>
+<gentext key="nav-prev" text="Ankstesnis"/>
+<gentext key="nav-prev-sibling" text="Spartus atgal"/>
+<gentext key="nav-up" text="Aukštyn"/>
+<gentext key="nav-toc" text="Turinys"/>
 
-<gentext key="Draft"         text="Draft"/>
-<gentext key="above"         text="above"/>
-<gentext key="below"         text="below"/>
-<gentext key="sectioncalled" text="the section called"/>
-<gentext key="index symbols" text="Symbols"/>
+<gentext key="Draft"         text="Planas"/>
+<gentext key="above"         text="aukščiau"/>
+<gentext key="below"         text="žemiau"/>
+<gentext key="sectioncalled" text="skyrius pavadinimu"/>
+<gentext key="index symbols" text="Simboliai"/>
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
+<gentext key="lowercase.alpha" text="aąbcčdeęėfghiįyjklmnoprsštuųūvzžqwx"/>
+<gentext key="uppercase.alpha" text="AĄBCČDEĘĖFGHIĮYJKLMNOPRSŠTUŲŪVZŽQWX"/>
 
-<dingbat key="startquote" text="&#x201C;"/>
-<dingbat key="endquote" text="&#x201D;"/>
+<dingbat key="startquote" text="&#x201E;"/>
+<dingbat key="endquote" text="&#x201C;"/>
 <dingbat key="nestedstartquote" text="&#x2018;"/>
 <dingbat key="nestedendquote" text="&#x2019;"/>
+<dingbat key="singlestartquote" text="&#x2018;"/>
+<dingbat key="singleendquote" text="&#x2019;"/>
 <dingbat key="bullet" text="&#x2022;"/>
+
+<!-- n.b. &#x2010; might be better, but it doesn't always render properly -->
+<gentext key="hyphenation-character" text="-"/>
+<gentext key="hyphenation-push-character-count" text="2"/>
+<gentext key="hyphenation-remain-character-count" text="2"/>
 
 <context name="styles">
 
@@ -193,6 +215,7 @@
 <template name="bibliodiv">%t</template>
 <template name="biblioentry">%t</template>
 <template name="bibliography">%t</template>
+<template name="bibliolist">%t</template>
 <template name="bibliomixed">%t</template>
 <template name="bibliomset">%t</template>
 <template name="biblioset">%t</template>
@@ -206,9 +229,13 @@
 <template name="equation"><Equation/>&#160;%n.&#160;%t</template>
 <template name="example"><Example/>&#160;%n.&#160;%t</template>
 <template name="figure"><Figure/>&#160;%n.&#160;%t</template>
+<template name="foil">%t</template>	<!-- For Slides document type -->
+<template name="foilgroup">%t</template>  <!-- For Slides document type -->
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
+<template name="glosslist">%t</template>
+<template name="glossentry">%t</template>
 <template name="important">%t</template>
 <template name="index">%t</template>
 <template name="indexdiv">%t</template>
@@ -249,6 +276,7 @@
 <template name="sidebar">%t</template>
 <template name="step">%t</template>
 <template name="table"><Table/>&#160;%n.&#160;%t</template>
+<template name="task">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
@@ -260,6 +288,7 @@
 <context name="title-unnumbered">
 
 <template name="appendix">%t</template>
+<template name="article/appendix">%t</template>
 <template name="bridgehead">%t</template>
 <template name="chapter">%t</template>
 <template name="sect1">%t</template>
@@ -275,6 +304,7 @@
 <context name="title-numbered">
 
 <template name="appendix"><Appendix/>&#160;%n.&#160;%t</template>
+<template name="article/appendix">%n.&#160;%t</template>
 <template name="bridgehead">%n.&#160;%t</template>
 <template name="chapter"><Chapter/>&#160;%n.&#160;%t</template>
 <template name="sect1">%n.&#160;%t</template>
@@ -351,6 +381,8 @@
 <template name="equation">%t</template>
 <template name="example">%t</template>
 <template name="figure">%t</template>
+<template name="foil">%t</template>	<!-- For Slides document type -->
+<template name="foilgroup">%t</template> <!-- For Slides document type -->
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
@@ -390,7 +422,14 @@
 <template name="variablelist">%t</template>
 <template name="varlistentry">%n</template>
 <template name="warning">%t</template>
+<template name="olink.document.citation"> in %o</template>
+<template name="olink.page.citation"> (page %p)</template>
 <template name="page.citation"> [%p]</template>
+<template name="page">(page %p)</template>
+<template name="docname"> in %o</template>
+<template name="docnamelong"> in the document titled %o</template>
+<template name="pageabbrev">(p. %p)</template>
+<template name="Page">Page %p</template>
 
 <template name="bridgehead"><sectioncalled/> <startquote/>%t<endquote/></template>
 <template name="refsection"><sectioncalled/> <startquote/>%t<endquote/></template>
@@ -476,8 +515,131 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<context name="datetime">
+<template name="format">Y-m-d</template>
+</context>
+
+<context name="datetime-full">
+<template name="January">Sausis</template>
+<template name="February">Vasaris</template>
+<template name="March">Kovas</template>
+<template name="April">Balandis</template>
+<template name="May">Gegužė</template>
+<template name="June">Birželis</template>
+<template name="July">Liepa</template>
+<template name="August">Rugpjūtis</template>
+<template name="September">Rugsėjis</template>
+<template name="October">Spalis</template>
+<template name="November">Lapkritis</template>
+<template name="December">Gruodis</template>
+<template name="Monday">Pirmadienis</template>
+<template name="Tuesday">Antradienis</template>
+<template name="Wednesday">Trečiadienis</template>
+<template name="Thursday">Ketvirtadienis</template>
+<template name="Friday">Penktadienis</template>
+<template name="Saturday">Šeštadienis</template>
+<template name="Sunday">Sekmadienis</template>
+</context>
+
+<context name="datetime-abbrev">
+<template name="Jan">Sau</template>
+<template name="Feb">Vas</template>
+<template name="Mar">Kov</template>
+<template name="Apr">Bal</template>
+<template name="May">Geg</template>
+<template name="Jun">Bir</template>
+<template name="Jul">Lie</template>
+<template name="Aug">Rugp</template>
+<template name="Sep">Rugs</template>
+<template name="Oct">Spa</template>
+<template name="Nov">Lap</template>
+<template name="Dec">Gru</template>
+<template name="Mon">Pr</template>
+<template name="Tue">An</template>
+<template name="Wed">Tr</template>
+<template name="Thu">Kt</template>
+<template name="Fri">Pn</template>
+<template name="Sat">Št</template>
+<template name="Sun">Sk</template>
+</context>
+
 <context name="htmlhelp">
 <template name="langcode">0x0427 Lithuanian</template>
 </context>
+
+<letters>
+  <l i="-1"/>
+  <l i="0">Simboliai</l>
+  <l i="1">A</l>
+  <l i="1">a</l>
+  <l i="1">Ą</l>
+  <l i="1">ą</l>
+  <l i="2">B</l>
+  <l i="2">b</l>
+  <l i="3">C</l>
+  <l i="3">c</l>
+  <l i="3">Č</l>
+  <l i="3">č</l>
+  <l i="4">D</l>
+  <l i="4">d</l>
+  <l i="5">E</l>
+  <l i="5">e</l>
+  <l i="5">Ę</l>
+  <l i="5">ę</l>
+  <l i="5">Ė</l>
+  <l i="5">ė</l>
+  <l i="6">F</l>
+  <l i="6">f</l>
+  <l i="7">G</l>
+  <l i="7">g</l>
+  <l i="8">H</l>
+  <l i="8">h</l>
+  <l i="9">I</l>
+  <l i="9">i</l>
+  <l i="9">Į</l>
+  <l i="9">į</l>
+  <l i="10">Y</l>
+  <l i="10">y</l>
+  <l i="11">J</l>
+  <l i="11">j</l>
+  <l i="12">K</l>
+  <l i="12">k</l>
+  <l i="13">L</l>
+  <l i="13">l</l>
+  <l i="14">M</l>
+  <l i="14">m</l>
+  <l i="15">N</l>
+  <l i="15">n</l>
+  <l i="16">O</l>
+  <l i="16">o</l>
+  <l i="17">P</l>
+  <l i="17">p</l>
+  <l i="18">R</l>
+  <l i="18">r</l>
+  <l i="19">S</l>
+  <l i="19">s</l>
+  <l i="19">Š</l>
+  <l i="19">š</l>
+  <l i="20">T</l>
+  <l i="20">t</l>
+  <l i="21">U</l>
+  <l i="21">u</l>
+  <l i="21">Ų</l>
+  <l i="21">ų</l>
+  <l i="21">Ū</l>
+  <l i="21">ū</l>
+  <l i="22">V</l>
+  <l i="22">v</l>
+  <l i="23">Z</l>
+  <l i="23">z</l>
+  <l i="23">Ž</l>
+  <l i="23">ž</l>
+  <l i="24">Q</l>
+  <l i="24">q</l>
+  <l i="25">W</l>
+  <l i="25">w</l>
+  <l i="26">X</l>
+  <l i="26">x</l>
+</letters>
 
 </locale>
