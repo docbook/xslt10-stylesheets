@@ -125,6 +125,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/make.valid.html.xml \
        ../params/make.year.ranges.xml \
        ../params/manifest.xml \
+       ../params/manifest.in.base.dir.xml \
        ../params/manual.toc.xml \
        ../params/navig.graphics.xml \
        ../params/navig.graphics.extension.xml \

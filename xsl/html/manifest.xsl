@@ -3,10 +3,18 @@
 		version="1.0"
                 exclude-result-prefixes="doc">
 
+<xsl:variable name="manifest.base.dir">
+</xsl:variable>
+
 <xsl:template name="generate.manifest">
   <xsl:param name="node" select="/"/>
   <xsl:call-template name="write.text.chunk">
-    <xsl:with-param name="filename" select="$manifest"/>
+    <xsl:with-param name="filename">
+      <xsl:if test="$manifest.in.base.dir != 0">
+        <xsl:value-of select="$base.dir"/>
+      </xsl:if>
+      <xsl:value-of select="$manifest"/>
+    </xsl:with-param>
     <xsl:with-param name="method" select="'text'"/>
     <xsl:with-param name="content">
       <xsl:apply-templates select="$node" mode="enumerate-files"/>
@@ -28,7 +36,11 @@
   <xsl:variable name="ischunk"><xsl:call-template name="chunk"/></xsl:variable>
   <xsl:if test="$ischunk='1'">
     <xsl:call-template name="make-relative-filename">
-      <xsl:with-param name="base.dir" select="$base.dir"/>
+      <xsl:with-param name="base.dir">
+        <xsl:if test="$manifest.in.base.dir = 0">
+          <xsl:value-of select="$base.dir"/>
+        </xsl:if>
+      </xsl:with-param>
       <xsl:with-param name="base.name">
         <xsl:apply-templates mode="chunk-filename" select="."/>
       </xsl:with-param>
@@ -42,7 +54,11 @@
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
   <xsl:if test="$generate.legalnotice.link != 0">
     <xsl:call-template name="make-relative-filename">
-      <xsl:with-param name="base.dir" select="$base.dir"/>
+      <xsl:with-param name="base.dir">
+        <xsl:if test="$manifest.in.base.dir = 0">
+          <xsl:value-of select="$base.dir"/>
+        </xsl:if>
+      </xsl:with-param>
       <xsl:with-param name="base.name" select="concat('ln-',$id,$html.ext)"/>
     </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
