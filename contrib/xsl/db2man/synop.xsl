@@ -3,6 +3,14 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version='1.0'>
 
+<xsl:template match="synopfragment">
+<xsl:text>&#10;.PP&#10;</xsl:text>
+<xsl:apply-templates/>
+</xsl:template>
+<!--
+  there's a bug were an <arg> that's not inside a <group> isn't made bold
+-->
+
 <xsl:template match="group|arg">
   <xsl:variable name="choice" select="@choice"/>
   <xsl:variable name="rep" select="@rep"/>
@@ -60,17 +68,19 @@
 </xsl:template>
 
 <xsl:template match="group/arg">
-  <xsl:if test="position()>1"><xsl:value-of select="$arg.or.sep"/></xsl:if>
-  <xsl:apply-templates name="bold" />
+  <xsl:if test="position()>1">
+    <xsl:value-of select="$arg.or.sep"/>
+  </xsl:if>
+  <xsl:apply-templates mode="bold" select="."/>
 </xsl:template>
 
 <xsl:template match="command">
-  <xsl:apply-templates name="bold" />
+  <xsl:apply-templates mode="bold" select="."/>
 </xsl:template>
 
 <xsl:template match="arg/replaceable">
   <xsl:text> </xsl:text>
-  <xsl:apply-templates name="italic" />
+  <xsl:apply-templates mode="italic" select="."/>
   <xsl:text> </xsl:text>
 </xsl:template>
 
