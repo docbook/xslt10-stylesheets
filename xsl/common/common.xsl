@@ -854,7 +854,8 @@ object is recognized as a graphic.</para>
 
   <xsl:variable name="data" select="$object/videodata
                                     |$object/imagedata
-                                    |$object/audiodata"/>
+                                    |$object/audiodata
+                                    |$object"/>
 
   <xsl:variable name="filename">
     <xsl:choose>

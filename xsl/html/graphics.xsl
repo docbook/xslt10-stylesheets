@@ -77,20 +77,10 @@
     <xsl:choose>
       <xsl:when test="local-name(.) = 'graphic'
                       or local-name(.) = 'inlinegraphic'">
-        <xsl:choose>
-          <xsl:when test="@fileref">
-            <xsl:value-of select="@fileref"/>
-          </xsl:when>
-          <xsl:when test="@entityref">
-            <xsl:value-of select="unparsed-entity-uri(@entityref)"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:message>
-              <xsl:text>A fileref or entityref is required on </xsl:text>
-              <xsl:value-of select="local-name(.)"/>
-            </xsl:message>
-          </xsl:otherwise>
-        </xsl:choose>
+        <!-- handle legacy graphic and inlinegraphic by new template --> 
+        <xsl:call-template name="mediaobject.filename">
+          <xsl:with-param name="object" select="."/>
+        </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
         <!-- imagedata, videodata, audiodata -->
