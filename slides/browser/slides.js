@@ -46,14 +46,25 @@ function navigate (evt) {
 	kc = window.event.keyCode;
     } else if (navigator.family == 'gecko') {
 	kc = evt.keyCode;
+	if(!kc) {
+	    kc = evt.which;
+	}
     } else {
 	kc = evt.which;
     }
 
-    var forward = (kc == 34);
-    var backward = (kc == 33);
-    var home = (kc == 36);
-    var toc = (kc == 112) || (kc == 224);
+    // These do look like odd values, what was the story?
+    //var forward = (kc == 34);	/* '"' ? */
+    //var backward = (kc == 33); /* '!' */
+    //var home = (kc == 36); /* '$' */
+    //var toc = (kc == 112) || (kc == 224);
+
+    var forward = (kc == 110) || (kc == 78) || (kc == 32)
+	          || (kc == 10) || (kc == 13); /* n, N, SPACE, ENTER, RETURN */
+    var backward = (kc == 112) || (kc == 80) || (kc == 8); /* p, P, BACKSPACE */
+    var up = (kc == 117) || (kc == 85);	  /* u, U */
+    var home = (kc == 104) || (kc == 72); /* h, H */
+    var toc = (kc == 116) || (kc == 84);  /* t, T */
 
     var links = document.getElementsByTagName("link");
 
@@ -65,6 +76,9 @@ function navigate (evt) {
 	    target = links[count].getAttribute("href");
 	}
 	if (toc && (links[count].getAttribute("rel") == 'contents')) {
+	    target = links[count].getAttribute("href");
+	}
+	if (up && (links[count].getAttribute("rel") == 'up')) {
 	    target = links[count].getAttribute("href");
 	}
 	if (forward && (links[count].getAttribute("rel") == 'next')) {
