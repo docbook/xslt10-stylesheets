@@ -82,6 +82,10 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   <fo:table-cell text-align="center"
                  display-align="center"
                  xsl:use-attribute-sets="table.cell.padding">
+    <xsl:if test="$xep.extensions != 0">
+      <!-- Suggested by RenderX to workaround a bug in their implementation -->
+      <xsl:attribute name="keep-together.within-column">always</xsl:attribute>
+    </xsl:if>
     <xsl:if test="$rowsep &gt; 0">
       <xsl:call-template name="border">
         <xsl:with-param name="side" select="'bottom'"/>
@@ -375,6 +379,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
     <xsl:otherwise>
       <fo:table-cell xsl:use-attribute-sets="table.cell.padding">
+        <xsl:if test="$xep.extensions != 0">
+          <!-- Suggested by RenderX to workaround a bug in their implementation -->
+          <xsl:attribute name="keep-together.within-column">always</xsl:attribute>
+        </xsl:if>
+
         <xsl:call-template name="anchor"/>
 
         <xsl:if test="$rowsep &gt; 0">
