@@ -291,8 +291,11 @@ public class Table {
    * @return The result tree fragment containing the adjusted colgroup.
    *
    */
-  public static FragmentValue adjustColumnWidths (Context context,
-						  FragmentValue rtf) {
+  public static NodeSetValue adjustColumnWidths (Context context,
+						 NodeSetValue rtf_ns) {
+
+    FragmentValue rtf = (FragmentValue) rtf_ns;
+
     setupColumnWidths(context);
 
     try {
