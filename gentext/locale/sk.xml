@@ -26,8 +26,8 @@
 <gentext key="Book" text="Kniha"/>
 <gentext key="book" text="Kniha"/>
 <gentext key="CAUTION" text="V&#x00DD;STRAHA"/>
-<gentext key="caution" text="V&#x00FD;straha"/>
 <gentext key="Caution" text="V&#x00FD;straha"/>
+<gentext key="caution" text="V&#x00FD;straha"/>
 <gentext key="Chapter" text="Kapitola"/>
 <gentext key="chapter" text="kapitola"/>
 <gentext key="Colophon" text="Tir&#x00E1;&#x017E;"/>
@@ -74,6 +74,7 @@
 <gentext key="preface" text="&#x00DA;vod"/>
 <gentext key="Procedure" text="Postup"/>
 <gentext key="procedure" text="Postup"/>
+<gentext key="ProductionSet" text="Production"/> <!-- en -->
 <gentext key="Published" text="Vydan&#x00E9;"/>
 <gentext key="published" text="Vydan&#x00E9;"/>
 <gentext key="Question" text="Q:"/>
@@ -92,23 +93,28 @@
 <gentext key="revhistory" text="Preh&#x013E;ad rev&#x00ED;zi&#x00ED;"/>
 <gentext key="Revision" text="Rev&#x00ED;zia"/>
 <gentext key="revision" text="Rev&#x00ED;zia"/>
+<gentext key="sect1" text="Section"/> <!-- en -->
+<gentext key="sect2" text="Section"/> <!-- en -->
+<gentext key="sect3" text="Section"/> <!-- en -->
+<gentext key="sect4" text="Section"/> <!-- en -->
+<gentext key="sect5" text="Section"/> <!-- en -->
 <gentext key="Section" text="Oddiel"/>
 <gentext key="section" text="oddiel"/>
-<gentext key="see" text="Pozri"/>
 <gentext key="See" text="Pozri"/>
-<gentext key="seealso" text="Pozri tie&#x017E;"/>
+<gentext key="see" text="Pozri"/>
 <gentext key="SeeAlso" text="Pozri tie&#x017E;"/>
 <gentext key="Seealso" text="Pozri tie&#x017E;"/>
+<gentext key="seealso" text="Pozri tie&#x017E;"/>
 <gentext key="Set" text="Nastavi&#x0165;"/>
 <gentext key="set" text="Nastavi&#x0165;"/>
 <gentext key="SetIndex" text="Nastavi&#x0165; index"/>
 <gentext key="setindex" text="Nastavi&#x0165; index"/>
 <gentext key="Sidebar" text=""/>
 <gentext key="sidebar" text="bo&#x010D;n&#x00ED; li&#x0161;ta"/>
-<gentext key="step" text="krok"/>
 <gentext key="Step" text="Krok"/>
-<gentext key="table" text="Tabu&#x013E;ka"/>
+<gentext key="step" text="krok"/>
 <gentext key="Table" text="Tabu&#x013E;ka"/>
+<gentext key="table" text="Tabu&#x013E;ka"/>
 <gentext key="TIP" text="TIP"/>
 <gentext key="Tip" text="Tip"/>
 <gentext key="tip" text="Tip"/>
@@ -158,6 +164,15 @@
 <gentext key="nav-prev-sibling" text="R&#x00FD;chlo nazp&#x00E4;t"/>
 <gentext key="nav-up" text="Hore"/>
 
+<gentext key="sectioncalled" text="the section called"/> <!-- en -->
+<gentext key="Draft"         text="Draft"/> <!-- en -->
+<gentext key="above"         text="above"/> <!-- en -->
+<gentext key="below"         text="below"/> <!-- en -->
+<gentext key="index symbols" text="Symbols"/> <!-- en -->
+
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
+
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
 <dingbat key="nestedstartquote" text="&#x2018;"/>
@@ -167,6 +182,7 @@
 <context name="title">
 
 <template name="abstract">%t</template>
+<template name="answer">%t</template>
 <template name="appendix"><Appendix/> %n. %t</template>
 <template name="article">%t</template>
 <template name="authorblurb">%t</template>
@@ -208,10 +224,14 @@
 <template name="partintro">%t</template>
 <template name="preface">%t</template>
 <template name="procedure">%t</template>
-<template name="procedure.formal">%t</template>
+<template name="procedure.formal"><Procedure/>&#160;%n.&#160;%t</template>
+<template name="productionset">%t</template>
+<template name="productionset.formal"><ProductionSet/>&#160;%n</template>
 <template name="qandadiv">%t</template>
+<template name="qandaentry">%t</template>
 <template name="qandaset">%t</template>
 <template name="question">%t</template>
+<template name="refentry">%t</template>
 <template name="reference">%t</template>
 <template name="refsect1">%t</template>
 <template name="refsect2">%t</template>
@@ -234,6 +254,7 @@
 <context name="title-unnumbered">
 
 <template name="appendix">%t</template>
+<template name="bridgehead">%t</template>
 <template name="chapter">%t</template>
 <template name="sect1">%t</template>
 <template name="sect2">%t</template>
@@ -248,6 +269,7 @@
 <context name="title-numbered">
 
 <template name="appendix"><Appendix/> %n. %t</template>
+<template name="bridgehead">%t</template>
 <template name="chapter"><Chapter/> %n. %t</template>
 <template name="sect1">%n. %t</template>
 <template name="sect2">%n. %t</template>
@@ -303,30 +325,78 @@
 
 <context name="xref">
 
+<template name="abstract">%t</template>
+<template name="answer"><Answer/>&#160;%n</template>
 <template name="appendix"><Appendix/> %n. %t</template>
 <template name="article">%t</template>
+<template name="authorblurb">%t</template>
+<template name="bibliodiv">%t</template>
 <template name="bibliography">%t</template>
+<template name="bibliomset">%t</template>
+<template name="biblioset">%t</template>
+<template name="blockquote">%t</template>
 <template name="book">%t</template>
+<template name="calloutlist">%t</template>
+<template name="caution">%t</template>
 <template name="chapter"><Chapter/> %n. %t</template>
 <template name="colophon">%t</template>
+<template name="constraintdef">%t</template>
 <template name="dedication">%t</template>
+<template name="equation"><Equation/>&#160;%n</template>
 <template name="example"><Example/> %n. %t</template>
 <template name="figure"><Figure/> %n. %t</template>
+<template name="formalpara">%t</template>
 <template name="glossary">%t</template>
+<template name="glossdiv">%t</template>
+<template name="important">%t</template>
 <template name="index">%t</template>
+<template name="indexdiv">%t</template>
+<template name="itemizedlist">%t</template>
+<template name="legalnotice">%t</template>
 <template name="listitem">%n</template>
+<template name="lot">%t</template>
+<template name="msg">%t</template>
+<template name="msgexplan">%t</template>
+<template name="msgmain">%t</template>
+<template name="msgrel">%t</template>
+<template name="msgset">%t</template>
+<template name="msgsub">%t</template>
+<template name="note">%t</template>
+<template name="orderedlist">%t</template>
 <template name="part"><Part/> %n. %t</template>
+<template name="partintro">%t</template>
 <template name="preface">%t</template>
-<template name="question">%t</template>
+<template name="procedure"><Procedure/>&#160;%n</template>
+<template name="productionset">%t</template>
+<template name="qandadiv">%t</template>
+<template name="qandaentry"><Question/>&#160;%n</template>
+<template name="qandaset">%t</template>
+<template name="question"><Question/>&#160;%n</template>
 <template name="reference">%t</template>
+<template name="refsect1">%t</template>
+<template name="refsect2">%t</template>
+<template name="refsect3">%t</template>
+<template name="refsynopsisdiv">%t</template>
+<template name="segmentedlist">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
+<template name="sidebar">%t</template>
 <template name="table"><Table/> %n. %t</template>
+<template name="tip">%t</template>
+<template name="toc">%t</template>
+<template name="variablelist">%t</template>
+<template name="varlistentry">%n</template>
+<template name="warning">%t</template>
+<template name="page.citation"> [%p]</template>
 
 </context>
 
 <context name="section-xref">
 
+<template name="bridgehead">&#x201C;%t&#x201D;</template>
+<template name="refsect1">&#x201C;%t&#x201D;</template>
+<template name="refsect2">&#x201C;%t&#x201D;</template>
+<template name="refsect3">&#x201C;%t&#x201D;</template>
 <template name="sect1">&#x201C;%t&#x201D;</template>
 <template name="sect2">&#x201C;%t&#x201D;</template>
 <template name="sect3">&#x201C;%t&#x201D;</template>
@@ -339,6 +409,10 @@
 
 <context name="section-xref-numbered">
 
+<template name="bridgehead">&#x201C;%t&#x201D;</template>
+<template name="refsect1">&#x201C;%t&#x201D;</template>
+<template name="refsect2">&#x201C;%t&#x201D;</template>
+<template name="refsect3">&#x201C;%t&#x201D;</template>
 <template name="sect1"><Section/> %n</template>
 <template name="sect2"><Section/> %n</template>
 <template name="sect3"><Section/> %n</template>
