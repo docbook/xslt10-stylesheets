@@ -28,6 +28,9 @@
       <fo:region-body display-align="center"
                       margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}">
+        <xsl:if test="$fop.extensions = 0">
+          <xsl:attribute name="region-name">blank-body</xsl:attribute>
+        </xsl:if>
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-blank"
                         extent="{$region.before.extent}"
@@ -385,600 +388,602 @@
                        display-align="after"/>
     </fo:simple-page-master>
 
-    <!-- draft blank pages -->
-    <fo:simple-page-master master-name="blank-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.inner}"
-                           margin-right="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-blank"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-blank"
-                       extent="{$region.after.extent}"
-                        display-align="after"/>
-    </fo:simple-page-master>
+    <xsl:if test="$draft.mode != 'no'">
+      <!-- draft blank pages -->
+      <fo:simple-page-master master-name="blank-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-left="{$page.margin.inner}"
+                             margin-right="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-blank"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-blank"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <!-- draft title pages -->
-    <fo:simple-page-master master-name="titlepage-first-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.inner}"
-                           margin-right="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.titlepage}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-first"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-first"
-                       extent="{$region.after.extent}"
-                        display-align="after"/>
-    </fo:simple-page-master>
+      <!-- draft title pages -->
+      <fo:simple-page-master master-name="titlepage-first-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-left="{$page.margin.inner}"
+                             margin-right="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.titlepage}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-first"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-first"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <fo:simple-page-master master-name="titlepage-odd-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.inner}"
-                           margin-right="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.titlepage}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-odd"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-odd"
-                       extent="{$region.after.extent}"
-                        display-align="after"/>
-    </fo:simple-page-master>
+      <fo:simple-page-master master-name="titlepage-odd-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-left="{$page.margin.inner}"
+                             margin-right="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.titlepage}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-odd"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-odd"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <fo:simple-page-master master-name="titlepage-even-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-right="{$page.margin.inner}"
-                           margin-left="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.titlepage}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-even"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-even"
-                       extent="{$region.after.extent}"
-                        display-align="after"/>
-    </fo:simple-page-master>
+      <fo:simple-page-master master-name="titlepage-even-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-right="{$page.margin.inner}"
+                             margin-left="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.titlepage}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-even"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-even"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <!-- draft list-of-title pages -->
-    <fo:simple-page-master master-name="lot-first-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.inner}"
-                           margin-right="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.lot}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-first"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-first"
-                       extent="{$region.after.extent}"
-                        display-align="after"/>
-    </fo:simple-page-master>
+      <!-- draft list-of-title pages -->
+      <fo:simple-page-master master-name="lot-first-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-left="{$page.margin.inner}"
+                             margin-right="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.lot}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-first"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-first"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <fo:simple-page-master master-name="lot-odd-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.inner}"
-                           margin-right="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.lot}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-odd"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-odd"
-                       extent="{$region.after.extent}"
-                        display-align="after"/>
-    </fo:simple-page-master>
+      <fo:simple-page-master master-name="lot-odd-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-left="{$page.margin.inner}"
+                             margin-right="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.lot}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-odd"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-odd"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <fo:simple-page-master master-name="lot-even-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-right="{$page.margin.inner}"
-                           margin-left="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.lot}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-even"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-even"
-                       extent="{$region.after.extent}"
-                        display-align="after"/>
-    </fo:simple-page-master>
+      <fo:simple-page-master master-name="lot-even-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-right="{$page.margin.inner}"
+                             margin-left="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.lot}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-even"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-even"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <!-- draft frontmatter pages -->
-    <fo:simple-page-master master-name="front-first-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.inner}"
-                           margin-right="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.front}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-first"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-first"
-                       extent="{$region.after.extent}"
-                        display-align="after"/>
-    </fo:simple-page-master>
+      <!-- draft frontmatter pages -->
+      <fo:simple-page-master master-name="front-first-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-left="{$page.margin.inner}"
+                             margin-right="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.front}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-first"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-first"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <fo:simple-page-master master-name="front-odd-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.inner}"
-                           margin-right="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.front}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-odd"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-odd"
-                       extent="{$region.after.extent}"
-                        display-align="after"/>
-    </fo:simple-page-master>
+      <fo:simple-page-master master-name="front-odd-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-left="{$page.margin.inner}"
+                             margin-right="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.front}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-odd"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-odd"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <fo:simple-page-master master-name="front-even-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-right="{$page.margin.inner}"
-                           margin-left="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.front}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-even"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-even"
-                       extent="{$region.after.extent}"
-                        display-align="after"/>
-    </fo:simple-page-master>
+      <fo:simple-page-master master-name="front-even-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-right="{$page.margin.inner}"
+                             margin-left="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.front}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-even"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-even"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <!-- draft body pages -->
-    <fo:simple-page-master master-name="body-first-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.inner}"
-                           margin-right="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.body}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-first"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-first"
-                       extent="{$region.after.extent}"
-                       display-align="after"/>
-    </fo:simple-page-master>
+      <!-- draft body pages -->
+      <fo:simple-page-master master-name="body-first-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-left="{$page.margin.inner}"
+                             margin-right="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.body}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-first"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-first"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <fo:simple-page-master master-name="body-odd-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.inner}"
-                           margin-right="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.body}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-odd"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-odd"
-                       extent="{$region.after.extent}"
-                       display-align="after"/>
-    </fo:simple-page-master>
+      <fo:simple-page-master master-name="body-odd-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-left="{$page.margin.inner}"
+                             margin-right="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.body}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-odd"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-odd"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <fo:simple-page-master master-name="body-even-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-right="{$page.margin.inner}"
-                           margin-left="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.body}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-even"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-even"
-                       extent="{$region.after.extent}"
-                       display-align="after"/>
-    </fo:simple-page-master>
+      <fo:simple-page-master master-name="body-even-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-right="{$page.margin.inner}"
+                             margin-left="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.body}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-even"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-even"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <!-- draft backmatter pages -->
-    <fo:simple-page-master master-name="back-first-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.inner}"
-                           margin-right="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.back}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-first"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-first"
-                       extent="{$region.after.extent}"
-                       display-align="after"/>
-    </fo:simple-page-master>
+      <!-- draft backmatter pages -->
+      <fo:simple-page-master master-name="back-first-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-left="{$page.margin.inner}"
+                             margin-right="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.back}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-first"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-first"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <fo:simple-page-master master-name="back-odd-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.inner}"
-                           margin-right="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.back}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-odd"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-odd"
-                       extent="{$region.after.extent}"
-                       display-align="after"/>
-    </fo:simple-page-master>
+      <fo:simple-page-master master-name="back-odd-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-left="{$page.margin.inner}"
+                             margin-right="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.back}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-odd"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-odd"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <fo:simple-page-master master-name="back-even-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-right="{$page.margin.inner}"
-                           margin-left="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.back}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-even"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-even"
-                       extent="{$region.after.extent}"
-                       display-align="after"/>
-    </fo:simple-page-master>
+      <fo:simple-page-master master-name="back-even-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-right="{$page.margin.inner}"
+                             margin-left="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.back}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-even"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-even"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <!-- draft index pages -->
-    <fo:simple-page-master master-name="index-first-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.inner}"
-                           margin-right="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.index}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-first"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-first"
-                       extent="{$region.after.extent}"
-                       display-align="after"/>
-    </fo:simple-page-master>
+      <!-- draft index pages -->
+      <fo:simple-page-master master-name="index-first-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-left="{$page.margin.inner}"
+                             margin-right="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.index}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-first"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-first"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <fo:simple-page-master master-name="index-odd-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.inner}"
-                           margin-right="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.index}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-odd"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-odd"
-                       extent="{$region.after.extent}"
-                       display-align="after"/>
-    </fo:simple-page-master>
+      <fo:simple-page-master master-name="index-odd-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-left="{$page.margin.inner}"
+                             margin-right="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.index}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-odd"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-odd"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
 
-    <fo:simple-page-master master-name="index-even-draft"
-                           page-width="{$page.width}"
-                           page-height="{$page.height}"
-                           margin-top="{$page.margin.top}"
-                           margin-bottom="{$page.margin.bottom}"
-                           margin-right="{$page.margin.inner}"
-                           margin-left="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"
-                      column-count="{$column.count.index}">
-        <xsl:if test="$draft.watermark.image != ''
-                      and $fop.extensions = 0">
-          <xsl:attribute name="background-image">
-            <xsl:call-template name="fo-external-image">
-              <xsl:with-param name="filename" select="$draft.watermark.image"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="background-attachment">fixed</xsl:attribute>
-          <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
-          <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
-          <xsl:attribute name="background-position-vertical">center</xsl:attribute>
-        </xsl:if>
-      </fo:region-body>
-      <fo:region-before region-name="xsl-region-before-even"
-                        extent="{$region.before.extent}"
-                        display-align="before"/>
-      <fo:region-after region-name="xsl-region-after-even"
-                       extent="{$region.after.extent}"
-                       display-align="after"/>
-    </fo:simple-page-master>
+      <fo:simple-page-master master-name="index-even-draft"
+                             page-width="{$page.width}"
+                             page-height="{$page.height}"
+                             margin-top="{$page.margin.top}"
+                             margin-bottom="{$page.margin.bottom}"
+                             margin-right="{$page.margin.inner}"
+                             margin-left="{$page.margin.outer}">
+        <fo:region-body margin-bottom="{$body.margin.bottom}"
+                        margin-top="{$body.margin.top}"
+                        column-count="{$column.count.index}">
+          <xsl:if test="$draft.watermark.image != ''
+                        and $fop.extensions = 0">
+            <xsl:attribute name="background-image">
+              <xsl:call-template name="fo-external-image">
+                <xsl:with-param name="filename" select="$draft.watermark.image"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="background-attachment">fixed</xsl:attribute>
+            <xsl:attribute name="background-repeat">no-repeat</xsl:attribute>
+            <xsl:attribute name="background-position-horizontal">center</xsl:attribute>
+            <xsl:attribute name="background-position-vertical">center</xsl:attribute>
+          </xsl:if>
+        </fo:region-body>
+        <fo:region-before region-name="xsl-region-before-even"
+                          extent="{$region.before.extent}"
+                          display-align="before"/>
+        <fo:region-after region-name="xsl-region-after-even"
+                         extent="{$region.after.extent}"
+                         display-align="after"/>
+      </fo:simple-page-master>
+    </xsl:if>
 
     <!-- setup for title page(s) -->
     <fo:page-sequence-master master-name="titlepage">
@@ -1064,89 +1069,91 @@
       </fo:repeatable-page-master-alternatives>
     </fo:page-sequence-master>
 
-    <!-- setup for draft title page(s) -->
-    <fo:page-sequence-master master-name="titlepage-draft">
-      <fo:repeatable-page-master-alternatives>
-        <fo:conditional-page-master-reference master-reference="blank-draft"
-                                              blank-or-not-blank="blank"/>
-        <fo:conditional-page-master-reference master-reference="titlepage-first-draft"
-                                              page-position="first"/>
-        <fo:conditional-page-master-reference master-reference="titlepage-odd-draft"
-                                              odd-or-even="odd"/>
-        <fo:conditional-page-master-reference master-reference="titlepage-even-draft"
-                                              odd-or-even="even"/>
-      </fo:repeatable-page-master-alternatives>
-    </fo:page-sequence-master>
+    <xsl:if test="$draft.mode != 'no'">
+      <!-- setup for draft title page(s) -->
+      <fo:page-sequence-master master-name="titlepage-draft">
+        <fo:repeatable-page-master-alternatives>
+          <fo:conditional-page-master-reference master-reference="blank-draft"
+                                                blank-or-not-blank="blank"/>
+          <fo:conditional-page-master-reference master-reference="titlepage-first-draft"
+                                                page-position="first"/>
+          <fo:conditional-page-master-reference master-reference="titlepage-odd-draft"
+                                                odd-or-even="odd"/>
+          <fo:conditional-page-master-reference master-reference="titlepage-even-draft"
+                                                odd-or-even="even"/>
+        </fo:repeatable-page-master-alternatives>
+      </fo:page-sequence-master>
 
-    <!-- setup for draft lots -->
-    <fo:page-sequence-master master-name="lot-draft">
-      <fo:repeatable-page-master-alternatives>
-        <fo:conditional-page-master-reference master-reference="blank-draft"
-                                              blank-or-not-blank="blank"/>
-        <fo:conditional-page-master-reference master-reference="lot-first-draft"
-                                              page-position="first"/>
-        <fo:conditional-page-master-reference master-reference="lot-odd-draft"
-                                              odd-or-even="odd"/>
-        <fo:conditional-page-master-reference master-reference="lot-even-draft"
-                                              odd-or-even="even"/>
-      </fo:repeatable-page-master-alternatives>
-    </fo:page-sequence-master>
+      <!-- setup for draft lots -->
+      <fo:page-sequence-master master-name="lot-draft">
+        <fo:repeatable-page-master-alternatives>
+          <fo:conditional-page-master-reference master-reference="blank-draft"
+                                                blank-or-not-blank="blank"/>
+          <fo:conditional-page-master-reference master-reference="lot-first-draft"
+                                                page-position="first"/>
+          <fo:conditional-page-master-reference master-reference="lot-odd-draft"
+                                                odd-or-even="odd"/>
+          <fo:conditional-page-master-reference master-reference="lot-even-draft"
+                                                odd-or-even="even"/>
+        </fo:repeatable-page-master-alternatives>
+      </fo:page-sequence-master>
 
-    <!-- setup draft front matter -->
-    <fo:page-sequence-master master-name="front-draft">
-      <fo:repeatable-page-master-alternatives>
-        <fo:conditional-page-master-reference master-reference="blank-draft"
-                                              blank-or-not-blank="blank"/>
-        <fo:conditional-page-master-reference master-reference="front-first-draft"
-                                              page-position="first"/>
-        <fo:conditional-page-master-reference master-reference="front-odd-draft"
-                                              odd-or-even="odd"/>
-        <fo:conditional-page-master-reference master-reference="front-even-draft"
-                                              odd-or-even="even"/>
-      </fo:repeatable-page-master-alternatives>
-    </fo:page-sequence-master>
+      <!-- setup draft front matter -->
+      <fo:page-sequence-master master-name="front-draft">
+        <fo:repeatable-page-master-alternatives>
+          <fo:conditional-page-master-reference master-reference="blank-draft"
+                                                blank-or-not-blank="blank"/>
+          <fo:conditional-page-master-reference master-reference="front-first-draft"
+                                                page-position="first"/>
+          <fo:conditional-page-master-reference master-reference="front-odd-draft"
+                                                odd-or-even="odd"/>
+          <fo:conditional-page-master-reference master-reference="front-even-draft"
+                                                odd-or-even="even"/>
+        </fo:repeatable-page-master-alternatives>
+      </fo:page-sequence-master>
 
-    <!-- setup for draft body pages -->
-    <fo:page-sequence-master master-name="body-draft">
-      <fo:repeatable-page-master-alternatives>
-        <fo:conditional-page-master-reference master-reference="blank-draft"
-                                              blank-or-not-blank="blank"/>
-        <fo:conditional-page-master-reference master-reference="body-first-draft"
-                                              page-position="first"/>
-        <fo:conditional-page-master-reference master-reference="body-odd-draft"
-                                              odd-or-even="odd"/>
-        <fo:conditional-page-master-reference master-reference="body-even-draft"
-                                              odd-or-even="even"/>
-      </fo:repeatable-page-master-alternatives>
-    </fo:page-sequence-master>
+      <!-- setup for draft body pages -->
+      <fo:page-sequence-master master-name="body-draft">
+        <fo:repeatable-page-master-alternatives>
+          <fo:conditional-page-master-reference master-reference="blank-draft"
+                                                blank-or-not-blank="blank"/>
+          <fo:conditional-page-master-reference master-reference="body-first-draft"
+                                                page-position="first"/>
+          <fo:conditional-page-master-reference master-reference="body-odd-draft"
+                                                odd-or-even="odd"/>
+          <fo:conditional-page-master-reference master-reference="body-even-draft"
+                                                odd-or-even="even"/>
+        </fo:repeatable-page-master-alternatives>
+      </fo:page-sequence-master>
 
-    <!-- setup draft back matter -->
-    <fo:page-sequence-master master-name="back-draft">
-      <fo:repeatable-page-master-alternatives>
-        <fo:conditional-page-master-reference master-reference="blank-draft"
-                                              blank-or-not-blank="blank"/>
-        <fo:conditional-page-master-reference master-reference="back-first-draft"
-                                              page-position="first"/>
-        <fo:conditional-page-master-reference master-reference="back-odd-draft"
-                                              odd-or-even="odd"/>
-        <fo:conditional-page-master-reference master-reference="back-even-draft"
-                                              odd-or-even="even"/>
-      </fo:repeatable-page-master-alternatives>
-    </fo:page-sequence-master>
+      <!-- setup draft back matter -->
+      <fo:page-sequence-master master-name="back-draft">
+        <fo:repeatable-page-master-alternatives>
+          <fo:conditional-page-master-reference master-reference="blank-draft"
+                                                blank-or-not-blank="blank"/>
+          <fo:conditional-page-master-reference master-reference="back-first-draft"
+                                                page-position="first"/>
+          <fo:conditional-page-master-reference master-reference="back-odd-draft"
+                                                odd-or-even="odd"/>
+          <fo:conditional-page-master-reference master-reference="back-even-draft"
+                                                odd-or-even="even"/>
+        </fo:repeatable-page-master-alternatives>
+      </fo:page-sequence-master>
 
-    <!-- setup draft index pages -->
-    <fo:page-sequence-master master-name="index-draft">
-      <fo:repeatable-page-master-alternatives>
-        <fo:conditional-page-master-reference master-reference="blank-draft"
-                                              blank-or-not-blank="blank"/>
-        <fo:conditional-page-master-reference master-reference="index-first-draft"
-                                              page-position="first"/>
-        <fo:conditional-page-master-reference master-reference="index-odd-draft"
-                                              odd-or-even="odd"/>
-        <fo:conditional-page-master-reference master-reference="index-even-draft"
-                                              odd-or-even="even"/>
-      </fo:repeatable-page-master-alternatives>
-    </fo:page-sequence-master>
+      <!-- setup draft index pages -->
+      <fo:page-sequence-master master-name="index-draft">
+        <fo:repeatable-page-master-alternatives>
+          <fo:conditional-page-master-reference master-reference="blank-draft"
+                                                blank-or-not-blank="blank"/>
+          <fo:conditional-page-master-reference master-reference="index-first-draft"
+                                                page-position="first"/>
+          <fo:conditional-page-master-reference master-reference="index-odd-draft"
+                                                odd-or-even="odd"/>
+          <fo:conditional-page-master-reference master-reference="index-even-draft"
+                                                odd-or-even="even"/>
+        </fo:repeatable-page-master-alternatives>
+      </fo:page-sequence-master>
+    </xsl:if>
 
     <xsl:call-template name="user.pagemasters"/>
 
@@ -1421,7 +1428,7 @@
                                   retrieve-boundary="page-sequence"/>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:apply-templates select="." mode="object.title.markup"/>
+              <xsl:apply-templates select="." mode="titleabbrev.markup"/>
             </xsl:otherwise>
           </xsl:choose>
         </xsl:if>
