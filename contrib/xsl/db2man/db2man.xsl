@@ -7,6 +7,7 @@
 
 <xsl:include href="synop.xsl"/>
 <xsl:include href="lists.xsl"/>
+<xsl:include href="xref.xsl"/>
 
 <xsl:output method="text"
             encoding="ISO-8859-1"
