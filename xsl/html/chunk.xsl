@@ -5,10 +5,6 @@
 
 <xsl:import href="docbook.xsl"/>
 
-<xsl:output method="html"
-            encoding="ISO-8859-1"
-            indent="no"/>
-
 <!-- ==================================================================== -->
 <!-- What's a chunk?
 
@@ -25,8 +21,8 @@
      preface
      refentry
      reference
-     sect1         if position()>1
-     section       if position()>1 && parent != section
+     sect{1,2,3,4,5}  if position()>1 && depth < chunk.section.depth
+     section          if position()>1 && depth < chunk.section.depth
      set
      setindex
                                                                           -->
@@ -43,8 +39,8 @@
     <xsl:text>(</xsl:text>
     <xsl:value-of select="$node/@id"/>
     <xsl:text>)</xsl:text>
-    <xsl:text> cs: </xsl:text>
-    <xsl:value-of select="$chunk.sections"/>
+    <xsl:text> csd: </xsl:text>
+    <xsl:value-of select="$chunk.section.depth"/>
     <xsl:text> cfs: </xsl:text>
     <xsl:value-of select="$chunk.first.sections"/>
     <xsl:text> ps: </xsl:text>
@@ -56,19 +52,54 @@
 
   <xsl:choose>
     <xsl:when test="not($node/parent::*)">1</xsl:when>
-    <xsl:when test="$chunk.sections != 0
-                    and name($node)='sect1'
+
+    <xsl:when test="local-name($node) = 'sect1'
+                    and $chunk.section.depth &gt;= 1
                     and ($chunk.first.sections != 0
-                         or count($node/preceding-sibling::sect1) > 0)">
+                         or count($node/preceding-sibling::sect1) &gt; 0)">
       <xsl:text>1</xsl:text>
     </xsl:when>
-    <xsl:when test="$chunk.sections != 0
-                    and name($node)='section'
-                    and count($node/parent::section) = 0
+    <xsl:when test="local-name($node) = 'sect2'
+                    and $chunk.section.depth &gt;= 2
                     and ($chunk.first.sections != 0
-                         or count($node/preceding-sibling::section))>0">
-      <xsl:text>1</xsl:text>
+                         or count($node/preceding-sibling::sect2) &gt; 0)">
+      <xsl:call-template name="chunk">
+        <xsl:with-param name="node" select="$node/parent::*"/>
+      </xsl:call-template>
     </xsl:when>
+    <xsl:when test="local-name($node) = 'sect3'
+                    and $chunk.section.depth &gt;= 3
+                    and ($chunk.first.sections != 0
+                         or count($node/preceding-sibling::sect3) &gt; 0)">
+      <xsl:call-template name="chunk">
+        <xsl:with-param name="node" select="$node/parent::*"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="local-name($node) = 'sect4'
+                    and $chunk.section.depth &gt;= 4
+                    and ($chunk.first.sections != 0
+                         or count($node/preceding-sibling::sect4) &gt; 0)">
+      <xsl:call-template name="chunk">
+        <xsl:with-param name="node" select="$node/parent::*"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="local-name($node) = 'sect5'
+                    and $chunk.section.depth &gt;= 5
+                    and ($chunk.first.sections != 0
+                         or count($node/preceding-sibling::sect5) &gt; 0)">
+      <xsl:call-template name="chunk">
+        <xsl:with-param name="node" select="$node/parent::*"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="local-name($node) = 'section'
+                    and $chunk.section.depth &gt;= count(ancestor::section)+1
+                    and ($chunk.first.sections != 0
+                         or count($node/preceding-sibling::section) &gt; 0)">
+      <xsl:call-template name="chunk">
+        <xsl:with-param name="node" select="$node/parent::*"/>
+      </xsl:call-template>
+    </xsl:when>
+
     <xsl:when test="name($node)='preface'">1</xsl:when>
     <xsl:when test="name($node)='chapter'">1</xsl:when>
     <xsl:when test="name($node)='appendix'">1</xsl:when>
@@ -102,6 +133,19 @@
   <xsl:variable name="ischunk">
     <xsl:call-template name="chunk"/>
   </xsl:variable>
+
+<!--
+  <xsl:message>
+    <xsl:value-of select="local-name(.)"/>
+    <xsl:if test="@id">
+      <xsl:text> [</xsl:text>
+      <xsl:value-of select="@id"/>
+      <xsl:text>]</xsl:text>
+    </xsl:if>
+    <xsl:text>, </xsl:text>
+    <xsl:value-of select="$ischunk"/>
+  </xsl:message>
+-->
 
   <xsl:variable name="dbhtml-filename">
     <xsl:call-template name="dbhtml-filename"/>
@@ -269,6 +313,22 @@
       </xsl:if>
       <xsl:text>co</xsl:text>
       <xsl:number level="any" format="01" from="book"/>
+      <xsl:if test="not($recursive)">
+        <xsl:value-of select="$html.ext"/>
+      </xsl:if>
+    </xsl:when>
+
+    <xsl:when test="local-name(.) = 'sect1'
+                    or local-name(.) = 'sect2'
+                    or local-name(.) = 'sect3'
+                    or local-name(.) = 'sect4'
+                    or local-name(.) = 'sect5'
+                    or local-name(.) = 'section'">
+      <xsl:apply-templates mode="chunk-filename" select="parent::*">
+        <xsl:with-param name="recursive" select="true()"/>
+      </xsl:apply-templates>
+      <xsl:text>s</xsl:text>
+      <xsl:number format="01"/>
       <xsl:if test="not($recursive)">
         <xsl:value-of select="$html.ext"/>
       </xsl:if>
@@ -645,14 +705,11 @@
 
 <xsl:template name="process-chunk-element">
   <xsl:choose>
-    <xsl:when test="$chunk.sections = 0">
-      <xsl:call-template name="chunk-no-sections"/>
-    </xsl:when>
     <xsl:when test="$chunk.first.sections = 0">
       <xsl:call-template name="chunk-first-section-with-parent"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:call-template name="chunk-all-top-level-sections"/>
+      <xsl:call-template name="chunk-all-sections"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -698,6 +755,9 @@
 </xsl:template>
 
 <xsl:template name="chunk-first-section-with-parent">
+  <!-- These xpath expressions are really hairy. The trick is to pick sections -->
+  <!-- that are not first children and are not the children of first children -->
+
   <xsl:variable name="prev"
     select="(preceding::book[1]
              |preceding::preface[1]
@@ -707,9 +767,36 @@
              |preceding::reference[1]
              |preceding::refentry[1]
              |preceding::colophon[1]
-             |preceding::sect1[name(preceding-sibling::*[1]) = 'sect1'][1]
-             |preceding::section[name(preceding-sibling::*[1]) = 'section'
-                                 and name(parent::*) != 'section'][1]
+
+             |preceding::sect1[$chunk.section.depth &gt; 0
+                               and preceding-sibling::sect1][1]
+
+             |preceding::sect2[$chunk.section.depth &gt; 1
+                               and preceding-sibling::sect2
+                               and parent::sect1[preceding-sibling::sect1]][1]
+
+             |preceding::sect3[$chunk.section.depth &gt; 2
+                               and preceding-sibling::sect3
+                               and parent::sect2[preceding-sibling::sect2]
+                               and ancestor::sect1[preceding-sibling::sect1]][1]
+
+             |preceding::sect4[$chunk.section.depth &gt; 3
+                               and preceding-sibling::sect4
+                               and parent::sect3[preceding-sibling::sect2]
+                               and ancestor::sect2[preceding-sibling::sect2]
+                               and ancestor::sect1[preceding-sibling::sect1]][1]
+
+             |preceding::sect5[$chunk.section.depth &gt; 4
+                               and preceding-sibling::sect5
+                               and parent::sect4[preceding-sibling::sect4]
+                               and ancestor::sect3[preceding-sibling::sect3]
+                               and ancestor::sect2[preceding-sibling::sect2]
+                               and ancestor::sect1[preceding-sibling::sect1]][1]
+
+             |preceding::section[$chunk.section.depth &gt; count(ancestor::section)
+                                 and preceding-sibling::section
+                                 and not(ancestor::section[not(preceding-sibling::section)])][1]
+
              |preceding::article[1]
              |preceding::bibliography[1]
              |preceding::glossary[1]
@@ -720,6 +807,35 @@
              |ancestor::preface[1]
              |ancestor::chapter[1]
              |ancestor::appendix[1]
+
+             |ancestor::sect1[$chunk.section.depth &gt; 0
+                               and preceding-sibling::sect1][1]
+
+             |ancestor::sect2[$chunk.section.depth &gt; 1
+                               and preceding-sibling::sect2
+                               and parent::sect1[preceding-sibling::sect1]][1]
+
+             |ancestor::sect3[$chunk.section.depth &gt; 2
+                               and preceding-sibling::sect3
+                               and parent::sect2[preceding-sibling::sect2]
+                               and ancestor::sect1[preceding-sibling::sect1]][1]
+
+             |ancestor::sect4[$chunk.section.depth &gt; 3
+                               and preceding-sibling::sect4
+                               and parent::sect3[preceding-sibling::sect2]
+                               and ancestor::sect2[preceding-sibling::sect2]
+                               and ancestor::sect1[preceding-sibling::sect1]][1]
+
+             |ancestor::sect5[$chunk.section.depth &gt; 4
+                               and preceding-sibling::sect5
+                               and parent::sect4[preceding-sibling::sect4]
+                               and ancestor::sect3[preceding-sibling::sect3]
+                               and ancestor::sect2[preceding-sibling::sect2]
+                               and ancestor::sect1[preceding-sibling::sect1]][1]
+
+             |ancestor::section[$chunk.section.depth &gt; count(ancestor::section)
+                                and not(ancestor::section[not(preceding-sibling::section)])][1]
+
              |ancestor::part[1]
              |ancestor::reference[1]
              |ancestor::article[1])[last()]"/>
@@ -733,8 +849,36 @@
              |following::reference[1]
              |following::refentry[1]
              |following::colophon[1]
-             |following::sect1[1]
-             |following::section[name(parent::*) != 'section'][1]
+
+             |following::sect1[$chunk.section.depth &gt; 0
+                               and preceding-sibling::sect1][1]
+
+             |following::sect2[$chunk.section.depth &gt; 1
+                               and preceding-sibling::sect2
+                               and parent::sect1[preceding-sibling::sect1]][1]
+
+             |following::sect3[$chunk.section.depth &gt; 2
+                               and preceding-sibling::sect3
+                               and parent::sect2[preceding-sibling::sect2]
+                               and ancestor::sect1[preceding-sibling::sect1]][1]
+
+             |following::sect4[$chunk.section.depth &gt; 3
+                               and preceding-sibling::sect4
+                               and parent::sect3[preceding-sibling::sect2]
+                               and ancestor::sect2[preceding-sibling::sect2]
+                               and ancestor::sect1[preceding-sibling::sect1]][1]
+
+             |following::sect5[$chunk.section.depth &gt; 4
+                               and preceding-sibling::sect5
+                               and parent::sect4[preceding-sibling::sect4]
+                               and ancestor::sect3[preceding-sibling::sect3]
+                               and ancestor::sect2[preceding-sibling::sect2]
+                               and ancestor::sect1[preceding-sibling::sect1]][1]
+
+             |following::section[$chunk.section.depth &gt; count(ancestor::section)
+                                 and preceding-sibling::section
+                                 and not(ancestor::section[not(preceding-sibling::section)])][1]
+
              |following::bibliography[1]
              |following::glossary[1]
              |following::index[1]
@@ -753,8 +897,36 @@
              |descendant::part[1]
              |descendant::reference[1]
              |descendant::refentry[1]
-             |descendant::sect1[2]
-             |descendant::section[name(parent::*) != 'section'][2])[1]"/>
+
+             |descendant::sect1[$chunk.section.depth &gt; 0
+                               and preceding-sibling::sect1][1]
+
+             |descendant::sect2[$chunk.section.depth &gt; 1
+                               and preceding-sibling::sect2
+                               and parent::sect1[preceding-sibling::sect1]][1]
+
+             |descendant::sect3[$chunk.section.depth &gt; 2
+                               and preceding-sibling::sect3
+                               and parent::sect2[preceding-sibling::sect2]
+                               and ancestor::sect1[preceding-sibling::sect1]][1]
+
+             |descendant::sect4[$chunk.section.depth &gt; 3
+                               and preceding-sibling::sect4
+                               and parent::sect3[preceding-sibling::sect2]
+                               and ancestor::sect2[preceding-sibling::sect2]
+                               and ancestor::sect1[preceding-sibling::sect1]][1]
+
+             |descendant::sect5[$chunk.section.depth &gt; 4
+                               and preceding-sibling::sect5
+                               and parent::sect4[preceding-sibling::sect4]
+                               and ancestor::sect3[preceding-sibling::sect3]
+                               and ancestor::sect2[preceding-sibling::sect2]
+                               and ancestor::sect1[preceding-sibling::sect1]][1]
+
+             |descendant::section[$chunk.section.depth &gt; count(ancestor::section)
+                                 and preceding-sibling::section
+                                 and not(ancestor::section[not(preceding-sibling::section)])])[1]
+"/>
 
   <xsl:call-template name="process-chunk">
     <xsl:with-param name="prev" select="$prev"/>
@@ -762,7 +934,7 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template name="chunk-all-top-level-sections">
+<xsl:template name="chunk-all-sections">
   <xsl:variable name="prev"
     select="(preceding::book[1]
              |preceding::preface[1]
@@ -772,8 +944,14 @@
              |preceding::reference[1]
              |preceding::refentry[1]
              |preceding::colophon[1]
-             |preceding::sect1[1]
-             |preceding::section[name(parent::*) != 'section'][1]
+
+             |preceding::sect1[$chunk.section.depth &gt; 0][1]
+             |preceding::sect2[$chunk.section.depth &gt; 1][1]
+             |preceding::sect3[$chunk.section.depth &gt; 2][1]
+             |preceding::sect4[$chunk.section.depth &gt; 3][1]
+             |preceding::sect5[$chunk.section.depth &gt; 4][1]
+             |preceding::section[$chunk.section.depth &gt; count(ancestor::section)][1]
+
              |preceding::article[1]
              |preceding::bibliography[1]
              |preceding::glossary[1]
@@ -786,7 +964,13 @@
              |ancestor::appendix[1]
              |ancestor::part[1]
              |ancestor::reference[1]
-             |ancestor::article[1])[last()]"/>
+             |ancestor::article[1]
+             |ancestor::sect1[$chunk.section.depth &gt; 0][1]
+             |ancestor::sect2[$chunk.section.depth &gt; 1][1]
+             |ancestor::sect3[$chunk.section.depth &gt; 2][1]
+             |ancestor::sect4[$chunk.section.depth &gt; 3][1]
+             |ancestor::sect5[$chunk.section.depth &gt; 4][1]
+             |ancestor::section[$chunk.section.depth &gt; count(ancestor::section)][1])[last()]"/>
 
   <xsl:variable name="next"
     select="(following::book[1]
@@ -797,8 +981,14 @@
              |following::reference[1]
              |following::refentry[1]
              |following::colophon[1]
-             |following::sect1[1]
-             |following::section[name(parent::*) != 'section'][1]
+
+             |following::sect1[$chunk.section.depth &gt; 0][1]
+             |following::sect2[$chunk.section.depth &gt; 1][1]
+             |following::sect3[$chunk.section.depth &gt; 2][1]
+             |following::sect4[$chunk.section.depth &gt; 3][1]
+             |following::sect5[$chunk.section.depth &gt; 4][1]
+             |following::section[$chunk.section.depth &gt; count(ancestor::section)][1]
+
              |following::bibliography[1]
              |following::glossary[1]
              |following::index[1]
@@ -817,66 +1007,14 @@
              |descendant::part[1]
              |descendant::reference[1]
              |descendant::refentry[1]
-             |descendant::sect1[1]
-             |descendant::section[name(parent::*) != 'section'][1])[1]"/>
 
-  <xsl:call-template name="process-chunk">
-    <xsl:with-param name="prev" select="$prev"/>
-    <xsl:with-param name="next" select="$next"/>
-  </xsl:call-template>
-</xsl:template>
-
-<xsl:template name="chunk-no-sections">
-  <xsl:variable name="prev"
-    select="(preceding::book[1]
-             |preceding::preface[1]
-             |preceding::chapter[1]
-             |preceding::appendix[1]
-             |preceding::part[1]
-             |preceding::reference[1]
-             |preceding::refentry[1]
-             |preceding::colophon[1]
-             |preceding::article[1]
-             |preceding::bibliography[1]
-             |preceding::glossary[1]
-             |preceding::index[1]
-             |preceding::setindex[1]
-             |ancestor::set
-             |ancestor::book[1]
-             |ancestor::preface[1]
-             |ancestor::chapter[1]
-             |ancestor::appendix[1]
-             |ancestor::part[1]
-             |ancestor::reference[1]
-             |ancestor::article[1])[last()]"/>
-
-  <xsl:variable name="next"
-    select="(following::book[1]
-             |following::preface[1]
-             |following::chapter[1]
-             |following::appendix[1]
-             |following::part[1]
-             |following::reference[1]
-             |following::refentry[1]
-             |following::colophon[1]
-             |following::bibliography[1]
-             |following::glossary[1]
-             |following::index[1]
-             |following::article[1]
-             |following::setindex[1]
-             |descendant::book[1]
-             |descendant::preface[1]
-             |descendant::chapter[1]
-             |descendant::appendix[1]
-             |descendant::article[1]
-             |descendant::bibliography[1]
-             |descendant::glossary[1]
-             |descendant::index[1]
-             |descendant::colophon[1]
-             |descendant::setindex[1]
-             |descendant::part[1]
-             |descendant::reference[1]
-             |descendant::refentry[1])[1]"/>
+             |descendant::sect1[$chunk.section.depth &gt; 0][1]
+             |descendant::sect2[$chunk.section.depth &gt; 1][1]
+             |descendant::sect3[$chunk.section.depth &gt; 2][1]
+             |descendant::sect4[$chunk.section.depth &gt; 3][1]
+             |descendant::sect5[$chunk.section.depth &gt; 4][1]
+             |descendant::section[$chunk.section.depth 
+                                  &gt; count(ancestor::section)][1])[1]"/>
 
   <xsl:call-template name="process-chunk">
     <xsl:with-param name="prev" select="$prev"/>
@@ -958,26 +1096,24 @@
   <xsl:call-template name="process-chunk-element"/>
 </xsl:template>
 
-<xsl:template match="sect1
-                     |/section
-                     |section[local-name(parent::*) != 'section']">
+<xsl:template match="sect1[$chunk.section.depth &gt; 0]
+                     |sect2[$chunk.section.depth &gt; 1]
+                     |sect3[$chunk.section.depth &gt; 2]
+                     |sect4[$chunk.section.depth &gt; 3]
+                     |sect5[$chunk.section.depth &gt; 4]
+                     |section[$chunk.section.depth &gt; count(ancestor::section)]
+                     |/section">
+
+  <xsl:variable name="ischunk">
+    <xsl:call-template name="chunk"/>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test=". = /section">
       <xsl:call-template name="process-chunk-element"/>
     </xsl:when>
-    <xsl:when test="$chunk.sections = 0">
+    <xsl:when test="$ischunk = 0">
       <xsl:apply-imports/>
-    </xsl:when>
-    <xsl:when test="$chunk.first.sections = 0">
-      <xsl:choose>
-        <xsl:when test="count(preceding-sibling::section) > 0
-                        or count(preceding-sibling::sect1) > 0">
-          <xsl:call-template name="process-chunk-element"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-imports/>
-        </xsl:otherwise>
-      </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="process-chunk-element"/>
