@@ -232,6 +232,15 @@
       </xsl:with-param>
     </xsl:call-template>
 
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:if test="contains($toc.params, 'toc')">
+      <xsl:call-template name="component.toc"/>
+    </xsl:if>
+
     <xsl:apply-templates/>
   </div>
 </xsl:template>
