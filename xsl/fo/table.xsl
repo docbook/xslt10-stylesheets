@@ -79,36 +79,72 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     </xsl:call-template>
   </xsl:variable>
 
+  <xsl:variable name="lastrow">
+    <xsl:choose>
+      <xsl:when test="ancestor::thead">0</xsl:when>
+      <xsl:when test="ancestor::tfoot
+                      and not(ancestor::row/following-sibling::row)">1</xsl:when>
+      <xsl:when test="not(ancestor::tfoot)
+                      and ancestor::tgroup/tfoot">0</xsl:when>
+      <xsl:when test="not(ancestor::tfoot)
+                      and not(ancestor::tgroup/tfoot)
+                      and not(ancestor::row/following-sibling::row)">1</xsl:when>
+      <xsl:otherwise>0</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="lastcol">
+    <xsl:choose>
+      <xsl:when test="$colnum &lt; ancestor::tgroup/@cols">0</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <fo:table-cell text-align="center"
                  display-align="center"
-                 padding="{$table.border.padding}">
+                 xsl:use-attribute-sets="table.cell.padding">
     <xsl:choose>
-      <xsl:when test="$frame='all'">
-        <xsl:call-template name="border">
-          <xsl:with-param name="side" select="'right'"/>
-          <xsl:with-param name="padding" select="1"/>
-        </xsl:call-template>
-        <xsl:call-template name="border">
-          <xsl:with-param name="side" select="'bottom'"/>
-          <xsl:with-param name="padding" select="1"/>
-        </xsl:call-template>
+      <xsl:when test="$frame = 'all' or $frame = 'topbot' or $frame = 'bottom'">
+        <xsl:if test="$lastrow = 0">
+          <xsl:call-template name="border">
+            <xsl:with-param name="side" select="'bottom'"/>
+          </xsl:call-template>
+        </xsl:if>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:if test="$rowsep &gt; 0">
+          <xsl:call-template name="border">
+            <xsl:with-param name="side" select="'bottom'"/>
+          </xsl:call-template>
+        </xsl:if>
+      </xsl:otherwise>
+    </xsl:choose>
+
+    <xsl:choose>
+      <xsl:when test="$frame = 'all' or $frame = 'sides'">
+        <xsl:if test="$lastcol = 0">
+          <xsl:call-template name="border">
+            <xsl:with-param name="side" select="'right'"/>
+          </xsl:call-template>
+        </xsl:if>
       </xsl:when>
       <xsl:otherwise>
         <xsl:if test="$colsep &gt; 0">
           <xsl:call-template name="border">
             <xsl:with-param name="side" select="'right'"/>
-            <xsl:with-param name="padding" select="1"/>
-          </xsl:call-template>
-        </xsl:if>
-        <xsl:if test="$rowsep &gt; 0">
-          <xsl:call-template name="border">
-            <xsl:with-param name="side" select="'bottom'"/>
-            <xsl:with-param name="padding" select="1"/>
           </xsl:call-template>
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
+
     <fo:block/> <!-- fo:table-cell should not be empty -->
+<!--
+    <xsl:text>[e,</xsl:text>
+    <xsl:value-of select="$lastrow"/>
+    <xsl:text>,</xsl:text>
+    <xsl:value-of select="$lastcol"/>
+    <xsl:text>]</xsl:text>
+-->
   </fo:table-cell>
 </xsl:template>
 
@@ -116,7 +152,6 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <xsl:template name="border">
   <xsl:param name="side" select="'left'"/>
-  <xsl:param name="padding" select="0"/>
 
   <xsl:attribute name="border-{$side}-width">
     <xsl:value-of select="$table.border.thickness"/>
@@ -127,11 +162,6 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   <xsl:attribute name="border-{$side}-color">
     <xsl:value-of select="$table.border.color"/>
   </xsl:attribute>
-  <xsl:if test="$padding != 0">
-    <xsl:attribute name="padding-{$side}">
-      <xsl:value-of select="$table.border.padding"/>
-    </xsl:attribute>
-  </xsl:if>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -366,6 +396,27 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     </xsl:call-template>
   </xsl:variable>
 
+  <xsl:variable name="lastrow">
+    <xsl:choose>
+      <xsl:when test="ancestor::thead">0</xsl:when>
+      <xsl:when test="ancestor::tfoot
+                      and not(ancestor::row/following-sibling::row)">1</xsl:when>
+      <xsl:when test="not(ancestor::tfoot)
+                      and ancestor::tgroup/tfoot">0</xsl:when>
+      <xsl:when test="not(ancestor::tfoot)
+                      and not(ancestor::tgroup/tfoot)
+                      and not(ancestor::row/following-sibling::row)">1</xsl:when>
+      <xsl:otherwise>0</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="lastcol">
+    <xsl:choose>
+      <xsl:when test="$col &lt; ancestor::tgroup/@cols">0</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="$spans != '' and not(starts-with($spans,'0:'))">
       <xsl:call-template name="entry">
@@ -385,31 +436,38 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     </xsl:when>
 
     <xsl:otherwise>
-      <fo:table-cell padding="{$table.border.padding}">
+      <fo:table-cell xsl:use-attribute-sets="table.cell.padding">
         <xsl:call-template name="anchor"/>
 
         <xsl:choose>
-          <xsl:when test="$frame='all'">
-            <xsl:call-template name="border">
-              <xsl:with-param name="side" select="'right'"/>
-              <xsl:with-param name="padding" select="1"/>
-            </xsl:call-template>
-            <xsl:call-template name="border">
-              <xsl:with-param name="side" select="'bottom'"/>
-              <xsl:with-param name="padding" select="1"/>
-            </xsl:call-template>
+          <xsl:when test="$frame = 'all' or $frame = 'topbot' or $frame = 'bottom'">
+            <xsl:if test="$lastrow = 0">
+              <xsl:call-template name="border">
+                <xsl:with-param name="side" select="'bottom'"/>
+              </xsl:call-template>
+            </xsl:if>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:if test="$rowsep &gt; 0">
+              <xsl:call-template name="border">
+                <xsl:with-param name="side" select="'bottom'"/>
+              </xsl:call-template>
+            </xsl:if>
+          </xsl:otherwise>
+        </xsl:choose>
+
+        <xsl:choose>
+          <xsl:when test="$frame = 'all' or $frame = 'sides'">
+            <xsl:if test="$lastcol = 0">
+              <xsl:call-template name="border">
+                <xsl:with-param name="side" select="'right'"/>
+              </xsl:call-template>
+            </xsl:if>
           </xsl:when>
           <xsl:otherwise>
             <xsl:if test="$colsep &gt; 0">
               <xsl:call-template name="border">
                 <xsl:with-param name="side" select="'right'"/>
-                <xsl:with-param name="padding" select="1"/>
-              </xsl:call-template>
-            </xsl:if>
-            <xsl:if test="$rowsep &gt; 0">
-              <xsl:call-template name="border">
-                <xsl:with-param name="side" select="'bottom'"/>
-                <xsl:with-param name="padding" select="1"/>
               </xsl:call-template>
             </xsl:if>
           </xsl:otherwise>
@@ -478,6 +536,14 @@ to be incomplete. Don't forget to read the source, too :-)</para>
               <xsl:apply-templates select="ancestor::tgroup/preceding-sibling::indexterm"/>
             </xsl:if>
           </xsl:if>
+
+<!--
+    <xsl:text>[</xsl:text>
+    <xsl:value-of select="$lastrow"/>
+    <xsl:text>,</xsl:text>
+    <xsl:value-of select="$lastcol"/>
+    <xsl:text>]</xsl:text>
+-->
 
           <!--
           <xsl:text>(</xsl:text>
