@@ -23,6 +23,9 @@
       <xsl:value-of select="$graphics.dir"/>
       <xsl:text>/</xsl:text>
     </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>http://docbook.sourceforge.net/release/slides/graphics/</xsl:text>
+    </xsl:otherwise>
   </xsl:choose>
   <xsl:value-of select="$image"/>
 </xsl:template>
