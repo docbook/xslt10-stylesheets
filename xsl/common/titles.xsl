@@ -302,6 +302,21 @@ title of the element. This does not include the label.
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="question" mode="title.markup">
+  <!-- questions don't have titles -->
+  <xsl:text>Question</xsl:text>
+</xsl:template>
+
+<xsl:template match="answer" mode="title.markup">
+  <!-- answers don't have titles -->
+  <xsl:text>Answer</xsl:text>
+</xsl:template>
+
+<xsl:template match="qandaentry" mode="title.markup">
+  <!-- qandaentrys are represented by the first question in them -->
+  <xsl:text>Question</xsl:text>
+</xsl:template>
+
 <!-- ============================================================ -->
 
 <xsl:template match="*" mode="no.anchor.mode">

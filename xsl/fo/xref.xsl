@@ -208,6 +208,18 @@
   <!-- What about "in Chapter X"? -->
 </xsl:template>
 
+<xsl:template match="qandaset" mode="xref-to">
+  <xsl:apply-templates select="." mode="object.xref.markup"/>
+</xsl:template>
+
+<xsl:template match="qandadiv" mode="xref-to">
+  <xsl:apply-templates select="." mode="object.xref.markup"/>
+</xsl:template>
+
+<xsl:template match="qandaentry" mode="xref-to">
+  <xsl:apply-templates select="question[1]" mode="object.xref.markup"/>
+</xsl:template>
+
 <xsl:template match="question" mode="xref-to">
   <xsl:apply-templates select="." mode="object.xref.markup"/>
 </xsl:template>

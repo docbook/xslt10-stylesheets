@@ -344,10 +344,10 @@ Defaults to the context node.</para>
       <xsl:call-template name="gentext">
         <xsl:with-param name="key">
           <xsl:choose>
-            <xsl:when test="local-name(.) = 'question'">Question</xsl:when>
-            <xsl:when test="local-name(.) = 'question'">Answer</xsl:when>
-            <xsl:when test="local-name(.) = 'qandadiv'">QandADiv</xsl:when>
-            <xsl:otherwise>QandASet</xsl:otherwise>
+            <xsl:when test="local-name(.) = 'question'">question</xsl:when>
+            <xsl:when test="local-name(.) = 'answer'">answer</xsl:when>
+            <xsl:when test="local-name(.) = 'qandadiv'">qandadiv</xsl:when>
+            <xsl:otherwise>qandaset</xsl:otherwise>
           </xsl:choose>
         </xsl:with-param>
       </xsl:call-template>
