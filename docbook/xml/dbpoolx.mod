@@ -5262,7 +5262,7 @@ in the text (no (0) value, the default)
                          |references
                          |isformatof
                          |hasformat
-                         |other
+                         |othertype
                          %local.bibliorelation.types;)       #IMPLIED
 		othertype	CDATA	#IMPLIED
 ">
