@@ -1019,6 +1019,12 @@ of each division (sets, books, etc.)
 </doc:param>
 
 <!-- ==================================================================== -->
+
+<xsl:param name="generate.book.toc" select="'1'" doc:type='boolean'/>
+<xsl:param name="process.source.toc" select='0' doc:type='boolean'/>
+<xsl:param name="process.empty.source.toc" select='0' doc:type='boolean'/>
+
+<!-- ==================================================================== -->
 <xsl:param name="generate.division.figure.lot" select="1" doc:type='boolean'/>
 
 <doc:param name="generate.division.figure.lot" xmlns="">
@@ -1061,6 +1067,12 @@ of each division (sets, books, etc.)
 </para>
 </refdescription>
 </doc:param>
+
+<!-- ==================================================================== -->
+<xsl:param name="generate.book.figure.lot" select="1" doc:type='boolean'/>
+<xsl:param name="generate.book.example.lot" select="1" doc:type='boolean'/>
+<xsl:param name="generate.book.equation.lot" select="1" doc:type='boolean'/>
+<xsl:param name="generate.book.table.lot" select="1" doc:type='boolean'/>
 
 <!-- ==================================================================== -->
 <xsl:param name="passivetex.extensions" select="0" doc:type='boolean'/>
