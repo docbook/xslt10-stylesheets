@@ -1,6 +1,6 @@
 <!DOCTYPE article [
 <!ENTITY name "wd-docbook-docbook">
-<!ENTITY version "4.4CR1">
+<!ENTITY version "4.4CR2">
 <!ENTITY standard "Working Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
@@ -34,7 +34,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>16 Sep 2004</pubdate>
+<pubdate>21 Oct 2004</pubdate>
 
 <copyright><year>2001</year><year>2002</year><year>2003</year><year>2004</year>
 <holder>
@@ -48,7 +48,7 @@ Standards [OASIS]. All Rights Reserved.
 particularly well suited to books and papers about computer hardware
 and software (though it is by no means limited to these applications).
 </para>
-<para>The Version 4.4CR1 release is a maintenance release. It introduces
+<para>The Version 4.4CR2 release is a maintenance release. It introduces
 no backwards-incompatible changes.</para>
 </abstract>
 
@@ -94,9 +94,9 @@ both
 <ulink url="http://xml.coverpages.org/general.html#overview">SGML</ulink>.
 It is unofficially available in other forms as well.</para>
 
-<para>The Version 4.4CR1 release is a maintainance release. It introduces
+<para>The Version 4.4CR2 release is a maintainance release. It introduces
 no backwards-incompatible changes. All valid DocBook 4.3 documents are
-also valid DocBook 4.4CR1 documents.</para>
+also valid DocBook 4.4CR2 documents.</para>
 
 <para>The genesis of this release is a bug in the catalog files for
 DocBook V4.3. The Committee decided to produce a 4.4 release, incorporating
@@ -130,7 +130,7 @@ document.</para>
 </section>
 
 <section id="docbook">
-<title>The DocBook Document Type V4.4CR1</title>
+<title>The DocBook Document Type V4.4CR2</title>
 
 <para>The DocBook document type is distributed for
 <ulink url="&root;xml/">XML</ulink> and
@@ -142,6 +142,35 @@ the mirror on
 <ulink url="http://docbook.org/"/>.
 </para>
 
+<section id="s.cscr2">
+<title>Changes in DocBook V4.4CR2</title>
+
+<para>There are no backwards-incompatible changes in this release.
+</para>
+
+<para>Each of the changes made between DocBook V4.4CR1 and DocBook V4.4CR2
+is summarized here. For complete details, consult the individual RFEs and
+the <ulink url="&root;minutes">meeting minutes</ulink>.</para>
+
+<section id="scr2.bugs">
+<title>Bug Fixes</title>
+<para>None.</para>
+</section>
+
+<section id="scr2.enhancements">
+<title>Enhancements</title>
+
+<itemizedlist spacing="compact">
+<listitem><para>Added <sgmltag class="attribute">wordsize</sgmltag> as a
+global effectivity attribute, per the
+<ulink url="&root;minutes/2004-06-16.txt">June, 2004</ulink>
+minutes.</para></listitem>
+<listitem><para>Added a pointer from the DTD back to this specification.
+</para></listitem>
+</itemizedlist>
+</section>
+</section>
+
 <section id="s.cscr1">
 <title>Changes in DocBook V4.4CR1</title>
 
@@ -150,7 +179,7 @@ the mirror on
 
 <para>Each of the changes made between DocBook V4.4b2 and DocBook V4.4CR1
 is summarized here. For complete details, consult the individual RFEs and
-the <ulink url="&root;meetings">meeting minutes</ulink>.</para>
+the <ulink url="&root;minutes">meeting minutes</ulink>.</para>
 
 <section id="scr1.bugs">
 <title>Bug Fixes</title>
@@ -182,7 +211,7 @@ that HTML forms can occur in more places when the HTML Forms Module is used.
 
 <para>Each of the changes made between DocBook V4.4b1 and DocBook V4.4b2
 is summarized here. For complete details, consult the individual RFEs and
-the <ulink url="&root;meetings">meeting minutes</ulink>.</para>
+the <ulink url="&root;minutes">meeting minutes</ulink>.</para>
 
 <section id="sb2.bugs">
 <title>Bug Fixes</title>
@@ -231,7 +260,7 @@ This avoids a conflict with the enumerated values on the
 
 <para>Each of the changes made between DocBook V4.3 and DocBook V4.4b1
 is summarized here. For complete details, consult the individual RFEs and
-the <ulink url="&root;meetings">meeting minutes</ulink>.</para>
+the <ulink url="&root;minutes">meeting minutes</ulink>.</para>
 
 <section id="sb1.bugs">
 <title>Bug Fixes</title>
@@ -295,31 +324,15 @@ changes which are not listed in this specifcation.</para>
 <section id="docbook.v5">
 <title>Changes Proposed for DocBook V5.0</title>
 
-<para>The following backwards-incompatible changes were announced in
-DocBook V4.0, the DocBook Technical Committee expects to incorporate
-them into DocBook V5.0.
-</para>
-
-<para>Each of the changes proposed is summarized here. For complete
-details, consult the individual RFEs and the <ulink
-url="&root;meetings">meeting
-minutes</ulink>.</para>
+<para>The following backwards-incompatible changes are proposed for
+the DocBook V5.0. Some of these changes were announced in DocBook
+V4.0, others were originally scheduled for DocBook V6.0 but are now
+being proposed as part of the transition to RELAX NG.
+The DocBook Technical Committee anticipates moving to RELAX NG
+for DocBook V5.0. This will introduce a broad range of one time
+backwards-incompatible changes.</para>
 
 <itemizedlist spacing="compact">
-<listitem id="rfe.xml"><para>DocBook V5.0 will be primarily an XML
-DTD. This will require a wide range of changes. As a result, DocBook
-V5.0 will more closely resemble The XML version of DocBook V4.x than
-the SGML version.</para>
-</listitem>
-
-<listitem id="rfe.pereorg"><para>Planned parameter entity
-reorganization may reduce some content models.  The goal of this
-effort is to remove a large number of spurious elements that snuck
-into content models during the first parameter entity reorganization
-(circa DocBook 2.4). In practice the TC expects changes to have very
-little "real world" impact.</para>
-</listitem>
-
 <listitem id="rfe.coords"><para>The <sgmltag>coords</sgmltag>
 attribute will be removed from <sgmltag>areaset</sgmltag>.</para>
 </listitem>
@@ -336,10 +349,10 @@ be removed from <sgmltag>bookinfo</sgmltag> and <sgmltag>setinfo</sgmltag>.
 </listitem>
 
 <listitem id="rfe.indexdivcm">
-<para>The <sgmltag class="paramentity">indexdivcomponent.mix</sgmltag>
-parameter entity will be restricted.  Numbered figures and other
-elements inappropriate for an <sgmltag>index</sgmltag> or
-<sgmltag>setindex</sgmltag> will be removed.</para>
+<para>The content model of indexes will be reduced.
+Numbered figures and other elements inappropriate for an
+<sgmltag>index</sgmltag> or <sgmltag>setindex</sgmltag> will be
+removed.</para>
 </listitem>
 
 <listitem id="rfe.glossterm">
@@ -353,46 +366,23 @@ will be removed from <sgmltag>systemitem</sgmltag>.</para>
 </listitem>
 
 <listitem id="rfe.graphics">
-<para>The <sgmltag>graphic</sgmltag> and <sgmltag>inlinegraphic</sgmltag> elements
-will be removed.</para>
+<para>The <sgmltag>graphic</sgmltag> and
+<sgmltag>inlinegraphic</sgmltag> elements will be removed.</para>
 </listitem>
 
-<listitem id="rfe.tables">
-<para>Tables will be restricted from full CALS Table Model to the
-OASIS Exchange model.</para>
-</listitem>
-
-</itemizedlist>
-
-</section>
-
-<section id="docbook.v6">
-<title>Changes Proposed for DocBook V6.0</title>
-
-<para>The DocBook Technical Committee expects to announce the following
-backwards-incompatible changes in DocBook V5.0, for eventual incorporation
-into DocBook V6.0.
-</para>
-
-<para>Each of the changes proposed is summarized here. For complete
-details, consult the individual RFEs and the <ulink
-url="&root;meetings">meeting
-minutes</ulink>.</para>
-
-<itemizedlist spacing="compact">
 <listitem id="rfe.412476"><para><ulink url="&RFE;aid=412476">RFE 412476</ulink>:
 The <sgmltag class="attribute">class</sgmltag> attribute on
-<sgmltag>productname</sgmltag> will be <literal>#IMPLIED</literal>.
+<sgmltag>productname</sgmltag> will no longer have a default value.
 </para>
 </listitem>
 <listitem id="rfe.482810"><para><ulink url="&RFE;aid=482810">RFE 482810</ulink>:
 The content model of <sgmltag>msgtext</sgmltag> is far too broad. It will
-be reduced to the same mixture as <sgmltag class="paramentity">example.mix</sgmltag>.
+be reduced.
 </para>
 </listitem>
 <listitem id="rfe.482811"><para><ulink url="&RFE;aid=482811">RFE 482811</ulink>:
 The <sgmltag>title</sgmltag> element will be removed from
-<sgmltag class="paramentity">bibliocomponent.mix</sgmltag> (use
+bibliography elements (use
 <sgmltag>citetitle</sgmltag> instead).</para>
 </listitem>
 <listitem id="rfe.482812"><para><ulink url="&RFE;aid=482812">RFE 482812</ulink>:
@@ -420,7 +410,8 @@ inside <sgmltag>msgset</sgmltag>. See also
 </para>
 </listitem>
 <listitem id="rfe.531851"><para><ulink url="&RFE;aid=531851">RFE 531851</ulink>:
-Remove inline person name elements
+Remove inline person name components (<sgmltag>firstname</sgmltag>,
+<sgmltag>surname</sgmltag>, etc.)
 <ulink url="http://sourceforge.net/docman/display_doc.php?docid=9354&amp;group_id=21935">as
 proposed</ulink>.
 </para></listitem>
@@ -430,6 +421,7 @@ Remove <sgmltag>corpname</sgmltag>
 proposed</ulink>.
 </para></listitem>
 </itemizedlist>
+
 </section>
 
 <appendix id="a.mimetype">
@@ -703,6 +695,10 @@ of the DocBook web page
 
 <para>
 <revhistory>
+<revision role="&root;specs/wd-docbook-docbook-4.4CR2.html">
+  <revnumber>Working Draft “Candidate Release 2”</revnumber>
+  <date>21 Oct 2004</date>
+</revision>
 <revision role="&root;specs/wd-docbook-docbook-4.4CR1.html">
   <revnumber>Working Draft “Candidate Release 1”</revnumber>
   <date>16 Sep 2004</date>
