@@ -233,6 +233,7 @@ of DocBook.</para>
   <define name="ebnf.block.hook">
     <notAllowed/>
   </define>
+
   <define name="local.compound.class">
     <notAllowed/>
   </define>
@@ -323,6 +324,7 @@ of DocBook.</para>
   <define name="ebnf.inline.hook">
     <notAllowed/>
   </define>
+
   <define name="local.tech.char.class">
     <notAllowed/>
   </define>
@@ -826,6 +828,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <define name="forminlines.hook">
     <notAllowed/>
   </define>
+
   <define name="local.para.char.mix">
     <notAllowed/>
   </define>
@@ -1570,6 +1573,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
               <ref name="bibliocomponent.mix"/>
             </choice>
           </oneOrMore>
+          <s:assert test="count(.//indexterm) = 0">&lt;biblioentry&gt; contains &lt;indexterm&gt;</s:assert>
+          <s:assert test="count(.//beginpage) = 0">&lt;biblioentry&gt; contains &lt;beginpage&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -1602,6 +1607,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
               <ref name="bibliomset"/>
             </choice>
           </zeroOrMore>
+          <s:assert test="count(.//indexterm) = 0">&lt;bibliomixed&gt; contains &lt;indexterm&gt;</s:assert>
+          <s:assert test="count(.//beginpage) = 0">&lt;bibliomixed&gt; contains &lt;beginpage&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -1630,6 +1637,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
           <oneOrMore>
             <ref name="info.class"/>
           </oneOrMore>
+          <s:assert test="count(title) &lt; 2">&lt;articleinfo&gt; contains more than one &lt;title&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -1658,6 +1666,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
           <oneOrMore>
             <ref name="bibliocomponent.mix"/>
           </oneOrMore>
+          <s:assert test="count(.//indexterm) = 0">&lt;biblioset&gt; contains &lt;indexterm&gt;</s:assert>
+          <s:assert test="count(.//beginpage) = 0">&lt;biblioset&gt; contains &lt;beginpage&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -1695,6 +1705,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
               <ref name="bibliomset"/>
             </choice>
           </zeroOrMore>
+          <s:assert test="count(.//indexterm) = 0">&lt;bibliomset&gt; contains &lt;indexterm&gt;</s:assert>
+          <s:assert test="count(.//beginpage) = 0">&lt;bibliomset&gt; contains &lt;beginpage&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -3040,6 +3052,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
           <zeroOrMore>
             <ref name="para.char.mix"/>
           </zeroOrMore>
+          <s:assert test="count(.//remark) = 0">&lt;remark&gt; contains &lt;remark&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -3105,7 +3118,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
           <oneOrMore>
             <ref name="footnote.mix"/>
           </oneOrMore>
-          <s:assert test="count(.//footnote) = 0"/>
+          <s:assert test="count(.//footnote) = 0">Nested footnotes</s:assert>
         </element>
       </define>
     </div>
@@ -3135,6 +3148,12 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
           <oneOrMore>
             <ref name="highlights.mix"/>
           </oneOrMore>
+          <s:assert test="count(.//equation/title) = 0">&lt;highlights&gt; contains &lt;equation&gt;</s:assert>
+          <s:assert test="count(.//example) = 0">&lt;highlights&gt; contains &lt;example&gt;</s:assert>
+          <s:assert test="count(.//figure) = 0">&lt;highlights&gt; contains &lt;figure&gt;</s:assert>
+          <s:assert test="count(.//table) = 0">&lt;highlights&gt; contains &lt;table&gt;</s:assert>
+          <s:assert test="count(.//indexterm) = 0">&lt;highlights&gt; contains &lt;indexterm&gt;</s:assert>
+          <s:assert test="count(.//beginpage) = 0">&lt;highlights&gt; contains &lt;beginpage&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -3255,6 +3274,11 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
           <oneOrMore>
             <ref name="admon.mix"/>
           </oneOrMore>
+          <s:assert test="count(.//caution) = 0">&lt;caution&gt; contains &lt;caution&gt;</s:assert>
+          <s:assert test="count(.//important) = 0">&lt;caution&gt; contains &lt;important&gt;</s:assert>
+          <s:assert test="count(.//note) = 0">&lt;caution&gt; contains &lt;note&gt;</s:assert>
+          <s:assert test="count(.//tip) = 0">&lt;caution&gt; contains &lt;tip&gt;</s:assert>
+          <s:assert test="count(.//warning) = 0">&lt;caution&gt; contains &lt;warning&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -3277,6 +3301,11 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
           <oneOrMore>
             <ref name="admon.mix"/>
           </oneOrMore>
+          <s:assert test="count(.//caution) = 0">&lt;important&gt; contains &lt;caution&gt;</s:assert>
+          <s:assert test="count(.//important) = 0">&lt;important&gt; contains &lt;important&gt;</s:assert>
+          <s:assert test="count(.//note) = 0">&lt;important&gt; contains &lt;note&gt;</s:assert>
+          <s:assert test="count(.//tip) = 0">&lt;important&gt; contains &lt;tip&gt;</s:assert>
+          <s:assert test="count(.//warning) = 0">&lt;important&gt; contains &lt;warning&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -3299,6 +3328,11 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
           <oneOrMore>
             <ref name="admon.mix"/>
           </oneOrMore>
+          <s:assert test="count(.//caution) = 0">&lt;note&gt; contains &lt;caution&gt;</s:assert>
+          <s:assert test="count(.//important) = 0">&lt;note&gt; contains &lt;important&gt;</s:assert>
+          <s:assert test="count(.//note) = 0">&lt;note&gt; contains &lt;note&gt;</s:assert>
+          <s:assert test="count(.//tip) = 0">&lt;note&gt; contains &lt;tip&gt;</s:assert>
+          <s:assert test="count(.//warning) = 0">&lt;note&gt; contains &lt;warning&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -3321,6 +3355,11 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
           <oneOrMore>
             <ref name="admon.mix"/>
           </oneOrMore>
+          <s:assert test="count(.//caution) = 0">&lt;tip&gt; contains &lt;caution&gt;</s:assert>
+          <s:assert test="count(.//important) = 0">&lt;tip&gt; contains &lt;important&gt;</s:assert>
+          <s:assert test="count(.//note) = 0">&lt;tip&gt; contains &lt;note&gt;</s:assert>
+          <s:assert test="count(.//tip) = 0">&lt;tip&gt; contains &lt;tip&gt;</s:assert>
+          <s:assert test="count(.//warning) = 0">&lt;tip&gt; contains &lt;warning&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -3343,6 +3382,11 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
           <oneOrMore>
             <ref name="admon.mix"/>
           </oneOrMore>
+          <s:assert test="count(.//caution) = 0">&lt;warning&gt; contains &lt;caution&gt;</s:assert>
+          <s:assert test="count(.//important) = 0">&lt;warning&gt; contains &lt;important&gt;</s:assert>
+          <s:assert test="count(.//note) = 0">&lt;warning&gt; contains &lt;note&gt;</s:assert>
+          <s:assert test="count(.//tip) = 0">&lt;warning&gt; contains &lt;tip&gt;</s:assert>
+          <s:assert test="count(.//warning) = 0">&lt;warning&gt; contains &lt;warning&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -4138,6 +4182,10 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
           <oneOrMore>
             <ref name="example.mix"/>
           </oneOrMore>
+          <s:assert test="count(.//equation/title) = 0">&lt;example&gt; contains &lt;equation&gt;</s:assert>
+          <s:assert test="count(.//example) = 0">&lt;example&gt; contains &lt;example&gt;</s:assert>
+          <s:assert test="count(.//figure) = 0">&lt;example&gt; contains &lt;figure&gt;</s:assert>
+          <s:assert test="count(.//table) = 0">&lt;example&gt; contains &lt;table&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -4600,6 +4648,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
             <zeroOrMore>
               <ref name="para.char.mix"/>
             </zeroOrMore>
+            <s:assert test="count(.//indexterm) = 0">&lt;screeninfo&gt; contains &lt;indexterm&gt;</s:assert>
+            <s:assert test="count(.//beginpage) = 0">&lt;screeninfo&gt; contains &lt;beginpage&gt;</s:assert>
           </element>
         </define>
       </div>
@@ -4638,6 +4688,10 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
               <ref name="link.char.class"/>
             </choice>
           </oneOrMore>
+          <s:assert test="count(.//equation/title) = 0">&lt;figure&gt; contains &lt;equation&gt;</s:assert>
+          <s:assert test="count(.//example) = 0">&lt;figure&gt; contains &lt;example&gt;</s:assert>
+          <s:assert test="count(.//figure) = 0">&lt;figure&gt; contains &lt;figure&gt;</s:assert>
+          <s:assert test="count(.//table) = 0">&lt;figure&gt; contains &lt;table&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -4937,6 +4991,10 @@ in the text (no (0) value, the default)
       </div>
     </div>
 
+    <define name="svg.hook">
+      <notAllowed/>
+    </define>
+
     <div db:name="imageobject.module">
       <define name="local.imageobject.attrib">
         <empty/>
@@ -4952,7 +5010,10 @@ in the text (no (0) value, the default)
             <optional>
               <ref name="objectinfo"/>
             </optional>
-            <ref name="imagedata"/>
+            <choice>
+              <ref name="imagedata"/>
+              <ref name="svg.hook"/>
+            </choice>
           </element>
         </define>
       </div>
@@ -5362,6 +5423,10 @@ in the text (no (0) value, the default)
 <!-- This PE provides a mechanism for replacing equation content, -->
 <!-- perhaps adding a new or different model (e.g., MathML) -->
 
+  <define name="mathml.hook">
+    <notAllowed/>
+  </define>
+
   <define name="equation.content">
     <optional>
       <ref name="alt"/>
@@ -5373,8 +5438,12 @@ in the text (no (0) value, the default)
       <oneOrMore>
         <ref name="mediaobject"/>
       </oneOrMore>
+      <oneOrMore>
+        <ref name="mathml.hook"/>
+      </oneOrMore>
     </choice>
   </define>
+
   <define name="inlineequation.content">
     <optional>
       <ref name="alt"/>
@@ -5385,6 +5454,9 @@ in the text (no (0) value, the default)
       </oneOrMore>
       <oneOrMore>
         <ref name="inlinemediaobject"/>
+      </oneOrMore>
+      <oneOrMore>
+        <ref name="mathml.hook"/>
       </oneOrMore>
     </choice>
   </define>
@@ -5411,6 +5483,10 @@ in the text (no (0) value, the default)
             <ref name="informalequation"/>
             <ref name="equation.content"/>
           </choice>
+          <s:assert test="count(.//equation/title) = 0">&lt;equation&gt; contains &lt;equation&gt;</s:assert>
+          <s:assert test="count(.//example) = 0">&lt;equation&gt; contains &lt;example&gt;</s:assert>
+          <s:assert test="count(.//figure) = 0">&lt;equation&gt; contains &lt;figure&gt;</s:assert>
+          <s:assert test="count(.//table) = 0">&lt;equation&gt; contains &lt;table&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -8328,6 +8404,10 @@ in the text (no (0) value, the default)
             <oneOrMore>
               <ref name="legalnotice.mix"/>
             </oneOrMore>
+            <s:assert test="count(.//equation/title) = 0">&lt;legalnotice&gt; contains &lt;equation&gt;</s:assert>
+            <s:assert test="count(.//example) = 0">&lt;legalnotice&gt; contains &lt;example&gt;</s:assert>
+            <s:assert test="count(.//figure) = 0">&lt;legalnotice&gt; contains &lt;figure&gt;</s:assert>
+            <s:assert test="count(.//table) = 0">&lt;legalnotice&gt; contains &lt;table&gt;</s:assert>
           </element>
         </define>
       </div>
@@ -8358,6 +8438,8 @@ in the text (no (0) value, the default)
             <zeroOrMore>
               <ref name="docinfo.char.mix"/>
             </zeroOrMore>
+            <s:assert test="count(.//indexterm) = 0">&lt;modespec&gt; contains &lt;indexterm&gt;</s:assert>
+            <s:assert test="count(.//beginpage) = 0">&lt;modespec&gt; contains &lt;beginpage&gt;</s:assert>
           </element>
         </define>
       </div>
@@ -10984,6 +11066,7 @@ OtherCredit. -->
           <zeroOrMore>
             <ref name="word.char.mix"/>
           </zeroOrMore>
+          <s:assert test="count(.//acronym)=0">&lt;acronym&gt; contains &lt;acronym&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -11202,7 +11285,7 @@ OtherCredit. -->
           <zeroOrMore>
             <ref name="word.char.mix"/>
           </zeroOrMore>
-          <s:assert test="not(@linkend)                       or local-name(//*[@id=current()/@linkend]) = 'glossentry'"/>
+          <s:report test="not(@linkend) or local-name(//*[@id=current()/@linkend]) = 'glossentry'">&lt;firstterm&gt; does not point to a &lt;glossentry&gt;</s:report>
         </element>
       </define>
     </div>
@@ -11262,7 +11345,9 @@ OtherCredit. -->
           <zeroOrMore>
             <ref name="para.char.mix"/>
           </zeroOrMore>
-          <s:assert test="not(@linkend)                       or local-name(//*[@id=current()/@linkend]) = 'glossentry'"/>
+          <s:assert test="not(@linkend) or local-name(//*[@id=current()/@linkend]) = 'glossentry'">&lt;glossterm&gt; does not point to a &lt;glossentry&gt;</s:assert>
+          <s:assert test="count(.//glossterm)=0">&lt;glossterm&gt; contains &lt;glossterm&gt;</s:assert>
+          <!-- warn about missing linkend attribute -->
         </element>
       </define>
     </div>
@@ -11365,6 +11450,8 @@ OtherCredit. -->
               <ref name="other.char.class"/>
             </choice>
           </zeroOrMore>
+          <s:assert test="count(.//indexterm) = 0">&lt;subscript&gt; contains &lt;indexterm&gt;</s:assert>
+          <s:assert test="count(.//beginpage) = 0">&lt;subscript&gt; contains &lt;beginpage&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -11394,6 +11481,8 @@ OtherCredit. -->
               <ref name="other.char.class"/>
             </choice>
           </zeroOrMore>
+          <s:assert test="count(.//indexterm) = 0">&lt;superscript&gt; contains &lt;indexterm&gt;</s:assert>
+          <s:assert test="count(.//beginpage) = 0">&lt;superscript&gt; contains &lt;beginpage&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -11501,6 +11590,10 @@ OtherCredit. -->
           <zeroOrMore>
             <ref name="para.char.mix"/>
           </zeroOrMore>
+          <s:assert test="count(.//link) = 0">&lt;link&gt; contains &lt;link&gt;</s:assert>
+          <s:assert test="count(.//ulink) = 0">&lt;link&gt; contains &lt;ulink&gt;</s:assert>
+          <s:assert test="count(.//olink) = 0">&lt;link&gt; contains &lt;olink&gt;</s:assert>
+          <s:assert test="count(.//xref) = 0">&lt;link&gt; contains &lt;xref&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -11544,6 +11637,10 @@ OtherCredit. -->
           <zeroOrMore>
             <ref name="para.char.mix"/>
           </zeroOrMore>
+          <s:assert test="count(.//link) = 0">&lt;olink&gt; contains &lt;link&gt;</s:assert>
+          <s:assert test="count(.//ulink) = 0">&lt;olink&gt; contains &lt;ulink&gt;</s:assert>
+          <s:assert test="count(.//olink) = 0">&lt;olink&gt; contains &lt;olink&gt;</s:assert>
+          <s:assert test="count(.//xref) = 0">&lt;olink&gt; contains &lt;xref&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -11600,6 +11697,10 @@ OtherCredit. -->
           <zeroOrMore>
             <ref name="para.char.mix"/>
           </zeroOrMore>
+          <s:assert test="count(.//link) = 0">&lt;ulink&gt; contains &lt;link&gt;</s:assert>
+          <s:assert test="count(.//ulink) = 0">&lt;ulink&gt; contains &lt;ulink&gt;</s:assert>
+          <s:assert test="count(.//olink) = 0">&lt;ulink&gt; contains &lt;olink&gt;</s:assert>
+          <s:assert test="count(.//xref) = 0">&lt;ulink&gt; contains &lt;xref&gt;</s:assert>
         </element>
       </define>
     </div>
@@ -11802,9 +11903,11 @@ OtherCredit. -->
                 </oneOrMore>
               </choice>
             </optional>
-            <s:assert test="not(@startref) or @class='endofrange'"/>
-            <s:assert test="not(@startref) or count(node()) = 0"/>
-            <s:assert test="not(@startref)                       or local-name(//*[@id=current()/@startref]) = 'indexterm'"/>
+            <s:assert test="not(@startref) or @class='endofrange'">&lt;indexterm&gt; with startref must have class='endofrange'</s:assert>
+            <s:assert test="not(@startref) or count(node()) = 0">&lt;indexterm&gt; with startref must be empty</s:assert>
+            <s:assert test="not(@startref) or local-name(//*[@id=current()/@startref]) = 'indexterm'">&lt;indexterm&gt; with startref must point to another &lt;indexterm&gt;</s:assert>
+            <s:assert test="count(.//indexterm) = 0">&lt;indexterm&gt; contains &lt;indexterm&gt;</s:assert>
+            <s:assert test="count(.//beginpage) = 0">&lt;indexterm&gt; contains &lt;beginpage&gt;</s:assert>
           </element>
         </define>
       </div>
