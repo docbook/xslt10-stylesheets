@@ -3,7 +3,7 @@
                   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
 <article>
 <articleinfo>
-<title>Unit Test: mediaobject.001</title>
+<title>Unit Test: mediaobject.002</title>
 <releaseinfo role="CVS">$Id$</releaseinfo>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
@@ -13,15 +13,6 @@
   <mediaobject>
     <imageobject>
       <imagedata
-        align="right"
-        width="50%"
-        fileref="graphics/duck-small.gif"
-        srccredit="O'Reilly &amp; Associates/Dover Archives"/>
-    </imageobject>
-    <imageobject>
-      <imagedata
-        align="right"
-        width="50%"
         fileref="graphics/duck-small.png"
         format="PNG"
         srccredit="O'Reilly &amp; Associates/Dover Archives"/>
