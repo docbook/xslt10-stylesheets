@@ -156,7 +156,7 @@
     <xsl:with-param name="toc.title.p" select="$toc.title.p"/>
     <xsl:with-param name="nodes" select="section|sect1|refentry
                                          |article|bibliography|glossary
-                                         |appendix
+                                         |appendix|index
                                          |bridgehead[not(@renderas)
                                                      and $bridgehead.in.toc != 0]
                                          |.//bridgehead[@renderas='sect1'
