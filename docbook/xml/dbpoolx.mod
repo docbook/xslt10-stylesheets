@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook XML information pool module V4.0 ............................. -->
+<!-- DocBook XML information pool module V4.1 ............................. -->
 <!-- File dbpoolx.mod ..................................................... -->
 
 <!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
@@ -49,7 +49,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbpool PUBLIC
-     "-//OASIS//ELEMENTS DocBook XML Information Pool V4.0//EN"
+     "-//OASIS//ELEMENTS DocBook XML Information Pool V4.1//EN"
      "dbpoolx.mod">
      %dbpool;
 
@@ -795,13 +795,6 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
      below. -->
 
 <!ENTITY % local.person.ident.mix "">
-<!--FUTURE USE (V4.0):
-......................
-AuthorBlurb and Affiliation will be removed from %person.ident.mix; and a new
-wrapper element created to allow association of those two elements with
-Author name information.
-......................
--->
 <!ENTITY % person.ident.mix
 		"honorific|firstname|surname|lineage|othername|affiliation
 		|authorblurb|contrib %local.person.ident.mix;">
@@ -1640,11 +1633,6 @@ Author name information.
 
 <!ENTITY % blockquote.module "INCLUDE">
 <![%blockquote.module;[
-<!--FUTURE USE (V4.0):
-......................
-Epigraph will be disallowed from appearing in BlockQuote.
-......................
--->
 
 <!ENTITY % local.blockquote.attrib "">
 <!ENTITY % blockquote.role.attrib "%role.attrib;">
@@ -1992,13 +1980,6 @@ Epigraph will be disallowed from appearing in BlockQuote.
 <!--end of glossentry.attlist-->]]>
 <!--end of glossentry.module-->]]>
 
-<!--FUTURE USE (V4.0):
-......................
-GlossTerm will be excluded from itself.  Also, GlossTerm *may* be split
-into an element that appears in a Glossary and an element that can
-appear in the main text.
-......................
--->
 <!-- GlossTerm (defined in the Inlines section, below)-->
 <!ENTITY % glossdef.module "INCLUDE">
 <![%glossdef.module;[
@@ -2009,11 +1990,6 @@ appear in the main text.
 <![%glossdef.element;[
 <!ELEMENT glossdef ((%glossdef.mix;)+, glossseealso*)>
 <!--end of glossdef.element-->]]>
-<!--FUTURE USE (V4.0):
-......................
-The Subject attribute will be renamed Keyword.
-......................
--->
 
 <!-- Subject: List of subjects; keywords for the definition -->
 
@@ -3319,8 +3295,7 @@ in the text (no (0) value, the default)
 <!ENTITY % table.module "INCLUDE">
 <![%table.module;[
 
-<!-- Choose a table model. CALS is off by default, so the default -->
-<!-- is now the SGML Open Exchange table model.                   -->
+<!-- Choose a table model. CALS or OASIS XML Exchange -->
 
 <!ENTITY % cals.table.module "INCLUDE">
 <![%cals.table.module;[
@@ -3352,9 +3327,9 @@ in the text (no (0) value, the default)
 <!-- Allow either objects or inlines; beware of REs between elements. -->
 <!ENTITY % tbl.entry.mdl "%para.char.mix; | %tabentry.mix;">
 
-<!-- Reference SGML Open Exchange Table Model -->
+<!-- Reference CALS Table Model -->
 <!ENTITY % tablemodel 
-  PUBLIC "-//Norman Walsh//DTD CALS Table Model XML V3.1.7//EN" 
+  PUBLIC "-//OASIS//DTD DocBook XML CALS Table Model V4.1//EN"
   "calstblx.dtd">
 ]]>
 
@@ -3387,8 +3362,9 @@ in the text (no (0) value, the default)
 <!-- Allow either objects or inlines; beware of REs between elements. -->
 <!ENTITY % tbl.entry.mdl "(%para.char.mix; | %tabentry.mix;)*">
 
+<!-- Reference OASIS Exchange Table Model -->
 <!ENTITY % tablemodel 
-  PUBLIC "-//Norman Walsh//DTD Exchange Table Model 19960430 XML V3.1.7//EN"
+  PUBLIC "-//OASIS//DTD XML Exchange Table Model 19990315//EN"
   "soextblx.dtd">
 ]]>
 
@@ -4514,13 +4490,6 @@ in the text (no (0) value, the default)
 
 <!ENTITY % author.module "INCLUDE">
 <![%author.module;[
-<!--FUTURE USE (V4.0):
-......................
-AuthorBlurb and Affiliation will be removed from %person.ident.mix; and a new 
-wrapper element created to allow association of those two elements with 
-Author name information.
-......................
--->
 <!ENTITY % local.author.attrib "">
 <!ENTITY % author.role.attrib "%role.attrib;">
 
@@ -4947,13 +4916,6 @@ Author name information.
 
 <!ENTITY % editor.module "INCLUDE">
 <![%editor.module;[
-<!--FUTURE USE (V4.0):
-......................
-AuthorBlurb and Affiliation will be removed from %person.ident.mix; and a new 
-wrapper element created to allow association of those two elements with 
-Editor name information.
-......................
--->
 <!ENTITY % local.editor.attrib "">
 <!ENTITY % editor.role.attrib "%role.attrib;">
 
@@ -5138,13 +5100,6 @@ Editor name information.
 
 <!ENTITY % othercredit.module "INCLUDE">
 <![%othercredit.module;[
-<!--FUTURE USE (V4.0):
-......................
-AuthorBlurb and Affiliation will be removed from %person.ident.mix; and a new 
-wrapper element created to allow association of those two elements with 
-OtherCredit name information.
-......................
--->
 <!ENTITY % local.othercredit.attrib "">
 <!ENTITY % othercredit.role.attrib "%role.attrib;">
 
@@ -5193,13 +5148,6 @@ OtherCredit. -->
 
 <!ENTITY % person.ident.module "INCLUDE">
 <![%person.ident.module;[
-<!--FUTURE USE (V4.0):
-......................
-AuthorBlurb and Affiliation will be removed from %person.ident.mix; and
-a new wrapper element created to allow association of those two elements
-with Contrib name information.
-......................
--->
   <!ENTITY % contrib.module "INCLUDE">
   <![%contrib.module;[
   <!ENTITY % local.contrib.attrib "">
@@ -7227,11 +7175,6 @@ with Contrib name information.
 
 <!ENTITY % link.module "INCLUDE">
 <![%link.module;[
-<!--FUTURE USE (V4.0):
-......................
-All link elements will be excluded from themselves and each other.
-......................
--->
 <!ENTITY % local.link.attrib "">
 <!ENTITY % link.role.attrib "%role.attrib;">
 
@@ -7569,5 +7512,5 @@ All link elements will be excluded from themselves and each other.
 <!--end of seeseealso.module-->]]>
 <!--end of indexterm.content.module-->]]>
 
-<!-- End of DocBook XML information pool module V4.0 ...................... -->
+<!-- End of DocBook XML information pool module V4.1 ...................... -->
 <!-- ...................................................................... -->

@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook XML character entities module V4.0 ........................... -->
+<!-- DocBook XML character entities module V4.1 ........................... -->
 <!-- File dbcentx.mod ..................................................... -->
 
 <!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
@@ -36,7 +36,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbcent PUBLIC
-     "-//OASIS//ENTITIES DocBook XML Character Entities V4.0//EN"
+     "-//OASIS//ENTITIES DocBook XML Character Entities V4.1//EN"
      "dbcentx.mod">
      %dbcent;
 
@@ -200,5 +200,5 @@
 %ISOtech;
 <!--end of ISOtech.module-->]]>
 
-<!-- End of DocBook XML character entity sets module V4.0 ................. -->
+<!-- End of DocBook XML character entity sets module V4.1 ................. -->
 <!-- ...................................................................... -->
