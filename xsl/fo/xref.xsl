@@ -162,6 +162,7 @@
 <xsl:template match="title" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <!-- if you xref to a title, xref to the parent... -->
   <xsl:choose>
@@ -170,12 +171,14 @@
       <xsl:apply-templates select="parent::*[2]" mode="xref-to">
         <xsl:with-param name="referrer" select="$referrer"/>
         <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+        <xsl:with-param name="verbose" select="$verbose"/>
       </xsl:apply-templates>
     </xsl:when>
     <xsl:otherwise>
       <xsl:apply-templates select="parent::*" mode="xref-to">
         <xsl:with-param name="referrer" select="$referrer"/>
         <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+        <xsl:with-param name="verbose" select="$verbose"/>
       </xsl:apply-templates>
     </xsl:otherwise>
   </xsl:choose>
@@ -205,6 +208,7 @@
 <xsl:template match="author|editor|othercredit|personname" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:call-template name="person.name"/>
 </xsl:template>
@@ -212,6 +216,7 @@
 <xsl:template match="authorgroup" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:call-template name="person.name.list"/>
 </xsl:template>
@@ -219,11 +224,13 @@
 <xsl:template match="figure|example|table|equation" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:apply-templates select="." mode="object.xref.markup">
     <xsl:with-param name="purpose" select="'xref'"/>
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
   </xsl:apply-templates>
 </xsl:template>
 
@@ -243,6 +250,7 @@
 <xsl:template match="cmdsynopsis" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:apply-templates select="(.//command)[1]" mode="xref"/>
 </xsl:template>
@@ -250,6 +258,7 @@
 <xsl:template match="funcsynopsis" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:apply-templates select="(.//function)[1]" mode="xref"/>
 </xsl:template>
@@ -257,28 +266,33 @@
 <xsl:template match="dedication|preface|chapter|appendix" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:apply-templates select="." mode="object.xref.markup">
     <xsl:with-param name="purpose" select="'xref'"/>
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
   </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="bibliography" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:apply-templates select="." mode="object.xref.markup">
     <xsl:with-param name="purpose" select="'xref'"/>
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
   </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="biblioentry|bibliomixed" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <!-- handles both biblioentry and bibliomixed -->
   <xsl:text>[</xsl:text>
@@ -334,11 +348,13 @@
 <xsl:template match="glossary" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:apply-templates select="." mode="object.xref.markup">
     <xsl:with-param name="purpose" select="'xref'"/>
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
   </xsl:apply-templates>
 </xsl:template>
 
@@ -367,11 +383,13 @@
 <xsl:template match="index" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:apply-templates select="." mode="object.xref.markup">
     <xsl:with-param name="purpose" select="'xref'"/>
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
   </xsl:apply-templates>
 </xsl:template>
 
@@ -393,11 +411,13 @@
                      |refsect1|refsect2|refsect3|refsection" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:apply-templates select="." mode="object.xref.markup">
     <xsl:with-param name="purpose" select="'xref'"/>
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
   </xsl:apply-templates>
   <!-- What about "in Chapter X"? -->
 </xsl:template>
@@ -405,11 +425,13 @@
 <xsl:template match="bridgehead" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:apply-templates select="." mode="object.xref.markup">
     <xsl:with-param name="purpose" select="'xref'"/>
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
   </xsl:apply-templates>
   <!-- What about "in Chapter X"? -->
 </xsl:template>
@@ -443,39 +465,46 @@
 <xsl:template match="qandaentry" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:apply-templates select="question[1]" mode="object.xref.markup">
     <xsl:with-param name="purpose" select="'xref'"/>
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
   </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="question|answer" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:apply-templates select="." mode="object.xref.markup">
     <xsl:with-param name="purpose" select="'xref'"/>
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
   </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="part|reference" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:apply-templates select="." mode="object.xref.markup">
     <xsl:with-param name="purpose" select="'xref'"/>
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
   </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="refentry" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:choose>
     <xsl:when test="refmeta/refentrytitle">
@@ -491,26 +520,31 @@
 <xsl:template match="refnamediv" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:apply-templates select="refname[1]" mode="xref-to">
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
   </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="refname" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:apply-templates mode="xref-to">
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
   </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="step" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:call-template name="gentext">
     <xsl:with-param name="key" select="'Step'"/>
@@ -522,14 +556,17 @@
 <xsl:template match="varlistentry" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:apply-templates select="term[1]" mode="xref-to">
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
   </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="varlistentry/term" mode="xref-to">
+  <xsl:param name="verbose" select="1"/>
   <!-- to avoid the comma that will be generated if there are several terms -->
   <xsl:apply-templates/>
 </xsl:template>
@@ -537,6 +574,7 @@
 <xsl:template match="co" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:apply-templates select="." mode="callout-bug"/>
 </xsl:template>
@@ -544,11 +582,13 @@
 <xsl:template match="book" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:apply-templates select="." mode="object.xref.markup">
     <xsl:with-param name="purpose" select="'xref'"/>
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
   </xsl:apply-templates>
 </xsl:template>
 
@@ -582,15 +622,10 @@
                                        |ancestor::varlistentry)[last()]"/>
 
   <xsl:apply-templates select="$context" mode="xref-to">
-    <xsl:with-param name="verbose" select="$verbose"/>
-  </xsl:apply-templates>
-<!--
-  <xsl:apply-templates select="." mode="object.xref.markup">
-    <xsl:with-param name="purpose" select="'xref'"/>
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
   </xsl:apply-templates>
--->
 </xsl:template>
 
 <!-- ==================================================================== -->
