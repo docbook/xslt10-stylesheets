@@ -2,7 +2,8 @@ include ../cvstools/Makefile.incl
 
 CVS2LOG=../cvstools/cvs2log
 MERGELOGS=../cvstools/mergechangelogs
-NEXTVER=../cvstools/nextversion
+NEXTVERSION=../cvstools/nextversion
+NEXTVER=
 DIFFVER=
 ZIPVER=
 
@@ -42,7 +43,11 @@ else
 endif
 
 newversion:
-	$(NEXTVER)
+ifeq ($(NEXTVER),)
+	$(NEXTVERSION)
+else
+	$(NEXTVERSION) -v $(NEXTVER)
+endif
 	make DIFFVER=$(DIFFVER) distrib
 
 zip:
