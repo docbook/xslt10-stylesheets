@@ -4040,6 +4040,7 @@ in the text (no (0) value, the default)
 <!ATTLIST fieldsynopsis
 	%common.attrib;
 	%fieldsynopsis.role.attrib;
+	language	CDATA	#IMPLIED
 	%local.fieldsynopsis.attrib;
 >
 <!--end of fieldsynopsis.attlist-->]]>
@@ -4083,6 +4084,7 @@ in the text (no (0) value, the default)
 <!ATTLIST constructorsynopsis
 	%common.attrib;
 	%constructorsynopsis.role.attrib;
+	language	CDATA	#IMPLIED
 	%local.constructorsynopsis.attrib;
 >
 <!--end of constructorsynopsis.attlist-->]]>
@@ -4106,6 +4108,7 @@ in the text (no (0) value, the default)
 <!ATTLIST destructorsynopsis
 	%common.attrib;
 	%destructorsynopsis.role.attrib;
+	language	CDATA	#IMPLIED
 	%local.destructorsynopsis.attrib;
 >
 <!--end of destructorsynopsis.attlist-->]]>
@@ -4131,6 +4134,7 @@ in the text (no (0) value, the default)
 <!ATTLIST methodsynopsis
 	%common.attrib;
 	%methodsynopsis.role.attrib;
+	language	CDATA	#IMPLIED
 	%local.methodsynopsis.attrib;
 >
 <!--end of methodsynopsis.attlist-->]]>
