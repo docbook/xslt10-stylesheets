@@ -1,6 +1,6 @@
-XALANROOT=/projects/apache/xml-xalan/java
+XALANROOT=/usr/local/java/xalan2
 
-CLASSPATH=$(CLASSBASE):$(XALANROOT)/build/xalan.jar:$(XALANROOT)/bin/xml-apis.jar:$(XALANROOT)/bin/xercesImpl.jar:/usr/local/jaxp-1.1/jaxp.jar:/usr/local/jaxp-1.1/parser.jar
+CLASSPATH=$(CLASSBASE):$(XALANROOT)/bin/xalan.jar:$(XALANROOT)/bin/xml-apis.jar:$(XALANROOT)/bin/xercesImpl.jar:/usr/local/jwsdp-1.3/jaxp/lib/jaxp-api.jar
 
 all: $(CLASSFILES)
 	-@for f in $(SUBDIRS); do \
@@ -18,7 +18,7 @@ clean:
         done
 
 jar: all
-	jar cf ../../xalan2.jar `find com -name "*.class" -print`
+	jar cf ../../xalan25.jar `find com -name "*.class" -print`
 
 %.class : %.java
 	javac -classpath $(CLASSPATH) \

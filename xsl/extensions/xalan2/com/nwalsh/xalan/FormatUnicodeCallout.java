@@ -1,5 +1,6 @@
 package com.nwalsh.xalan;
 
+import org.xml.sax.helpers.AttributesImpl;
 import org.xml.sax.SAXException;
 import org.w3c.dom.*;
 import org.apache.xml.utils.DOMBuilder;
@@ -30,8 +31,10 @@ import org.apache.xml.utils.AttList;
 public class FormatUnicodeCallout extends FormatCallout {
   int unicodeMax = 0;
   int unicodeStart = 0;
+  String unicodeFont = "";
 
-  public FormatUnicodeCallout(int start, int max, boolean fo) {
+  public FormatUnicodeCallout(String font, int start, int max, boolean fo) {
+    unicodeFont = font;
     unicodeMax = max;
     unicodeStart = start;
     stylesheetFO = fo;
@@ -45,11 +48,34 @@ public class FormatUnicodeCallout extends FormatCallout {
 
     try {
       if (label == null && num <= unicodeMax) {
+	AttributesImpl inAttr = new AttributesImpl();
+	String ns = "";
+	String prefix = "";
+	String inName = "";
+
+	if (!unicodeFont.equals("")) {
+	  if (stylesheetFO) {
+	    ns = foURI;
+	    prefix = "fo:";
+	    inName = "inline";
+	    inAttr.addAttribute("", "", "font-family", "CDATA", unicodeFont);
+	  } else {
+	    inName = "font";
+	    inAttr.addAttribute("", "", "face", "CDATA", unicodeFont);
+	  }
+	}
+
 	char chars[] = new char[1];
 	chars[0] = (char) (unicodeStart + num - 1);
 
 	startSpan(rtf);
+	if (!unicodeFont.equals("")) {
+	  rtf.startElement(ns, inName, prefix+inName, inAttr);
+	}
 	rtf.characters(chars, 0, 1);
+	if (!unicodeFont.equals("")) {
+	  rtf.endElement(ns, inName, prefix+inName);
+	}
 	endSpan(rtf);
       } else {
 	formatTextCallout(rtf, callout);

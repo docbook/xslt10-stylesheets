@@ -457,8 +457,9 @@ public class Verbatim {
     } else if (Params.getBoolean(context, "callout.unicode")) {
       int uStart = Params.getInt(context, "callout.unicode.start.character");
       int uMax = Params.getInt(context, "callout.unicode.number.limit");
+      String uFont = Params.getString(context, "callout.unicode.font");
       return insertUnicodeCallouts(areaspecNodeSet, xalanNI, defaultColumn,
-				   uStart, uMax, useFO);
+				   uFont, uStart, uMax, useFO);
     } else if (Params.getBoolean(context, "callout.dingbats")) {
       int dMax = 10;
       return insertDingbatCallouts(areaspecNodeSet, xalanNI, defaultColumn,
@@ -482,10 +483,11 @@ public class Verbatim {
   public DocumentFragment insertUnicodeCallouts (NodeIterator areaspecNodeSet,
 						 NodeIterator xalanNI,
 						 int defaultColumn,
+						 String uFont,
 						 int uStart,
 						 int uMax,
 						 boolean useFO) {
-    FormatUnicodeCallout fuc = new FormatUnicodeCallout(uStart, uMax, useFO);
+    FormatUnicodeCallout fuc = new FormatUnicodeCallout(uFont, uStart, uMax, useFO);
     return insertCallouts(areaspecNodeSet, xalanNI, defaultColumn, fuc);
   }
 
