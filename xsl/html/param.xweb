@@ -228,6 +228,10 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &saxon.character.representation;
 &default.encoding;
 &chunk.datafile;
+&navig.graphics;
+&navig.graphics.extension;
+&navig.graphics.path;
+&navig.showtitles;
 </reference>
 
 <reference><title>HTML Help</title>
