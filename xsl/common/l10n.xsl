@@ -31,8 +31,8 @@
       <xsl:when test="$xref-context or $l10n.gentext.use.xref.language != 0">
         <!-- can't do this one step: attributes are unordered! -->
         <xsl:variable name="lang-scope"
-                      select="($target/ancestor-or-self::*[@lang]
-                               |$target/ancestor-or-self::*[@xml:lang])[last()]"/>
+                      select="$target/ancestor-or-self::*
+                              [@lang or @xml:lang][last()]"/>
         <xsl:variable name="lang-attr"
                       select="($lang-scope/@lang | $lang-scope/@xml:lang)[1]"/>
         <xsl:choose>
@@ -48,8 +48,8 @@
       <xsl:otherwise>
         <!-- can't do this one step: attributes are unordered! -->
         <xsl:variable name="lang-scope"
-                      select="($target/ancestor-or-self::*[@lang]
-                           |$target/ancestor-or-self::*[@xml:lang])[last()]"/>
+                      select="$target/ancestor-or-self::*
+                              [@lang or @xml:lang][last()]"/>
         <xsl:variable name="lang-attr"
                       select="($lang-scope/@lang | $lang-scope/@xml:lang)[1]"/>
 
@@ -118,8 +118,8 @@
       <xsl:otherwise>
         <!-- can't do this one step: attributes are unordered! -->
         <xsl:variable name="lang-scope"
-                      select="($node/ancestor-or-self::*[@lang]
-                               |$node/ancestor-or-self::*[@xml:lang])[last()]"/>
+                      select="$target/ancestor-or-self::*
+                              [@lang or @xml:lang][last()]"/>
         <xsl:variable name="lang-attr"
                       select="($lang-scope/@lang | $lang-scope/@xml:lang)[1]"/>
 
@@ -168,14 +168,14 @@
         <xsl:text>" localization of "</xsl:text>
         <xsl:value-of select="$key"/>
         <xsl:text>" exists</xsl:text>
-	<xsl:choose>
-	  <xsl:when test="$lang = 'en'">
-	     <xsl:text>.</xsl:text>
-	  </xsl:when>
-	  <xsl:otherwise>
-	     <xsl:text>; using "en".</xsl:text>
-	  </xsl:otherwise>
-	</xsl:choose>
+        <xsl:choose>
+          <xsl:when test="$lang = 'en'">
+             <xsl:text>.</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+             <xsl:text>; using "en".</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:message>
 
       <xsl:value-of select="($l10n.xml/l:i18n/l:l10n[@language='en']/l:gentext[@key=$key])[1]/@text"/>
