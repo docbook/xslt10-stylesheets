@@ -905,6 +905,17 @@ Technical Report #8</ulink></citetitle>, which describes Unicode Version 2.1.
 
 </bibliodiv>
 
+<bibliodiv><title>Non-Normative</title>
+
+<bibliomixed id="missglyph"><abbrev>gaiji</abbrev>Martin D&uuml;rst,
+editor.
+<citetitle><ulink url="http://www.w3.org/International/O-MissCharGlyph">Missing
+Characters and Glyphs</ulink></citetitle>.
+World Wide Web Consortium, 2002.
+</bibliomixed>
+
+</bibliodiv>
+
 </bibliography>
 
 </article>
