@@ -1,0 +1,17 @@
+MANIFEST.build
+Makefile
+common/Makefile
+doc/Makefile
+doc/fo/Makefile
+doc/html/Makefile
+doc/pi/Makefile
+doc/tools/Makefile
+docsrc/Makefile
+extensions/Makefile
+extensions/saxon643/.classes/Makefile.common
+extensions/xalan2/.classes/Makefile.common
+fo/Makefile
+htmlhelp/Makefile
+javahelp/Makefile
+lib/Makefile
+xhtml/Makefile
