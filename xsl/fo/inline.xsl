@@ -352,7 +352,7 @@
 </xsl:template>
 
 <xsl:template match="systemitem">
-  <xsl:call-template name="inline.charseq"/>
+  <xsl:call-template name="inline.monoseq"/>
 </xsl:template>
 
 <xsl:template match="token">
