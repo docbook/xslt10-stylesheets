@@ -65,7 +65,7 @@
   
 <xsl:template match="refentry">
   <xsl:variable name="section" select="refmeta/manvolnum"/>
-  <xsl:variable name="name" select="refmeta/refentrytitle"/>
+  <xsl:variable name="name" select="refnamediv/refname[1]"/>
 
   <xsl:call-template name="write.text.chunk">
     <xsl:with-param name="filename" select="concat($name, '.', $section)"/>
@@ -90,27 +90,33 @@
 .IP "\\$1" \\$2
 ..
 .TH "</xsl:text>
-      <xsl:value-of select="refnamediv/refname[1]"/>
+      <xsl:value-of select="translate(refmeta/refentrytitle,'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
       <xsl:text>" </xsl:text>
       <xsl:value-of select="refmeta/manvolnum[1]"/>
-      <xsl:text> "" "" "</xsl:text>
+      <xsl:text> "</xsl:text>
+      <xsl:value-of select="refentryinfo/date"/>
+      <xsl:text>" "</xsl:text>
+      <xsl:value-of select="refentryinfo/productname"/>
+      <xsl:text>" "</xsl:text>
       <xsl:value-of select="refentryinfo/title"/>
       <xsl:text>"
 </xsl:text>
       <xsl:apply-templates/>
-      <xsl:text>
-.SH AUTHOR
-</xsl:text>
+      <xsl:text>&#10;</xsl:text>
+
+      <!-- Author section -->
       <xsl:choose>
-        <xsl:when test="/refentry">
-          <xsl:apply-templates select="/refentry/refentryinfo/*"/>
+        <xsl:when test="refentryinfo//author">
+          <xsl:apply-templates select="refentryinfo" mode="authorsect"/>
         </xsl:when>
-        <xsl:when test="/article">
-          <xsl:apply-templates select="/article/articleinfo/*"/>
+        <xsl:when test="/book/bookinfo//author">
+          <xsl:apply-templates select="/book/bookinfo" mode="authorsect"/>
         </xsl:when>
-        <xsl:when test="/book">
+        <xsl:when test="/article/articleinfo//author">
+          <xsl:apply-templates select="/article/articleinfo" mode="authorsect"/>
         </xsl:when>
       </xsl:choose>
+
     </xsl:with-param>
   </xsl:call-template>
   <!-- Now generate stub include pages for every page documented in
