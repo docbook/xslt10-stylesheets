@@ -8,7 +8,7 @@ RELEASE-NOTES.html: RELEASE-NOTES.xml
 RELEASE-NOTES.txt: RELEASE-NOTES.html
 	$(BROWSER) $(BROWSER_OPTS) $< > $@
 
-distrib: all $(RELEASEDOCS)
+distrib: all $(DISTRIB_DEPENDS)
 	$(CVS2LOG) -w
 ifeq ($(DIFFVER),)
 	$(MERGELOGS) > WhatsNew
