@@ -111,7 +111,7 @@
           <xsl:apply-templates select="$others[count(.|key('primary',
                                        &primary;)[1]) = 1]"
                                mode="index-symbol-div">
-            <xsl:sort select="&primary;"/>
+            <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
           </xsl:apply-templates>
         </dl>
       </div>
@@ -119,7 +119,7 @@
     <xsl:apply-templates select="$alphabetical[count(.|key('letter',
                                  translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;))[1]) = 1]"
                          mode="index-div">
-      <xsl:sort select="&primary;"/>
+      <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
   </div>
 </xsl:template>
@@ -133,7 +133,7 @@
     <dl>
       <xsl:apply-templates select="key('letter', $key)[count(.|key('primary', &primary;)[1]) = 1]"
                            mode="index-primary">
-        <xsl:sort select="&primary;"/>
+        <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
       </xsl:apply-templates>
     </dl>
   </div>
@@ -143,7 +143,7 @@
   <xsl:variable name="key" select="translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;)"/>
   <xsl:apply-templates select="key('letter', $key)[count(.|key('primary', &primary;)[1]) = 1]"
                        mode="index-primary">
-    <xsl:sort select="&primary;"/>
+    <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
   </xsl:apply-templates>
 </xsl:template>
 
@@ -159,7 +159,7 @@
     <xsl:if test="$refs[not(secondary)]/*[self::see]">
       <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &sep;, &sep;, see))[1])]"
                            mode="index-see">
-        <xsl:sort select="see"/>
+        <xsl:sort select="translate(see, &lowercase;, &uppercase;)"/>
       </xsl:apply-templates>
     </xsl:if>
   </dt>
@@ -168,11 +168,11 @@
       <dl>
         <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &sep;, &sep;, seealso))[1])]"
                              mode="index-seealso">
-          <xsl:sort select="seealso"/>
+          <xsl:sort select="translate(seealso, &lowercase;, &uppercase;)"/>
         </xsl:apply-templates>
         <xsl:apply-templates select="$refs[secondary and count(.|key('secondary', concat($key, &sep;, &secondary;))[1]) = 1]" 
                              mode="index-secondary">
-          <xsl:sort select="&secondary;"/>
+          <xsl:sort select="translate(&secondary;, &lowercase;, &uppercase;)"/>
         </xsl:apply-templates>
       </dl>
     </dd>
@@ -191,7 +191,7 @@
     <xsl:if test="$refs[not(tertiary)]/*[self::see]">
       <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, see))[1])]"
                            mode="index-see">
-        <xsl:sort select="see"/>
+        <xsl:sort select="translate(see, &lowercase;, &uppercase;)"/>
       </xsl:apply-templates>
     </xsl:if>
   </dt>
@@ -200,11 +200,11 @@
       <dl>
         <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, seealso))[1])]"
                              mode="index-seealso">
-          <xsl:sort select="seealso"/>
+          <xsl:sort select="translate(seealso, &lowercase;, &uppercase;)"/>
         </xsl:apply-templates>
         <xsl:apply-templates select="$refs[tertiary and count(.|key('tertiary', concat($key, &sep;, &tertiary;))[1]) = 1]" 
                              mode="index-tertiary">
-          <xsl:sort select="&tertiary;"/>
+          <xsl:sort select="translate(&tertiary;, &lowercase;, &uppercase;)"/>
         </xsl:apply-templates>
       </dl>
     </dd>
@@ -223,7 +223,7 @@
     <xsl:if test="$refs/see">
       <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, see))[1])]"
                            mode="index-see">
-        <xsl:sort select="see"/>
+        <xsl:sort select="translate(see, &lowercase;, &uppercase;)"/>
       </xsl:apply-templates>
     </xsl:if>
   </dt>
@@ -232,11 +232,11 @@
       <dl>
         <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, see))[1])]"
                              mode="index-see">
-          <xsl:sort select="see"/>
+          <xsl:sort select="translate(see, &lowercase;, &uppercase;)"/>
         </xsl:apply-templates>
         <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, seealso))[1])]"
                              mode="index-seealso">
-          <xsl:sort select="seealso"/>
+	  <xsl:sort select="translate(seealso, &lowercase;, &uppercase;)"/>
         </xsl:apply-templates>
       </dl>
     </dd>
