@@ -4343,7 +4343,7 @@ in the text (no (0) value, the default)
 <![%constructorsynopsis.element;[
 <!ELEMENT constructorsynopsis %ho; (modifier*,
                                methodname?,
-                               (methodparam+|void),
+                               (methodparam+|void?),
                                exceptionname*)>
 <!--end of constructorsynopsis.element-->]]>
 
@@ -4367,7 +4367,7 @@ in the text (no (0) value, the default)
 <![%destructorsynopsis.element;[
 <!ELEMENT destructorsynopsis %ho; (modifier*,
                               methodname?,
-                              (methodparam+|void),
+                              (methodparam+|void?),
                               exceptionname*)>
 <!--end of destructorsynopsis.element-->]]>
 
@@ -4392,7 +4392,7 @@ in the text (no (0) value, the default)
 <!ELEMENT methodsynopsis %ho; (modifier*,
                           (type|void)?,
                           methodname,
-                          (methodparam+|void),
+                          (methodparam+|void?),
                           exceptionname*,
                           modifier*)>
 <!--end of methodsynopsis.element-->]]>
