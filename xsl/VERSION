@@ -33,7 +33,7 @@
   <fm:Changelog-URL>http://sourceforge.net/project/shownotes.php?release_id={SFRELID}</fm:Changelog-URL>
   <fm:CVS-URL>http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/docbook/xsl/</fm:CVS-URL>
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook-apps/</fm:Mailing-List-URL>
-  <fm:Changes>Lots of new features and bug fixes.  See RELEASE-NOTES.
+  <fm:Changes>Lots of new features and bug fixes. See RELEASE-NOTES.
 </fm:Changes>
 </fm:project>
 
