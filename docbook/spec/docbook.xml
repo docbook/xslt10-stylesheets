@@ -1,6 +1,6 @@
 <!DOCTYPE article [
 <!ENTITY name "wd-docbook-docbook">
-<!ENTITY version "4.4b1">
+<!ENTITY version "4.4b2">
 <!ENTITY standard "Working Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
@@ -34,7 +34,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>09 Jun 2004</pubdate>
+<pubdate>26 Aug 2004</pubdate>
 
 <copyright><year>2001</year><year>2002</year><year>2003</year><year>2004</year>
 <holder>
@@ -48,7 +48,7 @@ Standards [OASIS]. All Rights Reserved.
 particularly well suited to books and papers about computer hardware
 and software (though it is by no means limited to these applications).
 </para>
-<para>The Version 4.4b1 release is a maintenance release. It introduces
+<para>The Version 4.4b2 release is a maintenance release. It introduces
 no backwards-incompatible changes.</para>
 </abstract>
 
@@ -94,9 +94,9 @@ both
 <ulink url="http://xml.coverpages.org/general.html#overview">SGML</ulink>.
 It is unofficially available in other forms as well.</para>
 
-<para>The Version 4.4b1 release is a maintainance release. It introduces
+<para>The Version 4.4b2 release is a maintainance release. It introduces
 no backwards-incompatible changes. All valid DocBook 4.3 documents are
-also valid DocBook 4.4b1 documents.</para>
+also valid DocBook 4.4b2 documents.</para>
 
 <para>The genesis of this release is a bug in the catalog files for
 DocBook V4.3. The Committee decided to produce a 4.4 release, incorporating
@@ -130,7 +130,7 @@ document.</para>
 </section>
 
 <section id="docbook">
-<title>The DocBook Document Type V4.4b1</title>
+<title>The DocBook Document Type V4.4b2</title>
 
 <para>The DocBook document type is distributed for
 <ulink url="&root;xml/">XML</ulink> and
@@ -141,6 +141,55 @@ from the
 the mirror on
 <ulink url="http://docbook.org/"/>.
 </para>
+
+<section id="s.csb2">
+<title>Changes in DocBook V4.4b2</title>
+
+<para>There are no backwards-incompatible changes in this release.
+</para>
+
+<para>Each of the changes made between DocBook V4.4b1 and DocBook V4.4b2
+is summarized here. For complete details, consult the individual RFEs and
+the <ulink url="&root;meetings">meeting minutes</ulink>.</para>
+
+<section id="sb2.bugs">
+<title>Bug Fixes</title>
+
+<itemizedlist spacing="compact">
+<listitem><para>Version 4.4b2 includes the W3C
+<ulink url="http://www.w3.org/2003/entities/">XML Entity Declarations for
+Characters</ulink>. These entities are distributed for historical
+compatibility and user convenience. The DocBook Technical Committee no
+longer attempts to maintain these definitions and will periodically
+update them from the W3C site if and as they are updated there.
+</para></listitem>
+<listitem><para>Removed <sgmltag class="attribute">xml:base</sgmltag> from
+the SGML DTD.
+</para></listitem>
+<listitem><para>Allow HTML tables to nest (allow <sgmltag>table</sgmltag>
+and <sgmltag>informaltable</sgmltag> inside <sgmltag>td</sgmltag> and
+<sgmltag>th</sgmltag>).
+</para></listitem>
+<listitem><para>Changed the <sgmltag class="attribute">rules</sgmltag> attribute,
+which can appear on HTML tables, from an enumeration to <literal>CDATA</literal>.
+This avoids a conflict with the enumerated values on the
+<sgmltag class="attribute">frame</sgmltag> attribute on CALS tables.
+</para></listitem>
+</itemizedlist>
+</section>
+
+<section id="sb2.enhancements">
+<title>Enhancements</title>
+
+<itemizedlist spacing="compact">
+<listitem><para>Added <sgmltag>bibliolist</sgmltag>.
+</para></listitem>
+<listitem><para>Added a parameter entity to allow customizers to exclude the
+&amp;euro; character entity.
+</para></listitem>
+</itemizedlist>
+</section>
+</section>
 
 <section id="s.cs">
 <title>Changes in DocBook V4.4b1</title>
@@ -622,6 +671,10 @@ of the DocBook web page
 
 <para>
 <revhistory>
+<revision role="&root;specs/wd-docbook-docbook-4.4b2.html">
+  <revnumber>Working Draft “Beta 2”</revnumber>
+  <date>26 Aug 2004</date>
+</revision>
 <revision role="&root;specs/wd-docbook-docbook-4.4b1.html">
   <revnumber>Working Draft “Beta 1”</revnumber>
   <date>09 Jun 2004</date>
