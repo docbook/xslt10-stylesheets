@@ -234,6 +234,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/table.frame.border.color.xml \
        ../params/table.frame.border.style.xml \
        ../params/table.frame.border.thickness.xml \
+       ../params/textdata.default.encoding.xml \
        ../params/ignore.image.scaling.xml \
        ../params/footnote.number.format.xml \
        ../params/table.footnote.number.format.xml \
