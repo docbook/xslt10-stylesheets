@@ -19,6 +19,7 @@ title of the element. This does not include the label.
 
 <xsl:template match="*" mode="title.markup">
   <xsl:param name="allow-anchors" select="0"/>
+
   <xsl:choose>
     <xsl:when test="title">
       <xsl:apply-templates select="title[1]" mode="title.markup">
@@ -47,6 +48,7 @@ title of the element. This does not include the label.
 
 <xsl:template match="title" mode="title.markup">
   <xsl:param name="allow-anchors" select="0"/>
+
   <xsl:choose>
     <xsl:when test="$allow-anchors != 0">
       <xsl:apply-templates/>
@@ -211,6 +213,22 @@ title of the element. This does not include the label.
 
 <xsl:template match="bridgehead" mode="title.markup">
   <xsl:apply-templates mode="title.markup"/>
+</xsl:template>
+
+<xsl:template match="refsynopsisdiv" mode="title.markup">
+  <xsl:param name="allow-anchors" select="0"/>
+  <xsl:choose>
+    <xsl:when test="title">
+      <xsl:apply-templates select="title" mode="title.markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+      </xsl:apply-templates>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'RefSynopsisDiv'"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="bibliography" mode="title.markup">
