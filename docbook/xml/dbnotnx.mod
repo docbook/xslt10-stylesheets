@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook notations module V4.2 ........................................ -->
+<!-- DocBook notations module V4.3b2 ........................................ -->
 <!-- File dbnotnx.mod ..................................................... -->
 
 <!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
@@ -37,7 +37,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbnotn PUBLIC
-     "-//OASIS//ENTITIES DocBook Notations V4.2//EN"
+     "-//OASIS//ENTITIES DocBook Notations V4.3b2//EN"
      "dbnotnx.mod">
      %dbnotn;
 
@@ -58,7 +58,7 @@
 		%local.notation.class;">
 
 <!NOTATION BMP		PUBLIC
-"+//ISBN 0-7923-9432-1::Graphic Notation//NOTATION Microsoft Windows bitmap//EN">
+"+//ISBN 0-7923-94.2-1::Graphic Notation//NOTATION Microsoft Windows bitmap//EN">
 <!NOTATION CGM-CHAR	PUBLIC "ISO 8632/2//NOTATION Character encoding//EN">
 <!NOTATION CGM-BINARY	PUBLIC "ISO 8632/3//NOTATION Binary encoding//EN">
 <!NOTATION CGM-CLEAR	PUBLIC "ISO 8632/4//NOTATION Clear text encoding//EN">
@@ -80,7 +80,7 @@
 <!NOTATION IGES		PUBLIC
 "-//USA-DOD//NOTATION (ASME/ANSI Y14.26M-1987) Initial Graphics Exchange Specification//EN">
 <!NOTATION PCX		PUBLIC
-"+//ISBN 0-7923-9432-1::Graphic Notation//NOTATION ZSoft PCX bitmap//EN">
+"+//ISBN 0-7923-94.2-1::Graphic Notation//NOTATION ZSoft PCX bitmap//EN">
 <!NOTATION PIC		SYSTEM "PIC">
 <!NOTATION PNG          SYSTEM "http://www.w3.org/TR/REC-png">
 <!NOTATION PS		SYSTEM "PS">
@@ -91,11 +91,11 @@
 "+//ISBN 0-201-13448-9::Knuth//NOTATION The TeXbook//EN">
 <!NOTATION TIFF		SYSTEM "TIFF">
 <!NOTATION WMF		PUBLIC
-"+//ISBN 0-7923-9432-1::Graphic Notation//NOTATION Microsoft Windows Metafile//EN">
+"+//ISBN 0-7923-94.2-1::Graphic Notation//NOTATION Microsoft Windows Metafile//EN">
 <!NOTATION WPG		SYSTEM "WPG"> <!--WordPerfect Graphic format-->
 <!NOTATION SVG		SYSTEM "http://www.w3.org/TR/SVG/">
 <!NOTATION PDF		SYSTEM "http://www.adobe.com/products/acrobat/adobepdf.html">
 <!NOTATION linespecific	SYSTEM "linespecific">
 
-<!-- End of DocBook notations module V4.2 ................................. -->
+<!-- End of DocBook notations module V4.3b2 ................................. -->
 <!-- ...................................................................... -->
