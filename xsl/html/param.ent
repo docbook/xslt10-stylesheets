@@ -152,4 +152,5 @@
 <!ENTITY ulink.target SYSTEM "../params/ulink.target.xml">
 <!ENTITY use.extensions SYSTEM "../params/use.extensions.xml">
 <!ENTITY use.id.as.filename SYSTEM "../params/use.id.as.filename.xml">
+<!ENTITY use.svg SYSTEM "../params/use.svg.xml">
 <!ENTITY variablelist.as.table SYSTEM "../params/variablelist.as.table.xml">
