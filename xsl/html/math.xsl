@@ -19,6 +19,12 @@
 <xsl:template match="alt">
 </xsl:template>
 
+<xsl:template match="mathphrase">
+  <span class="{local-name(.)}">
+    <xsl:apply-templates/>
+  </span>
+</xsl:template>
+
 <!-- "Support" for MathML -->
 
 <xsl:template match="mml:*" xmlns:mml="http://www.w3.org/1998/Math/MathML">
