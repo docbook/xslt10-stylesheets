@@ -14,6 +14,12 @@
   <xsl:attribute name="font-family">
     <xsl:value-of select="$body.font.family"/>
   </xsl:attribute>
+  <xsl:attribute name="margin-left">
+    <xsl:value-of select="$title.margin.left"/>
+  </xsl:attribute>
+  <xsl:attribute name="margin-right">
+    <xsl:value-of select="$title.margin.left"/>
+  </xsl:attribute>
 </xsl:attribute-set>
 </src:fragment>
 </refsynopsisdiv>

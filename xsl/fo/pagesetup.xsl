@@ -1248,7 +1248,7 @@
   </xsl:variable>
 
   <fo:static-content flow-name="xsl-region-before-first">
-    <fo:block margin-left="{$title.margin.left}">
+    <fo:block xsl:use-attribute-sets="header.content.properties">
       <xsl:call-template name="header.table">
         <xsl:with-param name="pageclass" select="$pageclass"/>
         <xsl:with-param name="sequence" select="'first'"/>
@@ -1258,7 +1258,7 @@
   </fo:static-content>
 
   <fo:static-content flow-name="xsl-region-before-odd">
-    <fo:block margin-left="{$title.margin.left}">
+    <fo:block xsl:use-attribute-sets="header.content.properties">
       <xsl:call-template name="header.table">
         <xsl:with-param name="pageclass" select="$pageclass"/>
         <xsl:with-param name="sequence" select="'odd'"/>
@@ -1268,7 +1268,7 @@
   </fo:static-content>
 
   <fo:static-content flow-name="xsl-region-before-even">
-    <fo:block margin-left="{$title.margin.left}">
+    <fo:block xsl:use-attribute-sets="header.content.properties">
       <xsl:call-template name="header.table">
         <xsl:with-param name="pageclass" select="$pageclass"/>
         <xsl:with-param name="sequence" select="'even'"/>
@@ -1278,7 +1278,7 @@
   </fo:static-content>
 
   <fo:static-content flow-name="xsl-region-before-blank">
-    <fo:block margin-left="{$title.margin.left}">
+    <fo:block xsl:use-attribute-sets="header.content.properties">
       <xsl:call-template name="header.table">
         <xsl:with-param name="pageclass" select="$pageclass"/>
         <xsl:with-param name="sequence" select="'blank'"/>
@@ -1378,7 +1378,7 @@
   </fo:block>
 -->
 
-  <fo:block xsl:use-attribute-sets="header.content.properties">
+  <fo:block>
 
     <!-- sequence can be odd, even, first, blank -->
     <!-- position can be left, center, right -->
@@ -1467,7 +1467,7 @@
   </xsl:variable>
 
   <fo:static-content flow-name="xsl-region-after-first">
-    <fo:block margin-left="{$title.margin.left}">
+    <fo:block xsl:use-attribute-sets="footer.content.properties">
       <xsl:call-template name="footer.table">
         <xsl:with-param name="pageclass" select="$pageclass"/>
         <xsl:with-param name="sequence" select="'first'"/>
@@ -1477,7 +1477,7 @@
   </fo:static-content>
 
   <fo:static-content flow-name="xsl-region-after-odd">
-    <fo:block margin-left="{$title.margin.left}">
+    <fo:block xsl:use-attribute-sets="footer.content.properties">
       <xsl:call-template name="footer.table">
         <xsl:with-param name="pageclass" select="$pageclass"/>
         <xsl:with-param name="sequence" select="'odd'"/>
@@ -1487,7 +1487,7 @@
   </fo:static-content>
 
   <fo:static-content flow-name="xsl-region-after-even">
-    <fo:block margin-left="{$title.margin.left}">
+    <fo:block xsl:use-attribute-sets="footer.content.properties">
       <xsl:call-template name="footer.table">
         <xsl:with-param name="pageclass" select="$pageclass"/>
         <xsl:with-param name="sequence" select="'even'"/>
@@ -1497,7 +1497,7 @@
   </fo:static-content>
 
   <fo:static-content flow-name="xsl-region-after-blank">
-    <fo:block margin-left="{$title.margin.left}">
+    <fo:block xsl:use-attribute-sets="footer.content.properties">
       <xsl:call-template name="footer.table">
         <xsl:with-param name="pageclass" select="$pageclass"/>
         <xsl:with-param name="sequence" select="'blank'"/>
@@ -1597,7 +1597,7 @@
   </fo:block>
 -->
 
-  <fo:block xsl:use-attribute-sets="footer.content.properties">
+  <fo:block>
 
     <!-- sequence can be odd, even, first, blank -->
     <!-- position can be left, center, right -->
