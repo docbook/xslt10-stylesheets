@@ -248,6 +248,10 @@
       <xsl:choose>
         <xsl:when test="$entry">
           <xsl:choose>
+            <xsl:when test="$bibliography.numbered != 0">
+              <xsl:number from="bibliography" count="biblioentry|bibliomixed"
+                          level="any" format="1"/>
+            </xsl:when>
             <xsl:when test="local-name($entry/*[1]) = 'abbrev'">
               <xsl:apply-templates select="$entry/*[1]"/>
             </xsl:when>
@@ -269,6 +273,10 @@
     </xsl:when>
     <xsl:otherwise>
       <xsl:choose>
+        <xsl:when test="$bibliography.numbered != 0">
+          <xsl:number from="bibliography" count="biblioentry|bibliomixed"
+                      level="any" format="1"/>
+        </xsl:when>
         <xsl:when test="local-name(*[1]) = 'abbrev'">
           <xsl:apply-templates select="*[1]"/>
         </xsl:when>
