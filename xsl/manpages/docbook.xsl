@@ -512,6 +512,32 @@
   </xsl:call-template>
 </xsl:template>
 
+<xsl:template match="dingbat.characters">
+  <!-- now that I'm using the real serializer, all that dingbat malarky -->
+  <!-- isn't necessary anymore... -->
+  <xsl:param name="dingbat">bullet</xsl:param>
+  <xsl:choose>
+    <xsl:when test="$dingbat='bullet'">\(bu</xsl:when>
+    <xsl:when test="$dingbat='copyright'">\(co</xsl:when>
+    <xsl:when test="$dingbat='trademark'">\(tm</xsl:when>
+    <xsl:when test="$dingbat='trade'">\(tm</xsl:when>
+    <xsl:when test="$dingbat='registered'">\(rg</xsl:when>
+    <xsl:when test="$dingbat='service'">(SM)</xsl:when>
+    <xsl:when test="$dingbat='nbsp'">&#x00A0;</xsl:when>
+    <xsl:when test="$dingbat='ldquo'">\(lq</xsl:when>
+    <xsl:when test="$dingbat='rdquo'">\(rq</xsl:when>
+    <xsl:when test="$dingbat='lsquo'">`</xsl:when>
+    <xsl:when test="$dingbat='rsquo'">'</xsl:when>
+    <xsl:when test="$dingbat='em-dash'">\(em</xsl:when>
+    <xsl:when test="$dingbat='mdash'">\(em</xsl:when>
+    <xsl:when test="$dingbat='en-dash'">\(en</xsl:when>
+    <xsl:when test="$dingbat='ndash'">\(en</xsl:when>
+    <xsl:otherwise>
+      <xsl:text>\(bu</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="text()">
   <xsl:call-template name="replace-entities">
     <xsl:with-param name="content">
