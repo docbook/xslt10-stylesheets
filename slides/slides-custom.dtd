@@ -61,15 +61,11 @@
 		|%person.ident.mix;
 		%local.bibliocomponent.mix;">
 
+<!ENTITY % local.divcomponent.mix "|speakernotes">
+<!ENTITY % local.component.mix "|speakernotes">
+
 <!ENTITY % sdocbook.dtd SYSTEM "../docbook/simple/sdocbook-custom.dtd">
 %sdocbook.dtd;
-
-<!ENTITY % divcomponent.mix
-		"%list.class;		|%admon.class;
-		|%linespecific.class;	|%synop.class;
-		|%para.class;		|%informal.class;
-		|%formal.class;		|%compound.class;
-		|%descobj.class;        |speakernotes">
 
 <!-- ====================================================================== -->
 <!-- Add screen back into the DTD -->
