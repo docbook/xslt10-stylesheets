@@ -115,7 +115,14 @@
 
   <fo:root font-family="{$body.font.family}"
            font-size="{$body.font.size}"
-           text-align="{$alignment}">
+           text-align="{$alignment}"
+           line-height="{$line-height}">
+    <xsl:attribute name="language">
+      <xsl:call-template name="l10n.language">
+        <xsl:with-param name="target" select="/*[1]"/>
+      </xsl:call-template>
+    </xsl:attribute>
+
     <xsl:if test="$xep.extensions != 0">
       <xsl:call-template name="xep-document-information"/>
     </xsl:if>
