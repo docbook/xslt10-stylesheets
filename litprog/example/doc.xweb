@@ -12,8 +12,8 @@
 <p>This schema defines elements in the
 <tt>urn:publicid:-:Norman+Walsh:Schema Example:EN</tt> namespace.</p>
 
-<p>This schema defines several complex types and several elements that
-are instances of those types.</p>
+<p>This schema defines several elements and their complex types.
+</p>
 
 <src:fragment id="top" mundane-result-prefixes="ex xs">
 <xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'
@@ -23,6 +23,19 @@ are instances of those types.</p>
   <src:fragref linkend="types"/>
   <src:fragref linkend="elements"/>
 </xs:schema>
+</src:fragment>
+</div>
+
+<div>
+<h1>The Elements</h1>
+
+<p>This schema defines one element of each <a href="#types">complex
+type</a>.</p>
+
+<src:fragment id="elements">
+  <xs:element name="doc" type="ex:doc"/>
+  <xs:element name="para" type="ex:para"/>
+  <xs:element name="title" type="ex:title"/>
 </src:fragment>
 </div>
 
@@ -37,6 +50,17 @@ are instances of those types.</p>
   <src:fragref linkend="title.type"/>
   <src:fragref linkend="para.type"/>
 </src:fragment>
+
+<div>
+<h2>The <tt>role</tt> Attribute</h2>
+
+<p>Each of the complex types in this schema allows an optional role attribute.
+The role attribute is simply a string.</p>
+
+<src:fragment id="role.attrib">
+    <xs:attribute name="role" type="xs:string"/>
+</src:fragment>
+</div>
 
 <div>
 <h2>The <tt>doc</tt> Type</h2>
@@ -62,20 +86,9 @@ are instances of those types.</p>
     <xs:anyAttribute namespace="##other" processContents="lax"/>
   </xs:complexType>
 </src:fragment>
-
-<div>
-<h2>The <tt>role</tt> Attribute</h2>
-
-<p>The role attribute is an optional string.</p>
-
-<src:fragment id="role.attrib">
-    <xs:attribute name="role" type="xs:string"/>
-</src:fragment>
-</div>
 </div>
 
 <div>
-
 <h2>The <tt>para</tt> Type</h2>
 
 <src:fragment id="para.type">
@@ -85,18 +98,5 @@ are instances of those types.</p>
   </xs:complexType>
 </src:fragment>
 </div>
-</div>
-
-<div>
-<h1>The Elements</h1>
-
-<p>This schema defines one element of each <a href="#types">complex
-type</a>.</p>
-
-<src:fragment id="elements">
-  <xs:element name="doc" type="ex:doc"/>
-  <xs:element name="para" type="ex:para"/>
-  <xs:element name="title" type="ex:title"/>
-</src:fragment>
 </div>
 </html>
