@@ -54,7 +54,7 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:with-param>
-    <xsl:with-param name="encoding" select="$default.encoding"/>
+    <xsl:with-param name="encoding" select="$chunker.output.encoding"/>
   </xsl:call-template>
 </xsl:template>
 
