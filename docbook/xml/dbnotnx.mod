@@ -53,7 +53,7 @@
 		| EPS | EQN | FAX | GIF | GIF87a | GIF89a
 		| JPG | JPEG | IGES | PCX
 		| PIC | PNG | PS | SGML | TBL | TEX | TIFF | WMF | WPG
-                | SVG
+                | SVG | PDF
 		| linespecific
 		%local.notation.class;">
 
@@ -94,6 +94,7 @@
 "+//ISBN 0-7923-9432-1::Graphic Notation//NOTATION Microsoft Windows Metafile//EN">
 <!NOTATION WPG		SYSTEM "WPG"> <!--WordPerfect Graphic format-->
 <!NOTATION SVG		SYSTEM "http://www.w3.org/TR/SVG/">
+<!NOTATION PDF		SYSTEM "http://www.adobe.com/products/acrobat/adobepdf.html">
 <!NOTATION linespecific	SYSTEM "linespecific">
 
 <!-- End of DocBook notations module V4.2 ................................. -->
