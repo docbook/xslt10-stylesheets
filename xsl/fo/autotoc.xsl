@@ -257,7 +257,8 @@
   <xsl:call-template name="toc.line"/>
 
   <xsl:variable name="nodes" select="chapter|appendix|preface|reference|
-                                     article|index|glossary|bibliography"/>
+                                     refentry|article|index|glossary|
+				     bibliography"/>
 
   <xsl:if test="$toc.section.depth &gt; 0 and $nodes">
     <fo:block id="toc.{$cid}.{$id}"
