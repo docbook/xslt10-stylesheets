@@ -61,6 +61,13 @@
 -->
 
 <!-- ...................................................................... -->
+<!-- Forms entities ....................................................... -->
+<!-- These PEs provide the hook by which the forms module can be inserted   -->
+<!-- into the DTD. -->
+<!ENTITY % forminlines.hook "">
+<!ENTITY % forms.hook "">
+
+<!-- ...................................................................... -->
 <!-- General-purpose semantics entities ................................... -->
 
 <!ENTITY % yesorno.attvals	"CDATA">
@@ -248,7 +255,8 @@ f. Just BlockQuote; no other informal objects.
 		|%formal.class;		|%compound.class;
 		|%genobj.class;		|%descobj.class;
 		|%ndxterm.class;        |beginpage
-		%local.component.mix;">
+		%forms.hook;
+                %local.component.mix;">
 
 <!ENTITY % local.sidebar.mix "">
 <!ENTITY % sidebar.mix
@@ -258,7 +266,8 @@ f. Just BlockQuote; no other informal objects.
 		|%formal.class;		|procedure
 		|%genobj.class;
 		|%ndxterm.class;        |beginpage
-		%local.sidebar.mix;">
+		%forms.hook;
+                %local.sidebar.mix;">
 
 <!ENTITY % local.qandaset.mix "">
 <!ENTITY % qandaset.mix
@@ -268,7 +277,8 @@ f. Just BlockQuote; no other informal objects.
 		|%formal.class;		|procedure
 		|%genobj.class;
 		|%ndxterm.class;
-		%local.qandaset.mix;">
+		%forms.hook;
+                %local.qandaset.mix;">
 
 <!ENTITY % local.revdescription.mix "">
 <!ENTITY % revdescription.mix
@@ -293,7 +303,8 @@ f. Just BlockQuote; no other informal objects.
 		|%linespecific.class;	|%synop.class;
 		|%para.class;		|%informal.class;
 		|%ndxterm.class;        |beginpage
-		%local.example.mix;">
+		%forms.hook;
+                %local.example.mix;">
 
 <!ENTITY % local.highlights.mix "">
 <!ENTITY % highlights.mix
@@ -320,20 +331,23 @@ f. Just BlockQuote; no other informal objects.
 		|%formal.class;		|procedure|sidebar
 		|anchor|bridgehead|remark
 		|%ndxterm.class;        |beginpage
-		%local.admon.mix;">
+		%forms.hook;
+                %local.admon.mix;">
 
 <!ENTITY % local.figure.mix "">
 <!ENTITY % figure.mix
 		"%linespecific.class;	|%synop.class;
 					|%informal.class;
 		|%ndxterm.class;        |beginpage
-		%local.figure.mix;">
+		%forms.hook;
+                %local.figure.mix;">
 
 <!ENTITY % local.tabentry.mix "">
 <!ENTITY % tabentry.mix
 		"%list.class;		|%admon.class;
 		|%linespecific.class;
 		|%para.class;		|graphic|mediaobject
+		%forms.hook;
 		%local.tabentry.mix;">
 
 <!ENTITY % local.glossdef.mix "">
@@ -372,7 +386,8 @@ f. Just BlockQuote; no other informal objects.
 		|%para.class;		|%informal.class;
 		|%genobj.class;		|%descobj.class;
 		|%ndxterm.class;        |beginpage
-		%local.listpreamble.mix;">
+		%forms.hook;
+                %local.listpreamble.mix;">
 
 <!-- Character-level mixtures ............................................. -->
 
@@ -431,10 +446,6 @@ b. Just Replaceable; no other computer terms.
 c. Just Emphasis and Trademark; no other word elements.
 d. Just Acronym, Emphasis, and Trademark; no other word elements.
 -->
-
-<!-- The DocBook TC may produce an official forms module for DocBook. -->
-<!-- This PE provides the hook by which it can be inserted into the DTD. -->
-<!ENTITY % forminlines.hook "">
 
 <!ENTITY % local.para.char.mix "">
 <!ENTITY % para.char.mix

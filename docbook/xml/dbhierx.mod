@@ -103,10 +103,6 @@
 <!-- ...................................................................... -->
 <!-- Entities for element mixtures ........................................ -->
 
-<!-- The DocBook TC may produce an official forms module for DocBook. -->
-<!-- This PE provides the hook by which it can be inserted into the DTD. -->
-<!ENTITY % forms.hook "">
-
 <!ENTITY % local.divcomponent.mix "">
 <!ENTITY % divcomponent.mix
 		"%list.class;		|%admon.class;
@@ -126,7 +122,8 @@
 		|%formal.class;		|%compound.class;
 		|%genobj.class;		|%descobj.class;
 		|%ndxterm.class;        |beginpage
-		%local.refcomponent.mix;">
+		%forms.hook;
+                %local.refcomponent.mix;">
 
 <!ENTITY % local.indexdivcomponent.mix "">
 <!ENTITY % indexdivcomponent.mix
