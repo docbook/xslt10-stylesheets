@@ -1,0 +1,50 @@
+#!/bin/bash
+
+DONE=0
+DEBUG=0
+QUIET=0
+MEMORY=""
+
+while [ "$DONE" = "0" ]; do
+    case $1 in
+	-d)	DEBUG=1;
+		shift;
+		;;
+        -m)     shift
+		MEMORY="-Xmx$1";
+		shift;
+		;;
+        -q)     shift
+		QUIET=1
+		;;
+	-*)	DONE=1;
+	        ;;
+	*)	DONE=1
+                ;;
+    esac
+done
+
+XT="/usr/local/java/xt/xt.jar";
+XP="/usr/local/java/xp/xp.jar";
+SUN="/projects/sun/resolver/.classes";
+JAXP="/usr/local/jaxp-1.1/jaxp.jar:/usr/local/jaxp-1.1/crimson.jar"
+
+CLASSPATH=$XT:$SUN:$JAXP:$XP:$CLASSPATH
+
+#echo $CLASSPATH
+
+if [ "$QUIET" = "0" ]; then
+    echo xt $@
+    if [ "$MEMORY" != "" ]; then
+	echo "java $MEMORY ..."
+    fi
+fi
+
+java $MEMORY \
+ com.sun.xt.xsl.sax.Driver $@
+
+if [ $? != 0 ]; then
+  echo ""
+  echo FAILED
+  echo ""
+fi
