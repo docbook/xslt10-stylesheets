@@ -1,4 +1,4 @@
-PROC=xsltproc
+PROC=saxon
 PROCOPT=-q
 TABSTYLE=../xsl/tabular.xsl
 WEBSTYLE=../xsl/website.xsl
