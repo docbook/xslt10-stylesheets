@@ -150,7 +150,7 @@ both a line and a column.)</para>
     <example>
       <title>Enabling the Extensions from the Command Line</title>
       <para>To enable the extensions for the command line, you need to
-        pass the the <parameter>use.extensions</parameter> parameter
+        pass the <parameter>use.extensions</parameter> parameter
       to your XSLT engine. Here's an example of how to do that with Saxon:
         <screen>
 java  com.icl.saxon.StyleSheet  <replaceable>filename.xml</replaceable> <replaceable>docbook/html/docbook.xsl</replaceable> use.extensions=1 &gt; <replaceable>output.html</replaceable>
