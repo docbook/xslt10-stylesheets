@@ -1,5 +1,5 @@
 <!-- ====================================================================== -->
-<!-- Website DTD V2.5.0
+<!-- Website DTD V2.5.1
      Copyright (C) 1997-2003 Norman Walsh
      http://sourceforge.net/projects/docbook/
 
@@ -12,8 +12,8 @@
 
      <?xml version="1.0"?>
      <!DOCTYPE webpage
-       PUBLIC "-//Norman Walsh//DTD Website V2.5.0//EN"
-       "http://docbook.sourceforge.net/release/website/2.5.0/schema/dtd/website.dtd">
+       PUBLIC "-//Norman Walsh//DTD Website V2.5.1//EN"
+       "http://docbook.sourceforge.net/release/website/2.5.1/schema/dtd/website.dtd">
                                                                             -->
 <!-- ====================================================================== -->
 
@@ -51,5 +51,5 @@
 <!ENTITY % website.mod SYSTEM "website.mod">
 %website.mod;
 
-<!-- End of Website DTD V2.5.0 ............................................ -->
+<!-- End of Website DTD V2.5.1 ............................................ -->
 <!-- ...................................................................... -->
