@@ -180,9 +180,11 @@
 </xsl:template>
 
 <xsl:template match="author" mode="titlepage.mode">
-  <h3 class="{name(.)}"><xsl:call-template name="person.name"/></h3>
-  <xsl:apply-templates mode="titlepage.mode" select="./contrib"/>
-  <xsl:apply-templates mode="titlepage.mode" select="./affiliation"/>
+  <div class="{name(.)}">
+    <h3 class="{name(.)}"><xsl:call-template name="person.name"/></h3>
+    <xsl:apply-templates mode="titlepage.mode" select="./contrib"/>
+    <xsl:apply-templates mode="titlepage.mode" select="./affiliation"/>
+  </div>
 </xsl:template>
 
 <xsl:template match="authorblurb" mode="titlepage.mode">
@@ -192,7 +194,9 @@
 </xsl:template>
 
 <xsl:template match="authorgroup" mode="titlepage.mode">
-  <xsl:apply-templates mode="titlepage.mode"/>
+  <div class="{name(.)}">
+    <xsl:apply-templates mode="titlepage.mode"/>
+  </div>
 </xsl:template>
 
 <xsl:template match="authorinitials" mode="titlepage.mode">
