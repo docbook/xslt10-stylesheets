@@ -80,6 +80,10 @@ node.</para>
 
 <!-- ==================================================================== -->
 
+<xsl:template name="allpages.banner"/>
+
+<!-- ==================================================================== -->
+
 <xsl:template name="webpage.table.footer"/>
 
 <xsl:template name="webpage.footer">

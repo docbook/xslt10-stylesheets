@@ -119,6 +119,8 @@
       <div class="{name(.)}">
         <a name="{$id}"/>
 
+        <xsl:call-template name="allpages.banner"/>
+
         <table xsl:use-attribute-sets="table.properties">
           <xsl:if test="$nav.table.summary!=''">
             <xsl:attribute name="summary">
