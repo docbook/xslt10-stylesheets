@@ -57,6 +57,15 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="xsl:element">
+  <!-- make sure literal xsl:element declarations propagate the right namespace -->
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:attribute name="namespace">http://www.w3.org/1999/xhtml</xsl:attribute>
+    <xsl:apply-templates/>
+  </xsl:copy>
+</xsl:template>
+
 <xsl:template match="xsl:template[@name='body.attributes']">
   <xsl:copy>
     <xsl:copy-of select="@*"/>
