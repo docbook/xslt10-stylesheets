@@ -1,0 +1,23 @@
+<webpage id="test3">
+<config param="rcsdate" value="$Date$"/>
+<config param="filename" value="test3.html"/><head>
+<title>XBEL Bookmarks</title>
+<summary>XBEL Bookmark test</summary>
+</head>
+<para>This test page demonstrates how to incorporate XBEL bookmarks into
+your web pages. Use an xlink as follows:
+</para>
+
+<screen><![CDATA[<xlink href="bookmark/bookmark.xml" show="embed" actuate="auto"/>]]></screen>
+
+<xlink href="bookmark/bookmark.xml" show="embed" actuate="auto"/>
+
+<para>
+You can use dynamic HTML for your bookmarks, if you specify
+<literal>role="dynamic"</literal> on the xlink:</para>
+
+<xlink href="bookmark/bookmark.xml" show="embed" actuate="auto"
+       role="dynamic"/>
+
+</webpage>
+

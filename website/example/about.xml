@@ -1,0 +1,40 @@
+<webpage id="about">
+<config param="rcsdate" value="$Date$"/>
+<config param="filename" value="about.html"/><head>
+<title>About the Test Home Page</title>
+<summary>About the Test Home Page</summary>
+</head>
+<para>This collection of pages is built from a single SGML
+document using 
+<ulink url="http://www.jclark.com/jade/">Jade</ulink> and a
+customization of the DSSSL 
+<ulink url="http://nwalsh.com/docbook/dsssl/">DocBook Stylesheet</ulink>
+for HTML.</para>
+<sect1>
+<title>Why?</title>
+<para>There are a number of compelling reasons to maintain these pages in
+SGML rather than HTML.</para>
+<orderedlist>
+<listitem><para>First and foremost, they provide a test environment for the
+HTML stylesheet.  Ok, maybe that's not compelling to you, but it's compelling
+to me ;-).</para>
+</listitem>
+<listitem><para>Traditional printed documents are desirable for several of
+these pages.</para>
+<para>Using a more structurally rich format to represent the documents makes
+it possible to produce print as well as online versions.</para>
+</listitem>
+<listitem><para>All of the intra-document linking is automatic.</para>
+<para>The SGML system provides validation for the inra-document links, so
+there is no danger of broken links. (Links to external pages still have to
+be validated by an external program.)</para>
+</listitem>
+<listitem><para>Migrating these pages to XML and/or future versions of HTML
+will only require a new or updated style sheet. No pages will have to be recoded.
+And the pages will conform to whatever output format is required, with no
+possibility of random human error.</para>
+</listitem>
+</orderedlist>
+</sect1>
+</webpage>
+

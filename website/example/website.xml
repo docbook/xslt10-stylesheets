@@ -1,0 +1,159 @@
+<!DOCTYPE website SYSTEM "../website.dtd" [
+<!ENTITY about SYSTEM "about.xml">
+<!ENTITY test1 SYSTEM "test1.xml">
+<!ENTITY test1a SYSTEM "test1a.xml">
+<!ENTITY test1b SYSTEM "test1b.xml">
+<!ENTITY test2 SYSTEM "test2.xml">
+<!ENTITY test3 SYSTEM "test3.xml">
+]>
+<website>
+<homepage>
+<config param="desc" value="The Test Home Page"/>
+<config param="filename" value="index.html"/>
+<config param="rcsdate" value="$Date$"/>
+<config param="footer" value="about.html" altval="About..."/>
+<config param="homebanner" value="graphics/homebanner.png"
+                           altval="Home Banner"/>
+<config param="banner"     value="graphics/banner.png"
+                           altval="Banner"/>
+<head>
+<title>Test Home Page</title>
+<summary>The Test Site</summary>
+<keywords>Norman Walsh, DSSSL, SGML, XML, DocBook, Website</keywords>
+<copyright><year>1999</year><year>2000</year>
+<holder role="http://nwalsh.com/~ndw/">Norman Walsh</holder></copyright>
+<style src="example.css" class="global"></style>
+</head>
+
+<sect1><title>Hello, and Welcome!</title>
+
+<para>
+This website demonstrates the Website DTD. In order to generate HTML
+web pages from documents using this DTD, you must format them with
+an XSLT processor (well, you could do it with any tool you wanted,
+I suppose, but XSLT is the popular choice :-).
+</para>
+
+<webtoc/>
+
+<sect2><title>XSLT</title>
+<para>To format this website using XSLT, use
+the <filename>website.xsl</filename>
+or <filename>tabular.xsl</filename> stylesheets from the
+<ulink url="http://nwalsh.com/website/">Website distribution</ulink>:
+
+<screen>
+xt website.xml website.xsl
+</screen>
+
+You must chunk the resulting document yourself. The XSL stylesheet
+distribution includes a chunking configuration file suitable for use
+with <command>chunk.pl</command> from the
+<ulink url="http://nwalsh.com/docbook/xsl/">DocBook stylesheet
+distribution</ulink>.</para>
+
+</sect2>
+<sect2><title>XSLT With Chunking</title>
+
+<para>Alternatively, you can use <filename>chunk-website.xsl</filename>
+or <filename>chunk-tabular.xsl</filename> and let the XSLT
+processor do the chunking for you.</para>
+
+<para>The XT, Saxon, and Xalan processors are supported by the chunking
+stylesheets. If you're using a alternate processor, you'll have to do
+the chunking with another tool.</para>
+
+</sect2>
+
+<sect2><title>Customizing the Stylesheets</title>
+
+<para>You can customize the stylesheets for your particular website
+by making a driver like this:</para>
+
+<screen><![CDATA[
+<?xml version='1.0'?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                version='1.0'>
+
+<xsl:import href="/path/to/the/stylesheet.xsl"/>
+
+<!-- put your customizations here -->
+</xsl:stylesheet>]]></screen>
+
+<para>If you use the tabular processors, you'll discover that the
+Website home page has two ugly features: "home.navhead" and
+"home.navhead.upperright".</para>
+
+<para>In order to remove these, you have to write a custom stylesheet
+that puts the text you want on the homepage in those locations. Your
+stylesheet should look like this:</para>
+
+<screen><![CDATA[
+<?xml version='1.0'?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                version='1.0'>
+
+<xsl:import href="/path/to/the/stylesheet.xsl"/>
+
+<!-- Replace the text in these templates with whatever you want -->
+<!-- to appear in the respective location on the home page. -->
+
+<xsl:template name="home.navhead">
+<xsl:text>home.navhead</xsl:text>
+</xsl:template>
+
+<xsl:template name="home.navhead.upperright">
+<xsl:text>home.navhead.upperright</xsl:text>
+</xsl:template>
+
+<!-- put your customizations here -->
+</xsl:stylesheet>]]></screen>
+
+<para>You will also want to change some of the &lt;config&gt;
+parameters (to select different banner graphics, etc.).</para>
+
+</sect2>
+
+<sect2>
+<title>What's New</title>
+<variablelist>
+<varlistentry><term>24 Aug 2000</term>
+<listitem>
+<para>Improved documentation, merged distribution of stylesheets
+and the DTD.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>29 Mar 2000</term>
+<listitem>
+<para>Updated description of XSL support.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>28 Feb 2000</term>
+<listitem>
+<para>Updated to mention XSL.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>24 Feb 1999</term>
+<listitem>
+<para>First release.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+</sect1>
+
+&about;
+
+</homepage>
+
+&test1;
+&test2;
+&test3;
+
+</website>
+
+<!--
+Local variables:
+mode: docbook
+End:
+-->

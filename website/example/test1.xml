@@ -1,0 +1,13 @@
+<webpage id="test1">
+<config param="rcsdate" value="$Date$"/>
+<config param="filename" value="test1.html"/><head>
+<title>Test 1</title>
+<summary>Test 1 Page</summary>
+</head>
+<para>This is just a test page.</para>
+<webtoc/>
+
+&test1a;
+&test1b;
+</webpage>
+

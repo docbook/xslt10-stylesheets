@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE xbel 
+  PUBLIC "+//IDN python.org//DTD XML Bookmark Exchange Language 1.0//EN//XML"
+         "http://www.python.org/topics/xml/dtds/xbel-1.0.dtd">
+<xbel><info><metadata owner="Norman Walsh &lt;ndw@nwalsh.com&gt;"/></info>
+<folder id="perlbookmarks"><title>Perl</title>
+<bookmark href="http://www.perl.com/"><title>Perl.com</title></bookmark>
+<bookmark href="http://www.activestate.com/"><title>ActiveState Tool Corp. (Perl
+for Win32)</title></bookmark>
+<bookmark href="http://194.247.167.1/DADA/PERL/"><title>dada meets Perl!</title></bookmark>
+</folder>
+</xbel>
