@@ -155,7 +155,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &default.table.width;
 &nominal.table.width;
 &table.border.thickness;
-&table.border.padding;
+&table.cell.padding;
 &table.border.style;
 &table.border.color;
 &table.entry.padding;
@@ -190,10 +190,6 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &ulink.show;
 &ulink.footnotes;
 &ulink.hyphenate;
-</reference>
-
-<reference><title>FO</title>
-&stylesheet.result.type;
 </reference>
 
 <reference><title>Pagination and General Styles</title>
@@ -459,11 +455,10 @@ around all these parameters.</para>
 <src:fragref linkend="section.label.includes.component.label.frag"/>
 <src:fragref linkend="segmentedlist.as.table.frag"/>
 <src:fragref linkend="show.comments.frag"/>
-<src:fragref linkend="stylesheet.result.type.frag"/>
 <src:fragref linkend="table.border.color.frag"/>
-<src:fragref linkend="table.border.padding.frag"/>
 <src:fragref linkend="table.border.style.frag"/>
 <src:fragref linkend="table.border.thickness.frag"/>
+<src:fragref linkend="table.cell.padding.frag"/>
 <src:fragref linkend="table.entry.padding.frag"/>
 <src:fragref linkend="tablecolumns.extension.frag"/>
 <src:fragref linkend="textinsert.extension.frag"/>
