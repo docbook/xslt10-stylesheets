@@ -196,6 +196,10 @@ title of the element. This does not include the label.
   </xsl:apply-templates>
 </xsl:template>
 
+<xsl:template match="bridgehead" mode="title.markup">
+  <xsl:apply-templates mode="title.markup"/>
+</xsl:template>
+
 <xsl:template match="bibliography" mode="title.markup">
   <xsl:param name="allow-anchors" select="'0'"/>
   <xsl:variable name="title" select="(bibliographyinfo/title|title)[1]"/>
