@@ -159,14 +159,14 @@ example:</para>
 </section>
 
 <section id="s.changes">
-<title>Changes in DocBook V1.0</title>
+<title>Changes in Simplified DocBook V1.0</title>
 
 <para>The version numbers were updated. No significant changes were made from CR3.</para>
 
 </section>
 
 <section id="s.changes3">
-<title>Changes in DocBook V1.0CR3</title>
+<title>Changes in Simplified DocBook V1.0CR3</title>
 
 <para>This release updates Simplified DocBook to be a customization of DocBook XML V4.2.
 All of the changes in this release are a consequence of the transition to
@@ -210,7 +210,7 @@ Simplified DocBook still uses the former, more restrictive content models.
 </section>
 
 <section id="s.changes2">
-<title>Changes in DocBook V1.0CR2</title>
+<title>Changes in Simplified DocBook V1.0CR2</title>
 
 <para>This release fixes a bug in CR1.
 </para>
@@ -235,7 +235,7 @@ The <sgmltag class="paramentity">xref.char.class</sgmltag>.</para>
 </section>
 
 <section id="s.changes1">
-<title>Changes in DocBook V1.0CR1</title>
+<title>Changes in Simplified DocBook V1.0CR1</title>
 
 <para>This release fixes several DocBook incompatibilities.
 </para>
