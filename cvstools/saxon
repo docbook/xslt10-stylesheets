@@ -1,0 +1,174 @@
+#!/bin/bash
+
+# This shell script will definitely need to be hacked to run on your system!
+#
+# Usage: saxon [shellopts] src.xml style.xsl output.{xml|html} [styleopts]
+#
+
+VARIABLES=""
+EXTENSIONS=1
+DONE="0"
+VERSION="622"
+DEBUG=0
+JAR=0
+#XARG=""
+#YARG=""
+#RARG=""
+XARG="-x com.sun.resolver.tools.ResolvingXMLReader"
+YARG="-y com.sun.resolver.tools.ResolvingXMLReader"
+RARG="-r com.sun.resolver.tools.CatalogURIResolver"
+MEMORY=""
+
+while [ "$DONE" = "0" ]; do
+    case $1 in
+	-d)	DEBUG=1;
+		shift;
+		;;
+	-E)	EXTENSIONS=0;
+		shift;
+		;;
+	-e)	EXTENSIONS=1;
+		shift;
+		;;
+	-j)	JAR=1;
+	        echo "Using jar file for extension classes"
+		shift;
+		;;
+	-5)	VERSION=5;
+		RARG=""
+		shift;
+		;;
+	-622)	VERSION=622;
+		shift;
+		;;
+	-621)	VERSION=621;
+		shift;
+		;;
+	-62)	VERSION=62;
+		shift;
+		;;
+	-61)	VERSION=61;
+		shift;
+		;;
+	-6)	VERSION=6;
+		RARG=""
+		shift;
+		;;
+	-x)     shift;
+		XARG="-x $1";
+		shift;
+		;;
+	-y)     shift;
+		YARG="-y $1";
+		shift;
+		;;
+	-r)     shift;
+		RARG="-r $1";
+		shift;
+		;;
+        -m)     shift
+		MEMORY="-Xmx$1";
+		shift;
+		;;
+	-*)	DONE=1;
+		echo "Unexpected arguments!";
+		echo "  $*"
+		exit;
+		;;
+	*)	DONE=1
+    esac
+done
+
+VARIABLES="use.extensions=$EXTENSIONS"
+
+XMLSRC=$1; shift
+XMLSTY=$1; shift
+OUTPUT=$1; shift
+
+if [ "$OUTPUT" = "-" ]; then
+    OUTPUT="";
+fi
+
+if [ "$OUTPUT" != "" ]; then
+  OUTPUT="-o $OUTPUT"
+fi
+
+case $VERSION in
+  622)	SAXON="/usr/local/java/saxon-6.2.2/saxon.jar"
+	SAXON_DEBUG="/usr/local/java/saxon-6.2.2/.classes"
+	NDWEXT="/share/xsl/docbook/extensions/saxon61/.classes";
+	NDWEXT="/share/xsl/docbook/extensions/saxon61/.classes:/share/doctypes/website-pages/extensions/saxon61/.classes";
+	if [ "$JAR" = "1" ]; then
+	    NDWEXT="/share/xsl/docbook/extensions/saxon61.jar"
+	fi
+	;;
+  621)	SAXON="/usr/local/java/saxon-6.2.1/saxon.jar"
+	SAXON_DEBUG="/usr/local/java/saxon-6.2.1/.classes"
+	NDWEXT="/share/xsl/docbook/extensions/saxon61/.classes";
+	if [ "$JAR" = "1" ]; then
+	    NDWEXT="/share/xsl/docbook/extensions/saxon61.jar"
+	fi
+	;;
+   62)	SAXON="/usr/local/java/saxon-6.2/saxon.jar"
+	SAXON_DEBUG="/usr/local/java/saxon-6.2/.classes"
+	NDWEXT="/share/xsl/docbook/extensions/saxon61/.classes";
+	if [ "$JAR" = "1" ]; then
+	    NDWEXT="/share/xsl/docbook/extensions/saxon61.jar"
+	fi
+	;;
+   61)	SAXON="/usr/local/java/saxon-6.1/saxon.jar"
+	SAXON_DEBUG="/usr/local/java/saxon-6.1/.classes"
+	NDWEXT="/share/xsl/docbook/extensions/saxon61/.classes";
+	if [ "$JAR" = "1" ]; then
+	    NDWEXT="/share/xsl/docbook/extensions/saxon61.jar"
+	fi
+	;;
+    6)	SAXON="/usr/local/java/saxon-6.0.2/saxon.jar"
+	SAXON_DEBUG="/usr/local/java/saxon-6.0.2/.classes"
+	NDWEXT="/share/xsl/docbook/extensions/saxon6/.classes";
+	if [ "$JAR" = "1" ]; then
+	    NDWEXT="/share/xsl/docbook/extensions/saxon6.jar"
+	fi
+	;;
+    5)	SAXON="/usr/local/java/saxon-5.5.1/saxon.jar"
+	SAXON_DEBUG="/usr/local/java/saxon-5.5.1/.classes"
+	NDWEXT="/share/xsl/docbook/extensions/saxon551/.classes";
+	if [ "$JAR" = "1" ]; then
+	    NDWEXT="/share/xsl/docbook/extensions/saxon551.jar"
+	fi
+	;;
+    *)	echo "Unexpected Saxon version $VERSION"
+	exit
+	;;
+esac
+
+if [ "$DEBUG" = "1" ]; then
+  SAXON="$SAXON_DEBUG:$SAXON"
+fi
+
+XP="/usr/local/java/xp/xp.jar";
+SUN="/projects/sun/resolver/.classes";
+JAXP="/usr/local/jaxp-1.1/jaxp.jar:/usr/local/jaxp-1.1/crimson.jar"
+
+CLASSPATH=$SAXON:$JAXP:$SUN:$NDWEXT:~/java
+
+#echo $CLASSPATH
+
+echo saxon$VERSION $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY $VARIABLES $*
+
+if [ "$MEMORY" != "" ]; then
+    echo "java $MEMORY ..."
+fi
+
+time java $MEMORY \
+ -cp $CLASSPATH \
+-Djavax.xml.transform.TransformerFactory=com.icl.saxon.TransformerFactoryImpl \
+ com.icl.saxon.StyleSheet \
+ $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY $VARIABLES $*
+
+if [ $? != 0 ]; then
+  echo ""
+  echo FAILED
+  echo ""
+  exit 1
+fi

@@ -1,0 +1,39 @@
+#!/usr/bin/perl -- # --*-Perl-*--
+
+use strict;
+
+select STDOUT; $| = 1;
+
+my @cvsbad = `cvs -n update 2>&1 | grep -v ^cvs`;
+if (@cvsbad) {
+    print STDERR @cvsbad;
+    die "CVS is not up-to-date!\n";
+}
+
+open (F, 'VERSION') || die "Cannot find VERSION.\n";
+read (F, $_, -s 'VERSION');
+close (F);
+
+die "Cannot find version in VERSION.\n"
+    if !/^(.*name=.VERSION.>)(\d+)\.(\d+)(<.*)$/s;
+
+my $pre = $1;
+my $major = $2;
+my $minor = $3;
+my $post = $4;
+
+$minor++;
+
+print "About to release $major.$minor; are you sure? ";
+chop($_ = scalar(<>));
+
+die "Aborted!\n" if !/^y/i;
+
+open (F, ">VERSION");
+print F "$pre$major.$minor$post";
+close (F);
+
+system ("cvs commit -m \"Version $major.$minor released.\" VERSION");
+system ("cvs tag V$major$minor");
+
+
