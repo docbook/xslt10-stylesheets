@@ -164,6 +164,12 @@
 </xsl:template>
 
 <xsl:template name="calsTable">
+  <xsl:if test="tgroup/tbody/tr
+                |tgroup/thead/tr
+                |tgroup/tfoot/tr">
+    <xsl:message terminate="yes">Broken table: tr descendent of CALS Table.</xsl:message>
+  </xsl:if>
+
   <xsl:variable name="param.placement"
                 select="substring-after(normalize-space($formal.title.placement),
                                         concat(local-name(.), ' '))"/>
@@ -197,6 +203,12 @@
 </xsl:template>
 
 <xsl:template name="htmlTable">
+  <xsl:if test="tgroup/tbody/row
+                |tgroup/thead/row
+                |tgroup/tfoot/row">
+    <xsl:message terminate="yes">Broken table: row descendent of HTML table.</xsl:message>
+  </xsl:if>
+
   <xsl:apply-templates mode="htmlTable"/>
 </xsl:template>
 
