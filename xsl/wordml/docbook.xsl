@@ -206,6 +206,17 @@
         </w:pStyle>
       </w:pPr>
 
+      <xsl:if test='parent::section|parent::sectioninfo/parent::section'>
+        <w:r>
+          <w:rPr>
+            <w:rStyle w:val='section-level'/>
+          </w:rPr>
+          <w:t>
+            <xsl:value-of select='count(ancestor::section)'/>
+          </w:t>
+        </w:r>
+      </xsl:if>
+
       <xsl:apply-templates/>
     </w:p>
   </xsl:template>
