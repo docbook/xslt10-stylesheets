@@ -1,11 +1,12 @@
 #!/usr/bin/python -u
 
-# THIS IS PRE-ALPHA CODE AND DOES NOT WORK!
+# THIS IS ALPHA CODE AND MAY NOT WORK CORRECTLY!
 
 import sys
 import string
 import libxml2
 import libxslt
+from docbook import adjustColumnWidths
 
 # Check the arguments
 
@@ -44,58 +45,33 @@ try:
 except IndexError:
     pass
 
+# ======================================================================
 # Memory debug specific
-libxml2.debugMemory(1)
+# libxml2.debugMemory(1)
 
-nodeName = None
-
-# ======================================================================
-
-def adjustColumnWidths(ctx, nodeset):
-    global nodeName
-
-    #
-    # Small check to verify the context is correcly accessed
-    #
-    try:
-        pctxt = libxslt.xpathParserContext(_obj=ctx)
-        ctxt = pctxt.context()
-        tctxt = ctxt.transformContext()
-        nodeName = tctxt.insertNode().name
-        node = tctxt.insertNode();
-    except:
-        pass
-
-    print "called with nodeset: "
-    print nodeset
-    print "name=" + nodeName
-
-    return ""
-
-# ======================================================================
-
+# Setup environment
 libxml2.lineNumbersDefault(1)
 libxml2.substituteEntitiesDefault(1)
 libxslt.registerExtModuleFunction("adjustColumnWidths",
                                   "http://nwalsh.com/xslt/ext/xsltproc/python/Table",
                                   adjustColumnWidths)
 
-
+# Initialize and run
 styledoc = libxml2.parseFile(xslfile)
 style = libxslt.parseStylesheetDoc(styledoc)
-
 doc = libxml2.parseFile(xmlfile)
-
 result = style.applyStylesheet(doc, params)
 
+# Save the result
 style.saveResultToFilename(outfile, result, 0)
 
+# Free things up
 style.freeStylesheet()
 doc.freeDoc()
 result.freeDoc()
 
 # Memory debug specific
-libxslt.cleanup()
-if libxml2.debugMemory(1) != 0:
-    print "Memory leak %d bytes" % (libxml2.debugMemory(1))
-    libxml2.dumpMemory()
+#libxslt.cleanup()
+#if libxml2.debugMemory(1) != 0:
+#    print "Memory leak %d bytes" % (libxml2.debugMemory(1))
+#    libxml2.dumpMemory()
