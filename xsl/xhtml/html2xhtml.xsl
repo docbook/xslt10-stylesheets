@@ -25,6 +25,13 @@
   </xsl:copy>
 </xsl:template>
 
+<xsl:template match="xsl:param[@name='stylesheet.result.type']">
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:attribute name="select">'xhtml'</xsl:attribute>
+  </xsl:copy>
+</xsl:template>
+
 <xsl:template match="xsl:param[@name='make.valid.html']">
   <xsl:copy>
     <xsl:copy-of select="@*"/>
