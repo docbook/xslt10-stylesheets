@@ -14,8 +14,8 @@
 
 <gentext key="Abstract" text="&#xCD08;&#xB85D;"/>
 <gentext key="abstract" text="&#xCD08;&#xB85D;"/>
-<gentext key="Answer" text="&#xB2F5;&#xBCC0;:"/>
-<gentext key="answer" text="&#xB2F5;&#xBCC0;:"/>
+<gentext key="Answer" text="&#xB2F5;&#xBCC0;"/>
+<gentext key="answer" text="&#xB2F5;&#xBCC0;"/>
 <gentext key="Appendix" text="&#xBD80;&#xB85D;"/>
 <gentext key="Article" text="&#xBB38;&#xC11C;"/>
 <gentext key="article" text="&#xBB38;&#xC11C;"/>
@@ -23,19 +23,17 @@
 <gentext key="bibliography" text="&#xC11C;&#xC9C0;&#xC0AC;&#xD56D;"/>
 <gentext key="Book" text="&#xCC45;"/>
 <gentext key="book" text="&#xCC45;"/>
-<gentext key="CAUTION" text="&#xACBD;&#xACE0;!"/>
-<gentext key="caution" text="&#xACBD;&#xACE0;!"/>
+<gentext key="CAUTION" text="[&#xACBD;&#xACE0;]"/>
 <gentext key="Caution" text="&#xACBD;&#xACE0;"/>
-<gentext key="caution" text="&#xACBD;&#xACE0;"/>
-<gentext key="Chapter" text=""/>
+<gentext key="Chapter" text="&#xC7A5;"/>
 <gentext key="Colophon" text="&#xD310;&#xAD8C;"/>
 <gentext key="colophon" text="&#xD310;&#xAD8C;"/>
-<gentext key="Copyright" text="Copyright"/>
-<gentext key="copyright" text="Copyright"/>
+<gentext key="Copyright" text="&#xC800;&#xC791;&#xAD8C;"/>
+<gentext key="copyright" text="&#xC800;&#xC791;&#xAD8C;"/>
 <gentext key="Dedication" text="&#xBC14;&#xCE58;&#xB294; &#xAE00;"/>
 <gentext key="dedication" text="&#xBC14;&#xCE58;&#xB294; &#xAE00;"/>
-<gentext key="Edition" text="&#xAC1C;&#xC815;&#xD310;"/>
-<gentext key="edition" text="&#xAC1C;&#xC815;&#xD310;"/>
+<gentext key="Edition" text="&#xC5EE;&#xC74C;"/>
+<gentext key="edition" text="&#xC5EE;&#xC74C;"/>
 <gentext key="Equation" text="&#xC218;&#xC2DD;"/>
 <gentext key="equation" text="&#xC218;&#xC2DD;"/>
 <gentext key="Example" text="&#xC608;"/>
@@ -58,26 +56,26 @@
 <gentext key="index" text="&#xC0C9;&#xC778;"/>
 <gentext key="LegalNotice" text="&#xBC95;&#xC801; &#xACF5;&#xC9C0;"/>
 <gentext key="legalnotice" text="&#xBC95;&#xC801; &#xACF5;&#xC9C0;"/>
-<gentext key="MsgAud" text="&#xB4E3;&#xAE30;"/>
-<gentext key="msgaud" text="&#xB4E3;&#xAE30;"/>
-<gentext key="MsgLevel" text="&#xB808;&#xBCA8;"/>
-<gentext key="msglevel" text="&#xB808;&#xBCA8;"/>
-<gentext key="MsgOrig" text="&#xC6D0;&#xCC9C;"/>
-<gentext key="msgorig" text="&#xC6D0;&#xCC9C;"/>
+<gentext key="MsgAud" text="&#xBC1B;&#xB294; &#xC774;"/>
+<gentext key="msgaud" text="&#xBC1B;&#xB294; &#xC774;"/>
+<gentext key="MsgLevel" text="&#xC911;&#xC694;&#xB3C4;"/>
+<gentext key="msglevel" text="&#xC911;&#xC694;&#xB3C4;"/>
+<gentext key="MsgOrig" text="&#xBCF4;&#xB0B4;&#xB294; &#xC774;"/>
+<gentext key="msgorig" text="&#xBCF4;&#xB0B4;&#xB294; &#xC774;"/>
 <gentext key="NOTE" text="[&#xCC38;&#xACE0;]"/>
 <gentext key="note" text="[&#xCC38;&#xACE0;]"/>
 <gentext key="Note" text="&#xCC38;&#xACE0;"/>
 <gentext key="note" text="&#xCC38;&#xACE0;"/>
-<gentext key="Part" text="&#xBD80;&#xBD84;"/>
-<gentext key="part" text="&#xBD80;&#xBD84;"/>
+<gentext key="Part" text="&#xBD80;"/>
+<gentext key="part" text="&#xBD80;"/>
 <gentext key="Preface" text="&#xC11C;&#xBB38;"/>
 <gentext key="preface" text="&#xC11C;&#xBB38;"/>
-<gentext key="Procedure" text="&#xC21C;&#xC11C;"/>
-<gentext key="procedure" text="&#xC21C;&#xC11C;"/>
-<gentext key="Published" text="&#xCD9C;&#xD310;"/>
-<gentext key="published" text="&#xCD9C;&#xD310;"/>
-<gentext key="Question" text="&#xB2F5;&#xBCC0;:"/>
-<gentext key="question" text="&#xB2F5;&#xBCC0;:"/>
+<gentext key="Procedure" text="&#xC808;&#xCC28;"/>
+<gentext key="procedure" text="&#xC808;&#xCC28;"/>
+<gentext key="Published" text="&#xD3B4;&#xB0C4;"/>
+<gentext key="published" text="&#xD3B4;&#xB0C4;"/>
+<gentext key="Question" text="&#xC9C8;&#xBB38;"/>
+<gentext key="question" text="&#xC9C8;&#xBB38;"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
 <gentext key="Reference" text="&#xCC38;&#xACE0;&#xBB38;&#xD5CC;"/>
@@ -88,11 +86,11 @@
 <gentext key="refsection" text=""/>
 <gentext key="RefSynopsisDiv" text="&#xC694;&#xC57D;"/>
 <gentext key="refsynopsisdiv" text="&#xC694;&#xC57D;"/>
-<gentext key="Revision" text="&#xAD50;&#xC815;"/>
-<gentext key="revision" text="&#xAD50;&#xC815;"/>
-<gentext key="RevHistory" text="&#xAD50;&#xC815; &#xACFC;&#xC815;"/>
-<gentext key="revhistory" text="&#xAD50;&#xC815; &#xACFC;&#xC815;"/>
-<gentext key="Section" text=""/>
+<gentext key="Revision" text="&#xACE0;&#xCE68;"/>
+<gentext key="revision" text="&#xACE0;&#xCE68;"/>
+<gentext key="RevHistory" text="&#xACE0;&#xCE5C; &#xACFC;&#xC815;"/>
+<gentext key="revhistory" text="&#xACE0;&#xCE5C; &#xACFC;&#xC815;"/>
+<gentext key="Section" text="&#xC808;"/>
 <gentext key="See" text="&#xC0B4;&#xD3B4;&#xBCFC; &#xB0B4;&#xC6A9;"/>
 <gentext key="see" text="&#xC0B4;&#xD3B4;&#xBCFC; &#xB0B4;&#xC6A9;"/>
 <gentext key="SeeAlso" text="[&#xC0B4;&#xD3B4;&#xBCFC; &#xB2E4;&#xB978; &#xB0B4;&#xC6A9;]"/>
@@ -124,11 +122,11 @@
 <gentext key="TableofContents" text="&#xCC28;&#xB840;"/>
 <gentext key="tableofcontents" text="&#xCC28;&#xB840;"/>
 <gentext key="in" text="-"/>
-<gentext key="by" text="&#xAE00;&#xC4F4;&#xC774; : "/>
-<gentext key="Edited" text="&#xD3B8;&#xC9D1;"/>
-<gentext key="edited" text="&#xD3B8;&#xC9D1;"/>
-<gentext key="Editedby" text="&#xD3B8;&#xC9D1; : "/>
-<gentext key="editedby" text="&#xD3B8;&#xC9D1; : "/>
+<gentext key="by" text="&#xC9C0;&#xC740;&#xC774;"/>
+<gentext key="Edited" text="&#xC5EE;&#xC74C;"/>
+<gentext key="edited" text="&#xC5EE;&#xC74C;"/>
+<gentext key="Editedby" text="&#xC5EE;&#xC740;&#xC774;"/>
+<gentext key="editedby" text="&#xC5EE;&#xC740;&#xC774;"/>
 <gentext key="and" text="&#xADF8;&#xB9AC;&#xACE0;"/>
 <gentext key="Notes" text="&#xC8FC;&#xC11D;"/>
 <gentext key="notes" text="&#xC8FC;&#xC11D;"/>
@@ -140,8 +138,8 @@
 <gentext key="unsupported" text="&#xC9C0;&#xC6D0;&#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;"/>
 <gentext key="xrefto" text="&#xC774; &#xACF3;&#xC744; &#xCC38;&#xC870;&#xD558;&#xC138;&#xC694; : "/>
 <gentext key="unexpectedelementname" text="&#xC54C; &#xC218; &#xC5C6;&#xB294; &#xAE30;&#xCD08;&#xC694;&#xC18C; &#xC774;&#xB984;&#xC785;&#xB2C8;&#xB2E4;"/>
-<gentext key="Revisedby" text="&#xAD50;&#xC815; : "/>
-<gentext key="revisedby" text="&#xAD50;&#xC815; : "/>
+<gentext key="Revisedby" text="&#xACE0;&#xCE5C;&#xC774; "/>
+<gentext key="revisedby" text="&#xACE0;&#xCE5C;&#xC774; "/>
 
 <gentext key="ListofTables" text="&#xD45C; &#xBAA9;&#xB85D;"/>
 <gentext key="listoftables" text="&#xD45C; &#xBAA9;&#xB85D;"/>
@@ -154,12 +152,12 @@
 <gentext key="ListofUnknown" text="&#xAE30;&#xD0C0; &#xBAA9;&#xB85D;"/>
 <gentext key="listofunknown" text="&#xAE30;&#xD0C0; &#xBAA9;&#xB85D;"/>
 
-<gentext key="nav-prev" text="Prev"/>
-<gentext key="nav-prev-sibling" text="Fast Backward"/>
-<gentext key="nav-next-sibling" text="Fast Forward"/>
-<gentext key="nav-next" text="Next"/>
-<gentext key="nav-up" text="Up"/>
-<gentext key="nav-home" text="Home"/>
+<gentext key="nav-prev" text="&#xC774;&#xC804;"/>
+<gentext key="nav-prev-sibling" text="&#xC774;&#xC804;&#xC73C;&#xB85C; &#xAC74;&#xB108;&#xB700;"/>
+<gentext key="nav-next-sibling" text="&#xB2E4;&#xC74C;&#xC73C;&#xB85C; &#xAC74;&#xB108;&#xB700;"/>
+<gentext key="nav-next" text="&#xB2E4;&#xC74C;"/>
+<gentext key="nav-up" text="&#xC704;&#xB85C;"/>
+<gentext key="nav-home" text="&#xCC98;&#xC74C;&#xC73C;&#xB85C;"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
