@@ -32,7 +32,7 @@
 
 <xsl:template name="ua.js">
   <!-- Danger Will Robinson: template shadows parameter -->
-  <xsl:param name="language" select="'JavaScript1.2'"/>
+  <xsl:param name="language" select="'javascript'"/>
   <script type="text/javascript" language="{$language}">
     <xsl:attribute name="src">
       <xsl:call-template name="script-file">
@@ -45,7 +45,7 @@
 
 <xsl:template name="xbDOM.js">
   <!-- Danger Will Robinson: template shadows parameter -->
-  <xsl:param name="language" select="'JavaScript1.2'"/>
+  <xsl:param name="language" select="'javascript'"/>
   <script type="text/javascript" language="{$language}">
     <xsl:attribute name="src">
       <xsl:call-template name="script-file">
@@ -58,7 +58,7 @@
 
 <xsl:template name="xbStyle.js">
   <!-- Danger Will Robinson: template shadows parameter -->
-  <xsl:param name="language" select="'JavaScript1.2'"/>
+  <xsl:param name="language" select="'javascript'"/>
   <script type="text/javascript" language="{$language}">
     <xsl:attribute name="src">
       <xsl:call-template name="script-file">
@@ -69,9 +69,22 @@
   </script>
 </xsl:template>
 
+<xsl:template name="xbLibrary.js">
+  <!-- Danger Will Robinson: template shadows parameter -->
+  <xsl:param name="language" select="'javascript'"/>
+  <script type="text/javascript" language="{$language}">
+    <xsl:attribute name="src">
+      <xsl:call-template name="script-file">
+        <xsl:with-param name="js" select="$xbLibrary.js"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:text> </xsl:text>
+  </script>
+</xsl:template>
+
 <xsl:template name="xbCollapsibleLists.js">
   <!-- Danger Will Robinson: template shadows parameter -->
-  <xsl:param name="language" select="'JavaScript1.2'"/>
+  <xsl:param name="language" select="'javascript'"/>
   <script type="text/javascript" language="{$language}">
     <xsl:attribute name="src">
       <xsl:call-template name="script-file">
@@ -84,7 +97,7 @@
 
 <xsl:template name="overlay.js">
   <!-- Danger Will Robinson: template shadows parameter -->
-  <xsl:param name="language" select="'JavaScript1.2'"/>
+  <xsl:param name="language" select="'javascript'"/>
   <script type="text/javascript" language="{$language}">
     <xsl:attribute name="src">
       <xsl:call-template name="script-file">
@@ -97,7 +110,7 @@
 
 <xsl:template name="slides.js">
   <!-- Danger Will Robinson: template shadows parameter -->
-  <xsl:param name="language" select="'JavaScript1.2'"/>
+  <xsl:param name="language" select="'javascript'"/>
   <script type="text/javascript" language="{$language}">
     <xsl:attribute name="src">
       <xsl:call-template name="script-file">
