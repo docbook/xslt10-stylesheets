@@ -659,6 +659,7 @@
     <!-- yes, show the URI -->
     <xsl:choose>
       <xsl:when test="$ulink.footnotes != 0 and not(ancestor::footnote)">
+	<xsl:text>&#xA0;</xsl:text>
         <fo:footnote>
           <xsl:call-template name="ulink.footnote.number"/>
           <fo:footnote-body font-family="{$body.fontset}"
