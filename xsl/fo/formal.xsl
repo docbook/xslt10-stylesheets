@@ -35,7 +35,9 @@
 <xsl:template name="formal.object.heading">
   <xsl:param name="object" select="."/>
   <fo:block xsl:use-attribute-sets="formal.title.properties">
-    <xsl:apply-templates select="$object" mode="object.title.markup"/>
+    <xsl:apply-templates select="$object" mode="object.title.markup">
+      <xsl:with-param name="allow-anchors" select="1"/>
+    </xsl:apply-templates>
   </fo:block>
 </xsl:template>
 
@@ -253,12 +255,12 @@
   </xsl:variable>
 
   <xsl:variable name="footnotes">
-    <xsl:if test=".//footnote">
+    <xsl:if test="tgroup//footnote">
       <fo:block font-family="{$body.font.family}"
                 font-size="{$footnote.font.size}"
                 keep-together.within-column="1"
                 keep-with-previous="always">
-        <xsl:apply-templates select=".//footnote" mode="table.footnote.mode"/>
+        <xsl:apply-templates select="tgroup//footnote" mode="table.footnote.mode"/>
       </fo:block>
     </xsl:if>
   </xsl:variable>
@@ -349,12 +351,12 @@
   </xsl:variable>
 
   <xsl:variable name="footnotes">
-    <xsl:if test=".//footnote">
+    <xsl:if test="tgroup//footnote">
       <fo:block font-family="{$body.font.family}"
                 font-size="{$footnote.font.size}"
                 keep-together.within-column="1"
                 keep-with-previous="always">
-        <xsl:apply-templates select=".//footnote" mode="table.footnote.mode"/>
+        <xsl:apply-templates select="tgroup//footnote" mode="table.footnote.mode"/>
       </fo:block>
     </xsl:if>
   </xsl:variable>

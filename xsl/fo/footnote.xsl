@@ -65,8 +65,7 @@
     </xsl:when>
     <xsl:otherwise>
       <xsl:variable name="pfoot" select="preceding::footnote"/>
-      <xsl:variable name="ptfoot" select="preceding::table//footnote
-                                          |preceding::informaltable//footnote"/>
+      <xsl:variable name="ptfoot" select="preceding::tgroup//footnote"/>
       <xsl:number value="count($pfoot) - count($ptfoot) + 1" format="1"/>
     </xsl:otherwise>
   </xsl:choose>

@@ -24,7 +24,7 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="ancestor::table|ancestor::informaltable">
+    <xsl:when test="ancestor::tgroup">
       <sup>
         <xsl:text>[</xsl:text>
         <a name="{$name}" href="{$href}">
@@ -65,7 +65,7 @@
 
 <xsl:template match="footnote" mode="footnote.number">
   <xsl:choose>
-    <xsl:when test="ancestor::table or ancestor::informaltable">
+    <xsl:when test="ancestor::tgroup">
       <xsl:number level="any" from="table|informaltable" format="a"/>
     </xsl:when>
     <xsl:when test="ancestor::refentry">
@@ -190,7 +190,7 @@
 <xsl:template name="process.footnotes">
   <xsl:variable name="footnotes" select=".//footnote"/>
   <xsl:variable name="table.footnotes"
-                select=".//table//footnote|.//informaltable//footnote"/>
+                select=".//tgroup//footnote"/>
 
   <!-- Only bother to do this if there's at least one non-table footnote -->
   <xsl:if test="count($footnotes)>count($table.footnotes)">
@@ -235,7 +235,7 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="informaltable//footnote|table//footnote"
+<xsl:template match="tgroup//footnote"
               mode="process.footnote.mode">
 </xsl:template>
 
