@@ -105,7 +105,7 @@ endif
 
 clean:
 	rm -f *.html *.htm *.fo *.pdf *.ps *.rtf
-	rm -f *.log *.aux *.out
+	rm -f *.log *.aux *.out *.tex *.dvi
 	rm -f mlang.xml mlang.sgm
 	rm -f toc.hhc htmlhelp.hhp htmlhelp.chm Index.hhk
 	rm -f HTML.index

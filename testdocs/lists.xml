@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE article
   PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY blah "blah blah blah. blah blah blah blah blah blah. And blah.">
+]>
 <!-- test document -->
 <article>
 <articleinfo>
@@ -17,6 +19,40 @@
 <listitem><para>Definition of Term2</para></listitem>
 </varlistentry>
 <varlistentry><term>Term3a</term><term>Term3b</term><term>Term3c</term>
+<listitem><para>Definition of Term3a,b,c</para></listitem>
+</varlistentry>
+</variablelist>
+
+<itemizedlist>
+<listitem><para>This is the first item of an itemized list.
+&blah; &blah; &blah; &blah; &blah;</para>
+</listitem>
+<listitem><para>This is the second item of an itemized list.
+&blah; &blah; &blah; &blah; &blah;</para>
+</listitem>
+<listitem><para>This is the third. It contains several paragraphs.
+&blah; &blah; &blah; &blah; &blah;</para>
+<para>&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+</para>
+<para>&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+</para>
+<para>&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+</para>
+</listitem>
+<listitem><para>This is the fourth item of an itemized list.
+&blah; &blah; &blah; &blah; &blah;</para>
+</listitem>
+</itemizedlist>
+
+<variablelist termlength="30">
+<title>VariableList With Long Terms</title>
+<varlistentry><term>Term1 is very long</term>
+<listitem><para>Definition of Term1</para></listitem>
+</varlistentry>
+<varlistentry><term>Term2 is even longer than term1</term>
+<listitem><para>Definition of Term2</para></listitem>
+</varlistentry>
+<varlistentry><term>Term3a</term><term>Term3b is also long</term><term>Term3c</term>
 <listitem><para>Definition of Term3a,b,c</para></listitem>
 </varlistentry>
 </variablelist>
