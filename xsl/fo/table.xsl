@@ -99,7 +99,6 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     </xsl:if>
 
     <!-- fo:table-cell should not be empty -->
-    <fo:block>colnum: <xsl:value-of select="$colnum"/></fo:block>
     <fo:block/>
   </fo:table-cell>
 </xsl:template>
@@ -541,8 +540,6 @@ to be incomplete. Don't forget to read the source, too :-)</para>
           </xsl:attribute>
         </xsl:if>
 -->
-
-        <fo:block>colnum: <xsl:value-of select="$col"/></fo:block>
 
         <xsl:choose>
           <xsl:when test="$xep.extensions != 0 and $orientation != ''">
