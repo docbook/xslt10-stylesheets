@@ -1,0 +1,125 @@
+README for docbook/gentext/locale directory
+----------------------------------------------
+
+This directory contains the source files for the localized
+messages used by the DocBook stylesheets.  These files
+are used in building both the DSSSL and XSL stylesheet
+distributions.
+
+If you want to contribute,
+see the section "Submitting translations" below.
+
+
+The DTD
+----------
+There is a separate file for each language.  
+They are written in XML, using the DTD in
+docbook/gentext/dtd/l10n.dtd.  However, each file
+does not have a DOCTYPE declaration because each
+is a SYSTEM entity that is pulled into the master
+file at runtime.  The master file in XSL is
+docbook/xsl/common/l10n.xml.  Also, the files
+will not validate against the DTD because they
+also contain elements in the "doc:" namespace
+that are not in the DTD.
+
+The elements
+--------------
+General strings and labels that need translation
+are in <gentext> elements. The 'key' attribute is
+how each element is referenced by the stylesheet,
+and the 'text' attribute contains the actual
+text to insert.  There are also some <dingbat>
+elements for special characters.
+
+The <context> elements are wrappers around a group of
+<template> elements that apply in that context.
+The stylesheet determines when a given context name is
+used.
+
+In a <template> element, the 'name' attribute identifies
+the element to which the template applies, and the content
+of the <template> element is the generated string.
+Within the element's content, any empty elements such
+as '<Chapter/>' are replaced with the 'text' from the
+<gentext> element whose 'key' attribute matches the
+element name.  That enables items translated in <gentext>
+to be used in the <template> elements. That way many of the
+<template> elements do not require direct translation.
+
+Also, %t, %s, and %n in the template content are
+placeholders for an element's title, subtitle, or label
+number, respectively.  These are replaced at runtime for
+the document instance.
+
+Note: the DSSSL stylesheets use only the <gentext>
+elements, not the <context> or <template> elements.
+
+The build process
+---------------------
+When an XSL stylesheet distribution is created, each source
+locale file is processed with docbook/gentext/xsl/xsl.xsl
+stylesheet to produce the distributed version.
+The stylesheet replaces elements such as '<Chapter/>'
+with the corresponding text, and fills in missing items
+with English versions.
+
+The DSSSL distribution uses the dsssl.xsl stylesheet instead.
+It does not backfill missing entries with English.
+
+
+Translations
+------------------------
+Translated text appears in these places in each locale file:
+
+- The 'text' attribute of <gentext> and <dingbat> elements.
+- The element content of <template> elements.
+
+The locale files should all contain the same number of
+entries, but unfortunately they are not all kept up to
+date and so they may differ somewhat.  The included Perl
+script Auditlocale.pl can be used to compare a given
+locale file with the English file en.xml, which is the
+most complete file.  Usage:
+
+  perl Auditlocale.pl  fr.xml  >  report.fr
+
+In the report, the various sections of the
+locale file are indicated with lines like:
+
+  =================================== gentext
+
+These are followed by any differences in that section.
+
+You can also look in the corresponding locale file in
+the distribution.  During the build, any items that were
+missing from the source file are filled in with English
+versions in the distribution, and marked with a lang="en"
+attribute so it is obvious.  That ensures that all
+locale files in the distribution have the same set of
+entries, even if not all of them are translated.
+
+
+Submitting translations
+---------------------------
+If you have just a few items to change or add to
+a locale file, you can post them to the docbook-apps
+mailing list and they will be incorporated into
+the source tree.
+
+If you have a new language, then copy the en.xml file
+and translate all entries in that.  You don't have to
+translate empty elements such as '<Chapter/>' that
+are used in the <template> element content.
+
+Only the source files are checked into CVS, so the
+translation has to be done on the source file.  However,
+only the SourceForge developers have write authorization
+in the CVS tree.  So you can submit any changes to
+one of the develpers or post it to the docbook-apps
+mailing list.  Since the list does not accept attachments,
+you must include the entire file in your message.
+
+
+Bob Stayton
+September 2003
