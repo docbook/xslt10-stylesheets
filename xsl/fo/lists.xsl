@@ -579,7 +579,44 @@
 </xsl:template>
 
 <xsl:template match="simplelist[@type='horiz']">
+
+  <xsl:variable name="explicit.table.width">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'list-width'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="table.width">
+    <xsl:choose>
+      <xsl:when test="$explicit.table.width != ''">
+        <xsl:value-of select="$explicit.table.width"/>
+      </xsl:when>
+      <xsl:when test="$default.table.width = ''">
+        <xsl:text>100%</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$default.table.width"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <fo:table xsl:use-attribute-sets="normal.para.spacing">
+    <xsl:choose>
+      <xsl:when test="$axf.extensions != 0">
+        <xsl:attribute name="table-layout">auto</xsl:attribute>
+	<xsl:if test="$explicit.table.width != ''">
+          <xsl:attribute name="width"><xsl:value-of 
+	                     select="$explicit.table.width"/></xsl:attribute>
+        </xsl:if>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:attribute name="table-layout">fixed</xsl:attribute>
+        <xsl:attribute name="width"><xsl:value-of 
+	                              select="$table.width"/></xsl:attribute>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:call-template name="simplelist.table.columns">
       <xsl:with-param name="cols">
         <xsl:choose>
