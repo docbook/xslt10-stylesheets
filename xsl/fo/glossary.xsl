@@ -665,7 +665,9 @@ GlossEntry ::=
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
-  <fo:block xsl:use-attribute-sets="list.block.spacing">
+  <fo:block xsl:use-attribute-sets="list.block.spacing"
+ 	  keep-with-next.within-column="always" 
+ 	  keep-together.within-column="always">
     <xsl:call-template name="anchor">
       <xsl:with-param name="conditional">
         <xsl:choose>
