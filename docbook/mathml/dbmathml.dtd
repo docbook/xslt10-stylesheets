@@ -56,7 +56,10 @@
 <!ENTITY % mathml-colon               ':'>
 <!ENTITY % mathml-prefix              'mml'>
 
-<!ENTITY % equation.content "(alt?, (graphic+|mediaobject+|mml:math))">
+<!ENTITY % mathml-math                '%mathml-prefix;%mathml-colon;math' >
+
+<!ENTITY % equation.content "(alt?, (graphic|mediaobject|%mathml-math;)+)">
+<!ENTITY % inlineequation.content "(alt?, (graphic|inlinemediaobject|%mathml-math;)+)">
 
 <!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
@@ -66,7 +69,8 @@
 <!ENTITY % NS.prefixed     "INCLUDE">
 <!ENTITY % MATHML.prefix   "%mathml-prefix;">
 <!ENTITY % NamespaceDecl.attrib "
-	xmlns:mml	CDATA	#FIXED 'http://www.w3.org/1998/Math/MathML'
+	xmlns%mathml-colon;%mathml-prefix;
+		CDATA	#FIXED 'http://www.w3.org/1998/Math/MathML'
 ">
 
 <!-- You must also include the MathML DTD -->
