@@ -125,7 +125,7 @@ document.</para>
 <section id="docbook">
 <title>The DocBook EBNF Document Type V1.1CR1</title>
 
-<para>The DocBook EBNF Document Type is a subset of
+<para>The DocBook EBNF Document Type is a superset of
 <xref linkend="bib.docbook42"/>.
 It is distributed from the
 <ulink url="http://www.oasis-open.org/docbook/">DocBook site</ulink> at
