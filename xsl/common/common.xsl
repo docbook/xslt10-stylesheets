@@ -785,7 +785,7 @@ of media objects is that the first acceptable graphic should be used.
           <xsl:text>0</xsl:text>
         </xsl:when>
 	<!-- The first textobject is a reasonable fallback -->
-        <xsl:when test="name($object)='textobject'">
+        <xsl:when test="name($object)='textobject' and $object[not(@role) or @role!='tex']">
           <xsl:text>1</xsl:text>
         </xsl:when>
 	<!-- If there's only one object, use it -->

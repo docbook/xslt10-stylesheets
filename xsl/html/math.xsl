@@ -62,9 +62,9 @@
 <xsl:template match="inlineequation" mode="collect.tex.math.plain">
   <xsl:variable name="filename">
     <xsl:choose>
-      <xsl:when test="inlinegraphic">
+      <xsl:when test="graphic">
         <xsl:call-template name="mediaobject.filename">
-          <xsl:with-param name="object" select="inlinegraphic"/>
+          <xsl:with-param name="object" select="graphic"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
@@ -78,7 +78,7 @@
   <xsl:value-of select="$filename"/>
   <xsl:text>} &#xA;</xsl:text>
   <xsl:text>$</xsl:text>
-  <xsl:value-of select="alt"/>
+  <xsl:value-of select="alt[@role='tex'] | inlinemediaobject/textobject[@role='tex']"/>
   <xsl:text>$ &#xA;</xsl:text>
   <xsl:text>\vfill\eject &#xA;</xsl:text>
 </xsl:template>
@@ -102,7 +102,7 @@
   <xsl:value-of select="$filename"/>
   <xsl:text>} &#xA;</xsl:text>
   <xsl:text>$$</xsl:text>
-  <xsl:value-of select="alt"/>
+  <xsl:value-of select="alt[@role='tex'] | mediaobject/textobject[@role='tex']"/>
   <xsl:text>$$ &#xA;</xsl:text>
   <xsl:text>\vfill\eject &#xA;</xsl:text>
 </xsl:template>
@@ -124,9 +124,9 @@
 <xsl:template match="inlineequation" mode="collect.tex.math.latex">
   <xsl:variable name="filename">
     <xsl:choose>
-      <xsl:when test="inlinegraphic">
+      <xsl:when test="graphic">
         <xsl:call-template name="mediaobject.filename">
-          <xsl:with-param name="object" select="inlinegraphic"/>
+          <xsl:with-param name="object" select="graphic"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
@@ -140,7 +140,7 @@
   <xsl:value-of select="$filename"/>
   <xsl:text>} &#xA;</xsl:text>
   <xsl:text>$</xsl:text>
-  <xsl:value-of select="alt"/>
+  <xsl:value-of select="alt[@role='tex'] | inlinemediaobject/textobject[@role='tex']"/>
   <xsl:text>$ &#xA;</xsl:text>
   <xsl:text>\newpage &#xA;</xsl:text>
 </xsl:template>
@@ -164,7 +164,7 @@
   <xsl:value-of select="$filename"/>
   <xsl:text>} &#xA;</xsl:text>
   <xsl:text>$$</xsl:text>
-  <xsl:value-of select="alt"/>
+  <xsl:value-of select="alt[@role='tex'] | mediaobject/textobject[@role='tex']"/>
   <xsl:text>$$ &#xA;</xsl:text>
   <xsl:text>\newpage &#xA;</xsl:text>
 </xsl:template>

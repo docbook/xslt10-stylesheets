@@ -283,7 +283,7 @@
 
       <xsl:call-template name="process.image">
         <xsl:with-param name="alt">
-          <xsl:apply-templates select="(../../textobject/phrase)[1]"/>
+          <xsl:apply-templates select="(../../textobject[not(@role) or @role!='tex']/phrase)[1]"/>
         </xsl:with-param>
         <xsl:with-param name="longdesc">
           <xsl:call-template name="write.longdesc">
