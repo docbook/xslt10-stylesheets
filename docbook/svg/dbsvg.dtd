@@ -1,8 +1,8 @@
 <!-- ...................................................................... -->
-<!-- DocBook SVG Module V1.0beta1 ......................................... -->
+<!-- DocBook SVG Module V1.0beta2 ......................................... -->
 <!-- File dbsvg.dtd ....................................................... -->
 
-<!-- Copyright (C) 2000 Organization for the Advancement
+<!-- Copyright (C) 2002 Organization for the Advancement
      of Structured Information Standards (OASIS).
 
      $Id$
@@ -26,24 +26,24 @@
 
 <!-- ...................................................................... -->
 
-<!-- This is the driver file for V1.0beta1 of the DocBook SVG Module.
+<!-- This is the driver file for V1.0beta2 of the DocBook SVG Module.
      Please use the following formal public identifier to identify it:
 
-     "-//OASIS//DTD DocBook SVG Module V1.0beta1//EN"
+     "-//OASIS//DTD DocBook SVG Module V1.0beta2//EN"
 
      For example, if your document's top-level element is Book, and
      you are using DocBook directly, use the FPI in the DOCTYPE
      declaration:
 
-     <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook SVG Module V1.0beta1//EN"
-                    "http://www.oasis-open.org/docbook/xml/svg/1.0beta1/dbsvg.dtd"
+     <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook SVG Module V1.0beta2//EN"
+                    "http://www.oasis-open.org/docbook/xml/svg/1.0beta2/dbsvg.dtd"
                     [...]>
 
      Or, if you have a higher-level driver file that customizes DocBook,
      use the FPI in the parameter entity declaration:
 
-     <!ENTITY % DocBookSVGDTD PUBLIC "-//OASIS//DTD DocBook SVG Module V1.0beta1//EN"
-                "http://www.oasis-open.org/docbook/xml/svg/1.0beta1/dbsvg.dtd">
+     <!ENTITY % DocBookSVGDTD PUBLIC "-//OASIS//DTD DocBook SVG Module V1.0beta2//EN"
+                "http://www.oasis-open.org/docbook/xml/svg/1.0beta2/dbsvg.dtd">
      %DocBookSVGDTD;
 
      See the documentation for detailed information on the parameter
@@ -52,22 +52,30 @@
      of DocBook.
 -->
 
+<!-- Suppress the imageobject declaration -->
+
 <!ENTITY % imageobject.element "IGNORE">
 
-<!ENTITY % docbook.dtd PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-                   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<!-- Include the DocBook DTD -->
+
+<!ENTITY % docbook.dtd PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                   "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
 %docbook.dtd;
 
-<!ENTITY % svg.xmlns.prefix "svg:">
-<!ENTITY % svg.xmlns.suffix ":svg">
-<!ENTITY % svg-svg "%svg.xmlns.prefix;svg">
+<!-- Setup the SVG prefix -->
 
-<!-- You must also include the SVG DTD -->
-<!ENTITY % svg.dtd PUBLIC "-//W3C//DTD SVG 20001102//EN"
-          "svg-20001102-nshack.dtd">
+<!ENTITY % NS.prefixed "INCLUDE" >
+<!ENTITY % SVG.prefix "svg">
+
+<!-- Include the SVG DTD -->
+
+<!ENTITY % svg.dtd PUBLIC "-//W3C//DTD SVG 1.1//EN"
+                          "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 %svg.dtd;
 
-<!ELEMENT imageobject (objectinfo?, (imagedata|%svg-svg;))>
+<! -- Provide an alternate imageobject declaration -->
 
-<!-- End of dbsvg.dtd V1.0beta1 ............................................. -->
+<!ELEMENT imageobject (objectinfo?, (imagedata|%SVG.svg.qname;))>
+
+<!-- End of dbsvg.dtd V1.0beta2 ............................................. -->
 <!-- ...................................................................... -->
