@@ -117,7 +117,7 @@
       </xsl:when>
       <xsl:when test="$char = 'B'">
         <xsl:call-template name="gentext.template">
-          <xsl:with-param name="context" select="'datetime-abbrev'"/>
+          <xsl:with-param name="context" select="'datetime-full'"/>
           <xsl:with-param name="name" select="date:month-name($date)"/>
         </xsl:call-template>
       </xsl:when>
