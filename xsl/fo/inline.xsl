@@ -69,7 +69,7 @@
   <xsl:param name="content">
     <xsl:apply-templates/>
   </xsl:param>
-  <fo:inline vertical-align="super">
+  <fo:inline baseline-shift="super">
     <xsl:copy-of select="$content"/>
   </fo:inline>
 </xsl:template>
@@ -78,7 +78,7 @@
   <xsl:param name="content">
     <xsl:apply-templates/>
   </xsl:param>
-  <fo:inline vertical-align="sub">
+  <fo:inline baseline-shift="sub">
     <xsl:copy-of select="$content"/>
   </fo:inline>
 </xsl:template>
