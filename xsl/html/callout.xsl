@@ -21,7 +21,6 @@
 
 <xsl:template match="programlistingco|screenco">
   <xsl:variable name="verbatim" select="programlisting|screen"/>
-  <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
 
   <xsl:choose>
     <xsl:when test="$use.extensions != '0'
@@ -34,16 +33,15 @@
 
       <xsl:variable name="rtf-with-callouts">
         <xsl:choose>
-          <xsl:when test="contains($vendor, 'SAXON ')">
+          <xsl:when test="function-available('sverb:insertCallouts')">
             <xsl:copy-of select="sverb:insertCallouts(areaspec,$rtf)"/>
           </xsl:when>
-          <xsl:when test="contains($vendor, 'Apache Software Foundation')">
+          <xsl:when test="function-available('xverb:insertCallouts')">
             <xsl:copy-of select="xverb:insertCallouts(areaspec,$rtf)"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:message terminate="yes">
-              <xsl:text>Don't know how to do callouts with </xsl:text>
-              <xsl:value-of select="$vendor"/>
+              <xsl:text>No insertCallouts function is available.</xsl:text>
             </xsl:message>
           </xsl:otherwise>
         </xsl:choose>
