@@ -1,11 +1,11 @@
 <refentry id="section.title.properties">
 <refmeta>
 <refentrytitle>section.title.properties</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">attribute set</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>section.title.properties</refname>
-<refpurpose></refpurpose>
+<refpurpose>Properties for section titles</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -26,7 +26,7 @@
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>The properties common to all section titles.</para>
 
 </refsect1>
 </refentry>
