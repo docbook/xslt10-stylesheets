@@ -566,9 +566,9 @@
 
 <xsl:template match="comment|remark">
   <xsl:if test="$show.comments != 0">
-    <fo:inline font-style="italic">
+    <fo:block font-style="italic">
       <xsl:call-template name="inline.charseq"/>
-    </fo:inline>
+    </fo:block>
   </xsl:if>
 </xsl:template>
 
