@@ -22,6 +22,8 @@ list.blocks |= db.bibliolist
 
 info.elements |= db.bibliomisc | db.bibliomset | db.bibliorelation | db.biblioset
 
+link.inlines |= db.biblioref
+
 relation.attribute = attribute relation { text }
 
 # ======================================================================
@@ -250,4 +252,32 @@ div {
       }
 }
 
+# ======================================================================
 
+[
+   db:refname [ "biblioref" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   local.biblioref.attributes = empty
+
+   biblioref.role.attribute = attribute role { text }
+
+   biblioref.attlist =
+      biblioref.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute xrefstyle { text }?
+    & attribute endterm { xsd:IDREF }?
+    & attribute units { xsd:token }?
+    & attribute begin {xsd:token }?
+    & attribute end { xsd:token }?
+    & local.biblioref.attributes
+
+   db.biblioref =
+      element biblioref {
+         biblioref.attlist,
+         empty
+      }
+}
