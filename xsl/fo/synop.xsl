@@ -103,7 +103,7 @@
 </xsl:template>
 
 <xsl:template match="sbr">
-  <fo:inline linefeed-treatment="preserve">&#xA;</fo:inline>
+  <fo:block/>
 </xsl:template>
 
 <!-- ==================================================================== -->
