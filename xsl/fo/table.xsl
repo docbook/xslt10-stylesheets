@@ -155,8 +155,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   </xsl:choose>
 
   <xsl:apply-templates select="thead"/>
-  <xsl:apply-templates select="tbody"/>
   <xsl:apply-templates select="tfoot"/>
+  <xsl:apply-templates select="tbody"/>
 </xsl:template>
 
 <xsl:template match="colspec"></xsl:template>
