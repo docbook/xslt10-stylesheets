@@ -290,17 +290,16 @@
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="@termlength"/>
-            <xsl:text>em</xsl:text>
+            <xsl:text>em * 0.50</xsl:text>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
-        <!-- FIXME: this should be a parameter! -->
         <xsl:call-template name="longest.term">
           <xsl:with-param name="terms" select="varlistentry/term"/>
-          <xsl:with-param name="maxlength" select="12"/>
+          <xsl:with-param name="maxlength" select="$vlist.max.termwidth"/>
         </xsl:call-template>
-        <xsl:text>em</xsl:text>
+        <xsl:text>em * 0.50</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -312,6 +311,8 @@
   </xsl:message>
 -->
 
+  <xsl:variable name="label-separation">1em</xsl:variable>
+
   <xsl:if test="title">
     <xsl:apply-templates select="title" mode="list.title.mode"/>
   </xsl:if>
@@ -321,8 +322,9 @@
                                   or self::titleabbrev)]"/>
 
   <fo:list-block id="{$id}"
-                 provisional-distance-between-starts="{$termlength}"
-                 provisional-label-separation="0.25in"
+                 provisional-distance-between-starts=
+		          "{$termlength}+{$label-separation}"
+                 provisional-label-separation="{$label-separation}"
                  xsl:use-attribute-sets="list.block.spacing">
     <xsl:apply-templates select="varlistentry" mode="vl.as.list"/>
   </fo:list-block>
@@ -442,14 +444,14 @@
     </xsl:call-template>
     <fo:table-body>
       <xsl:call-template name="simplelist.vert">
-	<xsl:with-param name="cols">
-	  <xsl:choose>
-	    <xsl:when test="@columns">
-	      <xsl:value-of select="@columns"/>
-	    </xsl:when>
-	    <xsl:otherwise>1</xsl:otherwise>
-	  </xsl:choose>
-	</xsl:with-param>
+        <xsl:with-param name="cols">
+          <xsl:choose>
+            <xsl:when test="@columns">
+              <xsl:value-of select="@columns"/>
+            </xsl:when>
+            <xsl:otherwise>1</xsl:otherwise>
+          </xsl:choose>
+        </xsl:with-param>
       </xsl:call-template>
     </fo:table-body>
   </fo:table>
@@ -473,14 +475,14 @@
     </xsl:call-template>
     <fo:table-body>
       <xsl:call-template name="simplelist.horiz">
-	<xsl:with-param name="cols">
-	  <xsl:choose>
-	    <xsl:when test="@columns">
-	      <xsl:value-of select="@columns"/>
-	    </xsl:when>
-	    <xsl:otherwise>1</xsl:otherwise>
-	  </xsl:choose>
-	</xsl:with-param>
+        <xsl:with-param name="cols">
+          <xsl:choose>
+            <xsl:when test="@columns">
+              <xsl:value-of select="@columns"/>
+            </xsl:when>
+            <xsl:otherwise>1</xsl:otherwise>
+          </xsl:choose>
+        </xsl:with-param>
       </xsl:call-template>
     </fo:table-body>
   </fo:table>
@@ -500,14 +502,14 @@
     </xsl:call-template>
     <fo:table-body>
       <xsl:call-template name="simplelist.vert">
-	<xsl:with-param name="cols">
-	  <xsl:choose>
-	    <xsl:when test="@columns">
-	      <xsl:value-of select="@columns"/>
-	    </xsl:when>
-	    <xsl:otherwise>1</xsl:otherwise>
-	  </xsl:choose>
-	</xsl:with-param>
+        <xsl:with-param name="cols">
+          <xsl:choose>
+            <xsl:when test="@columns">
+              <xsl:value-of select="@columns"/>
+            </xsl:when>
+            <xsl:otherwise>1</xsl:otherwise>
+          </xsl:choose>
+        </xsl:with-param>
       </xsl:call-template>
     </fo:table-body>
   </fo:table>
