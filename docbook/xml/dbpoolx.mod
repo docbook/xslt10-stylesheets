@@ -7428,26 +7428,27 @@ OtherCredit. -->
 <![%systemitem.attlist;[
 <!ATTLIST systemitem
 		class	(constant
+                        |daemon
+			|domainname
+			|etheraddress
 			|event
 			|eventhandler
-			|domainname
+			|filesystem
 			|fqdomainname
-			|ipaddress
-			|netmask
-			|etheraddress
 			|groupname
+			|ipaddress
 			|library
 			|macro
+			|netmask
+			|newsgroup
 			|osname
-			|filesystem
+                        |protocol
 			|resource
 			|systemname
 			|username
-			|newsgroup
                         |process
-                        |service
                         |server
-                        |daemon)	#IMPLIED
+                        |service)	#IMPLIED
 		%moreinfo.attrib;
 		%common.attrib;
 		%systemitem.role.attrib;
