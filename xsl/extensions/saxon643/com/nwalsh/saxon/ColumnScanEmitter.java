@@ -58,7 +58,12 @@ public class ColumnScanEmitter extends com.icl.saxon.output.Emitter {
 
   /** Return the number of columns. */
   public String[] columnWidths() {
-    return width;
+    // Return a width array with exactly the right number of columns
+    String rWidth[] = new String[numColumns];
+    for (int count = 0; count < numColumns; count++) {
+      rWidth[count] = width[count];
+    }
+    return rWidth;
   }
 
   /** Discarded. */
