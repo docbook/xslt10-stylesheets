@@ -247,16 +247,19 @@ element label.</para>
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:if test="$section.label.includes.component.label != 0
-                and $parent.is.component != 0">
-    <xsl:variable name="parent.label">
-      <xsl:apply-templates select=".." mode="label.markup"/>
-    </xsl:variable>
-    <xsl:if test="$parent.label != ''">
-      <xsl:apply-templates select=".." mode="label.markup"/>
-      <xsl:apply-templates select=".." mode="intralabel.punctuation"/>
+  <xsl:variable name="component.label">
+    <xsl:if test="$section.label.includes.component.label != 0
+                  and $parent.is.component != 0">
+      <xsl:variable name="parent.label">
+        <xsl:apply-templates select=".." mode="label.markup"/>
+      </xsl:variable>
+      <xsl:if test="$parent.label != ''">
+        <xsl:apply-templates select=".." mode="label.markup"/>
+        <xsl:apply-templates select=".." mode="intralabel.punctuation"/>
+      </xsl:if>
     </xsl:if>
-  </xsl:if>
+  </xsl:variable>
+
 
   <xsl:variable name="is.numbered">
     <xsl:call-template name="label.this.section"/>
@@ -267,6 +270,7 @@ element label.</para>
       <xsl:value-of select="@label"/>
     </xsl:when>
     <xsl:when test="$is.numbered != 0">
+      <xsl:copy-of select="$component.label"/>
       <xsl:number count="sect1"/>
     </xsl:when>
   </xsl:choose>
