@@ -6,6 +6,7 @@
 <!ENTITY html-param.xml SYSTEM "html/param.xml" NDATA SGML>
 <!ENTITY fo-param.xml SYSTEM "fo/param.xml" NDATA SGML>
 <!ENTITY fo-table.xml SYSTEM "fo/table.xml" NDATA SGML>
+<!ENTITY manpages-param.xml SYSTEM "manpages/param.xml" NDATA SGML>
 <!ENTITY titlepage.xml SYSTEM "template/titlepage.xml" NDATA SGML>
 ]>
 <book>
@@ -44,6 +45,9 @@ of references generated from the stylesheet sources:</para>
 </listitem>
 <listitem><para><olink type="title" localinfo="fo/table.html"
                        targetdocent="fo-table.xml"/></para>
+</listitem>
+<listitem><para><olink type="title" localinfo="manpages/index.html"
+                       targetdocent="manpages-param.xml"/></para>
 </listitem>
 </itemizedlist>
 

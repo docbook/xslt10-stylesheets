@@ -10,6 +10,9 @@
 <xsl:param name="fo-baseuri"
            select="'http://docbook.sourceforge.net/release/xsl/current/doc/fo/'"/>
 
+<xsl:param name="manpages-baseuri"
+           select="'http://docbook.sourceforge.net/release/xsl/current/doc/manpages/'"/>
+
 <xsl:template match="parameter">
   <xsl:variable name="markup">
     <xsl:apply-imports/>
@@ -27,6 +30,12 @@
     </xsl:call-template>
   </xsl:variable>
 
+  <xsl:variable name="ismanpages">
+    <xsl:call-template name="is-manpages-parameter">
+      <xsl:with-param name="param" select="normalize-space(.)"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="$ishtml != 0">
       <a href="{concat($html-baseuri, normalize-space(.))}.html">
@@ -35,6 +44,11 @@
     </xsl:when>
     <xsl:when test="$isfo != 0">
       <a href="{concat($fo-baseuri, normalize-space(.))}.html">
+        <xsl:copy-of select="$markup"/>
+      </a>
+    </xsl:when>
+    <xsl:when test="$ismanpages != 0">
+      <a href="{concat($manpages-baseuri, normalize-space(.))}.html">
         <xsl:copy-of select="$markup"/>
       </a>
     </xsl:when>

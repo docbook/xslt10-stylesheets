@@ -41,11 +41,30 @@ print <<EOF3;
   </simplelist>
 </xsl:variable>
 
+<xsl:variable name="xsl-fo-parameters-list">
+  <simplelist>
+EOF3
+
+open (F, "../manpages/param.xsl");
+read (F, $_, -s "../manpages/param.xsl");
+close (F);
+foreach my $param (/<xsl:param name="[^\"]+"/gs) {
+    $param =~ /name=\"(.*)\"/;
+    print "    <member>$1</member>\n", 
+}
+
+print <<EOF4;
+  </simplelist>
+</xsl:variable>
+
 <xsl:variable name="xsl-html-parameters"
               select="exsl:node-set(\$xsl-html-parameters-list)/simplelist"/>
 
 <xsl:variable name="xsl-fo-parameters"
               select="exsl:node-set(\$xsl-fo-parameters-list)/simplelist"/>
+
+<xsl:variable name="xsl-manpages-parameters"
+              select="exsl:node-set(\$xsl-manpages-parameters-list)/simplelist"/>
 
 <xsl:template name="is-html-parameter">
   <xsl:param name="param" select="''"/>
@@ -65,5 +84,14 @@ print <<EOF3;
   </xsl:choose>
 </xsl:template>
 
+<xsl:template name="is-manpages-parameter">
+  <xsl:param name="param" select="''"/>
+
+  <xsl:choose>
+    <xsl:when test="\$xsl-manpages-parameters/member[. = \$param]">1</xsl:when>
+    <xsl:otherwise>0</xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 </xsl:stylesheet>
-EOF3
+EOF4
