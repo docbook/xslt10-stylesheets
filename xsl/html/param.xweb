@@ -223,6 +223,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <reference><title>Chunking</title>
 &html.ext;
+&html.extra.head.links;
 &root.filename;
 &base.dir;
 &generate.manifest;
@@ -359,6 +360,7 @@ around all these parameters.</para>
 <src:fragref linkend="html.base.frag"/>
 <src:fragref linkend="html.cleanup.frag"/>
 <src:fragref linkend="html.ext.frag"/>
+<src:fragref linkend="html.extra.head.links.frag"/>
 <src:fragref linkend="html.longdesc.frag"/>
 <src:fragref linkend="html.longdesc.link.frag"/>
 <src:fragref linkend="html.stylesheet.frag"/>
