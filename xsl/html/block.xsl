@@ -130,7 +130,7 @@
         <xsl:call-template name="object.id"/>
       </xsl:attribute>
     </a>
-  
+
     <xsl:apply-templates/>
   </div>
 </xsl:template>
