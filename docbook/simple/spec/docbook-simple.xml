@@ -8,13 +8,13 @@
 
 <articleinfo>
 <productname>wd-docbook-simple</productname>
-<productnumber>1.1b1</productnumber>
+<productnumber>1.1b2</productnumber>
 
-<releaseinfo role="product"><ulink url="wd-docbook-simple-1.1b1.xml">XML</ulink></releaseinfo>
-<releaseinfo role="product"><ulink url="wd-docbook-simple-1.1b1.html">HTML</ulink></releaseinfo>
-<releaseinfo role="product"><ulink url="wd-docbook-simple-1.1b1.pdf">PDF</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="wd-docbook-simple-1.1b2.xml">XML</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="wd-docbook-simple-1.1b2.html">HTML</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="wd-docbook-simple-1.1b2.pdf">PDF</ulink></releaseinfo>
 
-<releaseinfo role="location">http://www.oasis-open.org/docbook/specs</releaseinfo>
+<releaseinfo role="location">http://docbook.org/specs</releaseinfo>
 
 <title>The Simplified DocBook Document Type</title>
 
@@ -29,15 +29,15 @@
 </editor>
 </authorgroup>
 
-<pubdate>21 Dec 2003</pubdate>
+<pubdate>18 Mar 2004</pubdate>
 
-<copyright><year>2001</year><year>2002</year><year>2003</year>
+<copyright><year>2001</year><year>2002</year><year>2003</year><year>2004</year>
 <holder>OASIS Open, Inc. All Rights Reserved.</holder></copyright>
 
 <abstract>
 
 <para>Simplified DocBook is a subset of
-<ulink url="http://www.oasis-open.org/docbook/xml/">DocBook XML V4.2</ulink>.
+<ulink url="http://www.oasis-open.org/docbook/xml/">DocBook XML V4.3</ulink>.
 It is a
 a general purpose XML document type suited to articles about computer hardware
 and software (though it is by no means limited to these applications).
@@ -125,10 +125,10 @@ document.</para>
 </section>
 
 <section id="docbook">
-<title>The Simplified DocBook Document Type V1.1b1</title>
+<title>The Simplified DocBook Document Type V1.1b2</title>
 
 <para>The Simplified DocBook document type is a subset of
-<xref linkend="bib.docbook43CR2"/>.
+<xref linkend="bib.docbook43"/>.
 It is distributed from the
 <ulink url="http://www.oasis-open.org/docbook/">DocBook site</ulink> at
 <ulink url="http://www.oasis-open.org/">OASIS</ulink>.
@@ -140,8 +140,8 @@ It is distributed from the
 <para>To use this document type, specify the public and system identifiers
 in your document type declaration. For example:</para>
 
-<screen><![CDATA[<!DOCTYPE article PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.1b1//EN"
-                  "http://docbook.org/xml/simple/1.1b1/sdocbook.dtd">]]></screen>
+<screen><![CDATA[<!DOCTYPE article PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.1b2//EN"
+                  "http://docbook.org/xml/simple/1.1b2/sdocbook.dtd">]]></screen>
 
 <para>Naturally, you can include an internal subset if you wish.</para>
 
@@ -149,11 +149,19 @@ in your document type declaration. For example:</para>
 public and system identifiers of this module's customization layer in your own. For
 example:</para>
 
-<screen><![CDATA[<!DOCTYPE % sdocbook PUBLIC "-//OASIS//DTD Simplified DocBook XML Customization V1.1b1//EN"
-                  "http://docbook.org/xml/simple/1.1b1/sdocbook-custom.dtd">
+<screen><![CDATA[<!DOCTYPE % sdocbook PUBLIC "-//OASIS//DTD Simplified DocBook XML Customization V1.1b2//EN"
+                  "http://docbook.org/xml/simple/1.1b2/sdocbook-custom.dtd">
 %sdocbook;]]></screen>
 
 </section>
+</section>
+
+<section id="s.changesb2">
+<title>Changes in Simplified DocBook V1.1b2</title>
+
+<para>Simplified DocBook V1.1b2 adds the <sgmltag>anchor</sgmltag> element and
+the <sgmltag class="attribute">remap</sgmltag> attribute.</para>
+
 </section>
 
 <section id="s.changes">
@@ -177,14 +185,15 @@ HTML tables but no other additional markup.</para>
 the formulation of this &standard;:</para>
 
 <itemizedlist spacing="compact">
-<listitem><para>Jeff Beal</para></listitem>
 <listitem><para>Steve Cogorno</para></listitem>
+<listitem><para>Adam Di Carlo</para></listitem>
+<listitem><para>Jirka Kosek</para></listitem>
 <listitem><para>Paul Grosso</para></listitem>
 <listitem><para>Dick Hamilton</para></listitem>
 <listitem><para>Nancy Harrison</para></listitem>
 <listitem><para>Scott Hudson</para></listitem>
 <listitem><para>Mark Johnson</para></listitem>
-<listitem><para>Larry Rowland (prospective)</para></listitem>
+<listitem><para>Larry Rowland</para></listitem>
 <listitem><para>Michael Smith</para></listitem>
 <listitem><para>Bob Stayton, Secretary</para></listitem>
 <listitem><para>Norman Walsh, Chair, Editor</para></listitem>
@@ -195,7 +204,7 @@ the formulation of this &standard;:</para>
 <appendix id="a.notices">
 <title>Notices</title>
 
-<para>Copyright &#169; 2001, 2002 OASIS Open, Inc. All Rights Reserved.
+<para>Copyright &#169; 2001, 2002, 2003, 2004 OASIS Open, Inc. All Rights Reserved.
 </para>
 
 <para>OASIS takes no position regarding the validity
@@ -271,6 +280,10 @@ of the DocBook web page
 
 <para><revhistory>
 <revision>
+<revnumber>1.1b2</revnumber>
+<date>18 Mar 2004</date>
+</revision>
+<revision>
 <revnumber>1.1b1</revnumber>
 <date>21 Dec 2003</date>
 </revision>
@@ -285,7 +298,7 @@ of the DocBook web page
 
 <bibliomixed id="xml-rec"/>
 <bibliomixed id="rfc2119"/>
-<bibliomixed id="bib.docbook43CR2"/>
+<bibliomixed id="bib.docbook43"/>
 
 </bibliodiv>
 
