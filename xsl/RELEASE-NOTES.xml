@@ -4,8 +4,8 @@
   "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
 <article>
 <articleinfo>
-<title>DocBook XSL Stylesheets Release Notes</title>
-<pubdate>02 Jun 2002</pubdate>
+<title>DocBook XSL Stylesheet Release Notes</title>
+<pubdate>03 Sep 2002</pubdate>
 <releaseinfo role="cvs">$Id$
 </releaseinfo>
 
@@ -17,6 +17,47 @@
 This file documents (mostly) changes to the public APIs. What,
 exactly, counts as a public API is still somewhat in question, but it
 includes at least the global parameters.</para>
+
+<itemizedlist><title>Release 1.54.0</title>
+
+<para>The 1.54.0 release fixes some bugs and adds a couple of new features.
+</para>
+
+<listitem>
+<para>New option to generate back-of-book FO indexes with page-number
+ranges in place of sequences (e.g., 1-4 instead of 1,2,3,4)
+(<parameter>make.index.markup</parameter>).
+</para>
+</listitem>
+
+<listitem>
+<para>Experimental support for generating ToCs/LoTs as separate HTML
+chunks (<parameter>chunk.tocs.and.lots</parameter>).</para>
+</listitem>
+
+<listitem>
+<para>New option to generate HTML Help indexes using HHK files, allowing
+see-also processing &amp; referencing of exact locations of index terms
+(<parameter>htmlhelp.use.hhk</parameter>).</para>
+</listitem>
+
+<listitem>
+<para>Olink processing tweaks.</para>
+</listitem>
+
+<listitem>
+<para>Improvements in graphic and table processing.</para>
+</listitem>
+
+<listitem>
+<para>Additions and workarounds for better compatibility with FO
+engines (FOP, PassiveTeX, XEP).</para>
+</listitem>
+
+<listitem>
+<para>Bug fixes for FO profiling, indexing of Refentrys.</para>
+</listitem>
+</itemizedlist>
 
 <itemizedlist><title>Release 1.53.0</title>
 
