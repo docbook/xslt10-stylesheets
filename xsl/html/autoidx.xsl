@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE xsl:stylesheet [
 
-<!ENTITY lowercase "abcdefghijklmnopqrstuvwxyz">
-<!ENTITY uppercase "ABCDEFGHIJKLMNOPQRSTUVWXYZ">
+<!ENTITY lowercase "'abcdefghijklmnopqrstuvwxyz'">
+<!ENTITY uppercase "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'">
 
 <!ENTITY primary   'concat(primary/@sortas, primary[not(@sortas)])'>
 <!ENTITY secondary 'concat(secondary/@sortas, secondary[not(@sortas)])'>
