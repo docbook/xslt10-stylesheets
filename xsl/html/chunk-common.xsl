@@ -2,6 +2,18 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
+<!-- ********************************************************************
+     $Id$
+     ********************************************************************
+
+     This file is part of the XSL DocBook Stylesheet distribution.
+     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
+     and other information.
+
+     ******************************************************************** -->
+
+<!-- ==================================================================== -->
+
 <xsl:template name="chunk">
   <xsl:param name="node" select="."/>
   <!-- returns 1 if $node is a chunk -->
