@@ -33,9 +33,12 @@
       </xsl:when>
 
       <xsl:when test="$xref-context or $l10n.gentext.use.xref.language">
+        <!-- can't do this one step: attributes are unordered! -->
+        <xsl:variable name="lang-scope"
+                      select="($target/ancestor-or-self::*[@lang]
+                               |$target/ancestor-or-self::*[@xml:lang])[last()]"/>
         <xsl:variable name="lang-attr"
-                      select="($target/ancestor-or-self::*/@lang
-                               |$target/ancestor-or-self::*/@xml:lang)[last()]"/>
+                      select="$lang-scope/@lang | $lang-scope/@xml:lang"/>
         <xsl:choose>
           <xsl:when test="string($lang-attr) = ''">
             <xsl:value-of select="$l10n.gentext.default.language"/>
@@ -47,9 +50,13 @@
       </xsl:when>
 
       <xsl:otherwise>
-        <xsl:variable name="lang-attr" 
-                      select="(ancestor-or-self::*/@lang
-                               |ancestor-or-self::*/@xml:lang)[last()]"/>
+        <!-- can't do this one step: attributes are unordered! -->
+        <xsl:variable name="lang-scope"
+                      select="(ancestor-or-self::*[@lang]
+                               |ancestor-or-self::*[@xml:lang])[last()]"/>
+        <xsl:variable name="lang-attr"
+                      select="$lang-scope/@lang | $lang-scope/@xml:lang"/>
+
         <xsl:choose>
           <xsl:when test="string($lang-attr) = ''">
             <xsl:value-of select="$l10n.gentext.default.language"/>
