@@ -1,6 +1,10 @@
 include ../../cvstools/Makefile.incl
 
-all: ldocbook.html
+all: ldocbook.xsl
+
+xml: ldocbook.xml
+
+html: ldocbook.html
 
 ldocbook.html: ldocbook.xml ldocbook.xsl
 	$(XSLT) $< ldocbook.xsl $@

@@ -1,13 +1,17 @@
 include ../cvstools/Makefile.incl
 
-all: tangle.html weave.html wdocbook.html
+all: tangle.xsl weave.xsl wdocbook.xsl
 	$(MAKE) -C html
 
-tangle.html: tangle.xml litprog.xsl
-	$(XSLT) $< litprog.xsl $@
+xml: tangle.xml weave.xml wdocbook.xml
 
-tangle.xml: tangle.xweb weave.xsl
-	$(XSLT) $< weave.xsl $@
+html: xml tangle.html weave.html wdocbook.html
+
+tangle.html: tangle.xml html/ldocbook.xsl
+	$(XSLT) $< html/ldocbook.xsl $@
+
+tangle.xml: tangle.xweb wdocbook.xsl
+	$(XSLT) $< wdocbook.xsl $@
 
 # Can this rule be improved? Ideally bootstrap-tangle should only be
 # required if tangle.xsl doesn't exist. If it exists but is out-of-date
@@ -17,11 +21,11 @@ tangle.xsl: tangle.xweb bootstrap-tangle.xsl
 	$(XSLT) $< .temp.xsl tangle.xsl
 	rm -f .temp.xsl
 
-weave.html: weave.xml litprog.xsl
-	$(XSLT)  $< litprog.xsl $@
+weave.html: weave.xml html/ldocbook.xsl
+	$(XSLT)  $< html/ldocbook.xsl $@
 
-weave.xml: weave.xweb weave.xsl
-	$(XSLT)  $< weave.xsl $@
+weave.xml: weave.xweb wdocbook.xsl
+	$(XSLT)  $< wdocbook.xsl $@
 	xjparse $@
 
 weave.xsl: weave.xweb tangle.xsl
@@ -30,8 +34,13 @@ weave.xsl: weave.xweb tangle.xsl
 wdocbook.html: wdocbook.xml wdocbook.xsl
 	$(XSLT) $< wdocbook.xsl $@
 
-wdocbook.xml: wdocbook.xweb weave.xsl
-	$(XSLT) $< weave.xsl $@
+wdocbook.xml: wdocbook.xweb wdocbook.xsl
+	$(XSLT) $< wdocbook.xsl $@
 
 wdocbook.xsl: wdocbook.xweb tangle.xsl
 	$(XSLT) $< tangle.xsl $@
+
+clean:
+	rm -f weave.{xsl,xml,html}
+	rm -f tangle.{xsl,xml,html}
+	rm -f wdocbook.{xsl,xml,html}
