@@ -492,7 +492,9 @@
 </xsl:template>
 
 <xsl:template match="lineannotation">
-  <xsl:call-template name="inline.charseq"/>
+  <fo:inline font-style="italic">
+    <xsl:call-template name="inline.charseq"/>
+  </fo:inline>
 </xsl:template>
 
 <xsl:template match="superscript">
