@@ -623,6 +623,12 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % local.common.attrib "">
 
+<!ENTITY % dir.attrib
+	"dir		(ltr
+			|rtl
+			|lro
+			|rlo)		#IMPLIED">
+
 <!-- Role is included explicitly on each element -->
 
 <!ENTITY % common.attrib
@@ -632,6 +638,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 	%xreflabel.attrib;
 	%revisionflag.attrib;
 	%effectivity.attrib;
+	%dir.attrib;
 	%local.common.attrib;"
 >
 
@@ -645,6 +652,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 	%xreflabel.attrib;
 	%revisionflag.attrib;
 	%effectivity.attrib;
+	%dir.attrib;
 	%local.common.attrib;"
 >
 
