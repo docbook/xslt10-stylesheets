@@ -132,6 +132,15 @@
 		|%para.class;		|blockquote
 		%local.textobject.mix;">
 
+<!ENTITY % local.listpreamble.mix "">
+<!ENTITY % listpreamble.mix
+		"                  	 %admon.class;
+		|%linespecific.class;
+		|%para.class;		|%informal.class;
+		 		        |%descobj.class;
+		                        |beginpage
+		%local.listpreamble.mix;">
+
 <!-- Character-level mixtures ............................................. -->
 
 <!ENTITY % ubiq.exclusion "">
