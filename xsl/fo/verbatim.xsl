@@ -44,8 +44,7 @@
 
   <xsl:choose>
     <xsl:when test="$shade.verbatim != 0">
-      <fo:block wrap-option='no-wrap'
-                white-space-collapse='false'
+      <fo:block white-space-collapse='false'
 		white-space-treatment='preserve'
                 linefeed-treatment='preserve'
                 xsl:use-attribute-sets="monospace.verbatim.properties shade.verbatim.style">
@@ -54,8 +53,7 @@
       </fo:block>
     </xsl:when>
     <xsl:otherwise>
-      <fo:block wrap-option='no-wrap'
-                white-space-collapse='false'
+      <fo:block white-space-collapse='false'
 		white-space-treatment='preserve'
                 linefeed-treatment="preserve"
                 xsl:use-attribute-sets="monospace.verbatim.properties">
@@ -90,8 +88,7 @@
     <xsl:when test="@class='monospaced'">
       <xsl:choose>
         <xsl:when test="$shade.verbatim != 0">
-          <fo:block wrap-option='no-wrap'
-                    white-space-collapse='false'
+          <fo:block white-space-collapse='false'
 		    white-space-treatment='preserve'
                     linefeed-treatment="preserve"
                     xsl:use-attribute-sets="monospace.verbatim.properties shade.verbatim.style">
@@ -100,8 +97,7 @@
           </fo:block>
         </xsl:when>
         <xsl:otherwise>
-          <fo:block wrap-option='no-wrap'
-                    white-space-collapse='false'
+          <fo:block white-space-collapse='false'
 		    white-space-treatment='preserve'
                     linefeed-treatment="preserve"
                     xsl:use-attribute-sets="monospace.verbatim.properties">
