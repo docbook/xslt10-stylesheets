@@ -5632,7 +5632,7 @@ div {
    db.optional =
       element optional {
          db.optional.attlist,
-         db.text
+         db._text
       }
 }
 
