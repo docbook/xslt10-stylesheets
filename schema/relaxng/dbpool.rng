@@ -1093,6 +1093,15 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
     </optional>
   </define>
 
+<!-- xml:base: Sets the base URI of the current element, as per
+	http://www.w3.org/TR/xmlbase/ -->
+
+  <define name="xml.base.attrib">
+    <optional>
+      <attribute name="xml:base"/>
+    </optional>
+  </define>
+
 <!-- RevisionFlag: Revision status of element; default is that element
 	wasn't revised -->
 
@@ -1121,6 +1130,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
     <ref name="xreflabel.attrib"/>
     <ref name="revisionflag.attrib"/>
     <ref name="effectivity.attrib"/>
+    <ref name="xml.base.attrib"/>
     <ref name="local.common.attrib"/>
   </define>
 
