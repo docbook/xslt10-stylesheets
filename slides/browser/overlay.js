@@ -1,4 +1,6 @@
-/* Overlay.js, adapted from Floating image II on dynamicdrive.com */
+// -*- Java -*-
+//
+// Overlay.js, adapted from Floating image II on dynamicdrive.com
 /* Usage:
 <html>
 <head>
@@ -12,25 +14,25 @@
 ...rest of page...
 */
 
-var overlayLx = 0;
-var overlayLy = 0;
-
 var overlayNS4 = document.layers ? 1 : 0;
 var overlayIE  = document.all ? 1 : 0;
 var overlayNS6 = document.getElementById && !document.all ? 1 : 0;
-
-var overlayX = 0;
-var overlayY = 0;
-var overlayW = 0;
-var overlayH = 0;
-var overlayPadX = 15;
-var overlayPadY = 5;
 
 var overlayDelay=60;
 
 var overlayCorner = 'ur'; // ul, ll, ur, lr, uc, lc, cl, cr
 
 function overlayRefresh() {
+    var overlayLx = 0;
+    var overlayLy = 0;
+
+    var overlayX = 0;
+    var overlayY = 0;
+    var overlayW = 0;
+    var overlayH = 0;
+    var overlayPadX = 15;
+    var overlayPadY = 5;
+
     if (overlayIE) {
 	overlayLx = document.body.clientWidth;
 	overlayLy = document.body.clientHeight;
@@ -104,7 +106,7 @@ function onad() {
 
 function loopfunc() {
     overlayRefresh();
-//    setTimeout('loopfunc()',overlayDelay);
+    setTimeout('loopfunc()',overlayDelay);
 }
 
 function overlaySetup(corner) {
