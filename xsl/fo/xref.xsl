@@ -629,23 +629,26 @@
     <xsl:choose>
       <xsl:when test="$ulink.footnotes != 0 and not(ancestor::footnote)">
         <xsl:variable name="ulink.fn.mark">
-          <fo:inline font-style="italic">
+          <fo:inline>
             <!-- FIXME: this isn't going to be perfect! -->
+            <xsl:text>[</xsl:text>
             <xsl:number level="any"
                         from="chapter|appendix|preface|article|refentry"
-                        format="i"/>
+                        format="1"/>
+            <xsl:text>]</xsl:text>
           </fo:inline>
         </xsl:variable>
 
         <fo:footnote>
-          <fo:inline baseline-shift="super" font-size="90%">
+          <fo:inline font-size="90%">
             <xsl:copy-of select="$ulink.fn.mark"/>
           </fo:inline>
           <fo:footnote-body font-family="{$body.font.family}"
                             font-size="{$footnote.font.size}">
             <fo:block>
-              <fo:inline baseline-shift="super" font-size="90%">
+              <fo:inline font-size="90%">
                 <xsl:copy-of select="$ulink.fn.mark"/>
+                <xsl:text> </xsl:text>
               </fo:inline>
               <fo:inline>
                 <xsl:value-of select="@url"/>
