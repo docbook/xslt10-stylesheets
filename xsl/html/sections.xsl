@@ -369,5 +369,57 @@
   </xsl:element>
 </xsl:template>
 
+<xsl:template match="section/subtitle" mode="titlepage.mode" priority="2">
+  <xsl:call-template name="section.subtitle"/>
+</xsl:template>
+
+<xsl:template match="sect1/subtitle" mode="titlepage.mode" priority="2">
+  <xsl:call-template name="section.subtitle"/>
+</xsl:template>
+
+<xsl:template match="sect2/subtitle" mode="titlepage.mode" priority="2">
+  <xsl:call-template name="section.subtitle"/>
+</xsl:template>
+
+<xsl:template match="sect3/subtitle" mode="titlepage.mode" priority="2">
+  <xsl:call-template name="section.subtitle"/>
+</xsl:template>
+
+<xsl:template match="sect4/subtitle" mode="titlepage.mode" priority="2">
+  <xsl:call-template name="section.subtitle"/>
+</xsl:template>
+
+<xsl:template match="sect5/subtitle" mode="titlepage.mode" priority="2">
+  <xsl:call-template name="section.subtitle"/>
+</xsl:template>
+
+<xsl:template name="section.subtitle">
+  <!-- the context node should be the subtitle of a section when called -->
+  <xsl:variable name="section" select="(ancestor::section
+                                        |ancestor::simplesect
+                                        |ancestor::sect1
+                                        |ancestor::sect2
+                                        |ancestor::sect3
+                                        |ancestor::sect4
+                                        |ancestor::sect5)[last()]"/>
+
+  <xsl:variable name="level">
+    <xsl:call-template name="section.level">
+      <xsl:with-param name="node" select="$section"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:call-template name="section.heading">
+    <xsl:with-param name="section" select=".."/>
+    <!-- subtitle heading level one higher than section level -->
+    <xsl:with-param name="level" select="$level + 1"/>
+    <xsl:with-param name="title">
+      <xsl:apply-templates select="$section" mode="object.subtitle.markup">
+        <xsl:with-param name="allow-anchors" select="1"/>
+      </xsl:apply-templates>
+    </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
 </xsl:stylesheet>
 
