@@ -86,9 +86,7 @@
 </xsl:template>
 
 <xsl:template match="arg/replaceable">
-  <xsl:text> </xsl:text>
   <xsl:apply-templates mode="italic" select="."/>
-  <xsl:text> </xsl:text>
 </xsl:template>
 
 <xsl:template match="parameter[not(ancestor::command)]">
