@@ -164,9 +164,10 @@
 <gentext key="nav-prev-sibling" text="Fast Backward"/>
 <gentext key="nav-up" text="Up"/>
 
-<gentext key="sectioncalled"       text="the section called"/>
-
-<gentext key="index symbols"            text="Symbols"/>
+<gentext key="above"         text="above"/>
+<gentext key="below"         text="below"/>
+<gentext key="sectioncalled" text="the section called"/>
+<gentext key="index symbols" text="Symbols"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
