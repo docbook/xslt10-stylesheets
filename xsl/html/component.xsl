@@ -118,7 +118,9 @@
     </xsl:variable>
 
     <xsl:if test="contains($toc.params, 'toc')">
-      <xsl:call-template name="component.toc"/>
+      <xsl:call-template name="component.toc">
+        <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
+      </xsl:call-template>
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:call-template name="process.footnotes"/>
@@ -164,7 +166,9 @@
       </xsl:call-template>
     </xsl:variable>
     <xsl:if test="contains($toc.params, 'toc')">
-      <xsl:call-template name="component.toc"/>
+      <xsl:call-template name="component.toc">
+        <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
+      </xsl:call-template>
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:call-template name="process.footnotes"/>
@@ -225,8 +229,11 @@
         <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
       </xsl:call-template>
     </xsl:variable>
+
     <xsl:if test="contains($toc.params, 'toc')">
-      <xsl:call-template name="component.toc"/>
+      <xsl:call-template name="component.toc">
+        <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
+      </xsl:call-template>
     </xsl:if>
 
     <xsl:apply-templates/>
@@ -337,14 +344,18 @@
 
     <xsl:call-template name="article.titlepage"/>
 
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+      </xsl:call-template>
+    </xsl:variable>
+
     <xsl:call-template name="make.lots">
-      <xsl:with-param name="toc.params">
-        <xsl:call-template name="find.path.params">
-          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
-        </xsl:call-template>
-      </xsl:with-param>
+      <xsl:with-param name="toc.params" select="$toc.params"/>
       <xsl:with-param name="toc">
-        <xsl:call-template name="component.toc"/>
+        <xsl:call-template name="component.toc">
+          <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
+        </xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
 
