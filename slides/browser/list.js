@@ -6,6 +6,7 @@ if (parseInt(navigator.appVersion.charAt(0)) >= 4) {
   isNav4 = (navigator.appName == "Netscape") ? true : false;
   isIE4 = (navigator.appName.indexOf("Microsoft") != -1) ? true : false;
 }
+
 function List(visible, width, height, bgColor) {
   this.setIndent = setIndent;
   this.addItem = addItem;
@@ -44,11 +45,20 @@ function List(visible, width, height, bgColor) {
   else this.bgColor = null;
   _mLists[_id++] = this;
 }
+
 function _listSetFont(i,j) {
   this.fontIntro = i;
   this.fontOutro = j;
 }
-function setIndent(indent) { this.i = indent; if(this.i < 0) { this.i = 0; this.space = false; } }
+
+function setIndent(indent) {
+    this.i = indent;
+    if (this.i < 0) {
+	this.i = 0;
+	this.space = false;
+    }
+}
+
 function setClip(layer, l, r, t, b) {
   if(isNav4) {
     layer.clip.left = l; layer.clip.right = r;
@@ -59,38 +69,44 @@ function setClip(layer, l, r, t, b) {
     layer.style.clip = "rect("+t+","+r+","+b+","+l+")";
   }
 }
+
 function _writeList() {
-  self.status = "List: Writing list...";
-  var layer, str, clip;
-  for(var i = 0; i < this.types.length; i++) { 
-    layer = this.items[i];
-    if(isNav4) layer.visibility = "hidden";
-    else layer.style.visibility = "hidden";
-    str = "";
-    if(isNav4) layer.document.open();
-    str += "<TABLE WIDTH="+this.width+" NOWRAP BORDER=0 CELLPADDING=0 CELLSPACING=0><TR>";
-    if(this.types[i] == "list") {
-      str += "<TD WIDTH=15 NOWRAP VALIGN=MIDDLE><A TARGET='_self' HREF=\"javascript:expand("+this.lists[i].id+");\"><IMG BORDER=0 SRC=\"../graphics/true.gif\" NAME=\"_img"+this.lists[i].id+"\"></A></TD>";
-      _pid++;
-    } else if(this.space)
-      str += "<TD WIDTH=15 NOWRAP>&nbsp;</TD>";
-    if(this.l>0 && this.i>0) str += "<TD WIDTH="+this.l*this.i+" NOWRAP>&nbsp;</TD>";
-    str += "<TD HEIGHT="+(this.height-3)+" WIDTH="+(this.width-15-this.l*this.i)+" VALIGN=MIDDLE ALIGN=LEFT>";
-    if(this.fontIntro) str += this.fontIntro;
-    str += this.strs[i];
-    if(this.fontOutro) str += this.fontOutro;
-    str += "</TD></TABLE>";
-    if(isNav4) {
-      layer.document.writeln(str);
-      layer.document.close();
-    } else layer.innerHTML = str;
-    if(this.types[i] == "list" && this.lists[i].visible)
-      this.lists[i]._writeList();
-  }
-  this.built = true;
-  this.needsRewrite = false;
-  self.status = '';
+    self.status = "List: Writing list...";
+    var layer, str, clip;
+    for (var i = 0; i < this.types.length; i++) {
+	layer = this.items[i];
+	if (isNav4) layer.visibility = "hidden";
+	else layer.style.visibility = "hidden";
+	str = "";
+
+	alert(layer);
+
+	if(isNav4) layer.document.open();
+
+	str += "<TABLE WIDTH="+this.width+" NOWRAP BORDER=0 CELLPADDING=0 CELLSPACING=0><TR>";
+	if(this.types[i] == "list") {
+	    str += "<TD WIDTH=15 NOWRAP VALIGN=MIDDLE><A TARGET='_self' HREF=\"javascript:expand("+this.lists[i].id+");\"><IMG BORDER=0 SRC=\"../graphics/true.gif\" NAME=\"_img"+this.lists[i].id+"\"></A></TD>";
+	    _pid++;
+	} else if(this.space)
+	    str += "<TD WIDTH=15 NOWRAP>&nbsp;</TD>";
+	if(this.l>0 && this.i>0) str += "<TD WIDTH="+this.l*this.i+" NOWRAP>&nbsp;</TD>";
+	str += "<TD HEIGHT="+(this.height-3)+" WIDTH="+(this.width-15-this.l*this.i)+" VALIGN=MIDDLE ALIGN=LEFT>";
+	if(this.fontIntro) str += this.fontIntro;
+	str += this.strs[i];
+	if(this.fontOutro) str += this.fontOutro;
+	str += "</TD></TABLE>";
+	if(isNav4) {
+	    layer.document.writeln(str);
+	    layer.document.close();
+	} else layer.innerHTML = str;
+	if(this.types[i] == "list" && this.lists[i].visible)
+	    this.lists[i]._writeList();
+    }
+    this.built = true;
+    this.needsRewrite = false;
+    self.status = '';
 }
+
 function _showList() {
   var layer;
   for(var i = 0; i < this.types.length; i++) { 
@@ -107,6 +123,7 @@ function _showList() {
   this.shown = true;
   this.needsUpdate = false;
 }
+
 function _updateList(pVis, x, y) {
   var currTop = y, layer;
   for(var i = 0; i < this.types.length; i++) { 
@@ -142,6 +159,7 @@ function _updateList(pVis, x, y) {
   }
   return currTop;
 }
+
 function _updateParent(pid, l) {
   var layer;
   if(!l) l = 0;
@@ -151,43 +169,57 @@ function _updateParent(pid, l) {
     if(this.types[i] == "list")
       this.lists[i]._updateParent(pid, l+1);
 }
+
 function expand(i) {
   _mLists[i].visible = !_mLists[i].visible;
   if(_mLists[i].onexpand != null) _mLists[i].onexpand(_mLists[i].id);
   _mLists[_mLists[i].pid].rebuild();
   if(_mLists[i].postexpand != null) _mLists[i].postexpand(_mLists[i].id);
 }
+
 function build(x, y) {
+    alert("got here1");
+
   this._updateParent(this.id);
   this._writeList();
   this._showList();
   this._updateList(true, x, y);
   this.x = x; this.y = y;
 }
-function rebuild() { this._updateList(true, this.x, this.y); }
+
+function rebuild() {
+    this._updateList(true, this.x, this.y);
+}
+
 function addItem(str, bgColor, layer) {
-  var testLayer = false;
-  if(!document.all) document.all = document.layers;
-  if(!layer) {
-    if(isIE4 || !this.parLayer) testLayer = eval('document.all.lItem'+_lid);
-    else {
-      _pLayer = this.parLayer;
-      testLayer = eval('_pLayer.document.layers.lItem'+_lid);
+    var testLayer = false;
+    if(!document.all) document.all = document.layers;
+    if(!layer) {
+	if(isIE4 || !this.parLayer) {
+	    alert('document.all.lItem'+_lid);
+	    testLayer = eval('document.all.lItem'+_lid);
+	} else {
+	    _pLayer = this.parLayer;
+	    testLayer = eval('_pLayer.document.layers.lItem'+_lid);
+	}
+	if(testLayer) {
+	    layer = testLayer;
+	} else {
+	    if(isNav4) {
+		if(this.parLayer) layer = new Layer(this.width, this.parLayer);
+		else layer = new Layer(this.width);
+	    } else {
+		return;
+	    }
+	}
     }
-    if(testLayer) layer = testLayer;
-    else {
-      if(isNav4) {
-        if(this.parLayer) layer = new Layer(this.width, this.parLayer);
-        else layer = new Layer(this.width);
-      } else return;
-    }
-  }
   if(bgColor) layer.oBgColor = bgColor;
   this.items[this.items.length] = layer;
   this.types[this.types.length] = "item";
   this.strs[this.strs.length] = str;
   _lid++;
 }
+
 function addList(list, str, bgColor, layer) {
   var testLayer = false;
   if(!document.all) document.all = document.layers;
@@ -213,3 +245,4 @@ function addList(list, str, bgColor, layer) {
   list.parent = this;
   _lid++;
 }
+

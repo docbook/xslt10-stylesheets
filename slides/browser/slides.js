@@ -5,8 +5,18 @@ function selectBrowser() {
     var browserVersion = parseFloat(navigator.appVersion);
     var userAgent = navigator.userAgent;;
 
+    if (browserName == "Netscape" && browserVersion>=5) {
+	// Netscape 6 is Mozilla 5
+	return "ns6";
+    }
+
     if (browserName == "Netscape" && browserVersion>=4) {
 	return "ns4";
+    }
+
+    if (browserName == "Microsoft Internet Explorer"
+	&& userAgent.indexOf("MSIE 6") > 0) {
+	return "ie6";
     }
 
     if (browserName == "Microsoft Internet Explorer"
@@ -17,9 +27,14 @@ function selectBrowser() {
     return null;
 }
 
-function newPage(filename) {
-    if (selectBrowser() != "ie5") {
+function newPage(filename,overlay) {
+    if (selectBrowser() != "ie5"
+	&& selectBrowser() != "ie6") {
 	return;
+    }
+
+    if (overlay != 0) {
+	overlaySetup('ll');
     }
 
     var parent = self.parent;
@@ -48,7 +63,7 @@ function newPage(filename) {
     }
 }
 
-function navigate (bk,fw) {
+function navigate (bk,fw,overlay) {
     var frame = window;
     if (frame.name != "foil") {
 	frame = frame.parent;
