@@ -169,6 +169,7 @@
 		"action|application
                 |classname|methodname|interfacename|exceptionname
                 |ooclass|oointerface|ooexception
+                |package
                 |command|computeroutput
 		|database|email|envar|errorcode|errorname|errortype|errortext|filename
 		|function|guibutton|guiicon|guilabel|guimenu|guimenuitem
@@ -4204,7 +4205,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % ooclass.element "INCLUDE">
 <![%ooclass.element;[
-<!ELEMENT ooclass %ho; (modifier*, classname)>
+<!ELEMENT ooclass %ho; ((modifier|package)*, classname)>
 <!--end of ooclass.element-->]]>
 
 <!ENTITY % ooclass.attlist "INCLUDE">
@@ -4224,7 +4225,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % oointerface.element "INCLUDE">
 <![%oointerface.element;[
-<!ELEMENT oointerface %ho; (modifier*, interfacename)>
+<!ELEMENT oointerface %ho; ((modifier|package)*, interfacename)>
 <!--end of oointerface.element-->]]>
 
 <!ENTITY % oointerface.attlist "INCLUDE">
@@ -4244,7 +4245,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % ooexception.element "INCLUDE">
 <![%ooexception.element;[
-<!ELEMENT ooexception %ho; (modifier*, exceptionname)>
+<!ELEMENT ooexception %ho; ((modifier|package)*, exceptionname)>
 <!--end of ooexception.element-->]]>
 
 <!ENTITY % ooexception.attlist "INCLUDE">
@@ -6262,6 +6263,26 @@ OtherCredit. -->
 >
 <!--end of classname.attlist-->]]>
 <!--end of classname.module-->]]>
+
+<!ENTITY % package.module "INCLUDE">
+<![%package.module;[
+<!ENTITY % local.package.attrib "">
+<!ENTITY % package.role.attrib "%role.attrib;">
+
+<!ENTITY % package.element "INCLUDE">
+<![%package.element;[
+<!ELEMENT package %ho; (%smallcptr.char.mix;)*>
+<!--end of package.element-->]]>
+
+<!ENTITY % package.attlist "INCLUDE">
+<![%package.attlist;[
+<!ATTLIST package
+		%common.attrib;
+		%package.role.attrib;
+		%local.package.attrib;
+>
+<!--end of package.attlist-->]]>
+<!--end of package.module-->]]>
 
 <!ENTITY % co.module "INCLUDE">
 <![%co.module;[
