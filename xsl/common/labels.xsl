@@ -469,7 +469,9 @@ element label.</para>
 <xsl:template match="figure|table|example|equation|procedure"
               mode="label.markup">
   <xsl:variable name="pchap"
-                select="ancestor::chapter|ancestor::appendix"/>
+                select="ancestor::chapter
+                        |ancestor::appendix
+                        |ancestor::article[ancestor::book]"/>
 
   <xsl:variable name="prefix">
     <xsl:if test="count($pchap) &gt; 0">
