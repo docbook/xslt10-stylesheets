@@ -20,6 +20,7 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
+ <xsl:if test="$generate.index != 0">
   <xsl:choose>
     <xsl:when test="$make.index.markup != 0">
       <fo:block>
@@ -37,6 +38,7 @@
       </fo:block>
     </xsl:otherwise>
   </xsl:choose>
+ </xsl:if>
 </xsl:template>
 
 <xsl:template match="book/index">
@@ -44,6 +46,7 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
+ <xsl:if test="$generate.index != 0">
   <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster">
       <xsl:with-param name="pageclass">
@@ -96,6 +99,7 @@
       </xsl:if>
     </fo:flow>
   </fo:page-sequence>
+ </xsl:if>
 </xsl:template>
 
 <xsl:template match="index/title"></xsl:template>
