@@ -104,7 +104,7 @@
   <xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="/section">
+<xsl:template match="section[not(parent::*) or $rootid = @id]">
   <xsl:variable name="id">
     <xsl:call-template name="object.id">
       <xsl:with-param name="object" select="ancestor::reference"/>
