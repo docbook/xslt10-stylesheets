@@ -95,11 +95,11 @@
 <gentext key="revhistory" text="Catatan Revisi"/>
 <gentext key="Revision" text="Revisi"/>
 <gentext key="revision" text="Revisi"/>
-<gentext key="sect1" text="Section"/> <!-- en -->
-<gentext key="sect2" text="Section"/> <!-- en -->
-<gentext key="sect3" text="Section"/> <!-- en -->
-<gentext key="sect4" text="Section"/> <!-- en -->
-<gentext key="sect5" text="Section"/> <!-- en -->
+<gentext key="sect1" text="Bagian"/>
+<gentext key="sect2" text="Bagian"/>
+<gentext key="sect3" text="Bagian"/>
+<gentext key="sect4" text="Bagian"/>
+<gentext key="sect5" text="Bagian"/>
 <gentext key="Section" text="Bagian"/>
 <gentext key="section" text="bagian"/>
 <gentext key="See" text="Lihat"/>
@@ -138,8 +138,8 @@
 <gentext key="Notes" text="Catatan"/>
 <gentext key="Pgs" text="Hal."/>
 <gentext key="pgs" text="Hal."/>
-<gentext key="Revisedby" text="Revised by: "/>
-<gentext key="revisedby" text="Revised by: "/>
+<gentext key="Revisedby" text="Direvisi oleh: "/>
+<gentext key="revisedby" text="Direvisi oleh: "/>
 <gentext key="TableNotes" text="Catatan"/>
 <gentext key="tablenotes" text="Catatan"/>
 <gentext key="TableofContents" text="Daftar Isi"/>
