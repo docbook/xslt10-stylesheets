@@ -5,7 +5,7 @@
 <article>
 <articleinfo>
 <title>DocBook XSL Stylesheets Release Notes</title>
-<pubdate>18 Mar 2002</pubdate>
+<pubdate>20 Mar 2002</pubdate>
 <releaseinfo role="cvs">$Id$
 </releaseinfo>
 
@@ -13,9 +13,10 @@
 
 </articleinfo>
 
-<para>Release notes for the DocBook XSL Stylesheets. This file documents (mostly)
-changes to the public APIs. What, exactly, counts as a public API is still somewhat
-in question, but it includes at least the global parameters.</para>
+<para>These are the release notes for the DocBook XSL Stylesheets.
+This file documents (mostly) changes to the public APIs. What,
+exactly, counts as a public API is still somewhat in question, but it
+includes at least the global parameters.</para>
 
 <itemizedlist><title>Release 1.50.0</title>
 
