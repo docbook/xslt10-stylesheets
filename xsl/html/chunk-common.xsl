@@ -89,7 +89,7 @@
       </xsl:call-template>
     </xsl:when>
     <xsl:when test="local-name($node) = 'section'
-                    and $chunk.section.depth &gt;= count(ancestor::section)+1
+                    and $chunk.section.depth &gt;= count($node/ancestor::section)+1
                     and ($chunk.first.sections != 0
                          or count($node/preceding-sibling::section) &gt; 0)">
       <xsl:call-template name="chunk">
