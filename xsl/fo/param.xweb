@@ -325,6 +325,8 @@ zero by default, so this is simply the page-master region-left.
 &footers.on.blank.pages;
 &header.rule;
 &footer.rule;
+&header.content.properties;
+&footer.content.properties;
 </reference>
 
 <reference><title>Font Families</title>
@@ -469,6 +471,7 @@ around all these parameters.</para>
 <src:fragref linkend="draft.mode.frag"/>
 <src:fragref linkend="draft.watermark.image.frag"/>
 <src:fragref linkend="firstterm.only.link.frag"/>
+<src:fragref linkend="footer.content.properties.frag"/>
 <src:fragref linkend="footer.rule.frag"/>
 <src:fragref linkend="footers.on.blank.pages.frag"/>
 <src:fragref linkend="footnote.font.size.frag"/>
@@ -490,6 +493,7 @@ around all these parameters.</para>
 <src:fragref linkend="glossterm.separation.frag"/>
 <src:fragref linkend="glossterm.width.frag"/>
 <src:fragref linkend="graphic.default.extension.frag"/>
+<src:fragref linkend="header.content.properties.frag"/>
 <src:fragref linkend="header.rule.frag"/>
 <src:fragref linkend="headers.on.blank.pages.frag"/>
 <src:fragref linkend="hyphenate.frag"/>
