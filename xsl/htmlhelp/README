@@ -1,0 +1,47 @@
+README for the HTML Help DocBook Stylesheet
+===========================================
+
+This is simple stylesheet which can be used to generate source files
+for HTML Help. HTML Help is format which is used by newer Windows
+applications and by Windows operating system itself. It allows you to
+pack set of HTML files and images into one file and attach TOC, index
+and fulltext search capability to it. More informations about HTML
+Help format and HTML Help Workshop tool can be found at
+http://msdn.microsoft.com/library/tools/htmlhelp/chm/hh1start.htm.
+
+This stylesheet is based on the XSL DocBook Stylesheet distribution
+(especially on JavaHelp code) from Norman Walsh. 
+
+This stylesheet imports chunk.xsl, thus set of HTML files is created
+in usual way. Additionally is created file htmlhelp.hhp which is
+project file for HTML Help Compiler and toc.hhc which holds structure
+of your document. Language identifier of HTML Help is taken from the
+top most element in your DocBook source. This is perfectly legal for
+documents in only one language. If language is not set, US English is
+defaulted. There is one problem - MS language codes are country
+sensitive, and this information is not available in DocBook source. If
+stylesheet selects bad code for you, edit langcodes.xml file, and
+remove all entries which have yours language code, but are located in
+inappropriate country.
+
+Title of whole HTML Help is taken from first title element in
+document.  Fulltext searching is automatically on. If your document
+contains index terms, they are automatically converted to ActiveX,
+which is recognized by HTML Help compiler.
+
+If you are generating HTML Help for non-Western Europe languages, you should
+change output encoding of your files, because HTML Help compiler improperly 
+handles UTF-8 and even character entities in TOC file and index entries. 
+This can be easily done by "driver" file like this:
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+		version="1.0">
+   <xsl:output encoding="windows-1250"/>
+   <xsl:import href="<path to file.../contrib/htmlhelp/docbook.xsl...>"/>
+</xsl:stylesheet>
+
+Currently only XT processor is supported, support for other processors
+may be added in the future.
+
+If you have any comments and suggestion about this stylesheet feel free
+to contact author at <jirka@kosek.cz>.
