@@ -22,7 +22,7 @@
 
 <!ELEMENT div (ttl?, objttl?, xreftext?, page?, (div|obj)*)>
 <!ATTLIST div
-        targetptr  CDATA   #REQUIRED
+        targetptr  CDATA   #IMPLIED
         element   CDATA   #IMPLIED
         name      CDATA   #IMPLIED
         number    CDATA   #IMPLIED
@@ -38,7 +38,7 @@
 
 <!ELEMENT obj (ttl?, objttl?, xreftext?, page?)>
 <!ATTLIST obj
-        targetptr  CDATA   #REQUIRED
+        targetptr  CDATA   #IMPLIED
         element   CDATA   #IMPLIED
         name      CDATA   #IMPLIED
         number    CDATA   #IMPLIED
