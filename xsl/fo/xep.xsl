@@ -49,6 +49,34 @@
         <xsl:value-of select="$title"/>
       </xsl:attribute>
     </xsl:element>
+
+    <xsl:if test="//keyword">
+      <xsl:element name="rx:meta-field">
+        <xsl:attribute name="name">keywords</xsl:attribute>
+        <xsl:attribute name="value">
+          <xsl:for-each select="//keyword">
+            <xsl:value-of select="."/>
+            <xsl:if test="position() != last()">
+              <xsl:text>, </xsl:text>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:attribute>
+      </xsl:element>
+    </xsl:if>
+
+    <xsl:if test="//subjectterm">
+      <xsl:element name="rx:meta-field">
+        <xsl:attribute name="name">subject</xsl:attribute>
+        <xsl:attribute name="value">
+          <xsl:for-each select="//subjectterm">
+            <xsl:value-of select="."/>
+            <xsl:if test="position() != last()">
+              <xsl:text>, </xsl:text>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:attribute>
+      </xsl:element>
+    </xsl:if>
   </rx:meta-info>
 </xsl:template>
 
