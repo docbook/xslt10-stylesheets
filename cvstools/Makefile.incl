@@ -1,3 +1,6 @@
+# this file is a -*- makefile -*- snippet
+# use it to configure docbook open repository materials build
+
 CVSROOT=/sourceforge/docbook
 CVSTOOLSROOT=$(CVSROOT)/cvstools
 XSLROOT=$(CVSROOT)/xsl
