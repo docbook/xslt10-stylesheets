@@ -3,34 +3,33 @@ include ../cvstools/Makefile.incl
 
 VPATH=.:tests/
 
-.SUFFIXES: .html .fo .xml .pdf .index
+.SUFFIXES: .html .fo .xml .pdf .index .tex
 
 # testing mode, either dsssl or xsl
-MODE=xsl
+MODE		?= xsl
 
 # stylesheets to use
-XSLHTML=../xsl/html/docbook.xsl
-XSLFO=../xsl/fo/docbook.xsl
-XSLCHUNK=../xsl/html/chunk.xsl
-DSSSLHTML=../dsssl/html/docbook.dsl
-DSSSLPRINT=../dsssl/print/docbook.dsl
+XSLHTML		?= ../xsl/html/docbook.xsl
+XSLFO		?= ../xsl/fo/docbook.xsl
+XSLCHUNK	?= ../xsl/html/chunk.xsl
+DSSSLHTML	?= ../dsssl/html/docbook.dsl
+DSSSLPRINT	?= ../dsssl/print/docbook.dsl
 
 # whether to do chunking
-CHUNK=0
+CHUNK		?= 0
 # whether to run tidy on resulting HTML output
-USETIDY=0
+USETIDY		?= 0
 # whether to run validation before running the test
-VALIDATE=0
+VALIDATE	?= 0
 
 # how to make DSSSL indexes
 DSSSLINDEXER	?= perl $(DSSSLROOT)/bin/collateindex.pl
 
 # additional XSL parameters, if any
-XSLPARAM=
+XSLPARAM	?=
 
-# can be xep, fop, or tex
-#  fixme: should be in Makefile.incl ?
-FO_FORMATTER=xep
+# what to use to format XSL FO
+FO_FORMATTER	?= xep
 
 
 # ======================================================================
@@ -66,7 +65,7 @@ endif
 
 .xml.index:
 ifeq ($(MODE),xsl)
-	@echo "don't know how to create XSL indexes"
+	@echo "don't know how to create XSL indexes" >&2
 	exit 1
 else
 	@test -f $*.index.xml || ( echo $(DSSSLINDEXER) -N -o $*.index.xml ; $(DSSSLINDEXER) -N -o $*.index.xml )
@@ -75,8 +74,12 @@ else
 endif
 
 %.index.xml:	%.index
+ifeq ($(MODE),xsl)
+	@echo "don't know how to create XSL indexes" >&2
+	exit 1
+else
 	$(DSSSLINDEXER) -o $@ $<
-
+endif
 
 .xml.fo:
 ifeq ($(VALIDATE),1)
@@ -88,7 +91,35 @@ else
 	$(JADE) fo $(DSSSLPRINT) $< -o $@
 endif
 
+.xml.tex:
+ifeq ($(VALIDATE),1)
+	$(XJPARSE) $<
+endif
+ifeq ($(MODE),xsl)
+	@echo "don't know how to make TeX with XSL, is it useful?" >&2
+	exit 1
+else
+	$(JADE) tex $(DSSSLPRINT) $< -o $@
+endif
+
+.tex.dvi:
+ifeq ($(MODE),xsl)
+	@echo "don't know how to do this in XSL, is it useful?" >&2
+	exit 1
+else
+	jadetex $<
+endif
+
+.tex.pdf:
+ifeq ($(MODE),xsl)
+	@echo "don't know how to do this in XSL, is it useful?" >&2
+	exit 1
+else
+	pdfjadetex $<
+endif
+
 .fo.pdf:
+ifeq ($(MODE),xsl)
 ifeq ($(FO_FORMATTER),tex)
 	pdftex "&pdfxmltex" $<
 	@if [ `grep Rerun $(basename $@).log | wc -l` -gt 0 ]; then \
@@ -105,9 +136,14 @@ ifeq ($(FO_FORMATTER),xep)
 	xep $<
 else
 	echo No formatter specified. How would you like me to make the PDF file?
+endif				# xep
+endif				# fop
+endif				# tex
+else				# dsssl
+	@echo "don't know how to do this in DSSSL, is it useful?" >&2
+	exit 1
 endif
-endif
-endif
+
 
 # ======================================================================
 
