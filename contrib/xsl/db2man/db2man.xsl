@@ -69,13 +69,34 @@
 
 
 <xsl:template match="para">
-  <xsl:variable name="foo">
-    <xsl:apply-templates/>
-  </xsl:variable>
   <xsl:text>&#10;.PP&#10;</xsl:text>
-  <xsl:value-of select="normalize-space($foo)"/>
-  <xsl:text>
-</xsl:text>
+  <xsl:for-each select="node()">
+    <xsl:choose>
+      <xsl:when test="self::screen|self::programlisting|self::itemizedlist|self::orderedlist|self::variablelist">
+        <xsl:text>&#10;</xsl:text>
+        <xsl:apply-templates select="."/>
+      </xsl:when>
+      <xsl:when test="self::text()">
+	<xsl:if test="starts-with(translate(.,'&#10;',' '), ' ') and
+		      preceding-sibling::node()[name(.)!='']">
+	  <xsl:text> </xsl:text>
+	</xsl:if>
+	<xsl:value-of select="normalize-space(.)"/>
+	<xsl:if
+        test="translate(substring(., string-length(.), 1),'&#10;',' ') = ' ' and
+              following-sibling::node()[name(.)!='']">
+	  <xsl:text> </xsl:text>
+	</xsl:if>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="foo">
+          <xsl:apply-templates select="."/>
+        </xsl:variable>
+        <xsl:value-of select="normalize-space($foo)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:for-each>
+  <xsl:text>&#10;</xsl:text>
 </xsl:template>
   
 <xsl:template match="refentry">
@@ -275,6 +296,100 @@
     <xsl:value-of select="$content" />
   </xsl:if>
   <xsl:apply-templates mode="italic" select="@url" />
+</xsl:template>
+
+<!-- Translate some entities to textual equivalents. -->
+<xsl:template name="replace-string">
+  <xsl:param name="content" select="''"/>
+  <xsl:param name="replace" select="''"/>
+  <xsl:param name="with" select="''"/>
+  <xsl:choose>
+    <xsl:when test="not(contains($content,$replace))">
+      <xsl:value-of select="$content"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="substring-before($content,$replace)"/>
+      <xsl:value-of select="$with"/>
+      <xsl:call-template name="replace-string">
+        <xsl:with-param name="content"
+             select="substring-after($content,$replace)"/>
+        <xsl:with-param name="replace" select="$replace"/>
+        <xsl:with-param name="with" select="$with"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="replace-mdash">
+  <xsl:param name="content" select="''"/>
+  <xsl:call-template name="replace-string">
+    <xsl:with-param name="content" select="$content"/>
+    <xsl:with-param name="replace" select="'&#8212;'"/>
+    <xsl:with-param name="with" select="'--'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="replace-hellip">
+  <xsl:param name="content" select="''"/>
+  <xsl:call-template name="replace-string">
+    <xsl:with-param name="content" select="$content"/>
+    <xsl:with-param name="replace" select="'&#8230;'"/>
+    <xsl:with-param name="with" select="'...'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="replace-setmn">
+  <xsl:param name="content" select="''"/>
+  <xsl:call-template name="replace-string">
+    <xsl:with-param name="content" select="$content"/>
+    <xsl:with-param name="replace" select="'&#8726;'"/>
+    <xsl:with-param name="with" select="'\\'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="replace-minus">
+  <xsl:param name="content" select="''"/>
+  <xsl:value-of select="translate($content,'&#8722;','-')"/>
+</xsl:template>
+
+<xsl:template name="replace-backslash">
+  <xsl:param name="content" select="''"/>
+  <xsl:call-template name="replace-string">
+    <xsl:with-param name="content" select="$content"/>
+    <xsl:with-param name="replace" select="'\'"/>
+    <xsl:with-param name="with" select="'\\'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="replace-entities">
+  <xsl:param name="content" select="''"/>
+  <xsl:call-template name="replace-hellip">
+    <xsl:with-param name="content">
+      <xsl:call-template name="replace-minus">
+        <xsl:with-param name="content">
+          <xsl:call-template name="replace-mdash">
+            <xsl:with-param name="content">
+              <xsl:call-template name="replace-setmn">
+                <xsl:with-param name="content">
+		  <xsl:call-template name="replace-backslash">
+		    <xsl:with-param name="content" select="$content"/>
+		  </xsl:call-template>
+                </xsl:with-param>
+              </xsl:call-template>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="text()">
+  <xsl:call-template name="replace-entities">
+    <xsl:with-param name="content">
+      <xsl:value-of select="."/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="/">
