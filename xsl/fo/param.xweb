@@ -342,6 +342,8 @@ zero by default, so this is simply the page-master region-left.
 &double.sided;
 &body.margin.bottom;
 &body.margin.top;
+&body.start.indent;
+&body.end.indent;
 &alignment;
 &hyphenate;
 &line-height;
@@ -410,8 +412,13 @@ zero by default, so this is simply the page-master region-left.
 &verbatim.properties;
 &monospace.verbatim.properties;
 &sidebar.properties;
+&sidebar.title.properties;
 &sidebar.float.type;
-&side.float.properties;
+&sidebar.float.width;
+&margin.note.properties;
+&margin.note.title.properties;
+&margin.note.float.type;
+&margin.note.width;
 &component.title.properties;
 &section.title.properties;
 &section.title.level1.properties;
@@ -532,6 +539,8 @@ around all these parameters.</para>
 <src:fragref linkend="body.font.size.frag"/>
 <src:fragref linkend="body.margin.bottom.frag"/>
 <src:fragref linkend="body.margin.top.frag"/>
+<src:fragref linkend="body.start.indent.frag"/>
+<src:fragref linkend="body.end.indent.frag"/>
 <src:fragref linkend="bridgehead.in.toc.frag"/>
 <src:fragref linkend="callout.defaultcolumn.frag"/>
 <src:fragref linkend="callout.graphics.extension.frag"/>
@@ -635,6 +644,10 @@ around all these parameters.</para>
 <src:fragref linkend="make.index.markup.frag"/>
 <src:fragref linkend="make.single.year.ranges.frag"/>
 <src:fragref linkend="make.year.ranges.frag"/>
+<src:fragref linkend="margin.note.properties.frag"/>
+<src:fragref linkend="margin.note.title.properties.frag"/>
+<src:fragref linkend="margin.note.float.type.frag"/>
+<src:fragref linkend="margin.note.width.frag"/>
 <src:fragref linkend="marker.section.level.frag"/>
 <src:fragref linkend="menuchoice.menu.separator.frag"/>
 <src:fragref linkend="menuchoice.separator.frag"/>
@@ -727,8 +740,9 @@ around all these parameters.</para>
 <src:fragref linkend="shade.verbatim.style.frag"/>
 <src:fragref linkend="show.comments.frag"/>
 <src:fragref linkend="sidebar.properties.frag"/>
+<src:fragref linkend="sidebar.title.properties.frag"/>
 <src:fragref linkend="sidebar.float.type.frag"/>
-<src:fragref linkend="side.float.properties.frag"/>
+<src:fragref linkend="sidebar.float.width.frag"/>
 <src:fragref linkend="simplesect.in.toc.frag"/>
 <src:fragref linkend="subscript.properties.frag"/>
 <src:fragref linkend="superscript.properties.frag"/>
