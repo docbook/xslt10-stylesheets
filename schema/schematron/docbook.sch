@@ -164,4 +164,30 @@
   </pattern>
   -->
 
+  <!-- ============================================================ -->
+  <!-- Repeated Titles Terms                                        -->
+  <!-- ============================================================ -->
+
+  <pattern name="Duplicated titles">
+    <rule context="setinfo|bookinfo|partinfo|referenceinfo">
+      <assert test="count(title) &lt; 2"><name/> contains multiple titles</assert>
+    </rule>
+    <rule context="prefaceinfo|chapterinfo|appendixinfo">
+      <assert test="count(title) &lt; 2"><name/> contains multiple titles</assert>
+    </rule>
+    <rule context="bibliographyinfo|glossaryinfo|indexinfo">
+      <assert test="count(title) &lt; 2"><name/> contains multiple titles</assert>
+    </rule>
+    <rule context="sect1info|sect2info|sect3info|sect4info|sect5info">
+      <assert test="count(title) &lt; 2"><name/> contains multiple titles</assert>
+    </rule>
+    <rule context="sectioninfo|simplesectionfo">
+      <assert test="count(title) &lt; 2"><name/> contains multiple titles</assert>
+    </rule>
+    <rule context="refsect1info|refsect2info|refsect3info">
+      <assert test="count(title) &lt; 2"><name/> contains multiple titles</assert>
+    </rule>
+  </pattern>
+
+  <!-- FIXME: test for duplicated *info/title and */title. they must be the same -->
 </schema>
