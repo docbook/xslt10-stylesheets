@@ -394,7 +394,10 @@ of DocBook.</para>
               <ref name="toc"/>
             </optional>
             <oneOrMore>
-              <ref name="book.class"/>
+              <choice>
+                <ref name="set"/>
+                <ref name="book.class"/>
+              </choice>
             </oneOrMore>
             <optional>
               <ref name="setindex"/>
