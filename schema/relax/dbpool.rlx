@@ -1,0 +1,7589 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- -*- XML -*- -->
+
+<module moduleVersion="1.2"
+	relaxCoreVersion="1.0"
+	xmlns="http://www.xml.gr.jp/xmlns/relaxCore">
+
+  <interface/>
+
+<!-- ...................................................................... -->
+<!-- DocBook RELAX Schema V4.1.2.1......................................... -->
+<!-- ...................................................................... -->
+<!-- Copyright 2000, Norman Walsh, Sun Microsystems.  Schema
+     derived from DocBook DTD Copyright 1992-2000 HaL Computer....  -->
+
+<!-- ...................................................................... -->
+<!-- General-purpose semantics entities ................................... -->
+
+<!-- yesorno.attvals ... -->
+
+<!-- ...................................................................... -->
+<!-- Entities for module inclusions ....................................... -->
+
+<!--ENTITY % dbpool.redecl.module "IGNORE"-->
+
+<!-- ...................................................................... -->
+<!-- Entities for element classes and mixtures ............................ -->
+
+<!-- "Ubiquitous" classes: ndxterm.class and beginpage -->
+
+<!--ENTITY % local.ndxterm.class ""-->
+<hedgeRule label='ndxterm.class'>
+  <choice>
+    <ref label='indexterm'/>
+    <!-- %local.ndxterm.class; -->
+  </choice>
+</hedgeRule>
+
+<!-- Object-level classes ................................................. -->
+
+<!--ENTITY % local.list.class ""-->
+<hedgeRule label='list.class'>
+  <choice>
+    <ref label='calloutlist'/>
+    <ref label='glosslist'/>
+    <ref label='itemizedlist'/>
+    <ref label='orderedlist'/>
+    <ref label='segmentedlist'/>
+    <ref label='simplelist'/>
+    <ref label='variablelist'/>
+    <!-- %local.list.class; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.admon.class ""-->
+<hedgeRule label='admon.class'>
+  <choice>
+    <ref label='caution'/>
+    <ref label='important'/>
+    <ref label='note'/>
+    <ref label='tip'/>
+    <ref label='warning'/>
+    <!-- %local.admon.class; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.linespecific.class ""-->
+<hedgeRule label='linespecific.class'>
+  <choice>
+    <ref label='literallayout'/>
+    <ref label='programlisting'/>
+    <ref label='programlistingco'/>
+    <ref label='screen'/>
+    <ref label='screenco'/>
+    <ref label='screenshot'/>
+    <!-- %local.linespecific.class; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.method.synop.class ""-->
+<hedgeRule label='method.synop.class'>
+  <choice>
+    <ref label='constructorsynopsis'/>
+    <ref label='destructorsynopsis'/>
+    <ref label='methodsynopsis'/>
+    <!-- %local.method.synop.class; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.synop.class ""-->
+<hedgeRule label='synop.class'>
+  <choice>
+    <ref label='synopsis'/>
+    <ref label='cmdsynopsis'/>
+    <ref label='funcsynopsis'/>
+    <ref label='classsynopsis'/>
+    <ref label='fieldsynopsis'/>
+    <!-- %method.synop.class; -->
+    <!-- %local.synop.class; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.para.class ""-->
+<hedgeRule label='para.class'>
+  <choice>
+    <ref label='formalpara'/>
+    <ref label='para'/>
+    <ref label='simpara'/>
+    <!-- %local.para.class; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.informal.class ""-->
+<hedgeRule label='informal.class'>
+  <choice>
+    <ref label='address'/>
+    <ref label='blockquote'/>
+    <ref label='graphic'/>
+    <ref label='graphicco'/>
+    <ref label='mediaobject'/>
+    <ref label='mediaobjectco'/>
+    <ref label='informalequation'/>
+    <ref label='informalexample'/>
+    <ref label='informalfigure'/>
+    <ref label='informaltable'/>
+    <!-- %local.informal.class; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.formal.class ""-->
+<hedgeRule label='formal.class'>
+  <choice>
+    <ref label='equation'/>
+    <ref label='example'/>
+    <ref label='figure'/>
+    <ref label='table'/>
+    <!-- %local.formal.class; -->
+  </choice>
+</hedgeRule>
+
+<!-- The DocBook TC may produce an official EBNF module for DocBook. -->
+<!-- This PE provides the hook by which it can be inserted into the DTD. -->
+<!--ENTITY % ebnf.block.hook ""-->
+
+<!--ENTITY % local.compound.class ""-->
+<hedgeRule label='compound.class'>
+  <choice>
+    <ref label='msgset'/>
+    <ref label='procedure'/>
+    <ref label='sidebar'/>
+    <ref label='qandaset'/>
+    <!-- %ebnf.block.hook; -->
+    <!-- %local.compound.class; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.genobj.class ""-->
+<hedgeRule label='genobj.class'>
+  <choice>
+    <ref label='anchor'/>
+    <ref label='bridgehead'/>
+    <ref label='remark'/>
+    <ref label='highlights'/>
+    <!-- %local.genobj.class; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.descobj.class ""-->
+<hedgeRule label='descobj.class'>
+  <choice>
+    <ref label='abstract'/>
+    <ref label='authorblurb'/>
+    <ref label='epigraph'/>
+    <!-- %local.descobj.class; -->
+  </choice>
+</hedgeRule>
+
+<!-- Character-level classes .............................................. -->
+
+<!--ENTITY % local.xref.char.class ""-->
+<hedgeRule label='xref.char.class'>
+  <choice>
+    <ref label='footnoteref'/>
+    <ref label='xref'/>
+    <!-- %local.xref.char.class; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.gen.char.class ""-->
+<hedgeRule label='gen.char.class'>
+  <choice>
+    <ref label='abbrev'/>
+    <ref label='acronym'/>
+    <ref label='citation'/>
+    <ref label='citerefentry'/>
+    <ref label='citetitle'/>
+    <ref label='emphasis'/>
+    <ref label='firstterm'/>
+    <ref label='foreignphrase'/>
+    <ref label='glossterm'/>
+    <ref label='footnote'/>
+    <ref label='phrase'/>
+    <ref label='quote'/>
+    <ref label='trademark'/>
+    <ref label='wordasword'/>
+    <!-- %local.gen.char.class; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.link.char.class ""-->
+<hedgeRule label='link.char.class'>
+  <choice>
+    <ref label='link'/>
+    <ref label='olink'/>
+    <ref label='ulink'/>
+    <!-- %local.link.char.class; -->
+  </choice>
+</hedgeRule>
+
+<!-- The DocBook TC may produce an official EBNF module for DocBook. -->
+<!-- This PE provides the hook by which it can be inserted into the DTD. -->
+<!--ENTITY % ebnf.inline.hook ""-->
+
+<!--ENTITY % local.tech.char.class ""-->
+<hedgeRule label='tech.char.class'>
+  <choice>
+    <ref label='action'/>
+    <ref label='application'/>
+    <ref label='classname'/>
+    <ref label='methodname'/>
+    <ref label='interfacename'/>
+    <ref label='exceptionname'/>
+    <ref label='ooclass'/>
+    <ref label='oointerface'/>
+    <ref label='ooexception'/>
+    <ref label='command'/>
+    <ref label='computeroutput'/>
+    <ref label='database'/>
+    <ref label='email'/>
+    <ref label='envar'/>
+    <ref label='errorcode'/>
+    <ref label='errorname'/>
+    <ref label='errortype'/>
+    <ref label='filename'/>
+    <ref label='function'/>
+    <ref label='guibutton'/>
+    <ref label='guiicon'/>
+    <ref label='guilabel'/>
+    <ref label='guimenu'/>
+    <ref label='guimenuitem'/>
+    <ref label='guisubmenu'/>
+    <ref label='hardware'/>
+    <ref label='interface'/>
+    <ref label='keycap'/>
+    <ref label='keycode'/>
+    <ref label='keycombo'/>
+    <ref label='keysym'/>
+    <ref label='literal'/>
+    <ref label='constant'/>
+    <ref label='markup'/>
+    <ref label='medialabel'/>
+    <ref label='menuchoice'/>
+    <ref label='mousebutton'/>
+    <ref label='option'/>
+    <ref label='optional'/>
+    <ref label='parameter'/>
+    <ref label='prompt'/>
+    <ref label='property'/>
+    <ref label='replaceable'/>
+    <ref label='returnvalue'/>
+    <ref label='sgmltag'/>
+    <ref label='structfield'/>
+    <ref label='structname'/>
+    <ref label='symbol'/>
+    <ref label='systemitem'/>
+    <ref label='token'/>
+    <ref label='type'/>
+    <ref label='userinput'/>
+    <ref label='varname'/>
+    <!-- %ebnf.inline.hook; -->
+    <!-- %local.tech.char.class; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.base.char.class ""-->
+<hedgeRule label='base.char.class'>
+  <choice>
+    <ref label='anchor'/>
+    <!-- %local.base.char.class; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.docinfo.char.class ""-->
+<hedgeRule label='docinfo.char.class'>
+  <choice>
+    <ref label='author'/>
+    <ref label='authorinitials'/>
+    <ref label='corpauthor'/>
+    <ref label='modespec'/>
+    <ref label='othercredit'/>
+    <ref label='productname'/>
+    <ref label='productnumber'/>
+    <ref label='revhistory'/>
+    <!-- %local.docinfo.char.class; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.other.char.class ""-->
+<hedgeRule label='other.char.class'>
+  <choice>
+    <ref label='remark'/>
+    <ref label='subscript'/>
+    <ref label='superscript'/>
+    <!-- %local.other.char.class; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.inlineobj.char.class ""-->
+<hedgeRule label='inlineobj.char.class'>
+  <choice>
+    <ref label='inlinegraphic'/>
+    <ref label='inlinemediaobject'/>
+    <ref label='inlineequation'/>
+    <!-- %local.inlineobj.char.class; -->
+  </choice>
+</hedgeRule>
+
+<!-- Redeclaration placeholder ............................................ -->
+
+<!-- For redeclaring entities that are declared after this point while
+     retaining their references to the entities that are declared before
+     this point -->
+
+<!--[%dbpool.redecl.module;[-->
+<!-- Defining rdbpool here makes some buggy XML parsers happy. -->
+<!--ENTITY % rdbpool ""-->
+<!--%rdbpool;-->
+<!--end of dbpool.redecl.module-->
+<!--] ]>-->
+
+<!-- Object-level mixtures ................................................ -->
+
+<!--
+                      list admn line synp para infm form cmpd gen  desc
+Component mixture       X    X    X    X    X    X    X    X    X    X
+Sidebar mixture         X    X    X    X    X    X    X    a    X
+Footnote mixture        X         X    X    X    X
+Example mixture         X         X    X    X    X
+Highlights mixture      X    X              X
+Paragraph mixture       X         X    X         X
+Admonition mixture      X         X    X    X    X    X    b    c
+Figure mixture                    X    X         X
+Table entry mixture     X    X    X         X    d
+Glossary def mixture    X         X    X    X    X         e
+Legal notice mixture    X    X    X         X    f
+
+a. Just Procedure; not Sidebar itself or MsgSet.
+b. No MsgSet.
+c. No Highlights.
+d. Just Graphic; no other informal objects.
+e. No Anchor, BridgeHead, or Highlights.
+f. Just BlockQuote; no other informal objects.
+-->
+
+<!--ENTITY % local.component.mix ""-->
+<hedgeRule label='component.mix'>
+  <choice>
+    <hedgeRef label='list.class'/>
+    <hedgeRef label='admon.class'/>
+    <hedgeRef label='linespecific.class'/>
+    <hedgeRef label='synop.class'/>
+    <hedgeRef label='para.class'/>
+    <hedgeRef label='informal.class'/>
+    <hedgeRef label='formal.class'/>
+    <hedgeRef label='compound.class'/>
+    <hedgeRef label='genobj.class'/>
+    <hedgeRef label='descobj.class'/>
+    <hedgeRef label='ndxterm.class'/>
+    <ref label='beginpage'/>
+    <!-- %local.component.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.sidebar.mix ""-->
+<hedgeRule label='sidebar.mix'>
+  <choice>
+    <hedgeRef label='list.class'/>
+    <hedgeRef label='admon.class'/>
+    <hedgeRef label='linespecific.class'/>
+    <hedgeRef label='synop.class'/>
+    <hedgeRef label='para.class'/>
+    <hedgeRef label='informal.class'/>
+    <hedgeRef label='formal.class'/>
+    <ref label='procedure'/>
+    <hedgeRef label='genobj.class'/>
+    <hedgeRef label='ndxterm.class'/>
+    <ref label='beginpage'/>
+    <!-- %local.sidebar.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.qandaset.mix ""-->
+<hedgeRule label='qandaset.mix'>
+  <choice>
+    <hedgeRef label='list.class'/>
+    <hedgeRef label='admon.class'/>
+    <hedgeRef label='linespecific.class'/>
+    <hedgeRef label='synop.class'/>
+    <hedgeRef label='para.class'/>
+    <hedgeRef label='informal.class'/>
+    <hedgeRef label='formal.class'/>
+    <ref label='procedure'/>
+    <hedgeRef label='genobj.class'/>
+    <hedgeRef label='ndxterm.class'/>
+    <!-- %local.qandaset.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.revdescription.mix ""-->
+<hedgeRule label='revdescription.mix'>
+  <choice>
+    <hedgeRef label='list.class'/>
+    <hedgeRef label='admon.class'/>
+    <hedgeRef label='linespecific.class'/>
+    <hedgeRef label='synop.class'/>
+    <hedgeRef label='para.class'/>
+    <hedgeRef label='informal.class'/>
+    <hedgeRef label='formal.class'/>
+    <ref label='procedure'/>
+    <hedgeRef label='genobj.class'/>
+    <hedgeRef label='ndxterm.class'/>
+    <!-- %local.revdescription.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.footnote.mix ""-->
+<hedgeRule label='footnote.mix'>
+  <choice>
+    <hedgeRef label='list.class'/>
+    <hedgeRef label='linespecific.class'/>
+    <hedgeRef label='synop.class'/>
+    <hedgeRef label='para.class'/>
+    <hedgeRef label='informal.class'/>
+    <!-- %local.footnote.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.example.mix ""-->
+<hedgeRule label='example.mix'>
+  <choice>
+    <hedgeRef label='list.class'/>
+    <hedgeRef label='linespecific.class'/>
+    <hedgeRef label='synop.class'/>
+    <hedgeRef label='para.class'/>
+    <hedgeRef label='informal.class'/>
+    <hedgeRef label='ndxterm.class'/>
+    <ref label='beginpage'/>
+    <!-- %local.example.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.highlights.mix ""-->
+<hedgeRule label='highlights.mix'>
+  <choice>
+    <hedgeRef label='list.class'/>
+    <hedgeRef label='admon.class'/>
+    <hedgeRef label='para.class'/>
+    <hedgeRef label='ndxterm.class'/>
+    <!-- %local.highlights.mix; -->
+  </choice>
+</hedgeRule>
+
+<!-- %formal.class; is explicitly excluded from many contexts in which
+     paragraphs are used -->
+<!--ENTITY % local.para.mix ""-->
+<hedgeRule label='para.mix'>
+  <choice>
+    <hedgeRef label='list.class'/>
+    <hedgeRef label='admon.class'/>
+    <hedgeRef label='linespecific.class'/>
+    <hedgeRef label='informal.class'/>
+    <hedgeRef label='formal.class'/>
+    <!-- %local.para.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.admon.mix ""-->
+<hedgeRule label='admon.mix'>
+  <choice>
+    <hedgeRef label='list.class'/>
+    <hedgeRef label='linespecific.class'/>
+    <hedgeRef label='synop.class'/>
+    <hedgeRef label='para.class'/>
+    <hedgeRef label='informal.class'/>
+    <hedgeRef label='formal.class'/>
+    <ref label='procedure'/>
+    <ref label='sidebar'/>
+    <ref label='anchor'/>
+    <ref label='bridgehead'/>
+    <ref label='remark'/>
+    <hedgeRef label='ndxterm.class'/>
+    <ref label='beginpage'/>
+    <!-- %local.admon.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.figure.mix ""-->
+<hedgeRule label='figure.mix'>
+  <choice>
+    <hedgeRef label='linespecific.class'/>
+    <hedgeRef label='synop.class'/>
+    <hedgeRef label='informal.class'/>
+    <hedgeRef label='ndxterm.class'/>
+    <ref label='beginpage'/>
+    <!-- %local.figure.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.tabentry.mix ""-->
+<hedgeRule label='tabentry.mix'>
+  <choice>
+    <hedgeRef label='list.class'/>
+    <hedgeRef label='admon.class'/>
+    <hedgeRef label='linespecific.class'/>
+    <hedgeRef label='para.class'/>
+    <ref label='graphic'/>
+    <ref label='mediaobject'/>
+    <!-- %local.tabentry.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.glossdef.mix ""-->
+<hedgeRule label='glossdef.mix'>
+  <choice>
+    <hedgeRef label='list.class'/>
+    <hedgeRef label='linespecific.class'/>
+    <hedgeRef label='synop.class'/>
+    <hedgeRef label='para.class'/>
+    <hedgeRef label='informal.class'/>
+    <hedgeRef label='formal.class'/>
+    <ref label='remark'/>
+    <hedgeRef label='ndxterm.class'/>
+    <ref label='beginpage'/>
+    <!-- %local.glossdef.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.legalnotice.mix ""-->
+<hedgeRule label='legalnotice.mix'>
+  <choice>
+    <hedgeRef label='list.class'/>
+    <hedgeRef label='admon.class'/>
+    <hedgeRef label='linespecific.class'/>
+    <hedgeRef label='para.class'/>
+    <ref label='blockquote'/>
+    <hedgeRef label='ndxterm.class'/>
+    <ref label='beginpage'/>
+    <!-- %local.legalnotice.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.textobject.mix ""-->
+<hedgeRule label='textobject.mix'>
+  <choice>
+    <hedgeRef label='list.class'/>
+    <hedgeRef label='admon.class'/>
+    <hedgeRef label='linespecific.class'/>
+    <hedgeRef label='para.class'/>
+    <ref label='blockquote'/>
+    <!-- %local.textobject.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.mediaobject.mix ""-->
+<hedgeRule label='mediaobject.mix'>
+  <choice>
+    <ref label='videoobject'/>
+    <ref label='audioobject'/>
+    <ref label='imageobject'/>
+    <!-- %local.mediaobject.mix; -->
+  </choice>
+</hedgeRule>
+
+<!-- Character-level mixtures ............................................. -->
+
+<!--
+                    #PCD xref word link cptr base dnfo othr inob (synop)
+para.char.mix         X    X    X    X    X    X    X    X    X
+title.char.mix        X    X    X    X    X    X    X    X    X
+ndxterm.char.mix      X    X    X    X    X    X    X    X    a
+cptr.char.mix         X              X    X    X         X    a
+smallcptr.char.mix    X                   b                   a
+word.char.mix         X         c    X         X         X    a
+docinfo.char.mix      X         d    X    b              X    a
+
+a. Just InlineGraphic; no InlineEquation.
+b. Just Replaceable; no other computer terms.
+c. Just Emphasis and Trademark; no other word elements.
+d. Just Acronym, Emphasis, and Trademark; no other word elements.
+-->
+
+<!-- The DocBook TC may produce an official forms module for DocBook. -->
+<!-- This PE provides the hook by which it can be inserted into the DTD. -->
+<!--ENTITY % forminlines.hook ""-->
+
+<!--ENTITY % local.para.char.mix ""-->
+<hedgeRule label='para.char.mix'>
+  <choice>
+    <!-- #PCDATA -->
+    <hedgeRef label='xref.char.class'/>
+    <hedgeRef label='gen.char.class'/>
+    <hedgeRef label='link.char.class'/>
+    <hedgeRef label='tech.char.class'/>
+    <hedgeRef label='base.char.class'/>
+    <hedgeRef label='docinfo.char.class'/>
+    <hedgeRef label='other.char.class'/>
+    <hedgeRef label='inlineobj.char.class'/>
+    <hedgeRef label='synop.class'/>
+    <hedgeRef label='ndxterm.class'/>
+    <ref label='beginpage'/>
+    <!-- %local.para.char.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.title.char.mix ""-->
+<hedgeRule label='title.char.mix'>
+  <choice>
+    <!-- #PCDATA -->
+    <hedgeRef label='xref.char.class'/>
+    <hedgeRef label='gen.char.class'/>
+    <hedgeRef label='link.char.class'/>
+    <hedgeRef label='tech.char.class'/>
+    <hedgeRef label='base.char.class'/>
+    <hedgeRef label='docinfo.char.class'/>
+    <hedgeRef label='other.char.class'/>
+    <hedgeRef label='inlineobj.char.class'/>
+    <hedgeRef label='ndxterm.class'/>
+    <!-- %local.title.char.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.ndxterm.char.mix ""-->
+<hedgeRule label='ndxterm.char.mix'>
+  <choice>
+    <!-- #PCDATA -->
+    <hedgeRef label='xref.char.class'/>
+    <hedgeRef label='gen.char.class'/>
+    <hedgeRef label='link.char.class'/>
+    <hedgeRef label='tech.char.class'/>
+    <hedgeRef label='base.char.class'/>
+    <hedgeRef label='docinfo.char.class'/>
+    <hedgeRef label='other.char.class'/>
+    <ref label='inlinegraphic'/>
+    <ref label='inlinemediaobject'/>
+    <!-- %local.ndxterm.char.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.cptr.char.mix ""-->
+<hedgeRule label='cptr.char.mix'>
+  <choice>
+    <!-- #PCDATA -->
+    <hedgeRef label='link.char.class'/>
+    <hedgeRef label='tech.char.class'/>
+    <hedgeRef label='base.char.class'/>
+    <hedgeRef label='other.char.class'/>
+    <ref label='inlinegraphic'/>
+    <ref label='inlinemediaobject'/>
+    <hedgeRef label='ndxterm.class'/>
+    <ref label='beginpage'/>
+    <!-- %local.cptr.char.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.smallcptr.char.mix ""-->
+<hedgeRule label='smallcptr.char.mix'>
+  <choice>
+    <!-- #PCDATA -->
+    <ref label='replaceable'/>
+    <ref label='inlinegraphic'/>
+    <ref label='inlinemediaobject'/>
+    <hedgeRef label='ndxterm.class'/>
+    <ref label='beginpage'/>
+    <!-- %local.smallcptr.char.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.word.char.mix ""-->
+<hedgeRule label='word.char.mix'>
+  <choice>
+    <!-- #PCDATA -->
+    <ref label='acronym'/>
+    <ref label='emphasis'/>
+    <ref label='trademark'/>
+    <hedgeRef label='link.char.class'/>
+    <hedgeRef label='base.char.class'/>
+    <hedgeRef label='other.char.class'/>
+    <ref label='inlinegraphic'/>
+    <ref label='inlinemediaobject'/>
+    <hedgeRef label='ndxterm.class'/>
+    <ref label='beginpage'/>
+    <!-- %local.word.char.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % local.docinfo.char.mix ""-->
+<hedgeRule label='docinfo.char.mix'>
+  <choice>
+    <!-- #PCDATA -->
+    <hedgeRef label='link.char.class'/>
+    <ref label='emphasis'/>
+    <ref label='trademark'/>
+    <ref label='replaceable'/>
+    <hedgeRef label='other.char.class'/>
+    <ref label='inlinegraphic'/>
+    <ref label='inlinemediaobject'/>
+    <hedgeRef label='ndxterm.class'/>
+    <!-- %local.docinfo.char.mix; -->
+  </choice>
+</hedgeRule>
+
+<!--ENTITY % bibliocomponent.mix (see Bibliographic section, below)-->
+<!--ENTITY % person.ident.mix (see Bibliographic section, below)-->
+
+<!-- ...................................................................... -->
+<!-- Entities for content models .......................................... -->
+
+<hedgeRule label='formalobject.title.content'>
+  <sequence>
+    <ref label='title'/>
+    <ref label='titleabbrev' occurs='?'/>
+  </sequence>
+</hedgeRule>
+
+<!-- ...................................................................... -->
+<!-- Entities for attributes and attribute components ..................... -->
+
+<!-- Effectivity attributes ............................................... -->
+
+<!-- Arch: Computer or chip architecture to which element applies; no
+	default -->
+<attPool role='arch.attrib'>
+  <attribute name='arch' type='string'/>
+</attPool>
+
+<!-- Condition: General-purpose effectivity attribute -->
+
+<attPool role='condition.attrib'>
+  <attribute name='condition' type='string'/>
+</attPool>
+
+<!-- Conformance: Standards conformance characteristics -->
+
+<attPool role='conformance.attrib'>
+  <attribute name='conformance' type='NMTOKEN'/>
+</attPool>
+
+<!-- OS: Operating system to which element applies; no default -->
+
+<attPool role='os.attrib'>
+  <attribute name='os' type='string'/>
+</attPool>
+
+<!-- Revision: Editorial revision to which element belongs; no default -->
+
+<attPool role='revision.attrib'>
+  <attribute name='revision' type='string'/>
+</attPool>
+
+<!-- Security: Security classification; no default -->
+
+<attPool role='security.attrib'>
+  <attribute name='security' type='string'/>
+</attPool>
+
+<!-- UserLevel: Level of user experience to which element applies; no
+	default -->
+
+<attPool role='userlevel.attrib'>
+  <attribute name='userlevel' type='string'/>
+</attPool>
+
+<!-- Vendor: Computer vendor to which element applies; no default -->
+
+<attPool role='vendor.attrib'>
+  <attribute name='vendor' type='string'/>
+</attPool>
+
+<!--ENTITY % local.effectivity.attrib ""-->
+<attPool role='effectivity.attrib'>
+  <ref role='arch.attrib'/>
+  <ref role='condition.attrib'/>
+  <ref role='conformance.attrib'/>
+  <ref role='os.attrib'/>
+  <ref role='revision.attrib'/>
+  <ref role='security.attrib'/>
+  <ref role='userlevel.attrib'/>
+  <ref role='vendor.attrib'/>
+  <!-- %local.effectivity.attrib; -->
+</attPool>
+
+<!-- Common attributes .................................................... -->
+
+<!-- Id: Unique identifier of element; no default -->
+
+<attPool role='id.attrib'>
+  <attribute name='id' type='ID'/>
+</attPool>
+
+<!-- Id: Unique identifier of element; a value must be supplied; no
+	default -->
+
+<attPool role='idreq.attrib'>
+  <attribute name='id' type='ID' required='true'/>
+</attPool>
+
+<!-- Lang: Indicator of language in which element is written, for
+	translation, character set management, etc.; no default -->
+
+<attPool role='lang.attrib'>
+  <attribute name='lang' type='string'/>
+</attPool>
+
+<!-- Remap: Previous role of element before conversion; no default -->
+
+<attPool role='remap.attrib'>
+  <attribute name='remap' type='string'/>
+</attPool>
+
+<!-- Role: New role of element in local environment; no default -->
+
+<attPool role='role.attrib'>
+  <attribute name='role' type='string'/>
+</attPool>
+
+<!-- XRefLabel: Alternate labeling string for XRef text generation;
+	default is usually title or other appropriate label text already
+	contained in element -->
+
+<attPool role='xreflabel.attrib'>
+  <attribute name='xreflabel' type='string'/>
+</attPool>
+
+<!-- RevisionFlag: Revision status of element; default is that element
+	wasn't revised -->
+
+<attPool role='revisionflag.attrib'>
+  <attribute name='revisionflag' type='NMTOKEN'>
+    <enumeration value='changed'/>
+    <enumeration value='added'/>
+    <enumeration value='deleted'/>
+    <enumeration value='off'/>
+  </attribute>
+</attPool>
+
+<!--ENTITY % local.common.attrib ""-->
+
+<!-- Role is included explicitly on each element -->
+
+<attPool role='common.attrib'>
+  <ref role='id.attrib'/>
+  <ref role='lang.attrib'/>
+  <ref role='remap.attrib'/>
+  <ref role='xreflabel.attrib'/>
+  <ref role='revisionflag.attrib'/>
+  <ref role='effectivity.attrib'/>
+  <!-- %local.common.attrib; -->
+</attPool>
+
+<!-- Role is included explicitly on each element -->
+
+<attPool role='idreq.common.attrib'>
+  <ref role='idreq.attrib'/>
+  <ref role='lang.attrib'/>
+  <ref role='remap.attrib'/>
+  <ref role='xreflabel.attrib'/>
+  <ref role='revisionflag.attrib'/>
+  <ref role='effectivity.attrib'/>
+  <!-- %local.common.attrib; -->
+</attPool>
+
+<!-- Semi-common attributes and other attribute entities .................. -->
+
+<!--ENTITY % local.graphics.attrib ""-->
+
+<!-- EntityRef: Name of an external entity containing the content
+	of the graphic -->
+<!-- FileRef: Filename, qualified by a pathname if desired,
+	designating the file containing the content of the graphic -->
+<!-- Format: Notation of the element content, if any -->
+<!-- SrcCredit: Information about the source of the Graphic -->
+<!-- Width: Same as CALS reprowid (desired width) -->
+<!-- Depth: Same as CALS reprodep (desired depth) -->
+<!-- Align: Same as CALS hplace with 'none' removed; #IMPLIED means
+	application-specific -->
+<!-- Scale: Conflation of CALS hscale and vscale -->
+<!-- Scalefit: Same as CALS scalefit -->
+
+<attPool role='graphics.attrib'>
+  <!-- FIXME: -->
+  <!-- entityref	ENTITY		#IMPLIED -->
+  <attribute name='fileref' type='string'/>
+  <attribute name='format' type='NMTOKEN'>
+    <enumeration value='BMP'/>
+    <enumeration value='CGM-CHAR'/>
+    <enumeration value='CGM-BINARY'/>
+    <enumeration value='CGM-CLEAR'/>
+    <enumeration value='DITROFF'/>
+    <enumeration value='DVI'/>
+    <enumeration value='EPS'/>
+    <enumeration value='EQN'/>
+    <enumeration value='FAX'/>
+    <enumeration value='GIF'/>
+    <enumeration value='GIF87a'/>
+    <enumeration value='GIF89a'/>
+    <enumeration value='JPG'/>
+    <enumeration value='JPEG'/>
+    <enumeration value='IGES'/>
+    <enumeration value='PCX'/>
+    <enumeration value='PIC'/>
+    <enumeration value='PNG'/>
+    <enumeration value='PS'/>
+    <enumeration value='SGML'/>
+    <enumeration value='TBL'/>
+    <enumeration value='TEX'/>
+    <enumeration value='TIFF'/>
+    <enumeration value='WMF'/>
+    <enumeration value='WPG'/>
+    <enumeration value='linespecific'/>
+  </attribute>
+  <attribute name='srccredit' type='string'/>
+  <attribute name='width' type='string'/>
+  <attribute name='depth' type='string'/>
+  <attribute name='align' type='NMTOKEN'>
+    <enumeration value='left'/>
+    <enumeration value='right'/>
+    <enumeration value='center'/>
+  </attribute>
+  <attribute name='scale' type='string'/>
+  <attribute name='scalefit' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+  <!-- %local.graphics.attrib;-->
+</attPool>
+
+<!--ENTITY % local.keyaction.attrib ""-->
+
+<!-- Action: Key combination type; default is unspecified if one
+	child element, Simul if there is more than one; if value is
+	Other, the OtherAction attribute must have a nonempty value -->
+<!-- OtherAction: User-defined key combination type -->
+
+<attPool role='keyaction.attrib'>
+  <attribute name='action' type='string'>
+    <enumeration value='click'/>
+    <enumeration value='double-click'/>
+    <enumeration value='press'/>
+    <enumeration value='seq'/>
+    <enumeration value='simul'/>
+    <enumeration value='other'/>
+  </attribute>
+  <attribute name='otheraction' type='string'/>
+  <!-- %local.keyaction.attrib; -->
+</attPool>
+
+<!-- Label: Identifying number or string; default is usually the
+	appropriate number or string autogenerated by a formatter -->
+
+<attPool role='label.attrib'>
+  <attribute name='label' type='string'/>
+</attPool>
+
+<!-- Format: whether element is assumed to contain significant white
+	space -->
+
+<attPool role='linespecific.attrib'>
+  <attribute name='format' type='NMTOKEN'>
+    <enumeration value='linespecific'/>
+  </attribute>
+
+  <attribute name='linenumbering' type='string'>
+    <enumeration value='numbered'/>
+    <enumeration value='unnumbered'/>
+  </attribute>
+</attPool>
+
+<!-- Linkend: link to related information; no default -->
+
+<attPool role='linkend.attrib'>
+  <attribute name='linkend' type='IDREF'/>
+</attPool>
+
+<!-- Linkend: required link to related information -->
+
+<attPool role='linkendreq.attrib'>
+  <attribute name='linkend' type='IDREF' required='true'/>
+</attPool>
+
+<!-- Linkends: link to one or more sets of related information; no
+	default -->
+
+<attPool role='linkends.attrib'>
+  <attribute name='linkends' type='IDREFS'/>
+</attPool>
+
+<!--ENTITY % local.mark.attrib ""-->
+<attPool role='mark.attrib'>
+  <attribute name='mark' type='string'/>
+  <!-- %local.mark.attrib; -->
+</attPool>
+
+<!-- MoreInfo: whether element's content has an associated RefEntry -->
+
+<attPool role='moreinfo.attrib'>
+  <attribute name='moreinfo' type='string'>
+    <enumeration value='refentry'/>
+    <enumeration value='none'/>
+  </attribute>
+</attPool>
+
+<!-- Pagenum: number of page on which element appears; no default -->
+
+<attPool role='pagenum.attrib'>
+  <attribute name='pagenum' type='string'/>
+</attPool>
+
+<!--ENTITY % local.status.attrib ""-->
+
+<!-- Status: Editorial or publication status of the element
+	it applies to, such as "in review" or "approved for distribution" -->
+
+<attPool role='status.attrib'>
+  <attribute name='status' type='string'/>
+  <!-- %local.status.attrib; -->
+</attPool>
+
+<!-- Width: width of the longest line in the element to which it
+	pertains, in number of characters -->
+
+<attPool role='width.attrib'>
+  <attribute name='width' type='string'/>
+</attPool>
+
+<!-- ...................................................................... -->
+<!-- Title elements ....................................................... -->
+
+<attPool role='title.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='title'>
+  <!-- (%title.char.mix;)* -->
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='title.char.mix'/>
+    </choice>
+  </mixed>
+</elementRule>
+
+<tag name='title'>
+  <ref role='pagenum.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='title.role.attrib'/>
+  <!-- %local.title.attrib; -->
+</tag>
+
+<attPool role='titleabbrev.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='titleabbrev'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='title.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%title.char.mix;)* -->
+</elementRule>
+
+<tag name='titleabbrev'>
+  <ref role='common.attrib'/>
+  <ref role='titleabbrev.role.attrib'/>
+  <!-- %local.titleabbrev.attrib; -->
+</tag>
+
+<attPool role='subtitle.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='subtitle'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='title.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%title.char.mix;)* -->
+</elementRule>
+
+<tag name='subtitle'>
+  <ref role='common.attrib'/>
+  <ref role='subtitle.role.attrib'/>
+  <!-- %local.subtitle.attrib; -->
+</tag>
+
+<!-- ...................................................................... -->
+<!-- Bibliographic entities and elements .................................. -->
+
+<!-- The bibliographic elements are typically used in the document
+     hierarchy. They do not appear in content models of information
+     pool elements.  See also the document information elements,
+     below. -->
+
+<hedgeRule label='person.ident.mix'>
+  <choice>
+    <ref label='honorific'/>
+    <ref label='firstname'/>
+    <ref label='surname'/>
+    <ref label='lineage'/>
+    <ref label='othername'/>
+    <ref label='affiliation'/>
+    <ref label='authorblurb'/>
+    <ref label='contrib'/>
+    <!-- %local.person.ident.mix; -->
+  </choice>
+</hedgeRule>
+
+<hedgeRule label='bibliocomponent.mix'>
+  <choice>
+    <ref label='abbrev'/>
+    <ref label='abstract'/>
+    <ref label='address'/>
+    <ref label='artpagenums'/>
+    <ref label='author'/>
+    <ref label='authorgroup'/>
+    <ref label='authorinitials'/>
+    <ref label='bibliomisc'/>
+    <ref label='biblioset'/>
+    <ref label='collab'/>
+    <ref label='confgroup'/>
+    <ref label='contractnum'/>
+    <ref label='contractsponsor'/>
+    <ref label='copyright'/>
+    <ref label='corpauthor'/>
+    <ref label='corpname'/>
+    <ref label='date'/>
+    <ref label='edition'/>
+    <ref label='editor'/>
+    <ref label='invpartnumber'/>
+    <ref label='isbn'/>
+    <ref label='issn'/>
+    <ref label='issuenum'/>
+    <ref label='orgname'/>
+    <ref label='othercredit'/>
+    <ref label='pagenums'/>
+    <ref label='printhistory'/>
+    <ref label='productname'/>
+    <ref label='productnumber'/>
+    <ref label='pubdate'/>
+    <ref label='publisher'/>
+    <ref label='publishername'/>
+    <ref label='pubsnumber'/>
+    <ref label='releaseinfo'/>
+    <ref label='revhistory'/>
+    <ref label='seriesvolnums'/>
+    <ref label='subtitle'/>
+    <ref label='title'/>
+    <ref label='titleabbrev'/>
+    <ref label='volumenum'/>
+    <ref label='citetitle'/>
+    <hedgeRef label='person.ident.mix'/>
+    <hedgeRef label='ndxterm.class'/>
+    <!-- %local.bibliocomponent.mix -->
+  </choice>
+</hedgeRule>
+
+<attPool role='biblioentry.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='biblioentry'>
+  <choice occurs='+'>
+    <ref label='articleinfo'/>
+    <hedgeRef label='bibliocomponent.mix'/>
+  </choice>
+  <!-- ((articleinfo | (%bibliocomponent.mix;))+) -->
+</elementRule>
+
+<tag name='biblioentry'>
+  <ref role='common.attrib'/>
+  <ref role='biblioentry.role.attrib'/>
+  <!-- %local.biblioentry.attrib; -->
+</tag>
+
+<attPool role='bibliomixed.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='bibliomixed'>
+  <mixed>
+    <choice occurs="*">
+      <hedgeRef label='bibliocomponent.mix'/>
+      <ref label='bibliomset'/>
+    </choice>
+  </mixed>
+  <!-- (#PCDATA | %bibliocomponent.mix; | bibliomset)* -->
+</elementRule>
+
+<tag name='bibliomixed'>
+  <ref role='common.attrib'/>
+  <ref role='bibliomixed.role.attrib'/>
+  <!-- %local.bibliomixed.attrib; -->
+</tag>
+
+<attPool role='articleinfo.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<hedgeRule label='infoContentModel'>
+  <choice occurs='+'>
+    <ref label='graphic'/>
+    <ref label='mediaobject'/>
+    <ref label='legalnotice'/>
+    <ref label='modespec'/>
+    <ref label='subjectset'/>
+    <ref label='keywordset'/>
+    <ref label='itermset'/>
+    <hedgeRef label='bibliocomponent.mix'/>
+  </choice>
+  <!-- ((graphic | mediaobject | legalnotice | modespec
+	| subjectset | keywordset | itermset | %bibliocomponent.mix;)+) -->
+</hedgeRule>
+
+<elementRule role='articleinfo'>
+  <sequence>
+    <hedgeRef label='infoContentModel'/>
+  </sequence>
+</elementRule>
+
+<tag name='articleinfo'>
+  <ref role='common.attrib'/>
+  <ref role='articleinfo.role.attrib'/>
+  <!-- %local.articleinfo.attrib; -->
+</tag>
+
+<attPool role='biblioset.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='biblioset'>
+  <choice occurs='+'>
+    <hedgeRef label='bibliocomponent.mix'/>
+  </choice>
+  <!-- ((%bibliocomponent.mix;)+) -->
+</elementRule>
+
+<tag name='biblioset'>
+  <ref role='common.attrib'/>
+  <ref role='biblioset.role.attrib'/>
+  <!-- %local.biblioset.attrib; -->
+
+  <!-- Relation: Relationship of elements contained within BiblioSet -->
+  <attribute name='relation' type='string'/>
+</tag>
+
+<attPool role='bibliomset.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='bibliomset'>
+  <mixed>
+    <choice occurs="*">
+      <hedgeRef label='bibliocomponent.mix'/>
+      <ref label='bibliomset'/>
+    </choice>
+  </mixed>
+  <!-- (#PCDATA | %bibliocomponent.mix; | bibliomset)* -->
+</elementRule>
+
+<tag name='bibliomset'>
+  <ref role='bibliomset.role.attrib'/>
+  <ref role='common.attrib'/>
+  <!-- %local.bibliomset.attrib; -->
+
+  <!-- Relation: Relationship of elements contained within BiblioMSet -->
+  <attribute name='relation' type='string'/>
+</tag>
+
+<attPool role='bibliomisc.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='bibliomisc'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='bibliomisc'>
+  <ref role='common.attrib'/>
+  <ref role='bibliomisc.role.attrib'/>
+  <!-- %local.bibliomisc.attrib; -->
+</tag>
+
+<!-- ...................................................................... -->
+<!-- Subject, Keyword, and ITermSet elements .............................. -->
+
+<attPool role='subjectset.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='subjectset'>
+  <sequence occurs='+'>
+    <ref label='subject'/>
+  </sequence>
+  <!-- (subject+) -->
+</elementRule>
+
+<tag name='subjectset'>
+  <ref role='common.attrib'/>
+  <ref role='subjectset.role.attrib'/>
+  <!-- %local.subjectset.attrib; -->
+
+  <!-- Scheme: Controlled vocabulary employed in SubjectTerms -->
+  <attribute name='scheme' type='NMTOKEN'/>
+</tag>
+
+<attPool role='subject.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='subject'>
+  <sequence occurs='+'>
+    <ref label='subjectterm'/>
+  </sequence>
+  <!-- (subjectterm+) -->
+</elementRule>
+
+<tag name='subject'>
+  <ref role='common.attrib'/>
+  <ref role='subject.role.attrib'/>
+  <!-- %local.subject.attrib; -->
+
+  <!-- Weight: Ranking of this group of SubjectTerms relative
+       to others, 0 is low, no highest value specified -->
+  <attribute name='weight' type='string'/>
+</tag>
+
+<attPool role='subjectterm.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='subjectterm'>
+  <!-- (#PCDATA) -->
+  <mixed>
+    <empty/>
+  </mixed>
+</elementRule>
+
+<tag name='subjectterm'>
+  <ref role='common.attrib'/>
+  <ref role='subjectterm.role.attrib'/>
+  <!-- %local.subjectterm.attrib; -->
+</tag>
+
+<attPool role='keywordset.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='keywordset'>
+  <sequence occurs='+'>
+    <ref label='keyword'/>
+  </sequence>
+  <!-- (keyword+) -->
+</elementRule>
+
+<tag name='keywordset'>
+  <ref role='common.attrib'/>
+  <ref role='keywordset.role.attrib'/>
+  <!-- %local.keywordset.attrib; -->
+</tag>
+
+<attPool role='keyword.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='keyword'>
+  <!-- (#PCDATA) -->
+  <mixed>
+    <empty/>
+  </mixed>
+</elementRule>
+
+<tag name='keyword'>
+  <ref role='common.attrib'/>
+  <ref role='keyword.role.attrib'/>
+   <!-- %local.keyword.attrib; -->
+</tag>
+
+<attPool role='itermset.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='itermset'>
+  <sequence occurs='+'>
+    <ref label='indexterm'/>
+  </sequence>
+  <!-- (indexterm+) -->
+</elementRule>
+
+<tag name='itermset'>
+  <ref role='common.attrib'/>
+  <ref role='itermset.role.attrib'/>
+  <!-- %local.itermset.attrib; -->
+</tag>
+
+<!-- ...................................................................... -->
+<!-- Compound (section-ish) elements ...................................... -->
+
+<!-- Message set ...................... -->
+
+<attPool role='msgset.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='msgset'>
+  <sequence>
+    <hedgeRef label='formalobject.title.content' occurs='?'/>
+    <choice>
+      <ref label='msgentry' occurs='+'/>
+      <ref label='simplemsgentry' occurs='+'/>
+    </choice>
+  </sequence>
+  <!-- ((%formalobject.title.content;)?, (msgentry+|simplemsgentry+)) -->
+</elementRule>
+
+<tag name='msgset'>
+  <ref role='common.attrib'/>
+  <ref role='msgset.role.attrib'/>
+  <!-- %local.msgset.attrib; -->
+</tag>
+
+<attPool role='msgentry.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='msgentry'>
+  <sequence>
+    <ref label='msg' occurs='+'/>
+    <ref label='msginfo' occurs='?'/>
+    <ref label='msgexplan' occurs='*'/>
+  </sequence>
+  <!-- (msg+, msginfo?, msgexplan*) -->
+</elementRule>
+
+<tag name='msgentry'>
+  <ref role='common.attrib'/>
+  <ref role='msgentry.role.attrib'/>
+  <!-- %local.msgentry.attrib; -->
+</tag>
+
+<attPool role='simplemsgentry.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='simplemsgentry'>
+  <sequence>
+    <ref label='msgtext'/>
+    <ref label='msgexplan'/>
+  </sequence>
+  <!-- (msgtext, msgexplan) -->
+</elementRule>
+
+<tag name='simplemsgentry'>
+  <ref role='common.attrib'/>
+  <ref role='simplemsgentry.role.attrib'/>
+  <!-- %local.simplemsgentry.attrib; -->
+  <attribute name='audience' type='string'/>
+  <attribute name='level' type='string'/>
+  <attribute name='origin' type='string'/>
+</tag>
+
+<attPool role='msg.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='msg'>
+  <sequence>
+    <ref label='title' occurs='?'/>
+    <ref label='msgmain'/>
+    <choice occurs='*'>
+      <ref label='msgsub'/>
+      <ref label='msgrel'/>
+    </choice>
+  </sequence>
+  <!-- (title?, msgmain, (msgsub | msgrel)*) -->
+</elementRule>
+
+<tag name='msg'>
+  <ref role='common.attrib'/>
+  <ref role='msg.role.attrib'/>
+  <!-- %local.msg.attrib; -->
+</tag>
+
+<attPool role='msgmain.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='msgmain'>
+  <sequence>
+    <ref label='title' occurs='?'/>
+    <ref label='msgtext'/>
+  </sequence>
+  <!-- (title?, msgtext) -->
+</elementRule>
+
+<tag name='msgmain'>
+  <ref role='common.attrib'/>
+  <ref role='msgmain.role.attrib'/>
+  <!-- %local.msgmain.attrib; -->
+</tag>
+
+<attPool role='msgsub.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='msgsub'>
+  <sequence>
+    <ref label='title' occurs='?'/>
+    <ref label='msgtext'/>
+  </sequence>
+  <!-- (title?, msgtext) -->
+</elementRule>
+
+<tag name='msgsub'>
+  <ref role='common.attrib'/>
+  <ref role='msgsub.role.attrib'/>
+  <!-- %local.msgsub.attrib; -->
+</tag>
+
+<attPool role='msgrel.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='msgrel'>
+  <sequence>
+    <ref label='title' occurs='?'/>
+    <ref label='msgtext'/>
+  </sequence>
+  <!-- (title?, msgtext) -->
+</elementRule>
+
+<tag name='msgrel'>
+  <ref role='common.attrib'/>
+  <ref role='msgrel.role.attrib'/>
+  <!-- %local.msgrel.attrib; -->
+</tag>
+
+<!-- MsgText (defined in the Inlines section, below)-->
+
+<attPool role='msginfo.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='msginfo'>
+  <choice occurs='*'>
+    <ref label='msglevel'/>
+    <ref label='msgorig'/>
+    <ref label='msgaud'/>
+  </choice>
+  <!-- ((msglevel | msgorig | msgaud)*) -->
+</elementRule>
+
+<tag name='msginfo'>
+  <ref role='common.attrib'/>
+  <ref role='msginfo.role.attrib'/>
+  <!-- %local.msginfo.attrib; -->
+</tag>
+
+<attPool role='msglevel.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='msglevel'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='msglevel'>
+  <ref role='common.attrib'/>
+  <ref role='msglevel.role.attrib'/>
+  <!-- %local.msglevel.attrib; -->
+</tag>
+
+<attPool role='msgorig.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='msgorig'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='msgorig'>
+  <ref role='common.attrib'/>
+  <ref role='msgorig.role.attrib'/>
+  <!-- %local.msgorig.attrib; -->
+</tag>
+
+<attPool role='msgaud.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='msgaud'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='msgaud'>
+  <ref role='common.attrib'/>
+  <ref role='msgaud.role.attrib'/>
+  <!-- %local.msgaud.attrib; -->
+</tag>
+
+<attPool role='msgexplan.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='msgexplan'>
+  <sequence>
+    <ref label='title' occurs='?'/>
+    <choice occurs='*'>
+      <hedgeRef label='component.mix'/>
+    </choice>
+  </sequence>
+  <!-- (title?, (%component.mix;)+) -->
+</elementRule>
+
+<tag name='msgexplan'>
+  <ref role='common.attrib'/>
+  <ref role='msgexplan.role.attrib'/>
+  <!-- %local.msgexplan.attrib; -->
+</tag>
+
+<!-- QandASet ........................ -->
+
+<attPool role='qandset.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='qandaset'>
+  <sequence>
+    <hedgeRef label='formalobject.title.content' occurs='?'/>
+    <hedgeRef label='qandaset.mix' occurs='*'/>
+    <choice>
+      <ref label='qandadiv' occurs='+'/>
+      <ref label='qandaentry' occurs='+'/>
+    </choice>
+  </sequence>
+  <!-- ((%formalobject.title.content;)?,
+			(%qandaset.mix;)*,
+                        (qandadiv+|qandaentry+)) -->
+</elementRule>
+
+<tag name='qandaset'>
+  <ref role='common.attrib'/>
+  <ref role='qandset.role.attrib'/>
+  <!-- %local.qandset.attrib; -->
+
+  <attribute name='defaultlabel' type='string'>
+    <enumeration value='qanda'/>
+    <enumeration value='number'/>
+    <enumeration value='none'/>
+  </attribute>
+</tag>
+
+<attPool role='qandadiv.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='qandadiv'>
+  <sequence>
+    <hedgeRef label='formalobject.title.content' occurs='?'/>
+    <hedgeRef label='qandaset.mix' occurs='*'/>
+    <choice>
+      <ref label='qandadiv' occurs='+'/>
+      <ref label='qandaentry' occurs='+'/>
+    </choice>
+  </sequence>
+  <!-- ((%formalobject.title.content;)?,
+			(%qandaset.mix;)*,
+			(qandadiv+|qandaentry+)) -->
+</elementRule>
+
+<tag name='qandadiv'>
+  <ref role='common.attrib'/>
+  <ref role='qandadiv.role.attrib'/>
+  <!-- %local.qandadiv.attrib; -->
+</tag>
+
+<attPool role='qandaentry.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='qandaentry'>
+  <sequence>
+    <ref label='revhistory' occurs='?'/>
+    <ref label='question'/>
+    <ref label='answer' occurs='*'/>
+  </sequence>
+  <!-- (revhistory?, question, answer*) -->
+</elementRule>
+
+<tag name='qandaentry'>
+  <ref role='common.attrib'/>
+  <ref role='qandaentry.role.attrib'/>
+  <!-- %local.qandaentry.attrib; -->
+</tag>
+
+<attPool role='question.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='question'>
+  <sequence>
+    <ref label='label' occurs='?'/>
+    <hedgeRef label='qandaset.mix' occurs='+'/>
+  </sequence>
+  <!-- (label?, (%qandaset.mix;)+) -->
+</elementRule>
+
+<tag name='question'>
+  <ref role='common.attrib'/>
+  <ref role='question.role.attrib'/>
+  <!-- %local.question.attrib; -->
+</tag>
+
+<attPool role='answer.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='answer'>
+  <sequence>
+    <ref label='label' occurs='?'/>
+    <hedgeRef label='qandaset.mix' occurs='*'/>
+    <ref label='qandaentry' occurs='*'/>
+  </sequence>
+  <!-- (label?, (%qandaset.mix;)*, qandaentry*) -->
+</elementRule>
+
+<tag name='answer'>
+  <ref role='common.attrib'/>
+  <ref role='answer.role.attrib'/>
+  <!-- %local.answer.attrib; -->
+</tag>
+
+<attPool role='label.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='label'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='word.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%word.char.mix;)* -->
+</elementRule>
+
+<tag name='label'>
+  <ref role='common.attrib'/>
+  <ref role='label.role.attrib'/>
+  <!-- %local.label.attrib; -->
+</tag>
+
+<!-- Procedure ........................ -->
+
+<attPool role='procedure.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='procedure'>
+  <sequence>
+    <hedgeRef label='formalobject.title.content' occurs='?'/>
+    <hedgeRef label='component.mix' occurs='*'/>
+    <ref label='step' occurs='+'/>
+  </sequence>
+  <!-- ((%formalobject.title.content;)?,
+	(%component.mix;)*, step+) -->
+</elementRule>
+
+<tag name='procedure'>
+  <ref role='common.attrib'/>
+  <ref role='procedure.role.attrib'/>
+  <!-- %local.procedure.attrib; -->
+</tag>
+
+<attPool role='step.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='step'>
+  <sequence>
+    <ref label='title' occurs='?'/>
+    <choice>
+      <sequence>
+        <hedgeRef label='component.mix' occurs='+'/>
+        <sequence occurs='?'>
+          <ref label='substeps'/>
+          <hedgeRef label='component.mix' occurs='*'/>
+        </sequence>
+      </sequence>
+      <sequence>
+        <ref label='substeps'/>
+        <hedgeRef label='component.mix' occurs='*'/>
+      </sequence>
+    </choice>
+  </sequence>
+  <!-- (title?, (((%component.mix;)+, (substeps,
+		(%component.mix;)*)?) | (substeps, (%component.mix;)*))) -->
+</elementRule>
+
+<tag name='step'>
+  <ref role='common.attrib'/>
+  <ref role='step.role.attrib'/>
+  <!-- %local.step.attrib; -->
+
+  <!-- Performance: Whether the Step must be performed -->
+  <!-- not #REQUIRED! -->
+  <attribute name='performance' type='string'>
+    <enumeration value='optional'/>
+    <enumeration value='required'/>
+  </attribute>
+</tag>
+
+<attPool role='substeps.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='substeps'>
+  <sequence>
+    <ref label='step' occurs='+'/>
+  </sequence>
+  <!-- (step+) -->
+</elementRule>
+
+<tag name='substeps'>
+  <ref role='common.attrib'/>
+  <ref role='substeps.role.attrib'/>
+  <!-- %local.substeps.attrib; -->
+
+  <!-- Performance: whether entire set of substeps must be performed -->
+  <!-- not #REQUIRED! -->
+  <attribute name='performance' type='string'>
+    <enumeration value='optional'/>
+    <enumeration value='required'/>
+  </attribute>
+</tag>
+
+<!-- Sidebar .......................... -->
+
+<attPool role='sidebarinfo.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='sidebarinfo'>
+  <mixed>
+    <empty/>
+  </mixed>
+</elementRule>
+
+<tag name='sidebarinfo'>
+  <ref role='common.attrib'/>
+  <ref role='sidebarinfo.role.attrib'/>
+  <!-- %local.articleinfo.attrib; -->
+</tag>
+
+<attPool role='sidebar.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='sidebar'>
+  <sequence>
+    <ref label='sidebarinfo' occurs='?'/>
+    <hedgeRef label='formalobject.title.content' occurs='?'/>
+    <hedgeRef label='sidebar.mix' occurs='+'/>
+  </sequence>
+  <!-- (sidebarinfo?,
+                   (%formalobject.title.content;)?,
+                   (%sidebar.mix;)+) -->
+</elementRule>
+
+<tag name='sidebar'>
+  <ref role='common.attrib'/>
+  <ref role='sidebar.role.attrib'/>
+  <!-- %local.sidebar.attrib; -->
+</tag>
+
+<!-- ...................................................................... -->
+<!-- Paragraph-related elements ........................................... -->
+
+<attPool role='abstract.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='abstract'>
+  <sequence>
+    <ref label='title' occurs='?'/>
+    <hedgeRef label='para.class' occurs='+'/>
+  </sequence>
+  <!-- (title?, (%para.class;)+) -->
+</elementRule>
+
+<tag name='abstract'>
+  <ref role='common.attrib'/>
+  <ref role='abstract.role.attrib'/>
+  <!-- %local.abstract.attrib; -->
+</tag>
+
+<attPool role='authorblurb.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='authorblurb'>
+  <sequence>
+    <ref label='title' occurs='?'/>
+    <hedgeRef label='para.class' occurs='+'/>
+  </sequence>
+  <!-- (title?, (%para.class;)+) -->
+</elementRule>
+
+<tag name='authorblurb'>
+  <ref role='common.attrib'/>
+  <ref role='authorblurb.role.attrib'/>
+  <!-- %local.authorblurb.attrib; -->
+</tag>
+
+<attPool role='blockquote.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='blockquote'>
+  <sequence>
+    <ref label='title' occurs='?'/>
+    <ref label='attribution' occurs='?'/>
+    <hedgeRef label='component.mix' occurs='+'/>
+  </sequence>
+  <!-- (title?, attribution?, (%component.mix;)+) -->
+</elementRule>
+
+<tag name='blockquote'>
+  <ref role='common.attrib'/>
+  <ref role='blockquote.role.attrib'/>
+  <!-- %local.blockquote.attrib; -->
+</tag>
+
+<attPool role='attribution.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='attribution'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='attribution'>
+  <ref role='common.attrib'/>
+  <ref role='attribution.role.attrib'/>
+  <!-- %local.attribution.attrib; -->
+</tag>
+
+<attPool role='bridgehead.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='bridgehead'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='title.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%title.char.mix;)* -->
+</elementRule>
+
+<tag name='bridgehead'>
+  <ref role='common.attrib'/>
+  <ref role='bridgehead.role.attrib'/>
+  <!-- %local.bridgehead.attrib; -->
+
+  <!-- Renderas: Indicates the format in which the BridgeHead
+       should appear -->
+  <attribute name='renderas' type='string'>
+    <enumeration value='other'/>
+    <enumeration value='sect1'/>
+    <enumeration value='sect2'/>
+    <enumeration value='sect3'/>
+    <enumeration value='sect4'/>
+    <enumeration value='sect5'/>
+  </attribute>
+</tag>
+
+<attPool role='remark.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='remark'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='remark'>
+  <ref role='common.attrib'/>
+  <ref role='remark.role.attrib'/>
+  <!-- %local.remark.attrib; -->
+</tag>
+
+<attPool role='epigraph.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='epigraph'>
+  <sequence>
+    <ref label='attribution' occurs='?'/>
+    <hedgeRef label='para.class' occurs='+'/>
+  </sequence>
+  <!-- (attribution?, (%para.class;)+) -->
+</elementRule>
+
+<tag name='epigraph'>
+  <ref role='common.attrib'/>
+  <ref role='epigraph.role.attrib'/>
+  <!-- %local.epigraph.attrib; -->
+</tag>
+<!-- Attribution (defined above)-->
+
+<attPool role='footnote.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='footnote'>
+  <sequence>
+    <hedgeRef label='footnote.mix' occurs='+'/>
+  </sequence>
+  <!-- ((%footnote.mix;)+) -->
+</elementRule>
+
+<tag name='footnote'>
+  <ref role='label.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='footnote.role.attrib'/>
+  <!-- %local.footnote.attrib; -->
+</tag>
+
+<attPool role='highlights.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='highlights'>
+  <sequence>
+    <hedgeRef label='highlights.mix' occurs='+'/>
+  </sequence>
+  <!-- ((%highlights.mix;)+) -->
+</elementRule>
+
+<tag name='highlights'>
+  <ref role='common.attrib'/>
+  <ref role='highlights.role.attrib'/>
+  <!-- %local.highlights.attrib; -->
+</tag>
+
+<attPool role='formalpara.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='formalpara'>
+  <sequence>
+    <ref label='title'/>
+    <hedgeRef label='ndxterm.class' occurs='*'/>
+    <ref label='para'/>
+  </sequence>
+  <!-- (title, (%ndxterm.class;)*, para) -->
+</elementRule>
+
+<tag name='formalpara'>
+  <ref role='common.attrib'/>
+  <ref role='formalpara.role.attrib'/>
+  <!-- %local.formalpara.attrib; -->
+</tag>
+
+<attPool role='para.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='para'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+      <hedgeRef label='para.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix; | %para.mix;)* -->
+</elementRule>
+
+<tag name='para'>
+  <ref role='common.attrib'/>
+  <ref role='para.role.attrib'/>
+  <!-- %local.para.attrib; -->
+</tag>
+
+<attPool role='simpara.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='simpara'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='simpara'>
+  <ref role='common.attrib'/>
+  <ref role='simpara.role.attrib'/>
+  <!-- %local.simpara.attrib; -->
+</tag>
+
+<attPool role='admon.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<hedgeRule label='admonitionType'>
+  <sequence>
+    <ref label='title'/>
+    <hedgeRef label='admon.mix' occurs='+'/>
+  </sequence>
+  <!-- (title?, (%admon.mix;)+) -->
+</hedgeRule>
+
+<elementRule role='important'>
+  <sequence>
+    <hedgeRef label='admonitionType'/>
+  </sequence>
+</elementRule>
+
+<tag name='important'>
+  <ref role='common.attrib'/>
+  <ref role='admon.role.attrib'/>
+  <!-- %local.admon.attrib; -->
+</tag>
+
+<elementRule role='warning'>
+  <sequence>
+    <hedgeRef label='admonitionType'/>
+  </sequence>
+</elementRule>
+
+<tag name='warning'>
+  <ref role='common.attrib'/>
+  <ref role='admon.role.attrib'/>
+  <!-- %local.admon.attrib; -->
+</tag>
+
+<elementRule role='caution'>
+  <sequence>
+    <hedgeRef label='admonitionType'/>
+  </sequence>
+</elementRule>
+
+<tag name='caution'>
+  <ref role='common.attrib'/>
+  <ref role='admon.role.attrib'/>
+  <!-- %local.admon.attrib; -->
+</tag>
+
+<elementRule role='note'>
+  <sequence>
+    <hedgeRef label='admonitionType'/>
+  </sequence>
+</elementRule>
+
+<tag name='note'>
+  <ref role='common.attrib'/>
+  <ref role='admon.role.attrib'/>
+  <!-- %local.admon.attrib; -->
+</tag>
+
+<elementRule role='tip'>
+  <sequence>
+    <hedgeRef label='admonitionType'/>
+  </sequence>
+</elementRule>
+
+<tag name='tip'>
+  <ref role='common.attrib'/>
+  <ref role='admon.role.attrib'/>
+  <!-- %local.admon.attrib; -->
+</tag>
+
+<!-- ...................................................................... -->
+<!-- Lists ................................................................ -->
+
+<!-- GlossList ........................ -->
+
+<attPool role='glosslist.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='glosslist'>
+  <sequence>
+    <ref label='glossentry' occurs='+'/>
+  </sequence>
+  <!-- (glossentry+) -->
+</elementRule>
+
+<tag name='glosslist'>
+  <ref role='common.attrib'/>
+  <ref role='glosslist.role.attrib'/>
+  <!-- %local.glosslist.attrib; -->
+</tag>
+
+<attPool role='glossentry.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='glossentry'>
+  <sequence>
+    <ref label='glossterm'/>
+    <ref label='acronym' occurs='?'/>
+    <ref label='abbrev' occurs='?'/>
+    <hedgeRef label='ndxterm.class' occurs='*'/>
+    <ref label='revhistory' occurs='?'/>
+    <choice>
+      <ref label='glosssee'/>
+      <ref label='glossdef' occurs='+'/>
+    </choice>
+  </sequence>
+  <!-- (glossterm, acronym?, abbrev?,
+                      (%ndxterm.class;)*,
+                      revhistory?, (glosssee|glossdef+)) -->
+</elementRule>
+
+<tag name='glossentry'>
+  <ref role='common.attrib'/>
+  <ref role='glossentry.role.attrib'/>
+  <!-- %local.glossentry.attrib; -->
+
+  <!-- SortAs: String by which the GlossEntry is to be sorted
+       (alphabetized) in lieu of its proper content -->
+  <attribute name='sortas' type='string'/>
+</tag>
+
+<!-- GlossTerm (defined in the Inlines section, below)-->
+<attPool role='glossdef.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='glossdef'>
+  <sequence>
+    <hedgeRef label='glossdef.mix' occurs='+'/>
+    <ref label='glossseealso' occurs='+'/>
+  </sequence>
+  <!-- ((%glossdef.mix;)+, glossseealso*) -->
+</elementRule>
+
+<tag name='glossdef'>
+  <ref role='common.attrib'/>
+  <ref role='glossdef.role.attrib'/>
+  <!-- %local.glossdef.attrib; -->
+
+  <!-- Subject: List of subjects; keywords for the definition -->
+  <attribute name='subject' type='string'/>
+</tag>
+
+<attPool role='glosssee.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='glosssee'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='glosssee'>
+  <ref role='common.attrib'/>
+  <ref role='glosssee.role.attrib'/>
+  <!-- %local.glosssee.attrib; -->
+
+  <!-- OtherTerm: Reference to the GlossEntry whose GlossTerm
+       should be displayed at the point of the GlossSee -->
+  <!-- FIXME: restrict to glossentry -->
+  <attribute name='otherterm' type='IDREF'/>
+</tag>
+
+<attPool role='glossseealso.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='glossseealso'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='glossseealso'>
+  <ref role='common.attrib'/>
+  <ref role='glossseealso.role.attrib'/>
+  <!-- %local.glossseealso.attrib; -->
+
+  <!-- OtherTerm: Reference to the GlossEntry whose GlossTerm
+       should be displayed at the point of the GlossSeeAlso -->
+  <!-- FIXME: restrict to glossentry -->
+  <attribute name='otherterm' type='IDREF'/>
+</tag>
+
+<!-- ItemizedList and OrderedList ..... -->
+
+<attPool role='itemizedlist.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='itemizedlist'>
+  <sequence>
+    <hedgeRef label='formalobject.title.content' occurs='?'/>
+    <ref label='listitem' occurs='+'/>
+  </sequence>
+  <!-- ((%formalobject.title.content;)?, listitem+) -->
+</elementRule>
+
+<tag name='itemizedlist'>
+  <!-- Mark: Keyword, e.g., bullet, dash, checkbox, none;
+       list of keywords and defaults are implementation specific -->
+  <ref role='mark.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='itemizedlist.role.attrib'/>
+  <!-- %local.itemizedlist.attrib; -->
+
+  <!-- Spacing: Whether the vertical space in the list should be
+       compressed -->
+  <attribute name='spacing' type='string'>
+    <enumeration value='normal'/>
+    <enumeration value='compact'/>
+  </attribute>
+</tag>
+
+<attPool role='orderedlist.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='orderedlist'>
+  <sequence>
+    <hedgeRef label='formalobject.title.content' occurs='?'/>
+    <ref label='listitem' occurs='+'/>
+  </sequence>
+  <!-- ((%formalobject.title.content;)?, listitem+) -->
+</elementRule>
+
+<tag name='orderedlist'>
+  <ref role='common.attrib'/>
+  <ref role='orderedlist.role.attrib'/>
+  <!-- %local.orderedlist.attrib; -->
+
+  <!-- Numeration: Style of ListItem numbered; default is expected
+       to be Arabic -->
+  <attribute name='numeration' type='NMTOKEN'>
+    <enumeration value='arabic'/>
+    <enumeration value='upperalpha'/>
+    <enumeration value='loweralpha'/>
+    <enumeration value='upperroman'/>
+    <enumeration value='lowerroman'/>
+  </attribute>
+
+  <!-- InheritNum: Specifies for a nested list that the numbering
+       of ListItems should include the number of the item
+       within which they are nested (e.g., 1a and 1b within 1,
+       rather than a and b) -->
+  <attribute name='inheritnum' type='string'>
+    <enumeration value='inherit'/>
+    <enumeration value='ignore'/>
+  </attribute>
+
+  <!-- Continuation: Where list numbering begins afresh (Restarts,
+       the default) or continues that of the immediately preceding
+       list (Continues) -->
+  <attribute name='continuation' type='string'>
+    <enumeration value='continues'/>
+    <enumeration value='restarts'/>
+  </attribute>
+
+  <!-- Spacing: Whether the vertical space in the list should be
+       compressed -->
+  <attribute name='spacing' type='string'>
+    <enumeration value='normal'/>
+    <enumeration value='compact'/>
+  </attribute>
+</tag>
+
+<attPool role='listitem.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='listitem'>
+  <sequence>
+    <hedgeRef label='component.mix' occurs='+'/>
+  </sequence>
+  <!-- ((%component.mix;)+) -->
+</elementRule>
+
+<tag name='listitem'>
+  <ref role='common.attrib'/>
+  <ref role='listitem.role.attrib'/>
+  <!-- %local.listitem.attrib; -->
+
+  <!-- Override: Indicates the mark to be used for this ListItem
+       instead of the default mark or the mark specified by
+       the Mark attribute on the enclosing ItemizedList -->
+  <attribute name='override' type='string'/>
+</tag>
+
+<!-- SegmentedList .................... -->
+<attPool role='segmentedlist.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='segmentedlist'>
+  <sequence>
+    <hedgeRef label='formalobject.title.content' occurs='?'/>
+    <ref label='segtitle'/>
+    <ref label='segtitle' occurs='*'/>
+    <ref label='seglistitem' occurs='+'/>
+  </sequence>
+  <!-- ((%formalobject.title.content;)?,
+                         segtitle, segtitle+,
+                         seglistitem+) -->
+</elementRule>
+
+<tag name='segmentedlist'>
+  <ref role='common.attrib'/>
+  <ref role='segmentedlist.role.attrib'/>
+  <!-- %local.segmentedlist.attrib; -->
+</tag>
+
+<attPool role='segtitle.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='segtitle'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='title.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%title.char.mix;)* -->
+</elementRule>
+
+<tag name='segtitle'>
+  <ref role='common.attrib'/>
+  <ref role='segtitle.role.attrib'/>
+  <!-- %local.segtitle.attrib; -->
+</tag>
+
+<attPool role='seglistitem.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='seglistitem'>
+  <sequence>
+    <ref label='seg'/>
+    <ref label='seg' occurs='*'/>
+  </sequence>
+  <!-- (seg, seg+) -->
+</elementRule>
+
+<tag name='seglistitem'>
+  <ref role='common.attrib'/>
+  <ref role='seglistitem.role.attrib'/>
+  <!-- %local.seglistitem.attrib; -->
+</tag>
+
+<attPool role='seg.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='seg'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='seg'>
+  <ref role='common.attrib'/>
+  <ref role='seg.role.attrib'/>
+  <!-- %local.seg.attrib; -->
+</tag>
+
+<!-- SimpleList ....................... -->
+
+<attPool role='simplelist.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='simplelist'>
+  <sequence>
+    <ref label='member' occurs='+'/>
+  </sequence>
+  <!-- (member+) -->
+</elementRule>
+
+<tag name='simplelist'>
+  <ref role='common.attrib'/>
+  <ref role='simplelist.role.attrib'/>
+  <!-- %local.simplelist.attrib; -->
+
+  <!-- Columns: The number of columns the array should contain -->
+  <attribute name='columns' type='integer'/>
+
+  <!-- Type: How the Members of the SimpleList should be
+       formatted: Inline (members separated with commas etc.
+       inline), Vert (top to bottom in n Columns), or Horiz (in
+       the direction of text flow) in n Columns.  If Column
+       is 1 or implied, Type=Vert and Type=Horiz give the same
+       results. -->
+  <attribute name='type' type='string'>
+    <enumeration value='inline'/>
+    <enumeration value='vert'/>
+    <enumeration value='horiz'/>
+  </attribute>
+</tag>
+
+<attPool role='member.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='member'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='member'>
+  <ref role='common.attrib'/>
+  <ref role='member.role.attrib'/>
+  <!-- %local.member.attrib; -->
+</tag>
+
+<!-- VariableList ..................... -->
+
+<attPool role='variablelist.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='variablelist'>
+  <sequence>
+    <hedgeRef label='formalobject.title.content' occurs='?'/>
+    <ref label='varlistentry'  occurs='+'/>
+  </sequence>
+  <!-- ((%formalobject.title.content;)?, varlistentry+) -->
+</elementRule>
+
+<tag name='variablelist'>
+  <ref role='common.attrib'/>
+  <ref role='variablelist.role.attrib'/>
+  <!-- %local.variablelist.attrib; -->
+
+  <!-- TermLength: Length beyond which the presentation engine
+       may consider the Term too long and select an alternate
+       presentation of the Term and, or, its associated ListItem. -->
+  <attribute name='termlength' type='string'/>
+</tag>
+
+<attPool role='varlistentry.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='varlistentry'>
+  <sequence>
+    <ref label='term'  occurs='+'/>
+    <ref label='listitem'/>
+  </sequence>
+  <!-- (term+, listitem) -->
+</elementRule>
+
+<tag name='varlistentry'>
+  <ref role='common.attrib'/>
+  <ref role='varlistentry.role.attrib'/>
+  <!-- %local.varlistentry.attrib; -->
+</tag>
+
+<attPool role='term.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='term'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='term'>
+  <ref role='common.attrib'/>
+  <ref role='term.role.attrib'/>
+  <!-- %local.term.attrib; -->
+</tag>
+
+<!-- ListItem (defined above)-->
+
+<!-- CalloutList ...................... -->
+
+<attPool role='calloutlist.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='calloutlist'>
+  <sequence>
+    <hedgeRef label='formalobject.title.content' occurs='?'/>
+    <ref label='callout'  occurs='+'/>
+  </sequence>
+  <!-- ((%formalobject.title.content;)?, callout+) -->
+</elementRule>
+
+<tag name='calloutlist'>
+  <ref role='common.attrib'/>
+  <ref role='calloutlist.role.attrib'/>
+  <!-- %local.calloutlist.attrib; -->
+</tag>
+
+<attPool role='callout.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='callout'>
+  <sequence>
+    <hedgeRef label='component.mix' occurs='+'/>
+  </sequence>
+  <!-- ((%component.mix;)+) -->
+</elementRule>
+
+<tag name='callout'>
+  <ref role='common.attrib'/>
+  <ref role='callout.role.attrib'/>
+  <!-- %local.callout.attrib; -->
+
+  <!-- AreaRefs: IDs of one or more Areas or AreaSets described
+       by this Callout -->
+  <attribute name='arearefs' type='IDREFS'/>
+</tag>
+
+<!-- ...................................................................... -->
+<!-- Objects .............................................................. -->
+
+<!-- Examples etc. .................... -->
+
+<attPool role='example.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='example'>
+  <sequence>
+    <hedgeRef label='formalobject.title.content' occurs='?'/>
+    <hedgeRef label='example.mix'  occurs='+'/>
+  </sequence>
+  <!-- ((%formalobject.title.content;), (%example.mix;)+) -->
+</elementRule>
+
+<tag name='example'>
+  <ref role='label.attrib'/>
+  <ref role='width.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='example.role.attrib'/>
+  <!-- %local.example.attrib; -->
+</tag>
+
+<attPool role='informalexample.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='informalexample'>
+  <sequence>
+    <hedgeRef label='example.mix'  occurs='+'/>
+  </sequence>
+  <!-- ((%example.mix;)+) -->
+</elementRule>
+
+<tag name='informalexample'>
+  <ref role='width.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='informalexample.role.attrib'/>
+  <!-- %local.informalexample.attrib; -->
+</tag>
+
+<attPool role='programlistingco.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='programlistingco'>
+  <sequence>
+    <ref label='areaspec'/>
+    <ref label='programlisting'/>
+    <ref label='calloutlist' occurs='*'/>
+  </sequence>
+  <!-- (areaspec, programlisting, calloutlist*) -->
+</elementRule>
+
+<tag name='programlistingco'>
+  <ref role='common.attrib'/>
+  <ref role='programlistingco.role.attrib'/>
+  <!-- %local.programlistingco.attrib; -->
+</tag>
+<!-- CalloutList (defined above in Lists)-->
+
+<attPool role='areaspec.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='areaspec'>
+  <choice occurs='+'>
+    <ref label='area'/>
+    <ref label='areaset'/>
+  </choice>
+  <!-- ((area|areaset)+) -->
+</elementRule>
+
+<tag name='areaspec'>
+  <ref role='common.attrib'/>
+  <ref role='areaspec.role.attrib'/>
+  <!-- %local.areaspec.attrib; -->
+
+  <!-- Units: global unit of measure in which coordinates in
+       this spec are expressed:
+
+       - CALSPair "x1,y1 x2,y2": lower-left and upper-right
+       coordinates in a rectangle describing repro area in which
+       graphic is placed, where X and Y dimensions are each some
+       number 0..10000 (taken from CALS graphic attributes)
+
+       - LineColumn "line column": line number and column number
+       at which to start callout text in "linespecific" content
+
+       - LineRange "startline endline": whole lines from startline
+       to endline in "linespecific" content
+
+       - LineColumnPair "line1 col1 line2 col2": starting and ending
+       points of area in "linespecific" content that starts at
+       first position and ends at second position (including the
+       beginnings of any intervening lines)
+
+       - Other: directive to look at value of OtherUnits attribute
+       to get implementation-specific keyword
+
+       The default is implementation-specific; usually dependent on
+       the parent element (GraphicCO gets CALSPair, ProgramListingCO
+       and ScreenCO get LineColumn) -->
+  <attribute name='units' type='string'>
+    <enumeration value='calspair'/>
+    <enumeration value='linecolumn'/>
+    <enumeration value='linerange'/>
+    <enumeration value='linecolumnpair'/>
+    <enumeration value='other'/>
+  </attribute>
+
+  <!-- OtherUnits: User-defined units -->
+  <attribute name='otherunits' type='NMTOKEN'/>
+</tag>
+
+<attPool role='area.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='area'>
+  <empty/>
+</elementRule>
+
+<tag name='area'>
+  <!-- bug number/symbol override or initialization -->
+  <!-- to any related information -->
+  <ref role='label.attrib'/>
+
+  <ref role='linkends.attrib'/>
+  <ref role='idreq.common.attrib'/>
+  <ref role='area.role.attrib'/>
+  <!-- %local.area.attrib; -->
+
+  <!-- Units: unit of measure in which coordinates in this
+       area are expressed; inherits from AreaSet and AreaSpec -->
+  <attribute name='units' type='string'>
+    <enumeration value='calspair'/>
+    <enumeration value='linecolumn'/>
+    <enumeration value='linerange'/>
+    <enumeration value='linecolumnpair'/>
+    <enumeration value='other'/>
+  </attribute>
+
+  <!-- OtherUnits: User-defined units -->
+  <attribute name='otherunits' type='NMTOKEN'/>
+
+  <attribute name='coords' type='string' required='true'/>
+</tag>
+
+<attPool role='areaset.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='areaset'>
+  <sequence>
+    <ref label='area' occurs='+'/>
+  </sequence>
+  <!-- (area+) -->
+</elementRule>
+
+<tag name='areaset'>
+  <!-- bug number/symbol override or initialization -->
+  <ref role='label.attrib'/>
+  <ref role='idreq.common.attrib'/>
+  <ref role='areaset.role.attrib'/>
+  <!-- %local.areaset.attrib; -->
+
+  <!-- Units: unit of measure in which coordinates in this
+       area are expressed; inherits from AreaSet and AreaSpec -->
+  <attribute name='units' type='string'>
+    <enumeration value='calspair'/>
+    <enumeration value='linecolumn'/>
+    <enumeration value='linerange'/>
+    <enumeration value='linecolumnpair'/>
+    <enumeration value='other'/>
+  </attribute>
+
+  <!-- OtherUnits: User-defined units -->
+  <attribute name='otherunits' type='NMTOKEN'/>
+
+  <attribute name='coords' type='string' required='true'/>
+</tag>
+
+<attPool role='programlisting.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='programlisting'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+      <ref label='co'/>
+      <ref label='lineannotation'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix; | co | lineannotation)* -->
+</elementRule>
+
+<tag name='programlisting'>
+  <ref role='width.attrib'/>
+  <ref role='linespecific.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='programlisting.role.attrib'/>
+  <!-- %local.programlisting.attrib; -->
+</tag>
+
+<attPool role='literallayout.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='literallayout'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+      <ref label='co'/>
+      <ref label='lineannotation'/>
+    </choice>
+  </mixed>
+</elementRule>
+
+<tag name='literallayout'>
+  <ref role='width.attrib'/>
+  <ref role='linespecific.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='literallayout.role.attrib'/>
+  <!-- %local.literallayout.attrib; -->
+
+  <!-- (%para.char.mix; | lineannotation | co)* -->
+  <attribute name='class' type='string'>
+    <enumeration value='monospaced'/>
+    <enumeration value='normal'/>
+  </attribute>
+</tag>
+
+<!-- LineAnnotation (defined in the Inlines section, below)-->
+
+<attPool role='screenco.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='screenco'>
+  <sequence>
+    <ref label='areaspec'/>
+    <ref label='screen'/>
+    <ref label='calloutlist' occurs='*'/>
+  </sequence>
+  <!-- (areaspec, screen, calloutlist*) -->
+</elementRule>
+
+<tag name='screenco'>
+  <ref role='common.attrib'/>
+  <ref role='screenco.role.attrib'/>
+  <!-- %local.screenco.attrib; -->
+</tag>
+
+<!-- AreaSpec (defined above)-->
+<!-- CalloutList (defined above in Lists)-->
+
+<attPool role='screen.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='screen'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+      <ref label='co'/>
+      <ref label='lineannotation'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix; | co | lineannotation)* -->
+</elementRule>
+
+<tag name='screen'>
+  <ref role='width.attrib'/>
+  <ref role='linespecific.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='screen.role.attrib'/>
+  <!-- %local.screen.attrib; -->
+</tag>
+
+<attPool role='screenshot.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='screenshot'>
+  <sequence>
+    <ref label='screeninfo' occurs='?'/>
+    <choice>
+      <ref label='graphic'/>
+      <ref label='graphicco'/>
+      <ref label='mediaobject'/>
+      <ref label='mediaobjectco'/>
+    </choice>
+  </sequence>
+  <!-- (screeninfo?,
+                      (graphic|graphicco
+                      |mediaobject|mediaobjectco)) -->
+</elementRule>
+
+<tag name='screenshot'>
+  <ref role='common.attrib'/>
+  <ref role='screenshot.role.attrib'/>
+  <!-- %local.screenshot.attrib; -->
+</tag>
+
+<attPool role='screeninfo.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='screeninfo'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='screeninfo'>
+  <ref role='common.attrib'/>
+  <ref role='screeninfo.role.attrib'/>
+  <!-- %local.screeninfo.attrib; -->
+</tag>
+
+<!-- Figures etc. ..................... -->
+
+<attPool role='figure.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='figure'>
+  <sequence>
+    <hedgeRef label='formalobject.title.content' occurs='?'/>
+    <choice occurs='+'>
+      <hedgeRef label='figure.mix'/>
+      <hedgeRef label='link.char.class'/>
+    </choice>
+  </sequence>
+  <!-- ((%formalobject.title.content;), (%figure.mix; |
+		%link.char.class;)+) -->
+</elementRule>
+
+<tag name='figure'>
+  <ref role='label.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='figure.role.attrib'/>
+  <!-- %local.figure.attrib; -->
+
+  <!-- Float: Whether the Figure is supposed to be rendered
+       where convenient (yes (1) value) or at the place it occurs
+       in the text (no (0) value, the default) -->
+  <attribute name='float' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+  <attribute name='pgwide' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+</tag>
+
+<attPool role='informalfigure.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='informalfigure'>
+  <choice occurs='+'>
+    <hedgeRef label='figure.mix'/>
+    <hedgeRef label='link.char.class'/>
+  </choice>
+  <!-- ((%figure.mix; | %link.char.class;)+) -->
+</elementRule>
+
+<tag name='informalfigure'>
+  <ref role='label.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='informalfigure.role.attrib'/>
+  <!-- %local.informalfigure.attrib; -->
+
+  <!-- Float: Whether the Figure is supposed to be rendered
+       where convenient (yes (1) value) or at the place it occurs
+       in the text (no (0) value, the default) -->
+  <attribute name='float' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+  <attribute name='pgwide' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+</tag>
+
+<attPool role='graphicco.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='graphicco'>
+  <sequence>
+    <ref label='areaspec'/>
+    <ref label='graphic'/>
+    <ref label='calloutlist' occurs='*'/>
+  </sequence>
+  <!-- (areaspec, graphic, calloutlist*) -->
+</elementRule>
+
+<tag name='graphicco'>
+  <ref role='common.attrib'/>
+  <ref role='graphicco.role.attrib'/>
+  <!-- %local.graphicco.attrib; -->
+</tag>
+
+<!-- AreaSpec (defined above in Examples)-->
+<!-- CalloutList (defined above in Lists)-->
+
+<!-- Graphical data can be the content of Graphic, or you can reference
+     an external file either as an entity (Entitref) or a filename
+     (Fileref). -->
+
+<attPool role='graphic.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='graphic'>
+  <!-- EMPTY -->
+  <empty/>
+</elementRule>
+
+<tag name='graphic'>
+  <ref role='graphics.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='graphic.role.attrib'/>
+  <!-- %local.graphic.attrib; -->
+</tag>
+
+<attPool role='inlinegraphic.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='inlinegraphic'>
+  <!-- EMPTY -->
+  <empty/>
+</elementRule>
+
+<tag name='inlinegraphic'>
+  <ref role='graphics.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='inlinegraphic.role.attrib'/>
+  <!-- %local.inlinegraphic.attrib; -->
+</tag>
+
+<attPool role='mediaobject.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='mediaobject'>
+  <sequence>
+    <ref label='objectinfo' occurs='?'/>
+    <hedgeRef label='mediaobject.mix'/>
+    <choice occurs='*'>
+      <hedgeRef label='mediaobject.mix'/>
+      <ref label='textobject'/>
+    </choice>
+    <ref label='caption' occurs='?'/>
+  </sequence>
+  <!-- (objectinfo?,
+                           (%mediaobject.mix;),
+			   (%mediaobject.mix;|textobject)*,
+			   caption?) -->
+</elementRule>
+
+<tag name='mediaobject'>
+  <ref role='common.attrib'/>
+  <ref role='mediaobject.role.attrib'/>
+  <!-- %local.mediaobject.attrib; -->
+</tag>
+
+<attPool role='inlinemediaobject.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='inlinemediaobject'>
+  <sequence>
+    <ref label='objectinfo' occurs='?'/>
+    <hedgeRef label='mediaobject.mix'/>
+    <choice occurs='*'>
+      <hedgeRef label='mediaobject.mix'/>
+      <ref label='textobject'/>
+    </choice>
+  </sequence>
+  <!-- (objectinfo?,
+                	         (%mediaobject.mix;),
+				 (%mediaobject.mix;|textobject)*) -->
+</elementRule>
+
+<tag name='inlinemediaobject'>
+  <ref role='common.attrib'/>
+  <ref role='inlinemediaobject.role.attrib'/>
+  <!-- %local.inlinemediaobject.attrib; -->
+</tag>
+
+<attPool role='videoobject.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='videoobject'>
+  <sequence>
+    <ref label='objectinfo' occurs='?'/>
+    <ref label='videodata'/>
+  </sequence>
+  <!-- (objectinfo?, videodata) -->
+</elementRule>
+
+<tag name='videoobject'>
+  <ref role='common.attrib'/>
+  <ref role='videoobject.role.attrib'/>
+  <!-- %local.videoobject.attrib; -->
+</tag>
+
+<attPool role='audioobject.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='audioobject'>
+  <sequence>
+    <ref label='objectinfo' occurs='?'/>
+    <ref label='audiodata'/>
+  </sequence>
+  <!-- (objectinfo?, audiodata) -->
+</elementRule>
+
+<tag name='audioobject'>
+  <ref role='common.attrib'/>
+  <ref role='audioobject.role.attrib'/>
+  <!-- %local.audioobject.attrib; -->
+</tag>
+
+<attPool role='imageobject.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='imageobject'>
+  <sequence>
+    <ref label='objectinfo' occurs='?'/>
+    <ref label='imagedata'/>
+  </sequence>
+  <!-- (objectinfo?, imagedata) -->
+</elementRule>
+
+<tag name='imageobject'>
+  <ref role='common.attrib'/>
+  <ref role='imageobject.role.attrib'/>
+  <!-- %local.imageobject.attrib; -->
+</tag>
+
+<attPool role='textobject.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='textobject'>
+  <sequence>
+    <ref label='objectinfo' occurs='?'/>
+    <choice>
+      <ref label='phrase'/>
+      <hedgeRef label='textobject.mix' occurs='+'/>
+    </choice>
+  </sequence>
+  <!-- (objectinfo?, (phrase|(%textobject.mix;)+)) -->
+</elementRule>
+
+<tag name='textobject'>
+  <ref role='common.attrib'/>
+  <ref role='textobject.role.attrib'/>
+  <!-- %local.textobject.attrib; -->
+</tag>
+
+<attPool role='objectinfo.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='objectinfo'>
+  <sequence>
+    <hedgeRef label='infoContentModel'/>
+  </sequence>
+</elementRule>
+
+<tag name='objectinfo'>
+  <ref role='common.attrib'/>
+  <ref role='objectinfo.role.attrib'/>
+  <!-- %local.objectinfo.attrib; -->
+</tag>
+
+<attPool role='objectdata.attrib'>
+  <!-- FIXME: -->
+  <!--EntityRef: Name of an external entity containing the content
+	of the object data-->
+  <!-- entityref	ENTITY		#IMPLIED -->
+  <!--FileRef: Filename, qualified by a pathname if desired,
+	designating the file containing the content of the object data-->
+  <attribute name='fileref' type='string'/>
+  <!--Format: Notation of the element content, if any-->
+  <attribute name='format' type='NMTOKEN'>
+    <enumeration value='BMP'/>
+    <enumeration value='CGM-CHAR'/>
+    <enumeration value='CGM-BINARY'/>
+    <enumeration value='CGM-CLEAR'/>
+    <enumeration value='DITROFF'/>
+    <enumeration value='DVI'/>
+    <enumeration value='EPS'/>
+    <enumeration value='EQN'/>
+    <enumeration value='FAX'/>
+    <enumeration value='GIF'/>
+    <enumeration value='GIF87a'/>
+    <enumeration value='GIF89a'/>
+    <enumeration value='JPG'/>
+    <enumeration value='JPEG'/>
+    <enumeration value='IGES'/>
+    <enumeration value='PCX'/>
+    <enumeration value='PIC'/>
+    <enumeration value='PNG'/>
+    <enumeration value='PS'/>
+    <enumeration value='SGML'/>
+    <enumeration value='TBL'/>
+    <enumeration value='TEX'/>
+    <enumeration value='TIFF'/>
+    <enumeration value='WMF'/>
+    <enumeration value='WPG'/>
+    <enumeration value='linespecific'/>
+  </attribute>
+  <!--SrcCredit: Information about the source of the image-->
+  <attribute name='srccredit' type='string'/>
+  <!-- %local.objectdata.attrib;-->
+</attPool>
+
+<attPool role='videodata.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='videodata'>
+  <!-- EMPTY -->
+  <empty/>
+</elementRule>
+
+<tag name='videodata'>
+  <ref role='common.attrib'/>
+  <ref role='objectdata.attrib'/>
+  <!-- %local.videodata.attrib; -->
+
+  <!--Width: Same as CALS reprowid (desired width)-->
+  <attribute name='width' type='string'/>
+
+  <!--Depth: Same as CALS reprodep (desired depth)-->
+  <attribute name='depth' type='string'/>
+
+  <!--Align: Same as CALS hplace with 'none' removed; #IMPLIED means
+      application-specific-->
+  <attribute name='align' type='NMTOKEN'>
+    <enumeration value='left'/>
+    <enumeration value='right'/>
+    <enumeration value='center'/>
+  </attribute>
+
+  <!--Scale: Conflation of CALS hscale and vscale-->
+  <attribute name='scale' type='string'/>
+
+  <!--Scalefit: Same as CALS scalefit-->
+  <attribute name='scalefit' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+</tag>
+
+<attPool role='audiodata.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='audiodata'>
+  <!-- EMPTY -->
+  <empty/>
+</elementRule>
+
+<tag name='audiodata'>
+  <ref role='common.attrib'/>
+  <ref role='objectdata.attrib'/>
+  <!-- %local.audiodata.attrib; -->
+  <ref role='audiodata.role.attrib'/>
+</tag>
+
+<attPool role='imagedata.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='imagedata'>
+  <!-- EMPTY -->
+  <empty/>
+</elementRule>
+
+<tag name='imagedata'>
+  <ref role='common.attrib'/>
+  <ref role='objectdata.attrib'/>
+  <ref role='imagedata.role.attrib'/>
+  <!-- %local.videodata.attrib; -->
+
+  <!--Width: Same as CALS reprowid (desired width)-->
+  <attribute name='width' type='string'/>
+
+  <!--Depth: Same as CALS reprodep (desired depth)-->
+  <attribute name='depth' type='string'/>
+
+  <!--Align: Same as CALS hplace with 'none' removed; #IMPLIED means
+      application-specific-->
+  <attribute name='align' type='NMTOKEN'>
+    <enumeration value='left'/>
+    <enumeration value='right'/>
+    <enumeration value='center'/>
+  </attribute>
+
+  <!--Scale: Conflation of CALS hscale and vscale-->
+  <attribute name='scale' type='string'/>
+
+  <!--Scalefit: Same as CALS scalefit-->
+  <attribute name='scalefit' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+</tag>
+
+<attPool role='caption.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='caption'>
+  <sequence>
+    <hedgeRef label='textobject.mix' occurs='*'/>
+  </sequence>
+</elementRule>
+
+<tag name='caption'>
+  <ref role='common.attrib'/>
+  <!-- %local.caption.attrib; -->
+  <ref role='caption.role.attrib'/>
+</tag>
+
+<attPool role='mediaobjectco.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='mediaobjectco'>
+  <sequence>
+    <ref label='objectinfo' occurs='?'/>
+    <ref label='imageobjectco'/>
+    <choice occurs='*'>
+      <ref label='imageobjectco'/>
+      <ref label='textobject'/>
+    </choice>
+  </sequence>
+  <!-- (objectinfo?, imageobjectco,
+			   (imageobjectco|textobject)*) -->
+</elementRule>
+
+<tag name='mediaobjectco'>
+  <ref role='common.attrib'/>
+  <ref role='mediaobjectco.role.attrib'/>
+  <!-- %local.mediaobjectco.attrib; -->
+</tag>
+
+<attPool role='imageobjectco.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='imageobjectco'>
+  <sequence>
+    <ref label='areaspec'/>
+    <ref label='imageobject'/>
+    <ref label='calloutlist' occurs='*'/>
+  </sequence>
+  <!-- (areaspec, imageobject, calloutlist*) -->
+</elementRule>
+
+<tag name='imageobjectco'>
+  <ref role='common.attrib'/>
+  <ref role='imageobjectco.role.attrib'/>
+  <!-- %local.imageobjectco.attrib; -->
+</tag>
+
+<!-- Equations ........................ -->
+
+<!-- This PE provides a mechanism for replacing equation content, -->
+<!-- perhaps adding a new or different model (e.g., MathML) -->
+
+<hedgeRule label='equation.content'>
+  <sequence>
+    <ref label='alt' occurs='?'/>
+    <choice>
+      <ref label='graphic' occurs='+'/>
+      <ref label='mediaobject' occurs='+'/>
+    </choice>
+  </sequence>
+  <!-- (alt?, (graphic+|mediaobject+)) -->
+</hedgeRule>
+
+<hedgeRule label='inlineequation.content'>
+  <sequence>
+    <ref label='alt' occurs='?'/>
+    <choice>
+      <ref label='graphic' occurs='+'/>
+      <ref label='inlinemediaobject' occurs='+'/>
+    </choice>
+  </sequence>
+  <!-- (alt?, (graphic+|inlinemediaobject+)) -->
+</hedgeRule>
+
+<attPool role='equation.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='equation'>
+  <sequence>
+    <hedgeRef label='formalobject.title.content' occurs='?'/>
+    <choice>
+      <ref label='informalequation'/>
+      <hedgeRef label='equation.content'/>
+    </choice>
+  </sequence>
+  <!-- ((%formalobject.title.content;)?, (informalequation |
+		%equation.content;)) -->
+</elementRule>
+
+<tag name='equation'>
+  <ref role='label.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='equation.role.attrib'/>
+  <!-- %local.equation.attrib; -->
+</tag>
+
+<attPool role='informalequation.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='informalequation'>
+  <sequence>
+    <hedgeRef label='equation.content'/>
+  </sequence>
+  <!-- (%equation.content;)  -->
+</elementRule>
+
+<tag name='informalequation'>
+  <ref role='common.attrib'/>
+  <ref role='informalequation.role.attrib'/>
+  <!-- %local.informalequation.attrib; -->
+</tag>
+
+<attPool role='inlineequation.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='inlineequation'>
+  <sequence>
+    <hedgeRef label='inlineequation.content'/>
+  </sequence>
+  <!-- (%inlineequation.content;) -->
+</elementRule>
+
+<tag name='inlineequation'>
+  <ref role='common.attrib'/>
+  <ref role='inlineequation.role.attrib'/>
+  <!-- %local.inlineequation.attrib; -->
+</tag>
+
+<attPool role='alt.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='alt'>
+  <!-- (#PCDATA) -->
+  <mixed>
+    <empty/>
+  </mixed>
+</elementRule>
+
+<tag name='alt'>
+  <ref role='common.attrib'/>
+  <ref role='alt.role.attrib'/>
+  <!-- %local.alt.attrib; -->
+</tag>
+
+<!-- ...................................................................... -->
+<!-- Synopses ............................................................. -->
+
+<!-- Synopsis ......................... -->
+
+<attPool role='synopsis.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='synopsis'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+      <ref label='graphic'/>
+      <ref label='mediaobject'/>
+      <ref label='lineannotation'/>
+      <ref label='co'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix; | graphic | mediaobject | lineannotation | co)* -->
+</elementRule>
+
+<tag name='synopsis'>
+  <ref role='label.attrib'/>
+  <ref role='linespecific.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='synopsis.role.attrib'/>
+  <!-- %local.synopsis.attrib; -->
+</tag>
+
+<!-- LineAnnotation (defined in the Inlines section, below)-->
+
+<!-- CmdSynopsis ...................... -->
+
+<attPool role='cmdsynopsis.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='cmdsynopsis'>
+  <sequence>
+    <choice occurs='+'>
+      <ref label='command'/>
+      <ref label='arg'/>
+      <ref label='group'/>
+      <ref label='sbr'/>
+    </choice>
+    <ref label='synopfragment' occurs='*'/>
+  </sequence>
+  <!-- ((command | arg | group | sbr)+, synopfragment*) -->
+</elementRule>
+
+<tag name='cmdsynopsis'>
+  <ref role='label.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='cmdsynopsis.role.attrib'/>
+  <!-- %local.cmdsynopsis.attrib; -->
+
+  <!-- Sepchar: Character that should separate command and all
+       top-level arguments; alternate value might be e.g., &Delta; -->
+  <attribute name='sepchar' type='string'/>
+  <attribute name='cmdlength' type='integer'/>
+</tag>
+
+<attPool role='arg.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='arg'>
+  <mixed>
+    <choice occurs='*'>
+      <ref label='arg'/>
+      <ref label='group'/>
+      <ref label='option'/>
+      <ref label='synopfragmentref'/>
+      <ref label='replaceable'/>
+      <ref label='sbr'/>
+    </choice>
+  </mixed>
+  <!-- (#PCDATA
+		| arg
+		| group
+		| option
+		| synopfragmentref
+		| replaceable
+		| sbr)* -->
+</elementRule>
+
+<tag name='arg'>
+  <ref role='common.attrib'/>
+  <ref role='arg.role.attrib'/>
+  <!-- %local.arg.attrib; -->
+
+  <!-- Choice: Whether Arg must be supplied: Opt (optional to
+       supply, e.g. [arg]; the default), Req (required to supply,
+       e.g. {arg}), or Plain (required to supply, e.g. arg) -->
+  <attribute name='choice' type='string'>
+    <enumeration value='opt'/>
+    <enumeration value='req'/>
+    <enumeration value='plain'/>
+  </attribute>
+
+  <!-- Rep: whether Arg is repeatable: Norepeat (e.g. arg without
+       ellipsis; the default), or Repeat (e.g. arg...) -->
+  <attribute name='rep' type='string'>
+    <enumeration value='norepeat'/>
+    <enumeration value='repeat'/>
+  </attribute>
+</tag>
+
+<attPool role='group.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='group'>
+  <choice occurs='+'>
+    <ref label='arg'/>
+    <ref label='group'/>
+    <ref label='option'/>
+    <ref label='synopfragmentref'/>
+    <ref label='replaceable'/>
+    <ref label='sbr'/>
+  </choice>
+  <!-- ((arg | group | option | synopfragmentref
+		| replaceable | sbr)+) -->
+</elementRule>
+
+<tag name='group'>
+  <ref role='common.attrib'/>
+  <ref role='group.role.attrib'/>
+  <!-- %local.group.attrib; -->
+
+  <!-- Choice: Whether Arg must be supplied: Opt (optional to
+       supply, e.g. [arg]; the default), Req (required to supply,
+       e.g. {arg}), or Plain (required to supply, e.g. arg) -->
+  <attribute name='choice' type='string'>
+    <enumeration value='opt'/>
+    <enumeration value='req'/>
+    <enumeration value='plain'/>
+  </attribute>
+
+  <!-- Rep: whether Arg is repeatable: Norepeat (e.g. arg without
+       ellipsis; the default), or Repeat (e.g. arg...) -->
+  <attribute name='rep' type='string'>
+    <enumeration value='norepeat'/>
+    <enumeration value='repeat'/>
+  </attribute>
+</tag>
+
+<!-- Synopsis break -->
+<attPool role='sbr.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='sbr'>
+  <!-- EMPTY -->
+  <empty/>
+</elementRule>
+
+<tag name='sbr'>
+  <ref role='common.attrib'/>
+  <ref role='sbr.role.attrib'/>
+  <!-- %local.sbr.attrib; -->
+</tag>
+
+<attPool role='synopfragmentref.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='synopfragmentref'>
+  <!-- (#PCDATA) -->
+  <mixed>
+    <empty/>
+  </mixed>
+</elementRule>
+
+<tag name='synopfragmentref'>
+  <!-- to SynopFragment of complex synopsis
+       material for separate referencing -->
+  <ref role='linkendreq.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='synopfragmentref.role.attrib'/>
+  <!-- %local.synopfragmentref.attrib; -->
+</tag>
+
+<attPool role='synopfragment.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='synopfragment'>
+  <choice occurs='+'>
+    <ref label='arg'/>
+    <ref label='group'/>
+  </choice>
+  <!-- ((arg | group)+) -->
+</elementRule>
+
+<tag name='synopfragment'>
+  <ref role='idreq.common.attrib'/>
+  <ref role='synopfragment.role.attrib'/>
+  <!-- %local.synopfragment.attrib; -->
+</tag>
+
+<!-- Command (defined in the Inlines section, below)-->
+<!-- Option (defined in the Inlines section, below)-->
+<!-- Replaceable (defined in the Inlines section, below)-->
+
+<!-- FuncSynopsis ..................... -->
+
+<attPool role='funcsynopsis.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='funcsynopsis'>
+  <choice occurs='+'>
+    <ref label='funcsynopsisinfo'/>
+    <ref label='funcprototype'/>
+  </choice>
+  <!-- ((funcsynopsisinfo | funcprototype)+) -->
+</elementRule>
+
+<tag name='funcsynopsis'>
+  <ref role='label.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='funcsynopsis.role.attrib'/>
+  <!-- %local.funcsynopsis.attrib; -->
+</tag>
+
+<attPool role='funcsynopsisinfo.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='funcsynopsisinfo'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='cptr.char.mix'/>
+      <ref label='lineannotation'/>
+    </choice>
+  </mixed>
+  <!-- (%cptr.char.mix; | lineannotation)* -->
+</elementRule>
+
+<tag name='funcsynopsisinfo'>
+  <ref role='linespecific.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='funcsynopsisinfo.role.attrib'/>
+  <!-- %local.funcsynopsisinfo.attrib; -->
+</tag>
+
+<attPool role='funcprototype.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='funcprototype'>
+  <sequence>
+    <ref label='funcdef'/>
+    <choice occurs='+'>
+      <ref label='void'/>
+      <ref label='varargs'/>
+      <ref label='paramdef'/>
+    </choice>
+  </sequence>
+  <!-- (funcdef, (void | varargs | paramdef+)) -->
+</elementRule>
+
+<tag name='funcprototype'>
+  <ref role='common.attrib'/>
+  <ref role='funcprototype.role.attrib'/>
+  <!-- %local.funcprototype.attrib; -->
+</tag>
+
+<attPool role='funcdef.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='funcdef'>
+  <mixed>
+    <choice occurs='*'>
+      <ref label='replaceable'/>
+      <ref label='function'/>
+    </choice>
+  </mixed>
+  <!-- (#PCDATA
+		| replaceable
+		| function)* -->
+</elementRule>
+
+<tag name='funcdef'>
+  <ref role='common.attrib'/>
+  <ref role='funcdef.role.attrib'/>
+  <!-- %local.funcdef.attrib; -->
+</tag>
+
+<attPool role='void.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='void'>
+  <!-- EMPTY -->
+  <empty/>
+</elementRule>
+
+<tag name='void'>
+  <ref role='common.attrib'/>
+  <ref role='void.role.attrib'/>
+  <!-- %local.void.attrib; -->
+</tag>
+
+<attPool role='varargs.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='varargs'>
+  <!-- EMPTY -->
+  <empty/>
+</elementRule>
+
+<tag name='varargs'>
+  <ref role='common.attrib'/>
+  <ref role='varargs.role.attrib'/>
+  <!-- %local.varargs.attrib; -->
+</tag>
+
+<!-- Processing assumes that only one Parameter will appear in a
+     ParamDef, and that FuncParams will be used at most once, for
+     providing information on the "inner parameters" for parameters that
+     are pointers to functions. -->
+
+<attPool role='paramdef.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='paramdef'>
+  <mixed>
+    <choice occurs='*'>
+      <ref label='replaceable'/>
+      <ref label='parameter'/>
+      <ref label='funcparams'/>
+    </choice>
+  </mixed>
+  <!-- (#PCDATA
+		| replaceable
+		| parameter
+		| funcparams)* -->
+</elementRule>
+
+<tag name='paramdef'>
+  <ref role='common.attrib'/>
+  <ref role='paramdef.role.attrib'/>
+  <!-- %local.paramdef.attrib; -->
+</tag>
+
+<attPool role='funcparams.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='funcparams'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='cptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%cptr.char.mix;)* -->
+</elementRule>
+
+<tag name='funcparams'>
+  <ref role='common.attrib'/>
+  <ref role='funcparams.role.attrib'/>
+  <!-- %local.funcparams.attrib; -->
+</tag>
+
+<!-- LineAnnotation (defined in the Inlines section, below)-->
+<!-- Replaceable (defined in the Inlines section, below)-->
+<!-- Function (defined in the Inlines section, below)-->
+<!-- Parameter (defined in the Inlines section, below)-->
+
+<!-- ClassSynopsis ..................... -->
+
+<attPool role='classsynopsis.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='classsynopsis'>
+  <sequence>
+    <choice occurs='+'>
+      <ref label='ooclass'/>
+      <ref label='oointerface'/>
+      <ref label='ooexception'/>
+    </choice>
+    <choice occurs='*'>
+      <ref label='classsynopsisinfo'/>
+      <ref label='fieldsynopsis'/>
+      <hedgeRef label='method.synop.class'/>
+    </choice>
+  </sequence>
+  <!-- ((ooclass|oointerface|ooexception)+,
+                         (classsynopsisinfo
+                          |fieldsynopsis|%method.synop.class;)*) -->
+</elementRule>
+
+<tag name='classsynopsis'>
+  <ref role='common.attrib'/>
+  <ref role='classsynopsis.role.attrib'/>
+  <!-- %local.classsynopsis.attrib; -->
+  <attribute name='language' type='string'/>
+  <attribute name='class' type='string'>
+    <enumeration value='class'/>
+    <enumeration value='interface'/>
+  </attribute>
+</tag>
+
+<attPool role='classsynopsisinfo.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='classsynopsisinfo'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='cptr.char.mix'/>
+      <ref label='lineannotation'/>
+    </choice>
+  </mixed>
+  <!-- (%cptr.char.mix; | lineannotation)* -->
+</elementRule>
+
+<tag name='classsynopsisinfo'>
+  <ref role='linespecific.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='classsynopsisinfo.role.attrib'/>
+  <!-- %local.classsynopsisinfo.attrib; -->
+</tag>
+
+<attPool role='ooclass.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='ooclass'>
+  <sequence>
+    <ref label='modifier' occurs='*'/>
+    <ref label='classname'/>
+  </sequence>
+  <!-- (modifier*, classname) -->
+</elementRule>
+
+<tag name='ooclass'>
+  <ref role='common.attrib'/>
+  <ref role='ooclass.role.attrib'/>
+  <!-- %local.ooclass.attrib; -->
+</tag>
+
+<attPool role='oointerface.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='oointerface'>
+  <sequence>
+    <ref label='modifier' occurs='*'/>
+    <ref label='interfacename'/>
+  </sequence>
+  <!-- (modifier*, interfacename) -->
+</elementRule>
+
+<tag name='oointerface'>
+  <ref role='common.attrib'/>
+  <ref role='oointerface.role.attrib'/>
+  <!-- %local.oointerface.attrib; -->
+</tag>
+
+<attPool role='ooexception.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='ooexception'>
+  <sequence>
+    <ref label='modifier' occurs='*'/>
+    <ref label='exceptionname'/>
+  </sequence>
+  <!-- (modifier*, exceptionname) -->
+</elementRule>
+
+<tag name='ooexception'>
+  <ref role='common.attrib'/>
+  <ref role='ooexception.role.attrib'/>
+  <!-- %local.ooexception.attrib; -->
+</tag>
+
+<attPool role='modifier.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='modifier'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='modifier'>
+  <ref role='common.attrib'/>
+  <ref role='modifier.role.attrib'/>
+  <!-- %local.modifier.attrib; -->
+</tag>
+
+<attPool role='interfacename.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='interfacename'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='interfacename'>
+  <ref role='common.attrib'/>
+  <ref role='interfacename.role.attrib'/>
+  <!-- %local.interfacename.attrib; -->
+</tag>
+
+<attPool role='exceptionname.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='exceptionname'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='exceptionname'>
+  <ref role='common.attrib'/>
+  <ref role='exceptionname.role.attrib'/>
+  <!-- %local.exceptionname.attrib; -->
+</tag>
+
+<attPool role='fieldsynopsis.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='fieldsynopsis'>
+  <sequence>
+    <ref label='modifier' occurs='*'/>
+    <ref label='type' occurs='?'/>
+    <ref label='varname'/>
+    <ref label='initializer' occurs='?'/>
+  </sequence>
+  <!-- (modifier*, type?, varname, initializer?) -->
+</elementRule>
+
+<tag name='fieldsynopsis'>
+  <ref role='common.attrib'/>
+  <ref role='fieldsynopsis.role.attrib'/>
+  <!-- %local.fieldsynopsis.attrib; -->
+</tag>
+
+<attPool role='initializer.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='initializer'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='initializer'>
+  <ref role='common.attrib'/>
+  <ref role='initializer.role.attrib'/>
+  <!-- %local.initializer.attrib; -->
+</tag>
+
+<attPool role='constructorsynopsis.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='constructorsynopsis'>
+  <sequence>
+    <ref label='modifier' occurs='*'/>
+    <ref label='methodname' occurs='?'/>
+    <choice>
+      <ref label='methodparam' occurs='+'/>
+      <ref label='void'/>
+    </choice>
+    <ref label='exceptionname' occurs='*'/>
+  </sequence>
+  <!-- (modifier*,
+                               methodname?,
+                               (methodparam+|void),
+                               exceptionname*) -->
+</elementRule>
+
+<tag name='constructorsynopsis'>
+  <ref role='common.attrib'/>
+  <ref role='constructorsynopsis.role.attrib'/>
+  <!-- %local.constructorsynopsis.attrib; -->
+</tag>
+
+<attPool role='destructorsynopsis.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='destructorsynopsis'>
+  <sequence>
+    <ref label='modifier' occurs='*'/>
+    <ref label='methodname' occurs='?'/>
+    <choice>
+      <ref label='methodparam' occurs='+'/>
+      <ref label='void'/>
+    </choice>
+    <ref label='exceptionname' occurs='*'/>
+  </sequence>
+  <!-- (modifier*,
+                              methodname?,
+                              (methodparam+|void),
+                              exceptionname*) -->
+</elementRule>
+
+<tag name='destructorsynopsis'>
+  <ref role='common.attrib'/>
+  <ref role='destructorsynopsis.role.attrib'/>
+  <!-- %local.destructorsynopsis.attrib; -->
+</tag>
+
+<attPool role='methodsynopsis.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='methodsynopsis'>
+  <sequence>
+    <ref label='modifier' occurs='*'/>
+    <choice occurs='?'>
+      <ref label='type'/>
+      <ref label='void'/>
+    </choice>
+    <ref label='methodname' occurs='?'/>
+    <choice>
+      <ref label='methodparam' occurs='+'/>
+      <ref label='void'/>
+    </choice>
+    <ref label='exceptionname' occurs='*'/>
+    <ref label='modifier' occurs='*'/>
+  </sequence>
+  <!-- (modifier*,
+                          (type|void)?,
+                          methodname,
+                          (methodparam+|void),
+                          exceptionname*,
+                          modifier*) -->
+</elementRule>
+
+<tag name='methodsynopsis'>
+  <ref role='common.attrib'/>
+  <ref role='methodsynopsis.role.attrib'/>
+  <!-- %local.methodsynopsis.attrib; -->
+</tag>
+
+<attPool role='methodname.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='methodname'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='methodname'>
+  <ref role='common.attrib'/>
+  <ref role='methodname.role.attrib'/>
+  <!-- %local.methodname.attrib; -->
+</tag>
+
+<attPool role='methodparam.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='methodparam'>
+  <sequence>
+    <element name='modifier' occurs='*'/>
+    <element name='type' occurs='?'/>
+    <choice>
+      <sequence>
+        <element name='parameter'/>
+        <element name='initializer' occurs='?'/>
+      </sequence>
+      <element name='funcparams'/>
+    </choice>
+    <element name='modifier' occurs='*'/>
+  </sequence>
+  <!-- (modifier*,
+                       type?,
+                       ((parameter,initializer?)|funcparams),
+                       modifier*) -->
+</elementRule>
+
+<tag name='methodparam'>
+  <ref role='common.attrib'/>
+  <ref role='methodparam.role.attrib'/>
+  <!-- %local.methodparam.attrib; -->
+
+  <!-- Choice: Whether Arg must be supplied: Opt (optional to
+       supply, e.g. [arg]; the default), Req (required to supply,
+       e.g. {arg}), or Plain (required to supply, e.g. arg) -->
+  <attribute name='choice' type='string'>
+    <enumeration value='opt'/>
+    <enumeration value='req'/>
+    <enumeration value='plain'/>
+  </attribute>
+
+  <!-- Rep: whether Arg is repeatable: Norepeat (e.g. arg without
+       ellipsis; the default), or Repeat (e.g. arg...) -->
+  <attribute name='rep' type='string'>
+    <enumeration value='norepeat'/>
+    <enumeration value='repeat'/>
+  </attribute>
+</tag>
+
+<!-- ...................................................................... -->
+<!-- Document information entities and elements ........................... -->
+
+<!-- The document information elements include some elements that are
+     currently used only in the document hierarchy module. They are
+     defined here so that they will be available for use in customized
+     document hierarchies. -->
+
+<!-- .................................. -->
+
+<!-- Ackno ............................ -->
+
+<attPool role='ackno.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='ackno'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='ackno'>
+  <ref role='common.attrib'/>
+  <ref role='ackno.role.attrib'/>
+  <!-- %local.ackno.attrib; -->
+</tag>
+
+<!-- Address .......................... -->
+
+<attPool role='address.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='address'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='person.ident.mix'/>
+      <ref label='street'/>
+      <ref label='pob'/>
+      <ref label='postcode'/>
+      <ref label='city'/>
+      <ref label='state'/>
+      <ref label='country'/>
+      <ref label='phone'/>
+      <ref label='fax'/>
+      <ref label='email'/>
+      <ref label='otheraddr'/>
+    </choice>
+  </mixed>
+  <!-- (#PCDATA|%person.ident.mix;
+		|street|pob|postcode|city|state|country|phone
+		|fax|email|otheraddr)* -->
+</elementRule>
+
+<tag name='address'>
+  <ref role='linespecific.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='address.role.attrib'/>
+  <!-- %local.address.attrib; -->
+</tag>
+
+<attPool role='street.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='street'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='street'>
+  <ref role='common.attrib'/>
+  <ref role='street.role.attrib'/>
+  <!-- %local.street.attrib; -->
+</tag>
+
+<attPool role='pob.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='pob'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='pob'>
+  <ref role='common.attrib'/>
+  <ref role='pob.role.attrib'/>
+  <!-- %local.pob.attrib; -->
+</tag>
+
+<attPool role='postcode.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='postcode'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='postcode'>
+  <ref role='common.attrib'/>
+  <ref role='postcode.role.attrib'/>
+  <!-- %local.postcode.attrib; -->
+</tag>
+
+<attPool role='city.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='city'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='city'>
+  <ref role='common.attrib'/>
+  <ref role='city.role.attrib'/>
+  <!-- %local.city.attrib; -->
+</tag>
+
+<attPool role='state.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='state'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='state'>
+  <ref role='common.attrib'/>
+  <ref role='state.role.attrib'/>
+  <!-- %local.state.attrib; -->
+</tag>
+
+<attPool role='country.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='country'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='country'>
+  <ref role='common.attrib'/>
+  <ref role='country.role.attrib'/>
+  <!-- %local.country.attrib; -->
+</tag>
+
+<attPool role='phone.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='phone'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='phone'>
+  <ref role='common.attrib'/>
+  <ref role='phone.role.attrib'/>
+  <!-- %local.phone.attrib; -->
+</tag>
+
+<attPool role='fax.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='fax'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='fax'>
+  <ref role='common.attrib'/>
+  <ref role='fax.role.attrib'/>
+  <!-- %local.fax.attrib; -->
+</tag>
+
+<!-- Email (defined in the Inlines section, below)-->
+
+<attPool role='otheraddr.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='otheraddr'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='otheraddr'>
+  <ref role='common.attrib'/>
+  <ref role='otheraddr.role.attrib'/>
+  <!-- %local.otheraddr.attrib; -->
+</tag>
+
+<!-- Affiliation ...................... -->
+
+<attPool role='affiliation.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='affiliation'>
+  <sequence>
+    <ref label='shortaffil' occurs='?'/>
+    <ref label='jobtitle' occurs='*'/>
+    <ref label='orgname' occurs='?'/>
+    <ref label='orgdiv' occurs='*'/>
+    <ref label='address' occurs='*'/>
+  </sequence>
+  <!-- (shortaffil?, jobtitle*, orgname?, orgdiv*,
+		address*) -->
+</elementRule>
+
+<tag name='affiliation'>
+  <ref role='common.attrib'/>
+  <ref role='affiliation.role.attrib'/>
+  <!-- %local.affiliation.attrib; -->
+</tag>
+
+<attPool role='shortaffil.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='shortaffil'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='shortaffil'>
+  <ref role='common.attrib'/>
+  <ref role='shortaffil.role.attrib'/>
+  <!-- %local.shortaffil.attrib; -->
+</tag>
+
+<attPool role='jobtitle.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='jobtitle'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='jobtitle'>
+  <ref role='common.attrib'/>
+  <ref role='jobtitle.role.attrib'/>
+  <!-- %local.jobtitle.attrib; -->
+</tag>
+
+<!-- OrgName (defined elsewhere in this section)-->
+
+<attPool role='orgdiv.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='orgdiv'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='orgdiv'>
+  <ref role='common.attrib'/>
+  <ref role='orgdiv.role.attrib'/>
+  <!-- %local.orgdiv.attrib; -->
+</tag>
+
+<!-- Address (defined elsewhere in this section)-->
+
+<!-- ArtPageNums ...................... -->
+
+<attPool role='artpagenums.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='artpagenums'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='artpagenums'>
+  <ref role='common.attrib'/>
+  <ref role='artpagenums.role.attrib'/>
+  <!-- %local.artpagenums.attrib; -->
+</tag>
+
+<!-- Author ........................... -->
+
+<attPool role='author.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='author'>
+  <sequence occurs='+'>
+    <hedgeRef label='person.ident.mix'/>
+  </sequence>
+  <!-- ((%person.ident.mix;)+) -->
+</elementRule>
+
+<tag name='author'>
+  <ref role='common.attrib'/>
+  <ref role='author.role.attrib'/>
+  <!-- %local.author.attrib; -->
+</tag>
+
+<!--(see "Personal identity elements" for %person.ident.mix;)-->
+
+<!-- AuthorGroup ...................... -->
+
+<attPool role='authorgroup.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='authorgroup'>
+  <choice occurs='+'>
+    <ref label='author'/>
+    <ref label='editor'/>
+    <ref label='collab'/>
+    <ref label='corpauthor'/>
+    <ref label='othercredit'/>
+  </choice>
+  <!-- ((author|editor|collab|corpauthor|othercredit)+) -->
+</elementRule>
+
+<tag name='authorgroup'>
+  <ref role='common.attrib'/>
+  <ref role='authorgroup.role.attrib'/>
+  <!-- %local.authorgroup.attrib; -->
+</tag>
+
+<!-- Author (defined elsewhere in this section)-->
+<!-- Editor (defined elsewhere in this section)-->
+
+<attPool role='collab.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='collab'>
+  <sequence>
+    <ref label='collabname'/>
+    <ref label='affiliation' occurs='*'/>
+  </sequence>
+  <!-- (collabname, affiliation*) -->
+</elementRule>
+
+<tag name='collab'>
+  <ref role='common.attrib'/>
+  <ref role='collab.role.attrib'/>
+  <!-- %local.collab.attrib; -->
+</tag>
+
+<attPool role='collabname.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='collabname'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='collabname'>
+  <ref role='common.attrib'/>
+  <ref role='collabname.role.attrib'/>
+  <!-- %local.collabname.attrib; -->
+</tag>
+
+<!-- Affiliation (defined elsewhere in this section)-->
+
+<!-- CorpAuthor (defined elsewhere in this section)-->
+<!-- OtherCredit (defined elsewhere in this section)-->
+
+<!-- AuthorInitials ................... -->
+
+<attPool role='authorinitials.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='authorinitials'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='authorinitials'>
+  <ref role='common.attrib'/>
+  <ref role='authorinitials.role.attrib'/>
+  <!-- %local.authorinitials.attrib; -->
+</tag>
+
+<!-- ConfGroup ........................ -->
+
+<attPool role='confgroup.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='confgroup'>
+  <choice occurs='*'>
+    <ref label='confdates'/>
+    <ref label='conftitle'/>
+    <ref label='confnum'/>
+    <ref label='address'/>
+    <ref label='confsponsor'/>
+  </choice>
+  <!-- ((confdates|conftitle|confnum|address|confsponsor)*) -->
+</elementRule>
+
+<tag name='confgroup'>
+  <ref role='common.attrib'/>
+  <ref role='confgroup.role.attrib'/>
+  <!-- %local.confgroup.attrib; -->
+</tag>
+
+<attPool role='confdates.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='confdates'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='confdates'>
+  <ref role='common.attrib'/>
+  <ref role='confdates.role.attrib'/>
+  <!-- %local.confdates.attrib; -->
+</tag>
+
+<attPool role='conftitle.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='conftitle'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='conftitle'>
+  <ref role='common.attrib'/>
+  <ref role='conftitle.role.attrib'/>
+  <!-- %local.conftitle.attrib; -->
+</tag>
+
+<attPool role='confnum.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='confnum'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='confnum'>
+  <ref role='common.attrib'/>
+  <ref role='confnum.role.attrib'/>
+  <!-- %local.confnum.attrib; -->
+</tag>
+
+<!-- Address (defined elsewhere in this section)-->
+
+<attPool role='confsponsor.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='confsponsor'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='confsponsor'>
+  <ref role='common.attrib'/>
+  <ref role='confsponsor.role.attrib'/>
+  <!-- %local.confsponsor.attrib; -->
+</tag>
+
+<!-- ContractNum ...................... -->
+
+<attPool role='contractnum.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='contractnum'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='contractnum'>
+  <ref role='common.attrib'/>
+  <ref role='contractnum.role.attrib'/>
+  <!-- %local.contractnum.attrib; -->
+</tag>
+
+<!-- ContractSponsor .................. -->
+
+<attPool role='contractsponsor.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='contractsponsor'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='contractsponsor'>
+  <ref role='common.attrib'/>
+  <ref role='contractsponsor.role.attrib'/>
+  <!-- %local.contractsponsor.attrib; -->
+</tag>
+
+<!-- Copyright ........................ -->
+
+<attPool role='copyright.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='copyright'>
+  <sequence>
+    <ref label='year' occurs='+'/>
+    <ref label='holder' occurs='*'/>
+  </sequence>
+  <!-- (year+, holder*) -->
+</elementRule>
+
+<tag name='copyright'>
+  <ref role='common.attrib'/>
+  <ref role='copyright.role.attrib'/>
+  <!-- %local.copyright.attrib; -->
+</tag>
+
+<attPool role='year.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='year'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='year'>
+  <ref role='common.attrib'/>
+  <ref role='year.role.attrib'/>
+  <!-- %local.year.attrib; -->
+</tag>
+
+<attPool role='holder.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='holder'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='holder'>
+  <ref role='common.attrib'/>
+  <ref role='holder.role.attrib'/>
+  <!-- %local.holder.attrib; -->
+</tag>
+
+<!-- CorpAuthor ....................... -->
+
+<attPool role='corpauthor.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='corpauthor'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='corpauthor'>
+  <ref role='common.attrib'/>
+  <ref role='corpauthor.role.attrib'/>
+  <!-- %local.corpauthor.attrib; -->
+</tag>
+
+<!-- CorpName ......................... -->
+
+<attPool role='corpname.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='corpname'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='corpname'>
+  <ref role='common.attrib'/>
+  <ref role='corpname.role.attrib'/>
+  <!-- %local.corpname.attrib; -->
+</tag>
+
+<!-- Date ............................. -->
+
+<attPool role='date.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='date'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='date'>
+  <ref role='common.attrib'/>
+  <ref role='date.role.attrib'/>
+  <!-- %local.date.attrib; -->
+</tag>
+
+<!-- Edition .......................... -->
+
+<attPool role='edition.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='edition'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='edition'>
+  <ref role='common.attrib'/>
+  <ref role='edition.role.attrib'/>
+  <!-- %local.edition.attrib; -->
+</tag>
+
+<!-- Editor ........................... -->
+
+<attPool role='editor.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='editor'>
+  <sequence occurs='+'>
+    <hedgeRef label='person.ident.mix'/>
+  </sequence>
+  <!-- ((%person.ident.mix;)+) -->
+</elementRule>
+
+<tag name='editor'>
+  <ref role='common.attrib'/>
+  <ref role='editor.role.attrib'/>
+  <!-- %local.editor.attrib; -->
+</tag>
+
+<!--(see "Personal identity elements" for %person.ident.mix;)-->
+
+<!-- ISBN ............................. -->
+
+<attPool role='isbn.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='isbn'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='isbn'>
+  <ref role='common.attrib'/>
+  <ref role='isbn.role.attrib'/>
+  <!-- %local.isbn.attrib; -->
+</tag>
+
+<!-- ISSN ............................. -->
+
+<attPool role='issn.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='issn'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='issn'>
+  <ref role='common.attrib'/>
+  <ref role='issn.role.attrib'/>
+  <!-- %local.issn.attrib; -->
+</tag>
+
+<!-- InvPartNumber .................... -->
+
+<attPool role='invpartnumber.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='invpartnumber'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='invpartnumber'>
+  <ref role='common.attrib'/>
+  <ref role='invpartnumber.role.attrib'/>
+  <!-- %local.invpartnumber.attrib; -->
+</tag>
+
+<!-- IssueNum ......................... -->
+
+<attPool role='issuenum.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='issuenum'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='issuenum'>
+  <ref role='common.attrib'/>
+  <ref role='issuenum.role.attrib'/>
+  <!-- %local.issuenum.attrib; -->
+</tag>
+
+<!-- LegalNotice ...................... -->
+
+<attPool role='legalnotice.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='legalnotice'>
+  <sequence>
+    <ref label='title' occurs='?'/>
+    <hedgeRef label='legalnotice.mix' occurs='+'/>
+  </sequence>
+  <!-- (title?, (%legalnotice.mix;)+) -->
+</elementRule>
+
+<tag name='legalnotice'>
+  <ref role='common.attrib'/>
+  <ref role='legalnotice.role.attrib'/>
+  <!-- %local.legalnotice.attrib; -->
+</tag>
+
+<!-- ModeSpec ......................... -->
+
+<attPool role='modespec.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='modespec'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='modespec'>
+  <ref role='common.attrib'/>
+  <ref role='modespec.role.attrib'/>
+  <!-- %local.modespec.attrib; -->
+
+  <!-- Application: Type of action required for completion
+       of the links to which the ModeSpec is relevant (e.g.,
+       retrieval query) -->
+  <attribute name='application' type='NMTOKEN'>
+    <enumeration value='BMP'/>
+    <enumeration value='CGM-CHAR'/>
+    <enumeration value='CGM-BINARY'/>
+    <enumeration value='CGM-CLEAR'/>
+    <enumeration value='DITROFF'/>
+    <enumeration value='DVI'/>
+    <enumeration value='EPS'/>
+    <enumeration value='EQN'/>
+    <enumeration value='FAX'/>
+    <enumeration value='GIF'/>
+    <enumeration value='GIF87a'/>
+    <enumeration value='GIF89a'/>
+    <enumeration value='JPG'/>
+    <enumeration value='JPEG'/>
+    <enumeration value='IGES'/>
+    <enumeration value='PCX'/>
+    <enumeration value='PIC'/>
+    <enumeration value='PNG'/>
+    <enumeration value='PS'/>
+    <enumeration value='SGML'/>
+    <enumeration value='TBL'/>
+    <enumeration value='TEX'/>
+    <enumeration value='TIFF'/>
+    <enumeration value='WMF'/>
+    <enumeration value='WPG'/>
+    <enumeration value='linespecific'/>
+  </attribute>
+</tag>
+
+<!-- OrgName .......................... -->
+
+<attPool role='orgname.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='orgname'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='orgname'>
+  <ref role='common.attrib'/>
+  <ref role='orgname.role.attrib'/>
+  <!-- %local.orgname.attrib; -->
+</tag>
+
+<!-- OtherCredit ...................... -->
+
+<attPool role='othercredit.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='othercredit'>
+  <sequence occurs='+'>
+    <hedgeRef label='person.ident.mix'/>
+  </sequence>
+  <!-- ((%person.ident.mix;)+) -->
+</elementRule>
+
+<tag name='othercredit'>
+  <ref role='common.attrib'/>
+  <ref role='othercredit.role.attrib'/>
+  <!-- %local.othercredit.attrib; -->
+</tag>
+
+  <!--(see "Personal identity elements" for %person.ident.mix;)-->
+
+<!-- PageNums ......................... -->
+
+<attPool role='pagenums.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='pagenums'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='pagenums'>
+  <ref role='common.attrib'/>
+  <ref role='pagenums.role.attrib'/>
+  <!-- %local.pagenums.attrib; -->
+</tag>
+
+<!-- Personal identity elements ....... -->
+
+<!-- These elements are used only within Author, Editor, and
+     OtherCredit. -->
+
+<attPool role='contrib.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='contrib'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='contrib'>
+  <ref role='common.attrib'/>
+  <ref role='contrib.role.attrib'/>
+  <!-- %local.contrib.attrib; -->
+</tag>
+
+<attPool role='firstname.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='firstname'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='firstname'>
+  <ref role='common.attrib'/>
+  <ref role='firstname.role.attrib'/>
+  <!-- %local.firstname.attrib; -->
+</tag>
+
+<attPool role='honorific.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='honorific'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='honorific'>
+  <ref role='common.attrib'/>
+  <ref role='honorific.role.attrib'/>
+  <!-- %local.honorific.attrib; -->
+</tag>
+
+<attPool role='lineage.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='lineage'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='lineage'>
+  <ref role='common.attrib'/>
+  <ref role='lineage.role.attrib'/>
+  <!-- %local.lineage.attrib; -->
+</tag>
+
+<attPool role='othername.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='othername'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='othername'>
+  <ref role='common.attrib'/>
+  <ref role='othername.role.attrib'/>
+  <!-- %local.othername.attrib; -->
+</tag>
+
+<attPool role='surname.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='surname'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='surname'>
+  <ref role='common.attrib'/>
+  <ref role='surname.role.attrib'/>
+  <!-- %local.surname.attrib; -->
+</tag>
+
+<!-- PrintHistory ..................... -->
+
+<attPool role='printhistory.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='printhistory'>
+  <sequence occurs='+'>
+    <hedgeRef label='para.class'/>
+  </sequence>
+  <!-- ((%para.class;)+) -->
+</elementRule>
+
+<tag name='printhistory'>
+  <ref role='common.attrib'/>
+  <ref role='printhistory.role.attrib'/>
+  <!-- %local.printhistory.attrib; -->
+</tag>
+
+<!-- ProductName ...................... -->
+
+<attPool role='productname.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='productname'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='productname'>
+  <ref role='common.attrib'/>
+  <ref role='productname.role.attrib'/>
+  <!-- %local.productname.attrib; -->
+
+  <!-- Class: More precisely identifies the item the element names -->
+  <attribute name='class' type='string'>
+    <enumeration value='service'/>
+    <enumeration value='trade'/>
+    <enumeration value='registered'/>
+    <enumeration value='copyright'/>
+  </attribute>
+</tag>
+
+<!-- ProductNumber .................... -->
+
+<attPool role='productnumber.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='productnumber'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='productnumber'>
+  <ref role='common.attrib'/>
+  <ref role='productnumber.role.attrib'/>
+  <!-- %local.productnumber.attrib; -->
+</tag>
+
+<!-- PubDate .......................... -->
+
+<attPool role='pubdate.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='pubdate'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='pubdate'>
+  <ref role='common.attrib'/>
+  <ref role='pubdate.role.attrib'/>
+  <!-- %local.pubdate.attrib; -->
+</tag>
+
+<!-- Publisher ........................ -->
+
+<attPool role='publisher.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='publisher'>
+  <sequence>
+    <ref label='publishername'/>
+    <ref label='address' occurs='*'/>
+  </sequence>
+  <!-- (publishername, address*) -->
+</elementRule>
+
+<tag name='publisher'>
+  <ref role='common.attrib'/>
+  <ref role='publisher.role.attrib'/>
+  <!-- %local.publisher.attrib; -->
+</tag>
+
+<attPool role='publishername.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='publishername'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='publishername'>
+  <ref role='common.attrib'/>
+  <ref role='publishername.role.attrib'/>
+  <!-- %local.publishername.attrib; -->
+</tag>
+
+<!-- Address (defined elsewhere in this section)-->
+
+<!-- PubsNumber ....................... -->
+
+<attPool role='pubsnumber.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='pubsnumber'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='pubsnumber'>
+  <ref role='common.attrib'/>
+  <ref role='pubsnumber.role.attrib'/>
+  <!-- %local.pubsnumber.attrib; -->
+</tag>
+
+<!-- ReleaseInfo ...................... -->
+
+<attPool role='releaseinfo.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='releaseinfo'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='releaseinfo'>
+  <ref role='common.attrib'/>
+  <ref role='releaseinfo.role.attrib'/>
+  <!-- %local.releaseinfo.attrib; -->
+</tag>
+
+<!-- RevHistory ....................... -->
+
+<attPool role='revhistory.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='revhistory'>
+  <sequence>
+    <ref label='revision' occurs='+'/>
+  </sequence>
+  <!-- (revision+) -->
+</elementRule>
+
+<tag name='revhistory'>
+  <ref role='common.attrib'/>
+  <ref role='revhistory.role.attrib'/>
+  <!-- %local.revhistory.attrib; -->
+</tag>
+
+<attPool role='revision.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='revision'>
+  <sequence>
+    <ref label='revnumber'/>
+    <ref label='date'/>
+    <ref label='authorinitials' occurs='*'/>
+    <choice occurs='?'>
+      <ref label='revremark'/>
+      <ref label='revdescription'/>
+    </choice>
+  </sequence>
+  <!-- (revnumber, date, authorinitials*,
+                    (revremark|revdescription)?) -->
+</elementRule>
+
+<tag name='revision'>
+  <ref role='common.attrib'/>
+  <ref role='revision.role.attrib'/>
+  <!-- %local.revision.attrib; -->
+</tag>
+
+<attPool role='revnumber.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='revnumber'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='revnumber'>
+  <ref role='common.attrib'/>
+  <ref role='revnumber.role.attrib'/>
+  <!-- %local.revnumber.attrib; -->
+</tag>
+
+<!-- Date (defined elsewhere in this section)-->
+<!-- AuthorInitials (defined elsewhere in this section)-->
+
+<attPool role='revremark.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='revremark'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='revremark'>
+  <ref role='common.attrib'/>
+  <ref role='revremark.role.attrib'/>
+  <!-- %local.revremark.attrib; -->
+</tag>
+
+<attPool role='revdescription.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='revdescription'>
+  <sequence occurs='+'>
+    <hedgeRef label='revdescription.mix'/>
+  </sequence>
+  <!-- ((%revdescription.mix;)+) -->
+</elementRule>
+
+<tag name='revdescription'>
+  <ref role='common.attrib'/>
+  <ref role='revdescription.role.attrib'/>
+  <!-- %local.revdescription.attrib; -->
+</tag>
+
+<!-- SeriesVolNums .................... -->
+
+<attPool role='seriesvolnums.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='seriesvolnums'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='seriesvolnums'>
+  <ref role='common.attrib'/>
+  <ref role='seriesvolnums.role.attrib'/>
+  <!-- %local.seriesvolnums.attrib; -->
+</tag>
+
+<!-- VolumeNum ........................ -->
+
+<attPool role='volumenum.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='volumenum'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='volumenum'>
+  <ref role='common.attrib'/>
+  <ref role='volumenum.role.attrib'/>
+  <!-- %local.volumenum.attrib; -->
+</tag>
+
+<!-- .................................. -->
+
+<!-- ...................................................................... -->
+<!-- Inline, link, and ubiquitous elements ................................ -->
+
+<!-- Technical and computer terms ......................................... -->
+
+<attPool role='accel.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='accel'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='accel'>
+  <ref role='common.attrib'/>
+  <ref role='accel.role.attrib'/>
+  <!-- %local.accel.attrib; -->
+</tag>
+
+<attPool role='action.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='action'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='action'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='action.role.attrib'/>
+  <!-- %local.action.attrib; -->
+</tag>
+
+<attPool role='application.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='application'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='application'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='application.role.attrib'/>
+  <!-- %local.application.attrib; -->
+
+  <attribute name='class' type='string'>
+    <enumeration value='hardware'/>
+    <enumeration value='software'/>
+  </attribute>
+</tag>
+
+<attPool role='classname.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='classname'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='classname'>
+  <ref role='common.attrib'/>
+  <ref role='classname.role.attrib'/>
+  <!-- %local.classname.attrib; -->
+</tag>
+
+<!-- CO is a callout area of the LineColumn unit type (a single character
+     position); the position is directly indicated by the location of CO. -->
+<attPool role='co.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='co'>
+  <empty/>
+  <!-- EMPTY -->
+</elementRule>
+
+<tag name='co'>
+  <!-- bug number/symbol override or initialization -->
+  <!-- to any related information -->
+  <ref role='label.attrib'/>
+  <ref role='linkends.attrib'/>
+  <ref role='idreq.common.attrib'/>
+  <ref role='co.role.attrib'/>
+  <!-- %local.co.attrib; -->
+</tag>
+
+<attPool role='command.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='command'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='cptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%cptr.char.mix;)* -->
+</elementRule>
+
+<tag name='command'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='command.role.attrib'/>
+  <!-- %local.command.attrib; -->
+</tag>
+
+<attPool role='computeroutput.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='computeroutput'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='cptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%cptr.char.mix;)* -->
+</elementRule>
+
+<tag name='computeroutput'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='computeroutput.role.attrib'/>
+  <!-- %local.computeroutput.attrib; -->
+</tag>
+
+<attPool role='database.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='database'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='database'>
+  <ref role='common.attrib'/>
+  <ref role='database.role.attrib'/>
+  <!-- %local.database.attrib; -->
+  <ref role='moreinfo.attrib'/>
+  <!-- Class: Type of database the element names; no default -->
+  <attribute name='class' type='string'>
+    <enumeration value='name'/>
+    <enumeration value='table'/>
+    <enumeration value='field'/>
+    <enumeration value='key1'/>
+    <enumeration value='key2'/>
+    <enumeration value='record'/>
+  </attribute>
+</tag>
+
+<attPool role='email.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='email'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%docinfo.char.mix;)* -->
+</elementRule>
+
+<tag name='email'>
+  <ref role='common.attrib'/>
+  <ref role='email.role.attrib'/>
+  <!-- %local.email.attrib; -->
+</tag>
+
+<attPool role='envar.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='envar'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='docinfo.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='envar'>
+  <ref role='common.attrib'/>
+  <ref role='envar.role.attrib'/>
+  <!-- %local.envar.attrib; -->
+</tag>
+
+<attPool role='errorcode.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='errorcode'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='errorcode'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='errorcode.role.attrib'/>
+  <!-- %local.errorcode.attrib; -->
+</tag>
+
+<attPool role='errorname.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='errorname'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='errorname'>
+  <ref role='common.attrib'/>
+  <ref role='errorname.role.attrib'/>
+  <!-- %local.errorname.attrib; -->
+</tag>
+
+<attPool role='errortype.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='errortype'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='errortype'>
+  <ref role='common.attrib'/>
+  <ref role='errortype.role.attrib'/>
+  <!-- %local.errortype.attrib; -->
+</tag>
+
+<attPool role='filename.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='filename'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='filename'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='filename.role.attrib'/>
+  <!-- %local.filename.attrib; -->
+
+  <!-- Class: Type of filename the element names; no default -->
+  <attribute name='class' type='string'>
+    <enumeration value='headerfile'/>
+    <enumeration value='devicefile'/>
+    <enumeration value='libraryfile'/>
+    <enumeration value='directory'/>
+    <enumeration value='symlink'/>
+  </attribute>
+
+  <!-- Path: Search path (possibly system-specific) in which
+       file can be found -->
+  <attribute name='path' type='string'/>
+</tag>
+
+<attPool role='function.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='function'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='cptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%cptr.char.mix;)* -->
+</elementRule>
+
+<tag name='function'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='function.role.attrib'/>
+  <!-- %local.function.attrib; -->
+</tag>
+
+<attPool role='guibutton.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='guibutton'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+      <ref label='accel'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;|accel)* -->
+</elementRule>
+
+<tag name='guibutton'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='guibutton.role.attrib'/>
+  <!-- %local.guibutton.attrib; -->
+</tag>
+
+<attPool role='guiicon.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='guiicon'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+      <ref label='accel'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;|accel)* -->
+</elementRule>
+
+<tag name='guiicon'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='guiicon.role.attrib'/>
+  <!-- %local.guiicon.attrib; -->
+</tag>
+
+<attPool role='guilabel.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='guilabel'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+      <ref label='accel'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;|accel)* -->
+</elementRule>
+
+<tag name='guilabel'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='guilabel.role.attrib'/>
+  <!-- %local.guilabel.attrib; -->
+</tag>
+
+<attPool role='guimenu.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='guimenu'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+      <ref label='accel'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;|accel)* -->
+</elementRule>
+
+<tag name='guimenu'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='guimenu.role.attrib'/>
+  <!-- %local.guimenu.attrib; -->
+</tag>
+
+<attPool role='guimenuitem.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='guimenuitem'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+      <ref label='accel'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;|accel)* -->
+</elementRule>
+
+<tag name='guimenuitem'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='guimenuitem.role.attrib'/>
+  <!-- %local.guimenuitem.attrib; -->
+</tag>
+
+<attPool role='guisubmenu.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='guisubmenu'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+      <ref label='accel'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;|accel)* -->
+</elementRule>
+
+<tag name='guisubmenu'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='guisubmenu.role.attrib'/>
+  <!-- %local.guisubmenu.attrib; -->
+</tag>
+
+<attPool role='hardware.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='hardware'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='hardware'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='hardware.role.attrib'/>
+  <!-- %local.hardware.attrib; -->
+</tag>
+
+<attPool role='interface.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='interface'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+      <ref label='accel'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;|accel)* -->
+</elementRule>
+
+<tag name='interface'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='interface.role.attrib'/>
+  <!-- %local.interface.attrib; -->
+</tag>
+
+<attPool role='keycap.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='keycap'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='keycap'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='keycap.role.attrib'/>
+  <!-- %local.keycap.attrib; -->
+</tag>
+
+<attPool role='keycode.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='keycode'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='keycode'>
+  <ref role='common.attrib'/>
+  <ref role='keycode.role.attrib'/>
+  <!-- %local.keycode.attrib; -->
+</tag>
+
+<attPool role='keycombo.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='keycombo'>
+  <choice occurs='+'>
+    <ref label='keycap'/>
+    <ref label='keycombo'/>
+    <ref label='keysym'/>
+    <ref label='mousebutton'/>
+  </choice>
+  <!-- ((keycap|keycombo|keysym|mousebutton)+) -->
+</elementRule>
+
+<tag name='keycombo'>
+  <ref role='keyaction.attrib'/>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='keycombo.role.attrib'/>
+  <!-- %local.keycombo.attrib; -->
+</tag>
+
+<attPool role='keysysm.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='keysym'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='keysym'>
+  <ref role='common.attrib'/>
+  <ref role='keysysm.role.attrib'/>
+  <!-- %local.keysym.attrib; -->
+</tag>
+
+<attPool role='lineannotation.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='lineannotation'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='lineannotation'>
+  <ref role='common.attrib'/>
+  <ref role='lineannotation.role.attrib'/>
+  <!-- %local.lineannotation.attrib; -->
+</tag>
+
+<attPool role='literal.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='literal'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='cptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%cptr.char.mix;)* -->
+</elementRule>
+
+<tag name='literal'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='literal.role.attrib'/>
+  <!-- %local.literal.attrib; -->
+</tag>
+
+<attPool role='constant.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='constant'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='constant'>
+  <ref role='common.attrib'/>
+  <ref role='constant.role.attrib'/>
+  <attribute name='class' type='string'>
+    <enumeration value='limit'/>
+  </attribute>
+</tag>
+
+<attPool role='varname.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='varname'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='varname'>
+  <ref role='common.attrib'/>
+  <ref role='varname.role.attrib'/>
+  <!-- %local.varname.attrib; -->
+</tag>
+
+<attPool role='markup.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='markup'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='markup'>
+  <ref role='common.attrib'/>
+  <ref role='markup.role.attrib'/>
+  <!-- %local.markup.attrib; -->
+</tag>
+
+<attPool role='medialabel.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='medialabel'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='medialabel'>
+  <ref role='common.attrib'/>
+  <ref role='medialabel.role.attrib'/>
+  <!-- %local.medialabel.attrib; -->
+
+  <!-- Class: Type of medium named by the element; no default -->
+  <attribute name='class' type='string'>
+    <enumeration value='cartridge'/>
+    <enumeration value='cdrom'/>
+    <enumeration value='disk'/>
+    <enumeration value='tape'/>
+  </attribute>
+</tag>
+
+<attPool role='menuchoice.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='menuchoice'>
+  <sequence>
+    <ref label='shortcut' occurs='?'/>
+    <choice occurs='+'>
+      <ref label='guibutton'/>
+      <ref label='guiicon'/>
+      <ref label='guilabel'/>
+      <ref label='guimenu'/>
+      <ref label='guimenuitem'/>
+      <ref label='guisubmenu'/>
+      <ref label='interface'/>
+    </choice>
+  </sequence>
+  <!-- (shortcut?, (guibutton|guiicon|guilabel
+		|guimenu|guimenuitem|guisubmenu|interface)+) -->
+</elementRule>
+
+<tag name='menuchoice'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='menuchoice.role.attrib'/>
+  <!-- %local.menuchoice.attrib; -->
+</tag>
+
+<!-- See also KeyCombo -->
+<attPool role='shortcut.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='shortcut'>
+  <choice occurs='+'>
+    <ref label='keycap'/>
+    <ref label='keycombo'/>
+    <ref label='keysym'/>
+    <ref label='mousebutton'/>
+  </choice>
+  <!-- ((keycap|keycombo|keysym|mousebutton)+) -->
+</elementRule>
+
+<tag name='shortcut'>
+  <ref role='keyaction.attrib'/>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='shortcut.role.attrib'/>
+  <!-- %local.shortcut.attrib; -->
+</tag>
+
+<attPool role='mousebutton.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='mousebutton'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='mousebutton'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='mousebutton.role.attrib'/>
+  <!-- %local.mousebutton.attrib; -->
+</tag>
+
+<attPool role='msgtext.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='msgtext'>
+  <choice occurs='+'>
+    <hedgeRef label='component.mix'/>
+  </choice>
+  <!-- ((%component.mix;)+) -->
+</elementRule>
+
+<tag name='msgtext'>
+  <ref role='common.attrib'/>
+  <ref role='msgtext.role.attrib'/>
+  <!-- %local.msgtext.attrib; -->
+</tag>
+
+<attPool role='option.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='option'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='option'>
+  <ref role='common.attrib'/>
+  <ref role='option.role.attrib'/>
+  <!-- %local.option.attrib; -->
+</tag>
+
+<attPool role='optional.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='optional'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='cptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%cptr.char.mix;)* -->
+</elementRule>
+
+<tag name='optional'>
+  <ref role='common.attrib'/>
+  <ref role='optional.role.attrib'/>
+  <!-- %local.optional.attrib; -->
+</tag>
+
+<attPool role='parameter.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='parameter'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='parameter'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='parameter.role.attrib'/>
+  <!-- %local.parameter.attrib; -->
+
+  <!-- Class: Type of the Parameter; no default -->
+  <attribute name='class' type='string'>
+    <enumeration value='command'/>
+    <enumeration value='function'/>
+    <enumeration value='option'/>
+  </attribute>
+</tag>
+
+<attPool role='prompt.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='prompt'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='prompt'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='prompt.role.attrib'/>
+  <!-- %local.prompt.attrib; -->
+</tag>
+
+<attPool role='property.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='property'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='property'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='property.role.attrib'/>
+  <!-- %local.property.attrib; -->
+</tag>
+
+<attPool role='replaceable.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='replaceable'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='link.char.class'/>
+      <ref label='optional'/>
+      <hedgeRef label='base.char.class'/>
+      <hedgeRef label='other.char.class'/>
+      <ref label='inlinegraphic'/>
+      <ref label='inlinemediaobject'/>
+    </choice>
+  </mixed>
+  <!-- (#PCDATA
+		| %link.char.class;
+		| optional
+		| %base.char.class;
+		| %other.char.class;
+		| inlinegraphic
+                | inlinemediaobject)* -->
+</elementRule>
+
+<tag name='replaceable'>
+  <ref role='common.attrib'/>
+  <ref role='replaceable.role.attrib'/>
+  <!-- %local.replaceable.attrib; -->
+
+  <!-- Class: Type of information the element represents; no
+       default -->
+  <attribute name='class' type='string'>
+    <enumeration value='command'/>
+    <enumeration value='function'/>
+    <enumeration value='option'/>
+    <enumeration value='parameter'/>
+  </attribute>
+</tag>
+
+<attPool role='returnvalue.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='returnvalue'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='returnvalue'>
+  <ref role='common.attrib'/>
+  <ref role='returnvalue.role.attrib'/>
+  <!-- %local.returnvalue.attrib; -->
+</tag>
+
+<attPool role='sgmltag.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='sgmltag'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='sgmltag'>
+  <ref role='common.attrib'/>
+  <ref role='sgmltag.role.attrib'/>
+  <!-- %local.sgmltag.attrib; -->
+
+  <!-- Class: Type of SGML construct the element names; no default -->
+  <attribute name='class' type='string'>
+    <enumeration value='attribute'/>
+    <enumeration value='attvalue'/>
+    <enumeration value='element'/>
+    <enumeration value='endtag'/>
+    <enumeration value='emptytag'/>
+    <enumeration value='genentity'/>
+    <enumeration value='numcharref'/>
+    <enumeration value='paramentity'/>
+    <enumeration value='pi'/>
+    <enumeration value='xmlpi'/>
+    <enumeration value='starttag'/>
+    <enumeration value='sgmlcomment'/>
+  </attribute>
+</tag>
+
+<attPool role='structfield.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='structfield'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='structfield'>
+  <ref role='common.attrib'/>
+  <ref role='structfield.role.attrib'/>
+  <!-- %local.structfield.attrib; -->
+</tag>
+
+<attPool role='structname.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='structname'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='structname'>
+  <ref role='common.attrib'/>
+  <ref role='structname.role.attrib'/>
+  <!-- %local.structname.attrib; -->
+</tag>
+
+<attPool role='symbol.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='symbol'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='symbol'>
+  <ref role='common.attrib'/>
+  <ref role='symbol.role.attrib'/>
+  <!-- %local.symbol.attrib; -->
+
+  <!-- Class: Type of symbol; no default -->
+  <attribute name='class' type='string'>
+    <enumeration value='limit'/>
+  </attribute>
+</tag>
+
+<attPool role='systemitem.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='systemitem'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+      <ref label='acronym'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix; | acronym)* -->
+</elementRule>
+
+<tag name='systemitem'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='systemitem.role.attrib'/>
+  <!-- %local.systemitem.attrib; -->
+
+  <!-- Class: Type of system item the element names; no default -->
+  <attribute name='class' type='string'>
+    <enumeration value='constant'/>
+    <enumeration value='groupname'/>
+    <enumeration value='library'/>
+    <enumeration value='macro'/>
+    <enumeration value='osname'/>
+    <enumeration value='resource'/>
+    <enumeration value='systemname'/>
+    <enumeration value='username'/>
+  </attribute>
+</tag>
+
+
+<attPool role='token.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='token'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='token'>
+  <ref role='common.attrib'/>
+  <ref role='token.role.attrib'/>
+  <!-- %local.token.attrib; -->
+</tag>
+
+<attPool role='type.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='type'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='smallcptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%smallcptr.char.mix;)* -->
+</elementRule>
+
+<tag name='type'>
+  <ref role='common.attrib'/>
+  <ref role='type.role.attrib'/>
+  <!-- %local.type.attrib; -->
+</tag>
+
+<attPool role='userinput.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='userinput'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='cptr.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%cptr.char.mix;)* -->
+</elementRule>
+
+<tag name='userinput'>
+  <ref role='moreinfo.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='userinput.role.attrib'/>
+  <!-- %local.userinput.attrib; -->
+</tag>
+
+<!-- General words and phrases ............................................ -->
+
+<attPool role='abbrev.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='abbrev'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='word.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%word.char.mix;)* -->
+</elementRule>
+
+<tag name='abbrev'>
+  <ref role='common.attrib'/>
+  <ref role='abbrev.role.attrib'/>
+  <!-- %local.abbrev.attrib; -->
+</tag>
+
+<attPool role='acronym.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='acronym'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='word.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%word.char.mix;)* -->
+</elementRule>
+
+<tag name='acronym'>
+  <ref role='common.attrib'/>
+  <ref role='acronym.role.attrib'/>
+  <!-- %local.acronym.attrib; -->
+</tag>
+
+<attPool role='citation.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='citation'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='citation'>
+  <ref role='common.attrib'/>
+  <ref role='citation.role.attrib'/>
+  <!-- %local.citation.attrib; -->
+</tag>
+
+<attPool role='citerefentry.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='citerefentry'>
+  <sequence>
+    <ref label='refentrytitle'/>
+    <ref label='manvolnum' occurs='?'/>
+  </sequence>
+  <!-- (refentrytitle, manvolnum?) -->
+</elementRule>
+
+<tag name='citerefentry'>
+  <ref role='common.attrib'/>
+  <ref role='citerefentry.role.attrib'/>
+  <!-- %local.citerefentry.attrib; -->
+</tag>
+
+<attPool role='refentrytitle.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='refentrytitle'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='refentrytitle'>
+  <ref role='common.attrib'/>
+  <ref role='refentrytitle.role.attrib'/>
+  <!-- %local.refentrytitle.attrib; -->
+</tag>
+
+<attPool role='namvolnum.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='manvolnum'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='word.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%word.char.mix;)* -->
+</elementRule>
+
+<tag name='manvolnum'>
+  <ref role='common.attrib'/>
+  <ref role='namvolnum.role.attrib'/>
+  <!-- %local.manvolnum.attrib; -->
+</tag>
+
+<attPool role='citetitle.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='citetitle'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='citetitle'>
+  <ref role='common.attrib'/>
+  <ref role='citetitle.role.attrib'/>
+  <!-- %local.citetitle.attrib; -->
+
+  <!-- Pubwork: Genre of published work cited; no default -->
+  <attribute name='pubwork' type='string'>
+    <enumeration value='article'/>
+    <enumeration value='book'/>
+    <enumeration value='chapter'/>
+    <enumeration value='part'/>
+    <enumeration value='refentry'/>
+    <enumeration value='section'/>
+    <enumeration value='journal'/>
+    <enumeration value='series'/>
+    <enumeration value='set'/>
+    <enumeration value='manuscript'/>
+  </attribute>
+</tag>
+
+<attPool role='emphasis.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='emphasis'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='emphasis'>
+  <ref role='common.attrib'/>
+  <ref role='emphasis.role.attrib'/>
+  <!-- %local.emphasis.attrib; -->
+</tag>
+
+<attPool role='firstterm.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='firstterm'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='word.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%word.char.mix;)* -->
+</elementRule>
+
+<tag name='firstterm'>
+  <ref role='common.attrib'/>
+  <ref role='firstterm.role.attrib'/>
+  <!-- %local.firstterm.attrib; -->
+  <!-- to GlossEntry or other explanation -->
+  <ref role='linkend.attrib'/>
+</tag>
+
+<attPool role='foreignphrase.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='foreignphrase'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='foreignphrase'>
+  <ref role='common.attrib'/>
+  <ref role='foreignphrase.role.attrib'/>
+  <!-- %local.foreignphrase.attrib; -->
+</tag>
+
+<attPool role='glossterm.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='glossterm'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='glossterm'>
+  <ref role='common.attrib'/>
+  <ref role='glossterm.role.attrib'/>
+  <!-- %local.glossterm.attrib; -->
+
+  <!-- to GlossEntry if Glossterm used in text -->
+  <ref role='linkend.attrib'/>
+
+  <!-- BaseForm: Provides the form of GlossTerm to be used
+       for indexing -->
+  <attribute name='baseform' type='string'/>
+</tag>
+
+<attPool role='phrase.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='phrase'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='phrase'>
+  <ref role='common.attrib'/>
+  <ref role='phrase.role.attrib'/>
+  <!-- %local.phrase.attrib; -->
+</tag>
+
+<attPool role='quote.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='quote'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='quote'>
+  <ref role='common.attrib'/>
+  <ref role='quote.role.attrib'/>
+  <!-- %local.quote.attrib; -->
+</tag>
+
+<attPool role='ssscript.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<hedgeRule label='subscriptContentModel'>
+  <choice occurs='*'>
+    <hedgeRef label='link.char.class'/>
+    <ref label='emphasis'/>
+    <ref label='replaceable'/>
+    <ref label='symbol'/>
+    <ref label='inlinegraphic'/>
+    <ref label='inlinemediaobject'/>
+    <hedgeRef label='base.char.class'/>
+    <hedgeRef label='other.char.class'/>
+  </choice>
+  <!-- (#PCDATA
+		| %link.char.class;
+		| emphasis
+		| replaceable
+		| symbol
+		| inlinegraphic
+                | inlinemediaobject
+		| %base.char.class;
+		| %other.char.class;)* -->
+
+</hedgeRule>
+
+<elementRule role='subscript'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='subscriptContentModel'/>
+    </choice>
+  </mixed>
+</elementRule>
+
+<tag name='subscript'>
+  <ref role='common.attrib'/>
+  <ref role='ssscript.role.attrib'/>
+  <!-- %local.ssscript.attrib; -->
+</tag>
+
+<elementRule role='superscript'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='subscriptContentModel'/>
+    </choice>
+  </mixed>
+</elementRule>
+
+<tag name='superscript'>
+  <ref role='common.attrib'/>
+  <ref role='ssscript.role.attrib'/>
+  <!-- %local.ssscript.attrib; -->
+</tag>
+
+<attPool role='trademark.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='trademark'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='link.char.class'/>
+      <hedgeRef label='tech.char.class'/>
+      <hedgeRef label='base.char.class'/>
+      <hedgeRef label='other.char.class'/>
+      <ref label='inlinegraphic'/>
+      <ref label='inlinemediaobject'/>
+      <ref label='emphasis'/>
+    </choice>
+  </mixed>
+  <!-- (#PCDATA
+		| %link.char.class;
+		| %tech.char.class;
+		| %base.char.class;
+		| %other.char.class;
+		| inlinegraphic
+                | inlinemediaobject
+		| emphasis)* -->
+</elementRule>
+
+<tag name='trademark'>
+  <ref role='common.attrib'/>
+  <ref role='trademark.role.attrib'/>
+  <!-- %local.trademark.attrib; -->
+
+  <!-- Class: More precisely identifies the item the element names -->
+  <attribute name='class' type='string'>
+    <enumeration value='service'/>
+    <enumeration value='trade'/>
+    <enumeration value='registered'/>
+    <enumeration value='copyright'/>
+  </attribute>
+</tag>
+
+<attPool role='wordasword.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='wordasword'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='word.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%word.char.mix;)* -->
+</elementRule>
+
+<tag name='wordasword'>
+  <ref role='common.attrib'/>
+  <ref role='wordasword.role.attrib'/>
+  <!-- %local.wordasword.attrib; -->
+</tag>
+
+<!-- Links and cross-references ........................................... -->
+
+<attPool role='link.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='link'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='link'>
+  <!-- to linked-to object -->
+  <ref role='linkendreq.attrib'/>
+
+  <ref role='common.attrib'/>
+  <ref role='link.role.attrib'/>
+  <!-- %local.link.attrib; -->
+
+  <!-- Endterm: ID of element containing text that is to be
+       fetched from elsewhere in the document to appear as
+       the content of this element -->
+  <attribute name='endterm' type='IDREF'/>
+
+  <!-- Type: Freely assignable parameter -->
+  <attribute name='type' type='string'/>
+</tag>
+
+<attPool role='olink.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='olink'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='olink'>
+  <ref role='common.attrib'/>
+  <ref role='olink.role.attrib'/>
+  <!-- %local.olink.attrib; -->
+
+  <!-- TargetDocEnt: Name of an entity to be the target of the link -->
+  <!-- FIXME: -->
+  <!-- targetdocent	ENTITY 		#IMPLIED -->
+
+  <!-- LinkMode: ID of a ModeSpec containing instructions for
+       operating on the entity named by TargetDocEnt -->
+  <attribute name='linkmode' type='IDREF'/>
+
+  <!-- LocalInfo: Information that may be passed to ModeSpec -->
+  <attribute name='localinfo' type='string'/>
+
+  <!-- Type: Freely assignable parameter -->
+  <attribute name='type' type='string'/>
+</tag>
+
+<attPool role='ulink.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='ulink'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%para.char.mix;)* -->
+</elementRule>
+
+<tag name='ulink'>
+  <ref role='common.attrib'/>
+  <ref role='ulink.role.attrib'/>
+  <!-- %local.ulink.attrib; -->
+
+  <!-- URL: uniform resource locator; the target of the ULink -->
+  <attribute name='url' type='string' required='true'/>
+
+  <!-- Type: Freely assignable parameter -->
+  <attribute name='type' type='string'/>
+</tag>
+
+<attPool role='footnoteref.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='footnoteref'>
+  <empty/>
+  <!-- EMPTY -->
+</elementRule>
+
+<tag name='footnoteref'>
+  <!-- to footnote content supplied elsewhere -->
+  <!-- FIXME: constrain -->
+  <ref role='linkendreq.attrib'/>
+
+  <ref role='label.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='footnoteref.role.attrib'/>
+  <!-- %local.footnoteref.attrib; -->
+</tag>
+
+<attPool role='xref.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='xref'>
+  <empty/>
+  <!-- EMPTY -->
+</elementRule>
+
+<tag name='xref'>
+  <!-- to linked-to object -->
+  <ref role='linkendreq.attrib'/>
+  <ref role='common.attrib'/>
+  <ref role='xref.role.attrib'/>
+  <!-- %local.xref.attrib; -->
+
+  <!-- Endterm: ID of element containing text that is to be
+       fetched from elsewhere in the document to appear as
+       the content of this element -->
+  <attribute name='endterm' type='IDREF'/>
+</tag>
+
+<!-- Ubiquitous elements .................................................. -->
+
+<attPool role='anchor.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='anchor'>
+  <empty/>
+  <!-- EMPTY -->
+</elementRule>
+
+<tag name='anchor'>
+  <ref role='idreq.attrib'/>
+  <ref role='pagenum.attrib'/>
+  <ref role='remap.attrib'/>
+  <ref role='xreflabel.attrib'/>
+  <ref role='revisionflag.attrib'/>
+  <ref role='effectivity.attrib'/>
+  <ref role='anchor.role.attrib'/>
+  <!-- %local.anchor.attrib; -->
+</tag>
+
+<attPool role='beginpage.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='beginpage'>
+  <empty/>
+  <!-- EMPTY -->
+</elementRule>
+
+<tag name='beginpage'>
+    <!-- PageNum: Number of page that begins at this point -->
+    <ref role='pagenum.attrib'/>
+    <ref role='common.attrib'/>
+    <ref role='beginpage.role.attrib'/>
+    <!-- %local.beginpage.attrib; -->
+</tag>
+
+<!-- IndexTerms appear in the text flow for generating or linking an
+     index. -->
+
+<attPool role='indexterm.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='indexterm'>
+  <sequence>
+    <ref label='primary' occurs='?'/>
+    <choice occurs='?'>
+      <sequence>
+        <ref label='secondary'/>
+        <choice occurs='?'>
+          <sequence>
+            <ref label='tertiary'/>
+            <choice occurs='?'>
+              <ref label='see'/>
+              <ref label='seealso' occurs='+'/>
+            </choice>
+          </sequence>
+          <ref label='see'/>
+          <ref label='seealso' occurs='+'/>
+        </choice>
+      </sequence>
+      <ref label='see'/>
+      <ref label='seealso' occurs='+'/>
+    </choice>
+  </sequence>
+  <!-- (primary?, ((secondary, ((tertiary, (see|seealso+)?)
+		| see | seealso+)?) | see | seealso+)?) -->
+</elementRule>
+
+<tag name='indexterm'>
+  <ref role='common.attrib'/>
+  <ref role='indexterm.role.attrib'/>
+  <ref role='pagenum.attrib'/>
+  <!-- %local.indexterm.attrib; -->
+
+  <!-- Scope: Indicates which generated indices the IndexTerm
+       should appear in: Global (whole document set), Local (this
+       document only), or All (both) -->
+  <attribute name='scope' type='string'>
+    <enumeration value='all'/>
+    <enumeration value='global'/>
+    <enumeration value='local'/>
+  </attribute>
+
+  <!-- Significance: Whether this IndexTerm is the most pertinent
+       of its series (Preferred) or not (Normal, the default) -->
+  <attribute name='significance' type='string'>
+    <enumeration value='preferred'/>
+    <enumeration value='normal'/>
+  </attribute>
+
+  <!-- Class: Indicates type of IndexTerm; default is Singular,
+       or EndOfRange if StartRef is supplied; StartOfRange value
+       must be supplied explicitly on starts of ranges -->
+  <attribute name='class' type='string'>
+    <enumeration value='singular'/>
+    <enumeration value='startofrange'/>
+    <enumeration value='endofrange'/>
+  </attribute>
+
+  <!-- StartRef: ID of the IndexTerm that starts the indexing
+       range ended by this IndexTerm -->
+  <!-- FIXME: constrain -->
+  <attribute name='startref' type='IDREF'/>
+
+  <!-- Zone: IDs of the elements to which the IndexTerm applies,
+       and indicates that the IndexTerm applies to those entire
+       elements rather than the point at which the IndexTerm
+      occurs -->
+  <!-- FIXME: constrain -->
+  <attribute name='zone' type='IDREFS'/>
+</tag>
+
+<attPool role='primsecter.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='primary'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='ndxterm.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%ndxterm.char.mix;)* -->
+</elementRule>
+
+<tag name='primary'>
+  <ref role='common.attrib'/>
+  <ref role='primsecter.role.attrib'/>
+  <!-- %local.primsecter.attrib; -->
+
+  <!-- SortAs: Alternate sort string for index sorting, e.g.,
+       "fourteen" for an element containing "14" -->
+  <attribute name='sortas' type='string'/>
+</tag>
+
+<elementRule role='secondary'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='ndxterm.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%ndxterm.char.mix;)* -->
+</elementRule>
+
+<tag name='secondary'>
+  <ref role='common.attrib'/>
+  <ref role='primsecter.role.attrib'/>
+  <!-- %local.primsecter.attrib; -->
+
+  <!-- SortAs: Alternate sort string for index sorting, e.g.,
+       "fourteen" for an element containing "14" -->
+  <attribute name='sortas' type='string'/>
+</tag>
+
+<elementRule role='tertiary'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='ndxterm.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%ndxterm.char.mix;)* -->
+</elementRule>
+
+<tag name='tertiary'>
+  <ref role='common.attrib'/>
+  <ref role='primsecter.role.attrib'/>
+  <!-- %local.primsecter.attrib; -->
+
+  <!-- SortAs: Alternate sort string for index sorting, e.g.,
+       "fourteen" for an element containing "14" -->
+  <attribute name='sortas' type='string'/>
+</tag>
+
+<attPool role='seeseealso.role.attrib'>
+  <ref role='role.attrib'/>
+</attPool>
+
+<elementRule role='see'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='ndxterm.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%ndxterm.char.mix;)* -->
+</elementRule>
+
+<tag name='see'>
+  <ref role='common.attrib'/>
+  <ref role='seeseealso.role.attrib'/>
+  <!-- %local.seeseealso.attrib; -->
+</tag>
+
+<elementRule role='seealso'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='ndxterm.char.mix'/>
+    </choice>
+  </mixed>
+  <!-- (%ndxterm.char.mix;)* -->
+</elementRule>
+
+<tag name='seealso'>
+  <ref role='common.attrib'/>
+  <ref role='seeseealso.role.attrib'/>
+  <!-- %local.seeseealso.attrib; -->
+</tag>
+
+</module>
