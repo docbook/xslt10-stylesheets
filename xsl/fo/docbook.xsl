@@ -139,7 +139,7 @@
           </xsl:when>
           <xsl:otherwise>
             <xsl:if test="$fop.extensions != 0">
-              <xsl:apply-templates select="key('id',$rootid)" mode="outline"/>
+              <xsl:apply-templates select="key('id',$rootid)" mode="fop.outline"/>
             </xsl:if>
             <xsl:if test="$xep.extensions != 0">
               <xsl:variable name="bookmarks">
@@ -157,7 +157,7 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:if test="$fop.extensions != 0">
-          <xsl:apply-templates mode="outline"/>
+          <xsl:apply-templates mode="fop.outline"/>
         </xsl:if>
         <xsl:if test="$xep.extensions != 0">
           <xsl:variable name="bookmarks">
