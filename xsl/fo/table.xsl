@@ -187,6 +187,30 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   </fo:table-header>
 </xsl:template>
 
+<xsl:template match="tfoot">
+  <xsl:variable name="tgroup" select="parent::*"/>
+  <xsl:variable name="frame" select="$tgroup/parent::*/@frame"/>
+
+  <fo:table-footer>
+    <xsl:choose>
+      <xsl:when test="$frame='topbot' or $frame='top'">
+        <xsl:call-template name="border">
+          <xsl:with-param name="side" select="'top'"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="$frame='sides'">
+        <xsl:call-template name="border">
+          <xsl:with-param name="side" select="'left'"/>
+        </xsl:call-template>
+        <xsl:call-template name="border">
+          <xsl:with-param name="side" select="'right'"/>
+        </xsl:call-template>
+      </xsl:when>
+    </xsl:choose>
+    <xsl:apply-templates/>
+  </fo:table-footer>
+</xsl:template>
+
 <xsl:template match="tbody">
   <xsl:variable name="tgroup" select="parent::*"/>
   <xsl:variable name="frame" select="$tgroup/parent::*/@frame"/>
