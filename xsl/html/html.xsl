@@ -27,16 +27,9 @@
 
 <xsl:template name="dingbat">
   <xsl:param name="dingbat">bullet</xsl:param>
-  <xsl:choose>
-    <xsl:when test="false() and $using.chunker != 0">
-      <dingbat name="{$dingbat}"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="dingbat.characters">
-        <xsl:with-param name="dingbat" select="$dingbat"/>
-      </xsl:call-template>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:call-template name="dingbat.characters">
+    <xsl:with-param name="dingbat" select="$dingbat"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template name="dingbat.characters">
