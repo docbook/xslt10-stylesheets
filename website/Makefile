@@ -1,7 +1,11 @@
+# $Id$
 include ../cvstools/Makefile.incl
-ZIPVER=
+DISTRO=website
+RELVER=$(shell cat ./VERSION)
+ZIPVER=$(RELVER)
 DIFFVER=
 NEXTVER=
+TMP=/tmp
 
 .PHONY : distrib clean example
 
@@ -28,29 +32,42 @@ else
 endif
 	$(MAKE) distrib
 
-zip:
+excludes:
+	rm -f $(TMP)/tar.exclude
+	touch $(TMP)/tar.exclude
+
+zip: excludes
 ifeq ($(ZIPVER),)
 	@echo You must specify ZIPVER for the zip target
+	exit 1
 else
-	rm -rf /tmp/website-$(ZIPVER)
-	rm -f /tmp/tar.exclude
-	rm -f /tmp/website-$(ZIPVER).tar.gz
-	rm -f /tmp/website-$(ZIPVER).zip
-	mkdir /tmp/website-$(ZIPVER)
-	touch /tmp/tar.exclude
-	find . -print | grep /CVS$$ | cut -c3- >> /tmp/tar.exclude
-	find . -print | grep /CVS/ | cut -c3- >> /tmp/tar.exclude
-	find . -print | grep .classes | cut -c3- >> /tmp/tar.exclude
-	find . -print | grep .cvskeep | cut -c3- >> /tmp/tar.exclude
-	find . -print | grep "~$$" | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name "#*"  | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name ".cvsignore"  | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name "Makefile*"   | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name "README.CVS"   | cut -c3- >> /tmp/tar.exclude
-	tar cf - * --exclude-from /tmp/tar.exclude | (cd /tmp/website-$(ZIPVER); tar xf -)
-	cd /tmp && tar cf - website-$(ZIPVER) | gzip > website-$(ZIPVER).tar.gz
-	cd /tmp && zip -rpD website-$(ZIPVER).zip website-$(ZIPVER)
-	rm -f tar.exclude
+	find . -type f | xargs chmod 0644
+	find . -type d | xargs chmod 0755
+ifneq ($(EXECUTABLES),)
+	chmod 0755 $(EXECUTABLES)
+endif
+	rm -rf $(TMP)/docbook-$(DISTRO)-$(ZIPVER)
+	rm -f  $(TMP)/docbook-$(DISTRO)-$(ZIPVER).tar.gz
+	rm -f  $(TMP)/docbook-$(DISTRO)-$(ZIPVER).tar.bz2
+	rm -f  $(TMP)/docbook-$(DISTRO)-$(ZIPVER).zip
+	umask 022; mkdir $(TMP)/docbook-$(DISTRO)-$(ZIPVER)
+	find . -print  | grep /CVS$$       | cut -c3- >> $(TMP)/tar.exclude
+	find . -print  | grep /CVS/        | cut -c3- >> $(TMP)/tar.exclude
+	find . -print  | grep /debian/     | cut -c3- >> $(TMP)/tar.exclude
+	find . -print  | grep .classes     | cut -c3- >> $(TMP)/tar.exclude
+	find . -print  | grep "~$$"        | cut -c3- >> $(TMP)/tar.exclude
+	find . -type f -name ".*.pyc"      | cut -c3- >> $(TMP)/tar.exclude
+	find . -type f -name "#*"          | cut -c3- >> $(TMP)/tar.exclude
+	find . -type f -name ".#*"         | cut -c3- >> $(TMP)/tar.exclude
+	find . -type f -name "prj.el"      | cut -c3- >> $(TMP)/tar.exclude
+	find . -type f -name ".cvsignore"  | cut -c3- >> $(TMP)/tar.exclude
+	find . -type f -name "Makefile*"   | cut -c3- >> $(TMP)/tar.exclude
+	find . -type f -name "README.CVS"  | cut -c3- >> $(TMP)/tar.exclude
+	tar cf - * --exclude-from $(TMP)/tar.exclude | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); tar xf -)
+	umask 022; cd $(TMP) && tar cf - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-$(ZIPVER).tar.gz
+	umask 022; cd $(TMP) && tar cf - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > docbook-$(DISTRO)-$(ZIPVER).tar.bz2
+	umask 022; cd $(TMP) && zip -q -rpD docbook-$(DISTRO)-$(ZIPVER).zip docbook-$(DISTRO)-$(ZIPVER)
+	rm -f $(TMP)/tar.exclude
 endif
 
 clean:
@@ -60,3 +77,4 @@ clean:
 
 realclean: clean
 	$(MAKE) -C extensions realclean
+	$(MAKE) -C example realclean
