@@ -419,6 +419,15 @@
         </fo:block>
       </fo:static-content>
     </xsl:when>
+    <xsl:otherwise>
+      <xsl:message>
+        <xsl:text>Unexpected master-name (</xsl:text>
+        <xsl:value-of select="$master-name"/>
+        <xsl:text>) in running.foot.mode for </xsl:text>
+        <xsl:value-of select="name(.)"/>
+        <xsl:text>. No footer generated.</xsl:text>
+      </xsl:message>
+    </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
