@@ -5,10 +5,10 @@
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
 ]>
 <article status="Working Draft">
-<?dbhtml filename="docbook-4.2-cr1.html"?>
+<?dbhtml filename="docbook-4.2-cr2.html"?>
 <articleinfo>
 <title>The DocBook Document Type</title>
-<productnumber>Version 4.2 Candidate Release 1</productnumber>
+<productnumber>Version 4.2 Candidate Release 2</productnumber>
 <subtitle>OASIS DocBook Technical Committee</subtitle>
 <authorgroup>
 <editor>
@@ -20,7 +20,7 @@
   </affiliation>
 </editor>
 </authorgroup>
-<pubdate>19 Mar 2002</pubdate>
+<pubdate>21 May 2002</pubdate>
 <releaseinfo role="cvs">
 $Id$
 </releaseinfo>
@@ -85,6 +85,10 @@ no backwards-incompatible changes.</para>
 </abstract>
 
 <revhistory>
+<revision role="http://www.oasis-open.org/docbook/docbook-4.2-CR2.html">
+  <revnumber>Candidate Release 2</revnumber>
+  <date>21 May 2002</date>
+</revision>
 <revision role="http://www.oasis-open.org/docbook/docbook-4.2-CR1.html">
   <revnumber>Candidate Release 1</revnumber>
   <date>19 Mar 2002</date>
@@ -143,7 +147,7 @@ document.</para>
 </section>
 
 <section id="docbook">
-<title>The DocBook Document Type V4.2b2</title>
+<title>The DocBook Document Type V4.2CR2</title>
 
 <para>The DocBook document type is distributed for
 <ulink url="http://www.oasis-open.org/docbook/xml/">XML</ulink> and
@@ -153,142 +157,48 @@ from the
 <ulink url="http://www.oasis-open.org/">OASIS</ulink>
 </para>
 
-<!--
-<section>
-<title>DocBook SGML</title>
-
-<itemizedlist>
-<listitem>
-<para>Public identifier: -//OASIS//DTD DocBook V4.2b2//EN
-</para>
-</listitem>
-<listitem>
-<para>System identifier: http://www.oasis-open.org/docbook/sgml/4.2b2/docbook.dtd
-</para>
-</listitem>
-</itemizedlist>
-
-<screen><inlinemediaobject>
-<imageobject>
-<imagedata fileref="../sgml/docbook.dtd" format="linespecific"/>
-</imageobject>
-</inlinemediaobject></screen>
 </section>
 
-<section>
-<title>DocBook XML</title>
-
-<itemizedlist>
-<listitem>
-<para>Public identifier: -//OASIS//DTD DocBook XML V4.2b2//EN
-</para>
-</listitem>
-<listitem>
-<para>System identifier: http://www.oasis-open.org/docbook/xml/4.2b2/docbookx.dtd
-</para>
-</listitem>
-</itemizedlist>
-
-<screen><inlinemediaobject>
-<imageobject>
-<imagedata fileref="docbookx.dtd" format="linespecific"/>
-</imageobject>
-</inlinemediaobject></screen>
-</section>
-
-<section>
-<title>DocBook Notations</title>
-
-<itemizedlist>
-<listitem>
-<para>Public identifier: -//OASIS//ENTITIES DocBook Notations V4.2b2//EN
-</para>
-</listitem>
-</itemizedlist>
-
-<screen><inlinemediaobject>
-<imageobject>
-<imagedata fileref="dbnotnx.mod" format="linespecific"/>
-</imageobject>
-</inlinemediaobject></screen>
-</section>
-
-<section>
-<title>DocBook Character Entities</title>
-
-<itemizedlist>
-<listitem>
-<para>Public identifier: -//OASIS//ENTITIES DocBook Character Entities V4.2b2//EN
-</para>
-</listitem>
-</itemizedlist>
-
-<screen><inlinemediaobject>
-<imageobject>
-<imagedata fileref="dbcentx.mod" format="linespecific"/>
-</imageobject>
-</inlinemediaobject></screen>
-</section>
-
-<section>
-<title>DocBook Information Pool</title>
-
-<itemizedlist>
-<listitem>
-<para>Public identifier: -//OASIS//ENTITIES DocBook Information Pool V4.2b2//EN
-</para>
-</listitem>
-</itemizedlist>
-
-<screen><inlinemediaobject>
-<imageobject>
-<imagedata fileref="dbpoolx.mod" format="linespecific"/>
-</imageobject>
-</inlinemediaobject></screen>
-</section>
-
-<section>
-<title>DocBook Hierarchy</title>
-
-<itemizedlist>
-<listitem>
-<para>Public identifier: -//OASIS//ENTITIES DocBook Document Hierarchy V4.2b2//EN
-</para>
-</listitem>
-</itemizedlist>
-
-<screen><inlinemediaobject>
-<imageobject>
-<imagedata fileref="dbhierx.mod" format="linespecific"/>
-</imageobject>
-</inlinemediaobject></screen>
-</section>
-
-<section>
-<title>DocBook General Entities</title>
-
-<itemizedlist>
-<listitem>
-<para>Public identifier: -//OASIS//ENTITIES DocBook Additional General Entities V4.2b2//EN
-</para>
-</listitem>
-</itemizedlist>
-
-<screen><inlinemediaobject>
-<imageobject>
-<imagedata fileref="dbgenent.mod" format="linespecific"/>
-</imageobject>
-</inlinemediaobject></screen>
-</section>
--->
-
-</section>
-
-<section id="s.changes">
-<title>Changes in DocBook V4.2b2</title>
+<section id="s.changes2">
+<title>Changes in DocBook V4.2CR2</title>
 
 <para>There are no backwards-incompatible changes in this release.
 </para>
+
+<para>Each of the changes made between DocBook V4.2CR1 and DocBook V4.2CR2
+is summarized here.</para>
+
+<section id="s.bugs2">
+<title>Bug Fixes</title>
+
+<itemizedlist>
+<listitem><para>The <sgmltag class="paramentity">local.info.class</sgmltag>
+reference was added to <sgmltag class="paramentity">info.class</sgmltag>.
+Its absence was an oversight, it should always have been there.</para>
+</listitem>
+<listitem><para>The <literal>SVG</literal> notation was added to
+<sgmltag class="paramentity">notation.class</sgmltag>.
+Its absence was an oversight, it should always have been there.</para>
+</listitem>
+<listitem><para>Changed the mechanism for identifying incorrectly
+configured DocBook customization layers. In DocBook V4.2CR1, if a
+customization layer incorrectly enabled both
+<sgmltag class="paramentity">sgml.features</sgmltag> and
+<sgmltag class="paramentity">xml.features</sgmltag>, the DTD was syntactically
+invalid. This caused problems for certain kinds of DTD parsing tools
+that ignore marked sections.</para>
+
+<para>Instead of producing a syntax error, the new mechanism simply points all
+of the DTD modules to a file that contains no declarations. The content of this
+file, <ulink url="http://www.oasis-open.org/docbook/xml/configerror.txt"/>,
+explains the cause of the error.</para>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+
+<section id="s.changes">
+<title>Changes in DocBook V4.2CR1</title>
 
 <para>Each of the changes made between DocBook V4.1 and DocBook XML V4.1.2
 is summarized here. For complete details, consult the individual RFEs and
@@ -774,6 +684,7 @@ the formulation of this &standard;:</para>
 <listitem><para>Sabine Ocker</para></listitem>
 <listitem><para>Michael Sabrio</para></listitem>
 <listitem><para>Michael Smith</para></listitem>
+<listitem><para>Tim Teebken (prospective)</para></listitem>
 <listitem><para>Norman Walsh (Chair, Editor)</para></listitem>
 </itemizedlist>
 

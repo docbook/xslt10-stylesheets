@@ -1,6 +1,6 @@
 include ../../cvstools/Makefile.incl
 
-SPECVER=4.2-CR1
+SPECVER=4.2-CR2
 
 ifeq ($(SPECVER),)
 SPECSEP=
