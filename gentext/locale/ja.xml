@@ -80,6 +80,7 @@
 <gentext key="preface" text="&#x5E8F;&#x6587;"/>
 <gentext key="Procedure" text="&#x624B;&#x9806;"/>
 <gentext key="procedure" text="&#x624B;&#x9806;"/>
+<gentext key="ProductionSet" text="&#x30d7;&#x30ed;&#x30c0;&#x30af;&#x30b7;&#x30e7;&#x30f3;"/>
 <gentext key="Published" text="&#x767A;&#x884C;"/>
 <gentext key="published" text="&#x767A;&#x884C;"/>
 <gentext key="Question" text="&#x7B54;&#xFF1A;"/>
@@ -98,6 +99,11 @@
 <gentext key="revhistory" text="&#x6539;&#x8A02;&#x5C65;&#x6B74;"/>
 <gentext key="revision" text="&#x6539;&#x8A02;"/>
 <gentext key="Revision" text="&#x6539;&#x8A02;"/>
+<gentext key="sect1" text="&#x9805;"/>
+<gentext key="sect2" text="&#x9805;"/>
+<gentext key="sect3" text="&#x9805;"/>
+<gentext key="sect4" text="&#x9805;"/>
+<gentext key="sect5" text="&#x9805;"/>
 <gentext key="Section" text="&#x9805;"/>
 <gentext key="section" text="&#x9805;"/>
 <gentext key="See" text="&#x53C2;&#x7167;"/>
@@ -159,21 +165,27 @@
 
 <gentext key="nav-home" text="&#x30DB;&#x30FC;&#x30E0;"/>
 <gentext key="nav-next" text="&#x6B21;&#x306E;&#x30DA;&#x30FC;&#x30B8;"/>
-<gentext key="nav-next-sibling" text="Fast Forward"/>
+<gentext key="nav-next-sibling" text="&#x65e9;&#x9001;&#x308a;"/>
 <gentext key="nav-prev" text="&#x524D;&#x306E;&#x30DA;&#x30FC;&#x30B8;"/>
-<gentext key="nav-prev-sibling" text="Fast Backward"/>
+<gentext key="nav-prev-sibling" text="&#x5dfb;&#x623b;&#x3057;"/>
 <gentext key="nav-up" text="&#x4E0A;&#x306B;&#x623B;&#x308B;"/>
 
-<dingbat key="startquote" text="&#x201C;"/>
-<dingbat key="endquote" text="&#x201D;"/>
-<dingbat key="nestedstartquote" text="&#x2018;"/>
-<dingbat key="nestedendquote" text="&#x2019;"/>
-<dingbat key="bullet" text="&#x2022;"/>
+<gentext key="index symbols" text="&#x30b7;&#x30f3;&#x30dc;&#x30eb;"/>
+
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
+
+<dingbat key="startquote" text="&#x300c;"/>
+<dingbat key="endquote" text="&#x300d;"/>
+<dingbat key="nestedstartquote" text="&#x300e;"/>
+<dingbat key="nestedendquote" text="&#x300f;"/>
+<dingbat key="bullet" text="&#x25cf;"/>
 
 <context name="title">
 
 <template name="abstract">%t</template>
-<template name="appendix"><Appendix/>%n</template>
+<template name="answer">%t</template>
+<template name="appendix"><Appendix/> %n. %t</template>
 <template name="article">%t</template>
 <template name="authorblurb">%t</template>
 <template name="bibliodiv">%t</template>
@@ -186,7 +198,7 @@
 <template name="book">%t</template>
 <template name="calloutlist">%t</template>
 <template name="caution">%t</template>
-<template name="chapter"><Chapter1/>%n<Chapter2/></template>
+<template name="chapter"><Chapter1/>%n<Chapter2/> %t</template>
 <template name="colophon">%t</template>
 <template name="dedication">%t</template>
 <template name="equation"><Equation/> %n. %t</template>
@@ -213,8 +225,14 @@
 <template name="partintro">%t</template>
 <template name="preface">%t</template>
 <template name="procedure">%t</template>
+<template name="procedure.formal"><Procedure/> %n. %t</template>
+<template name="productionset">%t</template>
+<template name="productionset.formal"><ProductionSet/> %n</template>
 <template name="qandadiv">%t</template>
+<template name="qandaentry">%t</template>
 <template name="qandaset">%t</template>
+<template name="question">%t</template>
+<template name="refentry">%t</template>
 <template name="reference">%t</template>
 <template name="refsect1">%t</template>
 <template name="refsect2">%t</template>
@@ -236,6 +254,7 @@
 
 <context name="section-title">
 
+<template name="bridgehead">%t</template>
 <template name="sect1">%t</template>
 <template name="sect2">%t</template>
 <template name="sect3">%t</template>
@@ -248,13 +267,14 @@
 
 <context name="section-title-numbered">
 
+<template name="bridgehead">%n. %t</template>
 <template name="sect1">%n. %t</template>
 <template name="sect2">%n. %t</template>
 <template name="sect3">%n. %t</template>
 <template name="sect4">%n. %t</template>
 <template name="sect5">%n. %t</template>
 <template name="section">%n. %t</template>
-<template name="simplesect">%n. %t</template>
+<template name="simplesect">%t</template>
 
 </context>
 
@@ -310,27 +330,28 @@
 <template name="chapter"><Chapter1/>%n<Chapter2/></template>
 <template name="colophon">%t</template>
 <template name="dedication">%t</template>
-<template name="example"><Example/> %n. %t</template>
-<template name="figure"><Figure/> %n. %t</template>
+<template name="equation"><Equation/> %n</template>
+<template name="example"><Example/> %n</template>
+<template name="figure"><Figure/> %n</template>
 <template name="glossary">%t</template>
 <template name="index">%t</template>
-<template name="part"><Part/> %n. %t</template>
+<template name="part"><Part/> %n</template>
 <template name="preface">%t</template>
 <template name="procedure"><Procedure/> %n</template>
 <template name="qandadiv">%t</template>
 <template name="qandaentry"><Question/> %n</template>
 <template name="qandaset">%t</template>
-<template name="qandaset">%t</template>
 <template name="question"><Question/> %n</template>
 <template name="reference">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
-<template name="table"><Table/> %n. %t</template>
+<template name="table"><Table/> %n</template>
 
 </context>
 
 <context name="section-xref">
 
+<template name="bridgehead">%t<section/></template>
 <template name="sect1">%t<section/></template>
 <template name="sect2">%t<section/></template>
 <template name="sect3">%t<section/></template>
@@ -343,6 +364,7 @@
 
 <context name="section-xref-numbered">
 
+<template name="bridgehead"><Section/>%n</template>
 <template name="sect1"><Section/>%n</template>
 <template name="sect2"><Section/>%n</template>
 <template name="sect3"><Section/>%n</template>
@@ -371,3 +393,4 @@
 </context>
 
 </locale>
+
