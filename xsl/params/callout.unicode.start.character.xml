@@ -14,14 +14,12 @@
 
 <refsect1><title>Description</title>
 
-<para>If <parameter>callout.graphics</parameter>
-is non-zero, graphics are used to represent
+<para>If <parameter>callout.graphics</parameter> is zero and <parameter>callout.unicode</parameter>
+is non-zero, unicode characters are used to represent
 callout numbers. The value of
-<parameter>callout.graphics.number.limit</parameter>
-is
-the largest number for which a graphic exists. If the callout number
-exceeds this limit, the default presentation "(nnn)" will always
-be used.
+<parameter>callout.unicode.start.character</parameter>
+is the decimal unicode value used for callout number one. Currently, 
+only 10102 is supported in the stylesheets for this parameter. 
 </para>
 
 </refsect1>
