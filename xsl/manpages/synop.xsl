@@ -55,7 +55,6 @@
       <xsl:value-of select="normalize-space($arg)"/>
     </xsl:otherwise>
   </xsl:choose>
-  <xsl:value-of select="normalize-space($arg)"/>
   <xsl:choose>
     <xsl:when test="$rep='repeat'">
       <xsl:value-of select="$arg.rep.repeat.str"/>
