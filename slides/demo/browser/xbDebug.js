@@ -1,13 +1,33 @@
 /*
-xbDebug.js revision: 0.003 2002-02-26
+ * xbDebug.js
+ * $Revision$ $Date$
+ */
 
-Contributor(s): Bob Clary, Netscape Communications, Copyright 2001
+/* ***** BEGIN LICENSE BLOCK *****
+ * Version: MPL 1.1/GPL 2.0/LGPL 2.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ * The Original Code is Netscape code.
+ *
+ * The Initial Developer of the Original Code is
+ * Netscape Corporation.
+ * Portions created by the Initial Developer are Copyright (C) 2001
+ * the Initial Developer. All Rights Reserved.
+ *
+ * Contributor(s): Bob Clary <bclary@netscape.com>
+ *
+ * ***** END LICENSE BLOCK ***** */
 
-Netscape grants you a royalty free license to use, modify and 
-distribute this software provided that this copyright notice 
-appears on all copies.  This software is provided "AS IS," 
-without a warranty of any kind.
-
+/*
 ChangeLog:
 
 2002-02-25: bclary - modified xbDebugTraceOject to make sure 
@@ -16,8 +36,8 @@ ChangeLog:
 
 2002-02-07: bclary - modified xbDebug.prototype.close to not null
             the debug window reference. This can cause problems with
-	    Internet Explorer if the page is refreshed. These issues will
-	    be addressed at a later date.
+	          Internet Explorer if the page is refreshed. These issues will
+	          be addressed at a later date.
 */
 
 function xbDebug()
@@ -46,10 +66,10 @@ xbDebug.prototype.open =  function ()
     this.close();
     
   this.debugwindow = window.open('about:blank', 'DEBUGWINDOW', 'height=400,width=600,resizable=yes,scrollbars=yes');
+  this.debugwindow.moveTo(0,0);
+  window.focus();
 
-  this.debugwindow.title = 'xbDebug Window';
   this.debugwindow.document.write('<html><head><title>xbDebug Window</title></head><body><h3>Javascript Debug Window</h3></body></html>');
-  this.debugwindow.focus();
 }
 
 xbDebug.prototype.close = function ()
@@ -83,6 +103,11 @@ window.onunload = function () { xbDEBUG.close(); }
 function xbDebugGetFunctionName(funcref)
 {
 
+  if (!funcref)
+  {
+    return '';
+  }
+
   if (funcref.name)
     return funcref.name;
 
@@ -90,7 +115,40 @@ function xbDebugGetFunctionName(funcref)
   name = name.substring(name.indexOf(' ') + 1, name.indexOf('('));
   funcref.name = name;
 
+  if (!name) alert('name not defined');
   return name;
+}
+
+
+// emulate functionref.apply for IE mac and IE win < 5.5
+function xbDebugApplyFunction(funcname, funcref, thisref, argumentsref)
+{
+  var rv;
+
+  if (!funcref)
+  {
+    alert('xbDebugApplyFunction: funcref is null');
+  }
+
+  if (typeof(funcref.apply) != 'undefined')
+      return funcref.apply(thisref, argumentsref);
+
+  var applyexpr = 'thisref.xbDebug_orig_' + funcname + '(';
+  var i;
+
+  for (i = 0; i < argumentsref.length; i++)
+  {
+    applyexpr += 'argumentsref[' + i + '],';
+  }
+
+  if (argumentsref.length > 0)
+  {
+    applyexpr = applyexpr.substring(0, applyexpr.length - 1);
+  }
+
+  applyexpr += ')';
+
+  return eval(applyexpr);
 }
 
 function xbDebugCreateFunctionWrapper(scopename, funcname, precall, postcall)
@@ -103,8 +161,10 @@ function xbDebugCreateFunctionWrapper(scopename, funcname, precall, postcall)
 
   wrappedfunc = function () 
   {
+    var rv;
+
     precall(scopename, funcname, arguments);
-    var rv = funcref.apply(this, arguments);
+    rv = xbDebugApplyFunction(funcname, funcref, scopeobject, arguments);
     postcall(scopename, funcname, arguments, rv);
     return rv;
   };
@@ -118,10 +178,33 @@ function xbDebugCreateFunctionWrapper(scopename, funcname, precall, postcall)
   scopeobject[funcname] = wrappedfunc;
 }
 
+function xbDebugCreateMethodWrapper(contextname, classname, methodname, precall, postcall)
+{
+  var context = eval(contextname);
+  var methodref = context[classname].prototype[methodname];
+
+  context[classname].prototype['xbDebug_orig_' + methodname] = methodref;
+
+  var wrappedmethod = function () 
+  {
+    var rv;
+    // eval 'this' at method run time to pick up reference to the object's instance
+    var thisref = eval('this');
+    // eval 'arguments' at method run time to pick up method's arguments
+    var argsref = arguments;
+
+    precall(contextname + '.' + classname, methodname, argsref);
+    rv = xbDebugApplyFunction(methodname, methodref, thisref, argsref);
+    postcall(contextname + '.' + classname, methodname, argsref, rv);
+    return rv;
+  };
+
+  return wrappedmethod;
+}
+
 function xbDebugPersistToString(obj)
 {
   var s = '';
-  var p;
 
   if (obj == null)
      return 'null';
@@ -138,7 +221,10 @@ function xbDebugPersistToString(obj)
        return obj + '';
   }
 
-  return '[' + xbDebugGetFunctionName(obj.constructor) + ']';
+  if (obj.constructor)
+    return '[' + xbDebugGetFunctionName(obj.constructor) + ']';
+
+  return null;
 }
 
 function xbDebugTraceBefore(scopename, funcname, funcarguments) 
@@ -191,19 +277,21 @@ function xbDebugTraceFunction(scopename, funcname)
   xbDebugCreateFunctionWrapper(scopename, funcname, xbDebugTraceBefore, xbDebugTraceAfter);
 }
 
-function xbDebugTraceObject(scopename, objname)
+function xbDebugTraceObject(contextname, classname)
 {
-  var objref = eval(scopename + '.' + objname);
+  var classref = eval(contextname + '.' + classname);
   var p;
+  var sp;
 
-  if (!objref || !objref.prototype)
+  if (!classref || !classref.prototype)
      return;
 
-  for (p in objref.prototype)
+  for (p in classref.prototype)
   {
-    if (typeof(objref.prototype[p]) == 'function' && (p+'').indexOf('xbDebug_orig') == -1)
+    sp = p + '';
+    if (typeof(classref.prototype[sp]) == 'function' && (sp).indexOf('xbDebug_orig') == -1)
     {
-      xbDebugCreateFunctionWrapper(scopename + '.' + objname + '.prototype', p + '', xbDebugTraceBefore, xbDebugTraceAfter);
+      classref.prototype[sp] = xbDebugCreateMethodWrapper(contextname, classname, sp, xbDebugTraceBefore, xbDebugTraceAfter);
     }
   }
 }

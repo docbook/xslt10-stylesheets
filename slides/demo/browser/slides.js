@@ -10,7 +10,7 @@
 // This script assumes that the Netscape 'ua.js' module has also been loaded.
 
 function newPage(filename, overlay) {
-    divs = xbGetElementsByName("DIV");
+    divs = document.getElementsByTagName("div");
 
     if (divs) {
 	var xdiv = divs[0];
@@ -55,7 +55,8 @@ function navigate (evt) {
     var home = (kc == 36);
     var toc = (kc == 112) || (kc == 224);
 
-    var links = xbGetElementsByName("LINK");
+    var links = document.getElementsByTagName("link");
+
     var count = 0;
     var target = "";
 
@@ -75,14 +76,18 @@ function navigate (evt) {
     }
 
     if (target != "") {
-	window.location = target;
+	if (window.top.frames[1]) {
+	    window.top.frames[1].location = target;
+	} else {
+	    window.location = target;
+	}
     }
 
     return false;
 }
 
 function toggletoc (img, width, hidegraphic, showgraphic) {
-    var fsc = xbGetElementsByName('FRAMESET',top);
+    var fsc = top.GetElementsByTagName('frameset');
     if (fsc) {
 	var fs = fsc[0];
 	if (fs) {
