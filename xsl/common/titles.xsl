@@ -32,8 +32,13 @@ title of the element. This does not include the label.
     </xsl:when>
     <xsl:otherwise>
       <xsl:message>
-	<xsl:text>Request for title of unexpected element: </xsl:text>
+	<xsl:text>Request for title of element with no title: </xsl:text>
 	<xsl:value-of select="name(.)"/>
+        <xsl:if test="@id">
+          <xsl:text> (id="</xsl:text>
+          <xsl:value-of select="@id"/>
+          <xsl:text>")</xsl:text>
+        </xsl:if>
       </xsl:message>
       <xsl:text>???TITLE???</xsl:text>
     </xsl:otherwise>
