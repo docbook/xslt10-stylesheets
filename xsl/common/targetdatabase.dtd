@@ -38,7 +38,7 @@
 
 <!ELEMENT obj (ttl?, objttl?, xreftext?, page?)>
 <!ATTLIST obj
-        targetid  CDATA   #REQUIRED
+        targetptr  CDATA   #REQUIRED
         element   CDATA   #IMPLIED
         name      CDATA   #IMPLIED
         number    CDATA   #IMPLIED
