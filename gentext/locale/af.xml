@@ -96,11 +96,11 @@
 <gentext key="revhistory" text="hersiening geskiedenis"/>
 <gentext key="Revision" text="Hersiening"/>
 <gentext key="revision" text="hersiening"/>
-<gentext key="sect1" text="Section"/>
-<gentext key="sect2" text="Section"/>
-<gentext key="sect3" text="Section"/>
-<gentext key="sect4" text="Section"/>
-<gentext key="sect5" text="Section"/>
+<gentext key="sect1" text="Section"/> <!--en-->
+<gentext key="sect2" text="Section"/> <!--en-->
+<gentext key="sect3" text="Section"/> <!--en-->
+<gentext key="sect4" text="Section"/> <!--en-->
+<gentext key="sect5" text="Section"/> <!--en-->
 <gentext key="Section" text="Paragraaf"/>
 <gentext key="section" text="paragraaf"/>
 <gentext key="see" text="sien"/>
@@ -167,11 +167,14 @@
 <gentext key="nav-prev-sibling" text="Verder terug"/>
 <gentext key="nav-up" text="Boontoe"/>
 
-<gentext key="Draft"         text="Draft"/>
-<gentext key="above"         text="above"/>
-<gentext key="below"         text="below"/>
+<gentext key="Draft"         text="Draft"/> <!--en-->
+<gentext key="above"         text="above"/> <!--en-->
+<gentext key="below"         text="below"/> <!--en-->
 <gentext key="sectioncalled" text="die seksie genaamd"/>
 <gentext key="index symbols" text="indeks simbole"/>
+
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
