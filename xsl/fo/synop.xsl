@@ -223,11 +223,13 @@
   <xsl:if test="following-sibling::parameter">
     <xsl:text>, </xsl:text>
   </xsl:if>
-</xsl:template>  
+</xsl:template>
 
 <xsl:template match="paramdef" mode="kr-funcsynopsis-mode">
-  <xsl:apply-templates/>
-  <xsl:text>;</xsl:text>
+  <fo:block>
+    <xsl:apply-templates/>
+    <xsl:text>;</xsl:text>
+  </fo:block>
 </xsl:template>
 
 <xsl:template match="funcparams">
