@@ -260,6 +260,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &htmlhelp.map.file;
 &htmlhelp.alias.file;
 &htmlhelp.hhc.section.depth;
+&htmlhelp.hhc.show.root;
 &htmlhelp.hhc.folders.instead.books;
 &htmlhelp.title;
 </reference>
@@ -362,6 +363,7 @@ around all these parameters.</para>
 <src:fragref linkend="htmlhelp.hhc.frag"/>
 <src:fragref linkend="htmlhelp.hhc.folders.instead.books.frag"/>
 <src:fragref linkend="htmlhelp.hhc.section.depth.frag"/>
+<src:fragref linkend="htmlhelp.hhc.show.root.frag"/>
 <src:fragref linkend="htmlhelp.hhp.frag"/>
 <src:fragref linkend="htmlhelp.hhp.tail.frag"/>
 <src:fragref linkend="htmlhelp.map.file.frag"/>

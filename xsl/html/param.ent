@@ -73,6 +73,7 @@
 <!ENTITY htmlhelp.hhc SYSTEM "../params/htmlhelp.hhc.xml">
 <!ENTITY htmlhelp.hhc.folders.instead.books SYSTEM "../params/htmlhelp.hhc.folders.instead.books.xml">
 <!ENTITY htmlhelp.hhc.section.depth SYSTEM "../params/htmlhelp.hhc.section.depth.xml">
+<!ENTITY htmlhelp.hhc.show.root SYSTEM "../params/htmlhelp.hhc.show.root.xml">
 <!ENTITY htmlhelp.hhp SYSTEM "../params/htmlhelp.hhp.xml">
 <!ENTITY htmlhelp.hhp.tail SYSTEM "../params/htmlhelp.hhp.tail.xml">
 <!ENTITY htmlhelp.map.file SYSTEM "../params/htmlhelp.map.file.xml">
