@@ -610,7 +610,7 @@
 
 <xsl:template match="authorgroup/corpauthor" mode="book.titlepage.verso.mode">
   <xsl:variable name="before" select="count(preceding-sibling::*)"/>
-  <xsl:variable name="after" select="count(preceding-sibling::*)"/>
+  <xsl:variable name="after" select="count(following-sibling::*)"/>
 
   <xsl:choose>
     <xsl:when test="$before &gt; 1">
@@ -621,7 +621,7 @@
     </xsl:when>
   </xsl:choose>
 
-  <xsl:if test="$after = 0">
+  <xsl:if test="$after = 0 and $before &gt; 0">
     <xsl:text> </xsl:text>
     <xsl:call-template name="gentext">
       <xsl:with-param name="key" select="'and'"/>
