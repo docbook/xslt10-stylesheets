@@ -18,9 +18,9 @@
   <!-- initial freshmeat announcement -->
   <!-- documentation -->
   <!-- code cleanup -->
-  minor feature enhancements
+  <!--minor feature enhancements -->
   <!-- major feature enhancements -->
-  <!-- minor bugfixes -->
+  Minor bugfixes
   <!-- major bugfixes -->
   <!-- minor security fixes -->
   <!-- major security fixes -->
@@ -30,8 +30,7 @@
   <fm:Changelog-URL>http://docbook.org/xml/simple/{VERSION}/ChangeLog</fm:Changelog-URL>
   <fm:CVS-URL>http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/docbook/docbook/xml/simple/</fm:CVS-URL>
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook/</fm:Mailing-List-URL>
-  <fm:Changes>Simplified DocBook V1.1 is based on DocBook XML V4.3. It
-includes support for HTML tables.
+  <fm:Changes>Simplified DocBook V1.1b3 fixes a bug related to anchors present in V1.1b2.
   </fm:Changes>  
 </fm:project>
 
