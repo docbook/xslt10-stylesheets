@@ -1228,5 +1228,18 @@ that contains your complete bibliography collection.
 </refdescription>
 </doc:param>
 
+<!-- ==================================================================== -->
+<xsl:param name="format.variablelist.as.list" select="1"
+           doc:type='boolean'/>
+
+<doc:param name="format.variablelist.as.list" xmlns="">
+<refpurpose>Use an fo:list to format VariableLists?</refpurpose>
+<refdescription>
+<para>If non-zero, an fo:list will be used to format VariableLists.
+Otherwise, nested fo:blocks will be used.
+</para>
+</refdescription>
+</doc:param>
+
 </xsl:stylesheet>
 
