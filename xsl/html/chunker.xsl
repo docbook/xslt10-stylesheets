@@ -114,15 +114,18 @@
   <xsl:param name="doctype-public" select="''"/>
   <xsl:param name="doctype-system" select="''"/>
   <xsl:param name="content" select="''"/>
+  <xsl:param name="quiet" select="0"/>
 
-  <xsl:message>
-    <xsl:text>Writing </xsl:text>
-    <xsl:value-of select="$filename"/>
-    <xsl:if test="name(.) != ''">
-      <xsl:text> for </xsl:text>
-      <xsl:value-of select="name(.)"/>
-    </xsl:if>
-  </xsl:message>
+  <xsl:if test="$quiet = 0">
+    <xsl:message>
+      <xsl:text>Writing </xsl:text>
+      <xsl:value-of select="$filename"/>
+      <xsl:if test="name(.) != ''">
+        <xsl:text> for </xsl:text>
+        <xsl:value-of select="name(.)"/>
+      </xsl:if>
+    </xsl:message>
+  </xsl:if>
 
 
   <xsl:choose>
@@ -175,6 +178,7 @@
     <xsl:with-param name="method" select="$method"/>
     <xsl:with-param name="content" select="$content"/>
     <xsl:with-param name="encoding" select="$encoding"/>
+    <xsl:with-param name="quiet" select="$chunk.quietly"/>
   </xsl:call-template>
 </xsl:template>
 

@@ -239,6 +239,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &chunk.toc;
 &chunk.section.depth;
 &chunk.first.sections;
+&chunk.quietly;
 &saxon.character.representation;
 &default.encoding;
 &output.method;
