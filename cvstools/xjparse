@@ -7,8 +7,8 @@
 MYDIR=`dirname $0`
 . $MYDIR/common-functions.sh
 
-JAXP=`findjaxp`
-XERCES=`findxerces`
+# FIXME: why not xerces 2?
+XERCES=`findxerces1`
 RESOLVER=`findresolver`
 if [ ! "$RESOLVER" ]; then
   echo "cannot find resolver classes" 1>&2
@@ -33,7 +33,7 @@ else
     XREAD=org.apache.xml.resolver.apps.xread
 fi
 
-CLASSPATH=$JAXP:$RESOLVER:$XERCES:$CLASSPATH
+CLASSPATH=$RESOLVER:$XERCES:$CLASSPATH
 
 #echo $CLASSPATH
 
