@@ -1,0 +1,8 @@
+	DocBook to/from WordML
+
+	Steve Ball, Bob Stayton
+
+docbook.xsl	Accepts DocBook XML and produces WordML
+wordml.xsl	Accepts WordML and produces DocBook XML
+
+
