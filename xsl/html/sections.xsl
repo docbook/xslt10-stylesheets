@@ -251,10 +251,12 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:element name="h{$level}">
+  <!-- HTML H level is one higher than section level -->
+  <xsl:variable name="hlevel" select="$level + 1"/>
+  <xsl:element name="h{$hlevel}">
     <xsl:attribute name="class">title</xsl:attribute>
     <xsl:if test="$css.decoration != '0'">
-      <xsl:if test="$level&lt;3">
+      <xsl:if test="$hlevel&lt;3">
         <xsl:attribute name="style">clear: both</xsl:attribute>
       </xsl:if>
     </xsl:if>
@@ -301,9 +303,9 @@
                       or local-name($container) = 'index'
                       or local-name($container) = 'partintro'
                       or local-name($container) = 'preface'
-                      or local-name($container) = 'setindex'">2</xsl:when>
+                      or local-name($container) = 'setindex'">1</xsl:when>
       <xsl:when test="local-name($container) = 'glossdiv'">
-        <xsl:value-of select="count(ancestor::glossdiv)+2"/>
+        <xsl:value-of select="count(ancestor::glossdiv)+1"/>
       </xsl:when>
       <xsl:when test="local-name($container) = 'sect1'
                       or local-name($container) = 'sect2'
@@ -322,11 +324,12 @@
         </xsl:variable>
         <xsl:value-of select="$slevel + 1"/>
       </xsl:when>
-      <xsl:otherwise>2</xsl:otherwise>
+      <xsl:otherwise>1</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:variable name="level">
+  <!-- HTML H level is one higher than section level -->
+  <xsl:variable name="hlevel">
     <xsl:choose>
       <xsl:when test="@renderas = 'sect1'">2</xsl:when>
       <xsl:when test="@renderas = 'sect2'">3</xsl:when>
@@ -334,12 +337,12 @@
       <xsl:when test="@renderas = 'sect4'">5</xsl:when>
       <xsl:when test="@renderas = 'sect5'">6</xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="$clevel"/>
+        <xsl:value-of select="$clevel + 1"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:element name="h{$level}">
+  <xsl:element name="h{$hlevel}">
     <xsl:call-template name="anchor">
       <xsl:with-param name="conditional" select="0"/>
     </xsl:call-template>
