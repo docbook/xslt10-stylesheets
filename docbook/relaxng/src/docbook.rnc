@@ -25,12 +25,13 @@ start = db.set
 	| db.section
 	| db.para
 
+include "pool.rnc"
+include "annotations.rnc"
 include "xlink.rnc"
 include "hier.rnc"
 include "sect1.rnc"
 include "refentry.rnc"
 include "refsect1.rnc"
-include "pool.rnc"
 include "glossary.rnc"
 include "bibliography.rnc"
 include "index.rnc"
