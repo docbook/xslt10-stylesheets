@@ -6146,6 +6146,7 @@ in the text (no (0) value, the default)
                 <ref name="type"/>
                 <ref name="replaceable"/>
                 <ref name="parameter"/>
+                <ref name="initializer"/>
                 <ref name="funcparams"/>
               </choice>
             </zeroOrMore>
