@@ -486,52 +486,52 @@
 <template name="langcode">0x0410 Italian</template>
 </context>
 
-<l:context name="datetime">
-   <l:template name="format" text="d/m/Y"/>
-</l:context>
+<context name="datetime">
+   <template name="format" text="d/m/Y"/>
+</context>
 
-<l:context name="datetime-full">
-   <l:template name="January" text="gennaio"/>
-   <l:template name="February" text="febbraio"/>
-   <l:template name="March" text="marzo"/>
-   <l:template name="April" text="aprile"/>
-   <l:template name="May" text="maggio"/>
-   <l:template name="June" text="giugno"/>
-   <l:template name="July" text="luglio"/>
-   <l:template name="August" text="agosto"/>
-   <l:template name="September" text="settebre"/>
-   <l:template name="October" text="ottobre"/>
-   <l:template name="November" text="novembre"/>
-   <l:template name="December" text="dicembre"/>
-   <l:template name="Monday" text="luned&#236;"/>
-   <l:template name="Tuesday" text="marted&#236;"/>
-   <l:template name="Wednesday" text="mercoled&#236;"/>
-   <l:template name="Thursday" text="gioved&#236;"/>
-   <l:template name="Friday" text="venerd&#236;"/>
-   <l:template name="Saturday" text="sabato"/>
-   <l:template name="Sunday" text="domenica"/>
-</l:context>
+<context name="datetime-full">
+   <template name="January" text="gennaio"/>
+   <template name="February" text="febbraio"/>
+   <template name="March" text="marzo"/>
+   <template name="April" text="aprile"/>
+   <template name="May" text="maggio"/>
+   <template name="June" text="giugno"/>
+   <template name="July" text="luglio"/>
+   <template name="August" text="agosto"/>
+   <template name="September" text="settebre"/>
+   <template name="October" text="ottobre"/>
+   <template name="November" text="novembre"/>
+   <template name="December" text="dicembre"/>
+   <template name="Monday" text="luned&#236;"/>
+   <template name="Tuesday" text="marted&#236;"/>
+   <template name="Wednesday" text="mercoled&#236;"/>
+   <template name="Thursday" text="gioved&#236;"/>
+   <template name="Friday" text="venerd&#236;"/>
+   <template name="Saturday" text="sabato"/>
+   <template name="Sunday" text="domenica"/>
+</context>
 
-<l:context name="datetime-abbrev">
-   <l:template name="Jan" text="gen"/>
-   <l:template name="Feb" text="feb"/>
-   <l:template name="Mar" text="mar"/>
-   <l:template name="Apr" text="apr"/>
-   <l:template name="May" text="mag"/>
-   <l:template name="Jun" text="giu"/>
-   <l:template name="Jul" text="ago"/>
-   <l:template name="Sep" text="set"/>
-   <l:template name="Oct" text="ott"/>
-   <l:template name="Nov" text="nov"/>
-   <l:template name="Dec" text="dic"/>
-   <l:template name="Mon" text="lun"/>
-   <l:template name="Tue" text="mar"/>
-   <l:template name="Wed" text="mer"/>
-   <l:template name="Thu" text="gio"/>
-   <l:template name="Fri" text="ven"/>
-   <l:template name="Sat" text="sab"/>
-   <l:template name="Sun" text="dom"/>
-</l:context>
+<context name="datetime-abbrev">
+   <template name="Jan" text="gen"/>
+   <template name="Feb" text="feb"/>
+   <template name="Mar" text="mar"/>
+   <template name="Apr" text="apr"/>
+   <template name="May" text="mag"/>
+   <template name="Jun" text="giu"/>
+   <template name="Jul" text="ago"/>
+   <template name="Sep" text="set"/>
+   <template name="Oct" text="ott"/>
+   <template name="Nov" text="nov"/>
+   <template name="Dec" text="dic"/>
+   <template name="Mon" text="lun"/>
+   <template name="Tue" text="mar"/>
+   <template name="Wed" text="mer"/>
+   <template name="Thu" text="gio"/>
+   <template name="Fri" text="ven"/>
+   <template name="Sat" text="sab"/>
+   <template name="Sun" text="dom"/>
+</context>
 
 
 </locale>
