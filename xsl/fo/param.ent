@@ -74,6 +74,7 @@
 <!ENTITY headers.on.blank.pages SYSTEM "../params/headers.on.blank.pages.xml">
 <!ENTITY hyphenate SYSTEM "../params/hyphenate.xml">
 <!ENTITY hyphenate.verbatim SYSTEM "../params/hyphenate.verbatim.xml">
+<!ENTITY hyphenate.verbatim.characters SYSTEM "../params/hyphenate.verbatim.characters.xml">
 <!ENTITY index.on.role SYSTEM "../params/index.on.role.xml">
 <!ENTITY index.on.type SYSTEM "../params/index.on.type.xml">
 <!ENTITY informal.object.properties SYSTEM "../params/informal.object.properties.xml">
