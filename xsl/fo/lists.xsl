@@ -66,6 +66,10 @@
   <!--nop-->
 </xsl:template>
 
+<xsl:template match="procedure/titleabbrev">
+  <!--nop-->
+</xsl:template>
+
 <xsl:template match="variablelist/titleabbrev" mode="vl.as.list">
   <!--nop-->
 </xsl:template>
@@ -290,7 +294,7 @@
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="@termlength"/>
-            <xsl:text>em * 0.50</xsl:text>
+            <xsl:text>em * 0.60</xsl:text>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
@@ -299,7 +303,7 @@
           <xsl:with-param name="terms" select="varlistentry/term"/>
           <xsl:with-param name="maxlength" select="$variablelist.max.termlength"/>
         </xsl:call-template>
-        <xsl:text>em * 0.50</xsl:text>
+        <xsl:text>em * 0.60</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -660,7 +664,9 @@
   </xsl:variable>
 
   <xsl:variable name="preamble"
-                select="*[not(self::step or self::title)]"/>
+                select="*[not(self::step
+			  or self::titleabbrev
+		          or self::title)]"/>
   <xsl:variable name="steps" select="step"/>
 
   <fo:block id="{$id}" xsl:use-attribute-sets="list.block.spacing">
