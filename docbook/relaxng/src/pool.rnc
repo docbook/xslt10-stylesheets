@@ -411,6 +411,12 @@ db._phrase =
       db._text
    }
 
+db._emphasis =
+   element emphasis {
+      db.emphasis.attlist,
+      (db._text | db._emphasis)*
+   }
+
 db._title         = db.title? & db.titleabbrev? & db.subtitle?
 db._title.req     = db.title  & db.titleabbrev? & db.subtitle?
 db._title.only    = db.title? & db.titleabbrev?
@@ -453,7 +459,6 @@ db.domain.inlines =
  | db.os.inlines
  | db.programming.inlines
  | db.markup.inlines
- | db.math.inlines
  | db.gui.inlines
  | db.keyboard.inlines
 
@@ -464,6 +469,7 @@ db.technical.inlines =
  | db.optional
  | db.package
  | db.property
+ | db.termdef
 
 db.error.inlines =
    db.errorcode
@@ -553,10 +559,6 @@ db.publishing.inlines =
  | db.superscript
  | db.wordasword
 
-# TEI: formula
-
-db.math.inlines = db.inlineequation
-
 # TEI: figure
 
 db.graphic.inlines = db.inlinemediaobject
@@ -598,7 +600,6 @@ db.nopara.blocks =
    db.list.blocks
  | db.admonition.blocks
  | db.formal.blocks
- | db.equation.blocks
  | db.informal.blocks
  | db.publishing.blocks
  | db.graphic.blocks
@@ -627,10 +628,6 @@ db.formal.blocks =
    db.example
  | db.figure
  | db.table
-
-db.equation.blocks =
-   db.equation
- | db.informalequation
 
 db.informal.blocks =
    db.informalexample
@@ -1849,6 +1846,28 @@ div {
 # ======================================================================
 
 [
+   db:refname [ "termdef" ]
+   db:refpurpose [ "An inline definition of a term" ]
+]
+div {
+
+   db.termdef.role.attribute = attribute role { text }
+
+   db.termdef.attlist =
+      db.termdef.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.termdef =
+      element termdef {
+         db.termdef.attlist,
+         (db.all.inlines* & db.glossterm)
+      }
+}
+
+# ======================================================================
+
+[
    db:refname [ "example" ]
    db:refpurpose [ "A formal example, with a title" ]
 ]
@@ -2332,86 +2351,6 @@ div {
       element textdata {
          db.textdata.attlist,
          db.textdata.info
-      }
-}
-
-# ======================================================================
-
-db.equation.content = db.mediaobject
-
-# ======================================================================
-
-[
-   db:refname [ "equation" ]
-   db:refpurpose [ "A displayed mathematical equation" ]
-]
-div {
-
-   db.equation.role.attribute = attribute role { text }
-
-   db.equation.attlist =
-      db.equation.role.attribute?
-    & db.common.attributes
-    & db.common.linking.attributes
-    & attribute label { text }?
-    & db.pgwide.attribute?
-    & db.floatstyle.attribute?
-    & db.float.attribute?
-
-   db.equation.info = db._info.title.onlyreq
-
-   db.equation =
-      element equation {
-         db.equation.attlist,
-         db.equation.info,
-         db.equation.content+
-      }
-}
-
-# ======================================================================
-
-[
-   db:refname [ "informalequation" ]
-   db:refpurpose [ "A displayed mathematical equation without a title" ]
-]
-div {
-
-   db.informalequation.role.attribute = attribute role { text }
-
-   db.informalequation.attlist =
-      db.informalequation.role.attribute?
-    & db.common.attributes
-    & db.common.linking.attributes
-
-   db.informalequation.info = db._info.title.forbidden
-
-   db.informalequation =
-      element informalequation {
-         db.informalequation.attlist,
-         db.informalequation.info,
-         db.equation.content+
-      }
-}
-
-# ======================================================================
-
-[
-   db:refname [ "inlineequation" ]
-   db:refpurpose [ "A mathematical equation or expression occurring inline" ]
-]
-div {
-
-   db.inlineequation.role.attribute = attribute role { text }
-
-   db.inlineequation.attlist =
-      db.inlineequation.role.attribute?
-    & db.common.attributes
-    & db.common.linking.attributes
-
-   db.inlineequation =
-      element inlineequation {
-         db.inlineequation.attlist,
-         db.equation.content+
       }
 }
 
@@ -6271,7 +6210,7 @@ div {
 
 [
    db:refname [ "superscript" ]
-   db:refpurpose [ "A superscript (as in x2, the mathematical notation for x multiplied by itself)" ]
+   db:refpurpose [ "A superscript (as in x^2, the mathematical notation for x multiplied by itself)" ]
 ]
 div {
 

@@ -1,0 +1,132 @@
+# This file is part of DocBook NG: The "IPA" Release.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.3
+# Release: $Id$
+#
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng"
+default namespace = "http://docbook.org/docbook-ng"
+
+# TEI: formula
+
+db.math.inlines = db.inlineequation
+
+db.math.blocks =
+   db.equation
+ | db.informalequation
+
+db.domain.inlines |= db.math.inlines
+
+db.nopara.blocks |= db.math.blocks
+
+# ======================================================================
+
+db.equation.content = (db.mediaobject+ | db.mathphrase+)
+
+# ======================================================================
+
+[
+   db:refname [ "equation" ]
+   db:refpurpose [ "A displayed mathematical equation" ]
+]
+div {
+
+   db.equation.role.attribute = attribute role { text }
+
+   db.equation.attlist =
+      db.equation.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & attribute label { text }?
+    & db.pgwide.attribute?
+    & db.floatstyle.attribute?
+    & db.float.attribute?
+
+   db.equation.info = db._info.title.onlyreq
+
+   db.equation =
+      element equation {
+         db.equation.attlist,
+         db.equation.info,
+         db.equation.content
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "informalequation" ]
+   db:refpurpose [ "A displayed mathematical equation without a title" ]
+]
+div {
+
+   db.informalequation.role.attribute = attribute role { text }
+
+   db.informalequation.attlist =
+      db.informalequation.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.informalequation.info = db._info.title.forbidden
+
+   db.informalequation =
+      element informalequation {
+         db.informalequation.attlist,
+         db.informalequation.info,
+         db.equation.content
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "inlineequation" ]
+   db:refpurpose [ "A mathematical equation or expression occurring inline" ]
+]
+div {
+
+   db.inlineequation.role.attribute = attribute role { text }
+
+   db.inlineequation.attlist =
+      db.inlineequation.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.inlineequation =
+      element inlineequation {
+         db.inlineequation.attlist,
+         db.equation.content
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "mathphrase" ]
+   db:refpurpose [ "A mathematical phrase, an expression that can be represented with ordinary text and a small amount of markup" ]
+]
+div {
+
+   db.mathphrase.role.attribute = attribute role { text }
+
+   db.mathphrase.attlist =
+      db.mathphrase.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.mathphrase =
+      element mathphrase {
+         db.mathphrase.attlist,
+         (db._text | db.ubiq.inlines | db._emphasis)*
+      }
+}
+
