@@ -46,7 +46,7 @@ area.units-enum.attribute =
    }?
 
 area.units-other.attributes =
-   attribute units { "other" },
+   attribute units { "other" }?,
    attribute otherunits { xsd:NMTOKEN }
 
 area.units.attrib =
