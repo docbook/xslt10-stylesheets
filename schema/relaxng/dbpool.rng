@@ -13,7 +13,7 @@
    role="cvs">$Id$</releaseinfo>
 <title>DocBook Information Pool</title>
 <productname>DocBook</productname>
-<productnumber>4.2</productnumber>
+<productnumber>4.2+</productnumber>
 <releaseinfo role="filename">dbpool</releaseinfo>
 <copyright>
 <year>1992</year>
@@ -2624,14 +2624,20 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
                   <ref name="component.mix"/>
                 </oneOrMore>
                 <optional>
-                  <ref name="substeps"/>
+                  <choice>
+                    <ref name="substeps"/>
+                    <ref name="stepalternatives"/>
+                  </choice>
                   <zeroOrMore>
                     <ref name="component.mix"/>
                   </zeroOrMore>
                 </optional>
               </group>
               <group>
-                <ref name="substeps"/>
+                <choice>
+                  <ref name="substeps"/>
+                  <ref name="stepalternatives"/>
+                </choice>
                 <zeroOrMore>
                   <ref name="component.mix"/>
                 </zeroOrMore>
@@ -2696,6 +2702,45 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
           <ref name="common.attrib"/>
           <ref name="substeps.role.attrib"/>
           <ref name="local.substeps.attrib"/>
+        </define>
+      </div>
+    </div>
+
+    <div db:name="stepalternatives.module">
+      <define name="local.stepalternatives.attrib">
+        <empty/>
+      </define>
+      <define name="stepalternatives.role.attrib">
+        <ref name="role.attrib"/>
+      </define>
+
+      <div db:name="stepalternatives">
+        <define name="stepalternatives">
+          <element name="stepalternatives">
+            <ref name="stepalternatives.attlist"/>
+            <oneOrMore>
+              <ref name="step"/>
+            </oneOrMore>
+          </element>
+        </define>
+      </div>
+
+<!-- Performance: whether entire set of stepalternatives must be performed -->
+<!-- not #REQUIRED! -->
+
+      <div db:name="stepalternatives.attlist">
+        <define name="stepalternatives.attlist" combine="interleave">
+          <optional>
+            <attribute name="performance" a:defaultValue="required">
+              <choice>
+                <value>optional</value>
+                <value>required</value>
+              </choice>
+            </attribute>
+          </optional>
+          <ref name="common.attrib"/>
+          <ref name="stepalternatives.role.attrib"/>
+          <ref name="local.stepalternatives.attrib"/>
         </define>
       </div>
     </div>
