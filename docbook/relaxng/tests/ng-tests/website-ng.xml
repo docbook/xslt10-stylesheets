@@ -1,0 +1,34 @@
+<ws:webpage xmlns="http://docbook.org/docbook-ng"
+	    xmlns:ws="http://docbook.org/docbook-ng/website"
+	    version="bourbon"
+	    id="nwalsh.com">
+<ws:config param="rcsdate" value="$Date$"/>
+<ws:config param="footlink" value="about" altval="About..."/>
+<ws:config param="footlink" value="rss" altval="RSS"/>
+<ws:config param="footlink" value="bookmarks" altval="Bookmarks"/>
+<ws:config param="footlink" value="privacy" altval="Privacy"/>
+<ws:head>
+<title>nwalsh.com</title>
+<ws:summary>The nwalsh.com web site.</ws:summary>
+<ws:keywords>Norman Walsh, DSSSL, SGML, XML, DocBook, Perl, Fonts</ws:keywords>
+</ws:head>
+
+<section>
+<title>Hello, and Welcome!</title>
+
+<para>This website is run by
+<olink targetdoc="people/ndw/index.xml">norm</olink>
+to publish the software and resources he maintains. Enjoy your stay.
+</para>
+
+<para>If you're interested in the stuff here, you may also be interested in
+norm's more dynamic, psuedo-bloggish pages on
+<phrase href="http://norman.walsh.name/">norman.walsh.name</phrase>. Or not. Only
+you can decide.</para>
+
+<ws:webtoc/>
+
+<ws:rss feed="/share/websites/nwalsh/rss/1.0/whatsnew.xml"/>
+
+</section>
+</ws:webpage>
