@@ -173,49 +173,12 @@
   <xsl:text>&#10;.fi&#10;</xsl:text>
 </xsl:template>
 
-<!-- TODO: Handle K&R-style parameter lists -->
-<xsl:template match="paramdef">
-  <xsl:choose>
-    <xsl:when test="position() > 2">
-      <xsl:text>, </xsl:text>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:text> (</xsl:text>
-    </xsl:otherwise>
-  </xsl:choose>
-  <xsl:apply-templates/>
-</xsl:template>
-
 <xsl:template match="void">
   <xsl:text> (void</xsl:text>
 </xsl:template>
 
 <xsl:template match="varargs">
   <xsl:text> (...</xsl:text>
-</xsl:template>
-
-<xsl:template name="wrap-fn">
-  <xsl:param name="indent" select="''"/>
-  <xsl:param name="text" select="''"/>
-  <xsl:variable name="total" select="string-length($text)"/>
-  <xsl:variable name="param" select="substring-before($text,',')"/>
-  <xsl:choose>
-    <xsl:when test="$param=''">
-      <xsl:value-of select="$text"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="$param"/>
-      <xsl:text>,&#10;</xsl:text>
-      <xsl:value-of select="$indent"/>
-      <xsl:variable name="done" select="string-length($param)"/>
-      <xsl:variable name="remaining" select="$total - $done + 1"/>
-      <xsl:call-template name="wrap-fn">
-        <xsl:with-param name="indent" select="$indent"/>
-        <xsl:with-param name="text"
-                        select="substring($text,2+$done,$remaining)"/>
-      </xsl:call-template>
-    </xsl:otherwise>
-  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="funcsynopsisinfo">
@@ -230,25 +193,38 @@
   <xsl:text>.fi&#10;</xsl:text>
 </xsl:template>
 
+<!-- TODO: Handle K&R-style parameter lists
+           Comment that used to go with the paramdef template, which
+	   is now obsolete and thus deleted
+-->
+
 <xsl:template match="funcprototype">
-  <xsl:variable name="fnprototype">
-    <xsl:apply-templates/>
+  <xsl:variable name="funcprototype">
+    <xsl:apply-templates select="funcdef"/>
   </xsl:variable>
-  <xsl:variable name="funcprototype" select="normalize-space($fnprototype)"/>
-  <xsl:variable name="fn"
-       select="substring-before($funcprototype,'(')"/>
-  <xsl:variable name="indent"
-                select="translate($fn,$fn,'                               ')"/>
   <xsl:text>.sp&#10;</xsl:text>
-  <xsl:value-of select="substring-before($funcprototype,'(')"/>
-  <xsl:text>(</xsl:text>
-  <xsl:call-template name="wrap-fn">
-    <xsl:with-param name="indent"
-    select="substring($indent,1,string-length($indent) - 6)"/>
-    <xsl:with-param name="text"
-                    select="substring-after($funcprototype,'(')"/>
-  </xsl:call-template>
-  <xsl:text>);&#10;</xsl:text>
+  <xsl:value-of select="normalize-space ($funcprototype)"/>
+  <xsl:text> (</xsl:text>
+  <xsl:for-each select="paramdef">
+    <xsl:variable name="param">
+      <xsl:apply-templates select="." />
+    </xsl:variable>
+    <xsl:value-of select="normalize-space ($param)" />
+    <xsl:choose>
+      <xsl:when test="following-sibling::paramdef">
+	<xsl:text>,&#10;</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:text>);&#10;.RE&#10;</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:if test="not (preceding-sibling::paramdef)">
+      <xsl:text>.RS </xsl:text>
+      <xsl:value-of
+	select="string-length(normalize-space ($funcprototype)) - 4" />
+      <xsl:text>&#10;</xsl:text>
+    </xsl:if>
+  </xsl:for-each>
 </xsl:template>
 
 </xsl:stylesheet>
