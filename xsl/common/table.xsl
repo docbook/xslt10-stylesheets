@@ -230,9 +230,11 @@ or 0 (the empty string)</para>
 
 <xsl:template name="inherited.table.attribute">
   <xsl:param name="entry" select="."/>
-  <xsl:param name="tgroup" select="$entry/ancestor::tgroup[1]"/>
+  <xsl:param name="row" select="$entry/ancestor-or-self::row[1]"/>
   <xsl:param name="colnum" select="0"/>
   <xsl:param name="attribute" select="'colsep'"/>
+
+  <xsl:variable name="tgroup" select="$row/ancestor::tgroup[1]"/>
 
   <xsl:variable name="entry.value">
     <xsl:call-template name="get-attribute">
@@ -243,7 +245,7 @@ or 0 (the empty string)</para>
 
   <xsl:variable name="row.value">
     <xsl:call-template name="get-attribute">
-      <xsl:with-param name="element" select="$entry/ancestor::row[1]"/>
+      <xsl:with-param name="element" select="$row"/>
       <xsl:with-param name="attribute" select="$attribute"/>
     </xsl:call-template>
   </xsl:variable>
