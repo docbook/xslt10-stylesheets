@@ -8,8 +8,7 @@
 <refpurpose>Saxon character representation used in generated HTML pages</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv>
-<src:fragment id='saxon.character.representation.frag'><xsl:param name="saxon.character.representation" select="'entity;decimal'"/></src:fragment>
+<refsynopsisdiv>&lt;xsl:param name="saxon.character.representation" select="'entity;decimal'"/>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
@@ -18,6 +17,11 @@
 you want to suppress entity references for characters with direct representation 
 in default.encoding, set this parameter to value <literal>native</literal>. 
 </para>
+
+<note>
+<para>This parameter is documented here, but the declaration is actually
+in the <filename>chunker.xsl</filename> stylesheet module.</para>
+</note>
 
 </refsect1>
 </refentry>
