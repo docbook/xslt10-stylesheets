@@ -969,6 +969,7 @@ proportional-column-width() function.</para>
 
   <!-- Ok, the colwidth could have any one of the following forms: -->
   <!--        1*       = proportional width -->
+  <!--         *       = same as 1* -->
   <!--     1unit       = 1.0 units wide -->
   <!--         1       = 1pt wide -->
   <!--  1*+1unit       = proportional width + some fixed width -->
@@ -977,7 +978,14 @@ proportional-column-width() function.</para>
   <!-- If it has a proportional width, translate it to XSL -->
   <xsl:if test="contains($colwidth, '*')">
     <xsl:text>proportional-column-width(</xsl:text>
-    <xsl:value-of select="substring-before($colwidth, '*')"/>
+    <xsl:choose>
+      <xsl:when test="substring-before($colwidth, '*') != ''"> 
+        <xsl:value-of select="substring-before($colwidth, '*')"/>
+      </xsl:when>
+      <xsl:otherwise>
+         <xsl:text>1.00</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:text>)</xsl:text>
   </xsl:if>
 
