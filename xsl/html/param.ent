@@ -83,6 +83,7 @@
 <!ENTITY htmlhelp.hhp.tail SYSTEM "../params/htmlhelp.hhp.tail.xml">
 <!ENTITY htmlhelp.hhp.window SYSTEM "../params/htmlhelp.hhp.window.xml">
 <!ENTITY htmlhelp.map.file SYSTEM "../params/htmlhelp.map.file.xml">
+<!ENTITY htmlhelp.only SYSTEM "../params/htmlhelp.only.xml">
 <!ENTITY htmlhelp.title SYSTEM "../params/htmlhelp.title.xml">
 <!ENTITY htmlhelp.show.menu SYSTEM "../params/htmlhelp.show.menu.xml">
 <!ENTITY htmlhelp.show.advanced.search SYSTEM "../params/htmlhelp.show.advanced.search.xml">

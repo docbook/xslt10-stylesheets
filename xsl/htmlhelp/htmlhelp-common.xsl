@@ -23,26 +23,28 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="/">
-  <xsl:choose>
-    <xsl:when test="$rootid != ''">
-      <xsl:choose>
-        <xsl:when test="count(key('id',$rootid)) = 0">
-          <xsl:message terminate="yes">
-            <xsl:text>ID '</xsl:text>
-            <xsl:value-of select="$rootid"/>
-            <xsl:text>' not found in document.</xsl:text>
-          </xsl:message>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:message>Formatting from <xsl:value-of select="$rootid"/></xsl:message>
-          <xsl:apply-templates select="key('id',$rootid)" mode="process.root"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:apply-templates select="/" mode="process.root"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:if test="$htmlhelp.only != 1">
+    <xsl:choose>
+      <xsl:when test="$rootid != ''">
+        <xsl:choose>
+          <xsl:when test="count(key('id',$rootid)) = 0">
+            <xsl:message terminate="yes">
+              <xsl:text>ID '</xsl:text>
+              <xsl:value-of select="$rootid"/>
+              <xsl:text>' not found in document.</xsl:text>
+            </xsl:message>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:message>Formatting from <xsl:value-of select="$rootid"/></xsl:message>
+            <xsl:apply-templates select="key('id',$rootid)" mode="process.root"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="/" mode="process.root"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:if>
 
   <xsl:call-template name="hhp"/>
   <xsl:call-template name="hhc"/>
@@ -171,6 +173,7 @@ Title=</xsl:text>
 
 <xsl:if test="$htmlhelp.hhp.window != ''">
   <xsl:text>
+
 [WINDOWS]
 </xsl:text>
 <xsl:value-of select="$htmlhelp.hhp.window"/>

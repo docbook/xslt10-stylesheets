@@ -83,6 +83,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/htmlhelp.hhp.tail.xml \
        ../params/htmlhelp.hhp.window.xml \
        ../params/htmlhelp.map.file.xml \
+       ../params/htmlhelp.only.xml \
        ../params/htmlhelp.title.xml \
        ../params/htmlhelp.show.menu.xml \
        ../params/htmlhelp.show.advanced.search.xml \
