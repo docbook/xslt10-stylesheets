@@ -50,17 +50,17 @@
 
 <!ENTITY % ISOlat1 PUBLIC
 "ISO 8879:1986//ENTITIES Added Latin 1//EN//XML"
-"../../xmlcharent/iso-lat1.ent">
+"http://www.w3.org/2003/entities/iso8879/isolat1.ent">
 %ISOlat1;
 
 <!ENTITY % ISOnum PUBLIC
 "ISO 8879:1986//ENTITIES Numeric and Special Graphic//EN//XML"
-"../../xmlcharent/iso-num.ent">
+"http://www.w3.org/2003/entities/iso8879/isonum.ent">
 %ISOnum;
 
 <!ENTITY % ISOpub PUBLIC
 "ISO 8879:1986//ENTITIES Publishing//EN//XML"
-"../../xmlcharent/iso-pub.ent">
+"http://www.w3.org/2003/entities/iso8879/isopub.ent">
 %ISOpub;
 
 <!-- End of Simplified DocBook Character Entity Module V1.1b3 ............... -->
