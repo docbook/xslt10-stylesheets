@@ -36,8 +36,8 @@
      converted to XML.
 -->
 
-<!-- These definitions are not directly related to the table model, but are 
-     used in the default CALS table model and are usually defined elsewhere 
+<!-- These definitions are not directly related to the table model, but are
+     used in the default CALS table model and are usually defined elsewhere
      (and prior to the inclusion of this table module) in a CALS DTD. -->
 
 <!ENTITY % bodyatt "">

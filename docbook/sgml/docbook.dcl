@@ -16,9 +16,9 @@ CHARSET
                    32  95    32
                   127   1   UNUSED
 
-	BASESET 
+	BASESET
   "ISO Registration Number 100//CHARSET ECMA-94 Right Part of Latin Alphabet Nr. 1//ESC 2/13 4/1"
-	DESCSET  
+	DESCSET
                   128  32   UNUSED
                   160  96   32
 
@@ -34,7 +34,7 @@ CAPACITY SGMLREF
 	GRPCAP    1000000
 	IDCAP    32000000
 	IDREFCAP 32000000
-  
+
 SCOPE DOCUMENT
 
 SYNTAX
@@ -87,7 +87,7 @@ FEATURES
                   DATATAG  NO
                   OMITTAG  NO
                   RANK     NO
-                  SHORTTAG YES 
+                  SHORTTAG YES
 
          LINK
                   SIMPLE   NO

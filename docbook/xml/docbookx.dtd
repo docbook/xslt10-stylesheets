@@ -22,7 +22,7 @@
      additional notations, label your DTD as a variant of DocBook.  See
      the maintenance documentation for more information.
 
-     Please direct all questions, bug reports, or suggestions for 
+     Please direct all questions, bug reports, or suggestions for
      changes to the docbook@lists.oasis-open.org mailing list. For more
      information, see http://www.oasis-open.org/docbook/.
 -->
@@ -85,7 +85,7 @@ ERROR: Exactly one of xml.features and sgml.features must be turned on!
 
 <!ENTITY % dbnotn.module "INCLUDE">
 <![%dbnotn.module;[
-<!ENTITY % dbnotn PUBLIC 
+<!ENTITY % dbnotn PUBLIC
 "-//OASIS//ENTITIES DocBook XML Notations V4.1.2//EN"
 "dbnotnx.mod">
 %dbnotn;
@@ -104,7 +104,7 @@ ERROR: Exactly one of xml.features and sgml.features must be turned on!
 <!ENTITY euro "&#x20AC;"><!-- euro sign, U+20AC NEW -->
 ]]>
 
-<!ENTITY % dbcent PUBLIC 
+<!ENTITY % dbcent PUBLIC
 "-//OASIS//ENTITIES DocBook XML Character Entities V4.1.2//EN"
 "dbcentx.mod">
 %dbcent;
@@ -117,7 +117,7 @@ ERROR: Exactly one of xml.features and sgml.features must be turned on!
 
 <!ENTITY % dbpool.module "INCLUDE">
 <![ %dbpool.module; [
-<!ENTITY % dbpool PUBLIC 
+<!ENTITY % dbpool PUBLIC
 "-//OASIS//ELEMENTS DocBook XML Information Pool V4.1.2//EN"
 "dbpoolx.mod">
 %dbpool;
@@ -136,7 +136,7 @@ ERROR: Exactly one of xml.features and sgml.features must be turned on!
 
 <!ENTITY % dbhier.module "INCLUDE">
 <![ %dbhier.module; [
-<!ENTITY % dbhier PUBLIC 
+<!ENTITY % dbhier PUBLIC
 "-//OASIS//ELEMENTS DocBook XML Document Hierarchy V4.1.2//EN"
 "dbhierx.mod">
 %dbhier;
