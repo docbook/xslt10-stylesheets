@@ -1,11 +1,18 @@
 # $Id$
 
 include ../cvstools/Makefile.incl
+include ../cvstools/Release-vars.mk
 
-DISTRO=website
-RELVER=$(shell cat ./VERSION)
-ZIPVER=$(RELVER)
-DISTRIB_DEPENDS=example
+DISTRO = website
+
+# value of DISTRIB_DEPENDS is a space-separated list of any
+# targets for this distro's "distrib" target to depend on
+DISTRIB_DEPENDS = example
+
+# value of ZIP_EXCLUDES is a space-separated list of any file or
+# directory names (shell wildcards OK) that should be excluded
+# from the zip file and tarball for the release
+DISTRIB_EXCLUDES = tests$$
 
 .PHONY : distrib clean example
 
@@ -25,10 +32,4 @@ realclean: clean
 	$(MAKE) -C extensions realclean
 	$(MAKE) -C example realclean
 
-# the following is used only for release builds; ignore it if you
-# are doing a non-release build
-excludes:
-	rm -f $(TMP)/tar.exclude
-	touch $(TMP)/tar.exclude
-
-include ../cvstools/Makefile.common
+include ../cvstools/Release-targets.mk
