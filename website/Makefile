@@ -3,15 +3,13 @@ ZIPVER=
 DIFFVER=
 NEXTVER=
 
-.PHONY : distrib clean
+.PHONY : distrib clean example
 
 all:
-	make -C schema all
-	make -C extensions all
+	$(MAKE) -C schema all
+	$(MAKE) -C extensions all
 
-distrib:
-	make -C example depends
-	make -C example all
+distrib: example
 	$(CVS2LOG) -w
 ifeq ($(DIFFVER),)
 	$(MERGELOGS) > WhatsNew
@@ -19,13 +17,16 @@ else
 	$(MERGELOGS) -v $(DIFFVER) > WhatsNew
 endif
 
+example:
+	$(MAKE) -C example DOCBOOK_WEBSITE=..
+
 newversion:
 ifeq ($(NEXTVER),)
 	$(NEXTVERSION)
 else
 	$(NEXTVERSION) -v $(NEXTVER)
 endif
-	make distrib
+	$(MAKE) distrib
 
 zip:
 ifeq ($(ZIPVER),)
@@ -53,9 +54,9 @@ else
 endif
 
 clean:
-	make -C extensions clean
-	make -C example clean
-	make -C example TEXTONLY=1 clean
+	$(MAKE) -C extensions clean
+	$(MAKE) -C example clean
+	$(MAKE) -C example TEXTONLY=1 clean
 
 realclean: clean
-	make -C extensions realclean
+	$(MAKE) -C extensions realclean
