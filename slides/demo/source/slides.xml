@@ -17,6 +17,10 @@
 <para>This is the introductory slide.</para>
 <para>If you use foil groups (previously called sections), you can
 have introductory slides before the first group.</para>
+<para>Note: Bugs in some versions of Mozilla and IE prevent the XHTML
+version of slides from working correctly in those browsers.
+See <ulink url="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=702066&amp;group_id=21935&amp;atid=397263">the report</ulink> for more
+details.</para>
 </foil>
 
 <foilgroup><title>Purpose and History</title>
