@@ -141,7 +141,14 @@
   </xsl:template>
 
   <xsl:template match="rng:element" mode="names">
-    <xsl:element name="{@name}"/>
+    <xsl:choose>
+      <xsl:when test="contains(@name, ':')">
+	<xsl:element name="{substring-after(@name,':')}"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:element name="{@name}"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="*" mode="names">
