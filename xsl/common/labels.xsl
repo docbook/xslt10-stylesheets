@@ -93,7 +93,8 @@ element label.</para>
           <xsl:number from="part" count="appendix" format="A" level="any"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:number from="book" count="appendix" format="A" level="any"/>
+          <xsl:number from="book|article"
+                      count="appendix" format="A" level="any"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
