@@ -1807,6 +1807,7 @@
 
   <xsl:variable name="column1">
     <xsl:choose>
+      <xsl:when test="$double.sided = 0">1</xsl:when>
       <xsl:when test="$sequence = 'first' or $sequence = 'odd'">1</xsl:when>
       <xsl:otherwise>3</xsl:otherwise>
     </xsl:choose>
@@ -1814,6 +1815,7 @@
 
   <xsl:variable name="column3">
     <xsl:choose>
+      <xsl:when test="$double.sided = 0">3</xsl:when>
       <xsl:when test="$sequence = 'first' or $sequence = 'odd'">3</xsl:when>
       <xsl:otherwise>1</xsl:otherwise>
     </xsl:choose>
