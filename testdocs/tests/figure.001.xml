@@ -16,6 +16,20 @@
     <imageobject>
       <imagedata
         align="center"
+        fileref="graphics/duck-small.bmp"
+        format="BMP"
+        srccredit="O'Reilly &amp; Associates/Dover Archives"/>
+    </imageobject>
+    <imageobject>
+      <imagedata
+        align="center"
+        fileref="graphics/duck-small.eps"
+        format="EPS"
+        srccredit="O'Reilly &amp; Associates/Dover Archives"/>
+    </imageobject>
+    <imageobject>
+      <imagedata
+        align="center"
         fileref="graphics/duck-small.gif"
         format="GIF"
         srccredit="O'Reilly &amp; Associates/Dover Archives"/>

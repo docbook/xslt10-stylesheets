@@ -14,6 +14,16 @@
 
 <para>This is a test paragraph.
 <indexterm>
+<primary>@foo</primary>
+</indexterm>
+<indexterm>
+<primary>&gt; operator</primary>
+</indexterm>
+<indexterm>
+<primary>ap1</primary>
+</indexterm>
+
+<indexterm>
 <primary>ap1</primary>
 </indexterm>
 <indexterm>
