@@ -162,17 +162,52 @@ if [ "$DEBUG" = "1" ]; then
 fi
 
 ##
-## optionally replace the URI resolver with the Sun
-## resolver classes, not yet available to the public?
+## locate Xerces classpath
 ##
-for path in "/projects/apache/xml-commons/java/build/classes" ; do
+if [ ! "$XERCES" ]; then
+  for path in "/projects/apache/xml-xerces/java/build/classes" \
+              "/usr/local/share/java/xerces.jar" \
+              "/usr/local/java/xerces.jar" \
+              "/usr/share/java/xerces.jar"; do
+    if [ -f "$path" -o -d "$path" ]; then
+      XERCES="$path"
+    fi
+  done
+fi
+if [ ! "$XERCES" ]; then
+  echo "warning: cannot locate Xerces (xerces.jar)" 1>&2
+fi
+
+##
+## locate JAXP classpath
+##
+if [ ! "$JAXP" ]; then
+  for path in "/usr/local/share/java/jaxp.jar" \
+              "/usr/local/java/jaxp.jar" \
+              "/usr/local/jaxp-1.1/jaxp.jar" \
+              "/usr/local/share/java/jaxp-1.1/jaxp.jar" \
+              "/usr/share/java/jaxp.jar"; do
+    if [ -f "$path" -o -d "$path" ]; then
+      JAXP="$path"
+    fi
+  done
+fi
+if [ ! "$JAXP" ]; then
+  echo "warning: cannot locate JAXP (jaxp.jar)" 1>&2
+fi
+
+##
+## optionally replace the URI resolver with the Apache
+## resolver classes
+##
+for path in $RESOLVER \
+	    "/projects/apache/xml-commons/java/build/classes" ; do
   if [ -f "$path" -o -d "$path" ]; then
-    SUN="$path"
+    RESOLVER="$path"
     break
   fi
 done
-
-if [ -f "$SUN" -o -d "$SUN" ]; then
+if [ -f "$RESOLVER" -o -d "$RESOLVER" ]; then
   # use the sun resolver
   if [ ! "$XARG" ]; then
     XARG="-x org.apache.xml.resolver.tools.ResolvingXMLReader"
@@ -207,7 +242,6 @@ fi
 ##
 if [ ! "$JAXP" ]; then
   for path in "/usr/local/share/java/jaxp.jar" \
-              "/usr/local/share/java/jaxp.jar" \
               "/usr/local/java/jaxp.jar" \
               "/usr/local/jaxp-1.1/jaxp.jar" \
               "/usr/local/share/java/jaxp-1.1/jaxp.jar" \
@@ -219,69 +253,6 @@ if [ ! "$JAXP" ]; then
 fi
 if [ ! "$JAXP" ]; then
   echo "warning: cannot locate JAXP (jaxp.jar)" 1>&2
-fi
-
-##
-## optionally replace the URI resolver with the Sun
-## resolver classes
-##
-for path in "/projects/sun/resolver/.classes" \
-            "/projects/apache/xml-commons/java/build/classes" \
-            "/usr/local/share/java/sun-resolver.jar" \
-            "/usr/local/java/sun-resolver.jar" \
-            "/usr/share/java/sun-resolver.jar"; do
-  if [ -f "$path" -o -d "$path" ]; then
-    RESOLVER="$path"
-    break
-  fi
-done
-if [ -f "$RESOLVER" -o -d "$RESOLVER" ]; then
-  # use the sun resolver
-  if [ ! "$XARG" ]; then
-    XARG="-x com.sun.resolver.tools.ResolvingXMLReader"
-  fi
-  if [ ! "$YARG" ]; then
-    YARG="-y com.sun.resolver.tools.ResolvingXMLReader"
-  fi
-  if [ ! "$RARG" ]; then
-    RARG="-r com.sun.resolver.tools.CatalogResolver"
-  fi
-fi
-
-##
-## locate Xerces classpath
-##
-if [ ! "$XERCES" ]; then
-  for path in "/projects/apache/xml-xerces/java/build/classes" \
-              "/usr/local/share/java/xerces.jar" \
-              "/usr/local/java/xerces.jar" \
-              "/usr/share/java/xerces.jar"; do
-    if [ -f "$path" -o -d "$path" ]; then
-      XERCES="$path"
-    fi
-  done
-fi
-if [ ! "$XERCES" ]; then
-  echo "warning: cannot locate Xerces (xerces.jar)" 1>&2
-fi
-
-##
-## locate JAXP classpath
-##
-if [ ! "$JAXP" ]; then
-  for path in "/usr/local/share/java/jaxp.jar" \
-              "/usr/local/java/jaxp.jar" \
-              "/usr/local/jaxp-1.1/jaxp.jar" \
-              "/usr/local/share/java/jaxp-1.1/jaxp.jar" \
-              "/usr/share/java/jaxp.jar"; do
-    if [ -f "$path" -o -d "$path" ]; then
-      JAXP="$path"
-    fi
-  done
-fi
-if [ ! "$JAXP" ]; then
-  echo "warning: cannot locate JAXP (jaxp.jar), using /projects/sun/resolver/.classes" 1>&2
-  JAXP="/projects/sun/resolver/.classes"
 fi
 
 CLASSPATH=$SAXON:$NDWEXT:$JAXP:$RESOLVER:$XERCES:$CLASSPATH
