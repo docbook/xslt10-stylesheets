@@ -1,6 +1,7 @@
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
           "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY af.xml SYSTEM "af.xml">
+<!ENTITY ar.xml SYSTEM "ar.xml">
 <!ENTITY ca.xml SYSTEM "ca.xml">
 <!ENTITY cs.xml SYSTEM "cs.xml">
 <!ENTITY da.xml SYSTEM "da.xml">
@@ -56,6 +57,7 @@ style sheets.</para>
 </preface>
 
 &af.xml;
+&ar.xml;
 &ca.xml;
 &cs.xml;
 &da.xml;
