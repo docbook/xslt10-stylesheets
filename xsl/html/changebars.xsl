@@ -36,6 +36,10 @@ span.off     {  }
                     or local-name(.) = 'chapter'
                     or local-name(.) = 'preface'
                     or local-name(.) = 'itemizedlist'
+                    or local-name(.) = 'varlistentry'
+                    or local-name(.) = 'glossary'
+                    or local-name(.) = 'bibliography'
+                    or local-name(.) = 'index'
                     or local-name(.) = 'appendix'">
       <div class='{@revisionflag}'>
 	<xsl:apply-imports/>
@@ -45,6 +49,8 @@ span.off     {  }
                     or local-name(.) = 'ulink'
                     or local-name(.) = 'filename'
                     or local-name(.) = 'literal'
+                    or local-name(.) = 'glossterm'
+                    or local-name(.) = 'quote'
                     or local-name(.) = 'emphasis'
                     or local-name(.) = 'command'
                     or local-name(.) = 'xref'">
@@ -61,7 +67,7 @@ span.off     {  }
       <xsl:message>
 	<xsl:text>Revisionflag on unexpected element: </xsl:text>
 	<xsl:value-of select="local-name(.)"/>
-	<xsl:text>(Assuming block)</xsl:text>
+	<xsl:text> (Assuming block)</xsl:text>
       </xsl:message>
       <div class='{@revisionflag}'>
 	<xsl:apply-imports/>
