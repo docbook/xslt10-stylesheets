@@ -112,8 +112,8 @@
 <gentext key="refentry" text=""/>
 <gentext key="Reference" text="&Scy;&scy;&ycy;&lcy;&kcy;&acy;"/>
 <gentext key="reference" text="&Scy;&scy;&ycy;&lcy;&kcy;&acy;"/>
-<gentext key="RefName" text="Name"/>
-<gentext key="refname" text="Name"/> <!-- en -->
+<gentext key="RefName" text="&Ncy;&acy;&zcy;&vcy;&acy;&ncy;&icy;&iecy;"/>
+<gentext key="refname" text="&Ncy;&acy;&zcy;&vcy;&acy;&ncy;&icy;&iecy;"/>
 <gentext key="RefSection" text=""/>
 <gentext key="refsection" text=""/>
 <gentext key="RefSynopsisDiv" text="Synopsis"/>
