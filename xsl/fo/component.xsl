@@ -192,7 +192,7 @@
   </fo:page-sequence>
 </xsl:template>
 
-<xsl:template match="preface/docinfo"></xsl:template>
+<xsl:template match="preface/docinfo|prefaceinfo"></xsl:template>
 <xsl:template match="preface/title"></xsl:template>
 <xsl:template match="preface/titleabbrev"></xsl:template>
 <xsl:template match="preface/subtitle"></xsl:template>
