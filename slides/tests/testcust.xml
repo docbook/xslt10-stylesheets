@@ -1,5 +1,5 @@
 <?xml version='1.0'?>
-<!DOCTYPE slides SYSTEM "slides-custom.dtd">
+<!DOCTYPE slides SYSTEM "../slides-custom.dtd">
 <slides>
 <slidesinfo>
 <title>Test Slides Title</title>
