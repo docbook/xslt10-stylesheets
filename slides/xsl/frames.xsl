@@ -381,7 +381,10 @@ if (selectBrowser() == "ie5") {
           </xsl:if>
         </head>
         <body class="navigation">
-          <xsl:call-template name="section-top-nav"/>
+          <xsl:call-template name="section-top-nav">
+            <xsl:with-param name="prev-target" select="'foil'"/>
+            <xsl:with-param name="next-target" select="'foil'"/>
+          </xsl:call-template>
         </body>
       </html>
     </xsl:with-param>
@@ -734,7 +737,10 @@ if (selectBrowser() == "ie5") {
           </xsl:if>
         </head>
         <body class="navigation">
-          <xsl:call-template name="foil-top-nav"/>
+          <xsl:call-template name="foil-top-nav">
+            <xsl:with-param name="prev-target" select="'foil'"/>
+            <xsl:with-param name="next-target" select="'foil'"/>
+          </xsl:call-template>
         </body>
       </html>
     </xsl:with-param>

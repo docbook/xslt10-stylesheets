@@ -709,6 +709,9 @@
 <!-- ============================================================ -->
 
 <xsl:template name="section-top-nav">
+  <xsl:param name="prev-target" select="''"/>
+  <xsl:param name="next-target" select="''"/>
+
   <xsl:variable name="nextfoil">
     <xsl:apply-templates select="foil[1]" mode="filename"/>
   </xsl:variable>
@@ -732,6 +735,11 @@
           <xsl:choose>
             <xsl:when test="$prevfoil != ''">
               <a href="{$prevfoil}">
+                <xsl:if test="$prev-target != ''">
+                  <xsl:attribute name="target">
+                    <xsl:value-of select="$prev-target"/>
+                  </xsl:attribute>
+                </xsl:if>
                 <img alt="Prev" border="0">
                   <xsl:attribute name="src">
                     <xsl:call-template name="graphics.dir"/>
@@ -758,6 +766,11 @@
           <xsl:choose>
             <xsl:when test="$nextfoil != ''">
               <a href="{$nextfoil}">
+                <xsl:if test="$next-target != ''">
+                  <xsl:attribute name="target">
+                    <xsl:value-of select="$next-target"/>
+                  </xsl:attribute>
+                </xsl:if>
                 <img alt="Next" border="0">
                   <xsl:attribute name="src">
                     <xsl:call-template name="graphics.dir"/>
@@ -795,6 +808,9 @@
 </xsl:template>
 
 <xsl:template name="foil-top-nav">
+  <xsl:param name="prev-target" select="''"/>
+  <xsl:param name="next-target" select="''"/>
+
   <xsl:variable name="section" select="ancestor::section"/>
 
   <xsl:variable name="nextfoil">
@@ -827,6 +843,11 @@
           <xsl:choose>
             <xsl:when test="$prevfoil != ''">
               <a href="{$prevfoil}">
+                <xsl:if test="$prev-target != ''">
+                  <xsl:attribute name="target">
+                    <xsl:value-of select="$prev-target"/>
+                  </xsl:attribute>
+                </xsl:if>
                 <img alt="Prev" border="0">
                   <xsl:attribute name="src">
                     <xsl:call-template name="graphics.dir"/>
@@ -862,6 +883,11 @@
           <xsl:choose>
             <xsl:when test="$nextfoil != ''">
               <a href="{$nextfoil}">
+                <xsl:if test="$next-target != ''">
+                  <xsl:attribute name="target">
+                    <xsl:value-of select="$next-target"/>
+                  </xsl:attribute>
+                </xsl:if>
                 <img alt="Next" border="0">
                   <xsl:attribute name="src">
                     <xsl:call-template name="graphics.dir"/>
