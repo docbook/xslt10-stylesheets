@@ -1,0 +1,197 @@
+<!-- ====================================================================== -->
+<!-- JRefEntry DTD V1.1
+     Copyright (C) 2000 Norman Walsh
+     http://nwalsh.com/docbook/jrefentry/
+
+     Please direct all questions and comments about this DTD to
+     Norman Walsh, <ndw@nwalsh.com>.
+
+     Common declaration:
+
+     <?xml version="1.0"?>
+     <!DOCTYPE refentry
+       PUBLIC "-//Norman Walsh//DTD JRefEntry V1.1//EN"
+       "http://nwalsh.com/docbook/jrefentry/1.1/jrefentry.dtd">
+                                                                            -->
+<!-- ====================================================================== -->
+
+<!ENTITY % refentry.element "IGNORE">
+<!ENTITY % local.link.char.class "|reflink">
+
+<!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+                   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+%docbook;
+
+<!ELEMENT reflink (#PCDATA)>
+<!ATTLIST reflink
+	type		CDATA		#IMPLIED
+	%common.attrib;
+	role		CDATA		#IMPLIED
+>
+
+<!ELEMENT refentry ((%ndxterm.class;)*,
+                    refentryinfo?, refmeta?, (remark|%link.char.class;)*,
+                    refnamediv, refsynopsisdiv?, refdescription,
+                    refauthor?, refversion?,
+                    refparameter?, refreturn?, (refexception|refthrows)?,
+                    refsee?, refsince?, refserial?, refdeprecated?)>
+
+<!ENTITY % refinfo.mix "(graphic | mediaobject
+		| legalnotice | modespec
+		| subjectset | keywordset | itermset
+                | %bibliocomponent.mix;)+">
+
+<!ELEMENT refdescription (refdescriptioninfo?, (%refcomponent.mix;)+)>
+<!ATTLIST refdescription
+		%status.attrib;
+		%common.attrib;
+		%refsect1.role.attrib;
+		%local.refsect1.attrib;
+>
+
+<!ELEMENT refauthor (refauthorinfo?, (%refcomponent.mix;)+)>
+<!ATTLIST refauthor
+		%status.attrib;
+		%common.attrib;
+		%refsect1.role.attrib;
+		%local.refsect1.attrib;
+>
+
+<!ELEMENT refversion (refversioninfo?, (%refcomponent.mix;)+)>
+<!ATTLIST refversion
+		%status.attrib;
+		%common.attrib;
+		%refsect1.role.attrib;
+		%local.refsect1.attrib;
+>
+
+<!ELEMENT refparameter (refparameterinfo?, (%refcomponent.mix;)+)>
+<!ATTLIST refparameter
+		%status.attrib;
+		%common.attrib;
+		%refsect1.role.attrib;
+		%local.refsect1.attrib;
+>
+
+<!ELEMENT refreturn (refreturninfo?, (%refcomponent.mix;)+)>
+<!ATTLIST refreturn
+		%status.attrib;
+		%common.attrib;
+		%refsect1.role.attrib;
+		%local.refsect1.attrib;
+>
+
+<!ELEMENT refexception (refexceptioninfo?, (%refcomponent.mix;)+)>
+<!ATTLIST refexception
+		%status.attrib;
+		%common.attrib;
+		%refsect1.role.attrib;
+		%local.refsect1.attrib;
+>
+
+<!ELEMENT refthrows (refthrowsinfo?, (%refcomponent.mix;)+)>
+<!ATTLIST refthrows
+		%status.attrib;
+		%common.attrib;
+		%refsect1.role.attrib;
+		%local.refsect1.attrib;
+>
+
+<!ELEMENT refsee (refseeinfo?, (%refcomponent.mix;)+)>
+<!ATTLIST refsee
+		%status.attrib;
+		%common.attrib;
+		%refsect1.role.attrib;
+		%local.refsect1.attrib;
+>
+
+<!ELEMENT refsince (refsinceinfo?, (%refcomponent.mix;)+)>
+<!ATTLIST refsince
+		%status.attrib;
+		%common.attrib;
+		%refsect1.role.attrib;
+		%local.refsect1.attrib;
+>
+
+<!ELEMENT refserial (refserialinfo?, (%refcomponent.mix;)+)>
+<!ATTLIST refserial
+		%status.attrib;
+		%common.attrib;
+		%refsect1.role.attrib;
+		%local.refsect1.attrib;
+>
+
+<!ELEMENT refdeprecated (refdeprecatedinfo?, (%refcomponent.mix;)+)>
+<!ATTLIST refdeprecated
+		%status.attrib;
+		%common.attrib;
+		%refsect1.role.attrib;
+		%local.refsect1.attrib;
+>
+
+
+<!ELEMENT refdescriptioninfo (%refinfo.mix;)>
+<!ATTLIST refdescriptioninfo
+	%common.attrib;
+	role	CDATA	#IMPLIED
+>
+
+<!ELEMENT refauthorinfo (%refinfo.mix;)>
+<!ATTLIST refauthorinfo
+	%common.attrib;
+	role	CDATA	#IMPLIED
+>
+
+<!ELEMENT refversioninfo (%refinfo.mix;)>
+<!ATTLIST refversioninfo
+	%common.attrib;
+	role	CDATA	#IMPLIED
+>
+
+<!ELEMENT refparameterinfo (%refinfo.mix;)>
+<!ATTLIST refparameterinfo
+	%common.attrib;
+	role	CDATA	#IMPLIED
+>
+
+<!ELEMENT refreturninfo (%refinfo.mix;)>
+<!ATTLIST refreturninfo
+	%common.attrib;
+	role	CDATA	#IMPLIED
+>
+
+<!ELEMENT refexceptioninfo (%refinfo.mix;)>
+<!ATTLIST refexceptioninfo
+	%common.attrib;
+	role	CDATA	#IMPLIED
+>
+
+<!ELEMENT refthrowsinfo (%refinfo.mix;)>
+<!ATTLIST refthrowsinfo
+	%common.attrib;
+	role	CDATA	#IMPLIED
+>
+
+<!ELEMENT refseeinfo (%refinfo.mix;)>
+<!ATTLIST refseeinfo
+	%common.attrib;
+	role	CDATA	#IMPLIED
+>
+
+<!ELEMENT refsinceinfo (%refinfo.mix;)>
+<!ATTLIST refsinceinfo
+	%common.attrib;
+	role	CDATA	#IMPLIED
+>
+
+<!ELEMENT refserialinfo (%refinfo.mix;)>
+<!ATTLIST refserialinfo
+	%common.attrib;
+	role	CDATA	#IMPLIED
+>
+
+<!ELEMENT refdeprecatedinfo (%refinfo.mix;)>
+<!ATTLIST refdeprecatedinfo
+	%common.attrib;
+	role	CDATA	#IMPLIED
+>
