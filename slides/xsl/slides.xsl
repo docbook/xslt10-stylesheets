@@ -255,7 +255,9 @@
               <tr>
                 <td align="left" width="10%">
                   <a href="{$toc.html}">
-                    <xsl:text>Contents</xsl:text>
+                    <xsl:call-template name="gentext">
+                      <xsl:with-param name="key">TableofContents</xsl:with-param>
+                    </xsl:call-template>
                   </a>
                 </td>
                 <td align="center" width="80%">
@@ -684,7 +686,13 @@
 <!-- ============================================================ -->
 
 <xsl:template match="slides" mode="toc">
-  <p><b>Table of Contents</b></p>
+  <p>
+    <b>
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key">TableofContents</xsl:with-param>
+      </xsl:call-template>
+    </b>
+  </p>
   <dl>
     <xsl:apply-templates select="section|foil" mode="toc"/>
   </dl>
