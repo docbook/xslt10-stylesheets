@@ -106,6 +106,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &linenumbering.width;
 &tablecolumns.extension;
 &textinsert.extension;
+&graphicsize.extension;
 &use.extensions;
 </reference>
 
@@ -344,6 +345,12 @@ url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http:
 &htmlhelp.only;
 </reference>
 
+<reference><title>Localization</title>
+&l10n.gentext.language;
+&l10n.gentext.default.language;
+&l10n.gentext.use.xref.language;
+</reference>
+
 <appendix><title>The Stylesheet</title>
 
 <para>The <filename>param.xsl</filename> stylesheet is just a wrapper
@@ -422,6 +429,7 @@ around all these parameters.</para>
 <src:fragref linkend="glossary.collection.frag"/>
 <src:fragref linkend="glossterm.auto.link.frag"/>
 <src:fragref linkend="graphic.default.extension.frag"/>
+<src:fragref linkend="graphicsize.extension.frag"/>
 <src:fragref linkend="header.rule.frag"/>
 <src:fragref linkend="html.base.frag"/>
 <src:fragref linkend="html.cellpadding.frag"/>
@@ -476,6 +484,9 @@ around all these parameters.</para>
 <src:fragref linkend="htmlhelp.title.frag"/>
 <src:fragref linkend="htmlhelp.use.hhk.frag"/>
 <src:fragref linkend="inherit.keywords.frag"/>
+<src:fragref linkend="l10n.gentext.language.frag"/>
+<src:fragref linkend="l10n.gentext.default.language.frag"/>
+<src:fragref linkend="l10n.gentext.use.xref.language.frag"/>
 <src:fragref linkend="label.from.part.frag"/>
 <src:fragref linkend="linenumbering.everyNth.frag"/>
 <src:fragref linkend="linenumbering.extension.frag"/>
