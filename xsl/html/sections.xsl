@@ -22,8 +22,7 @@
     <a name="{$id}"/>
     <xsl:call-template name="section.titlepage"/>
     <xsl:if test="($generate.section.toc != '0'
-                   and ($generate.section.toc.level = 0
-                        or $depth &lt;= $generate.section.toc.level))
+                   and $depth &lt;= $generate.section.toc.level)
                   or refentry">
       <xsl:call-template name="section.toc"/>
     </xsl:if>
@@ -70,8 +69,7 @@
     <a name="{$id}"/>
     <xsl:call-template name="sect1.titlepage"/>
     <xsl:if test="($generate.section.toc != '0'
-                   and ($generate.section.toc.level = 0
-                        or $generate.section.toc.level &gt;= 1))
+                   and $generate.section.toc.level &gt;= 1)
                   or refentry">
       <xsl:call-template name="section.toc"/>
     </xsl:if>
@@ -93,8 +91,7 @@
     <a name="{$id}"/>
     <xsl:call-template name="sect2.titlepage"/>
     <xsl:if test="($generate.section.toc != '0'
-                   and ($generate.section.toc.level = 0
-                        or $generate.section.toc.level &gt;= 2))
+                   and $generate.section.toc.level &gt;= 2)
                   or refentry">
       <xsl:call-template name="section.toc"/>
     </xsl:if>
@@ -115,8 +112,7 @@
     <a name="{$id}"/>
     <xsl:call-template name="sect3.titlepage"/>
     <xsl:if test="($generate.section.toc != '0'
-                   and ($generate.section.toc.level = 0
-                        or $generate.section.toc.level &gt;= 3))
+                   and $generate.section.toc.level &gt;= 3)
                   or refentry">
       <xsl:call-template name="section.toc"/>
     </xsl:if>
@@ -137,8 +133,7 @@
     <a name="{$id}"/>
     <xsl:call-template name="sect4.titlepage"/>
     <xsl:if test="($generate.section.toc != '0'
-                   and ($generate.section.toc.level = 0
-                        or $generate.section.toc.level &gt;= 4))
+                   and $generate.section.toc.level &gt;= 4)
                   or refentry">
       <xsl:call-template name="section.toc"/>
     </xsl:if>
@@ -159,8 +154,7 @@
     <a name="{$id}"/>
     <xsl:call-template name="sect5.titlepage"/>
     <xsl:if test="($generate.section.toc != '0'
-                   and ($generate.section.toc.level = 0
-                        or $generate.section.toc.level &gt;= 5))
+                   and $generate.section.toc.level &gt;= 5)
                   or refentry">
       <xsl:call-template name="section.toc"/>
     </xsl:if>
