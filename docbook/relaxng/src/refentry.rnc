@@ -16,7 +16,7 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-start |= db.refentry
+start |= db.refentry | db.refsection
 
 db.divisions |= db.reference
 
