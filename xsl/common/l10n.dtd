@@ -1,7 +1,10 @@
-<!ELEMENT internationalization (localization+)>
+<!ELEMENT i18n (l10n+)>
+<!ATTLIST i18n
+	xmlns		CDATA	#IMPLIED
+>
 
-<!ELEMENT localization (gentext|dingbat|context)*>
-<!ATTLIST localization
+<!ELEMENT l10n (gentext|dingbat|context)*>
+<!ATTLIST l10n
 	language	CDATA	#REQUIRED
 >
 
