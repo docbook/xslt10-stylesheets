@@ -12,7 +12,7 @@
 
      ******************************************************************** -->
 
-<xsl:template name="admon.graphic.width">
+<xsl:template match="*" mode="admon.graphic.width">
   <xsl:param name="node" select="."/>
   <xsl:text>25</xsl:text>
 </xsl:template>
@@ -78,7 +78,7 @@
       <tr>
         <td rowspan="2" align="center" valign="top">
           <xsl:attribute name="width">
-            <xsl:call-template name="admon.graphic.width"/>
+            <xsl:apply-templates select="." mode="admon.graphic.width"/>
           </xsl:attribute>
           <img alt="[{$alt}]">
             <xsl:attribute name="src">

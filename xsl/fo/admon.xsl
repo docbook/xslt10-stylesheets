@@ -24,7 +24,7 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template name="admon.graphic.width">
+<xsl:template match="*" mode="admon.graphic.width">
   <xsl:param name="node" select="."/>
   <xsl:text>36pt</xsl:text>
 </xsl:template>
@@ -64,7 +64,7 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
   <xsl:variable name="graphic.width">
-     <xsl:call-template name="admon.graphic.width"/>
+     <xsl:apply-templates select="." mode="admon.graphic.width"/>
   </xsl:variable>
 
   <fo:block id="{$id}">
