@@ -208,6 +208,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <reference><title>Bibliography</title>
 &biblioentry.item.separator;
 &bibliography.collection;
+&bibliography.numbered;
 </reference>
 
 <reference><title>Glossary</title>
@@ -235,6 +236,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &points.per.em;
 &use.svg;
 &use.role.as.xrefstyle;
+&menuchoice.separator;
+&menuchoice.menu.separator;
 </reference>
 
 <reference><title>Graphics</title>
@@ -373,6 +376,7 @@ around all these parameters.</para>
 <src:fragref linkend="base.dir.frag"/>
 <src:fragref linkend="biblioentry.item.separator.frag"/>
 <src:fragref linkend="bibliography.collection.frag"/>
+<src:fragref linkend="bibliography.numbered.frag"/>
 <src:fragref linkend="bridgehead.in.toc.frag"/>
 <src:fragref linkend="callout.defaultcolumn.frag"/>
 <src:fragref linkend="callout.graphics.extension.frag"/>
@@ -480,6 +484,8 @@ around all these parameters.</para>
 <src:fragref linkend="make.year.ranges.frag"/>
 <src:fragref linkend="manifest.frag"/>
 <src:fragref linkend="manual.toc.frag"/>
+<src:fragref linkend="menuchoice.menu.separator.frag"/>
+<src:fragref linkend="menuchoice.separator.frag"/>
 <src:fragref linkend="navig.graphics.extension.frag"/>
 <src:fragref linkend="navig.graphics.frag"/>
 <src:fragref linkend="navig.graphics.path.frag"/>

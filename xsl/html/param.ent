@@ -206,3 +206,6 @@
 <!ENTITY para.propagates.style SYSTEM "../params/para.propagates.style.xml">
 <!ENTITY html.cellpadding SYSTEM "../params/html.cellpadding.xml">
 <!ENTITY html.cellspacing SYSTEM "../params/html.cellspacing.xml">
+<!ENTITY menuchoice.separator SYSTEM "../params/menuchoice.separator.xml">
+<!ENTITY menuchoice.menu.separator SYSTEM "../params/menuchoice.menu.separator.xml">
+<!ENTITY bibliography.numbered SYSTEM "../params/bibliography.numbered.xml">
