@@ -209,7 +209,7 @@
 
 <!ENTITY % set.element "INCLUDE">
 <![%set.element;[
-<!ELEMENT set %ho; ((%div.title.content;)?, setinfo?, toc?, (%book.class;)+,
+<!ELEMENT set %ho; ((%div.title.content;)?, setinfo?, toc?, (set|%book.class;)+,
 		setindex?)
 		%ubiq.inclusion;>
 <!--end of set.element-->]]>
