@@ -27,6 +27,8 @@ my $pre = $1;
 my $fvers = $2;
 my $post = $3;
 
+my $oldver = $fvers;
+
 my @cvsbad = `cvs -n update 2>&1 | grep -v ^cvs`;
 if (@cvsbad) {
     print STDERR @cvsbad;
@@ -54,7 +56,7 @@ if ($fvers =~ /^(\d+)\.(\d+)\.(\d+)$/) {
 
 $version = "$fvers" if !$version;
 
-print "About to release $version; are you sure? ";
+print "About to release $version (previous $oldver); are you sure? ";
 chop($_ = scalar(<>));
 
 die "Aborted!\n" if !/^y/i;
