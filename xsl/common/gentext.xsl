@@ -185,7 +185,7 @@
 
     <!-- s=1 -->
     <xsl:when test="starts-with($template, '%s')">
-      <xsl:apply-templates select="." mode="subtitle.content"/>
+      <xsl:apply-templates select="." mode="subtitle.markup"/>
       <xsl:call-template name="substitute-markup">
         <xsl:with-param name="template"
                         select="substring-after($template, '%s')"/>
@@ -211,7 +211,7 @@
         <xsl:when test="string-length($bef-s) &lt; string-length($bef-n)
                         and string-length($bef-s) &lt; string-length($bef-t)">
           <xsl:value-of select="$bef-s"/>
-          <xsl:apply-templates select="." mode="subtitle.content"/>
+          <xsl:apply-templates select="." mode="subtitle.markup"/>
           <xsl:call-template name="substitute-markup">
             <xsl:with-param name="template"
                             select="substring-after($template, '%s')"/>
@@ -274,7 +274,7 @@
         <!-- s is first -->
         <xsl:otherwise>
           <xsl:value-of select="$bef-s"/>
-          <xsl:apply-templates select="." mode="subtitle.content"/>
+          <xsl:apply-templates select="." mode="subtitle.markup"/>
           <xsl:call-template name="substitute-markup">
             <xsl:with-param name="template"
                             select="substring-after($template, '%s')"/>
@@ -301,7 +301,7 @@
         <!-- s is first -->
         <xsl:otherwise>
           <xsl:value-of select="$bef-s"/>
-          <xsl:apply-templates select="." mode="subtitle.content"/>
+          <xsl:apply-templates select="." mode="subtitle.markup"/>
           <xsl:call-template name="substitute-markup">
             <xsl:with-param name="template"
                             select="substring-after($template, '%s')"/>
@@ -335,7 +335,7 @@
     <!-- s -->
     <xsl:when test="contains($template, '%s')">
       <xsl:value-of select="$bef-s"/>
-      <xsl:apply-templates select="." mode="subtitle.content"/>
+      <xsl:apply-templates select="." mode="subtitle.markup"/>
       <xsl:call-template name="substitute-markup">
         <xsl:with-param name="template"
                         select="substring-after($template, '%s')"/>
