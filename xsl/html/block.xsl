@@ -150,6 +150,7 @@
 
 <xsl:template match="abstract">
   <div class="{name(.)}">
+    <xsl:call-template name="anchor"/>
     <xsl:call-template name="formal.object.heading">
       <xsl:with-param name="title">
         <xsl:apply-templates select="." mode="title.markup">
