@@ -1,6 +1,7 @@
 <!ENTITY admon.graphics SYSTEM "../params/admon.graphics.xml">
 <!ENTITY admon.graphics.extension SYSTEM "../params/admon.graphics.extension.xml">
 <!ENTITY admon.graphics.path SYSTEM "../params/admon.graphics.path.xml">
+<!ENTITY admon.textlabel SYSTEM "../params/admon.textlabel.xml">
 <!ENTITY admon.style SYSTEM "../params/admon.style.xml">
 <!ENTITY annotate.toc SYSTEM "../params/annotate.toc.xml">
 <!ENTITY appendix.autolabel SYSTEM "../params/appendix.autolabel.xml">
