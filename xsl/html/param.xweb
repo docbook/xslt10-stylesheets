@@ -83,6 +83,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <reference><title>EBNF</title>
 &ebnf.table.bgcolor;
 &ebnf.table.border;
+&ebnf.assignment;
+&ebnf.statement.terminator;
 </reference>
 
 <reference><title>ToC/LoT/Index Generation</title>
@@ -430,6 +432,8 @@ around all these parameters.</para>
 <src:fragref linkend="draft.watermark.image.frag"/>
 <src:fragref linkend="ebnf.table.bgcolor.frag"/>
 <src:fragref linkend="ebnf.table.border.frag"/>
+<src:fragref linkend="ebnf.assignment.frag"/>
+<src:fragref linkend="ebnf.statement.terminator.frag"/>
 <src:fragref linkend="emphasis.propagates.style.frag"/>
 <src:fragref linkend="entry.propagates.style.frag"/>
 <src:fragref linkend="firstterm.only.link.frag"/>

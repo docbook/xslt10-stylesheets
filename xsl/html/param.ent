@@ -232,3 +232,5 @@
 <!ENTITY entry.propagates.style SYSTEM "../params/entry.propagates.style.xml">
 <!ENTITY glossentry.show.acronym SYSTEM "../params/glossentry.show.acronym.xml">
 <!ENTITY xref.with.number.and.title SYSTEM "../params/xref.with.number.and.title.xml">
+<!ENTITY ebnf.assignment SYSTEM "../params/ebnf.assignment.xml">
+<!ENTITY ebnf.statement.terminator SYSTEM "../params/ebnf.statement.terminator.xml">
