@@ -56,43 +56,8 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="title" mode="section.titlepage.recto.mode">
+<xsl:template match="section/title" mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
-</xsl:template>
-
-<xsl:template match="x-title" mode="section.titlepage.recto.mode">
-  <xsl:variable name="section" select="(ancestor::section
-                                        |ancestor::simplesect
-                                        |ancestor::sect1
-                                        |ancestor::sect2
-                                        |ancestor::sect3
-                                        |ancestor::sect4
-                                        |ancestor::sect5)[last()]"/>
-
-  <xsl:variable name="level">
-    <xsl:call-template name="section.level">
-      <xsl:with-param name="node" select="$section"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:message>Level: <xsl:value-of select="$level"/>: <xsl:value-of select="."/></xsl:message>
-
-  <xsl:element name="h{$level}">
-    <xsl:attribute name="class">title</xsl:attribute>
-    <xsl:if test="$css.decoration != '0'">
-      <xsl:if test="$level&lt;3">
-        <xsl:attribute name="style">clear: both</xsl:attribute>
-      </xsl:if>
-    </xsl:if>
-    <a>
-      <xsl:attribute name="name">
-        <xsl:call-template name="object.id">
-          <xsl:with-param name="object" select="$section"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </a>
-    <xsl:apply-templates select="$section" mode="object.title.markup"/>
-  </xsl:element>
 </xsl:template>
 
 <xsl:template match="sect1">
@@ -112,7 +77,7 @@
   </div>
 </xsl:template>
 
-<xsl:template match="title" mode="sect1.titlepage.recto.mode">
+<xsl:template match="sect1/title" mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
 
@@ -132,7 +97,7 @@
   </div>
 </xsl:template>
 
-<xsl:template match="title" mode="sect2.titlepage.recto.mode">
+<xsl:template match="sect2/title" mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
 
@@ -153,7 +118,7 @@
   </div>
 </xsl:template>
 
-<xsl:template match="title" mode="sect3.titlepage.recto.mode">
+<xsl:template match="sect3/title" mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
 
@@ -173,7 +138,7 @@
   </div>
 </xsl:template>
 
-<xsl:template match="title" mode="sect4.titlepage.recto.mode">
+<xsl:template match="sect4/title" mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
 
@@ -193,7 +158,7 @@
   </div>
 </xsl:template>
 
-<xsl:template match="title" mode="sect5.titlepage.recto.mode">
+<xsl:template match="sect5/title" mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
 
@@ -209,7 +174,7 @@
   </div>
 </xsl:template>
 
-<xsl:template match="title" mode="simplesect.titlepage.recto.mode">
+<xsl:template match="simplesect/title" mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
 

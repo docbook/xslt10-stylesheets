@@ -62,13 +62,13 @@
   </div>
 </xsl:template>
 
-<xsl:template match="title" mode="dedication.titlepage.recto.mode">
+<xsl:template match="dedication/title" mode="titlepage.mode" priority="2">
   <xsl:call-template name="component.title">
     <xsl:with-param name="node" select="ancestor::dedication[1]"/>
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="subtitle" mode="dedication.titlepage.recto.mode">
+<xsl:template match="dedication/subtitle" mode="titlepage.mode" priority="2">
   <xsl:call-template name="component.subtitle">
     <xsl:with-param name="node" select="ancestor::dedication[1]"/>
   </xsl:call-template>
@@ -113,13 +113,16 @@
   </div>
 </xsl:template>
 
-<xsl:template match="title" mode="preface.titlepage.recto.mode">
+<xsl:template match="preface/title" mode="titlepage.mode" priority="2">
   <xsl:call-template name="component.title">
     <xsl:with-param name="node" select="ancestor::preface[1]"/>
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="subtitle" mode="preface.titlepage.recto.mode">
+<xsl:template match="preface/subtitle
+                     |preface/prefaceinfo/subtitle
+                     |preface/docinfo/subtitle"
+              mode="titlepage.mode" priority="2">
   <xsl:call-template name="component.subtitle">
     <xsl:with-param name="node" select="ancestor::preface[1]"/>
   </xsl:call-template>
@@ -148,13 +151,16 @@
   </div>
 </xsl:template>
 
-<xsl:template match="title" mode="chapter.titlepage.recto.mode">
+<xsl:template match="chapter/title" mode="titlepage.mode" priority="2">
   <xsl:call-template name="component.title">
     <xsl:with-param name="node" select="ancestor::chapter[1]"/>
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="subtitle" mode="chapter.titlepage.recto.mode">
+<xsl:template match="chapter/subtitle
+                     |chapter/chapterinfo/subtitle
+                     |chapter/docinfo/subtitle"
+              mode="titlepage.mode" priority="2">
   <xsl:call-template name="component.subtitle">
     <xsl:with-param name="node" select="ancestor::chapter[1]"/>
   </xsl:call-template>
@@ -198,13 +204,16 @@
   </div>
 </xsl:template>
 
-<xsl:template match="title" mode="appendix.titlepage.recto.mode">
+<xsl:template match="appendix/title" mode="titlepage.mode" priority="2">
   <xsl:call-template name="component.title">
     <xsl:with-param name="node" select="ancestor::appendix[1]"/>
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="subtitle" mode="appendix.titlepage.recto.mode">
+<xsl:template match="appendix/subtitle
+                     |appendix/appendixinfo/subtitle
+                     |appendix/docinfo/subtitle"
+              mode="titlepage.mode" priority="2">
   <xsl:call-template name="component.subtitle">
     <xsl:with-param name="node" select="ancestor::appendix[1]"/>
   </xsl:call-template>
@@ -297,13 +306,16 @@
   </div>
 </xsl:template>
 
-<xsl:template match="title" mode="article.titlepage.recto.mode">
+<xsl:template match="article/title" mode="titlepage.mode" priority="2">
   <xsl:call-template name="component.title">
     <xsl:with-param name="node" select="ancestor::article[1]"/>
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="subtitle" mode="article.titlepage.recto.mode">
+<xsl:template match="article/subtitle
+                     |article/articleinfo/subtitle
+                     |article/artheader/subtitle"
+              mode="titlepage.mode" priority="2">
   <xsl:call-template name="component.subtitle">
     <xsl:with-param name="node" select="ancestor::article[1]"/>
   </xsl:call-template>

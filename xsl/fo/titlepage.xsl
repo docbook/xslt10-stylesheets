@@ -533,22 +533,26 @@
 <!-- ==================================================================== -->
 <!-- Book templates -->
 
+<!-- Note: these templates cannot use *.titlepage.recto.mode or
+     *.titlepage.verso.mode. If they do then subsequent use of a custom
+     titlepage.templates.xml file will not work correctly. -->
+
 <!-- book recto -->
 
-<xsl:template match="authorgroup" mode="book.titlepage.recto.mode">
+<xsl:template match="bookinfo/authorgroup" mode="titlepage.mode" priority="2">
   <fo:wrapper>
     <xsl:if test="@id">
       <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
     </xsl:if>
-    <xsl:apply-templates mode="book.titlepage.recto.auto.mode"/>
+    <xsl:apply-templates mode="titlepage.mode"/>
   </fo:wrapper>
 </xsl:template>
 
 <!-- book verso -->
 
-<xsl:template match="title" mode="book.titlepage.verso.mode">
+<xsl:template name="book.verso.title">
   <fo:block>
-    <xsl:apply-templates mode="book.titlepage.verso.mode"/>
+    <xsl:apply-templates mode="titlepage.mode"/>
 
     <xsl:if test="following-sibling::subtitle
                   |following-sibling::bookinfo/subtitle">
@@ -556,20 +560,21 @@
 
       <xsl:apply-templates select="(following-sibling::subtitle
                                    |following-sibling::bookinfo/subtitle)[1]"
-                           mode="book.titlepage.verso.mode"/>
+                           mode="book.verso.subtitle.mode"/>
     </xsl:if>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="subtitle" mode="book.titlepage.verso.mode">
-  <xsl:apply-templates mode="book.titlepage.verso.mode"/>
+<xsl:template match="subtitle" mode="book.verso.subtitle.mode">
+  <xsl:apply-templates mode="titlepage.mode"/>
   <xsl:if test="following-sibling::subtitle">
     <xsl:text>: </xsl:text>
-    <xsl:apply-templates select="following-sibling::subtitle[1]"/>
+    <xsl:apply-templates select="following-sibling::subtitle[1]"
+                         mode="book.verso.subtitle.mode"/>
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="bookinfo/author" mode="book.titlepage.verso.mode">
+<xsl:template match="bookinfo/author" mode="titlepage.mode" priority="2">
   <fo:block>
     <xsl:call-template name="gentext">
       <xsl:with-param name="key" select="'by'"/>
@@ -579,7 +584,7 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="bookinfo/corpauthor" mode="book.titlepage.verso.mode">
+<xsl:template match="bookinfo/corpauthor" mode="titlepage.mode" priority="2">
   <fo:block>
     <xsl:call-template name="gentext">
       <xsl:with-param name="key" select="'by'"/>
@@ -589,7 +594,7 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="authorgroup" mode="book.titlepage.verso.mode">
+<xsl:template match="bookinfo/authorgroup" mode="titlepage.mode" priority="2">
   <fo:block>
     <xsl:call-template name="gentext">
       <xsl:with-param name="key" select="'by'"/>
@@ -599,23 +604,14 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="pubdate" mode="book.titlepage.verso.mode">
+<xsl:template match="bookinfo/pubdate" mode="titlepage.mode" priority="2">
   <fo:block>
     <xsl:call-template name="gentext">
       <xsl:with-param name="key" select="'published'"/>
     </xsl:call-template>
     <xsl:text> </xsl:text>
-    <xsl:apply-templates mode="book.titlepage.verso.mode"/>
+    <xsl:apply-templates mode="titlepage.mode"/>
   </fo:block>
-</xsl:template>
-
-<!-- ==================================================================== -->
-<!-- Part templates -->
-
-<!-- part recto -->
-
-<xsl:template match="title" mode="part.titlepage.recto.mode">
-  <xsl:apply-templates select="ancestor::part" mode="title.markup"/>
 </xsl:template>
 
 <!-- ==================================================================== -->
