@@ -4,16 +4,6 @@
 
 <xsl:output method="html"/>
 
-<xsl:param name="script.dir" select="''"/>
-
-<xsl:param name="ua.js" select="'ua.js'"/>
-<xsl:param name="xbDOM.js" select="'xbDOM.js'"/>
-<xsl:param name="xbStyle.js" select="'xbStyle.js'"/>
-<xsl:param name="xbCollapsibleLists.js" select="'xbCollapsibleLists.js'"/>
-
-<xsl:param name="overlay.js" select="'overlay.js'"/>
-<xsl:param name="slides.js" select="'slides.js'"/>
-
 <xsl:template name="script-file">
   <xsl:param name="js" select="'slides.js'"/>
 
