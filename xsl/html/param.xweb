@@ -197,12 +197,17 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &olink.pubid;
 &olink.sysid;
 &olink.resolver;
-&glossterm.auto.link;
 </reference>
 
 <reference><title>Bibliography</title>
 &biblioentry.item.separator;
 &bibliography.collection;
+</reference>
+
+<reference><title>Glossary</title>
+&glossterm.auto.link;
+&firstterm.only.link;
+&glossary.collection;
 </reference>
 
 <reference><title>Miscellaneous</title>
@@ -308,6 +313,7 @@ around all these parameters.</para>
 <src:fragref linkend="ebnf.table.bgcolor.frag"/>
 <src:fragref linkend="ebnf.table.border.frag"/>
 <src:fragref linkend="emphasis.propagates.style.frag"/>
+<src:fragref linkend="firstterm.only.link.frag"/>
 <src:fragref linkend="formal.procedures.frag"/>
 <src:fragref linkend="funcsynopsis.decoration.frag"/>
 <src:fragref linkend="funcsynopsis.style.frag"/>
@@ -328,6 +334,7 @@ around all these parameters.</para>
 <src:fragref linkend="generate.section.toc.frag"/>
 <src:fragref linkend="generate.section.toc.level.frag"/>
 <src:fragref linkend="generate.set.toc.frag"/>
+<src:fragref linkend="glossary.collection.frag"/>
 <src:fragref linkend="glossterm.auto.link.frag"/>
 <src:fragref linkend="graphic.default.extension.frag"/>
 <src:fragref linkend="html.base.frag"/>

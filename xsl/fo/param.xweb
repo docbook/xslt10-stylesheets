@@ -165,13 +165,15 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &qanda.inherit.numeration;
 </reference>
 
-<reference><title>Linking</title>
-&glossterm.auto.link;
-</reference>
-
 <reference><title>Bibliography</title>
 &biblioentry.item.separator;
 &bibliography.collection;
+</reference>
+
+<reference><title>Glossary</title>
+&glossterm.auto.link;
+&firstterm.only.link;
+&glossary.collection;
 </reference>
 
 <reference><title>Miscellaneous</title>
@@ -306,6 +308,7 @@ around all these parameters.</para>
 <src:fragref linkend="default.units.frag"/>
 <src:fragref linkend="dingbat.font.family.frag"/>
 <src:fragref linkend="double.sided.frag"/>
+<src:fragref linkend="firstterm.only.link.frag"/>
 <src:fragref linkend="footnote.font.size.frag"/>
 <src:fragref linkend="fop.extensions.frag"/>
 <src:fragref linkend="formal.object.properties.frag"/>
@@ -327,6 +330,7 @@ around all these parameters.</para>
 <src:fragref linkend="generate.division.toc.frag"/>
 <src:fragref linkend="generate.index.frag"/>
 <src:fragref linkend="generate.set.toc.frag"/>
+<src:fragref linkend="glossary.collection.frag"/>
 <src:fragref linkend="glossterm.auto.link.frag"/>
 <src:fragref linkend="graphic.default.extension.frag"/>
 <src:fragref linkend="hyphenate.frag"/>
