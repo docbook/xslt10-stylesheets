@@ -8,7 +8,7 @@
 
 <authorgroup>
   <author><firstname>Frikkie</firstname><surname>Thirion</surname>
-          <affiliation><address><email>frix@engineer.com</email></address>
+          <affiliation><address><email>frix@expertron.co.za</email></address>
           </affiliation>
   </author>
 </authorgroup>
@@ -77,7 +77,7 @@
 <gentext key="preface" text="voorwoord"/>
 <gentext key="Procedure" text="Prosedure"/>
 <gentext key="procedure" text="prosedure"/>
-<gentext key="ProductionSet" text="Production"/>
+<gentext key="ProductionSet" text="ProduksieStel"/>
 <gentext key="Published" text="Uitgegee"/>
 <gentext key="published" text="uitgegee"/>
 <gentext key="Question" text="Vraag:"/>
@@ -96,11 +96,11 @@
 <gentext key="revhistory" text="hersiening geskiedenis"/>
 <gentext key="Revision" text="Hersiening"/>
 <gentext key="revision" text="hersiening"/>
-<gentext key="sect1" text="Section"/> <!--en-->
-<gentext key="sect2" text="Section"/> <!--en-->
-<gentext key="sect3" text="Section"/> <!--en-->
-<gentext key="sect4" text="Section"/> <!--en-->
-<gentext key="sect5" text="Section"/> <!--en-->
+<gentext key="sect1" text="Paragraaf"/>
+<gentext key="sect2" text="Paragraaf"/>
+<gentext key="sect3" text="Paragraaf"/>
+<gentext key="sect4" text="Paragraaf"/>
+<gentext key="sect5" text="Paragraaf"/>
 <gentext key="Section" text="Paragraaf"/>
 <gentext key="section" text="paragraaf"/>
 <gentext key="see" text="sien"/>
@@ -167,14 +167,14 @@
 <gentext key="nav-prev-sibling" text="Verder terug"/>
 <gentext key="nav-up" text="Boontoe"/>
 
-<gentext key="Draft"         text="Draft"/> <!--en-->
-<gentext key="above"         text="above"/> <!--en-->
-<gentext key="below"         text="below"/> <!--en-->
+<gentext key="Draft"         text="Proef"/>
+<gentext key="above"         text="bo"/>
+<gentext key="below"         text="onder"/>
 <gentext key="sectioncalled" text="die seksie genaamd"/>
 <gentext key="index symbols" text="indeks simbole"/>
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
