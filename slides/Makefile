@@ -55,7 +55,6 @@ else
 	find . -print | grep /CVS/ | cut -c3- >> /tmp/tar.exclude
 	find . -print | grep .classes | cut -c3- >> /tmp/tar.exclude
 	find . -print | grep .cvskeep | cut -c3- >> /tmp/tar.exclude
-	find . -print | grep demo/ | cut -c3- >> /tmp/tar.exclude
 	find . -print | grep "~$$" | cut -c3- >> /tmp/tar.exclude
 	find . -type f -name "#*"  | cut -c3- >> /tmp/tar.exclude
 	find . -type f -name ".cvsignore"  | cut -c3- >> /tmp/tar.exclude
