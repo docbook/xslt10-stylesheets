@@ -55,7 +55,7 @@ db.area.units.attribute =
 
 [
    db:refname [ "calloutlist" ]
-   db:refpurpose [ "A list of " db:xmltag [ "callout" ] "s" ]
+   db:refpurpose [ "A list of " db:tag [ "callout" ] "s" ]
 ]
 div {
 
