@@ -1,0 +1,21 @@
+<refentry>
+<refmeta>
+<refentrytitle>generate.chapter.toc</refentrytitle>
+<refmiscinfo role="type">boolean</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>generate.chapter.toc</refname>
+<refpurpose>FIXME:</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id="generate.chapter.toc"><xsl:param name="generate.chapter.toc" select="1"/></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:
+</para>
+
+</refsect1>
+</refentry>

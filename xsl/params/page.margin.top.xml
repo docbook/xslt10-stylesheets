@@ -1,0 +1,22 @@
+<refentry>
+<refmeta>
+<refentrytitle>page.margin.top</refentrytitle>
+
+</refmeta>
+<refnamediv>
+<refname>page.margin.top</refname>
+<refpurpose>The top margin of the page</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id="page.margin.top"><xsl:param name="page.margin.top">1in</xsl:param></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>The top page margin is the distance from the physical top of the
+page to the first line of text (body or header).
+</para>
+
+</refsect1>
+</refentry>

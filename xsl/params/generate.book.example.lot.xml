@@ -1,0 +1,18 @@
+<refentry>
+<refmeta>
+<refentrytitle>generate.book.example.lot</refentrytitle>
+<refmiscinfo role="type">boolean</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>generate.book.example.lot</refname>
+<refpurpose>FIXME:</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id="generate.book.example.lot"><xsl:param name="generate.book.example.lot" select="1"/></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+<para>FIXME:</para>
+</refsect1>
+</refentry>

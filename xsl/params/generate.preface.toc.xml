@@ -1,0 +1,21 @@
+<refentry>
+<refmeta>
+<refentrytitle>generate.preface.toc</refentrytitle>
+<refmiscinfo role="type">boolean</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>generate.preface.toc</refname>
+<refpurpose>FIXME:</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id="generate.preface.toc"><xsl:param name="generate.preface.toc" select="1"/></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:
+</para>
+
+</refsect1>
+</refentry>

@@ -1,0 +1,22 @@
+<refentry>
+<refmeta>
+<refentrytitle>page.margin.bottom</refentrytitle>
+
+</refmeta>
+<refnamediv>
+<refname>page.margin.bottom</refname>
+<refpurpose>The bottom margin of the page</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id="page.margin.bottom"><xsl:param name="page.margin.bottom">1in</xsl:param></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>The bottom page margin is the distance from the physical bottom of
+the page to the last line of text (body or footer).
+</para>
+
+</refsect1>
+</refentry>

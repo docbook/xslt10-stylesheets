@@ -1,0 +1,18 @@
+<refentry>
+<refnamediv>
+<refname>formal.title.properties</refname>
+<refpurpose>FIXME:</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id="formal.title.properties"><xsl:attribute-set name="formal.title.properties" use-attribute-sets="normal.para.spacing">
+  <xsl:attribute name="font-weight">bold</xsl:attribute>
+  <xsl:attribute name="font-size">12pt</xsl:attribute>
+  <xsl:attribute name="hyphenate">false</xsl:attribute>
+  <xsl:attribute name="keep-with-next.within-column">always</xsl:attribute>
+</xsl:attribute-set></src:fragment>
+</refsynopsisdiv>
+<refsect1><title>Description</title>
+<para>FIXME:</para>
+</refsect1>
+</refentry>

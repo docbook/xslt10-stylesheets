@@ -1,0 +1,21 @@
+<refentry>
+<refmeta>
+<refentrytitle>callout.unicode</refentrytitle>
+<refmiscinfo role="type">boolean</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>callout.unicode</refname>
+<refpurpose>FIXME:</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id="callout.unicode"><xsl:param name="callout.unicode" select="0"/></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:
+</para>
+
+</refsect1>
+</refentry>

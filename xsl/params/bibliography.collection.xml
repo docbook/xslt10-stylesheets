@@ -1,0 +1,24 @@
+<refentry>
+<refmeta>
+<refentrytitle>bibliography.collection</refentrytitle>
+<refmiscinfo role="type">string</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>bibliography.collection</refname>
+<refpurpose>Name of the bibliography collection file</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id="bibliography.collection"><xsl:param name="bibliography.collection" select="'http://docbook.sourceforge.net/release/bibliography/bibliography.xml'"/></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>Tired of copying bibliography entries from one document to another?
+Now you can maintain a central bibliography and let the stylesheets do
+the copying for you. This parameter identifies the file (by URI reference)
+that contains your complete bibliography collection.
+</para>
+
+</refsect1>
+</refentry>
