@@ -37,14 +37,14 @@ Makefile.param:
 	../../cvstools/paramchk -m $@ param.xweb
 	make
 
-profile-docbook.xsl:
-	$(XSLT) docbook.xsl ../profiling/xsl2profile.xsl $@
+profile-docbook.xsl: docbook.xsl ../profiling/xsl2profile.xsl
+	$(XSLT) $< ../profiling/xsl2profile.xsl $@
 
-profile-chunk.xsl:
-	$(XSLT) chunk.xsl ../profiling/xsl2profile.xsl $@
+profile-chunk.xsl: chunk.xsl ../profiling/xsl2profile.xsl
+	$(XSLT) $< ../profiling/xsl2profile.xsl $@
 
-profile-onechunk.xsl:
-	$(XSLT) onechunk.xsl ../profiling/xsl2profile.xsl $@
+profile-onechunk.xsl: onechunk.xsl ../profiling/xsl2profile.xsl
+	$(XSLT) $< ../profiling/xsl2profile.xsl $@
 
 clean:
 	$(RM) param.xml param.html param.xsl \

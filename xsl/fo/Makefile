@@ -31,8 +31,8 @@ titlepage.templates.xsl: titlepage.templates.xml ../template/titlepage.xsl
 Makefile.param:
 	../../cvstools/paramchk -m $@ param.xweb
 
-profile-docbook.xsl:
-	$(XSLT) docbook.xsl ../profiling/xsl2profile.xsl $@
+profile-docbook.xsl: docbook.xsl ../profiling/xsl2profile.xsl
+	$(XSLT) $< ../profiling/xsl2profile.xsl $@
 
 clean:
 	$(RM) param.xml param.html param.xsl \
