@@ -207,6 +207,7 @@
 <template name="indexdiv">%t</template>
 <template name="itemizedlist">%t</template>
 <template name="legalnotice">%t</template>
+<template name="listitem"/>
 <template name="lot">%t</template>
 <template name="msg">%t</template>
 <template name="msgexplan">%t</template>
@@ -243,6 +244,7 @@
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
+<template name="varlistentry"/>
 <template name="warning">%t</template>
 
 </context>
@@ -330,6 +332,7 @@
 <template name="figure"><Figure/> %n</template>
 <template name="glossary">%t</template>
 <template name="index">%t</template>
+<template name="listitem">%n</template>
 <template name="part"><Part/> %n</template>
 <template name="preface">%t</template>
 <template name="procedure"><Procedure/> %n</template>
@@ -341,6 +344,7 @@
 <template name="set">%t</template>
 <template name="setindex">%t</template>
 <template name="table"><Table/> %n</template>
+<template name="varlistentry">%n</template>
 
 </context>
 
