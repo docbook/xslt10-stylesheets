@@ -12,15 +12,15 @@
 <fm:project>
   <fm:Project>DocBook</fm:Project>
   <fm:Branch>Slides</fm:Branch>
-  <fm:Version>3.3.0</fm:Version>
+  <fm:Version>3.3.1</fm:Version>
   <fm:Release-Focus>
   <!-- initial freshmeat announcement -->
   <!-- documentation -->
   <!-- code cleanup -->
   <!-- minor feature enhancements -->
-  major feature enhancements
+  <!-- major feature enhancements -->
   <!-- minor bugfixes -->
-  <!-- major bugfixes -->
+  major bugfixes
   <!-- minor security fixes -->
   <!-- major security fixes -->
   </fm:Release-Focus>
@@ -30,10 +30,8 @@
   <fm:Changelog-URL>http://sourceforge.net/project/shownotes.php?release_id={SFRELID}</fm:Changelog-URL>
   <fm:CVS-URL>http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/docbook/slides/</fm:CVS-URL>
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook-apps/</fm:Mailing-List-URL>
-  <fm:Changes>This is an experimental release. It includes many
-patches and enhancements, updated browser JavaScript, and is now
-based on Simplified DocBook V1.1b1 which is based on DocBook XML
-V4.3CR2.
+  <fm:Changes>Fixed root template priority issue that sometimes
+caused the stylesheets to fail completely.
 </fm:Changes>
 </fm:project>
 
