@@ -53,6 +53,66 @@
   <xsl:call-template name="formal.object"/>
 </xsl:template>
 
+<xsl:template name="table.frame">
+  <xsl:variable name="frame">
+    <xsl:choose>
+      <xsl:when test="@frame">
+        <xsl:value-of select="@frame"/>
+      </xsl:when>
+      <xsl:otherwise>all</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$frame='all'">
+      <xsl:attribute name="border-left-style">solid</xsl:attribute>
+      <xsl:attribute name="border-right-style">solid</xsl:attribute>
+      <xsl:attribute name="border-top-style">solid</xsl:attribute>
+      <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
+    </xsl:when>
+    <xsl:when test="$frame='bottom'">
+      <xsl:attribute name="border-left-style">none</xsl:attribute>
+      <xsl:attribute name="border-right-style">none</xsl:attribute>
+      <xsl:attribute name="border-top-style">none</xsl:attribute>
+      <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
+    </xsl:when>
+    <xsl:when test="$frame='sides'">
+      <xsl:attribute name="border-left-style">solid</xsl:attribute>
+      <xsl:attribute name="border-right-style">solid</xsl:attribute>
+      <xsl:attribute name="border-top-style">none</xsl:attribute>
+      <xsl:attribute name="border-bottom-style">none</xsl:attribute>
+    </xsl:when>
+    <xsl:when test="$frame='top'">
+      <xsl:attribute name="border-left-style">none</xsl:attribute>
+      <xsl:attribute name="border-right-style">none</xsl:attribute>
+      <xsl:attribute name="border-top-style">solid</xsl:attribute>
+      <xsl:attribute name="border-bottom-style">none</xsl:attribute>
+    </xsl:when>
+    <xsl:when test="$frame='topbot'">
+      <xsl:attribute name="border-left-style">none</xsl:attribute>
+      <xsl:attribute name="border-right-style">none</xsl:attribute>
+      <xsl:attribute name="border-top-style">solid</xsl:attribute>
+      <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
+    </xsl:when>
+    <xsl:when test="$frame='none'">
+      <xsl:attribute name="border-left-style">none</xsl:attribute>
+      <xsl:attribute name="border-right-style">none</xsl:attribute>
+      <xsl:attribute name="border-top-style">none</xsl:attribute>
+      <xsl:attribute name="border-bottom-style">none</xsl:attribute>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message>
+        <xsl:text>Impossible frame on table: </xsl:text>
+        <xsl:value-of select="$frame"/>
+      </xsl:message>
+      <xsl:attribute name="border-left-style">none</xsl:attribute>
+      <xsl:attribute name="border-right-style">none</xsl:attribute>
+      <xsl:attribute name="border-top-style">none</xsl:attribute>
+      <xsl:attribute name="border-bottom-style">none</xsl:attribute>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="table">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
@@ -77,58 +137,7 @@
         </fo:block>
       </fo:table-caption>
       <fo:table>
-        <xsl:variable name="frame">
-          <xsl:choose>
-            <xsl:when test="@frame">
-              <xsl:value-of select="@frame"/>
-            </xsl:when>
-            <xsl:otherwise>all</xsl:otherwise>
-          </xsl:choose>
-        </xsl:variable>
-
-        <xsl:choose>
-          <xsl:when test="$frame='all'">
-            <xsl:attribute name="border-left-style">solid</xsl:attribute>
-            <xsl:attribute name="border-right-style">solid</xsl:attribute>
-            <xsl:attribute name="border-top-style">solid</xsl:attribute>
-            <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
-          </xsl:when>
-          <xsl:when test="$frame='bottom'">
-            <xsl:attribute name="border-left-style">none</xsl:attribute>
-            <xsl:attribute name="border-right-style">none</xsl:attribute>
-            <xsl:attribute name="border-top-style">none</xsl:attribute>
-            <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
-          </xsl:when>
-          <xsl:when test="$frame='sides'">
-            <xsl:attribute name="border-left-style">solid</xsl:attribute>
-            <xsl:attribute name="border-right-style">solid</xsl:attribute>
-            <xsl:attribute name="border-top-style">none</xsl:attribute>
-            <xsl:attribute name="border-bottom-style">none</xsl:attribute>
-          </xsl:when>
-          <xsl:when test="$frame='top'">
-            <xsl:attribute name="border-left-style">none</xsl:attribute>
-            <xsl:attribute name="border-right-style">none</xsl:attribute>
-            <xsl:attribute name="border-top-style">solid</xsl:attribute>
-            <xsl:attribute name="border-bottom-style">none</xsl:attribute>
-          </xsl:when>
-          <xsl:when test="$frame='topbot'">
-            <xsl:attribute name="border-left-style">none</xsl:attribute>
-            <xsl:attribute name="border-right-style">none</xsl:attribute>
-            <xsl:attribute name="border-top-style">solid</xsl:attribute>
-            <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:message>
-              <xsl:text>Impossible frame on table: </xsl:text>
-              <xsl:value-of select="$frame"/>
-            </xsl:message>
-            <xsl:attribute name="border-left-style">none</xsl:attribute>
-            <xsl:attribute name="border-right-style">none</xsl:attribute>
-            <xsl:attribute name="border-top-style">none</xsl:attribute>
-            <xsl:attribute name="border-bottom-style">none</xsl:attribute>
-          </xsl:otherwise>
-        </xsl:choose>
-
+        <xsl:call-template name="table.frame"/>
         <xsl:if test="count($prop-columns) != 0">
           <xsl:attribute name="table-layout">fixed</xsl:attribute>
         </xsl:if>
@@ -168,58 +177,7 @@
     </xsl:attribute>
 
     <fo:table>
-      <xsl:variable name="frame">
-        <xsl:choose>
-          <xsl:when test="@frame">
-            <xsl:value-of select="@frame"/>
-          </xsl:when>
-          <xsl:otherwise>all</xsl:otherwise>
-        </xsl:choose>
-      </xsl:variable>
-
-      <xsl:choose>
-        <xsl:when test="$frame='all'">
-          <xsl:attribute name="border-left-style">solid</xsl:attribute>
-          <xsl:attribute name="border-right-style">solid</xsl:attribute>
-          <xsl:attribute name="border-top-style">solid</xsl:attribute>
-          <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
-        </xsl:when>
-        <xsl:when test="$frame='bottom'">
-          <xsl:attribute name="border-left-style">none</xsl:attribute>
-          <xsl:attribute name="border-right-style">none</xsl:attribute>
-          <xsl:attribute name="border-top-style">none</xsl:attribute>
-          <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
-        </xsl:when>
-        <xsl:when test="$frame='sides'">
-          <xsl:attribute name="border-left-style">solid</xsl:attribute>
-          <xsl:attribute name="border-right-style">solid</xsl:attribute>
-          <xsl:attribute name="border-top-style">none</xsl:attribute>
-          <xsl:attribute name="border-bottom-style">none</xsl:attribute>
-        </xsl:when>
-        <xsl:when test="$frame='top'">
-          <xsl:attribute name="border-left-style">none</xsl:attribute>
-          <xsl:attribute name="border-right-style">none</xsl:attribute>
-          <xsl:attribute name="border-top-style">solid</xsl:attribute>
-          <xsl:attribute name="border-bottom-style">none</xsl:attribute>
-        </xsl:when>
-        <xsl:when test="$frame='topbot'">
-          <xsl:attribute name="border-left-style">none</xsl:attribute>
-          <xsl:attribute name="border-right-style">none</xsl:attribute>
-          <xsl:attribute name="border-top-style">solid</xsl:attribute>
-          <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:message>
-            <xsl:text>Impossible frame on informaltable: </xsl:text>
-            <xsl:value-of select="$frame"/>
-          </xsl:message>
-          <xsl:attribute name="border-left-style">none</xsl:attribute>
-          <xsl:attribute name="border-right-style">none</xsl:attribute>
-          <xsl:attribute name="border-top-style">none</xsl:attribute>
-          <xsl:attribute name="border-bottom-style">none</xsl:attribute>
-        </xsl:otherwise>
-      </xsl:choose>
-
+      <xsl:call-template name="table.frame"/>
       <xsl:if test="count($prop-columns) != 0">
         <xsl:attribute name="table-layout">fixed</xsl:attribute>
       </xsl:if>
