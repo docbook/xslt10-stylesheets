@@ -4,22 +4,21 @@
 
 <xsl:import href="slides-common.xsl"/>
 
-<xsl:param name="toc.width" select="100"/>
+<xsl:param name="but-fforward.png"  select="'active/but-fforward.png'"/>
+<xsl:param name="but-info.png"      select="'active/but-info.png'"/>
+<xsl:param name="but-next.png"      select="'active/but-next.png'"/>
+<xsl:param name="but-prev.png"      select="'active/but-prev.png'"/>
+<xsl:param name="but-rewind.png"    select="'active/but-rewind.png'"/>
 
-<xsl:param name="but-fforward.png" select="'active/but-fforward.png'"/>
-<xsl:param name="but-info.png" select="'active/but-info.png'"/>
-<xsl:param name="but-next.png" select="'active/but-next.png'"/>
-<xsl:param name="but-prev.png" select="'active/but-prev.png'"/>
-<xsl:param name="but-rewind.png" select="'active/but-rewind.png'"/>
 <xsl:param name="but-xfforward.png" select="'inactive/but-fforward.png'"/>
-<xsl:param name="but-xinfo.png" select="'inactive/but-info.png'"/>
-<xsl:param name="but-xnext.png" select="'inactive/but-next.png'"/>
-<xsl:param name="but-xprev.png" select="'inactive/but-prev.png'"/>
-<xsl:param name="but-xrewind.png" select="'inactive/but-rewind.png'"/>
+<xsl:param name="but-xinfo.png"     select="'inactive/but-info.png'"/>
+<xsl:param name="but-xnext.png"     select="'inactive/but-next.png'"/>
+<xsl:param name="but-xprev.png"     select="'inactive/but-prev.png'"/>
+<xsl:param name="but-xrewind.png"   select="'inactive/but-rewind.png'"/>
 
 <!-- overrides for this stylesheet -->
 <xsl:param name="titlefoil.html" select="concat('index', $html.ext)"/>
-<xsl:param name="toc.width" select="20"/>
+<xsl:param name="toc.width" select="40"/>
 
 <!-- ============================================================ -->
 
@@ -31,11 +30,14 @@
       <html>
         <head>
           <title><xsl:value-of select="slidesinfo/title"/></title>
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
+          <xsl:if test="$css.stylesheet != ''">
+            <link type="text/css" rel="stylesheet">
+              <xsl:attribute name="href">
+                <xsl:call-template name="css.stylesheet"/>
+              </xsl:attribute>
+            </link>
+          </xsl:if>
+          <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
           <xsl:call-template name="links">
             <xsl:with-param name="next" select="/slides"/>
@@ -43,7 +45,9 @@
           </xsl:call-template>
 
           <xsl:if test="$keyboard.nav != 0">
-            <script language="JavaScript1.2" type="text/javascript"/>
+            <script language="JavaScript1.2" type="text/javascript">
+              <xsl:text> </xsl:text>
+            </script>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0">
@@ -114,11 +118,14 @@
       <html>
         <head>
           <title><xsl:value-of select="title"/></title>
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
+          <xsl:if test="$css.stylesheet != ''">
+            <link type="text/css" rel="stylesheet">
+              <xsl:attribute name="href">
+                <xsl:call-template name="css.stylesheet"/>
+              </xsl:attribute>
+            </link>
+          </xsl:if>
+          <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
           <xsl:call-template name="links">
             <xsl:with-param name="next" select="(/slides/foil|/slides/foilgroup)[1]"/>
@@ -126,7 +133,9 @@
           </xsl:call-template>
 
           <xsl:if test="$keyboard.nav != 0">
-            <script language="JavaScript1.2" type="text/javascript"/>
+            <script language="JavaScript1.2" type="text/javascript">
+              <xsl:text> </xsl:text>
+            </script>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0">
@@ -143,6 +152,11 @@
         </head>
         <body class="titlepage">
           <xsl:call-template name="body.attributes"/>
+          <xsl:if test="$keyboard.nav != 0">
+            <xsl:attribute name="onkeypress">
+              <xsl:text>navigate(event)</xsl:text>
+            </xsl:attribute>
+          </xsl:if>
 
           <table border="0" width="100%" summary="Navigation and body table"
                  cellpadding="0" cellspacing="0">
@@ -198,11 +212,14 @@
     <xsl:with-param name="content">
       <head>
         <title><xsl:value-of select="title"/></title>
-        <link type="text/css" rel="stylesheet">
-          <xsl:attribute name="href">
-            <xsl:call-template name="css.stylesheet"/>
-          </xsl:attribute>
-        </link>
+        <xsl:if test="$css.stylesheet != ''">
+          <link type="text/css" rel="stylesheet">
+            <xsl:attribute name="href">
+              <xsl:call-template name="css.stylesheet"/>
+            </xsl:attribute>
+          </link>
+        </xsl:if>
+        <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
         <xsl:call-template name="links">
           <xsl:with-param name="prev" select="$prevfoil"/>
@@ -210,7 +227,9 @@
         </xsl:call-template>
 
         <xsl:if test="$keyboard.nav != 0">
-          <script language="JavaScript1.2" type="text/javascript"/>
+          <script language="JavaScript1.2" type="text/javascript">
+            <xsl:text> </xsl:text>
+          </script>
         </xsl:if>
 
         <xsl:if test="$keyboard.nav != 0">
@@ -227,6 +246,11 @@
       </head>
       <body class="foilgroup">
         <xsl:call-template name="body.attributes"/>
+        <xsl:if test="$keyboard.nav != 0">
+          <xsl:attribute name="onkeypress">
+            <xsl:text>navigate(event)</xsl:text>
+          </xsl:attribute>
+        </xsl:if>
 
         <table border="0" width="100%" summary="Navigation and body table"
                cellpadding="0" cellspacing="0">
@@ -290,12 +314,14 @@
     <xsl:with-param name="content">
       <head>
         <title><xsl:value-of select="title"/></title>
-
-        <link type="text/css" rel="stylesheet">
-          <xsl:attribute name="href">
-            <xsl:call-template name="css.stylesheet"/>
-          </xsl:attribute>
-        </link>
+        <xsl:if test="$css.stylesheet != ''">
+          <link type="text/css" rel="stylesheet">
+            <xsl:attribute name="href">
+              <xsl:call-template name="css.stylesheet"/>
+            </xsl:attribute>
+          </link>
+        </xsl:if>
+        <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
         <xsl:call-template name="links">
           <xsl:with-param name="prev" select="$prevfoil"/>
@@ -303,7 +329,9 @@
         </xsl:call-template>
 
         <xsl:if test="$keyboard.nav != 0">
-          <script language="JavaScript1.2" type="text/javascript"/>
+          <script language="JavaScript1.2" type="text/javascript">
+            <xsl:text> </xsl:text>
+          </script>
         </xsl:if>
 
         <xsl:if test="$keyboard.nav != 0">
@@ -320,6 +348,11 @@
       </head>
       <body class="foil">
         <xsl:call-template name="body.attributes"/>
+        <xsl:if test="$keyboard.nav != 0">
+          <xsl:attribute name="onkeypress">
+            <xsl:text>navigate(event)</xsl:text>
+          </xsl:attribute>
+        </xsl:if>
 
         <table border="0" width="100%" summary="Navigation and body table"
                cellpadding="0" cellspacing="0">
