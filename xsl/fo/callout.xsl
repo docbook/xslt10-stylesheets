@@ -94,6 +94,7 @@
   <!-- "over there" as if it were "right here" -->
 
   <xsl:variable name="co" select="key('id', @linkend)"/>
+  <xsl:variable name="id" select="@id"/>
   <xsl:choose>
     <xsl:when test="not($co)">
       <xsl:message>
@@ -108,7 +109,14 @@
       </xsl:message>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates select="$co"/>
+      <fo:inline>
+        <xsl:if test="$id != ''">
+	  <xsl:attribute name="id">
+	    <xsl:value-of select="$id"/>
+	  </xsl:attribute>
+	</xsl:if>
+        <xsl:apply-templates select="$co" mode="callout-bug"/>
+      </fo:inline>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
