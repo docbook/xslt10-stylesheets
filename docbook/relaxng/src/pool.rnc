@@ -1,7 +1,4 @@
-# (Part of) A prototype DocBook V.next RELAX NG grammar.
-
-# Deleted:
-#   action
+# This file is part of DocBook NG: The "Absinthe" Release.
 
 # This schema is a "work-in-progress". It validates a DocBook-like grammar that
 # may, in some incarnation, form the basis for DocBook V.next. Or it may not.
@@ -9,14 +6,11 @@
 # value at all.
 #
 # Author: Norman Walsh, <ndw@nwalsh.com>
-# Source: Derived from DocBook XML V4.1 and V4.2
+# Source: Derived from DocBook XML V4.3
 # Release: $Id$
 #
 
 # TEI:
-#
-# 
-#
 #
 # addrPart = address contents
 # agent = individuals or corporations?
