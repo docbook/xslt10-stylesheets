@@ -12,6 +12,9 @@
 
 <para>Self-referencial xref: <xref linkend="section"/>.</para>
 <para>And a <link linkend="section">link, too</link>.</para>
+<para id="foopara" xreflabel="foo">This is a test para about foo.</para>
+<para>Can I link to a random element with an xreflabel:
+<xref linkend="foopara"/>.</para>
 
 </section>
 

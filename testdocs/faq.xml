@@ -2,7 +2,7 @@
 <!DOCTYPE article
   PUBLIC "-//OASIS//DTD DocBook XML V4.1//EN"
   "http://www.oasis-open.org/docbook/xml/4.1/docbookx.dtd" >
-<article class="faq">
+<article id="xyzzy" class="faq">
   <articleinfo>
     <title>An xref to a Question</title>
     <author>
