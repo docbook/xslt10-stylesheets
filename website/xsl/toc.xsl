@@ -51,7 +51,7 @@
           <xsl:value-of select="$currentpage.marker"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:text>Home</xsl:text>
+          <xsl:call-template name="gentext.nav.home"/>
           <xsl:value-of select="$currentpage.marker"/>
         </xsl:otherwise>
       </xsl:choose>
@@ -74,7 +74,7 @@
             <xsl:value-of select="$bannertext/@value"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:text>Home</xsl:text>
+            <xsl:call-template name="gentext.nav.home"/>
           </xsl:otherwise>
         </xsl:choose>
       </a>
