@@ -143,7 +143,7 @@
 
 <xsl:template name="toc-rel-path">
   <xsl:param name="pageid" select="@id"/>
-  <xsl:variable name="entry" select="//*[@id=$pageid]"/>
+  <xsl:variable name="entry" select="$autolayout//*[@id=$pageid]"/>
   <xsl:variable name="filename" select="concat($entry/@dir,$entry/@filename)"/>
 
   <xsl:variable name="depth">
