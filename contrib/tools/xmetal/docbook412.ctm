@@ -7,7 +7,7 @@
       <MaxLineLength>70</MaxLineLength>
     </GlobalPrettyPrintOptions>
     <ElementProperties>
-      <Name>ebstract</Name>
+      <Name>abstract</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <NewLineBeforeEndTag/>
