@@ -129,20 +129,49 @@
 
 <xsl:template match="question">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+
   <xsl:variable name="entry.id">
     <xsl:call-template name="object.id">
       <xsl:with-param name="object" select="parent::*"/>
     </xsl:call-template>
   </xsl:variable>
 
+  <xsl:variable name="deflabel">
+    <xsl:choose>
+      <xsl:when test="ancestor-or-self::*[@defaultlabel]">
+        <xsl:value-of select="(ancestor-or-self::*[@defaultlabel])[last()]
+                              /@defaultlabel"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="qanda.defaultlabel"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <fo:list-item id="{$entry.id}" xsl:use-attribute-sets="list.item.spacing">
     <fo:list-item-label id="{$id}" end-indent="label-end()">
-      <fo:block>
-        <xsl:call-template name="question.answer.label"/>
-      </fo:block>
+      <xsl:choose>
+        <xsl:when test="$deflabel = 'none'">
+          <fo:block/>
+        </xsl:when>
+        <xsl:otherwise>
+          <fo:block>
+            <xsl:apply-templates select="." mode="label.markup"/>
+          </fo:block>
+        </xsl:otherwise>
+      </xsl:choose>
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
-      <xsl:apply-templates/>
+      <xsl:choose>
+        <xsl:when test="$deflabel = 'none'">
+          <fo:block font-weight="bold">
+            <xsl:apply-templates select="*[local-name(.)!='label']"/>
+          </fo:block>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="*[local-name(.)!='label']"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </fo:list-item-body>
   </fo:list-item>
 </xsl:template>
@@ -155,14 +184,33 @@
     </xsl:call-template>
   </xsl:variable>
 
+  <xsl:variable name="deflabel">
+    <xsl:choose>
+      <xsl:when test="ancestor-or-self::*[@defaultlabel]">
+        <xsl:value-of select="(ancestor-or-self::*[@defaultlabel])[last()]
+                              /@defaultlabel"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="qanda.defaultlabel"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <fo:list-item xsl:use-attribute-sets="list.item.spacing">
     <fo:list-item-label id="{$id}" end-indent="label-end()">
-      <fo:block>
-        <xsl:call-template name="question.answer.label"/>
-      </fo:block>
+      <xsl:choose>
+        <xsl:when test="$deflabel = 'none'">
+          <fo:block/>
+        </xsl:when>
+        <xsl:otherwise>
+          <fo:block>
+            <xsl:apply-templates select="." mode="label.markup"/>
+          </fo:block>
+        </xsl:otherwise>
+      </xsl:choose>
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
-      <xsl:apply-templates/>
+      <xsl:apply-templates select="*[local-name(.)!='label']"/>
     </fo:list-item-body>
   </fo:list-item>
 </xsl:template>
