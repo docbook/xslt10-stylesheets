@@ -156,15 +156,15 @@
       <xsl:when test="$dbhtml-filename != ''">
         <xsl:value-of select="$dbhtml-filename"/>
       </xsl:when>
+      <!-- if this is the root element, use the root.filename -->
+      <xsl:when test="not(parent::*) and $root.filename != ''">
+        <xsl:value-of select="$root.filename"/>
+        <xsl:value-of select="$html.ext"/>
+      </xsl:when>
       <!-- if there's no dbhtml filename, and if we're to use IDs as -->
       <!-- filenames, then use the ID to generate the filename. -->
       <xsl:when test="@id and $use.id.as.filename != 0">
         <xsl:value-of select="@id"/>
-        <xsl:value-of select="$html.ext"/>
-      </xsl:when>
-      <!-- if this is the root element, use the root.filename -->
-      <xsl:when test="not(parent::*)">
-        <xsl:value-of select="$root.filename"/>
         <xsl:value-of select="$html.ext"/>
       </xsl:when>
       <xsl:otherwise></xsl:otherwise>
