@@ -31,7 +31,6 @@
     </xsl:when>
     <xsl:otherwise>
       <fo:block id="{$id}">
-        <xsl:call-template name="component.separator"/>
         <xsl:call-template name="index.titlepage"/>
         <xsl:apply-templates/>
         <xsl:if test="count(indexentry) = 0 and count(indexdiv) = 0">
@@ -184,25 +183,41 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template name="indexdiv.title">
+  <xsl:param name="title"/>
+  <xsl:param name="titlecontent"/>
+
+  <fo:block margin-left="{$title.margin.left}"
+	    font-size="14.4pt"
+            font-family="{$title.font.family}"
+            font-weight="bold"
+            keep-with-next.within-column="always"
+            space-before.optimum="{$body.font.master}pt"
+            space-before.minimum="{$body.font.master * 0.8}pt"
+            space-before.maximum="{$body.font.master * 1.2}pt">
+    <xsl:choose>
+      <xsl:when test="$title">
+        <xsl:apply-templates select="$title" mode="object.title.markup">
+          <xsl:with-param name="allow-anchors" select="1"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:copy-of select="$titlecontent"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </fo:block>
+</xsl:template>
+
 <xsl:template match="indexdiv">
   <fo:block>
+    <xsl:call-template name="indexdiv.titlepage"/>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="indexdiv/title">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select=".."/>
-    </xsl:call-template>
-  </xsl:variable>
-  <fo:block font-size="16pt"
-            font-weight="bold"
-            keep-with-next.within-column="always"
-            space-before="1em">
-    <xsl:apply-templates/>
-  </fo:block>
-</xsl:template>
+<xsl:template match="indexdiv/title"/>
+<xsl:template match="indexdiv/subtitle"/>
+<xsl:template match="indexdiv/titleabbrev"/>
 
 <!-- ==================================================================== -->
 
