@@ -11,8 +11,6 @@ all:
 	make -C extensions jars
 
 distrib:
-	make -C example clean
-	make -C example TEXTONLY=1 clean
 	make -C example all
 	$(CVS2LOG) -w
 ifeq ($(DIFFVER),)
@@ -29,7 +27,7 @@ else
 endif
 	make distrib
 
-zip: distrib
+zip:
 ifeq ($(ZIPVER),)
 	@echo You must specify ZIPVER for the zip target
 else
