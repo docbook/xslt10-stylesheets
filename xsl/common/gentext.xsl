@@ -115,52 +115,64 @@
 
 <!-- ============================================================ -->
 
+<xsl:template match="*" mode="is.autonumber">
+  <xsl:value-of select="'0'"/>
+</xsl:template>
+
+<xsl:template match="section|sect1|sect2|sect3|sect4|sect5" 
+              mode="is.autonumber">
+  <xsl:value-of select="$section.autolabel"/>
+</xsl:template>
+
+<xsl:template match="figure|example|table|equation" mode="is.autonumber">
+  <xsl:value-of select="'1'"/>
+</xsl:template>
+
+<xsl:template match="appendix" mode="is.autonumber">
+  <xsl:value-of select="$appendix.autolabel"/>
+</xsl:template>
+
+<xsl:template match="chapter" mode="is.autonumber">
+  <xsl:value-of select="$chapter.autolabel"/>
+</xsl:template>
+
+<xsl:template match="part" mode="is.autonumber">
+  <xsl:value-of select="$part.autolabel"/>
+</xsl:template>
+
+<xsl:template match="preface" mode="is.autonumber">
+  <xsl:value-of select="$preface.autolabel"/>
+</xsl:template>
+
+<xsl:template match="question|answer" mode="is.autonumber">
+  <xsl:choose>
+    <xsl:when test="$qanda.defaultlabel = 'number'
+                    and not(label)">
+      <xsl:value-of select="'1'"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="'0'"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="qandadiv" mode="is.autonumber">
+  <xsl:value-of select="$qandadiv.autolabel"/>
+</xsl:template>
+
+<xsl:template match="bridgehead" mode="is.autonumber">
+  <xsl:value-of select="$section.autolabel"/>
+</xsl:template>
+
 <xsl:template match="*" mode="object.xref.template">
   <xsl:param name="purpose"/>
   <xsl:param name="xrefstyle"/>
   <xsl:param name="referrer"/>
 
-  <xsl:variable name="number-and-title-template">
-    <xsl:call-template name="gentext.template.exists">
-      <xsl:with-param name="context" select="'xref-number-and-title'"/>
-      <xsl:with-param name="name">
-        <xsl:call-template name="xpath.location"/>
-      </xsl:with-param>
-    </xsl:call-template>
+  <!-- Is autonumbering on? -->
+  <xsl:variable name="autonumber">
+    <xsl:apply-templates select="." mode="is.autonumber"/>
   </xsl:variable>
-
-  <xsl:choose>
-    <xsl:when test="$number-and-title-template != 0
-                    and $xref.with.number.and.title != 0">
-      <xsl:call-template name="gentext.template">
-        <xsl:with-param name="context" select="'xref-number-and-title'"/>
-        <xsl:with-param name="name">
-          <xsl:call-template name="xpath.location"/>
-        </xsl:with-param>
-        <xsl:with-param name="purpose" select="$purpose"/>
-        <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
-        <xsl:with-param name="referrer" select="$referrer"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="gentext.template">
-        <xsl:with-param name="context" select="'xref'"/>
-        <xsl:with-param name="name">
-          <xsl:call-template name="xpath.location"/>
-        </xsl:with-param>
-        <xsl:with-param name="purpose" select="$purpose"/>
-        <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
-        <xsl:with-param name="referrer" select="$referrer"/>
-      </xsl:call-template>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-<xsl:template match="section|simplesect
-                     |sect1|sect2|sect3|sect4|sect5
-                     |refsect1|refsect2|refsect3
-                     |bridgehead"
-              mode="object.xref.template">
 
   <xsl:variable name="number-and-title-template">
     <xsl:call-template name="gentext.template.exists">
@@ -171,35 +183,44 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:choose>
-    <xsl:when test="$number-and-title-template != 0
-                    and $section.autolabel != 0
-                    and $xref.with.number.and.title != 0">
-      <xsl:call-template name="gentext.template">
-        <xsl:with-param name="context" select="'xref-number-and-title'"/>
-        <xsl:with-param name="name">
-          <xsl:call-template name="xpath.location"/>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:when test="$section.autolabel != 0">
-      <xsl:call-template name="gentext.template">
-        <xsl:with-param name="context" select="'section-xref-numbered'"/>
-        <xsl:with-param name="name">
-          <xsl:call-template name="xpath.location"/>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="gentext.template">
-        <xsl:with-param name="context" select="'section-xref'"/>
-        <xsl:with-param name="name">
-          <xsl:call-template name="xpath.location"/>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:variable name="number-template">
+    <xsl:call-template name="gentext.template.exists">
+      <xsl:with-param name="context" select="'xref-number'"/>
+      <xsl:with-param name="name">
+        <xsl:call-template name="xpath.location"/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="context">
+    <xsl:choose>
+      <xsl:when test="$autonumber != 0 
+                      and $number-and-title-template != 0
+                      and $xref.with.number.and.title != 0">
+         <xsl:value-of select="'xref-number-and-title'"/>
+      </xsl:when>
+      <xsl:when test="$autonumber != 0 
+                      and $number-template != 0">
+         <xsl:value-of select="'xref-number'"/>
+      </xsl:when>
+      <xsl:otherwise>
+         <xsl:value-of select="'xref'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:call-template name="gentext.template">
+    <xsl:with-param name="context" select="$context"/>
+    <xsl:with-param name="name">
+      <xsl:call-template name="xpath.location"/>
+    </xsl:with-param>
+    <xsl:with-param name="purpose" select="$purpose"/>
+    <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+    <xsl:with-param name="referrer" select="$referrer"/>
+  </xsl:call-template>
+
 </xsl:template>
+
 
 <!-- ============================================================ -->
 
@@ -263,14 +284,28 @@
   <xsl:param name="referrer"/>
 
   <xsl:variable name="template">
-    <xsl:apply-templates select="." mode="object.xref.template">
-      <xsl:with-param name="purpose" select="$purpose"/>
-      <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
-      <xsl:with-param name="referrer" select="$referrer"/>
-    </xsl:apply-templates>
+    <xsl:choose>
+      <xsl:when test="starts-with(normalize-space($xrefstyle), 'select:')">
+        <xsl:call-template name="make.gentext.template">
+          <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+          <xsl:with-param name="purpose" select="$purpose"/>
+          <xsl:with-param name="referrer" select="$referrer"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="starts-with(normalize-space($xrefstyle), 'template:')">
+        <xsl:value-of select="substring-after(normalize-space($xrefstyle), 'template:')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="." mode="object.xref.template">
+          <xsl:with-param name="purpose" select="$purpose"/>
+          <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+          <xsl:with-param name="referrer" select="$referrer"/>
+        </xsl:apply-templates>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
 
-<!--
+<!-- 
   <xsl:message>
     <xsl:text>object.xref.markup: </xsl:text>
     <xsl:value-of select="local-name(.)"/>
@@ -284,6 +319,17 @@
     <xsl:text>]</xsl:text>
   </xsl:message>
 -->
+
+  <xsl:if test="$template = ''">
+    <xsl:message>
+      <xsl:text>object.xref.markup: empty xref template</xsl:text>
+      <xsl:text> for linkend="</xsl:text>
+      <xsl:value-of select="@id"/>
+      <xsl:text>" and @xrefstyle="</xsl:text>
+      <xsl:value-of select="$xrefstyle"/>
+      <xsl:text>"</xsl:text>
+    </xsl:message>
+  </xsl:if>
 
   <xsl:call-template name="substitute-markup">
     <xsl:with-param name="purpose" select="$purpose"/>
@@ -463,5 +509,158 @@
 </xsl:template>
 
 <!-- ============================================================ -->
+
+<xsl:template name="make.gentext.template">
+  <xsl:param name="xrefstyle" select="''"/>
+  <xsl:param name="purpose"/>
+  <xsl:param name="referrer"/>
+  <xsl:param name="lang">
+    <xsl:call-template name="l10n.language"/>
+  </xsl:param>
+
+  <!-- parse xrefstyle to get parts -->
+  <xsl:variable name="parts"
+      select="substring-after(normalize-space($xrefstyle), 'select:')"/>
+
+  <xsl:variable name="labeltype">
+    <xsl:choose>
+      <xsl:when test="contains($parts, 'labelnumber')">
+         <xsl:text>labelnumber</xsl:text>
+      </xsl:when>
+      <xsl:when test="contains($parts, 'labelname')">
+         <xsl:text>labelname</xsl:text>
+      </xsl:when>
+      <xsl:when test="contains($parts, 'label')">
+         <xsl:text>label</xsl:text>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="titletype">
+    <xsl:choose>
+      <xsl:when test="contains($parts, 'quotedtitle')">
+         <xsl:text>quotedtitle</xsl:text>
+      </xsl:when>
+      <xsl:when test="contains($parts, 'title')">
+         <xsl:text>title</xsl:text>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="pagetype">
+    <xsl:choose>
+      <xsl:when test="$insert.xref.page.number = 'no'">
+        <!-- suppress page numbers -->
+      </xsl:when>
+      <xsl:when test="contains($parts, 'nopage')">
+         <xsl:text>nopage</xsl:text>
+      </xsl:when>
+      <xsl:when test="contains($parts, 'pagenumber')">
+         <xsl:text>pagenumber</xsl:text>
+      </xsl:when>
+      <xsl:when test="contains($parts, 'pageabbrev')">
+         <xsl:text>pageabbrev</xsl:text>
+      </xsl:when>
+      <xsl:when test="contains($parts, 'Page')">
+         <xsl:text>Page</xsl:text>
+      </xsl:when>
+      <xsl:when test="contains($parts, 'page')">
+         <xsl:text>page</xsl:text>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:if test="$labeltype != ''">
+    <xsl:choose>
+      <xsl:when test="$labeltype = 'labelname'">
+        <xsl:call-template name="gentext"/>
+      </xsl:when>
+      <xsl:when test="$labeltype = 'labelnumber'">
+        <xsl:text>%n</xsl:text>
+      </xsl:when>
+      <xsl:when test="$labeltype = 'label'">
+        <xsl:call-template name="gentext.template">
+          <xsl:with-param name="context" select="'xref-number'"/>
+          <xsl:with-param name="name">
+            <xsl:call-template name="xpath.location"/>
+          </xsl:with-param>
+          <xsl:with-param name="purpose" select="$purpose"/>
+          <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+          <xsl:with-param name="referrer" select="$referrer"/>
+        </xsl:call-template>
+      </xsl:when>
+    </xsl:choose>
+
+    <xsl:choose>
+      <xsl:when test="$titletype != ''">
+        <xsl:value-of select="$xref.label-title.separator"/>
+      </xsl:when>
+      <xsl:when test="$pagetype != ''">
+        <xsl:value-of select="$xref.label-page.separator"/>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:if>
+
+  <xsl:if test="$titletype != ''">
+    <xsl:choose>
+      <xsl:when test="$titletype = 'title'">
+        <xsl:text>%t</xsl:text>
+      </xsl:when>
+      <xsl:when test="$titletype = 'quotedtitle'">
+        <xsl:call-template name="gentext.dingbat">
+          <xsl:with-param name="dingbat" select="'startquote'"/>
+        </xsl:call-template>
+        <xsl:text>%t</xsl:text>
+        <xsl:call-template name="gentext.dingbat">
+          <xsl:with-param name="dingbat" select="'endquote'"/>
+        </xsl:call-template>
+      </xsl:when>
+    </xsl:choose>
+
+    <xsl:choose>
+      <xsl:when test="$pagetype != '' and $pagetype != 'nopage'">
+        <xsl:value-of select="$xref.title-page.separator"/>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:if>
+  
+  <xsl:if test="$pagetype != ''">
+    <xsl:choose>
+      <!-- special case: use regular xref template -->
+      <xsl:when test="$pagetype = 'nopage' 
+                      and $labeltype = '' 
+                      and $titletype = ''">
+        <xsl:apply-templates select="." mode="object.xref.template">
+          <xsl:with-param name="purpose" select="$purpose"/>
+          <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+          <xsl:with-param name="referrer" select="$referrer"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="$pagetype = 'page'">
+        <xsl:call-template name="gentext.template">
+          <xsl:with-param name="context" select="'xref'"/>
+          <xsl:with-param name="name" select="'page'"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="$pagetype = 'Page'">
+        <xsl:call-template name="gentext.template">
+          <xsl:with-param name="context" select="'xref'"/>
+          <xsl:with-param name="name" select="'Page'"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="$pagetype = 'pageabbrev'">
+        <xsl:call-template name="gentext.template">
+          <xsl:with-param name="context" select="'xref'"/>
+          <xsl:with-param name="name" select="'pageabbrev'"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="$pagetype = 'pagenumber'">
+        <xsl:text>%p</xsl:text>
+      </xsl:when>
+    </xsl:choose>
+
+  </xsl:if>
+
+</xsl:template>
 
 </xsl:stylesheet>
