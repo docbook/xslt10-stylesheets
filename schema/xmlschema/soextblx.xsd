@@ -1,5 +1,5 @@
 <!DOCTYPE xsd:schema SYSTEM
-  "http://www.w3.org/2000/10/XMLSchema.dtd" [
+  "http://www.w3.org/2001/XMLSchema.dtd" [
 
 <!ENTITY % p 'xsd:'>
 <!ENTITY % s ':xsd'>
@@ -10,7 +10,7 @@
 <!-- Copyright 2000, Norman Walsh, Sun Microsystems.  Schema
      derived from DocBook DTD Copyright 1992-2000 HaL Computer....  -->
 
-<xsd:schema xmlns:xsd='http://www.w3.org/2000/10/XMLSchema'
+<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'
   targetNamespace='http://www.oasis-open.org/tables/exchange/1.0'
   xmlns:tbl='http://www.oasis-open.org/tables/exchange/1.0'
   elementFormDefault='qualified'>
