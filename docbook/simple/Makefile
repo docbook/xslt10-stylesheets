@@ -1,7 +1,8 @@
 include ../../cvstools/Makefile.incl
 
 MODULES=sdbcent.mod sdbhier.mod sdbpool.mod sinclist.mod
-VERSION=1.1CR1
+VERSION=
+FMGO=-N
 
 all: sdocbook.dtd sdocbookref.dtd
 
@@ -10,6 +11,14 @@ test:
 	$(XJPARSE) testrefcust.xml
 	$(XJPARSE) test.xml
 	$(XJPARSE) testcss.xml
+
+freshmeat:
+ifeq ($(VERSION),)
+	@echo "You must specify the version (VERSION)"
+else
+	$(XSLT) freshmeat.xsl freshmeat.xsl /tmp/fm-docbook-simple version=$(VERSION)
+	grep -v "<?xml" /tmp/fm-docbook-simple | freshmeat-submit $(FMGO)
+endif
 
 sdocbook.dtd: sdocbook-custom.dtd $(MODULES)
 	$(XJPARSE) tests/testcust.xml
