@@ -250,7 +250,11 @@
 
 <xsl:variable name="default-classsynopsis-language">java</xsl:variable>
 
-<xsl:template match="classsynopsis">
+<xsl:template match="classsynopsis
+                     |fieldsynopsis
+                     |methodsynopsis
+                     |constructorsynopsis
+                     |destructorsynopsis">
   <xsl:param name="language">
     <xsl:choose>
       <xsl:when test="@language">
@@ -277,7 +281,9 @@
     </xsl:when>
     <xsl:otherwise>
       <xsl:message>
-	<xsl:text>Unrecognized language on classsynopsis: </xsl:text>
+	<xsl:text>Unrecognized language on </xsl:text>
+        <xsl:value-of select="name(.)"/>
+        <xsl:text>: </xsl:text>
 	<xsl:value-of select="$language"/>
       </xsl:message>
       <xsl:apply-templates select=".">
@@ -287,6 +293,17 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+
+<xsl:template name="synop-break">
+  <xsl:if test="parent::classsynopsis
+                or (following-sibling::fieldsynopsis
+                    |following-sibling::methodsynopsis
+                    |following-sibling::constructorsynopsis
+                    |following-sibling::destructorsynopsis)">
+    <br/>
+  </xsl:if>
+</xsl:template>
+
 
 <!-- ===== Java ======================================================== -->
 
@@ -374,11 +391,12 @@
 </xsl:template>
 
 <xsl:template match="fieldsynopsis" mode="java">
-  <div class="{name(.)}">
+  <code class="{name(.)}">
     <xsl:text>&nbsp;&nbsp;</xsl:text>
     <xsl:apply-templates mode="java"/>
     <xsl:text>;</xsl:text>
-  </div>
+  </code>
+  <xsl:call-template name="synop-break"/>
 </xsl:template>
 
 <xsl:template match="type" mode="java">
@@ -452,7 +470,7 @@
     <xsl:apply-templates select="methodname" mode="java"/>
   </xsl:variable>
 
-  <div class="{name(.)}">
+  <code class="{name(.)}">
     <xsl:copy-of select="$decl"/>
     <xsl:text>(</xsl:text>
     <xsl:apply-templates select="methodparam" mode="java">
@@ -464,7 +482,8 @@
       <xsl:apply-templates select="exceptionname" mode="java"/>
     </xsl:if>
     <xsl:text>;</xsl:text>
-  </div>
+  </code>
+  <xsl:call-template name="synop-break"/>
 </xsl:template>
 
 <!-- ===== C++ ========================================================= -->
@@ -548,11 +567,12 @@
 </xsl:template>
 
 <xsl:template match="fieldsynopsis" mode="cpp">
-  <div class="{name(.)}">
+  <code class="{name(.)}">
     <xsl:text>&nbsp;&nbsp;</xsl:text>
     <xsl:apply-templates mode="cpp"/>
     <xsl:text>;</xsl:text>
-  </div>
+  </code>
+  <xsl:call-template name="synop-break"/>
 </xsl:template>
 
 <xsl:template match="type" mode="cpp">
@@ -609,7 +629,7 @@
   <xsl:variable name="notmod" select="*[name(.) != 'modifier']"/>
   <xsl:variable name="type">
   </xsl:variable>
-  <div class="{name(.)}">
+  <code class="{name(.)}">
     <xsl:text>  </xsl:text>
     <xsl:apply-templates select="$modifiers" mode="cpp"/>
 
@@ -627,7 +647,8 @@
       <xsl:apply-templates select="exceptionname" mode="cpp"/>
     </xsl:if>
     <xsl:text>;</xsl:text>
-  </div>
+  </code>
+  <xsl:call-template name="synop-break"/>
 </xsl:template>
 
 <!-- ===== IDL ========================================================= -->
@@ -712,11 +733,12 @@
 </xsl:template>
 
 <xsl:template match="fieldsynopsis" mode="idl">
-  <div class="{name(.)}">
+  <code class="{name(.)}">
     <xsl:text>&nbsp;&nbsp;</xsl:text>
     <xsl:apply-templates mode="idl"/>
     <xsl:text>;</xsl:text>
-  </div>
+  </code>
+  <xsl:call-template name="synop-break"/>
 </xsl:template>
 
 <xsl:template match="type" mode="idl">
@@ -773,7 +795,7 @@
   <xsl:variable name="notmod" select="*[name(.) != 'modifier']"/>
   <xsl:variable name="type">
   </xsl:variable>
-  <div class="{name(.)}">
+  <code class="{name(.)}">
     <xsl:text>  </xsl:text>
     <xsl:apply-templates select="$modifiers" mode="idl"/>
 
@@ -792,7 +814,8 @@
       <xsl:text>)</xsl:text>
     </xsl:if>
     <xsl:text>;</xsl:text>
-  </div>
+  </code>
+  <xsl:call-template name="synop-break"/>
 </xsl:template>
 
 <!-- ===== Perl ======================================================== -->
@@ -865,11 +888,12 @@
 </xsl:template>
 
 <xsl:template match="fieldsynopsis" mode="perl">
-  <div class="{name(.)}">
+  <code class="{name(.)}">
     <xsl:text>&nbsp;&nbsp;</xsl:text>
     <xsl:apply-templates mode="perl"/>
     <xsl:text>;</xsl:text>
-  </div>
+  </code>
+  <xsl:call-template name="synop-break"/>
 </xsl:template>
 
 <xsl:template match="type" mode="perl">
@@ -926,12 +950,13 @@
   <xsl:variable name="notmod" select="*[name(.) != 'modifier']"/>
   <xsl:variable name="type">
   </xsl:variable>
-  <div class="{name(.)}">
+  <code class="{name(.)}">
     <xsl:text>sub </xsl:text>
 
     <xsl:apply-templates select="methodname" mode="perl"/>
     <xsl:text> { ... };</xsl:text>
-  </div>
+  </code>
+  <xsl:call-template name="synop-break"/>
 </xsl:template>
 
 <!-- ==================================================================== -->
