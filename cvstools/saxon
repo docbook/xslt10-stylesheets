@@ -164,7 +164,7 @@ fi
 ## optionally replace the URI resolver with the Sun
 ## resolver classes, not yet available to the public?
 ##
-for path in "/projects/sun/resolver/.classes" ; do
+for path in "/projects/apache/xml-commons/java/build/classes" ; do
   if [ -f "$path" -o -d "$path" ]; then
     SUN="$path"
     break
@@ -174,13 +174,13 @@ done
 if [ -f "$SUN" -o -d "$SUN" ]; then
   # use the sun resolver
   if [ ! "$XARG" ]; then
-    XARG="-x com.sun.resolver.tools.ResolvingXMLReader"
+    XARG="-x org.apache.xml.resolver.tools.ResolvingXMLReader"
   fi
   if [ ! "$YARG" ]; then
-    YARG="-y com.sun.resolver.tools.ResolvingXMLReader"
+    YARG="-y org.apache.xml.resolver.tools.ResolvingXMLReader"
   fi
   if [ ! "$RARG" ]; then
-    RARG="-r com.sun.resolver.tools.CatalogResolver"
+    RARG="-r org.apache.xml.resolver.tools.CatalogResolver"
   fi
 fi
 
@@ -217,11 +217,10 @@ if [ ! "$JAXP" ]; then
   done
 fi
 if [ ! "$JAXP" ]; then
-  echo "warning: cannot locate JAXP (jaxp.jar), using /projects/sun/resolver/.classes" 1>&2
-  JAXP="/projects/sun/resolver/.classes"
+  echo "warning: cannot locate JAXP (jaxp.jar)" 1>&2
 fi
 
-RESOLVER="${RESOLVER:-/projects/sun/resolver/.classes}:"
+RESOLVER="${RESOLVER:-/projects/apache/xml-commons/java/build/classes}:"
 
 CLASSPATH=$SAXON:$NDWEXT:$JAXP:$RESOLVER$XERCES:$CLASSPATH
 
