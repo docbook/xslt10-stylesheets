@@ -146,6 +146,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &funcsynopsis.style;
 &function.parens;
 &refentry.generate.name;
+&refentry.generate.title;
 &refentry.xref.manvolnum;
 </reference>
 
@@ -182,6 +183,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &punct.honorific;
 &segmentedlist.as.table;
 &format.variablelist.as.list;
+&blockquote.properties;
 </reference>
 
 <reference><title>FO</title>
@@ -281,6 +283,7 @@ around all these parameters.</para>
 <src:fragref linkend="autotoc.label.separator.frag"/>
 <src:fragref linkend="biblioentry.item.separator.frag"/>
 <src:fragref linkend="bibliography.collection.frag"/>
+<src:fragref linkend="blockquote.properties.frag"/>
 <src:fragref linkend="body.font.family.frag"/>
 <src:fragref linkend="body.font.master.frag"/>
 <src:fragref linkend="body.font.size.frag"/>
@@ -362,6 +365,7 @@ around all these parameters.</para>
 <src:fragref linkend="qanda.inherit.numeration.frag"/>
 <src:fragref linkend="qandadiv.autolabel.frag"/>
 <src:fragref linkend="refentry.generate.name.frag"/>
+<src:fragref linkend="refentry.generate.title.frag"/>
 <src:fragref linkend="refentry.xref.manvolnum.frag"/>
 <src:fragref linkend="region.after.extent.frag"/>
 <src:fragref linkend="region.before.extent.frag"/>
