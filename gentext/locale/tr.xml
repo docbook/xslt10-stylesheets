@@ -9,6 +9,10 @@
           <affiliation><address><email>ibr@gantek.com</email></address>
           </affiliation>
   </author>
+  <author><firstname>Togan</firstname><surname>Muftuoglu</surname>
+          <affiliation><address><email>toganm@users.sourceforge.net</email></address>
+          </affiliation>
+  </author>
 </authorgroup>
 </doc:localeinfo>
 
@@ -20,8 +24,8 @@
 <gentext key="appendix" text="Ek"/>
 <gentext key="Article" text="Makale"/>
 <gentext key="article" text="Makale"/>
-<gentext key="Bibliography" text="Kaynaklar"/>
-<gentext key="bibliography" text="Kaynaklar"/>
+<gentext key="Bibliography" text="Kaynak&#231;a"/>
+<gentext key="bibliography" text="Kaynak&#231;a"/>
 <gentext key="Book" text="Kitap"/>
 <gentext key="book" text="Kitap"/>
 <gentext key="CAUTION" text="D&#221;KKAT"/>
@@ -34,16 +38,16 @@
 <gentext key="colophon" text="Colophon"/>
 <gentext key="Copyright" text="Telif hakk&#253;"/>
 <gentext key="copyright" text="Telif hakk&#253;"/>
-<gentext key="Dedication" text="Adama"/>
-<gentext key="dedication" text="Adama"/>
+<gentext key="Dedication" text="&#221;thaf"/>
+<gentext key="dedication" text="&#221;thaf"/>
 <gentext key="Edition" text="Bask&#253;"/>
 <gentext key="edition" text="Bask&#253;"/>
-<gentext key="Equation" text="Form&#252;l"/>
-<gentext key="equation" text="Form&#252;l"/>
+<gentext key="Equation" text="Denklem"/>
+<gentext key="equation" text="Denklem"/>
 <gentext key="Example" text="&#214;rnek"/>
 <gentext key="example" text="&#214;rnek"/>
-<gentext key="Figure" text="&#199;izim"/>
-<gentext key="figure" text="&#199;izim"/>
+<gentext key="Figure" text="&#222;ekil"/>
+<gentext key="figure" text="&#254;ekil"/>
 <gentext key="GlossSee" text="Bkz."/>
 <gentext key="glosssee" text="Bkz."/>
 <gentext key="GlossSeeAlso" text="Bkz."/>
@@ -74,19 +78,19 @@
 <gentext key="part" text="K&#253;s&#253;m"/>
 <gentext key="Preface" text="&#214;ns&#246;z"/>
 <gentext key="preface" text="&#214;ns&#246;z"/>
-<gentext key="Procedure" text="Yordam"/>
-<gentext key="procedure" text="Yordam"/>
+<gentext key="Procedure" text="Y&#246;nerge"/>
+<gentext key="procedure" text="Y&#246;nerge"/>
 <gentext key="ProductionSet" text="Production"/>
-<gentext key="Published" text="yay&#253;mland&#253;"/>
-<gentext key="published" text="yay&#253;mland&#253;"/>
+<gentext key="Published" text="Yay&#253;mland&#253;"/>
+<gentext key="published" text="Yay&#253;mland&#253;"/>
 <gentext key="Question" text="Soru:"/>
 <gentext key="question" text="Soru:"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
 <gentext key="Reference" text="Referans"/>
 <gentext key="reference" text="Referans"/>
-<gentext key="RefName" text="Name"/>
-<gentext key="refname" text="Name"/>
+<gentext key="RefName" text="Referans Ad&#253;"/>
+<gentext key="refname" text="Referans Ad&#253;"/>
 <gentext key="RefSection" text=""/>
 <gentext key="refsection" text=""/>
 <gentext key="RefSynopsisDiv" text="Synopsis"/>
@@ -95,18 +99,18 @@
 <gentext key="revision" text="Bask&#253;"/>
 <gentext key="RevHistory" text="Bask&#253; Tarih&#231;esi"/>
 <gentext key="revhistory" text="Bask&#253; Tarih&#231;esi"/>
-<gentext key="Section" text="Kesim"/>
-<gentext key="section" text="Kesim"/>
+<gentext key="Section" text="K&#253;s&#253;m"/>
+<gentext key="section" text="K&#253;s&#253;"/>
 <gentext key="See" text="Bkz."/>
 <gentext key="see" text="Bkz."/>
 <gentext key="SeeAlso" text="Bkz."/>
 <gentext key="seealso" text="Bkz."/>
-<gentext key="Set" text="Set"/>
-<gentext key="set" text="Set"/>
-<gentext key="SetIndex" text="Set Index"/>
-<gentext key="setindex" text="Set Index"/>
-<gentext key="Sidebar" text="Yan &#231;izgi"/>
-<gentext key="sidebar" text="Yan &#231;izgi"/>
+<gentext key="Set" text="Tak&#253;m"/>
+<gentext key="set" text="Tak&#253;m"/>
+<gentext key="SetIndex" text="Tak&#253;m Dizini"/>
+<gentext key="setindex" text="Tak&#253;m Dizini"/>
+<gentext key="Sidebar" text="Yan S&#252;tun"/>
+<gentext key="sidebar" text="Yan S&#252;tun"/>
 <gentext key="Step" text="Ad&#253;m"/>
 <gentext key="step" text="Ad&#253;m"/>
 <gentext key="TIP" text="&#221;PUCU"/>
@@ -121,8 +125,8 @@
 <gentext key="warning" text="Uyar&#253;"/>
 <gentext key="appendix" text="ek"/>
 <gentext key="chapter" text="b&#246;l&#252;m"/>
-<gentext key="section" text="kesim"/>
-<gentext key="sidebar" text="yan &#231;izgi"/>
+<gentext key="section" text="k&#253;s&#253;m"/>
+<gentext key="sidebar" text="yan s&#252;tun"/>
 <gentext key="step" text="ad&#253;m"/>
 <gentext key="Seealso" text="Bkz."/>
 <gentext key="seealso" text="Bkz."/>
@@ -131,10 +135,10 @@
 <gentext key="tableofcontents" text="&#221;&#231;indekiler"/>
 <gentext key="in" text=""/>
 <gentext key="by" text=""/>
-<gentext key="Edited" text="Edited"/>
-<gentext key="edited" text="Edited"/>
-<gentext key="Editedby" text="Edited "/>
-<gentext key="editedby" text="Edited "/>
+<gentext key="Edited" text="Yay&#253;na Haz&#253;rlayan"/>
+<gentext key="edited" text="yay&#253;na haz&#253;rlayan"/>
+<gentext key="Editedby" text="Yay&#253;na Haz&#253;rlayan "/>
+<gentext key="editedby" text="Yay&#253;na Haz&#253;rlayan "/>
 <gentext key="and" text="ve"/>
 <gentext key="listcomma" text=","/>
 <gentext key="lastlistcomma" text=","/>
@@ -142,23 +146,23 @@
 <gentext key="notes" text="Notlar"/>
 <gentext key="TableNotes" text="Notlar"/>
 <gentext key="tablenotes" text="Notlar"/>
-<gentext key="nonexistantelement" text="non-existant element"/>
+<gentext key="nonexistantelement" text="var olmayan eleman"/>
 <gentext key="Pgs" text="Sayfa"/>
 <gentext key="pgs" text="Sayfa"/>
-<gentext key="unsupported" text="unsupported"/>
+<gentext key="unsupported" text="desteklenmiyor"/>
 <gentext key="xrefto" text="xref to"/>
-<gentext key="unexpectedelementname" text="Unexpected element name"/>
-<gentext key="Revisedby" text="Revised by: "/>
-<gentext key="revisedby" text="Revised by: "/>
+<gentext key="unexpectedelementname" text="Beklenmedik eleman ad&#253;"/>
+<gentext key="Revisedby" text="D&#252;zeltmeler: "/>
+<gentext key="revisedby" text="D&#252;zeltmeler: "/>
 
 <gentext key="ListofTables" text="Tablolar"/>
 <gentext key="listoftables" text="Tablolar"/>
 <gentext key="ListofExamples" text="&#214;rnekler"/>
 <gentext key="listofexamples" text="&#214;rnekler"/>
-<gentext key="ListofFigures" text="&#199;izimler"/>
-<gentext key="listoffigures" text="&#199;izimler"/>
-<gentext key="ListofEquations" text="Form&#252;ller"/>
-<gentext key="listofequations" text="Form&#252;ller"/>
+<gentext key="ListofFigures" text="&#222;ekiller"/>
+<gentext key="listoffigures" text="&#222;ekiller"/>
+<gentext key="ListofEquations" text="Denklemler"/>
+<gentext key="listofequations" text="Denklemler"/>
 <gentext key="ListofUnknown" text="Bilinmeyenler"/>
 <gentext key="listofunknown" text="Bilinmeyenler"/>
 
@@ -169,9 +173,9 @@
 <gentext key="nav-up" text="Yukar&#253;"/>
 <gentext key="nav-home" text="Ba&#254;lang&#253;&#231;"/>
 
-<gentext key="sectioncalled"       text="the section called"/>
+<gentext key="sectioncalled"       text=""/>
 
-<gentext key="index symbols"            text="Symbols"/>
+<gentext key="index symbols"            text="Semboller"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>

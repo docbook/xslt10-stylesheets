@@ -234,6 +234,7 @@
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
 <template name="warning">%t</template>
+<template name="question">Pergunta %n</template>
 
 </context>
 

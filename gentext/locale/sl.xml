@@ -320,6 +320,7 @@
 <template name="set">%t</template>
 <template name="setindex">%t</template>
 <template name="table"><Table/> %n. %t</template>
+<template name="question"><Question/> %n</template>
 
 </context>
 

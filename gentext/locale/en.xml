@@ -167,6 +167,9 @@
 
 <gentext key="index symbols"            text="Symbols"/>
 
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
+
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
 <dingbat key="nestedstartquote" text="&#x2018;"/>
@@ -265,7 +268,7 @@
 <template name="sect4">%n. %t</template>
 <template name="sect5">%n. %t</template>
 <template name="section">%n. %t</template>
-<template name="simplesect">%n. %t</template>
+<template name="simplesect">%t</template>
 <template name="bridgehead">%n. %t</template>
 
 </context>
