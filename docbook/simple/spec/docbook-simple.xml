@@ -1,6 +1,6 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-<!ENTITY standard "Working Draft">
+<!ENTITY standard "Committee Specification">
 <!ENTITY tracker "http://sourceforge.net/tracker/">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
 ]>
@@ -8,12 +8,12 @@
 <article status="&standard;">
 
 <articleinfo>
-<productname>wd-docbook-simple</productname>
-<productnumber>1.0-CR3</productnumber>
+<productname>cs-docbook-simple</productname>
+<productnumber>1.0</productnumber>
 
-<releaseinfo role="product"><ulink url="wd-docbook-simple-1.0-CR3.xml">XML</ulink></releaseinfo>
-<releaseinfo role="product"><ulink url="wd-docbook-simple-1.0-CR3.html">HTML</ulink></releaseinfo>
-<releaseinfo role="product"><ulink url="wd-docbook-simple-1.0-CR3.pdf">PDF</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="cs-docbook-simple-1.0.xml">XML</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="cs-docbook-simple-1.0.html">HTML</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="cs-docbook-simple-1.0.pdf">PDF</ulink></releaseinfo>
 
 <releaseinfo role="location">http://www.oasis-open.org/docbook/specs</releaseinfo>
 
@@ -30,7 +30,7 @@
 </editor>
 </authorgroup>
 
-<pubdate>12 Sep 2002</pubdate>
+<pubdate>19 Nov 2002</pubdate>
 
 <copyright><year>2001</year><year>2002</year>
 <holder>OASIS Open, Inc. All Rights Reserved.</holder></copyright>
@@ -127,7 +127,7 @@ document.</para>
 </section>
 
 <section id="docbook">
-<title>The Simplified DocBook Document Type V1.0CR3</title>
+<title>The Simplified DocBook Document Type V1.0</title>
 
 <para>The Simplified DocBook document type is a subset of
 <xref linkend="bib.docbook42"/>.
@@ -142,8 +142,8 @@ It is distributed from the
 <para>To use this document type, specify the public and system identifiers
 in your document type declaration. For example:</para>
 
-<screen><![CDATA[<!DOCTYPE article PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.0CR3//EN"
-                  "http://www.oasis-open.org/docbook/xml/simple/1.0CR3/sdocbook.dtd">]]></screen>
+<screen><![CDATA[<!DOCTYPE article PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.0//EN"
+                  "http://www.oasis-open.org/docbook/xml/simple/1.0/sdocbook.dtd">]]></screen>
 
 <para>Naturally, you can include an internal subset if you wish.</para>
 
@@ -151,11 +151,18 @@ in your document type declaration. For example:</para>
 public and system identifiers of this module's customization layer in your own. For
 example:</para>
 
-<screen><![CDATA[<!DOCTYPE % sdocbook PUBLIC "-//OASIS//DTD Simplified DocBook XML Customization V1.0CR3//EN"
-                  "http://www.oasis-open.org/docbook/xml/simple/1.0CR3/sdocbook-custom.dtd">
+<screen><![CDATA[<!DOCTYPE % sdocbook PUBLIC "-//OASIS//DTD Simplified DocBook XML Customization V1.0//EN"
+                  "http://www.oasis-open.org/docbook/xml/simple/1.0/sdocbook-custom.dtd">
 %sdocbook;]]></screen>
 
 </section>
+</section>
+
+<section id="s.changes">
+<title>Changes in DocBook V1.0</title>
+
+<para>The version numbers were updated. No significant changes were made from CR3.</para>
+
 </section>
 
 <section id="s.changes3">
@@ -271,15 +278,12 @@ the formulation of this &standard;:</para>
 
 <itemizedlist spacing="compact">
 <listitem><para>Dennis Evans</para></listitem>
-<listitem><para>Patricia Gee-Best</para></listitem>
 <listitem><para>Paul Grosso</para></listitem>
 <listitem><para>Dick Hamilton</para></listitem>
 <listitem><para>Nancy (Paisner) Harrison</para></listitem>
-<listitem><para>Richard Lander</para></listitem>
 <listitem><para>Sabine Ocker</para></listitem>
 <listitem><para>Michael Sabrio</para></listitem>
 <listitem><para>Michael Smith</para></listitem>
-<listitem><para>Tim Teebken</para></listitem>
 <listitem><para>Norman Walsh (Chair, Editor)</para></listitem>
 </itemizedlist>
 
@@ -363,6 +367,11 @@ of the DocBook web page
 <title>Revision History</title>
 
 <para><revhistory>
+<revision>
+<revnumber>1.0</revnumber>
+<date>19 Nov 2002</date>
+</revision>
+
 <revision>
 <revnumber>1.0-CR3</revnumber>
 <date>12 Sep 2002</date>
