@@ -170,9 +170,6 @@
 <gentext key="sectioncalled" text="the section called"/>
 <gentext key="index symbols" text="Symbols"/>
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
-
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
 <dingbat key="nestedstartquote" text="&#x2018;"/>
@@ -395,6 +392,9 @@
 <context name="section-xref">
 
 <template name="bridgehead"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="refsect1"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="refsect2"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="refsect3"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="sect1"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="sect2"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="sect3"><sectioncalled/> &#x201C;%t&#x201D;</template>
@@ -408,6 +408,9 @@
 <context name="section-xref-numbered">
 
 <template name="bridgehead"><Section/>&#160;%n</template>
+<template name="refsect1"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="refsect2"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="refsect3"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="sect1"><Section/>&#160;%n</template>
 <template name="sect2"><Section/>&#160;%n</template>
 <template name="sect3"><Section/>&#160;%n</template>
