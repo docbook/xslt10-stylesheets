@@ -112,32 +112,21 @@
 <xsl:template match="itemizedlist/listitem">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
-  <xsl:variable name="itemsymbol">
-    <xsl:call-template name="list.itemsymbol">
-      <xsl:with-param name="node" select="parent::itemizedlist"/>
-    </xsl:call-template>
-  </xsl:variable>
-
   <xsl:variable name="item.contents">
     <fo:list-item-label end-indent="label-end()">
       <fo:block>
-        <xsl:choose>
-          <xsl:when test="$itemsymbol='disc'">&#x2022;</xsl:when>
-          <xsl:when test="$itemsymbol='bullet'">&#x2022;</xsl:when>
-          <!-- why do these symbols not work? -->
-          <!--
-          <xsl:when test="$itemsymbol='circle'">&#x2218;</xsl:when>
-          <xsl:when test="$itemsymbol='round'">&#x2218;</xsl:when>
-          <xsl:when test="$itemsymbol='square'">&#x2610;</xsl:when>
-          <xsl:when test="$itemsymbol='box'">&#x2610;</xsl:when>
-          -->
-          <xsl:otherwise>&#x2022;</xsl:otherwise>
-        </xsl:choose>
+        <xsl:call-template name="itemizedlist.label.markup">
+          <xsl:with-param name="itemsymbol">
+            <xsl:call-template name="list.itemsymbol">
+              <xsl:with-param name="node" select="parent::itemizedlist"/>
+            </xsl:call-template>
+          </xsl:with-param>
+        </xsl:call-template>
       </fo:block>
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
       <fo:block>
-	<xsl:apply-templates/>
+        <xsl:apply-templates/>
       </fo:block>
     </fo:list-item-body>
   </xsl:variable>
@@ -153,6 +142,33 @@
         <xsl:copy-of select="$item.contents"/>
       </fo:list-item>
     </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="itemizedlist.label.markup">
+  <xsl:param name="itemsymbol" select="'disc'"/>
+
+  <xsl:choose>
+    <xsl:when test="$itemsymbol='disc'">&#x2022;</xsl:when>
+    <xsl:when test="$itemsymbol='bullet'">&#x2022;</xsl:when>
+    <xsl:when test="$itemsymbol='endash'">&#x2013;</xsl:when>
+    <xsl:when test="$itemsymbol='emdash'">&#x2014;</xsl:when>
+    <!-- Some of these may work in your XSL-FO processor and fonts -->
+    <!--
+    <xsl:when test="$itemsymbol='square'">&#x25A0;</xsl:when>
+    <xsl:when test="$itemsymbol='box'">&#x25A0;</xsl:when>
+    <xsl:when test="$itemsymbol='circle'">&#x25CB;</xsl:when>
+    <xsl:when test="$itemsymbol='opencircle'">&#x25CB;</xsl:when>
+    <xsl:when test="$itemsymbol='whitesquare'">&#x25A1;</xsl:when>
+    <xsl:when test="$itemsymbol='round'">&#x25CF;</xsl:when>
+    <xsl:when test="$itemsymbol='blackcircle'">&#x25CF;</xsl:when>
+    <xsl:when test="$itemsymbol='whitebullet'">&#x25E6;</xsl:when>
+    <xsl:when test="$itemsymbol='triangle'">&#x2023;</xsl:when>
+    <xsl:when test="$itemsymbol='point'">&#x203A;</xsl:when>
+    <xsl:when test="$itemsymbol='hand'"><fo:inline 
+                         font-family="Wingdings 2">A</fo:inline></xsl:when>
+    -->
+    <xsl:otherwise>&#x2022;</xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
@@ -270,7 +286,7 @@
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
       <fo:block>
-	<xsl:apply-templates/>
+        <xsl:apply-templates/>
       </fo:block>
     </fo:list-item-body>
   </xsl:variable>
@@ -470,7 +486,7 @@
     <xsl:when test="string-length($terms[1]/node()[not(indexterm)]) &gt; $longest">
       <xsl:call-template name="longest.term">
         <xsl:with-param name="longest" 
-	    select="string-length($terms[1]/node()[not(indexterm)])"/>
+            select="string-length($terms[1]/node()[not(indexterm)])"/>
         <xsl:with-param name="maxlength" select="$maxlength"/>
         <xsl:with-param name="terms" select="$terms[position() &gt; 1]"/>
       </xsl:call-template>
@@ -495,7 +511,7 @@
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
       <fo:block>
-	<xsl:apply-templates select="listitem"/>
+        <xsl:apply-templates select="listitem"/>
       </fo:block>
     </fo:list-item-body>
   </fo:list-item>
@@ -638,15 +654,15 @@
     <xsl:choose>
       <xsl:when test="$axf.extensions != 0">
         <xsl:attribute name="table-layout">auto</xsl:attribute>
-	<xsl:if test="$explicit.table.width != ''">
+        <xsl:if test="$explicit.table.width != ''">
           <xsl:attribute name="width"><xsl:value-of 
-	                     select="$explicit.table.width"/></xsl:attribute>
+                             select="$explicit.table.width"/></xsl:attribute>
         </xsl:if>
       </xsl:when>
       <xsl:otherwise>
         <xsl:attribute name="table-layout">fixed</xsl:attribute>
         <xsl:attribute name="width"><xsl:value-of 
-	                              select="$table.width"/></xsl:attribute>
+                                      select="$table.width"/></xsl:attribute>
       </xsl:otherwise>
     </xsl:choose>
     <xsl:call-template name="simplelist.table.columns">
@@ -915,7 +931,7 @@
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
       <fo:block>
-	<xsl:apply-templates/>
+        <xsl:apply-templates/>
       </fo:block>
     </fo:list-item-body>
   </fo:list-item>
@@ -923,7 +939,7 @@
 
 <xsl:template match="stepalternatives">
   <fo:list-block provisional-distance-between-starts="2em"
-		 provisional-label-separation="0.2em">
+                 provisional-label-separation="0.2em">
     <xsl:apply-templates select="step"/>
   </fo:list-block>
 </xsl:template>
@@ -936,12 +952,12 @@
   <fo:list-item xsl:use-attribute-sets="list.item.spacing">
     <fo:list-item-label end-indent="label-end()">
       <fo:block id="{$id}">
-	<xsl:text>&#x2022;</xsl:text>
+        <xsl:text>&#x2022;</xsl:text>
       </fo:block>
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
       <fo:block>
-	<xsl:apply-templates/>
+        <xsl:apply-templates/>
       </fo:block>
     </fo:list-item-body>
   </fo:list-item>
@@ -1092,7 +1108,7 @@
     <xsl:apply-templates 
          select="*[not(self::callout or self::title or self::titleabbrev)]
                    |comment()[not(preceding-sibling::callout)]
-		   |processing-instruction()[not(preceding-sibling::callout)]"/>
+                   |processing-instruction()[not(preceding-sibling::callout)]"/>
 
     <fo:list-block space-before.optimum="1em"
                    space-before.minimum="0.8em"
@@ -1100,8 +1116,8 @@
                    provisional-distance-between-starts="2.2em"
                    provisional-label-separation="0.2em">
       <xsl:apply-templates select="callout
-			        |comment()[preceding-sibling::calllout]
-				|processing-instruction()[preceding-sibling::callout]"/>
+                                |comment()[preceding-sibling::calllout]
+                                |processing-instruction()[preceding-sibling::callout]"/>
     </fo:list-block>
   </fo:block>
 </xsl:template>
@@ -1121,7 +1137,7 @@
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
       <fo:block>
-	<xsl:apply-templates/>
+        <xsl:apply-templates/>
       </fo:block>
     </fo:list-item-body>
   </fo:list-item>
