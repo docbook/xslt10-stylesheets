@@ -5,7 +5,7 @@
 </refmeta>
 <refnamediv>
 <refname>component.label.includes.part.label</refname>
-<refpurpose>Do section labels include the component label?</refpurpose>
+<refpurpose>Do component labels include the part label?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -14,9 +14,10 @@
 
 <refsect1><title>Description</title>
 
-<para>If true (non-zero), labels for chapters, appendices, and other component
+<para>If true (non-zero), number labels for chapters, appendices, and other component
 elements are prefixed with the label of the
 part element that contains them.
+So you might see Chapter II.3 instead of Chapter 3.
 Also, the labels for formal elements such as table and figure will
 include the part label.
 If there is no part element container, then no prefix is generated.
