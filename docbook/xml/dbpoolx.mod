@@ -197,6 +197,11 @@
 <!ENTITY % inlineobj.char.class
 		"inlinegraphic|inlinemediaobject|inlineequation %local.inlineobj.char.class;">
 
+<!-- ...................................................................... -->
+<!-- Entities for content models .......................................... -->
+
+<!ENTITY % formalobject.title.content "title, titleabbrev?">
+
 <!-- Redeclaration placeholder ............................................ -->
 
 <!-- For redeclaring entities that are declared after this point while
@@ -489,11 +494,6 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 		%local.docinfo.char.mix;">
 <!--ENTITY % bibliocomponent.mix (see Bibliographic section, below)-->
 <!--ENTITY % person.ident.mix (see Bibliographic section, below)-->
-
-<!-- ...................................................................... -->
-<!-- Entities for content models .......................................... -->
-
-<!ENTITY % formalobject.title.content "title, titleabbrev?">
 
 <!-- ...................................................................... -->
 <!-- Entities for attributes and attribute components ..................... -->
