@@ -167,6 +167,8 @@
                                the list of author names, but "and" in such 
                                lists of Russian books is not traditionally 
                                used (I. Kouznetsov) -->
+<gentext key="listcomma" text=","/>
+<gentext key="lastlistcomma" text=","/>
 <gentext key="Notes" text="&Pcy;&rcy;&icy;&mcy;&iecy;&chcy;&acy;&ncy;&icy;&yacy;"/>
 <gentext key="notes" text="&Pcy;&rcy;&icy;&mcy;&iecy;&chcy;&acy;&ncy;&icy;&yacy;"/>
 <gentext key="TableNotes" text="&Pcy;&rcy;&icy;&mcy;&iecy;&chcy;&acy;&ncy;&icy;&yacy;"/>
@@ -387,9 +389,9 @@
 </context>
 
 <context name="authorgroup">
-<template name="sep">,</template>
+<template name="sep"><listcomma/> </template>
 <template name="sep2"> <and/> </template>
-<template name="seplast">, <and/> </template>
+<template name="seplast"><lastlistcomma/> <and/> </template>
 </context>
 
 <context name="glossary">

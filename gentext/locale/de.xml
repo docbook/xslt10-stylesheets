@@ -142,6 +142,8 @@
 <gentext key="Editedby" text="Herausgegeben von"/>
 <gentext key="editedby" text="Herausgegeben von"/>
 <gentext key="and" text="und"/>
+<gentext key="listcomma" text=","/>
+<gentext key="lastlistcomma" text=""/>
 <gentext key="Notes" text="Fu&#x00DF;noten"/>
 <gentext key="notes" text="Fu&#x00DF;noten"/>
 <gentext key="TableNotes" text="Bemerkungen"/>
@@ -356,9 +358,9 @@
 </context>
 
 <context name="authorgroup">
-<template name="sep">,</template>
+<template name="sep"><listcomma/> </template>
 <template name="sep2"> <and/> </template>
-<template name="seplast"> <and/> </template>
+<template name="seplast"><lastlistcomma/> <and/> </template>
 </context>
 
 <context name="glossary">
