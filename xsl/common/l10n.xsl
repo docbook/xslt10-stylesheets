@@ -114,9 +114,22 @@
   <xsl:variable name="l10n.gentext"
                 select="($l10n.xml/internationalization/localization[@language=$lang]/gentext[@key=$key])[1]"/>
 
-  <xsl:variable name="l10n.name">
+  <xsl:variable name="l10n.name" select="$l10n.gentext/@text"/>
+
+<!--
+  <xsl:message>
+    <xsl:text>gentext: </xsl:text>
+    <xsl:value-of select="$key"/>
+    <xsl:text>, </xsl:text>
+    <xsl:value-of select="count($l10n.gentext)"/>
+    <xsl:text>, </xsl:text>
+    <xsl:value-of select="$l10n.name"/>
+    <xsl:text>; </xsl:text>
+    <xsl:value-of select="name($l10n.gentext)"/>
+    <xsl:text>, </xsl:text>
     <xsl:value-of select="$l10n.gentext/@text"/>
-  </xsl:variable>
+  </xsl:message>
+-->
 
   <xsl:choose>
     <xsl:when test="count($l10n.gentext)=0">
