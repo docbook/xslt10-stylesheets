@@ -15,9 +15,9 @@ SCP_OPTS      = -pr
 # SITEHOST:    remote host to upload (scp) site content to
 # SITEBASE:    base path on remote host to upload content to
 # SITEBASEURL: URL corresponding to SITEHOST + SITEBASE
-SITEHOST      = atlantis.io.com
-SITEDOWNLOAD  = /virtual/customer/logopoeia.com/htdocs/docbook/download
-SITEDOC       = /virtual/customer/logopoeia.com/htdocs/docbook
+SITEHOST      = 
+SITEDOWNLOAD  = 
+SITEDOC       = 
 
 MAKE         = make
 EMACS        = emacs
