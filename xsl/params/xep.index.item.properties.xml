@@ -16,8 +16,9 @@
 <refsect1><title>Description</title>
 
 <para>Properties associated with XEP index-items. For more info see
+the section "Indexes" in
 <ulink
-url="http://xep.xattic.com/xep/spec.html#N6836">http://xep.xattic.com/xep/spec.html</ulink>.</para>
+    url="http://xep.xattic.com/xep/doc/spec.html"/>.</para>
 
 </refsect1>
 </refentry>
