@@ -479,7 +479,35 @@
 </xsl:template>
 
 <xsl:template match="glossterm">
-  <xsl:call-template name="inline.charseq"/>
+  <xsl:choose>
+    <xsl:when test="@linkend">
+      <xsl:variable name="targets" select="id(@linkend)"/>
+      <xsl:variable name="target" select="$targets[1]"/>
+
+      <xsl:call-template name="check.id.unique">
+        <xsl:with-param name="linkend" select="@linkend"/>
+      </xsl:call-template>
+
+      <a>
+        <xsl:if test="@id">
+          <xsl:attribute name="name">
+            <xsl:value-of select="@id"/>
+          </xsl:attribute>
+        </xsl:if>
+
+        <xsl:attribute name="href">
+          <xsl:call-template name="href.target">
+            <xsl:with-param name="object" select="$target"/>
+          </xsl:call-template>
+        </xsl:attribute>
+
+        <xsl:call-template name="inline.italicseq"/>
+      </a>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="inline.italicseq"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="sgmltag">
