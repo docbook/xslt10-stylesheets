@@ -72,7 +72,6 @@
 <gentext key="important" text="Wichtig"/>
 <gentext key="Index" text="Stichwortverzeichnis"/>
 <gentext key="index" text="Stichwortverzeichnis"/>
-<gentext key="index symbols" text="Symbole"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text="Rechtlicher Hinweis"/>
@@ -97,6 +96,8 @@
 <gentext key="pubdate" text="Ver&ouml;ffentlicht"/>
 <gentext key="Published" text="Ver&ouml;ffentlicht"/>
 <gentext key="published" text="Ver&ouml;ffentlicht"/>
+<gentext key="Qandadiv" text="F &amp; A"/>
+<gentext key="qandadiv" text="F &amp; A"/>
 <gentext key="Question" text="F:"/>
 <gentext key="question" text="F:"/>
 <gentext key="RefEntry" text=""/>
@@ -184,12 +185,14 @@
 <gentext key="nav-prev" text="Zur&uuml;ck"/>
 <gentext key="nav-prev-sibling" text="Schnell zur&uuml;ck"/>
 <gentext key="nav-up" text="Nach oben"/>
+<gentext key="nav-toc" text="InhV"/>
   
 <gentext key="sectioncalled" text="der Abschnitt namens"/> 
 <gentext key="Draft"         text="Entwurf"/> 
 <gentext key="above"         text="oben"/> 
 <gentext key="below"         text="unten"/> 
-<gentext key="index symbols"   text="Symbole"/>
+<gentext key="index symbols" text="Symbole"/>
+
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz&#x00E4;&#x00F6;&#x00FC;&#x00DF;"/> 
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ&#x00C4;&#x00D6;&#x00DC;&#x00DF;"/> 
@@ -202,6 +205,19 @@
 <dingbat key="singleendquote" text="&#x2018;"/>
 <dingbat key="bullet" text="&#x2022;"/>
 
+<!-- Hier mu"s"te man mal nachforschen, wie die Silbentrennung
+     im Typografiebereich gehandhabt wird.
+     Oliver Fischer
+     -->
+<gentext key="hyphenation-character" text="-"/>
+<gentext key="hyphenation-push-character-count" text="2"/>
+<gentext key="hyphenation-remain-character-count" text="3"/>
+<!-- Für den Wert von 3 entschied ich mich, nachdem
+     ich verschiedene Bu"cher durchgebla"ttert habe.
+     Oliver Fischer
+     -->
+ 
+  
 <context name="styles">
 
 <template name="person-name">first-last</template>
@@ -234,6 +250,7 @@
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
+<template name="glossentry">%t</template>    
 <template name="important">%t</template>
 <template name="index">%t</template>
 <template name="indexdiv">%t</template>
@@ -274,6 +291,7 @@
 <template name="sidebar">%t</template>
 <template name="step">%t</template>
 <template name="table"><Table/> %n. %t</template>
+<template name="task">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
@@ -283,6 +301,7 @@
 <context name="title-unnumbered">
 
 <template name="appendix">%t</template>
+<template name="article/appendix">%t</template>
 <template name="bridgehead">%t</template>
 <template name="chapter">%t</template>
 <template name="sect1">%t</template>
@@ -298,6 +317,7 @@
 <context name="title-numbered">
 
 <template name="appendix"><Appendix/> %n. %t</template>
+<template name="article/appendix">%n.&#160;%t</template>    
 <template name="bridgehead">%n.&#160;%t</template>
 <template name="chapter"><Chapter/> %n. %t</template>
 <template name="sect1">%n. %t</template>
@@ -414,6 +434,10 @@
 <template name="varlistentry">%n</template>
 <template name="warning">%t</template>
 <template name="page.citation"> [%p]</template>
+<template name="page">(Seite %p)</template>    
+<template name="pageabbrev">(S. %p)</template>
+<template name="Page">Seite %p</template>
+
 
 <template name="bridgehead"><startquote/>%t<endquote/></template>
 <template name="refsection"><startquote/>%t<endquote/></template>
