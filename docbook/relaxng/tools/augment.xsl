@@ -52,10 +52,6 @@
       <xsl:comment> See http://docbook.org/docbook-ng/ </xsl:comment>
       <xsl:text>&#10;</xsl:text>
 
-      <rng:define name="version.attribute">
-	<rng:attribute name="version"/>
-      </rng:define>
-
       <xsl:apply-templates/>
     </xsl:copy>
   </xsl:template>
@@ -104,9 +100,6 @@
       </xsl:variable>
 
       <xsl:if test="$isStart &gt; 0">
-	<rng:optional>
-	  <rng:ref name="version.attribute"/>
-	</rng:optional>
 	<s:rule context="/db:{$name}">
 	  <s:assert test="@version">
 	    <xsl:text>The root element must have a version attribute.</xsl:text>
