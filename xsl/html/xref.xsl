@@ -119,6 +119,10 @@
   <xsl:call-template name="person.name"/>
 </xsl:template>
 
+<xsl:template match="authorgroup" mode="xref-to">
+  <xsl:call-template name="person.name.list"/>
+</xsl:template>
+
 <xsl:template match="figure" mode="xref-to">
   <xsl:apply-templates select="." mode="object.xref.markup"/>
 </xsl:template>
@@ -229,6 +233,14 @@
 <xsl:template match="author" mode="xref-title">
   <xsl:variable name="title">
     <xsl:call-template name="person.name"/>
+  </xsl:variable>
+
+  <xsl:value-of select="$title"/>
+</xsl:template>
+
+<xsl:template match="authorgroup" mode="xref-title">
+  <xsl:variable name="title">
+    <xsl:call-template name="person.name.list"/>
   </xsl:variable>
 
   <xsl:value-of select="$title"/>
