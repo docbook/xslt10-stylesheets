@@ -86,7 +86,10 @@
 		      preceding-sibling::node()[name(.)!='']">
 	  <xsl:text> </xsl:text>
 	</xsl:if>
-	<xsl:value-of select="normalize-space(.)"/>
+        <xsl:variable name="content">
+	  <xsl:apply-templates select="."/>
+	</xsl:variable>
+	<xsl:value-of select="normalize-space($content)"/>
 	<xsl:if
         test="translate(substring(., string-length(.), 1),'&#10;',' ') = ' ' and
               following-sibling::node()[name(.)!='']">
