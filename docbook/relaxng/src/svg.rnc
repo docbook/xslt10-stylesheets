@@ -20,10 +20,7 @@ default namespace = "http://docbook.org/docbook-ng/absinthe"
 imageobject.content |= any.svg
 
 any.svg =
-   element svg:*
-   {
-      (attribute * { text }
-       | text
-       | any.svg*)*
+   element svg:* {
+      anyAttribute*,
+      (text | any.svg)*
    }
-

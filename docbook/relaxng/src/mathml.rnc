@@ -21,10 +21,7 @@ equation.content |= any.mml
 inlineequation.content |= any.mml
 
 any.mml =
-   element mml:*
-   {
-      (attribute * { text }
-       | text
-       | any.mml)*
+   element mml:* {
+      anyAttribute*,
+      (text | any.mml)*
    }
-
