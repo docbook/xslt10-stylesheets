@@ -193,6 +193,39 @@ unqualified length ("20" for "20pt") from a dimension.
 
 <!-- ================================================================== -->
 
+<doc:template name="length-units" xmlns="">
+<refpurpose>Return the units from a length specification</refpurpose>
+<refdescription>
+<para>The <function>length-units</function> template returns the
+units ("pt" for "20pt") from a length. If no units are supplied on the
+length, the <parameter>defauilt.units</parameter> are returned.</para>
+</refdescription>
+</doc:template>
+
+<xsl:template name="length-units">
+  <xsl:param name="length" select="'0pt'"/>
+  <xsl:param name="default.units" select="'pt'"/>
+  <xsl:variable name="magnitude">
+    <xsl:call-template name="length-magnitude">
+      <xsl:with-param name="length" select="$length"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="units">
+    <xsl:value-of select="substring($length, string-length($magnitude)+1)"/>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$units = ''">
+      <xsl:value-of select="$default.units"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$units"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!-- ================================================================== -->
+
 <doc:template name="length-spec" xmlns="">
 <refpurpose>Return a fully qualified length specification</refpurpose>
 <refdescription>
