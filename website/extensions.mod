@@ -34,7 +34,6 @@
 ]]>
 <!ENTITY % local.para.char.mix "%rddl.elements;">
 
-
 <!-- the XML notation; this really should go in DocBook -->
 <!NOTATION XML SYSTEM "http://www.w3.org/TR/REC-xml">
 <!ENTITY % local.notation.class "">
