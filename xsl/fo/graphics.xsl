@@ -80,9 +80,6 @@ FIXME: make is.graphic.* work correctly depending on the backend!
         <xsl:value-of select="unparsed-entity-uri(@entityref)"/>
       </xsl:when>
       <xsl:when test="@fileref">
-        <!-- FIXME: is this right? What if @fileref is a relative -->
-        <!-- URI? What if @fileref contains backslashes? -->
-        <xsl:text>file:</xsl:text>
         <xsl:value-of select="@fileref"/>
       </xsl:when>
       <xsl:otherwise>
