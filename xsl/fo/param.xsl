@@ -140,6 +140,17 @@ and the <sgmltag class="attribute">format</sgmltag> attribute is
 </doc:variable>
 
 <!-- ==================================================================== -->
+<xsl:attribute-set name="formal.object.properties">
+  <xsl:attribute name="space-before.minimum">0.5em</xsl:attribute>
+  <xsl:attribute name="space-before.optimum">1em</xsl:attribute>
+  <xsl:attribute name="space-before.maximum">2em</xsl:attribute>
+  <xsl:attribute name="space-after.minimum">0.5em</xsl:attribute>
+  <xsl:attribute name="space-after.optimum">1em</xsl:attribute>
+  <xsl:attribute name="space-after.maximum">2em</xsl:attribute>
+  <xsl:attribute name="keep-with-previous.within-column">always</xsl:attribute>
+</xsl:attribute-set>
+
+<!-- ==================================================================== -->
 <xsl:attribute-set name="formal.title.properties"
                    use-attribute-sets="normal.para.spacing">
   <xsl:attribute name="font-weight">bold</xsl:attribute>
