@@ -3,5 +3,5 @@ XJPARSE=../../cvstools/xjparse
 
 all: profile-javahelp.xsl
 
-profile-javahelp.xsl:
-	$(XSLT) javahelp.xsl ../profiling/xsl2profile.xsl $@
+profile-javahelp.xsl: javahelp.xsl ../profiling/xsl2profile.xsl
+	$(XSLT) $< ../profiling/xsl2profile.xsl $@
