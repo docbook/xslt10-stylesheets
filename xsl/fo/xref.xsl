@@ -24,7 +24,7 @@
 <xsl:template match="xref">
   <xsl:variable name="targets" select="id(@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
-  <xsl:variable name="refelem" select="name($target)"/>
+  <xsl:variable name="refelem" select="local-name($target)"/>
 
   <xsl:call-template name="check.id.unique">
     <xsl:with-param name="linkend" select="@linkend"/>
@@ -65,7 +65,7 @@
 		<xsl:text>???</xsl:text>
 	      </xsl:when>
 	      <xsl:otherwise>
-		<xsl:apply-templates select="$etarget" mode="xref.text"/>
+		<xsl:apply-templates select="$etarget" mode="endterm"/>
 	      </xsl:otherwise>
 	    </xsl:choose>
 	  </xsl:when>
@@ -77,6 +77,11 @@
       </fo:basic-link>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template match="*" mode="endterm">
+  <!-- Process the children of the endterm element -->
+  <xsl:apply-templates select="child::node()"/>
 </xsl:template>
 
 <!--- ==================================================================== -->
@@ -269,7 +274,43 @@
 
   <fo:basic-link internal-destination="{@linkend}"
                  xsl:use-attribute-sets="xref.properties">
-    <xsl:apply-templates/>
+    <xsl:choose>
+      <xsl:when test="count(child::node()) &gt; 0">
+        <!-- If it has content, use it -->
+        <xsl:apply-templates/>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- else look for an endterm -->
+        <xsl:choose>
+          <xsl:when test="@endterm">
+            <xsl:variable name="etargets" select="id(@endterm)"/>
+            <xsl:variable name="etarget" select="$etargets[1]"/>
+            <xsl:choose>
+              <xsl:when test="count($etarget) = 0">
+                <xsl:message>
+                  <xsl:value-of select="count($etargets)"/>
+                  <xsl:text>Endterm points to nonexistent ID: </xsl:text>
+                  <xsl:value-of select="@endterm"/>
+                </xsl:message>
+                <xsl:text>???</xsl:text>
+              </xsl:when>
+              <xsl:otherwise>
+                  <xsl:apply-templates select="$etarget" mode="endterm"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+        
+          <xsl:otherwise>
+            <xsl:message>
+              <xsl:text>Link element has no content and no Endterm. </xsl:text>
+              <xsl:text>Nothing to show in the link to </xsl:text>
+              <xsl:value-of select="$target"/>
+            </xsl:message>
+            <xsl:text>???</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
   </fo:basic-link>
 </xsl:template>
 
