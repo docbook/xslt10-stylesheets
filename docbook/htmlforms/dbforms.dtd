@@ -1,8 +1,8 @@
 <!-- ...................................................................... -->
-<!-- DocBook HTML Forms Module V1.2b1 ....................................... -->
+<!-- DocBook HTML Forms Module V1.2CR1 ....................................... -->
 <!-- File dbforms.dtd ..................................................... -->
 
-<!-- Copyright (C) 2000 Organization for the Advancement
+<!-- Copyright (C) 2000, 2001, 2002, 2003, 2004 Organization for the Advancement
      of Structured Information Standards (OASIS).
 
      $Id$
@@ -26,24 +26,24 @@
 
 <!-- ...................................................................... -->
 
-<!-- This is the driver file for V1.2b1 of the DocBook HTML Forms Module.
+<!-- This is the driver file for V1.2CR1 of the DocBook HTML Forms Module.
      Please use the following formal public identifier to identify it:
 
-     "-//OASIS//DTD DocBook HTML Forms Module V1.2b1//EN"
+     "-//OASIS//DTD DocBook HTML Forms Module V1.2CR1//EN"
 
      For example, if your document's top-level element is Book, and
      you are using DocBook directly, use the FPI in the DOCTYPE
      declaration:
 
-     <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook HTML Forms Module V1.2b1//EN"
-                    "http://www.oasis-open.org/docbook/xml/htmlforms/1.2b1/dbforms.dtd"
+     <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook HTML Forms Module V1.2CR1//EN"
+                    "http://www.oasis-open.org/docbook/xml/htmlforms/1.2CR1/dbforms.dtd"
                     [...]>
 
      Or, if you have a higher-level driver file that customizes DocBook,
      use the FPI in the parameter entity declaration:
 
-     <!ENTITY % DocBookHTMLFormsDTD PUBLIC "-//OASIS//DTD DocBook HTML Forms Module V1.2b1//EN"
-                "http://www.oasis-open.org/docbook/xml/htmlforms/1.2b1/dbforms.dtd">
+     <!ENTITY % DocBookHTMLFormsDTD PUBLIC "-//OASIS//DTD DocBook HTML Forms Module V1.2CR1//EN"
+                "http://www.oasis-open.org/docbook/xml/htmlforms/1.2CR1/dbforms.dtd">
      %DocBookHTMLFormsDTD;
 
      See the documentation for detailed information on the parameter
@@ -194,5 +194,5 @@
 	onchange	CDATA		#IMPLIED
 >
 
-<!-- End of dbforms.dtd V1.2b1 .............................................. -->
+<!-- End of dbforms.dtd V1.2CR1 .............................................. -->
 <!-- ...................................................................... -->
