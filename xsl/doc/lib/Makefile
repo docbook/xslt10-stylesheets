@@ -1,7 +1,7 @@
 include ../../../cvstools/Makefile.incl
 
-STYLE=../jrefhtml.xsl
-VPATH=../../docsrc/lib
+STYLE=../../docsrc/lrefentry.xsl
+VPATH=../../lib
 
 HTMLFILES = lib.html
 

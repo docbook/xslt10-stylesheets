@@ -4,7 +4,7 @@ XJPARSE=../../cvstools/xjparse
 PARAMPROF=.lib.profiled
 PARAMSTRIP=.lib.stripped
 
-all: lib.xsl lib.html
+all: lib.xsl lib.xml
 
 lib.html: lib.xml lib.xsl
 	$(XSLT) $< ../docsrc/lrefentry.xsl $@
