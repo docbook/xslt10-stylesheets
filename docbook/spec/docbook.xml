@@ -1,6 +1,6 @@
 <!DOCTYPE article [
 <!ENTITY name "wd-docbook-docbook">
-<!ENTITY version "4.3b4">
+<!ENTITY version "4.3b5">
 <!ENTITY standard "Working Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker/">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
@@ -34,7 +34,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>30 Sep 2003</pubdate>
+<pubdate>29 Oct 2003</pubdate>
 
 <copyright><year>2001</year><year>2002</year><year>2003</year>
 <holder>
@@ -136,6 +136,28 @@ from the
 the mirror on
 <ulink url="http://docbook.org/"/>.
 </para>
+
+<section id="s.b5">
+<title>Changes in DocBook V4.3b5</title>
+
+<para>There are no backwards-incompatible changes in this release.
+</para>
+
+<para>Each of the changes made between DocBook V4.2b4 and DocBook XML V4.3b5
+is summarized here. For complete details, consult the individual RFEs and
+the <ulink url="&root;meetings">meeting minutes</ulink>.</para>
+
+</section>
+<section id="sb5.bugs">
+<title>Bug Fixes</title>
+
+<itemizedlist spacing="compact">
+
+<listitem><para>Made the content model of <sgmltag>firstterm</sgmltag> identical
+to <sgmltag>glossterm</sgmltag>.</para>
+</listitem>
+</itemizedlist>
+</section>
 
 <section id="s.b4">
 <title>Changes in DocBook V4.3b4</title>
@@ -603,6 +625,10 @@ of the DocBook web page
 
 <para>
 <revhistory>
+<revision role="&root;specs/wd-docbook-docbook-4.3b5.html">
+  <revnumber>Working Draft “Beta 5”</revnumber>
+  <date>29 Oct 2003</date>
+</revision>
 <revision role="&root;specs/wd-docbook-docbook-4.3b4.html">
   <revnumber>Working Draft “Beta 4”</revnumber>
   <date>30 Sep 2003</date>
