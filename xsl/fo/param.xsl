@@ -949,6 +949,18 @@ actually used by the stylesheets.
 </doc:param>
 
 <!-- ==================================================================== -->
+<xsl:param name="dingbat.font.family">Times Roman</xsl:param>
+
+<doc:param name="dingbat.font.family" xmlns="">
+<refpurpose>The font family for copyright, quotes, and other symbols</refpurpose>
+<refdescription>
+<para>The dingbat font family is used for dingbats. If it is defined
+as the empty string, no font change is effected around dingbats.
+</para>
+</refdescription>
+</doc:param>
+
+<!-- ==================================================================== -->
 <xsl:param name="body.font.master">10</xsl:param>
 
 <doc:param name="body.font.master" xmlns="">
