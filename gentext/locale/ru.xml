@@ -10,10 +10,10 @@
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo xmlns="">
-<!-- FIXME: list the real contributors
+<!-- 
 <authorgroup>
-  <author><firstname>Norman</firstname><surname>Walsh</surname>
-          <affiliation><address><email>ndw@nwalsh.com</email></address>
+    <author><firstname>Vitaly</firstname><surname>Ostanin</surname>
+          <affiliation><address><email>vyt@vzljot.ru</email></address>
           </affiliation>
   </author>
 </authorgroup>
@@ -217,10 +217,10 @@
 <gentext key="lowercase.alpha" text="&acy;&bcy;&vcy;&gcy;&dcy;&iecy;&iocy;&zhcy;&zcy;&icy;&jcy;&kcy;&lcy;&mcy;&ncy;&ocy;&pcy;&rcy;&scy;&tcy;&ucy;&fcy;&khcy;&tscy;&chcy;&shcy;&shchcy;&hardcy;&ycy;&softcy;&ecy;&yucy;&yacy;"/>
 <gentext key="uppercase.alpha" text="&Acy;&Bcy;&Vcy;&Gcy;&Dcy;&IEcy;&IOcy;&ZHcy;&Zcy;&Icy;&Jcy;&Kcy;&Lcy;&Mcy;&Ncy;&Ocy;&Pcy;&Rcy;&Scy;&Tcy;&Ucy;&Fcy;&KHcy;&TScy;&CHcy;&SHcy;&SHCHcy;&HARDcy;&Ycy;&SOFTcy;&Ecy;&YUcy;&YAcy;"/>
 
-<dingbat key="startquote" text="&#x201C;"/>
-<dingbat key="endquote" text="&#x201D;"/>
-<dingbat key="nestedstartquote" text="&#x2018;"/>
-<dingbat key="nestedendquote" text="&#x2019;"/>
+<dingbat key="startquote" text="&#x00AB;"/>
+<dingbat key="endquote" text="&#x00BB;"/>
+<dingbat key="nestedstartquote" text="&#x201E;"/>
+<dingbat key="nestedendquote" text="&#x201C;"/>
 <dingbat key="bullet" text="&#x2022;"/>
 
 <context name="styles">
