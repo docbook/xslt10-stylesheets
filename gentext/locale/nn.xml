@@ -172,200 +172,205 @@
 
 <context name="title">
 
-<template name="abstract" text="%t"/>
-<template name="appendix" text="Tillegg %n. %t"/>
-<template name="article" text="%t"/>
-<template name="authorblurb" text="%t"/>
-<template name="bibliodiv" text="%t"/>
-<template name="biblioentry" text="%t"/>
-<template name="bibliography" text="%t"/>
-<template name="bibliomixed" text="%t"/>
-<template name="bibliomset" text="%t"/>
-<template name="biblioset" text="%t"/>
-<template name="blockquote" text="%t"/>
-<template name="book" text="%t"/>
-<template name="calloutlist" text="%t"/>
-<template name="caution" text="%t"/>
-<template name="chapter" text="Kapittel %n. %t"/>
-<template name="colophon" text="%t"/>
-<template name="dedication" text="%t"/>
-<template name="equation" text="Formel %n. %t"/>
-<template name="example" text="D&#248;me %n. %t"/>
-<template name="figure" text="Figur %n. %t"/>
-<template name="formalpara" text="%t"/>
-<template name="glossary" text="%t"/>
-<template name="glossdiv" text="%t"/>
-<template name="important" text="%t"/>
-<template name="index" text="%t"/>
-<template name="indexdiv" text="%t"/>
-<template name="itemizedlist" text="%t"/>
-<template name="legalnotice" text="%t"/>
+<template name="abstract">%t</template>
+<template name="appendix"><Appendix/> %n. %t</template>
+<template name="article">%t</template>
+<template name="authorblurb">%t</template>
+<template name="bibliodiv">%t</template>
+<template name="biblioentry">%t</template>
+<template name="bibliography">%t</template>
+<template name="bibliomixed">%t</template>
+<template name="bibliomset">%t</template>
+<template name="biblioset">%t</template>
+<template name="blockquote">%t</template>
+<template name="book">%t</template>
+<template name="calloutlist">%t</template>
+<template name="caution">%t</template>
+<template name="chapter"><Chapter/> %n. %t</template>
+<template name="colophon">%t</template>
+<template name="dedication">%t</template>
+<template name="equation"><Equation/> %n. %t</template>
+<template name="example"><Example/> %n. %t</template>
+<template name="figure"><Figure/> %n. %t</template>
+<template name="formalpara">%t</template>
+<template name="glossary">%t</template>
+<template name="glossdiv">%t</template>
+<template name="important">%t</template>
+<template name="index">%t</template>
+<template name="indexdiv">%t</template>
+<template name="itemizedlist">%t</template>
+<template name="legalnotice">%t</template>
 <template name="listitem"/>
-<template name="lot" text="%t"/>
-<template name="msg" text="%t"/>
-<template name="msgexplan" text="%t"/>
-<template name="msgmain" text="%t"/>
-<template name="msgrel" text="%t"/>
-<template name="msgset" text="%t"/>
-<template name="msgsub" text="%t"/>
-<template name="note" text="%t"/>
-<template name="orderedlist" text="%t"/>
-<template name="part" text="Del %n. %t"/>
-<template name="partintro" text="%t"/>
-<template name="preface" text="%t"/>
-<template name="procedure" text="%t"/>
-<template name="qandadiv" text="%t"/>
-<template name="qandaset" text="%t"/>
-<template name="reference" text="%t"/>
-<template name="refsect1" text="%t"/>
-<template name="refsect2" text="%t"/>
-<template name="refsect3" text="%t"/>
-<template name="refsynopsisdiv" text="%t"/>
-<template name="refsynopsisdivinfo" text="%t"/>
-<template name="segmentedlist" text="%t"/>
-<template name="set" text="%t"/>
-<template name="setindex" text="%t"/>
-<template name="sidebar" text="%t"/>
-<template name="step" text="%t"/>
-<template name="table" text="Tabell %n. %t"/>
-<template name="tip" text="%t"/>
-<template name="toc" text="%t"/>
-<template name="variablelist" text="%t"/>
-<template name="warning" text="%t"/>
+<template name="lot">%t</template>
+<template name="msg">%t</template>
+<template name="msgexplan">%t</template>
+<template name="msgmain">%t</template>
+<template name="msgrel">%t</template>
+<template name="msgset">%t</template>
+<template name="msgsub">%t</template>
+<template name="note">%t</template>
+<template name="orderedlist">%t</template>
+<template name="part"><Part/> %n. %t</template>
+<template name="partintro">%t</template>
+<template name="preface">%t</template>
+<template name="procedure">%t</template>
+<template name="qandadiv">%t</template>
+<template name="qandaset">%t</template>
+<template name="reference">%t</template>
+<template name="refsect1">%t</template>
+<template name="refsect2">%t</template>
+<template name="refsect3">%t</template>
+<template name="refsynopsisdiv">%t</template>
+<template name="refsynopsisdivinfo">%t</template>
+<template name="segmentedlist">%t</template>
+<template name="set">%t</template>
+<template name="setindex">%t</template>
+<template name="sidebar">%t</template>
+<template name="step">%t</template>
+<template name="table"><Table/> %n. %t</template>
+<template name="tip">%t</template>
+<template name="toc">%t</template>
+<template name="variablelist">%t</template>
+<template name="warning">%t</template>
 
 </context>
 
-<context name="section-title">
-<template name="sect1" text="%t"/>
-<template name="sect2" text="%t"/>
-<template name="sect3" text="%t"/>
-<template name="sect4" text="%t"/>
-<template name="sect5" text="%t"/>
-<template name="section" text="%t"/>
-<template name="simplesect" text="%t"/>
+<context name="title-unnumbered">
+
+<template name="appendix">%t</template>
+<template name="chapter">%t</template>
+<template name="sect1">%t</template>
+<template name="sect2">%t</template>
+<template name="sect3">%t</template>
+<template name="sect4">%t</template>
+<template name="sect5">%t</template>
+<template name="section">%t</template>
+<template name="simplesect">%t</template>
 
 </context>
 
-<context name="section-title-numbered">
+<context name="title-numbered">
 
-<template name="sect1" text="%n. %t"/>
-<template name="sect2" text="%n. %t"/>
-<template name="sect3" text="%n. %t"/>
-<template name="sect4" text="%n. %t"/>
-<template name="sect5" text="%n. %t"/>
-<template name="section" text="%n. %t"/>
-<template name="simplesect" text="%n. %t"/>
+<template name="appendix"><Appendix/> %n. %t</template>
+<template name="chapter"><Chapter/> %n. %t</template>
+<template name="sect1">%n. %t</template>
+<template name="sect2">%n. %t</template>
+<template name="sect3">%n. %t</template>
+<template name="sect4">%n. %t</template>
+<template name="sect5">%n. %t</template>
+<template name="section">%n. %t</template>
+<template name="simplesect">%n. %t</template>
 
 </context>
 
 <context name="subtitle">
 
-<template name="appendix" text="%s"/>
-<template name="article" text="%s"/>
-<template name="bibliodiv" text="%s"/>
-<template name="biblioentry" text="%s"/>
-<template name="bibliography" text="%s"/>
-<template name="bibliomixed" text="%s"/>
-<template name="bibliomset" text="%s"/>
-<template name="biblioset" text="%s"/>
-<template name="book" text="%s"/>
-<template name="chapter" text="%s"/>
-<template name="colophon" text="%s"/>
-<template name="dedication" text="%s"/>
-<template name="glossary" text="%s"/>
-<template name="glossdiv" text="%s"/>
-<template name="index" text="%s"/>
-<template name="indexdiv" text="%s"/>
-<template name="lot" text="%s"/>
-<template name="part" text="%s"/>
-<template name="partintro" text="%s"/>
-<template name="preface" text="%s"/>
-<template name="refentry" text="%s"/>
-<template name="reference" text="%s"/>
-<template name="refsect1" text="%s"/>
-<template name="refsect2" text="%s"/>
-<template name="refsect3" text="%s"/>
-<template name="refsynopsisdiv" text="%s"/>
-<template name="sect1" text="%s"/>
-<template name="sect2" text="%s"/>
-<template name="sect3" text="%s"/>
-<template name="sect4" text="%s"/>
-<template name="sect5" text="%s"/>
-<template name="section" text="%s"/>
-<template name="set" text="%s"/>
-<template name="setindex" text="%s"/>
-<template name="sidebar" text="%s"/>
-<template name="simplesect" text="%s"/>
-<template name="toc" text="%s"/>
+<template name="appendix">%s</template>
+<template name="article">%s</template>
+<template name="bibliodiv">%s</template>
+<template name="biblioentry">%s</template>
+<template name="bibliography">%s</template>
+<template name="bibliomixed">%s</template>
+<template name="bibliomset">%s</template>
+<template name="biblioset">%s</template>
+<template name="book">%s</template>
+<template name="chapter">%s</template>
+<template name="colophon">%s</template>
+<template name="dedication">%s</template>
+<template name="glossary">%s</template>
+<template name="glossdiv">%s</template>
+<template name="index">%s</template>
+<template name="indexdiv">%s</template>
+<template name="lot">%s</template>
+<template name="part">%s</template>
+<template name="partintro">%s</template>
+<template name="preface">%s</template>
+<template name="refentry">%s</template>
+<template name="reference">%s</template>
+<template name="refsect1">%s</template>
+<template name="refsect2">%s</template>
+<template name="refsect3">%s</template>
+<template name="refsynopsisdiv">%s</template>
+<template name="sect1">%s</template>
+<template name="sect2">%s</template>
+<template name="sect3">%s</template>
+<template name="sect4">%s</template>
+<template name="sect5">%s</template>
+<template name="section">%s</template>
+<template name="set">%s</template>
+<template name="setindex">%s</template>
+<template name="sidebar">%s</template>
+<template name="simplesect">%s</template>
+<template name="toc">%s</template>
 
 </context>
 
 <context name="xref">
 
-<template name="appendix" text="Tillegg %n. %t"/>
-<template name="article" text="%t"/>
-<template name="bibliography" text="%t"/>
-<template name="book" text="%t"/>
-<template name="chapter" text="Kapittel %n. %t"/>
-<template name="colophon" text="%t"/>
-<template name="dedication" text="%t"/>
-<template name="example" text="D&#248;me %n. %t"/>
-<template name="figure" text="Figur %n. %t"/>
-<template name="glossary" text="%t"/>
-<template name="index" text="%t"/>
+<template name="appendix"><Appendix/> %n. %t</template>
+<template name="article">%t</template>
+<template name="bibliography">%t</template>
+<template name="book">%t</template>
+<template name="chapter"><Chapter/> %n. %t</template>
+<template name="colophon">%t</template>
+<template name="dedication">%t</template>
+<template name="example"><Example/> %n. %t</template>
+<template name="figure"><Figure/> %n. %t</template>
+<template name="glossary">%t</template>
+<template name="index">%t</template>
 <template name="listitem">%n</template>
-<template name="part" text="Del %n. %t"/>
-<template name="preface" text="%t"/>
-<template name="reference" text="%t"/>
-<template name="set" text="%t"/>
-<template name="setindex" text="%t"/>
-<template name="table" text="Tabell %n. %t"/>
+<template name="part"><Part/> %n. %t</template>
+<template name="preface">%t</template>
+<template name="reference">%t</template>
+<template name="set">%t</template>
+<template name="setindex">%t</template>
+<template name="table"><Table/> %n. %t</template>
 
 </context>
 
 <context name="section-xref">
 
-<template name="sect1" text="&#8220;%t&#8221;"/>
-<template name="sect2" text="&#8220;%t&#8221;"/>
-<template name="sect3" text="&#8220;%t&#8221;"/>
-<template name="sect4" text="&#8220;%t&#8221;"/>
-<template name="sect5" text="&#8220;%t&#8221;"/>
-<template name="section" text="&#8220;%t&#8221;"/>
-<template name="simplesect" text="&#8220;%t&#8221;"/>
+<template name="sect1">&#8220;%t&#8221;</template>
+<template name="sect2">&#8220;%t&#8221;</template>
+<template name="sect3">&#8220;%t&#8221;</template>
+<template name="sect4">&#8220;%t&#8221;</template>
+<template name="sect5">&#8220;%t&#8221;</template>
+<template name="section">&#8220;%t&#8221;</template>
+<template name="simplesect">&#8220;%t&#8221;</template>
 </context>
 
 <context name="section-xref-numbered">
 
-<template name="sect1" text="Del %n"/>
-<template name="sect2" text="Del %n"/>
-<template name="sect3" text="Del %n"/>
-<template name="sect4" text="Del %n"/>
-<template name="sect5" text="Del %n"/>
-<template name="section" text="Del %n"/>
-<template name="simplesect" text="&#8220;%t&#8221;"/>
+<template name="sect1"><Section/> %n</template>
+<template name="sect2"><Section/> %n</template>
+<template name="sect3"><Section/> %n</template>
+<template name="sect4"><Section/> %n</template>
+<template name="sect5"><Section/> %n</template>
+<template name="section"><Section/> %n</template>
+<template name="simplesect">&#8220;%t&#8221;</template>
 
 </context>
 
 <context name="authorgroup">
 
-<template name="sep" text=", "/>
-<template name="sep2" text=" og "/>
-<template name="seplast" text=", og "/>
+<template name="sep">, </template>
+<template name="sep2"> og </template>
+<template name="seplast">, og </template>
 
 </context>
 
 <context name="glossary">
 
-<template name="see" text="Sj&#229; "/>
-<template name="seealso" text="Sj&#229; &#242;g "/>
+<template name="see"><GlossSee/> </template>
+<template name="seealso"><GlossSeeAlso/> </template>
 
 </context>
 
 <context name="msgset">
 
-<template name="MsgLevel" text="Niv&#229;: "/>
-<template name="MsgOrig" text="Opphav: "/>
-<template name="MsgAud" text="Publikum: "/>
+<template name="MsgLevel"><MsgLevel/>: </template>
+<template name="MsgOrig"><MsgOrig/>: </template>
+<template name="MsgAud"><MsgAud/>: </template>
 
 </context>
 
