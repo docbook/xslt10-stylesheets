@@ -401,7 +401,7 @@
 
 <xsl:template match="simplelist">
   <!-- with no type specified, the default is 'vert' -->
-  <fo:table>
+  <fo:table xsl:use-attribute-sets="normal.para.spacing">
     <fo:table-body>
       <xsl:call-template name="simplelist.vert">
 	<xsl:with-param name="cols">
@@ -422,7 +422,7 @@
 </xsl:template>
 
 <xsl:template match="simplelist[@type='horiz']">
-  <fo:table>
+  <fo:table xsl:use-attribute-sets="normal.para.spacing">
     <fo:table-body>
       <xsl:call-template name="simplelist.horiz">
 	<xsl:with-param name="cols">
@@ -439,7 +439,7 @@
 </xsl:template>
 
 <xsl:template match="simplelist[@type='vert']">
-  <fo:table>
+  <fo:table xsl:use-attribute-sets="normal.para.spacing">
     <fo:table-body>
       <xsl:call-template name="simplelist.vert">
 	<xsl:with-param name="cols">
