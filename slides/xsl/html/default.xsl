@@ -201,7 +201,7 @@
         <td align="left" width="80%" valign="top">
           <span class="navfooter">
             <xsl:apply-templates select="/slides/slidesinfo/copyright"
-                                 mode="slides.footer.mode"/>
+                                 mode="slide.footer.mode"/>
           </span>
         </td>
         <td align="right" width="20%" valign="top">
