@@ -26,9 +26,17 @@ PARAMS=../params/admon.graphics.xml \
        ../params/chunk.quietly.xml \
        ../params/chunk.section.depth.xml \
        ../params/chunk.toc.xml \
+       ../params/chunker.output.cdata-section-elements.xml \
+       ../params/chunker.output.doctype-public.xml \
+       ../params/chunker.output.doctype-system.xml \
+       ../params/chunker.output.encoding.xml \
+       ../params/chunker.output.indent.xml \
+       ../params/chunker.output.media-type.xml \
+       ../params/chunker.output.method.xml \
+       ../params/chunker.output.omit-xml-declaration.xml \
+       ../params/chunker.output.standalone.xml \
        ../params/citerefentry.link.xml \
        ../params/css.decoration.xml \
-       ../params/default.encoding.xml \
        ../params/default.table.width.xml \
        ../params/draft.watermark.image.xml \
        ../params/ebnf.table.bgcolor.xml \
@@ -36,31 +44,24 @@ PARAMS=../params/admon.graphics.xml \
        ../params/emphasis.propagates.style.xml \
        ../params/firstterm.only.link.xml \
        ../params/formal.procedures.xml \
+       ../params/formal.title.placement.xml \
        ../params/funcsynopsis.decoration.xml \
        ../params/funcsynopsis.style.xml \
        ../params/function.parens.xml \
-       ../params/generate.appendix.toc.xml \
-       ../params/generate.article.toc.xml \
-       ../params/generate.book.toc.xml \
-       ../params/generate.chapter.toc.xml \
-       ../params/generate.component.toc.xml \
-       ../params/generate.division.toc.xml \
+       ../params/generate.id.attributes.xml \
        ../params/generate.index.xml \
        ../params/generate.legalnotice.link.xml \
-       ../params/generate.part.toc.xml \
-       ../params/generate.preface.toc.xml \
-       ../params/generate.qandadiv.toc.xml \
-       ../params/generate.qandaset.toc.xml \
-       ../params/generate.reference.toc.xml \
-       ../params/generate.section.toc.xml \
+       ../params/generate.manifest.xml \
+       ../params/generate.meta.abstract.xml \
        ../params/generate.section.toc.level.xml \
-       ../params/generate.set.toc.xml \
+       ../params/generate.toc.xml \
        ../params/glossary.collection.xml \
        ../params/glossterm.auto.link.xml \
        ../params/graphic.default.extension.xml \
        ../params/html.base.xml \
        ../params/html.cleanup.xml \
        ../params/html.ext.xml \
+       ../params/html.extra.head.links.xml \
        ../params/html.longdesc.xml \
        ../params/html.longdesc.link.xml \
        ../params/html.stylesheet.xml \
@@ -73,13 +74,38 @@ PARAMS=../params/admon.graphics.xml \
        ../params/htmlhelp.enumerate.images.xml \
        ../params/htmlhelp.force.map.and.alias.xml \
        ../params/htmlhelp.hhc.xml \
+       ../params/htmlhelp.hhc.binary.xml \
        ../params/htmlhelp.hhc.folders.instead.books.xml \
        ../params/htmlhelp.hhc.section.depth.xml \
        ../params/htmlhelp.hhc.show.root.xml \
+       ../params/htmlhelp.hhk.xml \
        ../params/htmlhelp.hhp.xml \
        ../params/htmlhelp.hhp.tail.xml \
+       ../params/htmlhelp.hhp.window.xml \
        ../params/htmlhelp.map.file.xml \
        ../params/htmlhelp.title.xml \
+       ../params/htmlhelp.show.menu.xml \
+       ../params/htmlhelp.show.advanced.search.xml \
+       ../params/htmlhelp.show.favorities.xml \
+       ../params/htmlhelp.button.hideshow.xml \
+       ../params/htmlhelp.button.back.xml \
+       ../params/htmlhelp.button.forward.xml \
+       ../params/htmlhelp.button.stop.xml \
+       ../params/htmlhelp.button.refresh.xml \
+       ../params/htmlhelp.button.home.xml \
+       ../params/htmlhelp.button.home.url.xml \
+       ../params/htmlhelp.button.options.xml \
+       ../params/htmlhelp.button.print.xml \
+       ../params/htmlhelp.button.locate.xml \
+       ../params/htmlhelp.button.jump1.xml \
+       ../params/htmlhelp.button.jump1.url.xml \
+       ../params/htmlhelp.button.jump1.title.xml \
+       ../params/htmlhelp.button.jump2.xml \
+       ../params/htmlhelp.button.jump2.url.xml \
+       ../params/htmlhelp.button.jump2.title.xml \
+       ../params/htmlhelp.button.next.xml \
+       ../params/htmlhelp.button.prev.xml \
+       ../params/htmlhelp.button.zoom.xml \
        ../params/inherit.keywords.xml \
        ../params/label.from.part.xml \
        ../params/linenumbering.everyNth.xml \
@@ -87,28 +113,33 @@ PARAMS=../params/admon.graphics.xml \
        ../params/linenumbering.separator.xml \
        ../params/linenumbering.width.xml \
        ../params/link.mailto.url.xml \
-       ../params/make.valid.html.xml \
+       ../params/make.graphic.viewport.xml \
        ../params/make.single.year.ranges.xml \
+       ../params/make.valid.html.xml \
        ../params/make.year.ranges.xml \
+       ../params/manifest.xml \
        ../params/manual.toc.xml \
        ../params/navig.graphics.xml \
        ../params/navig.graphics.extension.xml \
        ../params/navig.graphics.path.xml \
        ../params/navig.showtitles.xml \
+       ../params/nominal.image.depth.xml \
+       ../params/nominal.image.width.xml \
        ../params/nominal.table.width.xml \
        ../params/olink.fragid.xml \
        ../params/olink.outline.ext.xml \
        ../params/olink.pubid.xml \
        ../params/olink.resolver.xml \
        ../params/olink.sysid.xml \
-       ../params/output.method.xml \
        ../params/part.autolabel.xml \
        ../params/phrase.propagates.style.xml \
        ../params/pixels.per.inch.xml \
+       ../params/points.per.em.xml \
        ../params/preface.autolabel.xml \
        ../params/process.empty.source.toc.xml \
        ../params/process.source.toc.xml \
        ../params/profile.arch.xml \
+       ../params/profile.attribute.xml \
        ../params/profile.condition.xml \
        ../params/profile.conformance.xml \
        ../params/profile.lang.xml \
@@ -117,11 +148,10 @@ PARAMS=../params/admon.graphics.xml \
        ../params/profile.revisionflag.xml \
        ../params/profile.role.xml \
        ../params/profile.security.xml \
-       ../params/profile.userlevel.xml \
-       ../params/profile.vendor.xml \
-       ../params/profile.attribute.xml \
-       ../params/profile.value.xml \
        ../params/profile.separator.xml \
+       ../params/profile.userlevel.xml \
+       ../params/profile.value.xml \
+       ../params/profile.vendor.xml \
        ../params/punct.honorific.xml \
        ../params/qanda.defaultlabel.xml \
        ../params/qanda.inherit.numeration.xml \
@@ -144,19 +174,23 @@ PARAMS=../params/admon.graphics.xml \
        ../params/show.revisionflag.xml \
        ../params/spacing.paras.xml \
        ../params/suppress.navigation.xml \
+       ../params/suppress.header.navigation.xml \
+       ../params/suppress.footer.navigation.xml \
        ../params/table.border.color.xml \
        ../params/table.border.style.xml \
        ../params/table.border.thickness.xml \
        ../params/table.borders.with.css.xml \
        ../params/tablecolumns.extension.xml \
-       ../params/textinsert.extension.xml \
        ../params/tex.math.delims.xml \
-       ../params/tex.math.in.alt.xml \
        ../params/tex.math.file.xml \
+       ../params/tex.math.in.alt.xml \
+       ../params/textinsert.extension.xml \
        ../params/toc.list.type.xml \
        ../params/toc.section.depth.xml \
        ../params/ulink.target.xml \
+       ../params/use.embed.for.svg.xml \
        ../params/use.extensions.xml \
        ../params/use.id.as.filename.xml \
-       ../params/using.chunker.xml \
+       ../params/use.role.as.xrefstyle.xml \
+       ../params/use.svg.xml \
        ../params/variablelist.as.table.xml
