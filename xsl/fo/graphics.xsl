@@ -32,6 +32,38 @@
 </xsl:template>
 
 <!-- ==================================================================== -->
+<!-- Override these templates for FO -->
+
+<!--
+FIXME: make is.graphic.* work correctly depending on the backend!
+<xsl:param name="passivetex.extensions" select="0" doc:type='boolean'/>
+<xsl:param name="fop.extensions" select="0" doc:type='boolean'/>
+-->
+
+<xsl:template name="is.graphic.format">
+  <xsl:param name="format"></xsl:param>
+  <xsl:if test="$format = 'PNG'
+                or $format = 'PDF'
+                or $format = 'JPG'
+                or $format = 'JPEG'
+                or $format = 'linespecific'
+                or $format = 'GIF'
+                or $format = 'GIF87a'
+                or $format = 'GIF89a'
+                or $format = 'BMP'">1</xsl:if>
+</xsl:template>
+
+<xsl:template name="is.graphic.extension">
+  <xsl:param name="ext"></xsl:param>
+  <xsl:if test="$ext = 'png'
+                or $ext = 'pdf'
+                or $ext = 'jpeg'
+                or $ext = 'jpg'
+                or $ext = 'gif'
+                or $ext = 'bmp'">1</xsl:if>
+</xsl:template>
+
+<!-- ==================================================================== -->
 
 <xsl:template name="process.image">
   <!-- When this template is called, the current node should be  -->
