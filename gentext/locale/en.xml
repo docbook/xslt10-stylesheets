@@ -100,11 +100,8 @@
 <gentext key="sect5" text="Section"/>
 <gentext key="section" text="Section"/>
 <gentext key="Section" text="Section"/>
-<gentext key="See" text="See"/>
-<gentext key="see" text="See"/>
-<gentext key="SeeAlso" text="See Also"/>
-<gentext key="seealso" text="See Also"/>
-<gentext key="Seealso" text="See also"/>
+<gentext key="see" text="see"/>             <!-- uncapitalized -->
+<gentext key="seealso" text="see also"/>    <!-- uncapitalized -->
 <gentext key="set" text="Set"/>
 <gentext key="Set" text="Set"/>
 <gentext key="setindex" text="Set Index"/>
@@ -163,6 +160,7 @@
 <gentext key="nav-prev" text="Prev"/>
 <gentext key="nav-prev-sibling" text="Fast Backward"/>
 <gentext key="nav-up" text="Up"/>
+<gentext key="nav-toc" text="ToC"/>
 
 <gentext key="Draft"         text="Draft"/>
 <gentext key="above"         text="above"/>
