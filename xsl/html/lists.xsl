@@ -24,6 +24,9 @@
     <xsl:if test="title">
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
+
+    <xsl:apply-templates select="*[not(self::listitem or self::title)]"/>
+
     <ul type="{$itemsymbol}">
       <xsl:if test="@spacing='compact'">
         <xsl:attribute name="compact">
@@ -150,26 +153,30 @@
 
   <div class="{name(.)}">
     <xsl:call-template name="anchor"/>
+
     <xsl:if test="title">
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
+
+    <xsl:apply-templates select="*[not(self::listitem or self::title)]"/>
+
     <ol>
-    <xsl:if test="$start != '1'">
-      <xsl:attribute name="start">
-        <xsl:value-of select="$start"/>
-      </xsl:attribute>
-    </xsl:if>
-    <xsl:if test="$numeration != ''">
-      <xsl:attribute name="type">
-	<xsl:value-of select="$type"/>
-      </xsl:attribute>
-    </xsl:if>
-    <xsl:if test="@spacing='compact'">
-      <xsl:attribute name="compact">
-	<xsl:value-of select="compact"/>
-      </xsl:attribute>
-    </xsl:if>
-    <xsl:apply-templates select="listitem"/>
+      <xsl:if test="$start != '1'">
+        <xsl:attribute name="start">
+          <xsl:value-of select="$start"/>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:if test="$numeration != ''">
+        <xsl:attribute name="type">
+          <xsl:value-of select="$type"/>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:if test="@spacing='compact'">
+        <xsl:attribute name="compact">
+          <xsl:value-of select="compact"/>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:apply-templates select="listitem"/>
     </ol>
   </div>
 </xsl:template>

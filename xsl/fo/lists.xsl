@@ -22,10 +22,12 @@
     <xsl:apply-templates select="title" mode="list.title.mode"/>
   </xsl:if>
 
+  <xsl:apply-templates select="*[not(self::listitem or self::title)]"/>
+
   <fo:list-block id="{$id}" xsl:use-attribute-sets="list.block.spacing"
                  provisional-distance-between-starts="1.5em"
                  provisional-label-separation="0.2em">
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="listitem"/>
   </fo:list-block>
 </xsl:template>
 
@@ -93,10 +95,12 @@
     <xsl:apply-templates select="title" mode="list.title.mode"/>
   </xsl:if>
 
+  <xsl:apply-templates select="*[not(self::listitem or self::title)]"/>
+
   <fo:list-block id="{$id}" xsl:use-attribute-sets="list.block.spacing"
                  provisional-distance-between-starts="2em"
                  provisional-label-separation="0.2em">
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="listitem"/>
   </fo:list-block>
 </xsl:template>
 
