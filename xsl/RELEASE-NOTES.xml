@@ -1,9 +1,9 @@
 <?xml version='1.0'?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
 <article>
   <articleinfo>
     <title>DocBook XSL Stylesheet Release Notes</title>
-    <pubdate>29 November 2004</pubdate>
+    <pubdate>01 December 2004</pubdate>
     <releaseinfo role="cvs">$Id$</releaseinfo> 
     <corpauthor>DocBook Open Repository Team</corpauthor> 
   </articleinfo> 
@@ -11,7 +11,7 @@
   This file documents (mostly) changes to the public APIs. What,
   exactly, counts as a public API is still somewhat in question, but it
   includes at least the global parameters.</para> 
-  <para>You may also be interested in the more detailed <ulink url="WhatsNew"/>.
+  <para>You may also be interested in the more detailed <ulink url="WhatsNew"/> file.
   </para>
   <section>
     <title>Release 1.67.1</title>
@@ -22,7 +22,7 @@
         <title>FO</title>
         <listitem>
           <para>Tables: Inherited cell properties are now passed to the
-          <parameter>table.cell.properties</parameter> template so they can
+          <literal>table.cell.properties</literal> template so they can
           be overridden by a customization.</para>
         </listitem>
         <listitem>
@@ -62,7 +62,8 @@
           they can be customized.</para>
         </listitem>
         <listitem>
-          <para>Lists: Added glossdef's first para to special handling in
+          <para>Lists: Added <sgmltag>glossdef</sgmltag>'s first
+          <sgmltag>para</sgmltag> to special handling in
           <literal>fo:list-item-body</literal>.</para>
         </listitem>
       </itemizedlist>
@@ -108,7 +109,7 @@
           European Languages (code from
           <personname><firstname>Pontus</firstname>
           <surname>Haglund</surname></personname> and contributed to the
-          DocBook community by Sectra AB, Sweden.</para>
+          DocBook community by Sectra AB, Sweden).</para>
           <para>To use:
           <orderedlist>
             <listitem>
@@ -152,11 +153,13 @@
 
               In both cases, the "mystylesheet.xsl" file should be a
               DocBook customization layer containing the parameters
-              show in step 2.
-              </para>
+              show in step 2.</para>
             </listitem>
           </orderedlist>
           </para>
+        </listitem>
+        <listitem>
+          <para>Saxon extensions: Removed Saxon 8 extensions from release package</para>
         </listitem>
       </itemizedlist>
     </para>
@@ -1216,8 +1219,12 @@ XHTML chunker to output HTML instead of XHTML.
 </para>
 </listitem>
 </itemizedlist> 
-<note>
-<para>Consult CVS archive for release notes on earlier releases</para>
-</note>
+</section>
+<section>
+  <title>Older releases</title>
+  <para>To view the release notes for older releases, see <ulink
+  url="http://cvs.sourceforge.net/viewcvs.py/docbook/xsl/RELEASE-NOTES.xml"/>. Be
+  aware that there were no release notes for releases prior to the
+  1.50.0 release.</para>
 </section>
 </article>
