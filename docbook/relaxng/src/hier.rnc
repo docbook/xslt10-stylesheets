@@ -51,7 +51,7 @@ div {
 
    local.set.attributes = empty
 
-   set.status.attrib = status.attribute
+   set.status.attribute = status.attribute
 
    set.role.attribute = attribute role { text }
 
@@ -60,7 +60,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & label.attribute?
-    & set.status.attrib?
+    & set.status.attribute?
     & local.set.attributes
 
    set.info = docbook.info.titlereq
@@ -85,7 +85,7 @@ div {
 
    local.book.attributes = empty
 
-   book.status.attrib = status.attribute
+   book.status.attribute = status.attribute
 
    book.role.attribute = attribute role { text }
 
@@ -94,7 +94,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & label.attribute?
-    & book.status.attrib?
+    & book.status.attribute?
     & local.book.attributes
 
    book.info = docbook.info.titlereq
@@ -117,7 +117,7 @@ div {
 
    local.dedication.attributes = empty
 
-   dedication.status.attrib = status.attribute
+   dedication.status.attribute = status.attribute
 
    dedication.role.attribute = attribute role { text }
 
@@ -126,7 +126,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & label.attribute?
-    & dedication.status.attrib?
+    & dedication.status.attribute?
     & local.dedication.attributes
 
    dedication.info = docbook.info
@@ -149,7 +149,7 @@ div {
 
    local.colophon.attributes = empty
 
-   colophon.status.attrib = status.attribute
+   colophon.status.attribute = status.attribute
 
    colophon.role.attribute = attribute role { text }
 
@@ -158,7 +158,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & label.attribute?
-    & colophon.status.attrib?
+    & colophon.status.attribute?
     & local.colophon.attributes
 
    colophon.info = docbook.info
@@ -181,7 +181,7 @@ div {
 
    local.appendix.attributes = empty
 
-   appendix.status.attrib = status.attribute
+   appendix.status.attribute = status.attribute
 
    appendix.role.attribute = attribute role { text }
 
@@ -190,7 +190,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & label.attribute?
-    & appendix.status.attrib?
+    & appendix.status.attribute?
     & local.appendix.attributes
 
    appendix.info = docbook.info.titlereq
@@ -213,7 +213,7 @@ div {
 
    local.chapter.attributes = empty
 
-   chapter.status.attrib = status.attribute
+   chapter.status.attribute = status.attribute
 
    chapter.role.attribute = attribute role { text }
 
@@ -222,7 +222,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & label.attribute?
-    & chapter.status.attrib?
+    & chapter.status.attribute?
     & local.chapter.attributes
 
    chapter.info = docbook.info.titlereq
@@ -249,7 +249,7 @@ div {
 
    local.part.attributes = empty
 
-   part.status.attrib = status.attribute
+   part.status.attribute = status.attribute
 
    part.role.attribute = attribute role { text }
 
@@ -258,7 +258,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & label.attribute?
-    & part.status.attrib?
+    & part.status.attribute?
     & local.part.attributes
 
    part.info = docbook.info.titlereq
@@ -282,7 +282,7 @@ div {
 
    local.preface.attributes = empty
 
-   preface.status.attrib = status.attribute
+   preface.status.attribute = status.attribute
 
    preface.role.attribute = attribute role { text }
 
@@ -291,7 +291,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & label.attribute?
-    & preface.status.attrib?
+    & preface.status.attribute?
     & local.preface.attributes
 
    preface.info = docbook.info
@@ -314,7 +314,7 @@ div {
 
    local.partintro.attributes = empty
 
-   partintro.status.attrib = status.attribute
+   partintro.status.attribute = status.attribute
 
    partintro.role.attribute = attribute role { text }
 
@@ -323,7 +323,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & label.attribute?
-    & partintro.status.attrib?
+    & partintro.status.attribute?
     & local.partintro.attributes
 
    partintro.info = docbook.info
@@ -355,7 +355,7 @@ div {
 
    local.section.attributes = empty
 
-   section.status.attrib = status.attribute
+   section.status.attribute = status.attribute
 
    section.role.attribute = attribute role { text }
 
@@ -364,7 +364,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & label.attribute?
-    & section.status.attrib?
+    & section.status.attribute?
     & local.section.attributes
 
    section.info = docbook.info.titlereq
@@ -387,7 +387,7 @@ div {
 
    local.simplesect.attributes = empty
 
-   simplesect.status.attrib = status.attribute
+   simplesect.status.attribute = status.attribute
 
    simplesect.role.attribute = attribute role { text }
 
@@ -396,7 +396,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & label.attribute?
-    & simplesect.status.attrib?
+    & simplesect.status.attribute?
     & local.simplesect.attributes
 
    simplesect.info = docbook.info.titlereq
@@ -449,9 +449,9 @@ div {
 
    local.article.attributes = empty
 
-   article.status.attrib = status.attribute
+   article.status.attribute = status.attribute
 
-   article.class.attrib =
+   article.class.attribute =
       attribute class {
          "faq"
        | "journalarticle"
@@ -468,8 +468,8 @@ div {
     & common.attributes
     & common.linking.attributes
     & label.attribute?
-    & article.status.attrib?
-    & article.class.attrib?
+    & article.status.attribute?
+    & article.class.attribute?
     & local.article.attributes
 
    article.info = docbook.info.titlereq
