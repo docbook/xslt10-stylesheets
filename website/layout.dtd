@@ -1,5 +1,5 @@
 <!-- ====================================================================== -->
-<!-- Website Layout DTD V2.0b1
+<!-- Website Layout DTD V2.1b1
      Part of the Website distribution
      http://sourceforge.net/projects/docbook/
 
@@ -73,5 +73,5 @@
 
 <!ELEMENT summary (#PCDATA)*>
 
-<!-- End of layout.dtd V2.0b1 ............................................. -->
+<!-- End of layout.dtd V2.2b1 ............................................. -->
 <!-- ...................................................................... -->

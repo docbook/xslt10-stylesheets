@@ -1,5 +1,5 @@
 <!-- ====================================================================== -->
-<!-- Website Autolayout DTD V2.0b1
+<!-- Website Autolayout DTD V2.1b1
      Part of the Website distribution
      http://sourceforge.net/projects/docbook/
 
@@ -75,5 +75,5 @@
 	filename	CDATA	#REQUIRED
 >
 
-<!-- End of autolayout.dtd V2.0b1 ......................................... -->
+<!-- End of autolayout.dtd V2.1b1 ......................................... -->
 <!-- ...................................................................... -->
