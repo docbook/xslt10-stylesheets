@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
-                  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+          "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <article>
 <articleinfo>
 <title>Unit Test: bibliolist.001</title>
@@ -15,8 +15,6 @@
 
 <bibliolist>
 <title>Bibliography List</title>
-
-<para>This is a bibliography list.</para>
 
 <biblioentry>
   <abbrev>AhoSethiUllman96</abbrev>
@@ -58,5 +56,3 @@
 <para>This is another paragraph.</para>
 
 </article>
-
-

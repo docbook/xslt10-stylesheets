@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook MathML Module V1.0//EN"
-                  "http://www.oasis-open.org/docbook/xml/mathml/1.0/dbmathml.dtd" [
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+          "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
 <!ENTITY % local.article.attrib "xmlns:mml CDATA #REQUIRED">
 ]>
 <article xmlns:mml="http://www.w3.org/1998/Math/MathML">
