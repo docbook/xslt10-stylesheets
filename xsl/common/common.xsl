@@ -1141,6 +1141,45 @@ pointed to by the link is one of the elements listed in
 </xsl:template>
 
 <!-- ====================================================================== -->
+<!-- ItemizedList "Numeration" -->
+
+<xsl:template name="next.itemsymbol">
+  <xsl:param name="itemsymbol" select="'default'"/>
+  <xsl:choose>
+    <!-- Change this list if you want to change the order of symbols -->
+    <xsl:when test="$itemsymbol = 'disc'">round</xsl:when>
+    <xsl:when test="$itemsymbol = 'round'">square</xsl:when>
+    <xsl:otherwise>disc</xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="list.itemsymbol">
+  <xsl:param name="node" select="."/>
+
+  <xsl:choose>
+    <xsl:when test="$node/@mark">
+      <xsl:value-of select="$node/@mark"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:choose>
+        <xsl:when test="$node/ancestor::itemizedlist">
+          <xsl:call-template name="next.itemsymbol">
+            <xsl:with-param name="itemsymbol">
+              <xsl:call-template name="list.itemsymbol">
+                <xsl:with-param name="node" select="$node/ancestor::itemizedlist[1]"/>
+              </xsl:call-template>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="next.itemsymbol"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!-- ====================================================================== -->
 
 <doc:template name="copyright.years" xmlns="">
 <refpurpose>Print a set of years with collapsed ranges</refpurpose>
