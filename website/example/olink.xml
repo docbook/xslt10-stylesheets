@@ -1,0 +1,73 @@
+<!DOCTYPE webpage SYSTEM "../website.dtd">
+<webpage id="olink">
+<config param="desc" value="Linking Pages"/>
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>Linking Pages</title>
+<titleabbrev>Linking</titleabbrev>
+<summary>Linking across Pages</summary>
+</head>
+
+<para>In Website, the website pages are different XML documents so it
+is no longer possible to use <sgmltag>link</sgmltag> to make links
+between them.  Instead, you must use <sgmltag>olink</sgmltag><footnote>
+<para>It's also possible to use <sgmltag>ulink</sgmltag> and make links
+directly to the generated HTML pages, but that's a bad idea; if you change
+the hierarchy or rename a page, the link will become stale. With
+<sgmltag>olink</sgmltag> this won't happen.</para></footnote>.</para>
+
+<para><sgmltag>Olink</sgmltag> is different from the other linking mechanisms
+that you may be familiar with. Instead of using a URI or an IDREF to form
+the link, it uses an XML unparsed entity. If that sounds greek, don't
+worry too much, it's easy to do.</para>
+
+<orderedlist>
+<listitem><para>Create an entity declaration that identifies the target
+page. For example, to link to this page, I would use the following
+declaration:</para>
+
+<programlisting
+><![CDATA[<!ENTITY linking SYSTEM "olink.xml" NDATA XML>]]></programlisting>
+
+<para>The name that you use for the entity, <literal>linking</literal>
+in this case, is irrelevant. The important thing is that the entity
+point to the right page. I've used a system identifier here, but you could
+also use public identifiers if you wanted more flexibility.</para>
+
+<para>Keep in mind that the systen identifier specified here must be
+either an absolute URI or a relative URI that will resolve to the
+target page (in other words, you may need to prefix it with a partial
+path name, if you keep your XML webpages in different directories).</para>
+</listitem>
+
+<listitem><para>Make sure the webpage that you are linking
+<emphasis>from</emphasis> (you don't have to do anything special to
+the page you're linking to) has a <quote>DOCTYPE</quote> declaration with
+an internal subset. If your <sgmltag>olink</sgmltag> entity is the only
+thing in it, it should look like something like this:</para>
+
+<programlisting
+><![CDATA[<!DOCTYPE webpage PUBLIC "-//SF DocBook//DTD Website V2.0//EN"
+          SYSTEM "http://www.sourceforge.net/docbook/release/website/2.0/website.dtd [
+<!ENTITY linking SYSTEM "olink.xml" NDATA XML>
+]>]]></programlisting>
+
+<para>If you want to link to several different pages, you will need an
+entity declaration for each of them.</para>
+</listitem>
+
+<listitem><para>Use the <sgmltag class="attribute">targetdocent</sgmltag>
+attribute of <sgmltag>olink</sgmltag> to identify the entity of the page
+you want to link to:</para>
+
+<programlisting
+><![CDATA[<olink targetdocent="linking">link text</olink>]]></programlisting>
+
+<para>That will link to the correct page in the resulting website. If you
+want to link to a specific anchor in that web page, use the
+<sgmltag class="attribute">localinfo</sgmltag> attribute to specify the
+XML ID.</para>
+</listitem>
+</orderedlist>
+
+</webpage>

@@ -1,7 +1,6 @@
+<!DOCTYPE webpage SYSTEM "../website.dtd">
 <webpage id="test1b">
 <config param="rcsdate" value="$Date$"/>
-<config param="filename" value="test1b.html"/>
-<config param="dir" value="subdir"/>
 <head>
 <title>Test 1b</title>
 <summary>Test 1b Page</summary>

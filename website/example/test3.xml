@@ -1,6 +1,9 @@
+<!DOCTYPE webpage SYSTEM "../website.dtd" [
+<!ENTITY bookmarks SYSTEM "bookmark/bookmark.xml" NDATA SGML>
+]>
 <webpage id="test3">
 <config param="rcsdate" value="$Date$"/>
-<config param="filename" value="test3.html"/><head>
+<head>
 <title>XBEL Bookmarks</title>
 <summary>XBEL Bookmark test</summary>
 </head>
@@ -8,16 +11,12 @@
 your web pages. Use an xlink as follows:
 </para>
 
-<screen><![CDATA[<xlink href="bookmark/bookmark.xml" show="embed" actuate="auto"/>]]></screen>
-
-<xlink href="bookmark/bookmark.xml" show="embed" actuate="auto"/>
+<programlisting
+><![CDATA[<olink targetdocent="bookmark-entity" type="embed"/>]]></programlisting>
 
 <para>
-You can use dynamic HTML for your bookmarks, if you specify
-<literal>role="dynamic"</literal> on the xlink:</para>
-
-<xlink href="bookmark/bookmark.xml" show="embed" actuate="auto"
-       role="dynamic"/>
+<olink targetdocent="bookmarks" type="embed"/>
+</para>
 
 </webpage>
 

@@ -1,0 +1,63 @@
+<!DOCTYPE webpage SYSTEM "../website.dtd">
+<webpage id="buildmake">
+<config param="desc" value="Building with Make"/>
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>Building with Make</title>
+<titleabbrev>Using Make</titleabbrev>
+<summary>Building with Make</summary>
+</head>
+
+<para>The following instructions work with recent versions of GNU Make;
+you may have to tweak them a bit if you're using some other version of
+<command>make</command>.
+</para>
+
+<orderedlist>
+<listitem><para>Create your webpages and your <filename>layout.xml</filename>
+file.</para></listitem>
+
+<listitem><para>Create a skeletal <filename>Makefile</filename> like this:
+</para>
+
+<programlisting><![CDATA[PROC=xslproc
+STYLEDIR=../xsl
+TABSTYLE=$(STYLEDIR)/tabular.xsl
+STYLESHEET=$(TABSTYLE)
+STYLEOPT=
+
+.PHONY : clean
+
+all:
+	make website
+
+include depends.tabular
+
+autolayout.xml: layout.xml
+	$(PROC) $< $(STYLEDIR)/autolayout.xsl $@
+	make depends
+
+%.html: autolayout.xml
+	$(PROC) $(filter-out autolayout.xml,$^) $(STYLESHEET) $@ $(STYLEOPT)
+
+depends: autolayout.xml
+	$(PROC) $< ../xsl/makefile-dep.xsl depends.tabular
+]]></programlisting>
+
+<para>You'll have to change the <literal>PROC</literal> setting and
+the command-lines used to run the processor.</para>
+</listitem>
+
+<listitem><para>Create an empty file called
+<filename>depends.tabular</filename>.
+</para></listitem>
+
+<listitem><para>Run <command>make depends</command>.
+</para></listitem>
+
+<listitem><para>Run <command>make</command>. That should build your
+website.
+</para></listitem>
+</orderedlist>
+
+</webpage>

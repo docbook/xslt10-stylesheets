@@ -1,9 +1,7 @@
 <!-- ====================================================================== -->
-<!-- Website DTD Forms Module V1.7
-     Part of the Website DTD
-     http://nwalsh.com/website/
-
-     See COPYRIGHT for more information
+<!-- Website DTD Forms Module V2.0b1
+     Part of the Website distribution
+     http://sourceforge.net/projects/docbook/
 
      Please direct all questions and comments about this DTD to
      Norman Walsh, <ndw@nwalsh.com>.
@@ -23,10 +21,11 @@
   onkeyup		CDATA		#IMPLIED"
 >
 
-<!ELEMENT html:form ((%component.mix;)|html:input|html:button
-			|html:label|html:select|html:textarea)+>
+<!ELEMENT %html-form.element; ((%component.mix;)|%html-input.element;|%html-button.element;
+			|%html-label.element;|%html-select.element;|%html-textarea.element;)+>
 
-<!ATTLIST html:form
+<!ATTLIST %html-form.element;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
 	%common.attrib;
 	%events;
 	action		CDATA		#REQUIRED
@@ -38,8 +37,9 @@
 <!ENTITY % inputtype  "(text | password | checkbox | radio
                        | submit | reset | file | hidden | image | button)">
 
-<!ELEMENT html:input EMPTY>
-<!ATTLIST html:input
+<!ELEMENT %html-input.element; EMPTY>
+<!ATTLIST %html-input.element;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
 	%common.attrib;
 	%events;
 	type		%inputtype;	"text"
@@ -61,8 +61,9 @@
 	onchange	CDATA		#IMPLIED
 >
 
-<!ELEMENT html:button (%para.char.mix;)*>
-<!ATTLIST html:button
+<!ELEMENT %html-button.element; (%para.char.mix;)*>
+<!ATTLIST %html-button.element;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
 	%common.attrib;
 	%events;
 	name		CDATA		#IMPLIED
@@ -75,8 +76,9 @@
 	onblur		CDATA		#IMPLIED
 >
 
-<!ELEMENT html:label (%para.char.mix;)*>
-<!ATTLIST html:label
+<!ELEMENT %html-label.element; (%para.char.mix;)*>
+<!ATTLIST %html-label.element;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
 	%common.attrib;
 	%events;
 	for		IDREF		#IMPLIED
@@ -85,8 +87,9 @@
 	onblur		CDATA		#IMPLIED
 >
 
-<!ELEMENT html:select (html:option)+>
-<!ATTLIST html:select
+<!ELEMENT %html-select.element; (%html-option.element;)+>
+<!ATTLIST %html-select.element;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
 	%common.attrib;
 	%events;
 	name		CDATA		#IMPLIED
@@ -99,8 +102,9 @@
 	onchange	CDATA		#IMPLIED
 >
 
-<!ELEMENT html:option (#PCDATA)>
-<!ATTLIST html:option
+<!ELEMENT %html-option.element; (#PCDATA)>
+<!ATTLIST %html-option.element;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
 	%common.attrib;
 	%events;
 	selected    	(selected)	#IMPLIED
@@ -108,8 +112,9 @@
 	value		CDATA		#IMPLIED
 >
 
-<!ELEMENT html:textarea (#PCDATA)>
-<!ATTLIST html:textarea
+<!ELEMENT %html-textarea.element; (#PCDATA)>
+<!ATTLIST %html-textarea.element;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
 	%common.attrib;
 	%events;
 	name		CDATA		#IMPLIED
@@ -125,5 +130,5 @@
 	onchange	CDATA		#IMPLIED
 >
 
-<!-- End of forms.mod V1.7 ................................................ -->
+<!-- End of forms.mod V2.0b1 .............................................. -->
 <!-- ...................................................................... -->
