@@ -9,12 +9,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='formal.procedures.frag'><xsl:param name="formal.procedures" select="1"/></src:fragment>
+<src:fragment id='formal.procedures.frag'>
+<xsl:param name="formal.procedures" select="1"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
 
-<para>Formal procedures are numbered and always hav a title.
+<para>Formal procedures are numbered and always have a title.
 </para>
 
 </refsect1>
