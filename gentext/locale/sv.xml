@@ -67,9 +67,9 @@
 <gentext key="msglevel" text="Niv&#229;"/>
 <gentext key="MsgOrig" text="Ursprung"/>
 <gentext key="msgorig" text="Ursprung"/>
-<gentext key="NOTE" text="NOT"/>
-<gentext key="Note" text="Not"/>
-<gentext key="note" text="Not"/>
+<gentext key="NOTE" text="NOTERA"/>
+<gentext key="Note" text="Notera"/>
+<gentext key="note" text="Notera"/>
 <gentext key="Part" text="Del"/>
 <gentext key="part" text="Del"/>
 <gentext key="Preface" text="F&#246;retal"/>
