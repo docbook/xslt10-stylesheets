@@ -11,6 +11,10 @@
 
 <doc:localeinfo xmlns="">
 <authorgroup>
+  <author><firstname>Oliver</firstname><surname>Fischer</surname>
+          <affiliation><address><email>plexus@snafu.de</email></address>
+          </affiliation>
+  </author>
   <author><firstname>Michael</firstname><surname>Burschik</surname>
           <affiliation><address><email>burschik@id-pro.de</email></address>
           </affiliation>
@@ -89,6 +93,8 @@
 <gentext key="Procedure" text="Prozedur"/>
 <gentext key="procedure" text="Prozedur"/>
 <gentext key="ProductionSet" text="Produktion"/>
+<gentext key="PubDate" text="Ver&ouml;ffentlicht"/>
+<gentext key="pubdate" text="Ver&ouml;ffentlicht"/>
 <gentext key="Published" text="Ver&ouml;ffentlicht"/>
 <gentext key="published" text="Ver&ouml;ffentlicht"/>
 <gentext key="Question" text="F:"/>
@@ -156,6 +162,7 @@
 <gentext key="tablenotes" text="Bemerkungen"/>
 <gentext key="TableofContents" text="Inhaltsverzeichnis"/>
 <gentext key="tableofcontents" text="Inhaltsverzeichnis"/>
+<gentext key="the" text=""/>
 <gentext key="unexpectedelementname" text="Unerwarteter Elementname"/>
 <gentext key="unsupported" text="wird nicht unterst&uuml;tzt"/>
 <gentext key="xrefto" text="xref auf"/>
@@ -177,7 +184,7 @@
 <gentext key="nav-prev" text="Zur&uuml;ck"/>
 <gentext key="nav-prev-sibling" text="Schnell zur&uuml;ck"/>
 <gentext key="nav-up" text="Nach oben"/>
-
+  
 <gentext key="sectioncalled" text="der Abschnitt namens"/> 
 <gentext key="Draft"         text="Entwurf"/> 
 <gentext key="above"         text="oben"/> 
@@ -191,6 +198,8 @@
 <dingbat key="endquote" text="&#x201C;"/>
 <dingbat key="nestedstartquote" text="&#x201A;"/>
 <dingbat key="nestedendquote" text="&#x2018;"/>
+<dingbat key="singlestartquote" text="&#x201A;"/>
+<dingbat key="singleendquote" text="&#x2018;"/>
 <dingbat key="bullet" text="&#x2022;"/>
 
 <context name="styles">
@@ -464,6 +473,49 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+  
+<context name="datetime">
+<template name="format">d.M.Y</template>
+<template name="January">Januar</template>
+<template name="February">Februar</template>
+<template name="March">M&aml;rz</template>
+<template name="April">April</template>
+<template name="May">Mai</template>
+<template name="June">Juni</template>
+<template name="July">Juli</template>
+<template name="August">August</template>
+<template name="September">September</template>
+<template name="October">Oktober</template>
+<template name="November">November</template>
+<template name="December">Dezember</template>
+<template name="Jan">Jan</template>
+<template name="Feb">Feb</template>
+<template name="Mar">Mar</template>
+<template name="Apr">Apr</template>
+<template name="May">Mai</template>
+<template name="Jun">Jun</template>
+<template name="Jul">Jul</template>
+<template name="Aug">Aug</template>
+<template name="Sep">Sep</template>
+<template name="Oct">Okt</template>
+<template name="Nov">Nov</template>
+<template name="Dec">Dez</template>
+<template name="Monday">Montag</template>
+<template name="Tuesday">Dienstag</template>
+<template name="Wednesday">Mittwoch</template>
+<template name="Thursday">Donnerstag</template>
+<template name="Friday">Freitag</template>
+<template name="Saturday">Samstag</template>
+<template name="Sunday">Sonntag</template>
+<template name="Mon">Mo</template>
+<template name="Tue">Di</template>
+<template name="Wed">Mi</template>
+<template name="Thu">Do</template>
+<template name="Fri">Fr</template>
+<template name="Sat">Sa</template>
+<template name="Sun">So</template>
+</context>
+  
 <context name="htmlhelp">
 <template name="langcode">0x0407 German (GERMANY)</template>
 </context>
