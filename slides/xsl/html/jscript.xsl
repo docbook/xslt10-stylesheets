@@ -23,6 +23,9 @@
       <xsl:value-of select="$script.dir"/>
       <xsl:text>/</xsl:text>
     </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>http://docbook.sourceforge.net/release/slides/browser/</xsl:text>
+    </xsl:otherwise>
   </xsl:choose>
   <xsl:value-of select="$js"/>
 </xsl:template>
@@ -36,6 +39,7 @@
         <xsl:with-param name="js" select="$ua.js"/>
       </xsl:call-template>
     </xsl:attribute>
+    <xsl:text> </xsl:text>
   </script>
 </xsl:template>
 
@@ -48,6 +52,7 @@
         <xsl:with-param name="js" select="$xbDOM.js"/>
       </xsl:call-template>
     </xsl:attribute>
+    <xsl:text> </xsl:text>
   </script>
 </xsl:template>
 
@@ -60,6 +65,7 @@
         <xsl:with-param name="js" select="$xbStyle.js"/>
       </xsl:call-template>
     </xsl:attribute>
+    <xsl:text> </xsl:text>
   </script>
 </xsl:template>
 
@@ -72,6 +78,7 @@
         <xsl:with-param name="js" select="$xbCollapsibleLists.js"/>
       </xsl:call-template>
     </xsl:attribute>
+    <xsl:text> </xsl:text>
   </script>
 </xsl:template>
 
@@ -84,6 +91,7 @@
         <xsl:with-param name="js" select="$overlay.js"/>
       </xsl:call-template>
     </xsl:attribute>
+    <xsl:text> </xsl:text>
   </script>
 </xsl:template>
 
@@ -96,6 +104,7 @@
         <xsl:with-param name="js" select="$slides.js"/>
       </xsl:call-template>
     </xsl:attribute>
+    <xsl:text> </xsl:text>
   </script>
 </xsl:template>
 
