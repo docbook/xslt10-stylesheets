@@ -46,8 +46,8 @@
 <gentext key="example" text="Exemplo"/>
 <gentext key="Figure" text="Figura"/>
 <gentext key="figure" text="Figura"/>
-<gentext key="Glossary" text="Glossario"/>
-<gentext key="glossary" text="Glossario"/>
+<gentext key="Glossary" text="Gloss&#193;rio"/>
+<gentext key="glossary" text="Gloss&#193;rio"/>
 <gentext key="GlossSee" text="Ver"/>
 <gentext key="glosssee" text="Ver"/>
 <gentext key="GlossSeeAlso" text="Ver Tamb&#233;m"/>
@@ -55,12 +55,12 @@
 <gentext key="IMPORTANT" text="IMPORTANTE"/>
 <gentext key="Important" text="Importante"/>
 <gentext key="important" text="Importante"/>
-<gentext key="Index" text="Index"/>
-<gentext key="index" text="Index"/>
+<gentext key="Index" text="&#205;ndice Remissivo"/>
+<gentext key="index" text="&#205;ndice Remissivo"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
-<gentext key="LegalNotice" text=""/>
-<gentext key="legalnotice" text=""/>
+<gentext key="LegalNotice" text="Aviso Legal"/>
+<gentext key="legalnotice" text="Aviso Legal"/>
 <gentext key="MsgAud" text="Audi&#234;ncia"/>
 <gentext key="msgaud" text="Audi&#234;ncia"/>
 <gentext key="MsgLevel" text="N&#237;vel"/>
@@ -91,10 +91,10 @@
 <gentext key="refname" text="Nome"/>
 <gentext key="RefSection" text=""/>
 <gentext key="refsection" text=""/>
-<gentext key="RefSynopsisDiv" text="Synopsis"/>
-<gentext key="refsynopsisdiv" text="Synopsis"/> <!-- en -->
-<gentext key="RevHistory" text="Hitorial de Revis&#245;es"/>
-<gentext key="revhistory" text="Hitorial de Revis&#245;es"/>
+<gentext key="RefSynopsisDiv" text="Sinopse"/>
+<gentext key="refsynopsisdiv" text="Sinopse"/>
+<gentext key="RevHistory" text="Historial de Revis&#245;es"/>
+<gentext key="revhistory" text="Historial de Revis&#245;es"/>
 <gentext key="Revision" text="Revis&#227;o"/>
 <gentext key="revision" text="Revis&#227;o"/>
 <gentext key="sect1" text="Section"/> <!-- en -->
