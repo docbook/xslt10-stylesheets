@@ -3973,7 +3973,7 @@ change will not be made after all. </dtd:comment>
      but need not be, collected into a Book. </dtd:comment>
 
 <define name="local.article.attrib">
-  <notAllowed/>
+  <empty/>
 </define>
 <define name="article.role.attrib">
   <ref name="role.attrib"/>
@@ -4013,7 +4013,6 @@ change will not be made after all. </dtd:comment>
         </choice>
       </zeroOrMore>
     </group>
-    <ref name="article.attlist"/>
   </element>
 </define>
 <dtd:marked-section end="article.element"/>
