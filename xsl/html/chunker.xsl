@@ -8,10 +8,9 @@
                 exclude-result-prefixes="doc"
                 extension-element-prefixes="saxon xalanredirect lxslt exsl">
 
-<!-- This stylesheet works with Saxon and Xalan; for XT use xtchunker.xsl -->
+<!-- This stylesheet works with XSLT implementations that support -->
+<!-- exsl:document, saxon:output, or xalanredirect:write -->
 <!-- Note: Only Saxon 6.4.2 or later is supported. -->
-
-<!-- Note: I don't think the exsl namespace name is right! -->
 
 <!-- ==================================================================== -->
 
