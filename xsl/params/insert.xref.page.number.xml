@@ -9,13 +9,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='insert.xref.page.number.frag'><xsl:param name="insert.xref.page.number" select="0"/></src:fragment>
+<src:fragment id='insert.xref.page.number.frag'>
+<xsl:param name="insert.xref.page.number" select="0"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
 
-<para>When equal to 1, this parameter triggers generation of page
-number citations after xrefs.
+<para>If non-zero, cross references (<sgmltag>xref</sgmltag>s) will
+include page number citations.
 </para>
 
 </refsect1>
