@@ -10,7 +10,8 @@
 
 <refsynopsisdiv>
 <src:fragment id='table.border.color.frag'>
-<xsl:param name="table.border.color" select="'black'"/>
+<xsl:param condition="html" name="table.border.color" select="''"/>
+<xsl:param condition="fo" name="table.border.color" select="'black'"/>
 </src:fragment>
 </refsynopsisdiv>
 
