@@ -4,7 +4,29 @@ FORMAT=$1; shift
 DSSSL=$1; shift
 SOURCE=$1; shift
 
-JADE=/usr/bin/jade
-CATALOGS="-c /share/doctypes/catalog -c /sourceforge/docbook/dsssl/catalog"
+# find jade in the path
+JADE=`command -v jade`
+if [ ! -x "$JADE" ]; then
+  # fallback to openjade
+  JADE=`command -v openjade`
+  if [ ! -x "$JADE" ]; then
+    echo "cannot find jade or openjade" 1>&2
+    exit 1
+  fi
+fi
 
-$JADE $CATALOGS -t $FORMAT -d $DSSSL $* $SOURCE
+# include dsssl/catalog
+MYDIR=`dirname $0`
+DOCBKCVSDIR=`cd ${MYDIR}/.. && pwd`
+if [ -f ${DOCBKCVSDIR}/dsssl/catalog ]; then
+  CATALOGS="$CATALOGS -c ${DOCBKCVSDIR}/dsssl/catalog"
+elif [ -f /sourceforge/docbook/dsssl/catalog ]; then
+  CATALOGS="$CATALOGS -c /sourceforge/docbook/dsssl/catalog"
+fi
+
+# optional extra catalogs
+if [ -f /share/doctypes/catalog ]; then
+    CATALOGS="$CATALOGS -c /share/doctypes/catalog"
+fi
+
+exec $JADE $CATALOGS -t $FORMAT -d $DSSSL $* $SOURCE

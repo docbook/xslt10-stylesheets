@@ -109,6 +109,7 @@ case $VERSION in
 	;;
 esac
 
+
 DOTTEDVERSION=`echo $VERSION | sed -e 's/\([0-9]\)\([0-9]\)/\1.\2/g;' | sed -e 's/\([0-9]\)\([0-9]\)/\1.\2/g;'`
 
 ##
@@ -220,9 +221,70 @@ if [ ! "$JAXP" ]; then
   echo "warning: cannot locate JAXP (jaxp.jar)" 1>&2
 fi
 
-RESOLVER="${RESOLVER:-/projects/apache/xml-commons/java/build/classes}:"
+##
+## optionally replace the URI resolver with the Sun
+## resolver classes
+##
+for path in "/projects/sun/resolver/.classes" \
+            "/projects/apache/xml-commons/java/build/classes" \
+            "/usr/local/share/java/sun-resolver.jar" \
+            "/usr/local/java/sun-resolver.jar" \
+            "/usr/share/java/sun-resolver.jar"; do
+  if [ -f "$path" -o -d "$path" ]; then
+    RESOLVER="$path"
+    break
+  fi
+done
+if [ -f "$RESOLVER" -o -d "$RESOLVER" ]; then
+  # use the sun resolver
+  if [ ! "$XARG" ]; then
+    XARG="-x com.sun.resolver.tools.ResolvingXMLReader"
+  fi
+  if [ ! "$YARG" ]; then
+    YARG="-y com.sun.resolver.tools.ResolvingXMLReader"
+  fi
+  if [ ! "$RARG" ]; then
+    RARG="-r com.sun.resolver.tools.CatalogResolver"
+  fi
+fi
 
-CLASSPATH=$SAXON:$NDWEXT:$JAXP:$RESOLVER$XERCES:$CLASSPATH
+##
+## locate Xerces classpath
+##
+if [ ! "$XERCES" ]; then
+  for path in "/projects/apache/xml-xerces/java/build/classes" \
+              "/usr/local/share/java/xerces.jar" \
+              "/usr/local/java/xerces.jar" \
+              "/usr/share/java/xerces.jar"; do
+    if [ -f "$path" -o -d "$path" ]; then
+      XERCES="$path"
+    fi
+  done
+fi
+if [ ! "$XERCES" ]; then
+  echo "warning: cannot locate Xerces (xerces.jar)" 1>&2
+fi
+
+##
+## locate JAXP classpath
+##
+if [ ! "$JAXP" ]; then
+  for path in "/usr/local/share/java/jaxp.jar" \
+              "/usr/local/java/jaxp.jar" \
+              "/usr/local/jaxp-1.1/jaxp.jar" \
+              "/usr/local/share/java/jaxp-1.1/jaxp.jar" \
+              "/usr/share/java/jaxp.jar"; do
+    if [ -f "$path" -o -d "$path" ]; then
+      JAXP="$path"
+    fi
+  done
+fi
+if [ ! "$JAXP" ]; then
+  echo "warning: cannot locate JAXP (jaxp.jar), using /projects/sun/resolver/.classes" 1>&2
+  JAXP="/projects/sun/resolver/.classes"
+fi
+
+CLASSPATH=$SAXON:$NDWEXT:$JAXP:$RESOLVER:$XERCES:$CLASSPATH
 
 # echo "classpath is $CLASSPATH"
 
@@ -240,7 +302,7 @@ TRANSFACTORY=com.icl.saxon.TransformerFactoryImpl
 DBFACTORY=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl
 SPFACTORY=org.apache.xerces.jaxp.SAXParserFactoryImpl
 
-java $MEMORY $FOO \
+exec java $MEMORY $FOO \
      -cp $CLASSPATH \
      -Djavax.xml.parsers.DocumentBuilderFactory=$DBFACTORY \
      -Djavax.xml.parsers.SAXParserFactory=$SPFACTORY \

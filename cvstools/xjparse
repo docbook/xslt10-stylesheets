@@ -3,16 +3,48 @@
 # This shell script will definitely need to be hacked to run on your system!
 #
 # Usage: xjparse [opts] src.xml
+#
 
-JAXP="${JAXP:-/usr/local/jaxp-1.1/jaxp.jar}:"
-RESOLVER="${RESOLVER:-/projects/apache/xml-commons/java/build/classes}:"
+for path in $RESOLVER \
+	    "/projects/apache/xml-commons/java/build/classes" \
+	    "/projects/sun/resolver/.classes" ; do
+  if [ -f "$path" -o -d "$path" ]; then
+    RESOLVER="$path"
+    break
+  fi
+done
+if [ ! "$RESOLVER" ]; then
+  echo "cannot find sun/resolver classes" 1>&2
+  exit 1
+fi
+
+for path in "/usr/local/jaxp-1.1/crimson.jar" \
+            "/usr/local/java/jaxp-1.1/crimson.jar" \
+            "/usr/local/share/java/jaxp-1.1/crimson.jar" \
+            "/usr/share/java/crimson.jar"; do
+  if [ -f "$path" -o -d "$path" ]; then
+    CRIMSON="$path"
+    break
+  fi
+done
+
+for path in "/usr/local/jaxp-1.1/jaxp.jar" \
+            "/usr/local/java/jaxp-1.1/jaxp.jar" \
+            "/usr/local/share/java/jaxp-1.1/jaxp.jar" \
+            "/usr/share/java/jaxp.jar"; do
+  if [ -f "$path" -o -d "$path" ]; then
+    JAXP="$path"
+    break
+  fi
+done
+
 XERCES="${XERCES:-/projects/apache/xml-xerces/java/build/classes}:"
 
-CLASSPATH=$JAXP$RESOLVER$XERCES$CLASSPATH
+CLASSPATH=$JAXP:$CRIMSON:$RESOLVER:$XERCES:$CLASSPATH
 
 #echo $CLASSPATH
 
-java \
+java -cp $CLASSPATH \
   org.apache.xml.resolver.apps.xread $*
 
 if [ $? != 0 ]; then
