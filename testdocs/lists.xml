@@ -27,6 +27,11 @@
 <listitem><para>This is the first item of an itemized list.
 &blah; &blah; &blah; &blah; &blah;</para>
 </listitem>
+<listitem><address><otheraddr><emphasis>Amberely Greeting Card
+Company,</emphasis></otheraddr> <street>11510 Goldcoast Drive,</street>
+<city>Cincinnati,</city> <state>OH</state> <postcode>45249-1695.</postcode>
+<phone>(513) 489-2775.</phone> <otheraddr><emphasis>Looking for:</emphasis>
+outrageous humor, no seasonal cards.</otheraddr></address><para/></listitem>
 <listitem><simpara>This is the second item of an itemized list. (Using simpara.)
 &blah; &blah; &blah; &blah; &blah;</simpara>
 </listitem>
