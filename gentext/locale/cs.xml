@@ -171,8 +171,8 @@
 <gentext key="below"         text="pod"/>  
 <gentext key="index symbols" text="Symboly"/>
 
-<gentext key="lowercase.alpha" text="aábcčdďeéěfghiíjklmnoópqrřsštťuúůvwxyýzž"/>
-<gentext key="uppercase.alpha" text="AÁBCČDĎEÉĚFGHIÍJKLMNOÓPQRŘSŠTŤUÚŮVWXYÝZŽ"/>
+<gentext key="lowercase.alpha" text="aábcčdďeéěfghiíjklmnňoópqrřsštťuúůvwxyýzž"/>
+<gentext key="uppercase.alpha" text="AÁBCČDĎEÉĚFGHIÍJKLMNŇOÓPQRŘSŠTŤUÚŮVWXYÝZŽ"/>
 
 <dingbat key="startquote" text="&#x201e;"/>
 <dingbat key="endquote" text="&#x201c;"/>
