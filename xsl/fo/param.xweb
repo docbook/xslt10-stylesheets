@@ -89,6 +89,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &generate.toc;
 &generate.index;
 &make.index.markup;
+&index.on.type;
 &index.on.role;
 &index.preferred.page.properties;
 &xep.index.item.properties;
@@ -579,6 +580,7 @@ around all these parameters.</para>
 <src:fragref linkend="hyphenate.frag"/>
 <src:fragref linkend="ignore.image.scaling.frag"/>
 <src:fragref linkend="index.on.role.frag"/>
+<src:fragref linkend="index.on.type.frag"/>
 <src:fragref linkend="informal.object.properties.frag"/>
 <src:fragref linkend="index.preferred.page.properties.frag"/>
 <src:fragref linkend="insert.xref.page.number.frag"/>
