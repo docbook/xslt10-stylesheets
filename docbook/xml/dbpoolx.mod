@@ -2239,7 +2239,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!ENTITY % segmentedlist.element "INCLUDE">
 <![%segmentedlist.element;[
 <!ELEMENT segmentedlist %ho; ((%formalobject.title.content;)?,
-                         segtitle, segtitle+,
+                         segtitle+,
                          seglistitem+)>
 <!--end of segmentedlist.element-->]]>
 
@@ -2280,7 +2280,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % seglistitem.element "INCLUDE">
 <![%seglistitem.element;[
-<!ELEMENT seglistitem %ho; (seg, seg+)>
+<!ELEMENT seglistitem %ho; (seg+)>
 <!--end of seglistitem.element-->]]>
 
 <!ENTITY % seglistitem.attlist "INCLUDE">
