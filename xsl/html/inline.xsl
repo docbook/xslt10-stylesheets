@@ -492,6 +492,10 @@
   <xsl:call-template name="inline.monoseq"/>
 </xsl:template>
 
+<xsl:template match="package">
+  <xsl:call-template name="inline.charseq"/>
+</xsl:template>
+
 <xsl:template match="parameter">
   <xsl:call-template name="inline.italicmonoseq"/>
 </xsl:template>
