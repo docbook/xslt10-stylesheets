@@ -874,7 +874,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!ENTITY % local.info.class "">
 <!ENTITY % info.class
 		"graphic | mediaobject | legalnotice | modespec
-		 | subjectset | keywordset | itermset | %bibliocomponent.mix;">
+		 | subjectset | keywordset | itermset | %bibliocomponent.mix;
+                 %local.info.class;">
 
 <!ENTITY % biblioentry.module "INCLUDE">
 <![%biblioentry.module;[
