@@ -80,8 +80,12 @@
 <gentext key="Procedure" text="&Pcy;&rcy;&ocy;&tscy;&iecy;&dcy;&ucy;&rcy;&acy;"/>
 <gentext key="procedure" text="&Pcy;&rcy;&ocy;&tscy;&iecy;&dcy;&ucy;&rcy;&acy;"/>
 <gentext key="ProductionSet" text="Production"/>
+<gentext key="PubDate" text="&Dcy;&acy;&tcy;&acy; &ncy;&acy; &icy;&zcy;&dcy;&acy;&vcy;&acy;&ncy;&iecy;"/>
+<gentext key="pubdate" text="&Dcy;&acy;&tcy;&acy; &ncy;&acy; &icy;&zcy;&dcy;&acy;&vcy;&acy;&ncy;&iecy;"/>
 <gentext key="Published" text="&Icy;&zcy;&dcy;&acy;&dcy;&iecy;&ncy;"/>
 <gentext key="published" text="&Icy;&zcy;&dcy;&acy;&dcy;&iecy;&ncy;"/>
+<gentext key="Qandadiv" text="&Vcy;&hardcy;&pcy;&rcy;&ocy;&scy;&icy; &icy; &ocy;&tcy;&gcy;&ocy;&vcy;&ocy;&rcy;&icy;"/>
+<gentext key="qandadiv" text="&Vcy;&hardcy;&pcy;&rcy;&ocy;&scy;&icy; &icy; &ocy;&tcy;&gcy;&ocy;&vcy;&ocy;&rcy;&icy;"/>
 <gentext key="Question" text="&Vcy;:"/>
 <gentext key="question" text="&Vcy;:"/>
 <gentext key="RefEntry" text=""/>
@@ -106,7 +110,10 @@
 <gentext key="section" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
 <gentext key="Section" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
 <gentext key="see" text="&vcy;&zhcy;."/>
+<gentext key="See" text="&Vcy;&zhcy;."/>
 <gentext key="seealso" text="&vcy;&zhcy;. &scy;&hardcy;&shchcy;&ocy;"/>
+<gentext key="Seealso" text="&Vcy;&zhcy;. &scy;&hardcy;&shchcy;&ocy;"/>
+<gentext key="SeeAlso" text="&Vcy;&zhcy;. &scy;&hardcy;&shchcy;&ocy;"/>
 <gentext key="set" text="&Ucy;&kcy;&acy;&zcy;&acy;&tcy;&iecy;&lcy;"/>
 <gentext key="Set" text="&Ucy;&kcy;&acy;&zcy;&acy;&tcy;&iecy;&lcy;"/>
 <gentext key="setindex" text="&Ucy;&kcy;&acy;&zcy;&acy;&tcy;&iecy;&lcy;"/>
@@ -125,6 +132,7 @@
 <gentext key="WARNING" text="&Vcy;&Ncy;&Icy;&Mcy;&Acy;&Ncy;&Icy;&IEcy;"/>
 <gentext key="and" text=""/>
 <gentext key="by" text=""/>
+<gentext key="called" text="called"/>
 <gentext key="Edited" text="&Rcy;&iecy;&dcy;&acy;&kcy;&tcy;&icy;&rcy;&acy;&ncy;&ocy; &ocy;&tcy;"/>
 <gentext key="edited" text="&Rcy;&iecy;&dcy;&acy;&kcy;&tcy;&icy;&rcy;&acy;&ncy;&ocy; &ocy;&tcy;"/>
 <gentext key="Editedby" text="&Rcy;&iecy;&dcy;&acy;&kcy;&tcy;&icy;&rcy;&acy;&ncy;&ocy; &ocy;&tcy;"/>
@@ -143,6 +151,7 @@
 <gentext key="tablenotes" text="&Zcy;&acy;&bcy;&iecy;&lcy;&iecy;&zhcy;&kcy;&icy;"/>
 <gentext key="TableofContents" text="&Scy;&hardcy;&dcy;&hardcy;&rcy;&zhcy;&acy;&ncy;&icy;&iecy;"/>
 <gentext key="tableofcontents" text="&Scy;&hardcy;&dcy;&hardcy;&rcy;&zhcy;&acy;&ncy;&icy;&iecy;"/>
+<gentext key="the" text=""/>
 <gentext key="unexpectedelementname" text="unexpected element name"/>
 <gentext key="unsupported" text="unsupported"/>
 <gentext key="xrefto" text="xref to"/>
@@ -152,6 +161,8 @@
 <gentext key="listofexamples" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &pcy;&rcy;&icy;&mcy;&iecy;&rcy;&icy;&tcy;&iecy;"/>
 <gentext key="ListofFigures" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &fcy;&icy;&gcy;&ucy;&rcy;&icy;&tcy;&iecy;"/>
 <gentext key="listoffigures" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &fcy;&icy;&gcy;&ucy;&rcy;&icy;&tcy;&iecy;"/>
+<gentext key="ListofProcedures" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &pcy;&rcy;&ocy;&tscy;&iecy;&dcy;&ucy;&rcy;&icy;&tcy;&iecy;"/>
+<gentext key="listofprocedures" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &pcy;&rcy;&ocy;&tscy;&iecy;&dcy;&ucy;&rcy;&icy;&tcy;&iecy;"/>
 <gentext key="listoftables" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &tcy;&acy;&bcy;&lcy;&icy;&tscy;&icy;&tcy;&iecy;"/>
 <gentext key="ListofTables" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &tcy;&acy;&bcy;&lcy;&icy;&tscy;&icy;&tcy;&iecy;"/>
 <gentext key="ListofUnknown" text="&Ncy;&iecy;&ocy;&pcy;&rcy;&iecy;&dcy;&iecy;&lcy;&iecy;&ncy; &scy;&pcy;&icy;&scy;&hardcy;&kcy;"/>
@@ -174,11 +185,17 @@
 <gentext key="lowercase.alpha" text="&acy;&bcy;&vcy;&gcy;&dcy;&iecy;&zhcy;&zcy;&icy;&jcy;&kcy;&lcy;&mcy;&ncy;&ocy;&pcy;&rcy;&scy;&tcy;&ucy;&fcy;&khcy;&tscy;&chcy;&shcy;&shchcy;&hardcy;&ycy;&softcy;&ecy;&yucy;&yacy;"/>
 <gentext key="uppercase.alpha" text="&Acy;&Bcy;&Vcy;&Gcy;&Dcy;&IEcy;&ZHcy;&Zcy;&Icy;&Jcy;&Kcy;&Lcy;&Mcy;&Ncy;&Ocy;&Pcy;&Rcy;&Scy;&Tcy;&Ucy;&Fcy;&KHcy;&TScy;&CHcy;&SHcy;&SHCHcy;&HARDcy;&Ycy;&SOFTcy;&Ecy;&YUcy;&YAcy;"/>
 
-<dingbat key="startquote" text="&#8220;"/>
-<dingbat key="endquote" text="&#8221;"/>
+<dingbat key="startquote" text="&#8222;"/>
+<dingbat key="endquote" text="&#8220;"/>
 <dingbat key="nestedstartquote" text="&#8216;"/>
 <dingbat key="nestedendquote" text="&#8217;"/>
+<dingbat key="singlestartquote" text="&#x2018;"/>
+<dingbat key="singleendquote" text="&#x2019;"/>
 <dingbat key="bullet" text="&#8226;"/>
+
+<gentext key="hyphenation-character" text="-"/>
+<gentext key="hyphenation-push-character-count" text="2"/>
+<gentext key="hyphenation-remain-character-count" text="2"/>
 
 <context name="styles">
 
@@ -480,6 +497,54 @@
 <template name="MsgAud"><MsgAud/>: </template>
 <template name="MsgLevel"><MsgLevel/>: </template>
 <template name="MsgOrig"><MsgOrig/>: </template>
+</context>
+
+<context name="datetime">
+<template name="format">d/m/Y</template>
+</context>
+
+<context name="datetime-full">
+<template name="January">&yacy;&ncy;&ucy;&acy;&rcy;&icy;</template>
+<template name="February">&fcy;&iecy;&vcy;&rcy;&ucy;&acy;&rcy;&icy;</template>
+<template name="March">&mcy;&acy;&rcy;&tcy;</template>
+<template name="April">&acy;&pcy;&rcy;&icy;&lcy;</template>
+<template name="May">&mcy;&acy;&jcy;</template>
+<template name="June">&yucy;&ncy;&icy;</template>
+<template name="July">&yucy;&lcy;&icy;</template>
+<template name="August">&acy;&vcy;&gcy;&ucy;&scy;&tcy;</template>
+<template name="September">&scy;&iecy;&pcy;&tcy;&iecy;&mcy;&vcy;&rcy;&icy;</template>
+<template name="October">&ocy;&kcy;&tcy;&ocy;&mcy;&vcy;&rcy;&icy;</template>
+<template name="November">&ncy;&ocy;&iecy;&mcy;&vcy;&rcy;&icy;</template>
+<template name="December">&dcy;&iecy;&kcy;&iecy;&mcy;&vcy;&rcy;&icy;</template>
+<template name="Monday">&pcy;&ocy;&ncy;&iecy;&dcy;&iecy;&lcy;&ncy;&icy;&kcy;</template>
+<template name="Tuesday">&vcy;&tcy;&ocy;&rcy;&ncy;&icy;&kcy;</template>
+<template name="Wednesday">&scy;&rcy;&yacy;&dcy;&acy;</template>
+<template name="Thursday">&chcy;&iecy;&tcy;&vcy;&hardcy;&rcy;&tcy;&hardcy;&kcy;</template>
+<template name="Friday">&pcy;&iecy;&tcy;&hardcy;&kcy;</template>
+<template name="Saturday">&scy;&hardcy;&bcy;&ocy;&tcy;&acy;</template>
+<template name="Sunday">&ncy;&iecy;&dcy;&iecy;&lcy;&yacy;</template>
+</context>
+
+<context name="datetime-abbrev">
+<template name="Jan">&yacy;&ncy;.</template>
+<template name="Feb">&fcy;&iecy;&vcy;.</template>
+<template name="Mar">&mcy;&acy;&rcy;&tcy;</template>
+<template name="Apr">&acy;&pcy;&rcy;.</template>
+<template name="May">&mcy;&acy;&jcy;</template>
+<template name="Jun">&yucy;&ncy;&icy;</template>
+<template name="Jul">&yucy;&lcy;&icy;</template>
+<template name="Aug">&acy;&vcy;&gcy;.</template>
+<template name="Sep">&scy;&iecy;&pcy;.</template>
+<template name="Oct">&ocy;&kcy;&tcy;.</template>
+<template name="Nov">&ncy;&ocy;&iecy;&mcy;.</template>
+<template name="Dec">&dcy;&iecy;&kcy;.</template>
+<template name="Mon">&pcy;&ocy;&ncy;.</template>
+<template name="Tue">&vcy;&tcy;.</template>
+<template name="Wed">&scy;&rcy;.</template>
+<template name="Thu">&chcy;&iecy;&tcy;.</template>
+<template name="Fri">&pcy;&iecy;&tcy;.</template>
+<template name="Sat">&scy;&hardcy;&bcy;.</template>
+<template name="Sun">&ncy;&iecy;&dcy;.</template>
 </context>
 
 <context name="htmlhelp">
