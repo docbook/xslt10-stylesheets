@@ -30,6 +30,7 @@
 <xsl:include href="../common/subtitles.xsl"/>
 <xsl:include href="../common/gentext.xsl"/>
 <xsl:include href="autotoc.xsl"/>
+<xsl:include href="autoidx.xsl"/>
 <xsl:include href="lists.xsl"/>
 <xsl:include href="callout.xsl"/>
 <xsl:include href="verbatim.xsl"/>
@@ -59,6 +60,7 @@
 <xsl:include href="titlepage.templates.xsl"/>
 <xsl:include href="pi.xsl"/>
 <xsl:include href="ebnf.xsl"/>
+<xsl:include href="chunker.xsl"/>
 
 <!-- ==================================================================== -->
 
