@@ -586,9 +586,9 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
-  <fo:list-item>
+  <fo:list-item xsl:use-attribute-sets="list.item.spacing">
     <fo:list-item-label end-indent="label-end()">
-      <fo:block id="{$id}" xsl:use-attribute-sets="list.item.spacing">
+      <fo:block id="{$id}">
         <!-- dwc: fix for one step procedures. Use a bullet if there's no step 2 -->
         <xsl:choose>
           <xsl:when test="count(../step) = 1">
@@ -609,7 +609,7 @@
 </xsl:template>
 
 <xsl:template match="step/title">
-  <fo:block font-weight="bold" xsl:use-attribute-sets="list.item.spacing">
+  <fo:block font-weight="bold">
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
