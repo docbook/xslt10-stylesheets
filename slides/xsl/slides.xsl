@@ -679,7 +679,15 @@
     <xsl:apply-templates select="." mode="foil-filename"/>
   </xsl:variable>
 
-  <xsl:text>subList.addItem('</xsl:text>
+  <xsl:choose>
+    <xsl:when test="ancestor::section">
+      <xsl:text>subList.addItem('</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>myList.addItem('</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+
   <div id="{$id}" class="toc-foil">
     <img alt="-">
       <xsl:attribute name="src">
