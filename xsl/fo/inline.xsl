@@ -355,7 +355,17 @@
 </xsl:template>
 
 <xsl:template match="glossterm">
-  <xsl:call-template name="inline.charseq"/>
+  <xsl:choose>
+    <xsl:when test="@linkend">
+      <fo:basic-link internal-destination="{@linkend}"
+                     xsl:use-attribute-sets="xref.properties">
+        <xsl:call-template name="inline.charseq"/>
+      </fo:basic-link>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="inline.charseq"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="sgmltag">
