@@ -285,6 +285,15 @@ GlossEntry ::=
     </xsl:message>
   </xsl:if>
 
+  <xsl:if test="not($collection) and $glossary.collection != ''">
+    <xsl:message>
+      <xsl:text>Warning: processing automatic glossary but unable to </xsl:text>
+      <xsl:text>open glossary.collection file '</xsl:text>
+      <xsl:value-of select="$glossary.collection"/>
+      <xsl:text>'</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
   <div class="{name(.)}">
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
