@@ -176,16 +176,19 @@
 <xsl:template name="biblioentry.label">
   <xsl:param name="node" select="."/>
 
-  <xsl:text>[</xsl:text>
   <xsl:choose>
     <xsl:when test="local-name($node/child::*[1]) = 'abbrev'">
+      <xsl:text>[</xsl:text>
       <xsl:apply-templates select="$node/abbrev[1]"/>
+      <xsl:text>] </xsl:text>
     </xsl:when>
-    <xsl:otherwise>
+    <xsl:when test="$node/@id">
+      <xsl:text>[</xsl:text>
       <xsl:value-of select="$node/@id"/>
-    </xsl:otherwise>
+      <xsl:text>] </xsl:text>
+    </xsl:when>
+    <xsl:otherwise><!-- nop --></xsl:otherwise>
   </xsl:choose>
-  <xsl:text>] </xsl:text>
 </xsl:template>
 
 <!-- ==================================================================== -->
