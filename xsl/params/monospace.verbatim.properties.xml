@@ -1,7 +1,7 @@
 <refentry>
 <refnamediv>
 <refname>monospace.verbatim.properties</refname>
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>What font and size do you want for monospaced content?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -16,6 +16,6 @@
 </xsl:attribute-set></src:fragment>
 </refsynopsisdiv>
 <refsect1><title>Description</title>
-<para>FIXME:</para>
+<para>Specify the font name and size you want for monospaced output</para>
 </refsect1>
 </refentry>

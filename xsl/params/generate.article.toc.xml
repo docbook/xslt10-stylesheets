@@ -5,7 +5,7 @@
 </refmeta>
 <refnamediv>
 <refname>generate.article.toc</refname>
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>Specify if a toc is wanted for an article.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -14,8 +14,7 @@
 
 <refsect1><title>Description</title>
 
-<para>FIXME:
-</para>
+<para>Specify whether a table of contents is required for an article.</para>
 
 </refsect1>
 </refentry>

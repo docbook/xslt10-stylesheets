@@ -1,7 +1,7 @@
 <refentry>
 <refmeta>
 <refentrytitle>autotoc.label.separator</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>autotoc.label.separator</refname>
@@ -14,7 +14,7 @@
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>String to use to seperate labels and title in a table of contents.</para>
 
 </refsect1>
 </refentry>

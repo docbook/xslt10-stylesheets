@@ -1,7 +1,7 @@
 <refentry>
 <refnamediv>
 <refname>normal.para.spacing</refname>
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>What space do you want between normal paragraphs</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -12,6 +12,6 @@
 </xsl:attribute-set></src:fragment>
 </refsynopsisdiv>
 <refsect1><title>Description</title>
-<para>FIXME:</para>
+<para>Specify the spacing required between normal paragraphs</para>
 </refsect1>
 </refentry>

@@ -1,7 +1,7 @@
 <refentry>
 <refnamediv>
 <refname>list.item.spacing</refname>
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>What space do you want between list items?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -12,6 +12,6 @@
 </xsl:attribute-set></src:fragment>
 </refsynopsisdiv>
 <refsect1><title>Description</title>
-<para>FIXME:</para>
+<para>Specify what spacing you want between each list item.</para>
 </refsect1>
 </refentry>

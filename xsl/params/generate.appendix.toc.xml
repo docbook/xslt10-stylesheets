@@ -5,7 +5,7 @@
 </refmeta>
 <refnamediv>
 <refname>generate.appendix.toc</refname>
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>Specify if a table of contents is required for an appendix</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -14,8 +14,7 @@
 
 <refsect1><title>Description</title>
 
-<para>FIXME:
-</para>
+<para>Specify whether you want a table of contents in each appendix. </para>
 
 </refsect1>
 </refentry>

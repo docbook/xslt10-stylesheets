@@ -1,7 +1,7 @@
 <refentry>
 <refnamediv>
 <refname>formal.title.properties</refname>
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>Style the title element of formal object such as a figure.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -13,6 +13,6 @@
 </xsl:attribute-set></src:fragment>
 </refsynopsisdiv>
 <refsect1><title>Description</title>
-<para>FIXME:</para>
+<para>Specify how the title should be styled. Specify the font size and weight of the title of the formal object.</para>
 </refsect1>
 </refentry>

@@ -5,7 +5,7 @@
 </refmeta>
 <refnamediv>
 <refname>generate.chapter.toc</refname>
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>Do you want a table of contents for chapters?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -14,8 +14,7 @@
 
 <refsect1><title>Description</title>
 
-<para>FIXME:
-</para>
+<para>Specify if a table of contents should be generated for each chapter.</para>
 
 </refsect1>
 </refentry>

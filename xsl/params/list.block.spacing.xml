@@ -1,7 +1,7 @@
 <refentry>
 <refnamediv>
 <refname>list.block.spacing</refname>
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>What spacing do you want before lists?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -12,6 +12,6 @@
 </xsl:attribute-set></src:fragment>
 </refsynopsisdiv>
 <refsect1><title>Description</title>
-<para>FIXME:</para>
+<para>Specify the spacing required before a list. </para>
 </refsect1>
 </refentry>

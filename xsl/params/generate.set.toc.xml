@@ -5,7 +5,7 @@
 </refmeta>
 <refnamediv>
 <refname>generate.set.toc</refname>
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>Do you want a table of contents in each set?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -14,8 +14,7 @@
 
 <refsect1><title>Description</title>
 
-<para>FIXME:
-</para>
+<para>Specify if a table of contents is required in each set.</para>
 
 </refsect1>
 </refentry>

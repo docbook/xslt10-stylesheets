@@ -5,7 +5,7 @@
 </refmeta>
 <refnamediv>
 <refname>generate.book.table.lot</refname>
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>Do you want a list of tables in a book?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -13,6 +13,6 @@
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
-<para>FIXME:</para>
+<para>Specify if a list of tables is required, similar to a table of contents, but for all the tables in the book</para>
 </refsect1>
 </refentry>

@@ -1,7 +1,7 @@
 <refentry>
 <refnamediv>
 <refname>component.title.properties</refname>
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>Specify the styling for the title elements of a component.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -19,6 +19,12 @@
 </xsl:attribute-set></src:fragment>
 </refsynopsisdiv>
 <refsect1><title>Description</title>
-<para>FIXME:</para>
+
+<para>A set of attributes are used to style the title of a
+component (chapters, appendixes, articles, etc.). Components are usually
+printed in the <parameter>title.font.family</parameter>.
+Spacing before and after, font size etc are specified
+using this parameter.</para>
+
 </refsect1>
 </refentry>
