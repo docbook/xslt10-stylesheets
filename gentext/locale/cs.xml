@@ -171,6 +171,9 @@
 <gentext key="below"         text="below"/>  <!-- en -->
 <gentext key="index symbols" text="Symboly"/>
 
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!-- en -->
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!-- en -->
+
 <dingbat key="startquote" text="&#x201e;"/>
 <dingbat key="endquote" text="&#x201c;"/>
 <dingbat key="nestedstartquote" text="&#x201a;"/>
