@@ -143,6 +143,9 @@
 
 <xsl:template match="graphic">
   <p>
+    <xsl:if test="@id">
+      <a name="{@id}"/>
+    </xsl:if>
     <xsl:call-template name="process.image"/>
   </p>
 </xsl:template>
@@ -159,6 +162,10 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
+
+  <xsl:if test="@id">
+    <a name="{@id}"/>
+  </xsl:if>
 
   <xsl:choose>
     <xsl:when test="@format='linespecific'">
@@ -196,6 +203,9 @@
 
 <xsl:template match="mediaobject|mediaobjectco">
   <div class="{name(.)}">
+    <xsl:if test="@id">
+      <a name="{@id}"/>
+    </xsl:if>
     <xsl:call-template name="select.mediaobject"/>
     <xsl:apply-templates select="caption"/>
   </div>
@@ -203,6 +213,9 @@
 
 <xsl:template match="inlinemediaobject">
   <span class="{name(.)}">
+    <xsl:if test="@id">
+      <a name="{@id}"/>
+    </xsl:if>
     <xsl:call-template name="select.mediaobject"/>
   </span>
 </xsl:template>
@@ -216,6 +229,9 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="imageobjectco">
+  <xsl:if test="@id">
+    <a name="{@id}"/>
+  </xsl:if>
   <xsl:apply-templates select="imageobject"/>
   <xsl:apply-templates select="calloutlist"/>
 </xsl:template>
