@@ -90,7 +90,8 @@
       <xsl:with-param name="object" select=".."/>
     </xsl:call-template>
   </xsl:variable>
-  <fo:block font-size="16pt" font-weight="bold">
+  <fo:block font-size="16pt" font-weight="bold"
+            font-family="{$title.font.family}">
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
