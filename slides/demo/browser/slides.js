@@ -44,18 +44,28 @@ function navigate (evt) {
 
     if (navigator.org == 'microsoft') {
 	kc = window.event.keyCode;
+    } else if (navigator.family == 'gecko') {
+	kc = evt.keyCode;
     } else {
 	kc = evt.which;
     }
 
-    var forward = (kc==32) || (kc==13) || (kc==110) || (kc==78);
-    var backward = (kc==80) || (kc==112);
+    var forward = (kc == 34);
+    var backward = (kc == 33);
+    var home = (kc == 36);
+    var toc = (kc == 112) || (kc == 224);
 
     var links = xbGetElementsByName("LINK");
     var count = 0;
     var target = "";
 
     for (count = 0; count < links.length; count++) {
+	if (home && (links[count].getAttribute("rel") == 'top')) {
+	    target = links[count].getAttribute("href");
+	}
+	if (toc && (links[count].getAttribute("rel") == 'contents')) {
+	    target = links[count].getAttribute("href");
+	}
 	if (forward && (links[count].getAttribute("rel") == 'next')) {
 	    target = links[count].getAttribute("href");
 	}
@@ -67,6 +77,8 @@ function navigate (evt) {
     if (target != "") {
 	window.location = target;
     }
+
+    return false;
 }
 
 function toggletoc (img, width, hidegraphic, showgraphic) {

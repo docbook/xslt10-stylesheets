@@ -1,4 +1,4 @@
-XSLTPROC=xsltproc
+XSLTPROC=saxon
 SLIDES=../source/slides.xml
 XSLT=$(XSLTPROC) $(SLIDES)
 
