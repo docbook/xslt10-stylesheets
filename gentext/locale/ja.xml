@@ -132,10 +132,10 @@
 
 <gentext key="and" text="&#x3001;"/>
 <gentext key="by" text="&#xFF1A;"/>
-<gentext key="Edited" text="&#x4F5C;&#x8005;"/>
-<gentext key="edited" text="&#x4F5C;&#x8005;"/>
-<gentext key="Editedby" text="&#x4F5C;&#x8005;&#xFF1A;"/>
-<gentext key="editedby" text="&#x4F5C;&#x8005;&#xFF1A;"/>
+<gentext key="Edited" text="&#x7de8;&#x8005;"/>
+<gentext key="edited" text="&#x7de8;&#x8005;"/>
+<gentext key="Editedby" text="&#x7de8;&#x8005;&#xFF1A;"/>
+<gentext key="editedby" text="&#x7de8;&#x8005;&#xFF1A;"/>
 <gentext key="in" text=""/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
