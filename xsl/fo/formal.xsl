@@ -20,27 +20,64 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
-  <fo:block id="{$id}"
-            xsl:use-attribute-sets="formal.object.properties">
+  <xsl:variable name="content">
     <xsl:if test="$placement = 'before'">
-      <xsl:call-template name="formal.object.heading"> 
-        <xsl:with-param name="placement" select="$placement"/> 
-      </xsl:call-template> 
+      <xsl:call-template name="formal.object.heading">
+        <xsl:with-param name="placement" select="$placement"/>
+      </xsl:call-template>
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:if test="$placement != 'before'">
-      <xsl:call-template name="formal.object.heading"> 
-        <xsl:with-param name="placement" select="$placement"/> 
-      </xsl:call-template> 
+      <xsl:call-template name="formal.object.heading">
+        <xsl:with-param name="placement" select="$placement"/>
+      </xsl:call-template>
     </xsl:if>
-  </fo:block>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="local-name(.) = 'figure'">
+      <fo:block id="{$id}"
+                xsl:use-attribute-sets="figure.properties">
+        <xsl:copy-of select="$content"/>
+      </fo:block>
+    </xsl:when>
+    <xsl:when test="local-name(.) = 'example'">
+      <fo:block id="{$id}"
+                xsl:use-attribute-sets="example.properties">
+        <xsl:copy-of select="$content"/>
+      </fo:block>
+    </xsl:when>
+    <xsl:when test="local-name(.) = 'equation'">
+      <fo:block id="{$id}"
+                xsl:use-attribute-sets="equation.properties">
+        <xsl:copy-of select="$content"/>
+      </fo:block>
+    </xsl:when>
+    <xsl:when test="local-name(.) = 'table'">
+      <fo:block id="{$id}"
+                xsl:use-attribute-sets="table.properties">
+        <xsl:copy-of select="$content"/>
+      </fo:block>
+    </xsl:when>
+    <xsl:when test="local-name(.) = 'procedure'">
+      <fo:block id="{$id}"
+                xsl:use-attribute-sets="procedure.properties">
+        <xsl:copy-of select="$content"/>
+      </fo:block>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:block id="{$id}"
+                xsl:use-attribute-sets="formal.object.properties">
+        <xsl:copy-of select="$content"/>
+      </fo:block>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="formal.object.heading">
   <xsl:param name="object" select="."/>
   <xsl:param name="placement" select="'before'"/>
 
-  
   <fo:block xsl:use-attribute-sets="formal.title.properties">
     <xsl:choose>
       <xsl:when test="$placement = 'before'">
@@ -59,9 +96,29 @@
 </xsl:template>
 
 <xsl:template name="informal.object">
-  <fo:block>
-    <xsl:apply-templates/>
-  </fo:block>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="local-name(.) = 'equation'">
+      <fo:block id="{$id}"
+                xsl:use-attribute-sets="equation.properties">
+        <xsl:apply-templates/>
+      </fo:block>
+    </xsl:when>
+    <xsl:when test="local-name(.) = 'procedure'">
+      <fo:block id="{$id}"
+                xsl:use-attribute-sets="procedure.properties">
+        <xsl:apply-templates/>
+      </fo:block>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:block id="{$id}">
+        <xsl:apply-templates/>
+      </fo:block>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="semiformal.object">
@@ -472,10 +529,14 @@
 </xsl:template>
 
 <xsl:template match="figure/title"></xsl:template>
+<xsl:template match="figure/titleabbrev"></xsl:template>
 <xsl:template match="table/title"></xsl:template>
+<xsl:template match="table/titleabbrev"></xsl:template>
 <xsl:template match="table/textobject"></xsl:template>
 <xsl:template match="example/title"></xsl:template>
+<xsl:template match="example/titleabbrev"></xsl:template>
 <xsl:template match="equation/title"></xsl:template>
+<xsl:template match="equation/titleabbrev"></xsl:template>
 
 <xsl:template match="informalfigure">
   <xsl:call-template name="informal.object"/>
