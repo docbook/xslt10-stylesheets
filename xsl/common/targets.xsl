@@ -62,6 +62,8 @@ document output.
             <xsl:with-param name="method" select="'xml'"/>
             <xsl:with-param name="encoding" select="'utf-8'"/>
             <xsl:with-param name="omit-xml-declaration" select="'yes'"/>
+            <xsl:with-param name="doctype-public" select="''"/>
+            <xsl:with-param name="doctype-system" select="''"/>
             <xsl:with-param name="indent" select="'yes'"/>
             <xsl:with-param name="quiet" select="0"/>
             <xsl:with-param name="content">
