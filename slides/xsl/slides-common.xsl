@@ -884,92 +884,94 @@
     <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename" select="concat($base.dir, $thisfoilgroup)"/>
     <xsl:with-param name="content">
-      <head>
-        <title><xsl:value-of select="title"/></title>
+      <html>
+        <head>
+          <title><xsl:value-of select="title"/></title>
 
           <!-- Links -->
 
-        <link type="text/css" rel="stylesheet">
-          <xsl:attribute name="href">
-            <xsl:call-template name="css.stylesheet"/>
-          </xsl:attribute>
-        </link>
+          <link type="text/css" rel="stylesheet">
+            <xsl:attribute name="href">
+              <xsl:call-template name="css.stylesheet"/>
+            </xsl:attribute>
+          </link>
 
-        <xsl:call-template name="links">
-          <xsl:with-param name="home" select="$home"/>
-          <xsl:with-param name="up" select="$up"/>
-          <xsl:with-param name="next" select="$next"/>
-          <xsl:with-param name="prev" select="$prev"/>
-        </xsl:call-template>
-
-        <!-- Scripts -->
-
-        <xsl:if test="$overlay != 0 or $keyboard.nav != 0">
-          <script language="JavaScript1.2" type="text/javascript"/>
-        </xsl:if>
-
-        <xsl:if test="$keyboard.nav != 0">
-          <xsl:call-template name="ua.js"/>
-          <xsl:call-template name="xbDOM.js">
-            <xsl:with-param name="language" select="'JavaScript'"/>
-          </xsl:call-template>
-          <xsl:call-template name="xbStyle.js"/>
-          <xsl:call-template name="xbCollapsibleLists.js"/>
-          <xsl:call-template name="slides.js">
-            <xsl:with-param name="language" select="'JavaScript'"/>
-          </xsl:call-template>
-        </xsl:if>
-
-        <xsl:if test="$overlay != '0'">
-          <xsl:call-template name="overlay.js">
-            <xsl:with-param name="language" select="'JavaScript'"/>
-          </xsl:call-template>
-        </xsl:if>
-      </head>
-      <body class="foilgroup">
-        <xsl:call-template name="body.attributes"/>
-        <xsl:if test="$overlay != 0">
-          <xsl:attribute name="onload">
-            <xsl:text>overlaySetup('lc')</xsl:text>
-          </xsl:attribute>
-        </xsl:if>
-        <xsl:if test="$keyboard.nav != 0">
-          <xsl:attribute name="onkeypress">
-            <xsl:text>navigate(event)</xsl:text>
-          </xsl:attribute>
-        </xsl:if>
-
-        <div class="{name(.)}">
-          <a name="{$id}"/>
-          <xsl:call-template name="foilgroup-top-nav">
+          <xsl:call-template name="links">
             <xsl:with-param name="home" select="$home"/>
             <xsl:with-param name="up" select="$up"/>
             <xsl:with-param name="next" select="$next"/>
             <xsl:with-param name="prev" select="$prev"/>
           </xsl:call-template>
 
-          <div class="foilgroup-body">
-            <xsl:call-template name="foilgroup-body">
+          <!-- Scripts -->
+
+          <xsl:if test="$overlay != 0 or $keyboard.nav != 0">
+            <script language="JavaScript1.2" type="text/javascript"/>
+          </xsl:if>
+
+          <xsl:if test="$keyboard.nav != 0">
+            <xsl:call-template name="ua.js"/>
+            <xsl:call-template name="xbDOM.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+            <xsl:call-template name="xbStyle.js"/>
+            <xsl:call-template name="xbCollapsibleLists.js"/>
+            <xsl:call-template name="slides.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+          </xsl:if>
+
+          <xsl:if test="$overlay != '0'">
+            <xsl:call-template name="overlay.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+          </xsl:if>
+        </head>
+        <body class="foilgroup">
+          <xsl:call-template name="body.attributes"/>
+          <xsl:if test="$overlay != 0">
+            <xsl:attribute name="onload">
+              <xsl:text>overlaySetup('lc')</xsl:text>
+            </xsl:attribute>
+          </xsl:if>
+          <xsl:if test="$keyboard.nav != 0">
+            <xsl:attribute name="onkeypress">
+              <xsl:text>navigate(event)</xsl:text>
+            </xsl:attribute>
+          </xsl:if>
+
+          <div class="{name(.)}">
+            <a name="{$id}"/>
+            <xsl:call-template name="foilgroup-top-nav">
               <xsl:with-param name="home" select="$home"/>
               <xsl:with-param name="up" select="$up"/>
               <xsl:with-param name="next" select="$next"/>
               <xsl:with-param name="prev" select="$prev"/>
             </xsl:call-template>
+
+            <div class="foilgroup-body">
+              <xsl:call-template name="foilgroup-body">
+                <xsl:with-param name="home" select="$home"/>
+                <xsl:with-param name="up" select="$up"/>
+                <xsl:with-param name="next" select="$next"/>
+                <xsl:with-param name="prev" select="$prev"/>
+              </xsl:call-template>
+            </div>
+
+            <div id="overlayDiv">
+              <xsl:call-template name="overlayDiv.attributes"/>
+              <xsl:call-template name="foilgroup-bottom-nav">
+                <xsl:with-param name="home" select="$home"/>
+                <xsl:with-param name="up" select="$up"/>
+                <xsl:with-param name="next" select="$next"/>
+                <xsl:with-param name="prev" select="$prev"/>
+              </xsl:call-template>
+            </div>
           </div>
 
-          <div id="overlayDiv">
-            <xsl:call-template name="overlayDiv.attributes"/>
-            <xsl:call-template name="foilgroup-bottom-nav">
-              <xsl:with-param name="home" select="$home"/>
-              <xsl:with-param name="up" select="$up"/>
-              <xsl:with-param name="next" select="$next"/>
-              <xsl:with-param name="prev" select="$prev"/>
-            </xsl:call-template>
-          </div>
-        </div>
-
-        <xsl:call-template name="process.footnotes"/>
-      </body>
+          <xsl:call-template name="process.footnotes"/>
+        </body>
+      </html>
     </xsl:with-param>
   </xsl:call-template>
 
@@ -1087,13 +1089,13 @@
 <xsl:template match="foil" mode="filename">
   <xsl:text>foil</xsl:text>
   <xsl:number count="foil" level="any" format="01"/>
-  <xsl:text>.html</xsl:text>
+  <xsl:value-of select="$html.ext"/>
 </xsl:template>
 
 <xsl:template match="foilgroup" mode="filename">
   <xsl:text>foilgrp</xsl:text>
   <xsl:number count="foilgroup" level="any" format="01"/>
-  <xsl:text>.html</xsl:text>
+  <xsl:value-of select="$html.ext"/>
 </xsl:template>
 
 <!-- ============================================================ -->
@@ -1280,7 +1282,7 @@
 
       <xsl:text>foil</xsl:text>
       <xsl:number value="$foilnumber" format="01"/>
-      <xsl:text>.html</xsl:text>
+      <xsl:value-of select="$html.ext"/>
     </xsl:when>
 
     <xsl:when test="name(.)='foilgroup'">
@@ -1290,7 +1292,7 @@
 
       <xsl:text>foilgroup</xsl:text>
       <xsl:number value="$foilgroupnumber" format="01"/>
-      <xsl:text>.html</xsl:text>
+      <xsl:value-of select="$html.ext"/>
     </xsl:when>
 
     <xsl:otherwise>
