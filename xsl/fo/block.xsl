@@ -230,6 +230,92 @@
 </xsl:template>
 
 <!-- ==================================================================== -->
+<!-- For better or worse, revhistory is allowed in content... -->
+
+<xsl:template match="revhistory">
+  <fo:table table-layout="fixed">
+    <fo:table-column column-number="1" column-width="33%"/>
+    <fo:table-column column-number="2" column-width="33%"/>
+    <fo:table-column column-number="3" column-width="33%"/>
+    <fo:table-body>
+      <fo:table-row>
+        <fo:table-cell number-columns-spanned="3">
+          <fo:block>
+            <xsl:call-template name="gentext">
+              <xsl:with-param name="key" select="'RevHistory'"/>
+            </xsl:call-template>
+          </fo:block>
+        </fo:table-cell>
+      </fo:table-row>
+      <xsl:apply-templates/>
+    </fo:table-body>
+  </fo:table>
+</xsl:template>
+
+<xsl:template match="revhistory/revision">
+  <xsl:variable name="revnumber" select=".//revnumber"/>
+  <xsl:variable name="revdate"   select=".//date"/>
+  <xsl:variable name="revauthor" select=".//authorinitials"/>
+  <xsl:variable name="revremark" select=".//revremark"/>
+  <fo:table-row>
+    <fo:table-cell>
+      <fo:block>
+        <xsl:if test="$revnumber">
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'Revision'"/>
+          </xsl:call-template>
+          <xsl:call-template name="gentext.space"/>
+          <xsl:apply-templates select="$revnumber[1]"/>
+        </xsl:if>
+      </fo:block>
+    </fo:table-cell>
+    <fo:table-cell>
+      <fo:block>
+        <xsl:apply-templates select="$revdate[1]"/>
+      </fo:block>
+    </fo:table-cell>
+    <fo:table-cell>
+      <fo:block>
+        <xsl:apply-templates select="$revauthor[1]"/>
+      </fo:block>
+    </fo:table-cell>
+  </fo:table-row>
+  <xsl:if test="$revremark">
+    <fo:table-row>
+      <fo:table-cell number-columns-spanned="3">
+        <fo:block>
+          <xsl:apply-templates select="$revremark[1]"/>
+        </fo:block>
+      </fo:table-cell>
+    </fo:table-row>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="revision/revnumber">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="revision/date">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="revision/authorinitials">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="revision/revremark">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template match="ackno">
+  <fo:block xsl:use-attribute-sets="normal.para.spacing">
+    <xsl:apply-templates/>
+  </fo:block>
+</xsl:template>
+
+<!-- ==================================================================== -->
 
 <xsl:template match="highlights">
   <xsl:call-template name="block.object"/>
