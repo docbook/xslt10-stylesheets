@@ -13,14 +13,34 @@
 
      ******************************************************************** -->
 
-<xsl:variable name="qanda.defaultlabel">number</xsl:variable>
-<xsl:variable name="generate.qandaset.toc" select="true()"/>
-<xsl:variable name="generate.qandadiv.toc" select="false()"/>
-
 <!-- ==================================================================== -->
 
 <xsl:template match="qandaset">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+
+  <xsl:variable name="label-width">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'label-width'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="label-length">
+    <xsl:choose>
+      <xsl:when test="$label-width != ''">
+        <xsl:value-of select="$label-width"/>
+      </xsl:when>
+      <xsl:when test="descendant::label">
+        <xsl:call-template name="longest.term">
+          <xsl:with-param name="terms" select="descendant::label"/>
+          <xsl:with-param name="maxlength" select="20"/>
+        </xsl:call-template>
+        <xsl:text>em</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>2.5em</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <fo:block id="{$id}">
     <xsl:if test="title">
@@ -28,14 +48,22 @@
     </xsl:if>
 
     <xsl:apply-templates select="*[name(.) != 'title'
+                                 and name(.) != 'titleabbrev'
                                  and name(.) != 'qandadiv'
                                  and name(.) != 'qandaentry']"/>
     <xsl:apply-templates select="qandadiv"/>
 
     <xsl:if test="qandaentry">
       <fo:list-block xsl:use-attribute-sets="list.block.spacing"
-                     provisional-distance-between-starts="2.5em"
                      provisional-label-separation="0.2em">
+	<xsl:attribute name="provisional-distance-between-starts">
+	  <xsl:choose>
+	    <xsl:when test="$label-length != ''">
+	      <xsl:value-of select="$label-length"/>
+	    </xsl:when>
+	    <xsl:otherwise>2.5em</xsl:otherwise>
+	  </xsl:choose>
+	</xsl:attribute>
         <xsl:apply-templates select="qandaentry"/>
       </fo:list-block>
     </xsl:if>
@@ -71,9 +99,34 @@
 <xsl:template match="qandadiv">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
+  <xsl:variable name="label-width">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'label-width'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="label-length">
+    <xsl:choose>
+      <xsl:when test="$label-width != ''">
+        <xsl:value-of select="$label-width"/>
+      </xsl:when>
+      <xsl:when test="descendant::label">
+        <xsl:call-template name="longest.term">
+          <xsl:with-param name="terms" select="descendant::label"/>
+          <xsl:with-param name="maxlength" select="20"/>
+        </xsl:call-template>
+        <xsl:text>*0.6em</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>2.5em</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <fo:block id="{$id}">
     <xsl:apply-templates select="title"/>
     <xsl:apply-templates select="*[name(.) != 'title'
+                                 and name(.) != 'titleabbrev'
                                  and name(.) != 'qandadiv'
                                  and name(.) != 'qandaentry']"/>
     <fo:block start-indent="{count(ancestor::qandadiv)*2}pc">
@@ -81,8 +134,15 @@
 
       <xsl:if test="qandaentry">
         <fo:list-block xsl:use-attribute-sets="list.block.spacing"
-                       provisional-distance-between-starts="2.5em"
                        provisional-label-separation="0.2em">
+	  <xsl:attribute name="provisional-distance-between-starts">
+	    <xsl:choose>
+	      <xsl:when test="$label-length != ''">
+	        <xsl:value-of select="$label-length"/>
+	      </xsl:when>
+	      <xsl:otherwise>2.5em</xsl:otherwise>
+	    </xsl:choose>
+	  </xsl:attribute>
           <xsl:apply-templates select="qandaentry"/>
         </fo:list-block>
       </xsl:if>
@@ -111,6 +171,11 @@
     <xsl:with-param name="level"  select="$sectlvl + 1 + count(ancestor::qandadiv)"/>
     <xsl:with-param name="marker" select="0"/>
     <xsl:with-param name="title">
+      <xsl:apply-templates select="parent::qandadiv" mode="label.markup"/>
+      <xsl:if test="$qandadiv.autolabel != 0">
+        <xsl:apply-templates select="." mode="intralabel.punctuation"/>
+	<xsl:text> </xsl:text>
+      </xsl:if>
       <xsl:apply-templates/>
     </xsl:with-param>
   </xsl:call-template>
@@ -158,7 +223,9 @@
         <xsl:otherwise>
           <fo:block>
             <xsl:apply-templates select="." mode="label.markup"/>
-            <xsl:text>.</xsl:text> <!-- FIXME: Hack!!! This should be in the locale! -->
+	    <xsl:if test="$deflabel = 'number' and not(label)">
+              <xsl:apply-templates select="." mode="intralabel.punctuation"/>
+	    </xsl:if>
           </fo:block>
         </xsl:otherwise>
       </xsl:choose>
@@ -206,14 +273,10 @@
         </xsl:when>
         <xsl:otherwise>
           <fo:block>
-            <!-- FIXME: Hack!!! This should be in the locale! -->
             <xsl:variable name="answer.label">
               <xsl:apply-templates select="." mode="label.markup"/>
             </xsl:variable>
             <xsl:copy-of select="$answer.label"/>
-            <xsl:if test="string($answer.label) != ''">
-              <xsl:text>.</xsl:text>
-            </xsl:if>
           </fo:block>
         </xsl:otherwise>
       </xsl:choose>
