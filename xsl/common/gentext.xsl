@@ -9,7 +9,9 @@
 <xsl:template match="*" mode="object.title.template">
   <xsl:call-template name="gentext.template">
     <xsl:with-param name="context" select="'title'"/>
-    <xsl:with-param name="name" select="local-name(.)"/>
+    <xsl:with-param name="name">
+      <xsl:call-template name="xpath.location"/>
+    </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
 
@@ -18,13 +20,17 @@
     <xsl:when test="$chapter.autolabel != 0">
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'title-numbered'"/>
-        <xsl:with-param name="name" select="local-name(.)"/>
+        <xsl:with-param name="name">
+          <xsl:call-template name="xpath.location"/>
+        </xsl:with-param>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'title-unnumbered'"/>
-        <xsl:with-param name="name" select="local-name(.)"/>
+        <xsl:with-param name="name">
+          <xsl:call-template name="xpath.location"/>
+        </xsl:with-param>
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
@@ -35,13 +41,17 @@
     <xsl:when test="$appendix.autolabel != 0">
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'title-numbered'"/>
-        <xsl:with-param name="name" select="local-name(.)"/>
+        <xsl:with-param name="name">
+          <xsl:call-template name="xpath.location"/>
+        </xsl:with-param>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'title-unnumbered'"/>
-        <xsl:with-param name="name" select="local-name(.)"/>
+        <xsl:with-param name="name">
+          <xsl:call-template name="xpath.location"/>
+        </xsl:with-param>
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
@@ -54,13 +64,17 @@
     <xsl:when test="$section.autolabel != 0">
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'title-numbered'"/>
-        <xsl:with-param name="name" select="local-name(.)"/>
+        <xsl:with-param name="name">
+          <xsl:call-template name="xpath.location"/>
+        </xsl:with-param>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'title-unnumbered'"/>
-        <xsl:with-param name="name" select="local-name(.)"/>
+        <xsl:with-param name="name">
+          <xsl:call-template name="xpath.location"/>
+        </xsl:with-param>
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
@@ -71,22 +85,21 @@
     <xsl:when test="$formal.procedures != 0">
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'title'"/>
-        <xsl:with-param name="name" select="'procedure.formal'"/>
+        <xsl:with-param name="name">
+          <xsl:call-template name="xpath.location"/>
+          <xsl:text>.formal</xsl:text>
+        </xsl:with-param>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'title'"/>
-        <xsl:with-param name="name" select="local-name(.)"/>
+        <xsl:with-param name="name">
+          <xsl:call-template name="xpath.location"/>
+        </xsl:with-param>
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
-</xsl:template>
-
-<xsl:template match="article/appendix"
-              mode="object.title.template">
-  <!-- FIXME: HACK HACK HACK! -->
-  <xsl:text>%n. %t</xsl:text>
 </xsl:template>
 
 <!-- ============================================================ -->
@@ -94,7 +107,9 @@
 <xsl:template match="*" mode="object.subtitle.template">
   <xsl:call-template name="gentext.template">
     <xsl:with-param name="context" select="'subtitle'"/>
-    <xsl:with-param name="name" select="local-name(.)"/>
+    <xsl:with-param name="name">
+      <xsl:call-template name="xpath.location"/>
+    </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
 
@@ -107,7 +122,9 @@
 
   <xsl:call-template name="gentext.template">
     <xsl:with-param name="context" select="'xref'"/>
-    <xsl:with-param name="name" select="local-name(.)"/>
+    <xsl:with-param name="name">
+      <xsl:call-template name="xpath.location"/>
+    </xsl:with-param>
     <xsl:with-param name="purpose" select="$purpose"/>
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
@@ -123,13 +140,17 @@
     <xsl:when test="$section.autolabel != 0">
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'section-xref-numbered'"/>
-        <xsl:with-param name="name" select="local-name(.)"/>
+        <xsl:with-param name="name">
+          <xsl:call-template name="xpath.location"/>
+        </xsl:with-param>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'section-xref'"/>
-        <xsl:with-param name="name" select="local-name(.)"/>
+        <xsl:with-param name="name">
+          <xsl:call-template name="xpath.location"/>
+        </xsl:with-param>
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
