@@ -283,7 +283,7 @@
       <xsl:call-template name="gentext.endquote"/>
     </xsl:when>
     <xsl:otherwise>
-      <I><xsl:apply-templates/></I>
+      <i><xsl:apply-templates/></i>
     </xsl:otherwise>
   </xsl:choose>
   <xsl:value-of select="$biblioentry.item.separator"/>
@@ -632,7 +632,7 @@
 
 <xsl:template match="title" mode="bibliography.mode">
   <span class="{name(.)}">
-    <I><xsl:apply-templates mode="bibliography.mode"/></I>
+    <i><xsl:apply-templates mode="bibliography.mode"/></i>
     <xsl:value-of select="$biblioentry.item.separator"/>
   </span>
 </xsl:template>
@@ -747,7 +747,7 @@
       <xsl:call-template name="gentext.endquote"/>
     </xsl:when>
     <xsl:otherwise>
-      <I><xsl:apply-templates/></I>
+      <i><xsl:apply-templates/></i>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
