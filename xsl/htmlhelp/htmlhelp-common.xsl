@@ -1184,6 +1184,19 @@ Enhanced decompilation=</xsl:text>
   <xsl:value-of select="$angle.escaped"/>
 
 </xsl:template>
-  
+
+<!-- ==================================================================== -->
+<!-- Modification to standard HTML stylesheets -->
+
+<!-- There are links from ToC pane to bibliodivs, so there must be anchor -->
+<xsl:template match="bibliodiv/title">
+  <h3 class="{name(.)}">
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="node" select=".."/>
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
+    <xsl:apply-templates/>
+  </h3>
+</xsl:template>
 
 </xsl:stylesheet>
