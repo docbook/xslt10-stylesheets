@@ -91,6 +91,18 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
+  <xsl:variable name="deflabel">
+    <xsl:choose>
+      <xsl:when test="ancestor-or-self::*[@defaultlabel]">
+        <xsl:value-of select="(ancestor-or-self::*[@defaultlabel])[last()]
+                              /@defaultlabel"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="qanda.defaultlabel"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <div class="{name(.)}">
     <p>
       <xsl:if test="../@id">
@@ -103,11 +115,21 @@
         </a>
       </xsl:if>
       <a name="{$id}"/>
-      <b>
-        <xsl:apply-templates select="." mode="label.markup"/>
-        <xsl:text> </xsl:text>
-      </b>
-      <xsl:apply-templates select="$firstch" mode="no.wrapper.mode"/>
+
+      <xsl:choose>
+        <xsl:when test="$deflabel = 'none'">
+          <b>
+            <xsl:apply-templates select="$firstch" mode="no.wrapper.mode"/>
+          </b>
+        </xsl:when>
+        <xsl:otherwise>
+          <b>
+            <xsl:apply-templates select="." mode="label.markup"/>
+            <xsl:text> </xsl:text>
+          </b>
+          <xsl:apply-templates select="$firstch" mode="no.wrapper.mode"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </p>
     <xsl:apply-templates select="$restch"/>
   </div>
