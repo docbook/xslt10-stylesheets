@@ -10,9 +10,6 @@
 <xsl:param name="onechunk" select="0"/>
 <xsl:param name="refentry.separator" select="0"/>
 
-<!-- this doesn't work yet... -->
-<xsl:param name="chunk.tocs.and.lots" select="1"/>
-
 <!-- ==================================================================== -->
 
 <xsl:template name="process-chunk-element">
