@@ -709,6 +709,7 @@
         <fo:footnote>
           <xsl:call-template name="ulink.footnote.number"/>
           <fo:footnote-body font-family="{$body.fontset}"
+                            start-indent="0pt"
                             font-size="{$footnote.font.size}"
                             font-weight="normal"
                             font-style="normal">

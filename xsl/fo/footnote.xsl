@@ -53,7 +53,7 @@
                           font-weight="normal"
                           font-style="normal"
                           text-align="{$alignment}"
-                          margin-left="0pc">
+                          start-indent="0pt">
           <xsl:apply-templates/>
         </fo:footnote-body>
       </fo:footnote>
