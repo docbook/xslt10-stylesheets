@@ -395,6 +395,12 @@
   <xsl:apply-templates mode="titlepage.mode"/>
 </xsl:template>
 
+<xsl:template match="publisher" mode="titlepage.mode">
+  <fo:block>
+    <xsl:apply-templates mode="titlepage.mode"/>
+  </fo:block>
+</xsl:template>
+
 <xsl:template match="publishername" mode="titlepage.mode">
   <xsl:apply-templates mode="titlepage.mode"/>
 </xsl:template>
