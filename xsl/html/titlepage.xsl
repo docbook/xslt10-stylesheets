@@ -193,8 +193,8 @@
   <div class="{name(.)}">
     <h3 class="{name(.)}"><xsl:call-template name="person.name"/></h3>
     <xsl:apply-templates mode="titlepage.mode" select="./contrib"/>
-    <xsl:apply-templates mode="titlepage.mode" select="./email"/>
     <xsl:apply-templates mode="titlepage.mode" select="./affiliation"/>
+    <xsl:apply-templates mode="titlepage.mode" select="./email"/>
   </div>
 </xsl:template>
 
