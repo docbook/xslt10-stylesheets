@@ -52,6 +52,7 @@
 <!ENTITY html.base SYSTEM "../params/html.base.xml">
 <!ENTITY html.cleanup SYSTEM "../params/html.cleanup.xml">
 <!ENTITY html.ext SYSTEM "../params/html.ext.xml">
+<!ENTITY html.extra.head.links SYSTEM "../params/html.extra.head.links.xml">
 <!ENTITY html.longdesc SYSTEM "../params/html.longdesc.xml">
 <!ENTITY html.longdesc.link SYSTEM "../params/html.longdesc.link.xml">
 <!ENTITY html.stylesheet SYSTEM "../params/html.stylesheet.xml">
