@@ -254,6 +254,11 @@
     </xsl:when>
     <xsl:otherwise>
       <fo:block>
+        <xsl:if test="@align">
+          <xsl:attribute name="text-align">
+            <xsl:value-of select="@align"/>
+          </xsl:attribute>
+        </xsl:if>
         <xsl:call-template name="process.image"/>
       </fo:block>
     </xsl:otherwise>
