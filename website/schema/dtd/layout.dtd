@@ -36,6 +36,7 @@
 <!ATTLIST script
 	src	CDATA	#IMPLIED
 	language	CDATA	#IMPLIED
+	type	CDATA	#IMPLIED
 >
 
 <!ELEMENT headlink EMPTY>
