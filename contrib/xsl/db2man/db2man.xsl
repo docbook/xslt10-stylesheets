@@ -262,8 +262,13 @@
 </xsl:template>
 
 <xsl:template match="ulink">
-  <xsl:apply-templates/>
-  <xsl:text>: </xsl:text>
+  <xsl:variable name="content">
+    <xsl:apply-templates/>
+  </xsl:variable>
+  <xsl:if test="$content != ''">
+    <xsl:text>: </xsl:text>
+    <xsl:value-of select="$content" />
+  </xsl:if>
   <xsl:apply-templates mode="italic" select="@url" />
 </xsl:template>
 
