@@ -21,7 +21,10 @@ while (<>) {
     s/\s+xmlns:xlink=([\"\']).*?\1\s+/ /g;
     s/\s*xmlns:xlink=([\"\']).*?\1\s*//g;
 
-    s/<grammar /<grammar xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" /g;
+    s/\s+xmlns:dtd=([\"\']).*?\1\s+/ /g;
+    s/\s*xmlns:dtd=([\"\']).*?\1\s*//g;
+
+    s/<grammar /<grammar xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" xmlns:dtd=\"http:\/\/relaxng.org\/ns\/compatibility\/annotations\/1.0\" /g;
 
     s/<(s:rule\s+.*?)>/<\1 xmlns:s=\"http:\/\/www.ascc.net\/xml\/schematron\">/g;
     s/<(ctrl:\S+\s+.*?)(\/?>)/<\1 xmlns:ctrl=\"http:\/\/nwalsh.com\/xmlns\/schema-control\/\"\2/g;
