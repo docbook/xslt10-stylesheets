@@ -23,7 +23,7 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 <book>
 <bookinfo>
 <title>Unit Test: xref.001</title>
-<releaseinfo role="CVS">$Id</releaseinfo>
+<releaseinfo role="CVS">$Id$</releaseinfo>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
 </author>
@@ -31,7 +31,7 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 
 <dedication id="dedication"><title>Dedication</title>
 
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah;
 
 <para>For no good reason, this dedication includes cross-references:</para>
 
@@ -54,9 +54,7 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 
 <para>A preface.</para>
 
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah;
 
 </preface>
 
@@ -69,20 +67,18 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 <para>This is a footnote in a partintro.</para>
 </footnote>.</para>
 
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah;
 
 <sect1>
 <title>PartIntro Section</title>
 <para>PartIntros can actually have section content as well.</para>
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah;
 </sect1>
 </partintro>
 
 <chapter id="chapter"><title>Chapter</title>
 
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah;
 
 </chapter>
 
@@ -91,9 +87,7 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 
 <appendix id="appendix"><title>First Appendix</title>
 
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah;
 
 </appendix>
 
