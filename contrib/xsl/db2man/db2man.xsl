@@ -37,23 +37,6 @@
   <xsl:text>\fR</xsl:text>
 </xsl:template>
 
-<xsl:template match="refsect2">
-  <xsl:text>&#10;.Sh "</xsl:text>
-  <xsl:value-of select="substring-before(title[1],' ')"/>
-  <xsl:text>"&#10;</xsl:text>
-  <xsl:apply-templates/>
-</xsl:template>
-<xsl:template match="refsect2/programlisting"></xsl:template>
-
-<xsl:template match="refsect2/informaltable/tgroup/tbody/row">
-  <xsl:text>.Ip "\(bu \s-1</xsl:text>
-  <xsl:value-of select="entry[1]/parameter[1]"/>
-  <xsl:text>\s0 \- </xsl:text>
-  <xsl:value-of select="normalize-space(entry[2])"/>
-  <xsl:text>"
-</xsl:text>
-</xsl:template>
-
 <xsl:template match="refsect1">
   <xsl:text>&#10;.SH "</xsl:text>
   <xsl:value-of select="translate(title[1],'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
