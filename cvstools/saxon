@@ -1,14 +1,13 @@
 #!/bin/bash
 
 # This shell script will definitely need to be hacked to run on your system!
+# This script is usually called by the xslt script.
 #
 # Usage: saxon [shellopts] src.xml style.xsl output.{xml|html} [styleopts]
 #
 
-VARIABLES=""
-EXTENSIONS=1
-DONE="0"
-VERSION="642"
+DONE=0
+VERSION=642
 DEBUG=0
 JAR=0
 #XARG=""
@@ -19,31 +18,14 @@ YARG="-y com.sun.resolver.tools.ResolvingXMLReader"
 RARG="-r com.sun.resolver.tools.CatalogResolver"
 MEMORY=""
 QUIET=0
-TIME=0
 
 while [ "$DONE" = "0" ]; do
     case $1 in
 	-d)	DEBUG=1;
 		shift;
 		;;
-	-E)	EXTENSIONS=0;
-		shift;
-		;;
-	-e)	EXTENSIONS=1;
-		shift;
-		;;
 	-j)	JAR=1;
 	        echo "Using jar file for extension classes"
-		shift;
-		;;
-	-5)	VERSION=5;
-		RARG=""
-		shift;
-		;;
-	-622)	VERSION=622;
-		shift;
-		;;
-	-621)	VERSION=621;
 		shift;
 		;;
 	-642)	VERSION=642;
@@ -55,6 +37,12 @@ while [ "$DONE" = "0" ]; do
 	-63)	VERSION=63;
 		shift;
 		;;
+	-622)	VERSION=622;
+		shift;
+		;;
+	-621)	VERSION=621;
+		shift;
+		;;
 	-62)	VERSION=62;
 		shift;
 		;;
@@ -62,6 +50,10 @@ while [ "$DONE" = "0" ]; do
 		shift;
 		;;
 	-6)	VERSION=6;
+		RARG=""
+		shift;
+		;;
+	-5)	VERSION=5;
 		RARG=""
 		shift;
 		;;
@@ -84,9 +76,6 @@ while [ "$DONE" = "0" ]; do
         -q)     shift
 		QUIET=1
 		;;
-        -t)     shift
-		TIME=1
-		;;
 	-*)	DONE=1;
 		echo "Unexpected arguments!";
 		echo "  $*"
@@ -95,8 +84,6 @@ while [ "$DONE" = "0" ]; do
 	*)	DONE=1
     esac
 done
-
-VARIABLES="use.extensions=$EXTENSIONS"
 
 XMLSRC=$1; shift
 XMLSTY=$1; shift
@@ -135,7 +122,6 @@ case $VERSION in
   622)	SAXON="/usr/local/java/saxon-6.2.2/saxon.jar"
 	SAXON_DEBUG="/usr/local/java/saxon-6.2.2/.classes"
 	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61/.classes";
-	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61/.classes:/share/doctypes/website-pages/extensions/saxon61/.classes";
 	if [ "$JAR" = "1" ]; then
 	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61.jar"
 	fi
@@ -184,7 +170,6 @@ if [ "$DEBUG" = "1" ]; then
   SAXON="$SAXON_DEBUG:$SAXON"
 fi
 
-XP="/usr/local/java/xp/xp.jar";
 SUN="/projects/sun/resolver/.classes";
 JAXP="/usr/local/jaxp-1.1/jaxp.jar:/usr/local/jaxp-1.1/crimson.jar"
 
@@ -193,26 +178,20 @@ CLASSPATH=$SAXON:$JAXP:$SUN:$NDWEXT:~/java
 #echo $CLASSPATH
 
 if [ "$QUIET" = "0" ]; then
-  echo saxon$VERSION $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY $VARIABLES $*
+  echo saxon$VERSION $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY $@
 
   if [ "$MEMORY" != "" ]; then
       echo "java $MEMORY ..."
   fi
 fi
 
-if [ "$TIME" != "0" ]; then
-  time java $MEMORY \
-   -cp $CLASSPATH \
-   -Djavax.xml.transform.TransformerFactory=com.icl.saxon.TransformerFactoryImpl \
-   com.icl.saxon.StyleSheet \
-   $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY $VARIABLES $*
-else
-  java $MEMORY \
-   -cp $CLASSPATH \
-   -Djavax.xml.transform.TransformerFactory=com.icl.saxon.TransformerFactoryImpl \
-   com.icl.saxon.StyleSheet \
-   $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY $VARIABLES $*
-fi
+FACTORY=com.icl.saxon.TransformerFactoryImpl
+
+java $MEMORY \
+     -cp $CLASSPATH \
+     -Djavax.xml.transform.TransformerFactory=$FACTORY \
+     com.icl.saxon.StyleSheet \
+     $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY $@
 
 if [ $? != 0 ]; then
   echo ""
