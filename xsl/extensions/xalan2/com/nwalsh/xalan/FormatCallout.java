@@ -3,6 +3,7 @@ package com.nwalsh.xalan;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
 import org.w3c.dom.*;
+import org.apache.xpath.DOMHelper;
 import org.apache.xml.utils.DOMBuilder;
 import org.apache.xml.utils.AttList;
 import com.nwalsh.xalan.Callout;
@@ -32,6 +33,7 @@ public abstract class FormatCallout {
   protected static final String foURI = "http://www.w3.org/1999/XSL/Format";
   protected static final String xhURI = "http://www.w3.org/1999/xhtml";
   protected boolean stylesheetFO = false;
+  protected DOMHelper dh = null;
 
   public FormatCallout() {
     //nop;
@@ -39,7 +41,7 @@ public abstract class FormatCallout {
 
   public String areaLabel(Element area) {
     NamedNodeMap domAttr = area.getAttributes();
-    AttList attr = new AttList(domAttr);
+    AttList attr = new AttList(domAttr, dh);
     String label = null;
 
     if (attr.getValue("label") != null) {
@@ -49,7 +51,7 @@ public abstract class FormatCallout {
       // Otherwise, if its parent is an areaset and it has a label, use that
       Element parent = (Element) area.getParentNode();
       NamedNodeMap pdomAttr = parent.getAttributes();
-      AttList pAttr = new AttList(pdomAttr);
+      AttList pAttr = new AttList(pdomAttr, dh);
       if (parent != null
 	  && parent.getNodeName().equals("areaset")
 	  && pAttr.getValue("label") != null) {
