@@ -1,3 +1,5 @@
 *.gen
 *.html
 *.css
+*.fo
+*.pdf
