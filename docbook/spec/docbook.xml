@@ -1,7 +1,7 @@
 <!DOCTYPE article [
-<!ENTITY name "cs-docbook-docbook">
+<!ENTITY name "cd-docbook-docbook">
 <!ENTITY version "4.3">
-<!ENTITY standard "Committee Specification">
+<!ENTITY standard "Committee Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker/">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
 <!ENTITY root "http://docbook.org/">
@@ -34,7 +34,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>17 Mar 2004</pubdate>
+<pubdate>31 Mar 2004</pubdate>
 
 <copyright><year>2001</year><year>2002</year><year>2003</year><year>2004</year>
 <holder>
@@ -48,7 +48,7 @@ Standards [OASIS]. All Rights Reserved.
 particularly well suited to books and papers about computer hardware
 and software (though it is by no means limited to these applications).
 </para>
-<para>The Version 4.3 release is a maintainance release. It introduces
+<para>The Version 4.3 release is a maintenance release. It introduces
 no backwards-incompatible changes.</para>
 </abstract>
 
@@ -142,8 +142,7 @@ the mirror on
 <section id="s.cs">
 <title>Changes in DocBook V4.3</title>
 
-<para>There are no substantive changes in this release. This is the official
-Committee Specification.
+<para>There are no substantive changes in this release. This is the &standard;
 </para>
 
 </section>
@@ -436,7 +435,11 @@ new values for pubwork (2003 Jan)</para>
 
 <section><title>Release Notes</title>
 
-<para>None.</para>
+<para>XML validation technologies have evolved rapidly in the last few
+years. The Technical Committee is exploring the possibility of using
+RELAX NG as the principal validation technology for DocBook V5.0. The
+move to RELAX NG will also cause some one time backward-incompatible
+changes which are not listed in this specifcation.</para>
 
 </section>
 
@@ -587,7 +590,7 @@ proposed</ulink>.
 <quote><code>application/docbook+xml</code></quote>.</para>
 
 <section id="media-type-registration">
-<title>Registration of MIME media type application/xslt+xml</title>
+<title>Registration of MIME media type application/docbook+xml</title>
 
 <variablelist>
 <varlistentry>
@@ -637,7 +640,7 @@ specified in <xref linkend="rfc3023"/> or its successors.
 <listitem>
 <para>By virtue of DocBook XML content being XML, it has the same
 considerations when sent as <quote><code>application/docbook+xml</code></quote>
-as does XML. See RFC 3023, Section 3.2.
+as does XML. See <xref linkend="rfc3023"/>, Section 3.2.
 </para>
 </listitem>
 </varlistentry>
@@ -744,7 +747,7 @@ Technical Committee at OASIS.</para>
 the fragment
 identifier notation is exactly that for
 <quote><code>application/xml</code></quote>,
-as specified in RFC 3023.</para>
+as specified in <xref linkend="rfc3023"/> or its successors.</para>
 </section>
 </appendix>
 
@@ -770,12 +773,6 @@ the formulation of this &standard;:</para>
 <listitem><para>Norman Walsh, Chair, Editor</para></listitem>
 </itemizedlist>
 </appendix>
-
-<bibliography id="references">
-<title>References</title>
-<bibliomixed id="rfc3023"/>
-<bibliomixed id="bib.docbooktdg"/>
-</bibliography>
 
 <appendix id="a.notices">
 <title>Notices</title>
@@ -857,9 +854,9 @@ of the DocBook web page
 
 <para>
 <revhistory>
-<revision role="&root;specs/cs-docbook-docbook-4.3.html">
-  <revnumber>Committee Specification</revnumber>
-  <date>17 Mar 2004</date>
+<revision role="&root;specs/cd-docbook-docbook-4.3.html">
+  <revnumber>Committee Draft</revnumber>
+  <date>31 Mar 2004</date>
 </revision>
 <revision role="&root;specs/wd-docbook-docbook-4.3cr3.html">
   <revnumber>Working Draft “Candidate Release 3”</revnumber>
@@ -894,13 +891,15 @@ of the DocBook web page
 
 </appendix>
 
-<bibliography id="bibl"><title>References</title>
+<bibliography id="references"><title>References</title>
 
 <bibliodiv><title>Normative</title>
 
 <bibliomixed id="iso8879"/>
 <bibliomixed id="xml-rec"/>
 <bibliomixed id="rfc2119"/>
+<bibliomixed id="rfc3023"/>
+<bibliomixed id="bib.docbooktdg"/>
 
 </bibliodiv>
 
