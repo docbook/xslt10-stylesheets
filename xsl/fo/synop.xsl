@@ -145,7 +145,7 @@
 </xsl:template>
 
 <xsl:template match="funcprototype">
-  <fo:block font-family="monospace">
+  <fo:block font-family="{$monospace.font.family}">
     <xsl:apply-templates/>
     <xsl:if test="$funcsynopsis.style='kr'">
       <xsl:apply-templates select="./paramdef" mode="kr-funcsynopsis-mode"/>
@@ -154,7 +154,7 @@
 </xsl:template>
 
 <xsl:template match="funcdef">
-  <fo:inline font-family="monospace">
+  <fo:inline font-family="{$monospace.font.family}">
     <xsl:apply-templates/>
   </fo:inline>
 </xsl:template>
