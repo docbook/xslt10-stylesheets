@@ -124,25 +124,24 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="*" mode="chunk-filename">
+  <xsl:variable name="fn">
+    <xsl:apply-templates select="." mode="recursive-chunk-filename"/>
+  </xsl:variable>
+
+  <xsl:if test="$fn != ''">
+    <xsl:call-template name="dbhtml-dir"/>
+  </xsl:if>
+
+  <xsl:value-of select="$fn"/>
+</xsl:template>
+
+<xsl:template match="*" mode="recursive-chunk-filename">
   <xsl:param name="recursive" select="false()"/>
 
   <!-- returns the filename of a chunk -->
   <xsl:variable name="ischunk">
     <xsl:call-template name="chunk"/>
   </xsl:variable>
-
-<!--
-  <xsl:message>
-    <xsl:value-of select="local-name(.)"/>
-    <xsl:if test="@id">
-      <xsl:text> [</xsl:text>
-      <xsl:value-of select="@id"/>
-      <xsl:text>]</xsl:text>
-    </xsl:if>
-    <xsl:text>, </xsl:text>
-    <xsl:value-of select="$ischunk"/>
-  </xsl:message>
--->
 
   <xsl:variable name="dbhtml-filename">
     <xsl:call-template name="dbhtml-filename"/>
@@ -173,7 +172,7 @@
       <!-- if called on something that isn't a chunk, walk up... -->
       <xsl:choose>
         <xsl:when test="count(parent::*)>0">
-          <xsl:apply-templates mode="chunk-filename" select="parent::*">
+          <xsl:apply-templates mode="recursive-chunk-filename" select="parent::*">
             <xsl:with-param name="recursive" select="$recursive"/>
           </xsl:apply-templates>
         </xsl:when>
@@ -184,7 +183,6 @@
 
     <xsl:when test="not($recursive) and $filename != ''">
       <!-- if this chunk has an explicit name, use it -->
-      <xsl:call-template name="dbhtml-dir"/>
       <xsl:value-of select="$filename"/>
     </xsl:when>
 
@@ -206,10 +204,11 @@
     <xsl:when test="name(.)='article'">
       <xsl:if test="/set">
         <!-- in a set, make sure we inherit the right book info... -->
-        <xsl:apply-templates mode="chunk-filename" select="parent::*">
+        <xsl:apply-templates mode="recursive-chunk-filename" select="parent::*">
           <xsl:with-param name="recursive" select="true()"/>
         </xsl:apply-templates>
       </xsl:if>
+
       <xsl:text>ar</xsl:text>
       <xsl:number level="any" format="01" from="book"/>
       <xsl:if test="not($recursive)">
@@ -219,10 +218,12 @@
 
     <xsl:when test="name(.)='preface'">
       <xsl:if test="/set">
-        <xsl:apply-templates mode="chunk-filename" select="parent::*">
+        <!-- in a set, make sure we inherit the right book info... -->
+        <xsl:apply-templates mode="recursive-chunk-filename" select="parent::*">
           <xsl:with-param name="recursive" select="true()"/>
         </xsl:apply-templates>
       </xsl:if>
+
       <xsl:text>pr</xsl:text>
       <xsl:number level="any" format="01" from="book"/>
       <xsl:if test="not($recursive)">
@@ -232,10 +233,12 @@
 
     <xsl:when test="name(.)='chapter'">
       <xsl:if test="/set">
-        <xsl:apply-templates mode="chunk-filename" select="parent::*">
+        <!-- in a set, make sure we inherit the right book info... -->
+        <xsl:apply-templates mode="recursive-chunk-filename" select="parent::*">
           <xsl:with-param name="recursive" select="true()"/>
         </xsl:apply-templates>
       </xsl:if>
+
       <xsl:text>ch</xsl:text>
       <xsl:number level="any" format="01" from="book"/>
       <xsl:if test="not($recursive)">
@@ -245,10 +248,12 @@
 
     <xsl:when test="name(.)='appendix'">
       <xsl:if test="/set">
-        <xsl:apply-templates mode="chunk-filename" select="parent::*">
+        <!-- in a set, make sure we inherit the right book info... -->
+        <xsl:apply-templates mode="recursive-chunk-filename" select="parent::*">
           <xsl:with-param name="recursive" select="true()"/>
         </xsl:apply-templates>
       </xsl:if>
+
       <xsl:text>ap</xsl:text>
       <xsl:number level="any" format="a" from="book"/>
       <xsl:if test="not($recursive)">
@@ -257,11 +262,17 @@
     </xsl:when>
 
     <xsl:when test="name(.)='part'">
-      <xsl:if test="/set">
-        <xsl:apply-templates mode="chunk-filename" select="parent::*">
-          <xsl:with-param name="recursive" select="true()"/>
-        </xsl:apply-templates>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="/set">
+          <!-- in a set, make sure we inherit the right book info... -->
+          <xsl:apply-templates mode="recursive-chunk-filename" select="parent::*">
+            <xsl:with-param name="recursive" select="true()"/>
+          </xsl:apply-templates>
+        </xsl:when>
+        <xsl:otherwise>
+        </xsl:otherwise>
+      </xsl:choose>
+
       <xsl:text>pt</xsl:text>
       <xsl:number level="any" format="01" from="book"/>
       <xsl:if test="not($recursive)">
@@ -270,11 +281,17 @@
     </xsl:when>
 
     <xsl:when test="name(.)='reference'">
-      <xsl:if test="/set">
-        <xsl:apply-templates mode="chunk-filename" select="parent::*">
-          <xsl:with-param name="recursive" select="true()"/>
-        </xsl:apply-templates>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="/set">
+          <!-- in a set, make sure we inherit the right book info... -->
+          <xsl:apply-templates mode="recursive-chunk-filename" select="parent::*">
+            <xsl:with-param name="recursive" select="true()"/>
+          </xsl:apply-templates>
+        </xsl:when>
+        <xsl:otherwise>
+        </xsl:otherwise>
+      </xsl:choose>
+
       <xsl:text>rn</xsl:text>
       <xsl:number level="any" format="01" from="book"/>
       <xsl:if test="not($recursive)">
@@ -283,11 +300,16 @@
     </xsl:when>
 
     <xsl:when test="name(.)='refentry'">
-      <xsl:if test="parent::reference">
-        <xsl:apply-templates mode="chunk-filename" select="parent::*">
-          <xsl:with-param name="recursive" select="true()"/>
-        </xsl:apply-templates>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="parent::reference">
+          <xsl:apply-templates mode="recursive-chunk-filename" select="parent::*">
+            <xsl:with-param name="recursive" select="true()"/>
+          </xsl:apply-templates>
+        </xsl:when>
+        <xsl:otherwise>
+        </xsl:otherwise>
+      </xsl:choose>
+
       <xsl:text>re</xsl:text>
       <xsl:number level="any" format="01" from="book"/>
       <xsl:if test="not($recursive)">
@@ -296,11 +318,17 @@
     </xsl:when>
 
     <xsl:when test="name(.)='colophon'">
-      <xsl:if test="/set">
-        <xsl:apply-templates mode="chunk-filename" select="parent::*">
-          <xsl:with-param name="recursive" select="true()"/>
-        </xsl:apply-templates>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="/set">
+          <!-- in a set, make sure we inherit the right book info... -->
+          <xsl:apply-templates mode="recursive-chunk-filename" select="parent::*">
+            <xsl:with-param name="recursive" select="true()"/>
+          </xsl:apply-templates>
+        </xsl:when>
+        <xsl:otherwise>
+        </xsl:otherwise>
+      </xsl:choose>
+
       <xsl:text>co</xsl:text>
       <xsl:number level="any" format="01" from="book"/>
       <xsl:if test="not($recursive)">
@@ -314,7 +342,7 @@
                     or local-name(.) = 'sect4'
                     or local-name(.) = 'sect5'
                     or local-name(.) = 'section'">
-      <xsl:apply-templates mode="chunk-filename" select="parent::*">
+      <xsl:apply-templates mode="recursive-chunk-filename" select="parent::*">
         <xsl:with-param name="recursive" select="true()"/>
       </xsl:apply-templates>
       <xsl:text>s</xsl:text>
@@ -325,7 +353,7 @@
     </xsl:when>
 
     <xsl:when test="name(.)='sect1' or name(.)='section'">
-      <xsl:apply-templates mode="chunk-filename" select="parent::*">
+      <xsl:apply-templates mode="recursive-chunk-filename" select="parent::*">
         <xsl:with-param name="recursive" select="true()"/>
       </xsl:apply-templates>
       <xsl:text>s</xsl:text>
@@ -336,11 +364,17 @@
     </xsl:when>
 
     <xsl:when test="name(.)='bibliography'">
-      <xsl:if test="/set">
-        <xsl:apply-templates mode="chunk-filename" select="parent::*">
-          <xsl:with-param name="recursive" select="true()"/>
-        </xsl:apply-templates>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="/set">
+          <!-- in a set, make sure we inherit the right book info... -->
+          <xsl:apply-templates mode="recursive-chunk-filename" select="parent::*">
+            <xsl:with-param name="recursive" select="true()"/>
+          </xsl:apply-templates>
+        </xsl:when>
+        <xsl:otherwise>
+        </xsl:otherwise>
+      </xsl:choose>
+
       <xsl:text>bi</xsl:text>
       <xsl:number level="any" format="01" from="book"/>
       <xsl:if test="not($recursive)">
@@ -349,11 +383,17 @@
     </xsl:when>
 
     <xsl:when test="name(.)='glossary'">
-      <xsl:if test="/set">
-        <xsl:apply-templates mode="chunk-filename" select="parent::*">
-          <xsl:with-param name="recursive" select="true()"/>
-        </xsl:apply-templates>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="/set">
+          <!-- in a set, make sure we inherit the right book info... -->
+          <xsl:apply-templates mode="recursive-chunk-filename" select="parent::*">
+            <xsl:with-param name="recursive" select="true()"/>
+          </xsl:apply-templates>
+        </xsl:when>
+        <xsl:otherwise>
+        </xsl:otherwise>
+      </xsl:choose>
+
       <xsl:text>go</xsl:text>
       <xsl:number level="any" format="01" from="book"/>
       <xsl:if test="not($recursive)">
@@ -362,11 +402,17 @@
     </xsl:when>
 
     <xsl:when test="name(.)='index'">
-      <xsl:if test="/set">
-        <xsl:apply-templates mode="chunk-filename" select="parent::*">
-          <xsl:with-param name="recursive" select="true()"/>
-        </xsl:apply-templates>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="/set">
+          <!-- in a set, make sure we inherit the right book info... -->
+          <xsl:apply-templates mode="recursive-chunk-filename" select="parent::*">
+            <xsl:with-param name="recursive" select="true()"/>
+          </xsl:apply-templates>
+        </xsl:when>
+        <xsl:otherwise>
+        </xsl:otherwise>
+      </xsl:choose>
+
       <xsl:text>ix</xsl:text>
       <xsl:number level="any" format="01" from="book"/>
       <xsl:if test="not($recursive)">
@@ -546,6 +592,7 @@
     <xsl:if test="$html.extra.head.links != 0">
       <xsl:for-each select="//part
                             |//reference
+                            |//preface
                             |//chapter
                             |//article
                             |//refentry
@@ -555,6 +602,7 @@
         <link rel="{local-name(.)}">
           <xsl:attribute name="href">
             <xsl:call-template name="href.target">
+              <xsl:with-param name="context" select="$this"/>
               <xsl:with-param name="object" select="."/>
             </xsl:call-template>
           </xsl:attribute>
@@ -579,6 +627,7 @@
           </xsl:attribute>
           <xsl:attribute name="href">
             <xsl:call-template name="href.target">
+              <xsl:with-param name="context" select="$this"/>
               <xsl:with-param name="object" select="."/>
             </xsl:call-template>
           </xsl:attribute>
@@ -592,6 +641,7 @@
         <link rel="subsection">
           <xsl:attribute name="href">
             <xsl:call-template name="href.target">
+              <xsl:with-param name="context" select="$this"/>
               <xsl:with-param name="object" select="."/>
             </xsl:call-template>
           </xsl:attribute>
