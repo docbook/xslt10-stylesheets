@@ -6886,7 +6886,6 @@ OtherCredit. -->
 <![%code.attlist;[
 <!ATTLIST code
 		language	CDATA	#IMPLIED
-		%moreinfo.attrib;
 		%common.attrib;
 		%code.role.attrib;
 		%local.code.attrib;
@@ -7650,29 +7649,6 @@ OtherCredit. -->
 <!--end of emphasis.attlist-->]]>
 <!--end of emphasis.module-->]]>
 
-<!ENTITY % firstterm.module "INCLUDE">
-<![%firstterm.module;[
-<!ENTITY % local.firstterm.attrib "">
-<!ENTITY % firstterm.role.attrib "%role.attrib;">
-
-<!ENTITY % firstterm.element "INCLUDE">
-<![%firstterm.element;[
-<!ELEMENT firstterm %ho; (%word.char.mix;)*>
-<!--end of firstterm.element-->]]>
-
-<!-- to GlossEntry or other explanation -->
-
-
-<!ENTITY % firstterm.attlist "INCLUDE">
-<![%firstterm.attlist;[
-<!ATTLIST firstterm
-		%linkend.attrib;		%common.attrib;
-		%firstterm.role.attrib;
-		%local.firstterm.attrib;
->
-<!--end of firstterm.attlist-->]]>
-<!--end of firstterm.module-->]]>
-
 <!ENTITY % foreignphrase.module "INCLUDE">
 <![%foreignphrase.module;[
 <!ENTITY % local.foreignphrase.attrib "">
@@ -7708,17 +7684,43 @@ OtherCredit. -->
 <!-- BaseForm: Provides the form of GlossTerm to be used
 		for indexing -->
 
-
 <!ENTITY % glossterm.attlist "INCLUDE">
 <![%glossterm.attlist;[
 <!ATTLIST glossterm
-		%linkend.attrib;		baseform	CDATA		#IMPLIED
+		baseform	CDATA		#IMPLIED
+		%linkend.attrib;
 		%common.attrib;
 		%glossterm.role.attrib;
 		%local.glossterm.attrib;
 >
 <!--end of glossterm.attlist-->]]>
 <!--end of glossterm.module-->]]>
+
+<!ENTITY % firstterm.module "INCLUDE">
+<![%firstterm.module;[
+<!ENTITY % local.firstterm.attrib "">
+<!ENTITY % firstterm.role.attrib "%role.attrib;">
+
+<!ENTITY % firstterm.element "INCLUDE">
+<![%firstterm.element;[
+<!ELEMENT firstterm %ho; (%para.char.mix;)*
+		%glossterm.exclusion;>
+<!--end of firstterm.element-->]]>
+
+<!-- to GlossEntry or other explanation -->
+
+
+<!ENTITY % firstterm.attlist "INCLUDE">
+<![%firstterm.attlist;[
+<!ATTLIST firstterm
+		baseform	CDATA		#IMPLIED
+		%linkend.attrib;
+		%common.attrib;
+		%firstterm.role.attrib;
+		%local.firstterm.attrib;
+>
+<!--end of firstterm.attlist-->]]>
+<!--end of firstterm.module-->]]>
 
 <!ENTITY % phrase.module "INCLUDE">
 <![%phrase.module;[
