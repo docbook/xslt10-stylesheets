@@ -7,59 +7,6 @@
             encoding="ISO-8859-1"
             indent="no"/>
 
-<xsl:param name="html.ext" select="'.html'"/>
-<doc:param name="html.ext" xmlns="">
-<refpurpose>Extension for chunked files</refpurpose>
-<refdescription>
-<para>The extension identified by <parameter>html.ext</parameter> will
-be used as the filename extension for chunks created by this stylesheet.
-</para>
-</refdescription>
-</doc:param>
-
-<xsl:param name="root.filename" select="'index'"/>
-<doc:param name="root.filename" xmlns="">
-<refpurpose>Filename for the root chunk</refpurpose>
-<refdescription>
-<para>The <parameter>root.filename</parameter> is the base filename for
-the chunk created for the root of each document processed.
-</para>
-</refdescription>
-</doc:param>
-
-<xsl:param name="base.dir" select="''"/>
-<doc:param name="base.dir" xmlns="">
-<refpurpose>Output directory for chunks</refpurpose>
-<refdescription>
-<para>If specified, the <literal>base.dir</literal> identifies
-the output directory for chunks. (If not specified, the output directory
-is system dependent.)</para>
-</refdescription>
-</doc:param>
-
-<xsl:param name="chunk.sections" select="'1'"/>
-<doc:param name="chunk.sections" xmlns="">
-<refpurpose>Create chunks for top-level sections in components?</refpurpose>
-<refdescription>
-<para>If non-zero, chunks will be created for top-level
-<sgmltag>sect1</sgmltag> and <sgmltag>section</sgmltag> elements in
-each component.
-</para>
-</refdescription>
-</doc:param>
-
-<xsl:param name="chunk.first.sections" select="'0'"/>
-<doc:param name="chunk.first.sections" xmlns="">
-<refpurpose>Create a chunk for the first top-level section in each component?</refpurpose>
-<refdescription>
-<para>If non-zero, a chunk will be created for the first top-level
-<sgmltag>sect1</sgmltag> or <sgmltag>section</sgmltag> elements in
-each component. Otherwise, that section will be part of the chunk for
-its parent.
-</para>
-</refdescription>
-</doc:param>
-
 <!-- ==================================================================== -->
 <!-- What's a chunk?
 
@@ -987,15 +934,6 @@ its parent.
 </xsl:template>
 
 <!-- ==================================================================== -->
-
-<xsl:param name="generate.legalnotice.link" select="0" doc:type='boolean'/>
-
-<doc:param name="generate.legalnotice.link" xmlns="">
-<refpurpose>TBD</refpurpose>
-<refdescription>
-<para>TBD</para>
-</refdescription>
-</doc:param>
 
 <xsl:template match="legalnotice " mode="titlepage.mode">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
