@@ -205,11 +205,11 @@
 <xsl:template match="refentry/refentryinfo"></xsl:template>
 
 <xsl:template match="option">
-  <xsl:text>\fB</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
+  <xsl:apply-templates name="bold" />
 </xsl:template>
 
 <xsl:template match="replaceable|varname">
-  <xsl:text>\fI</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
+  <xsl:apply-templates name="italic" />
 </xsl:template>
 
 <xsl:template match="filename">
@@ -218,24 +218,62 @@
 </xsl:template>
 
 <xsl:template match="userinput">
-  <xsl:text>\fB</xsl:text>
+  <xsl:apply-templates name="bold" />
+</xsl:template>
+
+<xsl:template match="informalexample|screen">
+  <xsl:text>&#10;.IP&#10;.nf&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>\fR</xsl:text>
+  <xsl:text>&#10;.fi&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="envar">
-  <xsl:text>\fB</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
+  <xsl:apply-templates name="bold" />
 </xsl:template>
 
 <xsl:template match="filename">
-  <xsl:text>\fI</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
+  <xsl:apply-templates name="italic" />
+</xsl:template>
+
+<xsl:template match="errorcode|constant|type">
+  <xsl:apply-templates name="bold" />
+</xsl:template>
+
+<xsl:template match="quote">
+  <xsl:text>``</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>''</xsl:text>
+</xsl:template>
+
+<xsl:template match="programlisting">
+  <xsl:text>&#10;.nf&#10;</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>&#10;.fi&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template name="do-citerefentry">
+  <xsl:param name="refentrytitle" select="''"/>
+  <xsl:param name="manvolnum" select="''"/>
+
+  <xsl:call-template name="fB">
+    <xsl:with-param name="content" select="$refentrytitle"/>
+  </xsl:call-template>
+  <xsl:text>(</xsl:text>
+  <xsl:value-of select="$manvolnum"/>
+  <xsl:text>)</xsl:text>
+</xsl:template>
+
+<xsl:template match="citerefentry">
+  <xsl:call-template name="do-citerefentry">
+    <xsl:with-param name="refentrytitle" select="refentrytitle"/>
+    <xsl:with-param name="manvolnum" select="manvolnum"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="ulink">
   <xsl:apply-templates/>
-  <xsl:text>: \fI</xsl:text>
-  <xsl:value-of select="@url"/>
-  <xsl:text>\fR</xsl:text>
+  <xsl:text>: </xsl:text>
+  <xsl:apply-templates name="italic" select="@url" />
 </xsl:template>
 
 <xsl:template match="/">

@@ -61,21 +61,17 @@
 
 <xsl:template match="group/arg">
   <xsl:if test="position()>1"><xsl:value-of select="$arg.or.sep"/></xsl:if>
-  <xsl:text>\fB</xsl:text>
-  <xsl:apply-templates/>
-  <xsl:text>\fR</xsl:text>
+  <xsl:apply-templates name="bold" />
 </xsl:template>
 
 <xsl:template match="command">
-  <xsl:text>\fB</xsl:text>
-  <xsl:apply-templates/>
-  <xsl:text>\fR</xsl:text>
+  <xsl:apply-templates name="bold" />
 </xsl:template>
 
 <xsl:template match="arg/replaceable">
-  <xsl:text> \fI</xsl:text>
-  <xsl:apply-templates/>
-  <xsl:text>\fR </xsl:text>
+  <xsl:text> </xsl:text>
+  <xsl:apply-templates name="italic" />
+  <xsl:text> </xsl:text>
 </xsl:template>
 
 </xsl:stylesheet>
