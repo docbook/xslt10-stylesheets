@@ -7,7 +7,7 @@ SOURCES=af.xml ar.xml bg.xml bn.xml \
         pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sr.xml sr_Latn.xml sv.xml \
         th.xml tr.xml uk.xml vi.xml xh.xml zh_cn.xml zh_tw.xml
 
-GENSTYLE=../../gentext/xsl/xsl.xsl
+GENSTYLE=../../gentext/xsl/xsl.xsl ../../gentext/locale/en.xml
 
 all: $(SOURCES)
 
