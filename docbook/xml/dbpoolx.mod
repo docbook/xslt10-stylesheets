@@ -5826,7 +5826,7 @@ OtherCredit. -->
 
 <!ENTITY % computeroutput.element "INCLUDE">
 <![%computeroutput.element;[
-<!ELEMENT computeroutput %ho; (%cptr.char.mix;)*>
+<!ELEMENT computeroutput %ho; (%cptr.char.mix;|co)*>
 <!--end of computeroutput.element-->]]>
 
 <!ENTITY % computeroutput.attlist "INCLUDE">
@@ -6572,7 +6572,7 @@ OtherCredit. -->
 
 <!ENTITY % prompt.element "INCLUDE">
 <![%prompt.element;[
-<!ELEMENT prompt %ho; (%smallcptr.char.mix;)*>
+<!ELEMENT prompt %ho; (%smallcptr.char.mix;|co)*>
 <!--end of prompt.element-->]]>
 
 <!ENTITY % prompt.attlist "INCLUDE">
@@ -6620,7 +6620,8 @@ OtherCredit. -->
 		| %base.char.class;
 		| %other.char.class;
 		| inlinegraphic
-                | inlinemediaobject)*>
+                | inlinemediaobject
+		| co)*>
 <!--end of replaceable.element-->]]>
 
 <!-- Class: Type of information the element represents; no
@@ -6767,7 +6768,7 @@ OtherCredit. -->
 
 <!ENTITY % systemitem.element "INCLUDE">
 <![%systemitem.element;[
-<!ELEMENT systemitem %ho; (%cptr.char.mix; | acronym)*>
+<!ELEMENT systemitem %ho; (%cptr.char.mix; | acronym | co)*>
 <!--end of systemitem.element-->]]>
 
 <!-- Class: Type of system item the element names; no default -->
@@ -6848,7 +6849,7 @@ OtherCredit. -->
 
 <!ENTITY % userinput.element "INCLUDE">
 <![%userinput.element;[
-<!ELEMENT userinput %ho; (%cptr.char.mix;)*>
+<!ELEMENT userinput %ho; (%cptr.char.mix;|co)*>
 <!--end of userinput.element-->]]>
 
 <!ENTITY % userinput.attlist "INCLUDE">
