@@ -215,7 +215,22 @@ db.verbatim.attributes =
 
 db.spacing.attribute  = attribute spacing { "compact" | "normal" }
 db.float.attribute    = attribute float { text }
-db.pgwide.attribute   = attribute pgwide { "0" | "1" }
+
+db.pgwide.attribute =
+   [
+      dbx:description [
+         db:para [
+            "If "
+            db:tag [ class="attribute" "pgwide" ]
+            " has the value 0 (false), then the element " ~
+            " is rendered in the current text flow (with flow column width)." ~
+            " A value of 1 (true) specifies that the element should be" ~
+            " rendered across the full text page."
+         ]
+      ]
+   ]
+   attribute pgwide { "0" | "1" }
+
 db.language.attribute = attribute language { text }?
 db.performance.attribute = attribute performance { "optional" | "required" }
 db.floatstyle.attribute = attribute floatstyle { text }

@@ -15,6 +15,7 @@ namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 namespace rng  = "http://relaxng.org/ns/structure/1.0"
 namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
+namespace dbx = "http://sourceforge.net/projects/docbook/defguide/schema/extra-markup"
 default namespace = "http://docbook.org/docbook-ng"
 
 db.table.choice |= db.cals.table
@@ -22,8 +23,189 @@ db.informaltable.choice |= db.cals.informaltable
 
 db.char.attribute = attribute char { text }
 db.charoff.attribute = attribute charoff { text }
-db.colsep.attribute = attribute colsep { text }
-db.rowsep.attribute = attribute rowsep { text }
+
+db.frame.attribute =
+  [
+    dbx:description [
+       db:para [
+          "The "
+          db:tag [ class="atribute" "frame" ]
+          " specifies how the table is to be framed:"
+       ]
+       db:informaltable [
+          db:tgroup [
+             cols="2"
+             db:thead [
+                db:row [
+                   db:entry [ "Value" ]
+                   db:entry [ "Meaning" ]
+                ]
+             ]
+             db:tbody [
+                db:row [
+                   db:entry [
+                      db:sgmltag [
+                         class="attvalue"
+                         "all"
+                      ]
+                   ]
+                   db:entry [
+                      db:para [
+                         "Frame all four sides of the table." ~
+                         " In some environments with limited control over" ~
+                         " table border formatting, such as HTML, this" ~
+                         " may imply additional borders."
+                      ]
+                   ]
+                ]
+                db:row [
+                   db:entry [
+                      db:tag [ class="attvalue" "bottom" ]
+                   ]
+                   db:entry [
+                      db:para [ "Frame only the bottom of the table." ]
+                   ]
+                ]
+                db:row [
+                   db:entry [
+                      db:tag [ class="attvalue" "none" ]
+                   ]
+                   db:entry [
+                      db:para [
+                         "Place no border on the table. In some environments" ~
+                         " with limited control over table border formatting," ~
+                         " such as HTML, this may disable other borders as" ~
+                         "well."
+                      ]
+                   ]
+                ]
+                db:row [
+                   db:entry [
+                      db:tag [ class="attvalue" "sides" ]
+                   ]
+                   db:entry [
+                      db:para [ "Frame the left and right sides of the table." ]
+                   ]
+                ]
+                db:row [
+                   db:entry [
+                      db:tag [ class="attvalue" "top" ]
+                   ]
+                   db:entry [
+                      db:para [ "Frame the top of the table."]
+                   ]
+                ]
+                db:row [
+                   db:entry [
+                      db:tag [ class="attvalue" "topbot" ]
+                   ]
+                   db:entry [
+                      db:para [ "Frame the top and bottom of the table." ]
+                   ]
+                ]
+             ]
+          ]
+       ]
+       db:para [
+          "There is no way to obtain a border on only the starting edge" ~
+          " (left, in left-to-right writing systems) of the table."
+       ]
+    ]
+  ]
+  attribute frame { "all" | "bottom" | "none" | "sides" | "top" | "topbot" }
+
+db.colsep.attribute =
+  [
+    dbx:description [
+      db:para [
+         "If "
+         db:tag [ class="attribute" "colsep" ]
+         " has the value 1 (true), then a rule will be drawn to the right of" ~
+         " all columns in this table. A value of 0 (false) suppresses" ~
+         " the rule. The rule to the right of the last column in the table" ~
+         " is controlled by the "
+         db:tag [ class="attribute" "frame" ]
+         " attribute, not "
+         db:tag [ class="attribute" "colsep" ]
+         "."
+      ]
+    ]
+  ]
+  attribute colsep { text }
+
+db.rowsep.attribute =
+  [
+    dbx:description [
+      db:para [
+         "If "
+         db:tag [ class="attribute" "rowsep" ]
+         " has the value 1 (true), then a rule will be drawn below" ~
+         " all rows in this table. A value of 0 (false) suppresses" ~
+         " the rule. The rule below the last row in the table" ~
+         " is controlled by the "
+         db:tag [ class="attribute" "frame" ]
+         " attribute, not "
+         db:tag [ class="attribute" "rowsep" ]
+         "."
+      ]
+    ]
+  ]
+  attribute rowsep { text }
+
+db.orient.attribute =
+   [
+      dbx:description [
+         db:para [
+            "The "
+            db:tag [ class="attribute" "orient" ]
+            " attribute specifies the orientation of the table." ~
+            ". An orientation of "
+            db:tag [ class="attvalue" "port" ]
+            " is "
+            db:quote [ "upright" ]
+            ", the same orientation as the rest of the text flow." ~
+            " An orientation of "
+            db:tag [ class="attvalue" "land" ]
+            " is 90 degrees counter-clockwise from the upright orientation."
+         ]
+      ]
+   ]
+   attribute orient { "land" | "port" }
+
+db.tabstyle.attribute =
+   [
+      dbx:description [
+         db:para [
+            "The "
+            db:tag [ class="attribute" "tabstyle" ]
+            " attribute holds the name of a table style defined in a" ~
+            " stylesheet that will be used to process this document."
+         ]
+      ]
+   ]
+   attribute tabstyle { text }
+
+db.rowheader.attribute =
+   [
+      dbx:description [
+         db:para [
+            "The "
+            db:tag [ class="attribute" "rowheader" ]
+            " attribute indicates whether the entries in the first column" ~
+            " of the table" ~
+            " are functionally row headers (analagous to the way that" ~
+            " a "
+            db:tag [ "thead" ]
+            " provides column headers). A value of "
+            db:tag [ class="attvalue" "firstcol" ]
+            " indicates that they are, a value of "
+            db:tag [ class="attvalue" "norowheader" ]
+            " indicates that they are not."
+         ]
+      ]
+   ]
+   attribute rowheader { "firstcol" | "norowheader" }
+
 db.align.attribute =
   attribute align { "center" | "char" | "justify" | "left" | "right" }
 db.valign.attribute = attribute valign { "bottom" | "middle" | "top" }
@@ -373,13 +555,38 @@ div {
       db.cals.table.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute tabstyle { text }?
-    & attribute orient { "land" | "port" }?
+    & db.tabstyle.attribute?
+    & db.orient.attribute?
     & db.colsep.attribute?
     & db.rowsep.attribute?
-    & attribute frame { "all" | "bottom" | "none" | "sides" | "top" | "topbot" }?
-    & attribute pgwide { "0" | "1" }?
-    & attribute rowheader { "firstcol" | "norowheader" }?
+    & db.frame.attribute?
+    & db.pgwide.attribute?
+    & [
+       dbx:description [
+          db:para [
+             "If "
+             db:tag [ class="attribute" "shortentry" ]
+             " has the value 1 (true), then the table's "
+             db:tag [ "titleabbrev" ]
+             " will be used in the list of titles, index, etc." ~
+             " A value of 0 (false) indicates that the full "
+             db:tag [ "title" ]
+             " title should be used in those places."
+          ]
+       ]
+    ] attribute shortentry { "0" | "1" }?
+    & [
+       dbx:description [
+          db:para [
+             "If "
+             db:tag [ class="attribute" "tocentry" ]
+             " has the value 1 (true), then the table will appear in a" ~
+             " generated list of tables. A value of 0 (false) indicates" ~
+             " that it should not."
+          ]
+      ]
+    ] attribute tocentry { "0" | "1" }?
+    & db.rowheader.attribute?
 
    db.cals.table.info = db._info.title.onlyreq
 
@@ -406,13 +613,13 @@ div {
       db.cals.informaltable.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute tabstyle { text }?
-    & attribute orient { "land" | "port" }?
+    & db.tabstyle.attribute?
+    & db.orient.attribute?
     & db.colsep.attribute?
     & db.rowsep.attribute?
-    & attribute frame { "all" | "bottom" | "none" | "sides" | "top" | "topbot" }?
-    & attribute pgwide { "0" | "1" }?
-    & attribute rowheader { "firstcol" | "norowheader" }?
+    & db.frame.attribute?
+    & db.pgwide.attribute?
+    & db.rowheader.attribute?
 
    db.cals.informaltable.info = db._info.title.forbidden
 
