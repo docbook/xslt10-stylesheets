@@ -395,6 +395,13 @@
   </span>
 </xsl:template>
 
+<xsl:template match="biblioid" mode="titlepage.mode">
+  <span class="{name(.)}">
+    <xsl:apply-templates mode="titlepage.mode"/>
+    <br/>
+  </span>
+</xsl:template>
+
 <xsl:template match="itermset" mode="titlepage.mode">
 </xsl:template>
 

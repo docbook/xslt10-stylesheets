@@ -502,6 +502,13 @@
   </span>
 </xsl:template>
 
+<xsl:template match="biblioid" mode="bibliography.mode">
+  <span class="{name(.)}">
+    <xsl:apply-templates mode="bibliography.mode"/>
+    <xsl:value-of select="$biblioentry.item.separator"/>
+  </span>
+</xsl:template>
+
 <xsl:template match="issuenum" mode="bibliography.mode">
   <span class="{name(.)}">
     <xsl:apply-templates mode="bibliography.mode"/>
@@ -877,6 +884,12 @@
 </xsl:template>
 
 <xsl:template match="issn" mode="bibliomixed.mode">
+  <span class="{name(.)}">
+    <xsl:apply-templates mode="bibliomixed.mode"/>
+  </span>
+</xsl:template>
+
+<xsl:template match="biblioid" mode="bibliomixed.mode">
   <span class="{name(.)}">
     <xsl:apply-templates mode="bibliomixed.mode"/>
   </span>
