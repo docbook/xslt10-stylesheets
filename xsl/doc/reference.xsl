@@ -12,7 +12,7 @@
 
 <xsl:template match="olink[@type='title']">
   <xsl:variable name="xml"
-                select="document(unparsed-entity-uri(@targetdocent))"/>
+                select="document(unparsed-entity-uri(@targetdocent),.)"/>
   <xsl:variable name="title" select="($xml/*/title[1]
                                       |$xml/*/bookinfo/title[1]
                                       |$xml/*/referenceinfo/title[1])[1]"/>

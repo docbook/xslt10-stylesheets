@@ -1,12 +1,13 @@
-XSLT=../../cvstools/saxon
-XJPARSE=../../cvstools/xjparse
+include ../../cvstools/Makefile.incl
+XSLT=xt
+XSLTOPT=
+PROCOPT=
 
 .PHONY : clean
 
 RSTYLE=reference.xsl
 BSTYLE=book.xsl
 VPATH=../docsrc
-SAXVER=-6
 
 DIRS=common lib html fo
 
@@ -19,21 +20,21 @@ all: copyright.html warranty.html reference.html index.html
 
 copyright.html: copyright.xml $(RSTYLE)
 	$(XJPARSE) $(VPATH)/$<
-	$(XSLT) $(SAXVER) $< $(RSTYLE) $@
+	$(XSLT) $(PROCOPT) $< $(RSTYLE) $@ $(XSLTOPT)
 
 warranty.html: warranty.xml $(RSTYLE)
 	$(XJPARSE) $(VPATH)/$<
-	$(XSLT) $(SAXVER) $< $(RSTYLE) $@
+	$(XSLT) $(PROCOPT) $< $(RSTYLE) $@ $(XSLTOPT)
 
 reference.html: reference.xml $(RSTYLE) lib/lib.xml common/common.xml \
 		html/param.xml html/ebnf.xml \
 		fo/param.xml fo/table.xml
 	$(XJPARSE) $(VPATH)/$<
-	$(XSLT) $(SAXVER) $< $(RSTYLE) $@
+	$(XSLT) $(PROCOPT) $< $(RSTYLE) $@ $(XSLTOPT)
 
 index.html: documentation.xml $(BSTYLE) reference.xml
 	$(XJPARSE) $(VPATH)/$<
-	$(XSLT) $(SAXVER) $< $(BSTYLE) $@
+	$(XSLT) $(PROCOPT) $< $(BSTYLE) $@ $(XSLTOPT)
 
 clean:
 	rm -f *.html
