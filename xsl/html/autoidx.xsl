@@ -22,6 +22,7 @@
                      |ancestor-or-self::sect3
                      |ancestor-or-self::sect4
                      |ancestor-or-self::sect5
+                     |ancestor-or-self::refentry
                      |ancestor-or-self::refsect1
                      |ancestor-or-self::refsect2
                      |ancestor-or-self::refsect3
