@@ -163,6 +163,11 @@
   <xsl:param name="node" select="."/>
 
   <xsl:choose>
+    <xsl:when test="$bibliography.numbered != 0">
+      <xsl:text>[</xsl:text>
+      <xsl:number from="bibliography" count="biblioentry|bibliomixed" format="1"/>
+      <xsl:text>] </xsl:text>
+    </xsl:when>
     <xsl:when test="local-name($node/child::*[1]) = 'abbrev'">
       <xsl:text>[</xsl:text>
       <xsl:apply-templates select="$node/abbrev[1]"/>
