@@ -10,19 +10,87 @@
 # Release: $Id$
 #
 
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng/absinthe"
+default namespace = "http://docbook.org/docbook-ng/absinthe"
+
 navigation.components |= db.toc
 toc.components |= db.toc
 
-toc.info = docbook.info.titleonly
-db.toc = element toc { toc.info, blocks*, (db.tocdiv | db.tocentry)* }
+# ======================================================================
 
-tocdiv.pagenum.attrib = attribute pagenum { text }
-tocdiv.linkend.attrib = linkend.attribute?
+[
+   db:refname [ "toc" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-tocdiv.info = docbook.info
-db.tocdiv = element tocdiv { tocdiv.info, blocks*, (db.tocdiv | db.tocentry)+ }
+   toc.role.attribute = attribute role { text }
 
-tocentry.pagenum.attrib = pagenum.attribute?
-tocentry.linkend.attrib = linkend.attribute?
-db.tocentry = element tocentry { inlines* }
+   toc.attr =
+      toc.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   toc.info = docbook.info.titleonly
+
+   db.toc =
+      element toc {
+         toc.attr,
+         toc.info,
+         blocks*,
+         (db.tocdiv | db.tocentry)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "tocdiv" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   tocdiv.role.attribute = attribute role { text }
+
+   tocdiv.attr =
+      tocdiv.role.attribute?
+    & common.attributes
+    & attribute pagenum { text }?
+    & linkend.attribute?
+
+   tocdiv.info = docbook.info
+
+   db.tocdiv =
+      element tocdiv {
+         tocdiv.attr,
+         tocdiv.info,
+         blocks*,
+         (db.tocdiv | db.tocentry)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "tocentry" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   tocentry.role.attribute = attribute role { text }
+
+   tocentry.attr =
+      tocentry.role.attribute?
+    & common.attributes
+    & attribute pagenum { text }?
+    & linkend.attribute?
+
+   db.tocentry =
+      element tocentry {
+         tocentry.attr,
+         inlines*
+      }
+}
 

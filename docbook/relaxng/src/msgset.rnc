@@ -11,42 +11,321 @@
 #
 
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
-
-msgset.info = docbook.info.titleonly
-
-db.msgset = element msgset { msgset.info, (db.msgentry+|db.simplemsgentry+) }
-
-db.msgentry = element msgentry { db.msg+, db.msginfo?, db.msgexplan* }
-
-simplemsgentry.audience.attrib = attribute audience { text }
-simplemsgentry.origin.attrib = attribute origin { text }
-simplemsgentry.level.attrib = attribute level { text }
-db.simplemsgentry = element simplemsgentry { db.msgtext, db.msgexplan+ }
-
-msg.info = docbook.info.titleonly
-db.msg = element msg { msg.info, db.msgmain, (db.msgsub|db.msgrel)* }
-
-msgmain.info = docbook.info.titleonly
-db.msgmain = element msgmain { msgmain.info, db.msgtext }
-
-msgsub.info = docbook.info.titleonly
-db.msgsub = element msgsub { msgsub.info, db.msgtext }
-
-msgrel.info = docbook.info.titleonly
-db.msgrel = element msgrel { msgrel.info, db.msgtext }
-
-db.msgtext = element msgtext { blocks+ }
-
-db.msginfo = element msginfo { (db.msglevel|db.msgorig|db.msgaud)* }
-
-db.msglevel = element msglevel { docbook.text }
-
-db.msgorig = element msgorig { docbook.text }
-
-db.msgaud = element msgaud { docbook.text }
-
-msgexplan.info = docbook.info.titleonly
-db.msgexplan = element msgexplan { msgexplan.info, blocks+ }
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng/absinthe"
+default namespace = "http://docbook.org/docbook-ng/absinthe"
 
 technical.blocks |= db.msgset
+
+# ======================================================================
+
+[
+   db:refname [ "msgset" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   msgset.role.attribute = attribute role { text }
+
+   msgset.attr =
+      msgset.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   msgset.info = docbook.info.titleonly
+
+   db.msgset =
+      element msgset {
+         msgset.attr,
+         msgset.info,
+         (db.msgentry+|db.simplemsgentry+)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msgentry" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   msgentry.role.attribute = attribute role { text }
+
+   msgentry.attr =
+      msgentry.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.msgentry =
+      element msgentry {
+         msgentry.attr,
+         db.msg+,
+         db.msginfo?,
+         db.msgexplan*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "simplemsgentry" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   simplemsgentry.role.attribute = attribute role { text }
+
+   simplemsgentry.attr =
+      simplemsgentry.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute audience { text }
+    & attribute origin { text }
+    & attribute level { text }
+
+   db.simplemsgentry =
+      element simplemsgentry {
+         simplemsgentry.attr,
+         db.msgtext,
+         db.msgexplan+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msg" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   msg.role.attribute = attribute role { text }
+
+   msg.attr =
+      msg.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   msg.info = docbook.info.titleonly
+
+   db.msg =
+      element msg {
+         msg.attr,
+         msg.info,
+         db.msgmain,
+         (db.msgsub|db.msgrel)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msgmain" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   msgmain.role.attribute = attribute role { text }
+
+   msgmain.attr =
+      msgmain.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   msgmain.info = docbook.info.titleonly
+
+   db.msgmain =
+      element msgmain {
+         msgmain.attr,
+         msgmain.info,
+         db.msgtext
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msgsub" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   msgsub.role.attribute = attribute role { text }
+
+   msgsub.attr =
+      msgsub.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   msgsub.info = docbook.info.titleonly
+
+   db.msgsub =
+      element msgsub {
+         msgsub.attr,
+         msgsub.info,
+         db.msgtext
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msgrel" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   msgrel.role.attribute = attribute role { text }
+
+   msgrel.attr =
+      msgrel.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   msgrel.info = docbook.info.titleonly
+
+   db.msgrel =
+      element msgrel {
+         msgrel.attr,
+         msgrel.info,
+         db.msgtext
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msgtext" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   msgtext.role.attribute = attribute role { text }
+
+   msgtext.attr =
+      msgtext.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.msgtext =
+      element msgtext {
+         msgtext.attr,
+         blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msginfo" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   msginfo.role.attribute = attribute role { text }
+
+   msginfo.attr =
+      msginfo.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.msginfo =
+      element msginfo {
+         msginfo.attr,
+         (db.msglevel|db.msgorig|db.msgaud)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msglevel" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   msglevel.role.attribute = attribute role { text }
+
+   msglevel.attr =
+      msglevel.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.msglevel =
+      element msglevel {
+         msglevel.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msgorig" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   msgorig.role.attribute = attribute role { text }
+
+   msgorig.attr =
+      msgorig.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.msgorig =
+      element msgorig {
+         msgorig.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msgaud" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   msgaud.role.attribute = attribute role { text }
+
+   msgaud.attr =
+      msgaud.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.msgaud =
+      element msgaud {
+         msgaud.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msgexplan" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   msgexplan.role.attribute = attribute role { text }
+
+   msgexplan.attr =
+      msgexplan.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   msgexplan.info = docbook.info.titleonly
+
+   db.msgexplan =
+      element msgexplan {
+         msgexplan.attr,
+         msgexplan.info,
+         blocks+
+      }
+}
 

@@ -12,6 +12,13 @@
 
 namespace mml = "http://www.w3.org/1998/Math/MathML"
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng/absinthe"
+default namespace = "http://docbook.org/docbook-ng/absinthe"
+
+equation.content |= any.mml
+inlineequation.content |= any.mml
 
 any.mml =
    element mml:*
@@ -21,6 +28,3 @@ any.mml =
        | any.mml)*
    }
 
-
-equation.content |= any.mml
-inlineequation.content |= any.mml

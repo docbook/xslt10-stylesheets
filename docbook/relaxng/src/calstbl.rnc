@@ -12,6 +12,13 @@
 # ======================================================================
 
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng/absinthe"
+default namespace = "http://docbook.org/docbook-ng/absinthe"
+
+table.choice |= cals.table
+informaltable.choice |= cals.informaltable
 
 char.attribute = attribute char { text }
 charoff.attribute = attribute charoff { text }
@@ -23,113 +30,323 @@ valign.attribute = attribute valign { "bottom" | "middle" | "top" }
 spanname.attribute = attribute spanname { text }
 colname.attribute = attribute colname { text }
 
-tgroup.char.attrib = char.attribute?
-tgroup.charoff.attrib = charoff.attribute?
-tgroup.tgroupstyle.attrib = attribute tgroupstyle { text }?
-tgroup.cols.attrib = attribute cols { xsd:integer }
-tgroup.colsep.attrib = colsep.attribute?
-tgroup.rowsep.attrib = rowsep.attribute?
-tgroup.align.attrib = align.attribute?
-db.tgroup =
-   element tgroup {
-      db.colspec*,
-      db.spanspec*,
-      cals.thead?,
-      cals.tfoot?,
-      cals.tbody
+# ======================================================================
+
+[
+   db:refname [ "tgroup" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   tgroup.role.attribute = attribute role { text }
+
+   tgroup.attr =
+      tgroup.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & char.attribute?
+    & charoff.attribute?
+    & attribute tgroupstyle { text }?
+    & attribute cols { xsd:integer }
+    & colsep.attribute?
+    & rowsep.attribute?
+    & align.attribute?
+
+   db.tgroup =
+      element tgroup {
+         tgroup.attr,
+         db.colspec*,
+         db.spanspec*,
+         cals.thead?,
+         cals.tfoot?,
+         cals.tbody
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "colspec" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   colspec.role.attribute = attribute role { text }
+
+   colspec.attr =
+      colspec.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute colnum { xsd:integer }?
+    & char.attribute?
+    & colsep.attribute?
+    & attribute colwidth { text }?
+    & charoff.attribute?
+    & colname.attribute?
+    & rowsep.attribute?
+    & align.attribute?
+
+   db.colspec =
+      element colspec {
+         colspec.attr,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "spanspec" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   spanspec.role.attribute = attribute role { text }
+
+   spanspec.attr =
+      spanspec.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute namest { text }
+    & attribute nameend { text }
+    & spanname.attribute
+    & char.attribute?
+    & colsep.attribute?
+    & charoff.attribute?
+    & rowsep.attribute?
+    & align.attribute?
+
+   db.spanspec =
+      element spanspec {
+         spanspec.attr,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "thead" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   cals.thead.role.attribute = attribute role { text }
+
+   cals.thead.attr =
+      cals.thead.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & valign.attribute?
+
+   cals.thead =
+      element thead {
+         cals.thead.attr,
+         db.colspec*,
+         db.row+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "tfoot" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   cals.tfoot.role.attribute = attribute role { text }
+
+   cals.tfoot.attr =
+      cals.tfoot.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & valign.attribute?
+
+   cals.tfoot =
+      element tfoot {
+         cals.tfoot.attr,
+         db.colspec*,
+         db.row+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "tbody" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   cals.tbody.role.attribute = attribute role { text }
+
+   cals.tbody.attr =
+      cals.tbody.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & valign.attribute?
+
+   cals.tbody =
+      element tbody {
+         cals.tbody.attr,
+         db.row+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "row" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   row.role.attribute = attribute role { text }
+
+   row.attr =
+      row.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & rowsep.attribute?
+    & valign.attribute?
+
+   db.row = element row {
+      row.attr,
+      (db.entry | db.entrytbl)+
    }
+}
 
-colspec.colnum.attrib = attribute colnum { xsd:integer }?
-colspec.char.attrib = char.attribute?
-colspec.colsep.attrib = colsep.attribute?
-colspec.colwidth.attrib = attribute colwidth { text }?
-colspec.charoff.attrib = charoff.attribute?
-colspec.colname.attrib = colname.attribute?
-colspec.rowsep.attrib = rowsep.attribute?
-colspec.align.attrib = align.attribute?
-db.colspec = element colspec { empty }
+# ======================================================================
 
-spanspec.namest.attrib = attribute namest { text }
-spanspec.nameend.attrib = attribute nameend { text }
-spanspec.spanname.attrib = spanname.attribute
-spanspec.char.attrib = char.attribute?
-spanspec.colsep.attrib = colsep.attribute?
-spanspec.charoff.attrib = charoff.attribute?
-spanspec.rowsep.attrib = rowsep.attribute?
-spanspec.align.attrib = align.attribute?
-db.spanspec = element spanspec { empty }
+[
+   db:refname [ "entry" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-cals.thead.valign.attrib = valign.attribute?
-cals.thead = element thead { db.colspec*, db.row+ }
+   entry.role.attribute = attribute role { text }
 
-cals.tfoot.valign.attrib = valign.attribute?
-cals.tfoot = element tfoot { db.colspec*, db.row+ }
+   entry.attr =
+      entry.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute nameend { text }?
+    & valign.attribute?
+    & char.attribute?
+    & colsep.attribute?
+    & charoff.attribute?
+    & attribute morerows { xsd:integer }?
+    & attribute spanname { text }?
+    & attribute namest { text }?
+    & colname.attribute?
+    & rowsep.attribute?
+    & attribute rotate { text }?
+    & align.attribute?
 
-cals.tbody.valign.attrib = valign.attribute?
-cals.tbody = element tbody { db.row+ }
+   db.entry = element entry {
+      entry.attr,
+      (inlines* | blocks*)
+   }
+}
 
-row.rowsep.attrib = rowsep.attribute?
-row.valign.attrib = valign.attribute?
-db.row = element row { (db.entry | db.entrytbl)+ }
+# ======================================================================
 
-entry.nameend.attrib = attribute nameend { text }?
-entry.valign.attrib = valign.attribute?
-entry.char.attrib = char.attribute?
-entry.colsep.attrib = colsep.attribute?
-entry.charoff.attrib = charoff.attribute?
-entry.morerows.attrib = attribute morerows { xsd:integer }?
-entry.spanname.attrib = attribute spanname { text }?
-entry.namest.attrib = attribute namest { text }?
-entry.colname.attrib = colname.attribute?
-entry.rowsep.attrib = rowsep.attribute?
-entry.rotate.attrib = attribute rotate { text }?
-entry.align.attrib = align.attribute?
-db.entry = element entry { (inlines* | blocks*) }
+[
+   db:refname [ "entrytbl" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-entrytbl.nameend.attrib = attribute nameend { text }?
-entrytbl.char.attrib = char.attribute?
-entrytbl.charoff.attrib = charoff.attribute?
-entrytbl.spanname.attrib = attribute spanname { text }?
-entrytbl.namest.attrib = attribute namest { text }?
-entrytbl.tgroupstyle.attrib = attribute tgroupstyle { text }?
-entrytbl.cols.attrib = attribute cols { xsd:integer }?
-entrytbl.colsep.attrib = colsep.attribute?
-entrytbl.rowsep.attrib = rowsep.attribute?
-entrytbl.colname.attrib = colname.attribute?
-entrytbl.align.attrib = align.attribute?
-db.entrytbl = element entrytbl { (db.colspec*, db.spanspec*, cals.thead?, cals.tbody) }
+   entrytbl.role.attribute = attribute role { text }
 
-cals.table.tabstyle.attrib = attribute tabstyle { text }?
-cals.table.orient.attrib = attribute orient { "land" | "port" }?
-cals.table.colsep.attrib = colsep.attribute?
-cals.table.rowsep.attrib = rowsep.attribute?
-cals.table.frame.attrib =
-   attribute frame {
-      "all" | "bottom" | "none" | "sides" | "top" | "topbot"
-   }?
+   entrytbl.attr =
+      entrytbl.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute nameend { text }?
+    & char.attribute?
+    & charoff.attribute?
+    & attribute spanname { text }?
+    & attribute namest { text }?
+    & attribute tgroupstyle { text }?
+    & attribute cols { xsd:integer }?
+    & colsep.attribute?
+    & rowsep.attribute?
+    & colname.attribute?
+    & align.attribute?
 
-cals.table.pgwide.attrib = attribute pgwide { "0" | "1" }?
+   db.entrytbl =
+      element entrytbl {
+         entrytbl.attr,
+         db.colspec*,
+         db.spanspec*,
+         cals.thead?,
+         cals.tbody
+      }
+}
 
-cals.table.info = docbook.info.titleonlyreq
-cals.table = element table {
-   cals.table.info,
-   indexing.inlines*,
-   db.textobject*,
-   (db.mediaobject+|db.tgroup+) }
+# ======================================================================
 
-cals.informaltable.info = docbook.info.titleforbidden
-cals.informaltable = element informaltable {
-   cals.informaltable.info,
-   indexing.inlines*,
-   db.textobject*,
-   (db.mediaobject+|db.tgroup+) }
+[
+   db:refname [ "table" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-cals.informaltable.tabstyle.attrib = cals.table.tabstyle.attrib
-cals.informaltable.orient.attrib = cals.table.orient.attrib
-cals.informaltable.colsep.attrib = cals.table.colsep.attrib
-cals.informaltable.rowsep.attrib = cals.table.rowsep.attrib
-cals.informaltable.frame.attrib = cals.table.frame.attrib
-cals.informaltable.pgwide.attrib = cals.table.pgwide.attrib
+   cals.table.role.attribute = attribute role { text }
 
-table.choice |= cals.table
-informaltable.choice |= cals.informaltable
+   cals.table.attr =
+      cals.table.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute tabstyle { text }?
+    & attribute orient { "land" | "port" }?
+    & colsep.attribute?
+    & rowsep.attribute?
+    & attribute frame { "all" | "bottom" | "none" | "sides" | "top" | "topbot" }?
+    & attribute pgwide { "0" | "1" }?
+
+   cals.table.info = docbook.info.titleonlyreq
+
+   cals.table = element table {
+      cals.table.attr,
+      cals.table.info,
+      indexing.inlines*,
+      db.textobject*,
+      (db.mediaobject+|db.tgroup+)
+   }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "informaltable" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   cals.informaltable.role.attribute = attribute role { text }
+
+   cals.informaltable.attr =
+      cals.informaltable.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute tabstyle { text }?
+    & attribute orient { "land" | "port" }?
+    & colsep.attribute?
+    & rowsep.attribute?
+    & attribute frame { "all" | "bottom" | "none" | "sides" | "top" | "topbot" }?
+    & attribute pgwide { "0" | "1" }?
+
+   cals.informaltable.info = docbook.info.titleforbidden
+
+   cals.informaltable =
+      element informaltable {
+         cals.informaltable.attr,
+         cals.informaltable.info,
+         indexing.inlines*,
+         db.textobject*,
+         (db.mediaobject+|db.tgroup+)
+      }
+}

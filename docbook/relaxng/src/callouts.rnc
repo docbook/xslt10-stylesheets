@@ -12,6 +12,10 @@
 # ======================================================================
 
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng/absinthe"
+default namespace = "http://docbook.org/docbook-ng/absinthe"
 
 publishing.inlines |= db.coref
 list.blocks |= db.calloutlist
@@ -27,7 +31,13 @@ computeroutput.inlines |= db.co
 userinput.inlines |= db.co
 replaceable.inlines |= db.co
 
-area.units.enumtype.attribute =
+# ======================================================================
+
+ctrl:other-attribute [ name="area.units.attrib"
+                       enum-name="area.units-enum.attribute"
+                       other-name="area.units-other.attributes" ]
+
+area.units-enum.attribute =
    attribute units {
       "calspair"
     | "linecolumn"
@@ -35,86 +45,281 @@ area.units.enumtype.attribute =
     | "linerange"
    }?
 
-area.units.othertype.attributes =
+area.units-other.attributes =
    attribute units { "other" },
    attribute otherunits { xsd:NMTOKEN }
 
-area.units.attribute =
-   (area.units.enumtype.attribute | area.units.othertype.attributes)
+area.units.attrib =
+   (area.units-enum.attribute | area.units-other.attributes)
 
+# ======================================================================
 
-calloutlist.info = docbook.info.titleonly
-db.calloutlist = element calloutlist { calloutlist.info, blocks*, db.callout+ }
+[
+   db:refname [ "calloutlist" ]
+   db:refpurpose [ "A list of " db:xmltag [ "callout" ] "s" ]
+]
+div {
 
-callout.arearefs.attrib = attribute arearefs { xsd:IDREFS }
-db.callout = element callout { blocks+ }
+   calloutlist.role.attribute = attribute role { text }
 
-programlistingco.info = docbook.info.titleforbidden
-db.programlistingco =
-   element programlistingco {
-      programlistingco.info,
-      db.areaspec,
-      db.programlisting,
-      db.calloutlist*
-   }
+   calloutlist.attr =
+      calloutlist.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-areaspec.units.attrib = area.units.attribute
-db.areaspec = element areaspec { (db.area | db.areaset)+ }
+   calloutlist.info = docbook.info.titleonly
 
-# FIXME: are the common linking attributes used on area?
+   db.calloutlist =
+      element calloutlist {
+         calloutlist.attr,
+         calloutlist.info,
+         blocks*,
+         db.callout+
+      }
+}
 
-ctrl:common-attributes [ element="area" attributes="common.attrib.idreq" ]
+# ======================================================================
 
-area.units.attrib = area.units.attribute
-area.linkends.attrib = linkends.attribute?
-area.label.attrib = attribute label { text }?
-area.coords.attrib = attribute coords { text }
-db.area = element area { empty }
+[
+   db:refname [ "callout" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-ctrl:common-attributes [ element="areaset" attributes="common.attrib.idreq" ]
+   callout.role.attribute = attribute role { text }
 
-areaset.units.attrib = area.units.attribute
-areaset.label.attrib = attribute label { text }?
-db.areaset = element areaset { db.area+ }
+   callout.attr =
+      callout.role.attribute?
+    & common.attributes
+    & attribute arearefs { xsd:IDREFS }
 
-screenco.info = docbook.info.titleforbidden
-db.screenco =
-   element screenco {
-      screenco.info,
-      db.areaspec,
-      db.screen,
-      db.calloutlist*
-   }
+   db.callout =
+      element callout {
+         callout.attr,
+         blocks+
+      }
+}
 
-mediaobjectco.info = docbook.info.titleforbidden
-db.mediaobjectco =
-   element mediaobjectco {
-      mediaobjectco.info,
-      db.imageobjectco,
-      (db.imageobjectco | db.textobject)*
-   }
+# ======================================================================
 
-imageobjectco.info = docbook.info.titleforbidden
-db.imageobjectco =
-   element imageobjectco {
-      imageobjectco.info?,
-      db.areaspec,
-      db.imageobject,
-      db.calloutlist*
-   }
+[
+   db:refname [ "programlistingco" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-# FIXME: are the common linking attributes used on co?
+   programlistingco.role.attribute = attribute role { text }
 
-ctrl:common-attributes [ element="co" attributes="common.attrib.idreq" ]
+   programlistingco.attr =
+      programlistingco.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-co.linkends.attrib = linkends.attribute?
-co.label.attrib = attribute label { text }?
-db.co = element co { empty }
+   programlistingco.info = docbook.info.titleforbidden
 
-# FIXME: are the common linking attributes used on coref?
+   db.programlistingco =
+      element programlistingco {
+         programlistingco.attr,
+         programlistingco.info,
+         db.areaspec,
+         db.programlisting,
+         db.calloutlist*
+      }
+}
 
-coref.label.attrib = attribute label { text }?
-coref.linkend.attrib = linkend.attribute
+# ======================================================================
 
-db.coref = element coref { empty }
+[
+   db:refname [ "areaspec" ]
+   db:refpurpose [ "" ]
+]
+div {
 
+   areaspec.role.attribute = attribute role { text }
+
+   areaspec.attr =
+      areaspec.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & area.units.attrib
+
+   db.areaspec =
+      element areaspec {
+         areaspec.attr,
+         (db.area | db.areaset)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "area" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   area.role.attribute = attribute role { text }
+
+   area.attr =
+      area.role.attribute?
+    & common.attributes.idreq
+    & area.units.attrib
+    & attribute linkends { xsd:IDREFS }?
+    & attribute label { text }?
+    & attribute coords { text }
+
+   db.area =
+      element area {
+         area.attr,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "areaset" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   areaset.role.attribute = attribute role { text }
+
+   areaset.attr =
+      areaset.role.attribute?
+    & common.attributes.idreq
+    & area.units.attrib
+    & attribute label { text }?
+
+   db.areaset =
+      element areaset {
+         areaset.attr,
+         db.area+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "screenco" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   screenco.role.attribute = attribute role { text }
+
+   screenco.attr =
+      screenco.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   screenco.info = docbook.info.titleforbidden
+
+   db.screenco =
+      element screenco {
+         screenco.attr,
+         screenco.info,
+         db.areaspec,
+         db.screen,
+         db.calloutlist*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "mediaobjectco" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   mediaobjectco.role.attribute = attribute role { text }
+
+   mediaobjectco.attr =
+      mediaobjectco.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   mediaobjectco.info = docbook.info.titleforbidden
+
+   db.mediaobjectco =
+      element mediaobjectco {
+         mediaobjectco.attr,
+         mediaobjectco.info,
+         db.imageobjectco,
+         (db.imageobjectco | db.textobject)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "imageobjectco" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   imageobjectco.role.attribute = attribute role { text }
+
+   imageobjectco.attr =
+      imageobjectco.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   imageobjectco.info = docbook.info.titleforbidden
+
+   db.imageobjectco =
+      element imageobjectco {
+         imageobjectco.attr,
+         imageobjectco.info?,
+         db.areaspec,
+         db.imageobject,
+         db.calloutlist*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "co" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   co.role.attribute = attribute role { text }
+
+   co.attr =
+      co.role.attribute?
+    & common.attributes.idreq
+    & attribute linkends { xsd:IDREFS }?
+    & attribute label { text }?
+
+   db.co =
+      element co {
+         co.attr,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "coref" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   coref.role.attribute = attribute role { text }
+
+   coref.attr =
+      coref.role.attribute?
+    & common.attributes
+    & attribute linkend { xsd:IDREF }
+    & attribute label { text }?
+
+   db.coref =
+      element coref {
+         coref.attr,
+         empty
+      }
+}

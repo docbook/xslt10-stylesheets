@@ -11,6 +11,11 @@
 #
 # ======================================================================
 
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng/absinthe"
+default namespace = "http://docbook.org/docbook-ng/absinthe"
+
 status.attribute = attribute status { text }
 label.attribute = attribute label { text }
 
@@ -36,65 +41,275 @@ component.contentmodel =
 setindex.components = notAllowed
 toc.components = notAllowed
 
-set.status.attrib = status.attribute?
-set.label.attrib = label.attribute?
-set.info = docbook.info.titlereq
-db.set = element set { set.info, toc.components?, (db.set|db.book)+, setindex.components? }
+# ======================================================================
 
-book.status.attrib = status.attribute?
-book.label.attrib = label.attribute?
-book.info = docbook.info.titlereq
-db.book =
-   element book { book.info, (navigation.components | components | divisions)+ }
+[
+   db:refname [ "set" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-dedication.status.attrib = status.attribute?
-dedication.label.attrib = label.attribute?
-dedication.info = docbook.info
-db.dedication =
-  element dedication { dedication.info, blocks+ }
+   set.status.attrib = status.attribute
 
-colophon.status.attrib = status.attribute?
-colophon.label.attrib = label.attribute?
-colophon.info = docbook.info
-db.colophon =
-   element colophon { colophon.info, blocks+ }
+   set.role.attribute = attribute role { text }
 
-appendix.status.attrib = status.attribute?
-appendix.label.attrib = label.attribute?
-appendix.info = docbook.info.titlereq
-db.appendix =
-   element appendix { appendix.info, component.contentmodel }
+   set.attr =
+      set.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & label.attribute?
+    & set.status.attrib?
 
-chapter.status.attrib = status.attribute?
-chapter.label.attrib = label.attribute?
-chapter.info = docbook.info.titlereq
-db.chapter =
-   element chapter { chapter.info, component.contentmodel }
+   set.info = docbook.info.titlereq
+
+   db.set =
+      element set {
+         set.attr,
+         set.info,
+         toc.components?,
+         (db.set|db.book)+,
+         setindex.components?
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "book" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   book.status.attrib = status.attribute
+
+   book.role.attribute = attribute role { text }
+
+   book.attr =
+      book.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & label.attribute?
+    & book.status.attrib?
+
+   book.info = docbook.info.titlereq
+
+   db.book =
+      element book {
+         book.attr,
+         book.info,
+         (navigation.components | components | divisions)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "dedication" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   dedication.status.attrib = status.attribute
+
+   dedication.role.attribute = attribute role { text }
+
+   dedication.attr =
+      dedication.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & label.attribute?
+    & dedication.status.attrib?
+
+   dedication.info = docbook.info
+
+   db.dedication =
+      element dedication {
+         dedication.attr,
+         dedication.info,
+         blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "colophon" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   colophon.status.attrib = status.attribute
+
+   colophon.role.attribute = attribute role { text }
+
+   colophon.attr =
+      colophon.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & label.attribute?
+    & colophon.status.attrib?
+
+   colophon.info = docbook.info
+
+   db.colophon =
+      element colophon {
+         colophon.attr,
+         colophon.info,
+         blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "appendix" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   appendix.status.attrib = status.attribute
+
+   appendix.role.attribute = attribute role { text }
+
+   appendix.attr =
+      appendix.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & label.attribute?
+    & appendix.status.attrib?
+
+   appendix.info = docbook.info.titlereq
+
+   db.appendix =
+      element appendix {
+         appendix.attr,
+         appendix.info,
+         component.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "chapter" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   chapter.status.attrib = status.attribute
+
+   chapter.role.attribute = attribute role { text }
+
+   chapter.attr =
+      chapter.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & label.attribute?
+    & chapter.status.attrib?
+
+   chapter.info = docbook.info.titlereq
+
+   db.chapter =
+      element chapter {
+         chapter.attr,
+         chapter.info,
+         component.contentmodel
+      }
+}
+
+# ======================================================================
 
 part.components = navigation.components | components
 
-part.status.attrib = status.attribute?
-part.label.attrib = label.attribute?
-part.info = docbook.info.titlereq
-db.part =
-   element part {
-      part.info,
-      db.partintro?,
-      part.components+
-   }
+# ======================================================================
 
-preface.status.attrib = status.attribute?
-preface.label.attrib = label.attribute?
-preface.info = docbook.info
-db.preface =
-   element preface { preface.info, component.contentmodel }
+[
+   db:refname [ "part" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-partintro.status.attrib = status.attribute?
-partintro.label.attrib = label.attribute?
+   part.status.attrib = status.attribute
 
-partintro.info = docbook.info
-db.partintro =
-   element partintro { partintro.info, blocks.or.sections }
+   part.role.attribute = attribute role { text }
+
+   part.attr =
+      part.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & label.attribute?
+    & part.status.attrib?
+
+   part.info = docbook.info.titlereq
+
+   db.part =
+      element part {
+         part.attr,
+         part.info,
+         db.partintro?,
+         part.components+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "preface" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   preface.status.attrib = status.attribute
+
+   preface.role.attribute = attribute role { text }
+
+   preface.attr =
+      preface.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & label.attribute?
+    & preface.status.attrib?
+
+   preface.info = docbook.info
+
+   db.preface =
+      element preface {
+         preface.attr,
+         preface.info,
+         component.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "partintro" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   partintro.status.attrib = status.attribute
+
+   partintro.role.attribute = attribute role { text }
+
+   partintro.attr =
+      partintro.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & label.attribute?
+    & partintro.status.attrib?
+
+   partintro.info = docbook.info
+
+   db.partintro =
+      element partintro {
+         partintro.attr,
+         partintro.info,
+         blocks.or.sections
+      }
+}
+
+# ======================================================================
 
 sections.optional = db.section* | db.simplesect*
 
@@ -103,40 +318,130 @@ sections.required = db.section+ | db.simplesect+
 blocks.or.sections =
   (blocks+, sections.optional) | sections.required
 
-section.status.attrib = status.attribute?
-section.label.attrib = label.attribute?
-section.info = docbook.info.titlereq
-db.section =
-  element section { section.info, blocks.or.sections }
+# ======================================================================
 
-simplesect.status.attrib = status.attribute?
-simplesect.label.attrib = label.attribute?
-simplesect.info = docbook.info.titlereq
-db.simplesect =
-  element simplesect { simplesect.info, blocks+ }
+[
+   db:refname [ "section" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.ackno = element ackno { para.blocks+ }
+   section.status.attrib = status.attribute
+
+   section.role.attribute = attribute role { text }
+
+   section.attr =
+      section.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & label.attribute?
+    & section.status.attrib?
+
+   section.info = docbook.info.titlereq
+
+   db.section =
+      element section {
+         section.attr,
+         section.info,
+         blocks.or.sections
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "simplesect" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   simplesect.status.attrib = status.attribute
+
+   simplesect.role.attribute = attribute role { text }
+
+   simplesect.attr =
+      simplesect.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & label.attribute?
+    & simplesect.status.attrib?
+
+   simplesect.info = docbook.info.titlereq
+
+   db.simplesect =
+      element simplesect {
+         simplesect.attr,
+         simplesect.info,
+         blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "ackno" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   ackno.role.attribute = attribute role { text }
+
+   ackno.attr =
+      ackno.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.ackno=
+      element ackno {
+         ackno.attr,
+         para.blocks+
+      }
+}
+
+# ======================================================================
 
 article.components.optional = db.section* | db.simplesect*
 article.components.required = db.section+ | db.simplesect+
 
-article.status.attrib = status.attribute?
-article.label.attrib = label.attribute?
-article.class.attrib =
-   attribute class {
-      "faq"
-    | "journalarticle"
-    | "productsheet"
-    | "specification"
-    | "techreport"
-    | "whitepaper"
-   }?
+# ======================================================================
 
-article.info = docbook.info.titlereq
-db.article =
-   element article {
-      article.info,
-      navigation.components*,
-      ((blocks+, article.components.optional) | article.components.required),
-      (db.appendix | navigation.components | db.ackno)*
-   }
+[
+   db:refname [ "article" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   article.status.attrib = status.attribute
+
+   article.class.attrib =
+      attribute class {
+         "faq"
+       | "journalarticle"
+       | "productsheet"
+       | "specification"
+       | "techreport"
+       | "whitepaper"
+      }
+
+   article.role.attribute = attribute role { text }
+
+   article.attr =
+      article.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & label.attribute?
+    & article.status.attrib?
+    & article.class.attrib?
+
+   article.info = docbook.info.titlereq
+
+   db.article =
+      element article {
+         article.attr,
+         article.info,
+         navigation.components*,
+         ((blocks+, article.components.optional) | article.components.required),
+         (db.appendix | navigation.components | db.ackno)*
+      }
+}
+

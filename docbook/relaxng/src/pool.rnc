@@ -59,6 +59,8 @@
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 namespace rng  = "http://relaxng.org/ns/structure/1.0"
 namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng/absinthe"
+default namespace = "http://docbook.org/docbook-ng/absinthe"
 
 # ======================================================================
 
@@ -71,8 +73,6 @@ xml.base.attribute  = attribute xml:base { text }
 remap.attribute     = attribute remap { text }
 
 xreflabel.attribute = attribute xreflabel { text }
-
-role.attribute      = attribute role { text }
 
 revisionflag.attribute =
   attribute revisionflag { "changed" | "added" | "deleted" | "off" }
@@ -115,7 +115,7 @@ common.attributes =
   revisionflag.attribute?,
   effectivity.attributes
 
-common.attrib.idreq =
+common.attributes.idreq =
   id.attribute,
   xml.lang.attribute?,
   xml.base.attribute?,
@@ -149,7 +149,7 @@ pgwide.attribute = attribute pgwide { "0" | "1" }
 data.format.attribute = attribute format { text }
 data.fileref.attribute = attribute fileref { text }
 data.entityref.attribute = attribute entityref { xsd:ENTITY }
-data.common.attribute &=
+data.common.attrib &=
    data.format.attribute?,
    (data.fileref.attribute | data.entityref.attribute)
 
@@ -251,7 +251,7 @@ os.inlines =
 # TEI: sgmlKeywords, ident
 
 markup.inlines =
-   db.xmltag
+   db.tag
  | db.markup
  | db.token
  | db.symbol
@@ -382,7 +382,6 @@ list.blocks =
  | db.procedure
  | db.simplelist
  | db.variablelist
- | db.qandaset
  | db.segmentedlist
 
 verbatim.blocks =
@@ -404,11 +403,71 @@ extension.blocks = notAllowed
 
 # ======================================================================
 
-db.title = element title { inlines* }
+[
+   db:refname [ "title" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.titleabbrev = element titleabbrev { inlines* }
+   title.role.attribute = attribute role { text }
 
-db.subtitle = element subtitle { inlines* }
+   title.attr =
+      title.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.title =
+      element title {
+         title.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "titleabbrev" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   titleabbrev.role.attribute = attribute role { text }
+
+   titleabbrev.attr =
+      titleabbrev.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.titleabbrev =
+      element titleabbrev {
+         titleabbrev.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "subtitle" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   subtitle.role.attribute = attribute role { text }
+
+   subtitle.attr =
+      subtitle.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.subtitle =
+      element subtitle {
+         subtitle.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
 
 docbook.title = db.title? & db.titleabbrev? & db.subtitle?
 docbook.titlereq = db.title & db.titleabbrev? & db.subtitle?
@@ -533,36 +592,117 @@ ctrl:alternate-define [
    ]
 ]
 
-subjectset.scheme.attrib = attribute scheme { xsd:NMTOKEN }?
-db.subjectset = element subjectset { db.subject+ }
+# ======================================================================
 
-subject.weight.attrib = attribute weight { text }?
-db.subject = element subject { db.subjectterm+ }
+[
+   db:refname [ "subjectset" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.subjectterm = element subjectterm { text }
+   subjectset.role.attribute = attribute role { text }
 
-db.keywordset = element keywordset { db.keyword+ }
+   subjectset.attr =
+      subjectset.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute scheme { xsd:NMTOKEN }?
 
-db.keyword = element keyword { text }
+   db.subjectset =
+      element subjectset {
+         subjectset.attr,
+         db.subject+
+      }
+}
 
-qandaset.defaultlabel.attrib = attribute defaultlabel { "none" | "number" | "qanda" }?
-qandaset.info = docbook.info.titleonly
-db.qandaset =
-   element qandaset { qandaset.info, blocks*, (db.qandadiv+ | db.qandaentry+) }
+# ======================================================================
 
-qandadiv.info = docbook.info.titleonly
-db.qandadiv =
-   element qandadiv { qandadiv.info, blocks*, (db.qandadiv+ | db.qandaentry+) }
+[
+   db:refname [ "subject" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-qandaentry.info = docbook.info.titleforbidden
-db.qandaentry =
-   element qandaentry { qandaentry.info, db.question, db.answer* }
+   subject.role.attribute = attribute role { text }
 
-db.question = element question { db.label?, blocks+ }
+   subject.attr =
+      subject.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute weight { text }?
 
-db.answer = element answer { db.label?, blocks+ }
+   db.subject =
+      element subject {
+         subject.attr,
+         db.subjectterm+
+      }
+}
 
-db.label = element label { docbook.text }
+# ======================================================================
+
+[
+   db:refname [ "subjectterm" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   subjectterm.role.attribute = attribute role { text }
+
+   subjectterm.attr =
+      subjectterm.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.subjectterm =
+      element subjectterm {
+         subjectterm.attr,
+         text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "keywordset" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   keywordset.role.attribute = attribute role { text }
+
+   keywordset.attr =
+      keywordset.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.keywordset = element keywordset {
+      keywordset.attr,
+      db.keyword+
+   }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "keyword" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   keyword.role.attribute = attribute role { text }
+
+   keyword.attr =
+      keyword.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.keyword = element keyword {
+      keyword.attr,
+      text
+   }
+}
+
+# ======================================================================
 
 table.choice = notAllowed
 informaltable.choice = notAllowed
@@ -570,70 +710,364 @@ informaltable.choice = notAllowed
 db.table = table.choice
 db.informaltable = informaltable.choice
 
-procedure.info = docbook.info.titleonly
-db.procedure = element procedure { procedure.info, blocks*, db.step+ }
+# ======================================================================
 
-step.performance.attrib = attribute performance { "optional" | "required" }?
-step.info = docbook.info.titleonly
-db.step = element step {
-   step.info,
-   blocks*,
-   (db.substeps|db.stepalternatives)?,
-   blocks* }
+[
+   db:refname [ "procedure" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-stepalternatives.performance.attrib = attribute performance { "optional" | "required" }?
-stepalternatives.info = docbook.info.titleforbidden
-db.stepalternatives = element stepalternatives { stepalternatives.info, db.step+ }
+   procedure.role.attribute = attribute role { text }
 
-substeps.performance.attrib = attribute performance { "optional" | "required" }?
-db.substeps = element substeps { db.step+ }
+   procedure.attr =
+      procedure.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-ctrl:exclude [ from="db.sidebar" exclude="db.sidebar" ]
+   procedure.info = docbook.info.titleonly
 
-sidebar.info = docbook.info.titleonly
+   db.procedure =
+      element procedure {
+         procedure.attr,
+         procedure.info,
+         blocks*,
+         db.step+
+      }
+}
 
-db.sidebar = element sidebar { sidebar.info, blocks+ }
+# ======================================================================
 
-abstract.info = docbook.info.titleonly
-db.abstract = element abstract { abstract.info, para.blocks+ }
+performance.attribute = attribute performance { "optional" | "required" }
 
-personblurb.info = docbook.info.titleonly
-db.personblurb = element personblurb { personblurb.info, para.blocks+ }
+# ======================================================================
 
-blockquote.info = docbook.info.titleonly
-db.blockquote = element blockquote { blockquote.info, db.attribution?, blocks+ }
+[
+   db:refname [ "step" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.attribution = element attribution { (docbook.text | db.personname) }
+   step.role.attribute = attribute role { text }
 
-bridgehead.renderas.attrib =
+   step.attr =
+      step.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & performance.attribute
+
+   step.info = docbook.info.titleonly
+
+   db.step = element step {
+      step.attr,
+      step.info,
+      blocks*,
+      (db.substeps|db.stepalternatives)?,
+      blocks*
+   }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "stepalternatives" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   stepalternatives.role.attribute = attribute role { text }
+
+   stepalternatives.attr =
+      stepalternatives.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & performance.attribute
+
+   stepalternatives.info = docbook.info.titleforbidden
+
+   db.stepalternatives =
+      element stepalternatives {
+         stepalternatives.attr,
+         stepalternatives.info,
+         db.step+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "substeps" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   substeps.role.attribute = attribute role { text }
+
+   substeps.attr =
+      substeps.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & performance.attribute
+
+   db.substeps =
+      element substeps {
+         substeps.attr,
+         db.step+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "sidebar" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   ctrl:exclude [ from="db.sidebar" exclude="db.sidebar" ]
+
+   sidebar.role.attribute = attribute role { text }
+
+   sidebar.attr =
+      sidebar.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   sidebar.info = docbook.info.titleonly
+
+   db.sidebar =
+      element sidebar {
+         sidebar.attr,
+         sidebar.info,
+         blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "abstract" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   abstract.role.attribute = attribute role { text }
+
+   abstract.attr =
+      abstract.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   abstract.info = docbook.info.titleonly
+
+   db.abstract = element abstract {
+      abstract.attr,
+      abstract.info,
+      para.blocks+
+   }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "personblurb" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   personblurb.role.attribute = attribute role { text }
+
+   personblurb.attr =
+      personblurb.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   personblurb.info = docbook.info.titleonly
+
+   db.personblurb =
+      element personblurb {
+         personblurb.attr,
+         personblurb.info,
+         para.blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "blockquote" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   blockquote.role.attribute = attribute role { text }
+
+   blockquote.attr =
+      blockquote.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   blockquote.info = docbook.info.titleonly
+
+   db.blockquote =
+      element blockquote {
+         blockquote.attr,
+         blockquote.info,
+         db.attribution?,
+         blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "attribution" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   attribution.role.attribute = attribute role { text }
+
+   attribution.attr =
+      attribution.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.attribution =
+      element attribution {
+         attribution.attr,
+         (docbook.text | db.personname)
+      }
+}
+
+# ======================================================================
+
+renderas.attribute =
    attribute renderas {
       "other"
     | "sect1"
     | "sect2"
     | "sect3"
     | "sect4"
-    | "sect5" }?
+    | "sect5" }
 
-db.bridgehead = element bridgehead { inlines* }
+# ======================================================================
 
-db.remark = element remark { docbook.text }
+[
+   db:refname [ "bridgehead" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-epigraph.info = docbook.info.titleforbidden
+   bridgehead.role.attribute = attribute role { text }
 
-db.epigraph =
-   element epigraph {
-      epigraph.info,
-      db.attribution?,
-      (para.blocks | db.literallayout)+
-   }
+   bridgehead.attr =
+      bridgehead.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & renderas.attribute?
 
-ctrl:exclude [ from="db.footnote" exclude="db.footnote" ]
-
-db.footnote = element footnote { blocks+ }
-
-db.highlights = element highlights {
-   (list.blocks | admonition.blocks | para.blocks | indexing.inlines)+
+   db.bridgehead =
+      element bridgehead {
+         bridgehead.attr,
+         inlines*
+      }
 }
+
+# ======================================================================
+
+[
+   db:refname [ "remark" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   remark.role.attribute = attribute role { text }
+
+   remark.attr =
+      remark.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.remark = element remark {
+      remark.attr,
+      docbook.text
+   }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "epigraph" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   epigraph.role.attribute = attribute role { text }
+
+   epigraph.attr =
+      epigraph.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   epigraph.info = docbook.info.titleforbidden
+
+   db.epigraph =
+      element epigraph {
+         epigraph.attr,
+         epigraph.info,
+         db.attribution?,
+         (para.blocks | db.literallayout)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "footnote" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   ctrl:exclude [ from="db.footnote" exclude="db.footnote" ]
+
+   footnote.role.attribute = attribute role { text }
+
+   footnote.attr =
+      footnote.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.footnote =
+      element footnote {
+         footnote.attr,
+         blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "highlights" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   highlights.role.attribute = attribute role { text }
+
+   highlights.attr =
+      highlights.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.highlights =
+      element highlights {
+         highlights.attr,
+         (list.blocks | admonition.blocks | para.blocks | indexing.inlines)+
+      }
+}
+
+# ======================================================================
 
 para.blocks =
    db.anchor
@@ -641,468 +1075,2239 @@ para.blocks =
  | db.formalpara
  | db.simpara
 
-formalpara.info = docbook.info.titleonlyreq
-db.formalpara = element formalpara { formalpara.info, indexing.inlines*, db.para }
+# ======================================================================
 
-para.info = docbook.info.titleforbidden
-db.para = element para { para.info, (inlines | blocks.nopara)* }
+[
+   db:refname [ "formalpara" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-simpara.info = docbook.info.titleforbidden
-db.simpara = element simpara { simpara.info, inlines* }
+   formalpara.role.attribute = attribute role { text }
 
-# admonitions are not excluded from themselves
-admonition.contentmodel = docbook.info.titleonly, blocks+
+   formalpara.attr =
+      formalpara.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-db.caution = element caution { admonition.contentmodel }
+   formalpara.info = docbook.info.titleonlyreq
+
+   db.formalpara =
+      element formalpara {
+         formalpara.attr,
+         formalpara.info,
+         indexing.inlines*,
+         db.para
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "para" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   para.role.attribute = attribute role { text }
+
+   para.attr =
+      para.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   para.info = docbook.info.titleforbidden
+
+   db.para =
+      element para {
+         para.attr,
+         para.info,
+         (inlines | blocks.nopara)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "simpara" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   simpara.role.attribute = attribute role { text }
+
+   simpara.attr =
+      simpara.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   simpara.info = docbook.info.titleforbidden
+
+   db.simpara =
+      element simpara {
+         simpara.attr,
+         simpara.info,
+         inlines*
+      }
+}
+
+# ======================================================================
 
 ctrl:exclude [ from="admonition.blocks" exclude="admonition.blocks" ]
 
-db.important = element important { admonition.contentmodel }
+admonition.contentmodel = docbook.info.titleonly, blocks+
 
-db.note = element note { admonition.contentmodel }
+# ======================================================================
 
-db.tip = element tip { admonition.contentmodel }
+[
+   db:refname [ "caution" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.warning = element warning { admonition.contentmodel }
+   caution.role.attribute = attribute role { text }
 
-itemizedlist.mark.attrib = attribute mark { text }?
-itemizedlist.spacing.attrib = attribute spacing { "compact" | "normal" }?
+   caution.attr =
+      caution.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-itemizedlist.info = docbook.info.titleonly
-db.itemizedlist = element itemizedlist { itemizedlist.info, blocks*, db.listitem+ }
+   db.caution =
+      element caution {
+         caution.attr,
+         admonition.contentmodel
+      }
+}
 
-orderedlist.inheritnum.attrib = attribute inheritnum { "ignore" | "inherit" }?
-orderedlist.spacing.attrib = attribute spacing { "compact" | "normal" }?
-orderedlist.continuation.attrib = continuation.attribute?
-orderedlist.numeration.attrib = attribute numeration { text }?
+# ======================================================================
 
-orderedlist.info = docbook.info.titleonly
-db.orderedlist = element orderedlist { orderedlist.info, blocks*, db.listitem+ }
+[
+   db:refname [ "important" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-listitem.override.attrib = attribute override { text }?
-db.listitem = element listitem { blocks+ }
+   important.role.attribute = attribute role { text }
 
-segmentedlist.info = docbook.info.titleonly
-db.segmentedlist =
-   element segmentedlist {
-      segmentedlist.info,
-      db.segtitle+,
-      db.seglistitem+ }
+   important.attr =
+      important.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-db.segtitle = element segtitle { inlines* }
+   db.important =
+      element important {
+         important.attr,
+         admonition.contentmodel
+      }
+}
 
-db.seglistitem =
-   [
-      s:rule [
-         context = "seglistitem"
-         s:assert [
-            test = "count(seg) = count(../segtitle)"
-            "The number of seg elements must be the same as the number of segtitle elements in the parent segmentedlist"
+# ======================================================================
+
+[
+   db:refname [ "note" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   note.role.attribute = attribute role { text }
+
+   note.attr =
+      note.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.note =
+      element note {
+         note.attr,
+         admonition.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "tip" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   tip.role.attribute = attribute role { text }
+
+   tip.attr =
+      tip.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.tip =
+      element tip {
+         tip.attr,
+         admonition.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "warning" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   warning.role.attribute = attribute role { text }
+
+   warning.attr =
+      warning.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.warning =
+      element warning {
+         warning.attr,
+         admonition.contentmodel
+      }
+}
+
+# ======================================================================
+
+spacing.attribute = attribute spacing { "compact" | "normal" }
+
+# ======================================================================
+
+[
+   db:refname [ "itemizedlist" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   itemizedlist.role.attribute = attribute role { text }
+
+   itemizedlist.attr =
+      itemizedlist.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & spacing.attribute?
+    & attribute mark { text }?
+
+   itemizedlist.info = docbook.info.titleonly
+
+   db.itemizedlist =
+      element itemizedlist {
+         itemizedlist.attr,
+         itemizedlist.info,
+         blocks*,
+         db.listitem+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "orderedlist" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   orderedlist.role.attribute = attribute role { text }
+
+   orderedlist.attr =
+      orderedlist.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & spacing.attribute?
+    & continuation.attribute?
+    & attribute inheritnum { "ignore" | "inherit" }?
+    & attribute numeration { text }?
+
+   orderedlist.info = docbook.info.titleonly
+
+   db.orderedlist = element orderedlist {
+      orderedlist.attr,
+      orderedlist.info,
+      blocks*,
+      db.listitem+
+   }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "listitem" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   listitem.role.attribute = attribute role { text }
+
+   listitem.attr =
+      listitem.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute override { text }?
+
+   db.listitem = element listitem {
+      listitem.attr,
+      blocks+
+   }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "segmentedlist" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   segmentedlist.role.attribute = attribute role { text }
+
+   segmentedlist.attr =
+      segmentedlist.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   segmentedlist.info = docbook.info.titleonly
+
+   db.segmentedlist =
+      element segmentedlist {
+         segmentedlist.attr,
+         segmentedlist.info,
+         db.segtitle+,
+         db.seglistitem+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "segtitle" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   segtitle.role.attribute = attribute role { text }
+
+   segtitle.attr =
+      segtitle.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.segtitle =
+      element segtitle {
+         segtitle.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "seglistitem" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   seglistitem.role.attribute = attribute role { text }
+
+   seglistitem.attr =
+      seglistitem.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+
+   db.seglistitem =
+      [
+         s:rule [
+            context = "db:seglistitem"
+            s:assert [
+               test = "count(db:seg) = count(../db:segtitle)"
+               "The number of seg elements must be the same as the number of segtitle elements in the parent segmentedlist"
+            ]
          ]
       ]
-   ]
-   element seglistitem { db.seg+ }
+      element seglistitem {
+         seglistitem.attr,
+         db.seg+
+      }
+}
 
-db.seg = element seg { inlines* }
+# ======================================================================
 
-simplelist.type.attrib = attribute type { "horiz" | "vert" | "inline" }?
-simplelist.columns.attrib = attribute columns { xsd:integer}?
-db.simplelist = element simplelist { db.member+ }
+[
+   db:refname [ "seg" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.member = element member { inlines* }
+   seg.role.attribute = attribute role { text }
 
-variablelist.termlength.attrib = attribute termlength { text }?
-variablelist.info = docbook.info.titleonly
+   seg.attr =
+      seg.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-db.variablelist = element variablelist { variablelist.info, blocks*, db.varlistentry+ }
+   db.seg = element seg {
+      seg.attr,
+      inlines*
+   }
+}
 
-db.varlistentry = element varlistentry { db.term+, db.listitem }
+# ======================================================================
 
-db.term = element term { inlines* }
+[
+   db:refname [ "simplelist" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   simplelist.role.attribute = attribute role { text }
+
+   simplelist.attr =
+      simplelist.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute type { "horiz" | "vert" | "inline" }?
+    & attribute columns { xsd:integer}?
+
+   db.simplelist =
+      element simplelist {
+         simplelist.attr,
+         db.member+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "member" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   member.role.attribute = attribute role { text }
+
+   member.attr =
+      member.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.member =
+      element member {
+         member.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "variablelist" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   variablelist.role.attribute = attribute role { text }
+
+   variablelist.attr =
+      variablelist.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute termlength { text }?
+
+   variablelist.info = docbook.info.titleonly
+
+   db.variablelist =
+      element variablelist {
+         variablelist.attr,
+         variablelist.info,
+         blocks*,
+         db.varlistentry+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "varlistentry" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   varlistentry.role.attribute = attribute role { text }
+
+   varlistentry.attr =
+      varlistentry.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.varlistentry =
+      element varlistentry {
+         varlistentry.attr,
+         db.term+,
+         db.listitem
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "term" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   term.role.attribute = attribute role { text }
+
+   term.attr =
+      term.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.term =
+      element term {
+         term.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
 
 floatstyle.attribute = attribute floatstyle { text }
 
-example.floatstyle.attrib = floatstyle.attribute?
-example.width.attrib = attribute width { text }?
-example.label.attrib = attribute label { text }?
+# ======================================================================
 
-example.info = docbook.info.titleonlyreq
-db.example = element example { example.info, blocks+ }
+[
+   db:refname [ "example" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-informalexample.info = docbook.info.titleforbidden
-informalexample.width.attrib = attribute width { text }?
-informalexample.floatstyle.attrib = floatstyle.attribute?
-db.informalexample = element informalexample { informalexample.info, blocks+ }
+   example.role.attribute = attribute role { text }
+
+   example.attr =
+      example.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute label { text }?
+    & floatstyle.attribute?
+    & attribute width { text }?
+
+   example.info = docbook.info.titleonlyreq
+
+   db.example =
+      element example {
+         example.attr,
+         example.info,
+         blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "informalexample" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   informalexample.role.attribute = attribute role { text }
+
+   informalexample.attr =
+      informalexample.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & floatstyle.attribute?
+    & attribute width { text }?
+
+   informalexample.info = docbook.info.titleforbidden
+
+   db.informalexample =
+      element informalexample {
+         informalexample.attr,
+         informalexample.info,
+         blocks+
+      }
+}
+
+# ======================================================================
 
 verbatim.inlines = inlines | db.lineannotation
 
 verbatim.contentmodel = docbook.info.titleforbidden, (db.textobject|verbatim.inlines*)
 
-programlisting.verbatim.attribs = verbatim.attributes
-programlisting.width.attrib = attribute width { text }?
-db.programlisting = element programlisting { verbatim.contentmodel }
+# ======================================================================
 
-literallayout.verbatim.attribs = verbatim.attributes
-literallayout.class.attrib = attribute class { "monospaced" | "normal" }?
-db.literallayout = element literallayout { verbatim.contentmodel }
+[
+   db:refname [ "programlisting" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-screen.verbatim.attribs = verbatim.attributes
-screen.width.attrib = attribute width { text }?
-db.screen = element screen { verbatim.contentmodel }
+   programlisting.role.attribute = attribute role { text }
+
+   programlisting.attr =
+      programlisting.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & verbatim.attributes
+    & attribute width { text }?
+
+   db.programlisting =
+      element programlisting {
+         programlisting.attr,
+         verbatim.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "literallayout" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   literallayout.role.attribute = attribute role { text }
+
+   literallayout.attr =
+      literallayout.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & verbatim.attributes
+    & attribute class { "monospaced" | "normal" }?
+
+   db.literallayout =
+      element literallayout {
+         literallayout.attr,
+         verbatim.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "screen" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   screen.role.attribute = attribute role { text }
+
+   screen.attr =
+      screen.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & verbatim.attributes
+    & attribute width { text }?
+
+   db.screen =
+      element screen {
+         screen.attr,
+         verbatim.contentmodel
+      }
+}
+
+# ======================================================================
 
 screenshot.block = db.mediaobject
 
-screenshot.info = docbook.info
-db.screenshot =
-   element screenshot { screenshot.info, screenshot.block }
+# ======================================================================
 
-figure.floatstyle.attrib = floatstyle.attribute?
-figure.float.attrib = attribute float { text }?
-figure.pgwide.attrib = pgwide.attribute?
-figure.label.attrib = attribute label { text }?
-figure.info = docbook.info.titleonlyreq
-db.figure = element figure { figure.info, blocks+ }
+[
+   db:refname [ "screenshot" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-informalfigure.floatstyle.attrib = floatstyle.attribute?
-informalfigure.float.attrib = float.attribute?
-informalfigure.pgwide.attrib = pgwide.attribute?
-informalfigure.label.attrib = attribute label { text }?
-informalfigure.info = docbook.info.titleforbidden
-db.informalfigure = element informalfigure { informalfigure.info, blocks+ }
+   screenshot.role.attribute = attribute role { text }
+
+   screenshot.attr =
+      screenshot.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   screenshot.info = docbook.info
+
+   db.screenshot =
+      element screenshot {
+         screenshot.attr,
+         screenshot.info,
+         screenshot.block
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "figure" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   figure.role.attribute = attribute role { text }
+
+   figure.attr =
+      figure.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute label { text }?
+    & pgwide.attribute?
+    & floatstyle.attribute?
+    & float.attribute?
+
+   figure.info = docbook.info.titleonlyreq
+
+   db.figure =
+      element figure {
+         figure.attr,
+         figure.info,
+         blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "informalfigure" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   informalfigure.role.attribute = attribute role { text }
+
+   informalfigure.attr =
+      informalfigure.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute label { text }?
+    & pgwide.attribute?
+    & floatstyle.attribute?
+    & float.attribute?
+
+   informalfigure.info = docbook.info.titleforbidden
+
+   db.informalfigure =
+      element informalfigure {
+         informalfigure.attr,
+         informalfigure.info,
+         blocks+
+      }
+}
+
+# ======================================================================
 
 mediaobject.content =
    db.videoobject | db.audioobject | db.imageobject | db.textobject
 
-mediaobject.info = docbook.info.titleforbidden
-db.mediaobject =
-   element mediaobject { mediaobject.info, mediaobject.content+ }
+# ======================================================================
+
+[
+   db:refname [ "mediaobject" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   mediaobject.role.attribute = attribute role { text }
+
+   mediaobject.attr =
+      mediaobject.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   mediaobject.info = docbook.info.titleforbidden
+
+   db.mediaobject =
+      element mediaobject {
+         mediaobject.attr,
+         mediaobject.info,
+         mediaobject.content+
+      }
+}
+
+# ======================================================================
 
 inlinemediaobject.content =
    db.videoobject | db.audioobject | db.imageobject | db.textobject
 
-inlinemediaobject.info = docbook.info.titleforbidden
-db.inlinemediaobject =
-   element inlinemediaobject { inlinemediaobject.info, inlinemediaobject.content+ }
+# ======================================================================
 
-videoobject.info = docbook.info.titleforbidden
-db.videoobject = element videoobject { videoobject.info, db.videodata }
+[
+   db:refname [ "inlinemediaobject" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-audioobject.info = docbook.info.titleforbidden
-db.audioobject = element audioobject { audioobject.info, db.audiodata }
+   inlinemediaobject.role.attribute = attribute role { text }
+
+   inlinemediaobject.attr =
+      inlinemediaobject.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   inlinemediaobject.info = docbook.info.titleforbidden
+
+   db.inlinemediaobject =
+      element inlinemediaobject {
+         inlinemediaobject.attr,
+         inlinemediaobject.info,
+         inlinemediaobject.content+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "videoobject" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   videoobject.role.attribute = attribute role { text }
+
+   videoobject.attr =
+      videoobject.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   videoobject.info = docbook.info.titleforbidden
+
+   db.videoobject =
+      element videoobject {
+         videoobject.attr,
+         videoobject.info,
+         db.videodata
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "audioobject" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   audioobject.role.attribute = attribute role { text }
+
+   audioobject.attr =
+      audioobject.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   audioobject.info = docbook.info.titleforbidden
+
+   db.audioobject =
+      element audioobject {
+         audioobject.attr,
+         audioobject.info,
+         db.audiodata
+      }
+}
+
+# ======================================================================
 
 imageobject.content = db.imagedata
 
-imageobject.info = docbook.info.titleforbidden
-db.imageobject = element imageobject { imageobject.info, imageobject.content }
+# ======================================================================
 
-textobject.info = docbook.info.titleforbidden
-db.textobject =
-   element textobject { textobject.info, (db.phrase | db.textdata | blocks+) }
+[
+   db:refname [ "imageobject" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-videodata.data.attrib = data.common.attribute
-videodata.align.attrib =
-  attribute align { "center" | "char" | "justify" | "left" | "right" }?
-videodata.valign.attrib = attribute valign { "bottom" | "middle" | "top" }?
-videodata.width.attrib = attribute width { text }?
-videodata.contentwidth.attrib = attribute contentwidth { text }?
-videodata.scalefit.attrib = attribute scalefit { "0" | "1" }?
-videodata.scale.attrib = attribute scale { text }?
-videodata.depth.attrib = attribute depth { text }?
-videodata.contentdepth.attrib = attribute contentdepth { text }?
+   imageobject.role.attribute = attribute role { text }
 
-videodata.info = docbook.info.titleforbidden
-db.videodata = element videodata { videodata.info }
+   imageobject.attr =
+      imageobject.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-audiodata.data.attrib = data.common.attribute
-audiodata.info = docbook.info.titleforbidden
-db.audiodata = element audiodata { audiodata.info }
+   imageobject.info = docbook.info.titleforbidden
 
-imagedata.data.attrib = data.common.attribute
-imagedata.align.attrib =
-  attribute align { "center" | "char" | "justify" | "left" | "right" }?
-imagedata.valign.attrib = attribute valign { "bottom" | "middle" | "top" }?
-imagedata.width.attrib = attribute width { text }?
-imagedata.contentwidth.attrib = attribute contentwidth { text }?
-imagedata.scalefit.attrib = attribute scalefit { "0" | "1" }?
-imagedata.scale.attrib = attribute scale { text }?
-imagedata.depth.attrib = attribute depth { text }?
-imagedata.contentdepth.attrib = attribute contentdepth { text }?
+   db.imageobject =
+      element imageobject {
+         imageobject.attr,
+         imageobject.info,
+         imageobject.content
+      }
+}
 
-imagedata.info = docbook.info.titleforbidden
-db.imagedata = element imagedata { imagedata.info }
+# ======================================================================
 
-textdata.data.attrib = data.common.attribute
-textdata.encoding.attrib = attribute encoding { text }?
+[
+   db:refname [ "textobject" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-textdata.info = docbook.info.titleforbidden
-db.textdata = element textdata { textdata.info }
+   textobject.role.attribute = attribute role { text }
+
+   textobject.attr =
+      textobject.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   textobject.info = docbook.info.titleforbidden
+
+   db.textobject =
+      element textobject {
+         textobject.attr,
+         textobject.info,
+         (db.phrase | db.textdata | blocks+)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "videodata" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   videodata.role.attribute = attribute role { text }
+
+   videodata.attr =
+      videodata.role.attribute?
+    & common.attributes
+    & data.common.attrib
+    & attribute align { "center" | "char" | "justify" | "left" | "right" }?
+    & attribute valign { "bottom" | "middle" | "top" }?
+    & attribute width { text }?
+    & attribute contentwidth { text }?
+    & attribute scalefit { "0" | "1" }?
+    & attribute scale { text }?
+    & attribute depth { text }?
+    & attribute contentdepth { text }?
+
+   videodata.info = docbook.info.titleforbidden
+
+   db.videodata = element videodata {
+      videodata.attr,
+      videodata.info
+   }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "audiodata" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   audiodata.role.attribute = attribute role { text }
+
+   audiodata.attr =
+      audiodata.role.attribute?
+    & common.attributes
+    & data.common.attrib
+
+   audiodata.info = docbook.info.titleforbidden
+
+   db.audiodata =
+      element audiodata {
+         audiodata.attr,
+         audiodata.info
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "imagedata" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   imagedata.role.attribute = attribute role { text }
+
+   imagedata.attr =
+      imagedata.role.attribute?
+    & common.attributes
+    & data.common.attrib
+    & attribute align { "center" | "char" | "justify" | "left" | "right" }?
+    & attribute valign { "bottom" | "middle" | "top" }?
+    & attribute width { text }?
+    & attribute contentwidth { text }?
+    & attribute scalefit { "0" | "1" }?
+    & attribute scale { text }?
+    & attribute depth { text }?
+    & attribute contentdepth { text }?
+
+   imagedata.info = docbook.info.titleforbidden
+
+   db.imagedata =
+      element imagedata {
+         imagedata.attr,
+         imagedata.info
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "textdata" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   textdata.role.attribute = attribute role { text }
+
+   textdata.attr =
+      textdata.role.attribute?
+    & common.attributes
+    & data.common.attrib
+    & attribute encoding { text }?
+
+   textdata.info = docbook.info.titleforbidden
+
+   db.textdata =
+      element textdata {
+         textdata.attr,
+         textdata.info
+      }
+}
+
+# ======================================================================
 
 # db.caption = element caption { blocks+ }
 
 equation.content = db.mediaobject
 
-equation.info = docbook.info.titleonlyreq
-db.equation = element equation { equation.info, equation.content+ }
+# ======================================================================
 
-informalequation.info = docbook.info.titleforbidden
-db.informalequation =
-   element informalequation {
-      informalequation.info,
-      equation.content+
-   }
+[
+   db:refname [ "equation" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   equation.role.attribute = attribute role { text }
+
+   equation.attr =
+      equation.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   equation.info = docbook.info.titleonlyreq
+
+   db.equation =
+      element equation {
+         equation.attr,
+         equation.info,
+         equation.content+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "informalequation" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   informalequation.role.attribute = attribute role { text }
+
+   informalequation.attr =
+      informalequation.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   informalequation.info = docbook.info.titleforbidden
+
+   db.informalequation =
+      element informalequation {
+         informalequation.attr,
+         informalequation.info,
+         equation.content+
+      }
+}
+
+# ======================================================================
 
 inlineequation.content = db.inlinemediaobject
 
-db.inlineequation = element inlineequation { inlineequation.content+ }
+# ======================================================================
 
-synopsis.verbatim.attribs = verbatim.attributes
-synopsis.label.attrib = attribute label { text }
-db.synopsis = element synopsis { verbatim.contentmodel }
+[
+   db:refname [ "inlineequation" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-cmdsynopsis.sepchar.attrib = attribute sepchar { text }?
-cmdsynopsis.cmdlength.attrib = attribute cmdlength { text }?
-cmdsynopsis.label.attrib = attribute label { text }?
+   inlineequation.role.attribute = attribute role { text }
 
-cmdsynopsis.info = docbook.info.titleforbidden
-db.cmdsynopsis =
-   element cmdsynopsis {
-      cmdsynopsis.info?,
-      (db.command | db.arg | db.group | db.sbr)+,
-      db.synopfragment*
-   }
+   inlineequation.attr =
+      inlineequation.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.inlineequation =
+      element inlineequation {
+         inlineequation.attr,
+         inlineequation.content+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "synopsis" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   synopsis.role.attribute = attribute role { text }
+
+   synopsis.attr =
+      synopsis.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & verbatim.attributes
+    & attribute label { text }?
+
+   db.synopsis =
+      element synopsis {
+         synopsis.attr,
+         verbatim.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "cmdsynopsis" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   cmdsynopsis.role.attribute = attribute role { text }
+
+   cmdsynopsis.attr =
+      cmdsynopsis.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute sepchar { text }?
+    & attribute cmdlength { text }?
+    & attribute label { text }?
+
+   cmdsynopsis.info = docbook.info.titleforbidden
+
+   db.cmdsynopsis =
+      element cmdsynopsis {
+         cmdsynopsis.attr,
+         cmdsynopsis.info?,
+         (db.command | db.arg | db.group | db.sbr)+,
+         db.synopfragment*
+      }
+}
+
+# ======================================================================
 
 rep.attribute = attribute rep { "norepeat" | "repeat" }
 choice.attribute = attribute choice { "opt" | "plain" | "req" }
 
-arg.rep.attrib = rep.attribute?
-arg.choice.attrib = choice.attribute?
+# ======================================================================
 
-db.arg =
-   element arg {
-      (docbook.text
-       | db.arg
-       | db.group
-       | db.option
-       | db.synopfragmentref
-       | db.sbr)*
-   }
+[
+   db:refname [ "arg" ]
+   db:refpurpose [ "" ]
+]
+div {
 
+   arg.role.attribute = attribute role { text }
 
-group.rep.attrib = rep.attribute?
-group.choice.attrib = choice.attribute?
+   arg.attr =
+      arg.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & rep.attribute?
+    & choice.attribute?
 
-db.group =
-   element group {
-      (db.arg | db.group | db.option | db.synopfragmentref | db.replaceable | db.sbr)+
-   }
+   db.arg =
+      element arg {
+         arg.attr,
+         (docbook.text
+          | db.arg
+          | db.group
+          | db.option
+          | db.synopfragmentref
+          | db.sbr)*
+      }
+}
 
-ctrl:common-linking [ element="sbr" suppress="yes" ]
+# ======================================================================
 
-db.sbr = element sbr { empty }
+[
+   db:refname [ "group" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.synopfragment = element synopfragment { (db.arg | db.group)+ }
+   group.role.attribute = attribute role { text }
 
-synopfragmentref.linkend.attrib = linkend.attribute
-db.synopfragmentref =
-   [
-      s:rule [
-         context = "synopfragmentref"
-         s:assert [
-            test = "name(//*[@id=current()/@linkend]) = 'synopfragment'"
-            "@linkend on synopfragmentref must point to a synopfragment."
+   group.attr =
+      group.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & rep.attribute?
+    & choice.attribute?
+
+   db.group =
+      element group {
+         group.attr,
+         (db.arg
+          | db.group
+          | db.option
+          | db.synopfragmentref
+          | db.replaceable
+          | db.sbr)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "sbr" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   sbr.role.attribute = attribute role { text }
+
+   sbr.attr =
+      sbr.role.attribute?
+    & common.attributes
+
+   db.sbr =
+      element sbr {
+         sbr.attr,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "synopfragment" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   synopfragment.role.attribute = attribute role { text }
+
+   synopfragment.attr =
+      synopfragment.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.synopfragment =
+      element synopfragment {
+         synopfragment.attr,
+         (db.arg | db.group)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "synopfragmentref" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   synopfragmentref.role.attribute = attribute role { text }
+
+   synopfragmentref.attr =
+      synopfragmentref.role.attribute?
+    & common.attributes
+    & linkend.attribute
+
+   db.synopfragmentref =
+      [
+         s:rule [
+            context = "db:synopfragmentref"
+            s:assert [
+               test = "local-name(//*[@id=current()/@linkend]) = 'synopfragment' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/docbook-ng/absinthe'"
+               "@linkend on synopfragmentref must point to a synopfragment."
+            ]
          ]
       ]
-   ]
-   element synopfragmentref { text }
+      element synopfragmentref {
+         synopfragmentref.attr,
+         text
+      }
+}
 
-funcsynopsis.info = docbook.info.titleforbidden
-db.funcsynopsis =
-   element funcsynopsis {
-      funcsynopsis.info?,
-      (db.funcsynopsisinfo | db.funcprototype)+
-   }
+# ======================================================================
 
-funcsynopsisinfo.verbatim.attribs = verbatim.attributes
-db.funcsynopsisinfo = element funcsynopsisinfo { verbatim.contentmodel }
+[
+   db:refname [ "funcsynopsis" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.funcprototype =
-   element funcprototype {
-      db.modifier*,
-      db.funcdef,
-      (db.void | db.varargs | (db.paramdef+, db.varargs?)),
-      db.modifier*
-   }
+   funcsynopsis.role.attribute = attribute role { text }
 
-db.funcdef = element funcdef { (docbook.text | db.type | db.function)* }
+   funcsynopsis.attr =
+      funcsynopsis.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-db.void = element void { empty }
+   funcsynopsis.info = docbook.info.titleforbidden
 
-db.varargs = element varargs { empty }
+   db.funcsynopsis =
+      element funcsynopsis {
+         funcsynopsis.attr,
+         funcsynopsis.info?,
+         (db.funcsynopsisinfo | db.funcprototype)+
+      }
+}
 
-paramdef.choice.attrib = attribute choice { "opt" | "req" }?
+# ======================================================================
 
-db.paramdef =
-   element paramdef { (docbook.text | db.type | db.parameter | db.funcparams)* }
+[
+   db:refname [ "funcsynopsisinfo" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.funcparams = element funcparams { inlines* }
+   funcsynopsisinfo.role.attribute = attribute role { text }
+
+   funcsynopsisinfo.attr =
+      funcsynopsisinfo.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & verbatim.attributes
+
+   db.funcsynopsisinfo =
+      element funcsynopsisinfo {
+         funcsynopsisinfo.attr,
+         verbatim.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "funcprototype" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   funcprototype.role.attribute = attribute role { text }
+
+   funcprototype.attr =
+      funcprototype.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.funcprototype =
+      element funcprototype {
+         funcprototype.attr,
+         db.modifier*,
+         db.funcdef,
+         (db.void | db.varargs | (db.paramdef+, db.varargs?)),
+         db.modifier*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "funcdef" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   funcdef.role.attribute = attribute role { text }
+
+   funcdef.attr =
+      funcdef.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.funcdef =
+      element funcdef {
+         funcdef.attr,
+         (docbook.text | db.type | db.function)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "void" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   void.role.attribute = attribute role { text }
+
+   void.attr =
+      void.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.void =
+      element void {
+         void.attr,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "varargs" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   varargs.role.attribute = attribute role { text }
+
+   varargs.attr =
+      varargs.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.varargs =
+      element varargs {
+         varargs.attr,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "paramdef" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   paramdef.role.attribute = attribute role { text }
+
+   paramdef.attr =
+      paramdef.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    &  attribute choice { "opt" | "req" }?
+
+   db.paramdef =
+      element paramdef {
+         paramdef.attr,
+         (docbook.text | db.type | db.parameter | db.funcparams)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "funcparams" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   funcparams.role.attribute = attribute role { text }
+
+   funcparams.attr =
+      funcparams.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.funcparams =
+      element funcparams {
+         funcparams.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
 
 oo-method.synopsis.blocks =
   db.methodsynopsis | db.constructorsynopsis | db.destructorsynopsis
 
 oo-field.synopsis.blocks = db.fieldsynopsis
 
-classsynopsis.language.attrib = oo-language.attribute
-classsynopsis.class.attrib = attribute class { "class" | "interface" }?
-db.classsynopsis =
-   element classsynopsis {
-      oo.inlines+,
-      (db.classsynopsisinfo
-       | oo-method.synopsis.blocks
-       | oo-field.synopsis.blocks)*
-   }
+# ======================================================================
 
-classsynopsisinfo.verbatim.attribs = verbatim.attributes
-db.classsynopsisinfo = element classsynopsisinfo { verbatim.contentmodel }
+[
+   db:refname [ "classsynopsis" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.ooclass = element ooclass { db.modifier*, db.classname }
+   classsynopsis.role.attribute = attribute role { text }
 
-db.oointerface = element oointerface { db.modifier*, db.interfacename }
+   classsynopsis.attr =
+      classsynopsis.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & oo-language.attribute
+    & attribute class { "class" | "interface" }?
 
-db.ooexception = element ooexception {db.modifier*, db.exceptionname  }
+   db.classsynopsis =
+      element classsynopsis {
+         classsynopsis.attr,
+         oo.inlines+,
+         (db.classsynopsisinfo
+          | oo-method.synopsis.blocks
+          | oo-field.synopsis.blocks)*
+      }
+}
 
-db.modifier = element modifier { docbook.text }
+# ======================================================================
 
-db.interfacename = element interfacename { docbook.text }
+[
+   db:refname [ "classsynopsisinfo" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.exceptionname = element exceptionname { docbook.text }
+   classsynopsisinfo.role.attribute = attribute role { text }
 
-fieldsynopsis.language.attrib = oo-language.attribute
-db.fieldsynopsis =
-   element fieldsynopsis {
-      db.modifier*,
-      db.type?,
-      db.varname,
-      db.initializer?
-   }
+   classsynopsisinfo.attr =
+      classsynopsisinfo.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & verbatim.attributes
 
-db.initializer = element initializer { docbook.text }
+   db.classsynopsisinfo =
+      element classsynopsisinfo {
+         classsynopsisinfo.attr,
+         verbatim.contentmodel
+      }
+}
 
-constructorsynopsis.language.attrib = oo-language.attribute
-db.constructorsynopsis =
-   element constructorsynopsis {
-      db.modifier*,
-      db.methodname?,
-      (db.methodparam+ | db.void?),
-      db.exceptionname*
-   }
+# ======================================================================
 
-destructorsynopsis.language.attrib = oo-language.attribute
-db.destructorsynopsis =
-   element destructorsynopsis {
-      db.modifier*,
-      db.methodname?,
-      (db.methodparam+ | db.void?),
-      db.exceptionname*
-   }
+[
+   db:refname [ "ooclass" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-methodsynopsis.language.attrib = oo-language.attribute
-db.methodsynopsis =
-   element methodsynopsis {
-      db.modifier*,
-      (db.type | db.void)?,
-      db.methodname,
-      (db.methodparam+ | db.void),
-      db.exceptionname*,
-      db.modifier*
-   }
+   ooclass.role.attribute = attribute role { text }
 
-db.methodname = element methodname { docbook.text }
+   ooclass.attr =
+      ooclass.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-methodparam.rep.attrib = rep.attribute?
-methodparam.choice.attrib = choice.attribute?
+   db.ooclass =
+      element ooclass {
+         ooclass.attr,
+         db.modifier*,
+         db.classname
+      }
+}
 
-db.methodparam =
-   element methodparam {
-      db.modifier*,
-      db.type?,
-      ((db.parameter, db.initializer?) | db.funcparams),
-      db.modifier*
-   }
+# ======================================================================
 
+[
+   db:refname [ "oointerface" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   oointerface.role.attribute = attribute role { text }
+
+   oointerface.attr =
+      oointerface.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.oointerface =
+      element oointerface {
+         oointerface.attr,
+         db.modifier*,
+         db.interfacename
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "ooexception" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   ooexception.role.attribute = attribute role { text }
+
+   ooexception.attr =
+      ooexception.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.ooexception =
+      element ooexception {
+         ooexception.attr,
+         db.modifier*,
+         db.exceptionname
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "modifier" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   modifier.role.attribute = attribute role { text }
+
+   modifier.attr =
+      modifier.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.modifier =
+      element modifier {
+         modifier.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "interfacename" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   interfacename.role.attribute = attribute role { text }
+
+   interfacename.attr =
+      interfacename.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.interfacename =
+      element interfacename {
+         interfacename.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "exceptionname" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   exceptionname.role.attribute = attribute role { text }
+
+   exceptionname.attr =
+      exceptionname.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.exceptionname =
+      element exceptionname {
+         exceptionname.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "fieldsynopsis" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   fieldsynopsis.role.attribute = attribute role { text }
+
+   fieldsynopsis.attr =
+      fieldsynopsis.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & oo-language.attribute
+
+   db.fieldsynopsis =
+      element fieldsynopsis {
+         fieldsynopsis.attr,
+         db.modifier*,
+         db.type?,
+         db.varname,
+         db.initializer?
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "initializer" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   initializer.role.attribute = attribute role { text }
+
+   initializer.attr =
+      initializer.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.initializer =
+      element initializer {
+         initializer.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "constructorsynopsis" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   constructorsynopsis.role.attribute = attribute role { text }
+
+   constructorsynopsis.attr =
+      constructorsynopsis.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & oo-language.attribute
+
+   db.constructorsynopsis =
+      element constructorsynopsis {
+         constructorsynopsis.attr,
+         db.modifier*,
+         db.methodname?,
+         (db.methodparam+ | db.void?),
+         db.exceptionname*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "destructorsynopsis" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   destructorsynopsis.role.attribute = attribute role { text }
+
+   destructorsynopsis.attr =
+      destructorsynopsis.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & oo-language.attribute
+
+   db.destructorsynopsis =
+      element destructorsynopsis {
+         destructorsynopsis.attr,
+         db.modifier*,
+         db.methodname?,
+         (db.methodparam+ | db.void?),
+         db.exceptionname*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "methodsynopsis" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   methodsynopsis.role.attribute = attribute role { text }
+
+   methodsynopsis.attr =
+      methodsynopsis.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & oo-language.attribute
+
+   db.methodsynopsis =
+      element methodsynopsis {
+         methodsynopsis.attr,
+         db.modifier*,
+         (db.type | db.void)?,
+         db.methodname,
+         (db.methodparam+ | db.void),
+         db.exceptionname*,
+         db.modifier*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "methodname" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   methodname.role.attribute = attribute role { text }
+
+   methodname.attr =
+      methodname.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.methodname =
+      element methodname {
+         methodname.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "methodparam" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   methodparam.role.attribute = attribute role { text }
+
+   methodparam.attr =
+      methodparam.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & rep.attribute?
+    & choice.attribute?
+
+   db.methodparam =
+      element methodparam {
+         methodparam.attr,
+         db.modifier*,
+         db.type?,
+         ((db.parameter, db.initializer?) | db.funcparams),
+         db.modifier*
+      }
+}
+
+# ======================================================================
 # TEI: addrPart
 
-address.verbatim.attribs = verbatim.attributes
-db.address =
-   element address {
-      (docbook.text
-       | db.personname
-       | db.pob
-       | db.street
-       | db.city
-       | db.state
-       | db.postcode
-       | db.country
-       | db.phone
-       | db.fax
-       | db.email
-       | db.otheraddr)*
-   }
+[
+   db:refname [ "address" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.street = element street { docbook.text }
-db.pob = element pob { docbook.text }
-db.postcode = element postcode { docbook.text }
-db.city = element city { docbook.text }
-db.state = element state { docbook.text }
-db.country = element country { docbook.text }
-db.phone = element phone { docbook.text }
-db.fax = element fax { docbook.text }
-db.otheraddr = element otheraddr { docbook.text }
+   address.role.attribute = attribute role { text }
 
-db.affiliation =
-   element affiliation {
-      db.shortaffil?,
-      db.jobtitle*,
-      db.orgname?,
-      db.orgdiv*,
-      db.address*
-   }
+   address.attr =
+      address.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & verbatim.attributes
 
-db.shortaffil = element shortaffil { docbook.text }
+   db.address =
+      element address {
+         address.attr,
+         (docbook.text
+          | db.personname
+          | db.pob
+          | db.street
+          | db.city
+          | db.state
+          | db.postcode
+          | db.country
+          | db.phone
+          | db.fax
+          | db.email
+          | db.otheraddr)*
+      }
+}
 
-db.jobtitle = element jobtitle { docbook.text }
+# ======================================================================
 
-ctrl:other-attribute [ name="orgname.class.attrib"
-                       enum-name="orgname.class-enum.attribute"
-                       other-name="orgname.class-other.attributes" ]
+[
+   db:refname [ "street" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-orgname.class-enum.attribute =
-   attribute class {
-      "consortium"
-    | "corporation"
-    | "informal"
-    | "nonprofit" }?
+   street.role.attribute = attribute role { text }
 
-orgname.class-other.attributes =
-   attribute class { "other" },
-   attribute otherclass { text }
+   street.attr =
+      street.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-orgname.class.attrib = (orgname.class-enum.attribute | orgname.class-other.attributes)
+   db.street =
+      element street {
+         street.attr,
+         docbook.text
+      }
+}
 
-db.orgname = element orgname { docbook.text }
+# ======================================================================
 
-db.orgdiv = element orgdiv { inlines* }
+[
+   db:refname [ "pob" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.artpagenums = element artpagenums { docbook.text }
+   pob.role.attribute = attribute role { text }
 
-db.personname =
-   element personname {
-      docbook.text
-    | (db.honorific
-     | db.firstname
-     | db.surname
-     | db.lineage
-     | db.othername)+
-   }
+   pob.attr =
+      pob.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.pob =
+      element pob {
+         pob.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "postcode" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   postcode.role.attribute = attribute role { text }
+
+   postcode.attr =
+      postcode.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.postcode =
+      element postcode {
+         postcode.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "city" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   city.role.attribute = attribute role { text }
+
+   city.attr =
+      city.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.city =
+      element city {
+         city.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "state" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   state.role.attribute = attribute role { text }
+
+   state.attr =
+      state.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.state =
+      element state {
+         state.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "country" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   country.role.attribute = attribute role { text }
+
+   country.attr =
+      country.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.country =
+      element country {
+         country.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "phone" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   phone.role.attribute = attribute role { text }
+
+   phone.attr =
+      phone.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.phone =
+      element phone {
+         phone.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "fax" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   fax.role.attribute = attribute role { text }
+
+   fax.attr =
+      fax.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.fax =
+      element fax {
+         fax.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "otheraddr" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   otheraddr.role.attribute = attribute role { text }
+
+   otheraddr.attr =
+      otheraddr.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.otheraddr =
+      element otheraddr {
+         otheraddr.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "affiliation" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   affiliation.role.attribute = attribute role { text }
+
+   affiliation.attr =
+      affiliation.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.affiliation =
+      element affiliation {
+         affiliation.attr,
+         db.shortaffil?,
+         db.jobtitle*,
+         db.orgname?,
+         db.orgdiv*,
+         db.address*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "shortaffil" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   shortaffil.role.attribute = attribute role { text }
+
+   shortaffil.attr =
+      shortaffil.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.shortaffil =
+      element shortaffil {
+         shortaffil.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "jobtitle" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   jobtitle.role.attribute = attribute role { text }
+
+   jobtitle.attr =
+      jobtitle.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.jobtitle =
+      element jobtitle {
+         jobtitle.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "orgname" ]
+   db:refpurpose [ "" ]
+]
+div {
+   ctrl:other-attribute [ name="orgname.class.attrib"
+                          enum-name="orgname.class-enum.attribute"
+                          other-name="orgname.class-other.attributes" ]
+
+   orgname.class-enum.attribute =
+      attribute class {
+         "consortium"
+       | "corporation"
+       | "informal"
+       | "nonprofit" }?
+
+   orgname.class-other.attributes =
+      attribute class { "other" },
+      attribute otherclass { text }
+
+   orgname.class.attrib = (orgname.class-enum.attribute | orgname.class-other.attributes)
+
+   orgname.role.attribute = attribute role { text }
+
+   orgname.attr =
+      orgname.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & orgname.class.attrib
+
+   db.orgname =
+      element orgname {
+         orgname.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "orgdiv" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   orgdiv.role.attribute = attribute role { text }
+
+   orgdiv.attr =
+      orgdiv.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.orgdiv =
+      element orgdiv {
+         orgdiv.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "artpagenums" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   artpagenums.role.attribute = attribute role { text }
+
+   artpagenums.attr =
+      artpagenums.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.artpagenums =
+      element artpagenums {
+         artpagenums.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "personname" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   personname.role.attribute = attribute role { text }
+
+   personname.attr =
+      personname.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.personname =
+      element personname {
+         personname.attr,
+         (docbook.text
+          | (db.honorific
+           | db.firstname
+           | db.surname
+           | db.lineage
+           | db.othername)+)
+      }
+}
+
+# ======================================================================
 
 person.author =
    db.personname,
@@ -1122,515 +3327,2770 @@ org.author =
 
 credit.contentmodel = person.author | org.author
 
-db.author = element author { credit.contentmodel }
-
-db.authorgroup = element authorgroup { (db.author | db.editor | db.othercredit)+ }
-
-db.collab = element collab { (db.personname | db.orgname)+, db.affiliation* }
-
-db.authorinitials = element authorinitials { docbook.text }
-
-db.confgroup =
-   element confgroup {
-      (db.confdates
-       | db.conftitle
-       | db.confnum
-       | db.confsponsor
-       | db.address)*
-   }
-
-db.confdates = element confdates { docbook.text }
-
-db.conftitle = element conftitle { docbook.text }
-
-db.confnum = element confnum { docbook.text }
-
-db.confsponsor = element confsponsor { docbook.text }
-
-# db.contractnum = element contractnum { docbook.text }
-
-# db.contractsponsor = element contractsponsor { docbook.text }
-
-db.copyright = element copyright { db.year+, db.holder* }
-
-db.year = element year { docbook.text }
-
-db.holder = element holder { docbook.text }
-
-db.date = element date { docbook.text }
-
-db.edition = element edition { docbook.text }
-
-db.editor = element editor { credit.contentmodel }
-
-biblioid.class.attrib = biblio.class.attrib
-db.biblioid = element biblioid { docbook.text }
-
-citebiblioid.class.attrib = biblio.class.attrib
-db.citebiblioid =
-   element citebiblioid { docbook.text }
-
-bibliosource.class.attrib = biblio.class.attrib
-db.bibliosource = element bibliosource { docbook.text }
-
-bibliorelation.class.attrib = biblio.class.attrib
-
-ctrl:other-attribute [ name="bibliorelation.type.attrib"
-                       enum-name="bibliorelation.type-enum.attribute"
-                       other-name="bibliorelation.type-other.attributes" ]
-
-bibliorelation.type-enum.attribute =
-   attribute type { "hasformat"
-    | "haspart"
-    | "hasversion"
-    | "isformatof"
-    | "ispartof"
-    | "isreferencedby"
-    | "isreplacedby"
-    | "isrequiredby"
-    | "isversionof"
-    | "othertype"
-    | "references"
-    | "replaces"
-    | "requires" }?
-
-bibliorelation.type-other.attributes =
-   attribute type { "othertype" },
-   attribute othertype { xsd:NMTOKEN }
-
-bibliorelation.type.attrib =
-   (bibliorelation.type-enum.attribute | bibliorelation.type-other.attributes)
-
-db.bibliorelation = element bibliorelation { docbook.text }
-
-ctrl:other-attribute [ name="bibliocoverage.spatial.attrib"
-                       enum-name="bibliocoverage.spatial-enum.attribute"
-                       other-name="bibliocoverage.spatial-other.attributes" ]
-
-bibliocoverage.spatial-enum.attribute =
-   attribute spatial {
-      "dcmipoint" | "iso3166" | "dcmibox" | "tgn"
-   }
-
-bibliocoverage.spatial-other.attributes =
-   attribute spatial { "otherspatial" },
-   attribute otherspatial { xsd:NMTOKEN }
-
-bibliocoverage.spatial.attrs =
-   (bibliocoverage.spatial-enum.attribute | bibliocoverage.spatial-other.attributes)
-
-ctrl:other-attribute [ name="bibliocoverage.temporal.attrib"
-                       enum-name="bibliocoverage.temporal-enum.attribute"
-                       other-name="bibliocoverage.temporal-other.attributes" ]
-
-bibliocoverage.temporal-enum.attribute =
-   attribute temporal {
-      "dcmiperiod" | "w3c-dtf"
-   }
-
-bibliocoverage.temporal-other.attributes =
-   attribute temporal { "othertemporal" },
-   attribute othertemporal { xsd:NMTOKEN }
-
-bibliocoverage.temporal.attrs =
-   (bibliocoverage.temporal-enum.attribute | bibliocoverage.temporal-other.attributes)
-
-bibliocoverage.coverage.attrib =
-   (bibliocoverage.spatial.attrs | bibliocoverage.temporal.attrs)
- | (bibliocoverage.spatial.attrs & bibliocoverage.temporal.attrs)
-
-db.bibliocoverage = element bibliocoverage { docbook.text }
-
-legalnotice.info = docbook.info.titleonly
-db.legalnotice = element legalnotice { legalnotice.info, blocks+ }
-
-othercredit.class.attrib = attribute class {
-   "copyeditor"
- | "graphicdesigner"
- | "other"
- | "productioneditor"
- | "technicaleditor"
- | "translator" }?
-
-db.othercredit = element othercredit { credit.contentmodel }
-
-db.pagenums = element pagenums { docbook.text }
-
-db.contrib = element contrib { docbook.text }
-
-db.honorific = element honorific { docbook.text }
-
-db.firstname = element firstname { docbook.text }
-
-db.surname = element surname { docbook.text }
-
-db.lineage = element lineage { docbook.text }
-
-db.othername = element othername { docbook.text }
-
-db.printhistory = element printhistory { para.blocks+ }
-
-productname.class.attrib = attribute class {
-   "copyright" | "registered" | "service" | "trade" }?
-db.productname = element productname { docbook.text }
-
-db.productnumber = element productnumber { docbook.text }
-
-db.pubdate = element pubdate { docbook.text }
-
-db.publisher = element publisher { db.publishername, db.address* }
-
-db.publishername = element publishername { docbook.text }
-
-db.releaseinfo = element releaseinfo { docbook.text }
-
-revhistory.info = docbook.info.titleonly
-db.revhistory = element revhistory { revhistory.info, db.revision+ }
-
-db.revision =
-   element revision {
-      db.revnumber,
-      db.date,
-      (db.authorinitials | db.author)*,
-      (db.revremark | db.revdescription)?
-   }
-
-db.revnumber = element revnumber { docbook.text }
-
-db.revremark = element revremark { docbook.text }
-
-db.revdescription = element revdescription { blocks* }
-
-db.seriesvolnums = element seriesvolnums { docbook.text }
-
-db.volumenum = element volumenum { docbook.text }
-
-db.issuenum = element issuenum { docbook.text }
-
-db.accel  = element accel { docbook.text }
-
-application.class.attrib = attribute class { "hardware" | "software" }?
-db.application = element application { docbook.text }
-
-db.classname = element classname { docbook.text }
-
-db.command = element command { inlines* }
+# ======================================================================
+
+[
+   db:refname [ "author" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   author.role.attribute = attribute role { text }
+
+   author.attr =
+      author.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.author =
+      element author {
+         author.attr,
+         credit.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "authorgroup" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   authorgroup.role.attribute = attribute role { text }
+
+   authorgroup.attr =
+      authorgroup.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.authorgroup =
+      element authorgroup {
+         authorgroup.attr,
+         (db.author | db.editor | db.othercredit)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "collab" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   collab.role.attribute = attribute role { text }
+
+   collab.attr =
+      collab.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.collab =
+      element collab {
+         collab.attr,
+         (db.personname | db.orgname)+,
+         db.affiliation*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "authorinitials" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   authorinitials.role.attribute = attribute role { text }
+
+   authorinitials.attr =
+      authorinitials.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.authorinitials =
+      element authorinitials {
+         authorinitials.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "confgroup" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   confgroup.role.attribute = attribute role { text }
+
+   confgroup.attr =
+      confgroup.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.confgroup =
+      element confgroup {
+         confgroup.attr,
+         (db.confdates
+          | db.conftitle
+          | db.confnum
+          | db.confsponsor
+          | db.address)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "confdates" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   confdates.role.attribute = attribute role { text }
+
+   confdates.attr =
+      confdates.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.confdates =
+      element confdates {
+         confdates.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "conftitle" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   conftitle.role.attribute = attribute role { text }
+
+   conftitle.attr =
+      conftitle.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.conftitle =
+      element conftitle {
+         conftitle.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "confnum" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   confnum.role.attribute = attribute role { text }
+
+   confnum.attr =
+      confnum.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.confnum =
+      element confnum {
+         confnum.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "confsponsor" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   confsponsor.role.attribute = attribute role { text }
+
+   confsponsor.attr =
+      confsponsor.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.confsponsor =
+      element confsponsor {
+         confsponsor.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "contractnum" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   contractnum.role.attribute = attribute role { text }
+
+   contractnum.attr =
+      contractnum.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.contractnum =
+      element contractnum {
+         contractnum.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "contractsponsor" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   contractsponsor.role.attribute = attribute role { text }
+
+   contractsponsor.attr =
+      contractsponsor.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.contractsponsor =
+      element contractsponsor {
+         contractsponsor.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "copyright" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   copyright.role.attribute = attribute role { text }
+
+   copyright.attr =
+      copyright.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.copyright =
+      element copyright {
+         copyright.attr,
+         db.year+,
+         db.holder*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "year" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   year.role.attribute = attribute role { text }
+
+   year.attr =
+      year.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.year =
+      element year {
+         year.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "holder" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   holder.role.attribute = attribute role { text }
+
+   holder.attr =
+      holder.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.holder =
+      element holder {
+         holder.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "date" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   date.role.attribute = attribute role { text }
+
+   date.attr =
+      date.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.date =
+      element date {
+         date.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "edition" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   edition.role.attribute = attribute role { text }
+
+   edition.attr =
+      edition.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.edition =
+      element edition {
+         edition.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "editor" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   editor.role.attribute = attribute role { text }
+
+   editor.attr =
+      editor.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.editor =
+      element editor {
+         editor.attr,
+         credit.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "biblioid" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   biblioid.role.attribute = attribute role { text }
+
+   biblioid.attr =
+      biblioid.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & biblio.class.attrib
+
+   db.biblioid =
+      element biblioid {
+         biblioid.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "citebiblioid" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   citebiblioid.role.attribute = attribute role { text }
+
+   citebiblioid.attr =
+      citebiblioid.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & biblio.class.attrib
+
+   db.citebiblioid =
+      element citebiblioid {
+         citebiblioid.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "bibliosource" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   bibliosource.role.attribute = attribute role { text }
+
+   bibliosource.attr =
+      bibliosource.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & biblio.class.attrib
+
+   db.bibliosource =
+      element bibliosource {
+         bibliosource.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "bibliorelation" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   ctrl:other-attribute [ name="bibliorelation.type.attrib"
+                          enum-name="bibliorelation.type-enum.attribute"
+                          other-name="bibliorelation.type-other.attributes" ]
+
+   bibliorelation.type-enum.attribute =
+      attribute type {
+         "hasformat"
+       | "haspart"
+       | "hasversion"
+       | "isformatof"
+       | "ispartof"
+       | "isreferencedby"
+       | "isreplacedby"
+       | "isrequiredby"
+       | "isversionof"
+       | "othertype"
+       | "references"
+       | "replaces"
+       | "requires"
+      }?
+
+   bibliorelation.type-other.attributes =
+      attribute type { "othertype" },
+      attribute othertype { xsd:NMTOKEN }
+
+   bibliorelation.type.attrib =
+      (bibliorelation.type-enum.attribute | bibliorelation.type-other.attributes)
+
+   bibliorelation.role.attribute = attribute role { text }
+
+   bibliorelation.attr =
+      bibliorelation.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & biblio.class.attrib
+    & bibliorelation.type.attrib
+
+   db.bibliorelation =
+      element bibliorelation {
+         bibliorelation.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "bibliocoverage" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   ctrl:other-attribute [ name="bibliocoverage.spatial.attrib"
+                          enum-name="bibliocoverage.spatial-enum.attribute"
+                          other-name="bibliocoverage.spatial-other.attributes" ]
+
+   bibliocoverage.spatial-enum.attribute =
+      attribute spatial {
+         "dcmipoint" | "iso3166" | "dcmibox" | "tgn"
+      }
+
+   bibliocoverage.spatial-other.attributes =
+      attribute spatial { "otherspatial" },
+      attribute otherspatial { xsd:NMTOKEN }
+
+   bibliocoverage.spatial.attrs =
+      (bibliocoverage.spatial-enum.attribute | bibliocoverage.spatial-other.attributes)
+
+   ctrl:other-attribute [ name="bibliocoverage.temporal.attrib"
+                          enum-name="bibliocoverage.temporal-enum.attribute"
+                          other-name="bibliocoverage.temporal-other.attributes" ]
+
+   bibliocoverage.temporal-enum.attribute =
+      attribute temporal {
+         "dcmiperiod" | "w3c-dtf"
+      }
+
+   bibliocoverage.temporal-other.attributes =
+      attribute temporal { "othertemporal" },
+      attribute othertemporal { xsd:NMTOKEN }
+
+   bibliocoverage.temporal.attrs =
+      (bibliocoverage.temporal-enum.attribute | bibliocoverage.temporal-other.attributes)
+
+   bibliocoverage.coverage.attrib =
+      (bibliocoverage.spatial.attrs | bibliocoverage.temporal.attrs)
+    | (bibliocoverage.spatial.attrs & bibliocoverage.temporal.attrs)
+
+   bibliocoverage.role.attribute = attribute role { text }
+
+   bibliocoverage.attr =
+      bibliocoverage.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & bibliocoverage.coverage.attrib
+
+   db.bibliocoverage =
+      element bibliocoverage {
+         bibliocoverage.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "legalnotice" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   legalnotice.role.attribute = attribute role { text }
+
+   legalnotice.attr =
+      legalnotice.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   legalnotice.info = docbook.info.titleonly
+
+   db.legalnotice =
+      element legalnotice {
+         legalnotice.attr,
+         legalnotice.info,
+         blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "othercredit" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   othercredit.class.attrib = attribute class {
+      "copyeditor"
+    | "graphicdesigner"
+    | "other"
+    | "productioneditor"
+    | "technicaleditor"
+    | "translator"
+   }?
+
+   othercredit.role.attribute = attribute role { text }
+
+   othercredit.attr =
+      othercredit.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & othercredit.class.attrib
+
+   db.othercredit =
+      element othercredit {
+         othercredit.attr,
+         credit.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "pagenums" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   pagenums.role.attribute = attribute role { text }
+
+   pagenums.attr =
+      pagenums.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.pagenums =
+      element pagenums {
+         pagenums.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "contrib" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   contrib.role.attribute = attribute role { text }
+
+   contrib.attr =
+      contrib.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.contrib =
+      element contrib {
+         contrib.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "honorific" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   honorific.role.attribute = attribute role { text }
+
+   honorific.attr =
+      honorific.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.honorific =
+      element honorific {
+         honorific.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "firstname" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   firstname.role.attribute = attribute role { text }
+
+   firstname.attr =
+      firstname.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.firstname =
+      element firstname {
+         firstname.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "surname" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   surname.role.attribute = attribute role { text }
+
+   surname.attr =
+      surname.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.surname =
+      element surname {
+         surname.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "lineage" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   lineage.role.attribute = attribute role { text }
+
+   lineage.attr =
+      lineage.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.lineage =
+      element lineage {
+         lineage.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "othername" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   othername.role.attribute = attribute role { text }
+
+   othername.attr =
+      othername.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.othername =
+      element othername {
+         othername.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "printhistory" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   printhistory.role.attribute = attribute role { text }
+
+   printhistory.attr =
+      printhistory.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.printhistory =
+      element printhistory {
+         printhistory.attr,
+         para.blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "productname" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   productname.class.attrib = attribute class {
+      "copyright" | "registered" | "service" | "trade"
+   }?
+
+   productname.role.attribute = attribute role { text }
+
+   productname.attr =
+      productname.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & productname.class.attrib
+
+   db.productname =
+      element productname {
+         productname.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "productnumber" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   productnumber.role.attribute = attribute role { text }
+
+   productnumber.attr =
+      productnumber.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.productnumber =
+      element productnumber {
+         productnumber.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "pubdate" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   pubdate.role.attribute = attribute role { text }
+
+   pubdate.attr =
+      pubdate.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.pubdate =
+      element pubdate {
+         pubdate.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "publisher" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   publisher.role.attribute = attribute role { text }
+
+   publisher.attr =
+      publisher.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.publisher =
+      element publisher {
+         publisher.attr,
+         db.publishername,
+         db.address*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "publishername" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   publishername.role.attribute = attribute role { text }
+
+   publishername.attr =
+      publishername.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.publishername =
+      element publishername {
+         publishername.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "releaseinfo" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   releaseinfo.role.attribute = attribute role { text }
+
+   releaseinfo.attr =
+      releaseinfo.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.releaseinfo =
+      element releaseinfo {
+         releaseinfo.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "revhistory" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   revhistory.role.attribute = attribute role { text }
+
+   revhistory.attr =
+      revhistory.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   revhistory.info = docbook.info.titleonly
+
+   db.revhistory =
+      element revhistory {
+         revhistory.attr,
+         revhistory.info,
+         db.revision+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "revision" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   revision.role.attribute = attribute role { text }
+
+   revision.attr =
+      revision.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.revision =
+      element revision {
+         revision.attr,
+         db.revnumber,
+         db.date,
+         (db.authorinitials | db.author)*,
+         (db.revremark | db.revdescription)?
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "revnumber" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   revnumber.role.attribute = attribute role { text }
+
+   revnumber.attr =
+      revnumber.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.revnumber =
+      element revnumber {
+         revnumber.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "revremark" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   revremark.role.attribute = attribute role { text }
+
+   revremark.attr =
+      revremark.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.revremark =
+      element revremark {
+         revremark.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "revdescription" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   revdescription.role.attribute = attribute role { text }
+
+   revdescription.attr =
+      revdescription.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.revdescription =
+      element revdescription {
+         revdescription.attr,
+         blocks*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "seriesvolnums" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   seriesvolnums.role.attribute = attribute role { text }
+
+   seriesvolnums.attr =
+      seriesvolnums.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.seriesvolnums =
+      element seriesvolnums {
+         seriesvolnums.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "volumenum" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   volumenum.role.attribute = attribute role { text }
+
+   volumenum.attr =
+      volumenum.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.volumenum =
+      element volumenum {
+         volumenum.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "issuenum" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   issuenum.role.attribute = attribute role { text }
+
+   issuenum.attr =
+      issuenum.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.issuenum =
+      element issuenum {
+         issuenum.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   accel.role.attribute = attribute role { text }
+
+   accel.attr =
+      accel.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.accel  =
+      element accel {
+         accel.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "application" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   application.class.attrib = attribute class { "hardware" | "software" }
+
+   application.role.attribute = attribute role { text }
+
+   application.attr =
+      application.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & application.class.attrib
+
+   db.application =
+      element application {
+         application.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "classname" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   classname.role.attribute = attribute role { text }
+
+   classname.attr =
+      classname.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.classname =
+      element classname {
+         classname.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "command" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   command.role.attribute = attribute role { text }
+
+   command.attr =
+      command.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.command =
+      element command {
+         command.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
 
 computeroutput.inlines = (inlines)
 
-db.computeroutput = element computeroutput { computeroutput.inlines* }
+# ======================================================================
 
-database.class.attrib =
-   attribute class {
-      "altkey"
-    | "constraint"
-    | "datatype"
-    | "field"
-    | "foreignkey"
-    | "group"
-    | "index"
-    | "key1"
-    | "key2"
-    | "name"
-    | "primarykey"
-    | "procedure"
-    | "record"
-    | "rule"
-    | "secondarykey"
-    | "table"
-    | "user"
-    | "view"
-   }?
-db.database = element database { docbook.text }
+[
+   db:refname [ "computeroutput" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.email = element email { docbook.text }
+   computeroutput.role.attribute = attribute role { text }
 
-db.envar = element envar { docbook.text }
+   computeroutput.attr =
+      computeroutput.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-db.errorcode = element errorcode { docbook.text }
+   db.computeroutput =
+      element computeroutput {
+         computeroutput.attr,
+         computeroutput.inlines*
+      }
+}
 
-db.errorname = element errorname { docbook.text }
+# ======================================================================
 
-db.errortext = element errortext { docbook.text }
+[
+   db:refname [ "database" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.errortype = element errortype { docbook.text }
+   database.class.attrib =
+      attribute class {
+         "altkey"
+       | "constraint"
+       | "datatype"
+       | "field"
+       | "foreignkey"
+       | "group"
+       | "index"
+       | "key1"
+       | "key2"
+       | "name"
+       | "primarykey"
+       | "procedure"
+       | "record"
+       | "rule"
+       | "secondarykey"
+       | "table"
+       | "user"
+       | "view"
+      }
 
-filename.path.attrib = attribute path { text }?
-filename.class.attrib =
-   attribute class {
-      "devicefile"
-    | "directory"
-    | "extension"
-    | "headerfile"
-    | "libraryfile"
-    | "partition"
-    | "symlink"
-   }?
-db.filename = element filename { docbook.text }
+   database.role.attribute = attribute role { text }
 
-db.function = element function { docbook.text }
+   database.attr =
+      database.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & database.class.attrib?
 
-db.guibutton = element guibutton { (docbook.text | db.accel)* }
+   db.database =
+      element database {
+         database.attr,
+         docbook.text
+      }
+}
 
-db.guiicon = element guiicon { (docbook.text | db.accel)* }
+# ======================================================================
 
-db.guilabel = element guilabel { (docbook.text | db.accel)* }
+[
+   db:refname [ "email" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.guimenu = element guimenu { (docbook.text | db.accel)* }
+   email.role.attribute = attribute role { text }
 
-db.guimenuitem =  element guimenuitem { (docbook.text | db.accel)* }
+   email.attr =
+      email.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-db.guisubmenu = element guisubmenu { (docbook.text | db.accel)* }
+   db.email =
+      element email {
+         email.attr,
+         docbook.text
+      }
+}
 
-db.hardware = element hardware { docbook.text }
+# ======================================================================
 
-ctrl:other-attribute [ name="keycap.function.attrib"
-                       enum-name="keycap.function-enum.attribute"
-                       other-name="keycap.function-other.attributes" ]
+[
+   db:refname [ "envar" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-keycap.function-enum.attribute =
-   attribute function {
-      "alt"
-    | "backspace"
-    | "command"
-    | "control"
-    | "delete"
-    | "down"
-    | "end"
-    | "enter"
-    | "escape"
-    | "home"
-    | "insert"
-    | "left"
-    | "meta"
-    | "option"
-    | "pagedown"
-    | "pageup"
-    | "right"
-    | "shift"
-    | "space"
-    | "tab"
-    | "up" }?
+   envar.role.attribute = attribute role { text }
 
-keycap.function-other.attributes =
-   attribute function { "other" },
-   attribute otherfunction { text }
+   envar.attr =
+      envar.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-keycap.function.attrib =
-   (keycap.function-enum.attribute | keycap.function-other.attributes)
+   db.envar =
+      element envar {
+         envar.attr,
+         docbook.text
+      }
+}
 
-db.keycap = element keycap { docbook.text }
+# ======================================================================
 
-db.keycode = element keycode { docbook.text }
+[
+   db:refname [ "errorcode" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-ctrl:other-attribute [ name="keycombo.action.attrib"
-                       enum-name="keycombo.action-enum.attribute"
-                       other-name="keycombo.action-other.attributes" ]
+   errorcode.role.attribute = attribute role { text }
 
-keycombo.action-enum.attribute =
-  attribute action {
-    "click" | "double-click" | "press" | "seq" | "simul"
-  }?
+   errorcode.attr =
+      errorcode.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-keycombo.action-other.attributes =
-   attribute action { "other" },
-   attribute otheraction { text }
+   db.errorcode =
+      element errorcode {
+         errorcode.attr,
+         docbook.text
+      }
+}
 
-keycombo.action.attrib =
-   (keycombo.action-enum.attribute | keycombo.action-other.attributes)
+# ======================================================================
 
-db.keycombo = element keycombo { (db.keycap|db.keycombo|db.keysym|db.mousebutton)+ }
+[
+   db:refname [ "errorname" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.keysym = element keysym { docbook.text }
+   errorname.role.attribute = attribute role { text }
 
-db.lineannotation = element lineannotation { inlines* }
+   errorname.attr =
+      errorname.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-db.literal = element literal { inlines* }
+   db.errorname =
+      element errorname {
+         errorname.attr,
+         docbook.text
+      }
+}
 
-code.language.attrib = attribute language { text }?
-db.code = element code { inlines* }
+# ======================================================================
 
-constant.class.attrib = attribute class { "limit" }?
-db.constant = element constant { docbook.text }
+[
+   db:refname [ "errortext" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.varname = element varname { docbook.text }
+   errortext.role.attribute = attribute role { text }
 
-db.markup = element markup { docbook.text }
+   errortext.attr =
+      errortext.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-db.menuchoice = element menuchoice {
-   db.shortcut?,
-   (db.guibutton|db.guiicon|db.guilabel|db.guimenu|db.guimenuitem|db.guisubmenu)+ }
+   db.errortext =
+      element errortext {
+         errortext.attr,
+         docbook.text
+      }
+}
 
-shortcut.action.attrib = keycombo.action.attrib
+# ======================================================================
 
-db.shortcut = element shortcut {  (db.keycap|db.keycombo|db.keysym|db.mousebutton)+ }
+[
+   db:refname [ "errortype" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.mousebutton = element mousebutton { docbook.text }
+   errortype.role.attribute = attribute role { text }
 
-db.option = element option { docbook.text }
+   errortype.attr =
+      errortype.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-db.optional = element optional { inlines* }
+   db.errortype =
+      element errortype {
+         errortype.attr,
+         docbook.text
+      }
+}
 
-parameter.class.attrib = attribute class { "command" | "function" | "option" }?
-db.parameter = element parameter { docbook.text }
+# ======================================================================
+
+[
+   db:refname [ "filename" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   filename.path.attrib = attribute path { text }
+   filename.class.attrib =
+      attribute class {
+         "devicefile"
+       | "directory"
+       | "extension"
+       | "headerfile"
+       | "libraryfile"
+       | "partition"
+       | "symlink"
+      }
+
+   filename.role.attribute = attribute role { text }
+
+   filename.attr =
+      filename.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & filename.path.attrib?
+    & filename.class.attrib?
+
+   db.filename =
+      element filename {
+         filename.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "function" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   function.role.attribute = attribute role { text }
+
+   function.attr =
+      function.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.function =
+      element function {
+         function.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "guibutton" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   guibutton.role.attribute = attribute role { text }
+
+   guibutton.attr =
+      guibutton.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.guibutton =
+      element guibutton {
+         guibutton.attr,
+         (docbook.text | db.accel)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "guiicon" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   guiicon.role.attribute = attribute role { text }
+
+   guiicon.attr =
+      guiicon.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.guiicon =
+      element guiicon {
+         guiicon.attr,
+         (docbook.text | db.accel)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "guilabel" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   guilabel.role.attribute = attribute role { text }
+
+   guilabel.attr =
+      guilabel.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.guilabel =
+      element guilabel {
+         guilabel.attr,
+         (docbook.text | db.accel)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "guimenu" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   guimenu.role.attribute = attribute role { text }
+
+   guimenu.attr =
+      guimenu.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.guimenu =
+      element guimenu {
+         guimenu.attr,
+         (docbook.text | db.accel)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "guimenuitem" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   guimenuitem.role.attribute = attribute role { text }
+
+   guimenuitem.attr =
+      guimenuitem.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.guimenuitem =
+      element guimenuitem {
+         guimenuitem.attr,
+         (docbook.text | db.accel)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "guisubmenu" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   guisubmenu.role.attribute = attribute role { text }
+
+   guisubmenu.attr =
+      guisubmenu.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.guisubmenu =
+      element guisubmenu {
+         guisubmenu.attr,
+         (docbook.text | db.accel)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "hardware" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   hardware.role.attribute = attribute role { text }
+
+   hardware.attr =
+      hardware.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.hardware =
+      element hardware {
+         hardware.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "keycap" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   ctrl:other-attribute [ name="keycap.function.attrib"
+                          enum-name="keycap.function-enum.attribute"
+                          other-name="keycap.function-other.attributes" ]
+
+   keycap.function-enum.attribute =
+      attribute function {
+         "alt"
+       | "backspace"
+       | "command"
+       | "control"
+       | "delete"
+       | "down"
+       | "end"
+       | "enter"
+       | "escape"
+       | "home"
+       | "insert"
+       | "left"
+       | "meta"
+       | "option"
+       | "pagedown"
+       | "pageup"
+       | "right"
+       | "shift"
+       | "space"
+       | "tab"
+       | "up"
+      }?
+
+   keycap.function-other.attributes =
+      attribute function { "other" },
+      attribute otherfunction { text }
+
+   keycap.function.attrib =
+      (keycap.function-enum.attribute | keycap.function-other.attributes)
+
+   keycap.role.attribute = attribute role { text }
+
+   keycap.attr =
+      keycap.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & keycap.function.attrib
+
+   db.keycap =
+      element keycap {
+         keycap.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "keycode" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   keycode.role.attribute = attribute role { text }
+
+   keycode.attr =
+      keycode.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.keycode =
+      element keycode {
+         keycode.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "keycombo" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   ctrl:other-attribute [ name="keycombo.action.attrib"
+                          enum-name="keycombo.action-enum.attribute"
+                          other-name="keycombo.action-other.attributes" ]
+
+   keycombo.action-enum.attribute =
+      attribute action {
+         "click" | "double-click" | "press" | "seq" | "simul"
+      }?
+
+   keycombo.action-other.attributes =
+      attribute action { "other" },
+      attribute otheraction { text }
+
+   keycombo.action.attrib =
+      (keycombo.action-enum.attribute | keycombo.action-other.attributes)
+
+   keycombo.role.attribute = attribute role { text }
+
+   keycombo.attr =
+      keycombo.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & keycombo.action.attrib
+
+   db.keycombo =
+      element keycombo {
+         keycombo.attr,
+         (db.keycap|db.keycombo|db.keysym|db.mousebutton)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "keysym" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   keysym.role.attribute = attribute role { text }
+
+   keysym.attr =
+      keysym.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.keysym =
+      element keysym {
+         keysym.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "lineannotation" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   lineannotation.role.attribute = attribute role { text }
+
+   lineannotation.attr =
+      lineannotation.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.lineannotation =
+      element lineannotation {
+         lineannotation.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "literal" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   literal.role.attribute = attribute role { text }
+
+   literal.attr =
+      literal.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.literal =
+      element literal {
+         literal.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "code" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   code.language.attrib = attribute language { text }
+
+   code.role.attribute = attribute role { text }
+
+   code.attr =
+      code.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & code.language.attrib?
+
+   db.code =
+      element code {
+         code.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "constant" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   constant.class.attrib = attribute class { "limit" }
+
+   constant.role.attribute = attribute role { text }
+
+   constant.attr =
+      constant.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & constant.class.attrib?
+
+   db.constant =
+      element constant {
+         constant.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "varname" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   varname.role.attribute = attribute role { text }
+
+   varname.attr =
+      varname.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.varname =
+      element varname {
+         varname.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "markup" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   markup.role.attribute = attribute role { text }
+
+   markup.attr =
+      markup.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.markup =
+      element markup {
+         markup.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "menuchoice" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   menuchoice.role.attribute = attribute role { text }
+
+   menuchoice.attr =
+      menuchoice.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.menuchoice =
+      element menuchoice {
+         menuchoice.attr,
+         db.shortcut?,
+         (db.guibutton|db.guiicon|db.guilabel|db.guimenu|db.guimenuitem|db.guisubmenu)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "shortcut" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   shortcut.action.attrib = keycombo.action.attrib
+
+   shortcut.role.attribute = attribute role { text }
+
+   shortcut.attr =
+      shortcut.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & shortcut.action.attrib
+
+   db.shortcut =
+      element shortcut {
+         shortcut.attr,
+         (db.keycap|db.keycombo|db.keysym|db.mousebutton)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "mousebutton" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   mousebutton.role.attribute = attribute role { text }
+
+   mousebutton.attr =
+      mousebutton.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.mousebutton =
+      element mousebutton {
+         mousebutton.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "option" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   option.role.attribute = attribute role { text }
+
+   option.attr =
+      option.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.option =
+      element option {
+         option.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "optional" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   optional.role.attribute = attribute role { text }
+
+   optional.attr =
+      optional.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.optional =
+      element optional {
+         optional.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "parameter" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   parameter.class.attrib = attribute class { "command" | "function" | "option" }
+
+   parameter.role.attribute = attribute role { text }
+
+   parameter.attr =
+      parameter.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & parameter.class.attrib?
+
+   db.parameter =
+      element parameter {
+         parameter.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
 
 prompt.inlines = (docbook.text)
 
-db.prompt = element prompt { prompt.inlines* }
+# ======================================================================
 
+[
+   db:refname [ "prompt" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+
+   prompt.role.attribute = attribute role { text }
+
+   prompt.attr =
+      prompt.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.prompt =
+      element prompt {
+         prompt.attr,
+         prompt.inlines*
+      }
+}
+
+# ======================================================================
 replaceable.inlines = (docbook.text)
 
-replaceable.class.attrib =
-   attribute class { "command" | "function" | "option" | "parameter" }?
-db.replaceable = element replaceable { replaceable.inlines* }
+# ======================================================================
 
-db.returnvalue = element returnvalue { docbook.text }
+[
+   db:refname [ "replaceable" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-xmltag.class.attrib =
-  attribute class {
-    "attribute"
-    | "attvalue"
-    | "element"
-    | "emptytag"
-    | "endtag"
-    | "genentity"
-    | "numcharref"
-    | "paramentity"
-    | "pi"
-    | "sgmlcomment"
-    | "starttag"
-    | "xmlpi"
-  }?
-db.xmltag = element xmltag { docbook.text }
+   replaceable.class.attrib =
+      attribute class { "command" | "function" | "option" | "parameter" }
 
-symbol.class.attrib = attribute class { "limit" }?
-db.symbol = element symbol { docbook.text }
+   replaceable.role.attribute = attribute role { text }
 
-systemitem.class.attrib =
-   attribute class {
-      "daemon"
-    | "domainname"
-    | "etheraddress"
-    | "event"
-    | "eventhandler"
-    | "filesystem"
-    | "fqdomainname"
-    | "groupname"
-    | "ipaddress"
-    | "library"
-    | "macro"
-    | "netmask"
-    | "newsgroup"
-    | "osname"
-    | "process"
-    | "resource"
-    | "server"
-    | "service"
-    | "systemname"
-    | "username"
-   }?
+   replaceable.attr =
+      replaceable.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & replaceable.class.attrib?
+
+   db.replaceable =
+      element replaceable {
+         replaceable.attr,
+         replaceable.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "returnvalue" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   returnvalue.role.attribute = attribute role { text }
+
+   returnvalue.attr =
+      returnvalue.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.returnvalue =
+      element returnvalue {
+         returnvalue.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "tag" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   tag.class.attrib =
+      attribute class {
+         "attribute"
+       | "attvalue"
+       | "element"
+       | "emptytag"
+       | "endtag"
+       | "genentity"
+       | "numcharref"
+       | "paramentity"
+       | "pi"
+       | "sgmlcomment"
+       | "starttag"
+       | "xmlpi"
+      }?
+
+   tag.role.attribute = attribute role { text }
+
+   tag.attr =
+      tag.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & tag.class.attrib
+
+   db.tag =
+      element tag {
+         tag.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "symbol" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   symbol.class.attrib = attribute class { "limit" }?
+
+   symbol.role.attribute = attribute role { text }
+
+   symbol.attr =
+      symbol.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & symbol.class.attrib
+
+   db.symbol =
+      element symbol {
+         symbol.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
 
 systemitem.inlines = (docbook.text)
 
-db.systemitem = element systemitem { systemitem.inlines* }
+# ======================================================================
 
-uri.type.attrib = attribute type { text }?
-db.uri = element uri { docbook.text }
+[
+   db:refname [ "systemitem" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.token = element token { docbook.text }
+   systemitem.class.attrib =
+      attribute class {
+         "daemon"
+       | "domainname"
+       | "etheraddress"
+       | "event"
+       | "eventhandler"
+       | "filesystem"
+       | "fqdomainname"
+       | "groupname"
+       | "ipaddress"
+       | "library"
+       | "macro"
+       | "netmask"
+       | "newsgroup"
+       | "osname"
+       | "process"
+       | "resource"
+       | "server"
+       | "service"
+       | "systemname"
+       | "username"
+      }
 
-db.type = element type { docbook.text }
+   systemitem.role.attribute = attribute role { text }
+
+   systemitem.attr =
+      systemitem.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & systemitem.class.attrib?
+
+   db.systemitem =
+      element systemitem {
+         systemitem.attr,
+         systemitem.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "uri" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   uri.type.attrib = attribute type { text }?
+
+   uri.role.attribute = attribute role { text }
+
+   uri.attr =
+      uri.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & uri.type.attrib
+
+   db.uri =
+      element uri {
+         uri.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "token" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   token.role.attribute = attribute role { text }
+
+   token.attr =
+      token.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.token =
+      element token {
+         token.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "type" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   type.role.attribute = attribute role { text }
+
+   type.attr =
+      type.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.type =
+      element type {
+         type.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
 
 userinput.inlines = inlines
-db.userinput = element userinput { userinput.inlines* }
 
-db.abbrev = element abbrev {
-   (docbook.text
-    | db.superscript
-    | db.subscript
-    | db.trademark)* }
+# ======================================================================
 
-db.acronym = element acronym {
-   (docbook.text
-    | db.superscript
-    | db.subscript
-    | db.trademark)* }
+[
+   db:refname [ "userinput" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.citation = element citation { docbook.text }
+   userinput.role.attribute = attribute role { text }
 
-db.citerefentry = element citerefentry { db.refentrytitle, db.manvolnum? }
+   userinput.attr =
+      userinput.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-db.refentrytitle = element refentrytitle { inlines* }
+   db.userinput =
+      element userinput {
+         userinput.attr,
+         userinput.inlines*
+      }
+}
 
-db.manvolnum = element manvolnum { docbook.text }
+# ======================================================================
 
-citetitle.pubwork.attrib =
-   attribute pubwork {
-      "article"
-    | "bbs"
-    | "book"
-    | "cdrom"
-    | "chapter"
-    | "dvd"
-    | "emailmessage"
-    | "gopher"
-    | "journal"
-    | "manuscript"
-    | "newsposting"
-    | "part"
-    | "refentry"
-    | "section"
-    | "series"
-    | "set"
-    | "webpage"
-    | "wiki"
-   }?
+[
+   db:refname [ "abbrev" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.citetitle = element citetitle { inlines* }
+   abbrev.role.attribute = attribute role { text }
 
-db.emphasis = element emphasis { inlines* }
+   abbrev.attr =
+      abbrev.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-db.foreignphrase = element foreignphrase { inlines* }
+   db.abbrev =
+      element abbrev {
+         abbrev.attr,
+         (docbook.text
+          | db.superscript
+          | db.subscript
+          | db.trademark)*
+      }
+}
 
-db.phrase = element phrase { inlines* }
+# ======================================================================
 
-db.quote = element quote { inlines* }
+[
+   db:refname [ "acronym" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.subscript = element subscript { docbook.text }
+   acronym.role.attribute = attribute role { text }
 
-db.superscript = element superscript { docbook.text }
+   acronym.attr =
+      acronym.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-trademark.class.attrib =
-   attribute class { "copyright" | "registered" | "service" | "trade" }?
+   db.acronym =
+      element acronym {
+         acronym.attr,
+         (docbook.text
+          | db.superscript
+          | db.subscript
+          | db.trademark)*
+      }
+}
 
-db.trademark = element trademark { docbook.text }
+# ======================================================================
 
-db.wordasword = element wordasword { docbook.text }
+[
+   db:refname [ "citation" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-ctrl:common-linking [ element="footnoteref" suppress="yes" ]
+   citation.role.attribute = attribute role { text }
 
-footnoteref.linkend.attrib = linkend.attribute
-footnoteref.label.attrib = attribute label { text }?
-db.footnoteref =
-   [
-      s:rule [
-         context = "footnoteref"
-         s:assert [
-            test = "name(//*[@id=current()/@linkend]) = 'footnote'"
-            "@linkend on footnoteref must point to a footnote."
+   citation.attr =
+      citation.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.citation =
+      element citation {
+         citation.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "citerefentry" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   citerefentry.role.attribute = attribute role { text }
+
+   citerefentry.attr =
+      citerefentry.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.citerefentry =
+      element citerefentry {
+         citerefentry.attr,
+         db.refentrytitle,
+         db.manvolnum?
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "refentrytitle" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   refentrytitle.role.attribute = attribute role { text }
+
+   refentrytitle.attr =
+      refentrytitle.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.refentrytitle =
+      element refentrytitle {
+         refentrytitle.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "manvolnum" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   manvolnum.role.attribute = attribute role { text }
+
+   manvolnum.attr =
+      manvolnum.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.manvolnum =
+      element manvolnum {
+         manvolnum.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "citetitle" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   citetitle.pubwork.attrib =
+      attribute pubwork {
+         "article"
+       | "bbs"
+       | "book"
+       | "cdrom"
+       | "chapter"
+       | "dvd"
+       | "emailmessage"
+       | "gopher"
+       | "journal"
+       | "manuscript"
+       | "newsposting"
+       | "part"
+       | "refentry"
+       | "section"
+       | "series"
+       | "set"
+       | "webpage"
+       | "wiki"
+      }
+
+   citetitle.role.attribute = attribute role { text }
+
+   citetitle.attr =
+      citetitle.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & citetitle.pubwork.attrib?
+
+   db.citetitle =
+      element citetitle {
+         citetitle.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "emphasis" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   emphasis.role.attribute = attribute role { text }
+
+   emphasis.attr =
+      emphasis.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.emphasis =
+      element emphasis {
+         emphasis.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "foreignphrase" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   foreignphrase.role.attribute = attribute role { text }
+
+   foreignphrase.attr =
+      foreignphrase.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.foreignphrase =
+      element foreignphrase {
+         foreignphrase.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "phrase" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   phrase.role.attribute = attribute role { text }
+
+   phrase.attr =
+      phrase.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.phrase =
+      element phrase {
+         phrase.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "quote" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   quote.role.attribute = attribute role { text }
+
+   quote.attr =
+      quote.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.quote =
+      element quote {
+         quote.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "subscript" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   subscript.role.attribute = attribute role { text }
+
+   subscript.attr =
+      subscript.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.subscript =
+      element subscript {
+         subscript.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "superscript" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   superscript.role.attribute = attribute role { text }
+
+   superscript.attr =
+      superscript.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.superscript =
+      element superscript {
+         superscript.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "trademark" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   trademark.class.attrib =
+      attribute class { "copyright" | "registered" | "service" | "trade" }
+
+   trademark.role.attribute = attribute role { text }
+
+   trademark.attr =
+      trademark.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & trademark.class.attrib?
+
+   db.trademark =
+      element trademark {
+         trademark.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "wordasword" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   wordasword.role.attribute = attribute role { text }
+
+   wordasword.attr =
+      wordasword.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.wordasword =
+      element wordasword {
+         wordasword.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "footnoteref" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   footnoteref.role.attribute = attribute role { text }
+
+   footnoteref.attr =
+      footnoteref.role.attribute?
+    & common.attributes
+    & linkend.attribute
+    & attribute label { text }?
+
+   db.footnoteref =
+      [
+         s:rule [
+            context = "db:footnoteref"
+            s:assert [
+               test = "local-name(//*[@id=current()/@linkend]) = 'footnote' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/docbook-ng/absinthe'"
+               "@linkend on footnoteref must point to a footnote."
+            ]
          ]
       ]
-   ]
-   element footnoteref { empty }
+      element footnoteref {
+         footnoteref.attr,
+         empty
+      }
+}
 
-ctrl:common-linking [ element="xref" attributes="common.linking.attributes.req" ]
+# ======================================================================
 
-xref.xrefstyle.attrib = attribute xrefstyle { text }?
-xref.endterm.attrib = attribute endterm { xsd:IDREF }?
-db.xref = element xref { empty }
+[
+   db:refname [ "xref" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-ctrl:common-linking [ element="anchor" suppress="yes" ]
-ctrl:common-attributes [ element="anchor" attributes="common.attrib.idreq" ]
+   xref.role.attribute = attribute role { text }
 
-db.anchor = element anchor { empty }
+   xref.attr =
+      xref.role.attribute?
+    & common.attributes
+    & common.linking.attributes.req
+    & attribute xrefstyle { text }?
+    & attribute endterm { xsd:IDREF }?
+
+   db.xref =
+      element xref {
+         xref.attr,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "anchor" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   anchor.role.attribute = attribute role { text }
+
+   anchor.attr =
+      anchor.role.attribute?
+    & common.attributes.idreq
+
+   db.anchor =
+      element anchor {
+         anchor.attr,
+         empty
+      }
+}
 

@@ -10,7 +10,10 @@
 # Release: $Id$
 #
 
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
 namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng/absinthe"
+default namespace = "http://docbook.org/docbook-ng/absinthe"
 
 general.inlines |= glossary.inlines
 list.blocks |= db.glosslist
@@ -20,89 +23,272 @@ glossary.inlines =
    db.firstterm
  | db.glossterm
 
-glosslist.info = docbook.info.titleonly
-db.glosslist = element glosslist { glosslist.info?, blocks*, db.glossentry+ }
+baseform.attribute = attribute baseform { text }?
 
-glossentry.sortas.attrib = attribute sortas { text }?
-db.glossentry =
-   element glossentry {
-      db.glossterm,
-      db.acronym?,
-      db.abbrev?,
-      db.indexterm*,
-      (db.glosssee | db.glossdef+)
-   }
+# ======================================================================
 
-glossdef.subject.attrib = attribute subject { text }?
-db.glossdef = element glossdef { blocks+, db.glossseealso* }
+[
+   db:refname [ "glosslist" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-glosssee.otherterm.attrib = attribute otherterm { xsd:IDREF }?
-db.glosssee =
-   [
-      s:rule [
-         context = "glosssee[@linkend]"
-         s:assert [
-            test = "name(//*[@id=current()/@linkend]) = 'glossentry'"
-            "@linkend on glosssee must point to a glossentry."
+   glosslist.role.attribute = attribute role { text }
+
+   glosslist.attr =
+      glosslist.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   glosslist.info = docbook.info.titleonly
+
+   db.glosslist =
+      element glosslist {
+         glosslist.attr,
+         glosslist.info?,
+         blocks*,
+         db.glossentry+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "glossentry" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   glossentry.role.attribute = attribute role { text }
+
+   glossentry.attr =
+      glossentry.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute sortas { text }?
+
+   db.glossentry =
+      element glossentry {
+         glossentry.attr,
+         db.glossterm,
+         db.acronym?,
+         db.abbrev?,
+         db.indexterm*,
+         (db.glosssee | db.glossdef+)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "glossdef" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   glossdef.role.attribute = attribute role { text }
+
+   glossdef.attr =
+      glossdef.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute subject { text }?
+
+   db.glossdef =
+      element glossdef {
+         glossdef.attr,
+         blocks+,
+         db.glossseealso*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "glosssee" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   glosssee.role.attribute = attribute role { text }
+
+   glosssee.attr =
+      glosssee.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute otherterm { xsd:IDREF }?
+
+   db.glosssee =
+      [
+         s:rule [
+            context = "db:glosssee[@linkend]"
+            s:assert [
+               test = "local-name(//*[@id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/docbook-ng/absinthe'"
+               "@linkend on glosssee must point to a glossentry."
+            ]
          ]
       ]
-   ]
-   element glosssee { inlines* }
+      element glosssee {
+         glosssee.attr,
+         inlines*
+      }
+}
 
-glossseealso.otherterm.attrib = attribute otherterm { xsd:IDREF }?
-db.glossseealso =
-   [
-      s:rule [
-         context = "glossseealso[@linkend]"
-         s:assert [
-            test = "name(//*[@id=current()/@linkend]) = 'glossentry'"
-            "@linkend on glossseealso must point to a glossentry."
+# ======================================================================
+
+[
+   db:refname [ "glossseealso" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   glossseealso.role.attribute = attribute role { text }
+
+   glossseealso.attr =
+      glossseealso.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute otherterm { xsd:IDREF }?
+
+   db.glossseealso =
+      [
+         s:rule [
+            context = "db:glossseealso[@linkend]"
+            s:assert [
+               test = "local-name(//*[@id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/docbook-ng/absinthe'"
+               "@linkend on glossseealso must point to a glossentry."
+            ]
          ]
       ]
-   ]
-   element glossseealso { inlines* }
+      element glossseealso {
+         glossseealso.attr,
+         inlines*
+      }
+}
 
-firstterm.baseform.attrib = glossterm.baseform.attrib
-db.firstterm =
-   [
-      s:rule [
-         context = "firstterm[@linkend]"
-         s:assert [
-            test = "name(//*[@id=current()/@linkend]) = 'glossentry'"
-            "@linkend on firstterm must point to a glossentry."
+# ======================================================================
+
+[
+   db:refname [ "firstterm" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   firstterm.role.attribute = attribute role { text }
+
+   firstterm.attr =
+      firstterm.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & baseform.attribute
+
+   db.firstterm =
+      [
+         s:rule [
+            context = "db:firstterm[@linkend]"
+            s:assert [
+               test = "local-name(//*[@id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/docbook-ng/absinthe'"
+               "@linkend on firstterm must point to a glossentry."
+            ]
          ]
       ]
-   ]
-   element firstterm { inlines* }
+      element firstterm {
+         firstterm.attr,
+         inlines*
+      }
+}
 
-glossterm.baseform.attrib = attribute baseform { text }?
+# ======================================================================
 
-db.glossterm =
-   [
-      s:rule [
-         context = "glossterm[@linkend]"
-         s:assert [
-            test = "name(//*[@id=current()/@linkend]) = 'glossentry'"
-            "@linkend on glossterm must point to a glossentry."
+[
+   db:refname [ "glossterm" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   glossterm.role.attribute = attribute role { text }
+
+   glossterm.attr =
+      glossterm.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & baseform.attribute
+
+   db.glossterm =
+      [
+         s:rule [
+            context = "db:glossterm[@linkend]"
+            s:assert [
+               test = "local-name(//*[@id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/docbook-ng/absinthe'"
+               "@linkend on glossterm must point to a glossentry."
+            ]
          ]
       ]
-   ]
-   element glossterm { inlines* }
+      element glossterm {
+         glossterm.attr,
+         inlines*
+      }
+}
 
-glossary.status.attrib = status.attribute?
-glossary.label.attrib = label.attribute?
-glossary.info = docbook.info
-db.glossary =
-   element glossary {
-      glossary.info,
-      blocks*,
-      (db.glossdiv+ | db.glossentry+),
-      db.bibliography?
-   }
+# ======================================================================
 
-glossdiv.status.attrib = status.attribute?
-glossdiv.label.attrib = label.attribute?
-glossdiv.info = docbook.info.titlereq
-db.glossdiv =
-   element glossdiv { glossdiv.info, blocks*, db.glossentry+ }
+[
+   db:refname [ "glossary" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   glossary.status.attribute = status.attribute
+
+   glossary.role.attribute = attribute role { text }
+
+   glossary.attr =
+      glossary.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & label.attribute?
+    & glossary.status.attribute?
+
+   glossary.info = docbook.info
+
+   db.glossary =
+      element glossary {
+         glossary.attr,
+         glossary.info,
+         blocks*,
+         (db.glossdiv+ | db.glossentry+),
+         db.bibliography?
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "glossdiv" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   glossdiv.status.attribute = status.attribute
+
+   glossdiv.role.attribute = attribute role { text }
+
+   glossdiv.attr =
+      glossdiv.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & label.attribute?
+    & glossdiv.status.attribute?
+
+   glossdiv.info = docbook.info.titlereq
+
+   db.glossdiv =
+      element glossdiv {
+         glossdiv.attr,
+         glossdiv.info,
+         blocks*,
+         db.glossentry+
+      }
+}
+
 

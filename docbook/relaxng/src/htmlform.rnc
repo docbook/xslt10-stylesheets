@@ -12,103 +12,208 @@
 
 namespace html = "http://www.w3.org/1999/xhtml"
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
-
-ctrl:common-attributes [ define="html.form" suppress="1" ]
-
-html.form.html.attrib = html.attrs
-html.form.action.attrib = attribute action { text }
-html.form.method.attrib = attribute method { "GET" | "POST" }?
-html.form.onsubmit.attrib = attribute onsubmit { text }?
-html.form.onreset.attrib = attribute onreset { text }?
-
-html.form = element html:form {
-   ( blocks
-    | html.input
-    | html.button
-    | html.label
-    | html.select
-    | html.textarea )+ }
-
-html.input.html.attrib = html.attrs
-html.input.type.attrib = attribute type {
-   "text"
- | "password"
- | "checkbox"
- | "radio"
- | "submit"
- | "reset"
- | "file"
- | "hidden"
- | "image"
- | "button" }?
-html.input.name.attrib = attribute name { text }?
-html.input.value.attrib = attribute value { text }?
-html.input.checked.attrib = attribute checked { "checked" }?
-html.input.disabled.attrib = attribute disabled { "disabled" }?
-html.input.readonly.attrib = attribute readonly { "readonly" }?
-html.input.size.attrib = attribute size { text }?
-html.input.maxlength.attrib = attribute maxlength { text }?
-html.input.src.attrib = attribute src { text }?
-html.input.alt.attrib = attribute alt { text }?
-html.input.usemap.attrib = attribute usemap { text }?
-html.input.tabindex.attrib = attribute tabindex { text }?
-html.input.accesskey.attrib = attribute accesskey { text }?
-html.input.onfocus.attrib = attribute onfocus { text }?
-html.input.onblur.attrib = attribute onblur { text }?
-html.input.onselect.attrib = attribute onselect { text }?
-html.input.onchange.attrib = attribute onchange { text }?
-html.input = element html:input { empty }
-
-html.button.html.attrib = html.attrs
-html.button.name.attrib = attribute name { text }?
-html.button.value.attrib = attribute value { text }?
-html.button.type.attrib = attribute type { "button" | "submit" | "reset" }?
-html.button.disabled.attrib = attribute disabled { "disabled" }?
-html.button.tabindex.attrib = attribute tabindex { text }?
-html.button.accesskey.attrib = attribute accesskey { text }?
-html.button.onfocus.attrib = attribute onfocus { text }?
-html.button.onblur.attrib = attribute onblur { text }?
-html.button = element html:button { inlines* }
-
-html.label.html.attrib = html.attrs
-html.label.accesskey.attrib = attribute accesskey { text }?
-html.label.onfocus.attrib = attribute onfocus { text }?
-html.label.onblur.attrib = attribute onblur { text }?
-html.label = element html:label { inlines* }
-
-html.select.html.attrib = html.attrs
-html.select.name.attrib = attribute name { text }?
-html.select.size.attrib = attribute size { text }?
-html.select.multiple.attrib = attribute multiple { "multiple" }?
-html.select.disabled.attrib = attribute disabled { "disabled" }?
-html.select.tabindex.attrib = attribute tabindex { text }?
-html.select.onfocus.attrib = attribute onfocus { text }?
-html.select.onblur.attrib = attribute onblur { text }?
-html.select.onchange.attrib = attribute onchange { text }?
-html.select = element html:select { html.option+ }
-
-html.option.html.attrib = html.attrs
-html.option.selected.attrib = attribute selected { "selected" }?
-html.option.disabled.attrib = attribute disabled { "disabled" }?
-html.option.value.attrib = attribute value { text }?
-html.option = element html:option { text }
-
-html.textarea.html.attrib = html.attrs
-html.textarea.name.attrib = attribute name { text }?
-html.textarea.rows.attrib = attribute rows { text }
-html.textarea.cols.attrib = attribute cols { text }
-html.textarea.disabled.attrib = attribute disabled { "disabled" }?
-html.textarea.readonly.attrib = attribute readonly { "readonly" }?
-html.textarea.tabindex.attrib = attribute tabindex { text }?
-html.textarea.accesskey.attrib = attribute accesskey { text }?
-html.textarea.onfocus.attrib = attribute onfocus { text }?
-html.textarea.onblur.attrib = attribute onblur { text }?
-html.textarea.onselect.attrib = attribute onselect { text }?
-html.textarea.onchange.attrib = attribute onchange { text }?
-html.textarea = element html:textarea { text }
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng/absinthe"
+default namespace = "http://docbook.org/docbook-ng/absinthe"
 
 mediaobject.content |= any.svg
 inlinemediaobject.content |= any.svg
 
 extension.blocks |= html.form
 extension.inlines |= html.input | html.button | html.label | html.select | html.textarea
+
+# ======================================================================
+
+[
+   db:refname [ "html:form" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   html.form.attr =
+      html.attrs
+    & attribute action { text }
+    & attribute method { "GET" | "POST" }?
+    & attribute onsubmit { text }?
+    & attribute onreset { text }?
+
+   html.form =
+      element html:form {
+         html.form.attr,
+         ( blocks
+          | html.input
+          | html.button
+          | html.label
+          | html.select
+          | html.textarea )+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "html:input" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   html.input.attr =
+      html.attrs
+    & attribute type {
+       "text"
+     | "password"
+     | "checkbox"
+     | "radio"
+     | "submit"
+     | "reset"
+     | "file"
+     | "hidden"
+     | "image"
+     | "button" }?
+    & attribute name { text }?
+    & attribute value { text }?
+    & attribute checked { "checked" }?
+    & attribute disabled { "disabled" }?
+    & attribute readonly { "readonly" }?
+    & attribute size { text }?
+    & attribute maxlength { text }?
+    & attribute src { text }?
+    & attribute alt { text }?
+    & attribute usemap { text }?
+    & attribute tabindex { text }?
+    & attribute accesskey { text }?
+    & attribute onfocus { text }?
+    & attribute onblur { text }?
+    & attribute onselect { text }?
+    & attribute onchange { text }?
+
+   html.input =
+      element html:input {
+         html.input.attr,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "html:button" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   html.button.attr =
+      html.attrs
+    & attribute name { text }?
+    & attribute value { text }?
+    & attribute type { "button" | "submit" | "reset" }?
+    & attribute disabled { "disabled" }?
+    & attribute tabindex { text }?
+    & attribute accesskey { text }?
+    & attribute onfocus { text }?
+    & attribute onblur { text }?
+
+   html.button =
+      element html:button {
+         html.button.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "html:label" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   html.label.attr =
+      html.attrs
+    & attribute accesskey { text }?
+    & attribute onfocus { text }?
+    & attribute onblur { text }?
+
+   html.label =
+      element html:label {
+         html.label.attr,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "html:select" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   html.select.attr =
+      html.attrs
+    & attribute name { text }?
+    & attribute size { text }?
+    & attribute multiple { "multiple" }?
+    & attribute disabled { "disabled" }?
+    & attribute tabindex { text }?
+    & attribute onfocus { text }?
+    & attribute onblur { text }?
+    & attribute onchange { text }?
+
+   html.select =
+      element html:select {
+         html.select.attr,
+         html.option+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "html:option" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   html.option.attr =
+      html.attrs
+    & attribute selected { "selected" }?
+    & attribute disabled { "disabled" }?
+    & attribute value { text }?
+
+   html.option =
+      element html:option {
+         html.option.attr,
+         text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "html:textarea" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   html.textarea.attr =
+      html.attrs
+    & attribute name { text }?
+    & attribute rows { text }
+    & attribute cols { text }
+    & attribute disabled { "disabled" }?
+    & attribute readonly { "readonly" }?
+    & attribute tabindex { text }?
+    & attribute accesskey { text }?
+    & attribute onfocus { text }?
+    & attribute onblur { text }?
+    & attribute onselect { text }?
+    & attribute onchange { text }?
+
+   html.textarea =
+      element html:textarea {
+         html.textarea.attr,
+         text
+      }
+}

@@ -12,6 +12,10 @@
 # ======================================================================
 
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng/absinthe"
+default namespace = "http://docbook.org/docbook-ng/absinthe"
 
 start = db.set
         | db.book
@@ -34,6 +38,7 @@ include "ebnf.rnc"
 include "calstbl.rnc"
 include "htmltbl.rnc"
 include "msgset.rnc"
+include "qandaset.rnc"
 include "mathml.rnc"
 include "svg.rnc"
 #include "htmlform.rnc"

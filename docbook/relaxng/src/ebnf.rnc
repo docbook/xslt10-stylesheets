@@ -11,30 +11,196 @@
 #
 
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
-
-productionset.info = docbook.info.titleonly
-
-db.productionset =
-   element productionset { productionset.info, (db.production|db.productionrecap)+ }
-
-ctrl:common-attributes [ element="production" attributes="common.attrib.idreq" ]
-
-db.production = element production { db.lhs, db.rhs, db.constraint* }
-
-db.lhs = element lhs { text }
-
-db.rhs = element rhs { (text|db.nonterminal|db.lineannotation|db.sbr)* }
-
-nonterminal.def.attrib = attribute def { text }
-db.nonterminal = element nonterminal { text }
-
-db.constraint = element constraint { empty }
-
-productionrecap.linkend.attrib = attribute linkend { xsd:IDREF }
-db.productionrecap = element productionrecap { empty }
-
-constraintdef.info = docbook.info.titleonly
-db.constraintdef = element constraintdef { constraintdef.info, blocks+ }
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng/absinthe"
+default namespace = "http://docbook.org/docbook-ng/absinthe"
 
 technical.inlines |= db.nonterminal
 technical.blocks |= db.productionset | db.constraintdef
+
+# ======================================================================
+
+[
+   db:refname [ "productionset" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   productionset.role.attribute = attribute role { text }
+
+   productionset.attr =
+      productionset.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   productionset.info = docbook.info.titleonly
+
+   db.productionset =
+      element productionset {
+         productionset.attr,
+         productionset.info,
+         (db.production|db.productionrecap)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "production" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   production.role.attribute = attribute role { text }
+
+   production.attr =
+      production.role.attribute?
+    & common.attributes.idreq
+    & common.linking.attributes
+
+   db.production =
+      element production {
+         production.attr,
+         db.lhs,
+         db.rhs,
+         db.constraint*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "lhs" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   lhs.role.attribute = attribute role { text }
+
+   lhs.attr =
+      lhs.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.lhs =
+      element lhs {
+         lhs.attr,
+         text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "rhs" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   rhs.role.attribute = attribute role { text }
+
+   rhs.attr =
+      rhs.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.rhs =
+      element rhs {
+         rhs.attr,
+         (text|db.nonterminal|db.lineannotation|db.sbr)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "nonterminal" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   nonterminal.role.attribute = attribute role { text }
+
+   nonterminal.attr =
+      nonterminal.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute def { text }
+
+   db.nonterminal =
+      element nonterminal {
+         nonterminal.attr,
+         text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "constraint" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   constraint.role.attribute = attribute role { text }
+
+   constraint.attr =
+      constraint.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.constraint =
+      element constraint {
+         constraint.attr,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "productionrecap" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   productionrecap.role.attribute = attribute role { text }
+
+   productionrecap.attr =
+      productionrecap.role.attribute?
+    & common.attributes
+    & common.linking.attributes.req
+
+   db.productionrecap =
+      element productionrecap {
+         productionrecap.attr,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "constraintdef" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   constraintdef.role.attribute = attribute role { text }
+
+   constraintdef.attr =
+      constraintdef.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   constraintdef.info = docbook.info.titleonly
+
+   db.constraintdef =
+      element constraintdef {
+         constraintdef.attr,
+         constraintdef.info,
+         blocks+
+      }
+}
+

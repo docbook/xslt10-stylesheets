@@ -10,50 +10,220 @@
 # Release: $Id$
 #
 
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng/absinthe"
+default namespace = "http://docbook.org/docbook-ng/absinthe"
+
 navigation.components |= db.bibliography
+
 list.blocks |= db.bibliolist
 
 info.elements |= db.bibliomisc | db.bibliomset | db.bibliorelation | db.biblioset
 
-relation.attribute = attribute relation { text }?
+relation.attribute = attribute relation { text }
 
-db.biblioentry = element biblioentry { bibliographic.elements+ }
+# ======================================================================
 
-db.bibliomixed = element bibliomixed { (text | bibliographic.elements)* }
+[
+   db:refname [ "biblioentry" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-biblioset.relation.attrib = relation.attribute
-db.biblioset = element biblioset { bibliographic.elements+ }
+   biblioentry.role.attribute = attribute role { text }
 
-bibliomset.relation.attrib = relation.attribute
-db.bibliomset = element bibliomset { (docbook.text | bibliographic.elements)* }
+   biblioentry.attr =
+      biblioentry.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-db.bibliomisc = element bibliomisc { docbook.text }
+   db.biblioentry =
+      element biblioentry {
+         biblioentry.attr,
+         bibliographic.elements+
+      }
+}
 
-bibliography.status.attrib = status.attribute?
-bibliography.label.attrib = label.attribute?
-bibliography.info = docbook.info
-db.bibliography =
-   element bibliography {
-      bibliography.info,
-      blocks*,
-      (db.bibliodiv+ | (db.biblioentry | db.bibliomixed)+)
-   }
+# ======================================================================
 
-bibliodiv.status.attrib = status.attribute?
-bibliodiv.label.attrib = label.attribute?
-bibliodiv.info = docbook.info.titlereq
-db.bibliodiv =
-   element bibliodiv {
-      bibliodiv.info,
-      blocks*,
-      (db.biblioentry | db.bibliomixed)+
-   }
+[
+   db:refname [ "bibliomixed" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-bibliolist.info = docbook.info.titleonly
-db.bibliolist =
-   element bibliolist {
-      bibliolist.info?,
-      blocks*,
-      (db.biblioentry | db.bibliomixed)+
-   }
+   bibliomixed.role.attribute = attribute role { text }
+
+   bibliomixed.attr =
+      bibliomixed.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.bibliomixed =
+      element bibliomixed {
+         bibliomixed.attr,
+         (text | bibliographic.elements)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "biblioset" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   biblioset.relation.attrib = relation.attribute
+
+   biblioset.role.attribute = attribute role { text }
+
+   biblioset.attr =
+      biblioset.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & biblioset.relation.attrib?
+
+   db.biblioset =
+      element biblioset {
+         biblioset.attr,
+         bibliographic.elements+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "bibliomset" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   bibliomset.relation.attrib = relation.attribute
+
+   bibliomset.role.attribute = attribute role { text }
+
+   bibliomset.attr =
+      bibliomset.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & bibliomset.relation.attrib?
+
+   db.bibliomset =
+      element bibliomset {
+         bibliomset.attr,
+         (docbook.text | bibliographic.elements)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "bibliomisc" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   bibliomisc.role.attribute = attribute role { text }
+
+   bibliomisc.attr =
+      bibliomisc.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.bibliomisc =
+      element bibliomisc {
+         bibliomisc.attr,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "bibliography" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   bibliography.status.attrib = status.attribute
+
+   bibliography.role.attribute = attribute role { text }
+
+   bibliography.attr =
+      bibliography.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & label.attribute?
+    & bibliography.status.attrib?
+
+   bibliography.info = docbook.info
+
+   db.bibliography =
+      element bibliography {
+         bibliography.attr,
+         bibliography.info,
+         blocks*,
+         (db.bibliodiv+ | (db.biblioentry | db.bibliomixed)+)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "bibliodiv" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   bibliodiv.status.attrib = status.attribute
+
+   bibliodiv.role.attribute = attribute role { text }
+
+   bibliodiv.attr =
+      bibliodiv.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & label.attribute?
+    & bibliodiv.status.attrib?
+
+   bibliodiv.info = docbook.info.titlereq
+
+   db.bibliodiv =
+      element bibliodiv {
+         bibliodiv.attr,
+         bibliodiv.info,
+         blocks*,
+         (db.biblioentry | db.bibliomixed)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "bibliolist" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   bibliolist.role.attribute = attribute role { text }
+
+   bibliolist.attr =
+      bibliolist.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   bibliolist.info = docbook.info.titleonly
+
+   db.bibliolist =
+      element bibliolist {
+         bibliolist.attr,
+         bibliolist.info?,
+         blocks*,
+         (db.biblioentry | db.bibliomixed)+
+      }
+}
+
 

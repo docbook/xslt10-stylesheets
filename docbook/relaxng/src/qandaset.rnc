@@ -1,0 +1,168 @@
+# This file is part of DocBook NG: The "Absinthe" Release.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.3
+# Release: $Id$
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng/absinthe"
+default namespace = "http://docbook.org/docbook-ng/absinthe"
+
+list.blocks |= db.qandaset
+
+# ======================================================================
+
+[
+   db:refname [ "qandaset" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   qandaset.role.attribute = attribute role { text }
+
+   qandaset.attr =
+      qandaset.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & attribute defaultlabel { "none" | "number" | "qanda" }?
+
+   qandaset.info = docbook.info.titleonly
+
+   db.qandaset =
+      element qandaset {
+         qandaset.attr,
+         qandaset.info,
+         blocks*,
+         (db.qandadiv+ | db.qandaentry+)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "qandadiv" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   qandadiv.role.attribute = attribute role { text }
+
+   qandadiv.attr =
+      qandadiv.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   qandadiv.info = docbook.info.titleonly
+
+   db.qandadiv =
+      element qandadiv {
+         qandadiv.attr,
+         qandadiv.info,
+         blocks*,
+         (db.qandadiv+ | db.qandaentry+)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "qandaentry" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   qandaentry.role.attribute = attribute role { text }
+
+   qandaentry.attr =
+      qandaentry.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   qandaentry.info = docbook.info.titleforbidden
+
+   db.qandaentry =
+      element qandaentry {
+         qandaentry.attr,
+         qandaentry.info,
+         db.question,
+         db.answer*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "question" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   question.role.attribute = attribute role { text }
+
+   question.attr =
+      question.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.question =
+      element question {
+         question.attr,
+         db.label?,
+         blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "answer" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   answer.role.attribute = attribute role { text }
+
+   answer.attr =
+      answer.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.answer =
+      element answer {
+         answer.attr,
+         db.label?,
+         blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "label" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   label.role.attribute = attribute role { text }
+
+   label.attr =
+      label.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   db.label =
+      element label {
+         label.attr,
+         docbook.text
+      }
+}
+

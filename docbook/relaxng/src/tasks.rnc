@@ -11,25 +11,113 @@
 #
 # ======================================================================
 
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng/absinthe"
+default namespace = "http://docbook.org/docbook-ng/absinthe"
+
 technical.blocks |= db.task
 
 task.info = docbook.info.titleonly
 
-db.task = element task { task.info,
-                         db.tasksummary?,
-			 db.taskprerequisites?,
-			 db.procedure,
-			 db.example*,
-			 db.taskrelated? }
+# ======================================================================
 
-tasksummary.info = docbook.info.titleonly
+[
+   db:refname [ "task" ]
+   db:refpurpose [ "" ]
+]
+div {
 
-db.tasksummary = element tasksummary { tasksummary.info, blocks+ }
+   task.role.attribute = attribute role { text }
 
-taskprerequisites.info = docbook.info.titleonly
+   task.attr =
+      task.role.attribute?
+    & common.attributes
+    & common.linking.attributes
 
-db.taskprerequisites = element taskprerequisites { taskprerequisites.info, blocks+ }
+   db.task =
+      element task {
+         task.attr,
+         task.info,
+         db.tasksummary?,
+         db.taskprerequisites?,
+         db.procedure,
+         db.example*,
+         db.taskrelated?
+      }
+}
 
-taskrelated.info = docbook.info.titleonly
+# ======================================================================
 
-db.taskrelated = element taskrelated { taskrelated.info, blocks+ }
+[
+   db:refname [ "tasksummary" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   tasksummary.role.attribute = attribute role { text }
+
+   tasksummary.attr =
+      tasksummary.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   tasksummary.info = docbook.info.titleonly
+
+   db.tasksummary =
+      element tasksummary {
+         tasksummary.attr,
+         tasksummary.info,
+         blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "taskprerequisites" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   taskprerequisites.role.attribute = attribute role { text }
+
+   taskprerequisites.attr =
+      taskprerequisites.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   taskprerequisites.info = docbook.info.titleonly
+
+   db.taskprerequisites =
+      element taskprerequisites {
+         taskprerequisites.attr,
+         taskprerequisites.info,
+         blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "taskrelated" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   taskrelated.role.attribute = attribute role { text }
+
+   taskrelated.attr =
+      taskrelated.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+
+   taskrelated.info = docbook.info.titleonly
+
+   db.taskrelated =
+      element taskrelated {
+         taskrelated.attr,
+         taskrelated.info,
+         blocks+
+      }
+}
