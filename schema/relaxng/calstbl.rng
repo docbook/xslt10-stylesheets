@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<grammar datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
-         xmlns="http://relaxng.org/ns/structure/0.9"
-          xmlns:a="http://relaxng.org/ns/compatibility/annotations/0.9">
-
+<grammar datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
 <!-- ...................................................................... -->
-<!-- DocBook XML CALS Table Model V4.1.2 .................................... -->
+<!-- DocBook CALS Table Model V4.2 ........................................ -->
 <!-- File calstblx.mod .................................................... -->
-<!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
+<!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
      O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
-     Corporation, Norman Walsh and the Organization for the Advancement
-     of Structured Information Standards (OASIS).
+     Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+     Organization for the Advancement of Structured Information
+     Standards (OASIS).
 
      This DTD is based on the CALS Table Model
      PUBLIC "-//USA-DOD//DTD Table Model 951010//EN"
 
      $Id$
 
-     Permission to use, copy, modify and distribute the DocBook XML DTD
+     Permission to use, copy, modify and distribute the DocBook DTD
      and its accompanying documentation for any purpose and without fee
      is hereby granted in perpetuity, provided that the above copyright
      notice and this paragraph appear in all copies.  The copyright
@@ -24,7 +22,7 @@
      any purpose.  It is provided "as is" without expressed or implied
      warranty.
 
-     If you modify the DocBook XML DTD in any way, except for declaring and
+     If you modify the DocBook DTD in any way, except for declaring and
      referencing additional sets of general entities and declaring
      additional notations, label your DTD as a variant of DocBook.  See
      the maintenance documentation for more information.
@@ -34,17 +32,14 @@
      information, see http://www.oasis-open.org/docbook/.
 -->
 <!-- ...................................................................... -->
-
 <!-- This module contains the definitions for the CALS Table Model
      converted to XML.
 -->
-
-<!-- These definitions are not directly related to the table model, but are 
-     used in the default CALS table model and are usually defined elsewhere 
+<!-- These definitions are not directly related to the table model, but are
+     used in the default CALS table model and are usually defined elsewhere
      (and prior to the inclusion of this table module) in a CALS DTD. -->
 <!-- no if zero(s),
                                 yes if any other digits value -->
-
   <define name="yesorno">
     <data type="string"/>
   </define>
@@ -53,7 +48,6 @@
       <ref name="title"/>
     </optional>
   </define>
-
 <!-- default for use in entry content -->
 <!--
 The parameter entities as defined below provide the CALS table model
@@ -504,6 +498,6 @@ of the current application.
     </optional>
     <ref name="secur"/>
   </define>
-<!-- End of DocBook XML CALS Table Model V4.1.2 ............................. -->
+<!-- End of DocBook CALS Table Model V4.2 ................................. -->
 <!-- ...................................................................... -->
 </grammar>
