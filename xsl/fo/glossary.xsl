@@ -164,6 +164,11 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
+      <xsl:call-template name="set.flow.properties">
+        <xsl:with-param name="element" select="local-name(.)"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
+
       <xsl:call-template name="make-glossary"/>
     </fo:flow>
   </fo:page-sequence>
@@ -455,6 +460,11 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
+      <xsl:call-template name="set.flow.properties">
+        <xsl:with-param name="element" select="local-name(.)"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
+
       <xsl:call-template name="make-auto-glossary"/>
     </fo:flow>
   </fo:page-sequence>
