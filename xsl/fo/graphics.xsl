@@ -80,6 +80,8 @@ FIXME: make is.graphic.* work correctly depending on the backend!
         <xsl:value-of select="unparsed-entity-uri(@entityref)"/>
       </xsl:when>
       <xsl:when test="@fileref">
+        <!-- FIXME: is this right? What if @fileref is a relative -->
+        <!-- URI? What if @fileref contains backslashes? -->
         <xsl:text>file:</xsl:text>
         <xsl:value-of select="@fileref"/>
       </xsl:when>
@@ -152,7 +154,8 @@ FIXME: make is.graphic.* work correctly depending on the backend!
 
   <xsl:choose>
     <xsl:when test="$passivetex.extensions != 0
-                    or $fop.extensions != 0">
+                    or $fop.extensions != 0
+                    or $arbortext.extensions != 0">
       <fo:external-graphic src="{$filename}"
                            content-width="{$width}"
                            content-height="{$height}"
