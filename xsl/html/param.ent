@@ -67,6 +67,7 @@
 <!ENTITY htmlhelp.alias.file SYSTEM "../params/htmlhelp.alias.file.xml">
 <!ENTITY htmlhelp.autolabel SYSTEM "../params/htmlhelp.autolabel.xml">
 <!ENTITY htmlhelp.chm SYSTEM "../params/htmlhelp.chm.xml">
+<!ENTITY htmlhelp.default.topic SYSTEM "../params/htmlhelp.default.topic.xml">
 <!ENTITY htmlhelp.encoding SYSTEM "../params/htmlhelp.encoding.xml">
 <!ENTITY htmlhelp.enumerate.images SYSTEM "../params/htmlhelp.enumerate.images.xml">
 <!ENTITY htmlhelp.force.map.and.alias SYSTEM "../params/htmlhelp.force.map.and.alias.xml">

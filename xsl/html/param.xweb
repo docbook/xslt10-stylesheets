@@ -252,6 +252,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &htmlhelp.encoding;
 &htmlhelp.autolabel;
 &htmlhelp.chm;
+&htmlhelp.default.topic;
 &htmlhelp.hhp;
 &htmlhelp.hhc;
 &htmlhelp.hhp.tail;
@@ -357,6 +358,7 @@ around all these parameters.</para>
 <src:fragref linkend="htmlhelp.alias.file.frag"/>
 <src:fragref linkend="htmlhelp.autolabel.frag"/>
 <src:fragref linkend="htmlhelp.chm.frag"/>
+<src:fragref linkend="htmlhelp.default.topic.frag"/>
 <src:fragref linkend="htmlhelp.encoding.frag"/>
 <src:fragref linkend="htmlhelp.enumerate.images.frag"/>
 <src:fragref linkend="htmlhelp.force.map.and.alias.frag"/>
