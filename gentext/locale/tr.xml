@@ -257,6 +257,12 @@
 
 </context>
 
+<context name="styles">
+
+<template name="person-name">first-last</template>
+
+</context>
+
 <context name="title-unnumbered">
 
 <template name="appendix">%t</template>

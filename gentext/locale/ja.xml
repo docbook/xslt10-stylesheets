@@ -184,6 +184,12 @@
 <dingbat key="nestedendquote" text="&#x300f;"/>
 <dingbat key="bullet" text="&#x25cf;"/>
 
+<context name="styles">
+
+<template name="person-name">family-given</template>
+
+</context>
+
 <context name="title">
 
 <template name="abstract">%t</template>

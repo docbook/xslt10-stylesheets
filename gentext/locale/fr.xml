@@ -186,6 +186,12 @@
 <dingbat key="nestedendquote" text="&#x00BB;"/>
 <dingbat key="bullet" text="&#x2022;"/>
 
+<context name="styles">
+
+<template name="person-name">first-last</template>
+
+</context>
+
 <context name="title">
 
 <template name="abstract">%t</template>
