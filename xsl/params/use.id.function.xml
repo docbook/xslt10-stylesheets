@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="use.id.function">
 <refmeta>
 <refentrytitle>use.id.function</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="use.id.function"><xsl:param name="use.id.function" select="'1'"/></src:fragment>
+<src:fragment id='use.id.function.frag'><xsl:param name="use.id.function" select="'1'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

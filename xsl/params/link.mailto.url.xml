@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="link.mailto.url">
 <refmeta>
 <refentrytitle>link.mailto.url</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="link.mailto.url"><xsl:param name="link.mailto.url"/></src:fragment>
+<src:fragment id='link.mailto.url.frag'><xsl:param name="link.mailto.url"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

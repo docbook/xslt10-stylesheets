@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="annotate.toc">
 <refmeta>
 <refentrytitle>annotate.toc</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="annotate.toc"><xsl:param name="annotate.toc" select="1"/></src:fragment>
+<src:fragment id='annotate.toc.frag'><xsl:param name="annotate.toc" select="1"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

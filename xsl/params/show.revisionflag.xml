@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="show.revisionflag">
 <refmeta>
 <refentrytitle>show.revisionflag</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="show.revisionflag"><xsl:param name="show.revisionflag">0</xsl:param></src:fragment>
+<src:fragment id='show.revisionflag.frag'><xsl:param name="show.revisionflag">0</xsl:param></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

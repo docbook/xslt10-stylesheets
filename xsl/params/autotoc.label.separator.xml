@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="autotoc.label.separator">
 <refmeta>
 <refentrytitle>autotoc.label.separator</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="autotoc.label.separator"><xsl:param name="autotoc.label.separator" select="'. '"/></src:fragment>
+<src:fragment id='autotoc.label.separator.frag'><xsl:param name="autotoc.label.separator" select="'. '"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

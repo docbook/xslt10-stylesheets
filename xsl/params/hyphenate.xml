@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="hyphenate">
 <refmeta>
 <refentrytitle>hyphenate</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="hyphenate"><xsl:param name="hyphenate">true</xsl:param></src:fragment>
+<src:fragment id='hyphenate.frag'><xsl:param name="hyphenate">true</xsl:param></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

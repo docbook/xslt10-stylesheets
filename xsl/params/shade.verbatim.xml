@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="shade.verbatim">
 <refmeta>
 <refentrytitle>shade.verbatim</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="shade.verbatim"><xsl:param name="shade.verbatim" select="0"/></src:fragment>
+<src:fragment id='shade.verbatim.frag'><xsl:param name="shade.verbatim" select="0"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="use.id.as.filename">
 <refmeta>
 <refentrytitle>use.id.as.filename</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="use.id.as.filename"><xsl:param name="use.id.as.filename" select="'0'"/></src:fragment>
+<src:fragment id='use.id.as.filename.frag'><xsl:param name="use.id.as.filename" select="'0'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

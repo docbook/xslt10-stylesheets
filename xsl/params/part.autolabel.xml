@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="part.autolabel">
 <refmeta>
 <refentrytitle>part.autolabel</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="part.autolabel"><xsl:param name="part.autolabel" select="1"/></src:fragment>
+<src:fragment id='part.autolabel.frag'><xsl:param name="part.autolabel" select="1"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

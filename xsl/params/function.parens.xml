@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="function.parens">
 <refmeta>
 <refentrytitle>function.parens</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="function.parens"><xsl:param name="function.parens">0</xsl:param></src:fragment>
+<src:fragment id='function.parens.frag'><xsl:param name="function.parens">0</xsl:param></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="phrase.propagates.style">
 <refmeta>
 <refentrytitle>phrase.propagates.style</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="phrase.propagates.style"><xsl:param name="phrase.propagates.style" select="1"/></src:fragment>
+<src:fragment id='phrase.propagates.style.frag'><xsl:param name="phrase.propagates.style" select="1"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

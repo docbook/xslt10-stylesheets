@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="refentry.generate.name">
 <refmeta>
 <refentrytitle>refentry.generate.name</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="refentry.generate.name"><xsl:param name="refentry.generate.name" select="1"/></src:fragment>
+<src:fragment id='refentry.generate.name.frag'><xsl:param name="refentry.generate.name" select="1"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

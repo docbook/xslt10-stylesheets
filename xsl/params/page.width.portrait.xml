@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="page.width.portrait">
 <refmeta>
 <refentrytitle>page.width.portrait</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="page.width.portrait"><xsl:param name="page.width.portrait">
+<src:fragment id='page.width.portrait.frag'><xsl:param name="page.width.portrait">
   <xsl:choose>
     <xsl:when test="$paper.type = 'USletter'">8.5in</xsl:when>
     <xsl:when test="$paper.type = '4A0'">1682mm</xsl:when>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="author.othername.in.middle">
 <refmeta>
 <refentrytitle>author.othername.in.middle</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -10,7 +10,7 @@ middle name?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="author.othername.in.middle"><xsl:param name="author.othername.in.middle" select="1"/></src:fragment>
+<src:fragment id='author.othername.in.middle.frag'><xsl:param name="author.othername.in.middle" select="1"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

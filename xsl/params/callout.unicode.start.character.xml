@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="callout.unicode.start.character">
 <refmeta>
 <refentrytitle>callout.unicode.start.character</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="callout.unicode.start.character"><xsl:param name="callout.unicode.start.character" select="10102"/></src:fragment>
+<src:fragment id='callout.unicode.start.character.frag'><xsl:param name="callout.unicode.start.character" select="10102"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

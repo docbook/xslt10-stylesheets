@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="paper.type">
 <refmeta>
 <refentrytitle>paper.type</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="paper.type"><xsl:param name="paper.type" select="'USletter'"/></src:fragment>
+<src:fragment id='paper.type.frag'><xsl:param name="paper.type" select="'USletter'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

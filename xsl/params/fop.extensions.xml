@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="fop.extensions">
 <refmeta>
 <refentrytitle>fop.extensions</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="fop.extensions"><xsl:param name="fop.extensions" select="0"/></src:fragment>
+<src:fragment id='fop.extensions.frag'><xsl:param name="fop.extensions" select="0"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

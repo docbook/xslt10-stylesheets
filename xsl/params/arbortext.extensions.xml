@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="arbortext.extensions">
 <refmeta>
 <refentrytitle>arbortext.extensions</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="arbortext.extensions"><xsl:param name="arbortext.extensions" select="0"/></src:fragment>
+<src:fragment id='arbortext.extensions.frag'><xsl:param name="arbortext.extensions" select="0"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

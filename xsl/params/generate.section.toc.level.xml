@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="generate.section.toc.level">
 <refmeta>
 <refentrytitle>generate.section.toc.level</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="generate.section.toc.level"><xsl:param name="generate.section.toc.level" select="0"/></src:fragment>
+<src:fragment id='generate.section.toc.level.frag'><xsl:param name="generate.section.toc.level" select="0"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

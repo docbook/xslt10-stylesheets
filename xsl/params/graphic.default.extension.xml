@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="graphic.default.extension">
 <refmeta>
 <refentrytitle>graphic.default.extension</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="graphic.default.extension"><xsl:param name="graphic.default.extension"/></src:fragment>
+<src:fragment id='graphic.default.extension.frag'><xsl:param name="graphic.default.extension"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

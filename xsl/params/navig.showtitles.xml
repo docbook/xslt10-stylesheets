@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="navig.showtitles">
 <refmeta>
 <refentrytitle>navig.showtitles</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="navig.showtitles"><xsl:param name="navig.showtitles">1</xsl:param></src:fragment>
+<src:fragment id='navig.showtitles.frag'><xsl:param name="navig.showtitles">1</xsl:param></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="column.count">
 <refmeta>
 <refentrytitle>column.count</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="column.count"><xsl:param name="column.count" select="'1'"/></src:fragment>
+<src:fragment id='column.count.frag'><xsl:param name="column.count" select="'1'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

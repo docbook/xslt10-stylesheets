@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="htmlhelp.hhp.tail">
 <refmeta>
 <refentrytitle>htmlhelp.hhp.tail</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="htmlhelp.hhp.tail">
+<src:fragment id='htmlhelp.hhp.tail.frag'>
 <xsl:param name="htmlhelp.hhp.tail"/>
 </src:fragment>
 </refsynopsisdiv>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="page.orientation">
 <refmeta>
 <refentrytitle>page.orientation</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="page.orientation"><xsl:param name="page.orientation" select="'portrait'"/></src:fragment>
+<src:fragment id='page.orientation.frag'><xsl:param name="page.orientation" select="'portrait'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

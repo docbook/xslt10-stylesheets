@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="linenumbering.everyNth">
 <refmeta>
 <refentrytitle>linenumbering.everyNth</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="linenumbering.everyNth"><xsl:param name="linenumbering.everyNth" select="'5'"/></src:fragment>
+<src:fragment id='linenumbering.everyNth.frag'><xsl:param name="linenumbering.everyNth" select="'5'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

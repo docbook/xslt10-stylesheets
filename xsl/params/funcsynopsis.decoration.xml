@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="funcsynopsis.decoration">
 <refmeta>
 <refentrytitle>funcsynopsis.decoration</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="funcsynopsis.decoration"><xsl:param name="funcsynopsis.decoration" select="1"/></src:fragment>
+<src:fragment id='funcsynopsis.decoration.frag'><xsl:param name="funcsynopsis.decoration" select="1"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

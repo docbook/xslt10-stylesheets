@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="using.chunker">
 <refmeta>
 <refentrytitle>using.chunker</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="using.chunker"><xsl:param name="using.chunker" select="0"/></src:fragment>
+<src:fragment id='using.chunker.frag'><xsl:param name="using.chunker" select="0"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="ebnf.table.bgcolor">
 <refmeta>
 <refentrytitle>ebnf.table.bgcolor</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="ebnf.table.bgcolor"><xsl:param name="ebnf.table.bgcolor" select="'#F5DCB3'"/></src:fragment>
+<src:fragment id='ebnf.table.bgcolor.frag'><xsl:param name="ebnf.table.bgcolor" select="'#F5DCB3'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="base.dir">
 <refmeta>
 <refentrytitle>base.dir</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="base.dir"><xsl:param name="base.dir" select="''"/></src:fragment>
+<src:fragment id='base.dir.frag'><xsl:param name="base.dir" select="''"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

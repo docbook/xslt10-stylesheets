@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="generate.qandadiv.toc">
 <refmeta>
 <refentrytitle>generate.qandadiv.toc</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="generate.qandadiv.toc"><xsl:param name="generate.qandadiv.toc">0</xsl:param></src:fragment>
+<src:fragment id='generate.qandadiv.toc.frag'><xsl:param name="generate.qandadiv.toc">0</xsl:param></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

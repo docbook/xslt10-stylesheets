@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="root.filename">
 <refmeta>
 <refentrytitle>root.filename</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="root.filename"><xsl:param name="root.filename" select="'index'"/></src:fragment>
+<src:fragment id='root.filename.frag'><xsl:param name="root.filename" select="'index'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

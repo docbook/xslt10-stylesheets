@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="default.units">
 <refmeta>
 <refentrytitle>default.units</refentrytitle>
 <refmiscinfo role="type">list</refmiscinfo>
@@ -16,7 +16,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="default.units"><xsl:param name="default.units" select="'pt'"/></src:fragment>
+<src:fragment id='default.units.frag'><xsl:param name="default.units" select="'pt'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

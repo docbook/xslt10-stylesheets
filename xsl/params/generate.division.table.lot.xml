@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="generate.division.table.lot">
 <refmeta>
 <refentrytitle>generate.division.table.lot</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="generate.division.table.lot"><xsl:param name="generate.division.table.lot" select="1"/></src:fragment>
+<src:fragment id='generate.division.table.lot.frag'><xsl:param name="generate.division.table.lot" select="1"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

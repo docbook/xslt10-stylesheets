@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="body.font.master">
 <refmeta>
 <refentrytitle>body.font.master</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="body.font.master"><xsl:param name="body.font.master">10</xsl:param></src:fragment>
+<src:fragment id='body.font.master.frag'><xsl:param name="body.font.master">10</xsl:param></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

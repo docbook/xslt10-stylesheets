@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="table.border.thickness">
 <refmeta>
 <refentrytitle>table.border.thickness</refentrytitle>
 <refmiscinfo role="type"></refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="table.border.thickness">
+<src:fragment id='table.border.thickness.frag'>
 <xsl:param name="table.border.thickness" select="'0.5pt'"/>
 </src:fragment>
 </refsynopsisdiv>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="toc.section.depth">
 <refmeta>
 <refentrytitle>toc.section.depth</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>
@@ -10,7 +10,7 @@ in the TOC?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="toc.section.depth"><xsl:param name="toc.section.depth">2</xsl:param></src:fragment>
+<src:fragment id='toc.section.depth.frag'><xsl:param name="toc.section.depth">2</xsl:param></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

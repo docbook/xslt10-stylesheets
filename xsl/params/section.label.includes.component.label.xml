@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="section.label.includes.component.label">
 <refmeta>
 <refentrytitle>section.label.includes.component.label</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="section.label.includes.component.label"><xsl:param name="section.label.includes.component.label" select="0"/></src:fragment>
+<src:fragment id='section.label.includes.component.label.frag'><xsl:param name="section.label.includes.component.label" select="0"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

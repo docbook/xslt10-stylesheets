@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="title.font.family">
 <refmeta>
 <refentrytitle>title.font.family</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="title.font.family"><xsl:param name="title.font.family">Helvetica</xsl:param></src:fragment>
+<src:fragment id='title.font.family.frag'><xsl:param name="title.font.family">Helvetica</xsl:param></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

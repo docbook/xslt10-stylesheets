@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="title.margin.left">
 <refmeta>
 <refentrytitle>title.margin.left</refentrytitle>
 <refmiscinfo role="type"></refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="title.margin.left">
+<src:fragment id='title.margin.left.frag'>
 <xsl:param name="title.margin.left" select="'-4pc'"/>
 </src:fragment>
 </refsynopsisdiv>

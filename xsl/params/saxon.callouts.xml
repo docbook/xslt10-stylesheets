@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="saxon.callouts">
 <refmeta>
 <refentrytitle>saxon.callouts</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="saxon.callouts"><xsl:param name="saxon.callouts" select="'1'"/></src:fragment>
+<src:fragment id='saxon.callouts.frag'><xsl:param name="saxon.callouts" select="'1'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

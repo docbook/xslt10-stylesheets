@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="chunk.datafile">
 <refmeta>
 <refentrytitle>chunk.datafile</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="chunk.datafile">
+<src:fragment id='chunk.datafile.frag'>
 <xsl:param name="chunk.datafile" select="'.chunks'"/>
 </src:fragment>
 </refsynopsisdiv>

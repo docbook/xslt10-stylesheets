@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="html.stylesheet">
 <refmeta>
 <refentrytitle>html.stylesheet</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="html.stylesheet"><xsl:param name="html.stylesheet" select="''"/></src:fragment>
+<src:fragment id='html.stylesheet.frag'><xsl:param name="html.stylesheet" select="''"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
