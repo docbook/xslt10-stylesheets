@@ -2,7 +2,10 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:rss="http://purl.org/rss/1.0/"
                 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-                exclude-result-prefixes="rss rdf"
+                xmlns:cvsf="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.CVS"
+                xmlns:cvs="http://nwalsh.com/rdf/cvs#"
+                xmlns:dc="http://purl.org/dc/elements/1.1/"
+                exclude-result-prefixes="rss rdf cvs dc cvsf"
                 version="1.0">
 
 <xsl:output method="html"/>
@@ -68,6 +71,28 @@
         <xsl:apply-templates/>
       </xsl:otherwise>
     </xsl:choose>
+
+    <xsl:if test="../dc:date|../cvs:date">
+      <xsl:choose>
+        <xsl:when test="../dc:date">
+          <xsl:text> (</xsl:text>
+          <xsl:value-of select="../dc:date[1]"/>
+          <xsl:text>)</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="timeString" select="cvsf:localTime(../cvs:date[1])"/>
+          <xsl:text> (</xsl:text>
+          <xsl:value-of select="substring($timeString, 1, 3)"/>
+          <xsl:text>, </xsl:text>
+          <xsl:value-of select="substring($timeString, 9, 2)"/>
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="substring($timeString, 5, 3)"/>
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="substring($timeString, 25, 4)"/>
+          <xsl:text>)</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
   </xsl:element>
 </xsl:template>
 
@@ -79,8 +104,8 @@
 
 <xsl:template match="rss:items">
   <dl>
-    <xsl:for-each select="rdf:Seq/rdf:li[@rdf:resource and @rdf:resource != '']">
-      <xsl:variable name="resource" select="@rdf:resource"/>
+    <xsl:for-each select="rdf:Seq/rdf:li[@resource and @resource != '']">
+      <xsl:variable name="resource" select="@resource"/>
       <xsl:variable name="item" select="//rss:item[@rdf:about = $resource]"/>
       <xsl:if test="not($item)">
         <xsl:message>
