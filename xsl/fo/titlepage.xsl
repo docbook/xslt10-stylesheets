@@ -70,8 +70,14 @@
 <xsl:attribute-set name="colophon.titlepage.recto.style"/>
 <xsl:attribute-set name="colophon.titlepage.verso.style"/>
 
-<xsl:attribute-set name="section.titlepage.recto.style"/>
-<xsl:attribute-set name="section.titlepage.verso.style"/>
+<xsl:attribute-set name="section.titlepage.recto.style">
+  <xsl:attribute name="keep-together">always</xsl:attribute>
+</xsl:attribute-set>
+
+<xsl:attribute-set name="section.titlepage.verso.style">
+  <xsl:attribute name="keep-together">always</xsl:attribute>
+  <xsl:attribute name="keep-with-next">always</xsl:attribute>
+</xsl:attribute-set>
 
 <xsl:attribute-set name="sect1.titlepage.recto.style"
                    use-attribute-sets="section.titlepage.recto.style"/>
@@ -168,9 +174,7 @@
 
 <xsl:template match="author" mode="titlepage.mode">
   <fo:wrapper>
-    <xsl:if test="@id">
-      <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:call-template name="person.name"/>
     <xsl:apply-templates select="affiliation" mode="titlepage.mode"/>
   </fo:wrapper>
