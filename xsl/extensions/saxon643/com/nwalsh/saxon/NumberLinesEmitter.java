@@ -60,6 +60,9 @@ public class NumberLinesEmitter extends CopyEmitter {
   /** The FO namespace name. */
   protected static String foURI = "http://www.w3.org/1999/XSL/Format";
 
+  /** The XHTML namespace name. */
+  protected static String xhURI = "http://www.w3.org/1999/xhtml";
+
   /** Every <code>modulus</code> line will be numbered. */
   protected int modulus = 5;
 
@@ -264,15 +267,20 @@ public class NumberLinesEmitter extends CopyEmitter {
    * @return True if the element is the outer-most block, false otherwise.
    */
   protected boolean skipThisElement(int nameCode) {
+    // FIXME: This is such a gross hack...
     if (firstElement) {
       int thisFingerprint    = namePool.getFingerprint(nameCode);
       int foBlockFingerprint = namePool.getFingerprint(foURI, "block");
       int htmlPreFingerprint = namePool.getFingerprint("", "pre");
       int htmlDivFingerprint = namePool.getFingerprint("", "div");
+      int xhtmlPreFingerprint = namePool.getFingerprint(xhURI, "pre");
+      int xhtmlDivFingerprint = namePool.getFingerprint(xhURI, "div");
 
       if ((foStylesheet && thisFingerprint == foBlockFingerprint)
 	  || (!foStylesheet && (thisFingerprint == htmlPreFingerprint
-				|| thisFingerprint == htmlDivFingerprint))) {
+				|| thisFingerprint == htmlDivFingerprint
+				|| thisFingerprint == xhtmlPreFingerprint
+				|| thisFingerprint == xhtmlDivFingerprint))) {
 	// Don't push the outer-most wrapping div, pre, or fo:block
 	return true;
       }
