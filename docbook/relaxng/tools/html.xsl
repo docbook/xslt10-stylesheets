@@ -251,6 +251,10 @@
     <li><em>EMPTY</em></li>
   </xsl:template>
 
+  <xsl:template match="rng:data">
+    <li><em><xsl:value-of select="@type"/></em></li>
+  </xsl:template>
+
   <xsl:template match="rng:nsName">
     <li>
       <em>any</em> element in the <tt><xsl:value-of select="@ns"/></tt> namespace
