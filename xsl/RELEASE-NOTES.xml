@@ -3,9 +3,9 @@
 <article>
   <articleinfo>
     <title>DocBook XSL Stylesheet Release Notes</title>
-    <pubdate>01 December 2004</pubdate>
+    <pubdate>$Date$</pubdate>
     <releaseinfo role="cvs">$Id$</releaseinfo> 
-    <corpauthor>DocBook Open Repository Team</corpauthor> 
+    <corpauthor>DocBook Project Development Team</corpauthor> 
   </articleinfo> 
   <para>These are the release notes for the DocBook XSL Stylesheets.
   At a minimum, this file attempts to document changes to the public
