@@ -205,10 +205,14 @@
 </xsl:template>
 
 <xsl:template match="figure/title"></xsl:template>
+<xsl:template match="figure/titleabbrev"></xsl:template>
 <xsl:template match="table/title"></xsl:template>
+<xsl:template match="table/titleabbrev"></xsl:template>
 <xsl:template match="table/textobject"></xsl:template>
 <xsl:template match="example/title"></xsl:template>
+<xsl:template match="example/titleabbrev"></xsl:template>
 <xsl:template match="equation/title"></xsl:template>
+<xsl:template match="equation/titleabbrev"></xsl:template>
 
 <xsl:template match="informalfigure">
   <xsl:call-template name="informal.object"/>
