@@ -96,7 +96,9 @@
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
     <xsl:attribute name="format">
-      <xsl:call-template name="page.number.format"/>
+      <xsl:call-template name="page.number.format">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
     </xsl:attribute>
     <xsl:choose>
       <xsl:when test="not(preceding::chapter
@@ -180,7 +182,9 @@
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
     <xsl:attribute name="format">
-      <xsl:call-template name="page.number.format"/>
+      <xsl:call-template name="page.number.format">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
     </xsl:attribute>
     <xsl:choose>
       <xsl:when test="$double.sided != 0">
@@ -245,7 +249,9 @@
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
     <xsl:attribute name="format">
-      <xsl:call-template name="page.number.format"/>
+      <xsl:call-template name="page.number.format">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
     </xsl:attribute>
 
     <!-- Page numbering for a preface doesn't restart; it continues from the ToC -->
@@ -325,7 +331,9 @@
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
     <xsl:attribute name="format">
-      <xsl:call-template name="page.number.format"/>
+      <xsl:call-template name="page.number.format">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
     </xsl:attribute>
     <xsl:choose>
       <xsl:when test="not(preceding::chapter
@@ -417,7 +425,9 @@
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
     <xsl:attribute name="format">
-      <xsl:call-template name="page.number.format"/>
+      <xsl:call-template name="page.number.format">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
     </xsl:attribute>
     <xsl:choose>
       <xsl:when test="not(preceding::chapter
@@ -510,7 +520,9 @@
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
     <xsl:attribute name="format">
-      <xsl:call-template name="page.number.format"/>
+      <xsl:call-template name="page.number.format">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
     </xsl:attribute>
     <xsl:choose>
       <xsl:when test="not(preceding::chapter
