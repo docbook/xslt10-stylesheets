@@ -189,16 +189,16 @@
 
     <xsl:choose>
       <xsl:when test="$xep.extensions != 0">
-        <xsl:if test="$refs[not(see) and not(seealso) and not(secondary)]">
+        <xsl:if test="$refs[not(see) and not(secondary)]">
           <xsl:text>, </xsl:text>
           <xsl:variable name="primary" select="&primary;"/>
           <xsl:variable name="primary.significant" select="concat(&primary;, $significant.flag)"/>
           <rx:page-index>
-            <xsl:if test="$refs[@significance='preferred'][not(see) and not(seealso) and not(secondary)]">
+            <xsl:if test="$refs[@significance='preferred'][not(see) and not(secondary)]">
               <rx:index-item xsl:use-attribute-sets="index.preferred.page.properties xep.index.item.properties"
                 ref-key="{$primary.significant}"/>
             </xsl:if>
-            <xsl:if test="$refs[not(@significance) or @significance!='preferred'][not(see) and not(seealso) and not(secondary)]">
+            <xsl:if test="$refs[not(@significance) or @significance!='preferred'][not(see) and not(secondary)]">
               <rx:index-item xsl:use-attribute-sets="xep.index.item.properties"
                 ref-key="{$primary}"/>
             </xsl:if>
@@ -207,7 +207,7 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:variable name="page-number-citations">
-          <xsl:for-each select="$refs[not(see) and not(seealso)
+          <xsl:for-each select="$refs[not(see) 
                                 and not(secondary)]">
             <xsl:apply-templates select="." mode="reference">
               <xsl:with-param name="scope" select="$scope"/>
@@ -277,13 +277,13 @@
 
     <xsl:choose>
       <xsl:when test="$xep.extensions != 0">
-        <xsl:if test="$refs[not(see) and not(seealso) and not(tertiary)]">
+        <xsl:if test="$refs[not(see) and not(tertiary)]">
           <xsl:text>, </xsl:text>
           <xsl:variable name="primary" select="&primary;"/>
           <xsl:variable name="secondary" select="&secondary;"/>
           <xsl:variable name="primary.significant" select="concat(&primary;, $significant.flag)"/>
           <rx:page-index>
-            <xsl:if test="$refs[@significance='preferred'][not(see) and not(seealso) and not(tertiary)]">
+            <xsl:if test="$refs[@significance='preferred'][not(see) and not(tertiary)]">
               <rx:index-item xsl:use-attribute-sets="index.preferred.page.properties xep.index.item.properties">
                 <xsl:attribute name="ref-key">
                   <xsl:value-of select="$primary.significant"/>
@@ -292,7 +292,7 @@
                 </xsl:attribute>
               </rx:index-item>
             </xsl:if>
-            <xsl:if test="$refs[not(@significance) or @significance!='preferred'][not(see) and not(seealso) and not(tertiary)]">
+            <xsl:if test="$refs[not(@significance) or @significance!='preferred'][not(see) and not(tertiary)]">
               <rx:index-item xsl:use-attribute-sets="xep.index.item.properties">
                 <xsl:attribute name="ref-key">
                   <xsl:value-of select="$primary"/>
@@ -306,7 +306,7 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:variable name="page-number-citations">
-          <xsl:for-each select="$refs[not(see) and not(seealso)
+          <xsl:for-each select="$refs[not(see) 
                                 and not(tertiary)]">
             <xsl:apply-templates select="." mode="reference">
               <xsl:with-param name="scope" select="$scope"/>
@@ -375,14 +375,14 @@
 
     <xsl:choose>
       <xsl:when test="$xep.extensions != 0">
-        <xsl:if test="$refs[not(see) and not(seealso)]">
+        <xsl:if test="$refs[not(see)]">
           <xsl:text>, </xsl:text>
           <xsl:variable name="primary" select="&primary;"/>
           <xsl:variable name="secondary" select="&secondary;"/>
           <xsl:variable name="tertiary" select="&tertiary;"/>
           <xsl:variable name="primary.significant" select="concat(&primary;, $significant.flag)"/>
           <rx:page-index>
-            <xsl:if test="$refs[@significance='preferred'][not(see) and not(seealso)]">
+            <xsl:if test="$refs[@significance='preferred'][not(see)]">
               <rx:index-item xsl:use-attribute-sets="index.preferred.page.properties xep.index.item.properties">
                 <xsl:attribute name="ref-key">
                   <xsl:value-of select="$primary.significant"/>
@@ -393,7 +393,7 @@
                 </xsl:attribute>
               </rx:index-item>
             </xsl:if>
-            <xsl:if test="$refs[not(@significance) or @significance!='preferred'][not(see) and not(seealso)]">
+            <xsl:if test="$refs[not(@significance) or @significance!='preferred'][not(see)]">
               <rx:index-item xsl:use-attribute-sets="xep.index.item.properties">
                 <xsl:attribute name="ref-key">
                   <xsl:value-of select="$primary"/>
@@ -409,7 +409,7 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:variable name="page-number-citations">
-          <xsl:for-each select="$refs[not(see) and not(seealso)]">
+          <xsl:for-each select="$refs[not(see)]">
             <xsl:apply-templates select="." mode="reference">
               <xsl:with-param name="scope" select="$scope"/>
               <xsl:with-param name="role" select="$role"/>
