@@ -69,6 +69,7 @@
 
 <xsl:template match="blockquote">
   <fo:block xsl:use-attribute-sets="blockquote.properties">
+    <xsl:call-template name="anchor"/>
     <fo:block>
       <xsl:if test="title">
         <fo:block xsl:use-attribute-sets="formal.title.properties">
@@ -90,6 +91,7 @@
 
 <xsl:template match="epigraph">
   <fo:block>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates select="para"/>
     <fo:inline>
       <xsl:text>--</xsl:text>
