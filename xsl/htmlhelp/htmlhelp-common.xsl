@@ -3,8 +3,9 @@
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:set="http://exslt.org/sets"
+                xmlns:h="urn:x-hex"
 		version="1.0"
-                exclude-result-prefixes="doc exsl set">
+                exclude-result-prefixes="doc exsl set h">
 
 <!-- ********************************************************************
      $Id$
@@ -14,6 +15,10 @@
 <!-- Customizations of standard HTML stylesheet parameters -->
 
 <xsl:param name="suppress.navigation" select="1"/>
+
+<!-- ==================================================================== -->
+
+<xsl:variable name="generate.index" select="//indexterm[1]"/>
 
 <!-- ==================================================================== -->
 
@@ -46,6 +51,9 @@
     <xsl:call-template name="hh-map"/>
     <xsl:call-template name="hh-alias"/>
   </xsl:if>
+  <xsl:if test="$generate.index">
+    <xsl:call-template name="hhk"/>
+  </xsl:if>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -63,39 +71,79 @@
 
 <!-- ==================================================================== -->
 <xsl:template name="hhp-main">
+<xsl:variable name="default.topic">
+  <xsl:choose>
+    <xsl:when test="$htmlhelp.default.topic != ''">
+      <xsl:value-of select="$htmlhelp.default.topic"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="make-relative-filename">
+        <xsl:with-param name="base.dir" select="$base.dir"/>
+        <xsl:with-param name="base.name">
+          <xsl:choose>
+            <xsl:when test="$rootid != ''">
+              <xsl:apply-templates select="key('id',$rootid)" mode="chunk-filename"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="/" mode="chunk-filename"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:variable>
+<xsl:variable name="xnavigation">
+  <xsl:text>0x</xsl:text>
+  <xsl:call-template name="toHex">
+    <xsl:with-param name="n" select="9504 + $htmlhelp.show.menu * 65536
+                                          + $htmlhelp.show.advanced.search * 131072
+                                          + $htmlhelp.show.favorities * 4096"/>
+  </xsl:call-template>
+</xsl:variable>
+<xsl:variable name="xbuttons">
+  <xsl:text>0x</xsl:text>
+  <xsl:call-template name="toHex">
+    <xsl:with-param name="n" select="0 + $htmlhelp.button.hideshow * 2
+                                       + $htmlhelp.button.back * 4
+                                       + $htmlhelp.button.forward * 8
+                                       + $htmlhelp.button.stop * 16
+                                       + $htmlhelp.button.refresh * 32
+                                       + $htmlhelp.button.home * 64
+                                       + $htmlhelp.button.options * 4096
+                                       + $htmlhelp.button.print * 8192
+                                       + $htmlhelp.button.locate * 2048
+                                       + $htmlhelp.button.jump1 * 262144
+                                       + $htmlhelp.button.jump2 * 524288
+                                       + $htmlhelp.button.next * 2097152
+                                       + $htmlhelp.button.prev * 4194304
+                                       + $htmlhelp.button.zoom * 1048576"/>
+  </xsl:call-template>
+</xsl:variable>
 <xsl:text>[OPTIONS]
 </xsl:text>
-<xsl:if test="//indexterm">
+<xsl:if test="$generate.index">
 <xsl:text>Auto Index=Yes
+</xsl:text></xsl:if>
+<xsl:if test="$htmlhelp.hhc.binary != 0">
+<xsl:text>Binary TOC=Yes
 </xsl:text></xsl:if>
 <xsl:text>Compatibility=1.1 or later
 Compiled file=</xsl:text><xsl:value-of select="$htmlhelp.chm"/><xsl:text>
 Contents file=</xsl:text><xsl:value-of select="$htmlhelp.hhc"/><xsl:text>
-Default topic=</xsl:text>
-<xsl:choose>
-  <xsl:when test="$htmlhelp.default.topic != ''">
-    <xsl:value-of select="$htmlhelp.default.topic"/>
-  </xsl:when>
-  <xsl:otherwise>
-    <xsl:call-template name="make-relative-filename">
-      <xsl:with-param name="base.dir" select="$base.dir"/>
-      <xsl:with-param name="base.name">
-        <xsl:choose>
-          <xsl:when test="$rootid != ''">
-            <xsl:apply-templates select="key('id',$rootid)" mode="chunk-filename"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates select="/" mode="chunk-filename"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:with-param>
-    </xsl:call-template>
-  </xsl:otherwise>
-</xsl:choose>
+</xsl:text>
+<xsl:if test="$htmlhelp.hhp.window != ''">
+<xsl:text>Default Window=</xsl:text><xsl:value-of select="$htmlhelp.hhp.window"/><xsl:text>
+</xsl:text></xsl:if>
+<xsl:text>Default topic=</xsl:text><xsl:value-of select="$default.topic"/>
 <xsl:text>
 Display compile progress=No
 Full-text search=Yes
-Language=</xsl:text>
+</xsl:text>
+<xsl:if test="$generate.index">
+<xsl:text>Index file=</xsl:text><xsl:value-of select="$htmlhelp.hhk"/><xsl:text>
+</xsl:text></xsl:if>
+<xsl:text>Language=</xsl:text>
 <xsl:if test="//@lang">
   <xsl:variable name="lang" select="//@lang[1]"/>
   <xsl:value-of select="document('langcodes.xml')//gentext[@lang=string($lang)]"/>
@@ -120,6 +168,59 @@ Title=</xsl:text>
       <xsl:value-of select="$htmlhelp.title"/>
     </xsl:otherwise>
   </xsl:choose>
+
+<xsl:if test="$htmlhelp.hhp.window != ''">
+  <xsl:text>
+[WINDOWS]
+</xsl:text>
+<xsl:value-of select="$htmlhelp.hhp.window"/>
+<xsl:text>=,"</xsl:text><xsl:value-of select="$htmlhelp.hhc"/>
+<xsl:text>",</xsl:text>
+<xsl:if test="$generate.index">
+  <xsl:text>"</xsl:text>
+  <xsl:value-of select="$htmlhelp.hhk"/>
+  <xsl:text>"</xsl:text>
+</xsl:if>
+<xsl:text>,"</xsl:text>
+<xsl:value-of select="$default.topic"/>
+<xsl:text>",</xsl:text>
+<xsl:if test="$htmlhelp.button.home != 0">
+  <xsl:text>"</xsl:text>
+  <xsl:value-of select="$htmlhelp.button.home.url"/>
+  <xsl:text>"</xsl:text>
+</xsl:if>
+<xsl:text>,</xsl:text>
+<xsl:if test="$htmlhelp.button.jump1 != 0">
+  <xsl:text>"</xsl:text>
+  <xsl:value-of select="$htmlhelp.button.jump1.url"/>
+  <xsl:text>"</xsl:text>
+</xsl:if>
+<xsl:text>,</xsl:text>
+<xsl:if test="$htmlhelp.button.jump1 != 0">
+  <xsl:text>"</xsl:text>
+  <xsl:value-of select="$htmlhelp.button.jump1.title"/>
+  <xsl:text>"</xsl:text>
+</xsl:if>
+<xsl:text>,</xsl:text>
+<xsl:if test="$htmlhelp.button.jump2 != 0">
+  <xsl:text>"</xsl:text>
+  <xsl:value-of select="$htmlhelp.button.jump2.url"/>
+  <xsl:text>"</xsl:text>
+</xsl:if>
+<xsl:text>,</xsl:text>
+<xsl:if test="$htmlhelp.button.jump2 != 0">
+  <xsl:text>"</xsl:text>
+  <xsl:value-of select="$htmlhelp.button.jump2.title"/>
+  <xsl:text>"</xsl:text>
+</xsl:if>
+<xsl:text>,</xsl:text>
+<xsl:value-of select="$xnavigation"/>
+<xsl:text>,,</xsl:text>
+<xsl:value-of select="$xbuttons"/>
+<xsl:text>,,,,,,,,0
+</xsl:text>
+</xsl:if>
+
 <xsl:text>
 
 [FILES]
@@ -703,6 +804,23 @@ Title=</xsl:text>
 
 <!-- ==================================================================== -->
 
+<xsl:template name="hhk">
+  <xsl:call-template name="write.text.chunk">
+    <xsl:with-param name="filename" select="$htmlhelp.hhk"/>
+    <xsl:with-param name="method" select="'text'"/>
+    <xsl:with-param name="content"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+</HEAD><BODY>
+<UL>
+</UL>
+</BODY></HTML>]]></xsl:with-param>
+    <xsl:with-param name="encoding" select="$htmlhelp.encoding"/>
+  </xsl:call-template>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
 <xsl:template name="hh-map">
   <xsl:call-template name="write.text.chunk">
     <xsl:with-param name="filename" select="$htmlhelp.map.file"/>
@@ -795,5 +913,39 @@ Title=</xsl:text>
     <xsl:with-param name="object" select="$object"/>
   </xsl:call-template>
 </xsl:template>
+
+<!-- ==================================================================== -->
+<!-- This code can be used to convert any number to hexadecimal format -->
+
+  <h:hex>
+    <d>0</d>
+    <d>1</d>
+    <d>2</d>
+    <d>3</d>
+    <d>4</d>
+    <d>5</d>
+    <d>6</d>
+    <d>7</d>
+    <d>8</d>
+    <d>9</d>
+    <d>A</d>
+    <d>B</d>
+    <d>C</d>
+    <d>D</d>
+    <d>E</d>
+    <d>F</d>
+  </h:hex>
+
+  <xsl:template name="toHex">
+    <xsl:param name="n" select="0"/>
+    <xsl:param name="digit" select="$n mod 16"/>
+    <xsl:param name="rest" select="floor($n div 16)"/>
+    <xsl:if test="$rest > 0">
+      <xsl:call-template name="toHex">
+        <xsl:with-param name="n" select="$rest"/>
+      </xsl:call-template>
+    </xsl:if>
+    <xsl:value-of select="document('')//h:hex/d[$digit+1]"/>
+  </xsl:template>
 
 </xsl:stylesheet>
