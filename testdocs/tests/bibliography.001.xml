@@ -27,6 +27,23 @@
   <editor><firstname>James T.</firstname><surname>DeWolf</surname></editor>
 </biblioentry>
 
+<biblioentry>
+  <abbrev>AhoSethiUllman96</abbrev>
+  <authorgroup>
+    <author><firstname>Alfred V.</firstname><surname>Aho</surname></author>  
+    <author><firstname>Ravi</firstname><surname>Sethi</surname></author>
+    <author><firstname>Jeffrey D.</firstname><surname>Ullman</surname></author>
+  </authorgroup>
+  <citetitle>Compilers, Principles, Techniques, and Tools</citetitle>
+  <publisher>
+    <publishername>Addison-Wesley Publishing Company</publishername>
+  </publisher>
+  <copyright><year>1996</year>
+             <holder>Bell Telephone Laboratories, Inc.</holder></copyright>
+  <isbn>0-201-10088-6</isbn>    
+  <editor><firstname>James T.</firstname><surname>DeWolf</surname></editor>
+</biblioentry>
+
 <biblioentry id="Walsh97">
   <abbrev>Walsh97</abbrev>
   <biblioset relation="article">
