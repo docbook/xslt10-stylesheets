@@ -154,7 +154,7 @@
   <xsl:call-template name="make.toc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
     <xsl:with-param name="toc.title.p" select="$toc.title.p"/>
-    <xsl:with-param name="nodes" select="section|sect1|refentry
+    <xsl:with-param name="nodes" select="section|sect1|simplesect|refentry
                                          |article|bibliography|glossary
                                          |appendix|index
                                          |bridgehead[not(@renderas)
@@ -382,6 +382,14 @@
 </xsl:template>
 
 <xsl:template match="sect5" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
+  <xsl:call-template name="subtoc">
+    <xsl:with-param name="toc-context" select="$toc-context"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="simplesect" mode="toc">
   <xsl:param name="toc-context" select="."/>
 
   <xsl:call-template name="subtoc">
