@@ -521,6 +521,54 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<context name="datetime">
+<template name="format">m/d/Y</template>
+</context>
+
+<context name="datetime-full">
+<template name="January">&yacy;&ncy;&vcy;&acy;&rcy;&yacy;</template>
+<template name="February">&fcy;&iecy;&vcy;&rcy;&acy;&lcy;&yacy;</template>
+<template name="March">&mcy;&acy;&rcy;&tcy;&acy;</template>
+<template name="April">&acy;&pcy;&rcy;&iecy;&lcy;&yacy;</template>
+<template name="May">&mcy;&acy;&yacy;</template>
+<template name="June">&icy;&yucy;&ncy;&yacy;</template>
+<template name="July">&icy;&yucy;&lcy;&yacy;</template>
+<template name="August">&acy;&vcy;&gcy;&ucy;&scy;&tcy;&acy;</template>
+<template name="September">&scy;&iecy;&ncy;&tcy;&yacy;&bcy;&rcy;&yacy;</template>
+<template name="October">&ocy;&kcy;&tcy;&yacy;&bcy;&rcy;&yacy;</template>
+<template name="November">&ncy;&ocy;&yacy;&bcy;&rcy;&yacy;</template>
+<template name="December">&dcy;&iecy;&kcy;&acy;&bcy;&rcy;&yacy;</template>
+<template name="Monday">&pcy;&ocy;&ncy;&iecy;&dcy;&iecy;&lcy;&softcy;&ncy;&icy;&kcy;</template>
+<template name="Tuesday">&vcy;&tcy;&ocy;&rcy;&ncy;&icy;&kcy;</template>
+<template name="Wednesday">&scy;&rcy;&iecy;&dcy;&acy;</template>
+<template name="Thursday">&chcy;&iecy;&tcy;&vcy;&ecy;&rcy;&gcy;</template>
+<template name="Friday">&pcy;&yacy;&tcy;&ncy;&icy;&tscy;&acy;</template>
+<template name="Saturday">&scy;&ucy;&bcy;&bcy;&ocy;&tcy;&acy;</template>
+<template name="Sunday">&vcy;&ocy;&scy;&kcy;&rcy;&iecy;&scy;&iecy;&ncy;&softcy;&iecy;</template>
+</context>
+
+<context name="datetime-abbrev">
+<template name="Jan">&YAcy;&ncy;&vcy;</template>
+<template name="Feb">&Fcy;&iecy;&vcy;</template>
+<template name="Mar">&Mcy;&acy;&rcy;</template>
+<template name="Apr">&Acy;&pcy;&rcy;</template>
+<template name="May">&Mcy;&acy;&jcy;</template>
+<template name="Jun">&Icy;&yucy;&ncy;</template>
+<template name="Jul">&Icy;&yucy;&lcy;</template>
+<template name="Aug">&Acy;&vcy;&gcy;</template>
+<template name="Sep">&Scy;&iecy;&ncy;</template>
+<template name="Oct">&Ocy;&kcy;&tcy;</template>
+<template name="Nov">&Ncy;&ocy;&yacy;</template>
+<template name="Dec">&Dcy;&iecy;&kcy;</template>
+<template name="Mon">&Pcy;&ncy;&dcy;</template>
+<template name="Tue">&Vcy;&tcy;&rcy;</template>
+<template name="Wed">&Scy;&rcy;&dcy;</template>
+<template name="Thu">&CHcy;&tcy;&vcy;</template>
+<template name="Fri">&Pcy;&tcy;&ncy;</template>
+<template name="Sat">&Scy;&bcy;&tcy;</template>
+<template name="Sun">&Vcy;&scy;&kcy;</template>
+</context>
+
 <context name="htmlhelp">
 <template name="langcode">0x0419 Russian</template>
 </context>
