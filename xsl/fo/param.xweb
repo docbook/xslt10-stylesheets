@@ -188,6 +188,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &blockquote.properties;
 &ulink.show;
 &ulink.footnotes;
+&ulink.hyphenate;
 </reference>
 
 <reference><title>FO</title>
@@ -467,6 +468,7 @@ around all these parameters.</para>
 <src:fragref linkend="toc.section.depth.frag"/>
 <src:fragref linkend="use.extensions.frag"/>
 <src:fragref linkend="ulink.footnotes.frag"/>
+<src:fragref linkend="ulink.hyphenate.frag"/>
 <src:fragref linkend="ulink.show.frag"/>
 <src:fragref linkend="variablelist.as.blocks.frag"/>
 <src:fragref linkend="verbatim.properties.frag"/>

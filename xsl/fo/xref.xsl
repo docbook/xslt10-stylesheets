@@ -344,7 +344,9 @@
                  xsl:use-attribute-sets="xref.properties">
     <xsl:choose>
       <xsl:when test="count(child::node())=0">
-	<xsl:value-of select="@url"/>
+        <xsl:call-template name="hyphenate-url">
+          <xsl:with-param name="url" select="@url"/>
+        </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
 	<xsl:apply-templates/>
@@ -356,10 +358,32 @@
                 and $ulink.show != 0">
     <fo:inline hyphenate="false">
       <xsl:text> [</xsl:text>
-      <xsl:value-of select="@url"/>
+      <xsl:call-template name="hyphenate-url">
+        <xsl:with-param name="url" select="@url"/>
+      </xsl:call-template>
       <xsl:text>]</xsl:text>
     </fo:inline>
   </xsl:if>
+</xsl:template>
+
+<xsl:template name="hyphenate-url">
+  <xsl:param name="url" select="''"/>
+  <xsl:choose>
+    <xsl:when test="$ulink.hyphenate = ''">
+      <xsl:value-of select="$url"/>
+    </xsl:when>
+    <xsl:when test="contains($url, '/')">
+      <xsl:value-of select="substring-before($url, '/')"/>
+      <xsl:text>/</xsl:text>
+      <xsl:copy-of select="$ulink.hyphenate"/>
+      <xsl:call-template name="hyphenate-url">
+        <xsl:with-param name="url" select="substring-after($url, '/')"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$url"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="olink" name="olink">
