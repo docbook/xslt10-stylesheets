@@ -57,8 +57,8 @@
 <gentext key="index" text="Rejst&#x0159;&#x00ed;k"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
-<gentext key="LegalNotice" text="Pr&#x00E1;vn&#x00ED; pozn&#x00E1;mka"/>
-<gentext key="legalnotice" text="Pr&#x00E1;vn&#x00ED; pozn&#x00E1;mka"/>
+<gentext key="LegalNotice" text="Pr&#x00E1;vn&#x00ED; dolo&#x017E;ka"/>
+<gentext key="legalnotice" text="Pr&#x00E1;vn&#x00ED; dolo&#x017E;ka"/>
 <gentext key="MsgAud" text="Publikum"/>
 <gentext key="msgaud" text="Publikum"/>
 <gentext key="MsgLevel" text="&#x00DA;rove&#x0148;"/>
@@ -301,47 +301,47 @@
 
 <context name="xref">
 
-<template name="appendix"><Appendix/> %n. %t</template>
+<template name="appendix">%n &#x2013; &#x201E;%t&#x201C;</template>
 <template name="article">%t</template>
 <template name="bibliography">%t</template>
 <template name="book">%t</template>
-<template name="chapter"><Chapter/> %n. %t</template>
+<template name="chapter">%n &#x2013; &#x201E;%t&#x201C;</template>
 <template name="colophon">%t</template>
 <template name="dedication">%t</template>
-<template name="example"><Example/> %n. %t</template>
-<template name="figure"><Figure/> %n. %t</template>
+<template name="example">%n</template>
+<template name="figure">%n</template>
 <template name="glossary">%t</template>
 <template name="index">%t</template>
-<template name="part"><Part/> %n. %t</template>
+<template name="part">%n &#x2013; &#x201E;%t&#x201C;</template>
 <template name="preface">%t</template>
 <template name="reference">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
-<template name="table"><Table/> %n. %t</template>
+<template name="table">%n</template>
 
 </context>
 
 <context name="section-xref">
 
-<template name="sect1"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="sect2"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="sect3"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="sect4"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="sect5"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="section"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="simplesect"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="sect1">&#x201E;%t&#x201C;</template>
+<template name="sect2">&#x201E;%t&#x201C;</template>
+<template name="sect3">&#x201E;%t&#x201C;</template>
+<template name="sect4">&#x201E;%t&#x201C;</template>
+<template name="sect5">&#x201E;%t&#x201C;</template>
+<template name="section">&#x201E;%t&#x201C;</template>
+<template name="simplesect">&#x201E;%t&#x201C;</template>
 
 </context>
 
 <context name="section-xref-numbered">
 
-<template name="sect1"><Section/> %n</template>
-<template name="sect2"><Section/> %n</template>
-<template name="sect3"><Section/> %n</template>
-<template name="sect4"><Section/> %n</template>
-<template name="sect5"><Section/> %n</template>
-<template name="section"><Section/> %n</template>
-<template name="simplesect"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="sect1">%n</template>
+<template name="sect2">%n</template>
+<template name="sect3">%n</template>
+<template name="sect4">%n</template>
+<template name="sect5">%n</template>
+<template name="section">%n</template>
+<template name="simplesect">&#x201E;%t&#x201C;</template>
 
 </context>
 
