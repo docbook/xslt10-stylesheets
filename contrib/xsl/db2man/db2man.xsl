@@ -44,12 +44,16 @@
   <xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="tip">
-  <xsl:text>&#10;.RS&#10;.Sh "Tip</xsl:text>
-    <xsl:if test="title">
-      <xsl:text>: </xsl:text>
-      <xsl:value-of select="title[1]"/>
-    </xsl:if>
+<xsl:template match="caution|important|note|tip|warning">
+  <xsl:text>&#10;.RS&#10;.Sh "</xsl:text>
+  <!-- capitalize word -->
+  <xsl:value-of
+    select="translate (substring (name(.), 1, 1), 'cintw', 'CINTW')" />
+  <xsl:value-of select="substring (name(), 2)" />
+  <xsl:if test="title">
+    <xsl:text>: </xsl:text>
+    <xsl:value-of select="title[1]"/>
+  </xsl:if>
   <xsl:text>"&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>&#10;.RE&#10;</xsl:text>
