@@ -184,7 +184,7 @@
   </fo:page-sequence>
 </xsl:template>
 
-<xsl:template match="chapter/docinfo"></xsl:template>
+<xsl:template match="chapter/docinfo|chapterinfo"></xsl:template>
 <xsl:template match="chapter/title"></xsl:template>
 <xsl:template match="chapter/titleabbrev"></xsl:template>
 <xsl:template match="chapter/subtitle"></xsl:template>
@@ -225,7 +225,7 @@
   </fo:page-sequence>
 </xsl:template>
 
-<xsl:template match="appendix/docinfo"></xsl:template>
+<xsl:template match="appendix/docinfo|appendixinfo"></xsl:template>
 <xsl:template match="appendix/title"></xsl:template>
 <xsl:template match="appendix/titleabbrev"></xsl:template>
 <xsl:template match="appendix/subtitle"></xsl:template>

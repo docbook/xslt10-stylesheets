@@ -300,7 +300,7 @@
   <xsl:call-template name="part.titlepage"/>
 </xsl:template>
 
-<xsl:template match="part/docinfo"></xsl:template>
+<xsl:template match="part/docinfo|partinfo"></xsl:template>
 <xsl:template match="part/title"></xsl:template>
 <xsl:template match="part/subtitle"></xsl:template>
 
