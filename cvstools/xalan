@@ -1,98 +1,198 @@
 #!/bin/bash
 
 DONE=0
+DEBUG=false                     # not used
 VERSION=2
-DEBUG=0
-QUIET=0
 MEMORY=""
+USECRIMSON=false
+USERESOLVER=true
+RESOLVERS=""
+
+MYDIR=`dirname $0`
+. $MYDIR/common-functions.sh
 
 while [ "$DONE" = "0" ]; do
     case $1 in
-	-d)	DEBUG=1;
-		shift;
-		;;
         -m)     shift
-		MEMORY="-Xmx$1";
-		shift;
+		MEMORY="-Xmx$1"
+		shift
+		;;
+        -crimson)
+		shift
+		USECRIMSON=true
+		;;
+        -noresolver)
+		shift
+		USERESOLVER=false
+		;;
+        -d)     shift
+		DEBUG=true
 		;;
         -q)     shift
-		QUIET=1
+		VERBOSE=false
+		;;
+        -v)     shift
+		VERBOSE=true
 		;;
         -1)     shift
 		VERSION=1
 		;;
-        -2)     shift
-		VERSION=2
+        -2*)    VERSION=${1#-}
+                shift
 		;;
-        -220)   shift
-		VERSION=220
+        -X)     shift
+		DOCBOOKXSL="$1"
+		shift
 		;;
-        -231)   shift
-		VERSION=231
-		;;
-        -24D1)  shift
-		VERSION=24D1
-		;;
-	-*)	DONE=1;
+	-*)	DONE=1
 	        ;;
 	*)	DONE=1
                 ;;
     esac
 done
 
-JAXP="${JAXP:-/usr/local/jaxp-1.1/jaxp.jar}:"
-RESOLVER="${RESOLVER:-/projects/apache/xml-commons/java/build/classes}:"
-XERCES="${XERCES:-/projects/apache/xml-xerces/java/build/classes}:"
+
+##
+## optionally replace the SAXParser with crimson
+##
+if $USECRIMSON; then
+  CRIMSON=`findcrimson`
+  if [ ! "$CRIMSON" ]; then
+    echo "crimson requested but cannot be found" 1>&2
+    exit 1
+  else
+    SAXPARSER="-Djavax.xml.parsers.SAXParserFactory=org.apache.crimson.jaxp.SAXParserFactoryImpl"
+  fi
+fi
+
+# FIXME: do this right
 NDWEXT="/sourceforge/docbook/xsl/extensions/xalan2/.classes";
 
-URES="-URIRESOLVER org.apache.xml.resolver.tools.CatalogResolver"
-ERES="-ENTITYRESOLVER org.apache.xml.resolver.tools.CatalogResolver"
-RESOLVERS="$URES $ERES"
-
 if [ "$VERSION" = "1" ]; then
-    URES=
-    ERES=
-    RESOLVERS=
-    XALANROOT="${XALANROOT:-/usr/local/java/xalan-1.2.2}"
-    XALAN="$XALANROOT/bsf.jar:"
-elif [ "$VERSION" = "2" ]; then
-    XALANROOT="${XALANROOT:-/projects/apache/xml-xalan/java}";
-    XALAN="$XALANROOT/build/classes:$XALANROOT/bin/bsf.jar:"
-elif [ "$VERSION" = "220" ]; then
-    XALANROOT="/usr/local/java/xalan-j_2_2_0/bin"
-    XALAN="$XALANROOT/xalan.jar:$XALANROOT/xml-apis.jar"
-elif [ "$VERSION" = "231" ]; then
-    XALANROOT="/usr/local/java/xalan-j_2_3_1/bin"
-    XALAN="$XALANROOT/xalan.jar:$XALANROOT/xml-apis.jar"
-elif [ "$VERSION" = "24D1" ]; then
-    XALANROOT="/usr/local/java/xalan-j_2_4_D1/bin"
-    XALAN="$XALANROOT/xalan.jar:$XALANROOT/xml-apis.jar"
-else
-    echo "Unexpected Xalan version $VERSION"
+  if [ ! "$XALAN" ]; then
+    ##
+    ## find xalan 1
+    ##
+    for path in "${XALANROOT}" \
+                "${XALANROOT}/xalan.jar" \
+                "/usr/local/java/xalan-1.2.2" \
+                "/usr/local/share/java/xalan-1.2.2" \
+                "/usr/share/java/xalan.jar"; do
+      if [ -f "$path" -o -d "$path" ]; then
+        XALAN="$path"
+        break
+      fi
+    done
+    # find bsf
+    for path in "${XALANROOT}/bsf.jar" \
+                "/usr/local/java/bsf.jar" \
+                "/usr/local/share/java/bsf.jar" \
+                "/usr/share/java/bsf.jar"; do
+      if [ -f "$path" ]; then
+        XALAN="$XALAN:$path"
+        break
+      fi
+    done
+  fi
+
+  # resolver isn't supported
+  RESOLVERS=
+
+  ##
+  ## use the appropriate xerces
+  ##
+  XERCES=`findxerces1`
+  if [ ! "$XERCES" ]; then
+    echo "cannot locate Xerces (xerces.jar)" 1>&2
     exit 1
-fi
+    # see http://xml.apache.org/xalan-j/usagepatterns.html#plug
+    # no need to set these
+    # -Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl
+    # -Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"
+  fi
 
-CLASSPATH=$NDWEXT:$XALAN$JAXP$RESOLVER$XERCES$CLASSPATH
+else
+  ##
+  ## xalan 2
+  ##
 
-#echo $CLASSPATH
-
-if [ "$QUIET" = "0" ]; then
-    echo xalan$VERSION $@
-    if [ "$MEMORY" != "" ]; then
-	echo "java $MEMORY ..."
+  if [ ! "$XALAN" ]; then
+    STRIKEVERSION=`echo $VERSION | sed -e 's/\([0-9]\)\([0-9]\)/\1_\2/g; s/\([0-9]\)\([0-9D]\)/\1_\2/g;'`
+    DOTVERSION=`echo $VERSION | sed -e 's/\([0-9]\)\([0-9]\)/\1.\2/g; s/\([0-9]\)\([0-9D]\)/\1.\2/g;'`
+    ##
+    ## first find xalan2.jar or directory for compiled classes
+    ##
+    for path in "${XALANROOT}/build/classes" \
+                "${XALANROOT}" \
+                "${XALANROOT}/xalan2.jar" \
+                "${XALANROOT}/bin/xalan2.jar" \
+                "/projects/apache/xml-xalan/java" \
+                "/usr/local/java/xalan-j_${STRIKEVERSION}/bin/xalan.jar" \
+                "/usr/local/share/java/xalan-j_${STRIKEVERSION}/bin/xalan.jar" \
+                "/usr/local/share/java/xalan-$STRIKEVERSION.jar" \
+                "/usr/local/share/java/xalan-$DOTVERSION.jar" \
+                "/usr/local/share/java/xalan2.jar" \
+                "/usr/local/java/xalan-$STRIKEVERSION.jar" \
+                "/usr/local/java/xalan-$DOTVERSION.jar" \
+                "/usr/local/java/xalan2.jar" \
+                "/usr/share/java/xalan-$STRIKEVERSION.jar" \
+                "/usr/share/java/xalan-$DOTVERSION.jar" \
+                "/usr/share/java/xalan2.jar"; do
+      if [ -f "$path" -o -d "$path" ]; then
+        if [ ${VERBOSE} ] && ${VERBOSE}; then
+          echo "found xalan2 in $path" 1>&2
+        fi
+        XALAN="$path"
+        break
+      fi
+    done
+    if [ ! "$XALAN" ]; then
+      echo "xalan $VERSION cannot be found" 1>&2
+      exit 1
     fi
+
+    ##
+    ## we also need xml-apis.jar
+    ##
+    XALANDIR=`dirname $XALAN`
+    for path in "${XALANDIR}/xml-apis.jar" \
+                "${XALANROOT}/xml-apis.jar" \
+                "${XALANROOT}/bin/xml-apis.jar"; do
+      if [ -f "$path" -o -d "$path" ]; then
+        XALAN="${XALAN}:$path"
+        break
+      fi
+    done
+  fi
+
+  ##
+  ## use the appropriate xerces
+  ##
+  XERCES=`findxerces2`
+  if [ ! "$XERCES" ]; then
+    echo "cannot locate Xerces 2" 1>&2
+    exit 1
+  fi
+
+  ##
+  ## resolver
+  ##
+  if $USERESOLVER; then
+    RESOLVER=`findresolver`
+    if [ ${RESOLVER/sun/} != ${RESOLVER} ]; then
+      # guess this is the sun resolver
+      RESOLVERS="-URIRESOLVER com.sun.resolver.tools.CatalogResolver -ENTITYRESOLVER com.sun.resolver.tools.CatalogResolver"
+    else
+      # guess this is the Apache resolver
+      RESOLVERS="-URIRESOLVER org.apache.xml.resolver.tools.CatalogResolver -ENTITYRESOLVER org.apache.xml.resolver.tools.CatalogResolver"
+    fi
+  fi
 fi
 
-# -Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl
-# -Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"
+CLASSPATH=`fixclasspath "$NDWEXT:$XALAN:$JAXP:$RESOLVER:$XERCES:$CLASSPATH"`
 
-echo org.apache.xalan.xslt.Process $RESOLVERS $@
-
-java $MEMORY \
- org.apache.xalan.xslt.Process $RESOLVERS $@
-
-if [ $? != 0 ]; then
-  echo ""
-  echo FAILED
-  echo ""
+if [ ${VERBOSE} ] && ${VERBOSE}; then
+  echo java $MEMORY $SAXPARSER org.apache.xalan.xslt.Process $RESOLVERS $@
 fi
+exec java -cp $CLASSPATH $MEMORY $SAXPARSER org.apache.xalan.xslt.Process $RESOLVERS $@
+
