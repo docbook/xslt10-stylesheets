@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<grammar datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
-         xmlns="http://relaxng.org/ns/structure/0.9"
-         xmlns:a="http://relaxng.org/ns/compatibility/annotations/0.9">
-
+<grammar datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
 <!-- ...................................................................... -->
-<!-- DocBook XML document hierarchy module V4.1.2 ........................... -->
+<!-- DocBook document hierarchy module V4.2 ............................... -->
 <!-- File dbhierx.mod ..................................................... -->
-<!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
+<!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
      O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
-     Corporation, Norman Walsh, and the Organization for the Advancement
-     of Structured Information Standards (OASIS).
+     Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+     Organization for the Advancement of Structured Information
+     Standards (OASIS).
 
      $Id$
 
-     Permission to use, copy, modify and distribute the DocBook XML DTD
+     Permission to use, copy, modify and distribute the DocBook DTD
      and its accompanying documentation for any purpose and without fee
      is hereby granted in perpetuity, provided that the above copyright
      notice and this paragraph appear in all copies.  The copyright
@@ -21,7 +19,7 @@
      any purpose.  It is provided "as is" without expressed or implied
      warranty.
 
-     If you modify the DocBook XML DTD in any way, except for declaring and
+     If you modify the DocBook DTD in any way, except for declaring and
      referencing additional sets of general entities and declaring
      additional notations, label your DTD as a variant of DocBook.  See
      the maintenance documentation for more information.
@@ -45,7 +43,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbhier PUBLIC
-     "-//OASIS//ELEMENTS DocBook XML Document Hierarchy V4.1.2//EN"
+     "-//OASIS//ELEMENTS DocBook Document Hierarchy V4.2//EN"
      "dbhierx.mod">
      %dbhier;
 
@@ -111,6 +109,15 @@
     <choice>
       <ref name="refentry"/>
       <ref name="local.refentry.class"/>
+    </choice>
+  </define>
+  <define name="local.section.class">
+    <notAllowed/>
+  </define>
+  <define name="section.class">
+    <choice>
+      <ref name="section"/>
+      <ref name="local.section.class"/>
     </choice>
   </define>
   <define name="local.nav.class">
@@ -310,7 +317,7 @@
             <ref name="simplesect"/>
           </zeroOrMore>
           <zeroOrMore>
-            <ref name="section"/>
+            <ref name="section.class"/>
           </zeroOrMore>
         </choice>
       </group>
@@ -324,7 +331,7 @@
         <ref name="simplesect"/>
       </oneOrMore>
       <oneOrMore>
-        <ref name="section"/>
+        <ref name="section.class"/>
       </oneOrMore>
     </choice>
   </define>
@@ -379,21 +386,12 @@
     <element name="setinfo">
       <ref name="setinfo.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
 <!--end of setinfo.element-->
-<!-- Contents: IDs of the ToC, Books, and SetIndex that comprise 
+<!-- Contents: IDs of the ToC, Books, and SetIndex that comprise
 		the set, in the order of their appearance -->
   <define name="setinfo.attlist" combine="interleave">
     <optional>
@@ -468,16 +466,7 @@
     <element name="bookinfo">
       <ref name="bookinfo.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -561,6 +550,9 @@
   <define name="toc">
     <element name="toc">
       <ref name="toc.attlist"/>
+      <optional>
+        <ref name="beginpage"/>
+      </optional>
       <optional>
         <ref name="bookcomponent.title.content"/>
       </optional>
@@ -848,6 +840,9 @@
     <element name="lot">
       <ref name="lot.attlist"/>
       <optional>
+        <ref name="beginpage"/>
+      </optional>
+      <optional>
         <ref name="bookcomponent.title.content"/>
       </optional>
       <zeroOrMore>
@@ -879,16 +874,16 @@
     </element>
   </define>
 <!--end of lotentry.element-->
-<!-- SrcCredit: Information about the source of the entry, 
+<!-- SrcCredit: Information about the source of the entry,
 		as for a list of illustrations -->
 <!-- linkend: to element that this entry represents-->
   <define name="lotentry.attlist" combine="interleave">
+    <ref name="linkend.attrib"/>
+    <ref name="pagenum.attrib"/>
     <optional>
       <attribute name="srccredit"/>
     </optional>
-    <ref name="pagenum.attrib"/>
     <ref name="common.attrib"/>
-    <ref name="linkend.attrib"/>
     <ref name="lotentry.role.attrib"/>
     <ref name="local.lotentry.attrib"/>
   </define>
@@ -906,6 +901,9 @@
   <define name="appendix">
     <element name="appendix">
       <ref name="appendix.attlist"/>
+      <optional>
+        <ref name="beginpage"/>
+      </optional>
       <optional>
         <ref name="appendixinfo"/>
       </optional>
@@ -942,6 +940,9 @@
     <element name="chapter">
       <ref name="chapter.attlist"/>
       <optional>
+        <ref name="beginpage"/>
+      </optional>
+      <optional>
         <ref name="chapterinfo"/>
       </optional>
       <ref name="bookcomponent.title.content"/>
@@ -967,7 +968,7 @@
   </define>
 <!--end of chapter.attlist-->
 <!--end of chapter.module-->
-<!-- Note that Part was to have its content model reduced in V4.1.2.  This
+<!-- Note that Part was to have its content model reduced in V4.2.  This
 change will not be made after all. -->
   <define name="local.part.attrib">
     <empty/>
@@ -978,6 +979,9 @@ change will not be made after all. -->
   <define name="part">
     <element name="part">
       <ref name="part.attlist"/>
+      <optional>
+        <ref name="beginpage"/>
+      </optional>
       <optional>
         <ref name="partinfo"/>
       </optional>
@@ -1010,6 +1014,9 @@ change will not be made after all. -->
   <define name="preface">
     <element name="preface">
       <ref name="preface.attlist"/>
+      <optional>
+        <ref name="beginpage"/>
+      </optional>
       <optional>
         <ref name="prefaceinfo"/>
       </optional>
@@ -1044,6 +1051,9 @@ change will not be made after all. -->
   <define name="reference">
     <element name="reference">
       <ref name="reference.attlist"/>
+      <optional>
+        <ref name="beginpage"/>
+      </optional>
       <optional>
         <ref name="referenceinfo"/>
       </optional>
@@ -1086,8 +1096,8 @@ change will not be made after all. -->
   <define name="partintro.attlist" combine="interleave">
     <ref name="label.attrib"/>
     <ref name="common.attrib"/>
-    <ref name="local.partintro.attrib"/>
     <ref name="partintro.role.attrib"/>
+    <ref name="local.partintro.attrib"/>
   </define>
 <!--end of partintro.attlist-->
 <!--end of partintro.module-->
@@ -1103,16 +1113,7 @@ change will not be made after all. -->
     <element name="appendixinfo">
       <ref name="appendixinfo.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1134,16 +1135,7 @@ change will not be made after all. -->
     <element name="bibliographyinfo">
       <ref name="bibliographyinfo.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1165,16 +1157,7 @@ change will not be made after all. -->
     <element name="chapterinfo">
       <ref name="chapterinfo.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1196,16 +1179,7 @@ change will not be made after all. -->
     <element name="glossaryinfo">
       <ref name="glossaryinfo.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1227,16 +1201,7 @@ change will not be made after all. -->
     <element name="indexinfo">
       <ref name="indexinfo.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1258,16 +1223,7 @@ change will not be made after all. -->
     <element name="setindexinfo">
       <ref name="setindexinfo.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1289,16 +1245,7 @@ change will not be made after all. -->
     <element name="partinfo">
       <ref name="partinfo.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1320,16 +1267,7 @@ change will not be made after all. -->
     <element name="prefaceinfo">
       <ref name="prefaceinfo.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1351,16 +1289,7 @@ change will not be made after all. -->
     <element name="refentryinfo">
       <ref name="refentryinfo.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1372,6 +1301,28 @@ change will not be made after all. -->
   </define>
 <!--end of refentryinfo.attlist-->
 <!--end of refentryinfo.module-->
+  <define name="local.refsectioninfo.attrib">
+    <empty/>
+  </define>
+  <define name="refsectioninfo.role.attrib">
+    <ref name="role.attrib"/>
+  </define>
+  <define name="refsectioninfo">
+    <element name="refsectioninfo">
+      <ref name="refsectioninfo.attlist"/>
+      <oneOrMore>
+        <ref name="info.class"/>
+      </oneOrMore>
+    </element>
+  </define>
+<!--end of refsectioninfo.element-->
+  <define name="refsectioninfo.attlist" combine="interleave">
+    <ref name="common.attrib"/>
+    <ref name="refsectioninfo.role.attrib"/>
+    <ref name="local.refsectioninfo.attrib"/>
+  </define>
+<!--end of refsectioninfo.attlist-->
+<!--end of refsectioninfo.module-->
   <define name="local.refsect1info.attrib">
     <empty/>
   </define>
@@ -1382,16 +1333,7 @@ change will not be made after all. -->
     <element name="refsect1info">
       <ref name="refsect1info.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1413,16 +1355,7 @@ change will not be made after all. -->
     <element name="refsect2info">
       <ref name="refsect2info.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1444,16 +1377,7 @@ change will not be made after all. -->
     <element name="refsect3info">
       <ref name="refsect3info.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1475,16 +1399,7 @@ change will not be made after all. -->
     <element name="refsynopsisdivinfo">
       <ref name="refsynopsisdivinfo.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1506,16 +1421,7 @@ change will not be made after all. -->
     <element name="referenceinfo">
       <ref name="referenceinfo.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1537,16 +1443,7 @@ change will not be made after all. -->
     <element name="sect1info">
       <ref name="sect1info.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1567,16 +1464,7 @@ change will not be made after all. -->
     <element name="sect2info">
       <ref name="sect2info.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1597,16 +1485,7 @@ change will not be made after all. -->
     <element name="sect3info">
       <ref name="sect3info.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1627,16 +1506,7 @@ change will not be made after all. -->
     <element name="sect4info">
       <ref name="sect4info.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1657,16 +1527,7 @@ change will not be made after all. -->
     <element name="sect5info">
       <ref name="sect5info.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1705,7 +1566,10 @@ change will not be made after all. -->
               <ref name="refentry.class"/>
             </zeroOrMore>
             <zeroOrMore>
-              <ref name="section"/>
+              <ref name="section.class"/>
+            </zeroOrMore>
+            <zeroOrMore>
+              <ref name="simplesect"/>
             </zeroOrMore>
           </choice>
         </group>
@@ -1713,7 +1577,10 @@ change will not be made after all. -->
           <ref name="refentry.class"/>
         </oneOrMore>
         <oneOrMore>
-          <ref name="section"/>
+          <ref name="section.class"/>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="simplesect"/>
         </oneOrMore>
       </choice>
       <zeroOrMore>
@@ -1741,16 +1608,7 @@ change will not be made after all. -->
     <element name="sectioninfo">
       <ref name="sectioninfo.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -2532,6 +2390,9 @@ change will not be made after all. -->
   <define name="refentry">
     <element name="refentry">
       <ref name="refentry.attlist"/>
+      <optional>
+        <ref name="beginpage"/>
+      </optional>
       <zeroOrMore>
         <ref name="ndxterm.class"/>
       </zeroOrMore>
@@ -2551,9 +2412,14 @@ change will not be made after all. -->
       <optional>
         <ref name="refsynopsisdiv"/>
       </optional>
-      <oneOrMore>
-        <ref name="refsect1"/>
-      </oneOrMore>
+      <choice>
+        <oneOrMore>
+          <ref name="refsect1"/>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="refsection"/>
+        </oneOrMore>
+      </choice>
     </element>
   </define>
 <!--end of refentry.element-->
@@ -2784,6 +2650,43 @@ change will not be made after all. -->
   </define>
 <!--end of refsynopsisdiv.attlist-->
 <!--end of refsynopsisdiv.module-->
+  <define name="local.refsection.attrib">
+    <empty/>
+  </define>
+  <define name="refsection.role.attrib">
+    <ref name="role.attrib"/>
+  </define>
+  <define name="refsection">
+    <element name="refsection">
+      <ref name="refsection.attlist"/>
+      <optional>
+        <ref name="refsectioninfo"/>
+      </optional>
+      <ref name="refsect.title.content"/>
+      <choice>
+        <group>
+          <oneOrMore>
+            <ref name="refcomponent.mix"/>
+          </oneOrMore>
+          <zeroOrMore>
+            <ref name="refsection"/>
+          </zeroOrMore>
+        </group>
+        <oneOrMore>
+          <ref name="refsection"/>
+        </oneOrMore>
+      </choice>
+    </element>
+  </define>
+<!--end of refsection.element-->
+  <define name="refsection.attlist" combine="interleave">
+    <ref name="status.attrib"/>
+    <ref name="common.attrib"/>
+    <ref name="refsection.role.attrib"/>
+    <ref name="local.refsection.attrib"/>
+  </define>
+<!--end of refsection.attlist-->
+<!--end of refsection.module-->
   <define name="local.refsect1.attrib">
     <empty/>
   </define>
@@ -2951,6 +2854,6 @@ change will not be made after all. -->
   </define>
 <!--end of article.attlist-->
 <!--end of article.module-->
-<!-- End of DocBook XML document hierarchy module V4.1.2 .................... -->
+<!-- End of DocBook document hierarchy module V4.2 ........................ -->
 <!-- ...................................................................... -->
 </grammar>

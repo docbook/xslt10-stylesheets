@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<grammar datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
-         xmlns="http://relaxng.org/ns/structure/0.9"
-         xmlns:a="http://relaxng.org/ns/compatibility/annotations/0.9">
+<grammar datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
 <!-- ...................................................................... -->
-<!-- DocBook XML information pool module V4.1.2 ............................. -->
+<!-- DocBook XML information pool module V4.2 ............................. -->
 <!-- File dbpoolx.mod ..................................................... -->
-<!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
+<!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
      O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
-     Corporation, Norman Walsh and the Organization for the Advancement
-     of Structured Information Standards (OASIS).
+     Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+     Organization for the Advancement of Structured Information
+     Standards (OASIS).
 
      $Id$
 
@@ -50,7 +49,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbpool PUBLIC
-     "-//OASIS//ELEMENTS DocBook XML Information Pool V4.1.2//EN"
+     "-//OASIS//ELEMENTS DocBook XML Information Pool V4.2//EN"
      "dbpoolx.mod">
      %dbpool;
 
@@ -258,6 +257,7 @@
       <ref name="quote"/>
       <ref name="trademark"/>
       <ref name="wordasword"/>
+      <ref name="personname"/>
       <ref name="local.gen.char.class"/>
     </choice>
   </define>
@@ -299,6 +299,7 @@
       <ref name="errorcode"/>
       <ref name="errorname"/>
       <ref name="errortype"/>
+      <ref name="errortext"/>
       <ref name="filename"/>
       <ref name="function"/>
       <ref name="guibutton"/>
@@ -385,6 +386,14 @@
       <ref name="inlineequation"/>
       <ref name="local.inlineobj.char.class"/>
     </choice>
+  </define>
+<!-- ...................................................................... -->
+<!-- Entities for content models .......................................... -->
+  <define name="formalobject.title.content">
+    <ref name="title"/>
+    <optional>
+      <ref name="titleabbrev"/>
+    </optional>
   </define>
 <!-- Redeclaration placeholder ............................................ -->
 <!-- For redeclaring entities that are declared after this point while
@@ -643,10 +652,31 @@ f. Just BlockQuote; no other informal objects.
       <ref name="videoobject"/>
       <ref name="audioobject"/>
       <ref name="imageobject"/>
+      <ref name="textobject"/>
       <ref name="local.mediaobject.mix"/>
     </choice>
   </define>
+  <define name="local.listpreamble.mix">
+    <notAllowed/>
+  </define>
+  <define name="listpreamble.mix">
+    <choice>
+      <ref name="admon.class"/>
+      <ref name="linespecific.class"/>
+      <ref name="synop.class"/>
+      <ref name="para.class"/>
+      <ref name="informal.class"/>
+      <ref name="genobj.class"/>
+      <ref name="descobj.class"/>
+      <ref name="ndxterm.class"/>
+      <ref name="beginpage"/>
+      <ref name="local.listpreamble.mix"/>
+    </choice>
+  </define>
 <!-- Character-level mixtures ............................................. -->
+<!-- sgml.features -->
+<!-- not [sgml.features[ -->
+<!-- ]] not sgml.features -->
 <!--
                     #PCD xref word link cptr base dnfo othr inob (synop)
 para.char.mix         X    X    X    X    X    X    X    X    X
@@ -794,17 +824,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!--ENTITY % bibliocomponent.mix (see Bibliographic section, below)-->
 <!--ENTITY % person.ident.mix (see Bibliographic section, below)-->
 <!-- ...................................................................... -->
-<!-- Entities for content models .......................................... -->
-  <define name="formalobject.title.content">
-    <ref name="title"/>
-    <optional>
-      <ref name="titleabbrev"/>
-    </optional>
-  </define>
-<!-- ...................................................................... -->
 <!-- Entities for attributes and attribute components ..................... -->
 <!-- Effectivity attributes ............................................... -->
-<!-- Arch: Computer or chip architecture to which element applies; no 
+<!-- Arch: Computer or chip architecture to which element applies; no
 	default -->
   <define name="arch.attrib">
     <optional>
@@ -843,7 +865,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
       <attribute name="security"/>
     </optional>
   </define>
-<!-- UserLevel: Level of user experience to which element applies; no 
+<!-- UserLevel: Level of user experience to which element applies; no
 	default -->
   <define name="userlevel.attrib">
     <optional>
@@ -879,7 +901,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
       </attribute>
     </optional>
   </define>
-<!-- Id: Unique identifier of element; a value must be supplied; no 
+<!-- Id: Unique identifier of element; a value must be supplied; no
 	default -->
   <define name="idreq.attrib">
     <attribute name="id">
@@ -956,13 +978,13 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   </define>
 <!-- EntityRef: Name of an external entity containing the content
 	of the graphic -->
-<!-- FileRef: Filename, qualified by a pathname if desired, 
+<!-- FileRef: Filename, qualified by a pathname if desired,
 	designating the file containing the content of the graphic -->
 <!-- Format: Notation of the element content, if any -->
 <!-- SrcCredit: Information about the source of the Graphic -->
 <!-- Width: Same as CALS reprowid (desired width) -->
 <!-- Depth: Same as CALS reprodep (desired depth) -->
-<!-- Align: Same as CALS hplace with 'none' removed; #IMPLIED means 
+<!-- Align: Same as CALS hplace with 'none' removed; #IMPLIED means
 	application-specific -->
 <!-- Scale: Conflation of CALS hscale and vscale -->
 <!-- Scalefit: Same as CALS scalefit -->
@@ -989,7 +1011,13 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
       <attribute name="width"/>
     </optional>
     <optional>
+      <attribute name="contentwidth"/>
+    </optional>
+    <optional>
       <attribute name="depth"/>
+    </optional>
+    <optional>
+      <attribute name="contentdepth"/>
     </optional>
     <optional>
       <attribute name="align">
@@ -997,6 +1025,15 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
           <value>left</value>
           <value>right</value>
           <value>center</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="valign">
+        <choice>
+          <value>top</value>
+          <value>middle</value>
+          <value>bottom</value>
         </choice>
       </attribute>
     </optional>
@@ -1013,8 +1050,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <define name="local.keyaction.attrib">
     <empty/>
   </define>
-<!-- Action: Key combination type; default is unspecified if one 
-	child element, Simul if there is more than one; if value is 
+<!-- Action: Key combination type; default is unspecified if one
+	child element, Simul if there is more than one; if value is
 	Other, the OtherAction attribute must have a nonempty value -->
 <!-- OtherAction: User-defined key combination type -->
   <define name="keyaction.attrib">
@@ -1075,7 +1112,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
       <data type="IDREF"/>
     </attribute>
   </define>
-<!-- Linkends: link to one or more sets of related information; no 
+<!-- Linkends: link to one or more sets of related information; no
 	default -->
   <define name="linkends.attrib">
     <optional>
@@ -1248,6 +1285,11 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
       <ref name="issn"/>
       <ref name="issuenum"/>
       <ref name="orgname"/>
+      <ref name="biblioid"/>
+      <ref name="citebiblioid"/>
+      <ref name="bibliosource"/>
+      <ref name="bibliorelation"/>
+      <ref name="bibliocoverage"/>
       <ref name="othercredit"/>
       <ref name="pagenums"/>
       <ref name="printhistory"/>
@@ -1265,9 +1307,28 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
       <ref name="titleabbrev"/>
       <ref name="volumenum"/>
       <ref name="citetitle"/>
+      <ref name="personname"/>
       <ref name="person.ident.mix"/>
       <ref name="ndxterm.class"/>
       <ref name="local.bibliocomponent.mix"/>
+    </choice>
+  </define>
+<!-- I don't think this is well placed, but it needs to be here because of -->
+<!-- the reference to bibliocomponent.mix -->
+  <define name="local.info.class">
+    <notAllowed/>
+  </define>
+  <define name="info.class">
+    <choice>
+      <ref name="graphic"/>
+      <ref name="mediaobject"/>
+      <ref name="legalnotice"/>
+      <ref name="modespec"/>
+      <ref name="subjectset"/>
+      <ref name="keywordset"/>
+      <ref name="itermset"/>
+      <ref name="bibliocomponent.mix"/>
+      <ref name="local.info.class"/>
     </choice>
   </define>
   <define name="local.biblioentry.attrib">
@@ -1331,16 +1392,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
     <element name="articleinfo">
       <ref name="articleinfo.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -1402,8 +1454,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
     <optional>
       <attribute name="relation"/>
     </optional>
-    <ref name="bibliomset.role.attrib"/>
     <ref name="common.attrib"/>
+    <ref name="bibliomset.role.attrib"/>
     <ref name="local.bibliomset.attrib"/>
   </define>
 <!--end of bibliomset.attlist-->
@@ -1475,7 +1527,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
     </element>
   </define>
 <!--end of subject.element-->
-<!-- Weight: Ranking of this group of SubjectTerms relative 
+<!-- Weight: Ranking of this group of SubjectTerms relative
 		to others, 0 is low, no highest value specified -->
   <define name="subject.attlist" combine="interleave">
     <optional>
@@ -1573,6 +1625,29 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   </define>
 <!--end of itermset.attlist-->
 <!--end of itermset.module-->
+<!-- Bibliographic info for "blocks" -->
+  <define name="local.blockinfo.attrib">
+    <empty/>
+  </define>
+  <define name="blockinfo.role.attrib">
+    <ref name="role.attrib"/>
+  </define>
+  <define name="blockinfo">
+    <element name="blockinfo">
+      <ref name="blockinfo.attlist"/>
+      <oneOrMore>
+        <ref name="info.class"/>
+      </oneOrMore>
+    </element>
+  </define>
+<!--end of blockinfo.element-->
+  <define name="blockinfo.attlist" combine="interleave">
+    <ref name="common.attrib"/>
+    <ref name="blockinfo.role.attrib"/>
+    <ref name="local.blockinfo.attrib"/>
+  </define>
+<!--end of blockinfo.attlist-->
+<!--end of blockinfo.module-->
 <!-- ...................................................................... -->
 <!-- Compound (section-ish) elements ...................................... -->
 <!-- Message set ...................... -->
@@ -1585,6 +1660,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <define name="msgset">
     <element name="msgset">
       <ref name="msgset.attlist"/>
+      <optional>
+        <ref name="blockinfo"/>
+      </optional>
       <optional>
         <ref name="formalobject.title.content"/>
       </optional>
@@ -1644,14 +1722,13 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
     <element name="simplemsgentry">
       <ref name="simplemsgentry.attlist"/>
       <ref name="msgtext"/>
-      <ref name="msgexplan"/>
+      <oneOrMore>
+        <ref name="msgexplan"/>
+      </oneOrMore>
     </element>
   </define>
 <!--end of simplemsgentry.element-->
   <define name="simplemsgentry.attlist" combine="interleave">
-    <ref name="common.attrib"/>
-    <ref name="simplemsgentry.role.attrib"/>
-    <ref name="local.simplemsgentry.attrib"/>
     <optional>
       <attribute name="audience"/>
     </optional>
@@ -1661,6 +1738,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
     <optional>
       <attribute name="origin"/>
     </optional>
+    <ref name="common.attrib"/>
+    <ref name="simplemsgentry.role.attrib"/>
+    <ref name="local.simplemsgentry.attrib"/>
   </define>
 <!--end of simplemsgentry.attlist-->
 <!--end of simplemsgentry.module-->
@@ -1882,15 +1962,18 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!--end of msgexplan.module-->
 <!--end of msgset.content.module-->
 <!-- QandASet ........................ -->
-  <define name="local.qandset.attrib">
+  <define name="local.qandaset.attrib">
     <empty/>
   </define>
-  <define name="qandset.role.attrib">
+  <define name="qandaset.role.attrib">
     <ref name="role.attrib"/>
   </define>
   <define name="qandaset">
     <element name="qandaset">
       <ref name="qandaset.attlist"/>
+      <optional>
+        <ref name="blockinfo"/>
+      </optional>
       <optional>
         <ref name="formalobject.title.content"/>
       </optional>
@@ -1907,7 +1990,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
       </choice>
     </element>
   </define>
-<!--end of qandset.element-->
+<!--end of qandaset.element-->
   <define name="qandaset.attlist" combine="interleave">
     <optional>
       <attribute name="defaultlabel">
@@ -1919,11 +2002,11 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
       </attribute>
     </optional>
     <ref name="common.attrib"/>
-    <ref name="qandset.role.attrib"/>
-    <ref name="local.qandset.attrib"/>
+    <ref name="qandaset.role.attrib"/>
+    <ref name="local.qandaset.attrib"/>
   </define>
-<!--end of qandset.attlist-->
-<!--end of qandset.module-->
+<!--end of qandaset.attlist-->
+<!--end of qandaset.module-->
   <define name="local.qandadiv.attrib">
     <empty/>
   </define>
@@ -1933,6 +2016,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <define name="qandadiv">
     <element name="qandadiv">
       <ref name="qandadiv.attlist"/>
+      <optional>
+        <ref name="blockinfo"/>
+      </optional>
       <optional>
         <ref name="formalobject.title.content"/>
       </optional>
@@ -1966,6 +2052,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <define name="qandaentry">
     <element name="qandaentry">
       <ref name="qandaentry.attlist"/>
+      <optional>
+        <ref name="blockinfo"/>
+      </optional>
       <optional>
         <ref name="revhistory"/>
       </optional>
@@ -2058,7 +2147,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   </define>
 <!--end of label.attlist-->
 <!--end of label.module-->
-<!--end of qandset.content.module-->
+<!--end of qandaset.content.module-->
 <!-- Procedure ........................ -->
   <define name="local.procedure.attrib">
     <empty/>
@@ -2069,6 +2158,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <define name="procedure">
     <element name="procedure">
       <ref name="procedure.attlist"/>
+      <optional>
+        <ref name="blockinfo"/>
+      </optional>
       <optional>
         <ref name="formalobject.title.content"/>
       </optional>
@@ -2183,16 +2275,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
     <element name="sidebarinfo">
       <ref name="sidebarinfo.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -2285,6 +2368,31 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   </define>
 <!--end of authorblurb.attlist-->
 <!--end of authorblurb.module-->
+  <define name="local.personblurb.attrib">
+    <empty/>
+  </define>
+  <define name="personblurb.role.attrib">
+    <ref name="role.attrib"/>
+  </define>
+  <define name="personblurb">
+    <element name="personblurb">
+      <ref name="personblurb.attlist"/>
+      <optional>
+        <ref name="title"/>
+      </optional>
+      <oneOrMore>
+        <ref name="para.class"/>
+      </oneOrMore>
+    </element>
+  </define>
+<!--end of personblurb.element-->
+  <define name="personblurb.attlist" combine="interleave">
+    <ref name="common.attrib"/>
+    <ref name="personblurb.role.attrib"/>
+    <ref name="local.personblurb.attrib"/>
+  </define>
+<!--end of personblurb.attlist-->
+<!--end of personblurb.module-->
   <define name="local.blockquote.attrib">
     <empty/>
   </define>
@@ -2406,7 +2514,10 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
         <ref name="attribution"/>
       </optional>
       <oneOrMore>
-        <ref name="para.class"/>
+        <choice>
+          <ref name="para.class"/>
+          <ref name="literallayout"/>
+        </choice>
       </oneOrMore>
     </element>
   </define>
@@ -2800,8 +2911,14 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
     <element name="itemizedlist">
       <ref name="itemizedlist.attlist"/>
       <optional>
+        <ref name="blockinfo"/>
+      </optional>
+      <optional>
         <ref name="formalobject.title.content"/>
       </optional>
+      <zeroOrMore>
+        <ref name="listpreamble.mix"/>
+      </zeroOrMore>
       <oneOrMore>
         <ref name="listitem"/>
       </oneOrMore>
@@ -2838,8 +2955,14 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
     <element name="orderedlist">
       <ref name="orderedlist.attlist"/>
       <optional>
+        <ref name="blockinfo"/>
+      </optional>
+      <optional>
         <ref name="formalobject.title.content"/>
       </optional>
+      <zeroOrMore>
+        <ref name="listpreamble.mix"/>
+      </zeroOrMore>
       <oneOrMore>
         <ref name="listitem"/>
       </oneOrMore>
@@ -2853,7 +2976,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 		within which they are nested (e.g., 1a and 1b within 1,
 		rather than a and b) -->
 <!-- Continuation: Where list numbering begins afresh (Restarts,
-		the default) or continues that of the immediately preceding 
+		the default) or continues that of the immediately preceding
 		list (Continues) -->
 <!-- Spacing: Whether the vertical space in the list should be
 		compressed -->
@@ -2940,7 +3063,6 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
       <optional>
         <ref name="formalobject.title.content"/>
       </optional>
-      <ref name="segtitle"/>
       <oneOrMore>
         <ref name="segtitle"/>
       </oneOrMore>
@@ -2988,7 +3110,6 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <define name="seglistitem">
     <element name="seglistitem">
       <ref name="seglistitem.attlist"/>
-      <ref name="seg"/>
       <oneOrMore>
         <ref name="seg"/>
       </oneOrMore>
@@ -3101,8 +3222,14 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
     <element name="variablelist">
       <ref name="variablelist.attlist"/>
       <optional>
+        <ref name="blockinfo"/>
+      </optional>
+      <optional>
         <ref name="formalobject.title.content"/>
       </optional>
+      <zeroOrMore>
+        <ref name="listpreamble.mix"/>
+      </zeroOrMore>
       <oneOrMore>
         <ref name="varlistentry"/>
       </oneOrMore>
@@ -3235,6 +3362,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <define name="example">
     <element name="example">
       <ref name="example.attlist"/>
+      <optional>
+        <ref name="blockinfo"/>
+      </optional>
       <ref name="formalobject.title.content"/>
       <oneOrMore>
         <ref name="example.mix"/>
@@ -3260,6 +3390,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <define name="informalexample">
     <element name="informalexample">
       <ref name="informalexample.attlist"/>
+      <optional>
+        <ref name="blockinfo"/>
+      </optional>
       <oneOrMore>
         <ref name="example.mix"/>
       </oneOrMore>
@@ -3320,9 +3453,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!-- Units: global unit of measure in which coordinates in
 		this spec are expressed:
 
-		- CALSPair "x1,y1 x2,y2": lower-left and upper-right 
-		coordinates in a rectangle describing repro area in which 
-		graphic is placed, where X and Y dimensions are each some 
+		- CALSPair "x1,y1 x2,y2": lower-left and upper-right
+		coordinates in a rectangle describing repro area in which
+		graphic is placed, where X and Y dimensions are each some
 		number 0..10000 (taken from CALS graphic attributes)
 
 		- LineColumn "line column": line number and column number
@@ -3339,7 +3472,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 		- Other: directive to look at value of OtherUnits attribute
 		to get implementation-specific keyword
 
-		The default is implementation-specific; usually dependent on 
+		The default is implementation-specific; usually dependent on
 		the parent element (GraphicCO gets CALSPair, ProgramListingCO
 		and ScreenCO get LineColumn) -->
 <!-- OtherUnits: User-defined units -->
@@ -3467,7 +3600,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
         <choice>
           <ref name="para.char.mix"/>
           <ref name="co"/>
+          <ref name="coref"/>
           <ref name="lineannotation"/>
+          <ref name="textobject"/>
         </choice>
       </zeroOrMore>
     </element>
@@ -3494,8 +3629,10 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
       <zeroOrMore>
         <choice>
           <ref name="para.char.mix"/>
-          <ref name="lineannotation"/>
           <ref name="co"/>
+          <ref name="coref"/>
+          <ref name="textobject"/>
+          <ref name="lineannotation"/>
         </choice>
       </zeroOrMore>
     </element>
@@ -3558,6 +3695,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
         <choice>
           <ref name="para.char.mix"/>
           <ref name="co"/>
+          <ref name="coref"/>
+          <ref name="textobject"/>
           <ref name="lineannotation"/>
         </choice>
       </zeroOrMore>
@@ -3634,6 +3773,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <define name="figure">
     <element name="figure">
       <ref name="figure.attlist"/>
+      <optional>
+        <ref name="blockinfo"/>
+      </optional>
       <ref name="formalobject.title.content"/>
       <oneOrMore>
         <choice>
@@ -3674,6 +3816,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <define name="informalfigure">
     <element name="informalfigure">
       <ref name="informalfigure.attlist"/>
+      <optional>
+        <ref name="blockinfo"/>
+      </optional>
       <oneOrMore>
         <choice>
           <ref name="figure.mix"/>
@@ -3789,13 +3934,9 @@ in the text (no (0) value, the default)
       <optional>
         <ref name="objectinfo"/>
       </optional>
-      <ref name="mediaobject.mix"/>
-      <zeroOrMore>
-        <choice>
-          <ref name="mediaobject.mix"/>
-          <ref name="textobject"/>
-        </choice>
-      </zeroOrMore>
+      <oneOrMore>
+        <ref name="mediaobject.mix"/>
+      </oneOrMore>
       <optional>
         <ref name="caption"/>
       </optional>
@@ -3821,13 +3962,9 @@ in the text (no (0) value, the default)
       <optional>
         <ref name="objectinfo"/>
       </optional>
-      <ref name="mediaobject.mix"/>
-      <zeroOrMore>
-        <choice>
-          <ref name="mediaobject.mix"/>
-          <ref name="textobject"/>
-        </choice>
-      </zeroOrMore>
+      <oneOrMore>
+        <ref name="mediaobject.mix"/>
+      </oneOrMore>
     </element>
   </define>
 <!--end of inlinemediaobject.element-->
@@ -3921,6 +4058,7 @@ in the text (no (0) value, the default)
       </optional>
       <choice>
         <ref name="phrase"/>
+        <ref name="textdata"/>
         <oneOrMore>
           <ref name="textobject.mix"/>
         </oneOrMore>
@@ -3945,16 +4083,7 @@ in the text (no (0) value, the default)
     <element name="objectinfo">
       <ref name="objectinfo.attlist"/>
       <oneOrMore>
-        <choice>
-          <ref name="graphic"/>
-          <ref name="mediaobject"/>
-          <ref name="legalnotice"/>
-          <ref name="modespec"/>
-          <ref name="subjectset"/>
-          <ref name="keywordset"/>
-          <ref name="itermset"/>
-          <ref name="bibliocomponent.mix"/>
-        </choice>
+        <ref name="info.class"/>
       </oneOrMore>
     </element>
   </define>
@@ -3968,7 +4097,7 @@ in the text (no (0) value, the default)
 <!--end of objectinfo.module-->
 <!--EntityRef: Name of an external entity containing the content
 	of the object data-->
-<!--FileRef: Filename, qualified by a pathname if desired, 
+<!--FileRef: Filename, qualified by a pathname if desired,
 	designating the file containing the content of the object data-->
 <!--Format: Notation of the element content, if any-->
 <!--SrcCredit: Information about the source of the image-->
@@ -4011,18 +4140,22 @@ in the text (no (0) value, the default)
 <!--end of videodata.element-->
 <!--Width: Same as CALS reprowid (desired width)-->
 <!--Depth: Same as CALS reprodep (desired depth)-->
-<!--Align: Same as CALS hplace with 'none' removed; #IMPLIED means 
+<!--Align: Same as CALS hplace with 'none' removed; #IMPLIED means
 	application-specific-->
 <!--Scale: Conflation of CALS hscale and vscale-->
 <!--Scalefit: Same as CALS scalefit-->
   <define name="videodata.attlist" combine="interleave">
-    <ref name="common.attrib"/>
-    <ref name="objectdata.attrib"/>
     <optional>
       <attribute name="width"/>
     </optional>
     <optional>
+      <attribute name="contentwidth"/>
+    </optional>
+    <optional>
       <attribute name="depth"/>
+    </optional>
+    <optional>
+      <attribute name="contentdepth"/>
     </optional>
     <optional>
       <attribute name="align">
@@ -4034,6 +4167,15 @@ in the text (no (0) value, the default)
       </attribute>
     </optional>
     <optional>
+      <attribute name="valign">
+        <choice>
+          <value>top</value>
+          <value>middle</value>
+          <value>bottom</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
       <attribute name="scale"/>
     </optional>
     <optional>
@@ -4041,6 +4183,8 @@ in the text (no (0) value, the default)
         <ref name="yesorno.attvals"/>
       </attribute>
     </optional>
+    <ref name="objectdata.attrib"/>
+    <ref name="common.attrib"/>
     <ref name="videodata.role.attrib"/>
     <ref name="local.videodata.attrib"/>
   </define>
@@ -4060,10 +4204,10 @@ in the text (no (0) value, the default)
   </define>
 <!--end of audiodata.element-->
   <define name="audiodata.attlist" combine="interleave">
-    <ref name="common.attrib"/>
     <ref name="objectdata.attrib"/>
-    <ref name="local.audiodata.attrib"/>
+    <ref name="common.attrib"/>
     <ref name="audiodata.role.attrib"/>
+    <ref name="local.audiodata.attrib"/>
   </define>
 <!--end of audiodata.attlist-->
 <!--end of audiodata.module-->
@@ -4082,18 +4226,22 @@ in the text (no (0) value, the default)
 <!--end of imagedata.element-->
 <!--Width: Same as CALS reprowid (desired width)-->
 <!--Depth: Same as CALS reprodep (desired depth)-->
-<!--Align: Same as CALS hplace with 'none' removed; #IMPLIED means 
+<!--Align: Same as CALS hplace with 'none' removed; #IMPLIED means
 	application-specific-->
 <!--Scale: Conflation of CALS hscale and vscale-->
 <!--Scalefit: Same as CALS scalefit-->
   <define name="imagedata.attlist" combine="interleave">
-    <ref name="common.attrib"/>
-    <ref name="objectdata.attrib"/>
     <optional>
       <attribute name="width"/>
     </optional>
     <optional>
+      <attribute name="contentwidth"/>
+    </optional>
+    <optional>
       <attribute name="depth"/>
+    </optional>
+    <optional>
+      <attribute name="contentdepth"/>
     </optional>
     <optional>
       <attribute name="align">
@@ -4105,6 +4253,15 @@ in the text (no (0) value, the default)
       </attribute>
     </optional>
     <optional>
+      <attribute name="valign">
+        <choice>
+          <value>top</value>
+          <value>middle</value>
+          <value>bottom</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
       <attribute name="scale"/>
     </optional>
     <optional>
@@ -4112,11 +4269,37 @@ in the text (no (0) value, the default)
         <ref name="yesorno.attvals"/>
       </attribute>
     </optional>
-    <ref name="local.imagedata.attrib"/>
+    <ref name="objectdata.attrib"/>
+    <ref name="common.attrib"/>
     <ref name="imagedata.role.attrib"/>
+    <ref name="local.imagedata.attrib"/>
   </define>
 <!--end of imagedata.attlist-->
 <!--end of imagedata.module-->
+  <define name="local.textdata.attrib">
+    <empty/>
+  </define>
+  <define name="textdata.role.attrib">
+    <ref name="role.attrib"/>
+  </define>
+  <define name="textdata">
+    <element name="textdata">
+      <ref name="textdata.attlist"/>
+      <empty/>
+    </element>
+  </define>
+<!--end of textdata.element-->
+  <define name="textdata.attlist" combine="interleave">
+    <optional>
+      <attribute name="encoding"/>
+    </optional>
+    <ref name="objectdata.attrib"/>
+    <ref name="common.attrib"/>
+    <ref name="textdata.role.attrib"/>
+    <ref name="local.textdata.attrib"/>
+  </define>
+<!--end of textdata.attlist-->
+<!--end of textdata.module-->
   <define name="local.caption.attrib">
     <empty/>
   </define>
@@ -4134,8 +4317,8 @@ in the text (no (0) value, the default)
 <!--end of caption.element-->
   <define name="caption.attlist" combine="interleave">
     <ref name="common.attrib"/>
-    <ref name="local.caption.attrib"/>
     <ref name="caption.role.attrib"/>
+    <ref name="local.caption.attrib"/>
   </define>
 <!--end of caption.attlist-->
 <!--end of caption.module-->
@@ -4232,6 +4415,9 @@ in the text (no (0) value, the default)
     <element name="equation">
       <ref name="equation.attlist"/>
       <optional>
+        <ref name="blockinfo"/>
+      </optional>
+      <optional>
         <ref name="formalobject.title.content"/>
       </optional>
       <choice>
@@ -4258,6 +4444,9 @@ in the text (no (0) value, the default)
   <define name="informalequation">
     <element name="informalequation">
       <ref name="informalequation.attlist"/>
+      <optional>
+        <ref name="blockinfo"/>
+      </optional>
       <ref name="equation.content"/>
     </element>
   </define>
@@ -4318,7 +4507,7 @@ in the text (no (0) value, the default)
   <define name="bodyatt">
     <ref name="label.attrib"/>
   </define>
-<!-- Add common attributes to Table, TGroup, TBody, THead, TFoot, Row, 
+<!-- Add common attributes to Table, TGroup, TBody, THead, TFoot, Row,
      EntryTbl, and Entry (and InformalTable element). -->
   <define name="secur">
     <ref name="common.attrib"/>
@@ -4330,9 +4519,15 @@ in the text (no (0) value, the default)
   </define>
 <!-- Content model for Table. -->
   <define name="tbl.table.mdl">
+    <optional>
+      <ref name="blockinfo"/>
+    </optional>
     <ref name="formalobject.title.content"/>
     <zeroOrMore>
       <ref name="ndxterm.class"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="textobject"/>
     </zeroOrMore>
     <choice>
       <oneOrMore>
@@ -4354,7 +4549,7 @@ in the text (no (0) value, the default)
     </choice>
   </define>
 <!-- Reference CALS Table Model -->
-  <include href="calstblx.rng"/>
+  <include href="calstbl.rng"/>
 <!--end of table.module-->
 <!-- Note that InformalTable is dependent on some of the entity
      declarations that customize Table. -->
@@ -4364,6 +4559,12 @@ in the text (no (0) value, the default)
   <define name="informaltable">
     <element name="informaltable">
       <ref name="informaltable.attlist"/>
+      <optional>
+        <ref name="blockinfo"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="textobject"/>
+      </zeroOrMore>
       <choice>
         <oneOrMore>
           <ref name="graphic"/>
@@ -4380,7 +4581,7 @@ in the text (no (0) value, the default)
 <!--end of informaltable.element-->
 <!-- Frame, Colsep, and Rowsep must be repeated because
 		they are not in entities in the table module. -->
-<!-- includes TabStyle, ToCentry, ShortEntry, 
+<!-- includes TabStyle, ToCentry, ShortEntry,
 				Orient, PgWide -->
 <!-- includes Label -->
 <!-- includes common attributes -->
@@ -4430,8 +4631,10 @@ in the text (no (0) value, the default)
           <ref name="para.char.mix"/>
           <ref name="graphic"/>
           <ref name="mediaobject"/>
-          <ref name="lineannotation"/>
           <ref name="co"/>
+          <ref name="coref"/>
+          <ref name="textobject"/>
+          <ref name="lineannotation"/>
         </choice>
       </zeroOrMore>
     </element>
@@ -4471,7 +4674,7 @@ in the text (no (0) value, the default)
     </element>
   </define>
 <!--end of cmdsynopsis.element-->
-<!-- Sepchar: Character that should separate command and all 
+<!-- Sepchar: Character that should separate command and all
 		top-level arguments; alternate value might be e.g., &Delta; -->
   <define name="cmdsynopsis.attlist" combine="interleave">
     <ref name="label.attrib"/>
@@ -4510,10 +4713,10 @@ in the text (no (0) value, the default)
     </element>
   </define>
 <!--end of arg.element-->
-<!-- Choice: Whether Arg must be supplied: Opt (optional to 
-		supply, e.g. [arg]; the default), Req (required to supply, 
+<!-- Choice: Whether Arg must be supplied: Opt (optional to
+		supply, e.g. [arg]; the default), Req (required to supply,
 		e.g. {arg}), or Plain (required to supply, e.g. arg) -->
-<!-- Rep: whether Arg is repeatable: Norepeat (e.g. arg without 
+<!-- Rep: whether Arg is repeatable: Norepeat (e.g. arg without
 		ellipsis; the default), or Repeat (e.g. arg...) -->
   <define name="arg.attlist" combine="interleave">
     <optional>
@@ -4567,7 +4770,7 @@ in the text (no (0) value, the default)
 		e.g.  g1|g2|g3), OptMult (can supply zero or more, e.g.
 		[[g1|g2|g3]]), or ReqMult (must supply one or more, e.g.
 		{{g1|g2|g3}}) -->
-<!-- Rep: whether Group is repeatable: Norepeat (e.g. group 
+<!-- Rep: whether Group is repeatable: Norepeat (e.g. group
 		without ellipsis; the default), or Repeat (e.g. group...) -->
   <define name="group.attlist" combine="interleave">
     <optional>
@@ -4705,6 +4908,7 @@ in the text (no (0) value, the default)
       <zeroOrMore>
         <choice>
           <ref name="cptr.char.mix"/>
+          <ref name="textobject"/>
           <ref name="lineannotation"/>
         </choice>
       </zeroOrMore>
@@ -4758,6 +4962,7 @@ in the text (no (0) value, the default)
       <zeroOrMore>
         <choice>
           <text/>
+          <ref name="type"/>
           <ref name="replaceable"/>
           <ref name="function"/>
         </choice>
@@ -4828,6 +5033,7 @@ in the text (no (0) value, the default)
       <zeroOrMore>
         <choice>
           <text/>
+          <ref name="type"/>
           <ref name="replaceable"/>
           <ref name="parameter"/>
           <ref name="funcparams"/>
@@ -4898,9 +5104,6 @@ in the text (no (0) value, the default)
   </define>
 <!--end of classsynopsis.element-->
   <define name="classsynopsis.attlist" combine="interleave">
-    <ref name="common.attrib"/>
-    <ref name="classsynopsis.role.attrib"/>
-    <ref name="local.classsynopsis.attrib"/>
     <optional>
       <attribute name="language"/>
     </optional>
@@ -4912,6 +5115,9 @@ in the text (no (0) value, the default)
         </choice>
       </attribute>
     </optional>
+    <ref name="common.attrib"/>
+    <ref name="classsynopsis.role.attrib"/>
+    <ref name="local.classsynopsis.attrib"/>
   </define>
 <!--end of classsynopsis.attlist-->
 <!--end of classsynopsis.module-->
@@ -4927,6 +5133,7 @@ in the text (no (0) value, the default)
       <zeroOrMore>
         <choice>
           <ref name="cptr.char.mix"/>
+          <ref name="textobject"/>
           <ref name="lineannotation"/>
         </choice>
       </zeroOrMore>
@@ -5042,7 +5249,7 @@ in the text (no (0) value, the default)
     <element name="interfacename">
       <ref name="interfacename.attlist"/>
       <zeroOrMore>
-        <ref name="smallcptr.char.mix"/>
+        <ref name="cptr.char.mix"/>
       </zeroOrMore>
     </element>
   </define>
@@ -5099,6 +5306,9 @@ in the text (no (0) value, the default)
   </define>
 <!--end of fieldsynopsis.element-->
   <define name="fieldsynopsis.attlist" combine="interleave">
+    <optional>
+      <attribute name="language"/>
+    </optional>
     <ref name="common.attrib"/>
     <ref name="fieldsynopsis.role.attrib"/>
     <ref name="local.fieldsynopsis.attrib"/>
@@ -5155,6 +5365,9 @@ in the text (no (0) value, the default)
   </define>
 <!--end of constructorsynopsis.element-->
   <define name="constructorsynopsis.attlist" combine="interleave">
+    <optional>
+      <attribute name="language"/>
+    </optional>
     <ref name="common.attrib"/>
     <ref name="constructorsynopsis.role.attrib"/>
     <ref name="local.constructorsynopsis.attrib"/>
@@ -5189,6 +5402,9 @@ in the text (no (0) value, the default)
   </define>
 <!--end of destructorsynopsis.element-->
   <define name="destructorsynopsis.attlist" combine="interleave">
+    <optional>
+      <attribute name="language"/>
+    </optional>
     <ref name="common.attrib"/>
     <ref name="destructorsynopsis.role.attrib"/>
     <ref name="local.destructorsynopsis.attrib"/>
@@ -5230,6 +5446,9 @@ in the text (no (0) value, the default)
   </define>
 <!--end of methodsynopsis.element-->
   <define name="methodsynopsis.attlist" combine="interleave">
+    <optional>
+      <attribute name="language"/>
+    </optional>
     <ref name="common.attrib"/>
     <ref name="methodsynopsis.role.attrib"/>
     <ref name="local.methodsynopsis.attrib"/>
@@ -5289,9 +5508,6 @@ in the text (no (0) value, the default)
   </define>
 <!--end of methodparam.element-->
   <define name="methodparam.attlist" combine="interleave">
-    <ref name="common.attrib"/>
-    <ref name="methodparam.role.attrib"/>
-    <ref name="local.methodparam.attrib"/>
     <optional>
       <attribute name="choice" a:defaultValue="req">
         <choice>
@@ -5309,6 +5525,9 @@ in the text (no (0) value, the default)
         </choice>
       </attribute>
     </optional>
+    <ref name="common.attrib"/>
+    <ref name="methodparam.role.attrib"/>
+    <ref name="local.methodparam.attrib"/>
   </define>
 <!--end of methodparam.attlist-->
 <!--end of methodparam.module-->
@@ -5356,6 +5575,7 @@ in the text (no (0) value, the default)
       <zeroOrMore>
         <choice>
           <text/>
+          <ref name="personname"/>
           <ref name="person.ident.mix"/>
           <ref name="street"/>
           <ref name="pob"/>
@@ -5707,6 +5927,35 @@ in the text (no (0) value, the default)
   </define>
 <!--end of artpagenums.attlist-->
 <!--end of artpagenums.module-->
+<!-- PersonName -->
+  <define name="local.personname.attrib">
+    <empty/>
+  </define>
+  <define name="personname.role.attrib">
+    <ref name="role.attrib"/>
+  </define>
+  <define name="personname">
+    <element name="personname">
+      <ref name="personname.attlist"/>
+      <oneOrMore>
+        <choice>
+          <ref name="honorific"/>
+          <ref name="firstname"/>
+          <ref name="surname"/>
+          <ref name="lineage"/>
+          <ref name="othername"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+<!--end of personname.element-->
+  <define name="personname.attlist" combine="interleave">
+    <ref name="common.attrib"/>
+    <ref name="personname.role.attrib"/>
+    <ref name="local.personname.attrib"/>
+  </define>
+<!--end of personname.attlist-->
+<!--end of personname.module-->
 <!-- Author ........................... -->
   <define name="local.author.attrib">
     <empty/>
@@ -5717,9 +5966,19 @@ in the text (no (0) value, the default)
   <define name="author">
     <element name="author">
       <ref name="author.attlist"/>
-      <oneOrMore>
-        <ref name="person.ident.mix"/>
-      </oneOrMore>
+      <choice>
+        <ref name="personname"/>
+        <oneOrMore>
+          <ref name="person.ident.mix"/>
+        </oneOrMore>
+      </choice>
+      <zeroOrMore>
+        <choice>
+          <ref name="personblurb"/>
+          <ref name="email"/>
+          <ref name="address"/>
+        </choice>
+      </zeroOrMore>
     </element>
   </define>
 <!--end of author.element-->
@@ -6173,9 +6432,19 @@ in the text (no (0) value, the default)
   <define name="editor">
     <element name="editor">
       <ref name="editor.attlist"/>
-      <oneOrMore>
-        <ref name="person.ident.mix"/>
-      </oneOrMore>
+      <choice>
+        <ref name="personname"/>
+        <oneOrMore>
+          <ref name="person.ident.mix"/>
+        </oneOrMore>
+      </choice>
+      <zeroOrMore>
+        <choice>
+          <ref name="personblurb"/>
+          <ref name="email"/>
+          <ref name="address"/>
+        </choice>
+      </zeroOrMore>
     </element>
   </define>
 <!--end of editor.element-->
@@ -6233,6 +6502,198 @@ in the text (no (0) value, the default)
   </define>
 <!--end of issn.attlist-->
 <!--end of issn.module-->
+<!-- BiblioId ................. -->
+  <define name="biblio.class.attrib">
+    <optional>
+      <attribute name="class">
+        <choice>
+          <value>uri</value>
+          <value>doi</value>
+          <value>isbn</value>
+          <value>issn</value>
+          <value>libraryofcongress</value>
+          <value>pubnumber</value>
+          <value>other</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="otherclass"/>
+    </optional>
+  </define>
+  <define name="local.biblioid.attrib">
+    <empty/>
+  </define>
+  <define name="biblioid.role.attrib">
+    <ref name="role.attrib"/>
+  </define>
+  <define name="biblioid">
+    <element name="biblioid">
+      <ref name="biblioid.attlist"/>
+      <zeroOrMore>
+        <ref name="docinfo.char.mix"/>
+      </zeroOrMore>
+    </element>
+  </define>
+<!--end of biblioid.element-->
+  <define name="biblioid.attlist" combine="interleave">
+    <ref name="biblio.class.attrib"/>
+    <ref name="common.attrib"/>
+    <ref name="biblioid.role.attrib"/>
+    <ref name="local.biblioid.attrib"/>
+  </define>
+<!--end of biblioid.attlist-->
+<!--end of biblioid.module-->
+<!-- CiteBiblioId ................. -->
+  <define name="local.citebiblioid.attrib">
+    <empty/>
+  </define>
+  <define name="citebiblioid.role.attrib">
+    <ref name="role.attrib"/>
+  </define>
+  <define name="citebiblioid">
+    <element name="citebiblioid">
+      <ref name="citebiblioid.attlist"/>
+      <zeroOrMore>
+        <ref name="docinfo.char.mix"/>
+      </zeroOrMore>
+    </element>
+  </define>
+<!--end of citebiblioid.element-->
+  <define name="citebiblioid.attlist" combine="interleave">
+    <ref name="biblio.class.attrib"/>
+    <ref name="common.attrib"/>
+    <ref name="citebiblioid.role.attrib"/>
+    <ref name="local.citebiblioid.attrib"/>
+  </define>
+<!--end of citebiblioid.attlist-->
+<!--end of citebiblioid.module-->
+<!-- BiblioSource ................. -->
+  <define name="local.bibliosource.attrib">
+    <empty/>
+  </define>
+  <define name="bibliosource.role.attrib">
+    <ref name="role.attrib"/>
+  </define>
+  <define name="bibliosource">
+    <element name="bibliosource">
+      <ref name="bibliosource.attlist"/>
+      <zeroOrMore>
+        <ref name="docinfo.char.mix"/>
+      </zeroOrMore>
+    </element>
+  </define>
+<!--end of bibliosource.element-->
+  <define name="bibliosource.attlist" combine="interleave">
+    <ref name="biblio.class.attrib"/>
+    <ref name="common.attrib"/>
+    <ref name="bibliosource.role.attrib"/>
+    <ref name="local.bibliosource.attrib"/>
+  </define>
+<!--end of bibliosource.attlist-->
+<!--end of bibliosource.module-->
+<!-- BiblioRelation ................. -->
+  <define name="local.bibliorelation.attrib">
+    <empty/>
+  </define>
+  <define name="local.bibliorelation.types">
+    <notAllowed/>
+  </define>
+  <define name="bibliorelation.type.attrib">
+    <optional>
+      <attribute name="type">
+        <choice>
+          <value>isversionof</value>
+          <value>hasversion</value>
+          <value>isreplacedby</value>
+          <value>replaces</value>
+          <value>isrequiredby</value>
+          <value>requires</value>
+          <value>ispartof</value>
+          <value>haspart</value>
+          <value>isreferencedby</value>
+          <value>references</value>
+          <value>isformatof</value>
+          <value>hasformat</value>
+          <value>othertype</value>
+          <ref name="local.bibliorelation.types"/>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="othertype"/>
+    </optional>
+  </define>
+  <define name="bibliorelation.role.attrib">
+    <ref name="role.attrib"/>
+  </define>
+  <define name="bibliorelation">
+    <element name="bibliorelation">
+      <ref name="bibliorelation.attlist"/>
+      <zeroOrMore>
+        <ref name="docinfo.char.mix"/>
+      </zeroOrMore>
+    </element>
+  </define>
+<!--end of bibliorelation.element-->
+  <define name="bibliorelation.attlist" combine="interleave">
+    <ref name="biblio.class.attrib"/>
+    <ref name="bibliorelation.type.attrib"/>
+    <ref name="common.attrib"/>
+    <ref name="bibliorelation.role.attrib"/>
+    <ref name="local.bibliorelation.attrib"/>
+  </define>
+<!--end of bibliorelation.attlist-->
+<!--end of bibliorelation.module-->
+<!-- BiblioCoverage ................. -->
+  <define name="local.bibliocoverage.attrib">
+    <empty/>
+  </define>
+  <define name="bibliocoverage.role.attrib">
+    <ref name="role.attrib"/>
+  </define>
+  <define name="bibliocoverage">
+    <element name="bibliocoverage">
+      <ref name="bibliocoverage.attlist"/>
+      <zeroOrMore>
+        <ref name="docinfo.char.mix"/>
+      </zeroOrMore>
+    </element>
+  </define>
+<!--end of bibliocoverage.element-->
+  <define name="bibliocoverage.attlist" combine="interleave">
+    <optional>
+      <attribute name="spatial">
+        <choice>
+          <value>dcmipoint</value>
+          <value>iso3166</value>
+          <value>dcmibox</value>
+          <value>tgn</value>
+          <value>otherspatial</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="otherspatial"/>
+    </optional>
+    <optional>
+      <attribute name="temporal">
+        <choice>
+          <value>dcmiperiod</value>
+          <value>w3c-dtf</value>
+          <value>othertemporal</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="othertemporal"/>
+    </optional>
+    <ref name="common.attrib"/>
+    <ref name="bibliocoverage.role.attrib"/>
+    <ref name="local.bibliocoverage.attrib"/>
+  </define>
+<!--end of bibliocoverage.attlist-->
+<!--end of bibliocoverage.module-->
 <!-- InvPartNumber .................... -->
   <define name="local.invpartnumber.attrib">
     <empty/>
@@ -6289,6 +6750,9 @@ in the text (no (0) value, the default)
   <define name="legalnotice">
     <element name="legalnotice">
       <ref name="legalnotice.attlist"/>
+      <optional>
+        <ref name="blockinfo"/>
+      </optional>
       <optional>
         <ref name="title"/>
       </optional>
@@ -6356,6 +6820,20 @@ in the text (no (0) value, the default)
 <!--end of orgname.element-->
   <define name="orgname.attlist" combine="interleave">
     <ref name="common.attrib"/>
+    <optional>
+      <attribute name="class">
+        <choice>
+          <value>corporation</value>
+          <value>nonprofit</value>
+          <value>consortium</value>
+          <value>informal</value>
+          <value>other</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="otherclass"/>
+    </optional>
     <ref name="orgname.role.attrib"/>
     <ref name="local.orgname.attrib"/>
   </define>
@@ -6371,9 +6849,19 @@ in the text (no (0) value, the default)
   <define name="othercredit">
     <element name="othercredit">
       <ref name="othercredit.attlist"/>
-      <oneOrMore>
-        <ref name="person.ident.mix"/>
-      </oneOrMore>
+      <choice>
+        <ref name="personname"/>
+        <oneOrMore>
+          <ref name="person.ident.mix"/>
+        </oneOrMore>
+      </choice>
+      <zeroOrMore>
+        <choice>
+          <ref name="personblurb"/>
+          <ref name="email"/>
+          <ref name="address"/>
+        </choice>
+      </zeroOrMore>
     </element>
   </define>
 <!--end of othercredit.element-->
@@ -6409,7 +6897,7 @@ in the text (no (0) value, the default)
 <!--end of pagenums.attlist-->
 <!--end of pagenums.module-->
 <!-- Personal identity elements ....... -->
-<!-- These elements are used only within Author, Editor, and 
+<!-- These elements are used only within Author, Editor, and
 OtherCredit. -->
   <define name="local.contrib.attrib">
     <empty/>
@@ -6946,7 +7434,7 @@ OtherCredit. -->
     <element name="action">
       <ref name="action.attlist"/>
       <zeroOrMore>
-        <ref name="smallcptr.char.mix"/>
+        <ref name="cptr.char.mix"/>
       </zeroOrMore>
     </element>
   </define>
@@ -7015,7 +7503,7 @@ OtherCredit. -->
   <define name="local.co.attrib">
     <empty/>
   </define>
-<!-- CO is a callout area of the LineColumn unit type (a single character 
+<!-- CO is a callout area of the LineColumn unit type (a single character
      position); the position is directly indicated by the location of CO. -->
   <define name="co.role.attrib">
     <ref name="role.attrib"/>
@@ -7038,6 +7526,31 @@ OtherCredit. -->
   </define>
 <!--end of co.attlist-->
 <!--end of co.module-->
+  <define name="local.coref.attrib">
+    <empty/>
+  </define>
+<!-- COREF is a reference to a CO -->
+  <define name="coref.role.attrib">
+    <ref name="role.attrib"/>
+  </define>
+  <define name="coref">
+    <element name="coref">
+      <ref name="coref.attlist"/>
+      <empty/>
+    </element>
+  </define>
+<!--end of coref.element-->
+<!-- bug number/symbol override or initialization -->
+<!-- to any related information -->
+  <define name="coref.attlist" combine="interleave">
+    <ref name="label.attrib"/>
+    <ref name="linkendreq.attrib"/>
+    <ref name="common.attrib"/>
+    <ref name="coref.role.attrib"/>
+    <ref name="local.coref.attrib"/>
+  </define>
+<!--end of coref.attlist-->
+<!--end of coref.module-->
   <define name="local.command.attrib">
     <empty/>
   </define>
@@ -7071,7 +7584,10 @@ OtherCredit. -->
     <element name="computeroutput">
       <ref name="computeroutput.attlist"/>
       <zeroOrMore>
-        <ref name="cptr.char.mix"/>
+        <choice>
+          <ref name="cptr.char.mix"/>
+          <ref name="co"/>
+        </choice>
       </zeroOrMore>
     </element>
   </define>
@@ -7094,7 +7610,7 @@ OtherCredit. -->
     <element name="database">
       <ref name="database.attlist"/>
       <zeroOrMore>
-        <ref name="smallcptr.char.mix"/>
+        <ref name="cptr.char.mix"/>
       </zeroOrMore>
     </element>
   </define>
@@ -7209,6 +7725,28 @@ OtherCredit. -->
   </define>
 <!--end of errorname.attlist-->
 <!--end of errorname.module-->
+  <define name="local.errortext.attrib">
+    <empty/>
+  </define>
+  <define name="errortext.role.attrib">
+    <ref name="role.attrib"/>
+  </define>
+  <define name="errortext">
+    <element name="errortext">
+      <ref name="errortext.attlist"/>
+      <zeroOrMore>
+        <ref name="smallcptr.char.mix"/>
+      </zeroOrMore>
+    </element>
+  </define>
+<!--end of errortext.element-->
+  <define name="errortext.attlist" combine="interleave">
+    <ref name="common.attrib"/>
+    <ref name="errortext.role.attrib"/>
+    <ref name="local.errortext.attrib"/>
+  </define>
+<!--end of errortext.attlist-->
+<!--end of errortext.module-->
   <define name="local.errortype.attrib">
     <empty/>
   </define>
@@ -7241,22 +7779,24 @@ OtherCredit. -->
     <element name="filename">
       <ref name="filename.attlist"/>
       <zeroOrMore>
-        <ref name="smallcptr.char.mix"/>
+        <ref name="cptr.char.mix"/>
       </zeroOrMore>
     </element>
   </define>
 <!--end of filename.element-->
 <!-- Class: Type of filename the element names; no default -->
-<!-- Path: Search path (possibly system-specific) in which 
+<!-- Path: Search path (possibly system-specific) in which
 		file can be found -->
   <define name="filename.attlist" combine="interleave">
     <optional>
       <attribute name="class">
         <choice>
           <value>headerfile</value>
+          <value>partition</value>
           <value>devicefile</value>
           <value>libraryfile</value>
           <value>directory</value>
+          <value>extension</value>
           <value>symlink</value>
         </choice>
       </attribute>
@@ -7460,7 +8000,7 @@ OtherCredit. -->
     <element name="hardware">
       <ref name="hardware.attlist"/>
       <zeroOrMore>
-        <ref name="smallcptr.char.mix"/>
+        <ref name="cptr.char.mix"/>
       </zeroOrMore>
     </element>
   </define>
@@ -7510,7 +8050,7 @@ OtherCredit. -->
     <element name="keycap">
       <ref name="keycap.attlist"/>
       <zeroOrMore>
-        <ref name="smallcptr.char.mix"/>
+        <ref name="cptr.char.mix"/>
       </zeroOrMore>
     </element>
   </define>
@@ -7657,9 +8197,6 @@ OtherCredit. -->
   </define>
 <!--end of constant.element-->
   <define name="constant.attlist" combine="interleave">
-    <ref name="common.attrib"/>
-    <ref name="constant.role.attrib"/>
-    <ref name="local.constant.attrib"/>
     <optional>
       <attribute name="class">
         <choice>
@@ -7667,6 +8204,9 @@ OtherCredit. -->
         </choice>
       </attribute>
     </optional>
+    <ref name="common.attrib"/>
+    <ref name="constant.role.attrib"/>
+    <ref name="local.constant.attrib"/>
   </define>
 <!--end of constant.attlist-->
 <!--end of constant.module-->
@@ -7867,7 +8407,7 @@ OtherCredit. -->
     <element name="option">
       <ref name="option.attlist"/>
       <zeroOrMore>
-        <ref name="smallcptr.char.mix"/>
+        <ref name="cptr.char.mix"/>
       </zeroOrMore>
     </element>
   </define>
@@ -7911,7 +8451,7 @@ OtherCredit. -->
     <element name="parameter">
       <ref name="parameter.attlist"/>
       <zeroOrMore>
-        <ref name="smallcptr.char.mix"/>
+        <ref name="cptr.char.mix"/>
       </zeroOrMore>
     </element>
   </define>
@@ -7944,7 +8484,10 @@ OtherCredit. -->
     <element name="prompt">
       <ref name="prompt.attlist"/>
       <zeroOrMore>
-        <ref name="smallcptr.char.mix"/>
+        <choice>
+          <ref name="smallcptr.char.mix"/>
+          <ref name="co"/>
+        </choice>
       </zeroOrMore>
     </element>
   </define>
@@ -7967,7 +8510,7 @@ OtherCredit. -->
     <element name="property">
       <ref name="property.attlist"/>
       <zeroOrMore>
-        <ref name="smallcptr.char.mix"/>
+        <ref name="cptr.char.mix"/>
       </zeroOrMore>
     </element>
   </define>
@@ -7998,6 +8541,7 @@ OtherCredit. -->
           <ref name="other.char.class"/>
           <ref name="inlinegraphic"/>
           <ref name="inlinemediaobject"/>
+          <ref name="co"/>
         </choice>
       </zeroOrMore>
     </element>
@@ -8170,8 +8714,9 @@ OtherCredit. -->
       <ref name="systemitem.attlist"/>
       <zeroOrMore>
         <choice>
-          <ref name="smallcptr.char.mix"/>
+          <ref name="cptr.char.mix"/>
           <ref name="acronym"/>
+          <ref name="co"/>
         </choice>
       </zeroOrMore>
     </element>
@@ -8183,13 +8728,22 @@ OtherCredit. -->
       <attribute name="class">
         <choice>
           <value>constant</value>
+          <value>event</value>
+          <value>eventhandler</value>
+          <value>domainname</value>
+          <value>fqdomainname</value>
+          <value>ipaddress</value>
+          <value>netmask</value>
+          <value>etheraddress</value>
           <value>groupname</value>
           <value>library</value>
           <value>macro</value>
           <value>osname</value>
+          <value>filesystem</value>
           <value>resource</value>
           <value>systemname</value>
           <value>username</value>
+          <value>newsgroup</value>
         </choice>
       </attribute>
     </optional>
@@ -8254,7 +8808,10 @@ OtherCredit. -->
     <element name="userinput">
       <ref name="userinput.attlist"/>
       <zeroOrMore>
-        <ref name="cptr.char.mix"/>
+        <choice>
+          <ref name="cptr.char.mix"/>
+          <ref name="co"/>
+        </choice>
       </zeroOrMore>
     </element>
   </define>
@@ -8776,6 +9333,12 @@ OtherCredit. -->
     <optional>
       <attribute name="type"/>
     </optional>
+    <optional>
+      <attribute name="targetdoc"/>
+    </optional>
+    <optional>
+      <attribute name="targetptr"/>
+    </optional>
     <ref name="common.attrib"/>
     <ref name="olink.role.attrib"/>
     <ref name="local.olink.attrib"/>
@@ -8965,10 +9528,10 @@ OtherCredit. -->
 		document only), or All (both) -->
 <!-- Significance: Whether this IndexTerm is the most pertinent
 		of its series (Preferred) or not (Normal, the default) -->
-<!-- Class: Indicates type of IndexTerm; default is Singular, 
-		or EndOfRange if StartRef is supplied; StartOfRange value 
+<!-- Class: Indicates type of IndexTerm; default is Singular,
+		or EndOfRange if StartRef is supplied; StartOfRange value
 		must be supplied explicitly on starts of ranges -->
-<!-- StartRef: ID of the IndexTerm that starts the indexing 
+<!-- StartRef: ID of the IndexTerm that starts the indexing
 		range ended by this IndexTerm -->
 <!-- Zone: IDs of the elements to which the IndexTerm applies,
 		and indicates that the IndexTerm applies to those entire
@@ -9123,6 +9686,6 @@ OtherCredit. -->
 <!--end of seealso.attlist-->
 <!--end of seeseealso.module-->
 <!--end of indexterm.content.module-->
-<!-- End of DocBook XML information pool module V4.1.2 ...................... -->
+<!-- End of DocBook XML information pool module V4.2 ...................... -->
 <!-- ...................................................................... -->
 </grammar>
