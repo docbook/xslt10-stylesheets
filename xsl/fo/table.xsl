@@ -625,6 +625,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   <xsl:param name="bgcolor.pi" select="''"/>
   <xsl:param name="rowsep.inherit" select="1"/>
   <xsl:param name="colsep.inherit" select="1"/>
+  <xsl:param name="col" select="1"/>
   <xsl:param name="valign.inherit" select="''"/>
   <xsl:param name="align.inherit" select="''"/>
   <xsl:param name="char.inherit" select="''"/>
