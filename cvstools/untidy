@@ -1,0 +1,26 @@
+#!/usr/bin/perl -w -- # -*- Perl -*-
+
+my $filename = pop @ARGV;
+my $opts = join(" ", @ARGV);
+
+my $content = "";
+
+open (F, "tidy $opts $filename |");
+while (<F>) {
+    $content .= $_;
+}
+close (F);
+
+if ($content eq '') {
+    # we must have done an "in-place" tidy
+    if (open (F, $filename)) {
+	read (F, $content, -s $filename);
+	close (F);
+    }
+}
+
+$content =~ s/(<a\s[^>]+>)\s+/$1/sg;
+
+open (F, ">$filename");
+print F $content;
+close (F);
