@@ -71,10 +71,35 @@
 
 <xsl:template match="orderedlist/listitem">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+
+  <xsl:variable name="numeration">
+    <xsl:call-template name="list.numeration">
+      <xsl:with-param name="node" select="parent::orderedlist"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="type">
+    <xsl:choose>
+      <xsl:when test="$numeration='arabic'">1.</xsl:when>
+      <xsl:when test="$numeration='loweralpha'">a.</xsl:when>
+      <xsl:when test="$numeration='lowerroman'">i.</xsl:when>
+      <xsl:when test="$numeration='upperalpha'">A.</xsl:when>
+      <xsl:when test="$numeration='upperroman'">I.</xsl:when>
+      <!-- What!? This should never happen -->
+      <xsl:otherwise>
+        <xsl:message>
+          <xsl:text>Unexpected numeration: </xsl:text>
+          <xsl:value-of select="$numeration"/>
+        </xsl:message>
+        <xsl:value-of select="1."/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <fo:list-item id="{$id}" xsl:use-attribute-sets="list.item.spacing">
     <fo:list-item-label end-indent="label-end()">
       <fo:block>
-        <xsl:number count="listitem" format="1."/>
+        <xsl:number count="listitem" format="{$type}"/>
       </fo:block>
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
