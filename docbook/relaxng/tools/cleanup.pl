@@ -1,5 +1,7 @@
 #!/usr/bin/perl -- # -*- Perl -*-
 
+use open ':utf8';
+
 # Simple script to cleanup the output of the stylesheets. It fiddles with
 # spuriouis namespace declarations, mostly. And adds newlines between the
 # definitions.

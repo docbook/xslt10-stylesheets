@@ -4,6 +4,7 @@ use strict;
 use XML::DOM;
 use Getopt::Std;
 use vars qw($opt_o $opt_v $opt_r);
+use open ':utf8';
 
 my $usage = "Usage: $0 [-v] [-r] [-o file] file\n";
 
