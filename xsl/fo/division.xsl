@@ -68,13 +68,14 @@
     <fo:page-sequence id="{$id}"
                       hyphenate="{$hyphenate}"
                       master-reference="{$titlepage-master-reference}">
-
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
-
+      <xsl:attribute name="format">
+        <xsl:call-template name="page.number.format"/>
+      </xsl:attribute>
       <xsl:if test="$double.sided != 0">
-        <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
       </xsl:if>
 
       <xsl:apply-templates select="." mode="running.head.mode">
@@ -104,9 +105,13 @@
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
-
+      <xsl:attribute name="format">
+        <xsl:call-template name="page.number.format">
+          <xsl:with-param name="element" select="'toc'"/>
+        </xsl:call-template>
+      </xsl:attribute>
       <xsl:if test="$double.sided != 0">
-        <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
       </xsl:if>
 
       <xsl:apply-templates select="." mode="running.head.mode">
@@ -164,9 +169,11 @@
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
-
+      <xsl:attribute name="format">
+        <xsl:call-template name="page.number.format"/>
+      </xsl:attribute>
       <xsl:if test="$double.sided != 0">
-        <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
       </xsl:if>
 
       <xsl:apply-templates select="." mode="running.head.mode">
@@ -198,9 +205,13 @@
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
-
+      <xsl:attribute name="format">
+        <xsl:call-template name="page.number.format">
+          <xsl:with-param name="element" select="'toc'"/>
+        </xsl:call-template>
+      </xsl:attribute>
       <xsl:if test="$double.sided != 0">
-        <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
       </xsl:if>
 
       <xsl:apply-templates select="." mode="running.head.mode">
@@ -226,9 +237,13 @@
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
-
+      <xsl:attribute name="format">
+        <xsl:call-template name="page.number.format">
+          <xsl:with-param name="element" select="'toc'"/>
+        </xsl:call-template>
+      </xsl:attribute>
       <xsl:if test="$double.sided != 0">
-        <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
       </xsl:if>
 
       <xsl:apply-templates select="." mode="running.head.mode">
@@ -257,9 +272,13 @@
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
-
+      <xsl:attribute name="format">
+        <xsl:call-template name="page.number.format">
+          <xsl:with-param name="element" select="'toc'"/>
+        </xsl:call-template>
+      </xsl:attribute>
       <xsl:if test="$double.sided != 0">
-        <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
       </xsl:if>
 
       <xsl:apply-templates select="." mode="running.head.mode">
@@ -288,9 +307,13 @@
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
-
+      <xsl:attribute name="format">
+        <xsl:call-template name="page.number.format">
+          <xsl:with-param name="element" select="'toc'"/>
+        </xsl:call-template>
+      </xsl:attribute>
       <xsl:if test="$double.sided != 0">
-        <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
       </xsl:if>
 
       <xsl:apply-templates select="." mode="running.head.mode">
@@ -319,9 +342,13 @@
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
-
+      <xsl:attribute name="format">
+        <xsl:call-template name="page.number.format">
+          <xsl:with-param name="element" select="'toc'"/>
+        </xsl:call-template>
+      </xsl:attribute>
       <xsl:if test="$double.sided != 0">
-        <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
       </xsl:if>
 
       <xsl:apply-templates select="." mode="running.head.mode">
@@ -379,17 +406,21 @@
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
+    <xsl:attribute name="format">
+      <xsl:call-template name="page.number.format"/>
+    </xsl:attribute>
 
-    <!-- if there is a preceding chapter or part, page numbering will already -->
-    <!-- be adjusted, otherwise restart the page numbers -->
-    <xsl:if test="not(preceding::chapter or preceding::preface)
-                  and not(preceding::part)">
-      <xsl:attribute name="initial-page-number">1</xsl:attribute>
-    </xsl:if>
-
-    <xsl:if test="$double.sided != 0">
-      <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="not(preceding::chapter or preceding::preface)
+                      and not(preceding::part)">
+        <!-- if there is a preceding chapter or part, page numbering will already -->
+        <!-- be adjusted, otherwise restart the page numbers -->
+        <xsl:attribute name="initial-page-number">1</xsl:attribute>
+      </xsl:when>
+      <xsl:when test="$double.sided != 0">
+        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
+      </xsl:when>
+    </xsl:choose>
 
     <xsl:apply-templates select="." mode="running.head.mode">
       <xsl:with-param name="master-reference" select="$titlepage-master-reference"/>
