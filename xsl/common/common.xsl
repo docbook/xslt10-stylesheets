@@ -183,11 +183,10 @@ simplemsgentry
 
 <refdescription>
 <para>This template calculates the hierarchical level of a section.
-Hierarchically, components are <quote>top level</quote>, so a
-<sgmltag>sect1</sgmltag> is at level 2, <sgmltag>sect3</sgmltag> is
-at level 3, etc.</para>
+The element <sgmltag>sect1</sgmltag> is at level 1, <sgmltag>sect2</sgmltag> is
+at level 2, etc.</para>
 
-<para>Recursive sections are calculated down to the sixth level.</para>
+<para>Recursive sections are calculated down to the fifth level.</para>
 </refdescription>
 
 <refparameter>
@@ -202,7 +201,7 @@ Defaults to the context node.</para>
 </refparameter>
 
 <refreturn>
-<para>The section level, <quote>2</quote>, <quote>3</quote>, etc.
+<para>The section level, <quote>1</quote>, <quote>2</quote>, etc.
 </para>
 </refreturn>
 </doc:template>
@@ -210,42 +209,42 @@ Defaults to the context node.</para>
 <xsl:template name="section.level">
   <xsl:param name="node" select="."/>
   <xsl:choose>
-    <xsl:when test="name($node)='sect1'">2</xsl:when>
-    <xsl:when test="name($node)='sect2'">3</xsl:when>
-    <xsl:when test="name($node)='sect3'">4</xsl:when>
-    <xsl:when test="name($node)='sect4'">5</xsl:when>
-    <xsl:when test="name($node)='sect5'">6</xsl:when>
+    <xsl:when test="name($node)='sect1'">1</xsl:when>
+    <xsl:when test="name($node)='sect2'">2</xsl:when>
+    <xsl:when test="name($node)='sect3'">3</xsl:when>
+    <xsl:when test="name($node)='sect4'">4</xsl:when>
+    <xsl:when test="name($node)='sect5'">5</xsl:when>
     <xsl:when test="name($node)='section'">
       <xsl:choose>
-        <xsl:when test="$node/../../../../../section">6</xsl:when>
-        <xsl:when test="$node/../../../../section">5</xsl:when>
-        <xsl:when test="$node/../../../section">4</xsl:when>
-        <xsl:when test="$node/../../section">3</xsl:when>
-        <xsl:otherwise>2</xsl:otherwise>
+        <xsl:when test="$node/../../../../../section">5</xsl:when>
+        <xsl:when test="$node/../../../../section">4</xsl:when>
+        <xsl:when test="$node/../../../section">3</xsl:when>
+        <xsl:when test="$node/../../section">2</xsl:when>
+        <xsl:otherwise>1</xsl:otherwise>
       </xsl:choose>
     </xsl:when>
-    <xsl:when test="name($node)='refsect1'">2</xsl:when>
-    <xsl:when test="name($node)='refsect2'">3</xsl:when>
-    <xsl:when test="name($node)='refsect3'">4</xsl:when>
+    <xsl:when test="name($node)='refsect1'">1</xsl:when>
+    <xsl:when test="name($node)='refsect2'">2</xsl:when>
+    <xsl:when test="name($node)='refsect3'">3</xsl:when>
     <xsl:when test="name($node)='simplesect'">
       <xsl:choose>
-        <xsl:when test="$node/../../sect1">3</xsl:when>
-        <xsl:when test="$node/../../sect2">4</xsl:when>
-        <xsl:when test="$node/../../sect3">5</xsl:when>
-        <xsl:when test="$node/../../sect4">6</xsl:when>
-        <xsl:when test="$node/../../sect5">6</xsl:when>
+        <xsl:when test="$node/../../sect1">2</xsl:when>
+        <xsl:when test="$node/../../sect2">3</xsl:when>
+        <xsl:when test="$node/../../sect3">4</xsl:when>
+        <xsl:when test="$node/../../sect4">5</xsl:when>
+        <xsl:when test="$node/../../sect5">5</xsl:when>
         <xsl:when test="$node/../../section">
           <xsl:choose>
-            <xsl:when test="$node/../../../../../section">6</xsl:when>
-            <xsl:when test="$node/../../../../section">5</xsl:when>
-            <xsl:when test="$node/../../../section">4</xsl:when>
-            <xsl:otherwise>3</xsl:otherwise>
+            <xsl:when test="$node/../../../../../section">5</xsl:when>
+            <xsl:when test="$node/../../../../section">4</xsl:when>
+            <xsl:when test="$node/../../../section">3</xsl:when>
+            <xsl:otherwise>2</xsl:otherwise>
           </xsl:choose>
         </xsl:when>
-        <xsl:otherwise>2</xsl:otherwise>
+        <xsl:otherwise>1</xsl:otherwise>
       </xsl:choose>
     </xsl:when>
-    <xsl:otherwise>2</xsl:otherwise>
+    <xsl:otherwise>1</xsl:otherwise>
   </xsl:choose>
 </xsl:template><!-- section.level -->
 
@@ -275,12 +274,16 @@ Defaults to the context node.</para>
                          |ancestor::refsect3
                          |ancestor::refsect2
                          |ancestor::refsect1)[last()]"/>
+
   <xsl:choose>
     <xsl:when test="count($section) = '0'">1</xsl:when>
     <xsl:otherwise>
-      <xsl:call-template name="section.level">
-        <xsl:with-param name="node" select="$section"/>
-      </xsl:call-template>
+      <xsl:variable name="slevel">
+        <xsl:call-template name="section.level">
+          <xsl:with-param name="node" select="$section"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:value-of select="$slevel + 1"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
