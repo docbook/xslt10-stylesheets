@@ -1,0 +1,30 @@
+<refentry id="monospace.properties">
+<refmeta>
+<refentrytitle>monospace.properties</refentrytitle>
+<refmiscinfo role="type">attribute set</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>monospace.properties</refname>
+<refpurpose>Properties of monospaced content</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='monospace.properties.frag'>
+<xsl:attribute-set name="monospace.properties">
+  <xsl:attribute name="font-family">
+    <xsl:value-of select="$monospace.font.family"/>
+  </xsl:attribute>
+  <xsl:attribute name="font-size">
+    <xsl:value-of select="$body.font.master * 0.9"/>
+    <xsl:text>pt</xsl:text>
+  </xsl:attribute>
+</xsl:attribute-set>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>Specifies the font name and size for monospaced output.</para>
+
+</refsect1>
+</refentry>
