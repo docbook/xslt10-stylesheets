@@ -188,6 +188,18 @@
 
 <!-- ============================================================ -->
 
+<xsl:template match="*" mode="object.titleabbrev.markup">
+  <xsl:param name="allow-anchors" select="0"/>
+
+  <!-- Just for consistency in template naming -->
+
+  <xsl:apply-templates select="." mode="titleabbrev.markup">
+    <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+  </xsl:apply-templates>
+</xsl:template>
+
+<!-- ============================================================ -->
+
 <xsl:template match="*" mode="object.subtitle.markup">
   <xsl:variable name="template">
     <xsl:apply-templates select="." mode="object.subtitle.template"/>
