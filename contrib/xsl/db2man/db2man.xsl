@@ -200,9 +200,9 @@
 </xsl:template>
 
 <xsl:template match="userinput">
-  <xsl:text>
-.IP
-.B </xsl:text><xsl:apply-templates/>
+  <xsl:text>\fB</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>\fR</xsl:text>
 </xsl:template>
 
 <xsl:template match="envar">
