@@ -6784,13 +6784,14 @@ OtherCredit. -->
 			|netmask
 			|etheraddress
 			|groupname
-                        |library
+			|library
 			|macro
 			|osname
 			|filesystem
 			|resource
 			|systemname
-                        |username)	#IMPLIED
+			|username
+			|newsgroup)	#IMPLIED
 		%moreinfo.attrib;
 		%common.attrib;
 		%systemitem.role.attrib;
