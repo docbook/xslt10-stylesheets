@@ -27,8 +27,8 @@
 <listitem><para>This is the first item of an itemized list.
 &blah; &blah; &blah; &blah; &blah;</para>
 </listitem>
-<listitem><para>This is the second item of an itemized list.
-&blah; &blah; &blah; &blah; &blah;</para>
+<listitem><simpara>This is the second item of an itemized list. (Using simpara.)
+&blah; &blah; &blah; &blah; &blah;</simpara>
 </listitem>
 <listitem><para>This is the third. It contains several paragraphs.
 &blah; &blah; &blah; &blah; &blah;</para>

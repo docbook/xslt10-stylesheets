@@ -10,6 +10,8 @@
 <title>Figures</title>
 </articleinfo>
 
+<para>See <xref linkend="figduck"/>.</para>
+
 <figure id="figduck">
   <title>The Duck</title>
   <mediaobject>
