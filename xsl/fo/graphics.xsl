@@ -75,41 +75,20 @@ FIXME: make is.graphic.* work correctly depending on the backend!
   <!-- a graphic, inlinegraphic, imagedata, or videodata. All    -->
   <!-- those elements have the same set of attributes, so we can -->
   <!-- handle them all in one place.                             -->
-  <xsl:variable name="input-filename">
-    <xsl:choose>
-      <xsl:when test="@entityref">
-        <xsl:value-of select="unparsed-entity-uri(@entityref)"/>
-      </xsl:when>
-      <xsl:when test="@fileref">
-        <xsl:value-of select="@fileref"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:message>
-          <xsl:text>Expected @entityref or @fileref on </xsl:text>
-          <xsl:value-of select="name(.)"/>
-        </xsl:message>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <xsl:variable name="fileext">
-    <xsl:call-template name="filename-extension">
-      <xsl:with-param name="filename" select="$input-filename"/>
-    </xsl:call-template>
-  </xsl:variable>
-
   <xsl:variable name="filename">
     <xsl:choose>
-      <xsl:when test="$fileext != ''">
-        <xsl:value-of select="$input-filename"/>
-      </xsl:when>
-      <xsl:when test="$graphic.default.extension != ''">
-        <xsl:value-of select="$input-filename"/>
-        <xsl:text>.</xsl:text>
-        <xsl:value-of select="$graphic.default.extension"/>
+      <xsl:when test="local-name(.) = 'graphic'
+                      or local-name(.) = 'inlinegraphic'">
+        <!-- handle legacy graphic and inlinegraphic by new template --> 
+        <xsl:call-template name="mediaobject.filename">
+          <xsl:with-param name="object" select="."/>
+        </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="$input-filename"/>
+        <!-- imagedata, videodata, audiodata -->
+        <xsl:call-template name="mediaobject.filename">
+          <xsl:with-param name="object" select=".."/>
+        </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
