@@ -1782,7 +1782,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % epigraph.element "INCLUDE">
 <![%epigraph.element;[
-<!ELEMENT epigraph %ho; (attribution?, (%para.class;)+)>
+<!ELEMENT epigraph %ho; (attribution?, ((%para.class;)|literallayout)+)>
 <!--end of epigraph.element-->]]>
 
 <!ENTITY % epigraph.attlist "INCLUDE">
