@@ -44,6 +44,17 @@
   <xsl:apply-templates/>
 </xsl:template>
 
+<xsl:template match="tip">
+  <xsl:text>&#10;.RS&#10;.Sh "Tip</xsl:text>
+    <xsl:if test="title">
+      <xsl:text>: </xsl:text>
+      <xsl:value-of select="title[1]"/>
+    </xsl:if>
+  <xsl:text>"&#10;</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>&#10;.RE&#10;</xsl:text>
+</xsl:template> 
+
 <xsl:template match="refsect1">
   <xsl:text>&#10;.SH "</xsl:text>
   <xsl:value-of select="translate(title[1],'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
