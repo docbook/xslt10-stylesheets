@@ -107,34 +107,83 @@ GlossEntry ::=
 -->
 
 <xsl:template match="glossentry">
-  <xsl:apply-templates/>
+  <xsl:choose>
+    <xsl:when test="$glossentry.show.acronym = 'primary'">
+      <dt>
+        <xsl:call-template name="anchor">
+          <xsl:with-param name="conditional">
+            <xsl:choose>
+              <xsl:when test="$glossterm.auto.link != 0">0</xsl:when>
+              <xsl:otherwise>1</xsl:otherwise>
+            </xsl:choose>
+          </xsl:with-param>
+        </xsl:call-template>
+
+        <xsl:choose>
+          <xsl:when test="acronym|abbrev">
+            <xsl:apply-templates select="acronym|abbrev"/>
+            <xsl:text> (</xsl:text>
+            <xsl:apply-templates select="glossterm"/>
+            <xsl:text>)</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="glossterm"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </dt>
+    </xsl:when>
+    <xsl:when test="$glossentry.show.acronym = 'yes'">
+      <dt>
+        <xsl:call-template name="anchor">
+          <xsl:with-param name="conditional">
+            <xsl:choose>
+              <xsl:when test="$glossterm.auto.link != 0">0</xsl:when>
+              <xsl:otherwise>1</xsl:otherwise>
+            </xsl:choose>
+          </xsl:with-param>
+        </xsl:call-template>
+
+        <xsl:apply-templates select="glossterm"/>
+
+        <xsl:if test="acronym|abbrev">
+          <xsl:text> (</xsl:text>
+          <xsl:apply-templates select="acronym|abbrev"/>
+          <xsl:text>)</xsl:text>
+        </xsl:if>
+      </dt>
+    </xsl:when>
+    <xsl:otherwise>
+      <dt>
+        <xsl:call-template name="anchor">
+          <xsl:with-param name="conditional">
+            <xsl:choose>
+              <xsl:when test="$glossterm.auto.link != 0">0</xsl:when>
+              <xsl:otherwise>1</xsl:otherwise>
+            </xsl:choose>
+          </xsl:with-param>
+        </xsl:call-template>
+
+        <xsl:apply-templates select="glossterm"/>
+      </dt>
+    </xsl:otherwise>
+  </xsl:choose>
+
+  <xsl:apply-templates select="indexterm|revhistory|glosssee|glossdef"/>
 </xsl:template>
 
 <xsl:template match="glossentry/glossterm">
-  <dt>
-    <xsl:apply-templates/>
-  </dt>
-</xsl:template>
-
-<xsl:template match="glossentry/glossterm[1]" priority="2">
-  <dt>
-    <xsl:call-template name="anchor">
-      <xsl:with-param name="node" select=".."/>
-      <xsl:with-param name="conditional">
-        <xsl:choose>
-          <xsl:when test="$glossterm.auto.link != 0">0</xsl:when>
-          <xsl:otherwise>1</xsl:otherwise>
-        </xsl:choose>
-      </xsl:with-param>
-    </xsl:call-template>
-    <xsl:apply-templates/>
-  </dt>
+  <xsl:apply-templates/>
+  <xsl:if test="following-sibling::glossterm">, </xsl:if>
 </xsl:template>
 
 <xsl:template match="glossentry/acronym">
+  <xsl:apply-templates/>
+  <xsl:if test="following-sibling::acronym|following-sibling::abbrev">, </xsl:if>
 </xsl:template>
 
 <xsl:template match="glossentry/abbrev">
+  <xsl:apply-templates/>
+  <xsl:if test="following-sibling::acronym|following-sibling::abbrev">, </xsl:if>
 </xsl:template>
 
 <xsl:template match="glossentry/revhistory">
@@ -223,16 +272,6 @@ GlossEntry ::=
 
 <!-- ==================================================================== -->
 
-<xsl:template match="glossentry" mode="xref">
-  <xsl:apply-templates select="./glossterm[1]" mode="xref"/>
-</xsl:template>
-
-<xsl:template match="glossterm" mode="xref">
-  <xsl:apply-templates/>
-</xsl:template>
-
-<!-- ==================================================================== -->
-
 <!-- Glossary collection -->
 
 <xsl:template match="glossary[@role='auto']" priority="2">
@@ -313,24 +352,6 @@ GlossEntry ::=
       </xsl:for-each>
     </dl>
   </div>
-</xsl:template>
-
-<xsl:template match="glossentry" mode="auto-glossary">
-  <xsl:apply-templates mode="auto-glossary"/>
-</xsl:template>
-
-<xsl:template match="glossentry/glossterm[1]" priority="2" mode="auto-glossary">
-  <xsl:variable name="id">
-    <xsl:text>gl.</xsl:text>
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select=".."/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <dt>
-    <a name="{$id}"/>
-    <xsl:apply-templates/>
-  </dt>
 </xsl:template>
 
 <!-- ==================================================================== -->
