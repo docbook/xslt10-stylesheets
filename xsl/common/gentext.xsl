@@ -120,15 +120,40 @@
   <xsl:param name="xrefstyle"/>
   <xsl:param name="referrer"/>
 
-  <xsl:call-template name="gentext.template">
-    <xsl:with-param name="context" select="'xref'"/>
-    <xsl:with-param name="name">
-      <xsl:call-template name="xpath.location"/>
-    </xsl:with-param>
-    <xsl:with-param name="purpose" select="$purpose"/>
-    <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
-    <xsl:with-param name="referrer" select="$referrer"/>
-  </xsl:call-template>
+  <xsl:variable name="number-and-title-template">
+    <xsl:call-template name="gentext.template.exists">
+      <xsl:with-param name="context" select="'xref-number-and-title'"/>
+      <xsl:with-param name="name">
+        <xsl:call-template name="xpath.location"/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$number-and-title-template != 0
+                    and $xref.with.number.and.title != 0">
+      <xsl:call-template name="gentext.template">
+        <xsl:with-param name="context" select="'xref-number-and-title'"/>
+        <xsl:with-param name="name">
+          <xsl:call-template name="xpath.location"/>
+        </xsl:with-param>
+        <xsl:with-param name="purpose" select="$purpose"/>
+        <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+        <xsl:with-param name="referrer" select="$referrer"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="gentext.template">
+        <xsl:with-param name="context" select="'xref'"/>
+        <xsl:with-param name="name">
+          <xsl:call-template name="xpath.location"/>
+        </xsl:with-param>
+        <xsl:with-param name="purpose" select="$purpose"/>
+        <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+        <xsl:with-param name="referrer" select="$referrer"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="section|simplesect
@@ -136,7 +161,26 @@
                      |refsect1|refsect2|refsect3
                      |bridgehead"
               mode="object.xref.template">
+
+  <xsl:variable name="number-and-title-template">
+    <xsl:call-template name="gentext.template.exists">
+      <xsl:with-param name="context" select="'xref-number-and-title'"/>
+      <xsl:with-param name="name">
+        <xsl:call-template name="xpath.location"/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:choose>
+    <xsl:when test="$number-and-title-template != 0
+                    and $xref.with.number.and.title != 0">
+      <xsl:call-template name="gentext.template">
+        <xsl:with-param name="context" select="'xref-number-and-title'"/>
+        <xsl:with-param name="name">
+          <xsl:call-template name="xpath.location"/>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
     <xsl:when test="$section.autolabel != 0">
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'section-xref-numbered'"/>
@@ -420,4 +464,3 @@
 <!-- ============================================================ -->
 
 </xsl:stylesheet>
-
