@@ -98,7 +98,7 @@
   <xsl:text>???</xsl:text>
 </xsl:template>
 
-<xsl:template match="author" mode="xref-to">
+<xsl:template match="author|editor|othercredit|personname" mode="xref-to">
   <xsl:call-template name="person.name"/>
 </xsl:template>
 
