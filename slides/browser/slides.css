@@ -113,3 +113,21 @@ span.navfooter        { font-family: sans-serif;
                       }
 
 /* ====================================================================== */
+
+body.topnavigation       { margin-top: 5px;
+                           margin-left: 10px;
+                           margin-right: 10px;
+                         }
+
+body.foil                { margin-top: 5px;
+                           margin-left: 10px;
+                           margin-right: 10px;
+                         }
+
+body.botnavigation       { margin-top: 0px;
+                           padding-top: 0px;
+                           margin-left: 10px;
+                           margin-right: 10px;
+                         }
+
+/* ====================================================================== */

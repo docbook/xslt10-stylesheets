@@ -34,6 +34,13 @@ function overlayRefresh() {
     if (overlayIE) {
 	overlayLx = document.body.clientWidth;
 	overlayLy = document.body.clientHeight;
+
+	if (document.body.parentElement) {
+	  // For IE6
+	  overlayLx = document.body.parentElement.clientWidth;
+          overlayLy = document.body.parentElement.clientHeight;
+        }
+
 	overlayH  = overlayDiv.offsetHeight;
 	overlayW  = overlayDiv.offsetWidth;
     } else if (overlayNS4) {
@@ -83,8 +90,11 @@ function overlayRefresh() {
 	document.overlayDiv.visibility="visible";
     } else if (overlayNS6) {
 	var div = document.getElementById("overlayDiv");
-	div.style.left=overlayX;
-	div.style.top=overlayY+window.pageYOffset;
+	var leftpx = overlayX;
+	var toppx = overlayY+window.pageYOffset;
+
+	div.style.left = leftpx + "px";
+	div.style.top = toppx + "px";
     }
 }
 
@@ -94,7 +104,7 @@ function onad() {
 
 function loopfunc() {
     overlayRefresh();
-    setTimeout('loopfunc()',overlayDelay);
+//    setTimeout('loopfunc()',overlayDelay);
 }
 
 function overlaySetup(corner) {

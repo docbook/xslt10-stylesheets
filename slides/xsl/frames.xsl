@@ -4,15 +4,6 @@
 
 <xsl:import href="slides.xsl"/>
 
-<xsl:param name="titlefoil.html" select="'titlefoil.html'"/>
-
-<xsl:param name="ns4" select="1"/>
-<xsl:param name="ie5" select="1"/>
-<xsl:param name="multiframe" select="0"/>
-
-<xsl:param name="multiframe.top.bgcolor" select="'white'"/>
-<xsl:param name="multiframe.bottom.bgcolor" select="'white'"/>
-
 <xsl:template match="slides">
   <xsl:variable name="title">
     <xsl:choose>
@@ -34,6 +25,7 @@
   </xsl:if>
 
   <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename" select="concat($base.dir,'frames.html')"/>
     <xsl:with-param name="content">
       <html>
@@ -56,65 +48,44 @@
     </xsl:with-param>
   </xsl:call-template>
 
-  <xsl:if test="$ie5 != 0">
-    <xsl:call-template name="write.chunk">
-      <xsl:with-param name="filename" select="concat($base.dir,'ie5toc.html')"/>
-      <xsl:with-param name="content">
-        <html>
-          <head>
-            <title>TOC - <xsl:value-of select="$title"/></title>
-            <link type="text/css" rel="stylesheet">
-              <xsl:attribute name="href">
-                <xsl:call-template name="css-stylesheet"/>
-              </xsl:attribute>
-            </link>
-            <script type="text/javascript" language="JavaScript">
-              <xsl:attribute name="src">
-                <xsl:call-template name="slides.js"/>
-              </xsl:attribute>
-            </script>
-            <xsl:if test="$overlay != '0'">
-              <script type="text/javascript" language="JavaScript">
-                <xsl:attribute name="src">
-                  <xsl:call-template name="overlay.js"/>
-                </xsl:attribute>
-              </script>
-            </xsl:if>
-          </head>
-          <body class="toc" onload="newPage('toc.html',{$overlay});">
-            <xsl:call-template name="body.attributes"/>
-            <div class="toc">
-              <xsl:apply-templates mode="toc"/>
-            </div>
-          </body>
-        </html>
-      </xsl:with-param>
-    </xsl:call-template>
-  </xsl:if>
+  <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
+    <xsl:with-param name="filename" select="concat($base.dir,'toc.html')"/>
+    <xsl:with-param name="content">
+      <html>
+        <head>
+          <title>TOC - <xsl:value-of select="$title"/></title>
+          <link type="text/css" rel="stylesheet">
+            <xsl:attribute name="href">
+              <xsl:call-template name="css.stylesheet"/>
+            </xsl:attribute>
+          </link>
 
-  <xsl:if test="$ns4 != 0">
-    <xsl:call-template name="write.chunk">
-      <xsl:with-param name="filename" select="concat($base.dir,'ns4toc.html')"/>
-      <xsl:with-param name="content">
-        <html>
-          <head>
-            <title>TOC - <xsl:value-of select="$title"/></title>
-            <link type="text/css" rel="stylesheet">
-              <xsl:attribute name="href">
-                <xsl:call-template name="css-stylesheet"/>
-              </xsl:attribute>
-            </link>
-            <script type="text/javascript" language="JavaScript1.2">
-              <xsl:attribute name="src">
-                <xsl:call-template name="list.js"/>
-              </xsl:attribute>
-            </script>
-            <script type="text/javascript" language="JavaScript1.2">
-              <xsl:attribute name="src">
-                <xsl:call-template name="resize.js"/>
-              </xsl:attribute>
-            </script>
-            <script type="text/javascript" language="JavaScript"><xsl:text>
+          <xsl:if test="$overlay != 0 or $keyboard.nav != 0
+                        or $dynamic.toc != 0 or $active.toc != 0">
+            <script language="JavaScript1.2"/>
+          </xsl:if>
+
+          <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
+            <xsl:call-template name="ua.js"/>
+            <xsl:call-template name="xbDOM.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+            <xsl:call-template name="xbStyle.js"/>
+            <xsl:call-template name="xbCollapsibleLists.js"/>
+            <xsl:call-template name="slides.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+          </xsl:if>
+
+          <xsl:if test="$overlay != '0'">
+            <xsl:call-template name="overlay.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+          </xsl:if>
+
+          <xsl:if test="$dynamic.toc != 0">
+            <script language="JavaScript"><xsl:text>
 function init() {
   var width = </xsl:text>
 <xsl:value-of select="$toc.width"/>
@@ -123,6 +94,10 @@ function init() {
 <xsl:text>;
   myList = new List(true, width, height, "</xsl:text>
 <xsl:value-of select="$toc.bg.color"/>
+<xsl:text>","</xsl:text>
+<xsl:call-template name="plus.image"/>
+<xsl:text>","</xsl:text>
+<xsl:call-template name="minus.image"/>
 <xsl:text>");
 </xsl:text>
 <xsl:apply-templates mode="ns-toc"/>
@@ -137,61 +112,28 @@ function init() {
   <xsl:text>; }
 </xsl:text>
             </style>
-          </head>
-          <body class="toc" onload="init({$overlay});">
-            <xsl:call-template name="body.attributes"/>
-            <div id="spacer"></div>
-          </body>
-        </html>
-      </xsl:with-param>
-    </xsl:call-template>
-  </xsl:if>
-
-  <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="concat($base.dir,'toc.html')"/>
-    <xsl:with-param name="content">
-      <html>
-        <head>
-          <title>TOC - <xsl:value-of select="$title"/></title>
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css-stylesheet"/>
-            </xsl:attribute>
-          </link>
-          <script type="text/javascript" language="JavaScript">
-            <xsl:attribute name="src">
-              <xsl:call-template name="slides.js"/>
-            </xsl:attribute>
-          </script>
-          <script type="text/javascript" language="JavaScript">
-            <xsl:if test="$ns4 != 0">
-              <xsl:text><![CDATA[
-if (selectBrowser() == "ns4") {
-      location.replace("ns4toc.html");
-}
-]]></xsl:text>
-            </xsl:if>
-            <xsl:if test="$ie5 != 0">
-              <xsl:text><![CDATA[
-if (selectBrowser() == "ie5") {
-      location.replace("ie5toc.html");
-}
-]]></xsl:text>
-            </xsl:if>
-          </script>
-          <xsl:if test="$overlay != '0'">
-            <script type="text/javascript" language="JavaScript">
-              <xsl:attribute name="src">
-                <xsl:call-template name="overlay.js"/>
-              </xsl:attribute>
-            </script>
           </xsl:if>
         </head>
         <body class="toc">
           <xsl:call-template name="body.attributes"/>
-          <div class="toc">
-            <xsl:apply-templates mode="toc"/>
-          </div>
+          <xsl:if test="$dynamic.toc != 0">
+            <xsl:attribute name="onload">
+              <xsl:text>init(</xsl:text>
+              <xsl:value-of select="$overlay"/>
+              <xsl:text>);</xsl:text>
+            </xsl:attribute>
+          </xsl:if>
+
+          <xsl:choose>
+            <xsl:when test="$dynamic.toc = 0">
+              <div class="toc">
+                <xsl:apply-templates mode="toc"/>
+              </div>
+            </xsl:when>
+            <xsl:otherwise>
+              <div id="spacer"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </body>
       </html>
     </xsl:with-param>
@@ -202,6 +144,7 @@ if (selectBrowser() == "ie5") {
 
 <xsl:template match="slidesinfo">
   <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename"
                     select="concat($base.dir,$titlefoil.html)"/>
     <xsl:with-param name="content">
@@ -210,39 +153,64 @@ if (selectBrowser() == "ie5") {
           <title><xsl:value-of select="title"/></title>
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
-              <xsl:call-template name="css-stylesheet"/>
+              <xsl:call-template name="css.stylesheet"/>
             </xsl:attribute>
           </link>
-          <xsl:if test="$ie5 != '0'">
-            <script type="text/javascript" language="JavaScript">
-              <xsl:attribute name="src">
-                <xsl:call-template name="slides.js"/>
+
+          <link rel="next">
+            <xsl:attribute name="href">
+              <xsl:apply-templates select="(following::section|following::foil)[1]"
+                                   mode="filename"/>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:value-of select="(following::section|following::foil)[1]/title"/>
+            </xsl:attribute>
+          </link>
+
+          <xsl:for-each select="../section">
+            <link rel="section">
+              <xsl:attribute name="href">
+                <xsl:apply-templates select="." mode="filename"/>
               </xsl:attribute>
-            </script>
+              <xsl:attribute name="title">
+                <xsl:value-of select="title[1]"/>
+              </xsl:attribute>
+            </link>
+          </xsl:for-each>
+
+          <xsl:if test="$overlay != 0 or $keyboard.nav != 0
+                        or $dynamic.toc != 0 or $active.toc != 0">
+            <script language="JavaScript1.2"/>
           </xsl:if>
+
+          <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
+            <xsl:call-template name="ua.js"/>
+            <xsl:call-template name="xbDOM.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+            <xsl:call-template name="xbStyle.js"/>
+            <xsl:call-template name="xbCollapsibleLists.js"/>
+            <xsl:call-template name="slides.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+          </xsl:if>
+
           <xsl:if test="$overlay != '0'">
-            <script type="text/javascript" language="JavaScript">
-              <xsl:attribute name="src">
-                <xsl:call-template name="overlay.js"/>
-              </xsl:attribute>
-            </script>
+            <xsl:call-template name="overlay.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
           </xsl:if>
         </head>
         <body class="titlepage">
           <xsl:call-template name="body.attributes"/>
           <xsl:choose>
-            <xsl:when test="$ie5 != 0">
+            <xsl:when test="$active.toc != 0">
               <xsl:attribute name="onload">
                 <xsl:text>newPage('</xsl:text>
                 <xsl:value-of select="$titlefoil.html"/>
                 <xsl:text>',</xsl:text>
                 <xsl:value-of select="$overlay"/>
                 <xsl:text>);</xsl:text>
-              </xsl:attribute>
-              <xsl:attribute name="onkeypress">
-                <xsl:text>navigate('','foil01.html',</xsl:text>
-                <xsl:value-of select="$overlay"/>
-                <xsl:text>)</xsl:text>
               </xsl:attribute>
             </xsl:when>
             <xsl:when test="$overlay != 0">
@@ -251,6 +219,13 @@ if (selectBrowser() == "ie5") {
               </xsl:attribute>
             </xsl:when>
           </xsl:choose>
+
+          <xsl:if test="$keyboard.nav != 0">
+            <xsl:attribute name="onkeypress">
+              <xsl:text>navigate(event)</xsl:text>
+            </xsl:attribute>
+          </xsl:if>
+
           <div class="{name(.)}">
             <xsl:apply-templates mode="titlepage.mode"/>
           </div>
@@ -286,9 +261,7 @@ if (selectBrowser() == "ie5") {
                       <a href="foil01.html">
                         <img alt="Next" border="0">
                           <xsl:attribute name="src">
-                            <xsl:call-template name="graphics.dir"/>
-                            <xsl:text>/</xsl:text>
-                            <xsl:value-of select="$right.image"/>
+                            <xsl:call-template name="right.image"/>
                           </xsl:attribute>
                         </img>
                       </a>
@@ -335,44 +308,41 @@ if (selectBrowser() == "ie5") {
     <xsl:text>.html</xsl:text>
   </xsl:variable>
 
-  <xsl:variable name="nextfoil">
-    <xsl:apply-templates select="foil[1]" mode="filename"/>
-  </xsl:variable>
-
-  <xsl:variable name="prevfoil">
-    <xsl:choose>
-      <xsl:when test="preceding::foil">
-        <xsl:apply-templates select="preceding::foil[1]" mode="filename"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$titlefoil.html"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
   <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename" select="concat($base.dir,$thissection)"/>
     <xsl:with-param name="content">
       <head>
         <title><xsl:value-of select="title"/></title>
         <link type="text/css" rel="stylesheet">
           <xsl:attribute name="href">
-            <xsl:call-template name="css-stylesheet"/>
+            <xsl:call-template name="css.stylesheet"/>
           </xsl:attribute>
         </link>
-        <xsl:if test="$ie5 != '0'">
-          <script type="text/javascript" language="JavaScript">
-            <xsl:attribute name="src">
-              <xsl:call-template name="slides.js"/>
-            </xsl:attribute>
-          </script>
+
+        <xsl:call-template name="section-links"/>
+
+        <xsl:if test="$overlay != 0 or $keyboard.nav != 0
+                      or $dynamic.toc != 0 or $active.toc != 0">
+          <script language="JavaScript1.2"/>
         </xsl:if>
+
+        <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
+          <xsl:call-template name="ua.js"/>
+          <xsl:call-template name="xbDOM.js">
+            <xsl:with-param name="language" select="'JavaScript'"/>
+          </xsl:call-template>
+          <xsl:call-template name="xbStyle.js"/>
+          <xsl:call-template name="xbCollapsibleLists.js"/>
+          <xsl:call-template name="slides.js">
+            <xsl:with-param name="language" select="'JavaScript'"/>
+          </xsl:call-template>
+        </xsl:if>
+
         <xsl:if test="$overlay != '0'">
-          <script type="text/javascript" language="JavaScript">
-            <xsl:attribute name="src">
-              <xsl:call-template name="overlay.js"/>
-            </xsl:attribute>
-          </script>
+          <xsl:call-template name="overlay.js">
+            <xsl:with-param name="language" select="'JavaScript'"/>
+          </xsl:call-template>
         </xsl:if>
       </head>
       <xsl:choose>
@@ -406,10 +376,13 @@ if (selectBrowser() == "ie5") {
     <xsl:text>.html</xsl:text>
   </xsl:variable>
 
-  <frameset rows="25,*,25" border="0" name="foil" framespacing="0">
-    <frame src="top-{$thissection}" name="top" marginheight="0" scrolling="no" frameborder="0"/>
+  <frameset rows="{$multiframe.navigation.height},*,{$multiframe.navigation.height}"
+            border="0" name="foil" framespacing="0">
+    <frame src="top-{$thissection}" name="top" marginheight="0"
+           scrolling="no" frameborder="0"/>
     <frame src="body-{$thissection}" name="body" marginheight="0" frameborder="0"/>
-    <frame src="bot-{$thissection}" name="bottom" marginheight="0" scrolling="no" frameborder="0"/>
+    <frame src="bot-{$thissection}" name="bottom" marginheight="0"
+           scrolling="no" frameborder="0"/>
     <noframes>
       <body class="frameset">
         <xsl:call-template name="body.attributes"/>
@@ -429,6 +402,7 @@ if (selectBrowser() == "ie5") {
   </xsl:variable>
 
   <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename" select="concat($base.dir,'top-',$section)"/>
     <xsl:with-param name="content">
       <html>
@@ -436,25 +410,34 @@ if (selectBrowser() == "ie5") {
           <title>Navigation</title>
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
-              <xsl:call-template name="css-stylesheet"/>
+              <xsl:call-template name="css.stylesheet"/>
             </xsl:attribute>
           </link>
-          <xsl:if test="$ie5 != '0'">
-            <script type="text/javascript" language="JavaScript">
-              <xsl:attribute name="src">
-                <xsl:call-template name="slides.js"/>
-              </xsl:attribute>
-            </script>
+
+          <xsl:if test="$overlay != 0 or $keyboard.nav != 0
+                        or $dynamic.toc != 0 or $active.toc != 0">
+            <script language="JavaScript1.2"/>
           </xsl:if>
+
+          <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
+            <xsl:call-template name="ua.js"/>
+            <xsl:call-template name="xbDOM.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+            <xsl:call-template name="xbStyle.js"/>
+            <xsl:call-template name="xbCollapsibleLists.js"/>
+            <xsl:call-template name="slides.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+          </xsl:if>
+
           <xsl:if test="$overlay != '0'">
-            <script type="text/javascript" language="JavaScript">
-              <xsl:attribute name="src">
-                <xsl:call-template name="overlay.js"/>
-              </xsl:attribute>
-            </script>
+            <xsl:call-template name="overlay.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
           </xsl:if>
         </head>
-        <body class="navigation" bgcolor="{$multiframe.top.bgcolor}">
+        <body class="topnavigation" bgcolor="{$multiframe.top.bgcolor}">
           <xsl:call-template name="section-top-nav">
             <xsl:with-param name="prev-target" select="'foil'"/>
             <xsl:with-param name="next-target" select="'foil'"/>
@@ -480,22 +463,8 @@ if (selectBrowser() == "ie5") {
     <xsl:text>.html</xsl:text>
   </xsl:variable>
 
-  <xsl:variable name="nextfoil">
-    <xsl:apply-templates select="foil[1]" mode="filename"/>
-  </xsl:variable>
-
-  <xsl:variable name="prevfoil">
-    <xsl:choose>
-      <xsl:when test="preceding::foil">
-        <xsl:apply-templates select="preceding::foil[1]" mode="filename"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$titlefoil.html"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
   <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename" select="concat($base.dir,'body-',$thissection)"/>
     <xsl:with-param name="content">
       <html>
@@ -503,22 +472,31 @@ if (selectBrowser() == "ie5") {
           <title>Body</title>
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
-              <xsl:call-template name="css-stylesheet"/>
+              <xsl:call-template name="css.stylesheet"/>
             </xsl:attribute>
           </link>
-          <xsl:if test="$ie5 != '0'">
-            <script type="text/javascript" language="JavaScript">
-              <xsl:attribute name="src">
-                <xsl:call-template name="slides.js"/>
-              </xsl:attribute>
-            </script>
+
+          <xsl:if test="$overlay != 0 or $keyboard.nav != 0
+                        or $dynamic.toc != 0 or $active.toc != 0">
+            <script language="JavaScript1.2"/>
           </xsl:if>
+
+          <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
+            <xsl:call-template name="ua.js"/>
+            <xsl:call-template name="xbDOM.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+            <xsl:call-template name="xbStyle.js"/>
+            <xsl:call-template name="xbCollapsibleLists.js"/>
+            <xsl:call-template name="slides.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+          </xsl:if>
+
           <xsl:if test="$overlay != '0'">
-            <script type="text/javascript" language="JavaScript">
-              <xsl:attribute name="src">
-                <xsl:call-template name="overlay.js"/>
-              </xsl:attribute>
-            </script>
+            <xsl:call-template name="overlay.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
           </xsl:if>
         </head>
         <xsl:apply-templates select="." mode="singleframe"/>
@@ -542,22 +520,8 @@ if (selectBrowser() == "ie5") {
     <xsl:text>.html</xsl:text>
   </xsl:variable>
 
-  <xsl:variable name="nextfoil">
-    <xsl:apply-templates select="foil[1]" mode="filename"/>
-  </xsl:variable>
-
-  <xsl:variable name="prevfoil">
-    <xsl:choose>
-      <xsl:when test="preceding::foil">
-        <xsl:apply-templates select="preceding::foil[1]" mode="filename"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$titlefoil.html"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
   <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename" select="concat($base.dir,'bot-',$thissection)"/>
     <xsl:with-param name="content">
       <html>
@@ -565,25 +529,34 @@ if (selectBrowser() == "ie5") {
           <title>Navigation</title>
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
-              <xsl:call-template name="css-stylesheet"/>
+              <xsl:call-template name="css.stylesheet"/>
             </xsl:attribute>
           </link>
-          <xsl:if test="$ie5 != '0'">
-            <script type="text/javascript" language="JavaScript">
-              <xsl:attribute name="src">
-                <xsl:call-template name="slides.js"/>
-              </xsl:attribute>
-            </script>
+
+          <xsl:if test="$overlay != 0 or $keyboard.nav != 0
+                        or $dynamic.toc != 0 or $active.toc != 0">
+            <script language="JavaScript1.2"/>
           </xsl:if>
+
+          <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
+            <xsl:call-template name="ua.js"/>
+            <xsl:call-template name="xbDOM.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+            <xsl:call-template name="xbStyle.js"/>
+            <xsl:call-template name="xbCollapsibleLists.js"/>
+            <xsl:call-template name="slides.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+          </xsl:if>
+
           <xsl:if test="$overlay != '0'">
-            <script type="text/javascript" language="JavaScript">
-              <xsl:attribute name="src">
-                <xsl:call-template name="overlay.js"/>
-              </xsl:attribute>
-            </script>
+            <xsl:call-template name="overlay.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
           </xsl:if>
         </head>
-        <body class="navigation" bgcolor="{$multiframe.bottom.bgcolor}">
+        <body class="botnavigation" bgcolor="{$multiframe.bottom.bgcolor}">
           <xsl:call-template name="section-bottom-nav"/>
         </body>
       </html>
@@ -606,40 +579,16 @@ if (selectBrowser() == "ie5") {
     <xsl:text>.html</xsl:text>
   </xsl:variable>
 
-  <xsl:variable name="nextfoil">
-    <xsl:apply-templates select="foil[1]" mode="filename"/>
-  </xsl:variable>
-
-  <xsl:variable name="prevfoil">
-    <xsl:choose>
-      <xsl:when test="preceding::foil">
-        <xsl:apply-templates select="preceding::foil[1]" mode="filename"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$titlefoil.html"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
   <body class="section">
     <xsl:call-template name="body.attributes"/>
     <xsl:choose>
-      <xsl:when test="$ie5 != 0">
+      <xsl:when test="$active.toc != 0">
         <xsl:attribute name="onload">
           <xsl:text>newPage('</xsl:text>
           <xsl:value-of select="$thissection"/>
           <xsl:text>',</xsl:text>
           <xsl:value-of select="$overlay"/>
           <xsl:text>);</xsl:text>
-        </xsl:attribute>
-        <xsl:attribute name="onkeypress">
-          <xsl:text>navigate('</xsl:text>
-          <xsl:value-of select="$prevfoil"/>
-          <xsl:text>','</xsl:text>
-          <xsl:value-of select="$nextfoil"/>
-          <xsl:text>',</xsl:text>
-          <xsl:value-of select="$overlay"/>
-          <xsl:text>)</xsl:text>
         </xsl:attribute>
       </xsl:when>
       <xsl:when test="$overlay != 0">
@@ -648,11 +597,15 @@ if (selectBrowser() == "ie5") {
         </xsl:attribute>
       </xsl:when>
     </xsl:choose>
+    <xsl:if test="$keyboard.nav != 0">
+      <xsl:attribute name="onkeypress">
+        <xsl:text>navigate(event)</xsl:text>
+      </xsl:attribute>
+    </xsl:if>
     <div class="{name(.)}" id="{$id}">
       <a name="{$id}"/>
       <xsl:if test="$multiframe=0">
         <xsl:call-template name="section-top-nav"/>
-        <hr/>
       </xsl:if>
 
       <div class="{name(.)}" id="{$id}">
@@ -667,7 +620,6 @@ if (selectBrowser() == "ie5") {
               <xsl:text>position:absolute;visibility:visible;</xsl:text>
             </xsl:attribute>
           </xsl:if>
-          <hr/>
           <xsl:call-template name="section-bottom-nav"/>
         </div>
       </xsl:if>
@@ -675,62 +627,81 @@ if (selectBrowser() == "ie5") {
   </body>
 </xsl:template>
 
+<xsl:template name="section-links">
+  <xsl:variable name="prevfoil"
+                select="(preceding::foil|/slides)[last()]"/>
+
+  <xsl:variable name="nextfoil" select="foil[1]"/>
+
+  <xsl:if test="$prevfoil">
+    <link rel="previous">
+      <xsl:attribute name="href">
+        <xsl:apply-templates select="$prevfoil" mode="filename"/>
+      </xsl:attribute>
+      <xsl:attribute name="title">
+        <xsl:value-of select="$prevfoil/title"/>
+      </xsl:attribute>
+    </link>
+  </xsl:if>
+
+  <xsl:if test="$nextfoil">
+    <link rel="next">
+      <xsl:attribute name="href">
+        <xsl:apply-templates select="$nextfoil" mode="filename"/>
+      </xsl:attribute>
+      <xsl:attribute name="title">
+        <xsl:value-of select="$nextfoil/title"/>
+      </xsl:attribute>
+    </link>
+  </xsl:if>
+</xsl:template>
+
+<!-- ====================================================================== -->
+
 <xsl:template match="foil">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
-  <xsl:variable name="section" select="ancestor::section"/>
-
   <xsl:variable name="thisfoil">
     <xsl:apply-templates select="." mode="filename"/>
   </xsl:variable>
 
-  <xsl:variable name="nextfoil">
-    <xsl:apply-templates select="(following::foil
-                                 |following::section)[1]"
-                         mode="filename"/>
-  </xsl:variable>
-
-  <xsl:variable name="prevfoil">
-    <xsl:choose>
-      <xsl:when test="preceding-sibling::foil">
-        <xsl:apply-templates select="preceding-sibling::foil[1]"
-                             mode="filename"/>
-      </xsl:when>
-      <xsl:when test="parent::section">
-        <xsl:apply-templates select="parent::section[1]"
-                             mode="filename"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$titlefoil.html"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
   <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename" select="concat($base.dir,$thisfoil)"/>
     <xsl:with-param name="content">
       <head>
         <title><xsl:value-of select="title"/></title>
         <link type="text/css" rel="stylesheet">
           <xsl:attribute name="href">
-            <xsl:call-template name="css-stylesheet"/>
+            <xsl:call-template name="css.stylesheet"/>
           </xsl:attribute>
         </link>
-        <xsl:if test="$ie5 != '0'">
-          <script type="text/javascript" language="JavaScript">
-            <xsl:attribute name="src">
-              <xsl:call-template name="slides.js"/>
-            </xsl:attribute>
-          </script>
+
+        <xsl:call-template name="foil-links"/>
+
+        <xsl:if test="$overlay != 0 or $keyboard.nav != 0
+                      or $dynamic.toc != 0 or $active.toc != 0">
+          <script language="JavaScript1.2"/>
         </xsl:if>
+
+        <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
+          <xsl:call-template name="ua.js"/>
+          <xsl:call-template name="xbDOM.js">
+            <xsl:with-param name="language" select="'JavaScript'"/>
+          </xsl:call-template>
+          <xsl:call-template name="xbStyle.js"/>
+          <xsl:call-template name="xbCollapsibleLists.js"/>
+          <xsl:call-template name="slides.js">
+            <xsl:with-param name="language" select="'JavaScript'"/>
+          </xsl:call-template>
+        </xsl:if>
+
         <xsl:if test="$overlay != '0'">
-          <script type="text/javascript" language="JavaScript">
-            <xsl:attribute name="src">
-              <xsl:call-template name="overlay.js"/>
-            </xsl:attribute>
-          </script>
+          <xsl:call-template name="overlay.js">
+            <xsl:with-param name="language" select="'JavaScript'"/>
+          </xsl:call-template>
         </xsl:if>
       </head>
       <xsl:choose>
@@ -758,69 +729,23 @@ if (selectBrowser() == "ie5") {
     <xsl:apply-templates select="." mode="filename"/>
   </xsl:variable>
 
-  <xsl:variable name="nextfoil">
-    <xsl:apply-templates select="(following::foil
-                                 |following::section)[1]"
-                         mode="filename"/>
-  </xsl:variable>
-
-  <xsl:variable name="prevfoil">
-    <xsl:choose>
-      <xsl:when test="preceding-sibling::foil">
-        <xsl:apply-templates select="preceding-sibling::foil[1]"
-                             mode="filename"/>
-      </xsl:when>
-      <xsl:when test="parent::section">
-        <xsl:apply-templates select="parent::section[1]"
-                             mode="filename"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$titlefoil.html"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <frameset rows="25,*,25" border="0" name="foil" framespacing="0">
+  <frameset rows="{$multiframe.navigation.height},*,{$multiframe.navigation.height}" border="0" name="foil" framespacing="0">
     <xsl:attribute name="onkeypress">
-      <xsl:text>navigate('</xsl:text>
-      <xsl:value-of select="$prevfoil"/>
-      <xsl:text>','</xsl:text>
-      <xsl:value-of select="$nextfoil"/>
-      <xsl:text>',</xsl:text>
-      <xsl:value-of select="$overlay"/>
-      <xsl:text>)</xsl:text>
+      <xsl:text>navigate(event)</xsl:text>
     </xsl:attribute>
     <frame src="top-{$thisfoil}" name="top" marginheight="0" scrolling="no" frameborder="0">
       <xsl:attribute name="onkeypress">
-        <xsl:text>navigate('</xsl:text>
-        <xsl:value-of select="$prevfoil"/>
-        <xsl:text>','</xsl:text>
-        <xsl:value-of select="$nextfoil"/>
-        <xsl:text>',</xsl:text>
-        <xsl:value-of select="$overlay"/>
-        <xsl:text>)</xsl:text>
+        <xsl:text>navigate(event)</xsl:text>
       </xsl:attribute>
     </frame>
     <frame src="body-{$thisfoil}" name="body" marginheight="0" frameborder="0">
       <xsl:attribute name="onkeypress">
-        <xsl:text>navigate('</xsl:text>
-        <xsl:value-of select="$prevfoil"/>
-        <xsl:text>','</xsl:text>
-        <xsl:value-of select="$nextfoil"/>
-        <xsl:text>',</xsl:text>
-        <xsl:value-of select="$overlay"/>
-        <xsl:text>)</xsl:text>
+        <xsl:text>navigate(event)</xsl:text>
       </xsl:attribute>
     </frame>
     <frame src="bot-{$thisfoil}" name="bottom" marginheight="0" scrolling="no" frameborder="0">
       <xsl:attribute name="onkeypress">
-        <xsl:text>navigate('</xsl:text>
-        <xsl:value-of select="$prevfoil"/>
-        <xsl:text>','</xsl:text>
-        <xsl:value-of select="$nextfoil"/>
-        <xsl:text>',</xsl:text>
-        <xsl:value-of select="$overlay"/>
-        <xsl:text>)</xsl:text>
+        <xsl:text>navigate(event)</xsl:text>
       </xsl:attribute>
     </frame>
     <noframes>
@@ -840,6 +765,7 @@ if (selectBrowser() == "ie5") {
   </xsl:variable>
 
   <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename" select="concat($base.dir,'top-',$thisfoil)"/>
     <xsl:with-param name="content">
       <html>
@@ -847,25 +773,34 @@ if (selectBrowser() == "ie5") {
           <title>Navigation</title>
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
-              <xsl:call-template name="css-stylesheet"/>
+              <xsl:call-template name="css.stylesheet"/>
             </xsl:attribute>
           </link>
-          <xsl:if test="$ie5 != '0'">
-            <script type="text/javascript" language="JavaScript">
-              <xsl:attribute name="src">
-                <xsl:call-template name="slides.js"/>
-              </xsl:attribute>
-            </script>
+
+          <xsl:if test="$overlay != 0 or $keyboard.nav != 0
+                        or $dynamic.toc != 0 or $active.toc != 0">
+            <script language="JavaScript1.2"/>
           </xsl:if>
+
+          <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
+            <xsl:call-template name="ua.js"/>
+            <xsl:call-template name="xbDOM.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+            <xsl:call-template name="xbStyle.js"/>
+            <xsl:call-template name="xbCollapsibleLists.js"/>
+            <xsl:call-template name="slides.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+          </xsl:if>
+
           <xsl:if test="$overlay != '0'">
-            <script type="text/javascript" language="JavaScript">
-              <xsl:attribute name="src">
-                <xsl:call-template name="overlay.js"/>
-              </xsl:attribute>
-            </script>
+            <xsl:call-template name="overlay.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
           </xsl:if>
         </head>
-        <body class="navigation" bgcolor="{$multiframe.top.bgcolor}">
+        <body class="topnavigation" bgcolor="{$multiframe.top.bgcolor}">
           <xsl:call-template name="foil-top-nav">
             <xsl:with-param name="prev-target" select="'foil'"/>
             <xsl:with-param name="next-target" select="'foil'"/>
@@ -882,6 +817,7 @@ if (selectBrowser() == "ie5") {
   </xsl:variable>
 
   <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename" select="concat($base.dir,'body-',$thisfoil)"/>
     <xsl:with-param name="content">
       <html>
@@ -889,22 +825,31 @@ if (selectBrowser() == "ie5") {
           <title>Body</title>
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
-              <xsl:call-template name="css-stylesheet"/>
+              <xsl:call-template name="css.stylesheet"/>
             </xsl:attribute>
           </link>
-          <xsl:if test="$ie5 != '0'">
-            <script type="text/javascript" language="JavaScript">
-              <xsl:attribute name="src">
-                <xsl:call-template name="slides.js"/>
-              </xsl:attribute>
-            </script>
+
+          <xsl:if test="$overlay != 0 or $keyboard.nav != 0
+                        or $dynamic.toc != 0 or $active.toc != 0">
+            <script language="JavaScript1.2"/>
           </xsl:if>
+
+          <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
+            <xsl:call-template name="ua.js"/>
+            <xsl:call-template name="xbDOM.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+            <xsl:call-template name="xbStyle.js"/>
+            <xsl:call-template name="xbCollapsibleLists.js"/>
+            <xsl:call-template name="slides.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+          </xsl:if>
+
           <xsl:if test="$overlay != '0'">
-            <script type="text/javascript" language="JavaScript">
-              <xsl:attribute name="src">
-                <xsl:call-template name="overlay.js"/>
-              </xsl:attribute>
-            </script>
+            <xsl:call-template name="overlay.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
           </xsl:if>
         </head>
         <xsl:apply-templates select="." mode="singleframe"/>
@@ -919,6 +864,7 @@ if (selectBrowser() == "ie5") {
   </xsl:variable>
 
   <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename" select="concat($base.dir,'bot-',$thisfoil)"/>
     <xsl:with-param name="content">
       <html>
@@ -926,25 +872,34 @@ if (selectBrowser() == "ie5") {
           <title>Navigation</title>
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
-              <xsl:call-template name="css-stylesheet"/>
+              <xsl:call-template name="css.stylesheet"/>
             </xsl:attribute>
           </link>
-          <xsl:if test="$ie5 != '0'">
-            <script type="text/javascript" language="JavaScript">
-              <xsl:attribute name="src">
-                <xsl:call-template name="slides.js"/>
-              </xsl:attribute>
-            </script>
+
+          <xsl:if test="$overlay != 0 or $keyboard.nav != 0
+                        or $dynamic.toc != 0 or $active.toc != 0">
+            <script language="JavaScript1.2"/>
           </xsl:if>
+
+          <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
+            <xsl:call-template name="ua.js"/>
+            <xsl:call-template name="xbDOM.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+            <xsl:call-template name="xbStyle.js"/>
+            <xsl:call-template name="xbCollapsibleLists.js"/>
+            <xsl:call-template name="slides.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
+          </xsl:if>
+
           <xsl:if test="$overlay != '0'">
-            <script type="text/javascript" language="JavaScript">
-              <xsl:attribute name="src">
-                <xsl:call-template name="overlay.js"/>
-              </xsl:attribute>
-            </script>
+            <xsl:call-template name="overlay.js">
+              <xsl:with-param name="language" select="'JavaScript'"/>
+            </xsl:call-template>
           </xsl:if>
         </head>
-        <body class="navigation" bgcolor="{$multiframe.bottom.bgcolor}">
+        <body class="botnavigation" bgcolor="{$multiframe.bottom.bgcolor}">
           <xsl:call-template name="foil-bottom-nav"/>
         </body>
       </html>
@@ -963,47 +918,16 @@ if (selectBrowser() == "ie5") {
     <xsl:apply-templates select="." mode="filename"/>
   </xsl:variable>
 
-  <xsl:variable name="nextfoil">
-    <xsl:apply-templates select="(following::foil
-                                 |following::section)[1]"
-                         mode="filename"/>
-  </xsl:variable>
-
-  <xsl:variable name="prevfoil">
-    <xsl:choose>
-      <xsl:when test="preceding-sibling::foil">
-        <xsl:apply-templates select="preceding-sibling::foil[1]"
-                             mode="filename"/>
-      </xsl:when>
-      <xsl:when test="parent::section">
-        <xsl:apply-templates select="parent::section[1]"
-                             mode="filename"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$titlefoil.html"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
   <body class="foil">
     <xsl:call-template name="body.attributes"/>
     <xsl:choose>
-      <xsl:when test="$ie5 != 0">
+      <xsl:when test="$active.toc != 0">
         <xsl:attribute name="onload">
           <xsl:text>newPage('</xsl:text>
           <xsl:value-of select="$thisfoil"/>
           <xsl:text>',</xsl:text>
           <xsl:value-of select="$overlay"/>
           <xsl:text>);</xsl:text>
-        </xsl:attribute>
-        <xsl:attribute name="onkeypress">
-          <xsl:text>navigate('</xsl:text>
-          <xsl:value-of select="$prevfoil"/>
-          <xsl:text>','</xsl:text>
-          <xsl:value-of select="$nextfoil"/>
-          <xsl:text>',</xsl:text>
-          <xsl:value-of select="$overlay"/>
-          <xsl:text>)</xsl:text>
         </xsl:attribute>
       </xsl:when>
       <xsl:when test="$overlay != 0">
@@ -1012,12 +936,16 @@ if (selectBrowser() == "ie5") {
         </xsl:attribute>
       </xsl:when>
     </xsl:choose>
+    <xsl:if test="$keyboard.nav != 0">
+      <xsl:attribute name="onkeypress">
+        <xsl:text>navigate(event)</xsl:text>
+      </xsl:attribute>
+    </xsl:if>
 
     <div class="{name(.)}" id="{$id}">
       <a name="{$id}"/>
       <xsl:if test="$multiframe=0">
         <xsl:call-template name="foil-top-nav"/>
-        <hr/>
       </xsl:if>
 
       <xsl:apply-templates/>
@@ -1029,12 +957,43 @@ if (selectBrowser() == "ie5") {
               <xsl:text>position:absolute;visibility:visible;</xsl:text>
             </xsl:attribute>
           </xsl:if>
-          <hr/>
           <xsl:call-template name="foil-bottom-nav"/>
         </div>
       </xsl:if>
     </div>
   </body>
+</xsl:template>
+
+<xsl:template name="foil-links">
+  <xsl:variable name="nextfoil" select="(following::foil
+                                        |following::section)[1]"/>
+
+  <xsl:variable name="prevfoil" select="(preceding-sibling::foil[1]
+                                        |parent::section[1]
+                                        |/slides)[last()]"/>
+
+
+  <xsl:if test="$prevfoil">
+    <link rel="previous">
+      <xsl:attribute name="href">
+        <xsl:apply-templates select="$prevfoil" mode="filename"/>
+      </xsl:attribute>
+      <xsl:attribute name="title">
+        <xsl:value-of select="$prevfoil/title"/>
+      </xsl:attribute>
+    </link>
+  </xsl:if>
+
+  <xsl:if test="$nextfoil">
+    <link rel="next">
+      <xsl:attribute name="href">
+        <xsl:apply-templates select="$nextfoil" mode="filename"/>
+      </xsl:attribute>
+      <xsl:attribute name="title">
+        <xsl:value-of select="$nextfoil/title"/>
+      </xsl:attribute>
+    </link>
+  </xsl:if>
 </xsl:template>
 
 <!-- ============================================================ -->
@@ -1043,8 +1002,8 @@ if (selectBrowser() == "ie5") {
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
-  <div id="{$id}" class="toc-slidesinfo">
-    <a href="{$titlefoil.html}" target="foil">
+  <DIV id="{$id}" class="toc-slidesinfo">
+    <A href="{$titlefoil.html}" target="foil">
       <xsl:choose>
         <xsl:when test="titleabbrev">
           <xsl:apply-templates select="titleabbrev" mode="toc"/>
@@ -1053,9 +1012,9 @@ if (selectBrowser() == "ie5") {
           <xsl:apply-templates select="title" mode="toc"/>
         </xsl:otherwise>
       </xsl:choose>
-    </a>
+    </A>
     <hr/>
-  </div>
+  </DIV>
 </xsl:template>
 
 <xsl:template match="section" mode="toc">
@@ -1070,15 +1029,13 @@ if (selectBrowser() == "ie5") {
     <xsl:text>.html</xsl:text>
   </xsl:variable>
 
-  <div class="toc-section" id="{$id}">
+  <DIV class="toc-section" id="{$id}">
     <img alt="-">
       <xsl:attribute name="src">
-        <xsl:call-template name="graphics.dir"/>
-        <xsl:text>/</xsl:text>
-        <xsl:value-of select="$minus.image"/>
+        <xsl:call-template name="minus.image"/>
       </xsl:attribute>
     </img>
-    <a href="{$thissection}" target="foil">
+    <A href="{$thissection}" target="foil">
       <xsl:choose>
         <xsl:when test="titleabbrev">
           <xsl:apply-templates select="titleabbrev" mode="toc"/>
@@ -1087,26 +1044,24 @@ if (selectBrowser() == "ie5") {
           <xsl:apply-templates select="title" mode="toc"/>
         </xsl:otherwise>
       </xsl:choose>
-    </a>
+    </A>
     <xsl:apply-templates select="foil" mode="toc"/>
-  </div>
+  </DIV>
 </xsl:template>
 
 <xsl:template match="foil" mode="toc">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
   <xsl:variable name="foil">
-    <xsl:apply-templates select="." mode="foil-filename"/>
+    <xsl:apply-templates select="." mode="filename"/>
   </xsl:variable>
 
-  <div id="{$id}" class="toc-foil">
+  <DIV id="{$id}" class="toc-foil">
     <img alt="-">
       <xsl:attribute name="src">
-        <xsl:call-template name="graphics.dir"/>
-        <xsl:text>/</xsl:text>
-        <xsl:value-of select="$bullet.image"/>
+        <xsl:call-template name="bullet.image"/>
       </xsl:attribute>
     </img>
-    <a href="{$foil}" target="foil">
+    <A href="{$foil}" target="foil">
       <xsl:choose>
         <xsl:when test="titleabbrev">
           <xsl:apply-templates select="titleabbrev" mode="toc"/>
@@ -1115,8 +1070,8 @@ if (selectBrowser() == "ie5") {
           <xsl:apply-templates select="title" mode="toc"/>
         </xsl:otherwise>
       </xsl:choose>
-    </a>
-  </div>
+    </A>
+  </DIV>
 </xsl:template>
 
 </xsl:stylesheet>
