@@ -105,6 +105,35 @@ can be set in the source document with the &lt;?dbhtml?&gt; pseudo-attribute
 </refsect1>
 </refentry>
 
+<refentry id="css.stylesheet.dir">
+<refmeta>
+<refentrytitle>css.stylesheet.dir</refentrytitle>
+<refmiscinfo role="type">URI</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>css.stylesheet.dir</refname>
+<refpurpose>Default directory for CSS stylesheets</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='css.stylesheet.dir.frag'>
+<xsl:param name="css.stylesheet.dir" select="''"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>Identifies the default directory for the CSS stylesheet
+generated on all the slides. This parameter can be set in the source
+document with the &lt;?dbhtml?&gt; pseudo-attribute
+<literal>css-stylesheet-dir</literal>.</para>
+
+<para>If non-empty, this value is prepended to each of the stylesheets.
+</para>
+
+</refsect1>
+</refentry>
+
 <refentry id="titlefoil.html">
 <refmeta>
 <refentrytitle>titlefoil.html</refentrytitle>
@@ -1279,6 +1308,7 @@ around all these parameters.</para>
 <src:fragref linkend="body.bg.color.frag"/>
 <src:fragref linkend="bullet.image.frag"/>
 <src:fragref linkend="css.stylesheet.frag"/>
+<src:fragref linkend="css.stylesheet.dir.frag"/>
 <src:fragref linkend="dynamic.toc.frag"/>
 <src:fragref linkend="graphics.dir.frag"/>
 <src:fragref linkend="hidetoc.image.frag"/>
