@@ -46,7 +46,7 @@ path/value pairs. Each path identifies some element in the source document
 using a restricted subset of XPath (only the implicit child axis, no wildcards,
 no predicates). Paths can be either relative or absolute.</para>
 
-<para>When a particular element, the stylesheets consult this table to
+<para>When processing a particular element, the stylesheets consult this table to
 determine if a ToC (or LoT(s)) should be generated.</para>
 
 <para>For example, consider the entry:</para>
@@ -73,6 +73,16 @@ part/article toc</screen>
 <para>Note that an article in a part can never match a <literal>book/article</literal>,
 so if you want nothing to be generated for articles in parts, you can simply leave
 that rule out.</para>
+
+<para>If you want to leave the rule in, to make it explicit that you're turning
+something off, use the value <quote>nop</quote>. For example, the following
+entry disables ToCs and LoTs for articles:</para>
+
+<screen>article nop</screen>
+
+<para>Do not simply leave the word <quote>article</quote> in the file
+without a matching value. That'd be just begging the silly little
+path/value parser to get confused.</para>
 
 </refsect1>
 </refentry>
