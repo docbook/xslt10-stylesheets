@@ -76,7 +76,7 @@
 
 <!-- ==================================================================== -->
 
-<t:titlepage element="section" wrapper="fo:block">
+<t:titlepage element="foilgroup" wrapper="fo:block">
   <t:titlepage-content side="recto">
     <title predicate="[1]"
 	   fo:font-size="24pt"
