@@ -412,13 +412,7 @@ Defaults to the context node.</para>
 </xsl:template>
 
 <xsl:template name="person.name">
-  <!-- Return a formatted string representation of the contents of
-       the specified node (by default, the current element).
-       Handles Honorific, FirstName, SurName, and Lineage.
-       If %author-othername-in-middle% is #t, also OtherName
-       Handles *only* the first of each.
-       Format is "Honorific. FirstName [OtherName] SurName, Lineage"
-  -->
+  <!-- Formats a personal name. Handles corpauthor as a special case. -->
   <xsl:param name="node" select="."/>
 
   <xsl:variable name="style">
@@ -449,90 +443,90 @@ Defaults to the context node.</para>
     </xsl:when>
 
     <xsl:otherwise>
-      <xsl:variable name="h_nl" select="$node//honorific[1]"/>
-      <xsl:variable name="f_nl" select="$node//firstname[1]"/>
-      <xsl:variable name="o_nl" select="$node//othername[1]"/>
-      <xsl:variable name="s_nl" select="$node//surname[1]"/>
-      <xsl:variable name="l_nl" select="$node//lineage[1]"/>
-
-      <xsl:variable name="has_h" select="$h_nl"/>
-      <xsl:variable name="has_f" select="$f_nl"/>
-      <xsl:variable name="has_o"
-                    select="$o_nl and ($author.othername.in.middle != 0)"/>
-      <xsl:variable name="has_s" select="$s_nl"/>
-      <xsl:variable name="has_l" select="$l_nl"/>
-
       <xsl:choose>
         <xsl:when test="$style = 'family-given'">
-          <!-- The family-given style applies a convention for identifying given -->
-          <!-- and family names in locales where it may be ambiguous -->
-          <xsl:if test="$has_h">
-            <xsl:value-of select="$h_nl"/>
-            <xsl:value-of select="$punct.honorific"/>
-          </xsl:if>
-
-          <xsl:if test="$has_s">
-            <xsl:if test="$has_h">
-              <xsl:text> </xsl:text>
-            </xsl:if>
-            <xsl:value-of select="$s_nl"/>
-          </xsl:if>
-
-          <xsl:if test="$has_o">
-            <xsl:if test="$has_h or $has_f"><xsl:text> </xsl:text></xsl:if>
-            <xsl:value-of select="$o_nl"/>
-          </xsl:if>
-
-          <xsl:if test="$has_f">
-            <xsl:if test="$has_h or $has_s or $has_o"><xsl:text> </xsl:text></xsl:if>
-            <xsl:value-of select="$f_nl"/>
-          </xsl:if>
-
-          <xsl:if test="$has_l">
-            <xsl:text>, </xsl:text>
-            <xsl:value-of select="$l_nl"/>
-          </xsl:if>
-
-          <xsl:text> [FAMILY Given]</xsl:text>
+          <xsl:call-template name="person.name.family-given">
+            <xsl:with-param name="node" select="$node"/>
+          </xsl:call-template>
         </xsl:when>
         <xsl:when test="$style = 'last-first'">
-          <xsl:value-of select="$s_nl"/>
-          <xsl:if test="$has_f">
-            <xsl:if test="$has_s"><xsl:text>, </xsl:text></xsl:if>
-            <xsl:value-of select="$f_nl"/>
-          </xsl:if>
+          <xsl:call-template name="person.name.last-first">
+            <xsl:with-param name="node" select="$node"/>
+          </xsl:call-template>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:if test="$has_h">
-            <xsl:value-of select="$h_nl"/>.
-          </xsl:if>
-
-          <xsl:if test="$has_f">
-            <xsl:if test="$has_h"><xsl:text> </xsl:text></xsl:if>
-            <xsl:value-of select="$f_nl"/>
-          </xsl:if>
-
-          <xsl:if test="$has_o">
-            <xsl:if test="$has_h or $has_f"><xsl:text> </xsl:text></xsl:if>
-            <xsl:value-of select="$o_nl"/>
-          </xsl:if>
-
-          <xsl:if test="$has_s">
-            <xsl:if test="$has_h or $has_f or $has_o">
-              <xsl:text> </xsl:text>
-            </xsl:if>
-            <xsl:value-of select="$s_nl"/>
-          </xsl:if>
-
-          <xsl:if test="$has_l">
-            <xsl:text>, </xsl:text>
-            <xsl:value-of select="$l_nl"/>
-          </xsl:if>
+          <xsl:call-template name="person.name.first-last">
+            <xsl:with-param name="node" select="$node"/>
+          </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
-</xsl:template> <!-- person.name -->
+</xsl:template>
+
+<xsl:template name="person.name.family-given">
+  <xsl:param name="node" select="."/>
+
+  <!-- The family-given style applies a convention for identifying given -->
+  <!-- and family names in locales where it may be ambiguous -->
+  <xsl:apply-templates select="$node//surname[1]"/>
+
+  <xsl:if test="$node//surname and $node//firstname">
+    <xsl:text> </xsl:text>
+  </xsl:if>
+
+  <xsl:apply-templates select="$node//firstname[1]"/>
+
+  <xsl:text> [FAMILY Given]</xsl:text>
+</xsl:template>
+
+<xsl:template name="person.name.last-first">
+  <xsl:param name="node" select="."/>
+
+  <xsl:apply-templates select="$node//surname[1]"/>
+
+  <xsl:if test="$node//surname and $node//firstname">
+    <xsl:text>, </xsl:text>
+  </xsl:if>
+
+  <xsl:apply-templates select="$node//firstname[1]"/>
+</xsl:template>
+
+<xsl:template name="person.name.first-last">
+  <xsl:param name="node" select="."/>
+
+  <xsl:if test="$node//honorific">
+    <xsl:apply-templates select="$node//honorific[1]"/>
+    <xsl:value-of select="$punct.honorific"/>
+  </xsl:if>
+
+  <xsl:if test="$node//firstname">
+    <xsl:if test="$node//honorific">
+      <xsl:text> </xsl:text>
+    </xsl:if>
+    <xsl:apply-templates select="$node//firstname[1]"/>
+  </xsl:if>
+
+  <xsl:if test="$node//othername and $author.othername.in.middle != 0">
+    <xsl:if test="$node//honorific or $node//firstname">
+      <xsl:text> </xsl:text>
+    </xsl:if>
+    <xsl:apply-templates select="$node//othername[1]"/>
+  </xsl:if>
+
+  <xsl:if test="$node//surname">
+    <xsl:if test="$node//honorific or $node//firstname
+                  or ($node//othername and $author.othername.in.middle != 0)">
+      <xsl:text> </xsl:text>
+    </xsl:if>
+    <xsl:apply-templates select="$node//surname[1]"/>
+  </xsl:if>
+
+  <xsl:if test="$node//lineage">
+    <xsl:text>, </xsl:text>
+    <xsl:apply-templates select="$node//lineage[1]"/>
+  </xsl:if>
+</xsl:template>
 
 <xsl:template name="person.name.list">
   <!-- Return a formatted string representation of the contents of
