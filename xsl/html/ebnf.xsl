@@ -127,9 +127,12 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 	</xsl:otherwise>
       </xsl:choose>
     </td>
-    <td valign="top" width="5%" align="center"><tt>::=</tt></td>
+    <td valign="top" width="5%" align="center">
+      <xsl:copy-of select="$ebnf.assignment"/>
+    </td>
     <td valign="top" width="52%">
       <xsl:apply-templates select="rhs"/>
+      <xsl:copy-of select="$ebnf.statement.terminator"/>
     </td>
     <td align="left" valign="top" width="30%">
       <xsl:choose>
