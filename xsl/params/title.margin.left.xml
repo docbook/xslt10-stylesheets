@@ -13,7 +13,7 @@
 <xsl:param name="title.margin.left">
   <xsl:choose>
     <xsl:when test="$passivetex.extensions != 0">0pt</xsl:when>
-    <xsl:otherwise>-4pc</xsl:otherwise>
+    <xsl:otherwise>0pt</xsl:otherwise>
   </xsl:choose>
 </xsl:param>
 </src:fragment>
