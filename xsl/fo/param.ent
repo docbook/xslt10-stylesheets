@@ -60,6 +60,7 @@
 <!ENTITY glossterm.auto.link SYSTEM "../params/glossterm.auto.link.xml">
 <!ENTITY graphic.default.extension SYSTEM "../params/graphic.default.extension.xml">
 <!ENTITY hyphenate SYSTEM "../params/hyphenate.xml">
+<!ENTITY informal.object.properties SYSTEM "../params/informal.object.properties.xml">
 <!ENTITY insert.xref.page.number SYSTEM "../params/insert.xref.page.number.xml">
 <!ENTITY label.from.part SYSTEM "../params/label.from.part.xml">
 <!ENTITY line-height SYSTEM "../params/line-height.xml">
