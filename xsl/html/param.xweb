@@ -273,6 +273,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 </reference>
 
 <reference><title>Graphics</title>
+&img.src.path;
 &graphic.default.extension;
 &default.image.width;
 &nominal.image.width;
@@ -557,6 +558,7 @@ around all these parameters.</para>
 <src:fragref linkend="htmlhelp.title.frag"/>
 <src:fragref linkend="htmlhelp.use.hhk.frag"/>
 <src:fragref linkend="htmlhelp.window.geometry.frag"/>
+<src:fragref linkend="img.src.path.frag"/>
 <src:fragref linkend="index.on.role.frag"/>
 <src:fragref linkend="index.on.type.frag"/>
 <src:fragref linkend="ignore.image.scaling.frag"/>
