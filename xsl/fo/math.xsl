@@ -43,8 +43,31 @@
 
 <xsl:template match="equation/mediaobject | informalequation/mediaobject">
   <xsl:if test="$passivetex.extensions = 0 or $tex.math.in.alt = ''">
+    <xsl:variable name="olist" select="imageobject|imageobjectco
+                       |videoobject|audioobject
+  		     |textobject"/>
+  
+    <xsl:variable name="object.index">
+      <xsl:call-template name="select.mediaobject.index">
+        <xsl:with-param name="olist" select="$olist"/>
+        <xsl:with-param name="count" select="1"/>
+      </xsl:call-template>
+    </xsl:variable>
+  
+    <xsl:variable name="object" select="$olist[position() = $object.index]"/>
+  
+    <xsl:variable name="align">
+      <xsl:value-of select="$object/imagedata[@align][1]/@align"/>
+    </xsl:variable>
+  
     <fo:block>
-      <xsl:call-template name="select.mediaobject"/>
+      <xsl:if test="$align != '' ">
+        <xsl:attribute name="text-align">
+          <xsl:value-of select="$align"/>
+        </xsl:attribute>
+      </xsl:if>
+  
+      <xsl:apply-templates select="$object"/>
       <xsl:apply-templates select="caption"/>
     </fo:block>
   </xsl:if>
