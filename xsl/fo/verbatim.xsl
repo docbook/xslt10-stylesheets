@@ -34,7 +34,6 @@
         <xsl:apply-templates/>
       </xsl:variable>
       <fo:block wrap-option='no-wrap'
-                text-align='start'
                 white-space-collapse='false'
                 linefeed-treatment="preserve"
                 xsl:use-attribute-sets="monospace.verbatim.properties">
@@ -45,7 +44,6 @@
     </xsl:when>
     <xsl:otherwise>
       <fo:block wrap-option='no-wrap'
-                text-align='start'
                 white-space-collapse='false'
                 linefeed-treatment="preserve"
                 xsl:use-attribute-sets="monospace.verbatim.properties">
@@ -71,7 +69,6 @@
       <xsl:choose>
         <xsl:when test="@class='monospaced'">
           <fo:block wrap-option='no-wrap'
-                    text-align='start'
                     linefeed-treatment="preserve"
                     white-space-collapse='false'
                     xsl:use-attribute-sets="monospace.verbatim.properties">
@@ -82,7 +79,6 @@
         </xsl:when>
         <xsl:otherwise>
           <fo:block wrap-option='no-wrap'
-                    text-align='start'
                     linefeed-treatment="preserve"
                     white-space-collapse='false'
                     xsl:use-attribute-sets="verbatim.properties">
@@ -97,7 +93,6 @@
       <xsl:choose>
         <xsl:when test="@class='monospaced'">
           <fo:block wrap-option='no-wrap'
-                    text-align='start'
                     linefeed-treatment="preserve"
                     white-space-collapse='false'
                     xsl:use-attribute-sets="monospace.verbatim.properties">
@@ -106,7 +101,6 @@
         </xsl:when>
         <xsl:otherwise>
           <fo:block wrap-option='no-wrap'
-                    text-align='start'
                     linefeed-treatment="preserve"
                     white-space-collapse='false'
                     xsl:use-attribute-sets="verbatim.properties">
@@ -142,7 +136,6 @@
     </xsl:when>
     <xsl:otherwise>
       <fo:block wrap-option='no-wrap'
-                text-align='start'
                 linefeed-treatment="preserve"
                 white-space-collapse='false'
                 xsl:use-attribute-sets="verbatim.properties">
