@@ -59,7 +59,7 @@
       <xsl:text> png pdf jpg jpeg </xsl:text>
     </xsl:when>
     <xsl:when test="$fop.extensions != 0">
-      <xsl:text> svg png pdf jpg jpeg </xsl:text>
+      <xsl:text> gif svg png pdf jpg jpeg </xsl:text>
     </xsl:when>
     <xsl:when test="$arbortext.extensions != 0">
       <xsl:text> png pdf jpg jpeg gif tif tiff bmp </xsl:text>
