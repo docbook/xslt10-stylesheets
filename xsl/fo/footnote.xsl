@@ -52,6 +52,7 @@
                           font-size="{$footnote.font.size}"
                           font-weight="normal"
                           font-style="normal"
+                          text-align="{$alignment}"
                           margin-left="0pc">
           <xsl:apply-templates/>
         </fo:footnote-body>
