@@ -1,0 +1,165 @@
+<locale language="pl">
+
+<gentext key="Abstract" text="Abstrakt"/>
+<gentext key="abstract" text="Abstrakt"/>
+<gentext key="Answer" text="A:"/>
+<gentext key="answer" text="A:"/> <!-- en -->
+<gentext key="Appendix" text="Dodatek"/>
+<gentext key="Article" text="Article"/>
+<gentext key="article" text="Article"/> <!--en-->
+<gentext key="Bibliography" text="Bibliografia"/>
+<gentext key="bibliography" text="Bibliografia"/>
+<gentext key="Book" text="Book"/>
+<gentext key="book" text="Book"/> <!--en-->
+<gentext key="CAUTION" text="PRZYPADEK"/>
+<gentext key="caution" text="PRZYPADEK"/>
+<gentext key="Caution" text="Przypadek"/>
+<gentext key="caution" text="Przypadek"/>
+<gentext key="Chapter" text="Rozdzia&#179;"/>
+<gentext key="Colophon" text="Colophon"/>
+<gentext key="colophon" text="Colophon"/> <!-- en -->
+<gentext key="Copyright" text="Copyright"/>
+<gentext key="copyright" text="Copyright"/>
+<gentext key="Dedication" text="Dedykacja"/>
+<gentext key="dedication" text="Dedykacja"/>
+<gentext key="Edition" text="Wydanie"/>
+<gentext key="edition" text="Wydanie"/>
+<gentext key="Equation" text="R&#243;wnanie"/>
+<gentext key="equation" text="R&#243;wnanie"/>
+<gentext key="Example" text="Przyk&#179;ad"/>
+<gentext key="example" text="Przyk&#179;ad"/>
+<gentext key="Figure" text="Rysunek"/>
+<gentext key="figure" text="Rysunek"/>
+<gentext key="GlossSee" text="Patrz"/>
+<gentext key="glosssee" text="Patrz"/>
+<gentext key="GlossSeeAlso" text="Patrz te&#191;"/>
+<gentext key="glossseealso" text="Patrz te&#191;"/>
+<gentext key="Glossary" text="Glossary"/>
+<gentext key="glossary" text="Glossary"/>
+<gentext key="IMPORTANT" text="WA&#175;NE"/>
+<gentext key="important" text="WA&#175;NE"/>
+<gentext key="ISBN" text="ISBN"/>
+<gentext key="isbn" text="ISBN"/>
+<gentext key="Important" text="WA&#175;NE"/>
+<gentext key="important" text="WA&#175;NE"/>
+<gentext key="Index" text="Indeks"/>
+<gentext key="index" text="Indeks"/>
+<gentext key="LegalNotice" text=""/>
+<gentext key="legalnotice" text=""/>
+<gentext key="MsgAud" text="Odbiorcy"/>
+<gentext key="msgaud" text="Odbiorcy"/>
+<gentext key="MsgLevel" text="Poziom"/>
+<gentext key="msglevel" text="Poziom"/>
+<gentext key="MsgOrig" text="Nadawca"/>
+<gentext key="msgorig" text="Nadawca"/>
+<gentext key="NOTE" text="NOTATKA"/>
+<gentext key="note" text="NOTATKA"/>
+<gentext key="Note" text="Notatka"/>
+<gentext key="note" text="Notatka"/>
+<gentext key="Part" text="Cz&#234;&#182;&#230;"/>
+<gentext key="part" text="Cz&#234;&#182;&#230;"/>
+<gentext key="Preface" text="Przedmowa"/>
+<gentext key="preface" text="Przedmowa"/>
+<gentext key="Procedure" text="Procedura"/>
+<gentext key="procedure" text="Procedura"/>
+<gentext key="Published" text="Data wydania"/>
+<gentext key="published" text="Data wydania"/>
+<gentext key="Question" text="Q:"/>
+<gentext key="question" text="Q:"/> <!-- en -->
+<gentext key="RefEntry" text=""/>
+<gentext key="refentry" text=""/>
+<gentext key="RefName" text="Nazwa"/>
+<gentext key="refname" text="Nazwa"/>
+<gentext key="Reference" text="Materia&#179;y &#188;r&#243;d&#179;owe"/>
+<gentext key="reference" text="Materia&#179;y &#188;r&#243;d&#179;owe"/>
+<gentext key="RefSection" text=""/>
+<gentext key="refsection" text=""/>
+<gentext key="RefSynopsisDiv" text="Synopsis"/>
+<gentext key="refsynopsisdiv" text="Synopsis"/> <!-- en -->
+<gentext key="Revision" text="Zmiana"/>
+<gentext key="revision" text="Zmiana"/>
+<gentext key="RevHistory" text="Historia zmian"/>
+<gentext key="revhistory" text="Historia zmian"/>
+<gentext key="Section" text="Sekcja"/>
+<gentext key="See" text="Patrz"/>
+<gentext key="see" text="Patrz"/>
+<gentext key="SeeAlso" text="Patrz Te&#191;"/>
+<gentext key="seealso" text="Patrz Te&#191;"/>
+<gentext key="Set" text="Set"/>
+<gentext key="set" text="Set"/> <!--en-->
+<gentext key="SetIndex" text="Indeks"/>
+<gentext key="setindex" text="Indeks"/>
+<gentext key="Sidebar" text=""/>
+<gentext key="sidebar" text=""/>
+<gentext key="Step" text="krok"/>
+<gentext key="TIP" text="Podpowied&#188;"/>
+<gentext key="tip" text="Podpowied&#188;"/>
+<gentext key="Table" text="Tabela"/>
+<gentext key="table" text="Tabela"/>
+<gentext key="Tip" text="Podpowied&#188;"/>
+<gentext key="tip" text="Podpowied&#188;"/>
+<gentext key="WARNING" text="Ostrze&#191;enie"/>
+<gentext key="warning" text="Ostrze&#191;enie"/>
+<gentext key="Warning" text="Ostrze&#191;enie"/>
+<gentext key="warning" text="Ostrze&#191;enie"/>
+<gentext key="appendix" text="dodatek"/>
+<gentext key="chapter" text="rozdzia&#179;"/>
+<gentext key="section" text="sekcja"/>
+<gentext key="step" text="krok"/>
+<gentext key="Seealso" text="Patrz te&#191;"/>
+<gentext key="seealso" text="Patrz te&#191;"/>
+
+<gentext key="TableofContents" text="Spis tre&#182;ci"/>
+<gentext key="tableofcontents" text="Spis tre&#182;ci"/>
+<gentext key="in" text="w"/>
+<gentext key="by" text=""/>
+<gentext key="Edited" text="Edited"/>
+<gentext key="edited" text="Edited"/> <!-- en -->
+<gentext key="Editedby" text="Redakcja: "/>
+<gentext key="editedby" text="Redakcja: "/>
+<gentext key="and" text="i"/>
+<gentext key="Notes" text="Przypisy"/>
+<gentext key="notes" text="Przypisy"/>
+<gentext key="TableNotes" text="Przypisy"/>
+<gentext key="tablenotes" text="Przypisy"/>
+<gentext key="nonexistantelement" text="nie istniej&#177;cy element"/>
+<gentext key="Pgs" text="stron"/>
+<gentext key="pgs" text="stron"/>
+<gentext key="unsupported" text="nie wspierany"/>
+<gentext key="xrefto" text="xref to"/>
+<gentext key="unexpectedelementname" text="Unexpected element name"/>
+<gentext key="Revisedby" text="Revised by: "/>
+<gentext key="revisedby" text="Revised by: "/> <!-- en -->
+
+<gentext key="ListofTables" text="Spis tabel"/>
+<gentext key="listoftables" text="Spis tabel"/>
+<gentext key="ListofExamples" text="Spis przyk&#179;ad&#243;w"/>
+<gentext key="listofexamples" text="Spis przyk&#179;ad&#243;w"/>
+<gentext key="ListofFigures" text="Spis rysunk&#243;w"/>
+<gentext key="listoffigures" text="Spis rysunk&#243;w"/>
+<gentext key="ListofEquations" text="Spis r&#243;wna&#241;"/>
+<gentext key="listofequations" text="Spis r&#243;wna&#241;"/>
+<gentext key="ListofUnknown" text="Spis ???"/>
+<gentext key="listofunknown" text="Spis ???"/>
+
+<gentext key="nav-prev" text="Poprzedni"/>
+<gentext key="nav-prev-sibling" text="Poprzedni rozdzia&#179;"/>
+<gentext key="nav-next-sibling" text="Nast&#234;pny rozdzia&#179;"/>
+<gentext key="nav-next" text="Nast&#234;pny"/>
+<gentext key="nav-up" text="Pocz&#177;tek rozdzia&#179;u"/>
+<gentext key="nav-home" text="Spis tre&#182;ci"/>
+
+<dingbat key="startquote" text="&#x201E;"/>
+<dingbat key="endquote" text="&#x201D;"/>
+<dingbat key="nestedstartquote" text="&#x00AB;"/>
+<dingbat key="nestedendquote" text="&#x00BB;"/>
+<dingbat key="bullet" text="&#2022;"/>
+
+<xref element="bibliography" text="%t"/>
+<xref element="chapter" text="%g %n, %t"/>
+<xref element="dedication" text="%t"/>
+<xref element="glossary" text="%t"/>
+<xref element="index" text="%t"/>
+<xref element="preface" text="%t"/>
+
+</locale>
