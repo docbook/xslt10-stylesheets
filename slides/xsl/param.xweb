@@ -286,6 +286,29 @@ selected by your <link linkend="css.stylesheet">CSS stylesheet</link>.
 </refsect1>
 </refentry>
 
+<refentry id="body.bg.color">
+<refmeta>
+<refentrytitle>body.bg.color</refentrytitle>
+<refmiscinfo role="type">color</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>body.bg.color</refname>
+<refpurpose>Background color for body frame</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='body.bg.color.frag'>
+<xsl:param name="body.bg.color" select="'#FFFFFF'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>Specifies the background color used in the body column of tabular slides.</para>
+
+</refsect1>
+</refentry>
+
 <refentry id="toc.width">
 <refmeta>
 <refentrytitle>toc.width</refentrytitle>
@@ -931,6 +954,7 @@ around all these parameters.</para>
 <src:fragref linkend="toc.width.frag"/>
 <src:fragref linkend="toc.hide.show.frag"/>
 <src:fragref linkend="dynamic.toc.frag"/>
+<src:fragref linkend="body.bg.color.frag"/>
 <src:fragref linkend="active.toc.frag"/>
 <src:fragref linkend="overlay.logo.frag"/>
 <src:fragref linkend="multiframe.frag"/>
