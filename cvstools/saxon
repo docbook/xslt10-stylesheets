@@ -217,10 +217,16 @@ TRANSFACTORY=com.icl.saxon.TransformerFactoryImpl
 DBFACTORY=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl
 SPFACTORY=org.apache.xerces.jaxp.SAXParserFactoryImpl
 
+TFLAG=
+if [ "$DEBUG" != "0" ]; then
+  TFLAG="-T"
+fi
+
 exec java $MEMORY $FOO \
      -cp $CLASSPATH \
      -Djavax.xml.parsers.DocumentBuilderFactory=$DBFACTORY \
      -Djavax.xml.parsers.SAXParserFactory=$SPFACTORY \
      -Djavax.xml.transform.TransformerFactory=$TRANSFACTORY \
      com.icl.saxon.StyleSheet \
+     $TFLAG \
      $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY "$@"
