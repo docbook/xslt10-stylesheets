@@ -775,6 +775,14 @@
   </xsl:for-each>
 </xsl:template>
 
+<xsl:template match="orgname">
+  <xsl:call-template name="inline.charseq"/>
+</xsl:template>
+
+<xsl:template match="uri">
+  <xsl:call-template name="inline.monoseq"/>
+</xsl:template>
+
 <!-- ==================================================================== -->
 
 <xsl:template match="menuchoice">
