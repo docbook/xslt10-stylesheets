@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding="utf-8"?>
+﻿<?xml version='1.0' encoding="utf-8"?>
 <!-- there is no doctype for these files, they are WF only -->
 <locale language="cs"
         english-language-name="Czech"
@@ -166,13 +166,13 @@
 <gentext key="nav-up" text="Nahoru"/>
 
 <gentext key="sectioncalled"  text="odd&#x00ed;l nazvan&#x00fd;"/>
-<gentext key="Draft"         text="Návrh"/> 
+<gentext key="Draft"         text="N?vrh"/> 
 <gentext key="above"         text="nad"/>  
 <gentext key="below"         text="pod"/>  
 <gentext key="index symbols" text="Symboly"/>
 
-<gentext key="lowercase.alpha" text="aábcčdďeéěfghiíjklmnoópqrřsštťuúůvwxyýzž"/>
-<gentext key="uppercase.alpha" text="AÁBCČDĎEÉĚFGHIÍJKLMNOÓPQRŘSŠTŤUÚŮVWXYÝZŽ"/>
+<gentext key="lowercase.alpha" text="a?bc?d?e??fghi?jklmno?pqr?s?t?u??vwxy?z?"/>
+<gentext key="uppercase.alpha" text="A?BC?D?E??FGHI?JKLMNO?PQR?S?T?U??VWXY?Z?"/>
 
 <dingbat key="startquote" text="&#x201e;"/>
 <dingbat key="endquote" text="&#x201c;"/>
@@ -451,6 +451,48 @@
 <template name="MsgAud"><MsgAud/>: </template>
 <template name="MsgLevel"><MsgLevel/>: </template>
 <template name="MsgOrig"><MsgOrig/>: </template>
+</context>
+
+<context name="datetime">
+<template name="format">d.&#160;B Y</template>
+<template name="January">ledna</template>
+<template name="February">února</template>
+<template name="March">března</template>
+<template name="April">dubna</template>
+<template name="May">května</template>
+<template name="June">června</template>
+<template name="July">července</template>
+<template name="August">srpna</template>
+<template name="September">září</template>
+<template name="October">října</template>
+<template name="November">listopadu</template>
+<template name="December">prosince</template>
+<template name="Jan">led</template>
+<template name="Feb">úno</template>
+<template name="Mar">bře</template>
+<template name="Apr">dub</template>
+<template name="May">kvě</template>
+<template name="Jun">čer</template>
+<template name="Jul">čnc</template>
+<template name="Aug">srp</template>
+<template name="Sep">zář</template>
+<template name="Oct">řij</template>
+<template name="Nov">lis</template>
+<template name="Dec">pro</template>
+<template name="Monday">pondělí</template>
+<template name="Tuesday">úterý</template>
+<template name="Wednesday">středa</template>
+<template name="Thursday">čtvrtek</template>
+<template name="Friday">pátek</template>
+<template name="Saturday">sobota</template>
+<template name="Sunday">neděle</template>
+<template name="Mon">po</template>
+<template name="Tue">út</template>
+<template name="Wed">st</template>
+<template name="Thu">čt</template>
+<template name="Fri">pá</template>
+<template name="Sat">so</template>
+<template name="Sun">ne</template>
 </context>
 
 </locale>
