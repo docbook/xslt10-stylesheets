@@ -1,0 +1,293 @@
+============================================================================
+Changes in DocBook V2.4 from V2.3
+============================================================================
+23 January 1996
+Eve Maler, elm@arbortext.com
+Terry Allen, terry@songline.com
+
+All changes are backwards-compatible, as required by Davenport policy.
+
+Updated maintenance and user documentation for V2.4 is forthcoming.  A
+documentation overhaul is planned for the V3.0 release.  If you have
+sample DocBook documents or document fragments you would like to
+contribute to the documentation or to the Davenport archive, please
+contact one of the maintainers.
+
+All the modules associated with DocBook have been changed to use the new
+version number 2.4 in their comment headers and formal public
+identifiers, as appropriate.  The docbook.cat file contains the
+corresponding updated FPIs.
+
+In docbook.dtd, dbhier.mod, dbpool.mod, and docbook.cat, the entity
+declarations and corresponding catalog entries for the "rdb" placeholder
+entities were removed.  If users need these, they should declare them
+and manage their catalog entries themselves, and should not use
+"Davenport" as the owner identifier for these entities.
+
+In dbhier.mod and dbpool.mod, the order of attributes was changed to put
+the unique (element-specific) ones first, then the semi-common ones,
+then the common ones.  The placeholder for local attribute extensions is
+still at the end.
+
+In dbhier.mod and dbpool.mod, many elements now have an OMITTAG scheme
+of "- O" instead of "- -".  In general, series of similar elements don't
+require an end-tag.
+
+In dbhier.mod and dbpool.mod, the comments documenting the common
+attributes now provide information on the assumed default values if an
+attribute value is not supplied.
+
+In dbhier.mod and dbpool.mod, comments were added for planned
+backwards-incompatible changes in V4.0, and the comments for the V3.0
+changes have been made to stand out more.  (Search in the DTD files for
+the string "FUTURE USE", or for "FUTURE USE (Vn.0)" with the relevant
+version number supplied.)
+
+docbook.dtd:
+============
+o Added the BMP, WMF, PCX, and WPG (WordPerfect Graphic) notations and 
+  added to notation.class correspondingly.
+
+o Fixed the owner identifier in the entity declaration for the "grk4"
+  ISO entity set (Alternative Greek Symbols); it was "ISO 9573-13:1991",
+  but has been changed to "ISO 8879:1986".
+
+dbhier.dtd:
+===========
+o Put in a FUTURE USE comment for possibly removing Article from Book.
+
+o The name of the sect1.content entity has been changed to
+  bookcomponent.content to reflect its purpose more accurately.
+
+o Added a second redeclaration placeholder to allow redeclaration of
+  the bookcomponent.content entity while letting it retain its reference
+  to divcomponent.mix.
+
+o Added SimpleList to indexdivcomponent.mix (used in introductions to 
+  indexes).
+
+o Added a new element, SimpleSect, to sect1.content (used in Appendix, 
+  Chapter, Preface, PartIntro, and Article) and directly to the content 
+  of Sect2 through Sect 5.
+
+o The content of Book now allows a mixture of zero or more Glossary,
+  Bibliography, and Preface elements before the main content, and a
+  mixture of zero or more Glossary and Bibliography elements after the
+  main content.
+
+o BookInfo and DocInfo now allow zero or more graphics, to describe the
+  document's content graphically.
+
+o The content of ToC and Index is now allowed to be entirely empty (with
+  no subelements supplied).
+
+o The ToCfront, ToCentry, and LoTentry elements now use the new
+  para.char.mix mixture instead of the defunct inline.char.mix mixture
+  (see dbpool.mod).
+
+o Chapter and Appendix now allow an optional ToCchap before their main
+  content.
+
+o The PrimaryIE, SecondaryIE, TertiaryIE, SeeIE, and SeeAlsoIE elements
+  now contain the new ndxterm.char.mix mixture instead of the defunct
+  inline.char.mix mixture (see dbpool.mod).
+
+o RefMiscInfo now contains the docinfo.char.mix mixture instead of just
+  #PCDATA.
+
+o RefDescriptor now contains the refname.char.mix mixture instead of
+  just #PCDATA.
+
+o The content of RefSynopsisDiv has been expanded to match that of
+  RefSect1.
+
+dbpool.dtd:
+===========
+o Moved the SGMLTag and Markup elements to the cptr.char.class entity
+  to allow these elements in the same locations as other technical 
+  inlines (such as RefName).
+
+o Added element declarations and corresponding module entities for
+  GUIButton, GUIIcon, GUILabel, GUIMenu, GUIMenuItem, and GUISubmenu and
+  added these elements to cptr.char.class.  These are the elements
+  bursted out from Interface.  Put in a FUTURE USE comment on Interface
+  for removing its Class attribute in V4.0.  Added a declaration for the
+  Accel element and added it to the content models of Interface and the
+  GUI* elements.
+
+o Added element declarations and corresponding module entities for
+  KeyCombo and MouseButton and added these elements to cptr.char.class.
+
+o Added element declarations and corresponding module entities (and
+  an aggregate module entity) for MenuChoice and Shortcut and added
+  MenuChoice to cptr.char.class.  Added a "key action" attribute entity
+  for use in Shortcut and KeyCombo.
+
+o Fixed a bug in Anchor attribute list that allowed it not to have an
+  ID.  This was an oversight in the V2.3 modularization.
+
+o Put in FUTURE USE comments for the planned cptr.char.mix content
+  reduction and for removal of two Group Choice attribute keywords.
+
+o Added #PCDATA to the Address content model, added the Format
+  (linespecific) attribute to it, and added the element to
+  informal.class.  (Note that legacy addresses may not work correctly
+  under new linespecific Address assumption!)
+
+o Added Email to cptr.char.class and moved its declarations accordingly.
+
+o Added a Spacing attribute on ItemizedList and OrderedList.
+
+o Added a Path attribute to Filename element.
+
+o Added a new common RevisionFlag attribute.
+
+o Removed the %formal.class; exclusions on Procedure, BlockQuote,
+  MsgExplan, and MsgText that were put in for V2.4beta1 because these
+  elements can already normally contain %formal.class; (in
+  %component.mix;).
+
+o Added the new Area, AreaSet, AreaSpec, Callout, CalloutList,
+  GraphicCO, ProgramListingCO, and ScreenCO elements to support
+  callouts.  Corresponding parameter entities for their marked-section
+  modules (as well as the aggregate module entities for AreaSpec content
+  and CalloutList content) have been added as well.  CalloutList has
+  been added to the list.class class.  ProgramListingCO and ScreenCO
+  have been added to the linespecific.class class.  GraphicCO has been
+  added to the informal.class class and to the content of ScreenShot.
+
+o Add a CO element declaration and corresponding module entity, and
+  added CO to the declarations of the program listing and screen
+  content model entities.
+
+o Added the new Attribution element (along with its marked-section
+  module entity); it appears in the content models of BlockQuote and
+  Epigraph.
+
+o Added the new FuncPrototype element (along with its marked-section
+  module entity); it appears in the content model of FuncSynopsis.
+
+o Added the new Phrase element (along with its marked-section module
+  entity); it appears in the word.class class.
+
+o Added the new SBR element (along with its marked-section module
+  entity); it appears in the content of the CmdSynopsis, Arg, and Group
+  elements.
+
+o Added the formal.class class to the admon.mix and glossdef.mix
+  mixtures.
+
+o Added the formal.class class to the para.mix mixture, and removed it
+  by means of an SGML exclusion from the content models of Footnote,
+  Highlights, Example, and LegalNotice, where paragraphs (now normally
+  allowing formal-object content) can occur.  (It was not excluded from
+  Procedure, MsgExplan, MsgText, or BlockQuote, as originally planned,
+  because these elements can legitimately contain formal objects as part
+  of their %component.mix; content.)
+
+o Changed the entire mixture scheme for inlines (#PCDATA-containing
+  elements).  Removed the inline.char.mix, synop.char.mix,
+  ssscript.char.mix, and phrase.char.mix mixtures, and added the
+  title.char.mix, ndxterm.char.mix, smallcptr.char.mix, word.char.mix,
+  and docinfo.char.mix mixtures.  The following tables show
+  approximately what has changed.  (Individual elements that use
+  different mixtures are mentioned below.)
+
+  New:
+
+                      #PCD xref word link cptr base dnfo othr inob (synop)
+  para.char.mix         X    X    X    X    X    X    X    X    X     X
+  title.char.mix        X    X    X    X    X    X    X    X    X
+  ndxterm.char.mix      X    X    X    X    X    X    X    X    a
+  cptr.char.mix         X              X    X    X         X    a
+  smallcptr.char.mix    X                   b                   a
+  word.char.mix         X         c    X         X         X    a
+  docinfo.char.mix      X         c         b              X    a
+  
+  a. Just InlineGraphic; no InlineEquation.
+  b. Just Replaceable; no other computer terms.
+  c. Just Emphasis and Trademark; no other word elements.
+
+  Old:
+
+  [X = all, . = some] #PCD xref word link cptr base dnfo othr inob (synop)
+  para.char.mix         X    X    X    X    X    X    X    X    X     X
+  inline.char.mix       X    X    X    X    X    X    X    X
+  synop.char.mix        X    X    X    X    X    X    X    X
+  cptr.char.mix         X              X    X    X         X
+  ssscript.char.mix     X         .    X    .    X         X
+  phrase.char.mix       X              X         X         X
+
+o Changed the programlisting.content entity (used in ProgramListing), the
+  screen.content entity (used in Screen), and the Comment, Seg, Member,
+  Term, LiteralLayout, Synopsis, ProductName, Application, RefEntryTitle,
+  CiteTitle, and Quote elements to use the para.char.mix mixture instead
+  of the defunct inline.char.mix mixture.
+
+o Added the new common "effectivity" attributes OS, Arch, Vendor,
+  UserLevel, and Revision.  Collected the effectivity attributes in their
+  own entity and reorganized that section of entities appropriately.
+
+o Changed the name of the entity containing the common attributes for
+  use on graphics (along with its corresponding "local" entity) from
+  graphic.attrib to graphics.attrib, and changed its corresponding
+  references in Graphic and InlineGraphic accordingly.
+
+o Changed the Title, TitleAbbrev, SubTitle, BridgeHead, and SegTitle
+  elements to contain the new title.char.mix mixture instead of the
+  defunct inline.char.mix mixture.
+
+o Changed the BiblioMisc, MsgAud, ScreenInfo, Citation, Emphasis,
+  ForeignPhrase, and LineAnnotation elements to contain the
+  para.char.mix mixture instead of just #PCDATA.
+
+o Added a TermLength attribute to the VariableList element.
+
+o Changed the tblexpt entity for exclusions to table content to use the
+  formal.class class (which includes Table) instead of just Table.
+
+o Changed the Ackno, Street, POB, Postcode, City, State, Country, Phone,
+  Fax, Email, OtherAddr, ShortAffil, JobTitle, OrgDiv, ArtPageNums,
+  CollabName, AuthorInitials, ConfDates, ConfTitle, ConfNum,
+  ConfSponsor, ContractNum, ContractSponsor, Year, Holder, CorpAuthor,
+  CorpName, Date, Edition, ISBN, ISSN, InvPartNumber, IssueNum,
+  ModeSpec, OrgName, PageNums, Contrib, FirstName, Honorific, Lineage,
+  OtherName, Surname, ProductNumber, PubDate, PublisherName, PubsNumber,
+  ReleaseInfo, RevNumber, RevRemark, SeriesVolNums, and VolumeNum
+  elements to use the new docinfo.char.mix mixture instead of just
+  #PCDATA.
+
+o Changed the MsgLevel, MsgOrig, ClassName, ErrorName, ErrorType,
+  KeyCode, KeySym, MediaLabel, ReturnValue, StructField, StructName,
+  Symbol, Token, Type, Markup, and SGMLTag elements to use the new
+  smallcptr.char.mix mixture instead of just #PCDATA.
+
+o Added a Class attribute to the Filename element.
+
+o Changed the Replaceable element to use a series of class entities
+  directly, plus newly containing the Optional and InlineGraphic
+  elements, instead of using the defunct phrase.char.mix mixture.
+
+o Added a Class attribute to the Symbol element.
+
+o Changed the Abbrev,Acronym, ManvolNum, FirstTerm, and WordAsWord
+  elements to use the new word.char.mix mixture instead of just #PCDATA.
+
+o Added a Linkend attribute to the FirstTerm element.
+
+o Added Linkend and BaseForm attributes to the GlossTerm element.
+
+o Added Class attribute values to the SGMLTag element.
+
+o Changed the Subscript and Superscript elements to use a series of
+  class entities directly, plus newly containing the Replaceable,
+  Symbol, and InlineGraphic elements, instead of using the defunct
+  ssscript.char.mix mixture.
+
+o Changed the Trademark element to use a series of class entities
+  directly, plus newly containing the InlineGraphic element, instead of
+  using the cptr.char.mix mixture.
+
+o Changed the Primary, Secondary, Tertiary, See, and SeeAlso elements to
+  use the new ndxterm.char.mix mixture instead of the defunct
+  inline.char.mix mixture.
