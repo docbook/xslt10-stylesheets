@@ -44,10 +44,6 @@
 <xsl:template name="division.toc">
   <xsl:param name="toc-context" select="."/>
 
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
   <xsl:variable name="cid">
     <xsl:call-template name="object.id">
       <xsl:with-param name="object" select="$toc-context"/>
@@ -55,12 +51,18 @@
   </xsl:variable>
 
   <xsl:variable name="nodes"
-                select="part|reference|preface
-                        |chapter|appendix
-                        |article
-                        |bibliography|glossary|index"/>
+                select="$toc-context/part
+                        |$toc-context/reference
+                        |$toc-context/preface
+                        |$toc-context/chapter
+                        |$toc-context/appendix
+                        |$toc-context/article
+                        |$toc-context/bibliography
+                        |$toc-context/glossary
+                        |$toc-context/index"/>
+
   <xsl:if test="$nodes">
-    <fo:block id="toc...{$id}"
+    <fo:block id="toc...{$cid}"
               xsl:use-attribute-sets="toc.margin.properties">
       <xsl:call-template name="table.of.contents.titlepage"/>
       <xsl:apply-templates select="$nodes" mode="toc">
