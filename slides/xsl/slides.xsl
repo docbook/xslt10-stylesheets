@@ -17,25 +17,28 @@
 <xsl:param name="left.image" select="'left.gif'"/>
 
 <xsl:param name="script.dir" select="''"/>
+<xsl:param name="overlay.js" select="'overlay.js'"/>
 <xsl:param name="slides.js" select="'slides.js'"/>
 <xsl:param name="list.js" select="'list.js'"/>
 <xsl:param name="resize.js" select="'resize.js'"/>
 
 <xsl:param name="titlefoil.html" select="'index.html'"/>
+<xsl:param name="toc.html" select="'toc.html'"/>
 
 <xsl:param name="toc.bg.color">#FFFFFF</xsl:param>
 <xsl:param name="toc.width">250</xsl:param>
 <xsl:param name="toc.hide.show" select="0"/>
 
+<xsl:param name="overlay" select="0"/>
 <xsl:param name="ie5" select="0"/>
 
-<xsl:attribute-set name="body-attrs">
+<xsl:template name="body.attributes">
   <xsl:attribute name="bgcolor">white</xsl:attribute>
   <xsl:attribute name="text">black</xsl:attribute>
   <xsl:attribute name="link">#0000FF</xsl:attribute>
   <xsl:attribute name="vlink">#840084</xsl:attribute>
   <xsl:attribute name="alink">#0000FF</xsl:attribute>
-</xsl:attribute-set>
+</xsl:template>
 
 <!-- ============================================================ -->
 
@@ -121,6 +124,13 @@
   </xsl:call-template>
 </xsl:template>
 
+<xsl:template name="overlay.js">
+  <!-- danger will robinson: template shadows parameter -->
+  <xsl:call-template name="script-file">
+    <xsl:with-param name="js" select="$overlay.js"/>
+  </xsl:call-template>
+</xsl:template>
+
 <!-- ============================================================ -->
 
 <xsl:template match="/">
@@ -129,7 +139,7 @@
 
 <xsl:template match="slides">
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="concat($base.dir, 'toc.html')"/>
+    <xsl:with-param name="filename" select="concat($base.dir, $toc.html)"/>
     <xsl:with-param name="content">
       <html>
         <head>
@@ -139,8 +149,22 @@
               <xsl:call-template name="css-stylesheet"/>
             </xsl:attribute>
           </link>
+          <xsl:if test="$overlay != '0'">
+            <script type="text/javascript" language="JavaScript">
+              <xsl:attribute name="src">
+                <xsl:call-template name="overlay.js"/>
+              </xsl:attribute>
+            </script>
+          </xsl:if>
         </head>
-        <body class="tocpage" xsl:use-attribute-sets="body-attrs">
+        <body class="tocpage">
+          <xsl:call-template name="body.attributes"/>
+          <xsl:if test="$overlay != 0">
+            <xsl:attribute name="onload">
+              <xsl:text>overlaySetup('lc')</xsl:text>
+            </xsl:attribute>
+          </xsl:if>
+
           <h1>
             <a href="{$titlefoil.html}">
               <xsl:value-of select="/slides/slidesinfo/title"/>
@@ -148,7 +172,21 @@
           </h1>
           <xsl:apply-templates select="." mode="toc"/>
 
-          <div class="navfoot" style="padding-top: 2in;">
+          <div id="overlayDiv" class="navfoot">
+            <xsl:choose>
+              <xsl:when test="$overlay != 0">
+                <xsl:attribute name="style">
+                  <xsl:text>position:absolute;visibility:visible;</xsl:text>
+                </xsl:attribute>
+                <hr/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:attribute name="style">
+                  <xsl:text>padding-top: 2in;</xsl:text>
+                </xsl:attribute>
+              </xsl:otherwise>
+            </xsl:choose>
+
             <table width="100%" border="0"
                    cellspacing="0" cellpadding="0"
                    summary="Navigation">
@@ -185,7 +223,8 @@
 
 <xsl:template match="slidesinfo">
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="concat($base.dir, $titlefoil.html)"/>
+    <xsl:with-param name="filename"
+                    select="concat($base.dir, $titlefoil.html)"/>
     <xsl:with-param name="content">
       <html>
         <head>
@@ -195,14 +234,27 @@
               <xsl:call-template name="css-stylesheet"/>
             </xsl:attribute>
           </link>
+          <xsl:if test="$overlay != '0'">
+            <script type="text/javascript" language="JavaScript">
+              <xsl:attribute name="src">
+                <xsl:call-template name="overlay.js"/>
+              </xsl:attribute>
+            </script>
+          </xsl:if>
         </head>
-        <body class="titlepage" xsl:use-attribute-sets="body-attrs">
+        <body class="titlepage">
+          <xsl:call-template name="body.attributes"/>
+          <xsl:if test="$overlay != 0">
+            <xsl:attribute name="onload">
+              <xsl:text>overlaySetup('lc')</xsl:text>
+            </xsl:attribute>
+          </xsl:if>
           <div class="navhead">
             <table width="100%" border="0" cellpadding="0" cellspacing="0"
                    summary="Navigation">
               <tr>
                 <td align="left" width="10%">
-                  <a href="toc.html">
+                  <a href="{$toc.html}">
                     <xsl:text>Contents</xsl:text>
                   </a>
                 </td>
@@ -220,7 +272,21 @@
             <xsl:apply-templates mode="titlepage.mode"/>
           </div>
 
-          <div class="navfoot" style="padding-top: 2in;">
+          <div id="overlayDiv" class="navfoot">
+            <xsl:choose>
+              <xsl:when test="$overlay != 0">
+                <xsl:attribute name="style">
+                  <xsl:text>position:absolute;visibility:visible;</xsl:text>
+                </xsl:attribute>
+                <hr/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:attribute name="style">
+                  <xsl:text>padding-top: 2in;</xsl:text>
+                </xsl:attribute>
+              </xsl:otherwise>
+            </xsl:choose>
+
             <table width="100%" border="0"
                    cellspacing="0" cellpadding="0"
                    summary="Navigation">
@@ -336,8 +402,21 @@
             <xsl:call-template name="css-stylesheet"/>
           </xsl:attribute>
         </link>
+        <xsl:if test="$overlay != '0'">
+          <script type="text/javascript" language="JavaScript">
+            <xsl:attribute name="src">
+              <xsl:call-template name="overlay.js"/>
+            </xsl:attribute>
+          </script>
+        </xsl:if>
       </head>
-      <body class="section" xsl:use-attribute-sets="body-attrs">
+      <body class="section">
+        <xsl:call-template name="body.attributes"/>
+        <xsl:if test="$overlay != 0">
+          <xsl:attribute name="onload">
+            <xsl:text>overlaySetup('lc')</xsl:text>
+          </xsl:attribute>
+        </xsl:if>
         <div class="{name(.)}" id="{$id}">
           <a name="{$id}"/>
           <xsl:call-template name="section-top-nav"/>
@@ -348,8 +427,16 @@
             <xsl:apply-templates select="title"/>
           </div>
 
-          <hr/>
-          <xsl:call-template name="section-bottom-nav"/>
+          <div id="overlayDiv">
+            <xsl:if test="$overlay != 0">
+              <xsl:attribute name="style">
+                <xsl:text>position:absolute;visibility:visible;</xsl:text>
+              </xsl:attribute>
+            </xsl:if>
+
+            <hr/>
+            <xsl:call-template name="section-bottom-nav"/>
+          </div>
         </div>
       </body>
     </xsl:with-param>
@@ -419,8 +506,21 @@
             <xsl:call-template name="css-stylesheet"/>
           </xsl:attribute>
         </link>
+        <xsl:if test="$overlay != '0'">
+          <script type="text/javascript" language="JavaScript">
+            <xsl:attribute name="src">
+              <xsl:call-template name="overlay.js"/>
+            </xsl:attribute>
+          </script>
+        </xsl:if>
       </head>
-      <body class="foil" xsl:use-attribute-sets="body-attrs">
+      <body class="foil">
+        <xsl:call-template name="body.attributes"/>
+        <xsl:if test="$overlay != 0">
+          <xsl:attribute name="onload">
+            <xsl:text>overlaySetup('lc')</xsl:text>
+          </xsl:attribute>
+        </xsl:if>
         <div class="{name(.)}" id="{$id}">
           <a name="{$id}"/>
           <xsl:call-template name="foil-top-nav"/>
@@ -428,8 +528,16 @@
 
           <xsl:apply-templates/>
 
-          <hr/>
-          <xsl:call-template name="foil-bottom-nav"/>
+          <div id="overlayDiv">
+            <xsl:if test="$overlay != 0">
+              <xsl:attribute name="style">
+                <xsl:text>position:absolute;visibility:visible;</xsl:text>
+              </xsl:attribute>
+            </xsl:if>
+
+            <hr/>
+            <xsl:call-template name="foil-bottom-nav"/>
+          </div>
         </div>
       </body>
     </xsl:with-param>
@@ -633,18 +741,25 @@
   </xsl:variable>
 
   <xsl:text>myList.addItem('</xsl:text>
-  <div id="{$id}" class="toc-slidesinfo">
-    <a href="{$titlefoil.html}" target="foil">
-      <xsl:choose>
-        <xsl:when test="titleabbrev">
-          <xsl:value-of select="titleabbrev"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="title"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </a>
-  </div>
+
+  <xsl:text disable-output-escaping="yes">&lt;div id="</xsl:text>
+  <xsl:value-of select="$id"/>
+  <xsl:text disable-output-escaping="yes">" class="toc-slidesinfo"&gt;</xsl:text>
+
+  <xsl:text disable-output-escaping="yes">&lt;a href="</xsl:text>
+  <xsl:value-of select="$titlefoil.html"/>
+  <xsl:text disable-output-escaping="yes">" target="foil"&gt;</xsl:text>
+
+  <xsl:choose>
+    <xsl:when test="titleabbrev">
+      <xsl:value-of select="titleabbrev"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="title"/>
+    </xsl:otherwise>
+  </xsl:choose>
+
+  <xsl:text disable-output-escaping="yes">&lt;/a&gt;&lt;/div&gt;</xsl:text>
   <xsl:text>');&#10;</xsl:text>
 </xsl:template>
 
@@ -660,20 +775,23 @@
   <xsl:apply-templates select="foil" mode="ns-toc"/>
 
   <xsl:text>myList.addList(subList, '</xsl:text>
-  <div class="toc-section">
-    <a href="{$foil}" target="foil">
-      <xsl:choose>
-        <xsl:when test="titleabbrev">
-          <xsl:value-of select="titleabbrev"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="title"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </a>
-  </div>
-  <xsl:text>');&#10;</xsl:text>
+  <xsl:text disable-output-escaping="yes">&lt;div class="toc-section"&gt;</xsl:text>
 
+  <xsl:text disable-output-escaping="yes">&lt;a href="</xsl:text>
+  <xsl:value-of select="$foil"/>
+  <xsl:text disable-output-escaping="yes">" target="foil"&gt;</xsl:text>
+
+  <xsl:choose>
+    <xsl:when test="titleabbrev">
+      <xsl:value-of select="titleabbrev"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="title"/>
+    </xsl:otherwise>
+  </xsl:choose>
+
+  <xsl:text disable-output-escaping="yes">&lt;/a&gt;&lt;/div&gt;</xsl:text>
+  <xsl:text>');&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="foil" mode="ns-toc">
@@ -691,25 +809,30 @@
     </xsl:otherwise>
   </xsl:choose>
 
-  <div id="{$id}" class="toc-foil">
-    <img alt="-">
-      <xsl:attribute name="src">
-        <xsl:call-template name="graphics.dir"/>
-        <xsl:text>/</xsl:text>
-        <xsl:value-of select="$bullet.image"/>
-      </xsl:attribute>
-    </img>
-    <a href="{$foil}" target="foil">
-      <xsl:choose>
-        <xsl:when test="titleabbrev">
-          <xsl:value-of select="titleabbrev"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="title"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </a>
-  </div>
+  <xsl:text disable-output-escaping="yes">&lt;div id="</xsl:text>
+  <xsl:value-of select="$id"/>
+  <xsl:text disable-output-escaping="yes">" class="toc-foil"&gt;</xsl:text>
+
+  <xsl:text disable-output-escaping="yes">&lt;img alt="-" src="</xsl:text>
+  <xsl:call-template name="graphics.dir"/>
+  <xsl:text>/</xsl:text>
+  <xsl:value-of select="$bullet.image"/>
+  <xsl:text disable-output-escaping="yes">"&gt;</xsl:text>
+
+  <xsl:text disable-output-escaping="yes">&lt;a href="</xsl:text>
+  <xsl:value-of select="$foil"/>
+  <xsl:text disable-output-escaping="yes">" target="foil"&gt;</xsl:text>
+
+  <xsl:choose>
+    <xsl:when test="titleabbrev">
+      <xsl:value-of select="titleabbrev"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="title"/>
+    </xsl:otherwise>
+  </xsl:choose>
+
+  <xsl:text disable-output-escaping="yes">&lt;/a&gt;&lt;/div&gt;</xsl:text>
   <xsl:text>');&#10;</xsl:text>
 </xsl:template>
 

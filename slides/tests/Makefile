@@ -1,33 +1,41 @@
 include ../../cvstools/Makefile.incl
-HTMLSTYLE=../xsl/slides.xsl
+NOFRAMESTYLE=../xsl/slides.xsl
+FRAMESTYLE=../xsl/frames.xsl
 FOSTYLE=../xsl/fo-plain.xsl
 VARS=
 FORMATTER=xep
 BROWSER=
 MULTIFRAME=0
+FRAMES=0
+OVERLAY=1
 TIDY=1
+
+ifeq ($(FRAMES),0)
+  HTMLSTYLE=$(NOFRAMESTYLE)
+else
+  HTMLSTYLE=$(FRAMESTYLE)
+endif
+
+ifeq ($(BROWSER),)
+  PARAMS=$(VARS) multiframe=$(MULTIFRAME) overlay=$(OVERLAY)
+else
+  PARAMS=$(VARS) $(BROWSER)=1 multiframe=$(MULTIFRAME) overlay=$(OVERLAY)
+endif
 
 all:
 	@echo Select a target
 
 test: test.xml
-	$(XJPARSE) test.xml
-ifeq ($(BROWSER),)
-	$(XSLT) $< $(HTMLSTYLE) /dev/null $(VARS) multiframe=$(MULTIFRAME)
-else
-	$(XSLT) $< $(HTMLSTYLE) /dev/null $(VARS) $(BROWSER)=1 multiframe=$(MULTIFRAME)
-endif
-
-testcust:
-	$(XJPARSE) test.xml
+	$(XJPARSE) $<
+	$(XSLT) $< $(HTMLSTYLE) $(PARAMS)
+	make tidy
 
 dbgentext: dbgentext.xml
 	$(XJPARSE) $<
-ifeq ($(BROWSER),)
-	$(XSLT) $< $(HTMLSTYLE) /dev/null $(VARS) multiframe=$(MULTIFRAME)
-else
-	$(XSLT) $< $(HTMLSTYLE) /dev/null $(VARS) $(BROWSER)=1 multiframe=$(MULTIFRAME)
-endif
+	$(XSLT) $< $(HTMLSTYLE) $(PARAMS)
+	make tidy
+
+tidy:
 ifeq ($(TIDY),1)
 	for i in *.html; do \
 		if [ "$$i" != "ns4toc.html" ] ; then \

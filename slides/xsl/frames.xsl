@@ -6,8 +6,8 @@
 
 <xsl:param name="titlefoil.html" select="'titlefoil.html'"/>
 
-<xsl:param name="ns4" select="0"/>
-<xsl:param name="ie5" select="0"/>
+<xsl:param name="ns4" select="1"/>
+<xsl:param name="ie5" select="1"/>
 <xsl:param name="multiframe" select="0"/>
 
 <xsl:param name="multiframe.top.bgcolor" select="'white'"/>
@@ -27,6 +27,12 @@
   <xsl:variable name="toc.rows" select="1+count(//section)+count(//foil)"/>
   <xsl:variable name="toc.height" select="$toc.rows * $toc.row.height"/>
 
+  <xsl:if test="$overlay != 0 and $multiframe != 0">
+    <xsl:message terminate='yes'>
+      <xsl:text>Multiframe and overlay are mutually exclusive.</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
   <xsl:call-template name="write.chunk">
     <xsl:with-param name="filename" select="concat($base.dir,'frames.html')"/>
     <xsl:with-param name="content">
@@ -38,7 +44,8 @@
           <frame src="toc.html" name="toc" frameborder="1"/>
           <frame src="{$titlefoil.html}" name="foil"/>
           <noframes>
-            <body class="frameset" xsl:use-attribute-sets="body-attrs">
+            <body class="frameset">
+              <xsl:call-template name="body.attributes"/>
               <a href="titleframe.html">
                 <xsl:text>Your browser doesn't support frames.</xsl:text>
               </a>
@@ -66,9 +73,16 @@
                 <xsl:call-template name="slides.js"/>
               </xsl:attribute>
             </script>
+            <xsl:if test="$overlay != '0'">
+              <script type="text/javascript" language="JavaScript">
+                <xsl:attribute name="src">
+                  <xsl:call-template name="overlay.js"/>
+                </xsl:attribute>
+              </script>
+            </xsl:if>
           </head>
-          <body class="toc" xsl:use-attribute-sets="body-attrs"
-                onload="newPage('toc.html');">
+          <body class="toc" onload="newPage('toc.html',{$overlay});">
+            <xsl:call-template name="body.attributes"/>
             <div class="toc">
               <xsl:apply-templates mode="toc"/>
             </div>
@@ -124,8 +138,8 @@ function init() {
 </xsl:text>
             </style>
           </head>
-          <body class="toc" xsl:use-attribute-sets="body-attrs"
-                onload="init();">
+          <body class="toc" onload="init({$overlay});">
+            <xsl:call-template name="body.attributes"/>
             <div id="spacer"></div>
           </body>
         </html>
@@ -165,8 +179,16 @@ if (selectBrowser() == "ie5") {
 ]]></xsl:text>
             </xsl:if>
           </script>
+          <xsl:if test="$overlay != '0'">
+            <script type="text/javascript" language="JavaScript">
+              <xsl:attribute name="src">
+                <xsl:call-template name="overlay.js"/>
+              </xsl:attribute>
+            </script>
+          </xsl:if>
         </head>
-        <body class="toc" xsl:use-attribute-sets="body-attrs">
+        <body class="toc">
+          <xsl:call-template name="body.attributes"/>
           <div class="toc">
             <xsl:apply-templates mode="toc"/>
           </div>
@@ -180,7 +202,8 @@ if (selectBrowser() == "ie5") {
 
 <xsl:template match="slidesinfo">
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="concat($base.dir,$titlefoil.html)"/>
+    <xsl:with-param name="filename"
+                    select="concat($base.dir,$titlefoil.html)"/>
     <xsl:with-param name="content">
       <html>
         <head>
@@ -197,25 +220,58 @@ if (selectBrowser() == "ie5") {
               </xsl:attribute>
             </script>
           </xsl:if>
-        </head>
-        <body class="titlepage" xsl:use-attribute-sets="body-attrs">
-          <xsl:if test="$ie5!='0'">
-            <xsl:attribute name="onload">
-              <xsl:text>newPage('</xsl:text>
-              <xsl:value-of select="$titlefoil.html"/>
-              <xsl:text>');</xsl:text>
-            </xsl:attribute>
-            <xsl:attribute name="onkeypress">
-              <xsl:text>navigate('','foil01.html');</xsl:text>
-            </xsl:attribute>
+          <xsl:if test="$overlay != '0'">
+            <script type="text/javascript" language="JavaScript">
+              <xsl:attribute name="src">
+                <xsl:call-template name="overlay.js"/>
+              </xsl:attribute>
+            </script>
           </xsl:if>
+        </head>
+        <body class="titlepage">
+          <xsl:call-template name="body.attributes"/>
+          <xsl:choose>
+            <xsl:when test="$ie5 != 0">
+              <xsl:attribute name="onload">
+                <xsl:text>newPage('</xsl:text>
+                <xsl:value-of select="$titlefoil.html"/>
+                <xsl:text>',</xsl:text>
+                <xsl:value-of select="$overlay"/>
+                <xsl:text>);</xsl:text>
+              </xsl:attribute>
+              <xsl:attribute name="onkeypress">
+                <xsl:text>navigate('','foil01.html',</xsl:text>
+                <xsl:value-of select="$overlay"/>
+                <xsl:text>)</xsl:text>
+              </xsl:attribute>
+            </xsl:when>
+            <xsl:when test="$overlay != 0">
+              <xsl:attribute name="onload">
+                <xsl:text>overlaySetup('lc')</xsl:text>
+              </xsl:attribute>
+            </xsl:when>
+          </xsl:choose>
           <div class="{name(.)}">
             <xsl:apply-templates mode="titlepage.mode"/>
           </div>
 
           <xsl:choose>
             <xsl:when test="$multiframe=0">
-              <div class="navfoot" style="padding-top: 2in;">
+              <div id="overlayDiv" class="navfoot">
+                <xsl:choose>
+                  <xsl:when test="$overlay != 0">
+                    <xsl:attribute name="style">
+                      <xsl:text>position:absolute;visibility:visible;</xsl:text>
+                    </xsl:attribute>
+                    <hr/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:attribute name="style">
+                      <xsl:text>padding-top: 2in;</xsl:text>
+                    </xsl:attribute>
+                  </xsl:otherwise>
+                </xsl:choose>
+
                 <table width="100%" border="0"
                        cellspacing="0" cellpadding="0"
                        summary="Navigation">
@@ -311,6 +367,13 @@ if (selectBrowser() == "ie5") {
             </xsl:attribute>
           </script>
         </xsl:if>
+        <xsl:if test="$overlay != '0'">
+          <script type="text/javascript" language="JavaScript">
+            <xsl:attribute name="src">
+              <xsl:call-template name="overlay.js"/>
+            </xsl:attribute>
+          </script>
+        </xsl:if>
       </head>
       <xsl:choose>
         <xsl:when test="$multiframe != 0">
@@ -348,7 +411,8 @@ if (selectBrowser() == "ie5") {
     <frame src="body-{$thissection}" name="body" marginheight="0" frameborder="0"/>
     <frame src="bot-{$thissection}" name="bottom" marginheight="0" scrolling="no" frameborder="0"/>
     <noframes>
-      <body class="frameset" xsl:use-attribute-sets="body-attrs">
+      <body class="frameset">
+        <xsl:call-template name="body.attributes"/>
         <p>
           <xsl:text>Your browser doesn't support frames.</xsl:text>
         </p>
@@ -379,6 +443,13 @@ if (selectBrowser() == "ie5") {
             <script type="text/javascript" language="JavaScript">
               <xsl:attribute name="src">
                 <xsl:call-template name="slides.js"/>
+              </xsl:attribute>
+            </script>
+          </xsl:if>
+          <xsl:if test="$overlay != '0'">
+            <script type="text/javascript" language="JavaScript">
+              <xsl:attribute name="src">
+                <xsl:call-template name="overlay.js"/>
               </xsl:attribute>
             </script>
           </xsl:if>
@@ -442,6 +513,13 @@ if (selectBrowser() == "ie5") {
               </xsl:attribute>
             </script>
           </xsl:if>
+          <xsl:if test="$overlay != '0'">
+            <script type="text/javascript" language="JavaScript">
+              <xsl:attribute name="src">
+                <xsl:call-template name="overlay.js"/>
+              </xsl:attribute>
+            </script>
+          </xsl:if>
           <style type="text/css">div.section { margin-top: 3em }</style>
         </head>
         <xsl:apply-templates select="." mode="singleframe"/>
@@ -498,6 +576,13 @@ if (selectBrowser() == "ie5") {
               </xsl:attribute>
             </script>
           </xsl:if>
+          <xsl:if test="$overlay != '0'">
+            <script type="text/javascript" language="JavaScript">
+              <xsl:attribute name="src">
+                <xsl:call-template name="overlay.js"/>
+              </xsl:attribute>
+            </script>
+          </xsl:if>
         </head>
         <body class="navigation" bgcolor="{$multiframe.bottom.bgcolor}">
           <xsl:call-template name="section-bottom-nav"/>
@@ -537,21 +622,33 @@ if (selectBrowser() == "ie5") {
     </xsl:choose>
   </xsl:variable>
 
-  <body class="section" xsl:use-attribute-sets="body-attrs">
-    <xsl:if test="$ie5!='0'">
-      <xsl:attribute name="onload">
-        <xsl:text>newPage('</xsl:text>
-        <xsl:value-of select="$thissection"/>
-        <xsl:text>');</xsl:text>
-      </xsl:attribute>
-      <xsl:attribute name="onkeypress">
-        <xsl:text>navigate('</xsl:text>
-        <xsl:value-of select="$prevfoil"/>
-        <xsl:text>','</xsl:text>
-        <xsl:value-of select="$nextfoil"/>
-        <xsl:text>')</xsl:text>
-      </xsl:attribute>
-    </xsl:if>
+  <body class="section">
+    <xsl:call-template name="body.attributes"/>
+    <xsl:choose>
+      <xsl:when test="$ie5 != 0">
+        <xsl:attribute name="onload">
+          <xsl:text>newPage('</xsl:text>
+          <xsl:value-of select="$thissection"/>
+          <xsl:text>',</xsl:text>
+          <xsl:value-of select="$overlay"/>
+          <xsl:text>);</xsl:text>
+        </xsl:attribute>
+        <xsl:attribute name="onkeypress">
+          <xsl:text>navigate('</xsl:text>
+          <xsl:value-of select="$prevfoil"/>
+          <xsl:text>','</xsl:text>
+          <xsl:value-of select="$nextfoil"/>
+          <xsl:text>',</xsl:text>
+          <xsl:value-of select="$overlay"/>
+          <xsl:text>)</xsl:text>
+        </xsl:attribute>
+      </xsl:when>
+      <xsl:when test="$overlay != 0">
+        <xsl:attribute name="onload">
+          <xsl:text>overlaySetup('lc')</xsl:text>
+        </xsl:attribute>
+      </xsl:when>
+    </xsl:choose>
     <div class="{name(.)}" id="{$id}">
       <a name="{$id}"/>
       <xsl:if test="$multiframe=0">
@@ -565,8 +662,15 @@ if (selectBrowser() == "ie5") {
       </div>
 
       <xsl:if test="$multiframe=0">
-        <hr/>
-        <xsl:call-template name="section-bottom-nav"/>
+        <div id="overlayDiv">
+          <xsl:if test="$overlay != 0">
+            <xsl:attribute name="style">
+              <xsl:text>position:absolute;visibility:visible;</xsl:text>
+            </xsl:attribute>
+          </xsl:if>
+          <hr/>
+          <xsl:call-template name="section-bottom-nav"/>
+        </div>
       </xsl:if>
     </div>
   </body>
@@ -619,6 +723,13 @@ if (selectBrowser() == "ie5") {
           <script type="text/javascript" language="JavaScript">
             <xsl:attribute name="src">
               <xsl:call-template name="slides.js"/>
+            </xsl:attribute>
+          </script>
+        </xsl:if>
+        <xsl:if test="$overlay != '0'">
+          <script type="text/javascript" language="JavaScript">
+            <xsl:attribute name="src">
+              <xsl:call-template name="overlay.js"/>
             </xsl:attribute>
           </script>
         </xsl:if>
@@ -676,7 +787,9 @@ if (selectBrowser() == "ie5") {
       <xsl:value-of select="$prevfoil"/>
       <xsl:text>','</xsl:text>
       <xsl:value-of select="$nextfoil"/>
-      <xsl:text>')</xsl:text>
+      <xsl:text>',</xsl:text>
+      <xsl:value-of select="$overlay"/>
+      <xsl:text>)</xsl:text>
     </xsl:attribute>
     <frame src="top-{$thisfoil}" name="top" marginheight="0" scrolling="no" frameborder="0">
       <xsl:attribute name="onkeypress">
@@ -684,7 +797,9 @@ if (selectBrowser() == "ie5") {
         <xsl:value-of select="$prevfoil"/>
         <xsl:text>','</xsl:text>
         <xsl:value-of select="$nextfoil"/>
-        <xsl:text>')</xsl:text>
+        <xsl:text>',</xsl:text>
+        <xsl:value-of select="$overlay"/>
+        <xsl:text>)</xsl:text>
       </xsl:attribute>
     </frame>
     <frame src="body-{$thisfoil}" name="body" marginheight="0" frameborder="0">
@@ -693,7 +808,9 @@ if (selectBrowser() == "ie5") {
         <xsl:value-of select="$prevfoil"/>
         <xsl:text>','</xsl:text>
         <xsl:value-of select="$nextfoil"/>
-        <xsl:text>')</xsl:text>
+        <xsl:text>',</xsl:text>
+        <xsl:value-of select="$overlay"/>
+        <xsl:text>)</xsl:text>
       </xsl:attribute>
     </frame>
     <frame src="bot-{$thisfoil}" name="bottom" marginheight="0" scrolling="no" frameborder="0">
@@ -702,11 +819,14 @@ if (selectBrowser() == "ie5") {
         <xsl:value-of select="$prevfoil"/>
         <xsl:text>','</xsl:text>
         <xsl:value-of select="$nextfoil"/>
-        <xsl:text>')</xsl:text>
+        <xsl:text>',</xsl:text>
+        <xsl:value-of select="$overlay"/>
+        <xsl:text>)</xsl:text>
       </xsl:attribute>
     </frame>
     <noframes>
-      <body class="frameset" xsl:use-attribute-sets="body-attrs">
+      <body class="frameset">
+        <xsl:call-template name="body.attributes"/>
         <p>
           <xsl:text>Your browser doesn't support frames.</xsl:text>
         </p>
@@ -735,6 +855,13 @@ if (selectBrowser() == "ie5") {
             <script type="text/javascript" language="JavaScript">
               <xsl:attribute name="src">
                 <xsl:call-template name="slides.js"/>
+              </xsl:attribute>
+            </script>
+          </xsl:if>
+          <xsl:if test="$overlay != '0'">
+            <script type="text/javascript" language="JavaScript">
+              <xsl:attribute name="src">
+                <xsl:call-template name="overlay.js"/>
               </xsl:attribute>
             </script>
           </xsl:if>
@@ -773,6 +900,13 @@ if (selectBrowser() == "ie5") {
               </xsl:attribute>
             </script>
           </xsl:if>
+          <xsl:if test="$overlay != '0'">
+            <script type="text/javascript" language="JavaScript">
+              <xsl:attribute name="src">
+                <xsl:call-template name="overlay.js"/>
+              </xsl:attribute>
+            </script>
+          </xsl:if>
         </head>
         <xsl:apply-templates select="." mode="singleframe"/>
       </html>
@@ -800,6 +934,13 @@ if (selectBrowser() == "ie5") {
             <script type="text/javascript" language="JavaScript">
               <xsl:attribute name="src">
                 <xsl:call-template name="slides.js"/>
+              </xsl:attribute>
+            </script>
+          </xsl:if>
+          <xsl:if test="$overlay != '0'">
+            <script type="text/javascript" language="JavaScript">
+              <xsl:attribute name="src">
+                <xsl:call-template name="overlay.js"/>
               </xsl:attribute>
             </script>
           </xsl:if>
@@ -845,21 +986,33 @@ if (selectBrowser() == "ie5") {
     </xsl:choose>
   </xsl:variable>
 
-  <body class="foil" xsl:use-attribute-sets="body-attrs">
-    <xsl:if test="$ie5!='0'">
-      <xsl:attribute name="onload">
-        <xsl:text>newPage('</xsl:text>
-        <xsl:value-of select="$thisfoil"/>
-        <xsl:text>');</xsl:text>
-      </xsl:attribute>
-      <xsl:attribute name="onkeypress">
-        <xsl:text>navigate('</xsl:text>
-        <xsl:value-of select="$prevfoil"/>
-        <xsl:text>','</xsl:text>
-        <xsl:value-of select="$nextfoil"/>
-        <xsl:text>')</xsl:text>
-      </xsl:attribute>
-    </xsl:if>
+  <body class="foil">
+    <xsl:call-template name="body.attributes"/>
+    <xsl:choose>
+      <xsl:when test="$ie5 != 0">
+        <xsl:attribute name="onload">
+          <xsl:text>newPage('</xsl:text>
+          <xsl:value-of select="$thisfoil"/>
+          <xsl:text>',</xsl:text>
+          <xsl:value-of select="$overlay"/>
+          <xsl:text>);</xsl:text>
+        </xsl:attribute>
+        <xsl:attribute name="onkeypress">
+          <xsl:text>navigate('</xsl:text>
+          <xsl:value-of select="$prevfoil"/>
+          <xsl:text>','</xsl:text>
+          <xsl:value-of select="$nextfoil"/>
+          <xsl:text>',</xsl:text>
+          <xsl:value-of select="$overlay"/>
+          <xsl:text>)</xsl:text>
+        </xsl:attribute>
+      </xsl:when>
+      <xsl:when test="$overlay != 0">
+        <xsl:attribute name="onload">
+          <xsl:text>overlaySetup('lc')</xsl:text>
+        </xsl:attribute>
+      </xsl:when>
+    </xsl:choose>
 
     <div class="{name(.)}" id="{$id}">
       <a name="{$id}"/>
@@ -871,8 +1024,15 @@ if (selectBrowser() == "ie5") {
       <xsl:apply-templates/>
 
       <xsl:if test="$multiframe=0">
-        <hr/>
-        <xsl:call-template name="foil-bottom-nav"/>
+        <div id="overlayDiv">
+          <xsl:if test="$overlay != 0">
+            <xsl:attribute name="style">
+              <xsl:text>position:absolute;visibility:visible;</xsl:text>
+            </xsl:attribute>
+          </xsl:if>
+          <hr/>
+          <xsl:call-template name="foil-bottom-nav"/>
+        </div>
       </xsl:if>
     </div>
   </body>
