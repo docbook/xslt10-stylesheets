@@ -1045,6 +1045,30 @@ change will not be made after all. -->
 <!--end of refentryinfo.attlist-->]]>
 <!--end of refentryinfo.module-->]]>
 
+<!ENTITY % refsectioninfo.module "INCLUDE">
+<![ %refsectioninfo.module; [
+<!ENTITY % local.refsectioninfo.attrib "">
+<!ENTITY % refsectioninfo.role.attrib "%role.attrib;">
+
+<!ENTITY % refsectioninfo.element "INCLUDE">
+<![ %refsectioninfo.element; [
+<!ELEMENT refsectioninfo %ho; ((graphic | mediaobject
+		| legalnotice | modespec
+		| subjectset | keywordset | itermset
+                | %bibliocomponent.mix;)+)
+		%beginpage.exclusion;>
+<!--end of refsectioninfo.element-->]]>
+
+<!ENTITY % refsectioninfo.attlist "INCLUDE">
+<![ %refsectioninfo.attlist; [
+<!ATTLIST refsectioninfo
+		%common.attrib;
+		%refsectioninfo.role.attrib;
+		%local.refsectioninfo.attrib;
+>
+<!--end of refsectioninfo.attlist-->]]>
+<!--end of refsectioninfo.module-->]]>
+
 <!ENTITY % refsect1info.module "INCLUDE">
 <![ %refsect1info.module; [
 <!ENTITY % local.refsect1info.attrib "">
@@ -1822,7 +1846,7 @@ change will not be made after all. -->
 <!ELEMENT refentry %ho; (beginpage?,
                     (%ndxterm.class;)*,
                     refentryinfo?, refmeta?, (remark|%link.char.class;)*,
-                    refnamediv, refsynopsisdiv?, refsect1+)
+                    refnamediv, refsynopsisdiv?, (refsect1+|refsection+))
 		%ubiq.inclusion;>
 <!--end of refentry.element-->]]>
 
@@ -2005,6 +2029,28 @@ change will not be made after all. -->
 >
 <!--end of refsynopsisdiv.attlist-->]]>
 <!--end of refsynopsisdiv.module-->]]>
+
+<!ENTITY % refsection.module "INCLUDE">
+<![%refsection.module;[
+<!ENTITY % local.refsection.attrib "">
+<!ENTITY % refsection.role.attrib "%role.attrib;">
+
+<!ENTITY % refsection.element "INCLUDE">
+<![%refsection.element;[
+<!ELEMENT refsection %ho; (refsectioninfo?, (%refsect.title.content;),
+		(((%refcomponent.mix;)+, refsection*) | refsection+))>
+<!--end of refsection.element-->]]>
+
+<!ENTITY % refsection.attlist "INCLUDE">
+<![%refsection.attlist;[
+<!ATTLIST refsection
+		%status.attrib;
+		%common.attrib;
+		%refsection.role.attrib;
+		%local.refsection.attrib;
+>
+<!--end of refsection.attlist-->]]>
+<!--end of refsection.module-->]]>
 
 <!ENTITY % refsect1.module "INCLUDE">
 <![%refsect1.module;[
