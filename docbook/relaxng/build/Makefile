@@ -2,7 +2,7 @@ VPATH=../src ../tests/customizations
 
 RNCFILES=$(subst ../src/,,$(wildcard ../src/*.rnc))
 RNXFILES=$(subst .rnc,.rnx,$(RNCFILES))
-MODULES=$(filter-out docbook.rnx,$(RNXFILES))
+MODULES=$(filter-out docbook.rnx,$(filter-out sdocbook.rnx,$(filter-out slides-ng.rnx,$(filter-out website-ng.rnx,$(RNXFILES)))))
 
 TMPDIR=/tmp/
 TMPFILE=$(TMPDIR)cleanup.rng
@@ -18,6 +18,8 @@ CLEANUP=../tools/cleanup.pl
 
 docbook.rng: docbook.rnx $(AUGMENT) $(INCLUDE) $(CLEANUP)
 
+docbook-dtd.rng: docbook-dtd.rnx $(AUGMENT) $(INCLUDE) $(CLEANUP)
+
 docbook.rnx: $(MODULES)
 
 dbsmall.rng: dbsmall.rnx $(AUGMENT) $(INCLUDE) $(CLEANUP)
@@ -25,6 +27,12 @@ dbsmall.rng: dbsmall.rnx $(AUGMENT) $(INCLUDE) $(CLEANUP)
 dbsmall.rnx: $(MODULES)
 
 dbastro.rng: dbastro.rnx $(AUGMENT) $(INCLUDE) $(CLEANUP)
+
+sdocbook.rng: sdocbook.rnx $(AUGMENT) $(INCLUDE) $(CLEANUP)
+
+slides-ng.rng: slides-ng.rnx $(AUGMENT) $(INCLUDE) $(CLEANUP)
+
+website-ng.rng: website-ng.rnx $(AUGMENT) $(INCLUDE) $(CLEANUP)
 
 dbastro.rnx: $(MODULES)
 
