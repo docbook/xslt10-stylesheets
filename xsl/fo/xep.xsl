@@ -107,7 +107,7 @@
     <xsl:when test="parent::*">
       <rx:bookmark internal-destination="{$id}">
         <rx:bookmark-label>
-          <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+          <xsl:value-of select="$bookmark-label"/>
         </rx:bookmark-label>
         <xsl:apply-templates select="*" mode="xep.outline"/>
       </rx:bookmark>
@@ -116,7 +116,7 @@
       <xsl:if test="$bookmark-label != ''">
         <rx:bookmark internal-destination="{$id}">
           <rx:bookmark-label>
-            <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+            <xsl:value-of select="$bookmark-label"/>
           </rx:bookmark-label>
         </rx:bookmark>
       </xsl:if>
