@@ -89,13 +89,14 @@ generated.</para>
   <xsl:call-template name="root-rel-path"/>
   <xsl:value-of select="$admon.graphics.path"/>
   <xsl:choose>
-    <xsl:when test="name($node)='note'">note.gif</xsl:when>
-    <xsl:when test="name($node)='warning'">warning.gif</xsl:when>
-    <xsl:when test="name($node)='caution'">caution.gif</xsl:when>
-    <xsl:when test="name($node)='tip'">tip.gif</xsl:when>
-    <xsl:when test="name($node)='important'">important.gif</xsl:when>
-    <xsl:otherwise>note.gif</xsl:otherwise>
+    <xsl:when test="name($node)='note'">note</xsl:when>
+    <xsl:when test="name($node)='warning'">warning</xsl:when>
+    <xsl:when test="name($node)='caution'">caution</xsl:when>
+    <xsl:when test="name($node)='tip'">tip</xsl:when>
+    <xsl:when test="name($node)='important'">important</xsl:when>
+    <xsl:otherwise>note</xsl:otherwise>
   </xsl:choose>
+  <xsl:value-of select="$admon.graphics.extension"/>
 </xsl:template>
 
 <doc:template name="admon.graphic">
