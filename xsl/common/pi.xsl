@@ -24,7 +24,7 @@
   <xsl:apply-templates select="."/>
 </xsl:template>
 
-<xsl:template match="processing-instruction('timestamp')">
+<xsl:template match="processing-instruction('dbtimestamp')">
   <xsl:variable name="format">
     <xsl:variable name="pi-format">
       <xsl:call-template name="pi-attribute">
