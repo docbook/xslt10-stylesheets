@@ -5074,7 +5074,7 @@ div {
       application.role.attribute?
     & common.attributes
     & common.linking.attributes
-    & application.class.attribute
+    & application.class.attribute?
     & local.application.attributes
 
    db.application =
