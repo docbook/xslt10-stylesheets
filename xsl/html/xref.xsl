@@ -56,41 +56,48 @@
     </xsl:when>
 
     <xsl:otherwise>
-      <a>
-        <xsl:attribute name="href">
-          <xsl:call-template name="href.target">
-            <xsl:with-param name="object" select="$target"/>
-          </xsl:call-template>
-        </xsl:attribute>
+      <xsl:variable name="href">
+        <xsl:call-template name="href.target">
+          <xsl:with-param name="object" select="$target"/>
+        </xsl:call-template>
+      </xsl:variable>
 
-        <xsl:choose>
-	  <xsl:when test="@endterm">
-	    <xsl:variable name="etargets" select="id(@endterm)"/>
-	    <xsl:variable name="etarget" select="$etargets[1]"/>
-	    <xsl:choose>
-	      <xsl:when test="count($etarget) = 0">
-		<xsl:message>
-		  <xsl:value-of select="count($etargets)"/>
-		  <xsl:text>Endterm points to nonexistent ID: </xsl:text>
-		  <xsl:value-of select="@endterm"/>
-		</xsl:message>
-		<xsl:text>???</xsl:text>
-	      </xsl:when>
-	      <xsl:otherwise>
-		<xsl:apply-templates select="$etarget" mode="endterm"/>
-	      </xsl:otherwise>
-	    </xsl:choose>
-	  </xsl:when>
+      <xsl:choose>
+        <xsl:when test="@endterm">
+          <xsl:variable name="etargets" select="id(@endterm)"/>
+          <xsl:variable name="etarget" select="$etargets[1]"/>
+          <xsl:choose>
+            <xsl:when test="count($etarget) = 0">
+              <xsl:message>
+                <xsl:value-of select="count($etargets)"/>
+                <xsl:text>Endterm points to nonexistent ID: </xsl:text>
+                <xsl:value-of select="@endterm"/>
+              </xsl:message>
+              <a href="{$href}">
+                <xsl:text>???</xsl:text>
+              </a>
+            </xsl:when>
+            <xsl:otherwise>
+              <a href="{$href}">
+                <xsl:apply-templates select="$etarget" mode="endterm"/>
+              </a>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
 
-          <xsl:otherwise>
+        <xsl:otherwise>
+          <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
+
+          <a href="{$href}">
             <xsl:attribute name="title">
               <xsl:apply-templates select="$target" mode="xref-title"/>
             </xsl:attribute>
-
             <xsl:apply-templates select="$target" mode="xref-to"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </a>
+          </a>
+
+          <xsl:apply-templates select="$target" mode="xref-to-suffix"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -101,6 +108,9 @@
 </xsl:template>
 
 <!-- ==================================================================== -->
+
+<xsl:template match="*" mode="xref-to-prefix"/>
+<xsl:template match="*" mode="xref-to-suffix"/>
 
 <xsl:template match="*" mode="xref-to">
   <xsl:param name="target" select="."/>
@@ -172,9 +182,16 @@
   <xsl:apply-templates select="." mode="object.xref.markup"/>
 </xsl:template>
 
+<xsl:template match="biblioentry|bibliomixed" mode="xref-to-prefix">
+  <xsl:text>[</xsl:text>
+</xsl:template>
+
+<xsl:template match="biblioentry|bibliomixed" mode="xref-to-suffix">
+  <xsl:text>]</xsl:text>
+</xsl:template>
+
 <xsl:template match="biblioentry|bibliomixed" mode="xref-to">
   <!-- handles both biblioentry and bibliomixed -->
-  <xsl:text>[</xsl:text>
   <xsl:choose>
     <xsl:when test="string(.) = ''">
       <xsl:variable name="bib" select="document($bibliography.collection)"/>
@@ -213,7 +230,6 @@
       </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
-  <xsl:text>]</xsl:text>
 </xsl:template>
 
 <xsl:template match="glossary" mode="xref-to">
