@@ -27,7 +27,7 @@ The order of selection when then parameter is non-zero is:
 </para>
 <orderedlist>
 <listitem>
-    <para>If the stylesheet parameter <parameter>preferred.mediaojbect.role</parameter> has a value, then the object whose role equals that value is selected.</para>
+    <para>If the stylesheet parameter <parameter>preferred.mediaobject.role</parameter> has a value, then the object whose role equals that value is selected.</para>
 </listitem>
 <listitem>
 <para>Else if an object's role attribute has a value of
