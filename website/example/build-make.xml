@@ -29,32 +29,25 @@ STYLEOPT= --stringparam output-root .
 
 .PHONY : clean
 
-all:
-	make website
+all: depends.tabular
+	@$(MAKE) website
 
-include depends.tabular
+-include depends.tabular
 
 autolayout.xml: layout.xml
 	$(PROC) --output $@ $(STYLEDIR)/autolayout.xsl $<
-	make depends
 
 %.html: autolayout.xml
-	$(PROC) --output $@  $(STYLEOPT)  $(STYLESHEET)  $(filter-out autolayout.xml,$^) 
+	$(PROC) --output $@  $(STYLEOPT)  $(STYLESHEET)  \
+        $(filter-out depends.tabular,$(filter-out autolayout.xml,$^))
 
-depends: autolayout.xml
+depends.tabular: autolayout.xml
 	$(PROC) --output depends.tabular $(STYLEOPT) $(STYLEDIR)/makefile-dep.xsl $<
 ]]></programlisting>
 
 <para>You'll have to change the <literal>PROC</literal> setting and
 the command-lines used to run the processor.</para>
 </listitem>
-
-<listitem><para>Create an empty file called
-<filename>depends.tabular</filename>.
-</para></listitem>
-
-<listitem><para>Run <command>make depends</command>.
-</para></listitem>
 
 <listitem><para>Run <command>make</command>. That should build your
 website.
