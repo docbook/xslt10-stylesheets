@@ -204,6 +204,8 @@ generate.section.toc.level;
 &shade.verbatim.style;
 &use.svg;
 &use.role.as.xrefstyle;
+&menuchoice.separator;
+&menuchoice.menu.separator;
 </reference>
 
 <reference><title>Pagination and General Styles</title>
@@ -474,6 +476,8 @@ around all these parameters.</para>
 <src:fragref linkend="list.item.spacing.frag"/>
 <src:fragref linkend="make.single.year.ranges.frag"/>
 <src:fragref linkend="make.year.ranges.frag"/>
+<src:fragref linkend="menuchoice.menu.separator.frag"/>
+<src:fragref linkend="menuchoice.separator.frag"/>
 <src:fragref linkend="monospace.font.family.frag"/>
 <src:fragref linkend="monospace.verbatim.properties.frag"/>
 <src:fragref linkend="nominal.table.width.frag"/>

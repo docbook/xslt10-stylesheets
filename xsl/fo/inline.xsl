@@ -764,9 +764,11 @@
       <xsl:choose>
         <xsl:when test="name($node)='guimenuitem'
                         or name($node)='guisubmenu'">
-          <xsl:text>-&gt;</xsl:text>
+          <xsl:value-of select="$menuchoice.menu.separator"/>
         </xsl:when>
-        <xsl:otherwise>+</xsl:otherwise>
+        <xsl:otherwise>
+          <xsl:value-of select="$menuchoice.separator"/>
+        </xsl:otherwise>
       </xsl:choose>
       <xsl:apply-templates select="$node"/>
       <xsl:call-template name="process.menuchoice">
