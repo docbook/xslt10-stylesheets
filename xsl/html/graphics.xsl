@@ -293,8 +293,8 @@
         </xsl:with-param>
       </xsl:call-template>
 
-      <xsl:if test="$html.longdesc &gt; 0
-                    and $html.longdesc.link &gt; 0">
+      <xsl:if test="$html.longdesc != 0 and $html.longdesc.link != 0
+                    and ancestor::imageobject/parent::*/textobject[not(phrase)]">
         <xsl:call-template name="longdesc.link">
           <xsl:with-param name="longdesc.uri" select="$longdesc.uri"/>
         </xsl:call-template>
@@ -330,33 +330,31 @@
 
 <xsl:template name="write.longdesc">
   <xsl:param name="mediaobject" select="."/>
-  <xsl:if test="$html.longdesc">
-    <xsl:if test="$mediaobject/textobject[not(phrase)]">
-      <xsl:variable name="filename">
-        <xsl:call-template name="longdesc.uri">
-          <xsl:with-param name="mediaobject" select="$mediaobject"/>
-        </xsl:call-template>
-      </xsl:variable>
-
-      <xsl:value-of select="$filename"/>
-
-      <xsl:call-template name="write.chunk">
-        <xsl:with-param name="filename" select="$filename"/>
-        <xsl:with-param name="content">
-          <html>
-            <head>
-              <title>Long Description</title>
-            </head>
-            <body>
-              <xsl:call-template name="body.attributes"/>
-              <xsl:for-each select="$mediaobject/textobject[not(phrase)]">
-                <xsl:apply-templates select="./*"/>
-              </xsl:for-each>
-            </body>
-          </html>
-        </xsl:with-param>
+  <xsl:if test="$html.longdesc != 0 and $mediaobject/textobject[not(phrase)]">
+    <xsl:variable name="filename">
+      <xsl:call-template name="longdesc.uri">
+        <xsl:with-param name="mediaobject" select="$mediaobject"/>
       </xsl:call-template>
-    </xsl:if>
+    </xsl:variable>
+
+    <xsl:value-of select="$filename"/>
+
+    <xsl:call-template name="write.chunk">
+      <xsl:with-param name="filename" select="$filename"/>
+      <xsl:with-param name="content">
+        <html>
+          <head>
+            <title>Long Description</title>
+          </head>
+          <body>
+            <xsl:call-template name="body.attributes"/>
+            <xsl:for-each select="$mediaobject/textobject[not(phrase)]">
+              <xsl:apply-templates select="./*"/>
+            </xsl:for-each>
+          </body>
+        </html>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:if>
 </xsl:template>
 
