@@ -67,15 +67,54 @@
   <xsl:param name="side" select="'left'"/>
   <xsl:param name="padding" select="0"/>
 
-  <xsl:text>border-</xsl:text>
-  <xsl:value-of select="$side"/>
-  <xsl:text>: </xsl:text>
-  <xsl:value-of select="$table.border.thickness"/>
-  <xsl:text> </xsl:text>
-  <xsl:value-of select="$table.border.style"/>
-  <xsl:text> </xsl:text>
-  <xsl:value-of select="$table.border.color"/>
-  <xsl:text>; </xsl:text>
+  <!-- Note: Some browsers (mozilla) require at least a width and style. -->
+
+  <xsl:choose>
+    <xsl:when test="($table.border.thickness != ''
+                     and $table.border.style != ''
+                     and $table.border.color != '')
+                    or ($table.border.thickness != ''
+                        and $table.border.style != '')
+                    or ($table.border.thickness != '')">
+      <!-- use the compound property if we can: -->
+      <!-- it saves space and probably works more reliably -->
+      <xsl:text>border-</xsl:text>
+      <xsl:value-of select="$side"/>
+      <xsl:text>: </xsl:text>
+      <xsl:value-of select="$table.border.thickness"/>
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$table.border.style"/>
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$table.border.color"/>
+      <xsl:text>; </xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- we need to specify the styles individually -->
+      <xsl:if test="$table.border.thickness != ''">
+        <xsl:text>border-</xsl:text>
+        <xsl:value-of select="$side"/>
+        <xsl:text>-width: </xsl:text>
+        <xsl:value-of select="$table.border.thickness"/>
+        <xsl:text>; </xsl:text>
+      </xsl:if>
+
+      <xsl:if test="$table.border.style != ''">
+        <xsl:text>border-</xsl:text>
+        <xsl:value-of select="$side"/>
+        <xsl:text>-style: </xsl:text>
+        <xsl:value-of select="$table.border.style"/>
+        <xsl:text>; </xsl:text>
+      </xsl:if>
+
+      <xsl:if test="$table.border.color != ''">
+        <xsl:text>border-</xsl:text>
+        <xsl:value-of select="$side"/>
+        <xsl:text>-color: </xsl:text>
+        <xsl:value-of select="$table.border.color"/>
+        <xsl:text>; </xsl:text>
+      </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
