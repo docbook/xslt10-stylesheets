@@ -312,6 +312,10 @@ title of the element. This does not include the label.
   <xsl:apply-templates/>
 </xsl:template>
 
+<xsl:template match="indexterm" mode="no.anchor.mode">
+  <!-- nop, suppressed -->
+</xsl:template>
+
 <xsl:template match="xref" mode="no.anchor.mode">
   <!-- FIXME: this should generate the text without the link... -->
 </xsl:template>
