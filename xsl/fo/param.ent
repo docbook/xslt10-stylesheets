@@ -68,6 +68,7 @@
 <!ENTITY headers.on.blank.pages SYSTEM "../params/headers.on.blank.pages.xml">
 <!ENTITY hyphenate SYSTEM "../params/hyphenate.xml">
 <!ENTITY informal.object.properties SYSTEM "../params/informal.object.properties.xml">
+<!ENTITY index.preferred.page.properties SYSTEM "../params/index.preferred.page.properties.xml">
 <!ENTITY insert.xref.page.number SYSTEM "../params/insert.xref.page.number.xml">
 <!ENTITY label.from.part SYSTEM "../params/label.from.part.xml">
 <!ENTITY line-height SYSTEM "../params/line-height.xml">

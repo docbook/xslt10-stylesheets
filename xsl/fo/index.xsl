@@ -256,6 +256,9 @@
 
 <!-- ==================================================================== -->
 
+<!-- Text used for distiguishing between normal and significant entries -->
+<xsl:variable name="significant.flag">.tnacifingis</xsl:variable>
+
 <xsl:template match="indexterm" name="indexterm">
   <!-- Temporal workaround for bug in AXF -->
   <xsl:variable name="wrapper.name">
@@ -273,6 +276,7 @@
       <xsl:when test="$xep.extensions != 0">
         <xsl:attribute name="rx:key">
           <xsl:value-of select="primary"/>
+          <xsl:if test="@significance='preferred'"><xsl:value-of select="$significant.flag"/></xsl:if>
           <xsl:if test="secondary">
             <xsl:text>, </xsl:text>
             <xsl:value-of select="secondary"/>
@@ -313,6 +317,7 @@
         </xsl:attribute>
         <xsl:attribute name="rx:key">
           <xsl:value-of select="primary"/>
+          <xsl:if test="@significance='preferred'"><xsl:value-of select="$significant.flag"/></xsl:if>
           <xsl:if test="secondary">
             <xsl:text>, </xsl:text>
             <xsl:value-of select="secondary"/>
