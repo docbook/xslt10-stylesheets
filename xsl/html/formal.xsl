@@ -90,7 +90,58 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="figure|table|example">
+<xsl:template match="figure">
+  <xsl:variable name="param.placement"
+                select="substring-after(normalize-space($formal.title.placement),
+                                        concat(local-name(.), ' '))"/>
+
+  <xsl:variable name="placement">
+    <xsl:choose>
+      <xsl:when test="contains($param.placement, ' ')">
+        <xsl:value-of select="substring-before($param.placement, ' ')"/>
+      </xsl:when>
+      <xsl:when test="$param.placement = ''">before</xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$param.placement"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="@float and @float != 0">
+      <xsl:variable name="float">
+        <xsl:choose>
+          <xsl:when test="@float = 1">
+            <xsl:value-of select="$default.float.class"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="@float"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+
+      <div class="figure-float">
+        <xsl:if test="$float = 'left' or $float = 'right'">
+          <xsl:attribute name="style">
+            <xsl:text>float: </xsl:text>
+            <xsl:value-of select="$float"/>
+            <xsl:text>;</xsl:text>
+          </xsl:attribute>
+        </xsl:if>
+        <xsl:call-template name="formal.object">
+          <xsl:with-param name="placement" select="$placement"/>
+        </xsl:call-template>
+      </div>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="formal.object">
+        <xsl:with-param name="placement" select="$placement"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="table|example">
   <xsl:variable name="param.placement"
                 select="substring-after(normalize-space($formal.title.placement),
                                         concat(local-name(.), ' '))"/>

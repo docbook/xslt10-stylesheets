@@ -89,19 +89,42 @@
     </xsl:choose>
   </xsl:variable>
 
-  <!-- FIXME: is this too careless? -->
-  <xsl:choose>
-    <xsl:when test=".//imagedata[@align][1]">
-      <fo:block text-align="{.//imagedata[@align][1]/@align}">
+  <xsl:variable name="figure">
+    <!-- FIXME: is this too careless? -->
+    <xsl:choose>
+      <xsl:when test=".//imagedata[@align][1]">
+        <fo:block text-align="{.//imagedata[@align][1]/@align}">
+          <xsl:call-template name="formal.object">
+            <xsl:with-param name="placement" select="$placement"/>
+          </xsl:call-template>
+        </fo:block>
+      </xsl:when>
+      <xsl:otherwise>
         <xsl:call-template name="formal.object">
           <xsl:with-param name="placement" select="$placement"/>
         </xsl:call-template>
-      </fo:block>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="@float and @float != 0">
+      <fo:float>
+        <xsl:attribute name="float">
+          <xsl:choose>
+            <xsl:when test="@float = 1">
+              <xsl:value-of select="$default.float.class"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="@float"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+        <xsl:copy-of select="$figure"/>
+      </fo:float>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:call-template name="formal.object">
-        <xsl:with-param name="placement" select="$placement"/>
-      </xsl:call-template>
+      <xsl:copy-of select="$figure"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
