@@ -28,7 +28,7 @@
 <xsl:template match="xsl:import[@href='http://docbook.sourceforge.net/release/xsl/current/html/chunk.xsl']">
   <xsl:copy>
     <xsl:copy-of select="@*"/>
-    <xsl:attribute name="href">'http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl'</xsl:attribute>
+    <xsl:attribute name="href">http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl</xsl:attribute>
   </xsl:copy>
 </xsl:template>
 
