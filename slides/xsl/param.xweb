@@ -117,7 +117,7 @@ can be set in the source document with the &lt;?dbhtml?&gt; pseudo-attribute
 
 <refsynopsisdiv>
 <src:fragment id='titlefoil.html.frag'>
-<xsl:param name="titlefoil.html" select="'index.html'"/>
+<xsl:param name="titlefoil.html" select="concat('index', $html.ext)"/>
 </src:fragment>
 </refsynopsisdiv>
 
@@ -140,7 +140,7 @@ can be set in the source document with the &lt;?dbhtml?&gt; pseudo-attribute
 
 <refsynopsisdiv>
 <src:fragment id='toc.html.frag'>
-<xsl:param name="toc.html" select="'toc.html'"/>
+<xsl:param name="toc.html" select="concat('toc', $html.ext)"/>
 </src:fragment>
 </refsynopsisdiv>
 

@@ -18,7 +18,7 @@
 <xsl:param name="but-xrewind.png" select="'inactive/but-rewind.png'"/>
 
 <!-- overrides for this stylesheet -->
-<xsl:param name="titlefoil.html" select="'index.html'"/>
+<xsl:param name="titlefoil.html" select="concat('index', $html.ext)"/>
 <xsl:param name="toc.width" select="20"/>
 
 <!-- ============================================================ -->

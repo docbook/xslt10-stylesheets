@@ -158,7 +158,7 @@
         <td align="right" width="20%" valign="top">
           <a>
             <xsl:attribute name="href">
-              <xsl:apply-templates select="(following::foilset|following::foil)[1]"
+              <xsl:apply-templates select="(following::foilgroup|following::foil)[1]"
                                    mode="filename"/>
             </xsl:attribute>
             <img alt="Next" border="0">
