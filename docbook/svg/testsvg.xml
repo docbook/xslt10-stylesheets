@@ -1,4 +1,4 @@
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook SVG Module V1.0beta2//EN"
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook SVG Module V1.0CR1//EN"
               "dbsvg.dtd">
 <book>
 <title>Book Title</title>
@@ -12,7 +12,7 @@
 <imageobject>
 <svg:svg xmlns:svg="http://www.w3.org/2000/svg"
      xmlns:xlink="http://www.w3.org/1999/xlink"
-     version='1.0'
+     version='1.1'
      id="svg-root" width="450" height="450">
 	<svg:title id="test-title">shapes-rect-BE-01</svg:title>
 	<svg:desc id="test-desc">Test that viewer has the basic capability to handle the &lt;rect&gt; element.</svg:desc>
