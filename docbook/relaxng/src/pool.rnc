@@ -435,49 +435,47 @@ db.extension.blocks = notAllowed
 # ======================================================================
 
 db.info.elements =
-   db.biblioid
- | db.bibliosource
+   db.abstract
+ | db.address
  | db.artpagenums
- | db.copyright
- | db.subjectset
- | db.keywordset
- | db.abstract
- | db.authorgroup
  | db.author
- | db.editor
- | db.othercredit
+ | db.authorgroup
+ | db.authorinitials
  | db.bibliocoverage
+ | db.biblioid
+ | db.bibliosource
  | db.collab
  | db.confgroup
+ | db.copyright
  | db.date
- | db.pubdate
  | db.edition
- | db.volumenum
+ | db.editor
  | db.issuenum
- | db.seriesvolnums
- | db.pagenums
+ | db.keywordset
  | db.legalnotice
+ | db.orgname
+ | db.othercredit
+ | db.pagenums
+ | db.printhistory
+ | db.productname
+ | db.productnumber
+ | db.pubdate
  | db.publisher
+ | db.publishername
  | db.releaseinfo
  | db.revhistory
- | db.printhistory
+ | db.seriesvolnums
+ | db.subjectset
+ | db.volumenum
 
 db.bibliographic.elements =
    db.info.elements
  | db.abbrev
+ | db.citetitle
+ | db.personname
+ | db.subtitle
  | db.title
  | db.titleabbrev
- | db.subtitle
- | db.citetitle
- | db.address
- | db.affiliation
- | db.personblurb
- | db.authorinitials
- | db.personname
- | db.orgname
- | db.productname
- | db.productnumber
- | db.publishername
 
 # ======================================================================
 
@@ -1193,7 +1191,7 @@ div {
 
 # ======================================================================
 
-ctrl:exclude [ from="admonition.blocks" exclude="admonition.blocks" ]
+ctrl:exclude [ from="db.admonition.blocks" exclude="db.admonition.blocks" ]
 
 db.admonition.contentmodel = db.titleonly.info, db.all.blocks+
 
