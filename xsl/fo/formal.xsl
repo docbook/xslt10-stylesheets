@@ -34,40 +34,72 @@
     </xsl:if>
   </xsl:variable>
 
+  <xsl:variable name="keep.together">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'keep-together'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="self::figure">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="figure.properties">
+	<xsl:if test="$keep.together != ''">
+	  <xsl:attribute name="keep-together.within-column"><xsl:value-of
+	                  select="$keep.together"/></xsl:attribute>
+	</xsl:if>
         <xsl:copy-of select="$content"/>
       </fo:block>
     </xsl:when>
     <xsl:when test="self::example">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="example.properties">
+	<xsl:if test="$keep.together != ''">
+	  <xsl:attribute name="keep-together.within-column"><xsl:value-of
+	                  select="$keep.together"/></xsl:attribute>
+	</xsl:if>
         <xsl:copy-of select="$content"/>
       </fo:block>
     </xsl:when>
     <xsl:when test="self::equation">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="equation.properties">
+	<xsl:if test="$keep.together != ''">
+	  <xsl:attribute name="keep-together.within-column"><xsl:value-of
+	                  select="$keep.together"/></xsl:attribute>
+	</xsl:if>
         <xsl:copy-of select="$content"/>
       </fo:block>
     </xsl:when>
     <xsl:when test="self::table">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="table.properties">
+	<xsl:if test="$keep.together != ''">
+	  <xsl:attribute name="keep-together.within-column"><xsl:value-of
+	                  select="$keep.together"/></xsl:attribute>
+	</xsl:if>
         <xsl:copy-of select="$content"/>
       </fo:block>
     </xsl:when>
     <xsl:when test="self::procedure">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="procedure.properties">
+	<xsl:if test="$keep.together != ''">
+	  <xsl:attribute name="keep-together.within-column"><xsl:value-of
+	                  select="$keep.together"/></xsl:attribute>
+	</xsl:if>
         <xsl:copy-of select="$content"/>
       </fo:block>
     </xsl:when>
     <xsl:otherwise>
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="formal.object.properties">
+	<xsl:if test="$keep.together != ''">
+	  <xsl:attribute name="keep-together.within-column"><xsl:value-of
+	                  select="$keep.together"/></xsl:attribute>
+	</xsl:if>
         <xsl:copy-of select="$content"/>
       </fo:block>
     </xsl:otherwise>
