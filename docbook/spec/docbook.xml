@@ -18,7 +18,7 @@
   </affiliation>
 </editor>
 </authorgroup>
-<pubdate>13 Nov 2001</pubdate>
+<pubdate>14 Nov 2001</pubdate>
 <releaseinfo role="meta">
 $Id$
 </releaseinfo>
@@ -106,7 +106,8 @@ both
 It is unofficially available in other forms as well.</para>
 
 <para>The Version 4.2 release is a maintainance release. It introduces
-no backwards-incompatible changes.</para>
+no backwards-incompatible changes. All valid DocBook 4.1 documents are
+also valid DocBook 4.2 documents.</para>
 
 <para>The DocBook Technical Committee welcomes bug reports and
 requests for enhancement (RFEs) from the user community. The current list
@@ -132,85 +133,6 @@ interpreted as described in <xref linkend="rfc2119"/>. Note that for
 reasons of style, these words are not capitalized in this
 document.</para>
 
-</section>
-
-<section id="s.changes">
-<title>Changes from DocBook V4.1</title>
-
-<para>Each of the changes made between DocBook V4.1 and DocBook XML V4.1.2
-is summarized here. For complete details, consult the individual RFEs and
-the <ulink url="http://www.oasis-open.org/docbook/#meetings">meeting
-minutes</ulink>.</para>
-
-<section id="s.bugs">
-<title>Bug Fixes</title>
-
-<itemizedlist>
-<listitem id="rfe.434439"><para><ulink url="&RFE;aid=434439">RFE 434439</ulink>:
-Add language attribute to MethodSynopsis
-</para></listitem>
-<listitem id="rfe.435485"><para><ulink url="&RFE;aid=435485">RFE 435485</ulink>:
-Parameter entity <sgmltag class="paramentity">tbl.table.mdl</sgmltag> can't be redefined cleanly
-</para></listitem>
-<listitem id="rfe.cm"><para>Expand the content model of the following
-elements from <sgmltag class="paramentity">smallcptr.char.mix</sgmltag> back to
-<sgmltag class="paramentity">cptr.char.mix</sgmltag>: <sgmltag>interfacename</sgmltag>,
-<sgmltag>action</sgmltag>, <sgmltag>database</sgmltag>,
-<sgmltag>filename</sgmltag>, <sgmltag>hardware</sgmltag>,
-<sgmltag>keycap</sgmltag>, <sgmltag>option</sgmltag>,
-<sgmltag>parameter</sgmltag>, <sgmltag>property</sgmltag>, and
-<sgmltag>systemitem</sgmltag> (<sgmltag>command</sgmltag>,
-<sgmltag>interface</sgmltag>, and <sgmltag>literal</sgmltag> were
-never reduced).</para></listitem>
-</itemizedlist>
-
-</section>
-<section id="s.enhancements">
-<title>Enhancements</title>
-
-<itemizedlist>
-<listitem id="rfe.417671"><para><ulink url="&RFE;aid=417671">RFE 417671</ulink>:
-Add recursive section element to Refentry
-</para></listitem>
-<listitem id="rfe.426382"><para><ulink url="&RFE;aid=426382">RFE 426382</ulink>:
-Allow SimpleSect inside Section
-</para></listitem>
-<listitem id="rfe.431413"><para><ulink url="&RFE;aid=431413">RFE 431413</ulink>:
-Former RFE 121: Add markup for signals
-</para></listitem>
-<listitem id="rfe.431415"><para><ulink url="&RFE;aid=431415">RFE 431415</ulink>:
-Former RFE 124: Add markup for host identifiers
-</para></listitem>
-<listitem id="rfe.431418"><para><ulink url="&RFE;aid=431418">RFE 431418</ulink>:
-Former RFE 128: Typing and linking in FuncDef (partially implemented)
-</para></listitem>
-<listitem id="rfe.431419"><para><ulink url="&RFE;aid=431419">RFE 431419</ulink>:
-Former RFE 130: Markup protocol, Filesystem type, and partion.
-</para></listitem>
-<listitem id="rfe.435466"><para><ulink url="&RFE;aid=435466">RFE 435466</ulink>:
-%beginpage.exclusion; not used in dbpool.mod
-</para></listitem>
-<listitem id="rfe.436072"><para><ulink url="&RFE;aid=436072">RFE 436072</ulink>:
-Need parameter entity for info* content
-</para></listitem>
-<listitem id="rfe.439136"><para><ulink url="&RFE;aid=439136">RFE 439136</ulink>:
-Allow literallayout in <sgmltag>epigraph</sgmltag>
-</para></listitem>
-<listitem id="rfe.440597"><para><ulink url="&RFE;aid=440597">RFE 440597</ulink>:
-Add SVG notation
-</para></listitem>
-<listitem id="rfe.480956"><para><ulink url="&RFE;aid=480956">RFE 480956</ulink>:
-Add <sgmltag>co</sgmltag> to <sgmltag>userinput</sgmltag>, etc.
-</para></listitem>
-<listitem id="rfe.133"><para>Former RFE 133:
-Added <sgmltag>newsgroup</sgmltag> class to <sgmltag>systemitem</sgmltag>.
-</para></listitem>
-<listitem id="rfe.140"><para>Former RFE 140:
-Allow multiple <sgmltag>msgexplan</sgmltag> inside <sgmltag>simplemsgentry</sgmltag>.
-</para></listitem>
-</itemizedlist>
-
-</section>
 </section>
 
 <section id="docbook">
@@ -352,6 +274,184 @@ from the
 </inlinemediaobject></screen>
 </section>
 -->
+
+</section>
+
+<section id="s.changes">
+<title>Changes in DocBook V4.2b0</title>
+
+<para>There are no backwards-incompatible changes in this release.
+</para>
+
+<para>Each of the changes made between DocBook V4.1 and DocBook XML V4.1.2
+is summarized here. For complete details, consult the individual RFEs and
+the <ulink url="http://www.oasis-open.org/docbook/#meetings">meeting
+minutes</ulink>.</para>
+
+<section id="s.bugs">
+<title>Bug Fixes</title>
+
+<itemizedlist>
+<listitem id="rfe.434439"><para><ulink url="&RFE;aid=434439">RFE 434439</ulink>:
+Add language attribute to MethodSynopsis
+</para></listitem>
+<listitem id="rfe.435485"><para><ulink url="&RFE;aid=435485">RFE 435485</ulink>:
+Parameter entity <sgmltag class="paramentity">tbl.table.mdl</sgmltag> can't be redefined cleanly
+</para></listitem>
+<listitem id="rfe.cm"><para>Expand the content model of the following
+elements from <sgmltag class="paramentity">smallcptr.char.mix</sgmltag> back to
+<sgmltag class="paramentity">cptr.char.mix</sgmltag>: <sgmltag>interfacename</sgmltag>,
+<sgmltag>action</sgmltag>, <sgmltag>database</sgmltag>,
+<sgmltag>filename</sgmltag>, <sgmltag>hardware</sgmltag>,
+<sgmltag>keycap</sgmltag>, <sgmltag>option</sgmltag>,
+<sgmltag>parameter</sgmltag>, <sgmltag>property</sgmltag>, and
+<sgmltag>systemitem</sgmltag> (<sgmltag>command</sgmltag>,
+<sgmltag>interface</sgmltag>, and <sgmltag>literal</sgmltag> were
+never reduced).</para></listitem>
+</itemizedlist>
+
+</section>
+<section id="s.enhancements">
+<title>Enhancements</title>
+
+<itemizedlist>
+<listitem id="rfe.417671"><para><ulink url="&RFE;aid=417671">RFE 417671</ulink>:
+Add recursive section element to Refentry
+</para></listitem>
+<listitem id="rfe.426382"><para><ulink url="&RFE;aid=426382">RFE 426382</ulink>:
+Allow SimpleSect inside Section
+</para></listitem>
+<listitem id="rfe.431413"><para><ulink url="&RFE;aid=431413">RFE 431413</ulink>:
+Former RFE 121: Add markup for signals
+</para></listitem>
+<listitem id="rfe.431415"><para><ulink url="&RFE;aid=431415">RFE 431415</ulink>:
+Former RFE 124: Add markup for host identifiers
+</para></listitem>
+<listitem id="rfe.431418"><para><ulink url="&RFE;aid=431418">RFE 431418</ulink>:
+Former RFE 128: Typing and linking in FuncDef (partially implemented)
+</para></listitem>
+<listitem id="rfe.431419"><para><ulink url="&RFE;aid=431419">RFE 431419</ulink>:
+Former RFE 130: Markup protocol, Filesystem type, and partion.
+</para></listitem>
+<listitem id="rfe.435466"><para><ulink url="&RFE;aid=435466">RFE 435466</ulink>:
+%beginpage.exclusion; not used in dbpool.mod
+</para></listitem>
+<listitem id="rfe.436072"><para><ulink url="&RFE;aid=436072">RFE 436072</ulink>:
+Need parameter entity for info* content
+</para></listitem>
+<listitem id="rfe.439136"><para><ulink url="&RFE;aid=439136">RFE 439136</ulink>:
+Allow literallayout in <sgmltag>epigraph</sgmltag>
+</para></listitem>
+<listitem id="rfe.440597"><para><ulink url="&RFE;aid=440597">RFE 440597</ulink>:
+Add SVG notation
+</para></listitem>
+<listitem id="rfe.480956"><para><ulink url="&RFE;aid=480956">RFE 480956</ulink>:
+Add <sgmltag>co</sgmltag> to <sgmltag>userinput</sgmltag>, etc.
+</para></listitem>
+<listitem id="rfe.133"><para>Former RFE 133:
+Added <sgmltag>newsgroup</sgmltag> class to <sgmltag>systemitem</sgmltag>.
+</para></listitem>
+<listitem id="rfe.140"><para>Former RFE 140:
+Allow multiple <sgmltag>msgexplan</sgmltag> inside <sgmltag>simplemsgentry</sgmltag>.
+</para></listitem>
+</itemizedlist>
+
+</section>
+</section>
+
+<section id="docbook.v5">
+<title>Changes Proposed for DocBook V5.0</title>
+
+<para>The following backwards-incompatible changes were announced in
+DocBook V4.0, the DocBook Technical Committee expects to incorporate
+them into DocBook V5.0.
+</para>
+
+<para>Each of the changes proposed is summarized here. For complete
+details, consult the individual RFEs and the <ulink
+url="http://www.oasis-open.org/docbook/#meetings">meeting
+minutes</ulink>.</para>
+
+<itemizedlist>
+<listitem id="rfe.xml"><para>DocBook V5.0 will be primarily an XML
+DTD. This will require a wide range of changes. As a result, DocBook
+V5.0 will more closely resemble The XML version of DocBook V4.x than
+the SGML version.</para>
+</listitem>
+
+<listitem id="rfe.pereorg"><para>Planned parameter entity
+reorganization may reduce some content models.  The goal of this
+effort is to remove a large number of spurious elements that snuck
+into content models during the first parameter entity reorganization
+(circa DocBook 2.4). In practice the TC expects changes to have very
+little "real world" impact.</para>
+</listitem>
+
+<listitem id="rfe.coords"><para>The <sgmltag>coords</sgmltag>
+attribute will be removed from <sgmltag>areaset</sgmltag>.</para>
+</listitem>
+
+<listitem id="rfe.biblioentry">
+<para>The <sgmltag>articleinfo</sgmltag> element will be removed from
+<sgmltag>biblioentry</sgmltag>.</para>
+</listitem>
+
+<listitem id="rfe.contents">
+<para>The <sgmltag class="attribute">contents</sgmltag> attribute will
+be removed from <sgmltag>bookinfo</sgmltag> and <sgmltag>setinfo</sgmltag>.
+</para>
+</listitem>
+
+<listitem id="rfe.indexdivcm">
+<para>The <sgmltag class="paramentity">indexdivcomponent.mix</sgmltag>
+parameter entity will be restricted.  Numbered figures and other
+elements inappropriate for an <sgmltag>index</sgmltag> or
+<sgmltag>setindex</sgmltag> will be removed.</para>
+</listitem>
+
+<listitem id="rfe.glossterm">
+<para>The <sgmltag>revhistory</sgmltag> element will be removed from
+<sgmltag>glossterm</sgmltag>.</para>
+</listitem>
+
+<listitem id="rfe.416415"><para><ulink url="&RFE;aid=416415">RFE 416415</ulink>:
+The <literal>constant</literal> <sgmltag class="attribute">class</sgmltag>
+will be removed from <sgmltag>systemitem</sgmltag>.</para>
+</listitem>
+
+<listitem id="rfe.graphics">
+<para>The <sgmltag>graphic</sgmltag> and <sgmltag>inlinegraphic</sgmltag> elements
+will be removed.</para>
+</listitem>
+
+<listitem id="rfe.tables">
+<para>Tables will be restricted from full CALS Table Model to the
+OASIS Exchange model.</para>
+</listitem>
+</itemizedlist>
+
+</section>
+
+<section id="docbook.v6">
+<title>Changes Proposed for DocBook V6.0</title>
+
+<para>The DocBook Technical Committee expects to announce the following
+backwards-incompatible changes in DocBook V5.0, for eventual incorporation
+into DocBook V6.0.
+</para>
+
+<para>Each of the changes proposed is summarized here. For complete
+details, consult the individual RFEs and the <ulink
+url="http://www.oasis-open.org/docbook/#meetings">meeting
+minutes</ulink>.</para>
+
+<itemizedlist>
+<listitem id="rfe.412476"><para><ulink url="&RFE;aid=412476">RFE 412476</ulink>:
+The <sgmltag class="attribute">class</sgmltag> attribute on
+<sgmltag>productname</sgmltag> will be <literal>#IMPLIED</literal>.
+</para>
+</listitem>
+</itemizedlist>
 
 </section>
 
