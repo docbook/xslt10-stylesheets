@@ -76,7 +76,12 @@
   <xsl:if test="position()>1">
     <xsl:value-of select="$arg.or.sep"/>
   </xsl:if>
-  <xsl:apply-templates mode="bold" select="."/>
+  <!-- Don't use the 'bold' named template here since there may be -->
+  <!-- child elements that require different markup (such as       -->
+  <!-- <replaceable>).                                             -->
+  <xsl:text>\fB</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>\fR</xsl:text>
 </xsl:template>
 
 <xsl:template match="command">
@@ -85,10 +90,6 @@
 
 <xsl:template match="function[not(ancestor::command)]">
   <xsl:apply-templates mode="bold" select="."/>
-</xsl:template>
-
-<xsl:template match="arg/replaceable">
-  <xsl:apply-templates mode="italic" select="."/>
 </xsl:template>
 
 <xsl:template match="parameter[not(ancestor::command)]">
