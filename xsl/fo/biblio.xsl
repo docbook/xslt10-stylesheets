@@ -20,43 +20,43 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
-  <fo:block id="{$id}">
-    <xsl:call-template name="component.separator"/>
-    <xsl:call-template name="bibliography.titlepage"/>
-    <xsl:apply-templates/>
-  </fo:block>
-</xsl:template>
+  <xsl:choose>
+    <xsl:when test="not(parent::*) or parent::book">
+      <xsl:variable name="master-reference">
+        <xsl:call-template name="select.pagemaster"/>
+      </xsl:variable>
 
-<xsl:template match="book/bibliography">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-  <xsl:variable name="master-reference">
-    <xsl:call-template name="select.pagemaster"/>
-  </xsl:variable>
+      <fo:page-sequence id="{$id}"
+                        hyphenate="{$hyphenate}"
+                        master-reference="{$master-reference}">
+        <xsl:attribute name="language">
+          <xsl:call-template name="l10n.language"/>
+        </xsl:attribute>
+        <xsl:if test="$double.sided != 0">
+          <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+        </xsl:if>
 
-  <fo:page-sequence id="{$id}"
-                    hyphenate="{$hyphenate}"
-                    master-reference="{$master-reference}">
-    <xsl:attribute name="language">
-      <xsl:call-template name="l10n.language"/>
-    </xsl:attribute>
-    <xsl:if test="$double.sided != 0">
-      <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
-    </xsl:if>
+        <xsl:apply-templates select="." mode="running.head.mode">
+          <xsl:with-param name="master-reference" select="$master-reference"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="." mode="running.foot.mode">
+          <xsl:with-param name="master-reference" select="$master-reference"/>
+        </xsl:apply-templates>
 
-    <xsl:apply-templates select="." mode="running.head.mode">
-      <xsl:with-param name="master-reference" select="$master-reference"/>
-    </xsl:apply-templates>
-    <xsl:apply-templates select="." mode="running.foot.mode">
-      <xsl:with-param name="master-reference" select="$master-reference"/>
-    </xsl:apply-templates>
-
-    <fo:flow flow-name="xsl-region-body">
-      <xsl:call-template name="bibliography.titlepage"/>
-      <xsl:apply-templates/>
-    </fo:flow>
-  </fo:page-sequence>
+        <fo:flow flow-name="xsl-region-body">
+          <xsl:call-template name="bibliography.titlepage"/>
+          <xsl:apply-templates/>
+        </fo:flow>
+      </fo:page-sequence>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:block id="{$id}">
+        <xsl:call-template name="component.separator"/>
+        <xsl:call-template name="bibliography.titlepage"/>
+        <xsl:apply-templates/>
+      </fo:block>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="bibliography/bibliographyinfo"></xsl:template>
