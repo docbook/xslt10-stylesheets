@@ -185,6 +185,7 @@
   </xsl:variable>
 
   <fo:block text-align-last="justify"
+            text-align="start"
             end-indent="{$toc.indent.width}pt"
             last-line-end-indent="-{$toc.indent.width}pt">
     <fo:inline keep-with-next.within-line="always">
