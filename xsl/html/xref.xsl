@@ -170,6 +170,10 @@
   <xsl:apply-templates select="." mode="object.xref.markup"/>
 </xsl:template>
 
+<xsl:template match="article" mode="xref-to">
+  <xsl:apply-templates select="." mode="object.xref.markup"/>
+</xsl:template>
+
 <xsl:template match="chapter" mode="xref-to">
   <xsl:apply-templates select="." mode="object.xref.markup"/>
 </xsl:template>
