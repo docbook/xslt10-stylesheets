@@ -263,7 +263,7 @@
   <xsl:variable name="revnumber" select=".//revnumber"/>
   <xsl:variable name="revdate"   select=".//date"/>
   <xsl:variable name="revauthor" select=".//authorinitials"/>
-  <xsl:variable name="revremark" select=".//revremark"/>
+  <xsl:variable name="revremark" select=".//revremark|.//revdescription"/>
   <fo:table-row>
     <fo:table-cell>
       <fo:block>
@@ -311,6 +311,10 @@
 </xsl:template>
 
 <xsl:template match="revision/revremark">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="revision/revdescription">
   <xsl:apply-templates/>
 </xsl:template>
 
