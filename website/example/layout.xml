@@ -19,6 +19,7 @@
     <holder role="http://nwalsh.com/~ndw/">Norman Walsh</holder>
   </copyright>
 
+  <headlink rel="icon" href="http://nwalsh.com/images/nwalsh-icon16.png" type="image/png"/>
   <style src="example.css" type="text/css"/>
 
   <toc page="website.xml" filename="index.html">

@@ -6,6 +6,7 @@
 <title>Building with Make</title>
 <titleabbrev>Using Make</titleabbrev>
 <summary>Building with Make</summary>
+<headlink rel="linktest" type="nop"/>
 </head>
 
 <para>The following instructions work with recent versions of GNU Make;
