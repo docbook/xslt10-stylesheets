@@ -167,6 +167,7 @@ generate.section.toc.level;
 &table.cell.border.thickness;
 &table.cell.border.style;
 &table.cell.border.color;
+&table.table.properties;
 </reference>
 
 <reference><title>Linking</title>
@@ -688,6 +689,7 @@ around all these parameters.</para>
 <src:fragref linkend="table.frame.border.thickness.frag"/>
 <src:fragref linkend="table.properties.frag"/>
 <src:fragref linkend="tablecolumns.extension.frag"/>
+<src:fragref linkend="table.table.properties.frag"/>
 <src:fragref linkend="target.database.document.frag"/>
 <src:fragref linkend="tex.math.delims.frag"/>
 <src:fragref linkend="tex.math.in.alt.frag"/>
