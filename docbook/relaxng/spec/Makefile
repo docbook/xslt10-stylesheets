@@ -21,5 +21,16 @@ docbook.fo: docbook.xml
 docbook.pdf: docbook.fo
 	xep $<
 
+elemdiff.xml: elemdiff.pl 44-50-elements.diff
+	perl elemdiff.pl > $@
+
+cmdiff.xml: cmdiff.pl 44-50-cm.diff
+	perl cmdiff.pl > $@
+
+showdiff.html: showdiff.xml elemdiff.xml cmdiff.xml
+	xmllint --xinclude $< > ,$<
+	saxon ,$< /sourceforge/docbook/xsl/html/docbook.xsl $@
+	rm -f ,$<
+
 clean:
 	$(RM) *.html
