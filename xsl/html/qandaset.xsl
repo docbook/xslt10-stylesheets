@@ -210,6 +210,7 @@
 
       <b>
         <xsl:apply-templates select="." mode="label.markup"/>
+        <xsl:text>. </xsl:text> <!-- FIXME: Hack!!! This should be in the locale! -->
       </b>
     </td>
     <td align="left" valign="top">
@@ -230,7 +231,14 @@
     <td align="left" valign="top">
       <xsl:call-template name="anchor"/>
       <b>
-        <xsl:apply-templates select="." mode="label.markup"/>
+        <!-- FIXME: Hack!!! This should be in the locale! -->
+        <xsl:variable name="answer.label">
+          <xsl:apply-templates select="." mode="label.markup"/>
+        </xsl:variable>
+        <xsl:copy-of select="$answer.label"/>
+        <xsl:if test="string($answer.label) != ''">
+          <xsl:text>. </xsl:text>
+        </xsl:if>
       </b>
     </td>
     <td align="left" valign="top">
@@ -289,10 +297,12 @@
 
   <dt>
     <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:text> </xsl:text>
+    <xsl:text>. </xsl:text> <!-- FIXME: Hack!!! This should be in the locale! -->
     <a>
       <xsl:attribute name="href">
-        <xsl:call-template name="href.target"/>
+        <xsl:call-template name="href.target">
+          <xsl:with-param name="object" select=".."/>
+        </xsl:call-template>
       </xsl:attribute>
       <xsl:value-of select="$firstch"/>
     </a>
