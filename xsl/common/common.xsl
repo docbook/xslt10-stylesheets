@@ -224,6 +224,9 @@ Defaults to the context node.</para>
         <xsl:otherwise>2</xsl:otherwise>
       </xsl:choose>
     </xsl:when>
+    <xsl:when test="name($node)='refsect1'">2</xsl:when>
+    <xsl:when test="name($node)='refsect2'">3</xsl:when>
+    <xsl:when test="name($node)='refsect3'">4</xsl:when>
     <xsl:when test="name($node)='simplesect'">
       <xsl:choose>
         <xsl:when test="$node/../../sect1">3</xsl:when>
