@@ -169,7 +169,9 @@
 <gentext key="nav-up" text="Yukarı"/>
 
 <gentext key="sectioncalled"       text=""/>
-
+<gentext key="Draft"         text="Draft"/> <!-- en -->
+<gentext key="above"         text="above"/> <!-- en -->
+<gentext key="below"         text="below"/> <!-- en -->
 <gentext key="index symbols"            text="Semboler"/>
 
 <gentext key="lowercase.alpha" text="abcçdefgğhıijklmnoöprsştuüvyz"/>
@@ -376,6 +378,9 @@
 <template name="qandaset">%t</template>
 <template name="question"><Question/> %n</template>
 <template name="reference">%t</template>
+<template name="refsect1">%t</template>
+<template name="refsect2">%t</template>
+<template name="refsect3">%t</template>
 <template name="refsynopsisdiv">%t</template>
 <template name="segmentedlist">%t</template>
 <template name="set">%t</template>
@@ -387,12 +392,16 @@
 <template name="variablelist">%t</template>
 <template name="varlistentry">%n</template>
 <template name="warning">%t</template>
+<template name="page.citation"> [%p]</template>
 
 </context>
 
 <context name="section-xref">
 
 <template name="bridgehead"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="refsect1"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="refsect2"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="refsect3"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="sect1"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="sect2"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="sect3"><sectioncalled/> &#x201C;%t&#x201D;</template>
@@ -406,6 +415,9 @@
 <context name="section-xref-numbered">
 
 <template name="bridgehead"><Section/> %n</template>
+<template name="refsect1"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="refsect2"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="refsect3"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="sect1"><Section/> %n</template>
 <template name="sect2"><Section/> %n</template>
 <template name="sect3"><Section/> %n</template>
