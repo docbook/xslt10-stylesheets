@@ -633,9 +633,9 @@
       <xsl:otherwise>-</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:for-each select="./*">
+  <xsl:for-each select="*">
     <xsl:if test="position()>1"><xsl:value-of select="$joinchar"/></xsl:if>
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="."/>
   </xsl:for-each>
 </xsl:template>
 
