@@ -208,6 +208,25 @@ titles.
 </xsl:attribute-set>
 
 <!-- ==================================================================== -->
+<xsl:attribute-set name="verbatim.properties">
+  <xsl:attribute name="space-before.minimum">0.8em</xsl:attribute>
+  <xsl:attribute name="space-before.optimum">1em</xsl:attribute>
+  <xsl:attribute name="space-before.maximum">1.2em</xsl:attribute>
+</xsl:attribute-set>
+
+<!-- ==================================================================== -->
+<xsl:attribute-set name="monospace.verbatim.properties"
+                   use-attribute-sets="verbatim.properties">
+  <xsl:attribute name="font-family">
+    <xsl:value-of select="$monospace.font.family"/>
+  </xsl:attribute>
+  <xsl:attribute name="font-size">
+    <xsl:value-of select="$body.font.master * 0.9"/>
+    <xsl:text>pt</xsl:text>
+  </xsl:attribute>
+</xsl:attribute-set>
+
+<!-- ==================================================================== -->
 <xsl:attribute-set name="xref.properties">
 <!--
   <xsl:attribute name="background-color">#F0F0F0</xsl:attribute>
