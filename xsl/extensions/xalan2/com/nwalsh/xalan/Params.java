@@ -14,8 +14,7 @@ public class Params {
   public static String getString(ExpressionContext context,
 				 String varName) {
     try {
-      XPathContext xpc = (XPathContext) context;
-      XObject var = xpc.getVariable(new QName(varName));
+      XObject var = context.getVariableOrParam(new QName(varName));
       if (var != null) {
 	return var.toString();
       } else {
