@@ -183,12 +183,16 @@
 
 <!-- Content model for Table (that also allows HTML tables) -->
 <!ENTITY % tbl.table.mdl
-	"(((%formalobject.title.content;), (%ndxterm.class;)*,
-               (graphic+|mediaobject+|tgroup+)) |
-	  (caption, (col*|colgroup*), thead?, tfoot?, (tbody+|tr+)))">
+	"((blockinfo?,
+           (%formalobject.title.content;),
+           (%ndxterm.class;)*,
+           textobject*,
+           (graphic+|mediaobject+|tgroup+))
+         |(caption, (col*|colgroup*), thead?, tfoot?, (tbody+|tr+)))">
 
-<!ENTITY % informal.tbl.table.mdl "graphic+|mediaobject+|tgroup+|
-	((col*|colgroup*), thead?, tfoot?, (tbody+|tr+))">
+<!ENTITY % informal.tbl.table.mdl
+	"(graphic+|mediaobject+|tgroup+)
+         | ((col*|colgroup*), thead?, tfoot?, (tbody+|tr+))">
 
 <!-- Attributes for Table (including HTML ones) -->
 <!ENTITY % tbl.table.att        '
