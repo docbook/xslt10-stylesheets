@@ -3,9 +3,7 @@
                 xmlns:rng="http://relaxng.org/ns/structure/1.0"
                 version="1.0">
 
-<!-- This stylesheet is just used for debugging, it reports what definitions
-     are referenced but undefined or defined but unused in a particular grammar
-     module. For the final grammar, it shouldn't print anything. -->
+<!-- This stylesheet is just used for debugging, it prints all the patterns -->
 
 <xsl:output method="text"/>
 
