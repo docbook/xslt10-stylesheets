@@ -1287,7 +1287,9 @@
     </fo:block>
   </fo:static-content>
 
-  <xsl:call-template name="footnote-separator"/>
+  <xsl:if test="$fop.extensions = 0">
+    <xsl:call-template name="footnote-separator"/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template name="footnote-separator">
