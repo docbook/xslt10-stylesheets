@@ -373,68 +373,53 @@ is system dependent.)</para>
 
     <xsl:if test="$home">
       <link rel="home">
-        <xsl:variable name="home-title">
-          <xsl:apply-templates select="$home" mode="title.markup"/>
-        </xsl:variable>
-
         <xsl:attribute name="href">
           <xsl:call-template name="href.target">
             <xsl:with-param name="object" select="$home"/>
           </xsl:call-template>
         </xsl:attribute>
         <xsl:attribute name="title">
-          <xsl:value-of select="$home-title"/> <!-- node-set ==> text only! -->
+          <xsl:apply-templates select="$home"
+                               mode="object.title.markup.textonly"/>
         </xsl:attribute>
       </link>
     </xsl:if>
 
     <xsl:if test="$up">
       <link rel="up">
-        <xsl:variable name="up-title">
-          <xsl:apply-templates select="$up" mode="title.markup"/>
-        </xsl:variable>
-
         <xsl:attribute name="href">
           <xsl:call-template name="href.target">
             <xsl:with-param name="object" select="$up"/>
           </xsl:call-template>
         </xsl:attribute>
         <xsl:attribute name="title">
-          <xsl:value-of select="$up-title"/> <!-- node-set ==> text only! -->
+          <xsl:apply-templates select="$up" mode="object.title.markup.textonly"/>
         </xsl:attribute>
       </link>
     </xsl:if>
 
     <xsl:if test="$prev">
       <link rel="previous">
-        <xsl:variable name="prev-title">
-          <xsl:apply-templates select="$prev" mode="title.markup"/>
-        </xsl:variable>
-
         <xsl:attribute name="href">
           <xsl:call-template name="href.target">
             <xsl:with-param name="object" select="$prev"/>
           </xsl:call-template>
         </xsl:attribute>
         <xsl:attribute name="title">
-          <xsl:value-of select="$prev-title"/> <!-- node-set ==> text only! -->
+          <xsl:apply-templates select="$prev" mode="object.title.markup.textonly"/>
         </xsl:attribute>
       </link>
     </xsl:if>
 
     <xsl:if test="$next">
       <link rel="next">
-        <xsl:variable name="next-title">
-          <xsl:apply-templates select="$next" mode="title.markup"/>
-        </xsl:variable>
-
         <xsl:attribute name="href">
           <xsl:call-template name="href.target">
             <xsl:with-param name="object" select="$next"/>
           </xsl:call-template>
         </xsl:attribute>
         <xsl:attribute name="title">
-          <xsl:value-of select="$next-title"/> <!-- node-set ==> text only! -->
+          <xsl:apply-templates select="$next" mode="object.title.markup.textonly"/>
         </xsl:attribute>
       </link>
     </xsl:if>
@@ -451,10 +436,10 @@ is system dependent.)</para>
 
   <xsl:if test="$suppress.navigation = '0'">
     <div class="navheader">
-      <table width="100%">
+      <table width="100%" summary="Navigation header">
         <tr>
           <th colspan="3" align="center">
-            <xsl:apply-templates select="." mode="title.markup"/>
+            <xsl:apply-templates select="." mode="object.title.markup"/>
           </th>
         </tr>
         <tr>
@@ -476,7 +461,7 @@ is system dependent.)</para>
           <th width="60%" align="center">
             <xsl:choose>
               <xsl:when test="count($up) > 0 and $up != $home">
-                <xsl:apply-templates select="$up" mode="title.markup"/>
+                <xsl:apply-templates select="$up" mode="object.title.markup"/>
               </xsl:when>
               <xsl:otherwise>&#160;</xsl:otherwise>
             </xsl:choose>
@@ -514,7 +499,7 @@ is system dependent.)</para>
   <xsl:if test="$suppress.navigation = '0'">
     <div class="navfooter">
       <hr/>
-      <table width="100%">
+      <table width="100%" summary="Navigation footer">
         <tr>
           <td width="40%" align="left">
             <xsl:if test="count($prev)>0">
@@ -567,7 +552,7 @@ is system dependent.)</para>
 
         <tr>
           <td width="40%" align="left">
-            <xsl:apply-templates select="$prev" mode="title.markup"/>
+            <xsl:apply-templates select="$prev" mode="object.title.markup"/>
             <xsl:text>&#160;</xsl:text>
           </td>
           <td width="20%" align="center">
@@ -589,7 +574,7 @@ is system dependent.)</para>
           </td>
           <td width="40%" align="right">
             <xsl:text>&#160;</xsl:text>
-            <xsl:apply-templates select="$next" mode="title.markup"/>
+            <xsl:apply-templates select="$next" mode="object.title.markup"/>
           </td>
         </tr>
       </table>
@@ -781,6 +766,188 @@ is system dependent.)</para>
   <!-- if the index is completely empty, skip it. -->
   <xsl:if test="count(*)>0">
     <xsl:call-template name="process-chunk-element"/>
+  </xsl:if>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template name="in.other.chunk">
+  <xsl:param name="chunk" select="."/>
+  <xsl:param name="node" select="."/>
+
+  <xsl:variable name="is.chunk">
+    <xsl:call-template name="chunk">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+<!--
+  <xsl:message>
+    <xsl:text>in.other.chunk: </xsl:text>
+    <xsl:value-of select="name($chunk)"/>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="name($node)"/>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$chunk = $node"/>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$is.chunk"/>
+  </xsl:message>
+-->
+
+  <xsl:choose>
+    <xsl:when test="$chunk = $node">0</xsl:when>
+    <xsl:when test="$is.chunk = 1">1</xsl:when>
+    <xsl:when test="count($node) = 0">0</xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="in.other.chunk">
+        <xsl:with-param name="chunk" select="$chunk"/>
+        <xsl:with-param name="node" select="$node/parent::*"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="count.footnotes.in.this.chunk">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="footnotes" select="$node//footnote"/>
+  <xsl:param name="count" select="0"/>
+
+<!--
+  <xsl:message>
+    <xsl:text>count.footnotes.in.this.chunk: </xsl:text>
+    <xsl:value-of select="name($node)"/>
+  </xsl:message>
+-->
+
+  <xsl:variable name="in.other.chunk">
+    <xsl:call-template name="in.other.chunk">
+      <xsl:with-param name="chunk" select="$node"/>
+      <xsl:with-param name="node" select="$footnotes[1]"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="count($footnotes) = 0">
+      <xsl:value-of select="$count"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:choose>
+        <xsl:when test="$in.other.chunk != 0">
+          <xsl:call-template name="count.footnotes.in.this.chunk">
+            <xsl:with-param name="node" select="$node"/>
+            <xsl:with-param name="footnotes"
+                            select="$footnotes[position() &gt; 1]"/>
+            <xsl:with-param name="count" select="$count"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:when test="$footnotes[1]/ancestor::table
+                        |$footnotes[1]/ancestor::informaltable">
+          <xsl:call-template name="count.footnotes.in.this.chunk">
+            <xsl:with-param name="node" select="$node"/>
+            <xsl:with-param name="footnotes"
+                            select="$footnotes[position() &gt; 1]"/>
+            <xsl:with-param name="count" select="$count"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="count.footnotes.in.this.chunk">
+            <xsl:with-param name="node" select="$node"/>
+            <xsl:with-param name="footnotes"
+                            select="$footnotes[position() &gt; 1]"/>
+            <xsl:with-param name="count" select="$count + 1"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="process.footnotes.in.this.chunk">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="footnotes" select="$node//footnote"/>
+
+<!--
+  <xsl:message>process.footnotes.in.this.chunk</xsl:message>
+-->
+
+  <xsl:variable name="in.other.chunk">
+    <xsl:call-template name="in.other.chunk">
+      <xsl:with-param name="chunk" select="$node"/>
+      <xsl:with-param name="node" select="$footnotes[1]"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="count($footnotes) = 0">
+      <!-- nop -->
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:choose>
+        <xsl:when test="$in.other.chunk != 0">
+          <xsl:call-template name="process.footnotes.in.this.chunk">
+            <xsl:with-param name="node" select="$node"/>
+            <xsl:with-param name="footnotes"
+                            select="$footnotes[position() &gt; 1]"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:when test="$footnotes[1]/ancestor::table
+                        |$footnotes[1]/ancestor::informaltable">
+          <xsl:call-template name="process.footnotes.in.this.chunk">
+            <xsl:with-param name="node" select="$node"/>
+            <xsl:with-param name="footnotes"
+                            select="$footnotes[position() &gt; 1]"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="$footnotes[1]"
+                               mode="process.footnote.mode"/>
+          <xsl:call-template name="process.footnotes.in.this.chunk">
+            <xsl:with-param name="node" select="$node"/>
+            <xsl:with-param name="footnotes"
+                            select="$footnotes[position() &gt; 1]"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="process.footnotes">
+  <xsl:variable name="footnotes" select=".//footnote"/>
+  <xsl:variable name="fcount">
+    <xsl:call-template name="count.footnotes.in.this.chunk">
+      <xsl:with-param name="node" select="."/>
+      <xsl:with-param name="footnotes" select="$footnotes"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+<!--
+  <xsl:message>
+    <xsl:value-of select="name(.)"/>
+    <xsl:text> fcount: </xsl:text>
+    <xsl:value-of select="$fcount"/>
+  </xsl:message>
+-->
+
+  <!-- Only bother to do this if there's at least one non-table footnote -->
+  <xsl:if test="$fcount &gt; 0">
+    <div class="footnotes">
+      <br/>
+      <hr width="100" align="left"/>
+      <xsl:call-template name="process.footnotes.in.this.chunk">
+        <xsl:with-param name="node" select="."/>
+        <xsl:with-param name="footnotes" select="$footnotes"/>
+      </xsl:call-template>
+    </div>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="process.chunk.footnotes">
+  <xsl:variable name="is.chunk">
+    <xsl:call-template name="chunk"/>
+  </xsl:variable>
+  <xsl:if test="$is.chunk = 1">
+    <xsl:call-template name="process.footnotes"/>
   </xsl:if>
 </xsl:template>
 
