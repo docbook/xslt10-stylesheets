@@ -176,9 +176,9 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 	<xsl:call-template name="href.target.with.base.dir"/>
     <xsl:text>"&gt;
   &lt;/OBJECT&gt;</xsl:text>
-  <xsl:if test="part|reference|preface|chapter|appendix|article">
+  <xsl:if test="part|reference|preface|chapter|appendix|article|colophon">
     <xsl:text>&lt;UL&gt;</xsl:text>
-      <xsl:apply-templates select="part|reference|preface|chapter|appendix|article"
+      <xsl:apply-templates select="part|reference|preface|chapter|appendix|article|colophon"
 			   mode="hhc"/>
     <xsl:text>&lt;/UL&gt;</xsl:text>
   </xsl:if>
@@ -311,7 +311,7 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="sect5|refentry" mode="hhc">
+<xsl:template match="sect5|refentry|colophon" mode="hhc">
   <xsl:variable name="title">
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
