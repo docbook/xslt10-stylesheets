@@ -35,6 +35,8 @@
                         |$node/prefaceinfo/subtitle
                         |$node/chapterinfo/subtitle
                         |$node/appendixinfo/subtitle
+                        |$node/articleinfo/subtitle
+                        |$node/artheader/subtitle
                         |$node/subtitle)[1]"/>
 
   <xsl:if test="$subtitle">
