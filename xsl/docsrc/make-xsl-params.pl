@@ -41,7 +41,7 @@ print <<EOF3;
   </simplelist>
 </xsl:variable>
 
-<xsl:variable name="xsl-fo-parameters-list">
+<xsl:variable name="xsl-manpages-parameters-list">
   <simplelist>
 EOF3
 
