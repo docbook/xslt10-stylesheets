@@ -183,34 +183,6 @@ Title=</xsl:text>
 
 <!-- ==================================================================== -->
 
-<xsl:template match="set|book|part|preface|chapter|appendix
-                     |article
-                     |reference|refentry
-                     |sect1|sect2|sect3|sect4|sect5
-                     |section
-                     |book/glossary|article/glossary
-                     |book/bibliography|article/bibliography
-                     |book/glossary|article/glossary
-                     |colophon"
-              mode="enumerate-files">
-  <xsl:variable name="ischunk"><xsl:call-template name="chunk"/></xsl:variable>
-  <xsl:if test="$ischunk='1'">
-    <xsl:call-template name="make-relative-filename">
-      <xsl:with-param name="base.dir" select="$base.dir"/>
-      <xsl:with-param name="base.name">
-        <xsl:apply-templates mode="chunk-filename" select="."/>
-      </xsl:with-param>
-    </xsl:call-template>
-    <xsl:text>&#10;</xsl:text>
-  </xsl:if>
-  <xsl:apply-templates select="*" mode="enumerate-files"/>
-</xsl:template>
-
-<xsl:template match="text()" mode="enumerate-files">
-</xsl:template>
-
-<!-- ==================================================================== -->
-
 <xsl:template match="graphic|inlinegraphic[@format!='linespecific']" mode="enumerate-images">
   <xsl:call-template name="write.filename.enumerate-images">
     <xsl:with-param name="filename">
