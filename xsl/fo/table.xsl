@@ -59,8 +59,48 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <!-- ==================================================================== -->
 
 <xsl:template name="empty.table.cell">
-  <fo:table-cell text-align="center" display-align="center">
-    <fo:block/>
+  <xsl:param name="colnum" select="0"/>
+
+  <xsl:variable name="rowsep">
+    <xsl:call-template name="calculate.rowsep">
+      <xsl:with-param name="entry" select="NOT-AN-ELEMENT-NAME"/>
+      <xsl:with-param name="colnum" select="$colnum"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="colsep">
+    <xsl:call-template name="calculate.colsep">
+      <xsl:with-param name="entry" select="NOT-AN-ELEMENT-NAME"/>
+      <xsl:with-param name="colnum" select="$colnum"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <fo:table-cell text-align="center"
+                 display-align="center"
+                 padding="{$table.border.padding}">
+    <xsl:if test="$colsep &gt; 0">
+      <xsl:call-template name="border">
+        <xsl:with-param name="side" select="'right'"/>
+        <xsl:with-param name="padding" select="1"/>
+      </xsl:call-template>
+    </xsl:if>
+    <!-- don't draw a rowsep on this cell if this row already has one -->
+    <xsl:if test="$rowsep &gt; 0
+                  and ancestor::row[1]/@rowsep != 1">
+      <xsl:call-template name="border">
+        <xsl:with-param name="side" select="'bottom'"/>
+        <xsl:with-param name="padding" select="1"/>
+      </xsl:call-template>
+    </xsl:if>
+    <fo:block>
+      <!--
+      <xsl:text>e(</xsl:text>
+      <xsl:value-of select="$rowsep"/>
+      <xsl:text>,</xsl:text>
+      <xsl:value-of select="$colsep"/>
+      <xsl:text>)</xsl:text>
+      -->
+    </fo:block>
   </fo:table-cell>
 </xsl:template>
 
@@ -70,13 +110,14 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   <xsl:param name="side" select="'left'"/>
   <xsl:param name="padding" select="0"/>
 
-  <xsl:attribute name="border-{$side}">
+  <xsl:attribute name="border-{$side}-width">
     <xsl:value-of select="$table.border.thickness"/>
-    <xsl:text> </xsl:text>
+  </xsl:attribute>
+  <xsl:attribute name="border-{$side}-style">
     <xsl:value-of select="$table.border.style"/>
-    <xsl:text> </xsl:text>
+  </xsl:attribute>
+  <xsl:attribute name="border-{$side}-color">
     <xsl:value-of select="$table.border.color"/>
-    <xsl:text> </xsl:text>
   </xsl:attribute>
   <xsl:if test="$padding != 0">
     <xsl:attribute name="padding-{$side}">
@@ -88,8 +129,6 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <!-- ==================================================================== -->
 
 <xsl:template match="tgroup">
-  <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
-
   <xsl:variable name="explicit.table.width">
     <xsl:call-template name="dbfo-attribute">
       <xsl:with-param name="pis"
@@ -136,22 +175,15 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     <xsl:when test="$use.extensions != 0
                     and $tablecolumns.extension != 0">
       <xsl:choose>
-        <xsl:when test="contains($vendor, 'SAXON 6')">
+        <xsl:when test="function-available('stbl:adjustColumnWidths')">
           <xsl:copy-of select="stbl:adjustColumnWidths($colspecs)"/>
         </xsl:when>
-        <xsl:when test="contains($vendor, 'SAXON 5')">
-          <!-- the saxon5 extension doesn't support this (yet) -->
-          <xsl:call-template name="generate.colgroup">
-            <xsl:with-param name="cols" select="@cols"/>
-          </xsl:call-template>
-        </xsl:when>
-        <xsl:when test="contains($vendor, 'Apache Software Foundation')">
+        <xsl:when test="function-available('xtbl:adjustColumnWidths')">
           <xsl:copy-of select="xtbl:adjustColumnWidths($colspecs)"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:message terminate="yes">
-            <xsl:text>Don't know how to do adjust column widths with </xsl:text>
-            <xsl:value-of select="$vendor"/>
+            <xsl:text>No adjustColumnWidths function available.</xsl:text>
           </xsl:message>
         </xsl:otherwise>
       </xsl:choose>
@@ -342,13 +374,24 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
   <xsl:variable name="empty.cell" select="count(node()) = 0"/>
 
-  <xsl:variable name="entry.colnum">
+  <xsl:variable name="named.colnum">
     <xsl:call-template name="entry.colnum"/>
+  </xsl:variable>
+
+  <xsl:variable name="entry.colnum">
+    <xsl:choose>
+      <xsl:when test="$named.colnum &gt; 0">
+        <xsl:value-of select="$named.colnum"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$col"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
 
   <xsl:variable name="entry.colspan">
     <xsl:choose>
-      <xsl:when test="@namest and @nameend">
+      <xsl:when test="@spanname or @namest">
         <xsl:call-template name="calculate.colspan"/>
       </xsl:when>
       <xsl:otherwise>1</xsl:otherwise>
@@ -362,6 +405,20 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     </xsl:call-template>
   </xsl:variable>
 
+  <xsl:variable name="rowsep">
+    <xsl:call-template name="calculate.rowsep">
+      <xsl:with-param name="entry" select="."/>
+      <xsl:with-param name="colnum" select="$entry.colnum"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="colsep">
+    <xsl:call-template name="calculate.colsep">
+      <xsl:with-param name="entry" select="."/>
+      <xsl:with-param name="colnum" select="$entry.colnum"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="$spans != '' and not(starts-with($spans,'0:'))">
       <xsl:call-template name="entry">
@@ -371,7 +428,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     </xsl:when>
 
     <xsl:when test="$entry.colnum &gt; $col">
-      <xsl:call-template name="empty.table.cell"/>
+      <xsl:call-template name="empty.table.cell">
+        <xsl:with-param name="colnum" select="$col"/>
+      </xsl:call-template>
       <xsl:call-template name="entry">
         <xsl:with-param name="col" select="$col+1"/>
         <xsl:with-param name="spans" select="substring-after($spans,':')"/>
@@ -379,7 +438,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     </xsl:when>
 
     <xsl:otherwise>
-      <fo:table-cell>
+      <fo:table-cell padding="{$table.border.padding}">
         <xsl:call-template name="anchor"/>
 
         <xsl:choose>
@@ -402,13 +461,15 @@ to be incomplete. Don't forget to read the source, too :-)</para>
             </xsl:call-template>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:if test="@colsep='1'">
+            <xsl:if test="$colsep &gt; 0">
               <xsl:call-template name="border">
                 <xsl:with-param name="side" select="'right'"/>
                 <xsl:with-param name="padding" select="1"/>
               </xsl:call-template>
             </xsl:if>
-            <xsl:if test="@rowsep='1'">
+            <!-- don't draw a rowsep on this cell if this row has one -->
+            <xsl:if test="$rowsep &gt; 0
+                          and ancestor::row[1]/@rowsep != 1">
               <xsl:call-template name="border">
                 <xsl:with-param name="side" select="'bottom'"/>
                 <xsl:with-param name="padding" select="1"/>
@@ -461,6 +522,13 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 -->
 
         <fo:block>
+          <!--
+          <xsl:text>(</xsl:text>
+          <xsl:value-of select="$rowsep"/>
+          <xsl:text>,</xsl:text>
+          <xsl:value-of select="$colsep"/>
+          <xsl:text>)</xsl:text>
+          -->
           <xsl:choose>
             <xsl:when test="$empty.cell">
               <xsl:text>&#160;</xsl:text>
@@ -482,6 +550,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
         <xsl:otherwise>
           <xsl:call-template name="finaltd">
             <xsl:with-param name="spans" select="$following.spans"/>
+            <xsl:with-param name="col" select="$col+$entry.colspan"/>
           </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
@@ -499,7 +568,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
   <xsl:variable name="entry.colspan">
     <xsl:choose>
-      <xsl:when test="@namest and @nameend">
+      <xsl:when test="@spanname or @namest">
         <xsl:call-template name="calculate.colspan"/>
       </xsl:when>
       <xsl:otherwise>1</xsl:otherwise>

@@ -23,8 +23,59 @@
                  functions="adjustColumnWidths"/>
 
 <xsl:template name="empty.table.cell">
-  <td class="auto-generated">&#160;</td>
+  <xsl:param name="colnum" select="0"/>
+
+  <xsl:variable name="rowsep">
+    <xsl:call-template name="calculate.rowsep">
+      <xsl:with-param name="entry" select="NOT-AN-ELEMENT-NAME"/>
+      <xsl:with-param name="colnum" select="$colnum"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="colsep">
+    <xsl:call-template name="calculate.colsep">
+      <xsl:with-param name="entry" select="NOT-AN-ELEMENT-NAME"/>
+      <xsl:with-param name="colnum" select="$colnum"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <td class="auto-generated">
+    <xsl:if test="$table.borders.with.css != 0">
+      <xsl:attribute name="style">
+        <xsl:if test="$colsep &gt; 0">
+          <xsl:call-template name="border">
+            <xsl:with-param name="side" select="'right'"/>
+          </xsl:call-template>
+        </xsl:if>
+        <xsl:if test="$rowsep &gt; 0">
+          <xsl:call-template name="border">
+            <xsl:with-param name="side" select="'bottom'"/>
+          </xsl:call-template>
+        </xsl:if>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:text>&#160;</xsl:text>
+  </td>
 </xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template name="border">
+  <xsl:param name="side" select="'left'"/>
+  <xsl:param name="padding" select="0"/>
+
+  <xsl:text>border-</xsl:text>
+  <xsl:value-of select="$side"/>
+  <xsl:text>: </xsl:text>
+  <xsl:value-of select="$table.border.thickness"/>
+  <xsl:text> </xsl:text>
+  <xsl:value-of select="$table.border.style"/>
+  <xsl:text> </xsl:text>
+  <xsl:value-of select="$table.border.color"/>
+  <xsl:text>; </xsl:text>
+</xsl:template>
+
+<!-- ==================================================================== -->
 
 <xsl:template match="tgroup">
   <table>
@@ -62,6 +113,28 @@
     <xsl:choose>
       <xsl:when test="../@frame='none'">
         <xsl:attribute name="border">0</xsl:attribute>
+      </xsl:when>
+      <xsl:when test="$table.borders.with.css != 0">
+        <xsl:attribute name="border">0</xsl:attribute>
+        <xsl:choose>
+          <xsl:when test="../@frame='topbot' or ../@frame='top'">
+            <xsl:attribute name="style">
+              <xsl:call-template name="border">
+                <xsl:with-param name="side" select="'top'"/>
+              </xsl:call-template>
+            </xsl:attribute>
+          </xsl:when>
+          <xsl:when test="../@frame='sides'">
+            <xsl:attribute name="style">
+              <xsl:call-template name="border">
+                <xsl:with-param name="side" select="'left'"/>
+              </xsl:call-template>
+              <xsl:call-template name="border">
+                <xsl:with-param name="side" select="'right'"/>
+              </xsl:call-template>
+            </xsl:attribute>
+          </xsl:when>
+        </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
         <xsl:attribute name="border">1</xsl:attribute>
@@ -259,6 +332,16 @@
   <xsl:param name="spans"/>
 
   <tr>
+    <xsl:if test="$table.borders.with.css != 0">
+      <xsl:if test="@rowsep = 1">
+        <xsl:attribute name="style">
+          <xsl:call-template name="border">
+            <xsl:with-param name="side" select="'bottom'"/>
+          </xsl:call-template>
+        </xsl:attribute>
+      </xsl:if>
+    </xsl:if>
+
     <xsl:if test="@align">
       <xsl:attribute name="align">
         <xsl:value-of select="@align"/>
@@ -312,13 +395,24 @@
 
   <xsl:variable name="empty.cell" select="count(node()) = 0"/>
 
-  <xsl:variable name="entry.colnum">
+  <xsl:variable name="named.colnum">
     <xsl:call-template name="entry.colnum"/>
+  </xsl:variable>
+
+  <xsl:variable name="entry.colnum">
+    <xsl:choose>
+      <xsl:when test="$named.colnum &gt; 0">
+        <xsl:value-of select="$named.colnum"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$col"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
 
   <xsl:variable name="entry.colspan">
     <xsl:choose>
-      <xsl:when test="@namest and @nameend">
+      <xsl:when test="@spanname or @namest">
         <xsl:call-template name="calculate.colspan"/>
       </xsl:when>
       <xsl:otherwise>1</xsl:otherwise>
@@ -329,6 +423,20 @@
     <xsl:call-template name="calculate.following.spans">
       <xsl:with-param name="colspan" select="$entry.colspan"/>
       <xsl:with-param name="spans" select="$spans"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="rowsep">
+    <xsl:call-template name="calculate.rowsep">
+      <xsl:with-param name="entry" select="."/>
+      <xsl:with-param name="colnum" select="$entry.colnum"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="colsep">
+    <xsl:call-template name="calculate.colsep">
+      <xsl:with-param name="entry" select="."/>
+      <xsl:with-param name="colnum" select="$entry.colnum"/>
     </xsl:call-template>
   </xsl:variable>
 
@@ -350,6 +458,21 @@
 
     <xsl:otherwise>
       <xsl:element name="{$cellgi}">
+        <xsl:if test="$table.borders.with.css != 0">
+          <xsl:attribute name="style">
+            <xsl:if test="$colsep &gt; 0">
+              <xsl:call-template name="border">
+                <xsl:with-param name="side" select="'right'"/>
+              </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$rowsep &gt; 0">
+              <xsl:call-template name="border">
+                <xsl:with-param name="side" select="'bottom'"/>
+              </xsl:call-template>
+            </xsl:if>
+          </xsl:attribute>
+        </xsl:if>
+
         <xsl:if test="@morerows &gt; 0">
           <xsl:attribute name="rowspan">
             <xsl:value-of select="1+@morerows"/>
@@ -415,6 +538,7 @@
         <xsl:otherwise>
           <xsl:call-template name="finaltd">
             <xsl:with-param name="spans" select="$following.spans"/>
+            <xsl:with-param name="col" select="$col+$entry.colspan"/>
           </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
@@ -432,7 +556,7 @@
 
   <xsl:variable name="entry.colspan">
     <xsl:choose>
-      <xsl:when test="@namest and @nameend">
+      <xsl:when test="@spanname or @namest">
         <xsl:call-template name="calculate.colspan"/>
       </xsl:when>
       <xsl:otherwise>1</xsl:otherwise>
