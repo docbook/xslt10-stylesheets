@@ -4,7 +4,7 @@ NEXTVER=../cvstools/nextversion
 DIFFVER=
 ZIPVER=
 
-DIRS=common html fo extensions
+DIRS=common html fo extensions htmlhelp javahelp
 
 .PHONY : distrib clean doc xhtml
 

@@ -23,6 +23,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/chapter.autolabel.xml \
        ../params/chunk.datafile.xml \
        ../params/chunk.first.sections.xml \
+       ../params/chunk.quietly.xml \
        ../params/chunk.section.depth.xml \
        ../params/chunk.toc.xml \
        ../params/citerefentry.link.xml \
@@ -128,7 +129,6 @@ PARAMS=../params/admon.graphics.xml \
        ../params/show.comments.xml \
        ../params/show.revisionflag.xml \
        ../params/spacing.paras.xml \
-       ../params/stylesheet.result.type.xml \
        ../params/suppress.navigation.xml \
        ../params/table.border.color.xml \
        ../params/table.border.style.xml \

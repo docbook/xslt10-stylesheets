@@ -1,6 +1,6 @@
 include ../../cvstools/Makefile.incl
 
-all: xslfiles
+all: xslfiles profile-docbook.xsl profile-chunk.xsl
 
 include xslfiles.gen
 
@@ -16,7 +16,8 @@ include xslfiles.gen
 xslfiles.list: .cvsignore
 	echo -n "xslfiles: " > xslfiles.gen
 	for f in `cat .cvsignore`; do \
-	    if [ "$$f" != ".cvsignore" -a "$$f" != "xslfiles.gen" ]; then \
+	    if [ "$$f" != ".cvsignore" -a "$$f" != "xslfiles.gen" \
+		  -a "$$f" != "profile-docbook.xsl" -a "$$f" != "profile-chunk.xsl" ]; then \
 	       echo -n `basename $$f`; \
                if [ "$$f" != "xref.xsl" ]; then \
                   echo " \\"; \
@@ -27,7 +28,8 @@ xslfiles.list: .cvsignore
         done >> xslfiles.gen
 	echo "" >> xslfiles.gen
 	for f in `cat .cvsignore`; do \
-	    if [ "$$f" != ".cvsignore" -a "$$f" != "xslfiles.gen" ]; then \
+	    if [ "$$f" != ".cvsignore" -a "$$f" != "xslfiles.gen" \
+		  -a "$$f" != "profile-docbook.xsl" -a "$$f" != "profile-chunk.xsl" ]; then \
 	       echo `basename $$f`: ../html/`basename $$f`; \
 	       echo -n "	$$"; \
 	       echo -n "(XSLT) "; \
@@ -49,3 +51,9 @@ clean:
 
 #%.xsl: html2xhtml.xsl
 #	$(XSLT) ../html/$@ html2xhtml.xsl $@
+
+profile-docbook.xsl:
+	$(XSLT) docbook.xsl ../profiling/xsl2profile.xsl $@
+
+profile-chunk.xsl:
+	$(XSLT) chunk.xsl ../profiling/xsl2profile.xsl $@

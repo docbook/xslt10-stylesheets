@@ -3,7 +3,7 @@ XJPARSE=../../cvstools/xjparse
 
 include Makefile.param
 
-all: titlepage.templates.xsl param.xsl
+all: titlepage.templates.xsl param.xsl profile-docbook.xsl
 
 param.html: param.xml
 	../../cvstools/paramchk -m Makefile.param $<
@@ -22,3 +22,6 @@ titlepage.templates.xsl: titlepage.templates.xml ../template/titlepage.xsl
 
 Makefile.param:
 	../../cvstools/paramchk -m $@ param.xweb
+
+profile-docbook.xsl:
+	$(XSLT) docbook.xsl ../profiling/xsl2profile.xsl $@
