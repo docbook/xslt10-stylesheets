@@ -77,6 +77,7 @@
 <!ENTITY hyphenate SYSTEM "../params/hyphenate.xml">
 <!ENTITY hyphenate.verbatim SYSTEM "../params/hyphenate.verbatim.xml">
 <!ENTITY hyphenate.verbatim.characters SYSTEM "../params/hyphenate.verbatim.characters.xml">
+<!ENTITY img.src.path SYSTEM "../params/img.src.path.xml">
 <!ENTITY index.entry.properties SYSTEM "../params/index.entry.properties.xml">
 <!ENTITY index.div.title.properties SYSTEM "../params/index.div.title.properties.xml">
 <!ENTITY index.on.role SYSTEM "../params/index.on.role.xml">

@@ -260,6 +260,7 @@ generate.section.toc.level;
 &preferred.mediaobject.role;
 &use.role.for.mediaobject;
 &ignore.image.scaling;
+&img.src.path;
 </reference>
 
 <reference><title>Pagination and General Styles</title>
@@ -624,6 +625,7 @@ around all these parameters.</para>
 <src:fragref linkend="hyphenate.verbatim.frag"/>
 <src:fragref linkend="hyphenate.verbatim.characters.frag"/>
 <src:fragref linkend="ignore.image.scaling.frag"/>
+<src:fragref linkend="img.src.path.frag"/>
 <src:fragref linkend="index.on.role.frag"/>
 <src:fragref linkend="index.on.type.frag"/>
 <src:fragref linkend="informalequation.properties.frag"/>

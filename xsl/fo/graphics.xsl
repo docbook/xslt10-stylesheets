@@ -155,7 +155,14 @@
   <fo:external-graphic>
     <xsl:attribute name="src">
       <xsl:call-template name="fo-external-image">
-        <xsl:with-param name="filename" select="$filename"/>
+        <xsl:with-param name="filename">
+          <xsl:if test="$img.src.path != '' and
+                        not(starts-with($filename, '/')) and
+                        not(contains($filename, '://'))">
+            <xsl:value-of select="$img.src.path"/>
+          </xsl:if>
+          <xsl:value-of select="$filename"/>
+        </xsl:with-param>
       </xsl:call-template>
     </xsl:attribute>
 
