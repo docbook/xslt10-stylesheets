@@ -133,7 +133,27 @@
     <xsl:apply-templates select="." mode="recursive-chunk-filename"/>
   </xsl:variable>
 
-  <xsl:if test="$ischunk != 0 and $fn != ''">
+  <!--
+  <xsl:message>
+    <xsl:value-of select="$ischunk"/>
+    <xsl:text> (</xsl:text>
+    <xsl:value-of select="local-name(.)"/>
+    <xsl:text>) </xsl:text>
+    <xsl:value-of select="$fn"/>
+    <xsl:text>, </xsl:text>
+    <xsl:call-template name="dbhtml-dir"/>
+  </xsl:message>
+  -->
+
+  <!-- 2003-11-25 by ndw:
+       The following test used to read test="$ischunk != 0 and $fn != ''"
+       I've removed the ischunk part of the test so that href.to.uri and
+       href.from.uri will be fully qualified even if the source or target
+       isn't a chunk. I *think* that if $fn != '' then it's appropriate
+       to put the directory on the front, even if the element isn't a
+       chunk. I could be wrong. -->
+
+  <xsl:if test="$fn != ''">
     <xsl:call-template name="dbhtml-dir"/>
   </xsl:if>
 
@@ -470,6 +490,11 @@
       <xsl:with-param name="object" select="$context"/>
     </xsl:call-template>
   </xsl:variable>
+  
+  <!--
+  <xsl:message>href.to.uri: <xsl:value-of select="$href.to.uri"/></xsl:message>
+  <xsl:message>href.from.uri: <xsl:value-of select="$href.from.uri"/></xsl:message>
+  -->
 
   <xsl:variable name="href.to">
     <xsl:call-template name="trim.common.uri.paths">
@@ -501,7 +526,7 @@
     <xsl:value-of select="$href.to"/>
   </xsl:variable>
 
-<!--
+  <!--
   <xsl:message>
     <xsl:text>In </xsl:text>
     <xsl:value-of select="name(.)"/>
@@ -514,7 +539,7 @@
     <xsl:text> href=</xsl:text>
     <xsl:value-of select="$href"/>
   </xsl:message>
--->
+  -->
 
   <xsl:value-of select="$href"/>
 </xsl:template>
