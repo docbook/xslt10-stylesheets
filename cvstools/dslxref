@@ -1,0 +1,124 @@
+#!/usr/bin/perl -- # -*- Perl -*-
+
+use Getopt::Std;
+use Cwd;
+
+$root = '/sourceforge/docbook/dsssl';
+$bindir  = '/sourceforge/docbook/cvstools';
+
+$usage = "Usage: $0 [ -p prefix ] file\n";
+
+die $usage if ! getopts('p:');
+$prefix = $opt_p;
+
+$file = shift @ARGV || die $usage;
+@files = ();
+
+select(STDERR); $| = 1;
+select(STDOUT);
+
+print STDERR "Finding dependencies for $file...\n";
+
+$cmd = "$bindir/mkdep-dsssl $file";
+
+open (DEP, "$cmd |");
+$_ = scalar(<DEP>); # ignore the first line
+while (<DEP>) {
+    chop;
+    push (@files, $_) if /\.dsl$/;
+}
+
+%DEFINED_IN = ();
+%USED_IN = ();
+
+print STDERR "Finding defs: ";
+
+foreach $file (@files) {
+    $stylesheet = "";
+    open (F, "$root/$file");
+    while (<F>) {
+	chop;
+	s/;.*$//;
+	$stylesheet .= "$_\n";
+    }
+    close (F);
+
+    @funcs = ($stylesheet =~ /\(define (\S+)/g);
+
+    print STDERR ".";
+    foreach $_ (@funcs) {
+	$func = $_;
+	$func =~ s/^\(//;
+	$func =~ s/\)$//;
+
+	if (exists $DEFINED_IN{$func}) {
+	    $DEFINED_IN{$func} .= "|$file";
+	} else {
+	    $DEFINED_IN{$func} = $file;
+	}
+    }
+}
+print STDERR "\n";
+
+print STDERR "Finding uses: ";
+
+foreach $file (@files) {
+    $stylesheet = "";
+    open (F, "$root/$file");
+    while (<F>) {
+	chop;
+	s/;.*$//;
+	$stylesheet .= "$_\n";
+    }
+    close (F);
+
+    $stylesheet =~ s/\(define (\S+)//g; # remove refs to all definitions
+
+    print STDERR ".";
+    foreach $func (sort keys %DEFINED_IN) {
+	$regex = "\Q$func\E";
+
+	if ($stylesheet =~ /$regex/) {
+	    if (exists $USED_IN{$func}) {
+		$USED_IN{$func} .= "|$file";
+	    } else {
+		$USED_IN{$func} = $file;
+	    }
+	}
+    }
+}
+
+print STDERR "\n";
+
+printf "%-19s", "Symbol";
+printf "%-30s", "Defined In";
+printf "%-30s\n", "Used In";
+print "=" x 18, " ", "=" x 29, " ", "=" x 29, "\n";
+
+foreach $funcname (sort keys %DEFINED_IN) {
+    $func = $funcname;
+    @def = split(/\|/, $DEFINED_IN{$func});
+    @use = split(/\|/, $USED_IN{$func});
+    $lines = $#def+1;
+    $lines = $#use+1 if $#use+1 > $lines;
+
+    for ($count = 0; $count < $lines; $count++) {
+	if (length ($func) > 18) {
+	    print "$func\n";
+	    print " " x 19;
+	} else {
+	    printf "%-19s", $func;
+	}
+
+	$defc = $def[$count];
+	$defc = $1 if $prefix && ($defc =~ /^$prefix(.*)$/i);
+	printf "%-30s", $defc;
+
+	$usec = $use[$count];
+	$usec = $1 if $prefix && ($usec =~ /^$prefix(.*)$/i);
+	printf "%-30s\n", $usec;
+
+	$func = "";
+    }
+    print "\n";
+}

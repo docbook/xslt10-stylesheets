@@ -1,0 +1,120 @@
+#!/usr/bin/perl -- # -*- Perl -*-
+
+use Getopt::Std;
+use Cwd;
+
+$usage = "Usage: $0 file\n";
+
+die $usage if ! getopts('w');
+
+$root = shift @ARGV || die $usage;
+if ($root =~ /^(.*)[\/\\]([^\/\\]+)$/) {
+    $dir = $1;
+    $root = $2;
+
+    $lcldir = cwd();
+    chdir ($dir);
+    $dir = cwd();
+    chdir ($lcldir);
+} else {
+    $dir = cwd();
+}
+
+$startdir = cwd();
+$startdir =~ s/\/[^\/]+$//; # drop the last component
+
+%depends_on = ();
+
+@files = ($dir, $root);
+while (@files) {
+    $fdir = shift @files;
+    $file = shift @files;
+
+    chdir($fdir) || die "Cannot cd to $fdir\n";
+
+#    print "Checking $fdir/$file\n";
+
+    open (DSSSL, $file);
+    read (DSSSL, $_, -s $file);
+    close (DSSSL);
+
+    while (/<!ENTITY.*?>/s) {
+	my($ent) = $&;
+	$_ = $';
+	if ($ent =~ /SYSTEM\s+\"(.*?)\"/is) {
+#	    print "System: $1\n";
+	    $file = $1;
+	} elsif ($ent =~ /PUBLIC\s+\"(.*?)\"\s+\"(.*?)\"/is) {
+#	    print "Public: $1 with system $2\n";
+	    $file = $2;
+	} elsif ($ent =~ /PUBLIC\s+\"(.*?)\"/is) {
+#	    print "Public: $1\n";
+	    $file = &resolve_pubid($1);
+	}	
+
+	if ($file =~ /^(.*)[\/\\]([^\/\\]+)$/) {
+	    $dir = $1;
+	    $file = $2;
+
+	    $lcldir = cwd();
+	    chdir ($dir);
+	    $dir = cwd();
+	    chdir ($lcldir);
+	} else {
+	    $dir = cwd();
+	}
+
+	push (@files, $dir, $file) if ! exists $depends_on{"$dir/$file"};
+	$depends_on{"$dir/$file"} = 1;
+    }
+}
+
+print "$root depends on\n";
+foreach $file (keys %depends_on) {
+    if ($file =~ /^$startdir\//) {
+	$file = $';
+    } elsif ($file =~ /^N:\/share\/dsssl\/docbook\//) {
+	$file = "../" . $';
+    }
+
+    print "$file\n";
+}
+
+sub resolve_pubid {
+    my($pubid) = shift;
+
+    if ($pubid eq "-//Norman Walsh//DOCUMENT DSSSL Library//EN") {
+	return "n:/share/dsssl/docbook/lib/dblib.133";
+    }
+
+    if ($pubid eq "-//Norman Walsh//DOCUMENT DSSSL Library V2//EN") {
+	return "n:/share/dsssl/docbook/lib/dblib.dsl";
+    }
+
+    if ($pubid eq "ISO 8879:1986//ENTITIES Added Latin 1//EN") {
+	return "n:/share/sgml/ISO_8879-1986/entities/iso-lat1.gml";
+    }
+
+    if ($pubid eq "ISO 8879-1986//ENTITIES Added Latin 1//EN") {
+	return "n:/share/sgml/ISO_8879-1986/entities/iso-lat1.gml";
+    }
+
+    if ($pubid eq "ISO 8879:1986//ENTITIES Added Latin 2//EN") {
+	return "n:/share/sgml/ISO_8879-1986/entities/iso-lat2.gml";
+    }
+
+    if ($pubid eq "ISO 8879-1986//ENTITIES Added Latin 2//EN") {
+	return "n:/share/sgml/ISO_8879-1986/entities/iso-lat2.gml";
+    }
+
+    if ($pubid eq "ISO 8879:1986//ENTITIES Russian Cyrillic//EN") {
+	return "n:/share/sgml/ISO_8879-1986/entities/iso-cyr1.gml";
+    }
+
+    if ($pubid eq "ISO 8879-1986//ENTITIES Russian Cyrillic//EN") {
+	return "n:/share/sgml/ISO_8879-1986/entities/iso-cyr1.gml";
+    }
+
+    die "Cannot resolve \"$pubid\"\n";
+}
+

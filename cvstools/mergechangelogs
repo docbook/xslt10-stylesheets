@@ -122,6 +122,8 @@ sub last_version {
 
     if (/name=.VERSION.>(.*?)</s) {
 	$version = $1;
+    } elsif (/^([\d\.]+)/) {
+	$version = $1;
     } else {
 	die "Cannot find version in VERSION.\n";
     }

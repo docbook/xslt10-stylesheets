@@ -1,0 +1,12 @@
+CVSTOOLSROOT=/sourceforge/docbook/cvstools
+CVS2LOG=$(CVSTOOLSROOT)/cvs2log
+FLATTEN=$(CVSTOOLSROOT)/flatten
+MERGELOGS=$(CVSTOOLSROOT)/mergechangelogs
+NEXTVERSION=$(CVSTOOLSROOT)/nextversion
+SCHEMATRON-BASIC=$(SCHEMATRON-PATH)/schematron-basic.xsl
+SCHEMATRON-PATH=/share/doctypes/schematron
+SCHEMATRON-SKELETON=$(SCHEMATRON-PATH)/skeleton1-5.xsl
+TIDY=tidy
+XJPARSE=$(CVSTOOLSROOT)/xjparse
+XNSGMLS=xnsgmls
+XSLT=$(CVSTOOLSROOT)/saxon

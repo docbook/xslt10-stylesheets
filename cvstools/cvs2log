@@ -6,6 +6,16 @@ $usage = "Usage: $0 [-l logfile] [-w] [-c date]\n";
 
 die $usage if ! getopts('c:l:w');
 
+# yes, the trailing blank is significant
+my %authorName = ('adicarlo' => 'Adam Di Carlo ',
+		  'bobstayton' => 'Robert Stayton ',
+		  'kosek' => 'Jirka Kosek ',
+		  'lmuellner' => 'Leonard Muellner ',
+		  'mrjohnson' => 'Mark Johnson ',
+		  'nikclayton' => 'Nik Clayton ',
+		  'nwalsh' => 'Norman Walsh ',
+		  'xmldoc' => 'Michael Smith ');
+
 # Open the log file...
 if ($opt_l) {
     open (LOG, "$opt_l");
@@ -69,13 +79,16 @@ foreach $dir (sort keys %{$log}) {
 	    print "\tStopping at cutoff date: $cutoff\n";
 	    last;
 	}
-	
-	print F "$date  Norman Walsh  <ndw\@nwalsh.com>\n\n";
+
 	$msgs = {};
+	$author = "";
 
 	foreach $file (sort keys %{$log->{$dir}->{$date}}) {
 	    foreach $rev (sort keys %{$log->{$dir}->{$date}->{$file}}) {
 		$logmsg = $log->{$dir}->{$date}->{$file}->{$rev}->{'logmsg'};
+		$author = $log->{$dir}->{$date}->{$file}->{$rev}->{'author'};
+
+
 		if (exists $msgs->{$logmsg}) {
 		    $msgsnew->{$logmsg} = $msgsnew->{$logmsg}
 		        && $log->{$dir}->{$date}->{$file}->{$rev}->{'new'};
@@ -87,6 +100,8 @@ foreach $dir (sort keys %{$log}) {
 		}
 	    }
 	}
+
+	print F "$date  ", $authorName{$author}, "<$author\@users.sourceforge.net>\n\n";
 
 	foreach $msg (sort fnsort keys %{$msgs}) {
 	    $files = $msgs->{$msg};
