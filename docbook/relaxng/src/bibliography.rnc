@@ -208,7 +208,7 @@ div {
 
 [
    db:refname [ "bibliolist" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for a list of bibliography entries" ]
 ]
 div {
 
