@@ -34,183 +34,170 @@
 
   <!-- $Id$ -->
   <!-- Stylesheet to convert WordProcessingML to DocBook -->
+  <!-- This stylesheet processes the output of wordml-sects.xsl -->
 
-<xsl:output indent="yes" method="xml" 
+  <xsl:output indent="yes" method="xml" 
     doctype-public="-//OASIS//DTD DocBook XML V4.3//EN"
     doctype-system="http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"/>
 
-<!-- ================================================== -->
-<!--    Parameters                                      -->
-<!-- ================================================== -->
+  <!-- ================================================== -->
+  <!--    Parameters                                      -->
+  <!-- ================================================== -->
 
-<xsl:param name="nest.sections">1</xsl:param>
+  <xsl:param name="nest.sections">1</xsl:param>
 
-<!-- ================================================== -->
-<!--    Templates                                       -->
-<!-- ================================================== -->
-<!-- Look up a w:listDef element by its StyleLink -->
-<xsl:key name="listdef-stylelink"
-         match="w:listDef"
-         use="w:listStyleLink/@w:val"/>
+  <!-- ================================================== -->
+  <!--    Templates                                       -->
+  <!-- ================================================== -->
+  <!-- Look up a w:listDef element by its StyleLink -->
+  <xsl:key name="listdef-stylelink"
+    match="w:listDef"
+    use="w:listStyleLink/@w:val"/>
 
-<xsl:key name="list-ilst"
-         match="w:list"
-         use="w:ilst/@w:val"/>
+  <xsl:key name="list-ilst"
+    match="w:list"
+    use="w:ilst/@w:val"/>
 
-<xsl:strip-space elements='*'/>
-<xsl:preserve-space elements='w:t'/>
+  <xsl:strip-space elements='*'/>
+  <xsl:preserve-space elements='w:t'/>
 
-<xsl:template match="/">
-  <xsl:apply-templates select="//w:body"/>
-</xsl:template>
+  <xsl:template match="/">
+    <xsl:apply-templates select="//w:body"/>
+  </xsl:template>
 
-<xsl:template match="w:body">
+  <xsl:template match="w:body">
     <xsl:apply-templates mode="group"/>
-</xsl:template>
+  </xsl:template>
 
-<xsl:template match="wx:sect" mode="group">
-  <xsl:apply-templates  mode="group"/>
-</xsl:template>
+  <xsl:template match="wx:sect" mode="group">
+    <xsl:apply-templates  mode="group"/>
+  </xsl:template>
 
-<xsl:template match="wx:sub-section" mode="group">
-  <xsl:variable name="first.node" select="w:p[1]"/>
-  <xsl:variable name="style" select="$first.node/w:pPr/w:pStyle/@w:val"/>
+  <xsl:template match="wx:sub-section" mode="group">
+    <xsl:variable name="first.node" select="w:p[1]"/>
+    <xsl:variable name="style" select="$first.node/w:pPr/w:pStyle/@w:val"/>
 
-  <xsl:variable name="element.name">
+    <xsl:variable name="element.name">
+      <xsl:choose>
+        <xsl:when test="$style = 'article' or
+                        $style = 'article-title'">article</xsl:when>
+        <xsl:when test="$style = 'appendix' or
+                        $style = 'appendix-title'">appendix</xsl:when>
+        <xsl:when test="($style = 'sect1' or
+                        $style = 'sect1-title') and 
+                        $nest.sections != 0">section</xsl:when>
+        <xsl:when test="$style = 'sect1' or
+                        $style = 'sect1-title'">sect1</xsl:when>
+        <xsl:when test="($style = 'sect2' or
+                        $style = 'sect2-title') and 
+                        $nest.sections != 0">section</xsl:when>
+        <xsl:when test="$style = 'sect2' or
+                        $style = 'sect2-title'">sect2</xsl:when>
+        <xsl:when test="($style = 'sect3' or
+                        $style = 'sect3-title') and 
+                        $nest.sections != 0">section</xsl:when>
+        <xsl:when test="$style = 'sect3' or
+                        $style = 'sect3-title'">sect3</xsl:when>
+        <xsl:when test="($style = 'sect4' or
+                        $style = 'sect4-title') and 
+                        $nest.sections != 0">section</xsl:when>
+        <xsl:when test="$style = 'sect4' or
+                        $style = 'sect4-title'">sect4</xsl:when>
+        <xsl:when test="($style = 'sect5' or
+                        $style = 'sect5-title') and 
+                        $nest.sections != 0">section</xsl:when>
+        <xsl:when test="$style = 'sect5' or
+                        $style = 'sect5-title'">sect5</xsl:when>
+        <xsl:otherwise>bogus</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
     <xsl:choose>
-      <xsl:when test="$style = 'article' or
-                      $style = 'article-title'">article</xsl:when>
-      <xsl:when test="$style = 'appendix' or
-                      $style = 'appendix-title'">appendix</xsl:when>
-      <xsl:when test="($style = 'sect1' or
-                       $style = 'sect1-title') and 
-                      $nest.sections != 0">section</xsl:when>
-      <xsl:when test="$style = 'sect1' or
-                      $style = 'sect1-title'">sect1</xsl:when>
-      <xsl:when test="($style = 'sect2' or
-                       $style = 'sect2-title') and 
-                      $nest.sections != 0">section</xsl:when>
-      <xsl:when test="$style = 'sect2' or
-                      $style = 'sect2-title'">sect2</xsl:when>
-      <xsl:when test="($style = 'sect3' or
-                       $style = 'sect3-title') and 
-                      $nest.sections != 0">section</xsl:when>
-      <xsl:when test="$style = 'sect3' or
-                      $style = 'sect3-title'">sect3</xsl:when>
-      <xsl:when test="($style = 'sect4' or
-                       $style = 'sect4-title') and 
-                      $nest.sections != 0">section</xsl:when>
-      <xsl:when test="$style = 'sect4' or
-                      $style = 'sect4-title'">sect4</xsl:when>
-      <xsl:when test="($style = 'sect5' or
-                       $style = 'sect5') and 
-                      $nest.sections != 0">section</xsl:when>
-      <xsl:when test="$style = 'sect5' or
-                      $style = 'sect5-title'">sect5</xsl:when>
-      <xsl:otherwise>bogus</xsl:otherwise>
+      <xsl:when test='$element.name != "bogus"'>
+        <xsl:element name="{$element.name}">
+          <xsl:call-template name="object.id"/>
+          <xsl:apply-templates mode="group"/>
+        </xsl:element>
+      </xsl:when>
+
+      <xsl:otherwise>
+        <xsl:apply-templates mode='group'/>
+      </xsl:otherwise>
     </xsl:choose>
-  </xsl:variable>
 
-  <xsl:choose>
-    <xsl:when test='$element.name != "bogus"'>
-      <xsl:element name="{$element.name}">
-        <xsl:call-template name="object.id"/>
-        <xsl:apply-templates mode="group"/>
-      </xsl:element>
-    </xsl:when>
+  </xsl:template>
 
-    <xsl:otherwise>
-      <xsl:apply-templates mode='group'/>
-    </xsl:otherwise>
-  </xsl:choose>
-    
-</xsl:template>
+  <!-- sub-section title paragraph -->
+  <xsl:template match="wx:sub-section/w:p[1]" mode="group">
+    <title>
+      <xsl:apply-templates select="w:r|w:hlink"/>
+    </title>
+  </xsl:template>
 
-<!-- sub-section title paragraph -->
-<xsl:template match="wx:sub-section/w:p[1]" mode="group">
-  <xsl:variable name="style" select="w:pPr/w:pStyle/@w:val"/>
-  <xsl:variable name="element.name">
-    <xsl:choose>
-      <xsl:when test="$style = 'article'">title</xsl:when>
-      <xsl:when test="$style = 'sect1'">title</xsl:when>
-      <xsl:when test="$style = 'sect2'">title</xsl:when>
-      <xsl:when test="$style = 'sect3'">title</xsl:when>
-      <xsl:when test="$style = 'sect4'">title</xsl:when>
-      <xsl:when test="$style = 'sect5'">title</xsl:when>
-      <xsl:when test="$style = 'appendix'">title</xsl:when>
-      <xsl:otherwise>title</xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:element name="{$element.name}">
-    <xsl:apply-templates select="w:r|w:hlink"/>
-  </xsl:element>
-</xsl:template>
-
-<!-- Ordinary para -->
-<xsl:template match="&para;|w:p[not(w:pPr/w:pStyle)]" mode="group">
-  <para>
-    <xsl:call-template name="object.id"/>
-    <xsl:apply-templates select="w:r|w:hlink"/>
-  </para>
-</xsl:template>
-
-<!-- Unmatched para style -->
-<xsl:template match="w:p" mode="group">
-  <nomatch>
-    <xsl:apply-templates select="w:r|w:hlink"/>
-  </nomatch>
-</xsl:template>
-
-<!-- unused elements are bypassed -->
-<xsl:template match="*" mode="group">
-</xsl:template>
-
-<!-- continued paragraphs are included by their (preceding) parent -->
-<xsl:template match="&continue;" mode='group'/>
-
-<!-- Match on the first one of an itemizedlist -->
-<xsl:template match="&itemizedlist1;[not(preceding-sibling::*[1]
-                     [self::&itemizedlist; or self::&continue;])]" 
-                     priority="2"
-                     mode="group">
-
-  <!-- Identify the node that follows all the listitems -->
-  <xsl:variable name="stop.node"
-              select="generate-id(following-sibling::*[not(self::&itemizedlist;
-                      or self::&continue;
-                      or self::&orderedlist;)][1])"/>
-                       
-  <!-- Start the list and process all the level 1 listitems -->
-  <itemizedlist>
-    <xsl:apply-templates mode="item" 
-          select=".|following-sibling::&itemizedlist;[&listlevel; = '']
-                  [following-sibling::*[generate-id() = $stop.node]]">
-      <xsl:with-param name="depth" select="1"/>
-    </xsl:apply-templates>
-  </itemizedlist>
-  
-</xsl:template>
-
-<xsl:template match="&itemizedlist;" mode="item">
-  <xsl:param name="depth" select="1"/>
-
-  <listitem>
+  <!-- Ordinary para -->
+  <xsl:template match="&para;|w:p[not(w:pPr/w:pStyle)]" mode="group">
     <para>
-      <xsl:apply-templates/>
+      <xsl:call-template name="object.id"/>
+      <xsl:apply-templates select="w:r|w:hlink"/>
     </para>
-    <xsl:apply-templates mode="item" 
-                select="following-sibling::*[1][self::&continue;]"/>
-    <!-- Now any nested list is inside this list item -->
-    <xsl:apply-templates mode="subgroup"
-            select="following-sibling::*[1]
-                    [self::&itemizedlist; or self::&orderedlist;]
-                    [&listlevel; &gt; $depth]">
+  </xsl:template>
 
-      <xsl:with-param name="depth" select="$depth + 1"/>
-    </xsl:apply-templates>
-  </listitem>
+  <!-- Unmatched para style -->
+  <xsl:template match="w:p" mode="group">
+    <nomatch>
+      <xsl:apply-templates select="w:r|w:hlink"/>
+    </nomatch>
+  </xsl:template>
 
-</xsl:template>
+  <!-- unused elements are bypassed -->
+  <xsl:template match="*" mode="group"/>
+
+  <!-- continued paragraphs are included by their (preceding) parent -->
+  <xsl:template match="&continue;" mode='group'/>
+
+  <!-- Match on the first one of an itemizedlist -->
+  <xsl:template match="&itemizedlist1;[not(preceding-sibling::*[1]
+                       [self::&itemizedlist; or self::&continue;])]" 
+    priority="2"
+    mode="group">
+
+    <!-- Identify the node that follows all the listitems -->
+    <xsl:variable name="stop.node"
+      select="generate-id(following-sibling::*[not(self::&itemizedlist;
+              or self::&continue;
+              or self::&orderedlist;)][1])"/>
+
+    <!-- Start the list and process all the level 1 listitems -->
+    <itemizedlist>
+      <xsl:apply-templates mode="item" 
+        select=".|following-sibling::&itemizedlist;[&listlevel; = '']
+                [following-sibling::*[generate-id() = $stop.node]]">
+        <xsl:with-param name="depth" select="1"/>
+      </xsl:apply-templates>
+    </itemizedlist>
+
+  </xsl:template>
+
+  <xsl:template match="&itemizedlist;" mode="item">
+    <xsl:param name="depth" select="1"/>
+
+    <listitem>
+      <para>
+        <xsl:apply-templates/>
+      </para>
+      <xsl:apply-templates mode="item" 
+        select="following-sibling::*[1][self::&continue;]"/>
+      <!-- Now any nested list is inside this list item -->
+      <xsl:apply-templates mode="subgroup"
+        select="following-sibling::*[1]
+                [self::&itemizedlist; or self::&orderedlist;]
+                [&listlevel; &gt; $depth]">
+
+        <xsl:with-param name="depth" select="$depth + 1"/>
+      </xsl:apply-templates>
+    </listitem>
+
+  </xsl:template>
 
 <xsl:template match="&itemizedlist;" mode="subgroup">
   <xsl:param name="depth" select="0"/>
