@@ -86,9 +86,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
         <xsl:with-param name="padding" select="1"/>
       </xsl:call-template>
     </xsl:if>
-    <!-- don't draw a rowsep on this cell if this row already has one -->
-    <xsl:if test="$rowsep &gt; 0
-                  and ancestor::row[1]/@rowsep != 1">
+    <xsl:if test="$rowsep &gt; 0">
       <xsl:call-template name="border">
         <xsl:with-param name="side" select="'bottom'"/>
         <xsl:with-param name="padding" select="1"/>
@@ -204,25 +202,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <xsl:template match="thead">
   <xsl:variable name="tgroup" select="parent::*"/>
-  <xsl:variable name="frame" select="$tgroup/parent::*/@frame"/>
 
   <fo:table-header>
-    <xsl:choose>
-      <xsl:when test="$frame='topbot' or $frame='top'">
-        <xsl:call-template name="border">
-          <xsl:with-param name="side" select="'top'"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:when test="$frame='sides'">
-        <xsl:call-template name="border">
-          <xsl:with-param name="side" select="'left'"/>
-        </xsl:call-template>
-        <xsl:call-template name="border">
-          <xsl:with-param name="side" select="'right'"/>
-        </xsl:call-template>
-      </xsl:when>
-    </xsl:choose>
-
     <xsl:apply-templates select="row[1]">
       <xsl:with-param name="spans">
         <xsl:call-template name="blank.spans">
@@ -236,25 +217,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <xsl:template match="tfoot">
   <xsl:variable name="tgroup" select="parent::*"/>
-  <xsl:variable name="frame" select="$tgroup/parent::*/@frame"/>
 
   <fo:table-footer>
-    <xsl:choose>
-      <xsl:when test="$frame='topbot' or $frame='top'">
-        <xsl:call-template name="border">
-          <xsl:with-param name="side" select="'top'"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:when test="$frame='sides'">
-        <xsl:call-template name="border">
-          <xsl:with-param name="side" select="'left'"/>
-        </xsl:call-template>
-        <xsl:call-template name="border">
-          <xsl:with-param name="side" select="'right'"/>
-        </xsl:call-template>
-      </xsl:when>
-    </xsl:choose>
-
     <xsl:apply-templates select="row[1]">
       <xsl:with-param name="spans">
         <xsl:call-template name="blank.spans">
@@ -268,61 +232,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <xsl:template match="tbody">
   <xsl:variable name="tgroup" select="parent::*"/>
-  <xsl:variable name="frame" select="$tgroup/parent::*/@frame"/>
-  <fo:table-body>
-    <xsl:choose>
-      <xsl:when test="$frame='top'">
-        <xsl:choose>
-          <xsl:when test="preceding-sibling::thead">
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:call-template name="border">
-              <xsl:with-param name="side" select="'top'"/>
-            </xsl:call-template>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:when>
-      <xsl:when test="$frame='bottom'">
-        <xsl:choose>
-          <xsl:when test="preceding-sibling::tfoot">
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:call-template name="border">
-              <xsl:with-param name="side" select="'bottom'"/>
-            </xsl:call-template>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:when>
-      <xsl:when test="$frame='topbot'">
-        <xsl:choose>
-          <xsl:when test="preceding-sibling::thead">
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:call-template name="border">
-              <xsl:with-param name="side" select="'top'"/>
-            </xsl:call-template>
-          </xsl:otherwise>
-        </xsl:choose>
-        <xsl:choose>
-          <xsl:when test="preceding-sibling::tfoot">
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:call-template name="border">
-              <xsl:with-param name="side" select="'bottom'"/>
-            </xsl:call-template>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:when>
-      <xsl:when test="$frame='sides'">
-        <xsl:call-template name="border">
-          <xsl:with-param name="side" select="'left'"/>
-        </xsl:call-template>
-        <xsl:call-template name="border">
-          <xsl:with-param name="side" select="'right'"/>
-        </xsl:call-template>
-      </xsl:when>
-    </xsl:choose>
 
+  <fo:table-body>
     <xsl:apply-templates select="row[1]">
       <xsl:with-param name="spans">
         <xsl:call-template name="blank.spans">
@@ -339,12 +250,6 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
   <fo:table-row>
     <xsl:call-template name="anchor"/>
-
-    <xsl:if test="@rowsep='1'">
-      <xsl:call-template name="border">
-        <xsl:with-param name="side" select="'bottom'"/>
-      </xsl:call-template>
-    </xsl:if>
 
     <xsl:apply-templates select="entry[1]">
       <xsl:with-param name="spans" select="$spans"/>
@@ -478,15 +383,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
         <xsl:choose>
           <xsl:when test="$frame='all'">
             <xsl:call-template name="border">
-              <xsl:with-param name="side" select="'left'"/>
-              <xsl:with-param name="padding" select="1"/>
-            </xsl:call-template>
-            <xsl:call-template name="border">
               <xsl:with-param name="side" select="'right'"/>
-              <xsl:with-param name="padding" select="1"/>
-            </xsl:call-template>
-            <xsl:call-template name="border">
-              <xsl:with-param name="side" select="'top'"/>
               <xsl:with-param name="padding" select="1"/>
             </xsl:call-template>
             <xsl:call-template name="border">
@@ -501,9 +398,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
                 <xsl:with-param name="padding" select="1"/>
               </xsl:call-template>
             </xsl:if>
-            <!-- don't draw a rowsep on this cell if this row has one -->
-            <xsl:if test="$rowsep &gt; 0
-                          and ancestor::row[1]/@rowsep != 1">
+            <xsl:if test="$rowsep &gt; 0">
               <xsl:call-template name="border">
                 <xsl:with-param name="side" select="'bottom'"/>
                 <xsl:with-param name="padding" select="1"/>
