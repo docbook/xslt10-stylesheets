@@ -53,11 +53,14 @@
       <xsl:attribute name="width">100%</xsl:attribute>
     </xsl:if>
 
+<!-- this is wrong, align on tgroup gives the default alignment for table
+     cells, not the alignment for the table itself...
     <xsl:if test="@align">
       <xsl:attribute name="align">
         <xsl:value-of select="@align"/>
       </xsl:attribute>
     </xsl:if>
+-->
 
     <xsl:choose>
       <xsl:when test="../@frame='none'">
