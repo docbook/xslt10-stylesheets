@@ -51,6 +51,17 @@
   </xsl:attribute>
 </xsl:attribute-set>
 
+<xsl:attribute-set name="foil.subtitle.properties">
+  <xsl:attribute name="font-family">
+    <xsl:value-of select="$slide.title.font.family"/>
+  </xsl:attribute>
+  <xsl:attribute name="text-align">center</xsl:attribute>
+  <xsl:attribute name="font-size">
+    <xsl:value-of select="$foil.title.master * 0.8"/><xsl:text>pt</xsl:text>
+  </xsl:attribute>
+  <xsl:attribute name="space-after">12pt</xsl:attribute>
+</xsl:attribute-set>
+
 <xsl:attribute-set name="foil.properties">
   <xsl:attribute name="font-family">
     <xsl:value-of select="$slide.font.family"/>
@@ -483,6 +494,11 @@
 
 <xsl:template match="foilinfo"/>
 <xsl:template match="foil/title"/>
+<xsl:template match="foil/subtitle">
+  <fo:block xsl:use-attribute-sets="foil.subtitle.properties">
+    <xsl:apply-templates/>
+  </fo:block>
+</xsl:template>
 <xsl:template match="foil/titleabbrev"/>
 
 <!-- ============================================================ -->
@@ -522,7 +538,7 @@
     <xsl:when test="parent::*">
       <rx:bookmark internal-destination="{$id}">
         <rx:bookmark-label>
-          <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+          <xsl:value-of select="$bookmark-label"/>
         </rx:bookmark-label>
         <xsl:apply-templates select="*" mode="xep.outline"/>
       </rx:bookmark>
@@ -531,7 +547,7 @@
       <xsl:if test="$bookmark-label != ''">
         <rx:bookmark internal-destination="{$id}">
           <rx:bookmark-label>
-            <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+            <xsl:value-of select="$bookmark-label"/>
           </rx:bookmark-label>
         </rx:bookmark>
       </xsl:if>
