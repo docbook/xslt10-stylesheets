@@ -239,4 +239,54 @@ the <parameter>default.units</parameter> will be added to it.
   </xsl:choose>
 </xsl:template>
 
+<!-- ================================================================== -->
+
+<doc:template name="pi-attribute" xmlns="">
+<refpurpose>Extract a pseudo-attribute from a PI</refpurpose>
+<refdescription>
+<para>The <function>pi-attribute</function> template extracts a pseudo-attribute
+from a processing instruction. For example, given the PI
+<quote><literal>&lt;?foo bar="1" baz='red'?&gt;</literal></quote>,</para>
+<programlisting><![CDATA[<xsl:call-template name="pi-attribute">
+  <xsl:with-param name="pis" select="processing-instruction('foo')"/>
+  <xsl:with-param name="attribute" select="'baz'"/>
+</xsl:call-template>]]></programlisting>
+<para>will return <quote>red</quote>. This template returns the first matching
+attribute that it finds. Presented with processing instructions that
+contain badly formed pseudo-attributes (missing or unbalanced quotes,
+for example), the template may silently return erroneous results.</para>
+</refdescription>
+</doc:template>
+
+<xsl:template name="pi-attribute">
+  <xsl:param name="pis" select="processing-instruction('')"/>
+  <xsl:param name="attribute">filename</xsl:param>
+  <xsl:param name="count">1</xsl:param>
+
+  <xsl:choose>
+    <xsl:when test="$count>count($pis)">
+      <!-- not found -->
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="pi">
+        <xsl:value-of select="$pis[$count]"/>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="contains($pi,concat($attribute, '='))">
+          <xsl:variable name="rest" select="substring-after($pi,concat($attribute,'='))"/>
+          <xsl:variable name="quote" select="substring($rest,1,1)"/>
+          <xsl:value-of select="substring-before(substring($rest,2),$quote)"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="pi-attribute">
+            <xsl:with-param name="pis" select="$pis"/>
+            <xsl:with-param name="attribute" select="$attribute"/>
+            <xsl:with-param name="count" select="$count + 1"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 </xsl:stylesheet>
