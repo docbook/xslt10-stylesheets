@@ -84,7 +84,7 @@
 <xsl:template match="itemizedlist/listitem">
   <xsl:text>\(bu&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:if test="position()!=last()">
+  <xsl:if test="following-sibling::listitem">
     <xsl:text>.TP&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
