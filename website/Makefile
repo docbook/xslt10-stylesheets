@@ -10,6 +10,7 @@ all:
 	make -C extensions all
 
 distrib:
+	make -C example depends
 	make -C example all
 	$(CVS2LOG) -w
 ifeq ($(DIFFVER),)
