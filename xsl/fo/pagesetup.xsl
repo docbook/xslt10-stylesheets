@@ -53,7 +53,8 @@
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}">
-        <xsl:if test="$draft.watermark.image != ''">
+        <xsl:if test="$draft.watermark.image != ''
+                      and $fop.extensions = 0">
           <xsl:attribute name="background-image">
             <xsl:value-of select="$draft.watermark.image"/>
           </xsl:attribute>
