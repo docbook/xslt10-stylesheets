@@ -1266,6 +1266,12 @@
   </a>
 </xsl:template>
 
+<xsl:template match="subtitle">
+  <h2>
+    <xsl:apply-templates/>
+  </h2>
+</xsl:template>
+
 <xsl:template match="graphic">
   <center>
     <!-- can't this be done a better way? -->
