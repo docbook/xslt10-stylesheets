@@ -82,6 +82,13 @@
 <xsl:template match="tgroup">
   <table>
     <xsl:choose>
+      <!-- If there's a textobject/phrase for the table summary, use it -->
+      <xsl:when test="../textobject/phrase">
+        <xsl:attribute name="summary">
+          <xsl:value-of select="../textobject/phrase"/>
+        </xsl:attribute>
+      </xsl:when>
+
       <!-- If there's a <?dbhtml table-summary="foo"?> PI, use it for
            the HTML table summary attribute -->
       <xsl:when test="processing-instruction('dbhtml')">
@@ -98,12 +105,14 @@
           </xsl:attribute>
         </xsl:if>
       </xsl:when>
+
       <!-- Otherwise, if there's a title, use that -->
       <xsl:when test="../title">
         <xsl:attribute name="summary">
           <xsl:value-of select="string(../title)"/>
         </xsl:attribute>
       </xsl:when>
+
       <!-- Otherwise, forget the whole idea -->
       <xsl:otherwise><!-- nevermind --></xsl:otherwise>
     </xsl:choose>
