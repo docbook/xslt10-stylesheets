@@ -1177,7 +1177,7 @@
 
 <xsl:template name="head.sep.rule">
   <xsl:if test="$header.rule != 0">
-    <xsl:attribute name="border-bottom-width">1px</xsl:attribute>
+    <xsl:attribute name="border-bottom-width">0.5pt</xsl:attribute>
     <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
     <xsl:attribute name="border-bottom-color">black</xsl:attribute>
   </xsl:if>
@@ -1185,7 +1185,7 @@
 
 <xsl:template name="foot.sep.rule">
   <xsl:if test="$footer.rule != 0">
-    <xsl:attribute name="border-top-width">1px</xsl:attribute>
+    <xsl:attribute name="border-top-width">0.5pt</xsl:attribute>
     <xsl:attribute name="border-top-style">solid</xsl:attribute>
     <xsl:attribute name="border-top-color">black</xsl:attribute>
   </xsl:if>
