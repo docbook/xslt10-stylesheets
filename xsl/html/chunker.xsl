@@ -46,7 +46,7 @@
   <xsl:choose>
     <xsl:when test="contains($vendor, 'SAXON 6.2')">
       <!-- Saxon 6.2.x uses xsl:document -->
-      <xsl:document version="1.1" href="{$filename}"
+      <xsl:document href="{$filename}"
                     method="{$method}"
                     encoding="{$encoding}">
         <xsl:copy-of select="$content"/>
