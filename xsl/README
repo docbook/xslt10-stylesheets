@@ -53,9 +53,12 @@ Use
 Process your DocBook documents with one of the following stylesheets
 using your favorite XSLT processor:
 
-  xhtml/docbook.xsl produces an XHTML result tree
-  html/docbook.xsl produces an HTML result tree
-  fo/docbook.xsl produces an FO result tree
+  xhtml/docbook.xsl     - for XHTML
+  html/docbook.xsl      - for HTML (as a single file)
+  html/chunk.xsl        - for HTML (multiple files)
+  fo/docbook.xsl        - for XSL FO
+  htmlhelp/htmlhelp.xsl - for HTML Help
+  javahelp/javahelp.xsl - for JavaHelp
 
 Copyright
 ---------
