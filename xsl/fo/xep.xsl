@@ -22,6 +22,9 @@
 
      ********************************************************************-->
 
+<!-- FIXME: Norm, I changed things so that the top-level element (book or set)
+     does not appear in the TOC. Is this the right thing? -->
+
 <xsl:template name="xep-document-information">
   <rx:meta-info>
     <xsl:if test="//author[1]">
@@ -60,16 +63,22 @@
     <xsl:apply-templates select="." mode="label.content"/>
     <xsl:apply-templates select="." mode="title.content"/>
   </xsl:variable>
+
+<!--
   <rx:bookmark internal-destination="{$id}">
     <rx:bookmark-label>
       <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
     </rx:bookmark-label>
+-->
 
   <xsl:if test="book">
       <xsl:apply-templates select="book"
                            mode="xep.outline"/>
   </xsl:if>
+
+<!--
   </rx:bookmark>
+-->
 </xsl:template>
 
 <xsl:template match="book" mode="xep.outline">
@@ -81,18 +90,27 @@
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
-  <rx:bookmark internal-destination="{$id}">
-    <rx:bookmark-label>
-      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
-    </rx:bookmark-label>
+  <xsl:choose>
+    <xsl:when test="parent::set">
+      <rx:bookmark internal-destination="{$id}">
+        <rx:bookmark-label>
+          <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+        </rx:bookmark-label>
 
-    <xsl:if test="part|preface|chapter|appendix">
-      <xsl:apply-templates select="part|preface|chapter|appendix"
-                           mode="xep.outline"/>
-    </xsl:if>
-  </rx:bookmark>
+        <xsl:if test="part|preface|chapter|appendix">
+          <xsl:apply-templates select="part|preface|chapter|appendix"
+                               mode="xep.outline"/>
+        </xsl:if>
+      </rx:bookmark>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:if test="part|preface|chapter|appendix">
+        <xsl:apply-templates select="part|preface|chapter|appendix"
+                             mode="xep.outline"/>
+      </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
-
 
 <xsl:template match="part" mode="xep.outline">
   <xsl:variable name="id">
