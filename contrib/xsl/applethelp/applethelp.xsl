@@ -1,40 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!-- TODO:  Find a way to add a search...ideally i18n-ized. -->
+
 <xsl:stylesheet 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
 
   <!-- Adjust this path as necessary -->
-  <xsl:import href="htmlhelp.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl/1.64.1/htmlhelp/htmlhelp.xsl"/>
+  <xsl:include href="htmlhelp-common.xsl"/>
 
   <!-- Five new parameters: -->
+
   <!-- htmlhelp.generate.frameset turns the whole thing on and off -->
   <xsl:param name="htmlhelp.generate.frameset" select="1"/>
+
   <!-- htmlhelp.frameset.graphics.path defines the path to the images for the tabs on the nav pane -->
   <xsl:param name="htmlhelp.frameset.graphics.path">images/</xsl:param>
+
   <!-- These must be different from each other and (unless
   you define base.dir), they also must be different from all
   the generated chunks. -->
-  <xsl:param name="htmlhelp.frameset.start.filename">index.html</xsl:param>
-  <xsl:param name="htmlhelp.frameset.toc.pane.filename">contents.pane.html</xsl:param>
-  <xsl:param name="htmlhelp.frameset.index.pane.filename">index.pane.html</xsl:param>
+  <xsl:param name="htmlhelp.frameset.start.filename">index<xsl:value-of select="$html.ext"/></xsl:param>
+  <xsl:param name="htmlhelp.frameset.toc.pane.filename">contents.pane<xsl:value-of select="$html.ext"/></xsl:param>
+  <xsl:param name="htmlhelp.frameset.index.pane.filename">index.pane<xsl:value-of select="$html.ext"/></xsl:param>
 
-  <!-- Hmm. Currenly you really need to set this... -->
-  <xsl:param name="htmlhelp.default.topic" select="'index.html'"/>
+  <!-- Other params that need setting: -->
 
-  <!-- This defines the directory for the html files. We
-  have to define this because we don't want the name of the
-  frameset html files to collide with the generated
-  chunks. --> 
+  <!-- This tells the stylesheets not to put the various helpset config files
+  and frameset files in the same directory as the html files generated from
+  the chunking of document. This is preferred because it eliminates the chance
+  that any of the names of the frameset html files might collide with the
+  generated chunks.   -->
+  <xsl:param name="manifest.in.base.dir" select="0"/>
   <xsl:param name="base.dir" select="'files/'"/>
-
-  <!-- This is required if you want an index -->
+ 
+  <!-- This is required if you want your index pane populated because -->
   <!-- The non-hhk type index doesn't work with applet help -->
   <xsl:param name="htmlhelp.use.hhk" select="1"/>
-
-  <!-- These are just some of my preferences, they don't necessarily matter -->
-  <xsl:param name="chunk.section.depth" select="100"/>
-  <xsl:param name="htmlhelp.hhc.show.root" select="0"/>
+  
+  <!-- This is on by default. Setting it to zero would obviously be a bad
+  idea. If don't want an index pane, I wonder why you're bothering with
+  applet-style help to begin with. -->
+  <xsl:param name="generate.index" select="1"/>
 
   <xsl:template name="generate.htmlhelp.frameset">
 	<xsl:variable name="topic.pane">
@@ -125,129 +133,35 @@
 
 	<xsl:call-template name="write.chunk">
 	  <xsl:with-param name="content" select="$topic.pane"/>
-	  <xsl:with-param name="filename" select="$htmlhelp.frameset.start.filename"/>
+	  <xsl:with-param name="filename">
+		<xsl:if test="$manifest.in.base.dir != 0">
+		  <xsl:value-of select="$base.dir"/>
+		</xsl:if>
+		<xsl:value-of select="$htmlhelp.frameset.start.filename"/>
+	  </xsl:with-param>
 	</xsl:call-template>
 	<xsl:call-template name="write.chunk">
 	  <xsl:with-param name="content" select="$contents.pane"/>
-	  <xsl:with-param name="filename" select="$htmlhelp.frameset.toc.pane.filename"/>
+	  <xsl:with-param name="filename">
+		<xsl:if test="$manifest.in.base.dir != 0">
+		  <xsl:value-of select="$base.dir"/>
+		</xsl:if>
+		<xsl:value-of select="$htmlhelp.frameset.toc.pane.filename"/>
+	  </xsl:with-param>
 	</xsl:call-template>
 	<xsl:if test="$generate.index">
 	  <xsl:call-template name="write.chunk">
 		<xsl:with-param name="content" select="$index.pane"/>
-		<xsl:with-param name="filename" select="$htmlhelp.frameset.index.pane.filename"/>
+		<xsl:with-param name="filename">
+		<xsl:if test="$manifest.in.base.dir != 0">
+		  <xsl:value-of select="$base.dir"/>
+		</xsl:if>
+		  <xsl:value-of select="$htmlhelp.frameset.index.pane.filename"/>
+		</xsl:with-param>
 	  </xsl:call-template>
 	</xsl:if>
 
   </xsl:template>
-
-
-  <xsl:template name="hhc-main">
-	<xsl:text disable-output-escaping="yes">&lt;HTML&gt;
-	  &lt;HEAD&gt;
-	  &lt;/HEAD&gt;
-	  &lt;BODY&gt;
-	</xsl:text>
-	<!-- Adding support for frameset style help -->
-    <xsl:text disable-output-escaping="yes">&lt;OBJECT type="text/site properties"&gt;
-	  &lt;param name="FrameName" value="main"&gt;
-	  &lt;param name="Window Styles" value="0x800025"&gt;</xsl:text>
-	<xsl:if test="$htmlhelp.hhc.folders.instead.books != 0">
-	  <xsl:text disable-output-escaping="yes">&lt;param name="ImageType" value="Folder"&gt;</xsl:text>
-	</xsl:if>
-	<xsl:text disable-output-escaping="yes">&lt;/OBJECT&gt;</xsl:text>
-	<xsl:if test="$htmlhelp.hhc.show.root != 0">
-	  <xsl:text disable-output-escaping="yes">&lt;UL&gt;
-	  </xsl:text>
-	</xsl:if>
-
-	<xsl:choose>
-	  <xsl:when test="$rootid != ''">
-		<xsl:apply-templates select="key('id',$rootid)" mode="hhc"/>
-	  </xsl:when>
-	  <xsl:otherwise>
-		<xsl:apply-templates select="/" mode="hhc"/>
-	  </xsl:otherwise>
-	</xsl:choose>
-
-	<xsl:if test="$htmlhelp.hhc.show.root != 0">
-	  <xsl:text disable-output-escaping="yes">&lt;/UL&gt;
-	  </xsl:text>
-	</xsl:if>
-	<xsl:text disable-output-escaping="yes">&lt;/BODY&gt;
-	  &lt;/HTML&gt;</xsl:text>
-  </xsl:template>
-
-
-  <xsl:template name="hhk">
-	<xsl:call-template name="write.text.chunk">
-	  <xsl:with-param name="filename" select="$htmlhelp.hhk"/>
-	  <xsl:with-param name="method" select="'text'"/>
-	  <xsl:with-param name="content"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-		<HTML>
-		<HEAD>
-		<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
-		<!-- Sitemap 1.0 -->
-	  </HEAD><BODY>
-		<OBJECT type="text/site properties">
-		<!-- Adding for frameset -->
-		<param name="FrameName" value="main">
-	  </OBJECT>
-		<UL>]]>
-		<xsl:if test="($htmlhelp.use.hhk != 0) and $generate.index">
-		  <xsl:choose>
-			<xsl:when test="$rootid != ''">
-			  <xsl:apply-templates select="key('id',$rootid)" mode="hhk"/>
-			</xsl:when>
-			<xsl:otherwise>
-			  <xsl:apply-templates select="/" mode="hhk"/>
-			</xsl:otherwise>
-		  </xsl:choose>
-		</xsl:if>
-		<![CDATA[</UL>
-	  </BODY></HTML>]]></xsl:with-param>
-	  <xsl:with-param name="encoding" select="$htmlhelp.encoding"/>
-	</xsl:call-template>
-  </xsl:template>
-
-  <xsl:template match="/">
-	<xsl:if test="$htmlhelp.only != 1">
-	  <xsl:choose>
-		<xsl:when test="$rootid != ''">
-		  <xsl:choose>
-			<xsl:when test="count(key('id',$rootid)) = 0">
-			  <xsl:message terminate="yes">
-				<xsl:text>ID '</xsl:text>
-				<xsl:value-of select="$rootid"/>
-				<xsl:text>' not found in document.</xsl:text>
-			  </xsl:message>
-			</xsl:when>
-			<xsl:otherwise>
-			  <xsl:message>Formatting from <xsl:value-of select="$rootid"/></xsl:message>
-			  <xsl:apply-templates select="key('id',$rootid)" mode="process.root"/>
-			</xsl:otherwise>
-		  </xsl:choose>
-		</xsl:when>
-		<xsl:otherwise>
-		  <xsl:apply-templates select="/" mode="process.root"/>
-		</xsl:otherwise>
-	  </xsl:choose>
-	</xsl:if>
-
-	<xsl:call-template name="hhp"/>
-	<xsl:call-template name="hhc"/>
-	<xsl:if test="($rootid = '' and //processing-instruction('dbhh')) or
-	  ($rootid != '' and key('id',$rootid)//processing-instruction('dbhh'))">
-	  <xsl:call-template name="hh-map"/>
-	  <xsl:call-template name="hh-alias"/>
-	</xsl:if>
-	<xsl:if test="$generate.index">
-	  <xsl:call-template name="hhk"/>
-	</xsl:if>
-	<xsl:if test="$htmlhelp.generate.frameset">
-	  <xsl:call-template name="generate.htmlhelp.frameset"/>
-	</xsl:if>
-  </xsl:template>
-
 
 </xsl:stylesheet>
 
