@@ -1,5 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-		version="1.0">
+                xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
+                exclude-result-prefixes="doc"		
+                version="1.0">
 
 <xsl:output method="html"/>
 
@@ -12,6 +14,17 @@
      and other information.
 
      ******************************************************************** -->
+
+<!-- ==================================================================== -->
+<xsl:param name="javahelp.encoding" select="'ISO-8859-1'"/>
+
+<doc:param name="javahelp.encoding" xmlns="">
+<refpurpose>Character encoding to use in control files for Java Help.</refpurpose>
+<refdescription>
+<para>Java Help crashes on some characters when written as character
+references. In that case you can select appropriate encoding here.</para>
+</refdescription>
+</doc:param>
 
 <!-- ==================================================================== -->
 
@@ -93,6 +106,7 @@
     <xsl:with-param name="indent" select="'yes'"/>
     <xsl:with-param name="doctype-public" select="'-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 1.0//EN'"/>
     <xsl:with-param name="doctype-system" select="'http://java.sun.com/products/javahelp/toc_1_0.dtd'"/>
+    <xsl:with-param name="encoding" select="$javahelp.encoding"/>
     <xsl:with-param name="content">
       <xsl:call-template name="helptoc.content"/>
     </xsl:with-param>
@@ -135,12 +149,12 @@
     <xsl:attribute name="text">
       <xsl:value-of select="$title"/>
     </xsl:attribute>
-    <xsl:apply-templates select="part|reference|preface|chapter|appendix"
+    <xsl:apply-templates select="part|reference|preface|chapter|appendix|article|colophon"
                          mode="toc"/>
   </tocitem>
 </xsl:template>
 
-<xsl:template match="part|reference|preface|chapter|appendix"
+<xsl:template match="part|reference|preface|chapter|appendix|article"
               mode="toc">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
@@ -239,7 +253,7 @@
   </tocitem>
 </xsl:template>
 
-<xsl:template match="sect5" mode="toc">
+<xsl:template match="sect5|colophon" mode="toc">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -263,6 +277,7 @@
     <xsl:with-param name="indent" select="'yes'"/>
     <xsl:with-param name="doctype-public" select="'-//Sun Microsystems Inc.//DTD JavaHelp Map Version 1.0//EN'"/>
     <xsl:with-param name="doctype-system" select="'http://java.sun.com/products/javahelp/map_1_0.dtd'"/>
+    <xsl:with-param name="encoding" select="$javahelp.encoding"/>
     <xsl:with-param name="content">
       <xsl:call-template name="helpmap.content"/>
     </xsl:with-param>
@@ -278,6 +293,8 @@
                                  | //preface
                                  | //chapter
                                  | //appendix
+                                 | //article
+                                 | //colophon
                                  | //refentry
                                  | //section
                                  | //sect1
@@ -316,7 +333,7 @@
   </mapID>
 </xsl:template>
 
-<xsl:template match="part|reference|preface|chapter|appendix"
+<xsl:template match="part|reference|preface|chapter|appendix|article"
               mode="map">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
@@ -329,7 +346,7 @@
   </mapID>
 </xsl:template>
 
-<xsl:template match="section|sect1|sect2|sect3|sect4|sect5" mode="map">
+<xsl:template match="section|sect1|sect2|sect3|sect4|sect5|colophon" mode="map">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -362,6 +379,7 @@
     <xsl:with-param name="indent" select="'yes'"/>
     <xsl:with-param name="doctype-public" select="'-//Sun Microsystems Inc.//DTD JavaHelp Index Version 1.0//EN'"/>
     <xsl:with-param name="doctype-system" select="'http://java.sun.com/products/javahelp/index_1_0.dtd'"/>
+    <xsl:with-param name="encoding" select="$javahelp.encoding"/>
     <xsl:with-param name="content">
       <xsl:call-template name="helpidx.content"/>
     </xsl:with-param>
