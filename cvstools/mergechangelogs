@@ -109,7 +109,7 @@ sub format {
 	if (/^(.{1,60})\s/) {
 	    print "  | \t$star $1\n";
 	    $star = " ";
-	    $_ = $';
+	    $_ = $'; # '
 	} else {
 	    print "  | \t$star $_\n";
 	    $_ = "";
@@ -128,6 +128,8 @@ sub last_version {
     close (F);
 
     if (/name=.VERSION.>(.*?)</s) {
+	$version = $1;
+    } elsif (/<fm:Version>(.*?)</s) {
 	$version = $1;
     } elsif (/^([\d\.]+)/) {
 	$version = $1;
