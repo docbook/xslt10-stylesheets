@@ -235,3 +235,4 @@
 <!ENTITY section.level6.properties SYSTEM "../params/section.level6.properties.xml">
 <!ENTITY subscript.properties SYSTEM "../params/subscript.properties.xml">
 <!ENTITY superscript.properties SYSTEM "../params/superscript.properties.xml">
+<!ENTITY table.table.properties SYSTEM "../params/table.table.properties.xml">
