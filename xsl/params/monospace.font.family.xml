@@ -9,7 +9,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='monospace.font.family.frag'><xsl:param name="monospace.font.family">Courier</xsl:param></src:fragment>
+<src:fragment id='monospace.font.family.frag'>
+<xsl:param name="monospace.font.family" select="'Courier,monospace'"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
