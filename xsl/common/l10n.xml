@@ -17,6 +17,7 @@
 <!ENTITY ja SYSTEM "ja.xml">
 <!ENTITY ko SYSTEM "ko.xml">
 <!ENTITY nl SYSTEM "nl.xml">
+<!ENTITY nn SYSTEM "nn.xml">
 <!ENTITY no SYSTEM "no.xml">
 <!ENTITY pl SYSTEM "pl.xml">
 <!ENTITY pt SYSTEM "pt.xml">
@@ -51,6 +52,7 @@
 &ja;
 &ko;
 &nl;
+&nn;
 &no;
 &pl;
 &pt;
