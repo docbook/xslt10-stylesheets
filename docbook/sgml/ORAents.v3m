@@ -1,0 +1,33 @@
+<!-- ORA entity set for v 3 motif  -->
+
+<!ENTITY amtfA    "<CITESECT>Appendix A, Managing Your Environment</CITESECT>" >
+<!ENTITY amtfB    "<CITESECT>Appendix B, Release 5 Standard Fonts</CITESECT>" >
+<!ENTITY amtfC    "<CITESECT>Appendix C, Standard Bitmaps</CITESECT>" >
+<!ENTITY amtfD    "<CITESECT>Appendix D, Standard Cursors</CITESECT>" >
+<!ENTITY amtfE    "<CITESECT>Appendix E, xterm Control Sequences</CITESECT>" >
+<!ENTITY amtfF    "<CITESECT>Appendix F, Translation Table Syntax</CITESECT>" >
+<!ENTITY amtfG    "<CITESECT>Appendix G, Widget Resources</CITESECT>" >
+<!ENTITY amtfH    "<CITESECT>Appendix H, Obtaining Example Programs</CITESECT>" >
+<!ENTITY bmtf00    "<CITEBOOK>Volume Zero, X Protocol Reference Manual</CITEBOOK>" >
+<!ENTITY bmtf01    "<CITEBOOK>Volume One, Xlib Programming Manual</CITEBOOK>" >
+<!ENTITY bmtf02    "<CITEBOOK>Volume Two, Xlib Reference Manual</CITEBOOK>" >
+<!ENTITY bmtf04    "<CITEBOOK>Volume Four, X Toolkit Intrinsics Programming Manual</CITEBOOK>" >
+<!ENTITY bmtf05    "<CITEBOOK>Volume Five, X Toolkit Intrinsics Reference Manual</CITEBOOK>" >
+<!ENTITY bmtf06    "<CITEBOOK>Volume Six, Motif Programming Manual</CITEBOOK>" >
+<!ENTITY bmtf08    "<CITEBOOK>Volume Eight, X Window System Administrator's Guide</CITEBOOK>" >
+<!ENTITY cmtf0   "<CITESECT>Preface</CITESECT>" >
+<!ENTITY cmtf01  "<CITESECT>Chapter 1, An Introduction to the X Window System</CITESECT>" >
+<!ENTITY cmtf02  "<CITESECT>Chapter 2, Getting Started</CITESECT>" >
+<!ENTITY cmtf03  "<CITESECT>Chapter 3, Working in the X Environment</CITESECT>" >
+<!ENTITY cmtf04  "<CITESECT>Chapter 4, More about the mwm Window Manage</CITESECT>" >
+<!ENTITY cmtf05  "<CITESECT>Chapter 5, The xterm Terminal Emulator</CITESECT>" >
+<!ENTITY cmtf06  "<CITESECT>Chapter 6, Font Specification</CITESECT>" >
+<!ENTITY cmtf07  "<CITESECT>Chapter 7, Graphics Utilities</CITESECT>" >
+<!ENTITY cmtf08  "<CITESECT>Chapter 8, Other Clients</CITESECT>" >
+<!ENTITY cmtf09  "<CITESECT>Chapter 9, Working with Motif Applications</CITESECT>" >
+<!ENTITY cmtf10  "<CITESECT>Chapter 10, Command-line Options</CITESECT>" >
+<!ENTITY cmtf11  "<CITESECT>Chapter 11, Setting Resources</CITESECT>" >
+<!ENTITY cmtf12  "<CITESECT>Chapter 12, Specifying Color</CITESECT>" >
+<!ENTITY cmtf13  "<CITESECT>Chapter 13, Customizing mwm</CITESECT>" >
+<!ENTITY cmtf14  "<CITESECT>Chapter 14, Setup Clients</CITESECT>" >
+
