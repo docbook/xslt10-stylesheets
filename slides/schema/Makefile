@@ -1,3 +1,2 @@
 all:
-	make -C dtd
-	make -C relaxng
+	echo "Not automated. Build the schemas by hand for now."
