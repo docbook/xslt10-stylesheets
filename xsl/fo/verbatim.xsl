@@ -22,127 +22,126 @@
 
 <xsl:template match="programlisting|screen|synopsis">
   <xsl:param name="suppress-numbers" select="'0'"/>
-  <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
-  <xsl:choose>
-    <xsl:when test="$suppress-numbers = '0'
-                    and @linenumbering = 'numbered'
-                    and $use.extensions != '0'
-                    and $linenumbering.extension != '0'">
-      <xsl:variable name="rtf">
-        <xsl:apply-templates/>
-      </xsl:variable>
-      <fo:block wrap-option='no-wrap'
-                white-space-collapse='false'
-                linefeed-treatment="preserve"
-                xsl:use-attribute-sets="monospace.verbatim.properties">
+  <xsl:variable name="content">
+    <xsl:choose>
+      <xsl:when test="$suppress-numbers = '0'
+                      and @linenumbering = 'numbered'
+                      and $use.extensions != '0'
+                      and $linenumbering.extension != '0'">
         <xsl:call-template name="number.rtf.lines">
-          <xsl:with-param name="rtf" select="$rtf"/>
+          <xsl:with-param name="rtf">
+            <xsl:apply-templates/>
+          </xsl:with-param>
         </xsl:call-template>
-      </fo:block>
-    </xsl:when>
-    <xsl:otherwise>
-      <fo:block wrap-option='no-wrap'
-                white-space-collapse='false'
-                linefeed-treatment="preserve"
-                xsl:use-attribute-sets="monospace.verbatim.properties">
+      </xsl:when>
+      <xsl:otherwise>
         <xsl:apply-templates/>
-      </fo:block>
-    </xsl:otherwise>
-  </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <fo:block wrap-option='no-wrap'
+            white-space-collapse='false'
+            linefeed-treatment="preserve"
+            xsl:use-attribute-sets="monospace.verbatim.properties">
+    <xsl:choose>
+      <xsl:when test="$shade.verbatim != 0">
+        <fo:block space-before="0pt" space-after="0pt"
+                  xsl:use-attribute-sets="shade.verbatim.style">
+          <xsl:copy-of select="$content"/>
+        </fo:block>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:copy-of select="$content"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </fo:block>
 </xsl:template>
 
 <xsl:template match="literallayout">
   <xsl:param name="suppress-numbers" select="'0'"/>
-  <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
 
-  <xsl:variable name="rtf">
-    <xsl:apply-templates/>
+  <xsl:variable name="raw.content">
+    <xsl:choose>
+      <xsl:when test="$suppress-numbers = '0'
+                      and @linenumbering = 'numbered'
+                      and $use.extensions != '0'
+                      and $linenumbering.extension != '0'">
+        <xsl:call-template name="number.rtf.lines">
+          <xsl:with-param name="rtf">
+            <xsl:apply-templates/>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="content">
+    <xsl:choose>
+      <xsl:when test="@class='monospaced' and $shade.verbatim != 0">
+        <fo:block space-before="0pt" space-after="0pt"
+                  xsl:use-attribute-sets="shade.verbatim.style">
+          <xsl:copy-of select="$raw.content"/>
+        </fo:block>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:copy-of select="$raw.content"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="$suppress-numbers = '0'
-                    and @linenumbering = 'numbered'
-                    and $use.extensions != '0'
-                    and $linenumbering.extension != '0'">
-      <xsl:choose>
-        <xsl:when test="@class='monospaced'">
-          <fo:block wrap-option='no-wrap'
-                    linefeed-treatment="preserve"
-                    white-space-collapse='false'
-                    xsl:use-attribute-sets="monospace.verbatim.properties">
-            <xsl:call-template name="number.rtf.lines">
-              <xsl:with-param name="rtf" select="$rtf"/>
-            </xsl:call-template>
-          </fo:block>
-        </xsl:when>
-        <xsl:otherwise>
-          <fo:block wrap-option='no-wrap'
-                    linefeed-treatment="preserve"
-                    white-space-collapse='false'
-                    xsl:use-attribute-sets="verbatim.properties">
-            <xsl:call-template name="number.rtf.lines">
-              <xsl:with-param name="rtf" select="$rtf"/>
-            </xsl:call-template>
-          </fo:block>
-        </xsl:otherwise>
-      </xsl:choose>
+    <xsl:when test="@class='monospaced'">
+      <fo:block wrap-option='no-wrap'
+                linefeed-treatment="preserve"
+                white-space-collapse='false'
+                xsl:use-attribute-sets="monospace.verbatim.properties">
+        <xsl:copy-of select="$content"/>
+      </fo:block>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:choose>
-        <xsl:when test="@class='monospaced'">
-          <fo:block wrap-option='no-wrap'
-                    linefeed-treatment="preserve"
-                    white-space-collapse='false'
-                    xsl:use-attribute-sets="monospace.verbatim.properties">
-            <xsl:copy-of select="$rtf"/>
-          </fo:block>
-        </xsl:when>
-        <xsl:otherwise>
-          <fo:block wrap-option='no-wrap'
-                    linefeed-treatment="preserve"
-                    white-space-collapse='false'
-                    xsl:use-attribute-sets="verbatim.properties">
-            <xsl:copy-of select="$rtf"/>
-          </fo:block>
-        </xsl:otherwise>
-      </xsl:choose>
+      <fo:block wrap-option='no-wrap'
+                linefeed-treatment="preserve"
+                white-space-collapse='false'
+                xsl:use-attribute-sets="verbatim.properties">
+        <xsl:copy-of select="$content"/>
+      </fo:block>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
 <xsl:template match="address">
   <xsl:param name="suppress-numbers" select="'0'"/>
-  <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
 
-  <xsl:variable name="rtf">
-    <xsl:apply-templates/>
+  <xsl:variable name="content">
+    <xsl:choose>
+      <xsl:when test="$suppress-numbers = '0'
+                      and @linenumbering = 'numbered'
+                      and $use.extensions != '0'
+                      and $linenumbering.extension != '0'">
+        <xsl:call-template name="number.rtf.lines">
+          <xsl:with-param name="rtf">
+            <xsl:apply-templates/>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
 
-  <xsl:choose>
-    <xsl:when test="$suppress-numbers = '0'
-                    and @linenumbering = 'numbered'
-                    and $use.extensions != '0'
-                    and $linenumbering.extension != '0'">
-      <fo:block wrap-option='no-wrap'
-                white-space-collapse='false'
-                linefeed-treatment="preserve"
-                xsl:use-attribute-sets="verbatim.properties">
-        <xsl:call-template name="number.rtf.lines">
-          <xsl:with-param name="rtf" select="$rtf"/>
-        </xsl:call-template>
-      </fo:block>
-    </xsl:when>
-    <xsl:otherwise>
-      <fo:block wrap-option='no-wrap'
-                linefeed-treatment="preserve"
-                white-space-collapse='false'
-                xsl:use-attribute-sets="verbatim.properties">
-        <xsl:apply-templates/>
-      </fo:block>
-    </xsl:otherwise>
-  </xsl:choose>
+  <fo:block wrap-option='no-wrap'
+            white-space-collapse='false'
+            linefeed-treatment="preserve"
+            xsl:use-attribute-sets="verbatim.properties">
+    <xsl:copy-of select="$content"/>
+  </fo:block>
 </xsl:template>
 
 <xsl:template name="number.rtf.lines">
@@ -218,19 +217,16 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
-
   <xsl:choose>
-    <xsl:when test="contains($vendor, 'SAXON ')">
+    <xsl:when test="function-available('sverb:numberLines')">
       <xsl:copy-of select="sverb:numberLines($rtf)"/>
     </xsl:when>
-    <xsl:when test="contains($vendor, 'Apache Software Foundation')">
+    <xsl:when test="function-available('xverb:numberLines')">
       <xsl:copy-of select="xverb:numberLines($rtf)"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:message terminate="yes">
-        <xsl:text>Don't know how to do line numbering with </xsl:text>
-        <xsl:value-of select="$vendor"/>
+        <xsl:text>No numberLines function available.</xsl:text>
       </xsl:message>
     </xsl:otherwise>
   </xsl:choose>
