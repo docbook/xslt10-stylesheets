@@ -1,5 +1,5 @@
 <!-- ====================================================================== -->
-<!-- Website DTD Namespaces Module V2.4.0
+<!-- Website DTD Namespaces Module V2.4.1
      Part of the Website distribution
      http://sourceforge.net/projects/docbook/
 
@@ -50,5 +50,5 @@
 
 <!ENTITY % rddl-resource.element "%rddl-prefix;resource">
 
-<!-- End of namespaces.mod V2.4.0 ......................................... -->
+<!-- End of namespaces.mod V2.4.1 ......................................... -->
 <!-- ...................................................................... -->

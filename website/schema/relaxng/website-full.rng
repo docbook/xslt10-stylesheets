@@ -12,7 +12,7 @@
    role="cvs">$Id$</releaseinfo>
 <title>Website</title>
 <productname>Website</productname>
-<productnumber>2.4.0</productnumber>
+<productnumber>2.4.1</productnumber>
 <releaseinfo role="filename">website</releaseinfo>
 <copyright>
 <year>1997</year>
@@ -27,24 +27,24 @@
 </partinfo>
 
 <partintro>
-<para>This is the driver file for V2.4.0 of the Website document type.
+<para>This is the driver file for V2.4.1 of the Website document type.
 Please use the following formal public identifier to identify it:</para>
 
-<screen>"-//Norman Walsh//DTD Website V2.4.0//EN"</screen>
+<screen>"-//Norman Walsh//DTD Website V2.4.1//EN"</screen>
 
 <para>For example, if
 you are using the Website DTD directly, use the FPI in the DOCTYPE
 declaration:</para>
 
-<programlisting><![CDATA[<!DOCTYPE webpage PUBLIC "-//Norman Walsh//DTD Website V2.4.0//EN"
-               "http://docbook.sourceforge.net/release/website/2.4.0/website.dtd">
+<programlisting><![CDATA[<!DOCTYPE webpage PUBLIC "-//Norman Walsh//DTD Website V2.4.1//EN"
+               "http://docbook.sourceforge.net/release/website/2.4.1/website.dtd">
                [...]>]]></programlisting>
 
 <para>Or, if you have a higher-level driver file that customizes Website,
 use the FPI in the parameter entity declaration:</para>
 
-<programlisting><![CDATA[<!ENTITY % WebsiteDTD PUBLIC "-//Norman Walsh//DTD Website V2.4.0//EN"
-           "http://docbook.sourceforge.net/release/website/2.4.0/website.dtd">
+<programlisting><![CDATA[<!ENTITY % WebsiteDTD PUBLIC "-//Norman Walsh//DTD Website V2.4.1//EN"
+           "http://docbook.sourceforge.net/release/website/2.4.1/website.dtd">
 %WebsiteDTD;]]></programlisting>
 
 <para>Please direct all questions and comments about this DTD to
