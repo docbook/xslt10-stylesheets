@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE xsl:stylesheet [
 
+<!ENTITY lowercase "'abcdefghijklmnopqrstuvwxyz'">
+<!ENTITY uppercase "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'">
+
 <!ENTITY primary   'concat(primary/@sortas, primary[not(@sortas)])'>
 <!ENTITY secondary 'concat(secondary/@sortas, secondary[not(@sortas)])'>
 <!ENTITY tertiary  'concat(tertiary/@sortas, tertiary[not(@sortas)])'>
@@ -39,12 +42,9 @@
 <!-- ==================================================================== -->
 <!-- Derived from Jeni Tennison's work in the HTML case -->
 
-<xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'"/>
-<xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
-
 <xsl:key name="letter"
          match="indexterm"
-         use="translate(substring(&primary;, 1, 1),$lowercase,$uppercase)"/>
+         use="translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;)"/>
 
 <xsl:key name="primary"
          match="indexterm"
@@ -82,12 +82,12 @@
 
 <xsl:template name="generate-index">
   <xsl:variable name="terms" select="//indexterm[count(.|key('letter',
-                                     translate(substring(&primary;, 1, 1),$lowercase,$uppercase))[1]) = 1]"/>
+                                     translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;))[1]) = 1]"/>
   <xsl:variable name="alphabetical"
-                select="$terms[contains(concat($lowercase, $uppercase),
+                select="$terms[contains(concat(&lowercase;, &uppercase;),
                                         substring(&primary;, 1, 1))]"/>
-  <xsl:variable name="others" select="$terms[not(contains(concat($lowercase,
-                                                 $uppercase),
+  <xsl:variable name="others" select="$terms[not(contains(concat(&lowercase;,
+                                                 &uppercase;),
                                              substring(&primary;, 1, 1)))]"/>
   <fo:block>
     <xsl:if test="$others">
@@ -108,7 +108,7 @@
       </fo:block>
     </xsl:if>
     <xsl:apply-templates select="$alphabetical[count(.|key('letter',
-                                 translate(substring(&primary;, 1, 1),$lowercase,$uppercase))[1]) = 1]"
+                                 translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;))[1]) = 1]"
                          mode="index-div">
       <xsl:sort select="&primary;"/>
     </xsl:apply-templates>
@@ -116,18 +116,18 @@
 </xsl:template>
 
 <xsl:template match="indexterm" mode="index-div">
-  <xsl:variable name="key" select="translate(substring(&primary;, 1, 1),$lowercase,$uppercase)"/>
+  <xsl:variable name="key" select="translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;)"/>
   <fo:block>
     <!-- this isn't quite exactly right. ideally all the symbols would -->
     <!-- be grouped together. as it stands, they all get separate divs -->
     <!-- but at least this test makes sure that they don't all get     -->
     <!-- separate titles as well. -->
-    <xsl:if test="contains(concat($lowercase, $uppercase), $key)">
+    <xsl:if test="contains(concat(&lowercase;, &uppercase;), $key)">
       <fo:block font-size="16pt"
                 font-weight="bold"
                 keep-with-next.within-column="always"
                 space-before="1em">
-        <xsl:value-of select="translate($key, $lowercase, $uppercase)"/>
+        <xsl:value-of select="translate($key, &lowercase;, &uppercase;)"/>
       </fo:block>
     </xsl:if>
     <fo:block>
