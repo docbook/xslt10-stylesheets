@@ -6633,7 +6633,9 @@ in the text (no (0) value, the default)
               <oneOrMore>
                 <ref name="methodparam"/>
               </oneOrMore>
-              <ref name="void"/>
+              <optional>
+                <ref name="void"/>
+              </optional>
             </choice>
             <zeroOrMore>
               <ref name="exceptionname"/>
