@@ -1,6 +1,0 @@
-<elements xmlns="http://nwalsh.com/xmlns/docbook-grammar-structure">
-<element name="sgmltag"/>
-<element name="olink"/>
-<element name="simplelist"/>
-<element name="qandaset"/>
-</elements>
