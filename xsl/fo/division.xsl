@@ -91,6 +91,7 @@
       <xsl:choose>
         <xsl:when test="$double.sided != 0">
           <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
+          <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
         </xsl:when>
         <xsl:otherwise>
           <xsl:attribute name="force-page-count">no-force</xsl:attribute>
@@ -149,6 +150,7 @@
       <xsl:choose>
         <xsl:when test="$double.sided != 0">
           <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
+          <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
         </xsl:when>
         <xsl:otherwise>
           <xsl:attribute name="force-page-count">no-force</xsl:attribute>
@@ -232,6 +234,7 @@
       <xsl:choose>
         <xsl:when test="$double.sided != 0">
           <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
+          <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
         </xsl:when>
         <xsl:otherwise>
           <xsl:attribute name="force-page-count">no-force</xsl:attribute>
@@ -293,6 +296,7 @@
       <xsl:choose>
         <xsl:when test="$double.sided != 0">
           <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
+          <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
         </xsl:when>
         <xsl:otherwise>
           <xsl:attribute name="force-page-count">no-force</xsl:attribute>
@@ -346,6 +350,7 @@
       <xsl:choose>
         <xsl:when test="$double.sided != 0">
           <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
+          <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
         </xsl:when>
         <xsl:otherwise>
           <xsl:attribute name="force-page-count">no-force</xsl:attribute>
@@ -402,6 +407,7 @@
       <xsl:choose>
         <xsl:when test="$double.sided != 0">
           <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
+          <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
         </xsl:when>
         <xsl:otherwise>
           <xsl:attribute name="force-page-count">no-force</xsl:attribute>
@@ -458,6 +464,7 @@
       <xsl:choose>
         <xsl:when test="$double.sided != 0">
           <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
+          <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
         </xsl:when>
         <xsl:otherwise>
           <xsl:attribute name="force-page-count">no-force</xsl:attribute>
@@ -514,6 +521,7 @@
       <xsl:choose>
         <xsl:when test="$double.sided != 0">
           <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
+          <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
         </xsl:when>
         <xsl:otherwise>
           <xsl:attribute name="force-page-count">no-force</xsl:attribute>
@@ -570,6 +578,7 @@
       <xsl:choose>
         <xsl:when test="$double.sided != 0">
           <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
+          <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
         </xsl:when>
         <xsl:otherwise>
           <xsl:attribute name="force-page-count">no-force</xsl:attribute>
@@ -662,9 +671,15 @@
         <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
       </xsl:when>
     </xsl:choose>
-    <xsl:if test="$double.sided = 0">
-      <xsl:attribute name="force-page-count">no-force</xsl:attribute>
-    </xsl:if>
+
+    <xsl:choose>
+      <xsl:when test="$double.sided != 0">
+        <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:attribute name="force-page-count">no-force</xsl:attribute>
+      </xsl:otherwise>
+    </xsl:choose>
 
     <xsl:attribute name="hyphenation-character">
       <xsl:call-template name="gentext">
@@ -735,6 +750,7 @@
       <xsl:choose>
         <xsl:when test="$double.sided != 0">
           <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
+          <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
         </xsl:when>
         <xsl:otherwise>
           <xsl:attribute name="force-page-count">no-force</xsl:attribute>
