@@ -165,7 +165,9 @@
       </xsl:otherwise>
     </xsl:choose>
 
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="thead"/>
+    <xsl:apply-templates select="tbody"/>
+    <xsl:apply-templates select="tfoot"/>
 
     <xsl:if test=".//footnote">
       <tr>
