@@ -412,7 +412,8 @@
     <xsl:if test="title">
       <xsl:apply-templates select="title" mode="procedure.title.mode"/>
     </xsl:if>
-    <ol><xsl:apply-templates/></ol>
+    <xsl:apply-templates select="*[local-name()!='step']"/>     
+    <ol><xsl:apply-templates select="step"/></ol>              
   </div>
 </xsl:template>
 
