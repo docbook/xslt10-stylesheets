@@ -77,11 +77,13 @@
             end-indent="{$toc.indent.width}pt"
             last-line-end-indent="-{$toc.indent.width}pt">
     <fo:inline keep-with-next.within-line="always">
-      <xsl:if test="$label != ''">
-        <xsl:copy-of select="$label"/>
-        <xsl:value-of select="$autotoc.label.separator"/>
-      </xsl:if>
-      <xsl:apply-templates select="." mode="title.markup"/>
+      <fo:basic-link internal-destination="{$id}">
+        <xsl:if test="$label != ''">
+          <xsl:copy-of select="$label"/>
+          <xsl:value-of select="$autotoc.label.separator"/>
+        </xsl:if>
+        <xsl:apply-templates select="." mode="title.markup"/>
+      </fo:basic-link>
     </fo:inline>
     <fo:inline keep-together.within-line="always">
       <xsl:text> </xsl:text>
