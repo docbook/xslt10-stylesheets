@@ -3926,6 +3926,8 @@ in the text (no (0) value, the default)
 <!ENTITY % paramdef.attlist "INCLUDE">
 <![%paramdef.attlist;[
 <!ATTLIST paramdef
+		choice		(opt
+				|req)	#IMPLIED
 		%common.attrib;
 		%paramdef.role.attrib;
 		%local.paramdef.attrib;
