@@ -180,6 +180,12 @@
 		|%person.ident.mix;
 		%local.bibliocomponent.mix;">
 
+<!ENTITY % local.info.class "">
+<!ENTITY % info.class
+		"mediaobject | legalnotice
+		 | subjectset | keywordset | %bibliocomponent.mix;
+                 %local.info.class;">
+
 <!ENTITY % dbpool.redecl.module "INCLUDE">
 <!ENTITY % rdbpool SYSTEM "sdbpool.mod">
 
@@ -194,6 +200,9 @@
 <!ENTITY % section.element "IGNORE">
 <!ENTITY % sectioninfo.element "IGNORE">
 <!ENTITY % authorgroup.element "IGNORE">
+<!ENTITY % author.element "IGNORE">
+<!ENTITY % editor.element "IGNORE">
+<!ENTITY % othercredit.element "IGNORE">
 <!ENTITY % para.element "IGNORE">
 <!ENTITY % informaltable.element "IGNORE">
 <!ENTITY % replaceable.element "IGNORE">
@@ -205,10 +214,19 @@
 <!ENTITY % sidebar.element "IGNORE">
 <!ENTITY % programlisting.element "IGNORE">
 <!ENTITY % literallayout.element "IGNORE">
+<!ENTITY % itemizedlist.element "IGNORE">
+<!ENTITY % orderedlist.element "IGNORE">
+<!ENTITY % variablelist.element "IGNORE">
+<!ENTITY % example.element "IGNORE">
+<!ENTITY % figure.element "IGNORE">
+<!ENTITY % legalnotice.element "IGNORE">
+<!ENTITY % systemitem.element "IGNORE">
+<!ENTITY % computeroutput.element "IGNORE">
+<!ENTITY % userinput.element "IGNORE">
 
 <!ENTITY % cals.table.module "INCLUDE">
-<!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-                   "../xml/docbookx.dtd"
+<!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                   "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
 >
 %docbook;
 
@@ -235,6 +253,21 @@
 <!ENTITY % simple.authorgroup.element "INCLUDE">
 <![%simple.authorgroup.element;[
 <!ELEMENT authorgroup ((author|editor|corpauthor|othercredit)+)>
+]]>
+
+<!ENTITY % simple.author.element "INCLUDE">
+<![%simple.author.element;[
+<!ELEMENT author ((%person.ident.mix;)+)>
+]]>
+
+<!ENTITY % simple.editor.element "INCLUDE">
+<![%simple.editor.element;[
+<!ELEMENT editor ((%person.ident.mix;)+)>
+]]>
+
+<!ENTITY % simple.othercredit.element "INCLUDE">
+<![%simple.othercredit.element;[
+<!ELEMENT othercredit ((%person.ident.mix;)+)>
 ]]>
 
 <!ENTITY % simple.affiliation.element "INCLUDE">
@@ -319,6 +352,57 @@
 <!ENTITY % simple.literallayout.element "INCLUDE">
 <![%simple.literallayout.element;[
 <!ELEMENT literallayout (%para.char.mix; | lineannotation)*>
+]]>
+
+<!ENTITY % simple.itemizedlist.element "INCLUDE">
+<![%simple.itemizedlist.element;[
+<!ELEMENT itemizedlist ((%formalobject.title.content;)?,
+ 			    (%listpreamble.mix;)*, listitem+)>
+]]>
+
+<!ENTITY % simple.orderedlist.element "INCLUDE">
+<![%simple.orderedlist.element;[
+<!ELEMENT orderedlist ((%formalobject.title.content;)?,
+ 			    (%listpreamble.mix;)*, listitem+)>
+]]>
+
+<!ENTITY % simple.variablelist.element "INCLUDE">
+<![%simple.variablelist.element;[
+<!ELEMENT variablelist ((%formalobject.title.content;)?,
+ 			    (%listpreamble.mix;)*, varlistentry+)>
+]]>
+
+<!ENTITY % simple.example.element "INCLUDE">
+<![%simple.example.element;[
+<!ELEMENT example ((%formalobject.title.content;), (%example.mix;)+)
+		>
+]]>
+
+<!ENTITY % simple.figure.element "INCLUDE">
+<![%simple.figure.element;[
+<!ELEMENT figure ((%formalobject.title.content;),
+                       (%figure.mix; | %link.char.class;)+)>
+]]>
+
+<!ENTITY % simple.legalnotice.element "INCLUDE">
+<![%simple.legalnotice.element;[
+<!ELEMENT legalnotice (title?, (%legalnotice.mix;)+)
+		>
+]]>
+
+<!ENTITY % simple.systemitem.element "INCLUDE">
+<![%simple.systemitem.element;[
+<!ELEMENT systemitem (%cptr.char.mix; | acronym)*>
+]]>
+
+<!ENTITY % simple.computeroutput.element "INCLUDE">
+<![%simple.computeroutput.element;[
+<!ELEMENT computeroutput %ho; (%cptr.char.mix;)*>
+]]>
+
+<!ENTITY % simple.userinput.element "INCLUDE">
+<![%simple.userinput.element;[
+<!ELEMENT userinput %ho; (%cptr.char.mix;)*>
 ]]>
 
 <!-- End of Simplified DocBook DTD V1.0CR2 ............................... -->
