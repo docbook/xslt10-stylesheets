@@ -18,6 +18,8 @@
 
 <para>If true (non-zero), admonitions are presented with a generated
 text label such as Note or Warning in the appropriate language.
+If zero, such labels are turned off, but any title child
+of the admonition element are still output.
 The default value is 1.
 </para>
 
