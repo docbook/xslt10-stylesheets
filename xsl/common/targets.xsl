@@ -140,7 +140,9 @@ document output.
       <xsl:with-param name="nd" select="$nd"/>
     </xsl:call-template>
     <ttl>
-      <xsl:apply-templates select="$nd" mode="title.markup"/>
+      <xsl:apply-templates select="$nd" mode="title.markup">
+        <xsl:with-param name="verbose" select="0"/>
+      </xsl:apply-templates>
     </ttl>
     <xreftext>
       <xsl:choose>
@@ -150,7 +152,9 @@ document output.
           </xsl:call-template>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="$nd" mode="xref-to"/>
+          <xsl:apply-templates select="$nd" mode="xref-to">
+            <xsl:with-param name="verbose" select="0"/>
+          </xsl:apply-templates>
         </xsl:otherwise>
       </xsl:choose>
     </xreftext>

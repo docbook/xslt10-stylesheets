@@ -293,6 +293,7 @@
   <xsl:param name="purpose"/>
   <xsl:param name="xrefstyle"/>
   <xsl:param name="referrer"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:variable name="template">
     <xsl:choose>
@@ -331,7 +332,7 @@
   </xsl:message>
 -->
 
-  <xsl:if test="$template = ''">
+  <xsl:if test="$template = '' and $verbose != 0">
     <xsl:message>
       <xsl:text>object.xref.markup: empty xref template</xsl:text>
       <xsl:text> for linkend="</xsl:text>
@@ -347,10 +348,13 @@
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="referrer" select="$referrer"/>
     <xsl:with-param name="template" select="$template"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
   </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="listitem" mode="object.xref.markup">
+  <xsl:param name="verbose" select="1"/>
+
   <xsl:choose>
     <xsl:when test="parent::orderedlist">
       <xsl:variable name="template">
@@ -360,14 +364,14 @@
         <xsl:with-param name="template" select="$template"/>
       </xsl:call-template>
     </xsl:when>
-    <xsl:otherwise>
+    <xsl:when test="$verbose != 0">
       <xsl:message>
         <xsl:text>Xref is only supported to listitems in an</xsl:text>
         <xsl:text> orderedlist: </xsl:text>
         <xsl:value-of select="@id"/>
       </xsl:message>
       <xsl:text>???</xsl:text>
-    </xsl:otherwise>
+    </xsl:when>
   </xsl:choose>
 </xsl:template>
 
@@ -422,6 +426,7 @@
   <xsl:param name="purpose"/>
   <xsl:param name="xrefstyle"/>
   <xsl:param name="referrer"/>
+  <xsl:param name="verbose"/>
 
   <xsl:choose>
     <xsl:when test="contains($template, '%')">
@@ -441,6 +446,7 @@
                 <xsl:otherwise>
                   <xsl:apply-templates select="." mode="title.markup">
                     <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+                    <xsl:with-param name="verbose" select="$verbose"/>
                   </xsl:apply-templates>
                 </xsl:otherwise>
               </xsl:choose>
@@ -550,6 +556,7 @@
         <xsl:with-param name="purpose" select="$purpose"/>
         <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
         <xsl:with-param name="referrer" select="$referrer"/>
+        <xsl:with-param name="verbose" select="$verbose"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>

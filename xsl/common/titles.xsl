@@ -44,7 +44,7 @@ title of the element. This does not include the label.
       <xsl:apply-templates select="parent::*" mode="title.markup"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:if test="$verbose">
+      <xsl:if test="$verbose != 0">
         <xsl:message>
           <xsl:text>Request for title of element with no title: </xsl:text>
           <xsl:value-of select="name(.)"/>
