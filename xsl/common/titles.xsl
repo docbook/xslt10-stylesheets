@@ -373,6 +373,40 @@ title of the element. This does not include the label.
 
 <!-- ============================================================ -->
 
+<xsl:template match="*" mode="titleabbrev.markup">
+  <xsl:param name="allow-anchors" select="0"/>
+  <xsl:param name="verbose" select="1"/>
+
+  <xsl:choose>
+    <xsl:when test="titleabbrev">
+      <xsl:apply-templates select="titleabbrev[1]" mode="title.markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+      </xsl:apply-templates>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="." mode="title.markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+        <xsl:with-param name="verbose" select="$verbose"/>
+      </xsl:apply-templates>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="titleabbrev" mode="title.markup">
+  <xsl:param name="allow-anchors" select="0"/>
+
+  <xsl:choose>
+    <xsl:when test="$allow-anchors != 0">
+      <xsl:apply-templates/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates mode="no.anchor.mode"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!-- ============================================================ -->
+
 <xsl:template match="*" mode="no.anchor.mode">
   <xsl:apply-templates mode="no.anchor.mode"/>
 </xsl:template>
