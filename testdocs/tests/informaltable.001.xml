@@ -9,19 +9,19 @@
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
 </author>
 </articleinfo>
-
-<!--
+  <para>
+Table should appear like this:</para>
+  <screen>
 +........+........+........+........+
 |        |   B    |        |   D    |
 +   A    +........+   C    +........+
 |        |        |        |   E    |
-+........+........+........+........+
--->
++........+........+........+........+</screen>
 
 <informaltable frame="all">
-<tgroup cols="4">
+<tgroup cols="4" align="center">
 <colspec colname="c4a" colnum="4"/>
-<tbody>
+<tbody valign="middle">
 <row>
   <entry morerows="1">A</entry>
   <entry>B</entry>
