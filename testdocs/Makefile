@@ -3,7 +3,7 @@ include ../cvstools/Makefile.incl
 
 VPATH=.:tests/
 
-.SUFFIXES: .html .fo .xml .pdf .index .tex
+.SUFFIXES: .html .fo .xml .pdf .index .tex .rtf .dvi
 
 # testing mode, either dsssl or xsl
 MODE		?= xsl
@@ -111,6 +111,17 @@ ifeq ($(MODE),xsl)
 	$(XSLT) $< $(XSLFO) $@ $(FO_FORMATTER).extensions=1 $(XSLPARAM)
 else
 	$(JADE) fo $(DSSSLPRINT) $< -o $@
+endif
+
+.xml.rtf:
+ifeq ($(VALIDATE),1)
+	$(XJPARSE) $<
+endif
+ifeq ($(MODE),xsl)
+	@echo "not sure how to make RTF"
+	exit 1
+else
+	$(JADE) rtf $(DSSSLPRINT) $< -o $@
 endif
 
 ifeq ($(MODE),dsssl)

@@ -5,6 +5,7 @@
 *.index.xml
 *.out
 *.pdf
+*.rtf
 *.tex
 WhatsNew
 focustom.xsl
