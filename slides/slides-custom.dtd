@@ -1,0 +1,156 @@
+<!-- ====================================================================== -->
+<!-- Slides XML V1.1 DTD
+     Copyright (C) 1999, 2000 Norman Walsh
+     http://nwalsh.com/docbook/slides
+
+     See COPYRIGHT for more information
+
+     Please direct all questions and comments about this DTD to
+     Norman Walsh, <ndw@nwalsh.com>.
+
+     Common declaration:
+
+     <?xml version='1.0'?>
+     <!DOCTYPE slides
+       PUBLIC "-//Norman Walsh//DTD Slides XML V1.1//EN"
+       "slides.dtd">
+                                                                            -->
+<!-- ====================================================================== -->
+
+<!ENTITY % local.linespecific.class "|screen">
+
+<!ENTITY % simple.section.element "IGNORE">
+<!ENTITY % section.attlist "IGNORE">
+
+<!ENTITY % simple.sectioninfo.element "IGNORE">
+<!ENTITY % sectioninfo.attlist "IGNORE">
+
+<!ENTITY % article.module "IGNORE">
+<!ENTITY % simple.article.element "IGNORE">
+<!ENTITY % simple.articleinfo.element "IGNORE">
+<!ENTITY % simple.appendix.element "IGNORE">
+<!ENTITY % simple.bibliography.element "IGNORE">
+<!ENTITY % simple.bibliomixed.element "IGNORE">
+<!ENTITY % simple.bibliodiv.element "IGNORE">
+<!ENTITY % sidebar.module "INCLUDE">
+
+<!ENTITY % confgroup.content.module "INCLUDE">
+<!ENTITY % confgroup.module "INCLUDE">
+  <!ENTITY % confdates.module "INCLUDE">
+  <!ENTITY % conftitle.module "INCLUDE">
+  <!ENTITY % confnum.module "INCLUDE">
+  <!ENTITY % confsponsor.module "INCLUDE">
+
+<!ENTITY % local.person.ident.mix "">
+<!ENTITY % person.ident.mix
+		"honorific|firstname|surname|lineage|othername|affiliation
+		|authorblurb
+		%local.person.ident.mix;">
+
+<!ENTITY % local.bibliocomponent.mix "">
+<!ENTITY % bibliocomponent.mix
+		"abbrev|abstract|author
+		|authorgroup|bibliomisc
+		|copyright|corpauthor|date|edition
+		|editor|issuenum
+		|othercredit
+		|pubdate|publishername
+		|releaseinfo|revhistory
+		|subtitle|title|titleabbrev|volumenum|citetitle
+		|confgroup
+		|%person.ident.mix;
+		%local.bibliocomponent.mix;">
+
+<!ENTITY % sdocbook.dtd SYSTEM "../docbook/simple/sdocbook-custom.dtd">
+%sdocbook.dtd;
+
+<!ENTITY % divcomponent.mix
+		"%list.class;		|%admon.class;
+		|%linespecific.class;	|%synop.class;
+		|%para.class;		|%informal.class;
+		|%formal.class;		|%compound.class;
+		|%descobj.class;">
+
+<!-- ====================================================================== -->
+<!-- Add screen back into the DTD -->
+
+<!ELEMENT screen (%para.char.mix; | lineannotation)*>
+<!ENTITY % screen.role.attrib "%role.attrib;">
+<!ENTITY % local.screen.attrib "">
+<!ATTLIST screen
+		%width.attrib;
+		%linespecific.attrib;
+		%common.attrib;
+		%screen.role.attrib;
+		%local.screen.attrib;
+>
+
+<!-- ====================================================================== -->
+
+<!ELEMENT slides (speakernotes?, slidesinfo, (foil+|section+))>
+<!ATTLIST slides
+		%label.attrib;
+		%status.attrib;
+		%common.attrib;
+		%role.attrib;
+>
+
+<!ELEMENT slidesinfo ((mediaobject
+		       | legalnotice
+                       | subjectset | keywordset
+                       | %bibliocomponent.mix;)+)>
+
+<!ATTLIST slidesinfo
+		%common.attrib;
+		%role.attrib;
+>
+
+<!ELEMENT section (sectioninfo?, title, subtitle?, titleabbrev?,
+                   speakernotes?,
+                   foil+)>
+<!ATTLIST section
+		%label.attrib;
+		%status.attrib;
+		%common.attrib;
+		%role.attrib;
+>
+
+<!ELEMENT sectioninfo ((mediaobject
+		       | legalnotice
+                       | subjectset | keywordset
+                       | %bibliocomponent.mix;)+)>
+
+<!ATTLIST sectioninfo
+		%common.attrib;
+		%role.attrib;
+>
+
+<!ELEMENT foil (foilinfo?, title, subtitle?, titleabbrev?,
+                speakernotes?,
+                (%divcomponent.mix;)+)>
+
+<!ATTLIST foil
+		%label.attrib;
+		%status.attrib;
+		%common.attrib;
+		%role.attrib;
+>
+
+<!ELEMENT foilinfo ((mediaobject
+		         | legalnotice
+                         | subjectset | keywordset
+                         | %bibliocomponent.mix;)+)>
+
+<!ATTLIST foilinfo
+		%common.attrib;
+		%role.attrib;
+>
+
+<!ELEMENT speakernotes (%divcomponent.mix;)*>
+<!ATTLIST speakernotes
+		%common.attrib;
+		%role.attrib;
+>
+
+<!-- End of Slides XML V1.1 DTD ........................................... -->
+<!-- ...................................................................... -->
