@@ -57,3 +57,4 @@ endif
 
 clean:
 	$(MAKE) -C doc clean
+	$(MAKE) -C docsrc clean
