@@ -638,7 +638,11 @@ element label.</para>
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:number count="listitem" format="{$type}"/>
+  <xsl:variable name="item-number">
+    <xsl:call-template name="orderedlist-item-number"/>
+  </xsl:variable>
+
+  <xsl:number value="$item-number" format="{$type}"/>
 </xsl:template>
 
 <xsl:template match="abstract" mode="label.markup">
