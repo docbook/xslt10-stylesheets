@@ -280,10 +280,6 @@ public class Table {
   public DocumentFragment adjustColumnWidths (ExpressionContext context,
 					      NodeIterator xalanNI) {
 
-    // HACK!!!
-    XPathContext xpcontext = (XPathContext) context;
-    DOMHelper dh = xpcontext.getDOMHelper();
-
     int nominalWidth = convertLength(Params.getString(context,
 						      "nominal.table.width"));
     String tableWidth = Params.getString(context, "table.width");
@@ -328,22 +324,20 @@ public class Table {
 	      || (child.getNamespaceURI().equals(foURI)
 		  && child.getLocalName().equals("table-column")))) {
 	Element col = (Element) child;
-	NamedNodeMap domAttr = col.getAttributes();
-	AttList attr = new AttList(domAttr,dh);
 
 	columns[colnum] = col;
 
 	if (foStylesheet) {
-	  if (attr.getValue("column-width") == null) {
+	  if (col.getAttribute("column-width") == null) {
 	    widths[colnum] = "1*";
 	  } else {
-	    widths[colnum] = attr.getValue("column-width");
+	    widths[colnum] = col.getAttribute("column-width");
 	  }
 	} else {
-	  if (attr.getValue("width") == null) {
+	  if (col.getAttribute("width") == null) {
 	    widths[colnum] = "1*";
 	  } else {
-	    widths[colnum] = attr.getValue("width");
+	    widths[colnum] = col.getAttribute("width");
 	  }
 	}
 
@@ -481,11 +475,10 @@ public class Table {
       String ns = colgroup.getNamespaceURI();
       String localName = colgroup.getLocalName();
       String name = colgroup.getTagName();
-      NamedNodeMap colgroupDomAttr = colgroup.getAttributes();
-      AttList colgroupAttr = new AttList(colgroupDomAttr,dh);
 
       if (colgroup.getLocalName().equals("colgroup")) {
-	rtf.startElement(ns, localName, name, colgroupAttr);
+	rtf.startElement(ns, localName, name,
+			 copyAttributes(colgroup));
       }
 
       for (colnum = 0; colnum < numColumns; colnum++) {
@@ -533,5 +526,21 @@ public class Table {
     }
 
     return df;
+  }
+
+  private Attributes copyAttributes(Element node) {
+    AttributesImpl attrs = new AttributesImpl();
+    NamedNodeMap nnm = node.getAttributes();
+    for (int count = 0; count < nnm.getLength(); count++) {
+      Attr attr = (Attr) nnm.item(count);
+      String name = attr.getName();
+      if (name.startsWith("xmlns:") || name.equals("xmlns")) {
+	// Skip it; (don't ya just love it!!)
+      } else {
+	attrs.addAttribute(attr.getNamespaceURI(), attr.getName(),
+			   attr.getName(), "CDATA", attr.getValue());
+      }
+    }
+    return attrs;
   }
 }
