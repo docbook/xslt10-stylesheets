@@ -165,7 +165,8 @@
   <xsl:if test="$preamble">
     <fo:page-sequence id="{$id}"
                       hyphenate="{$hyphenate}"
-                      master-reference="{$titlepage-master-reference}">
+                      master-reference="{$titlepage-master-reference}"
+                      initial-page-number="1">
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
