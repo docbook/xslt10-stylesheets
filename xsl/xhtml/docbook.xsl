@@ -13,7 +13,7 @@
 
      ******************************************************************** -->
 
-<xsl:include href="../html/docbook.xsl"/>
+<xsl:import href="../html/docbook.xsl"/>
 
  <!-- this has to be last because of document order nonsense -->
 <xsl:output method="xml"
