@@ -295,19 +295,32 @@
 </xsl:template>
 
 <xsl:template match="year" mode="titlepage.mode">
-  <xsl:apply-templates/><xsl:text>, </xsl:text>
-</xsl:template>
-
-<xsl:template match="year[position()=last()]" mode="titlepage.mode">
-  <xsl:apply-templates/>
+  <xsl:choose>
+    <xsl:when test="$show.revisionflag != 0 and @revisionflag">
+      <span class="{@revisionflag}">
+        <xsl:apply-templates mode="titlepage.mode"/>
+      </span>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates mode="titlepage.mode"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="holder" mode="titlepage.mode">
-  <xsl:apply-templates/><xsl:text>, </xsl:text>
-</xsl:template>
-
-<xsl:template match="holder[position()=last()]" mode="titlepage.mode">
-  <xsl:apply-templates/>
+  <xsl:choose>
+    <xsl:when test="$show.revisionflag != 0 and @revisionflag">
+      <span class="{@revisionflag}">
+        <xsl:apply-templates mode="titlepage.mode"/>
+      </span>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates mode="titlepage.mode"/>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:if test="position() &lt; last()">
+    <xsl:text>, </xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="corpauthor" mode="titlepage.mode">
@@ -710,7 +723,7 @@
   <h1 class="{name(.)}">
     <a name="{$id}"/>
     <xsl:choose>
-      <xsl:when test="$show.revisionflag and @revisionflag">
+      <xsl:when test="$show.revisionflag != 0 and @revisionflag">
 	<span class="{@revisionflag}">
 	  <xsl:apply-templates mode="titlepage.mode"/>
 	</span>

@@ -81,7 +81,7 @@
     </xsl:if>
 
     <xsl:choose>
-      <xsl:when test="$show.revisionflag and @revisionflag">
+      <xsl:when test="$show.revisionflag != 0 and @revisionflag">
 	<div class="{@revisionflag}">
 	  <xsl:apply-templates/>
 	</div>
@@ -195,7 +195,7 @@
     </xsl:if>
 
     <xsl:choose>
-      <xsl:when test="$show.revisionflag and @revisionflag">
+      <xsl:when test="$show.revisionflag != 0 and @revisionflag">
 	<div class="{@revisionflag}">
 	  <xsl:apply-templates/>
 	</div>
@@ -400,7 +400,7 @@
 
 <xsl:template match="varlistentry/listitem">
   <xsl:choose>
-    <xsl:when test="$show.revisionflag and @revisionflag">
+    <xsl:when test="$show.revisionflag != 0 and @revisionflag">
       <div class="{@revisionflag}">
 	<xsl:apply-templates/>
       </div>
