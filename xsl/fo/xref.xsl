@@ -15,7 +15,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="anchor" name="anchor">
+<xsl:template match="anchor">
   <fo:wrapper id="{@id}"/>
 </xsl:template>
 
