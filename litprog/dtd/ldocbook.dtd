@@ -10,6 +10,15 @@
 	xmlns:xsl	CDATA	#IMPLIED
 ">
 
+<!ENTITY % local.book.attrib "
+	xmlns:src	CDATA	#IMPLIED
+	xmlns:xsl	CDATA	#IMPLIED
+">
+
+<!ENTITY % local.reference.attrib "
+	xmlns:src	CDATA	#IMPLIED
+	xmlns:xsl	CDATA	#IMPLIED
+">
 
 %docbook;
 
