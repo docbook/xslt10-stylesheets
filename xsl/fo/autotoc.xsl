@@ -314,7 +314,7 @@
 
   <xsl:call-template name="toc.line"/>
 
-  <xsl:variable name="nodes" select="section|sect1"/>
+  <xsl:variable name="nodes" select="section|sect1|simplesect|refentry"/>
 
   <xsl:if test="$toc.section.depth &gt; 0 and $nodes">
     <fo:block id="toc.{$cid}.{$id}"
