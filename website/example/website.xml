@@ -1,4 +1,4 @@
-<!DOCTYPE webpage SYSTEM "../website.dtd" [
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd" [
 <!NOTATION XML SYSTEM "xml">
 <!ENTITY test1a SYSTEM "test1a.xml" NDATA XML>
 <!ENTITY test3 SYSTEM "test3.xml" NDATA XML>

@@ -1,4 +1,4 @@
-<!DOCTYPE webpage SYSTEM "../website.dtd">
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd">
 <webpage id="parameters">
 <config param="desc" value="Parameters"/>
 <config param="rcsdate" value="$Date$"/>

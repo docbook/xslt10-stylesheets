@@ -1,4 +1,4 @@
-<!DOCTYPE webpage SYSTEM "../website-full.dtd">
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website-full.dtd">
 <webpage id="test">
 <head>
 <title>Website-Full</title>

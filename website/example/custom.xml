@@ -1,4 +1,4 @@
-<!DOCTYPE webpage SYSTEM "../website.dtd">
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd">
 <webpage id="customize">
 <config param="desc" value="Customizing the Stylesheets"/>
 <config param="rcsdate" value="$Date$"/>

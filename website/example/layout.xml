@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<!DOCTYPE layout PUBLIC "-//Norman Walsh//DTD Website Layout V2.2//EN"
-                        "http://docbook.sourceforge.net/release/website/2.2/layout.dtd">
+<!DOCTYPE layout PUBLIC "-//Norman Walsh//DTD Website Layout V2.4.0//EN"
+          "http://docbook.sourceforge.net/release/website/2.4.0/schema/dtd/layout.dtd">
 <layout>
   <config param="text-prefix" value="txt"/>
 

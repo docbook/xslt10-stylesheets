@@ -1,4 +1,4 @@
-<!DOCTYPE webpage SYSTEM "../website.dtd">
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd">
 <webpage id="rddl"
 	 xmlns:rddl='http://www.rddl.org/'>
 <config param="rcsdate" value="$Date$"/>
