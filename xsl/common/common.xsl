@@ -870,29 +870,35 @@ recursive process.</para>
                and $olist[@role = $preferred.mediaobject.role]"> 
       
       <!-- Get the first hit's position index -->
-      <xsl:variable name="hit">
-        <xsl:for-each select="$olist">
-	  <xsl:if test="@role = $preferred.mediaobject.role and
-	  	not(preceding-sibling::*[@role = $preferred.mediaobject.role])"> 
-            <xsl:value-of select="position()"/> 
-	  </xsl:if>
-        </xsl:for-each>
-      </xsl:variable>
-      <xsl:value-of select="$hit"/>
+      <xsl:for-each select="$olist">
+        <xsl:if test="@role = $preferred.mediaobject.role and
+             not(preceding-sibling::*[@role = $preferred.mediaobject.role])"> 
+          <xsl:value-of select="position()"/> 
+        </xsl:if>
+      </xsl:for-each>
     </xsl:when>
 
     <xsl:when test="$use.role.for.mediaobject != 0 
-               and $olist[@role = 'fo']">
+               and $olist[@role = $stylesheet.result.type]">
       <!-- Get the first hit's position index -->
-      <xsl:variable name="hit">
-        <xsl:for-each select="$olist">
-	  <xsl:if test="@role = 'fo' and 
-	  	not(preceding-sibling::*[@role = 'fo'])"> 
-            <xsl:value-of select="position()"/> 
-	  </xsl:if>
-        </xsl:for-each>
-      </xsl:variable>
-      <xsl:value-of select="$hit"/>
+      <xsl:for-each select="$olist">
+        <xsl:if test="@role = $stylesheet.result.type and 
+              not(preceding-sibling::*[@role = $stylesheet.result.type])"> 
+          <xsl:value-of select="position()"/> 
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:when>
+    <!-- Accept 'html' for $stylesheet.result.type = 'xhtml' -->
+    <xsl:when test="$use.role.for.mediaobject != 0 
+               and $stylesheet.result.type = 'xhtml'
+               and $olist[@role = 'html']">
+      <!-- Get the first hit's position index -->
+      <xsl:for-each select="$olist">
+        <xsl:if test="@role = 'html' and 
+              not(preceding-sibling::*[@role = 'html'])"> 
+          <xsl:value-of select="position()"/> 
+        </xsl:if>
+      </xsl:for-each>
     </xsl:when>
     <xsl:otherwise>
       <!-- Otherwise select first acceptable object -->
