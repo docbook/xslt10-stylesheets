@@ -6,6 +6,7 @@
 %lat1;
 ]>
 <locale language="es"
+        english-language-name="Spanish"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo xmlns="">

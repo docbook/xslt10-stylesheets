@@ -10,6 +10,7 @@
 
 ]>
 <locale language="uk"
+        english-language-name="Ukranian"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo xmlns="">
@@ -79,7 +80,7 @@
 <gentext key="index" text="&pcy;&rcy;&iecy;&dcy;&mcy;&iecy;&tcy;&ncy;&ycy;&jcy; &pcy;&ocy;&kcy;&acy;&zhcy;chcy;&icy;&kcy;"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/> <!-- en -->
-<gentext key="legalnotice" text="&Pcy;&rcy;&acy;&vcy;&ocy;&vcy;&acy; &pcy;&rcy;&icy;&mcy;&iukcy;&tcy;&kcy;&acy;"/>
+<gentext key="LegalNotice" text="&Pcy;&rcy;&acy;&vcy;&ocy;&vcy;&acy; &pcy;&rcy;&icy;&mcy;&iukcy;&tcy;&kcy;&acy;"/>
 <gentext key="legalnotice" text="&pcy;&rcy;&acy;&vcy;&ocy;&vcy;&acy; &pcy;&rcy;&icy;&mcy;&iukcy;&tcy;&kcy;&acy;"/>
 <gentext key="Level" text="&Rcy;&iukcy;&vcy;&iecy;&ncy;&softcy;"/>
 <gentext key="level" text="&rcy;&iukcy;&vcy;&iecy;&ncy;&softcy;"/>
