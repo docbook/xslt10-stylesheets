@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<grammar xmlns="http://relaxng.org/ns/structure/0.9"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+	 xmlns:dtd="http://www.oasis-open.org/docbook/relaxng/dtdannotations"
+         ns="">
+
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> DocBook XML additional general entities V4.1.2 ......................... </dtd:comment>
+
+<dtd:comment> Copyright 1992-2000 HaL Computer Systems, Inc.,
+     O'Reilly &amp; Associates, Inc., ArborText, Inc., Fujitsu Software
+     Corporation, and the Organization for the Advancement of
+     Structured Information Standards (OASIS).
+
+     In DTD driver files referring to this module, please use an entity
+     declaration that uses the public identifier shown below:
+
+     &lt;!ENTITY % dbgenent PUBLIC
+     "-//OASIS//ENTITIES DocBook XML Additional General Entities V4.1.2//EN"
+     "dbgenent.mod">
+     %dbgenent;
+</dtd:comment>
+
+<dtd:comment> File dbgenent.mod .................................................... </dtd:comment>
+
+<dtd:comment> You can edit this file to add the following:
+
+     o General entity declarations of any kind.  For example:
+
+       &lt;!ENTITY happyface SDATA "insert-face">    (system-specific data)
+       &lt;!ENTITY productname "WinWidget">          (small boilerplate)
+       &lt;!ENTITY legal-notice SYSTEM "notice.sgm"> (large boilerplate)
+
+     o Notation declarations.  For example:
+
+       &lt;!NOTATION chicken-scratch SYSTEM>
+
+     o Declarations for and references to external parameter entities
+       containing collections of any of the above.  For example:
+
+       &lt;!ENTITY % all-titles PUBLIC "-//DocTools//ELEMENTS Book Titles//EN"
+           "booktitles.ent">
+       %all-titles;
+</dtd:comment>
+
+<dtd:comment> End of DocBook XML additional general entities V4.1.2 .................. </dtd:comment>
+<dtd:comment> ...................................................................... </dtd:comment>
+
+</grammar>

@@ -285,42 +285,42 @@
 <dtd:comment> Entities for content models .......................................... </dtd:comment>
 
 <define name="div.title.content">
-  <ref name="title"/>
+  <ref name="title.element"/>
   <optional>
-    <ref name="subtitle"/>
+    <ref name="subtitle.element"/>
   </optional>
   <optional>
-    <ref name="titleabbrev"/>
+    <ref name="titleabbrev.element"/>
   </optional>
 </define>
 
 <define name="bookcomponent.title.content">
-  <ref name="title"/>
+  <ref name="title.element"/>
   <optional>
-    <ref name="subtitle"/>
+    <ref name="subtitle.element"/>
   </optional>
   <optional>
-    <ref name="titleabbrev"/>
+    <ref name="titleabbrev.element"/>
   </optional>
 </define>
 
 <define name="sect.title.content">
-  <ref name="title"/>
+  <ref name="title.element"/>
   <optional>
-    <ref name="subtitle"/>
+    <ref name="subtitle.element"/>
   </optional>
   <optional>
-    <ref name="titleabbrev"/>
+    <ref name="titleabbrev.element"/>
   </optional>
 </define>
 
 <define name="refsect.title.content">
-  <ref name="title"/>
+  <ref name="title.element"/>
   <optional>
-    <ref name="subtitle"/>
+    <ref name="subtitle.element"/>
   </optional>
   <optional>
-    <ref name="titleabbrev"/>
+    <ref name="titleabbrev.element"/>
   </optional>
 </define>
 
@@ -333,7 +333,7 @@
     </oneOrMore>
     <choice>
       <zeroOrMore>
-        <ref name="sect1"/>
+        <ref name="sect1.element"/>
       </zeroOrMore>
       <zeroOrMore>
         <choice>
@@ -341,16 +341,16 @@
         </choice>
       </zeroOrMore>
       <zeroOrMore>
-        <ref name="simplesect"/>
+        <ref name="simplesect.element"/>
       </zeroOrMore>
       <zeroOrMore>
-        <ref name="section"/>
+        <ref name="section.element"/>
       </zeroOrMore>
     </choice>
   </group>
   <choice>
     <oneOrMore>
-      <ref name="sect1"/>
+      <ref name="sect1.element"/>
     </oneOrMore>
     <oneOrMore>
       <choice>
@@ -358,14 +358,14 @@
       </choice>
     </oneOrMore>
     <oneOrMore>
-      <ref name="simplesect"/>
+      <ref name="simplesect.element"/>
     </oneOrMore>
     <oneOrMore>
-      <ref name="section"/>
+      <ref name="section.element"/>
     </oneOrMore>
   </choice>
 </define>
-     
+
 <dtd:comment> ...................................................................... </dtd:comment>
 <dtd:comment> Set and SetInfo ...................................................... </dtd:comment>
 

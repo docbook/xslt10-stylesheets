@@ -4,6 +4,24 @@
 	 xmlns:dtd="http://www.oasis-open.org/docbook/relaxng/dtdannotations"
          ns="">
 
+  <start>
+    <ref name='set.element'/>
+    <ref name='book.element'/>
+    <ref name='chapter.element'/>
+    <ref name='appendix.element'/>
+    <ref name='article.element'/>
+    <ref name='part.element'/>
+    <ref name='reference.element'/>
+    <ref name='refentry.element'/>
+    <ref name='section.element'/>
+    <ref name='sect1.element'/>
+    <ref name='sect2.element'/>
+    <ref name='sect3.element'/>
+    <ref name='sect4.element'/>
+    <ref name='sect5.element'/>
+    <ref name="para.element"/>
+  </start>
+
 <dtd:comment> ...................................................................... </dtd:comment>
 <dtd:comment> DocBook XML DTD V4.1.2 ................................................. </dtd:comment>
 <dtd:comment> File docbookx.dtd .................................................... </dtd:comment>
@@ -134,6 +152,8 @@
              system="dbgenent.mod"/>
 <dtd:pe-ref name="dbgenent"/>
 <dtd:marked-section end="dbgenent.module"/>
+
+<include href="dbgenent.mod"/>
 
 <dtd:comment> End of DocBook XML DTD V4.1.2 .......................................... </dtd:comment>
 <dtd:comment> ...................................................................... </dtd:comment>
