@@ -441,11 +441,13 @@
   <xsl:if test="$suppress.navigation = '0'">
     <div class="navheader">
       <table width="100%" summary="Navigation header">
-        <tr>
-          <th colspan="3" align="center">
-            <xsl:apply-templates select="." mode="object.title.markup"/>
-          </th>
-        </tr>
+	<xsl:if test="$navig.showtitles != 0">
+	  <tr>
+	    <th colspan="3" align="center">
+              <xsl:apply-templates select="." mode="object.title.markup"/>
+            </th>
+          </tr>
+        </xsl:if>
         <tr>
           <td width="20%" align="left">
             <xsl:if test="count($prev)>0">
@@ -455,14 +457,16 @@
                     <xsl:with-param name="object" select="$prev"/>
                   </xsl:call-template>
                 </xsl:attribute>
-                <xsl:call-template name="gentext.nav.prev"/>
+                <xsl:call-template name="navig.content">
+		    <xsl:with-param name="direction" select="'prev'"/>
+		</xsl:call-template>
               </a>
             </xsl:if>
             <xsl:text>&#160;</xsl:text>
           </td>
           <th width="60%" align="center">
             <xsl:choose>
-              <xsl:when test="count($up) > 0 and $up != $home">
+              <xsl:when test="count($up) > 0 and $up != $home and $navig.showtitles != 0">
                 <xsl:apply-templates select="$up" mode="object.title.markup"/>
               </xsl:when>
               <xsl:otherwise>&#160;</xsl:otherwise>
@@ -477,7 +481,9 @@
                     <xsl:with-param name="object" select="$next"/>
                   </xsl:call-template>
                 </xsl:attribute>
-                <xsl:call-template name="gentext.nav.next"/>
+                <xsl:call-template name="navig.content">
+		    <xsl:with-param name="direction" select="'next'"/>
+		</xsl:call-template>
               </a>
             </xsl:if>
           </td>
@@ -509,21 +515,25 @@
                     <xsl:with-param name="object" select="$prev"/>
                   </xsl:call-template>
                 </xsl:attribute>
-                <xsl:call-template name="gentext.nav.prev"/>
-              </a>
+		<xsl:call-template name="navig.content">
+		    <xsl:with-param name="direction" select="'prev'"/>
+		</xsl:call-template>
+	      </a>
             </xsl:if>
             <xsl:text>&#160;</xsl:text>
           </td>
           <td width="20%" align="center">
             <xsl:choose>
-              <xsl:when test="$home != .">
-                <a accesskey="h">
+              <xsl:when test="count($up)>0">
+                <a accesskey="u">
                   <xsl:attribute name="href">
                     <xsl:call-template name="href.target">
-                      <xsl:with-param name="object" select="$home"/>
+                      <xsl:with-param name="object" select="$up"/>
                     </xsl:call-template>
                   </xsl:attribute>
-                  <xsl:call-template name="gentext.nav.home"/>
+                  <xsl:call-template name="navig.content">
+		      <xsl:with-param name="direction" select="'up'"/>
+		  </xsl:call-template>
                 </a>
               </xsl:when>
               <xsl:otherwise>&#160;</xsl:otherwise>
@@ -538,40 +548,91 @@
                     <xsl:with-param name="object" select="$next"/>
                   </xsl:call-template>
                 </xsl:attribute>
-                <xsl:call-template name="gentext.nav.next"/>
+                <xsl:call-template name="navig.content">
+		    <xsl:with-param name="direction" select="'next'"/>
+		</xsl:call-template>
               </a>
             </xsl:if>
           </td>
         </tr>
 
         <tr>
-          <td width="40%" align="left">
-            <xsl:apply-templates select="$prev" mode="object.title.markup"/>
+          <td width="40%" align="left" valign="top">
+	    <xsl:if test="$navig.showtitles != 0">
+              <xsl:apply-templates select="$prev" mode="object.title.markup"/>
+            </xsl:if>
             <xsl:text>&#160;</xsl:text>
           </td>
           <td width="20%" align="center">
             <xsl:choose>
-              <xsl:when test="count($up)>0">
-                <a accesskey="u">
+              <xsl:when test="$home != .">
+                <a accesskey="h">
                   <xsl:attribute name="href">
                     <xsl:call-template name="href.target">
-                      <xsl:with-param name="object" select="$up"/>
+                      <xsl:with-param name="object" select="$home"/>
                     </xsl:call-template>
                   </xsl:attribute>
-                  <xsl:call-template name="gentext.nav.up"/>
+                  <xsl:call-template name="navig.content">
+		    <xsl:with-param name="direction" select="'home'"/>
+		  </xsl:call-template>
                 </a>
               </xsl:when>
               <xsl:otherwise>&#160;</xsl:otherwise>
             </xsl:choose>
           </td>
-          <td width="40%" align="right">
+          <td width="40%" align="right" valign="top">
             <xsl:text>&#160;</xsl:text>
-            <xsl:apply-templates select="$next" mode="object.title.markup"/>
+            <xsl:if test="$navig.showtitles != 0">
+              <xsl:apply-templates select="$next" mode="object.title.markup"/>
+	    </xsl:if>
           </td>
         </tr>
       </table>
     </div>
   </xsl:if>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template name="navig.content">
+    <xsl:param name="direction" select="next"/>
+    <xsl:variable name="navtext">
+        <xsl:choose>
+	    <xsl:when test="$direction = 'prev'">
+		<xsl:call-template name="gentext.nav.prev"/>
+	    </xsl:when>
+	    <xsl:when test="$direction = 'next'">
+		<xsl:call-template name="gentext.nav.next"/>
+	    </xsl:when>
+	    <xsl:when test="$direction = 'up'">
+		<xsl:call-template name="gentext.nav.up"/>
+	    </xsl:when>
+	    <xsl:when test="$direction = 'home'">
+		<xsl:call-template name="gentext.nav.home"/>
+	    </xsl:when>
+	    <xsl:otherwise>
+		<xsl:text>xxx</xsl:text>
+	    </xsl:otherwise>
+	</xsl:choose>
+    </xsl:variable>
+
+    <xsl:choose>
+	<xsl:when test="$navig.graphics != 0">
+	    <img>
+		<xsl:attribute name="src">
+		    <xsl:value-of select="$navig.graphics.path"/>
+		    <xsl:value-of select="$direction"/>
+		    <xsl:value-of select="$navig.graphics.extension"/>
+		</xsl:attribute>
+		<xsl:attribute name="alt">
+		    <xsl:value-of select="$navtext"/>
+		</xsl:attribute>
+	    </img>
+	</xsl:when>
+	<xsl:otherwise>
+	    <xsl:value-of select="$navtext"/>
+	</xsl:otherwise>
+    </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
