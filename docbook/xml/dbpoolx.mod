@@ -7421,6 +7421,8 @@ OtherCredit. -->
 		linkmode	IDREF		#IMPLIED
 		localinfo 	CDATA		#IMPLIED
 		type		CDATA		#IMPLIED
+		targetdoc	CDATA		#IMPLIED
+		targetptr	CDATA		#IMPLIED
 		%common.attrib;
 		%olink.role.attrib;
 		%local.olink.attrib;
