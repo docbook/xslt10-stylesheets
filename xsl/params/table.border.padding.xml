@@ -1,16 +1,16 @@
 <refentry>
 <refmeta>
-<refentrytitle>[[NAME]]</refentrytitle>
+<refentrytitle>table.border.padding</refentrytitle>
 <refmiscinfo role="type"></refmiscinfo>
 </refmeta>
 <refnamediv>
-<refname>[[NAME]]</refname>
+<refname>table.border.padding</refname>
 <refpurpose></refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="[[NAME]]">
-<xsl:param name="[[NAME]]" select=""/>
+<src:fragment id="table.border.padding">
+<xsl:param name="table.border.padding" select="'2pt'"/>
 </src:fragment>
 </refsynopsisdiv>
 
