@@ -10666,6 +10666,9 @@ OtherCredit. -->
               <value>xmlpi</value>
               <value>starttag</value>
               <value>sgmlcomment</value>
+              <value>prefix</value>
+              <value>namespace</value>
+              <value>localname</value>
             </choice>
           </attribute>
         </optional>
