@@ -82,4 +82,45 @@ endif
 endif
 endif
 
+distrib:
+	$(CVS2LOG) -w
+ifeq ($(DIFFVER),)
+	$(MERGELOGS) > WhatsNew
+else
+	$(MERGELOGS) -v $(DIFFVER) > WhatsNew
+endif
+
+newversion:
+ifeq ($(NEXTVER),)
+	$(NEXTVERSION)
+else
+	$(NEXTVERSION) -v $(NEXTVER)
+endif
+	make DIFFVER=$(DIFFVER) distrib
+
+zip:
+ifeq ($(ZIPVER),)
+	@echo You must specify ZIPVER for the zip target
+else
+	rm -rf /tmp/docbook-testdocs-$(ZIPVER)
+	rm -f /tmp/tar.exclude
+	rm -f /tmp/docbook-testdocs-$(ZIPVER).tar.gz
+	rm -f /tmp/docbook-testdocs-$(ZIPVER).zip
+	mkdir /tmp/docbook-testdocs-$(ZIPVER)
+	touch /tmp/tar.exclude
+	find . -print  | grep /CVS$$ | cut -c3- >> /tmp/tar.exclude
+	find . -print  | grep /CVS/ | cut -c3- >> /tmp/tar.exclude
+	find . -print  | grep .classes | cut -c3- >> /tmp/tar.exclude
+	find . -type f -name "*~"  | cut -c3- >> /tmp/tar.exclude
+	find . -type f -name ".*~"  | cut -c3- >> /tmp/tar.exclude
+	find . -type f -name "#*"  | cut -c3- >> /tmp/tar.exclude
+	find . -type f -name ".cvsignore"  | cut -c3- >> /tmp/tar.exclude
+	find . -type f -name "Makefile*"   | cut -c3- >> /tmp/tar.exclude
+	find . -type f -name "README.CVS"   | cut -c3- >> /tmp/tar.exclude
+	tar cf - * --exclude-from /tmp/tar.exclude | (cd /tmp/docbook-testdocs-$(ZIPVER); tar xf -)
+	cd /tmp && tar cf - docbook-testdocs-$(ZIPVER) | gzip > docbook-testdocs-$(ZIPVER).tar.gz
+	cd /tmp && zip -rpD docbook-testdocs-$(ZIPVER).zip docbook-testdocs-$(ZIPVER)
+	rm -f tar.exclude
+endif
+
 # EOF
