@@ -12,6 +12,7 @@ all: docbook.html
 docbook.html: docbook.xml
 	$(XJPARSE) $<
 	$(XSLT) $< $(HTMLSTYLE) $@ $(XSLPARAM)
+	tidy -q -utf8 -mn -asxml $@
 
 docbook.fo: docbook.xml
 	$(XJPARSE) $<
