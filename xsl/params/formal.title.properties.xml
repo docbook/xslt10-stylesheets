@@ -9,7 +9,10 @@
 <xsl:attribute-set name="formal.title.properties"
 	           use-attribute-sets="normal.para.spacing">
   <xsl:attribute name="font-weight">bold</xsl:attribute>
-  <xsl:attribute name="font-size">12pt</xsl:attribute>
+  <xsl:attribute name="font-size">
+    <xsl:value-of select="$body.font.master * 1.2"/>
+    <xsl:text>pt</xsl:text>
+  </xsl:attribute>
   <xsl:attribute name="hyphenate">false</xsl:attribute>
   <xsl:attribute name="space-after.minimum">0.4em</xsl:attribute>
   <xsl:attribute name="space-after.optimum">0.6em</xsl:attribute>
