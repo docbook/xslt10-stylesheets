@@ -302,6 +302,7 @@ zero by default, so this is simply the page-master region-left.
 <reference><title>Lists</title>
 &list.block.spacing;
 &list.item.spacing;
+&compact.list.item.spacing;
 </reference>
 
 <reference><title>Cross References</title>
@@ -399,6 +400,7 @@ around all these parameters.</para>
 <src:fragref linkend="chapter.autolabel.frag"/>
 <src:fragref linkend="column.count.frag"/>
 <src:fragref linkend="column.count.of.index.frag"/>
+<src:fragref linkend="compact.list.item.spacing.frag"/>
 <src:fragref linkend="component.title.properties.frag"/>
 <src:fragref linkend="default.table.width.frag"/>
 <src:fragref linkend="default.units.frag"/>

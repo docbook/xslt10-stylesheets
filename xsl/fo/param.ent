@@ -29,6 +29,7 @@
 <!ENTITY chapter.autolabel SYSTEM "../params/chapter.autolabel.xml">
 <!ENTITY column.count SYSTEM "../params/column.count.xml">
 <!ENTITY column.count.of.index SYSTEM "../params/column.count.of.index.xml">
+<!ENTITY compact.list.item.spacing SYSTEM "../params/compact.list.item.spacing.xml">
 <!ENTITY component.title.properties SYSTEM "../params/component.title.properties.xml">
 <!ENTITY default.table.width SYSTEM "../params/default.table.width.xml">
 <!ENTITY default.units SYSTEM "../params/default.units.xml">
