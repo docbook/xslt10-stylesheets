@@ -15,7 +15,7 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-db.general.inlines |= db.glossary.inlines
+db.publishing.inlines |= db.glossary.inlines
 db.list.blocks |= db.glosslist
 db.navigation.components |= db.glossary
 
@@ -293,4 +293,33 @@ div {
       }
 }
 
+# ======================================================================
 
+[
+   db:refname [ "termdef" ]
+   db:refpurpose [ "An inline definition of a term" ]
+]
+div {
+   db.termdef.role.attribute = attribute role { text }
+
+   db.termdef.attlist =
+      db.termdef.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.baseform.attribute
+
+   db.termdef =
+      [
+         s:rule [
+            context = "db:termdef"
+            s:assert [
+               test = "count(db:glossterm) != 1"
+               "A termdef must contain a glossterm"
+            ]
+         ]
+      ]
+      element termdef {
+         db.termdef.attlist,
+         db.all.inlines*
+      }
+}

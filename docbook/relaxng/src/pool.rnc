@@ -1846,28 +1846,6 @@ div {
 # ======================================================================
 
 [
-   db:refname [ "termdef" ]
-   db:refpurpose [ "An inline definition of a term" ]
-]
-div {
-
-   db.termdef.role.attribute = attribute role { text }
-
-   db.termdef.attlist =
-      db.termdef.role.attribute?
-    & db.common.attributes
-    & db.common.linking.attributes
-
-   db.termdef =
-      element termdef {
-         db.termdef.attlist,
-         (db.all.inlines* & db.glossterm)
-      }
-}
-
-# ======================================================================
-
-[
    db:refname [ "example" ]
    db:refpurpose [ "A formal example, with a title" ]
 ]
