@@ -648,7 +648,18 @@
     </xsl:when>
 
     <xsl:when test="$glossterm.auto.link != 0">
-      <xsl:variable name="targets" select="//glossentry[glossterm=string(current())]"/>
+      <xsl:variable name="term">
+        <xsl:choose>
+          <xsl:when test="@baseform">
+            <xsl:value-of select="@baseform"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="."/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:variable name="targets" 
+                    select="//glossentry[glossterm=$term or glossterm/@baseform=$term]"/>
       <xsl:variable name="target" select="$targets[1]"/>
 
       <xsl:choose>
