@@ -149,6 +149,10 @@
 <gentext key="Warning" text="&Vcy;&ncy;&icy;&mcy;&acy;&ncy;&icy;&iecy;"/>
 
 <gentext key="and" text=""/> <!-- as far as it's seen "and" is used only in 
+                               the list of author names, but "and" in such 
+                               lists of Russian books is not traditionally 
+                               used (I. Kouznetsov) -->
+
 <gentext key="by" text=""/>
 <gentext key="called" text=""/>
 <gentext key="edited" text="&Pcy;&ocy;&dcy; &rcy;&iecy;&dcy;&acy;&kcy;&tscy;&icy;&iecy;&jcy;"/>
@@ -158,9 +162,6 @@
 <gentext key="in" text="&vcy;"/>
 <gentext key="TableofContents" text="&Scy;&ocy;&dcy;&iecy;&rcy;&zhcy;&acy;&ncy;&icy;&iecy;"/>
 <gentext key="tableofcontents" text="&Scy;&ocy;&dcy;&iecy;&rcy;&zhcy;&acy;&ncy;&icy;&iecy;"/>
-                               the list of author names, but "and" in such 
-                               lists of Russian books is not traditionally 
-                               used (I. Kouznetsov) -->
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
 <gentext key="Notes" text="&Pcy;&rcy;&icy;&mcy;&iecy;&chcy;&acy;&ncy;&icy;&yacy;"/>
