@@ -1,4 +1,4 @@
-CLASSPATH=$(CLASSBASE):/usr/local/java/saxon-6.5.2/saxon.jar
+CLASSPATH=$(CLASSBASE):/usr/local/java/saxon6/saxon.jar
 
 all: $(CLASSFILES)
 	-@for f in $(SUBDIRS); do \
