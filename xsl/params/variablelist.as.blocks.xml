@@ -26,10 +26,21 @@ to produce block markup instead of proper lists.</para>
 <para>You can override this setting with a processing instruction as the
 child of <sgmltag>variablelist</sgmltag>: <sgmltag class="pi">dbfo
 list-presentation="blocks"</sgmltag> or <sgmltag class="pi">dbfo
-list-presentation="list"</sgmltag></para>
+list-presentation="list"</sgmltag>.</para>
+
+<para>When using <literal>list-presentation="list"</literal>,
+you can also control the amount of space used for the <sgmltag>term</sgmltag>s with 
+the <sgmltag class="pi">dbfo term-width=".25in"</sgmltag> processing instruction,
+the <sgmltag class="attribute">termlength</sgmltag> attribute on <sgmltag>variablelist</sgmltag>,
+or allow the stylesheets to attempt to calculate the amount of space to leave based on the 
+number of letters in the longest term.  
+</para>
 
 <programlisting><![CDATA[  <variablelist>
         <?dbfo list-presentation="list"?>
+        <?dbfo term-width="1.5in"?>
+        <?dbhtml list-presentation="table"?>
+        <?dbhtml term-width="1.5in"?>
         <varlistentry>
           <term>list</term>
           <listitem>
@@ -39,6 +50,8 @@ list-presentation="list"</sgmltag></para>
           </listitem>
         </varlistentry>
   </variablelist>]]></programlisting>
+
+
 </refsect1>
 
 </refentry>
