@@ -306,10 +306,24 @@
 
 <xsl:template match="question" mode="qandatoc.mode">
   <xsl:variable name="firstch" select="(*[name(.)!='label'])[1]"/>
+  <xsl:variable name="deflabel">
+    <xsl:choose>
+      <xsl:when test="ancestor-or-self::*[@defaultlabel]">
+        <xsl:value-of select="(ancestor-or-self::*[@defaultlabel])[last()]
+                              /@defaultlabel"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$qanda.defaultlabel"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <dt>
     <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:text>. </xsl:text> <!-- FIXME: Hack!!! This should be in the locale! -->
+    <xsl:if test="$deflabel = 'number' and not(label)">
+      <xsl:apply-templates select="." mode="intralabel.punctuation"/>
+    </xsl:if>
+    <xsl:text> </xsl:text>
     <a>
       <xsl:attribute name="href">
         <xsl:call-template name="href.target">
