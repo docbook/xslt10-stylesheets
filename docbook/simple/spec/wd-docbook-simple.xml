@@ -40,7 +40,8 @@ Standards [OASIS]. All Rights Reserved.
 <abstract>
 
 <para>Simplified DocBook is a subset of
-<ulink url="http://www.oasis-open.org/docbook/">DocBook</ulink>. It is a
+<ulink url="http://www.oasis-open.org/docbook/xml/">DocBook XML V4.2</ulink>.
+It is a
 a general purpose XML document type suited to articles about computer hardware
 and software (though it is by no means limited to these applications).
 </para>
@@ -131,7 +132,7 @@ document.</para>
 <title>The Simplified DocBook Document Type V1.0CR3</title>
 
 <para>The Simplified DocBook document type is a subset of
-<ulink url="http://www.oasis-open.org/docbook/xml/">DocBook XML V4.2</ulink>.
+<xref linkend="bib.docbook42"/>.
 It is distributed from the
 <ulink url="http://www.oasis-open.org/docbook/">DocBook site</ulink> at
 <ulink url="http://www.oasis-open.org/">OASIS</ulink>.
@@ -382,6 +383,7 @@ of the DocBook web page
 
 <bibliomixed id="xml-rec"/>
 <bibliomixed id="rfc2119"/>
+<bibliomixed id="bib.docbook42"/>
 
 </bibliodiv>
 
