@@ -91,7 +91,11 @@
             <div class="{name(.)}">
               <p>
                 <xsl:call-template name="number.rtf.lines">
-                  <xsl:with-param name="rtf" select="$rtf"/>
+                  <xsl:with-param name="rtf">
+                    <xsl:call-template name="make-verbatim">
+                      <xsl:with-param name="text" select="translate($rtf,' ','&#160;')"/>
+                    </xsl:call-template>
+                  </xsl:with-param>
                 </xsl:call-template>
               </p>
             </div>
@@ -109,7 +113,9 @@
           <xsl:otherwise>
             <div class="{name(.)}">
               <p>
-                <xsl:copy-of select="$rtf"/>
+                <xsl:call-template name="make-verbatim">
+                  <xsl:with-param name="text" select="translate($rtf,' ','&#160;')"/>
+                </xsl:call-template>
               </p>
             </div>
           </xsl:otherwise>
