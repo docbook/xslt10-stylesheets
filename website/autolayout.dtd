@@ -59,17 +59,18 @@
 
 <!ELEMENT tocentry (title, titleabbrev?, summary?, tocentry*)>
 <!ATTLIST tocentry
-	id		CDATA	#REQUIRED
+	id		ID	#REQUIRED
 	page		CDATA	#IMPLIED
 	href		CDATA	#IMPLIED
 	dir		CDATA	#IMPLIED
 	filename	CDATA	#IMPLIED
+	revisionflag	(added|changed)	#IMPLIED
 	tocskip		(0|1)	"0"
 >
 
 <!ELEMENT notoc (title, titleabbrev?, summary?)>
 <!ATTLIST notoc
-	id		CDATA	#REQUIRED
+	id		ID	#REQUIRED
 	page		CDATA	#REQUIRED
 	dir		CDATA	#IMPLIED
 	filename	CDATA	#REQUIRED
