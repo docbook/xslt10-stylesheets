@@ -1,4 +1,4 @@
-<refentry id="suppress.navigation">
+<refentry id="suppress.header.navigation">
 <refmeta>
 <refentrytitle>suppress.header.navigation</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
