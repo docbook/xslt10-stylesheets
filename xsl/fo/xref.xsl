@@ -865,7 +865,7 @@
             </xsl:when>
             <xsl:when test="$axf.extensions != 0">
               <fo:basic-link external-destination="{$href}"
-                             xsl:use-attribute-sets="xref.properties"
+                             xsl:use-attribute-sets="olink.properties"
                              show-destination="replace">
                 <xsl:copy-of select="$hottext"/>
               </fo:basic-link>
@@ -874,7 +874,7 @@
             </xsl:when>
             <xsl:otherwise>
               <fo:basic-link external-destination="{$href}"
-                             xsl:use-attribute-sets="xref.properties"
+                             xsl:use-attribute-sets="olink.properties"
                              show-destination="replace">
                 <xsl:copy-of select="$hottext"/>
               </fo:basic-link>
