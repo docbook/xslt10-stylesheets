@@ -18,6 +18,26 @@ This file documents (mostly) changes to the public APIs. What,
 exactly, counts as a public API is still somewhat in question, but it
 includes at least the global parameters.</para>
 
+<itemizedlist><title>Release 1.54.1</title>
+
+<para>The 1.54.1 release fixes a couple of bugs in 1.54.0.
+</para>
+
+<listitem>
+<para>Remove spurious character from <filename>common.xsl</filename>. This bug
+was a fatal error in Xalan2.</para>
+</listitem>
+
+<listitem>
+<para>Make sure empty cells inherit from their row.</para>
+</listitem>
+
+<listitem>
+<para>Actually support <sgmltag>refsection</sgmltag> in HTML.</para>
+</listitem>
+
+</itemizedlist>
+
 <itemizedlist><title>Release 1.54.0</title>
 
 <para>The 1.54.0 release fixes some bugs and adds a couple of new features.
