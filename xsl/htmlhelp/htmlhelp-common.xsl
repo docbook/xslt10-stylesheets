@@ -24,6 +24,16 @@ apropriate single-byte encoding here.</para>
 </refdescription>
 </doc:param>
 
+<xsl:param name="htmlhelp.autolabel" select="0"/>
+
+<doc:param name="htmlhelp.autolabel" xmlns="">
+<refpurpose>Should tree-like ToC use autonumbering feature?</refpurpose>
+<refdescription>
+<para>If you want to include chapter and section numbers into ToC in
+the left panel, set this parameter to 1.</para>
+</refdescription>
+</doc:param>
+
 <xsl:param name="suppress.navigation" select="1"/>
 
 <!-- ==================================================================== -->
@@ -145,6 +155,10 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
 <xsl:template match="set" mode="hhc">
   <xsl:variable name="title">
+    <xsl:if test="$htmlhelp.autolabel=1">
+      <xsl:apply-templates select="." mode="label.markup"/>
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
@@ -165,6 +179,10 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
 <xsl:template match="book" mode="hhc">
   <xsl:variable name="title">
+    <xsl:if test="$htmlhelp.autolabel=1">
+      <xsl:apply-templates select="." mode="label.markup"/>
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
@@ -187,6 +205,10 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 <xsl:template match="part|reference|preface|chapter|appendix|article"
               mode="hhc">
   <xsl:variable name="title">
+    <xsl:if test="$htmlhelp.autolabel=1">
+      <xsl:apply-templates select="." mode="label.markup"/>
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
@@ -209,6 +231,10 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
 <xsl:template match="section" mode="hhc">
   <xsl:variable name="title">
+    <xsl:if test="$htmlhelp.autolabel=1">
+      <xsl:apply-templates select="." mode="label.markup"/>
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
@@ -229,6 +255,10 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
 <xsl:template match="sect1" mode="hhc">
   <xsl:variable name="title">
+    <xsl:if test="$htmlhelp.autolabel=1">
+      <xsl:apply-templates select="." mode="label.markup"/>
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
@@ -250,6 +280,10 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
 <xsl:template match="sect2" mode="hhc">
   <xsl:variable name="title">
+    <xsl:if test="$htmlhelp.autolabel=1">
+      <xsl:apply-templates select="." mode="label.markup"/>
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
@@ -271,6 +305,10 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
 <xsl:template match="sect3" mode="hhc">
   <xsl:variable name="title">
+    <xsl:if test="$htmlhelp.autolabel=1">
+      <xsl:apply-templates select="." mode="label.markup"/>
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
@@ -292,6 +330,10 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
 <xsl:template match="sect4" mode="hhc">
   <xsl:variable name="title">
+    <xsl:if test="$htmlhelp.autolabel=1">
+      <xsl:apply-templates select="." mode="label.markup"/>
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
@@ -313,6 +355,10 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
 <xsl:template match="sect5|refentry|colophon" mode="hhc">
   <xsl:variable name="title">
+    <xsl:if test="$htmlhelp.autolabel=1">
+      <xsl:apply-templates select="." mode="label.markup"/>
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
