@@ -18,7 +18,7 @@ This file documents (mostly) changes to the public APIs. What,
 exactly, counts as a public API is still somewhat in question, but it
 includes at least the global parameters.</para>
 
-<itemizedlist><title>Release 1.60.0</title>
+<itemizedlist><title>Release 1.60.1</title>
 
 <para>Lots of bug fixes.</para>
 
@@ -69,6 +69,83 @@ titlepage centered by specifying the font and alignment on the those elements:</
              text-align="center"></programlisting>
 
 </listitem>
+
+<listitem><para>Support use of <sgmltag>titleabbrev</sgmltag> in running
+headers and footers.
+</para></listitem>
+
+<listitem><para>Added (experimental) <parameter>xref.with.number.and.title</parameter>
+parameter to enable number/title cross references even when the default would
+be just the number.
+</para></listitem>
+
+<listitem><para>Generate <sgmltag>part</sgmltag> ToCs if they're requested.
+</para></listitem>
+
+<listitem><para>Use proportional-column-width() in header/footer tables.
+</para></listitem>
+
+<listitem><para>Handle alignment correctly when <sgmltag>screenshot</sgmltag>
+wraps a graphic in a <sgmltag>figure</sgmltag>.
+</para></listitem>
+
+<listitem><para>Format <sgmltag>chapter</sgmltag> and <sgmltag>appendix</sgmltag>
+cross references consistently.
+</para></listitem>
+
+<listitem><para>Attempt to support tables with multiple <sgmltag>tgroup</sgmltag>s
+in FO.
+</para></listitem>
+
+<listitem><para>Output <sgmltag>fo:table-columns</sgmltag> in
+<sgmltag>simplelist</sgmltag> tables.
+</para></listitem>
+
+<listitem><para>Use <filename>titlepage.templates.xml</filename> for
+<sgmltag>indexdiv</sgmltag> and <sgmltag>glossdiv</sgmltag> formatting.
+</para></listitem>
+
+<listitem><para>Improve support for new bibliography elements.
+</para></listitem>
+
+<listitem><para>Added
+<parameter>footnote.number.format</parameter>,
+<parameter>table.footnote.number.format</parameter>,
+<parameter>footnote.number.symbols</parameter>, and
+<parameter>table.footnote.number.symbols</parameter> for better control of
+footnote markers.
+</para></listitem>
+
+<listitem><para>Added <sgmltag>glossentry.show.acronyms</sgmltag>.
+</para></listitem>
+
+<listitem><para>Suppress the draft-mode page masters when
+<parameter>draft-mode</parameter> is <quote>no</quote>.
+</para></listitem>
+
+<listitem><para>Make blank pages verso not recto. D'Oh!
+</para></listitem>
+
+<listitem><para>Improved formatting of <sgmltag>ulink</sgmltag> footnotes.
+</para></listitem>
+
+<listitem><para>Fixed bugs in graphic width/height calculations.
+</para></listitem>
+
+<listitem><para>Added class attributes to inline elements.
+</para></listitem>
+
+<listitem><para>Don't add <quote>.html</quote> to the filenames identified
+with the <quote>dbhtml</quote> PI.
+</para></listitem>
+
+<listitem><para>Don't force a ToC when sections contain <sgmltag>refentry</sgmltag>s.
+</para></listitem>
+
+<listitem><para>Make section title sizes a function of the
+<parameter>body.master.size</parameter>.
+</para></listitem>
+
 </itemizedlist>
 
 <itemizedlist><title>Release 1.59.2</title>
