@@ -15,6 +15,7 @@ import org.apache.xpath.objects.XObject;
 import org.apache.xpath.XPath;
 import org.apache.xpath.XPathContext;
 import org.apache.xpath.NodeSet;
+import org.apache.xpath.DOMHelper;
 import org.apache.xalan.extensions.XSLProcessorContext;
 import org.apache.xalan.extensions.ExpressionContext;
 import org.apache.xalan.transformer.TransformerImpl;
@@ -107,6 +108,8 @@ public class Verbatim {
   private static final String foURI = "http://www.w3.org/1999/XSL/Format";
   private static final String xhURI = "http://www.w3.org/1999/xhtml";
 
+  protected DOMHelper dh = null;
+
   /**
    * <p>Constructor for Verbatim</p>
    *
@@ -156,6 +159,10 @@ public class Verbatim {
    */
   public DocumentFragment numberLines (ExpressionContext context,
 				       NodeIterator xalanNI) {
+
+    // HACK!!!
+    XPathContext xpcontext = (XPathContext) context;
+    dh = xpcontext.getDOMHelper();
 
     int xalanMod = Params.getInt(context, "linenumbering.everyNth");
     int xalanWidth = Params.getInt(context, "linenumbering.width");
@@ -258,7 +265,7 @@ public class Verbatim {
 	String localName = node.getLocalName();
 	String name = ((Element) node).getTagName();
 	NamedNodeMap domAttr = node.getAttributes();
-	AttList attr = new AttList(domAttr);
+	AttList attr = new AttList(domAttr, dh);
 
 	rtf.startElement(ns, localName, name, attr);
 	elementStack.push(node);
@@ -442,6 +449,10 @@ public class Verbatim {
 					  NodeIterator areaspecNodeSet,
 					  NodeIterator xalanNI) {
 
+    // HACK!!!
+    XPathContext xpcontext = (XPathContext) context;
+    dh = xpcontext.getDOMHelper();
+
     String type = Params.getString(context, "stylesheet.result.type");
     boolean useFO = type.equals("fo");
     int defaultColumn = Params.getInt(context, "callout.defaultcolumn");
@@ -599,7 +610,7 @@ public class Verbatim {
 	String localName = node.getLocalName();
 	String name = ((Element) node).getTagName();
 	NamedNodeMap domAttr = node.getAttributes();
-	AttList attr = new AttList(domAttr);
+	AttList attr = new AttList(domAttr, dh);
 
 	rtf.startElement(ns, localName, name, attr);
 	elementStack.push(node);
@@ -720,7 +731,7 @@ public class Verbatim {
     Element area = (Element) node;
 
     NamedNodeMap domAttr = node.getAttributes();
-    AttList attr = new AttList(domAttr);
+    AttList attr = new AttList(domAttr, dh);
 
     String units = attr.getValue("units");
     String otherUnits = attr.getValue("otherunits");

@@ -18,6 +18,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.apache.xml.utils.QName;
+import org.apache.xpath.DOMHelper;
 import org.apache.xml.utils.AttList;
 
 /**
@@ -279,6 +280,10 @@ public class Table {
   public DocumentFragment adjustColumnWidths (ExpressionContext context,
 					      NodeIterator xalanNI) {
 
+    // HACK!!!
+    XPathContext xpcontext = (XPathContext) context;
+    DOMHelper dh = xpcontext.getDOMHelper();
+
     int nominalWidth = convertLength(Params.getString(context,
 						      "nominal.table.width"));
     String tableWidth = Params.getString(context, "table.width");
@@ -324,7 +329,7 @@ public class Table {
 		  && child.getLocalName().equals("table-column")))) {
 	Element col = (Element) child;
 	NamedNodeMap domAttr = col.getAttributes();
-	AttList attr = new AttList(domAttr);
+	AttList attr = new AttList(domAttr,dh);
 
 	columns[colnum] = col;
 
@@ -477,7 +482,7 @@ public class Table {
       String localName = colgroup.getLocalName();
       String name = colgroup.getTagName();
       NamedNodeMap colgroupDomAttr = colgroup.getAttributes();
-      AttList colgroupAttr = new AttList(colgroupDomAttr);
+      AttList colgroupAttr = new AttList(colgroupDomAttr,dh);
 
       if (colgroup.getLocalName().equals("colgroup")) {
 	rtf.startElement(ns, localName, name, colgroupAttr);
