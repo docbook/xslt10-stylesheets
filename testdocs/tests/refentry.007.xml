@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+          "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<article>
+<articleinfo>
+<title>Unit Test: refentry.007</title>
+<releaseinfo role="CVS">$Id$</releaseinfo>
+<author><firstname>Norman</firstname><surname>Walsh</surname>
+        <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
+</author>
+</articleinfo>
+
+<refentry>
+<refnamediv>
+<refname>FirstName</refname>
+<refpurpose>Purpose for FirstName</refpurpose>
+</refnamediv>
+
+<refnamediv>
+<refname>SecondName</refname>
+<refpurpose>Purpose for SecondName</refpurpose>
+</refnamediv>
+
+<refsect1>
+<title>Description</title>
+<para>This is a minimal RefEntry.</para>
+
+<refsect2>
+<title>Subsection</title>
+<para>This is a minimal RefEntry.</para>
+
+<refsect3>
+<title>Sub-subsection</title>
+<para>This is a minimal RefEntry.</para>
+</refsect3>
+</refsect2>
+</refsect1>
+
+<refsect1>
+<title>More Description</title>
+<para>This is a not-so minimal RefEntry.</para>
+</refsect1>
+
+<refsect1>
+<title>Even More Description</title>
+<para>This is an even less minimal RefEntry.</para>
+</refsect1>
+
+</refentry>
+</article>
