@@ -469,6 +469,15 @@
   <xsl:value-of select="translate($content,'&#8722;','-')"/>
 </xsl:template>
 
+<xsl:template name="replace-nbsp">
+  <xsl:param name="content" select="''"/>
+  <xsl:call-template name="replace-string">
+    <xsl:with-param name="content" select="$content"/>
+    <xsl:with-param name="replace" select="'&#x00a0;'"/>
+    <xsl:with-param name="with" select="'\~'"/>
+  </xsl:call-template>
+</xsl:template>
+
 <xsl:template name="replace-backslash">
   <xsl:param name="content" select="''"/>
   <xsl:call-template name="replace-string">
@@ -506,8 +515,12 @@
                         <xsl:with-param name="content">
         		  <xsl:call-template name="replace-period">
                             <xsl:with-param name="content">
-                              <xsl:call-template name="replace-backslash">
-		                <xsl:with-param name="content" select="$content"/>
+                              <xsl:call-template name="replace-nbsp">
+		                <xsl:with-param name="content">
+		                  <xsl:call-template name="replace-backslash">
+		                    <xsl:with-param name="content" select="$content"/>
+			          </xsl:call-template>
+			        </xsl:with-param>
 			      </xsl:call-template>
 			    </xsl:with-param>
 			  </xsl:call-template>
@@ -536,7 +549,7 @@
     <xsl:when test="$dingbat='trade'">\(tm</xsl:when>
     <xsl:when test="$dingbat='registered'">\(rg</xsl:when>
     <xsl:when test="$dingbat='service'">(SM)</xsl:when>
-    <xsl:when test="$dingbat='nbsp'">&#x00A0;</xsl:when>
+    <xsl:when test="$dingbat='nbsp'">\~</xsl:when>
     <xsl:when test="$dingbat='ldquo'">\(lq</xsl:when>
     <xsl:when test="$dingbat='rdquo'">\(rq</xsl:when>
     <xsl:when test="$dingbat='lsquo'">`</xsl:when>
