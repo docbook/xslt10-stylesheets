@@ -34,6 +34,49 @@ the left panel, set this parameter to 1.</para>
 </refdescription>
 </doc:param>
 
+<xsl:param name="htmlhelp.chm" select="'htmlhelp.chm'"/>
+
+<doc:param name="htmlhelp.chm" xmlns="">
+<refpurpose>Filename of output HTML Help file.</refpurpose>
+<refdescription>
+<para>Change this parameter if you want different name of result
+CHM file than htmlhelp.chm.</para>
+</refdescription>
+</doc:param>
+
+<xsl:param name="htmlhelp.hhp" select="'htmlhelp.hhp'"/>
+
+<doc:param name="htmlhelp.hhp" xmlns="">
+<refpurpose>Filename of project file.</refpurpose>
+<refdescription>
+<para>Change this parameter if you want different name of project
+file than htmlhelp.hhp.</para>
+</refdescription>
+</doc:param>
+
+<xsl:param name="htmlhelp.hhc" select="'toc.hhc'"/>
+
+<doc:param name="htmlhelp.hhc" xmlns="">
+<refpurpose>Filename of TOC file.</refpurpose>
+<refdescription>
+<para>Change this parameter if you want different name of TOC file
+than toc.hhc.</para>
+</refdescription>
+</doc:param>
+
+<xsl:param name="htmlhelp.hhp.tail"/>
+
+<doc:param name="htmlhelp.hhp.tail" xmlns="">
+<refpurpose>Additional content for project file.</refpurpose>
+<refdescription>
+<para>If you want to include some additional parameters into project file,
+store appropriate part of project file into this parameter.</para>
+</refdescription>
+</doc:param>
+
+<!-- ==================================================================== -->
+<!-- Customizations of standard HTML stylesheet parameters -->
+
 <xsl:param name="suppress.navigation" select="1"/>
 
 <!-- ==================================================================== -->
@@ -48,7 +91,7 @@ the left panel, set this parameter to 1.</para>
 
 <xsl:template name="hhp">
   <xsl:call-template name="write.text.chunk">
-    <xsl:with-param name="filename" select="'htmlhelp.hhp'"/>
+    <xsl:with-param name="filename" select="$htmlhelp.hhp"/>
     <xsl:with-param name="method" select="'text'"/>
     <xsl:with-param name="content">
       <xsl:call-template name="hhp-main"/>
@@ -65,8 +108,8 @@ the left panel, set this parameter to 1.</para>
 <xsl:text>Auto Index=Yes
 </xsl:text></xsl:if>
 <xsl:text>Compatibility=1.1 or later
-Compiled file=htmlhelp.chm
-Contents file=toc.hhc
+Compiled file=</xsl:text><xsl:value-of select="$htmlhelp.chm"/><xsl:text>
+Contents file=</xsl:text><xsl:value-of select="$htmlhelp.hhc"/><xsl:text>
 Default topic=</xsl:text>
  <xsl:call-template name="make-relative-filename">
    <xsl:with-param name="base.dir" select="$base.dir"/>
@@ -92,6 +135,7 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 [FILES]
 </xsl:text>
 <xsl:apply-templates mode="enumerate-files"/>
+<xsl:value-of select="$htmlhelp.hhp.tail"/>
 </xsl:template>
 <!-- ==================================================================== -->
 
@@ -128,7 +172,7 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
 <xsl:template name="hhc">
   <xsl:call-template name="write.text.chunk">
-    <xsl:with-param name="filename" select="'toc.hhc'"/>
+    <xsl:with-param name="filename" select="$htmlhelp.hhc"/>
     <xsl:with-param name="method" select="'text'"/>
     <xsl:with-param name="content">
       <xsl:call-template name="hhc-main"/>
