@@ -44,7 +44,9 @@
       </xsl:otherwise>
     </xsl:choose>
 
-    <xsl:call-template name="process.footnotes"/>
+    <xsl:if test="not(parent::article)">
+      <xsl:call-template name="process.footnotes"/>
+    </xsl:if>
   </div>
 </xsl:template>
 
@@ -270,7 +272,9 @@ GlossEntry ::=
       </xsl:otherwise>
     </xsl:choose>
 
-    <xsl:call-template name="process.footnotes"/>
+    <xsl:if test="not(parent::article)">
+      <xsl:call-template name="process.footnotes"/>
+    </xsl:if>
   </div>
 </xsl:template>
 
