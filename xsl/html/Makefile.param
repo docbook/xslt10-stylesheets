@@ -123,6 +123,8 @@ PARAMS=../params/admon.graphics.xml \
        ../params/table.borders.with.css.xml \
        ../params/tablecolumns.extension.xml \
        ../params/textinsert.extension.xml \
+       ../params/tex.math.in.alt.xml \
+       ../params/tex.math.file.xml \
        ../params/toc.list.type.xml \
        ../params/toc.section.depth.xml \
        ../params/ulink.target.xml \

@@ -216,6 +216,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &shade.verbatim.style;
 &punct.honorific;
 &segmentedlist.as.table;
+&tex.math.in.alt;
+&tex.math.file;
 </reference>
 
 <reference><title>Chunking</title>
@@ -395,6 +397,8 @@ around all these parameters.</para>
 <src:fragref linkend="table.borders.with.css.frag"/>
 <src:fragref linkend="tablecolumns.extension.frag"/>
 <src:fragref linkend="textinsert.extension.frag"/>
+<src:fragref linkend="tex.math.file.frag"/>
+<src:fragref linkend="tex.math.in.alt.frag"/>
 <src:fragref linkend="toc.list.type.frag"/>
 <src:fragref linkend="toc.section.depth.frag"/>
 <src:fragref linkend="ulink.target.frag"/>
