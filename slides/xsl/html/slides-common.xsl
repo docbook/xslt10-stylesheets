@@ -554,6 +554,33 @@
   <!-- nop -->
 </xsl:template>
 
+<!-- On slides, output the credits explicitly each time -->
+<xsl:template match="othercredit" mode="titlepage.mode">
+  <xsl:variable name="contrib" select="string(contrib)"/>
+  <xsl:choose>
+    <xsl:when test="contrib">
+      <xsl:call-template name="paragraph">
+	<xsl:with-param name="class" select="name(.)"/>
+	<xsl:with-param name="content">
+	  <xsl:apply-templates mode="titlepage.mode" select="contrib"/>
+	  <xsl:text>: </xsl:text>
+	  <xsl:call-template name="person.name"/>
+	  <xsl:apply-templates mode="titlepage.mode" select="./affiliation"/>
+	</xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="paragraph">
+        <xsl:with-param name="class" select="name(.)"/>
+        <xsl:with-param name="content">
+          <xsl:call-template name="person.name"/>
+        </xsl:with-param>
+      </xsl:call-template>
+      <xsl:apply-templates mode="titlepage.mode" select="./affiliation"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <!-- ====================================================================== -->
 <!-- toc -->
 
