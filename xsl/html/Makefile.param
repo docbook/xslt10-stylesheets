@@ -25,6 +25,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/chunk.first.sections.xml \
        ../params/chunk.quietly.xml \
        ../params/chunk.section.depth.xml \
+       ../params/chunk.separate.lots.xml \
        ../params/chunk.toc.xml \
        ../params/chunker.output.cdata-section-elements.xml \
        ../params/chunker.output.doctype-public.xml \
@@ -120,6 +121,8 @@ PARAMS=../params/admon.graphics.xml \
        ../params/htmlhelp.title.xml \
        ../params/htmlhelp.use.hhk.xml \
        ../params/htmlhelp.window.geometry.xml \
+       ../params/index.on.role.xml \
+       ../params/index.on.type.xml \
        ../params/inherit.keywords.xml \
        ../params/label.from.part.xml \
        ../params/linenumbering.everyNth.xml \

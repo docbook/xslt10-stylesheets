@@ -10,7 +10,8 @@
 
 <!ENTITY sep '" "'>
 <!ENTITY scope 'count(ancestor::node()|$scope) = count(ancestor::node())
-                and ($role = @role or string-length($role) = 0)'>
+                and ($role = @role or $type = @type or
+                (string-length($role) = 0 and string-length($type) = 0))'>
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
@@ -42,6 +43,12 @@
     </xsl:if>
   </xsl:variable>
 
+  <xsl:variable name="type">
+    <xsl:if test="$index.on.type != 0">
+      <xsl:value-of select="@type"/>
+    </xsl:if>
+  </xsl:variable>
+
   <xsl:variable name="terms"
                 select="//indexterm[count(.|key('group-code',
                                                 i:group-index(&primary;))[&scope;][1]) = 1
@@ -51,6 +58,7 @@
     <xsl:apply-templates select="$terms" mode="index-div">
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
+      <xsl:with-param name="type" select="$type"/>
       <xsl:sort select="i:group-index(&primary;)" data-type="number"/>
     </xsl:apply-templates>
   </div>
@@ -59,6 +67,7 @@
 <xsl:template match="indexterm" mode="index-div">
   <xsl:param name="scope" select="."/>
   <xsl:param name="role" select="''"/>
+  <xsl:param name="type" select="''"/>
 
   <xsl:variable name="key"
                 select="i:group-index(&primary;)"/>
@@ -76,6 +85,7 @@
           <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
           <xsl:with-param name="scope" select="$scope"/>
           <xsl:with-param name="role" select="$role"/>
+          <xsl:with-param name="type" select="$type"/>
         </xsl:apply-templates>
       </dl>
     </div>
