@@ -266,7 +266,7 @@
 <context name="title-numbered">
 
 <template name="appendix"><Appendix/> %n. %t</template>
-<template name="bridgehead">&n. %t</template>
+<template name="bridgehead">%n. %t</template>
 <template name="chapter">%n<Chapter/>. %t</template>
 <template name="sect1">%n. %t</template>
 <template name="sect2">%n. %t</template>
