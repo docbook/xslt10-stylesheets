@@ -1,0 +1,871 @@
+<book xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+      xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<bookinfo>
+<title>Slides Parameter Reference</title>
+<releaseinfo role="meta">
+$Id$
+</releaseinfo>
+<author>
+  <surname>Walsh</surname>
+  <firstname>Norman</firstname>
+</author>
+<copyright>
+  <year>2002</year>
+  <holder>Norman Walsh</holder>
+</copyright>
+</bookinfo>
+
+<preface><title>Introduction</title>
+
+<para>This is reference documentation for the Slides stylesheet parameters.
+</para>
+
+<para>This reference describes each of the parameters.
+These are the <quote>easily customizable</quote> parts of the stylesheet.
+If you want to specify an alternate value for one or more of these
+parameters, you can do so in a <quote>driver</quote> stylesheet.</para>
+
+<para>For example, if you want to change the <literal>keyboard.nav</literal>
+parameter to <filename>0</filename>, you might create a driver
+stylesheet like this:</para>
+
+<programlisting><![CDATA[<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                version='1.0'>
+
+  <xsl:import href="http://docbook.sourceforge.net/release/slides/current/xsl/slides.xsl"/>
+
+  <xsl:param name="keyboard.nav" select="0"/>
+
+</xsl:stylesheet>]]></programlisting>
+
+<para>Naturally, you have to change the
+<sgmltag class='attribute'>href</sgmltag> attribute on
+<literal>&lt;xsl:import&gt;</literal> to point to the stylesheet
+on your system.</para>
+
+<para>This is not intended to be <quote>user</quote> documentation.
+It is provided for developers writing customization layers for the
+stylesheets, and for anyone who's interested in <quote>how it
+works</quote>.</para>
+
+<para>Although I am trying to be thorough, this documentation is known
+to be incomplete. Don't forget to read the source, too :-)</para>
+</preface>
+
+<reference>
+<title>General Parameters</title>
+
+<refentry id="keyboard.nav">
+<refmeta>
+<refentrytitle>keyboard.nav</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>keyboard.nav</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='keyboard.nav.frag'>
+<xsl:param name="keyboard.nav" select="1"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="css.stylesheet">
+<refmeta>
+<refentrytitle>css.stylesheet</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>css.stylesheet</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='css.stylesheet.frag'>
+<xsl:param name="css.stylesheet" select="'slides.css'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="titlefoil.html">
+<refmeta>
+<refentrytitle>titlefoil.html</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>titlefoil.html</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='titlefoil.html.frag'>
+<xsl:param name="titlefoil.html" select="'titlefoil.html'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="toc.html">
+<refmeta>
+<refentrytitle>toc.html</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>toc.html</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='toc.html.frag'>
+<xsl:param name="toc.html" select="'toc.html'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="output.indent">
+<refmeta>
+<refentrytitle>output.indent</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>output.indent</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='output.indent.frag'>
+<xsl:param name="output.indent" select="'no'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="overlay">
+<refmeta>
+<refentrytitle>overlay</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>overlay</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='overlay.frag'>
+<xsl:param name="overlay" select="0"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+</reference>
+
+<reference>
+<title>Frame Parameters</title>
+
+<refentry id="nav.separator">
+<refmeta>
+<refentrytitle>nav.separator</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>nav.separator</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='nav.separator.frag'>
+<xsl:param name="nav.separator" select="1"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="toc.row.height">
+<refmeta>
+<refentrytitle>toc.row.height</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>toc.row.height</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='toc.row.height.frag'>
+<xsl:param name="toc.row.height" select="22"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="toc.bg.color">
+<refmeta>
+<refentrytitle>toc.bg.color</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>toc.bg.color</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='toc.bg.color.frag'>
+<xsl:param name="toc.bg.color" select="'#FFFFFF'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="toc.width">
+<refmeta>
+<refentrytitle>toc.width</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>toc.width</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='toc.width.frag'>
+<xsl:param name="toc.width" select="250"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="toc.hide.show">
+<refmeta>
+<refentrytitle>toc.hide.show</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>toc.hide.show</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='toc.hide.show.frag'>
+<xsl:param name="toc.hide.show" select="0"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="dynamic.toc">
+<refmeta>
+<refentrytitle>dynamic.toc</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>dynamic.toc</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='dynamic.toc.frag'>
+<xsl:param name="dynamic.toc" select="0"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="active.toc">
+<refmeta>
+<refentrytitle>active.toc</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>active.toc</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='active.toc.frag'>
+<xsl:param name="active.toc" select="0"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="multiframe">
+<refmeta>
+<refentrytitle>multiframe</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>multiframe</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='multiframe.frag'>
+<xsl:param name="multiframe" select="0"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="multiframe.top.bgcolor">
+<refmeta>
+<refentrytitle>multiframe.top.bgcolor</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>multiframe.top.bgcolor</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='multiframe.top.bgcolor.frag'>
+<xsl:param name="multiframe.top.bgcolor" select="'white'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="multiframe.bottom.bgcolor">
+<refmeta>
+<refentrytitle>multiframe.bottom.bgcolor</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>multiframe.bottom.bgcolor</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='multiframe.bottom.bgcolor.frag'>
+<xsl:param name="multiframe.bottom.bgcolor" select="'white'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="multiframe.navigation.height">
+<refmeta>
+<refentrytitle>multiframe.navigation.height</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>multiframe.navigation.height</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='multiframe.navigation.height.frag'>
+<xsl:param name="multiframe.navigation.height" select="40"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+</reference>
+
+<reference>
+<title>Graphics Parameters</title>
+
+<refentry id="graphics.dir">
+<refmeta>
+<refentrytitle>graphics.dir</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>graphics.dir</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='graphics.dir.frag'>
+<xsl:param name="graphics.dir" select="''"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="bullet.image">
+<refmeta>
+<refentrytitle>bullet.image</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>bullet.image</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='bullet.image.frag'>
+<xsl:param name="bullet.image" select="'bullet.gif'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="right.image">
+<refmeta>
+<refentrytitle>right.image</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>right.image</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='right.image.frag'>
+<xsl:param name="right.image" select="'right.gif'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="left.image">
+<refmeta>
+<refentrytitle>left.image</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>left.image</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='left.image.frag'>
+<xsl:param name="left.image" select="'left.gif'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="plus.image">
+<refmeta>
+<refentrytitle>plus.image</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>plus.image</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='plus.image.frag'>
+<xsl:param name="plus.image" select="'plus.gif'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="minus.image">
+<refmeta>
+<refentrytitle>minus.image</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>minus.image</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='minus.image.frag'>
+<xsl:param name="minus.image" select="'minus.gif'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="hidetoc.image">
+<refmeta>
+<refentrytitle>hidetoc.image</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>hidetoc.image</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='hidetoc.image.frag'>
+<xsl:param name="hidetoc.image" select="'hidetoc.gif'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="showtoc.image">
+<refmeta>
+<refentrytitle>showtoc.image</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>showtoc.image</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='showtoc.image.frag'>
+<xsl:param name="showtoc.image" select="'showtoc.gif'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+</reference>
+
+<reference>
+<title>JavaScript Parameters</title>
+
+<refentry id="script.dir">
+<refmeta>
+<refentrytitle>script.dir</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>script.dir</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='script.dir.frag'>
+<xsl:param name="script.dir" select="''"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="ua.js">
+<refmeta>
+<refentrytitle>ua.js</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>ua.js</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='ua.js.frag'>
+<xsl:param name="ua.js" select="'ua.js'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="xbDOM.js">
+<refmeta>
+<refentrytitle>xbDOM.js</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>xbDOM.js</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='xbDOM.js.frag'>
+<xsl:param name="xbDOM.js" select="'xbDOM.js'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="xbStyle.js">
+<refmeta>
+<refentrytitle>xbStyle.js</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>xbStyle.js</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='xbStyle.js.frag'>
+<xsl:param name="xbStyle.js" select="'xbStyle.js'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="xbCollapsibleLists.js">
+<refmeta>
+<refentrytitle>xbCollapsibleLists.js</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>xbCollapsibleLists.js</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='xbCollapsibleLists.js.frag'>
+<xsl:param name="xbCollapsibleLists.js" select="'xbCollapsibleLists.js'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="overlay.js">
+<refmeta>
+<refentrytitle>overlay.js</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>overlay.js</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='overlay.js.frag'>
+<xsl:param name="overlay.js" select="'overlay.js'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="slides.js">
+<refmeta>
+<refentrytitle>slides.js</refentrytitle>
+<refmiscinfo role="type"></refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>slides.js</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='slides.js.frag'>
+<xsl:param name="slides.js" select="'slides.js'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+</reference>
+
+<appendix><title>The Stylesheet</title>
+
+<para>The <filename>param.xsl</filename> stylesheet is just a wrapper
+around all these parameters.</para>
+
+<src:fragment id="top" mundane-result-prefixes="xsl">
+
+<!-- This file is generated from param.xweb; do not edit this file! -->
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                exclude-result-prefixes="src"
+                version='1.0'>
+
+<!-- ********************************************************************
+     $Id$
+     ********************************************************************
+
+     This file is part of the XSL DocBook Stylesheet distribution.
+     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
+     and other information.
+
+     ******************************************************************** -->
+
+<src:fragref linkend="keyboard.nav.frag"/>
+<src:fragref linkend="css.stylesheet.frag"/>
+<src:fragref linkend="titlefoil.html.frag"/>
+<src:fragref linkend="toc.html.frag"/>
+<src:fragref linkend="output.indent.frag"/>
+<src:fragref linkend="overlay.frag"/>
+<src:fragref linkend="nav.separator.frag"/>
+<src:fragref linkend="toc.row.height.frag"/>
+<src:fragref linkend="toc.bg.color.frag"/>
+<src:fragref linkend="toc.width.frag"/>
+<src:fragref linkend="toc.hide.show.frag"/>
+<src:fragref linkend="dynamic.toc.frag"/>
+<src:fragref linkend="active.toc.frag"/>
+<src:fragref linkend="multiframe.frag"/>
+<src:fragref linkend="multiframe.top.bgcolor.frag"/>
+<src:fragref linkend="multiframe.bottom.bgcolor.frag"/>
+<src:fragref linkend="multiframe.navigation.height.frag"/>
+<src:fragref linkend="graphics.dir.frag"/>
+<src:fragref linkend="bullet.image.frag"/>
+<src:fragref linkend="right.image.frag"/>
+<src:fragref linkend="left.image.frag"/>
+<src:fragref linkend="plus.image.frag"/>
+<src:fragref linkend="minus.image.frag"/>
+<src:fragref linkend="hidetoc.image.frag"/>
+<src:fragref linkend="showtoc.image.frag"/>
+<src:fragref linkend="script.dir.frag"/>
+<src:fragref linkend="ua.js.frag"/>
+<src:fragref linkend="xbDOM.js.frag"/>
+<src:fragref linkend="xbStyle.js.frag"/>
+<src:fragref linkend="xbCollapsibleLists.js.frag"/>
+<src:fragref linkend="overlay.js.frag"/>
+<src:fragref linkend="slides.js.frag"/>
+
+</xsl:stylesheet>
+</src:fragment>
+
+</appendix>
+
+</book>
