@@ -3,7 +3,7 @@
 <article>
 <articleinfo>
 <title>DocBook XSL Stylesheet Release Notes</title>
-<pubdate>10 September 2004</pubdate>
+<pubdate>10 November 2004</pubdate>
 <releaseinfo role="cvs">$Id$</releaseinfo> 
 <corpauthor>DocBook Open Repository Team</corpauthor> 
 </articleinfo> 
@@ -13,6 +13,72 @@ exactly, counts as a public API is still somewhat in question, but it
 includes at least the global parameters.</para> 
 <para>You may also be interested in the more detailed <ulink url="WhatsNew"/>.
 </para> 
+<itemizedlist>
+  <title>Release 1.67.0</title>
+  <listitem>
+    <para>A number of important bug fixes, documented in <ulink url="WhatsNew"/>.</para>
+  </listitem>
+  <listitem>
+    <para>Added Saxon8 extensions</para>
+  </listitem>
+  <listitem>
+    <para>Enabled dbfo table-width on entrytbl in FO output</para>
+  </listitem>
+  <listitem>
+    <para>Added support role=strong on emphasis in FO output</para>
+  </listitem>
+  <listitem>
+    <para>Added new FO parameter hyphenate.verbatim that can be used
+    to turn on "intelligent" wrapping of verbatim environments.</para>
+  </listitem>
+  <listitem>
+    <para>Replaced all &lt;tt>&lt;/tt> output with &lt;code>&lt;/code></para>
+  </listitem>
+  <listitem>
+    <para>Changed admon.graphic.width template to a mode so that
+    different admonitions can have different graphical widths.</para>
+  </listitem>
+  <listitem>
+    <para>Deprecated the HTML shade.verbatim parameter (use CSS instead)</para>
+  </listitem>
+  <listitem>
+    <para>Wrapped ToC refentrytitle/refname and refpurpose in span
+    with class values. This makes it possible to style them
+    using a CSS stylesheet.</para>
+  </listitem>
+  <listitem>
+    <para>Use strong/em instead of b/i in HTML output</para>
+  </listitem>
+  <listitem>
+    <para>Added support for converting Emphasis to groff italic and
+    Emphasis role='bold' to bold. Controlled by
+    emphasis.propagates.style param, but not documented yet using
+    litprog system. Will do that next (planning to add some other
+    parameter-controllable options for hyphenation and handling of
+    line spacing).</para>
+  </listitem>
+  <listitem>
+    <para>callout.graphics.number.limit.xml param: Changed the default
+    from 10 to 15.</para>
+  </listitem>
+  <listitem>
+    <para>verbatim.properties.xml: Added hyphenate=false</para>
+  </listitem>
+  <listitem>
+    <para>Saxon and Xalan Text.java extensions: Added support for
+    URIResolver() on insertfile href's</para>
+  </listitem>
+  <listitem>
+    <para>Added generated RELEASE-NOTES.txt file.</para>
+  </listitem>
+  <listitem>
+    <para>Added INSTALL file (executable file for generating
+    catalog.xml</para>
+  </listitem>
+  <listitem>
+    <para>Removed obsolete 'tools' directory from package</para>
+  </listitem>
+</itemizedlist>
 <itemizedlist>
 <title>Release 1.66.1</title>
 <listitem>
