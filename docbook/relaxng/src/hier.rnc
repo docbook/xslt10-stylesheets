@@ -427,7 +427,7 @@ div {
     & common.linking.attributes
     & local.ackno.attributes
 
-   db.ackno=
+   db.ackno =
       element ackno {
          ackno.attlist,
          para.blocks+
