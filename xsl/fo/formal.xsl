@@ -275,10 +275,13 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="@float and @float != '0'">
+    <xsl:when test="(@float and @float != '0') or @floatstyle != ''">
       <fo:float>
         <xsl:attribute name="float">
           <xsl:choose>
+            <xsl:when test="@floatstyle != ''">
+              <xsl:value-of select="@floatstyle"/>
+            </xsl:when>
             <xsl:when test="@float = '1'">
               <xsl:value-of select="$default.float.class"/>
             </xsl:when>
