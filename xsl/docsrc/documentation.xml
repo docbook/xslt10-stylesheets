@@ -42,8 +42,8 @@ Stylesheets.</para>
 directory <filename>tools</filename>.</para>
 
 <itemizedlist>
-<listitem><para><olink type="title" localinfo="tools/profiling.html"
-                       targetdocent="tools-profiling.xml"/></para>
+<listitem>
+<para><ulink url="tools/profiling.html">Profiling</ulink></para>
 </listitem>
 </itemizedlist>
 
