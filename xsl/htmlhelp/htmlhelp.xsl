@@ -317,19 +317,19 @@ Title=</xsl:text>
 </xsl:template>
 
 <xsl:template name="hhc-main">
-  <xsl:text>&lt;HTML&gt;
+  <xsl:text disable-output-escaping="yes">&lt;HTML&gt;
 &lt;HEAD&gt;
 &lt;/HEAD&gt;
   &lt;BODY&gt;
 </xsl:text>
   <xsl:if test="$htmlhelp.hhc.folders.instead.books != 0">
-    <xsl:text>&lt;OBJECT type="text/site properties"&gt;
+    <xsl:text disable-output-escaping="yes">&lt;OBJECT type="text/site properties"&gt;
 	&lt;param name="ImageType" value="Folder"&gt;
 &lt;/OBJECT&gt;
 </xsl:text>
   </xsl:if>
   <xsl:if test="$htmlhelp.hhc.show.root != 0">
-<xsl:text>&lt;UL&gt;
+<xsl:text disable-output-escaping="yes">&lt;UL&gt;
 </xsl:text>
   </xsl:if>
 
@@ -343,10 +343,10 @@ Title=</xsl:text>
   </xsl:choose>
 
   <xsl:if test="$htmlhelp.hhc.show.root != 0">
-  <xsl:text>&lt;/UL&gt;
+  <xsl:text disable-output-escaping="yes">&lt;/UL&gt;
 </xsl:text>
   </xsl:if>
-  <xsl:text>&lt;/BODY&gt;
+  <xsl:text disable-output-escaping="yes">&lt;/BODY&gt;
 &lt;/HTML&gt;</xsl:text>
 </xsl:template>
 
@@ -364,13 +364,13 @@ Title=</xsl:text>
   </xsl:variable>
 
   <xsl:if test="$htmlhelp.hhc.show.root != 0">
-    <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
+    <xsl:text disable-output-escaping="yes">&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
       &lt;param name="Name" value="</xsl:text>
           <xsl:value-of select="normalize-space($title)"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
       &lt;param name="Local" value="</xsl:text>
           <xsl:call-template name="href.target.with.base.dir"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
     &lt;/OBJECT&gt;</xsl:text>
   </xsl:if>
   <xsl:if test="book">
@@ -379,21 +379,21 @@ Title=</xsl:text>
         <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
       </xsl:call-template>
     </xsl:variable>
-    <xsl:text>&lt;UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;UL&gt;</xsl:text>
       <xsl:if test="contains($toc.params, 'toc') and $htmlhelp.hhc.show.root = 0">
-        <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
+        <xsl:text disable-output-escaping="yes">&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
           &lt;param name="Name" value="</xsl:text>
             <xsl:call-template name="gentext">
               <xsl:with-param name="key" select="'TableofContents'"/>
             </xsl:call-template>
-          <xsl:text>"&gt;
+          <xsl:text disable-output-escaping="yes">"&gt;
           &lt;param name="Local" value="</xsl:text>
               <xsl:call-template name="href.target.with.base.dir"/>
-          <xsl:text>"&gt;
+          <xsl:text disable-output-escaping="yes">"&gt;
         &lt;/OBJECT&gt;</xsl:text>
       </xsl:if>
       <xsl:apply-templates select="book" mode="hhc"/>
-    <xsl:text>&lt;/UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;/UL&gt;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -411,13 +411,13 @@ Title=</xsl:text>
   </xsl:variable>
 
   <xsl:if test="$htmlhelp.hhc.show.root != 0 or parent::*">
-    <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
+    <xsl:text disable-output-escaping="yes">&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
       &lt;param name="Name" value="</xsl:text>
           <xsl:value-of select="normalize-space($title)"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
       &lt;param name="Local" value="</xsl:text>
           <xsl:call-template name="href.target.with.base.dir"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
     &lt;/OBJECT&gt;</xsl:text>
   </xsl:if>
   <xsl:if test="part|reference|preface|chapter|appendix|bibliography|article|colophon|glossary">
@@ -426,22 +426,22 @@ Title=</xsl:text>
         <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
       </xsl:call-template>
     </xsl:variable>
-    <xsl:text>&lt;UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;UL&gt;</xsl:text>
       <xsl:if test="contains($toc.params, 'toc') and $htmlhelp.hhc.show.root = 0 and not(parent::*)">
-        <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
+        <xsl:text disable-output-escaping="yes">&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
           &lt;param name="Name" value="</xsl:text>
             <xsl:call-template name="gentext">
               <xsl:with-param name="key" select="'TableofContents'"/>
             </xsl:call-template>
-          <xsl:text>"&gt;
+          <xsl:text disable-output-escaping="yes">"&gt;
           &lt;param name="Local" value="</xsl:text>
               <xsl:call-template name="href.target.with.base.dir"/>
-          <xsl:text>"&gt;
+          <xsl:text disable-output-escaping="yes">"&gt;
         &lt;/OBJECT&gt;</xsl:text>
       </xsl:if>
       <xsl:apply-templates select="part|reference|preface|chapter|bibliography|appendix|article|colophon|glossary"
 			   mode="hhc"/>
-    <xsl:text>&lt;/UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;/UL&gt;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -460,21 +460,21 @@ Title=</xsl:text>
   </xsl:variable>
 
   <xsl:if test="$htmlhelp.hhc.show.root != 0 or parent::*">
-    <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
+    <xsl:text disable-output-escaping="yes">&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
       &lt;param name="Name" value="</xsl:text>
           <xsl:value-of select="normalize-space($title)"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
       &lt;param name="Local" value="</xsl:text>
           <xsl:call-template name="href.target.with.base.dir"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
     &lt;/OBJECT&gt;</xsl:text>
   </xsl:if>
   <xsl:if test="reference|preface|chapter|appendix|refentry|section|sect1|bibliodiv">
-    <xsl:text>&lt;UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;UL&gt;</xsl:text>
       <xsl:apply-templates
 	select="reference|preface|chapter|appendix|refentry|section|sect1|bibliodiv"
 	mode="hhc"/>
-    <xsl:text>&lt;/UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;/UL&gt;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -492,19 +492,19 @@ Title=</xsl:text>
   </xsl:variable>
 
   <xsl:if test="$htmlhelp.hhc.show.root != 0 or parent::*">
-    <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
+    <xsl:text disable-output-escaping="yes">&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
       &lt;param name="Name" value="</xsl:text>
           <xsl:value-of select="normalize-space($title)"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
       &lt;param name="Local" value="</xsl:text>
           <xsl:call-template name="href.target.with.base.dir"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
     &lt;/OBJECT&gt;</xsl:text>
   </xsl:if>
   <xsl:if test="section[count(ancestor::section) &lt; $htmlhelp.hhc.section.depth]|refentry">
-    <xsl:text>&lt;UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;UL&gt;</xsl:text>
       <xsl:apply-templates select="section|refentry" mode="hhc"/>
-    <xsl:text>&lt;/UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;/UL&gt;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -522,20 +522,20 @@ Title=</xsl:text>
   </xsl:variable>
 
   <xsl:if test="$htmlhelp.hhc.show.root != 0 or parent::*">
-    <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
+    <xsl:text disable-output-escaping="yes">&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
       &lt;param name="Name" value="</xsl:text>
           <xsl:value-of select="normalize-space($title)"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
       &lt;param name="Local" value="</xsl:text>
           <xsl:call-template name="href.target.with.base.dir"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
     &lt;/OBJECT&gt;</xsl:text>
   </xsl:if>
   <xsl:if test="sect2[$htmlhelp.hhc.section.depth > 1]|refentry">
-    <xsl:text>&lt;UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;UL&gt;</xsl:text>
       <xsl:apply-templates select="sect2|refentry"
 			   mode="hhc"/>
-    <xsl:text>&lt;/UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;/UL&gt;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -553,20 +553,20 @@ Title=</xsl:text>
   </xsl:variable>
 
   <xsl:if test="$htmlhelp.hhc.show.root != 0 or parent::*">
-    <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
+    <xsl:text disable-output-escaping="yes">&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
       &lt;param name="Name" value="</xsl:text>
           <xsl:value-of select="normalize-space($title)"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
       &lt;param name="Local" value="</xsl:text>
           <xsl:call-template name="href.target.with.base.dir"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
     &lt;/OBJECT&gt;</xsl:text>
   </xsl:if>
   <xsl:if test="sect3[$htmlhelp.hhc.section.depth > 2]|refentry">
-    <xsl:text>&lt;UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;UL&gt;</xsl:text>
       <xsl:apply-templates select="sect3|refentry"
 			   mode="hhc"/>
-    <xsl:text>&lt;/UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;/UL&gt;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -584,20 +584,20 @@ Title=</xsl:text>
   </xsl:variable>
 
   <xsl:if test="$htmlhelp.hhc.show.root != 0 or parent::*">
-    <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
+    <xsl:text disable-output-escaping="yes">&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
       &lt;param name="Name" value="</xsl:text>
           <xsl:value-of select="normalize-space($title)"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
       &lt;param name="Local" value="</xsl:text>
           <xsl:call-template name="href.target.with.base.dir"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
     &lt;/OBJECT&gt;</xsl:text>
   </xsl:if>
   <xsl:if test="sect4[$htmlhelp.hhc.section.depth > 3]|refentry">
-    <xsl:text>&lt;UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;UL&gt;</xsl:text>
       <xsl:apply-templates select="sect4|refentry"
 			   mode="hhc"/>
-    <xsl:text>&lt;/UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;/UL&gt;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -615,20 +615,20 @@ Title=</xsl:text>
   </xsl:variable>
 
   <xsl:if test="$htmlhelp.hhc.show.root != 0 or parent::*">
-    <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
+    <xsl:text disable-output-escaping="yes">&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
       &lt;param name="Name" value="</xsl:text>
           <xsl:value-of select="normalize-space($title)"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
       &lt;param name="Local" value="</xsl:text>
           <xsl:call-template name="href.target.with.base.dir"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
     &lt;/OBJECT&gt;</xsl:text>
   </xsl:if>
   <xsl:if test="sect5[$htmlhelp.hhc.section.depth > 4]|refentry">
-    <xsl:text>&lt;UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;UL&gt;</xsl:text>
       <xsl:apply-templates select="sect5|refentry"
 			   mode="hhc"/>
-    <xsl:text>&lt;/UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;/UL&gt;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -646,20 +646,20 @@ Title=</xsl:text>
   </xsl:variable>
 
   <xsl:if test="$htmlhelp.hhc.show.root != 0 or parent::*">
-    <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
+    <xsl:text disable-output-escaping="yes">&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
       &lt;param name="Name" value="</xsl:text>
           <xsl:value-of select="normalize-space($title)"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
       &lt;param name="Local" value="</xsl:text>
           <xsl:call-template name="href.target.with.base.dir"/>
-      <xsl:text>"&gt;
+      <xsl:text disable-output-escaping="yes">"&gt;
     &lt;/OBJECT&gt;</xsl:text>
   </xsl:if>
   <xsl:if test="refentry">
-    <xsl:text>&lt;UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;UL&gt;</xsl:text>
       <xsl:apply-templates select="refentry"
 			   mode="hhc"/>
-    <xsl:text>&lt;/UL&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;/UL&gt;</xsl:text>
   </xsl:if>
 </xsl:template>
 
