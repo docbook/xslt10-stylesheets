@@ -71,8 +71,6 @@
       </xsl:otherwise>
     </xsl:choose>
 
-    <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
-
     <xsl:variable name="colgroup">
       <colgroup>
         <xsl:call-template name="generate.colgroup">
@@ -113,20 +111,15 @@
           <xsl:when test="$use.extensions != 0
                           and $tablecolumns.extension != 0">
             <xsl:choose>
-              <xsl:when test="contains($vendor, 'SAXON 6')">
+              <xsl:when test="function-available('stbl:convertLength')">
                 <xsl:value-of select="stbl:convertLength($table.width)"/>
               </xsl:when>
-              <xsl:when test="contains($vendor, 'SAXON 5')">
-                <!-- the saxon5 extension doesn't support this (yet) -->
-                <xsl:value-of select="$table.width"/>
-              </xsl:when>
-              <xsl:when test="contains($vendor, 'Apache Software Foundation')">
+              <xsl:when test="function-available('xtbl:convertLength')">
                 <xsl:value-of select="xtbl:convertLength($table.width)"/>
               </xsl:when>
               <xsl:otherwise>
                 <xsl:message terminate="yes">
-                  <xsl:text>Don't know how to do convert lengths with </xsl:text>
-                  <xsl:value-of select="$vendor"/>
+                  <xsl:text>No convertLength function available.</xsl:text>
                 </xsl:message>
               </xsl:otherwise>
             </xsl:choose>
@@ -142,20 +135,15 @@
       <xsl:when test="$use.extensions != 0
                       and $tablecolumns.extension != 0">
         <xsl:choose>
-          <xsl:when test="contains($vendor, 'SAXON 6')">
+          <xsl:when test="function-available('stbl:adjustColumnWidths')">
             <xsl:copy-of select="stbl:adjustColumnWidths($colgroup)"/>
           </xsl:when>
-          <xsl:when test="contains($vendor, 'SAXON 5')">
-            <!-- the saxon5 extension doesn't support this (yet) -->
-            <xsl:copy-of select="$colgroup"/>
-          </xsl:when>
-          <xsl:when test="contains($vendor, 'Apache Software Foundation')">
+          <xsl:when test="function-available('xtbl:adjustColumnWidths')">
             <xsl:copy-of select="xtbl:adjustColumnWidths($colgroup)"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:message terminate="yes">
-              <xsl:text>Don't know how to do adjust column widths with </xsl:text>
-              <xsl:value-of select="$vendor"/>
+              <xsl:text>No adjustColumnWidths function available.</xsl:text>
             </xsl:message>
           </xsl:otherwise>
         </xsl:choose>
