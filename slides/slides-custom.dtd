@@ -32,6 +32,7 @@
 <!ENTITY % simple.bibliography.element "IGNORE">
 <!ENTITY % simple.bibliomixed.element "IGNORE">
 <!ENTITY % simple.bibliodiv.element "IGNORE">
+<!ENTITY % simple.affiliation.element "IGNORE">
 <!ENTITY % sidebar.module "INCLUDE">
 
 <!ENTITY % confgroup.content.module "INCLUDE">
@@ -79,6 +80,19 @@
 		%common.attrib;
 		%screen.role.attrib;
 		%local.screen.attrib;
+>
+
+<!-- Add address back into the affiliation... -->
+<!ELEMENT affiliation (jobtitle?, orgname?, address*)>
+
+<!-- And add address back into the DTD -->
+<!ELEMENT address (#PCDATA)>
+<!ENTITY % address.role.attrib "%role.attrib;">
+<!ENTITY % local.address.attrib "">
+<!ATTLIST address
+		%linespecific.attrib;
+		%common.attrib;
+		%address.role.attrib;
 >
 
 <!-- ====================================================================== -->
