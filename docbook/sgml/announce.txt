@@ -1,0 +1,77 @@
+DOCBOOK 2.4.1 DTD and DOCUMENTATION RELEASE
+
+SUMMARY: DocBook Version 2.4.1, a backwards-compatible "bug fix 
+release" of DocBook, is now available from the Davenport Group's 
+site (http://www.ora.com/davenport/ or
+ftp://ftp.ora.com/pub/davenport/index.html).
+
+                        *               *               *
+
+This release is being made to correct a couple of problems with V2.4,
+and to provide improved documentation.
+
+If you have begun using V2.4, you should be able to substitute V2.4.1
+with little disruption.  The FPIs in your references to the DTD and its
+modules will need updating from "V2.4" to "V2.4.1" -- for example, in
+the DOCTYPE declarations of documents, and in the module declarations of
+customization layers.
+
+Following is a list of the main bug fixes in this release; see
+241chg.txt in the distribution for a comprehensive list.
+
+o The %vendor.attrib; entity containing the Vendor effectivity
+  attribute (new in V2.4) has been added to %effectivity.attrib; in
+  order to make the attribute available for use.
+
+o The MenuChoice element (new in V2.4) has been added to
+  %cptr.char.class; in order to make the element available for use.
+
+o The content model of Shortcut (used inside MenuChoice) was changed
+  to match that of KeyCombo.
+
+o Three notation declarations have had their system identifiers removed.
+
+o The Option element was added to the content model of Group.
+
+A second "alpha" snapshot of the newly reorganized and filled-out
+documentation is included with this release.  We plan to supply new
+snapshots periodically, culminating in an official documentation release
+coinciding with V3.0 (scheduled to be released in June 1996).  We
+welcome your comments and sample DocBook documents and fragments.
+
+You can download the files related to DocBook V2.4.1 from the following 
+locations:
+
+o ftp://ftp.ora.com/pub/davenport/docbook/docbk241.tar.Z
+  ftp://ftp.ora.com/pub/davenport/docbook/dbg241.tar.Z
+  (requires tar and uncompress)
+
+o ftp://ftp.ora.com/pub/davenport/docbook/docbk241.zip
+  ftp://ftp.ora.com/pub/davenport/docbook/dbg241.zip
+  (requires pkunzip)
+
+The docbk241 files include:
+
+  241chg.txt		Full description of V2.4-to-V2.4.1 changes
+  calstbl.mod		CALS-style table module
+  dbgenent.mod		Placeholder for general entity set declarations
+                        (do not overwrite your own dbgenent.mod if you've
+                         added to the original!)
+  dbhier.mod		Document hierarchy (high-level) module
+  dbpool.mod		Information pool (mid- and low-level) module
+  docbook.cat		SGML Open catalog data
+  docbook.dcl		SGML declaration with settings assumed by DocBook
+  docbook.dtd		Main DTD driver file
+
+All these files are also available individually in the same directory.
+
+The dbg241 files include SGML (DocBook, of course) versions of the
+DocBook documentation.  For the identity of the document entities 
+please see the file named "docorg.txt" in the distribution.
+These files are *not* available individually.
+
+Comments on DocBook are always welcome.  You can send comments and
+questions to the Davenport list (davenport@online.ora.com), or directly
+to the maintainers of DocBook, Terry Allen (terry@ora.com) and Eve Maler
+(elm@arbortext.com).
+

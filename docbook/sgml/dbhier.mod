@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook document hierarchy module V2.3 ............................... -->
+<!-- DocBook document hierarchy module V2.4.1 ............................. -->
 <!-- File dbhier.mod ...................................................... -->
 
 <!-- Copyright 1992, 1993, 1994, 1995 HaL Computer Systems, Inc.,
@@ -7,10 +7,11 @@
 
      Permission to use, copy, modify and distribute the DocBook DTD and
      its accompanying documentation for any purpose and without fee is
-     hereby granted, provided that this copyright notice appears in all
-     copies.  The copyright holders make no representation about the
-     suitability of the DTD for any purpose.  It is provided "as is"
-     without expressed or implied warranty.
+     hereby granted in perpetuity, provided that the above copyright
+     notice and this paragraph appear in all copies.  The copyright
+     holders make no representation about the suitability of the DTD for
+     any purpose.  It is provided "as is" without expressed or implied
+     warranty.
 
      If you modify the DocBook DTD in any way, except for declaring and
      referencing additional sets of general entities and declaring
@@ -46,19 +47,20 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbhier PUBLIC
-     "-//Davenport//ELEMENTS DocBook Document Hierarchy V2.3//EN">
+     "-//Davenport//ELEMENTS DocBook Document Hierarchy V2.4.1//EN">
      %dbhier;
 
-     See the maintenance documentation for detailed information on the
-     parameter entity and module scheme used in DocBook, customizing
-     DocBook and planning for interchange, and changes made since the
-     last release of DocBook.
+     See the documentation for detailed information on the parameter
+     entity and module scheme used in DocBook, customizing DocBook and
+     planning for interchange, and changes made since the last release
+     of DocBook.
 -->
 
 <!-- ...................................................................... -->
 <!-- Entities for module inclusions ....................................... -->
 
 <!ENTITY % dbhier.redecl.module		"IGNORE">
+<!ENTITY % dbhier.redecl2.module	"IGNORE">
 
 <!ENTITY % appendix.module		"INCLUDE">
 <!ENTITY % article.module		"INCLUDE">
@@ -114,6 +116,7 @@
 <!ENTITY % set.module			"INCLUDE">
 <!--       setindex.module		use indexes.module-->
 <!ENTITY % setinfo.module		"INCLUDE">
+<!ENTITY % simplesect.module		"INCLUDE">
 <!--       tertiaryie.module		use primsecterie.module-->
 <!ENTITY % toc.content.module		"INCLUDE">
 <!ENTITY % toc.module			"INCLUDE">
@@ -155,9 +158,11 @@
 
 <!-- Redeclaration placeholder ............................................ -->
 
+<!-- For redeclaring entities that are declared after this point while
+     retaining their references to the entities that are declared before
+     this point -->
+
 <![ %dbhier.redecl.module; [
-<!ENTITY % rdbhier PUBLIC
-"-//Davenport//ELEMENTS DocBook Document Hierarchy Redeclarations//EN">
 %rdbhier;
 <!--end of dbhier.redecl.module-->]]>
 
@@ -184,7 +189,7 @@
 
 <!ENTITY % local.indexdivcomponent.mix "">
 <!ENTITY % indexdivcomponent.mix
-		"ItemizedList|OrderedList|VariableList
+		"ItemizedList|OrderedList|VariableList|SimpleList
 		|%linespecific.class;	|%synop.class;
 		|%para.class;		|%informal.class;
 		|Anchor|Comment
@@ -223,8 +228,18 @@
 		|%docinfo.char.class;|Title|Copyright|CorpName
 		|Date|Editor|Edition|InvPartNumber|ISBN
 		|LegalNotice|OrgName|PrintHistory|Publisher
-		|PubsNumber|ReleaseInfo|SubTitle|VolumeNum
+		|PubsNumber|ReleaseInfo|Subtitle|VolumeNum
 		%local.setinfo.char.mix;">
+
+<!-- Redeclaration placeholder 2 .......................................... -->
+
+<!-- For redeclaring entities that are declared after this point while
+     retaining their references to the entities that are declared before
+     this point -->
+
+<![ %dbhier.redecl2.module; [
+%rdbhier2;
+<!--end of dbhier.redecl2.module-->]]>
 
 <!-- ...................................................................... -->
 <!-- Entities for content models .......................................... -->
@@ -240,9 +255,10 @@
 
 <!ENTITY % refsect.title.content "Title, TitleAbbrev?">
 
-<!ENTITY % sect1.content
-		"((%divcomponent.mix;)+, (Sect1*|(%refentry.class;)*))
-		| (Sect1+|(%refentry.class;)+)">
+<!ENTITY % bookcomponent.content
+		"((%divcomponent.mix;)+, 
+		(Sect1*|(%refentry.class;)*|SimpleSect*))
+		| (Sect1+|(%refentry.class;)+|SimpleSect+)">
 
 <!-- ...................................................................... -->
 <!-- Set and SetInfo ...................................................... -->
@@ -250,13 +266,12 @@
 <![ %set.content.module; [
 <![ %set.module; [
 <!ENTITY % local.set.attrib "">
-<!ELEMENT Set - - ((%div.title.content;)?, SetInfo?, ToC?, (%book.class;),
+<!ELEMENT Set - O ((%div.title.content;)?, SetInfo?, ToC?, (%book.class;),
 		(%book.class;)+, SetIndex?) +(%ubiq.mix;)>
 <!ATTLIST Set
-		%common.attrib;
-
 		--Preferred formal public ID of set--
 		FPI		CDATA		#IMPLIED
+		%common.attrib;
 		%local.set.attrib;
 >
 <!--end of set.module-->]]>
@@ -265,11 +280,10 @@
 <!ENTITY % local.setinfo.attrib "">
 <!ELEMENT SetInfo - - ((%setinfo.char.mix;)+) -(%ubiq.mix;)>
 <!ATTLIST SetInfo
-		%common.attrib;
-
 		--Contents: points to the IDs of the book pieces in the
 		order of their appearance--
 		Contents	IDREFS		#IMPLIED
+		%common.attrib;
 		%local.setinfo.attrib;
 >
 <!--end of setinfo.module-->]]>
@@ -280,29 +294,39 @@
 
 <![ %book.content.module; [
 <![ %book.module; [
-<!ENTITY % local.book.attrib "">
-<!ELEMENT Book - - ((%div.title.content;)?, BookInfo?, ToC?, LoT*, Preface*,
-		(((%chapter.class;)+, Reference*) | Part+ | Reference+
-		| (%article.class;)+), (%appendix.class;)*, Glossary?,
-		Bibliography?, (%index.class;)*, LoT*, ToC?) +(%ubiq.mix;)>
-<!ATTLIST Book	
-		%common.attrib;
+<!--FUTURE USE (V4.0):
+......................
+The %article.class; entity *may* be removed from the Book content model.
+(Article may be made part of a new top-level document hierarchy.)
+......................
+-->
 
+<!ENTITY % local.book.attrib "">
+<!ELEMENT Book - O ((%div.title.content;)?, BookInfo?, ToC?, LoT*, 
+		(Glossary|Bibliography|Preface)*,
+		(((%chapter.class;)+, Reference*) | Part+ 
+		| Reference+ | (%article.class;)+), 
+		(%appendix.class;)*, (Glossary|Bibliography)*, 
+		(%index.class;)*, LoT*, ToC?)
+		+(%ubiq.mix;)>
+<!ATTLIST Book	
 		--FPI: Preferred formal public ID of book--
 		FPI		CDATA		#IMPLIED
 		%label.attrib;
+		%common.attrib;
 		%local.book.attrib;
 >
 <!--end of book.module-->]]>
 
 <![ %bookinfo.module; [
 <!ENTITY % local.bookinfo.attrib "">
-<!ELEMENT BookInfo - - (BookBiblio, LegalNotice*, ModeSpec*) -(%ubiq.mix;)>
+<!ELEMENT BookInfo - - (Graphic*, BookBiblio, LegalNotice*, ModeSpec*)
+		-(%ubiq.mix;)>
 <!ATTLIST BookInfo
-		%common.attrib;
 		--Contents: points to the IDs of the book pieces in the
 		order of their appearance--
 		Contents	IDREFS		#IMPLIED
+		%common.attrib;
 		%local.bookinfo.attrib;
 >
 <!--end of bookinfo.module-->]]>
@@ -314,8 +338,8 @@
 <![ %toc.content.module [
 <![ %toc.module [
 <!ENTITY % local.toc.attrib "">
-<!ELEMENT ToC - - ((%bookcomponent.title.content;)?, ToCfront*,
-		(ToCpart+ | ToCchap+)+, ToCback*)>
+<!ELEMENT ToC - O ((%bookcomponent.title.content;)?, ToCfront*,
+		(ToCpart | ToCchap)*, ToCback*)>
 <!ATTLIST ToC
 		%common.attrib;
 		%local.toc.attrib;
@@ -324,29 +348,29 @@
 
 <![ %tocfront.module [
 <!ENTITY % local.tocfront.attrib "">
-<!ELEMENT ToCfront - - ((%inline.char.mix;)+)>
+<!ELEMENT ToCfront - O ((%para.char.mix;)+)>
 <!ATTLIST ToCfront
-		%common.attrib;
 		%label.attrib;
 		%pagenum.attrib;
+		%common.attrib;
 		%local.tocfront.attrib;
 >
 <!--end of tocfront.module-->]]>
 
 <![ %tocentry.module [
 <!ENTITY % local.tocentry.attrib "">
-<!ELEMENT ToCentry - - ((%inline.char.mix;)+)>
+<!ELEMENT ToCentry - - ((%para.char.mix;)+)>
 <!ATTLIST ToCentry
-		%common.attrib;
 		%linkend.attrib; --to element that this entry represents--
 		%pagenum.attrib;
+		%common.attrib;
 		%local.tocentry.attrib;
 >
 <!--end of tocentry.module-->]]>
 
 <![ %tocpart.module [
 <!ENTITY % local.tocpart.attrib "">
-<!ELEMENT ToCpart - - (ToCentry+, ToCchap*)>
+<!ELEMENT ToCpart - O (ToCentry+, ToCchap*)>
 <!ATTLIST ToCpart
 		%common.attrib;
 		%local.tocpart.attrib;
@@ -355,17 +379,17 @@
 
 <![ %tocchap.module [
 <!ENTITY % local.tocchap.attrib "">
-<!ELEMENT ToCchap - - (ToCentry+, ToClevel1*)>
+<!ELEMENT ToCchap - O (ToCentry+, ToClevel1*)>
 <!ATTLIST ToCchap
-		%common.attrib;
 		%label.attrib;
+		%common.attrib;
 		%local.tocchap.attrib;
 >
 <!--end of tocchap.module-->]]>
 
 <![ %toclevel1.module [
 <!ENTITY % local.toclevel1.attrib "">
-<!ELEMENT ToClevel1 - - (ToCentry+, ToClevel2*)>
+<!ELEMENT ToClevel1 - O (ToCentry+, ToClevel2*)>
 <!ATTLIST ToClevel1
 		%common.attrib;
 		%local.toclevel1.attrib;
@@ -374,7 +398,7 @@
 
 <![ %toclevel2.module [
 <!ENTITY % local.toclevel2.attrib "">
-<!ELEMENT ToClevel2 - - (ToCentry+, ToClevel3*)>
+<!ELEMENT ToClevel2 - O (ToCentry+, ToClevel3*)>
 <!ATTLIST ToClevel2
 		%common.attrib;
 		%local.toclevel2.attrib;
@@ -383,7 +407,7 @@
 
 <![ %toclevel3.module [
 <!ENTITY % local.toclevel3.attrib "">
-<!ELEMENT ToClevel3 - - (ToCentry+, ToClevel4*)>
+<!ELEMENT ToClevel3 - O (ToCentry+, ToClevel4*)>
 <!ATTLIST ToClevel3
 		%common.attrib;
 		%local.toclevel3.attrib;
@@ -392,7 +416,7 @@
 
 <![ %toclevel4.module [
 <!ENTITY % local.toclevel4.attrib "">
-<!ELEMENT ToClevel4 - - (ToCentry+, ToClevel5*)>
+<!ELEMENT ToClevel4 - O (ToCentry+, ToClevel5*)>
 <!ATTLIST ToClevel4
 		%common.attrib;
 		%local.toclevel4.attrib;
@@ -401,7 +425,7 @@
 
 <![ %toclevel5.module [
 <!ENTITY % local.toclevel5.attrib "">
-<!ELEMENT ToClevel5 - - (ToCentry+)>
+<!ELEMENT ToClevel5 - O (ToCentry+)>
 <!ATTLIST ToClevel5
 		%common.attrib;
 		%local.toclevel5.attrib;
@@ -410,11 +434,11 @@
 
 <![ %tocback.module [
 <!ENTITY % local.tocback.attrib "">
-<!ELEMENT ToCback - - ((%inline.char.mix;)+)>
+<!ELEMENT ToCback - O ((%para.char.mix;)+)>
 <!ATTLIST ToCback
-		%common.attrib;
 		%label.attrib;
 		%pagenum.attrib;
+		%common.attrib;
 		%local.tocback.attrib;
 >
 <!--end of tocback.module-->]]>
@@ -423,23 +447,22 @@
 <![ %lot.content.module [
 <![ %lot.module [
 <!ENTITY % local.lot.attrib "">
-<!ELEMENT LoT - - ((%bookcomponent.title.content;)?, LoTentry+)>
+<!ELEMENT LoT - O ((%bookcomponent.title.content;)?, LoTentry*)>
 <!ATTLIST LoT
-		%common.attrib;
 		%label.attrib;
+		%common.attrib;
 		%local.lot.attrib;
 >
 <!--end of lot.module-->]]>
 
 <![ %lotentry.module [
 <!ENTITY % local.lotentry.attrib "">
-<!ELEMENT LoTentry - - ((%inline.char.mix;)+ )>
+<!ELEMENT LoTentry - - ((%para.char.mix;)+ )>
 <!ATTLIST LoTentry
-		%common.attrib;
-		%pagenum.attrib;
-
 		--SrcCredit: credit for source of illustration--
 		SrcCredit	CDATA		#IMPLIED
+		%pagenum.attrib;
+		%common.attrib;
 		%local.lotentry.attrib;
 >
 <!--end of lotentry.module-->]]>
@@ -450,22 +473,23 @@
 
 <![ %appendix.module; [
 <!ENTITY % local.appendix.attrib "">
-<!ELEMENT Appendix - - ((%bookcomponent.title.content;), (%sect1.content;))
-		+(%ubiq.mix;)>
+<!ELEMENT Appendix - O ((%bookcomponent.title.content;), ToCchap?,
+		(%bookcomponent.content;)) +(%ubiq.mix;)>
 <!ATTLIST Appendix
-		%common.attrib;
 		%label.attrib;
+		%common.attrib;
 		%local.appendix.attrib;
 >
 <!--end of appendix.module-->]]>
 
 <![ %chapter.module; [
 <!ENTITY % local.chapter.attrib "">
-<!ELEMENT Chapter - - ((%bookcomponent.title.content;), (%sect1.content;),
-		(Index | Glossary | Bibliography)*) +(%ubiq.mix;)>
+<!ELEMENT Chapter - O ((%bookcomponent.title.content;), ToCchap?,
+		(%bookcomponent.content;), (Index | Glossary | Bibliography)*)
+		+(%ubiq.mix;)>
 <!ATTLIST Chapter
-		%common.attrib;
 		%label.attrib;
+		%common.attrib;
 		%local.chapter.attrib;
 >
 <!--end of chapter.module-->]]>
@@ -475,8 +499,8 @@
 <!ELEMENT Part - - ((%bookcomponent.title.content;), PartIntro?,
 		(%partcontent.mix;)+) +(%ubiq.mix;)>
 <!ATTLIST Part
-		%common.attrib;
 		%label.attrib;
+		%common.attrib;
 		%local.part.attrib;
 >
 <!--ELEMENT PartIntro (defined below)-->
@@ -484,8 +508,8 @@
 
 <![ %preface.module; [
 <!ENTITY % local.preface.attrib "">
-<!ELEMENT Preface - - ((%bookcomponent.title.content;), (%sect1.content;))
-		+(%ubiq.mix;)>
+<!ELEMENT Preface - O ((%bookcomponent.title.content;), 
+		(%bookcomponent.content;)) +(%ubiq.mix;)>
 <!ATTLIST Preface
 		%common.attrib;
 		%local.preface.attrib;
@@ -494,11 +518,11 @@
 
 <![ %reference.module; [
 <!ENTITY % local.reference.attrib "">
-<!ELEMENT Reference - - ((%bookcomponent.title.content;), PartIntro?,
+<!ELEMENT Reference - O ((%bookcomponent.title.content;), PartIntro?,
 		(%refentry.class;)+) +(%ubiq.mix;)>
 <!ATTLIST Reference
-		%common.attrib;
 		%label.attrib;
+		%common.attrib;
 		%local.reference.attrib;
 >
 <!--ELEMENT PartIntro (defined below)-->
@@ -506,11 +530,11 @@
 
 <![ %partintro.module; [
 <!ENTITY % local.partintro.attrib "">
-<!ELEMENT PartIntro - - ((%div.title.content;)?, (%sect1.content;))
+<!ELEMENT PartIntro - O ((%div.title.content;)?, (%bookcomponent.content;))
 		+(%ubiq.mix;)>
 <!ATTLIST PartIntro	
-		%common.attrib;
 		%label.attrib;
+		%common.attrib;
 		%local.partintro.attrib;
 >
 <!--end of partintro.module-->]]>
@@ -520,8 +544,9 @@
 
 <![ %docinfo.module; [
 <!ENTITY % local.docinfo.attrib "">
-<!ELEMENT DocInfo - - ((%div.title.content;), SubTitle?, AuthorGroup+,
-		Abstract*, RevHistory?, LegalNotice*) -(%ubiq.mix;)>
+<!ELEMENT DocInfo - - (Graphic*, (%div.title.content;), Subtitle?, 
+		AuthorGroup+, Abstract*, RevHistory?, LegalNotice*)
+		-(%ubiq.mix;)>
 <!ATTLIST DocInfo
 		%common.attrib;
 		%local.docinfo.attrib;
@@ -533,98 +558,108 @@
 
 <![ %sect1.module; [
 <!ENTITY % local.sect1.attrib "">
-<!ELEMENT Sect1 - - ((%sect.title.content;), (%nav.class;)*,
-		(((%divcomponent.mix;)+, ((%refentry.class;)* | Sect2*))
-		| (%refentry.class;)+ | Sect2+), (%nav.class;)*) +(%ubiq.mix;)>
+<!ELEMENT Sect1 - O ((%sect.title.content;), (%nav.class;)*,
+		(((%divcomponent.mix;)+, 
+		((%refentry.class;)* | Sect2* | SimpleSect*))
+		| (%refentry.class;)+ | Sect2+ | SimpleSect+), (%nav.class;)*)
+		+(%ubiq.mix;)>
 <!ATTLIST Sect1
-		%common.attrib;
-		%label.attrib;
-
 		--Renderas: alternate level at which this section should
 		appear to be--
 		Renderas	(Sect2
 				|Sect3
 				|Sect4
 				|Sect5)		#IMPLIED
+		%label.attrib;
+		%common.attrib;
 		%local.sect1.attrib;
 >
 <!--end of sect1.module-->]]>
 
 <![ %sect2.module; [
 <!ENTITY % local.sect2.attrib "">
-<!ELEMENT Sect2 - - ((%sect.title.content;), (%nav.class;)*,
-		(((%divcomponent.mix;)+, ((%refentry.class;)* | Sect3*))
-		| (%refentry.class;)+ | Sect3+), (%nav.class;)*)>
+<!ELEMENT Sect2 - O ((%sect.title.content;), (%nav.class;)*,
+		(((%divcomponent.mix;)+, 
+		((%refentry.class;)* | Sect3* | SimpleSect*))
+		| (%refentry.class;)+ | Sect3+ | SimpleSect+), (%nav.class;)*)>
 <!ATTLIST Sect2
-		%common.attrib;
-		%label.attrib;
-
 		--Renderas: alternate level at which this section should
 		appear to be--
 		Renderas	(Sect1
 				|Sect3
 				|Sect4
 				|Sect5)		#IMPLIED
+		%label.attrib;
+		%common.attrib;
 		%local.sect2.attrib;
 >
 <!--end of sect2.module-->]]>
 
 <![ %sect3.module; [
 <!ENTITY % local.sect3.attrib "">
-<!ELEMENT Sect3 - - ((%sect.title.content;), (%nav.class;)*,
-		(((%divcomponent.mix;)+, ((%refentry.class;)* | Sect4*))
-		| (%refentry.class;)+ | Sect4+), (%nav.class;)*)>
+<!ELEMENT Sect3 - O ((%sect.title.content;), (%nav.class;)*,
+		(((%divcomponent.mix;)+, 
+		((%refentry.class;)* | Sect4* | SimpleSect*))
+		| (%refentry.class;)+ | Sect4+ | SimpleSect+), (%nav.class;)*)>
 <!ATTLIST Sect3
-		%common.attrib;
-		%label.attrib;
-
 		--Renderas: alternate level at which this section should
 		appear to be--
 		Renderas	(Sect1
 				|Sect2
 				|Sect4
 				|Sect5)		#IMPLIED
+		%label.attrib;
+		%common.attrib;
 		%local.sect3.attrib;
 >
 <!--end of sect3.module-->]]>
 
 <![ %sect4.module; [
 <!ENTITY % local.sect4.attrib "">
-<!ELEMENT Sect4 - - ((%sect.title.content;), (%nav.class;)*,
-		(((%divcomponent.mix;)+, ((%refentry.class;)* | Sect5*))
-		| (%refentry.class;)+ | Sect5+), (%nav.class;)*)>
+<!ELEMENT Sect4 - O ((%sect.title.content;), (%nav.class;)*,
+		(((%divcomponent.mix;)+, 
+		((%refentry.class;)* | Sect5* | SimpleSect*))
+		| (%refentry.class;)+ | Sect5+ | SimpleSect+), (%nav.class;)*)>
 <!ATTLIST Sect4
-		%common.attrib;
-		%label.attrib;
-
 		--Renderas: alternate level at which this section should
 		appear to be--
 		Renderas	(Sect1
 				|Sect2
 				|Sect3
 				|Sect5)		#IMPLIED
+		%label.attrib;
+		%common.attrib;
 		%local.sect4.attrib;
 >
 <!--end of sect4.module-->]]>
 
 <![ %sect5.module; [
 <!ENTITY % local.sect5.attrib "">
-<!ELEMENT Sect5 - - ((%sect.title.content;), (%nav.class;)*,
-		(((%divcomponent.mix;)+, (%refentry.class;)*)
-		| (%refentry.class;)+), (%nav.class;)*)>
+<!ELEMENT Sect5 - O ((%sect.title.content;), (%nav.class;)*,
+		(((%divcomponent.mix;)+, ((%refentry.class;)* | SimpleSect*))
+		| (%refentry.class;)+ | SimpleSect+), (%nav.class;)*)>
 <!ATTLIST Sect5
-		%common.attrib;
-		%label.attrib;
-
 		--Renderas: alternate level at which this section should
 		appear to be--
 		Renderas	(Sect1
 				|Sect2
 				|Sect3
 				|Sect4)		#IMPLIED
+		%label.attrib;
+		%common.attrib;
 		%local.sect5.attrib;
 >
 <!--end of sect5.module-->]]>
+
+<![ %simplesect.module; [
+<!ENTITY % local.simplesect.attrib "">
+<!ELEMENT SimpleSect - O ((%sect.title.content;), (%divcomponent.mix;)+)
+		+(%ubiq.mix;)>
+<!ATTLIST SimpleSect
+		%common.attrib;
+		%local.simplesect.attrib;
+>
+<!--end of simplesect.module-->]]>
 
 <!-- ...................................................................... -->
 <!-- Bibliography ......................................................... -->
@@ -632,7 +667,7 @@
 <![ %bibliography.content.module; [
 <![ %bibliography.module; [
 <!ENTITY % local.bibliography.attrib "">
-<!ELEMENT Bibliography - - ((%bookcomponent.title.content;)?,
+<!ELEMENT Bibliography - O ((%bookcomponent.title.content;)?,
 		(%component.mix;)*, (BiblioDiv+ | BiblioEntry+))>
 <!ATTLIST Bibliography
 		%common.attrib;
@@ -642,7 +677,7 @@
 
 <![ %bibliodiv.module; [
 <!ENTITY % local.bibliodiv.attrib "">
-<!ELEMENT BiblioDiv - - ((%sect.title.content;)?, (%component.mix;)*,
+<!ELEMENT BiblioDiv - O ((%sect.title.content;)?, (%component.mix;)*,
 		BiblioEntry+)>
 <!ATTLIST BiblioDiv
 		%common.attrib;
@@ -657,7 +692,7 @@
 <![ %glossary.content.module; [
 <![ %glossary.module; [
 <!ENTITY % local.glossary.attrib "">
-<!ELEMENT Glossary - - ((%bookcomponent.title.content;)?, (%component.mix;)*,
+<!ELEMENT Glossary - O ((%bookcomponent.title.content;)?, (%component.mix;)*,
 		(GlossDiv+ | GlossEntry+), Bibliography?)>
 <!ATTLIST Glossary
 		%common.attrib;
@@ -667,7 +702,7 @@
 
 <![ %glossdiv.module; [
 <!ENTITY % local.glossdiv.attrib "">
-<!ELEMENT GlossDiv - - ((%sect.title.content;), (%component.mix;)*,
+<!ELEMENT GlossDiv - O ((%sect.title.content;), (%component.mix;)*,
 		GlossEntry+)>
 <!ATTLIST GlossDiv
 		%common.attrib;
@@ -682,8 +717,8 @@
 <![ %index.content.module; [
 <![ %indexes.module; [
 <!ENTITY % local.indexes.attrib "">
-<!ELEMENT (%index.class;) - - ((%bookcomponent.title.content;)?,
-		(%component.mix;)*, (IndexDiv+ | IndexEntry+))
+<!ELEMENT (%index.class;) - O ((%bookcomponent.title.content;)?,
+		(%component.mix;)*, (IndexDiv* | IndexEntry*))
 		-(%ndxterm.class;)>
 <!ATTLIST (%index.class;)
 		%common.attrib;
@@ -697,7 +732,7 @@
      indices. -->
 
 <!ENTITY % local.indexdiv.attrib "">
-<!ELEMENT IndexDiv - - ((%sect.title.content;)?, ((%indexdivcomponent.mix;)*,
+<!ELEMENT IndexDiv - O ((%sect.title.content;)?, ((%indexdivcomponent.mix;)*,
 		(IndexEntry+ | SegmentedList)))>
 <!ATTLIST IndexDiv
 		%common.attrib;
@@ -709,7 +744,7 @@
 <!-- Index entries appear in the index, not the text. -->
 
 <!ENTITY % local.indexentry.attrib "">
-<!ELEMENT IndexEntry - - (PrimaryIE, (SeeIE|SeeAlsoIE)*,
+<!ELEMENT IndexEntry - O (PrimaryIE, (SeeIE|SeeAlsoIE)*,
 		(SecondaryIE, (SeeIE|SeeAlsoIE|TertiaryIE)*)*)>
 <!ATTLIST IndexEntry
 		%common.attrib;
@@ -719,30 +754,30 @@
 
 <![ %primsecterie.module; [
 <!ENTITY % local.primsecterie.attrib "">
-<!ELEMENT (PrimaryIE | SecondaryIE | TertiaryIE) - - ((%inline.char.mix;)+)>
+<!ELEMENT (PrimaryIE | SecondaryIE | TertiaryIE) - O ((%ndxterm.char.mix;)+)>
 <!ATTLIST (PrimaryIE | SecondaryIE | TertiaryIE)
-		%common.attrib;
 		%linkends.attrib; --to IndexTerms that these entries represent--
+		%common.attrib;
 		%local.primsecterie.attrib;
 >
 <!--end of primsecterie.module-->]]>
 	
 <![ %seeie.module; [
 <!ENTITY % local.seeie.attrib "">
-<!ELEMENT SeeIE - - ((%inline.char.mix;)+)>
+<!ELEMENT SeeIE - O ((%ndxterm.char.mix;)+)>
 <!ATTLIST SeeIE
-		%common.attrib;
 		%linkend.attrib; --to IndexEntry to look up--
+		%common.attrib;
 		%local.seeie.attrib;
 >
 <!--end of seeie.module-->]]>
 
 <![ %seealsoie.module; [
 <!ENTITY % local.seealsoie.attrib "">
-<!ELEMENT SeeAlsoIE - - ((%inline.char.mix;)+)>
+<!ELEMENT SeeAlsoIE - O ((%ndxterm.char.mix;)+)>
 <!ATTLIST SeeAlsoIE
-		%common.attrib;
 		%linkends.attrib; --to related IndexEntries--
+		%common.attrib;
 		%local.seealsoie.attrib;
 >
 <!--end of seealsoie.module-->]]>
@@ -754,7 +789,7 @@
 <![ %refentry.content.module; [
 <![ %refentry.module; [
 <!ENTITY % local.refentry.attrib "">
-<!ELEMENT RefEntry - - (DocInfo?, RefMeta?, (Comment|%link.char.class;)*,
+<!ELEMENT RefEntry - O (DocInfo?, RefMeta?, (Comment|%link.char.class;)*,
                         RefNameDiv, RefSynopsisDiv?, RefSect1+) +(%ubiq.mix;)>
 <!ATTLIST RefEntry
 		%common.attrib;
@@ -774,17 +809,17 @@
 
 <![ %refmiscinfo.module; [
 <!ENTITY % local.refmiscinfo.attrib "">
-<!ELEMENT RefMiscInfo - - (#PCDATA)>
+<!ELEMENT RefMiscInfo - - ((%docinfo.char.mix;)+)>
 <!ATTLIST RefMiscInfo
-		%common.attrib;
 		Class		CDATA		#IMPLIED
-		 %local.refmiscinfo.attrib;
+		%common.attrib;
+		%local.refmiscinfo.attrib;
 >
 <!--end of refmiscinfo.module-->]]>
 
 <![ %refnamediv.module; [
 <!ENTITY % local.refnamediv.attrib "">
-<!ELEMENT RefNameDiv - - (RefDescriptor?, RefName+, RefPurpose, RefClass*,
+<!ELEMENT RefNameDiv - O (RefDescriptor?, RefName+, RefPurpose, RefClass*,
 		(Comment|%link.char.class;)*)>
 <!ATTLIST RefNameDiv
 		%common.attrib;
@@ -794,7 +829,7 @@
 	
 <![ %refdescriptor.module; [
 <!ENTITY % local.refdescriptor.attrib "">
-<!ELEMENT RefDescriptor - - (#PCDATA)>
+<!ELEMENT RefDescriptor - O ((%refname.char.mix;)+)>
 <!ATTLIST RefDescriptor
 		%common.attrib;
 		%local.refdescriptor.attrib;
@@ -803,7 +838,7 @@
 
 <![ %refname.module; [
 <!ENTITY % local.refname.attrib "">
-<!ELEMENT RefName - - ((%refname.char.mix;)+)>
+<!ELEMENT RefName - O ((%refname.char.mix;)+)>
 <!ATTLIST RefName
 		%common.attrib;
 		%local.refname.attrib;
@@ -812,7 +847,7 @@
 
 <![ %refpurpose.module; [
 <!ENTITY % local.refpurpose.attrib "">
-<!ELEMENT RefPurpose - - ((%refinline.char.mix;)+)>
+<!ELEMENT RefPurpose - O ((%refinline.char.mix;)+)>
 <!ATTLIST RefPurpose
 		%common.attrib;
 		%local.refpurpose.attrib;
@@ -821,7 +856,7 @@
 
 <![ %refclass.module; [
 <!ENTITY % local.refclass.attrib "">
-<!ELEMENT RefClass - - ((%refclass.char.mix;)+)>
+<!ELEMENT RefClass - O ((%refclass.char.mix;)+)>
 <!ATTLIST RefClass
 		%common.attrib;
 		%local.refclass.attrib;
@@ -830,8 +865,8 @@
 
 <![ %refsynopsisdiv.module; [
 <!ENTITY % local.refsynopsisdiv.attrib "">
-<!ELEMENT RefSynopsisDiv - - ((%refsect.title.content;)?,
-                              (((%synop.class;)+, RefSect2*) | (RefSect2+)))>
+<!ELEMENT RefSynopsisDiv - O ((%refsect.title.content;)?,
+		(((%refcomponent.mix;)+, RefSect2*) | (RefSect2+)))>
 <!ATTLIST RefSynopsisDiv
 		%common.attrib;
 		%local.refsynopsisdiv.attrib;
@@ -840,7 +875,7 @@
 
 <![ %refsect1.module; [
 <!ENTITY % local.refsect1.attrib "">
-<!ELEMENT RefSect1 - - ((%refsect.title.content;),
+<!ELEMENT RefSect1 - O ((%refsect.title.content;),
                         (((%refcomponent.mix;)+, RefSect2*) | RefSect2+))>
 <!ATTLIST RefSect1
 		%common.attrib;
@@ -850,7 +885,7 @@
 
 <![ %refsect2.module; [
 <!ENTITY % local.refsect2.attrib "">
-<!ELEMENT RefSect2 - - ((%refsect.title.content;),
+<!ELEMENT RefSect2 - O ((%refsect.title.content;),
                         (((%refcomponent.mix;)+, RefSect3*) | RefSect3+))>
 <!ATTLIST RefSect2
 		%common.attrib;
@@ -860,7 +895,7 @@
 
 <![ %refsect3.module; [
 <!ENTITY % local.refsect3.attrib "">
-<!ELEMENT RefSect3 - - ((%refsect.title.content;), (%refcomponent.mix;)+)>
+<!ELEMENT RefSect3 - O ((%refsect.title.content;), (%refcomponent.mix;)+)>
 <!ATTLIST RefSect3
 		%common.attrib;
 		%local.refsect3.attrib;
@@ -876,17 +911,16 @@
      the DocBook documentation for a summary of changes. -->
 
 <!ENTITY % local.article.attrib "">
-<!ELEMENT Article - - (ArtHeader, (%sect1.content;),
+<!ELEMENT Article - O (ArtHeader, (%bookcomponent.content;),
                        ((%nav.class;) | (%appendix.class;) | Ackno)*)
                       +(%ubiq.mix;)>
 <!ATTLIST Article
-		%common.attrib;
-
 		--ParentBook: pointer to book in which this article resides--
 		ParentBook	IDREF		#IMPLIED
+		%common.attrib;
 		%local.article.attrib;
 >
 <!--end of article.module-->]]>
 
-<!-- End of DocBook document hierarchy module V2.3 ........................ -->
+<!-- End of DocBook document hierarchy module V2.4.1 ...................... -->
 <!-- ...................................................................... -->

@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook information pool module V2.3 ................................. -->
+<!-- DocBook information pool module V2.4.1 ............................... -->
 <!-- File dbpool.mod ...................................................... -->
 
 <!-- Copyright 1992, 1993, 1994, 1995 HaL Computer Systems, Inc.,
@@ -7,10 +7,11 @@
 
      Permission to use, copy, modify and distribute the DocBook DTD and
      its accompanying documentation for any purpose and without fee is
-     hereby granted, provided that this copyright notice appears in all
-     copies.  The copyright holders make no representation about the
-     suitability of the DTD for any purpose.  It is provided "as is"
-     without expressed or implied warranty.
+     hereby granted in perpetuity, provided that the above copyright
+     notice and this paragraph appear in all copies.  The copyright
+     holders make no representation about the suitability of the DTD for
+     any purpose.  It is provided "as is" without expressed or implied
+     warranty.
 
      If you modify the DocBook DTD in any way, except for declaring and
      referencing additional sets of general entities and declaring
@@ -45,20 +46,20 @@
        referenced in the NOTATION attributes for the graphic-related and
        ModeSpec elements.
 
-     o It assumes that an appropriately paramterized table module is
+     o It assumes that an appropriately parameterized table module is
        available for use with the table-related elements.
 
      In DTD driver files referring to this module, please use an entity
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbpool PUBLIC
-     "-//Davenport//ELEMENTS DocBook Information Pool V2.3//EN">
+     "-//Davenport//ELEMENTS DocBook Information Pool V2.4.1//EN">
      %dbpool;
 
-     See the maintenance documentation for detailed information on the
-     parameter entity and module scheme used in DocBook, customizing
-     DocBook and planning for interchange, and changes made since the
-     last release of DocBook.
+     See the documentation for detailed information on the parameter
+     entity and module scheme used in DocBook, customizing DocBook and
+     planning for interchange, and changes made since the last release
+     of DocBook.
 -->
 
 <!-- ...................................................................... -->
@@ -68,6 +69,7 @@
 
 <!ENTITY % abbrev.module		"INCLUDE">
 <!ENTITY % abstract.module		"INCLUDE">
+<!ENTITY % accel.module			"INCLUDE">
 <!ENTITY % ackno.module			"INCLUDE">
 <!ENTITY % acronym.module		"INCLUDE">
 <!ENTITY % action.module		"INCLUDE">
@@ -78,9 +80,14 @@
 <!ENTITY % affiliation.content.module	"INCLUDE">
 <!ENTITY % anchor.module		"INCLUDE">
 <!ENTITY % application.module		"INCLUDE">
+<!ENTITY % area.module			"INCLUDE">
+<!ENTITY % areaset.module		"INCLUDE">
+<!ENTITY % areaspec.module		"INCLUDE">
+<!ENTITY % areaspec.content.module	"INCLUDE">
 <!ENTITY % arg.module			"INCLUDE">
 <!ENTITY % artheader.module		"INCLUDE">
 <!ENTITY % artpagenums.module		"INCLUDE">
+<!ENTITY % attribution.module		"INCLUDE">
 <!ENTITY % author.module		"INCLUDE">
 <!ENTITY % authorblurb.module		"INCLUDE">
 <!ENTITY % authorgroup.module		"INCLUDE">
@@ -93,6 +100,9 @@
 <!ENTITY % blockquote.module		"INCLUDE">
 <!ENTITY % bookbiblio.module		"INCLUDE">
 <!ENTITY % bridgehead.module		"INCLUDE">
+<!ENTITY % callout.module		"INCLUDE">
+<!ENTITY % calloutlist.module		"INCLUDE">
+<!ENTITY % calloutlist.content.module	"INCLUDE">
 <!--       caution.module		use admon.module-->
 <!ENTITY % citation.module		"INCLUDE">
 <!ENTITY % citerefentry.content.module	"INCLUDE">
@@ -103,6 +113,7 @@
 <!ENTITY % cmdsynopsis.content.module	"INCLUDE">
 <!ENTITY % cmdsynopsis.module		"INCLUDE">
 <!ENTITY % collab.module		"INCLUDE">
+<!ENTITY % co.module			"INCLUDE">
 <!ENTITY % collab.content.module	"INCLUDE">
 <!ENTITY % collabname.module		"INCLUDE">
 <!ENTITY % command.module		"INCLUDE">
@@ -145,6 +156,7 @@
 <!ENTITY % formalpara.module		"INCLUDE">
 <!ENTITY % funcdef.module		"INCLUDE">
 <!ENTITY % funcparams.module		"INCLUDE">
+<!ENTITY % funcprototype.module		"INCLUDE">
 <!ENTITY % funcsynopsis.content.module	"INCLUDE">
 <!ENTITY % funcsynopsis.module		"INCLUDE">
 <!ENTITY % funcsynopsisinfo.module	"INCLUDE">
@@ -157,7 +169,14 @@
 <!ENTITY % glossseealso.module		"INCLUDE">
 <!ENTITY % glossterm.module		"INCLUDE">
 <!ENTITY % graphic.module		"INCLUDE">
+<!ENTITY % graphicco.module		"INCLUDE">
 <!ENTITY % group.module			"INCLUDE">
+<!ENTITY % guibutton.module		"INCLUDE">
+<!ENTITY % guiicon.module		"INCLUDE">
+<!ENTITY % guilabel.module		"INCLUDE">
+<!ENTITY % guimenu.module		"INCLUDE">
+<!ENTITY % guimenuitem.module		"INCLUDE">
+<!ENTITY % guisubmenu.module		"INCLUDE">
 <!ENTITY % hardware.module		"INCLUDE">
 <!ENTITY % highlights.module		"INCLUDE">
 <!ENTITY % holder.module		"INCLUDE">
@@ -179,6 +198,7 @@
 <!ENTITY % jobtitle.module		"INCLUDE">
 <!ENTITY % keycap.module		"INCLUDE">
 <!ENTITY % keycode.module		"INCLUDE">
+<!ENTITY % keycombo.module		"INCLUDE">
 <!ENTITY % keysym.module		"INCLUDE">
 <!ENTITY % legalnotice.module		"INCLUDE">
 <!ENTITY % lineage.module		"INCLUDE">
@@ -191,8 +211,10 @@
 <!ENTITY % markup.module		"INCLUDE">
 <!ENTITY % medialabel.module		"INCLUDE">
 <!ENTITY % member.module		"INCLUDE">
+<!ENTITY % menuchoice.content.module	"INCLUDE">
+<!ENTITY % menuchoice.module		"INCLUDE">
 <!ENTITY % modespec.module		"INCLUDE">
-<!ENTITY % modespec.module		"INCLUDE">
+<!ENTITY % mousebutton.module		"INCLUDE">
 <!ENTITY % msg.module			"INCLUDE">
 <!ENTITY % msgaud.module		"INCLUDE">
 <!ENTITY % msgentry.module		"INCLUDE">
@@ -222,6 +244,7 @@
 <!ENTITY % parameter.module		"INCLUDE">
 <!ENTITY % person.ident.module		"INCLUDE">
 <!ENTITY % phone.module			"INCLUDE">
+<!ENTITY % phrase.module		"INCLUDE">
 <!ENTITY % pob.module			"INCLUDE">
 <!ENTITY % postcode.module		"INCLUDE">
 <!--       primary.module		use primsecter.module-->
@@ -232,6 +255,7 @@
 <!ENTITY % productname.module		"INCLUDE">
 <!ENTITY % productnumber.module		"INCLUDE">
 <!ENTITY % programlisting.module	"INCLUDE">
+<!ENTITY % programlistingco.module	"INCLUDE">
 <!ENTITY % property.module		"INCLUDE">
 <!ENTITY % pubdate.module		"INCLUDE">
 <!ENTITY % publisher.module		"INCLUDE">
@@ -248,7 +272,9 @@
 <!ENTITY % revision.module		"INCLUDE">
 <!ENTITY % revnumber.module		"INCLUDE">
 <!ENTITY % revremark.module		"INCLUDE">
+<!ENTITY % sbr.module			"INCLUDE">
 <!ENTITY % screen.module		"INCLUDE">
+<!ENTITY % screenco.module		"INCLUDE">
 <!ENTITY % screeninfo.module		"INCLUDE">
 <!ENTITY % screenshot.content.module	"INCLUDE">
 <!ENTITY % screenshot.module		"INCLUDE">
@@ -265,6 +291,7 @@
 <!ENTITY % seriesvolnums.module		"INCLUDE">
 <!ENTITY % sgmltag.module		"INCLUDE">
 <!ENTITY % shortaffil.module		"INCLUDE">
+<!ENTITY % shortcut.module		"INCLUDE">
 <!ENTITY % sidebar.module		"INCLUDE">
 <!ENTITY % simpara.module		"INCLUDE">
 <!ENTITY % simplelist.content.module	"INCLUDE">
@@ -313,7 +340,7 @@
 
 <!ENTITY % local.list.class "">
 <!ENTITY % list.class
-		"GlossList|ItemizedList|OrderedList|SegmentedList
+		"CalloutList|GlossList|ItemizedList|OrderedList|SegmentedList
 		|SimpleList|VariableList %local.list.class;">
 
 <!ENTITY % local.admon.class "">
@@ -322,8 +349,8 @@
 
 <!ENTITY % local.linespecific.class "">
 <!ENTITY % linespecific.class
-		"LiteralLayout|ProgramListing|Screen|ScreenShot
-		%local.linespecific.class;">
+		"LiteralLayout|ProgramListing|ProgramListingCO|Screen
+		|ScreenCO|ScreenShot %local.linespecific.class;">
 
 <!ENTITY % local.synop.class "">
 <!ENTITY % synop.class
@@ -335,8 +362,8 @@
 
 <!ENTITY % local.informal.class "">
 <!ENTITY % informal.class
-		"BlockQuote|InformalEquation|InformalExample|InformalTable
-		|Graphic %local.informal.class;">
+		"Address|BlockQuote|Graphic|GraphicCO|InformalEquation
+		|InformalExample|InformalTable %local.informal.class;">
 
 <!ENTITY % local.formal.class "">
 <!ENTITY % formal.class
@@ -369,8 +396,8 @@
 <!ENTITY % local.word.char.class "">
 <!ENTITY % word.char.class
 		"Abbrev|Acronym|Citation|CiteTitle|CiteRefEntry|Emphasis
-		|FirstTerm|ForeignPhrase|GlossTerm|Footnote|Markup|Quote
-		|SGMLTag|Trademark|WordAsWord %local.word.char.class;">
+		|FirstTerm|ForeignPhrase|GlossTerm|Footnote|Phrase
+		|Quote|Trademark|WordAsWord %local.word.char.class;">
 
 <!ENTITY % local.link.char.class "">
 <!ENTITY % link.char.class
@@ -379,10 +406,12 @@
 <!ENTITY % local.cptr.char.class "">
 <!ENTITY % cptr.char.class
 		"Action|Application|ClassName|Command|ComputerOutput
-		|Database|ErrorName|ErrorType|Filename|Function|Hardware
-		|Interface|InterfaceDefinition|KeyCap|KeyCode|KeySym
-		|Literal|MediaLabel|MsgText|Option|Optional|Parameter
-		|Property|Replaceable|ReturnValue|StructField|StructName
+		|Database|Email|ErrorName|ErrorType|Filename|Function
+		|GUIButton|GUIIcon|GUILabel|GUIMenu|GUIMenuItem|GUISubmenu
+		|Hardware|Interface|InterfaceDefinition|KeyCap|KeyCode
+		|KeyCombo|KeySym|Literal|Markup|MediaLabel|MenuChoice
+		|MouseButton|MsgText|Option|Optional|Parameter|Property
+		|Replaceable|ReturnValue|SGMLTag|StructField|StructName
 		|Symbol|SystemItem|Token|Type|UserInput
 		%local.cptr.char.class;">
 
@@ -406,27 +435,36 @@
 
 <!-- Redeclaration placeholder ............................................ -->
 
+<!-- For redeclaring entities that are declared after this point while
+     retaining their references to the entities that are declared before
+     this point -->
+
 <![ %dbpool.redecl.module; [
-<!ENTITY % rdbpool PUBLIC
-"-//Davenport//ELEMENTS DocBook Information Pool Redeclarations//EN">
 %rdbpool;
 <!--end of dbpool.redecl.module-->]]>
 
 <!-- Object-level mixtures ................................................ -->
 
 <!--
-[X = all, . = some]   list admn line synp para infm form cmpd gen  desc
+                      list admn line synp para infm form cmpd gen  desc
 Component mixture       X    X    X    X    X    X    X    X    X    X
-Sidebar mixture         X    X    X    X    X    X    X    .    X
+Sidebar mixture         X    X    X    X    X    X    X    a    X
 Footnote mixture        X         X    X    X    X
 Example mixture         X         X    X    X    X
 Highlights mixture      X    X              X
 Paragraph mixture       X         X    X         X
-Admonition mixture      X         X    X    X    X    X    .    .
+Admonition mixture      X         X    X    X    X    X    b    c
 Figure mixture                    X    X         X
-Table entry mixture     X    X    X         X    .
-Glossary def mixture    X         X    X    X    X         .
-Legal notice mixture    X    X    X         X    .
+Table entry mixture     X    X    X         X    d
+Glossary def mixture    X         X    X    X    X         e
+Legal notice mixture    X    X    X         X    f
+
+a. Just Procedure; not Sidebar itself or MsgSet.
+b. No MsgSet.
+c. No Highlights.
+d. Just Graphic; no other informal objects.
+e. No Anchor, BridgeHead, or Highlights.
+f. Just BlockQuote; no other informal objects.
 -->
 
 <!ENTITY % local.component.mix "">
@@ -468,12 +506,15 @@ Legal notice mixture    X    X    X         X    .
 		%local.highlights.mix;">
 
 <!-- %synop.class; is already included in para.char.mix because synopses
-     used inside paragraph contexts are "inline" synopses -->
+     used inside paragraph-like contexts are "inline" synopses -->
+<!-- %formal.class; is explicitly excluded from many contexts in which
+     paragraphs are used -->
 <!ENTITY % local.para.mix "">
 <!ENTITY % para.mix
-		"%list.class;
+		"%list.class;           |%admon.class;
 		|%linespecific.class;
 					|%informal.class;
+		|%formal.class;
 		%local.para.mix;">
 
 <!ENTITY % local.admon.mix "">
@@ -503,6 +544,7 @@ Legal notice mixture    X    X    X         X    .
 		"%list.class;
 		|%linespecific.class;	|%synop.class;
 		|%para.class;		|%informal.class;
+		|%formal.class;
 		|Comment
 		%local.glossdef.mix;">
 
@@ -520,13 +562,18 @@ Legal notice mixture    X    X    X         X    .
 		"%ndxterm.class;|BeginPage %local.ubiq.mix;">
 
 <!--
-[X = all, . = some]   #PCDATA xref word link cptr base dnfo othr inob
-Paragraph char mixture     X    X    X    X    X    X    X    X    X
-Inline char mixture        X    X    X    X    X    X    X    X
-Synopsis char mixture      X    X    X    X    X    X    X    X
-Computer char mixture      X              X    X    X         X
-Sub/superscr char mixture  X         .    X    .    X         X
-Phrase char mixture        X              X         X         X
+                    #PCD xref word link cptr base dnfo othr inob (synop)
+para.char.mix         X    X    X    X    X    X    X    X    X     X
+title.char.mix        X    X    X    X    X    X    X    X    X
+ndxterm.char.mix      X    X    X    X    X    X    X    X    a
+cptr.char.mix         X              X    X    X         X    a
+smallcptr.char.mix    X                   b                   a
+word.char.mix         X         c    X         X         X    a
+docinfo.char.mix      X         c         b              X    a
+
+a. Just InlineGraphic; no InlineEquation.
+b. Just Replaceable; no other computer terms.
+c. Just Emphasis and Trademark; no other word elements.
 -->
 
 <!-- Note that synop.class is not usually used for *.char.mixes,
@@ -542,49 +589,64 @@ Phrase char mixture        X              X         X         X
 		|%synop.class;
 		%local.para.char.mix;">
 
-<!ENTITY % local.inline.char.mix "">
-<!ENTITY % inline.char.mix
+<!ENTITY % local.title.char.mix "">
+<!ENTITY % title.char.mix
 		"#PCDATA
 		|%xref.char.class;	|%word.char.class;
 		|%link.char.class;	|%cptr.char.class;
 		|%base.char.class;	|%docinfo.char.class;
-		|%other.char.class;
-		%local.inline.char.mix;">
+		|%other.char.class;	|%inlineobj.char.class;
+		%local.title.char.mix;">
 
-<!ENTITY % local.synop.char.mix "">
-<!ENTITY % synop.char.mix
+<!ENTITY % local.ndxterm.char.mix "">
+<!ENTITY % ndxterm.char.mix
 		"#PCDATA
 		|%xref.char.class;	|%word.char.class;
 		|%link.char.class;	|%cptr.char.class;
 		|%base.char.class;	|%docinfo.char.class;
-		|%other.char.class;
-		%local.synop.char.mix;">
+		|%other.char.class;	|InlineGraphic
+		%local.ndxterm.char.mix;">
+
+<!--FUTURE USE (V4.0):
+......................
+All elements containing cptr.char.mix will be examined and the content
+models of most of them reduced (to remove, e.g., themselves and most
+of the other computer terms); cptr.char.mix itself may be reduced to
+help accomplish this.
+......................
+-->
 
 <!ENTITY % local.cptr.char.mix "">
 <!ENTITY % cptr.char.mix
 		"#PCDATA
 		|%link.char.class;	|%cptr.char.class;
 		|%base.char.class;
-		|%other.char.class;
+		|%other.char.class;	|InlineGraphic
 		%local.cptr.char.mix;">
 
-<!ENTITY % local.ssscript.char.mix "">
-<!ENTITY % ssscript.char.mix
+<!ENTITY % local.smallcptr.char.mix "">
+<!ENTITY % smallcptr.char.mix
 		"#PCDATA
-		                        |Emphasis
-		|%link.char.class;      |Replaceable
-		|%base.char.class;
-		|%other.char.class;
-		%local.ssscript.char.mix;">
+					|Replaceable
+					|InlineGraphic
+		%local.smallcptr.char.mix;">
 
-<!ENTITY % local.phrase.char.mix "">
-<!ENTITY % phrase.char.mix
+<!ENTITY % local.word.char.mix "">
+<!ENTITY % word.char.mix
 		"#PCDATA
+					|Emphasis|Trademark
 		|%link.char.class;
 		|%base.char.class;
-		|%other.char.class;
-		%local.phrase.char.mix;">
+		|%other.char.class;	|InlineGraphic
+		%local.word.char.mix;">
 
+<!ENTITY % local.docinfo.char.mix "">
+<!ENTITY % docinfo.char.mix
+		"#PCDATA
+					|Emphasis|Trademark
+					|Replaceable
+		|%other.char.class;	|InlineGraphic
+		%local.docinfo.char.mix;">
 <!--ENTITY % person.ident.mix (see Document Information section, below)-->
 
 <!-- ...................................................................... -->
@@ -596,70 +658,84 @@ Phrase char mixture        X              X         X         X
 
 <!ENTITY % inlineequation.content "(Graphic+)">
 
-<!ENTITY % programlisting.content "LineAnnotation | %inline.char.mix;">
+<!ENTITY % programlisting.content "CO | LineAnnotation | %para.char.mix;">
 
-<!ENTITY % screen.content "LineAnnotation | %inline.char.mix;">
+<!ENTITY % screen.content "CO | LineAnnotation | %para.char.mix;">
 
 <!-- ...................................................................... -->
 <!-- Entities for attributes and attribute components ..................... -->
 
+<!-- Effectivity attributes ............................................... -->
+
+<!ENTITY % os.attrib
+	--OS: operating system to which element applies; no default--
+	"OS		CDATA		#IMPLIED">
+
+<!ENTITY % arch.attrib
+	--Arch: computer or chip architecture to which element applies; no 
+	default--
+	"Arch		CDATA		#IMPLIED">
+
+<!ENTITY % vendor.attrib
+	--Vendor: computer vendor to which element applies; no default--
+	"Vendor		CDATA		#IMPLIED">
+
+<!ENTITY % userlevel.attrib
+	--UserLevel: level of user experience to which element applies; no 
+	default--
+	"UserLevel	CDATA		#IMPLIED">
+
+<!ENTITY % revision.attrib
+	--Revision: editorial revision to which element belongs; no default--
+	"Revision	CDATA		#IMPLIED">
+
+<!ENTITY % local.effectivity.attrib "">
+<!ENTITY % effectivity.attrib
+	"%os.attrib;
+	%arch.attrib;
+	%vendor.attrib;
+	%userlevel.attrib;
+	%revision.attrib;
+	%local.effectivity.attrib;"
+>
+
+<!-- Common attributes .................................................... -->
 
 <!ENTITY % id.attrib
-	--Id: unique identifier of element--
+	--Id: unique identifier of element; no default--
 	"Id		ID		#IMPLIED">
 
 <!ENTITY % idreq.attrib
-	--Id: unique identifier of element; a value must be supplied--
+	--Id: unique identifier of element; a value must be supplied; no 
+	default--
 	"Id		ID		#REQUIRED">
 
 <!ENTITY % lang.attrib
 	--Lang: indicator of language in which element is written, for
-	translation, character set management, etc.--
+	translation, character set management, etc.; no default--
 	"Lang		CDATA		#IMPLIED">
 
 <!ENTITY % remap.attrib
-	--Remap: previous role of element before conversion--
+	--Remap: previous role of element before conversion; no default--
 	"Remap		CDATA		#IMPLIED">
 
 <!ENTITY % role.attrib
-	--Role: new role of element in local environment--
+	--Role: new role of element in local environment; no default--
 	"Role		CDATA		#IMPLIED">
 
 <!ENTITY % xreflabel.attrib
-	--XRefLabel: alternate labeling string for XRef text generation--
+	--XRefLabel: alternate labeling string for XRef text generation;
+	default is usually title or other appropriate label text already
+	contained in element--
 	"XRefLabel	CDATA		#IMPLIED">
 
-<!ENTITY % linkend.attrib
-	--Linkend: link to related information--
-	"Linkend	IDREF		#IMPLIED">
-
-<!ENTITY % linkendreq.attrib
-	--Linkend: required link to related information--
-	"Linkend	IDREF		#REQUIRED">
-
-<!ENTITY % linkends.attrib
-	--Linkends: link to one or more sets of related information--
-	"Linkends	IDREFS		#IMPLIED">
-
-<!ENTITY % linkendsreq.attrib
-	--Linkends: required link to one or more sets of related information--
-	"Linkends	IDREFS		#REQUIRED">
-
-<!ENTITY % label.attrib
-	--Label: number or identifying string--
-	"Label		CDATA		#IMPLIED">
-
-<!ENTITY % pagenum.attrib
-	--Pagenum: number of page on which element appears--
-	"Pagenum	CDATA		#IMPLIED">
-
-<!ENTITY % moreinfo.attrib
-	--MoreInfo: whether element's content has an associated RefEntry--
-	"MoreInfo	(RefEntry|None)	None">
-
-<!ENTITY % linespecific.attrib
-	"Format		NOTATION
-			(linespecific)	linespecific">
+<!ENTITY % revisionflag.attrib
+	--RevisionFlag: revision status of element; default is that element
+	wasn't revised--
+	"RevisionFlag	(Changed
+			|Added
+			|Deleted
+			|Off)		#IMPLIED">
 
 <!ENTITY % local.common.attrib "">
 <!ENTITY % common.attrib
@@ -668,6 +744,8 @@ Phrase char mixture        X              X         X         X
 	%remap.attrib;
 	%role.attrib;
 	%xreflabel.attrib;
+	%revisionflag.attrib;
+	%effectivity.attrib;
 	%local.common.attrib;"
 >
 
@@ -677,24 +755,79 @@ Phrase char mixture        X              X         X         X
 	%remap.attrib;
 	%role.attrib;
 	%xreflabel.attrib;
+	%revisionflag.attrib;
+	%effectivity.attrib;
 	%local.common.attrib;"
 >
 
-<!ENTITY % local.graphic.attrib "">
-<!ENTITY % graphic.attrib
+<!-- Semi-common attributes and other attribute entities .................. -->
+
+<!ENTITY % linkend.attrib
+	--Linkend: link to related information; no default--
+	"Linkend	IDREF		#IMPLIED">
+
+<!ENTITY % linkendreq.attrib
+	--Linkend: required link to related information--
+	"Linkend	IDREF		#REQUIRED">
+
+<!ENTITY % linkends.attrib
+	--Linkends: link to one or more sets of related information; no 
+	default--
+	"Linkends	IDREFS		#IMPLIED">
+
+<!ENTITY % linkendsreq.attrib
+	--Linkends: required link to one or more sets of related information--
+	"Linkends	IDREFS		#REQUIRED">
+
+<!ENTITY % label.attrib
+	--Label: number or identifying string; default is usually the
+	appropriate number or string autogenerated by a formatter--
+	"Label		CDATA		#IMPLIED">
+
+<!ENTITY % pagenum.attrib
+	--Pagenum: number of page on which element appears; no default--
+	"Pagenum	CDATA		#IMPLIED">
+
+<!ENTITY % moreinfo.attrib
+	--MoreInfo: whether element's content has an associated RefEntry--
+	"MoreInfo	(RefEntry|None)	None">
+
+<!ENTITY % linespecific.attrib
+	--Format: whether element is assumed to contain significant white
+	space--
+	"Format		NOTATION
+			(linespecific)	linespecific">
+
+<!ENTITY % local.graphics.attrib "">
+<!ENTITY % graphics.attrib
 	"Entityref	ENTITY		#IMPLIED
 	Fileref 	CDATA		#IMPLIED
 	Format		NOTATION
 			(%notation.class;)
 					#IMPLIED
 	SrcCredit	CDATA		#IMPLIED
-	%local.graphic.attrib;"
+	%local.graphics.attrib;"
 >
 
 <!ENTITY % local.mark.attrib "">
 <!ENTITY % mark.attrib
 	"Mark		CDATA		#IMPLIED
 	%local.mark.attrib;"
+>
+
+<!ENTITY % local.keyaction.attrib "">
+<!ENTITY % keyaction.attrib
+	--Action: Key combination type; default is unspecified if one 
+	child element, Simul if there is more than one; if value is 
+	Other, the OtherAction attribute must have a nonempty value--
+	--OtherAction: User-defined key combination type--
+	"Action		(Click
+			|Double-Click
+			|Press
+			|Seq
+			|Simul
+			|Other)		#IMPLIED
+	OtherAction	CDATA		#IMPLIED"
 >
 
 <!ENTITY % yesorno.attvals	"NUMBER">
@@ -706,17 +839,17 @@ Phrase char mixture        X              X         X         X
 
 <![ %title.module; [
 <!ENTITY % local.title.attrib "">
-<!ELEMENT Title - - ((%inline.char.mix;)+)>
+<!ELEMENT Title - O ((%title.char.mix;)+)>
 <!ATTLIST Title
-		%common.attrib;
 		%pagenum.attrib;
+		%common.attrib;
 		%local.title.attrib;
 >
 <!--end of title.module-->]]>
 
 <![ %titleabbrev.module; [
 <!ENTITY % local.titleabbrev.attrib "">
-<!ELEMENT TitleAbbrev - - ((%inline.char.mix;)+)>
+<!ELEMENT TitleAbbrev - O ((%title.char.mix;)+)>
 <!ATTLIST TitleAbbrev
 		%common.attrib;
 		%local.titleabbrev.attrib;
@@ -725,8 +858,8 @@ Phrase char mixture        X              X         X         X
 
 <![ %subtitle.module; [
 <!ENTITY % local.subtitle.attrib "">
-<!ELEMENT SubTitle - - ((%inline.char.mix;)+)>
-<!ATTLIST SubTitle
+<!ELEMENT Subtitle - O ((%title.char.mix;)+)>
+<!ATTLIST Subtitle
 		%common.attrib;
 		%local.subtitle.attrib;
 >
@@ -744,7 +877,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %biblioentry.module; [
 <!ENTITY % local.biblioentry.attrib "">
-<!ELEMENT BiblioEntry - - (BiblioMisc?, (ArtHeader | BookBiblio | SeriesInfo),
+<!ELEMENT BiblioEntry - O (BiblioMisc?, (ArtHeader | BookBiblio | SeriesInfo),
 		BiblioMisc?)>
 <!ATTLIST BiblioEntry
 		%common.attrib;
@@ -754,7 +887,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %bibliomisc.module; [
 <!ENTITY % local.bibliomisc.attrib "">
-<!ELEMENT BiblioMisc - - (#PCDATA)>
+<!ELEMENT BiblioMisc - - ((%para.char.mix;)+)>
 <!ATTLIST BiblioMisc
 		%common.attrib;
 		%local.bibliomisc.attrib;
@@ -764,7 +897,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %bookbiblio.module; [
 <!ENTITY % local.bookbiblio.attrib "">
-<!ELEMENT BookBiblio - - ((Title, TitleAbbrev?)?, SubTitle?, Edition?,
+<!ELEMENT BookBiblio - - ((Title, TitleAbbrev?)?, Subtitle?, Edition?,
 		AuthorGroup+, ((ISBN, VolumeNum?) | (ISSN, VolumeNum?,
 		IssueNum?, PageNums?))?, InvPartNumber?, ProductNumber?,
 		ProductName?, PubsNumber?, ReleaseInfo?, PubDate*,
@@ -779,7 +912,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %seriesinfo.module; [
 <!ENTITY % local.seriesinfo.attrib "">
-<!ELEMENT SeriesInfo - - ((%formalobject.title.content;), SubTitle?, 
+<!ELEMENT SeriesInfo - - ((%formalobject.title.content;), Subtitle?, 
 		AuthorGroup*, ISBN?, VolumeNum?, IssueNum?, SeriesVolNums, 
 		PubDate*, Publisher*, Copyright?) -(%ubiq.mix;)>
 <!ATTLIST SeriesInfo
@@ -790,7 +923,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %artheader.module; [
 <!ENTITY % local.artheader.attrib "">
-<!ELEMENT ArtHeader - - ((%formalobject.title.content;), SubTitle?, 
+<!ELEMENT ArtHeader - - ((%formalobject.title.content;), Subtitle?, 
 		AuthorGroup+, BookBiblio?, ArtPageNums, Abstract*, ConfGroup*,
 		(ContractNum | ContractSponsor)*)>
 <!ATTLIST ArtHeader
@@ -816,7 +949,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %msgentry.module; [
 <!ENTITY % local.msgentry.attrib "">
-<!ELEMENT MsgEntry - - (Msg+, MsgInfo?, MsgExplan*)>
+<!ELEMENT MsgEntry - O (Msg+, MsgInfo?, MsgExplan*)>
 <!ATTLIST MsgEntry
 		%common.attrib;
 		%local.msgentry.attrib;
@@ -825,7 +958,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %msg.module; [
 <!ENTITY % local.msg.attrib "">
-<!ELEMENT Msg - - (Title?, MsgMain, (MsgSub | MsgRel)*)>
+<!ELEMENT Msg - O (Title?, MsgMain, (MsgSub | MsgRel)*)>
 <!ATTLIST Msg
 		%common.attrib;
 		%local.msg.attrib;
@@ -872,7 +1005,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %msglevel.module; [
 <!ENTITY % local.msglevel.attrib "">
-<!ELEMENT MsgLevel - - (#PCDATA)>
+<!ELEMENT MsgLevel - - ((%smallcptr.char.mix;)+)>
 <!ATTLIST MsgLevel
 		%common.attrib;
 		%local.msglevel.attrib;
@@ -881,7 +1014,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %msgorig.module; [
 <!ENTITY % local.msgorig.attrib "">
-<!ELEMENT MsgOrig - - (#PCDATA)>
+<!ELEMENT MsgOrig - - ((%smallcptr.char.mix;)+)>
 <!ATTLIST MsgOrig
 		%common.attrib;
 		%local.msgorig.attrib;
@@ -890,7 +1023,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %msgaud.module; [
 <!ENTITY % local.msgaud.attrib "">
-<!ELEMENT MsgAud - - (#PCDATA)>
+<!ELEMENT MsgAud - - ((%para.char.mix;)+)>
 <!ATTLIST MsgAud
 		%common.attrib;
 		%local.msgaud.attrib;
@@ -922,14 +1055,13 @@ Phrase char mixture        X              X         X         X
 
 <![ %step.module; [
 <!ENTITY % local.step.attrib "">
-<!ELEMENT Step - - (Title?, (((%component.mix;)+, (SubSteps,
+<!ELEMENT Step - O (Title?, (((%component.mix;)+, (SubSteps,
 		(%component.mix;)*)?) | (SubSteps, (%component.mix;)*)))>
 <!ATTLIST Step
-		%common.attrib;
-
 		--Performance: whether step must be performed--
 		Performance	(Optional
 				|Required)	Required -- not #REQUIRED! --
+		%common.attrib;
 		%local.step.attrib;
 >
 <!--end of step.module-->]]>
@@ -938,12 +1070,11 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.substeps.attrib "">
 <!ELEMENT SubSteps - - (Step+)>
 <!ATTLIST SubSteps
-		%common.attrib;
-
 		--Performance: whether whole set of substeps must be
 		performed--
 		Performance	(Optional
 				|Required)	Required -- not #REQUIRED! --
+		%common.attrib;
 		%local.substeps.attrib;
 >
 <!--end of substeps.module-->]]>
@@ -982,32 +1113,47 @@ Phrase char mixture        X              X         X         X
 <!--end of authorblurb.module-->]]>
 
 <![ %blockquote.module; [
+<!--FUTURE USE (V4.0):
+......................
+Epigraph will be disallowed from appearing in BlockQuote
+......................
+-->
+
 <!ENTITY % local.blockquote.attrib "">
-<!ELEMENT BlockQuote - - (Title?, (%component.mix;)+)>
+<!ELEMENT BlockQuote - - (Title?, Attribution?, (%component.mix;)+)>
 <!ATTLIST BlockQuote
 		%common.attrib;
 		%local.blockquote.attrib;
 >
 <!--end of blockquote.module-->]]>
 
+<![ %attribution.module; [
+<!ENTITY % local.attribution.attrib "">
+<!ELEMENT Attribution - O ((%para.char.mix;)+)>
+<!ATTLIST Attribution
+		%common.attrib;
+		%local.attribution.attrib;
+>
+<!--end of attribution.module-->]]>
+
 <![ %bridgehead.module; [
 <!ENTITY % local.bridgehead.attrib "">
-<!ELEMENT BridgeHead - - ((%inline.char.mix;)+)>
+<!ELEMENT BridgeHead - - ((%title.char.mix;)+)>
 <!ATTLIST BridgeHead
-		%common.attrib;
 		Renderas	(Other
 				|Sect1
 				|Sect2
 				|Sect3
 				|Sect4
 				|Sect5)		#IMPLIED
+		%common.attrib;
 		%local.bridgehead.attrib;
 >
 <!--end of bridgehead.module-->]]>
 
 <![ %comment.module; [
 <!ENTITY % local.comment.attrib "">
-<!ELEMENT Comment - - ((%inline.char.mix;)+) -(%ubiq.mix;)>
+<!ELEMENT Comment - - ((%para.char.mix;)+) -(%ubiq.mix;)>
 <!ATTLIST Comment
 		%common.attrib;
 		%local.comment.attrib;
@@ -1016,16 +1162,17 @@ Phrase char mixture        X              X         X         X
 
 <![ %epigraph.module; [
 <!ENTITY % local.epigraph.attrib "">
-<!ELEMENT Epigraph - - ((%para.class;)+)>
+<!ELEMENT Epigraph - - (Attribution?, (%para.class;)+)>
 <!ATTLIST Epigraph
 		%common.attrib;
 		%local.epigraph.attrib;
 >
+<!--ELEMENT Attribution (defined above)-->
 <!--end of epigraph.module-->]]>
 
 <![ %footnote.module; [
 <!ENTITY % local.footnote.attrib "">
-<!ELEMENT Footnote - - ((%footnote.mix;)+) -(Footnote)>
+<!ELEMENT Footnote - - ((%footnote.mix;)+) -(Footnote|%formal.class;)>
 <!ATTLIST Footnote
 		%common.attrib;
 		%local.footnote.attrib;
@@ -1034,7 +1181,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %highlights.module; [
 <!ENTITY % local.highlights.attrib "">
-<!ELEMENT Highlights - - ((%highlights.mix;)+) -(%ubiq.mix;)>
+<!ELEMENT Highlights - - ((%highlights.mix;)+) -(%ubiq.mix;|%formal.class;)>
 <!ATTLIST Highlights
 		%common.attrib;
 		%local.highlights.attrib;
@@ -1043,7 +1190,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %formalpara.module; [
 <!ENTITY % local.formalpara.attrib "">
-<!ELEMENT FormalPara - - (Title, Para)>
+<!ELEMENT FormalPara - O (Title, Para)>
 <!ATTLIST FormalPara
 		%common.attrib;
 		%local.formalpara.attrib;
@@ -1052,7 +1199,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %para.module; [
 <!ENTITY % local.para.attrib "">
-<!ELEMENT Para - - ((%para.char.mix; | %para.mix;)+)>
+<!ELEMENT Para - O ((%para.char.mix; | %para.mix;)+)>
 <!ATTLIST Para
 		%common.attrib;
 		%local.para.attrib;
@@ -1061,7 +1208,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %simpara.module; [
 <!ENTITY % local.simpara.attrib "">
-<!ELEMENT SimPara - - ((%para.char.mix;)+)>
+<!ELEMENT SimPara - O ((%para.char.mix;)+)>
 <!ATTLIST SimPara
 		%common.attrib;
 		%local.simpara.attrib;
@@ -1094,13 +1241,12 @@ Phrase char mixture        X              X         X         X
 <![ %glossentry.content.module; [
 <![ %glossentry.module; [
 <!ENTITY % local.glossentry.attrib "">
-<!ELEMENT GlossEntry - - (GlossTerm, Acronym?, Abbrev?, (GlossSee|GlossDef+))>
+<!ELEMENT GlossEntry - O (GlossTerm, Acronym?, Abbrev?, (GlossSee|GlossDef+))>
 <!ATTLIST GlossEntry
-		%common.attrib;
-
 		--SortAs: alternate sort string for automatically
 		alphabetized set of glossary entries--
 		SortAs		CDATA		#IMPLIED
+		%common.attrib;
 		%local.glossentry.attrib;
 >
 <!--end of glossentry.module-->]]>
@@ -1109,12 +1255,11 @@ Phrase char mixture        X              X         X         X
 
 <![ %glossdef.module; [
 <!ENTITY % local.glossdef.attrib "">
-<!ELEMENT GlossDef - - ((%glossdef.mix;)+, GlossSeeAlso*)>
+<!ELEMENT GlossDef - O ((%glossdef.mix;)+, GlossSeeAlso*)>
 <!ATTLIST GlossDef
-		%common.attrib;
-
 		--Subject: one or more subject area keywords for searching--
 		Subject		CDATA		#IMPLIED
+		%common.attrib;
 		%local.glossdef.attrib;
 >
 <!--end of glossdef.module-->]]>
@@ -1123,10 +1268,9 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.glosssee.attrib "">
 <!ELEMENT GlossSee - O ((%para.char.mix;)+)>
 <!ATTLIST GlossSee
-		%common.attrib;
-
 		--OtherTerm: link to GlossEntry of real term to look up--
 		OtherTerm	IDREF		#CONREF
+		%common.attrib;
 		%local.glosssee.attrib;
 >
 <!--end of glosssee.module-->]]>
@@ -1135,10 +1279,9 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.glossseealso.attrib "">
 <!ELEMENT GlossSeeAlso - O ((%para.char.mix;)+)>
 <!ATTLIST GlossSeeAlso
-		%common.attrib;
-
 		--OtherTerm: link to GlossEntry of related term--
 		OtherTerm	IDREF		#CONREF
+		%common.attrib;
 		%local.glossseealso.attrib;
 >
 <!--end of glossseealso.module-->]]>
@@ -1150,11 +1293,15 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.itemizedlist.attrib "">
 <!ELEMENT ItemizedList - - (ListItem+)>
 <!ATTLIST ItemizedList	
-		%common.attrib;
+		--Spacing: relative desired compactness of list, in author's 
+		judgment--
+		Spacing		(Normal
+				|Compact)	#IMPLIED
 
 		--Mark: keyword, e.g., bullet, dash, checkbox, none;
 		list of keywords and defaults are implementation specific--
 		%mark.attrib;
+		%common.attrib;
 		%local.itemizedlist.attrib;
 >
 <!--end of itemizedlist.module-->]]>
@@ -1163,8 +1310,6 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.orderedlist.attrib "">
 <!ELEMENT OrderedList - - (ListItem+)>
 <!ATTLIST OrderedList
-		%common.attrib;
-
 		--Numeration: style of list numbering; defaults are
 		implementation specific--
 		Numeration	(Arabic
@@ -1181,19 +1326,25 @@ Phrase char mixture        X              X         X         X
 		--Continuation: whether numbers are reset from previous list--
 		Continuation	(Continues
 				|Restarts)	Restarts
+
+		--Spacing: relative desired compactness of list, in author's 
+		judgment--
+		Spacing		(Normal
+				|Compact)	#IMPLIED
+
+		%common.attrib;
 		%local.orderedlist.attrib;
 >
 <!--end of orderedlist.module-->]]>
 
 <![ %listitem.module; [
 <!ENTITY % local.listitem.attrib "">
-<!ELEMENT ListItem - - ((%component.mix;)+)>
+<!ELEMENT ListItem - O ((%component.mix;)+)>
 <!ATTLIST ListItem
-		%common.attrib;
-
 		--Override: character or string to replace default mark for
 		this item only; default is implementation specific--
 		Override	CDATA		#IMPLIED
+		%common.attrib;
 		%local.listitem.attrib;
 >
 <!--end of listitem.module-->]]>
@@ -1213,7 +1364,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %segtitle.module; [
 <!ENTITY % local.segtitle.attrib "">
-<!ELEMENT SegTitle - - ((%inline.char.mix;)+)>
+<!ELEMENT SegTitle - O ((%title.char.mix;)+)>
 <!ATTLIST SegTitle
 		%common.attrib;
 		%local.segtitle.attrib;
@@ -1222,7 +1373,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %seglistitem.module; [
 <!ENTITY % local.seglistitem.attrib "">
-<!ELEMENT SegListItem - - (Seg, Seg+)>
+<!ELEMENT SegListItem - O (Seg, Seg+)>
 <!ATTLIST SegListItem
 		%common.attrib;
 		%local.seglistitem.attrib;
@@ -1231,7 +1382,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %seg.module; [
 <!ENTITY % local.seg.attrib "">
-<!ELEMENT Seg - - ((%inline.char.mix;)+)>
+<!ELEMENT Seg - O ((%para.char.mix;)+)>
 <!ATTLIST Seg
 		%common.attrib;
 		%local.seg.attrib;
@@ -1246,8 +1397,6 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.simplelist.attrib "">
 <!ELEMENT SimpleList - - (Member+)>
 <!ATTLIST SimpleList
-		%common.attrib;
-
 		--Columns: number of columns--
 		Columns		NUMBER		#IMPLIED
 
@@ -1258,13 +1407,14 @@ Phrase char mixture        X              X         X         X
 		Type		(Inline
 				|Vert
 				|Horiz)		Vert
+		%common.attrib;
 		%local.simplelist.attrib;
 >
 <!--end of simplelist.module-->]]>
 
 <![ %member.module; [
 <!ENTITY % local.member.attrib "">
-<!ELEMENT Member - - ((%inline.char.mix;)+)>
+<!ELEMENT Member - O ((%para.char.mix;)+)>
 <!ATTLIST Member
 		%common.attrib;
 		%local.member.attrib;
@@ -1279,6 +1429,9 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.variablelist.attrib "">
 <!ELEMENT VariableList - - ((%formalobject.title.content;)?, VarListEntry+)>
 <!ATTLIST VariableList
+		--TermLength: approximate length of term content that should 
+		fit onto one line, in same units that table ColWidth accepts--
+		TermLength	CDATA		#IMPLIED
 		%common.attrib;
 		%local.variablelist.attrib;
 >
@@ -1286,7 +1439,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %varlistentry.module; [
 <!ENTITY % local.varlistentry.attrib "">
-<!ELEMENT VarListEntry - - (Term+, ListItem)>
+<!ELEMENT VarListEntry - O (Term+, ListItem)>
 <!ATTLIST VarListEntry
 		%common.attrib;
 		%local.varlistentry.attrib;
@@ -1295,7 +1448,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %term.module; [
 <!ENTITY % local.term.attrib "">
-<!ELEMENT Term - - ((%inline.char.mix;)+)>
+<!ELEMENT Term - O ((%para.char.mix;)+)>
 <!ATTLIST Term
 		%common.attrib;
 		%local.term.attrib;
@@ -1305,6 +1458,31 @@ Phrase char mixture        X              X         X         X
 <!--ELEMENT ListItem (defined above)-->
 <!--end of variablelist.content.module-->]]>
 
+<!-- CalloutList ...................... -->
+
+<![ %calloutlist.content.module; [
+<![ %calloutlist.module; [
+<!ENTITY % local.calloutlist.attrib "">
+<!ELEMENT CalloutList - - ((%formalobject.title.content;)?, Callout+)>
+<!ATTLIST CalloutList
+		%common.attrib;
+		%local.calloutlist.attrib;
+>
+<!--end of calloutlist.module-->]]>
+
+<![ %callout.module; [
+<!ENTITY % local.callout.attrib "">
+<!ELEMENT Callout - O ((%component.mix;)+)>
+<!ATTLIST Callout
+		--AreaRefs: links to one or more areas or area sets that
+		this callout describes--
+		AreaRefs	IDREFS		#REQUIRED
+		%common.attrib;
+		%local.callout.attrib;
+>
+<!--end of callout.module-->]]>
+<!--end of calloutlist.content.module-->]]>
+
 <!-- ...................................................................... -->
 <!-- Objects .............................................................. -->
 
@@ -1312,10 +1490,11 @@ Phrase char mixture        X              X         X         X
 
 <![ %example.module; [
 <!ENTITY % local.example.attrib "">
-<!ELEMENT Example - - ((%formalobject.title.content;), (%example.mix;)+)>
+<!ELEMENT Example - - ((%formalobject.title.content;), (%example.mix;)+)
+		-(%formal.class;)>
 <!ATTLIST Example
-		%common.attrib;
 		%label.attrib;
+		%common.attrib;
 		%local.example.attrib;
 >
 <!--end of example.module-->]]>
@@ -1329,45 +1508,146 @@ Phrase char mixture        X              X         X         X
 >
 <!--end of informalexample.module-->]]>
 
+<![ %programlistingco.module; [
+<!ENTITY % local.programlistingco.attrib "">
+<!ELEMENT ProgramListingCO - - (AreaSpec, ProgramListing, CalloutList*)>
+<!ATTLIST ProgramListingCO
+		%common.attrib;
+		%local.programlistingco.attrib;
+>
+<!--ELEMENT CalloutList (defined above in Lists)-->
+<!--end of informalexample.module-->]]>
+
+<![ %areaspec.content.module; [
+<![ %areaspec.module; [
+<!ENTITY % local.areaspec.attrib "">
+<!ELEMENT AreaSpec - - ((Area|AreaSet)+)>
+<!ATTLIST AreaSpec
+		--Units: global unit of measure in which coordinates in
+		this spec are expressed:
+
+		- CALSPair "x1,y1 x2,y2": lower-left and upper-right 
+		coordinates in a rectangle describing repro area in which 
+		graphic is placed, where X and Y dimensions are each some 
+		number 0..10000 (taken from CALS graphic attributes)
+
+		- LineColumn "line column": line number and column number
+		at which to start callout text in "linespecific" content
+
+		- LineRange "startline endline": whole lines from startline
+		to endline in "linespecific" content
+
+		- LineColumnPair "line1 col1 line2 col2": starting and ending
+		points of area in "linespecific" content that starts at
+		first position and ends at second position (including the
+		beginnings of any intervening lines)
+
+		- Other: directive to look at value of OtherUnits attribute
+		to get implementation-specific keyword
+
+		The default is implementation-specific; usually dependent on 
+		the parent element (GraphicCO gets CALSPair, ProgramListingCO
+		and ScreenCO get LineColumn)--
+		Units		(CALSPair
+				|LineColumn
+				|LineRange
+				|LineColumnPair
+				|Other)		#IMPLIED
+		OtherUnits	NAME		#IMPLIED
+		%common.attrib;
+		%local.areaspec.attrib;
+>
+<!--end of areaspec.module-->]]>
+
+<![ %area.module; [
+<!ENTITY % local.area.attrib "">
+<!ELEMENT Area - O EMPTY>
+<!ATTLIST Area
+		%label.attrib; --bug number/symbol override or initialization--
+		%linkends.attrib; --to any related information--
+
+		--Units: unit of measure in which coordinates in this
+		area are expressed; inherits from set and spec--
+		Units		(CALSPair
+				|LineColumn
+				|LineRange
+				|LineColumnPair
+				|Other)		#IMPLIED
+		OtherUnits	NAME		#IMPLIED
+		Coords		CDATA		#REQUIRED
+		%idreq.common.attrib;
+		%local.area.attrib;
+>
+<!--end of area.module-->]]>
+
+<![ %areaset.module; [
+<!ENTITY % local.areaset.attrib "">
+<!ELEMENT AreaSet - - (Area+)>
+<!ATTLIST AreaSet
+		%label.attrib; --bug number/symbol override or initialization--
+
+		--Units: unit of measure in which coordinates in this
+		area set are expressed; inherits from spec--
+		Units		(CALSPair
+				|LineColumn
+				|LineRange
+				|LineColumnPair
+				|Other)		#IMPLIED
+		OtherUnits	NAME		#IMPLIED
+		Coords		CDATA		#REQUIRED
+		%idreq.common.attrib;
+		%local.area.attrib;
+>
+<!--end of areaset.module-->]]>
+<!--end of areaspec.content.module-->]]>
+
 <![ %programlisting.module; [
 <!ENTITY % local.programlisting.attrib "">
 <!ELEMENT ProgramListing - - ((%programlisting.content;)+)>
 <!ATTLIST ProgramListing
-		%common.attrib;
-		%linespecific.attrib;
-
 		--Width: number of columns in longest line, for management
 		of wide output (e.g., 80)--
 		Width		NUMBER		#IMPLIED
+		%linespecific.attrib;
+		%common.attrib;
 		%local.programlisting.attrib;
 >
 <!--end of programlisting.module-->]]>
 
 <![ %literallayout.module; [
 <!ENTITY % local.literallayout.attrib "">
-<!ELEMENT LiteralLayout - - ((LineAnnotation | %inline.char.mix;)+)>
+<!ELEMENT LiteralLayout - - ((LineAnnotation | %para.char.mix;)+)>
 <!ATTLIST LiteralLayout
-		%common.attrib;
-		%linespecific.attrib;
-
 		--Width: number of columns in longest line, for management
 		of wide output (e.g., 80)--
 		Width		NUMBER		#IMPLIED
+		%linespecific.attrib;
+		%common.attrib;
 		%local.literallayout.attrib;
 >
 <!--ELEMENT LineAnnotation (defined in the Inlines section, below)-->
 <!--end of literallayout.module-->]]>
 
+<![ %screenco.module; [
+<!ENTITY % local.screenco.attrib "">
+<!ELEMENT ScreenCO - - (AreaSpec, Screen, CalloutList*)>
+<!ATTLIST ScreenCO
+		%common.attrib;
+		%local.screenco.attrib;
+>
+<!--ELEMENT AreaSpec (defined above)-->
+<!--ELEMENT CalloutList (defined above in Lists)-->
+<!--end of screenco.module-->]]>
+
 <![ %screen.module; [
 <!ENTITY % local.screen.attrib "">
 <!ELEMENT Screen - - ((%screen.content;)+)>
 <!ATTLIST Screen
-		%common.attrib;
-		%linespecific.attrib;
-
 		--Width: number of columns in longest line, for management
 		of wide output (e.g., 80)--
 		Width		NUMBER		#IMPLIED
+		%linespecific.attrib;
+		%common.attrib;
 		%local.screen.attrib;
 >
 <!--end of screen.module-->]]>
@@ -1375,7 +1655,7 @@ Phrase char mixture        X              X         X         X
 <![ %screenshot.content.module; [
 <![ %screenshot.module; [
 <!ENTITY % local.screenshot.attrib "">
-<!ELEMENT ScreenShot - - (ScreenInfo?, Graphic)>
+<!ELEMENT ScreenShot - - (ScreenInfo?, (Graphic|GraphicCO))>
 <!ATTLIST ScreenShot
 		%common.attrib;
 		%local.screenshot.attrib;
@@ -1384,7 +1664,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %screeninfo.module; [
 <!ENTITY % local.screeninfo.attrib "">
-<!ELEMENT ScreenInfo - - (#PCDATA) -(%ubiq.mix;)>
+<!ELEMENT ScreenInfo - O ((%para.char.mix;)+) -(%ubiq.mix;)>
 <!ATTLIST ScreenInfo
 		%common.attrib;
 		%local.screeninfo.attrib;
@@ -1399,14 +1679,24 @@ Phrase char mixture        X              X         X         X
 <!ELEMENT Figure - - ((%formalobject.title.content;), (%figure.mix; |
 		%link.char.class;)+)>
 <!ATTLIST Figure
-		%common.attrib;
-
 		--Float: whether figure can float in output--
 		Float		%yesorno.attvals;	%no.attval;
 		%label.attrib;
+		%common.attrib;
 		%local.figure.attrib;
 >
 <!--end of figure.module-->]]>
+
+<![ %graphicco.module; [
+<!ENTITY % local.graphicco.attrib "">
+<!ELEMENT GraphicCO - - (AreaSpec, Graphic, CalloutList*)>
+<!ATTLIST GraphicCO
+		%common.attrib;
+		%local.graphicco.attrib;
+>
+<!--ELEMENT AreaSpec (defined above in Examples)-->
+<!--ELEMENT CalloutList (defined above in Lists)-->
+<!--end of graphicco.module-->]]>
 
 <!-- Graphical data can be the content of Graphic, or you can reference
      an external file either as an entity (Entitref) or a filename
@@ -1416,8 +1706,8 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.graphic.attrib "">
 <!ELEMENT Graphic - - CDATA>
 <!ATTLIST Graphic
+		%graphics.attrib;
 		%common.attrib;
-		%graphic.attrib;
 		%local.graphic.attrib;
 >
 <!--end of graphic.module-->]]>
@@ -1426,8 +1716,8 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.inlinegraphic.attrib "">
 <!ELEMENT InlineGraphic - - CDATA>
 <!ATTLIST InlineGraphic
+		%graphics.attrib;
 		%common.attrib;
-		%graphic.attrib;
 		%local.inlinegraphic.attrib;
 >
 <!--end of inlinegraphic.module-->]]>
@@ -1439,8 +1729,8 @@ Phrase char mixture        X              X         X         X
 <!ELEMENT Equation - - ((%formalobject.title.content;)?, (InformalEquation |
 		%equation.content;))>
 <!ATTLIST Equation
-	 	%common.attrib;
 		%label.attrib;
+	 	%common.attrib;
 		%local.equation.attrib;
 >
 <!--end of equation.module-->]]>
@@ -1472,7 +1762,7 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % tblelm "Table"		-- remove Chart -->
 <!ENTITY % tblmdl  "((%formalobject.title.content;), (Graphic+|TGroup+))"
 					-- content model for formal tables -->
-<!ENTITY % tblexpt "-(Table|InformalTable)"
+<!ENTITY % tblexpt "-(InformalTable|%formal.class;)"
 					-- exclude all DocBook tables -->
 <!ENTITY % tblcon  "((%tabentry.mix;)+|(%para.char.mix;)+)"
 					-- allow either blocks or inlines;
@@ -1481,7 +1771,7 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % tblconex ""			-- remove pgbrk exception on entry -->
 
 <!ENTITY % calstbl PUBLIC
-	"-//Davenport//ELEMENTS CALS-Based DocBook Table Model V2.3//EN">
+	"-//Davenport//ELEMENTS CALS-Based DocBook Table Model V2.4.1//EN">
 %calstbl;
 
 <!--end of table.module-->]]>
@@ -1514,11 +1804,11 @@ Phrase char mixture        X              X         X         X
 
 <![ %synopsis.module; [
 <!ENTITY % local.synopsis.attrib "">
-<!ELEMENT Synopsis - - ((LineAnnotation | %inline.char.mix; | Graphic)+)>
+<!ELEMENT Synopsis - - ((LineAnnotation | %para.char.mix; | Graphic)+)>
 <!ATTLIST Synopsis
-		%common.attrib;
-		%linespecific.attrib;
 		%label.attrib;
+		%linespecific.attrib;
+		%common.attrib;
 		%local.synopsis.attrib;
 >
 
@@ -1530,26 +1820,28 @@ Phrase char mixture        X              X         X         X
 <![ %cmdsynopsis.content.module; [
 <![ %cmdsynopsis.module; [
 <!ENTITY % local.cmdsynopsis.attrib "">
-<!ELEMENT CmdSynopsis - - ((Arg | Group)*, Command, (Arg | Group)*,
-		SynopFragment*)>
+<!ELEMENT CmdSynopsis - - ((Command | Arg | Group | SBR)+, SynopFragment*)>
 <!ATTLIST CmdSynopsis
-		%common.attrib;
 		%label.attrib;
 
 		--Sepchar: character that should separate command and
 		all top-level arguments; alternate value might be &Delta;--
 		Sepchar		CDATA		" "
+		%common.attrib;
 		%local.cmdsynopsis.attrib;
 >
 <!--end of cmdsynopsis.module-->]]>
 
 <![ %arg.module; [
 <!ENTITY % local.arg.attrib "">
-<!ELEMENT Arg - - ((#PCDATA | Arg | Group | Option | SynopFragmentRef |
-		Replaceable)+)>
+<!ELEMENT Arg - - ((#PCDATA 
+		| Arg 
+		| Group 
+		| Option 
+		| SynopFragmentRef 
+		| Replaceable
+		| SBR)+)>
 <!ATTLIST Arg
-		%common.attrib;
-
 		--Choice: whether Arg must be supplied:
 			Opt: optional to supply (e.g. [arg])
 			Req: required to supply (e.g. {arg})
@@ -1563,16 +1855,24 @@ Phrase char mixture        X              X         X         X
 			Repeat: yes (e.g. arg...)--
 		Rep		(Norepeat
 				|Repeat)	Norepeat
+		%common.attrib;
 		%local.arg.attrib;
 >
 <!--end of arg.module-->]]>
 
 <![ %group.module; [
-<!ENTITY % local.group.attrib "">
-<!ELEMENT Group - - ((Arg | Group | SynopFragmentRef | Replaceable)+)>
-<!ATTLIST Group
-		%common.attrib;
+<!--FUTURE USE (V4.0):
+......................
+The OptMult and ReqMult values for the Choice attribute on Group will be
+removed.  Use the Rep attribute instead to indicate that the choice is
+repeatable.
+......................
+-->
 
+<!ENTITY % local.group.attrib "">
+<!ELEMENT Group - - ((Arg | Group | Option | SynopFragmentRef 
+		| Replaceable | SBR)+)>
+<!ATTLIST Group
 		--Choice: whether Group must be supplied:
 			Opt: optional to supply (e.g. [g1|g2|g3])
 			Req: required to supply (e.g. {g1|g2|g3})
@@ -1590,17 +1890,28 @@ Phrase char mixture        X              X         X         X
 			Repeat: yes (e.g. group...)--
 		Rep		(Norepeat
 				|Repeat)	Norepeat
+		%common.attrib;
 		%local.group.attrib;
 >
 <!--end of group.module-->]]>
+
+<![ %sbr.module; [
+<!ENTITY % local.sbr.attrib "">
+<!-- Synopsis break -->
+<!ELEMENT SBR - O EMPTY>
+<!ATTLIST SBR
+		%common.attrib;
+		%local.sbr.attrib;
+>
+<!--end of sbr.module-->]]>
 
 <![ %synopfragmentref.module; [
 <!ENTITY % local.synopfragmentref.attrib "">
 <!ELEMENT SynopFragmentRef - - RCDATA >
 <!ATTLIST SynopFragmentRef
-		%common.attrib;
 		%linkendreq.attrib; --to SynopFragment of complex synopsis
 		material for separate referencing--
+		%common.attrib;
 		%local.synopfragmentref.attrib;
 >
 <!--end of synopfragmentref.module-->]]>
@@ -1623,29 +1934,51 @@ Phrase char mixture        X              X         X         X
 
 <![ %funcsynopsis.content.module; [
 <![ %funcsynopsis.module; [
+
+<!--FUTURE USE (V4.0):
+......................
+The block starting with FuncDef will not be repeatable; you will have
+to use FuncPrototype if you want multiple blocks.
+
+<!ELEMENT FuncSynopsis - - (FuncSynopsisInfo?, (FuncPrototype+ |
+		(FuncDef, (Void | VarArgs | ParamDef+))))>
+......................
+-->
+
 <!ENTITY % local.funcsynopsis.attrib "">
-<!ELEMENT FuncSynopsis - - (FuncSynopsisInfo?, ((FuncDef, (Void | VarArgs |
-		ParamDef+)))+ )>
+<!ELEMENT FuncSynopsis - - (FuncSynopsisInfo?, (FuncPrototype+ |
+		(FuncDef, (Void | VarArgs | ParamDef+))+))>
 <!ATTLIST FuncSynopsis
-		%common.attrib;
 		%label.attrib;
+		%common.attrib;
 		%local.funcsynopsis.attrib;
 >
 <!--end of funcsynopsis.module-->]]>
 
 <![ %funcsynopsisinfo.module; [
 <!ENTITY % local.funcsynopsisinfo.attrib "">
-<!ELEMENT FuncSynopsisInfo - - ((LineAnnotation | %cptr.char.mix;)* )>
+<!ELEMENT FuncSynopsisInfo - O ((LineAnnotation | %cptr.char.mix;)* )>
 <!ATTLIST FuncSynopsisInfo
-		%common.attrib;
 		%linespecific.attrib;
+		%common.attrib;
 		%local.funcsynopsisinfo.attrib;
 >
 <!--end of funcsynopsisinfo.module-->]]>
 
+<![ %funcprototype.module; [
+<!ENTITY % local.funcprototype.attrib "">
+<!ELEMENT FuncPrototype - O (FuncDef, (Void | VarArgs | ParamDef+))>
+<!ATTLIST FuncPrototype
+		%common.attrib;
+		%local.funcprototype.attrib;
+>
+<!--end of funcprototype.module-->]]>
+
 <![ %funcdef.module; [
 <!ENTITY % local.funcdef.attrib "">
-<!ELEMENT FuncDef - - ((#PCDATA | Replaceable | Function)*)>
+<!ELEMENT FuncDef - - ((#PCDATA 
+		| Replaceable 
+		| Function)*)>
 <!ATTLIST FuncDef
 		%common.attrib;
 		%local.funcdef.attrib;
@@ -1677,7 +2010,10 @@ Phrase char mixture        X              X         X         X
 
 <![ %paramdef.module; [
 <!ENTITY % local.paramdef.attrib "">
-<!ELEMENT ParamDef - - ((#PCDATA | Replaceable | Parameter | FuncParams)*)>
+<!ELEMENT ParamDef - - ((#PCDATA 
+		| Replaceable 
+		| Parameter 
+		| FuncParams)*)>
 <!ATTLIST ParamDef
 		%common.attrib;
 		%local.paramdef.attrib;
@@ -1720,7 +2056,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %ackno.module; [
 <!ENTITY % local.ackno.attrib "">
-<!ELEMENT Ackno - - (#PCDATA)>
+<!ELEMENT Ackno - - ((%docinfo.char.mix;)+)>
 <!ATTLIST Ackno
 		%common.attrib;
 		%local.ackno.attrib;
@@ -1732,9 +2068,10 @@ Phrase char mixture        X              X         X         X
 <![ %address.content.module; [
 <![ %address.module; [
 <!ENTITY % local.address.attrib "">
-<!ELEMENT Address - - (Street|POB|Postcode|City|State|Country|Phone|Fax
-		|Email|OtherAddr)*>
+<!ELEMENT Address - - (#PCDATA|Street|POB|Postcode|City|State|Country|Phone
+		|Fax|Email|OtherAddr)*>
 <!ATTLIST Address
+		%linespecific.attrib;
 		%common.attrib;
 		%local.address.attrib;
 >
@@ -1742,7 +2079,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %street.module; [
   <!ENTITY % local.street.attrib "">
-  <!ELEMENT Street - - (#PCDATA)>
+  <!ELEMENT Street - - ((%docinfo.char.mix;)+)>
   <!ATTLIST Street
 		%common.attrib;
 		%local.street.attrib;
@@ -1751,7 +2088,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %pob.module; [
   <!ENTITY % local.pob.attrib "">
-  <!ELEMENT POB - - (#PCDATA)>
+  <!ELEMENT POB - - ((%docinfo.char.mix;)+)>
   <!ATTLIST POB
 		%common.attrib;
 		%local.pob.attrib;
@@ -1760,7 +2097,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %postcode.module; [
   <!ENTITY % local.postcode.attrib "">
-  <!ELEMENT Postcode - - (#PCDATA)>
+  <!ELEMENT Postcode - - ((%docinfo.char.mix;)+)>
   <!ATTLIST Postcode
 		%common.attrib;
 		%local.postcode.attrib;
@@ -1769,7 +2106,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %city.module; [
   <!ENTITY % local.city.attrib "">
-  <!ELEMENT City - - (#PCDATA)>
+  <!ELEMENT City - - ((%docinfo.char.mix;)+)>
   <!ATTLIST City
 		%common.attrib;
 		%local.city.attrib;
@@ -1778,7 +2115,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %state.module; [
   <!ENTITY % local.state.attrib "">
-  <!ELEMENT State - - (#PCDATA)>
+  <!ELEMENT State - - ((%docinfo.char.mix;)+)>
   <!ATTLIST State
 		%common.attrib;
 		%local.state.attrib;
@@ -1787,7 +2124,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %country.module; [
   <!ENTITY % local.country.attrib "">
-  <!ELEMENT Country - - (#PCDATA)>
+  <!ELEMENT Country - - ((%docinfo.char.mix;)+)>
   <!ATTLIST Country
 		%common.attrib;
 		%local.country.attrib;
@@ -1796,7 +2133,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %phone.module; [
   <!ENTITY % local.phone.attrib "">
-  <!ELEMENT Phone - - (#PCDATA)>
+  <!ELEMENT Phone - - ((%docinfo.char.mix;)+)>
   <!ATTLIST Phone
 		%common.attrib;
 		%local.phone.attrib;
@@ -1805,25 +2142,18 @@ Phrase char mixture        X              X         X         X
 
   <![ %fax.module; [
   <!ENTITY % local.fax.attrib "">
-  <!ELEMENT Fax - - (#PCDATA)>
+  <!ELEMENT Fax - - ((%docinfo.char.mix;)+)>
   <!ATTLIST Fax
 		%common.attrib;
 		%local.fax.attrib;
 >
   <!--end of fax.module-->]]>
 
-  <![ %email.module; [
-  <!ENTITY % local.email.attrib "">
-  <!ELEMENT Email - - (#PCDATA)>
-  <!ATTLIST Email
-		%common.attrib;
-		%local.email.attrib;
->
-  <!--end of email.module-->]]>
+  <!--ELEMENT Email (defined in the Inlines section, below)-->
 
   <![ %otheraddr.module; [
   <!ENTITY % local.otheraddr.attrib "">
-  <!ELEMENT OtherAddr - - (#PCDATA)>
+  <!ELEMENT OtherAddr - - ((%docinfo.char.mix;)+)>
   <!ATTLIST OtherAddr
 		%common.attrib;
 		%local.otheraddr.attrib;
@@ -1846,7 +2176,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %shortaffil.module; [
   <!ENTITY % local.shortaffil.attrib "">
-  <!ELEMENT ShortAffil - - (#PCDATA)>
+  <!ELEMENT ShortAffil - - ((%docinfo.char.mix;)+)>
   <!ATTLIST ShortAffil
 		%common.attrib;
 		%local.shortaffil.attrib;
@@ -1855,7 +2185,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %jobtitle.module; [
   <!ENTITY % local.jobtitle.attrib "">
-  <!ELEMENT JobTitle - - (#PCDATA)>
+  <!ELEMENT JobTitle - - ((%docinfo.char.mix;)+)>
   <!ATTLIST JobTitle
 		%common.attrib;
 		%local.jobtitle.attrib;
@@ -1866,7 +2196,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %orgdiv.module; [
   <!ENTITY % local.orgdiv.attrib "">
-  <!ELEMENT OrgDiv - - (#PCDATA)>
+  <!ELEMENT OrgDiv - - ((%docinfo.char.mix;)+)>
   <!ATTLIST OrgDiv
 		%common.attrib;
 		%local.orgdiv.attrib;
@@ -1880,7 +2210,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %artpagenums.module; [
 <!ENTITY % local.artpagenums.attrib "">
-<!ELEMENT ArtPageNums - - (#PCDATA)>
+<!ELEMENT ArtPageNums - - ((%docinfo.char.mix;)+)>
 <!ATTLIST ArtPageNums
 		%common.attrib;
 		%local.artpagenums.attrib;
@@ -1926,7 +2256,7 @@ Phrase char mixture        X              X         X         X
 
     <![ %collabname.module; [
   <!ENTITY % local.collabname.attrib "">
-    <!ELEMENT CollabName - - (#PCDATA)>
+    <!ELEMENT CollabName - - ((%docinfo.char.mix;)+)>
     <!ATTLIST CollabName
 		%common.attrib;
 		%local.collabname.attrib;
@@ -1945,7 +2275,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %authorinitials.module; [
 <!ENTITY % local.authorinitials.attrib "">
-<!ELEMENT AuthorInitials - - (#PCDATA)>
+<!ELEMENT AuthorInitials - - ((%docinfo.char.mix;)+)>
 <!ATTLIST AuthorInitials
 		%common.attrib;
 		%local.authorinitials.attrib;
@@ -1966,7 +2296,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %confdates.module; [
   <!ENTITY % local.confdates.attrib "">
-  <!ELEMENT ConfDates - - (#PCDATA)>
+  <!ELEMENT ConfDates - - ((%docinfo.char.mix;)+)>
   <!ATTLIST ConfDates
 		%common.attrib;
 		%local.confdates.attrib;
@@ -1975,7 +2305,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %conftitle.module; [
   <!ENTITY % local.conftitle.attrib "">
-  <!ELEMENT ConfTitle - - (#PCDATA)>
+  <!ELEMENT ConfTitle - - ((%docinfo.char.mix;)+)>
   <!ATTLIST ConfTitle
 		%common.attrib;
 		%local.conftitle.attrib;
@@ -1984,7 +2314,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %confnum.module; [
   <!ENTITY % local.confnum.attrib "">
-  <!ELEMENT ConfNum - - (#PCDATA)>
+  <!ELEMENT ConfNum - - ((%docinfo.char.mix;)+)>
   <!ATTLIST ConfNum
 		%common.attrib;
 		%local.confnum.attrib;
@@ -1995,7 +2325,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %confsponsor.module; [
   <!ENTITY % local.confsponsor.attrib "">
-  <!ELEMENT ConfSponsor - - (#PCDATA)>
+  <!ELEMENT ConfSponsor - - ((%docinfo.char.mix;)+)>
   <!ATTLIST ConfSponsor
 		%common.attrib;
 		%local.confsponsor.attrib;
@@ -2007,7 +2337,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %contractnum.module; [
 <!ENTITY % local.contractnum.attrib "">
-<!ELEMENT ContractNum - - (#PCDATA)>
+<!ELEMENT ContractNum - - ((%docinfo.char.mix;)+)>
 <!ATTLIST ContractNum
 		%common.attrib;
 		%local.contractnum.attrib;
@@ -2018,7 +2348,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %contractsponsor.module; [
 <!ENTITY % local.contractsponsor.attrib "">
-<!ELEMENT ContractSponsor - - (#PCDATA)>
+<!ELEMENT ContractSponsor - - ((%docinfo.char.mix;)+)>
 <!ATTLIST ContractSponsor
 		%common.attrib;
 		%local.contractsponsor.attrib;
@@ -2039,7 +2369,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %year.module; [
   <!ENTITY % local.year.attrib "">
-  <!ELEMENT Year - - (#PCDATA)>
+  <!ELEMENT Year - - ((%docinfo.char.mix;)+)>
   <!ATTLIST Year
 		%common.attrib;
 		%local.year.attrib;
@@ -2048,7 +2378,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %holder.module; [
   <!ENTITY % local.holder.attrib "">
-  <!ELEMENT Holder - - (#PCDATA)>
+  <!ELEMENT Holder - - ((%docinfo.char.mix;)+)>
   <!ATTLIST Holder
 		%common.attrib;
 		%local.holder.attrib;
@@ -2060,7 +2390,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %corpauthor.module; [
 <!ENTITY % local.corpauthor.attrib "">
-<!ELEMENT CorpAuthor - - (#PCDATA)>
+<!ELEMENT CorpAuthor - - ((%docinfo.char.mix;)+)>
 <!ATTLIST CorpAuthor
 		%common.attrib;
 		%local.corpauthor.attrib;
@@ -2071,7 +2401,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %corpname.module; [
 <!ENTITY % local.corpname.attrib "">
-<!ELEMENT CorpName - - (#PCDATA)>
+<!ELEMENT CorpName - - ((%docinfo.char.mix;)+)>
 <!ATTLIST CorpName
 		%common.attrib;
 		%local.corpname.attrib;
@@ -2082,7 +2412,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %date.module; [
 <!ENTITY % local.date.attrib "">
-<!ELEMENT Date - - (#PCDATA)>
+<!ELEMENT Date - - ((%docinfo.char.mix;)+)>
 <!ATTLIST Date
 		%common.attrib;
 		%local.date.attrib;
@@ -2093,7 +2423,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %edition.module; [
 <!ENTITY % local.edition.attrib "">
-<!ELEMENT Edition - - (#PCDATA)>
+<!ELEMENT Edition - - ((%docinfo.char.mix;)+)>
 <!ATTLIST Edition
 		%common.attrib;
 		%local.edition.attrib;
@@ -2116,7 +2446,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %isbn.module; [
 <!ENTITY % local.isbn.attrib "">
-<!ELEMENT ISBN - - (#PCDATA)>
+<!ELEMENT ISBN - - ((%docinfo.char.mix;)+)>
 <!ATTLIST ISBN
 		%common.attrib;
 		%local.isbn.attrib;
@@ -2127,7 +2457,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %issn.module; [
 <!ENTITY % local.issn.attrib "">
-<!ELEMENT ISSN - - (#PCDATA)>
+<!ELEMENT ISSN - - ((%docinfo.char.mix;)+)>
 <!ATTLIST ISSN
 		%common.attrib;
 		%local.issn.attrib;
@@ -2138,7 +2468,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %invpartnumber.module; [
 <!ENTITY % local.invpartnumber.attrib "">
-<!ELEMENT InvPartNumber - - (#PCDATA)>
+<!ELEMENT InvPartNumber - - ((%docinfo.char.mix;)+)>
 <!ATTLIST InvPartNumber
 		%common.attrib;
 		%local.invpartnumber.attrib;
@@ -2149,7 +2479,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %issuenum.module; [
 <!ENTITY % local.issuenum.attrib "">
-<!ELEMENT IssueNum - - (#PCDATA)>
+<!ELEMENT IssueNum - - ((%docinfo.char.mix;)+)>
 <!ATTLIST IssueNum
 		%common.attrib;
 		%local.issuenum.attrib;
@@ -2160,7 +2490,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %legalnotice.module; [
 <!ENTITY % local.legalnotice.attrib "">
-<!ELEMENT LegalNotice - - (Title?, (%legalnotice.mix;)+)>
+<!ELEMENT LegalNotice - - (Title?, (%legalnotice.mix;)+) -(%formal.class;)>
 <!ATTLIST LegalNotice
 		%common.attrib;
 		%local.legalnotice.attrib;
@@ -2171,13 +2501,12 @@ Phrase char mixture        X              X         X         X
 
 <![ %modespec.module; [
 <!ENTITY % local.modespec.attrib "">
-<!ELEMENT ModeSpec - - (#PCDATA) -(%ubiq.mix;)>
+<!ELEMENT ModeSpec - - ((%docinfo.char.mix;)+) -(%ubiq.mix;)>
 <!ATTLIST ModeSpec
-		%common.attrib;
-
 		--Application: type of retrieval query--
 		Application	NOTATION
 				(%notation.class;)	#IMPLIED
+		%common.attrib;
 		%local.modespec.attrib;
 >
 <!--end of modespec.module-->]]>
@@ -2186,7 +2515,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %orgname.module; [
 <!ENTITY % local.orgname.attrib "">
-<!ELEMENT OrgName - - (#PCDATA)>
+<!ELEMENT OrgName - - ((%docinfo.char.mix;)+)>
 <!ATTLIST OrgName
 		%common.attrib;
 		%local.orgname.attrib;
@@ -2209,7 +2538,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %pagenums.module; [
 <!ENTITY % local.pagenums.attrib "">
-<!ELEMENT PageNums - - (#PCDATA)>
+<!ELEMENT PageNums - - ((%docinfo.char.mix;)+)>
 <!ATTLIST PageNums
 		%common.attrib;
 		%local.pagenums.attrib;
@@ -2223,7 +2552,7 @@ Phrase char mixture        X              X         X         X
 <![ %person.ident.module; [
   <![ %contrib.module; [
   <!ENTITY % local.contrib.attrib "">
-  <!ELEMENT Contrib - - (#PCDATA)>
+  <!ELEMENT Contrib - - ((%docinfo.char.mix;)+)>
   <!ATTLIST Contrib
 		%common.attrib;
 		%local.contrib.attrib;
@@ -2232,7 +2561,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %firstname.module; [
   <!ENTITY % local.firstname.attrib "">
-  <!ELEMENT FirstName - - (#PCDATA)>
+  <!ELEMENT FirstName - - ((%docinfo.char.mix;)+)>
   <!ATTLIST FirstName
 		%common.attrib;
 		%local.firstname.attrib;
@@ -2241,7 +2570,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %honorific.module; [
   <!ENTITY % local.honorific.attrib "">
-  <!ELEMENT Honorific - - (#PCDATA)>
+  <!ELEMENT Honorific - - ((%docinfo.char.mix;)+)>
   <!ATTLIST Honorific
 		%common.attrib;
 		%local.honorific.attrib;
@@ -2250,7 +2579,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %lineage.module; [
   <!ENTITY % local.lineage.attrib "">
-  <!ELEMENT Lineage - - (#PCDATA)>
+  <!ELEMENT Lineage - - ((%docinfo.char.mix;)+)>
   <!ATTLIST Lineage
 		%common.attrib;
 		%local.lineage.attrib;
@@ -2259,7 +2588,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %othername.module; [
   <!ENTITY % local.othername.attrib "">
-  <!ELEMENT OtherName - - (#PCDATA)>
+  <!ELEMENT OtherName - - ((%docinfo.char.mix;)+)>
   <!ATTLIST OtherName
 		%common.attrib;
 		%local.othername.attrib;
@@ -2268,7 +2597,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %surname.module; [
   <!ENTITY % local.surname.attrib "">
-  <!ELEMENT Surname - - (#PCDATA)>
+  <!ELEMENT Surname - - ((%docinfo.char.mix;)+)>
   <!ATTLIST Surname
 		%common.attrib;
 		%local.surname.attrib;
@@ -2291,13 +2620,13 @@ Phrase char mixture        X              X         X         X
 
 <![ %productname.module; [
 <!ENTITY % local.productname.attrib "">
-<!ELEMENT ProductName - - ((%inline.char.mix;)+)>
+<!ELEMENT ProductName - - ((%para.char.mix;)+)>
 <!ATTLIST ProductName
-		%common.attrib;
 		Class		(Service
 				|Trade
 				|Registered
 				|Copyright)	Trade
+		%common.attrib;
 		%local.productname.attrib;
 >
 <!--end of productname.module-->]]>
@@ -2306,7 +2635,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %productnumber.module; [
 <!ENTITY % local.productnumber.attrib "">
-<!ELEMENT ProductNumber - - (#PCDATA)>
+<!ELEMENT ProductNumber - - ((%docinfo.char.mix;)+)>
 <!ATTLIST ProductNumber
 		%common.attrib;
 		%local.productnumber.attrib;
@@ -2317,7 +2646,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %pubdate.module; [
 <!ENTITY % local.pubdate.attrib "">
-<!ELEMENT PubDate - - (#PCDATA)>
+<!ELEMENT PubDate - - ((%docinfo.char.mix;)+)>
 <!ATTLIST PubDate
 		%common.attrib;
 		%local.pubdate.attrib;
@@ -2338,7 +2667,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %publishername.module; [
   <!ENTITY % local.publishername.attrib "">
-  <!ELEMENT PublisherName - - (#PCDATA)>
+  <!ELEMENT PublisherName - - ((%docinfo.char.mix;)+)>
   <!ATTLIST PublisherName
 		%common.attrib;
 		%local.publishername.attrib;
@@ -2352,7 +2681,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %pubsnumber.module; [
 <!ENTITY % local.pubsnumber.attrib "">
-<!ELEMENT PubsNumber - - (#PCDATA)>
+<!ELEMENT PubsNumber - - ((%docinfo.char.mix;)+)>
 <!ATTLIST PubsNumber
 		%common.attrib;
 		%local.pubsnumber.attrib;
@@ -2363,7 +2692,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %releaseinfo.module; [
 <!ENTITY % local.releaseinfo.attrib "">
-<!ELEMENT ReleaseInfo - - (#PCDATA)>
+<!ELEMENT ReleaseInfo - - ((%docinfo.char.mix;)+)>
 <!ATTLIST ReleaseInfo
 		%common.attrib;
 		%local.releaseinfo.attrib;
@@ -2374,9 +2703,15 @@ Phrase char mixture        X              X         X         X
 
 <![ %revhistory.content.module; [
 <![ %revhistory.module; [
+
 <!--FUTURE USE (V3.0):
+......................
+The RevHistory element will require content:
+
 <!ELEMENT RevHistory - - (Revision+)>
+......................
 -->
+
 <!ENTITY % local.revhistory.attrib "">
 <!ELEMENT RevHistory - - (Revision*)>
 <!ATTLIST RevHistory
@@ -2396,7 +2731,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %revnumber.module; [
   <!ENTITY % local.revnumber.attrib "">
-  <!ELEMENT RevNumber - - (#PCDATA)>
+  <!ELEMENT RevNumber - - ((%docinfo.char.mix;)+)>
   <!ATTLIST RevNumber
 		%common.attrib;
 		%local.revnumber.attrib;
@@ -2408,7 +2743,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %revremark.module; [
   <!ENTITY % local.revremark.attrib "">
-  <!ELEMENT RevRemark - - (#PCDATA)>
+  <!ELEMENT RevRemark - - ((%docinfo.char.mix;)+)>
   <!ATTLIST RevRemark
 		%common.attrib;
 		%local.revremark.attrib;
@@ -2420,7 +2755,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %seriesvolnums.module; [
 <!ENTITY % local.seriesvolnums.attrib "">
-<!ELEMENT SeriesVolNums - - (#PCDATA)>
+<!ELEMENT SeriesVolNums - - ((%docinfo.char.mix;)+)>
 <!ATTLIST SeriesVolNums
 		%common.attrib;
 		%local.seriesvolnums.attrib;
@@ -2431,7 +2766,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %volumenum.module; [
 <!ENTITY % local.volumenum.attrib "">
-<!ELEMENT VolumeNum - - (#PCDATA)>
+<!ELEMENT VolumeNum - - ((%docinfo.char.mix;)+)>
 <!ATTLIST VolumeNum
 		%common.attrib;
 		%local.volumenum.attrib;
@@ -2447,31 +2782,40 @@ Phrase char mixture        X              X         X         X
 
 <!-- Computer terms ....................................................... -->
 
+<![ %accel.module; [
+<!ENTITY % local.accel.attrib "">
+<!ELEMENT Accel - - ((%smallcptr.char.mix;)+)>
+<!ATTLIST Accel
+		%common.attrib;
+		%local.accel.attrib;
+>
+<!--end of accel.module-->]]>
+
 <![ %action.module; [
 <!ENTITY % local.action.attrib "">
 <!ELEMENT Action - - ((%cptr.char.mix;)+)>
 <!ATTLIST Action
-		%common.attrib;
 		%moreinfo.attrib;
+		%common.attrib;
 		%local.action.attrib;
 >
 <!--end of action.module-->]]>
 
 <![ %application.module; [
 <!ENTITY % local.application.attrib "">
-<!ELEMENT Application - - ((%inline.char.mix;)+)>
+<!ELEMENT Application - - ((%para.char.mix;)+)>
 <!ATTLIST Application
-		%common.attrib;
 		Class 		(Hardware
 				|Software)	#IMPLIED
 		%moreinfo.attrib;
+		%common.attrib;
 		%local.application.attrib;
 >
 <!--end of application.module-->]]>
 
 <![ %classname.module; [
 <!ENTITY % local.classname.attrib "">
-<!ELEMENT ClassName - - (#PCDATA)>
+<!ELEMENT ClassName - - ((%smallcptr.char.mix;)+)>
 <!ATTLIST ClassName
 		%common.attrib;
 		%local.classname.attrib;
@@ -2482,8 +2826,8 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.command.attrib "">
 <!ELEMENT Command - - ((%cptr.char.mix;)+)>
 <!ATTLIST Command
-		%common.attrib;
 		%moreinfo.attrib;
+		%common.attrib;
 		%local.command.attrib;
 >
 <!--end of command.module-->]]>
@@ -2492,8 +2836,8 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.computeroutput.attrib "">
 <!ELEMENT ComputerOutput - - ((%cptr.char.mix;)+)>
 <!ATTLIST ComputerOutput
-		%common.attrib;
 		%moreinfo.attrib;
+		%common.attrib;
 		%local.computeroutput.attrib;
 >
 <!--end of computeroutput.module-->]]>
@@ -2502,7 +2846,6 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.database.attrib "">
 <!ELEMENT Database - - ((%cptr.char.mix;)+)>
 <!ATTLIST Database
-		%common.attrib;
 		Class 		(Name
 				|Table
 				|Field
@@ -2510,13 +2853,23 @@ Phrase char mixture        X              X         X         X
 				|Key2
 				|Record)	#IMPLIED
 		%moreinfo.attrib;
+		%common.attrib;
 		%local.database.attrib;
 >
 <!--end of database.module-->]]>
 
+<![ %email.module; [
+<!ENTITY % local.email.attrib "">
+<!ELEMENT Email - - ((%docinfo.char.mix;)+)>
+<!ATTLIST Email
+		%common.attrib;
+		%local.email.attrib;
+>
+<!--end of email.module-->]]>
+
 <![ %errorname.module; [
 <!ENTITY % local.errorname.attrib "">
-<!ELEMENT ErrorName - - (#PCDATA)>
+<!ELEMENT ErrorName - - ((%smallcptr.char.mix;)+)>
 <!ATTLIST ErrorName
 		%common.attrib;
 		%local.errorname.attrib;
@@ -2525,7 +2878,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %errortype.module; [
 <!ENTITY % local.errortype.attrib "">
-<!ELEMENT ErrorType - - (#PCDATA)>
+<!ELEMENT ErrorType - - ((%smallcptr.char.mix;)+)>
 <!ATTLIST ErrorType
 		%common.attrib;
 		%local.errortype.attrib;
@@ -2536,8 +2889,15 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.filename.attrib "">
 <!ELEMENT Filename - - ((%cptr.char.mix;)+)>
 <!ATTLIST Filename
-		%common.attrib;
+		Class		(HeaderFile
+				|SymLink
+				|Directory)	#IMPLIED
+
+		--Path: search path (possibly system-specific) in which 
+		file can be found--
+		Path		CDATA		#IMPLIED
 		%moreinfo.attrib;
+		%common.attrib;
 		%local.filename.attrib;
 >
 <!--end of filename.module-->]]>
@@ -2546,32 +2906,99 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.function.attrib "">
 <!ELEMENT Function - - ((%cptr.char.mix;)+)>
 <!ATTLIST Function
-		%common.attrib;
 		%moreinfo.attrib;
+		%common.attrib;
 		%local.function.attrib;
 >
 <!--end of function.module-->]]>
+
+<![ %guibutton.module; [
+<!ENTITY % local.guibutton.attrib "">
+<!ELEMENT GUIButton - - ((%smallcptr.char.mix;|Accel)+)>
+<!ATTLIST GUIButton
+		%moreinfo.attrib;
+		%common.attrib;
+		%local.guibutton.attrib;
+>
+<!--end of guibutton.module-->]]>
+
+<![ %guiicon.module; [
+<!ENTITY % local.guiicon.attrib "">
+<!ELEMENT GUIIcon - - ((%smallcptr.char.mix;|Accel)+)>
+<!ATTLIST GUIIcon
+		%moreinfo.attrib;
+		%common.attrib;
+		%local.guiicon.attrib;
+>
+<!--end of guiicon.module-->]]>
+
+<![ %guilabel.module; [
+<!ENTITY % local.guilabel.attrib "">
+<!ELEMENT GUILabel - - ((%smallcptr.char.mix;|Accel)+)>
+<!ATTLIST GUILabel
+		%moreinfo.attrib;
+		%common.attrib;
+		%local.guilabel.attrib;
+>
+<!--end of guilabel.module-->]]>
+
+<![ %guimenu.module; [
+<!ENTITY % local.guimenu.attrib "">
+<!ELEMENT GUIMenu - - ((%smallcptr.char.mix;|Accel)+)>
+<!ATTLIST GUIMenu
+		%moreinfo.attrib;
+		%common.attrib;
+		%local.guimenu.attrib;
+>
+<!--end of guimenu.module-->]]>
+
+<![ %guimenuitem.module; [
+<!ENTITY % local.guimenuitem.attrib "">
+<!ELEMENT GUIMenuItem - - ((%smallcptr.char.mix;|Accel)+)>
+<!ATTLIST GUIMenuItem
+		%moreinfo.attrib;
+		%common.attrib;
+		%local.guimenuitem.attrib;
+>
+<!--end of guimenuitem.module-->]]>
+
+<![ %guisubmenu.module; [
+<!ENTITY % local.guisubmenu.attrib "">
+<!ELEMENT GUISubmenu - - ((%smallcptr.char.mix;|Accel)+)>
+<!ATTLIST GUISubmenu
+		%moreinfo.attrib;
+		%common.attrib;
+		%local.guisubmenu.attrib;
+>
+<!--end of guisubmenu.module-->]]>
 
 <![ %hardware.module; [
 <!ENTITY % local.hardware.attrib "">
 <!ELEMENT Hardware - - ((%cptr.char.mix;)+)>
 <!ATTLIST Hardware
-		%common.attrib;
 		%moreinfo.attrib;
+		%common.attrib;
 		%local.hardware.attrib;
 >
 <!--end of hardware.module-->]]>
 
 <![ %interface.module; [
+<!--FUTURE USE (V4.0):
+......................
+Interface will no longer have a Class attribute; if you want to subclass
+interface information, use GUIButton, GUIIcon, GUILabel, GUIMenu,
+GUIMenuItem, or GUISubmenu, or use a Role value on Interface.
+......................
+-->
 <!ENTITY % local.interface.attrib "">
-<!ELEMENT Interface - - ((%cptr.char.mix;)+)>
+<!ELEMENT Interface - - ((%cptr.char.mix;|Accel)+)>
 <!ATTLIST Interface
-		%common.attrib;
 		Class 		(Button
 				|Icon
 				|Menu
 				|MenuItem)	#IMPLIED
 		%moreinfo.attrib;
+		%common.attrib;
 		%local.interface.attrib;
 >
 <!--end of interface.module-->]]>
@@ -2580,8 +3007,8 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.interfacedefinition.attrib "">
 <!ELEMENT InterfaceDefinition - - ((%cptr.char.mix;)+)>
 <!ATTLIST InterfaceDefinition
-		%common.attrib;
 		%moreinfo.attrib;
+		%common.attrib;
 		%local.interfacedefinition.attrib;
 >
 <!--end of interfacedefinition.module-->]]>
@@ -2590,24 +3017,35 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.keycap.attrib "">
 <!ELEMENT KeyCap - - ((%cptr.char.mix;)+)>
 <!ATTLIST KeyCap
-		%common.attrib;
 		%moreinfo.attrib;
+		%common.attrib;
 		%local.keycap.attrib;
 >
 <!--end of keycap.module-->]]>
 
 <![ %keycode.module; [
 <!ENTITY % local.keycode.attrib "">
-<!ELEMENT KeyCode - - (#PCDATA)>
+<!ELEMENT KeyCode - - ((%smallcptr.char.mix;)+)>
 <!ATTLIST KeyCode
 		%common.attrib;
 		%local.keycode.attrib;
 >
 <!--end of keycode.module-->]]>
 
+<![ %keycombo.module; [
+<!ENTITY % local.keycombo.attrib "">
+<!ELEMENT KeyCombo - - ((KeyCap|KeyCombo|KeySym|MouseButton)+)>
+<!ATTLIST KeyCombo
+		%keyaction.attrib;
+		%moreinfo.attrib;
+		%common.attrib;
+		%local.keycombo.attrib;
+>
+<!--end of keycombo.module-->]]>
+
 <![ %keysym.module; [
 <!ENTITY % local.keysym.attrib "">
-<!ELEMENT KeySym - - (#PCDATA)>
+<!ELEMENT KeySym - - ((%smallcptr.char.mix;)+)>
 <!ATTLIST KeySym
 		%common.attrib;
 		%local.keysym.attrib;
@@ -2618,24 +3056,58 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.literal.attrib "">
 <!ELEMENT Literal - - ((%cptr.char.mix;)+)>
 <!ATTLIST Literal
-		%common.attrib;
 		%moreinfo.attrib;
+		%common.attrib;
 		%local.literal.attrib;
 >
 <!--end of literal.module-->]]>
 
 <![ %medialabel.module; [
 <!ENTITY % local.medialabel.attrib "">
-<!ELEMENT MediaLabel - - (#PCDATA)>
+<!ELEMENT MediaLabel - - ((%smallcptr.char.mix;)+)>
 <!ATTLIST MediaLabel
-		%common.attrib;
 		Class 		(Cartridge
 				|CDRom
 				|Disk
 				|Tape)		#IMPLIED
+		%common.attrib;
 		%local.medialabel.attrib;
 >
 <!--end of medialabel.module-->]]>
+
+<![ %menuchoice.content.module; [
+<![ %menuchoice.module; [
+<!ENTITY % local.menuchoice.attrib "">
+<!ELEMENT MenuChoice - - (Shortcut?, (GUIButton|GUIIcon|GUILabel
+		|GUIMenu|GUIMenuItem|GUISubmenu|Interface)+)>
+<!ATTLIST MenuChoice
+		%moreinfo.attrib;
+		%common.attrib;
+		%local.menuchoice.attrib;
+>
+<!--end of menuchoice.module-->]]>
+
+<![ %shortcut.module; [
+<!-- See also KeyCombo -->
+<!ENTITY % local.shortcut.attrib "">
+<!ELEMENT Shortcut - - ((KeyCap|KeyCombo|KeySym|MouseButton)+)>
+<!ATTLIST Shortcut
+		%keyaction.attrib;
+		%moreinfo.attrib;
+		%common.attrib;
+>
+<!--end of shortcut.module-->]]>
+<!--end of menuchoice.content.module-->]]>
+
+<![ %mousebutton.module; [
+<!ENTITY % local.mousebutton.attrib "">
+<!ELEMENT MouseButton - - ((%smallcptr.char.mix;)+)>
+<!ATTLIST MouseButton
+		%moreinfo.attrib;
+		%common.attrib;
+		%local.mousebutton.attrib;
+>
+<!--end of mousebutton.module-->]]>
 
 <![ %msgtext.module; [
 <!ENTITY % local.msgtext.attrib "">
@@ -2668,11 +3140,11 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.parameter.attrib "">
 <!ELEMENT Parameter - - ((%cptr.char.mix;)+)>
 <!ATTLIST Parameter
-		%common.attrib;
 		Class 		(Command
 				|Function
 				|Option)	#IMPLIED
 		%moreinfo.attrib;
+		%common.attrib;
 		%local.parameter.attrib;
 >
 <!--end of parameter.module-->]]>
@@ -2681,28 +3153,33 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.property.attrib "">
 <!ELEMENT Property - - ((%cptr.char.mix;)+)>
 <!ATTLIST Property
-		%common.attrib;
 		%moreinfo.attrib;
+		%common.attrib;
 		%local.property.attrib;
 >
 <!--end of property.module-->]]>
 
 <![ %replaceable.module; [
 <!ENTITY % local.replaceable.attrib "">
-<!ELEMENT Replaceable - - ((%phrase.char.mix;)+)>
+<!ELEMENT Replaceable - - ((#PCDATA 
+		| %link.char.class; 
+		| Optional
+		| %base.char.class; 
+		| %other.char.class; 
+		| InlineGraphic)+)>
 <!ATTLIST Replaceable
-		%common.attrib;
 		Class		(Command
 				|Function
 				|Option
 				|Parameter)	#IMPLIED
+		%common.attrib;
 		%local.replaceable.attrib;
 >
 <!--end of replaceable.module-->]]>
 
 <![ %returnvalue.module; [
 <!ENTITY % local.returnvalue.attrib "">
-<!ELEMENT ReturnValue - - (#PCDATA)>
+<!ELEMENT ReturnValue - - ((%smallcptr.char.mix;)+)>
 <!ATTLIST ReturnValue
 		%common.attrib;
 		%local.returnvalue.attrib;
@@ -2711,7 +3188,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %structfield.module; [
 <!ENTITY % local.structfield.attrib "">
-<!ELEMENT StructField - - (#PCDATA)>
+<!ELEMENT StructField - - ((%smallcptr.char.mix;)+)>
 <!ATTLIST StructField
 		%common.attrib;
 		%local.structfield.attrib;
@@ -2720,7 +3197,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %structname.module; [
 <!ENTITY % local.structname.attrib "">
-<!ELEMENT StructName - - (#PCDATA)>
+<!ELEMENT StructName - - ((%smallcptr.char.mix;)+)>
 <!ATTLIST StructName
 		%common.attrib;
 		%local.structname.attrib;
@@ -2729,8 +3206,9 @@ Phrase char mixture        X              X         X         X
 
 <![ %symbol.module; [
 <!ENTITY % local.symbol.attrib "">
-<!ELEMENT Symbol - - (#PCDATA)>
+<!ELEMENT Symbol - - ((%smallcptr.char.mix;)+)>
 <!ATTLIST Symbol
+		Class		(Limit)		#IMPLIED
 		%common.attrib;
 		%local.symbol.attrib;
 >
@@ -2740,7 +3218,6 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.systemitem.attrib "">
 <!ELEMENT SystemItem - - ((%cptr.char.mix;)+)>
 <!ATTLIST SystemItem
-		%common.attrib;
 		Class		(Constant
 				|EnvironVar
 				|Macro
@@ -2749,6 +3226,7 @@ Phrase char mixture        X              X         X         X
 				|Resource
 				|SystemName)	#IMPLIED
 		%moreinfo.attrib;
+		%common.attrib;
 		%local.systemitem.attrib;
 >
 <!--end of systemitem.module-->]]>
@@ -2756,7 +3234,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %token.module; [
 <!ENTITY % local.token.attrib "">
-<!ELEMENT Token - - (#PCDATA)>
+<!ELEMENT Token - - ((%smallcptr.char.mix;)+)>
 <!ATTLIST Token
 		%common.attrib;
 		%local.token.attrib;
@@ -2765,7 +3243,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %type.module; [
 <!ENTITY % local.type.attrib "">
-<!ELEMENT Type - - (#PCDATA)>
+<!ELEMENT Type - - ((%smallcptr.char.mix;)+)>
 <!ATTLIST Type
 		%common.attrib;
 		%local.type.attrib;
@@ -2776,8 +3254,8 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.userinput.attrib "">
 <!ELEMENT UserInput - - ((%cptr.char.mix;)+)>
 <!ATTLIST UserInput
-		%common.attrib;
 		%moreinfo.attrib;
+		%common.attrib;
 		%local.userinput.attrib;
 >
 <!--end of userinput.module-->]]>
@@ -2786,7 +3264,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %abbrev.module; [
 <!ENTITY % local.abbrev.attrib "">
-<!ELEMENT Abbrev - - (#PCDATA)>
+<!ELEMENT Abbrev - - ((%word.char.mix;)+)>
 <!ATTLIST Abbrev
 		%common.attrib;
 		%local.abbrev.attrib;
@@ -2795,7 +3273,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %acronym.module; [
 <!ENTITY % local.acronym.attrib "">
-<!ELEMENT Acronym - - (#PCDATA)>
+<!ELEMENT Acronym - - ((%word.char.mix;)+)>
 <!ATTLIST Acronym
 		%common.attrib;
 		%local.acronym.attrib;
@@ -2804,7 +3282,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %citation.module; [
 <!ENTITY % local.citation.attrib "">
-<!ELEMENT Citation - - (#PCDATA)>
+<!ELEMENT Citation - - ((%para.char.mix;)+)>
 <!ATTLIST Citation
 		%common.attrib;
 		%local.citation.attrib;
@@ -2823,7 +3301,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %refentrytitle.module; [
   <!ENTITY % local.refentrytitle.attrib "">
-  <!ELEMENT RefEntryTitle - - ((%inline.char.mix;)+)>
+  <!ELEMENT RefEntryTitle - O ((%para.char.mix;)+)>
   <!ATTLIST RefEntryTitle
 		%common.attrib;
 		%local.refentrytitle.attrib;
@@ -2832,7 +3310,7 @@ Phrase char mixture        X              X         X         X
 
   <![ %manvolnum.module; [
   <!ENTITY % local.manvolnum.attrib "">
-  <!ELEMENT ManVolNum - - (#PCDATA)>
+  <!ELEMENT ManVolNum - O ((%word.char.mix;)+)>
   <!ATTLIST ManVolNum
 		%common.attrib;
 		%local.manvolnum.attrib;
@@ -2842,10 +3320,8 @@ Phrase char mixture        X              X         X         X
 
 <![ %citetitle.module; [
 <!ENTITY % local.citetitle.attrib "">
-<!ELEMENT CiteTitle - - ((%inline.char.mix;)+)>
+<!ELEMENT CiteTitle - - ((%para.char.mix;)+)>
 <!ATTLIST CiteTitle
-		%common.attrib;
-
 		--Pubwork: type of published work being cited--
 		Pubwork		(Article
 				|Book
@@ -2853,13 +3329,27 @@ Phrase char mixture        X              X         X         X
 				|Part
 				|RefEntry
 				|Section)	#IMPLIED
+		%common.attrib;
 		%local.citetitle.attrib;
 >
 <!--end of citetitle.module-->]]>
 
+<![ %co.module; [
+<!ENTITY % local.co.attrib "">
+<!-- CO is a callout area of the LineColumn unit type (a single character 
+     position); the position is directly indicated by the location of CO. -->
+<!ELEMENT CO - O EMPTY>
+<!ATTLIST CO
+		%label.attrib; --bug number/symbol override or initialization--
+		%linkends.attrib; --to any related information--
+		%idreq.common.attrib;
+		%local.co.attrib;
+>
+<!--end of co.module-->]]>
+
 <![ %emphasis.module; [
 <!ENTITY % local.emphasis.attrib "">
-<!ELEMENT Emphasis - - (#PCDATA)>
+<!ELEMENT Emphasis - - ((%para.char.mix;)+)>
 <!ATTLIST Emphasis
 		%common.attrib;
 		%local.emphasis.attrib;
@@ -2868,8 +3358,9 @@ Phrase char mixture        X              X         X         X
 
 <![ %firstterm.module; [
 <!ENTITY % local.firstterm.attrib "">
-<!ELEMENT FirstTerm - - (#PCDATA)>
+<!ELEMENT FirstTerm - - ((%word.char.mix;)+)>
 <!ATTLIST FirstTerm
+		%linkend.attrib; --to GlossEntry or other explanation--
 		%common.attrib;
 		%local.firstterm.attrib;
 >
@@ -2877,7 +3368,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %foreignphrase.module; [
 <!ENTITY % local.foreignphrase.attrib "">
-<!ELEMENT ForeignPhrase - - (#PCDATA)>
+<!ELEMENT ForeignPhrase - - ((%para.char.mix;)+)>
 <!ATTLIST ForeignPhrase
 		%common.attrib;
 		%local.foreignphrase.attrib;
@@ -2886,8 +3377,14 @@ Phrase char mixture        X              X         X         X
 
 <![ %glossterm.module; [
 <!ENTITY % local.glossterm.attrib "">
-<!ELEMENT GlossTerm - - ((%para.char.mix;)+)>
+<!ELEMENT GlossTerm - O ((%para.char.mix;)+)>
 <!ATTLIST GlossTerm
+		%linkend.attrib; --to GlossEntry if Glossterm used in text--
+
+		--BaseForm: the form of the term in GlossEntry when this
+		GlossTerm is used in text in alternate form (e.g. plural),
+		for doing automatic linking--
+		BaseForm	CDATA		#IMPLIED
 		%common.attrib;
 		%local.glossterm.attrib;
 >
@@ -2895,7 +3392,7 @@ Phrase char mixture        X              X         X         X
 
 <![ %lineannotation.module; [
 <!ENTITY % local.lineannotation.attrib "">
-<!ELEMENT LineAnnotation - - (#PCDATA)>
+<!ELEMENT LineAnnotation - - ((%para.char.mix;)+)>
 <!ATTLIST LineAnnotation
 		%common.attrib;
 		%local.lineannotation.attrib;
@@ -2904,16 +3401,25 @@ Phrase char mixture        X              X         X         X
 
 <![ %markup.module; [
 <!ENTITY % local.markup.attrib "">
-<!ELEMENT Markup - - (#PCDATA)>
+<!ELEMENT Markup - - ((%smallcptr.char.mix;)+)>
 <!ATTLIST Markup
 		%common.attrib;
 		%local.markup.attrib;
 >
 <!--end of markup.module-->]]>
 
+<![ %phrase.module; [
+<!ENTITY % local.phrase.attrib "">
+<!ELEMENT Phrase - - ((%para.char.mix;)+)>
+<!ATTLIST Phrase
+		%common.attrib;
+		%local.phrase.attrib;
+>
+<!--end of phrase.module-->]]>
+
 <![ %quote.module; [
 <!ENTITY % local.quote.attrib "">
-<!ELEMENT Quote - - ((%inline.char.mix;)+)>
+<!ELEMENT Quote - - ((%para.char.mix;)+)>
 <!ATTLIST Quote
 		%common.attrib;
 		%local.quote.attrib;
@@ -2922,20 +3428,31 @@ Phrase char mixture        X              X         X         X
 
 <![ %sgmltag.module; [
 <!ENTITY % local.sgmltag.attrib "">
-<!ELEMENT SGMLTag - - (#PCDATA)>
+<!ELEMENT SGMLTag - - ((%smallcptr.char.mix;)+)>
 <!ATTLIST SGMLTag
-		%common.attrib;
 		Class 		(Attribute
+				|AttValue
 				|Element
+				|EndTag
 				|GenEntity
-				|ParamEntity)	#IMPLIED
+				|ParamEntity
+				|PI
+				|StartTag
+				|SGMLComment)	#IMPLIED
+		%common.attrib;
 		%local.sgmltag.attrib;
 >
 <!--end of sgmltag.module-->]]>
 
 <![ %ssscript.module; [
 <!ENTITY % local.ssscript.attrib "">
-<!ELEMENT (Subscript | Superscript) - - ((%ssscript.char.mix;)+)
+<!ELEMENT (Subscript | Superscript) - - ((#PCDATA 
+		| %link.char.class;
+		| Replaceable 
+		| Symbol 
+		| InlineGraphic 
+		| %base.char.class; 
+		| %other.char.class;)+)
 		-(%ubiq.mix;)>
 <!ATTLIST (Subscript | Superscript)
 		%common.attrib;
@@ -2945,20 +3462,26 @@ Phrase char mixture        X              X         X         X
 
 <![ %trademark.module; [
 <!ENTITY % local.trademark.attrib "">
-<!ELEMENT Trademark - - ((%cptr.char.mix;)+)>
+<!ELEMENT Trademark - - ((#PCDATA 
+		| %link.char.class; 
+		| %cptr.char.class;
+		| %base.char.class; 
+		| %other.char.class; 
+		| InlineGraphic
+		| Emphasis)+)>
 <!ATTLIST Trademark
-		%common.attrib;
 		Class		(Service
 				|Trade
 				|Registered
 				|Copyright)	Trade
+		%common.attrib;
 		%local.trademark.attrib;
 >
 <!--end of trademark.module-->]]>
 
 <![ %wordasword.module; [
 <!ENTITY % local.wordasword.attrib "">
-<!ELEMENT WordAsWord - - (#PCDATA)>
+<!ELEMENT WordAsWord - - ((%word.char.mix;)+)>
 <!ATTLIST WordAsWord
 		%common.attrib;
 		%local.wordasword.attrib;
@@ -2971,8 +3494,6 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.link.attrib "">
 <!ELEMENT Link - - ((%para.char.mix;)+)>
 <!ATTLIST Link
-		%common.attrib;
-
                 --Endterm: pointer to description of linked-to object--
                 Endterm		IDREF		#IMPLIED
 
@@ -2980,6 +3501,7 @@ Phrase char mixture        X              X         X         X
 
                 --Type: user-defined role of link--
                 Type            CDATA           #IMPLIED
+		%common.attrib;
 		%local.link.attrib;
 >
 <!--end of link.module-->]]>
@@ -2988,8 +3510,6 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.olink.attrib "">
 <!ELEMENT OLink - - ((%para.char.mix;)+)>
 <!ATTLIST OLink
-		%common.attrib;
-
                 --TargetDocEnt: HyTimeish Docorsub pointer--
 		TargetDocEnt	ENTITY 		#IMPLIED
 
@@ -2999,6 +3519,7 @@ Phrase char mixture        X              X         X         X
 
                 --Type: user-defined role of link--
 		Type		CDATA		#IMPLIED
+		%common.attrib;
 		%local.olink.attrib;
 >
 <!--end of olink.module-->]]>
@@ -3007,32 +3528,43 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.ulink.attrib "">
 <!ELEMENT ULink - - ((%para.char.mix;)+)>
 <!ATTLIST ULink
-		%common.attrib;
-
                 --URL: uniform resource locator--
                 URL		CDATA           #REQUIRED
 
                 --Type: user-defined role of link--
                 Type            CDATA           #IMPLIED
+		%common.attrib;
 		%local.ulink.attrib;
 >
 <!--end of ulink.module-->]]>
 
 <![ %footnoteref.module; [
+
 <!--FUTURE USE (V3.0):
+......................
+FootnoteRef will be a declared-empty element, which means you will
+have to use the new Label attribute rather than element content to 
+supply a mark.
+
 <!ELEMENT FootnoteRef - O EMPTY>
+......................
 -->
+
 <!ENTITY % local.footnoteref.attrib "">
 <!ELEMENT FootnoteRef - - (#PCDATA) -(%ubiq.mix;)>
 <!ATTLIST FootnoteRef
-		%common.attrib;
 		%linkendreq.attrib; --to footnote content already supplied--
 
-		--FUTURE USE (V3.0): rename Mark to Label--
+		--FUTURE USE (V3.0):
+		....................
+		Mark will be renamed to Label
+		....................--
+
 		--Mark: symbol (e.g. dagger) for use in pointing to
 		footnote in text; default is whatever was used
 		in original footnote being referenced--
                 Mark		CDATA		#IMPLIED
+		%common.attrib;
 		%local.footnoteref.attrib;
 >
 <!--end of footnoteref.module-->]]>
@@ -3041,12 +3573,11 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.xref.attrib "">
 <!ELEMENT XRef - O  EMPTY>
 <!ATTLIST XRef
-		%common.attrib;
-
                 --Endterm: pointer to description of linked-to object--
 		Endterm		IDREF		#IMPLIED
 
 		%linkendreq.attrib; --to linked-to object--
+		%common.attrib;
 		%local.xref.attrib;
 >
 <!--end of xref.module-->]]>
@@ -3057,11 +3588,13 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.anchor.attrib "">
 <!ELEMENT Anchor - O  EMPTY>
 <!ATTLIST Anchor
-		%id.attrib;
-		%pagenum.attrib;
+		%idreq.attrib; -- required --
+		%pagenum.attrib; --replaces Lang --
 		%remap.attrib;
 		%role.attrib;
 		%xreflabel.attrib;
+		%revisionflag.attrib;
+		%effectivity.attrib;
 		%local.anchor.attrib;
 >
 <!--end of anchor.module-->]]>
@@ -3070,10 +3603,9 @@ Phrase char mixture        X              X         X         X
 <!ENTITY % local.beginpage.attrib "">
 <!ELEMENT BeginPage - O  EMPTY>
 <!ATTLIST BeginPage
-		%common.attrib;
-
 		--PageNum: number of page that begins at this point--
 		%pagenum.attrib;
+		%common.attrib;
 		%local.beginpage.attrib;
 >
 <!--end of beginpage.module-->]]>
@@ -3087,7 +3619,6 @@ Phrase char mixture        X              X         X         X
 <!ELEMENT IndexTerm - O (Primary, ((Secondary, ((Tertiary, (See|SeeAlso+)?)
 		| See | SeeAlso+)?) | See | SeeAlso+)?) -(%ubiq.mix;)>
 <!ATTLIST IndexTerm
-		%common.attrib;
 		%pagenum.attrib;
 
 		--Scope: indexing applies to this doc (Local), whole doc
@@ -3101,15 +3632,22 @@ Phrase char mixture        X              X         X         X
 		Significance	(Preferred
 				|Normal)	Normal
 
-		--FUTURE USE (V3.0): Class: indicates type of IndexTerm;
-		default is Singular, or EndOfRange if StartRef is
-		supplied; StartOfRange value must be supplied explicitly
-		on starts of ranges--
-		--Class		(Singular
-				|StartOfRange
-				|EndOfRange)	#IMPLIED--
+		--FUTURE USE (V3.0):
+		....................
+		Class: indicates type of IndexTerm; default is Singular, 
+		or EndOfRange if StartRef is supplied; StartOfRange value 
+		must be supplied explicitly on starts of ranges
 
-		--FUTURE USE (V3.0): rename SpanEnd to StartRef--
+		Class		(Singular
+				|StartOfRange
+				|EndOfRange)	#IMPLIED
+		....................--
+
+		--FUTURE USE (V3.0):
+		....................
+		SpanEnd will be renamed to StartRef
+		....................--
+
 		--SpanEnd: points to the IndexTerm that starts
 		the indexing range ended by this IndexTerm--
 		SpanEnd		IDREF		#CONREF
@@ -3118,25 +3656,25 @@ Phrase char mixture        X              X         X         X
 		for use if IndexTerms are assembled together in source
 		instance--
 		Zone		IDREFS		#IMPLIED
+		%common.attrib;
 		%local.indexterm.attrib;
 >
 <!--end of indexterm.module-->]]>
 
 <![ %primsecter.module; [
 <!ENTITY % local.primsecter.attrib "">
-<!ELEMENT (Primary | Secondary | Tertiary) - - ((%inline.char.mix;)+)>
+<!ELEMENT (Primary | Secondary | Tertiary) - O ((%ndxterm.char.mix;)+)>
 <!ATTLIST (Primary | Secondary | Tertiary)
-		%common.attrib;
-
 		--SortAs: alternate sort string for index sorting--
 		SortAs		CDATA		#IMPLIED
+		%common.attrib;
 		%local.primsecter.attrib;
 >
 <!--end of primsecter.module-->]]>
 
 <![ %seeseealso.module; [
 <!ENTITY % local.seeseealso.attrib "">
-<!ELEMENT (See | SeeAlso) - - ((%inline.char.mix;)+)>
+<!ELEMENT (See | SeeAlso) - O ((%ndxterm.char.mix;)+)>
 <!ATTLIST (See | SeeAlso)
 		%common.attrib;
 		%local.seeseealso.attrib;
@@ -3144,5 +3682,5 @@ Phrase char mixture        X              X         X         X
 <!--end of seeseealso.module-->]]>
 <!--end of indexterm.content.module-->]]>
 
-<!-- End of DocBook information pool module V2.3 .......................... -->
+<!-- End of DocBook information pool module V2.4.1 ........................ -->
 <!-- ...................................................................... -->

@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- CALS-based DocBook table model V2.3 .................................. -->
+<!-- CALS-based DocBook table model V2.4.1 ................................ -->
 <!-- File calstbl.mod ..................................................... -->
 
 <!-- Copyright 1992, 1993, 1994, 1995 HaL Computer Systems, Inc.,
@@ -7,10 +7,11 @@
 
      Permission to use, copy, modify and distribute the DocBook DTD and
      its accompanying documentation for any purpose and without fee is
-     hereby granted, provided that this copyright notice appears in all
-     copies.  The copyright holders make no representation about the
-     suitability of the DTD for any purpose.  It is provided "as is"
-     without expressed or implied warranty.
+     hereby granted in perpetuity, provided that the above copyright
+     notice and this paragraph appear in all copies.  The copyright
+     holders make no representation about the suitability of the DTD for
+     any purpose.  It is provided "as is" without expressed or implied
+     warranty.
 
      If you modify the DocBook DTD in any way, except for declaring and
      referencing additional sets of general entities and declaring
@@ -43,7 +44,7 @@
      or driver files referring to this module, please use an entity
      declaration that uses the public identifier shown below:
 
-     "-//Davenport//ELEMENTS CALS-Based DocBook Table Model V2.3//EN"
+     "-//Davenport//ELEMENTS CALS-Based DocBook Table Model V2.4.1//EN"
 
      See the maintenance documentation for detailed information on the
      parameter entity and module scheme used in DocBook, customizing
@@ -212,6 +213,6 @@
 		%secur;
 >
 
-<!-- End of CALS-based DocBook table model V2.3 ........................... -->
+<!-- End of CALS-based DocBook table model V2.4.1 ......................... -->
 <!-- ...................................................................... -->
 
