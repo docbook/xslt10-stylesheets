@@ -313,5 +313,13 @@
 <!ENTITY % coref.module "IGNORE">
 <!ENTITY % errortext.module "IGNORE">
 
+<!-- new in 4.3 -->
+<!ENTITY % code.module "IGNORE">
+<!ENTITY % corpcredit.module "IGNORE">
+<!ENTITY % stepalternatives.module "IGNORE">
+<!ENTITY % task.content.module "IGNORE">
+<!ENTITY % uri.module "IGNORE">
+<!ENTITY % allow.html.tables "INCLUDE">
+
 <!-- End of Simplified DocBook Include Module V1.0 ........................ -->
 <!-- ...................................................................... -->
