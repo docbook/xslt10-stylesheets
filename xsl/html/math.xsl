@@ -19,6 +19,15 @@
 <xsl:template match="alt">
 </xsl:template>
 
+<!-- "Support" for MathML -->
+
+<xsl:template match="mml:*" xmlns:mml="http://www.w3.org/1998/Math/MathML">
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates/>
+  </xsl:copy>
+</xsl:template>
+
 <!-- Support for TeX math in alt -->
 
 <xsl:template match="*" mode="collect.tex.math">
