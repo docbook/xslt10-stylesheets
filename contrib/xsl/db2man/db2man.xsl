@@ -122,6 +122,39 @@
   <xsl:variable name="section" select="refmeta/manvolnum"/>
   <xsl:variable name="name" select="refnamediv/refname[1]"/>
 
+  <xsl:variable name="title">
+    <xsl:choose>
+      <xsl:when test="refentryinfo/title">
+        <xsl:value-of select="refentryinfo/title"/>
+      </xsl:when>
+      <xsl:when test="../referenceinfo/title">
+        <xsl:value-of select="../referenceinfo/title"/>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="date">
+    <xsl:choose>
+      <xsl:when test="refentryinfo/date">
+        <xsl:value-of select="refentryinfo/date"/>
+      </xsl:when>
+      <xsl:when test="../referenceinfo/date">
+        <xsl:value-of select="../referenceinfo/date"/>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="productname">
+    <xsl:choose>
+      <xsl:when test="refentryinfo/productname">
+        <xsl:value-of select="refentryinfo/productname"/>
+      </xsl:when>
+      <xsl:when test="../referenceinfo/productname">
+        <xsl:value-of select="../referenceinfo/productname"/>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:call-template name="write.text.chunk">
     <xsl:with-param name="filename"
 		    select="concat(normalize-space ($name), '.', $section)"/>
@@ -150,11 +183,11 @@
       <xsl:text>" </xsl:text>
       <xsl:value-of select="refmeta/manvolnum[1]"/>
       <xsl:text> "</xsl:text>
-      <xsl:value-of select="refentryinfo/date"/>
+      <xsl:value-of select="$date"/>
       <xsl:text>" "</xsl:text>
-      <xsl:value-of select="refentryinfo/productname"/>
+      <xsl:value-of select="$productname"/>
       <xsl:text>" "</xsl:text>
-      <xsl:value-of select="refentryinfo/title"/>
+      <xsl:value-of select="$title"/>
       <xsl:text>"
 </xsl:text>
       <xsl:apply-templates/>
