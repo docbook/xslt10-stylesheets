@@ -286,7 +286,7 @@
         <xsl:value-of select="unparsed-entity-uri(@entityref)"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="@fileref"/>
+        <xsl:apply-templates select="@fileref"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -470,7 +470,7 @@
         <xsl:value-of select="unparsed-entity-uri(@entityref)"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="@fileref"/>
+        <xsl:apply-templates select="@fileref"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
