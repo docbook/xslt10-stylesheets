@@ -503,6 +503,7 @@
 <xsl:template match="link" priority="200">
   <xsl:copy>
     <xsl:call-template name="copy.attributes"/>
+    <xsl:apply-templates/>
   </xsl:copy>
 </xsl:template>
 
