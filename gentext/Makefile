@@ -1,13 +1,13 @@
 XSLT=../cvstools/saxon
 XJPARSE=../cvstools/xjparse
 
-SOURCES=af.xml ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml et.xml fi.xml \
-        fr.xml hu.xml id.xml it.xml ja.xml ko.xml nl.xml no.xml pl.xml \
+SOURCES=af.xml bg.xml ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml et.xml \
+        fi.xml fr.xml hu.xml id.xml it.xml ja.xml ko.xml nl.xml no.xml pl.xml \
         pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sr.xml sv.xml \
         tr.xml zh_cn.xml zh_tw.xml
 
-DSSSLENT=dbl1af.ent dbl1ca.ent dbl1cs.ent dbl1da.ent dbl1de.ent dbl1el.ent \
-         dbl1en.ent dbl1es.ent dbl1et.ent dbl1fi.ent dbl1fr.ent \
+DSSSLENT=dbl1af.ent dbl1bg.ent dbl1ca.ent dbl1cs.ent dbl1da.ent dbl1de.ent \
+         dbl1el.ent dbl1en.ent dbl1es.ent dbl1et.ent dbl1fi.ent dbl1fr.ent \
          dbl1hu.ent dbl1id.ent dbl1it.ent dbl1ja.ent dbl1ko.ent \
          dbl1nl.ent dbl1no.ent dbl1pl.ent dbl1pt.ent dbl1ro.ent \
          dbl1ru.ent dbl1sk.ent dbl1sl.ent dbl1sr.ent dbl1sv.ent \
