@@ -4,14 +4,11 @@
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version='1.0'
-                xmlns:docbook="http://www.oasis-open.org/docbook/xml/4.0"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
-                xmlns:xt="http://www.jclark.com/xt"
-                xmlns:saxon="http://icl.com/saxon"
                 xmlns:lxslt="http://xml.apache.org/xslt"
-                xmlns:xalanredirect="org.apache.xalan.xslt.extensions.Redirect"
-                exclude-result-prefixes="doc docbook xsl"
-                extension-element-prefixes="xt saxon xalanredirect lxslt">
+                exclude-result-prefixes="doc xsl lxslt">
+
+<xsl:include href="../html/chunker.xsl"/>
 
 <xsl:output
      method="xml"
@@ -38,6 +35,12 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template match="lxslt:*">
+  <!-- nop -->
+</xsl:template>
+
+<!-- ==================================================================== -->
+
 <xsl:template match="/">
   <xsl:choose>
     <xsl:when test="$output-file = ''">
@@ -46,22 +49,14 @@
       </xsl:message>
     </xsl:when>
     <xsl:when test="/xsl:stylesheet/doc:*">
-      <xt:document method="xml" href="{$output-file}">
-        <xsl:apply-templates/>
-        <xsl:fallback>
-          <xalanredirect:write file="{$output-file}">
-            <xsl:apply-templates/>
-            <xsl:fallback>
-              <saxon:output method="xml" file="{$output-file}">
-                <xsl:apply-templates/>
-                <xsl:fallback>
-                  <xsl:apply-templates/>
-                </xsl:fallback>
-              </saxon:output>
-            </xsl:fallback>
-          </xalanredirect:write>
-        </xsl:fallback>
-      </xt:document>
+      <xsl:call-template name="write.chunk">
+        <xsl:with-param name="filename" select="$output-file"/>
+        <xsl:with-param name="method" select="'xml'"/>
+        <xsl:with-param name="encoding" select="'utf-8'"/>
+        <xsl:with-param name="content">
+          <xsl:apply-templates/>
+        </xsl:with-param>
+      </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <!-- nop -->
@@ -105,7 +100,10 @@
 </xsl:template>
 
 <xsl:template match="xsl:include">
+  <!-- nop -->
+<!--
   <xsl:apply-templates select="document(@href)/*"/>
+-->
 </xsl:template>
 
 <xsl:template match="@*" mode="copy">
@@ -302,7 +300,7 @@
 </xsl:template>
 
 <xsl:template match="doc:attribute-set">
-  <xsl:variable name="name" select="@mode"/>
+  <xsl:variable name="name" select="@name"/>
 
   <refentry id="attrset.{$name}">
     <refnamediv>

@@ -343,7 +343,7 @@ callouts should not be used.
 <xsl:param name="callout.unicode.start.character" select="10102"
            doc:type='integer'/>
 
-<doc:param name="callout.graphics.number.limit" xmlns="">
+<doc:param name="callout.unicode.start.character" xmlns="">
 <refpurpose>Number of the largest callout graphic</refpurpose>
 <refdescription>
 <para>If <parameter>callout.graphics</parameter>
@@ -362,7 +362,7 @@ be used.
 <xsl:param name="callout.unicode.number.limit" select="'10'"
            doc:type='integer'/>
 
-<doc:param name="callout.graphics.number.limit" xmlns="">
+<doc:param name="callout.unicode.number.limit" xmlns="">
 <refpurpose>Number of the largest callout graphic</refpurpose>
 <refdescription>
 <para>If <parameter>callout.graphics</parameter>

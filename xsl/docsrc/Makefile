@@ -1,6 +1,15 @@
+DIRS=common lib html fo template
+
 all:
-	cd common; make
-	cd lib; make
-	cd html; make
-	cd fo; make
-	cd template; make
+	for i in $(DIRS) __bogus__; do \
+		if [ $$i != __bogus__ ] ; then \
+			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
+		fi \
+	done
+
+clean:
+	for i in $(DIRS) __bogus__; do \
+		if [ $$i != __bogus__ ] ; then \
+			echo "$(MAKE) -C $$i clean"; $(MAKE) -C $$i clean; \
+		fi \
+	done
