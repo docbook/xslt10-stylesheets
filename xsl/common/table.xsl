@@ -449,10 +449,10 @@ or 0 (the empty string)</para>
     <xsl:when test="$row.value != ''">
       <xsl:value-of select="$row.value"/>
     </xsl:when>
-    <xsl:when test="$span.value">
+    <xsl:when test="$span.value != ''">
       <xsl:value-of select="$span.value"/>
     </xsl:when>
-    <xsl:when test="$namest.value">
+    <xsl:when test="$namest.value != ''">
       <xsl:value-of select="$namest.value"/>
     </xsl:when>
     <xsl:when test="$colnum &gt; 0">

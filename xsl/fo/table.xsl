@@ -61,6 +61,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <xsl:template name="empty.table.cell">
   <xsl:param name="colnum" select="0"/>
 
+  <xsl:variable name="frame" select="ancestor::tgroup/parent::*/@frame"/>
+
   <xsl:variable name="rowsep">
     <xsl:call-template name="inherited.table.attribute">
       <xsl:with-param name="entry" select="NOT-AN-ELEMENT-NAME"/>
@@ -80,25 +82,33 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   <fo:table-cell text-align="center"
                  display-align="center"
                  padding="{$table.border.padding}">
-    <xsl:if test="$colsep &gt; 0">
-      <xsl:call-template name="border">
-        <xsl:with-param name="side" select="'right'"/>
-        <xsl:with-param name="padding" select="1"/>
-      </xsl:call-template>
-    </xsl:if>
-    <xsl:if test="$rowsep &gt; 0">
-      <xsl:call-template name="border">
-        <xsl:with-param name="side" select="'bottom'"/>
-        <xsl:with-param name="padding" select="1"/>
-      </xsl:call-template>
-    </xsl:if>
-    <fo:block>
-      <xsl:text>e(</xsl:text>
-      <xsl:value-of select="$rowsep"/>
-      <xsl:text>,</xsl:text>
-      <xsl:value-of select="$colsep"/>
-      <xsl:text>)</xsl:text>
-    </fo:block>
+    <xsl:choose>
+      <xsl:when test="$frame='all'">
+        <xsl:call-template name="border">
+          <xsl:with-param name="side" select="'right'"/>
+          <xsl:with-param name="padding" select="1"/>
+        </xsl:call-template>
+        <xsl:call-template name="border">
+          <xsl:with-param name="side" select="'bottom'"/>
+          <xsl:with-param name="padding" select="1"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:if test="$colsep &gt; 0">
+          <xsl:call-template name="border">
+            <xsl:with-param name="side" select="'right'"/>
+            <xsl:with-param name="padding" select="1"/>
+          </xsl:call-template>
+        </xsl:if>
+        <xsl:if test="$rowsep &gt; 0">
+          <xsl:call-template name="border">
+            <xsl:with-param name="side" select="'bottom'"/>
+            <xsl:with-param name="padding" select="1"/>
+          </xsl:call-template>
+        </xsl:if>
+      </xsl:otherwise>
+    </xsl:choose>
+    <fo:block/> <!-- fo:table-cell should not be empty -->
   </fo:table-cell>
 </xsl:template>
 
@@ -211,7 +221,6 @@ to be incomplete. Don't forget to read the source, too :-)</para>
         </xsl:call-template>
       </xsl:with-param>
     </xsl:apply-templates>
-
   </fo:table-header>
 </xsl:template>
 
@@ -241,7 +250,6 @@ to be incomplete. Don't forget to read the source, too :-)</para>
         </xsl:call-template>
       </xsl:with-param>
     </xsl:apply-templates>
-
   </fo:table-body>
 </xsl:template>
 
