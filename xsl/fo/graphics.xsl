@@ -344,7 +344,11 @@
     <xsl:value-of select="$object/imagedata[@align][1]/@align"/>
   </xsl:variable>
 
-  <fo:block>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <fo:block id="{$id}">
     <xsl:if test="$align != '' ">
       <xsl:attribute name="text-align">
         <xsl:value-of select="$align"/>
