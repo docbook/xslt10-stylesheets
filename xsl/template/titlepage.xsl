@@ -269,11 +269,14 @@ and <quote>verso</quote> sides of the title page.</para>
     </xsl:element>
   </xsl:if>
 
-  <!-- output default templates for each of the elements listed in -->
-  <!-- the titlepage-content -->
+  <!-- output default templates for each of the elements listed in  -->
+  <!-- the titlepage-content. If a template is suppressed or forced -->
+  <!-- to be off, or has already been output, don't output it.      -->
   <xsl:for-each select="t:titlepage-content/*">
+    <xsl:variable name="thisnode" select="."/>
     <xsl:if test="(not(@suppress-template) or @suppress-template='0')
-                  and (not(@force) or @force='0')">
+                  and (not(@force) or @force='0')
+                  and (not(preceding-sibling::*[name(.)=name($thisnode)]))">
       <xsl:text>&#xA;&#xA;</xsl:text>
       <xsl:element name="xsl:template">
         <xsl:attribute name="match">
@@ -679,31 +682,31 @@ names.</para>
     <xsl:text>|</xsl:text>
   </xsl:if>
 
-  <xsl:if test="@predicate">
-    <xsl:text>(</xsl:text>
-  </xsl:if>
-
   <xsl:value-of select="$docinfo"/>
   <xsl:text>/</xsl:text>
   <xsl:value-of select="name(.)"/>
+  <xsl:if test="@predicate">
+    <xsl:value-of select="@predicate"/>
+  </xsl:if>
 
   <xsl:if test="$altinfo != ''">
     <xsl:text>|</xsl:text>
     <xsl:value-of select="$altinfo"/>
     <xsl:text>/</xsl:text>
     <xsl:value-of select="name(.)"/>
+    <xsl:if test="@predicate">
+      <xsl:value-of select="@predicate"/>
+    </xsl:if>
   </xsl:if>
 
-  <xsl:if test="name(.) = 'title'
-                or name(.) = 'subtitle'
-                or name(.) = 'titleabbrev'">
+  <xsl:if test="local-name(.) = 'title'
+                or local-name(.) = 'subtitle'
+                or local-name(.) = 'titleabbrev'">
     <xsl:text>|</xsl:text>
     <xsl:value-of select="name(.)"/>
-  </xsl:if>
-
-  <xsl:if test="@predicate">
-    <xsl:text>)</xsl:text>
-    <xsl:value-of select="@predicate"/>
+    <xsl:if test="@predicate">
+      <xsl:value-of select="@predicate"/>
+    </xsl:if>
   </xsl:if>
 </xsl:template>
 
@@ -819,39 +822,122 @@ names.</para>
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:element name="xsl:apply-templates">
-        <xsl:attribute name="mode">
-          <xsl:value-of select="$mode"/>
-        </xsl:attribute>
-        <xsl:attribute name="select">
-          <xsl:if test="@predicate">
-            <xsl:text>(</xsl:text>
-          </xsl:if>
 
-          <xsl:value-of select="$docinfo"/>
-          <xsl:text>/</xsl:text>
-          <xsl:value-of select="name(.)"/>
+      <xsl:choose>
+        <xsl:when test="local-name(.) = 'title'
+                        or local-name(.) = 'subtitle'
+                        or local-name(.) = 'titleabbrev'">
+          <!-- the title, subtitle, and titleabbrev elements are special -->
+          <xsl:element name="xsl:choose">
+            <xsl:text>&#xA;    </xsl:text>
+            <xsl:element name="xsl:when">
+              <xsl:attribute name="test">
+                <xsl:value-of select="$docinfo"/>
+                <xsl:text>/</xsl:text>
+                <xsl:value-of select="name(.)"/>
+              </xsl:attribute>
+              <xsl:text>&#xA;      </xsl:text>
+              <xsl:element name="xsl:apply-templates">
+                <xsl:attribute name="mode">
+                  <xsl:value-of select="$mode"/>
+                </xsl:attribute>
+                <xsl:attribute name="select">
+                  <xsl:value-of select="$docinfo"/>
+                  <xsl:text>/</xsl:text>
+                  <xsl:value-of select="name(.)"/>
+                  <xsl:if test="@predicate">
+                    <xsl:value-of select="@predicate"/>
+                  </xsl:if>
+                </xsl:attribute>
+              </xsl:element>
+              <xsl:text>&#xA;    </xsl:text>
+            </xsl:element>
 
+            <xsl:if test="$altinfo != ''">
+              <xsl:text>&#xA;    </xsl:text>
+              <xsl:element name="xsl:when">
+                <xsl:attribute name="test">
+                  <xsl:value-of select="$altinfo"/>
+                  <xsl:text>/</xsl:text>
+                  <xsl:value-of select="name(.)"/>
+                </xsl:attribute>
+                <xsl:text>&#xA;      </xsl:text>
+                <xsl:element name="xsl:apply-templates">
+                  <xsl:attribute name="mode">
+                    <xsl:value-of select="$mode"/>
+                  </xsl:attribute>
+                  <xsl:attribute name="select">
+                    <xsl:value-of select="$altinfo"/>
+                    <xsl:text>/</xsl:text>
+                    <xsl:value-of select="name(.)"/>
+                    <xsl:if test="@predicate">
+                      <xsl:value-of select="@predicate"/>
+                    </xsl:if>
+                  </xsl:attribute>
+                </xsl:element>
+                <xsl:text>&#xA;    </xsl:text>
+              </xsl:element>
+            </xsl:if>
+
+            <xsl:text>&#xA;    </xsl:text>
+            <xsl:element name="xsl:when">
+              <xsl:attribute name="test">
+                <xsl:value-of select="name(.)"/>
+              </xsl:attribute>
+              <xsl:text>&#xA;      </xsl:text>
+              <xsl:element name="xsl:apply-templates">
+                <xsl:attribute name="mode">
+                  <xsl:value-of select="$mode"/>
+                </xsl:attribute>
+                <xsl:attribute name="select">
+                  <xsl:value-of select="name(.)"/>
+                  <xsl:if test="@predicate">
+                    <xsl:value-of select="@predicate"/>
+                  </xsl:if>
+                </xsl:attribute>
+              </xsl:element>
+              <xsl:text>&#xA;    </xsl:text>
+            </xsl:element>
+            <xsl:text>&#xA;  </xsl:text>
+          </xsl:element>
+          <xsl:text>&#xA;</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+
+          <!-- first take care of the $docinfo version -->
+          <xsl:element name="xsl:apply-templates">
+            <xsl:attribute name="mode">
+              <xsl:value-of select="$mode"/>
+            </xsl:attribute>
+            <xsl:attribute name="select">
+              <xsl:value-of select="$docinfo"/>
+              <xsl:text>/</xsl:text>
+              <xsl:value-of select="name(.)"/>
+              <xsl:if test="@predicate">
+                <xsl:value-of select="@predicate"/>
+              </xsl:if>
+            </xsl:attribute>
+          </xsl:element>
+
+          <!-- then take care of the $altinfo version -->
           <xsl:if test="$altinfo != ''">
-            <xsl:text>|</xsl:text>
-            <xsl:value-of select="$altinfo"/>
-            <xsl:text>/</xsl:text>
-            <xsl:value-of select="name(.)"/>
+            <xsl:text>&#xA;  </xsl:text>
+            <xsl:element name="xsl:apply-templates">
+              <xsl:attribute name="mode">
+                <xsl:value-of select="$mode"/>
+              </xsl:attribute>
+              <xsl:attribute name="select">
+                <xsl:value-of select="$altinfo"/>
+                <xsl:text>/</xsl:text>
+                <xsl:value-of select="name(.)"/>
+                <xsl:if test="@predicate">
+                  <xsl:value-of select="@predicate"/>
+                </xsl:if>
+              </xsl:attribute>
+            </xsl:element>
           </xsl:if>
-
-          <xsl:if test="name(.) = 'title'
-                        or name(.) = 'subtitle'
-                        or name(.) = 'titleabbrev'">
-            <xsl:text>|</xsl:text>
-            <xsl:value-of select="name(.)"/>
-          </xsl:if>
-
-          <xsl:if test="@predicate">
-            <xsl:text>)</xsl:text>
-            <xsl:value-of select="@predicate"/>
-          </xsl:if>
-        </xsl:attribute>
-      </xsl:element>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
