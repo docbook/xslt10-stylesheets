@@ -22,16 +22,12 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="cmdsynopsis">
-  <div class="{name(.)}" style="font-family: monospace; clear: both; margin-top: 1em;">
-    <xsl:call-template name="anchor"/>
-    <span style="float: left; text-align: left;">
-      <xsl:apply-templates select="command"/>
-    </span>
-    <span style="float: left; text-align: left; padding-left: .5em">
-      <xsl:apply-templates select="command/following-sibling::node()"/>
-    </span>
+  <div class="{name(.)}">
+    <p>
+      <xsl:call-template name="anchor"/>
+      <xsl:apply-templates/>
+    </p>
   </div>
-  <br style="clear: both;"/>
 </xsl:template>
 
 <xsl:template match="cmdsynopsis/command">
