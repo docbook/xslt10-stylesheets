@@ -203,7 +203,6 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 </reference>
 
 <reference><title>Miscellaneous</title>
-&graphic.default.extension;
 &formal.procedures;
 &formal.title.placement;
 &runinhead.default.title.end.punct;
@@ -222,6 +221,14 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &points.per.em;
 &use.svg;
 &use.role.as.xrefstyle;
+</reference>
+
+<reference><title>Graphics</title>
+&graphic.default.extension;
+&nominal.image.width;
+&nominal.image.depth;
+&use.embed.for.svg;
+&make.graphic.viewport;
 </reference>
 
 <reference><title>Chunking</title>
@@ -351,11 +358,11 @@ around all these parameters.</para>
 <src:fragref linkend="funcsynopsis.decoration.frag"/>
 <src:fragref linkend="funcsynopsis.style.frag"/>
 <src:fragref linkend="function.parens.frag"/>
-<src:fragref linkend="generate.meta.abstract.frag"/>
 <src:fragref linkend="generate.id.attributes.frag"/>
 <src:fragref linkend="generate.index.frag"/>
 <src:fragref linkend="generate.legalnotice.link.frag"/>
 <src:fragref linkend="generate.manifest.frag"/>
+<src:fragref linkend="generate.meta.abstract.frag"/>
 <src:fragref linkend="generate.section.toc.level.frag"/>
 <src:fragref linkend="generate.toc.frag"/>
 <src:fragref linkend="glossary.collection.frag"/>
@@ -376,8 +383,8 @@ around all these parameters.</para>
 <src:fragref linkend="htmlhelp.encoding.frag"/>
 <src:fragref linkend="htmlhelp.enumerate.images.frag"/>
 <src:fragref linkend="htmlhelp.force.map.and.alias.frag"/>
-<src:fragref linkend="htmlhelp.hhc.frag"/>
 <src:fragref linkend="htmlhelp.hhc.folders.instead.books.frag"/>
+<src:fragref linkend="htmlhelp.hhc.frag"/>
 <src:fragref linkend="htmlhelp.hhc.section.depth.frag"/>
 <src:fragref linkend="htmlhelp.hhc.show.root.frag"/>
 <src:fragref linkend="htmlhelp.hhp.frag"/>
@@ -391,6 +398,7 @@ around all these parameters.</para>
 <src:fragref linkend="linenumbering.separator.frag"/>
 <src:fragref linkend="linenumbering.width.frag"/>
 <src:fragref linkend="link.mailto.url.frag"/>
+<src:fragref linkend="make.graphic.viewport.frag"/>
 <src:fragref linkend="make.single.year.ranges.frag"/>
 <src:fragref linkend="make.valid.html.frag"/>
 <src:fragref linkend="make.year.ranges.frag"/>
@@ -400,6 +408,8 @@ around all these parameters.</para>
 <src:fragref linkend="navig.graphics.frag"/>
 <src:fragref linkend="navig.graphics.path.frag"/>
 <src:fragref linkend="navig.showtitles.frag"/>
+<src:fragref linkend="nominal.image.depth.frag"/>
+<src:fragref linkend="nominal.image.width.frag"/>
 <src:fragref linkend="nominal.table.width.frag"/>
 <src:fragref linkend="olink.fragid.frag"/>
 <src:fragref linkend="olink.outline.ext.frag"/>
@@ -415,6 +425,7 @@ around all these parameters.</para>
 <src:fragref linkend="process.empty.source.toc.frag"/>
 <src:fragref linkend="process.source.toc.frag"/>
 <src:fragref linkend="profile.arch.frag"/>
+<src:fragref linkend="profile.attribute.frag"/>
 <src:fragref linkend="profile.condition.frag"/>
 <src:fragref linkend="profile.conformance.frag"/>
 <src:fragref linkend="profile.lang.frag"/>
@@ -423,11 +434,10 @@ around all these parameters.</para>
 <src:fragref linkend="profile.revisionflag.frag"/>
 <src:fragref linkend="profile.role.frag"/>
 <src:fragref linkend="profile.security.frag"/>
-<src:fragref linkend="profile.userlevel.frag"/>
-<src:fragref linkend="profile.vendor.frag"/>
-<src:fragref linkend="profile.attribute.frag"/>
-<src:fragref linkend="profile.value.frag"/>
 <src:fragref linkend="profile.separator.frag"/>
+<src:fragref linkend="profile.userlevel.frag"/>
+<src:fragref linkend="profile.value.frag"/>
+<src:fragref linkend="profile.vendor.frag"/>
 <src:fragref linkend="punct.honorific.frag"/>
 <src:fragref linkend="qanda.defaultlabel.frag"/>
 <src:fragref linkend="qanda.inherit.numeration.frag"/>
@@ -455,13 +465,14 @@ around all these parameters.</para>
 <src:fragref linkend="table.border.thickness.frag"/>
 <src:fragref linkend="table.borders.with.css.frag"/>
 <src:fragref linkend="tablecolumns.extension.frag"/>
-<src:fragref linkend="textinsert.extension.frag"/>
+<src:fragref linkend="tex.math.delims.frag"/>
 <src:fragref linkend="tex.math.file.frag"/>
 <src:fragref linkend="tex.math.in.alt.frag"/>
-<src:fragref linkend="tex.math.delims.frag"/>
+<src:fragref linkend="textinsert.extension.frag"/>
 <src:fragref linkend="toc.list.type.frag"/>
 <src:fragref linkend="toc.section.depth.frag"/>
 <src:fragref linkend="ulink.target.frag"/>
+<src:fragref linkend="use.embed.for.svg.frag"/>
 <src:fragref linkend="use.extensions.frag"/>
 <src:fragref linkend="use.id.as.filename.frag"/>
 <src:fragref linkend="use.role.as.xrefstyle.frag"/>

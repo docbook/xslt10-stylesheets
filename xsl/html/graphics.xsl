@@ -24,7 +24,6 @@
      ******************************************************************** -->
 
 <lxslt:component prefix="xtext" elements="insertfile"/>
-
 <lxslt:component prefix="ximg" functions="new getWidth getDepth"/>
 
 <!-- ==================================================================== -->
@@ -69,10 +68,6 @@
 </xsl:template>
 
 <!-- ==================================================================== -->
-
-<xsl:param name="nominal.image.width" select="6 * $pixels.per.inch"/>
-<xsl:param name="nominal.image.depth" select="4 * $pixels.per.inch"/>
-<xsl:param name="make.graphic.viewport" select="1"/>
 
 <xsl:template name="process.image">
   <!-- When this template is called, the current node should be  -->
@@ -443,19 +438,26 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
             <xsl:with-param name="scaled.contentwidth" select="$scaled.contentwidth"/>
             <xsl:with-param name="viewport" select="$viewport"/>
           </xsl:call-template>
-          <embed src="{$filename}" type="image/svg+xml">
-            <xsl:call-template name="process.image.attributes">
-              <xsl:with-param name="alt" select="$alt"/>
-              <xsl:with-param name="html.depth" select="$html.depth"/>
-              <xsl:with-param name="html.width" select="$html.width"/>
-              <xsl:with-param name="longdesc" select="$longdesc"/>
-              <xsl:with-param name="scale" select="$scale"/>
-              <xsl:with-param name="scalefit" select="$scalefit"/>
-              <xsl:with-param name="scaled.contentdepth" select="$scaled.contentdepth"/>
-              <xsl:with-param name="scaled.contentwidth" select="$scaled.contentwidth"/>
-              <xsl:with-param name="viewport" select="$viewport"/>
-            </xsl:call-template>
-          </embed>
+          <xsl:if test="@align">
+            <xsl:attribute name="align">
+              <xsl:value-of select="@align"/>
+            </xsl:attribute>
+          </xsl:if>
+          <xsl:if test="$use.embed.for.svg != 0">
+            <embed src="{$filename}" type="image/svg+xml">
+              <xsl:call-template name="process.image.attributes">
+                <xsl:with-param name="alt" select="$alt"/>
+                <xsl:with-param name="html.depth" select="$html.depth"/>
+                <xsl:with-param name="html.width" select="$html.width"/>
+                <xsl:with-param name="longdesc" select="$longdesc"/>
+                <xsl:with-param name="scale" select="$scale"/>
+                <xsl:with-param name="scalefit" select="$scalefit"/>
+                <xsl:with-param name="scaled.contentdepth" select="$scaled.contentdepth"/>
+                <xsl:with-param name="scaled.contentwidth" select="$scaled.contentwidth"/>
+                <xsl:with-param name="viewport" select="$viewport"/>
+              </xsl:call-template>
+            </embed>
+          </xsl:if>
         </object>
       </xsl:when>
       <xsl:otherwise>
@@ -463,6 +465,13 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
           <xsl:attribute name="src">
             <xsl:value-of select="$filename"/>
           </xsl:attribute>
+
+          <xsl:if test="@align">
+            <xsl:attribute name="align">
+              <xsl:value-of select="@align"/>
+            </xsl:attribute>
+          </xsl:if>
+
           <xsl:call-template name="process.image.attributes">
             <xsl:with-param name="alt" select="$alt"/>
             <xsl:with-param name="html.depth" select="$html.depth"/>
@@ -480,7 +489,8 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="$viewport != 0">
+    <!-- tables and alignment don't play nicely; skip the table if align is set -->
+    <xsl:when test="$viewport != 0 and not(@align)">
       <table border="0" summary="manufactured viewport for HTML img"
              cellspacing="0" cellpadding="0">
         <xsl:if test="$html.width != ''">
