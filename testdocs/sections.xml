@@ -5,7 +5,7 @@
 <!-- test document -->
 <article>
 <articleinfo>
-<title>Formal Objects</title>
+<title>Sections</title>
 </articleinfo>
 
 <para>A test paragraph.</para>
@@ -13,13 +13,25 @@
 <sect1>
   <title>sect1 title</title>
 
+  <para>This is a test paragraph.</para>
+
+  <bridgehead renderas="sect1">This is a sect1 bridgehead</bridgehead>
+
+  <para>This is a test paragraph.</para>
+
   <sect2>
     <title>first sect2 title</title>
     <para>Please read <xref linkend="sec-xrefMe"/></para>
+
+    <bridgehead>This is an implied sect3 bridgehead</bridgehead>
+
+    <para>This is a test paragraph.</para>
+
   </sect2>
 
   <sect2 id="sec-xrefMe">
     <title>second sect2 title</title>
   </sect2>
 </sect1>
+
 </article>
