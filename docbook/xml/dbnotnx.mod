@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook notations module V4.2CR3 ........................................ -->
+<!-- DocBook notations module V4.2 ........................................ -->
 <!-- File dbnotnx.mod ..................................................... -->
 
 <!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
@@ -37,7 +37,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbnotn PUBLIC
-     "-//OASIS//ENTITIES DocBook Notations V4.2CR3//EN"
+     "-//OASIS//ENTITIES DocBook Notations V4.2//EN"
      "dbnotnx.mod">
      %dbnotn;
 
@@ -96,5 +96,5 @@
 <!NOTATION SVG		SYSTEM "http://www.w3.org/TR/SVG/">
 <!NOTATION linespecific	SYSTEM "linespecific">
 
-<!-- End of DocBook notations module V4.2CR3 ................................. -->
+<!-- End of DocBook notations module V4.2 ................................. -->
 <!-- ...................................................................... -->
