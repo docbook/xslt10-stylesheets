@@ -1,6 +1,6 @@
 <!DOCTYPE book
   PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-  "http://www.oasis-open.org/xml/4.1.2/docbookx.dtd" [
+  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY common.xml SYSTEM "common/common.xml" NDATA SGML>
 <!ENTITY lib.xml SYSTEM "lib/lib.xml" NDATA SGML>
 <!ENTITY html-param.xml SYSTEM "html/param.xml" NDATA SGML>
