@@ -141,7 +141,7 @@
         <xsl:if test="count($prop-columns) != 0">
           <xsl:attribute name="table-layout">fixed</xsl:attribute>
         </xsl:if>
-        <xsl:apply-templates/>
+        <xsl:apply-templates select="tgroup"/>
       </fo:table>
     </fo:table-and-caption>
   </fo:block>
@@ -181,7 +181,7 @@
       <xsl:if test="count($prop-columns) != 0">
         <xsl:attribute name="table-layout">fixed</xsl:attribute>
       </xsl:if>
-      <xsl:apply-templates/>
+      <xsl:apply-templates select="tgroup"/>
     </fo:table>
   </fo:block>
 </xsl:template>
