@@ -155,10 +155,10 @@
                 select="($l10n.xml/l:i18n/l:l10n[@language=$lang]/l:gentext[@key=$key])[1]"/>
 
   <xsl:choose>
-    <xsl:when test="count($local.l10n.gentext) &gt; 0">
+    <xsl:when test="$local.l10n.gentext">
       <xsl:value-of select="$local.l10n.gentext/@text"/>
     </xsl:when>
-    <xsl:when test="count($l10n.gentext) &gt; 0">
+    <xsl:when test="$l10n.gentext">
       <xsl:value-of select="$l10n.gentext/@text"/>
     </xsl:when>
     <xsl:otherwise>
@@ -224,10 +224,10 @@
                 select="($l10n.xml/l:i18n/l:l10n[@language=$lang]/l:dingbat[@key=$dingbat])[1]"/>
 
   <xsl:choose>
-    <xsl:when test="count($local.l10n.dingbat) &gt; 0">
+    <xsl:when test="$local.l10n.dingbat">
       <xsl:value-of select="$local.l10n.dingbat/@text"/>
     </xsl:when>
-    <xsl:when test="count($l10n.dingbat) &gt; 0">
+    <xsl:when test="$l10n.dingbat">
       <xsl:value-of select="$l10n.dingbat/@text"/>
     </xsl:when>
     <xsl:otherwise>
