@@ -598,6 +598,7 @@ db.nopara.blocks =
    db.list.blocks
  | db.admonition.blocks
  | db.formal.blocks
+ | db.equation.blocks
  | db.informal.blocks
  | db.publishing.blocks
  | db.graphic.blocks
@@ -620,15 +621,20 @@ db.all.blocks =
  | db.para.blocks
  | db.extension.blocks
 
+ctrl:exclude [ from="db.formal.blocks" exclude="db.formal.blocks" ]
+ctrl:exclude [ from="db.formal.blocks" exclude="db.admonition.blocks" ]
+
 db.formal.blocks =
-   db.equation
- | db.example
+   db.example
  | db.figure
  | db.table
 
+db.equation.blocks =
+   db.equation
+ | db.informalequation
+
 db.informal.blocks =
-   db.informalequation
- | db.informalexample
+   db.informalexample
  | db.informalfigure
  | db.informaltable
 
@@ -643,6 +649,8 @@ db.graphic.blocks =
  | db.screenshot
 
 db.technical.blocks = db.procedure
+
+ctrl:exclude [ from="db.admonition.blocks" exclude="db.admonition.blocks" ]
 
 db.admonition.blocks =
    db.caution
@@ -1323,6 +1331,12 @@ div {
 div {
 
    ctrl:exclude [ from="db.footnote" exclude="db.footnote" ]
+   ctrl:exclude [ from="db.footnote" exclude="db.formal.blocks" ]
+   ctrl:exclude [ from="db.footnote" exclude="db.admonition.blocks" ]
+   ctrl:exclude [ from="db.footnote" exclude="db.indexterm" ]
+   ctrl:exclude [ from="db.footnote" exclude="db.sidebar" ]
+   ctrl:exclude [ from="db.footnote" exclude="db.task" ]
+   ctrl:exclude [ from="db.footnote" exclude="db.epigraph" ]
 
    db.footnote.role.attribute = attribute role { text }
 
@@ -1438,8 +1452,6 @@ div {
 }
 
 # ======================================================================
-
-ctrl:exclude [ from="db.admonition.blocks" exclude="db.admonition.blocks" ]
 
 db.admonition.contentmodel = db._info.title.only, db.all.blocks+
 
