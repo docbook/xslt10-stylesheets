@@ -317,6 +317,7 @@
 
 <xsl:template match="figure/title"></xsl:template>
 <xsl:template match="table/title"></xsl:template>
+<xsl:template match="table/textobject"></xsl:template>
 <xsl:template match="example/title"></xsl:template>
 <xsl:template match="equation/title"></xsl:template>
 
@@ -386,6 +387,8 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+
+<xsl:template match="informaltable/textobject"></xsl:template>
 
 <xsl:template match="informalequation">
   <xsl:call-template name="informal.object"/>
