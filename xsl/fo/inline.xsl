@@ -282,8 +282,18 @@
 </xsl:template>
 
 <xsl:template match="citetitle">
-  <xsl:call-template name="inline.italicseq"/>
+  <xsl:choose>
+    <xsl:when test="@pubwork = 'article'">
+      <xsl:call-template name="gentext.startquote"/>
+      <xsl:call-template name="inline.charseq"/>
+      <xsl:call-template name="gentext.endquote"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="inline.italicseq"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
+
 
 <xsl:template match="emphasis">
   <xsl:call-template name="inline.italicseq"/>

@@ -277,14 +277,10 @@
               mode="bibliography.mode">
   <xsl:variable name="relation" select="../@relation"/>
   <xsl:choose>
-    <xsl:when test="$relation='article'">
-      <xsl:call-template name="dingbat">
-        <xsl:with-param name="dingbat">ldquo</xsl:with-param>
-      </xsl:call-template>
+    <xsl:when test="$relation='article' or @pubwork='article'">
+      <xsl:call-template name="gentext.startquote"/>
       <xsl:apply-templates/>
-      <xsl:call-template name="dingbat">
-        <xsl:with-param name="dingbat">rdquo</xsl:with-param>
-      </xsl:call-template>
+      <xsl:call-template name="gentext.endquote"/>
     </xsl:when>
     <xsl:otherwise>
       <I><xsl:apply-templates/></I>
@@ -304,8 +300,16 @@
 
 <xsl:template match="citetitle" mode="bibliography.mode">
   <span class="{name(.)}">
-    <i><xsl:apply-templates mode="bibliography.mode"/></i>
-    <xsl:value-of select="$biblioentry.item.separator"/>
+    <xsl:choose>
+      <xsl:when test="@pubwork = 'article'">
+        <xsl:call-template name="gentext.startquote"/>
+        <xsl:call-template name="inline.charseq"/>
+        <xsl:call-template name="gentext.endquote"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="inline.italicseq"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </span>
 </xsl:template>
 
@@ -737,14 +741,10 @@
               mode="bibliomixed.mode">
   <xsl:variable name="relation" select="../@relation"/>
   <xsl:choose>
-    <xsl:when test="$relation='article'">
-      <xsl:call-template name="dingbat">
-        <xsl:with-param name="dingbat">ldquo</xsl:with-param>
-      </xsl:call-template>
+    <xsl:when test="$relation='article' or @pubwork='article'">
+      <xsl:call-template name="gentext.startquote"/>
       <xsl:apply-templates/>
-      <xsl:call-template name="dingbat">
-        <xsl:with-param name="dingbat">rdquo</xsl:with-param>
-      </xsl:call-template>
+      <xsl:call-template name="gentext.endquote"/>
     </xsl:when>
     <xsl:otherwise>
       <I><xsl:apply-templates/></I>
@@ -762,9 +762,19 @@
 
 <xsl:template match="citetitle" mode="bibliomixed.mode">
   <span class="{name(.)}">
-    <i><xsl:apply-templates mode="bibliomixed.mode"/></i>
+    <xsl:choose>
+      <xsl:when test="@pubwork = 'article'">
+        <xsl:call-template name="gentext.startquote"/>
+        <xsl:call-template name="inline.charseq"/>
+        <xsl:call-template name="gentext.endquote"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="inline.italicseq"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </span>
 </xsl:template>
+
 
 <xsl:template match="collab" mode="bibliomixed.mode">
   <span class="{name(.)}">
