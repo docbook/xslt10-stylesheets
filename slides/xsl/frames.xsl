@@ -25,7 +25,7 @@
   <xsl:variable name="toc.height" select="$toc.rows * $toc.row.height"/>
 
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="'frames.html'"/>
+    <xsl:with-param name="filename" select="concat($base.dir,'frames.html')"/>
     <xsl:with-param name="content">
       <html>
         <head>
@@ -48,7 +48,7 @@
 
   <xsl:if test="$ie5 != 0">
     <xsl:call-template name="write.chunk">
-      <xsl:with-param name="filename" select="'ie5toc.html'"/>
+      <xsl:with-param name="filename" select="concat($base.dir,'ie5toc.html')"/>
       <xsl:with-param name="content">
         <html>
           <head>
@@ -77,7 +77,7 @@
 
   <xsl:if test="$ns4 != 0">
     <xsl:call-template name="write.chunk">
-      <xsl:with-param name="filename" select="'ns4toc.html'"/>
+      <xsl:with-param name="filename" select="concat($base.dir,'ns4toc.html')"/>
       <xsl:with-param name="content">
         <html>
           <head>
@@ -131,7 +131,7 @@ function init() {
   </xsl:if>
 
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="'toc.html'"/>
+    <xsl:with-param name="filename" select="concat($base.dir,'toc.html')"/>
     <xsl:with-param name="content">
       <html>
         <head>
@@ -177,7 +177,7 @@ if (selectBrowser() == "ie5") {
 
 <xsl:template match="slidesinfo">
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="$titlefoil.html"/>
+    <xsl:with-param name="filename" select="concat($base.dir,$titlefoil.html)"/>
     <xsl:with-param name="content">
       <html>
         <head>
@@ -292,7 +292,7 @@ if (selectBrowser() == "ie5") {
   </xsl:variable>
 
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="$thissection"/>
+    <xsl:with-param name="filename" select="concat($base.dir,$thissection)"/>
     <xsl:with-param name="content">
       <head>
         <title><xsl:value-of select="title"/></title>
@@ -362,7 +362,7 @@ if (selectBrowser() == "ie5") {
   </xsl:variable>
 
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="concat('top-',$section)"/>
+    <xsl:with-param name="filename" select="concat($base.dir,'top-',$section)"/>
     <xsl:with-param name="content">
       <html>
         <head>
@@ -422,7 +422,7 @@ if (selectBrowser() == "ie5") {
   </xsl:variable>
 
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="concat('body-',$thissection)"/>
+    <xsl:with-param name="filename" select="concat($base.dir,'body-',$thissection)"/>
     <xsl:with-param name="content">
       <html>
         <head>
@@ -478,7 +478,7 @@ if (selectBrowser() == "ie5") {
   </xsl:variable>
 
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="concat('bot-',$thissection)"/>
+    <xsl:with-param name="filename" select="concat($base.dir,'bot-',$thissection)"/>
     <xsl:with-param name="content">
       <html>
         <head>
@@ -603,7 +603,7 @@ if (selectBrowser() == "ie5") {
   </xsl:variable>
 
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="$thisfoil"/>
+    <xsl:with-param name="filename" select="concat($base.dir,$thisfoil)"/>
     <xsl:with-param name="content">
       <head>
         <title><xsl:value-of select="title"/></title>
@@ -718,7 +718,7 @@ if (selectBrowser() == "ie5") {
   </xsl:variable>
 
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="concat('top-',$thisfoil)"/>
+    <xsl:with-param name="filename" select="concat($base.dir,'top-',$thisfoil)"/>
     <xsl:with-param name="content">
       <html>
         <head>
@@ -753,7 +753,7 @@ if (selectBrowser() == "ie5") {
   </xsl:variable>
 
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="concat('body-',$thisfoil)"/>
+    <xsl:with-param name="filename" select="concat($base.dir,'body-',$thisfoil)"/>
     <xsl:with-param name="content">
       <html>
         <head>
@@ -783,7 +783,7 @@ if (selectBrowser() == "ie5") {
   </xsl:variable>
 
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="concat('bot-',$thisfoil)"/>
+    <xsl:with-param name="filename" select="concat($base.dir,'bot-',$thisfoil)"/>
     <xsl:with-param name="content">
       <html>
         <head>
