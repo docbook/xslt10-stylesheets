@@ -16,6 +16,7 @@
                      |ancestor-or-self::chapter
                      |ancestor-or-self::appendix
                      |ancestor-or-self::preface
+                     |ancestor-or-self::article
                      |ancestor-or-self::section
                      |ancestor-or-self::sect1
                      |ancestor-or-self::sect2
