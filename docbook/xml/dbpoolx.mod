@@ -7058,6 +7058,7 @@ OtherCredit. -->
                                 |xmlpi
 				|starttag
 				|sgmlcomment)	#IMPLIED
+		namespace	CDATA		#IMPLIED
 		%common.attrib;
 		%sgmltag.role.attrib;
 		%local.sgmltag.attrib;
