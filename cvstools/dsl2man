@@ -135,7 +135,7 @@ while (@FILES) {
 	} elsif ($match =~ /^\(element/i) {
 	    #nop;
 	} else {
-	    print $file, " ", substr($match, 0, 30), "\n";
+	    print $file, ": ignoring ", substr($match, 0, 30), "\n";
 	}
     }
 
