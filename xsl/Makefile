@@ -22,13 +22,7 @@ RELEASE-NOTES.html: RELEASE-NOTES.xml
 	$(XSLT) $< html/docbook.xsl $@
 
 xhtml:
-	$(MAKE) -C xhtml clean
-	rm -f xhtml/.cvsignore
-	$(MAKE) -C xhtml .cvsignore
-	rm -f xhtml/xslfiles.gen
-	touch xhtml/xslfiles.gen
-	$(MAKE) -C xhtml xslfiles.list
-	$(MAKE) -C xhtml xslfiles
+	$(MAKE) -C xhtml
 
 doc:
 	$(MAKE) -C docsrc
