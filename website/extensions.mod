@@ -11,7 +11,7 @@
 <!-- ====================================================================== -->
 
 <!-- allow webtoc to occur anywhere a para can occur -->
-<!ENTITY % local.para.class "|webtoc">
+<!ENTITY % local.para.class "|webtoc|rss">
 
 <!ENTITY % namespaces.mod SYSTEM "namespaces.mod">
 %namespaces.mod;
