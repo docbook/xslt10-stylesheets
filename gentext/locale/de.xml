@@ -10,20 +10,21 @@
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo xmlns="">
-<!-- FIXME: list the real contributors
 <authorgroup>
-  <author><firstname>Norman</firstname><surname>Walsh</surname>
-          <affiliation><address><email>ndw@nwalsh.com</email></address>
+  <author><firstname>Michael</firstname><surname>Burschik</surname>
+          <affiliation><address><email>burschik@id-pro.de</email></address>
+          </affiliation>
+  </author>
+  <author><firstname>Michael</firstname><surname>Wiedmann</surname>
+          <affiliation><address><email>michael.wiedmann@detewe.de</email></address>
+          </affiliation>
+  </author>
+  <author><firstname>Frank</firstname><surname>Sch&#fc;tte</surname>
+          <affiliation><address><email>F.Schuette@t-online.de</email></address>
           </affiliation>
   </author>
 </authorgroup>
--->
 </doc:localeinfo>
-
-<!--
-  Contributions by: Michael Burschik, burschik@id-pro.de
-                    Michael Wiedmann, michael.wiedmann@detewe.de
--->
 
 <gentext key="Abstract" text="Zusammenfassung"/>
 <gentext key="abstract" text="Zusammenfassung"/>
@@ -224,6 +225,7 @@
 <template name="qandadiv">%t</template>
 <template name="qandaset">%t</template>
 <template name="question"><Question/> %n</template>
+<template name="refentry">%t</template>
 <template name="reference">%t</template>
 <template name="refsect1">%t</template>
 <template name="refsect2">%t</template>
@@ -328,6 +330,7 @@
 <template name="listitem">%n</template>
 <template name="part"><Part/> %n. %t</template>
 <template name="preface">%t</template>
+<template name="question"><Question/> %n</template>
 <template name="reference">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
