@@ -760,9 +760,21 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
           <xsl:with-param name="object" select="$mediaobject"/>
         </xsl:call-template>
       </xsl:variable>
+      <xsl:variable name="dbhtml.dir">
+        <xsl:call-template name="dbhtml-dir"/>
+      </xsl:variable>
       <xsl:variable name="filename">
         <xsl:call-template name="make-relative-filename">
-          <xsl:with-param name="base.dir" select="$base.dir"/>
+          <xsl:with-param name="base.dir">
+            <xsl:choose>
+              <xsl:when test="$dbhtml.dir != ''">
+                <xsl:value-of select="$dbhtml.dir"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="$base.dir"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:with-param>
           <xsl:with-param name="base.name"
                           select="concat('ld-',$image-id,$html.ext)"/>
         </xsl:call-template>
@@ -806,11 +818,29 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 
 <xsl:template name="longdesc.link">
   <xsl:param name="longdesc.uri" select="''"/>
+
+  <xsl:variable name="this.uri">
+    <xsl:call-template name="make-relative-filename">
+      <xsl:with-param name="base.dir" select="$base.dir"/>
+      <xsl:with-param name="base.name">
+        <xsl:call-template name="href.target.uri"/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="href.to">
+    <xsl:call-template name="trim.common.uri.paths">
+      <xsl:with-param name="uriA" select="$longdesc.uri"/>
+      <xsl:with-param name="uriB" select="$this.uri"/>
+      <xsl:with-param name="return" select="'A'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <div class="longdesc-link" align="right">
     <br clear="all"/>
     <span class="longdesc-link">
       <xsl:text>[</xsl:text>
-      <a href="{$longdesc.uri}" target="longdesc">D</a>
+      <a href="{$href.to}" target="longdesc">D</a>
       <xsl:text>]</xsl:text>
     </span>
   </div>
