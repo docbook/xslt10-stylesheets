@@ -55,12 +55,8 @@
           <div class="{name(.)}">
             <xsl:call-template name="number.rtf.lines">
               <xsl:with-param name="rtf" select="$rtf-with-callouts"/>
-              <xsl:with-param name="linenumbering.everyNth"
-                              select="$linenumbering.everyNth"/>
-              <xsl:with-param name="linenumbering.width"
-                              select="$linenumbering.width"/>
-              <xsl:with-param name="linenumbering.separator"
-                              select="$linenumbering.separator"/>
+              <xsl:with-param name="pi.context"
+                              select="programlisting|screen"/>
             </xsl:call-template>
             <xsl:apply-templates select="calloutlist"/>
           </div>
