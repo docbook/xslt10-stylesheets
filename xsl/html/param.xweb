@@ -136,6 +136,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &emphasis.propagates.style;
 &para.propagates.style;
 &phrase.propagates.style;
+&entry.propagates.style;
 &html.longdesc;
 &html.longdesc.link;
 &make.valid.html;
@@ -220,6 +221,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &glossterm.auto.link;
 &firstterm.only.link;
 &glossary.collection;
+&glossentry.show.acronym;
 </reference>
 
 <reference><title>Miscellaneous</title>
@@ -244,6 +246,10 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &menuchoice.separator;
 &menuchoice.menu.separator;
 &default.float.class;
+&footnote.number.format;
+&table.footnote.number.format;
+&footnote.number.symbols;
+&table.footnote.number.symbols;
 </reference>
 
 <reference><title>Graphics</title>
@@ -423,8 +429,11 @@ around all these parameters.</para>
 <src:fragref linkend="ebnf.table.bgcolor.frag"/>
 <src:fragref linkend="ebnf.table.border.frag"/>
 <src:fragref linkend="emphasis.propagates.style.frag"/>
+<src:fragref linkend="entry.propagates.style.frag"/>
 <src:fragref linkend="firstterm.only.link.frag"/>
 <src:fragref linkend="footer.rule.frag"/>
+<src:fragref linkend="footnote.number.format.frag"/>
+<src:fragref linkend="footnote.number.symbols.frag"/>
 <src:fragref linkend="formal.procedures.frag"/>
 <src:fragref linkend="formal.title.placement.frag"/>
 <src:fragref linkend="funcsynopsis.decoration.frag"/>
@@ -439,6 +448,7 @@ around all these parameters.</para>
 <src:fragref linkend="generate.section.toc.level.frag"/>
 <src:fragref linkend="generate.toc.frag"/>
 <src:fragref linkend="glossary.collection.frag"/>
+<src:fragref linkend="glossentry.show.acronym.frag"/>
 <src:fragref linkend="glossterm.auto.link.frag"/>
 <src:fragref linkend="graphic.default.extension.frag"/>
 <src:fragref linkend="graphicsize.extension.frag"/>
@@ -497,8 +507,8 @@ around all these parameters.</para>
 <src:fragref linkend="htmlhelp.use.hhk.frag"/>
 <src:fragref linkend="ignore.image.scaling.frag"/>
 <src:fragref linkend="inherit.keywords.frag"/>
-<src:fragref linkend="l10n.gentext.language.frag"/>
 <src:fragref linkend="l10n.gentext.default.language.frag"/>
+<src:fragref linkend="l10n.gentext.language.frag"/>
 <src:fragref linkend="l10n.gentext.use.xref.language.frag"/>
 <src:fragref linkend="label.from.part.frag"/>
 <src:fragref linkend="linenumbering.everyNth.frag"/>
@@ -574,13 +584,15 @@ around all these parameters.</para>
 <src:fragref linkend="suppress.footer.navigation.frag"/>
 <src:fragref linkend="suppress.header.navigation.frag"/>
 <src:fragref linkend="suppress.navigation.frag"/>
+<src:fragref linkend="table.borders.with.css.frag"/>
 <src:fragref linkend="table.cell.border.color.frag"/>
 <src:fragref linkend="table.cell.border.style.frag"/>
 <src:fragref linkend="table.cell.border.thickness.frag"/>
+<src:fragref linkend="table.footnote.number.format.frag"/>
+<src:fragref linkend="table.footnote.number.symbols.frag"/>
 <src:fragref linkend="table.frame.border.color.frag"/>
 <src:fragref linkend="table.frame.border.style.frag"/>
 <src:fragref linkend="table.frame.border.thickness.frag"/>
-<src:fragref linkend="table.borders.with.css.frag"/>
 <src:fragref linkend="tablecolumns.extension.frag"/>
 <src:fragref linkend="target.database.document.frag"/>
 <src:fragref linkend="targets.filename.frag"/>
