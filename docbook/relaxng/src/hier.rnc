@@ -527,7 +527,7 @@ div {
          ((db.all.blocks+,
             db.article.optional.components)
           | db.article.required.components),
-         (db.appendix | db.navigation.components | db.ackno)*
+         (db.appendix | db.navigation.components | db.ackno | db.colophon)*
       }
 }
 
