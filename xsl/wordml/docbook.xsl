@@ -193,7 +193,7 @@
 
   <xsl:template match='articleinfo|bookinfo'>
     <xsl:apply-templates select='title|subtitle|titleabbrev'/>
-    <xsl:apply-templates select='author'/>
+    <xsl:apply-templates select='author|releaseinfo'/>
     <!-- current implementation ignores all other metadata -->
   </xsl:template>
 
@@ -242,7 +242,53 @@
 
     <para>TODO: Handle all metadata elements, apart from titles.</para>
   </doc:template>
-  <xsl:template match='*[contains(name(), "info")]/*[not(self::title|self::subtitle|self::titleabbrev)]'/>
+  <xsl:template match='*[contains(name(), "info")]/*[not(self::title|self::subtitle|self::titleabbrev)]' priority='0'/>
+
+  <xsl:template match='author|editor|othercontrib'>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val='{name()}'/>
+      </w:pPr>
+
+      <xsl:apply-templates select='personname|surname|firstname|honorific|lineage|othername|contrib'/>
+    </w:p>
+    <xsl:apply-templates select='address'/>
+    <xsl:apply-templates select='authorblurb|personblurb'/>
+  </xsl:template>
+  <!-- TODO -->
+  <xsl:template match='address|authorblurb|personblurb'/>
+
+  <!-- TODO: handle inline markup (eg. emphasis) -->
+  <xsl:template match='surname|firstname|honorific|lineage|othername|contrib|email'>
+    <xsl:if test='preceding-sibling::*'>
+      <w:r>
+        <w:t>
+          <xsl:text> </xsl:text>
+        </w:t>
+      </w:r>
+    </xsl:if>
+    <w:r>
+      <w:rPr>
+        <w:rStyle w:val='{name()}'/>
+      </w:rPr>
+
+      <xsl:apply-templates mode='text-run'/>
+    </w:r>
+  </xsl:template>
+
+  <!-- Cannot round-trip this element -->
+  <xsl:template match='personname'>
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match='releaseinfo'>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val='releaseinfo'/>
+      </w:pPr>
+      <xsl:apply-templates/>
+    </w:p>
+  </xsl:template>
 
   <xsl:template match='para'>
     <xsl:param name='class'/>
@@ -521,6 +567,11 @@
     </w:r>
   </xsl:template>
   <xsl:template match='text()[string-length(normalize-space(.)) = 0]'/>
+  <xsl:template match='text()' mode='text-run'>
+    <w:t>
+      <xsl:value-of select='.'/>
+    </w:t>
+  </xsl:template>
   <xsl:template match='literallayout/text()'>
     <xsl:call-template name='handle-linebreaks'/>
   </xsl:template>
@@ -792,7 +843,6 @@
                       self::refsect3 |
                       self::refsection |
                       self::refsynopsisdiv |
-                      self::releaseinfo |
                       self::screen |
                       self::screenco |
                       self::screenshot |

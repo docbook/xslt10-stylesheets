@@ -22,6 +22,18 @@
 <!ENTITY listlevel "substring-after(w:pPr/w:pStyle/@w:val, 'edlist')">
 <!ENTITY listlabel "w:pPr/w:listPr/wx:t/@wx:val">
 <!ENTITY footnote "w:p[w:pPr/w:pStyle[@w:val='FootnoteText']]">
+
+<!ENTITY releaseinfo "w:p[w:pPr/w:pStyle/@w:val='releaseinfo']">
+<!ENTITY author "w:p[w:pPr/w:pStyle/@w:val='author']">
+<!ENTITY editor "w:p[w:pPr/w:pStyle/@w:val='editor']">
+<!ENTITY othercontrib "w:p[w:pPr/w:pStyle/@w:val='othercontrib']">
+<!ENTITY authorblurb "w:p[w:pPr/w:pStyle/@w:val='authorblurb']">
+<!ENTITY surname "w:r[w:rPr/w:rStyle/@w:val='surname']">
+<!ENTITY firstname "w:r[w:rPr/w:rStyle/@w:val='firstname']">
+<!ENTITY honorific "w:r[w:rPr/w:rStyle/@w:val='honorific']">
+<!ENTITY lineage "w:r[w:rPr/w:rStyle/@w:val='lineage']">
+<!ENTITY othername "w:r[w:rPr/w:rStyle/@w:val='othername']">
+<!ENTITY contrib "w:r[w:rPr/w:rStyle/@w:val='contrib']">
 ]>
 
 <xsl:stylesheet xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml"
@@ -75,41 +87,11 @@
 
   <xsl:template match="wx:sub-section" mode="group">
     <xsl:variable name="first.node" select="w:p[1]"/>
-    <xsl:variable name="style" select="$first.node/w:pPr/w:pStyle/@w:val"/>
 
     <xsl:variable name="element.name">
-      <xsl:choose>
-        <xsl:when test="$style = 'article' or
-                        $style = 'article-title'">article</xsl:when>
-        <xsl:when test="$style = 'appendix' or
-                        $style = 'appendix-title'">appendix</xsl:when>
-        <xsl:when test="($style = 'sect1' or
-                        $style = 'sect1-title') and 
-                        $nest.sections != 0">section</xsl:when>
-        <xsl:when test="$style = 'sect1' or
-                        $style = 'sect1-title'">sect1</xsl:when>
-        <xsl:when test="($style = 'sect2' or
-                        $style = 'sect2-title') and 
-                        $nest.sections != 0">section</xsl:when>
-        <xsl:when test="$style = 'sect2' or
-                        $style = 'sect2-title'">sect2</xsl:when>
-        <xsl:when test="($style = 'sect3' or
-                        $style = 'sect3-title') and 
-                        $nest.sections != 0">section</xsl:when>
-        <xsl:when test="$style = 'sect3' or
-                        $style = 'sect3-title'">sect3</xsl:when>
-        <xsl:when test="($style = 'sect4' or
-                        $style = 'sect4-title') and 
-                        $nest.sections != 0">section</xsl:when>
-        <xsl:when test="$style = 'sect4' or
-                        $style = 'sect4-title'">sect4</xsl:when>
-        <xsl:when test="($style = 'sect5' or
-                        $style = 'sect5-title') and 
-                        $nest.sections != 0">section</xsl:when>
-        <xsl:when test="$style = 'sect5' or
-                        $style = 'sect5-title'">sect5</xsl:when>
-        <xsl:otherwise>bogus</xsl:otherwise>
-      </xsl:choose>
+      <xsl:call-template name='component-name'>
+        <xsl:with-param name='node' select='$first.node'/>
+      </xsl:call-template>
     </xsl:variable>
 
     <xsl:choose>
@@ -124,14 +106,96 @@
         <xsl:apply-templates mode='group'/>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
 
+  <xsl:template name='component-name'>
+    <xsl:param name='node' select='.'/>
+    <xsl:variable name="style" select="$node/w:pPr/w:pStyle/@w:val"/>
+
+    <xsl:choose>
+      <xsl:when test="$style = 'article' or
+                      $style = 'article-title'">article</xsl:when>
+      <xsl:when test="$style = 'appendix' or
+                      $style = 'appendix-title'">appendix</xsl:when>
+      <xsl:when test="($style = 'sect1' or
+                      $style = 'sect1-title') and 
+                      $nest.sections != 0">section</xsl:when>
+      <xsl:when test="$style = 'sect1' or
+                      $style = 'sect1-title'">sect1</xsl:when>
+      <xsl:when test="($style = 'sect2' or
+                      $style = 'sect2-title') and 
+                      $nest.sections != 0">section</xsl:when>
+      <xsl:when test="$style = 'sect2' or
+                      $style = 'sect2-title'">sect2</xsl:when>
+      <xsl:when test="($style = 'sect3' or
+                      $style = 'sect3-title') and 
+                      $nest.sections != 0">section</xsl:when>
+      <xsl:when test="$style = 'sect3' or
+                      $style = 'sect3-title'">sect3</xsl:when>
+      <xsl:when test="($style = 'sect4' or
+                      $style = 'sect4-title') and 
+                      $nest.sections != 0">section</xsl:when>
+      <xsl:when test="$style = 'sect4' or
+                      $style = 'sect4-title'">sect4</xsl:when>
+      <xsl:when test="($style = 'sect5' or
+                      $style = 'sect5-title') and 
+                      $nest.sections != 0">section</xsl:when>
+      <xsl:when test="$style = 'sect5' or
+                      $style = 'sect5-title'">sect5</xsl:when>
+      <xsl:otherwise>bogus</xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <!-- sub-section title paragraph -->
   <xsl:template match="wx:sub-section/w:p[1]" mode="group">
-    <title>
-      <xsl:apply-templates select="w:r|w:hlink"/>
-    </title>
+    <xsl:choose>
+      <xsl:when test='../&releaseinfo;|../&author;|../&editor;|../&othercontrib;'>
+        <xsl:variable name='parent'>
+          <xsl:call-template name='component-name'/>
+        </xsl:variable>
+
+        <xsl:element name='{$parent}info'>
+          <title>
+            <xsl:apply-templates select="w:r|w:hlink"/>
+          </title>
+          <xsl:apply-templates select='../&releaseinfo;|../&author;|../&editor;|../&othercontrib;' mode='metadata'/>
+        </xsl:element>
+      </xsl:when>
+      <xsl:otherwise>
+        <title>
+          <xsl:apply-templates select="w:r|w:hlink"/>
+        </title>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- metadata -->
+  <xsl:template match="&releaseinfo;|&author;|&editor;|&othercontrib;" mode='group'/>
+  <xsl:template match="&releaseinfo;" mode='metadata'>
+    <releaseinfo>
+      <xsl:apply-templates select='w:r|w:hlink'/>
+    </releaseinfo>
+  </xsl:template>
+  <xsl:template match="&author;|&editor;|&othercontrib;" mode='metadata'>
+    <xsl:element name='{w:pPr/w:pStyle/@w:val}'>
+      <xsl:apply-templates select='w:r|w:hlink' mode='metadata'/>
+      <xsl:apply-templates select='following-sibling::w:p' mode='author'/>
+    </xsl:element>
+  </xsl:template>
+  <xsl:template match='*' mode='author'/>
+  <xsl:template match='&authorblurb;' mode='author'>
+    <authorblurb>
+      <para>
+        <xsl:call-template name='object.id'/>
+        <xsl:apply-templates select="w:r|w:hlink"/>
+      </para>
+    </authorblurb>
+  </xsl:template>
+  <xsl:template match='w:r' mode='metadata' priority='0'/>
+  <xsl:template match='&surname;|&firstname;|&honorific;|&lineage;|&othername;|&contrib;' mode='metadata'>
+    <xsl:element name='{w:rPr/w:rStyle/@w:val}'>
+      <xsl:apply-templates select='w:t'/>
+    </xsl:element>
   </xsl:template>
 
   <!-- Ordinary para -->
