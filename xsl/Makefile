@@ -61,6 +61,7 @@ else
 	touch /tmp/tar.exclude
 	find . -print  | grep /CVS$$ | cut -c3- >> /tmp/tar.exclude
 	find . -print  | grep /CVS/ | cut -c3- >> /tmp/tar.exclude
+	find . -print  | grep /debian/ | cut -c3- >> /tmp/tar.exclude
 	find . -print  | grep .classes | cut -c3- >> /tmp/tar.exclude
 	find . -type f -name "*~"  | cut -c3- >> /tmp/tar.exclude
 	find . -type f -name ".*~"  | cut -c3- >> /tmp/tar.exclude
