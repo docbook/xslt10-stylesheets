@@ -119,10 +119,51 @@ public class Text extends StyleElement {
       InputStreamReader isr = new InputStreamReader(fileURL.openStream());
       BufferedReader is = new BufferedReader(isr);
 
-      char chars[] = new char[4096];
+      final int BUFFER_SIZE = 4096;
+      char chars[] = new char[BUFFER_SIZE];
+      char nchars[] = new char[BUFFER_SIZE];
       int len = 0;
-      while ((len = is.read(chars)) > 0) {
-	out.writeContent(chars, 0, len);
+      int i = 0;
+      int carry = -1;
+
+      while ((len = is.read(chars)) > 0) 
+      {
+	// various new lines are normalized to LF to prevent blank lines between lines
+	int nlen = 0;
+	for (i=0; i<len; i++)
+	{
+	  // is current char CR?
+	  if (chars[i] == '\r')
+	  {
+	    if (i < (len - 1))
+	    {
+       	      // skip it if next char is LF
+	      if (chars[i+1] == '\n') continue;
+              // single CR -> LF to normalize MAC line endings
+              nchars[nlen] = '\n';
+	      nlen++;
+              continue;
+	    }
+	    else
+	    {
+	      // if CR is last char of buffer we must look ahead
+	      carry = is.read();
+              nchars[nlen] = '\n';
+              nlen++;
+	      if (carry == '\n')
+	      {
+                carry = -1;
+              }
+              break;
+	    }
+	  }
+	  nchars[nlen] = chars[i];
+	  nlen++;
+	}
+	out.writeContent(nchars, 0, nlen);
+        // handle look aheaded character
+	if (carry != -1) out.writeContent(String.valueOf((char)carry));
+	carry = -1;
       }
       is.close();
     } catch (Exception e) {
