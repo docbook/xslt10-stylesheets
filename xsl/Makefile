@@ -8,6 +8,7 @@ CVSCHECK := $(shell cvs -n update 2>&1 | grep -v ^cvs | cut -c3-)
 RELVER := $(shell grep "<fm:Version" VERSION | sed "s/ *<\/\?fm:Version>//g")
 TAGVER := $(shell echo "V$(RELVER)" | sed "s/\.//g")
 SFRELID=
+FMGO=-N
 
 DIRS=common html fo extensions htmlhelp javahelp
 
@@ -61,8 +62,12 @@ else
 endif
 
 freshmeat:
+ifeq ($(SFRELID),)
+	@echo "You must specify the sourceforge release identifier in SFRELID"
+else
 	$(XSLT) VERSION VERSION /tmp/fm-docbook-xsl sf-relid=$(SFRELID)
-	grep -v "<?xml" /tmp/fm-docbook-xsl | freshmeat-submit -N
+	grep -v "<?xml" /tmp/fm-docbook-xsl | freshmeat-submit $(FMGO)
+endif
 
 zip:
 ifeq ($(ZIPVER),)
