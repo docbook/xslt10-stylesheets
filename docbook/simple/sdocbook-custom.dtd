@@ -144,6 +144,7 @@
 <!ENTITY % common.attrib
 	"id		ID		#IMPLIED
 	lang		CDATA		#IMPLIED
+        remap           CDATA           #IMPLIED
 	revisionflag	(changed
 			|added
 			|deleted
@@ -154,6 +155,7 @@
 <!ENTITY % idreq.common.attrib
 	"id		ID		#REQUIRED
 	lang		CDATA		#IMPLIED
+        remap           CDATA           #IMPLIED
 	revisionflag	(changed
 			|added
 			|deleted
