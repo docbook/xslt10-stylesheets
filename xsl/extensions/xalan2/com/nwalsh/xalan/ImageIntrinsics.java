@@ -42,6 +42,7 @@ public class ImageIntrinsics implements ImageObserver {
    * <p>Constructor for ImageIntrinsics</p>
    */
   public ImageIntrinsics(ExpressionContext context, String imageFn) {
+    System.setProperty("java.awt.headless","true");
     image = Toolkit.getDefaultToolkit().getImage (imageFn);
     width = image.getWidth(this);
 
