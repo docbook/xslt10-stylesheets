@@ -6043,6 +6043,7 @@ OtherCredit. -->
                                 |devicefile
                                 |libraryfile
                                 |directory
+                                |extension
 				|symlink)       #IMPLIED
 		path		CDATA		#IMPLIED
 		%moreinfo.attrib;
