@@ -238,7 +238,7 @@
         <xsl:call-template name="formal.object.heading"/>
       </xsl:if>
 
-      <fo:table>
+      <fo:table border-collapse="collapse">
         <xsl:call-template name="table.frame"/>
         <xsl:if test="count($prop-columns) != 0">
           <xsl:attribute name="table-layout">fixed</xsl:attribute>
@@ -338,6 +338,7 @@
 
   <xsl:variable name="table.content">
     <fo:table id="{$id}"
+              border-collapse="collapse"
               xsl:use-attribute-sets="informal.object.properties">
       <xsl:call-template name="table.frame"/>
       <xsl:if test="count($prop-columns) != 0">
