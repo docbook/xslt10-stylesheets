@@ -8,29 +8,6 @@
 <!ENTITY secondary 'normalize-space(concat(secondary/@sortas, secondary[not(@sortas)]))'>
 <!ENTITY tertiary  'normalize-space(concat(tertiary/@sortas, tertiary[not(@sortas)]))'>
 
-<!ENTITY section   '(ancestor-or-self::set
-                     |ancestor-or-self::book
-                     |ancestor-or-self::part
-                     |ancestor-or-self::reference
-                     |ancestor-or-self::partintro
-                     |ancestor-or-self::chapter
-                     |ancestor-or-self::appendix
-                     |ancestor-or-self::preface
-                     |ancestor-or-self::section
-                     |ancestor-or-self::sect1
-                     |ancestor-or-self::sect2
-                     |ancestor-or-self::sect3
-                     |ancestor-or-self::sect4
-                     |ancestor-or-self::sect5
-                     |ancestor-or-self::refsect1
-                     |ancestor-or-self::refsect2
-                     |ancestor-or-self::refsect3
-                     |ancestor-or-self::simplesect
-                     |ancestor-or-self::bibliography
-                     |ancestor-or-self::glossary
-                     |ancestor-or-self::index)[last()]'>
-
-<!ENTITY section.id 'generate-id(&section;)'>
 <!ENTITY sep '" "'>
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -66,18 +43,6 @@
          match="indexterm"
          use="concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;)"/>
 
-<xsl:key name="primary-section"
-         match="indexterm[not(secondary) and not(see)]"
-         use="concat(&primary;, &sep;, &section.id;)"/>
-
-<xsl:key name="secondary-section"
-         match="indexterm[not(tertiary) and not(see)]"
-         use="concat(&primary;, &sep;, &secondary;, &sep;, &section.id;)"/>
-
-<xsl:key name="tertiary-section"
-         match="indexterm[not(see)]"
-         use="concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, &section.id;)"/>
-
 <xsl:key name="see-also"
          match="indexterm[seealso]"
          use="concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, seealso)"/>
@@ -85,8 +50,6 @@
 <xsl:key name="see"
          match="indexterm[see]"
          use="concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, see)"/>
-
-<xsl:key name="sections" match="*[@id]" use="@id"/>
 
 <xsl:template name="generate-index">
   <xsl:variable name="terms" select="//indexterm[count(.|key('letter',
@@ -161,7 +124,7 @@
     <xsl:value-of select="primary"/>
 
     <xsl:variable name="page-number-citations">
-      <xsl:for-each select="$refs[generate-id() = generate-id(key('primary-section', concat($key, &sep;, &section.id;))[1])]">
+      <xsl:for-each select="$refs[not(see) and not(seealso)]">
         <xsl:apply-templates select="." mode="reference"/>
       </xsl:for-each>
 
@@ -184,6 +147,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </fo:block>
+
   <xsl:if test="$refs/secondary or $refs[not(secondary)]/*[self::seealso]">
     <fo:block start-indent="1pc">
       <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &sep;, &sep;, seealso))[1])]"
@@ -205,7 +169,7 @@
     <xsl:value-of select="secondary"/>
 
     <xsl:variable name="page-number-citations">
-      <xsl:for-each select="$refs[generate-id() = generate-id(key('secondary-section', concat($key, &sep;, &section.id;))[1])]">
+      <xsl:for-each select="$refs[not(see) and not(seealso)]">
         <xsl:apply-templates select="." mode="reference"/>
       </xsl:for-each>
 
@@ -250,7 +214,7 @@
     <xsl:value-of select="tertiary"/>
 
     <xsl:variable name="page-number-citations">
-      <xsl:for-each select="$refs[generate-id() = generate-id(key('tertiary-section', concat($key, &sep;, &section.id;))[1])]">
+      <xsl:for-each select="$refs[not(see) and not(seealso)]">
         <xsl:apply-templates select="." mode="reference"/>
       </xsl:for-each>
 
@@ -310,7 +274,7 @@
   <xsl:choose>
     <xsl:when test="contains($zones, ' ')">
       <xsl:variable name="zone" select="substring-before($zones, ' ')"/>
-      <xsl:variable name="target" select="key('sections', $zone)"/>
+      <xsl:variable name="target" select="key('id', $zone)"/>
 
       <xsl:variable name="id">
         <xsl:call-template name="object.id">
@@ -331,7 +295,7 @@
     </xsl:when>
     <xsl:otherwise>
       <xsl:variable name="zone" select="$zones"/>
-      <xsl:variable name="target" select="key('sections', $zone)"/>
+      <xsl:variable name="target" select="key('id', $zone)"/>
 
       <xsl:variable name="id">
         <xsl:call-template name="object.id">
@@ -439,7 +403,7 @@
 <xsl:template match="indexterm" mode="index-primary-markup">
   <xsl:variable name="key" select="&primary;"/>
   <xsl:variable name="refs" select="key('primary', $key)"/>
-  <xsl:variable name="pages" select="$refs[generate-id() = generate-id(key('primary-section', concat($key, &sep;, &section.id;))[1])]"/>
+  <xsl:variable name="pages" select="$refs[not(see) and not(seealso)]"/>
 
   <xsl:text>&#10;&lt;indexentry&gt;&#10;</xsl:text>
   <xsl:text>&lt;primaryie&gt;</xsl:text>
@@ -479,7 +443,7 @@
 <xsl:template match="indexterm" mode="index-secondary-markup">
   <xsl:variable name="key" select="concat(&primary;, &sep;, &secondary;)"/>
   <xsl:variable name="refs" select="key('secondary', $key)"/>
-  <xsl:variable name="pages" select="$refs[generate-id() = generate-id(key('secondary-section', concat($key, &sep;, &section.id;))[1])]"/>
+  <xsl:variable name="pages" select="$refs[not(see) and not(seealso)]"/>
 
   <xsl:text>&lt;secondaryie&gt;</xsl:text>
   <xsl:text>&lt;phrase&gt;</xsl:text>
@@ -515,7 +479,7 @@
 <xsl:template match="indexterm" mode="index-tertiary-markup">
   <xsl:variable name="key" select="concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;)"/>
   <xsl:variable name="refs" select="key('tertiary', $key)"/>
-  <xsl:variable name="pages" select="$refs[generate-id() = generate-id(key('tertiary-section', concat($key, &sep;, &section.id;))[1])]"/>
+  <xsl:variable name="pages" select="$refs[not(see) and not(seealso)]"/>
 
   <xsl:text>&lt;tertiaryie&gt;</xsl:text>
   <xsl:text>&lt;phrase&gt;</xsl:text>
@@ -579,7 +543,7 @@
   <xsl:choose>
     <xsl:when test="contains($zones, ' ')">
       <xsl:variable name="zone" select="substring-before($zones, ' ')"/>
-      <xsl:variable name="target" select="key('sections', $zone)"/>
+      <xsl:variable name="target" select="key('id', $zone)"/>
 
       <xsl:variable name="id">
         <xsl:call-template name="object.id">
@@ -607,7 +571,7 @@
     </xsl:when>
     <xsl:otherwise>
       <xsl:variable name="zone" select="$zones"/>
-      <xsl:variable name="target" select="key('sections', $zone)"/>
+      <xsl:variable name="target" select="key('id', $zone)"/>
 
       <xsl:variable name="id">
         <xsl:call-template name="object.id">
