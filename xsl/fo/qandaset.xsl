@@ -61,6 +61,7 @@
 
   <xsl:call-template name="section.heading">
     <xsl:with-param name="level" select="$sectlvl + 1"/>
+    <xsl:with-param name="marker" select="0"/>
     <xsl:with-param name="title">
       <xsl:apply-templates/>
     </xsl:with-param>
@@ -107,8 +108,8 @@
   </xsl:variable>
 
   <xsl:call-template name="section.heading">
-    <xsl:with-param name="level"
-                    select="$sectlvl + 1 + count(ancestor::qandadiv)"/>
+    <xsl:with-param name="level"  select="$sectlvl + 1 + count(ancestor::qandadiv)"/>
+    <xsl:with-param name="marker" select="0"/>
     <xsl:with-param name="title">
       <xsl:apply-templates/>
     </xsl:with-param>
