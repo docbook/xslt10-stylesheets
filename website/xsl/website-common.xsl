@@ -570,7 +570,7 @@ node.</para>
     </xsl:attribute>
     <xsl:if test="summary">
       <xsl:attribute name="title">
-        <xsl:value-of select="summary"/>
+        <xsl:value-of select="normalize-space(summary)"/>
       </xsl:attribute>
     </xsl:if>
     <xsl:copy-of select="$linktext"/>
