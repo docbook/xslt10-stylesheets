@@ -327,12 +327,18 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:call-template name="section.heading">
-    <xsl:with-param name="level" select="$level"/>
-    <xsl:with-param name="title">
-      <xsl:apply-templates/>
-    </xsl:with-param>
-  </xsl:call-template>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <fo:block id="{$id}">
+    <xsl:call-template name="section.heading">
+      <xsl:with-param name="level" select="$level"/>
+      <xsl:with-param name="title">
+        <xsl:apply-templates/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </fo:block>
 </xsl:template>
 
 </xsl:stylesheet>

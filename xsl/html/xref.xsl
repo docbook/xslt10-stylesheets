@@ -230,6 +230,11 @@
   <!-- What about "in Chapter X"? -->
 </xsl:template>
 
+<xsl:template match="bridgehead" mode="xref-to">
+  <xsl:apply-templates select="." mode="object.xref.markup"/>
+  <!-- What about "in Chapter X"? -->
+</xsl:template>
+
 <xsl:template match="qandaset" mode="xref-to">
   <xsl:apply-templates select="." mode="object.xref.markup"/>
 </xsl:template>
