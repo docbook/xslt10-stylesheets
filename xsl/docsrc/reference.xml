@@ -36,10 +36,10 @@ of references generated from the stylesheet sources:</para>
 <listitem><para><olink type="title" localinfo="common/common.html"
                        targetdocent="common.xml"/></para>
 </listitem>
-<listitem><para><olink type="title" localinfo="html/param.html"
+<listitem><para><olink type="title" localinfo="html/index.html"
                        targetdocent="html-param.xml"/></para>
 </listitem>
-<listitem><para><olink type="title" localinfo="fo/param.html"
+<listitem><para><olink type="title" localinfo="fo/index.html"
                        targetdocent="fo-param.xml"/></para>
 </listitem>
 <listitem><para><olink type="title" localinfo="fo/table.html"

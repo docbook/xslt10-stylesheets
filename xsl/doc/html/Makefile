@@ -15,4 +15,4 @@ param.html: param.xml
 	$(XSLT) $< ../../docsrc/clrefentry.xsl
 
 clean:
-	rm -f $(HTMLFILES)
+	rm -f *.html

@@ -8,6 +8,7 @@
 <xsl:import href="../../litprog/html/cldocbook.xsl"/>
 
 <xsl:param name="use.id.as.filename" select="1"/>
+<xsl:param name="refentry.separator" select="0"/>
 
 <xsl:template match="src:fragment" mode="label.markup">
   <xsl:text>&#xA7;</xsl:text>

@@ -24,7 +24,6 @@
 <xsl:param name="part.autolabel" select="0"/>
 
 <xsl:template match="refentry">
-  <hr/>
   <xsl:apply-imports/>
 </xsl:template>
 
