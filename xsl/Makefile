@@ -19,7 +19,7 @@ all:	xhtml RELEASE-NOTES.html
 	done
 
 RELEASE-NOTES.html: RELEASE-NOTES.xml
-	$(XSLT) $< html/docbook.xsl $@
+	$(XSLT) $< docsrc/doc-link-docbook.xsl $@
 
 RELEASE-NOTES.pdf: RELEASE-NOTES.xml
 	$(XSLT) $< fo/docbook.xsl RELEASE-NOTES.fo
