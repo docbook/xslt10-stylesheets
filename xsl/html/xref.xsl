@@ -89,9 +89,11 @@
           <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
 
           <a href="{$href}">
-            <xsl:attribute name="title">
-              <xsl:apply-templates select="$target" mode="xref-title"/>
-            </xsl:attribute>
+            <xsl:if test="$target/title or $target/*/title">
+              <xsl:attribute name="title">
+                <xsl:apply-templates select="$target" mode="xref-title"/>
+              </xsl:attribute>
+            </xsl:if>
             <xsl:apply-templates select="$target" mode="xref-to"/>
           </a>
 
@@ -124,6 +126,31 @@
     <xsl:text>")</xsl:text>
   </xsl:message>
   <xsl:text>???</xsl:text>
+</xsl:template>
+
+<xsl:template match="title" mode="xref-to">
+  <!-- if you xref to a title, xref to the parent... -->
+  <xsl:choose>
+    <!-- FIXME: how reliable is this? -->
+    <xsl:when test="contains(local-name(parent::*), 'info')">
+      <xsl:apply-templates select="parent::*[2]" mode="xref-to"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="parent::*" mode="xref-to"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="abstract|article|authorblurb|bibliodiv|bibliomset
+                     |biblioset|blockquote|calloutlist|caution|colophon
+                     |constraintdef|formalpara|glossdiv|important|indexdiv
+                     |itemizedlist|legalnotice|lot|msg|msgexplan|msgmain
+                     |msgrel|msgset|msgsub|note|orderedlist|partintro
+                     |productionset|qandadiv|refsynopsisdiv|segmentedlist
+                     |set|setindex|sidebar|tip|toc|variablelist|warning"
+              mode="xref-to">
+  <!-- catch-all for things with (possibly optional) titles -->
+  <xsl:apply-templates select="." mode="object.xref.markup"/>
 </xsl:template>
 
 <xsl:template match="author|editor|othercredit|personname" mode="xref-to">
@@ -298,6 +325,14 @@
     </xsl:otherwise>
   </xsl:choose>
   <xsl:apply-templates select="refmeta/manvolnum"/>
+</xsl:template>
+
+<xsl:template match="refnamediv" mode="xref-to">
+  <xsl:apply-templates select="refname[1]" mode="xref-to"/>
+</xsl:template>
+
+<xsl:template match="refname" mode="xref-to">
+  <xsl:apply-templates mode="xref-to"/>
 </xsl:template>
 
 <xsl:template match="step" mode="xref-to">
