@@ -146,7 +146,9 @@
 
 <dtd:comment> The DocBook TC may produce an official forms module for DocBook. </dtd:comment>
 <dtd:comment> This PE provides the hook by which it can be inserted into the DTD. </dtd:comment>
-<dtd:pe-decl name="forms.hook"/>
+<define name="forms.hook">
+  <notAllowed/>
+</define>
 
 <define name="local.divcomponent.mix">
   <notAllowed/>
@@ -465,8 +467,12 @@
 <dtd:marked-section start="setinfo.attlist"/>
 <define name="setinfo.attlist">
   <optional>
-    <attribute name="contents">
-      <data type="IDREFS"/>
+    <attribute name="contents" a:attributeType="IDREFS">
+      <list>
+        <oneOrMore>
+          <data type="token"/>
+        </oneOrMore>
+      </list>
     </attribute>
   </optional>
   <ref name="common.attrib"/>
@@ -585,8 +591,12 @@
 <dtd:marked-section start="bookinfo.attlist"/>
 <define name="bookinfo.attlist">
   <optional>
-    <attribute name="contents">
-      <data type="IDREFS"/>
+    <attribute name="contents" a:attributeType="IDREFS">
+      <list>
+        <oneOrMore>
+          <data type="token"/>
+        </oneOrMore>
+      </list>
     </attribute>
   </optional>
   <ref name="common.attrib"/>
@@ -4003,6 +4013,7 @@ change will not be made after all. </dtd:comment>
         </choice>
       </zeroOrMore>
     </group>
+    <ref name="article.attlist"/>
   </element>
 </define>
 <dtd:marked-section end="article.element"/>
@@ -4029,8 +4040,8 @@ change will not be made after all. </dtd:comment>
     </attribute>
   </optional>
   <optional>
-    <attribute name="parentbook">
-      <data type="IDREF"/>
+    <attribute name="parentbook" a:attributeType="IDREF">
+      <data type="token"/>
     </attribute>
   </optional>
   <ref name="status.attrib"/>
