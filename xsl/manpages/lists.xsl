@@ -52,7 +52,10 @@
 
 <xsl:template match="itemizedlist/listitem">
   <xsl:text>\(bu&#10;</xsl:text>
-  <xsl:apply-templates mode="list"/>
+  <xsl:variable name="content">
+    <xsl:apply-templates mode="list"/>
+  </xsl:variable>
+  <xsl:value-of select="normalize-space($content)"/>
   <xsl:if test="position()!=last()">
     <xsl:text>.TP&#10;</xsl:text>
   </xsl:if>
