@@ -140,6 +140,9 @@
       <xsl:value-of select="$language"/>
     </xsl:attribute>
   </xsl:if>
+
+  <!-- FIXME: This is sort of hack, but it was the easiest way to add at least partial support for dir attribute -->
+  <xsl:copy-of select="ancestor-or-self::*[@dir][1]/@dir"/>
 </xsl:template>
 
 <xsl:template name="gentext">
