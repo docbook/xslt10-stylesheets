@@ -19,7 +19,9 @@
 <para>If true (non-zero), the reference page title or first name is
 output before the list of 'RefName's. This parameter and
 <parameter>refentry.generate.name</parameter> are mutually exclusive.
-</para>
+This means that if you change this parameter to 1, you
+should set <parameter>refentry.generate.name</parameter> to 0 unless
+you want get quite strange output.</para>
 
 
 </refsect1>
