@@ -145,6 +145,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &html.longdesc.link;
 &make.valid.html;
 &html.cleanup;
+&draft.mode;
 &draft.watermark.image;
 &generate.id.attributes;
 &generate.meta.abstract;

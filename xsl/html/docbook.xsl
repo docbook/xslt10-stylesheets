@@ -164,7 +164,9 @@
     </xsl:if>
   </xsl:if>
 
-  <xsl:if test="ancestor-or-self::*[@status][1]/@status = 'draft'
+  <xsl:if test="($draft.mode = 'yes' or
+                ($draft.mode = 'maybe' and
+                ancestor-or-self::*[@status][1]/@status = 'draft'))
                 and $draft.watermark.image != ''">
     <style type="text/css"><xsl:text>
 body { background-image: url('</xsl:text>
