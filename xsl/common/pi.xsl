@@ -61,13 +61,20 @@
   </xsl:variable>
 
   <xsl:variable name="date">
-    <xsl:if test="function-available('date:date-time')">
-      <xsl:value-of select="date:date-time()"/>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="function-available('date:date-time')">
+        <xsl:value-of select="date:date-time()"/>
+      </xsl:when>
+      <xsl:when test="function-available('date:dateTime')">
+        <!-- Xalan quirk -->
+        <xsl:value-of select="date:dateTime()"/>
+      </xsl:when>
+    </xsl:choose>
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="function-available('date:date-time')">
+    <xsl:when test="function-available('date:date-time') or
+                    function-available('date:dateTime')">
       <xsl:call-template name="datetime.format">
         <xsl:with-param name="date" select="$date"/>
         <xsl:with-param name="format" select="$format"/>
