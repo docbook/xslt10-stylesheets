@@ -205,6 +205,7 @@ node.</para>
             <xsl:choose>
               <xsl:when test="$prev != ''">
                 <xsl:call-template name="link.to.page">
+                  <xsl:with-param name="frompage" select="$tocentry"/>
                   <xsl:with-param name="page" select="$ptoc"/>
                   <xsl:with-param name="linktext" select="'Prev'"/>
                 </xsl:call-template>
@@ -217,6 +218,7 @@ node.</para>
             <xsl:choose>
               <xsl:when test="$next != ''">
                 <xsl:call-template name="link.to.page">
+                  <xsl:with-param name="frompage" select="$tocentry"/>
                   <xsl:with-param name="page" select="$ntoc"/>
                   <xsl:with-param name="linktext" select="'Next'"/>
                 </xsl:call-template>
@@ -615,11 +617,21 @@ node.</para>
 
 <xsl:template name="link.to.page">
   <xsl:param name="href" select="''"/>
+  <xsl:param name="frompage"/>
   <xsl:param name="page" select="ancestor-or-self::tocentry"/>
   <xsl:param name="relpath">
-    <xsl:call-template name="toc-rel-path">
-      <xsl:with-param name="pageid" select="$page/@id"/>
-    </xsl:call-template>
+    <xsl:choose>
+      <xsl:when test="$frompage">
+        <xsl:call-template name="toc-rel-path">
+          <xsl:with-param name="pageid" select="$frompage/@id"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="toc-rel-path">
+          <xsl:with-param name="pageid" select="$page/@id"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:param>
   <xsl:param name="linktext" select="'???'"/>
 
