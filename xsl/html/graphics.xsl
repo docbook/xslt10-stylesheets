@@ -493,7 +493,16 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
           </xsl:if>
 
           <xsl:call-template name="process.image.attributes">
-            <xsl:with-param name="alt" select="$alt"/>
+            <xsl:with-param name="alt">
+              <xsl:choose>
+                <xsl:when test="$alt != ''">
+                  <xsl:copy-of select="$alt"/>
+                </xsl:when>
+                <xsl:when test="ancestor::figure">
+                  <xsl:value-of select="normalize-space(ancestor::figure/title)"/>
+                </xsl:when>
+              </xsl:choose>
+            </xsl:with-param>
             <xsl:with-param name="html.depth" select="$html.depth"/>
             <xsl:with-param name="html.width" select="$html.width"/>
             <xsl:with-param name="longdesc" select="$longdesc"/>
@@ -536,15 +545,35 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
         <tr>
           <xsl:if test="$html.depth != '' and $depth-units != '%'">
             <!-- don't do this for percentages because browsers get confused -->
-            <xsl:attribute name="height">
-              <xsl:value-of select="$html.depth"/>
-            </xsl:attribute>
+            <xsl:choose>
+              <xsl:when test="$css.decoration != 0">
+                <xsl:attribute name="style">
+                  <xsl:text>height: </xsl:text>
+                  <xsl:value-of select="$html.depth"/>
+                </xsl:attribute>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:attribute name="height">
+                  <xsl:value-of select="$html.depth"/>
+                </xsl:attribute>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:if>
           <td>
             <xsl:if test="$bgcolor != ''">
-              <xsl:attribute name="bgcolor">
-                <xsl:value-of select="$bgcolor"/>
-              </xsl:attribute>
+              <xsl:choose>
+                <xsl:when test="$css.decoration != 0">
+                  <xsl:attribute name="style">
+                    <xsl:text>background-color: </xsl:text>
+                    <xsl:value-of select="$bgcolor"/>
+                  </xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:attribute name="bgcolor">
+                    <xsl:value-of select="$bgcolor"/>
+                  </xsl:attribute>
+                </xsl:otherwise>
+              </xsl:choose>
             </xsl:if>
             <xsl:if test="@align">
               <xsl:attribute name="align">
@@ -685,10 +714,10 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
       <xsl:call-template name="process.image"/>
     </xsl:when>
     <xsl:otherwise>
-      <p>
+      <div>
         <xsl:call-template name="anchor"/>
         <xsl:call-template name="process.image"/>
-      </p>
+      </div>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
