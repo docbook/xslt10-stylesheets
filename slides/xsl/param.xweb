@@ -58,11 +58,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="keyboard.nav">
 <refmeta>
 <refentrytitle>keyboard.nav</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>keyboard.nav</refname>
-<refpurpose></refpurpose>
+<refpurpose>Enable keyboard navigation?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -73,7 +73,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>If non-zero, JavaScript is added to the slides to enable keyboard
+navigation. Pressing 'n', space, or return moves forward; pressing 'p' moves
+backward.</para>
 
 </refsect1>
 </refentry>
@@ -81,11 +83,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="css.stylesheet">
 <refmeta>
 <refentrytitle>css.stylesheet</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">URI</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>css.stylesheet</refname>
-<refpurpose></refpurpose>
+<refpurpose>CSS stylesheet for slides</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -96,7 +98,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Identifies the CSS stylesheet used by all the slides. This parameter
+can be set in the source document with the &lt;?dbhtml?&gt; pseudo-attribute
+<literal>css-stylesheet</literal>.</para>
 
 </refsect1>
 </refentry>
@@ -104,11 +108,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="titlefoil.html">
 <refmeta>
 <refentrytitle>titlefoil.html</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">filename</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>titlefoil.html</refname>
-<refpurpose></refpurpose>
+<refpurpose>Name of title foil HTML file</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -119,7 +123,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Sets the filename used for the slides titlepage.</para>
 
 </refsect1>
 </refentry>
@@ -127,11 +131,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="toc.html">
 <refmeta>
 <refentrytitle>toc.html</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">filename</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>toc.html</refname>
-<refpurpose></refpurpose>
+<refpurpose>Name of ToC HTML file</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -142,7 +146,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Sets the filename used for the table of contents page.</para>
 
 </refsect1>
 </refentry>
@@ -150,11 +154,13 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="output.indent">
 <refmeta>
 <refentrytitle>output.indent</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">list</refmiscinfo>
+<refmiscinfo role="value">no</refmiscinfo>
+<refmiscinfo role="value">yes</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>output.indent</refname>
-<refpurpose></refpurpose>
+<refpurpose>Indent output?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -165,7 +171,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the setting of the <parameter>indent</parameter> parameter
+on the HTML slides. For more information, see the discussion of the
+<sgmltag>xsl:output</sgmltag> element in the XSLT specification.</para>
 
 </refsect1>
 </refentry>
@@ -173,11 +181,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="overlay">
 <refmeta>
 <refentrytitle>overlay</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>overlay</refname>
-<refpurpose></refpurpose>
+<refpurpose>Overlay footer navigation?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -188,7 +196,12 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>If non-zero, JavaScript is added to the slides to make the
+bottom navigation appear at the bottom of each page. This option and
+<link linkend="multiframe">multiframe</link> are mutually exclusive.</para>
+
+<para>If this parameter is zero, the bottom navigation simply appears
+below the content of each slide.</para>
 
 </refsect1>
 </refentry>
@@ -201,11 +214,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="nav.separator">
 <refmeta>
 <refentrytitle>nav.separator</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>nav.separator</refname>
-<refpurpose></refpurpose>
+<refpurpose>Output separator between navigation and body?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -216,7 +229,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>If non-zero, a separator (<literal>&lt;HR&gt;</literal>) is
+added between the navigation links and the content of each slide.</para>
 
 </refsect1>
 </refentry>
@@ -224,11 +238,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="toc.row.height">
 <refmeta>
 <refentrytitle>toc.row.height</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>toc.row.height</refname>
-<refpurpose></refpurpose>
+<refpurpose>Height of ToC rows in dynamic ToCs</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -239,7 +253,12 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>This parameter specifies the height of each row in the table of
+contents. This is only applicable if a <link
+linkend="dynamic.toc">dynamic ToC</link> is used. You may want to
+adjust this parameter for optimal appearance with the font and image sizes
+selected by your <link linkend="css.stylesheet">CSS stylesheet</link>.
+</para>
 
 </refsect1>
 </refentry>
@@ -247,11 +266,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="toc.bg.color">
 <refmeta>
 <refentrytitle>toc.bg.color</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">color</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>toc.bg.color</refname>
-<refpurpose></refpurpose>
+<refpurpose>Background color for ToC frame</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -262,7 +281,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the background color used in the ToC frame.</para>
 
 </refsect1>
 </refentry>
@@ -270,11 +289,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="toc.width">
 <refmeta>
 <refentrytitle>toc.width</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>toc.width</refname>
-<refpurpose></refpurpose>
+<refpurpose>Width of ToC frame</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -285,7 +304,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the width of the ToC frame.</para>
 
 </refsect1>
 </refentry>
@@ -293,11 +312,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="toc.hide.show">
 <refmeta>
 <refentrytitle>toc.hide.show</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>toc.hide.show</refname>
-<refpurpose></refpurpose>
+<refpurpose>Enable hide/show button for ToC frame</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -308,7 +327,13 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>If non-zero, JavaScript (and an additional icon, see
+<link linkend="hidetoc.image">hidetoc.image</link> and
+<link linkend="hidetoc.image">showtoc.image</link>) is added to each slide
+to allow the ToC panel to be <quote>toggled</quote> on each panel.</para>
+
+<note><para>There is a bug in Mozilla 1.0 (at least as of CR3) that causes
+the browser to reload the titlepage when this feature is used.</para></note>
 
 </refsect1>
 </refentry>
@@ -316,11 +341,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="dynamic.toc">
 <refmeta>
 <refentrytitle>dynamic.toc</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>dynamic.toc</refname>
-<refpurpose></refpurpose>
+<refpurpose>Dynamic ToCs?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -331,7 +356,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>If non-zero, JavaScript is used to make the ToC panel <quote>dynamic</quote>.
+In a dynamic ToC, each section in the ToC can be expanded and collapsed by
+clicking on the appropriate image.</para>
 
 </refsect1>
 </refentry>
@@ -339,11 +366,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="active.toc">
 <refmeta>
 <refentrytitle>active.toc</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>active.toc</refname>
-<refpurpose></refpurpose>
+<refpurpose>Active ToCs?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -354,7 +381,33 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>If non-zero, JavaScript is used to keep the ToC and the current slide
+<quote>in sync</quote>. That is, each time the slide changes, the corresponding
+ToC entry will be underlined.</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="overlay.logo">
+<refmeta>
+<refentrytitle>overlay.logo</refentrytitle>
+<refmiscinfo role="type">URI</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>overlay.logo</refname>
+<refpurpose>Logo to overlay on ToC frame</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='overlay.logo.frag'>
+<xsl:param name="overlay.logo" select="'http://docbook.sourceforge.net/release/buttons/slides-1.png'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>If this URI is non-empty, JavaScript is used to overlay the
+specified image on the ToC frame.</para>
 
 </refsect1>
 </refentry>
@@ -362,11 +415,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="multiframe">
 <refmeta>
 <refentrytitle>multiframe</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>multiframe</refname>
-<refpurpose></refpurpose>
+<refpurpose>Use multiple frames for slide bodies?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -377,7 +430,13 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>If non-zero, multiple frames are used for the body of each
+slide. This is one way of forcing the slide navigation elements to
+appear in constant locations. The other way is with <link
+linkend="overlay">overlays</link>. The <link
+linkend="overlay"><parameter>overlay</parameter></link> and
+<parameter>multiframe</parameter> parameters are mutually
+exclusive.</para>
 
 </refsect1>
 </refentry>
@@ -385,11 +444,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="multiframe.top.bgcolor">
 <refmeta>
 <refentrytitle>multiframe.top.bgcolor</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">color</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>multiframe.top.bgcolor</refname>
-<refpurpose></refpurpose>
+<refpurpose>Background color for top navigation frame</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -400,7 +459,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the background color of the top navigation frame when
+<link linkend="multiframe">multiframe</link> is enabled.</para>
 
 </refsect1>
 </refentry>
@@ -408,11 +468,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="multiframe.bottom.bgcolor">
 <refmeta>
 <refentrytitle>multiframe.bottom.bgcolor</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">color</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>multiframe.bottom.bgcolor</refname>
-<refpurpose></refpurpose>
+<refpurpose>Background color for bottom navigation frame</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -423,7 +483,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the background color of the bottom navigation frame when
+<link linkend="multiframe">multiframe</link> is enabled.</para>
 
 </refsect1>
 </refentry>
@@ -431,11 +492,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="multiframe.navigation.height">
 <refmeta>
 <refentrytitle>multiframe.navigation.height</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>multiframe.navigation.height</refname>
-<refpurpose></refpurpose>
+<refpurpose>Height of navigation frames</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -446,7 +507,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the height of the navigation frames when
+<link linkend="multiframe">multiframe</link> is enabled.</para>
 
 </refsect1>
 </refentry>
@@ -459,11 +521,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="graphics.dir">
 <refmeta>
 <refentrytitle>graphics.dir</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">URI</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>graphics.dir</refname>
-<refpurpose></refpurpose>
+<refpurpose>Graphics directory</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -474,7 +536,13 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Identifies the graphics directory for the navigation components
+generated on all the slides. This parameter can be set in the source
+document with the &lt;?dbhtml?&gt; pseudo-attribute
+<literal>graphics-dir</literal>.</para>
+
+<para>If non-empty, this value is prepended to each of the graphic
+image paths.</para>
 
 </refsect1>
 </refentry>
@@ -482,11 +550,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="bullet.image">
 <refmeta>
 <refentrytitle>bullet.image</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">filename</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>bullet.image</refname>
-<refpurpose></refpurpose>
+<refpurpose>Bullet image</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -497,7 +565,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the filename of the bullet image used for foils in the
+framed ToC.</para>
 
 </refsect1>
 </refentry>
@@ -505,11 +574,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="right.image">
 <refmeta>
 <refentrytitle>right.image</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">filename</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>right.image</refname>
-<refpurpose></refpurpose>
+<refpurpose>Right-arrow image</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -520,7 +589,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the filename of the right-pointing navigation arrow.</para>
 
 </refsect1>
 </refentry>
@@ -528,11 +597,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="left.image">
 <refmeta>
 <refentrytitle>left.image</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">filename</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>left.image</refname>
-<refpurpose></refpurpose>
+<refpurpose>Left-arrow image</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -543,7 +612,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the filename of the left-pointing navigation arrow.</para>
 
 </refsect1>
 </refentry>
@@ -551,11 +620,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="plus.image">
 <refmeta>
 <refentrytitle>plus.image</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">filename</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>plus.image</refname>
-<refpurpose></refpurpose>
+<refpurpose>Plus image</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -566,7 +635,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the filename of the <quote>plus</quote> image; the image used in a
+<link linkend="dynamic.toc">dynamic ToC</link> to indicate that a section
+can be expanded.</para>
 
 </refsect1>
 </refentry>
@@ -574,11 +645,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="minus.image">
 <refmeta>
 <refentrytitle>minus.image</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">filename</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>minus.image</refname>
-<refpurpose></refpurpose>
+<refpurpose>Minus image</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -589,7 +660,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the filename of the <quote>minus</quote> image; the image used in a
+<link linkend="dynamic.toc">dynamic ToC</link> to indicate that a section
+can be collapsed.</para>
 
 </refsect1>
 </refentry>
@@ -597,11 +670,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="hidetoc.image">
 <refmeta>
 <refentrytitle>hidetoc.image</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">filename</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>hidetoc.image</refname>
-<refpurpose></refpurpose>
+<refpurpose>Hide ToC image</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -612,7 +685,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the filename of the <quote>hide ToC</quote> image. This is used
+when the <link linkend="toc.hide.show">ToC hide/show</link> parameter is
+enabled.</para>
 
 </refsect1>
 </refentry>
@@ -620,11 +695,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="showtoc.image">
 <refmeta>
 <refentrytitle>showtoc.image</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">filename</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>showtoc.image</refname>
-<refpurpose></refpurpose>
+<refpurpose>Show ToC image</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -635,7 +710,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the filename of the <quote>show ToC</quote> image. This is used
+when the <link linkend="toc.hide.show">ToC hide/show</link> parameter is
+enabled.</para>
 
 </refsect1>
 </refentry>
@@ -648,11 +725,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="script.dir">
 <refmeta>
 <refentrytitle>script.dir</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">URI</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>script.dir</refname>
-<refpurpose></refpurpose>
+<refpurpose>Script directory</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -663,7 +740,13 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Identifies the JavaScript source directory for the slides.
+This parameter can be set in the source
+document with the &lt;?dbhtml?&gt; pseudo-attribute
+<literal>script-dir</literal>.</para>
+
+<para>If non-empty, this value is prepended to each of the JavaScript files.
+</para>
 
 </refsect1>
 </refentry>
@@ -671,11 +754,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="ua.js">
 <refmeta>
 <refentrytitle>ua.js</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">filename</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>ua.js</refname>
-<refpurpose></refpurpose>
+<refpurpose>UA JavaScript file</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -686,7 +769,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the filename of the UA JavaScript file. It's unlikely
+that you will ever need to change this parameter.</para>
 
 </refsect1>
 </refentry>
@@ -694,11 +778,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="xbDOM.js">
 <refmeta>
 <refentrytitle>xbDOM.js</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">filename</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>xbDOM.js</refname>
-<refpurpose></refpurpose>
+<refpurpose>xbDOM JavaScript file</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -709,7 +793,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the filename of the xbDOM JavaScript file. It's unlikely
+that you will ever need to change this parameter.</para>
 
 </refsect1>
 </refentry>
@@ -717,11 +802,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="xbStyle.js">
 <refmeta>
 <refentrytitle>xbStyle.js</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">filename</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>xbStyle.js</refname>
-<refpurpose></refpurpose>
+<refpurpose>xbStyle JavaScript file</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -732,7 +817,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the filename of the xbStyle JavaScript file. It's unlikely
+that you will ever need to change this parameter.</para>
 
 </refsect1>
 </refentry>
@@ -740,11 +826,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="xbCollapsibleLists.js">
 <refmeta>
 <refentrytitle>xbCollapsibleLists.js</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">filename</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>xbCollapsibleLists.js</refname>
-<refpurpose></refpurpose>
+<refpurpose>xbCollapsibleLists JavaScript file</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -755,7 +841,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the filename of the xbCollapsibleLists JavaScript file. It's unlikely
+that you will ever need to change this parameter.</para>
 
 </refsect1>
 </refentry>
@@ -763,11 +850,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="overlay.js">
 <refmeta>
 <refentrytitle>overlay.js</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">filename</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>overlay.js</refname>
-<refpurpose></refpurpose>
+<refpurpose>Overlay JavaScript file</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -778,7 +865,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the filename of the overlay JavaScript file. It's unlikely
+that you will ever need to change this parameter.</para>
 
 </refsect1>
 </refentry>
@@ -786,11 +874,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refentry id="slides.js">
 <refmeta>
 <refentrytitle>slides.js</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo role="type">filename</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>slides.js</refname>
-<refpurpose></refpurpose>
+<refpurpose>Slides overlay file</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -801,7 +889,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the filename of the slides JavaScript file. It's unlikely
+that you will ever need to change this parameter.</para>
 
 </refsect1>
 </refentry>
@@ -824,7 +913,7 @@ around all these parameters.</para>
      $Id$
      ********************************************************************
 
-     This file is part of the XSL DocBook Stylesheet distribution.
+     This file is part of the DocBook Slides Stylesheet distribution.
      See ../README or http://nwalsh.com/docbook/xsl/ for copyright
      and other information.
 
@@ -843,6 +932,7 @@ around all these parameters.</para>
 <src:fragref linkend="toc.hide.show.frag"/>
 <src:fragref linkend="dynamic.toc.frag"/>
 <src:fragref linkend="active.toc.frag"/>
+<src:fragref linkend="overlay.logo.frag"/>
 <src:fragref linkend="multiframe.frag"/>
 <src:fragref linkend="multiframe.top.bgcolor.frag"/>
 <src:fragref linkend="multiframe.bottom.bgcolor.frag"/>
