@@ -1071,7 +1071,14 @@ if (selectBrowser() == "ie5") {
   <div class="toc-section" id="{$id}">
     <img src="{$graphics.dir}/{$minus.image}" alt="-"/>
     <a href="{$thissection}" target="foil">
-      <xsl:apply-templates select="title" mode="toc"/>
+      <xsl:choose>
+        <xsl:when test="titleabbrev">
+          <xsl:apply-templates select="titleabbrev" mode="toc"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="title" mode="toc"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </a>
     <xsl:apply-templates select="foil" mode="toc"/>
   </div>
@@ -1086,13 +1093,24 @@ if (selectBrowser() == "ie5") {
   <div id="{$id}" class="toc-foil">
     <img src="{$graphics.dir}/{$bullet.image}" alt="-"/>
     <a href="{$foil}" target="foil">
-      <xsl:apply-templates select="title" mode="toc"/>
+      <xsl:choose>
+        <xsl:when test="titleabbrev">
+          <xsl:apply-templates select="titleabbrev" mode="toc"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="title" mode="toc"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </a>
   </div>
 </xsl:template>
 
 <xsl:template match="title|titleabbrev" mode="toc">
   <xsl:apply-templates mode="toc"/>
+</xsl:template>
+
+<xsl:template match="speakernotes" mode="toc">
+  <!-- nop -->
 </xsl:template>
 
 <!-- ============================================================ -->
@@ -1167,6 +1185,10 @@ if (selectBrowser() == "ie5") {
     </a>
   </div>
   <xsl:text>');&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template match="speakernotes" mode="ns-toc">
+  <!-- nop -->
 </xsl:template>
 
 <!-- ============================================================ -->
