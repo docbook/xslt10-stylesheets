@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:exsl="http://exslt.org/common"
+                xmlns:exsl="http://exslt.org/commn"
                 exclude-result-prefixes="exsl"
                 version='1.0'>
 
@@ -72,7 +72,10 @@
       <xsl:number level="any" from="refentry" format="1"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:number level="any" format="1"/>
+      <xsl:variable name="pfoot" select="preceding::footnote"/>
+      <xsl:variable name="ptfoot" select="preceding::table//footnote
+                                          |preceding::informaltable//footnote"/>
+      <xsl:number value="count($pfoot) - count($ptfoot) + 1" format="1"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -95,16 +98,14 @@
     </xsl:call-template>
   </xsl:variable>
   <p>
-    <xsl:if test="not($html.cleanup != 0 and function-available('exsl:node-set'))">
-      <sup>
-        <xsl:text>[</xsl:text>
-        <a name="{$name}" href="{$href}">
-          <xsl:apply-templates select="ancestor::footnote"
-                               mode="footnote.number"/>
-        </a>
-        <xsl:text>] </xsl:text>
-      </sup>
-    </xsl:if>
+    <sup>
+      <xsl:text>[</xsl:text>
+      <a name="{$name}" href="{$href}">
+        <xsl:apply-templates select="ancestor::footnote"
+                             mode="footnote.number"/>
+      </a>
+      <xsl:text>] </xsl:text>
+    </sup>
     <xsl:apply-templates/>
   </p>
 </xsl:template>
@@ -199,23 +200,28 @@
   <!-- nop -->
 </xsl:template>
 
-<xsl:template match="footnote" mode="process.footnote.mode">
+<xsl:template match="footnote" name="process.footnote" mode="process.footnote.mode">
   <xsl:choose>
+    <xsl:when test="local-name(*[1]) = 'para' or local-name(*[1]) = 'simpara'">
+      <div class="{name(.)}">
+        <xsl:apply-templates/>
+      </div>
+    </xsl:when>
+
     <xsl:when test="$html.cleanup != 0 and function-available('exsl:node-set')">
       <div class="{name(.)}">
         <xsl:apply-templates select="*[1]" mode="footnote.body.number"/>
         <xsl:apply-templates select="*[position() &gt; 1]"/>
       </div>
     </xsl:when>
+
     <xsl:otherwise>
-      <xsl:if test="local-name(*[1]) != 'para' and local-name(*[1]) != 'simpara'">
-        <xsl:message>
-          <xsl:text>Warning: footnote number may not be generated </xsl:text>
-          <xsl:text>correctly; </xsl:text>
-          <xsl:value-of select="local-name(*[1])"/>
-          <xsl:text> unexpected as first child of footnote.</xsl:text>
-        </xsl:message>
-      </xsl:if>
+      <xsl:message>
+        <xsl:text>Warning: footnote number may not be generated </xsl:text>
+        <xsl:text>correctly; </xsl:text>
+        <xsl:value-of select="local-name(*[1])"/>
+        <xsl:text> unexpected as first child of footnote.</xsl:text>
+      </xsl:message>
       <div class="{name(.)}">
         <xsl:apply-templates/>
       </div>
@@ -223,33 +229,12 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="informaltable//footnote|table//footnote" 
+<xsl:template match="informaltable//footnote|table//footnote"
               mode="process.footnote.mode">
 </xsl:template>
 
 <xsl:template match="footnote" mode="table.footnote.mode">
-  <xsl:choose>
-    <xsl:when test="$html.cleanup != 0 and function-available('exsl:node-set')">
-      <div class="{name(.)}">
-        <xsl:apply-templates select="*[1]" mode="footnote.body.number"/>
-        <xsl:apply-templates select="*[position() &gt; 1]"/>
-      </div>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:if test="local-name(*[1]) != 'para'
-                    and local-name(*[1]) != 'simpara'">
-        <xsl:message>
-          <xsl:text>Warning: footnote number may not be generated </xsl:text>
-          <xsl:text>correctly; </xsl:text>
-          <xsl:value-of select="local-name(*[1])"/>
-          <xsl:text> unexpected as first child of footnote.</xsl:text>
-        </xsl:message>
-      </xsl:if>
-      <div class="{name(.)}">
-        <xsl:apply-templates/>
-      </div>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:call-template name="process.footnote"/>
 </xsl:template>
 
 </xsl:stylesheet>
