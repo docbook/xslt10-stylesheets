@@ -872,8 +872,9 @@
 <!-- ==================================================================== -->
 
 <xsl:template name="chunk-element-content">
-  <xsl:param name="prev"></xsl:param>
-  <xsl:param name="next"></xsl:param>
+  <xsl:param name="prev"/>
+  <xsl:param name="next"/>
+  <xsl:param name="content"/>
 
   <html>
     <xsl:call-template name="html.head">
@@ -892,7 +893,14 @@
 
       <xsl:call-template name="user.header.content"/>
 
-      <xsl:apply-imports/>
+      <xsl:choose>
+        <xsl:when test="$content">
+          <xsl:copy-of select="$content"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-imports/>
+        </xsl:otherwise>
+      </xsl:choose>
 
       <xsl:call-template name="user.footer.content"/>
 
