@@ -181,7 +181,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <para>The <filename>param.xsl</filename> stylesheet is just a wrapper
 around all these parameters.</para>
 
-<src:fragment id="top" default-exclude-result-prefixes="xsl">
+<src:fragment id="top" mundane-result-prefixes="xsl">
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 exclude-result-prefixes="src"
                 version='1.0'>
