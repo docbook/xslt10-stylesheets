@@ -1,7 +1,8 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks"
-                exclude-result-prefixes="suwl"
+                xmlns:exsl="http://exslt.org/common"
+                exclude-result-prefixes="suwl exsl"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -123,9 +124,70 @@
   </xsl:choose>
 </xsl:template>
 
+<!-- ==================================================================== -->
+
 <xsl:template match="*" mode="endterm">
   <!-- Process the children of the endterm element -->
-  <xsl:apply-templates select="child::node()"/>
+  <xsl:variable name="endterm">
+    <xsl:apply-templates select="child::node()"/>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="function-available('exsl:node-set')">
+      <xsl:apply-templates select="exsl:node-set($endterm)" mode="remove-ids"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy-of select="$endterm"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="*" mode="remove-ids">
+  <xsl:choose>
+    <!-- handle html or xhtml -->
+    <xsl:when test="local-name(.) = 'a'
+                    and (namespace-uri(.) = ''
+                         or namespace-uri(.) = 'http://www.w3.org/1999/xhtml')">
+      <xsl:choose>
+        <xsl:when test="(@name and count(@*) = 1)
+                        or (@id and count(@*) = 1)
+                        or (@id and @name and count(@*) = 2)">
+          <xsl:message>suppress anchor</xsl:message>
+          <!-- suppress the whole thing -->
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:copy>
+            <xsl:for-each select="@*">
+              <xsl:choose>
+                <xsl:when test="name(.) != 'name' and name(.) != 'id'">
+                  <xsl:copy/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:message>removing <xsl:value-of select="name(.)"/></xsl:message>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:for-each>
+          </xsl:copy>
+          <xsl:apply-templates mode="remove-ids"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy>
+        <xsl:for-each select="@*">
+          <xsl:choose>
+            <xsl:when test="name(.) != 'id'">
+              <xsl:copy/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:message>removing <xsl:value-of select="name(.)"/></xsl:message>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:for-each>
+        <xsl:apply-templates mode="remove-ids"/>
+      </xsl:copy>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
