@@ -12,8 +12,6 @@
 
      ******************************************************************** -->
 
-<xsl:param name="autotoc.label.separator" select="'. '"/>
-
 <xsl:template name="href.target">
   <xsl:param name="object" select="."/>
   <xsl:text>#</xsl:text>
