@@ -932,13 +932,35 @@ in the CALS table.
 </doc:param>
 
 <!-- ==================================================================== -->
-<xsl:param name="generate.section.toc" select='0' doc:type='boolean'/>
+<xsl:param name="generate.section.toc" select='1' doc:type='boolean'/>
 
 <doc:param name="generate.section.toc" xmlns="">
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>Generate TOCs inside Sections?</refpurpose>
 <refdescription>
-<para>FIXME:
+<para>If non-zero, a Table of Contents will be generated inside section
+elements. If <parameter>generate.section.toc.level</parameter> is non-zero,
+it may suppress some section TOCs.
 </para>
+</refdescription>
+</doc:param>
+
+<!-- ==================================================================== -->
+<xsl:param name="generate.section.toc.level" select='3' doc:type='integer'/>
+
+<doc:param name="generate.section.toc.level" xmlns="">
+<refpurpose>Control depth of TOC generation in sections</refpurpose>
+<refdescription>
+<para>If non-zero, <parameter>generate.section.toc.level</parameter> controls
+the depth of section in which TOCs will be generated. Note that this is
+related to, but not the same as <parameter>toc.section.depth</parameter>,
+which controls the depth to which TOC entries will be generated in a given
+TOC.</para>
+<para>If, for example, <parameter>generate.section.toc.level</parameter>
+is <literal>3</literal>, TOCs will be generated in first, second, and third
+level sections, but not in fourth level sections.
+</para>
+<para>If <parameter>generate.section.toc.level</parameter> is zero, it has
+no effect.</para>
 </refdescription>
 </doc:param>
 
