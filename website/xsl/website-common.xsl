@@ -141,7 +141,7 @@ node.</para>
                   <xsl:attribute name="href">
                     <xsl:call-template name="homeuri"/>
                   </xsl:attribute>
-                  <xsl:text>Home</xsl:text>
+                  <xsl:call-template name="gentext.nav.home"/>
                 </a>
                 <xsl:if test="$footers">
                   <xsl:text> | </xsl:text>
