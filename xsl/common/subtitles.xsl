@@ -68,6 +68,16 @@ subtitle of the element.
   </xsl:apply-templates>
 </xsl:template>
 
+<xsl:template match="article" mode="subtitle.markup">
+  <xsl:param name="allow-anchors" select="'0'"/>
+  <xsl:apply-templates select="(artheader/subtitle
+                                |articleinfo/subtitle
+                                |subtitle)[1]"
+                       mode="subtitle.markup">
+    <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+  </xsl:apply-templates>
+</xsl:template>
+
 <xsl:template match="dedication|colophon" mode="subtitle.markup">
   <xsl:param name="allow-anchors" select="'0'"/>
   <xsl:apply-templates select="subtitle"
