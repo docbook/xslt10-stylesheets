@@ -31,22 +31,70 @@
 
 <!-- Profile elements based on input parameters -->
 <xsl:template match="*">
+  <xsl:variable name="os.content">
+    <xsl:if test="@os">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$os"/>
+        <xsl:with-param name="b" select="@os"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
   <xsl:variable name="os.ok" select="not(@os) or not($os) or
-                contains(concat($sep, @os, $sep), concat($sep, $os, $sep)) or
-                @os = ''"/>
+                                     $os.content != '' or @os = ''"/>
+
+  <xsl:variable name="ul.content">
+    <xsl:if test="@userlevel">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$ul"/>
+        <xsl:with-param name="b" select="@userlevel"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
   <xsl:variable name="ul.ok" select="not(@userlevel) or not($ul) or
-                contains(concat($sep, @userlevel, $sep), concat($sep, $ul, $sep)) or
-                @userlevel = ''"/>
+                                     $ul.content != '' or @userlevel = ''"/>
+
+  <xsl:variable name="arch.content">
+    <xsl:if test="@arch">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$arch"/>
+        <xsl:with-param name="b" select="@arch"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
   <xsl:variable name="arch.ok" select="not(@arch) or not($arch) or
-                contains(concat($sep, @arch, $sep), concat($sep, $arch, $sep)) or
-                @arch = ''"/>
+                                       $arch.content != '' or @arch = ''"/>
+
+  <xsl:variable name="attr.content">
+    <xsl:if test="@*[local-name()=$attr]">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$val"/>
+        <xsl:with-param name="b" select="@*[local-name()=$attr]"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
   <xsl:variable name="attr.ok" select="not(@*[local-name()=$attr]) or not($val) or
-                contains(concat($sep, @*[local-name()=$attr], $sep), concat($sep, $val, $sep)) or
-                @*[local-name()=$attr] = '' or not($attr)"/>
+                                       $attr.content != '' 
+                                       or @*[local-name()=$attr] = '' or not($attr)"/>
+
   <xsl:if test="$os.ok and $ul.ok and $arch.ok and $attr.ok">
     <xsl:copy>
       <xsl:apply-templates select="@*|node()"/>
     </xsl:copy>
+  </xsl:if>
+</xsl:template>
+
+<!-- Returns non-empty string if list in $b contains one ore more values from list $a -->
+<xsl:template name="cross.compare">
+  <xsl:param name="a"/>
+  <xsl:param name="b"/>
+  <xsl:param name="head" select="substring-before(concat($a, $sep), $sep)"/>
+  <xsl:param name="tail" select="substring-after($a, $sep)"/>
+  <xsl:if test="contains(concat($sep, $b, $sep), concat($sep, $head, $sep))">1</xsl:if>
+  <xsl:if test="$tail">
+    <xsl:call-template name="cross.compare">
+      <xsl:with-param name="a" select="$tail"/>
+      <xsl:with-param name="b" select="$b"/>
+    </xsl:call-template>
   </xsl:if>
 </xsl:template>
 
