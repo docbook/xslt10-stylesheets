@@ -258,3 +258,5 @@
 <!ENTITY subscript.properties SYSTEM "../params/subscript.properties.xml">
 <!ENTITY superscript.properties SYSTEM "../params/superscript.properties.xml">
 <!ENTITY table.table.properties SYSTEM "../params/table.table.properties.xml">
+<!ENTITY side.float.properties SYSTEM "../params/side.float.properties.xml">
+<!ENTITY sidebar.float.type SYSTEM "../params/sidebar.float.type.xml">
