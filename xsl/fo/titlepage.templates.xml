@@ -126,6 +126,7 @@
 
   <t:titlepage-content side="verso">
       <title
+	     named-template="book.verso.title"
 	     fo:font-size="&hsize2;"
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
