@@ -21,27 +21,27 @@
 
 <t:titlepage element="article" wrapper="fo:block">
   <t:titlepage-content side="recto">
-      <title
-	     named-template="component.title"
+      <title named-template="component.title"
 	     param:node="ancestor-or-self::article[1]"
 	     fo:text-align="center"
-	     fo:margin-left="-4pc"
+	     fo:margin-left="{$title.margin.left}"
 	     fo:keep-with-next="always"
 	     fo:font-size="&hsize5;"
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
-    <subtitle
-	      fo:font-family="{$title.font.family}"
+    <subtitle fo:font-family="{$title.font.family}"
 	      fo:text-align="center"/>
-    <corpauthor/>
-    <authorgroup/>
-    <author/>
-    <othercredit/>
-    <releaseinfo/>
-    <copyright/>
+    <corpauthor fo:text-align="center"/>
+    <authorgroup fo:text-align="center"/>
+    <author fo:text-align="center"
+            fo:font-size="&hsize2;"
+            fo:font-weight="bold"/>
+    <othercredit fo:text-align="center"/>
+    <releaseinfo fo:text-align="center"/>
+    <copyright fo:text-align="center"/>
     <legalnotice/>
-    <pubdate/>
-    <revision/>
+    <pubdate fo:text-align="center"/>
+    <revision fo:text-align="center"/>
     <revhistory/>
     <abstract/>
   </t:titlepage-content>
@@ -194,7 +194,7 @@
 	   fo:text-align="center"
 	   fo:font-size="&hsize3;"
 	   fo:font-weight="bold"
-	   fo:margin-left="-4pc"
+	   fo:margin-left="{$title.margin.left}"
 	   fo:space-before="1em"
 	   fo:font-family="{$title.font.family}"/>
     <subtitle
@@ -278,7 +278,7 @@
 	     force="1"
 	     named-template="component.title"
 	     param:node="ancestor-or-self::dedication[1]"
-	     fo:margin-left="-4pc"
+	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-family="{$title.font.family}"
 	     fo:font-weight="bold"/>
@@ -307,7 +307,7 @@
 	     force="1"
 	     named-template="component.title"
 	     param:node="ancestor-or-self::preface[1]"
-	     fo:margin-left="-4pc"
+	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-family="{$title.font.family}"
 	     fo:font-weight="bold"/>
@@ -346,13 +346,13 @@
       <title
 	     named-template="component.title"
 	     param:node="ancestor-or-self::chapter[1]"
-	     fo:margin-left="-4pc"
+	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
       <subtitle
 		fo:space-before="0.5em"
-		fo:margin-left="-4pc"
+		fo:margin-left="{$title.margin.left}"
 		fo:font-style="italic"
 		fo:font-size="&hsize2;"
 		fo:font-weight="bold"
@@ -390,7 +390,7 @@
       <title
 	     named-template="component.title"
 	     param:node="ancestor-or-self::appendix[1]"
-	     fo:margin-left="-4pc"
+	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
@@ -427,7 +427,7 @@
 <t:titlepage element="section" wrapper="fo:block">
   <t:titlepage-content side="recto">
     <title
-	   fo:margin-left="-4pc"
+	   fo:margin-left="{$title.margin.left}"
 	   fo:font-family="{$title.font.family}"/>
     <subtitle
 	      fo:font-family="{$title.font.family}"/>
@@ -460,7 +460,7 @@
 <t:titlepage element="sect1" wrapper="fo:block">
   <t:titlepage-content side="recto">
     <title
-	   fo:margin-left="-4pc"
+	   fo:margin-left="{$title.margin.left}"
 	   fo:font-family="{$title.font.family}"/>
     <subtitle
 	      fo:font-family="{$title.font.family}"/>
@@ -493,7 +493,7 @@
 <t:titlepage element="sect2" wrapper="fo:block">
   <t:titlepage-content side="recto">
     <title
-	   fo:margin-left="-4pc"
+	   fo:margin-left="{$title.margin.left}"
 	   fo:font-family="{$title.font.family}"/>
     <subtitle
 	      fo:font-family="{$title.font.family}"/>
@@ -526,7 +526,7 @@
 <t:titlepage element="sect3" wrapper="fo:block">
   <t:titlepage-content side="recto">
     <title
-	   fo:margin-left="-4pc"
+	   fo:margin-left="{$title.margin.left}"
 	   fo:font-family="{$title.font.family}"/>
     <subtitle
 	      fo:font-family="{$title.font.family}"/>
@@ -559,7 +559,7 @@
 <t:titlepage element="sect4" wrapper="fo:block">
   <t:titlepage-content side="recto">
     <title
-	   fo:margin-left="-4pc"
+	   fo:margin-left="{$title.margin.left}"
 	   fo:font-family="{$title.font.family}"/>
     <subtitle
 	      fo:font-family="{$title.font.family}"/>
@@ -592,7 +592,7 @@
 <t:titlepage element="sect5" wrapper="fo:block">
   <t:titlepage-content side="recto">
     <title
-	   fo:margin-left="-4pc"
+	   fo:margin-left="{$title.margin.left}"
 	   fo:font-family="{$title.font.family}"/>
     <subtitle
 	      fo:font-family="{$title.font.family}"/>
@@ -625,7 +625,7 @@
 <t:titlepage element="simplesect" wrapper="fo:block">
   <t:titlepage-content side="recto">
     <title
-	   fo:margin-left="-4pc"
+	   fo:margin-left="{$title.margin.left}"
 	   fo:font-family="{$title.font.family}"/>
     <subtitle
 	      fo:font-family="{$title.font.family}"/>
@@ -663,7 +663,7 @@
 	     force="1"
 	     named-template="component.title"
 	     param:node="ancestor-or-self::bibliography[1]"
-	     fo:margin-left="-4pc"
+	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-family="{$title.font.family}"
 	     fo:font-weight="bold"/>
@@ -692,7 +692,7 @@
 	     force="1"
 	     named-template="component.title"
 	     param:node="ancestor-or-self::glossary[1]"
-	     fo:margin-left="-4pc"
+	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-family="{$title.font.family}"
 	     fo:font-weight="bold"/>
@@ -721,7 +721,7 @@
 	     force="1"
 	     named-template="component.title"
 	     param:node="ancestor-or-self::index[1]"
-	     fo:margin-left="-4pc"
+	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-family="{$title.font.family}"
 	     fo:font-weight="bold"/>
@@ -750,7 +750,7 @@
 	     force="1"
 	     named-template="component.title"
 	     param:node="ancestor-or-self::colophon[1]"
-	     fo:margin-left="-4pc"
+	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-family="{$title.font.family}"
 	     fo:font-weight="bold"/>
@@ -780,7 +780,7 @@
 	     named-template="gentext"
 	     param:key="'TableofContents'"
 	     fo:space-after="1em"
-	     fo:margin-left="-4pc"
+	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
@@ -806,7 +806,7 @@
 	     named-template="gentext"
 	     param:key="'ListofTables'"
 	     fo:space-after="1em"
-	     fo:margin-left="-4pc"
+	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
@@ -832,7 +832,7 @@
 	     named-template="gentext"
 	     param:key="'ListofFigures'"
 	     fo:space-after="1em"
-	     fo:margin-left="-4pc"
+	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
@@ -858,7 +858,7 @@
 	     named-template="gentext"
 	     param:key="'ListofExamples'"
 	     fo:space-after="1em"
-	     fo:margin-left="-4pc"
+	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
@@ -884,7 +884,7 @@
 	     named-template="gentext"
 	     param:key="'ListofEquations'"
 	     fo:space-after="1em"
-	     fo:margin-left="-4pc"
+	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
@@ -910,7 +910,7 @@
 	     named-template="gentext"
 	     param:key="'ListofUnknown'"
 	     fo:space-after="1em"
-	     fo:margin-left="-4pc"
+	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
