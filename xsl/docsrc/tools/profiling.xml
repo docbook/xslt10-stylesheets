@@ -62,8 +62,8 @@ class="attribute">userlevel</sgmltag> and <sgmltag
 class="attribute">arch</sgmltag>. We can store identifier of operating
 system, user group or hardware architecture here. You can also store
 profiling information into some general use attribute like <sgmltag
-class="attribute">role</sgmltag>. <xref
-linkend="ex:doc"/> shows how document with profiling information might
+class="attribute">role</sgmltag>. <xref linkend="ex.doc"/>
+shows how document with profiling information might
 look like.</para>
 
 <example id="ex.doc">
