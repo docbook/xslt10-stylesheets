@@ -36,8 +36,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
-<xsl:import href="docbook.xsl"/>
-
 <!-- ==================================================================== -->
 <!-- Jeni Tennison gets all the credit for what follows.
      I think I understand it :-) Anyway, I've hacked it a bit, so the
