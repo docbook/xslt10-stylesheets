@@ -253,6 +253,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &nominal.image.depth;
 &use.embed.for.svg;
 &make.graphic.viewport;
+&preferred.mediaobject.role;
+&use.role.for.mediaobject;
 </reference>
 
 <reference><title>Chunking</title>

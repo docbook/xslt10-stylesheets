@@ -788,7 +788,39 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
     <xsl:if test="@id">
       <a name="{@id}"/>
     </xsl:if>
-    <xsl:call-template name="select.mediaobject"/>
+    <xsl:choose>
+      <xsl:when test="$use.role.for.mediaobject != 0 
+                 and $preferred.mediaobject.role != ''
+                 and (imageobject|imageobjectco
+                     |videoobject|audioobject
+                     |textobject)[@role = $preferred.mediaobject.role]"> 
+        <xsl:call-template name="select.mediaobject">
+	  <xsl:with-param name="olist"
+                 select="(imageobject|imageobjectco
+                     |videoobject|audioobject
+                     |textobject)[@role = $preferred.mediaobject.role]"/> 
+	</xsl:call-template>
+      </xsl:when>
+      <xsl:when test="$use.role.for.mediaobject != 0 
+                 and (imageobject|imageobjectco
+                     |videoobject|audioobject
+		     |textobject)[@role = 'html']">
+        <xsl:call-template name="select.mediaobject">
+	  <xsl:with-param name="olist"
+                 select="(imageobject|imageobjectco
+                     |videoobject|audioobject
+		     |textobject)[@role = 'html']"/>
+	</xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="select.mediaobject">
+	  <xsl:with-param name="olist"
+                 select="imageobject|imageobjectco
+                     |videoobject|audioobject
+		     |textobject"/>
+	</xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:apply-templates select="caption"/>
   </div>
 </xsl:template>
