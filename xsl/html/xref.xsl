@@ -882,7 +882,11 @@
                 <!-- No database sitemap in use -->
                 <xsl:otherwise>
                   <!-- Just use any baseuri from its document entry -->
-                  <xsl:variable name="docbaseuri"  select="key('targetdoc-key', $seek.targetdoc)/@baseuri" />
+                  <xsl:variable name="docbaseuri">
+                    <xsl:for-each select="$target.database" >
+                      <xsl:value-of select="key('targetdoc-key', $seek.targetdoc)/@baseuri" />
+                    </xsl:for-each>
+                  </xsl:variable>
                   <xsl:if test="$docbaseuri != ''" >
                     <xsl:value-of select="$docbaseuri"/>
                   </xsl:if>
