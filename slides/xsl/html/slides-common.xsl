@@ -1498,4 +1498,17 @@
 
 <!-- ====================================================================== -->
 
+<xsl:template name="foil.number">
+  <xsl:choose>
+    <xsl:when test="$show.foil.number != 0">
+      <xsl:number count="foil" level="any"/>
+      /
+      <xsl:value-of select="count(//foil)"/>
+    </xsl:when>
+    <xsl:otherwise>
+      &#160;
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 </xsl:stylesheet>

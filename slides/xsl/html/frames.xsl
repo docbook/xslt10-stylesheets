@@ -754,7 +754,9 @@ function init() {
           </xsl:choose>
           <xsl:text>&#160;</xsl:text>
         </td>
-        <td width="80%">&#160;</td>
+        <td width="80%" align="center" valign="bottom">
+          <xsl:call-template name="foil.number"/>
+        </td>
         <td align="right" valign="bottom" width="10%">
           <xsl:choose>
             <xsl:when test="$next">
