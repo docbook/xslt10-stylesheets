@@ -376,6 +376,9 @@
 <template name="qandaset">%t</template>
 <template name="question"><Question/> %n</template>
 <template name="reference">%t</template>
+<template name="refsect1">%t</template>
+<template name="refsect2">%t</template>
+<template name="refsect3">%t</template>
 <template name="refsynopsisdiv">%t</template>
 <template name="segmentedlist">%t</template>
 <template name="set">%t</template>
@@ -394,6 +397,9 @@
 <context name="section-xref">
 
 <template name="bridgehead"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="refsect1">&#x201C;%t&#x201D;</template>
+<template name="refsect2">&#x201C;%t&#x201D;</template>
+<template name="refsect3">&#x201C;%t&#x201D;</template>
 <template name="sect1">&#x201C;%t&#x201D;</template>
 <template name="sect2">&#x201C;%t&#x201D;</template>
 <template name="sect3">&#x201C;%t&#x201D;</template>
@@ -407,6 +413,9 @@
 <context name="section-xref-numbered">
 
 <template name="bridgehead"><Section/> %n</template>
+<template name="refsect1">&#x201C;%t&#x201D;</template>
+<template name="refsect2">&#x201C;%t&#x201D;</template>
+<template name="refsect3">&#x201C;%t&#x201D;</template>
 <template name="sect1"><Section/> %n</template>
 <template name="sect2"><Section/> %n</template>
 <template name="sect3"><Section/> %n</template>
