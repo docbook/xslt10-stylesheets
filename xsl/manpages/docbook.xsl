@@ -333,7 +333,7 @@
 
 <xsl:template match="emphasis">
   <xsl:choose>
-    <xsl:when test="@role = 'bold' and $emphasis.propagates.style != 0">
+    <xsl:when test="@role = 'bold' or @role = 'strong'">
       <xsl:text>\fB</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
     </xsl:when>
     <xsl:otherwise>
