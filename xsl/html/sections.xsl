@@ -484,6 +484,10 @@
   <xsl:call-template name="section.subtitle"/>
 </xsl:template>
 
+<xsl:template match="simplesect/subtitle" mode="titlepage.mode" priority="2">
+  <xsl:call-template name="section.subtitle"/>
+</xsl:template>
+
 <xsl:template match="sect1/subtitle" mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.subtitle"/>
 </xsl:template>
