@@ -548,7 +548,12 @@
 </xsl:template>
 
 <xsl:template match="foreignphrase">
-  <xsl:call-template name="inline.italicseq"/>
+  <span class="foreignphrase">
+    <xsl:if test="@lang or @xml:lang">
+      <xsl:call-template name="language.attribute"/>
+    </xsl:if>
+    <xsl:call-template name="inline.italicseq"/>
+  </span>
 </xsl:template>
 
 <xsl:template match="markup">
@@ -557,6 +562,9 @@
 
 <xsl:template match="phrase">
   <span>
+    <xsl:if test="@lang or @xml:lang">
+      <xsl:call-template name="language.attribute"/>
+    </xsl:if>
     <xsl:if test="@role and $phrase.propagates.style != 0">
       <xsl:attribute name="class">
         <xsl:value-of select="@role"/>
@@ -745,15 +753,16 @@
       <xsl:variable name="term">
         <xsl:choose>
           <xsl:when test="@baseform">
-            <xsl:value-of select="@baseform"/>
+            <xsl:value-of select="normalize-space(@baseform)"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:value-of select="."/>
+            <xsl:value-of select="normalize-space(.)"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
       <xsl:variable name="targets"
-                    select="//glossentry[glossterm=$term or glossterm/@baseform=$term]"/>
+                    select="//glossentry[normalize-space(glossterm)=$term
+                              or normalize-space(glossterm/@baseform)=$term]"/>
       <xsl:variable name="target" select="$targets[1]"/>
 
       <xsl:choose>
