@@ -44,7 +44,7 @@ db.frame.attribute =
              db:tbody [
                 db:row [
                    db:entry [
-                      db:sgmltag [
+                      db:tag [
                          class="attvalue"
                          "all"
                       ]
