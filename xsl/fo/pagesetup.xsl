@@ -1326,14 +1326,16 @@
   <xsl:variable name="candidate">
     <fo:table table-layout="fixed" width="100%">
       <xsl:call-template name="head.sep.rule"/>
-      <fo:table-column column-number="1" column-width="33%"/>
-      <fo:table-column column-number="2" column-width="34%"/>
-      <fo:table-column column-number="3" column-width="33%"/>
+      <fo:table-column column-number="1" column-width="proportional-column-width(1)"/>
+      <fo:table-column column-number="2" column-width="proportional-column-width(1)"/>
+      <fo:table-column column-number="3" column-width="proportional-column-width(1)"/>
       <fo:table-body>
         <fo:table-row height="14pt">
           <fo:table-cell text-align="left"
-                         relative-align="baseline"
                          display-align="before">
+            <xsl:if test="$fop.extensions = 0">
+              <xsl:attribute name="relative-align">baseline</xsl:attribute>
+            </xsl:if>
             <fo:block>
               <xsl:call-template name="header.content">
                 <xsl:with-param name="pageclass" select="$pageclass"/>
@@ -1344,8 +1346,10 @@
             </fo:block>
           </fo:table-cell>
           <fo:table-cell text-align="center"
-                         relative-align="baseline"
                          display-align="before">
+            <xsl:if test="$fop.extensions = 0">
+              <xsl:attribute name="relative-align">baseline</xsl:attribute>
+            </xsl:if>
             <fo:block>
               <xsl:call-template name="header.content">
                 <xsl:with-param name="pageclass" select="$pageclass"/>
@@ -1356,8 +1360,10 @@
             </fo:block>
           </fo:table-cell>
           <fo:table-cell text-align="right"
-                         relative-align="baseline"
                          display-align="before">
+            <xsl:if test="$fop.extensions = 0">
+              <xsl:attribute name="relative-align">baseline</xsl:attribute>
+            </xsl:if>
             <fo:block>
               <xsl:call-template name="header.content">
                 <xsl:with-param name="pageclass" select="$pageclass"/>
@@ -1545,14 +1551,16 @@
   <xsl:variable name="candidate">
     <fo:table table-layout="fixed" width="100%">
       <xsl:call-template name="foot.sep.rule"/>
-      <fo:table-column column-number="1" column-width="33%"/>
-      <fo:table-column column-number="2" column-width="34%"/>
-      <fo:table-column column-number="3" column-width="33%"/>
+      <fo:table-column column-number="1" column-width="proportional-column-width(1)"/>
+      <fo:table-column column-number="2" column-width="proportional-column-width(1)"/>
+      <fo:table-column column-number="3" column-width="proportional-column-width(1)"/>
       <fo:table-body>
         <fo:table-row height="14pt">
           <fo:table-cell text-align="left"
-                         relative-align="baseline"
                          display-align="after">
+            <xsl:if test="$fop.extensions = 0">
+              <xsl:attribute name="relative-align">baseline</xsl:attribute>
+            </xsl:if>
             <fo:block>
               <xsl:call-template name="footer.content">
                 <xsl:with-param name="pageclass" select="$pageclass"/>
@@ -1563,8 +1571,10 @@
             </fo:block>
           </fo:table-cell>
           <fo:table-cell text-align="center"
-                         relative-align="baseline"
                          display-align="after">
+            <xsl:if test="$fop.extensions = 0">
+              <xsl:attribute name="relative-align">baseline</xsl:attribute>
+            </xsl:if>
             <fo:block>
               <xsl:call-template name="footer.content">
                 <xsl:with-param name="pageclass" select="$pageclass"/>
@@ -1575,8 +1585,10 @@
             </fo:block>
           </fo:table-cell>
           <fo:table-cell text-align="right"
-                         relative-align="baseline"
                          display-align="after">
+            <xsl:if test="$fop.extensions = 0">
+              <xsl:attribute name="relative-align">baseline</xsl:attribute>
+            </xsl:if>
             <fo:block>
               <xsl:call-template name="footer.content">
                 <xsl:with-param name="pageclass" select="$pageclass"/>
