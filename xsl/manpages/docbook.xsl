@@ -86,7 +86,9 @@
   <xsl:text>&#10;.PP&#10;</xsl:text>
   <xsl:for-each select="node()">
     <xsl:choose>
-      <xsl:when test="self::literallayout|self::informaltable|self::screen|self::programlisting|self::itemizedlist|self::orderedlist|self::variablelist">
+      <xsl:when test="self::literallayout|self::informaltable|self::screen|
+		      self::programlisting|self::itemizedlist|
+		      self::orderedlist|self::variablelist|self::simplelist">
         <xsl:text>&#10;</xsl:text>
         <xsl:apply-templates select="."/>
       </xsl:when>

@@ -9,7 +9,8 @@
   <xsl:for-each select="node()">
     <xsl:choose>
       <xsl:when test="self::literallayout|self::screen|self::programlisting|
-		      self::itemizedlist|self::orderedlist|self::variablelist">
+		      self::itemizedlist|self::orderedlist|self::variablelist|
+		      self::simplelist">
         <xsl:text>&#10;</xsl:text>
         <xsl:apply-templates select="."/>
       </xsl:when>
@@ -110,6 +111,33 @@
   <xsl:text>&#10;.RS&#10;.TP 3&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>.LP&#10;.RE&#10;.IP&#10;</xsl:text>
+</xsl:template>
+
+<!-- simplelist -->
+
+<xsl:template match="simplelist[@type='inline']">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="simplelist[@type='inline']/member">
+  <xsl:apply-templates/>
+  <xsl:text>, </xsl:text>
+</xsl:template>
+
+<xsl:template match="simplelist[@type='inline']/member[position()=last()]"
+	      priority="2">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="simplelist[@type='vert' and @columns='1']">
+  <xsl:text>&#10;.IP&#10;</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>.LP&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template match="simplelist[@type='vert' and @columns='1']/member">
+  <xsl:apply-templates/>
+  <xsl:text>&#10;&#10;</xsl:text>
 </xsl:template>
 
 </xsl:stylesheet>
