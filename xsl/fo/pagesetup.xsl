@@ -23,8 +23,8 @@
                            page-height="{$page.height}"
                            margin-top="{$page.margin.top}"
                            margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.inner}"
-                           margin-right="{$page.margin.outer}">
+                           margin-left="{$page.margin.outer}"
+                           margin-right="{$page.margin.inner}">
       <fo:region-body display-align="center"
                       margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}">
@@ -395,8 +395,8 @@
                              page-height="{$page.height}"
                              margin-top="{$page.margin.top}"
                              margin-bottom="{$page.margin.bottom}"
-                             margin-left="{$page.margin.inner}"
-                             margin-right="{$page.margin.outer}">
+                             margin-left="{$page.margin.outer}"
+                             margin-right="{$page.margin.inner}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}">
           <xsl:if test="$draft.watermark.image != ''
