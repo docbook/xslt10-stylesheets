@@ -75,6 +75,8 @@
 <gentext key="Procedure" text="Procedure"/>
 <gentext key="procedure" text="Procedure"/>
 <gentext key="ProductionSet" text="Production"/>
+<gentext key="PubDate" text="Publication Date"/>
+<gentext key="pubdate" text="Publication date"/>
 <gentext key="Published" text="Published"/>
 <gentext key="published" text="Published"/>
 <gentext key="Question" text="Q:"/>
@@ -101,7 +103,10 @@
 <gentext key="section" text="Section"/>
 <gentext key="Section" text="Section"/>
 <gentext key="see" text="see"/>             <!-- uncapitalized -->
+<gentext key="See" text="See"/>
 <gentext key="seealso" text="see also"/>    <!-- uncapitalized -->
+<gentext key="Seealso" text="See also"/>
+<gentext key="SeeAlso" text="See Also"/>
 <gentext key="set" text="Set"/>
 <gentext key="Set" text="Set"/>
 <gentext key="setindex" text="Set Index"/>
@@ -121,6 +126,7 @@
 
 <gentext key="and" text="and"/>
 <gentext key="by" text="by"/>
+<gentext key="called" text="called"/>
 <gentext key="Edited" text="Edited"/>
 <gentext key="edited" text="Edited"/>
 <gentext key="Editedby" text="Edited by"/>
@@ -139,6 +145,7 @@
 <gentext key="tablenotes" text="Notes"/>
 <gentext key="TableofContents" text="Table of Contents"/>
 <gentext key="tableofcontents" text="Table of Contents"/>
+<gentext key="the" text=""/>
 <gentext key="unexpectedelementname" text="Unexpected element name"/>
 <gentext key="unsupported" text="unsupported"/>
 <gentext key="xrefto" text="xref to"/>
@@ -177,6 +184,8 @@
 <dingbat key="endquote" text="&#x201D;"/>
 <dingbat key="nestedstartquote" text="&#x2018;"/>
 <dingbat key="nestedendquote" text="&#x2019;"/>
+<dingbat key="singlestartquote" text="&#x2018;"/>
+<dingbat key="singleendquote" text="&#x2019;"/>
 <dingbat key="bullet" text="&#x2022;"/>
 
 <!-- n.b. &#x2010; might be better, but it doesn't always render properly -->
