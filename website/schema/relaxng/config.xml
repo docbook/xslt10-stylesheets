@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://nwalsh.com/xmlns/schema-configuration">
+
+<exclude>
+<start/>
+
+<ref name="remap.attrib"/>
+<ref name="xreflabel.attrib"/>
+<ref name="effectivity.attrib"/>
+<ref name="xml.base.attrib"/>
+</exclude>
+
+<include>
+<ref name="sgmltag"/>
+<ref name="olink"/>
+<ref name="simplelist"/>
+<ref name="qandaset"/>
+
+<ref name="abbrev"/>
+<ref name="abstract"/>
+<ref name="acronym"/>
+<ref name="affiliation"/>
+<ref name="appendix"/>
+<ref name="article"/>
+<ref name="articleinfo"/>
+<ref name="attribution"/>
+<ref name="audiodata"/>
+<ref name="audioobject"/>
+<ref name="author"/>
+<ref name="authorblurb"/>
+<ref name="authorgroup"/>
+<ref name="authorinitials"/>
+<ref name="bibliodiv"/>
+<ref name="bibliography"/>
+<ref name="bibliomisc"/>
+<ref name="bibliomixed"/>
+<ref name="bibliomset"/>
+<ref name="blockquote"/>
+<ref name="caption"/>
+<ref name="citetitle"/>
+<ref name="colspec"/>
+<ref name="command"/>
+<ref name="computeroutput"/>
+<ref name="copyright"/>
+<ref name="corpauthor"/>
+<ref name="date"/>
+<ref name="edition"/>
+<ref name="editor"/>
+<ref name="email"/>
+<ref name="emphasis"/>
+<ref name="entry"/>
+<ref name="entrytbl"/>
+<ref name="epigraph"/>
+<ref name="example"/>
+<ref name="figure"/>
+<ref name="filename"/>
+<ref name="firstname"/>
+<ref name="footnote"/>
+<ref name="footnoteref"/>
+<ref name="holder"/>
+<ref name="honorific"/>
+<ref name="imagedata"/>
+<ref name="imageobject"/>
+<ref name="informaltable"/>
+<ref name="inlinemediaobject"/>
+<ref name="issuenum"/>
+<ref name="itemizedlist"/>
+<ref name="jobtitle"/>
+<ref name="keyword"/>
+<ref name="keywordset"/>
+<ref name="legalnotice"/>
+<ref name="lineage"/>
+<ref name="lineannotation"/>
+<ref name="link"/>
+<ref name="listitem"/>
+<ref name="literal"/>
+<ref name="literallayout"/>
+<ref name="mediaobject"/>
+<ref name="note"/>
+<ref name="objectinfo"/>
+<ref name="option"/>
+<ref name="orderedlist"/>
+<ref name="orgname"/>
+<ref name="othercredit"/>
+<ref name="othername"/>
+<ref name="para"/>
+<ref name="phrase"/>
+<ref name="programlisting"/>
+<ref name="pubdate"/>
+<ref name="publishername"/>
+<ref name="quote"/>
+<ref name="releaseinfo"/>
+<ref name="replaceable"/>
+<ref name="revdescription"/>
+<ref name="revhistory"/>
+<ref name="revision"/>
+<ref name="revnumber"/>
+<ref name="revremark"/>
+<ref name="row"/>
+<ref name="section"/>
+<ref name="sectioninfo"/>
+<ref name="sidebar"/>
+<ref name="spanspec"/>
+<ref name="subject"/>
+<ref name="subjectset"/>
+<ref name="subjectterm"/>
+<ref name="subtitle"/>
+<ref name="surname"/>
+<ref name="systemitem"/>
+<ref name="table"/>
+<ref name="tbody"/>
+<ref name="term"/>
+<ref name="textdata"/>
+<ref name="textobject"/>
+<ref name="tfoot"/>
+<ref name="tgroup"/>
+<ref name="thead"/>
+<ref name="title"/>
+<ref name="titleabbrev"/>
+<ref name="trademark"/>
+<ref name="ulink"/>
+<ref name="userinput"/>
+<ref name="variablelist"/>
+<ref name="varlistentry"/>
+<ref name="videodata"/>
+<ref name="videoobject"/>
+<ref name="volumenum"/>
+<ref name="xref"/>
+<ref name="year"/>
+</include>
+
+</configuration>
