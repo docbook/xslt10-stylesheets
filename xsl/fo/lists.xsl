@@ -699,7 +699,9 @@
 </xsl:template>
 
 <xsl:template match="step/title">
-  <fo:block font-weight="bold">
+  <fo:block font-weight="bold"
+            keep-together.within-column="always" 
+            keep-with-next.within-column="always">
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
