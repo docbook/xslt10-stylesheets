@@ -13,10 +13,12 @@
   release.</para>
   <section>
     <title>Release 3.4.0</title>
-    <para>This is a minor feature release that also contains fixes for
-    a few bugs. See the <ulink url="WhatsNew"/> file for a complete
-    list of changes made since the previous release. The following is
-    a summary of the user-visible changes.</para>
+    <para>This is a feature release that also contains fixes for a few
+    bugs. The main feature changes arenewly added support for
+    generating presentations in HTML Help, Keynote, and SVG
+    formats. See the <ulink url="WhatsNew"/> file for a complete list
+    of changes made since the previous release. The following is a
+    summary of the user-visible changes.</para>
     <section>
       <title>FO</title>
       <itemizedlist>
@@ -57,7 +59,32 @@
       <title>HTML Help</title>
       <itemizedlist>
         <listitem>
-          <para>Slides can now be generated in HTML Help format.</para>
+          <simpara>Slides can now be generated in HTML Help format.</simpara>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section>
+      <title>Keynote</title>
+      <itemizedlist>
+        <listitem>
+          <simpara>Slides can now be generated in Keynote format.</simpara>
+	  <note>
+	    <simpara>There is not yet any user documentation
+	    describing how to use the Keynote stylesheet.</simpara>
+	  </note>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section>
+      <title>SVG</title>
+      <itemizedlist>
+        <listitem>
+          <simpara>Slides can now be generated using SVG.</simpara>
+	  <note>
+	    <simpara>The SVG stylesheet is still a bit rough and not
+	    yet documented; users are encouraged to try it and post
+	    comments to <literal>docbook-apps</literal></simpara>
+	  </note>
         </listitem>
       </itemizedlist>
     </section>
