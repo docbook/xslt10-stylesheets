@@ -1,9 +1,10 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version "0.1">
+<!ENTITY standard "Standard">
 <!ENTITY % glyphs SYSTEM "glyphs100.ent">
 %glyphs;
-<!ENTITY standard "Standard">
-<!ENTITY baseuri "http://www.oasis-open.org/entities">
+<!ENTITY baseuri "http://www.oasis-open.org/docbook/xmlcharent/&version;">
 <!ENTITY iso-lat1-table SYSTEM "iso-lat1.gen">
 <!ENTITY iso-lat2-table SYSTEM "iso-lat2.gen">
 <!ENTITY iso-grk1-table SYSTEM "iso-grk1.gen">
@@ -26,7 +27,7 @@
 ]>
 <article status="Working Draft">
 <articleinfo>
-<title>XML Character Entities</title>
+<title>XML Character Entities Version 0.1</title>
 <subtitle>OASIS DocBook Technical Committee</subtitle>
 <authorgroup>
 <editor>
