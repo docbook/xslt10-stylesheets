@@ -1,0 +1,125 @@
+# (Part of) A prototype DocBook V.next RELAX NG grammar.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.1 and V4.2
+# Release: $Id$
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+
+char.attribute = attribute char { text }?
+charoff.attribute = attribute charoff { text }?
+colsep.attribute = attribute colsep { text }?
+rowsep.attribute = attribute rowsep { text }?
+align.attribute =
+  attribute align { "center" | "char" | "justify" | "left" | "right" }?
+valign.attribute = attribute valign { "bottom" | "middle" | "top" }?
+spanname.attribute = attribute spanname { text }?
+colname.attribute = attribute colname { text }?
+
+tgroup.char.attrib = char.attribute?
+tgroup.charoff.attrib = charoff.attribute?
+tgroup.tgroupstyle.attrib = attribute tgroupstyle { text }?
+tgroup.cols.attrib = attribute cols { xsd:integer }
+tgroup.colsep.attrib = colsep.attribute?
+tgroup.rowsep.attrib = rowsep.attribute?
+tgroup.align.attrib = align.attribute?
+db.tgroup =
+   element tgroup {
+      db.colspec*,
+      db.spanspec*,
+      cals.thead?,
+      cals.tfoot?,
+      cals.tbody
+   }
+
+colspec.colnum.attrib = attribute colnum { xsd:integer }?
+colspec.char.attrib = char.attribute?
+colspec.colsep.attrib = colsep.attribute?
+colspec.colwidth.attrib = attribute colwidth { text }?
+colspec.charoff.attrib = charoff.attribute?
+colspec.colname.attrib = colname.attribute?
+colspec.rowsep.attrib = rowsep.attribute?
+colspec.align.attrib = align.attribute?
+db.colspec = element colspec { empty }
+
+spanspec.namest.attrib = attribute namest { text }?
+spanspec.nameend.attrib = attribute nameend { text }?
+spanspec.spanname.attrib = spanname.attribute
+spanspec.char.attrib = char.attribute?
+spanspec.colsep.attrib = colsep.attribute?
+spanspec.charoff.attrib = charoff.attribute?
+spanspec.rowsep.attrib = rowsep.attribute?
+spanspec.align.attrib = align.attribute?
+db.spanspec = element spanspec { empty }
+
+cals.thead.valign.attrib = valign.attribute?
+cals.thead = element thead { db.colspec*, db.row+ }
+
+cals.tfoot.valign.attrib = valign.attribute?
+cals.tfoot = element tfoot { db.colspec*, db.row+ }
+
+cals.tbody.valign.attrib = valign.attribute?
+cals.tbody = element tbody { db.row+ }
+
+row.rowsep.attrib = rowsep.attribute?
+row.valign.attrib = valign.attribute?
+db.row = element row { (db.entry | db.entrytbl)+ }
+
+entry.nameend.attrib = attribute nameend { text }?
+entry.valign.attrib = valign.attribute?
+entry.char.attrib = char.attribute?
+entry.colsep.attrib = colsep.attribute?
+entry.charoff.attrib = charoff.attribute?
+entry.morerows.attrib = attribute morerows { xsd:integer }?
+entry.spanname.attrib = attribute spanname { text }?
+entry.namest.attrib = attribute namest { text }?
+entry.colname.attrib = colname.attribute?
+entry.rowsep.attrib = rowsep.attribute?
+entry.rotate.attrib = attribute rotate { text }?
+entry.align.attrib = align.attribute?
+db.entry = element entry { (inlines* | blocks*) }
+
+entrytbl.nameend.attrib = attribute nameend { text }?
+entrytbl.char.attrib = char.attribute?
+entrytbl.charoff.attrib = charoff.attribute?
+entrytbl.spanname.attrib = attribute spanname { text }?
+entrytbl.namest.attrib = attribute namest { text }?
+entrytbl.tgroupstyle.attrib = attribute tgroupstyle { text }?
+entrytbl.cols.attrib = attribute cols { xsd:integer }?
+entrytbl.colsep.attrib = colsep.attribute?
+entrytbl.rowsep.attrib = rowsep.attribute?
+entrytbl.colname.attrib = colname.attribute?
+entrytbl.align.attrib = align.attribute?
+db.entrytbl = element entrytbl { (db.colspec*, db.spanspec*, cals.thead?, cals.tbody) }
+
+cals.table.model = db.tgroup
+cals.table.tabstyle.attrib = attribute tabstyle { text }?
+cals.table.orient.attrib = attribute orient { "land" | "port" }?
+cals.table.colsep.attrib = colsep.attribute?
+cals.table.rowsep.attrib = rowsep.attribute?
+cals.table.frame.attrib =
+   attribute frame {
+      "all" | "bottom" | "none" | "sides" | "top" | "topbot"
+   }?
+
+cals.table.pgwide.attrib = attribute pgwide { "0" | "1" }
+
+cals.table.info = docbook.info.titlereq
+cals.table = element table { cals.table.info, cals.table.model }
+
+ctrl:choice-list [ name="table.choice" choose="cals.table" ]
+ctrl:choice-list [ name="table.contentmodel" choose="cals.table.model" ]
+
+informaltable.tabstyle.attrib |= cals.table.tabstyle.attrib
+informaltable.orient.attrib |= cals.table.orient.attrib
+informaltable.colsep.attrib |= cals.table.colsep.attrib
+informaltable.rowsep.attrib |= cals.table.rowsep.attrib
+informaltable.frame.attrib |= cals.table.frame.attrib
+informaltable.pgwide.attrib |= cals.table.pgwide.attrib

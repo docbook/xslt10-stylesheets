@@ -1,0 +1,1359 @@
+# (Part of) A prototype DocBook V.next RELAX NG grammar.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.1 and V4.2
+# Release: $Id$
+#
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+
+# ======================================================================
+
+id.attribute        = attribute id { xsd:ID }
+
+xml.lang.attribute  = attribute xml:lang { text }
+
+xml.base.attribute  = attribute xml:base { text }
+
+remap.attribute     = attribute remap { text }
+
+xreflabel.attribute = attribute xreflabel { text }
+
+revisionflag.attribute =
+  attribute revisionflag { "changed" | "added" | "deleted" | "off" }
+
+effectivity.attributes =
+  arch.attribute,
+  condition.attribute,
+  conformance.attribute,
+  os.attribute,
+  revision.attribute,
+  security.attribute,
+  userlevel.attribute,
+  vendor.attribute
+
+arch.attribute        = attribute arch        { text }
+condition.attribute   = attribute condition   { text }
+conformance.attribute = attribute conformance { text }
+os.attribute          = attribute os          { text }
+revision.attribute    = attribute revision    { text }
+security.attribute    = attribute security    { text }
+userlevel.attribute   = attribute userlevel   { text }
+vendor.attribute      = attribute vendor      { text }
+
+# ======================================================================
+
+linkend.attribute  = attribute linkend { xsd:IDREF }
+
+linkends.attribute = attribute linkends { xsd:IDREFS }
+
+href.attribute = attribute href { text }
+
+# ======================================================================
+
+common.attributes =
+  id.attribute?,
+  xml.lang.attribute?,
+  xml.base.attribute?,
+  remap.attribute?,
+  xreflabel.attribute?,
+  revisionflag.attribute?,
+  effectivity.attributes?
+
+common.attrib.idreq =
+  id.attribute,
+  xml.lang.attribute?,
+  xml.base.attribute?,
+  remap.attribute?,
+  xreflabel.attribute?,
+  revisionflag.attribute?,
+  effectivity.attributes?
+
+common.linking.attributes.req =
+   linkend.attribute | href.attribute
+
+common.linking.attributes =
+   (linkend.attribute | href.attribute)?
+
+# ======================================================================
+
+relation.attribute = attribute relation { text }?
+
+linenumbering.attribute = attribute linenumbering { "numbered" | "unnumbered" }?
+
+float.attribute = attribute float { text }
+pgwide.attribute = attribute pgwide { "0" | "1" }
+
+data.format.attribute = attribute format { text }?
+data.fileref.attribute = attribute fileref { text }?
+data.entityref.attribute = attribute entityref { xsd:ENTITY }?
+data.common.attribute &=
+   data.format.attribute,
+   data.fileref.attribute,
+   data.entityref.attribute
+
+oo-language.attribute = attribute language { text }?
+
+ctrl:other-attribute [ name="biblio"
+                       attribute-name="class"
+                       attribute-values="doi isbn issn libraryofcongress pubnumber uri"
+                       other-attribute-name="otherclass"
+                       other-attribute-value="other" ]
+
+significance.attribute = attribute significance { "normal" | "preferred" }
+zone.attribute = attribute zone { xsd:IDREFS }
+pagenum.attribute = attribute pagenum { text }
+scope.attribute = attribute scope { "all" | "global" | "local" }
+
+# ======================================================================
+
+ubiq.inlines     = db.inlinemediaobject | db.anchor | db.indexterm | db.remark
+
+text.replaceable = element replaceable { docbook.text }
+text.phrase      = element phrase      { docbook.text }
+
+docbook.text     = (text | ubiq.inlines | text.phrase | text.replaceable)*
+
+# ======================================================================
+
+inlines = text | ubiq.inlines | general.inlines | domain.inlines
+
+general.inlines =
+   publishing.inlines
+ | product.inlines
+ | bibliography.inlines
+ | glossary.inlines
+ | graphic.inlines
+ | indexing.inlines
+ | link.inlines
+
+domain.inlines =
+   technical.inlines
+ | error.inlines
+ | os.inlines
+ | programming.inlines
+ | markup.inlines
+ | math.inlines
+ | gui.inlines
+ | keyboard.inlines
+
+technical.inlines =
+  db.replaceable | db.systemitem | db.option | db.optional
+
+error.inlines =
+  db.errorcode | db.errortext | db.errorname | db.errortype
+
+oo.inlines = db.ooclass | db.ooexception | db.oointerface
+
+programming.inlines =
+   db.function
+ | db.parameter
+ | db.varname
+ | db.returnvalue
+ | db.type
+ | db.classname
+ | db.exceptionname
+ | db.interfacename
+ | db.methodname
+ | db.modifier
+ | db.initializer
+ | oo.inlines
+
+product.inlines =
+   db.productnumber
+ | db.productname
+ | db.database
+ | db.application
+ | db.hardware
+ | db.trademark
+
+os.inlines =
+   db.prompt
+ | db.envar
+ | db.filename
+ | db.command
+ | db.computeroutput
+ | db.userinput
+
+markup.inlines =
+   db.xmltag
+ | db.markup
+ | db.token
+ | db.symbol
+ | db.literal
+ | db.constant
+
+bibliography.inlines =
+   db.citation
+ | db.citerefentry
+ | db.citetitle
+ | db.citebiblioid
+ | db.author
+ | db.personname
+ | db.editor
+
+glossary.inlines =
+   db.firstterm
+ | db.glossterm
+
+ctrl:choice-list [ name="publishing.inlines" choose="db.abbrev" ]
+ctrl:choice-list [ name="publishing.inlines" choose="db.acronym" ]
+ctrl:choice-list [ name="publishing.inlines" choose="db.emphasis" ]
+ctrl:choice-list [ name="publishing.inlines" choose="db.footnote" ]
+ctrl:choice-list [ name="publishing.inlines" choose="db.footnoteref" ]
+ctrl:choice-list [ name="publishing.inlines" choose="db.foreignphrase" ]
+ctrl:choice-list [ name="publishing.inlines" choose="db.phrase" ]
+ctrl:choice-list [ name="publishing.inlines" choose="db.quote" ]
+ctrl:choice-list [ name="publishing.inlines" choose="db.subscript" ]
+ctrl:choice-list [ name="publishing.inlines" choose="db.superscript" ]
+ctrl:choice-list [ name="publishing.inlines" choose="db.wordasword" ]
+
+math.inlines = db.inlineequation
+
+graphic.inlines = db.inlinemediaobject
+
+indexing.inlines = db.indexterm
+
+gui.inlines =
+   db.guiicon
+ | db.guibutton
+ | db.guimenuitem
+ | db.guimenu
+ | db.guisubmenu
+ | db.guilabel
+ | db.menuchoice
+ | db.mousebutton
+
+keyboard.inlines =
+   db.keycombo
+ | db.keycap
+ | db.keycode
+ | db.keysym
+ | db.shortcut
+ | db.accel
+
+link.inlines =
+   db.xref
+ | db.anchor
+
+# ======================================================================
+
+blocks =
+   list.blocks
+ | admonition.blocks
+ | para.blocks
+ | formal.blocks
+ | informal.blocks
+ | publishing.blocks
+ | graphic.blocks
+ | technical.blocks
+ | verbatim.blocks
+ | synopsis.blocks
+ | db.indexterm
+ | db.bridgehead
+ | db.remark
+
+formal.blocks =
+   db.equation
+ | db.example
+ | db.figure
+ | db.table
+
+informal.blocks =
+   db.informalequation
+ | db.informalexample
+ | db.informalfigure
+ | db.informaltable
+
+publishing.blocks =
+   db.sidebar
+ | db.blockquote
+ | db.address
+ | db.epigraph
+
+ctrl:choice-list [ name="graphic.blocks" choose="db.mediaobject" ]
+ctrl:choice-list [ name="graphic.blocks" choose="db.screenshot" ]
+
+ctrl:choice-list [ name="technical.blocks" choose="db.procedure" ]
+
+admonition.blocks =
+   db.caution
+ | db.important
+ | db.note
+ | db.tip
+ | db.warning
+
+ctrl:choice-list [ name="list.blocks" choose="db.itemizedlist" ]
+ctrl:choice-list [ name="list.blocks" choose="db.orderedlist" ]
+ctrl:choice-list [ name="list.blocks" choose="db.procedure" ]
+ctrl:choice-list [ name="list.blocks" choose="db.simplelist" ]
+ctrl:choice-list [ name="list.blocks" choose="db.variablelist" ]
+
+ctrl:choice-list [ name="verbatim.blocks" choose="db.programlisting" ]
+ctrl:choice-list [ name="verbatim.blocks" choose="db.screen" ]
+ctrl:choice-list [ name="verbatim.blocks" choose="db.literallayout" ]
+ctrl:choice-list [ name="verbatim.blocks" choose="db.synopsis" ]
+
+synopsis.blocks =
+   db.cmdsynopsis
+ | db.funcsynopsis
+ | db.classsynopsis
+ | db.methodsynopsis
+ | db.constructorsynopsis
+ | db.destructorsynopsis
+ | db.fieldsynopsis
+
+# ======================================================================
+
+db.title = element title { inlines* }
+
+db.titleabbrev = element titleabbrev { inlines* }
+
+db.subtitle = element subtitle { inlines* }
+
+docbook.title = db.title? & db.titleabbrev? & db.subtitle?
+docbook.titlereq = db.title & db.titleabbrev? & db.subtitle?
+
+info.elements =
+  db.biblioid
+  | db.artpagenums
+  | db.copyright
+  | db.subjectset
+  | db.keywordset
+  | db.subjectset
+  | db.keywordset
+  | db.itermset
+  | db.abstract
+  | db.authorgroup
+  | db.author
+  | db.editor
+  | db.othercredit
+  | db.bibliocoverage
+  | db.bibliomisc
+  | db.bibliomset
+  | db.bibliorelation
+  | db.biblioset
+  | db.collab
+  | db.confgroup
+  | db.date
+  | db.pubdate
+  | db.edition
+  | db.volumenum
+  | db.seriesvolnums
+  | db.pagenums
+  | db.legalnotice
+  | db.publisher
+  | db.releaseinfo
+  | db.revhistory
+  | db.printhistory
+
+bibliographic.elements =
+   info.elements
+ | db.abbrev
+ | db.title
+ | db.titleabbrev
+ | db.subtitle
+ | db.citetitle
+ | db.address
+ | db.affiliation
+ | db.personblurb
+ | db.authorinitials
+ | db.personname
+ | db.orgname
+ | db.productname
+ | db.productnumber
+ | db.publishername
+
+db.biblioentry = element biblioentry { bibliographic.elements+ }
+
+db.bibliomixed = element bibliomixed { (text | bibliographic.elements)* }
+
+db.info = element info { docbook.title, info.elements* }
+db.info.titlereq = element info { docbook.titlereq, info.elements* }
+db.info.titleforbidden = element info { info.elements* }
+
+docbook.info = (docbook.titlereq?, db.info.titleforbidden?) | db.info?
+docbook.info.titlereq = (docbook.titlereq, db.info.titleforbidden?) | db.info.titlereq
+docbook.info.titleforbidden = db.info.titleforbidden?
+
+biblioset.relation.attrib = relation.attribute
+db.biblioset = element biblioset { bibliographic.elements+ }
+
+bibliomset.relation.attrib = relation.attribute
+db.bibliomset = element bibliomset { (docbook.text | bibliographic.elements)* }
+
+db.bibliomisc = element bibliomisc { docbook.text }
+
+subjectset.scheme.attrib = attribute scheme { text }?
+db.subjectset = element subjectset { db.subject+ }
+
+subject.weight.attrib = attribute weight { text }?
+db.subject = element subject { db.subjectterm+ }
+
+db.subjectterm = element subjectterm { docbook.text }
+
+db.keywordset = element keywordset { db.keyword+ }
+
+db.keyword = element keyword { docbook.text }
+
+db.itermset = element itermset { db.indexterm+ }
+
+task.info = docbook.info.titlereq
+
+db.task = element task { task.info,
+                         db.tasksummary?,
+			 db.taskprerequisites?,
+			 db.procedure,
+			 db.example*,
+			 db.taskrelated? }
+
+tasksummary.info = docbook.info
+
+db.tasksummary = element tasksummary { tasksummary.info, blocks+ }
+
+taskprerequisites.info = docbook.info
+
+db.taskprerequisites = element taskprerequisites { taskprerequisites.info, blocks+ }
+
+taskrelated.info = docbook.info
+
+db.taskrelated = element taskrelated { taskrelated.info, blocks+ }
+
+qandaset.defaultlabel.attrib = attribute defaultlabel { "none" | "number" | "qanda" }?
+qandaset.info = docbook.info
+db.qandaset =
+   element qandaset { qandaset.info, blocks*, (db.qandadiv | db.qandaentry)+ }
+
+qandadiv.info = docbook.info
+db.qandadiv =
+   element qandadiv { qandadiv.info, blocks*, (db.qandadiv | db.qandaentry)+ }
+
+qandaentry.info = docbook.info
+db.qandaentry =
+   element qandaentry { qandaentry.info, db.question, db.answer* }
+
+db.question = element question { db.label?, blocks+ }
+
+db.answer = element answer { db.label?, blocks+ }
+
+db.label = element label { docbook.text }
+
+ctrl:choice-list [ name="table.choice" choose="#notAllowed" ]
+ctrl:choice-list [ name="table.contentmodel" choose="#notAllowed" ]
+
+db.table = table.choice
+
+informaltable.tabstyle.attrib = notAllowed?
+informaltable.orient.attrib = notAllowed?
+informaltable.colsep.attrib = notAllowed?
+informaltable.rowsep.attrib = notAllowed?
+informaltable.frame.attrib = notAllowed?
+informaltable.pgwide.attrib = notAllowed?
+
+informaltable.info = db.info.titleforbidden
+db.informaltable = element informaltable { informaltable.info?, table.contentmodel }
+
+procedure.info = docbook.info
+db.procedure = element procedure { procedure.info, blocks*, db.step+ }
+
+step.performance.attrib = attribute performance { "optional" | "required" }?
+
+step.info = docbook.info
+db.step = element step { step.info, blocks*, db.substeps?, blocks* }
+
+substeps.performance.attrib = attribute performance { "optional" | "required" }?
+
+db.substeps = element substeps { db.step+ }
+
+sidebar.info = docbook.info
+
+db.sidebar = element sidebar { sidebar.info, blocks+ }
+
+abstract.info = docbook.info
+db.abstract = element abstract { abstract.info, para.blocks+ }
+
+personblurb.info = docbook.info
+db.personblurb = element personblurb { personblurb.info, para.blocks+ }
+
+blockquote.info = docbook.info
+db.blockquote = element blockquote { blockquote.info, db.attribution?, blocks+ }
+
+db.attribution = element attribution { (docbook.text | db.personname) }
+
+db.bridgehead = element bridgehead { inlines* }
+
+db.remark = element remark { docbook.text }
+
+epigraph.info = docbook.info
+
+db.epigraph =
+   element epigraph {
+      epigraph.info,
+      db.attribution?,
+      (para.blocks | db.literallayout)+
+   }
+
+db.footnote = element footnote { blocks* }
+
+db.highlights = element highlights { blocks* }
+
+para.blocks =
+   db.para
+ | db.formalpara
+ | db.simpara
+
+formalpara.info = docbook.info.titlereq
+db.formalpara = element formalpara { formalpara.info, db.para }
+
+para.info = docbook.info.titleforbidden
+db.para = element para { para.info, (inlines | blocks)* }
+
+simpara.info = docbook.info.titleforbidden
+db.simpara = element simpara { simpara.info, inlines* }
+
+# admonitions are not excluded from themselves
+admonition.contentmodel = docbook.info, blocks+
+
+db.caution = element caution { admonition.contentmodel }
+
+db.important = element important { admonition.contentmodel }
+
+db.note = element note { admonition.contentmodel }
+
+db.tip = element tip { admonition.contentmodel }
+
+db.warning = element warning { admonition.contentmodel }
+
+db.glosslist = element glosslist { db.glossentry+ }
+
+glossentry.sortas.attrib = sortas.attribute?
+db.glossentry =
+   element glossentry {
+      db.glossterm,
+      db.acronym?,
+      db.abbrev?,
+      (db.glosssee | db.glossdef+)
+   }
+
+glossdef.subject.attrib = attribute subject { text }?
+db.glossdef = element glossdef { blocks+, db.glossseealso* }
+
+glosssee.otherterm.attrib = attribute otherterm { xsd:IDREF }?
+db.glosssee = element glosssee { inlines* }
+
+glossseealso.otherterm.attrib = attribute otherterm { xsd:IDREF }?
+db.glossseealso = element glossseealso { inlines* }
+
+itemizedlist.mark.attrib = attribute mark { text }?
+itemizedlist.spacing.attrib = attribute spacing { "compact" | "normal" }?
+
+itemizedlist.info = docbook.info
+db.itemizedlist = element itemizedlist { itemizedlist.info, blocks*, db.listitem+ }
+
+orderedlist.inheritnum.attrib = attribute inheritnum { "ignore" | "inherit" }?
+orderedlist.spacing.attrib = attribute spacing { "compact" | "normal" }?
+orderedlist.continuation.attrib = attribute continuation { "continues" | "restarts" }?
+orderedlist.numeration.attrib = attribute numeration { text }?
+
+orderedlist.info = docbook.info
+db.orderedlist = element orderedlist { orderedlist.info, blocks*, db.listitem+ }
+
+listitem.override.attrib = attribute override { text }?
+db.listitem = element listitem { blocks+ }
+
+segmentedlist.info = docbook.info
+db.segmentedlist = element segmentedlist { segmentedlist.info,
+                                           db.segtitle+,
+                                           db.seglistitem+ }
+
+db.segtitle = element segtitle { inlines* }
+
+db.seglistitem = element seglistitem { db.seg+ }
+
+db.seg = element seg { (inlines | blocks)* }
+
+simplelist.type.attrib = attribute type { "horiz" | "inline" | "vert" }?
+
+db.simplelist = element simplelist { db.member+ }
+
+db.member = element member { inlines* }
+
+variablelist.termlength.attrib = attribute termlength { text }?
+variablelist.info = db.info
+
+db.variablelist = element variablelist { variablelist.info, blocks*, db.varlistentry+ }
+
+db.varlistentry = element varlistentry { db.term+, db.listitem }
+
+db.term = element term { inlines* }
+
+example.info = db.info.titlereq
+db.example = element example { example.info, blocks+ }
+
+informalexample.info = db.info.titleforbidden
+db.informalexample = element informalexample { informalexample.info, blocks+ }
+
+ctrl:choice-list [ name="verbatim.inlines" choose="inlines" ]
+ctrl:choice-list [ name="verbatim.inlines" choose="db.lineannotation" ]
+
+verbatim.contentmodel = docbook.info.titleforbidden, verbatim.inlines*
+
+programlisting.linenumbering.attrib = linenumbering.attribute
+db.programlisting = element programlisting { verbatim.contentmodel }
+
+literallayout.linenumbering.attrib = linenumbering.attribute
+literallayout.class.attrib = attribute class { "monospaced" | "normal" }
+db.literallayout = element literallayout { verbatim.contentmodel }
+
+screen.linenumbering.attrib = linenumbering.attribute
+db.screen = element screen { verbatim.contentmodel }
+
+
+ctrl:choice-list [ name="screenshot.block" choose="db.mediaobject" ]
+
+screenshot.info = docbook.info
+db.screenshot =
+   element screenshot { screenshot.info, screenshot.block }
+
+figure.float.attrib = float.attribute?
+figure.pgwide.attrib = pgwide.attribute?
+figure.info = db.info.titlereq
+db.figure = element figure { figure.info, blocks+ }
+
+informalfigure.float.attrib = float.attribute?
+informalfigure.pgwide.attrib = pgwide.attribute?
+informalfigure.info = db.info.titleforbidden
+db.informalfigure = element informalfigure { informalfigure.info, blocks+ }
+
+mediaobject.info = db.info
+db.mediaobject =
+   element mediaobject {
+      mediaobject.info,
+      (db.videoobject | db.audioobject | db.imageobject | db.textobject)+
+   }
+
+inlinemediaobject.info = db.info
+db.inlinemediaobject =
+   element inlinemediaobject {
+      inlinemediaobject.info,
+      (db.videoobject | db.audioobject | db.imageobject | db.textobject)+
+   }
+
+videoobject.info = db.info
+db.videoobject = element videoobject { videoobject.info, db.videodata }
+
+audioobject.info = db.info
+db.audioobject = element audioobject { audioobject.info, db.audiodata }
+
+imageobject.info = db.info
+db.imageobject = element imageobject { imageobject.info, db.imagedata }
+
+textobject.info = db.info
+db.textobject =
+   element textobject { textobject.info, (db.phrase | db.textdata | blocks+) }
+
+videodata.data.attrib = data.common.attribute
+db.videodata = element videodata { db.info.titleforbidden? }
+
+audiodata.data.attrib = data.common.attribute
+db.audiodata = element audiodata { db.info.titleforbidden? }
+
+imagedata.data.attrib = data.common.attribute
+imagedata.align.attrib =
+  attribute align { "center" | "char" | "justify" | "left" | "right" }?
+imagedata.valign.attrib = attribute valign { "bottom" | "middle" | "top" }?
+imagedata.width.attrib = attribute width { text }?
+imagedata.contentwidth.attrib = attribute contentwidth { text }?
+imagedata.scalefit.attrib = attribute scalefit { "0" | "1" }?
+imagedata.depth.attrib = attribute depth { text }?
+imagedata.contentdepth.attrib = attribute contentdepth { text }?
+
+db.imagedata = element imagedata { db.info.titleforbidden? }
+
+textdata.data.attrib = data.common.attribute
+textdata.encoding.attrib = attribute encoding { text }?
+
+db.textdata = element textdata { db.info.titleforbidden? }
+
+db.caption = element caption { inlines* | blocks+ }
+
+ctrl:choice-list [ name="equation.content" choose="db.mediaobject" ]
+
+equation.info = docbook.info.titlereq
+db.equation = element equation { equation.info, equation.content+ }
+
+informalequation.info = db.info.titleforbidden
+
+db.informalequation =
+   element informalequation {
+      informalequation.info,
+      equation.content+
+   }
+
+ctrl:choice-list [ name="inlineequation.content" choose="db.inlinemediaobject" ]
+
+db.inlineequation = element inlineequation { inlineequation.content+ }
+
+db.alt = element alt { text }
+
+synopsis.linenumbering.attrib = linenumbering.attribute
+db.synopsis = element synopsis { verbatim.contentmodel }
+
+cmdsynopsis.sepchar.attrib = attribute sepchar { text }?
+cmdsynopsis.cmdlength.attrib = attribute cmdlength { text }?
+
+cmdsynopsis.info = db.info
+db.cmdsynopsis =
+   element cmdsynopsis {
+      cmdsynopsis.info,
+      (db.command | db.arg | db.group | db.sbr)+,
+      db.synopfragment*
+   }
+
+rep.attribute = attribute rep { "norepeat" | "repeat" }
+choice.attribute = attribute choice { "opt" | "plain" | "req" }
+
+arg.rep.attrib = rep.attribute
+arg.choice.attrib = choice.attribute
+
+db.arg =
+   element arg {
+      (docbook.text
+       | db.arg
+       | db.group
+       | db.option
+       | db.synopfragmentref
+       | db.sbr)*
+   }
+
+
+group.rep.attrib = rep.attribute
+group.choice.attrib = choice.attribute
+
+db.group =
+   element group {
+      (db.arg | db.group | db.option | db.synopfragmentref | db.sbr)+
+   }
+
+db.sbr = element sbr { empty }
+
+ctrl:common-attributes [ element="synopfragment" attributes="common.attrib.idreq" ]
+
+db.synopfragment = element synopfragment { (db.arg | db.group)+ }
+
+synopfragmentref.linkend.attrib = linkend.attribute
+db.synopfragmentref = element synopfragmentref { docbook.text }
+
+funcsynopsis.info = db.info
+db.funcsynopsis =
+   element funcsynopsis {
+      funcsynopsis.info,
+      (db.funcsynopsisinfo | db.funcprototype)+
+   }
+
+funcsynopsisinfo.linenumbering.attrib = linenumbering.attribute
+db.funcsynopsisinfo = element funcsynopsisinfo { verbatim.contentmodel }
+
+db.funcprototype =
+   element funcprototype {
+      db.funcdef,
+      (db.void | db.varargs | db.paramdef+)
+   }
+
+db.funcdef = element funcdef { (docbook.text | db.type | db.function)* }
+
+db.void = element void { empty }
+
+db.varargs = element varargs { empty }
+
+db.paramdef =
+   element paramdef { (docbook.text | db.type | db.parameter | db.funcparams)* }
+
+db.funcparams = element funcparams { inlines* }
+
+oo-method.synopsis.blocks =
+  db.methodsynopsis | db.constructorsynopsis | db.destructorsynopsis
+
+oo-field.synopsis.blocks = db.fieldsynopsis
+
+classsynopsis.language.attrib = oo-language.attribute
+classsynopsis.class.attrib = attribute class { "class" | "interface" }
+db.classsynopsis =
+   element classsynopsis {
+      oo.inlines+,
+      (db.classsynopsisinfo
+       | oo-method.synopsis.blocks
+       | oo-field.synopsis.blocks)*
+   }
+
+classsynopsisinfo.linenumbering.attrib = linenumbering.attribute
+db.classsynopsisinfo = element classsynopsisinfo { verbatim.contentmodel }
+
+db.ooclass = element ooclass { db.modifier*, db.classname }
+
+db.oointerface = element oointerface { db.modifier*, db.interfacename }
+
+db.ooexception = element ooexception {db.modifier*, db.exceptionname  }
+
+db.modifier = element modifier { docbook.text }
+
+db.interfacename = element interfacename { docbook.text }
+
+db.exceptionname = element exceptionname { docbook.text }
+
+fieldsynopsis.language.attrib = oo-language.attribute
+db.fieldsynopsis =
+   element fieldsynopsis {
+      db.modifier*,
+      db.type?,
+      db.varname,
+      db.initializer?
+   }
+
+db.initializer = element initializer { docbook.text }
+
+constructorsynopsis.language.attrib = oo-language.attribute
+db.constructorsynopsis =
+   element constructorsynopsis {
+      db.modifier*,
+      db.methodname?,
+      (db.methodparam+ | db.void),
+      db.exceptionname*,
+      db.modifier*
+   }
+
+destructorsynopsis.language.attrib = oo-language.attribute
+db.destructorsynopsis =
+   element destructorsynopsis {
+      db.modifier*,
+      db.methodname?,
+      (db.methodparam+ | db.void),
+      db.exceptionname*,
+      db.modifier*
+   }
+
+methodsynopsis.language.attrib = oo-language.attribute
+db.methodsynopsis =
+   element methodsynopsis {
+      db.modifier*,
+      (db.type | db.void)?,
+      db.methodname,
+      (db.methodparam+ | db.void),
+      db.exceptionname*,
+      db.modifier*
+   }
+
+db.methodname = element methodname { docbook.text }
+
+methodparam.rep.attrib = rep.attribute
+methodparam.choice.attrib = choice.attribute
+
+db.methodparam =
+   element methodparam {
+      db.modifier*,
+      db.type?,
+      ((db.parameter, db.initializer?) | db.funcparams),
+      db.modifier*
+   }
+
+db.ackno = element ackno { inlines* }
+
+address.linenumbering.attrib = linenumbering.attribute
+db.address =
+   element address {
+      (docbook.text
+       | db.personname
+       | db.pob
+       | db.street
+       | db.city
+       | db.state
+       | db.postcode
+       | db.country
+       | db.phone
+       | db.fax
+       | db.email)*
+   }
+
+db.street = element street { docbook.text }
+db.pob = element pob { docbook.text }
+db.postcode = element postcode { docbook.text }
+db.city = element city { docbook.text }
+db.state = element state { docbook.text }
+db.country = element country { docbook.text }
+db.phone = element phone { docbook.text }
+db.fax = element fax { docbook.text }
+
+db.affiliation =
+   element affiliation {
+      db.shortaffil?,
+      db.jobtitle*,
+      db.orgname?,
+      db.orgdiv?,
+      db.address*
+   }
+
+db.shortaffil = element shortaffil { inlines* }
+
+db.jobtitle = element jobtitle { docbook.text }
+
+orgname.class.attrib =
+   attribute class {
+      "consortium"
+    | "corporation"
+    | "informal"
+    | "nonprofit"
+    | "other"
+   }?
+
+db.orgname = element orgname { inlines* }
+
+db.orgdiv = element orgdiv { inlines* }
+
+db.artpagenums = element artpagenums { docbook.text }
+
+db.personname =
+   element personname {
+      (docbook.text
+       | (db.honorific
+        | db.firstname
+        | db.surname
+        | db.lineage
+        | db.othername)+)
+   }
+
+person.author =
+   db.personname,
+   (db.personblurb
+    | db.affiliation
+    | db.email
+    | db.address
+    | db.contrib)*
+
+org.author =
+   db.orgname,
+   (db.orgdiv
+    | db.affiliation
+    | db.email
+    | db.address
+    | db.contrib)*
+
+credit.contentmodel = person.author | org.author
+
+db.author = element author { credit.contentmodel }
+
+db.authorgroup = element authorgroup { (db.author | db.editor | db.othercredit)+ }
+
+db.collab = element collab { (db.personname | db.orgname)+, db.affiliation* }
+
+db.authorinitials = element authorinitials { docbook.text }
+
+db.confgroup =
+   element confgroup {
+      (db.confdates
+       | db.conftitle
+       | db.confnum
+       | db.confsponsor
+       | db.address)*
+   }
+
+db.confdates = element confdates { docbook.text }
+
+db.conftitle = element conftitle { inlines* }
+
+db.confnum = element confnum { docbook.text }
+
+db.confsponsor = element confsponsor { inlines* }
+
+db.contractnum = element contractnum { inlines* }
+
+db.contractsponsor = element contractsponsor { inlines* }
+
+db.copyright = element copyright { db.year+, db.holder* }
+
+db.year = element year { docbook.text }
+
+db.holder = element holder { docbook.text }
+
+db.date = element date { docbook.text }
+
+db.edition = element edition { docbook.text }
+
+db.editor = element editor { credit.contentmodel }
+
+biblioid.class.attrib = biblio.class.attrib
+db.biblioid = element biblioid { docbook.text }
+
+citebiblioid.class.attrib = biblio.class.attrib
+db.citebiblioid =
+   element citebiblioid { docbook.text }
+
+bibliosource.class.attrib = biblio.class.attrib
+db.bibliosource = element bibliosource { docbook.text }
+
+bibliorelation.class.attrib = biblio.class.attrib
+
+ctrl:other-attribute [ name="bibliorelation"
+                       attribute-name="type"
+                       attribute-values="hasformat haspart hasversion isformatof ispartof isreferencedby isreplacedby isrequiredby isversionof references replaces requires"
+                       other-attribute-name="othertype"
+                       other-attribute-value="othertype" ]
+
+db.bibliorelation = element bibliorelation { docbook.text }
+
+ctrl:other-attribute [ name="bibliocoverage"
+                       attribute-name="spatial"
+                       attribute-values="dcmibox dcmipoint iso3166 tgn"
+                       other-attribute-name="otherspacial"
+                       other-attribute-value="otherspacial" ]
+
+ctrl:other-attribute [ name="bibliocoverage"
+                       attribute-name="temporal"
+                       attribute-values="dcmiperiod othertemporal w3c-dtf"
+                       other-attribute-name="othertemporal"
+                       other-attribute-value="othertemporal" ]
+
+db.bibliocoverage = element bibliocoverage { docbook.text }
+
+legalnotice.info = docbook.info
+db.legalnotice = element legalnotice { legalnotice.info, blocks+ }
+
+db.othercredit = element othercredit { credit.contentmodel }
+
+db.pagenums = element pagenums { docbook.text }
+
+db.contrib = element contrib { docbook.text }
+
+db.honorific = element honorific { docbook.text }
+
+db.firstname = element firstname { docbook.text }
+
+db.surname = element surname { docbook.text }
+
+db.lineage = element lineage { docbook.text }
+
+db.othername = element othername { docbook.text }
+
+db.printhistory = element printhistory { para.blocks+ }
+
+db.productname = element productname { docbook.text }
+
+db.productnumber = element productnumber { docbook.text }
+
+db.pubdate = element pubdate { docbook.text }
+
+db.publisher = element publisher { (docbook.text | (db.publishername, db.address*)) }
+
+db.publishername = element publishername { docbook.text }
+
+db.releaseinfo = element releaseinfo { docbook.text }
+
+revhistory.info = docbook.info
+db.revhistory = element revhistory { revhistory.info, db.revision+ }
+
+db.revision =
+   element revision {
+      db.revnumber,
+      db.date,
+      (db.authorinitials | db.author)*,
+      (db.revremark | db.revdescription)?
+   }
+
+db.revnumber = element revnumber { docbook.text }
+
+db.revremark = element revremark { inlines* }
+
+db.revdescription = element revdescription { blocks* }
+
+db.seriesvolnums = element seriesvolnums { docbook.text }
+
+db.volumenum = element volumenum { docbook.text }
+
+db.accel  = element accel { docbook.text }
+
+application.class.attrib = attribute class { "hardware" | "software" }?
+db.application = element application { docbook.text }
+
+db.classname = element classname { docbook.text }
+
+db.command = element command { inlines* }
+
+ctrl:choice-list [ name="computeroutput.inlines" choose="inlines" ]
+
+db.computeroutput = element computeroutput { computeroutput.inlines* }
+
+database.class.attrib =
+   attribute class {
+      "field" | "key1" | "key2" | "name" | "record" | "table"
+   }?
+db.database = element database { docbook.text }
+
+db.email = element email { docbook.text }
+
+db.envar = element envar { docbook.text }
+
+db.errorcode = element errorcode { docbook.text }
+
+db.errorname = element errorname { docbook.text }
+
+db.errortext = element errortext { inlines* }
+
+db.errortype = element errortype { docbook.text }
+
+filename.path.attrib = attribute path { text }?
+filename.class.attrib =
+   attribute class {
+      "devicefile"
+    | "directory"
+    | "extension"
+    | "headerfile"
+    | "libraryfile"
+    | "partition"
+    | "symlink"
+   }?
+db.filename = element filename { docbook.text }
+
+db.function = element function { docbook.text }
+
+db.guibutton = element guibutton { docbook.text }
+
+db.guiicon = element guiicon { docbook.text }
+
+db.guilabel = element guilabel { docbook.text }
+
+db.guimenu = element guimenu { docbook.text }
+
+db.guimenuitem =  element guimenuitem { docbook.text }
+
+db.guisubmenu = element guisubmenu { docbook.text }
+
+db.hardware = element hardware { docbook.text }
+
+db.keycap = element keycap { docbook.text }
+
+db.keycode = element keycode { docbook.text }
+
+ctrl:other-attribute [ name="keycombo"
+                       attribute-name="action"
+                       attribute-values="click double-click press seq simul"
+                       other-attribute-name="otheraction"
+                       other-attribute-value="other" ]
+
+db.keycombo = element keycombo { docbook.text }
+
+db.keysym = element keysym { docbook.text }
+
+db.lineannotation = element lineannotation { inlines* }
+
+db.literal = element literal { inlines* }
+
+db.constant = element constant { docbook.text }
+
+db.varname = element varname { docbook.text }
+
+db.markup = element markup { docbook.text }
+
+db.menuchoice = element menuchoice { docbook.text }
+
+shortcut.action.attrib = keycombo.action.attrib
+
+db.shortcut = element shortcut { docbook.text }
+
+db.mousebutton = element mousebutton { docbook.text }
+
+db.option = element option { docbook.text }
+
+db.optional = element optional { inlines* }
+
+parameter.class.attrib = attribute class { "command" | "function" | "option" }?
+db.parameter = element parameter { docbook.text }
+
+ctrl:choice-list [ name="prompt.inlines" choose="docbook.text" ]
+
+db.prompt = element prompt { prompt.inlines* }
+
+db.replaceable = element replaceable { docbook.text }
+
+db.returnvalue = element returnvalue { docbook.text }
+
+xmltag.class.attrib =
+  attribute class {
+    "attribute"
+    | "attvalue"
+    | "element"
+    | "emptytag"
+    | "endtag"
+    | "genentity"
+    | "numcharref"
+    | "paramentity"
+    | "pi"
+    | "sgmlcomment"
+    | "starttag"
+    | "xmlpi"
+  }?
+db.xmltag = element xmltag { docbook.text }
+
+db.symbol = element symbol { docbook.text }
+
+systemitem.class.attrib =
+   attribute class {
+      "domainname"
+    | "etheraddress"
+    | "event"
+    | "eventhandler"
+    | "filesystem"
+    | "fqdomainname"
+    | "groupname"
+    | "ipaddress"
+    | "library"
+    | "macro"
+    | "netmask"
+    | "newsgroup"
+    | "osname"
+    | "resource"
+    | "systemname"
+    | "username"
+  }?
+
+ctrl:choice-list [ name="systemitem.inlines" choose="docbook.text" ]
+
+db.systemitem = element systemitem { systemitem.inlines* }
+
+db.uri = element uri { docbook.text }
+
+db.token = element token { docbook.text }
+
+db.type = element type { docbook.text }
+
+db.userinput = element userinput { inlines* }
+
+db.abbrev = element abbrev { docbook.text }
+
+db.acronym = element acronym { docbook.text }
+
+db.citation = element citation { docbook.text }
+
+db.citerefentry = element citerefentry { db.refentrytitle, db.manvolnum? }
+
+db.refentrytitle = element refentrytitle { inlines* }
+
+db.manvolnum = element manvolnum { docbook.text }
+
+citetitle.pubwork.attrib =
+   attribute pubwork {
+      "article"
+    | "book"
+    | "chapter"
+    | "journal"
+    | "manuscript"
+    | "part"
+    | "refentry"
+    | "section"
+    | "series"
+    | "set"
+   }?
+
+db.citetitle = element citetitle { inlines* }
+
+db.emphasis = element emphasis { inlines* }
+
+firstterm.baseform.attrib = glossterm.baseform.attrib
+db.firstterm = element firstterm { docbook.text }
+
+db.foreignphrase = element foreignphrase { inlines* }
+
+glossterm.baseform.attrib = attribute baseform { text }?
+db.glossterm = element glossterm { docbook.text }
+
+db.phrase = element phrase { inlines* }
+
+db.quote = element quote { inlines* }
+
+db.subscript = element subscript { docbook.text }
+
+db.superscript = element superscript { docbook.text }
+
+trademark.class.attrib =
+   attribute class { "copyright" | "registered" | "service" | "trade" }?
+
+db.trademark = element trademark { docbook.text }
+
+db.wordasword = element wordasword { docbook.text }
+
+db.footnoteref = element footnoteref { empty }
+
+ctrl:common-linking [ element="xref" attributes="common.linking.attributes.req" ]
+
+xref.xrefstyle.attrib = attribute xrefstyle { text }
+db.xref = element xref { empty }
+
+ctrl:common-linking [ element="anchor" suppress="yes" ]
+
+db.anchor = element anchor { empty }
+
+indexterm.singular.significance.attrib = significance.attribute?
+indexterm.startofrange.significance.attrib = significance.attribute?
+indexterm.endofrange.significance.attrib = significance.attribute?
+
+indexterm.singular.zone.attrib = zone.attribute?
+indexterm.startofrange.zone.attrib = zone.attribute?
+indexterm.endofrange.zone.attrib = zone.attribute?
+
+indexterm.singular.pagenum.attrib = pagenum.attribute?
+indexterm.startofrange.pagenum.attrib =  pagenum.attribute?
+indexterm.endofrange.pagenum.attrib =  pagenum.attribute?
+
+indexterm.singular.scope.attrib = scope.attribute?
+indexterm.startofrange.scope.attrib = scope.attribute?
+indexterm.endofrange.scope.attrib = scope.attribute?
+
+indexterm.singular.class.attrib = attribute class { "singular" }?
+indexterm.startofrange.class.attrib = attribute class { "startofrange" }
+indexterm.endofrange.class.attrib = attribute class { "endofrange" }
+
+indexterm.endofrange.startref.attrib = attribute startref { xsd:IDREF }?
+
+indexterm.contentmodel =
+   db.primary?,
+   ((db.secondary,
+      ((db.tertiary, (db.see | db.seealso+)?)
+       | db.see
+       | db.seealso+)?)
+    | db.see
+    | db.seealso+)?
+
+indexterm.singular =
+   element indexterm {
+      indexterm.contentmodel
+   }
+
+indexterm.startofrange =
+   element indexterm {
+      indexterm.contentmodel
+   }
+
+indexterm.endofrange =
+   element indexterm {
+      indexterm.contentmodel
+   }
+
+db.indexterm = (indexterm.singular|indexterm.startofrange|indexterm.endofrange)
+
+sortas.attribute = attribute sortas { text }?
+
+primary.sortas.attrib = sortas.attribute?
+db.primary = element primary { inlines* }
+
+secondary.sortas.attrib = sortas.attribute?
+db.secondary = element secondary { inlines* }
+
+tertiary.sortas.attrib = sortas.attribute?
+db.tertiary = element tertiary { inlines* }
+
+db.see = element see { inlines* }
+
+db.seealso = element seealso { inlines* }

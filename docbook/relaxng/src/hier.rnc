@@ -1,0 +1,247 @@
+# (Part of) A prototype DocBook V.next RELAX NG grammar.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.1 and V4.2
+# Release: $Id$
+#
+# ======================================================================
+
+status.attribute = attribute status { text }
+
+# ======================================================================
+
+divisions = db.part | db.reference
+
+components =
+   db.dedication
+ | db.preface
+ | db.chapter
+ | db.appendix
+ | db.article
+ | db.colophon
+
+navigation.components =
+   db.toc | db.index | db.glossary | db.bibliography
+
+component.contentmodel =
+  navigation.components*, blocks.or.sections, navigation.components*
+
+# ======================================================================
+
+set.status.attrib = status.attribute?
+set.info = docbook.info.titlereq
+db.set = element set { set.info, db.toc*, db.book+, db.setindex }
+
+book.status.attrib = status.attribute?
+book.info = docbook.info.titlereq
+db.book =
+   element book { book.info, (navigation.components | components | divisions)+ }
+
+dedication.status.attrib = status.attribute?
+dedication.info = docbook.info
+db.dedication =
+  element dedication { dedication.info, component.contentmodel }
+
+colophon.status.attrib = status.attribute?
+colophon.info = docbook.info
+db.colophon =
+   element colophon { colophon.info, component.contentmodel }
+
+toc.pagenum.attrib = pagenum.attribute?
+toc.linkend.attrib = linkend.attribute?
+
+toc.info = docbook.info
+db.toc = element toc { toc.info, blocks*, (db.tocdiv | db.tocentry)* }
+
+tocdiv.pagenum.attrib = pagenum.attribute?
+tocdiv.linkend.attrib = linkend.attribute?
+
+tocdiv.info = docbook.info
+db.tocdiv = element tocdiv { tocdiv.info, blocks*, (db.tocdiv | db.tocentry)+ }
+
+tocentry.pagenum.attrib = pagenum.attribute?
+tocentry.linkend.attrib = linkend.attribute?
+db.tocentry = element tocentry { inlines* }
+
+appendix.status.attrib = status.attribute?
+appendix.info = docbook.info.titlereq
+db.appendix =
+   element appendix { appendix.info, component.contentmodel }
+
+chapter.status.attrib = status.attribute?
+chapter.info = docbook.info.titlereq
+db.chapter =
+   element chapter { chapter.info, component.contentmodel }
+
+part.status.attrib = status.attribute?
+part.info = docbook.info.titlereq
+db.part =
+   element part {
+      part.info,
+      db.partintro?,
+      (navigation.components | components | db.refentry | db.reference)+
+   }
+
+preface.status.attrib = status.attribute?
+preface.info = docbook.info
+db.preface =
+   element preface { preface.info, component.contentmodel }
+
+reference.status.attrib = status.attribute?
+reference.info = docbook.info.titlereq
+db.reference =
+   element reference { reference.info, db.partintro?, db.refentry+ }
+
+partintro.info = docbook.info
+db.partintro =
+   element partintro { partintro.info, blocks.or.sections }
+
+sections.optional = db.section* | db.simplesect*
+
+sections.required = db.section+ | db.simplesect*
+
+blocks.or.sections =
+  (blocks+, sections.optional) | sections.required
+
+section.status.attrib = status.attribute?
+section.info = docbook.info.titlereq
+db.section =
+  element section { section.info, blocks.or.sections }
+
+simplesect.status.attrib = status.attribute?
+simplesect.info = docbook.info.titlereq
+db.simplesect =
+  element simplesect { simplesect.info, blocks+ }
+
+bibliography.status.attrib = status.attribute?
+bibliography.info = docbook.info
+db.bibliography =
+   element bibliography {
+      bibliography.info,
+      blocks*,
+      (db.bibliodiv+ | (db.biblioentry | db.bibliomixed)+)
+   }
+
+bibliodiv.status.attrib = status.attribute?
+bibliodiv.info = docbook.info.titlereq
+db.bibliodiv =
+   element bibliodiv {
+      bibliodiv.info,
+      blocks*,
+      (db.biblioentry | db.bibliomixed)+
+   }
+
+glossary.status.attrib = status.attribute?
+glossary.info = docbook.info
+db.glossary =
+   element glossary { glossary.info, blocks*, (db.glossdiv+ | db.glossentry+) }
+
+glossdiv.status.attrib = status.attribute?
+glossdiv.info = docbook.info
+db.glossdiv =
+   element glossdiv { glossdiv.info, blocks*, db.glossentry+ }
+
+index.info = docbook.info
+db.index =
+   element index { index.info, blocks*, (db.indexdiv* | db.indexentry*) }
+
+setindex.info = docbook.info
+db.setindex =
+   element setindex { setindex.info, blocks*, (db.indexdiv* | db.indexentry*) }
+
+indexdiv.info = docbook.info.titlereq
+db.indexdiv =
+   element indexdiv { indexdiv.info, blocks*, db.indexentry+ }
+
+db.indexentry =
+   element indexentry {
+      db.primaryie,
+      (db.seeie | db.seealsoie)*,
+      (db.secondaryie, (db.seeie | db.seealsoie | db.tertiaryie)*)*
+   }
+
+primaryie.linkends.attrib = linkends.attribute?
+db.primaryie = element primaryie { inlines* }
+
+secondaryie.linkends.attrib = linkends.attribute?
+db.secondaryie = element secondaryie { inlines* }
+
+tertiaryie.linkends.attrib = linkends.attribute?
+db.tertiaryie = element tertiaryie { inlines* }
+
+seeie.linkend.attrib = linkend.attribute?
+db.seeie = element seeie { inlines* }
+
+seealsoie.linkends.attrib = linkends.attribute?
+db.seealsoie = element seealsoie { inlines* }
+
+refsections.optional = db.refsection* | db.simplesect*
+
+refsections.required = db.refsection+ | db.simplesect*
+
+blocks.or.refsections =
+  (blocks+, refsections.optional) | refsections.required
+
+refentry.status.attrib = status.attribute?
+refentry.info = docbook.info.titleforbidden
+db.refentry =
+   element refentry {
+      refentry.info,
+      db.refmeta?,
+      db.refnamediv,
+      db.refsynopsisdiv?,
+      db.refsection+
+   }
+
+db.refmeta =
+   element refmeta { db.refentrytitle, db.manvolnum, db.refmiscinfo* }
+
+db.refmiscinfo = element refmiscinfo { docbook.text }
+
+db.refnamediv =
+   element refnamediv { db.refdescriptor?, db.refname+, db.refpurpose, db.refclass* }
+
+db.refdescriptor = element refdescriptor { inlines* }
+
+db.refname = element refname { inlines* }
+
+db.refpurpose = element refpurpose { inlines* }
+
+db.refclass = element refclass { docbook.text }
+
+refsynopsisdiv.info = docbook.info
+db.refsynopsisdiv =
+   element refsynopsisdiv { refsynopsisdiv.info, blocks.or.refsections }
+
+refsection.status.attrib = status.attribute?
+refsection.info = docbook.info.titlereq
+db.refsection =
+  element refsection { refsection.info, blocks.or.refsections }
+
+article.status.attrib = status.attribute?
+article.class.attrib =
+   attribute class {
+      "faq"
+    | "journalarticle"
+    | "productsheet"
+    | "specification"
+    | "techreport"
+    | "whitepaper"
+   }?
+
+article.info = docbook.info.titlereq
+db.article =
+   element article {
+      article.info,
+      navigation.components*,
+      blocks.or.sections,
+      db.appendix*,
+      navigation.components*
+   }
+
+

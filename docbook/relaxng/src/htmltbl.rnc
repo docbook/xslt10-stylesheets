@@ -1,0 +1,133 @@
+# (Part of) A prototype DocBook V.next RELAX NG grammar.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.1 and V4.2
+# Release: $Id$
+#
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+
+html.table.model =
+   (html.col* | html.colgroup*),
+   html.thead?,
+   html.tfoot?,
+   (html.tbody+ | html.tr+)
+
+html.table.html.attrib = html.attrs
+html.table.summary.attrib = attribute summary { text }?
+html.table.width.attrib = attribute width { text }?
+html.table.border.attrib = attribute border { text }?
+html.table.frame.attrib =
+   attribute frame {
+      "void"
+    | "above"
+    | "below"
+    | "hsides"
+    | "lhs"
+    | "rhs"
+    | "vsides"
+    | "box"
+    | "border"
+   }?
+html.table.rules.attrib =
+   attribute rules { "none" | "groups" | "rows" | "cols" | "all" }?
+html.table.cellspacing.attrib = attribute cellspacing { text }?
+html.table.cellpadding.attrib = attribute cellpadding { text }?
+html.table = element table { html.table.model }
+
+html.coreattrs &=
+  attribute class { text }?,
+  attribute style { text }?,
+  attribute title { text }?
+
+html.i18n &=
+  attribute lang { text }?,
+  attribute dir { "ltr" | "rtl" }?
+
+html.events &=
+  attribute onclick { text }?,
+  attribute ondblclick { text }?,
+  attribute onmousedown { text }?,
+  attribute onmouseup { text }?,
+  attribute onmouseover { text }?,
+  attribute onmousemove { text }?,
+  attribute onmouseout { text }?,
+  attribute onkeypress { text }?,
+  attribute onkeydown { text }?,
+  attribute onkeyup { text }?
+
+html.attrs &= html.coreattrs, html.i18n, html.events
+
+html.cellhalign &=
+  attribute align { "left" | "center" | "right" | "justify" | "char" }?,
+  attribute char { text }?,
+  attribute charoff { text }?
+
+html.cellvalign &=
+  attribute valign { "top" | "middle" | "bottom" | "baseline" }?
+
+html.col.html.attrib = html.attrs
+html.col.span.attrib = attribute span { text }?
+html.col.width.attrib = attribute width { text }?
+html.col.cellhalign.attrib = html.cellhalign
+html.col.cellvalign.attrib = html.cellvalign
+html.col = element col { empty }
+
+html.colgroup.html.attrib = html.attrs
+html.colgroup.span.attrib = attribute span { text }?
+html.colgroup.width.attrib = attribute width { text }?
+html.colgroup.cellhalign.attrib = html.cellhalign
+html.colgroup.cellvalign.attrib = html.cellvalign
+html.colgroup = element colgroup { html.col+ }
+
+html.thead.html.attrib = html.attrs
+html.thead.cellhalign.attrib = html.cellhalign
+html.thead.cellvalign.attrib = html.cellvalign
+html.thead = element thead { html.tr+ }
+
+html.tfoot.html.attrib = html.attrs
+html.tfoot.cellhalign.attrib = html.cellhalign
+html.tfoot.cellvalign.attrib = html.cellvalign
+html.tfoot = element tfoot { html.tr+ }
+
+html.tbody.html.attrib = html.attrs
+html.tbody.cellhalign.attrib = html.cellhalign
+html.tbody.cellvalign.attrib = html.cellvalign
+html.tbody = element tbody { html.tr+ }
+
+html.tr.html.attrib = html.attrs
+html.tr.cellhalign.attrib = html.cellhalign
+html.tr.cellvalign.attrib = html.cellvalign
+html.tr = element tr { (html.th | html.td)+ }
+
+html.th.html.attrib = html.attrs
+html.th.abbr.attrib = attribute abbr { text }?
+html.th.axis.attrib = attribute axis { text }?
+html.th.headers.attrib = attribute headers { text }?
+html.th.scope.attrib = attribute scope { text }?
+html.th.rowspan.attrib = attribute rowspan { text }?
+html.th.colspan.attrib = attribute colspan { text }?
+html.th.cellhalign.attrib = html.cellhalign
+html.th.cellvalign.attrib = html.cellvalign
+html.th = element th { (inlines* | blocks*) }
+
+html.td.html.attrib = html.attrs
+html.td.abbr.attrib = attribute abbr { text }?
+html.td.axis.attrib = attribute axis { text }?
+html.td.headers.attrib = attribute headers { text }?
+html.td.scope.attrib = attribute scope { text }?
+html.td.rowspan.attrib = attribute rowspan { text }?
+html.td.colspan.attrib = attribute colspan { text }?
+html.td.cellhalign.attrib = html.cellhalign
+html.td.cellvalign.attrib = html.cellvalign
+html.td = element td { (inlines* | blocks*) }
+
+ctrl:choice-list [ name="table.choice" choose="html.table" ]
+ctrl:choice-list [ name="table.contentmodel" choose="html.table.model" ]
+
+informaltable.frame.attrib |= html.table.frame.attrib

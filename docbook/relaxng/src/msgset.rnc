@@ -1,0 +1,43 @@
+# (Part of) A prototype DocBook V.next RELAX NG grammar.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.1 and V4.2
+# Release: $Id$
+#
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+
+msgset.info = docbook.info
+
+db.msgset = element msgset { msgset.info, (db.msgentry+|db.simplemsgentry+) }
+
+db.msgentry = element msgentry { db.msg+, db.msginfo, db.msgexplan* }
+
+db.simplemsgentry = element simplemsgentry { db.msgtext, db.msgexplan+ }
+
+db.msg = element msg { db.title?, db.msgmain, (db.msgsub|db.msgrel)* }
+
+db.msgmain = element msgmain { db.title?, db.msgtext }
+
+db.msgsub = element msgsub { db.title?, db.msgtext }
+
+db.msgrel = element msgrel { db.title?, db.msgtext }
+
+db.msgtext = element msgtext { blocks+ }
+
+db.msginfo = element msginfo { (db.msglevel|db.msgorig|db.msgaud)* }
+
+db.msglevel = element msglevel { ubiq.inlines* }
+
+db.msgorig = element msgorig { ubiq.inlines* }
+
+db.msgaud = element msgaud { ubiq.inlines* }
+
+db.msgexplan = element msgexplan { db.title?, blocks+ }
+
+ctrl:choice-list [ name="technical.blocks" choose="db.msgset" ]

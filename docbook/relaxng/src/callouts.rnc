@@ -1,0 +1,117 @@
+# (Part of) A prototype DocBook V.next RELAX NG grammar.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.1 and V4.2
+# Release: $Id$
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+
+ctrl:choice-list [ name="publishing.inlines" choose="db.coref" ]
+ctrl:choice-list [ name="list.blocks" choose="db.calloutlist" ]
+ctrl:choice-list [ name="verbatim.blocks" choose="db.programlistingco" ]
+ctrl:choice-list [ name="verbatim.blocks" choose="db.screenco" ]
+ctrl:choice-list [ name="graphic.blocks" choose="db.mediaobjectco" ]
+ctrl:choice-list [ name="screenshot.block" choose="db.mediaobjectco" ]
+ctrl:choice-list [ name="computeroutput.inlines" choose="db.co" ]
+ctrl:choice-list [ name="verbatim.inlines" choose="db.co" ]
+ctrl:choice-list [ name="prompt.inlines" choose="db.co" ]
+ctrl:choice-list [ name="systemitem.inlines" choose="db.co" ]
+
+area.units.enumtype.attribute =
+   attribute units {
+      "calspair"
+    | "linecolumn"
+    | "linecolumnpair"
+    | "linerange"
+   }?
+
+area.units.othertype.attributes =
+   attribute units { "other" },
+   attribute otherunits { xsd:NMTOKEN }
+
+area.units.attribute =
+   (area.units.enumtype.attribute | area.units.othertype.attributes)
+
+
+calloutlist.info = db.info
+db.calloutlist = element calloutlist { calloutlist.info, blocks*, db.callout+ }
+
+callout.arearefs.attrib = attribute arearefs { xsd:IDREFS }
+db.callout = element callout { blocks+ }
+
+programlistingco.info = db.info
+db.programlistingco =
+   element programlistingco {
+      programlistingco.info,
+      db.areaspec,
+      db.programlisting,
+      db.calloutlist*
+   }
+
+areaspec.units.attrib = area.units.attribute
+db.areaspec = element areaspec { (db.area | db.areaset)+ }
+
+# FIXME: are the common linking attributes used on area?
+
+ctrl:common-attributes [ element="area" attributes="common.attrib.idreq" ]
+
+area.units.attrib = area.units.attribute
+area.linkends.attrib = linkends.attribute?
+area.label.attrib = attribute label { text }?
+area.coords.attrib = attribute coords { text }
+db.area = element area { empty }
+
+ctrl:common-attributes [ element="areaset" attributes="common.attrib.idreq" ]
+
+areaset.units.attrib = area.units.attribute
+areaset.label.attrib = attribute label { text }?
+db.areaset = element areaset { db.area+ }
+
+screenco.info = db.info
+db.screenco =
+   element screenco {
+      screenco.info,
+      db.areaspec,
+      db.screen,
+      db.calloutlist*
+   }
+
+mediaobjectco.info = db.info
+db.mediaobjectco =
+   element mediaobjectco {
+      mediaobjectco.info,
+      db.imageobjectco,
+      (db.imageobjectco | db.textobject)*
+   }
+
+imageobjectco.info = db.info
+db.imageobjectco =
+   element imageobjectco {
+      imageobjectco.info,
+      db.areaspec,
+      db.imageobject,
+      db.calloutlist*
+   }
+
+# FIXME: are the common linking attributes used on co?
+
+ctrl:common-attributes [ element="co" attributes="common.attrib.idreq" ]
+
+co.linkends.attrib = linkends.attribute?
+co.label.attrib = attribute label { text }?
+db.co = element co { empty }
+
+# FIXME: are the common linking attributes used on coref?
+
+coref.label.attrib = attribute label { text }?
+coref.linkend.attrib = linkend.attribute
+
+db.coref = element coref { empty }
+
