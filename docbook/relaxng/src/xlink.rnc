@@ -24,7 +24,7 @@ db.info.elements |= db.extendedlink
 
 [
    db:refname [ "extendedlink" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An XLink extended link" ]
 ]
 div {
 
@@ -48,7 +48,7 @@ div {
 
 [
    db:refname [ "locator" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An XLink locator in an " db:tag [ "extendedlink" ]]
 ]
 div {
 
@@ -74,7 +74,7 @@ div {
 
 [
    db:refname [ "arc" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An XLink arc in an " db:tag [ "extendedlink" ] ]
 ]
 div {
 
