@@ -163,7 +163,7 @@
 <gentext key="nav-up" text="Nahoru"/>
 <gentext key="nav-home" text="Dom&#x016F;"/>
 
-<gentext key="the section called"  text="odd&#x00ed;l nazvan&#x00fd;"/>
+<gentext key="sectioncalled"  text="odd&#x00ed;l nazvan&#x00fd;"/>
 
 <dingbat key="startquote" text="&#x201e;"/>
 <dingbat key="endquote" text="&#x201c;"/>

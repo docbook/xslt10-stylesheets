@@ -164,7 +164,7 @@
 <gentext key="nav-up" text="Omhoog"/>
 <gentext key="nav-home" text="Begin"/>
 
-<gentext key="the section called"       text="de sectie genaamd"/>
+<gentext key="sectioncalled"       text="de sectie genaamd"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>

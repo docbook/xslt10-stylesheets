@@ -333,13 +333,13 @@
 
 <context name="section-xref">
 
-<template name="sect1"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="sect2"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="sect3"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="sect4"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="sect5"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="section"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="simplesect"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="sect1">&#x201C;%t&#x201D;</template>
+<template name="sect2">&#x201C;%t&#x201D;</template>
+<template name="sect3">&#x201C;%t&#x201D;</template>
+<template name="sect4">&#x201C;%t&#x201D;</template>
+<template name="sect5">&#x201C;%t&#x201D;</template>
+<template name="section">&#x201C;%t&#x201D;</template>
+<template name="simplesect">&#x201C;%t&#x201D;</template>
 
 </context>
 
@@ -351,7 +351,7 @@
 <template name="sect4"><Section/> %n</template>
 <template name="sect5"><Section/> %n</template>
 <template name="section"><Section/> %n</template>
-<template name="simplesect"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="simplesect">&#x201C;%t&#x201D;</template>
 
 </context>
 
