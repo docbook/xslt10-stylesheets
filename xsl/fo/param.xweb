@@ -95,6 +95,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &index.on.role;
 &index.preferred.page.properties;
 &index.entry.properties;
+&index.div.title.properties;
 &xep.index.item.properties;
 &toc.section.depth;
 &toc.indent.width;
@@ -617,6 +618,7 @@ around all these parameters.</para>
 <src:fragref linkend="informal.object.properties.frag"/>
 <src:fragref linkend="informaltable.properties.frag"/>
 <src:fragref linkend="index.preferred.page.properties.frag"/>
+<src:fragref linkend="index.div.title.properties.frag"/>
 <src:fragref linkend="index.entry.properties.frag"/>
 <src:fragref linkend="insert.xref.page.number.frag"/>
 <src:fragref linkend="l10n.gentext.default.language.frag"/>
