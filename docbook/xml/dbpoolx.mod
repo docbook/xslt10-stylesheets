@@ -3745,6 +3745,7 @@ in the text (no (0) value, the default)
 <!ENTITY % funcdef.element "INCLUDE">
 <![%funcdef.element;[
 <!ELEMENT funcdef %ho; (#PCDATA
+		| type
 		| replaceable
 		| function)*>
 <!--end of funcdef.element-->]]>
@@ -3812,6 +3813,7 @@ in the text (no (0) value, the default)
 <!ENTITY % paramdef.element "INCLUDE">
 <![%paramdef.element;[
 <!ELEMENT paramdef %ho; (#PCDATA
+		| type
 		| replaceable
 		| parameter
 		| funcparams)*>
