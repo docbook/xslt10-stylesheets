@@ -124,7 +124,7 @@
         <table xsl:use-attribute-sets="table.properties" border="0">
           <xsl:if test="$nav.table.summary!=''">
             <xsl:attribute name="summary">
-              <xsl:value-of select="$nav.table.summary"/>
+              <xsl:value-of select="normalize-space($nav.table.summary)"/>
             </xsl:attribute>
           </xsl:if>
           <tr>
