@@ -351,11 +351,20 @@
   <xsl:variable name="content">
     <xsl:apply-templates/>
   </xsl:variable>
-  <xsl:if test="$content != ''">
-    <xsl:text>: </xsl:text>
-    <xsl:value-of select="$content" />
-  </xsl:if>
-  <xsl:apply-templates mode="italic" select="@url" />
+  <xsl:variable name="url" select="@url"/>
+  <xsl:choose>
+    <xsl:when test="$url=$content or $content=''">
+      <xsl:text>\fI</xsl:text>
+      <xsl:value-of select="$url"/>
+      <xsl:text>\fR</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$content"/>
+      <xsl:text>: \fI</xsl:text>
+      <xsl:value-of select="$url"/>
+      <xsl:text>\fR</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- Translate some entities to textual equivalents. -->
