@@ -253,6 +253,7 @@
 <template name="sect5">%t</template>
 <template name="section">%t</template>
 <template name="simplesect">%t</template>
+<template name="bridgehead">%t</template>
 
 </context>
 
@@ -265,6 +266,7 @@
 <template name="sect5">%n. %t</template>
 <template name="section">%n. %t</template>
 <template name="simplesect">%n. %t</template>
+<template name="bridgehead">%n. %t</template>
 
 </context>
 
@@ -348,6 +350,7 @@
 <template name="sect5"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="section"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="simplesect"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="bridgehead"><sectioncalled/> &#x201C;%t&#x201D;</template>
 
 </context>
 
@@ -360,6 +363,7 @@
 <template name="sect5"><Section/> %n</template>
 <template name="section"><Section/> %n</template>
 <template name="simplesect"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="bridgehead"><Section/> %n</template>
 
 </context>
 
