@@ -56,6 +56,7 @@
 <!ENTITY glossterm.auto.link SYSTEM "../params/glossterm.auto.link.xml">
 <!ENTITY graphic.default.extension SYSTEM "../params/graphic.default.extension.xml">
 <!ENTITY html.base SYSTEM "../params/html.base.xml">
+<!ENTITY html.cleanup SYSTEM "../params/html.cleanup.xml">
 <!ENTITY html.ext SYSTEM "../params/html.ext.xml">
 <!ENTITY html.longdesc SYSTEM "../params/html.longdesc.xml">
 <!ENTITY html.longdesc.link SYSTEM "../params/html.longdesc.link.xml">

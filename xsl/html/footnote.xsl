@@ -109,35 +109,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="para|simpara" mode="footnote.body">
-  <!-- this only works if the first thing in a footnote is a para, -->
-  <!-- which is ok, because it usually is. -->
-  <xsl:variable name="name">
-    <xsl:text>ftn.</xsl:text>
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select="ancestor::footnote"/>
-    </xsl:call-template>
-  </xsl:variable>
-  <xsl:variable name="href">
-    <xsl:text>#</xsl:text>
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select="ancestor::footnote"/>
-    </xsl:call-template>
-  </xsl:variable>
-  <p>
-    <sup>
-      <xsl:text>[</xsl:text>
-      <a name="{$name}" href="{$href}">
-        <xsl:apply-templates select="ancestor::footnote"
-                             mode="footnote.number"/>
-      </a>
-      <xsl:text>] </xsl:text>
-    </sup>
-    <xsl:apply-templates/>
-  </p>
-</xsl:template>
-
-<xsl:template match="*" mode="footnote.body">
+<xsl:template match="*" mode="footnote.body.number">
   <xsl:variable name="name">
     <xsl:text>ftn.</xsl:text>
     <xsl:call-template name="object.id">
@@ -164,6 +136,7 @@
   <xsl:variable name="html">
     <xsl:apply-templates select="."/>
   </xsl:variable>
+
   <xsl:variable name="html-nodes" select="exsl:node-set($html)"/>
 
   <xsl:choose>
@@ -226,9 +199,9 @@
 
 <xsl:template match="footnote" mode="process.footnote.mode">
   <xsl:choose>
-    <xsl:when test="function-available('exsl:node-set')">
+    <xsl:when test="$html.cleanup != 0 and function-available('exsl:node-set')">
       <div class="{name(.)}">
-        <xsl:apply-templates select="*[1]" mode="footnote.body"/>
+        <xsl:apply-templates select="*[1]" mode="footnote.body.number"/>
         <xsl:apply-templates select="*[position() &gt; 1]"/>
       </div>
     </xsl:when>
@@ -254,9 +227,9 @@
 
 <xsl:template match="footnote" mode="table.footnote.mode">
   <xsl:choose>
-    <xsl:when test="function-available('exsl:node-set')">
+    <xsl:when test="$html.cleanup != 0 and function-available('exsl:node-set')">
       <div class="{name(.)}">
-        <xsl:apply-templates select="*[1]" mode="footnote.body"/>
+        <xsl:apply-templates select="*[1]" mode="footnote.body.number"/>
         <xsl:apply-templates select="*[position() &gt; 1]"/>
       </div>
     </xsl:when>
