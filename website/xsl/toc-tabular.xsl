@@ -280,7 +280,7 @@
     </xsl:call-template>
 
     <xsl:choose>
-      <xsl:when test="$nav.graphics">
+      <xsl:when test="$nav.graphics != 0">
         <xsl:call-template name="link.to.page">
           <xsl:with-param name="href" select="@href"/>
           <xsl:with-param name="page" select="$target"/>
