@@ -3359,6 +3359,15 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
       <define name="glosslist">
         <element name="glosslist">
           <ref name="glosslist.attlist"/>
+          <optional>
+            <ref name="blockinfo"/>
+          </optional>
+          <optional>
+            <ref name="formalobject.title.content"/>
+          </optional>
+          <zeroOrMore>
+            <ref name="listpreamble.mix"/>
+          </zeroOrMore>
           <oneOrMore>
             <ref name="glossentry"/>
           </oneOrMore>
