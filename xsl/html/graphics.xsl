@@ -25,6 +25,34 @@
                  elements="insertfile"/>
 
 <!-- ==================================================================== -->
+<!-- Graphic format tests for the HTML backend -->
+
+<xsl:template name="is.graphic.format">
+  <xsl:param name="format"></xsl:param>
+  <xsl:if test="$format = 'PNG'
+                or $format = 'JPG'
+                or $format = 'JPEG'
+                or $format = 'linespecific'
+                or $format = 'GIF'
+                or $format = 'GIF87a'
+                or $format = 'GIF89a'
+                or $format = 'BMP'">1</xsl:if>
+</xsl:template>
+
+<xsl:template name="is.graphic.extension">
+  <xsl:param name="ext"></xsl:param>
+  <xsl:if test="$ext = 'png'
+                or $ext = 'jpeg'
+                or $ext = 'jpg'
+                or $ext = 'avi'
+                or $ext = 'mpg'
+                or $ext = 'mpeg'
+                or $ext = 'qt'
+                or $ext = 'gif'
+                or $ext = 'bmp'">1</xsl:if>
+</xsl:template>
+
+<!-- ==================================================================== -->
 
 <xsl:template match="screenshot">
   <div class="{name(.)}">
