@@ -61,11 +61,10 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <xsl:template name="empty.table.cell">
   <xsl:param name="colnum" select="0"/>
 
-  <xsl:variable name="frame" select="ancestor::tgroup/parent::*/@frame"/>
-
   <xsl:variable name="rowsep">
     <xsl:call-template name="inherited.table.attribute">
       <xsl:with-param name="entry" select="NOT-AN-ELEMENT-NAME"/>
+      <xsl:with-param name="tgroup" select="ancestor::tgroup"/>
       <xsl:with-param name="colnum" select="$colnum"/>
       <xsl:with-param name="attribute" select="'rowsep'"/>
     </xsl:call-template>
@@ -74,6 +73,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   <xsl:variable name="colsep">
     <xsl:call-template name="inherited.table.attribute">
       <xsl:with-param name="entry" select="NOT-AN-ELEMENT-NAME"/>
+      <xsl:with-param name="tgroup" select="ancestor::tgroup"/>
       <xsl:with-param name="colnum" select="$colnum"/>
       <xsl:with-param name="attribute" select="'colsep'"/>
     </xsl:call-template>
@@ -98,7 +98,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       </xsl:call-template>
     </xsl:if>
 
-    <fo:block/> <!-- fo:table-cell should not be empty -->
+    <!-- fo:table-cell should not be empty -->
+    <fo:block/>
   </fo:table-cell>
 </xsl:template>
 
