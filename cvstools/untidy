@@ -1,27 +1,57 @@
 #!/usr/bin/perl -w -- # -*- Perl -*-
 
-my $filename = pop @ARGV;
-my $opts = join(" ", @ARGV);
+my @filenames = ();
+my $opts = "";
 
-my $content = "";
-
-open (F, "/usr/bin/tidy $opts $filename |");
-while (<F>) {
-    $content .= $_;
+while (@ARGV) {
+    $_ = shift @ARGV;
+    if (@filenames || !/^-/) {
+	push (@filenames, $_);
+    } else {
+	$opts .= " " if $opts ne "";
+	$opts .= $_;
+    }
 }
-close (F);
 
-if ($content eq '') {
-    # we must have done an "in-place" tidy
-    if (open (F, $filename)) {
-	read (F, $content, -s $filename);
+if ($#filenames == 0) {
+    my $filename = shift @filenames;
+    my $content = "";
+
+    open (F, "/usr/bin/tidy $opts $filename |");
+    while (<F>) {
+	$content .= $_;
+    }
+    close (F);
+
+    if ($content eq '') {
+	# we must have done an "in-place" tidy
+	if (open (F, $filename)) {
+	    read (F, $content, -s $filename);
+	    close (F);
+	}
+    }
+
+    $content =~ s/(<a\s[^>]+>)\s+/$1/sg;
+    $content =~ s/\s+(<\/a>)/$1/sg;
+
+    open (F, ">$filename");
+    print F $content;
+    close (F);
+} else {
+    system ("/usr/bin/tidy $opts " . join(" ", @filenames));
+    foreach my $filename (@filenames) {
+	if (open (F, $filename)) {
+	    read (F, $content, -s $filename);
+	    close (F);
+	}
+
+	$content =~ s/(<a\s[^>]+>)\s+/$1/sg;
+	$content =~ s/\s+(<\/a>)/$1/sg;
+
+	open (F, ">$filename");
+	print F $content;
 	close (F);
     }
 }
 
-$content =~ s/(<a\s[^>]+>)\s+/$1/sg;
-$content =~ s/\s+(<\/a>)/$1/sg;
 
-open (F, ">$filename");
-print F $content;
-close (F);
