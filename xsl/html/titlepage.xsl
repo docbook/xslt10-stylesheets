@@ -149,19 +149,23 @@
                     and $use.extensions != '0'
                     and $linenumbering.extension != '0'">
       <div class="{name(.)}">
-        <p>
-          <xsl:call-template name="number.rtf.lines">
-            <xsl:with-param name="rtf" select="$rtf"/>
-          </xsl:call-template>
-        </p>
+        <xsl:call-template name="paragraph">
+          <xsl:with-param name="content">
+            <xsl:call-template name="number.rtf.lines">
+              <xsl:with-param name="rtf" select="$rtf"/>
+            </xsl:call-template>
+          </xsl:with-param>
+        </xsl:call-template>
       </div>
     </xsl:when>
 
     <xsl:otherwise>
       <div class="{name(.)}">
-        <p>
-          <xsl:apply-templates mode="titlepage.mode"/>
-        </p>
+        <xsl:call-template name="paragraph">
+          <xsl:with-param name="content">
+            <xsl:apply-templates mode="titlepage.mode"/>
+          </xsl:with-param>
+        </xsl:call-template>
       </div>
     </xsl:otherwise>
   </xsl:choose>
@@ -509,17 +513,25 @@
   <xsl:choose>
     <xsl:when test="contrib">
       <xsl:if test="not(preceding-sibling::othercredit[string(contrib)=$contrib])">
-        <p class="{name(.)}">
-          <xsl:apply-templates mode="titlepage.mode" select="contrib"/>
-          <xsl:text>: </xsl:text>
-          <xsl:call-template name="person.name"/>
-          <xsl:apply-templates mode="titlepage.mode" select="./affiliation"/>
-          <xsl:apply-templates select="following-sibling::othercredit[string(contrib)=$contrib]" mode="titlepage.othercredits"/>
-        </p>
+        <xsl:call-template name="paragraph">
+          <xsl:with-param name="class" select="name(.)"/>
+          <xsl:with-param name="content">
+            <xsl:apply-templates mode="titlepage.mode" select="contrib"/>
+            <xsl:text>: </xsl:text>
+            <xsl:call-template name="person.name"/>
+            <xsl:apply-templates mode="titlepage.mode" select="./affiliation"/>
+            <xsl:apply-templates select="following-sibling::othercredit[string(contrib)=$contrib]" mode="titlepage.othercredits"/>
+          </xsl:with-param>
+        </xsl:call-template>
       </xsl:if>
     </xsl:when>
     <xsl:otherwise>
-      <p class="{name(.)}"><xsl:call-template name="person.name"/></p>
+      <xsl:call-template name="paragraph">
+        <xsl:with-param name="class" select="name(.)"/>
+        <xsl:with-param name="content">
+          <xsl:call-template name="person.name"/>
+        </xsl:with-param>
+      </xsl:call-template>
       <xsl:apply-templates mode="titlepage.mode" select="./affiliation"/>
     </xsl:otherwise>
   </xsl:choose>
@@ -565,15 +577,21 @@
 </xsl:template>
 
 <xsl:template match="pubdate" mode="titlepage.mode">
-  <p class="{name(.)}">
-    <xsl:apply-templates mode="titlepage.mode"/>
-  </p>
+  <xsl:call-template name="paragraph">
+    <xsl:with-param name="class" select="name(.)"/>
+    <xsl:with-param name="content">
+      <xsl:apply-templates mode="titlepage.mode"/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="publisher" mode="titlepage.mode">
-  <p class="{name(.)}">
-    <xsl:apply-templates mode="titlepage.mode"/>
-  </p>
+  <xsl:call-template name="paragraph">
+    <xsl:with-param name="class" select="name(.)"/>
+    <xsl:with-param name="content">
+      <xsl:apply-templates mode="titlepage.mode"/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="publishername" mode="titlepage.mode">
@@ -591,9 +609,12 @@
 </xsl:template>
 
 <xsl:template match="releaseinfo" mode="titlepage.mode">
-  <p class="{name(.)}">
-    <xsl:apply-templates mode="titlepage.mode"/>
-  </p>
+  <xsl:call-template name="paragraph">
+    <xsl:with-param name="class" select="name(.)"/>
+    <xsl:with-param name="content">
+      <xsl:apply-templates mode="titlepage.mode"/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="revhistory" mode="titlepage.mode">

@@ -24,14 +24,13 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="para">
-  <xsl:variable name="p">
-    <p>
+  <xsl:call-template name="paragraph">
+    <xsl:with-param name="class">
       <xsl:if test="@role and $para.propagates.style != 0">
-        <xsl:attribute name="class">
-          <xsl:value-of select="@role"/>
-        </xsl:attribute>
+        <xsl:value-of select="@role"/>
       </xsl:if>
-
+    </xsl:with-param>
+    <xsl:with-param name="content">
       <xsl:if test="position() = 1 and parent::listitem">
         <xsl:call-template name="anchor">
           <xsl:with-param name="node" select="parent::listitem"/>
@@ -40,6 +39,22 @@
 
       <xsl:call-template name="anchor"/>
       <xsl:apply-templates/>
+    </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="paragraph">
+  <xsl:param name="class" select="''"/>
+  <xsl:param name="content"/>
+
+  <xsl:variable name="p">
+    <p>
+      <xsl:if test="$class != ''">
+        <xsl:attribute name="class">
+          <xsl:value-of select="$class"/>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:copy-of select="$content"/>
     </p>
   </xsl:variable>
 
@@ -70,16 +85,17 @@
 </xsl:template>
 
 <xsl:template match="formalpara">
-  <p>
-    <xsl:if test="@role and $para.propagates.style != 0">
-      <xsl:attribute name="class">
+  <xsl:call-template name="paragraph">
+    <xsl:with-param name="class">
+      <xsl:if test="@role and $para.propagates.style != 0">
         <xsl:value-of select="@role"/>
-      </xsl:attribute>
-    </xsl:if>
-
-    <xsl:call-template name="anchor"/>
-    <xsl:apply-templates/>
-  </p>
+      </xsl:if>
+    </xsl:with-param>
+    <xsl:with-param name="content">
+      <xsl:call-template name="anchor"/>
+      <xsl:apply-templates/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="formalpara/title">
@@ -310,7 +326,7 @@
   <xsl:variable name="revnumber" select=".//revnumber"/>
   <xsl:variable name="revdate"   select=".//date"/>
   <xsl:variable name="revauthor" select=".//authorinitials"/>
-  <xsl:variable name="revremark" select=".//revremark|../revdescription"/>
+  <xsl:variable name="revremark" select=".//revremark|.//revdescription"/>
   <tr>
     <td align="left">
       <xsl:if test="$revnumber">
