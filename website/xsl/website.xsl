@@ -27,6 +27,10 @@
 
 <xsl:attribute-set name="body.attributes"/>
 
+<xsl:template name="body.attributes">
+  <!-- Turn off the template from the stock DocBook XSL -->
+</xsl:template>
+
 <!-- ==================================================================== -->
 
 <xsl:template match="webpage">
