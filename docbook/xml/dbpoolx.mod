@@ -186,7 +186,7 @@
 
 <!ENTITY % local.docinfo.char.class "">
 <!ENTITY % docinfo.char.class
-		"author|authorinitials|corpauthor|modespec|othercredit
+		"author|authorinitials|corpauthor|corpcredit|modespec|othercredit
 		|productname|productnumber|revhistory
 		%local.docinfo.char.class;">
 
@@ -859,7 +859,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 		"abbrev|abstract|address|artpagenums|author
 		|authorgroup|authorinitials|bibliomisc|biblioset
 		|collab|confgroup|contractnum|contractsponsor
-		|copyright|corpauthor|corpname|date|edition
+		|copyright|corpauthor|corpname|corpcredit|date|edition
 		|editor|invpartnumber|isbn|issn|issuenum|orgname
 		|biblioid|citebiblioid|bibliosource|bibliorelation|bibliocoverage
 		|othercredit|pagenums|printhistory|productname
@@ -4709,7 +4709,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % authorgroup.element "INCLUDE">
 <![%authorgroup.element;[
-<!ELEMENT authorgroup %ho; ((author|editor|collab|corpauthor|othercredit)+)>
+<!ELEMENT authorgroup %ho; ((author|editor|collab|corpauthor|corpcredit|othercredit)+)>
 <!--end of authorgroup.element-->]]>
 
 <!ENTITY % authorgroup.attlist "INCLUDE">
@@ -5034,6 +5034,34 @@ in the text (no (0) value, the default)
 >
 <!--end of corpauthor.attlist-->]]>
 <!--end of corpauthor.module-->]]>
+
+<!-- CorpCredit ...................... -->
+
+<!ENTITY % corpcredit.module "INCLUDE">
+<![%corpcredit.module;[
+<!ENTITY % local.corpcredit.attrib "">
+<!ENTITY % corpcredit.role.attrib "%role.attrib;">
+
+<!ENTITY % corpcredit.element "INCLUDE">
+<![%corpcredit.element;[
+<!ELEMENT corpcredit %ho; (%docinfo.char.mix;)*>
+<!--end of corpcredit.element-->]]>
+
+<!ENTITY % corpcredit.attlist "INCLUDE">
+<![%corpcredit.attlist;[
+<!ATTLIST corpcredit
+		class	(graphicdesigner
+			|productioneditor
+			|copyeditor
+			|technicaleditor
+			|translator
+			|other)			#IMPLIED
+		%common.attrib;
+		%corpcredit.role.attrib;
+		%local.corpcredit.attrib;
+>
+<!--end of corpcredit.attlist-->]]>
+<!--end of corpcredit.module-->]]>
 
 <!-- CorpName ......................... -->
 
@@ -5454,6 +5482,12 @@ in the text (no (0) value, the default)
 <!ENTITY % othercredit.attlist "INCLUDE">
 <![%othercredit.attlist;[
 <!ATTLIST othercredit
+		class	(graphicdesigner
+			|productioneditor
+			|copyeditor
+			|technicaleditor
+			|translator
+			|other)			#IMPLIED
 		%common.attrib;
 		%othercredit.role.attrib;
 		%local.othercredit.attrib;
