@@ -31,7 +31,7 @@ fib.pl: fib.xweb
 	$(XSLT) $< ../tangle.xsl $@
 
 fib.xml: fib.xweb
-	$(XSLT) $< ../wdocbook.xsl $@
+	$(XSLT) $< ../w2docbook.xsl $@
 
 fib.xpp: fib.xweb prettyprint.pl
 	perl prettyprint.pl $< > $@

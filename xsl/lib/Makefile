@@ -12,7 +12,7 @@ lib.html: lib.xml lib.xsl
 lib.xml: lib.xweb
 	$(XSLT) $< ../profiling/profile.xsl $(PARAMPROF) profile.condition=html
 	$(XSLT) $(PARAMPROF) ../profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
-	$(XSLT) $(PARAMSTRIP) ../../litprog/wdocbook.xsl $@
+	$(XSLT) $(PARAMSTRIP) ../../litprog/w2docbook.xsl $@
 	$(RM) $(PARAMPROF) $(PARAMSTRIP)
 
 lib.xsl: lib.xweb
