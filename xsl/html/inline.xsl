@@ -535,6 +535,9 @@
               </xsl:otherwise>
             </xsl:choose>
           </xsl:when>
+          <xsl:when test="@role and $emphasis.propagates.style != 0">
+            <xsl:apply-templates/>
+          </xsl:when>
           <xsl:otherwise>
             <em><xsl:apply-templates/></em>
           </xsl:otherwise>
