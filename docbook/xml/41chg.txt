@@ -1,7 +1,13 @@
-19 June 2000
+12 Aug 2000
 
-Changes from DocBook V4.0 to DocBook V4.1:
+Changes from DocBook V4.0 to DocBook V4.1.1:
 
-No user-visible changes; removed some 4.0 future use comments that had
-accidentally been left in the DTD and fixed a couple of incorrect FPIs.
+- Removed some 4.0 future use comments that had accidentally
+  been left in the DTD
+- Fixed system identifiers in docbook.cat
+- Added version information to all the ent/*.ent files
+- Fixed a number of numeric character references in the ent/*.ent files
+- Fixed a couple of incorrect FPIs.
+- Renamed dbgenent.ent to dbgenent.mod for parity with SGML version
+
 See 40chg.txt for a list of the significant changes.

@@ -1,8 +1,8 @@
-README for DocBook XML V4.1
+README for DocBook XML V4.1.1
 
-This is DocBook XML V4.1, released 19 June 2000.
+This is DocBook XML V4.1.1, released 12 Aug 2000.
 
-See 40chg.txt for information about what has changed since DocBook 3.1.
+See 41chg.txt for information about what has changed since DocBook 4.0.
 
 For more information about DocBook, please see
 

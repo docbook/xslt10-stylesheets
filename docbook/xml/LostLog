@@ -1,6 +1,26 @@
 This ChangeLog is all that remains from the previous incarnation of
 this CVS repository that was irretrievably lost.
 
+2000-08-12  Norman Walsh  <ndw@nwalsh.com>
+
+	* 40chg.txt: Updated; changed version number
+
+	* 41chg.txt, readme.txt: Updated; changed version number, release date
+
+	* calstblx.dtd, dbcentx.mod, dbgenent.ent, dbhierx.mod, dbnotnx.mod, dbpoolx.mod, docbook.cat: 
+	Changed version number
+
+	* docbookx.dtd: DocBook XML V4.1.1 released
+
+2000-07-06  Norman Walsh  <ndw@nwalsh.com>
+
+	* 40chg.txt, 41chg.txt, calstblx.dtd, dbcentx.mod, dbgenent.ent, dbhierx.mod, dbnotnx.mod, dbpoolx.mod, docbook.cat, readme.txt: 
+	Changed version numbers to 4.1.1beta1
+
+	* docbook.cat: Fixed incorrect system identifiers
+
+	* docbookx.dtd: Version 4.1.1beta1 released
+
 2000-06-19  Norman Walsh  <ndw@nwalsh.com>
 
 	* 40chg.txt: Added notes about comment and interfacedefinition
