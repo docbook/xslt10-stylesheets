@@ -881,7 +881,9 @@
   <xsl:param name="prev"/>
   <xsl:param name="next"/>
   <xsl:param name="nav.context"/>
-  <xsl:param name="content"/>
+  <xsl:param name="content">
+    <xsl:apply-imports/>
+  </xsl:param>
 
   <html>
     <xsl:call-template name="html.head">
@@ -901,14 +903,7 @@
 
       <xsl:call-template name="user.header.content"/>
 
-      <xsl:choose>
-        <xsl:when test="$content">
-          <xsl:copy-of select="$content"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-imports/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:copy-of select="$content"/>
 
       <xsl:call-template name="user.footer.content"/>
 
