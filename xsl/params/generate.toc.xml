@@ -20,6 +20,11 @@ preface   toc
 qandadiv  toc
 qandaset  toc
 reference toc
+sect1     toc
+sect2     toc
+sect3     toc
+sect4     toc
+sect5     toc
 section   toc
 set       toc
 </xsl:param>
@@ -33,6 +38,11 @@ part      toc
 qandadiv  toc
 qandaset  toc
 reference toc
+/sect1    toc
+/sect2    toc
+/sect3    toc
+/sect4    toc
+/sect5    toc
 /section  toc
 set       toc
 </xsl:param>
@@ -84,5 +94,10 @@ entry disables ToCs and LoTs for articles:</para>
 without a matching value. That'd be just begging the silly little
 path/value parser to get confused.</para>
 
+<para>Section ToCs are further controlled by the
+<parameter>generate.section.toc.depth</parameter> parameter.
+For a given section level to have a ToC, it must have both an entry in 
+<parameter>generate.toc</parameter> and be within the range enabled by
+<parameter>generate.section.toc.depth</parameter>.
 </refsect1>
 </refentry>
