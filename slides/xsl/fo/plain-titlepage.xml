@@ -13,7 +13,7 @@
 <!ENTITY hsize5space "18.6624pt"> <!-- 0.75 * hsize5 -->
 ]>
 <t:templates xmlns:t="http://nwalsh.com/docbook/xsl/template/1.0"
-	     xmlns:param="http://nwalsh.com/docbook/xsl/template/1.0/param"
+             xmlns:param="http://nwalsh.com/docbook/xsl/template/1.0/param"
              xmlns:fo="http://www.w3.org/1999/XSL/Format"
              xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
@@ -22,42 +22,43 @@
 <t:titlepage t:element="slides" t:wrapper="fo:block">
   <t:titlepage-content t:side="recto">
       <title t:predicate="[1]"
-	     t:named-template="component.title"
-	     param:node="ancestor-or-self::slides[1]"
-	     text-align="center"
-	     space-after="1em"
+             t:named-template="component.title"
+             param:node="ancestor-or-self::slides[1]"
+             text-align="center"
+             space-after="1em"
              padding-top="1.5in"
-	     keep-with-next="always"
-	     font-size="{$foil.title.size}"
-	     font-weight="bold"
-	     font-family="{$slide.title.font.family}"/>
+             keep-with-next="always"
+             font-size="{$foil.title.size}"
+             font-weight="bold"
+             font-family="{$slide.title.font.family}"/>
 
     <subtitle t:predicate="[1]"
-	      text-align="center"
-	      font-family="{$slide.title.font.family}"/>
+              text-align="center"
+              space-after="1em"
+              font-family="{$slide.title.font.family}"/>
 
     <corpauthor font-size="&hsize4;"
-		text-align="center"
-		space-after="1em"/>
+                text-align="center"
+                space-after="1em"/>
     <authorgroup/>
     <author font-size="&hsize4;"
-	    text-align="center"
-	    space-after="1em"/>
+            text-align="center"
+            space-after="1em"/>
 
     <pubdate font-size="&hsize3;"
-	     text-align="center"
-	     space-after="1em"/>
+             text-align="center"
+             space-after="1em"/>
 
     <confgroup font-size="&hsize3;"
-	       text-align="center"
-	       space-after="1em"/>
+               text-align="center"
+               space-after="1em"/>
 
     <releaseinfo font-size="&hsize3;"
-		 text-align="center"
-		 space-after="1em"/>
+                 text-align="center"
+                 space-after="1em"/>
 
     <copyright font-size="&hsize3;"
-	       text-align="center"/>
+               text-align="center"/>
 
     <revision text-align="center"/>
   </t:titlepage-content>
