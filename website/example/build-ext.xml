@@ -16,6 +16,13 @@ only be possible if you're using a processor for which the extensions
 have been implemented. The Website distribution includes extensions
 for Xalan and Saxon.</para>
 
+<para>You can still use other processors such as
+xsltproc or MSXML with this method, but the file dependencies won't be
+tracked.  Dependency tracking means the process can avoid having to 
+reprocess XML files that have not changed.
+So with xsltproc, all the XML files will be processed every time
+it is run.</para>
+
 <note>
 <para>If the source pages for your website are stored in several
 files, this method will probably will not work correctly all the time.
