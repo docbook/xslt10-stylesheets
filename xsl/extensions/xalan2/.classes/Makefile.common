@@ -1,0 +1,38 @@
+CLASSPATH=$(CLASSBASE):/projects/apache/xml-xalan/java/build/xalan.jar:/projects/apache/xml-xalan/java/bin/xerces.jar:/projects/apache/xml-xalan/java/bin/bsf.jar:/usr/local/jaxp-1.1/jaxp.jar:/usr/local/jaxp-1.1/parser.jar
+
+all: $(CLASSFILES)
+	-@for f in $(SUBDIRS); do \
+          if [ "$$f" != "__PHONY__" ]; then \
+            cd $$f; make all; cd ..; \
+          fi \
+        done
+
+clean:
+	rm -f *.class
+	-@for f in $(SUBDIRS); do \
+          if [ "$$f" != "__PHONY__" ]; then \
+            cd $$f; make clean; cd ..; \
+          fi \
+        done
+
+jar: all
+	jar cf ../../xalan2.jar com
+
+%.class : %.java
+	javac -classpath $(CLASSPATH) \
+		-sourcepath $(SOURCEPATH) \
+		-g -d $(CLASSBASE) \
+		$<
+
+includes:
+	classlist $(VPATH) > Makefile.incl
+	-@for f in $(SUBDIRS); do \
+          if [ "$$f" != "__PHONY__" ]; then \
+            if [ -d "$$f" -a -f "$$f/Makefile" ]; then \
+              cd $$f; make includes; cd ..; \
+            else if [ ! -d "$$f" ]; then \
+              mkdir $$f; \
+              fi; \
+            fi; \
+          fi; \
+        done
