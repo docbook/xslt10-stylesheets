@@ -36,7 +36,7 @@
 <xsl:template name="css.stylesheet">
   <!-- Danger Will Robinson: template shadows parameter -->
   <xsl:call-template name="css-file">
-    <xsl:with-param name="image" select="$css.stylesheet"/>
+    <xsl:with-param name="css" select="$css.stylesheet"/>
   </xsl:call-template>
 </xsl:template>
 
