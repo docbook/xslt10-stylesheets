@@ -143,6 +143,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/pixels.per.inch.xml \
        ../params/points.per.em.xml \
        ../params/preface.autolabel.xml \
+       ../params/preferred.mediaobject.role.xml \
        ../params/process.empty.source.toc.xml \
        ../params/process.source.toc.xml \
        ../params/profile.arch.xml \
@@ -183,9 +184,6 @@ PARAMS=../params/admon.graphics.xml \
        ../params/suppress.footer.navigation.xml \
        ../params/suppress.header.navigation.xml \
        ../params/suppress.navigation.xml \
-       ../params/table.border.color.xml \
-       ../params/table.border.style.xml \
-       ../params/table.border.thickness.xml \
        ../params/table.borders.with.css.xml \
        ../params/tablecolumns.extension.xml \
        ../params/targets.filename.xml \
@@ -202,6 +200,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/use.id.as.filename.xml \
        ../params/use.local.olink.style.xml \
        ../params/use.role.as.xrefstyle.xml \
+       ../params/use.role.for.mediaobject.xml \
        ../params/use.svg.xml \
        ../params/variablelist.as.table.xml \
        ../params/para.propagates.style.xml \
@@ -209,4 +208,18 @@ PARAMS=../params/admon.graphics.xml \
        ../params/html.cellspacing.xml \
        ../params/menuchoice.separator.xml \
        ../params/menuchoice.menu.separator.xml \
-       ../params/bibliography.numbered.xml
+       ../params/bibliography.numbered.xml \
+       ../params/chunk.tocs.and.lots.xml \
+       ../params/graphicsize.extension.xml \
+       ../params/l10n.gentext.language.xml \
+       ../params/l10n.gentext.default.language.xml \
+       ../params/l10n.gentext.use.xref.language.xml \
+       ../params/default.image.width.xml \
+       ../params/default.float.class.xml \
+       ../params/funcsynopsis.tabular.threshold.xml \
+       ../params/table.cell.border.color.xml \
+       ../params/table.cell.border.style.xml \
+       ../params/table.cell.border.thickness.xml \
+       ../params/table.frame.border.color.xml \
+       ../params/table.frame.border.style.xml \
+       ../params/table.frame.border.thickness.xml

@@ -28,6 +28,6 @@ role value, the first one is used.
 </para>
 <para>
 See the <parameter>use.role.for.mediaobject</parameter> parameter
-for the sequence of selection.
+for the sequence of selection.</para>
 </refsect1>
 </refentry>
