@@ -260,6 +260,30 @@ below the content of each slide.</para>
 </refsect1>
 </refentry>
 
+<refentry id="show.foil.number">
+<refmeta>
+<refentrytitle>show.foil.number</refentrytitle>
+<refmiscinfo role="type">boolean</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>show.foil.number</refname>
+<refpurpose>Show foil number on each foil?</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='show.foil.number.frag'>
+<xsl:param name="show.foil.number" select="0"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>If non-zero, on each slide there will be its number. Currently
+not supported in all output formats.</para>
+
+</refsect1>
+</refentry>
+
 </reference>
 
 <reference>
@@ -1383,6 +1407,7 @@ around all these parameters.</para>
 <src:fragref linkend="plus.image.frag"/>
 <src:fragref linkend="prev.image.frag"/>
 <src:fragref linkend="script.dir.frag"/>
+<src:fragref linkend="show.foil.number.frag"/>
 <src:fragref linkend="showtoc.image.frag"/>
 <src:fragref linkend="slides.js.frag"/>
 <src:fragref linkend="text.home.frag"/>
