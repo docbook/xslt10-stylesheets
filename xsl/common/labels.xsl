@@ -149,24 +149,6 @@ element label.</para>
 </xsl:template>
 
 <xsl:template match="section" mode="label.markup">
-  <!-- if this is a nested section, label the parent -->
-  <xsl:if test="local-name(..) = 'section'">
-    <xsl:variable name="parent.section.label">
-      <xsl:apply-templates select=".." mode="label.markup"/>
-    </xsl:variable>
-    <xsl:if test="$parent.section.label != ''">
-      <xsl:apply-templates select=".." mode="label.markup"/>
-      <xsl:apply-templates select=".." mode="intralabel.punctuation"/>
-    </xsl:if>
-  </xsl:if>
-
-  <!-- if the parent is a component, maybe label that too -->
-  <xsl:variable name="parent.is.component">
-    <xsl:call-template name="is.component">
-      <xsl:with-param name="node" select=".."/>
-    </xsl:call-template>
-  </xsl:variable>
-
   <!-- does this section get labelled? -->
   <xsl:variable name="label">
     <xsl:call-template name="label.this.section">
@@ -174,22 +156,42 @@ element label.</para>
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:if test="$section.label.includes.component.label != 0
-                and $parent.is.component != 0">
-    <xsl:variable name="parent.label">
-      <xsl:apply-templates select=".." mode="label.markup"/>
+  <xsl:if test="$label != 0">
+    <!-- if this is a nested section, label the parent -->
+    <xsl:if test="local-name(..) = 'section'">
+      <xsl:variable name="parent.section.label">
+        <xsl:apply-templates select=".." mode="label.markup"/>
+      </xsl:variable>
+      <xsl:if test="$parent.section.label != ''">
+        <xsl:apply-templates select=".." mode="label.markup"/>
+        <xsl:apply-templates select=".." mode="intralabel.punctuation"/>
+      </xsl:if>
+    </xsl:if>
+
+    <!-- if the parent is a component, maybe label that too -->
+    <xsl:variable name="parent.is.component">
+      <xsl:call-template name="is.component">
+        <xsl:with-param name="node" select=".."/>
+      </xsl:call-template>
     </xsl:variable>
-    <xsl:if test="$parent.label != ''">
-      <xsl:apply-templates select=".." mode="label.markup"/>
-      <xsl:apply-templates select=".." mode="intralabel.punctuation"/>
+
+    <xsl:if test="$section.label.includes.component.label != 0
+                  and $parent.is.component != 0">
+      <xsl:variable name="parent.label">
+        <xsl:apply-templates select=".." mode="label.markup"/>
+      </xsl:variable>
+      <xsl:if test="$parent.label != ''">
+        <xsl:apply-templates select=".." mode="label.markup"/>
+        <xsl:apply-templates select=".." mode="intralabel.punctuation"/>
+      </xsl:if>
     </xsl:if>
   </xsl:if>
 
-<!--
+  <!--
   <xsl:message>
     <xsl:value-of select="$label"/>, <xsl:number count="section"/>
   </xsl:message>
--->
+  -->
 
   <xsl:choose>
     <xsl:when test="@label">
