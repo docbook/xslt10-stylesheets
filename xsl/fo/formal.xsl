@@ -101,8 +101,7 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="local-name(.) = 'equation' or 
-                    local-name(.) = 'informalequation'">
+    <xsl:when test="local-name(.) = 'equation'">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="equation.properties">
         <xsl:apply-templates/>
@@ -111,6 +110,30 @@
     <xsl:when test="local-name(.) = 'procedure'">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="procedure.properties">
+        <xsl:apply-templates/>
+      </fo:block>
+    </xsl:when>
+    <xsl:when test="local-name(.) = 'informalfigure'">
+      <fo:block id="{$id}"
+                xsl:use-attribute-sets="informalfigure.properties">
+        <xsl:apply-templates/>
+      </fo:block>
+    </xsl:when>
+    <xsl:when test="local-name(.) = 'informaltable'">
+      <fo:block id="{$id}"
+                xsl:use-attribute-sets="informaltable.properties">
+        <xsl:apply-templates/>
+      </fo:block>
+    </xsl:when>
+    <xsl:when test="local-name(.) = 'informalexample'">
+      <fo:block id="{$id}"
+                xsl:use-attribute-sets="informalexample.properties">
+        <xsl:apply-templates/>
+      </fo:block>
+    </xsl:when>
+    <xsl:when test="local-name(.) = 'informalequation'">
+      <fo:block id="{$id}"
+                xsl:use-attribute-sets="informalequation.properties">
         <xsl:apply-templates/>
       </fo:block>
     </xsl:when>
@@ -632,7 +655,7 @@
     <xsl:for-each select="tgroup">
       <xsl:variable name="prop-columns"
                     select=".//colspec[contains(@colwidth, '*')]"/>
-      <fo:block xsl:use-attribute-sets="informal.object.properties">
+      <fo:block xsl:use-attribute-sets="informaltable.properties">
 	<fo:table xsl:use-attribute-sets="table.table.properties">
 	  <xsl:call-template name="table.frame"/>
 	  <xsl:if test="following-sibling::tgroup">
