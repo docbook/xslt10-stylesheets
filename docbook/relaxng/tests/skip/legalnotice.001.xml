@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book id="legalnotice.001">
+<info><title>Unit Test: legalnotice.001</title>
+
+<releaseinfo role="CVS">$Id$</releaseinfo>
+<author><personname><firstname>Adam</firstname><surname>Di Carlo</surname></personname><affiliation><address><email>adam@onshored.com</email></address></affiliation></author>
+<edition>draft</edition>
+<legalnotice>
+      <para>
+        A copy of the GNU GPL is available as
+        <filename>/usr/share/common-licenses/GPL</filename> on a
+        <productname>Debian</productname> system.  A copy of the GNU General Public License is
+        available.  It is available. It is available. It is
+        available. It is available. It is available. It is
+        available. It is available. It is available. It is available.
+      </para>
+      <para>
+        We're testing how <xmltag class="element">productname</xmltag> looks inside of <xmltag class="element">legalnotice</xmltag>.
+      </para>
+    </legalnotice>
+</info>
+</book>
