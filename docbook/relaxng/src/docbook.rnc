@@ -23,3 +23,5 @@ start = db.set
 	| db.section
 	| db.para
 
+include "hier.rnc"
+include "pool.rnc"

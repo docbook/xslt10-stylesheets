@@ -101,9 +101,21 @@ oo-language.attribute = attribute language { text }?
 
 ctrl:other-attribute [ name="biblio"
                        attribute-name="class"
-                       attribute-values="doi isbn issn libraryofcongress pubnumber uri"
-                       other-attribute-name="otherclass"
-                       other-attribute-value="other" ]
+                       other-attribute-name="otherclass" ]
+
+biblio.class-enum.attribute =
+   attribute class { "doi"
+    | "isbn"
+    | "issn"
+    | "libraryofcongress"
+    | "pubnumber"
+    | "uri" }?
+
+biblio.class-other.attributes =
+   attribute class { "other" },
+   attribute otherclass { xsd:NMTOKEN }
+
+biblio.class.attrib = (biblio.class-enum.attribute | biblio.class-other.attributes)
 
 significance.attribute = attribute significance { "normal" | "preferred" }
 zone.attribute = attribute zone { xsd:IDREFS }
@@ -201,17 +213,18 @@ glossary.inlines =
    db.firstterm
  | db.glossterm
 
-ctrl:choice-list [ name="publishing.inlines" choose="db.abbrev" ]
-ctrl:choice-list [ name="publishing.inlines" choose="db.acronym" ]
-ctrl:choice-list [ name="publishing.inlines" choose="db.emphasis" ]
-ctrl:choice-list [ name="publishing.inlines" choose="db.footnote" ]
-ctrl:choice-list [ name="publishing.inlines" choose="db.footnoteref" ]
-ctrl:choice-list [ name="publishing.inlines" choose="db.foreignphrase" ]
-ctrl:choice-list [ name="publishing.inlines" choose="db.phrase" ]
-ctrl:choice-list [ name="publishing.inlines" choose="db.quote" ]
-ctrl:choice-list [ name="publishing.inlines" choose="db.subscript" ]
-ctrl:choice-list [ name="publishing.inlines" choose="db.superscript" ]
-ctrl:choice-list [ name="publishing.inlines" choose="db.wordasword" ]
+publishing.inlines =
+   db.abbrev
+ | db.acronym
+ | db.emphasis
+ | db.footnote
+ | db.footnoteref
+ | db.foreignphrase
+ | db.phrase
+ | db.quote
+ | db.subscript
+ | db.superscript
+ | db.wordasword
 
 math.inlines = db.inlineequation
 
@@ -276,10 +289,9 @@ publishing.blocks =
  | db.address
  | db.epigraph
 
-ctrl:choice-list [ name="graphic.blocks" choose="db.mediaobject" ]
-ctrl:choice-list [ name="graphic.blocks" choose="db.screenshot" ]
+graphic.blocks = db.mediaobject | db.screenshot
 
-ctrl:choice-list [ name="technical.blocks" choose="db.procedure" ]
+technical.blocks = db.procedure
 
 admonition.blocks =
    db.caution
@@ -288,16 +300,18 @@ admonition.blocks =
  | db.tip
  | db.warning
 
-ctrl:choice-list [ name="list.blocks" choose="db.itemizedlist" ]
-ctrl:choice-list [ name="list.blocks" choose="db.orderedlist" ]
-ctrl:choice-list [ name="list.blocks" choose="db.procedure" ]
-ctrl:choice-list [ name="list.blocks" choose="db.simplelist" ]
-ctrl:choice-list [ name="list.blocks" choose="db.variablelist" ]
+list.blocks =
+   db.itemizedlist
+ | db.orderedlist
+ | db.procedure
+ | db.simplelist
+ | db.variablelist
 
-ctrl:choice-list [ name="verbatim.blocks" choose="db.programlisting" ]
-ctrl:choice-list [ name="verbatim.blocks" choose="db.screen" ]
-ctrl:choice-list [ name="verbatim.blocks" choose="db.literallayout" ]
-ctrl:choice-list [ name="verbatim.blocks" choose="db.synopsis" ]
+verbatim.blocks =
+   db.programlisting
+ | db.screen
+ | db.literallayout
+ | db.synopsis
 
 synopsis.blocks =
    db.cmdsynopsis
@@ -443,8 +457,8 @@ db.answer = element answer { db.label?, blocks+ }
 
 db.label = element label { docbook.text }
 
-ctrl:choice-list [ name="table.choice" choose="#notAllowed" ]
-ctrl:choice-list [ name="table.contentmodel" choose="#notAllowed" ]
+table.choice = notAllowed
+table.contentmodel = notAllowed
 
 db.table = table.choice
 
@@ -598,8 +612,7 @@ db.example = element example { example.info, blocks+ }
 informalexample.info = db.info.titleforbidden
 db.informalexample = element informalexample { informalexample.info, blocks+ }
 
-ctrl:choice-list [ name="verbatim.inlines" choose="inlines" ]
-ctrl:choice-list [ name="verbatim.inlines" choose="db.lineannotation" ]
+verbatim.inlines = inlines | db.lineannotation
 
 verbatim.contentmodel = docbook.info.titleforbidden, verbatim.inlines*
 
@@ -613,8 +626,7 @@ db.literallayout = element literallayout { verbatim.contentmodel }
 screen.linenumbering.attrib = linenumbering.attribute
 db.screen = element screen { verbatim.contentmodel }
 
-
-ctrl:choice-list [ name="screenshot.block" choose="db.mediaobject" ]
+screenshot.block = db.mediaobject
 
 screenshot.info = docbook.info
 db.screenshot =
@@ -682,7 +694,7 @@ db.textdata = element textdata { db.info.titleforbidden? }
 
 db.caption = element caption { inlines* | blocks+ }
 
-ctrl:choice-list [ name="equation.content" choose="db.mediaobject" ]
+equation.content = db.mediaobject
 
 equation.info = docbook.info.titlereq
 db.equation = element equation { equation.info, equation.content+ }
@@ -695,7 +707,7 @@ db.informalequation =
       equation.content+
    }
 
-ctrl:choice-list [ name="inlineequation.content" choose="db.inlinemediaobject" ]
+inlineequation.content = db.inlinemediaobject
 
 db.inlineequation = element inlineequation { inlineequation.content+ }
 
@@ -999,23 +1011,63 @@ bibliorelation.class.attrib = biblio.class.attrib
 
 ctrl:other-attribute [ name="bibliorelation"
                        attribute-name="type"
-                       attribute-values="hasformat haspart hasversion isformatof ispartof isreferencedby isreplacedby isrequiredby isversionof references replaces requires"
-                       other-attribute-name="othertype"
-                       other-attribute-value="othertype" ]
+                       other-attribute-name="othertype" ]
+
+bibliorelation.type-enum.attribute =
+   attribute type { "hasformat"
+    | "haspart"
+    | "hasversion"
+    | "isformatof"
+    | "ispartof"
+    | "isreferencedby"
+    | "isreplacedby"
+    | "isrequiredby"
+    | "isversionof"
+    | "othertype"
+    | "references"
+    | "replaces"
+    | "requires" }?
+
+bibliorelation.type-other.attributes =
+   attribute type { "othertype" },
+   attribute othertype { xsd:NMTOKEN }
+
+bibliorelation.type.attrib =
+   (bibliorelation.type-enum.attribute | bibliorelation.type-other.attributes)
 
 db.bibliorelation = element bibliorelation { docbook.text }
 
 ctrl:other-attribute [ name="bibliocoverage"
                        attribute-name="spatial"
-                       attribute-values="dcmibox dcmipoint iso3166 tgn"
-                       other-attribute-name="otherspacial"
-                       other-attribute-value="otherspacial" ]
+                       other-attribute-name="otherspacial" ]
+
+bibliocoverage.spatial-enum.attribute =
+   attribute spatial {
+      "dcmipoint" | "iso3166" | "dcmibox" | "tgn"
+   }?
+
+bibliocoverage.spatial-other.attributes =
+   attribute spatial { "otherspatial" },
+   attribute otherspacial { xsd:NMTOKEN }
+
+bibliocoverage.spatial.attrib =
+   (bibliocoverage.spatial-enum.attribute | bibliocoverage.spatial-other.attributes)
 
 ctrl:other-attribute [ name="bibliocoverage"
                        attribute-name="temporal"
-                       attribute-values="dcmiperiod othertemporal w3c-dtf"
-                       other-attribute-name="othertemporal"
-                       other-attribute-value="othertemporal" ]
+                       other-attribute-name="othertemporal" ]
+
+bibliocoverage.temporal-enum.attribute =
+   attribute temporal {
+      "dcmiperiod" | "w3c-dtf"
+   }?
+
+bibliocoverage.temporal-other.attributes =
+   attribute temporal { "othertemporal" },
+   attribute othertemporal { xsd:NMTOKEN }
+
+bibliocoverage.temporal.attrib =
+   (bibliocoverage.temporal-enum.attribute | bibliocoverage.temporal-other.attributes)
 
 db.bibliocoverage = element bibliocoverage { docbook.text }
 
@@ -1082,7 +1134,7 @@ db.classname = element classname { docbook.text }
 
 db.command = element command { inlines* }
 
-ctrl:choice-list [ name="computeroutput.inlines" choose="inlines" ]
+computeroutput.inlines = inlines
 
 db.computeroutput = element computeroutput { computeroutput.inlines* }
 
@@ -1139,9 +1191,19 @@ db.keycode = element keycode { docbook.text }
 
 ctrl:other-attribute [ name="keycombo"
                        attribute-name="action"
-                       attribute-values="click double-click press seq simul"
-                       other-attribute-name="otheraction"
-                       other-attribute-value="other" ]
+                       other-attribute-name="otheraction" ]
+
+keycombo.action-enum.attribute =
+  attribute action {
+    "click" | "double-click" | "press" | "seq" | "simul"
+  }?
+
+keycombo.action-other.attributes =
+   attribute action { "other" },
+   attribute otheraction { xsd:NMTOKEN }
+
+keycombo.action.attrib =
+   (keycombo.action-enum.attribute | keycombo.action-other.attributes)
 
 db.keycombo = element keycombo { docbook.text }
 
@@ -1172,7 +1234,7 @@ db.optional = element optional { inlines* }
 parameter.class.attrib = attribute class { "command" | "function" | "option" }?
 db.parameter = element parameter { docbook.text }
 
-ctrl:choice-list [ name="prompt.inlines" choose="docbook.text" ]
+prompt.inlines = docbook.text
 
 db.prompt = element prompt { prompt.inlines* }
 
@@ -1219,7 +1281,7 @@ systemitem.class.attrib =
     | "username"
   }?
 
-ctrl:choice-list [ name="systemitem.inlines" choose="docbook.text" ]
+systemitem.inlines = docbook.text
 
 db.systemitem = element systemitem { systemitem.inlines* }
 

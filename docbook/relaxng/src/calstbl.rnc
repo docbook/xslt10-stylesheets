@@ -114,8 +114,8 @@ cals.table.pgwide.attrib = attribute pgwide { "0" | "1" }
 cals.table.info = docbook.info.titlereq
 cals.table = element table { cals.table.info, cals.table.model }
 
-ctrl:choice-list [ name="table.choice" choose="cals.table" ]
-ctrl:choice-list [ name="table.contentmodel" choose="cals.table.model" ]
+table.choice |= cals.table
+table.contentmodel |= cals.table.model
 
 informaltable.tabstyle.attrib |= cals.table.tabstyle.attrib
 informaltable.orient.attrib |= cals.table.orient.attrib

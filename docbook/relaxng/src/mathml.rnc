@@ -22,5 +22,5 @@ any.mml =
    }
 
 
-ctrl:choice-list [ name="equation.content" choose="any.mml" ]
-ctrl:choice-list [ name="inlineequation.content" choose="any.mml" ]
+equation.content |= any.mml
+inlineequation.content |= any.mml

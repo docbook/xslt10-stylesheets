@@ -127,7 +127,7 @@ html.td.cellhalign.attrib = html.cellhalign
 html.td.cellvalign.attrib = html.cellvalign
 html.td = element td { (inlines* | blocks*) }
 
-ctrl:choice-list [ name="table.choice" choose="html.table" ]
-ctrl:choice-list [ name="table.contentmodel" choose="html.table.model" ]
+table.choice |= html.table
+table.contentmodel |= html.table.model
 
 informaltable.frame.attrib |= html.table.frame.attrib

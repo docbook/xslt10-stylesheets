@@ -40,4 +40,5 @@ db.msgaud = element msgaud { ubiq.inlines* }
 
 db.msgexplan = element msgexplan { db.title?, blocks+ }
 
-ctrl:choice-list [ name="technical.blocks" choose="db.msgset" ]
+technical.blocks |= db.msgset
+

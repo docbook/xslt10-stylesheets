@@ -13,16 +13,16 @@
 
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 
-ctrl:choice-list [ name="publishing.inlines" choose="db.coref" ]
-ctrl:choice-list [ name="list.blocks" choose="db.calloutlist" ]
-ctrl:choice-list [ name="verbatim.blocks" choose="db.programlistingco" ]
-ctrl:choice-list [ name="verbatim.blocks" choose="db.screenco" ]
-ctrl:choice-list [ name="graphic.blocks" choose="db.mediaobjectco" ]
-ctrl:choice-list [ name="screenshot.block" choose="db.mediaobjectco" ]
-ctrl:choice-list [ name="computeroutput.inlines" choose="db.co" ]
-ctrl:choice-list [ name="verbatim.inlines" choose="db.co" ]
-ctrl:choice-list [ name="prompt.inlines" choose="db.co" ]
-ctrl:choice-list [ name="systemitem.inlines" choose="db.co" ]
+publishing.inlines |= db.coref
+list.blocks |= db.calloutlist
+verbatim.blocks |= db.programlistingco
+verbatim.blocks |= db.screenco
+graphic.blocks |= db.mediaobjectco
+screenshot.block |= db.mediaobjectco
+computeroutput.inlines |= db.co
+verbatim.inlines |= db.co
+prompt.inlines |= db.co
+systemitem.inlines |= db.co
 
 area.units.enumtype.attribute =
    attribute units {
