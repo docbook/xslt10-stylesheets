@@ -1,0 +1,16 @@
+CLASSFILES=CVS.class \
+Callout.class \
+CalloutEmitter.class \
+ColumnScanEmitter.class \
+ColumnUpdateEmitter.class \
+CopyEmitter.class \
+FormatCallout.class \
+FormatGraphicCallout.class \
+FormatTextCallout.class \
+FormatUnicodeCallout.class \
+LineCountEmitter.class \
+NumberLinesEmitter.class \
+Table.class \
+Text.class \
+TextFactory.class \
+Verbatim.class 
