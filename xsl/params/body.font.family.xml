@@ -10,7 +10,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='body.font.family.frag'>
-<xsl:param name="body.font.family" select="'&quot;Times Roman&quot;,serif'"/>
+<xsl:param name="body.font.family" select="'serif'"/>
 </src:fragment>
 </refsynopsisdiv>
 

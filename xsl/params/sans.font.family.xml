@@ -10,7 +10,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='sans.font.family.frag'>
-<xsl:param name="sans.font.family" select="'Helvetica,Arial,sans-serif'"/>
+<xsl:param name="sans.font.family" select="'sans-serif'"/>
 </src:fragment>
 </refsynopsisdiv>
 
