@@ -103,6 +103,7 @@
             <xsl:with-param name="next" select="$next"/>
           </xsl:call-template>
         </xsl:with-param>
+        <xsl:with-param name="quiet" select="$chunk.quietly"/>
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>

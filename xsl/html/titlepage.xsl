@@ -425,6 +425,7 @@
 
       <xsl:call-template name="write.chunk">
         <xsl:with-param name="filename" select="$filename"/>
+        <xsl:with-param name="quiet" select="$chunk.quietly"/>
         <xsl:with-param name="content">
           <html>
             <head>
