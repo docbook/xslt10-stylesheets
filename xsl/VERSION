@@ -12,7 +12,7 @@
 <fm:project>
   <fm:Project>DocBook</fm:Project>
   <fm:Branch>XSL Stylesheets</fm:Branch>
-  <fm:Version>1.68.0</fm:Version>
+  <fm:Version>1.68.1</fm:Version>
 <!--
   <fm:License>MIT/X Consortium License</fm:License>
 -->
@@ -21,8 +21,8 @@
   <!-- Documentation -->
   <!-- Code cleanup -->
   <!-- Minor feature enhancements -->
-  Major feature enhancements
-  <!-- Minor bugfixes -->
+  <!-- Major feature enhancements -->
+  Minor bugfixes
   <!-- Major bugfixes -->
   <!-- Minor security fixes -->
   <!-- Major security fixes -->
@@ -34,7 +34,7 @@
   <fm:Changelog-URL>http://sourceforge.net/project/shownotes.php?release_id={SFRELID}</fm:Changelog-URL>
   <fm:CVS-URL>http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/docbook/xsl/</fm:CVS-URL>
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook-apps/</fm:Mailing-List-URL>
-  <fm:Changes>This release adds some significant FO features.
+  <fm:Changes>This is a minor bug-fix update to the 1.68.0 release.
 </fm:Changes>
 </fm:project>
 
