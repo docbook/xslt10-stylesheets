@@ -353,4 +353,13 @@ body { background-image: url('</xsl:text>
 
 <!-- ==================================================================== -->
 
+<xsl:template name="chunk">
+  <xsl:param name="node" select="."/>
+
+  <!-- The default is that we are not chunking... -->
+  <xsl:text>0</xsl:text>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
 </xsl:stylesheet>
