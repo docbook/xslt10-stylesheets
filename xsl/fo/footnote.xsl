@@ -15,17 +15,30 @@
 
      ******************************************************************** -->
 
+<xsl:template name="format.footnote.mark">
+  <xsl:param name="mark" select="'?'"/>
+  <fo:inline baseline-shift="super" font-size="90%">
+    <xsl:copy-of select="$mark"/>
+  </fo:inline>
+</xsl:template>
+
 <xsl:template match="footnote">
   <xsl:choose>
     <xsl:when test="ancestor::tgroup">
-      <fo:inline baseline-shift="super" font-size="90%">
-        <xsl:apply-templates select="." mode="footnote.number"/>
-      </fo:inline>
+      <xsl:call-template name="format.footnote.mark">
+        <xsl:with-param name="mark">
+          <xsl:apply-templates select="." mode="footnote.number"/>
+        </xsl:with-param>
+      </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <fo:footnote>
-        <fo:inline baseline-shift="super" font-size="90%">
-          <xsl:apply-templates select="." mode="footnote.number"/>
+        <fo:inline>
+          <xsl:call-template name="format.footnote.mark">
+            <xsl:with-param name="mark">
+              <xsl:apply-templates select="." mode="footnote.number"/>
+            </xsl:with-param>
+          </xsl:call-template>
         </fo:inline>
         <fo:footnote-body font-family="{$body.font.family}"
                           font-size="{$footnote.font.size}">
@@ -38,9 +51,11 @@
 
 <xsl:template match="footnoteref">
   <xsl:variable name="footnote" select="key('id',@linkend)"/>
-  <fo:inline baseline-shift="super" font-size="90%">
-    <xsl:apply-templates select="$footnote" mode="footnote.number"/>
-  </fo:inline>
+  <xsl:call-template name="format.footnote.mark">
+    <xsl:with-param name="mark">
+      <xsl:apply-templates select="$footnote" mode="footnote.number"/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="footnote" mode="footnote.number">
@@ -61,9 +76,11 @@
 
 <xsl:template match="*" mode="footnote.body.number">
   <xsl:variable name="footnote.mark">
-    <fo:inline baseline-shift="super" font-size="90%">
-      <xsl:apply-templates select="ancestor::footnote" mode="footnote.number"/>
-    </fo:inline>
+    <xsl:call-template name="format.footnote.mark">
+      <xsl:with-param name="mark">
+        <xsl:apply-templates select="ancestor::footnote" mode="footnote.number"/>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:variable>
 
   <xsl:variable name="fo">
@@ -95,9 +112,11 @@
   <!-- this only works if the first thing in a footnote is a para, -->
   <!-- which is ok, because it usually is. -->
   <fo:block>
-    <fo:inline baseline-shift="super" font-size="90%">
-      <xsl:apply-templates select="ancestor::footnote" mode="footnote.number"/>
-    </fo:inline>
+    <xsl:call-template name="format.footnote.mark">
+      <xsl:with-param name="mark">
+        <xsl:apply-templates select="ancestor::footnote" mode="footnote.number"/>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
