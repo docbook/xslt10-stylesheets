@@ -98,6 +98,6 @@ path/value parser to get confused.</para>
 <parameter>generate.section.toc.depth</parameter> parameter.
 For a given section level to have a ToC, it must have both an entry in 
 <parameter>generate.toc</parameter> and be within the range enabled by
-<parameter>generate.section.toc.depth</parameter>.
+<parameter>generate.section.toc.depth</parameter>.</para>
 </refsect1>
 </refentry>
