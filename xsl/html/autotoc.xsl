@@ -548,7 +548,7 @@
       </xsl:attribute>
       <xsl:copy-of select="$title"/>
     </a>
-    <xsl:if test="annotate.toc != 0">
+    <xsl:if test="$annotate.toc != 0">
       <xsl:text> - </xsl:text>
       <xsl:value-of select="refnamediv/refpurpose"/>
     </xsl:if>
