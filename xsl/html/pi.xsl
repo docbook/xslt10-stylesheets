@@ -78,7 +78,9 @@
     <xsl:otherwise>
       <xsl:if test="$ppath != ''">
         <xsl:value-of select="$ppath"/>
-        <xsl:text>/</xsl:text>
+        <xsl:if test="substring($ppath, string-length($ppath), 1) != '/'">
+          <xsl:text>/</xsl:text>
+        </xsl:if>
       </xsl:if>
       <xsl:value-of select="$path"/>
       <xsl:text>/</xsl:text>
