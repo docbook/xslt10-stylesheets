@@ -292,6 +292,9 @@
 <xsl:template match="listitem/*[1][local-name()='para' or 
                                    local-name()='simpara' or 
                                    local-name()='formalpara']
+                     |glossdef/*[1][local-name()='para' or 
+                                   local-name()='simpara' or 
+                                   local-name()='formalpara']
                      |step/*[1][local-name()='para' or 
                                    local-name()='simpara' or 
                                    local-name()='formalpara']
