@@ -86,7 +86,7 @@
   <xsl:text>&#10;.PP&#10;</xsl:text>
   <xsl:for-each select="node()">
     <xsl:choose>
-      <xsl:when test="self::informaltable|self::literallayout|self::screen|self::programlisting|self::itemizedlist|self::orderedlist|self::variablelist">
+      <xsl:when test="self::literallayout|self::screen|self::programlisting|self::itemizedlist|self::orderedlist|self::variablelist">
         <xsl:text>&#10;</xsl:text>
         <xsl:apply-templates select="."/>
       </xsl:when>
@@ -315,10 +315,6 @@
 </xsl:template>
 
 <xsl:template match="refentry/refentryinfo"></xsl:template>
-
-<xsl:template match="filename">
-  <xsl:text>&#10;.FN </xsl:text><xsl:apply-templates/>
-</xsl:template>
 
 <xsl:template match="informalexample|screen">
   <xsl:text>&#10;.IP&#10;.nf&#10;</xsl:text>
