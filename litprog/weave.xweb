@@ -183,11 +183,18 @@
     </xsl:otherwise>
   </xsl:choose>
 
-  <xsl:text>&gt;</xsl:text>
-  <xsl:apply-templates select="node()" mode="copy"/>
-  <xsl:text>&lt;/</xsl:text>
-  <xsl:value-of select="name(.)"/>
-  <xsl:text>&gt;</xsl:text>
+  <xsl:choose>
+    <xsl:when test="node()">
+      <xsl:text>&gt;</xsl:text>
+      <xsl:apply-templates select="node()" mode="copy"/>
+      <xsl:text>&lt;/</xsl:text>
+      <xsl:value-of select="name(.)"/>
+      <xsl:text>&gt;</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>/&gt;</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="src:passthrough" mode="copy" priority="3">
