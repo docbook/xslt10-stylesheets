@@ -27,6 +27,9 @@ while [ "$DONE" = "0" ]; do
         -D11)   shift
 		VERSION=D11
 		;;
+        -220)   shift
+		VERSION=220
+		;;
 	-*)	DONE=1;
 	        ;;
 	*)	DONE=1
@@ -55,6 +58,12 @@ elif [ "$VERSION" = "D11" ]; then
     RESOLVERS="$URES $ERES"
     XALANROOT="/usr/local/java/xalan-j_2_2_D11/bin"
     XALAN="$XALANROOT/xalan.jar:$XALANROOT/xml.jar"
+elif [ "$VERSION" = "220" ]; then
+    URES="-URIRESOLVER com.sun.resolver.tools.CatalogResolver"
+    ERES="-ENTITYRESOLVER com.sun.resolver.tools.CatalogResolver"
+    RESOLVERS="$URES $ERES"
+    XALANROOT="/usr/local/java/xalan-j_2_2_0/bin"
+    XALAN="$XALANROOT/xalan.jar:$XALANROOT/xml-apis.jar"
 else
     echo "Unexpected Xalan version $VERSION"
     exit 1
