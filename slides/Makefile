@@ -1,7 +1,7 @@
 include ../cvstools/Makefile.incl
 ZIPVER=
-MERGEVER=
-NEWVER=
+DIFFVER=
+NEXTVER=
 
 all: slides.dtd
 
@@ -26,17 +26,17 @@ test: check
 distrib: check
 	$(MAKE) -C doc all
 	$(CVS2LOG) -w
-ifeq ($(MERGEVER),)
+ifeq ($(DIFFVER),)
 	$(MERGELOGS) > WhatsNew
 else
-	$(MERGELOGS) -v $(MERGEVER) > WhatsNew
+	$(MERGELOGS) -v $(DIFFVER) > WhatsNew
 endif
 
 newversion:
-ifeq ($NEWVER),)
+ifeq ($NEXTVER),)
 	$(NEXTVERSION)
 else
-	$(NEXTVERSION) -v $(NEWVER)
+	$(NEXTVERSION) -v $(NEXTVER)
 endif
 	make distrib
 
