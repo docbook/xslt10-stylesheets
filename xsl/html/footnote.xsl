@@ -63,7 +63,7 @@
 
 <xsl:template match="footnote" mode="footnote.number">
   <xsl:choose>
-    <xsl:when test="ancestor::table|ancestor::informaltable">
+    <xsl:when test="ancestor::table or ancestor::informaltable">
       <xsl:number level="any" from="table|informaltable" format="a"/>
     </xsl:when>
     <xsl:otherwise>
@@ -74,7 +74,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="footnote/para[1]">
+<xsl:template match="footnote/para[1]|footnote/simpara[1]">
   <!-- this only works if the first thing in a footnote is a para, -->
   <!-- which is ok, because it usually is. -->
   <xsl:variable name="name">
@@ -124,6 +124,15 @@
 </xsl:template>
 
 <xsl:template match="footnote" mode="process.footnote.mode">
+  <xsl:if test="local-name(*[1]) != 'para'
+                and local-name(*[1]) != 'simpara'">
+    <xsl:message>
+      <xsl:text>Warning: footnote number may not be generated </xsl:text>
+      <xsl:text>correctly; </xsl:text>
+      <xsl:value-of select="local-name(*[1])"/>
+      <xsl:text> unexpected as first child of footnote.</xsl:text>
+    </xsl:message>
+  </xsl:if>
   <div class="{name(.)}">
     <xsl:apply-templates/>
   </div>
@@ -134,6 +143,15 @@
 </xsl:template>
 
 <xsl:template match="footnote" mode="table.footnote.mode">
+  <xsl:if test="local-name(*[1]) != 'para'
+                and local-name(*[1]) != 'simpara'">
+    <xsl:message>
+      <xsl:text>Warning: footnote number may not be generated </xsl:text>
+      <xsl:text>correctly; </xsl:text>
+      <xsl:value-of select="local-name(*[1])"/>
+      <xsl:text> unexpected as first child of footnote.</xsl:text>
+    </xsl:message>
+  </xsl:if>
   <div class="{name(.)}">
     <xsl:apply-templates/>
   </div>
