@@ -603,8 +603,10 @@
 <!-- ============================================================ -->
 <!-- inlines -->
 
-<xsl:template match="emphasis">
-  <i class="emphasis"><xsl:apply-templates/></i>
+<xsl:template match="link">
+  <xsl:call-template name="link">
+    <xsl:with-param name="a.target" select="'foil'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="ulink">
