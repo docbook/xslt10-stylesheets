@@ -324,7 +324,7 @@
               </xsl:otherwise>
             </xsl:choose>
           </xsl:when>
-        
+
           <xsl:otherwise>
             <xsl:message>
               <xsl:text>Link element has no content and no Endterm. </xsl:text>
@@ -351,7 +351,9 @@
       </xsl:otherwise>
     </xsl:choose>
   </fo:basic-link>
-  <xsl:if test="count(child::node()) != 0">
+  <xsl:if test="count(child::node()) != 0
+                and string(.) != @url
+                and $ulink.show != 0">
     <fo:inline hyphenate="false">
       <xsl:text> [</xsl:text>
       <xsl:value-of select="@url"/>
