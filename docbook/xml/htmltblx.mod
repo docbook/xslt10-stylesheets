@@ -62,10 +62,9 @@
   title       CDATA         #IMPLIED"
   >
 
+<!-- Does not contain lang or dir because they are in %common.attribs -->
 <!ENTITY % i18n
- "lang        NMTOKEN        #IMPLIED
-  xml:lang    NMTOKEN        #IMPLIED
-  dir         (ltr|rtl)      #IMPLIED"
+ "xml:lang    NMTOKEN        #IMPLIED"
   >
 
 <!ENTITY % events
@@ -174,7 +173,6 @@
 	title       CDATA         #IMPLIED
 	%i18n;
 	%events;
-	%cellhalign;
 	%tables.role.attrib;">
 
 <!ENTITY % common.table.attribs
