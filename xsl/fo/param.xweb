@@ -251,13 +251,13 @@ figure.</para>
 
 <para>The pink region at the top of the page is the region-before. The
 darker area inside the region-before is the header text. In XSL, the default
-display alignment for the region-before is <literal>before</literal>, but
-the DocBook stylesheets explicitly make it <literal>after</literal>. That's
-why the darker area is at the bottom.</para>
+display alignment for a region is <literal>before</literal>, but the
+DocBook stylesheets still explicitly make it <literal>before</literal>. That's
+why the darker area is at the top.</para>
 
 <para>The pink region at the bottom of the page is the region-after.
 The darker area is the footer text. In XSL, the default display
-alignment for the region-after is <literal>before</literal> (really!),
+alignment for a region is <literal>before</literal>,
 but the DocBook stylesheets explicitly make it
 <literal>after</literal>. That's why the darker area is at the bottom.</para>
 
