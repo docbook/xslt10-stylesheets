@@ -11,7 +11,7 @@
      Common declaration:
 
      <?xml version="1.0"?>
-     <!DOCTYPE website
+     <!DOCTYPE webpage
        PUBLIC "-//Norman Walsh//DTD Website V2.2//EN"
        "http://docbook.sourceforge.net/release/website/2.2/website.dtd">
                                                                             -->
@@ -27,13 +27,15 @@
 <!ENTITY % simplelist.content.module "INCLUDE">
 <!ENTITY % local.list.class "|simplelist">
 
-<!ENTITY % qandset.content.module "INCLUDE">
-<!ENTITY % qandset.module "INCLUDE">
+<!ENTITY % qandaset.content.module "INCLUDE">
+<!ENTITY % qandaset.module "INCLUDE">
 <!ENTITY % qandadiv.module "INCLUDE">
 <!ENTITY % qandaentry.module "INCLUDE">
 <!ENTITY % question.module "INCLUDE">
 <!ENTITY % answer.module "INCLUDE">
 <!ENTITY % label.module "INCLUDE">
+<!ENTITY % blockinfo.module "INCLUDE">
+
 <!ENTITY % local.compound.class "|qandaset">
 
 <!ENTITY % extensions.mod SYSTEM "extensions.mod">
