@@ -8,9 +8,9 @@
 <refpurpose>Specify relative widths of footer areas</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv>
-<src:fragment id='footer.column.widths.frag'><xsl:param name="footer.column.widths" select="1 1 1"/></src:fragment>
-</refsynopsisdiv>
+<refsynopsisdiv><src:fragment id='footer.column.widths.frag'>
+<xsl:param name="footer.column.widths" select="'1 1 1'"/>
+</src:fragment></refsynopsisdiv>
 
 <refsect1><title>Description</title>
 
