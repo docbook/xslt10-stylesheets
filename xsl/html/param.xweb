@@ -94,6 +94,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &process.source.toc;
 &process.empty.source.toc;
 &bridgehead.in.toc;
+&simplesect.in.toc;
 &manual.toc;
 &toc.list.type;
 &toc.section.depth;
@@ -648,6 +649,7 @@ around all these parameters.</para>
 <src:fragref linkend="shade.verbatim.style.frag"/>
 <src:fragref linkend="show.comments.frag"/>
 <src:fragref linkend="show.revisionflag.frag"/>
+<src:fragref linkend="simplesect.in.toc.frag"/>
 <src:fragref linkend="spacing.paras.frag"/>
 <src:fragref linkend="suppress.footer.navigation.frag"/>
 <src:fragref linkend="suppress.header.navigation.frag"/>
