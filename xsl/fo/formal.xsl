@@ -115,7 +115,7 @@
       </fo:block>
     </xsl:when>
     <xsl:otherwise>
-      <fo:block id="{$id}">
+      <fo:block id="{$id}" xsl:use-attribute-sets="informal.object.properties">
         <xsl:apply-templates/>
       </fo:block>
     </xsl:otherwise>
