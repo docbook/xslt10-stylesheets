@@ -21,7 +21,7 @@ else
 endif
 
 newversion:
-ifeq ($NEWVER),)
+ifeq ($(NEWVER),)
 	$(NEXTVERSION)
 else
 	$(NEXTVERSION) -v $(NEWVER)
