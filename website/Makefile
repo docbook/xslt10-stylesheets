@@ -1,30 +1,31 @@
 include ../cvstools/Makefile.incl
 ZIPVER=
-MERGEVER=
-NEWVER=
+DIFFVER=
+NEXTVER=
 
 .PHONY : distrib clean
 
-all: website.dtd
+all:
+	make -C schema all
 	make -C extensions all
 	make -C extensions jars
 
-website.dtd: website-custom.dtd forms.mod
-	$(FLATTEN) $< > $@
-
 distrib:
+	make -C example clean
+	make -C example TEXTONLY=1 clean
+	make -C example all
 	$(CVS2LOG) -w
-ifeq ($(MERGEVER),)
+ifeq ($(DIFFVER),)
 	$(MERGELOGS) > WhatsNew
 else
-	$(MERGELOGS) -v $(MERGEVER) > WhatsNew
+	$(MERGELOGS) -v $(DIFFVER) > WhatsNew
 endif
 
 newversion:
-ifeq ($(NEWVER),)
+ifeq ($(NEXTVER),)
 	$(NEXTVERSION)
 else
-	$(NEXTVERSION) -v $(NEWVER)
+	$(NEXTVERSION) -v $(NEXTVER)
 endif
 	make distrib
 
@@ -32,8 +33,6 @@ zip: distrib
 ifeq ($(ZIPVER),)
 	@echo You must specify ZIPVER for the zip target
 else
-	make -C example clean
-	make -C example TEXTONLY=1 clean
 	rm -rf /tmp/website-$(ZIPVER)
 	rm -f /tmp/tar.exclude
 	rm -f /tmp/website-$(ZIPVER).tar.gz
@@ -57,3 +56,4 @@ endif
 
 clean:
 	make -C example clean
+	make -C example TEXTONLY=1 clean
