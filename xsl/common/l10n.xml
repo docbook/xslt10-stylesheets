@@ -12,6 +12,7 @@
 <!ENTITY eu SYSTEM "eu.xml">
 <!ENTITY fi SYSTEM "fi.xml">
 <!ENTITY fr SYSTEM "fr.xml">
+<!ENTITY he SYSTEM "he.xml">
 <!ENTITY hu SYSTEM "hu.xml">
 <!ENTITY id SYSTEM "id.xml">
 <!ENTITY it SYSTEM "it.xml">
@@ -48,6 +49,7 @@
 &eu;
 &fi;
 &fr;
+&he;
 &hu;
 &id;
 &it;
