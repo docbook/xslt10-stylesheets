@@ -326,6 +326,10 @@
   <xsl:apply-templates mode="titlepage.mode"/>
 </xsl:template>
 
+<xsl:template match="biblioid" mode="titlepage.mode">
+  <xsl:apply-templates mode="titlepage.mode"/>
+</xsl:template>
+
 <xsl:template match="itermset" mode="titlepage.mode">
   <!-- discard -->
 </xsl:template>
