@@ -236,28 +236,29 @@
 
 <xsl:template match="sect3/title"></xsl:template>
 <xsl:template match="sect3/subtitle"></xsl:template>
-<xsl:template match="sect3/subtitle"></xsl:template>
+<xsl:template match="sect3/titleabbrev"></xsl:template>
 <xsl:template match="sect3info"></xsl:template>
 
 <xsl:template match="sect4/title"></xsl:template>
 <xsl:template match="sect4/subtitle"></xsl:template>
-<xsl:template match="sect4/subtitle"></xsl:template>
+<xsl:template match="sect4/titleabbrev"></xsl:template>
 <xsl:template match="sect4info"></xsl:template>
 
 <xsl:template match="sect5/title"></xsl:template>
 <xsl:template match="sect5/subtitle"></xsl:template>
-<xsl:template match="sect5/subtitle"></xsl:template>
+<xsl:template match="sect5/titleabbrev"></xsl:template>
 <xsl:template match="sect5info"></xsl:template>
 
 <xsl:template match="simplesect/title"></xsl:template>
-<xsl:template match="simplesect/titleabbrev"></xsl:template>
 <xsl:template match="simplesect/subtitle"></xsl:template>
+<xsl:template match="simplesect/titleabbrev"></xsl:template>
 
 <!-- ==================================================================== -->
 
 <xsl:template name="section.heading">
   <xsl:param name="section" select="."/>
-  <xsl:param name="level" select="'1'"/>
+  <xsl:param name="level" select="1"/>
+  <xsl:param name="allow-anchors" select="1"/>
   <xsl:param name="title"/>
 
   <xsl:variable name="id">
@@ -285,10 +286,12 @@
         <xsl:attribute name="style">clear: both</xsl:attribute>
       </xsl:if>
     </xsl:if>
-    <xsl:call-template name="anchor">
-      <xsl:with-param name="node" select="$section"/>
-      <xsl:with-param name="conditional" select="0"/>
-    </xsl:call-template>
+    <xsl:if test="$allow-anchors != 0">
+      <xsl:call-template name="anchor">
+        <xsl:with-param name="node" select="$section"/>
+        <xsl:with-param name="conditional" select="0"/>
+      </xsl:call-template>
+    </xsl:if>
     <xsl:copy-of select="$title"/>
   </xsl:element>
 </xsl:template>
@@ -417,11 +420,12 @@
 
   <xsl:call-template name="section.heading">
     <xsl:with-param name="section" select=".."/>
+    <xsl:with-param name="allow-anchors" select="0"/>
     <!-- subtitle heading level one higher than section level -->
     <xsl:with-param name="level" select="$level + 1"/>
     <xsl:with-param name="title">
       <xsl:apply-templates select="$section" mode="object.subtitle.markup">
-        <xsl:with-param name="allow-anchors" select="1"/>
+        <xsl:with-param name="allow-anchors" select="0"/>
       </xsl:apply-templates>
     </xsl:with-param>
   </xsl:call-template>
