@@ -24,6 +24,8 @@
 <xsl:output method="xml" encoding="utf-8" indent="no"/>
 <xsl:preserve-space elements="*"/>
 
+<xsl:param name="defaultDate" select="'1970-01-01'"/>
+
 <xsl:template match="/">
   <xsl:variable name="converted">
     <xsl:apply-templates/>
@@ -421,6 +423,13 @@
   </xsl:message>
 </xsl:template>
 
+<xsl:template match="mediaobjectco" priority="200">
+  <mediaobject>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates/>
+  </mediaobject>
+</xsl:template>
+
 <xsl:template match="mediaobject/caption" priority="200">
   <xsl:message>
     <xsl:text>Discarding caption (</xsl:text>
@@ -534,6 +543,242 @@
     </xsl:call-template>
     <xsl:apply-templates/>
   </xsl:copy>
+</xsl:template>
+
+<xsl:template match="date|pubdate" priority="200">
+  <xsl:variable name="rp1" select="substring-before(normalize-space(.), ' ')"/>
+  <xsl:variable name="rp2"
+		select="substring-before(substring-after(normalize-space(.), ' '),
+		                         ' ')"/>
+  <xsl:variable name="rp3"
+		select="substring-after(substring-after(normalize-space(.), ' '), ' ')"/>
+
+  <xsl:variable name="p1">
+    <xsl:choose>
+      <xsl:when test="contains($rp1, ',')">
+	<xsl:value-of select="substring-before($rp1, ',')"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="$rp1"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="p2">
+    <xsl:choose>
+      <xsl:when test="contains($rp2, ',')">
+	<xsl:value-of select="substring-before($rp2, ',')"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="$rp2"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="p3">
+    <xsl:choose>
+      <xsl:when test="contains($rp3, ',')">
+	<xsl:value-of select="substring-before($rp3, ',')"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="$rp3"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="date">
+    <xsl:choose>
+      <xsl:when test="string($p1+1) != 'NaN' and string($p3+1) != 'NaN'">
+	<xsl:choose>
+	  <xsl:when test="$p2 = 'Jan' or $p2 = 'January'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-01-</xsl:text>
+	    <xsl:number value="$p1" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p2 = 'Feb' or $p2 = 'February'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-02-</xsl:text>
+	    <xsl:number value="$p1" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p2 = 'Mar' or $p2 = 'March'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-03-</xsl:text>
+	    <xsl:number value="$p1" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p2 = 'Apr' or $p2 = 'April'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-04-</xsl:text>
+	    <xsl:number value="$p1" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p2 = 'May'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-05-</xsl:text>
+	    <xsl:number value="$p1" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p2 = 'Jun' or $p2 = 'June'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-06-</xsl:text>
+	    <xsl:number value="$p1" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p2 = 'Jul' or $p2 = 'July'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-07-</xsl:text>
+	    <xsl:number value="$p1" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p2 = 'Aug' or $p2 = 'August'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-08-</xsl:text>
+	    <xsl:number value="$p1" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p2 = 'Sep' or $p2 = 'September'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-09-</xsl:text>
+	    <xsl:number value="$p1" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p2 = 'Oct' or $p2 = 'October'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-10-</xsl:text>
+	    <xsl:number value="$p1" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p2 = 'Nov' or $p2 = 'November'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-11-</xsl:text>
+	    <xsl:number value="$p1" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p2 = 'Dec' or $p2 = 'December'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-12-</xsl:text>
+	    <xsl:number value="$p1" format="01"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:apply-templates/>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:when>
+      <xsl:when test="string($p2+1) != 'NaN' and string($p3+1) != 'NaN'">
+	<xsl:choose>
+	  <xsl:when test="$p1 = 'Jan' or $p1 = 'January'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-01-</xsl:text>
+	    <xsl:number value="$p2" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p1 = 'Feb' or $p1 = 'February'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-02-</xsl:text>
+	    <xsl:number value="$p2" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p1 = 'Mar' or $p1 = 'March'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-03-</xsl:text>
+	    <xsl:number value="$p2" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p1 = 'Apr' or $p1 = 'April'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-04-</xsl:text>
+	    <xsl:number value="$p2" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p1 = 'May'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-05-</xsl:text>
+	    <xsl:number value="$p2" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p1 = 'Jun' or $p1 = 'June'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-06-</xsl:text>
+	    <xsl:number value="$p2" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p1 = 'Jul' or $p1 = 'July'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-07-</xsl:text>
+	    <xsl:number value="$p2" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p1 = 'Aug' or $p1 = 'August'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-08-</xsl:text>
+	    <xsl:number value="$p2" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p1 = 'Sep' or $p1 = 'September'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-09-</xsl:text>
+	    <xsl:number value="$p2" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p1 = 'Oct' or $p1 = 'October'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-10-</xsl:text>
+	    <xsl:number value="$p2" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p1 = 'Nov' or $p1 = 'November'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-11-</xsl:text>
+	    <xsl:number value="$p2" format="01"/>
+	  </xsl:when>
+	  <xsl:when test="$p1 = 'Dec' or $p1 = 'December'">
+	    <xsl:number value="$p3" format="0001"/>
+	    <xsl:text>-12-</xsl:text>
+	    <xsl:number value="$p2" format="01"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:apply-templates/>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="normalize-space($date) != normalize-space(.)">
+      <xsl:message>
+	<xsl:text>Converted </xsl:text>
+	<xsl:value-of select="normalize-space(.)"/>
+	<xsl:text> into </xsl:text>
+	<xsl:value-of select="$date"/>
+	<xsl:text> for </xsl:text>
+	<xsl:value-of select="name(.)"/>
+      </xsl:message>
+
+      <xsl:copy>
+	<xsl:copy-of select="@*"/>
+	<xsl:value-of select="$date"/>
+      </xsl:copy>
+    </xsl:when>
+
+    <xsl:when test="$defaultDate != ''">
+      <xsl:message>
+	<xsl:text>Unparseable date: </xsl:text>
+	<xsl:value-of select="normalize-space(.)"/>
+	<xsl:text> in </xsl:text>
+	<xsl:value-of select="name(.)"/>
+	<xsl:text> (Using default: </xsl:text>
+	<xsl:value-of select="$defaultDate"/>
+	<xsl:text>)</xsl:text>
+      </xsl:message>
+
+      <xsl:copy>
+	<xsl:copy-of select="@*"/>
+	<xsl:copy-of select="$defaultDate"/>
+	<xsl:comment>
+	  <xsl:value-of select="."/>
+	</xsl:comment>
+      </xsl:copy>
+    </xsl:when>
+
+    <xsl:otherwise>
+      <xsl:message>
+	<xsl:text>Unparseable date: </xsl:text>
+	<xsl:value-of select="normalize-space(.)"/>
+	<xsl:text> in </xsl:text>
+	<xsl:value-of select="name(.)"/>
+      </xsl:message>
+
+      <xsl:copy>
+	<xsl:copy-of select="@*"/>
+	<xsl:apply-templates/>
+      </xsl:copy>
+    </xsl:otherwise>
+  </xsl:choose>      
 </xsl:template>
 
 <xsl:template match="title|subtitle|titleabbrev" priority="300">
