@@ -131,8 +131,8 @@
 <!ENTITY % msgorig.module "IGNORE">
 <!ENTITY % msgaud.module "IGNORE">
 <!ENTITY % msgexplan.module "IGNORE">
-<!ENTITY % qandset.content.module "IGNORE">
-<!ENTITY % qandset.module "IGNORE">
+<!ENTITY % qandaset.content.module "IGNORE">
+<!ENTITY % qandaset.module "IGNORE">
 <!ENTITY % qandadiv.module "IGNORE">
 <!ENTITY % qandaentry.module "IGNORE">
 <!ENTITY % question.module "IGNORE">
@@ -298,6 +298,20 @@
 <!ENTITY % sectioninfo.module "IGNORE">
 <!ENTITY % setindexinfo.module "IGNORE">
 <!ENTITY % sidebarinfo.module "IGNORE">
+
+<!-- new in 4.2 -->
+<!ENTITY % blockinfo.module "IGNORE">
+<!ENTITY % refsectioninfo.module "IGNORE">
+<!ENTITY % refsection.module "IGNORE">
+<!ENTITY % personname.module "IGNORE">
+<!ENTITY % personblurb.module "IGNORE">
+<!ENTITY % bibliocoverage.module "IGNORE">
+<!ENTITY % biblioid.module "IGNORE">
+<!ENTITY % bibliorelation.module "IGNORE">
+<!ENTITY % bibliosource.module "IGNORE">
+<!ENTITY % citebiblioid.module "IGNORE">
+<!ENTITY % coref.module "IGNORE">
+<!ENTITY % errortext.module "IGNORE">
 
 <!-- End of Simplified DocBook Include Module V1.0CR2 .................... -->
 <!-- ...................................................................... -->
