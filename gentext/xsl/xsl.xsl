@@ -34,11 +34,55 @@
   </saxon:output>
 </xsl:template>
 
-<xsl:template match="gentext|dingbat|xref">
+<xsl:template match="gentext|dingbat|context">
   <xsl:element name="{name(.)}">
     <xsl:copy-of select="@*"/>
     <xsl:apply-templates/>
   </xsl:element>
 </xsl:template>
+
+<xsl:template match="template">
+  <template>
+    <xsl:copy-of select="@*"/>
+    <xsl:attribute name="text">
+      <xsl:apply-templates select="node()" mode="template-text"/>
+    </xsl:attribute>
+  </template>
+</xsl:template>
+
+<!-- ============================================================ -->
+
+<xsl:template match="*" mode="template-text">
+  <xsl:variable name="key" select="local-name(.)"/>
+  <xsl:variable name="gentext" select="ancestor::locale//gentext[@key=$key]"/>
+
+  <xsl:if test="count($gentext) = 0">
+    <xsl:message terminate="yes">
+      <xsl:text>There is no gentext key '</xsl:text>
+      <xsl:value-of select="$key"/>
+      <xsl:text>' in the '</xsl:text>
+      <xsl:value-of select="ancestor::locale/@language"/>
+      <xsl:text>' locale.</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
+  <xsl:if test="count($gentext) &gt; 1">
+    <xsl:message>
+      <xsl:text>There is more than one gentext key '</xsl:text>
+      <xsl:value-of select="$key"/>
+      <xsl:text>' in the '</xsl:text>
+      <xsl:value-of select="ancestor::locale/@language"/>
+      <xsl:text>' locale.</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
+  <xsl:value-of select="$gentext[1]/@text"/>
+</xsl:template>
+
+<xsl:template match="text()" mode="template-text">
+  <xsl:value-of select="."/>
+</xsl:template>
+
+<!-- ============================================================ -->
 
 </xsl:stylesheet>
