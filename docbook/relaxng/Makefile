@@ -1,9 +1,3 @@
-VPATH=src
-
-TMPFILE=/tmp/cleanup.rng
-TESTSRC=/sourceforge/docbook/testdocs/tests
-TESTFILES=$(subst $(TESTSRC)/,,$(wildcard $(TESTSRC)/*.xml))
-
 .SUFFIXES: .rnc .rng .rnx
 .PHONY: docbook.rng tests
 
