@@ -995,6 +995,19 @@ in the CALS table.
 </doc:param>
 
 <!-- ==================================================================== -->
+<xsl:param name="bridgehead.in.toc" select='0' doc:type='boolean'/>
+
+<doc:param name="bridgehead.in.toc" xmlns="">
+<refpurpose>Should bridgehead elements appear in the TOC?</refpurpose>
+<refdescription>
+<para>If non-zero, bridgeheads appear in the TOC. Note that this option
+is not fully supported and may be removed in a future version of the
+stylesheets.
+</para>
+</refdescription>
+</doc:param>
+
+<!-- ==================================================================== -->
 <xsl:param name="generate.index" select='1' doc:type='boolean'/>
 
 <doc:param name="generate.index" xmlns="">
