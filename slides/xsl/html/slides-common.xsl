@@ -678,7 +678,7 @@
       </xsl:call-template>
     </b>
   </p>
-  <dl>
+  <dl class="toc">
     <xsl:apply-templates select="foilgroup|foil" mode="toc"/>
   </dl>
 </xsl:template>
@@ -716,6 +716,8 @@
 </xsl:template>
 
 <xsl:template match="foilgroup" mode="toc">
+  <xsl:param name="recursive" select="1"/>
+
   <dt>
     <xsl:apply-templates select="." mode="number"/>
     <xsl:text>. </xsl:text>
@@ -726,11 +728,13 @@
       <xsl:value-of select="title"/>
     </a>
   </dt>
-  <dd>
-    <dl>
-      <xsl:apply-templates select="foil" mode="toc"/>
-    </dl>
-  </dd>
+  <xsl:if test="$recursive != 0">
+    <dd>
+      <dl class="toc">
+	<xsl:apply-templates select="foil" mode="toc"/>
+      </dl>
+    </dd>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="foil" mode="toc">
@@ -892,7 +896,6 @@
   <xsl:param name="next"/>
   <xsl:param name="prev"/>
   <xsl:param name="tocfile" select="$toc.html"/>
-
   <xsl:apply-templates/>
 </xsl:template>
 
@@ -1043,7 +1046,7 @@
               </xsl:call-template>
 
               <xsl:if test="$foilgroup.toc != 0">
-                <dl>
+                <dl class="toc">
                   <xsl:apply-templates select="foil" mode="toc"/>
                 </dl>
               </xsl:if>
