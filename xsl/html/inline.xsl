@@ -387,6 +387,10 @@
   <xsl:text>)</xsl:text>
 </xsl:template>
 
+<xsl:template match="citetitle">
+  <xsl:call-template name="inline.italicseq"/>
+</xsl:template>
+
 <xsl:template match="emphasis">
   <xsl:choose>
     <xsl:when test="@role='bold'">
