@@ -104,8 +104,25 @@
     <!-- Draw callouts as images -->
     <xsl:when test="$callout.graphics != '0'
                     and $conum &lt;= $callout.graphics.number.limit">
-      <fo:external-graphic
-          src="{$callout.graphics.path}{$conum}{$callout.graphics.extension}"/>
+      <xsl:variable name="filename"
+                    select="concat($callout.graphics.path,$conum,$callout.graphics.extension)"/>
+
+      <fo:external-graphic>
+        <xsl:attribute name="src">
+          <xsl:choose>
+            <xsl:when test="$passivetex.extensions != 0
+                            or $fop.extensions != 0
+                            or $arbortext.extensions != 0">
+              <xsl:value-of select="$filename"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>url(</xsl:text>
+              <xsl:value-of select="$filename"/>
+              <xsl:text>)</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+      </fo:external-graphic>
     </xsl:when>
 
     <xsl:when test="$callout.unicode != 0
