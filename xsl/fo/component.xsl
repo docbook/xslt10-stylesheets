@@ -103,6 +103,45 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template match="colophon">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+  <xsl:variable name="master-name">
+    <xsl:call-template name="select.pagemaster"/>
+  </xsl:variable>
+
+  <fo:page-sequence id="{$id}"
+                    hyphenate="{$hyphenate}"
+                    format="i"
+                    master-name="{$master-name}">
+    <xsl:attribute name="language">
+      <xsl:call-template name="l10n.language"/>
+    </xsl:attribute>
+    <xsl:if test="$double.sided != 0">
+      <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+    </xsl:if>
+
+    <xsl:apply-templates select="." mode="running.head.mode">
+      <xsl:with-param name="master-name" select="$master-name"/>
+    </xsl:apply-templates>
+    <xsl:apply-templates select="." mode="running.foot.mode">
+      <xsl:with-param name="master-name" select="$master-name"/>
+    </xsl:apply-templates>
+
+    <fo:flow flow-name="xsl-region-body">
+      <xsl:call-template name="colophon.titlepage"/>
+      <xsl:apply-templates/>
+    </fo:flow>
+  </fo:page-sequence>
+</xsl:template>
+
+<xsl:template match="colophon/title"></xsl:template>
+<xsl:template match="colophon/subtitle"></xsl:template>
+<xsl:template match="colophon/titleabbrev"></xsl:template>
+
+<!-- ==================================================================== -->
+
 <xsl:template match="preface">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
