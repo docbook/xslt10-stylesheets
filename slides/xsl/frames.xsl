@@ -470,7 +470,6 @@ function init() {
             <xsl:attribute name="style">
               <xsl:text>position:absolute;visibility:visible;</xsl:text>
             </xsl:attribute>
-            <hr/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:attribute name="style">
@@ -485,8 +484,11 @@ function init() {
           <tr>
             <td align="left" width="80%" valign="top">
               <span class="navfooter">
+                <!-- suppress copyright here; it's probably already on the titlepage
                 <xsl:apply-templates select="/slides/slidesinfo/copyright"
                                      mode="slide.footer.mode"/>
+                -->
+                <xsl:text>&#160;</xsl:text>
               </span>
             </td>
             <td align="right" width="20%" valign="top">
@@ -993,6 +995,8 @@ function init() {
         </div>
       </xsl:if>
     </div>
+
+    <xsl:call-template name="process.footnotes"/>
   </body>
 </xsl:template>
 
@@ -1349,6 +1353,8 @@ function init() {
         </div>
       </xsl:if>
     </div>
+
+    <xsl:call-template name="process.footnotes"/>
   </body>
 </xsl:template>
 

@@ -809,6 +809,8 @@
               </xsl:call-template>
             </div>
           </div>
+
+          <xsl:call-template name="process.footnotes"/>
         </body>
       </html>
     </xsl:with-param>
@@ -965,6 +967,8 @@
             </xsl:call-template>
           </div>
         </div>
+
+        <xsl:call-template name="process.footnotes"/>
       </body>
     </xsl:with-param>
   </xsl:call-template>
