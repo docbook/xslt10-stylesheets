@@ -1,4 +1,8 @@
-VPATH=../src
+VPATH=../src ../tests/customizations
+
+RNCFILES=$(subst $(VPATH)/,,$(wildcard $(VPATH)/*.rnc))
+RNXFILES=$(subst .rnc,.rnx,$(RNCFILES))
+MODULES=$(filter-out docbook.rnx,$(RNXFILES))
 
 TMPDIR=/tmp/
 TMPFILE=$(TMPDIR)cleanup.rng
@@ -12,17 +16,25 @@ CLEANUP=../tools/cleanup.pl
 
 .SUFFIXES: .rnc .rng .rnx
 
-all: docbook.rng
+docbook.rng: docbook.rnx $(AUGMENT) $(INCLUDE) $(CLEANUP)
 
-docbook.rng: docbook.rnx hier.rnx pool.rnx calstbl.rnx htmltbl.rnx callouts.rnx \
-             ebnf.rnx svg.rnx mathml.rnx msgset.rnx htmlform.rnx refentry.rnx \
-             tasks.rnx \
-	     $(AUGMENT) $(INCLUDE) $(CLEANUP)
+docbook.rnx: $(MODULES)
+
+dbsmall.rng: dbsmall.rnx $(AUGMENT) $(INCLUDE) $(CLEANUP)
+
+dbsmall.rnx: $(MODULES)
+
+dbastro.rng: dbastro.rnx $(AUGMENT) $(INCLUDE) $(CLEANUP)
+
+dbastro.rnx: $(MODULES)
 
 .rnx.rng:
-	saxon $< $(INCLUDE) $(TMPFILE) use.extensions=1
-	saxon $(TMPFILE) $(AUGMENT) $@ use.extensions=1
+	saxon $< $(INCLUDE) ,$@ use.extensions=1
+	saxon ,$@ $(AUGMENT) $@ use.extensions=1
 	perl -i $(CLEANUP) $@
+	cp $@ ..
+
+#	rm -f ,$@
 
 .rnc.rnx:
 	trang -O rng $< $@
