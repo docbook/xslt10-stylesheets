@@ -463,6 +463,27 @@
   </remark>
 </xsl:template>
 
+<xsl:template match="biblioentry/title
+                     |bibliomset/title
+                     |biblioset/title
+                     |bibliomixed/title" priority="400">
+  <citetitle>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates/>
+  </citetitle>
+</xsl:template>
+
+<xsl:template match="biblioentry/titleabbrev|biblioentry/subtitle
+                     |bibliomset/titleabbrev|bibliomset/subtitle
+                     |biblioset/titleabbrev|biblioset/subtitle
+                     |bibliomixed/titleabbrev|bibliomixed/subtitle"
+	      priority="400">
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates/>
+  </xsl:copy>
+</xsl:template>
+
 <xsl:template match="biblioentry/contrib
                      |bibliomset/contrib
                      |bibliomixed/contrib" priority="200">
