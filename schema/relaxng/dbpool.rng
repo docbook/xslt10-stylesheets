@@ -11126,6 +11126,9 @@ OtherCredit. -->
               <value>series</value>
               <value>set</value>
               <value>manuscript</value>
+              <value>emailmessage</value>
+              <value>webpage</value>
+              <value>newsposting</value>
             </choice>
           </attribute>
         </optional>
