@@ -36,7 +36,12 @@
       <xsl:when test="$pi-format != ''">
         <xsl:value-of select="$pi-format"/>
       </xsl:when>
-      <xsl:otherwise>c</xsl:otherwise>
+      <xsl:otherwise>
+        <xsl:call-template name="gentext.template">
+          <xsl:with-param name="context" select="'datetime'"/>
+          <xsl:with-param name="name" select="'format'"/>
+        </xsl:call-template>
+      </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>  
 
@@ -88,13 +93,22 @@
 
     <xsl:choose>
       <xsl:when test="$char = 'a'">
-        <xsl:value-of select="date:day-abbreviation($date)"/>
+        <xsl:call-template name="gentext.template">
+          <xsl:with-param name="context" select="'datetime'"/>
+          <xsl:with-param name="name" select="date:day-abbreviation($date)"/>
+        </xsl:call-template>
       </xsl:when>
       <xsl:when test="$char = 'A'">
-        <xsl:value-of select="date:day-name($date)"/>
+        <xsl:call-template name="gentext.template">
+          <xsl:with-param name="context" select="'datetime'"/>
+          <xsl:with-param name="name" select="date:day-name($date)"/>
+        </xsl:call-template>
       </xsl:when>
       <xsl:when test="$char = 'b'">
-        <xsl:value-of select="date:month-abbreviation($date)"/>
+        <xsl:call-template name="gentext.template">
+          <xsl:with-param name="context" select="'datetime'"/>
+          <xsl:with-param name="name" select="date:month-abbreviation($date)"/>
+        </xsl:call-template>
       </xsl:when>
       <xsl:when test="$char = 'c'">
         <xsl:value-of select="date:date($date)"/>
@@ -102,7 +116,10 @@
         <xsl:value-of select="date:time($date)"/>
       </xsl:when>
       <xsl:when test="$char = 'B'">
-        <xsl:value-of select="date:month-name($date)"/>
+        <xsl:call-template name="gentext.template">
+          <xsl:with-param name="context" select="'datetime'"/>
+          <xsl:with-param name="name" select="date:month-name($date)"/>
+        </xsl:call-template>
       </xsl:when>
       <xsl:when test="$char = 'd'">
         <xsl:if test="$padding = 1 and string-length(date:day-in-month($date)) = 1">0</xsl:if>
