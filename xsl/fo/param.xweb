@@ -234,7 +234,7 @@ but the DocBook stylesheets explicitly make it
 
 <para>The dimensions in the figure are:</para>
 
-<itemizedlist numeration="upperalpha">
+<orderedlist numeration="upperalpha">
 <listitem><para>The page-master margin-top.
 </para></listitem>
 <listitem><para>The region-before extent.
@@ -255,7 +255,7 @@ zero by default, so this is simply the page-master region-left.
 region-body margin-right. In DocBook, the region-body margin-right is
 zero by default, so this is simply the page-master region-left.
 </para></listitem>
-</itemizedlist>
+</orderedlist>
 
 </section>
 </partintro>
