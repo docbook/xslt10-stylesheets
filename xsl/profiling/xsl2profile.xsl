@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xslo="http://www.w3.org/1999/XSL/TransformAlias"
+                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                exclude-result-prefixes="fo"
                 version="1.0">
 
 <xsl:include href="../lib/lib.xsl"/>
@@ -88,7 +90,7 @@
   </xsl:copy>
 </xsl:template>
 
-<xsl:template match='*[contains(@*, "key(&apos;id&apos;,$rootid)")]' mode="correct">
+<xsl:template match='*[contains(@*, "key(&apos;id&apos;,$rootid)")]' mode="correct" priority="2">
   <xsl:copy>
     <xsl:for-each select="@*">
       <xsl:choose>
@@ -106,6 +108,15 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>
+    <xsl:apply-templates mode="correct"/>
+  </xsl:copy>
+</xsl:template>
+
+<!-- FO stylesheet has apply-templates without select, we must detect it by context -->
+<xsl:template match="fo:root//xsl:apply-templates" mode="correct">
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:attribute name="select">$profiled-nodes</xsl:attribute>
     <xsl:apply-templates mode="correct"/>
   </xsl:copy>
 </xsl:template>
