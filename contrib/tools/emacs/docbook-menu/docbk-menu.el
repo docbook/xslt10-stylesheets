@@ -6,10 +6,11 @@
 ;; Author: Michael Smith <smith@sideshowbarker.net>
 ;; Maintainer: Michael Smith <smith@sideshowbarker.net>
 ;; Created: 2003-11-04
-;; Version: 0.90
+;; Version: 0.92
 ;; Revision: $Revision$
 ;; Date: $Date$
 ;; RCS Id: $Id$
+;; X-URL: http://docbook.sf.net/projects/docbook-menu
 ;; Keywords: xml docbook
 
 ;; This file is NOT part of GNU emacs.
@@ -347,7 +348,12 @@ Currently used only for finding DocBook mailing list search form.")
 (load-library "submenus/dbk-xsltcg.el")
 
 (defgroup docbook-menu nil
-  "Customization group for `docbook-menu-mode' minor mode.")
+  "Easy access to DocBook documentation and XSL stylesheet distro."
+  :group 'help
+  :link '(emacs-commentary-link "docbk-menu.el")
+  :link '(url-link "http://docbook.sf.net/projects/docbook-menu/")
+  :prefix "docbook-menu-"
+  )
 
 ;; *******************************************************************
 ;;; User customizable options
