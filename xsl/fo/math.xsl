@@ -32,6 +32,15 @@
 <xsl:template match="alt">
 </xsl:template>
 
+<!-- "Support" for MathML -->
+
+<xsl:template match="mml:*" xmlns:mml="http://www.w3.org/1998/Math/MathML">
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates/>
+  </xsl:copy>
+</xsl:template>
+
 <xsl:template match="equation/mediaobject | informalequation/mediaobject">
   <xsl:if test="$passivetex.extensions = 0 or $tex.math.in.alt = ''">
     <fo:block>
@@ -107,14 +116,6 @@
     </xsl:choose>
   </xsl:variable>
   <xsl:value-of select="$result"/>
-</xsl:template>
-
-<!-- just send the MathML all the way through... -->
-<xsl:template match="mml:*">
-  <xsl:element name="{name(.)}">
-    <xsl:copy-of select="@*"/>
-    <xsl:apply-templates select="node()"/>
-  </xsl:element>
 </xsl:template>
 
 </xsl:stylesheet>
