@@ -11,7 +11,10 @@
 <refsynopsisdiv>
 <src:fragment id='section.title.level2.properties.frag'>
 <xsl:attribute-set name="section.title.level2.properties">
-  <xsl:attribute name="font-size">14pt</xsl:attribute>
+  <xsl:attribute name="font-size">
+    <xsl:value-of select="$body.font.master * 1.728"/>
+    <xsl:text>pt</xsl:text>
+  </xsl:attribute>
 </xsl:attribute-set>
 </src:fragment>
 </refsynopsisdiv>
