@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE article
-  PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-<!ENTITY blah "blah blah blah. blah blah blah blah blah blah. And blah.">
-]>
-<!-- test document -->
 <article>
 <articleinfo>
 <title>Procedures</title>
@@ -26,19 +20,19 @@
 </step>
 <step><para>Select SETUP.</para>
 <substeps>
-<step><para>Should be an &ldquo;a&rdquo;</para>
+<step><para>Should be an <quote>a</quote></para>
 </step>
-<step id="step-y"><para>Should be a &ldquo;b&rdquo;</para>
+<step id="step-y"><para>Should be a <quote>b</quote></para>
 </step>
-<step><para>Should be a &ldquo;c&rdquo;</para>
+<step><para>Should be a <quote>c</quote></para>
 </step>
-<step><para>Should be a &ldquo;d&rdquo;</para>
+<step><para>Should be a <quote>d</quote></para>
 </step>
-<step><para>should be an &ldquo;e&rdquo;</para>
+<step><para>should be an <quote>e</quote></para>
 <substeps>
-<step><para>should be an &ldquo;i&rdquo;</para>
+<step><para>should be an <quote>i</quote></para>
 </step>
-<step id="step-z"><para>should be an &ldquo;ii&rdquo;</para>
+<step id="step-z"><para>should be an <quote>ii</quote></para>
 </step>
 </substeps>
 </step>
