@@ -15,7 +15,7 @@
   <xsl:param name="title" select="'anonymous'"/>
   <xsl:param name="base.dir" select="'html/'"/>
   <xsl:param name="stylesheet" select="'html.css'"/>
-  <xsl:param name="ng-release" select="'Hard Cider'"/>
+  <xsl:param name="ng-release" select="'IPA'"/>
 
   <xsl:output method="html"/>
 
