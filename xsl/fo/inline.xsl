@@ -759,6 +759,20 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="termdef">
+  <fo:inline>
+    <xsl:call-template name="gentext.template">
+      <xsl:with-param name="context" select="'termdef'"/>
+      <xsl:with-param name="name" select="'prefix'"/>
+    </xsl:call-template>
+    <xsl:apply-templates/>
+    <xsl:call-template name="gentext.template">
+      <xsl:with-param name="context" select="'termdef'"/>
+      <xsl:with-param name="name" select="'suffix'"/>
+    </xsl:call-template>
+  </fo:inline>
+</xsl:template>
+
 <xsl:template match="sgmltag|tag">
   <xsl:variable name="class">
     <xsl:choose>
