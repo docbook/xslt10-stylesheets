@@ -646,11 +646,10 @@
 
 
 <xsl:template match="olink">
-  <xsl:variable name="localinfo" select="@localinfo"/>
-
-  <!-- Open the olink targets data base -->
   <xsl:param name="target.database"
       select="document($target.database.document)"/>
+
+  <xsl:variable name="localinfo" select="@localinfo"/>
 
   <!-- Olink that points to internal id can be a link -->
   <xsl:variable name="linkend">
