@@ -24,9 +24,10 @@
 <!ENTITY footnote "w:p[w:pPr/w:pStyle[@w:val='FootnoteText']]">
 
 <!ENTITY releaseinfo "w:p[w:pPr/w:pStyle/@w:val='releaseinfo']">
+<!ENTITY affiliation "w:p[w:pPr/w:pStyle/@w:val='affiliation']">
 <!ENTITY author "w:p[w:pPr/w:pStyle/@w:val='author']">
 <!ENTITY editor "w:p[w:pPr/w:pStyle/@w:val='editor']">
-<!ENTITY othercontrib "w:p[w:pPr/w:pStyle/@w:val='othercontrib']">
+<!ENTITY othercredit "w:p[w:pPr/w:pStyle/@w:val='othercredit']">
 <!ENTITY authorblurb "w:p[w:pPr/w:pStyle/@w:val='authorblurb']">
 <!ENTITY surname "w:r[w:rPr/w:rStyle/@w:val='surname']">
 <!ENTITY firstname "w:r[w:rPr/w:rStyle/@w:val='firstname']">
@@ -34,6 +35,19 @@
 <!ENTITY lineage "w:r[w:rPr/w:rStyle/@w:val='lineage']">
 <!ENTITY othername "w:r[w:rPr/w:rStyle/@w:val='othername']">
 <!ENTITY contrib "w:r[w:rPr/w:rStyle/@w:val='contrib']">
+<!ENTITY street "w:r[w:rPr/w:rStyle/@w:val='street']">
+<!ENTITY pob "w:r[w:rPr/w:rStyle/@w:val='pob']">
+<!ENTITY postcode "w:r[w:rPr/w:rStyle/@w:val='postcode']">
+<!ENTITY city "w:r[w:rPr/w:rStyle/@w:val='city']">
+<!ENTITY state "w:r[w:rPr/w:rStyle/@w:val='state']">
+<!ENTITY country "w:r[w:rPr/w:rStyle/@w:val='country']">
+<!ENTITY phone "w:r[w:rPr/w:rStyle/@w:val='phone']">
+<!ENTITY fax "w:r[w:rPr/w:rStyle/@w:val='fax']">
+<!ENTITY otheraddr "w:r[w:rPr/w:rStyle/@w:val='otheraddr']">
+<!ENTITY shortaffil "w:r[w:rPr/w:rStyle/@w:val='shortaffil']">
+<!ENTITY jobtitle "w:r[w:rPr/w:rStyle/@w:val='jobtitle']">
+<!ENTITY orgname "w:r[w:rPr/w:rStyle/@w:val='orgname']">
+<!ENTITY orgdiv "w:r[w:rPr/w:rStyle/@w:val='orgdiv']">
 ]>
 
 <xsl:stylesheet xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml"
@@ -149,7 +163,7 @@
   <!-- sub-section title paragraph -->
   <xsl:template match="wx:sub-section/w:p[1]" mode="group">
     <xsl:choose>
-      <xsl:when test='../&releaseinfo;|../&author;|../&editor;|../&othercontrib;'>
+      <xsl:when test='../&releaseinfo;|../&author;|../&editor;|../&othercredit;'>
         <xsl:variable name='parent'>
           <xsl:call-template name='component-name'/>
         </xsl:variable>
@@ -158,7 +172,7 @@
           <title>
             <xsl:apply-templates select="w:r|w:hlink"/>
           </title>
-          <xsl:apply-templates select='../&releaseinfo;|../&author;|../&editor;|../&othercontrib;' mode='metadata'/>
+          <xsl:apply-templates select='../&releaseinfo;|../&author;|../&editor;|../&othercredit;' mode='metadata'/>
         </xsl:element>
       </xsl:when>
       <xsl:otherwise>
@@ -170,13 +184,14 @@
   </xsl:template>
 
   <!-- metadata -->
-  <xsl:template match="&releaseinfo;|&author;|&editor;|&othercontrib;" mode='group'/>
+  <xsl:template match="&releaseinfo;|&author;|&editor;|&othercredit;|&affiliation;" mode='group'/>
   <xsl:template match="&releaseinfo;" mode='metadata'>
     <releaseinfo>
+      <xsl:call-template name='attributes'/>
       <xsl:apply-templates select='w:r|w:hlink'/>
     </releaseinfo>
   </xsl:template>
-  <xsl:template match="&author;|&editor;|&othercontrib;" mode='metadata'>
+  <xsl:template match="&author;|&editor;|&othercredit;" mode='metadata'>
     <xsl:element name='{w:pPr/w:pStyle/@w:val}'>
       <xsl:apply-templates select='w:r|w:hlink' mode='metadata'/>
       <xsl:apply-templates select='following-sibling::w:p' mode='author'/>
@@ -189,13 +204,51 @@
         <xsl:call-template name='object.id'/>
         <xsl:apply-templates select="w:r|w:hlink"/>
       </para>
+      <!-- TODO: continuations -->
     </authorblurb>
   </xsl:template>
+  <xsl:template match='&affiliation;' mode='author'>
+    <affiliation>
+      <xsl:call-template name='object.id'/>
+      <xsl:apply-templates select="&shortaffil;|&jobtitle;|&orgname;|&orgdiv;" mode='metadata'/>
+      <xsl:if test='&honorific;|&firstname;|&surname;|&lineage;|&othername;|&contrib;|&street;|&pob;|&postcode;|&city;|&state;|&country;|&phone;|&fax;|&otheraddr;|w:hlink'>
+        <address>
+          <xsl:apply-templates select="&honorific;|&firstname;|&surname;|&lineage;|&othername;|&contrib;|&street;|&pob;|&postcode;|&city;|&state;|&country;|&phone;|&fax;|&otheraddr;|w:hlink" mode='metadata'/>
+        </address>
+      </xsl:if>
+    </affiliation>
+  </xsl:template>
+  <xsl:template match='&continue;' mode='author'>
+    <address>
+      <xsl:apply-templates select='w:r|w:hlink' mode='metadata'/>
+    </address>
+  </xsl:template>
   <xsl:template match='w:r' mode='metadata' priority='0'/>
-  <xsl:template match='&surname;|&firstname;|&honorific;|&lineage;|&othername;|&contrib;' mode='metadata'>
+  <xsl:template match='&surname;|&firstname;|&honorific;|&lineage;|&othername; |
+                       &contrib; |
+                       &street;|&pob;|&postcode;|&city;|&state;|&country;|&phone;|&fax;' mode='metadata'>
     <xsl:element name='{w:rPr/w:rStyle/@w:val}'>
       <xsl:apply-templates select='w:t'/>
     </xsl:element>
+  </xsl:template>
+  <xsl:template match='&otheraddr;' mode='metadata'>
+    <otheraddr>
+      <xsl:apply-templates select='w:t'/>
+    </otheraddr>
+  </xsl:template>
+  <xsl:template match='w:hlink' mode='metadata'>
+    <xsl:choose>
+      <xsl:when test='starts-with(@w:dest, "mailto:")'>
+        <email>
+          <xsl:apply-templates select='.'/>
+        </email>
+      </xsl:when>
+      <xsl:otherwise>
+        <otheraddr>
+          <xsl:apply-templates select='.'/>
+        </otheraddr>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <!-- Ordinary para -->
@@ -405,10 +458,8 @@
   </link>
 </xsl:template>
 
-<xsl:template match="w:hlink[w:r/w:rPr/w:rStyle[@w:val='ulink']]">
-  <ulink>
-    <xsl:attribute name="url"><xsl:value-of
-            select="@w:dest"/></xsl:attribute>
+<xsl:template match="w:hlink[w:r/w:rPr/w:rStyle[@w:val='ulink' or @w:val='Hyperlink']]">
+  <ulink url='{@w:dest}'>
     <xsl:apply-templates select="w:r"/>
   </ulink>
 </xsl:template>
@@ -988,5 +1039,26 @@
 <xsl:template match="w:tbl[preceding-sibling::*[1][self::&exampletitle;]]" 
               priority="2"
               mode="group"/>
+
+  <xsl:template name='attributes'>
+    <xsl:param name='node' select='.'/>
+
+    <xsl:variable name='attr'
+      select='$node/w:r[1][w:rPr/w:rStyle/@w:val = "attributes"]'/>
+    <xsl:variable name='annotation' select='$attr/preceding-sibling::aml:annotation[1]'/>
+
+    <xsl:if test='$attr and $annotation'>
+      <xsl:variable name='comment' select='w:r[w:rPr/w:rStyle/@w:val = "CommentReference"]/aml:annotation[@w:type = "Word.Comment" and @aml:id = $annotation/@aml:id]/aml:content'/>
+      <xsl:for-each select='$comment/w:p/w:r[w:rPr/w:rStyle/@w:val = "attribute-name"]'>
+        <xsl:attribute name='{w:t}'>
+          <xsl:value-of select='following-sibling::w:r[w:rPr/w:rStyle/@w:val = "attribute-value"][1]/w:t'/>
+        </xsl:attribute>
+      </xsl:for-each>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match='aml:annotation' mode='group'/>
+  <xsl:template match='aml:annotation'/>
+  <xsl:template match='w:r[w:rPr/w:rStyle/@w:val = "CommentReference"]'/>
 
 </xsl:stylesheet>

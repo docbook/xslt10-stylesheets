@@ -30,13 +30,12 @@
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template match='wx:sect|wx:sub-section|wx:pBdrGroup|aml:annotation|aml:content'>
+  <xsl:template match='wx:sect|wx:sub-section|wx:pBdrGroup'>
     <xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match='wx:borders |
-                       wx:margin-left |
-                       w:r[w:rPr/w:rStyle/@w:val = "CommentReference"]'/>
+                       wx:margin-left'/>
 
   <xsl:template match='w:pStyle|w:rStyle'>
     <xsl:copy>
