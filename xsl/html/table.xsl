@@ -170,12 +170,14 @@
     <xsl:apply-templates select="tfoot"/>
 
     <xsl:if test=".//footnote">
-      <tr>
-        <td colspan="{@cols}">
-          <xsl:apply-templates select=".//footnote" 
-                               mode="table.footnote.mode"/>
-        </td>
-      </tr>
+      <tbody class="footnotes">
+        <tr>
+          <td colspan="{@cols}">
+            <xsl:apply-templates select=".//footnote" 
+                                 mode="table.footnote.mode"/>
+          </td>
+        </tr>
+      </tbody>
     </xsl:if>
   </table>
 </xsl:template>
