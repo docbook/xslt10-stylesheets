@@ -32,6 +32,9 @@
 <xsl:attribute-set name="reference.titlepage.recto.style"/>
 <xsl:attribute-set name="reference.titlepage.verso.style"/>
 
+<xsl:attribute-set name="refentry.titlepage.recto.style"/>
+<xsl:attribute-set name="refentry.titlepage.verso.style"/>
+
 <xsl:attribute-set name="dedication.titlepage.recto.style"/>
 <xsl:attribute-set name="dedication.titlepage.verso.style"/>
 
