@@ -700,7 +700,7 @@ Title=</xsl:text>
   </xsl:variable>
   <xsl:value-of select="$topicname"/>
   <xsl:text>=</xsl:text>
-  <xsl:call-template name="href.target">
+  <xsl:call-template name="href.target.with.base.dir">
     <xsl:with-param name="object" select=".."/>
   </xsl:call-template>
   <xsl:text>&#xA;</xsl:text>
@@ -711,8 +711,11 @@ Title=</xsl:text>
 <!-- ==================================================================== -->
 
 <xsl:template name="href.target.with.base.dir">
+  <xsl:param name="object" select="."/>
   <xsl:value-of select="$base.dir"/>
-  <xsl:call-template name="href.target"/>
+  <xsl:call-template name="href.target">
+    <xsl:with-param name="object" select="$object"/>
+  </xsl:call-template>
 </xsl:template>
 
 </xsl:stylesheet>
