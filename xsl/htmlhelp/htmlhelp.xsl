@@ -643,14 +643,14 @@ Title=</xsl:text>
 
 <xsl:template match="processing-instruction('dbhh')" mode="hh-map">
   <xsl:variable name="topicname">
-    <xsl:call-template name="dbhtml-attribute">
+    <xsl:call-template name="pi-attribute">
       <xsl:with-param name="pis"
                       select="."/>
       <xsl:with-param name="attribute" select="'topicname'"/>
     </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="topicid">
-    <xsl:call-template name="dbhtml-attribute">
+    <xsl:call-template name="pi-attribute">
       <xsl:with-param name="pis"
                       select="."/>
       <xsl:with-param name="attribute" select="'topicid'"/>
@@ -687,7 +687,7 @@ Title=</xsl:text>
 
 <xsl:template match="processing-instruction('dbhh')" mode="hh-alias">
   <xsl:variable name="topicname">
-    <xsl:call-template name="dbhtml-attribute">
+    <xsl:call-template name="pi-attribute">
       <xsl:with-param name="pis"
                       select="."/>
       <xsl:with-param name="attribute" select="'topicname'"/>
