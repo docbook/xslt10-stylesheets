@@ -126,7 +126,7 @@
 
 <xsl:template match="slides">
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="'toc.html'"/>
+    <xsl:with-param name="filename" select="concat($base.dir, 'toc.html')"/>
     <xsl:with-param name="content">
       <html>
         <head>
@@ -182,7 +182,7 @@
 
 <xsl:template match="slidesinfo">
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="$titlefoil.html"/>
+    <xsl:with-param name="filename" select="concat($base.dir, $titlefoil.html)"/>
     <xsl:with-param name="content">
       <html>
         <head>
@@ -324,7 +324,7 @@
   </xsl:variable>
 
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="$thissection"/>
+    <xsl:with-param name="filename" select="concat($base.dir, $thissection)"/>
     <xsl:with-param name="content">
       <head>
         <title><xsl:value-of select="title"/></title>
@@ -407,7 +407,7 @@
   </xsl:variable>
 
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="$thisfoil"/>
+    <xsl:with-param name="filename" select="concat($base.dir, $thisfoil)"/>
     <xsl:with-param name="content">
       <head>
         <title><xsl:value-of select="title"/></title>
