@@ -11,8 +11,11 @@
 
 <fm:project>
   <fm:Project>DocBook</fm:Project>
-  <fm:Branch>DocBook XSL Stylesheets</fm:Branch>
+  <fm:Branch>XSL Stylesheets</fm:Branch>
   <fm:Version>1.64.1</fm:Version>
+<!--
+  <fm:License>MIT/X Consortium License</fm:License>
+-->
   <fm:Release-Focus>
   <!-- initial freshmeat announcement -->
   <!-- documentation -->
@@ -30,7 +33,7 @@
   <fm:Changelog-URL>http://sourceforge.net/project/shownotes.php?release_id={SFRELID}</fm:Changelog-URL>
   <fm:CVS-URL>http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/docbook/xsl/</fm:CVS-URL>
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook-apps/</fm:Mailing-List-URL>
-  <fm:Changes>Describe changes
+  <fm:Changes>Bug fixes and enhancements. See RELEASE-NOTES for a Xalan update.
 </fm:Changes>
 </fm:project>
 
