@@ -59,7 +59,7 @@ artheader article audiodata audioobject author authorblurb authorgroup
 beginpage bibliodiv biblioentry bibliography biblioset blockquote book
 bookbiblio bookinfo callout calloutlist caption caution chapter
 citerefentry cmdsynopsis co collab colophon colspec confgroup
-copyright dedication docinfo editor entry entrytbl epigraph equation
+copyright dedication docinfo editor entrytbl epigraph equation
 example figure footnote footnoteref formalpara funcprototype
 funcsynopsis glossary glossdef glossdiv glossentry glosslist graphicco
 group highlights imagedata imageobject imageobjectco important index
