@@ -50,8 +50,6 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:message>symbol: <xsl:value-of select="$itemsymbol"/></xsl:message>
-
   <fo:list-item id="{$id}" xsl:use-attribute-sets="list.item.spacing">
     <fo:list-item-label end-indent="label-end()">
       <fo:block>
@@ -148,8 +146,22 @@
 </xsl:template>
 
 <xsl:template match="variablelist">
+  <xsl:variable name="presentation">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'list-presentation'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:choose>
-    <xsl:when test="$format.variablelist.as.list = 0">
+    <xsl:when test="$presentation = 'list'">
+      <xsl:apply-templates select="." mode="vl.as.list"/>
+    </xsl:when>
+    <xsl:when test="$presentation = 'blocks'">
+      <xsl:apply-templates select="." mode="vl.as.blocks"/>
+    </xsl:when>
+    <xsl:when test="$variablelist.as.blocks != 0">
       <xsl:apply-templates select="." mode="vl.as.blocks"/>
     </xsl:when>
     <xsl:otherwise>
@@ -163,19 +175,47 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
+  <xsl:variable name="term-width">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'term-width'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:variable name="termlength">
     <xsl:choose>
-      <!-- FIXME: handle @termlength="1in" -->
-      <xsl:when test="@termlength">
-        <xsl:value-of select="@termlength"/>
-        <xsl:text>em</xsl:text>
+      <xsl:when test="$term-width != ''">
+        <xsl:value-of select="$term-width"/>
       </xsl:when>
-      <!-- FIXME: calculate some reasonable width -->
+      <xsl:when test="@termlength">
+        <xsl:variable name="termlength.is.number">
+          <xsl:value-of select="@termlength + 0"/>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$termlength.is.number = 'NaN'">
+            <!-- if the term length isn't just a number, assume it's a measurement -->
+            <xsl:value-of select="@termlength"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="@termlength"/>
+            <xsl:text>em</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
       <xsl:otherwise>
-        <xsl:text>1in</xsl:text>
+        <xsl:call-template name="longest.term">
+          <xsl:with-param name="terms" select="varlistentry/term"/>
+        </xsl:call-template>
+        <xsl:text>em</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
+
+  <xsl:message>
+    <xsl:text>term width: </xsl:text>
+    <xsl:value-of select="$termlength"/>
+  </xsl:message>
 
   <xsl:if test="title">
     <xsl:apply-templates select="title" mode="list.title.mode"/>
@@ -189,10 +229,33 @@
   </fo:list-block>
 </xsl:template>
 
+<xsl:template name="longest.term">
+  <xsl:param name="longest" select="0"/>
+  <xsl:param name="terms" select="."/>
+
+  <xsl:choose>
+    <xsl:when test="not($terms)">
+      <xsl:value-of select="$longest"/>
+    </xsl:when>
+    <xsl:when test="string-length($terms[1]) &gt; $longest">
+      <xsl:call-template name="longest.term">
+        <xsl:with-param name="longest" select="string-length($terms[1])"/>
+        <xsl:with-param name="terms" select="terms[position() &gt; 1]"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="longest.term">
+        <xsl:with-param name="longest" select="$longest"/>
+        <xsl:with-param name="terms" select="terms[position() &gt; 1]"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="varlistentry" mode="vl.as.list">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
   <fo:list-item id="{$id}" xsl:use-attribute-sets="list.item.spacing">
-    <fo:list-item-label end-indent="label-end()">
+    <fo:list-item-label end-indent="label-end()" text-align="start">
       <fo:block>
         <xsl:apply-templates select="term"/>
       </fo:block>
