@@ -455,7 +455,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
             <xsl:when test="self::entrytbl">
               <xsl:variable name="prop-columns"
                             select=".//colspec[contains(@colwidth, '*')]"/>
-              <fo:table border-collapse="collapse">
+              <fo:table xsl:use-attribute-sets="table.table.properties">
                 <xsl:if test="count($prop-columns) != 0">
                   <xsl:attribute name="table-layout">fixed</xsl:attribute>
                 </xsl:if>
