@@ -378,6 +378,7 @@ zero by default, so this is simply the page-master region-left.
 &equation.properties;
 &table.properties;
 &procedure.properties;
+&root.properties;
 </reference>
 
 <reference><title>Profiling</title>
@@ -407,6 +408,11 @@ url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http:
 &l10n.gentext.language;
 &l10n.gentext.default.language;
 &l10n.gentext.use.xref.language;
+</reference>
+
+<reference><title>EBNF</title>
+&ebnf.assignment;
+&ebnf.statement.terminator;
 </reference>
 
 <!--
@@ -483,6 +489,8 @@ around all these parameters.</para>
 <src:fragref linkend="double.sided.frag"/>
 <src:fragref linkend="draft.mode.frag"/>
 <src:fragref linkend="draft.watermark.image.frag"/>
+<src:fragref linkend="ebnf.assignment.frag"/>
+<src:fragref linkend="ebnf.statement.terminator.frag"/>
 <src:fragref linkend="equation.properties.frag"/>
 <src:fragref linkend="example.properties.frag"/>
 <src:fragref linkend="figure.properties.frag"/>
@@ -581,6 +589,7 @@ around all these parameters.</para>
 <src:fragref linkend="refentry.xref.manvolnum.frag"/>
 <src:fragref linkend="region.after.extent.frag"/>
 <src:fragref linkend="region.before.extent.frag"/>
+<src:fragref linkend="root.properties.frag"/>
 <src:fragref linkend="rootid.frag"/>
 <src:fragref linkend="runinhead.default.title.end.punct.frag"/>
 <src:fragref linkend="runinhead.title.end.punct.frag"/>
