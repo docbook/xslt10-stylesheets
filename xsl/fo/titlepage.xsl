@@ -109,6 +109,31 @@
 <xsl:attribute-set name="simplesect.titlepage.verso.style"
                    use-attribute-sets="section.titlepage.verso.style"/>
 
+<xsl:attribute-set name="refsynopsisdiv.titlepage.recto.style"
+                   use-attribute-sets="section.titlepage.recto.style"/>
+<xsl:attribute-set name="refsynopsisdiv.titlepage.verso.style"
+                   use-attribute-sets="section.titlepage.verso.style"/>
+
+<xsl:attribute-set name="refsection.titlepage.recto.style"
+                   use-attribute-sets="section.titlepage.recto.style"/>
+<xsl:attribute-set name="refsection.titlepage.verso.style"
+                   use-attribute-sets="section.titlepage.verso.style"/>
+
+<xsl:attribute-set name="refsect1.titlepage.recto.style"
+                   use-attribute-sets="section.titlepage.recto.style"/>
+<xsl:attribute-set name="refsect1.titlepage.verso.style"
+                   use-attribute-sets="section.titlepage.verso.style"/>
+
+<xsl:attribute-set name="refsect2.titlepage.recto.style"
+                   use-attribute-sets="section.titlepage.recto.style"/>
+<xsl:attribute-set name="refsect2.titlepage.verso.style"
+                   use-attribute-sets="section.titlepage.verso.style"/>
+
+<xsl:attribute-set name="refsect3.titlepage.recto.style"
+                   use-attribute-sets="section.titlepage.recto.style"/>
+<xsl:attribute-set name="refsect3.titlepage.verso.style"
+                   use-attribute-sets="section.titlepage.verso.style"/>
+
 <xsl:attribute-set name="table.of.contents.titlepage.recto.style"/>
 <xsl:attribute-set name="table.of.contents.titlepage.verso.style"/>
 
@@ -262,12 +287,7 @@
   <xsl:apply-templates select="holder" mode="titlepage.mode"/>
 </xsl:template>
 
-
 <xsl:template match="year" mode="titlepage.mode">
-  <xsl:apply-templates/><xsl:text>, </xsl:text>
-</xsl:template>
-
-<xsl:template match="year[position()=last()]" mode="titlepage.mode">
   <xsl:apply-templates/>
 </xsl:template>
 
