@@ -5980,6 +5980,7 @@ OtherCredit. -->
 <![%filename.attlist;[
 <!ATTLIST filename
 		class		(headerfile
+                                |partition
                                 |devicefile
                                 |libraryfile
                                 |directory
@@ -6775,6 +6776,7 @@ OtherCredit. -->
                         |library
 			|macro
 			|osname
+			|filesystem
 			|resource
 			|systemname
                         |username)	#IMPLIED
