@@ -44,11 +44,13 @@ BROWSER_OPTS=-dump
 # file is an XSL stylesheet or not, and then grabbing the version
 # number from that file
 RELVER := $(shell \
- if grep "<xsl:stylesheet" VERSION >/dev/null; then \
-   grep "Version>.\+<" VERSION \
-   | sed 's/^[^<]*<fm:Version>\(.\+\)<\/fm:Version>$$/\1/' \
-   | tr -d "\n"; \
- else cat VERSION; \
+ if [ -f VERSION ]; then \
+   if grep "<xsl:stylesheet" VERSION >/dev/null; then \
+     grep "Version>.\+<" VERSION \
+     | sed 's/^[^<]*<fm:Version>\(.\+\)<\/fm:Version>$$/\1/' \
+     | tr -d "\n"; \
+   else cat VERSION; \
+   fi \
  fi \
 )
 
