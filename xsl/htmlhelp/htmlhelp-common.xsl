@@ -20,6 +20,9 @@
 
 <xsl:variable name="htmlhelp.generate.index" select="//indexterm[1]"/>
 
+<!-- Set up HTML Help flag -->
+<xsl:variable name="htmlhelp.output" select="1"/>
+
 <xsl:variable name="raw.help.title">
   <xsl:choose>
     <xsl:when test="$htmlhelp.title = ''">
