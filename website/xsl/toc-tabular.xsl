@@ -25,6 +25,8 @@
 
 <xsl:param name="nav.text.pointer">&lt;-</xsl:param>
 
+<xsl:param name="toc.expand.depth" select="1"/>
+
 <!-- ==================================================================== --> 
 
 <xsl:template match="toc/title|tocentry/title|titleabbrev">
@@ -96,6 +98,8 @@
                 select="($page/descendant-or-self::tocentry[@tocskip = '0']
                        |$page/following::tocentry[@tocskip='0'])[1]"/>
 
+  <xsl:variable name="depth" select="count(ancestor::*)-1"/>
+
   <xsl:variable name="isdescendant">
     <xsl:choose>
       <xsl:when test="ancestor::*[@id=$pageid]">1</xsl:when>
@@ -113,6 +117,15 @@
   <xsl:variable name="isancestor">
     <xsl:choose>
       <xsl:when test="descendant::*[@id=$pageid]">1</xsl:when>
+      <xsl:otherwise>0</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="isopen">
+    <xsl:choose>
+      <xsl:when test="$pageid = @id
+                      or $isancestor='1'
+                      or $depth &lt; $toc.expand.depth">1</xsl:when>
       <xsl:otherwise>0</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -144,14 +157,14 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:choose>
-          <xsl:when test="$isancestor != 0">
+          <xsl:when test="$hasdescendant = 0">
+            <xsl:text>/other/leaf</xsl:text>
+          </xsl:when>
+          <xsl:when test="$isancestor != 0 or $depth &lt; $toc.expand.depth">
             <xsl:text>/other/open</xsl:text>
           </xsl:when>
-          <xsl:when test="$hasdescendant != 0">
-            <xsl:text>/other/closed</xsl:text>
-          </xsl:when>
           <xsl:otherwise>
-            <xsl:text>/other/leaf</xsl:text>
+            <xsl:text>/other/closed</xsl:text>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:otherwise>
@@ -300,7 +313,7 @@
     </xsl:choose>
   </span>
 
-  <xsl:if test="$pageid = @id or $isancestor='1'">
+  <xsl:if test="$pageid = @id or $isancestor='1' or $depth &lt; $toc.expand.depth">
     <xsl:apply-templates select="tocentry">
       <xsl:with-param name="pageid" select="$pageid"/>
       <xsl:with-param name="relpath" select="$relpath"/>
