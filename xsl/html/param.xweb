@@ -216,6 +216,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &shade.verbatim.style;
 &punct.honorific;
 &segmentedlist.as.table;
+&variablelist.as.table;
 &tex.math.in.alt;
 &tex.math.file;
 </reference>
@@ -409,6 +410,7 @@ around all these parameters.</para>
 <src:fragref linkend="use.extensions.frag"/>
 <src:fragref linkend="use.id.as.filename.frag"/>
 <src:fragref linkend="using.chunker.frag"/>
+<src:fragref linkend="variablelist.as.table.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>

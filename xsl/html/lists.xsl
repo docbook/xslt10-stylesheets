@@ -208,12 +208,26 @@
 </xsl:template>
 
 <xsl:template match="variablelist">
-  <xsl:variable name="presentation">
+  <xsl:variable name="pi-presentation">
     <xsl:call-template name="dbhtml-attribute">
       <xsl:with-param name="pis"
                       select="processing-instruction('dbhtml')"/>
       <xsl:with-param name="attribute" select="'list-presentation'"/>
     </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="presentation">
+    <xsl:choose>
+      <xsl:when test="$pi-presentation != ''">
+        <xsl:value-of select="$pi-presentation"/>
+      </xsl:when>
+      <xsl:when test="$variablelist.as.table != 0">
+        <xsl:value-of select="'table'"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="'list'"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
 
   <xsl:variable name="list-width">
