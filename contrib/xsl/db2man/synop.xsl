@@ -27,7 +27,7 @@
   <xsl:if test="position()>1"><xsl:value-of select="$sepchar"/></xsl:if>
   <xsl:choose>
     <xsl:when test="$choice='plain'">
-      <xsl:value-of select="$arg.choice.plain.open.str"/>
+      <!-- do nothing -->
     </xsl:when>
     <xsl:when test="$choice='req'">
       <xsl:value-of select="$arg.choice.req.open.str"/>
@@ -56,7 +56,9 @@
   </xsl:choose>
   <xsl:choose>
     <xsl:when test="$choice='plain'">
+      <xsl:if test='arg'>
       <xsl:value-of select="$arg.choice.plain.close.str"/>
+      </xsl:if>
     </xsl:when>
     <xsl:when test="$choice='req'">
       <xsl:value-of select="$arg.choice.req.close.str"/>
