@@ -102,68 +102,6 @@ this is a long screen
 this is a long screen
 this is a long screen
 this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
-this is a long screen
 </screen>
 </foil>
 
@@ -171,7 +109,7 @@ this is a long screen
 <foilgroup><title>Foilgroup 2</title>
 
 <foil><title>Test Slides Title 1</title>
-<para>...</para>
+<para>...<footnote><para>This is a footnote.</para></footnote></para>
 </foil>
 
 <foil><title>Test Slides Title 2</title>
