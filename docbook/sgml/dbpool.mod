@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook information pool module V4.0 ................................. -->
+<!-- DocBook information pool module V4.1 ................................. -->
 <!-- File dbpool.mod ...................................................... -->
 
 <!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
@@ -49,7 +49,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbpool PUBLIC
-     "-//OASIS//ELEMENTS DocBook Information Pool V4.0//EN">
+     "-//OASIS//ELEMENTS DocBook Information Pool V4.1//EN">
      %dbpool;
 
      See the documentation for detailed information on the parameter
@@ -780,13 +780,6 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
      below. -->
 
 <!ENTITY % local.person.ident.mix "">
-<!--FUTURE USE (V4.0):
-......................
-AuthorBlurb and Affiliation will be removed from %person.ident.mix; and a new
-wrapper element created to allow association of those two elements with
-Author name information.
-......................
--->
 <!ENTITY % person.ident.mix
 		"Honorific|FirstName|Surname|Lineage|OtherName|Affiliation
 		|AuthorBlurb|Contrib %local.person.ident.mix;">
@@ -1920,12 +1913,6 @@ ArticleInfo will be droped from BiblioEntry
 <!--end of glossentry.attlist-->]]>
 <!--end of glossentry.module-->]]>
 
-<!--FUTURE USE (V4.0):
-......................
-GlossTerm *may* be split into an element that appears in a
-Glossary and an element that can appear in the main text.
-......................
--->
 <!-- GlossTerm (defined in the Inlines section, below)-->
 <!ENTITY % glossdef.module "INCLUDE">
 <![ %glossdef.module; [
@@ -4438,13 +4425,6 @@ Coord attribute will be removed from AreaSet
 
 <!ENTITY % author.module "INCLUDE">
 <![ %author.module; [
-<!--FUTURE USE (V4.0):
-......................
-AuthorBlurb and Affiliation will be removed from %person.ident.mix; and a new 
-wrapper element created to allow association of those two elements with 
-Author name information.
-......................
--->
 <!ENTITY % local.author.attrib "">
 <!ENTITY % author.role.attrib "%role.attrib;">
 
@@ -4871,13 +4851,6 @@ Author name information.
 
 <!ENTITY % editor.module "INCLUDE">
 <![ %editor.module; [
-<!--FUTURE USE (V4.0):
-......................
-AuthorBlurb and Affiliation will be removed from %person.ident.mix; and a new 
-wrapper element created to allow association of those two elements with 
-Editor name information.
-......................
--->
 <!ENTITY % local.editor.attrib "">
 <!ENTITY % editor.role.attrib "%role.attrib;">
 
@@ -5062,13 +5035,6 @@ Editor name information.
 
 <!ENTITY % othercredit.module "INCLUDE">
 <![ %othercredit.module; [
-<!--FUTURE USE (V4.0):
-......................
-AuthorBlurb and Affiliation will be removed from %person.ident.mix; and a new 
-wrapper element created to allow association of those two elements with 
-OtherCredit name information.
-......................
--->
 <!ENTITY % local.othercredit.attrib "">
 <!ENTITY % othercredit.role.attrib "%role.attrib;">
 
@@ -5117,13 +5083,6 @@ OtherCredit. -->
 
 <!ENTITY % person.ident.module "INCLUDE">
 <![ %person.ident.module; [
-<!--FUTURE USE (V4.0):
-......................
-AuthorBlurb and Affiliation will be removed from %person.ident.mix; and
-a new wrapper element created to allow association of those two elements
-with Contrib name information.
-......................
--->
   <!ENTITY % contrib.module "INCLUDE">
   <![ %contrib.module; [
   <!ENTITY % local.contrib.attrib "">
@@ -7433,5 +7392,5 @@ the same as %example.mix; although it may not use that PE.
 <!--end of seeseealso.module-->]]>
 <!--end of indexterm.content.module-->]]>
 
-<!-- End of DocBook information pool module V4.0 .......................... -->
+<!-- End of DocBook information pool module V4.1 .......................... -->
 <!-- ...................................................................... -->

@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook notations module V4.0 ........................................ -->
+<!-- DocBook notations module V4.1 ........................................ -->
 <!-- File dbnotn.mod ...................................................... -->
 
 <!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
@@ -36,7 +36,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbnotn PUBLIC
-     "-//OASIS//ENTITIES DocBook Notations V4.0//EN">
+     "-//OASIS//ENTITIES DocBook Notations V4.1//EN">
      %dbnotn;
 
      See the documentation for detailed information on the parameter

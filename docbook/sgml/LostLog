@@ -1,132 +1,88 @@
 This ChangeLog is all that remains from the previous incarnation of
 this CVS repository that was irretrievably lost.
 
-1999-02-01  Norman Walsh  <ndw@nwalsh.com>
+2000-06-19  Norman Walsh  <ndw@nwalsh.com>
 
-	* readme.txt: Updated readme, DocBook 3.1 released.
+	* 40chg.txt: Added notes about comment and interfacedefinition
 
-	* docbook.dtd, docbook.dcl, docbook.cat, dbnotn.mod, dbhier.mod, dbgenent.mod, dbcent.mod, dbpool.mod:
-	Updated version number
+	* 41chg.txt: New file.
 
-	* cals-tbl.dtd: For DocBook 3.1
+	* 50issues.txt, dbcent.mod, dbgenent.mod, dbhier.mod, dbnotn.mod, dbpool.mod, docbook.cat, docbook.dcl, readme.txt: 
+	Updated version numbers to 4.1
 
-	* 50issues.txt, 40issues.txt: Fixed date
+	* dbhier.mod, dbpool.mod: Removed 4.0 future use comments
 
-	* 31chg.txt: Changed date, updated owner identifier
+	* docbook.cat: Fixed version number in comment
 
-1999-01-31  Norman Walsh  <ndw@nwalsh.com>
+	* docbook.dtd: DocBook V4.1 released.
 
-	* dbpool.mod:
-	Added missing semicolons to several parameter entity references.
-	Changed Constant and VarName to be * not + since they contain #PCDATA.
+2000-05-18  Norman Walsh  <ndw@nwalsh.com>
 
-	* dbhier.mod: Added missing semicolon to a parameter entity reference
+	* 40chg.txt, dbcent.mod, dbgenent.mod, dbhier.mod, dbnotn.mod, dbpool.mod, docbook.cat, docbook.dcl, docbook.dtd, readme.txt: 
+	Removed references to beta6
 
-1999-01-21  Norman Walsh  <ndw@nwalsh.com>
+	* docbook.dtd: DocBook V4.0 released.
 
-	* dbhier.mod: Added missing semicolon in PE invokation.
+2000-04-10  Norman Walsh  <ndw@nwalsh.com>
 
-1999-01-14  Norman Walsh  <ndw@nwalsh.com>
+	* 40chg.txt, dbcent.mod, dbgenent.mod, dbhier.mod, dbnotn.mod, dbpool.mod, docbook.cat, docbook.dcl, docbook.dtd, readme.txt: 
+	Updated release date and version to 4.0beta6
 
-	* readme.txt: New file.
+	* dbpool.mod: Added support for EBNF hook; fixed equation content bug
 
-	* dbcent.mod, dbgenent.mod, dbhier.mod, dbnotn.mod, dbpool.mod, docbook.cat, docbook.dcl, docbook.dtd:
-	BETA1 Release
+2000-04-03  Norman Walsh  <ndw@nwalsh.com>
 
-	* 50issues.txt: Added known changes.
+	* 40chg.txt: Added note about renaming DocInfo to *Info.
 
-	* docbook.dtd: Fixed copyright and contact info
+	* 40chg.txt, dbcent.mod, dbgenent.mod, dbhier.mod, dbnotn.mod, dbpool.mod, docbook.cat, docbook.dcl, docbook.dtd, readme.txt: 
+	Updated version numbers
 
-	* dbpool.mod:
-	Updated copyright notice.  Added IndexTerms to many parameter
-	entities and a couple of content models.  Removed yes.attval
-	and linkendsreq.attrib.
+2000-03-24  Norman Walsh  <ndw@nwalsh.com>
 
-	* dbnotn.mod: Fixed copyright and contact info
+	* 40chg.txt, dbcent.mod, dbgenent.mod, dbhier.mod, dbnotn.mod, dbpool.mod, docbook.cat, docbook.dcl, docbook.dtd, readme.txt: 
+	Updated version numbers
 
-	* dbhier.mod:
-	Updated copyright notice. Added IndexTerms to several elements.
-	Changed order of SubTitle outside of *Info elements to:
-	Title, Subtitle?, TitleAbbrev? (in earlier test releases, it
-	was Title, TitleAbbrev?, Subtitle?).
+	* 50issues.txt: Added note about PE reorg
 
-	* dbcent.mod: Fixed copyright and contact info
+	* dbefsyn.mod: Removed
 
-	* 31chg.txt: Improved wording, updated
+	* dbpool.mod: Removed ELEMENT from comments to ease text searching of the DTD.
+	Merged dbefsyn.mod into dbpool.mod
+	Added Modifier as an optional element at the end of MethodSynopsis
+	and MethodParam.
 
-	* dbpool.mod: Added "Journal", "Series", "Set", and "Manuscript" to the
-	list of allowed values in Pubwork on CiteTitle.
+2000-03-07  Norman Walsh  <ndw@nwalsh.com>
 
-1998-12-15  Norman Walsh  <ndw@nwalsh.com>
+	* 40chg.txt, dbcent.mod, dbgenent.mod, dbhier.mod, dbnotn.mod, dbpool.mod, docbook.cat, docbook.dcl, docbook.dtd, readme.txt: 
+	Updated internal versions to beta3
 
-	* docbook.dtd:
-	Corrected copyright notice, contact info, and owner identifiers
-	in examples
+2000-03-03  Norman Walsh  <ndw@nwalsh.com>
 
-	* docbook.cat: Corrected contact info
+	* dbpool.mod: Removed erroneous comment about inline synopses
 
-	* dbpool.mod, dbnotn.mod, dbhier.mod:
-	Corrected copyright notice and contact info
+2000-03-02  Norman Walsh  <ndw@nwalsh.com>
 
-	* dbcent.mod: Corrected copyright notice
+	* 30chg.txt, 31chg.txt, 40issues.txt, 50issues.txt, announce.txt, cals-tbl.dtd, dbcent.mod, dbgenent.mod, dbhier.mod, dbnotn.mod, dbpool.mod, docbook.cat, docbook.dcl, docbook.dtd, readme.txt: 
+	Version 3.1
 
-	* 50issues.txt:
-	Added note that this list needs to be filled out before V4.0
+	* 30chg.txt, 40issues.txt, announce.txt, cals-tbl.dtd, dbgenent.mod, dbhier.mod, dbpool.mod, docbook.cat, docbook.dcl, docbook.dtd: 
+	branches:  1.1.1;
+	Initial revision
 
-	* 31chg.txt:
-	Fixed date, added QAndASet, MediaObject, and InlineMediaObject.
+	* 30chg.txt, 40issues.txt, announce.txt, cals-tbl.dtd, dbgenent.mod, dbhier.mod, dbpool.mod, docbook.cat, docbook.dcl, docbook.dtd: 
+	New file.
 
-	* docbook.dcl: Changed version number to 3.1
+	* 31chg.txt, 40chg.txt, 40issues.txt, 50issues.txt, cals-tbl.dtd, dbcent.mod, dbefsyn.mod, dbgenent.mod, dbhier.mod, dbnotn.mod, dbpool.mod, docbook.cat, docbook.dcl, docbook.dtd, readme.txt: 
+	Version 4.0beta2
 
-1998-12-14  Norman Walsh  <ndw@nwalsh.com>
+	* 50issues.txt: Added warning about exchange table model
 
-	* dbpool.mod: Fixed typo in definition of qandaset.mix.
+	* dbefsyn.mod, dbpool.mod: Added ooclass, oointerface, and ooexception as wrappers for modifiers
+	and names in classsynopsis. Also allow them inline.
+	
+	Fixed SGML PE parsing problem with hook PEs.
 
-	* dbhier.mod: Removed setinfo.char.mix.  It was unused.
+	* dbhier.mod, dbpool.mod: Added hook PEs for future module extension
 
-	* dbpool.mod: Added CiteTitle to bibliocomponent.mix
+	* dbpool.mod, docbook.dtd: Removed reference to sgml-features PE
 
-	Reworked QAndASet.  DefaultLabel loses the Label value.  Label
-	on Question and Answer becomes an element.  The semantics are
-	that a Label, if present, is always used (which you can override
-	with your stylesheet, if required).
-
-1998-12-07  Norman Walsh  <ndw@nwalsh.com>
-
-	* dbpool.mod:
-	DefaultMark/Mark become DefaultLabel/Label on QandASet/Question/Answer
-
-1998-12-06  Norman Walsh  <ndw@nwalsh.com>
-
-	* dbpool.mod:
-	Added InformalFigure to informal.class, where it had accidentally
-	been left out.
-
-	* dbpool.mod:
-	Changed the 'label' value of DefaultMark on QandASet to 'mark'
-	since the attribute is 'mark'.
-
-	* dbpool.mod: Revised QandASet. QandAEntry now recurses in Answer, not
-	QandAEntry. Question and Answer no longer have a Title,
-	they have a Mark attribute. Renamed Mark attribute on
-	QandASet to DefaultMark.
-
-1998-12-01  Norman Walsh  <ndw@nwalsh.com>
-
-	* 50issues.txt: Branch for 3.1
-
-	* 50issues.txt: Initial version
-
-	* dbgenent.mod, dbhier.mod, docbook.cat, docbook.dcl, docbook.dtd, dbpool.mod:
-	3.1 changes
-
-	* 31chg.txt: Branch for 3.1 testing
-
-	* 31chg.txt: Initial version
-
-	* dbcent.mod, dbnotn.mod: Branch for 3.1 testing
-
-	* dbcent.mod, dbnotn.mod: Initial version
-
-	* 40issues.txt, cals-tbl.dtd, dbgenent.mod, dbhier.mod, dbpool.mod, docbook.cat, docbook.dcl, docbook.dtd:
-	Branch for 3.1 testing

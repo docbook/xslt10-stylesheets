@@ -1,6 +1,6 @@
-18 May 2000
+19 June 2000
 
-Changes from DocBook V3.1 to DocBook V4.0:
+Changes from DocBook V3.1 to DocBook V4.1:
 
 Markup:
 
@@ -29,6 +29,8 @@ Markup:
 - Added synopsis markup for modern programming languages (e.g, object
   oriented languages like Java, C++, and IDL)
 - Renamed DocInfo to PrefaceInfo, ChapterInfo, AppendixInfo, etc.
+- Comment was renamed Remark
+- InterfaceDefinition was removed
 
 Other:
 
