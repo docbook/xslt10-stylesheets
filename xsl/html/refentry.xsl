@@ -20,7 +20,14 @@
       <xsl:with-param name="conditional" select="0"/>
     </xsl:call-template>
     <xsl:call-template name="reference.titlepage"/>
-    <xsl:if test="not(partintro) and $generate.reference.toc != '0'">
+
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:if test="not(partintro) and contains($toc.params, 'toc')">
       <xsl:call-template name="division.toc"/>
     </xsl:if>
     <xsl:apply-templates/>

@@ -1353,5 +1353,47 @@ year range is <quote>1991-1992</quote> but discretely it's
   </xsl:choose>
 </xsl:template>
 
+<!-- ====================================================================== -->
+
+<doc:template name="find.path.params" xmlns="">
+<refpurpose>Search in a table for the "best" match for the node</refpurpose>
+
+<refdescription>
+<para>This template searches in a table for the value that most-closely
+(in the typical best-match sense of XSLT) matches the current (element)
+node location.</para>
+</refdescription>
+</doc:template>
+
+<xsl:template name="find.path.params">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="table" select="''"/>
+  <xsl:param name="location">
+    <xsl:call-template name="xpath.location">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:param>
+
+  <xsl:variable name="value">
+    <xsl:call-template name="lookup.key">
+      <xsl:with-param name="key" select="$location"/>
+      <xsl:with-param name="table" select="$table"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$value != ''">
+      <xsl:value-of select="$value"/>
+    </xsl:when>
+    <xsl:when test="contains($location, '/')">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="node" select="$node"/>
+        <xsl:with-param name="table" select="$table"/>
+        <xsl:with-param name="location" select="substring-after($location, '/')"/>
+      </xsl:call-template>
+    </xsl:when>
+  </xsl:choose>
+</xsl:template>
+
 </xsl:stylesheet>
 

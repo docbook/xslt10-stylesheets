@@ -88,27 +88,15 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <reference><title>ToC/LoT/Index Generation</title>
 &annotate.toc;
 &autotoc.label.separator;
-&generate.appendix.toc;
-&generate.article.toc;
-&generate.book.toc;
-&generate.chapter.toc;
-&generate.component.toc;
-&generate.division.toc;
-&generate.part.toc;
-&generate.preface.toc;
-&generate.qandadiv.toc;
-&generate.qandaset.toc;
-&generate.reference.toc;
-&generate.section.toc;
-&generate.set.toc;
-&generate.section.toc.level;
-&generate.index;
-&toc.list.type;
-&toc.section.depth;
 &process.source.toc;
 &process.empty.source.toc;
 &bridgehead.in.toc;
 &manual.toc;
+&toc.list.type;
+&toc.section.depth;
+&generate.toc;
+&generate.section.toc.level;
+&generate.index;
 </reference>
 
 <reference><title>Extensions</title>
@@ -357,23 +345,11 @@ around all these parameters.</para>
 <src:fragref linkend="funcsynopsis.decoration.frag"/>
 <src:fragref linkend="funcsynopsis.style.frag"/>
 <src:fragref linkend="function.parens.frag"/>
-<src:fragref linkend="generate.appendix.toc.frag"/>
-<src:fragref linkend="generate.article.toc.frag"/>
-<src:fragref linkend="generate.book.toc.frag"/>
-<src:fragref linkend="generate.chapter.toc.frag"/>
-<src:fragref linkend="generate.component.toc.frag"/>
-<src:fragref linkend="generate.division.toc.frag"/>
 <src:fragref linkend="generate.id.attributes.frag"/>
 <src:fragref linkend="generate.index.frag"/>
 <src:fragref linkend="generate.legalnotice.link.frag"/>
-<src:fragref linkend="generate.part.toc.frag"/>
-<src:fragref linkend="generate.preface.toc.frag"/>
-<src:fragref linkend="generate.qandadiv.toc.frag"/>
-<src:fragref linkend="generate.qandaset.toc.frag"/>
-<src:fragref linkend="generate.reference.toc.frag"/>
-<src:fragref linkend="generate.section.toc.frag"/>
 <src:fragref linkend="generate.section.toc.level.frag"/>
-<src:fragref linkend="generate.set.toc.frag"/>
+<src:fragref linkend="generate.toc.frag"/>
 <src:fragref linkend="glossary.collection.frag"/>
 <src:fragref linkend="glossterm.auto.link.frag"/>
 <src:fragref linkend="graphic.default.extension.frag"/>

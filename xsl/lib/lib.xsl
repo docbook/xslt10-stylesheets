@@ -322,4 +322,78 @@ for example), the template may silently return erroneous results.</para>
   </xsl:choose>
 </xsl:template>
 
+<!-- ================================================================== -->
+
+<doc:template name="lookup.key" xmlns="">
+<refpurpose>Retrieve the value associated with a particular key in a table</refpurpose>
+<refdescription>
+<para>Given a table of space-delimited key/value pairs,
+the <function>lookup.key</function> template extracts the value associated
+with a particular key.</para>
+</refdescription>
+</doc:template>
+
+<xsl:template name="lookup.key">
+  <xsl:param name="key" select="''"/>
+  <xsl:param name="table" select="''"/>
+
+  <xsl:if test="contains($table, ' ')">
+    <xsl:choose>
+      <xsl:when test="substring-before($table, ' ') = $key">
+        <xsl:variable name="rest" select="substring-after($table, ' ')"/>
+        <xsl:choose>
+          <xsl:when test="contains($rest, ' ')">
+            <xsl:value-of select="substring-before($rest, ' ')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$rest"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="lookup.key">
+          <xsl:with-param name="key" select="$key"/>
+          <xsl:with-param name="table"
+                            select="substring-after(substring-after($table,' '), ' ')"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:if>
+</xsl:template>
+
+<!-- ================================================================== -->
+
+<doc:template name="xpath.location" xmlns="">
+<refpurpose>Calculate the XPath child-sequence to the current node</refpurpose>
+<refdescription>
+<para>The <function>xpath.location</function> template calculates the
+absolute path from the root of the tree to the current element node.
+</para>
+</refdescription>
+</doc:template>
+
+<xsl:template name="xpath.location">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="path" select="''"/>
+
+  <xsl:variable name="next.path">
+    <xsl:value-of select="local-name($node)"/>
+    <xsl:if test="$path != ''">/</xsl:if>
+    <xsl:value-of select="$path"/>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$node/parent::*">
+      <xsl:call-template name="xpath.location">
+        <xsl:with-param name="node" select="$node/parent::*"/>
+        <xsl:with-param name="path" select="$next.path"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>/</xsl:text>
+      <xsl:value-of select="$next.path"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 </xsl:stylesheet>

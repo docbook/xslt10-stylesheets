@@ -90,8 +90,13 @@
           <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
         </rx:bookmark-label>
       </rx:bookmark>
-      <xsl:if test="(local-name(.) = 'set' and $generate.set.toc != 0)
-                    or (local-name(.) = 'book' and $generate.book.toc != 0)">
+
+      <xsl:variable name="toc.params">
+        <xsl:call-template name="find.path.params">
+          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:if test="contains($toc.params, 'toc')">
         <rx:bookmark internal-destination="toc...{$id}">
           <rx:bookmark-label>
             <xsl:call-template name="gentext">

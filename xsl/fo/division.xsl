@@ -77,7 +77,12 @@
     </fo:page-sequence>
   </xsl:if>
 
-  <xsl:if test="$generate.set.toc != '0'">
+  <xsl:variable name="toc.params">
+    <xsl:call-template name="find.path.params">
+      <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:if test="contains($toc.params, 'toc')">
     <fo:page-sequence hyphenate="{$hyphenate}"
                       format="i"
                       master-reference="{$master-reference}">
@@ -148,7 +153,12 @@
 
   <xsl:apply-templates select="dedication" mode="dedication"/>
 
-  <xsl:if test="$generate.book.toc != '0'">
+  <xsl:variable name="toc.params">
+    <xsl:call-template name="find.path.params">
+      <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:if test="contains($toc.params, 'toc')">
     <fo:page-sequence hyphenate="{$hyphenate}"
                       format="i"
                       master-reference="{$master-reference}">
@@ -171,7 +181,7 @@
     </fo:page-sequence>
   </xsl:if>
 
-  <xsl:if test="$generate.book.figure.lot != '0' and .//figure">
+  <xsl:if test="contains($toc.params,'figure') and .//figure">
     <fo:page-sequence hyphenate="{$hyphenate}"
                       format="i"
                       master-reference="{$master-reference}">
@@ -197,7 +207,7 @@
     </fo:page-sequence>
   </xsl:if>
 
-  <xsl:if test="$generate.book.table.lot != '0' and .//table">
+  <xsl:if test="contains($toc.params,'table') and .//table">
     <fo:page-sequence hyphenate="{$hyphenate}"
                       format="i"
                       master-reference="{$master-reference}">
@@ -223,7 +233,7 @@
     </fo:page-sequence>
   </xsl:if>
 
-  <xsl:if test="$generate.book.example.lot != '0' and .//example">
+  <xsl:if test="contains($toc.params,'example') and .//example">
     <fo:page-sequence hyphenate="{$hyphenate}"
                       format="i"
                       master-reference="{$master-reference}">
@@ -249,7 +259,7 @@
     </fo:page-sequence>
   </xsl:if>
 
-  <xsl:if test="$generate.book.equation.lot != '0' and .//equation">
+  <xsl:if test="contains($toc.params,'equation') and .//equation">
     <fo:page-sequence hyphenate="{$hyphenate}"
                       format="i"
                       master-reference="{$master-reference}">

@@ -80,101 +80,97 @@
 </xsl:template>
 
 <xsl:template name="division.toc">
-  <xsl:if test="$generate.division.toc != 0">
-    <xsl:variable name="toc.title">
-      <p>
-        <b>
-          <xsl:call-template name="gentext">
-            <xsl:with-param name="key">TableofContents</xsl:with-param>
-          </xsl:call-template>
-        </b>
-      </p>
-    </xsl:variable>
+  <xsl:variable name="toc.title">
+    <p>
+      <b>
+        <xsl:call-template name="gentext">
+          <xsl:with-param name="key">TableofContents</xsl:with-param>
+        </xsl:call-template>
+      </b>
+    </p>
+  </xsl:variable>
 
-    <xsl:choose>
-      <xsl:when test="$manual.toc != ''">
-        <xsl:variable name="id">
-          <xsl:call-template name="object.id"/>
-        </xsl:variable>
-        <xsl:variable name="toc" select="document($manual.toc, .)"/>
-        <xsl:variable name="tocentry" select="$toc//tocentry[@linkend=$id]"/>
-        <xsl:if test="$tocentry and $tocentry/*">
-          <div class="toc">
-            <xsl:copy-of select="$toc.title"/>
-            <xsl:element name="{$toc.list.type}">
-              <xsl:call-template name="manual-toc">
-                <xsl:with-param name="tocentry" select="$tocentry/*[1]"/>
-              </xsl:call-template>
-            </xsl:element>
-          </div>
-        </xsl:if>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:variable name="nodes" select="part|reference
-                                           |preface|chapter|appendix
-                                           |article
-                                           |bibliography|glossary|index
-                                           |refentry
-                                           |bridgehead"/>
-        <xsl:if test="$nodes">
-          <div class="toc">
-            <xsl:copy-of select="$toc.title"/>
-            <xsl:element name="{$toc.list.type}">
-              <xsl:apply-templates select="$nodes" mode="toc"/>
-            </xsl:element>
-          </div>
-        </xsl:if>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:if>
+  <xsl:choose>
+    <xsl:when test="$manual.toc != ''">
+      <xsl:variable name="id">
+        <xsl:call-template name="object.id"/>
+      </xsl:variable>
+      <xsl:variable name="toc" select="document($manual.toc, .)"/>
+      <xsl:variable name="tocentry" select="$toc//tocentry[@linkend=$id]"/>
+      <xsl:if test="$tocentry and $tocentry/*">
+        <div class="toc">
+          <xsl:copy-of select="$toc.title"/>
+          <xsl:element name="{$toc.list.type}">
+            <xsl:call-template name="manual-toc">
+              <xsl:with-param name="tocentry" select="$tocentry/*[1]"/>
+            </xsl:call-template>
+          </xsl:element>
+        </div>
+      </xsl:if>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="nodes" select="part|reference
+                                         |preface|chapter|appendix
+                                         |article
+                                         |bibliography|glossary|index
+                                         |refentry
+                                         |bridgehead"/>
+      <xsl:if test="$nodes">
+        <div class="toc">
+          <xsl:copy-of select="$toc.title"/>
+          <xsl:element name="{$toc.list.type}">
+            <xsl:apply-templates select="$nodes" mode="toc"/>
+          </xsl:element>
+        </div>
+      </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="component.toc">
-  <xsl:if test="$generate.component.toc != 0">
-    <xsl:variable name="toc.title">
-      <p>
-        <b>
-          <xsl:call-template name="gentext">
-            <xsl:with-param name="key">TableofContents</xsl:with-param>
-          </xsl:call-template>
-        </b>
-      </p>
-    </xsl:variable>
+  <xsl:variable name="toc.title">
+    <p>
+      <b>
+        <xsl:call-template name="gentext">
+          <xsl:with-param name="key">TableofContents</xsl:with-param>
+        </xsl:call-template>
+      </b>
+    </p>
+  </xsl:variable>
 
-    <xsl:choose>
-      <xsl:when test="$manual.toc != ''">
-        <xsl:variable name="id">
-          <xsl:call-template name="object.id"/>
-        </xsl:variable>
-        <xsl:variable name="toc" select="document($manual.toc, .)"/>
-        <xsl:variable name="tocentry" select="$toc//tocentry[@linkend=$id]"/>
-        <xsl:if test="$tocentry and $tocentry/*">
-          <div class="toc">
-            <xsl:copy-of select="$toc.title"/>
-            <xsl:element name="{$toc.list.type}">
-              <xsl:call-template name="manual-toc">
-                <xsl:with-param name="tocentry" select="$tocentry/*[1]"/>
-              </xsl:call-template>
-            </xsl:element>
-          </div>
-        </xsl:if>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:variable name="nodes" select="section|sect1|refentry
-                                           |article|bibliography|glossary
-                                           |appendix|bridgehead[not(@renderas)]
-                                           |.//bridgehead[@renderas='sect1']"/>
-        <xsl:if test="$nodes">
-          <div class="toc">
-            <xsl:copy-of select="$toc.title"/>
-            <xsl:element name="{$toc.list.type}">
-              <xsl:apply-templates select="$nodes" mode="toc"/>
-            </xsl:element>
-          </div>
-        </xsl:if>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:if>
+  <xsl:choose>
+    <xsl:when test="$manual.toc != ''">
+      <xsl:variable name="id">
+        <xsl:call-template name="object.id"/>
+      </xsl:variable>
+      <xsl:variable name="toc" select="document($manual.toc, .)"/>
+      <xsl:variable name="tocentry" select="$toc//tocentry[@linkend=$id]"/>
+      <xsl:if test="$tocentry and $tocentry/*">
+        <div class="toc">
+          <xsl:copy-of select="$toc.title"/>
+          <xsl:element name="{$toc.list.type}">
+            <xsl:call-template name="manual-toc">
+              <xsl:with-param name="tocentry" select="$tocentry/*[1]"/>
+            </xsl:call-template>
+          </xsl:element>
+        </div>
+      </xsl:if>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="nodes" select="section|sect1|refentry
+                                         |article|bibliography|glossary
+                                         |appendix|bridgehead[not(@renderas)]
+                                         |.//bridgehead[@renderas='sect1']"/>
+      <xsl:if test="$nodes">
+        <div class="toc">
+          <xsl:copy-of select="$toc.title"/>
+          <xsl:element name="{$toc.list.type}">
+            <xsl:apply-templates select="$nodes" mode="toc"/>
+          </xsl:element>
+        </div>
+      </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="section.toc">
@@ -453,6 +449,55 @@
       </xsl:call-template>
     </xsl:if>
   </xsl:if>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template name="list.of.titles">
+  <xsl:param name="titles" select="'table'"/>
+  <xsl:param name="nodes" select=".//table"/>
+
+  <xsl:if test="$nodes">
+    <div class="list-of-{$titles}s">
+      <p>
+        <b>
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key">
+              <xsl:choose>
+                <xsl:when test="$titles='table'">ListofTables</xsl:when>
+                <xsl:when test="$titles='figure'">ListofFigures</xsl:when>
+                <xsl:when test="$titles='equation'">ListofEquations</xsl:when>
+                <xsl:when test="$titles='example'">ListofExamples</xsl:when>
+                <xsl:otherwise>ListofUnknowns</xsl:otherwise>
+              </xsl:choose>
+            </xsl:with-param>
+          </xsl:call-template>
+        </b>
+      </p>
+
+      <xsl:element name="{$toc.list.type}">
+        <xsl:apply-templates select="$nodes" mode="toc"/>
+      </xsl:element>
+    </div>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="figure|table|example|equation" mode="toc">
+  <xsl:element name="{$toc.listitem.type}">
+    <xsl:variable name="label">
+      <xsl:apply-templates select="." mode="label.markup"/>
+    </xsl:variable>
+    <xsl:copy-of select="$label"/>
+    <xsl:if test="$label != ''">
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
+    <a>
+      <xsl:attribute name="href">
+        <xsl:call-template name="href.target"/>
+      </xsl:attribute>
+      <xsl:apply-templates select="." mode="title.markup"/>
+    </a>
+  </xsl:element>
 </xsl:template>
 
 </xsl:stylesheet>

@@ -56,8 +56,13 @@ translates characters with code>255 back to ASCII.
           <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
         </fox:label>
       </fox:outline>
-      <xsl:if test="(local-name(.) = 'set' and $generate.set.toc != 0)
-                    or (local-name(.) = 'book' and $generate.book.toc != 0)">
+
+      <xsl:variable name="toc.params">
+        <xsl:call-template name="find.path.params">
+          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:if test="contains($toc.params, 'toc')">
         <fox:outline internal-destination="toc...{$id}">
           <fox:label>
             <xsl:call-template name="gentext">

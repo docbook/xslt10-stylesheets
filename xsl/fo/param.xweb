@@ -85,22 +85,19 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &autotoc.label.separator;
 &process.empty.source.toc;
 &process.source.toc;
-&generate.book.equation.lot;
-&generate.book.example.lot;
-&generate.book.figure.lot;
-&generate.book.table.lot;
-&generate.book.toc;
-&generate.set.toc;
-&generate.component.toc;
-&generate.division.equation.lot;
-&generate.division.example.lot;
-&generate.division.figure.lot;
-&generate.division.table.lot;
-&generate.division.toc;
+&generate.toc;
 &generate.index;
 &toc.section.depth;
 &toc.indent.width;
 &toc.margin.properties;
+
+<!--
+annotate.toc;
+bridgehead.in.toc;
+manual.toc;
+generate.section.toc.level;
+-->
+
 </reference>
 
 <reference><title>Processor Extensions</title>
@@ -416,19 +413,8 @@ around all these parameters.</para>
 <src:fragref linkend="funcsynopsis.decoration.frag"/>
 <src:fragref linkend="funcsynopsis.style.frag"/>
 <src:fragref linkend="function.parens.frag"/>
-<src:fragref linkend="generate.book.equation.lot.frag"/>
-<src:fragref linkend="generate.book.example.lot.frag"/>
-<src:fragref linkend="generate.book.figure.lot.frag"/>
-<src:fragref linkend="generate.book.table.lot.frag"/>
-<src:fragref linkend="generate.book.toc.frag"/>
-<src:fragref linkend="generate.component.toc.frag"/>
-<src:fragref linkend="generate.division.equation.lot.frag"/>
-<src:fragref linkend="generate.division.example.lot.frag"/>
-<src:fragref linkend="generate.division.figure.lot.frag"/>
-<src:fragref linkend="generate.division.table.lot.frag"/>
-<src:fragref linkend="generate.division.toc.frag"/>
 <src:fragref linkend="generate.index.frag"/>
-<src:fragref linkend="generate.set.toc.frag"/>
+<src:fragref linkend="generate.toc.frag"/>
 <src:fragref linkend="glossary.collection.frag"/>
 <src:fragref linkend="glossterm.auto.link.frag"/>
 <src:fragref linkend="graphic.default.extension.frag"/>
