@@ -149,7 +149,21 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="table|example">
+<xsl:template match="table">
+  <xsl:choose>
+    <xsl:when test="tgroup|mediaobject|graphic">
+      <xsl:call-template name="calsTable"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy>
+        <xsl:copy-of select="@*"/>
+        <xsl:call-template name="htmlTable"/>
+      </xsl:copy>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="calsTable">
   <xsl:variable name="param.placement"
                 select="substring-after(normalize-space($formal.title.placement),
                                         concat(local-name(.), ' '))"/>
@@ -179,6 +193,33 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="htmlTable">
+  <xsl:apply-templates mode="htmlTable"/>
+</xsl:template>
+
+<xsl:template match="example">
+  <xsl:variable name="param.placement"
+                select="substring-after(normalize-space($formal.title.placement),
+                                        concat(local-name(.), ' '))"/>
+
+  <xsl:variable name="placement">
+    <xsl:choose>
+      <xsl:when test="contains($param.placement, ' ')">
+        <xsl:value-of select="substring-before($param.placement, ' ')"/>
+      </xsl:when>
+      <xsl:when test="$param.placement = ''">before</xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$param.placement"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:call-template name="formal.object">
+    <xsl:with-param name="placement" select="$placement"/>
+    <xsl:with-param name="class" select="local-name(.)"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -223,18 +264,28 @@
 </xsl:template>
 
 <xsl:template match="informaltable">
-  <xsl:call-template name="informal.object">
-    <xsl:with-param name="class">
-      <xsl:choose>
-        <xsl:when test="@tabstyle">
-          <xsl:value-of select="@tabstyle"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="local-name(.)"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:with-param>
-  </xsl:call-template>
+  <xsl:choose>
+    <xsl:when test="tgroup|mediaobject|graphic">
+      <xsl:call-template name="informal.object">
+        <xsl:with-param name="class">
+          <xsl:choose>
+            <xsl:when test="@tabstyle">
+              <xsl:value-of select="@tabstyle"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="local-name(.)"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <table>
+        <xsl:copy-of select="@*"/>
+        <xsl:call-template name="htmlTable"/>
+      </table>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="informaltable/textobject"></xsl:template>
