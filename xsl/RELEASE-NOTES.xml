@@ -18,6 +18,53 @@ This file documents (mostly) changes to the public APIs. What,
 exactly, counts as a public API is still somewhat in question, but it
 includes at least the global parameters.</para>
 
+<itemizedlist><title>Release 1.59.2</title>
+
+<para>The 1.59.2 fixes an FO bug in the page masters that causes FOP to fail.
+</para>
+
+<listitem>
+<para>Removed the region-name from the region-body of blank pages. There's
+no reason to give the body of blank pages a unique name and doing so causes
+a mismatch that FOP detects.
+</para>
+</listitem>
+
+<listitem>
+<para>Output IDs for the first paragraphs in listitems.
+</para>
+</listitem>
+
+<listitem>
+<para>Fixed some small bugs in the handling of page numbers in double-sided mode.
+</para>
+</listitem>
+
+<listitem>
+<para>Attempt to prevent duplicated IDs from being produced when
+<sgmltag class="attribute">endterm</sgmltag> on <sgmltag>xref</sgmltag> points
+to something with nested structure.
+</para>
+</listitem>
+
+<listitem>
+<para>Fix aligment problems in <sgmltag>equation</sgmltag>s.
+</para>
+</listitem>
+
+<listitem>
+<para>Output the type attribute on unordered lists (UL) in HTML only if
+the css.decoration parameter is true.
+</para>
+</listitem>
+
+<listitem>
+<para>Calculate the font size in formal.title.properties so that it's 1.2 times
+the base font size, not a fixed "12pt".
+</para>
+</listitem>
+</itemizedlist>
+
 <itemizedlist><title>Release 1.59.1</title>
 
 <para>The 1.59.1 fixes a few bugs.
