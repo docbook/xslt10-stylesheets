@@ -10,7 +10,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='region.before.extent.frag'>
-<xsl:param name="region.before.extent" select="'0.5in'"/>
+<xsl:param name="region.before.extent" select="'0.75in'"/>
 </src:fragment>
 </refsynopsisdiv>
 
