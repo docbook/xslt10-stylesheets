@@ -1195,7 +1195,7 @@
 
 <xsl:template match="*" mode="running.head.mode">
   <xsl:param name="master-reference" select="'unknown'"/>
-  <xsl:param name="gentext-key" select="'TableofContents'"/>
+  <xsl:param name="gentext-key" select="name(.)"/>
 
   <!-- remove -draft from reference -->
   <xsl:variable name="pageclass">
@@ -1258,52 +1258,68 @@
   <!-- default is a single table style for all headers -->
   <!-- Customize it for different page classes or sequence location -->
 
-  <fo:table table-layout="fixed" width="100%">
-    <xsl:call-template name="head.sep.rule"/>
-    <fo:table-column column-number="1" column-width="33%"/>
-    <fo:table-column column-number="2" column-width="34%"/>
-    <fo:table-column column-number="3" column-width="33%"/>
-    <fo:table-body>
-      <fo:table-row height="14pt">
-        <fo:table-cell text-align="left"
-                       relative-align="baseline"
-                       display-align="before">
-          <fo:block>
-            <xsl:call-template name="header.content">
-              <xsl:with-param name="pageclass" select="$pageclass"/>
-              <xsl:with-param name="sequence" select="$sequence"/>
-              <xsl:with-param name="position" select="'left'"/>
-              <xsl:with-param name="gentext-key" select="$gentext-key"/>
-            </xsl:call-template>
-          </fo:block>
-        </fo:table-cell>
-        <fo:table-cell text-align="center"
-                       relative-align="baseline"
-                       display-align="before">
-          <fo:block>
-            <xsl:call-template name="header.content">
-              <xsl:with-param name="pageclass" select="$pageclass"/>
-              <xsl:with-param name="sequence" select="$sequence"/>
-              <xsl:with-param name="position" select="'center'"/>
-              <xsl:with-param name="gentext-key" select="$gentext-key"/>
-            </xsl:call-template>
-          </fo:block>
-        </fo:table-cell>
-        <fo:table-cell text-align="right"
-                       relative-align="baseline"
-                       display-align="before">
-          <fo:block>
-            <xsl:call-template name="header.content">
-              <xsl:with-param name="pageclass" select="$pageclass"/>
-              <xsl:with-param name="sequence" select="$sequence"/>
-              <xsl:with-param name="position" select="'right'"/>
-              <xsl:with-param name="gentext-key" select="$gentext-key"/>
-            </xsl:call-template>
-          </fo:block>
-        </fo:table-cell>
-      </fo:table-row>
-    </fo:table-body>
-  </fo:table>
+  <xsl:variable name="candidate">
+    <fo:table table-layout="fixed" width="100%">
+      <xsl:call-template name="head.sep.rule"/>
+      <fo:table-column column-number="1" column-width="33%"/>
+      <fo:table-column column-number="2" column-width="34%"/>
+      <fo:table-column column-number="3" column-width="33%"/>
+      <fo:table-body>
+        <fo:table-row height="14pt">
+          <fo:table-cell text-align="left"
+                         relative-align="baseline"
+                         display-align="before">
+            <fo:block>
+              <xsl:call-template name="header.content">
+                <xsl:with-param name="pageclass" select="$pageclass"/>
+                <xsl:with-param name="sequence" select="$sequence"/>
+                <xsl:with-param name="position" select="'left'"/>
+                <xsl:with-param name="gentext-key" select="$gentext-key"/>
+              </xsl:call-template>
+            </fo:block>
+          </fo:table-cell>
+          <fo:table-cell text-align="center"
+                         relative-align="baseline"
+                         display-align="before">
+            <fo:block>
+              <xsl:call-template name="header.content">
+                <xsl:with-param name="pageclass" select="$pageclass"/>
+                <xsl:with-param name="sequence" select="$sequence"/>
+                <xsl:with-param name="position" select="'center'"/>
+                <xsl:with-param name="gentext-key" select="$gentext-key"/>
+              </xsl:call-template>
+            </fo:block>
+          </fo:table-cell>
+          <fo:table-cell text-align="right"
+                         relative-align="baseline"
+                         display-align="before">
+            <fo:block>
+              <xsl:call-template name="header.content">
+                <xsl:with-param name="pageclass" select="$pageclass"/>
+                <xsl:with-param name="sequence" select="$sequence"/>
+                <xsl:with-param name="position" select="'right'"/>
+                <xsl:with-param name="gentext-key" select="$gentext-key"/>
+              </xsl:call-template>
+            </fo:block>
+          </fo:table-cell>
+        </fo:table-row>
+      </fo:table-body>
+    </fo:table>
+  </xsl:variable>
+
+  <!-- Really output a header? -->
+  <xsl:choose>
+    <xsl:when test="$pageclass = 'titlepage' and $gentext-key = 'book'
+                    and $sequence='first'">
+      <!-- no, book titlepages have no headers at all -->
+    </xsl:when>
+    <xsl:when test="$sequence = 'blank' and $headers.on.blank.pages = 0">
+      <!-- no output -->
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy-of select="$candidate"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="header.content">
@@ -1312,55 +1328,61 @@
   <xsl:param name="position" select="''"/>
   <xsl:param name="gentext-key" select="''"/>
 
-  <xsl:variable name="candidate">
-    <!-- sequence can be odd, even, first, blank -->
-    <!-- position can be left, center, right -->
-    <xsl:choose>
-      <xsl:when test="$position='left'">
-        <!-- Same for odd, even, empty, and blank sequences -->
-        <xsl:call-template name="draft.text"/>
-      </xsl:when>
+<!--
+  <fo:block>
+    <xsl:value-of select="$pageclass"/>
+    <xsl:text>, </xsl:text>
+    <xsl:value-of select="$sequence"/>
+    <xsl:text>, </xsl:text>
+    <xsl:value-of select="$position"/>
+    <xsl:text>, </xsl:text>
+    <xsl:value-of select="$gentext-key"/>
+  </fo:block>
+-->
 
-      <xsl:when test="($sequence='odd' or $sequence='even') and $position='center'">
+  <!-- sequence can be odd, even, first, blank -->
+  <!-- position can be left, center, right -->
+  <xsl:choose>
+    <xsl:when test="$sequence = 'blank'">
+      <!-- nothing -->
+    </xsl:when>
+
+    <xsl:when test="$position='left'">
+      <!-- Same for odd, even, empty, and blank sequences -->
+      <xsl:call-template name="draft.text"/>
+    </xsl:when>
+
+    <xsl:when test="($sequence='odd' or $sequence='even') and $position='center'">
+      <xsl:if test="$pageclass != 'titlepage'">
         <xsl:choose>
           <xsl:when test="ancestor::book and ($double.sided != 0)">
             <fo:retrieve-marker retrieve-class-name="section.head.marker"
                                 retrieve-position="first-including-carryover"
-                                retrieve-boundary="page"/>
+                                retrieve-boundary="page-sequence"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:apply-templates select="." mode="object.title.markup"/>
           </xsl:otherwise>
         </xsl:choose>
-      </xsl:when>
-
-      <xsl:when test="$position='center'">
-        <!-- nothing for empty and blank sequences -->
-      </xsl:when>
-
-      <xsl:when test="$position='right'">
-        <!-- Same for odd, even, empty, and blank sequences -->
-        <xsl:call-template name="draft.text"/>
-      </xsl:when>
-
-      <xsl:when test="$sequence = 'first'">
-        <!-- nothing for first pages -->
-      </xsl:when>
-
-      <xsl:when test="$sequence = 'blank'">
-        <!-- nothing for blank pages -->
-      </xsl:when>
-    </xsl:choose>
-  </xsl:variable>
-
-  <!-- Does runtime parameter turn off blank page headers? -->
-  <xsl:choose>
-    <xsl:when test="$sequence = 'blank' and $headers.on.blank.pages = 0">
-      <!-- no output -->
+      </xsl:if>
     </xsl:when>
-    <xsl:otherwise>
-      <xsl:copy-of select="$candidate"/>
-    </xsl:otherwise>
+
+    <xsl:when test="$position='center'">
+      <!-- nothing for empty and blank sequences -->
+    </xsl:when>
+
+    <xsl:when test="$position='right'">
+      <!-- Same for odd, even, empty, and blank sequences -->
+      <xsl:call-template name="draft.text"/>
+    </xsl:when>
+
+    <xsl:when test="$sequence = 'first'">
+      <!-- nothing for first pages -->
+    </xsl:when>
+
+    <xsl:when test="$sequence = 'blank'">
+      <!-- nothing for blank pages -->
+    </xsl:when>
   </xsl:choose>
 </xsl:template>
 
@@ -1389,7 +1411,7 @@
 
 <xsl:template match="*" mode="running.foot.mode">
   <xsl:param name="master-reference" select="'unknown'"/>
-  <xsl:param name="gentext-key" select="'TableofContents'"/>
+  <xsl:param name="gentext-key" select="name(.)"/>
 
   <!-- remove -draft from reference -->
   <xsl:variable name="pageclass">
@@ -1452,52 +1474,68 @@
   <!-- default is a single table style for all footers -->
   <!-- Customize it for different page classes or sequence location -->
 
-  <fo:table table-layout="fixed" width="100%">
-    <xsl:call-template name="foot.sep.rule"/>
-    <fo:table-column column-number="1" column-width="33%"/>
-    <fo:table-column column-number="2" column-width="34%"/>
-    <fo:table-column column-number="3" column-width="33%"/>
-    <fo:table-body>
-      <fo:table-row height="14pt">
-        <fo:table-cell text-align="left"
-                       relative-align="baseline"
-                       display-align="after">
-          <fo:block>
-            <xsl:call-template name="footer.content">
-              <xsl:with-param name="pageclass" select="$pageclass"/>
-              <xsl:with-param name="sequence" select="$sequence"/>
-              <xsl:with-param name="position" select="'left'"/>
-              <xsl:with-param name="gentext-key" select="$gentext-key"/>
-            </xsl:call-template>
-          </fo:block>
-        </fo:table-cell>
-        <fo:table-cell text-align="center"
-                       relative-align="baseline"
-                       display-align="after">
-          <fo:block>
-            <xsl:call-template name="footer.content">
-              <xsl:with-param name="pageclass" select="$pageclass"/>
-              <xsl:with-param name="sequence" select="$sequence"/>
-              <xsl:with-param name="position" select="'center'"/>
-              <xsl:with-param name="gentext-key" select="$gentext-key"/>
-            </xsl:call-template>
-          </fo:block>
-        </fo:table-cell>
-        <fo:table-cell text-align="right"
-                       relative-align="baseline"
-                       display-align="after">
-          <fo:block>
-            <xsl:call-template name="footer.content">
-              <xsl:with-param name="pageclass" select="$pageclass"/>
-              <xsl:with-param name="sequence" select="$sequence"/>
-              <xsl:with-param name="position" select="'right'"/>
-              <xsl:with-param name="gentext-key" select="$gentext-key"/>
-            </xsl:call-template>
-          </fo:block>
-        </fo:table-cell>
-      </fo:table-row>
-    </fo:table-body>
-  </fo:table>
+  <xsl:variable name="candidate">
+    <fo:table table-layout="fixed" width="100%">
+      <xsl:call-template name="foot.sep.rule"/>
+      <fo:table-column column-number="1" column-width="33%"/>
+      <fo:table-column column-number="2" column-width="34%"/>
+      <fo:table-column column-number="3" column-width="33%"/>
+      <fo:table-body>
+        <fo:table-row height="14pt">
+          <fo:table-cell text-align="left"
+                         relative-align="baseline"
+                         display-align="after">
+            <fo:block>
+              <xsl:call-template name="footer.content">
+                <xsl:with-param name="pageclass" select="$pageclass"/>
+                <xsl:with-param name="sequence" select="$sequence"/>
+                <xsl:with-param name="position" select="'left'"/>
+                <xsl:with-param name="gentext-key" select="$gentext-key"/>
+              </xsl:call-template>
+            </fo:block>
+          </fo:table-cell>
+          <fo:table-cell text-align="center"
+                         relative-align="baseline"
+                         display-align="after">
+            <fo:block>
+              <xsl:call-template name="footer.content">
+                <xsl:with-param name="pageclass" select="$pageclass"/>
+                <xsl:with-param name="sequence" select="$sequence"/>
+                <xsl:with-param name="position" select="'center'"/>
+                <xsl:with-param name="gentext-key" select="$gentext-key"/>
+              </xsl:call-template>
+            </fo:block>
+          </fo:table-cell>
+          <fo:table-cell text-align="right"
+                         relative-align="baseline"
+                         display-align="after">
+            <fo:block>
+              <xsl:call-template name="footer.content">
+                <xsl:with-param name="pageclass" select="$pageclass"/>
+                <xsl:with-param name="sequence" select="$sequence"/>
+                <xsl:with-param name="position" select="'right'"/>
+                <xsl:with-param name="gentext-key" select="$gentext-key"/>
+              </xsl:call-template>
+            </fo:block>
+          </fo:table-cell>
+        </fo:table-row>
+      </fo:table-body>
+    </fo:table>
+  </xsl:variable>
+
+  <!-- Really output a footer? -->
+  <xsl:choose>
+    <xsl:when test="$pageclass='titlepage' and $gentext-key='book'
+                    and $sequence='first'">
+      <!-- no, book titlepages have no footers at all -->
+    </xsl:when>
+    <xsl:when test="$sequence = 'blank' and $footers.on.blank.pages = 0">
+      <!-- no output -->
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy-of select="$candidate"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="footer.content">
@@ -1518,53 +1556,41 @@
   </fo:block>
 -->
 
-  <xsl:variable name="candidate">
-    <!-- sequence can be odd, even, first, blank -->
-    <!-- position can be left, center, right -->
-    <xsl:choose>
-      <xsl:when test="$sequence='blank'">
-        <xsl:choose>
-          <xsl:when test="$double.sided != 0 and $position = 'left'">
-            <fo:page-number/>
-          </xsl:when>
-          <xsl:when test="$double.sided = 0 and $position = 'center'">
-            <fo:page-number/>
-          </xsl:when>
-          <xsl:otherwise>
-            <!-- nop -->
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:when>
-
-      <xsl:when test="$pageclass='titlepage'">
-        <!-- nop: other titlepage sequences have no footer -->
-      </xsl:when>
-
-      <xsl:when test="$double.sided != 0 and $sequence = 'even' and $position='left'">
-        <fo:page-number/>
-      </xsl:when>
-
-      <xsl:when test="$double.sided != 0 and $sequence = 'odd' and $position='right'">
-        <fo:page-number/>
-      </xsl:when>
-
-      <xsl:when test="$double.sided = 0 and $position='center'">
-        <fo:page-number/>
-      </xsl:when>
-
-      <xsl:otherwise>
-        <!-- nop -->
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <!-- Does runtime parameter turn off blank page headers? -->
+  <!-- sequence can be odd, even, first, blank -->
+  <!-- position can be left, center, right -->
   <xsl:choose>
-    <xsl:when test="$sequence = 'blank' and $footers.on.blank.pages = 0">
-      <!-- no output -->
+    <xsl:when test="$sequence='blank'">
+      <xsl:choose>
+        <xsl:when test="$double.sided != 0 and $position = 'left'">
+          <fo:page-number/>
+        </xsl:when>
+        <xsl:when test="$double.sided = 0 and $position = 'center'">
+          <fo:page-number/>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- nop -->
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
+
+    <xsl:when test="$pageclass='titlepage'">
+      <!-- nop: other titlepage sequences have no footer -->
+    </xsl:when>
+
+    <xsl:when test="$double.sided != 0 and $sequence = 'even' and $position='left'">
+      <fo:page-number/>
+    </xsl:when>
+
+    <xsl:when test="$double.sided != 0 and $sequence = 'odd' and $position='right'">
+      <fo:page-number/>
+    </xsl:when>
+
+    <xsl:when test="$double.sided = 0 and $position='center'">
+      <fo:page-number/>
+    </xsl:when>
+
     <xsl:otherwise>
-      <xsl:copy-of select="$candidate"/>
+      <!-- nop -->
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
