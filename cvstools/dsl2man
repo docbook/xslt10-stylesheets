@@ -2,12 +2,13 @@
 
 use Text::DelimMatch;
 use Getopt::Std;
+use File::Basename;
+use English;
 
 # call \share\dsssl\bin\dsl2man -i lib -d ..\docsrc\libref dblib.dsl
 
-
-$usage = "Usage: $0 -i idprefix -d dir [ file ... ]\n";
-die $usage if ! getopts('i:d:');
+$usage = "Usage: $0 -i idprefix -d dir [-D] [ file ... ]\n";
+die $usage if ! getopts('i:d:D');
 
 $pubid = "-//OASIS//DTD DocBook V3.1//EN";
 
@@ -19,8 +20,14 @@ $DOCINFO = "";
 %FFUNC = ();
 %FFILE = ();
 
-$idprefix = $opt_i || die $usage;
+$idprefix = $opt_i || die $usage; # idprefix doesn't seem to be implemented
 $outputdir = $opt_d || die $usage;
+
+sub debugmsg {
+    if ( $opt_D ) {
+        warn('D: ' . shift() . "\n");
+    }
+}
 
 @FILES = @ARGV;
 if (!@FILES) {
@@ -32,18 +39,24 @@ if (!@FILES) {
     }
 }
 
-open (SGM, ">$outputdir/refentry.sgm");
+open(SGM, ">$outputdir/refentry.sgm") or
+    die("cannot write to $outputdir/refentry.sgm: $!\n");
 $inref = 0;
 
 while (@FILES) {
     $file = shift @FILES;
 
     ($reference = $file) =~ s/\.dsl/\.sgm/;
-    open (REF, ">$outputdir/$reference");
+    $reference = basename($file);
+    open (REF, ">$outputdir/$reference") or
+        die("cannot write to $outputdir/$reference: $!\n");
 
-    open (F, $file);
+    open (F, "<$file") or
+        die("cannot read $file: $!\n");
     read (F, $_, -s $file);
     close (F);
+
+    debugmsg("reading from $file, writing to $outputdir/$reference");
 
     if (/;; DOCINFO(.*?);; \/DOCINFO/s) {
 	$_ = $PREMATCH . $POSTMATCH;
@@ -53,13 +66,14 @@ while (@FILES) {
 
     if ($DOCINFO) {
 	print REF "<!doctype book public \"$pubid\" [\n";
-	open (INFO, ">$outputdir/docinfo.sgm");
+	open (INFO, ">$outputdir/docinfo.sgm") or 
+            die("error writing to $outputdir/docinfo.sgm: $!\n");
     } else {
 	print REF "<!doctype reference public \"$pubid\" [\n";
     }
 
     while ($_ ne "") {
-#	print "_  : ", substr($_, 0, 30), "\n";
+	debugmsg("_  : " . substr($_, 0, 30));
 
 	my ($pre, $match, $post) = $psearch->match($_);
 	$_ = $post;
@@ -80,7 +94,7 @@ while (@FILES) {
 	if ($match =~ /^\(define /) {
 	    my($function) = $match;
 	    my($funcmatch) = new Text::DelimMatch '\(', '\)';
-	    my($func) = $';
+	    my($func) = $';     # '
 
 	    if ($func =~ /^\(/) {
 		$func = $funcmatch->match($func);
@@ -162,7 +176,8 @@ while (@FILES) {
 print SGM "\n</reference>\n" if $inref;
 close (SGM);
 
-open (ENT, ">$outputdir/refentry.ent");
+open (ENT, ">$outputdir/refentry.ent") or
+    die("cannot write to $outputdir/refentry.ent: $!\n");
 
 foreach $func (keys %FFUNC) {
     my($refname, $synopsis) = ("", "");
@@ -195,7 +210,8 @@ foreach $func (keys %FFUNC) {
 
     print ENT "<!ENTITY $html_filename SYSTEM \"$html_filename.sgm\">\n";
 
-    open (F, ">$outputdir/$html_filename.sgm");
+    open (F, ">$outputdir/$html_filename.sgm") or
+        die("error writing to $outputdir/$html_filename.sgm: $!\n");
     print F <<RFEOF;
 <RefEntry id="$id">
 <!-- This file is generated automatically from the DSSSL source. -->
