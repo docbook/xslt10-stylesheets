@@ -218,6 +218,7 @@ generate.section.toc.level;
 &table.footnote.number.format;
 &footnote.number.symbols;
 &table.footnote.number.symbols;
+&xref.with.number.and.title;
 </reference>
 
 <reference><title>Graphics</title>
