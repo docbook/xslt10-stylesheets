@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
                   "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
-<article>
+<article id="informaltable.015">
 <articleinfo>
 <title>Unit Test: informaltable.015</title>
 <releaseinfo role="CVS">$Id$</releaseinfo>
@@ -12,7 +12,7 @@
 
   <para>Two column table, but entries only in one column.</para>
 
-<informaltable pgwide="1">
+<informaltable id="informaltable" pgwide="1">
         <tgroup cols="3" colsep="1" rowsep="1" align="left">
           <colspec colname="cat" colwidth="2in"/>
           <colspec colname="issue" colwidth="2in"/>
@@ -35,7 +35,7 @@
     </tgroup>
   </informaltable>
   <para>
-    As of DocBook DSSSL, this caused this error:
+    As of DocBook DSSSL V1.77, this caused this error:
 <computeroutput>jade:../html/dbtable.dsl:122:44:E: division by zero</computeroutput>
   </para>
 </article>
