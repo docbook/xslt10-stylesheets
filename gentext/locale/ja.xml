@@ -177,7 +177,7 @@
 <context name="title">
 
 <template name="abstract">%t</template>
-<template name="appendix"><Appendix/> %n. %t</template>
+<template name="appendix"><Appendix/>%n</template>
 <template name="article">%t</template>
 <template name="authorblurb">%t</template>
 <template name="bibliodiv">%t</template>
@@ -190,7 +190,7 @@
 <template name="book">%t</template>
 <template name="calloutlist">%t</template>
 <template name="caution">%t</template>
-<template name="chapter"><Chapter/> %n. %t</template>
+<template name="chapter"><Chapter1/>%n<Chapter2/></template>
 <template name="colophon">%t</template>
 <template name="dedication">%t</template>
 <template name="equation"><Equation/> %n. %t</template>
@@ -306,11 +306,11 @@
 
 <context name="xref">
 
-<template name="appendix"><Appendix/> %n. %t</template>
+<template name="appendix"><Appendix/>%n</template>
 <template name="article">%t</template>
 <template name="bibliography">%t</template>
 <template name="book">%t</template>
-<template name="chapter"><Chapter/> %n. %t</template>
+<template name="chapter"><Chapter1/>%n<Chapter2/></template>
 <template name="colophon">%t</template>
 <template name="dedication">%t</template>
 <template name="example"><Example/> %n. %t</template>
@@ -328,25 +328,25 @@
 
 <context name="section-xref">
 
-<template name="sect1"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="sect2"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="sect3"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="sect4"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="sect5"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="section"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="simplesect"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="sect1">%t<section/></template>
+<template name="sect2">%t<section/></template>
+<template name="sect3">%t<section/></template>
+<template name="sect4">%t<section/></template>
+<template name="sect5">%t<section/></template>
+<template name="section">%t<section/></template>
+<template name="simplesect">%t<section/></template>
 
 </context>
 
 <context name="section-xref-numbered">
 
-<template name="sect1"><Section/> %n</template>
-<template name="sect2"><Section/> %n</template>
-<template name="sect3"><Section/> %n</template>
-<template name="sect4"><Section/> %n</template>
-<template name="sect5"><Section/> %n</template>
-<template name="section"><Section/> %n</template>
-<template name="simplesect"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="sect1"><Section/>%n</template>
+<template name="sect2"><Section/>%n</template>
+<template name="sect3"><Section/>%n</template>
+<template name="sect4"><Section/>%n</template>
+<template name="sect5"><Section/>%n</template>
+<template name="section"><Section/>%n</template>
+<template name="simplesect">%t<section/></template>
 
 </context>
 

@@ -168,7 +168,7 @@
 <gentext key="nav-up" text="Niveau sup&#x00E9;rieur"/>
 <gentext key="nav-home" text="Sommaire"/>
 
-<gentext key="the section called" text="la section intitul&eacute;e" />
+<gentext key="sectioncalled" text="la section intitul&eacute;e" />
 
 <gentext key="index symbols" text="Symboles"/>
 

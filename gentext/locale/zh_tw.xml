@@ -16,30 +16,43 @@
 
 <gentext key="abstract"       text="&#x6458;&#x8981;"/>
 <gentext key="answer"         text="&#x7B54;&#xFF1A;"/>
+<gentext key="Appendix"       text="&#x9644;&#x9304;"/>
 <gentext key="appendix"       text="&#x9644;&#x9304;"/>
 <gentext key="article"        text="&#x6587;&#x7AE0;"/>
+<gentext key="Bibliography"   text="&#x53C3;&#x8003;&#x6587;&#x737B;"/>
 <gentext key="bibliography"   text="&#x53C3;&#x8003;&#x6587;&#x737B;"/>
 <gentext key="book"           text="&#x66F8;&#x76EE;"/>
 <gentext key="caution"        text="&#x6CE8;&#x610F;"/>
+<gentext key="Chapter"        text="&#x7AE0;"/>
 <gentext key="chapter"        text="&#x7AE0;"/>
 <gentext key="colophon"       text="&#x7248;&#x672C;&#x8A18;&#x9304;"/>
 <gentext key="copyright"      text="&#x7248;&#x6B0A;"/>
 <gentext key="dedication"     text="&#x5949;&#x737B;"/>
 <gentext key="edition"        text="&#x7248;"/>
+<gentext key="Equation"       text="&#x65B9;&#x7A0B;&#x5F0F;"/>
 <gentext key="equation"       text="&#x65B9;&#x7A0B;&#x5F0F;"/>
+<gentext key="Example"        text="&#x7BC4;&#x4F8B;"/>
 <gentext key="example"        text="&#x7BC4;&#x4F8B;"/>
+<gentext key="Figure"         text="&#x5716;&#x5F62;"/>
 <gentext key="figure"         text="&#x5716;&#x5F62;"/>
 <gentext key="glossary"       text="&#x5C0F;&#x8FAD;&#x5F59;"/>
+<gentext key="GlossSee"       text="&#x53C3;&#x898B;"/>
 <gentext key="glosssee"       text="&#x53C3;&#x898B;"/>
+<gentext key="GlossSeeAlso"   text="&#x53E6;&#x53C3;&#x898B;"/>
 <gentext key="glossseealso"   text="&#x53E6;&#x53C3;&#x898B;"/>
 <gentext key="important"      text="&#x91CD;&#x8981;"/>
 <gentext key="index"          text="&#x7D22;&#x5F15;"/>
 <gentext key="isbn"           text="ISBN"/>
 <gentext key="legalnotice"    text="&#x6CD5;&#x5F8B;&#x8072;&#x660E;"/>
+<gentext key="MsgAud"         text="&#x8B80;&#x8005;"/>
 <gentext key="msgaud"         text="&#x8B80;&#x8005;"/>
+<gentext key="MsgLevel"       text="&#x7A0B;&#x5EA6;"/>
 <gentext key="msglevel"       text="&#x7A0B;&#x5EA6;"/>
+<gentext key="MsgOrig"        text="&#x51FA;&#x8655;"/>
 <gentext key="msgorig"        text="&#x51FA;&#x8655;"/>
+<gentext key="Note"           text="&#x6CE8;"/>
 <gentext key="note"           text="&#x6CE8;"/>
+<gentext key="Part"           text="&#x90E8;"/>
 <gentext key="part"           text="&#x90E8;"/>
 <gentext key="preface"        text="&#x5E8F;&#x8A00;"/>
 <gentext key="procedure"      text="&#x904E;&#x7A0B;"/>
@@ -52,6 +65,7 @@
 <gentext key="refsynopsisdiv" text="&#x5927;&#x7DB1;"/>
 <gentext key="revhistory"     text="&#x4FEE;&#x8A02;&#x8A18;&#x9304;"/>
 <gentext key="revision"       text="&#x4FEE;&#x8A02;"/>
+<gentext key="Section"        text="&#x7BC0;"/>
 <gentext key="section"        text="&#x7BC0;"/>
 <gentext key="see"            text="&#x898B;"/>
 <gentext key="seealso"        text="&#x53E6;&#x898B;"/>
@@ -59,6 +73,7 @@
 <gentext key="setindex"       text="Set Index"/>
 <gentext key="sidebar"        text=""/>
 <gentext key="step"           text="&#x6B65;&#x9A5F;"/>
+<gentext key="Table"          text="&#x8868;&#x683C;"/>
 <gentext key="table"          text="&#x8868;&#x683C;"/>
 <gentext key="tip"            text="&#x63D0;&#x793A;"/>
 <gentext key="tip"            text="&#x63D0;&#x793A;"/>
@@ -256,13 +271,13 @@
 
 <context name="section-xref">
 
-<template name="sect1"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="sect2"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="sect3"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="sect4"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="sect5"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="section"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="simplesect"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="sect1">&#x201C;%t&#x201D;</template>
+<template name="sect2">&#x201C;%t&#x201D;</template>
+<template name="sect3">&#x201C;%t&#x201D;</template>
+<template name="sect4">&#x201C;%t&#x201D;</template>
+<template name="sect5">&#x201C;%t&#x201D;</template>
+<template name="section">&#x201C;%t&#x201D;</template>
+<template name="simplesect">&#x201C;%t&#x201D;</template>
 
 </context>
 
@@ -274,7 +289,7 @@
 <template name="sect4"><Section/> %n</template>
 <template name="sect5"><Section/> %n</template>
 <template name="section"><Section/> %n</template>
-<template name="simplesect"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="simplesect">&#x201C;%t&#x201D;</template>
 
 </context>
 
