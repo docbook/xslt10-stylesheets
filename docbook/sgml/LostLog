@@ -1,0 +1,132 @@
+This ChangeLog is all that remains from the previous incarnation of
+this CVS repository that was irretrievably lost.
+
+1999-02-01  Norman Walsh  <ndw@nwalsh.com>
+
+	* readme.txt: Updated readme, DocBook 3.1 released.
+
+	* docbook.dtd, docbook.dcl, docbook.cat, dbnotn.mod, dbhier.mod, dbgenent.mod, dbcent.mod, dbpool.mod:
+	Updated version number
+
+	* cals-tbl.dtd: For DocBook 3.1
+
+	* 50issues.txt, 40issues.txt: Fixed date
+
+	* 31chg.txt: Changed date, updated owner identifier
+
+1999-01-31  Norman Walsh  <ndw@nwalsh.com>
+
+	* dbpool.mod:
+	Added missing semicolons to several parameter entity references.
+	Changed Constant and VarName to be * not + since they contain #PCDATA.
+
+	* dbhier.mod: Added missing semicolon to a parameter entity reference
+
+1999-01-21  Norman Walsh  <ndw@nwalsh.com>
+
+	* dbhier.mod: Added missing semicolon in PE invokation.
+
+1999-01-14  Norman Walsh  <ndw@nwalsh.com>
+
+	* readme.txt: New file.
+
+	* dbcent.mod, dbgenent.mod, dbhier.mod, dbnotn.mod, dbpool.mod, docbook.cat, docbook.dcl, docbook.dtd:
+	BETA1 Release
+
+	* 50issues.txt: Added known changes.
+
+	* docbook.dtd: Fixed copyright and contact info
+
+	* dbpool.mod:
+	Updated copyright notice.  Added IndexTerms to many parameter
+	entities and a couple of content models.  Removed yes.attval
+	and linkendsreq.attrib.
+
+	* dbnotn.mod: Fixed copyright and contact info
+
+	* dbhier.mod:
+	Updated copyright notice. Added IndexTerms to several elements.
+	Changed order of SubTitle outside of *Info elements to:
+	Title, Subtitle?, TitleAbbrev? (in earlier test releases, it
+	was Title, TitleAbbrev?, Subtitle?).
+
+	* dbcent.mod: Fixed copyright and contact info
+
+	* 31chg.txt: Improved wording, updated
+
+	* dbpool.mod: Added "Journal", "Series", "Set", and "Manuscript" to the
+	list of allowed values in Pubwork on CiteTitle.
+
+1998-12-15  Norman Walsh  <ndw@nwalsh.com>
+
+	* docbook.dtd:
+	Corrected copyright notice, contact info, and owner identifiers
+	in examples
+
+	* docbook.cat: Corrected contact info
+
+	* dbpool.mod, dbnotn.mod, dbhier.mod:
+	Corrected copyright notice and contact info
+
+	* dbcent.mod: Corrected copyright notice
+
+	* 50issues.txt:
+	Added note that this list needs to be filled out before V4.0
+
+	* 31chg.txt:
+	Fixed date, added QAndASet, MediaObject, and InlineMediaObject.
+
+	* docbook.dcl: Changed version number to 3.1
+
+1998-12-14  Norman Walsh  <ndw@nwalsh.com>
+
+	* dbpool.mod: Fixed typo in definition of qandaset.mix.
+
+	* dbhier.mod: Removed setinfo.char.mix.  It was unused.
+
+	* dbpool.mod: Added CiteTitle to bibliocomponent.mix
+
+	Reworked QAndASet.  DefaultLabel loses the Label value.  Label
+	on Question and Answer becomes an element.  The semantics are
+	that a Label, if present, is always used (which you can override
+	with your stylesheet, if required).
+
+1998-12-07  Norman Walsh  <ndw@nwalsh.com>
+
+	* dbpool.mod:
+	DefaultMark/Mark become DefaultLabel/Label on QandASet/Question/Answer
+
+1998-12-06  Norman Walsh  <ndw@nwalsh.com>
+
+	* dbpool.mod:
+	Added InformalFigure to informal.class, where it had accidentally
+	been left out.
+
+	* dbpool.mod:
+	Changed the 'label' value of DefaultMark on QandASet to 'mark'
+	since the attribute is 'mark'.
+
+	* dbpool.mod: Revised QandASet. QandAEntry now recurses in Answer, not
+	QandAEntry. Question and Answer no longer have a Title,
+	they have a Mark attribute. Renamed Mark attribute on
+	QandASet to DefaultMark.
+
+1998-12-01  Norman Walsh  <ndw@nwalsh.com>
+
+	* 50issues.txt: Branch for 3.1
+
+	* 50issues.txt: Initial version
+
+	* dbgenent.mod, dbhier.mod, docbook.cat, docbook.dcl, docbook.dtd, dbpool.mod:
+	3.1 changes
+
+	* 31chg.txt: Branch for 3.1 testing
+
+	* 31chg.txt: Initial version
+
+	* dbcent.mod, dbnotn.mod: Branch for 3.1 testing
+
+	* dbcent.mod, dbnotn.mod: Initial version
+
+	* 40issues.txt, cals-tbl.dtd, dbgenent.mod, dbhier.mod, dbpool.mod, docbook.cat, docbook.dcl, docbook.dtd:
+	Branch for 3.1 testing

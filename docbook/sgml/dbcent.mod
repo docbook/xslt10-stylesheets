@@ -1,10 +1,10 @@
 <!-- ...................................................................... -->
-<!-- DocBook character entities module V3.1 ............................... -->
+<!-- DocBook character entities module V4.0 ............................... -->
 <!-- File dbcent.mod ...................................................... -->
 
-<!-- Copyright 1992, 1993, 1994, 1995, 1996, 1998, 1999 HaL Computer
-     Systems, Inc., O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu
-     Software Corporation, and the Organization for the Advancement of
+<!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
+     O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+     Corporation, and the Organization for the Advancement of
      Structured Information Standards (OASIS).
 
      $Id$
@@ -23,7 +23,7 @@
      the maintenance documentation for more information.
 
      Please direct all questions, bug reports, or suggestions for
-     changes to the davenport@berkshire.net mailing list. For more
+     changes to the docbook@lists.oasis-open.org mailing list. For more
      information, see http://www.oasis-open.org/docbook/.
 -->
 
@@ -36,8 +36,8 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbcent PUBLIC
-     "-//OASIS//ENTITIES DocBook Character Entities V3.1//EN">
-     %dbhier;
+     "-//OASIS//ENTITIES DocBook Character Entities V4.0//EN">
+     %dbcent;
 
      See the documentation for detailed information on the parameter
      entity and module scheme used in DocBook, customizing DocBook and

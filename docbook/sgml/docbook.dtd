@@ -1,10 +1,10 @@
 <!-- ...................................................................... -->
-<!-- DocBook DTD V3.1 ..................................................... -->
+<!-- DocBook DTD V4.0 ..................................................... -->
 <!-- File docbook.dtd ..................................................... -->
 
-<!-- Copyright 1992, 1993, 1994, 1995, 1996, 1998, 1999 HaL Computer
-     Systems, Inc., O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu
-     Software Corporation, and the Organization for the Advancement of
+<!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
+     O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+     Corporation, and the Organization for the Advancement of
      Structured Information Standards (OASIS).
 
      $Id$
@@ -22,28 +22,28 @@
      additional notations, label your DTD as a variant of DocBook.  See
      the maintenance documentation for more information.
 
-     Please direct all questions, bug reports, or suggestions for
-     changes to the davenport@berkshire.net mailing list. For more
+     Please direct all questions, bug reports, or suggestions for 
+     changes to the docbook@lists.oasis-open.org mailing list. For more
      information, see http://www.oasis-open.org/docbook/.
 -->
 
 <!-- ...................................................................... -->
 
-<!-- This is the driver file for Version 3.1BETA1 of the DocBook DTD.
+<!-- This is the driver file for V4.0 of the DocBook DTD.
      Please use the following formal public identifier to identify it:
 
-     "-//OASIS//DTD DocBook V3.1//EN"
+     "-//OASIS//DTD DocBook V4.0//EN"
 
      For example, if your document's top-level element is Book, and
      you are using DocBook directly, use the FPI in the DOCTYPE
      declaration:
 
-     <!DOCTYPE Book PUBLIC "-//OASIS//DTD DocBook V3.1//EN" [...]>
+     <!DOCTYPE Book PUBLIC "-//OASIS//DTD DocBook V4.0//EN" [...]>
 
      Or, if you have a higher-level driver file that customizes DocBook,
      use the FPI in the parameter entity declaration:
 
-     <!ENTITY % DocBookDTD PUBLIC "-//OASIS//DTD DocBook V3.1//EN">
+     <!ENTITY % DocBookDTD PUBLIC "-//OASIS//DTD DocBook V4.0//EN">
      %DocBookDTD;
 
      The DocBook DTD is accompanied by an SGML declaration.
@@ -57,26 +57,35 @@
 <!-- ...................................................................... -->
 <!-- Notation declarations ................................................ -->
 
+<!ENTITY % dbnotn.module "INCLUDE">
+<![ %dbnotn.module; [
 <!ENTITY % dbnotn PUBLIC 
-"-//OASIS//ENTITIES DocBook Notations V3.1//EN">
+"-//OASIS//ENTITIES DocBook Notations V4.0//EN">
 %dbnotn;
+<!--end of dbnotn.module-->]]>
 
 <!-- ...................................................................... -->
 <!-- ISO character entity sets ............................................ -->
 
+<!ENTITY % dbcent.module "INCLUDE">
+<![ %dbcent.module; [
+<!ENTITY euro SDATA "[euro  ]"><!-- euro sign, U+20AC NEW -->
 <!ENTITY % dbcent PUBLIC 
-"-//OASIS//ENTITIES DocBook Character Entities V3.1//EN">
+"-//OASIS//ENTITIES DocBook Character Entities V4.0//EN">
 %dbcent;
-
+<!--end of dbcent.module-->]]>
 
 <!-- ...................................................................... -->
 <!-- DTD modules .......................................................... -->
 
 <!-- Information pool .............. -->
 
+<!ENTITY % dbpool.module "INCLUDE">
+<![ %dbpool.module; [
 <!ENTITY % dbpool PUBLIC 
-"-//OASIS//ELEMENTS DocBook Information Pool V3.1//EN">
+"-//OASIS//ELEMENTS DocBook Information Pool V4.0//EN">
 %dbpool;
+<!--end of dbpool.module-->]]>
 
 <!-- Redeclaration placeholder ..... -->
 
@@ -87,15 +96,22 @@
 
 <!-- Document hierarchy ............ -->
 
+<!ENTITY % dbhier.module "INCLUDE">
+<![ %dbhier.module; [
 <!ENTITY % dbhier PUBLIC 
-"-//OASIS//ELEMENTS DocBook Document Hierarchy V3.1//EN">
+"-//OASIS//ELEMENTS DocBook Document Hierarchy V4.0//EN">
 %dbhier;
+<!--end of dbhier.module-->]]>
+
 <!-- ...................................................................... -->
 <!-- Other general entities ............................................... -->
 
+<!ENTITY % dbgenent.module "INCLUDE">
+<![ %dbgenent.module; [
 <!ENTITY % dbgenent PUBLIC
-"-//OASIS//ENTITIES DocBook Additional General Entities V3.1//EN">
+"-//OASIS//ENTITIES DocBook Additional General Entities V4.0//EN">
 %dbgenent;
+<!--end of dbgenent.module-->]]>
 
-<!-- End of DocBook DTD V3.1 .............................................. -->
+<!-- End of DocBook DTD V4.0 .............................................. -->
 <!-- ...................................................................... -->

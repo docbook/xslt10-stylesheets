@@ -1,10 +1,10 @@
 <!-- ...................................................................... -->
-<!-- DocBook notations module V3.1 ........................................ -->
+<!-- DocBook notations module V4.0 ........................................ -->
 <!-- File dbnotn.mod ...................................................... -->
 
-<!-- Copyright 1992, 1993, 1994, 1995, 1996, 1998, 1999 HaL Computer
-     Systems, Inc., O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu
-     Software Corporation, and the Organization for the Advancement of
+<!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
+     O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+     Corporation, and the Organization for the Advancement of
      Structured Information Standards (OASIS).
 
      $Id$
@@ -23,21 +23,21 @@
      the maintenance documentation for more information.
 
      Please direct all questions, bug reports, or suggestions for
-     changes to the davenport@berkshire.net mailing list. For more
+     changes to the docbook@lists.oasis-open.org mailing list. For more
      information, see http://www.oasis-open.org/docbook/.
 -->
 
 <!-- ...................................................................... -->
 
-<!-- This module contains the entity declarations for the standard ISO
-     entity sets used by DocBook.
+<!-- This module contains the entity declarations for the standard
+     notations used by DocBook.
 
      In DTD driver files referring to this module, please use an entity
      declaration that uses the public identifier shown below:
 
-     <!ENTITY % dbcent PUBLIC
-     "-//OASIS//ENTITIES DocBook Notations V3.1//EN">
-     %dbhier;
+     <!ENTITY % dbnotn PUBLIC
+     "-//OASIS//ENTITIES DocBook Notations V4.0//EN">
+     %dbnotn;
 
      See the documentation for detailed information on the parameter
      entity and module scheme used in DocBook, customizing DocBook and
@@ -50,7 +50,7 @@
 		"BMP| CGM-CHAR | CGM-BINARY | CGM-CLEAR | DITROFF | DVI
 		| EPS | EQN | FAX | GIF | GIF87a | GIF89a 
 		| JPG | JPEG | IGES | PCX
-		| PIC | PS | SGML | TBL | TEX | TIFF | WMF | WPG
+		| PIC | PNG | PS | SGML | TBL | TEX | TIFF | WMF | WPG
 		| linespecific
 		%local.notation.class;">
 
@@ -81,6 +81,7 @@
 "+//ISBN 0-7923-9432-1::Graphic Notation//NOTATION ZSoft PCX bitmap//EN">
 <!-- PIC was SYSTEM "-//AT&T//NOTATION EQN-1//EN" -->
 <!NOTATION PIC		SYSTEM>
+<!NOTATION PNG          SYSTEM "http://www.w3.org/TR/REC-png">
 <!NOTATION PS		SYSTEM "PS">
 <!NOTATION SGML		PUBLIC 
 "ISO 8879:1986//NOTATION Standard Generalized Markup Language//EN">

@@ -181,7 +181,7 @@ of the current application.
 
 <!ELEMENT %tbl.table.name; - - (%tbl.table.mdl;) %tbl.table.excep; >
 
-<!ATTLIST table
+<!ATTLIST %tbl.table.name;
         frame           (top|bottom|topbot|all|sides|none)      #IMPLIED
         colsep          %yesorno;                               #IMPLIED
         rowsep          %yesorno;                               #IMPLIED
