@@ -646,7 +646,7 @@
     <xsl:when test="($firstterm.only.link = 0 or $firstterm = 1) and @linkend">
       <fo:basic-link internal-destination="{@linkend}"
                      xsl:use-attribute-sets="xref.properties">
-        <xsl:call-template name="inline.charseq"/>
+        <xsl:call-template name="inline.italicseq"/>
       </fo:basic-link>
     </xsl:when>
 
