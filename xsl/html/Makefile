@@ -18,6 +18,7 @@ param.xml: param.xweb $(PARAMS)
 	$(XSLT) $< ../../litprog/wdocbook.xsl $@
 
 param.xsl: param.xweb $(PARAMS)
+	../../cvstools/paramchk -m Makefile.param $<
 	$(XSLT) $< ../../litprog/xtangle.xsl $@
 
 titlepage.templates.xsl: titlepage.templates.xml ../template/titlepage.xsl

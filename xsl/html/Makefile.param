@@ -24,7 +24,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/chapter.autolabel.xml \
        ../params/chunk.datafile.xml \
        ../params/chunk.first.sections.xml \
-       ../params/chunk.sections.xml \
+       ../params/chunk.section.depth.xml \
        ../params/citerefentry.link.xml \
        ../params/css.decoration.xml \
        ../params/default.encoding.xml \
