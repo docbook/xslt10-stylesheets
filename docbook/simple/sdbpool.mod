@@ -153,6 +153,7 @@
 		"#PCDATA
 		|%xref.char.class;	|%gen.char.class;
 		|%link.char.class;	|%tech.char.class;
+                |%base.char.class;
 					|%inlineobj.char.class;
 		%local.para.char.mix;">
 
@@ -161,6 +162,7 @@
 		"#PCDATA
 		|%xref.char.class;	|%gen.char.class;
 		|%link.char.class;	|%tech.char.class;
+                |%base.char.class;
 					|%docinfo.char.class;
 					|%inlineobj.char.class;
 		%local.title.char.mix;">
@@ -169,6 +171,7 @@
 <!ENTITY % cptr.char.mix
 		"#PCDATA
 		|%link.char.class;	|%tech.char.class;
+                |%base.char.class;
 					|inlinemediaobject
 		%local.cptr.char.mix;">
 
@@ -184,6 +187,7 @@
 		"#PCDATA
 					|acronym|emphasis|trademark
 		|%link.char.class;
+                |%base.char.class;
 					|inlinemediaobject
 		%local.word.char.mix;">
 
