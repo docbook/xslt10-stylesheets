@@ -345,10 +345,9 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="title" mode="list.title.mode">
-  <fo:block font-size="12pt" font-weight="bold"
-            xsl:use-attribute-sets="list.block.spacing">
-    <xsl:apply-templates/>
-  </fo:block>
+  <xsl:call-template name="formal.object.heading">
+    <xsl:with-param name="object" select=".."/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -546,16 +545,9 @@
 
   <fo:block id="{$id}" xsl:use-attribute-sets="list.block.spacing">
     <xsl:if test="./title and $placement = 'before'">
-      <xsl:choose>
-        <xsl:when test="$formal.procedures != 0">
-          <xsl:call-template name="formal.object.heading"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <fo:block font-weight="bold">
-            <xsl:apply-templates select="./title" mode="procedure.title.mode"/>
-          </fo:block>
-        </xsl:otherwise>
-      </xsl:choose>
+      <!-- n.b. gentext code tests for $formal.procedures and may make an "informal" -->
+      <!-- heading even though we called formal.object.heading. odd but true. -->
+      <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
 
     <xsl:apply-templates select="$preamble"/>
@@ -567,25 +559,14 @@
     </fo:list-block>
 
     <xsl:if test="./title and $placement != 'before'">
-      <xsl:choose>
-        <xsl:when test="$formal.procedures != 0">
-          <xsl:call-template name="formal.object.heading"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <fo:block font-weight="bold">
-            <xsl:apply-templates select="./title" mode="procedure.title.mode"/>
-          </fo:block>
-        </xsl:otherwise>
-      </xsl:choose>
+      <!-- n.b. gentext code tests for $formal.procedures and may make an "informal" -->
+      <!-- heading even though we called formal.object.heading. odd but true. -->
+      <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
   </fo:block>
 </xsl:template>
 
 <xsl:template match="procedure/title">
-</xsl:template>
-
-<xsl:template match="procedure/title" mode="procedure.title.mode">
-  <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="substeps">
@@ -736,10 +717,8 @@
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
   <fo:block id="{$id}">
-    <xsl:if test="./title">
-      <fo:block xsl:use-attribute-sets="formal.title.properties">
-        <xsl:apply-templates select="./title" mode="calloutlist.title.mode"/>
-      </fo:block>
+    <xsl:if test="title">
+      <xsl:apply-templates select="title" mode="list.title.mode"/>
     </xsl:if>
 
     <fo:list-block space-before.optimum="1em"
@@ -753,10 +732,6 @@
 </xsl:template>
 
 <xsl:template match="calloutlist/title">
-</xsl:template>
-
-<xsl:template match="calloutlist/title" mode="calloutlist.title.mode">
-  <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="callout">

@@ -50,9 +50,10 @@
 </xsl:template>
 
 <xsl:template name="formal.object.heading">
+  <xsl:param name="object" select="."/>
   <p class="title">
     <b>
-      <xsl:apply-templates select="." mode="object.title.markup">
+      <xsl:apply-templates select="$object" mode="object.title.markup">
         <xsl:with-param name="allow-anchors" select="1"/>
       </xsl:apply-templates>
     </b>

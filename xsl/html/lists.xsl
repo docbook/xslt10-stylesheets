@@ -22,7 +22,7 @@
   <div class="{name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:if test="title">
-      <xsl:apply-templates select="title"/>
+      <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
     <ul type="{$itemsymbol}">
       <xsl:if test="@spacing='compact'">
@@ -36,7 +36,7 @@
 </xsl:template>
 
 <xsl:template match="itemizedlist/title">
-  <p class="title"><b><xsl:apply-templates/></b></p>
+  <!-- nop -->
 </xsl:template>
 
 <xsl:template match="itemizedlist/listitem">
@@ -151,7 +151,7 @@
   <div class="{name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:if test="title">
-      <xsl:apply-templates select="title"/>
+      <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
     <ol>
     <xsl:if test="$start != '1'">
@@ -175,7 +175,7 @@
 </xsl:template>
 
 <xsl:template match="orderedlist/title">
-  <p class="title"><b><xsl:apply-templates/></b></p>
+  <!-- nop -->
 </xsl:template>
 
 <xsl:template match="orderedlist/listitem">
@@ -257,7 +257,7 @@
   <div class="{name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:if test="title">
-      <xsl:apply-templates select="title"/>
+      <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
 
     <xsl:choose>
@@ -295,7 +295,7 @@
 </xsl:template>
 
 <xsl:template match="variablelist/title">
-  <p class="title"><b><xsl:apply-templates/></b></p>
+  <!-- nop -->
 </xsl:template>
 
 <xsl:template match="listitem" mode="xref">
@@ -609,14 +609,7 @@
     <xsl:call-template name="anchor"/>
 
     <xsl:if test="title and $placement = 'before'">
-      <xsl:choose>
-        <xsl:when test="$formal.procedures != 0">
-          <xsl:call-template name="formal.object.heading"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-templates select="title"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
 
     <xsl:apply-templates select="$preamble"/>
@@ -638,32 +631,13 @@
     </xsl:choose>
 
     <xsl:if test="title and $placement != 'before'">
-      <xsl:choose>
-        <xsl:when test="$formal.procedures != 0">
-          <xsl:call-template name="formal.object.heading"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-templates select="title"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
   </div>
 </xsl:template>
 
 <xsl:template match="procedure/title">
-  <p class="title">
-    <b>
-      <xsl:apply-templates/>
-    </b>
-  </p>
-</xsl:template>
-
-<xsl:template match="title" mode="procedure.title.mode">
-  <p class="title">
-    <b>
-      <xsl:apply-templates/>
-    </b>
-  </p>
+  <!-- nop -->
 </xsl:template>
 
 <xsl:template match="substeps">
@@ -686,7 +660,11 @@
 </xsl:template>
 
 <xsl:template match="step/title">
-  <xsl:apply-templates select="." mode="procedure.title.mode"/>
+  <p class="title">
+    <b>
+      <xsl:apply-templates/>
+    </b>
+  </p>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -816,12 +794,8 @@
 <xsl:template match="calloutlist">
   <div class="{name(.)}">
     <xsl:call-template name="anchor"/>
-    <xsl:if test="./title">
-      <p>
-        <b>
-          <xsl:apply-templates select="./title" mode="calloutlist.title.mode"/>
-        </b>
-      </p>
+    <xsl:if test="title">
+      <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
     <xsl:choose>
       <xsl:when test="$callout.list.table != 0">
@@ -837,10 +811,6 @@
 </xsl:template>
 
 <xsl:template match="calloutlist/title">
-</xsl:template>
-
-<xsl:template match="calloutlist/title" mode="calloutlist.title.mode">
-  <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="callout">
