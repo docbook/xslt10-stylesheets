@@ -28,10 +28,15 @@
 <!ENTITY % article.module "IGNORE">
 <!ENTITY % simple.article.element "IGNORE">
 <!ENTITY % simple.articleinfo.element "IGNORE">
+<!ENTITY % articleinfo.attlist "IGNORE">
 <!ENTITY % simple.appendix.element "IGNORE">
+<!ENTITY % appendix.attlist "IGNORE">
 <!ENTITY % simple.bibliography.element "IGNORE">
+<!ENTITY % bibliography.attlist "IGNORE">
 <!ENTITY % simple.bibliomixed.element "IGNORE">
+<!ENTITY % bibliomixed.attlist "IGNORE">
 <!ENTITY % simple.bibliodiv.element "IGNORE">
+<!ENTITY % bibliodiv.attlist "IGNORE">
 <!ENTITY % simple.affiliation.element "IGNORE">
 <!ENTITY % sidebar.module "INCLUDE">
 
