@@ -11,6 +11,30 @@
 </articleinfo>
 
 <procedure>
+<title>Scary Procedure</title>
+<step>
+<para>
+I'm on the first step, Johnny.
+</para>
+</step>
+<step>
+<para>
+I'm on the second step, Johnny.
+</para>
+</step>
+<step>
+<para>
+I'm on the third step, Johnny.
+</para>
+</step>
+<step>
+<para>
+I'm on the fourth step, Johnny.
+</para>
+</step>
+</procedure>
+
+<procedure>
 <step><para>Press MENUS.</para>
 </step>
 <step><para>Press MENUS.</para>

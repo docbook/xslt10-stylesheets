@@ -16,7 +16,15 @@ Had this been a real emegency,
   We would have fled in terror
 And you would not have been informed.</literallayout>
 
-<programlisting>ProgramListing: This is a test
+<literallayout>LiteralLayout: This is a test
+    This is a test with <emphasis>    embedded
+  markup</emphasis>; but still
+  Only a test.
+Had this been a real emegency,
+  We would have fled in terror
+And you would not have been informed.</literallayout>
+
+<programlisting linenumbering="numbered">ProgramListing: This is a test
   Only a test.
 Had this been a real emegency,
   We would have fled in terror

@@ -14,13 +14,14 @@
     <imageobject>
       <imagedata
         align="right"
+        width="50%"
         fileref="graphics/duck-small.gif"
-        format="GIF"
         srccredit="O'Reilly &amp; Associates/Dover Archives"/>
     </imageobject>
     <imageobject>
       <imagedata
         align="right"
+        width="50%"
         fileref="graphics/duck-small.png"
         format="PNG"
         srccredit="O'Reilly &amp; Associates/Dover Archives"/>
