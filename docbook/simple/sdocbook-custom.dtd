@@ -110,7 +110,7 @@
 
 <!ENTITY % local.link.char.class "">
 <!ENTITY % link.char.class
-		"xref|link|ulink %local.link.char.class;">
+		"footnoteref|xref|link|ulink %local.link.char.class;">
 
 <!ENTITY % local.tech.char.class "">
 <!ENTITY % tech.char.class
