@@ -1,0 +1,16 @@
+<!DOCTYPE webpage SYSTEM "../website.dtd">
+<webpage id="php">
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>PHP</title>
+<summary>PHP</summary>
+</head>
+
+<para>The Website stylesheets pass <quote>PHP</quote> processing
+instructions through unchanged, allowing a website with dynamic
+content to be maintained in Website.</para>
+
+<?php foo bar baz?>
+
+</webpage>
+
