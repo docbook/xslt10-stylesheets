@@ -657,7 +657,7 @@
 
 <xsl:template match="author" mode="bibliomixed.mode">
   <fo:inline>
-    <xsl:apply-templates mode="bibliomixed.mode"/>
+    <xsl:call-template name="person.name"/>
   </fo:inline>
 </xsl:template>
 
