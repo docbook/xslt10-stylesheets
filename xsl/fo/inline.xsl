@@ -541,12 +541,14 @@
 <xsl:template match="emphasis">
   <xsl:variable name="depth">
     <xsl:call-template name="dot.count">
-      <xsl:with-param name="string"><xsl:number level="multiple"/></xsl:with-param>
+      <xsl:with-param name="string">
+	<xsl:number level="multiple"/>
+      </xsl:with-param>
     </xsl:call-template>
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="@role='bold'">
+    <xsl:when test="@role='bold' or @role='strong'">
       <xsl:call-template name="inline.boldseq"/>
     </xsl:when>
     <xsl:when test="@role='underline'">
