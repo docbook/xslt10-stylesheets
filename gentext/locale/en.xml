@@ -176,6 +176,7 @@
 <context name="title">
 
 <template name="abstract">%t</template>
+<template name="answer">%t</template>
 <template name="appendix"><Appendix/> %n. %t</template>
 <template name="article">%t</template>
 <template name="authorblurb">%t</template>
@@ -220,7 +221,9 @@
 <template name="productionset">%t</template>
 <template name="productionset.formal"><ProductionSet/> %n</template>
 <template name="qandadiv">%t</template>
+<template name="qandaentry">%t</template>
 <template name="qandaset">%t</template>
+<template name="question">%t</template>
 <template name="reference">%t</template>
 <template name="refentry">%t</template>
 <template name="refsect1">%t</template>
@@ -309,6 +312,7 @@
 
 <context name="xref">
 
+<template name="answer"><Answer/> %n</template>
 <template name="appendix"><Appendix/> %n</template>
 <template name="article">%t</template>
 <template name="bibliography">%t</template>
@@ -324,8 +328,10 @@
 <template name="part"><Part/> %n</template>
 <template name="preface">%t</template>
 <template name="procedure"><Procedure/> %n</template>
+<template name="qandadiv">%t</template>
+<template name="qandaentry"><Question/> %n</template>
+<template name="qandaset">%t</template>
 <template name="question"><Question/> %n</template>
-<template name="answer"><Answer/> %n</template>
 <template name="reference">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
