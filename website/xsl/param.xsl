@@ -364,14 +364,18 @@ will be used to indent the TOC.</para>
 
 <!-- ==================================================================== -->
 
-<doc:param name="" xmlns="">
-<refpurpose></refpurpose>
+<xsl:param name="table.spacer.image" select="'graphics/spacer.gif'"/>
+
+<doc:param name="table.spacer.image" xmlns="">
+<refpurpose>Invisible pixel for tabular accessibility</refpurpose>
 <refdescription>
-<para></para>
+<para>This is the 1x1 pixel, transparent pixel used for
+<ulink url="http://diveintoaccessibility.org/day_10_presenting_your_main_content_first.html">the table trick</ulink> to increase the accessibility of the tabular
+website presentation.
+</para>
 </refdescription>
 </doc:param>
 
 <!-- ==================================================================== -->
-
 
 </xsl:stylesheet>
