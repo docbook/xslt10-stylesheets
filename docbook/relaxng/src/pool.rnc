@@ -1222,6 +1222,7 @@ div {
       footnote.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & attribute label { text }?
     & local.footnote.attributes
 
    db.footnote =
@@ -1840,6 +1841,7 @@ div {
     & common.linking.attributes
     & attribute label { text }?
     & floatstyle.attribute?
+    & float.attribute?
     & attribute width { text }?
     & local.example.attributes
 
@@ -2394,6 +2396,10 @@ div {
       equation.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & attribute label { text }?
+    & pgwide.attribute?
+    & floatstyle.attribute?
+    & float.attribute?
     & local.equation.attributes
 
    equation.info = docbook.info.titleonlyreq
@@ -2663,7 +2669,7 @@ div {
          s:rule [
             context = "db:synopfragmentref"
             s:assert [
-               test = "local-name(//*[@id=current()/@linkend]) = 'synopfragment' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/docbook-ng/absinthe'"
+               test = "local-name(//*[@id=current()/@linkend]) = 'synopfragment' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/docbook-ng'"
                "@linkend on synopfragmentref must point to a synopfragment."
             ]
          ]
@@ -6635,7 +6641,7 @@ div {
    db.foreignphrase =
       element foreignphrase {
          foreignphrase.attlist,
-         inlines*
+         (text | general.inlines)*
       }
 }
 
@@ -6817,7 +6823,7 @@ div {
          s:rule [
             context = "db:footnoteref"
             s:assert [
-               test = "local-name(//*[@id=current()/@linkend]) = 'footnote' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/docbook-ng/absinthe'"
+               test = "local-name(//*[@id=current()/@linkend]) = 'footnote' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/docbook-ng'"
                "@linkend on footnoteref must point to a footnote."
             ]
          ]
