@@ -32,9 +32,9 @@ import com.icl.saxon.charcode.PluggableCharacterSet;
  *        version='1.0'>
  *        <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/htmlhelp/htmlhelp.xsl"/>
  *        <xsl:output method="html" encoding="WINDOWS-1252" indent="no"/>
- *        <xsl:param name="htmlhelp.encoding" select="WINDOWS-1252"></xsl:param>
- *        <xsl:param name="chunker.output.encoding" select="WINDOWS-1252"></xsl:param>
- *        <xsl:param name="saxon.character.representation" select="native"></xsl:param>
+ *        <xsl:param name="htmlhelp.encoding" select="'WINDOWS-1252'"></xsl:param>
+ *        <xsl:param name="chunker.output.encoding" select="'WINDOWS-1252'"></xsl:param>
+ *        <xsl:param name="saxon.character.representation" select="'native'"></xsl:param>
  *      </xsl:stylesheet>
  *
  * 3. Invoke Saxon with the "encoding.windows-1252" Java system
