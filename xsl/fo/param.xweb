@@ -390,6 +390,7 @@ zero by default, so this is simply the page-master region-left.
 &verbatim.properties;
 &monospace.verbatim.properties;
 &sidebar.properties;
+&component.title.properties;
 &section.title.properties;
 &section.title.level1.properties;
 &section.title.level2.properties;
@@ -528,6 +529,7 @@ around all these parameters.</para>
 <src:fragref linkend="column.gap.lot.frag"/>
 <src:fragref linkend="column.gap.titlepage.frag"/>
 <src:fragref linkend="compact.list.item.spacing.frag"/>
+<src:fragref linkend="component.title.properties.frag"/>
 <src:fragref linkend="current.docid.frag"/>
 <src:fragref linkend="default.float.class.frag"/>
 <src:fragref linkend="default.image.width.frag"/>
