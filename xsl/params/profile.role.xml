@@ -47,7 +47,7 @@ rather use profiling specific attributes like <sgmltag
 class="attribute">userlevel</sgmltag>, <sgmltag
 class="attribute">os</sgmltag>, <sgmltag
 class="attribute">arch</sgmltag>, <sgmltag
-class="attribute">condition</sgmltag>, &hellip;</para>
+class="attribute">condition</sgmltag>, etc.</para>
 </warning>
 
 </refsect1>
