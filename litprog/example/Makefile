@@ -36,10 +36,21 @@ fib.xml: fib.xweb
 fib.xpp: fib.xweb prettyprint.pl
 	perl prettyprint.pl $< > $@
 
-realclean:
+defns.html: defns.xml
+	$(XSLT) $< doc.xsl $@
+
+defns.xml: defns.xweb
+	$(XSLT) $< ../weave.xsl $@
+
+defns.rng: defns.xweb
+	$(XSLT) $< ../xtangle.xsl $@
+
+realclean: clean
+	rm -f defns.rng
 	rm -f doc.{xsd,xpp}
 	rm -f fib.{pl,xpp}
 
 clean:
+	rm -f defns.{html,xml,fo,pdf}
 	rm -f doc.{html,xml,fo,pdf}
 	rm -f fib.{html,xml,fo,pdf}
