@@ -256,6 +256,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &htmlhelp.map.file;
 &htmlhelp.alias.file;
 &htmlhelp.hhc.section.depth;
+&htmlhelp.hhc.folders.instead.books;
 </reference>
 
 <appendix><title>The Stylesheet</title>
@@ -351,6 +352,7 @@ around all these parameters.</para>
 <src:fragref linkend="htmlhelp.enumerate.images.frag"/>
 <src:fragref linkend="htmlhelp.force.map.and.alias.frag"/>
 <src:fragref linkend="htmlhelp.hhc.frag"/>
+<src:fragref linkend="htmlhelp.hhc.folders.instead.books.frag"/>
 <src:fragref linkend="htmlhelp.hhc.section.depth.frag"/>
 <src:fragref linkend="htmlhelp.hhp.frag"/>
 <src:fragref linkend="htmlhelp.hhp.tail.frag"/>

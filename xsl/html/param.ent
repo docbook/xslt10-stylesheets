@@ -68,6 +68,7 @@
 <!ENTITY htmlhelp.enumerate.images SYSTEM "../params/htmlhelp.enumerate.images.xml">
 <!ENTITY htmlhelp.force.map.and.alias SYSTEM "../params/htmlhelp.force.map.and.alias.xml">
 <!ENTITY htmlhelp.hhc SYSTEM "../params/htmlhelp.hhc.xml">
+<!ENTITY htmlhelp.hhc.folders.instead.books SYSTEM "../params/htmlhelp.hhc.folders.instead.books.xml">
 <!ENTITY htmlhelp.hhc.section.depth SYSTEM "../params/htmlhelp.hhc.section.depth.xml">
 <!ENTITY htmlhelp.hhp SYSTEM "../params/htmlhelp.hhp.xml">
 <!ENTITY htmlhelp.hhp.tail SYSTEM "../params/htmlhelp.hhp.tail.xml">

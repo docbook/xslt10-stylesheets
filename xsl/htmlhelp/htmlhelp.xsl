@@ -122,7 +122,7 @@ Title=</xsl:text>
     <xsl:apply-templates select="key('id',$rootid)" mode="enumerate-files"/>
   </xsl:when>
   <xsl:otherwise>
-    <xsl:apply-templates mode="enumerate-files"/>
+    <xsl:apply-templates select="/" mode="enumerate-files"/>
   </xsl:otherwise>
 </xsl:choose>
 
@@ -132,7 +132,7 @@ Title=</xsl:text>
       <xsl:apply-templates select="key('id',$rootid)" mode="enumerate-images"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates mode="enumerate-images"/>
+      <xsl:apply-templates select="/" mode="enumerate-images"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:if>
@@ -300,11 +300,15 @@ Title=</xsl:text>
   <xsl:text>&lt;HTML&gt;
 &lt;HEAD&gt;
 &lt;/HEAD&gt;
-&lt;BODY&gt;
-&lt;OBJECT type="text/site properties"&gt;
+  &lt;BODY&gt;
+</xsl:text>
+  <xsl:if test="$htmlhelp.hhc.folders.instead.books != 0">
+    <xsl:text>&lt;OBJECT type="text/site properties"&gt;
 	&lt;param name="ImageType" value="Folder"&gt;
 &lt;/OBJECT&gt;
-&lt;UL&gt;
+</xsl:text>
+  </xsl:if>
+<xsl:text>&lt;UL&gt;
 </xsl:text>
 
   <xsl:choose>
@@ -312,7 +316,7 @@ Title=</xsl:text>
       <xsl:apply-templates select="key('id',$rootid)" mode="hhc"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates select="." mode="hhc"/>
+      <xsl:apply-templates select="/" mode="hhc"/>
     </xsl:otherwise>
   </xsl:choose>
 
