@@ -204,3 +204,5 @@
 <!ENTITY use.svg SYSTEM "../params/use.svg.xml">
 <!ENTITY variablelist.as.table SYSTEM "../params/variablelist.as.table.xml">
 <!ENTITY para.propagates.style SYSTEM "../params/para.propagates.style.xml">
+<!ENTITY html.cellpadding SYSTEM "../params/html.cellpadding.xml">
+<!ENTITY html.cellspacing SYSTEM "../params/html.cellspacing.xml">
