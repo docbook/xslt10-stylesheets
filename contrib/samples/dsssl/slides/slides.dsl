@@ -62,6 +62,16 @@
     space-after: 96pt
   (next-match)))
 
+(element (slidesinfo confgroup)
+  (make paragraph
+    quadding: 'center
+    space-before: 16pt
+    (next-match)))
+
+(element (confdates)
+  (make paragraph
+    (next-match)))
+
 (element (slidesinfo copyright)
   (empty-sosofo))
 
