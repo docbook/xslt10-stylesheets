@@ -5,14 +5,20 @@
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo xmlns="">
-<!-- FIXME: list the real contributors
-<authorgroup>
-  <author><firstname>Norman</firstname><surname>Walsh</surname>
-          <affiliation><address><email>ndw@nwalsh.com</email></address>
-          </affiliation>
-  </author>
-</authorgroup>
--->
+  <authorgroup>
+    <author>
+      <firstname>Rui</firstname><surname>Lopes</surname>
+      <affiliation>
+        <address><email>rui@ruilopes.com</email></address>
+      </affiliation>
+    </author> 
+    <author>
+      <firstname>Pedro</firstname><surname>Morais</surname>
+      <affiliation>
+        <address><email>morais@kde.org</email></address>
+      </affiliation>
+    </author> 
+  </authorgroup>
 </doc:localeinfo>
 
 <gentext key="Abstract" text="Resumo"/>
@@ -27,13 +33,13 @@
 <gentext key="bibliography" text="Bibliografia"/>
 <gentext key="Book" text="Livro"/>
 <gentext key="book" text="Livro"/>
-<gentext key="CAUTION" text="CAUTELA"/>
-<gentext key="Caution" text="Cautela"/>
-<gentext key="caution" text="Cautela"/>
+<gentext key="CAUTION" text="CUIDADO"/>
+<gentext key="Caution" text="Cuidado"/>
+<gentext key="caution" text="Cuidado"/>
 <gentext key="Chapter" text="Cap&#237;tulo"/>
 <gentext key="chapter" text="cap&#237;tulo"/>
-<gentext key="Colophon" text="Colophon"/>
-<gentext key="colophon" text="Colophon"/> <!-- en -->
+<gentext key="Colophon" text="Ficha T&#233;cnica"/>
+<gentext key="colophon" text="Ficha T&#233;cnica"/>
 <gentext key="Copyright" text="Copyright"/>
 <gentext key="copyright" text="Copyright"/>
 <gentext key="Dedication" text="Dedicat&#243;ria"/>
@@ -76,11 +82,13 @@
 <gentext key="preface" text="Pref&#225;cio"/>
 <gentext key="Procedure" text="Procedimento"/>
 <gentext key="procedure" text="Procedimento"/>
-<gentext key="ProductionSet" text="Production"/> <!-- en -->
+<gentext key="ProductionSet" text="Produ&#231;&#227;o"/>
 <gentext key="PubDate" text="Editado"/>
 <gentext key="pubdate" text="Editado"/>
 <gentext key="Published" text="Publicado"/>
 <gentext key="published" text="Publicado"/>
+<gentext key="Qandadiv" text="P &amp; R"/>
+<gentext key="qandadiv" text="P &amp; R"/>
 <gentext key="Question" text="P:"/>
 <gentext key="question" text="P:"/>
 <gentext key="RefEntry" text=""/>
@@ -97,11 +105,11 @@
 <gentext key="revhistory" text="Historial de Revis&#245;es"/>
 <gentext key="Revision" text="Revis&#227;o"/>
 <gentext key="revision" text="Revis&#227;o"/>
-<gentext key="sect1" text="Section"/> <!-- en -->
-<gentext key="sect2" text="Section"/> <!-- en -->
-<gentext key="sect3" text="Section"/> <!-- en -->
-<gentext key="sect4" text="Section"/> <!-- en -->
-<gentext key="sect5" text="Section"/> <!-- en -->
+<gentext key="sect1" text="Sec&#231;&#227;o"/>
+<gentext key="sect2" text="Sec&#231;&#227;o"/>
+<gentext key="sect3" text="Sec&#231;&#227;o"/>
+<gentext key="sect4" text="Sec&#231;&#227;o"/>
+<gentext key="sect5" text="Sec&#231;&#227;o"/>
 <gentext key="Section" text="Sec&#231;&#227;o"/>
 <gentext key="section" text="sec&#231;&#227;o"/>
 <gentext key="See" text="Ver"/>
@@ -109,12 +117,12 @@
 <gentext key="SeeAlso" text="Ver Tamb&#233;m"/>
 <gentext key="Seealso" text="ver tamb&#233;m"/>
 <gentext key="seealso" text="Ver Tamb&#233;m"/>
-<gentext key="Set" text="Set"/>
-<gentext key="set" text="Set"/> <!--usen-->
-<gentext key="SetIndex" text="Set Index"/>
-<gentext key="setindex" text="Set Index"/> <!--usen-->
-<gentext key="Sidebar" text="Sidebar"/> <!--usen-->
-<gentext key="sidebar" text="sidebar"/> <!--usen-->
+<gentext key="Set" text="Conjunto"/>
+<gentext key="set" text="Conjunto"/>
+<gentext key="SetIndex" text="&#205;ndice de Conjuntos"/>
+<gentext key="setindex" text="&#205;ndice de Conjuntos"/>
+<gentext key="Sidebar" text="Barra Lateral"/>
+<gentext key="sidebar" text="barra lateral"/>
 <gentext key="Step" text="Passo"/>
 <gentext key="step" text="passo"/>
 <gentext key="Table" text="Tabela"/>
@@ -128,27 +136,29 @@
 
 <gentext key="and" text="e"/>
 <gentext key="by" text="por"/>
+<gentext key="called" text="chamado"/>
 <gentext key="Edited" text="Editado"/>
 <gentext key="edited" text="Editado"/>
 <gentext key="Editedby" text="Editado por"/>
 <gentext key="editedby" text="Editado por"/>
 <gentext key="in" text=""/>
-<gentext key="lastlistcomma" text=","/>
+<gentext key="lastlistcomma" text=""/>
 <gentext key="listcomma" text=","/>
-<gentext key="nonexistantelement" text="non-existant element"/>
+<gentext key="nonexistantelement" text="elemento n&#227;o existente"/>
 <gentext key="notes" text="Notas"/>
 <gentext key="Notes" text="Notas"/>
 <gentext key="Pgs" text="P&#225;ginas"/>
 <gentext key="pgs" text="P&#225;ginas"/>
-<gentext key="Revisedby" text="Revised by: "/>
-<gentext key="revisedby" text="Revised by: "/> <!-- en -->
+<gentext key="Revisedby" text="Revisto por: "/>
+<gentext key="revisedby" text="Revisto por: "/>
 <gentext key="TableNotes" text="Notas"/>
 <gentext key="tablenotes" text="Notas"/>
 <gentext key="TableofContents" text="&#205;ndice"/>
 <gentext key="tableofcontents" text="&#205;ndice"/>
-<gentext key="unexpectedelementname" text="Unexpected element name"/>
-<gentext key="unsupported" text="unsupported"/>
-<gentext key="xrefto" text="xref to"/>
+<gentext key="the" text=""/>
+<gentext key="unexpectedelementname" text="Nome de elemento inesperado"/>
+<gentext key="unsupported" text="n&#227;o suportado"/>
+<gentext key="xrefto" text="referência cruzada para"/>
 
 <gentext key="listofequations" text="Lista de Equa&#231;&#245;es"/>
 <gentext key="ListofEquations" text="Lista de Equa&#231;&#245;es"/>
@@ -156,32 +166,41 @@
 <gentext key="listofexamples" text="Lista de Exemplos"/>
 <gentext key="ListofFigures" text="Lista de Figuras"/>
 <gentext key="listoffigures" text="Lista de Figuras"/>
+<gentext key="ListofProcedures" text="Lista de Procedimentos"/>
+<gentext key="listofprocedures" text="Lista de Procedimentos"/>
 <gentext key="listoftables" text="Lista de Tabelas"/>
 <gentext key="ListofTables" text="Lista de Tabelas"/>
-<gentext key="ListofUnknown" text="List of ???"/>
-<gentext key="listofunknown" text="List of ???"/>
+<gentext key="ListofUnknown" text="Lista de Desconhecido"/>
+<gentext key="listofunknown" text="Lista de Desconhecido"/>
 
-<gentext key="nav-home" text="Home"/>
-<gentext key="nav-next" text="Next"/>
-<gentext key="nav-next-sibling" text="Fast Forward"/>
-<gentext key="nav-prev" text="Prev"/>
-<gentext key="nav-prev-sibling" text="Fast Backward"/>
-<gentext key="nav-up" text="Up"/>
+<gentext key="nav-home" text="In&#237;cio"/>
+<gentext key="nav-next" text="Pr&#243;ximo"/>
+<gentext key="nav-next-sibling" text="Pr&#243;xima Parte"/>
+<gentext key="nav-prev" text="Anterior"/>
+<gentext key="nav-prev-sibling" text="Parte Anterior"/>
+<gentext key="nav-up" text="Subir"/>
+<gentext key="nav-toc" text="&#205;ndice"/>
 
-<gentext key="sectioncalled" text="the section called"/> <!-- en -->
-<gentext key="Draft"         text="Draft"/> <!-- en -->
-<gentext key="above"         text="above"/> <!-- en -->
-<gentext key="below"         text="below"/> <!-- en -->
-<gentext key="index symbols" text="Symbols"/> <!-- en -->
+<gentext key="sectioncalled" text="a sec&#231;&#227;o chamada"/>
+<gentext key="Draft"         text="Rascunho"/>
+<gentext key="above"         text="acima"/>
+<gentext key="below"         text="abaixo"/>
+<gentext key="index symbols" text="S&#237;mbolos"/>
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
 <dingbat key="nestedstartquote" text="&#x2018;"/>
 <dingbat key="nestedendquote" text="&#x2019;"/>
+<dingbat key="singlestartquote" text="&#x2018;"/>
+<dingbat key="singleendquote" text="&#x2019;"/>
 <dingbat key="bullet" text="&#x2022;"/>
+
+<gentext key="hyphenation-character" text="-"/>
+<gentext key="hyphenation-push-character-count" text="2"/>
+<gentext key="hyphenation-remain-character-count" text="2"/>
 
 <context name="styles">
 
@@ -393,7 +412,7 @@
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
-<template name="varlistentry">%n</template>
+<template name="varlistentry"/>
 <template name="warning">%t</template>
 <template name="page.citation"> [%p]</template>
 
