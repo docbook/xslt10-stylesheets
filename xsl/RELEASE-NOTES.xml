@@ -4,8 +4,7 @@
 <articleinfo>
 <title>DocBook XSL Stylesheet Release Notes</title>
 <pubdate>10 September 2004</pubdate>
-<releaseinfo role="cvs">$Id: RELEASE-NOTES.xml,v 1.21 2004/02/27
-18:17:27 nwalsh Exp $ </releaseinfo> 
+<releaseinfo role="cvs">$Id$</releaseinfo> 
 <corpauthor>DocBook Open Repository Team</corpauthor> 
 </articleinfo> 
 <para>These are the release notes for the DocBook XSL Stylesheets.
