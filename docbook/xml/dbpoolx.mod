@@ -7329,7 +7329,12 @@ OtherCredit. -->
 				|journal
 				|series
 				|set
-				|manuscript)	#IMPLIED
+				|manuscript
+				|cdrom
+				|dvd
+				|wiki
+				|gopher
+				|bbs)	#IMPLIED
 		%common.attrib;
 		%citetitle.role.attrib;
 		%local.citetitle.attrib;
