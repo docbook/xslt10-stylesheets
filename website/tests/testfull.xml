@@ -1,0 +1,24 @@
+<!DOCTYPE webpage SYSTEM "../website-full.dtd">
+<webpage id="test">
+<head>
+<title>Test</title>
+<summary>Test Page</summary>
+</head>
+<para>This is just a test page.</para>
+<webtoc/>
+
+<para>Index test<indexterm><primary>Test</primary></indexterm>
+</para>
+
+<qandaset>
+<qandaentry>
+<question><para>A question</para>
+</question>
+<answer><para>An answer</para>
+</answer>
+</qandaentry>
+</qandaset>
+
+<index/>
+
+</webpage>
