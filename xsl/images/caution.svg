@@ -1,33 +1,25 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!-- Generator: Adobe Illustrator 9.0, SVG Export Plug-In  -->
 <!DOCTYPE svg [
-	<!ENTITY st0 "font-size:11.6416;">
-	<!ENTITY st1 "font-family:'Myriad-Bold';">
-	<!ENTITY st2 "fill:#FFFFFF;stroke:#9E3100;stroke-width:3.4925;stroke-linecap:round;stroke-linejoin:round;">
-	<!ENTITY st3 "fill-rule:nonzero;clip-rule:nonzero;stroke:#000000;stroke-miterlimit:4;">
-	<!ENTITY st4 "stroke:none;">
+	<!ENTITY st0 "fill:#FFFFFF;stroke:none;">
+	<!ENTITY st1 "fill:#FFFFFF;stroke-width:6.6112;stroke-linecap:round;stroke-linejoin:round;">
+	<!ENTITY st2 "stroke:#FFFFFF;stroke-width:6.6112;">
+	<!ENTITY st3 "fill:none;stroke:none;">
+	<!ENTITY st4 "fill-rule:nonzero;clip-rule:nonzero;stroke:#000000;stroke-miterlimit:4;">
+	<!ENTITY st5 "stroke:none;">
 ]>
-<svg  width="25.5pt" height="24.2pt" viewBox="0 0 25.5 24.2" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
-	<style type="text/css">
-	<![CDATA[
-@font-face{font-family:'Myriad-Bold';src:url("data:;base64,\
-T1RUTwACACAAAQAAQ0ZGIJKScKUAAAAsAAABjWNtYXD/5wBWAAABvAAAACwBAAQCAAEBAQxNeXJp\
-YWQtQm9sZAABAQEg+BsB+BQEZPuOHATo+ecFHQAApAQN93wP938R3ffPEgABAQGqQ29weXJpZ2h0\
-IChjKSAxOTkyLCAxOTk0IEFkb2JlIFN5c3RlbXMgSW5jb3Jwb3JhdGVkLiAgQWxsIFJpZ2h0cyBS\
-ZXNlcnZlZC5NeXJpYWQgaXMgYSB0cmFkZW1hcmsgb2YgQWRvYmUgU3lzdGVtcyBJbmNvcnBvcmF0\
-ZWQgbWF5IGJlIHJlZ2lzdGVyZWQgaW4gY2VydGFpbiBqdXJpc2RpY3Rpb25zLgAAAAACAAIBAQRL\
-914O96CA90r7NXb5QXcSt/dH+zH3HBNwE2j3U/dxFaH4WQX7Mgah/FkFE3DE+3wVwa6yvx8TsMGK\
-aLBWG1ZmZlUfE3BXr2TAHg6Alvk2lvtYl/cplryWBveZkPxmjnOTB4CW+TaW+12X9y6WvJYI95mQ\
-/GaRcJQJHqBgRYKZ/wwJHnoJmZmfDAr3BAr3LAv3BJgMDPcslAwNjAwOAAAAAAAAAQAAAAMAAAAM\
-AAQAIAAAAAQABAABAAAAIf//AAAAIf///+AAAQAAAADNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc39\
-/f39HCf9BTECAABRAAAAEFT/BZBR/wWk4fYF4QAAABgAAAACAAAAsRUAAP39/f2gnRsA/////wAA\
-")}
-	]]>
-	</style>
-	<g id="Layer_x0020_1" style="&st3;">
+<svg  width="48pt" height="48pt" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+	<g id="Layer_x0020_3" style="&st4;">
 		<g>
-			<path style="&st2;" d="M12.6,1.7L1.7,22.4h22L12.6,1.7z"/>
-			<text transform="matrix(1 0 0 1 11.2856 19.0054)"><tspan x="0" y="0" style="&st4; &st1; &st0;">!</tspan></text>
+			<path style="&st2;" d="M41.7,35.3L26.6,9.4c-0.6-1-1.7-1.7-2.9-1.6c-1.2,0-2.3,0.7-2.9,1.7L6.3,35.4c-0.6,1-0.6,2.3,0,3.3c0.6,1,1.7,1.6,2.9,1.6h29.6c1.2,0,2.3-0.6,2.9-1.7c0.6-1,0.6-2.3,0-3.3z"/>
+			<path style="&st1;" d="M23.7,11L9.2,37h29.6L23.7,11z"/>
+			<path style="&st0;" d="M23.7,11.9L10.3,36.1h27.5l-14-24.1z"/>
+			<g>
+				<path style="&st5;" d="M24.1,34c-1.1,0-1.8-0.8-1.8-1.8c0-1.1,0.7-1.8,1.8-1.8c1.1,0,1.8,0.7,1.8,1.8c0,1-0.7,1.8-1.8,1.8h0z M22.9,29.3l-0.4-9.1h3.2l-0.4,9.1h-2.3z"/>
+			</g>
 		</g>
+	</g>
+	<g id="crop_x0020_marks" style="&st4;">
+		<path style="&st3;" d="M48,48H0V0h48v48z"/>
 	</g>
 </svg>
