@@ -226,57 +226,19 @@
   <xsl:param name="olist"
              select="imageobject|imageobjectco
                      |videoobject|audioobject|textobject"/>
-  <xsl:param name="count">1</xsl:param>
 
-  <xsl:if test="$count &lt;= count($olist)">
-    <xsl:variable name="object" select="$olist[position()=$count]"/>
+  <xsl:variable name="mediaobject.index">
+    <xsl:call-template name="select.mediaobject.index">
+      <xsl:with-param name="olist" select="$olist"/>
+      <xsl:with-param name="count" select="1"/>
+    </xsl:call-template>
+  </xsl:variable>
 
-    <xsl:variable name="useobject">
-      <xsl:choose>
-	<!-- The phrase is never used -->
-        <xsl:when test="name($object)='textobject' and $object/phrase">
-          <xsl:text>0</xsl:text>
-        </xsl:when>
-	<!-- The first textobject is not a reasonable fallback for equation image -->
-        <xsl:when test="name($object)='textobject'">
-          <xsl:text>0</xsl:text>
-        </xsl:when>
-	<!-- If there's only one object, use it -->
-	<xsl:when test="$count = 1 and count($olist) = 1">
-	  <xsl:text>1</xsl:text>
-	</xsl:when>
-	<!-- Otherwise, see if this one is a useable graphic -->
-        <xsl:otherwise>
-          <xsl:choose>
-            <!-- peek inside imageobjectco to simplify the test -->
-            <xsl:when test="local-name($object) = 'imageobjectco'">
-              <xsl:call-template name="is.acceptable.mediaobject">
-                <xsl:with-param name="object" select="$object/imageobject"/>
-              </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:call-template name="is.acceptable.mediaobject">
-                <xsl:with-param name="object" select="$object"/>
-              </xsl:call-template>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-
-    <xsl:choose>
-      <xsl:when test="$useobject='1'">
-        <xsl:call-template name="mediaobject.filename">
-          <xsl:with-param name="object" select="$object"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="select.mediaobject">
-          <xsl:with-param name="olist" select="$olist"/>
-          <xsl:with-param name="count" select="$count + 1"/>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
+  <xsl:if test="$mediaobject.index != ''">
+    <xsl:call-template name="mediaobject.filename">
+      <xsl:with-param name="object"
+                      select="$olist[position() = $mediaobject.index]"/>
+    </xsl:call-template>
   </xsl:if>
 </xsl:template>
 

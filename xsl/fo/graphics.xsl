@@ -308,40 +308,32 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="mediaobject|mediaobjectco">
-  <fo:block>
-    <xsl:choose>
-      <xsl:when test="$use.role.for.mediaobject != 0 
-                 and $preferred.mediaobject.role != ''
-                 and (imageobject|imageobjectco
-                     |videoobject|audioobject
-                     |textobject)[@role = $preferred.mediaobject.role]"> 
-        <xsl:call-template name="select.mediaobject">
-	  <xsl:with-param name="olist"
-                 select="(imageobject|imageobjectco
-                     |videoobject|audioobject
-                     |textobject)[@role = $preferred.mediaobject.role]"/> 
-	</xsl:call-template>
-      </xsl:when>
-      <xsl:when test="$use.role.for.mediaobject != 0 
-                 and (imageobject|imageobjectco
-                     |videoobject|audioobject
-		     |textobject)[@role = 'fo']">
-        <xsl:call-template name="select.mediaobject">
-	  <xsl:with-param name="olist"
-                 select="(imageobject|imageobjectco
-                     |videoobject|audioobject
-		     |textobject)[@role = 'fo']"/>
-	</xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="select.mediaobject">
-	  <xsl:with-param name="olist"
-                 select="imageobject|imageobjectco
+
+  <xsl:variable name="olist" select="imageobject|imageobjectco
                      |videoobject|audioobject
 		     |textobject"/>
-	</xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
+
+  <xsl:variable name="object.index">
+    <xsl:call-template name="select.mediaobject.index">
+      <xsl:with-param name="olist" select="$olist"/>
+      <xsl:with-param name="count" select="1"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="object" select="$olist[position() = $object.index]"/>
+
+  <xsl:variable name="align">
+    <xsl:value-of select="$object/imagedata[@align][1]/@align"/>
+  </xsl:variable>
+
+  <fo:block>
+    <xsl:if test="$align != '' ">
+      <xsl:attribute name="text-align">
+        <xsl:value-of select="$align"/>
+      </xsl:attribute>
+    </xsl:if>
+
+    <xsl:apply-templates select="$object"/>
     <xsl:apply-templates select="caption"/>
   </fo:block>
 </xsl:template>
