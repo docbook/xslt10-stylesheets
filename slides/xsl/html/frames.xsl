@@ -61,6 +61,9 @@
       <html>
         <head>
           <title>TOC - <xsl:value-of select="$title"/></title>
+
+          <xsl:call-template name="system.head.content"/>
+
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
               <xsl:call-template name="css.stylesheet"/>
@@ -120,6 +123,8 @@ function init() {
 </xsl:text>
             </style>
           </xsl:if>
+
+          <xsl:call-template name="user.head.content"/>
         </head>
         <body class="toc">
           <xsl:call-template name="body.attributes"/>
@@ -180,6 +185,10 @@ function init() {
         <head>
           <title><xsl:value-of select="title"/></title>
 
+          <xsl:call-template name="system.head.content">
+            <xsl:with-param name="node" select=".."/>
+          </xsl:call-template>
+
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
               <xsl:call-template name="css.stylesheet"/>
@@ -212,6 +221,10 @@ function init() {
               <xsl:with-param name="language" select="'JavaScript'"/>
             </xsl:call-template>
           </xsl:if>
+
+          <xsl:call-template name="user.head.content">
+            <xsl:with-param name="node" select=".."/>
+          </xsl:call-template>
         </head>
         <xsl:choose>
           <xsl:when test="$multiframe != 0">
@@ -282,6 +295,11 @@ function init() {
       <html>
         <head>
           <title>Navigation</title>
+
+          <xsl:call-template name="system.head.content">
+            <xsl:with-param name="node" select=".."/>
+          </xsl:call-template>
+
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
               <xsl:call-template name="css.stylesheet"/>
@@ -310,6 +328,10 @@ function init() {
               <xsl:with-param name="language" select="'JavaScript'"/>
             </xsl:call-template>
           </xsl:if>
+
+          <xsl:call-template name="user.head.content">
+            <xsl:with-param name="node" select=".."/>
+          </xsl:call-template>
         </head>
         <body class="topnavigation" bgcolor="{$multiframe.top.bgcolor}">
           <xsl:call-template name="foil-top-nav">
@@ -333,6 +355,11 @@ function init() {
       <html>
         <head>
           <title>Body</title>
+
+          <xsl:call-template name="system.head.content">
+            <xsl:with-param name="node" select=".."/>
+          </xsl:call-template>
+
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
               <xsl:call-template name="css.stylesheet"/>
@@ -361,6 +388,10 @@ function init() {
               <xsl:with-param name="language" select="'JavaScript'"/>
             </xsl:call-template>
           </xsl:if>
+
+          <xsl:call-template name="user.head.content">
+            <xsl:with-param name="node" select=".."/>
+          </xsl:call-template>
         </head>
         <xsl:apply-templates select="." mode="singleframe"/>
       </html>
@@ -383,6 +414,11 @@ function init() {
       <html>
         <head>
           <title>Navigation</title>
+
+          <xsl:call-template name="system.head.content">
+            <xsl:with-param name="node" select=".."/>
+          </xsl:call-template>
+
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
               <xsl:call-template name="css.stylesheet"/>
@@ -411,6 +447,10 @@ function init() {
               <xsl:with-param name="language" select="'JavaScript'"/>
             </xsl:call-template>
           </xsl:if>
+
+          <xsl:call-template name="user.head.content">
+            <xsl:with-param name="node" select=".."/>
+          </xsl:call-template>
         </head>
         <body class="botnavigation" bgcolor="{$multiframe.bottom.bgcolor}">
           <xsl:call-template name="foil-bottom-nav">
@@ -666,6 +706,9 @@ function init() {
     <xsl:with-param name="content">
       <head>
         <title><xsl:value-of select="title"/></title>
+
+        <xsl:call-template name="system.head.content"/>
+
         <link type="text/css" rel="stylesheet">
           <xsl:attribute name="href">
             <xsl:call-template name="css.stylesheet"/>
@@ -701,6 +744,8 @@ function init() {
             <xsl:with-param name="language" select="'JavaScript'"/>
           </xsl:call-template>
         </xsl:if>
+
+        <xsl:call-template name="user.head.content"/>
       </head>
       <xsl:choose>
         <xsl:when test="$multiframe != 0">
@@ -766,6 +811,9 @@ function init() {
       <html>
         <head>
           <title>Navigation</title>
+
+          <xsl:call-template name="system.head.content"/>
+
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
               <xsl:call-template name="css.stylesheet"/>
@@ -794,6 +842,8 @@ function init() {
               <xsl:with-param name="language" select="'JavaScript'"/>
             </xsl:call-template>
           </xsl:if>
+
+          <xsl:call-template name="user.head.content"/>
         </head>
         <body class="topnavigation" bgcolor="{$multiframe.top.bgcolor}">
           <xsl:call-template name="foilgroup-top-nav">
@@ -826,6 +876,9 @@ function init() {
       <html>
         <head>
           <title>Body</title>
+
+          <xsl:call-template name="system.head.content"/>
+
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
               <xsl:call-template name="css.stylesheet"/>
@@ -854,6 +907,8 @@ function init() {
               <xsl:with-param name="language" select="'JavaScript'"/>
             </xsl:call-template>
           </xsl:if>
+
+          <xsl:call-template name="user.head.content"/>
         </head>
         <xsl:apply-templates select="." mode="singleframe"/>
       </html>
@@ -880,6 +935,9 @@ function init() {
       <html>
         <head>
           <title>Navigation</title>
+
+          <xsl:call-template name="system.head.content"/>
+
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
               <xsl:call-template name="css.stylesheet"/>
@@ -908,6 +966,8 @@ function init() {
               <xsl:with-param name="language" select="'JavaScript'"/>
             </xsl:call-template>
           </xsl:if>
+
+          <xsl:call-template name="user.head.content"/>
         </head>
         <body class="botnavigation" bgcolor="{$multiframe.bottom.bgcolor}">
           <xsl:call-template name="foilgroup-bottom-nav">
@@ -1021,6 +1081,9 @@ function init() {
     <xsl:with-param name="content">
       <head>
         <title><xsl:value-of select="title"/></title>
+
+        <xsl:call-template name="system.head.content"/>
+
         <link type="text/css" rel="stylesheet">
           <xsl:attribute name="href">
             <xsl:call-template name="css.stylesheet"/>
@@ -1056,6 +1119,8 @@ function init() {
             <xsl:with-param name="language" select="'JavaScript'"/>
           </xsl:call-template>
         </xsl:if>
+
+        <xsl:call-template name="user.head.content"/>
       </head>
       <xsl:choose>
         <xsl:when test="$multiframe != 0">
@@ -1132,6 +1197,9 @@ function init() {
       <html>
         <head>
           <title>Navigation</title>
+
+          <xsl:call-template name="system.head.content"/>
+
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
               <xsl:call-template name="css.stylesheet"/>
@@ -1160,6 +1228,8 @@ function init() {
               <xsl:with-param name="language" select="'JavaScript'"/>
             </xsl:call-template>
           </xsl:if>
+
+          <xsl:call-template name="user.head.content"/>
         </head>
         <body class="topnavigation" bgcolor="{$multiframe.top.bgcolor}">
           <xsl:call-template name="foil-top-nav">
@@ -1186,6 +1256,9 @@ function init() {
       <html>
         <head>
           <title>Body</title>
+
+          <xsl:call-template name="system.head.content"/>
+
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
               <xsl:call-template name="css.stylesheet"/>
@@ -1214,6 +1287,9 @@ function init() {
               <xsl:with-param name="language" select="'JavaScript'"/>
             </xsl:call-template>
           </xsl:if>
+
+          <xsl:call-template name="user.head.content"/>
+
         </head>
         <xsl:apply-templates select="." mode="singleframe"/>
       </html>
@@ -1241,6 +1317,9 @@ function init() {
       <html>
         <head>
           <title>Navigation</title>
+
+          <xsl:call-template name="system.head.content"/>
+
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
               <xsl:call-template name="css.stylesheet"/>
@@ -1269,6 +1348,8 @@ function init() {
               <xsl:with-param name="language" select="'JavaScript'"/>
             </xsl:call-template>
           </xsl:if>
+
+          <xsl:call-template name="user.head.content"/>
         </head>
         <body class="botnavigation" bgcolor="{$multiframe.bottom.bgcolor}">
           <xsl:call-template name="foil-bottom-nav">
