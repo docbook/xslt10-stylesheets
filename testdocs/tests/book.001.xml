@@ -20,7 +20,7 @@ Blah blah blah blah blah blah blah blah. Blah blah blah blah.
 Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 </para>">
 ]>
-<book>
+<book id="book">
 <bookinfo>
 <title>Unit Test: book.001</title>
 <releaseinfo role="CVS">$Id$</releaseinfo>
@@ -94,13 +94,13 @@ Some abstract. Some abstract. Some abstract. Some abstract.
 </revhistory>
 </bookinfo>
 
-<dedication><title>First Dedication</title>
+<dedication id="ded1"><title>First Dedication</title>
 
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 
 </dedication>
 
-<dedication>
+<dedication id="ded2">
 
 <para>A second dedication without a title.</para>
 
@@ -108,7 +108,7 @@ Some abstract. Some abstract. Some abstract. Some abstract.
 
 </dedication>
 
-<preface><title>Foreword</title>
+<preface id="forward"><title>Foreword</title>
 <?dbhtml filename="forward.html"?>
 
 <para>A preface.</para>
@@ -119,7 +119,7 @@ Some abstract. Some abstract. Some abstract. Some abstract.
 
 </preface>
 
-<preface><title>Preface</title>
+<preface id="preface"><title>Preface</title>
 
 <para>Another preface.</para>
 
@@ -129,9 +129,9 @@ Some abstract. Some abstract. Some abstract. Some abstract.
 
 </preface>
 
-<part>
+<part id="partI">
 <title>Part One Title</title>
-<partintro>
+<partintro id="pIpintro">
 <title>PartIntro Title</title>
 
 <para>Partintro content<footnote>
@@ -140,63 +140,34 @@ Some abstract. Some abstract. Some abstract. Some abstract.
 
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 
-<sect1>
+<sect1 id="pIpis1">
 <title>PartIntro Section</title>
 <para>PartIntros can actually have section content as well.</para>
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 </sect1>
 </partintro>
 
-<chapter id="chapter"><title>First Chapter</title>
+<chapter id="chap1"><title>First Chapter</title>
 
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 
-<section><title>First Section</title>
-
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-
-</section>
-<section><title>Second Section</title>
+<section id="c1s1"><title>First Section</title>
 
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 
 </section>
-<section><title>Third Section</title>
+<section id="c1s2"><title>Second Section</title>
 
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 
 </section>
-</chapter>
-
-<chapter><title>Second Chapter</title>
-
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-
-<section><title>First Section</title>
-
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-
-</section>
-<section><title>Second Section</title>
-
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-
-</section>
-<section><title>Third Section</title>
+<section id="c1s3"><title>Third Section</title>
 
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
@@ -205,7 +176,36 @@ Some abstract. Some abstract. Some abstract. Some abstract.
 </section>
 </chapter>
 
-<chapter><title>Third Chapter</title>
+<chapter id="chap2"><title>Second Chapter</title>
+
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+
+<section id="c2s1"><title>First Section</title>
+
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+
+</section>
+<section id="c2s2"><title>Second Section</title>
+
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+
+</section>
+<section id="c2s3"><title>Third Section</title>
+
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+
+</section>
+</chapter>
+
+<chapter id="chap3"><title>Third Chapter</title>
 
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
@@ -214,29 +214,29 @@ Some abstract. Some abstract. Some abstract. Some abstract.
 </chapter>
 
 </part>
-<part><title>Appendixes</title>
+<part id="partII"><title>Appendixes</title>
 
-<appendix><title>First Appendix</title>
-
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-
-<section><title>First Section</title>
+<appendix id="app1"><title>First Appendix</title>
 
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 
-</section>
-<section><title>Second Section</title>
+<section id="a1s1"><title>First Section</title>
 
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 
 </section>
-<section><title>Third Section</title>
+<section id="a1s2"><title>Second Section</title>
+
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+
+</section>
+<section id="a1s3"><title>Third Section</title>
 
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
@@ -245,27 +245,27 @@ Some abstract. Some abstract. Some abstract. Some abstract.
 </section>
 </appendix>
 
-<appendix><title>Second Appendix</title>
+<appendix id="app2"><title>Second Appendix</title>
 
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 
-<section><title>First Section</title>
-
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
-
-</section>
-<section><title>Second Section</title>
+<section id="a2s1"><title>First Section</title>
 
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 
 </section>
-<section><title>Third Section</title>
+<section id="a2s2"><title>Second Section</title>
+
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+
+</section>
+<section id="a2s3"><title>Third Section</title>
 
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
