@@ -459,19 +459,67 @@
 </xsl:template>
 
 <xsl:template match="firstterm">
-  <xsl:call-template name="inline.italicseq"/>
+  <xsl:call-template name="glossterm">
+    <xsl:with-param name="firstterm" select="1"/>
+  </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="glossterm">
+<xsl:template match="glossterm" name="glossterm">
+  <xsl:param name="firstterm" select="0"/>
+
   <xsl:choose>
-    <xsl:when test="@linkend">
+    <xsl:when test="($firstterm.only.link = 0 or $firstterm = 1) and @linkend">
       <fo:basic-link internal-destination="{@linkend}"
                      xsl:use-attribute-sets="xref.properties">
         <xsl:call-template name="inline.charseq"/>
       </fo:basic-link>
     </xsl:when>
 
-    <xsl:when test="$glossterm.auto.link != 0">
+    <xsl:when test="not(@linkend)
+                    and ($firstterm.only.link = 0 or $firstterm = 1)
+                    and $glossary.collection != ''">
+      <xsl:variable name="term">
+        <xsl:choose>
+          <xsl:when test="@baseform"><xsl:value-of select="@baseform"/></xsl:when>
+          <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:variable name="cterm"
+           select="(document($glossary.collection,.)//glossentry[glossterm=$term])[1]"/>
+
+      <xsl:choose>
+        <xsl:when test="not($cterm)">
+          <xsl:message>
+            <xsl:text>There's no entry for </xsl:text>
+            <xsl:value-of select="$term"/>
+            <xsl:text> in </xsl:text>
+            <xsl:value-of select="$glossary.collection"/>
+          </xsl:message>
+          <xsl:call-template name="inline.italicseq"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="id">
+            <xsl:text>gl.</xsl:text>
+            <xsl:choose>
+              <xsl:when test="$cterm/@id">
+                <xsl:value-of select="$cterm/@id"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="generate-id($cterm)"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
+          <fo:basic-link internal-destination="{$id}"
+                         xsl:use-attribute-sets="xref.properties">
+            <xsl:call-template name="inline.italicseq"/>
+          </fo:basic-link>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+
+    <xsl:when test="not(@linkend)
+                    and ($firstterm.only.link = 0 or $firstterm = 1)
+                    and $glossterm.auto.link != 0">
       <xsl:variable name="term">
         <xsl:choose>
           <xsl:when test="@baseform">

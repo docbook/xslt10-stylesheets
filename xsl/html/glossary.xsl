@@ -212,4 +212,99 @@ GlossEntry ::=
 
 <!-- ==================================================================== -->
 
+<!-- Glossary collection -->
+
+<xsl:template match="glossary[@role='auto']" priority="2">
+  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+  <xsl:variable name="terms" select="//glossterm[not(parent::glossdef)]|//firstterm"/>
+  <xsl:variable name="collection" select="document($glossary.collection, .)"/>
+
+  <xsl:if test="$glossary.collection = ''">
+    <xsl:message>
+      <xsl:text>Warning: processing automatic glossary </xsl:text>
+      <xsl:text>without a glossary.collection file.</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
+  <div id="{$id}" class="{name(.)}">
+    <xsl:call-template name="glossary.titlepage"/>
+
+    <xsl:choose>
+      <xsl:when test="$collection//glossdiv">
+        <xsl:for-each select="$collection//glossdiv">
+          <!-- first see if there are any in this div -->
+          <xsl:variable name="exist.test">
+            <xsl:for-each select="glossentry">
+              <xsl:variable name="cterm" select="glossterm"/>
+              <xsl:if test="$terms[@baseform = $cterm or . = $cterm]">
+                <xsl:value-of select="glossterm"/>
+              </xsl:if>
+            </xsl:for-each>
+          </xsl:variable>
+
+          <xsl:if test="$exist.test != ''">
+            <xsl:apply-templates select="." mode="auto-glossary">
+              <xsl:with-param name="terms" select="$terms"/>
+            </xsl:apply-templates>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:when>
+      <xsl:otherwise>
+        <dl>
+          <xsl:for-each select="$collection//glossentry">
+            <xsl:variable name="cterm" select="glossterm"/>
+            <xsl:if test="$terms[@baseform = $cterm or . = $cterm]">
+              <xsl:apply-templates select="." mode="auto-glossary"/>
+            </xsl:if>
+          </xsl:for-each>
+        </dl>
+      </xsl:otherwise>
+    </xsl:choose>
+
+    <xsl:call-template name="process.footnotes"/>
+  </div>
+</xsl:template>
+
+<xsl:template match="*" mode="auto-glossary">
+  <!-- pop back out to the default mode for most elements -->
+  <xsl:apply-templates select="."/>
+</xsl:template>
+
+<xsl:template match="glossdiv" mode="auto-glossary">
+  <xsl:param name="terms" select="."/>
+
+  <div class="{name(.)}">
+    <xsl:apply-templates select="(glossentry[1]/preceding-sibling::*)"/>
+
+    <dl>
+      <xsl:for-each select="glossentry">
+        <xsl:variable name="cterm" select="glossterm"/>
+        <xsl:if test="$terms[@baseform = $cterm or . = $cterm]">
+          <xsl:apply-templates select="." mode="auto-glossary"/>
+        </xsl:if>
+      </xsl:for-each>
+    </dl>
+  </div>
+</xsl:template>
+
+<xsl:template match="glossentry" mode="auto-glossary">
+  <xsl:apply-templates mode="auto-glossary"/>
+</xsl:template>
+
+<xsl:template match="glossentry/glossterm[1]" priority="2" mode="auto-glossary">
+  <xsl:variable name="id">
+    <xsl:text>gl.</xsl:text>
+    <xsl:call-template name="object.id">
+      <xsl:with-param name="object" select=".."/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <dt>
+    <a name="{$id}"/>
+    <xsl:apply-templates/>
+  </dt>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
 </xsl:stylesheet>

@@ -1,0 +1,28 @@
+<refentry id="glossary.collection">
+<refmeta>
+<refentrytitle>glossary.collection</refentrytitle>
+<refmiscinfo role="type">string</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>glossary.collection</refname>
+<refpurpose>Name of the glossary collection file</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='glossary.collection.frag'>
+<xsl:param name="glossary.collection" select="''"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>Tired of manually maintaining glossaries for multiple documents?
+Now you can maintain a central glossary and let the stylesheets do
+the copying for you. This parameter identifies the file (by URI reference)
+that contains your complete glossary collection.
+</para>
+
+<para>THIS IS EXPERIMENTAL. IT PROBABLY DOESN'T WORK</para>
+
+</refsect1>
+</refentry>

@@ -318,4 +318,194 @@ GlossEntry ::=
 
 <!-- ==================================================================== -->
 
+<!-- Glossary collection -->
+
+<xsl:template match="glossary[@role='auto']" priority="2">
+  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+  <xsl:variable name="terms" select="//glossterm[not(parent::glossdef)]|//firstterm"/>
+  <xsl:variable name="collection" select="document($glossary.collection, .)"/>
+
+  <xsl:variable name="preamble"
+                select="*[not(self::title
+                            or self::subtitle
+                            or self::glossdiv
+                            or self::glossentry)]"/>
+
+  <xsl:if test="$glossary.collection = ''">
+    <xsl:message>
+      <xsl:text>Warning: processing automatic glossary </xsl:text>
+      <xsl:text>without a glossary.collection file.</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
+  <fo:block id="{$id}">
+    <xsl:call-template name="component.separator"/>
+
+    <xsl:call-template name="glossary.titlepage"/>
+
+    <xsl:if test="$preamble">
+      <xsl:apply-templates select="$preamble"/>
+    </xsl:if>
+
+    <xsl:choose>
+      <xsl:when test="$collection//glossdiv">
+        <xsl:for-each select="$collection//glossdiv">
+          <!-- first see if there are any in this div -->
+          <xsl:variable name="exist.test">
+            <xsl:for-each select="glossentry">
+              <xsl:variable name="cterm" select="glossterm"/>
+              <xsl:if test="$terms[@baseform = $cterm or . = $cterm]">
+                <xsl:value-of select="glossterm"/>
+              </xsl:if>
+            </xsl:for-each>
+          </xsl:variable>
+
+          <xsl:if test="$exist.test != ''">
+            <xsl:apply-templates select="." mode="auto-glossary">
+              <xsl:with-param name="terms" select="$terms"/>
+            </xsl:apply-templates>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:when>
+      <xsl:otherwise>
+        <fo:list-block provisional-distance-between-starts="{$glossterm-width}"
+                       provisional-label-separation="{$glossterm-sep}"
+                       xsl:use-attribute-sets="normal.para.spacing">
+          <xsl:for-each select="$collection//glossentry">
+            <xsl:variable name="cterm" select="glossterm"/>
+            <xsl:if test="$terms[@baseform = $cterm or . = $cterm]">
+              <xsl:apply-templates select="." mode="auto-glossary"/>
+            </xsl:if>
+          </xsl:for-each>
+        </fo:list-block>
+      </xsl:otherwise>
+    </xsl:choose>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="book/glossary[@role='auto']" priority="2.5">
+  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+  <xsl:variable name="terms" select="//glossterm[not(parent::glossdef)]|//firstterm"/>
+  <xsl:variable name="collection" select="document($glossary.collection, .)"/>
+
+  <xsl:variable name="preamble"
+                select="*[not(self::title
+                            or self::subtitle
+                            or self::glossdiv
+                            or self::glossentry)]"/>
+
+  <xsl:variable name="master-reference">
+    <xsl:call-template name="select.pagemaster"/>
+  </xsl:variable>
+
+  <xsl:if test="$glossary.collection = ''">
+    <xsl:message>
+      <xsl:text>Warning: processing automatic glossary </xsl:text>
+      <xsl:text>without a glossary.collection file.</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
+  <fo:page-sequence id="{$id}"
+                    hyphenate="{$hyphenate}"
+                    master-reference="{$master-reference}">
+    <xsl:attribute name="language">
+      <xsl:call-template name="l10n.language"/>
+    </xsl:attribute>
+    <xsl:if test="$double.sided != 0">
+      <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+    </xsl:if>
+
+    <xsl:apply-templates select="." mode="running.head.mode">
+      <xsl:with-param name="master-reference" select="$master-reference"/>
+    </xsl:apply-templates>
+    <xsl:apply-templates select="." mode="running.foot.mode">
+      <xsl:with-param name="master-reference" select="$master-reference"/>
+    </xsl:apply-templates>
+
+    <fo:flow flow-name="xsl-region-body">
+      <fo:block id="{$id}">
+        <xsl:call-template name="glossary.titlepage"/>
+
+        <xsl:if test="$preamble">
+          <xsl:apply-templates select="$preamble"/>
+        </xsl:if>
+
+        <xsl:choose>
+          <xsl:when test="$collection//glossdiv">
+            <xsl:for-each select="$collection//glossdiv">
+              <!-- first see if there are any in this div -->
+              <xsl:variable name="exist.test">
+                <xsl:for-each select="glossentry">
+                  <xsl:variable name="cterm" select="glossterm"/>
+                  <xsl:if test="$terms[@baseform = $cterm or . = $cterm]">
+                    <xsl:value-of select="glossterm"/>
+                  </xsl:if>
+                </xsl:for-each>
+              </xsl:variable>
+
+              <xsl:if test="$exist.test != ''">
+                <xsl:apply-templates select="." mode="auto-glossary">
+                  <xsl:with-param name="terms" select="$terms"/>
+                </xsl:apply-templates>
+              </xsl:if>
+            </xsl:for-each>
+          </xsl:when>
+          <xsl:otherwise>
+            <fo:list-block provisional-distance-between-starts="{$glossterm-width}"
+                           provisional-label-separation="{$glossterm-sep}"
+                           xsl:use-attribute-sets="normal.para.spacing">
+              <xsl:for-each select="$collection//glossentry">
+                <xsl:variable name="cterm" select="glossterm"/>
+                <xsl:if test="$terms[@baseform = $cterm or . = $cterm]">
+                  <xsl:apply-templates select="." mode="auto-glossary"/>
+                </xsl:if>
+              </xsl:for-each>
+            </fo:list-block>
+          </xsl:otherwise>
+        </xsl:choose>
+      </fo:block>
+    </fo:flow>
+  </fo:page-sequence>
+</xsl:template>
+
+<xsl:template match="*" mode="auto-glossary">
+  <!-- pop back out to the default mode for most elements -->
+  <xsl:apply-templates select="."/>
+</xsl:template>
+
+<xsl:template match="glossdiv" mode="auto-glossary">
+  <xsl:param name="terms" select="."/>
+
+  <xsl:variable name="preamble"
+                select="*[not(self::title
+                            or self::subtitle
+                            or self::glossentry)]"/>
+
+  <xsl:apply-templates select="title|subtitle"/>
+  <xsl:apply-templates select="$preamble"/>
+  <fo:list-block provisional-distance-between-starts="{$glossterm-width}"
+                 provisional-label-separation="{$glossterm-sep}"
+                 xsl:use-attribute-sets="normal.para.spacing">
+    <xsl:for-each select="glossentry">
+      <xsl:variable name="cterm" select="glossterm"/>
+      <xsl:if test="$terms[@baseform = $cterm or . = $cterm]">
+        <xsl:apply-templates select="." mode="auto-glossary"/>
+      </xsl:if>
+    </xsl:for-each>
+  </fo:list-block>
+</xsl:template>
+
+<xsl:template match="glossentry" mode="auto-glossary">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <fo:list-item id="gl.{$id}"
+                xsl:use-attribute-sets="normal.para.spacing">
+    <xsl:apply-templates/>
+  </fo:list-item>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
 </xsl:stylesheet>
