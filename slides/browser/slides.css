@@ -96,7 +96,7 @@ span.navfooter        { font-family: sans-serif;
 /* ====================================================================== */
 
 .ttoc                 {
-                        font-size: 8pt;
+                        font-size: 10pt;
 			color: white;
                       }
 
@@ -105,15 +105,15 @@ span.navfooter        { font-family: sans-serif;
 .ttoc a:visited       { color: white }
 
 .ttoc-title           {
-                        font-size: 8pt;
+                        font-size: 10pt;
                       }
 
 .ttoc-section         {
-                        font-size: 8pt;
+                        font-size: 10pt;
                       }
 
 .ttoc-foil            {
-                        font-size: 8pt;
+                        font-size: 10pt;
                       }
 
 /* ====================================================================== */
