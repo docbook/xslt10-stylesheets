@@ -1,0 +1,33 @@
+# This file is part of DocBook NG: The "Absinthe" Release.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.3
+# Release: $Id$
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+
+start = db.article
+
+include "../../src/hier.rnc"
+include "../../src/pool.rnc" {
+  domain.inlines = db.planet | db.star
+  product.inlines = db.trademark
+  admonition.blocks = notAllowed
+  technical.blocks = notAllowed
+  verbatim.blocks = notAllowed
+  db.bridgehead = notAllowed
+  db.revhistory = notAllowed
+}
+include "../../src/htmltbl.rnc"
+include "../../src/mathml.rnc"
+include "../../src/svg.rnc"
+
+db.planet = element planet { docbook.text }
+db.star = element star { docbook.text }
