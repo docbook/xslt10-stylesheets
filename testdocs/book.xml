@@ -6,6 +6,7 @@
 <book>
 <bookinfo>
 <title>Book Title</title>
+<subtitle>Book Subtitle</subtitle>
 <keywordset>
 <keyword>book keyword1</keyword>
 <keyword>book keyword2</keyword>
