@@ -25,11 +25,11 @@
   <fm:Version>{VERSION}</fm:Version>
   <fm:Release-Focus>
   <!-- initial freshmeat announcement -->
-  <!-- documentation -->
+  Documentation
   <!-- code cleanup -->
   <!-- minor feature enhancements -->
   <!-- major feature enhancements -->
-  minor bugfixes
+  <!-- Minor bugfixes -->
   <!-- major bugfixes -->
   <!-- minor security fixes -->
   <!-- major security fixes -->
@@ -41,9 +41,7 @@
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook/</fm:Mailing-List-URL>
   <fm:Changes>There are no backwards-incompatible changes in this release.
 
-If HTML tables are allowed, make sure that caption gets all of the HTML attributes.
-
-Refactored parameter entities for informaltable so that the initial textobject is allowed when (and only when) the CALS table model is used.
+This is official release of DocBook V4.3. It is unchanged from CR3.
   </fm:Changes>  
 </fm:project>
 
