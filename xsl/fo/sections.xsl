@@ -32,7 +32,9 @@
     <xsl:if test="(contains($toc.params, 'toc')
                    and (count(ancestor::section)+1) &lt;= $generate.section.toc.level)
                   or refentry">
-      <xsl:call-template name="section.toc"/>
+      <xsl:call-template name="section.toc">
+        <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
+      </xsl:call-template>
     </xsl:if>
 
     <xsl:apply-templates/>
