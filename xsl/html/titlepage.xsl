@@ -429,7 +429,7 @@
 <xsl:template match="keywordset" mode="titlepage.mode">
 </xsl:template>
 
-<xsl:template match="legalnotice " mode="titlepage.mode">
+<xsl:template match="legalnotice" mode="titlepage.mode">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
   <xsl:choose>
     <xsl:when test="$generate.legalnotice.link != 0">
@@ -444,7 +444,7 @@
         <xsl:apply-templates select="." mode="title.markup"/>
       </xsl:variable>
 
-      <a href="{$filename}">
+      <a href="{concat('ln-',$id,$html.ext)}">
         <xsl:copy-of select="$title"/>
       </a>
 
