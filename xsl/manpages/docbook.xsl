@@ -331,6 +331,17 @@
   <xsl:text>\fB</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
 </xsl:template>
 
+<xsl:template match="emphasis">
+  <xsl:choose>
+    <xsl:when test="@role = 'bold' and $emphasis.propagates.style != 0">
+      <xsl:text>\fB</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>\fI</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="quote">
   <xsl:text>``</xsl:text>
   <xsl:apply-templates/>
