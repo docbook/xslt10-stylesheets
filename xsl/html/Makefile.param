@@ -40,6 +40,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/css.decoration.xml \
        ../params/current.docid.xml \
        ../params/default.table.width.xml \
+       ../params/draft.mode.xml \
        ../params/draft.watermark.image.xml \
        ../params/ebnf.table.bgcolor.xml \
        ../params/ebnf.table.border.xml \
@@ -234,4 +235,8 @@ PARAMS=../params/admon.graphics.xml \
        ../params/glossentry.show.acronym.xml \
        ../params/xref.with.number.and.title.xml \
        ../params/ebnf.assignment.xml \
-       ../params/ebnf.statement.terminator.xml
+       ../params/ebnf.statement.terminator.xml \
+       ../params/eclipse.autolabel.xml \
+       ../params/eclipse.plugin.name.xml \
+       ../params/eclipse.plugin.id.xml \
+       ../params/eclipse.plugin.provider.xml
