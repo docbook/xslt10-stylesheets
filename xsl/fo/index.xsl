@@ -281,7 +281,7 @@
             <xsl:text>, </xsl:text>
             <xsl:value-of select="tertiary"/>
           </xsl:if>
-        </xsl:attribute>        
+        </xsl:attribute>
       </xsl:when>
       <xsl:otherwise>
         <xsl:comment>
@@ -311,7 +311,6 @@
         <xsl:attribute name="id">
           <xsl:value-of select="@id"/>
         </xsl:attribute>
-        
         <xsl:attribute name="rx:key">
           <xsl:value-of select="primary"/>
           <xsl:if test="secondary">
