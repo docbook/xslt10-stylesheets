@@ -3,7 +3,7 @@ package com.nwalsh.xalan;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
 import org.w3c.dom.*;
-import org.apache.xpath.DOMHelper;
+import org.apache.xml.utils.DOMHelper;
 import org.apache.xml.utils.DOMBuilder;
 import org.apache.xml.utils.AttList;
 import com.nwalsh.xalan.Callout;
