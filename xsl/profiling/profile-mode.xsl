@@ -1,24 +1,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
-<!-- Which OSes to select -->
-<xsl:param name="os"/>
-
-<!-- Which UserLevels to select -->
-<xsl:param name="ul"/>
-
-<!-- Which Archs to select -->
-<xsl:param name="arch"/>
-
-<!-- Name of attribute with profiling information -->
-<xsl:param name="attr"/>
-
-<!-- Which $attrs to select -->
-<xsl:param name="val"/>
-
-<!-- Seperator for profiling values -->
-<xsl:param name="sep" select="';'"/>  
-
 <!-- Copy all non-element nodes -->
 <xsl:template match="@*|text()|comment()|processing-instruction()" mode="profile">
   <xsl:copy/>
@@ -26,52 +8,144 @@
 
 <!-- Profile elements based on input parameters -->
 <xsl:template match="*" mode="profile">
-  <xsl:variable name="os.content">
-    <xsl:if test="@os">
-      <xsl:call-template name="cross.compare">
-        <xsl:with-param name="a" select="$os"/>
-        <xsl:with-param name="b" select="@os"/>
-      </xsl:call-template>
-    </xsl:if>
-  </xsl:variable>
-  <xsl:variable name="os.ok" select="not(@os) or not($os) or
-                                     $os.content != '' or @os = ''"/>
-
-  <xsl:variable name="ul.content">
-    <xsl:if test="@userlevel">
-      <xsl:call-template name="cross.compare">
-        <xsl:with-param name="a" select="$ul"/>
-        <xsl:with-param name="b" select="@userlevel"/>
-      </xsl:call-template>
-    </xsl:if>
-  </xsl:variable>
-  <xsl:variable name="ul.ok" select="not(@userlevel) or not($ul) or
-                                     $ul.content != '' or @userlevel = ''"/>
 
   <xsl:variable name="arch.content">
     <xsl:if test="@arch">
       <xsl:call-template name="cross.compare">
-        <xsl:with-param name="a" select="$arch"/>
+        <xsl:with-param name="a" select="$profile.arch"/>
         <xsl:with-param name="b" select="@arch"/>
       </xsl:call-template>
     </xsl:if>
   </xsl:variable>
-  <xsl:variable name="arch.ok" select="not(@arch) or not($arch) or
+  <xsl:variable name="arch.ok" select="not(@arch) or not($profile.arch) or
                                        $arch.content != '' or @arch = ''"/>
 
-  <xsl:variable name="attr.content">
-    <xsl:if test="@*[local-name()=$attr]">
+  <xsl:variable name="condition.content">
+    <xsl:if test="@condition">
       <xsl:call-template name="cross.compare">
-        <xsl:with-param name="a" select="$val"/>
-        <xsl:with-param name="b" select="@*[local-name()=$attr]"/>
+        <xsl:with-param name="a" select="$profile.condition"/>
+        <xsl:with-param name="b" select="@condition"/>
       </xsl:call-template>
     </xsl:if>
   </xsl:variable>
-  <xsl:variable name="attr.ok" select="not(@*[local-name()=$attr]) or not($val) or
-                                       $attr.content != '' 
-                                       or @*[local-name()=$attr] = '' or not($attr)"/>
+  <xsl:variable name="condition.ok" select="not(@condition) or not($profile.condition) or
+                                            $condition.content != '' or @condition = ''"/>
 
-  <xsl:if test="$os.ok and $ul.ok and $arch.ok and $attr.ok">
+  <xsl:variable name="conformance.content">
+    <xsl:if test="@conformance">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$profile.conformance"/>
+        <xsl:with-param name="b" select="@conformance"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+  <xsl:variable name="conformance.ok" select="not(@conformance) or not($profile.conformance) or
+                                              $conformance.content != '' or @conformance = ''"/>
+
+  <xsl:variable name="lang.content">
+    <xsl:if test="@lang">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$profile.lang"/>
+        <xsl:with-param name="b" select="@lang"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+  <xsl:variable name="lang.ok" select="not(@lang) or not($profile.lang) or
+                                       $lang.content != '' or @lang = ''"/>
+
+  <xsl:variable name="os.content">
+    <xsl:if test="@os">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$profile.os"/>
+        <xsl:with-param name="b" select="@os"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+  <xsl:variable name="os.ok" select="not(@os) or not($profile.os) or
+                                     $os.content != '' or @os = ''"/>
+
+  <xsl:variable name="revision.content">
+    <xsl:if test="@revision">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$profile.revision"/>
+        <xsl:with-param name="b" select="@revision"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+  <xsl:variable name="revision.ok" select="not(@revision) or not($profile.revision) or
+                                           $revision.content != '' or @revision = ''"/>
+
+  <xsl:variable name="revisionflag.content">
+    <xsl:if test="@revisionflag">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$profile.revisionflag"/>
+        <xsl:with-param name="b" select="@revisionflag"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+  <xsl:variable name="revisionflag.ok" select="not(@revisionflag) or not($profile.revisionflag) or
+                                               $revisionflag.content != '' or @revisionflag = ''"/>
+
+  <xsl:variable name="role.content">
+    <xsl:if test="@role">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$profile.role"/>
+        <xsl:with-param name="b" select="@role"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+  <xsl:variable name="role.ok" select="not(@role) or not($profile.role) or
+                                       $role.content != '' or @role = ''"/>
+
+  <xsl:variable name="security.content">
+    <xsl:if test="@security">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$profile.security"/>
+        <xsl:with-param name="b" select="@security"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+  <xsl:variable name="security.ok" select="not(@security) or not($profile.security) or
+                                           $security.content != '' or @security = ''"/>
+
+  <xsl:variable name="userlevel.content">
+    <xsl:if test="@userlevel">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$profile.userlevel"/>
+        <xsl:with-param name="b" select="@userlevel"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+  <xsl:variable name="userlevel.ok" select="not(@userlevel) or not($profile.userlevel) or
+                                            $userlevel.content != '' or @userlevel = ''"/>
+
+  <xsl:variable name="vendor.content">
+    <xsl:if test="@vendor">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$profile.vendor"/>
+        <xsl:with-param name="b" select="@vendor"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+  <xsl:variable name="vendor.ok" select="not(@vendor) or not($profile.vendor) or
+                                         $vendor.content != '' or @vendor = ''"/>
+
+  <xsl:variable name="attribute.content">
+    <xsl:if test="@*[local-name()=$profile.attribute]">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$profile.value"/>
+        <xsl:with-param name="b" select="@*[local-name()=$profile.attribute]"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+  <xsl:variable name="attribute.ok" 
+                select="not(@*[local-name()=$profile.attribute]) or not($profile.value) or
+                        $attribute.content != '' or 
+                        @*[local-name()=$profile.attribute] = '' or not($profile.attribute)"/>
+
+  <xsl:if test="$arch.ok and $condition.ok and $conformance.ok and $lang.ok and $os.ok 
+                and $revision.ok and $revisionflag.ok and $role.ok and $security.ok
+                and $userlevel.ok and $vendor.ok and $attribute.ok">
     <xsl:copy>
       <xsl:apply-templates select="@*|node()" mode="profile"/>
     </xsl:copy>
@@ -82,8 +156,9 @@
 <xsl:template name="cross.compare">
   <xsl:param name="a"/>
   <xsl:param name="b"/>
-  <xsl:param name="head" select="substring-before(concat($a, $sep), $sep)"/>
-  <xsl:param name="tail" select="substring-after($a, $sep)"/>
+  <xsl:param name="sep" select="$profile.separator"/>
+  <xsl:variable name="head" select="substring-before(concat($a, $sep), $sep)"/>
+  <xsl:variable name="tail" select="substring-after($a, $sep)"/>
   <xsl:if test="contains(concat($sep, $b, $sep), concat($sep, $head, $sep))">1</xsl:if>
   <xsl:if test="$tail">
     <xsl:call-template name="cross.compare">

@@ -108,6 +108,20 @@ PARAMS=../params/admon.graphics.xml \
        ../params/preface.autolabel.xml \
        ../params/process.empty.source.toc.xml \
        ../params/process.source.toc.xml \
+       ../params/profile.arch.xml \
+       ../params/profile.condition.xml \
+       ../params/profile.conformance.xml \
+       ../params/profile.lang.xml \
+       ../params/profile.os.xml \
+       ../params/profile.revision.xml \
+       ../params/profile.revisionflag.xml \
+       ../params/profile.role.xml \
+       ../params/profile.security.xml \
+       ../params/profile.userlevel.xml \
+       ../params/profile.vendor.xml \
+       ../params/profile.attribute.xml \
+       ../params/profile.value.xml \
+       ../params/profile.separator.xml \
        ../params/punct.honorific.xml \
        ../params/qanda.defaultlabel.xml \
        ../params/qanda.inherit.numeration.xml \

@@ -249,6 +249,29 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &navig.showtitles;
 </reference>
 
+<reference><title>Profiling</title>
+<partintro>
+<para>Following parameters can be used for attribute value based
+profiling of your document. For more info about profiling look at
+<ulink
+url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html</ulink>.</para>
+</partintro>
+&profile.arch;
+&profile.condition;
+&profile.conformance;
+&profile.lang;
+&profile.os;
+&profile.revision;
+&profile.revisionflag;
+&profile.role;
+&profile.security;
+&profile.userlevel;
+&profile.vendor;
+&profile.attribute;
+&profile.value;
+&profile.separator;
+</reference>
+
 <reference><title>HTML Help</title>
 &htmlhelp.encoding;
 &htmlhelp.autolabel;
@@ -400,6 +423,20 @@ around all these parameters.</para>
 <src:fragref linkend="preface.autolabel.frag"/>
 <src:fragref linkend="process.empty.source.toc.frag"/>
 <src:fragref linkend="process.source.toc.frag"/>
+<src:fragref linkend="profile.arch.frag"/>
+<src:fragref linkend="profile.condition.frag"/>
+<src:fragref linkend="profile.conformance.frag"/>
+<src:fragref linkend="profile.lang.frag"/>
+<src:fragref linkend="profile.os.frag"/>
+<src:fragref linkend="profile.revision.frag"/>
+<src:fragref linkend="profile.revisionflag.frag"/>
+<src:fragref linkend="profile.role.frag"/>
+<src:fragref linkend="profile.security.frag"/>
+<src:fragref linkend="profile.userlevel.frag"/>
+<src:fragref linkend="profile.vendor.frag"/>
+<src:fragref linkend="profile.attribute.frag"/>
+<src:fragref linkend="profile.value.frag"/>
+<src:fragref linkend="profile.separator.frag"/>
 <src:fragref linkend="punct.honorific.frag"/>
 <src:fragref linkend="qanda.defaultlabel.frag"/>
 <src:fragref linkend="qanda.inherit.numeration.frag"/>
