@@ -5,6 +5,11 @@
 # $DateTime: 2003/10/14 03:36:19 $
 # $Author$
 
+SCP          = scp
+SCP_OPTS     =
+REMOTE_HOST  = atlantis.io.com
+UPLOAD_DIR   = /virtual/customer/logopoeia.com/htdocs/docbook
+
 # HTML stuff
 HTML_STYLESHEET    = make-html.xsl
 ROOT_FILENAME      = docbook-menu
@@ -26,6 +31,8 @@ HTMLHELP_HHK       = index.hhk
 all: html help
 html: $(ROOT_FILENAME).html
 help: $(HTMLHELP_CHM)
+install:
+	$(SCP) $(SCP_OPTS) *.html $(REMOTE_HOST):$(UPLOAD_DIR)
 
 $(ROOT_FILENAME).html: docbook-menu.xml
 	@echo
