@@ -29,6 +29,9 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="alt">
+</xsl:template>
+
 <xsl:template match="equation/mediaobject | informalequation/mediaobject">
   <xsl:if test="$passivetex.extensions = 0 or $tex.math.in.alt = ''">
     <fo:block>
