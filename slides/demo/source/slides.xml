@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <!DOCTYPE slides SYSTEM "../../slides.dtd">
-<?dbhtml graphics-dir="../../graphics" css-stylesheet-dir="../../browser"?>
-<?dbhtml script-dir="../../browser"?>
+<?dbhtml graphics-dir="../graphics" css-stylesheet-dir="../browser"?>
+<?dbhtml script-dir="../browser"?>
 <slides>
 <slidesinfo>
   <title>The Slides Document Type</title>
