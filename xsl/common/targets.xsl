@@ -102,7 +102,7 @@ document output.
 
   <xsl:attribute name="href">
     <xsl:call-template name="olink.href.target">
-      <xsl:with-param name="object" select="$nd"/>
+      <xsl:with-param name="nd" select="$nd"/>
     </xsl:call-template>
   </xsl:attribute>
 
