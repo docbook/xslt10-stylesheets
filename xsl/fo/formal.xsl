@@ -33,9 +33,9 @@
 </xsl:template>
 
 <xsl:template name="formal.object.heading">
-  <xsl:param name="title"></xsl:param>
+  <xsl:param name="object" select="."/>
   <fo:block xsl:use-attribute-sets="formal.title.properties">
-    <xsl:apply-templates select="." mode="object.title.markup"/>
+    <xsl:apply-templates select="$object" mode="object.title.markup"/>
   </fo:block>
 </xsl:template>
 
