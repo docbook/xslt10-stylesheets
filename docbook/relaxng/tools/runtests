@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# This feels like a job Make ought to be able to do but I couldn't work it out...
+
+XMLFILES=$@
+SRCDIR=/sourceforge/docbook/testdocs/tests
+DB4UPG=../tools/db4-upgrade.xsl
+
+if [ ! -d passed ]; then
+    echo "Directory 'passed' must exist. Are you sure you're in the right place?"
+    exit 1
+fi
+
+
+if [ "$XMLFILES" = "" ]; then
+    for f in $SRCDIR/*.xml; do
+	XMLFILES="$XMLFILES `basename $f`"
+    done
+fi
+
+for f in $XMLFILES; do
+    REBUILD=1
+    if [ ! -f $SRCDIR/$f ]; then
+	REBUILD=0
+    fi
+
+    if [ -f $f -a $f -nt $SRCDIR/$f -a $f -nt $DB4UPG ]; then
+	REBUILD=0
+    fi
+
+    if [ -f passed/$f -a passed/$f -nt $SRCDIR/$f -a passed/$f -nt $DB4UPG ]; then
+	REBUILD=0
+    fi
+
+    if [ ! -f skip/$f ]; then
+
+	if [ "$REBUILD" != "0" ]; then
+	    echo -n "Update $f..."
+	    xsltproc --novalid --output $f $DB4UPG $SRCDIR/$f
+	fi
+
+	if [ ! -f passed/$f -o $f -nt passed/$f ]; then
+	    echo -n "Validate $f..."
+	    if jing ../docbook.rng $f; then
+		echo "passed"
+		mv $f passed/
+	    else
+		echo "failed"
+	    fi
+	fi
+
+    fi
+done
+
