@@ -5376,7 +5376,7 @@ in the text (no (0) value, the default)
 <![%orgname.attlist;[
 <!ATTLIST orgname
 		%common.attrib;
-		class		(corporation|nonprofit|informal|other)	#IMPLIED
+		class	(corporation|nonprofit|consortium|informal|other)	#IMPLIED
 		otherclass	CDATA			#IMPLIED
 		%orgname.role.attrib;
 		%local.orgname.attrib;
