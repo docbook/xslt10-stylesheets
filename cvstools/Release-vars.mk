@@ -1,6 +1,5 @@
-
 #-----------------------------------------------------------------
-#                VARIABLES FOR RELEASE BUILDS
+#             MAKEFILE VARIABLES FOR RELEASE BUILDS
 #-----------------------------------------------------------------
 # If you are doing normal (non-release) sandbox builds just for
 # your own use, you can ignore all the variables below. They are
@@ -55,6 +54,24 @@ TAGVER := $(shell echo "V$(RELVER)" | sed "s/\.//g")
 # to use a temp directory other than /tmp, run "make zip TMP=/foo"
 # or "make zip TMP=$TMP to override following setting
 TMP=/tmp
+
+# value of ZIP_EXCLUDES is a space-separated list of any file or
+# directory names (regular expressions OK) that should be excluded
+# from the *zip files for the release
+ZIP_EXCLUDES = \
+ /CVS$$ \
+ /CVS/ \
+ /debian/ \
+ \.classes \
+ ~$$ \
+ \..*\.pyc \
+ \\\#.* \
+ \.\\\#.* \
+ prj\.el \
+ \.cvsignore \
+ Makefile \
+ README\.CVS
+ 
 # specifies options to feed to "freshmeat-submit"
 FMGO=-N
 # SFRELID specifies Sourceforge release ID for current release.
