@@ -28,7 +28,7 @@ while [ "$DONE" = "0" ]; do
 	        echo "Using jar file for extension classes"
 		shift;
 		;;
-	-642)	VERSION=643;
+	-643)	VERSION=643;
 		shift;
 		;;
 	-642)	VERSION=642;
@@ -103,16 +103,16 @@ fi
 case $VERSION in
    643)	SAXON="/usr/local/java/saxon-6.4.3/saxon.jar"
 	SAXON_DEBUG="/usr/local/java/saxon-6.4.3/.classes"
-	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon64/.classes";
+	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon643/.classes";
 	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon64.jar"
+	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon643.jar"
 	fi
 	;;
    642)	SAXON="/usr/local/java/saxon-6.4.2/saxon.jar"
 	SAXON_DEBUG="/usr/local/java/saxon-6.4.2/.classes"
-	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon64/.classes";
+	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon642/.classes";
 	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon64.jar"
+	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon642.jar"
 	fi
 	;;
    64)	SAXON="/usr/local/java/saxon-6.4/saxon.jar"
