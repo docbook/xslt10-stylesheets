@@ -50,6 +50,7 @@
 <!ENTITY footer.column.widths SYSTEM "../params/footer.column.widths.xml">
 <!ENTITY footers.on.blank.pages SYSTEM "../params/footers.on.blank.pages.xml">
 <!ENTITY footnote.font.size SYSTEM "../params/footnote.font.size.xml">
+<!ENTITY footnote.sep.leader.properties SYSTEM "../params/footnote.sep.leader.properties.xml">
 <!ENTITY fop.extensions SYSTEM "../params/fop.extensions.xml">
 <!ENTITY formal.object.properties SYSTEM "../params/formal.object.properties.xml">
 <!ENTITY formal.procedures SYSTEM "../params/formal.procedures.xml">
