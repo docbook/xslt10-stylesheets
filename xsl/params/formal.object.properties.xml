@@ -1,11 +1,11 @@
-<refentry>
+<refentry id="formal.object.properties">
 <refnamediv>
 <refname>formal.object.properties</refname>
 <refpurpose>Properties associated with a formal object such as a figure, or other component that has a title</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="formal.object.properties"><xsl:attribute-set name="formal.object.properties">
+<src:fragment id='formal.object.properties.frag'><xsl:attribute-set name="formal.object.properties">
   <xsl:attribute name="space-before.minimum">0.5em</xsl:attribute>
   <xsl:attribute name="space-before.optimum">1em</xsl:attribute>
   <xsl:attribute name="space-before.maximum">2em</xsl:attribute>

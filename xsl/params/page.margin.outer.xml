@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="page.margin.outer">
 <refmeta>
 <refentrytitle>page.margin.outer</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="page.margin.outer"><xsl:param name="page.margin.outer">
+<src:fragment id='page.margin.outer.frag'><xsl:param name="page.margin.outer">
   <xsl:choose>
     <xsl:when test="$double.sided != 0">0.75in</xsl:when>
     <xsl:otherwise>10pc</xsl:otherwise>

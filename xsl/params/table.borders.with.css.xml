@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="table.borders.with.css">
 <refmeta>
 <refentrytitle>table.borders.with.css</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="table.borders.with.css">
+<src:fragment id='table.borders.with.css.frag'>
 <xsl:param name="table.borders.with.css" select="0"/>
 </src:fragment>
 </refsynopsisdiv>

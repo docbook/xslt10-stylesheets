@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="textinsert.extension">
 <refmeta>
 <refentrytitle>textinsert.extension</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="textinsert.extension"><xsl:param name="textinsert.extension" select="'1'"/></src:fragment>
+<src:fragment id='textinsert.extension.frag'><xsl:param name="textinsert.extension" select="'1'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="linenumbering.width">
 <refmeta>
 <refentrytitle>linenumbering.width</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="linenumbering.width"><xsl:param name="linenumbering.width" select="'3'"/></src:fragment>
+<src:fragment id='linenumbering.width.frag'><xsl:param name="linenumbering.width" select="'3'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

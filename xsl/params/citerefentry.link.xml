@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="citerefentry.link">
 <refmeta>
 <refentrytitle>citerefentry.link</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="citerefentry.link"><xsl:param name="citerefentry.link" select="'0'"/></src:fragment>
+<src:fragment id='citerefentry.link.frag'><xsl:param name="citerefentry.link" select="'0'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

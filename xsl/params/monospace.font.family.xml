@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="monospace.font.family">
 <refmeta>
 <refentrytitle>monospace.font.family</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="monospace.font.family"><xsl:param name="monospace.font.family">Courier</xsl:param></src:fragment>
+<src:fragment id='monospace.font.family.frag'><xsl:param name="monospace.font.family">Courier</xsl:param></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

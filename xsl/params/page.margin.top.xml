@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="page.margin.top">
 <refmeta>
 <refentrytitle>page.margin.top</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="page.margin.top"><xsl:param name="page.margin.top">1in</xsl:param></src:fragment>
+<src:fragment id='page.margin.top.frag'><xsl:param name="page.margin.top">1in</xsl:param></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

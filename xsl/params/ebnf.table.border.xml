@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="ebnf.table.border">
 <refmeta>
 <refentrytitle>ebnf.table.border</refentrytitle>
 <refmiscinfo role="type"></refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="ebnf.table.border"><xsl:param name="ebnf.table.border" select="1"/></src:fragment>
+<src:fragment id='ebnf.table.border.frag'><xsl:param name="ebnf.table.border" select="1"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

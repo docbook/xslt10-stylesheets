@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="alignment">
 <refmeta>
 <refentrytitle>alignment</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="alignment"><xsl:param name="alignment">justify</xsl:param></src:fragment>
+<src:fragment id='alignment.frag'><xsl:param name="alignment">justify</xsl:param></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

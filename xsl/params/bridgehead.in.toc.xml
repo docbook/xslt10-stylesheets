@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="bridgehead.in.toc">
 <refmeta>
 <refentrytitle>bridgehead.in.toc</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="bridgehead.in.toc"><xsl:param name="bridgehead.in.toc" select="0"/></src:fragment>
+<src:fragment id='bridgehead.in.toc.frag'><xsl:param name="bridgehead.in.toc" select="0"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="body.font.size">
 <refmeta>
 <refentrytitle>body.font.size</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="body.font.size"><xsl:param name="body.font.size">
+<src:fragment id='body.font.size.frag'><xsl:param name="body.font.size">
  <xsl:value-of select="$body.font.master"/><xsl:text>pt</xsl:text>
 </xsl:param></src:fragment>
 </refsynopsisdiv>

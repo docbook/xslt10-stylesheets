@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="callout.list.table">
 <refmeta>
 <refentrytitle>callout.list.table</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="callout.list.table"><xsl:param name="callout.list.table" select="'1'"/></src:fragment>
+<src:fragment id='callout.list.table.frag'><xsl:param name="callout.list.table" select="'1'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="callout.graphics.extension">
 <refmeta>
 <refentrytitle>callout.graphics.extension</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="callout.graphics.extension"><xsl:param name="callout.graphics.extension" select="'.png'"/></src:fragment>
+<src:fragment id='callout.graphics.extension.frag'><xsl:param name="callout.graphics.extension" select="'.png'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

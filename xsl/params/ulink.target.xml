@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="ulink.target">
 <refmeta>
 <refentrytitle>ulink.target</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="ulink.target"><xsl:param name="ulink.target" select="'_top'"/></src:fragment>
+<src:fragment id='ulink.target.frag'><xsl:param name="ulink.target" select="'_top'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="refentry.xref.manvolnum">
 <refmeta>
 <refentrytitle>refentry.xref.manvolnum</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -10,7 +10,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="refentry.xref.manvolnum"><xsl:param name="refentry.xref.manvolnum" select="1"/></src:fragment>
+<src:fragment id='refentry.xref.manvolnum.frag'><xsl:param name="refentry.xref.manvolnum" select="1"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

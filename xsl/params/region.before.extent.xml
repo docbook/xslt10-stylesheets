@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="region.before.extent">
 <refmeta>
 <refentrytitle>region.before.extent</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="region.before.extent"><xsl:param name="region.before.extent" select="'12pt'"/></src:fragment>
+<src:fragment id='region.before.extent.frag'><xsl:param name="region.before.extent" select="'12pt'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

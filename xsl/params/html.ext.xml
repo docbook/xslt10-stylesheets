@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="html.ext">
 <refmeta>
 <refentrytitle>html.ext</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="html.ext">
+<src:fragment id='html.ext.frag'>
 <xsl:param name="html.ext" select="'.html'"/>
 </src:fragment>
 </refsynopsisdiv>

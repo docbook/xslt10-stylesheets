@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="generate.article.toc">
 <refmeta>
 <refentrytitle>generate.article.toc</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="generate.article.toc"><xsl:param name="generate.article.toc" select="1"/></src:fragment>
+<src:fragment id='generate.article.toc.frag'><xsl:param name="generate.article.toc" select="1"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="page.height">
 <refmeta>
 <refentrytitle>page.height</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="page.height"><xsl:param name="page.height">
+<src:fragment id='page.height.frag'><xsl:param name="page.height">
   <xsl:choose>
     <xsl:when test="$page.orientation = 'portrait'">
       <xsl:value-of select="$page.height.portrait"/>

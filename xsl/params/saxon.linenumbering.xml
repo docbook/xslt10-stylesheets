@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="saxon.linenumbering">
 <refmeta>
 <refentrytitle>saxon.linenumbering</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="saxon.linenumbering"><xsl:param name="saxon.linenumbering" select="'1'"/></src:fragment>
+<src:fragment id='saxon.linenumbering.frag'><xsl:param name="saxon.linenumbering" select="'1'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

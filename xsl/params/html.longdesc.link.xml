@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="html.longdesc.link">
 <refmeta>
 <refentrytitle>html.longdesc.link</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="html.longdesc.link">
+<src:fragment id='html.longdesc.link.frag'>
 <xsl:param name="html.longdesc.link" select="$html.longdesc"/>
 </src:fragment>
 </refsynopsisdiv>

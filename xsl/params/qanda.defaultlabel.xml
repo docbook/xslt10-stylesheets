@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="qanda.defaultlabel">
 <refmeta>
 <refentrytitle>qanda.defaultlabel</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="qanda.defaultlabel"><xsl:param name="qanda.defaultlabel">number</xsl:param></src:fragment>
+<src:fragment id='qanda.defaultlabel.frag'><xsl:param name="qanda.defaultlabel">number</xsl:param></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

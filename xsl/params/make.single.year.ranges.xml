@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="make.single.year.ranges">
 <refmeta>
 <refentrytitle>make.single.year.ranges</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="make.single.year.ranges"><xsl:param name="make.single.year.ranges" select="0"/></src:fragment>
+<src:fragment id='make.single.year.ranges.frag'><xsl:param name="make.single.year.ranges" select="0"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

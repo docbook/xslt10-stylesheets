@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="olink.resolver">
 <refmeta>
 <refentrytitle>olink.resolver</refentrytitle>
 <refmiscinfo role="type"></refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="olink.resolver"><xsl:param name="olink.resolver" select="'/cgi-bin/olink'"/></src:fragment>
+<src:fragment id='olink.resolver.frag'><xsl:param name="olink.resolver" select="'/cgi-bin/olink'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="htmlhelp.encoding">
 <refmeta>
 <refentrytitle>htmlhelp.encoding</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="htmlhelp.encoding">
+<src:fragment id='htmlhelp.encoding.frag'>
 <xsl:param name="htmlhelp.encoding" select="'iso-8859-1'"/>
 </src:fragment>
 </refsynopsisdiv>

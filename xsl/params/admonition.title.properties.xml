@@ -1,11 +1,11 @@
-<refentry>
+<refentry id="admonition.title.properties">
 <refnamediv>
 <refname>admonition.title.properties</refname>
 <refpurpose>To set the style for admonitions.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="admonition.title.properties"><xsl:attribute-set name="admonition.title.properties">
+<src:fragment id='admonition.title.properties.frag'><xsl:attribute-set name="admonition.title.properties">
   <xsl:attribute name="font-size">14pt</xsl:attribute>
   <xsl:attribute name="font-weight">bold</xsl:attribute>
   <xsl:attribute name="hyphenate">false</xsl:attribute>

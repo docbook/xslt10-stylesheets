@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="footnote.font.size">
 <refmeta>
 <refentrytitle>footnote.font.size</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="footnote.font.size"><xsl:param name="footnote.font.size">
+<src:fragment id='footnote.font.size.frag'><xsl:param name="footnote.font.size">
  <xsl:value-of select="$body.font.master * 0.8"/><xsl:text>pt</xsl:text>
 </xsl:param></src:fragment>
 </refsynopsisdiv>

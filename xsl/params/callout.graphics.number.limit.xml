@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="callout.graphics.number.limit">
 <refmeta>
 <refentrytitle>callout.graphics.number.limit</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="callout.graphics.number.limit"><xsl:param name="callout.graphics.number.limit" select="'10'"/></src:fragment>
+<src:fragment id='callout.graphics.number.limit.frag'><xsl:param name="callout.graphics.number.limit" select="'10'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="olink.fragid">
 <refmeta>
 <refentrytitle>olink.fragid</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="olink.fragid"><xsl:param name="olink.fragid" select="'fragid='"/></src:fragment>
+<src:fragment id='olink.fragid.frag'><xsl:param name="olink.fragid" select="'fragid='"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

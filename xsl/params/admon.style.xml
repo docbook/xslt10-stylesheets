@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="admon.style">
 <refmeta>
 <refentrytitle>admon.style</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="admon.style"><xsl:param name="admon.style">
+<src:fragment id='admon.style.frag'><xsl:param name="admon.style">
   <xsl:text>margin-left: 0.5in; margin-right: 0.5in;</xsl:text>
 </xsl:param></src:fragment>
 </refsynopsisdiv>

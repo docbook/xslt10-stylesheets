@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="htmlhelp.autolabel">
 <refmeta>
 <refentrytitle>htmlhelp.autolabel</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="htmlhelp.autolabel">
+<src:fragment id='htmlhelp.autolabel.frag'>
 <xsl:param name="htmlhelp.autolabel" select="0"/>
 </src:fragment>
 </refsynopsisdiv>

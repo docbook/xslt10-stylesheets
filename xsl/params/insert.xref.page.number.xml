@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="insert.xref.page.number">
 <refmeta>
 <refentrytitle>insert.xref.page.number</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="insert.xref.page.number"><xsl:param name="insert.xref.page.number" select="0"/></src:fragment>
+<src:fragment id='insert.xref.page.number.frag'><xsl:param name="insert.xref.page.number" select="0"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

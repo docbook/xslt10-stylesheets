@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="toc.list.type">
 <refmeta>
 <refentrytitle>toc.list.type</refentrytitle>
 <refmiscinfo role="type">list</refmiscinfo>
@@ -12,7 +12,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="toc.list.type"><xsl:param name="toc.list.type">dl</xsl:param></src:fragment>
+<src:fragment id='toc.list.type.frag'><xsl:param name="toc.list.type">dl</xsl:param></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

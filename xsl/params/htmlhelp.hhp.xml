@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="htmlhelp.hhp">
 <refmeta>
 <refentrytitle>htmlhelp.hhp</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="htmlhelp.hhp">
+<src:fragment id='htmlhelp.hhp.frag'>
 <xsl:param name="htmlhelp.hhp" select="'htmlhelp.hhp'"/>
 </src:fragment>
 </refsynopsisdiv>

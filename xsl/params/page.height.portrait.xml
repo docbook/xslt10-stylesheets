@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="page.height.portrait">
 <refmeta>
 <refentrytitle>page.height.portrait</refentrytitle>
 
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="page.height.portrait"><xsl:param name="page.height.portrait">
+<src:fragment id='page.height.portrait.frag'><xsl:param name="page.height.portrait">
   <xsl:choose>
     <xsl:when test="$paper.type = 'A4landscape'">210mm</xsl:when>
     <xsl:when test="$paper.type = 'USletter'">11in</xsl:when>

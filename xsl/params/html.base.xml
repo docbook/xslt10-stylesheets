@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="html.base">
 <refmeta>
 <refentrytitle>html.base</refentrytitle>
 <refmiscinfo role="type">uri</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="html.base"><xsl:param name="html.base"/></src:fragment>
+<src:fragment id='html.base.frag'><xsl:param name="html.base"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

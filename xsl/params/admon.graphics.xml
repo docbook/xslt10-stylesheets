@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="admon.graphics">
 <refmeta>
 <refentrytitle>admon.graphics</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="admon.graphics"><xsl:param name="admon.graphics" select="0"/></src:fragment>
+<src:fragment id='admon.graphics.frag'><xsl:param name="admon.graphics" select="0"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="show.comments">
 <refmeta>
 <refentrytitle>show.comments</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="show.comments"><xsl:param name="show.comments">1</xsl:param></src:fragment>
+<src:fragment id='show.comments.frag'><xsl:param name="show.comments">1</xsl:param></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

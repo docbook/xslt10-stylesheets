@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="saxon.character.representation">
 <refmeta>
 <refentrytitle>saxon.character.representation</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="saxon.character.representation"><xsl:param name="saxon.character.representation" select="'entity;decimal'"/></src:fragment>
+<src:fragment id='saxon.character.representation.frag'><xsl:param name="saxon.character.representation" select="'entity;decimal'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="olink.sysid">
 <refmeta>
 <refentrytitle>olink.sysid</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="olink.sysid"><xsl:param name="olink.sysid" select="'sysid='"/></src:fragment>
+<src:fragment id='olink.sysid.frag'><xsl:param name="olink.sysid" select="'sysid='"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="linenumbering.separator">
 <refmeta>
 <refentrytitle>linenumbering.separator</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="linenumbering.separator"><xsl:param name="linenumbering.separator" select="' '"/></src:fragment>
+<src:fragment id='linenumbering.separator.frag'><xsl:param name="linenumbering.separator" select="' '"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

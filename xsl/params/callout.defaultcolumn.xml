@@ -1,4 +1,4 @@
-<refentry>
+<refentry id="callout.defaultcolumn">
 <refmeta>
 <refentrytitle>callout.defaultcolumn</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>
@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="callout.defaultcolumn"><xsl:param name="callout.defaultcolumn" select="'60'"/></src:fragment>
+<src:fragment id='callout.defaultcolumn.frag'><xsl:param name="callout.defaultcolumn" select="'60'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
