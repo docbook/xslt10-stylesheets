@@ -50,6 +50,7 @@ my %languages = ('ca' => 'Catalan',
 		 'ru' => 'Russian',
 		 'sk' => 'Slovak',
 		 'sl' => 'Slovenian',
+		 'sr' => 'Serbian',
 		 'sv' => 'Swedish',
 		 'zh_cn' => 'Chinese (Continental)',
 		 'zh_tw' => 'Chinese (Traditional)');
