@@ -66,8 +66,21 @@
 </xsl:template>
 
 <xsl:template match="formalpara/title">
-  <b><xsl:apply-templates/></b>
-  <xsl:call-template name="gentext.space"/>
+  <xsl:variable name="titleStr" select="."/>
+  <xsl:variable name="lastChar">
+    <xsl:if test="$titleStr != ''">
+      <xsl:value-of select="substring($titleStr,string-length($titleStr),1)"/>
+    </xsl:if>
+  </xsl:variable>
+
+  <b>
+    <xsl:apply-templates/>
+    <xsl:if test="$lastChar != ''
+                  and not(contains($runinhead.title.end.punct, $lastChar))">
+      <xsl:value-of select="$runinhead.default.title.end.punct"/>
+    </xsl:if>
+    <xsl:text>&#160;</xsl:text>
+  </b>
 </xsl:template>
 
 <xsl:template match="formalpara/para">

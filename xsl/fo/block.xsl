@@ -42,10 +42,22 @@
 </xsl:template>
 
 <xsl:template match="formalpara/title">
+  <xsl:variable name="titleStr" select="."/>
+  <xsl:variable name="lastChar">
+    <xsl:if test="$titleStr != ''">
+      <xsl:value-of select="substring($titleStr,string-length($titleStr),1)"/>
+    </xsl:if>
+  </xsl:variable>
+
   <fo:inline font-weight="bold"
              keep-with-next.within-line="always"
              padding-end="1em">
     <xsl:apply-templates/>
+    <xsl:if test="$lastChar != ''
+                  and not(contains($runinhead.title.end.punct, $lastChar))">
+      <xsl:value-of select="$runinhead.default.title.end.punct"/>
+    </xsl:if>
+    <xsl:text>&#160;</xsl:text>
   </fo:inline>
 </xsl:template>
 
