@@ -97,6 +97,7 @@
 <!-- ============================================================ -->
 
 <xsl:template match="*" mode="object.title.markup">
+  <xsl:param name="allow-anchors" select="0"/>
   <xsl:variable name="template">
     <xsl:apply-templates select="." mode="object.title.template"/>
   </xsl:variable>
@@ -111,7 +112,7 @@
 -->
 
   <xsl:call-template name="substitute-markup">
-    <xsl:with-param name="allow-anchors" select="1"/>
+    <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
     <xsl:with-param name="template" select="$template"/>
   </xsl:call-template>
 </xsl:template>
