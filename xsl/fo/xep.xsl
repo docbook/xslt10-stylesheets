@@ -64,21 +64,25 @@
     <xsl:apply-templates select="." mode="title.content"/>
   </xsl:variable>
 
-<!--
-  <rx:bookmark internal-destination="{$id}">
-    <rx:bookmark-label>
-      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
-    </rx:bookmark-label>
--->
-
-  <xsl:if test="book">
-      <xsl:apply-templates select="book"
-                           mode="xep.outline"/>
-  </xsl:if>
-
-<!--
-  </rx:bookmark>
--->
+  <xsl:choose>
+    <xsl:when test="parent::*">
+      <xsl:if test="book">
+        <xsl:apply-templates select="book"
+                             mode="xep.outline"/>
+      </xsl:if>
+    </xsl:when>
+    <xsl:otherwise>
+      <rx:bookmark internal-destination="{$id}">
+        <rx:bookmark-label>
+          <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+        </rx:bookmark-label>
+        <xsl:if test="book">
+          <xsl:apply-templates select="book"
+                               mode="xep.outline"/>
+        </xsl:if>
+      </rx:bookmark>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="book" mode="xep.outline">
@@ -91,12 +95,11 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="parent::set">
+    <xsl:when test="parent::*">
       <rx:bookmark internal-destination="{$id}">
         <rx:bookmark-label>
           <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
         </rx:bookmark-label>
-
         <xsl:if test="part|preface|chapter|appendix">
           <xsl:apply-templates select="part|preface|chapter|appendix"
                                mode="xep.outline"/>
@@ -121,16 +124,26 @@
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
-  <rx:bookmark internal-destination="{$id}">
-    <rx:bookmark-label>
-      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
-    </rx:bookmark-label>
+  <xsl:choose>
+    <xsl:when test="parent::*">
+      <rx:bookmark internal-destination="{$id}">
+        <rx:bookmark-label>
+          <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+        </rx:bookmark-label>
+        <xsl:if test="chapter|appendix|preface|reference">
+          <xsl:apply-templates select="chapter|appendix|preface|reference"
+                               mode="xep.outline"/>
+        </xsl:if>
+      </rx:bookmark>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:if test="chapter|appendix|preface|reference">
+        <xsl:apply-templates select="chapter|appendix|preface|reference"
+                             mode="xep.outline"/>
+      </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
 
-  <xsl:if test="chapter|appendix|preface|reference">
-      <xsl:apply-templates select="chapter|appendix|preface|reference"
-                           mode="xep.outline"/>
-  </xsl:if>
-  </rx:bookmark>
 </xsl:template>
 
 <xsl:template match="preface|chapter|appendix"
@@ -143,16 +156,25 @@
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
-  <rx:bookmark internal-destination="{$id}">
-    <rx:bookmark-label>
-      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
-    </rx:bookmark-label>
-
-  <xsl:if test="section|sect1">
-      <xsl:apply-templates select="section|sect1"
-                           mode="xep.outline"/>
-  </xsl:if>
-  </rx:bookmark>
+  <xsl:choose>
+    <xsl:when test="parent::*">
+      <rx:bookmark internal-destination="{$id}">
+        <rx:bookmark-label>
+          <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+        </rx:bookmark-label>
+        <xsl:if test="section|sect1">
+          <xsl:apply-templates select="section|sect1"
+                               mode="xep.outline"/>
+        </xsl:if>
+      </rx:bookmark>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:if test="section|sect1">
+        <xsl:apply-templates select="section|sect1"
+                             mode="xep.outline"/>
+      </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="section|sect1|sect2|sect3|sect4|sect5"
@@ -165,16 +187,25 @@
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
-  <rx:bookmark internal-destination="{$id}">
-    <rx:bookmark-label>
-      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
-    </rx:bookmark-label>
-
-  <xsl:if test="section|sect2|sect3|sect4|sect5">
-      <xsl:apply-templates select="section|sect2|sect3|sect4|sect5"
-                           mode="xep.outline"/>
-  </xsl:if>
-  </rx:bookmark>
+  <xsl:choose>
+    <xsl:when test="parent::*">
+      <rx:bookmark internal-destination="{$id}">
+        <rx:bookmark-label>
+          <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+        </rx:bookmark-label>
+        <xsl:if test="section|sect2|sect3|sect4|sect5">
+          <xsl:apply-templates select="section|sect2|sect3|sect4|sect5"
+                               mode="xep.outline"/>
+        </xsl:if>
+      </rx:bookmark>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:if test="section|sect2|sect3|sect4|sect5">
+        <xsl:apply-templates select="section|sect2|sect3|sect4|sect5"
+                             mode="xep.outline"/>
+      </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="bibliography|glossary|index"
@@ -187,13 +218,20 @@
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
-  <rx:bookmark internal-destination="{$id}">
-    <rx:bookmark-label>
+  <xsl:choose>
+    <xsl:when test="parent::*">
+      <rx:bookmark internal-destination="{$id}">
+        <rx:bookmark-label>
+          <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+        </rx:bookmark-label>
+      </rx:bookmark>
+    </xsl:when>
+    <xsl:otherwise>
       <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
-    </rx:bookmark-label>
-  </rx:bookmark>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
-<!-- Added missing template for "article" -->
+
 <xsl:template match="article"
               mode="xep.outline">
   <xsl:variable name="id">
@@ -204,19 +242,26 @@
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
-  <rx:bookmark internal-destination="{$id}">
-    <rx:bookmark-label>
-      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
-    </rx:bookmark-label>
-
-  <xsl:if test="section|sect1|appendix|bibliography|glossary|index">
-      <xsl:apply-templates select="section|sect1|appendix|bibliography|glossary|index"
-                           mode="xep.outline"/>
-  </xsl:if>
-  </rx:bookmark>
+  <xsl:choose>
+    <xsl:when test="parent::*">
+      <rx:bookmark internal-destination="{$id}">
+        <rx:bookmark-label>
+          <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+        </rx:bookmark-label>
+        <xsl:if test="section|sect1|appendix|bibliography|glossary|index">
+          <xsl:apply-templates select="section|sect1|appendix|bibliography|glossary|index"
+                               mode="xep.outline"/>
+        </xsl:if>
+      </rx:bookmark>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:if test="section|sect1|appendix|bibliography|glossary|index">
+        <xsl:apply-templates select="section|sect1|appendix|bibliography|glossary|index"
+                             mode="xep.outline"/>
+      </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
-
-
 
 <xsl:template match="title" mode="xep.outline">
   <xsl:apply-templates/>
