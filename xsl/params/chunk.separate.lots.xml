@@ -23,7 +23,7 @@ The title page includes generated links to each of the separate files.
 </para>
 <para>
 This feature depends on the
-<literal>chunk.lots.and.tocs</literal>
+<literal>chunk.tocs.and.lots</literal>
 parameter also being non-zero. 
 </para>
 
