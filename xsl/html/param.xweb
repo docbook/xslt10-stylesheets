@@ -398,6 +398,7 @@ around all these parameters.</para>
 <src:fragref linkend="admon.graphics.frag"/>
 <src:fragref linkend="admon.graphics.path.frag"/>
 <src:fragref linkend="admon.style.frag"/>
+<src:fragref linkend="admon.textlabel.frag"/>
 <src:fragref linkend="annotate.toc.frag"/>
 <src:fragref linkend="appendix.autolabel.frag"/>
 <src:fragref linkend="author.othername.in.middle.frag"/>
