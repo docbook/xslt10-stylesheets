@@ -161,6 +161,11 @@
     <xsl:otherwise>
       <xsl:copy>
         <xsl:copy-of select="@*"/>
+	<xsl:if test="not(@id)">
+	  <xsl:attribute name="id">
+	    <xsl:call-template name="object.id"/>
+	  </xsl:attribute>
+	</xsl:if>
         <xsl:call-template name="htmlTable"/>
       </xsl:copy>
     </xsl:otherwise>
