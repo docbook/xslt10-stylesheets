@@ -404,11 +404,7 @@
 
   <fo:block id="{$id}">
     <xsl:if test="title"> <!-- FIXME: add param for using default title? -->
-    <xsl:call-template name="formal.object.heading">
-        <xsl:with-param name="title">
-          <xsl:apply-templates select="." mode="title.markup"/>
-        </xsl:with-param>
-      </xsl:call-template>
+      <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
     <xsl:apply-templates mode="titlepage.mode"/>
   </fo:block>
