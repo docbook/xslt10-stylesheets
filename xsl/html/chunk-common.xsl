@@ -88,6 +88,24 @@ its parent.
   <xsl:param name="node" select="."/>
   <!-- returns 1 if $node is a chunk -->
 
+<!--
+  <xsl:message>
+    <xsl:text>chunk: </xsl:text>
+    <xsl:value-of select="name($node)"/>
+    <xsl:text>(</xsl:text>
+    <xsl:value-of select="$node/@id"/>
+    <xsl:text>)</xsl:text>
+    <xsl:text> cs: </xsl:text>
+    <xsl:value-of select="$chunk.sections"/>
+    <xsl:text> cfs: </xsl:text>
+    <xsl:value-of select="$chunk.first.sections"/>
+    <xsl:text> ps: </xsl:text>
+    <xsl:value-of select="count($node/parent::section)"/>
+    <xsl:text> prs: </xsl:text>
+    <xsl:value-of select="count($node/preceding-sibling::section)"/>
+  </xsl:message>
+-->
+
   <xsl:choose>
     <xsl:when test="$chunk.sections != 0
                     and name($node)='sect1'
@@ -950,13 +968,25 @@ its parent.
 </xsl:template>
 
 <xsl:template match="sect1|section[local-name(parent::*) != 'section']">
+<!--
+  <xsl:message>
+    <xsl:text>cs: </xsl:text>
+    <xsl:value-of select="$chunk.sections"/>
+    <xsl:text> cfs: </xsl:text>
+    <xsl:value-of select="$chunk.first.sections"/>
+    <xsl:text> pos: </xsl:text>
+    <xsl:value-of select="position()"/>
+  </xsl:message>
+-->
+
   <xsl:choose>
     <xsl:when test="$chunk.sections = 0">
       <xsl:apply-imports/>
     </xsl:when>
     <xsl:when test="$chunk.first.sections = 0">
       <xsl:choose>
-        <xsl:when test="position() > 1">
+        <xsl:when test="count(preceding-sibling::section) > 0
+                        or count(preceding-sibling::sect1) > 0">
           <xsl:call-template name="process-chunk-element"/>
         </xsl:when>
         <xsl:otherwise>
