@@ -49,7 +49,8 @@ document output.
           <xsl:call-template name="write.chunk">
             <xsl:with-param name="filename" select="$targets.filename"/>
             <xsl:with-param name="method" select="'xml'"/>
-            <xsl:with-param name="encoding" select="$chunker.output.encoding"/>
+            <xsl:with-param name="encoding" select="'utf-8'"/>
+            <xsl:with-param name="omit-xml-declaration" select="'yes'"/>
             <xsl:with-param name="indent" select="'yes'"/>
             <xsl:with-param name="quiet" select="0"/>
             <xsl:with-param name="content">
