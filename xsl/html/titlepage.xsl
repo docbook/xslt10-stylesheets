@@ -454,7 +454,9 @@
         <xsl:with-param name="content">
           <html>
             <head>
-              <title><xsl:value-of select="$title"/></title>
+              <xsl:call-template name="system.head.content"/>
+              <xsl:call-template name="head.content"/>
+              <xsl:call-template name="user.head.content"/>
             </head>
             <body>
               <xsl:call-template name="body.attributes"/>
