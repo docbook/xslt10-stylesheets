@@ -245,6 +245,8 @@ generate.section.toc.level;
 &table.footnote.number.format;
 &footnote.number.symbols;
 &table.footnote.number.symbols;
+&footnote.properties;
+&footnote.mark.properties;
 &footnote.sep.leader.properties;
 &xref.with.number.and.title;
 &superscript.properties;
@@ -591,6 +593,8 @@ around all these parameters.</para>
 <src:fragref linkend="footnote.font.size.frag"/>
 <src:fragref linkend="footnote.number.format.frag"/>
 <src:fragref linkend="footnote.number.symbols.frag"/>
+<src:fragref linkend="footnote.mark.properties.frag"/>
+<src:fragref linkend="footnote.properties.frag"/>
 <src:fragref linkend="footnote.sep.leader.properties.frag"/>
 <src:fragref linkend="fop.extensions.frag"/>
 <src:fragref linkend="formal.object.properties.frag"/>
