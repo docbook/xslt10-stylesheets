@@ -5,6 +5,7 @@
 </para>">
 ]>
 <book id="book">
+<?dbhtml filename="book.html" dir="html"?>
 <bookinfo>
 <title>Unit Test: book.001</title>
 <releaseinfo role="CVS">$Id$</releaseinfo>
@@ -186,6 +187,7 @@ Some abstract. Some abstract. Some abstract. Some abstract.
 
 </part>
 <part id="partII"><title>Appendixes</title>
+<?dbhtml dir="x"?>
 
 <appendix id="app1"><title>First Appendix</title>
 
@@ -217,6 +219,7 @@ Some abstract. Some abstract. Some abstract. Some abstract.
 </appendix>
 
 <appendix id="app2"><title>Second Appendix</title>
+<?dbhtml filename="app2.html"?>
 
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;

@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
-<article>
-<?dbhtml dir="html"?>
+<article id="article">
 <articleinfo>
-<title>Unit Test: mediaobject.001</title>
+<title>Unit Test: imagelib.001.xml</title>
 <releaseinfo role="CVS">$Id$</releaseinfo>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
 </author>
 </articleinfo>
+
+<para>This is an image library test.</para>
+
+<!--
+<graphic fileref="graphics/duck-small.gif"/>
+-->
 
   <mediaobject>
     <imageobject>
