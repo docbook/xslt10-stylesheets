@@ -488,4 +488,77 @@
 <template name="langcode">0x040a Spanish (Traditional Sort)</template>
 </context>
 
+<letters>
+  <l i="-1"/>
+  <l i="0">Símbolos</l>
+  <l i="1">A</l>
+  <l i="1">a</l>
+  <l i="1">á</l>
+  <l i="1">Á</l>
+  <l i="2">B</l>
+  <l i="2">b</l>
+  <l i="3">C</l>
+  <l i="3">c</l>
+  <l i="4">CH</l>
+  <l i="4">ch</l>
+  <l i="5">D</l>
+  <l i="5">d</l>
+  <l i="6">E</l>
+  <l i="6">e</l>
+  <l i="6">É</l>
+  <l i="6">é</l>
+  <l i="7">F</l>
+  <l i="7">f</l>
+  <l i="8">G</l>
+  <l i="8">g</l>
+  <l i="9">H</l>
+  <l i="9">h</l>
+  <l i="10">I</l>
+  <l i="10">i</l>
+  <l i="10">Í</l>
+  <l i="10">í</l>
+  <l i="11">J</l>
+  <l i="11">j</l>
+  <l i="12">K</l>
+  <l i="12">k</l>
+  <l i="13">L</l>
+  <l i="13">l</l>
+  <l i="14">LL</l>
+  <l i="14">ll</l>
+  <l i="15">M</l>
+  <l i="15">m</l>
+  <l i="16">N</l>
+  <l i="16">n</l>
+  <l i="17">Ñ</l>
+  <l i="17">ñ</l>
+  <l i="18">O</l>
+  <l i="18">o</l>
+  <l i="18">Ó</l>
+  <l i="18">ó</l>
+  <l i="19">P</l>
+  <l i="19">p</l>
+  <l i="20">Q</l>
+  <l i="20">q</l>
+  <l i="21">R</l>
+  <l i="21">r</l>
+  <l i="22">S</l>
+  <l i="22">s</l>
+  <l i="23">T</l>
+  <l i="23">t</l>
+  <l i="24">U</l>
+  <l i="24">u</l>
+  <l i="24">Ú</l>
+  <l i="24">ú</l>
+  <l i="25">V</l>
+  <l i="25">v</l>
+  <l i="26">W</l>
+  <l i="26">w</l>
+  <l i="27">X</l>
+  <l i="27">x</l>
+  <l i="28">Y</l>
+  <l i="28">y</l>
+  <l i="29">Z</l>
+  <l i="29">z</l>
+</letters>
+
 </locale>
