@@ -597,7 +597,10 @@
 </xsl:template>
 
 <xsl:template match="step">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <fo:list-item>
     <fo:list-item-label end-indent="label-end()">
       <fo:block id="{$id}" xsl:use-attribute-sets="list.item.spacing">
@@ -618,6 +621,12 @@
       <xsl:apply-templates/>
     </fo:list-item-body>
   </fo:list-item>
+</xsl:template>
+
+<xsl:template match="step/title">
+  <fo:block font-weight="bold" xsl:use-attribute-sets="list.item.spacing">
+    <xsl:apply-templates/>
+  </fo:block>
 </xsl:template>
 
 <!-- ==================================================================== -->
