@@ -167,7 +167,8 @@
   <xsl:choose>
     <xsl:when test="$bibliography.numbered != 0">
       <xsl:text>[</xsl:text>
-      <xsl:number from="bibliography" count="biblioentry|bibliomixed" format="1"/>
+      <xsl:number from="bibliography" count="biblioentry|bibliomixed"
+                  level="any" format="1"/>
       <xsl:text>] </xsl:text>
     </xsl:when>
     <xsl:when test="local-name($node/child::*[1]) = 'abbrev'">
@@ -1032,6 +1033,13 @@
   <span class="{name(.)}">
     <xsl:apply-templates mode="bibliomixed.mode"/>
   </span>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template match="bibliosource">
+  <!-- FIXME: is this right? -->
+  <xsl:apply-templates/>
 </xsl:template>
 
 <!-- ==================================================================== -->
