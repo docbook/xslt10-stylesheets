@@ -249,10 +249,18 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="graphic">
-  <p>
-    <xsl:call-template name="anchor"/>
-    <xsl:call-template name="process.image"/>
-  </p>
+  <xsl:choose>
+    <xsl:when test="../inlineequation">
+      <xsl:call-template name="anchor"/>
+      <xsl:call-template name="process.image"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <p>
+        <xsl:call-template name="anchor"/>
+        <xsl:call-template name="process.image"/>
+      </p>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="inlinegraphic">
