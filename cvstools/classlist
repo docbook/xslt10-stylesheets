@@ -1,0 +1,19 @@
+#!/usr/bin/perl -- # --*-Perl-*--
+
+my $VPATH = shift;
+
+chdir($VPATH) if $VPATH;
+
+@files = glob("*.java");
+
+print "CLASSFILES=";
+
+while (@files) {
+    $file = shift @files;
+    $file =~ s/\.java$/\.class/;
+    print "$file ";
+    print "\\" if @files;
+    print "\n";
+}
+
+print "\n";

@@ -10,6 +10,7 @@ my $usage = "Usage: $0 [options] files\n";
 
 my %option = ('debug' => 0,
 	      'quiet' => 0,
+	      'verbose' => 0,
 	      'time' => 0,
 	      'extensions' => 1,
 	      'version' => undef,
@@ -24,6 +25,7 @@ my %opt = ();
 &GetOptions(\%opt,
 	    'debug+',
 	    'quiet+',
+	    'verbose',
 	    'time',
 	    'extensions!',
 	    'version=s',
@@ -60,6 +62,7 @@ my $outFile = $option{'output'} || shift @args;
 my $time    = $option{'time'};
 my $version = $option{'version'};
 my $quiet   = $option{'quiet'};
+my $verbose = $option{'verbose'};
 my $memory  = $option{'memory'};
 my $debug   = $option{'debug'};
 
@@ -71,6 +74,7 @@ if ($processor eq 'saxon') {
     $cmd = "$exedir/saxon";
     $cmd .= " $procopt" if $procopt;
     $cmd .= " -q" if $quiet;
+    $cmd .= " -v" if $verbose;
     $cmd .= " -d" if $debug;
     $cmd .= " -$version" if $version;
     $cmd .= " -m $memory" if $memory;
@@ -84,6 +88,7 @@ if ($processor eq 'saxon') {
     $cmd = "$exedir/xalan";
     $cmd .= " $procopt" if $procopt;
     $cmd .= " -q" if $quiet;
+    $cmd .= " -v" if $verbose;
     $cmd .= " -d" if $debug;
     $cmd .= " -$version" if $version;
     $cmd .= " -m $memory" if $memory;
@@ -96,6 +101,7 @@ if ($processor eq 'saxon') {
     $cmd = "$exedir/xsltproc";
     $cmd .= " $procopt" if $procopt;
     $cmd .= " -q" if $quiet;
+    $cmd .= " -v" if $verbose;
     foreach my $key (keys %param) {
 	$cmd .= " -param $key \"'" . $param{$key} . "'\"";
     }
@@ -105,6 +111,7 @@ if ($processor eq 'saxon') {
     $cmd = "$exedir/4xslt";
     $cmd .= " $procopt" if $procopt;
     $cmd .= " -q" if $quiet;
+    $cmd .= " -v" if $verbose;
     foreach my $key (keys %param) {
 	$cmd .= " --define=$key=\"" . $param{$key} . "\"";
     }
@@ -114,6 +121,7 @@ if ($processor eq 'saxon') {
     $cmd = "$exedir/xt";
     $cmd .= " $procopt" if $procopt;
     $cmd .= " -q" if $quiet;
+    $cmd .= " -v" if $verbose;
     $cmd .= " $xmlFile $xslFile";
     $outFile = "-" if $outFile eq '';
     $cmd .= " $outFile" if $outFile;

@@ -32,8 +32,9 @@ else
     XREAD=org.apache.xml.resolver.apps.xread
 fi
 
-CLASSPATH=$RESOLVER:$XERCES:$CLASSPATH
+#XREAD=org.apache.xerces.impl.Version
 
+CLASSPATH=$RESOLVER:$XERCES:$CLASSPATH
 #echo $CLASSPATH
 
 exec java $HTTP_PROXY $HTTPS_PROXY -cp $CLASSPATH $XREAD $*

@@ -126,7 +126,7 @@ else
                 "${XALANROOT}" \
                 "${XALANROOT}/xalan2.jar" \
                 "${XALANROOT}/bin/xalan2.jar" \
-                "/projects/apache/xml-xalan/java" \
+                "/projects/apache/xml-xalan/java/build/classes" \
                 "/usr/local/java/xalan-j_${STRIKEVERSION}/bin/xalan.jar" \
                 "/usr/local/share/java/xalan-j_${STRIKEVERSION}/bin/xalan.jar" \
                 "/usr/local/share/java/xalan-$STRIKEVERSION.jar" \
@@ -189,7 +189,12 @@ else
   fi
 fi
 
+RESOLVERS=""
+echo java $MEMORY $SAXPARSER org.apache.xalan.xslt.Process $RESOLVERS $@
+
 CLASSPATH=`fixclasspath "$NDWEXT:$XALAN:$JAXP:$RESOLVER:$XERCES:$CLASSPATH"`
+
+#echo $CLASSPATH
 
 if [ ${VERBOSE} ] && ${VERBOSE}; then
   echo java $MEMORY $SAXPARSER org.apache.xalan.xslt.Process $RESOLVERS $@

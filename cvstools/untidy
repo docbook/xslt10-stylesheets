@@ -10,14 +10,19 @@ while (@ARGV) {
     } else {
 	$opts .= " " if $opts ne "";
 	$opts .= $_;
+
+	if ($_ eq '--doctype') {
+	    $_ = shift @ARGV;
+	    $opts .= " $_";
+	}
     }
 }
 
-if ($#filenames == 0) {
-    my $filename = shift @filenames;
+foreach my $file (@filenames) {
     my $content = "";
 
-    open (F, "/usr/bin/tidy $opts $filename |");
+    print STDERR "Tidy $file...\n";
+    open (F, "/usr/bin/tidy -wrap 512 $opts $file |");
     while (<F>) {
 	$content .= $_;
     }
@@ -25,33 +30,105 @@ if ($#filenames == 0) {
 
     if ($content eq '') {
 	# we must have done an "in-place" tidy
-	if (open (F, $filename)) {
-	    read (F, $content, -s $filename);
+	if (open (F, $file)) {
+	    read (F, $content, -s $file);
 	    close (F);
 	}
     }
+
+    $content = cleanupContent($content);
+
+    open (F, ">$file");
+    print F $content;
+    close (F);
+}
+
+# the old way...
+# if ($#filenames == 0) {
+#     my $filename = shift @filenames;
+#     my $content = "";
+# 
+#     open (F, "/usr/bin/tidy -wrap 512 $opts $filename |");
+#     while (<F>) {
+# 	$content .= $_;
+#     }
+#     close (F);
+# 
+#     if ($content eq '') {
+# 	# we must have done an "in-place" tidy
+# 	if (open (F, $filename)) {
+# 	    read (F, $content, -s $filename);
+# 	    close (F);
+# 	}
+#     }
+# 
+#     $content = cleanupContent($content);
+# 
+#     open (F, ">$filename");
+#     print F $content;
+#     close (F);
+# } else {
+#     system ("/usr/bin/tidy -wrap 512 $opts " . join(" ", @filenames));
+#     foreach my $filename (@filenames) {
+# 	if (open (F, $filename)) {
+# 	    read (F, $content, -s $filename);
+# 	    close (F);
+# 	}
+# 
+# 	$content = cleanupContent($content);
+# 
+# 	open (F, ">$filename");
+# 	print F $content;
+# 	close (F);
+#     }
+# }
+
+sub cleanupContent {
+    my $content = shift;
 
     $content =~ s/(<a\s[^>]+>)\s+/$1/sg;
     $content =~ s/\s+(<\/a>)/$1/sg;
 
-    open (F, ">$filename");
-    print F $content;
-    close (F);
-} else {
-    system ("/usr/bin/tidy $opts " . join(" ", @filenames));
-    foreach my $filename (@filenames) {
-	if (open (F, $filename)) {
-	    read (F, $content, -s $filename);
-	    close (F);
-	}
+    my $newContent = "";
 
-	$content =~ s/(<a\s[^>]+>)\s+/$1/sg;
-	$content =~ s/\s+(<\/a>)/$1/sg;
+    # workaround a bug in tidy...it removes &nbsp; sometimes!
+    while ($content
+	     =~ /^(.*?)(<div class=([\'\"])literallayout\3.*?>)(.*?)(<\/div>.*)$/is) {
+	my $pre = $1;
+	my $starttag = $2;
+	my $litlayout = $4;
+	my $post = $5;
 
-	open (F, ">$filename");
-	print F $content;
-	close (F);
+	#print "====$litlayout====\n";
+	#print "------------------\n";
+	#print "====", addnbsp($litlayout), "====\n";
+
+	$newContent .= $pre . $starttag . addnbsp($litlayout);
+	$content = $post;
     }
+
+    return $newContent . $content;
 }
 
+sub addnbsp {
+    my $content = shift;
+    my $esc = "";
+
+    while ($content ne "") {
+	if ($content =~ /^(.*?)(<.*?>)(.*)$/s) {
+	    my $text = $1;
+	    my $tag = $2;
+	    $content = $3;
+	    $text =~ s/ /&\#160;/g;
+	    $esc .= $text . $tag;
+	} else {
+	    my $text = $content;
+	    $content = "";
+	    $text =~ s/ /&\#160;/g;
+	    $esc .= $text;
+	}
+    }
+
+    return $esc;
+}
 
