@@ -281,7 +281,7 @@
   <xsl:text>[</xsl:text>
   <xsl:choose>
     <xsl:when test="string(.) = ''">
-      <xsl:variable name="bib" select="document($bibliography.collection)"/>
+      <xsl:variable name="bib" select="document($bibliography.collection,.)"/>
       <xsl:variable name="id" select="@id"/>
       <xsl:variable name="entry" select="$bib/bibliography/*[@id=$id][1]"/>
       <xsl:choose>
