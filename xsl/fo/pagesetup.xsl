@@ -1990,6 +1990,7 @@
 
 <xsl:template name="page.number.format">
   <xsl:param name="element" select="local-name(.)"/>
+  <xsl:param name="master-reference" select="''"/>
 
   <xsl:choose>
     <xsl:when test="$element = 'toc'">i</xsl:when>
