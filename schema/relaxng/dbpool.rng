@@ -10816,6 +10816,10 @@ OtherCredit. -->
               <value>systemname</value>
               <value>username</value>
               <value>newsgroup</value>
+              <value>process</value>
+              <value>server</value>
+              <value>service</value>
+              <value>daemon</value>
             </choice>
           </attribute>
         </optional>
