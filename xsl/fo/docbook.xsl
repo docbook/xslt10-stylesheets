@@ -103,7 +103,7 @@
 </xsl:template>
 
 <!-- Update this list if new root elements supported -->
-<xsl:variable name="root.elements" select="' appendix article bibliography book chapter colophon dedication glossary index part preface refentry reference sect1 section set setindex '"/>
+<xsl:variable name="root.elements" select="' appendix article bibliography book chapter colophon dedication glossary index part preface refentry reference sect1 section set setindex slides '"/>
 
 <xsl:template match="/">
   <xsl:variable name="document.element" select="*[1]"/>
