@@ -74,7 +74,6 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &callout.graphics.path;
 &callout.graphics;
 &callout.list.table;
-&callout.unicode.font;
 &callout.unicode.number.limit;
 &callout.unicode.start.character;
 &callout.unicode;
@@ -142,7 +141,6 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &html.stylesheet.type;
 &html.stylesheet;
 &use.id.as.filename;
-&using.chunker;
 &css.decoration;
 &spacing.paras;
 &emphasis.propagates.style;
@@ -150,6 +148,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &stylesheet.result.type;
 &html.longdesc;
 &html.longdesc.link;
+&make.valid.html;
 </reference>
 
 <reference><title>XSLT Processing</title>
@@ -170,6 +169,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &funcsynopsis.style;
 &function.parens;
 &refentry.generate.name;
+&refentry.generate.title;
 &refentry.xref.manvolnum;
 &citerefentry.link;
 &refentry.separator;
@@ -221,6 +221,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 </reference>
 
 <reference><title>Chunking</title>
+&using.chunker;
 &html.ext;
 &root.filename;
 &base.dir;
@@ -228,6 +229,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &chunk.first.sections;
 &saxon.character.representation;
 &default.encoding;
+&output.method;
 &chunk.datafile;
 &navig.graphics;
 &navig.graphics.extension;
@@ -290,7 +292,6 @@ around all these parameters.</para>
 <src:fragref linkend="callout.graphics.number.limit.frag"/>
 <src:fragref linkend="callout.graphics.path.frag"/>
 <src:fragref linkend="callout.list.table.frag"/>
-<src:fragref linkend="callout.unicode.font.frag"/>
 <src:fragref linkend="callout.unicode.frag"/>
 <src:fragref linkend="callout.unicode.number.limit.frag"/>
 <src:fragref linkend="callout.unicode.start.character.frag"/>
@@ -353,6 +354,7 @@ around all these parameters.</para>
 <src:fragref linkend="linenumbering.width.frag"/>
 <src:fragref linkend="link.mailto.url.frag"/>
 <src:fragref linkend="make.single.year.ranges.frag"/>
+<src:fragref linkend="make.valid.html.frag"/>
 <src:fragref linkend="make.year.ranges.frag"/>
 <src:fragref linkend="navig.graphics.extension.frag"/>
 <src:fragref linkend="navig.graphics.frag"/>
@@ -364,6 +366,7 @@ around all these parameters.</para>
 <src:fragref linkend="olink.pubid.frag"/>
 <src:fragref linkend="olink.resolver.frag"/>
 <src:fragref linkend="olink.sysid.frag"/>
+<src:fragref linkend="output.method.frag"/>
 <src:fragref linkend="part.autolabel.frag"/>
 <src:fragref linkend="phrase.propagates.style.frag"/>
 <src:fragref linkend="preface.autolabel.frag"/>
@@ -374,6 +377,7 @@ around all these parameters.</para>
 <src:fragref linkend="qanda.inherit.numeration.frag"/>
 <src:fragref linkend="qandadiv.autolabel.frag"/>
 <src:fragref linkend="refentry.generate.name.frag"/>
+<src:fragref linkend="refentry.generate.title.frag"/>
 <src:fragref linkend="refentry.separator.frag"/>
 <src:fragref linkend="refentry.xref.manvolnum.frag"/>
 <src:fragref linkend="root.filename.frag"/>
