@@ -1402,6 +1402,7 @@ around all these parameters.</para>
 <src:fragref linkend="xbCollapsibleLists.js.frag"/>
 <src:fragref linkend="xbDOM.js.frag"/>
 <src:fragref linkend="xbStyle.js.frag"/>
+<src:fragref linkend="xbLibrary.js.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>
