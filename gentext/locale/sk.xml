@@ -1,4 +1,4 @@
-<?xml version='1.0'?>
+<?xml version='1.0' encoding="utf-8"?>
 <!-- there is no doctype for these files, they are WF only -->
 <locale language="sk"
         english-language-name="Slovak"
@@ -19,19 +19,19 @@
 <gentext key="answer" text="A:"/>
 <gentext key="Appendix" text="Dodatok"/>
 <gentext key="appendix" text="dodatok"/>
-<gentext key="Article" text="&#x010C;l&#x00E1;nok"/>
-<gentext key="article" text="&#x010C;l&#x00E1;nok"/>
+<gentext key="Article" text="Článok"/>
+<gentext key="article" text="Článok"/>
 <gentext key="Bibliography" text="Bibliografia"/>
 <gentext key="bibliography" text="Bibliografia"/>
 <gentext key="Book" text="Kniha"/>
 <gentext key="book" text="Kniha"/>
-<gentext key="CAUTION" text="V&#x00DD;STRAHA"/>
-<gentext key="Caution" text="V&#x00FD;straha"/>
-<gentext key="caution" text="V&#x00FD;straha"/>
+<gentext key="CAUTION" text="VÝSTRAHA"/>
+<gentext key="Caution" text="Výstraha"/>
+<gentext key="caution" text="Výstraha"/>
 <gentext key="Chapter" text="Kapitola"/>
 <gentext key="chapter" text="kapitola"/>
-<gentext key="Colophon" text="Tir&#x00E1;&#x017E;"/>
-<gentext key="colophon" text="Tir&#x00E1;&#x017E;"/>
+<gentext key="Colophon" text="Tiráž"/>
+<gentext key="colophon" text="Tiráž"/>
 <gentext key="Copyright" text="Copyright"/>
 <gentext key="copyright" text="Copyright"/>
 <gentext key="Dedication" text="Venovanie"/>
@@ -40,43 +40,43 @@
 <gentext key="edition" text="Vydanie"/>
 <gentext key="Equation" text="Rovnice"/>
 <gentext key="equation" text="Rovnice"/>
-<gentext key="Example" text="Pr&#x00ED;klad"/>
-<gentext key="example" text="Pr&#x00ED;klad"/>
-<gentext key="Figure" text="Obr&#x00E1;zok"/>
-<gentext key="figure" text="Obr&#x00E1;zok"/>
-<gentext key="Glossary" text="Slovn&#x00ED;k"/>
-<gentext key="glossary" text="Slovn&#x00ED;k"/>
+<gentext key="Example" text="Príklad"/>
+<gentext key="example" text="Príklad"/>
+<gentext key="Figure" text="Obrázok"/>
+<gentext key="figure" text="Obrázok"/>
+<gentext key="Glossary" text="Slovník"/>
+<gentext key="glossary" text="Slovník"/>
 <gentext key="GlossSee" text="Pozri"/>
 <gentext key="glosssee" text="Pozri"/>
-<gentext key="GlossSeeAlso" text="Pozri tie&#x017E;"/>
-<gentext key="glossseealso" text="Pozri tie&#x017E;"/>
-<gentext key="IMPORTANT" text="D&#x00D4;LE&#x017D;IT&#x00C9;"/>
-<gentext key="Important" text="D&#x00F4;le&#x017E;it&#x00E9;"/>
-<gentext key="important" text="D&#x00F4;le&#x017E;it&#x00E9;"/>
+<gentext key="GlossSeeAlso" text="Pozri tiež"/>
+<gentext key="glossseealso" text="Pozri tiež"/>
+<gentext key="IMPORTANT" text="DÔLEŽITÉ"/>
+<gentext key="Important" text="Dôležité"/>
+<gentext key="important" text="Dôležité"/>
 <gentext key="Index" text="Zoznam"/>
 <gentext key="index" text="Zoznam"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
-<gentext key="LegalNotice" text="Pr&#x00E1;vna pozn&#x00E1;mka"/>
-<gentext key="legalnotice" text="Pr&#x00E1;vna pozn&#x00E1;mka"/>
+<gentext key="LegalNotice" text="Právna poznámka"/>
+<gentext key="legalnotice" text="Právna poznámka"/>
 <gentext key="MsgAud" text="Publikum"/>
 <gentext key="msgaud" text="Publikum"/>
-<gentext key="MsgLevel" text="&#x00DA;rove&#x0148;"/>
-<gentext key="msglevel" text="&#x00DA;rove&#x0148;"/>
-<gentext key="MsgOrig" text="P&#x00F4;vod"/>
-<gentext key="msgorig" text="P&#x00F4;vod"/>
-<gentext key="NOTE" text="POZN&#x00C1;MKA"/>
-<gentext key="Note" text="Pozn&#x00E1;mka"/>
-<gentext key="note" text="Pozn&#x00E1;mka"/>
-<gentext key="Part" text="&#x010C;as&#x0165;"/>
-<gentext key="part" text="&#x010C;as&#x0165;"/>
-<gentext key="Preface" text="&#x00DA;vod"/>
-<gentext key="preface" text="&#x00DA;vod"/>
+<gentext key="MsgLevel" text="Úroveň"/>
+<gentext key="msglevel" text="Úroveň"/>
+<gentext key="MsgOrig" text="Pôvod"/>
+<gentext key="msgorig" text="Pôvod"/>
+<gentext key="NOTE" text="POZNÁMKA"/>
+<gentext key="Note" text="Poznámka"/>
+<gentext key="note" text="Poznámka"/>
+<gentext key="Part" text="Časť"/>
+<gentext key="part" text="Časť"/>
+<gentext key="Preface" text="Úvod"/>
+<gentext key="preface" text="Úvod"/>
 <gentext key="Procedure" text="Postup"/>
 <gentext key="procedure" text="Postup"/>
 <gentext key="ProductionSet" text="Production"/> <!-- en -->
-<gentext key="Published" text="Vydan&#x00E9;"/>
-<gentext key="published" text="Vydan&#x00E9;"/>
+<gentext key="Published" text="Vydané"/>
+<gentext key="published" text="Vydané"/>
 <gentext key="Question" text="Q:"/>
 <gentext key="question" text="Q:"/>
 <gentext key="RefEntry" text=""/>
@@ -87,12 +87,12 @@
 <gentext key="refname" text="Meno"/>
 <gentext key="RefSection" text=""/>
 <gentext key="refsection" text=""/>
-<gentext key="RefSynopsisDiv" text="Preh&#x013E;ad"/>
-<gentext key="refsynopsisdiv" text="Preh&#x013E;ad"/>
-<gentext key="RevHistory" text="Preh&#x013E;ad rev&#x00ED;zi&#x00ED;"/>
-<gentext key="revhistory" text="Preh&#x013E;ad rev&#x00ED;zi&#x00ED;"/>
-<gentext key="Revision" text="Rev&#x00ED;zia"/>
-<gentext key="revision" text="Rev&#x00ED;zia"/>
+<gentext key="RefSynopsisDiv" text="Prehľad"/>
+<gentext key="refsynopsisdiv" text="Prehľad"/>
+<gentext key="RevHistory" text="Prehľad revízií"/>
+<gentext key="revhistory" text="Prehľad revízií"/>
+<gentext key="Revision" text="Revízia"/>
+<gentext key="revision" text="Revízia"/>
 <gentext key="sect1" text="Section"/> <!-- en -->
 <gentext key="sect2" text="Section"/> <!-- en -->
 <gentext key="sect3" text="Section"/> <!-- en -->
@@ -102,19 +102,19 @@
 <gentext key="section" text="oddiel"/>
 <gentext key="See" text="Pozri"/>
 <gentext key="see" text="Pozri"/>
-<gentext key="SeeAlso" text="Pozri tie&#x017E;"/>
-<gentext key="Seealso" text="Pozri tie&#x017E;"/>
-<gentext key="seealso" text="Pozri tie&#x017E;"/>
-<gentext key="Set" text="Nastavi&#x0165;"/>
-<gentext key="set" text="Nastavi&#x0165;"/>
-<gentext key="SetIndex" text="Nastavi&#x0165; index"/>
-<gentext key="setindex" text="Nastavi&#x0165; index"/>
+<gentext key="SeeAlso" text="Pozri tiež"/>
+<gentext key="Seealso" text="Pozri tiež"/>
+<gentext key="seealso" text="Pozri tiež"/>
+<gentext key="Set" text="Nastaviť"/>
+<gentext key="set" text="Nastaviť"/>
+<gentext key="SetIndex" text="Nastaviť index"/>
+<gentext key="setindex" text="Nastaviť index"/>
 <gentext key="Sidebar" text=""/>
-<gentext key="sidebar" text="bo&#x010D;n&#x00ED; li&#x0161;ta"/>
+<gentext key="sidebar" text="boční lišta"/>
 <gentext key="Step" text="Krok"/>
 <gentext key="step" text="krok"/>
-<gentext key="Table" text="Tabu&#x013E;ka"/>
-<gentext key="table" text="Tabu&#x013E;ka"/>
+<gentext key="Table" text="Tabuľka"/>
+<gentext key="table" text="Tabuľka"/>
 <gentext key="TIP" text="TIP"/>
 <gentext key="Tip" text="Tip"/>
 <gentext key="tip" text="Tip"/>
@@ -124,44 +124,44 @@
 
 <gentext key="and" text="a"/>
 <gentext key="by" text=""/>
-<gentext key="Edited" text="Vydan&#x00E9;"/>
-<gentext key="edited" text="Vydan&#x00E9;"/>
-<gentext key="Editedby" text="Vydan&#x00E9;"/>
-<gentext key="editedby" text="Vydan&#x00E9;"/>
+<gentext key="Edited" text="Vydané"/>
+<gentext key="edited" text="Vydané"/>
+<gentext key="Editedby" text="Vydané"/>
+<gentext key="editedby" text="Vydané"/>
 <gentext key="in" text="v"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
-<gentext key="nonexistantelement" text="neexistuj&#x00FA;ci prvok"/>
-<gentext key="notes" text="Pozn&#x00E1;mky"/>
-<gentext key="Notes" text="Pozn&#x00E1;mky"/>
+<gentext key="nonexistantelement" text="neexistujúci prvok"/>
+<gentext key="notes" text="Poznámky"/>
+<gentext key="Notes" text="Poznámky"/>
 <gentext key="Pgs" text="Str."/>
 <gentext key="pgs" text="Str."/>
 <gentext key="Revisedby" text="Revised by: "/>
 <gentext key="revisedby" text="Revised by: "/> <!-- en -->
-<gentext key="TableNotes" text="Pozn&#x00E1;mky"/>
-<gentext key="tablenotes" text="Pozn&#x00E1;mky"/>
+<gentext key="TableNotes" text="Poznámky"/>
+<gentext key="tablenotes" text="Poznámky"/>
 <gentext key="TableofContents" text="Obsah"/>
 <gentext key="tableofcontents" text="Obsah"/>
-<gentext key="unexpectedelementname" text="Neo&#x010D;ak&#x00E1;van&#x00E9; meno prvku"/>
-<gentext key="unsupported" text="nepodporovan&#x00FD;"/>
+<gentext key="unexpectedelementname" text="Neočakávané meno prvku"/>
+<gentext key="unsupported" text="nepodporovaný"/>
 <gentext key="xrefto" text="xref k"/>
 
-<gentext key="listofequations" text="Zoznam rovn&#x00ED;c"/>
-<gentext key="ListofEquations" text="Zoznam rovn&#x00ED;c"/>
-<gentext key="ListofExamples" text="Zoznam pr&#x00ED;kladov"/>
-<gentext key="listofexamples" text="Zoznam pr&#x00ED;kladov"/>
-<gentext key="ListofFigures" text="Zoznam obr&#x00E1;zkov"/>
-<gentext key="listoffigures" text="Zoznam obr&#x00E1;zkov"/>
+<gentext key="listofequations" text="Zoznam rovníc"/>
+<gentext key="ListofEquations" text="Zoznam rovníc"/>
+<gentext key="ListofExamples" text="Zoznam príkladov"/>
+<gentext key="listofexamples" text="Zoznam príkladov"/>
+<gentext key="ListofFigures" text="Zoznam obrázkov"/>
+<gentext key="listoffigures" text="Zoznam obrázkov"/>
 <gentext key="listoftables" text="Zoznam tabuliek"/>
 <gentext key="ListofTables" text="Zoznam tabuliek"/>
-<gentext key="ListofUnknown" text="Zoznam nezn&#x00E1;meho"/>
-<gentext key="listofunknown" text="Zoznam nezn&#x00E1;meho"/>
+<gentext key="ListofUnknown" text="Zoznam neznámeho"/>
+<gentext key="listofunknown" text="Zoznam neznámeho"/>
 
 <gentext key="nav-home" text="Domov"/>
 <gentext key="nav-next" text="Nasleduj&#250;ci"/>
-<gentext key="nav-next-sibling" text="R&#x00FD;chlo dopredu"/>
-<gentext key="nav-prev" text="Predch&#x00E1;dzaj&#x00FA;ci"/>
-<gentext key="nav-prev-sibling" text="R&#x00FD;chlo nazp&#x00E4;t"/>
+<gentext key="nav-next-sibling" text="Rýchlo dopredu"/>
+<gentext key="nav-prev" text="Predchádzajúci"/>
+<gentext key="nav-prev-sibling" text="Rýchlo nazpät"/>
 <gentext key="nav-up" text="Hore"/>
 
 <gentext key="sectioncalled" text="the section called"/> <!-- en -->
@@ -173,11 +173,11 @@
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
 
-<dingbat key="startquote" text="&#x201C;"/>
-<dingbat key="endquote" text="&#x201D;"/>
-<dingbat key="nestedstartquote" text="&#x2018;"/>
-<dingbat key="nestedendquote" text="&#x2019;"/>
-<dingbat key="bullet" text="&#x2022;"/>
+<dingbat key="startquote" text="“"/>
+<dingbat key="endquote" text="”"/>
+<dingbat key="nestedstartquote" text="‘"/>
+<dingbat key="nestedendquote" text="’"/>
+<dingbat key="bullet" text="•"/>
 
 <context name="styles">
 
@@ -402,35 +402,35 @@
 
 <context name="section-xref">
 
-<template name="bridgehead">&#x201C;%t&#x201D;</template>
-<template name="refsection">&#x201C;%t&#x201D;</template>
-<template name="refsect1">&#x201C;%t&#x201D;</template>
-<template name="refsect2">&#x201C;%t&#x201D;</template>
-<template name="refsect3">&#x201C;%t&#x201D;</template>
-<template name="sect1">&#x201C;%t&#x201D;</template>
-<template name="sect2">&#x201C;%t&#x201D;</template>
-<template name="sect3">&#x201C;%t&#x201D;</template>
-<template name="sect4">&#x201C;%t&#x201D;</template>
-<template name="sect5">&#x201C;%t&#x201D;</template>
-<template name="section">&#x201C;%t&#x201D;</template>
-<template name="simplesect">&#x201C;%t&#x201D;</template>
+<template name="bridgehead">“%t”</template>
+<template name="refsection">“%t”</template>
+<template name="refsect1">“%t”</template>
+<template name="refsect2">“%t”</template>
+<template name="refsect3">“%t”</template>
+<template name="sect1">“%t”</template>
+<template name="sect2">“%t”</template>
+<template name="sect3">“%t”</template>
+<template name="sect4">“%t”</template>
+<template name="sect5">“%t”</template>
+<template name="section">“%t”</template>
+<template name="simplesect">“%t”</template>
 
 </context>
 
 <context name="section-xref-numbered">
 
-<template name="bridgehead">&#x201C;%t&#x201D;</template>
-<template name="refsection">&#x201C;%t&#x201D;</template>
-<template name="refsect1">&#x201C;%t&#x201D;</template>
-<template name="refsect2">&#x201C;%t&#x201D;</template>
-<template name="refsect3">&#x201C;%t&#x201D;</template>
+<template name="bridgehead">“%t”</template>
+<template name="refsection">“%t”</template>
+<template name="refsect1">“%t”</template>
+<template name="refsect2">“%t”</template>
+<template name="refsect3">“%t”</template>
 <template name="sect1"><Section/> %n</template>
 <template name="sect2"><Section/> %n</template>
 <template name="sect3"><Section/> %n</template>
 <template name="sect4"><Section/> %n</template>
 <template name="sect5"><Section/> %n</template>
 <template name="section"><Section/> %n</template>
-<template name="simplesect">&#x201C;%t&#x201D;</template>
+<template name="simplesect">“%t”</template>
 
 </context>
 
@@ -449,6 +449,48 @@
 <template name="MsgAud"><MsgAud/>: </template>
 <template name="MsgLevel"><MsgLevel/>: </template>
 <template name="MsgOrig"><MsgOrig/>: </template>
+</context>
+
+<context name="datetime">
+<template name="format">d.&#160;B Y</template>
+<template name="January">januára</template>
+<template name="February">februára</template>
+<template name="March">marca</template>
+<template name="April">apríla</template>
+<template name="May">mája</template>
+<template name="June">júna</template>
+<template name="July">júla</template>
+<template name="August">augusta</template>
+<template name="September">septembra</template>
+<template name="October">októbra</template>
+<template name="November">novembra</template>
+<template name="December">decembra</template>
+<template name="Jan">jan</template>
+<template name="Feb">feb</template>
+<template name="Mar">mar</template>
+<template name="Apr">apr</template>
+<template name="May">máj</template>
+<template name="Jun">jún</template>
+<template name="Jul">júl</template>
+<template name="Aug">aug</template>
+<template name="Sep">sep</template>
+<template name="Oct">okt</template>
+<template name="Nov">nov</template>
+<template name="Dec">dec</template>
+<template name="Monday">pondelok</template>
+<template name="Tuesday">utorok</template>
+<template name="Wednesday">streda</template>
+<template name="Thursday">štvrtok</template>
+<template name="Friday">piatok</template>
+<template name="Saturday">sobota</template>
+<template name="Sunday">nedeľa</template>
+<template name="Mon">po</template>
+<template name="Tue">ut</template>
+<template name="Wed">st</template>
+<template name="Thu">št</template>
+<template name="Fri">pi</template>
+<template name="Sat">so</template>
+<template name="Sun">ne</template>
 </context>
 
 </locale>
