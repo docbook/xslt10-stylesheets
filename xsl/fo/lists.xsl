@@ -406,6 +406,16 @@
 <xsl:template match="simplelist">
   <!-- with no type specified, the default is 'vert' -->
   <fo:table xsl:use-attribute-sets="normal.para.spacing">
+    <xsl:call-template name="simplelist.table.columns">
+      <xsl:with-param name="cols">
+        <xsl:choose>
+          <xsl:when test="@columns">
+            <xsl:value-of select="@columns"/>
+          </xsl:when>
+          <xsl:otherwise>1</xsl:otherwise>
+        </xsl:choose>
+      </xsl:with-param>
+    </xsl:call-template>
     <fo:table-body>
       <xsl:call-template name="simplelist.vert">
 	<xsl:with-param name="cols">
@@ -427,6 +437,16 @@
 
 <xsl:template match="simplelist[@type='horiz']">
   <fo:table xsl:use-attribute-sets="normal.para.spacing">
+    <xsl:call-template name="simplelist.table.columns">
+      <xsl:with-param name="cols">
+        <xsl:choose>
+          <xsl:when test="@columns">
+            <xsl:value-of select="@columns"/>
+          </xsl:when>
+          <xsl:otherwise>1</xsl:otherwise>
+        </xsl:choose>
+      </xsl:with-param>
+    </xsl:call-template>
     <fo:table-body>
       <xsl:call-template name="simplelist.horiz">
 	<xsl:with-param name="cols">
@@ -444,6 +464,16 @@
 
 <xsl:template match="simplelist[@type='vert']">
   <fo:table xsl:use-attribute-sets="normal.para.spacing">
+    <xsl:call-template name="simplelist.table.columns">
+      <xsl:with-param name="cols">
+        <xsl:choose>
+          <xsl:when test="@columns">
+            <xsl:value-of select="@columns"/>
+          </xsl:when>
+          <xsl:otherwise>1</xsl:otherwise>
+        </xsl:choose>
+      </xsl:with-param>
+    </xsl:call-template>
     <fo:table-body>
       <xsl:call-template name="simplelist.vert">
 	<xsl:with-param name="cols">
@@ -457,6 +487,18 @@
       </xsl:call-template>
     </fo:table-body>
   </fo:table>
+</xsl:template>
+
+<xsl:template name="simplelist.table.columns">
+  <xsl:param name="cols" select="1"/>
+  <xsl:param name="curcol" select="1"/>
+  <fo:table-column column-number="{$curcol}"/>
+  <xsl:if test="$curcol &lt; $cols">
+    <xsl:call-template name="simplelist.table.columns">
+      <xsl:with-param name="cols" select="$cols"/>
+      <xsl:with-param name="curcol" select="$curcol + 1"/>
+    </xsl:call-template>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template name="simplelist.horiz">
@@ -727,6 +769,8 @@
 <xsl:template match="segmentedlist" mode="seglist-table">
   <xsl:apply-templates select="title" mode="list.title.mode" />
   <fo:table>
+    <fo:table-column column-number="1"/>
+    <fo:table-column column-number="2"/>
     <fo:table-header>
       <fo:table-row>
         <xsl:apply-templates select="segtitle" mode="seglist-table"/>
