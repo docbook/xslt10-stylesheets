@@ -15,14 +15,35 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template name="set.toc">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <xsl:variable name="nodes" select="book|setindex"/>
+
+  <xsl:if test="$nodes">
+    <fo:block id="toc...{$id}"
+              xsl:use-attribute-sets="toc.margin.properties">
+      <xsl:call-template name="table.of.contents.titlepage"/>
+      <xsl:apply-templates select="$nodes" mode="toc"/>
+    </fo:block>
+  </xsl:if>
+</xsl:template>
+
 <xsl:template name="division.toc">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <xsl:variable name="nodes"
                 select="part|reference|preface
                         |chapter|appendix
                         |article
                         |bibliography|glossary|index"/>
   <xsl:if test="$nodes">
-    <fo:block xsl:use-attribute-sets="toc.margin.properties">
+    <fo:block id="toc...{$id}"
+              xsl:use-attribute-sets="toc.margin.properties">
       <xsl:call-template name="table.of.contents.titlepage"/>
       <xsl:apply-templates select="$nodes" mode="toc"/>
     </fo:block>
@@ -35,13 +56,7 @@
                                      |appendix"/>
   <xsl:if test="$nodes">
     <fo:block xsl:use-attribute-sets="toc.margin.properties">
-      <fo:block>
-         <fo:inline font-weight="bold">
-           <xsl:call-template name="gentext">
-             <xsl:with-param name="key">TableofContents</xsl:with-param>
-           </xsl:call-template>
-         </fo:inline>
-       </fo:block>
+      <xsl:call-template name="table.of.contents.titlepage"/>
       <xsl:apply-templates select="$nodes" mode="toc"/>
     </fo:block>
   </xsl:if>
@@ -54,12 +69,18 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
+  <xsl:variable name="label">
+    <xsl:apply-templates select="." mode="label.markup"/>
+  </xsl:variable>
+
   <fo:block text-align-last="justify"
-            end-indent="2pc"
-            last-line-end-indent="-2pc">
+            end-indent="{$toc.indent.width}pt"
+            last-line-end-indent="-{$toc.indent.width}pt">
     <fo:inline keep-with-next.within-line="always">
-      <xsl:apply-templates select="." mode="label.markup"/>
-      <xsl:text> </xsl:text>
+      <xsl:if test="$label != ''">
+        <xsl:copy-of select="$label"/>
+        <xsl:value-of select="$autotoc.label.separator"/>
+      </xsl:if>
       <xsl:apply-templates select="." mode="title.markup"/>
     </fo:inline>
     <fo:inline keep-together.within-line="always">
@@ -77,13 +98,26 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template match="book|setindex" mode="toc">
+  <xsl:call-template name="toc.line"/>
+
+  <xsl:variable name="nodes" select="glossary|bibliography|preface|chapter|reference|part|article|appendix|index"/>
+
+  <xsl:if test="$toc.section.depth &gt; 0 and $nodes">
+    <fo:block start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+      <xsl:apply-templates select="$nodes" mode="toc"/>
+    </fo:block>
+  </xsl:if>
+</xsl:template>
+
 <xsl:template match="part" mode="toc">
   <xsl:call-template name="toc.line"/>
 
-  <xsl:if test="chapter|appendix|preface|reference">
-    <fo:block start-indent="{count(ancestor::*)*2}pc">
-      <xsl:apply-templates select="chapter|appendix|preface|reference"
-                           mode="toc"/>
+  <xsl:variable name="nodes" select="chapter|appendix|preface|reference"/>
+
+  <xsl:if test="$toc.section.depth &gt; 0 and $nodes">
+    <fo:block start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+      <xsl:apply-templates select="$nodes" mode="toc"/>
     </fo:block>
   </xsl:if>
 </xsl:template>
@@ -91,8 +125,8 @@
 <xsl:template match="reference" mode="toc">
   <xsl:call-template name="toc.line"/>
 
-  <xsl:if test="refentry">
-    <fo:block start-indent="{count(ancestor::*)*2}pc">
+  <xsl:if test="$toc.section.depth &gt; 0 and refentry">
+    <fo:block start-indent="{count(ancestor::*)*$toc.indent.width}pt">
       <xsl:apply-templates select="refentry" mode="toc"/>
     </fo:block>
   </xsl:if>
@@ -106,23 +140,70 @@
               mode="toc">
   <xsl:call-template name="toc.line"/>
 
-  <xsl:if test="section|sect1">
-    <fo:block start-indent="{count(ancestor::*)*2}pc">
-      <xsl:apply-templates select="section|sect1"
-                           mode="toc"/>
+  <xsl:variable name="nodes" select="section|sect1"/>
+
+  <xsl:if test="$toc.section.depth &gt; 0 and $nodes">
+    <fo:block start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+      <xsl:apply-templates select="$nodes" mode="toc"/>
     </fo:block>
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="section|sect1|sect2|sect3|sect4|sect5"
-              mode="toc">
+<xsl:template match="sect1" mode="toc">
   <xsl:call-template name="toc.line"/>
 
-  <xsl:if test="section|sect2|sect3|sect4|sect5">
-    <fo:block start-indent="{count(ancestor::*)*2}pc">
-      <xsl:apply-templates select="section|sect2|sect3|sect4|sect5"
-                           mode="toc"/>
+  <xsl:if test="$toc.section.depth &gt; 1 and sect2">
+    <fo:block start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+      <xsl:apply-templates select="sect2" mode="toc"/>
     </fo:block>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="sect2" mode="toc">
+  <xsl:call-template name="toc.line"/>
+
+  <xsl:if test="$toc.section.depth &gt; 2 and sect3">
+    <fo:block start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+      <xsl:apply-templates select="sect3" mode="toc"/>
+    </fo:block>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="sect3" mode="toc">
+  <xsl:call-template name="toc.line"/>
+
+  <xsl:if test="$toc.section.depth &gt; 3 and sect4">
+    <fo:block start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+      <xsl:apply-templates select="sect4" mode="toc"/>
+    </fo:block>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="sect4" mode="toc">
+  <xsl:call-template name="toc.line"/>
+
+  <xsl:if test="$toc.section.depth &gt; 4 and sect5">
+    <fo:block start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+      <xsl:apply-templates select="sect5" mode="toc"/>
+    </fo:block>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="sect5" mode="toc">
+  <xsl:call-template name="toc.line"/>
+</xsl:template>
+
+<xsl:template match="section" mode="toc">
+  <xsl:variable name="depth" select="count(ancestor::section) + 1"/>
+
+  <xsl:if test="$toc.section.depth &gt;= $depth">
+    <xsl:call-template name="toc.line"/>
+
+    <xsl:if test="$toc.section.depth &gt; $depth">
+      <fo:block start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+        <xsl:apply-templates select="section" mode="toc"/>
+      </fo:block>
+    </xsl:if>
   </xsl:if>
 </xsl:template>
 
