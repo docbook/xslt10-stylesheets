@@ -396,10 +396,6 @@ element label.</para>
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="@label">
-      <xsl:value-of select="$prefix"/>
-      <xsl:value-of select="@label"/>
-    </xsl:when>
     <xsl:when test="$qandadiv.autolabel != 0">
       <xsl:value-of select="$prefix"/>
       <xsl:number level="multiple" count="qandadiv" format="1"/>
