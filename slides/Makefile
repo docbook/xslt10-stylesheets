@@ -4,7 +4,8 @@ DIFFVER=
 NEXTVER=
 
 all:
-	make -C schema
+	$(MAKE) -C schema
+	$(MAKE) -C xsl
 
 check:
 	$(XJPARSE) tests/test.xml
