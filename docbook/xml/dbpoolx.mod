@@ -7597,7 +7597,9 @@ OtherCredit. -->
 <![%link.attlist;[
 <!ATTLIST link
 		endterm		IDREF		#IMPLIED
-		%linkendreq.attrib;		type		CDATA		#IMPLIED
+		xrefstyle	CDATA		#IMPLIED
+		type		CDATA		#IMPLIED
+		%linkendreq.attrib;
 		%common.attrib;
 		%link.role.attrib;
 		%local.link.attrib;
@@ -7632,6 +7634,7 @@ OtherCredit. -->
 		type		CDATA		#IMPLIED
 		targetdoc	CDATA		#IMPLIED
 		targetptr	CDATA		#IMPLIED
+		xrefstyle	CDATA		#IMPLIED
 		%common.attrib;
 		%olink.role.attrib;
 		%local.olink.attrib;
@@ -7659,6 +7662,7 @@ OtherCredit. -->
 <!ATTLIST ulink
 		url		CDATA		#REQUIRED
 		type		CDATA		#IMPLIED
+		xrefstyle	CDATA		#IMPLIED
 		%common.attrib;
 		%ulink.role.attrib;
 		%local.ulink.attrib;
@@ -7710,7 +7714,9 @@ OtherCredit. -->
 <![%xref.attlist;[
 <!ATTLIST xref
 		endterm		IDREF		#IMPLIED
-		%linkendreq.attrib;		%common.attrib;
+		xrefstyle	CDATA		#IMPLIED
+		%common.attrib;
+		%linkendreq.attrib;
 		%xref.role.attrib;
 		%local.xref.attrib;
 >
