@@ -112,9 +112,6 @@
 </xsl:template>
 
 <xsl:template match="author" mode="xref-to">
-  <xsl:param name="target" select="."/>
-  <xsl:param name="refelem" select="local-name($target)"/>
-
   <xsl:call-template name="person.name"/>
 </xsl:template>
 
