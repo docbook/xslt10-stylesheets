@@ -2,7 +2,7 @@ XSLT=../../cvstools/saxon
 XJPARSE=../../cvstools/xjparse
 
 SOURCES=af.xml \
-        ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml et.xml fi.xml \
+        ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml et.xml eu.xml fi.xml \
         fr.xml hu.xml id.xml it.xml ja.xml ko.xml nl.xml nn.xml no.xml pl.xml \
         pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sr.xml sv.xml \
         tr.xml uk.xml xh.xml zh_cn.xml zh_tw.xml
@@ -20,6 +20,7 @@ el.xml: ../../gentext/locale/el.xml $(GENSTYLE)
 en.xml: ../../gentext/locale/en.xml $(GENSTYLE)
 es.xml: ../../gentext/locale/es.xml $(GENSTYLE)
 et.xml: ../../gentext/locale/et.xml $(GENSTYLE)
+eu.xml: ../../gentext/locale/eu.xml $(GENSTYLE)
 fi.xml: ../../gentext/locale/fi.xml $(GENSTYLE)
 fr.xml: ../../gentext/locale/fr.xml $(GENSTYLE)
 hu.xml: ../../gentext/locale/hu.xml $(GENSTYLE)

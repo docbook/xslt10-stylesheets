@@ -9,6 +9,7 @@
 <!ENTITY en SYSTEM "en.xml">
 <!ENTITY es SYSTEM "es.xml">
 <!ENTITY et SYSTEM "et.xml">
+<!ENTITY eu SYSTEM "eu.xml">
 <!ENTITY fi SYSTEM "fi.xml">
 <!ENTITY fr SYSTEM "fr.xml">
 <!ENTITY hu SYSTEM "hu.xml">
@@ -44,6 +45,7 @@
 &en;
 &es;
 &et;
+&eu;
 &fi;
 &fr;
 &hu;
