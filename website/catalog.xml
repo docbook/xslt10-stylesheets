@@ -6,79 +6,110 @@
       an entry like this to your XML catalog file, editing the
       path to match the location of your Website installation:
 
-    <nextCatalog catalog="/usr/share/xml/website-2.3/catalog.xml" />
+    <nextCatalog catalog="/usr/share/xml/website-2.4.0/catalog.xml" />
 -->
 
-<!-- website DTD locations -->
-<group id="website-dtd" 
-  	 prefer="public" >
-         
-  <public 
-      publicId="-//Norman Walsh//DTD Website V2.2//EN"
-      uri="website.dtd"/>
-      <!-- this could be the website-custom.dtd instead -->
+<!-- Website DTD locations -->
 
-  <public 
-      publicId="-//Norman Walsh//DTD Website Full V2.2//EN"
-      uri="website-full.dtd"/>
+<group xml:base="schema/dtd"
+       id="website-dtd"
+       prefer="public">
 
-    <public 
-      publicId="-//Norman Walsh//DTD Website Autolayout V2.2//EN"
-      uri="autolayout.dtd"/>
+  <public
+    publicId="-//Norman Walsh//DTD Website V2.4.0//EN"
+    uri="website.dtd"/>
+    <!-- this could be the website-custom.dtd instead -->
 
-    <public 
-      publicId="-//Norman Walsh//DTD Website Layout V2.2//EN"
-      uri="layout.dtd"/>
+  <public
+    publicId="-//Norman Walsh//DTD Website Custom V2.4.0//EN"
+    uri="website-custom.dtd"/>
 
-    <public 
-      publicId="-//Norman Walsh//DTD Website Module V2.2//EN"
-      uri="website.mod"/>
+  <public
+    publicId="-//Norman Walsh//DTD Website Full V2.4.0//EN"
+    uri="website-full.dtd"/>
 
-    <public 
-      publicId="-//Norman Walsh//DTD Website Extensions Module V2.2//EN"
-      uri="extensions.mod"/>
+  <public
+    publicId="-//Norman Walsh//DTD Website Autolayout V2.4.0//EN"
+    uri="autolayout.dtd"/>
 
-    <public 
-      publicId="-//Norman Walsh//DTD Website Namespaces Module V2.2//EN"
-      uri="namespaces.mod"/>
+  <public
+    publicId="-//Norman Walsh//DTD Website Layout V2.4.0//EN"
+    uri="layout.dtd"/>
 
-    <public 
-      publicId="-//Norman Walsh//DTD Website RDDL Module V2.2//EN"
-      uri="rddl.mod"/>
+  <public
+    publicId="-//Norman Walsh//DTD Website Module V2.4.0//EN"
+    uri="website.mod"/>
 
-    <public 
-      publicId="-//Norman Walsh//DTD Website Forms Module V2.2//EN"
-      uri="forms.mod"/>
-                     
+  <public
+    publicId="-//Norman Walsh//DTD Website Extensions Module V2.4.0//EN"
+    uri="extensions.mod"/>
+
+  <public
+    publicId="-//Norman Walsh//DTD Website Namespaces Module V2.4.0//EN"
+    uri="namespaces.mod"/>
+
+  <public
+    publicId="-//Norman Walsh//DTD Website RDDL Module V2.4.0//EN"
+    uri="rddl.mod"/>
+
+  <public
+    publicId="-//Norman Walsh//DTD Website Forms Module V2.4.0//EN"
+    uri="forms.mod"/>
+</group>
+
+<!-- Website RelaxNG locations -->
+
+<group xml:base="schema/relaxng"
+       id="website-relaxng"
+       prefer="public">
+
+  <uri
+      name="autolayout.rng"
+      uri="autolayout.rng"/>
+
+  <uri
+      name="layout.rng"
+      uri="layout.rng"/>
+
+  <uri
+      name="website.rng"
+      uri="website.rng"/>
+
+  <uri
+      name="website-full.rng"
+      uri="website-full.rng"/>
+
 </group>
 
 <!-- website XSL locations -->
-<group id="website-xsl" xml:base="xsl/" >
-    
+
+<group xml:base="xsl/"
+       id="website-xsl">
+
     <uri
       name="autolayout.xsl"
       uri="autolayout.xsl"/>
-       
+
     <uri
       name="website.xsl"
       uri="website.xsl"/>
-       
+
     <uri
       name="tabular.xsl"
       uri="tabular.xsl"/>
-       
+
     <uri
       name="chunk-tabular.xsl"
       uri="chunk-tabular.xsl"/>
-       
+
     <uri
       name="chunk-website.xsl"
       uri="chunk-website.xsl"/>
-       
+
     <uri
       name="makefile-dep.xsl"
       uri="makefile-dep.xsl"/>
-       
+
 </group>
 
 <!-- You can also put entries like these into your
@@ -98,11 +129,7 @@
 <!-- Map web references to DocBook 4.2 DTD -->
 <!--
    <nextCatalog catalog="/usr/share/xml/docbook42/catalog.xml" />
-        
+
 -->
 
-
-
- </catalog>
-
-
+</catalog>
