@@ -858,8 +858,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!-- the reference to bibliocomponent.mix -->
 <!ENTITY % local.info.class "">
 <!ENTITY % info.class
-		"(graphic | mediaobject | legalnotice | modespec
-		| subjectset | keywordset | itermset | %bibliocomponent.mix;)+">
+		"graphic | mediaobject | legalnotice | modespec
+		 | subjectset | keywordset | itermset | %bibliocomponent.mix;">
 
 <!ENTITY % biblioentry.module "INCLUDE">
 <![%biblioentry.module;[
@@ -1386,29 +1386,29 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!--end of msgset.content.module-->]]>
 
 <!-- QandASet ........................ -->
-<!ENTITY % qandset.content.module "INCLUDE">
-<![ %qandset.content.module; [
-<!ENTITY % qandset.module "INCLUDE">
-<![ %qandset.module; [
-<!ENTITY % local.qandset.attrib "">
-<!ENTITY % qandset.role.attrib "%role.attrib;">
+<!ENTITY % qandaset.content.module "INCLUDE">
+<![ %qandaset.content.module; [
+<!ENTITY % qandaset.module "INCLUDE">
+<![ %qandaset.module; [
+<!ENTITY % local.qandaset.attrib "">
+<!ENTITY % qandaset.role.attrib "%role.attrib;">
 
-<!ENTITY % qandset.element "INCLUDE">
-<![ %qandset.element; [
+<!ENTITY % qandaset.element "INCLUDE">
+<![ %qandaset.element; [
 <!ELEMENT qandaset %ho; ((%formalobject.title.content;)?,
 			(%qandaset.mix;)*,
                         (qandadiv+|qandaentry+))>
-<!--end of qandset.element-->]]>
+<!--end of qandaset.element-->]]>
 
-<!ENTITY % qandset.attlist "INCLUDE">
-<![ %qandset.attlist; [
+<!ENTITY % qandaset.attlist "INCLUDE">
+<![ %qandaset.attlist; [
 <!ATTLIST qandaset
 		defaultlabel	(qanda|number|none)       #IMPLIED
 		%common.attrib;
-		%qandset.role.attrib;
-		%local.qandset.attrib;>
-<!--end of qandset.attlist-->]]>
-<!--end of qandset.module-->]]>
+		%qandaset.role.attrib;
+		%local.qandaset.attrib;>
+<!--end of qandaset.attlist-->]]>
+<!--end of qandaset.module-->]]>
 
 <!ENTITY % qandadiv.module "INCLUDE">
 <![ %qandadiv.module; [
@@ -1509,7 +1509,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 >
 <!--end of label.attlist-->]]>
 <!--end of label.module-->]]>
-<!--end of qandset.content.module-->]]>
+<!--end of qandaset.content.module-->]]>
 
 <!-- Procedure ........................ -->
 
