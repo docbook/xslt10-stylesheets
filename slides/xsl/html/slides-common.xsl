@@ -1140,6 +1140,9 @@
   </xsl:variable>
 
   <xsl:choose>
+    <xsl:when test="$href = ''">
+      <!-- nop -->
+    </xsl:when>
     <xsl:when test="contains($href, '//')">
       <link type="text/css" rel="stylesheet" href="{$href}"/>
     </xsl:when>
