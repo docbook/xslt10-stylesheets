@@ -21,8 +21,6 @@ publishing.inlines |= db.coref
 list.blocks |= db.calloutlist
 verbatim.blocks |= db.programlistingco
 verbatim.blocks |= db.screenco
-graphic.blocks |= db.mediaobjectco
-screenshot.block |= db.mediaobjectco
 computeroutput.inlines |= db.co
 verbatim.inlines |= db.co
 prompt.inlines |= db.co
@@ -30,6 +28,8 @@ systemitem.inlines |= db.co
 computeroutput.inlines |= db.co
 userinput.inlines |= db.co
 replaceable.inlines |= db.co
+
+mediaobject.content |= db.imageobjectco
 
 # ======================================================================
 
@@ -249,35 +249,6 @@ div {
 # ======================================================================
 
 [
-   db:refname [ "mediaobjectco" ]
-   db:refpurpose [ "" ]
-]
-div {
-
-   local.mediaobjectco.attributes = empty
-
-   mediaobjectco.role.attribute = attribute role { text }
-
-   mediaobjectco.attlist =
-      mediaobjectco.role.attribute?
-    & common.attributes
-    & common.linking.attributes
-    & local.mediaobjectco.attributes
-
-   mediaobjectco.info = docbook.info.titleforbidden
-
-   db.mediaobjectco =
-      element mediaobjectco {
-         mediaobjectco.attlist,
-         mediaobjectco.info,
-         db.imageobjectco,
-         (db.imageobjectco | db.textobject)*
-      }
-}
-
-# ======================================================================
-
-[
    db:refname [ "imageobjectco" ]
    db:refpurpose [ "" ]
 ]
@@ -298,7 +269,7 @@ div {
    db.imageobjectco =
       element imageobjectco {
          imageobjectco.attlist,
-         imageobjectco.info?,
+         imageobjectco.info,
          db.areaspec,
          db.imageobject,
          db.calloutlist*
