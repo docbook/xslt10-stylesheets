@@ -486,17 +486,42 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="procedure">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
-  <xsl:variable name="title" select="title"/>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <xsl:variable name="param.placement"
+                select="substring-after(normalize-space($formal.title.placement),
+                                        concat(local-name(.), ' '))"/>
+
+  <xsl:variable name="placement">
+    <xsl:choose>
+      <xsl:when test="contains($param.placement, ' ')">
+        <xsl:value-of select="substring-before($param.placement, ' ')"/>
+      </xsl:when>
+      <xsl:when test="$param.placement = ''">before</xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$param.placement"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:variable name="preamble"
                 select="*[not(self::step or self::title)]"/>
   <xsl:variable name="steps" select="step"/>
 
   <fo:block id="{$id}" xsl:use-attribute-sets="list.block.spacing">
-    <xsl:if test="./title">
-      <fo:block font-weight="bold">
-        <xsl:apply-templates select="./title" mode="procedure.title.mode"/>
-      </fo:block>
+    <xsl:if test="./title and $placement = 'before'">
+      <xsl:choose>
+        <xsl:when test="$formal.procedures != 0">
+          <xsl:call-template name="formal.object.heading"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <fo:block font-weight="bold">
+            <xsl:apply-templates select="./title" mode="procedure.title.mode"/>
+          </fo:block>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
 
     <xsl:apply-templates select="$preamble"/>
@@ -506,6 +531,19 @@
                    provisional-label-separation="0.2em">
       <xsl:apply-templates select="$steps"/>
     </fo:list-block>
+
+    <xsl:if test="./title and $placement != 'before'">
+      <xsl:choose>
+        <xsl:when test="$formal.procedures != 0">
+          <xsl:call-template name="formal.object.heading"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <fo:block font-weight="bold">
+            <xsl:apply-templates select="./title" mode="procedure.title.mode"/>
+          </fo:block>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
   </fo:block>
 </xsl:template>
 

@@ -36,7 +36,7 @@
 </xsl:template>
 
 <xsl:template match="itemizedlist/title">
-  <p><b><xsl:apply-templates/></b></p>
+  <p class="title"><b><xsl:apply-templates/></b></p>
 </xsl:template>
 
 <xsl:template match="itemizedlist/listitem">
@@ -175,7 +175,7 @@
 </xsl:template>
 
 <xsl:template match="orderedlist/title">
-  <p><b><xsl:apply-templates/></b></p>
+  <p class="title"><b><xsl:apply-templates/></b></p>
 </xsl:template>
 
 <xsl:template match="orderedlist/listitem">
@@ -295,7 +295,7 @@
 </xsl:template>
 
 <xsl:template match="variablelist/title">
-  <p><b><xsl:apply-templates/></b></p>
+  <p class="title"><b><xsl:apply-templates/></b></p>
 </xsl:template>
 
 <xsl:template match="listitem" mode="xref">
@@ -600,12 +600,40 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="procedure">
+  <xsl:variable name="param.placement"
+                select="substring-after(normalize-space($formal.title.placement),
+                                        concat(local-name(.), ' '))"/>
+
+  <xsl:variable name="placement">
+    <xsl:choose>
+      <xsl:when test="contains($param.placement, ' ')">
+        <xsl:value-of select="substring-before($param.placement, ' ')"/>
+      </xsl:when>
+      <xsl:when test="$param.placement = ''">before</xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$param.placement"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="preamble"
+                select="*[not(self::step or self::title)]"/>
+
   <div class="{name(.)}">
     <xsl:call-template name="anchor"/>
-    <xsl:if test="title or $formal.procedures != 0">
-      <xsl:call-template name="formal.object.heading"/>
+
+    <xsl:if test="title and $placement = 'before'">
+      <xsl:choose>
+        <xsl:when test="$formal.procedures != 0">
+          <xsl:call-template name="formal.object.heading"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="title"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
-    <xsl:apply-templates select="*[local-name()!='step']"/>
+
+    <xsl:apply-templates select="$preamble"/>
 
     <xsl:choose>
       <xsl:when test="count(step) = 1">
@@ -622,14 +650,30 @@
         </ol>
       </xsl:otherwise>
     </xsl:choose>
+
+    <xsl:if test="title and $placement != 'before'">
+      <xsl:choose>
+        <xsl:when test="$formal.procedures != 0">
+          <xsl:call-template name="formal.object.heading"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="title"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
   </div>
 </xsl:template>
 
 <xsl:template match="procedure/title">
+  <p class="title">
+    <b>
+      <xsl:apply-templates/>
+    </b>
+  </p>
 </xsl:template>
 
 <xsl:template match="title" mode="procedure.title.mode">
-  <p>
+  <p class="title">
     <b>
       <xsl:apply-templates/>
     </b>

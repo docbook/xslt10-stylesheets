@@ -13,15 +13,27 @@
      ******************************************************************** -->
 
 <xsl:template name="formal.object">
+  <xsl:param name="placement" select="'before'"/>
+
   <div class="{name(.)}">
-    <xsl:call-template name="formal.object.heading"/>
-    <xsl:apply-templates/>
+    <xsl:call-template name="anchor"/>
+    <xsl:choose>
+      <xsl:when test="$placement = 'before'">
+        <xsl:call-template name="formal.object.heading"/>
+        <xsl:apply-templates/>
+        <xsl:if test="$spacing.paras != 0"><p/></xsl:if>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:if test="$spacing.paras != 0"><p/></xsl:if>
+        <xsl:apply-templates/>
+        <xsl:call-template name="formal.object.heading"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </div>
 </xsl:template>
 
 <xsl:template name="formal.object.heading">
-  <p>
-    <xsl:call-template name="anchor"/>
+  <p class="title">
     <b>
       <xsl:apply-templates select="." mode="object.title.markup">
         <xsl:with-param name="allow-anchors" select="1"/>
@@ -40,9 +52,12 @@
 </xsl:template>
 
 <xsl:template name="semiformal.object">
+  <xsl:param name="placement" select="'before'"/>
   <xsl:choose>
     <xsl:when test="title">
-      <xsl:call-template name="formal.object"/>
+      <xsl:call-template name="formal.object">
+        <xsl:with-param name="placement" select="$placement"/>
+      </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="informal.object"/>
@@ -51,11 +66,47 @@
 </xsl:template>
 
 <xsl:template match="figure|table|example">
-  <xsl:call-template name="formal.object"/>
+  <xsl:variable name="param.placement"
+                select="substring-after(normalize-space($formal.title.placement),
+                                        concat(local-name(.), ' '))"/>
+
+  <xsl:variable name="placement">
+    <xsl:choose>
+      <xsl:when test="contains($param.placement, ' ')">
+        <xsl:value-of select="substring-before($param.placement, ' ')"/>
+      </xsl:when>
+      <xsl:when test="$param.placement = ''">before</xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$param.placement"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:call-template name="formal.object">
+    <xsl:with-param name="placement" select="$placement"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="equation">
-  <xsl:call-template name="semiformal.object"/>
+  <xsl:variable name="param.placement"
+                select="substring-after(normalize-space($formal.title.placement),
+                                        concat(local-name(.), ' '))"/>
+
+  <xsl:variable name="placement">
+    <xsl:choose>
+      <xsl:when test="contains($param.placement, ' ')">
+        <xsl:value-of select="substring-before($param.placement, ' ')"/>
+      </xsl:when>
+      <xsl:when test="$param.placement = ''">before</xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$param.placement"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:call-template name="semiformal.object">
+    <xsl:with-param name="placement" select="$placement"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="figure/title"></xsl:template>

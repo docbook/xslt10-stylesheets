@@ -216,6 +216,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <reference><title>Miscellaneous</title>
 &graphic.default.extension;
 &formal.procedures;
+&formal.title.placement;
 &runinhead.default.title.end.punct;
 &runinhead.title.end.punct;
 &show.comments;
@@ -352,6 +353,7 @@ around all these parameters.</para>
 <src:fragref linkend="emphasis.propagates.style.frag"/>
 <src:fragref linkend="firstterm.only.link.frag"/>
 <src:fragref linkend="formal.procedures.frag"/>
+<src:fragref linkend="formal.title.placement.frag"/>
 <src:fragref linkend="funcsynopsis.decoration.frag"/>
 <src:fragref linkend="funcsynopsis.style.frag"/>
 <src:fragref linkend="function.parens.frag"/>
