@@ -1,6 +1,6 @@
 include ../cvstools/Makefile.incl
 
-all: tangle.xsl weave.xsl wdocbook.xsl xtangle.xsl
+all: tangle.xsl weave.xsl w2docbook.xsl xtangle.xsl
 	$(MAKE) -C html
 	$(MAKE) -C example
 
@@ -33,22 +33,22 @@ xtangle.xsl: tangle.xweb bootstrap-tangle.xsl
 tangle.xsl: tangle.xweb xtangle.xsl
 	$(XSLT) $< xtangle.xsl $@
 
-tangle.xml: tangle.xweb wdocbook.xsl
-	$(XSLT) $< wdocbook.xsl $@
+tangle.xml: tangle.xweb w2docbook.xsl
+	$(XSLT) $< w2docbook.xsl $@
 
 weave.xsl: weave.xweb xtangle.xsl
 	$(XSLT)  $< xtangle.xsl $@
 
-weave.xml: weave.xweb wdocbook.xsl
-	$(XSLT)  $< wdocbook.xsl $@
+weave.xml: weave.xweb w2docbook.xsl
+	$(XSLT)  $< w2docbook.xsl $@
 	xjparse $@
 
-wdocbook.xsl: weave.xweb xtangle.xsl weave.xsl
-	$(XSLT) $< xtangle.xsl $@ top=wdocbook
+w2docbook.xsl: weave.xweb xtangle.xsl weave.xsl
+	$(XSLT) $< xtangle.xsl $@ top=w2docbook
 
 realclean: clean
 	rm -f xtangle.xsl
-	rm -f weave.xsl wdocbook.xsl
+	rm -f weave.xsl w2docbook.xsl
 	rm -f tangle.xsl
 	$(MAKE) -C html realclean
 	$(MAKE) -C fo realclean
