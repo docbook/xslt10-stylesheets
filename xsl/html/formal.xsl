@@ -26,7 +26,11 @@
 	<xsl:call-template name="object.id"/>
       </xsl:attribute>
     </a>
-    <b><xsl:apply-templates select="." mode="object.title.markup"/></b>
+    <b>
+      <xsl:apply-templates select="." mode="object.title.markup">
+        <xsl:with-param name="allow-anchors" select="1"/>
+      </xsl:apply-templates>
+    </b>
   </p>
 </xsl:template>
 
