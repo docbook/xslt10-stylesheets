@@ -44,7 +44,7 @@ else
 	grep -v "<?xml" $(TMP)/fm-docbook-$(DISTRO) | freshmeat-submit $(FMGO)
 endif
 
-zip: excludes
+zip:
 ifeq ($(ZIPVER),)
 	@echo You must specify ZIPVER for the zip target
 	exit 1
@@ -55,10 +55,17 @@ ifneq ($(EXECUTABLES),)
 	chmod 0755 $(EXECUTABLES)
 endif
 	rm -rf $(TMP)/docbook-$(DISTRO)-$(ZIPVER)
+	rm -f  $(TMP)/tar.exclude
 	rm -f  $(TMP)/docbook-$(DISTRO)-$(ZIPVER).tar.gz
 	rm -f  $(TMP)/docbook-$(DISTRO)-$(ZIPVER).tar.bz2
 	rm -f  $(TMP)/docbook-$(DISTRO)-$(ZIPVER).zip
-	umask 022; mkdir $(TMP)/docbook-$(DISTRO)-$(ZIPVER)
+	umask 022; mkdir -p $(TMP)/docbook-$(DISTRO)-$(ZIPVER)
+	touch $(TMP)/tar.exclude
+# distro-specific excludes
+	for file in $(DISTRIB_EXCLUDES); do \
+	  find . -print  | grep $$file     | cut -c3- >> $(TMP)/tar.exclude; \
+	done
+# global excludes
 	find . -print  | grep /CVS$$       | cut -c3- >> $(TMP)/tar.exclude
 	find . -print  | grep /CVS/        | cut -c3- >> $(TMP)/tar.exclude
 	find . -print  | grep /debian/     | cut -c3- >> $(TMP)/tar.exclude

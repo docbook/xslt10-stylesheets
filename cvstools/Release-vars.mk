@@ -8,7 +8,7 @@
 #-----------------------------------------------------------------
 
 # stylesheet for generating release notes
-DOC-LINK-STYLE=   $(DOCBOOK_CVS)/xsl/docsrc/doc-link-docbook.xsl
+DOC-LINK-STYLE=$(DOCBOOK_CVS)/xsl/docsrc/doc-link-docbook.xsl
 
 # browser to use for making text version of release notes
 BROWSER=w3m
@@ -22,12 +22,12 @@ BROWSER_OPTS=-dump
 #     whether or not it is a stylesheet
 #
 RELVER := $(shell \
- if [ -f $(DISTRO)/VERSION ]; then \
-   if grep "<xsl:stylesheet" $(DISTRO)/VERSION >/dev/null; then \
-     grep "Version>.\+<" $(DISTRO)/VERSION \
+ if [ -f VERSION ]; then \
+   if grep "<xsl:stylesheet" VERSION >/dev/null; then \
+     grep "Version>.\+<" VERSION \
      | sed 's/^[^<]*<fm:Version>\(.\+\)<\/fm:Version>$$/\1/' \
      | tr -d "\n"; \
-   else cat $(DISTRO)/VERSION; \
+   else cat VERSION; \
    fi \
  fi \
 )
@@ -52,17 +52,17 @@ endif
 # remove dots from version number to create CVS tag
 TAGVER := $(shell echo "V$(RELVER)" | sed "s/\.//g")
 
-# stuff for "make zip", "make freshmeat", and "make install" targets
+# to use a temp directory other than /tmp, run "make zip TMP=/foo"
+# or "make zip TMP=$TMP to override following setting
 TMP=/tmp
 # specifies options to feed to "freshmeat-submit"
 FMGO=-N
-# SFRELID specifies the Sourceforge release ID for the current
-# release. Before running "make freshmeat", you need to manually
-# create the new release at Sourceforge (via the SF web
-# interface), then copy down the release ID in the URI for the
-# release
+# SFRELID specifies Sourceforge release ID for current release.
+# Before running "make freshmeat", you need to manually create the
+# new release at Sourceforge (via the SF web interface), then copy
+# down the release ID in the URI for the release
 SFRELID=
-# specifies with FTP app to use for upload to SF incoming
+# specifies which FTP app to use for upload to SF incoming
 FTP=lftp
 FTP_OPTS=-e
 SCP=scp
