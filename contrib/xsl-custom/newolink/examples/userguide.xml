@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE article SYSTEM "../../docbook412/docbookx.dtd" [
+<!DOCTYPE chapter SYSTEM "../../docbook412/docbookx.dtd" [
 <!ENTITY % local.olink.attrib
 	"targetdoc	CDATA	#IMPLIED
 	 targetid	CDATA	#IMPLIED"
 >
 ]>
-<article id="publish">
+<chapter id="publish">
 <title>Publishing DocBook Documents</title>
 <para>
 Creating and editing SGML/XML documents is usually only half the
@@ -173,4 +173,4 @@ stylesheet that controls the presentation of specific elements is the
 </section>
 </section>
 </section>
-</article>
+</chapter>
