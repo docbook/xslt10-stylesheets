@@ -1,32 +1,11 @@
 include ../../cvstools/Makefile.incl
-TTLTEMPLATEXSL=/sourceforge/docbook/xsl/template/titlepage.xsl
 
-PARAMPROF=.param.profiled
-PARAMSTRIP=.param.stripped
+.PHONY: fo xhtml
 
-all: titlepage-fo-plain.xsl param.xsl
+all: fo xhtml
 
-%.xsl: %.xml
-	$(XSLT) $< $(TTLTEMPLATEXSL) $@
+fo:
+	$(MAKE) -C fo
 
-xml: param.xml
-
-html: param.html
-
-param.html: param.xml
-	$(XSLT) $< ../../xsl/docsrc/lrefentry.xsl $@
-
-param.xml: param.xweb
-	$(XSLT) $< ../../xsl/profiling/profile.xsl $(PARAMPROF) profile.condition=html
-	$(XSLT) $(PARAMPROF) ../../xsl/profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
-	$(XSLT) $(PARAMSTRIP) ../../litprog/wdocbook.xsl $@
-	$(RM) $(PARAMPROF) $(PARAMSTRIP)
-
-param.xsl: param.xweb
-	$(XSLT) $< ../../xsl/profiling/profile.xsl $(PARAMPROF) profile.condition=html
-	$(XSLT) $(PARAMPROF) ../../xsl/profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
-	$(XSLT) $(PARAMSTRIP) ../../litprog/xtangle.xsl $@
-	$(RM) $(PARAMPROF) $(PARAMSTRIP)
-
-clean:
-	rm -f titlepage-fo-plain.xsl
+xhtml:
+	$(MAKE) -C xhtml
