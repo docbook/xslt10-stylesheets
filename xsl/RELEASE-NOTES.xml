@@ -14,7 +14,7 @@ includes at least the global parameters.</para>
 <para>You may also be interested in the more detailed <ulink url="WhatsNew"/>.
 </para> 
 <itemizedlist>
-<title>Release 1.66.0</title>
+<title>Release 1.66.1</title>
 <listitem>
 <para>A number of important bug fixes, documented in <ulink url="WhatsNew"/>.
 </para>
@@ -272,6 +272,11 @@ spec.
 <listitem>
 <para>
 Added several patches to htmlhelp from W. Borgert
+</para>
+</listitem> 
+<listitem>
+<para>
+Added Bosnian locale file as common/bs.xml.
 </para>
 </listitem> 
 </itemizedlist>
