@@ -1,800 +1,261 @@
-<!-- 		DocBook DTD           Release 1.1
+<!-- ...................................................................... -->
+<!-- DocBook DTD V2.3 ..................................................... -->
+<!-- File docbook.dtd ..................................................... -->
 
-   10 February 1993  10:00 PST
+<!-- Copyright 1992, 1993, 1994, 1995 HaL Computer Systems, Inc., 
+     O'Reilly & Associates, Inc., and ArborText, Inc.
 
-   Copyright 1992, 1993  HaL Computer Systems, Inc., and
-     O'Reilly & Associates, Inc.
-
-   Permission to use, copy, modify and distribute the DocBook DTD and
+     Permission to use, copy, modify and distribute the DocBook DTD and
      its accompanying documentation for any purpose and without fee is
      hereby granted, provided that this copyright notice appears in all
-     copies.  If you modify the DocBook DTD, rename your modified
-     version.  HaL Computer Systems and O'Reilly & Associates make no
-     representation about the suitability of the DTD for any purpose.
-     It is provided "as is" without expressed or implied warranty.
+     copies.  The copyright holders make no representation about the
+     suitability of the DTD for any purpose.  It is provided "as is"
+     without expressed or implied warranty.
 
-   The DocBook DTD is maintained by O'Reilly & Associates.  Please
-     direct all questions, bug reports, or suggestions for changes to
-     dtd@ora.com or by mail to: Terry Allen, O'Reilly & Associates,
-     Inc., 103A Morris Street, Sebastopol, California, 95472.
+     If you modify the DocBook DTD in any way, except for declaring and
+     referencing additional sets of general entities and declaring
+     additional notations, label your DTD as a variant of DocBook.  See
+     the maintenance documentation for more information.
 
-   Please note that an SGML declaration is provided for this DTD.
-     
-   Public Identifier:
-	"-//HaL and O'Reilly//DTD DocBook 1.1//EN"
-				  -->
+     Please direct all questions, bug reports, or suggestions for
+     changes to the davenport@online.ora.com mailing list or to one of
+     the maintainers:
 
-<!-- ==================================================================
-	NOTATIONS  -->
+     o Terry Allen, O'Reilly & Associates, Inc.
+       101 Morris St., Sebastopol, CA 95472
+       <terry@ora.com>
 
+     o Eve Maler, ArborText, Inc.
+       105 Lexington St., Burlington, MA 01803
+       <elm@arbortext.com>
+-->
+
+<!-- ...................................................................... -->
+
+<!-- This is the driver file for Version 2.3 of the DocBook DTD.  Please
+     use the following formal public identifier to identify it:
+
+     "-//Davenport//DTD DocBook V2.3//EN"
+
+     For example, if your document's top-level element is Book, and
+     you are using DocBook directly, use the FPI in the DOCTYPE
+     declaration:
+
+     <!DOCTYPE Book PUBLIC "-//Davenport//DTD DocBook V2.3//EN" [...]>
+
+     Or, if you have a higher-level driver file that customizes DocBook,
+     use the FPI in the parameter entity declaration:
+
+     <!ENTITY % DocBookDTD PUBLIC "-//Davenport//DTD DocBook V2.3//EN">
+     %DocBookDTD;
+
+     The DocBook DTD is accompanied by an SGML declaration.
+
+     See the maintenance documentation for detailed information on the
+     parameter entity and module scheme used in DocBook, customizing
+     DocBook and planning for interchange, and changes made since the
+     last release of DocBook.
+-->
+
+<!-- ...................................................................... -->
+<!-- Notation declarations ................................................ -->
+
+<!ENTITY % local.notation.class "">
+<!ENTITY % notation.class
+		"CGM-CHAR | CGM-BINARY | CGM-CLEAR | DITROFF | DVI | EPS 
+		| EQN | FAX | GIF | IGES | PIC | PS | TBL | TEX | TIFF 
+		| linespecific 
+		%local.notation.class;">
+
+<!NOTATION CGM-CHAR	PUBLIC "ISO 8632/2//NOTATION Character encoding//EN">
+<!NOTATION CGM-BINARY	PUBLIC "ISO 8632/3//NOTATION Binary encoding//EN">
+<!NOTATION CGM-CLEAR	PUBLIC "ISO 8632/4//NOTATION Clear text encoding//EN">
+<!NOTATION DITROFF	SYSTEM "DITROFF">
+<!NOTATION DVI		SYSTEM "DVI">
+<!NOTATION EPS		PUBLIC 
+"+//ISBN 0-201-18127-4::Adobe//NOTATION PostScript Language Ref. Manual//EN">
+<!NOTATION EQN		SYSTEM "-//AT&T//NOTATION EQN-1//EN">
+<!NOTATION FAX		PUBLIC 
+"-//USA-DOD//NOTATION CCITT Group 4 Facsimile Type 1 Untiled Raster//EN">
 <!NOTATION GIF		SYSTEM "GIF" >
-<!NOTATION TIFF		SYSTEM "TIFF" >
-<!NOTATION CGM		SYSTEM "CGM" >
-<!NOTATION DVI		SYSTEM "DVI" >
-<!NOTATION EPS		SYSTEM "EPS" >
-<!NOTATION TEX		SYSTEM "TEX 3.14" >
-<!NOTATION TBL		SYSTEM "TBL" >
-<!NOTATION EQN		SYSTEM "EQN" >
-<!NOTATION PS		SYSTEM "PS" >
-<!NOTATION DITROFF	SYSTEM "DITROFF" >
-<!NOTATION PIC		SYSTEM "-//AT&T//NOTATION PIC-1//EN" >
-<!NOTATION linespecific	SYSTEM "line ends and leading white space
-                                must be preserved in output" >
-
-<!-- ==================================================================
-	PUBLICLY DECLARED EXTERNAL ENTITIES   -->
-
-<!ENTITY % ISOnum  PUBLIC 
-		"ISO 8879:1986//ENTITIES Numeric and Special Graphic//EN">
-          %ISOnum
-
-<!ENTITY % ISOpub  PUBLIC "ISO 8879:1986//ENTITIES Publishing//EN">
-          %ISOpub
-
-<!ENTITY % ISOamsa PUBLIC 
-	"ISO 8879:1986//ENTITIES Added Math Symbols: Arrow Relations//EN">
-	  %ISOamsa;
-
-<!ENTITY % ISOtech PUBLIC "ISO 8879:1986//ENTITIES General Technical//EN">
-          %ISOtech
-
-<!ENTITY % ISOlat1 PUBLIC "ISO 8879:1986//ENTITIES Added Latin 1//EN">
-          %ISOlat1;
-
-<!ENTITY % ISOlat2 PUBLIC "ISO 8879:1986//ENTITIES Added Latin 2//EN">
-          %ISOlat2;
-
-<!-- ==================================================================  
-	PARAMETER ENTITIES to allow inclusion of local modifications.  
-	To include your local terms, table content model, graphics 
-	format, or other local item,
-	
-	1.  At the head of your instance, after the DOCTYPE line, 
-	include a reference to an external entity file that
-	that includes all the local terms, table content models,
-	and (or) graphics formats you are using:
-
-	<!DOCTYPE docbook SYSTEM "/yourpath/docbook.dtd" [
-	<!ENTITY % localmods SYSTEM "/yourpath/localmodfile" >
-	%localmods
-	]>
-
-	You may need to set up attributes for your local elements.
-	
-	N.B.:  Depending on the flags you set, sgmls 1.0 may report 
-	as errors that it has found duplicate specifications of 
-	these parameter entities.  This is harmless, as the 
-	duplicates are those included below, which are unneeded. 
-
-	2.  In the referenced external entity file, redefine
-	the parameter entities for your local modifications.
-
-	The multiplicity of placeholder elements below helps 
-	avoid ambiguous constructions.
-
-				-->
-<!ENTITY % local.bookcontent "placeholder.bookcontent" >
-<!ENTITY % local.refnav "placeholder.refnav" >
-<!ENTITY % local.terms "placeholder.terms" >
-<!ENTITY % local.tables "placeholder.tables" >
-<!ENTITY % local.notations "placeholder.notations" >
-<!ENTITY % local.refclasses "placeholder.refclasses" >
-<!ENTITY % local.links "placeholder.links" >
-
-<!ELEMENT (placeholder.bookcontent 
-				| placeholder.refnav
-				| placeholder.terms
-				| placeholder.tables
-				| placeholder.notations
-				| placeholder.refclasses
-				| placeholder.links)	- O EMPTY>
-
-<!-- =====================================================================
-	ATTRIBUTE LIST for a set of common attributes.  Remap can be
-	  used to indicate the value of the element in the original
-	  source, and Group can be used to set up separate series
-	  with the same element (e.g., Figure could have one series for
-	  figures and another for plates).  -->
-
-<!ENTITY % commonatts
-		"id	ID	#IMPLIED
-		Remap	CDATA	#IMPLIED
-		Group	CDATA	#IMPLIED">
-
-<!-- ===================================================================
-	OTHER PARAMETER ENTITIES  -->
-
-<!--    Book Contents:  these are pieces it may be convenient to validate
-		on their own  -->
-
-<!ENTITY % bookcontent.gp "%local.bookcontent
-				| Appendix | Bibliography | BookComponent 
-				| Chapter | Glossary
-				| Index | LoT | Part | Preface 
-				| RefEntry | Reference | ToC" >
-
-<!--    Contents that can appear almost anywhere  -->
-
-<!ENTITY % basechar.gp "#PCDATA | FunctionParam | VarParam | Anchor" >
-
-<!--  entities to make up inlinechar.gp  -->
-
-<!ENTITY % words.gp "Acronym | Character | Charset | Citation 
-				| CiteBook | CiteChap 
-				| CiteRefEntry  | CiteSect | Comment
-				| Emphasis | FirstTerm 
-				| Font | ForeignPhrase
-				| GlossaryDef | GlossaryTerm | Glyph 
-				| Quote | Subscript | Superscript 
-				| WordasWord" >
-		<!ATTLIST  (%words.gp)	%commonatts >
-
-<!ENTITY % links.gp "ExternalLink | Footnote | FootnoteRef
-				| IndexTerm | Link | %local.links | XRef" >
-
-<!ENTITY % docinfo.content.gp "Author | AuthorInitials
-				| BookAcronym | BookTitle 
-				| Copyright | CorpName | Date
-				| Editor | Edition | Firstname 
-				| Holder | InvPartNumber | ISBN 
-				| LegalNotice | OrgName | PrintHistory 
-				| ProductName | ProductNumber
-				| Publisher | PublNumber | ReleaseInfo
-				| RevHistory | Revision
-				| RevNumber | RevRemark | Series 
-				| Subtitle | Surname | VolumeNumber 
-				| Year" >
-		<!ATTLIST  (%docinfo.content.gp)	%commonatts >
-
-<!ENTITY % computerterms.gp "Action | Application | Button
-				| Classname | Command | Constant
-				| DbName | DbTable | DbField | DbRecord
-				| Error | EventType | EventStructure
-				| Filename | Flag | Function 
-				| Hardware | HWapplic | Icon 
-				| Interface | InterfaceDefinition
-				| KeyCap | KeyCode | KeySym
-				| LineAnnotation | Literal
-				| Macro | Mask | Menu | MenuItem
-				| Prompt | Property | ProtocolRequest
-				| Resource | ReturnValue
-				| StructField
-				| StructMember | StructName
-				| SWapplic | Symbol
-				| SystemItem | SystemName 
-				| Token | Type | UserInput" >
-	<!ATTLIST  (%computerterms.gp)	%commonatts 
-					HasRefEntry	(Yes|No)	No >
-
-
-<!ENTITY % inlinechar.gp "%basechar.gp | %computerterms.gp
-				| %docinfo.content.gp | %links.gp
-				| %local.terms | Optional | %words.gp" > 
-
-<!ENTITY % paracontent.gp "%inlinechar.gp | Graphic | Equation
-				| Synopsis" >
-
-<!--   All the varieties of lists  -->
-
-<!ENTITY % list.gp "ItemizedList | OrderedList | VariableList
-				| SegmentedList" >
-
-<!--   More elements for other parameter entities   -->
-
-<!ENTITY % object.gp "BlockQuote | Caution | Comment | Equation
-				| Example | Footnote | Graphic 
-				| Important | LiteralLayout 
-				| %local.tables | Note | ProgramListing 
-				| Screen | Synopsis | Table | Task
-				| Tip | Warning" > 
-
-<!ENTITY % component.gp "Abstract | Anchor | AuthorBlurb | BiblioEntry 
-				| Epigraph | Figure | Highlights 
-				| IndexTerm | %list.gp | %object.gp 
-				| Para | Sidebar | Structure" >
-
-<!--   Contents that can have the hierarchical rank of any SectX  -->
-
-<!ENTITY % refnav.gp "%local.refnav | RefEntry | Toc | LoT | Index
-				| Glossary | Bibliography | Reference" >
-
-<!--   The sect1.gp parameter entity is used in Chapter, Preface   -->
-
-<!ENTITY % sect1.gp "((%component.gp | %refnav.gp | Sect1)+)" >
-
-<!-- ====================================================================
-	TOP-LEVEL DOCUMENT STRUCTURE  -->
-
-<!--  The base document element is DocBook, which has the Version 
-	attribute so that your instance can specify which version of 
-	this DTD it conforms to.  N.B.:  a DocBook instance need 
-	not be a complete book.  DocBooks may be nested within
-	other DocBooks  -->
-
-<!ELEMENT DocBook	- -  (BookTitle?, ((((%bookcontent.gp)+)
-				| Book | Set) | Docbook+))>
-	<!ATTLIST DocBook  Version CDATA "1.1">
-
-<!--    A model for a Set of Books  -->
-
-<!ELEMENT Set	- - (DocInfo?, Book, Book+)>
-		<!ATTLIST  Set
-					%commonatts >
-
-<!--	A relatively unstructured model for a Book  -->
-
-<!ELEMENT Book	- - (DocInfo, (%bookcontent.gp)*)>
-		<!ATTLIST  Book	
-                                %commonatts
-                                Number  CDATA   #IMPLIED >
-
-<!-- ===================================================================
-     GENERAL STRUCTURES FOR BOOKS.  A Part contains two or more 
-	Chapters or Appendices or BookComponents (generic, undefined
-	element).  A Preface, ToC, LoT, Bibliography, Glossary, or Index
-	can be a chapter-level component, while ToC, LoT,
-	Bibliography, Glossary, and Index may also appear within
-	chapter-level components.  
-	-->
-
-<!ELEMENT Part	- - (PartIntro?, ((Chapter, Chapter+)
-				| (Appendix, Appendix+)
-				| (BookComponent, BookComponent+)))>
-		<!ATTLIST Part	
-				%commonatts
-				Number	CDATA	#IMPLIED >
-
-<!ELEMENT PartIntro	- - (Title?, (%component.gp)*)>
-		<!ATTLIST PartIntro	
-				%commonatts
-				Number	CDATA	#IMPLIED >
-
-<!--   Most of the book component elements  -->
-
-<!ELEMENT DocInfo	- -  ((%docinfo.content.gp)+)>
-		<!ATTLIST  DocInfo 
-					%commonatts >
-		
-<!ELEMENT BookComponent	- -  (Title, TitleAbbrev?, %sect1.gp)>
-		<!ATTLIST  BookComponent
-					%commonatts >
-
-<!ELEMENT Preface	- -  (Title, TitleAbbrev?, %sect1.gp)>
-		<!ATTLIST  Preface
-					%commonatts >
-
-<!ELEMENT Chapter	- -  (Title, TitleAbbrev?, %sect1.gp)>
-		<!ATTLIST Chapter
-				%commonatts
-				Number	CDATA	#IMPLIED >
-
-<!ELEMENT Appendix	- -  (Title, TitleAbbrev?, %sect1.gp)>
-		<!ATTLIST  Appendix
-				%commonatts
-				Number	CDATA	#IMPLIED >
-
-<!ELEMENT Reference	- -  (Title, TitleAbbrev?, PartIntro?, RefEntry+)>
-                <!ATTLIST  Reference
-                                        %commonatts >
-
-<!ELEMENT ToC	- -  (Title?, TitleAbbrev?, ToCentry1+)>
-                <!ATTLIST  ToC
-                                        %commonatts >
-
-<!ELEMENT LoT	- -  (Title?, TitleAbbrev?, LoTentry+)>
-                <!ATTLIST  LoT
-                                        %commonatts >
-
-<!ELEMENT Bibliography	- -  (Title?, TitleAbbrev?, Para*, BiblioEntry+)>
-                <!ATTLIST  Bibliography
-                                        %commonatts >
-
-<!ELEMENT Glossary	- -  (Title?, TitleAbbrev?, Para*, GlossaryEntry+)>
-                <!ATTLIST  Glossary
-                                        %commonatts >
-
-<!ELEMENT Index	- -  (Title?, TitleAbbrev?, Para*, IndexEntry+)>
-                <!ATTLIST  Index
-                                        %commonatts >
-
-<!--  ============================================================
-	SECTIONS -->
-
-<!ELEMENT Sect1	- -  (Title, TitleAbbrev?, 
-			(%component.gp | Sect2 | %refnav.gp)+)>
-		<!ATTLIST  Sect1	
-					%commonatts
-					Number	CDATA	#IMPLIED >
-
-<!ELEMENT Sect2	- -  (Title, TitleAbbrev?, 
-			(%component.gp | Sect3 | %refnav.gp)+)>
-		<!ATTLIST  Sect2	
-					%commonatts
-					Number	CDATA	#IMPLIED >
-
-<!ELEMENT Sect3	- -  (Title, TitleAbbrev?, 
-			(%component.gp | Sect4 | %refnav.gp)+)>
-		<!ATTLIST  Sect3	
-					%commonatts
-					Number	CDATA	#IMPLIED >
-
-<!ELEMENT Sect4	- -  (Title, TitleAbbrev?, 
-			(%component.gp | Sect5 | %refnav.gp)+)>
-		<!ATTLIST  Sect4	
-					%commonatts
-					Number	CDATA	#IMPLIED >
-
-<!ELEMENT Sect5	- -  (Title, TitleAbbrev?, 
-			(%component.gp | %refnav.gp)+)>
-		<!ATTLIST  Sect5	
-					%commonatts
-					Number	CDATA	#IMPLIED >
-
-<!ELEMENT Task	- - (Title?, (Para | %list.gp)*)>
-		<!ATTLIST  Task		%commonatts >
-
-<!ELEMENT Sidebar	- -  (Title, TitleAbbrev?, 
-				(Para | %list.gp | %object.gp)+)>
-		<!ATTLIST Sidebar	%commonatts >
-
-<!--  ============================================================
-        PARAGRAPHS and RELATED ELEMENTS  -->
-
-<!ELEMENT Para 	- - (Title?, (%paracontent.gp | %list.gp
-				| Table | %local.tables | BlockQuote
-				| ProgramListing | LiteralLayout 
-				| Screen | Figure)+)>
-		<!ATTLIST  Para
-					%commonatts >
-
-<!ELEMENT (Abstract | AuthorBlurb 
-		| Comment)	- -  (Title?, (%paracontent.gp)+)>
-		<!ATTLIST (Abstract | Authorblurb)
-				 %commonatts >
-
-<!ELEMENT (Tip | Caution | Warning | Important | Note
-			| BlockQuote)	- - (Title?, (%component.gp)+)>
-		<!ATTLIST (Tip | Caution | Warning | Important 
-			| Note | BlockQuote )   %commonatts >
-
-<!ELEMENT Highlights	- -  ((%list.gp | Para 
-			| (Tip | Caution | Warning | Important | Note))+)>
-		<!ATTLIST  Highlights   %commonatts >
-
-<!ELEMENT Footnote	- -  ((%component.gp)+)>
-		<!ATTLIST  Footnote
-					%commonatts
-					Number	CDATA	#IMPLIED >
-
-<!ELEMENT Epigraph	- -  ((Para)+)>
-		<!ATTLIST  Epigraph 
-					%commonatts >
-
-<!ELEMENT Title	- -  ((%inlinechar.gp)+) >
-		<!ATTLIST Title	%commonatts 
-				Pagenum	CDATA	#IMPLIED >
-
-<!ELEMENT TitleAbbrev	- - ((%inlinechar.gp)+) >
-		<!ATTLIST TitleAbbrev	%commonatts >
-
-<!-- ==============================================================
-	LISTS  -->
-
-<!ELEMENT ItemizedList	- -  (ListItem+)>
-	<!ATTLIST  ItemizedList	  
-		%commonatts
-		Mark    CDATA   #IMPLIED>
-
-<!ELEMENT ListItem	- -  ((Para | %list.gp | Figure
-				| %object.gp)*)>
-		<!ATTLIST  ListItem	%commonatts >
-
-<!ELEMENT SegmentedList	- -  (Title?, TitleAbbrev?, 
-					SegTitle*, SegListItem+)>
-		<!ATTLIST  SegmentedList	%commonatts >
-
-<!ELEMENT SegTitle	- -  ((%inlinechar.gp)+)>
-		<!ATTLIST  SegTitle	%commonatts 
-				HasRefEntry	(Yes|No)	No >
-
-<!ELEMENT SegListItem	- -  (Seg, Seg+)>
-		<!ATTLIST  SegListItem	%commonatts >
-
-<!ELEMENT Seg	- - ((%inlinechar.gp)+)>
-		<!ATTLIST  Seg	%commonatts 
-				HasRefEntry	(Yes|No)	No >
-
-<!ELEMENT OrderedList	- -  (ListItem+)>
-        <!ATTLIST  OrderedList  
-		%commonatts
-		Numeration	(Arabic | Upperalpha | Loweralpha
-				| Upperroman | Lowerroman) Arabic
-		InheritNum  (Inherit | Ignore)  Ignore 
-		Continuation  (Yes | No)  No >
-
-<!ELEMENT VariableList	- -  (Title?, TitleAbbrev?, VarListEntry+)>
-		<!ATTLIST  VariableList	%commonatts >
-
-<!ELEMENT VarListEntry	- -  (Term+, ListItem)>
-		<!ATTLIST  VarListEntry	%commonatts >
-
-<!ELEMENT Term 	- -  ((%inlinechar.gp)+)>
-		<!ATTLIST  Term	%commonatts 
-				HasRefEntry	(Yes|No)	No >
-
-<!--  ================================================================
-      LINKS 
-	Use of the HyTime terms Linkend and Endterm 
-	does not indicate that HyTime processing is required.
-	Link has both Endterm and Linkend attributes:  
-	Linkend is the spot linked to, Endterm identifies information
-	that may be used by the Link.  You might, for example,
-	make the Linkend a Sect2 and make the Endterm its Title.
-	-->
-
-<!ELEMENT Anchor	- O  EMPTY>
-		<!ATTLIST  Anchor
-					%commonatts
-					Pagenum	CDATA #IMPLIED >
-
-<!ELEMENT Link  - -  ((%inlinechar.gp)+)>
-        <!ATTLIST Link
-                Endterm IDREF   #IMPLIED
-                Linkend IDREF   #REQUIRED
-                Type    CDATA   #IMPLIED>
-
-<!--  ExternalLink avoids using IDREFs so you can link to a location
-	not available to the SGML parser without incurring parsing errors 
-			-->
-
-<!ELEMENT ExternalLink	- -  ((%inlinechar.gp)+)>
-        <!ATTLIST ExternalLink  
-		Endterm CDATA   #IMPLIED
-		Linkend CDATA   #REQUIRED
-                Type    CDATA   #IMPLIED>
-
-<!ELEMENT FootnoteRef	- - (#PCDATA)>
-        <!ATTLIST FootnoteRef   
-		id  	ID	#IMPLIED
-		Linkend IDREF   #REQUIRED
-                Mark    CDATA   #IMPLIED>
-
-<!ELEMENT XRef	- - (#PCDATA)>
-	<!ATTLIST XRef   
-		Endterm IDREF   #CONREF
-		Linkend IDREF   #REQUIRED>
-
-<!--  =================================================================
-      OBJECTS  -->
-
-<!ELEMENT Example	- -  (Title?, TitleAbbrev?, 
-				(Screen | LiteralLayout | ProgramListing)+)>
-		<!ATTLIST  Example	%commonatts 
-                        format  NOTATION (linespecific) linespecific >
-
-<!ELEMENT ProgramListing	- -  ((%inlinechar.gp)+)>
-		<!ATTLIST  ProgramListing	%commonatts 
-                        format  NOTATION (linespecific) linespecific >
-
-<!ELEMENT LiteralLayout	- -  ((%inlinechar.gp)+)>
-		<!ATTLIST  LiteralLayout	%commonatts 
-                        format  NOTATION (linespecific) linespecific >
-
-<!ELEMENT Screen	- -  (((%inlinechar.gp)+) | (ScreenInfo, Graphic))>
-		<!ATTLIST  Screen	%commonatts 
-                        format  NOTATION (linespecific) linespecific >
-
-<!ELEMENT ScreenInfo	- -  (#PCDATA)>
-		<!ATTLIST  ScreenInfo	%commonatts >
-
-<!--  Graphic is for in-line use or inclusion in another element.
-	Graphical data can be the content of Graphic, or you 
-	can reference an external file through the 
-	Fileref attribute.  -->
-
-<!ELEMENT Graphic	- -  CDATA>
-        <!ATTLIST  Graphic 
-		format NOTATION (%local.notations | GIF | TIFF
-					| CGM | DVI | EPS | TEX
-					| TBL | EQN | PS 
-					| DITROFF | PIC) #IMPLIED
-		Fileref ENTITY	#IMPLIED 
-		id  	ID  	#IMPLIED>
-
-<!-- N.B.:  Graphic occurs in object.gp, so does not appear explicitly
-		in Figure.  You can reference an external file
-		either as the content of FigureFileRef or
-		as the value of the Fileref attriubute.  -->
-
-<!ELEMENT Figure	- -  (Title, TitleAbbrev?, 
-				(FigureFileRef| %object.gp | IndexTerm)*)> 
-	<!ATTLIST Figure   	id   	ID     		#IMPLIED
-				Fileref	ENTITY		#IMPLIED	
-       		                Height  CDATA  		#IMPLIED
-				Width   CDATA  		#IMPLIED
-				Align   (l|c|r) 	l
-				Float	(YES | NO) 	NO >
-
-<!ELEMENT FigureFileRef	- O RCDATA>
-
-<!ELEMENT Equation	- -  (Title?, TitleAbbrev?, Graphic)>
-		<!ATTLIST Equation 	%commonatts >
-
-<!--  ================================================================
-      TABLE
-	A simple model; you can use any other table model by making
-	a local modification.  -->
-
-<!ELEMENT Table	- -  (Title?, TitleAbbrev?, Graphic?, 
-				(TableSpec?, TableColHead*, TableRow+)?)>
-			<!ATTLIST  Table	%commonatts
-						Number	CDATA	#IMPLIED >
-
-<!ELEMENT TableSpec	- -  (%inlinechar.gp)>
-			<!ATTLIST  TableSpec	%commonatts >
-
-<!ELEMENT TableColHead	- -  (TableCell+)>
-			<!ATTLIST  TableColHead	%commonatts >
-
-<!ELEMENT TableCell	- -  ((Para | %inlinechar.gp)+)>
-			<!ATTLIST  TableCell	%commonatts >
-
-<!ELEMENT TableRow	- -  (TableCell+)>
-			<!ATTLIST  TableRow	%commonatts >
-
-<!--  ===============================================================
-      NAVIGATIONAL AND REFERENCE  -->
-
-<!ELEMENT ToCentry1	- -  ((%inlinechar.gp)+, ToCentry2*)>
-		<!ATTLIST  ToCentry1	%commonatts 
-					Pagenum	CDATA	#IMPLIED >
-
-<!ELEMENT ToCentry2	- -  ((%inlinechar.gp)+, ToCentry3*)>
-		<!ATTLIST  ToCentry2	%commonatts 
-					Pagenum	CDATA	#IMPLIED >
-
-<!ELEMENT ToCentry3	- -  ((%inlinechar.gp)+, ToCentry4*)>
-		<!ATTLIST  ToCentry3	%commonatts 
-					Pagenum	CDATA	#IMPLIED >
-
-<!ELEMENT ToCentry4	- -  ((%inlinechar.gp)+, ToCentry5*)>
-		<!ATTLIST  ToCentry4	%commonatts 
-					Pagenum	CDATA	#IMPLIED >
-
-<!ELEMENT ToCentry5	- -  ((%inlinechar.gp)+)> 
-		<!ATTLIST  ToCentry5	%commonatts 
-					Pagenum	CDATA	#IMPLIED >
-
-<!ELEMENT GlossaryEntry	- -  (GlossaryTerm, GlossaryDef)>
-		<!ATTLIST  GlossaryEntry	%commonatts >
-
-<!ELEMENT BiblioEntry	- -  (TitleAbbrev?, 
-				(Author | Editor | Title)+,
-				Subtitle?, Date?, 
-				Publisher?, #PCDATA)>
-		<!ATTLIST  BiblioEntry		%commonatts >
-
-<!--   IndexTerms appear in the text, not in the Index.  -->
-
-<!ELEMENT IndexTerm	- -  (Primary, 
-	(((Secondary, (Tertiary | See | SeeAlso+)?) | See | SeeAlso+))?)>
-	<!ATTLIST IndexTerm  
-		%commonatts
-		Span   (Start|End) #IMPLIED
-        	Pagenum   CDATA  #IMPLIED>
-
-<!ELEMENT (Primary | Secondary | Tertiary )      - -  ((%inlinechar.gp 
-				| IndexAs)+)>
-        <!ATTLIST  (Primary | Secondary | Tertiary )
-                                %commonatts
-                                HasRefEntry     (Yes | No)      No >
-
-<!ELEMENT IndexAs	- - ((%inlinechar.gp)+)>
-	<!ATTLIST  IndexAs   %commonatts>
-
-<!ELEMENT (See | SeeAlso)	- -  ((%inlinechar.gp)+)>
-	<!ATTLIST  (See | SeeAlso)
-				%commonatts
-				HasRefEntry	(Yes | No)	No >
-
-<!--  IndexEntries appear in the Index, not the text.  -->
-
-<!ENTITY % primsee "PrimaryIE, (SeeIE | SeeAlsoIE+)*" >
-
-<!ENTITY % secsee "(SecondaryIE, ((SeeIE | SeeAlsoIE+) | TertiaryIE)*)" >
-
-<!ELEMENT IndexEntry	- -  (%primsee, (%secsee)*)>
-<!ATTLIST IndexEntry  
-					%commonatts >
-
-<!ELEMENT PrimaryIE	- - (#PCDATA)>
-	<!ATTLIST PrimaryIE  
-				%commonatts
-				Linkends	IDREFS #REQUIRED>
-	
-<!ELEMENT SecondaryIE	- - (#PCDATA)>
-	<!ATTLIST SecondaryIE  
-				%commonatts
-				Linkends	IDREFS #REQUIRED>
-
-<!ELEMENT TertiaryIE	- - (#PCDATA) >
-	<!ATTLIST TertiaryIE  
-				%commonatts
-				Linkends	IDREFS #REQUIRED>
-
-<!ELEMENT SeeIE	- - (#PCDATA) >
-	<!ATTLIST SeeIE		%commonatts
-				Linkend 	IDREF	#REQUIRED>
-
-<!ELEMENT SeeAlsoIE	- -  (#PCDATA) >
-	<!ATTLIST SeeAlsoIE		%commonatts
-				Linkends	IDREFS	#REQUIRED>
-
-<!ELEMENT LoTentry	- -  ((%inlinechar.gp)+ )>
-	<!ATTLIST LoTentry		%commonatts
-				Pagenum	CDATA	#IMPLIED >
-
-<!--  ==============================================================
-       DOCINFO elements; some appear in BiblioEntry, too  -->
-
-<!ELEMENT Author	- -  (Firstname+, Surname?) >
-
-<!ELEMENT Editor	- -  (Firstname+, Surname?) >
-
-<!ELEMENT (AuthorInitials | BookAcronym | CorpName 
-				| Date | Edition 
-				| Firstname 
-				| Holder | ISBN | InvPartNumber 
-				| OrgName
-				| ProductName | ProductNumber 
-				| Publisher | ReleaseInfo
-				| RevNumber | RevRemark 
-				| Series | Subtitle 
-				| Surname | Year )	- -  (#PCDATA)>
-
-<!ELEMENT Copyright	- -  (Year+, Holder*)>
-
-<!ELEMENT LegalNotice	- -  ((Para | BlockQuote)+)>
-
-<!ELEMENT PrintHistory	- -  (Para+)>
-
-<!ELEMENT RevHistory	- -  (Revision*)>
-
-<!ELEMENT Revision	- -  (RevNumber, Date, AuthorInitials+, RevRemark)>
-
-<!ELEMENT BookTitle	- -  (Title, Subtitle?, TitleAbbrev?, 
-				ReleaseInfo?, BookAcronym?)>
-
-<!--  ==================================================================
-      OTHER IN-LINE ELEMENTS  -->
-
-<!ELEMENT (FunctionParam | VarParam)	- -  ((#PCDATA 
-					| Superscript | Subscript)+)>
-		<!ATTLIST  VarParam  %commonatts >
-
-<!ELEMENT Command	- -  ((%basechar.gp | Optional | Flag)*)>
-
-<!ELEMENT (Action | Application 
-			| Filename | Function 
-			| Hardware | KeyCap | Interface
-			| InterfaceDefinition
-			| Property | ProtocolRequest
-			| SystemItem)	- -  ((%basechar.gp | Optional)+)>
-
-<!ELEMENT Flag	- - ((%basechar.gp | Optional)*)>
-
-<!ELEMENT Literal	- -  (Anchor | #PCDATA)>
-
-<!ELEMENT (CiteBook | CiteChap | CiteSect 
-			| CiteRefEntry | GlossaryTerm
-			| GlossaryDef | UserInput
-			| Quote)	- -  ((%inlinechar.gp)+)>
-
-<!ELEMENT Structure	- -  ((%inlinechar.gp)+)>
-		<!ATTLIST  Structure  %commonatts
-			    format  NOTATION (linespecific) linespecific >
-
-<!ELEMENT Subscript	- -  (#PCDATA | Subscript)>
-
-<!ELEMENT Superscript	- -  (#PCDATA | Superscript)>
-
-<!ELEMENT (Acronym | Button | Character | Charset | Citation | Classname 
-			| Constant 
-			| DbName | DbTable | DbField | DbRecord
-			| Emphasis | Error
-			| EventType | EventStructure | FirstTerm 
-			| Font | ForeignPhrase | Glyph | HWapplic
-			| Icon | KeySym | KeyCode | LineAnnotation
-			| Macro | Mask | Menu | MenuItem | Prompt
-			| PublNumber | Resource | ReturnValue
-			| StructField
-			| StructMember | StructName
-			| SWapplic | Symbol
-			| SystemName | Token | Type
-			| VolumeNumber | WordAsWord)	- -  (#PCDATA)>
-
-<!--  The element named Optional is for use in syntax lines, as in a 
-	RefEntry, where optional parameters are shown in square 
-	brackets.  Optional should replace those brackets.   -->
-
-<!ELEMENT Optional	- - ((%basechar.gp | %computerterms.gp
-			| Optional)*)>
-		<!ATTLIST  Optional	%commonatts >
-
-<!--  ================================================================
-      REFERENCE ENTRIES  -->
-
-<!ELEMENT RefEntry	- -  (RefMeta?, 
-				(Comment | IndexTerm)*, 
-				RefNameDiv, 
-				RefSynopsisDiv?, 
-				RefSect1+)>
-		<!ATTLIST  RefEntry	%commonatts >
-
-<!ELEMENT RefMeta	- -  (RefFileName, ManVolNum?, RefMiscInfo*)>
-		<!ATTLIST  RefMeta	%commonatts >
-
-<!ELEMENT RefFileName	- -  (#PCDATA)>
-		<!ATTLIST  RefFileName	%commonatts >
-
-<!ELEMENT ManVolNum	- -  (#PCDATA)>
-		<!ATTLIST  ManVolNum	%commonatts >
-
-<!ELEMENT RefMiscInfo	- -  (#PCDATA)>
-		<!ATTLIST  RefMiscInfo	%commonatts >
-
-<!ELEMENT RefNameDiv	- -  (RefDescriptor?, RefName+, 
-			RefPurpose, RefClass?, (Comment | IndexTerm)*)>
-		<!ATTLIST  RefNameDiv	%commonatts >	
-	
-<!ELEMENT RefDescriptor	- -  (#PCDATA)>
-		<!ATTLIST  RefDescriptor  %commonatts >
-	
-<!ELEMENT RefName	- -  ((#PCDATA | %computerterms.gp)+)>
-		<!ATTLIST  RefName	%commonatts >	
-
-<!ELEMENT RefPurpose	- -  ((%inlinechar.gp)+)>
-		<!ATTLIST  RefPurpose	%commonatts >	
-
-<!-- RefClass includes local.refclasses, as they are meant to
-	be subelements, not alternatives, as is the case with
-	the other local.* groups  -->
-
-<!ELEMENT RefClass	- -  ((%inlinechar.gp | %local.refclasses)*)>
-
-<!ELEMENT RefSynopsisDiv	- -  ((Synopsis, RefSect2*)
-				| (RefSect2+))>
-        <!ATTLIST RefSynopsisDiv   
-				Name  (Synopsis | Syntax)  Synopsis >
-
-<!ELEMENT Synopsis	- -  ((%inlinechar.gp)+)>
-		<!ATTLIST  Synopsis	%commonatts >
-
-<!ELEMENT RefSect1	- -  (Title, 
-		(((%component.gp)+, RefSect2*) | RefSect2+))>
-		<!ATTLIST  RefSect1	%commonatts >
-
-<!ELEMENT RefSect2	- -  (Title, (%component.gp)+)>
-		<!ATTLIST  RefSect2	%commonatts >
-
-<!--  end of the DocBook DTD -->
+<!NOTATION IGES		PUBLIC 
+"-//USA-DOD//NOTATION (ASME/ANSI Y14.26M-1987) Initial Graphics Exchange Specification//EN" >
+<!NOTATION PIC		SYSTEM "-//AT&T//NOTATION PIC-1//EN">
+<!NOTATION PS		SYSTEM "PS">
+<!NOTATION TBL		SYSTEM "-//AT&T//NOTATION TBL-1//EN">
+<!NOTATION TEX		PUBLIC 
+"+//ISBN 0-201-13448-9::Knuth//NOTATION The TeXbook//EN">
+<!NOTATION TIFF		SYSTEM "TIFF">
+<!NOTATION linespecific	SYSTEM 
+"line ends and leading white space must be preserved in output" >
+
+<!-- ...................................................................... -->
+<!-- ISO character entity sets ............................................ -->
+
+<!ENTITY % ISOamsa.module	"INCLUDE">
+<!ENTITY % ISOamsb.module	"INCLUDE">
+<!ENTITY % ISOamsc.module	"INCLUDE">
+<!ENTITY % ISOamsn.module	"INCLUDE">
+<!ENTITY % ISOamso.module	"INCLUDE">
+<!ENTITY % ISOamsr.module	"INCLUDE">
+<!ENTITY % ISObox.module	"INCLUDE">
+<!ENTITY % ISOcyr1.module	"INCLUDE">
+<!ENTITY % ISOcyr2.module	"INCLUDE">
+<!ENTITY % ISOdia.module	"INCLUDE">
+<!ENTITY % ISOgrk1.module	"INCLUDE">
+<!ENTITY % ISOgrk2.module	"INCLUDE">
+<!ENTITY % ISOgrk3.module	"INCLUDE">
+<!ENTITY % ISOgrk4.module	"INCLUDE">
+<!ENTITY % ISOlat1.module	"INCLUDE">
+<!ENTITY % ISOlat2.module	"INCLUDE">
+<!ENTITY % ISOnum.module	"INCLUDE">
+<!ENTITY % ISOpub.module	"INCLUDE">
+<!ENTITY % ISOtech.module	"INCLUDE">
+
+<![ %ISOamsa.module; [
+<!ENTITY % ISOamsa PUBLIC
+"ISO 8879:1986//ENTITIES Added Math Symbols: Arrow Relations//EN">
+%ISOamsa;
+<!--end of ISOamsa.module-->]]>
+
+<![ %ISOamsb.module; [
+<!ENTITY % ISOamsb PUBLIC
+"ISO 8879:1986//ENTITIES Added Math Symbols: Binary Operators//EN">
+%ISOamsb;
+<!--end of ISOamsb.module-->]]>
+
+<![ %ISOamsc.module; [
+<!ENTITY % ISOamsc PUBLIC
+"ISO 8879:1986//ENTITIES Added Math Symbols: Delimiters//EN">
+%ISOamsc;
+<!--end of ISOamsc.module-->]]>
+
+<![ %ISOamsn.module; [
+<!ENTITY % ISOamsn PUBLIC
+"ISO 8879:1986//ENTITIES Added Math Symbols: Negated Relations//EN">
+%ISOamsn;
+<!--end of ISOamsn.module-->]]>
+
+<![ %ISOamso.module; [
+<!ENTITY % ISOamso PUBLIC
+"ISO 8879:1986//ENTITIES Added Math Symbols: Ordinary//EN">
+%ISOamso;
+<!--end of ISOamso.module-->]]>
+
+<![ %ISOamsr.module; [
+<!ENTITY % ISOamsr PUBLIC
+"ISO 8879:1986//ENTITIES Added Math Symbols: Relations//EN">
+%ISOamsr;
+<!--end of ISOamsr.module-->]]>
+
+<![ %ISObox.module; [
+<!ENTITY % ISObox PUBLIC
+"ISO 8879:1986//ENTITIES Box and Line Drawing//EN">
+%ISObox;
+<!--end of ISObox.module-->]]>
+
+<![ %ISOcyr1.module; [
+<!ENTITY % ISOcyr1 PUBLIC
+"ISO 8879:1986//ENTITIES Russian Cyrillic//EN">
+%ISOcyr1;
+<!--end of ISOcyr1.module-->]]>
+
+<![ %ISOcyr2.module; [
+<!ENTITY % ISOcyr2 PUBLIC
+"ISO 8879:1986//ENTITIES Non-Russian Cyrillic//EN">
+%ISOcyr2;
+<!--end of ISOcyr2.module-->]]>
+
+<![ %ISOdia.module; [
+<!ENTITY % ISOdia PUBLIC
+"ISO 8879:1986//ENTITIES Diacritical Marks//EN">
+%ISOdia;
+<!--end of ISOdia.module-->]]>
+
+<![ %ISOgrk1.module; [
+<!ENTITY % ISOgrk1 PUBLIC
+"ISO 8879:1986//ENTITIES Greek Letters//EN">
+%ISOgrk1;
+<!--end of ISOgrk1.module-->]]>
+
+<![ %ISOgrk2.module; [
+<!ENTITY % ISOgrk2 PUBLIC
+"ISO 8879:1986//ENTITIES Monotoniko Greek//EN">
+%ISOgrk2;
+<!--end of ISOgrk2.module-->]]>
+
+<![ %ISOgrk3.module; [
+<!ENTITY % ISOgrk3 PUBLIC
+"ISO 8879:1986//ENTITIES Greek Symbols//EN">
+%ISOgrk3;
+<!--end of ISOgrk3.module-->]]>
+
+<![ %ISOgrk4.module; [
+<!ENTITY % ISOgrk4 PUBLIC
+"ISO 9573-13:1991//ENTITIES Alternative Greek Symbols//EN">
+%ISOgrk4;
+<!--end of ISOgrk4.module-->]]>
+
+<![ %ISOlat1.module; [
+<!ENTITY % ISOlat1 PUBLIC
+"ISO 8879:1986//ENTITIES Added Latin 1//EN">
+%ISOlat1;
+<!--end of ISOlat1.module-->]]>
+
+<![ %ISOlat2.module; [
+<!ENTITY % ISOlat2 PUBLIC
+"ISO 8879:1986//ENTITIES Added Latin 2//EN">
+%ISOlat2;
+<!--end of ISOlat2.module-->]]>
+
+<![ %ISOnum.module; [
+<!ENTITY % ISOnum PUBLIC
+"ISO 8879:1986//ENTITIES Numeric and Special Graphic//EN">
+%ISOnum;
+<!--end of ISOnum.module-->]]>
+
+<![ %ISOpub.module; [
+<!ENTITY % ISOpub PUBLIC
+"ISO 8879:1986//ENTITIES Publishing//EN">
+%ISOpub;
+<!--end of ISOpub.module-->]]>
+
+<![ %ISOtech.module; [
+<!ENTITY % ISOtech PUBLIC
+"ISO 8879:1986//ENTITIES General Technical//EN">
+%ISOtech;
+<!--end of ISOtech.module-->]]>
+
+<!-- ...................................................................... -->
+<!-- DTD modules .......................................................... -->
+
+<!-- Information pool .............. -->
+
+<!ENTITY % dbpool PUBLIC 
+"-//Davenport//ELEMENTS DocBook Information Pool V2.3//EN">
+%dbpool;
+
+<!-- Redeclaration placeholder ..... -->
+
+<!ENTITY % intermod.redecl.module "IGNORE">
+<![ %intermod.redecl.module; [
+!ENTITY % rdbmods PUBLIC
+"-//Davenport//ELEMENTS DocBook Intermodule Redeclarations//EN">
+%rdbmods;
+<!--end of intermod.redecl.module-->]]>
+
+<!-- Document hierarchy ............ -->
+
+<!ENTITY % dbhier PUBLIC 
+"-//Davenport//ELEMENTS DocBook Document Hierarchy V2.3//EN">
+%dbhier;
+
+<!-- ...................................................................... -->
+<!-- Other general entities ............................................... -->
+
+<!ENTITY % dbgenent PUBLIC
+"-//Davenport//ELEMENTS DocBook Additional General Entities//EN">
+%dbgenent;
+
+<!-- End of DocBook DTD V2.3 .............................................. -->
+<!-- ...................................................................... -->

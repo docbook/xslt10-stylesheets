@@ -1,33 +1,28 @@
-README
+11 September 1995
 
-This directory contains the current version of the DocBook DTD,
-its documentation, an SGML declaration, an SGML Open-style 
-entity catalogue, and some sample files.  
+Packing list for DocBook V2.3:
 
-As of 25 February 1995 the latest revision of the DTD is version 2.2.1.
-The previous version, 2.1, may be found in the subdirectory
-"docbook.2.1".
+calltree.eps
+modules.eps
+  Graphics referenced in Maintainer's Guide.
 
-As of 25 December 1995 the documentation for the DTD version 2.2.1
-consists of a "Guide" that includes an alphabetical list of 
-elements, with definitions, in both SGML and PostScript.  A sample 
-Chapter and sample RefEntry (man page) are also provided.
-The entity file "orathree" contains local entities
-for use with these examples.
+calstbl.mod
+dbgenent.mod
+dbhier.mod
+dbpool.mod
+docbook.dtd
+  DTD files for DocBook V2.3.
 
-DocBook 2.2.1 is an expanded and revised version of 2.1
-Instances conforming to 2.1 may require some changes
-to conform to 2.2.1 (see the Guide for a list of changes in
-the DTD).
+docbook.cat
+docbook.dcl
+  Additional application files for DocBook V2.3.
 
-More documentation may be made available as time permits.  Suggestions
-for improving the documentation are welcome.
+maintdoc.ps
+  PostScript-formatted Maintainer's Guide.
 
-The DTD does not establish detailed rules for the usage of 
-elements.  This is a matter for editors and writers to deal with.
+maintdoc.sgm
+  DocBook source for Maintainer's Guide (with V2.2.1 FPI).
 
-Please note that the DTD has an associated SGML declaration.
-
-To get all of the files relevant to version 2.2.1, obtain the files
-named docbook.2.2.1.shar and docbook.ps.Z.
-
+Also to be found in this directory is the Guide to the DocBook
+DTD for the 2.2.1 version.  This will be updated for V2.4 but
+hasn't been for this release.
