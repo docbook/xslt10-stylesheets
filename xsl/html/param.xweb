@@ -242,6 +242,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &htmlhelp.hhc;
 &htmlhelp.hhp.tail;
 &htmlhelp.enumerate.images;
+&htmlhelp.force.map.and.alias;
+&htmlhelp.map.file;
+&htmlhelp.alias.file;
 </reference>
 
 <appendix><title>The Stylesheet</title>
@@ -395,6 +398,9 @@ around all these parameters.</para>
 <src:fragref linkend="htmlhelp.hhc.frag"/>
 <src:fragref linkend="htmlhelp.hhp.tail.frag"/>
 <src:fragref linkend="htmlhelp.enumerate.images.frag"/>
+<src:fragref linkend="htmlhelp.force.map.and.alias.frag"/>
+<src:fragref linkend="htmlhelp.map.file.frag"/>
+<src:fragref linkend="htmlhelp.alias.file.frag"/>
 </xsl:stylesheet>
 </src:fragment>
 
