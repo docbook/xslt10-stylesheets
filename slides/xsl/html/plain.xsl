@@ -4,17 +4,17 @@
 
 <xsl:import href="slides-common.xsl"/>
 
-<xsl:param name="prev.image" select="'active/nav-prev.png'"/>
-<xsl:param name="next.image" select="'active/nav-next.png'"/>
-<xsl:param name="up.image" select="'active/nav-up.png'"/>
-<xsl:param name="toc.image" select="'active/nav-toc.png'"/>
-<xsl:param name="home.image" select="'active/nav-home.png'"/>
+<xsl:param name="prev.image" select="'http://docbook.sourceforge.net/release/slides/graphics/active/nav-prev.png'"/>
+<xsl:param name="next.image" select="'http://docbook.sourceforge.net/release/slides/graphics/active/nav-next.png'"/>
+<xsl:param name="up.image" select="'http://docbook.sourceforge.net/release/slides/graphics/active/nav-up.png'"/>
+<xsl:param name="toc.image" select="'http://docbook.sourceforge.net/release/slides/graphics/active/nav-toc.png'"/>
+<xsl:param name="home.image" select="'http://docbook.sourceforge.net/release/slides/graphics/active/nav-home.png'"/>
 
-<xsl:param name="no.prev.image" select="'inactive/nav-prev.png'"/>
-<xsl:param name="no.next.image" select="'inactive/nav-next.png'"/>
-<xsl:param name="no.up.image" select="'inactive/nav-up.png'"/>
-<xsl:param name="no.toc.image" select="'inactive/nav-toc.png'"/>
-<xsl:param name="no.home.image" select="'inactive/nav-home.png'"/>
+<xsl:param name="no.prev.image" select="'http://docbook.sourceforge.net/release/slides/graphics/inactive/nav-prev.png'"/>
+<xsl:param name="no.next.image" select="'http://docbook.sourceforge.net/release/slides/graphics/inactive/nav-next.png'"/>
+<xsl:param name="no.up.image" select="'http://docbook.sourceforge.net/release/slides/graphics/inactive/nav-up.png'"/>
+<xsl:param name="no.toc.image" select="'http://docbook.sourceforge.net/release/slides/graphics/inactive/nav-toc.png'"/>
+<xsl:param name="no.home.image" select="'http://docbook.sourceforge.net/release/slides/graphics/inactive/nav-home.png'"/>
 
 <xsl:param name="css.stylesheet" select="'slides-plain.css'"/>
 
