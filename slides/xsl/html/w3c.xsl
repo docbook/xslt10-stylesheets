@@ -77,9 +77,7 @@
               <xsl:otherwise>
                 <img border="0" width="32" height="32" alt=" Previous" title="">
                   <xsl:attribute name="src">
-                    <xsl:call-template name="graphics-file">
-                      <xsl:with-param name="image" select="$no.prev.image"/>
-                    </xsl:call-template>
+                    <xsl:call-template name="no.prev.image"/>
                   </xsl:attribute>
                 </img>
               </xsl:otherwise>
@@ -100,9 +98,7 @@
                 <img border="0" width="32" height="32"
                      alt=" Contents" title="Table of Contents">
                   <xsl:attribute name="src">
-                    <xsl:call-template name="graphics-file">
-                      <xsl:with-param name="image" select="$no.toc.image"/>
-                    </xsl:call-template>
+                    <xsl:call-template name="no.toc.image"/>
                   </xsl:attribute>
                 </img>
               </xsl:otherwise>
@@ -125,9 +121,7 @@
               <xsl:otherwise>
                 <img border="0" width="32" height="32" alt=" Next" title="">
                   <xsl:attribute name="src">
-                    <xsl:call-template name="graphics-file">
-                      <xsl:with-param name="image" select="$no.next.image"/>
-                    </xsl:call-template>
+                    <xsl:call-template name="no.next.image"/>
                   </xsl:attribute>
                 </img>
               </xsl:otherwise>
@@ -200,9 +194,11 @@
                 </a>
               </xsl:when>
               <xsl:otherwise>
+                <img border="0" width="32" height="32" alt=" Prev" title="">
                 <xsl:attribute name="src">
-                  <xsl:call-template name="prev.image"/>
+                    <xsl:call-template name="no.prev.image"/>
                 </xsl:attribute>
+                </img>
               </xsl:otherwise>
             </xsl:choose>
 
@@ -223,9 +219,7 @@
               <xsl:otherwise>
                 <img border="0" width="32" height="32" alt=" Next" title="">
                   <xsl:attribute name="src">
-                    <xsl:call-template name="graphics-file">
-                      <xsl:with-param name="image" select="$no.next.image"/>
-                    </xsl:call-template>
+                    <xsl:call-template name="no.next.image"/>
                   </xsl:attribute>
                 </img>
               </xsl:otherwise>
@@ -272,9 +266,7 @@
               <xsl:otherwise>
                 <img border="0" width="32" height="32" alt=" Previous" title="">
                   <xsl:attribute name="src">
-                    <xsl:call-template name="graphics-file">
-                      <xsl:with-param name="image" select="$no.prev.image"/>
-                    </xsl:call-template>
+                    <xsl:call-template name="no.prev.image"/>
                   </xsl:attribute>
                 </img>
               </xsl:otherwise>
@@ -295,9 +287,7 @@
                 <img border="0" width="32" height="32"
                      alt=" Contents" title="Table of Contents">
                   <xsl:attribute name="src">
-                    <xsl:call-template name="graphics-file">
-                      <xsl:with-param name="image" select="$no.toc.image"/>
-                    </xsl:call-template>
+                    <xsl:call-template name="no.toc.image"/>
                   </xsl:attribute>
                 </img>
               </xsl:otherwise>
@@ -320,9 +310,7 @@
               <xsl:otherwise>
                 <img border="0" width="32" height="32" alt=" Next" title="">
                   <xsl:attribute name="src">
-                    <xsl:call-template name="graphics-file">
-                      <xsl:with-param name="image" select="$no.next.image"/>
-                    </xsl:call-template>
+                    <xsl:call-template name="no.next.image"/>
                   </xsl:attribute>
                 </img>
               </xsl:otherwise>
