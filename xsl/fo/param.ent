@@ -159,3 +159,5 @@
 <!ENTITY xep.extensions SYSTEM "../params/xep.extensions.xml">
 <!ENTITY xref.properties SYSTEM "../params/xref.properties.xml">
 <!ENTITY sidebar.properties SYSTEM "../params/sidebar.properties.xml">
+<!ENTITY menuchoice.separator SYSTEM "../params/menuchoice.separator.xml">
+<!ENTITY menuchoice.menu.separator SYSTEM "../params/menuchoice.menu.separator.xml">
