@@ -16,7 +16,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="anchor" name="anchor">
+<xsl:template match="anchor">
   <xsl:call-template name="anchor"/>
 </xsl:template>
 
