@@ -23,6 +23,7 @@ xsl-files: $(SOURCES)
 dsssl-files: $(DSSSLENT)
 
 dbl1af.ent: locale/af.xml
+dbl1bg.ent: locale/bg.xml
 dbl1ca.ent: locale/ca.xml
 dbl1cs.ent: locale/cs.xml
 dbl1da.ent: locale/da.xml
