@@ -23,5 +23,21 @@ blocks.</para>
 unattractive lists. By setting this parameter, you can force the stylesheets
 to produce block markup instead of proper lists.</para>
 
+<para>You can override this setting with a processing instruction as the
+child of <sgmltag>variablelist</sgmltag>: <sgmltag class="pi">dbfo
+list-presentation="blocks"</sgmltag> or <sgmltag class="pi">dbfo
+list-presentation="lists"</sgmltag></para>
+
+<programlisting><![CDATA[  <variablelist>
+	<?dbfo list-presentation="list"?>
+	<varlistentry>
+	  <term>list</term>
+	  <listitem>
+		<para>
+		  Formatted as a list even if variablelist.as.blocks is set to 1.
+	  </listitem>
+	</varlistentry>
+  </variablelist>]]></programlisting>
 </refsect1>
+
 </refentry>
