@@ -17,7 +17,11 @@
 <xsl:template match="inlineequation">
   <xsl:choose>
     <xsl:when test="$passivetex.extensions != 0 and $tex.math.in.alt != ''">
-      <xsl:apply-templates select="alt[@role='tex'] | inlinemediaobject/textobject[@role='tex']"/>
+      <xsl:apply-templates select="alt[@role='tex'] | inlinemediaobject/textobject[@role='tex']">
+        <xsl:with-param name="output.delims">
+          <xsl:call-template name="tex.math.output.delims"/>
+        </xsl:with-param>
+      </xsl:apply-templates>
     </xsl:when>
     <xsl:otherwise>
       <xsl:apply-templates/>
@@ -44,11 +48,16 @@
 
 <xsl:template match="inlineequation/alt[@role='tex'] | 
                      inlineequation/inlinemediaobject/textobject[@role='tex']" priority="1">
+  <xsl:param name="output.delims" select="1"/>
   <xsl:if test="$passivetex.extensions != 0 and $tex.math.in.alt != ''">
     <xsl:processing-instruction name="xmltex">
-      <xsl:text>$</xsl:text>
+      <xsl:if test="$output.delims != 0">
+        <xsl:text>$</xsl:text>
+      </xsl:if>
       <xsl:value-of select="."/>
-      <xsl:text>$</xsl:text>
+      <xsl:if test="$output.delims != 0">
+        <xsl:text>$</xsl:text>
+      </xsl:if>
     </xsl:processing-instruction>
   </xsl:if>
 </xsl:template>
@@ -56,11 +65,18 @@
 <xsl:template match="equation/alt[@role='tex'] | informalequation/alt[@role='tex'] |
                      equation/mediaobject/textobject[@role='tex'] |
                      informalequation/mediaobject/textobject[@role='tex']" priority="1">
+  <xsl:variable name="output.delims">
+    <xsl:call-template name="tex.math.output.delims"/>
+  </xsl:variable>
   <xsl:if test="$passivetex.extensions != 0 and $tex.math.in.alt != ''">
     <xsl:processing-instruction name="xmltex">
-      <xsl:text>$$</xsl:text>
+      <xsl:if test="$output.delims != 0">
+        <xsl:text>$$</xsl:text>
+      </xsl:if>
       <xsl:value-of select="."/>
-      <xsl:text>$$</xsl:text>
+      <xsl:if test="$output.delims != 0">
+        <xsl:text>$$</xsl:text>
+      </xsl:if>
     </xsl:processing-instruction>
   </xsl:if>
 </xsl:template>
@@ -71,6 +87,23 @@
       Your equation is misplaced. It should be in inlineequation, equation or informalequation.
     </xsl:message>
   </xsl:if>
+</xsl:template>
+
+<xsl:template name="tex.math.output.delims">
+  <xsl:variable name="pi.delims">
+    <xsl:call-template name="pi-attribute">
+      <xsl:with-param name="pis" select=".//processing-instruction('dbtex')"/>
+      <xsl:with-param name="attribute" select="'delims'"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="result">
+    <xsl:choose>
+      <xsl:when test="$pi.delims = 'no'">0</xsl:when>
+      <xsl:when test="$pi.delims = '' and $tex.math.delims = 0">0</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:value-of select="$result"/>
 </xsl:template>
 
 <!-- just send the MathML all the way through... -->

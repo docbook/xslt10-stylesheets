@@ -108,6 +108,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &fop.extensions;
 &passivetex.extensions;
 &tex.math.in.alt;
+&tex.math.delims;
 &xep.extensions;
 </reference>
 
@@ -467,6 +468,7 @@ around all these parameters.</para>
 <src:fragref linkend="tablecolumns.extension.frag"/>
 <src:fragref linkend="textinsert.extension.frag"/>
 <src:fragref linkend="tex.math.in.alt.frag"/>
+<src:fragref linkend="tex.math.delims.frag"/>
 <src:fragref linkend="title.font.family.frag"/>
 <src:fragref linkend="title.margin.left.frag"/>
 <src:fragref linkend="toc.indent.width.frag"/>

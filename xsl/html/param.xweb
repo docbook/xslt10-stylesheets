@@ -227,6 +227,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &variablelist.as.table;
 &tex.math.in.alt;
 &tex.math.file;
+&tex.math.delims;
 &pixels.per.inch;
 </reference>
 
@@ -429,6 +430,7 @@ around all these parameters.</para>
 <src:fragref linkend="textinsert.extension.frag"/>
 <src:fragref linkend="tex.math.file.frag"/>
 <src:fragref linkend="tex.math.in.alt.frag"/>
+<src:fragref linkend="tex.math.delims.frag"/>
 <src:fragref linkend="toc.list.type.frag"/>
 <src:fragref linkend="toc.section.depth.frag"/>
 <src:fragref linkend="ulink.target.frag"/>

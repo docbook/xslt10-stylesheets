@@ -5,7 +5,7 @@
 </refmeta>
 <refnamediv>
 <refname>tex.math.file</refname>
-<refpurpose></refpurpose>
+<refpurpose>Name of temporary file for generating images from equations</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
