@@ -361,7 +361,7 @@ f. Just BlockQuote; no other informal objects.
 
 <!ENTITY % local.mediaobject.mix "">
 <!ENTITY % mediaobject.mix
-		"videoobject|audioobject|imageobject %local.mediaobject.mix;">
+		"videoobject|audioobject|imageobject|textobject %local.mediaobject.mix;">
 
 <!ENTITY % local.listpreamble.mix "">
 <!ENTITY % listpreamble.mix
@@ -2749,7 +2749,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % programlisting.element "INCLUDE">
 <![%programlisting.element;[
-<!ELEMENT programlisting %ho; (%para.char.mix; | co | coref | lineannotation)*>
+<!ELEMENT programlisting %ho; (%para.char.mix;|co|coref|lineannotation|textobject)*>
 <!--end of programlisting.element-->]]>
 
 <!ENTITY % programlisting.attlist "INCLUDE">
@@ -2771,7 +2771,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % literallayout.element "INCLUDE">
 <![%literallayout.element;[
-<!ELEMENT literallayout %ho; (%para.char.mix; | co| coref | lineannotation)*>
+<!ELEMENT literallayout %ho; (%para.char.mix;|co|coref|textobject|lineannotation)*>
 <!--end of literallayout.element-->]]>
 
 <!ENTITY % literallayout.attlist "INCLUDE">
@@ -2817,7 +2817,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % screen.element "INCLUDE">
 <![%screen.element;[
-<!ELEMENT screen %ho; (%para.char.mix; | co | coref | lineannotation)*>
+<!ELEMENT screen %ho; (%para.char.mix;|co|coref|textobject|lineannotation)*>
 <!--end of screen.element-->]]>
 
 <!ENTITY % screen.attlist "INCLUDE">
@@ -3016,8 +3016,7 @@ in the text (no (0) value, the default)
 <!ENTITY % mediaobject.element "INCLUDE">
 <![ %mediaobject.element; [
 <!ELEMENT mediaobject %ho; (objectinfo?,
-                           (%mediaobject.mix;),
-			   (%mediaobject.mix;|textobject)*,
+                           (%mediaobject.mix;)+,
 			   caption?)>
 <!--end of mediaobject.element-->]]>
 
@@ -3039,8 +3038,7 @@ in the text (no (0) value, the default)
 <!ENTITY % inlinemediaobject.element "INCLUDE">
 <![ %inlinemediaobject.element; [
 <!ELEMENT inlinemediaobject %ho; (objectinfo?,
-                	         (%mediaobject.mix;),
-				 (%mediaobject.mix;|textobject)*)>
+                	         (%mediaobject.mix;)+)>
 <!--end of inlinemediaobject.element-->]]>
 
 <!ENTITY % inlinemediaobject.attlist "INCLUDE">
@@ -3120,7 +3118,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % textobject.element "INCLUDE">
 <![ %textobject.element; [
-<!ELEMENT textobject %ho; (objectinfo?, (phrase|(%textobject.mix;)+))>
+<!ELEMENT textobject %ho; (objectinfo?, (phrase|textdata|(%textobject.mix;)+))>
 <!--end of textobject.element-->]]>
 
 <!ENTITY % textobject.attlist "INCLUDE">
@@ -3273,6 +3271,28 @@ in the text (no (0) value, the default)
 >
 <!--end of imagedata.attlist-->]]>
 <!--end of imagedata.module-->]]>
+
+<!ENTITY % textdata.module "INCLUDE">
+<![ %textdata.module; [
+<!ENTITY % local.textdata.attrib "">
+<!ENTITY % textdata.role.attrib "%role.attrib;">
+
+<!ENTITY % textdata.element "INCLUDE">
+<![ %textdata.element; [
+<!ELEMENT textdata %ho; EMPTY>
+<!--end of textdata.element-->]]>
+
+<!ENTITY % textdata.attlist "INCLUDE">
+<![ %textdata.attlist; [
+<!ATTLIST textdata
+		encoding	CDATA	#IMPLIED
+		%objectdata.attrib;
+		%common.attrib;
+		%textdata.role.attrib;
+		%local.textdata.attrib;
+>
+<!--end of textdata.attlist-->]]>
+<!--end of textdata.module-->]]>
 
 <!ENTITY % caption.module "INCLUDE">
 <![ %caption.module; [
@@ -3559,7 +3579,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % synopsis.element "INCLUDE">
 <![%synopsis.element;[
-<!ELEMENT synopsis %ho; (%para.char.mix;|graphic|mediaobject|co|coref|lineannotation)*>
+<!ELEMENT synopsis %ho; (%para.char.mix;|graphic|mediaobject|co|coref|textobject|lineannotation)*>
 <!--end of synopsis.element-->]]>
 
 <!ENTITY % synopsis.attlist "INCLUDE">
@@ -3785,7 +3805,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % funcsynopsisinfo.element "INCLUDE">
 <![%funcsynopsisinfo.element;[
-<!ELEMENT funcsynopsisinfo %ho; (%cptr.char.mix; | lineannotation)*>
+<!ELEMENT funcsynopsisinfo %ho; (%cptr.char.mix;|textobject|lineannotation)*>
 <!--end of funcsynopsisinfo.element-->]]>
 
 <!ENTITY % funcsynopsisinfo.attlist "INCLUDE">
@@ -3973,7 +3993,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % classsynopsisinfo.element "INCLUDE">
 <![ %classsynopsisinfo.element; [
-<!ELEMENT classsynopsisinfo %ho; (%cptr.char.mix; | lineannotation)*>
+<!ELEMENT classsynopsisinfo %ho; (%cptr.char.mix;|textobject|lineannotation)*>
 <!--end of classsynopsisinfo.element-->]]>
 
 <!ENTITY % classsynopsisinfo.attlist "INCLUDE">
