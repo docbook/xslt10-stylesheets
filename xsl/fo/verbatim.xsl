@@ -111,15 +111,16 @@
         <xsl:when test="$shade.verbatim != 0">
           <fo:block wrap-option='no-wrap'
                     white-space-collapse='false'
+                    text-align='start'
                     linefeed-treatment="preserve"
                     xsl:use-attribute-sets="verbatim.properties shade.verbatim.style">
-
             <xsl:copy-of select="$content"/>
           </fo:block>
         </xsl:when>
         <xsl:otherwise>
           <fo:block wrap-option='no-wrap'
                     white-space-collapse='false'
+                    text-align='start'
                     linefeed-treatment="preserve"
                     xsl:use-attribute-sets="verbatim.properties">
             <xsl:copy-of select="$content"/>
