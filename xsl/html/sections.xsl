@@ -380,7 +380,16 @@
   </xsl:variable>
 
   <!-- HTML H level is one higher than section level -->
-  <xsl:variable name="hlevel" select="$level + 1"/>
+  <xsl:variable name="hlevel">
+    <xsl:choose>
+      <!-- highest valid HTML H level is H6; so anything nested deeper
+           than 5 levels down just becomes H6 -->
+      <xsl:when test="$level &gt; 5">6</xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="$level + 1"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
   <xsl:element name="h{$hlevel}">
     <xsl:attribute name="class"><xsl:value-of select="$class"/></xsl:attribute>
     <xsl:if test="$css.decoration != '0'">
