@@ -76,16 +76,16 @@
 <gentext key="ProductionSet" text="Ekoizpena"/>
 <gentext key="Published" text="Argitaratua"/>
 <gentext key="published" text="Argitaratua"/>
-<gentext key="Question" text="G:"/>
-<gentext key="question" text="G:"/>
-<gentext key="RefEntry" text=""/>
-<gentext key="refentry" text=""/>
+<gentext key="Question" text="Galdera"/>
+<gentext key="question" text="galdera"/>
+<gentext key="RefEntry" text="Sarrera"/>
+<gentext key="refentry" text="Sarrera"/>
 <gentext key="Reference" text="Erreferentzia"/>
 <gentext key="reference" text="Erreferentzia"/>
 <gentext key="RefName" text="Izena"/>
 <gentext key="refname" text="Izena"/>
-<gentext key="RefSection" text=""/>
-<gentext key="refsection" text=""/>
+<gentext key="RefSection" text="Sekzioa"/>
+<gentext key="refsection" text="sekzioa"/>
 <gentext key="RefSynopsisDiv" text="Laburpena"/>
 <gentext key="refsynopsisdiv" text="Laburpena"/>
 <gentext key="RevHistory" text="Berrikuspenaren historia"/>
@@ -108,7 +108,7 @@
 <gentext key="Set" text="Konfiguratu"/>
 <gentext key="setindex" text="Konfiguratu indizea"/>
 <gentext key="SetIndex" text="Konfiguratu indizea"/>
-<gentext key="Sidebar" text=""/>
+<gentext key="Sidebar" text="Alboko barra"/>
 <gentext key="sidebar" text="alboko barra"/>
 <gentext key="step" text="urratsa"/>
 <gentext key="Step" text="Urratsa"/>
