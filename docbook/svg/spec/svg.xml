@@ -1,0 +1,257 @@
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+                  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY standard "Standard">
+<!ENTITY tracker "http://sourceforge.net/tracker/">
+<!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
+]>
+<article status="Working Draft">
+<?dbhtml filename="docbook-svg-1.0b2.html"?>
+<articleinfo>
+<title>The DocBook SVG Module</title>
+<productnumber>Version 1.0 Beta 2</productnumber>
+<subtitle>OASIS DocBook Technical Committee</subtitle>
+<authorgroup>
+<editor>
+  <firstname>Norman</firstname><surname>Walsh</surname>
+  <affiliation>
+    <shortaffil>Sun</shortaffil>
+    <orgname>Sun Microsystems, Inc.</orgname>
+    <address><email>Norman.Walsh@Sun.COM</email></address>
+  </affiliation>
+</editor>
+</authorgroup>
+<pubdate>21 May 2002</pubdate>
+<releaseinfo role="cvs">
+$Id$
+</releaseinfo>
+<copyright><year>2001</year><year>2002</year>
+<holder>
+The Organization for the Advancement of Structured Information
+Standards [OASIS]. All Rights Reserved.
+</holder></copyright>
+<legalnotice>
+<para>This document and translations of it may be copied and furnished to
+others, and derivative works that comment on or otherwise explain it
+or assist in its implementation may be prepared, copied, published and
+distributed, in whole or in part, without restriction of any kind,
+provided that the above copyright notice and this paragraph are
+included on all such copies and derivative works. However, this
+document itself may not be modified in any way, such as by removing
+the copyright notice or references to OASIS, except as needed for the
+purpose of developing OASIS specifications, in which case the
+procedures for copyrights defined in the OASIS Intellectual Property
+Rights document must be followed, or as required to translate it into
+languages other than English.</para>
+
+<para>The limited permissions granted above are perpetual and will not be
+revoked by OASIS or its successors or assigns.</para>
+
+<para>This document and the information contained herein is provided
+on an <quote>AS IS</quote> basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE
+INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED
+WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+</para>
+</legalnotice>
+
+<legalnotice role="status"><title>Status of this Document</title>
+
+<para>This is a working draft constructed by the editor. It is not
+an official committee work product and may not reflect the consensus
+opinion of the committee.</para>
+
+<!--
+<para>This Committee Specification was approved for publication by the
+OASIS DocBook Technical Committee. It represents the
+consensus of the committee. Comments on this document may be
+sent to
+<ulink url="mailto:docbook@lists.oasis-open.org">docbook@lists.oasis-open.org</ulink>.
+</para>
+-->
+
+</legalnotice>
+
+<abstract><title>Abstract</title>
+
+<para>DocBook is a general purpose XML and SGML document type
+particularly well suited to books and papers about computer hardware
+and software. SVG (Scalable Vector Graphics) is an XML document type
+designed for describing two-dimensional graphics (vector graphic
+shapes, images, and text).</para>
+
+<para>This module integrates SVG into DocBook, allowing elements from the
+SVG namespace to be used in DocBook documents.</para>
+</abstract>
+
+<revhistory>
+<revision role="http://www.oasis-open.org/docbook/svg/docbook-svg-1.0-b2.html">
+  <revnumber>Beta Release 2</revnumber>
+  <date>21 May 2002</date>
+</revision>
+</revhistory>
+</articleinfo>
+
+<section id="s.intro">
+<title>Introduction</title>
+
+<para><xref linkend="bib.docbook42"/>
+is a general purpose XML and SGML document type particularly well
+suited to books and papers about computer hardware and software
+(though it is by no means limited to these applications).
+</para>
+
+<para><xref linkend="bib.svg11"/>
+(Scalable Vector Graphics) is an XML document type designed for describing
+two-dimensional graphics (vector graphic shapes, images, and text).</para>
+
+<para>This module integrates SVG into DocBook, allowing elements from the
+SVG namespace to be used in <sgmltag>imageobject</sgmltag>s.</para>
+
+<para>The <ulink url="mailto:docbook-tc@oasis-open.org">DocBook
+Technical Committee</ulink> maintains the DocBook schema.</para>
+
+<para>The <ulink url="http://www.w3.org/">W3C</ulink> maintains SVG.</para>
+
+<para>The 1.0 Beta 2 release of this module is based on the
+<ulink url="http://www.w3.org/TR/SVG11/">SVG 1.1 Candidate Release</ulink>
+DTD.</para>
+
+<para>The DocBook Technical Committee welcomes bug reports and
+requests for enhancement (RFEs) from the user community. The current list
+of outstanding requests is available through the
+<ulink url="http://sourceforge.net/">SourceForge</ulink>
+<ulink url="&tracker;/?atid=384107&amp;group_id=21935&amp;func=browse">tracker</ulink>
+interface. This is also the preferred mechanism for submitting new requests.
+Old RFEs, from a previous legacy tracking system, are
+<ulink url="http://www.oasis-open.org/docbook/old-rfes.html">archived</ulink>
+for reference.</para>
+
+</section>
+
+<section id="s.terminology"><title>Terminology</title>
+
+<para>The key words <glossterm>must</glossterm>, <glossterm>must
+not</glossterm>, <glossterm>required</glossterm>,
+<glossterm>shall</glossterm>, <glossterm>shall not</glossterm>,
+<glossterm>should</glossterm>, <glossterm>should not</glossterm>,
+<glossterm>recommended</glossterm>, <glossterm>may</glossterm>, and
+<glossterm>optional</glossterm> in this &standard; are to be
+interpreted as described in <xref linkend="rfc2119"/>. Note that for
+reasons of style, these words are not capitalized in this
+document.</para>
+
+</section>
+
+<section id="svg-module">
+<title>The DocBook SVG Module V1.0b2</title>
+
+<para>This module integrates SVG into DocBook by incorporating the SVG
+V1.1 DTD using a namespace prefix and extending the content model of
+DocBook's <sgmltag>imageobject</sgmltag> element to allow those
+elements to occur.</para>
+
+<section id="usage">
+<title>Usage</title>
+
+<para>To use this module, specify the public and system identifiers of this
+module in your document type declaration. For example, to use this module
+to write a book, use the following document type declaration:</para>
+
+<screen><![CDATA[<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook SVG Module V1.0beta2//EN"
+                      "http://www.oasis-open.org/docbook/xml/svg/1.0beta2/dbsvg.dtd">]]></screen>
+
+<para>Naturally, you can include an internal subset if you wish.</para>
+
+<para>This module declares <literal>svg:</literal> as the namespace
+prefix for SVG. If you wish to change that prefix, you may declare an alternative
+by changing the declaration of the parameter entity <literal>SVG.prefix</literal>.
+</para>
+
+<para>For example, to write an article using this module and to specify that
+the namespace prefix for SVG elements should be <literal>s:</literal>, you could
+use the following document type declaration:</para>
+
+<screen><![CDATA[<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook SVG Module V1.0beta2//EN"
+                         "http://www.oasis-open.org/docbook/xml/svg/1.0beta2/dbsvg.dtd" [
+<!ENTITY % SVG.prefix "s">
+]>]]></screen>
+
+<para>To incorporate this module into a higher-level customization layer, use the
+public and system identifiers of this module in your customization layer. For
+example:</para>
+
+<screen><![CDATA[<!ENTITY %docbooksvg PUBLIC "-//OASIS//DTD DocBook SVG Module V1.0beta2//EN"
+                         "http://www.oasis-open.org/docbook/xml/svg/1.0beta2/dbsvg.dtd">
+%docbooksvg;]]></screen>
+
+</section>
+
+<section id="limitations">
+<title>Limitations</title>
+
+<para>This module is DTD-based. DTDs and <xref linkend="xml-names"/>
+do not work together with perfect harmony. In particular, although you
+can change the namespace prefix used for SVG diagrams on a
+per-document basis, you cannot change it on a per-diagram basis. You
+simply cannot use <literal>svg:</literal> as the prefix on one diagram
+and <literal>s:</literal> as the prefix in another diagram within the
+same document. Such a document may be well-formed, and many XML tools
+may process it correctly, but it cannot be validated against this
+module's DTD.</para>
+
+<para>The SVG module overrides the declaration of the <sgmltag>imageobject</sgmltag>
+element. In order to write a customization layer that also changes the declaration
+of <sgmltag>imageobject</sgmltag>, that customization layer must
+disable <sgmltag class="paramentity">docbook.svg.imageobject.element</sgmltag>
+before including the SVG module.</para>
+</section>
+</section>
+
+<section id="relnotes"><title>Release Notes</title>
+
+<para>This module is a customization layer on top of DocBook XML V4.2
+Candidate Release 2. The DocBook Candidate Release specification may
+change without warning. This module will not (can not) be published in
+final form until DocBook V4.2 is officially published.</para>
+
+<para>This module is currently based on the
+<ulink url="http://www.w3.org/TR/SVG11/">SVG 1.1 Candidate Release</ulink>
+specification. The Candidate Release specification may change without
+warning. This module will not (can not) be published in final form until
+the SVG 1.1 Recommendation is released.</para>
+</section>
+
+<appendix id="a.committee" role="non-normative">
+<title>OASIS DocBook Technical Committee</title>
+
+<para>The following individuals were members of the committee during
+the formulation of this &standard;:</para>
+
+<itemizedlist>
+<listitem><para>Dennis Evans</para></listitem>
+<listitem><para>Paul Grosso (prospective)</para></listitem>
+<listitem><para>Dick Hamilton</para></listitem>
+<listitem><para>Nancy (Paisner) Harrison</para></listitem>
+<listitem><para>Sabine Ocker</para></listitem>
+<listitem><para>Michael Sabrio</para></listitem>
+<listitem><para>Michael Smith</para></listitem>
+<listitem><para>Tim Teebken (prospective)</para></listitem>
+<listitem><para>Norman Walsh (Chair, Editor)</para></listitem>
+</itemizedlist>
+
+</appendix>
+
+<bibliography id="bibl"><title>References</title>
+
+<bibliodiv><title>Normative</title>
+
+<bibliomixed id="bib.docbook42"/>
+<bibliomixed id="bib.svg11"/>
+<bibliomixed id="xml-names"/>
+<bibliomixed id="rfc2119"/>
+
+</bibliodiv>
+
+</bibliography>
+
+</article>
