@@ -191,7 +191,7 @@ CLASSPATH=$SAXON:$JAXP:$XERCES:$SUN:$NDWEXT:~/java
 #echo $CLASSPATH
 
 if [ "$QUIET" = "0" ]; then
-  echo saxon$VERSION $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY $@
+  echo saxon$VERSION $OUTPUT $XMLSRC $XMLSTY $@
 
   if [ "$MEMORY" != "" ]; then
       echo "java $MEMORY ..."
