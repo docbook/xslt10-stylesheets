@@ -57,6 +57,7 @@
 	href		CDATA	#IMPLIED
 	dir		CDATA	#IMPLIED
 	filename	CDATA	#IMPLIED
+	revisionflag	(added|changed)	#IMPLIED
 	tocskip		(0|1)	"0"
 >
 
