@@ -1156,13 +1156,47 @@ aren't copied.
   </xsl:template>
 
   <xsl:template match="src:fragment" priority="2">
-    <programlisting id="@id">
-      <xsl:apply-templates/>
+    <programlisting id="{@id}">
+      <xsl:apply-templates mode="escaped"/>
     </programlisting>
   </xsl:template>
 
   <xsl:template match="src:fragref" priority="2">
-    <xref linkend="@linkend"/>
+    <xref linkend="{@linkend}"/>
+  </xsl:template>
+
+  <xsl:template match="*" mode="escaped">
+    <xsl:text>&lt;</xsl:text>
+    <xsl:value-of select="name(.)"/>
+    <xsl:for-each select="@*">
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="name(.)"/>
+      <xsl:text>="</xsl:text>
+      <xsl:value-of select="."/>
+      <xsl:text>"</xsl:text>
+    </xsl:for-each>
+    <xsl:text>&gt;</xsl:text>
+    <xsl:apply-templates mode="escaped"/>
+    <xsl:text>&lt;/</xsl:text>
+    <xsl:value-of select="name(.)"/>
+    <xsl:text>&gt;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="comment()" mode="escaped">
+    <xsl:text>&lt;!--</xsl:text>
+    <xsl:value-of select="."/>
+    <xsl:text>--&gt;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="processing-instruction()" mode="escaped">
+    <xsl:text>&lt;?</xsl:text>
+    <xsl:value-of select="name(.)"/>
+    <xsl:value-of select="."/>
+    <xsl:text>?&gt;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="text()" mode="escaped">
+    <xsl:copy/>
   </xsl:template>
 </xsl:stylesheet>
 </src:fragment>
