@@ -786,7 +786,8 @@
                                     or count($next) &gt; 0"/>
 
   <xsl:variable name="row2" select="($prev and $navig.showtitles != 0)
-                                    or ($home != . or $nav.context = 'toc')
+                                    or (generate-id($home) != generate-id(.)
+                                        or $nav.context = 'toc')
                                     or ($chunk.tocs.and.lots != 0
                                         and $nav.context != 'toc')
                                     or ($next and $navig.showtitles != 0)"/>
