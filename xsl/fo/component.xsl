@@ -212,6 +212,7 @@
       </xsl:variable>
       <xsl:if test="contains($toc.params, 'toc')">
         <xsl:call-template name="component.toc"/>
+        <xsl:call-template name="component.toc.separator"/>
       </xsl:if>
 
       <xsl:apply-templates/>
@@ -279,6 +280,7 @@
       </xsl:variable>
       <xsl:if test="contains($toc.params, 'toc')">
         <xsl:call-template name="component.toc"/>
+        <xsl:call-template name="component.toc.separator"/>
       </xsl:if>
       <xsl:apply-templates/>
     </fo:flow>
@@ -345,6 +347,7 @@
       </xsl:variable>
       <xsl:if test="contains($toc.params, 'toc')">
         <xsl:call-template name="component.toc"/>
+        <xsl:call-template name="component.toc.separator"/>
       </xsl:if>
       <xsl:apply-templates/>
     </fo:flow>
@@ -411,6 +414,7 @@
       </xsl:variable>
       <xsl:if test="contains($toc.params, 'toc')">
         <xsl:call-template name="component.toc"/>
+        <xsl:call-template name="component.toc.separator"/>
       </xsl:if>
       <xsl:apply-templates/>
     </fo:flow>

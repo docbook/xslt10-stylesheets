@@ -35,6 +35,7 @@
       <xsl:call-template name="section.toc">
         <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
       </xsl:call-template>
+     <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
 
     <xsl:apply-templates/>
@@ -84,6 +85,7 @@
                      and (count(ancestor::section)+1) &lt;= $generate.section.toc.level)
                     or refentry">
         <xsl:call-template name="section.toc"/>
+        <xsl:call-template name="section.toc.separator"/>
       </xsl:if>
 
       <xsl:apply-templates/>
@@ -153,6 +155,7 @@
                    and ($generate.section.toc.level &gt;= 1))
                   or refentry">
       <xsl:call-template name="section.toc"/>
+      <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
 
     <xsl:apply-templates/>
@@ -202,6 +205,7 @@
                      and ($generate.section.toc.level &gt;= 1))
                     or refentry">
         <xsl:call-template name="section.toc"/>
+        <xsl:call-template name="section.toc.separator"/>
       </xsl:if>
 
       <xsl:apply-templates/>
@@ -227,6 +231,7 @@
                    and ($generate.section.toc.level &gt;= 2))
                   or refentry">
       <xsl:call-template name="section.toc"/>
+      <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
 
     <xsl:apply-templates/>
@@ -251,6 +256,7 @@
                    and ($generate.section.toc.level &gt;= 3))
                   or refentry">
       <xsl:call-template name="section.toc"/>
+      <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
 
     <xsl:apply-templates/>
@@ -275,6 +281,7 @@
                    and ($generate.section.toc.level &gt;= 4))
                   or refentry">
       <xsl:call-template name="section.toc"/>
+      <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
 
     <xsl:apply-templates/>
@@ -299,6 +306,7 @@
                    and ($generate.section.toc.level &gt;= 5))
                   or refentry">
       <xsl:call-template name="section.toc"/>
+      <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
 
     <xsl:apply-templates/>
