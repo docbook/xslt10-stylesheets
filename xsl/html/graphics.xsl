@@ -336,7 +336,7 @@
             <xsl:with-param name="em.size" select="$points.per.em"/>
           </xsl:call-template>
         </xsl:variable>
-        <xsl:value-of select="$width.in.points div 72.0 * $pixels.per.inch"/>
+        <xsl:value-of select="round($width.in.points div 72.0 * $pixels.per.inch)"/>
       </xsl:when>
       <xsl:otherwise></xsl:otherwise>
     </xsl:choose>
@@ -425,7 +425,7 @@
             <xsl:with-param name="em.size" select="$points.per.em"/>
           </xsl:call-template>
         </xsl:variable>
-        <xsl:value-of select="$depth.in.points div 72.0 * $pixels.per.inch"/>
+        <xsl:value-of select="round($depth.in.points div 72.0 * $pixels.per.inch)"/>
       </xsl:when>
       <xsl:otherwise></xsl:otherwise>
     </xsl:choose>
@@ -579,6 +579,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
                 <xsl:attribute name="style">
                   <xsl:text>height: </xsl:text>
                   <xsl:value-of select="$html.depth"/>
+                  <xsl:text>px</xsl:text>
                 </xsl:attribute>
               </xsl:when>
               <xsl:otherwise>
@@ -707,8 +708,8 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
         </xsl:when>
 
         <xsl:when test="$scaled.contentdepth != '' and $html.depth != ''">
-          <xsl:attribute name="width">
-            <xsl:value-of select="$html.width"/>
+          <xsl:attribute name="height">
+            <xsl:value-of select="$html.depth"/>
           </xsl:attribute>
         </xsl:when>
       </xsl:choose>
