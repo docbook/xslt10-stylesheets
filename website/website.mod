@@ -77,36 +77,5 @@
 %forms.mod;
 ]]>
 
-<!-- Allow role attribute on table elements. It's an oversight that these are -->
-<!-- not allowed in the DocBook DTD. -->
-
-<!ATTLIST tgroup
-	role	CDATA	#IMPLIED
->
-
-<!ATTLIST thead
-	role	CDATA	#IMPLIED
->
-
-<!ATTLIST tbody
-	role	CDATA	#IMPLIED
->
-
-<!ATTLIST tfoot
-	role	CDATA	#IMPLIED
->
-
-<!ATTLIST row
-	role	CDATA	#IMPLIED
->
-
-<!ATTLIST entry
-	role	CDATA	#IMPLIED
->
-
-<!ATTLIST colspec
-	role	CDATA	#IMPLIED
->
-
 <!-- End of Website Module V2.2 ........................................... -->
 <!-- ...................................................................... -->
