@@ -28,42 +28,28 @@
       <xsl:with-param name="allow-anchors" select="1"/>
     </xsl:apply-templates>
   </xsl:variable>
+  <xsl:variable name="titleabbrev">
+    <xsl:apply-templates select="$node" mode="titleabbrev.markup"/>
+  </xsl:variable>
 
   <xsl:if test="$passivetex.extensions != 0">
     <fotex:bookmark xmlns:fotex="http://www.tug.org/fotex"
                     fotex-bookmark-level="2"
                     fotex-bookmark-label="{$id}">
-      <xsl:value-of select="$title"/>
+      <xsl:value-of select="$titleabbrev"/>
     </fotex:bookmark>
   </xsl:if>
 
   <fo:block keep-with-next.within-column="always"
+            space-before.optimum="{$body.font.master}pt"
+            space-before.minimum="{$body.font.master * 0.8}pt"
+            space-before.maximum="{$body.font.master * 1.2}pt"
             hyphenate="false">
     <xsl:if test="$pagewide != 0">
       <xsl:attribute name="span">all</xsl:attribute>
     </xsl:if>
     <xsl:copy-of select="$title"/>
   </fo:block>
-</xsl:template>
-
-<xsl:template name="component.subtitle">
-  <xsl:param name="node" select="."/>
-  <xsl:variable name="subtitle">
-    <xsl:apply-templates select="$node" mode="subtitle.markup"/>
-  </xsl:variable>
-
-  <xsl:if test="$subtitle != ''">
-    <fo:block font-size="16pt"
-              font-weight="bold"
-              font-style="italic"
-              keep-with-next.within-column="always"
-              hyphenate="false">
-      <xsl:copy-of select="$subtitle"/>
-    </fo:block>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template name="component.separator">
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -202,7 +188,6 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
-      <xsl:call-template name="component.separator"/>
       <xsl:call-template name="preface.titlepage"/>
 
       <xsl:variable name="toc.params">
@@ -270,7 +255,6 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
-      <xsl:call-template name="component.separator"/>
       <xsl:call-template name="chapter.titlepage"/>
 
       <xsl:variable name="toc.params">
@@ -337,7 +321,6 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
-      <xsl:call-template name="component.separator"/>
       <xsl:call-template name="appendix.titlepage"/>
 
       <xsl:variable name="toc.params">
@@ -345,6 +328,7 @@
           <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
         </xsl:call-template>
       </xsl:variable>
+
       <xsl:if test="contains($toc.params, 'toc')">
         <xsl:call-template name="component.toc"/>
         <xsl:call-template name="component.toc.separator"/>
@@ -412,6 +396,7 @@
           <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
         </xsl:call-template>
       </xsl:variable>
+
       <xsl:if test="contains($toc.params, 'toc')">
         <xsl:call-template name="component.toc"/>
         <xsl:call-template name="component.toc.separator"/>
@@ -436,6 +421,9 @@
       <xsl:with-param name="level" select="2"/>
       <xsl:with-param name="title">
         <xsl:apply-templates select="." mode="object.title.markup"/>
+      </xsl:with-param>
+      <xsl:with-param name="titleabbrev">
+        <xsl:apply-templates select="." mode="titleabbrev.markup"/>
       </xsl:with-param>
     </xsl:call-template>
 
