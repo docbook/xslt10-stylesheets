@@ -5,8 +5,10 @@
                 exclude-result-prefixes="doc"
                 version='1.0'>
 
-<xsl:output method="xml"
-            indent="yes"/>
+<!-- It is important to use indent="no" here, otherwise verbatim -->
+<!-- environments get broken by indented tags...at least when the -->
+<!-- callout extension is used...at least with some processors -->
+<xsl:output method="xml" indent="no"/>
 
 <!-- ********************************************************************
      $Id$
