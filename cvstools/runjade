@@ -29,4 +29,18 @@ if [ -f /share/doctypes/catalog ]; then
     CATALOGS="$CATALOGS -c /share/doctypes/catalog"
 fi
 
-exec $JADE $CATALOGS -t $FORMAT -d $DSSSL $* $SOURCE
+# if jade && file is XML, add the XML catalog
+if [ `basename $JADE` = jade ] && [ ${SOURCE%.xml} != $SOURCE ]; then
+  for file in /usr/share/sgml/declaration/xml.dcl \
+              /usr/share/sgml/declaration/xml.decl \
+              /usr/lib/sgml/declaration/xml.dcl \
+              /usr/lib/sgml/declaration/xml.decl ; do
+    if [ -f $file ]; then
+      DECL=$file
+      break
+    fi
+  done
+fi
+
+echo $JADE $CATALOGS -t $FORMAT -d $DSSSL $* $DECL $SOURCE
+exec $JADE $CATALOGS -t $FORMAT -d $DSSSL $* $DECL $SOURCE
