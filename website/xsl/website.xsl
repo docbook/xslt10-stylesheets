@@ -21,10 +21,7 @@
 <xsl:include href="toc.xsl"/>
 
 <xsl:output method="html"
-            indent="no"
-            doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
-            doctype-system="http://www.w3.org/TR/html4/loose.dtd"
-/>
+            indent="no"/>
 
 <xsl:param name="autolayout" select="document($autolayout-file,/*[1])"/>
 

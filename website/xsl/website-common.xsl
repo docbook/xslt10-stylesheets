@@ -27,10 +27,7 @@
 <xsl:strip-space elements="website webpage"/>
 
 <xsl:output method="html"
-            indent="no"
-            doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
-            doctype-system="http://www.w3.org/TR/html4/loose.dtd"
-/>
+            indent="no"/>
 
 <!-- ==================================================================== -->
 
