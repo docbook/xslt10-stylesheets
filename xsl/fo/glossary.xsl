@@ -348,7 +348,7 @@ GlossEntry ::=
     </xsl:if>
 
     <xsl:choose>
-      <xsl:when test="$collection//glossdiv">
+      <xsl:when test="glossdiv and $collection//glossdiv">
         <xsl:for-each select="$collection//glossdiv">
           <!-- first see if there are any in this div -->
           <xsl:variable name="exist.test">
@@ -431,7 +431,7 @@ GlossEntry ::=
         </xsl:if>
 
         <xsl:choose>
-          <xsl:when test="$collection//glossdiv">
+          <xsl:when test="glossdiv and $collection//glossdiv">
             <xsl:for-each select="$collection//glossdiv">
               <!-- first see if there are any in this div -->
               <xsl:variable name="exist.test">
