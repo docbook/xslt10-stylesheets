@@ -1,5 +1,5 @@
-XSLT=../buildbin/saxon
-XJPARSE=../buildbin/xjparse
+XSLT=../cvstools/saxon
+XJPARSE=../cvstools/xjparse
 
 SOURCES=ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml et.xml fi.xml \
           fr.xml hu.xml id.xml it.xml ja.xml ko.xml nl.xml no.xml pl.xml \
