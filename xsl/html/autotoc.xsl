@@ -395,7 +395,7 @@
   <xsl:param name="toc-context" select="."/>
 
   <!-- If the index tag is empty, don't point at it from the TOC -->
-  <xsl:if test="* or $generate.index">
+  <xsl:if test="* or $generate.index != 0">
     <xsl:call-template name="subtoc">
       <xsl:with-param name="toc-context" select="$toc-context"/>
     </xsl:call-template>
