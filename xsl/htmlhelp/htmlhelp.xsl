@@ -711,17 +711,4 @@ Title=</xsl:text>
   <xsl:call-template name="href.target"/>
 </xsl:template>
 
-<xsl:template name="write.text.chunk">
-  <xsl:param name="filename" select="''"/>
-  <xsl:param name="method" select="'text'"/>
-  <xsl:param name="content" select="''"/>
-  <xsl:param name="encoding" select="'iso-8859-1'"/>
-  <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="$filename"/>
-    <xsl:with-param name="method" select="$method"/>
-    <xsl:with-param name="content" select="$content"/>
-    <xsl:with-param name="encoding" select="$encoding"/>
-  </xsl:call-template>
-</xsl:template>
-
 </xsl:stylesheet>
