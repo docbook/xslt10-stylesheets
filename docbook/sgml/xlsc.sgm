@@ -1,0 +1,74 @@
+<!DOCTYPE DOCBOOK SYSTEM "/work/dmg/dtds/oratable.dtd">
+<DOCBOOK>
+<DOCINFO><BOOKTITLE><TITLE>X Window System User's Guide</TITLE>
+</BOOKTITLE></DOCINFO>
+<REFENTRY ID="RE-1015-XLSCLIENTS-1">
+<REFMETA>
+<REFFILENAME>xlsclients</REFFILENAME>
+<REFMISCINFO>List Running Clients</REFMISCINFO></REFMETA>
+<INDEXTERM ID="IX-1015-XLSCLIENTS-1" SPAN="START"><PRIMARY>xlsclients (list running clients)</PRIMARY><SECONDARY>reference page for</SECONDARY></INDEXTERM>
+<REFNAMEDIV ID="RN-1015-XLSCLIENTS-1"><REFNAME>xlsclients</REFNAME>
+<REFPURPOSE>list client applications running on a display.</REFPURPOSE>
+</REFNAMEDIV>
+<REFSYNOPSISDIV NAME="Syntax"><SYNOPSIS><USERINPUT>xlsclients  <OPTIONAL><VARPARAM>options</VARPARAM></OPTIONAL></USERINPUT>
+</SYNOPSIS></REFSYNOPSISDIV>
+<REFSECT1 ID="R1-1015-XLSCLIENTS-1"><TITLE>Description</TITLE>
+<PARA><COMMAND>xlsclients</COMMAND>
+is a utility for listing information about the client applications 
+running on a display.  It may be used to generate scripts representing
+a snapshot of the user's current session.
+Note, however, that <COMMAND>xlsclients</COMMAND> will not list a window manager
+process.  See &cmtf08;, for more information.
+</PARA>
+</REFSECT1>
+<REFSECT1 ID="R1-1015-XLSCLIENTS-2"><TITLE>Options</TITLE>
+<PARA><COMMAND>xlsclients</COMMAND> accepts the following options:
+</PARA>
+<VARIABLELIST>
+<VARLISTENTRY>
+<TERM><OPTION>-a</OPTION></TERM>
+<LISTITEM>
+<PARA>Specifies that clients on all screens should be listed.  By 
+default, only those clients on the default screen are listed.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY>
+<TERM><OPTION>-display[</OPTION><VARPARAM>host</VARPARAM><LITERAL>:</LITERAL><VARPARAM>server</VARPARAM>[<LITERAL>.</LITERAL><VARPARAM>screen</VARPARAM>]</TERM>
+<LISTITEM>
+<PARA>Allows you to specify the display, server, and screen to connect to.
+<VARPARAM>host</VARPARAM> is the hostname of the physical display,
+<VARPARAM>server</VARPARAM> specifies the server number, and <VARPARAM>screen</VARPARAM> specifies
+the screen number.  For example,
+</PARA>
+<SCREEN ID="SC-1015-XLSCLIENTS-1"><PROMPT>%</PROMPT> <USERINPUT>xlsclients -display <VARPARAM>your_node</VARPARAM>:0.10</USERINPUT>
+</SCREEN>
+<PARA>specifies screen 1 of server 0 on the display named by <VARPARAM>your_node</VARPARAM>.  
+Either or both the <VARPARAM>host</VARPARAM> and <VARPARAM>screen</VARPARAM> 
+can be omitted.  If <VARPARAM>host</VARPARAM>
+is omitted, the local display is assumed.  If <VARPARAM>screen</VARPARAM> is omitted,
+screen 0 is assumed (and the period is unnecessary).
+The colon and <VARPARAM>server</VARPARAM> are necessary in all cases. 
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY>
+<TERM><OPTION>-l</OPTION></TERM>
+<LISTITEM>
+<PARA>Requests a long listing showing the window name, icon name,
+and class hints in addition to the machine name and command string in
+the default listing.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY>
+<TERM><OPTION>-m</OPTION><VARPARAM>max_cmd_length</VARPARAM></TERM>
+<LISTITEM>
+<PARA>Specifies the maximum number of characters in a command to 
+list.  The default is 10000.
+</PARA></LISTITEM>
+</VARLISTENTRY></VARIABLELIST>
+</REFSECT1>
+<REFSECT1 ID="R1-1015-XLSCLIENTS-3"><TITLE>See Also</TITLE>
+<PARA>X, xprop, xwininfo; &cmtf08;.
+</PARA>
+</REFSECT1>
+<REFSECT1 ID="R1-1015-XLSCLIENTS-4"><TITLE>Author</TITLE>
+<PARA>Jim Fulton, MIT X Consortium.
+<INDEXTERM ID="IX-1015-XLSCLIENTS-2" SPAN="END"><PRIMARY>xlsclients (list running clients)</PRIMARY><SECONDARY>reference page for</SECONDARY></INDEXTERM>
+</PARA>
+</REFSECT1></REFENTRY></DOCBOOK>

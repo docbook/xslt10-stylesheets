@@ -1,0 +1,27 @@
+README
+
+This directory contains several versions of the DocBook DTD,
+their documentation, an SGML declaration, and some sample files.  
+As of 2 March 1993 two versions of this DTD are available, 1.0 
+(for historical reference) and 1.2 (the current version).  
+The documentation for DTD version 1.0 is out of date, 
+but may still be useful, especially for RefEntries (man pages).  
+
+As of 2 March 1993 the documentation for the DTD version 1.2 consists of 
+an alphabetical list of elements, with definitions.  This list
+is available in both PostScript and SGML formats.
+Additional documentation will be forthcoming.  
+
+DocBook 1.2 is an expanded and revised version of 1.0, including 
+many in-line elements, some specific, some general and inclusive.  
+Valid documents may of course be constructed with a subset of
+these in-line elements---don't feel you must use them all.
+
+The DTD does not establish detailed rules for the usage of 
+elements.  This is a matter for editors and writers to deal with.
+
+Please note that the DTD has an associated SGML declaration,
+also to be found in this directory.
+
+To get all of the files relevant to version 1.2, obtain the file
+named docbook1.2.shar.

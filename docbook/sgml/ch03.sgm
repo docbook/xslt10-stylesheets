@@ -1,0 +1,1904 @@
+<!DOCTYPE DOCBOOK SYSTEM "/work/dmg/dtds/docbook.dtd">
+<DOCBOOK>
+<CHAPTER ID="CH-1015-3-1" NUMBER="3"><TITLE>Working in the X Environment</TITLE>
+<TITLEABBREV>Working in the X Environment</TITLEABBREV>
+<HIGHLIGHTS>
+<PARA>This chapter shows you how to begin working productively in the X
+environment.  It describes how to:
+</PARA>
+<ITEMIZEDLIST MARK="BULLET">
+<LISTITEM>
+<PARA>Open a second <COMMAND>xterm</COMMAND> window.
+</PARA>
+</LISTITEM>
+<LISTITEM>
+<PARA>Move windows; raise windows to the front of the display; convert
+windows to icons.
+</PARA>
+</LISTITEM>
+<LISTITEM>
+<PARA>Close an <COMMAND>xterm</COMMAND> window.
+</PARA>
+</LISTITEM>
+<LISTITEM>
+<PARA>Start other clients in convenient places on the display.
+</PARA>
+</LISTITEM>
+<LISTITEM>
+<PARA>Run clients on remote machines.
+</PARA>
+</LISTITEM>
+<LISTITEM>
+<PARA>Customize a single client process using command-line options.
+</PARA>
+</LISTITEM>
+<LISTITEM>
+<PARA>Specify alternate default characteristics for a client using resource variables.
+</PARA></LISTITEM>
+</ITEMIZEDLIST>
+</HIGHLIGHTS>
+<PARA>At the end of the last chapter, you should've had the X server, the
+first <COMMAND>xterm</COMMAND> window, and the <COMMAND>mwm</COMMAND> window manager running.
+The current chapter
+illustrates some of the system's basic capabilities
+so you can begin working more productively.  This chapter shows you how to:
+</PARA>
+<ITEMIZEDLIST MARK="BULLET">
+<LISTITEM>
+<PARA>Open a second <COMMAND>xterm</COMMAND> window.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Use the pointer to affect windows on the display.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Iconify, deiconify, maximize, raise, move, resize, and close windows
+using the pointer on the <COMMAND>mwm</COMMAND> frame.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Close an <COMMAND>xterm</COMMAND> window from the command line.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Start additional client programs, on both local and remote machines.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Organize the display. 
+</PARA></LISTITEM>
+</ITEMIZEDLIST>
+<PARA>This chapter also introduces some basic ways
+to customize X clients to better suit your needs. 
+</PARA>
+<SECT1 ID="S1-1015-3-1"><TITLE>Creating Other Windows</TITLE>
+<INDEXTERM ID="IX-1015-3-1" SPAN="START"><PRIMARY>windows</PRIMARY><SECONDARY>creating</SECONDARY></INDEXTERM>
+<PARA>Once you focus input on the first <COMMAND>xterm</COMMAND> window, as described in
+Chapter 2, you can enter
+commands to open other client windows.  For example,
+you can open a second <COMMAND>xterm</COMMAND> window by typing this 
+command at the prompt in the first <COMMAND>xterm</COMMAND> window:
+<INDEXTERM ID="IX-1015-3-2"><PRIMARY>xterm (terminal emulator)</PRIMARY><SECONDARY>multiple xterms</SECONDARY></INDEXTERM>
+</PARA>
+<SCREEN ID="SC-1015-3-1"><PROMPT>%</PROMPT> <USERINPUT>xterm </USERINPUT>
+</SCREEN>
+<PARA>After a few moments, a second <COMMAND>xterm</COMMAND> window will be displayed on the
+screen.  As we'll see later in this chapter, you can specify the 
+location for a new window using a command-line option (or in many cases using a resource variable
+stored in a file in your home directory).
+If you don't specify
+position on the command line (or in a resource
+file), by default <COMMAND>mwm</COMMAND> 
+automatically places 
+new windows offset from the upper-left corner of
+the screen, as shown in 
+<XREF LINKEND="FG-1015-3-1">Figure 3-1</XREF>.<FOOTNOTEREF LINKEND="FN-1015-3-1"></FOOTNOTEREF>
+<FOOTNOTE ID="FN-1015-3-1">
+<PARA>If you start multiple processes in a row, the windows will be placed
+progressively further from the upper-left corner (towards the opposite
+corner), so that no window completely overlaps another.
+</PARA>
+<PARA><INDEXTERM ID="IX-1015-3-3"><PRIMARY>windows</PRIMARY><SECONDARY>place using pointer</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-4"><PRIMARY>interactivePlacement</PRIMARY></INDEXTERM>
+You can customize <COMMAND>mwm</COMMAND> to allow you to place new windows
+interactively using the pointer.  This modification is performed
+by setting a resource variable called <RESOURCE>interactivePlacement</RESOURCE>
+to a value of true.
+See Chapter 13 for instructions on modifying <COMMAND>mwm</COMMAND>.
+See the <COMMAND>mwm</COMMAND> reference page in Part Three of this guide for
+more information about <RESOURCE>interactivePlacement</RESOURCE>.
+</PARA>
+</FOOTNOTE>
+</PARA>
+<FIGURE ID="FG-1015-3-1">
+<TITLE>mwm automatically places the second xterm window</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.01.eps" ID="GC-1015-3-1"></GRAPHIC>
+</FIGURE>
+<PARA>The new <COMMAND>xterm</COMMAND> window displays a
+prompt from whatever shell you are using.  In this case, the new window is
+running the UNIX C shell.
+</PARA>
+<PARA>Notice that the second window's frame is a dark gray, indicating that input
+is focused on it. 
+The first window's frame has changed from dark to light gray; it no longer
+has the input focus.
+It's important to be aware that when
+you start a new window (and click-to-type focus is being used), the
+new window automatically takes over the input focus.
+(Note that the colors may vary according to system defaults.)
+</PARA>
+<PARA><INDEXTERM ID="IX-1015-3-5"><PRIMARY>windows</PRIMARY><SECONDARY>switching between</SECONDARY></INDEXTERM>
+In the default <COMMAND>mwm</COMMAND> configuration,
+to switch back and forth between windows you must move the pointer
+from one window to the other and click the first button.
+Notice that if you are working with a stack of windows that overlap, 
+selecting a window as the active window automatically raises that window
+to the top of the stack (in effect, the front of the display).
+</PARA>
+<PARA>Whatever you type will appear in the window with the highlighted frame.
+Try starting a command in both windows.  For example, start up
+<COMMAND>vi</COMMAND> or another text editor in the second <COMMAND>xterm</COMMAND> window.
+Notice how you can switch back to the first window to type a new
+command, by moving the pointer and clicking--even if you 
+leave <COMMAND>vi</COMMAND> in
+insert mode or some other command in the process of sending output to
+the screen.  Whatever process was running in the window you left will
+continue to run.  If it needs input from you to continue, it will wait.
+<INDEXTERM ID="IX-1015-3-6"><PRIMARY>windows</PRIMARY><SECONDARY>multiple</SECONDARY></INDEXTERM>
+</PARA>
+<PARA>You must always switch focus to work with multiple windows.  However,
+<COMMAND>mwm</COMMAND> has complicated matters by placing the second <COMMAND>xterm</COMMAND>
+window in <XREF LINKEND="FG-1015-3-1">Figure 3-1</XREF>
+ in a very inconvenient place. The second
+window overlies the first window and almost completely obscures it.
+</PARA>
+<PARA>Windows commonly overlap on
+the display.  The window manager allows you to change the position and
+size of windows so that you can work effectively in such situations.
+</PARA>
+<PARA>The primary window management tool <COMMAND>mwm</COMMAND> provides is the window frame.
+The section &ldquo;Managing Windows Using the mwm Frame,&rdquo; later in this
+chapter,
+shows you how to perform these functions simply by using the pointer on
+various parts of the frame.  But before we can learn to perform these window
+management functions, we need to learn more about pointer actions.
+</PARA>
+<SECT2 ID="S2-1015-3-1"><TITLE>Using the Pointer</TITLE>
+<INDEXTERM ID="IX-1015-3-7" SPAN="START"><PRIMARY>pointer</PRIMARY><SECONDARY>using</SECONDARY></INDEXTERM>
+<PARA>As explained in Chapter 1, the cursor on the screen follows the
+pointer's movement on the desktop.  Move your pointer
+around on the desk to get used to this.  Keep in mind that
+different pointers respond differently.  If you move to another
+display, the screen cursor may move more quickly or slowly than the
+one you're used to.  The <COMMAND>xset</COMMAND> client (described 
+in &cmtf14;) lets you modify pointer behavior.
+</PARA>
+<PARA><INDEXTERM ID="IX-1015-3-8"><PRIMARY>button</PRIMARY><SECONDARY>pointer</SECONDARY></INDEXTERM>
+You use the pointer to indicate a graphical element on the screen,
+such as a window, icon, or command button.  Most pointers have
+three buttons.  For our purposes, we'll refer to these buttons
+as first, second, and third, where the first button is the leftmost
+on the pointer, the second is in the middle, and third is the
+rightmost.<FOOTNOTEREF LINKEND="FN-1015-3-2"></FOOTNOTEREF>
+<FOOTNOTE ID="FN-1015-3-2">
+<PARA>Keep in mind that &ldquo;first&rdquo; is a logical distinction 
+made by X, not a physical one.  The first logical pointer button generally
+corresponds to the leftmost button on the pointer.
+(Thus, in some contexts you may find the buttons referred to as left, middle,
+and right.)  
+However, X allows you to
+change the correspondence of logical and physical buttons.  For
+example, you can reassign
+the first logical button to be the rightmost button on the pointer.
+A lefthanded person might opt to reverse the order of the buttons.
+You remap pointer buttons using a client called <COMMAND>xmodmap</COMMAND>, which
+is described in detail in &cmtf14;.
+</PARA>
+</FOOTNOTE>
+By placing the pointer on a particular element and then 
+performing some button action (and possibly a pointer motion), you can 
+invoke a variety of
+commands.  The types of button actions and pointer motions you can perform are:
+</PARA>
+<VARIABLELIST>
+<VARLISTENTRY>
+<TERM>Click</TERM>
+<LISTITEM>
+<PARA><INDEXTERM ID="IX-1015-3-9"><PRIMARY>clicking buttons</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-10"><PRIMARY>button</PRIMARY><SECONDARY>clicking</SECONDARY></INDEXTERM>
+To click a button, you press the pointer button down and release it.
+A click is a rapid action; there is no pause between the press and
+release.  A double click is two full clicks in succession, with no
+pause between clicks.  A triple click is three clicks in
+succession.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY>
+<TERM>Press</TERM>
+<LISTITEM>
+<PARA><INDEXTERM ID="IX-1015-3-11"><PRIMARY>button</PRIMARY><SECONDARY>pressing</SECONDARY></INDEXTERM>
+To press a button, you push the button down and hold it down.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY>
+<TERM>Release</TERM>
+<LISTITEM>
+<PARA><INDEXTERM ID="IX-1015-3-12"><PRIMARY>button</PRIMARY><SECONDARY>releasing</SECONDARY></INDEXTERM>
+After pressing a button down, you release it by letting up on the button.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY>
+<TERM>Drag</TERM>
+<LISTITEM>
+<PARA><INDEXTERM ID="IX-1015-3-13"><PRIMARY>pointer</PRIMARY><SECONDARY>dragging item with</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-14"><PRIMARY>dragging items</PRIMARY></INDEXTERM>
+To drag a graphical object (such as a window or icon) from one
+location on the screen to another:  place the pointer on the object;
+press one or more pointer buttons; move the pointer to another
+location (dragging the object); and release the button(s).
+</PARA></LISTITEM>
+</VARLISTENTRY></VARIABLELIST>
+<PARA>Keep in mind that
+some commands or actions are invoked by a simple click on 
+a particular graphic element, as illustrated by <COMMAND>mwm</COMMAND>'s
+click-to-type focus.  Alternatively, some actions require a button
+press and pointer motion (i.e., dragging).
+</PARA>
+<PARA>When dragging is used to move an object, 
+the actual object does not appear in the new location until you
+complete the movement and release the pointer button.  Instead, you
+appear to drag an outline representing the object. 
+When you release the pointer button, the actual object appears in the
+new location.  This effect is illustrated in the section &ldquo;Moving a Window,&rdquo;  
+later in this chapter.
+</PARA>
+<PARA>Dragging is also commonly used to change the size of a window.
+Again, an outline indicates that the window's size is changing.  When
+the outline approximates the size you want, you release the pointer
+button and the actual window is redrawn using the selected dimensions.  
+</PARA>
+<PARA>The following sections describe how to perform the most basic window
+management functions, which require you to use the pointer in the ways
+we've discussed. 
+<INDEXTERM ID="IX-1015-3-15" SPAN="END"><PRIMARY>pointer</PRIMARY><SECONDARY>using</SECONDARY></INDEXTERM>
+</PARA>
+</SECT2>
+<SECT2 ID="S2-1015-3-2"><TITLE>Managing Windows Using the mwm Frame</TITLE>
+<INDEXTERM ID="IX-1015-3-16" SPAN="START"><PRIMARY>mwm (Motif window manager)</PRIMARY></INDEXTERM>
+<PARA><XREF LINKEND="FG-1015-3-2">Figure 3-2</XREF>
+shows an <COMMAND>xterm</COMMAND> window &ldquo;framed&rdquo; by <COMMAND>mwm</COMMAND>.
+The window frame itself and several features of it 
+are tools that allow you to manage the window using the pointer.
+</PARA>
+<FIGURE ID="FG-1015-3-2">
+<TITLE>An xterm window framed by mwm</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.02.eps" ID="GC-1015-3-2"></GRAPHIC>
+</FIGURE>
+<INDEXTERM ID="IX-1015-3-17"><PRIMARY>command buttons</PRIMARY><SECONDARY>Minimize</SECONDARY></INDEXTERM>
+<PARA>The wider top edge
+of the frame is the titlebar.  The titlebar is
+composed of several parts including a title area (displaying the
+name of the application) and three command buttons (Minimize, Maximize, 
+and Window Menu).  Notice that whenever you move the pointer into the
+titlebar, the pointer changes to the arrow cursor.
+</PARA>
+<PARA>Though it's not apparent from <XREF LINKEND="FG-1015-3-2">Figure 3-2</XREF>,
+ you can perform most window
+management functions by using the pointer on various parts of the frame. 
+<INDEXTERM ID="IX-1015-3-18"><PRIMARY>titlebar</PRIMARY></INDEXTERM>
+The following sections explain how to
+iconify, maximize, move, raise, resize, and close windows using the frame.
+Chapter 4 describes menu items and keyboard shortcuts
+that can be used as alternatives to the frame.
+These are important when a window's frame is obscured by other
+features of the display.  Chapter 4 also describes additional
+functions provided by <COMMAND>mwm</COMMAND> menus.
+</PARA>
+<SECT3 ID="S3-1015-3-1"><TITLE>Converting a Window to an Icon</TITLE>
+<INDEXTERM ID="IX-1015-3-19"><PRIMARY>windows</PRIMARY><SECONDARY>iconifying</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-20" SPAN="START"><PRIMARY>Minimize command button</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-21" SPAN="START"><PRIMARY>command buttons</PRIMARY><SECONDARY>Minimize</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-22"><PRIMARY>iconifying windows</PRIMARY></INDEXTERM>
+<PARA>As discussed in Chapter 1, an icon is a symbol that represents a
+window in an inactive state.  There are many circumstances in which 
+it might be desirable to iconify a window:
+</PARA>
+<ITEMIZEDLIST MARK="BULLET">
+<LISTITEM>
+<PARA>To prevent yourself from inadvertently terminating a window, as in
+the case of the login <COMMAND>xterm</COMMAND>.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>While running a program whose progress you don't need to
+monitor; if a window is tied up running a process and you don't have
+to see it, the window is just taking up space. 
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>If you are only using an application occasionally.
+For example, you might be
+running the <COMMAND>xcalc</COMMAND> calculator program, but
+only using it every so often.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>If you want to use several application windows, but only display a few at a
+time; this arrangement can be somewhat less confusing than a display crowded 
+with windows.  Having some windows iconified also frees you from
+constantly shuffling the stacking order.
+</PARA></LISTITEM>
+</ITEMIZEDLIST>
+<PARA>The Minimize command button on the <COMMAND>mwm</COMMAND> frame allows you to
+convert a window to an icon (iconify it).
+The Minimize button appears immediately to the right of the title area
+and is identified by a tiny square in its center. 
+To iconify a window, use the following steps:
+</PARA>
+<ORDEREDLIST NUMERATION="ARABIC">
+<LISTITEM>
+<PARA>Place the pointer within the Minimize command button.  The pointer simply
+has to rest within the button's outer border, not within the tiny square
+identifying it.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Click the first pointer button.  The window is iconified. 
+<XREF LINKEND="FG-1015-3-3">Figure 3-3</XREF>
+shows a window being converted to an icon in this way. 
+</PARA></LISTITEM>
+</ORDEREDLIST>
+<PARA>By default, icons are displayed in the bottom left corner of the root
+window.  <COMMAND>mwm</COMMAND> can also be set up to place icons in another location,
+to allow you to place them interactively using the pointer, or
+to organize icons within a window
+known as an <FIRSTTERM>icon box</FIRSTTERM>.  In &cmtf13;, we'll discuss the
+specifications necessary to set up an icon box.
+</PARA>
+<FIGURE ID="FG-1015-3-3">
+<TITLE>Converting a window to an icon with the Minimize button</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.03.eps" ID="GC-1015-3-3"></GRAPHIC>
+</FIGURE>
+<INDEXTERM ID="IX-1015-3-23" SPAN="END"><PRIMARY>Minimize command button</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-24" SPAN="END"><PRIMARY>command buttons</PRIMARY><SECONDARY>Minimize</SECONDARY></INDEXTERM>
+</SECT3>
+<SECT3 ID="S3-1015-3-2"><TITLE>Converting an Icon to a Window</TITLE>
+<INDEXTERM ID="IX-1015-3-25"><PRIMARY>windows</PRIMARY><SECONDARY>deiconifying</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-26"><PRIMARY>deiconifying windows</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-27"><PRIMARY>icons</PRIMARY><SECONDARY>converting to windows</SECONDARY></INDEXTERM>
+<PARA>To convert an icon back to a window (deiconify it), place the pointer 
+on the icon and double click, using the first pointer button.
+The window is redisplayed in the position it appeared before it was
+iconfied (and is also raised to the top of the stack).  
+</PARA>
+<PARA>Between the first and second clicks, you'll probably notice 
+that another small window is displayed for an instant above the icon.
+This window is actually a menu, called the <INTERFACE>Window Menu</INTERFACE>.
+(This menu can be displayed from a window or from an icon and can be
+used to invoke several window management functions on the window or
+icon.  We'll discuss the <INTERFACE>Window Menu</INTERFACE> in more 
+detail in &cmtf04;.)
+</PARA>
+<PARA>Be aware, however, that if you pause too long between the two clicks
+in deiconifying a window, the second click will not be interpreted
+and the icon will not be converted back to a window.
+Instead the <INTERFACE>Window Menu</INTERFACE> will remain on the screen, as in 
+<XREF LINKEND="FG-1015-3-4">Figure 3-4</XREF>.
+</PARA>
+<PARA>Notice that in addition to displaying the menu,
+clicking has caused the icon image to change in appearance.
+The icon label is wider and the
+label and the frame surrounding the icon are highlighted. 
+These changes indicate that the icon has the input focus; thus the
+icon will interpret subsequent
+keystrokes as window manager commands.  
+</PARA>
+<PARA>Notice also that the first item on the
+menu, <INTERFACE>Restore</INTERFACE>, is surrounded by a box, indicating that
+it is available for selection.  <INTERFACE>Restore</INTERFACE> means to
+restore an icon to a window (or, as we'll see, a maximum size window to 
+its original size).  When the <INTERFACE>Window
+Menu</INTERFACE>0 is displayed above an icon, you can convert the icon to a
+window by placing the pointer on the <INTERFACE>Restore</INTERFACE> menu item
+and clicking the first pointer button.  
+(Whenever a <INTERFACE>Window Menu</INTERFACE> item is boxed, you can also
+select it by pressing either the Return key or the space bar.)
+</PARA>
+<FIGURE ID="FG-1015-3-4">
+<TITLE>Window Menu being displayed over an icon</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.04.eps" ID="GC-1015-3-4"></GRAPHIC>
+</FIGURE>
+<PARA>If you want to remove the
+menu without invoking a command, simply move the pointer off the
+icon and menu and click the first pointer button.  
+The menu will be removed; however, the icon will retain the input
+focus--the label and border will remain
+highlighted--until you focus input on another window or icon.
+</PARA>
+</SECT3>
+<SECT3 ID="S3-1015-3-3"><TITLE>Maximizing a Window</TITLE>
+<INDEXTERM ID="IX-1015-3-28"><PRIMARY>button</PRIMARY><SECONDARY>command</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-29"><PRIMARY>command buttons</PRIMARY><SECONDARY>Minimize</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-30"><PRIMARY>Minimize command button</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-31"><PRIMARY>command buttons</PRIMARY><SECONDARY>Maximize</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-32"><PRIMARY>windows</PRIMARY><SECONDARY>minimizing</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-33"><PRIMARY>windows</PRIMARY><SECONDARY>maximizing</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-34" SPAN="START"><PRIMARY>Maximize command button</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-35"><PRIMARY>windows</PRIMARY><SECONDARY>enlargening</SECONDARY></INDEXTERM>
+<PARA>Maximizing a window generally means enlarging it to the size of the root
+window.  (In some cases, a client application may specify its 
+own maximum window size and maximizing will produce a window of this size.) 
+This action can be performed using the Maximize command button, which
+is located to the right of the Minimize command button (in the upper-right 
+corner of the window).
+</PARA>
+<PARA>The Maximize command button is identified by 
+a larger square in its center.
+It allows you both to enlarge the window to the size of
+the root window (or to the maximum size the client allows), and
+once it has been enlarged, to convert it back to its original size.
+</PARA>
+<PARA>To maximize a window, use the following steps:
+</PARA>
+<ORDEREDLIST NUMERATION="ARABIC">
+<LISTITEM>
+<PARA>Place the pointer within the Maximize command button.  The pointer simply
+has to rest within the button's outer border, not within the square
+identifying it.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Click the first pointer button.  The window is maximized, as
+illustrated in
+<XREF LINKEND="FG-1015-3-5">Figure 3-5</XREF>.
+</PARA></LISTITEM>
+</ORDEREDLIST>
+<FIGURE ID="FG-1015-3-5">
+<TITLE>A maximized window</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.05.eps" ID="GC-1015-3-5"></GRAPHIC>
+</FIGURE>
+<PARA>The large window should function in the same way it did before it was
+maximized.  Theoretically, you can maximize an <COMMAND>xterm</COMMAND> window to have a
+single, very large terminal screen.  However, be aware that certain
+programs you may run within an <COMMAND>xterm</COMMAND>, such as the <COMMAND>vi</COMMAND> text 
+editor, do not always work properly
+within a window of this size (even if you've used the
+<COMMAND>resize</COMMAND> 
+client, as described in &cmtf05;).
+The Maximize function is more safely
+used with an application that displays a graphic image or performs a
+simple function, such as <COMMAND>xclock</COMMAND>. 
+</PARA>
+<PARA>Also, some client programs that do not
+support resizing, such as the Release 3 version of <COMMAND>xcalc</COMMAND>, cannot 
+<INDEXTERM ID="IX-1015-3-36"><PRIMARY>xcalc (calculator)</PRIMARY><SECONDARY>and resizing windows</SECONDARY></INDEXTERM>
+be maximized correctly.
+In the case of <COMMAND>xcalc</COMMAND>, the frame surrounding the 
+calculator application is maximized, but the actual calculator remains the
+same size.
+</PARA>
+<PARA>The Maximize button is a toggle.
+To convert a maximized window back to its original size, click on
+the Maximize button again with the first pointer button. 
+The <INTERFACE>Restore</INTERFACE> item on the <INTERFACE>Window Menu</INTERFACE> will also
+perform this function.
+<INDEXTERM ID="IX-1015-3-37" SPAN="END"><PRIMARY>Maximize command button</PRIMARY></INDEXTERM>
+</PARA>
+</SECT3>
+<SECT3 ID="S3-1015-3-4"><TITLE>Raising a Window or Icon</TITLE>
+<INDEXTERM ID="IX-1015-3-38"><PRIMARY>windows</PRIMARY><SECONDARY>raising</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-39"><PRIMARY>icons</PRIMARY><SECONDARY>raising</SECONDARY></INDEXTERM>
+<PARA>We've already seen the necessity for raising windows on the display:
+frequently windows overlap.  In order to work with a window that is
+all or partially covered by another window, you'll want to raise it
+to the top of the window stack.  Using the default <COMMAND>mwm</COMMAND>,
+you raise a window with the following steps: 
+</PARA>
+<ORDEREDLIST NUMERATION="ARABIC">
+<LISTITEM>
+<PARA>Place the pointer on any part of the window frame, except the three 
+command buttons (Minimize, Maximize, and Window Menu).
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Click the first pointer button.  The window is raised to the top of the
+stack.
+</PARA></LISTITEM>
+</ORDEREDLIST>
+<PARA>When you are using explicit (click-to-type) focus, this click 
+also selects the window to receive input, i.e.,
+makes the window the active window.  
+Once you have raised a window to the top of the stack, you should be
+able to enter input and read output easily.
+</PARA>
+<PARA>Windows may obscure icons on the display.  (<COMMAND>mwm</COMMAND> does not allow
+one icon to obscure another.)  If an icon is partially visible under
+a window, you can raise it using the following steps:
+</PARA>
+<ORDEREDLIST NUMERATION="ARABIC">
+<LISTITEM>
+<PARA>Place the pointer on the obscured icon.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Click the first pointer button.  
+</PARA></LISTITEM>
+</ORDEREDLIST>
+<PARA>The icon is raised to the top of the stack.
+</PARA>
+<PARA><XREF LINKEND="FG-1015-3-6">Figure 3-6</XREF>
+illustrates an icon being raised in front of a window.
+</PARA>
+<PARA>Notice that in addition to being raised to the top of the window stack,
+a menu (called the <INTERFACE>Window Menu</INTERFACE>)
+is displayed over the icon.
+(This menu can be displayed from a window or from an icon and can
+be used to invoke several management functions on the window or icon.
+We'll discuss the <INTERFACE>Window Menu</INTERFACE> in more detail in Chapter 4.)
+To remove the menu, move the pointer off of the icon and menu and
+click the first button.
+</PARA>
+<PARA>Notice also that the icon image changes in appearance when you raise the
+icon to the top of the stack (as it did when we paused between the double
+click to deiconify).
+The wider label and the highlighted label and frame
+indicate that the icon has the input focus.  (Remember, when an icon
+has the input focus, it will interpret subsequent
+keystrokes as window manager commands.)  
+Even when you remove the <INTERFACE>Window Menu</INTERFACE>, the icon will
+retain the focus (and remain highlighted).  When you direct focus to another
+window (or icon), the icon label will become normal again.
+</PARA>
+<FIGURE ID="FG-1015-3-6">
+<TITLE>Raising an icon</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.06.eps" ID="GC-1015-3-6"></GRAPHIC>
+</FIGURE>
+</SECT3>
+<SECT3 ID="S3-1015-3-5"><TITLE>Moving a Window</TITLE>
+<INDEXTERM ID="IX-1015-3-40"><PRIMARY>windows</PRIMARY><SECONDARY>moving</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-41"><PRIMARY>title area</PRIMARY><SECONDARY>mwm frame</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-42"><PRIMARY>mwm (Motif window manager)</PRIMARY><SECONDARY>frame;title area</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-43"><PRIMARY>moving</PRIMARY><SECONDARY>windows</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-44"><PRIMARY>titlebar</PRIMARY><SECONDARY>and moving windows</SECONDARY></INDEXTERM>
+<PARA>In many cases you'll want to move a window from one location on the
+display to another.
+The largest part of
+the titlebar is known as the <FIRSTTERM>title area</FIRSTTERM>, primarily because it
+displays the name of the application.  
+The title area allows you to move the window, using the following steps:
+</PARA>
+<ORDEREDLIST NUMERATION="ARABIC">
+<LISTITEM>
+<PARA>Place the pointer within the title area.  The pointer changes to the
+arrow cursor.  
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Press and hold down the first pointer button.  
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Move the window by dragging the pointer.  
+<XREF LINKEND="FG-1015-3-7">Figure 3-7</XREF>
+shows a window
+being moved in this way.  When you begin to move the window,
+the pointer changes to a cross arrow pointer and a window outline appears.  
+This outline tracks the pointer's movement.
+In the center of the screen, a small, rectangular box also appears,
+displaying the x and y coordinates of the window as you move it.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Drag the cross arrow pointer with the window outline to the desired location
+on your screen.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Release the first pointer button.  The window will move to the 
+selected location.
+</PARA></LISTITEM>
+</ORDEREDLIST>
+<FIGURE ID="FG-1015-3-7">
+<TITLE>Moving a window by dragging the title area</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.07.eps" ID="GC-1015-3-7"></GRAPHIC>
+</FIGURE>
+<PARA>With the default configuration 
+of <COMMAND>mwm</COMMAND>, moving a window also selects that window as the active
+or focus window.
+</PARA>
+</SECT3>
+<SECT3 ID="S3-1015-3-6"><TITLE>Moving an Icon</TITLE>
+<INDEXTERM ID="IX-1015-3-45"><PRIMARY>icons</PRIMARY><SECONDARY>moving</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-46"><PRIMARY>moving</PRIMARY><SECONDARY>icons</SECONDARY></INDEXTERM>
+<PARA>Moving an icon is similar to moving a window.  To move an icon:
+</PARA>
+<ORDEREDLIST NUMERATION="ARABIC">
+<LISTITEM>
+<PARA>Place the pointer on the icon.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Press the first pointer button.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Move the icon by dragging the pointer.  
+<XREF LINKEND="FG-1015-3-8">Figure 3-8</XREF>
+shows an icon
+being moved in this way.  When you begin to move the icon,
+the pointer changes to a cross arrow pointer and an icon outline appears.  
+This outline tracks the pointer's movement.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Drag the cross arrow pointer with the icon outline to the desired location
+on your screen.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Release the first pointer button.  The icon will move to the 
+selected location.
+</PARA></LISTITEM>
+</ORDEREDLIST>
+<PARA>With the default configuration 
+of <COMMAND>mwm</COMMAND>, moving an icon also selects that icon to receive the 
+input focus.
+</PARA>
+<FIGURE ID="FG-1015-3-8">
+<TITLE>Dragging an icon to a new location</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.08.eps" ID="GC-1015-3-8"></GRAPHIC>
+</FIGURE>
+<INDEXTERM ID="IX-1015-3-47" SPAN="END"><PRIMARY>mwm (Motif window manager)</PRIMARY></INDEXTERM>
+</SECT3></SECT2>
+<SECT2 ID="S2-1015-3-3"><TITLE>Resizing a Window</TITLE>
+<INDEXTERM ID="IX-1015-3-48"><PRIMARY>windows</PRIMARY><SECONDARY>resizing</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-49"><PRIMARY>resizing windows</PRIMARY><SECONDARY>using pointer</SECONDARY></INDEXTERM>
+<PARA>One of the most distinctive and useful features of the <COMMAND>mwm</COMMAND> window
+frame is not at all obvious.  The entire frame (other than the titlebar--i.e.,
+the title area and command buttons) 
+is designed to allow you to resize the window using the pointer.
+Notice that the frame is divided by small lines
+into eight sections:  four long
+borders (two horizontal and two vertical) and four 
+corners.  
+<XREF LINKEND="FG-1015-3-9">Figure 3-9</XREF>
+shows these sections of the window frame.
+</PARA>
+<PARA>You can resize a window horizontally, vertically, or simultaneously in
+both directions. 
+Resizing is a bit trickier than any of the other window management
+functions we've tried, since the way you move the pointer determines 
+the size of the window.  It will probably take some practice.
+</PARA>
+<PARA>If you place the pointer within a window and then move it into one of
+the long horizontal or vertical borders, 
+you'll notice the pointer changes to a new shape:
+an arrow (pointing toward the window border), with a short line perpendicular 
+to it.  This short line
+represents the window border.  Try moving the pointer in this fashion
+in one of the windows on your display to get a better idea of what the
+pointer looks like.  
+If you move the pointer from within a window into the outer border at
+one of the corners, 
+the pointer will become an arrow pointing diagonally at a small
+corner symbol, as pictured in 
+<XREF LINKEND="FG-1015-3-10">Figure 3-10</XREF>.
+ <XREF LINKEND="FG-1015-3-11">Figure 3-11</XREF>
+ shows all of the possible resize pointers.
+</PARA>
+<FIGURE ID="FG-1015-3-9">
+<TITLE>The outer frame is divided into four long borders and four corners</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.09.eps" ID="GC-1015-3-9"></GRAPHIC>
+</FIGURE>
+<FIGURE ID="FG-1015-3-10">
+<TITLE>Window with resizing pointer</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.10.eps" ID="GC-1015-3-10"></GRAPHIC>
+</FIGURE>
+<FIGURE ID="FG-1015-3-11">
+<TITLE>Resizing pointer symbols</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.11.eps" ID="GC-1015-3-11"></GRAPHIC>
+</FIGURE>
+<PARA>Once the pointer changes to one of these shapes, you can move the
+border (or corner) of the window.  Resizing from one of the long borders
+only allows you to change one dimension of the window:  a horizontal
+border can only be moved up or down, changing the height; a 
+vertical border can only be moved left or right, changing the width. 
+</PARA>
+<PARA>Resizing from a corner offers the most flexibility.  You can move a
+corner in any direction you choose, changing both dimensions of the
+window if you want.  For example, you can drag the lower-right corner of
+a window down and to the right to enlarge the window in both dimensions.
+</PARA>
+<PARA>You determine the size and shape of the window by choosing the border or corner
+you want to extend (or contract) and moving it the desired amount using
+the following steps:
+</PARA>
+<ORDEREDLIST NUMERATION="ARABIC">
+<LISTITEM>
+<PARA>Move the pointer from within the window to the border or corner you want
+to move.  The pointer changes to one of the symbols pictured in
+<XREF LINKEND="FG-1015-3-11">Figure 3-11</XREF>.
+
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Press and hold down the first pointer button and drag the window border
+or corner in the direction you want.  As you resize the window, an
+image of the moving border(s) tracks the pointer movement.  Also, in the
+center of the display, a small rectangular window shows the dimensions
+of the window as they change (in characters and lines for <COMMAND>xterm</COMMAND>
+windows, in pixels for most other clients). 
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Resize the window as desired.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Release the first pointer button.  The window is redisplayed in the
+new shape.  (The border image and window geometry tracking box disappear.) 
+</PARA></LISTITEM>
+</ORDEREDLIST>
+<PARA><XREF LINKEND="FG-1015-3-12">Figure 3-12</XREF>
+shows a window being &ldquo;stretched&rdquo; from the lower-right corner.
+</PARA>
+<PARA>Note that resizing an <COMMAND>xterm</COMMAND> window will not change the dimensions of 
+the text currently in the window.  If you make the window smaller,
+for instance, some of the text may be obscured.  On most operating
+systems, this should not be a problem.  As you continue to work, perhaps
+starting a text editor, the
+text will be adjusted to display in the newly sized window.
+Problems are more likely to 
+occur if you resize a window <EMPHASIS>during</EMPHASIS> a text
+editing session.  It's likely that the 
+text editing program will not 
+know about the window's new size and will operate incorrectly.  
+To solve this problem, 
+simply quit out of the editor
+and start another session. 
+</PARA>
+<FIGURE ID="FG-1015-3-12">
+<TITLE>Dragging the corner to make a window larger</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.12.eps" ID="GC-1015-3-12"></GRAPHIC>
+</FIGURE>
+<PARA>If your resized <COMMAND>xterm</COMMAND> window does not seem to know its new
+size, you may be working with an operating system that does not support
+terminal resizing capabilities.  Refer to the discussion of the
+<COMMAND>resize</COMMAND> client in &cmtf05;, 
+and to the <COMMAND>resize</COMMAND> reference page in Part Three of this guide
+for alternative solutions.
+</PARA>
+</SECT2>
+<SECT2 ID="S2-1015-3-4"><TITLE>Closing a Window: The Window Menu Button</TITLE>
+<INDEXTERM ID="IX-1015-3-50" SPAN="START"><PRIMARY>menus</PRIMARY><SECONDARY>Window Menu (mwm)</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-51"><PRIMARY>Window Menu</PRIMARY><SECONDARY>command button</SECONDARY></INDEXTERM>
+<PARA>The command button on the left side of the titlebar is used to bring up
+the <INTERFACE>Window Menu</INTERFACE>, which provides seven items that 
+can be used to manage the window and its icon. 
+&cmtf04;, describes how to
+bring up the <INTERFACE>Window Menu</INTERFACE> and invoke its various functions.
+</PARA>
+<PARA>This command button also has another function.
+Double-clicking the first pointer button on the
+<INDEXTERM ID="IX-1015-3-52"><PRIMARY>windows</PRIMARY><SECONDARY>killing;with Window Menu button</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-53"><PRIMARY>killing</PRIMARY><SECONDARY>windows</SECONDARY></INDEXTERM>
+<INTERFACE>Window Menu</INTERFACE> command button kills the client program
+and closes the window.
+Be aware, however, that like other methods of &ldquo;killing&rdquo; a program (such as the
+<COMMAND>xkill</COMMAND> client), 
+double-clicking on the <INTERFACE>Window Menu</INTERFACE> button 
+can adversely affect underlying processes.
+Refer to the 
+section on <COMMAND>xkill</COMMAND> in &cmtf08;,
+for a more complete discussion of the hazards of killing a client and a
+summary of alternatives.
+</PARA>
+<PARA>You can customize <COMMAND>mwm</COMMAND> so that double clicking performs no
+function by setting a resource variable, <COMPUTEROUTPUT>wMenuButtonClick2</COMPUTEROUTPUT>, to
+false.   See the sections &ldquo;Setting mwm Resources&rdquo; and 
+&ldquo;mwm-Specific Appearance and Behavior Resources&rdquo; in Chapter 13,
+and the <COMMAND>mwm</COMMAND> reference page in Part Three of this guide for details.
+<INDEXTERM ID="IX-1015-3-54" SPAN="END"><PRIMARY>windows</PRIMARY><SECONDARY>creating</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-55" SPAN="END"><PRIMARY>menus</PRIMARY><SECONDARY>Window Menu (mwm)</SECONDARY></INDEXTERM>
+</PARA>
+</SECT2></SECT1>
+<SECT1 ID="S1-1015-3-2"><TITLE>Exiting from an xterm Window</TITLE>
+<INDEXTERM ID="IX-1015-3-56"><PRIMARY>xterm (terminal emulator)</PRIMARY><SECONDARY>terminating</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-57"><PRIMARY>terminating xterm window</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-58"><PRIMARY>killing</PRIMARY><SECONDARY>windows</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-59"><PRIMARY>windows</PRIMARY><SECONDARY>exiting xterm</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-60"><PRIMARY>windows</PRIMARY><SECONDARY>closing</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-61"><PRIMARY>exiting</PRIMARY><SECONDARY>xterm window</SECONDARY></INDEXTERM>
+<PARA>When you are finished using an <COMMAND>xterm</COMMAND> window, you can 
+remove it by typing whatever command you usually use to log 
+off your system.  Typically, this might be <COMMAND>exit</COMMAND>
+or Control-D.  We'll close the second <COMMAND>xterm</COMMAND> window in 
+<XREF LINKEND="FG-1015-3-13">Figure 3-13</XREF>
+by typing <COMMAND>exit</COMMAND>.
+</PARA>
+<PARA>Notice that when we terminate the second <COMMAND>xterm</COMMAND> window, 
+the first <COMMAND>xterm</COMMAND> window takes over the input focus.
+When explicit focus is being used and a window is terminated, 
+the input focus reverts to the window that previously had the focus.
+</PARA>
+<PARA>Be aware that terminating the login <COMMAND>xterm</COMMAND> window (the first
+<COMMAND>xterm</COMMAND> to appear) kills the X server and all associated clients.
+(If <COMMAND>xdm</COMMAND> is running X, the server will be reset but only after
+all client processes have been killed.)  Be sure to terminate all
+other <COMMAND>xterm</COMMAND> windows before terminating the <COMMAND>xterm</COMMAND> login
+window.  Also, if you are in an editor such as <COMMAND>vi</COMMAND>, be sure
+to save your data before you terminate the window.
+</PARA>
+<PARA><INDEXTERM ID="IX-1015-3-62"><PRIMARY>windows</PRIMARY><SECONDARY>iconifying</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-63"><PRIMARY>iconifying windows</PRIMARY></INDEXTERM>
+In fact, it may be wise to iconify the login window
+and use other <COMMAND>xterm</COMMAND> windows instead, so that you 
+don't inadvertently terminate it.  Remember:  you iconify a window by
+placing the pointer on the Minimize command button on the frame and
+clicking the first pointer button.
+</PARA>
+<PARA>If you are worried about typing Control-D (end-of-file) accidentally
+and you normally use the C shell (<COMMAND>csh</COMMAND>), you can enter:
+</PARA>
+<SCREEN ID="SC-1015-3-2"><PROMPT>%</PROMPT> <USERINPUT>set ignoreeof</USERINPUT>
+</SCREEN>
+<PARA>in the login window.  Then typing <COMMAND>exit</COMMAND> becomes the only way you can
+terminate the window.  
+</PARA>
+<PARA>Note that some C shell
+implementations have an <RESOURCE>autologout</RESOURCE> variable, which will
+automatically terminate the shell if there is no activity for a given
+period of time.
+If your C shell supports this feature, be sure to disable it
+in the login <COMMAND>xterm</COMMAND> window using this command:
+</PARA>
+<SCREEN ID="SC-1015-3-3"><PROMPT>%</PROMPT> <USERINPUT>unset autologout</USERINPUT>
+</SCREEN>
+<PARA>As an alternative to entering the command used to log off the system,
+you can also terminate an <COMMAND>xterm</COMMAND> 
+window by selecting <INTERFACE>Send HUP Signal</INTERFACE>, <INTERFACE>Send TERM
+Signal</INTERFACE>, <INTERFACE>Send KILL Signal</INTERFACE>, or
+<INTERFACE>Quit</INTERFACE> from the <COMMAND>xterm</COMMAND> <INTERFACE>Main Options</INTERFACE> menu.  (These menu options send
+different signals to the <COMMAND>xterm</COMMAND> process.  Depending on what
+signals your operating system 
+recognizes, some of the options may not
+work as intended.  See Chapter 5 for more information.)
+</PARA>
+<FIGURE ID="FG-1015-3-13">
+<TITLE>Closing an xterm window</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.13.eps" ID="GC-1015-3-13"></GRAPHIC>
+</FIGURE>
+<PARA>The <COMMAND>mwm</COMMAND> window manager also provides several ways
+to remove an <COMMAND>xterm</COMMAND> or any other client window, among them
+double-clicking on the Window Menu command button, as described
+previously.  Additional methods are described in &cmtf04;.
+</PARA>
+</SECT1>
+<SECT1 ID="S1-1015-3-3"><TITLE>Starting Additional Clients</TITLE>
+<INDEXTERM ID="IX-1015-3-64" SPAN="START"><PRIMARY>clients</PRIMARY><SECONDARY>starting additional</SECONDARY></INDEXTERM>
+<PARA>Now that you know the basics of managing windows,
+you can start other X clients just like you can start another instance
+of <COMMAND>xterm</COMMAND>.  The following sections describe how
+to open more client windows, place them on the display in
+convenient positions, and take advantage of X's networking
+capabilities by running clients on other machines.
+</PARA>
+<PARA>To start a client,
+at the command-line prompt in any <COMMAND>xterm</COMMAND> window,
+type the name of the client followed by an ampersand () to make the
+client run in the background.  For example, by typing:
+</PARA>
+<SCREEN ID="SC-1015-3-4"><PROMPT>%</PROMPT> <USERINPUT>oclock </USERINPUT>
+</SCREEN>
+<INDEXTERM ID="IX-1015-3-65"><PRIMARY>oclock (analog clock)</PRIMARY></INDEXTERM>
+<PARA>you can start a clock application.
+The clock will appear in the upper-left quarter of the screen.  
+With non-rectangular windows like <COMMAND>oclock</COMMAND>, a titlebar appears to
+float above the window.
+You can then drag the <COMMAND>oclock</COMMAND> window to a more convenient location--say
+the upper-right corner, as in 
+<XREF LINKEND="FG-1015-3-14">Figure 3-14</XREF>.
+(Remember, to move a window, place the pointer on the title area,
+press the first button, drag the window outline to the desired
+location, and release the button.  Notice that the outline is
+rectangular, even if the <COMMAND>oclock</COMMAND> window isn't!)
+</PARA>
+<FIGURE ID="FG-1015-3-14">
+<TITLE>The oclock window</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.14.eps" ID="GC-1015-3-14"></GRAPHIC>
+</FIGURE>
+<PARA>Though moving windows on the display is fairly simple, manually positioning
+every window is not particularly convenient.
+For most clients, X provides a way to specify a window's location (and also
+its size) automatically--using an option when you run the command.  
+A window's size and position is referred to as its <FIRSTTERM>geometry</FIRSTTERM> and
+you set these attributes using the <OPTION>-geometry</OPTION> option.
+The use of this option is discussed in the section &ldquo;Window Geometry:
+Specifying Size and Location,&rdquo; later in this chapter. 
+</PARA>
+<PARA>Unfortunately the developers of <COMMAND>oclock</COMMAND> neglected to provide an
+easy way to remove it.  For instructions on removing an <COMMAND>oclock</COMMAND>
+window, see &cmtf08;. 
+<INDEXTERM ID="IX-1015-3-66"><PRIMARY>oclock (analog clock)</PRIMARY><SECONDARY>removing</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-67"><PRIMARY>killing</PRIMARY><SECONDARY>clients</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-68"><PRIMARY>windows</PRIMARY><SECONDARY>removing</SECONDARY></INDEXTERM>
+</PARA>
+<SECT2 ID="S2-1015-3-5"><TITLE>Command-line Options</TITLE>
+<INDEXTERM ID="IX-1015-3-69"><PRIMARY>clients</PRIMARY><SECONDARY>options</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-70"><PRIMARY>command-line options</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-71"><PRIMARY>options</PRIMARY><SECONDARY>client</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-72" SPAN="START"><PRIMARY>-geometry option (X Toolkit)</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-73"><PRIMARY>-display option</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-74"><PRIMARY>command-line options</PRIMARY><SECONDARY>-display</SECONDARY></INDEXTERM>
+<PARA>Most X clients accept two powerful and extremely useful options:  the 
+<OPTION>-geometry</OPTION> option, which allows you to specify the size and
+location of a window on the screen; and the <OPTION>-display</OPTION> option,
+which allows you to specify on which
+screen a window should be created.  (Most commonly, you'd 
+use the <OPTION>-display</OPTION> option to run a client on a remote machine 
+and display the window locally, that is, on your display.)  
+</PARA>
+<PARA>The next few sections illustrate some typical uses of these important
+options.  In explaining how to use them, we introduce some new, 
+perhaps somewhat involved concepts (such as the way distances can be
+measured on your screen).  Bear with us.  We feel that you need to master 
+the <OPTION>-geometry</OPTION> and <OPTION>-display</OPTION> options in order
+to begin to take advantage of the powers of X.
+</PARA>
+<PARA>After explaining these options in detail, we'll briefly consider
+some of the characteristics you can specify using other common options.
+</PARA>
+<SECT3 ID="S3-1015-3-7"><TITLE>Window Geometry: Specifying Size and Location</TITLE>
+<INDEXTERM ID="IX-1015-3-75" SPAN="START"><PRIMARY>windows</PRIMARY><SECONDARY>geometry</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-76" SPAN="START"><PRIMARY>windows</PRIMARY><SECONDARY>size and location</SECONDARY></INDEXTERM>
+<PARA>The command-line option to specify a window's size and location has
+the form:
+</PARA>
+<SCREEN ID="SC-1015-3-5">-geometry <VARPARAM>geometry</VARPARAM>
+</SCREEN>
+<PARA>The <OPTION>-geometry</OPTION> option can be (and often is) abbreviated as
+<OPTION>-g</OPTION>, unless the client accepts another option that begins
+with &ldquo;g.&rdquo;
+</PARA>
+<PARA>The parameter to the geometry option (<VARPARAM>geometry</VARPARAM>), referred to
+as the &ldquo;standard geometry string,&rdquo; has four numerical components,
+two specifying the window's dimensions and two specifying its
+location.  The standard geometry string has the syntax:
+</PARA>
+<SCREEN ID="SC-1015-3-6"><VARPARAM>width</VARPARAM>x<VARPARAM>height</VARPARAM>&plusmn;<VARPARAM>xoff</VARPARAM>&plusmn;<VARPARAM>yoff</VARPARAM>
+</SCREEN>
+<PARA>Obviously,
+the first half of the string provides the <VARPARAM>width</VARPARAM> and <VARPARAM>height</VARPARAM> 
+of the window.  Many application windows are measured in pixels.
+However, application developers are encouraged to use units that are
+meaningful in terms of the application.  
+For example, <COMMAND>xterm</COMMAND>'s dimensions are measured in columns and rows
+of font characters.  More precisely, an <COMMAND>xterm</COMMAND> window is some
+number of characters wide by some number of lines high (80 characters wide by
+24 lines high by default).
+</PARA>
+<PARA>The second half of the geometry string gives the location of the window
+relative to the horizontal and vertical edges of the screen.  
+Imagining the screen to be a grid (where the upper-left corner is 0,0), 
+<VARPARAM>xoff</VARPARAM> (x offset) and <VARPARAM>yoff</VARPARAM> (y offset) represent the 
+x and y coordinates at which the window should be displayed.
+The x and y offsets are measured in pixels.  
+</PARA>
+<PARA><INDEXTERM ID="IX-1015-3-77"><PRIMARY>pixels</PRIMARY></INDEXTERM>
+Many users may not be accustomed to thinking in terms of pixels.
+What exactly is a pixel?  A pixel is
+the smallest element of a display surface that can be addressed by a
+program.  You can think of a pixel as one of the tiny dots that make
+up a graphic image, such as that displayed by a terminal or a
+television.  
+The number of dots (or pixels) per inch of screen determines the
+screen's <FIRSTTERM>resolution</FIRSTTERM>.<FOOTNOTEREF LINKEND="FN-1015-3-3"></FOOTNOTEREF>The more dots per inch, 
+the higher the resolution (and, hypothetically, the sharper the picture).<FOOTNOTEREF LINKEND="FN-1015-3-4"></FOOTNOTEREF>
+<FOOTNOTE ID="FN-1015-3-3">
+<PARA>Hardware manufacturers generally equate resolution with the screen's
+overall dimensions in pixels.  Thus, you also need to know the actual
+physical size of the monitor (in inches) to determine the dots per inch. 
+We find the dpi figure more useful.
+</PARA>
+</FOOTNOTE>
+<FOOTNOTE ID="FN-1015-3-4">
+<PARA>There are other factors that determine the &ldquo;picture quality&rdquo; of 
+a monitor, including &ldquo;depth,&rdquo; or the number of bits per pixel.
+Depth relates to how many colors a monitor can display.
+See &ldquo;How Many Colors are Available on My Screen?&rdquo;in &cmtf12;, for more information.
+</PARA>
+</FOOTNOTE>
+</PARA>
+<PARA>Since a pixel is a tiny unit of measurement, gauging sizes and
+distances in pixels will take some practice.   
+For instance, what are the dimensions of your screen in pixels (its
+resolution)?
+The <COMMAND>xdpyinfo</COMMAND> client, described in Chapter 8, will tell you this;
+your workstation or X terminal documentation may also provide this information.
+<COMMAND>xdpyinfo</COMMAND> also tells you the screen's resolution in dots per inch.
+</PARA>
+<PARA>Keep in mind that monitors can vary substantially.  The Sun 19-inch monitor
+has dimensions of 1152 &times; 900 pixels and a resolution of 90 &times; 90 dots per inch 
+(commonly abbreviated to dpi).  The NCD 16-inch X terminal has
+dimensions of 1024 &times; 1024 pixels and a resolution of 106 &times; 106 dpi.
+</PARA>
+<PARA>What are the implications of such hardware differences in specifying
+client geometry?
+The size and location of client windows is related to
+the size and resolution of your screen. 
+For example, if you specify a window with dimensions of 125 &times; 125 pixels,
+it will appear somewhat larger on the Sun monitor than on the NCD X
+terminal.
+</PARA>
+<PARA>So how do we use the geometry option to specify
+a window's size and location?
+First, be aware that 
+you can specify any or all elements of the geometry string.
+Incomplete geometry specifications are compared to the application's
+default settings and missing elements are supplied by these values.
+All client windows have a default size.
+For example, if you run an <COMMAND>xterm</COMMAND> window with the geometry
+option and specify a location but no
+dimensions, the application default size of 80 characters by 24 lines is used.
+</PARA>
+<PARA>If you don't specify the x and y coordinates at which to place a
+client window, the client may provide a default location; if the
+application doesn't provide a default and <COMMAND>mwm</COMMAND> is
+running, the window manager will automatically position the window in the
+upper-left quarter of the screen.
+</PARA>
+<PARA>For now, let's just specify a window's location and let the size be
+the application default.  
+The x and y offsets can be either positive or negative.
+If you specify positive offsets, you're positioning the left side
+and top side of the window.  Negative offsets are interpreted
+differently.
+The possible values for the x and y offsets and their effects are shown in
+<XREF LINKEND="TB-1015-3-1">Table 3-1</XREF>.
+</PARA>
+<TABLE ID="TB-1015-3-1"><TITLE>Geometry Specification x and y Offsets</TITLE>
+<GRAPHIC FORMAT="tbl" FILEREF="tbl/3-1.tbl" ID="GC-1015-3-15"></GRAPHIC>
+</TABLE>
+<PARA>For example, the command line:
+</PARA>
+<SCREEN ID="SC-1015-3-7"><PROMPT>%</PROMPT> <USERINPUT>xclock -geometry -10+10 </USERINPUT>
+</SCREEN>
+<PARA>places a clock of the default size in the upper-right corner of the
+display, 10 pixels from the right and top edges of the screen.
+</PARA>
+<PARA>To place a window in any of the four corners of the screen, flush
+against its boundaries, use the following x and y offsets. 
+<TABLE ID="TB-1015-3-2">
+<GRAPHIC FORMAT="tbl" FILEREF="tbl/3-2.tbl" ID="GC-1015-3-16"></GRAPHIC>
+</TABLE>
+</PARA>
+<PARA>If you want a window placed away from one or both edges of the
+screen, the guesswork starts.  
+How many pixels away from the left side of the screen?  How many
+pixels down from the top?  You'll have to experiment with placing some
+clients on your screen to get a better idea of x and y offsets. 
+</PARA>
+<PARA>It's actually a good idea to start some windows and move them around on 
+your screen using the pointer.  While you're dragging a window,  
+check the x and y offsets displayed 
+in the small box <COMMAND>mwm</COMMAND> places in the center of the screen. 
+These coordinates are
+the positive x and y offsets of the window (i.e., the offsets relative
+to the upper-left corner
+of the screen).  This method for gauging location is fairly reliable.<FOOTNOTEREF LINKEND="FN-1015-3-5"></FOOTNOTEREF>
+<FOOTNOTE ID="FN-1015-3-5">
+<PARA>There seems to be a very slight delay between 
+pointer motion and update to the <COMMAND>mwm</COMMAND> coordinate box.  
+When you finish dragging the window, the last coordinates visible in the box 
+may differ from the true coordinates by a pixel in either or both directions.  
+But this variance is 
+so trivial that you can supply the coordinates as part of the geometry
+string and come very close.
+</PARA>
+</FOOTNOTE>
+</PARA>
+<PARA>You can also place some windows in different places by dragging and
+then determine their geometry specifications
+using the <COMMAND>xwininfo</COMMAND> client, described in &cmtf08;.
+Note that when <COMMAND>mwm</COMMAND> is running, you should
+use <COMMAND>xwininfo</COMMAND> with the <OPTION>-frame</OPTION> option.
+</PARA>
+<PARA>Now what about the size of a window?
+For <COMMAND>xterm</COMMAND>, the size of the window is measured in
+characters and lines (by default 80 characters by 24 
+lines).  If you want to use a large VT100 window, 
+say 100 characters wide by
+30 lines long, you could use this geometry specification:  
+</PARA>
+<SCREEN ID="SC-1015-3-8"><PROMPT>%</PROMPT> <USERINPUT>xterm -geometry 100x30-0-0 </USERINPUT>
+</SCREEN>
+<PARA>This command creates a large <COMMAND>xterm</COMMAND> window in the lower-right
+corner of the screen, as illustrated by 
+<XREF LINKEND="FG-1015-3-15">Figure 3-15</XREF>.
+</PARA>
+<FIGURE ID="FG-1015-3-15">
+<TITLE>xterm window sized and positioned with the -geometry option</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.15.eps" ID="GC-1015-3-17"></GRAPHIC>
+</FIGURE>
+<PARA>As stated previously,
+most of the standard clients (other than <COMMAND>xterm</COMMAND>) are measured in
+pixels.  For example, <COMMAND>xclock</COMMAND> is 164 pixels square by default
+(exclusive of the <COMMAND>mwm</COMMAND> frame).
+A client's default dimensions may appear on its reference page in Part
+Three of this guide.  However, you'll probably need to experiment with
+specifying sizes (as well as locations) on your display.  (See
+&cmtf08;, and the client reference page, for more about <COMMAND>xclock</COMMAND>.) 
+</PARA>
+<PARA><INDEXTERM ID="IX-1015-3-78"><PRIMARY>resource variables</PRIMARY><SECONDARY>specifying window size and location</SECONDARY></INDEXTERM>
+Be aware that the geometry option is not necessarily the only means
+available to specify window size and location.
+Several clients, including <COMMAND>xterm</COMMAND>, allow you 
+to set the size and
+location of a window (and often its icon or an alternate window) using 
+resource variables
+<INDEXTERM ID="IX-1015-3-79"><PRIMARY>variables</PRIMARY><SECONDARY>resource</SECONDARY><SEE>resource variables</SEE></INDEXTERM>
+(in an <FILENAME>.Xresources</FILENAME> or other defaults file).  
+We'll introduce some of the basics of specifying
+resources later in this chapter.  See &cmtf11;,
+for more detailed instructions. 
+See the appropriate
+client reference pages in Part Three of 
+this guide for a complete list 
+of available resources.   
+</PARA>
+<PARA>You should be aware that, as with all user preferences, you may not
+always get exactly what you ask for.  Clients are designed to work
+with a window manager, which may have its own rules for window or icon
+size and placement.  However, priority is always given to specific
+user requests, so you won't often be surprised.
+<INDEXTERM ID="IX-1015-3-80" SPAN="END"><PRIMARY>windows</PRIMARY><SECONDARY>geometry</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-81" SPAN="END"><PRIMARY>windows</PRIMARY><SECONDARY>size and location</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-82" SPAN="END"><PRIMARY>-geometry option (X Toolkit)</PRIMARY></INDEXTERM>
+</PARA>
+</SECT3>
+<SECT3 ID="S3-1015-3-8"><TITLE>Running a Client on Another Machine: Specifying the Display</TITLE>
+<INDEXTERM ID="IX-1015-3-83"><PRIMARY>remote system</PRIMARY><SECONDARY>running client on</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-84"><PRIMARY>network</PRIMARY><SECONDARY>running client over</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-85"><PRIMARY>clients</PRIMARY><SECONDARY>display options</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-86"><PRIMARY>clients</PRIMARY><SECONDARY>running on another machine</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-87"><PRIMARY>clients</PRIMARY><SECONDARY>options</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-88"><PRIMARY>command-line options</PRIMARY><SECONDARY>-display</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-89"><PRIMARY>-display option</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-90"><PRIMARY>DISPLAY environment variable</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-91"><PRIMARY>options</PRIMARY><SECONDARY>command-line</SECONDARY><SEE>command-line options</SEE></INDEXTERM>
+<PARA>We have yet to take advantage of X's networking capabilities.
+Remember that X allows you to run a client on a remote machine across a network.
+Generally, the results of a client program are displayed on a screen
+connected to the system where the client is running.
+However, if you are running a client on a remote system, you probably
+want to see the results on your own display (connected to a local server).  
+</PARA>
+<PARA>Running a client on a remote machine may give you access to different
+software, it may increase the efficiency of certain processes, or
+benefit you in a number of other ways.  
+We discussed some of the advantages of running a 
+client on a remote machine in &cmtf01;.  See the section
+&ldquo;X Architecture Overview&rdquo; for details.
+</PARA>
+<PARA>But how does running a client on a remote system affect how you work with
+the X display?  Once a client is running, it doesn't.
+You can display the application window
+on your own screen, enter input using
+your own keyboard and pointer, and read the client's output in the
+window on your screen--all while the actual client process occurs on
+another machine.  
+</PARA>
+<PARA><INDEXTERM ID="IX-1015-3-92"><PRIMARY>-display option</PRIMARY></INDEXTERM>
+In order to run a
+client remotely and display its results locally, 
+you must tell the client process where to display its window.  
+For this purpose, X provides a command-line option:  <OPTION>-display</OPTION>.  
+Think of <OPTION>-display</OPTION> as a pointer to the physical display on
+which you want the window to appear.
+Like
+<OPTION>-geometry</OPTION>, the <OPTION>-display</OPTION> option is recognized by most X
+clients.  The display option tells the client on which server to
+display results (i.e., create its window).  The option has the syntax:
+</PARA>
+<SCREEN ID="SC-1015-3-9"><OPTION>-display</OPTION> <OPTIONAL><VARPARAM>host</VARPARAM></OPTIONAL>:<VARPARAM>server</VARPARAM><OPTIONAL>.<VARPARAM>screen</VARPARAM></OPTIONAL>
+</SCREEN>
+<PARA>The <OPTION>-display</OPTION> option can be abbreviated as <OPTION>-d</OPTION>,
+unless the client accepts another option that begins with &ldquo;d.&rdquo;
+</PARA>
+<PARA>The argument to the <OPTION>-display</OPTION> option is a three-component 
+<FIRSTTERM>display name</FIRSTTERM>.
+The <VARPARAM>host</VARPARAM> specifies the machine on which to create the window,
+the <VARPARAM>server</VARPARAM> 
+specifies the server number, and the <VARPARAM>screen</VARPARAM> 
+specifies the screen number.  
+</PARA>
+<PARA>In this context, &ldquo;host&rdquo; refers to the Internet address name of the
+display hardware.  It might be the
+name of a single-user workstation, an X terminal, a PC running an X
+server, or another hardware device. 
+</PARA>
+<PARA>&ldquo;Server&rdquo; refers to an instance of the X server program, which controls 
+a single physical display.
+An X display may be composed of multiple screens, but the screens share
+one keyboard and pointer.  Most workstations have only one keyboard
+and pointer and thus are classified as having only one display.
+Multiuser systems may have multiple independent displays, each
+running a server program.  If one display exists, as in the case of
+most workstations and X terminals, 
+it is numbered 0; if a machine 
+has several displays, each
+is assigned a number (beginning with 0) when the X server for that
+display is started.  
+</PARA>
+<PARA>Similarly, if a single display is composed of multiple screens
+(sharing one keyboard and pointer), each
+screen is assigned a number (beginning with 0) when the server for that
+display is started.  Multiple screen displays may be composed of
+two or more physical monitors.
+Alternatively, two screens might be defined as different ways of using
+the same physical monitor.  For example, on the Sun-3/60 color workstation,
+screen 0 is color, and screen 1 is monochrome.
+Each screen is
+the size of the monitor; you can only view one screen at a time.  
+In practice, the two screens seem to be side by side:
+you can &ldquo;scroll&rdquo; between them by moving the pointer off either
+horizontal edge of the screen. 
+</PARA>
+<PARA>Note that the <VARPARAM>server</VARPARAM> parameter of the display option
+always begins with a colon (a double colon after a DECnet 
+node<FOOTNOTEREF LINKEND="FN-1015-3-6"></FOOTNOTEREF>), and that
+the <VARPARAM>screen</VARPARAM> parameter always begins with a period.  
+If the host is omitted or is
+specified as <RESOURCE>unix</RESOURCE>, the local machine is assumed.
+If the screen is omitted, screen 0 is assumed.  
+<FOOTNOTE ID="FN-1015-3-6">
+<PARA>By convention, DECnet node names end with a colon.
+</PARA>
+</FOOTNOTE>
+</PARA>
+<PARA>Although much of the current X Window System documentation suggests that any of
+the parameters to the <OPTION>-display</OPTION> option can be omitted and will
+default to the local node, server and screen 0, respectively, 
+we have not found this to be true.  
+In our experience, only the <VARPARAM>host</VARPARAM> and <VARPARAM>screen</VARPARAM> parameters
+(and the period preceding <VARPARAM>screen</VARPARAM>)
+can be omitted.  The colon and <VARPARAM>server</VARPARAM> are necessary in 
+all circumstances.
+</PARA>
+</SECT3>
+<SECT3 ID="S3-1015-3-9"><TITLE>The DISPLAY Environment Variable</TITLE>
+<INDEXTERM ID="IX-1015-3-93"><PRIMARY>DISPLAY</PRIMARY><SECONDARY>environment variable</SECONDARY></INDEXTERM>
+<PARA>Technically speaking, the <OPTION>-display</OPTION> option allows you to
+override the contents of the DISPLAY environment variable,
+<INDEXTERM ID="IX-1015-3-94"><PRIMARY>display</PRIMARY><SECONDARY>name</SECONDARY>
+<TERTIARY>where stored</TERTIARY></INDEXTERM>
+which stores the display name on UNIX systems.
+On UNIX systems, the display name is stored in the DISPLAY
+environment variable.  
+Clients running on the local system access this variable to determine 
+which physical display to connect to (for most clients, &ldquo;connecting&rdquo;
+is equivalent to opening a window).  
+The DISPLAY variable is set 
+automatically by the <COMMAND>xterm</COMMAND> terminal emulator.  
+Thus it is set when you start X and
+the first <COMMAND>xterm</COMMAND> window.  
+</PARA>
+<PARA>For most single-user systems, such as workstations, <COMMAND>xterm</COMMAND> sets
+the server and screen numbers to 0, and either omits a
+hostname (the local host is assumed) or sets the hostname to &ldquo;unix,&rdquo; a generic
+name, which also defaults to the local host.  If you are working on a
+single-user system and run all processes on it, you don't have to deal
+with issues concerning the display setting.
+Clients running locally access the DISPLAY variable and open
+windows on a display connected to the local host.
+</PARA>
+<PARA>If you are using an X terminal, it should already be 
+configured so that the DISPLAY variable is set properly when 
+you log on to the local host.  Again, if you run all process on the
+local machine (to which your terminal is connected), you don't have to
+deal with specifying the display.
+Clients will access the DISPLAY variable and open windows on
+your X terminal screen.
+</PARA>
+<PARA>Complications arise when you want to run a process on a remote machine
+and display the results locally.
+A client running on a remote machine does not have access to the
+DISPLAY variable on the 
+local machine.  By default, a client
+running on a remote machine checks the DISPLAY setting on <EMPHASIS>that</EMPHASIS>
+machine.
+</PARA>
+<PARA>You can override the DISPLAY environment variable a client
+accesses by using the <OPTION>-display</OPTION> option when you run the command.
+</PARA>
+</SECT3>
+<SECT3 ID="S3-1015-3-10"><TITLE>Using -display</TITLE>
+<INDEXTERM ID="IX-1015-3-95"><PRIMARY>-display option</PRIMARY><SECONDARY>using</SECONDARY></INDEXTERM>
+<PARA>Say you're using a single display workstation and the display 
+also has only one screen.  The hostname of the workstation is <SYSTEMNAME>kansas</SYSTEMNAME>.  
+In order to tell a client to connect to a display, you must
+identify it by its unique name on the network.
+(You cannot identify your display by the shorthand setting given to it by
+<COMMAND>xterm</COMMAND>--<LITERAL>unix:0.0</LITERAL>, <LITERAL>:0.0</LITERAL> or some variation.)
+Let's assume that the complete display name for the 
+workstation <SYSTEMNAME>kansas</SYSTEMNAME> is:
+</PARA>
+<SCREEN ID="SC-1015-3-10">kansas:0.0
+</SCREEN>
+<PARA>Now let's say you want to run an <COMMAND>xterm</COMMAND> window on a 
+faster system--let's call
+it <SYSTEMNAME>oz</SYSTEMNAME>--on your network.  In order to run an <COMMAND>xterm</COMMAND> on
+<SYSTEMNAME>oz</SYSTEMNAME> but display the window on your screen connected to
+<SYSTEMNAME>kansas</SYSTEMNAME> (the local server), you would run the <COMMAND>xterm</COMMAND> command
+using a remote shell<FOOTNOTEREF LINKEND="FN-1015-3-7"></FOOTNOTEREF> 
+(<COMMAND>rsh</COMMAND>):
+<INDEXTERM ID="IX-1015-3-96"><PRIMARY>rsh command</PRIMARY></INDEXTERM>
+</PARA>
+<SCREEN ID="SC-1015-3-11"><PROMPT>%</PROMPT> <USERINPUT>rsh oz xterm -display kansas:0.0 </USERINPUT>
+</SCREEN>
+<FOOTNOTE ID="FN-1015-3-7">
+<PARA>The command to run the remote process might be different depending
+on the available networking software.  Ask your system administrator
+for the proper command.
+</PARA>
+</FOOTNOTE>
+<PARA>The <COMMAND>xterm</COMMAND> process runs on <SYSTEMNAME>oz</SYSTEMNAME>, but you've directed
+the client to use the display and screen numbered 0 on <SYSTEMNAME>kansas</SYSTEMNAME>,
+your local system.
+Notice that <COMPUTEROUTPUT>kansas:0.0</COMPUTEROUTPUT> is the complete display name.
+Hypothetically, if the workstation (<SYSTEMNAME>kansas</SYSTEMNAME>) has only one screen 
+or it has multiple screens but
+you want to specify screen 0, you can omit the screen number
+and the preceding period (<COMPUTEROUTPUT>.0</COMPUTEROUTPUT>).
+</PARA>
+<PARA>Keep in mind that
+for this process to succeed, the remote system (<EMPHASIS>oz</EMPHASIS>) must have 
+permission to &ldquo;open&rdquo; the local display (on <SYSTEMNAME>kansas</SYSTEMNAME>).  
+(See &ldquo;Server Access Control&rdquo; in &amtfA;, and the <COMMAND>xhost</COMMAND>
+reference page in Part Three of this guide, for more information.)
+If <EMPHASIS>oz</EMPHASIS> has not been granted access to the server running on
+<SYSTEMNAME>kansas</SYSTEMNAME>, the window will not be opened, and you may also get
+an error message similar to:
+<INDEXTERM ID="IX-1015-3-97"><PRIMARY>Can't Open display</PRIMARY><SECONDARY>error message</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-98"><PRIMARY>error messages</PRIMARY><SECONDARY>Can't Open display</SECONDARY></INDEXTERM>
+</PARA>
+<SCREEN ID="SC-1015-3-12">Error: Can't Open display
+</SCREEN>
+<PARA>If your command fails, try entering the command:
+</PARA>
+<SCREEN ID="SC-1015-3-13"><PROMPT>%</PROMPT> <USERINPUT>xhost +</USERINPUT>
+</SCREEN>
+<PARA>in an <COMMAND>xterm</COMMAND> window running on your display.  Then run the remote
+shell (<COMMAND>rsh</COMMAND>) again.  If problems persist, 
+consult your system administrator or &bmtf08;. 
+</PARA>
+<PARA>The following command illustrates a common mistake:
+</PARA>
+<SCREEN ID="SC-1015-3-14"><PROMPT>%</PROMPT> <USERINPUT>rsh oz xterm </USERINPUT>
+</SCREEN>
+<PARA>If you try to run a client using a remote shell and forget to direct the
+client to create its window on your own display, the window
+will not be displayed and you'll get an error
+message stating that the display cannot be opened.  
+</PARA>
+<PARA>If you're using an X terminal, it will have a name
+unique to the terminal (e.g., ncd8), which should be used 
+as the <VARPARAM>host</VARPARAM> component of the <OPTION>-display</OPTION> argument.
+You should not use the name of the system to which the terminal is
+connected.  When you run processes on that machine, you don't have to
+use <OPTION>-display</OPTION>.  If you want to run a client on another machine
+on the network, you must use <OPTION>-display</OPTION> to point back at your
+terminal.
+</PARA>
+<PARA>Say we have a terminal with the full display name:
+</PARA>
+<SCREEN ID="SC-1015-3-15">ncd8:0.0
+</SCREEN>
+<PARA>connected to <SYSTEMNAME>kansas</SYSTEMNAME> and we want to run an <COMMAND>xterm</COMMAND> on
+<EMPHASIS>oz</EMPHASIS>.  The command:
+</PARA>
+<SCREEN ID="SC-1015-3-16"><PROMPT>%</PROMPT> <USERINPUT>rsh oz xterm -display ncd8:0.0  </USERINPUT>
+</SCREEN>
+<PARA>will open the window on our X terminal.
+</PARA>
+<PARA>In addition to specifying a local display, if permissions allow
+you can also use the display option to open a window on someone else's
+display.
+You might want to display a window on another user's screen
+for instructional purposes.
+Multiuser systems can even be set up to allow teachers to display
+educational material simultaneously to
+several students, each using an X display of some sort.   
+And, of course, you might want to display a window on a friend's
+screen, just for the fun of it.
+(The security problems that allow
+both innocent pranks like this, as well as more serious breaches, are
+described in &bmtf08;.)
+</PARA>
+<PARA>If you're working on <SYSTEMNAME>kansas</SYSTEMNAME> and you want 
+to open an <COMMAND>xterm</COMMAND> window on the first display connected to <EMPHASIS>oz</EMPHASIS>,
+you could use the command:
+</PARA>
+<SCREEN ID="SC-1015-3-17"><PROMPT>%</PROMPT> <USERINPUT>xterm -display oz:0.0 </USERINPUT>
+</SCREEN>
+<PARA>Note that you can only open a window on another display if the 
+server running that display permits your server access.  
+(Access must be granted from the remote server, perhaps using <COMMAND>xhost</COMMAND>.)
+If <EMPHASIS>oz</EMPHASIS> does not allow <SYSTEMNAME>kansas</SYSTEMNAME> access, this
+command will fail and an error message will indicate that the display
+cannot be opened.
+</PARA>
+</SECT3>
+<SECT3 ID="S3-1015-3-11"><TITLE>Once You Run a Remote xterm Using -display</TITLE>
+<PARA>A less than obvious repercussion of using <OPTION>-display</OPTION> to run
+a remote <COMMAND>xterm</COMMAND> is that the option
+sets the DISPLAY variable for the new <COMMAND>xterm</COMMAND> window--and that
+DISPLAY setting is passed on to all child processes of the client.
+Therefore, once you run an <COMMAND>xterm</COMMAND> on a remote system and
+correctly specify your own display, you can run any number of clients
+from that <COMMAND>xterm</COMMAND> and they will all be displayed on your screen
+automatically (no <OPTION>-display</OPTION> option is necessary).  
+</PARA>
+<PARA>In one of the examples in the preceding section, we ran an <COMMAND>xterm</COMMAND>
+on the remote system <EMPHASIS>oz</EMPHASIS>, specifying the local display
+<COMPUTEROUTPUT>kansas:0.0</COMPUTEROUTPUT> with the <OPTION>-display</OPTION> option.  
+To query the contents of the
+DISPLAY variable in the resulting <COMMAND>xterm</COMMAND> (under the C
+shell), use the command:
+</PARA>
+<SCREEN ID="SC-1015-3-18"><PROMPT>%</PROMPT> <USERINPUT>echo $DISPLAY</USERINPUT>
+</SCREEN>
+<PARA>The system should echo:
+</PARA>
+<SCREEN ID="SC-1015-3-19"><PROMPT>%</PROMPT> kansas:0.0
+</SCREEN>
+<PARA>verifying that the display name has been passed to the DISPLAY 
+variable in the new <COMMAND>xterm</COMMAND> window.
+You can then run any client you want on <EMPHASIS>oz</EMPHASIS> by entering the
+command in this <COMMAND>xterm</COMMAND> window and the window
+will automatically be displayed on
+<COMPUTEROUTPUT>kansas:0.0</COMPUTEROUTPUT>.  The DISPLAY setting will also be passed to
+any children of <EMPHASIS>this</EMPHASIS> process as well, and will be propagated
+for any number of &ldquo;generations.&rdquo;
+</PARA>
+</SECT3>
+<SECT3 ID="S3-1015-3-12"><TITLE>Logging In to a Remote System</TITLE>
+<INDEXTERM ID="IX-1015-3-99"><PRIMARY>remote system</PRIMARY><SECONDARY>logging in to</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-100"><PRIMARY>DISPLAY environment variable</PRIMARY><SECONDARY>setting after remote login</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-101"><PRIMARY>rlogin</PRIMARY><SECONDARY>setting DISPLAY</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-102"><PRIMARY>telnet</PRIMARY><SECONDARY>setting DISPLAY</SECONDARY></INDEXTERM>
+<PARA>If you log in to a remote UNIX system using <COMMAND>rlogin</COMMAND> (or
+<COMMAND>telnet</COMMAND>) in an <COMMAND>xterm</COMMAND> window, it's a good idea to set the
+DISPLAY variable in the new shell to reflect your local
+display.  Then if you run a client process from this window, the new
+window will be placed on your local display and the DISPLAY
+setting will be passed on to all child processes.
+</PARA>
+<PARA>When you set the DISPLAY variable from the command
+line, the syntax varies depending on the UNIX shell running.  The
+following command sets the variable under the C shell.
+</PARA>
+<SCREEN ID="SC-1015-3-20"><PROMPT>%</PROMPT> <USERINPUT>setenv DISPLAY kansas:0.0</USERINPUT>
+</SCREEN>
+<PARA>To set the DISPLAY variable under the Bourne shell, use:
+</PARA>
+<SCREEN ID="SC-1015-3-21">$ <USERINPUT>DISPLAY=kansas:0.0; export DISPLAY</USERINPUT>
+</SCREEN>
+<INDEXTERM ID="IX-1015-3-103"><PRIMARY>DISPLAY environment variable</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-104"><PRIMARY>environment variables</PRIMARY><SECONDARY>DISPLAY</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-105"><PRIMARY>variables</PRIMARY><SECONDARY>environment</SECONDARY><SEE>environment variables</SEE></INDEXTERM>
+</SECT3>
+<SECT3 ID="S3-1015-3-13"><TITLE>Monitoring the Load on a Remote System</TITLE>
+<INDEXTERM ID="IX-1015-3-106"><PRIMARY>remote system</PRIMARY><SECONDARY>monitoring load on</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-107"><PRIMARY>load average</PRIMARY></INDEXTERM>
+<PARA>A client you may wish to run on another machine is 
+<COMMAND>xload</COMMAND>, which is used to keep track of the system load average.  
+<INDEXTERM ID="IX-1015-3-108"><PRIMARY>xload (poll system load average)</PRIMARY></INDEXTERM>
+By default, <COMMAND>xload</COMMAND> polls the system for the load
+average at ten-second intervals and displays the results in a simple
+histogram.  
+</PARA>
+<PARA>If you are running processes on more than one machine, it's useful to
+gauge the level of activity on the systems in question. 
+This information should help you judge when to start processes and
+monitor how your processes are impacting system resources.  
+</PARA>
+<PARA>Say you're running clients both on the local machine 
+<SYSTEMNAME>kansas</SYSTEMNAME> and on the remote machine <EMPHASIS>oz</EMPHASIS>.  On the local display,
+you can have two <COMMAND>xload</COMMAND> windows, one showing activity on <SYSTEMNAME>kansas</SYSTEMNAME>
+and another showing activity on <EMPHASIS>oz</EMPHASIS>. 
+</PARA>
+<PARA>To create an <COMMAND>xload</COMMAND> window monitoring activity on <SYSTEMNAME>kansas</SYSTEMNAME>, use the
+command:
+</PARA>
+<SCREEN ID="SC-1015-3-22"><PROMPT>%</PROMPT> <USERINPUT>xload </USERINPUT>
+</SCREEN>
+<PARA>Once the <COMMAND>xload</COMMAND> window is created, move it to a convenient
+location on the screen.  
+</PARA>
+<PARA>Then run an <COMMAND>xload</COMMAND> process on <EMPHASIS>oz</EMPHASIS> using
+a remote shell and display the results in a window on
+<SYSTEMNAME>kansas</SYSTEMNAME>:
+</PARA>
+<SCREEN ID="SC-1015-3-23"><PROMPT>%</PROMPT> <USERINPUT>rsh oz xload -display kansas:0.0 </USERINPUT>
+</SCREEN>
+<PARA>The display option tells <COMMAND>xload</COMMAND> to create its window on the local
+display (<SYSTEMNAME>kansas</SYSTEMNAME>).
+Again, move the window using the pointer.
+</PARA>
+<PARA><XREF LINKEND="FG-1015-3-16">Figure 3-16</XREF>
+shows the resulting <SYSTEMNAME>kansas</SYSTEMNAME> display:  
+two <COMMAND>xload</COMMAND> windows--the top window monitoring activity on the 
+local system and the bottom one monitoring activity on the remote system.
+</PARA>
+<FIGURE ID="FG-1015-3-16">
+<TITLE>Monitoring activity on two systems with xload</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.16.eps" ID="GC-1015-3-18"></GRAPHIC>
+</FIGURE>
+<INDEXTERM ID="IX-1015-3-109" SPAN="END"><PRIMARY>clients</PRIMARY><SECONDARY>starting additional</SECONDARY></INDEXTERM>
+</SECT3></SECT2></SECT1>
+<SECT1 ID="S1-1015-3-4"><TITLE>Putting It All Together</TITLE>
+<PARA>Now that we've learned something about the tools of the display, how
+to size and position windows, and run remote processes, let's try to
+set up a useful working display.
+</PARA>
+<PARA>Say we're using a Sun 3/60 workstation with the hostname
+<SYSTEMNAME>jersey</SYSTEMNAME>.  The workstation has a single display with two screens:
+screen 0 is color and screen 1 is black and white.  Once X and
+the window manager<FOOTNOTEREF LINKEND="FN-1015-3-8"></FOOTNOTEREF> 
+are running, we might set up the display using the
+following commands. 
+<FOOTNOTE ID="FN-1015-3-8">
+<PARA>Note that you should run <COMMAND>mwm</COMMAND> with the <OPTION>-multiscreens</OPTION>
+option to have the program manage all screens on the display.  If
+you start <COMMAND>mwm</COMMAND> without this option, it only manages screen 0.  In
+this case, you can either kill and restart it with
+<OPTION>-multiscreens</OPTION> or run another instance of it on screen 1.
+</PARA>
+</FOOTNOTE>
+</PARA>
+<PARA>First, 
+run an <COMMAND>xterm</COMMAND> on a more powerful remote system called
+<SYSTEMNAME>manhattan</SYSTEMNAME> and place it on screen 0 of <SYSTEMNAME>jersey</SYSTEMNAME>.
+</PARA>
+<SCREEN ID="SC-1015-3-24"><PROMPT>%</PROMPT> <USERINPUT>rsh manhattan xterm -geometry +0-0 -display jersey:0.0</USERINPUT></SCREEN>
+<PARA>Run <COMMAND>xload</COMMAND> windows on both <SYSTEMNAME>jersey</SYSTEMNAME> and <SYSTEMNAME>manhattan</SYSTEMNAME> to
+monitor loads on these systems.  Again, place the windows
+on <SYSTEMNAME>jersey</SYSTEMNAME>'s color screen in convenient locations.
+</PARA>
+<SCREEN ID="SC-1015-3-25"><PROMPT>%</PROMPT> <USERINPUT>xload -geometry -10-200 </USERINPUT>
+
+<PROMPT>%</PROMPT> <USERINPUT>rsh manhattan xload -geometry -10-20 -display jersey:0.0 
+</USERINPUT></SCREEN>
+<SCREEN></SCREEN>
+<PARA>Run another <COMMAND>xterm</COMMAND> window on <SYSTEMNAME>jersey</SYSTEMNAME>.  
+</PARA>
+<SCREEN ID="SC-1015-3-26"><PROMPT>%</PROMPT> <USERINPUT>xterm -geometry +50-0 </USERINPUT>
+</SCREEN>
+<PARA>Then iconify the login <COMMAND>xterm</COMMAND> window so that you don't
+inadvertently kill it (and shut down X in the bargain).  Remember:  to
+iconify a window place the
+pointer on the Minimize command button on the window's frame and click the
+first button.  (See &ldquo;Converting a Window to an Icon&rdquo; earlier in this
+chapter.)
+</PARA>
+<PARA>Run an <COMMAND>oclock</COMMAND>.
+</PARA>
+<SCREEN ID="SC-1015-3-27"><PROMPT>%</PROMPT> <USERINPUT>oclock -geometry +0+0 </USERINPUT>
+</SCREEN>
+<PARA><XREF LINKEND="FG-1015-3-17">Figure 3-17</XREF>
+shows the <SYSTEMNAME>jersey</SYSTEMNAME> display, screen 0:  a fairly useful layout.
+</PARA>
+<FIGURE ID="FG-1015-3-17">
+<TITLE>A working display, screen 0</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.17.eps" ID="GC-1015-3-19"></GRAPHIC>
+</FIGURE>
+<PARA>You might also place client windows on the workstation's alternate
+screen, the black and white screen numbered 1.  
+By default, windows are always placed on screen 0 but 
+you can place a client window on screen 1
+by specifying the screen number in the <OPTION>-display</OPTION> option when
+starting the client.
+For instance,
+each of the following commands places an <COMMAND>xterm</COMMAND> window on screen 1.
+</PARA>
+<SCREEN ID="SC-1015-3-28"><PROMPT>%</PROMPT> <USERINPUT>xterm -display jersey:0.1 </USERINPUT>
+
+<PROMPT>%</PROMPT> <USERINPUT>rsh manhattan xterm -geometry -0-0 -display jersey:0.1 </USERINPUT>
+</SCREEN>
+<PARA><XREF LINKEND="FG-1015-3-18">Figure 3-18</XREF>
+illustrates screen 1.
+</PARA>
+<FIGURE ID="FG-1015-3-18">
+<TITLE>A working display, screen 1</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.18.eps" ID="GC-1015-3-20"></GRAPHIC>
+</FIGURE>
+<PARA>As we'll see in &amtfA;, on most systems you can place the commands
+you run to set up your display in a special file that is invoked when
+you log in.  Once this file (usually called either <FILENAME>.xinitrc</FILENAME> or
+<FILENAME>.xsession</FILENAME>) is in place, when you log in your display will be 
+set up to your specifications automatically. 
+</PARA>
+<PARA>Notice that the commands we used to set up <SYSTEMNAME>jersey</SYSTEMNAME> illustrate the power of
+the <OPTION>-geometry</OPTION> and <OPTION>-display</OPTION> options to create a working
+environment that suits individual needs.  However, these options
+barely hint at the number of features you can specify for each
+client.  The following section introduces some principles of client
+customization.  Part Two of this guide examines customization in depth.
+</PARA>
+<SECT2 ID="S2-1015-3-6"><TITLE>Customizing a Program</TITLE>
+<INDEXTERM ID="IX-1015-3-110" SPAN="START"><PRIMARY>command-line options</PRIMARY></INDEXTERM>
+<PARA>In a sense, command-line options allow you to customize one program.
+We've already seen how to use the <OPTION>-geometry</OPTION> and
+<OPTION>-display</OPTION> options, which are accepted by most clients. 
+&cmtf10;, describes some of the other options accepted by most of
+the standard clients.  These options set window features such as:
+</PARA>
+<ITEMIZEDLIST MARK="BULLET">
+<LISTITEM>
+<PARA>The font in which text is displayed.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>The background color.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>The foreground color (such as the color of text).
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>The text displayed in the title area.
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>The text of an icon label.
+</PARA></LISTITEM>
+</ITEMIZEDLIST>
+<PARA>Many clients also accept a large number of
+application-specific options (listed on the reference page for each
+client in Part Three of this guide).  Using a combination of standard and
+application-specific options, you can 
+tailor a client to look and behave in ways that better suit your needs.
+</PARA>
+<PARA>Like most clients, <COMMAND>xclock</COMMAND> accepts a variety of options.
+Some of <COMMAND>xclock</COMMAND>'s options are intended
+to enhance the clock display aesthetically and some to 
+affect its operation.  Taking a look at a few of <COMMAND>xclock</COMMAND>'s options
+should give you a better idea of the flexibility of X.
+</PARA>
+<PARA>The following command line runs a custom <COMMAND>xclock</COMMAND> display:
+</PARA>
+<SCREEN ID="SC-1015-3-29"><PROMPT>%</PROMPT> <USERINPUT>xclock -hd green -hl royalblue -bg lightblue -fg royalblue -update 1 -chime </USERINPUT>
+</SCREEN>
+<INDEXTERM ID="IX-1015-3-111"><PRIMARY>-hd option</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-112"><PRIMARY>command-line options</PRIMARY><SECONDARY>-hd</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-113"><PRIMARY>-hl option</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-114"><PRIMARY>command-line options</PRIMARY><SECONDARY>-hl</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-115"><PRIMARY>-bg option (X Toolkit)</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-116"><PRIMARY>command-line options</PRIMARY><SECONDARY>-bg (background)</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-117"><PRIMARY>command-line options</PRIMARY><SECONDARY>-fg</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-118"><PRIMARY>-fg option (X Toolkit)</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-119"><PRIMARY>-update option</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-120"><PRIMARY>command-line options</PRIMARY><SECONDARY>-update</SECONDARY></INDEXTERM>
+<PARA>As you can see, these specifications are intended for a color monitor.
+(X is highly flexible in the use of color.  See &cmtf12;, for more
+information.)  The <OPTION>-hd</OPTION> option sets the color of the clock's
+hands to green.  The <OPTION>-hl</OPTION> option provides even more
+detail, specifying the color of the outline of the hands as royal blue.  
+<OPTION>-bg</OPTION> and <OPTION>-fg</OPTION> are two of the options accepted by most clients; 
+they set the window's background and foreground color, in this case to 
+light blue and royal blue, respectively.
+</PARA>
+<PARA>The <OPTION>-update</OPTION> option takes as its argument the frequency in
+seconds at which the time on the clock should be updated.  We've specified
+that the time be updated at one second intervals.  Thus a second hand
+(also green) will be added to the <COMMAND>xclock</COMMAND> display. 
+(The <COMMAND>xclock</COMMAND> reference page in Part Three of this guide specifies
+that a second hand is added if <OPTION>-update</OPTION> is given an argument of
+less than 30 seconds.)
+</PARA>
+<PARA><INDEXTERM ID="IX-1015-3-121"><PRIMARY>-chime option</PRIMARY></INDEXTERM>
+The <OPTION>-chime</OPTION> option specifies that the keyboard bell will ring
+once on the half hour and twice on the hour.
+</PARA>
+<PARA>These options create a somewhat fancy <COMMAND>xclock</COMMAND> display.  You might
+or might not want to use so many options, but these and several more
+are available.  
+</PARA>
+<PARA><INDEXTERM ID="IX-1015-3-122"><PRIMARY>xclock (analog or digital clock)</PRIMARY></INDEXTERM>
+By default, <COMMAND>xclock</COMMAND> displays a traditional clock face (an analog clock).
+You can create a digital <COMMAND>xclock</COMMAND> using the following option:
+</PARA>
+<SCREEN ID="SC-1015-3-30"><PROMPT>%</PROMPT> <USERINPUT>xclock -digital </USERINPUT>
+</SCREEN>
+<PARA>The digital <COMMAND>xclock</COMMAND> is pictured in 
+<XREF LINKEND="FG-1015-3-19">Figure 3-19</XREF>.
+</PARA>
+<FIGURE ID="FG-1015-3-19">
+<TITLE>Digital xclock display</TITLE>
+<GRAPHIC FORMAT="EPS" FILEREF="figs/3m.03.19.eps" ID="GC-1015-3-21"></GRAPHIC>
+</FIGURE>
+<PARA>Logically, the <OPTION>-hd</OPTION> and <OPTION>-hl</OPTION> options, which set the color
+of the clock hands, are only valid with the analog (default) <COMMAND>xclock</COMMAND>.
+For a complete list of options, see the <COMMAND>xclock</COMMAND> reference page in
+Part Three of this guide.
+</PARA>
+<PARA>Command-line options override the default characteristics of a client
+for the <EMPHASIS>single client
+process</EMPHASIS>.  Traditional UNIX applications rely on command-line options
+to allow users to customize the way they work.  X also offers many
+command-line options, but these options have some limitations and
+liabilities.
+</PARA>
+<PARA>First, the number of client features that can be controlled by command
+line options is limited.  Most applications have many more
+customizable features than their command-line options indicate.  Actually,
+a client can have so many customizable features that typing a command line to
+set them all would be impractical.  And if you generally use
+the same options with a client, it is tedious (and a waste of time) to
+type the options each time you run the program.
+</PARA>
+<PARA><INDEXTERM ID="IX-1015-3-123"><PRIMARY>clients</PRIMARY><SECONDARY>specifying default characteristics for</SECONDARY></INDEXTERM>
+X offers an alternative to customizing a single client process
+on the command line.  You can specify default characteristics for a
+client using variables called <EMPHASIS>resources</EMPHASIS>. 
+<INDEXTERM ID="IX-1015-3-124" SPAN="END"><PRIMARY>command-line options</PRIMARY></INDEXTERM>
+</PARA>
+</SECT2>
+<SECT2 ID="S2-1015-3-7"><TITLE>Customizing the X Environment</TITLE>
+<INDEXTERM ID="IX-1015-3-125" SPAN="START"><PRIMARY>clients</PRIMARY><SECONDARY>customizing</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-126" SPAN="START"><PRIMARY>customizing</PRIMARY><SECONDARY>clients</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-127" SPAN="START"><PRIMARY>X Window System</PRIMARY><SECONDARY>environment</SECONDARY>
+<TERTIARY>customizing</TERTIARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-128" SPAN="START"><PRIMARY>customizing</PRIMARY><SECONDARY>X environment</SECONDARY></INDEXTERM>
+<PARA>Command-line options allow you to customize one instance of a client
+program.  In addition, X provides a mechanism that allows you to specify 
+characteristics that take effect <EMPHASIS>every</EMPHASIS> time you run a client. 
+Almost every feature of a client program can be controlled using a
+variable called a <FIRSTTERM>resource</FIRSTTERM>.  You can change the behavior or
+appearance of a program by changing the <FIRSTTERM>value</FIRSTTERM> associated with a
+resource variable.  
+(In some cases, a resource variable controls the same characteristic as
+a command-line option.  However, while the option specifies a
+characteristic for the single client process being invoked, a resource
+variable makes the characteristic the program default.)
+</PARA>
+<PARA><INDEXTERM ID="IX-1015-3-129"><PRIMARY>resource variables</PRIMARY><SECONDARY>file kept in</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-130"><PRIMARY>.Xdefaults file</PRIMARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-131"><PRIMARY>.Xresources file</PRIMARY></INDEXTERM>
+You generally place resource specifications in a file in your home
+directory.  (The file can have any name, but is often called
+<FILENAME>.Xresources</FILENAME> or <FILENAME>.Xdefaults</FILENAME>.)  
+The resources you specify are one of several factors that affect the
+appearance and behavior of a client. 
+</PARA>
+<PARA>By default, the way a client looks and behaves is determined by
+the program code, and in some cases, by 
+a system-wide file of <EMPHASIS>application defaults</EMPHASIS>.
+Several clients have application defaults files that determine certain
+client 
+features.<FOOTNOTEREF LINKEND="FN-1015-3-9"></FOOTNOTEREF>
+<FOOTNOTE ID="FN-1015-3-9">
+<PARA>For <COMMAND>xterm</COMMAND>, the application defaults specify such 
+things as the labels for menu items, the fonts used to display menu items,
+and the shape of the pointer when it's in an <COMMAND>xterm</COMMAND> window.
+</PARA>
+<PARA>Application defaults files generally reside in the
+directory <FILENAME>/usr/lib/X11/app-defaults</FILENAME> and are named for the client
+application.  
+In describing the appearance and behavior of clients in this guide, we
+assume all of the standard application defaults files are present on
+your system and accessible by the client programs.  If, by some chance,
+a client's application defaults file has been edited or removed from
+your system, the client may not look or behave exactly as we describe it.
+If a client application appears substantially different than 
+depicted in this guide, you may be using a different version of the
+program or the application defaults may be different.  Consult your
+system administrator.
+</PARA>
+</FOOTNOTE>
+Within an application defaults file, defaults are set using resources.  
+The resources specified in a client's application defaults 
+files are usually just a subset of a greater number of resources that 
+can be set.
+</PARA>
+<PARA>If the characteristics you set in your own resources file
+already have system-wide application defaults, your own settings 
+take precedence.
+<INDEXTERM ID="IX-1015-3-132" SPAN="START"><PRIMARY>resources</PRIMARY><SECONDARY>setting</SECONDARY></INDEXTERM>
+Keep in mind, however, that command-line options override 
+both your own defaults and any system-wide defaults for the single
+client process.
+</PARA>
+<PARA>To make your resource specifications available to all clients, X
+provides a program called <COMMAND>xrdb</COMMAND>, the X resource database manager.
+<COMMAND>xrdb</COMMAND> stores resources directly in the server where they are
+accessible to all clients, regardless of the machine the
+clients are running on.
+</PARA>
+<PARA>The basic syntax of a resource specification is fairly simple.  Each
+client recognizes certain resource variables that can be assigned a
+value.  The variables for each client are listed on its reference page
+in Part Three of this guide.  
+</PARA>
+<PARA>A resource definition file is basically
+a two-column list, where each line specifies a different resource.
+The simplest resource definition line has
+the name of the client, followed
+by an asterisk, and the name of the variable, followed by a
+colon, in the left column.  The right column (separated from the left
+by a tab or whitespace) contains the value of the resource variable.
+</PARA>
+<SCREEN ID="SC-1015-3-31"><VARPARAM>client</VARPARAM><LITERAL>*</LITERAL><VARPARAM>variable</VARPARAM><LITERAL>:</LITERAL><VARPARAM>value</VARPARAM>
+</SCREEN>
+<PARA>The following example shows five simple resource specifications for the
+<COMMAND>xclock</COMMAND> client.  These particular resources specify the same 
+characteristics as the command-line
+options we used to create the green and blue <COMMAND>xclock</COMMAND> in the 
+preceding section. 
+</PARA>
+<EXAMPLE ID="EX-1015-3-1">
+<TITLE>Resources to create a custom xclock</TITLE>
+<PROGRAMLISTING>xclock*hands:  green
+xclock*highlight:  royalblue
+xclock*background:  lightblue
+xclock*foreground:  royalblue
+xclock*update:  1
+xclock*chime:  true
+</PROGRAMLISTING>
+</EXAMPLE>
+<PARA>To set up your environment so that these characteristics apply each
+time you run <COMMAND>xclock</COMMAND>, you would perform the following steps:
+</PARA>
+<ORDEREDLIST NUMERATION="ARABIC">
+<LISTITEM>
+<PARA>In your home directory,
+create a file containing the resources listed in <XREF LINKEND="EX-1015-3-1">Example 3-1</XREF>.
+
+Name the file <FILENAME>.Xresources</FILENAME>.  (A resource file can actually have
+any name, but is often called <FILENAME>.Xresources</FILENAME> or <FILENAME>.Xdefaults</FILENAME>.)
+</PARA></LISTITEM>
+<LISTITEM>
+<PARA>Load the resources into the server by entering the following command
+in an <COMMAND>xterm</COMMAND> window:
+</PARA>
+<SCREEN ID="SC-1015-3-32"><PROMPT>%</PROMPT> <USERINPUT>xrdb -load .Xresources</USERINPUT>
+</SCREEN>
+<PARA></PARA></LISTITEM>
+</ORDEREDLIST>
+<PARA>Then each time you run <COMMAND>xclock</COMMAND> without options (for the remainder 
+of that login session), the window will reflect the new defaults.
+</PARA>
+<PARA>You should load resources using <COMMAND>xrdb</COMMAND> every time you log in.
+In &amtfA;, we'll describe how to automate this process using 
+a special startup script, which also opens the client windows you want
+on your display.
+</PARA>
+<PARA>If you want to run an application with different characteristics (colors,
+update frequency, etc.) from the defaults, use the appropriate command
+line options to override the resource specifications.
+</PARA>
+<PARA>Resource specifications can be much more complicated than our samples
+suggest.  For applications written with a toolkit (such as the X
+Toolkit or the Open Software Foundation's Motif Toolkit), 
+X allows you to specify different characteristics for individual
+components, or <EMPHASIS>widgets</EMPHASIS>, within the application.  
+Typical widgets create graphical features such as menus, command buttons, 
+dialog boxes, and scrollbars.  Within most toolkit applications is a
+fairly complex widget hierarchy--widgets exist within widgets (e.g., a
+command button within a dialog box).  
+</PARA>
+<PARA>Resource naming syntax can parallel the widget hierarchy within an
+application.  For instance, you might set different background colors for
+different command buttons and specify still another background color
+for the dialog box that encloses them.  In such cases, the actual widget names 
+are used within the resource specification.  &cmtf11;,
+explains the resource
+naming syntax in greater detail
+and outlines the rules governing the precedence of resources.
+It also explains how to use the <COMMAND>editres</COMMAND> program to examine a
+(standard) client's widget hierarchy and set resources accordingly.
+<INDEXTERM ID="IX-1015-3-133" SPAN="END"><PRIMARY>X Window System</PRIMARY><SECONDARY>environment</SECONDARY>
+<TERTIARY>customizing</TERTIARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-134" SPAN="END"><PRIMARY>customizing</PRIMARY><SECONDARY>X environment</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-135" SPAN="END"><PRIMARY>resources</PRIMARY><SECONDARY>setting</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-136" SPAN="END"><PRIMARY>clients</PRIMARY><SECONDARY>customizing</SECONDARY></INDEXTERM>
+<INDEXTERM ID="IX-1015-3-137" SPAN="END"><PRIMARY>customizing</PRIMARY><SECONDARY>clients</SECONDARY></INDEXTERM>
+</PARA>
+</SECT2></SECT1>
+<SECT1 ID="S1-1015-3-5"><TITLE>Where to Go from Here</TITLE>
+<PARA>There are many useful client programs supplied with the X Window
+System.  Details of how to use one of the most important 
+clients, the <COMMAND>xterm</COMMAND> terminal emulator, are provided in Chapter 5.
+Clients to list and display fonts are described in &cmtf06;.
+Chapter 6 also describes the X font naming conventions and various
+ways to specify fonts on the command line (and in resource files).
+Chapter 7 describes several <EMPHASIS>Graphics Utilities</EMPHASIS> available with
+X.  An overview and tutorial for other standard clients and
+instructions on using certain public domain clients 
+are provided in &cmtf08;.  
+&cmtf09;, gives instructions on using Motif applications. 
+All clients are described in detail in a reference
+page format in Part Three of this guide.
+</PARA>
+<PARA>We've introduced some basic operations you can perform using the
+<COMMAND>mwm</COMMAND> window manager.
+For instructions on performing additional window manager operations,
+such as lowering a window, read &cmtf04;.
+You can then go on to read more about
+<COMMAND>xterm</COMMAND> in Chapter 5 and about some of the other standard clients 
+in Chapters 6 through 8.
+</PARA>
+</SECT1></CHAPTER></DOCBOOK>
