@@ -8,11 +8,151 @@
     <corpauthor>DocBook Open Repository Team</corpauthor> 
   </articleinfo> 
   <para>These are the release notes for the DocBook XSL Stylesheets.
-  This file documents (mostly) changes to the public APIs. What,
-  exactly, counts as a public API is still somewhat in question, but it
-  includes at least the global parameters.</para> 
-  <para>You may also be interested in the more detailed <ulink url="WhatsNew"/> file.
-  </para>
+  At a minimum, this file attempts to document changes to the public
+  APIs. What, exactly, counts as a public API is still somewhat in
+  question, but it includes at least the global parameters. This file
+  also provides a high-level overview of the features added in each
+  release.</para>
+
+  <para>Bug fixes are (mostly) not documented here. For a complete
+  list of changes, including descriptions of bug fixes, see the <ulink
+  url="WhatsNew"/> file, which is auto-generated from the checkin
+  descriptions for changes in the project CVS repository.</para>
+
+  <section>
+    <title>Release 1.68.0</title>
+    <para>This release includes some features changes and a number of
+    bug fixes.
+      <itemizedlist id="V1680_FO">
+        <title>FO</title>
+        <listitem>
+          <para>Moved footnote properties to attribute-sets.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for side floats, margin notes, and
+   	  custom floats.</para>
+        </listitem>
+        <listitem>
+          <para>Added new parameters
+          <parameter>body.start.indent</parameter> and
+          <parameter>body.end.indent</parameter> to the
+          <parameter>set.flow.properties template</parameter>.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for <sgmltag
+          class="attribute">xml:id</sgmltag></para>
+        </listitem>
+        <listitem>
+          <para>Added support for
+          <sgmltag>refdescriptor</sgmltag>.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for multiple <sgmltag>refnamediv</sgmltag>s.</para>
+        </listitem>
+        <listitem>
+          <para>Added <parameter>index.entry.properties</parameter>
+          attribute-set to support customization of index
+          entries.</para>
+        </listitem>
+        <listitem>
+          <para>Added <parameter>set.flow.properties
+          template</parameter> call to each <sgmltag>fo:flow</sgmltag>
+          to support customizations entry point.</para>
+        </listitem>
+        <listitem>
+          <para>Add support for <literal>@floatstyle</literal> in
+          <sgmltag>figure</sgmltag></para>
+        </listitem>
+        <listitem>
+          <para>Moved hardcoded properties for index division titles
+          to the <parameter>index.div.title.properties</parameter>
+          attribute-set.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for
+          <sgmltag>table-layout</sgmltag>="<sgmltag
+          class="attvalue">auto</sgmltag>" for XEP.</para>
+        </listitem>
+        <listitem>
+          <para>Added <parameter>index.div.title.properties</parameter>
+   	  attribute-set.</para>
+        </listitem>
+        <listitem>
+          <para><parameter>$verbose</parameter> parameter is now
+          passed to most elements.</para>
+        </listitem>
+        <listitem>
+          <para>Added <sgmltag>refentry</sgmltag> to
+          <sgmltag>toc</sgmltag> in <sgmltag>part</sgmltag>, as it is
+          permitted by the DocBook schema/DTD.</para>
+        </listitem>
+        <listitem>
+          <para>Added backmatter elements and
+          <sgmltag>article</sgmltag> to <sgmltag>toc</sgmltag> in
+          <sgmltag>part</sgmltag>, since they are permitted by the
+          DocBook schema/DTD.</para>
+        </listitem>
+        <listitem>
+          <para>Added <sgmltag
+          class="attribute">mode</sgmltag>="<sgmltag
+          class="attvalue">toc</sgmltag>" for
+          <sgmltag>simplesect</sgmltag>, since it is now permitted in
+          the <sgmltag>toc</sgmltag> if
+          <parameter>simplesect.in.toc</parameter> is set.</para>
+        </listitem>
+        <listitem>
+          <para>Moved hard-coded properties to
+          <parameter>nongraphical.admonintion.properties</parameter>
+          and <parameter>graphical.admonition.properties</parameter>
+          attribute sets.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for <literal>sidebar-width</literal> and
+          <literal>float-type</literal> processing instructions in
+          <sgmltag>sidebar</sgmltag>.</para>
+        </listitem>
+        <listitem>
+          <para>For tables with HTML markup elements, added support
+          for <literal>dbfo bgcolor</literal> PI, the attribute-sets
+          named <parameter>table.properties</parameter>,
+          <parameter>informaltable.properties</parameter>,
+          <parameter>table.table.properties</parameter>, and
+          <parameter>table.cell.padding</parameter>. Also added
+          support for the templates named
+          <parameter>table.cell.properties</parameter> and
+          <parameter>table.cell.block.properties</parameter> so that
+          tabstyles can be implemented. Also added support for tables
+          containing only <sgmltag>tr</sgmltag> instead of
+          <sgmltag>tbody</sgmltag> with <sgmltag>tr</sgmltag>.</para>
+        </listitem>
+        <listitem>
+          <para>Added new paramater
+          <parameter>hyphenate.verbatim.characters</parameter> which
+          can specify characters after which a line break can occur in
+          verbatim environments.  This parameter can be used to extend
+          the initial set of characters which contain only space and
+          non-breakable space.</para>
+        </listitem>
+        <listitem>
+          <para>Added <parameter>itemizedlist.label.markup</parameter> to enable
+ 	  selection of different bullet symbol. Also added several
+   	  potential bullet characters, commented out by default.</para>
+        </listitem>
+        <listitem>
+          <para>Enabled all id's in XEP output for external olinking.</para>
+        </listitem>
+      </itemizedlist>
+
+      <itemizedlist id="V1680_HTML">
+        <title>HTML</title>
+        <listitem>
+          <para></para>
+        </listitem>
+      </itemizedlist>
+    </para>
+  </section>
+  <!-- end of notes for 1.68.0 release -->
+
   <section>
     <title>Release 1.67.2</title>
     <para>This release fixes a table bug introduced in the 1.67.1
@@ -22,7 +162,7 @@
     <title>Release 1.67.1</title>
     <para>This release includes a number of bug fixes; for details,
     see the <ulink url="WhatsNew"/> file.</para>
-      <para>The following lists provide details about API and feature changes.
+     <para>The following lists provide details about API and feature changes.
       <itemizedlist id="V1671_FO">
         <title>FO</title>
         <listitem>
