@@ -247,6 +247,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &htmlhelp.force.map.and.alias;
 &htmlhelp.map.file;
 &htmlhelp.alias.file;
+&htmlhelp.hhc.section.depth;
 </reference>
 
 <appendix><title>The Stylesheet</title>
@@ -374,6 +375,7 @@ around all these parameters.</para>
 <src:fragref linkend="saxon.tablecolumns.frag"/>
 <src:fragref linkend="section.autolabel.frag"/>
 <src:fragref linkend="section.label.includes.component.label.frag"/>
+<src:fragref linkend="segmentedlist.as.table.frag"/>
 <src:fragref linkend="shade.verbatim.frag"/>
 <src:fragref linkend="shade.verbatim.style.frag"/>
 <src:fragref linkend="punct.honorific.frag"/>
@@ -404,7 +406,7 @@ around all these parameters.</para>
 <src:fragref linkend="htmlhelp.force.map.and.alias.frag"/>
 <src:fragref linkend="htmlhelp.map.file.frag"/>
 <src:fragref linkend="htmlhelp.alias.file.frag"/>
-<src:fragref linkend="segmentedlist.as.table.frag"/>
+<src:fragref linkend="htmlhelp.hhc.section.depth.frag"/>
 </xsl:stylesheet>
 </src:fragment>
 

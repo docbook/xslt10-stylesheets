@@ -429,7 +429,7 @@ Title=</xsl:text>
 	<xsl:call-template name="href.target.with.base.dir"/>
     <xsl:text>"&gt;
   &lt;/OBJECT&gt;</xsl:text>
-  <xsl:if test="section">
+  <xsl:if test="section[count(ancestor::section) &lt; $htmlhelp.hhc.section.depth]">
     <xsl:text>&lt;UL&gt;</xsl:text>
       <xsl:apply-templates select="section" mode="hhc"/>
     <xsl:text>&lt;/UL&gt;</xsl:text>
@@ -457,7 +457,7 @@ Title=</xsl:text>
 	<xsl:call-template name="href.target.with.base.dir"/>
     <xsl:text>"&gt;
   &lt;/OBJECT&gt;</xsl:text>
-  <xsl:if test="sect2">
+  <xsl:if test="sect2[$htmlhelp.hhc.section.depth > 1]">
     <xsl:text>&lt;UL&gt;</xsl:text>
       <xsl:apply-templates select="sect2"
 			   mode="hhc"/>
@@ -486,7 +486,7 @@ Title=</xsl:text>
 	<xsl:call-template name="href.target.with.base.dir"/>
     <xsl:text>"&gt;
   &lt;/OBJECT&gt;</xsl:text>
-  <xsl:if test="sect3">
+  <xsl:if test="sect3[$htmlhelp.hhc.section.depth > 2]">
     <xsl:text>&lt;UL&gt;</xsl:text>
       <xsl:apply-templates select="sect3"
 			   mode="hhc"/>
@@ -515,7 +515,7 @@ Title=</xsl:text>
 	<xsl:call-template name="href.target.with.base.dir"/>
     <xsl:text>"&gt;
   &lt;/OBJECT&gt;</xsl:text>
-  <xsl:if test="sect4">
+  <xsl:if test="sect4[$htmlhelp.hhc.section.depth > 3]">
     <xsl:text>&lt;UL&gt;</xsl:text>
       <xsl:apply-templates select="sect4"
 			   mode="hhc"/>
@@ -544,7 +544,7 @@ Title=</xsl:text>
 	<xsl:call-template name="href.target.with.base.dir"/>
     <xsl:text>"&gt;
   &lt;/OBJECT&gt;</xsl:text>
-  <xsl:if test="sect5">
+  <xsl:if test="sect5[$htmlhelp.hhc.section.depth > 4]">
     <xsl:text>&lt;UL&gt;</xsl:text>
       <xsl:apply-templates select="sect5"
 			   mode="hhc"/>
