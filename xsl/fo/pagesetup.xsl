@@ -1458,7 +1458,7 @@
 <xsl:template name="footnote-separator">
   <fo:static-content flow-name="xsl-footnote-separator">
     <fo:block>
-      <fo:leader color="black" leader-pattern="rule" leader-length="1in"/>
+      <fo:leader xsl:use-attribute-sets="footnote.sep.leader.properties"/>
     </fo:block>
   </fo:static-content>
 </xsl:template>
