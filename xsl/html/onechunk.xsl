@@ -8,9 +8,7 @@
 <!-- This stylesheet should also work for any processor that supports   -->
 <!-- exslt:document() (see http://www.exslt.org/)                       -->
 
-<xsl:import href="autoidx.xsl"/>
-<xsl:include href="chunk-common.xsl"/>
-<xsl:include href="chunker.xsl"/>
+<xsl:import href="chunk.xsl"/>
 
 <!-- ==================================================================== -->
 <!-- What's a chunk?
