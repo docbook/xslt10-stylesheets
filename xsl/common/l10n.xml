@@ -18,6 +18,7 @@
 <!ENTITY it SYSTEM "it.xml">
 <!ENTITY ja SYSTEM "ja.xml">
 <!ENTITY ko SYSTEM "ko.xml">
+<!ENTITY lit SYSTEM "lt.xml">
 <!ENTITY nl SYSTEM "nl.xml">
 <!ENTITY nn SYSTEM "nn.xml">
 <!ENTITY no SYSTEM "no.xml">
@@ -32,6 +33,7 @@
 <!ENTITY sv SYSTEM "sv.xml">
 <!ENTITY tr SYSTEM "tr.xml">
 <!ENTITY uk SYSTEM "uk.xml">
+<!ENTITY vi SYSTEM "vi.xml">
 <!ENTITY xh SYSTEM "xh.xml">
 <!ENTITY zh_cn SYSTEM "zh_cn.xml">
 <!ENTITY zh_tw SYSTEM "zh_tw.xml">
@@ -55,6 +57,7 @@
 &it;
 &ja;
 &ko;
+&lit;
 &nl;
 &nn;
 &no;
@@ -69,6 +72,7 @@
 &sv;
 &tr;
 &uk;
+&vi;
 &xh;
 &zh_cn;
 &zh_tw;
