@@ -591,7 +591,7 @@
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:call-template name="inline.charseq"/>
+      <xsl:call-template name="inline.italicseq"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
