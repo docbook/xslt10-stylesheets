@@ -47,8 +47,10 @@ span.off     {  }
     </xsl:when>
     <xsl:when test="local-name(.) = 'phrase'
                     or local-name(.) = 'ulink'
+                    or local-name(.) = 'link'
                     or local-name(.) = 'filename'
                     or local-name(.) = 'literal'
+                    or local-name(.) = 'member'
                     or local-name(.) = 'glossterm'
                     or local-name(.) = 'quote'
                     or local-name(.) = 'emphasis'
