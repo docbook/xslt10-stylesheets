@@ -2070,6 +2070,11 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template name="set.flow.properties">
+  <xsl:param name="element" select="local-name(.)"/>
+  <xsl:param name="master-reference" select="''"/>
+  <!-- customize this template to set attribute on fo:flow -->
+</xsl:template>
 <!-- ==================================================================== -->
 
 </xsl:stylesheet>

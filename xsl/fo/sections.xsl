@@ -168,6 +168,11 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
+      <xsl:call-template name="set.flow.properties">
+        <xsl:with-param name="element" select="local-name(.)"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
+
       <fo:block id="{$id}" 
             xsl:use-attribute-sets="section.level1.properties">
         <xsl:call-template name="section.titlepage"/>
@@ -364,6 +369,11 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
+      <xsl:call-template name="set.flow.properties">
+        <xsl:with-param name="element" select="local-name(.)"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
+
       <fo:block id="{$id}" 
                 xsl:use-attribute-sets="section.level1.properties">
         <xsl:call-template name="sect1.titlepage"/>

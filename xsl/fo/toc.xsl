@@ -79,6 +79,12 @@
           </xsl:apply-templates>
 
           <fo:flow flow-name="xsl-region-body">
+            <xsl:call-template name="set.flow.properties">
+              <xsl:with-param name="element" select="local-name(.)"/>
+              <xsl:with-param name="master-reference" 
+                              select="$master-reference"/>
+            </xsl:call-template>
+
             <fo:block xsl:use-attribute-sets="toc.margin.properties">
               <xsl:call-template name="table.of.contents.titlepage"/>
               <xsl:apply-templates/>

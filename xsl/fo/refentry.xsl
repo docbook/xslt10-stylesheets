@@ -72,6 +72,11 @@
       </xsl:apply-templates>
 
       <fo:flow flow-name="xsl-region-body">
+        <xsl:call-template name="set.flow.properties">
+          <xsl:with-param name="element" select="local-name(.)"/>
+          <xsl:with-param name="master-reference" select="$master-reference"/>
+        </xsl:call-template>
+
         <fo:block id="{$id}">
           <xsl:call-template name="reference.titlepage"/>
         </fo:block>
@@ -142,6 +147,11 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
+      <xsl:call-template name="set.flow.properties">
+        <xsl:with-param name="element" select="local-name(.)"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
+
       <xsl:apply-templates select=".." mode="reference.titlepage.mode"/>
       <xsl:if test="title">
         <fo:block id="{$id}">
@@ -226,6 +236,11 @@
         </xsl:apply-templates>
 
         <fo:flow flow-name="xsl-region-body">
+          <xsl:call-template name="set.flow.properties">
+            <xsl:with-param name="element" select="local-name(.)"/>
+            <xsl:with-param name="master-reference" select="$master-reference"/>
+          </xsl:call-template>
+
           <xsl:copy-of select="$refentry.content"/>
         </fo:flow>
       </fo:page-sequence>
