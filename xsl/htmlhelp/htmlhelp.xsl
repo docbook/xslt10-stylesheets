@@ -47,6 +47,11 @@
 
   <xsl:call-template name="hhp"/>
   <xsl:call-template name="hhc"/>
+  <xsl:if test="($rootid = '' and //processing-instruction('dbhh')) or
+                ($rootid != '' and key('id',$rootid)//processing-instruction('dbhh'))">
+    <xsl:call-template name="hh-map"/>
+    <xsl:call-template name="hh-alias"/>
+  </xsl:if>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -131,6 +136,19 @@ Title=</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:if>
+
+<xsl:if test="($htmlhelp.force.map.and.alias != 0) or 
+              ($rootid = '' and //processing-instruction('dbhh')) or
+              ($rootid != '' and key('id',$rootid)//processing-instruction('dbhh'))">
+  <xsl:text>
+[ALIAS]
+#include </xsl:text><xsl:value-of select="$htmlhelp.alias.file"/><xsl:text>
+
+[MAP]
+#include </xsl:text><xsl:value-of select="$htmlhelp.map.file"/><xsl:text>
+</xsl:text>
+</xsl:if>
+
 <xsl:value-of select="$htmlhelp.hhp.tail"/>
 </xsl:template>
 
@@ -602,6 +620,88 @@ Title=</xsl:text>
     <param name="Keyword" value="{$text}"/>
   </OBJECT>
 </xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template name="hh-map">
+  <xsl:call-template name="write.text.chunk">
+    <xsl:with-param name="filename" select="$htmlhelp.map.file"/>
+    <xsl:with-param name="method" select="'text'"/>
+    <xsl:with-param name="content">
+     <xsl:choose>
+       <xsl:when test="$rootid != ''">
+         <xsl:apply-templates select="key('id',$rootid)" mode="hh-map"/>
+       </xsl:when>
+       <xsl:otherwise>
+         <xsl:apply-templates select="/" mode="hh-map"/>
+       </xsl:otherwise>
+     </xsl:choose>
+    </xsl:with-param>
+    <xsl:with-param name="encoding" select="$htmlhelp.encoding"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="processing-instruction('dbhh')" mode="hh-map">
+  <xsl:variable name="topicname">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="."/>
+      <xsl:with-param name="attribute" select="'topicname'"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="topicid">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="."/>
+      <xsl:with-param name="attribute" select="'topicid'"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:text>#define </xsl:text>
+  <xsl:value-of select="$topicname"/>
+  <xsl:text>&#9;</xsl:text>
+  <xsl:value-of select="$topicid"/>
+  <xsl:text>&#xA;</xsl:text>
+</xsl:template>
+
+<xsl:template match="text()" mode="hh-map"/>
+
+<!-- ==================================================================== -->
+
+<xsl:template name="hh-alias">
+  <xsl:call-template name="write.text.chunk">
+    <xsl:with-param name="filename" select="$htmlhelp.alias.file"/>
+    <xsl:with-param name="method" select="'text'"/>
+    <xsl:with-param name="content">
+     <xsl:choose>
+       <xsl:when test="$rootid != ''">
+         <xsl:apply-templates select="key('id',$rootid)" mode="hh-alias"/>
+       </xsl:when>
+       <xsl:otherwise>
+         <xsl:apply-templates select="/" mode="hh-alias"/>
+       </xsl:otherwise>
+     </xsl:choose>
+    </xsl:with-param>
+    <xsl:with-param name="encoding" select="$htmlhelp.encoding"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="processing-instruction('dbhh')" mode="hh-alias">
+  <xsl:variable name="topicname">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="."/>
+      <xsl:with-param name="attribute" select="'topicname'"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:value-of select="$topicname"/>
+  <xsl:text>=</xsl:text>
+  <xsl:call-template name="href.target">
+    <xsl:with-param name="object" select=".."/>
+  </xsl:call-template>
+  <xsl:text>&#xA;</xsl:text>
+</xsl:template>
+
+<xsl:template match="text()" mode="hh-alias"/>
 
 <!-- ==================================================================== -->
 
