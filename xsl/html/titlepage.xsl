@@ -345,6 +345,13 @@
   </h3>
 </xsl:template>
 
+<xsl:template match="corpcredit" mode="titlepage.mode">
+  <span class="{name(.)}">
+    <xsl:apply-templates mode="titlepage.mode"/>
+    <br/>
+  </span>
+</xsl:template>
+
 <xsl:template match="corpname" mode="titlepage.mode">
   <span class="{name(.)}">
     <xsl:apply-templates mode="titlepage.mode"/>
