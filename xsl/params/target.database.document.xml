@@ -9,7 +9,7 @@
 olinks</refpurpose> 
 </refnamediv> 
 <refsynopsisdiv> <src:fragment id="target.database.document.frag">
-<xsl:param name="target.database.document" select="'olinkdb.xml'"/>
+<xsl:param name="target.database.document" select="''"/>
 </src:fragment> 
 </refsynopsisdiv> 
 <refsect1>
