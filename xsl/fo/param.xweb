@@ -388,6 +388,13 @@ zero by default, so this is simply the page-master region-left.
 &table.properties;
 &procedure.properties;
 &root.properties;
+&qanda.title.properties;
+&qanda.title.level1.properties;
+&qanda.title.level2.properties;
+&qanda.title.level3.properties;
+&qanda.title.level4.properties;
+&qanda.title.level5.properties;
+&qanda.title.level6.properties;
 </reference>
 
 <reference><title>Profiling</title>

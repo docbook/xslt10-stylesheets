@@ -59,7 +59,7 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:call-template name="section.heading">
+  <xsl:call-template name="qanda.heading">
     <xsl:with-param name="level" select="$sectlvl + 1"/>
     <xsl:with-param name="marker" select="0"/>
     <xsl:with-param name="title">
@@ -107,7 +107,7 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:call-template name="section.heading">
+  <xsl:call-template name="qanda.heading">
     <xsl:with-param name="level"  select="$sectlvl + 1 + count(ancestor::qandadiv)"/>
     <xsl:with-param name="marker" select="0"/>
     <xsl:with-param name="title">
@@ -226,6 +226,60 @@
 
 <xsl:template match="label">
   <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template name="qanda.heading">
+  <xsl:param name="level" select="1"/>
+  <xsl:param name="marker" select="0"/>
+  <xsl:param name="title"/>
+  <xsl:param name="titleabbrev"/>
+
+  <fo:block xsl:use-attribute-sets="qanda.title.properties">
+    <xsl:if test="$marker != 0">
+      <fo:marker marker-class-name="section.head.marker">
+        <xsl:choose>
+          <xsl:when test="$titleabbrev = ''">
+            <xsl:value-of select="$title"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$titleabbrev"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </fo:marker>
+    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="$level=1">
+        <fo:block xsl:use-attribute-sets="qanda.title.level1.properties">
+          <xsl:copy-of select="$title"/>
+        </fo:block>
+      </xsl:when>
+      <xsl:when test="$level=2">
+        <fo:block xsl:use-attribute-sets="qanda.title.level2.properties">
+          <xsl:copy-of select="$title"/>
+        </fo:block>
+      </xsl:when>
+      <xsl:when test="$level=3">
+        <fo:block xsl:use-attribute-sets="qanda.title.level3.properties">
+          <xsl:copy-of select="$title"/>
+        </fo:block>
+      </xsl:when>
+      <xsl:when test="$level=4">
+        <fo:block xsl:use-attribute-sets="qanda.title.level4.properties">
+          <xsl:copy-of select="$title"/>
+        </fo:block>
+      </xsl:when>
+      <xsl:when test="$level=5">
+        <fo:block xsl:use-attribute-sets="qanda.title.level5.properties">
+          <xsl:copy-of select="$title"/>
+        </fo:block>
+      </xsl:when>
+      <xsl:otherwise>
+        <fo:block xsl:use-attribute-sets="qanda.title.level6.properties">
+          <xsl:copy-of select="$title"/>
+        </fo:block>
+      </xsl:otherwise>
+    </xsl:choose>
+  </fo:block>
 </xsl:template>
 
 </xsl:stylesheet>
