@@ -9,14 +9,12 @@
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo xmlns="">
-<!-- FIXME: list the real contributors
 <authorgroup>
-  <author><firstname>Norman</firstname><surname>Walsh</surname>
-          <affiliation><address><email>ndw@nwalsh.com</email></address>
+  <author><firstname>Antonio Larrosa</firstname><surname>Jim&#233;nez</surname>
+          <affiliation><address><email>larrosa@kde.org</email></address>
           </affiliation>
   </author>
 </authorgroup>
--->
 </doc:localeinfo>
 
 <gentext key="Abstract" text="Resumen"/>
@@ -81,6 +79,7 @@
 <gentext key="preface" text="Prefacio"/>
 <gentext key="Procedure" text="Procedimiento"/>
 <gentext key="procedure" text="Procedimiento"/>
+<gentext key="ProductionSet" text="Producci&#243;n"/>
 <gentext key="PubDate" text="Fecha de publicaci&oacute;n"/>
 <gentext key="pubdate" text="Fecha de publicaci&oacute;n"/>
 <gentext key="Published" text="Publicado"/>
@@ -151,8 +150,8 @@
 <gentext key="unsupported" text="no soportado"/>
 <gentext key="xrefto" text="referido a"/>
 <gentext key="unexpectedelementname" text="Nombre de elemento inesperado"/>
-<gentext key="Revisedby" text="Revised by: "/>
-<gentext key="revisedby" text="Revised by: "/> <!-- en -->
+<gentext key="Revisedby" text="Revisado por: "/>
+<gentext key="revisedby" text="Revisado por: "/>
 
 <gentext key="ListofTables" text="Lista de tablas"/>
 <gentext key="listoftables" text="Lista de tablas"/>
@@ -172,6 +171,9 @@
 <gentext key="nav-up" text="Subir"/>
 <gentext key="nav-home" text="Inicio"/>
 
+<gentext key="sectioncalled" text="la secci&#243;n llamada"/>
+<gentext key="index symbols" text="S&#237;mbolos"/>
+
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
 <dingbat key="nestedstartquote" text="&#x2018;"/>
@@ -181,6 +183,7 @@
 <context name="title">
 
 <template name="abstract">%t</template>
+<template name="answer">%t</template>
 <template name="appendix"><Appendix/> %n. %t</template>
 <template name="article">%t</template>
 <template name="authorblurb">%t</template>
@@ -221,8 +224,13 @@
 <template name="partintro">%t</template>
 <template name="preface">%t</template>
 <template name="procedure">%t</template>
+<template name="procedure.formal"><Procedure/> %n. %t</template>
+<template name="productionset">%t</template>
+<template name="productionset.formal"><ProductionSet/> %n</template>
 <template name="qandadiv">%t</template>
+<template name="qandaentry">%t</template>
 <template name="qandaset">%t</template>
+<template name="question">%t</template>
 <template name="reference">%t</template>
 <template name="refsect1">%t</template>
 <template name="refsect2">%t</template>
@@ -251,6 +259,7 @@
 <template name="sect5">%t</template>
 <template name="section">%t</template>
 <template name="simplesect">%t</template>
+<template name="bridgehead">%t</template>
 
 </context>
 
@@ -262,7 +271,8 @@
 <template name="sect4">%n. %t</template>
 <template name="sect5">%n. %t</template>
 <template name="section">%n. %t</template>
-<template name="simplesect">%n. %t</template>
+<template name="simplesect">%t</template>
+<template name="bridgehead">%n. %t</template>
 
 </context>
 
@@ -311,18 +321,25 @@
 <context name="xref">
 
 <template name="appendix"><Appendix/> %n. %t</template>
+<template name="answer">R: %n</template>
 <template name="article">%t</template>
 <template name="bibliography">%t</template>
 <template name="book">%t</template>
 <template name="chapter"><Chapter/> %n. %t</template>
 <template name="colophon">%t</template>
 <template name="dedication">%t</template>
+<template name="equation"><Equation/> %n</template>
 <template name="example"><Example/> %n. %t</template>
 <template name="figure"><Figure/> %n. %t</template>
 <template name="glossary">%t</template>
 <template name="index">%t</template>
 <template name="part"><Part/> %n. %t</template>
 <template name="preface">%t</template>
+<template name="procedure"><Procedure/> %n</template>
+<template name="qandadiv">%t</template>
+<template name="qandaentry">P: %n</template>
+<template name="qandaset">%t</template>
+<template name="question">P: %n</template>
 <template name="reference">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
@@ -339,6 +356,7 @@
 <template name="sect5">&#x201C;%t&#x201D;</template>
 <template name="section">&#x201C;%t&#x201D;</template>
 <template name="simplesect">&#x201C;%t&#x201D;</template>
+<template name="bridgehead">&#x201C;%t&#x201D;</template>
 
 </context>
 
@@ -351,6 +369,7 @@
 <template name="sect5"><Section/> %n</template>
 <template name="section"><Section/> %n</template>
 <template name="simplesect">&#x201C;%t&#x201D;</template>
+<template name="bridgehead"><Section/> %n</template>
 
 </context>
 

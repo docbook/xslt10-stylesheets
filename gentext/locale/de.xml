@@ -118,12 +118,12 @@
 <gentext key="Sidebar" text="Randnotiz"/>
 <gentext key="sidebar" text="randnotiz"/>
 <gentext key="Step" text="Schritt"/>
-<gentext key="TIP" text="TIP"/>
-<gentext key="tip" text="TIP"/>
+<gentext key="TIP" text="TIPP"/>
+<gentext key="tip" text="TIPP"/>
 <gentext key="Table" text="Tabelle"/>
 <gentext key="table" text="Tabelle"/>
-<gentext key="Tip" text="Tip"/>
-<gentext key="tip" text="Tip"/>
+<gentext key="Tip" text="Tipp"/>
+<gentext key="tip" text="Tipp"/>
 <gentext key="WARNING" text="WARNUNG"/>
 <gentext key="warning" text="WARNUNG"/>
 <gentext key="Warning" text="Warnung"/>
@@ -170,10 +170,10 @@
 
 <gentext key="nav-prev" text="Zur&uuml;ck"/>
 <gentext key="nav-prev-sibling" text="Schnell zur&uuml;ck"/>
-<gentext key="nav-next-sibling" text="Schnell vor"/>
-<gentext key="nav-next" text="Vor"/>
-<gentext key="nav-up" text="Hoch"/>
-<gentext key="nav-home" text="Anfang"/>
+<gentext key="nav-next-sibling" text="Schnell nach vorne"/>
+<gentext key="nav-next" text="Nach vorne"/>
+<gentext key="nav-up" text="Nach oben"/>
+<gentext key="nav-home" text="Zum Anfang"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
@@ -224,6 +224,7 @@
 <template name="partintro">%t</template>
 <template name="preface">%t</template>
 <template name="procedure">%t</template>
+<template name="procedure.formal"><Procedure/> %n. %t</template>
 <template name="qandadiv">%t</template>
 <template name="qandaset">%t</template>
 <template name="reference">%t</template>
@@ -242,7 +243,7 @@
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
 <template name="warning">%t</template>
-
+<template name="question"><Question/> %n</template>
 </context>
 
 <context name="section-title">
