@@ -141,16 +141,16 @@ references. In that case you can select appropriate encoding here.</para>
   <toc version="1.0">
     <xsl:choose>
       <xsl:when test="$rootid != ''">
-        <xsl:apply-templates select="key('id',$rootid)" mode="toc"/>
+        <xsl:apply-templates select="key('id',$rootid)" mode="jhtoc"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates select="." mode="toc"/>
+        <xsl:apply-templates select="." mode="jhtoc"/>
       </xsl:otherwise>
     </xsl:choose>
   </toc>
 </xsl:template>
 
-<xsl:template match="set" mode="toc">
+<xsl:template match="set" mode="jhtoc">
   <xsl:variable name="id">
     <xsl:call-template name="object.id">
       <xsl:with-param name="object" select="."/>
@@ -164,11 +164,11 @@ references. In that case you can select appropriate encoding here.</para>
     <xsl:attribute name="text">
       <xsl:value-of select="$title"/>
     </xsl:attribute>
-    <xsl:apply-templates select="book" mode="toc"/>
+    <xsl:apply-templates select="book" mode="jhtoc"/>
   </tocitem>
 </xsl:template>
 
-<xsl:template match="book" mode="toc">
+<xsl:template match="book" mode="jhtoc">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -181,12 +181,12 @@ references. In that case you can select appropriate encoding here.</para>
       <xsl:value-of select="$title"/>
     </xsl:attribute>
     <xsl:apply-templates select="part|reference|preface|chapter|appendix|article|colophon"
-                         mode="toc"/>
+                         mode="jhtoc"/>
   </tocitem>
 </xsl:template>
 
 <xsl:template match="part|reference|preface|chapter|appendix|article"
-              mode="toc">
+              mode="jhtoc">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -200,11 +200,11 @@ references. In that case you can select appropriate encoding here.</para>
     </xsl:attribute>
     <xsl:apply-templates
       select="preface|chapter|appendix|refentry|section|sect1"
-      mode="toc"/>
+      mode="jhtoc"/>
   </tocitem>
 </xsl:template>
 
-<xsl:template match="section" mode="toc">
+<xsl:template match="section" mode="jhtoc">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -216,11 +216,11 @@ references. In that case you can select appropriate encoding here.</para>
     <xsl:attribute name="text">
       <xsl:value-of select="$title"/>
     </xsl:attribute>
-    <xsl:apply-templates select="section" mode="toc"/>
+    <xsl:apply-templates select="section" mode="jhtoc"/>
   </tocitem>
 </xsl:template>
 
-<xsl:template match="sect1" mode="toc">
+<xsl:template match="sect1" mode="jhtoc">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -232,11 +232,11 @@ references. In that case you can select appropriate encoding here.</para>
     <xsl:attribute name="text">
       <xsl:value-of select="$title"/>
     </xsl:attribute>
-    <xsl:apply-templates select="sect2" mode="toc"/>
+    <xsl:apply-templates select="sect2" mode="jhtoc"/>
   </tocitem>
 </xsl:template>
 
-<xsl:template match="sect2" mode="toc">
+<xsl:template match="sect2" mode="jhtoc">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -248,11 +248,11 @@ references. In that case you can select appropriate encoding here.</para>
     <xsl:attribute name="text">
       <xsl:value-of select="$title"/>
     </xsl:attribute>
-    <xsl:apply-templates select="sect3" mode="toc"/>
+    <xsl:apply-templates select="sect3" mode="jhtoc"/>
   </tocitem>
 </xsl:template>
 
-<xsl:template match="sect3" mode="toc">
+<xsl:template match="sect3" mode="jhtoc">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -264,11 +264,11 @@ references. In that case you can select appropriate encoding here.</para>
     <xsl:attribute name="text">
       <xsl:value-of select="$title"/>
     </xsl:attribute>
-    <xsl:apply-templates select="sect4" mode="toc"/>
+    <xsl:apply-templates select="sect4" mode="jhtoc"/>
   </tocitem>
 </xsl:template>
 
-<xsl:template match="sect4" mode="toc">
+<xsl:template match="sect4" mode="jhtoc">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -280,11 +280,11 @@ references. In that case you can select appropriate encoding here.</para>
     <xsl:attribute name="text">
       <xsl:value-of select="$title"/>
     </xsl:attribute>
-    <xsl:apply-templates select="sect5" mode="toc"/>
+    <xsl:apply-templates select="sect5" mode="jhtoc"/>
   </tocitem>
 </xsl:template>
 
-<xsl:template match="sect5|colophon" mode="toc">
+<xsl:template match="sect5|colophon" mode="jhtoc">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
