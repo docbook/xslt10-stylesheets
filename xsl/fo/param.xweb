@@ -406,6 +406,8 @@ zero by default, so this is simply the page-master region-left.
 &verbatim.properties;
 &monospace.verbatim.properties;
 &sidebar.properties;
+&sidebar.float.type;
+&side.float.properties;
 &component.title.properties;
 &section.title.properties;
 &section.title.level1.properties;
@@ -717,6 +719,8 @@ around all these parameters.</para>
 <src:fragref linkend="shade.verbatim.style.frag"/>
 <src:fragref linkend="show.comments.frag"/>
 <src:fragref linkend="sidebar.properties.frag"/>
+<src:fragref linkend="sidebar.float.type.frag"/>
+<src:fragref linkend="side.float.properties.frag"/>
 <src:fragref linkend="simplesect.in.toc.frag"/>
 <src:fragref linkend="subscript.properties.frag"/>
 <src:fragref linkend="superscript.properties.frag"/>
