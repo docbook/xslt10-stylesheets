@@ -1,7 +1,7 @@
 XSLTPROC=saxon
 SLIDES=../source/slides.xml
 XSLT=$(XSLTPROC) $(SLIDES)
-HTML=xhtml
+HTML=html
 
 all: default plain tables vslides w3c frames browser graphics
 
