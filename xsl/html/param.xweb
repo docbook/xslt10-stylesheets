@@ -116,6 +116,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &textinsert.extension;
 &textdata.default.encoding;
 &graphicsize.extension;
+&graphicsize.use.img.src.path;
 &use.extensions;
 </reference>
 
@@ -504,6 +505,7 @@ around all these parameters.</para>
 <src:fragref linkend="glossterm.auto.link.frag"/>
 <src:fragref linkend="graphic.default.extension.frag"/>
 <src:fragref linkend="graphicsize.extension.frag"/>
+<src:fragref linkend="graphicsize.use.img.src.path.frag"/>
 <src:fragref linkend="header.rule.frag"/>
 <src:fragref linkend="html.base.frag"/>
 <src:fragref linkend="html.cellpadding.frag"/>
