@@ -374,6 +374,9 @@
 <template name="qandaset">%t</template>
 <template name="question"><Question/>&#160;%n</template>
 <template name="reference">%t</template>
+<template name="refsect1">%t</template>
+<template name="refsect2">%t</template>
+<template name="refsect3">%t</template>
 <template name="refsynopsisdiv">%t</template>
 <template name="segmentedlist">%t</template>
 <template name="set">%t</template>
