@@ -1241,5 +1241,27 @@ Otherwise, nested fo:blocks will be used.
 </refdescription>
 </doc:param>
 
+<!-- ==================================================================== -->
+<xsl:param name="runinhead.title.end.punct" select="'.!?:'" doc:type='string'/>
+
+<doc:param name="runinhead.title.end.punct" xmlns="">
+<refpurpose>Characters that count as punctuation on a run-in-head</refpurpose>
+<refdescription>
+<para>FIXME:
+</para>
+</refdescription>
+</doc:param>
+
+<!-- ==================================================================== -->
+<xsl:param name="runinhead.default.title.end.punct" select="'.'" doc:type='string'/>
+
+<doc:param name="runinhead.default.title.end.punct" xmlns="">
+<refpurpose>Default punctuation character on a run-in-head</refpurpose>
+<refdescription>
+<para>FIXME:
+</para>
+</refdescription>
+</doc:param>
+
 </xsl:stylesheet>
 
