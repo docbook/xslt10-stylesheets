@@ -150,9 +150,23 @@ FIXME: make is.graphic.* work correctly depending on the backend!
        with contributions from the specified width and height). I'm not
        sure how to specify that... -->
 
-  <fo:external-graphic src="url({$filename})"
-    content-width="{$width}" content-height="{$height}"
-    width="auto" height="auto"/>
+  <xsl:choose>
+    <xsl:when test="$passivetex.extensions != 0
+                    or $fop.extensions != 0">
+      <fo:external-graphic src="{$filename}"
+                           content-width="{$width}"
+                           content-height="{$height}"
+                           width="auto"
+                           height="auto"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:external-graphic src="url({$filename})"
+                           content-width="{$width}"
+                           content-height="{$height}"
+                           width="auto"
+                           height="auto"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
