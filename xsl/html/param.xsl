@@ -511,7 +511,7 @@ SEE xref.xsl IF YOU NEED TO TURN IT OFF.</para>
 </doc:param>
 
 <!-- ==================================================================== -->
-<xsl:param name="spacing.paras" doc:type='boolean' select="'1'"/>
+<xsl:param name="spacing.paras" doc:type='boolean' select="'0'"/>
 
 <doc:param name="spacing.paras" xmlns="">
 <refpurpose>Insert additional &lt;p&gt; elements for spacing?</refpurpose>
@@ -973,6 +973,28 @@ in the CALS table.
 </doc:param>
 
 <!-- ==================================================================== -->
+<xsl:param name="process.source.toc" select='0' doc:type='boolean'/>
+
+<doc:param name="process.source.toc" xmlns="">
+<refpurpose>FIXME:</refpurpose>
+<refdescription>
+<para>FIXME:
+</para>
+</refdescription>
+</doc:param>
+
+<!-- ==================================================================== -->
+<xsl:param name="process.empty.source.toc" select='0' doc:type='boolean'/>
+
+<doc:param name="process.source.toc" xmlns="">
+<refpurpose>FIXME:</refpurpose>
+<refdescription>
+<para>FIXME:
+</para>
+</refdescription>
+</doc:param>
+
+<!-- ==================================================================== -->
 <xsl:param name="generate.index" select='1' doc:type='boolean'/>
 
 <doc:param name="generate.index" xmlns="">
@@ -1041,6 +1063,21 @@ be used.
 <para>If <parameter>use.id.as.filename</parameter>
 is non-zero, the filename of chunk elements that have IDs will be
 derived from the ID value.
+</para>
+</refdescription>
+</doc:param>
+
+<!-- ==================================================================== -->
+<xsl:param name="inherit.keywords" select="'1'" doc:type='boolean'/>
+
+<doc:param name="inherit.keywords" xmlns="">
+<refpurpose>Inherit keywords from ancestor elements?</refpurpose>
+<refdescription>
+<para>If <parameter>inherit.keywords</parameter>
+is non-zero, the keyword <sgmltag>META</sgmltag> for each HTML
+<sgmltag>HEAD</sgmltag> element will include all of the keywords from
+ancestral elements. Otherwise, only the keywords from the current section
+will be used.
 </para>
 </refdescription>
 </doc:param>
