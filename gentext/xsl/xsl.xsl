@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
+                xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
                 exclude-result-prefixes="doc"
                 version="1.0">
 
@@ -11,7 +12,7 @@
 <xsl:template match="doc:*"/>
 
 <xsl:template match="locale">
-  <l10n language="{@language}">
+  <l:l10n language="{@language}">
     <xsl:text>&#10;</xsl:text>
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> This file is generated automatically. </xsl:comment>
@@ -23,12 +24,12 @@
 
     <xsl:apply-templates/>
 
-  </l10n>
+  </l:l10n>
   <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="gentext|dingbat">
-  <xsl:element name="{name(.)}">
+  <xsl:element name="l:{name(.)}">
     <xsl:copy-of select="@*"/>
     <xsl:apply-templates/>
   </xsl:element>
@@ -36,19 +37,19 @@
 
 <xsl:template match="context">
   <xsl:text>&#10;</xsl:text>
-  <xsl:element name="{name(.)}">
+  <xsl:element name="l:{name(.)}">
     <xsl:copy-of select="@*"/>
     <xsl:apply-templates/>
   </xsl:element>
 </xsl:template>
 
 <xsl:template match="template">
-  <template>
+  <l:template>
     <xsl:copy-of select="@*"/>
     <xsl:attribute name="text">
       <xsl:apply-templates select="node()" mode="template-text"/>
     </xsl:attribute>
-  </template>
+  </l:template>
 </xsl:template>
 
 <!-- ============================================================ -->
