@@ -18,6 +18,152 @@ This file documents (mostly) changes to the public APIs. What,
 exactly, counts as a public API is still somewhat in question, but it
 includes at least the global parameters.</para>
 
+<itemizedlist><title>Release 1.52.0</title>
+
+<para>The 1.52.0 release contains a lot of significant changes. Make sure you
+read the ChangeLog as well.</para>
+
+<listitem>
+<para>Created a complete and consistent set of chunking parameters:
+<parameter>chunker.output.cdata-section-elements</parameter>
+<parameter>chunker.output.doctype-public</parameter>
+<parameter>chunker.output.doctype-system</parameter>
+<parameter>chunker.output.encoding</parameter>
+<parameter>chunker.output.indent</parameter>
+<parameter>chunker.output.media-type</parameter>
+<parameter>chunker.output.method</parameter>
+<parameter>chunker.output.omit-xml-declaration</parameter>
+<parameter>chunker.output.standalone</parameter>. Removed
+<parameter>default.encoding</parameter> (use
+<parameter>chunker.output.encoding</parameter> instead); removed
+<parameter>output.method</parameter> (use
+<parameter>chunker.output.method</parameter> instead).
+</para>
+</listitem>
+
+<listitem>
+<para>Added a large number of HTML Help parameters:
+<parameter>htmlhelp.button.back</parameter>,
+<parameter>htmlhelp.button.forward</parameter>,
+<parameter>htmlhelp.button.hideshow</parameter>,
+<parameter>htmlhelp.button.home.url</parameter>,
+<parameter>htmlhelp.button.home</parameter>,
+<parameter>htmlhelp.button.jump1.title</parameter>,
+<parameter>htmlhelp.button.jump1.url</parameter>,
+<parameter>htmlhelp.button.jump1</parameter>,
+<parameter>htmlhelp.button.jump2.title</parameter>,
+<parameter>htmlhelp.button.jump2.url</parameter>,
+<parameter>htmlhelp.button.jump2</parameter>,
+<parameter>htmlhelp.button.locate</parameter>,
+<parameter>htmlhelp.button.next</parameter>,
+<parameter>htmlhelp.button.options</parameter>,
+<parameter>htmlhelp.button.prev</parameter>,
+<parameter>htmlhelp.button.print</parameter>,
+<parameter>htmlhelp.button.refresh</parameter>,
+<parameter>htmlhelp.button.stop</parameter>,
+<parameter>htmlhelp.button.zoom</parameter>,
+<parameter>htmlhelp.hhc.binary</parameter>,
+<parameter>htmlhelp.hhk</parameter>,
+<parameter>htmlhelp.hhp.window</parameter>,
+<parameter>htmlhelp.show.advanced.search</parameter>,
+<parameter>htmlhelp.show.favorities</parameter>,
+<parameter>htmlhelp.show.menu.xml</parameter>, and
+<parameter>htmlhelp.only</parameter>.</para>
+</listitem>
+
+<listitem>
+<para>Support for new style OLinks. Added
+<parameter>target.database.document</parameter>,
+<parameter>use.local.olink.style</parameter>,
+<parameter>current.docid</parameter>, and
+<parameter>olink.doctitle</parameter>.
+</para>
+</listitem>
+
+<listitem>
+<para>Added experimental support for xref styles. Added
+<parameter>use.role.as.xrefstyle</parameter>.
+</para>
+</listitem>
+
+<listitem>
+<para>Completely reworked page master/page sequence configuration.</para>
+</listitem>
+
+<listitem>
+<para>Support cross-references to paragraphs by using the nearest containing
+section title as the cross-reference text. Is this a good idea?</para>
+</listitem>
+
+<listitem>
+<para>Removed unused <parameter>chunk.datafile</parameter>.</para>
+</listitem>
+
+<listitem>
+<para>Added header/footer parameters:
+<parameter>footer.rule</parameter>,
+<parameter>footers.on.blank.pages</parameter>,
+<parameter>header.rule</parameter>, and
+<parameter>headers.on.blank.pages</parameter>.</para>
+</listitem>
+
+<listitem>
+<para>Added column parameters:
+<parameter>column.count.back</parameter>,
+<parameter>column.count.body</parameter>,
+<parameter>column.count.front</parameter>,
+<parameter>column.count.index</parameter>,
+<parameter>column.count.lot</parameter>,
+<parameter>column.count.of.index</parameter>,
+<parameter>column.count.titlepage</parameter>, and
+<parameter>column.count</parameter>.</para>
+</listitem>
+
+<listitem>
+<para>Added <parameter>draft.mode</parameter>.
+</para>
+</listitem>
+
+<listitem>
+<para>Added
+<parameter>glossary.as.blocks</parameter>,
+<parameter>glosslist.as.blocks</parameter>,
+<parameter>glossterm.separation</parameter>,
+<parameter>glossterm.width</parameter>.</para>
+</listitem>
+
+<listitem>
+<para>Added <parameter>suppress.footer.navigation</parameter> and
+<parameter>suppress.header.navigation</parameter>.</para>
+</listitem>
+
+<listitem>
+<para>Added 
+<parameter>make.graphic.viewport</parameter>,
+<parameter>nominal.image.depth</parameter>,
+<parameter>nominal.image.width</parameter>, and
+<parameter>use.embed.for.svg</parameter></para>
+</listitem>
+
+<listitem>
+<para>Added
+<parameter>refentry.title.properties</parameter> and
+<parameter>section.title.properties</parameter>
+</para>
+</listitem>
+
+<listitem>
+<para>Added
+<parameter>use.embed.for.svg</parameter>
+</para>
+</listitem>
+
+<listitem>
+<para>Added
+generate.meta.abstract.xml</para>
+</listitem>
+</itemizedlist>
+
 <itemizedlist><title>Release 1.51.0</title>
 
 <listitem>
