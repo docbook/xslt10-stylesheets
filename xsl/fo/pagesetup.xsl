@@ -2078,7 +2078,12 @@
   <!-- Customize this template to set attributes on fo:flow -->
 
   <xsl:choose>
+    <xsl:when test="$fop.extensions != 0 or $passivetex.extensions != 0">
+      <!-- body.start.indent does not work well with these processors -->
+    </xsl:when>
     <xsl:when test="$master-reference = 'body' or
+                    $master-reference = 'lot' or
+                    $master-reference = 'front' or
                     $element = 'preface' or
                     ($master-reference = 'back' and
                     $element = 'appendix')">

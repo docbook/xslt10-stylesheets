@@ -236,8 +236,11 @@
   <xsl:if test="$toc.section.depth > 0 
                 and $toc.max.depth > $depth.from.context
                 and $nodes">
-    <fo:block id="toc.{$cid}.{$id}"
-              start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+    <fo:block id="toc.{$cid}.{$id}">
+      <xsl:attribute name="margin-left">
+        <xsl:call-template name="set.toc.indent"/>
+      </xsl:attribute>
+
       <xsl:apply-templates select="$nodes" mode="toc">
         <xsl:with-param name="toc-context" select="$toc-context"/>
       </xsl:apply-templates>
@@ -262,15 +265,18 @@
 
   <xsl:variable name="nodes" select="chapter|appendix|preface|reference|
                                      refentry|article|index|glossary|
-				     bibliography"/>
+                                     bibliography"/>
 
   <xsl:variable name="depth.from.context" select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
 
   <xsl:if test="$toc.section.depth > 0 
                 and $toc.max.depth > $depth.from.context
                 and $nodes">
-    <fo:block id="toc.{$cid}.{$id}"
-              start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+    <fo:block id="toc.{$cid}.{$id}">
+      <xsl:attribute name="margin-left">
+        <xsl:call-template name="set.toc.indent"/>
+      </xsl:attribute>
+      
       <xsl:apply-templates select="$nodes" mode="toc">
         <xsl:with-param name="toc-context" select="$toc-context"/>
       </xsl:apply-templates>
@@ -298,8 +304,11 @@
   <xsl:if test="$toc.section.depth > 0
                 and $toc.max.depth > $depth.from.context
                 and refentry">
-    <fo:block id="toc.{$cid}.{$id}"
-              start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+    <fo:block id="toc.{$cid}.{$id}">
+      <xsl:attribute name="margin-left">
+        <xsl:call-template name="set.toc.indent"/>
+      </xsl:attribute>
+              
       <xsl:apply-templates select="refentry" mode="toc">
         <xsl:with-param name="toc-context" select="$toc-context"/>
       </xsl:apply-templates>
@@ -330,16 +339,19 @@
   <xsl:call-template name="toc.line"/>
 
   <xsl:variable name="nodes" select="section|sect1
-				     |simplesect[$simplesect.in.toc != 0]
-				     |refentry"/>
+                                     |simplesect[$simplesect.in.toc != 0]
+                                     |refentry"/>
 
   <xsl:variable name="depth.from.context" select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
 
   <xsl:if test="$toc.section.depth > 0 
                 and $toc.max.depth > $depth.from.context
                 and $nodes">
-    <fo:block id="toc.{$cid}.{$id}"
-              start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+    <fo:block id="toc.{$cid}.{$id}">
+      <xsl:attribute name="margin-left">
+        <xsl:call-template name="set.toc.indent"/>
+      </xsl:attribute>
+              
       <xsl:apply-templates select="$nodes" mode="toc">
         <xsl:with-param name="toc-context" select="$toc-context"/>
       </xsl:apply-templates>
@@ -367,8 +379,11 @@
   <xsl:if test="$toc.section.depth > 1 
                 and $toc.max.depth > $depth.from.context
                 and sect2">
-    <fo:block id="toc.{$cid}.{$id}"
-              start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+    <fo:block id="toc.{$cid}.{$id}">
+      <xsl:attribute name="margin-left">
+        <xsl:call-template name="set.toc.indent"/>
+      </xsl:attribute>
+              
       <xsl:apply-templates select="sect2" mode="toc">
         <xsl:with-param name="toc-context" select="$toc-context"/>
       </xsl:apply-templates>
@@ -399,8 +414,13 @@
   <xsl:if test="$toc.section.depth > 2 
                 and $toc.max.depth > $depth.from.context
                 and sect3">
-    <fo:block id="toc.{$cid}.{$id}"
-              start-indent="{$reldepth*$toc.indent.width}pt">
+    <fo:block id="toc.{$cid}.{$id}">
+      <xsl:attribute name="margin-left">
+        <xsl:call-template name="set.toc.indent">
+          <xsl:with-param name="reldepth" select="$reldepth"/>
+        </xsl:call-template>
+      </xsl:attribute>
+              
       <xsl:apply-templates select="sect3" mode="toc">
         <xsl:with-param name="toc-context" select="$toc-context"/>
       </xsl:apply-templates>
@@ -431,8 +451,13 @@
   <xsl:if test="$toc.section.depth > 3 
                 and $toc.max.depth > $depth.from.context
                 and sect4">
-    <fo:block id="toc.{$cid}.{$id}"
-              start-indent="{$reldepth*$toc.indent.width}pt">
+    <fo:block id="toc.{$cid}.{$id}">
+      <xsl:attribute name="margin-left">
+        <xsl:call-template name="set.toc.indent">
+          <xsl:with-param name="reldepth" select="$reldepth"/>
+        </xsl:call-template>
+      </xsl:attribute>
+              
       <xsl:apply-templates select="sect4" mode="toc">
         <xsl:with-param name="toc-context" select="$toc-context"/>
       </xsl:apply-templates>
@@ -463,8 +488,13 @@
   <xsl:if test="$toc.section.depth > 4 
                 and $toc.max.depth > $depth.from.context
                 and sect5">
-    <fo:block id="toc.{$cid}.{$id}"
-              start-indent="{$reldepth*$toc.indent.width}pt">
+    <fo:block id="toc.{$cid}.{$id}">
+      <xsl:attribute name="margin-left">
+        <xsl:call-template name="set.toc.indent">
+          <xsl:with-param name="reldepth" select="$reldepth"/>
+        </xsl:call-template>
+      </xsl:attribute>
+              
       <xsl:apply-templates select="sect5" mode="toc">
         <xsl:with-param name="toc-context" select="$toc-context"/>
       </xsl:apply-templates>
@@ -477,6 +507,31 @@
 
   <xsl:call-template name="toc.line"/>
 </xsl:template>
+
+<xsl:template name="set.toc.indent">
+  <xsl:param name="reldepth"/>
+
+  <xsl:variable name="depth">
+    <xsl:choose>
+      <xsl:when test="$reldepth != ''">
+        <xsl:value-of select="$reldepth"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="count(ancestor::*)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$fop.extensions != 0 or $passivetex.extensions != 0">
+       <xsl:value-of select="concat($depth*$toc.indent.width, 'pt')"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="concat($toc.indent.width, 'pt')"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 
 <xsl:template match="section" mode="toc">
   <xsl:param name="toc-context" select="."/>
@@ -503,8 +558,13 @@
     <xsl:if test="$toc.section.depth > $depth 
                   and $toc.max.depth > $depth.from.context
                   and section">
-      <fo:block id="toc.{$cid}.{$id}"
-                start-indent="{$reldepth*$toc.indent.width}pt">
+      <fo:block id="toc.{$cid}.{$id}">
+        <xsl:attribute name="margin-left">
+          <xsl:call-template name="set.toc.indent">
+            <xsl:with-param name="reldepth" select="$reldepth"/>
+          </xsl:call-template>
+        </xsl:attribute>
+                
         <xsl:apply-templates select="section" mode="toc">
           <xsl:with-param name="toc-context" select="$toc-context"/>
         </xsl:apply-templates>
