@@ -105,10 +105,7 @@
 <gentext key="section" text="Kısım"/>
 <gentext key="Section" text="Kısım"/>
 <gentext key="see" text="Bkz."/>
-<gentext key="See" text="Bkz."/>
 <gentext key="seealso" text="Bkz."/>
-<gentext key="Seealso" text="Bkz."/>
-<gentext key="SeeAlso" text="Bkz."/>
 <gentext key="set" text="Takım"/>
 <gentext key="Set" text="Takım"/>
 <gentext key="setindex" text="Takım Dizini"/>
@@ -185,6 +182,11 @@
 <dingbat key="nestedstartquote" text="&#x2018;"/>
 <dingbat key="nestedendquote" text="&#x2019;"/>
 <dingbat key="bullet" text="&#x2022;"/>
+
+<gentext key="hyphenation-character" text="&#x2010;"/>
+<gentext key="hyphenation-push-character-count" text="3"/>
+<gentext key="hyphenation-remain-character-count" text="2"/>
+
 
 <context name="title">
 
