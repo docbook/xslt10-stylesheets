@@ -18,7 +18,7 @@
   </affiliation>
 </editor>
 </authorgroup>
-<pubdate>14 Nov 2001</pubdate>
+<pubdate>18 Nov 2001</pubdate>
 <releaseinfo role="meta">
 $Id$
 </releaseinfo>
@@ -354,8 +354,23 @@ Added <sgmltag>newsgroup</sgmltag> class to <sgmltag>systemitem</sgmltag>.
 <listitem id="rfe.140"><para>Former RFE 140:
 Allow multiple <sgmltag>msgexplan</sgmltag> inside <sgmltag>simplemsgentry</sgmltag>.
 </para></listitem>
+<listitem id="rfe.482053"><para><ulink url="&RFE;aid=482053">RFE 482053</ulink>:
+Former RFE 119: Add support for DOI in meta.</para>
+</listitem>
+<listitem id="rfe.482817"><para><ulink url="&RFE;aid=482817">RFE 482817</ulink>:
+An <sgmltag>errortext</sgmltag> element will be added. The processing expectations
+of <sgmltag>errorname</sgmltag> will be clarified. See also
+<ulink url="&RFE;aid=482922">RFE 482922</ulink>.</para>
+</listitem>
+<listitem id="rfe.482820"><para><ulink url="&RFE;aid=482820">RFE 482820</ulink>:
+An <literal>extension</literal> value will be added to the
+<sgmltag class="attribute">class</sgmltag> attribute of
+<sgmltag>filename</sgmltag>.</para>
+</listitem>
+<listitem id="rfe.482821"><para><ulink url="&RFE;aid=482821">RFE 482821</ulink>:
+Add introductory material to the beginning of list elements.</para>
+</listitem>
 </itemizedlist>
-
 </section>
 </section>
 
@@ -449,6 +464,40 @@ minutes</ulink>.</para>
 <listitem id="rfe.412476"><para><ulink url="&RFE;aid=412476">RFE 412476</ulink>:
 The <sgmltag class="attribute">class</sgmltag> attribute on
 <sgmltag>productname</sgmltag> will be <literal>#IMPLIED</literal>.
+</para>
+</listitem>
+<listitem id="rfe.482810"><para><ulink url="&RFE;aid=482810">RFE 482810</ulink>:
+The content model of <sgmltag>msgtext</sgmltag> is far too broad. It will
+be reduced to the same mixture as <sgmltag class="paramentity">example.mix</sgmltag>.
+</para>
+</listitem>
+<listitem id="rfe.482811"><para><ulink url="&RFE;aid=482811">RFE 482811</ulink>:
+The <sgmltag>title</sgmltag> element will be removed from
+<sgmltag class="paramentity">bibliocomponent.mix</sgmltag> (use
+<sgmltag>citetitle</sgmltag> instead).</para>
+</listitem>
+<listitem id="rfe.482812"><para><ulink url="&RFE;aid=482812">RFE 482812</ulink>:
+The content model of <sgmltag>citetitle</sgmltag> will be reduced from
+<sgmltag class="paramentity">para.char.mix</sgmltag> to
+<sgmltag class="paramentity">title.char.mix</sgmltag>.</para>
+</listitem>
+<listitem id="rfe.482815"><para><ulink url="&RFE;aid=482815">RFE 482815</ulink>:
+The <sgmltag>synopsis</sgmltag> element will be removed from
+<sgmltag class="paramentity">para.char.mix</sgmltag>.</para>
+</listitem>
+<listitem id="rfe.482818"><para><ulink url="&RFE;aid=482818">RFE 482818</ulink>:
+Simplify the content model of <sgmltag>toc</sgmltag>.
+</para>
+</listitem>
+<listitem id="rfe.482819"><para><ulink url="&RFE;aid=482819">RFE 482819</ulink>:
+The content models of the bibliography elements will be adjusted so that
+it is not possible to mix <sgmltag>biblioset</sgmltag> and
+<sgmltag>bibliomset</sgmltag> elements.</para>
+</listitem>
+<listitem id="rfe.482922"><para><ulink url="&RFE;aid=482922">RFE 482922</ulink>:
+The <sgmltag>msgtext</sgmltag> element will be constrained to occur only
+inside <sgmltag>msgset</sgmltag>. See also
+<ulink url="&RFE;aid=482817">RFE 482817</ulink>.
 </para>
 </listitem>
 </itemizedlist>
