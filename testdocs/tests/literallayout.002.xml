@@ -10,7 +10,7 @@
 </author>
 </articleinfo>
 
-<literallayout>LiteralLayout: This is a test
+<literallayout><ulink url="http://docbook.org/tdg/en/html/literallayout.html">LiteralLayout</ulink>: This is a test
     This is a test with <emphasis>    embedded
   markup</emphasis>; but still
   Only a test.
