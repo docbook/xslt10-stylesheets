@@ -336,7 +336,8 @@
 
   <xsl:call-template name="subtoc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
-    <xsl:with-param name="nodes" select="section|sect1|glossary|bibliography|index
+    <xsl:with-param name="nodes" select="section|sect1|simplesect|refentry
+                                         |glossary|bibliography|index
                                          |bridgehead[$bridgehead.in.toc != 0]"/>
   </xsl:call-template>
 </xsl:template>
