@@ -25,6 +25,14 @@
       </xsl:call-template>
     </xsl:when>
 
+    <xsl:when test="$type='refname'">
+      <xsl:call-template name="do-citerefentry">
+        <xsl:with-param name="refentrytitle" select="$target"/>
+        <xsl:with-param name="manvolnum"
+          select="$target/../../refmeta/manvolnum"/>
+      </xsl:call-template>
+    </xsl:when>
+
     <xsl:otherwise>
       <xsl:text>[xref to </xsl:text>
       <xsl:value-of select="$type"/>
