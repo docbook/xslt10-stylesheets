@@ -113,9 +113,6 @@
   </xsl:choose>
 </xsl:template>
 
-
-
-
 <xsl:template match="co" mode="callout-bug">
   <xsl:call-template name="callout-bug">
     <xsl:with-param name="conum">
