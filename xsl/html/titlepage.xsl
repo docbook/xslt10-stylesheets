@@ -291,6 +291,10 @@
 </xsl:template>
 
 <xsl:template match="holder" mode="titlepage.mode">
+  <xsl:apply-templates/><xsl:text>, </xsl:text>
+</xsl:template>
+
+<xsl:template match="holder[position()=last()]" mode="titlepage.mode">
   <xsl:apply-templates/>
 </xsl:template>
 
