@@ -1,6 +1,6 @@
 <!DOCTYPE article [
 <!ENTITY name "wd-docbook-docbook">
-<!ENTITY version "4.3b5">
+<!ENTITY version "4.3CR1">
 <!ENTITY standard "Working Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker/">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
@@ -34,7 +34,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>29 Oct 2003</pubdate>
+<pubdate>02 Dec 2003</pubdate>
 
 <copyright><year>2001</year><year>2002</year><year>2003</year>
 <holder>
@@ -53,16 +53,16 @@ no backwards-incompatible changes.</para>
 </abstract>
 
 <legalnotice role="status"><title>Status</title>
-<!--
 <para>This &standard; was approved for publication by the
 OASIS DocBook Technical Committee. It represents the
 consensus of the committee.
 </para>
--->
 
+<!--
 <para>This &standard; is an editor's draft. It does not necessarily
 represent the consensus of the committee.
 </para>
+-->
 
 <para>Please send comments on this specification to the
 <email>docbook@lists.oasis-open.org</email> list. To subscribe, send
@@ -73,7 +73,7 @@ message.
 </para>
 
 <para>The errata page for this specification is at
-<ulink url="&root;/specs/docbook-errata.html"/>.
+<ulink url="&root;specs/docbook-errata.html"/>.
 </para>
 </legalnotice>
 </articleinfo>
@@ -137,6 +137,18 @@ the mirror on
 <ulink url="http://docbook.org/"/>.
 </para>
 
+<section id="s.cr1">
+<title>Changes in DocBook V4.3CR1</title>
+
+<para>There are no backwards-incompatible changes in this release.
+</para>
+
+<para>Per the decision at the
+<ulink url="http://lists.oasis-open.org/archives/docbook/200311/msg00016.html">19 Nov 2003</ulink>
+Technical Committee meeting, DocBook V4.3b5 is republished as DocBook
+V4.3CR1 (Candidate Release 1). There have been no technical changes since V4.3b5.</para>
+</section>
+
 <section id="s.b5">
 <title>Changes in DocBook V4.3b5</title>
 
@@ -147,7 +159,6 @@ the mirror on
 is summarized here. For complete details, consult the individual RFEs and
 the <ulink url="&root;meetings">meeting minutes</ulink>.</para>
 
-</section>
 <section id="sb5.bugs">
 <title>Bug Fixes</title>
 
@@ -157,6 +168,7 @@ the <ulink url="&root;meetings">meeting minutes</ulink>.</para>
 to <sgmltag>glossterm</sgmltag>.</para>
 </listitem>
 </itemizedlist>
+</section>
 </section>
 
 <section id="s.b4">
@@ -170,7 +182,6 @@ is summarized here. For complete details, consult the individual RFEs and
 the <ulink url="&root;meetings">meeting
 minutes</ulink>.</para>
 
-</section>
 <section id="sb4.enhancements">
 <title>Enhancements</title>
 
@@ -238,6 +249,7 @@ Added <sgmltag>StepAlternatives</sgmltag>.
 </listitem>
 </itemizedlist>
 </section>
+</section>
 
 <section id="s.b3">
 <title>Changes in DocBook V4.3b3</title>
@@ -250,7 +262,6 @@ is summarized here. For complete details, consult the individual RFEs and
 the <ulink url="&root;meetings">meeting
 minutes</ulink>.</para>
 
-</section>
 <section id="sb3.enhancements">
 <title>Enhancements</title>
 
@@ -307,7 +318,7 @@ duplicate attribute declarations for some table-related elements.
 
 <para>Each of the changes made between DocBook V4.2 and DocBook XML V4.3b2
 is summarized here. For complete details, consult the individual RFEs and
-the <ulink url="$root;meetings">meeting
+the <ulink url="&root;meetings">meeting
 minutes</ulink>.</para>
 
 <para>There was no public beta 1 release.</para>
@@ -376,6 +387,7 @@ new values for pubwork (2003 Jan)</para>
 </listitem>
 
 </itemizedlist>
+</section>
 </section>
 </section>
 
@@ -540,8 +552,10 @@ the formulation of this &standard;:</para>
 <listitem><para>Nancy Harrison</para></listitem>
 <listitem><para>Scott Hudson</para></listitem>
 <listitem><para>Mark Johnson</para></listitem>
+<listitem><para>Larry Rowland (prospective)</para></listitem>
 <listitem><para>Michael Smith</para></listitem>
-<listitem><para>Norman Walsh (Chair, Editor)</para></listitem>
+<listitem><para>Bob Stayton, Secretary</para></listitem>
+<listitem><para>Norman Walsh, Chair, Editor</para></listitem>
 </itemizedlist>
 </appendix>
 
@@ -625,6 +639,10 @@ of the DocBook web page
 
 <para>
 <revhistory>
+<revision role="&root;specs/wd-docbook-docbook-4.3cr1.html">
+  <revnumber>Working Draft “Candidate Release 1”</revnumber>
+  <date>02 Dec 2003</date>
+</revision>
 <revision role="&root;specs/wd-docbook-docbook-4.3b5.html">
   <revnumber>Working Draft “Beta 5”</revnumber>
   <date>29 Oct 2003</date>
