@@ -4,9 +4,7 @@
 
 <xsl:output method="html"/>
 
-<xsl:template name="script-file">
-  <xsl:param name="js" select="'slides.js'"/>
-
+<xsl:template name="script-dir">
   <xsl:variable name="source.script.dir">
     <xsl:call-template name="dbhtml-attribute">
       <xsl:with-param name="pis" select="/processing-instruction('dbhtml')"/>
@@ -27,6 +25,11 @@
       <xsl:text>http://docbook.sourceforge.net/release/slides/browser/</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template name="script-file">
+  <xsl:param name="js" select="'slides.js'"/>
+  <xsl:call-template name="script-dir"/>
   <xsl:value-of select="$js"/>
 </xsl:template>
 
