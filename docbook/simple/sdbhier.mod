@@ -1,14 +1,32 @@
-<!-- ====================================================================== -->
-<!-- Simplified DocBook XML Document Hierarchy V4.1.2.4
-     Part of the Simplified DocBook XML V4.1.2.4 DTD
-     http://nwalsh.com/docbook/simple/
+<!-- ...................................................................... -->
+<!-- Simplified DocBook Hierarchy V4.1.2.5 ................................ -->
+<!-- File sdbhier.mod ..................................................... -->
 
-     See COPYRIGHT for more information
+<!-- Copyright 1992-2001 HaL Computer Systems, Inc.,
+     O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+     Corporation, Norman Walsh, Sun Microsystems, Inc. and the
+     Organization for the Advancement of Structured Information Standards
+     (OASIS).
 
-     Please direct all questions and comments about this DTD to
-     Norman Walsh, <ndw@nwalsh.com>.
-                                                                            -->
-<!-- ====================================================================== -->
+     $Id$
+
+     Permission to use, copy, modify and distribute the DocBook XML DTD
+     and its accompanying documentation for any purpose and without fee
+     is hereby granted in perpetuity, provided that the above copyright
+     notice and this paragraph appear in all copies.  The copyright
+     holders make no representation about the suitability of the DTD for
+     any purpose.  It is provided "as is" without expressed or implied
+     warranty.
+
+     If you modify the Simplified DocBook DTD in any way, except for
+     declaring and referencing additional sets of general entities and
+     declaring additional notations, label your DTD as a variant of
+     DocBook.  See the maintenance documentation for more information.
+
+     Please direct all questions, bug reports, or suggestions for
+     changes to the docbook@lists.oasis-open.org mailing list. For more
+     information, see http://www.oasis-open.org/docbook/.
+-->
 
 <!ENTITY % local.divcomponent.mix "">
 <!ENTITY % divcomponent.mix
@@ -66,3 +84,6 @@
 		(%link.char.class;)*)>
 
 ]]>
+
+<!-- End of Simplified DocBook Hierarchy V4.1.2.5 ......................... -->
+<!-- ...................................................................... -->
