@@ -142,6 +142,7 @@ clean:
 	rm -f toc.hhc htmlhelp.hhp htmlhelp.chm Index.hhk
 	rm -f HTML.index
 	rm -f jhelpidx.xml jhelpmap.jhm jhelpset.hs jhelptoc.xml
+	find . -name '*~' -o -name '*.bak' -o -name '.#*' -o -name core | xargs rm -f
 
 .PHONY: distrib
 distrib:
