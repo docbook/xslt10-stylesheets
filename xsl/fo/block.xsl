@@ -157,6 +157,10 @@
   <xsl:call-template name="block.object"/>
 </xsl:template>
 
+<xsl:template match="simplemsgentry">
+  <xsl:call-template name="block.object"/>
+</xsl:template>
+
 <xsl:template match="msg">
   <xsl:call-template name="block.object"/>
 </xsl:template>
