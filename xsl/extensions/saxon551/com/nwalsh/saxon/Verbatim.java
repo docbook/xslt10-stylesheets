@@ -493,7 +493,7 @@ public class Verbatim {
     varString = getVariable(context, "stylesheet.result.type");
     foStylesheet = (varString.equals("fo"));
 
-      // Get the default column
+    // Get the default column
     varString = getVariable(context, "callout.defaultcolumn");
     try {
       defaultColumn = Integer.parseInt(varString);
@@ -613,6 +613,7 @@ public class Verbatim {
 
     setupCallouts(context);
 
+    elementStack = new Stack();
     callout = new Callout[10];
     calloutCount = 0;
     calloutPos = 0;
