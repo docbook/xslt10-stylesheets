@@ -623,11 +623,18 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % local.common.attrib "">
 
+<!-- dir: Bidirectional override -->
+
 <!ENTITY % dir.attrib
 	"dir		(ltr
 			|rtl
 			|lro
 			|rlo)		#IMPLIED">
+
+<!-- xml:base: base URI -->
+
+<!ENTITY % xml-base.attrib
+	"xml:base	CDATA		#IMPLIED">
 
 <!-- Role is included explicitly on each element -->
 
@@ -639,9 +646,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 	%revisionflag.attrib;
 	%effectivity.attrib;
 	%dir.attrib;
+	%xml-base.attrib;
 	%local.common.attrib;"
 >
-
 
 <!-- Role is included explicitly on each element -->
 
@@ -653,6 +660,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 	%revisionflag.attrib;
 	%effectivity.attrib;
 	%dir.attrib;
+	%xml-base.attrib;
 	%local.common.attrib;"
 >
 
