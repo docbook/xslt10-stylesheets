@@ -35,7 +35,7 @@
                         |$node/prefaceinfo/subtitle
                         |$node/chapterinfo/subtitle
                         |$node/appendixinfo/subtitle
-                        |subtitle)[1]"/>
+                        |$node/subtitle)[1]"/>
 
   <xsl:if test="$subtitle">
     <h3 class="subtitle">
