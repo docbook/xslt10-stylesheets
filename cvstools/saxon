@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# This shell script will definitely need to be hacked to run on your system!
 # This script is usually called by the xslt script.
 #
 # Usage: saxon [shellopts] src.xml style.xsl output.{xml|html} [styleopts]
