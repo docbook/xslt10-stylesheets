@@ -70,6 +70,18 @@ element label.</para>
       <xsl:value-of select="@label"/>
     </xsl:when>
     <xsl:when test="$preface.autolabel != 0">
+      <xsl:if test="$component.label.includes.part.label != 0 and
+                      ancestor::part">
+        <xsl:variable name="part.label">
+          <xsl:apply-templates select="ancestor::part" 
+                               mode="label.markup"/>
+        </xsl:variable>
+        <xsl:if test="$part.label != ''">
+          <xsl:value-of select="$part.label"/>
+          <xsl:apply-templates select="ancestor::part" 
+                               mode="intralabel.punctuation"/>
+        </xsl:if>
+      </xsl:if>
       <xsl:choose>
         <xsl:when test="$label.from.part != 0 and ancestor::part">
           <xsl:number from="part" count="preface" format="1" level="any"/>
@@ -88,20 +100,20 @@ element label.</para>
       <xsl:value-of select="@label"/>
     </xsl:when>
     <xsl:when test="$chapter.autolabel != 0">
+      <xsl:if test="$component.label.includes.part.label != 0 and
+                      ancestor::part">
+        <xsl:variable name="part.label">
+          <xsl:apply-templates select="ancestor::part" 
+                               mode="label.markup"/>
+        </xsl:variable>
+        <xsl:if test="$part.label != ''">
+          <xsl:value-of select="$part.label"/>
+          <xsl:apply-templates select="ancestor::part" 
+                               mode="intralabel.punctuation"/>
+        </xsl:if>
+      </xsl:if>
       <xsl:choose>
         <xsl:when test="$label.from.part != 0 and ancestor::part">
-          <xsl:if test="$component.label.includes.part.label != 0 and
-                          ancestor::part">
-            <xsl:variable name="part.label">
-              <xsl:apply-templates select="ancestor::part" 
-                                   mode="label.markup"/>
-            </xsl:variable>
-            <xsl:if test="$part.label != ''">
-              <xsl:value-of select="$part.label"/>
-              <xsl:apply-templates select="ancestor::part" 
-                                   mode="intralabel.punctuation"/>
-            </xsl:if>
-          </xsl:if>
           <xsl:number from="part" count="chapter" format="1" level="any"/>
         </xsl:when>
         <xsl:otherwise>
@@ -118,6 +130,18 @@ element label.</para>
       <xsl:value-of select="@label"/>
     </xsl:when>
     <xsl:when test="$appendix.autolabel != 0">
+      <xsl:if test="$component.label.includes.part.label != 0 and
+                      ancestor::part">
+        <xsl:variable name="part.label">
+          <xsl:apply-templates select="ancestor::part" 
+                               mode="label.markup"/>
+        </xsl:variable>
+        <xsl:if test="$part.label != ''">
+          <xsl:value-of select="$part.label"/>
+          <xsl:apply-templates select="ancestor::part" 
+                               mode="intralabel.punctuation"/>
+        </xsl:if>
+      </xsl:if>
       <xsl:choose>
         <xsl:when test="$label.from.part != 0 and ancestor::part">
           <xsl:number from="part" count="appendix" format="A" level="any"/>
