@@ -135,4 +135,4 @@
 <!ENTITY htmlhelp.force.map.and.alias SYSTEM "../params/htmlhelp.force.map.and.alias.xml">
 <!ENTITY htmlhelp.map.file SYSTEM "../params/htmlhelp.map.file.xml">
 <!ENTITY htmlhelp.alias.file SYSTEM "../params/htmlhelp.alias.file.xml">
-
+<!ENTITY segmentedlist.as.table SYSTEM "../params/segmentedlist.as.table.xml">

@@ -457,7 +457,28 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="segmentedlist">
-  <xsl:apply-templates/>
+  <xsl:variable name="presentation">
+    <xsl:call-template name="pi-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'list-presentation'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$presentation = 'table'">
+      <xsl:apply-templates select="." mode="seglist-table"/>
+    </xsl:when>
+    <xsl:when test="$presentation = 'list'">
+      <xsl:apply-templates/>
+    </xsl:when>
+    <xsl:when test="$segmentedlist.as.table != 0">
+      <xsl:apply-templates select="." mode="seglist-table"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="segmentedlist/title">
@@ -496,6 +517,42 @@
     </fo:inline>
     <xsl:apply-templates/>
   </fo:block>
+</xsl:template>
+
+<xsl:template match="segmentedlist" mode="seglist-table">
+  <xsl:apply-templates select="title" mode="seglist-table"/>
+  <fo:table>
+    <fo:table-header>
+      <fo:table-row>
+        <xsl:apply-templates select="segtitle" mode="seglist-table"/>
+      </fo:table-row>
+    </fo:table-header>
+    <fo:table-body>
+      <xsl:apply-templates select="seglistitem" mode="seglist-table"/>
+    </fo:table-body>
+  </fo:table>
+</xsl:template>
+
+<xsl:template match="segtitle" mode="seglist-table">
+  <fo:table-cell>
+    <fo:block>
+      <xsl:apply-templates/>
+    </fo:block>
+  </fo:table-cell>
+</xsl:template>
+
+<xsl:template match="seglistitem" mode="seglist-table">
+  <fo:table-row>
+    <xsl:apply-templates mode="seglist-table"/>
+  </fo:table-row>
+</xsl:template>
+
+<xsl:template match="seg" mode="seglist-table">
+  <fo:table-cell>
+    <fo:block>
+      <xsl:apply-templates/>
+    </fo:block>
+  </fo:table-cell>
 </xsl:template>
 
 <!-- ==================================================================== -->

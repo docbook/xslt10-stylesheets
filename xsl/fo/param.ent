@@ -113,3 +113,4 @@
 <!ENTITY table.entry.padding SYSTEM "../params/table.entry.padding.xml">
 
 <!ENTITY punct.honorific SYSTEM "../params/punct.honorific.xml">
+<!ENTITY segmentedlist.as.table SYSTEM "../params/segmentedlist.as.table.xml">
