@@ -1,3 +1,5 @@
+include ../cvstools/Makefile.incl
+
 CVS2LOG=../cvstools/cvs2log
 MERGELOGS=../cvstools/mergechangelogs
 NEXTVER=../cvstools/nextversion
@@ -8,12 +10,15 @@ DIRS=common html fo extensions htmlhelp javahelp
 
 .PHONY : distrib clean doc xhtml
 
-all:	xhtml
+all:	xhtml RELEASE-NOTES.html
 	for i in $(DIRS) __bogus__; do \
 		if [ $$i != __bogus__ ] ; then \
 			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
 		fi \
 	done
+
+RELEASE-NOTES.html: RELEASE-NOTES.xml
+	$(XSLT) $< html/docbook.xsl $@
 
 xhtml:
 	$(MAKE) -C xhtml clean
