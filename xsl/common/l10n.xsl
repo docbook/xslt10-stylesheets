@@ -1,5 +1,7 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
+                exclude-result-prefixes="l"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -14,6 +16,7 @@
      ******************************************************************** -->
 
 <xsl:param name="l10n.xml" select="document('../common/l10n.xml')"/>
+<xsl:param name="local.l10n.xml" select="document('')"/>
 
 <xsl:param name="l10n.gentext.language" select="''"/>
 <xsl:param name="l10n.gentext.default.language" select="'en'"/>
@@ -73,11 +76,11 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="$l10n.xml/internationalization/localization[@language=$adjusted.language]">
+    <xsl:when test="$l10n.xml/l:i18n/l:l10n[@language=$adjusted.language]">
       <xsl:value-of select="$adjusted.language"/>
     </xsl:when>
     <!-- try just the lang code without country -->
-    <xsl:when test="$l10n.xml/internationalization/localization[@language=substring-before($adjusted.language,'_')]">
+    <xsl:when test="$l10n.xml/l:i18n/l:l10n[@language=substring-before($adjusted.language,'_')]">
       <xsl:value-of select="substring-before($adjusted.language,'_')"/>
     </xsl:when>
     <!-- or use the default -->
@@ -104,7 +107,14 @@
   </xsl:param>
 
   <xsl:variable name="l10n.text">
-    <xsl:value-of select="($l10n.xml/internationalization/localization[@language=$lang]/xref[@element=$element.name])[1]/@text"/>
+    <xsl:choose>
+      <xsl:when test="$local.l10n.xml//l:i18n/l:l10n[@language=$lang]/l:xref[@element=$element.name]">
+        <xsl:value-of select="($local.l10n.xml/l:i18n/l:l10n[@language=$lang]/l:xref[@element=$element.name])[1]/@text"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="($l10n.xml/l:i18n/l:l10n[@language=$lang]/l:xref[@element=$element.name])[1]/@text"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
 
   <xsl:choose>
@@ -136,28 +146,31 @@
     <xsl:call-template name="l10n.language"/>
   </xsl:param>
 
+  <xsl:variable name="local.l10n.gentext"
+                select="($local.l10n.xml//l:i18n/l:l10n[@language=$lang]/l:gentext[@key=$key])[1]"/>
+
   <xsl:variable name="l10n.gentext"
-                select="($l10n.xml/internationalization/localization[@language=$lang]/gentext[@key=$key])[1]"/>
+                select="($l10n.xml/l:i18n/l:l10n[@language=$lang]/l:gentext[@key=$key])[1]"/>
 
-  <xsl:variable name="l10n.name" select="$l10n.gentext/@text"/>
-
-<!--
-  <xsl:message>
-    <xsl:text>gentext: </xsl:text>
-    <xsl:value-of select="$key"/>
-    <xsl:text>, </xsl:text>
-    <xsl:value-of select="count($l10n.gentext)"/>
-    <xsl:text>, </xsl:text>
-    <xsl:value-of select="$l10n.name"/>
-    <xsl:text>; </xsl:text>
-    <xsl:value-of select="name($l10n.gentext)"/>
-    <xsl:text>, </xsl:text>
-    <xsl:value-of select="$l10n.gentext/@text"/>
-  </xsl:message>
--->
+  <xsl:variable name="l10n.name">
+    <xsl:choose>
+      <xsl:when test="$local.l10n.gentext">
+        <xsl:value-of select="$local.l10n.gentext/@text"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$l10n.gentext/@text"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="count($l10n.gentext)=0">
+    <xsl:when test="count($local.l10n.gentext) &gt; 0">
+      <xsl:value-of select="$local.l10n.gentext/@text"/>
+    </xsl:when>
+    <xsl:when test="count($l10n.gentext) &gt; 0">
+      <xsl:value-of select="$l10n.gentext/@text"/>
+    </xsl:when>
+    <xsl:otherwise>
       <xsl:message>
         <xsl:text>No "</xsl:text>
         <xsl:value-of select="$lang"/>
@@ -166,10 +179,7 @@
         <xsl:text>" exists; using "en".</xsl:text>
       </xsl:message>
 
-      <xsl:value-of select="($l10n.xml/internationalization/localization[@language='en']/gentext[@key=$key])[1]/@text"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="$l10n.name"/>
+      <xsl:value-of select="($l10n.xml/l:i18n/l:l10n[@language='en']/l:gentext[@key=$key])[1]/@text"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -208,12 +218,22 @@
     <xsl:call-template name="l10n.language"/>
   </xsl:param>
 
+  <xsl:variable name="local.l10n.dingbat">
+    <xsl:value-of select="($local.l10n.xml//l:i18n/l:l10n[@language=$lang]/l:dingbat[@key=$dingbat])[1]"/>
+  </xsl:variable>
+
   <xsl:variable name="l10n.dingbat">
-    <xsl:value-of select="($l10n.xml/internationalization/localization[@language=$lang]/dingbat[@key=$dingbat])[1]/@text"/>
+    <xsl:value-of select="($l10n.xml/l:i18n/l:l10n[@language=$lang]/l:dingbat[@key=$dingbat])[1]"/>
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="$l10n.dingbat=''">
+    <xsl:when test="count($local.l10n.dingbat) &gt; 0">
+      <xsl:value-of select="$local.l10n.dingbat/@text"/>
+    </xsl:when>
+    <xsl:when test="count($l10n.dingbat) &gt; 0">
+      <xsl:value-of select="$l10n.dingbat/@text"/>
+    </xsl:when>
+    <xsl:otherwise>
       <xsl:message>
         <xsl:text>No "</xsl:text>
         <xsl:value-of select="$lang"/>
@@ -222,10 +242,7 @@
         <xsl:text> exists; using "en".</xsl:text>
       </xsl:message>
 
-      <xsl:value-of select="($l10n.xml/internationalization/localization[@language='en']/dingbat[@key=$dingbat])[1]/@text"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="$l10n.dingbat"/>
+      <xsl:value-of select="($l10n.xml/l:i18n/l:l10n[@language='en']/l:dingbat[@key=$dingbat])[1]/@text"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -287,10 +304,14 @@
     <xsl:call-template name="l10n.language"/>
   </xsl:param>
 
-  <xsl:variable name="localization.node"
-                select="($l10n.xml/internationalization/localization[@language=$lang])[1]"/>
+  <xsl:variable name="local.localization.node"
+                select="($local.l10n.xml//l:i18n/l:l10n[@language=$lang])[1]"/>
 
-  <xsl:if test="count($localization.node) = 0">
+  <xsl:variable name="localization.node"
+                select="($l10n.xml/l:i18n/l:l10n[@language=$lang])[1]"/>
+
+  <xsl:if test="count($localization.node) = 0
+                and count($local.localization.node) = 0">
     <xsl:message>
       <xsl:text>No "</xsl:text>
       <xsl:value-of select="$lang"/>
@@ -298,10 +319,14 @@
     </xsl:message>
   </xsl:if>
 
-  <xsl:variable name="context.node"
-                select="$localization.node/context[@name=$context]"/>
+  <xsl:variable name="local.context.node"
+                select="$local.localization.node/l:context[@name=$context]"/>
 
-  <xsl:if test="count($context.node) = 0">
+  <xsl:variable name="context.node"
+                select="$localization.node/l:context[@name=$context]"/>
+
+  <xsl:if test="count($context.node) = 0
+                and count($local.context.node) = 0">
     <xsl:message>
       <xsl:text>No context named "</xsl:text>
       <xsl:value-of select="$context"/>
@@ -311,10 +336,14 @@
     </xsl:message>
   </xsl:if>
 
-  <xsl:variable name="template.node"
-                select="$context.node/template[@name=$name][1]"/>
+  <xsl:variable name="local.template.node"
+                select="$local.context.node/l:template[@name=$name][1]"/>
 
-  <xsl:if test="count($template.node) = 0">
+  <xsl:variable name="template.node"
+                select="$context.node/l:template[@name=$name][1]"/>
+
+  <xsl:if test="count($template.node) = 0
+                and count($local.template.node) = 0">
     <xsl:message>
       <xsl:text>No template named "</xsl:text>
       <xsl:value-of select="$name"/>
@@ -326,7 +355,14 @@
     </xsl:message>
   </xsl:if>
 
-  <xsl:value-of select="$template.node/@text"/>
+  <xsl:choose>
+    <xsl:when test="$local.template.node">
+      <xsl:value-of select="$local.template.node/@text"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$template.node/@text"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
