@@ -26,7 +26,6 @@
 <gentext key="Book" text="Buku"/>
 <gentext key="book" text="Buku"/>
 <gentext key="CAUTION" text="PERHATIAN"/>
-<gentext key="caution" text="PERHATIAN"/>
 <gentext key="Caution" text="Perhatian"/>
 <gentext key="caution" text="Perhatian"/>
 <gentext key="Chapter" text="Bab"/>
@@ -51,7 +50,6 @@
 <gentext key="Glossary" text="Daftar Istilah"/>
 <gentext key="glossary" text="Daftar Istilah"/>
 <gentext key="IMPORTANT" text="PENTING"/>
-<gentext key="important" text="PENTING"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="Penting"/>
@@ -67,7 +65,6 @@
 <gentext key="MsgOrig" text="Asal"/>
 <gentext key="msgorig" text="Asal"/>
 <gentext key="NOTE" text="CATATAN"/>
-<gentext key="note" text="CATATAN"/>
 <gentext key="Note" text="Catatan"/>
 <gentext key="note" text="Catatan"/>
 <gentext key="Part" text="Bagian"/>
@@ -106,13 +103,11 @@
 <gentext key="Sidebar" text=""/>
 <gentext key="Step" text="Tahap"/>
 <gentext key="TIP" text="TIP"/>
-<gentext key="tip" text="TIP"/>
 <gentext key="Table" text="Tabel"/>
 <gentext key="table" text="Tabel"/>
 <gentext key="Tip" text="Tip"/>
 <gentext key="tip" text="Tip"/>
 <gentext key="WARNING" text="AWAS"/>
-<gentext key="warning" text="AWAS"/>
 <gentext key="Warning" text="Awas"/>
 <gentext key="warning" text="Awas"/>
 <gentext key="appendix" text="lampiran"/>
@@ -121,7 +116,6 @@
 <gentext key="sidebar" text="sidebar"/>
 <gentext key="step" text="tahap"/>
 <gentext key="Seealso" text="Lihat juga"/>
-<gentext key="seealso" text="Lihat juga"/>
 
 <gentext key="TableofContents" text="Daftar Isi"/>
 <gentext key="tableofcontents" text="Daftar Isi"/>

@@ -26,7 +26,6 @@
 <gentext key="Book" text="&#x4E66;&#x76EE;"/>
 <gentext key="book" text="&#x4E66;&#x76EE;"/> <!-- GB2312 "&#202;&#233;&#196;&#191;" -->
 <gentext key="CAUTION" text="&#x6CE8;&#x610F;"/>
-<gentext key="caution" text="&#x6CE8;&#x610F;"/> <!-- GB2312 "&#215;&#162;&#210;&#226;" -->
 <gentext key="Caution" text="&#x6CE8;&#x610F;"/>
 <gentext key="caution" text="&#x6CE8;&#x610F;"/> <!-- GB2312 "&#215;&#162;&#210;&#226;" -->
 <gentext key="Chapter" text="&#x7AE0;"/> <!-- GB2312 "&#213;&#194;" -->
@@ -51,7 +50,6 @@
 <gentext key="Glossary" text="&#x672F;&#x8BED;&#x8868;"/>
 <gentext key="glossary" text="&#x672F;&#x8BED;&#x8868;"/> <!-- GB2312 "&#202;&#245;&#211;&#239;&#177;&#237;" -->
 <gentext key="IMPORTANT" text="&#x91CD;&#x8981;"/>
-<gentext key="important" text="&#x91CD;&#x8981;"/> <!-- GB2312 "&#214;&#216;&#210;&#170;" -->
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/> <!-- GB2312 "ISBN" -->
 <gentext key="Important" text="&#x91CD;&#x8981;"/>
@@ -67,7 +65,6 @@
 <gentext key="MsgOrig" text="&#x51FA;&#x5904;"/>
 <gentext key="msgorig" text="&#x51FA;&#x5904;"/> <!-- GB2312 "&#179;&#246;&#180;&#166;" -->
 <gentext key="NOTE" text="&#x6CE8;"/>
-<gentext key="note" text="&#x6CE8;"/> <!-- GB2312 "&#215;&#162;" -->
 <gentext key="Note" text="&#x6CE8;"/>
 <gentext key="note" text="&#x6CE8;"/> <!-- GB2312 "&#215;&#162;" -->
 <gentext key="Part" text="&#x90E8;&#x5206;"/>
@@ -106,13 +103,11 @@
 <gentext key="Sidebar" text=""/> <!-- GB2312 "" -->
 <gentext key="Step" text="&#x6B65;&#x9AA4;"/> <!-- GB2312 "&#178;&#189;&#214;&#232;" -->
 <gentext key="TIP" text="&#x63D0;&#x793A;"/>
-<gentext key="tip" text="&#x63D0;&#x793A;"/> <!-- GB2312 "&#204;&#225;&#202;&#190;" -->
 <gentext key="Table" text="&#x8868;&#x683C;"/>
 <gentext key="table" text="&#x8868;&#x683C;"/> <!-- GB2312 "&#177;&#237;&#184;&#241;" -->
 <gentext key="Tip" text="&#x63D0;&#x793A;"/>
 <gentext key="tip" text="&#x63D0;&#x793A;"/> <!-- GB2312 "&#204;&#225;&#202;&#190;" -->
 <gentext key="WARNING" text="&#x8B66;&#x544A;"/>
-<gentext key="warning" text="&#x8B66;&#x544A;"/> <!-- GB2312 "&#190;&#175;&#184;&#230;" -->
 <gentext key="Warning" text="&#x8B66;&#x544A;"/>
 <gentext key="warning" text="&#x8B66;&#x544A;"/> <!-- GB2312 "&#190;&#175;&#184;&#230;" -->
 <gentext key="appendix" text="&#x9644;&#x5F55;"/> <!-- GB2312 "&#184;&#189;&#194;&#188;" -->
@@ -121,7 +116,6 @@
 <gentext key="sidebar" text="sidebar"/> <!-- GB2312 "sidebar" -->
 <gentext key="step" text="&#x6B65;&#x9AA4;"/> <!-- GB2312 "&#178;&#189;&#214;&#232;" -->
 <gentext key="Seealso" text="&#x53E6;&#x89C1;"/>
-<gentext key="seealso" text="&#x53E6;&#x89C1;"/> <!-- GB2312 "&#193;&#237;&#188;&#251;" -->
 
 <gentext key="TableofContents" text="&#x76EE;&#x5F55;"/>
 <gentext key="tableofcontents" text="&#x76EE;&#x5F55;"/> <!-- GB2312 "&#196;&#191;&#194;&#188;" -->

@@ -47,7 +47,6 @@
 <gentext key="Glossary" text="&#xC6A9;&#xC5B4;&#xD574;&#xC124;"/>
 <gentext key="glossary" text="&#xC6A9;&#xC5B4;&#xD574;&#xC124;"/>
 <gentext key="IMPORTANT" text="[&#xC911;&#xC694;]"/>
-<gentext key="important" text="[&#xC911;&#xC694;]"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="&#xC911;&#xC694;"/>
@@ -63,7 +62,6 @@
 <gentext key="MsgOrig" text="&#xBCF4;&#xB0B4;&#xB294; &#xC774;"/>
 <gentext key="msgorig" text="&#xBCF4;&#xB0B4;&#xB294; &#xC774;"/>
 <gentext key="NOTE" text="[&#xCC38;&#xACE0;]"/>
-<gentext key="note" text="[&#xCC38;&#xACE0;]"/>
 <gentext key="Note" text="&#xCC38;&#xACE0;"/>
 <gentext key="note" text="&#xCC38;&#xACE0;"/>
 <gentext key="Part" text="&#xBD80;"/>
@@ -102,13 +100,11 @@
 <gentext key="Sidebar" text=""/>
 <gentext key="Step" text="&#xB2E8;&#xACC4;"/>
 <gentext key="TIP" text="[&#xC791;&#xC740; &#xC815;&#xBCF4;]"/>
-<gentext key="tip" text="[&#xC791;&#xC740; &#xC815;&#xBCF4;]"/>
 <gentext key="Table" text="&#xD45C;"/>
 <gentext key="table" text="&#xD45C;"/>
 <gentext key="Tip" text="&#xC791;&#xC740; &#xC815;&#xBCF4;"/>
 <gentext key="tip" text="&#xC791;&#xC740; &#xC815;&#xBCF4;"/>
 <gentext key="WARNING" text="&#xC8FC;&#xC758;!"/>
-<gentext key="warning" text="&#xC8FC;&#xC758;!"/>
 <gentext key="Warning" text="&#xC8FC;&#xC758;"/>
 <gentext key="warning" text="&#xC8FC;&#xC758;"/>
 <gentext key="appendix" text="&#xBD80;&#xB85D;"/>
@@ -117,7 +113,6 @@
 <gentext key="sidebar" text="&#xB367;&#xBD99;&#xC784;"/>
 <gentext key="step" text="&#xB2E8;&#xACC4;"/>
 <gentext key="Seealso" text="&#xC0B4;&#xD3B4;&#xBCFC; &#xB2E4;&#xB978; &#xB0B4;&#xC6A9;"/>
-<gentext key="seealso" text="&#xC0B4;&#xD3B4;&#xBCFC; &#xB2E4;&#xB978; &#xB0B4;&#xC6A9;"/>
 
 <gentext key="TableofContents" text="&#xCC28;&#xB840;"/>
 <gentext key="tableofcontents" text="&#xCC28;&#xB840;"/>

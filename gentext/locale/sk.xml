@@ -26,7 +26,6 @@
 <gentext key="Book" text="Kniha"/>
 <gentext key="book" text="Kniha"/>
 <gentext key="CAUTION" text="V&#x00DD;STRAHA"/>
-<gentext key="caution" text="V&#x00DD;STRAHA"/>
 <gentext key="Caution" text="V&#x00FD;straha"/>
 <gentext key="caution" text="V&#x00FD;straha"/>
 <gentext key="Chapter" text="Kapitola"/>
@@ -51,7 +50,6 @@
 <gentext key="Glossary" text="Slovn&#x00ED;k"/>
 <gentext key="glossary" text="Slovn&#x00ED;k"/>
 <gentext key="IMPORTANT" text="D&#x00D4;LE&#x017D;IT&#x00C9;"/>
-<gentext key="important" text="D&#x00D4;LE&#x017D;IT&#x00C9;"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="D&#x00F4;le&#x017E;it&#x00E9;"/>
@@ -67,7 +65,6 @@
 <gentext key="MsgOrig" text="P&#x00F4;vod"/>
 <gentext key="msgorig" text="P&#x00F4;vod"/>
 <gentext key="NOTE" text="POZN&#x00C1;MKA"/>
-<gentext key="note" text="POZN&#x00C1;MKA"/>
 <gentext key="Note" text="Pozn&#x00E1;mka"/>
 <gentext key="note" text="Pozn&#x00E1;mka"/>
 <gentext key="Part" text="&#x010C;as&#x0165;"/>
@@ -106,13 +103,11 @@
 <gentext key="Sidebar" text=""/>
 <gentext key="Step" text="Krok"/>
 <gentext key="TIP" text="TIP"/>
-<gentext key="tip" text="TIP"/>
 <gentext key="Table" text="Tabu&#x013E;ka"/>
 <gentext key="table" text="Tabu&#x013E;ka"/>
 <gentext key="Tip" text="Tip"/>
 <gentext key="tip" text="Tip"/>
 <gentext key="WARNING" text="VAROVANIE"/>
-<gentext key="warning" text="VAROVANIE"/>
 <gentext key="Warning" text="Varovanie"/>
 <gentext key="warning" text="Varovanie"/>
 <gentext key="appendix" text="dodatok"/>
@@ -121,7 +116,6 @@
 <gentext key="sidebar" text="bo&#x010D;n&#x00ED; li&#x0161;ta"/>
 <gentext key="step" text="krok"/>
 <gentext key="Seealso" text="Pozri tie&#x017E;"/>
-<gentext key="seealso" text="Pozri tie&#x017E;"/>
 
 <gentext key="TableofContents" text="Obsah"/>
 <gentext key="tableofcontents" text="Obsah"/>

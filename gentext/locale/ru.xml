@@ -35,7 +35,6 @@
 <gentext key="Book" text="&Kcy;&ncy;&icy;&gcy;&acy;"/>
 <gentext key="book" text="&Kcy;&ncy;&icy;&gcy;&acy;"/>
 <gentext key="CAUTION" text="&Pcy;&Rcy;&IEcy;&Dcy;&Ocy;&Scy;&Tcy;&IEcy;&Rcy;&IEcy;&ZHcy;&IEcy;&Ncy;&Icy;&IEcy;"/>
-<gentext key="caution" text="&Pcy;&Rcy;&IEcy;&Dcy;&Ocy;&Scy;&Tcy;&IEcy;&Rcy;&IEcy;&ZHcy;&IEcy;&Ncy;&Icy;&IEcy;"/>
 <gentext key="Caution" text="&Pcy;&rcy;&iecy;&dcy;&ocy;&scy;&tcy;&iecy;&rcy;&iecy;&zhcy;&iecy;&ncy;&icy;&iecy;"/>
 <gentext key="caution" text="&Pcy;&rcy;&iecy;&dcy;&ocy;&scy;&tcy;&iecy;&rcy;&iecy;&zhcy;&iecy;&ncy;&icy;&iecy;"/>
 <gentext key="Chapter" text="&Gcy;&lcy;&acy;&vcy;&acy;"/>
@@ -68,7 +67,6 @@
 <gentext key="Glossary" text="&Gcy;&lcy;&ocy;&scy;&scy;&acy;&rcy;&icy;&jcy;"/>
 <gentext key="glossary" text="&Gcy;&lcy;&ocy;&scy;&scy;&acy;&rcy;&icy;&jcy;"/>
 <gentext key="IMPORTANT" text="&Vcy;&Acy;&ZHcy;&Ncy;&Ocy;"/>
-<gentext key="important" text="&Vcy;&Acy;&ZHcy;&Ncy;&Ocy;"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/> <!-- en -->
 <gentext key="Important" text="&Vcy;&acy;&zhcy;&ncy;&ocy;"/>
@@ -86,7 +84,6 @@
 <gentext key="MsgOrig" text="Origin"/>
 <gentext key="msgorig" text="Origin"/> <!-- en -->
 <gentext key="NOTE" text="&Zcy;&Acy;&Mcy;&IEcy;&CHcy;&Acy;&Ncy;&Icy;&IEcy;"/>
-<gentext key="note" text="&Zcy;&Acy;&Mcy;&IEcy;&CHcy;&Acy;&Ncy;&Icy;&IEcy;"/>
 <gentext key="Name" text="&Icy;&mcy;&yacy;"/>
 <gentext key="name" text="&Icy;&mcy;&yacy;"/>
 <gentext key="Note" text="&Zcy;&acy;&mcy;&iecy;&chcy;&acy;&ncy;&icy;&iecy;"/>
@@ -129,7 +126,6 @@
 <gentext key="SeeAlso" text="&Scy;&mcy;. &tcy;&acy;&kcy;&zhcy;&iecy;"/>
 <gentext key="seealso" text="&Scy;&mcy;. &tcy;&acy;&kcy;&zhcy;&iecy;"/>
 <gentext key="Seealso" text="&Scy;&mcy;. &tcy;&acy;&kcy;&zhcy;&iecy;"/>
-<gentext key="seealso" text="&Scy;&mcy;. &tcy;&acy;&kcy;&zhcy;&iecy;"/>
 <gentext key="Set" text="&Pcy;&ocy;&dcy;&bcy;&ocy;&rcy;&kcy;&acy;"/>
 <gentext key="set" text="&Pcy;&ocy;&dcy;&bcy;&ocy;&rcy;&kcy;&acy;"/>
 <gentext key="SetIndex" text="&Icy;&ncy;&dcy;&iecy;&kcy;&scy; &pcy;&ocy;&dcy;&bcy;&ocy;&rcy;&kcy;&icy;"/>
@@ -138,7 +134,6 @@
 <gentext key="sidebar" text="&vcy;&ycy;&dcy;&iecy;&lcy;&iecy;&ncy;&icy;&iecy;"/>
 <gentext key="Step" text="&SHcy;&acy;&gcy;"/>
 <gentext key="TIP" text="&Pcy;&Ocy;&Dcy;&Scy;&Kcy;&Acy;&Zcy;&Kcy;&Acy;"/>
-<gentext key="tip" text="&Pcy;&Ocy;&Dcy;&Scy;&Kcy;&Acy;&Zcy;&Kcy;&Acy;"/>
 <gentext key="Table" text="&Tcy;&acy;&bcy;&lcy;&icy;&tscy;&acy;"/>
 <gentext key="table" text="&Tcy;&acy;&bcy;&lcy;&icy;&tscy;&acy;"/>
 <gentext key="Table.abr" text="&Tcy;&acy;&bcy;&lcy;."/>
@@ -146,7 +141,6 @@
 <gentext key="Tip" text="&Pcy;&ocy;&dcy;&scy;&kcy;&acy;&zcy;&kcy;&acy;"/>
 <gentext key="tip" text="&Pcy;&ocy;&dcy;&scy;&kcy;&acy;&zcy;&kcy;&acy;"/>
 <gentext key="WARNING" text="&Vcy;&Ncy;&Icy;&Mcy;&Acy;&Ncy;&Icy;&IEcy;"/>
-<gentext key="warning" text="&Vcy;&Ncy;&Icy;&Mcy;&Acy;&Ncy;&Icy;&IEcy;"/>
 <gentext key="Warning" text="&Vcy;&ncy;&icy;&mcy;&acy;&ncy;&icy;&iecy;"/>
 <gentext key="warning" text="&Vcy;&ncy;&icy;&mcy;&acy;&ncy;&icy;&iecy;"/>
 <gentext key="appendix" text="&pcy;&rcy;&icy;&lcy;&ocy;&zhcy;&iecy;&ncy;&icy;&iecy;"/>

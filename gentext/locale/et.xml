@@ -26,7 +26,6 @@
 <gentext key="Book" text="Raamat"/>
 <gentext key="book" text="Raamat"/>
 <gentext key="CAUTION" text="ETTEVAATUST"/>
-<gentext key="caution" text="ETTEVAATUST"/>
 <gentext key="Caution" text="Ettevaatust"/>
 <gentext key="caution" text="Ettevaatust"/>
 <gentext key="Chapter" text="Peat&#252;kk"/> <!-- "Peat&#252;kk" -->
@@ -51,7 +50,6 @@
 <gentext key="Glossary" text="S&#245;nastik"/>
 <gentext key="glossary" text="S&#245;nastik"/> <!-- "S&#245;nastik" -->
 <gentext key="IMPORTANT" text="OLULINE"/>
-<gentext key="important" text="OLULINE"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="Oluline"/>
@@ -67,7 +65,6 @@
 <gentext key="MsgOrig" text="Algallikas"/>
 <gentext key="msgorig" text="Algallikas"/>
 <gentext key="NOTE" text="M&#196;RKUS"/>
-<gentext key="note" text="M&#196;RKUS"/> <!-- "M&#196;RKUS" -->
 <gentext key="Note" text="M&#228;rkus"/>
 <gentext key="note" text="M&#228;rkus"/> <!-- "M&#228;rkus" -->
 <gentext key="Part" text="Osa"/>
@@ -106,13 +103,11 @@
 <gentext key="Sidebar" text=""/>
 <gentext key="Step" text="Samm"/>
 <gentext key="TIP" text="VIHJE"/>
-<gentext key="tip" text="VIHJE"/>
 <gentext key="Table" text="Tabel"/>
 <gentext key="table" text="Tabel"/>
 <gentext key="Tip" text="Vihje"/>
 <gentext key="tip" text="Vihje"/>
 <gentext key="WARNING" text="HOIATUS"/>
-<gentext key="warning" text="HOIATUS"/>
 <gentext key="Warning" text="Hoiatus"/>
 <gentext key="warning" text="Hoiatus"/>
 <gentext key="appendix" text="lisa"/>
@@ -121,7 +116,6 @@
 <gentext key="sidebar" text="k&#252;lgriba"/> <!-- "k&#252;lgriba" -->
 <gentext key="step" text="samm"/>
 <gentext key="Seealso" text="Vt. ka"/>
-<gentext key="seealso" text="Vt. ka"/>
 
 <gentext key="TableofContents" text="Sisukord"/>
 <gentext key="tableofcontents" text="Sisukord"/>

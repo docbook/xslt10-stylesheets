@@ -26,7 +26,6 @@
 <gentext key="Book" text="Kirja"/>
 <gentext key="book" text="Kirja"/>
 <gentext key="CAUTION" text="VARO"/>
-<gentext key="caution" text="VARO"/>
 <gentext key="Caution" text="Varo"/>
 <gentext key="caution" text="Varo"/>
 <gentext key="Chapter" text="Luku"/>
@@ -51,7 +50,6 @@
 <gentext key="Glossary" text="Sanasto"/>
 <gentext key="glossary" text="Sanasto"/>
 <gentext key="IMPORTANT" text="T&#196;RKE&#196;&#196;"/>
-<gentext key="important" text="T&#196;RKE&#196;&#196;"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="T&#228;rke&#228;&#228;"/>
@@ -67,7 +65,6 @@
 <gentext key="MsgOrig" text="Alkuper&#228;"/>
 <gentext key="msgorig" text="Alkuper&#228;"/>
 <gentext key="NOTE" text="HUOMAA"/>
-<gentext key="note" text="HUOMAA"/>
 <gentext key="Note" text="Huomaa"/>
 <gentext key="note" text="Huomaa"/>
 <gentext key="Part" text="Osa"/>
@@ -106,13 +103,11 @@
 <gentext key="Sidebar" text=""/>
 <gentext key="Step" text="Step"/>
 <gentext key="TIP" text="VIHJE"/>
-<gentext key="tip" text="VIHJE"/>
 <gentext key="Table" text="Taulu"/>
 <gentext key="table" text="Taulu"/>
 <gentext key="Tip" text="Vihje"/>
 <gentext key="tip" text="Vihje"/>
 <gentext key="WARNING" text="VAROITUS"/>
-<gentext key="warning" text="VAROITUS"/>
 <gentext key="Warning" text="Varoitus"/>
 <gentext key="warning" text="Varoitus"/>
 <gentext key="appendix" text="liite"/>
@@ -121,7 +116,6 @@
 <gentext key="sidebar" text="sivupalkki"/>
 <gentext key="step" text="step"/>
 <gentext key="Seealso" text="Katso my&#246;s"/>
-<gentext key="seealso" text="Katso my&#246;s"/>
 
 <gentext key="TableofContents" text="Sis&#228;llys"/>
 <gentext key="tableofcontents" text="Sis&#228;llys"/>

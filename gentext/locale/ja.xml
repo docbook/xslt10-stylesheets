@@ -28,7 +28,6 @@
 <gentext key="Book" text="&#x30D6;&#x30C3;&#x30AF;"/>
 <gentext key="book" text="&#x30D6;&#x30C3;&#x30AF;"/>
 <gentext key="CAUTION" text="&#x6CE8;&#x610F;"/>
-<gentext key="caution" text="&#x6CE8;&#x610F;"/>
 <gentext key="Caution" text="&#x6CE8;&#x610F;"/>
 <gentext key="caution" text="&#x6CE8;&#x610F;"/>
 <gentext key="Chapter1" text="&#x7B2C;"/>
@@ -56,7 +55,6 @@
 <gentext key="Glossary" text="&#x7528;&#x8A9E;&#x96C6;"/>
 <gentext key="glossary" text="&#x7528;&#x8A9E;&#x96C6;"/>
 <gentext key="IMPORTANT" text="&#x91CD;&#x8981;&#x9805;&#x76EE;"/>
-<gentext key="important" text="&#x91CD;&#x8981;&#x9805;&#x76EE;"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="&#x91CD;&#x8981;&#x9805;&#x76EE;"/>
@@ -72,7 +70,6 @@
 <gentext key="MsgOrig" text="&#x767A;&#x4FE1;&#x5143;"/>
 <gentext key="msgorig" text="&#x767A;&#x4FE1;&#x5143;"/>
 <gentext key="NOTE" text="&#x6CE8;&#x610F;"/>
-<gentext key="note" text="&#x6CE8;&#x610F;"/>
 <gentext key="Note" text="&#x6CE8;&#x610F;"/>
 <gentext key="note" text="&#x6CE8;&#x610F;"/>
 <gentext key="Part" text="&#x30D1;&#x30FC;&#x30C8;"/>
@@ -111,13 +108,11 @@
 <gentext key="Sidebar" text=""/>
 <gentext key="Step" text="&#x30B9;&#x30C6;&#x30C3;&#x30D7;"/>
 <gentext key="TIP" text="&#x30C6;&#x30A3;&#x30C3;&#x30D7;"/>
-<gentext key="tip" text="&#x30C6;&#x30A3;&#x30C3;&#x30D7;"/>
 <gentext key="Table" text="&#x8868;"/>
 <gentext key="table" text="&#x8868;"/>
 <gentext key="Tip" text="&#x30C6;&#x30A3;&#x30C3;&#x30D7;"/>
 <gentext key="tip" text="&#x30C6;&#x30A3;&#x30C3;&#x30D7;"/>
 <gentext key="WARNING" text="&#x8B66;&#x544A;"/>
-<gentext key="warning" text="&#x8B66;&#x544A;"/>
 <gentext key="Warning" text="&#x8B66;&#x544A;"/>
 <gentext key="warning" text="&#x8B66;&#x544A;"/>
 <gentext key="appendix" text="&#x4ED8;&#x9332;"/>
@@ -126,7 +121,6 @@
 <gentext key="sidebar" text="&#x30B5;&#x30A4;&#x30C9;&#x30D0;&#x30FC;"/>
 <gentext key="step" text="&#x30B9;&#x30C6;&#x30C3;&#x30D7;"/>
 <gentext key="Seealso" text="&#x53C2;&#x7167;"/>
-<gentext key="seealso" text="&#x53C2;&#x7167;"/>
 
 <gentext key="TableofContents" text="&#x76EE;&#x6B21;"/>
 <gentext key="tableofcontents" text="&#x76EE;&#x6B21;"/>

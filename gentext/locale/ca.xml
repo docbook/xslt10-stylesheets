@@ -31,7 +31,6 @@
 <gentext key="Book" text="Llibre"/>
 <gentext key="book" text="Llibre"/>
 <gentext key="CAUTION" text="ATENCI&Oacute;"/>
-<gentext key="caution" text="ATENCI&Oacute;"/>
 <gentext key="Caution" text="Atenci&oacute;"/>
 <gentext key="caution" text="Atenci&oacute;"/>
 <gentext key="Chapter" text="Cap&iacute;tol"/>
@@ -56,7 +55,6 @@
 <gentext key="Glossary" text="Glossari"/>
 <gentext key="glossary" text="Glossari"/>
 <gentext key="IMPORTANT" text="IMPORTANT"/>
-<gentext key="important" text="IMPORTANT"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="Important"/>
@@ -72,7 +70,6 @@
 <gentext key="MsgOrig" text="Origen"/>
 <gentext key="msgorig" text="Origen"/>
 <gentext key="NOTE" text="NOTA"/>
-<gentext key="note" text="NOTA"/>
 <gentext key="Note" text="Nota"/>
 <gentext key="note" text="Nota"/>
 <gentext key="Part" text="Part"/>
@@ -113,13 +110,11 @@
 <gentext key="Sidebar" text=""/> <!-- Hauria de ser: glossa, pero deixat buit per consistencia-->
 <gentext key="Step" text="Pas"/>
 <gentext key="TIP" text="SUGGERIMENT"/>
-<gentext key="tip" text="SUGGERIMENT"/>
 <gentext key="Table" text="Taula"/>
 <gentext key="table" text="Taula"/>
 <gentext key="Tip" text="Suggeriment"/>
 <gentext key="tip" text="Suggeriment"/>
 <gentext key="WARNING" text="AV&Iacute;S"/>
-<gentext key="warning" text="AV&Iacute;S"/>
 <gentext key="Warning" text="Av&iacute;s"/>
 <gentext key="warning" text="Av&iacute;s"/>
 <gentext key="appendix" text="ap&egrave;ndex"/>
@@ -128,7 +123,6 @@
 <gentext key="sidebar" text="glossa"/>
 <gentext key="step" text="pas"/>
 <gentext key="Seealso" text="Veure tamb&eacute;"/>
-<gentext key="seealso" text="Veure tamb&eacute;"/>
 
 <gentext key="TableofContents" text="Sumari"/>
 <gentext key="tableofcontents" text="Sumari"/>

@@ -28,7 +28,6 @@
 <gentext key="Book" text="Libro"/>
 <gentext key="book" text="Libro"/>
 <gentext key="CAUTION" text="CAUTELA"/>
-<gentext key="caution" text="CAUTELA"/>
 <gentext key="Caution" text="Cautela"/>
 <gentext key="caution" text="Cautela"/>
 <gentext key="Chapter" text="Capitolo"/>
@@ -53,7 +52,6 @@
 <gentext key="Glossary" text="Glossario"/>
 <gentext key="glossary" text="Glossario"/>
 <gentext key="IMPORTANT" text="IMPORTANTE"/>
-<gentext key="important" text="IMPORTANTE"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="Importante"/>
@@ -71,7 +69,6 @@
 <gentext key="MsgOrig" text="Origine"/>
 <gentext key="msgorig" text="Origine"/>
 <gentext key="NOTE" text="NOTA"/>
-<gentext key="note" text="NOTA"/>
 <gentext key="Name" text="Nome"/>
 <gentext key="name" text="Nome"/>
 <gentext key="Note" text="Nota"/>
@@ -110,7 +107,6 @@
 <gentext key="SeeAlso" text="Vd. Anche"/>
 <gentext key="seealso" text="Vd. Anche"/>
 <gentext key="Seealso" text="Vd. anche"/>
-<gentext key="seealso" text="Vd. anche"/>
 <gentext key="Set" text="Raccolta"/>
 <gentext key="set" text="Raccolta"/>
 <gentext key="SetIndex" text="Indice Raccolta"/>
@@ -119,13 +115,11 @@
 <gentext key="sidebar" text="nota a margine"/>
 <gentext key="Step" text="Passaggio"/>
 <gentext key="TIP" text="SUGGERIMENTO"/>
-<gentext key="tip" text="SUGGERIMENTO"/>
 <gentext key="Table" text="Tabella"/>
 <gentext key="table" text="Tabella"/>
 <gentext key="Tip" text="Suggerimento"/>
 <gentext key="tip" text="Suggerimento"/>
 <gentext key="WARNING" text="ATTENZIONE"/>
-<gentext key="warning" text="ATTENZIONE"/>
 <gentext key="Warning" text="Attenzione"/>
 <gentext key="warning" text="Attenzione"/>
 <gentext key="appendix" text="appendice"/>
