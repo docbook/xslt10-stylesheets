@@ -455,7 +455,6 @@ element label.</para>
     <xsl:when test="$deflabel = 'number' and local-name(.) = 'question'">
       <xsl:value-of select="$prefix"/>
       <xsl:number level="multiple" count="qandaentry" format="1"/>
-      <xsl:text>. </xsl:text>
     </xsl:when>
   </xsl:choose>
 </xsl:template>
