@@ -1634,7 +1634,8 @@
   </xsl:variable>
 
   <xsl:if test="$footers.on.blank.pages != 0">
-    <fo:block text-align="{$align-even}" margin-left="{$title.margin.left}">
+    <fo:block text-align="{$align-even}" margin-left="{$title.margin.left}"
+              padding-top="2pt">
       <xsl:call-template name="foot.sep.rule"/>
       <fo:page-number/>
     </fo:block>
@@ -1673,7 +1674,8 @@
     </xsl:choose>
   </xsl:variable>
 
-  <fo:block text-align="{$align-even}" margin-left="{$title.margin.left}">
+  <fo:block text-align="{$align-even}" margin-left="{$title.margin.left}"
+            padding-top="2pt">
     <xsl:call-template name="foot.sep.rule"/>
     <fo:page-number/>
   </fo:block>
@@ -1691,7 +1693,8 @@
     </xsl:choose>
   </xsl:variable>
 
-  <fo:block text-align="{$align-odd}" margin-left="{$title.margin.left}">
+  <fo:block text-align="{$align-odd}" margin-left="{$title.margin.left}"
+            padding-top="2pt">
     <xsl:call-template name="foot.sep.rule"/>
     <fo:page-number/>
   </fo:block>
