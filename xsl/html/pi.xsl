@@ -43,12 +43,51 @@
   </xsl:call-template>
 </xsl:template>
 
+<!--
 <xsl:template name="dbhtml-dir">
   <xsl:param name="pis" select="./processing-instruction('dbhtml')"/>
   <xsl:call-template name="dbhtml-attribute">
     <xsl:with-param name="pis" select="$pis"/>
     <xsl:with-param name="attribute">dir</xsl:with-param>
   </xsl:call-template>
+</xsl:template>
+-->
+
+<xsl:template name="dbhtml-dir">
+  <xsl:param name="context" select="."/>
+
+  <!-- directories are now inherited from previous levels -->
+
+  <xsl:variable name="ppath">
+    <xsl:if test="$context/parent::*">
+      <xsl:call-template name="dbhtml-dir">
+        <xsl:with-param name="context" select="$context/parent::*"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+
+  <xsl:variable name="path">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis" select="$context/processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute">dir</xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$path = ''">
+      <xsl:if test="$ppath != ''">
+        <xsl:value-of select="$ppath"/>
+      </xsl:if>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:if test="$ppath != ''">
+        <xsl:value-of select="$ppath"/>
+        <xsl:text>/</xsl:text>
+      </xsl:if>
+      <xsl:value-of select="$path"/>
+      <xsl:text>/</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
