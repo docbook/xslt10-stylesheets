@@ -276,6 +276,13 @@
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
+
+      <!-- if there is a preceding chapter or part, page numbering will already -->
+      <!-- be adjusted, otherwise restart the page numbers -->
+      <xsl:if test="not(preceding::chapter) and not(preceding::part)">
+        <xsl:attribute name="initial-page-number">1</xsl:attribute>
+      </xsl:if>
+
       <xsl:if test="$double.sided != 0">
         <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
       </xsl:if>
