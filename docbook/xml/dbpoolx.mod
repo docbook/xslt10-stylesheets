@@ -854,6 +854,13 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 		|%ndxterm.class;
 		%local.bibliocomponent.mix;">
 
+<!-- I don't think this is well placed, but it needs to be here because of -->
+<!-- the reference to bibliocomponent.mix -->
+<!ENTITY % local.info.class "">
+<!ENTITY % info.class
+		"(graphic | mediaobject | legalnotice | modespec
+		| subjectset | keywordset | itermset | %bibliocomponent.mix;)+">
+
 <!ENTITY % biblioentry.module "INCLUDE">
 <![%biblioentry.module;[
 <!ENTITY % local.biblioentry.attrib "">
@@ -903,8 +910,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % articleinfo.element "INCLUDE">
 <![%articleinfo.element;[
-<!ELEMENT articleinfo %ho; ((graphic | mediaobject | legalnotice | modespec
-	| subjectset | keywordset | itermset | %bibliocomponent.mix;)+)
+<!ELEMENT articleinfo %ho; ((%info.class;)+)
 	%beginpage.exclusion;>
 <!--end of articleinfo.element-->]]>
 
@@ -1596,8 +1602,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % sidebarinfo.element "INCLUDE">
 <![ %sidebarinfo.element; [
-<!ELEMENT sidebarinfo %ho; ((graphic | mediaobject | legalnotice | modespec
-	| subjectset | keywordset | itermset | %bibliocomponent.mix;)+)
+<!ELEMENT sidebarinfo %ho; ((%info.class;)+)
 	%beginpage.exclusion;>
 <!--end of sidebarinfo.element-->]]>
 
@@ -3071,8 +3076,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % objectinfo.element "INCLUDE">
 <![ %objectinfo.element; [
-<!ELEMENT objectinfo %ho; ((graphic | mediaobject | legalnotice | modespec
-	| subjectset | keywordset | itermset | %bibliocomponent.mix;)+)
+<!ELEMENT objectinfo %ho; ((%info.class;)+)
 	%beginpage.exclusion;>
 <!--end of objectinfo.element-->]]>
 
