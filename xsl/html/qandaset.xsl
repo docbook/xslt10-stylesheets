@@ -70,7 +70,7 @@
 
   <div class="{name(.)}">
     <xsl:apply-templates select="$title"/>
-    <xsl:if test="contains($toc.params, 'toc') and $toc = '1'">
+    <xsl:if test="(contains($toc.params, 'toc') and $toc != '0') or $toc = '1'">
       <xsl:call-template name="process.qanda.toc"/>
     </xsl:if>
     <xsl:apply-templates select="$preamble"/>
@@ -139,12 +139,21 @@
     </tr>
   </xsl:if>
 
+  <xsl:variable name="toc">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'toc'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:variable name="toc.params">
     <xsl:call-template name="find.path.params">
       <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
     </xsl:call-template>
   </xsl:variable>
-  <xsl:if test="contains($toc.params, 'toc')">
+
+  <xsl:if test="(contains($toc.params, 'toc') and $toc != '0') or $toc = '1'">
     <tr class="toc" colspan="2">
       <td align="left" valign="top" colspan="2">
         <xsl:call-template name="process.qanda.toc"/>
