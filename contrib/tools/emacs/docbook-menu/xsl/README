@@ -1,0 +1,7 @@
+2003-10-24
+  These are the stylesheets I initially used to transform some DocBook
+  documentation HTML files into elisp lists. After I generated them
+  initially, I ended up doing some search-and-replaces within Emacs to
+  make the generated lists match what I needed for docbook-menu. So, I
+  still need to update these stylesheets to get them to generate the
+  same thing without any additional post-processing steps.
