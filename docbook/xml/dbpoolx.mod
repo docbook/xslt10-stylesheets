@@ -363,7 +363,7 @@ f. Just BlockQuote; no other informal objects.
 
 <!ENTITY % local.mediaobject.mix "">
 <!ENTITY % mediaobject.mix
-		"videoobject|audioobject|imageobject|textobject %local.mediaobject.mix;">
+		"videoobject|audioobject|imageobject|imageobjectco|textobject %local.mediaobject.mix;">
 
 <!ENTITY % local.listpreamble.mix "">
 <!ENTITY % listpreamble.mix
