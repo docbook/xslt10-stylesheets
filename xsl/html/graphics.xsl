@@ -190,12 +190,22 @@
   </xsl:variable>
 
   <xsl:variable name="intrinsicwidth">
+    <!-- This funny compound test works around a bug in XSLTC -->
     <xsl:choose>
-      <xsl:when test="$use.extensions != 0 and function-available('simg:getWidth')">
-        <xsl:value-of select="simg:getWidth(simg:new($filename), $nominal.image.width)"/>
-      </xsl:when>
-      <xsl:when test="$use.extensions != 0 and function-available('ximg:getWidth')">
-        <xsl:value-of select="ximg:getWidth(ximg:new($filename), $nominal.image.width)"/>
+      <xsl:when test="$use.extensions != 0">
+        <xsl:choose>
+          <xsl:when test="function-available('simg:getWidth')">
+            <xsl:value-of select="simg:getWidth(simg:new($filename),
+                                                $nominal.image.width)"/>
+          </xsl:when>
+          <xsl:when test="function-available('ximg:getWidth')">
+            <xsl:value-of select="ximg:getWidth(ximg:new($filename),
+                                                $nominal.image.width)"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$nominal.image.width"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$nominal.image.width"/>
@@ -204,15 +214,25 @@
   </xsl:variable>
 
   <xsl:variable name="intrinsicdepth">
+    <!-- This funny compound test works around a bug in XSLTC -->
     <xsl:choose>
-      <xsl:when test="$use.extensions != 0 and function-available('simg:getDepth')">
-        <xsl:value-of select="simg:getDepth(simg:new($filename), $nominal.image.depth)"/>
-      </xsl:when>
-      <xsl:when test="$use.extensions != 0 and function-available('ximg:getDepth')">
-        <xsl:value-of select="ximg:getDepth(ximg:new($filename), $nominal.image.width)"/>
+      <xsl:when test="$use.extensions != 0">
+        <xsl:choose>
+          <xsl:when test="function-available('simg:getDepth')">
+            <xsl:value-of select="simg:getDepth(simg:new($filename),
+                                                $nominal.image.depth)"/>
+          </xsl:when>
+          <xsl:when test="function-available('ximg:getDepth')">
+            <xsl:value-of select="ximg:getDepth(ximg:new($filename),
+                                                $nominal.image.width)"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$nominal.image.depth"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="$nominal.image.depth"/>
+        <xsl:value-of select="$nominal.image.width"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
