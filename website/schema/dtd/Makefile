@@ -1,7 +1,4 @@
 include ../../../cvstools/Makefile.incl
-ZIPVER=
-DIFFVER=
-NEXTVER=
 
 all: website.dtd
 
