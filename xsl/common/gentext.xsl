@@ -173,6 +173,7 @@
 
   <xsl:choose>
     <xsl:when test="$number-and-title-template != 0
+                    and $section.autolabel != 0
                     and $xref.with.number.and.title != 0">
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'xref-number-and-title'"/>
