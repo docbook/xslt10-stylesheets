@@ -607,6 +607,13 @@ around all these parameters.</para>
 <src:fragref linkend="punct.honorific.frag"/>
 <src:fragref linkend="qanda.inherit.numeration.frag"/>
 <src:fragref linkend="qandadiv.autolabel.frag"/>
+<src:fragref linkend="qanda.title.level1.properties.frag"/>
+<src:fragref linkend="qanda.title.level2.properties.frag"/>
+<src:fragref linkend="qanda.title.level3.properties.frag"/>
+<src:fragref linkend="qanda.title.level4.properties.frag"/>
+<src:fragref linkend="qanda.title.level5.properties.frag"/>
+<src:fragref linkend="qanda.title.level6.properties.frag"/>
+<src:fragref linkend="qanda.title.properties.frag"/>
 <src:fragref linkend="refentry.generate.name.frag"/>
 <src:fragref linkend="refentry.generate.title.frag"/>
 <src:fragref linkend="refentry.title.properties.frag"/>
