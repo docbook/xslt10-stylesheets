@@ -283,8 +283,20 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <xsl:template match="row">
   <xsl:param name="spans"/>
 
+  <xsl:variable name="bgcolor">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis" select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'bgcolor'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <fo:table-row>
     <xsl:call-template name="anchor"/>
+    <xsl:if test="$bgcolor != ''">
+      <xsl:attribute name="background-color">
+        <xsl:value-of select="$bgcolor"/>
+      </xsl:attribute>
+    </xsl:if>
 
     <xsl:apply-templates select="(entry|entrytbl)[1]">
       <xsl:with-param name="spans" select="$spans"/>
