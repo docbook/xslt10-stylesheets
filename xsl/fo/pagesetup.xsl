@@ -395,7 +395,7 @@
                            page-height="{$page.height}"
                            margin-top="{$page.margin.top}"
                            margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$margin.left.inner}"
+                           margin-left="{$page.margin.inner}"
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"

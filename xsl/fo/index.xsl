@@ -222,7 +222,7 @@
   <xsl:param name="title"/>
   <xsl:param name="titlecontent"/>
 
-  <fo:block margin-left="{$title.margin.left}"
+  <fo:block margin-left="0pt"
 	    font-size="14.4pt"
             font-family="{$title.fontset}"
             font-weight="bold"

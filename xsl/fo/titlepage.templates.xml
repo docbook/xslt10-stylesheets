@@ -965,7 +965,7 @@
 	     t:named-template="component.title"
 	     param:node="ancestor-or-self::setindex[1]"
              param:pagewide="1"
-	     margin-left="{$title.margin.left}"
+	     margin-left="0pt"
 	     font-size="&hsize5;"
 	     font-family="{$title.fontset}"
 	     font-weight="bold"/>
