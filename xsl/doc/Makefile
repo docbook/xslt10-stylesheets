@@ -27,7 +27,7 @@ warranty.html: warranty.xml $(RSTYLE)
 	$(XSLT) $(PROCOPT) $< $(RSTYLE) $@ $(XSLTOPT)
 
 reference.html: reference.xml $(RSTYLE) lib/lib.xml common/common.xml \
-		html/param.xml html/ebnf.xml \
+		html/param.xml \
 		fo/param.xml fo/table.xml
 	$(XJPARSE) $(VPATH)/$<
 	$(XSLT) $(PROCOPT) $< $(RSTYLE) $@ $(XSLTOPT)
