@@ -136,7 +136,28 @@
 <xsl:template match="title"></xsl:template>
 <xsl:template match="abstract"></xsl:template>
 
-<xsl:template match="author">
+<xsl:template match="articleinfo|bookinfo|refentryinfo" mode="authorsect">
+  <xsl:text>.SH AUTHOR</xsl:text>
+  <xsl:if test="count(.//author)>1">
+    <xsl:text>S</xsl:text>
+  </xsl:if>
+  <xsl:text>&#10;</xsl:text>
+
+  <xsl:for-each select=".//author">
+    <xsl:if test="position() > 1">
+      <xsl:text>, </xsl:text>
+    </xsl:if>
+    <xsl:apply-templates select="."/>
+  </xsl:for-each>
+  <xsl:text>.&#10;</xsl:text>
+  <xsl:if test=".//editor">
+    <xsl:text>.br&#10;Man page edited by </xsl:text>
+    <xsl:apply-templates select=".//editor"/>
+    <xsl:text>.&#10;</xsl:text>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="author|editor">
   <xsl:call-template name="person.name"/>
   <xsl:apply-templates select="./affiliation/address/email" />
 </xsl:template>
