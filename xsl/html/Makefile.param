@@ -1,6 +1,7 @@
 PARAMS=../params/admon.graphics.xml \
        ../params/admon.graphics.extension.xml \
        ../params/admon.graphics.path.xml \
+       ../params/admon.textlabel.xml \
        ../params/admon.style.xml \
        ../params/annotate.toc.xml \
        ../params/appendix.autolabel.xml \
