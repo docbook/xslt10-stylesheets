@@ -282,14 +282,6 @@
     </xsl:attribute>
     
     <xsl:variable name="label">
-      <xsl:if test="local-name(.) = 'chapter'
-                 or local-name(.) = 'appendix'
-                 or local-name(.) = 'part'">
-        <xsl:call-template name="gentext">
-          <xsl:with-param name="key" select="local-name(.)"/>
-        </xsl:call-template>
-        <xsl:text> </xsl:text>
-      </xsl:if>
       <xsl:apply-templates select="." mode="label.markup"/>
     </xsl:variable>
     <xsl:copy-of select="$label"/>
