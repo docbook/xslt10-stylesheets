@@ -10,7 +10,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='ulink.hyphenate.frag'>
-<xsl:param name="ulink.hyphenate" select="'&#xAD;'"/>
+<xsl:param name="ulink.hyphenate" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
