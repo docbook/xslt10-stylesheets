@@ -1,7 +1,14 @@
 include ../cvstools/Makefile.incl
-ZIPVER=
-DIFFVER=
+
+CVS2LOG=../cvstools/cvs2log
 NEXTVER=
+DIFFVER=
+ZIPVER=
+CVSCHECK := $(shell cvs -n update 2>&1 | grep -v ^cvs | cut -c3-)
+RELVER := $(shell grep "<fm:Version" VERSION | sed "s/ *<\/\?fm:Version>//g")
+TAGVER := $(shell echo "V$(RELVER)" | sed "s/\.//g")
+SFRELID=
+FMGO=-N
 
 all:
 	$(MAKE) -C schema
@@ -15,13 +22,6 @@ check:
 test: check
 	$(SAXON) test.xml xsl/slides.xsl
 
-#doc:
-#	perl /projects/src/dtdparse/dtdparse.pl \
-#		--title "Slides" --output slides.xml \
-#		--decl /usr/lib/sgml/declaration/xml.dcl \
-#		--nounexpanded slides.dtd
-#	dtdformat --html slides.xml
-
 distrib: check
 	$(MAKE) -C doc all
 	$(CVS2LOG) -w
@@ -32,12 +32,28 @@ else
 endif
 
 newversion:
-ifeq ($NEXTVER),)
-	$(NEXTVERSION)
+ifeq ($(CVSCHECK),)
+ifeq ($(DIFFVER),)
+	@echo "DIFFVER must be specified."
 else
-	$(NEXTVERSION) -v $(NEXTVER)
+ifeq ($(NEXTVER),$(RELVER))
+	cvs tag $(TAGVER)
+	$(MAKE) DIFFVER=$(DIFFVER) distrib
+else
+	@echo "VERSION $(RELVER) doesn't match specified version $(NEXTVER)."
 endif
-	make distrib
+endif
+else
+	@echo "CVS is not up-to-date! ($(CVSCHECK))"
+endif
+
+freshmeat:
+ifeq ($(SFRELID),)
+	@echo "You must specify the sourceforge release identifier in SFRELID"
+else
+	$(XSLT) VERSION VERSION /tmp/fm-docbook-slides sf-relid=$(SFRELID)
+	grep -v "<?xml" /tmp/fm-docbook-slides | freshmeat-submit $(FMGO)
+endif
 
 zip:
 ifeq ($(ZIPVER),)
