@@ -64,7 +64,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   <xsl:variable name="rowsep">
     <xsl:call-template name="inherited.table.attribute">
       <xsl:with-param name="entry" select="NOT-AN-ELEMENT-NAME"/>
-      <xsl:with-param name="tgroup" select="ancestor::tgroup"/>
+      <xsl:with-param name="row" select="ancestor-or-self::row[1]"/>
       <xsl:with-param name="colnum" select="$colnum"/>
       <xsl:with-param name="attribute" select="'rowsep'"/>
     </xsl:call-template>
@@ -73,7 +73,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   <xsl:variable name="colsep">
     <xsl:call-template name="inherited.table.attribute">
       <xsl:with-param name="entry" select="NOT-AN-ELEMENT-NAME"/>
-      <xsl:with-param name="tgroup" select="ancestor::tgroup"/>
+      <xsl:with-param name="row" select="ancestor-or-self::row[1]"/>
       <xsl:with-param name="colnum" select="$colnum"/>
       <xsl:with-param name="attribute" select="'colsep'"/>
     </xsl:call-template>
