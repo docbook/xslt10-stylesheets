@@ -1,5 +1,4 @@
 <!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd" [
-<!NOTATION XML SYSTEM "xml">
 <!ENTITY olink.xml SYSTEM "olink.xml" NDATA XML>
 <!ENTITY about.xml SYSTEM "about.xml" NDATA XML>
 <!ENTITY building.xml SYSTEM "building.xml" NDATA XML>
