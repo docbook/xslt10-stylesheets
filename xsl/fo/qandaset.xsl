@@ -187,15 +187,8 @@
 </xsl:template>
 
 <xsl:template match="qandaentry">
-  <xsl:apply-templates/>
-<!--
-  <fo:block>
-    <xsl:if test="@id">
-      <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
-    </xsl:if>
-    <xsl:apply-templates/>
-  </fo:block>
--->
+  <!-- Omit revhistory from fo:list-block because it is a table -->
+  <xsl:apply-templates select="question|answer"/>
 </xsl:template>
 
 <xsl:template match="question">
@@ -246,6 +239,8 @@
           <xsl:apply-templates select="*[local-name(.)!='label']"/>
         </xsl:otherwise>
       </xsl:choose>
+      <!-- Uncomment this line to get revhistory output in the question -->
+      <!-- <xsl:apply-templates select="preceding-sibling::revhistory"/> -->
     </fo:list-item-body>
   </fo:list-item>
 </xsl:template>
