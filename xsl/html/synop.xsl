@@ -1,6 +1,5 @@
 <?xml version='1.0'?>
 <!DOCTYPE xsl:stylesheet [
-<!ENTITY RE "&#10;">
 <!ENTITY nbsp "&#160;">
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -314,21 +313,24 @@
       <xsl:text> extends</xsl:text>
       <xsl:apply-templates select="ooclass[position() &gt; 1]" mode="java"/>
       <xsl:if test="oointerface|ooexception">
-	<xsl:text>&RE;&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
+        <br/>
+	<xsl:text>&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
       </xsl:if>
     </xsl:if>
     <xsl:if test="oointerface">
       <xsl:text>implements</xsl:text>
       <xsl:apply-templates select="oointerface" mode="java"/>
       <xsl:if test="ooexception">
-	<xsl:text>&RE;&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
+        <br/>
+	<xsl:text>&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
       </xsl:if>
     </xsl:if>
     <xsl:if test="ooexception">
       <xsl:text>throws</xsl:text>
       <xsl:apply-templates select="ooexception" mode="java"/>
     </xsl:if>
-    <xsl:text>&nbsp;{&RE;&RE;</xsl:text>
+    <xsl:text>&nbsp;{</xsl:text>
+    <br/>
     <xsl:apply-templates select="constructorsynopsis
                                  |destructorsynopsis
                                  |fieldsynopsis
@@ -392,7 +394,9 @@
 
 <xsl:template match="fieldsynopsis" mode="java">
   <code class="{name(.)}">
-    <xsl:text>&nbsp;&nbsp;</xsl:text>
+    <xsl:if test="parent::classsynopsis">
+      <xsl:text>&nbsp;&nbsp;</xsl:text>
+    </xsl:if>
     <xsl:apply-templates mode="java"/>
     <xsl:text>;</xsl:text>
   </code>
@@ -435,7 +439,8 @@
 <xsl:template match="methodparam" mode="java">
   <xsl:param name="indent">0</xsl:param>
   <xsl:if test="position() &gt; 1">
-    <xsl:text>,&RE;</xsl:text>
+    <xsl:text>,</xsl:text>
+    <br/>
     <xsl:if test="$indent &gt; 0">
       <xsl:call-template name="copy-string">
 	<xsl:with-param name="string">&nbsp;</xsl:with-param>
@@ -459,7 +464,9 @@
   <xsl:variable name="modifiers" select="modifier"/>
   <xsl:variable name="notmod" select="*[name(.) != 'modifier']"/>
   <xsl:variable name="decl">
-    <xsl:text>  </xsl:text>
+    <xsl:if test="parent::classsynopsis">
+      <xsl:text>&nbsp;&nbsp;</xsl:text>
+    </xsl:if>
     <xsl:apply-templates select="$modifiers" mode="java"/>
 
     <!-- type -->
@@ -478,7 +485,8 @@
     </xsl:apply-templates>
     <xsl:text>)</xsl:text>
     <xsl:if test="exceptionname">
-      <xsl:text>&RE;&nbsp;&nbsp;&nbsp;&nbsp;throws&nbsp;</xsl:text>
+      <br/>
+      <xsl:text>&nbsp;&nbsp;&nbsp;&nbsp;throws&nbsp;</xsl:text>
       <xsl:apply-templates select="exceptionname" mode="java"/>
     </xsl:if>
     <xsl:text>;</xsl:text>
@@ -495,21 +503,24 @@
       <xsl:text>: </xsl:text>
       <xsl:apply-templates select="ooclass[position() &gt; 1]" mode="cpp"/>
       <xsl:if test="oointerface|ooexception">
-	<xsl:text>&RE;&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
+        <br/>
+	<xsl:text>&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
       </xsl:if>
     </xsl:if>
     <xsl:if test="oointerface">
       <xsl:text> implements</xsl:text>
       <xsl:apply-templates select="oointerface" mode="cpp"/>
       <xsl:if test="ooexception">
-	<xsl:text>&RE;&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
+        <br/>
+	<xsl:text>&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
       </xsl:if>
     </xsl:if>
     <xsl:if test="ooexception">
       <xsl:text> throws</xsl:text>
       <xsl:apply-templates select="ooexception" mode="cpp"/>
     </xsl:if>
-    <xsl:text>&nbsp;{&RE;&RE;</xsl:text>
+    <xsl:text>&nbsp;{</xsl:text>
+    <br/>
     <xsl:apply-templates select="constructorsynopsis
                                  |destructorsynopsis
                                  |fieldsynopsis
@@ -568,7 +579,9 @@
 
 <xsl:template match="fieldsynopsis" mode="cpp">
   <code class="{name(.)}">
-    <xsl:text>&nbsp;&nbsp;</xsl:text>
+    <xsl:if test="parent::classsynopsis">
+      <xsl:text>&nbsp;&nbsp;</xsl:text>
+    </xsl:if>
     <xsl:apply-templates mode="cpp"/>
     <xsl:text>;</xsl:text>
   </code>
@@ -627,10 +640,11 @@
   match="constructorsynopsis|destructorsynopsis|methodsynopsis">
   <xsl:variable name="modifiers" select="modifier"/>
   <xsl:variable name="notmod" select="*[name(.) != 'modifier']"/>
-  <xsl:variable name="type">
-  </xsl:variable>
+
   <code class="{name(.)}">
-    <xsl:text>  </xsl:text>
+    <xsl:if test="parent::classsynopsis">
+      <xsl:text>&nbsp;&nbsp;</xsl:text>
+    </xsl:if>
     <xsl:apply-templates select="$modifiers" mode="cpp"/>
 
     <!-- type -->
@@ -643,7 +657,8 @@
     <xsl:apply-templates select="methodparam" mode="cpp"/>
     <xsl:text>)</xsl:text>
     <xsl:if test="exceptionname">
-      <xsl:text>&RE;&nbsp;&nbsp;&nbsp;&nbsp;throws&nbsp;</xsl:text>
+      <br/>
+      <xsl:text>&nbsp;&nbsp;&nbsp;&nbsp;throws&nbsp;</xsl:text>
       <xsl:apply-templates select="exceptionname" mode="cpp"/>
     </xsl:if>
     <xsl:text>;</xsl:text>
@@ -661,21 +676,24 @@
       <xsl:text>: </xsl:text>
       <xsl:apply-templates select="ooclass[position() &gt; 1]" mode="idl"/>
       <xsl:if test="oointerface|ooexception">
-	<xsl:text>&RE;&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
+        <br/>
+	<xsl:text>&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
       </xsl:if>
     </xsl:if>
     <xsl:if test="oointerface">
       <xsl:text> implements</xsl:text>
       <xsl:apply-templates select="oointerface" mode="idl"/>
       <xsl:if test="ooexception">
-	<xsl:text>&RE;&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
+        <br/>
+	<xsl:text>&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
       </xsl:if>
     </xsl:if>
     <xsl:if test="ooexception">
       <xsl:text> throws</xsl:text>
       <xsl:apply-templates select="ooexception" mode="idl"/>
     </xsl:if>
-    <xsl:text>&nbsp;{&RE;&RE;</xsl:text>
+    <xsl:text>&nbsp;{</xsl:text>
+    <br/>
     <xsl:apply-templates select="constructorsynopsis
                                  |destructorsynopsis
                                  |fieldsynopsis
@@ -734,7 +752,9 @@
 
 <xsl:template match="fieldsynopsis" mode="idl">
   <code class="{name(.)}">
-    <xsl:text>&nbsp;&nbsp;</xsl:text>
+    <xsl:if test="parent::classsynopsis">
+      <xsl:text>&nbsp;&nbsp;</xsl:text>
+    </xsl:if>
     <xsl:apply-templates mode="idl"/>
     <xsl:text>;</xsl:text>
   </code>
@@ -793,10 +813,11 @@
   match="constructorsynopsis|destructorsynopsis|methodsynopsis">
   <xsl:variable name="modifiers" select="modifier"/>
   <xsl:variable name="notmod" select="*[name(.) != 'modifier']"/>
-  <xsl:variable name="type">
-  </xsl:variable>
+
   <code class="{name(.)}">
-    <xsl:text>  </xsl:text>
+    <xsl:if test="parent::classsynopsis">
+      <xsl:text>&nbsp;&nbsp;</xsl:text>
+    </xsl:if>
     <xsl:apply-templates select="$modifiers" mode="idl"/>
 
     <!-- type -->
@@ -809,7 +830,8 @@
     <xsl:apply-templates select="methodparam" mode="idl"/>
     <xsl:text>)</xsl:text>
     <xsl:if test="exceptionname">
-      <xsl:text>&RE;&nbsp;&nbsp;&nbsp;&nbsp;raises(</xsl:text>
+      <br/>
+      <xsl:text>&nbsp;&nbsp;&nbsp;&nbsp;raises(</xsl:text>
       <xsl:apply-templates select="exceptionname" mode="idl"/>
       <xsl:text>)</xsl:text>
     </xsl:if>
@@ -824,12 +846,14 @@
   <pre class="{name(.)}">
     <xsl:text>package </xsl:text>
     <xsl:apply-templates select="ooclass[1]" mode="perl"/>
-    <xsl:text>;&RE;</xsl:text>
+    <xsl:text>;</xsl:text>
+    <br/>
 
     <xsl:if test="ooclass[position() &gt; 1]">
       <xsl:text>@ISA = (</xsl:text>
       <xsl:apply-templates select="ooclass[position() &gt; 1]" mode="perl"/>
-      <xsl:text>);&RE;</xsl:text>
+      <xsl:text>);</xsl:text>
+      <br/>
     </xsl:if>
 
     <xsl:apply-templates select="constructorsynopsis
@@ -889,7 +913,9 @@
 
 <xsl:template match="fieldsynopsis" mode="perl">
   <code class="{name(.)}">
-    <xsl:text>&nbsp;&nbsp;</xsl:text>
+    <xsl:if test="parent::classsynopsis">
+      <xsl:text>&nbsp;&nbsp;</xsl:text>
+    </xsl:if>
     <xsl:apply-templates mode="perl"/>
     <xsl:text>;</xsl:text>
   </code>
@@ -948,8 +974,7 @@
   match="constructorsynopsis|destructorsynopsis|methodsynopsis">
   <xsl:variable name="modifiers" select="modifier"/>
   <xsl:variable name="notmod" select="*[name(.) != 'modifier']"/>
-  <xsl:variable name="type">
-  </xsl:variable>
+
   <code class="{name(.)}">
     <xsl:text>sub </xsl:text>
 
