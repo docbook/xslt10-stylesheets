@@ -13,7 +13,7 @@ CLASSPATH=$JAXP$RESOLVER$XERCES$CLASSPATH
 #echo $CLASSPATH
 
 java \
-  com.sun.resolver.apps.xparse $*
+  com.sun.resolver.apps.xread $*
 
 if [ $? != 0 ]; then
   echo ""
