@@ -46,8 +46,7 @@ while (@FILES) {
     close (F);
 
     if (/;; DOCINFO(.*?);; \/DOCINFO/s) {
-	$_ = $` . $';
-
+	$_ = $PREMATCH . $POSTMATCH;
 	$DOCINFO = $1;
 	$DOCINFO =~ s/^\s*;; *//gm;
     }
