@@ -100,7 +100,7 @@
         <dl>
           <xsl:apply-templates select="$others[count(.|key('primary',
                                        &primary;)[1]) = 1]"
-                               mode="index-primary">
+                               mode="index-symbol-div">
             <xsl:sort select="&primary;"/>
           </xsl:apply-templates>
         </dl>
@@ -127,6 +127,14 @@
       </xsl:apply-templates>
     </dl>
   </div>
+</xsl:template>
+
+<xsl:template match="indexterm" mode="index-symbol-div">
+  <xsl:variable name="key" select="translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;)"/>
+  <xsl:apply-templates select="key('letter', $key)[count(.|key('primary', &primary;)[1]) = 1]"
+                       mode="index-primary">
+    <xsl:sort select="&primary;"/>
+  </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="indexterm" mode="index-primary">
