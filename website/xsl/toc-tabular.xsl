@@ -6,6 +6,7 @@
 
 <xsl:param name="nav.graphics" select="1"/>
 <xsl:param name="nav.pointer" select="1"/>
+<xsl:param name="nav.revisionflag" select="1"/>
 
 <xsl:param name="toc.spacer.text">&#160;&#160;&#160;</xsl:param>
 <xsl:param name="toc.spacer.image">graphics/blank.gif</xsl:param>
@@ -22,6 +23,10 @@
 <xsl:param name="nav.text.other.open">&#160;</xsl:param>
 <xsl:param name="nav.text.other.closed">&#160;</xsl:param>
 <xsl:param name="nav.text.other.page">&#160;</xsl:param>
+<xsl:param name="nav.text.revisionflag.added">New</xsl:param>
+<xsl:param name="nav.text.revisionflag.changed">Changed</xsl:param>
+<xsl:param name="nav.text.revisionflag.deleted"></xsl:param>
+<xsl:param name="nav.text.revisionflag.off"></xsl:param>
 
 <xsl:param name="nav.text.pointer">&lt;-</xsl:param>
 
@@ -92,6 +97,7 @@
   <xsl:param name="pageid" select="@id"/>
   <xsl:param name="toclevel" select="count(ancestor::*)"/>
   <xsl:param name="relpath" select="''"/>
+  <xsl:param name="revisionflag" select="@revisionflag"/>
 
   <xsl:variable name="page" select="."/>
   <xsl:variable name="target"
@@ -228,6 +234,32 @@
     <xsl:value-of select="$nav.text.pointer"/>
   </xsl:variable>
 
+  <xsl:variable name="revisionflag-icon">
+    <xsl:value-of select="$relpath"/>
+    <xsl:value-of select="$nav.icon.path"/>
+    <xsl:value-of select="$nav.icon.style"/>
+    <xsl:text>/</xsl:text>
+    <xsl:value-of select="$revisionflag"/>
+    <xsl:value-of select="$nav.icon.extension"/>
+  </xsl:variable>
+
+  <xsl:variable name="revisionflag-text">
+    <xsl:choose>
+      <xsl:when test="$revisionflag = 'changed'">
+        <xsl:value-of select="$nav.text.revisionflag.changed"/>
+      </xsl:when>
+      <xsl:when test="$revisionflag = 'added'">
+        <xsl:value-of select="$nav.text.revisionflag.added"/>
+      </xsl:when>
+      <xsl:when test="$revisionflag = 'deleted'">
+        <xsl:value-of select="$nav.text.revisionflag.deleted"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$nav.text.revisionflag.off"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <span>
     <xsl:if test="$toclevel = 2">
       <xsl:attribute name="class">
@@ -274,6 +306,20 @@
               <xsl:apply-templates select="title"/>
             </xsl:otherwise>
           </xsl:choose>
+
+          <xsl:if test="$nav.revisionflag != '0' and $revisionflag">
+            <xsl:value-of select="$nav.text.spacer"/>
+            <xsl:choose>
+              <xsl:when test="$nav.graphics = '1'">
+                <img src="{$revisionflag-icon}" alt="{$revisionflag-text}" align="bottom"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:text>(</xsl:text>
+                <xsl:value-of select="$revisionflag-text"/>
+                <xsl:text>)</xsl:text>
+              </xsl:otherwise>
+            </xsl:choose>
+	  </xsl:if>
 
           <xsl:if test="$nav.pointer != '0'">
             <xsl:value-of select="$nav.text.spacer"/>
@@ -323,6 +369,21 @@
               </xsl:choose>
             </xsl:with-param>
           </xsl:call-template>
+
+          <xsl:if test="$nav.revisionflag != '0' and $revisionflag">
+            <xsl:value-of select="$nav.text.spacer"/>
+            <xsl:choose>
+              <xsl:when test="$nav.graphics = '1'">
+                <img src="{$revisionflag-icon}" alt="{$revisionflag-text}"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:text>(</xsl:text>
+                <xsl:value-of select="$revisionflag-text"/>
+                <xsl:text>)</xsl:text>
+              </xsl:otherwise>
+            </xsl:choose>
+	  </xsl:if>
+
         </span>
         <br/>
       </xsl:otherwise>
