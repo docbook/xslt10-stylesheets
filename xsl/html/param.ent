@@ -40,6 +40,7 @@
 <!ENTITY css.decoration SYSTEM "../params/css.decoration.xml">
 <!ENTITY current.docid SYSTEM "../params/current.docid.xml">
 <!ENTITY default.table.width SYSTEM "../params/default.table.width.xml">
+<!ENTITY draft.mode SYSTEM "../params/draft.mode.xml">
 <!ENTITY draft.watermark.image SYSTEM "../params/draft.watermark.image.xml">
 <!ENTITY ebnf.table.bgcolor SYSTEM "../params/ebnf.table.bgcolor.xml">
 <!ENTITY ebnf.table.border SYSTEM "../params/ebnf.table.border.xml">
