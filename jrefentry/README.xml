@@ -1,0 +1,181 @@
+<!DOCTYPE article
+  PUBLIC "-//Norman Walsh//DTD Simplified DocBk XML V3.1.7.1//EN"
+  "http://nwalsh.com/docbook/simple/3.1.7.1/sdocbook.dtd">
+<article>
+<artheader><title>README for the JRefEntry DTD V1.0</title>
+<copyright><year>2000</year><holder>Norman Walsh</holder></copyright>
+<legalnotice>
+<para>Java and JavaDoc are registered trademarks of
+Sun Microsystems, Inc.</para>
+</legalnotice>
+</artheader>
+
+<para>This is a customization of the DocBook RefEntry model. The
+purpose of this customization is to mirror the order and nature
+of structured comment tags in JavaDoc documentation.</para>
+
+<section><title>Overview</title>
+
+<para>JavaDoc comments for a consist of a purpose followed by a
+description followed by additional, optional tags. This structure
+is modelled by JRefEntry as follows:</para>
+
+<informaltable>
+<tgroup cols="2" pgwide="1">
+<thead>
+<row>
+  <entry>JavaDoc tag</entry>
+  <entry>JRefEntry element</entry>
+</row>
+</thead>
+<tbody>
+<row>
+  <entry><emphasis>purpose</emphasis> (contextual)</entry>
+  <entry><sgmltag>refpurpose</sgmltag></entry>
+</row>
+<row>
+  <entry><emphasis>description</emphasis> (contextual)</entry>
+  <entry><sgmltag>refdescription</sgmltag></entry>
+</row>
+<row>
+  <entry>@author</entry>
+  <entry><sgmltag>refauthor</sgmltag></entry>
+</row>
+<row>
+  <entry>@version</entry>
+  <entry><sgmltag>refversion</sgmltag></entry>
+</row>
+<row>
+  <entry>@param</entry>
+  <entry><sgmltag>refparameter</sgmltag></entry>
+</row>
+<row>
+  <entry>@return</entry>
+  <entry><sgmltag>refreturn</sgmltag></entry>
+</row>
+<row>
+  <entry>@exception</entry>
+  <entry><sgmltag>refexception</sgmltag></entry>
+</row>
+<row>
+  <entry>@throws (alternate for @exception)</entry>
+  <entry><sgmltag>refthrows</sgmltag> (alternate for <sgmltag>refexception</sgmltag>)</entry>
+</row>
+<row>
+  <entry>@see</entry>
+  <entry><sgmltag>refsee</sgmltag></entry>
+</row>
+<row>
+  <entry>@since</entry>
+  <entry><sgmltag>refsince</sgmltag></entry>
+</row>
+<row>
+  <entry>@serial</entry>
+  <entry><sgmltag>refserial</sgmltag></entry>
+</row>
+<row>
+  <entry>@deprecated</entry>
+  <entry><sgmltag>refdeprecated</sgmltag></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+
+<para>Within sections that would normally be repeated (e.g., @param),
+use a <sgmltag>variablelist</sgmltag> for each individual item. To break
+the items into groups, use separate lists.</para>
+
+<note>
+<para>The content models of each of these special sections are
+designed so that the could easily be mapped to a normal DocBook
+<sgmltag>refentry</sgmltag>. For example,
+<sgmltag class="starttag">refdescription</sgmltag>
+could easily be mapped to
+<literal><![CDATA[<refsect1><title>Description</title>]]></literal>.</para>
+</note>
+
+</section>
+<section><title>Manifest</title>
+
+<variablelist>
+<varlistentry><term>README</term>
+<listitem>
+<para>This readme file.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>jrefentry.dtd</term>
+<listitem>
+<para>The JRefEntry DTD. It is built on top of the XML version of
+DocBook V4.0.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</section>
+<section><title>Installation</title>
+
+<para>Place the files in this distribution somewhere on your machine.  Adjust
+your catalog(s) if appropriate (XML tools frequently do not support 
+catalogs, so this may be irrelevant for you).</para>
+
+<para>Please use the following formal public identifier to identify this
+DTD:</para>
+
+<programlisting>
+  -//Norman Walsh//DTD JRefEntry V1.0//EN
+</programlisting>
+
+<para>For example, to write a JRefEntry document, you might use
+this DOCTYPE declaration:</para>
+
+<programlisting>
+<![CDATA[<!DOCTYPE refentry
+          PUBLIC "-//Norman Walsh//DTD JRefEntry V1.0//EN"
+                 "http://nwalsh.com/docbook/jrefentry/1.0/jrefentry.dtd">
+]]></programlisting>
+
+</section>
+
+<section><title>Copyright</title>
+
+<literallayout>
+JRefEntry DTD V1.0
+Copyright &copy; 2000 Norman Walsh
+http://nwalsh.com/docbook/jrefentry/
+</literallayout>
+
+<para>You may distribute this DTD under the same terms as DocBook.</para>
+
+<para>Please direct all questions and comments about this DTD to
+Norman Walsh, <email>ndw@nwalsh.com</email>.</para>
+
+<para>This DTD is based on DocBook V4.0 from OASIS.</para>
+
+<para>For more information about the DocBook DTD, see
+<ulink url="http://www.oasis-open.org/docbook/">http://www.oasis-open.org/docbook/</ulink>.</para>
+
+</section>
+<section><title>Warranty</title>
+
+<para>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT.  IN NO EVENT SHALL NORMAN WALSH OR ANY OTHER
+CONTRIBUTOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.</para>
+
+</section>
+<section><title>Contacting the Author</title>
+
+<para>This DTD is maintained by Norman Walsh,
+<email>ndw@nwalsh.com</email>.</para>
+
+<para>The best way to reach norm is by email.  You will find additional
+contact information at
+<ulink url="http://nwalsh.com/~ndw/contact.html">http://nwalsh.com/~ndw/contact.html</ulink>.</para>
+
+</section>
+</article>
+
