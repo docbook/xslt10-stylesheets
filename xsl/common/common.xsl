@@ -453,7 +453,8 @@ Defaults to the context node.</para>
           <!-- The family-given style applies a convention for identifying given -->
           <!-- and family names in locales where it may be ambiguous -->
           <xsl:if test="$has_h">
-            <xsl:value-of select="$h_nl"/>.
+            <xsl:value-of select="$h_nl"/>
+            <xsl:value-of select="$punct.honorific"/>
           </xsl:if>
 
           <xsl:if test="$has_s">
