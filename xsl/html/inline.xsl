@@ -900,7 +900,7 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="sgmltag">
+<xsl:template match="sgmltag|tag">
   <xsl:call-template name="format.sgmltag"/>
 </xsl:template>
 
