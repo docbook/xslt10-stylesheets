@@ -41,7 +41,7 @@
  </xsl:if>
 </xsl:template>
 
-<xsl:template match="book/index">
+<xsl:template match="book/index|part/index">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -137,7 +137,7 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
-      <xsl:call-template name="index.titlepage"/>
+      <xsl:call-template name="setindex.titlepage"/>
       <xsl:apply-templates/>
       <xsl:if test="count(indexentry) = 0 and count(indexdiv) = 0">
 

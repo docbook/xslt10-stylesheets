@@ -858,6 +858,36 @@
 
 <!-- ==================================================================== -->
 
+  <t:titlepage element="setindex" wrapper="fo:block">
+    <t:titlepage-content side="recto">
+      <title
+	     force="1"
+	     named-template="component.title"
+	     param:node="ancestor-or-self::setindex[1]"
+             param:pagewide="1"
+	     fo:margin-left="{$title.margin.left}"
+	     fo:font-size="&hsize5;"
+	     fo:font-family="{$title.font.family}"
+	     fo:font-weight="bold"/>
+      <subtitle
+		fo:font-family="{$title.font.family}"/>
+    </t:titlepage-content>
+
+    <t:titlepage-content side="verso">
+    </t:titlepage-content>
+
+    <t:titlepage-separator>
+    </t:titlepage-separator>
+
+    <t:titlepage-before side="recto">
+    </t:titlepage-before>
+
+    <t:titlepage-before side="verso">
+    </t:titlepage-before>
+  </t:titlepage>
+
+<!-- ==================================================================== -->
+
   <t:titlepage element="colophon" wrapper="fo:block">
     <t:titlepage-content side="recto">
       <title

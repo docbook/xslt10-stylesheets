@@ -58,7 +58,7 @@
         </xsl:attribute>
       </xsl:if>
 
-      <xsl:call-template name="index.titlepage"/>
+      <xsl:call-template name="setindex.titlepage"/>
       <xsl:apply-templates/>
 
       <xsl:if test="count(indexentry) = 0 and count(indexdiv) = 0">
