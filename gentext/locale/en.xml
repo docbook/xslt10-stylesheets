@@ -479,4 +479,46 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<context name="datetime">
+<template name="format">m/d/Y</template>
+<template name="January">January</template>
+<template name="February">February</template>
+<template name="March">March</template>
+<template name="April">April</template>
+<template name="May">May</template>
+<template name="June">June</template>
+<template name="July">July</template>
+<template name="August">August</template>
+<template name="September">September</template>
+<template name="October">October</template>
+<template name="November">November</template>
+<template name="December">December</template>
+<template name="Jan">Jan</template>
+<template name="Feb">Feb</template>
+<template name="Mar">Mar</template>
+<template name="Apr">Apr</template>
+<template name="May">May</template>
+<template name="Jun">Jun</template>
+<template name="Jul">Jul</template>
+<template name="Aug">Aug</template>
+<template name="Sep">Sep</template>
+<template name="Oct">Oct</template>
+<template name="Nov">Nov</template>
+<template name="Dec">Dec</template>
+<template name="Monday">Monday</template>
+<template name="Tuesday">Tuesday</template>
+<template name="Wednesday">Wednesday</template>
+<template name="Thursday">Thursday</template>
+<template name="Friday">Friday</template>
+<template name="Saturday">Saturday</template>
+<template name="Sunday">Sunday</template>
+<template name="Mon">Mon</template>
+<template name="Tue">Tue</template>
+<template name="Wed">Wed</template>
+<template name="Thu">Thu</template>
+<template name="Fri">Fri</template>
+<template name="Sat">Sat</template>
+<template name="Sun">Sun</template>
+</context>
+
 </locale>
