@@ -11,7 +11,7 @@
 
 <!-- Website DTD locations -->
 
-<group xml:base="schema/dtd"
+<group xml:base="schema/dtd/"
        id="website-dtd"
        prefer="public">
 
@@ -59,7 +59,7 @@
 
 <!-- Website RelaxNG locations -->
 
-<group xml:base="schema/relaxng"
+<group xml:base="schema/relaxng/"
        id="website-relaxng"
        prefer="public">
 
