@@ -504,7 +504,7 @@
 <xsl:template match="set|book|part|preface|chapter|appendix
                      |article
                      |reference|refentry
-                     |book/glossary|article/glossary
+                     |book/glossary|article/glossary|part/glossary
                      |book/bibliography|article/bibliography
                      |colophon">
   <xsl:choose>
