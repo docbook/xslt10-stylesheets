@@ -392,7 +392,8 @@ div {
       element section {
          db.section.attlist,
          db.section.info,
-         db.recursive.blocks.or.sections
+         db.recursive.blocks.or.sections,
+         db.navigation.components*
       }
 }
 

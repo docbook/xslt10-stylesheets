@@ -48,7 +48,8 @@ div {
          ((db.all.blocks+, (db.optional.refentry | (db.sect2*, db.simplesect*)))
           | db.required.refentry
           | (db.sect2+, db.simplesect*)
-          | db.simplesect+)
+          | db.simplesect+),
+         db.navigation.components*
       }
 }
 
@@ -80,7 +81,8 @@ div {
          ((db.all.blocks+, (db.optional.refentry | (db.sect3*, db.simplesect*)))
           | db.required.refentry
           | (db.sect3+, db.simplesect*)
-          | db.simplesect+)
+          | db.simplesect+),
+         db.navigation.components*
       }
 }
 
@@ -112,7 +114,8 @@ div {
          ((db.all.blocks+, (db.optional.refentry | (db.sect4*, db.simplesect*)))
           | db.required.refentry
           | (db.sect4+, db.simplesect*)
-          | db.simplesect+)
+          | db.simplesect+),
+         db.navigation.components*
       }
 }
 
@@ -144,7 +147,8 @@ div {
          ((db.all.blocks+, (db.optional.refentry | (db.sect5*, db.simplesect*)))
           | db.required.refentry
           | (db.sect5+, db.simplesect*)
-          | db.simplesect+)
+          | db.simplesect+),
+         db.navigation.components*
       }
 }
 
@@ -175,7 +179,8 @@ div {
          db.sect5.info,
          ((db.all.blocks+, (db.optional.refentry | db.simplesect*))
           | db.required.refentry
-          | db.simplesect+)
+          | db.simplesect+),
+         db.navigation.components*
       }
 }
 
