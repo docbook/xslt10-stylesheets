@@ -174,7 +174,7 @@
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzëïé"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZËÏÉ"/>
 
-<DINGBAT key="startquote" text="&#x201C;"/>
+<dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
 <dingbat key="nestedstartquote" text="&#x2018;"/>
 <dingbat key="nestedendquote" text="&#x2019;"/>
