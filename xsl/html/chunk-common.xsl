@@ -662,7 +662,7 @@
   <xsl:variable name="home" select="/*[1]"/>
   <xsl:variable name="up" select="parent::*"/>
 
-  <xsl:if test="$suppress.navigation = '0'">
+  <xsl:if test="$suppress.navigation = '0' and $suppress.header.navigation = '0'">
     <div class="navheader">
       <table width="100%" summary="Navigation header">
 	<xsl:if test="$navig.showtitles != 0">
@@ -726,7 +726,7 @@
   <xsl:variable name="home" select="/*[1]"/>
   <xsl:variable name="up" select="parent::*"/>
 
-  <xsl:if test="$suppress.navigation = '0'">
+  <xsl:if test="$suppress.navigation = '0' and $suppress.footer.navigation = '0'">
     <div class="navfooter">
       <hr/>
       <table width="100%" summary="Navigation footer">
