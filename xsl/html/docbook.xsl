@@ -74,7 +74,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:key name="id" match="*" use="@id"/>
+<xsl:key name="id" match="*" use="@id|@xml:id"/>
 
 <!-- ==================================================================== -->
 
@@ -296,9 +296,11 @@ body { background-image: url('</xsl:text>
       <!-- and continue. Someday we may reverse this logic and add the namespace -->
       <!-- to documents that don't have one. But not before the whole stylesheet -->
       <!-- has been converted to use namespaces. i.e., don't hold your breath -->
+      <xsl:message>Stripping NS from DocBook-NG document.</xsl:message>
       <xsl:variable name="nons">
 	<xsl:apply-templates mode="stripNS"/>
       </xsl:variable>
+      <xsl:message>Processing stripped document.</xsl:message>
       <xsl:apply-templates select="exsl:node-set($nons)"/>
     </xsl:when>
     <xsl:otherwise>
