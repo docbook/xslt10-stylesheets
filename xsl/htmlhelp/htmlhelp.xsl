@@ -98,7 +98,15 @@ Language=</xsl:text>
   <xsl:text>0x0409 English (United States)</xsl:text>
 </xsl:if>
 <xsl:text>
-Title=</xsl:text><xsl:value-of select="normalize-space(//title[1])"/>
+Title=</xsl:text>
+  <xsl:choose>
+    <xsl:when test="$rootid != ''">
+      <xsl:value-of select="normalize-space(key('id',$rootid)//title[1])"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="normalize-space(//title[1])"/>
+    </xsl:otherwise>
+  </xsl:choose>
 <xsl:text>
 
 [FILES]
