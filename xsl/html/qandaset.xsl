@@ -18,14 +18,89 @@
 
 <xsl:template match="qandaset">
   <xsl:variable name="title" select="title"/>
-  <xsl:variable name="rest" select="*[name(.)!='title']"/>
+  <xsl:variable name="preamble" select="*[name(.) != 'title'
+                                          and name(.) != 'titleabbrev'
+                                          and name(.) != 'qandadiv'
+                                          and name(.) != 'qandaentry']"/>
+  <xsl:variable name="label-width">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'label-width'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="table-summary">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'table-summary'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="cellpadding">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'cellpadding'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="cellspacing">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'cellspacing'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="toc">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'toc'"/>
+    </xsl:call-template>
+  </xsl:variable>
 
   <div class="{name(.)}">
     <xsl:apply-templates select="$title"/>
-    <xsl:if test="$generate.qandaset.toc != '0'">
+    <xsl:if test="$generate.qandaset.toc != 0 and $toc != '0'">
       <xsl:call-template name="process.qanda.toc"/>
     </xsl:if>
-    <xsl:apply-templates select="$rest"/>
+    <xsl:apply-templates select="$preamble"/>
+    <table border="0">
+      <xsl:if test="$table-summary != ''">
+        <xsl:attribute name="summary">
+          <xsl:value-of select="$table-summary"/>
+        </xsl:attribute>
+      </xsl:if>
+
+      <xsl:if test="$cellpadding != ''">
+        <xsl:attribute name="cellpadding">
+          <xsl:value-of select="$cellpadding"/>
+        </xsl:attribute>
+      </xsl:if>
+
+      <xsl:if test="$cellspacing != ''">
+        <xsl:attribute name="cellspacing">
+          <xsl:value-of select="$cellspacing"/>
+        </xsl:attribute>
+      </xsl:if>
+
+      <col align="left">
+        <xsl:attribute name="width">
+          <xsl:choose>
+            <xsl:when test="$label-width != ''">
+              <xsl:value-of select="$label-width"/>
+            </xsl:when>
+            <xsl:otherwise>1%</xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+      </col>
+      <tbody>
+        <xsl:apply-templates select="qandaentry|qandadiv"/>
+      </tbody>
+    </table>
   </div>
 </xsl:template>
 
@@ -42,16 +117,36 @@
 </xsl:template>
 
 <xsl:template match="qandadiv">
-  <xsl:variable name="title" select="title"/>
-  <xsl:variable name="rest" select="*[name(.)!='title']"/>
+  <xsl:variable name="preamble" select="*[name(.) != 'title'
+                                          and name(.) != 'titleabbrev'
+                                          and name(.) != 'qandadiv'
+                                          and name(.) != 'qandaentry']"/>
 
-  <div class="{name(.)}">
-    <xsl:apply-templates select="$title"/>
-    <xsl:if test="$generate.qandadiv.toc != '0'">
-      <xsl:call-template name="process.qanda.toc"/>
-    </xsl:if>
-    <xsl:apply-templates select="$rest"/>
-  </div>
+  <xsl:if test="title">
+    <tr class="qandadiv">
+      <td align="left" valign="top" colspan="2">
+        <xsl:call-template name="anchor">
+          <xsl:with-param name="conditional" select="0"/>
+        </xsl:call-template>
+        <xsl:apply-templates select="title"/>
+      </td>
+    </tr>
+  </xsl:if>
+  <xsl:if test="$generate.qandadiv.toc != '0'">
+    <tr class="toc" colspan="2">
+      <td align="left" valign="top" colspan="2">
+        <xsl:call-template name="process.qanda.toc"/>
+      </td>
+    </tr>
+  </xsl:if>
+  <xsl:if test="$preamble">
+    <tr class="toc" colspan="2">
+      <td align="left" valign="top" colspan="2">
+        <xsl:apply-templates select="$preamble"/>
+      </td>
+    </tr>
+  </xsl:if>
+  <xsl:apply-templates select="qandadiv|qandaentry"/>
 </xsl:template>
 
 <xsl:template match="qandadiv/title">
@@ -65,6 +160,7 @@
     </xsl:attribute>
     <xsl:call-template name="anchor">
       <xsl:with-param name="node" select=".."/>
+      <xsl:with-param name="conditional" select="0"/>
     </xsl:call-template>
     <xsl:apply-templates select="parent::qandadiv" mode="label.markup"/>
     <xsl:text> </xsl:text>
@@ -73,21 +169,10 @@
 </xsl:template>
 
 <xsl:template match="qandaentry">
-  <div class="{name(.)}">
-    <xsl:apply-templates/>
-  </div>
+  <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="question">
-  <xsl:variable name="firstch" select="(*[name(.)!='label'
-                                          and name(.)!='indexterm'])[1]"/>
-  <xsl:variable name="restch" select="(*[name(.)!='label'
-                                         and name(.)!='indexterm'])[position()!=1]
-                                      |indexterm"/>
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
   <xsl:variable name="deflabel">
     <xsl:choose>
       <xsl:when test="ancestor-or-self::*[@defaultlabel]">
@@ -100,45 +185,45 @@
     </xsl:choose>
   </xsl:variable>
 
-  <div class="{name(.)}">
-    <p>
+  <tr class="{name(.)}">
+    <td align="left" valign="top">
       <xsl:call-template name="anchor">
         <xsl:with-param name="node" select=".."/>
+        <xsl:with-param name="conditional" select="0"/>
       </xsl:call-template>
-      <xsl:call-template name="anchor"/>
+      <xsl:call-template name="anchor">
+        <xsl:with-param name="conditional" select="0"/>
+      </xsl:call-template>
 
+      <b>
+        <xsl:apply-templates select="." mode="label.markup"/>
+      </b>
+    </td>
+    <td align="left" valign="top">
       <xsl:choose>
-        <xsl:when test="$deflabel = 'none'">
-          <b>
-            <xsl:apply-templates select="$firstch" mode="no.wrapper.mode"/>
-          </b>
+        <xsl:when test="$deflabel = 'none' and not(label)">
+          <b><xsl:apply-templates select="*[name(.) != 'label']"/></b>
         </xsl:when>
         <xsl:otherwise>
-          <b>
-            <xsl:apply-templates select="." mode="label.markup"/>
-          </b>
-          <xsl:apply-templates select="$firstch" mode="no.wrapper.mode"/>
+          <xsl:apply-templates select="*[name(.) != 'label']"/>
         </xsl:otherwise>
       </xsl:choose>
-    </p>
-    <xsl:apply-templates select="$restch"/>
-  </div>
+    </td>
+  </tr>
 </xsl:template>
 
 <xsl:template match="answer">
-  <xsl:variable name="firstch" select="(*[name(.)!='label'])[1]"/>
-  <xsl:variable name="restch" select="(*[name(.)!='label'])[position()!=1]"/>
-
-  <div class="{name(.)}">
-    <p>
+  <tr class="{name(.)}">
+    <td align="left" valign="top">
       <xsl:call-template name="anchor"/>
       <b>
         <xsl:apply-templates select="." mode="label.markup"/>
       </b>
-      <xsl:apply-templates select="$firstch" mode="no.wrapper.mode"/>
-    </p>
-    <xsl:apply-templates select="$restch"/>
-  </div>
+    </td>
+    <td align="left" valign="top">
+      <xsl:apply-templates select="*[name(.) != 'label']"/>
+    </td>
+  </tr>
 </xsl:template>
 
 <xsl:template match="label">
