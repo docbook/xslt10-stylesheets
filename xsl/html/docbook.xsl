@@ -40,6 +40,7 @@
 <xsl:include href="xref.xsl"/>
 <xsl:include href="formal.xsl"/>
 <xsl:include href="table.xsl"/>
+<xsl:include href="htmltbl.xsl"/>
 <xsl:include href="sections.xsl"/>
 <xsl:include href="inline.xsl"/>
 <xsl:include href="footnote.xsl"/>
