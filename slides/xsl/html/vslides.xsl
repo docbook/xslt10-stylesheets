@@ -45,7 +45,7 @@
           </xsl:call-template>
 
           <xsl:if test="$keyboard.nav != 0">
-            <script language="JavaScript1.2" type="text/javascript">
+            <script language="javascript" type="text/javascript">
               <xsl:text> </xsl:text>
             </script>
           </xsl:if>
@@ -53,12 +53,20 @@
           <xsl:if test="$keyboard.nav != 0">
             <xsl:call-template name="ua.js"/>
             <xsl:call-template name="xbDOM.js">
-              <xsl:with-param name="language" select="'JavaScript'"/>
+              <xsl:with-param name="language" select="'javascript'"/>
             </xsl:call-template>
+            <xsl:call-template name="xbLibrary.js"/>
+            <script language="javascript" type="text/javascript">
+              <xsl:text disable-output-escaping="yes">
+                &lt;!--
+                xblibrary = new xbLibrary('../browser');
+                // --&gt;
+              </xsl:text>
+            </script>
             <xsl:call-template name="xbStyle.js"/>
             <xsl:call-template name="xbCollapsibleLists.js"/>
             <xsl:call-template name="slides.js">
-              <xsl:with-param name="language" select="'JavaScript'"/>
+              <xsl:with-param name="language" select="'javascript'"/>
             </xsl:call-template>
           </xsl:if>
         </head>
@@ -113,6 +121,7 @@
 
 <xsl:template match="slidesinfo">
   <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename" select="concat($base.dir, $titlefoil.html)"/>
     <xsl:with-param name="content">
       <html>
@@ -133,7 +142,7 @@
           </xsl:call-template>
 
           <xsl:if test="$keyboard.nav != 0">
-            <script language="JavaScript1.2" type="text/javascript">
+            <script language="javascript" type="text/javascript">
               <xsl:text> </xsl:text>
             </script>
           </xsl:if>
@@ -141,12 +150,20 @@
           <xsl:if test="$keyboard.nav != 0">
             <xsl:call-template name="ua.js"/>
             <xsl:call-template name="xbDOM.js">
-              <xsl:with-param name="language" select="'JavaScript'"/>
+              <xsl:with-param name="language" select="'javascript'"/>
             </xsl:call-template>
+            <xsl:call-template name="xbLibrary.js"/>
+            <script language="javascript" type="text/javascript">
+              <xsl:text disable-output-escaping="yes">
+                &lt;!--
+                xblibrary = new xbLibrary('../browser');
+                // --&gt;
+              </xsl:text>
+            </script>
             <xsl:call-template name="xbStyle.js"/>
             <xsl:call-template name="xbCollapsibleLists.js"/>
             <xsl:call-template name="slides.js">
-              <xsl:with-param name="language" select="'JavaScript'"/>
+              <xsl:with-param name="language" select="'javascript'"/>
             </xsl:call-template>
           </xsl:if>
         </head>
@@ -208,8 +225,10 @@
   <xsl:variable name="prevfoil" select="(preceding::foil|/slides)[last()]"/>
 
   <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename" select="concat($base.dir, $thisfoilgroup)"/>
     <xsl:with-param name="content">
+      <html>
       <head>
         <title><xsl:value-of select="title"/></title>
         <xsl:if test="$css.stylesheet != ''">
@@ -227,7 +246,7 @@
         </xsl:call-template>
 
         <xsl:if test="$keyboard.nav != 0">
-          <script language="JavaScript1.2" type="text/javascript">
+            <script language="javascript" type="text/javascript">
             <xsl:text> </xsl:text>
           </script>
         </xsl:if>
@@ -235,12 +254,20 @@
         <xsl:if test="$keyboard.nav != 0">
           <xsl:call-template name="ua.js"/>
           <xsl:call-template name="xbDOM.js">
-            <xsl:with-param name="language" select="'JavaScript'"/>
+              <xsl:with-param name="language" select="'javascript'"/>
           </xsl:call-template>
+            <xsl:call-template name="xbLibrary.js"/>
+            <script language="javascript" type="text/javascript">
+              <xsl:text disable-output-escaping="yes">
+                &lt;!--
+                xblibrary = new xbLibrary('../browser');
+                // --&gt;
+              </xsl:text>
+            </script>
           <xsl:call-template name="xbStyle.js"/>
           <xsl:call-template name="xbCollapsibleLists.js"/>
           <xsl:call-template name="slides.js">
-            <xsl:with-param name="language" select="'JavaScript'"/>
+              <xsl:with-param name="language" select="'javascript'"/>
           </xsl:call-template>
         </xsl:if>
       </head>
@@ -283,6 +310,7 @@
           </tr>
         </table>
       </body>
+      </html>
     </xsl:with-param>
   </xsl:call-template>
 
@@ -310,8 +338,10 @@
                                         |/slides)[last()]"/>
 
   <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename" select="concat($base.dir, $thisfoil)"/>
     <xsl:with-param name="content">
+      <html>
       <head>
         <title><xsl:value-of select="title"/></title>
         <xsl:if test="$css.stylesheet != ''">
@@ -329,7 +359,7 @@
         </xsl:call-template>
 
         <xsl:if test="$keyboard.nav != 0">
-          <script language="JavaScript1.2" type="text/javascript">
+            <script language="javascript" type="text/javascript">
             <xsl:text> </xsl:text>
           </script>
         </xsl:if>
@@ -337,12 +367,20 @@
         <xsl:if test="$keyboard.nav != 0">
           <xsl:call-template name="ua.js"/>
           <xsl:call-template name="xbDOM.js">
-            <xsl:with-param name="language" select="'JavaScript'"/>
+              <xsl:with-param name="language" select="'javascript'"/>
           </xsl:call-template>
+            <xsl:call-template name="xbLibrary.js"/>
+            <script language="javascript" type="text/javascript">
+              <xsl:text disable-output-escaping="yes">
+                &lt;!--
+                xblibrary = new xbLibrary('../browser');
+                // --&gt;
+              </xsl:text>
+            </script>
           <xsl:call-template name="xbStyle.js"/>
           <xsl:call-template name="xbCollapsibleLists.js"/>
           <xsl:call-template name="slides.js">
-            <xsl:with-param name="language" select="'JavaScript'"/>
+              <xsl:with-param name="language" select="'javascript'"/>
           </xsl:call-template>
         </xsl:if>
       </head>
@@ -385,6 +423,7 @@
           </tr>
         </table>
       </body>
+      </html>
     </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
