@@ -108,6 +108,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &process.source.toc;
 &process.empty.source.toc;
 &bridgehead.in.toc;
+&manual.toc;
 </reference>
 
 <reference><title>Extensions</title>
@@ -234,6 +235,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &html.ext;
 &root.filename;
 &base.dir;
+&chunk.toc;
 &chunk.section.depth;
 &chunk.first.sections;
 &saxon.character.representation;
@@ -311,6 +313,7 @@ around all these parameters.</para>
 <src:fragref linkend="chunk.datafile.frag"/>
 <src:fragref linkend="chunk.first.sections.frag"/>
 <src:fragref linkend="chunk.section.depth.frag"/>
+<src:fragref linkend="chunk.toc.frag"/>
 <src:fragref linkend="citerefentry.link.frag"/>
 <src:fragref linkend="css.decoration.frag"/>
 <src:fragref linkend="default.encoding.frag"/>
@@ -373,6 +376,7 @@ around all these parameters.</para>
 <src:fragref linkend="make.single.year.ranges.frag"/>
 <src:fragref linkend="make.valid.html.frag"/>
 <src:fragref linkend="make.year.ranges.frag"/>
+<src:fragref linkend="manual.toc.frag"/>
 <src:fragref linkend="navig.graphics.extension.frag"/>
 <src:fragref linkend="navig.graphics.frag"/>
 <src:fragref linkend="navig.graphics.path.frag"/>
