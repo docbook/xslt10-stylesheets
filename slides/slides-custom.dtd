@@ -1,5 +1,5 @@
 <!-- ====================================================================== -->
-<!-- Slides XML V2.0 DTD
+<!-- Slides XML V3.0b1 DTD
      Copyright (C) 1999, 2000, 2001, 2002 Norman Walsh
      http://sourceforge.net/projects/docbook/
 
@@ -12,8 +12,8 @@
 
      <?xml version='1.0'?>
      <!DOCTYPE slides
-       PUBLIC "-//Norman Walsh//DTD Slides XML V2.0//EN"
-       "http://docbook.sourceforge.net/release/slides/2.0/slides.dtd">
+       PUBLIC "-//Norman Walsh//DTD Slides XML V3.0b1//EN"
+       "http://docbook.sourceforge.net/release/slides/3.0b1/slides.dtd">
                                                                             -->
 <!-- ====================================================================== -->
 
@@ -65,7 +65,7 @@
 <!ENTITY % local.divcomponent.mix "|speakernotes">
 <!ENTITY % local.component.mix "|speakernotes">
 
-<!ENTITY % sdocbook.dtd PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.0CR//EN"
+<!ENTITY % sdocbook.dtd PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.0CR2//EN"
       "http://www.oasis-open.org/docbook/xml/simple/1.0CR2/sdocbook-custom.dtd">
 %sdocbook.dtd;
 
@@ -101,5 +101,5 @@
 <!ENTITY % slides.mod SYSTEM "slides.mod">
 %slides.mod;
 
-<!-- End of Slides XML V2.0 DTD ........................................... -->
+<!-- End of Slides XML V3.0b1 DTD ......................................... -->
 <!-- ...................................................................... -->
