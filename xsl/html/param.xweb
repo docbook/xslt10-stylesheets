@@ -225,6 +225,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &html.ext;
 &root.filename;
 &base.dir;
+&generate.manifest;
+&manifest;
 &chunk.toc;
 &chunk.section.depth;
 &chunk.first.sections;
@@ -348,6 +350,7 @@ around all these parameters.</para>
 <src:fragref linkend="generate.id.attributes.frag"/>
 <src:fragref linkend="generate.index.frag"/>
 <src:fragref linkend="generate.legalnotice.link.frag"/>
+<src:fragref linkend="generate.manifest.frag"/>
 <src:fragref linkend="generate.section.toc.level.frag"/>
 <src:fragref linkend="generate.toc.frag"/>
 <src:fragref linkend="glossary.collection.frag"/>
@@ -385,6 +388,7 @@ around all these parameters.</para>
 <src:fragref linkend="make.single.year.ranges.frag"/>
 <src:fragref linkend="make.valid.html.frag"/>
 <src:fragref linkend="make.year.ranges.frag"/>
+<src:fragref linkend="manifest.frag"/>
 <src:fragref linkend="manual.toc.frag"/>
 <src:fragref linkend="navig.graphics.extension.frag"/>
 <src:fragref linkend="navig.graphics.frag"/>

@@ -5,6 +5,7 @@
 
 <xsl:import href="docbook.xsl"/>
 <xsl:import href="chunk-common.xsl"/>
+<xsl:include href="manifest.xsl"/>
 
 <xsl:param name="onechunk" select="0"/>
 
@@ -361,6 +362,11 @@
           <xsl:if test="$tex.math.in.alt != ''">
             <xsl:apply-templates select="key('id',$rootid)" mode="collect.tex.math"/>
           </xsl:if>
+          <xsl:if test="$generate.manifest != 0">
+            <xsl:call-template name="generate.manifest">
+              <xsl:with-param name="node" select="key('id',$rootid)"/>
+            </xsl:call-template>
+          </xsl:if>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
@@ -368,6 +374,9 @@
       <xsl:apply-templates select="/" mode="process.root"/>
       <xsl:if test="$tex.math.in.alt != ''">
         <xsl:apply-templates select="/" mode="collect.tex.math"/>
+      </xsl:if>
+      <xsl:if test="$generate.manifest != 0">
+        <xsl:call-template name="generate.manifest"/>
       </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
