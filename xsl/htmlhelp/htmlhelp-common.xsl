@@ -62,7 +62,12 @@
 
 <xsl:template name="hhp">
   <xsl:call-template name="write.text.chunk">
-    <xsl:with-param name="filename" select="$htmlhelp.hhp"/>
+    <xsl:with-param name="filename">
+      <xsl:if test="$manifest.in.base.dir != 0">
+        <xsl:value-of select="$base.dir"/>
+      </xsl:if>
+      <xsl:value-of select="$htmlhelp.hhp"/>
+    </xsl:with-param>
     <xsl:with-param name="method" select="'text'"/>
     <xsl:with-param name="content">
       <xsl:call-template name="hhp-main"/>
@@ -80,7 +85,11 @@
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="make-relative-filename">
-        <xsl:with-param name="base.dir" select="$base.dir"/>
+        <xsl:with-param name="base.dir">
+          <xsl:if test="$manifest.in.base.dir = 0">
+            <xsl:value-of select="$base.dir"/>
+          </xsl:if>
+        </xsl:with-param>
         <xsl:with-param name="base.name">
           <xsl:choose>
             <xsl:when test="$rootid != ''">
@@ -407,7 +416,12 @@ Title=</xsl:text>
 
 <xsl:template name="hhc">
   <xsl:call-template name="write.text.chunk">
-    <xsl:with-param name="filename" select="$htmlhelp.hhc"/>
+    <xsl:with-param name="filename">
+      <xsl:if test="$manifest.in.base.dir != 0">
+        <xsl:value-of select="$base.dir"/>
+      </xsl:if>
+      <xsl:value-of select="$htmlhelp.hhc"/>
+    </xsl:with-param>
     <xsl:with-param name="method" select="'text'"/>
     <xsl:with-param name="content">
       <xsl:call-template name="hhc-main"/>
@@ -861,7 +875,12 @@ Title=</xsl:text>
 
 <xsl:template name="hhk">
   <xsl:call-template name="write.text.chunk">
-    <xsl:with-param name="filename" select="$htmlhelp.hhk"/>
+    <xsl:with-param name="filename">
+      <xsl:if test="$manifest.in.base.dir != 0">
+        <xsl:value-of select="$base.dir"/>
+      </xsl:if>
+      <xsl:value-of select="$htmlhelp.hhk"/>
+    </xsl:with-param>
     <xsl:with-param name="method" select="'text'"/>
     <xsl:with-param name="content"><xsl:text disable-output-escaping="yes"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <HTML>
@@ -978,7 +997,12 @@ Title=</xsl:text>
 
 <xsl:template name="hh-map">
   <xsl:call-template name="write.text.chunk">
-    <xsl:with-param name="filename" select="$htmlhelp.map.file"/>
+    <xsl:with-param name="filename">
+      <xsl:if test="$manifest.in.base.dir != 0">
+        <xsl:value-of select="$base.dir"/>
+      </xsl:if>
+      <xsl:value-of select="$htmlhelp.map.file"/>
+    </xsl:with-param>
     <xsl:with-param name="method" select="'text'"/>
     <xsl:with-param name="content">
      <xsl:choose>
@@ -1022,7 +1046,12 @@ Title=</xsl:text>
 
 <xsl:template name="hh-alias">
   <xsl:call-template name="write.text.chunk">
-    <xsl:with-param name="filename" select="$htmlhelp.alias.file"/>
+    <xsl:with-param name="filename">
+      <xsl:if test="$manifest.in.base.dir != 0">
+        <xsl:value-of select="$base.dir"/>
+      </xsl:if>
+      <xsl:value-of select="$htmlhelp.alias.file"/>
+    </xsl:with-param>
     <xsl:with-param name="method" select="'text'"/>
     <xsl:with-param name="content">
      <xsl:choose>

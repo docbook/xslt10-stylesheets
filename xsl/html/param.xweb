@@ -291,6 +291,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &base.dir;
 &generate.manifest;
 &manifest;
+&manifest.in.base.dir;
 &chunk.toc;
 &chunk.tocs.and.lots;
 &chunk.section.depth;
@@ -546,6 +547,7 @@ around all these parameters.</para>
 <src:fragref linkend="make.valid.html.frag"/>
 <src:fragref linkend="make.year.ranges.frag"/>
 <src:fragref linkend="manifest.frag"/>
+<src:fragref linkend="manifest.in.base.dir.frag"/>
 <src:fragref linkend="manual.toc.frag"/>
 <src:fragref linkend="menuchoice.menu.separator.frag"/>
 <src:fragref linkend="menuchoice.separator.frag"/>

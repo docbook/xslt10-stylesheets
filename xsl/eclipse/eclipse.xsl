@@ -43,7 +43,12 @@
 
 <xsl:template name="etoc">
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="'toc.xml'"/>
+    <xsl:with-param name="filename">
+      <xsl:if test="$manifest.in.base.dir != 0">
+        <xsl:value-of select="$base.dir"/>
+      </xsl:if>
+      <xsl:value-of select="'toc.xml'"/>
+    </xsl:with-param>
     <xsl:with-param name="method" select="'xml'"/>
     <xsl:with-param name="encoding" select="'utf-8'"/>
     <xsl:with-param name="indent" select="'yes'"/>
@@ -128,7 +133,12 @@
 
 <xsl:template name="plugin.xml">
   <xsl:call-template name="write.chunk">
-    <xsl:with-param name="filename" select="'plugin.xml'"/>
+    <xsl:with-param name="filename">
+      <xsl:if test="$manifest.in.base.dir != 0">
+        <xsl:value-of select="$base.dir"/>
+      </xsl:if>
+      <xsl:value-of select="'plugin.xml'"/>
+    </xsl:with-param>
     <xsl:with-param name="method" select="'xml'"/>
     <xsl:with-param name="encoding" select="'utf-8'"/>
     <xsl:with-param name="indent" select="'yes'"/>

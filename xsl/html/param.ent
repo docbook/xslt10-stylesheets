@@ -125,6 +125,7 @@
 <!ENTITY make.valid.html SYSTEM "../params/make.valid.html.xml">
 <!ENTITY make.year.ranges SYSTEM "../params/make.year.ranges.xml">
 <!ENTITY manifest SYSTEM "../params/manifest.xml">
+<!ENTITY manifest.in.base.dir SYSTEM "../params/manifest.in.base.dir.xml">
 <!ENTITY manual.toc SYSTEM "../params/manual.toc.xml">
 <!ENTITY navig.graphics SYSTEM "../params/navig.graphics.xml">
 <!ENTITY navig.graphics.extension SYSTEM "../params/navig.graphics.extension.xml">
