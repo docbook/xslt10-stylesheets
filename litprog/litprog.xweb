@@ -1,0 +1,157 @@
+<article xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+         xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<title>Litprog.xsl</title>
+
+<src:topfragment id="top" default-exclude-result-prefixes="xsl">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+                xmlns:verb="com.nwalsh.saxon.Verbatim"
+                exclude-result-prefixes="verb src"
+                version="1.0">
+  <src:fragref linkend="rest"/>
+</xsl:stylesheet>
+</src:topfragment>
+
+<section><title>The Rest</title>
+
+<src:fragment id="rest">
+<xsl:import href="../xsl/html/docbook.xsl"/>
+
+<xsl:param name="local.l10n.xml" select="document('')"/>
+
+<l:i18n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
+  <l:l10n language="en">
+   <l:context name="title">
+      <l:template name="fragment" text="%t"/>
+    </l:context>
+  </l:l10n>
+</l:i18n>
+
+<xsl:param name="section.autolabel" select="1"/>
+<xsl:param name="linenumbering.everyNth" select="'3'"/>
+<xsl:param name="linenumbering.separator" select="'|'"/>
+
+<xsl:output method="html"/>
+
+<xsl:template match="src:fragment">
+  <xsl:param name="suppress-numbers" select="'0'"/>
+  <xsl:param name="linenumbering" select="'numbered'"/>
+  <xsl:variable name="section" select="ancestor::section[1]"/>
+
+  <a name="{@id}"/>
+  <table border="1" width="100%">
+    <tr>
+      <td>
+        <p>
+          <b>
+            <xsl:text>&#xA7;</xsl:text>
+            <xsl:apply-templates select="$section" mode="label.markup"/>
+            <xsl:number from="section"/>
+          </b>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <xsl:choose>
+          <xsl:when test="$suppress-numbers = '0'
+                          and $linenumbering = 'numbered'
+                          and $use.extensions != '0'
+                          and $linenumbering.extension != '0'">
+            <xsl:variable name="rtf">
+              <xsl:apply-templates/>
+            </xsl:variable>
+            <pre class="{name(.)}">
+              <xsl:copy-of select="verb:numberLines($rtf)"/>
+            </pre>
+          </xsl:when>
+          <xsl:otherwise>
+            <pre class="{name(.)}">
+              <xsl:apply-templates/>
+            </pre>
+          </xsl:otherwise>
+        </xsl:choose>
+      </td>
+    </tr>
+  </table>
+</xsl:template>
+
+<xsl:template match="src:fragref">
+  <xsl:variable name="targets" select="id(@linkend)"/>
+  <xsl:variable name="target" select="$targets[1]"/>
+  <xsl:variable name="refelem" select="local-name($target)"/>
+
+  <xsl:call-template name="check.id.unique">
+    <xsl:with-param name="linkend" select="@linkend"/>
+  </xsl:call-template>
+
+  <i><xsl:apply-templates/></i>
+  <xsl:text> (</xsl:text>
+
+  <xsl:choose>
+    <xsl:when test="$refelem=''">
+      <xsl:message>
+	<xsl:text>XRef to nonexistent id: </xsl:text>
+	<xsl:value-of select="@linkend"/>
+      </xsl:message>
+      <xsl:text>???</xsl:text>
+    </xsl:when>
+
+    <xsl:when test="$target/@xreflabel">
+      <a>
+        <xsl:attribute name="href">
+          <xsl:call-template name="href.target">
+            <xsl:with-param name="object" select="$target"/>
+          </xsl:call-template>
+        </xsl:attribute>
+        <xsl:call-template name="xref.xreflabel">
+          <xsl:with-param name="target" select="$target"/>
+        </xsl:call-template>
+      </a>
+    </xsl:when>
+
+    <xsl:otherwise>
+      <a>
+        <xsl:attribute name="href">
+          <xsl:call-template name="href.target">
+            <xsl:with-param name="object" select="$target"/>
+          </xsl:call-template>
+        </xsl:attribute>
+
+        <xsl:apply-templates select="id(@linkend)" mode="xref-to-section"/>
+      </a>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:text>)</xsl:text>
+</xsl:template>
+
+<xsl:template match="src:fragment" mode="xref-to">
+  <xsl:variable name="section" select="ancestor::section[1]"/>
+
+  <i>
+    <xsl:text>&#xA7;</xsl:text>
+    <xsl:apply-templates select="$section" mode="label.markup"/>
+    <xsl:number from="section"/>
+    <xsl:text>. </xsl:text>
+    <xsl:apply-templates select="$section" mode="title.markup"/>
+  </i>
+</xsl:template>
+
+<xsl:template match="src:fragment" mode="xref-to-section">
+  <xsl:variable name="section" select="ancestor::section[1]"/>
+
+  <i>
+    <xsl:text>&#xA7;</xsl:text>
+    <xsl:apply-templates select="$section" mode="label.markup"/>
+    <xsl:number from="section"/>
+  </i>
+</xsl:template>
+
+<xsl:template match="src:fragment" mode="title.markup">
+  <xsl:text>SRC:FRAGMENT TITLE</xsl:text>
+</xsl:template>
+
+</src:fragment>
+</section>
+
+</article>
