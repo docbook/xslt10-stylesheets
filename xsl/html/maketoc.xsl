@@ -10,6 +10,17 @@
 
 <xsl:param name="toc.list.type" select="'tocentry'"/>
 
+<!-- refentry in autotoc.xsl does not use subtoc, so must
+     handle it explicitly here. -->
+<xsl:template match="refentry" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
+  <xsl:call-template name="subtoc">
+    <xsl:with-param name="toc-context" select="$toc-context"/>
+  </xsl:call-template>
+</xsl:template>
+
+
 <xsl:template name="subtoc">
   <xsl:param name="nodes" select="NOT-AN-ELEMENT"/>
   <xsl:variable name="filename">
