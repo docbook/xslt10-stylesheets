@@ -3999,7 +3999,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % interfacename.element "INCLUDE">
 <![%interfacename.element;[
-<!ELEMENT interfacename %ho; (%smallcptr.char.mix;)*>
+<!ELEMENT interfacename %ho; (%cptr.char.mix;)*>
 <!--end of interfacename.element-->]]>
 
 <!ENTITY % interfacename.attlist "INCLUDE">
@@ -5713,7 +5713,7 @@ OtherCredit. -->
 
 <!ENTITY % action.element "INCLUDE">
 <![%action.element;[
-<!ELEMENT action %ho; (%smallcptr.char.mix;)*>
+<!ELEMENT action %ho; (%cptr.char.mix;)*>
 <!--end of action.element-->]]>
 
 <!ENTITY % action.attlist "INCLUDE">
@@ -5847,7 +5847,7 @@ OtherCredit. -->
 
 <!ENTITY % database.element "INCLUDE">
 <![%database.element;[
-<!ELEMENT database %ho; (%smallcptr.char.mix;)*>
+<!ELEMENT database %ho; (%cptr.char.mix;)*>
 <!--end of database.element-->]]>
 
 <!-- Class: Type of database the element names; no default -->
@@ -5979,7 +5979,7 @@ OtherCredit. -->
 
 <!ENTITY % filename.element "INCLUDE">
 <![%filename.element;[
-<!ELEMENT filename %ho; (%smallcptr.char.mix;)*>
+<!ELEMENT filename %ho; (%cptr.char.mix;)*>
 <!--end of filename.element-->]]>
 
 <!-- Class: Type of filename the element names; no default -->
@@ -6159,7 +6159,7 @@ OtherCredit. -->
 
 <!ENTITY % hardware.element "INCLUDE">
 <![%hardware.element;[
-<!ELEMENT hardware %ho; (%smallcptr.char.mix;)*>
+<!ELEMENT hardware %ho; (%cptr.char.mix;)*>
 <!--end of hardware.element-->]]>
 
 <!ENTITY % hardware.attlist "INCLUDE">
@@ -6204,7 +6204,7 @@ OtherCredit. -->
 
 <!ENTITY % keycap.element "INCLUDE">
 <![%keycap.element;[
-<!ELEMENT keycap %ho; (%smallcptr.char.mix;)*>
+<!ELEMENT keycap %ho; (%cptr.char.mix;)*>
 <!--end of keycap.element-->]]>
 
 <!ENTITY % keycap.attlist "INCLUDE">
@@ -6505,7 +6505,7 @@ OtherCredit. -->
 
 <!ENTITY % option.element "INCLUDE">
 <![%option.element;[
-<!ELEMENT option %ho; (%smallcptr.char.mix;)*>
+<!ELEMENT option %ho; (%cptr.char.mix;)*>
 <!--end of option.element-->]]>
 
 <!ENTITY % option.attlist "INCLUDE">
@@ -6545,7 +6545,7 @@ OtherCredit. -->
 
 <!ENTITY % parameter.element "INCLUDE">
 <![%parameter.element;[
-<!ELEMENT parameter %ho; (%smallcptr.char.mix;)*>
+<!ELEMENT parameter %ho; (%cptr.char.mix;)*>
 <!--end of parameter.element-->]]>
 
 <!-- Class: Type of the Parameter; no default -->
@@ -6593,7 +6593,7 @@ OtherCredit. -->
 
 <!ENTITY % property.element "INCLUDE">
 <![%property.element;[
-<!ELEMENT property %ho; (%smallcptr.char.mix;)*>
+<!ELEMENT property %ho; (%cptr.char.mix;)*>
 <!--end of property.element-->]]>
 
 <!ENTITY % property.attlist "INCLUDE">
@@ -6767,7 +6767,7 @@ OtherCredit. -->
 
 <!ENTITY % systemitem.element "INCLUDE">
 <![%systemitem.element;[
-<!ELEMENT systemitem %ho; (%smallcptr.char.mix; | acronym)*>
+<!ELEMENT systemitem %ho; (%cptr.char.mix; | acronym)*>
 <!--end of systemitem.element-->]]>
 
 <!-- Class: Type of system item the element names; no default -->
