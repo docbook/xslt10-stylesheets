@@ -50,14 +50,14 @@
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
-  <xsl:variable name="master-name">
+  <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
 
   <xsl:if test="$preamble">
     <fo:page-sequence id="{$id}"
                       hyphenate="{$hyphenate}"
-                      master-name="{$master-name}">
+                      master-reference="{$master-reference}">
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
@@ -66,10 +66,10 @@
       </xsl:if>
 
       <xsl:apply-templates select="." mode="running.head.mode">
-        <xsl:with-param name="master-name" select="$master-name"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:apply-templates>
       <xsl:apply-templates select="." mode="running.foot.mode">
-        <xsl:with-param name="master-name" select="$master-name"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:apply-templates>
       <fo:flow flow-name="xsl-region-body">
         <xsl:call-template name="set.titlepage"/>
@@ -96,14 +96,14 @@
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
-  <xsl:variable name="master-name">
+  <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
 
   <xsl:if test="$preamble">
     <fo:page-sequence id="{$id}"
                       hyphenate="{$hyphenate}"
-                      master-name="{$master-name}">
+                      master-reference="{$master-reference}">
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
@@ -112,10 +112,10 @@
       </xsl:if>
 
       <xsl:apply-templates select="." mode="running.head.mode">
-        <xsl:with-param name="master-name" select="$master-name"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:apply-templates>
       <xsl:apply-templates select="." mode="running.foot.mode">
-        <xsl:with-param name="master-name" select="$master-name"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:apply-templates>
       <fo:flow flow-name="xsl-region-body">
         <xsl:call-template name="book.titlepage"/>
@@ -126,7 +126,7 @@
   <xsl:if test="$generate.book.toc != '0'">
     <fo:page-sequence hyphenate="{$hyphenate}"
                       format="i"
-                      master-name="{$master-name}">
+                      master-reference="{$master-reference}">
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
@@ -135,10 +135,10 @@
       </xsl:if>
 
       <xsl:apply-templates select="." mode="running.head.mode">
-        <xsl:with-param name="master-name" select="$master-name"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:apply-templates>
       <xsl:apply-templates select="." mode="running.foot.mode">
-        <xsl:with-param name="master-name" select="$master-name"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:apply-templates>
       <fo:flow flow-name="xsl-region-body">
         <xsl:call-template name="division.toc"/>
@@ -149,7 +149,7 @@
   <xsl:if test="$generate.book.figure.lot != '0' and .//figure">
     <fo:page-sequence hyphenate="{$hyphenate}"
                       format="i"
-                      master-name="{$master-name}">
+                      master-reference="{$master-reference}">
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
@@ -158,10 +158,10 @@
       </xsl:if>
 
       <xsl:apply-templates select="." mode="running.head.mode">
-        <xsl:with-param name="master-name" select="$master-name"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:apply-templates>
       <xsl:apply-templates select="." mode="running.foot.mode">
-        <xsl:with-param name="master-name" select="$master-name"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:apply-templates>
       <fo:flow flow-name="xsl-region-body">
         <xsl:call-template name="list.of.titles">
@@ -175,7 +175,7 @@
   <xsl:if test="$generate.book.table.lot != '0' and .//table">
     <fo:page-sequence hyphenate="{$hyphenate}"
                       format="i"
-                      master-name="{$master-name}">
+                      master-reference="{$master-reference}">
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
@@ -184,10 +184,10 @@
       </xsl:if>
 
       <xsl:apply-templates select="." mode="running.head.mode">
-        <xsl:with-param name="master-name" select="$master-name"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:apply-templates>
       <xsl:apply-templates select="." mode="running.foot.mode">
-        <xsl:with-param name="master-name" select="$master-name"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:apply-templates>
       <fo:flow flow-name="xsl-region-body">
         <xsl:call-template name="list.of.titles">
@@ -201,7 +201,7 @@
   <xsl:if test="$generate.book.example.lot != '0' and .//example">
     <fo:page-sequence hyphenate="{$hyphenate}"
                       format="i"
-                      master-name="{$master-name}">
+                      master-reference="{$master-reference}">
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
@@ -210,10 +210,10 @@
       </xsl:if>
 
       <xsl:apply-templates select="." mode="running.head.mode">
-        <xsl:with-param name="master-name" select="$master-name"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:apply-templates>
       <xsl:apply-templates select="." mode="running.foot.mode">
-        <xsl:with-param name="master-name" select="$master-name"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:apply-templates>
       <fo:flow flow-name="xsl-region-body">
         <xsl:call-template name="list.of.titles">
@@ -227,7 +227,7 @@
   <xsl:if test="$generate.book.equation.lot != '0' and .//equation">
     <fo:page-sequence hyphenate="{$hyphenate}"
                       format="i"
-                      master-name="{$master-name}">
+                      master-reference="{$master-reference}">
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
@@ -236,10 +236,10 @@
       </xsl:if>
 
       <xsl:apply-templates select="." mode="running.head.mode">
-        <xsl:with-param name="master-name" select="$master-name"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:apply-templates>
       <xsl:apply-templates select="." mode="running.foot.mode">
-        <xsl:with-param name="master-name" select="$master-name"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:apply-templates>
       <fo:flow flow-name="xsl-region-body">
         <xsl:call-template name="list.of.titles">
@@ -266,13 +266,13 @@
     <xsl:variable name="id">
       <xsl:call-template name="object.id"/>
     </xsl:variable>
-    <xsl:variable name="master-name">
+    <xsl:variable name="master-reference">
       <xsl:call-template name="select.pagemaster"/>
     </xsl:variable>
 
     <fo:page-sequence id="{$id}"
                       hyphenate="{$hyphenate}"
-                      master-name="{$master-name}">
+                      master-reference="{$master-reference}">
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
       </xsl:attribute>
@@ -281,10 +281,10 @@
       </xsl:if>
 
       <xsl:apply-templates select="." mode="running.head.mode">
-        <xsl:with-param name="master-name" select="$master-name"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:apply-templates>
       <xsl:apply-templates select="." mode="running.foot.mode">
-        <xsl:with-param name="master-name" select="$master-name"/>
+        <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:apply-templates>
 
       <fo:flow flow-name="xsl-region-body">
@@ -310,13 +310,13 @@
       <xsl:with-param name="object" select="ancestor::part"/>
     </xsl:call-template>
   </xsl:variable>
-  <xsl:variable name="master-name">
+  <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
 
   <fo:page-sequence id="{$id}"
                     hyphenate="{$hyphenate}"
-                    master-name="{$master-name}">
+                    master-reference="{$master-reference}">
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
@@ -325,10 +325,10 @@
     </xsl:if>
 
     <xsl:apply-templates select="." mode="running.head.mode">
-      <xsl:with-param name="master-name" select="$master-name"/>
+      <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="." mode="running.foot.mode">
-      <xsl:with-param name="master-name" select="$master-name"/>
+      <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
