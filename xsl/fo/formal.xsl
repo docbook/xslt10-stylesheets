@@ -631,7 +631,7 @@
     <xsl:for-each select="tgroup">
       <xsl:variable name="prop-columns"
                     select=".//colspec[contains(@colwidth, '*')]"/>
-      <fo:table id="{$id}"
+      <fo:table 
                 border-collapse="collapse"
                 xsl:use-attribute-sets="informal.object.properties">
         <xsl:call-template name="table.frame"/>
@@ -676,7 +676,7 @@
   <xsl:choose>
     <xsl:when test="@orient='land'">
       <fo:block-container reference-orientation="90">
-        <fo:block>
+        <fo:block id="{$id}">
           <xsl:attribute name="span">
             <xsl:choose>
               <xsl:when test="@pgwide=1">all</xsl:when>
@@ -689,7 +689,7 @@
       </fo:block-container>
     </xsl:when>
     <xsl:otherwise>
-      <fo:block>
+      <fo:block id="{$id}">
         <xsl:attribute name="span">
           <xsl:choose>
             <xsl:when test="@pgwide=1">all</xsl:when>
