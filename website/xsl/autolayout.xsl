@@ -3,8 +3,8 @@
                 version="1.0">
 
 <xsl:output method="xml" indent="no"
-            doctype-public="-//Norman Walsh//DTD Website Autolayout V2.4.1//EN"
-            doctype-system="http://docbook.sourceforge.net/release/website/2.4.1/schema/dtd/autolayout.dtd"
+            doctype-public="-//Norman Walsh//DTD Website Autolayout V2.5.0//EN"
+            doctype-system="http://docbook.sourceforge.net/release/website/2.5.0/schema/dtd/autolayout.dtd"
 />
 
 <xsl:strip-space elements="toc tocentry layout copyright"/>
