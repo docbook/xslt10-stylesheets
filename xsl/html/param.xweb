@@ -432,6 +432,7 @@ around all these parameters.</para>
 <src:fragref linkend="default.float.class.frag"/>
 <src:fragref linkend="default.image.width.frag"/>
 <src:fragref linkend="default.table.width.frag"/>
+<src:fragref linkend="draft.mode.frag"/>
 <src:fragref linkend="draft.watermark.image.frag"/>
 <src:fragref linkend="ebnf.table.bgcolor.frag"/>
 <src:fragref linkend="ebnf.table.border.frag"/>
