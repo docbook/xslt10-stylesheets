@@ -32,13 +32,13 @@
     <xsl:otherwise>
       <fo:block id="{$id}">
         <xsl:call-template name="index.titlepage"/>
-        <xsl:apply-templates/>
-        <xsl:if test="count(indexentry) = 0 and count(indexdiv) = 0">
-          <xsl:call-template name="generate-index">
-            <xsl:with-param name="scope" select="(ancestor::book|/)[last()]"/>
-          </xsl:call-template>
-        </xsl:if>
       </fo:block>
+      <xsl:apply-templates/>
+      <xsl:if test="count(indexentry) = 0 and count(indexdiv) = 0">
+        <xsl:call-template name="generate-index">
+          <xsl:with-param name="scope" select="(ancestor::book|/)[last()]"/>
+        </xsl:call-template>
+      </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
  </xsl:if>
@@ -58,8 +58,7 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <fo:page-sequence id="{$id}"
-                    hyphenate="{$hyphenate}"
+  <fo:page-sequence hyphenate="{$hyphenate}"
                     master-reference="{$master-reference}">
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
@@ -79,7 +78,9 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
-      <xsl:call-template name="index.titlepage"/>
+      <fo:block id="{$id}">
+        <xsl:call-template name="index.titlepage"/>
+      </fo:block>
       <xsl:apply-templates/>
       <xsl:if test="count(indexentry) = 0 and count(indexdiv) = 0">
 
@@ -126,8 +127,7 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <fo:page-sequence id="{$id}"
-                    hyphenate="{$hyphenate}"
+  <fo:page-sequence hyphenate="{$hyphenate}"
                     master-reference="{$master-reference}">
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
@@ -147,7 +147,9 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
-      <xsl:call-template name="setindex.titlepage"/>
+      <fo:block id="{$id}">
+        <xsl:call-template name="setindex.titlepage"/>
+      </fo:block>
       <xsl:apply-templates/>
       <xsl:if test="count(indexentry) = 0 and count(indexdiv) = 0">
 

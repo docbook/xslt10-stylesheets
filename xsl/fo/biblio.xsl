@@ -26,8 +26,7 @@
         <xsl:call-template name="select.pagemaster"/>
       </xsl:variable>
 
-      <fo:page-sequence id="{$id}"
-                        hyphenate="{$hyphenate}"
+      <fo:page-sequence hyphenate="{$hyphenate}"
                         master-reference="{$master-reference}">
         <xsl:attribute name="language">
           <xsl:call-template name="l10n.language"/>
@@ -47,7 +46,9 @@
         </xsl:apply-templates>
 
         <fo:flow flow-name="xsl-region-body">
-          <xsl:call-template name="bibliography.titlepage"/>
+          <fo:block id="{$id}">
+            <xsl:call-template name="bibliography.titlepage"/>
+          </fo:block>
           <xsl:apply-templates/>
         </fo:flow>
       </fo:page-sequence>
@@ -58,8 +59,8 @@
                 space-before.optimum="1.5em"
                 space-before.maximum="2em">
         <xsl:call-template name="bibliography.titlepage"/>
-        <xsl:apply-templates/>
       </fo:block>
+      <xsl:apply-templates/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
