@@ -488,9 +488,24 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
     </xsl:choose>
   </xsl:variable>
 
+
+  <xsl:variable name="bgcolor">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="../processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'background-color'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="use.viewport"
+                select="$viewport != 0
+                        and ($html.width != ''
+                             or ($html.depth != '' and $depth-units != '%')
+                             or $bgcolor != ''
+                             or @valign)"/>
+
   <xsl:choose>
-    <!-- tables and alignment don't play nicely; skip the table if align is set -->
-    <xsl:when test="$viewport != 0 and not(@align)">
+    <xsl:when test="$use.viewport">
       <table border="0" summary="manufactured viewport for HTML img"
              cellspacing="0" cellpadding="0">
         <xsl:if test="$html.width != ''">
@@ -506,13 +521,6 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
             </xsl:attribute>
           </xsl:if>
           <td>
-            <xsl:variable name="bgcolor">
-              <xsl:call-template name="dbhtml-attribute">
-                <xsl:with-param name="pis"
-                                select="../processing-instruction('dbhtml')"/>
-                <xsl:with-param name="attribute" select="'background-color'"/>
-              </xsl:call-template>
-            </xsl:variable>
             <xsl:if test="$bgcolor != ''">
               <xsl:attribute name="bgcolor">
                 <xsl:value-of select="$bgcolor"/>
