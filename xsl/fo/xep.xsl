@@ -27,12 +27,12 @@
 
 <xsl:template name="xep-document-information">
   <rx:meta-info>
-    <xsl:if test="//author[1]">
+    <xsl:if test="(//author)[1]">
       <xsl:element name="rx:meta-field">
         <xsl:attribute name="name">author</xsl:attribute>
         <xsl:attribute name="value">
           <xsl:call-template name="person.name">
-            <xsl:with-param name="node" select="//author[1]"/>
+            <xsl:with-param name="node" select="(//author)[1]"/>
           </xsl:call-template>
         </xsl:attribute>
       </xsl:element>
