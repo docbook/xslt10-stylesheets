@@ -24,7 +24,9 @@ file.</para></listitem>
 STYLEDIR=../xsl
 TABSTYLE=$(STYLEDIR)/tabular.xsl
 STYLESHEET=$(TABSTYLE)
-STYLEOPT=
+
+# Note: you must set the autolayout-file to a fully qualified path!
+STYLEOPT="autolayout-file=/full/path/to/autolayout.xml"
 
 .PHONY : clean
 
