@@ -1,7 +1,7 @@
 <!DOCTYPE article [
-<!ENTITY name "wd-docbook-docbook">
-<!ENTITY version "4.3CR3">
-<!ENTITY standard "Working Draft">
+<!ENTITY name "cs-docbook-docbook">
+<!ENTITY version "4.3">
+<!ENTITY standard "Committee Specification">
 <!ENTITY tracker "http://sourceforge.net/tracker/">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
 <!ENTITY root "http://docbook.org/">
@@ -34,7 +34,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>21 Jan 2004</pubdate>
+<pubdate>17 Mar 2004</pubdate>
 
 <copyright><year>2001</year><year>2002</year><year>2003</year><year>2004</year>
 <holder>
@@ -53,7 +53,9 @@ no backwards-incompatible changes.</para>
 </abstract>
 
 <legalnotice role="status"><title>Status</title>
-<para>This &standard; was approved for publication by the
+<para>This &standard; was
+<ulink url="http://lists.oasis-open.org/archives/docbook-tc/200403/msg00010.html">approved</ulink>
+for publication by the
 OASIS DocBook Technical Committee. It represents the
 consensus of the committee.
 </para>
@@ -94,9 +96,9 @@ both
 <ulink url="http://xml.coverpages.org/general.html#overview">SGML</ulink>.
 It is unofficially available in other forms as well.</para>
 
-<para>The Version 4.2 release is a maintainance release. It introduces
-no backwards-incompatible changes. All valid DocBook 4.1 documents are
-also valid DocBook 4.2 documents.</para>
+<para>The Version 4.3 release is a maintainance release. It introduces
+no backwards-incompatible changes. All valid DocBook 4.2 documents are
+also valid DocBook 4.3 documents.</para>
 
 <para>The DocBook Technical Committee welcomes bug reports and
 requests for enhancement (RFEs) from the user community. The current list
@@ -136,6 +138,15 @@ from the
 the mirror on
 <ulink url="http://docbook.org/"/>.
 </para>
+
+<section id="s.cs">
+<title>Changes in DocBook V4.3</title>
+
+<para>There are no substantive changes in this release. This is the official
+Committee Specification.
+</para>
+
+</section>
 
 <section id="s.cr3">
 <title>Changes in DocBook V4.3CR3</title>
@@ -425,8 +436,7 @@ new values for pubwork (2003 Jan)</para>
 
 <section><title>Release Notes</title>
 
-<para>This is a beta release by the editor. It has no normative
-status and may contain bugs.</para>
+<para>None.</para>
 
 </section>
 
@@ -614,7 +624,7 @@ proposed</ulink>.
 
   <para>This parameter has identical semantics to the <code>charset</code>
 parameter of the <code>application/xml</code> media type as
-specified in <xref linkend="rfc3023"/>.
+specified in <xref linkend="rfc3023"/> or its successors.
 </para>
   </listitem>
   </varlistentry>
@@ -747,14 +757,16 @@ the formulation of this &standard;:</para>
 <itemizedlist spacing="compact">
 <listitem><para>Jeff Beal</para></listitem>
 <listitem><para>Steve Cogorno</para></listitem>
+<listitem><para>Adam Di Carlo</para></listitem>
 <listitem><para>Paul Grosso</para></listitem>
 <listitem><para>Dick Hamilton</para></listitem>
 <listitem><para>Nancy Harrison</para></listitem>
 <listitem><para>Scott Hudson</para></listitem>
 <listitem><para>Mark Johnson</para></listitem>
-<listitem><para>Larry Rowland (prospective)</para></listitem>
+<listitem><para>Jirka Kosek (prospective)</para></listitem>
+<listitem><para>Larry Rowland</para></listitem>
 <listitem><para>Michael Smith</para></listitem>
-<listitem><para>Bob Stayton, Secretary</para></listitem>
+<listitem><para>Robert Stayton, Secretary</para></listitem>
 <listitem><para>Norman Walsh, Chair, Editor</para></listitem>
 </itemizedlist>
 </appendix>
@@ -845,6 +857,10 @@ of the DocBook web page
 
 <para>
 <revhistory>
+<revision role="&root;specs/cs-docbook-docbook-4.3.html">
+  <revnumber>Committee Specification</revnumber>
+  <date>17 Mar 2004</date>
+</revision>
 <revision role="&root;specs/wd-docbook-docbook-4.3cr3.html">
   <revnumber>Working Draft “Candidate Release 3”</revnumber>
   <date>21 Jan 2004</date>
