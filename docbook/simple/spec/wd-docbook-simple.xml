@@ -9,11 +9,11 @@
 
 <articleinfo>
 <productname>wd-docbook-simple</productname>
-<productnumber>1.0-CR2</productnumber>
+<productnumber>1.0-CR3</productnumber>
 
-<releaseinfo role="product"><ulink url="wd-docbook-simple-1.0-CR2.xml">XML</ulink></releaseinfo>
-<releaseinfo role="product"><ulink url="wd-docbook-simple-1.0-CR2.html">HTML</ulink></releaseinfo>
-<releaseinfo role="product"><ulink url="wd-docbook-simple-1.0-CR2.pdf">PDF</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="wd-docbook-simple-1.0-CR3.xml">XML</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="wd-docbook-simple-1.0-CR3.html">HTML</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="wd-docbook-simple-1.0-CR3.pdf">PDF</ulink></releaseinfo>
 
 <releaseinfo role="location">http://www.oasis-open.org/docbook/specs</releaseinfo>
 
@@ -30,7 +30,7 @@
 </editor>
 </authorgroup>
 
-<pubdate>12 June 2002</pubdate>
+<pubdate>12 Sep 2002</pubdate>
 
 <copyright><year>2001</year><year>2002</year>
 <holder>The Organization for the Advancement of Structured Information
@@ -128,16 +128,59 @@ document.</para>
 </section>
 
 <section id="docbook">
-<title>The Simplified DocBook Document Type V1.0CR2</title>
+<title>The Simplified DocBook Document Type V1.0CR3</title>
 
 <para>The Simplified DocBook document type is a subset of
-<ulink url="http://www.oasis-open.org/docbook/xml/">DocBook XML V4.1.2</ulink>.
+<ulink url="http://www.oasis-open.org/docbook/xml/">DocBook XML V4.2</ulink>.
 It is distributed from the
 <ulink url="http://www.oasis-open.org/docbook/">DocBook site</ulink> at
 <ulink url="http://www.oasis-open.org/">OASIS</ulink>.
 </para>
 
+</section>
 
+<section id="s.changes3">
+<title>Changes in DocBook V1.0CR3</title>
+
+<para>This release updates Simplified DocBook to be a customization of DocBook XML V4.2.
+All of the changes in this release are a consequence of the transition to
+DocBook XML V4.2; no substantive changes have been made to Simplified DocBook
+directly.
+</para>
+
+<para>Each of the changes made between V1.0CR2 and V1.0CR3
+is summarized here.</para>
+
+<section id="s.enhance2">
+<title>Enhancements</title>
+
+<itemizedlist>
+<listitem><para>Added SVG notation.
+</para>
+</listitem>
+<listitem>
+<para>Allow <sgmltag>textobject</sgmltag> as a peer of the other objects in
+<sgmltag>mediaobject</sgmltag>.
+</para>
+</listitem>
+<listitem>
+<para>Added <sgmltag>literallayout</sgmltag> to <sgmltag>epigraph</sgmltag>.
+</para>
+</listitem>
+<listitem>
+<para>Added <sgmltag>textdata</sgmltag> element.
+</para>
+</listitem>
+</itemizedlist>
+
+<note>
+<para>In most cases, where DocBook XML V4.2 allows new elements (for example
+<sgmltag>personname</sgmltag> and <sgmltag>co</sgmltag>),
+Simplified DocBook still uses the former, more restrictive content models.
+</para>
+</note>
+
+</section>
 </section>
 
 <section id="s.changes2">
@@ -301,6 +344,13 @@ of the DocBook web page
 <title>Revision History</title>
 
 <para><revhistory>
+<revision>
+<revnumber>1.0-CR3</revnumber>
+<date>12 Sep 2002</date>
+<authorinitials>ndw</authorinitials>
+<revremark>Candidate Release 3</revremark>
+</revision>
+
 <revision>
 <revnumber>1.0-CR2</revnumber>
 <date>12 Jun 2002</date>
