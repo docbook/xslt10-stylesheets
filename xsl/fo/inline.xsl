@@ -1,6 +1,8 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                xmlns:xlink='http://www.w3.org/1999/xlink'
+                exclude-result-prefixes="xlink"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -12,6 +14,68 @@
      and other information.
 
      ******************************************************************** -->
+
+<xsl:template name="simple.xlink">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:choose>
+    <xsl:when test="$node/@xlink:type='simple' and $node/@xlink:href">
+      <fo:basic-link>
+        <xsl:attribute name="href">
+          <xsl:choose>
+            <!-- if the href starts with # and does not contain an "(" -->
+            <!-- or if the href starts with #xpointer(id(, it's just an ID -->
+            <xsl:when test="starts-with(@xlink:href,'#')
+                            and (not(contains(@xlink:href,'&#40;'))
+                            or starts-with(@xlink:href,'#xpointer&#40;id&#40;'))">
+              <xsl:variable name="idref">
+                <xsl:call-template name="xpointer.idref">
+                  <xsl:with-param name="xpointer" select="@xlink:href"/>
+                </xsl:call-template>
+              </xsl:variable>
+
+              <xsl:variable name="targets" select="key('id',$idref)"/>
+              <xsl:variable name="target" select="$targets[1]"/>
+
+              <xsl:call-template name="check.id.unique">
+                <xsl:with-param name="linkend" select="@linkend"/>
+              </xsl:call-template>
+
+              <xsl:choose>
+                <xsl:when test="count($target) = 0">
+                  <xsl:message>
+                    <xsl:text>XLink to nonexistent id: </xsl:text>
+                    <xsl:value-of select="$idref"/>
+                  </xsl:message>
+                  <xsl:text>???</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:attribute name="internal-destination">
+                    <xsl:value-of select="$target/@id"/>
+                  </xsl:attribute>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:when>
+
+            <!-- otherwise it's a URI -->
+            <xsl:otherwise>
+              <xsl:attribute name="internal-destination">
+                <xsl:value-of select="@xlink.href"/>
+              </xsl:attribute>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+        <xsl:copy-of select="$content"/>
+      </fo:basic-link>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy-of select="$content"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
 
 <xsl:template name="inline.charseq">
   <xsl:param name="content">
@@ -150,7 +214,41 @@
 </xsl:template>
 
 <xsl:template match="function">
-  <xsl:call-template name="inline.monoseq"/>
+  <xsl:choose>
+    <xsl:when test="$function.parens != '0'
+                    and (parameter or function or replaceable)">
+      <xsl:variable name="nodes" select="text()|*"/>
+      <xsl:call-template name="inline.monoseq">
+        <xsl:with-param name="content">
+          <xsl:call-template name="simple.xlink">
+            <xsl:with-param name="content">
+              <xsl:apply-templates select="$nodes[1]"/>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:with-param>
+      </xsl:call-template>
+      <xsl:text>(</xsl:text>
+      <xsl:apply-templates select="$nodes[position()>1]"/>
+      <xsl:text>)</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+     <xsl:call-template name="inline.monoseq"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="function/parameter" priority="2">
+  <xsl:call-template name="inline.italicmonoseq"/>
+  <xsl:if test="following-sibling::*">
+    <xsl:text>, </xsl:text>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="function/replaceable" priority="2">
+  <xsl:call-template name="inline.italicmonoseq"/>
+  <xsl:if test="following-sibling::*">
+    <xsl:text>, </xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="guibutton">
@@ -371,6 +469,47 @@
                      xsl:use-attribute-sets="xref.properties">
         <xsl:call-template name="inline.charseq"/>
       </fo:basic-link>
+    </xsl:when>
+
+    <xsl:when test="$glossterm.auto.link != 0">
+      <xsl:variable name="term">
+        <xsl:choose>
+          <xsl:when test="@baseform">
+            <xsl:value-of select="@baseform"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="."/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+
+      <xsl:variable name="targets"
+                    select="//glossentry[glossterm=$term or glossterm/@baseform=$term]"/>
+
+      <xsl:variable name="target" select="$targets[1]"/>
+
+      <xsl:choose>
+        <xsl:when test="count($targets)=0">
+          <xsl:message>
+            <xsl:text>Error: no glossentry for glossterm: </xsl:text>
+            <xsl:value-of select="."/>
+            <xsl:text>.</xsl:text>
+          </xsl:message>
+          <xsl:call-template name="inline.italicseq"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="termid">
+            <xsl:call-template name="object.id">
+              <xsl:with-param name="object" select="$target"/>
+            </xsl:call-template>
+          </xsl:variable>
+
+          <fo:basic-link internal-destination="{$termid}"
+                         xsl:use-attribute-sets="xref.properties">
+            <xsl:call-template name="inline.charseq"/>
+          </fo:basic-link>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="inline.charseq"/>
