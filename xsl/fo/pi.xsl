@@ -193,7 +193,7 @@
 
   <xsl:variable name="spacer">
     <fo:block-container width="100%" height="{$height}">
-      <fo:block/>
+      <fo:block><fo:leader leader-length="0pt"/></fo:block>
     </fo:block-container>
   </xsl:variable>
 
