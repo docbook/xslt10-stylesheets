@@ -242,6 +242,129 @@ ctrl:other-attribute [ name="db.biblio.class.attribute"
                        other-name="db.biblio.class-other.attributes" ]
 
 db.biblio.class-enum.attribute =
+   [
+      dbx:description [
+         db:para [
+            "The "
+            db:tag [ class="atribute" "class" ]
+            " identifies the kind of bibliographic identifier:"
+         ]
+         db:informaltable [
+            db:tgroup [
+               cols="2"
+               db:thead [
+                  db:row [
+                     db:entry [ "Value" ]
+                     db:entry [ "Identifier" ]
+                  ]
+               ]
+               db:tbody [
+                  db:row [
+                     db:entry [
+                        db:tag [ class="attvalue" "doi" ]
+                     ]
+                     db:entry [
+                        db:para [
+                           "A "
+                           db:link [
+                              xlink:href="http://www.doi.org/"
+                              "Digital Object Identifier"
+                           ]
+                           "."
+                        ]
+                     ]
+                  ]
+                  db:row [
+                     db:entry [
+                        db:tag [ class="attvalue" "isbn" ]
+                     ]
+                     db:entry [
+                        db:para [
+                           "An "
+                           db:link [
+                              xlink:href="http://www.isbn.org/"
+                              "International Standard Book Number"
+                           ]
+                           "."
+                        ]
+                     ]
+                  ]
+                  db:row [
+                     db:entry [
+                        db:tag [ class="attvalue" "isrn" ]
+                     ]
+                     db:entry [
+                        db:para [
+                           "An International Standard Technical Report Number" ~
+                           " as defined by ISO 10444:1994."
+                        ]
+                     ]
+                  ]
+                  db:row [
+                     db:entry [
+                        db:tag [ class="attvalue" "issn" ]
+                     ]
+                     db:entry [
+                        db:para [
+                           "An "
+                           db:link [
+                              xlink:href="http://www.issn.org/"
+                              "International Standard Serial Number"
+                           ]
+                           "."
+                        ]
+                     ]
+                  ]
+                  db:row [
+                     db:entry [
+                        db:tag [ class="attvalue" "libraryofcongress" ]
+                     ]
+                     db:entry [
+                        db:para [
+                           "A Library of Congress subject identifer"
+                        ]
+                     ]
+                  ]
+                  db:row [
+                     db:entry [
+                        db:tag [ class="attvalue" "pubnumber" ]
+                     ]
+                     db:entry [
+                        db:para [
+                           "A publication number, for example from a private" ~
+                           " or corporate numbering scheme."
+                        ]
+                     ]
+                  ]
+                  db:row [
+                     db:entry [
+                        db:tag [ class="attvalue" "uri" ]
+                     ]
+                     db:entry [
+                        db:para [
+                           "A Uniform Resource Identifier."
+                        ]
+                     ]
+                  ]
+                  db:row [
+                     db:entry [
+                        db:tag [ class="attvalue" "other" ]
+                     ]
+                     db:entry [
+                        db:para [
+                           "Some other kind of identifier. If the value "
+                           db:tag [ class="attvalue" "other" ]
+                           " is specified, the "
+                           db:tag [ class="attribute" "otherclass" ]
+                           " attribute must also be provided."
+                        ]
+                     ]
+                  ]
+               ]
+            ]
+         ]
+      ]
+   ]
    attribute class {
       "doi"
     | "isbn"
@@ -253,7 +376,20 @@ db.biblio.class-enum.attribute =
 
 db.biblio.class-other.attributes =
    attribute class { "other" }
- & attribute otherclass { xsd:NMTOKEN }
+ & [
+    dbx:description [
+       db:para [
+          "The value of the "
+          db:tag [ class="attribute" "otherclass" ]
+          " attribute specifies some identifier for the class. It is required" ~
+          " when the value "
+          db:tag [ class="attvalue" "other" ]
+          " is specified for the "
+          db:tag [ class="attribute" "class" ]
+          " attribute; it is forbidden otherwise."
+       ]
+    ]
+ ] attribute otherclass { xsd:NMTOKEN }
 
 db.biblio.class.attribute =
   (db.biblio.class-enum.attribute | db.biblio.class-other.attributes)
