@@ -713,7 +713,9 @@
           </td>
         </tr>
       </table>
-      <hr/>
+      <xsl:if test="$header.rule != 0">
+        <hr/>
+      </xsl:if>
     </div>
   </xsl:if>
 </xsl:template>
@@ -728,7 +730,9 @@
 
   <xsl:if test="$suppress.navigation = '0' and $suppress.footer.navigation = '0'">
     <div class="navfooter">
-      <hr/>
+      <xsl:if test="$footer.rule != 0">
+        <hr/>
+      </xsl:if>
       <table width="100%" summary="Navigation footer">
         <tr>
           <td width="40%" align="left">

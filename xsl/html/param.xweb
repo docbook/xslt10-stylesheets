@@ -148,6 +148,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &suppress.navigation;
 &suppress.header.navigation;
 &suppress.footer.navigation;
+&header.rule;
+&footer.rule;
 </reference>
 
 <reference><title>Meta/*Info</title>
@@ -387,6 +389,7 @@ around all these parameters.</para>
 <src:fragref linkend="ebnf.table.border.frag"/>
 <src:fragref linkend="emphasis.propagates.style.frag"/>
 <src:fragref linkend="firstterm.only.link.frag"/>
+<src:fragref linkend="footer.rule.frag"/>
 <src:fragref linkend="formal.procedures.frag"/>
 <src:fragref linkend="formal.title.placement.frag"/>
 <src:fragref linkend="funcsynopsis.decoration.frag"/>
@@ -402,6 +405,7 @@ around all these parameters.</para>
 <src:fragref linkend="glossary.collection.frag"/>
 <src:fragref linkend="glossterm.auto.link.frag"/>
 <src:fragref linkend="graphic.default.extension.frag"/>
+<src:fragref linkend="header.rule.frag"/>
 <src:fragref linkend="html.base.frag"/>
 <src:fragref linkend="html.cleanup.frag"/>
 <src:fragref linkend="html.ext.frag"/>
@@ -412,45 +416,45 @@ around all these parameters.</para>
 <src:fragref linkend="html.stylesheet.type.frag"/>
 <src:fragref linkend="htmlhelp.alias.file.frag"/>
 <src:fragref linkend="htmlhelp.autolabel.frag"/>
+<src:fragref linkend="htmlhelp.button.back.frag"/>
+<src:fragref linkend="htmlhelp.button.forward.frag"/>
+<src:fragref linkend="htmlhelp.button.hideshow.frag"/>
+<src:fragref linkend="htmlhelp.button.home.frag"/>
+<src:fragref linkend="htmlhelp.button.home.url.frag"/>
+<src:fragref linkend="htmlhelp.button.jump1.frag"/>
+<src:fragref linkend="htmlhelp.button.jump1.title.frag"/>
+<src:fragref linkend="htmlhelp.button.jump1.url.frag"/>
+<src:fragref linkend="htmlhelp.button.jump2.frag"/>
+<src:fragref linkend="htmlhelp.button.jump2.title.frag"/>
+<src:fragref linkend="htmlhelp.button.jump2.url.frag"/>
+<src:fragref linkend="htmlhelp.button.locate.frag"/>
+<src:fragref linkend="htmlhelp.button.next.frag"/>
+<src:fragref linkend="htmlhelp.button.options.frag"/>
+<src:fragref linkend="htmlhelp.button.prev.frag"/>
+<src:fragref linkend="htmlhelp.button.print.frag"/>
+<src:fragref linkend="htmlhelp.button.refresh.frag"/>
+<src:fragref linkend="htmlhelp.button.stop.frag"/>
+<src:fragref linkend="htmlhelp.button.zoom.frag"/>
 <src:fragref linkend="htmlhelp.chm.frag"/>
 <src:fragref linkend="htmlhelp.default.topic.frag"/>
 <src:fragref linkend="htmlhelp.encoding.frag"/>
 <src:fragref linkend="htmlhelp.enumerate.images.frag"/>
 <src:fragref linkend="htmlhelp.force.map.and.alias.frag"/>
+<src:fragref linkend="htmlhelp.hhc.binary.frag"/>
 <src:fragref linkend="htmlhelp.hhc.folders.instead.books.frag"/>
 <src:fragref linkend="htmlhelp.hhc.frag"/>
 <src:fragref linkend="htmlhelp.hhc.section.depth.frag"/>
 <src:fragref linkend="htmlhelp.hhc.show.root.frag"/>
-<src:fragref linkend="htmlhelp.hhc.binary.frag"/>
 <src:fragref linkend="htmlhelp.hhk.frag"/>
 <src:fragref linkend="htmlhelp.hhp.frag"/>
 <src:fragref linkend="htmlhelp.hhp.tail.frag"/>
 <src:fragref linkend="htmlhelp.hhp.window.frag"/>
 <src:fragref linkend="htmlhelp.map.file.frag"/>
-<src:fragref linkend="htmlhelp.title.frag"/>
-<src:fragref linkend="htmlhelp.show.menu.frag"/>
+<src:fragref linkend="htmlhelp.only.frag"/>
 <src:fragref linkend="htmlhelp.show.advanced.search.frag"/>
 <src:fragref linkend="htmlhelp.show.favorities.frag"/>
-<src:fragref linkend="htmlhelp.button.hideshow.frag"/>
-<src:fragref linkend="htmlhelp.button.back.frag"/>
-<src:fragref linkend="htmlhelp.button.forward.frag"/>
-<src:fragref linkend="htmlhelp.button.stop.frag"/>
-<src:fragref linkend="htmlhelp.button.refresh.frag"/>
-<src:fragref linkend="htmlhelp.button.home.frag"/>
-<src:fragref linkend="htmlhelp.button.home.url.frag"/>
-<src:fragref linkend="htmlhelp.button.options.frag"/>
-<src:fragref linkend="htmlhelp.button.print.frag"/>
-<src:fragref linkend="htmlhelp.button.locate.frag"/>
-<src:fragref linkend="htmlhelp.button.jump1.frag"/>
-<src:fragref linkend="htmlhelp.button.jump1.url.frag"/>
-<src:fragref linkend="htmlhelp.button.jump1.title.frag"/>
-<src:fragref linkend="htmlhelp.button.jump2.frag"/>
-<src:fragref linkend="htmlhelp.button.jump2.url.frag"/>
-<src:fragref linkend="htmlhelp.button.jump2.title.frag"/>
-<src:fragref linkend="htmlhelp.button.next.frag"/>
-<src:fragref linkend="htmlhelp.button.prev.frag"/>
-<src:fragref linkend="htmlhelp.button.zoom.frag"/>
-<src:fragref linkend="htmlhelp.only.frag"/>
+<src:fragref linkend="htmlhelp.show.menu.frag"/>
+<src:fragref linkend="htmlhelp.title.frag"/>
 <src:fragref linkend="inherit.keywords.frag"/>
 <src:fragref linkend="label.from.part.frag"/>
 <src:fragref linkend="linenumbering.everyNth.frag"/>
@@ -517,9 +521,9 @@ around all these parameters.</para>
 <src:fragref linkend="show.comments.frag"/>
 <src:fragref linkend="show.revisionflag.frag"/>
 <src:fragref linkend="spacing.paras.frag"/>
-<src:fragref linkend="suppress.navigation.frag"/>
-<src:fragref linkend="suppress.header.navigation.frag"/>
 <src:fragref linkend="suppress.footer.navigation.frag"/>
+<src:fragref linkend="suppress.header.navigation.frag"/>
+<src:fragref linkend="suppress.navigation.frag"/>
 <src:fragref linkend="table.border.color.frag"/>
 <src:fragref linkend="table.border.style.frag"/>
 <src:fragref linkend="table.border.thickness.frag"/>
