@@ -91,7 +91,7 @@
 		"sidebar %local.compound.class;">
 
 <!ENTITY % local.genobj.class "">
-<!ENTITY % genobj.class "">
+<!ENTITY % genobj.class "anchor">
 
 <!ENTITY % local.descobj.class "">
 <!ENTITY % descobj.class

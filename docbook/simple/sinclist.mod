@@ -33,7 +33,6 @@
 <!ENTITY % issn.module "IGNORE">
 <!ENTITY % pagenums.module "IGNORE">
 <!ENTITY % simplelist.content.module "IGNORE">
-<!ENTITY % anchor.module "IGNORE">
 <!ENTITY % procedure.content.module "IGNORE">
 <!ENTITY % publisher.module "IGNORE">
 <!ENTITY % printhistory.module "IGNORE">

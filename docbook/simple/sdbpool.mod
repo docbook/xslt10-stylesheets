@@ -34,7 +34,7 @@
 		|%linespecific.class;
 		|%para.class;		|%informal.class;
 		|%formal.class;		|%compound.class;
-					|%descobj.class;
+		|%genobj.class;		|%descobj.class;
 		%local.component.mix;">
 
 <!ENTITY % local.sidebar.mix "">
@@ -43,6 +43,7 @@
 		|%linespecific.class;
 		|%para.class;		|%informal.class;
 		|%formal.class;
+		|%genobj.class;
 		%local.sidebar.mix;">
 
 <!ENTITY % local.qandaset.mix "">
@@ -51,6 +52,7 @@
 		|%linespecific.class;
 		|%para.class;		|%informal.class;
 		|%formal.class;
+		|%genobj.class;
 		%local.qandaset.mix;">
 
 <!ENTITY % local.revdescription.mix "">
@@ -59,6 +61,7 @@
 		|%linespecific.class;
 		|%para.class;		|%informal.class;
 		|%formal.class;
+		|%genobj.class;
 		%local.revdescription.mix;">
 
 <!ENTITY % local.footnote.mix "">
@@ -137,7 +140,7 @@
 		"                  	 %admon.class;
 		|%linespecific.class;
 		|%para.class;		|%informal.class;
-		 		        |%descobj.class;
+		|%genobj.class;		|%descobj.class;
 		%local.listpreamble.mix;">
 
 <!-- Character-level mixtures ............................................. -->
