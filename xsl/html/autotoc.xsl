@@ -447,15 +447,21 @@
   <xsl:variable name="refentrytitle" select="$refmeta//refentrytitle"/>
   <xsl:variable name="refnamediv" select=".//refnamediv"/>
   <xsl:variable name="refname" select="$refnamediv//refname"/>
+  <xsl:variable name="refdesc" select="$refnamediv//refdescriptor"/>
   <xsl:variable name="title">
     <xsl:choose>
       <xsl:when test="$refentrytitle">
-        <xsl:apply-templates select="$refentrytitle[1]" mode="titleabbrev.markup"/>
+        <xsl:apply-templates select="$refentrytitle[1]"
+			     mode="titleabbrev.markup"/>
+      </xsl:when>
+      <xsl:when test="$refdesc">
+        <xsl:apply-templates select="$refdesc"
+			     mode="titleabbrev.markup"/>
       </xsl:when>
       <xsl:when test="$refname">
-        <xsl:apply-templates select="$refname[1]" mode="titleabbrev.markup"/>
+        <xsl:apply-templates select="$refname[1]"
+			     mode="titleabbrev.markup"/>
       </xsl:when>
-      <xsl:otherwise></xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
 
