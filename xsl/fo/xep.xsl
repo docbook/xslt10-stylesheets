@@ -15,7 +15,12 @@
 
 <!-- ********************************************************************
      Document information
-     ******************************************************************** -->
+     In PDF bookmarks can't be used characters with code>255. This version of file
+     translates characters with code>255 back to ASCII.
+
+        Pavel Zampach (zampach@volny.cz)
+
+     ********************************************************************-->
 
 <xsl:template name="xep-document-information">
   <rx:meta-info>
@@ -57,7 +62,7 @@
   </xsl:variable>
   <rx:bookmark internal-destination="{$id}">
     <rx:bookmark-label>
-      <xsl:value-of select="$bookmark-label"/>
+      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
     </rx:bookmark-label>
 
   <xsl:if test="book">
@@ -78,7 +83,7 @@
 
   <rx:bookmark internal-destination="{$id}">
     <rx:bookmark-label>
-      <xsl:value-of select="$bookmark-label"/>
+      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
     </rx:bookmark-label>
 
     <xsl:if test="part|preface|chapter|appendix">
@@ -100,7 +105,7 @@
 
   <rx:bookmark internal-destination="{$id}">
     <rx:bookmark-label>
-      <xsl:value-of select="$bookmark-label"/>
+      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
     </rx:bookmark-label>
 
   <xsl:if test="chapter|appendix|preface|reference">
@@ -122,7 +127,7 @@
 
   <rx:bookmark internal-destination="{$id}">
     <rx:bookmark-label>
-      <xsl:value-of select="$bookmark-label"/>
+      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
     </rx:bookmark-label>
 
   <xsl:if test="section|sect1">
@@ -144,7 +149,7 @@
 
   <rx:bookmark internal-destination="{$id}">
     <rx:bookmark-label>
-      <xsl:value-of select="$bookmark-label"/>
+      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
     </rx:bookmark-label>
 
   <xsl:if test="section|sect2|sect3|sect4|sect5">
@@ -166,10 +171,34 @@
 
   <rx:bookmark internal-destination="{$id}">
     <rx:bookmark-label>
-      <xsl:value-of select="$bookmark-label"/>
+      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
     </rx:bookmark-label>
   </rx:bookmark>
 </xsl:template>
+<!-- Added missing template for "article" -->
+<xsl:template match="article"
+              mode="xep.outline">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+  <xsl:variable name="bookmark-label">
+    <xsl:apply-templates select="." mode="label.markup"/>
+    <xsl:apply-templates select="." mode="title.markup"/>
+  </xsl:variable>
+
+  <rx:bookmark internal-destination="{$id}">
+    <rx:bookmark-label>
+      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+    </rx:bookmark-label>
+
+  <xsl:if test="section|sect1|appendix|bibliography|glossary|index">
+      <xsl:apply-templates select="section|sect1|appendix|bibliography|glossary|index"
+                           mode="xep.outline"/>
+  </xsl:if>
+  </rx:bookmark>
+</xsl:template>
+
+
 
 <xsl:template match="title" mode="xep.outline">
   <xsl:apply-templates/>
