@@ -211,6 +211,12 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &use.local.olink.style;
 &current.docid;
 &olink.doctitle;
+&olink.debug;
+&olink.properties;
+&olink.lang.fallback.sequence;
+&insert.olink.page.number;
+&insert.olink.pdf.frag;
+&prefer.internal.olink;
 &link.mailto.url;
 &ulink.target;
 &olink.fragid;
@@ -581,6 +587,12 @@ around all these parameters.</para>
 <src:fragref linkend="nominal.image.width.frag"/>
 <src:fragref linkend="nominal.table.width.frag"/>
 <src:fragref linkend="olink.base.uri.frag"/>
+<src:fragref linkend="olink.debug.frag"/>
+<src:fragref linkend="olink.properties.frag"/>
+<src:fragref linkend="insert.olink.page.number.frag"/>
+<src:fragref linkend="insert.olink.pdf.frag.frag"/>
+<src:fragref linkend="prefer.internal.olink.frag"/>
+<src:fragref linkend="olink.lang.fallback.sequence.frag"/>
 <src:fragref linkend="olink.doctitle.frag"/>
 <src:fragref linkend="olink.fragid.frag"/>
 <src:fragref linkend="olink.outline.ext.frag"/>
