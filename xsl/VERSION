@@ -12,7 +12,7 @@
 <fm:project>
   <fm:Project>DocBook</fm:Project>
   <fm:Branch>XSL Stylesheets</fm:Branch>
-  <fm:Version>1.65.0</fm:Version>
+  <fm:Version>1.65.1</fm:Version>
 <!--
   <fm:License>MIT/X Consortium License</fm:License>
 -->
@@ -20,9 +20,9 @@
   <!-- initial freshmeat announcement -->
   <!-- documentation -->
   <!-- code cleanup -->
-  Minor feature enhancements
+  <!-- Minor feature enhancements -->
   <!-- major feature enhancements -->
-  <!-- minor bugfixes -->
+  Minor bugfixes
   <!-- major bugfixes -->
   <!-- minor security fixes -->
   <!-- major security fixes -->
@@ -33,9 +33,7 @@
   <fm:Changelog-URL>http://sourceforge.net/project/shownotes.php?release_id={SFRELID}</fm:Changelog-URL>
   <fm:CVS-URL>http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/docbook/xsl/</fm:CVS-URL>
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook-apps/</fm:Mailing-List-URL>
-  <fm:Changes>Added an alternate index-generation mechanism with better
-internationalization support. Added a hack to support styling DocBook NG
-documents. Fixed some important bugs.
+  <fm:Changes>Small bug fixes. Fixed CA localization.
 </fm:Changes>
 </fm:project>
 
