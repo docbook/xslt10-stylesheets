@@ -1,10 +1,10 @@
 <!DOCTYPE article [
 <!ENTITY name "wd-docbook-docbook">
-<!ENTITY version "4.4CR4">
-<!ENTITY standard "Working Draft">
+<!ENTITY version "4.4">
+<!ENTITY standard "Committee Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
-<!ENTITY root "http://docbook.org/">
+<!ENTITY root "http://www.oasis-open.org/docbook/">
 ]>
 <article status="&standard;">
 <articleinfo>
@@ -34,9 +34,14 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>22 Dec 2004</pubdate>
+<pubdate>27 Jan 2005</pubdate>
 
-<copyright><year>2001</year><year>2002</year><year>2003</year><year>2004</year>
+<copyright>
+<year>2001</year>
+<year>2002</year>
+<year>2003</year>
+<year>2004</year>
+<year>2005</year>
 <holder>
 The Organization for the Advancement of Structured Information
 Standards [OASIS]. All Rights Reserved.
@@ -48,23 +53,23 @@ Standards [OASIS]. All Rights Reserved.
 particularly well suited to books and papers about computer hardware
 and software (though it is by no means limited to these applications).
 </para>
-<para>The Version 4.4CR4 release is a maintenance release. It introduces
+<para>The Version 4.4 release is a maintenance release. It introduces
 no backwards-incompatible changes.</para>
 </abstract>
 
 <legalnotice role="status"><title>Status</title>
-<!--
 <para>This &standard; was
-<ulink url="http://lists.oasis-open.org/archives/docbook-tc/200403/msg00010.html">approved</ulink>
+<ulink url="http://lists.oasis-open.org/archives/docbook/200501/msg00118.html">approved</ulink>
 for publication by the
 OASIS DocBook Technical Committee. It represents the
 consensus of the committee.
 </para>
--->
 
+<!--
 <para>This &standard; is an editor's draft. It does not necessarily
 represent the consensus of the committee.
 </para>
+-->
 
 <para>Please send comments on this specification to the
 <email>docbook@lists.oasis-open.org</email> list. To subscribe, please
@@ -94,9 +99,9 @@ both
 <ulink url="http://xml.coverpages.org/general.html#overview">SGML</ulink>.
 It is unofficially available in other forms as well.</para>
 
-<para>The Version 4.4CR4 release is a maintainance release. It introduces
+<para>The Version 4.4 release is a maintainance release. It introduces
 no backwards-incompatible changes. All valid DocBook 4.3 documents are
-also valid DocBook 4.4CR4 documents.</para>
+also valid DocBook 4.4 documents.</para>
 
 <para>The genesis of this release is a bug in the catalog files for
 DocBook V4.3. The Committee decided to produce a 4.4 release, incorporating
@@ -130,7 +135,7 @@ document.</para>
 </section>
 
 <section id="docbook">
-<title>The DocBook Document Type V4.4CR4</title>
+<title>The DocBook Document Type V4.4</title>
 
 <para>The DocBook document type is distributed for
 <ulink url="&root;xml/">XML</ulink> and
@@ -142,6 +147,15 @@ DocBook is also available from
 the mirror on
 <ulink url="http://docbook.org/"/>.
 </para>
+
+<section id="s.csfinal">
+<title>Changes in DocBook V4.4</title>
+
+<para>There are no backwards-incompatible changes in this release. No
+technical changes have been made between the last Working Draft,
+DocBook V4.4CR4 and this Committee Draft.</para>
+
+</section>
 
 <section id="s.cscr4">
 <title>Changes in DocBook V4.4CR4</title>
@@ -686,8 +700,9 @@ the formulation of this &standard;:</para>
 <title>Notices</title>
 
 <para>Copyright &#169; The Organization for the Advancement of
-Structured Information Standards [OASIS] 2001, 2002, 2003, 2004. All Rights
-Reserved.</para>
+Structured Information Standards [OASIS]
+2001, 2002, 2003, 2004, 2005.
+All Rights Reserved.</para>
 
 <para>OASIS takes no position regarding the validity
 or scope of any intellectual property or other rights
@@ -762,6 +777,10 @@ of the DocBook web page
 
 <para>
 <revhistory>
+<revision role="&root;specs/wd-docbook-docbook-4.4CR4.html">
+  <revnumber>Committee Draft</revnumber>
+  <date>27 Jan 2005</date>
+</revision>
 <revision role="&root;specs/wd-docbook-docbook-4.4CR4.html">
   <revnumber>Working Draft “Candidate Release 4”</revnumber>
   <date>22 Dec 2004</date>
