@@ -22,6 +22,13 @@
 
 <xsl:template name="make.tocentry">
   <xsl:variable name="srcFile" select="@page"/>
+
+  <xsl:if test="@page and @href">
+    <xsl:message terminate="yes">
+      <xsl:text>Fail: tocentry has both page and href attributes.</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
   <xsl:variable name="filename">
     <xsl:choose>
       <xsl:when test="@filename">
@@ -54,7 +61,7 @@
 
   <xsl:choose>
     <xsl:when test="function-available('sweb:exists')">
-      <xsl:if test="not(sweb:exists($srcFile))">
+      <xsl:if test="not(@href) and not(sweb:exists($srcFile))">
         <xsl:message terminate="yes">
           <xsl:value-of select="$srcFile"/>
           <xsl:text> does not exist.</xsl:text>
@@ -62,7 +69,7 @@
       </xsl:if>
     </xsl:when>
     <xsl:when test="function-available('xweb:exists')">
-      <xsl:if test="not(xweb:exists($srcFile))">
+      <xsl:if test="not(@href) and not(xweb:exists($srcFile))">
         <xsl:message terminate="yes">
           <xsl:value-of select="$srcFile"/>
           <xsl:text> does not exist.</xsl:text>
@@ -77,13 +84,21 @@
   </xsl:choose>
 
   <xsl:variable name="output-file">
-    <xsl:value-of select="$output-root"/>
-    <xsl:text>/</xsl:text>
-    <xsl:value-of select="$targetFile"/>
+    <xsl:choose>
+      <xsl:when test="@href">
+        <xsl:value-of select="@href"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$output-root"/>
+        <xsl:text>/</xsl:text>
+        <xsl:value-of select="$targetFile"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
 
   <xsl:variable name="needsUpdate">
     <xsl:choose>
+      <xsl:when test="@href">0</xsl:when>
       <xsl:when test="function-available('sweb:needsUpdate')">
         <xsl:choose>
           <xsl:when test="$rebuild-all != 0
