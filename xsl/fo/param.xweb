@@ -232,6 +232,7 @@ generate.section.toc.level;
 &shade.verbatim;
 &shade.verbatim.style;
 &hyphenate.verbatim;
+&hyphenate.verbatim.characters;
 &use.svg;
 &use.role.as.xrefstyle;
 &menuchoice.separator;
@@ -600,6 +601,7 @@ around all these parameters.</para>
 <src:fragref linkend="headers.on.blank.pages.frag"/>
 <src:fragref linkend="hyphenate.frag"/>
 <src:fragref linkend="hyphenate.verbatim.frag"/>
+<src:fragref linkend="hyphenate.verbatim.characters.frag"/>
 <src:fragref linkend="ignore.image.scaling.frag"/>
 <src:fragref linkend="index.on.role.frag"/>
 <src:fragref linkend="index.on.type.frag"/>

@@ -399,6 +399,11 @@
       <xsl:text>&#160;</xsl:text>
       <xsl:text>&#x00AD;</xsl:text>
     </xsl:when>
+    <xsl:when test="$hyphenate.verbatim.characters != '' and
+                    translate($hyphenate.verbatim.characters, $head, '') = ''">
+      <xsl:value-of select="$head"/>
+      <xsl:text>&#x00AD;</xsl:text>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="$head"/>
     </xsl:otherwise>
