@@ -29,7 +29,6 @@
         </xsl:attribute>
       </xsl:if>
 
-      <xsl:call-template name="anchor"/>
       <xsl:call-template name="index.titlepage"/>
       <xsl:apply-templates/>
 
@@ -37,7 +36,9 @@
         <xsl:call-template name="generate-index"/>
       </xsl:if>
 
-      <xsl:call-template name="process.footnotes"/>
+      <xsl:if test="not(parent::article)">
+        <xsl:call-template name="process.footnotes"/>
+      </xsl:if>
     </div>
   </xsl:if>
 </xsl:template>
