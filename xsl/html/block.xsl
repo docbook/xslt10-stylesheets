@@ -171,7 +171,7 @@
 
 <xsl:template match="epigraph">
   <div class="{name(.)}">
-    <xsl:apply-templates select="para"/>
+      <xsl:apply-templates select="para|simpara|formalpara|literallayout"/>
     <span>--<xsl:apply-templates select="attribution"/></span>
   </div>
 </xsl:template>
