@@ -31,7 +31,7 @@ db.baseform.attribute = attribute baseform { text }?
 
 [
    db:refname [ "glosslist" ]
-   db:refpurpose [ "A wrapper for a set of GlossEntrys" ]
+   db:refpurpose [ "A wrapper for a list of glossary entries" ]
 ]
 div {
 
