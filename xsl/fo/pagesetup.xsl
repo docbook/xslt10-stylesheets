@@ -365,7 +365,7 @@
                            page-height="{$page.height}"
                            margin-top="{$page.margin.top}"
                            margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.inner} - {$title.margin.left}"
+                           margin-left="{$page.margin.inner}"
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
@@ -385,7 +385,7 @@
                            page-height="{$page.height}"
                            margin-top="{$page.margin.top}"
                            margin-bottom="{$page.margin.bottom}"
-                           margin-left="{$page.margin.inner} - {$title.margin.left}"
+                           margin-left="{$page.margin.inner}"
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
@@ -406,7 +406,7 @@
                            margin-top="{$page.margin.top}"
                            margin-bottom="{$page.margin.bottom}"
                            margin-right="{$page.margin.inner}"
-                           margin-left="{$page.margin.outer} - {$title.margin.left}">
+			   margin-left="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.index}"
@@ -1362,6 +1362,12 @@
   <!-- default is a single table style for all headers -->
   <!-- Customize it for different page classes or sequence location -->
 
+  <xsl:choose>
+      <xsl:when test="$pageclass = 'index'">
+	  <xsl:attribute name="margin-left">0</xsl:attribute>
+      </xsl:when>
+  </xsl:choose>
+
   <xsl:variable name="candidate">
     <fo:table table-layout="fixed" width="100%">
       <xsl:call-template name="head.sep.rule">
@@ -1588,6 +1594,12 @@
   <xsl:param name="pageclass" select="''"/>
   <xsl:param name="sequence" select="''"/>
   <xsl:param name="gentext-key" select="''"/>
+
+  <xsl:choose>
+      <xsl:when test="$pageclass = 'index'">
+	  <xsl:attribute name="margin-left">0</xsl:attribute>
+      </xsl:when>
+  </xsl:choose>
 
   <!-- default is a single table style for all footers -->
   <!-- Customize it for different page classes or sequence location -->
