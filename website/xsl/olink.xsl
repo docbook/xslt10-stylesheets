@@ -7,7 +7,7 @@
 
 <xsl:template match="olink" name="olink">
   <xsl:choose>
-    <xsl:when test="@targetdoc != '' or @ targetptr != ''">
+    <xsl:when test="@targetdoc != '' or @targetptr != ''">
       <xsl:call-template name="olink-xsl"/>
     </xsl:when>
     <xsl:otherwise>
