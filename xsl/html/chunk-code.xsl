@@ -719,6 +719,71 @@
   </xsl:if>
 </xsl:template>
 
+<xsl:template name="make.lot.chunk">
+  <xsl:param name="type" select="''"/>
+  <xsl:param name="lot"/>
+
+  <xsl:if test="string($lot) != ''">
+    <xsl:variable name="filename">
+      <xsl:call-template name="make-relative-filename">
+        <xsl:with-param name="base.dir" select="$base.dir"/>
+        <xsl:with-param name="base.name">
+          <xsl:call-template name="dbhtml-dir"/>
+          <xsl:value-of select="$type"/>
+          <xsl:text>-toc</xsl:text>
+          <xsl:value-of select="$html.ext"/>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:variable name="href">
+      <xsl:call-template name="make-relative-filename">
+        <xsl:with-param name="base.name">
+          <xsl:call-template name="dbhtml-dir"/>
+          <xsl:value-of select="$type"/>
+          <xsl:text>-toc</xsl:text>
+          <xsl:value-of select="$html.ext"/>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:call-template name="write.chunk">
+      <xsl:with-param name="filename" select="$filename"/>
+      <xsl:with-param name="content">
+        <xsl:call-template name="chunk-element-content">
+          <xsl:with-param name="prev" select="/foo"/>
+          <xsl:with-param name="next" select="/foo"/>
+          <xsl:with-param name="nav.context" select="'toc'"/>
+          <xsl:with-param name="content">
+            <xsl:copy-of select="$lot"/>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:with-param>
+      <xsl:with-param name="quiet" select="$chunk.quietly"/>
+    </xsl:call-template>
+    <!-- And output a link to this file -->
+    <div>
+      <xsl:attribute name="class">
+        <xsl:text>ListofTitles</xsl:text>
+      </xsl:attribute>
+      <a href="{$href}">
+        <xsl:call-template name="gentext">
+          <xsl:with-param name="key">
+            <xsl:choose>
+              <xsl:when test="$type='table'">ListofTables</xsl:when>
+              <xsl:when test="$type='figure'">ListofFigures</xsl:when>
+              <xsl:when test="$type='equation'">ListofEquations</xsl:when>
+              <xsl:when test="$type='example'">ListofExamples</xsl:when>
+              <xsl:when test="$type='procedure'">ListofProcedures</xsl:when>
+              <xsl:otherwise>ListofUnknown</xsl:otherwise>
+            </xsl:choose>
+          </xsl:with-param>
+        </xsl:call-template>
+      </a>
+    </div>
+  </xsl:if>
+</xsl:template>
+
 <!-- ==================================================================== -->
 
 <xsl:template name="in.other.chunk">
