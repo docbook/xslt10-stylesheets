@@ -168,6 +168,9 @@
 </xsl:template>
 
 <xsl:template match="informaltable">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
   <xsl:variable name="prop-columns"
     select=".//colspec[contains(@colwidth, '*')]"/>
 
@@ -182,7 +185,8 @@
       <xsl:attribute name="reference-orientation">90</xsl:attribute>
     </xsl:if>
 
-    <fo:table>
+    <fo:table id="{$id}"
+              xsl:use-attribute-sets="informal.object.properties">
       <xsl:call-template name="table.frame"/>
       <xsl:if test="count($prop-columns) != 0">
         <xsl:attribute name="table-layout">fixed</xsl:attribute>
