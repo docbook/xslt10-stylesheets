@@ -1,5 +1,5 @@
 <?xml version='1.0'?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
 
 <!-- ...................................................................... -->
 <!-- XML Catalog data for DocBook XML V4.4b1 ................................ -->
@@ -24,6 +24,12 @@
 
 <public publicId="-//OASIS//DTD DocBook XML V4.4b1//EN"
         uri="docbookx.dtd"/>
+
+<system systemId="http://www.oasis-open.org/docbook/xml/4.4b1/docbookx.dtd"
+	uri="docbookx.dtd"/>
+
+<system systemId="http://docbook.org/xml/4.4b1/docbookx.dtd"
+	uri="docbookx.dtd"/>
 
 <!-- ...................................................................... -->
 <!-- DocBook modules ...................................................... -->
@@ -56,61 +62,61 @@
 <!-- ISO entity sets ...................................................... -->
 
 <public publicId="ISO 8879:1986//ENTITIES Diacritical Marks//EN//XML"
-        uri="ent/iso-dia.ent"/>
+        uri="ent/isodia.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES Numeric and Special Graphic//EN//XML"
-        uri="ent/iso-num.ent"/>
+        uri="ent/isonum.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES Publishing//EN//XML"
-        uri="ent/iso-pub.ent"/>
+        uri="ent/isopub.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES General Technical//EN//XML"
-        uri="ent/iso-tech.ent"/>
+        uri="ent/isotech.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES Added Latin 1//EN//XML"
-        uri="ent/iso-lat1.ent"/>
+        uri="ent/isolat1.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES Added Latin 2//EN//XML"
-        uri="ent/iso-lat2.ent"/>
+        uri="ent/isolat2.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES Greek Letters//EN//XML"
-        uri="ent/iso-grk1.ent"/>
+        uri="ent/isogrk1.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES Monotoniko Greek//EN//XML"
-        uri="ent/iso-grk2.ent"/>
+        uri="ent/isogrk2.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES Greek Symbols//EN//XML"
-        uri="ent/iso-grk3.ent"/>
+        uri="ent/isogrk3.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES Alternative Greek Symbols//EN//XML"
-        uri="ent/iso-grk4.ent"/>
+        uri="ent/isogrk4.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES Added Math Symbols: Arrow Relations//EN//XML"
-        uri="ent/iso-amsa.ent"/>
+        uri="ent/isoamsa.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES Added Math Symbols: Binary Operators//EN//XML"
-        uri="ent/iso-amsb.ent"/>
+        uri="ent/isoamsb.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES Added Math Symbols: Delimiters//EN//XML"
-        uri="ent/iso-amsc.ent"/>
+        uri="ent/isoamsc.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES Added Math Symbols: Negated Relations//EN//XML"
-        uri="ent/iso-amsn.ent"/>
+        uri="ent/isoamsn.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES Added Math Symbols: Ordinary//EN//XML"
-        uri="ent/iso-amso.ent"/>
+        uri="ent/isoamso.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES Added Math Symbols: Relations//EN//XML"
-        uri="ent/iso-amsr.ent"/>
+        uri="ent/isoamsr.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES Box and Line Drawing//EN//XML"
-        uri="ent/iso-box.ent"/>
+        uri="ent/isobox.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES Russian Cyrillic//EN//XML"
-        uri="ent/iso-cyr1.ent"/>
+        uri="ent/isocyr1.ent"/>
 
 <public publicId="ISO 8879:1986//ENTITIES Non-Russian Cyrillic//EN//XML"
-        uri="ent/iso-cyr2.ent"/>
+        uri="ent/isocyr2.ent"/>
 
 <!-- End of catalog data for DocBook XML V4.4b1 ............................. -->
 <!-- ...................................................................... -->
