@@ -743,13 +743,12 @@
 </xsl:template>
 
 <xsl:template match="olink" name="olink">
+  <xsl:param name="target.database" 
+    select="document($target.database.document)"/>
+
   <xsl:call-template name="anchor"/>
 
   <xsl:variable name="localinfo" select="@localinfo"/>
-
-  <!-- Open the olink targets data base -->
-  <xsl:param name="target.database" 
-    select="document($target.database.document)"/>
 
   <xsl:variable name="href">
     <xsl:choose>
