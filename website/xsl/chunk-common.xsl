@@ -7,7 +7,6 @@
 
 <xsl:output method="html"/>
 
-<xsl:param name="autolayout-file" select="'autolayout.xml'"/>
 <xsl:param name="output-root" select="'.'"/>
 <xsl:param name="dry-run" select="'0'"/>
 <xsl:param name="rebuild-all" select="'0'"/>
