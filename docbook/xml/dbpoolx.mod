@@ -173,7 +173,7 @@
 		|database|email|envar|errorcode|errorname|errortype|errortext|filename
 		|function|guibutton|guiicon|guilabel|guimenu|guimenuitem
 		|guisubmenu|hardware|interface|keycap
-		|keycode|keycombo|keysym|literal|constant|markup|medialabel
+		|keycode|keycombo|keysym|literal|code|constant|markup|medialabel
 		|menuchoice|mousebutton|option|optional|parameter
 		|prompt|property|replaceable|returnvalue|sgmltag|structfield
 		|structname|symbol|systemitem|uri|token|type|userinput|varname
@@ -6820,6 +6820,28 @@ OtherCredit. -->
 >
 <!--end of literal.attlist-->]]>
 <!--end of literal.module-->]]>
+
+<!ENTITY % code.module "INCLUDE">
+<![%code.module;[
+<!ENTITY % local.code.attrib "">
+<!ENTITY % code.role.attrib "%role.attrib;">
+
+<!ENTITY % code.element "INCLUDE">
+<![%code.element;[
+<!ELEMENT code %ho; (%cptr.char.mix;)*>
+<!--end of code.element-->]]>
+
+<!ENTITY % code.attlist "INCLUDE">
+<![%code.attlist;[
+<!ATTLIST code
+		language	CDATA	#IMPLIED
+		%moreinfo.attrib;
+		%common.attrib;
+		%code.role.attrib;
+		%local.code.attrib;
+>
+<!--end of code.attlist-->]]>
+<!--end of code.module-->]]>
 
 <!ENTITY % constant.module "INCLUDE">
 <![ %constant.module; [
