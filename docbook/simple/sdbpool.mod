@@ -138,7 +138,6 @@
 		|%linespecific.class;
 		|%para.class;		|%informal.class;
 		 		        |%descobj.class;
-		                        |beginpage
 		%local.listpreamble.mix;">
 
 <!-- Character-level mixtures ............................................. -->
