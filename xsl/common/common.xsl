@@ -1260,10 +1260,10 @@ year range is <quote>1991-1992</quote> but discretely it's
     <xsl:when test="$print.ranges = 0">
       <xsl:choose>
         <xsl:when test="count($years) = 1">
-          <xsl:value-of select="$years[1]"/>
+          <xsl:apply-templates select="$years[1]" mode="titlepage.mode"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="$years[1]"/>
+          <xsl:apply-templates select="$years[1]" mode="titlepage.mode"/>
           <xsl:text>, </xsl:text>
           <xsl:call-template name="copyright.years">
             <xsl:with-param name="years"
