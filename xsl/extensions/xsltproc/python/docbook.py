@@ -32,17 +32,14 @@ def adjustColumnWidths(ctx, nodeset):
         pass
 
     # Get the nominal table width
-    varString = tctxt.variableLookup("nominal.table.width", None);
+    varString = lookupVariable(tctxt, "nominal.table.width", None);
     if varString == None:
         nominalWidth = 6 * pixelsPerInch;
     else:
         nominalWidth = convertLength(varString);
 
-    varString = tctxt.variableLookup("table.width", None);
-    if varString == None:
-        tableWidth = "100%"
-    else:
-        tableWidth = varString
+    # Get the requested table width
+    tableWidth = lookupVariable(tctxt, "table.width", "100%")
 
     foStylesheet = (tctxt.variableLookup("stylesheet.result.type", None) == "fo");
 
@@ -53,9 +50,23 @@ def adjustColumnWidths(ctx, nodeset):
     absParts = []
 
     colgroup = libxml2.xmlNode(_obj = nodeset[0])
-    col = colgroup.children;
+    # If this is an foStylesheet, we've been passed a list of fo:table-columns.
+    # Otherwise we've been passed a colgroup that contains a list of cols.
+    if foStylesheet:
+        colChildren = colgroup
+    else:
+        colChildren = colgroup.children
+
+    col = colChildren
     while col != None:
-        width = col.prop("width")
+        if foStylesheet:
+            width = col.prop("column-width")
+        else:
+            width = col.prop("width")
+
+        if width == None:
+            width = "1*"
+
         relPart = 0.0;
         absPart = 0.0;
         starPos = string.find(width, "*");
@@ -127,18 +138,23 @@ def adjustColumnWidths(ctx, nodeset):
         else:
             for count in range(len(relParts)):
                 rel = relParts[count] / absTotal * 100
-                widths.append("%d%%" % rel)
+                widths.append(rel)
+            widths = correctRoundingError(widths)
 
     # Danger, Will Robinson! In-place modification of the result tree!
     # Side-effect free? We don' need no steenkin' side-effect free!
     count = 0
-    col = colgroup.children
+    col = colChildren
     while col != None:
-        col.setProp("width", widths[count])
+        if foStylesheet:
+            col.setProp("column-width", widths[count])
+        else:
+            col.setProp("width", widths[count])
+
         count = count+1
         col = col.next
 
-    return [colgroup]
+    return nodeset
 
 def convertLength(length):
     # Given "3.4in" return the width in pixels
@@ -163,6 +179,7 @@ def correctRoundingError(floatWidths):
     # The widths are currently floating point numbers, we have to truncate
     # them back to integers and then distribute the error so that they sum
     # to exactly 100%.
+
     totalWidth = 0
     widths = [];
     for width in floatWidths:
@@ -184,6 +201,21 @@ def correctRoundingError(floatWidths):
             widths[count] = "%d%%" % width
 
     return widths
+
+def lookupVariable(tctxt, varName, default):
+    varString = tctxt.variableLookup(varName, None);
+    if varString == None:
+        return default
+
+    # If it's a list, get the first element
+    if type(varString) == type([]):
+        varString = varString[0]
+
+    # If it's not a string, it must be a node, get its content
+    if type(varString) != type(""):
+        varString = varString.content
+
+    return varString
 
 # ======================================================================
 # Random notes...
