@@ -474,7 +474,6 @@ around all these parameters.</para>
 <src:fragref linkend="column.count.lot.frag"/>
 <src:fragref linkend="column.count.titlepage.frag"/>
 <src:fragref linkend="compact.list.item.spacing.frag"/>
-<src:fragref linkend="component.title.properties.frag"/>
 <src:fragref linkend="current.docid.frag"/>
 <src:fragref linkend="default.float.class.frag"/>
 <src:fragref linkend="default.image.width.frag"/>
