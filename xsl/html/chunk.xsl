@@ -8,6 +8,7 @@
 <xsl:include href="manifest.xsl"/>
 
 <xsl:param name="onechunk" select="0"/>
+<xsl:param name="refentry.separator" select="0"/>
 
 <!-- ==================================================================== -->
 
