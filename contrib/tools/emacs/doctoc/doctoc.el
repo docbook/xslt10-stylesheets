@@ -1,7 +1,7 @@
 ;; doctoc.el --- Handle table of contents for docbook
 
 ;; Copyright (C) 2001, 2002 Jens Emmerich <Jens.Emmerich@itp.uni-leipzig.de>
-;; Version: 1.3
+;; Version: 2.0
 ;; Keywords: wp, sgml, xml, docbook
 
 ;; Maintainer: Jens Emmerich
@@ -26,17 +26,20 @@
 
 ;;; Commentary:
 
-;; This file provides support for am interactive table of contents for
-;; docbook(x) documents using an external parser (toc.pl). In fact it
-;; is quite general, it only (re-)starts a process, pipes the current
-;; buffer through it and can jump to the line given at the end of the
-;; line. Unlike RefTeX, it only handles the current buffer.
+;; `doctoc' provides support for an interactive table of contents for
+;; DocBook(x) documents using an external parser (toc.pl) or the psgml
+;; parse tree. Currently, only the psgml-version is complete.
+
+;; For the external parser it is quite general, it only (re-)starts a
+;; process, pipes the current buffer through it and can jump to the
+;; line given at the end of output lines. Unlike RefTeX, it only
+;; handles the current buffer in this case.
 
 ;; Install into load-path and add something like
 ;;
 ;; (defun my-sgml-setup ()
 ;;   "Customize psgml for xml."
-;;   (load "doctoc") 
+;;   (require 'doctoc-psgml) 
 ;;   ;; ... more customizations
 ;;   (define-key sgml-mode-map [(control c)(=)] 'doctoc-toc-current-line))
 ;;
@@ -58,21 +61,48 @@
 
 ;;; Code:
 
+;; dependencies on psgml are entity-handling for parsing with an
+;; external parser and additionally the parse-tree for the internal
+;; (psgml-based) parser
+
+(require 'psgml)
+
+;;; Variables for customizations
 
 (defvar doctoc-toc-buffer "*TOC %s*"
   "Buffer holding the toc for a docbook document")
 
-(defvar doctoc-toc-command "toc.pl 2> /dev/null"
-  "Command producing the toc to stdout from stdin docbook document")
+(defvar doctoc-generate-function 'doctoc-psgml-generate-toc
+  "Function to run to generate TOC.
+It is called in the document buffer
+with the TOC buffer as argument.")
 
-(defvar doctoc-line-number-regexp 
-  "[^\n\r]* \\([0-9]+\\)[\r\n]"
-"Regexp for finding the next line number in toc.
-Should also match in outline-minor-mode.")
+;; Faces used for Highlighting
+
+(make-face 'doctoc-level1-face)
+(set-face-foreground 'doctoc-level1-face "red")
+(make-face-bold 'doctoc-level1-face)
+(make-face 'doctoc-level2-face)
+(set-face-foreground 'doctoc-level2-face "blue")
+(make-face-bold 'doctoc-level2-face)
+(make-face 'doctoc-level3-face)
+(set-face-foreground 'doctoc-level3-face "blue")
+
+(defvar doctoc-level-faces
+  (list
+   0 'doctoc-level1-face
+   1 'doctoc-level1-face
+   2 'doctoc-level2-face
+   3 'doctoc-level3-face)
+  "A property list of level - face relations.")
+
+;;; TOC generation / document buffer commands
 
 (defun doctoc-toc ()
   "Create or select a table of contents for current (docbook-) buffer"
   (interactive)
+  (when (and (boundp 'sgml-parent-document) sgml-parent-document)
+    (find-file sgml-parent-document))
   (let
       ((buffer (get-buffer (format doctoc-toc-buffer (buffer-name)))))
     (if buffer
@@ -99,16 +129,18 @@ Should also match in outline-minor-mode.")
     (erase-buffer)
     (save-excursion
       (set-buffer doc-buffer)
-      (shell-command-on-region (point-min) (point-max)
-			       doctoc-toc-command toc-buffer))
-    (doctoc-make-extents)
+      (funcall doctoc-generate-function toc-buffer))
+    (goto-char (point-min))
+    (insert (format "Table of Contents for %s\n\n" (buffer-name doc-buffer)))
+    (doctoc-set-text-properties (point-min) (1- (point))
+				(plist-get doctoc-level-faces 0) 0)
     (setq buffer-read-only t)
     (message "Regenerating toc ... done")
     (goto-line line)
     ;; strange, but recenter fixes a problem (only lines in current
     ;; window are displayed, otherwise goto-line has no effect)
     (recenter '(t))
-    (sit-for 4e4 t)
+    (sit-for 2)
     (message nil)))
 
 (defun doctoc-make-toc ()
@@ -127,17 +159,19 @@ Return the buffer holding the toc"
       (setq buffer-read-only nil)
       (erase-buffer))
     (message "Generating toc ... ")
-    (shell-command-on-region (point-min) (point-max)
-			     doctoc-toc-command toc-buffer)
+    (funcall doctoc-generate-function toc-buffer)
     (switch-to-buffer-other-window toc-buffer)
+    (goto-char (point-min))
+    (insert (format "Table of Contents for %s\n\n" (buffer-name doc-buffer)))
+    (doctoc-set-text-properties (point-min) (point)
+				(plist-get doctoc-level-faces 0) 0)
     (doctoc-mode)
     (make-local-variable 'document-buffer)
     (make-local-variable 'window-configuration)
     (setq document-buffer doc-buffer
 	  window-configuration win-config)
-    (doctoc-make-extents)
     (message "Generating toc ... done")
-    (sit-for 4e4)
+    (sit-for 2)
     (message nil)
     toc-buffer))
 
@@ -147,6 +181,8 @@ Return the buffer holding the toc"
     (pop-to-buffer buffer)
     (setq window-configuration win-config)))
 
+;;; TOC buffer commands
+
 (defun doctoc-back ()
   "Leave doctoc buffer and switch back to buffer 'doc-buffer"
   (interactive)
@@ -154,74 +190,82 @@ Return the buffer holding the toc"
     (set-window-configuration window-configuration)
     (switch-to-buffer dest-buffer)))
 
-(defun doctoc-find-line ()
-  "Search for next line number as given by 'doctoc-line-number-regexp
-Line number is returned, nil if not found. Keep point."
-  (save-excursion
-    (doctoc-find-line-move)))
-
-(defun doctoc-find-line-move ()
-  "Search for next line number as given by 'doctoc-line-number-regexp
-Line number is returned, nil if not found. Point is left at beginning
-of matching line."
-  (beginning-of-line)
-  (while (not (or (looking-at doctoc-line-number-regexp) (eobp)))
-    (forward-line))
-  (if (looking-at doctoc-line-number-regexp)
-      (string-to-int (buffer-substring
-		      (match-beginning 1) (match-end 1)))
-    nil))
-
-(defun doctoc-goto-line-toc (line)
-  "Search LINE in toc and move point to it.
-Goto first line where line number at end <= LINE."
-  (while
-      (let
-	  ((found-line (doctoc-find-line-move)))
-	(and found-line (< found-line line) (not (eobp))))
-    (forward-line)))
+(defun doctoc-goto-epos-toc (epos)
+  "Search EPOS in toc and move point to it.
+Goto first line in toc where title epos <= EPOS."
+  (let ((pos
+	 (map-extents 'doctoc-compare-extent nil nil nil epos)))
+    (goto-char
+     (if pos pos (point-max)))))
 	
+(defun doctoc-compare-extent (extent epos)
+  "Return start of extent if epos property is not after EPOS"
+  (let ((tocentry-epos (extent-property extent 'epos)))
+    (if tocentry-epos
+	(if (<= (sgml-epos-before tocentry-epos) (sgml-epos-before epos))
+	    (extent-start-position extent)
+	  nil)
+      nil)))
+  
 (defun doctoc-toc-current-line ()
   "Goto toc entry corresponding to point"
   (interactive)
-  (let ((goal-line (line-number)))
+  (let ((epos (sgml-epos (point))))
     (doctoc-toc)
-    (doctoc-goto-line-toc goal-line)))
+    (doctoc-goto-epos-toc epos)))
+
+(defun doctoc-find-epos ()
+  "Return epos of toc entry at point."
+  (let ((extent (extent-at (point) nil 'epos)))
+    (if extent
+	(extent-property extent 'epos)
+      nil)))
+
+(defun doctoc-find-upos ()
+  "Return upos of toc entry at point."
+  (let ((extent (extent-at (point) nil 'upos)))
+    (if extent
+	(extent-property extent 'upos)
+      nil)))
 
 (defun doctoc-jump ()
-  "Jump back to line given by the number at eol to buffer 'doc-buffer"
+  "Jump to position pointed to by current toc entry."
   (interactive)
-  (let ((dest-buffer document-buffer)
-	(lineno (doctoc-find-line)))
-    (if lineno
-	(progn
-	  (set-window-configuration window-configuration)
-	  (switch-to-buffer dest-buffer)
-	  (goto-line lineno))
-      (message "No toc entry at point."))))
+  (let ((epos (doctoc-find-epos))
+	(upos (doctoc-find-upos)))
+    (cond
+     (epos (set-window-configuration window-configuration)
+	   (doctoc-goto-epos epos))
+     (upos (set-window-configuration window-configuration)
+	   (doctoc-goto-upos upos))
+     (t    (message "No toc entry at point.")))))
 
 (defun doctoc-jump-mouse ()
   (interactive)
   (goto-char (event-closest-point current-mouse-event))
   (doctoc-jump))
-   
+
 (defun doctoc-show ()
   "Show the line given by the number at eol 'doc-buffer in other window"
   (interactive)
   (let 
-      ((lineno (doctoc-find-line)))
-    (if lineno
-	(let ((extent
-	       (progn 
-		 (save-selected-window
-		   (switch-to-buffer-other-window document-buffer)
-		   (goto-line lineno)
-		   (recenter '(t))
-		   (doctoc-highlight-title)))))
-	  (if (extentp extent)
-	      (let ((inhibit-quit t))
-		(sit-for 4e4)		; 'for-e-ver'
-		(delete-extent extent)))))))
+      ((epos (doctoc-find-epos))
+       (upos (doctoc-find-upos)))
+    (when (or epos upos)
+      (let ((extent
+	     (progn 
+	       (save-selected-window
+		 (switch-to-buffer-other-window document-buffer)
+		 (if epos
+		     (doctoc-goto-epos epos)
+		   (doctoc-goto-upos upos))
+		 (recenter '(t))
+		 (doctoc-highlight-title)))))
+	(if (extentp extent)
+	    (let ((inhibit-quit t))
+	      (sit-for 4e4)		; 'for-e-ver'
+	      (delete-extent extent))
+	  (message "Can't find title, regenerate TOC!"))))))
 
 (defun doctoc-show-mouse ()
   "Show the line given by the number at eol 'doc-buffer in other window
@@ -229,37 +273,79 @@ The title is shown as long as the button is pressed"
   (interactive)
   (goto-char (event-closest-point current-mouse-event))
   (let 
-      ((lineno (doctoc-find-line)))
-    (if lineno
-	(save-window-excursion
-	  (let ((extent
-		 (progn 
-		   (switch-to-buffer-other-window document-buffer)
-		   (goto-line lineno)
-		   (recenter '(t))
-		   (doctoc-highlight-title))))
-	    (if (extentp extent)
-		(let ((inhibit-quit t))
-		  (sit-for 4e4)		; 'for-e-ver'
-		  (delete-extent extent))))))))
+      ((epos (doctoc-find-epos))
+       (upos (doctoc-find-upos)))
+    (when (or epos upos)
+      (save-window-excursion
+	(let ((extent
+	       (progn 
+		 (switch-to-buffer-other-window document-buffer)
+		 (if epos
+		     (doctoc-goto-epos epos)
+		   (doctoc-goto-upos upos))
+		 (recenter '(t))
+		 (doctoc-highlight-title))))
+	  (if (extentp extent)
+	      (let ((inhibit-quit t))
+		(sit-for 4e4)		; 'for-e-ver'
+		(delete-extent extent))
+	    (message "Can't find title, regenerate TOC!")))))))
    
-;; highlight next title at/after current line and return extent
-;; return nil if no title was found
-(defun doctoc-highlight-title ()
-  (let ((tstart (progn 
-		  (beginning-of-line)
-		  (if (re-search-forward "<title[^>]*>" (point-max) t)
-		      (match-end 0)
-		    nil))))
-    (if tstart
-	(progn
-	  (goto-char tstart)
-	  (if (re-search-forward "</title>" (point-max) t)
-	      (let ((extent 
-		     (make-extent tstart (match-beginning 0))))
-		(set-extent-face extent 'highlight)
-		extent))))))
 
+(defun doctoc-highlight-title ()
+  "Highlight next title in document buffer
+Highlight next title at/after current line and return extent.
+Return nil if no title was found."
+  (let* ((tstart (save-excursion
+		   (beginning-of-line)
+		   (cond
+		    ((re-search-forward "<title[^>]*>" (min (point-max) (+ (point) 1000)) t)
+		     (match-end 0))
+		    ((re-search-backward "<title[^>]*>" (max (point-min) (- (point) 1000)) t)
+		     (match-end 0))
+		    (t nil))))
+	 (tend (cond
+		(tstart
+		 (goto-char tstart)
+		 (and (re-search-forward "</title>" (point-max) t)
+		      (match-beginning 0)))
+		(t nil))))
+    (when (and tstart tend)
+      (let ((extent (make-extent tstart tend)))
+	(set-extent-face extent 'highlight)
+	extent))))
+
+(defun doctoc-goto-epos (epos)
+  "Goto a position in an entity given by EPOS.
+Opens the file in case of an external entity."
+  (assert epos)
+  (cond ((sgml-bpos-p epos)
+	 (goto-char epos))
+	(t
+	 (let* 
+	     ((eref (sgml-epos-eref epos))
+	      (entity (sgml-eref-entity eref))
+	      (file (if (consp (sgml-entity-text entity))
+			(sgml-external-file (sgml-entity-text entity)
+					    (sgml-entity-type entity)
+					    (sgml-entity-name entity))
+		      nil)))
+	   (cond (file
+		  (find-file file)
+		  (goto-char (sgml-epos-pos epos)))
+		 (t
+		  (sgml-goto-epos epos)
+		  (switch-to-buffer (current-buffer))))))))
+
+(defun doctoc-goto-upos (upos)
+  "Goto a position in an entity referenced by UPOS.
+UPOS is defined as (URL.LINE)"
+  (assert (consp upos))
+  (require 'ffap)
+  (find-file-at-point (car upos))
+  (goto-line (cdr upos)))
+
+;;; Major mode definition
 	      
 (defvar doctoc-mode-map
    (let ((m (make-sparse-keymap)))
@@ -291,66 +377,32 @@ Commands are:
   (setq mode-name "doctoc")
   (setq truncate-lines t)
   ;; length of match defines level => also match spaces
-  (setq outline-regexp "^[0-9]+\\(\\.[0-9]+\\)* +\\b")
-  (outline-minor-mode 1)
+  (when (featurep 'outline)
+    (setq outline-regexp "^\\([0-9]+\\(\\.[0-9]+\\)*\\)? +\\b")
+    (outline-minor-mode 1))
   ;; turn off horizontal scrollbars in this buffer
   ;; toc.pl produces short enough lines
   (when (featurep 'scrollbar)
     (set-specifier scrollbar-height (cons (current-buffer) 0)))
+  (setq indent-tabs-mode nil)
   (run-hooks 'doctoc-mode-hook))
 
-;;; Faces used for Highlighting
+;;; Extent handling
+;; This is probably stronly XEmacs dependent
 
-(make-face 'doctoc-level1-face)
-(set-face-foreground 'doctoc-level1-face "red")
-(make-face-bold 'doctoc-level1-face)
-(make-face 'doctoc-level2-face)
-(set-face-foreground 'doctoc-level2-face "blue")
-(make-face-bold 'doctoc-level2-face)
-(make-face 'doctoc-level3-face)
-(set-face-foreground 'doctoc-level3-face "blue")
+(defun doctoc-set-text-properties (start end &optional title-face epos upos)
+  "Make extent from START to END, set FACE and jump-destination EPOS or UPOS.
+EPOS is as defined in psgml-parse.el
+UPOS is (URL . line)"
+  (let ((title-extent (make-extent start end)))
+    (set-extent-property title-extent 'start-open t)
+    (set-extent-property title-extent 'end-open t)
+    (when epos
+      (set-extent-property title-extent 'epos epos))
+    (when upos
+      (set-extent-property title-extent 'upos upos))
+    (when title-face
+      (set-extent-face title-extent title-face))
+    (set-extent-mouse-face title-extent 'highlight)))
 
-;; 'doctoc-level-faces a la font-lock-keywords 
-(defvar doctoc-level-faces
-  (list
-   '("^ *[0-9]+ +\\(.*[^0-9]\n\\)*.*[0-9]$" . doctoc-level1-face)
-   '("^ *[0-9]+\\.[0-9]+ +\\(.*[^0-9]\n\\)*.*[0-9]$" . doctoc-level2-face)
-   '("^ *[0-9]+\\.[0-9]+\\.[0-9]+ +\\(.*[^0-9]\n\\)*.*[0-9]$" . doctoc-level3-face))
-  "A list of cons cells (regexp . face) determining faces for doctoc buffers
-The regexp is matched at the beginning of a line end extends
-to the line number given for that toc-entry. The first
-matching regexp is used.")
-
-;;;; Extent handling
-;;; This is probably stronly XEmacs dependent
-
-;; parse buffer and set extents for highlighting
-(defun doctoc-make-extents ()
-  (goto-char 0)
-  (while (not (eobp))
-    (let ((bgn (progn
-		 (beginning-of-line)
-		 (point)))
-	  (end (progn
-		 (re-search-forward doctoc-line-number-regexp (point-max) t)
-		 (re-search-backward "\\>" (point-min) t))))
-      (doctoc-set-text-properties bgn end)
-      (forward-line)))
-  (goto-char 0))
-	    
-;; make extent from start to end and set face according
-;; to doctoc-level-faces
-(defun doctoc-set-text-properties (start end)
-  (let ((title-extent (make-extent start end))
-	(faces doctoc-level-faces)
-	(face nil))
-      (save-excursion
-	(goto-char start)
-	(while (and faces (not face))
-	  (if (looking-at (caar faces))
-	      (setq face (cdar faces))
-	    (setq faces (cdr faces)))))
-      (set-extent-property title-extent 'start-open t)
-      (set-extent-property title-extent 'end-open t)
-      (set-extent-face     title-extent (or face 'default))
-      (set-extent-mouse-face title-extent 'highlight)))
+(provide 'doctoc)
