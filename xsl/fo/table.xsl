@@ -56,28 +56,21 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <!-- ==================================================================== -->
 
-<xsl:param name="table-border-thickness" select="'0.5pt'"/>
-<xsl:param name="table-border-padding" select="'2pt'"/>
-<xsl:param name="table-border-style" select="'solid'"/>
-<xsl:param name="table-border-color" select="'black'"/>
-
-<!-- ==================================================================== -->
-
 <xsl:template name="border">
   <xsl:param name="side" select="'left'"/>
   <xsl:param name="padding" select="0"/>
 
   <xsl:attribute name="border-{$side}">
-    <xsl:value-of select="$table-border-thickness"/>
+    <xsl:value-of select="$table.border.thickness"/>
     <xsl:text> </xsl:text>
-    <xsl:value-of select="$table-border-style"/>
+    <xsl:value-of select="$table.border.style"/>
     <xsl:text> </xsl:text>
-    <xsl:value-of select="$table-border-color"/>
+    <xsl:value-of select="$table.border.color"/>
     <xsl:text> </xsl:text>
   </xsl:attribute>
   <xsl:if test="$padding != 0">
     <xsl:attribute name="padding-{$side}">
-      <xsl:value-of select="$table-border-padding"/>
+      <xsl:value-of select="$table.border.padding"/>
     </xsl:attribute>
   </xsl:if>
 </xsl:template>
