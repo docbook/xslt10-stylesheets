@@ -21,8 +21,8 @@
 <!-- ====================================================================== -->
 
 <!-- In this version, we use full DocBook -->
-<!ENTITY % docbook.dtd PUBLIC "-//OASIS//DTD DocBook XML V4.2CR3//EN"
-  "http://www.oasis-open.org/docbook/xml/4.2CR3/docbookx.dtd">
+<!ENTITY % docbook.dtd PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+  "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
 %docbook.dtd;
 
 <!ENTITY % slides.mod SYSTEM "slides.mod">
