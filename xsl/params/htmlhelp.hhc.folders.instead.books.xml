@@ -17,7 +17,9 @@
 <refsect1><title>Description</title>
 
 <para>This parameter controls whether there should be folder-like
-icons (1) or book-like icons (0) in ToC.</para>
+icons (1) or book-like icons (0) in ToC. If you want to use
+folder-like icons you must swith off binary ToC using
+<parameter>htmlhelp.hhc.binary</parameter>.</para>
 
 </refsect1>
 </refentry>
