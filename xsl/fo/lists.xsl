@@ -327,7 +327,7 @@
 
   <fo:list-block id="{$id}"
                  provisional-distance-between-starts=
-		          "{$termlength}+{$label-separation}"
+                    "{$termlength}+{$label-separation}"
                  provisional-label-separation="{$label-separation}"
                  xsl:use-attribute-sets="list.block.spacing">
     <xsl:apply-templates select="varlistentry" mode="vl.as.list"/>
@@ -346,9 +346,10 @@
     <xsl:when test="not($terms)">
       <xsl:value-of select="$longest"/>
     </xsl:when>
-    <xsl:when test="string-length($terms[1]) &gt; $longest">
+    <xsl:when test="string-length($terms[1]/*[not(indexterm)]) &gt; $longest">
       <xsl:call-template name="longest.term">
-        <xsl:with-param name="longest" select="string-length($terms[1])"/>
+        <xsl:with-param name="longest" 
+                        select="string-length($terms[1]/*[not(indexterm)])"/>
         <xsl:with-param name="maxlength" select="$maxlength"/>
         <xsl:with-param name="terms" select="$terms[position() &gt; 1]"/>
       </xsl:call-template>
@@ -665,8 +666,8 @@
 
   <xsl:variable name="preamble"
                 select="*[not(self::step
-			  or self::titleabbrev
-		          or self::title)]"/>
+                          or self::titleabbrev
+                          or self::title)]"/>
   <xsl:variable name="steps" select="step"/>
 
   <fo:block id="{$id}" xsl:use-attribute-sets="list.block.spacing">
