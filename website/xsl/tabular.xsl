@@ -14,7 +14,6 @@
             doctype-system="http://www.w3.org/TR/html4/loose.dtd"
 />
 
-<xsl:param name="autolayout-file" select="'autolayout.xml'"/>
 <xsl:param name="autolayout" select="document($autolayout-file, /*)"/>
 
 <!-- ==================================================================== -->
