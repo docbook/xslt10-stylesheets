@@ -734,12 +734,21 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 	"label		CDATA		#IMPLIED">
 
 
+<!-- xml:space: whitespace treatment -->
+
+<![%sgml.features;[
+<!ENTITY % xml-space.attrib "">
+]]>
+<!ENTITY % xml-space.attrib
+	"xml:space	(preserve)		#IMPLIED">
+
 <!-- Format: whether element is assumed to contain significant white
 	space -->
 
 <!ENTITY % linespecific.attrib
 	"format		NOTATION
 			(linespecific)	'linespecific'
+         %xml-space.attrib;
          linenumbering	(numbered|unnumbered) 	#IMPLIED
          continuation	(continues|restarts)	#IMPLIED
          startinglinenumber	CDATA		#IMPLIED
