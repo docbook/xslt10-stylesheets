@@ -18,6 +18,7 @@
         uri       CDATA   #IMPLIED
         baseuri   CDATA   #IMPLIED
         href      CDATA   #IMPLIED
+        dir       CDATA   #IMPLIED
 >
 
 <!ELEMENT div (ttl?, objttl?, xreftext?, (div|obj)*)>
