@@ -32,9 +32,13 @@
     <xsl:apply-templates select="title" mode="list.title.mode"/>
   </xsl:if>
 
-  <xsl:apply-templates select="*[not(self::listitem 
-                                  or self::title
-                                  or self::titleabbrev)]"/>
+  <!-- Preserve order of PIs and comments -->
+  <xsl:apply-templates 
+      select="*[not(self::listitem
+                or self::title
+                or self::titleabbrev)]
+              |comment()[not(preceding-sibling::listitem)]
+              |processing-instruction()[not(preceding-sibling::listitem)]"/>
 
   <fo:list-block id="{$id}" xsl:use-attribute-sets="list.block.spacing"
                  provisional-label-separation="0.2em">
@@ -46,7 +50,10 @@
         <xsl:otherwise>1.5em</xsl:otherwise>
       </xsl:choose>
     </xsl:attribute>
-    <xsl:apply-templates select="listitem"/>
+    <xsl:apply-templates 
+          select="listitem
+                  |comment()[preceding-sibling::listitem]
+                  |processing-instruction()[preceding-sibling::listitem]"/>
   </fo:list-block>
 </xsl:template>
 
@@ -142,9 +149,13 @@
     <xsl:apply-templates select="title" mode="list.title.mode"/>
   </xsl:if>
 
-  <xsl:apply-templates select="*[not(self::listitem 
-                                  or self::title
-                                  or self::titleabbrev)]"/>
+  <!-- Preserve order of PIs and comments -->
+  <xsl:apply-templates 
+      select="*[not(self::listitem
+                or self::title
+                or self::titleabbrev)]
+              |comment()[not(preceding-sibling::listitem)]
+              |processing-instruction()[not(preceding-sibling::listitem)]"/>
 
   <fo:list-block id="{$id}" xsl:use-attribute-sets="list.block.spacing"
                  provisional-label-separation="0.2em">
@@ -156,7 +167,10 @@
         <xsl:otherwise>2em</xsl:otherwise>
       </xsl:choose>
     </xsl:attribute>
-    <xsl:apply-templates select="listitem"/>
+    <xsl:apply-templates 
+          select="listitem
+                  |comment()[preceding-sibling::listitem]
+                  |processing-instruction()[preceding-sibling::listitem]"/>
   </fo:list-block>
 </xsl:template>
 
@@ -325,16 +339,23 @@
     <xsl:apply-templates select="title" mode="list.title.mode"/>
   </xsl:if>
 
-  <xsl:apply-templates select="*[not(self::varlistentry
-                                  or self::title
-                                  or self::titleabbrev)]"/>
+  <!-- Preserve order of PIs and comments -->
+  <xsl:apply-templates 
+    select="*[not(self::varlistentry
+              or self::title
+              or self::titleabbrev)]
+            |comment()[not(preceding-sibling::varlistentry)]
+            |processing-instruction()[not(preceding-sibling::varlistentry)]"/>
 
   <fo:list-block id="{$id}"
                  provisional-distance-between-starts=
                     "{$termlength}+{$label-separation}"
                  provisional-label-separation="{$label-separation}"
                  xsl:use-attribute-sets="list.block.spacing">
-    <xsl:apply-templates select="varlistentry" mode="vl.as.list"/>
+    <xsl:apply-templates mode="vl.as.list"
+      select="varlistentry
+              |comment()[preceding-sibling::varlistentry]
+              |processing-instruction()[preceding-sibling::varlistentry]"/>
   </fo:list-block>
 </xsl:template>
 
@@ -395,12 +416,19 @@
     <xsl:apply-templates select="title" mode="list.title.mode"/>
   </xsl:if>
 
-  <xsl:apply-templates select="*[not(self::varlistentry
-                                  or self::title
-                                  or self::titleabbrev)]"/>
+  <!-- Preserve order of PIs and comments -->
+  <xsl:apply-templates 
+    select="*[not(self::varlistentry
+              or self::title
+              or self::titleabbrev)]
+            |comment()[not(preceding-sibling::varlistentry)]
+            |processing-instruction()[not(preceding-sibling::varlistentry)]"/>
 
   <fo:block id="{$id}" xsl:use-attribute-sets="list.block.spacing">
-    <xsl:apply-templates select="varlistentry" mode="vl.as.blocks"/>
+    <xsl:apply-templates mode="vl.as.blocks"
+      select="varlistentry
+              |comment()[preceding-sibling::varlistentry]
+              |processing-instruction()[preceding-sibling::varlistentry]"/>
   </fo:block>
 </xsl:template>
 
@@ -670,11 +698,18 @@
     </xsl:choose>
   </xsl:variable>
 
+  <!-- Preserve order of PIs and comments -->
   <xsl:variable name="preamble"
-                select="*[not(self::step
-                          or self::titleabbrev
-                          or self::title)]"/>
-  <xsl:variable name="steps" select="step"/>
+        select="*[not(self::step
+                  or self::title
+                  or self::titleabbrev)]
+                |comment()[not(preceding-sibling::step)]
+                |processing-instruction()[not(preceding-sibling::step)]"/>
+
+  <xsl:variable name="steps" 
+                select="step
+                        |comment()[preceding-sibling::step]
+                        |processing-instruction()[preceding-sibling::step]"/>
 
   <fo:block id="{$id}" xsl:use-attribute-sets="list.block.spacing">
     <xsl:if test="./title and $placement = 'before'">
