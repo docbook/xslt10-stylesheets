@@ -16,14 +16,14 @@ only be possible if you're using a processor for which the extensions
 have been implemented. The Website distribution includes extensions
 for Xalan and Saxon.</para>
 
-<important>
+<note>
 <para>If the source pages for your website are stored in several
 files, this method will probably will not work correctly all the time.
 The extension can only see if the <quote>main</quote> page has
 changed, not subsidiary pages that it (logically) depends on. If you
 have a complex source layout, you will probably have to <olink
 targetdocent="buildmake.xml">use make</olink>.</para>
-</important>
+</note>
 
 <orderedlist>
 <listitem><para>Create your webpages and your <filename>layout.xml</filename>
