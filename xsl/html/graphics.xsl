@@ -1154,4 +1154,20 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
   </xsl:copy>
 </xsl:template>
 
+<!-- Resolve xml:base attributes -->
+<xsl:template match="@fileref">
+  <!-- need a check for absolute urls -->
+  <xsl:choose>
+    <xsl:when test="contains(., ':')">
+      <!-- it has a uri scheme so it is an absolute uri -->
+      <xsl:value-of select="."/>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- its a relative uri -->
+      <xsl:call-template name="relative-uri">
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 </xsl:stylesheet>
