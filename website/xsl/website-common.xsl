@@ -85,7 +85,9 @@ node.</para>
   <xsl:variable name="page" select="."/>
   <xsl:variable name="rcsdate" select="$page/config[@param='rcsdate']/@value"/>
   <xsl:variable name="footers" select="$page/config[@param='footer']
-                                       |$page/config[@param='footlink']"/>
+                                       |$page/config[@param='footlink']
+                                       |$autolayout/autolayout/config[@param='footer']
+                                       |$autolayout/autolayout/config[@param='footlink']"/>
 
   <xsl:variable name="tocentry" select="$autolayout//*[@id=$page/@id]"/>
   <xsl:variable name="toc" select="($tocentry/ancestor-or-self::toc[1]
