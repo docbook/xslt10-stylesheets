@@ -32,6 +32,13 @@
       </xsl:attribute>
       <xsl:copy-of select="@*"/>
 
+      <xsl:text>&#10;</xsl:text>
+      <xsl:text>&#10;</xsl:text>
+      <xsl:comment> DocBook NG: The "Absinthe" Release </xsl:comment>
+      <xsl:text>&#10;</xsl:text>
+      <xsl:comment> See http://docbook.org/docbook-ng/ </xsl:comment>
+      <xsl:text>&#10;</xsl:text>
+
       <xsl:for-each select="*">
 	<xsl:choose>
 	  <xsl:when test="self::rng:define and rng:element[@name]">
