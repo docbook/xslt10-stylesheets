@@ -31,7 +31,7 @@
   <xsl:param name="count">1</xsl:param>
 
   <xsl:choose>
-    <xsl:when test="$count>count($pis)">
+    <xsl:when test="$count &gt; count($pis)">
       <!-- not found -->
     </xsl:when>
     <xsl:otherwise>
