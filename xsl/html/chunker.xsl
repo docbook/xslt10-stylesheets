@@ -38,7 +38,7 @@
 <xsl:template name="write.chunk">
   <xsl:param name="filename" select="''"/>
   <xsl:param name="method" select="'html'"/>
-  <xsl:param name="encoding" select="'ISO-8859-1'"/>
+  <xsl:param name="encoding" select="$default.encoding"/>
   <xsl:param name="indent" select="'no'"/>
   <xsl:param name="content" select="''"/>
 
@@ -59,7 +59,8 @@
       <xsl:document href="{$filename}"
                     method="{$method}"
                     encoding="{$encoding}"
-                    indent="{$indent}">
+                    indent="{$indent}"
+                    saxon:character-representation="{$saxon.character.representation}">
         <xsl:copy-of select="$content"/>
       </xsl:document>
     </xsl:when>
@@ -69,7 +70,8 @@
                     href="{$filename}"
                     method="{$method}"
                     encoding="{$encoding}"
-                    indent="{$indent}">
+                    indent="{$indent}"
+                    saxon:character-representation="{$saxon.character.representation}">
         <xsl:copy-of select="$content"/>
       </saxon:output>
     </xsl:when>
@@ -93,7 +95,7 @@
 <xsl:template name="write.chunk.with.doctype">
   <xsl:param name="filename" select="''"/>
   <xsl:param name="method" select="'html'"/>
-  <xsl:param name="encoding" select="'ISO-8859-1'"/>
+  <xsl:param name="encoding" select="$default.encoding"/>
   <xsl:param name="indent" select="'no'"/>
   <xsl:param name="doctype-public" select="''"/>
   <xsl:param name="doctype-system" select="''"/>
@@ -118,7 +120,8 @@
                     encoding="{$encoding}"
                     indent="{$indent}"
                     doctype-public="{$doctype-public}"
-                    doctype-system="{$doctype-system}">
+                    doctype-system="{$doctype-system}"
+                    saxon:character-representation="{$saxon.character.representation}">
         <xsl:copy-of select="$content"/>
       </xsl:document>
     </xsl:when>
@@ -130,7 +133,8 @@
                     encoding="{$encoding}"
                     indent="{$indent}"
                     doctype-public="{$doctype-public}"
-                    doctype-system="{$doctype-system}">
+                    doctype-system="{$doctype-system}"
+                    saxon:character-representation="{$saxon.character.representation}">
         <xsl:copy-of select="$content"/>
       </saxon:output>
     </xsl:when>
