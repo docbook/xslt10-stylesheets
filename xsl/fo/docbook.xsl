@@ -65,6 +65,7 @@
 <xsl:include href="ebnf.xsl"/>
 
 <xsl:include href="fop.xsl"/>
+<xsl:include href="passivetex.xsl"/>
 <xsl:include href="xep.xsl"/>
 
 <!-- ==================================================================== -->
@@ -87,10 +88,6 @@
     <xsl:value-of select="name(.)"/>
     <xsl:text>&gt;</xsl:text>
   </fo:block>
-</xsl:template>
-
-<xsl:template match="text()">
-  <xsl:value-of select="."/> 
 </xsl:template>
 
 <xsl:template match="/">
