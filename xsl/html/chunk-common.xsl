@@ -124,11 +124,16 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="*" mode="chunk-filename">
+  <!-- returns the filename of a chunk -->
+  <xsl:variable name="ischunk">
+    <xsl:call-template name="chunk"/>
+  </xsl:variable>
+
   <xsl:variable name="fn">
     <xsl:apply-templates select="." mode="recursive-chunk-filename"/>
   </xsl:variable>
 
-  <xsl:if test="$fn != ''">
+  <xsl:if test="$ischunk != 0 and $fn != ''">
     <xsl:call-template name="dbhtml-dir"/>
   </xsl:if>
 
