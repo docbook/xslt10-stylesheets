@@ -9,7 +9,7 @@ test:
 	$(XJPARSE) testcss.xml
 
 compile:
-	$(XNSGMLS) -c /share/doctypes/catalog -sv -wundefined testcust.xml
+	$(XNSGMLS) -c /share/doctypes/catalog -sv -wundefined tests/testcust.xml
 	$(FLATTEN) sdocbook-custom.dtd > sdocbook.dtd
 	$(FLATTEN) sdocbookref-custom.dtd > sdocbookref.dtd
 
