@@ -1,5 +1,5 @@
 <!DOCTYPE article [
-<!ENTITY name "wd-docbook-docbook">
+<!ENTITY name "cd-docbook-docbook">
 <!ENTITY version "4.4">
 <!ENTITY standard "Committee Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker">
@@ -777,7 +777,7 @@ of the DocBook web page
 
 <para>
 <revhistory>
-<revision role="&root;specs/wd-docbook-docbook-4.4CR4.html">
+<revision role="&root;specs/cd-docbook-docbook-4.4.html">
   <revnumber>Committee Draft</revnumber>
   <date>27 Jan 2005</date>
 </revision>
