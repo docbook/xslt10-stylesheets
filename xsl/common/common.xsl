@@ -1654,5 +1654,84 @@ node location.</para>
   </xsl:choose>
 </xsl:template>
 
+<xsl:template name="relative-uri">
+  <xsl:param name="filename" select="."/>
+  <xsl:param name="destdir" select="''"/>
+  
+  <xsl:variable name="srcurl">
+    <xsl:call-template name="strippath">
+      <xsl:with-param name="filename">
+        <xsl:call-template name="getdir">
+          <xsl:with-param name="filename" select="$filename/ancestor-or-self::*[@xml:base != ''][1]/@xml:base"/>
+        </xsl:call-template>
+        <xsl:value-of select="$filename"/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="srcurl.trimmed">
+    <xsl:call-template name="trim.common.uri.paths">
+      <xsl:with-param name="uriA" select="$srcurl"/>
+      <xsl:with-param name="uriB" select="$destdir"/>
+      <xsl:with-param name="return" select="'A'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="destdir.trimmed">
+    <xsl:call-template name="trim.common.uri.paths">
+      <xsl:with-param name="uriA" select="$srcurl"/>
+      <xsl:with-param name="uriB" select="$destdir"/>
+      <xsl:with-param name="return" select="'B'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="depth">
+    <xsl:call-template name="count.uri.path.depth">
+      <xsl:with-param name="filename" select="$destdir.trimmed"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:call-template name="copy-string">
+    <xsl:with-param name="string" select="'../'"/>
+    <xsl:with-param name="count" select="$depth"/>
+  </xsl:call-template>
+  <xsl:value-of select="$srcurl.trimmed"/>
+
+</xsl:template>
+
+<!-- ===================================== -->
+
+<xsl:template name="strippath">
+  <xsl:param name="filename" select="''"/>
+  <xsl:choose>
+    <xsl:when test="contains($filename, '/../')">
+      <xsl:call-template name="strippath">
+        <xsl:with-param name="filename">
+          <xsl:call-template name="getdir">
+            <xsl:with-param name="filename" select="substring-before($filename, '/../')"/>
+          </xsl:call-template>
+          <xsl:value-of select="substring-after($filename, '/../')"/>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$filename"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!-- ===================================== -->
+
+<xsl:template name="getdir">
+  <xsl:param name="filename" select="''"/>
+  <xsl:if test="contains($filename, '/')">
+    <xsl:value-of select="substring-before($filename, '/')"/>
+    <xsl:text>/</xsl:text>
+    <xsl:call-template name="getdir">
+      <xsl:with-param name="filename" select="substring-after($filename, '/')"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
+
 </xsl:stylesheet>
 
