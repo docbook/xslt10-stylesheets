@@ -391,6 +391,28 @@
   </xsl:apply-templates>
 </xsl:template>
 
+<xsl:template match="glossentry" mode="xref-to">
+  <xsl:choose>
+    <xsl:when test="$glossentry.show.acronym = 'primary'">
+      <xsl:choose>
+        <xsl:when test="acronym|abbrev">
+          <xsl:apply-templates select="(acronym|abbrev)[1]"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="glossterm[1]" mode="xref-to"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="glossterm[1]" mode="xref-to"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="glossterm" mode="xref-to">
+  <xsl:apply-templates/>
+</xsl:template>
+
 <xsl:template match="index" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
