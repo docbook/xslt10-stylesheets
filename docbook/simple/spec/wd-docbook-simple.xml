@@ -1,11 +1,11 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-<!ENTITY standard "Standard">
+<!ENTITY standard "Working Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker/">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
 ]>
 
-<article status="Working Draft">
+<article status="&standard;">
 
 <articleinfo>
 <productname>wd-docbook-simple</productname>
@@ -136,6 +136,26 @@ It is distributed from the
 <ulink url="http://www.oasis-open.org/">OASIS</ulink>.
 </para>
 
+<section id="usage">
+<title>Usage</title>
+
+<para>To use this document type, specify the public and system identifiers
+in your document type declaration. For example:</para>
+
+<screen><![CDATA[<!DOCTYPE article PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.0CR3//EN"
+                  "http://www.oasis-open.org/docbook/xml/simple/1.0CR3/sdocbook.dtd">]]></screen>
+
+<para>Naturally, you can include an internal subset if you wish.</para>
+
+<para>To incorporate this module into a higher-level customization layer, use the
+public and system identifiers of this module's customization layer in your own. For
+example:</para>
+
+<screen><![CDATA[<!DOCTYPE % sdocbook PUBLIC "-//OASIS//DTD Simplified DocBook XML Customization V1.0CR3//EN"
+                  "http://www.oasis-open.org/docbook/xml/simple/1.0CR3/sdocbook-custom.dtd">
+%sdocbook;]]></screen>
+
+</section>
 </section>
 
 <section id="s.changes3">
@@ -346,29 +366,21 @@ of the DocBook web page
 <revision>
 <revnumber>1.0-CR3</revnumber>
 <date>12 Sep 2002</date>
-<authorinitials>ndw</authorinitials>
-<revremark>Candidate Release 3</revremark>
 </revision>
 
 <revision>
 <revnumber>1.0-CR2</revnumber>
 <date>12 Jun 2002</date>
-<authorinitials>ndw</authorinitials>
-<revremark>Candidate Release 2</revremark>
 </revision>
 
 <revision>
 <revnumber>1.0-CR1</revnumber>
 <date>05 Jun 2002</date>
-<authorinitials>ndw</authorinitials>
-<revremark>Candidate Release 1</revremark>
 </revision>
 
 <revision>
 <revnumber>1.0b2</revnumber>
 <date>08 Jan 2002</date>
-<authorinitials>ndw</authorinitials>
-<revremark>First beta release from the TC.</revremark>
 </revision>
 </revhistory>
 </para>
