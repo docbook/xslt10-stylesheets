@@ -123,6 +123,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/htmlhelp.window.geometry.xml \
        ../params/img.src.path.xml \
        ../params/index.on.role.xml \
+       ../params/index.prefer.titleabbrev.xml \
        ../params/index.on.type.xml \
        ../params/inherit.keywords.xml \
        ../params/label.from.part.xml \

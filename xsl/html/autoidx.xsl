@@ -369,7 +369,14 @@
     <xsl:otherwise>
       <a>
         <xsl:variable name="title">
-          <xsl:apply-templates select="&section;" mode="title.markup"/>
+          <xsl:choose>
+            <xsl:when test="&section;/titleabbrev and $index.prefer.titleabbrev != 0">
+              <xsl:apply-templates select="&section;" mode="titleabbrev.markup"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="&section;" mode="title.markup"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:variable>
 
         <xsl:attribute name="href">
