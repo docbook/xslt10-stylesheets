@@ -89,6 +89,10 @@
 	  </xsl:when>
 
           <xsl:otherwise>
+            <xsl:attribute name="title">
+              <xsl:apply-templates select="$target" mode="xref-title"/>
+            </xsl:attribute>
+
             <xsl:apply-templates select="$target" mode="xref-to"/>
           </xsl:otherwise>
         </xsl:choose>
@@ -210,6 +214,66 @@
 
 <xsl:template match="book" mode="xref-to">
   <xsl:apply-templates select="." mode="object.xref.markup"/>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template match="*" mode="xref-title">
+  <xsl:variable name="title">
+    <xsl:apply-templates select="." mode="object.title.markup"/>
+  </xsl:variable>
+
+  <xsl:value-of select="$title"/>
+</xsl:template>
+
+<xsl:template match="author" mode="xref-title">
+  <xsl:variable name="title">
+    <xsl:call-template name="person.name"/>
+  </xsl:variable>
+
+  <xsl:value-of select="$title"/>
+</xsl:template>
+
+<xsl:template match="cmdsynopsis" mode="xref-title">
+  <xsl:variable name="title">
+    <xsl:apply-templates select="(.//command)[1]" mode="xref"/>
+  </xsl:variable>
+
+  <xsl:value-of select="$title"/>
+</xsl:template>
+
+<xsl:template match="funcsynopsis" mode="xref-title">
+  <xsl:variable name="title">
+    <xsl:apply-templates select="(.//function)[1]" mode="xref"/>
+  </xsl:variable>
+
+  <xsl:value-of select="$title"/>
+</xsl:template>
+
+<xsl:template match="biblioentry|bibliomixed" mode="xref-title">
+  <!-- handles both biblioentry and bibliomixed -->
+  <xsl:variable name="title">
+    <xsl:text>[</xsl:text>
+    <xsl:choose>
+      <xsl:when test="local-name(*[1]) = 'abbrev'">
+        <xsl:apply-templates select="*[1]"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="@id"/>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>]</xsl:text>
+  </xsl:variable>
+
+  <xsl:value-of select="$title"/>
+</xsl:template>
+
+<xsl:template match="co" mode="xref-title">
+  <xsl:variable name="title">
+    <xsl:apply-templates select="." mode="callout-bug"/>
+  </xsl:variable>
+
+  <xsl:value-of select="$title"/>
 </xsl:template>
 
 <!-- ==================================================================== -->
