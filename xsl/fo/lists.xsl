@@ -159,12 +159,12 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="listitem/para[1]
-                     |listitem/simpara[1]
-                     |listitem/formalpara[1]
-                     |callout/para[1]
-                     |callout/simpara[1]
-                     |callout/formalpara[1]"
+<xsl:template match="listitem/*[1][local-name()='para' or 
+                                   local-name()='simpara' or 
+                                   local-name()='formalpara']
+                     |callout/*[1][local-name()='para' or 
+                                   local-name()='simpara' or 
+                                   local-name()='formalpara']"
               priority="2">
   <fo:block>
     <xsl:apply-templates/>
