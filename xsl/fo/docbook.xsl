@@ -135,9 +135,14 @@
               <xsl:apply-templates select="key('id',$rootid)" mode="outline"/>
             </xsl:if>
             <xsl:if test="$xep.extensions != 0">
-              <rx:outline xmlns:rx="http://www.renderx.com/XSL/Extensions">
+              <xsl:variable name="bookmarks">
                 <xsl:apply-templates select="key('id',$rootid)" mode="xep.outline"/>
-              </rx:outline>
+              </xsl:variable>
+              <xsl:if test="string($bookmarks) != ''">
+                <rx:outline xmlns:rx="http://www.renderx.com/XSL/Extensions">
+                  <xsl:copy-of select="$bookmarks"/>
+                </rx:outline>
+              </xsl:if>
             </xsl:if>
             <xsl:apply-templates select="key('id',$rootid)"/>
           </xsl:otherwise>
@@ -148,9 +153,14 @@
           <xsl:apply-templates mode="outline"/>
         </xsl:if>
         <xsl:if test="$xep.extensions != 0">
-          <rx:outline xmlns:rx="http://www.renderx.com/XSL/Extensions">
+          <xsl:variable name="bookmarks">
             <xsl:apply-templates mode="xep.outline"/>
-          </rx:outline>
+          </xsl:variable>
+          <xsl:if test="string($bookmarks) != ''">
+            <rx:outline xmlns:rx="http://www.renderx.com/XSL/Extensions">
+              <xsl:copy-of select="$bookmarks"/>
+            </rx:outline>
+          </xsl:if>
         </xsl:if>
         <xsl:apply-templates/>
       </xsl:otherwise>
