@@ -479,7 +479,7 @@
 
   <xsl:variable name="table.content">
     <fo:block id="{$id}"
-              xsl:use-attribute-sets="formal.object.properties">
+              xsl:use-attribute-sets="table.properties">
 
       <xsl:if test="$placement = 'before'">
         <xsl:call-template name="formal.object.heading">
