@@ -73,29 +73,46 @@
     <xsl:apply-templates select="." mode="label.markup"/>
   </xsl:variable>
 
-  <fo:block text-align-last="justify"
-            end-indent="{$toc.indent.width}pt"
-            last-line-end-indent="-{$toc.indent.width}pt">
-    <fo:inline keep-with-next.within-line="always">
-      <fo:basic-link internal-destination="{$id}">
-        <xsl:if test="$label != ''">
-          <xsl:copy-of select="$label"/>
-          <xsl:value-of select="$autotoc.label.separator"/>
-        </xsl:if>
-        <xsl:apply-templates select="." mode="title.markup"/>
-      </fo:basic-link>
-    </fo:inline>
-    <fo:inline keep-together.within-line="always">
-      <xsl:text> </xsl:text>
-      <fo:leader leader-pattern="dots"
-                 keep-with-next.within-line="always"/>
-      <xsl:text> </xsl:text>
-      <fo:basic-link internal-destination="{$id}">
-<!--                     xsl:use-attribute-sets="xref.properties">-->
-        <fo:page-number-citation ref-id="{$id}"/>
-      </fo:basic-link>
-    </fo:inline>
-  </fo:block>
+  <xsl:choose>
+    <xsl:when test="$fop.extensions != 0">
+      <fo:block text-align="start">
+        <fo:basic-link internal-destination="{$id}">
+          <fo:inline keep-with-next.within-line="always">
+            <xsl:apply-templates select="." mode="object.title.markup"/>
+          </fo:inline>
+          <fo:inline keep-together.within-line="always" font-style="italic">
+            <xsl:text>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</xsl:text>
+            <fo:page-number-citation ref-id="{$id}"/>
+            <xsl:text></xsl:text>
+          </fo:inline>
+        </fo:basic-link>
+      </fo:block>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:block text-align-last="justify"
+                end-indent="{$toc.indent.width}pt"
+                last-line-end-indent="-{$toc.indent.width}pt">
+        <fo:inline keep-with-next.within-line="always">
+          <fo:basic-link internal-destination="{$id}">
+            <xsl:if test="$label != ''">
+              <xsl:copy-of select="$label"/>
+              <xsl:value-of select="$autotoc.label.separator"/>
+            </xsl:if>
+            <xsl:apply-templates select="." mode="title.markup"/>
+          </fo:basic-link>
+        </fo:inline>
+        <fo:inline keep-together.within-line="always">
+          <xsl:text> </xsl:text>
+          <fo:leader leader-pattern="dots"
+                     keep-with-next.within-line="always"/>
+          <xsl:text> </xsl:text>
+          <fo:basic-link internal-destination="{$id}">
+            <fo:page-number-citation ref-id="{$id}"/>
+          </fo:basic-link>
+        </fo:inline>
+      </fo:block>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
