@@ -1,0 +1,52 @@
+<?xml version='1.0'?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<chapter>
+<title>Tables</title>
+<table id="ug-t3-2">
+<title>Slicing Options</title>
+<tgroup cols="4" align="left">
+<colspec colnum="2" colname="c2"/>
+<colspec colnum="4" colname="c4"/>
+<spanspec spanname="hspan" namest="c2" nameend="c4" align="center"/>
+<thead>
+<row>
+<entry morerows="1" valign="middle">Output</entry>
+<entry namest="c2" nameend="c4">Input</entry>
+</row>
+<row>
+<entry align="left">Uniform</entry>
+<entry>Perimeter</entry>
+<entry>Curvilinear</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry>Uniform</entry>
+<entry>OrthoSlice, Slice</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+
+</row>
+<row>
+<entry>Perimeter</entry>
+<entry align="center">-</entry>
+<entry>OrthoSlice</entry>
+<entry align="center">-</entry>
+</row>
+<row>
+<entry>Curvilinear</entry>
+<entry>OrthoSlice</entry>
+<entry>OrthoSlice</entry>
+<entry>OrthoSlice</entry>
+</row>
+<row>
+<entry>Pyramid</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry>ProbeLat</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</chapter>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article
+  PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<!-- test document -->
+<article>
+<articleinfo>
+<title>Admonitions</title>
+</articleinfo>
+
+<para>This article tests admonitions.</para>
+
+<note> 
+<title>Who can do this</title> 
+<para>All operators</para> 
+</note> 
+
+</article>
+

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE article
+  PUBLIC "-//OASIS//DTD DocBook XML V4.1//EN"
+  "http://www.oasis-open.org/docbook/xml/4.1/docbookx.dtd" >
+<article class="faq">
+  <articleinfo>
+    <title>An xref to a Question</title>
+    <author>
+      <firstname>Jon</firstname>
+      <surname>Willeke</surname>
+    </author>
+  </articleinfo>
+
+  <qandaset defaultlabel='number'>
+    <qandaentry>
+      <question><para>Question one.</para></question>
+      <answer>
+	<para>Answer one.
+See <xref linkend="faq-Two"/></para>
+      </answer>
+    </qandaentry>
+
+    <qandaentry>
+      <question id="faq-Two"><para>Question two.</para></question>
+      <answer>
+	<para>Answer two.</para>
+      </answer>
+    </qandaentry>
+
+    <qandaentry>
+      <question id="faq-Two"><para>Question two.</para></question>
+      <answer>
+	<orderedlist>
+	  <listitem><para>testing a list</para></listitem>
+	  <listitem><para>testing a list</para></listitem>
+	  <listitem><para>testing a list</para></listitem>
+	</orderedlist>
+      </answer>
+    </qandaentry>
+
+  </qandaset>
+</article>
