@@ -9,32 +9,41 @@ HTMLNS=http://www.w3.org/1999/xhtml
 SED=sed
 SED_OPTS=-i # edit files in place
 
-RNCFILES=autolayout.rnc layout.rnc website.rnc website-full.rnc website-custom.rnc
+all: autolayout.rnc layout.rnc website.rnc website-full.rnc
 
-all: $(RNCFILES)
-
-autolayout.rng: autolayout.dtd
+autolayout.rnc: autolayout.dtd
 	$(RUNTRANG) $< $@
 
-layout.rng: layout.dtd
+layout.rnc: layout.dtd
 	$(RUNTRANG) $< $@
 
-website-%.rng: website-%.dtd
+website-full.rnc: website-full.dtd
 	$(RUNTRANG) \
 	  -i xmlns:rddl=$(RDDLNS) -i xmlns:xlink=$(XLINKNS) -i xmlns:html=$(HTMLNS) \
 	  $< $@
 
-website.rng: ../dtd/website.dtd
+website.rnc: ../dtd/website.dtd
 	$(RUNTRANG) \
 	  -i xmlns:rddl=$(RDDLNS) -i xmlns:xlink=$(XLINKNS) -i xmlns:html=$(HTMLNS) \
 	  $< $@
+	$(SED) $(SED_OPTS) 's/start \+= \+webpage \+| \+article/start = webpage/' $@
 
 ../dtd/website.dtd:
 	make -C ../dtd
 
-%.rnc: %.rng
-	$(RUNTRANG) $< $@
-	$(SED) $(SED_OPTS) 's/start \+= \+webpage \+| \+article/start = webpage/' $@
-
 clean:
-	rm -f *.rng *.rnc *.dtd
+	rm -f \
+	autolayout.rnc \
+	layout.rnc \
+	website.rnc \
+	website-full.rnc \
+	calstblx.rnc \
+	docbookx.rnc \
+	dbhierx.mod.rnc \
+	dbpoolx.mod.rnc \
+	extensions.mod.rnc \
+	forms.mod.rnc \
+	htmltblx.mod.rnc \
+	namespaces.mod.rnc \
+	rddl.mod.rnc \
+	website.mod.rnc
