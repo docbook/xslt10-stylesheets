@@ -263,7 +263,6 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &chunk.section.depth;
 &chunk.first.sections;
 &chunk.quietly;
-&chunk.datafile;
 &navig.graphics;
 &navig.graphics.extension;
 &navig.graphics.path;
@@ -383,7 +382,6 @@ around all these parameters.</para>
 <src:fragref linkend="callout.unicode.start.character.frag"/>
 <src:fragref linkend="callouts.extension.frag"/>
 <src:fragref linkend="chapter.autolabel.frag"/>
-<src:fragref linkend="chunk.datafile.frag"/>
 <src:fragref linkend="chunk.first.sections.frag"/>
 <src:fragref linkend="chunk.quietly.frag"/>
 <src:fragref linkend="chunk.section.depth.frag"/>

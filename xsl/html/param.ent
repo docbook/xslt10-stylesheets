@@ -21,7 +21,6 @@
 <!ENTITY callout.unicode.start.character SYSTEM "../params/callout.unicode.start.character.xml">
 <!ENTITY callouts.extension SYSTEM "../params/callouts.extension.xml">
 <!ENTITY chapter.autolabel SYSTEM "../params/chapter.autolabel.xml">
-<!ENTITY chunk.datafile SYSTEM "../params/chunk.datafile.xml">
 <!ENTITY chunk.first.sections SYSTEM "../params/chunk.first.sections.xml">
 <!ENTITY chunk.quietly SYSTEM "../params/chunk.quietly.xml">
 <!ENTITY chunk.section.depth SYSTEM "../params/chunk.section.depth.xml">
