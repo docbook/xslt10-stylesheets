@@ -57,18 +57,19 @@ while ($name = readdir(DIR)) {
     open (TBL, ">$tbldir/$base.gen");
 
     print TBL "<informaltable pgwide='1'>\n";
-    print TBL "<tgroup cols='4'>\n";
+    print TBL "<tgroup cols='5'>\n";
     print TBL "<?dbhtml table-summary=\"Unicode character entity table\"?>\n";
     print TBL "<colspec colwidth=\"15*\"/>\n";
     print TBL "<colspec colwidth=\"15*\" align='center'/>\n";
     print TBL "<colspec colwidth=\"10*\" align='center'/>\n";
-    print TBL "<colspec colwidth=\"60*\"/>\n";
+    print TBL "<colspec colwidth=\"40*\" colname='desc'/>\n";
+    print TBL "<colspec colwidth=\"20*\" colname='math'/>\n";
     print TBL "<thead>\n";
     print TBL "<row>\n";
     print TBL "  <entry align='center'>Entity <?lb?>Name</entry>\n";
     print TBL "  <entry align='center'>Unicode <?lb?>Code point</entry>\n";
     print TBL "  <entry align='center'>Sample <?lb?>Glyph</entry>\n";
-    print TBL "  <entry align='left'>Description</entry>\n";
+    print TBL "  <entry align='left' namest='desc' nameend='math'>Description</entry>\n";
     print TBL "</row>\n";
     print TBL "</thead>\n";
     print TBL "<tbody>\n";
@@ -84,6 +85,27 @@ while ($name = readdir(DIR)) {
 	    $desc =~ s/\</\&lt;/g;
 
 	    $desc = $desc{$name} if exists($desc{$name});
+
+	    # let's patch the description
+	    # see SGML Handbook, p502,503
+	    my %relation = ("A" => "[Relation (arrow)]",
+			    "B" => "[Binary operator]",
+			    "C" => "[Closing delimiter]",
+			    "L" => "[Large operator]",
+			    "N" => "[Relation (negated)]",
+			    "O" => "[Opening delimiter]",
+			    "P" => "[Punctuation]",
+			    "R" => "[Relation]");
+
+	    my $math = undef;
+	    $desc =~ s/\/\S+\s*//sg; # remove references to MathSci chars
+	    if ($desc =~ /([ABCLNOPR]):\s*/) {
+		$desc = $` . $'; # '
+		$math = $relation{$1};
+	    }
+	    if ($desc =~ /^\s*=/) {
+		$desc = $'; # '
+	    }
 
 	    $glyph = "Blank";
 
@@ -122,7 +144,15 @@ while ($name = readdir(DIR)) {
 	    print TBL "</textobject>\n";
 	    print TBL "</mediaobject>";
 
-	    print TBL "</entry>\n  <entry>$desc</entry>\n";
+	    print TBL "</entry>\n  ";
+
+	    if ($math) {
+		print TBL "<entry>$desc</entry>\n  ";
+		print TBL "<entry align='right'>$math</entry>\n";
+	    } else {
+		print TBL "<entry namest='desc' nameend='math'>$desc</entry>\n";
+	    }
+
 	    print TBL "</row>\n";
 	}
     }
