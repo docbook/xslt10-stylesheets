@@ -154,7 +154,19 @@
         <xsl:call-template name="object.id"/>
       </xsl:attribute>
     </a>
-    <h2>Synopsis</h2>
+    <h2>
+      <xsl:choose>
+        <xsl:when test="refsynopsisdiv/title|title">
+          <xsl:apply-templates select="(refsynopsisdiv/title|title)[1]"
+                               mode="titlepage.mode"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'RefSynopsisDiv'"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </h2>
     <xsl:apply-templates/>
   </div>
 </xsl:template>

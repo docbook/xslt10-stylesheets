@@ -100,42 +100,59 @@
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
+
   <xsl:variable name="master-name">
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
 
-  <fo:page-sequence id="{$id}"
-                    hyphenate="{$hyphenate}"
-                    master-name="{$master-name}">
-    <xsl:attribute name="language">
-      <xsl:call-template name="l10n.language"/>
-    </xsl:attribute>
-    <xsl:if test="$double.sided != 0">
-      <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
-    </xsl:if>
-
-    <xsl:apply-templates select="." mode="running.head.mode">
-      <xsl:with-param name="master-name" select="$master-name"/>
-    </xsl:apply-templates>
-    <xsl:apply-templates select="." mode="running.foot.mode">
-      <xsl:with-param name="master-name" select="$master-name"/>
-    </xsl:apply-templates>
-
-    <fo:flow flow-name="xsl-region-body">
-      <fo:block font-size="20pt" font-weight="bold">
-        <!-- FIXME: is this right? -->
-        <xsl:choose>
-          <xsl:when test="refmeta/refentrytitle">
-            <xsl:apply-templates select="refmeta/refentrytitle" mode="title"/>
-          </xsl:when>
-          <xsl:when test="refnamediv/refname">
-            <xsl:apply-templates select="refnamediv/refname" mode="title"/>
-          </xsl:when>
-        </xsl:choose>
-      </fo:block>
+  <xsl:variable name="refentry.content">
+<!-- FIXME: what should this be?
+    <fo:block font-size="20pt" font-weight="bold">
+      <xsl:choose>
+        <xsl:when test="refmeta/refentrytitle">
+          <xsl:apply-templates select="refmeta/refentrytitle" mode="title"/>
+        </xsl:when>
+        <xsl:when test="refnamediv/refname">
+          <xsl:apply-templates select="refnamediv/refname" mode="title"/>
+        </xsl:when>
+      </xsl:choose>
+    </fo:block>
+-->
+    <fo:block id="{$id}">
       <xsl:apply-templates/>
-    </fo:flow>
-  </fo:page-sequence>
+    </fo:block>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="not(parent::*) or parent::reference">
+      <!-- make a page sequence -->
+      <fo:page-sequence hyphenate="{$hyphenate}"
+                        master-name="{$master-name}">
+        <xsl:attribute name="language">
+          <xsl:call-template name="l10n.language"/>
+        </xsl:attribute>
+        <xsl:if test="$double.sided != 0">
+          <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+        </xsl:if>
+
+        <xsl:apply-templates select="." mode="running.head.mode">
+          <xsl:with-param name="master-name" select="$master-name"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="." mode="running.foot.mode">
+          <xsl:with-param name="master-name" select="$master-name"/>
+        </xsl:apply-templates>
+
+        <fo:flow flow-name="xsl-region-body">
+          <xsl:copy-of select="$refentry.content"/>
+        </fo:flow>
+      </fo:page-sequence>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:block break-before="page">
+        <xsl:copy-of select="$refentry.content"/>
+      </fo:block>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="refmeta">
@@ -199,13 +216,26 @@
 
 <xsl:template match="refsynopsisdiv">
   <fo:block>
+    <xsl:attribute name="id">
+      <xsl:call-template name="object.id"/>
+    </xsl:attribute>
     <fo:block font-size="18pt" font-weight="bold">
-      <xsl:text>Synopsis (what about the title?)</xsl:text>
+      <xsl:choose>
+        <xsl:when test="refsynopsisdiv/title|title">
+          <xsl:apply-templates select="(refsynopsisdiv/title|title)[1]"
+                               mode="titlepage.mode"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'RefSynopsisDiv'"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
     </fo:block>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
- 
+
 <xsl:template match="refsynopsisdiv/title">
 </xsl:template>
 
