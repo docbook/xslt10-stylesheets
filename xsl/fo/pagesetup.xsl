@@ -1189,8 +1189,6 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:message>running head for <xsl:value-of select="local-name(.)"/> with ref <xsl:value-of select="$flow-name"/></xsl:message>
-
   <xsl:variable name="draft">
     <xsl:choose>
       <xsl:when test="$draft.mode = 'yes'">
