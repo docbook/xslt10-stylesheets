@@ -48,6 +48,8 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 </listitem>
 <listitem><para>para: <xref linkend="para"/>.</para>
 </listitem>
+<listitem><para>varlistentry: <xref linkend="varlistentry"/>.</para>
+</listitem>
 </itemizedlist>
 
 </dedication>
@@ -83,6 +85,15 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 &blah;
 <para id="para">This paragraph has an ID.</para>
 
+
+<variablelist>
+<varlistentry id="varlistentry">
+<term>VarList Term</term>
+<listitem>
+<para>Test cross-ref to varlistentries, should use term text.</para>
+</listitem>
+</varlistentry>
+</variablelist>
 </chapter>
 
 </part>
