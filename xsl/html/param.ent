@@ -36,6 +36,7 @@
 <!ENTITY emphasis.propagates.style SYSTEM "../params/emphasis.propagates.style.xml">
 <!ENTITY firstterm.only.link SYSTEM "../params/firstterm.only.link.xml">
 <!ENTITY formal.procedures SYSTEM "../params/formal.procedures.xml">
+<!ENTITY formal.title.placement SYSTEM "../params/formal.title.placement.xml">
 <!ENTITY funcsynopsis.decoration SYSTEM "../params/funcsynopsis.decoration.xml">
 <!ENTITY funcsynopsis.style SYSTEM "../params/funcsynopsis.style.xml">
 <!ENTITY function.parens SYSTEM "../params/function.parens.xml">
