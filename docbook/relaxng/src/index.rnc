@@ -70,7 +70,7 @@ db.indexterm.contentmodel =
 
 [
    db:refname [ "indexterm" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for terms to be indexed" ]
 ]
 div {
 
@@ -97,7 +97,7 @@ div {
 
 [
    db:refname [ "indexterm" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for terms to be indexed" ]
 ]
 div {
 
@@ -124,7 +124,7 @@ div {
 
 [
    db:refname [ "indexterm" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for terms to be indexed" ]
 ]
 div {
 
@@ -148,7 +148,7 @@ div {
 
 [
    db:refname [ "indexterm" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for terms to be indexed" ]
 ]
 div {
    db.indexterm =
@@ -161,7 +161,7 @@ div {
 
 [
    db:refname [ "primary" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The primary word or phrase under which an index term should be sorted" ]
 ]
 div {
 
@@ -184,7 +184,7 @@ div {
 
 [
    db:refname [ "secondary" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A secondary word or phrase in an index term" ]
 ]
 div {
 
@@ -207,7 +207,7 @@ div {
 
 [
    db:refname [ "tertiary" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A tertiary word or phrase in an index term" ]
 ]
 div {
 
@@ -230,7 +230,7 @@ div {
 
 [
    db:refname [ "see" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Part of an index term directing the reader instead to another entry in the index" ]
 ]
 div {
 
@@ -252,7 +252,7 @@ div {
 
 [
    db:refname [ "seealso" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Part of an index term directing the reader also to another entry in the index" ]
 ]
 div {
 
@@ -274,7 +274,7 @@ div {
 
 [
    db:refname [ "index" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An index to a book or part of a book" ]
 ]
 div {
 
@@ -304,7 +304,7 @@ div {
 
 [
    db:refname [ "setindex" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An index to a set of books" ]
 ]
 div {
 
@@ -334,7 +334,7 @@ div {
 
 [
    db:refname [ "indexdiv" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A division in an index" ]
 ]
 div {
 
@@ -364,7 +364,7 @@ div {
 
 [
    db:refname [ "indexentry" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An entry in an index" ]
 ]
 div {
 
@@ -388,7 +388,7 @@ div {
 
 [
    db:refname [ "primaryie" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A primary term in an index entry, not in the text" ]
 ]
 div {
 
@@ -410,7 +410,7 @@ div {
 
 [
    db:refname [ "secondaryie" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A secondary term in an index entry, rather than in the text" ]
 ]
 div {
 
@@ -432,7 +432,7 @@ div {
 
 [
    db:refname [ "tertiaryie" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A tertiary term in an index entry, rather than in the text" ]
 ]
 div {
 
@@ -454,7 +454,7 @@ div {
 
 [
    db:refname [ "seeie" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A " db:quote [ "See" ] "entry in an index, rather than in the text" ]
 ]
 div {
 
@@ -476,7 +476,7 @@ div {
 
 [
    db:refname [ "seealsoie" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A " db:quote [ "See also" ] " entry in an index, rather than in the text" ]
 ]
 div {
 
