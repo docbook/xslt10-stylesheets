@@ -671,10 +671,10 @@
 
 <xsl:template match="revhistory/revision" mode="titlepage.mode">
   <xsl:param name="numcols" select="'3'"/>
-  <xsl:variable name="revnumber" select=".//revnumber"/>
-  <xsl:variable name="revdate"   select=".//date"/>
-  <xsl:variable name="revauthor" select=".//authorinitials"/>
-  <xsl:variable name="revremark" select=".//revremark|.//revdescription"/>
+  <xsl:variable name="revnumber" select="revnumber"/>
+  <xsl:variable name="revdate"   select="date"/>
+  <xsl:variable name="revauthor" select="authorinitials"/>
+  <xsl:variable name="revremark" select="revremark|revdescription"/>
   <tr>
     <td align="left">
       <xsl:if test="$revnumber">
@@ -691,7 +691,12 @@
     <xsl:choose>
       <xsl:when test="$revauthor">
         <td align="left">
-          <xsl:apply-templates select="$revauthor[1]" mode="titlepage.mode"/>
+          <xsl:for-each select="$revauthor">
+            <xsl:apply-templates select="." mode="titlepage.mode"/>
+            <xsl:if test="position() != last()">
+	      <xsl:text>, </xsl:text>
+	    </xsl:if>
+	  </xsl:for-each>
         </td>
       </xsl:when>
       <xsl:when test="$numcols &gt; 2">
