@@ -43,7 +43,7 @@
     <xsl:apply-templates/>
   </xsl:variable>
   <xsl:choose>
-    <xsl:when test="local-name(.) = 'arg'">
+    <xsl:when test="local-name(.) = 'arg' and not(ancestor::arg)">
       <!-- Prevent breaking up an argument by wrapping it -->
       <xsl:call-template name="replace-string">
         <xsl:with-param name="content" select="normalize-space($arg)"/>
