@@ -8950,7 +8950,10 @@ OtherCredit. -->
               <ref name="revnumber"/>
               <ref name="date"/>
               <zeroOrMore>
-                <ref name="authorinitials"/>
+                <choice>
+                  <ref name="author"/>
+                  <ref name="authorinitials"/>
+                </choice>
               </zeroOrMore>
               <optional>
                 <choice>
