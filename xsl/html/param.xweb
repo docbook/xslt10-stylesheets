@@ -110,6 +110,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &linenumbering.width;
 &tablecolumns.extension;
 &textinsert.extension;
+&textdata.default.encoding;
 &graphicsize.extension;
 &use.extensions;
 </reference>
@@ -637,6 +638,7 @@ around all these parameters.</para>
 <src:fragref linkend="tablecolumns.extension.frag"/>
 <src:fragref linkend="target.database.document.frag"/>
 <src:fragref linkend="targets.filename.frag"/>
+<src:fragref linkend="textdata.default.encoding.frag"/>
 <src:fragref linkend="tex.math.delims.frag"/>
 <src:fragref linkend="tex.math.file.frag"/>
 <src:fragref linkend="tex.math.in.alt.frag"/>

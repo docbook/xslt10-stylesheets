@@ -234,6 +234,7 @@
 <!ENTITY table.frame.border.color SYSTEM "../params/table.frame.border.color.xml">
 <!ENTITY table.frame.border.style SYSTEM "../params/table.frame.border.style.xml">
 <!ENTITY table.frame.border.thickness SYSTEM "../params/table.frame.border.thickness.xml">
+<!ENTITY textdata.default.encoding SYSTEM "../params/textdata.default.encoding.xml">
 <!ENTITY ignore.image.scaling SYSTEM "../params/ignore.image.scaling.xml">
 <!ENTITY footnote.number.format SYSTEM "../params/footnote.number.format.xml">
 <!ENTITY table.footnote.number.format SYSTEM "../params/table.footnote.number.format.xml">

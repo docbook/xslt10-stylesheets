@@ -469,12 +469,23 @@
     </xsl:choose>
   </xsl:variable>
 
+  <xsl:variable name="encoding">
+    <xsl:choose>
+      <xsl:when test="@encoding">
+        <xsl:value-of select="@encoding"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$textdata.default.encoding"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="$use.extensions != '0'
                     and $textinsert.extension != '0'">
       <xsl:choose>
         <xsl:when test="element-available('stext:insertfile')">
-          <stext:insertfile href="{$filename}"/>
+          <stext:insertfile href="{$filename}" encoding="{$encoding}"/>
         </xsl:when>
         <xsl:when test="element-available('xtext:insertfile')">
           <xtext:insertfile href="{$filename}"/>
