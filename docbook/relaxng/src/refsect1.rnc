@@ -16,6 +16,12 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
+db.toplevel.optional.refsection |= db.refsect1*
+db.toplevel.required.refsection |= db.refsect1+
+
+db.secondlevel.optional.refsection |= db.refsect2*
+db.secondlevel.required.refsection |= db.refsect2+
+
 # ======================================================================
 
 [
@@ -37,7 +43,7 @@ div {
 
    db.refsect1.info = db._info.title.req
 
-   db.refsect1 |=
+   db.refsect1 =
       element refsect1 {
          db.refsect1.attlist,
          db.refsect1.info,
@@ -50,7 +56,7 @@ div {
 
 [
    db:refname [ "refsect2" ]
-   db:refpurpose [ "A subsection of a RefSect1" ]
+   db:refpurpose [ "A subsection of a " db:tag [ "refsect1" ] ]
 ]
 div {
 
@@ -67,7 +73,7 @@ div {
 
    db.refsect2.info = db._info.title.req
 
-   db.refsect2 |=
+   db.refsect2 =
       element refsect2 {
          db.refsect2.attlist,
          db.refsect2.info,
@@ -80,7 +86,7 @@ div {
 
 [
    db:refname [ "refsect3" ]
-   db:refpurpose [ "A subsection of a RefSect2" ]
+   db:refpurpose [ "A subsection of a " db:tag [ "refsect2" ] ]
 ]
 div {
 

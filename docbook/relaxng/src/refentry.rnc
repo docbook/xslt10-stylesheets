@@ -34,8 +34,11 @@ db.recursive.required.sections |= db.refentry+
 db.optional.refentry |= db.refentry*
 db.required.refentry |= db.refentry+
 
-db.refsect1 = notAllowed
-db.refsect2 = notAllowed
+db.toplevel.optional.refsection = db.refsection*
+db.toplevel.required.refsection = db.refsection+
+
+db.secondlevel.optional.refsection = db.refsection*
+db.secondlevel.required.refsection = db.refsection+
 
 # ======================================================================
 
@@ -92,7 +95,7 @@ div {
          db.refmeta?,
          db.refnamediv+,
          db.refsynopsisdiv?,
-         (db.refsection+|db.refsect1+)
+         db.toplevel.required.refsection
       }
 }
 
@@ -279,8 +282,8 @@ div {
       element refsynopsisdiv {
          db.refsynopsisdiv.attlist,
          db.refsynopsisdiv.info,
-         ((db.all.blocks+, (db.refsection* | db.refsect2*))
-          | (db.refsection+ | db.refsect2+))
+         ((db.all.blocks+, db.secondlevel.optional.refsection)
+          | db.secondlevel.required.refsection)
       }
 }
 
