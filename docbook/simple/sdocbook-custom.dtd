@@ -228,8 +228,8 @@
 <!ENTITY % blockquote.element  "IGNORE">
 
 <!ENTITY % cals.table.module "INCLUDE">
-<!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.3CR2//EN"
-                   "http://docbook.org/xml/4.3CR2/docbookx.dtd"
+<!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                   "http://docbook.org/xml/4.3/docbookx.dtd"
 >
 %docbook;
 
