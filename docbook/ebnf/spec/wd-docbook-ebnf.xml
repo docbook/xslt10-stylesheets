@@ -1,11 +1,11 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-<!ENTITY standard "Standard">
+<!ENTITY standard "Working Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker/">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
 ]>
 
-<article status="Working Draft">
+<article status="&standard;">
 
 <articleinfo>
 <productname>wd-docbook-ebnf</productname>
@@ -274,8 +274,6 @@ of the DocBook web page
 <revision>
 <revnumber>1.1-CR1</revnumber>
 <date>12 Sep 2002</date>
-<authorinitials>ndw</authorinitials>
-<revremark>Candidate Release 1</revremark>
 </revision>
 </revhistory>
 </para>
