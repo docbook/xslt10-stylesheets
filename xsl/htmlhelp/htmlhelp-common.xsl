@@ -129,7 +129,7 @@ Language=</xsl:text>
   <xsl:text>0x0409 English (United States)
 </xsl:text></xsl:if>
 <xsl:text>
-Title=</xsl:text><xsl:value-of select="//title[1]"/>
+Title=</xsl:text><xsl:value-of select="normalize-space(//title[1])"/>
 <xsl:text>
 
 [FILES]
@@ -208,7 +208,7 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
   <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
     &lt;param name="Name" value="</xsl:text>
-	<xsl:value-of select="$title"/>
+	<xsl:value-of select="normalize-space($title)"/>
     <xsl:text>"&gt;
     &lt;param name="Local" value="</xsl:text>
 	<xsl:call-template name="href.target.with.base.dir"/>
@@ -232,7 +232,7 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
   <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
     &lt;param name="Name" value="</xsl:text>
-	<xsl:value-of select="$title"/>
+	<xsl:value-of select="normalize-space($title)"/>
     <xsl:text>"&gt;
     &lt;param name="Local" value="</xsl:text>
 	<xsl:call-template name="href.target.with.base.dir"/>
@@ -258,7 +258,7 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
   <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
     &lt;param name="Name" value="</xsl:text>
-	<xsl:value-of select="$title"/>
+	<xsl:value-of select="normalize-space($title)"/>
     <xsl:text>"&gt;
     &lt;param name="Local" value="</xsl:text>
 	<xsl:call-template name="href.target.with.base.dir"/>
@@ -284,7 +284,7 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
   <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
     &lt;param name="Name" value="</xsl:text>
-	<xsl:value-of select="$title"/>
+	<xsl:value-of select="normalize-space($title)"/>
     <xsl:text>"&gt;
     &lt;param name="Local" value="</xsl:text>
 	<xsl:call-template name="href.target.with.base.dir"/>
@@ -308,7 +308,7 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
   <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
     &lt;param name="Name" value="</xsl:text>
-	<xsl:value-of select="$title"/>
+	<xsl:value-of select="normalize-space($title)"/>
     <xsl:text>"&gt;
     &lt;param name="Local" value="</xsl:text>
 	<xsl:call-template name="href.target.with.base.dir"/>
@@ -333,7 +333,7 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
   <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
     &lt;param name="Name" value="</xsl:text>
-	<xsl:value-of select="$title"/>
+	<xsl:value-of select="normalize-space($title)"/>
     <xsl:text>"&gt;
     &lt;param name="Local" value="</xsl:text>
 	<xsl:call-template name="href.target.with.base.dir"/>
@@ -358,7 +358,7 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
   <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
     &lt;param name="Name" value="</xsl:text>
-	<xsl:value-of select="$title"/>
+	<xsl:value-of select="normalize-space($title)"/>
     <xsl:text>"&gt;
     &lt;param name="Local" value="</xsl:text>
 	<xsl:call-template name="href.target.with.base.dir"/>
@@ -383,7 +383,7 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
   <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
     &lt;param name="Name" value="</xsl:text>
-	<xsl:value-of select="$title"/>
+	<xsl:value-of select="normalize-space($title)"/>
     <xsl:text>"&gt;
     &lt;param name="Local" value="</xsl:text>
 	<xsl:call-template name="href.target.with.base.dir"/>
@@ -408,7 +408,7 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 
   <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
     &lt;param name="Name" value="</xsl:text>
-	<xsl:value-of select="$title"/>
+	<xsl:value-of select="normalize-space($title)"/>
     <xsl:text>"&gt;
     &lt;param name="Local" value="</xsl:text>
 	<xsl:call-template name="href.target.with.base.dir"/>
@@ -425,14 +425,14 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 <xsl:template match="indexterm">
 
   <xsl:variable name="text">
-    <xsl:value-of select="primary"/>
+    <xsl:value-of select="normalize-space(primary)"/>
     <xsl:if test="secondary">
       <xsl:text>, </xsl:text>
-      <xsl:value-of select="secondary"/>
+      <xsl:value-of select="normalize-space(secondary)"/>
     </xsl:if>
     <xsl:if test="tertiary">
       <xsl:text>, </xsl:text>
-      <xsl:value-of select="tertiary"/>
+      <xsl:value-of select="normalize-space(tertiary)"/>
     </xsl:if>
   </xsl:variable>
 
