@@ -13,7 +13,7 @@
 if [ ! "$(xmlcatalog)" ]; then
   cat <<- EOF
 
-$0: Error: Failed to find 'xmcatalog' command. Stopping.
+$0: Error: Failed to find 'xmlcatalog' command. Stopping.
 
 You must have libxml2 and its associated 'xmlcatalog' utility
 on your system in order to create and use an XML catalog for this
