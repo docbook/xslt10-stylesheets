@@ -1,0 +1,22 @@
+<refentry id="generate.manifest">
+<refmeta>
+<refentrytitle>generate.manifest</refentrytitle>
+<refmiscinfo role="type">boolean</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>generate.manifest</refname>
+<refpurpose>This parameter controls generating of manifest file</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='generate.manifest.frag'>
+<xsl:param name="generate.manifest" select="0"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
