@@ -51,11 +51,16 @@
 </xsl:template>
 
 <xsl:template name="component.toc">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <xsl:variable name="nodes" select="section|sect1|refentry
                                      |article|bibliography|glossary
                                      |appendix"/>
   <xsl:if test="$nodes">
-    <fo:block xsl:use-attribute-sets="toc.margin.properties">
+    <fo:block id="toc...{$id}"
+              xsl:use-attribute-sets="toc.margin.properties">
       <xsl:call-template name="table.of.contents.titlepage"/>
       <xsl:apply-templates select="$nodes" mode="toc"/>
     </fo:block>
@@ -142,10 +147,15 @@
 </xsl:template>
 
 <xsl:template match="reference" mode="toc">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <xsl:call-template name="toc.line"/>
 
   <xsl:if test="$toc.section.depth &gt; 0 and refentry">
-    <fo:block start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+    <fo:block id="toc...{$id}"
+              start-indent="{count(ancestor::*)*$toc.indent.width}pt">
       <xsl:apply-templates select="refentry" mode="toc"/>
     </fo:block>
   </xsl:if>
@@ -157,52 +167,77 @@
 
 <xsl:template match="preface|chapter|appendix|article"
               mode="toc">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <xsl:call-template name="toc.line"/>
 
   <xsl:variable name="nodes" select="section|sect1"/>
 
   <xsl:if test="$toc.section.depth &gt; 0 and $nodes">
-    <fo:block start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+    <fo:block id="toc...{$id}"
+              start-indent="{count(ancestor::*)*$toc.indent.width}pt">
       <xsl:apply-templates select="$nodes" mode="toc"/>
     </fo:block>
   </xsl:if>
 </xsl:template>
 
 <xsl:template match="sect1" mode="toc">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <xsl:call-template name="toc.line"/>
 
   <xsl:if test="$toc.section.depth &gt; 1 and sect2">
-    <fo:block start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+    <fo:block id="toc...{$id}"
+              start-indent="{count(ancestor::*)*$toc.indent.width}pt">
       <xsl:apply-templates select="sect2" mode="toc"/>
     </fo:block>
   </xsl:if>
 </xsl:template>
 
 <xsl:template match="sect2" mode="toc">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <xsl:call-template name="toc.line"/>
 
   <xsl:if test="$toc.section.depth &gt; 2 and sect3">
-    <fo:block start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+    <fo:block id="toc...{$id}"
+              start-indent="{count(ancestor::*)*$toc.indent.width}pt">
       <xsl:apply-templates select="sect3" mode="toc"/>
     </fo:block>
   </xsl:if>
 </xsl:template>
 
 <xsl:template match="sect3" mode="toc">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <xsl:call-template name="toc.line"/>
 
   <xsl:if test="$toc.section.depth &gt; 3 and sect4">
-    <fo:block start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+    <fo:block id="toc...{$id}"
+              start-indent="{count(ancestor::*)*$toc.indent.width}pt">
       <xsl:apply-templates select="sect4" mode="toc"/>
     </fo:block>
   </xsl:if>
 </xsl:template>
 
 <xsl:template match="sect4" mode="toc">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <xsl:call-template name="toc.line"/>
 
   <xsl:if test="$toc.section.depth &gt; 4 and sect5">
-    <fo:block start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+    <fo:block id="toc...{$id}"
+              start-indent="{count(ancestor::*)*$toc.indent.width}pt">
       <xsl:apply-templates select="sect5" mode="toc"/>
     </fo:block>
   </xsl:if>
@@ -213,13 +248,18 @@
 </xsl:template>
 
 <xsl:template match="section" mode="toc">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <xsl:variable name="depth" select="count(ancestor::section) + 1"/>
 
   <xsl:if test="$toc.section.depth &gt;= $depth">
     <xsl:call-template name="toc.line"/>
 
     <xsl:if test="$toc.section.depth &gt; $depth">
-      <fo:block start-indent="{count(ancestor::*)*$toc.indent.width}pt">
+      <fo:block id="toc...{$id}"
+                start-indent="{count(ancestor::*)*$toc.indent.width}pt">
         <xsl:apply-templates select="section" mode="toc"/>
       </fo:block>
     </xsl:if>
@@ -248,8 +288,12 @@
   <xsl:param name="titles" select="'table'"/>
   <xsl:param name="nodes" select=".//table"/>
 
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <xsl:if test="$nodes">
-    <fo:block>
+    <fo:block id="lot...{$titles}...{$id}">
       <xsl:choose>
         <xsl:when test="$titles='table'">
           <xsl:call-template name="list.of.tables.titlepage"/>
