@@ -24,6 +24,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/chunk.datafile.xml \
        ../params/chunk.first.sections.xml \
        ../params/chunk.section.depth.xml \
+       ../params/chunk.toc.xml \
        ../params/citerefentry.link.xml \
        ../params/css.decoration.xml \
        ../params/default.encoding.xml \
@@ -72,6 +73,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/htmlhelp.hhc.xml \
        ../params/htmlhelp.hhc.folders.instead.books.xml \
        ../params/htmlhelp.hhc.section.depth.xml \
+       ../params/htmlhelp.hhc.show.root.xml \
        ../params/htmlhelp.hhp.xml \
        ../params/htmlhelp.hhp.tail.xml \
        ../params/htmlhelp.map.file.xml \
@@ -86,6 +88,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/make.valid.html.xml \
        ../params/make.single.year.ranges.xml \
        ../params/make.year.ranges.xml \
+       ../params/manual.toc.xml \
        ../params/navig.graphics.xml \
        ../params/navig.graphics.extension.xml \
        ../params/navig.graphics.path.xml \
