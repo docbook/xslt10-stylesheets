@@ -74,7 +74,7 @@
       <xsl:call-template name="process.qanda.toc"/>
     </xsl:if>
     <xsl:apply-templates select="$preamble"/>
-    <table border="0">
+    <table border="0" summary="Q and A Set">
       <xsl:if test="$table-summary != ''">
         <xsl:attribute name="summary">
           <xsl:value-of select="$table-summary"/>
