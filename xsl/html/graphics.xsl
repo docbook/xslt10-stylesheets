@@ -271,7 +271,7 @@
         </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="$nominal.image.width"/>
+        <xsl:value-of select="$nominal.image.depth"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
