@@ -7,6 +7,7 @@
 <xsl:include href="param.xsl"/>
 <xsl:include href="jscript.xsl"/>
 <xsl:include href="graphics.xsl"/>
+<xsl:include href="css.xsl"/>
 
 <xsl:output method="html"/>
 
@@ -380,7 +381,11 @@
 
           <!-- Links -->
           <xsl:if test="$css.stylesheet != ''">
-            <link type="text/css" rel="stylesheet" href="{$css.stylesheet}"/>
+            <link type="text/css" rel="stylesheet">
+              <xsl:attribute name="href">
+                <xsl:call-template name="css.stylesheet"/>
+              </xsl:attribute>
+            </link>
           </xsl:if>
           <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
@@ -393,7 +398,9 @@
           <!-- Scripts -->
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0">
-            <script language="JavaScript1.2" type="text/javascript"/>
+            <script language="JavaScript1.2" type="text/javascript">
+              <xsl:text> </xsl:text>
+            </script>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0">
@@ -550,7 +557,11 @@
 
           <!-- Links -->
           <xsl:if test="$css.stylesheet != ''">
-            <link type="text/css" rel="stylesheet" href="{$css.stylesheet}"/>
+            <link type="text/css" rel="stylesheet">
+              <xsl:attribute name="href">
+                <xsl:call-template name="css.stylesheet"/>
+              </xsl:attribute>
+            </link>
           </xsl:if>
           <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
@@ -564,7 +575,9 @@
           <!-- Scripts -->
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0">
-            <script language="JavaScript1.2" type="text/javascript"/>
+            <script language="JavaScript1.2" type="text/javascript">
+              <xsl:text> </xsl:text>
+            </script>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0">
@@ -752,7 +765,11 @@
 
           <!-- Links -->
           <xsl:if test="$css.stylesheet != ''">
-            <link type="text/css" rel="stylesheet" href="{$css.stylesheet}"/>
+            <link type="text/css" rel="stylesheet">
+              <xsl:attribute name="href">
+                <xsl:call-template name="css.stylesheet"/>
+              </xsl:attribute>
+            </link>
           </xsl:if>
           <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
@@ -766,7 +783,9 @@
           <!-- Scripts -->
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0">
-            <script language="JavaScript1.2" type="text/javascript"/>
+            <script language="JavaScript1.2" type="text/javascript">
+              <xsl:text> </xsl:text>
+            </script>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0">
@@ -921,7 +940,11 @@
 
           <!-- Links -->
           <xsl:if test="$css.stylesheet != ''">
-            <link type="text/css" rel="stylesheet" href="{$css.stylesheet}"/>
+            <link type="text/css" rel="stylesheet">
+              <xsl:attribute name="href">
+                <xsl:call-template name="css.stylesheet"/>
+              </xsl:attribute>
+            </link>
           </xsl:if>
           <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
@@ -935,7 +958,9 @@
           <!-- Scripts -->
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0">
-            <script language="JavaScript1.2" type="text/javascript"/>
+            <script language="JavaScript1.2" type="text/javascript">
+              <xsl:text> </xsl:text>
+            </script>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0">
@@ -1079,37 +1104,6 @@
 
 <!-- ====================================================================== -->
 
-<xsl:template name="css.stylesheet">
-  <!-- danger will robinson: template shadows parameter -->
-  <xsl:message>Warning: css.stylesheet has been deprecated.</xsl:message>
-  <xsl:variable name="source.css.stylesheet">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis" select="/processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'css-stylesheet'"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:variable name="source.css.stylesheet.dir">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis" select="/processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'css-stylesheet-dir'"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:choose>
-    <xsl:when test="$source.css.stylesheet != ''">
-      <xsl:value-of select="$source.css.stylesheet"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:if test="$source.css.stylesheet.dir != ''">
-        <xsl:value-of select="$source.css.stylesheet.dir"/>
-        <xsl:text>/</xsl:text>
-      </xsl:if>
-      <xsl:value-of select="$css.stylesheet"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
 <xsl:template match="processing-instruction('dbhtml')" mode="css.pi">
   <xsl:variable name="href">
     <xsl:call-template name="dbhtml-attribute">
@@ -1118,9 +1112,23 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:if test="$href != ''">
-    <link type="text/css" rel="stylesheet" href="{$href}"/>
-  </xsl:if>
+  <xsl:choose>
+    <xsl:when test="contains($href, '//')">
+      <link type="text/css" rel="stylesheet" href="{$href}"/>
+    </xsl:when>
+    <xsl:when test="starts-with($href, '/')">
+      <link type="text/css" rel="stylesheet" href="{$href}"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <link type="text/css" rel="stylesheet">
+        <xsl:attribute name="href">
+          <xsl:call-template name="css.stylesheet">
+            <xsl:with-param name="css" select="$href"/>
+          </xsl:call-template>
+        </xsl:attribute>
+      </link>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ====================================================================== -->
