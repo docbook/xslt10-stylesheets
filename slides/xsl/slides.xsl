@@ -275,6 +275,17 @@
               <xsl:value-of select="(following::section|following::foil)[1]/title"/>
             </xsl:attribute>
           </link>
+
+          <xsl:for-each select="../section">
+            <link rel="section">
+              <xsl:attribute name="href">
+                <xsl:apply-templates select="." mode="filename"/>
+              </xsl:attribute>
+              <xsl:attribute name="title">
+                <xsl:value-of select="title[1]"/>
+              </xsl:attribute>
+            </link>
+          </xsl:for-each>
         </head>
         <body class="titlepage">
           <xsl:call-template name="body.attributes"/>
@@ -505,6 +516,17 @@
             </xsl:attribute>
           </link>
         </xsl:for-each>
+
+        <xsl:for-each select="../section">
+          <link rel="section">
+            <xsl:attribute name="href">
+              <xsl:apply-templates select="." mode="filename"/>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:value-of select="title[1]"/>
+            </xsl:attribute>
+          </link>
+        </xsl:for-each>
       </head>
       <body class="section">
         <xsl:call-template name="body.attributes"/>
@@ -657,6 +679,28 @@
             </xsl:attribute>
           </link>
         </xsl:if>
+
+          <xsl:for-each select="../../section">
+            <link rel="section">
+              <xsl:attribute name="href">
+                <xsl:apply-templates select="." mode="filename"/>
+              </xsl:attribute>
+              <xsl:attribute name="title">
+                <xsl:value-of select="title[1]"/>
+              </xsl:attribute>
+            </link>
+          </xsl:for-each>
+
+          <xsl:for-each select="../foil">
+            <link rel="slides">
+              <xsl:attribute name="href">
+                <xsl:apply-templates select="." mode="filename"/>
+              </xsl:attribute>
+              <xsl:attribute name="title">
+                <xsl:value-of select="title[1]"/>
+              </xsl:attribute>
+            </link>
+         </xsl:for-each>
       </head>
       <body class="foil">
         <xsl:call-template name="body.attributes"/>
@@ -1201,6 +1245,7 @@
       <tr>
         <td align="left" width="80%" valign="top">
           <span class="navfooter">
+            <xsl:text>&#160;</xsl:text>
             <xsl:apply-templates select="/slides/slidesinfo/copyright"
                                  mode="slide.navigation.mode"/>
           </span>
@@ -1208,6 +1253,7 @@
         <td align="right" width="20%" valign="top">
           <span class="navfooter">
             <xsl:number count="foil" level="any"/>
+            <xsl:text>&#160;</xsl:text>
           </span>
         </td>
       </tr>
