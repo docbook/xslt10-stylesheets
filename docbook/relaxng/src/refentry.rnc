@@ -278,7 +278,7 @@ div {
    db.refclass =
       element refclass {
          refclass.attlist,
-         (text | db.application*)
+         (text | db.application)*
       }
 }
 
