@@ -14,7 +14,7 @@
    role="cvs">$Id$</releaseinfo>
 <title>Website RDDL Module</title>
 <productname>Website</productname>
-<productnumber>2.4.0</productnumber>
+<productnumber>2.4.1</productnumber>
 <releaseinfo role="filename">rddl</releaseinfo>
 <copyright>
 <year>2002</year>

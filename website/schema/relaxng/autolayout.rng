@@ -11,7 +11,7 @@
    role="cvs">$Id$</releaseinfo>
 <title>Website Autolayout Schema</title>
 <productname>Website</productname>
-<productnumber>2.4.0</productnumber>
+<productnumber>2.4.1</productnumber>
 <releaseinfo role="filename">autolayout</releaseinfo>
 <copyright>
 <year>2002</year>
@@ -24,12 +24,12 @@
 <para>This is the autolayout schema for Website.
 Please use the following formal public identifier to identify it:</para>
 
-<screen>"-//Norman Walsh//DTD Website Autolayout V2.4.0//EN"</screen>
+<screen>"-//Norman Walsh//DTD Website Autolayout V2.4.1//EN"</screen>
 
 <para>For example:</para>
 
-<programlisting><![CDATA[<!DOCTYPE autolayout PUBLIC "-//Norman Walsh//DTD Website Autolayout V2.4.0//EN"
-               "http://docbook.sourceforge.net/release/website/2.4.0/autolayout.dtd">
+<programlisting><![CDATA[<!DOCTYPE autolayout PUBLIC "-//Norman Walsh//DTD Website Autolayout V2.4.1//EN"
+               "http://docbook.sourceforge.net/release/website/2.4.1/autolayout.dtd">
                [...]>]]></programlisting>
 
 <para>Please direct all questions and comments about this DTD to
