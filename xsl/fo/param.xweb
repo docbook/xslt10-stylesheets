@@ -87,6 +87,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &process.source.toc;
 &generate.toc;
 &generate.index;
+&make.index.markup;
 &toc.section.depth;
 &toc.indent.width;
 &toc.margin.properties;
@@ -156,7 +157,6 @@ generate.section.toc.level;
 &table.cell.padding;
 &table.border.style;
 &table.border.color;
-&table.entry.padding;
 </reference>
 
 <reference><title>Linking</title>
@@ -483,6 +483,7 @@ around all these parameters.</para>
 <src:fragref linkend="linenumbering.width.frag"/>
 <src:fragref linkend="list.block.spacing.frag"/>
 <src:fragref linkend="list.item.spacing.frag"/>
+<src:fragref linkend="make.index.markup.frag"/>
 <src:fragref linkend="make.single.year.ranges.frag"/>
 <src:fragref linkend="make.year.ranges.frag"/>
 <src:fragref linkend="menuchoice.menu.separator.frag"/>
@@ -553,7 +554,6 @@ around all these parameters.</para>
 <src:fragref linkend="table.border.style.frag"/>
 <src:fragref linkend="table.border.thickness.frag"/>
 <src:fragref linkend="table.cell.padding.frag"/>
-<src:fragref linkend="table.entry.padding.frag"/>
 <src:fragref linkend="tablecolumns.extension.frag"/>
 <src:fragref linkend="target.database.document.frag"/>
 <src:fragref linkend="tex.math.delims.frag"/>
