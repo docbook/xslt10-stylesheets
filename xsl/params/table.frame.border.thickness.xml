@@ -5,7 +5,7 @@
 </refmeta>
 <refnamediv>
 <refname>table.frame.border.thickness</refname>
-<refpurpose></refpurpose>
+<refpurpose>Specifies the thickness of the frame border</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -16,7 +16,7 @@
 
 <refsect1><title>Description</title>
 
-<para>FIXME:</para>
+<para>Specifies the thickness of the border on the table's frame.</para>
 
 </refsect1>
 </refentry>
