@@ -396,6 +396,18 @@ Title=</xsl:text>
   </xsl:if>
   <xsl:if test="book">
     <xsl:text>&lt;UL&gt;</xsl:text>
+      <xsl:if test="$generate.set.toc != 0 and $htmlhelp.hhc.show.root = 0">
+        <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
+          &lt;param name="Name" value="</xsl:text>
+            <xsl:call-template name="gentext">
+              <xsl:with-param name="key" select="'TableofContents'"/>
+            </xsl:call-template>
+          <xsl:text>"&gt;
+          &lt;param name="Local" value="</xsl:text>
+              <xsl:call-template name="href.target.with.base.dir"/>
+          <xsl:text>"&gt;
+        &lt;/OBJECT&gt;</xsl:text>
+      </xsl:if>
       <xsl:apply-templates select="book" mode="hhc"/>
     <xsl:text>&lt;/UL&gt;</xsl:text>
   </xsl:if>
@@ -426,6 +438,18 @@ Title=</xsl:text>
   </xsl:if>
   <xsl:if test="part|reference|preface|chapter|appendix|bibliography|article|colophon">
     <xsl:text>&lt;UL&gt;</xsl:text>
+      <xsl:if test="$generate.book.toc != 0 and $htmlhelp.hhc.show.root = 0 and not(parent::*)">
+        <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
+          &lt;param name="Name" value="</xsl:text>
+            <xsl:call-template name="gentext">
+              <xsl:with-param name="key" select="'TableofContents'"/>
+            </xsl:call-template>
+          <xsl:text>"&gt;
+          &lt;param name="Local" value="</xsl:text>
+              <xsl:call-template name="href.target.with.base.dir"/>
+          <xsl:text>"&gt;
+        &lt;/OBJECT&gt;</xsl:text>
+      </xsl:if>
       <xsl:apply-templates select="part|reference|preface|chapter|bibliography|appendix|article|colophon"
 			   mode="hhc"/>
     <xsl:text>&lt;/UL&gt;</xsl:text>
