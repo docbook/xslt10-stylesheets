@@ -15,6 +15,14 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template match="anchor">
+  <!-- FIXME: should this output an empty element with an ID? -->
+  <!-- what element!? -->
+  <!-- suppress -->
+</xsl:template>
+
+<!-- ==================================================================== -->
+
 <xsl:template match="xref">
   <xsl:variable name="targets" select="id(@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
