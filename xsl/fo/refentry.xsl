@@ -152,11 +152,11 @@
         <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:call-template>
 
-      <xsl:apply-templates select=".." mode="reference.titlepage.mode"/>
+      <fo:block id="{$id}">
+        <xsl:apply-templates select=".." mode="reference.titlepage.mode"/>
+      </fo:block>
       <xsl:if test="title">
-        <fo:block id="{$id}">
-          <xsl:call-template name="partintro.titlepage"/>
-        </fo:block>
+        <xsl:call-template name="partintro.titlepage"/>
       </xsl:if>
       <xsl:apply-templates/>
     </fo:flow>
