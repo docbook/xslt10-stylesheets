@@ -6,6 +6,7 @@
 <!ENTITY extensions.xml SYSTEM "extensions.xml">
 <!ENTITY templates.xml SYSTEM "templates.xml">
 <!ENTITY html-param.xml SYSTEM "html/param.xml" NDATA SGML>
+<!ENTITY tools-profiling.xml SYSTEM "tools/profiling.xml" NDATA SGML>
 ]>
 <book>
 <bookinfo>
@@ -33,6 +34,20 @@ Stylesheets.</para>
 
 &publishing.xml;
 &extensions.xml;
+
+<chapter>
+<title>Tools documentation</title>
+
+<para>There are several tools useful for usage with DocBook in
+directory <filename>tools</filename>.</para>
+
+<itemizedlist>
+<listitem><para><olink type="title" localinfo="tools/profiling.html"
+                       targetdocent="tools-profiling.xml"/></para>
+</listitem>
+</itemizedlist>
+
+</chapter>
 
 <chapter>
 <title>Reference Documentation</title>
