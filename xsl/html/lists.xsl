@@ -59,6 +59,7 @@
 
   <xsl:variable name="cssmark">
     <xsl:choose>
+      <xsl:when test="$usemark = 'opencircle'">circle</xsl:when>
       <xsl:when test="$usemark = 'bullet'">disc</xsl:when>
       <xsl:when test="$usemark = 'box'">square</xsl:when>
       <xsl:otherwise>
