@@ -99,15 +99,19 @@
       <xsl:call-template name="object.id"/>
     </xsl:attribute>
     <xsl:comment>
-      <xsl:value-of select="primary"/>
-      <xsl:if test="secondary">
-        <xsl:text>, </xsl:text>
-        <xsl:value-of select="secondary"/>
-      </xsl:if>
-      <xsl:if test="tertiary">
-        <xsl:text>, </xsl:text>
-        <xsl:value-of select="tertiary"/>
-      </xsl:if>
+      <xsl:call-template name="comment-escape-string">
+        <xsl:with-param name="string">
+          <xsl:value-of select="primary"/>
+          <xsl:if test="secondary">
+            <xsl:text>, </xsl:text>
+            <xsl:value-of select="secondary"/>
+          </xsl:if>
+          <xsl:if test="tertiary">
+            <xsl:text>, </xsl:text>
+            <xsl:value-of select="tertiary"/>
+          </xsl:if>
+        </xsl:with-param>
+      </xsl:call-template>
     </xsl:comment>
   </fo:wrapper>
 </xsl:template>
