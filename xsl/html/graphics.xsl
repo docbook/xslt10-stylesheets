@@ -151,12 +151,47 @@
        alignment.
   -->
 
+  <xsl:variable name="width-units">
+    <xsl:choose>
+      <xsl:when test="@width">
+        <xsl:call-template name="length-units">
+          <xsl:with-param name="length" select="@width"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="not(@depth) and $default.image.width != ''">
+        <xsl:call-template name="length-units">
+          <xsl:with-param name="length" select="$default.image.width"/>
+        </xsl:call-template>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="width">
+    <xsl:choose>
+      <xsl:when test="@width">
+        <xsl:choose>
+          <xsl:when test="$width-units = '%'">
+            <xsl:value-of select="@width"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="length-spec">
+              <xsl:with-param name="length" select="@width"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:when test="not(@depth) and $default.image.width != ''">
+        <xsl:value-of select="$default.image.width"/>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:variable name="scalefit">
     <xsl:choose>
       <xsl:when test="@contentwidth or @contentdepth">0</xsl:when>
       <xsl:when test="@scale">0</xsl:when>
       <xsl:when test="@scalefit"><xsl:value-of select="@scalefit"/></xsl:when>
-      <xsl:when test="@width or @depth">1</xsl:when>
+      <xsl:when test="$width != '' or @depth">1</xsl:when>
       <xsl:otherwise>0</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -283,35 +318,12 @@
     </xsl:if>
   </xsl:variable>
 
-  <xsl:variable name="width-units">
-    <xsl:if test="@width">
-      <xsl:call-template name="length-units">
-        <xsl:with-param name="length" select="@width"/>
-      </xsl:call-template>
-    </xsl:if>
-  </xsl:variable>
-
-  <xsl:variable name="width">
-    <xsl:if test="@width">
-      <xsl:choose>
-        <xsl:when test="$width-units = '%'">
-          <xsl:value-of select="@width"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:call-template name="length-spec">
-            <xsl:with-param name="length" select="@width"/>
-          </xsl:call-template>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:if>
-  </xsl:variable>
-
   <xsl:variable name="html.width">
     <xsl:choose>
       <xsl:when test="$width-units = '%'">
         <xsl:value-of select="$width"/>
       </xsl:when>
-      <xsl:when test="@width and @width != ''">
+      <xsl:when test="$width != ''">
         <xsl:variable name="width.in.points">
           <xsl:call-template name="length-in-points">
             <xsl:with-param name="length" select="$width"/>
