@@ -400,7 +400,7 @@
       <xsl:text>&#x00AD;</xsl:text>
     </xsl:when>
     <xsl:when test="$hyphenate.verbatim.characters != '' and
-                    translate($hyphenate.verbatim.characters, $head, '') = ''">
+                    translate($head, $hyphenate.verbatim.characters, '') = ''">
       <xsl:value-of select="$head"/>
       <xsl:text>&#x00AD;</xsl:text>
     </xsl:when>
