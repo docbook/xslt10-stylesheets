@@ -288,6 +288,21 @@
     <xsl:apply-templates mode="flatten"/>
   </xsl:template>
 
+  <xsl:template match="rng:group" mode="flatten">
+    <xsl:choose>
+      <xsl:when test="ancestor::doc:attributes
+		      and count(*) = count(rng:optional[rng:attribute])">
+	<xsl:apply-templates mode="flatten"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:copy>
+	  <xsl:copy-of select="@*"/>
+	  <xsl:apply-templates mode="flatten"/>
+	</xsl:copy>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="rng:notAllowed" mode="flatten">
     <xsl:choose>
       <xsl:when test="parent::rng:choice|parent::rng:zeroOrMore|parent::rng:oneOrMore">
