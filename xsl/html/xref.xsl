@@ -1026,7 +1026,7 @@
                   <xsl:value-of select="'en'"/>
                 </xsl:otherwise>
               </xsl:choose>
-            </xsl:variable> 
+            </xsl:variable>
             <xsl:variable name="template">
               <xsl:call-template name="gentext.template">
                 <xsl:with-param name="context" select="'title'"/>
