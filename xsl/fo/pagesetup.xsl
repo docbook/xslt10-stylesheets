@@ -50,6 +50,7 @@
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.titlepage}"
                       column-count="{$column.count.titlepage}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-first"
@@ -69,6 +70,7 @@
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.titlepage}"
                       column-count="{$column.count.titlepage}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-odd"
@@ -88,6 +90,7 @@
                            margin-left="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.titlepage}"
                       column-count="{$column.count.titlepage}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-even"
@@ -108,6 +111,7 @@
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.lot}"
                       column-count="{$column.count.lot}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-first"
@@ -127,6 +131,7 @@
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.lot}"
                       column-count="{$column.count.lot}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-odd"
@@ -146,6 +151,7 @@
                            margin-left="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.lot}"
                       column-count="{$column.count.lot}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-even"
@@ -166,6 +172,7 @@
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.front}"
                       column-count="{$column.count.front}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-first"
@@ -185,6 +192,7 @@
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.front}"
                       column-count="{$column.count.front}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-odd"
@@ -204,6 +212,7 @@
                            margin-left="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.front}"
                       column-count="{$column.count.front}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-even"
@@ -224,6 +233,7 @@
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.body}"
                       column-count="{$column.count.body}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-first"
@@ -243,6 +253,7 @@
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.body}"
                       column-count="{$column.count.body}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-odd"
@@ -262,6 +273,7 @@
                            margin-left="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.body}"
                       column-count="{$column.count.body}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-even"
@@ -282,6 +294,7 @@
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.back}"
                       column-count="{$column.count.back}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-first"
@@ -301,6 +314,7 @@
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.back}"
                       column-count="{$column.count.back}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-odd"
@@ -320,6 +334,7 @@
                            margin-left="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.back}"
                       column-count="{$column.count.back}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-even"
@@ -340,6 +355,7 @@
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.index}"
                       column-count="{$column.count.index}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-first"
@@ -359,6 +375,7 @@
                            margin-right="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.index}"
                       column-count="{$column.count.index}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-odd"
@@ -378,6 +395,7 @@
                            margin-left="{$page.margin.outer}">
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.index}"
                       column-count="{$column.count.index}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-even"
@@ -430,6 +448,7 @@
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.titlepage}"
                         column-count="{$column.count.titlepage}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
@@ -461,6 +480,7 @@
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.titlepage}"
                         column-count="{$column.count.titlepage}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
@@ -492,6 +512,7 @@
                              margin-left="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.titlepage}"
                         column-count="{$column.count.titlepage}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
@@ -524,6 +545,7 @@
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.lot}"
                         column-count="{$column.count.lot}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
@@ -555,6 +577,7 @@
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.lot}"
                         column-count="{$column.count.lot}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
@@ -586,6 +609,7 @@
                              margin-left="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.lot}"
                         column-count="{$column.count.lot}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
@@ -618,6 +642,7 @@
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.front}"
                         column-count="{$column.count.front}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
@@ -649,6 +674,7 @@
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.front}"
                         column-count="{$column.count.front}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
@@ -680,6 +706,7 @@
                              margin-left="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.front}"
                         column-count="{$column.count.front}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
@@ -712,6 +739,7 @@
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.body}"
                         column-count="{$column.count.body}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
@@ -743,6 +771,7 @@
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.body}"
                         column-count="{$column.count.body}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
@@ -774,6 +803,7 @@
                              margin-left="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.body}"
                         column-count="{$column.count.body}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
@@ -806,6 +836,7 @@
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.back}"
                         column-count="{$column.count.back}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
@@ -837,6 +868,7 @@
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.back}"
                         column-count="{$column.count.back}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
@@ -868,6 +900,7 @@
                              margin-left="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.back}"
                         column-count="{$column.count.back}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
@@ -900,6 +933,7 @@
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.index}"
                         column-count="{$column.count.index}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
@@ -931,6 +965,7 @@
                              margin-right="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.index}"
                         column-count="{$column.count.index}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
@@ -962,6 +997,7 @@
                              margin-left="{$page.margin.outer}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
+                        column-gap="{$column.gap.index}"
                         column-count="{$column.count.index}">
           <xsl:if test="$draft.watermark.image != ''
                         and $fop.extensions = 0">
