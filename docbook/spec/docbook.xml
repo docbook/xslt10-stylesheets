@@ -1,6 +1,6 @@
 <!DOCTYPE article [
 <!ENTITY name "wd-docbook-docbook">
-<!ENTITY version "4.3CR1">
+<!ENTITY version "4.3CR2">
 <!ENTITY standard "Working Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker/">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
@@ -34,7 +34,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>02 Dec 2003</pubdate>
+<pubdate>21 Dec 2003</pubdate>
 
 <copyright><year>2001</year><year>2002</year><year>2003</year>
 <holder>
@@ -136,6 +136,23 @@ from the
 the mirror on
 <ulink url="http://docbook.org/"/>.
 </para>
+
+<section id="s.cr2">
+<title>Changes in DocBook V4.3CR2</title>
+
+<para>There are no backwards-incompatible changes in this release.
+</para>
+
+<itemizedlist spacing="compact">
+<listitem><para>If HTML tables are allowed, make sure that
+<sgmltag>caption</sgmltag> gets all of the HTML attributes.
+</para></listitem>
+<listitem><para>Refactored parameter entities for <sgmltag>informaltable</sgmltag>
+so that the initial <sgmltag>textobject</sgmltag> is allowed when (and only when)
+the CALS table model is used.
+</para></listitem>
+</itemizedlist>
+</section>
 
 <section id="s.cr1">
 <title>Changes in DocBook V4.3CR1</title>
