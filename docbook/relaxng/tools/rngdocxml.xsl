@@ -235,7 +235,8 @@
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="comment()|processing-instruction()|text()" mode="classify">
+  <xsl:template match="comment()|processing-instruction()|text()"
+		mode="classify">
     <xsl:copy/>
   </xsl:template>
 
@@ -273,6 +274,9 @@
 
   <xsl:template match="/" mode="flattenTest">
     <xsl:value-of select="count(//doc:content-model//rng:choice/rng:choice
+			        |//doc:content-model//rng:zeroOrMore[not(*)]
+			        |//doc:content-model//rng:oneOrMore[not(*)]
+			        |//doc:content-model//rng:choice[not(*)]
 		                |//doc:content-model//rng:choice[count(*)=1]
                                 |//doc:content-model//rng:zeroOrMore/rng:choice
                                 |//doc:content-model//rng:oneOrMore/rng:choice
@@ -294,6 +298,13 @@
     <xsl:apply-templates mode="flatten"/>
   </xsl:template>
 
+  <xsl:template match="rng:zeroOrMore[not(*)]
+		       |rng:oneOrMore[not(*)]
+		       |rng:choice[not(*)]"
+		mode="flatten">
+    <!-- discard them; they must have contained nothing but notAllowed -->
+  </xsl:template>
+
   <xsl:template match="rng:group" mode="flatten">
     <xsl:choose>
       <xsl:when test="ancestor::doc:attributes
@@ -311,7 +322,9 @@
 
   <xsl:template match="rng:notAllowed" mode="flatten">
     <xsl:choose>
-      <xsl:when test="parent::rng:choice|parent::rng:zeroOrMore|parent::rng:oneOrMore">
+      <xsl:when test="parent::rng:choice
+		      |parent::rng:zeroOrMore
+		      |parent::rng:oneOrMore">
 	<!-- suppress -->
       </xsl:when>
       <xsl:otherwise>

@@ -27,6 +27,8 @@
   <xsl:key name="genid" match="rng:element" use="generate-id()"/>
 
   <xsl:template match="/">
+    <xsl:variable name="source" select="/"/>
+
     <xsl:variable name="allElemNS">
       <xsl:apply-templates select="//rng:element[@name and generate-id(.)
 		                     =generate-id(key('elements',@name)[1])]"
@@ -50,7 +52,8 @@
       <xsl:variable name="prev" select="preceding-sibling::*[1]/@filename"/>
       <xsl:variable name="next" select="following-sibling::*[1]/@filename"/>
 
-      <xsl:apply-templates select="key('genid', @id)" mode="chunk">
+      <xsl:apply-templates select="$source" mode="chunk">
+	<xsl:with-param name="id" select="@id"/>
 	<xsl:with-param name="home" select="$home"/>
 	<xsl:with-param name="prev" select="$prev"/>
 	<xsl:with-param name="next" select="$next"/>
@@ -59,6 +62,13 @@
   </xsl:template>
 
   <xsl:template match="rng:element" mode="names">
+<!--
+    <xsl:message>
+      <xsl:text>element: </xsl:text>
+      <xsl:value-of select="ancestor::rng:define[1]/@name"/>
+    </xsl:message>
+-->
+
     <element id="{generate-id()}" define="{ancestor::rng:define[1]/@name}">
       <xsl:attribute name="filename">
 	<xsl:apply-templates select="." mode="filename"/>
@@ -119,6 +129,19 @@
       </xsl:otherwise>
     </xsl:choose>
     <xsl:value-of select="'.html'"/>
+  </xsl:template>
+
+  <xsl:template match="/" mode="chunk">
+    <xsl:param name="id"/>
+    <xsl:param name="home"/>
+    <xsl:param name="prev"/>
+    <xsl:param name="next"/>
+
+    <xsl:apply-templates select="key('genid', $id)" mode="chunk">
+      <xsl:with-param name="home" select="$home"/>
+      <xsl:with-param name="prev" select="$prev"/>
+      <xsl:with-param name="next" select="$next"/>
+    </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match="rng:element" mode="chunk">
@@ -325,79 +348,86 @@
     </div>
   </xsl:template>
 
-  <xsl:template match="doc:attributes">
-    <xsl:variable name="attributes" select=".//rng:attribute"/>
+<xsl:template match="doc:attributes">
+  <xsl:variable name="attributes" select=".//rng:attribute"/>
 
-    <xsl:variable name="cmnAttr"
-		  select="$attributes[@name='id' and parent::rng:optional]
-		          |$attributes[@name='xml:lang']
-			  |$attributes[@name='xml:base']
-			  |$attributes[@name='remap']
-			  |$attributes[@name='xreflabel']
-			  |$attributes[@name='revisionflag']
-			  |$attributes[@name='arch']
-			  |$attributes[@name='condition']
-			  |$attributes[@name='conformance']
-			  |$attributes[@name='os']
-			  |$attributes[@name='revision']
-			  |$attributes[@name='security']
-			  |$attributes[@name='userlevel']
-			  |$attributes[@name='vendor']
-			  |$attributes[@name='role']
-			  |$attributes[@name='version']"/>
+  <xsl:variable name="cmnAttr"
+		select="$attributes[@name='xml:id' and parent::rng:optional]
+			|$attributes[@name='xml:lang']
+			|$attributes[@name='xml:base']
+			|$attributes[@name='remap']
+			|$attributes[@name='xreflabel']
+			|$attributes[@name='revisionflag']
+			|$attributes[@name='arch']
+			|$attributes[@name='condition']
+			|$attributes[@name='conformance']
+			|$attributes[@name='os']
+			|$attributes[@name='revision']
+			|$attributes[@name='security']
+			|$attributes[@name='userlevel']
+			|$attributes[@name='vendor']
+			|$attributes[@name='wordsize']
+			|$attributes[@name='role']
+			|$attributes[@name='version']"/>
 
-    <xsl:variable name="cmnAttrIdReq"
-		  select="$attributes[@name='id' and not(parent::rng:optional)]
-		          |$attributes[@name='xml:lang']
-			  |$attributes[@name='xml:base']
-			  |$attributes[@name='remap']
-			  |$attributes[@name='xreflabel']
-			  |$attributes[@name='revisionflag']
-			  |$attributes[@name='arch']
-			  |$attributes[@name='condition']
-			  |$attributes[@name='conformance']
-			  |$attributes[@name='os']
-			  |$attributes[@name='revision']
-			  |$attributes[@name='security']
-			  |$attributes[@name='userlevel']
-			  |$attributes[@name='vendor']
-			  |$attributes[@name='role']
-			  |$attributes[@name='version']"/>
+  <xsl:variable name="cmnAttrIdReq"
+		select="$attributes[@name='xml:id' and not(parent::rng:optional)]
+			|$attributes[@name='xml:lang']
+			|$attributes[@name='xml:base']
+			|$attributes[@name='remap']
+			|$attributes[@name='xreflabel']
+			|$attributes[@name='revisionflag']
+			|$attributes[@name='arch']
+			|$attributes[@name='condition']
+			|$attributes[@name='conformance']
+			|$attributes[@name='os']
+			|$attributes[@name='revision']
+			|$attributes[@name='security']
+			|$attributes[@name='userlevel']
+			|$attributes[@name='vendor']
+			|$attributes[@name='wordsize']
+			|$attributes[@name='role']
+			|$attributes[@name='version']"/>
 
-    <xsl:variable name="cmnAttrEither" select="$cmnAttr|$cmnAttrIdReq"/>
+  <xsl:variable name="cmnAttrEither" select="$cmnAttr|$cmnAttrIdReq"/>
 
-    <xsl:variable name="cmnLinkAttr"
-		  select="$attributes[@name='href' and $attributes[@name='linkend']]
-		          |$attributes[@name='linkend' and $attributes[@name='href']]"/>
+  <xsl:variable name="cmnLinkAttr"
+		select="$attributes[@name='linkend']
+                        |$attributes[@name='xlink:href']
+                        |$attributes[@name='xlink:type']
+                        |$attributes[@name='xlink:role']
+                        |$attributes[@name='xlink:arcrole']
+                        |$attributes[@name='xlink:title']
+                        |$attributes[@name='xlink:show']
+                        |$attributes[@name='xlink:actuate']"/>
 
-    <xsl:variable name="otherAttr"
-		  select="set:difference($attributes,
-		                         $cmnAttr|$cmnAttrIdReq|$cmnLinkAttr)"/>
+  <xsl:variable name="otherAttr"
+		select="set:difference($attributes,
+			               $cmnAttr|$cmnAttrIdReq|$cmnLinkAttr)"/>
 
-    <xsl:choose>
-      <xsl:when test="count($cmnAttr) = 16 and $cmnLinkAttr">
-	<p>Common attributes and common linking attributes.</p>
-      </xsl:when>
-      <xsl:when test="count($cmnAttrIdReq) = 16 and $cmnLinkAttr">
-	<p>Common attributes (ID required) and common linking atttributes.</p>
-      </xsl:when>
-      <xsl:when test="count($cmnAttr) = 16">
-	<p>Common attributes.</p>
-      </xsl:when>
-      <xsl:when test="count($cmnAttrIdReq) = 16">
-	<p>Common attributes (ID required).</p>
-      </xsl:when>
-      <xsl:when test="$cmnLinkAttr">
-	<p>Common linking attributes.</p>
-      </xsl:when>
-    </xsl:choose>
+  <xsl:choose>
+    <xsl:when test="count($cmnAttr) = 17 and count($cmnLinkAttr) = 8">
+      <para>Common attributes and common linking attributes.</para>
+    </xsl:when>
+    <xsl:when test="count($cmnAttrIdReq) = 17 and count($cmnLinkAttr) = 8">
+      <para>Common attributes (ID required) and common linking atttributes.</para>
+    </xsl:when>
+    <xsl:when test="count($cmnAttr) = 17">
+      <para>Common attributes.</para>
+    </xsl:when>
+    <xsl:when test="count($cmnAttrIdReq) = 17">
+      <para>Common attributes (ID required).</para>
+    </xsl:when>
+    <xsl:when test="count($cmnLinkAttr) = 8">
+      <para>Common linking attributes.</para>
+    </xsl:when>
+  </xsl:choose>
 
-    <xsl:if test="count($cmnAttrEither) != 16 or count($otherAttr) &gt; 0">
+    <xsl:if test="count($cmnAttrEither) != 17 or count($otherAttr) &gt; 0">
       <p>
 	<xsl:choose>
-	  <xsl:when test="count($cmnAttr) = 16 
-		          or count($cmnAttrIdReq) = 15
-		  	  or $cmnLinkAttr">
+	  <xsl:when test="count($cmnAttr) = 17 
+		          or count($cmnAttrIdReq) = 17">
 	    <xsl:text>Additional attributes:</xsl:text>
 	  </xsl:when>
 	  <xsl:otherwise>
@@ -411,7 +441,7 @@
 
       <ul>
 	<xsl:for-each select="rng:interleave/*|*[not(self::rng:interleave)]">
-	  <xsl:sort select="descendant-or-self::rng:attribute/@name"/>
+	  <xsl:sort select="descendant-or-self::rng:attribute[1]/@name"/>
 	  <!-- don't bother with common attributes -->
 	  <xsl:variable name="name" select="descendant-or-self::rng:attribute/@name"/>
 	  <xsl:choose>

@@ -781,30 +781,18 @@
   <!-- nop -->
 </xsl:template>
 
-<!--
-<xsl:template match="dedication/title|dedication/titleabbrev|dedication/subtitle
-                     |preface/title|preface/titleabbrev|preface/subtitle
-                     |chapter/title|chapter/titleabbrev|chapter/subtitle
-                     |appendix/title|appendix/titleabbrev|appendix/subtitle
-                     |article/title|article/titleabbrev|article/subtitle
-                     |partintro/title|partintro/titleabbrev|partintro/subtitle
-                     |part/title|part/titleabbrev|part/subtitle
-                     |sect1/title|sect1/titleabbrev|sect1/subtitle
-                     |sect2/title|sect2/titleabbrev|sect2/subtitle
-                     |sect3/title|sect3/titleabbrev|sect3/subtitle
-                     |sect4/title|sect4/titleabbrev|sect4/subtitle
-                     |sect5/title|sect5/titleabbrev|sect5/subtitle
-                     |section/title|section/titleabbrev|section/subtitle
-                     |formalpara/title|figure/title|example/title|equation/title
-                     |table/title|blockquote/title
-                     |caution/title|important/title|note/title|warning/title|tip/title
-                     |bibliodiv/title|glossarydiv/title|indexdiv/title
-                     |book/title
-                     |articleinfo/title
-                     "
-              priority="300">
+<xsl:template match="indexterm">
+  <!-- don't copy the defaulted significance='normal' attribute -->
+  <xsl:copy>
+    <xsl:for-each select="@*">
+      <xsl:if test="name(.) != 'significance'
+	            or string(.) != 'normal'">
+	<xsl:copy/>
+      </xsl:if>
+    </xsl:for-each>
+    <xsl:apply-templates/>
+  </xsl:copy>
 </xsl:template>
--->
 
 <!-- ====================================================================== -->
 
