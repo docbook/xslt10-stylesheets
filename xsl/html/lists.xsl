@@ -576,6 +576,7 @@
 </xsl:template>
 
 <xsl:template match="member">
+  <xsl:call-template name="anchor"/>
   <xsl:apply-templates/>
 </xsl:template>
 
