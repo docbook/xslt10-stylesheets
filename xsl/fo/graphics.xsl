@@ -292,7 +292,7 @@
                         and $textinsert.extension != '0'">
           <xsl:choose>
             <xsl:when test="contains($vendor, 'SAXON')">
-              <stext:insertfile href="{$filename}"/>
+              <stext:insertfile href="{$filename}" encoding="{$textdata.default.encoding}"/>
             </xsl:when>
             <xsl:when test="contains($vendor, 'Apache Software Foundation')">
               <xtext:insertfile href="{$filename}"/>
@@ -406,7 +406,7 @@
                         and $textinsert.extension != '0'">
           <xsl:choose>
             <xsl:when test="contains($vendor, 'SAXON')">
-              <stext:insertfile href="{$filename}"/>
+              <stext:insertfile href="{$filename}" encoding="{$textdata.default.encoding}"/>
             </xsl:when>
             <xsl:when test="contains($vendor, 'Apache Software Foundation')">
               <xtext:insertfile href="{$filename}"/>

@@ -787,7 +787,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
                         and $textinsert.extension != '0'">
           <xsl:choose>
             <xsl:when test="element-available('stext:insertfile')">
-              <stext:insertfile href="{$filename}"/>
+              <stext:insertfile href="{$filename} encoding="{$textdata.default.encoding}""/>
             </xsl:when>
             <xsl:when test="element-available('xtext:insertfile')">
               <xtext:insertfile href="{$filename}"/>
@@ -898,7 +898,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
                         and $textinsert.extension != '0'">
           <xsl:choose>
             <xsl:when test="element-available('stext:insertfile')">
-              <stext:insertfile href="{$filename}"/>
+              <stext:insertfile href="{$filename}" encoding="{$textdata.default.encoding}"/>
             </xsl:when>
             <xsl:when test="element-available('xtext:insertfile')">
               <xtext:insertfile href="{$filename}"/>
