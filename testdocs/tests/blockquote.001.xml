@@ -32,4 +32,8 @@ things towards making a man's fortune, next to interest and opportunity.</para>
 
 This line of text occurs after the quote, but inside the same para.</para>
 
+<blockquote><title>With A Title</title>
+<para>This block quote has a title.</para>
+</blockquote>
+
 </article>
