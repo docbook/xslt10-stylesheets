@@ -39,7 +39,7 @@
       <xsl:text> PNG PDF JPG JPEG linespecific GIF GIF87a GIF89a TIFF BMP </xsl:text>
     </xsl:when>
     <xsl:when test="$xep.extensions != 0">
-      <xsl:text> PNG PDF JPG JPEG linespecific GIF GIF87a GIF89a TIFF BMP </xsl:text>
+      <xsl:text> SVG PNG PDF JPG JPEG linespecific GIF GIF87a GIF89a TIFF BMP </xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <xsl:text> PNG PDF JPG JPEG linespecific GIF GIF87a GIF89a TIFF BMP </xsl:text>
@@ -65,7 +65,7 @@
       <xsl:text> png pdf jpg jpeg gif tif tiff bmp </xsl:text>
     </xsl:when>
     <xsl:when test="$xep.extensions != 0">
-      <xsl:text> png pdf jpg jpeg gif tif tiff bmp </xsl:text>
+      <xsl:text> svg png pdf jpg jpeg gif tif tiff bmp </xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <xsl:text> png pdf jpg jpeg gif tif tiff bmp </xsl:text>
@@ -147,16 +147,9 @@
 
   <fo:external-graphic>
     <xsl:attribute name="src">
-      <xsl:choose>
-        <xsl:when test="$passivetex.extensions != 0
-                        or $fop.extensions != 0
-                        or $arbortext.extensions != 0">
-          <xsl:value-of select="$filename"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="concat('url(', $filename, ')')"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:call-template name="fo-external-image">
+        <xsl:with-param name="filename" select="$filename"/>
+      </xsl:call-template>
     </xsl:attribute>
 
     <xsl:attribute name="width">
@@ -333,8 +326,34 @@
 </xsl:template>
 
 <xsl:template match="imageobject">
-  <xsl:apply-templates select="imagedata"/>
+  <xsl:choose>
+    <xsl:when test="imagedata">
+      <xsl:apply-templates select="imagedata"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:instream-foreign-object>
+        <xsl:apply-templates mode="copy-all"/>
+      </fo:instream-foreign-object>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template match="*" mode="copy-all">
+  <xsl:copy>
+    <xsl:for-each select="@*">
+      <xsl:copy/>
+    </xsl:for-each>
+    <xsl:apply-templates mode="copy-all"/>
+  </xsl:copy>
+</xsl:template>
+
+<xsl:template match="text()|comment()|processing-instruction()" mode="copy-all">
+  <xsl:copy/>
+</xsl:template>
+
+<!-- ==================================================================== -->
 
 <xsl:template match="imagedata">
   <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
@@ -408,6 +427,23 @@
   <fo:block>
     <xsl:apply-templates/>
   </fo:block>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template name="fo-external-image">
+  <xsl:param name="filename"/>
+
+  <xsl:choose>
+    <xsl:when test="$passivetex.extensions != 0
+                    or $fop.extensions != 0
+                    or $arbortext.extensions != 0">
+      <xsl:value-of select="$filename"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="concat('url(', $filename, ')')"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
