@@ -9,7 +9,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='callout.graphics.path.frag'><xsl:param name="callout.graphics.path" select="'images/callouts/'"/></src:fragment>
+<src:fragment id='callout.graphics.path.frag'>
+<xsl:param name="callout.graphics.path" select="'images/callouts/'"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
