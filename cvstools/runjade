@@ -4,7 +4,7 @@ FORMAT=$1; shift
 DSSSL=$1; shift
 SOURCE=$1; shift
 
-JADE=/usr/local/bin/jade
+JADE=/usr/bin/jade
 CATALOGS="-c /share/doctypes/catalog -c /sourceforge/docbook/dsssl/catalog"
 
 $JADE $CATALOGS -t $FORMAT -d $DSSSL $* $SOURCE
