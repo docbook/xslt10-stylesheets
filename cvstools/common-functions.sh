@@ -45,23 +45,6 @@ findxerces2 () {
   echo $XERCES
 }
 
-findjaxp () {
-  # locate the JAXP reference implementation
-  if [ ! "$JAXP" ]; then
-    for path in "/usr/local/share/java/jaxp.jar" \
-                "/usr/local/java/jaxp.jar" \
-                "/usr/local/jaxp-1.1/jaxp.jar" \
-                "/usr/local/share/java/jaxp-1.1/jaxp.jar" \
-                "/usr/share/java/jaxp.jar"; do
-      if [ -f "$path" -o -d "$path" ]; then
-        JAXP="$path"
-        break
-      fi
-    done
-  fi
-  echo $JAXP
-}
-
 findresolver () {
   # Finding CatalogXMLReader.class
   # FIXME: use saxon-catalog.jar, cz/kosek/CatalogXMLReader.class
@@ -82,9 +65,15 @@ findresolver () {
 }
 
 fixclasspath () {
-  cp=$1
+  local cp=$1
   # get rid of ::
   cp="${cp//::/:}"
+  # we need shell extended glob functions
+  shopt -s extglob
+  # get rid of leading ':'
+  cp="${cp#+(:)}"
+  # get rid of trailing ':'
+  cp="${cp%%+(:)}"
   # FIXME: get rid of duplicated entries
   if [ ${CLASSPATH_DEBUG} ] && ${CLASSPATH_DEBUG}; then
     echo "D: classpath is $cp" 1>&2
