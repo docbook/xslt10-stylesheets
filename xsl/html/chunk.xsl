@@ -52,6 +52,10 @@
 <!-- ==================================================================== -->
 
 <xsl:template name="process-chunk-element">
+  <xsl:param name="content">
+    <xsl:apply-imports/>
+  </xsl:param>
+
   <xsl:choose>
     <xsl:when test="$chunk.fast != 0 and function-available('exsl:node-set')">
       <xsl:variable name="chunks" select="exsl:node-set($chunk.hierarchy)//div"/>
@@ -69,12 +73,13 @@
 
       <xsl:choose>
         <xsl:when test="$onechunk != 0 and parent::*">
-          <xsl:apply-imports/>
+          <xsl:copy-of select="$content"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:call-template name="process-chunk">
             <xsl:with-param name="prev" select="$prev"/>
             <xsl:with-param name="next" select="$next"/>
+            <xsl:with-param name="content" select="$content"/>
           </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
@@ -82,16 +87,22 @@
     <xsl:otherwise>
       <xsl:choose>
         <xsl:when test="$onechunk != 0 and not(parent::*)">
-          <xsl:call-template name="chunk-all-sections"/>
+          <xsl:call-template name="chunk-all-sections">
+            <xsl:with-param name="content" select="$content"/>
+          </xsl:call-template>
         </xsl:when>
         <xsl:when test="$onechunk != 0">
-          <xsl:apply-imports/>
+          <xsl:copy-of select="$content"/>
         </xsl:when>
         <xsl:when test="$chunk.first.sections = 0">
-          <xsl:call-template name="chunk-first-section-with-parent"/>
+          <xsl:call-template name="chunk-first-section-with-parent">
+            <xsl:with-param name="content" select="$content"/>
+          </xsl:call-template>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:call-template name="chunk-all-sections"/>
+          <xsl:call-template name="chunk-all-sections">
+            <xsl:with-param name="content" select="$content"/>
+          </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
@@ -101,6 +112,9 @@
 <xsl:template name="process-chunk">
   <xsl:param name="prev" select="."/>
   <xsl:param name="next" select="."/>
+  <xsl:param name="content">
+    <xsl:apply-imports/>
+  </xsl:param>
 
   <xsl:variable name="ischunk">
     <xsl:call-template name="chunk"/>
@@ -133,6 +147,7 @@
       <xsl:call-template name="chunk-element-content">
         <xsl:with-param name="prev" select="$prev"/>
         <xsl:with-param name="next" select="$next"/>
+        <xsl:with-param name="content" select="$content"/>
       </xsl:call-template>
     </xsl:with-param>
     <xsl:with-param name="quiet" select="$chunk.quietly"/>
@@ -140,6 +155,10 @@
 </xsl:template>
 
 <xsl:template name="chunk-first-section-with-parent">
+  <xsl:param name="content">
+    <xsl:apply-imports/>
+  </xsl:param>
+
   <!-- These xpath expressions are really hairy. The trick is to pick sections -->
   <!-- that are not first children and are not the children of first children -->
 
@@ -323,10 +342,15 @@
   <xsl:call-template name="process-chunk">
     <xsl:with-param name="prev" select="$prev"/>
     <xsl:with-param name="next" select="$next"/>
+    <xsl:with-param name="content" select="$content"/>
   </xsl:call-template>
 </xsl:template>
 
 <xsl:template name="chunk-all-sections">
+  <xsl:param name="content">
+    <xsl:apply-imports/>
+  </xsl:param>
+
   <xsl:variable name="prev-v1"
     select="(preceding::sect1[$chunk.section.depth &gt; 0][1]
              |preceding::sect2[$chunk.section.depth &gt; 1][1]
@@ -418,6 +442,7 @@
   <xsl:call-template name="process-chunk">
     <xsl:with-param name="prev" select="$prev"/>
     <xsl:with-param name="next" select="$next"/>
+    <xsl:with-param name="content" select="$content"/>
   </xsl:call-template>
 </xsl:template>
 
