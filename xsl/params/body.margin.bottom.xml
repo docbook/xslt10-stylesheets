@@ -10,7 +10,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='body.margin.bottom.frag'>
-<xsl:param name="body.margin.bottom">0.5in</xsl:param>
+<xsl:param name="body.margin.bottom" select="'0.5in'"/>
 </src:fragment>
 </refsynopsisdiv>
 
