@@ -9,7 +9,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='double.sided.frag'><xsl:param name="double.sided" select="'0'"/></src:fragment>
+<src:fragment id='double.sided.frag'>
+<xsl:param name="double.sided" select="0"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>

@@ -9,7 +9,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='css.decoration.frag'><xsl:param name="css.decoration">1</xsl:param></src:fragment>
+<src:fragment id='css.decoration.frag'>
+<xsl:param name="css.decoration" select="1"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
