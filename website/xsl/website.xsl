@@ -34,10 +34,6 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
-  <xsl:variable name="filename">
-    <xsl:apply-templates select="." mode="filename"/>
-  </xsl:variable>
-
   <xsl:variable name="tocentry" select="$autolayout/autolayout//*[$id=@id]"/>
   <xsl:variable name="toc" select="$tocentry/ancestor-or-self::toc"/>
 
