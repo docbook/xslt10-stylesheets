@@ -108,10 +108,10 @@
     <xsl:apply-templates select="$node" mode="object.title.markup.textonly"/>
   </title>
 
-  <xsl:if test="$html.stylesheet">
-    <link rel="stylesheet"
-          href="{$html.stylesheet}"
-          type="{$html.stylesheet.type}"/>
+  <xsl:if test="$html.stylesheet != ''">
+    <xsl:call-template name="output.html.stylesheets">
+      <xsl:with-param name="stylesheets" select="normalize-space($html.stylesheet)"/>
+    </xsl:call-template>
   </xsl:if>
 
   <xsl:if test="$link.mailto.url != ''">
@@ -170,6 +170,34 @@ body { background-image: url('</xsl:text>
     </style>
   </xsl:if>
   <xsl:apply-templates select="." mode="head.keywords.content"/>
+</xsl:template>
+
+<xsl:template name="output.html.stylesheets">
+  <xsl:param name="stylesheets" select="''"/>
+
+  <xsl:choose>
+    <xsl:when test="contains($stylesheets, ' ')">
+      <link rel="stylesheet" href="{substring-before($stylesheets, ' ')}">
+        <xsl:if test="$html.stylesheet.type != ''">
+          <xsl:attribute name="type">
+            <xsl:value-of select="$html.stylesheet.type"/>
+          </xsl:attribute>
+        </xsl:if>
+      </link>
+      <xsl:call-template name="output.html.stylesheets">
+        <xsl:with-param name="stylesheets" select="substring-after($stylesheets, ' ')"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="$stylesheets != ''">
+      <link rel="stylesheet" href="{$stylesheets}">
+        <xsl:if test="$html.stylesheet.type != ''">
+          <xsl:attribute name="type">
+            <xsl:value-of select="$html.stylesheet.type"/>
+          </xsl:attribute>
+        </xsl:if>
+      </link>
+    </xsl:when>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ============================================================ -->
