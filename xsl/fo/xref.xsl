@@ -955,6 +955,10 @@
 
 
 <xsl:template name="olink.outline">
+  <xsl:param name="outline.base.uri"/>
+  <xsl:param name="localinfo"/>
+  <xsl:param name="return" select="href"/>
+
   <xsl:message terminate="yes">Fatal error: what is this supposed to do?</xsl:message>
 </xsl:template>
 
