@@ -136,15 +136,207 @@ as the primary starting point.</para>
 <section><title>Processing Fragments</title>
 
 <para>In order to <quote>tangle</quote> an &xweb; document, we need
-only copy the contents of the fragments to the result tree.
-Processing <sgmltag>src:fragment</sgmltag> elements is easy, simply copy
-their children:</para>
+only copy the contents of the fragments to the result tree.</para>
+
+<para>Processing <sgmltag>src:fragment</sgmltag> elements is
+conceptually easy, simply copy their children. However, if we simply used:</para>
+
+<screen>&lt;xsl:apply-templates mode="copy"/&gt;</screen>
+
+<para>we'd copy the newlines at the beginning and end of a fragment that the
+author might have added for editing convenience. In environments where
+whitespace is significant (e.g., Python), this would introduce errors.
+We must avoid copying the first and last newlines.
+</para>
 
 <src:fragment id="process-fragments">
 <xsl:template match="src:fragment">
-  <xsl:apply-templates mode="copy"/>
+  <src:fragref linkend="cc-storevars"/>
+  <src:fragref linkend="cc-first-node"/>
+  <src:fragref linkend="cc-middle-nodes"/>
+  <src:fragref linkend="cc-last-node"/>
 </xsl:template>
 </src:fragment>
+
+<section><title>Convenience Variables</title>
+
+<para>For convenience, we store subexpressions containing the first,
+last, and all the middle nodes in variables.</para>
+
+<src:fragment id="cc-storevars">
+  <xsl:variable name="first-node"
+                select="node()[1]"/>
+  <xsl:variable name="middle-nodes"
+                select="node()[position() &gt; 1 and position() &lt; last()]"/>
+  <xsl:variable name="last-node"
+                select="node()[position() &gt; 1 and position() = last()]"/>
+</src:fragment>
+
+</section>
+
+<section><title>Handle First Node</title>
+
+<para>Handling the leading newline is conceptually a simple matter of
+looking at the first character on the line and skipping it if it is
+a newline. A slight complexity is introduced by the fact that if the
+fragment contains only a single text node, the first node is also the
+last node and we have to possibly trim off a trialing newline as well.
+We separate that out as a special case.
+</para>
+
+<src:fragment id="cc-first-node">
+    <xsl:choose>
+      <src:fragref linkend="cc-only-node"/>
+      <src:fragref linkend="cc-leading-nl"/>
+      <src:fragref linkend="cc-no-leading-nl"/>
+    </xsl:choose>
+</src:fragment>
+
+<section><title>Handle A Fragment that Contains a Single Node</title>
+
+<para>If the <varname>$first-node</varname> is a text node and the
+fragment contains only a single child, then it is also the last node.</para>
+
+<para>In order to deal with a single text node child, we must address
+four cases: the node has both leading and trailing newlines, the node
+has only leading newlines, only trailing newlines, or no newlines at
+all.</para>
+
+<src:fragment id="cc-only-node">
+      <xsl:when test="$first-node = text() and count(node()) = 1">
+        <src:fragref linkend="cc-more-conv"/>
+        <xsl:choose>
+          <src:fragref linkend="cc-both"/>
+          <src:fragref linkend="cc-leading"/>
+          <src:fragref linkend="cc-trailing"/>
+          <src:fragref linkend="cc-none"/>
+        </xsl:choose>
+      </xsl:when>
+</src:fragment>
+
+<section><title>More Convenience Variables</title>
+
+<para>For convenience, we calculate whether or not the node in question
+has leading and/or trailing newlines and store those results in variables.
+</para>
+
+<src:fragment id="cc-more-conv">
+        <xsl:variable name="leading-nl"
+                      select="substring($first-node, 1, 1) = '&#xA;'"/>
+        <xsl:variable name="trailing-nl"
+                      select="substring($first-node, string-length($first-node), 1) = '&#xA;'"/>
+</src:fragment>
+</section>
+
+<section><title>Handle a Single Node With Leading and Trailing Newlines</title>
+
+<para>If the node has both leading and trailing newlines, trim a character
+off each end.</para>
+
+<src:fragment id="cc-both">
+          <xsl:when test="$leading-nl and $trailing-nl">
+            <xsl:value-of select="substring($first-node, 2, string-length($first-node)-2)"/>
+          </xsl:when>
+</src:fragment>
+</section>
+
+<section><title>Handle a Single Node With Only Leading Newlines</title>
+
+<para>If the node has only leading newlines, trim off the first character.
+</para>
+
+<src:fragment id="cc-leading">
+          <xsl:when test="$leading-nl">
+            <xsl:value-of select="substring($first-node, 2)"/>
+          </xsl:when>
+</src:fragment>
+</section>
+
+<section><title>Handle a Single Node with Only Trailing Newlines</title>
+
+<para>If the node has only trailing newlines, trim off the last character.
+</para>
+
+<src:fragment id="cc-trailing">
+          <xsl:when test="$trailing-nl">
+            <xsl:value-of select="substring($first-node, 1, string-length($first-node)-1)"/>
+          </xsl:when>
+</src:fragment>
+</section>
+
+<section><title>Handle a Single Node with No Newlines</title>
+
+<para>Otherwise, the node has no newlines and it is simply printed.
+</para>
+
+<src:fragment id="cc-none">
+          <xsl:otherwise>
+            <xsl:value-of select="$first-node"/>
+          </xsl:otherwise>
+</src:fragment>
+</section>
+</section>
+
+<section><title>Handle a First Node with a Leading Newline</title>
+
+<para>If the first node is a text node and begins with a newline,
+trim off the first character.</para>
+
+<src:fragment id="cc-leading-nl">
+      <xsl:when test="$first-node = text() and substring($first-node, 1, 1) = '&#xA;'">
+        <xsl:value-of select="substring($first-node, 2)"/>
+      </xsl:when>
+</src:fragment>
+</section>
+
+<section><title>Handle a First Node without a Leading Newline</title>
+
+<para>Otherwise, the first node is not a text node or does not begin
+with a newline, so use the <quote>copy</quote> mode to copy it to
+the result tree.</para>
+
+<src:fragment id="cc-no-leading-nl">
+      <xsl:otherwise>
+        <xsl:apply-templates select="$first-node" mode="copy"/>
+      </xsl:otherwise>
+</src:fragment>
+</section>
+</section>
+
+<section><title>Handle Last Node</title>
+
+<para>Handling the last node is roughly analagous to handling the first
+node, except that we know this code is only evaluated if the last node
+is not also the first node.</para>
+
+<para>If the last node is a text node and ends with a newline, strip
+it off. Otherwise, just copy the content of the last node
+using the <quote>copy</quote> mode.
+</para>
+
+<src:fragment id="cc-last-node">
+    <xsl:choose>
+      <xsl:when test="$last-node = text() and substring($last-node, string-length($last-node), 1) = '&#xA;'">
+        <xsl:value-of select="substring($last-node, 1, string-length($last-node)-1)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="$last-node" mode="copy"/>
+      </xsl:otherwise>
+    </xsl:choose>
+</src:fragment>
+
+</section>
+
+<section><title>Handle the Middle Nodes</title>
+
+<para>The middle nodes are easy, just copy them
+using the <quote>copy</quote> mode.</para>
+
+<src:fragment id="cc-middle-nodes">
+    <xsl:apply-templates select="$middle-nodes" mode="copy"/>
+</src:fragment>
+
+</section>
 </section>
 
 <section><title>Copying Elements</title>
