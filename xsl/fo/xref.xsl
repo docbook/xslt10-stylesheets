@@ -16,9 +16,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="anchor">
-  <!-- FIXME: should this output an empty element with an ID? -->
-  <!-- what element!? -->
-  <!-- suppress -->
+  <fo:wrapper id="{@id}"/>
 </xsl:template>
 
 <!-- ==================================================================== -->
