@@ -230,6 +230,7 @@ or 0 (the empty string)</para>
 
 <xsl:template name="inherited.table.attribute">
   <xsl:param name="entry" select="."/>
+  <xsl:param name="tgroup" select="$entry/ancestor::tgroup[1]"/>
   <xsl:param name="colnum" select="0"/>
   <xsl:param name="attribute" select="'colsep'"/>
 
@@ -251,9 +252,9 @@ or 0 (the empty string)</para>
     <xsl:if test="$entry/@spanname">
       <xsl:variable name="spanname" select="$entry/@spanname"/>
       <xsl:variable name="spanspec"
-                    select="$entry/ancestor::tgroup/spanspec[@spanname=$spanname]"/>
+                    select="$tgroup/spanspec[@spanname=$spanname]"/>
       <xsl:variable name="span.colspec"
-                    select="$entry/ancestor::tgroup/colspec[@colname=$spanspec/@namest]"/>
+                    select="$tgroup/colspec[@colname=$spanspec/@namest]"/>
 
       <xsl:variable name="spanspec.value">
         <xsl:call-template name="get-attribute">
@@ -285,7 +286,7 @@ or 0 (the empty string)</para>
     <xsl:if test="$entry/@namest">
       <xsl:variable name="namest" select="$entry/@namest"/>
       <xsl:variable name="colspec"
-                    select="$entry/ancestor::tgroup/colspec[@colname=$namest]"/>
+                    select="$tgroup/colspec[@colname=$namest]"/>
 
       <xsl:variable name="namest.value">
         <xsl:call-template name="get-attribute">
@@ -305,7 +306,7 @@ or 0 (the empty string)</para>
 
   <xsl:variable name="tgroup.value">
     <xsl:call-template name="get-attribute">
-      <xsl:with-param name="element" select="$entry/ancestor::tgroup[1]"/>
+      <xsl:with-param name="element" select="$tgroup"/>
       <xsl:with-param name="attribute" select="$attribute"/>
     </xsl:call-template>
   </xsl:variable>
@@ -318,12 +319,12 @@ or 0 (the empty string)</para>
         <xsl:value-of select="$tgroup.value"/>
       </xsl:when>
       <xsl:when test="$attribute = 'rowsep'">
-        <xsl:if test="$entry/ancestor::tgroup[1]/parent::*/@frame = 'all'">
+        <xsl:if test="$tgroup/parent::*/@frame = 'all'">
           <xsl:value-of select="1"/>
         </xsl:if>
       </xsl:when>
       <xsl:when test="$attribute = 'colsep'">
-        <xsl:if test="$entry/ancestor::tgroup[1]/parent::*/@frame = 'all'">
+        <xsl:if test="$tgroup/parent::*/@frame = 'all'">
           <xsl:value-of select="1"/>
         </xsl:if>
       </xsl:when>
