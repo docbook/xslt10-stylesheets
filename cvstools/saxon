@@ -7,7 +7,7 @@
 #
 
 DONE=0
-VERSION=642
+VERSION=643
 DEBUG=0
 JAR=0
 #XARG=""
@@ -26,6 +26,9 @@ while [ "$DONE" = "0" ]; do
 		;;
 	-j)	JAR=1;
 	        echo "Using jar file for extension classes"
+		shift;
+		;;
+	-642)	VERSION=643;
 		shift;
 		;;
 	-642)	VERSION=642;
@@ -98,6 +101,13 @@ if [ "$OUTPUT" != "" ]; then
 fi
 
 case $VERSION in
+   643)	SAXON="/usr/local/java/saxon-6.4.3/saxon.jar"
+	SAXON_DEBUG="/usr/local/java/saxon-6.4.3/.classes"
+	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon64/.classes";
+	if [ "$JAR" = "1" ]; then
+	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon64.jar"
+	fi
+	;;
    642)	SAXON="/usr/local/java/saxon-6.4.2/saxon.jar"
 	SAXON_DEBUG="/usr/local/java/saxon-6.4.2/.classes"
 	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon64/.classes";
@@ -171,9 +181,12 @@ if [ "$DEBUG" = "1" ]; then
 fi
 
 SUN="/projects/sun/resolver/.classes";
-JAXP="/usr/local/jaxp-1.1/jaxp.jar:/usr/local/jaxp-1.1/crimson.jar"
+JAXP="/usr/local/jaxp-1.1/jaxp.jar";
 
-CLASSPATH=$SAXON:$JAXP:$SUN:$NDWEXT:~/java
+XERCESROOT="/projects/apache/xml-xerces/java"
+XERCES="$XERCESROOT/build/classes"
+
+CLASSPATH=$SAXON:$JAXP:$XERCES:$SUN:$NDWEXT:~/java
 
 #echo $CLASSPATH
 
@@ -185,10 +198,16 @@ if [ "$QUIET" = "0" ]; then
   fi
 fi
 
-FACTORY=com.icl.saxon.TransformerFactoryImpl
+TRANSFACTORY=com.icl.saxon.TransformerFactoryImpl
 
-java $MEMORY \
+# Force Saxon to use a decent parser (AElfred doesn't do PEs right)
+DBFACTORY=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl
+SPFACTORY=org.apache.xerces.jaxp.SAXParserFactoryImpl
+
+java $MEMORY $FOO \
      -cp $CLASSPATH \
+     -Djavax.xml.parsers.DocumentBuilderFactory=$DBFACTORY \
+     -Djavax.xml.parsers.SAXParserFactory=$SPFACTORY \
      -Djavax.xml.transform.TransformerFactory=$FACTORY \
      com.icl.saxon.StyleSheet \
      $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY $@
