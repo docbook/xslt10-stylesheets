@@ -1,6 +1,6 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-<!ENTITY version "0.2">
+<!ENTITY version "0.3">
 <!ENTITY standard "Standard">
 <!ENTITY % glyphs SYSTEM "glyphs100.ent">
 %glyphs;
@@ -28,9 +28,19 @@
 <!ENTITY iso-amsc-table SYSTEM "iso-amsc.gen">
 ]>
 <article status="Working Draft">
+
 <articleinfo>
-<title>XML Character Entities Version &version;</title>
-<subtitle>OASIS DocBook Technical Committee</subtitle>
+<productname>wd-docbook-xmlcharent</productname>
+<productnumber>&version;</productnumber>
+
+<releaseinfo role="product"><ulink url="wd-wd-docbook-xmlcharent-&version;.xml">XML</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="wd-wd-docbook-xmlcharent-&version;.html">HTML</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="wd-wd-docbook-xmlcharent-&version;.pdf">PDF</ulink></releaseinfo>
+
+<releaseinfo role="location">http://www.oasis-open.org/docbook/specs</releaseinfo>
+
+<title>XML Character Entities</title>
+
 <authorgroup>
 <editor>
   <firstname>Norman</firstname><surname>Walsh</surname>
@@ -41,77 +51,53 @@
   </affiliation>
 </editor>
 </authorgroup>
-<pubdate>19 Mar 2002</pubdate>
-<releaseinfo role="cvs">$Id$
-</releaseinfo>
+
+<pubdate>13 June 2002</pubdate>
+
 <copyright><year>2001</year><year>2002</year>
-<holder>
-The Organization for the Advancement of Structured Information
+<holder>The Organization for the Advancement of Structured Information
 Standards [OASIS]. All Rights Reserved.
 </holder></copyright>
-<legalnotice>
-<para>This document and translations of it may be copied and furnished to
-others, and derivative works that comment on or otherwise explain it
-or assist in its implementation may be prepared, copied, published and
-distributed, in whole or in part, without restriction of any kind,
-provided that the above copyright notice and this paragraph are
-included on all such copies and derivative works. However, this
-document itself may not be modified in any way, such as by removing
-the copyright notice or references to OASIS, except as needed for the
-purpose of developing OASIS specifications, in which case the
-procedures for copyrights defined in the OASIS Intellectual Property
-Rights document must be followed, or as required to translate it into
-languages other than English.</para>
 
-<para>The limited permissions granted above are perpetual and will not be
-revoked by OASIS or its successors or assigns.</para>
+<abstract>
 
-<para>This document and the information contained herein is provided
-on an <quote>AS IS</quote> basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE
-INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED
-WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
-</para>
-</legalnotice>
+<para>This &standard; defines XML encodings of the 19 standard
+character entity sets defined in Non-normative Annex D of <xref
+linkend="iso8879"/>.</para>
 
-<legalnotice role="status"><title>Status of this Document</title>
+</abstract>
 
-<!--
+<legalnotice role="status"><title>Status</title>
+
 <para>This is a working draft constructed by the editor. It is not
 an official committee work product and may not reflect the consensus
 opinion of the committee.</para>
--->
-
-<para>This Working Draft was approved for publication by the OASIS
-DocBook Technical Committee. Comments on this document may be sent to <ulink
-url="mailto:docbook@lists.oasis-open.org">docbook@lists.oasis-open.org</ulink>.</para>
 
 <!--
 <para>This Committee Specification was approved for publication by the
 OASIS DocBook Technical Committee. It represents the
 consensus of the committee. Comments on this document may be
 sent to
-<ulink url="mailto:docbook@lists.oasis-open.org">docbook@lists.oasis-open.org</ulink>.</para>
+<ulink url="mailto:docbook@lists.oasis-open.org">docbook@lists.oasis-open.org</ulink>.
+</para>
 -->
+
+<para>Please send comments on this specification to the
+<email>docbook@lists.oasis-open.org</email> list. To subscribe, send
+an email message to
+<email>docbook-request@lists.oasis-open.org</email> with the word
+<quote><literal>subscribe</literal></quote> as the body of the
+message.
+</para>
+
+<!--
+<para>The errata page for this specification is at
+<ulink url="http://www.oasis-open.org/docbook/specs/simple-errata.html"/>.
+</para>
+-->
+
 </legalnotice>
 
-<abstract><title>Abstract</title>
-
-<para>This &standard; defines XML encodings of the 19 standard
-character entity sets defined in Non-normative Annex D of <xref
-linkend="iso8879"/>.</para>
-</abstract>
-
-<revhistory>
-<revision role="entities-2002-03-19.html">
-  <revnumber>Working Draft</revnumber>
-  <date>19 Mar 2002</date>
-</revision>
-<revision role="http://www.oasis-open.org/docbook/xmlcharent/0.1/entities-2001-11-19.html">
-  <revnumber>Working Draft</revnumber>
-  <date>19 Nov 2001</date>
-</revision>
-</revhistory>
 </articleinfo>
 
 <para>This &standard; defines XML encodings of the standard SGML
@@ -163,7 +149,7 @@ declaration in the internal subset, is shown in <xref linkend="ex.decl"/>.
 <title>Declaring and Using the ISO Latin 1 Character Entity Set</title>
 <programlisting>&lt;!DOCTYPE doc [
 &lt;!ENTITY % iso-lat1 PUBLIC "ISO 8879:1986//ENTITIES Added Latin 1//EN//XML"
-                    "&baseuri;/isolat1.ent">
+                    "&baseuri;/iso-lat1.ent">
 %iso-lat1;
 ]>
 &lt;doc>
@@ -547,13 +533,14 @@ support and Ruby already require structure in arbitrary contexts. It is probably
 an error to use attributes for human-readable content.</para>
 
 </section>
+
 <appendix id="isolat1"><title>Added Latin 1</title>
 
 <para>Identifiers for this entity set:</para>
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Added Latin 1//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isolat1.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-lat1.ent</member>
 </simplelist>
 
 <para>
@@ -570,7 +557,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Added Latin 2//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isolat2.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-lat2.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -586,7 +573,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Greek Letters//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isogrk1.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-grk1.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -602,7 +589,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Monotoniko Greek//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isogrk2.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-grk2.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -618,7 +605,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Russian Cyrillic//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isocyr1.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-cyr1.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -634,7 +621,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Non-Russian Cyrillic//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isocyr2.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-cyr2.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -650,7 +637,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Numeric and Special Graphic//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isonum.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-num.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -666,7 +653,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Diacritical Marks//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isodia.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-dia.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -682,7 +669,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Publishing//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isopub.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-pub.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -698,7 +685,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Box and Line Drawing//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isobox.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-box.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -714,7 +701,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES General Technical//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isotech.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-tech.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -730,7 +717,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Greek Symbols//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isogrk3.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-grk3.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -746,7 +733,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Alternative Greek Symbols//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isogrk4.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-grk4.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -762,7 +749,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Added Math Symbols: Ordinary//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isoamso.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-amso.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -778,7 +765,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Added Math Symbols: Binary Operators//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isoamsb.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-amsb.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -794,7 +781,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Added Math Symbols: Relations//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isoamsr.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-amsr.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -810,7 +797,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Added Math Symbols: Negated Relations//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isoamsn.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-amsn.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -826,7 +813,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Added Math Symbols: Arrow Relations//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isoamsa.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-amsa.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -842,7 +829,7 @@ The following character entities are defined in this entity set:
 
 <simplelist type="vert">
 <member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Added Math Symbols: Delimiters//EN//XML</member>
-<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isoamsc.ent</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/iso-amsc.ent</member>
 </simplelist>
 
 <para>The following character entities are defined in this entity set:
@@ -878,18 +865,122 @@ Technical Report #8</ulink></citetitle>, which describes Unicode Version 2.1.
 </para>
 </appendix>
 
-<appendix id="committee" role="non-normative">
+<appendix id="a.committee" role="non-normative">
 <title>OASIS DocBook Technical Committee</title>
 
-<itemizedlist>
+<para>The following individuals were members of the committee during
+the formulation of this &standard;:</para>
+
+<itemizedlist spacing="compact">
 <listitem><para>Dennis Evans</para></listitem>
+<listitem><para>Patricia Gee-Best</para></listitem>
+<listitem><para>Paul Grosso</para></listitem>
 <listitem><para>Dick Hamilton</para></listitem>
 <listitem><para>Nancy (Paisner) Harrison</para></listitem>
 <listitem><para>Sabine Ocker</para></listitem>
+<listitem><para>Michael Sabrio</para></listitem>
 <listitem><para>Michael Smith</para></listitem>
-<listitem><para>Bob Stayton</para></listitem>
-<listitem><para>Norman Walsh (Chair)</para></listitem>
+<listitem><para>Tim Teebken (prospective)</para></listitem>
+<listitem><para>Norman Walsh (Chair, Editor)</para></listitem>
 </itemizedlist>
+
+</appendix>
+
+<appendix id="a.notices">
+<title>Notices</title>
+
+<para>Copyright &#169; The Organization for the Advancement of
+Structured Information Standards [OASIS] 2001, 2002. All Rights
+Reserved.</para>
+
+<para>OASIS takes no position regarding the validity
+or scope of any intellectual property or other rights
+that might be claimed to pertain to the implementation
+or use of the technology described in this document
+or the extent to which any license under such rights
+might or might not be available; neither does it represent
+that it has made any effort to identify any such rights.
+Information on OASIS's procedures with respect to rights
+in OASIS specifications can be found at the OASIS website.
+Copies of claims of rights made available for publication
+and any assurances of licenses to be made available,
+or the result of an attempt made to obtain a general
+license or permission for the use of such proprietary
+rights by implementors or users of this specification,
+can be obtained from the OASIS Executive Director.</para>
+
+<para>OASIS invites any interested party to bring to
+its attention any copyrights, patents or patent applications,
+or other proprietary rights which may cover technology
+that may be required to implement this specification.
+Please address the information to the OASIS Executive
+Director.</para>
+
+<para>This document and translations of it may be copied
+and furnished to others, and derivative works that comment
+on or otherwise explain it or assist in its implementation
+may be prepared, copied, published and distributed,
+in whole or in part, without restriction of any kind,
+provided that the above copyright notice and this paragraph
+are included on all such copies and derivative works.
+However, this document itself may not be modified in
+any way, such as by removing the copyright notice or
+references to OASIS, except as needed for the purpose
+of developing OASIS specifications, in which case the
+procedures for copyrights defined in the OASIS Intellectual
+Property Rights document must be followed, or as required
+to translate it into languages other than English.</para>
+
+<para>The limited permissions granted above are perpetual
+and will not be revoked by OASIS or its successors or
+assigns.</para>
+
+<para>This document and the information contained herein
+is provided on an <quote>AS IS</quote> basis and OASIS DISCLAIMS
+ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES
+OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.</para>
+
+<para>OASIS has been notified of intellectual property
+rights claimed in regard to some or all of the contents
+of this specification. For more information consult
+the online list of claimed rights.</para>
+
+</appendix>
+
+<appendix id="a.ipr">
+<title>Intellectual Property Rights</title>
+
+<para>For information on wether any patents have been disclosed that may be
+essential to implementing this specification, and any offers of patent
+licensing terms, please refer to the Intellectual Property Rights section
+of the DocBook web page
+(<ulink url="http://www.oasis-open.org/docbook/"/>)
+</para>
+
+</appendix>
+
+<appendix id="a.revhistory">
+<title>Revision History</title>
+
+<para><revhistory>
+<revision>
+  <revnumber>Working Draft</revnumber>
+  <date>13 Jun 2002</date>
+</revision>
+
+<revision>
+  <revnumber>Working Draft</revnumber>
+  <date>19 Mar 2002</date>
+</revision>
+
+<revision>
+  <revnumber>Working Draft</revnumber>
+  <date>19 Nov 2001</date>
+</revision>
+</revhistory>
+</para>
 
 </appendix>
 
