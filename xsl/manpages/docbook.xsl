@@ -421,6 +421,18 @@
   </xsl:call-template>
 </xsl:template>
 
+<!-- if a period character is output at the beginning of a line
+  it will be interpreted as a groff macro, so prefix all periods
+  with "\&", a zero-width space. -->
+<xsl:template name="replace-period">
+  <xsl:param name="content" select="''"/>
+  <xsl:call-template name="replace-string">
+    <xsl:with-param name="content" select="$content"/>
+    <xsl:with-param name="replace" select="'.'"/>
+    <xsl:with-param name="with" select="'\&#38;.'"/>
+  </xsl:call-template>
+</xsl:template>
+
 <xsl:template name="replace-entities">
   <xsl:param name="content" select="''"/>
   <xsl:call-template name="replace-hellip">
@@ -431,8 +443,12 @@
             <xsl:with-param name="content">
               <xsl:call-template name="replace-setmn">
                 <xsl:with-param name="content">
-		  <xsl:call-template name="replace-backslash">
-		    <xsl:with-param name="content" select="$content"/>
+		  <xsl:call-template name="replace-period">
+                    <xsl:with-param name="content">
+                      <xsl:call-template name="replace-backslash">
+		        <xsl:with-param name="content" select="$content"/>
+                      </xsl:call-template>
+                    </xsl:with-param>
 		  </xsl:call-template>
                 </xsl:with-param>
               </xsl:call-template>
