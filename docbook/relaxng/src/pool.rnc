@@ -608,7 +608,6 @@ db.nopara.blocks =
  | db.bridgehead
  | db.remark
  | db.revhistory
- | db.highlights
 
 db.para.blocks =
    db.anchor
@@ -1350,28 +1349,6 @@ div {
       element footnote {
          db.footnote.attlist,
          db.all.blocks+
-      }
-}
-
-# ======================================================================
-
-[
-   db:refname [ "highlights" ]
-   db:refpurpose [ "A summary of the main points of the discussed component" ]
-]
-div {
-
-   db.highlights.role.attribute = attribute role { text }
-
-   db.highlights.attlist =
-      db.highlights.role.attribute?
-    & db.common.attributes
-    & db.common.linking.attributes
-
-   db.highlights =
-      element highlights {
-         db.highlights.attlist,
-         (db.list.blocks | db.admonition.blocks | db.para.blocks | db.indexing.inlines)+
       }
 }
 
