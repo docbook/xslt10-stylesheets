@@ -91,6 +91,13 @@
   </xsl:call-template>
 </xsl:template>
 
+<xsl:template match="*" mode="object.title.markup.textonly">
+  <xsl:variable name="title">
+    <xsl:apply-templates select="." mode="object.title.markup"/>
+  </xsl:variable>
+  <xsl:value-of select="$title"/>
+</xsl:template>
+
 <!-- ============================================================ -->
 
 <xsl:template match="*" mode="object.subtitle.markup">
