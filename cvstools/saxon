@@ -6,16 +6,16 @@
 #
 
 DONE=0
-VERSION=652
+VERSION=653
 EXTVERSION=643
 DEBUG=0
 XARG=""
 YARG=""
 RARG=""
 MEMORY=""
+VALIDATE=""
 # which parser to use
 PARSER=auto
-
 
 MYDIR=`dirname $0`
 . $MYDIR/common-functions.sh
@@ -36,6 +36,13 @@ while [ "$DONE" = "0" ]; do
 		shift;
 		;;
 	-6*)	VERSION=$1;
+		shift;
+		;;
+	-7*)	VERSION=$1;
+		shift;
+		;;
+	-8*)	VERSION=$1;
+	        EXTVERSION=8
 		shift;
 		;;
 	-x)     shift;
@@ -60,6 +67,9 @@ while [ "$DONE" = "0" ]; do
 		;;
         -q)     shift
 		VERBOSE=false
+		;;
+        -val)   shift
+		VALIDATE=-val
 		;;
         -v)     shift
 		VERBOSE=true
@@ -94,8 +104,17 @@ if [ ! -d "$DOCBOOKXSL" ]; then
   exit 1
 fi
 
+# Toss the leading hyphen
+VERSION=`echo $VERSION | sed -e 's/^-//'`
+
 case $VERSION in
-    652|651|65|644|643)
+    8a)
+	VERSION="sa-8.0";
+	;;
+    8b)
+	VERSION="b8.0";
+	;;
+    77|751|653|652|651|65|644|643)
         :                       # handled normally below
 	;;
     *)	echo "unexpected Saxon version $VERSION" 1>&2
@@ -119,13 +138,19 @@ DOTTEDVERSION=`echo $VERSION | sed -e 's/\([0-9]\)\([0-9]\)/\1.\2/g; s/\([0-9]\)
 ##
 ## locate saxon.jar
 ##
+SAXON=
 for jar in "/usr/local/java/saxon-$DOTTEDVERSION/saxon.jar" \
+           "/usr/local/java/saxon-$DOTTEDVERSION/saxon7.jar" \
+           "/usr/local/java/saxon-$DOTTEDVERSION/saxon8sa.jar" \
+           "/usr/local/java/saxon$DOTTEDVERSION/saxon8sa.jar" \
            "/usr/local/share/java/saxon-$DOTTEDVERSION/saxon.jar" \
+           "/usr/local/share/java/saxon-$DOTTEDVERSION/saxon7.jar" \
+           "/usr/local/share/java/saxon$DOTTEDVERSION/saxon8sa.jar" \
            "/usr/share/java/saxon-$DOTTEDVERSION.jar" \
            "/usr/local/java/saxon/saxon.jar" \
            "/usr/local/share/java/saxon/saxon.jar" \
            "/usr/share/java/saxon.jar"; do
-  if [ -f "$jar" ]; then
+  if [ -f "$jar" -a "$SAXON" = "" ]; then
     SAXON="$jar"
     break
   fi
@@ -181,7 +206,7 @@ fi
 ## These are the settings which control the parser:
 ##   javax.xml.parsers.DocumentBuilderFactory
 ##   javax.xml.parsers.SAXParserFactory
-## 
+##
 
 # first choice is xerces2
 if [ "$PARSER" = "xerces2" -o "$PARSER" = "auto" ]; then
@@ -240,14 +265,56 @@ if [ "$DEBUG" != "0" ]; then
   TFLAG="-T"
 fi
 
+HTTP_PROXY=
+HTTPS_PROXY=
+
+if [ "$http_proxy_host" != "" ]; then
+    HTTP_PROXY="-Dhttp.proxyHost=$http_proxy_host -Dhttp.proxyPort=$http_proxy_port"
+    HTTPS_PROXY="-Dhttps.proxyHost=$http_proxy_host -Dhttps.proxyPort=$http_proxy_port"
+fi
+
 if [ ${VERBOSE} ] && ${VERBOSE}; then
-  echo java $MEMORY $FOO -cp $CLASSPATH $DBFACTORY $SPFACTORY \
+  echo java $MEMORY -cp $CLASSPATH $DBFACTORY $SPFACTORY \
       -Djavax.xml.transform.TransformerFactory=$TRANSFACTORY \
-      com.icl.saxon.StyleSheet $TFLAG \
+      com.icl.saxon.StyleSheet $TFLAG $VALIDATE \
       $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY "$@"
 fi
 
-exec java $MEMORY $FOO -cp $CLASSPATH $DBFACTORY $SPFACTORY \
-     -Djavax.xml.transform.TransformerFactory=$TRANSFACTORY \
-     com.icl.saxon.StyleSheet $TFLAG \
-     $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY "$@"
+#echo VERSION=$VERSION
+
+if [ "$VERSION" = "sa-8.0" ]; then
+  JAVA_HOME=/usr/local/jdk1.4.2
+  JAVA=$JAVA_HOME/bin/java
+#  exec $JAVA $HTTP_PROXY $HTTPS_PROXY $MEMORY -cp $CLASSPATH $DBFACTORY $SPFACTORY \
+#       -Djavax.xml.transform.TransformerFactory=$TRANSFACTORY \
+#       com.saxonica.Transform $TFLAG $VALIDATE $SAXONOPT \
+#       $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY "$@"
+  CLASSPATH=/usr/local/java/saxonsa-8.0/saxon8sa.jar:/home/ndw/java
+  exec $JAVA $HTTP_PROXY $HTTPS_PROXY $MEMORY -cp $CLASSPATH \
+       com.saxonica.Transform $TFLAG $VALIDATE $SAXONOPT \
+       $OUTPUT $XMLSRC $XMLSTY "$@"
+else if [ "$VERSION" = "b8.0" ]; then
+  JAVA_HOME=/usr/local/jdk1.4.2
+  JAVA=$JAVA_HOME/bin/java
+  CLASSPATH=/usr/local/java/saxonb-8.0/saxon8.jar:/home/ndw/java
+  echo $JAVA $HTTP_PROXY $HTTPS_PROXY $MEMORY -cp $CLASSPATH \
+       net.sf.saxon.Transform $TFLAG $VALIDATE $SAXONOPT \
+       $OUTPUT $XMLSRC $XMLSTY "$@"
+  exec $JAVA $HTTP_PROXY $HTTPS_PROXY $MEMORY -cp $CLASSPATH \
+       net.sf.saxon.Transform $TFLAG $VALIDATE $SAXONOPT \
+       $OUTPUT $XMLSRC $XMLSTY "$@"
+else if [ "$VERSION" = "77" ]; then
+  JAVA_HOME=/usr/local/jdk1.4.2
+  JAVA=$JAVA_HOME/bin/java
+  exec $JAVA $HTTP_PROXY $HTTPS_PROXY $MEMORY -cp $CLASSPATH $DBFACTORY $SPFACTORY \
+       -Djavax.xml.transform.TransformerFactory=$TRANSFACTORY \
+       net.sf.saxon.Transform $TFLAG \
+       $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY "$@"
+else
+  exec java $HTTP_PROXY $HTTPS_PROXY $MEMORY -cp $CLASSPATH $DBFACTORY $SPFACTORY \
+       -Djavax.xml.transform.TransformerFactory=$TRANSFACTORY \
+       com.icl.saxon.StyleSheet $TFLAG \
+       $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY "$@"
+fi
+fi
+fi

@@ -29,7 +29,7 @@ foreach $ent (keys %entity) {
 
 print "<!-- *********************************************************************
      *** THIS IS THE FLATTENED DTD. DO NOT EDIT THIS DTD BY HAND, EDIT ***
-     *** THE CUSTOMIZATION LAYER AND REGNERATE THE FLATTENED DTD! ********
+     *** THE CUSTOMIZATION LAYER AND REGENERATE THE FLATTENED DTD! ********
      ********************************************************************* -->\n\n";
 
 open (F, $dtd);
@@ -51,15 +51,26 @@ sub read_dtd {
     local(*F, $_);
 
     # HACK HACK HACK
-    if ($dtd =~ /http:\/\/www.oasis-open.org\/docbook\/xml\/simple\/.*\/([^\/]+)$/) {
-	print STDERR "match: $1\n";
+    if ($dtd =~ /http:\/\/www.oasis-open.org\/docbook\/xml\/simple\/.*\/([^\/]+)$/
+	|| $dtd =~ /http:\/\/docbook.org\/xml\/simple\/.*\/([^\/]+)$/) {
+	print STDERR "$dtd ==>\n";
 	$dtd = "/sourceforge/docbook/docbook/simple/$1";
+	print STDERR "\t$dtd\n";
     }
 
     # HACK HACK HACK
-    if ($dtd =~ /http:\/\/www.oasis-open.org\/docbook\/xml\/.*?\//
-	|| $dtd =~ /http:\/\/docbook.org\/xml\/.*?\//) {
-	$dtd = "/sourceforge/docbook/docbook/xml/$'";
+    if ($dtd =~ /http:\/\/www.oasis-open.org\/docbook\/xml\/(.*)$/
+	|| $dtd =~ /http:\/\/docbook.org\/xml\/(.*)$/) {
+	print STDERR "$dtd ==>\n";
+	$dtd = "/share/websites/docbook/xml/$1";
+	print STDERR "\t$dtd\n";
+    }
+
+    # HACK HACK HACK
+    if ($dtd =~ /http:\/\/www.w3.org\/2003\/entities\/(.*)$/) {
+	print STDERR "$dtd ==>\n";
+	$dtd = "/projects/w3c/WWW/2003/entities/$1";
+	print STDERR "\t$dtd\n";
     }
 
     if (! -f $dtd) {

@@ -28,7 +28,7 @@ if [ "$QUIET" = "0" ]; then
     echo xsltproc $OPTS "$@"
 fi
 
-/usr/local/bin/xsltproc --catalogs $OPTS "$@"
+/usr/bin/xsltproc --catalogs $OPTS "$@"
 
 if [ $? != 0 ]; then
   echo ""
