@@ -4,6 +4,9 @@ CVS2LOG=../cvstools/cvs2log
 NEXTVER=
 DIFFVER=
 ZIPVER=
+RELVER := $(shell grep "<fm:Version" VERSION | sed "s/ *<\/\?fm:Version>//g")
+CVSCHECK := $(shell cvs -n update 2>&1 | grep -v ^cvs | cut -c3-)
+SFRELID=
 
 DIRS=common html fo extensions htmlhelp javahelp
 
@@ -41,12 +44,19 @@ else
 endif
 
 newversion:
-ifeq ($(NEXTVER),)
-	$(NEXTVERSION)
+ifeq ($(CVSCHECK),)
+ifeq ($(NEXTVER),$(RELVER))
+	$(MAKE) DIFFVER=$(DIFFVER) distrib
 else
-	$(NEXTVERSION) -v $(NEXTVER)
+	@echo "VERSION $(RELVER) doesn't match specified version $(NEXTVER)."
 endif
-	make DIFFVER=$(DIFFVER) distrib
+else
+	@echo "CVS is not up-to-date! ($(CVSCHECK))"
+endif
+
+freshmeat:
+	$(XSLT) VERSION VERSION /tmp/fm-docbook-xsl sf-relid=$(SFRELID)
+	grep -v "<?xml" /tmp/fm-docbook-xsl | freshmeat-submit -N
 
 zip:
 ifeq ($(ZIPVER),)
