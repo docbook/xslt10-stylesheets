@@ -16,7 +16,9 @@
 
 <xsl:template match="reference">
   <div class="{name(.)}">
-    <xsl:call-template name="anchor"/>
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
     <xsl:call-template name="reference.titlepage"/>
     <xsl:if test="not(partintro) and $generate.reference.toc != '0'">
       <xsl:call-template name="division.toc"/>
@@ -36,10 +38,11 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="refentry">
-  <xsl:variable name="refmeta" select=".//refmeta"/>
+<xsl:template name="refentry.title">
+  <xsl:param name="node" select="."/>
+  <xsl:variable name="refmeta" select="$node//refmeta"/>
   <xsl:variable name="refentrytitle" select="$refmeta//refentrytitle"/>
-  <xsl:variable name="refnamediv" select=".//refnamediv"/>
+  <xsl:variable name="refnamediv" select="$node//refnamediv"/>
   <xsl:variable name="refname" select="$refnamediv//refname"/>
   <xsl:variable name="title">
     <xsl:choose>
@@ -53,11 +56,22 @@
     </xsl:choose>
   </xsl:variable>
 
+  <h1 class="title">
+    <xsl:copy-of select="$title"/>
+  </h1>
+</xsl:template>
+
+<xsl:template match="refentry">
   <div class="{name(.)}">
-    <h1 class="title">
-      <xsl:call-template name="anchor"/>
-      <xsl:copy-of select="$title"/>
-    </h1>
+    <xsl:if test="$refentry.separator and preceding-sibling::refentry">
+      <div class="refentry.separator">
+        <hr/>
+      </div>
+    </xsl:if>
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
+    <xsl:call-template name="refentry.titlepage"/>
     <xsl:apply-templates/>
     <xsl:call-template name="process.footnotes"/>
   </div>
