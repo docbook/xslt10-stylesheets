@@ -1,20 +1,94 @@
-include ../../cvstools/Makefile.incl
-XSLTOPT=-q
-TABSTYLE=../xsl/tabular.xsl
-WEBSTYLE=../xsl/website.xsl
-TABCHUNK=../xsl/chunk-tabular.xsl
-WEBCHUNK=../xsl/chunk-website.xsl
+# Example Makefile for building a site using DocBook Website
+#
+# $Id$
+#
+# ------------------------------------------------------------------
+# The default value DOCBOOK_WEBSITE below is the canonical URI for
+# the current DocBook Website distribution. If you have SGML or
+# XML catalogs correctly set up for DocBook Website in your
+# environment, and have the DocBook Website distribution installed
+# locally on your system, the URI will automatically be resolved
+# to the appropriate local path on your system.
+# ------------------------------------------------------------------
+#                        IMPORTANT!
+# ------------------------------------------------------------------
+# IF YOU DO NOT HAVE SGML OR XML CATALOGS SET UP ON YOUR SYSTEM,
+# change the value of DOCBOOK_WEBSITE to the appropricate local
+# pathname for your system. OR, run "make" like this:
+#
+#  make DOCBOOK_WEBSITE=/foo/bar/website
+#
+# Note that DOCBOOK_WEBSITE SHOULD NOT BE THE URI FOR YOUR SITE!
+# There is nowhere in this makefile where you need to specify that.
+# ------------------------------------------------------------------
+#
+DOCBOOK_WEBSITE=http://docbook.sourceforge.net/release/website/current
+#DOCBOOK_WEBSITE=/usr/share/xml/docbook/custom/website/current
+
+# generate non-tabular output instead of tabular? 1=Yes 0=No
+MAKENONTAB=0
+
+# use HTML Tidy to pretty-print HTML? 1=Yes 0=No
+USETIDY=0
+# specifies how to call tidy
+TIDY=tidy
+# specifies options to feed to tidy
+TIDYOPTS=-iq -latin1 -mn
+
+# specifies command for calling your preferred XML parser for
+# validating the DocBook XML sources for your site
+XMLPARSER=java \
+	-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl \
+	-Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl \
+	org.apache.xml.resolver.apps.xread
+
+# to use xmllint as your XML parser for validating the DocBook XML
+# sources for your site, comment out the above and then uncomment
+# the next line
+#XMLPARSER=xmllint --valid --noout
+
+# specifies command for calling your XSLT engine
+XSLT=java \
+	-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl \
+	-Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl \
+	-Djavax.xml.transform.TransformerFactory=com.icl.saxon.TransformerFactoryImpl \
+	com.icl.saxon.StyleSheet \
+	-x org.apache.xml.resolver.tools.ResolvingXMLReader \
+	-y org.apache.xml.resolver.tools.ResolvingXMLReader \
+	-r org.apache.xml.resolver.tools.CatalogResolver \
+
+# to use xsltproc as your XSLT engine, comment out the above and
+# then uncomment the next line
+#XSLT=xsltproc
+
+# the following is empty by default; put any custom DocBook
+# stylesheet params you want here; they will be applied globally
+# to all HTML transformations from your DocBook XML sources
+STYLEOPT=
+
+# name of directory to use if chunking output with "make chunk"
 DESTPATH=.
-TEXTONLY=0
-USETIDY=1
+
+# what prefix to use on non-tabular versions HTML files?
+NONTABPREFIX=n-
+
+TABSTYLE      =  $(DOCBOOK_WEBSITE)/xsl/tabular.xsl
+WEBSTYLE      =  $(DOCBOOK_WEBSITE)/xsl/website.xsl
+TABCHUNK      =  $(DOCBOOK_WEBSITE)/xsl/chunk-tabular.xsl
+WEBCHUNK      =  $(DOCBOOK_WEBSITE)/xsl/chunk-website.xsl
+AUTOLAYOUT    =  $(DOCBOOK_WEBSITE)/xsl/autolayout.xsl 
+MAKEDEPENDS   =  $(DOCBOOK_WEBSITE)/xsl/makefile-dep.xsl
+MAKETARGETSDB =  $(DOCBOOK_WEBSITE)/xsl/website-targets.xsl
+
+XMLDEPENDS    = autolayout.xml website.database.xml
 
 .PHONY : clean
 
 all:
 	$(MAKE) website
-	$(MAKE) TEXTONLY=1 website
+	$(MAKE) MAKENONTAB=1 website
 
-ifeq ($(TEXTONLY),0)
+ifeq ($(MAKENONTAB),0)
 STYLESHEET=$(TABSTYLE)
 STYLECHUNK=$(TABCHUNK)
 TEXTOPT=
@@ -22,42 +96,75 @@ include depends.tabular
 else
 STYLESHEET=$(WEBSTYLE)
 STYLECHUNK=$(WEBCHUNK)
-TEXTOPT=filename-prefix=txt
-include depends.textonly
+ifeq ($(basename $(XSLT)),xsltproc)
+TEXTOPT= --stringparam filename-prefix $(NONTABPREFIX)
+else
+TEXTOPT= filename-prefix=$(NONTABPREFIX)
+endif
+include depends.nontabular
 endif
 
 autolayout.xml: layout.xml
-	$(XJPARSE) $(filter-out autolayout.xml,$^)
-	$(XSLT) $(XSLTOPT) $< ../xsl/autolayout.xsl $@
+	$(XMLPARSER) $(filter-out $(XMLDEPENDS),$^)
+ifeq ($(basename $(XSLT)),xsltproc)
+	$(XSLT) $(AUTOLAYOUT) $< > $@
+else
+	$(XSLT) $< $(AUTOLAYOUT) use.extensions=1 > $@
+endif
 
 chunk: autolayout.xml
-	$(XSLT) $(XSLTOPT) autolayout.xml $(STYLECHUNK) - output-root=$(DESTPATH)
+ifeq ($(basename $(XSLT)),xsltproc)
+	$(XSLT) --param output-root $(DESTPATH) $(STYLECHUNK) autolayout.xml
+else
+	$(XSLT) autolayout.xml $(STYLECHUNK) use.extensions=1 output-root=$(DESTPATH)
+endif
 
-%.html: autolayout.xml 
-	$(XJPARSE) $(filter-out autolayout.xml,$^)
-	$(XSLT) $(XSLTOPT) $(filter-out autolayout.xml,$^) $(STYLESHEET) $@ $(TEXTOPT) $(STYLEOPT)
+%.html: autolayout.xml website.database.xml
+	$(XMLPARSER) $(filter-out $(XMLDEPENDS),$^)
+ifeq ($(basename $(XSLT)),xsltproc)
+	$(XSLT) $(TEXTOPT) $(STYLEOPT) $(STYLESHEET) $(filter-out $(XMLDEPENDS),$^) > $@
+else
+	$(XSLT) $(filter-out $(XMLDEPENDS),$^) $(STYLESHEET) $(TEXTOPT) $(STYLEOPT) use.extensions=1 > $@ 
+endif
 ifeq ($(USETIDY),1)
 	-$(TIDY) -iq -latin1 -mn $@
 endif
 
 # RDDL gets its own rule because we never want to call tidy on it
+ifeq ($(MAKENONTAB),0)
 rddl.html: autolayout.xml
-	$(XJPARSE) $(filter-out autolayout.xml,$^)
-	$(XSLT) $(XSLTOPT) $(filter-out autolayout.xml,$^) $(STYLESHEET) $@ $(TEXTOPT) $(STYLEOPT)
+else
+$(NONTABPREFIX)rddl.html: autolayout.xml
+endif
+	$(XMLPARSER) $(filter-out $(XMLDEPENDS),$^)
+ifeq ($(basename $(XSLT)),xsltproc)
+	$(XSLT) $(TEXTOPT) $(STYLEOPT) $(STYLESHEET) $(filter-out $(XMLDEPENDS),$^) > $@
+else
+	$(XSLT) $(filter-out $(XMLDEPENDS),$^) $(STYLESHEET) $(TEXTOPT) $(STYLEOPT) use.extensions=1 > $@
+endif
 
 depends.tabular: autolayout.xml
-	$(XJPARSE) $<
-	$(XSLT) $(XSLTOPT) $< ../xsl/makefile-dep.xsl $@
+ifeq ($(basename $(XSLT)),xsltproc)
+	$(XSLT) $(MAKEDEPENDS) $< > $@
+else
+	$(XSLT) $< $(MAKEDEPENDS) use.extensions=1 > $@
+endif
 
-depends.textonly: autolayout.xml
-	$(XJPARSE) $<
-	$(XSLT) $(XSLTOPT) $< ../xsl/makefile-dep.xsl $@ prefix=txt
+depends.nontabular: autolayout.xml
+ifeq ($(basename $(XSLT)),xsltproc)
+	$(XSLT) $(TEXTOPT) $(MAKEDEPENDS) $< > $@
+else
+	$(XSLT) $< $(MAKEDEPENDS) $(TEXTOPT) use.extensions=1 > $@
+endif
 
 website.database.xml: autolayout.xml
-	$(XJPARSE) $<
-	$(XSLT) $(XSLTOPT) $< ../xsl/website-targets.xsl $@
+ifeq ($(basename $(XSLT)),xsltproc)
+	$(XSLT) $(MAKETARGETSDB) $< > $@
+else
+	$(XSLT) $< $(MAKETARGETSDB) use.extensions=1 > $@
+endif
 
-depends: depends.tabular depends.textonly website.database.xml
+depends: autolayout.xml website.database.xml depends.tabular depends.nontabular
 
 realclean: clean
-	rm -f depends.tabular depends.textonly website.database.xml autolayout.xml
+	rm -f autolayout.xml depends.tabular depends.nontabular website.database.xml
