@@ -359,12 +359,13 @@ callouts should not be used.
 </doc:param>
 
 <!-- ==================================================================== -->
-<xsl:param name="callout.dingbats" select="'0'"/>
+<xsl:param name="callout.unicode.font" select="'ZapfDingbats'"/>
 
-<doc:param name="callout.dingbats" xmlns="">
-<refpurpose>Use Zapf Dingbats for callouts?</refpurpose>
+<doc:param name="callout.unicode.font" xmlns="">
+<refpurpose>Font to use for Unicode dingbats</refpurpose>
 <refdescription>
-<para>If non-zero, callouts are presented with Zapf Dingbats.
+<para>The name of the font to specify around Unicode callout glyphs.
+If set to the empty string, no font change will occur.
 </para>
 </refdescription>
 </doc:param>
