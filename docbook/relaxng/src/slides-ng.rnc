@@ -1,0 +1,128 @@
+# This file is part of Slides NG
+
+# This schema is a reinterpretation of "Slides" in the NG framework.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from Slides V3.3.0
+# Release: $Id$
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng"
+default namespace = "http://docbook.org/docbook-ng"
+
+include "sdocbook.rnc" {
+   start = db.slides
+
+   blocks |= db.speakernotes | db.screen
+}
+
+[
+   db:refname [ "slides" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   local.slides.attributes = empty
+
+   slides.role.attribute = attribute role { text }
+
+   slides.attlist =
+      slides.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & local.slides.attributes
+
+   slides.info = docbook.info.titlereq
+
+   db.slides =
+      element slides {
+         slides.attlist,
+         slides.info,
+         db.speakernotes?,
+         db.foil*,
+         db.foilgroup*
+      }
+}
+
+[
+   db:refname [ "foilgroup" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   local.foilgroup.attributes = empty
+
+   foilgroup.role.attribute = attribute role { text }
+
+   foilgroup.attlist =
+      foilgroup.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & local.foilgroup.attributes
+
+   foilgroup.info = docbook.info.titlereq
+
+   db.foilgroup =
+      element foilgroup {
+         foilgroup.attlist,
+         foilgroup.info,
+         blocks*,
+         db.foil+
+      }
+}
+
+[
+   db:refname [ "foil" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   local.foil.attributes = empty
+
+   foil.role.attribute = attribute role { text }
+
+   foil.attlist =
+      foil.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & local.foil.attributes
+
+   foil.info = docbook.info.titlereq
+
+   db.foil =
+      element foil {
+         foil.attlist,
+         foil.info,
+         blocks*
+      }
+}
+
+[
+   db:refname [ "speakernotes" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   local.speakernotes.attributes = empty
+
+   speakernotes.role.attribute = attribute role { text }
+
+   speakernotes.attlist =
+      speakernotes.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & local.speakernotes.attributes
+
+   speakernotes.info = docbook.info.titlereq
+
+   db.speakernotes =
+      element speakernotes {
+         speakernotes.attlist,
+         speakernotes.info,
+         blocks*
+      }
+}

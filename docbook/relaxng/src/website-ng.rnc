@@ -1,0 +1,331 @@
+# This file is part of Website NG
+
+# This schema is a reinterpretation of "Website" in the NG framework.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from Website V2.5.0
+# Release: $Id$
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng"
+namespace ws = "http://docbook.org/docbook-ng/website"
+default namespace = "http://docbook.org/docbook-ng"
+
+rddl = notAllowed
+
+include "qandaset.rnc"
+include "htmlform.rnc"
+include "ws-rddl.rnc"
+
+include "sdocbook.rnc" {
+   start = ws.webpage
+
+   inlines |= db.tag
+
+   list.blocks |= db.simplelist
+
+   blocks |= ws.webtoc | ws.rss
+
+   link.inlines |= db.olink
+}
+
+# ======================================================================
+
+[
+   db:refname [ "olink" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   local.olink.attributes = empty
+
+   olink.role.attribute = attribute role { text }
+
+   olink.attlist =
+      olink.role.attribute?
+    & common.attributes
+    & local.olink.attributes
+    & attribute linkmode { xsd:IDREF }?
+    & attribute localinfo { text }?
+    & attribute type { text }?
+    & attribute targetdoc { text }?
+    & attribute targetptr { text }?
+    & attribute xrefstyle { text }?
+
+   db.olink =
+      element olink {
+         olink.attlist,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "ws:webpage" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   local.webpage.attributes = empty
+
+   webpage.role.attribute = attribute role { text }
+
+   webpage.attlist =
+      webpage.role.attribute?
+    & common.attributes.idreq
+    & common.linking.attributes
+    & local.webpage.attributes
+    & attribute navto { "yes" | "no" }?
+
+   ws.webpage =
+      element ws:webpage {
+         webpage.attlist,
+         ws.config*,
+         ws.head,
+         component.contentmodel,
+         db.appendix*,
+         db.bibliography*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "ws:head" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   local.head.attributes = empty
+
+   head.role.attribute = attribute role { text }
+
+   head.attlist =
+      head.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & local.head.attributes
+
+   ws.head =
+      element ws:head {
+         head.attlist,
+         db.title,
+         db.titleabbrev?,
+         db.subtitle?,
+         ws.summary?,
+         ws.base?,
+         ws.keywords?,
+         (db.copyright
+          | db.author
+          | db.edition
+          | ws.meta
+          | ws.headlink
+          | ws.script
+          | ws.style
+          | db.abstract
+          | db.revhistory
+          | rddl)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "ws:meta" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   meta.attlist =
+      attribute http-equiv { text }?
+    & attribute name { text }?
+    & attribute content { text }
+
+   ws.meta =
+      element ws:meta {
+         meta.attlist,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "ws:headlink" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   headlink.attlist =
+      attribute href { text }?
+    & attribute media { text }?
+    & attribute name { text }?
+    & attribute rel { text }?
+    & attribute rev { text }?
+    & attribute src { text }?
+    & attribute title { text }?
+    & attribute type { text }?
+
+   ws.headlink =
+      element ws:headlink {
+         headlink.attlist,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "ws:script" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   script.attlist =
+      attribute src { text }?
+    & attribute language { text }?
+    & attribute type { text }?
+
+   ws.script =
+      element ws:script {
+         script.attlist,
+         text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "ws:style" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   style.attlist =
+      attribute src { text }?
+    & attribute type { text }?
+
+   ws.style =
+      element ws:style {
+         style.attlist,
+         text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "ws:config" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   config.attlist =
+      common.attributes
+    & attribute param { text }
+    & attribute value { text }
+    & attribute altval { text }?
+
+   ws.config =
+      element ws:config {
+         config.attlist,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "ws:summary" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   summary.attlist =
+      common.attributes
+
+   ws.summary =
+      element ws:summary {
+         summary.attlist,
+         inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "ws:base" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   base.attlist =
+      attribute href { text }
+    & attribute target { text }?
+
+   ws.base =
+      element ws:base {
+         base.attlist,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "ws:keywords" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   keywords.attlist =
+      common.attributes
+
+   ws.keywords =
+      element ws:keywords {
+         keywords.attlist,
+         text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "ws:webtoc" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   webtoc.attlist =
+      common.attributes
+
+   ws.webtoc =
+      element ws:webtoc {
+         webtoc.attlist,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "ws:rss" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   rss.attlist =
+      common.attributes
+    & attribute feed { text }
+
+   ws.rss =
+      element ws:rss {
+         rss.attlist,
+         empty
+      }
+}
