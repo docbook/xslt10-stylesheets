@@ -2336,7 +2336,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % itemizedlist.attlist "INCLUDE">
 <![%itemizedlist.attlist;[
-<!ATTLIST itemizedlist		spacing		(normal
+<!ATTLIST itemizedlist
+		spacing		(normal
 				|compact)	#IMPLIED
 		%mark.attrib;
 		%common.attrib;
@@ -2586,6 +2587,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <![%variablelist.attlist;[
 <!ATTLIST variablelist
 		termlength	CDATA		#IMPLIED
+		spacing		(normal
+				|compact)	#IMPLIED
 		%common.attrib;
 		%variablelist.role.attrib;
 		%local.variablelist.attrib;
