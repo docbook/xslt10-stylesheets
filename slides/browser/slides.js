@@ -68,3 +68,20 @@ function navigate (evt) {
 	window.location = target;
     }
 }
+
+function toggletoc (img, width, hidegraphic, showgraphic) {
+    var fsc = xbGetElementsByName('FRAMESET',top);
+    if (fsc) {
+	var fs = fsc[0];
+	if (fs) {
+	    if (fs.cols == "0,*") {
+		fs.cols = width + ",*";
+		img.src = hidegraphic;
+	    } else {
+		fs.cols = "0,*";
+		img.src = showgraphic;
+	    }
+	}
+    }
+}
+
