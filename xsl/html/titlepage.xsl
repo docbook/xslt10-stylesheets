@@ -232,6 +232,12 @@
   </span>
 </xsl:template>
 
+<xsl:template match="collabname" mode="titlepage.mode">
+  <span class="{name(.)}">
+    <xsl:apply-templates mode="titlepage.mode"/>
+  </span>
+</xsl:template>
+
 <xsl:template match="confgroup" mode="titlepage.mode">
   <div class="{name(.)}">
     <xsl:apply-templates mode="titlepage.mode"/>
