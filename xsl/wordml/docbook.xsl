@@ -195,6 +195,9 @@
     <xsl:apply-templates select='title|subtitle|titleabbrev'/>
     <xsl:apply-templates select='author|releaseinfo'/>
     <!-- current implementation ignores all other metadata -->
+    <xsl:for-each select='*[not(self::title|self::subtitle|self::titleabbrev|self::author|self::releaseinfo)]'>
+      <xsl:call-template name='nomatch'/>
+    </xsl:for-each>
   </xsl:template>
 
   <xsl:template match='title|subtitle|titleabbrev'>
@@ -233,9 +236,18 @@
         <w:outlineLvl w:val='{count(ancestor::*) - count(parent::*[contains(name(), "info")]) - 1}'/>
       </w:pPr>
 
-      <xsl:call-template name='attributes'>
-        <xsl:with-param name='node' select='..'/>
-      </xsl:call-template>
+      <xsl:choose>
+        <xsl:when test='contains(name(..), "info")'>
+          <xsl:call-template name='attributes'>
+            <xsl:with-param name='node' select='../..'/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name='attributes'>
+            <xsl:with-param name='node' select='..'/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
 
       <xsl:apply-templates/>
     </w:p>
@@ -883,7 +895,7 @@
                        keywordset|
                        msg'/>
 
-  <xsl:template match='*'>
+  <xsl:template match='*' name='nomatch'>
     <xsl:message>
       <xsl:value-of select='name()'/>
       <xsl:text> encountered</xsl:text>
@@ -1063,7 +1075,9 @@
         <w:rPr>
           <w:rStyle w:val='attributes'/>
         </w:rPr>
-        <w:t> </w:t>
+        <w:t>
+          <xsl:text> </xsl:text>
+        </w:t>
       </w:r>
       <aml:annotation aml:id='{count(preceding::*) + 1}' w:type='Word.Comment.End'/>
       <w:r>

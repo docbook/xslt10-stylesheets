@@ -112,6 +112,9 @@
       <xsl:when test='$element.name != "bogus"'>
         <xsl:element name="{$element.name}">
           <xsl:call-template name="object.id"/>
+          <xsl:call-template name='attributes'>
+            <xsl:with-param name='node' select='$first.node'/>
+          </xsl:call-template>
           <xsl:apply-templates mode="group"/>
         </xsl:element>
       </xsl:when>
@@ -1048,7 +1051,7 @@
     <xsl:variable name='annotation' select='$attr/preceding-sibling::aml:annotation[1]'/>
 
     <xsl:if test='$attr and $annotation'>
-      <xsl:variable name='comment' select='w:r[w:rPr/w:rStyle/@w:val = "CommentReference"]/aml:annotation[@w:type = "Word.Comment" and @aml:id = $annotation/@aml:id]/aml:content'/>
+      <xsl:variable name='comment' select='$node/w:r[w:rPr/w:rStyle/@w:val = "CommentReference"]/aml:annotation[@w:type = "Word.Comment" and @aml:id = $annotation/@aml:id]/aml:content'/>
       <xsl:for-each select='$comment/w:p/w:r[w:rPr/w:rStyle/@w:val = "attribute-name"]'>
         <xsl:attribute name='{w:t}'>
           <xsl:value-of select='following-sibling::w:r[w:rPr/w:rStyle/@w:val = "attribute-value"][1]/w:t'/>
@@ -1059,6 +1062,7 @@
 
   <xsl:template match='aml:annotation' mode='group'/>
   <xsl:template match='aml:annotation'/>
+  <xsl:template match='w:r[w:rPr/w:rStyle/@w:val = "attributes"]'/>
   <xsl:template match='w:r[w:rPr/w:rStyle/@w:val = "CommentReference"]'/>
 
 </xsl:stylesheet>
