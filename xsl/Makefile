@@ -65,6 +65,7 @@ else
 	find . -type f -name "*~"  | cut -c3- >> /tmp/tar.exclude
 	find . -type f -name ".*~"  | cut -c3- >> /tmp/tar.exclude
 	find . -type f -name "#*"  | cut -c3- >> /tmp/tar.exclude
+	find . -type f -name ".#*"  | cut -c3- >> /tmp/tar.exclude
 	find . -type f -name ".cvsignore"  | cut -c3- >> /tmp/tar.exclude
 	find . -type f -name "Makefile*"   | cut -c3- >> /tmp/tar.exclude
 	find . -type f -name "README.CVS"   | cut -c3- >> /tmp/tar.exclude
