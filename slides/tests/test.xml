@@ -3,7 +3,7 @@
 <?dbhtml graphics-dir="../graphics"?>
 <?dbhtml css-stylesheet="../browser/slides.css"?>
 <?dbhtml script-dir="../browser"?>
-<slides xmlns:html='http://www.w3.org/1999/xhtml'>
+<slides>
 <slidesinfo>
   <title>Test Slides Title</title>
   <copyright><year>2001</year><holder>Norman Walsh</holder></copyright>
@@ -13,10 +13,10 @@
 <para>Welcome the audience</para>
 </speakernotes>
 
-<section><title>Section 1</title>
+<foilgroup><title>Foilgroup 1</title>
 
 <speakernotes>
-<para>Introduce the section</para>
+<para>Introduce the foilgroup</para>
 </speakernotes>
 
 <foil><title>Test Slides Title 1</title>
@@ -167,8 +167,8 @@ this is a long screen
 </screen>
 </foil>
 
-</section>
-<section><title>Section 2</title>
+</foilgroup>
+<foilgroup><title>Foilgroup 2</title>
 
 <foil><title>Test Slides Title 1</title>
 <para>...</para>
@@ -181,6 +181,6 @@ this is a screen
 </screen>
 </foil>
 
-</section>
+</foilgroup>
 
 </slides>
