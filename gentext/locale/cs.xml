@@ -495,4 +495,8 @@
 <template name="Sun">ne</template>
 </context>
 
+<context name="htmlhelp">
+<template name="langcode">0x0405 Czech</template>
+</context>
+
 </locale>

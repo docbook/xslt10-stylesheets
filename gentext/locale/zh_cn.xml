@@ -445,4 +445,8 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<context name="htmlhelp">
+<template name="langcode">0x0804 Chinese (CHINA)</template>
+</context>
+
 </locale>

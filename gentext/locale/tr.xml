@@ -506,5 +506,8 @@
 <template name="Sun">Paz</template>
 </context>
 
+<context name="htmlhelp">
+<template name="langcode">0x041f Turkish</template>
+</context>
 
 </locale>

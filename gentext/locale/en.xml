@@ -521,4 +521,8 @@
 <template name="Sun">Sun</template>
 </context>
 
+<context name="htmlhelp">
+<template name="langcode">0x0409 English (UNITED STATES)</template>
+</context>
+
 </locale>

@@ -448,4 +448,8 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<context name="htmlhelp">
+<template name="langcode">0x0412 Korean</template>
+</context>
+
 </locale>

@@ -461,4 +461,8 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<context name="htmlhelp">
+<template name="langcode">0x0418 Romanian</template>
+</context>
+
 </locale>

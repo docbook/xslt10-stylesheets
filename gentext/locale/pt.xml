@@ -455,4 +455,8 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<context name="htmlhelp">
+<template name="langcode">0x0816 Portuguese (PORTUGAL)</template>
+</context>
+
 </locale>

@@ -453,4 +453,8 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<context name="htmlhelp">
+<template name="langcode">0x0425 Estonian</template>
+</context>
+
 </locale>

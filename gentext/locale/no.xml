@@ -458,4 +458,8 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<context name="htmlhelp">
+<template name="langcode">0x0414 Norwegian</template>
+</context>
+
 </locale>
