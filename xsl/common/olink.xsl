@@ -850,6 +850,15 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
+    <xsl:when test="@targetdoc != '' or @targetptr != ''">
+      <xsl:message>
+        <xsl:text>Olink error: no generated text for </xsl:text>
+        <xsl:text>targetdoc/targetptr/lang = '</xsl:text>
+        <xsl:value-of select="$olink.key"/>
+        <xsl:text>'.</xsl:text>
+      </xsl:message>
+      <xsl:text>????</xsl:text>
+    </xsl:when>
     <xsl:otherwise>
       <!-- old style olink -->
       <xsl:call-template name="olink.outline">
