@@ -1,4 +1,4 @@
-PROC=saxon
+PROC=xsltproc
 PROCOPT=-q
 TABSTYLE=../xsl/tabular.xsl
 WEBSTYLE=../xsl/website.xsl
@@ -18,12 +18,12 @@ ifeq ($(TEXTONLY),0)
 STYLESHEET=$(TABSTYLE)
 STYLECHUNK=$(TABCHUNK)
 STYLEOPT=
-include depends.tabular
+include .tabular
 else
 STYLESHEET=$(WEBSTYLE)
 STYLECHUNK=$(WEBCHUNK)
 STYLEOPT=filename-prefix=txt
-include depends.textonly
+include .textonly
 endif
 
 autolayout.xml: layout.xml
@@ -43,5 +43,5 @@ endif
 
 depends: autolayout.xml
 	xjparse $<
-	$(PROC) $(PROCOPT) $< ../xsl/makefile-dep.xsl depends.tabular
-	$(PROC) $(PROCOPT) $< ../xsl/makefile-dep.xsl depends.textonly prefix=txt
+	$(PROC) $(PROCOPT) $< ../xsl/makefile-dep.xsl .tabular
+	$(PROC) $(PROCOPT) $< ../xsl/makefile-dep.xsl .textonly prefix=txt
