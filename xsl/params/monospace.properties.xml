@@ -14,14 +14,20 @@
   <xsl:attribute name="font-family">
     <xsl:value-of select="$monospace.font.family"/>
   </xsl:attribute>
-  <xsl:attribute name="font-size">0.9em</xsl:attribute>
 </xsl:attribute-set>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
 
-<para>Specifies the font name and size for monospaced output.</para>
+<para>Specifies the font name for monospaced output. This property set
+used to set the font-size as well, but that doesn't work very well
+when different fonts are used (as they are in titles and paragraphs,
+for example).</para>
+
+<para>If you want to set the font-size in a customization layer, it's
+probably going to be more appropriate to set font-size-adjust, if your
+formatter supports it.</para>
 
 </refsect1>
 </refentry>
