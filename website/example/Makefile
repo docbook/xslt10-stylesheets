@@ -17,12 +17,12 @@ all:
 ifeq ($(TEXTONLY),0)
 STYLESHEET=$(TABSTYLE)
 STYLECHUNK=$(TABCHUNK)
-STYLEOPT=
+TEXTOPT=
 include .tabular
 else
 STYLESHEET=$(WEBSTYLE)
 STYLECHUNK=$(WEBCHUNK)
-STYLEOPT=filename-prefix=txt
+TEXTOPT=filename-prefix=txt
 include .textonly
 endif
 
@@ -36,10 +36,15 @@ chunk: autolayout.xml
 
 %.html: autolayout.xml
 	xjparse $(filter-out autolayout.xml,$^)
-	$(PROC) $(PROCOPT) $(filter-out autolayout.xml,$^) $(STYLESHEET) $@ $(STYLEOPT)
+	$(PROC) $(PROCOPT) $(filter-out autolayout.xml,$^) $(STYLESHEET) $@ $(TEXTOPT) $(STYLEOPT)
 ifeq ($(USETIDY),1)
 	-tidy -iq -latin1 -mn $@
 endif
+
+# RDDL gets its own rule because we never want to call tidy on it
+rddl.html: autolayout.xml
+	xjparse $(filter-out autolayout.xml,$^)
+	$(PROC) $(PROCOPT) $(filter-out autolayout.xml,$^) $(STYLESHEET) $@ $(TEXTOPT) $(STYLEOPT)
 
 depends: autolayout.xml
 	xjparse $<
