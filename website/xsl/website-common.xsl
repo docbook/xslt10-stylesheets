@@ -362,6 +362,12 @@ node.</para>
 
 <!-- ==================================================================== -->
 
+<xsl:template match="webpage" mode="title.markup">
+  <xsl:apply-templates select="head/title"/>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
 <xsl:template name="directory-depth">
   <xsl:param name="dir"></xsl:param>
   <xsl:param name="count" select="0"/>
