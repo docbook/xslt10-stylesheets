@@ -135,6 +135,7 @@ generate.section.toc.level;
 &part.autolabel;
 &preface.autolabel;
 &section.autolabel;
+&section.autolabel.max.depth;
 &section.label.includes.component.label;
 &label.from.part;
 </reference>
@@ -662,6 +663,7 @@ around all these parameters.</para>
 <src:fragref linkend="runinhead.title.end.punct.frag"/>
 <src:fragref linkend="sans.font.family.frag"/>
 <src:fragref linkend="section.autolabel.frag"/>
+<src:fragref linkend="section.autolabel.max.depth.frag"/>
 <src:fragref linkend="section.label.includes.component.label.frag"/>
 <src:fragref linkend="section.title.level1.properties.frag"/>
 <src:fragref linkend="section.title.level2.properties.frag"/>
