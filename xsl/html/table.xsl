@@ -908,7 +908,6 @@
       </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
-
 </xsl:template>
 
 <xsl:template name="colspec.colwidth">
