@@ -10,7 +10,7 @@ doc.html: doc.xml
 	$(XSLT) $< doc.xsl $@
 
 doc.xml: doc.xweb
-	$(XSLT) $< ../wdocbook.xsl $@
+	$(XSLT) $< ../weave.xsl $@
 
 doc.xsd: doc.xweb
 	$(XSLT) $< ../xtangle.xsl $@
