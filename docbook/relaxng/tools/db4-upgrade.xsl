@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
-		xmlns:db = "http://docbook.org/docbook-ng/absinthe"
+		xmlns:db = "http://docbook.org/docbook-ng"
                 exclude-result-prefixes="exsl db"
                 version="1.0">
 
@@ -663,9 +663,9 @@
   <xsl:choose>
     <xsl:when test="namespace-uri(.) = ''">
       <xsl:element name="{local-name(.)}"
-		   namespace="http://docbook.org/docbook-ng/absinthe">
+		   namespace="http://docbook.org/docbook-ng">
 	<xsl:if test="not(parent::*)">
-	  <xsl:attribute name="version">absinthe</xsl:attribute>
+	  <xsl:attribute name="version">bourbon</xsl:attribute>
 	</xsl:if>
 	<xsl:copy-of select="@*"/>
 	<xsl:apply-templates mode="addNS"/>
@@ -674,7 +674,7 @@
     <xsl:otherwise>
       <xsl:copy>
 	<xsl:if test="not(parent::*)">
-	  <xsl:attribute name="version">absinthe</xsl:attribute>
+	  <xsl:attribute name="version">bourbon</xsl:attribute>
 	</xsl:if>
 	<xsl:copy-of select="@*"/>
 	<xsl:apply-templates mode="addNS"/>

@@ -23,7 +23,7 @@ tests:
 html: docbook-rng.xml
 	xsltproc tools/html.xsl $<
 
-docbook-rng.xml: docbook.rng tools/rngdocxml.xsl
+docbook-rng.xml: docbook.rng tools/rngdocxml.xsl tools/rngdocxml-multipass.xsl
 	tools/makedoc $< $@
 
 #	xsltproc -output $@ tools/rngdocxml.xsl $<

@@ -4,7 +4,7 @@
                 xmlns:rng="http://relaxng.org/ns/structure/1.0"
                 xmlns:ctrl="http://nwalsh.com/xmlns/schema-control/"
 		xmlns:s="http://www.ascc.net/xml/schematron"
-		xmlns:db="http://docbook.org/docbook-ng/absinthe"
+		xmlns:db="http://docbook.org/docbook-ng"
                 exclude-result-prefixes="exsl ctrl rng s db"
                 version="1.0">
 
@@ -40,14 +40,14 @@
 
       <!-- Make sure the ns is specified -->
       <xsl:attribute name="ns">
-	<xsl:value-of select="'http://docbook.org/docbook-ng/absinthe'"/>
+	<xsl:value-of select="'http://docbook.org/docbook-ng'"/>
       </xsl:attribute>
 
       <xsl:copy-of select="@*"/>
 
       <xsl:text>&#10;</xsl:text>
       <xsl:text>&#10;</xsl:text>
-      <xsl:comment> DocBook NG: The "Absinthe" Release </xsl:comment>
+      <xsl:comment> DocBook NG: The "Bourbon" Release </xsl:comment>
       <xsl:text>&#10;</xsl:text>
       <xsl:comment> See http://docbook.org/docbook-ng/ </xsl:comment>
       <xsl:text>&#10;</xsl:text>

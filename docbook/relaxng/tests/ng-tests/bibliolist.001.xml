@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<article xmlns="http://docbook.org/docbook-ng/absinthe" version="absinthe">
+<article xmlns="http://docbook.org/docbook-ng" version="bourbon">
 <info><title>Unit Test: bibliolist.001</title>
 
 <releaseinfo role="CVS">$Id$</releaseinfo>
