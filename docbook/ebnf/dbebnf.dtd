@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook EBNF Module V1.1CR1 .......................................... -->
+<!-- DocBook EBNF Module V1.2b1 ............................................. -->
 <!-- File dbebnf.dtd ...................................................... -->
 
 <!-- Copyright (C) 2001, 2002 Organization for the Advancement
@@ -26,24 +26,24 @@
 
 <!-- ...................................................................... -->
 
-<!-- This is the driver file for V1.1CR1 of the DocBook EBNF Module.
+<!-- This is the driver file for V1.2b1 of the DocBook EBNF Module.
      Please use the following formal public identifier to identify it:
 
-     "-//OASIS//DTD DocBook EBNF Module V1.1CR1//EN"
+     "-//OASIS//DTD DocBook EBNF Module V1.2b1//EN"
 
      For example, if your document's top-level element is Book, and
      you are using DocBook directly, use the FPI in the DOCTYPE
      declaration:
 
-     <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook EBNF Module V1.1CR1//EN"
-                    "http://www.oasis-open.org/docbook/xml/ebnf/1.1CR1/dbebnf.dtd"
+     <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook EBNF Module V1.2b1//EN"
+                    "http://www.oasis-open.org/docbook/xml/ebnf/1.2b1/dbebnf.dtd"
                     [...]>
 
      Or, if you have a higher-level driver file that customizes DocBook,
      use the FPI in the parameter entity declaration:
 
-     <!ENTITY % DocBookEBNFDTD PUBLIC "-//OASIS//DTD DocBook EBNF Module V1.1CR1//EN"
-                "http://www.oasis-open.org/docbook/xml/ebnf/1.1CR1/dbebnf.dtd">
+     <!ENTITY % DocBookEBNFDTD PUBLIC "-//OASIS//DTD DocBook EBNF Module V1.2b1//EN"
+                "http://www.oasis-open.org/docbook/xml/ebnf/1.2b1/dbebnf.dtd">
      %DocBookEBNFDTD;
 
      See the documentation for detailed information on the parameter
@@ -54,8 +54,8 @@
 
 <!ENTITY % ebnf.inline.hook "|nonterminal">
 <!ENTITY % ebnf.block.hook "|productionset|constraintdef">
-<!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
-                   "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                   "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
 %docbook;
 
 <!ELEMENT productionset
@@ -118,5 +118,5 @@
         %role.attrib;
 >
 
-<!-- End of dbebnf.dtd V1.1CR1 ............................................ -->
+<!-- End of dbebnf.dtd V1.2b1 ............................................... -->
 <!-- ...................................................................... -->
