@@ -108,12 +108,12 @@ Some abstract. Some abstract. Some abstract. Some abstract.
 <para>This is a footnote in a partintro.</para>
 </footnote>.</para>
 
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah;
 
 <sect1 id="pIpis1">
 <title>PartIntro Section</title>
 <para>PartIntros can actually have section content as well.</para>
-&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah;
 </sect1>
 </partintro>
 

@@ -46,6 +46,8 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 </listitem>
 <listitem><para>appendix: <xref linkend="appendix"/>.</para>
 </listitem>
+<listitem><para>para: <xref linkend="para"/>.</para>
+</listitem>
 </itemizedlist>
 
 </dedication>
@@ -79,6 +81,7 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 <chapter id="chapter"><title>Chapter</title>
 
 &blah;
+<para id="para">This paragraph has an ID.</para>
 
 </chapter>
 
