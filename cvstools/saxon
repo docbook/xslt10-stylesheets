@@ -180,8 +180,8 @@ if [ "$DEBUG" = "1" ]; then
   SAXON="$SAXON_DEBUG:$SAXON"
 fi
 
-SUN="/projects/sun/resolver/.classes";
-JAXP="/usr/local/jaxp-1.1/jaxp.jar";
+SUN="/projects/sun/resolver/.classes"
+JAXP="/usr/local/jaxp-1.1/jaxp.jar"
 
 XERCESROOT="/projects/apache/xml-xerces/java"
 XERCES="$XERCESROOT/build/classes"
