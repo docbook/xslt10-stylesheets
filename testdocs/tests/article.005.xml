@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
-                  "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+          "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <article id="article.005">
 <articleinfo>
 <title>Unit Test: article.005.xml</title>
@@ -62,6 +62,3 @@ Foo bar foo bar.  Foo bar foo bar.
 </para>
   </sect1>
 </article>
-
-
-

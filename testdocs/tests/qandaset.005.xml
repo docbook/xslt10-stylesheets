@@ -1,6 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+          "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <article>
   <articleinfo>
-    <title>Unit Test: qandaset.05</title>
+    <title>Unit Test: qandaset.005</title>
     <subtitle>Autolabeling test </subtitle>
     <releaseinfo role="CVS">$Id$</releaseinfo>
     <author><firstname>Harald</firstname><surname>J&#246;rg</surname>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
-                  "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+          "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <article id="informaltable.015">
 <articleinfo>
 <title>Unit Test: informaltable.015</title>
@@ -37,5 +37,3 @@ should expand to fill entire horizontal space.</para>
     </tgroup>
   </informaltable>
 </article>
-
-
