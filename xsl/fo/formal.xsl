@@ -154,12 +154,35 @@
 
   <!-- Get align value from internal mediaobject -->
   <xsl:variable name="align">
-    <xsl:if test="mediaobject">
+    <xsl:if test="mediaobject|mediaobjectco|screenshot|graphic|graphicco">
       <xsl:variable name="olist" select="mediaobject/imageobject
-                     |mediaobject/imageobjectco
-                     |mediaobject/videoobject
-		     |mediaobject/audioobject
-		     |mediaobject/textobject"/>
+                                         |mediaobject/imageobjectco
+                                         |mediaobject/videoobject
+                                         |mediaobject/audioobject
+                                         |mediaobject/textobject
+
+                                         |mediaobjectco/imageobject
+                                         |mediaobjectco/imageobjectco
+                                         |mediaobjectco/videoobject
+                                         |mediaobjectco/audioobject
+                                         |mediaobjectco/textobject
+
+                                         |screenshot/mediaobject/imageobject
+                                         |screenshot/mediaobject/imageobjectco
+                                         |screenshot/mediaobject/videoobject
+                                         |screenshot/mediaobject/audioobject
+                                         |screenshot/mediaobject/textobject
+
+                                         |screenshot/mediaobjectco/imageobject
+                                         |screenshot/mediaobjectco/imageobjectco
+                                         |screenshot/mediaobjectco/videoobject
+                                         |screenshot/mediaobjectco/audioobject
+                                         |screenshot/mediaobjectco/textobject
+
+                                         |graphic
+                                         |graphicco/graphic
+                                         |screenshot/graphic
+                                         |screenshot/graphicco/graphic"/>
 
       <xsl:variable name="object.index">
         <xsl:call-template name="select.mediaobject.index">
