@@ -25,6 +25,7 @@
 
 <xsl:template match="para">
   <fo:block xsl:use-attribute-sets="normal.para.spacing">
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
