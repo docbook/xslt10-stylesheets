@@ -80,7 +80,7 @@
             </xsl:attribute>
           </img>
         </td>
-        <th>
+        <th align="left">
           <xsl:call-template name="anchor"/>
           <xsl:apply-templates select="." mode="object.title.markup"/>
         </th>
