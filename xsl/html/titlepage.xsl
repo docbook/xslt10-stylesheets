@@ -230,6 +230,13 @@
   </span>
 </xsl:template>
 
+<xsl:template match="confsponsor" mode="titlepage.mode">
+  <span class="{name(.)}">
+    <xsl:apply-templates mode="titlepage.mode"/>
+    <br/>
+  </span>
+</xsl:template>
+
 <xsl:template match="conftitle" mode="titlepage.mode">
   <span class="{name(.)}">
     <xsl:apply-templates mode="titlepage.mode"/>
