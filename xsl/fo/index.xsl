@@ -20,14 +20,23 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
-  <fo:block id="{$id}">
-    <xsl:call-template name="component.separator"/>
-    <xsl:call-template name="index.titlepage"/>
-    <xsl:apply-templates/>
-    <xsl:if test="count(indexentry) = 0 and count(indexdiv) = 0">
-      <xsl:call-template name="generate-index"/>
-    </xsl:if>
-  </fo:block>
+  <xsl:choose>
+    <xsl:when test="$make.index.markup != 0">
+      <fo:block>
+        <xsl:call-template name="generate-index-markup"/>
+      </fo:block>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:block id="{$id}">
+        <xsl:call-template name="component.separator"/>
+        <xsl:call-template name="index.titlepage"/>
+        <xsl:apply-templates/>
+        <xsl:if test="count(indexentry) = 0 and count(indexdiv) = 0">
+          <xsl:call-template name="generate-index"/>
+        </xsl:if>
+      </fo:block>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="book/index">
@@ -36,7 +45,11 @@
   </xsl:variable>
 
   <xsl:variable name="master-reference">
-    <xsl:call-template name="select.pagemaster"/>
+    <xsl:call-template name="select.pagemaster">
+      <xsl:with-param name="pageclass">
+        <xsl:if test="$make.index.markup != 0">body</xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:variable>
 
   <fo:page-sequence id="{$id}"
@@ -63,7 +76,23 @@
       <xsl:call-template name="index.titlepage"/>
       <xsl:apply-templates/>
       <xsl:if test="count(indexentry) = 0 and count(indexdiv) = 0">
-        <xsl:call-template name="generate-index"/>
+
+        <xsl:choose>
+          <xsl:when test="$make.index.markup != 0">
+            <fo:block wrap-option='no-wrap'
+                      white-space-collapse='false'
+                      xsl:use-attribute-sets="monospace.verbatim.properties"
+                      linefeed-treatment="preserve">
+              <xsl:call-template name="generate-index-markup"/>
+            </fo:block>
+          </xsl:when>
+          <xsl:when test="indexentry|indexdiv/indexentry">
+            <xsl:apply-templates/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="generate-index"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:if>
     </fo:flow>
   </fo:page-sequence>
@@ -87,7 +116,10 @@
       <xsl:with-param name="object" select=".."/>
     </xsl:call-template>
   </xsl:variable>
-  <fo:block font-size="16pt" font-weight="bold">
+  <fo:block font-size="16pt"
+            font-weight="bold"
+            keep-with-next.within-column="always"
+            space-before="1em">
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
@@ -117,7 +149,83 @@
   </fo:wrapper>
 </xsl:template>
 
+<!-- ==================================================================== -->
+
 <xsl:template match="indexentry">
+  <fo:block>
+    <!-- don't process 'seeie's from here -->
+    <xsl:apply-templates select="primaryie|secondaryie|tertiaryie|seealsoie"/>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="primaryie">
+  <fo:block>
+    <xsl:apply-templates/>
+    <xsl:if test="following-sibling::seeie">
+      <xsl:text> (</xsl:text>
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'see'"/>
+      </xsl:call-template>
+      <xsl:text> </xsl:text>
+      <xsl:apply-templates select="following-sibling::seeie"/>
+      <xsl:text>)</xsl:text>
+    </xsl:if>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="secondaryie">
+  <fo:block start-indent="1pc">
+    <xsl:apply-templates/>
+    <xsl:if test="following-sibling::seeie">
+      <xsl:text> (</xsl:text>
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'see'"/>
+      </xsl:call-template>
+      <xsl:text> </xsl:text>
+      <xsl:apply-templates select="following-sibling::seeie"/>
+      <xsl:text>)</xsl:text>
+    </xsl:if>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="tertiaryie">
+  <fo:block start-indent="2pc">
+    <xsl:apply-templates/>
+    <xsl:if test="following-sibling::seeie">
+      <xsl:text> (</xsl:text>
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'see'"/>
+      </xsl:call-template>
+      <xsl:text> </xsl:text>
+      <xsl:apply-templates select="following-sibling::seeie"/>
+      <xsl:text>)</xsl:text>
+    </xsl:if>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="seeie">
+  <fo:inline>
+    <xsl:apply-templates/>
+  </fo:inline>
+</xsl:template>
+
+<xsl:template match="seealsoie">
+  <fo:block>
+    <xsl:attribute name="start-indent">
+      <xsl:choose>
+        <xsl:when test="preceding-sibling::tertiaryie">3pc</xsl:when>
+        <xsl:when test="preceding-sibling::secondaryie">2pc</xsl:when>
+        <xsl:otherwise>1pc</xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
+    <xsl:text>(</xsl:text>
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="'seealso'"/>
+    </xsl:call-template>
+    <xsl:text> </xsl:text>
+    <xsl:apply-templates/>
+    <xsl:text>)</xsl:text>
+  </fo:block>
 </xsl:template>
 
 </xsl:stylesheet>
