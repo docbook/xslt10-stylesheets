@@ -253,15 +253,8 @@
       <xsl:otherwise>10</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <fo:block font-size="{$fsize}pt"
-            font-weight="bold"
-            font-family="{$title.font.family}"
-            margin-left="4pc"
-            text-indent="-4pc"
-            keep-with-next.within-column="always"
-            space-before.minimum="1em"
-            space-before.optimum="1.5em"
-            space-before.maximum="2em">
+  <fo:block xsl:use-attribute-sets="section.title.properties"
+            font-size="{$fsize}pt">
     <xsl:copy-of select="$title"/>
   </fo:block>
 </xsl:template>
