@@ -22,7 +22,7 @@
     <ul>
       <xsl:if test="@spacing='compact'">
         <xsl:attribute name="compact">
-          <xsl:value-of select="compact"/>
+          <xsl:value-of select="@spacing"/>
         </xsl:attribute>
       </xsl:if>
       <xsl:apply-templates select="listitem"/>
@@ -412,8 +412,7 @@
     <xsl:if test="title">
       <xsl:apply-templates select="title" mode="procedure.title.mode"/>
     </xsl:if>
-    <xsl:apply-templates select="*[local-name()!='step']"/>
-    <ol><xsl:apply-templates select="step"/></ol>
+    <ol><xsl:apply-templates/></ol>
   </div>
 </xsl:template>
 
