@@ -6,7 +6,7 @@
                 version="1.0">
 
 <!-- ======================================================================
-# This file is part of DocBook NG: The "Drambuie" Release.
+# This file is part of DocBook NG: The "Eaux-de-vie" Release.
 # A prototype DocBook V4.2 to DocBoook V.next converter.
 #
 # This stylesheet is a "work-in-progress". It converts (some) valid
@@ -456,41 +456,24 @@
 </xsl:template>
 
 <xsl:template match="link" priority="200">
-  <xsl:variable name="role">
-    <xsl:text>link</xsl:text>
-    <xsl:if test="@role">
-      <xsl:text>-</xsl:text>
-      <xsl:value-of select="@role"/>
-    </xsl:if>
-  </xsl:variable>
-
-  <xsl:message>
-    <xsl:text>Converting link to phrase role="</xsl:text>
-    <xsl:value-of select="$role"/>
-    <xsl:text>".</xsl:text>
-  </xsl:message>
-
-  <phrase role="{$role}">
-    <xsl:call-template name="copy.attributes">
-      <xsl:with-param name="suppress.role" select="1"/>
-    </xsl:call-template>
-    <xsl:apply-templates/>
-  </phrase>
+  <xsl:copy>
+    <xsl:call-template name="copy.attributes"/>
+  </xsl:copy>
 </xsl:template>
 
 <xsl:template match="ulink" priority="200">
   <xsl:choose>
     <xsl:when test="node()">
       <xsl:message>
-	<xsl:text>Converting ulink to phrase.</xsl:text>
+	<xsl:text>Converting ulink to link.</xsl:text>
       </xsl:message>
 
-      <phrase href="{@url}">
+      <link href="{@url}">
 	<xsl:call-template name="copy.attributes">
 	  <xsl:with-param name="suppress.url" select="1"/>
 	</xsl:call-template>
 	<xsl:apply-templates/>
-      </phrase>
+      </link>
     </xsl:when>
     <xsl:otherwise>
       <xsl:message>
@@ -911,7 +894,7 @@
       <xsl:element name="{local-name(.)}"
 		   namespace="http://docbook.org/docbook-ng">
 	<xsl:if test="not(parent::*)">
-	  <xsl:attribute name="version">drambuie</xsl:attribute>
+	  <xsl:attribute name="version">eaux-de-vie</xsl:attribute>
 	</xsl:if>
 	<xsl:copy-of select="@*"/>
 	<xsl:apply-templates mode="addNS"/>
@@ -920,7 +903,7 @@
     <xsl:otherwise>
       <xsl:copy>
 	<xsl:if test="not(parent::*)">
-	  <xsl:attribute name="version">drambuie</xsl:attribute>
+	  <xsl:attribute name="version">eaux-de-vie</xsl:attribute>
 	</xsl:if>
 	<xsl:copy-of select="@*"/>
 	<xsl:apply-templates mode="addNS"/>
