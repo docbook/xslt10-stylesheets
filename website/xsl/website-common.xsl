@@ -680,7 +680,7 @@ node.</para>
 </xsl:template>
 
 
-<xsl:template name="tocentry" mode="olink.mode">
+<xsl:template name="tocentry">
   <xsl:choose>
     <xsl:when test="@href">
       <!-- no op -->
