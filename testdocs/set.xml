@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE book
+<!DOCTYPE set
   PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
-<!-- test document -->
+<set>
 <book>
 <bookinfo>
-<title>Book Title</title>
+<title>Book One Title</title>
+</bookinfo>
+<chapter><title>First Chapter of First Book</title>
+<para>...</para>
+</chapter>
+<chapter><title>Second Chapter of First Book</title>
+<para>...</para>
+</chapter>
+<chapter><title>Third Chapter of First Book</title>
+<para>...</para>
+</chapter>
+<chapter><title>Fourth Chapter of First Book</title>
+<para>...</para>
+</chapter>
+</book>
+
+<book>
+<bookinfo>
+<title>Book Two Title</title>
 <keywordset>
 <keyword>book keyword1</keyword>
 <keyword>book keyword2</keyword>
@@ -272,3 +290,4 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 <index/>
 
 </book>
+</set>

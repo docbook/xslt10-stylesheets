@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article
+  PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<!-- test document -->
+<article>
+<articleinfo>
+<title>Lists</title>
+</articleinfo>
+
+<variablelist>
+<title>VariableList Title</title>
+<varlistentry><term>Term1</term>
+<listitem><para>Definition of Term1</para></listitem>
+</varlistentry>
+<varlistentry><term>Term2</term>
+<listitem><para>Definition of Term2</para></listitem>
+</varlistentry>
+<varlistentry><term>Term3a</term><term>Term3b</term><term>Term3c</term>
+<listitem><para>Definition of Term3a,b,c</para></listitem>
+</varlistentry>
+</variablelist>
+
+</article>
+
