@@ -186,7 +186,7 @@
     </w:body>
   </xsl:template>
 
-  <xsl:template match='section'>
+  <xsl:template match='section|sect1|sect2|sect3|sect4|sect5|simplesect'>
     <wx:sect>
       <xsl:apply-templates select='*'/>
     </wx:sect>
@@ -423,9 +423,11 @@
   </xsl:template>
   <xsl:template match='text()[string-length(normalize-space(.)) = 0]'/>
 
-  <xsl:template match='blockquote'>
+  <xsl:template match='authorblurb|blockquote|formalpara|simpara|legalnotice|note'>
     <xsl:apply-templates select='para'>
-      <xsl:with-param name='class'>blockquote</xsl:with-param>
+      <xsl:with-param name='class'>
+        <xsl:value-of select='name()'/>
+      </xsl:with-param>
     </xsl:apply-templates>
   </xsl:template>
 
@@ -450,6 +452,17 @@
     <xsl:apply-templates/>
   </xsl:template>
 
+  <!-- These elements are not displayed.
+     - However, they may need to be added (perhaps as hidden text)
+     - for round-tripping.
+    -->
+  <xsl:template match='anchor|area|areaset|areaspec|audiodata|audioobject|
+                       beginpage|
+                       callout|constraint|
+                       indexterm|itermset|
+                       keywordset|
+                       msg'/>
+
   <xsl:template match='*'>
     <xsl:message>
       <xsl:value-of select='name()'/>
@@ -462,7 +475,107 @@
     </xsl:message>
 
     <xsl:choose>
-      <xsl:when test='self::appendix|self::bibliography|self::chapter|self::*[contains(name(), "info")]'>
+      <xsl:when test='self::abstract |
+                      self::ackno |
+                      self::address |
+                      self::answer |
+                      self::appendix |
+                      self::authorgroup |
+                      self::bibliodiv |
+                      self::biblioentry |
+                      self::bibliography |
+                      self::bibliomixed |
+                      self::bibliomset |
+                      self::biblioset |
+                      self::bridgehead |
+                      self::calloutlist |
+                      self::caption |
+                      self::caution |
+                      self::chapter |
+                      self::colophon |
+                      self::constraintdef |
+                      self::copyright |
+                      self::dedication |
+                      self::epigraph |
+                      self::equation |
+                      self::example |
+                      self::figure |
+                      self::glossary |
+                      self::glossdef |
+                      self::glossdiv |
+                      self::glossentry |
+                      self::glosslist |
+                      self::graphic |
+                      self::highlights |
+                      self::imageobject |
+                      self::imageobjectco |
+                      self::important |
+                      self::index |
+                      self::indexdiv |
+                      self::indexentry |
+                      self::informalequation |
+                      self::informalexample |
+                      self::informalfigure |
+                      self::lot |
+                      self::lotentry |
+                      self::mediaobject |
+                      self::mediaobjectco |
+                      self::member |
+                      self::msgentry |
+                      self::msgset |
+                      self::part |
+                      self::partintro |
+                      self::personblurb |
+                      self::preface |
+                      self::printhistory |
+                      self::procedure |
+                      self::programlisting |
+                      self::programlistingco |
+                      self::publisher |
+                      self::qandadiv |
+                      self::qandaentry |
+                      self::qandaset |
+                      self::question |
+                      self::refdescriptor |
+                      self::refentry |
+                      self::refentrytitle |
+                      self::reference |
+                      self::refmeta |
+                      self::refname |
+                      self::refnamediv |
+                      self::refpurpose |
+                      self::refsect1 |
+                      self::refsect2 |
+                      self::refsect3 |
+                      self::refsection |
+                      self::refsynopsisdiv |
+                      self::releaseinfo |
+                      self::screen |
+                      self::screenco |
+                      self::screenshot |
+                      self::seg |
+                      self::seglistitem |
+                      self::segmentedlist |
+                      self::segtitle |
+                      self::set |
+                      self::setindex |
+                      self::sidebar |
+                      self::simplelist |
+                      self::simplemsgentry |
+                      self::step |
+                      self::stepalternatives |
+                      self::subjectset |
+                      self::substeps |
+                      self::task |
+                      self::textobject |
+                      self::tip |
+                      self::toc |
+                      self::variablelist |
+                      self::varlistentry |
+                      self::videodata |
+                      self::videoobject |
+                      self::warning |
+                      self::*[not(starts-with(name(), "informal")) and contains(name(), "info")]'>
         <w:p>
           <w:pPr>
             <w:pStyle w:val='blockerror'/>
@@ -480,6 +593,30 @@
           </w:r>
         </w:p>
       </xsl:when>
+      <!-- Some elements are sometimes blocks, sometimes inline
+         - affiliation
+         - alt
+         - attribution
+         - collab
+         - collabname
+         - confdates
+         - confgroup
+         - confnum
+         - confsponsor
+         - conftitle
+         - contractnum
+         - contractsponsor
+         - contrib
+         - corpauthor
+         - corpcredit
+         - corpname
+         - edition
+         - editor
+         - jobtitle
+         - personname
+         - publishername
+         - remark
+        -->
       <xsl:otherwise>
         <w:r>
           <w:rPr>
