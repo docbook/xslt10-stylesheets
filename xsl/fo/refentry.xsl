@@ -153,7 +153,9 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="not(parent::*) or parent::reference or parent::part">
+    <xsl:when test="not(parent::*) or 
+                    parent::reference or 
+                    parent::part">
       <!-- make a page sequence -->
       <fo:page-sequence hyphenate="{$hyphenate}"
                         master-reference="{$master-reference}">
@@ -196,7 +198,10 @@
       </fo:page-sequence>
     </xsl:when>
     <xsl:otherwise>
-      <fo:block break-before="page">
+      <fo:block>
+        <xsl:if test="$refentry.pagebreak != 0">
+          <xsl:attribute name="break-before">page</xsl:attribute>
+        </xsl:if>
         <xsl:copy-of select="$refentry.content"/>
       </fo:block>
     </xsl:otherwise>
