@@ -44,6 +44,9 @@ title of the element. This does not include the label.
   <xsl:param name="allow-anchors" select="'0'"/>
   <xsl:choose>
     <xsl:when test="$allow-anchors != 0">
+      <xsl:if test="@id">
+        <a name="{@id}"/>
+      </xsl:if>
       <xsl:apply-templates/>
     </xsl:when>
     <xsl:otherwise>
