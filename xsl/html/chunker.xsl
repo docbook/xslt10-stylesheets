@@ -48,6 +48,11 @@
     <xsl:if test="name(.) != ''">
       <xsl:text> for </xsl:text>
       <xsl:value-of select="name(.)"/>
+      <xsl:if test="@id">
+        <xsl:text>(</xsl:text>
+        <xsl:value-of select="@id"/>
+        <xsl:text>)</xsl:text>
+      </xsl:if>
     </xsl:if>
   </xsl:message>
 
