@@ -62,6 +62,13 @@
                    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
 %docbook;
 
+<!-- tell the MathML DTD to do the right prefixing -->
+<!ENTITY % NS.prefixed     "INCLUDE">
+<!ENTITY % MATHML.prefix   "%mathml-prefix;">
+<!ENTITY % NamespaceDecl.attrib "
+	xmlns:mml	CDATA	#FIXED 'http://www.w3.org/1998/Math/MathML'
+">
+
 <!-- You must also include the MathML DTD -->
 <!ENTITY % mathml PUBLIC "-//W3C//DTD MathML 2.0//EN"
                   "http://www.w3.org/TR/MathML2/dtd/mathml2.dtd">
