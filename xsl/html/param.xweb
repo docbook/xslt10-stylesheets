@@ -179,6 +179,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &table.border.style;
 &table.border.thickness;
 &table.border.color;
+&html.cellspacing;
+&html.cellpadding;
 </reference>
 
 <reference><title>QAndASet</title>
@@ -415,6 +417,8 @@ around all these parameters.</para>
 <src:fragref linkend="graphic.default.extension.frag"/>
 <src:fragref linkend="header.rule.frag"/>
 <src:fragref linkend="html.base.frag"/>
+<src:fragref linkend="html.cellpadding.frag"/>
+<src:fragref linkend="html.cellspacing.frag"/>
 <src:fragref linkend="html.cleanup.frag"/>
 <src:fragref linkend="html.ext.frag"/>
 <src:fragref linkend="html.extra.head.links.frag"/>
