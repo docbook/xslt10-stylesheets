@@ -6,16 +6,16 @@
 
 <xsl:param name="toc.width" select="100"/>
 
-<xsl:param name="but-fforward.png" select="'but-fforward.png'"/>
-<xsl:param name="but-info.png" select="'but-info.png'"/>
-<xsl:param name="but-next.png" select="'but-next.png'"/>
-<xsl:param name="but-prev.png" select="'but-prev.png'"/>
-<xsl:param name="but-rewind.png" select="'but-rewind.png'"/>
-<xsl:param name="but-xfforward.png" select="'but-xfforward.png'"/>
-<xsl:param name="but-xinfo.png" select="'but-xinfo.png'"/>
-<xsl:param name="but-xnext.png" select="'but-xnext.png'"/>
-<xsl:param name="but-xprev.png" select="'but-xprev.png'"/>
-<xsl:param name="but-xrewind.png" select="'but-xrewind.png'"/>
+<xsl:param name="but-fforward.png" select="'active/but-fforward.png'"/>
+<xsl:param name="but-info.png" select="'active/but-info.png'"/>
+<xsl:param name="but-next.png" select="'active/but-next.png'"/>
+<xsl:param name="but-prev.png" select="'active/but-prev.png'"/>
+<xsl:param name="but-rewind.png" select="'active/but-rewind.png'"/>
+<xsl:param name="but-xfforward.png" select="'inactive/but-fforward.png'"/>
+<xsl:param name="but-xinfo.png" select="'inactive/but-info.png'"/>
+<xsl:param name="but-xnext.png" select="'inactive/but-next.png'"/>
+<xsl:param name="but-xprev.png" select="'inactive/but-prev.png'"/>
+<xsl:param name="but-xrewind.png" select="'inactive/but-rewind.png'"/>
 
 <!-- overrides for this stylesheet -->
 <xsl:param name="titlefoil.html" select="'index.html'"/>
