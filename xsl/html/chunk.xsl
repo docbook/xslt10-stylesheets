@@ -153,8 +153,9 @@
              |ancestor::appendix[1]
              |ancestor::part[1]
              |ancestor::reference[1]
-             |ancestor::article[1])[last()]
-            |$prev-v1|$prev-v2"/>
+             |ancestor::article[1]
+             |$prev-v1
+             |$prev-v2)[last()]"/>
 
   <xsl:variable name="next-v1"
     select="(following::sect1[$chunk.section.depth &gt; 0
@@ -242,8 +243,9 @@
              |descendant::setindex[1]
              |descendant::part[1]
              |descendant::reference[1]
-             |descendant::refentry[1])[1]
-            |$next-v1|$next-v2"/>
+             |descendant::refentry[1]
+             |$next-v1
+             |$next-v2)[1]"/>
 
   <xsl:call-template name="process-chunk">
     <xsl:with-param name="prev" select="$prev"/>
@@ -289,8 +291,9 @@
              |ancestor::appendix[1]
              |ancestor::part[1]
              |ancestor::reference[1]
-             |ancestor::article[1])[last()]
-            |$prev-v1|$prev-v2"/>
+             |ancestor::article[1]
+             |$prev-v1
+             |$prev-v2)[last()]"/>
 
   <xsl:variable name="next-v1"
     select="(following::sect1[$chunk.section.depth &gt; 0][1]
@@ -335,8 +338,9 @@
              |descendant::setindex[1]
              |descendant::part[1]
              |descendant::reference[1]
-             |descendant::refentry[1])[1]
-            |$next-v1|$next-v2"/>
+             |descendant::refentry[1]
+             |$next-v1
+             |$next-v2)[1]"/>
 
   <xsl:call-template name="process-chunk">
     <xsl:with-param name="prev" select="$prev"/>
