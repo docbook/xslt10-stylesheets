@@ -317,9 +317,8 @@
 <xsl:template match="refentry/refentryinfo"></xsl:template>
 
 <xsl:template match="informalexample|screen">
-  <xsl:text>&#10;.IP&#10;.nf&#10;</xsl:text>
+  <xsl:text>&#10;.IP&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>&#10;.fi&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="filename|replaceable|varname">
