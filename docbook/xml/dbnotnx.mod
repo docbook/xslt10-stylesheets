@@ -91,6 +91,7 @@
 <!NOTATION WMF		PUBLIC
 "+//ISBN 0-7923-9432-1::Graphic Notation//NOTATION Microsoft Windows Metafile//EN">
 <!NOTATION WPG		SYSTEM "WPG"> <!--WordPerfect Graphic format-->
+<!NOTATION SVG		SYSTEM "http://www.w3.org/TR/SVG/">
 <!NOTATION linespecific	SYSTEM "linespecific">
 
 <!-- End of DocBook XML notations module V4.1.2 ............................. -->
