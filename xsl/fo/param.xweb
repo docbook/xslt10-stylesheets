@@ -27,7 +27,7 @@ $Id$
 Stylesheets; it documents (some of) the parameters, templates, and
 other elements of the stylesheets.</para>
 
-<para>This reference describes each of the HTML Stylesheet parameters.
+<para>This reference describes each of the XSL FO Stylesheet parameters.
 These are the <quote>easily customizable</quote> parts of the stylesheet.
 If you want to specify an alternate value for one or more of these
 parameters, you can do so in a <quote>driver</quote> stylesheet.</para>
