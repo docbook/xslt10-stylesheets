@@ -161,14 +161,16 @@
         <xsl:variable name="leading" select="set:leading($nodes,$block)"/>
         <xsl:variable name="trailing" select="set:trailing($nodes,$block)"/>
 
-        <xsl:element name="{local-name($wrap)}" namespace="{namespace-uri($wrap)}">
-          <xsl:for-each select="$wrap/@*">
-            <xsl:if test="$first != 0 or local-name(.) != 'id'">
-              <xsl:copy/>
-            </xsl:if>
-          </xsl:for-each>
-          <xsl:apply-templates select="$leading" mode="unwrap.p"/>
-        </xsl:element>
+        <xsl:if test="($wrap/@id and $first = 1) or $leading">
+          <xsl:element name="{local-name($wrap)}" namespace="{namespace-uri($wrap)}">
+            <xsl:for-each select="$wrap/@*">
+              <xsl:if test="$first != 0 or local-name(.) != 'id'">
+                <xsl:copy/>
+              </xsl:if>
+            </xsl:for-each>
+            <xsl:apply-templates select="$leading" mode="unwrap.p"/>
+          </xsl:element>
+        </xsl:if>
 
         <xsl:apply-templates select="$block" mode="unwrap.p"/>
 
@@ -182,14 +184,16 @@
       </xsl:when>
 
       <xsl:otherwise>
-        <xsl:element name="{local-name($wrap)}" namespace="{namespace-uri($wrap)}">
-          <xsl:for-each select="$wrap/@*">
-            <xsl:if test="$first != 0 or local-name(.) != 'id'">
-              <xsl:copy/>
-            </xsl:if>
-          </xsl:for-each>
-          <xsl:apply-templates select="$nodes" mode="unwrap.p"/>
-        </xsl:element>
+        <xsl:if test="($wrap/@id and $first = 1) or $nodes">
+          <xsl:element name="{local-name($wrap)}" namespace="{namespace-uri($wrap)}">
+            <xsl:for-each select="$wrap/@*">
+              <xsl:if test="$first != 0 or local-name(.) != 'id'">
+                <xsl:copy/>
+              </xsl:if>
+            </xsl:for-each>
+            <xsl:apply-templates select="$nodes" mode="unwrap.p"/>
+          </xsl:element>
+        </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:if>
