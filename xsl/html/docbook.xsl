@@ -193,7 +193,9 @@
     <xsl:call-template name="head.content">
       <xsl:with-param name="node" select="$doc"/>
     </xsl:call-template>
-    <xsl:call-template name="user.head.content"/>
+    <xsl:call-template name="user.head.content">
+      <xsl:with-param name="node" select="$doc"/>
+    </xsl:call-template>
   </head>
   <body xsl:use-attribute-sets="body.attrs">
     <xsl:call-template name="user.header.content">
