@@ -1,56 +1,17 @@
 include ../../cvstools/Makefile.incl
 
-all: xslfiles profile-docbook.xsl profile-chunk.xsl
+all: xsl-files profile-docbook.xsl profile-chunk.xsl
 
-include xslfiles.gen
+remove-old:
+	for f in *.xsl; do if [ ! -f ../html/$$f -a "$$f" != "html2xhtml.xsl" ]; then rm $$f; fi; done
 
-.cvsignore:
-	echo .cvsignore > .cvsignore
-	echo xslfiles.gen >> .cvsignore
-	for f in ../html/*.xsl; do \
-	    echo `basename $$f`; \
-        done >> .cvsignore
+add-new:
+	for f in ../html/*.xsl; do if [ ! -f `basename $$f` ]; then echo $$f; fi; done
 
-# note: this will break if a file is added to the html directory that occurs
-# alphabetically after xref.xsl
-xslfiles.list: .cvsignore
-	echo -n "xslfiles: " > xslfiles.gen
-	for f in `cat .cvsignore`; do \
-	    if [ "$$f" != ".cvsignore" -a "$$f" != "xslfiles.gen" \
-		  -a "$$f" != "profile-docbook.xsl" -a "$$f" != "profile-chunk.xsl" ]; then \
-	       echo -n `basename $$f`; \
-               if [ "$$f" != "xref.xsl" ]; then \
-                  echo " \\"; \
-               else \
-                  echo ""; \
-	       fi; \
-            fi; \
-        done >> xslfiles.gen
-	echo "" >> xslfiles.gen
-	for f in `cat .cvsignore`; do \
-	    if [ "$$f" != ".cvsignore" -a "$$f" != "xslfiles.gen" \
-		  -a "$$f" != "profile-docbook.xsl" -a "$$f" != "profile-chunk.xsl" ]; then \
-	       echo `basename $$f`: ../html/`basename $$f`; \
-	       echo -n "	$$"; \
-	       echo -n "(XSLT) "; \
-	       echo -n "$$"; \
-	       echo -n "< html2xhtml.xsl "; \
-	       echo -n "$$"; \
-	       echo "@"; \
-	       echo ""; \
-	   fi; \
-        done >> xslfiles.gen
+# Oh, come on! It must be possible to do this in Make, but I can't figure out how (ndw)
 
-clean:
-	rm -f *~
-	for f in *.xsl; do \
-	   if [ "$$f" != "html2xhtml.xsl" ]; then \
-	      rm -f $$f; \
-	   fi; \
-	done
-
-#%.xsl: html2xhtml.xsl
-#	$(XSLT) ../html/$@ html2xhtml.xsl $@
+xsl-files: remove-old add-new
+	for f in *.xsl; do if [ ../html/$$f -nt $$f ]; then $(XSLT) ../html/$$f html2xhtml.xsl $$f; fi; done
 
 profile-docbook.xsl:
 	$(XSLT) docbook.xsl ../profiling/xsl2profile.xsl $@
