@@ -422,10 +422,18 @@ Defaults to the context node.</para>
   <xsl:param name="node" select="."/>
 
   <xsl:choose>
+    <!-- EXPERIMENTAL: the personname element is a specialcase -->
+    <xsl:when test="$node/personname">
+      <xsl:call-template name="person.name">
+        <xsl:with-param name="node" select="$node/personname"/>
+      </xsl:call-template>
+    </xsl:when>
+
     <!-- handle corpauthor as a special case...-->
     <xsl:when test="name($node)='corpauthor'">
       <xsl:apply-templates select="$node"/>
     </xsl:when>
+
     <xsl:otherwise>
       <xsl:variable name="h_nl" select="$node//honorific[1]"/>
       <xsl:variable name="f_nl" select="$node//firstname[1]"/>
