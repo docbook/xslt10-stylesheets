@@ -1,4 +1,4 @@
-include ../cvsroot/Makefile.incl
+include ../cvstools/Makefile.incl
 
 all: slides.dtd
 
