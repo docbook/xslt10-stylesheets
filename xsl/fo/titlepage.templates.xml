@@ -191,7 +191,7 @@
   <t:titlepage-content side="recto">
     <title
 	   fo:text-align="center"
-	   fo:font-size="&hsize3;"
+	   fo:font-size="&hsize5;"
 	   fo:font-weight="bold"
 	   fo:space-before="1em"
 	   fo:font-family="{$title.font.family}"/>
@@ -270,6 +270,111 @@
 
 <!-- ==================================================================== -->
 
+<t:titlepage element="refsynopsisdiv" wrapper="fo:block">
+  <t:titlepage-content side="recto">
+    <title
+	   fo:font-family="{$title.font.family}"/>
+  </t:titlepage-content>
+
+  <t:titlepage-content side="verso">
+  </t:titlepage-content>
+
+  <t:titlepage-separator>
+  </t:titlepage-separator>
+
+  <t:titlepage-before side="recto">
+  </t:titlepage-before>
+
+  <t:titlepage-before side="verso">
+  </t:titlepage-before>
+</t:titlepage>
+
+<!-- ==================================================================== -->
+
+<t:titlepage element="refsection" wrapper="fo:block">
+  <t:titlepage-content side="recto">
+    <title
+	   fo:font-family="{$title.font.family}"/>
+  </t:titlepage-content>
+
+  <t:titlepage-content side="verso">
+  </t:titlepage-content>
+
+  <t:titlepage-separator>
+  </t:titlepage-separator>
+
+  <t:titlepage-before side="recto">
+  </t:titlepage-before>
+
+  <t:titlepage-before side="verso">
+  </t:titlepage-before>
+</t:titlepage>
+
+<!-- ==================================================================== -->
+
+<t:titlepage element="refsect1" wrapper="fo:block">
+  <t:titlepage-content side="recto">
+    <title
+	   fo:font-family="{$title.font.family}"/>
+  </t:titlepage-content>
+
+  <t:titlepage-content side="verso">
+  </t:titlepage-content>
+
+  <t:titlepage-separator>
+  </t:titlepage-separator>
+
+  <t:titlepage-before side="recto">
+  </t:titlepage-before>
+
+  <t:titlepage-before side="verso">
+  </t:titlepage-before>
+</t:titlepage>
+
+<!-- ==================================================================== -->
+
+<t:titlepage element="refsect2" wrapper="fo:block">
+  <t:titlepage-content side="recto">
+    <title
+	   fo:font-family="{$title.font.family}"/>
+  </t:titlepage-content>
+
+  <t:titlepage-content side="verso">
+  </t:titlepage-content>
+
+  <t:titlepage-separator>
+  </t:titlepage-separator>
+
+  <t:titlepage-before side="recto">
+  </t:titlepage-before>
+
+  <t:titlepage-before side="verso">
+  </t:titlepage-before>
+</t:titlepage>
+
+<!-- ==================================================================== -->
+
+<t:titlepage element="refsect3" wrapper="fo:block">
+  <t:titlepage-content side="recto">
+    <title
+	   fo:font-family="{$title.font.family}"/>
+  </t:titlepage-content>
+
+  <t:titlepage-content side="verso">
+  </t:titlepage-content>
+
+  <t:titlepage-separator>
+  </t:titlepage-separator>
+
+  <t:titlepage-before side="recto">
+  </t:titlepage-before>
+
+  <t:titlepage-before side="verso">
+  </t:titlepage-before>
+</t:titlepage>
+
+<!-- ==================================================================== -->
+
   <t:titlepage element="dedication" wrapper="fo:block">
     <t:titlepage-content side="recto">
       <title
@@ -277,7 +382,7 @@
 	     named-template="component.title"
 	     param:node="ancestor-or-self::dedication[1]"
 	     fo:margin-left="{$title.margin.left}"
-	     fo:font-size="&hsize3;"
+	     fo:font-size="&hsize5;"
 	     fo:font-family="{$title.font.family}"
 	     fo:font-weight="bold"/>
       <subtitle
@@ -306,7 +411,7 @@
 	     named-template="component.title"
 	     param:node="ancestor-or-self::preface[1]"
 	     fo:margin-left="{$title.margin.left}"
-	     fo:font-size="&hsize3;"
+	     fo:font-size="&hsize5;"
 	     fo:font-family="{$title.font.family}"
 	     fo:font-weight="bold"/>
       <subtitle
@@ -345,7 +450,7 @@
 	     named-template="component.title"
 	     param:node="ancestor-or-self::chapter[1]"
 	     fo:margin-left="{$title.margin.left}"
-	     fo:font-size="&hsize3;"
+	     fo:font-size="&hsize5;"
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
       <subtitle
@@ -389,7 +494,7 @@
 	     named-template="component.title"
 	     param:node="ancestor-or-self::appendix[1]"
 	     fo:margin-left="{$title.margin.left}"
-	     fo:font-size="&hsize3;"
+	     fo:font-size="&hsize5;"
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
       <subtitle
@@ -662,7 +767,7 @@
 	     named-template="component.title"
 	     param:node="ancestor-or-self::bibliography[1]"
 	     fo:margin-left="{$title.margin.left}"
-	     fo:font-size="&hsize3;"
+	     fo:font-size="&hsize5;"
 	     fo:font-family="{$title.font.family}"
 	     fo:font-weight="bold"/>
       <subtitle
@@ -691,7 +796,7 @@
 	     named-template="component.title"
 	     param:node="ancestor-or-self::glossary[1]"
 	     fo:margin-left="{$title.margin.left}"
-	     fo:font-size="&hsize3;"
+	     fo:font-size="&hsize5;"
 	     fo:font-family="{$title.font.family}"
 	     fo:font-weight="bold"/>
       <subtitle
@@ -721,7 +826,7 @@
 	     param:node="ancestor-or-self::index[1]"
              param:pagewide="1"
 	     fo:margin-left="{$title.margin.left}"
-	     fo:font-size="&hsize3;"
+	     fo:font-size="&hsize5;"
 	     fo:font-family="{$title.font.family}"
 	     fo:font-weight="bold"/>
       <subtitle
@@ -750,7 +855,7 @@
 	     named-template="component.title"
 	     param:node="ancestor-or-self::colophon[1]"
 	     fo:margin-left="{$title.margin.left}"
-	     fo:font-size="&hsize3;"
+	     fo:font-size="&hsize5;"
 	     fo:font-family="{$title.font.family}"
 	     fo:font-weight="bold"/>
       <subtitle
@@ -778,7 +883,10 @@
 	     force="1"
 	     named-template="gentext"
 	     param:key="'TableofContents'"
-	     fo:space-after="1em"
+             fo:space-before.minimum="1em"
+             fo:space-before.optimum="1.5em"
+             fo:space-before.maximum="2em"
+	     fo:space-after="0.5em"
 	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-weight="bold"
@@ -830,7 +938,10 @@
 	     force="1"
 	     named-template="gentext"
 	     param:key="'ListofFigures'"
-	     fo:space-after="1em"
+             fo:space-before.minimum="1em"
+             fo:space-before.optimum="1.5em"
+             fo:space-before.maximum="2em"
+	     fo:space-after="0.5em"
 	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-weight="bold"
@@ -856,7 +967,10 @@
 	     force="1"
 	     named-template="gentext"
 	     param:key="'ListofExamples'"
-	     fo:space-after="1em"
+             fo:space-before.minimum="1em"
+             fo:space-before.optimum="1.5em"
+             fo:space-before.maximum="2em"
+	     fo:space-after="0.5em"
 	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-weight="bold"
@@ -882,7 +996,10 @@
 	     force="1"
 	     named-template="gentext"
 	     param:key="'ListofEquations'"
-	     fo:space-after="1em"
+             fo:space-before.minimum="1em"
+             fo:space-before.optimum="1.5em"
+             fo:space-before.maximum="2em"
+	     fo:space-after="0.5em"
 	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-weight="bold"
@@ -908,7 +1025,10 @@
 	     force="1"
 	     named-template="gentext"
 	     param:key="'ListofUnknown'"
-	     fo:space-after="1em"
+             fo:space-before.minimum="1em"
+             fo:space-before.optimum="1.5em"
+             fo:space-before.maximum="2em"
+	     fo:space-after="0.5em"
 	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-weight="bold"
