@@ -121,23 +121,13 @@ entities in TOC file and index entries. This can be easily done by
   <xsl:import href="]]><replaceable>/path/to/stylesheets/</replaceable>contrib/htmlhelp/htmlhelp.xsl<![CDATA["/>
 
   <xsl:param name="htmlhelp.encoding" select="'windows-1250'"/>
-  <xsl:param name="html.encoding" select="'windows-1250'"/>
+  <xsl:param name="default.encoding" select="'windows-1250'"/>
+  <xsl:param name="saxon.character.representation" select="'native'"/>
 
 </xsl:stylesheet>
 ]]></programlisting>
 
 <para>Default encoding is ISO-8859-1 (aka ISO Latin 1).</para>
-
-<note>
-<para>With some XSLT processor index entries are problematic. For
-example Saxon uses character references even after specifying different
-encoding. This can be switched off by using parameter <literal
-moreinfo="none">saxon:character-representation="native"</literal> on
-<literal moreinfo="none">xsl:output</literal> instruction. However
-this does not work with DocBook stylesheets. If you know solution to
-this problem let me know. For the moment some characters in index are
-weird.</para>
-</note>
 
 </section>
 
