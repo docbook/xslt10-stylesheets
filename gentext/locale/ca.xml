@@ -179,6 +179,9 @@
 <gentext key="sectioncalled" text="the section called"/> <!-- en -->
 <gentext key="index symbols" text="Symbols"/> <!-- en -->
 
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!-- en -->
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!-- en -->
+
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
 <dingbat key="nestedstartquote" text="&#x2018;"/>
