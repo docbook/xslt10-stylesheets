@@ -291,6 +291,109 @@ Defaults to the context node.</para>
   <xsl:value-of select="count($anc.divs) + number($section.level)"/>
 </xsl:template>
 
+<xsl:template name="question.answer.label">
+  <xsl:variable name="deflabel">
+    <xsl:choose>
+      <xsl:when test="ancestor-or-self::*[@defaultlabel]">
+        <xsl:value-of select="(ancestor-or-self::*[@defaultlabel])[last()]
+                              /@defaultlabel"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="qanda.defaultlabel"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="label" select="@label"/>
+
+<!--
+	 (hnr      (hierarchical-number-recursive (normalize "qandadiv")
+						  node))
+
+	 (parsect  (ancestor-member node (section-element-list)))
+
+	 (defnum   (if (and %qanda-inherit-numeration% 
+			    %section-autolabel%)
+		       (if (node-list-empty? parsect)
+			   (section-autolabel-prefix node)
+			   (section-autolabel parsect))
+		       ""))
+
+	 (hnumber  (let loop ((numlist hnr) (number defnum) 
+			      (sep (if (equal? defnum "") "" ".")))
+		     (if (null? numlist)
+			 number
+			 (loop (cdr numlist) 
+			       (string-append number
+					      sep
+					      (number->string (car numlist)))
+			       "."))))
+	 (cnumber  (child-number (parent node)))
+	 (number   (string-append hnumber 
+				  (if (equal? hnumber "")
+				      ""
+				      ".")
+				  (number->string cnumber))))
+-->
+
+  <xsl:choose>
+    <xsl:when test="$deflabel = 'qanda'">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key">
+          <xsl:choose>
+            <xsl:when test="local-name(.) = 'question'">Question</xsl:when>
+            <xsl:when test="local-name(.) = 'question'">Answer</xsl:when>
+            <xsl:when test="local-name(.) = 'qandadiv'">QandADiv</xsl:when>
+            <xsl:otherwise>QandASet</xsl:otherwise>
+          </xsl:choose>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="$deflabel = 'label'">
+      <xsl:value-of select="$label"/>
+    </xsl:when>
+    <xsl:when test="$deflabel = 'number'
+                    and local-name(.) = 'question'">
+      <xsl:apply-templates select="ancestor::qandaset[1]"
+                           mode="number"/>
+      <xsl:choose>
+        <xsl:when test="ancestor::qandadiv">
+          <xsl:apply-templates select="ancestor::qandadiv[1]"
+                               mode="number"/>
+          <xsl:apply-templates select="ancestor::qandaentry"
+                               mode="number"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="ancestor::qandaentry"
+                               mode="number"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- nothing -->
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="qandaset" mode="number">
+  <!-- FIXME: -->
+</xsl:template>
+
+<xsl:template match="qandadiv" mode="number">
+  <xsl:number level="multiple" from="qandaset" format="1."/>
+</xsl:template>
+
+<xsl:template match="qandaentry" mode="number">
+  <xsl:choose>
+    <xsl:when test="ancestor::qandadiv">
+      <xsl:number level="single" from="qandadiv" format="1."/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:number level="single" from="qandaset" format="1."/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <!-- ====================================================================== -->
 
 <xsl:template name="object.id">
