@@ -255,6 +255,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &make.graphic.viewport;
 &preferred.mediaobject.role;
 &use.role.for.mediaobject;
+&ignore.image.scaling;
 </reference>
 
 <reference><title>Chunking</title>
@@ -494,6 +495,7 @@ around all these parameters.</para>
 <src:fragref linkend="htmlhelp.show.menu.frag"/>
 <src:fragref linkend="htmlhelp.title.frag"/>
 <src:fragref linkend="htmlhelp.use.hhk.frag"/>
+<src:fragref linkend="ignore.image.scaling.frag"/>
 <src:fragref linkend="inherit.keywords.frag"/>
 <src:fragref linkend="l10n.gentext.language.frag"/>
 <src:fragref linkend="l10n.gentext.default.language.frag"/>

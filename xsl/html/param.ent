@@ -223,3 +223,4 @@
 <!ENTITY table.frame.border.color SYSTEM "../params/table.frame.border.color.xml">
 <!ENTITY table.frame.border.style SYSTEM "../params/table.frame.border.style.xml">
 <!ENTITY table.frame.border.thickness SYSTEM "../params/table.frame.border.thickness.xml">
+<!ENTITY ignore.image.scaling SYSTEM "../params/ignore.image.scaling.xml">
