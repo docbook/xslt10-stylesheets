@@ -864,7 +864,7 @@
       </xsl:attribute>
     </xsl:if>
     <thead>
-      <tr>
+      <tr class="segtitle">
         <xsl:call-template name="tr.attributes">
           <xsl:with-param name="row" select="segtitle[1]"/>
           <xsl:with-param name="rownum" select="1"/>
@@ -887,7 +887,7 @@
     <xsl:number from="segmentedlist" count="seglistitem"/>
   </xsl:variable>
 
-  <tr>
+  <tr class="seglistitem">
     <xsl:call-template name="tr.attributes">
       <xsl:with-param name="rownum" select="$seglinum + 1"/>
     </xsl:call-template>
@@ -896,7 +896,16 @@
 </xsl:template>
 
 <xsl:template match="seg" mode="seglist-table">
-  <td><xsl:apply-templates/></td>
+  <td class="seg"><xsl:apply-templates/></td>
+</xsl:template>
+
+<xsl:template match="seg[1]" mode="seglist-table">
+  <td class="seg">
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="node" select="ancestor::seglistitem"/>
+    </xsl:call-template>
+    <xsl:apply-templates/>
+  </td>
 </xsl:template>
 
 <!-- ==================================================================== -->
