@@ -6,14 +6,23 @@ ZIPVER=
 
 DIRS=common html fo extensions
 
-.PHONY : distrib clean doc
+.PHONY : distrib clean doc xhtml
 
-all:
+all:	xhtml
 	for i in $(DIRS) __bogus__; do \
 		if [ $$i != __bogus__ ] ; then \
 			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
 		fi \
 	done
+
+xhtml:
+	$(MAKE) -C xhtml clean
+	rm -f xhtml/.cvsignore
+	$(MAKE) -C xhtml .cvsignore
+	rm -f xhtml/xslfiles.gen
+	touch xhtml/xslfiles.gen
+	$(MAKE) -C xhtml xslfiles.list
+	$(MAKE) -C xhtml xslfiles
 
 doc:
 	$(MAKE) -C docsrc
