@@ -16,102 +16,102 @@
 
 <gentext key="Abstract" text="Abstrakt"/>
 <gentext key="abstract" text="Abstrakt"/>
-<gentext key="Answer" text="Odpov&#x011b;&#x010f;:"/>
-<gentext key="answer" text="Odpov&#x011b;&#x010f;:"/>
-<gentext key="Appendix" text="P&#x0159;&#x00ed;loha"/>
-<gentext key="appendix" text="P&#x0159;&#x00ed;loha"/>
-<gentext key="Article" text="&#x010C;l&#x00E1;nek"/>
-<gentext key="article" text="&#x010C;l&#x00E1;nek"/>
+<gentext key="Answer" text="Odpověď:"/>
+<gentext key="answer" text="Odpověď:"/>
+<gentext key="Appendix" text="Příloha"/>
+<gentext key="appendix" text="Příloha"/>
+<gentext key="Article" text="Článek"/>
+<gentext key="article" text="Článek"/>
 <gentext key="Bibliography" text="Bibliografie"/>
 <gentext key="bibliography" text="Bibliografie"/>
 <gentext key="Book" text="Kniha"/>
 <gentext key="book" text="Kniha"/>
-<gentext key="CAUTION" text="V&#x00FD;straha"/>
-<gentext key="Caution" text="V&#x00FD;straha"/>
-<gentext key="caution" text="V&#x00FD;straha"/>
+<gentext key="CAUTION" text="Výstraha"/>
+<gentext key="Caution" text="Výstraha"/>
+<gentext key="caution" text="Výstraha"/>
 <gentext key="Chapter" text="Kapitola"/>
 <gentext key="chapter" text="Kapitola"/>
-<gentext key="Colophon" text="Tir&#x00E1;&#x017E;"/>
-<gentext key="colophon" text="Tir&#x00E1;&#x017E;"/>
+<gentext key="Colophon" text="Tiráž"/>
+<gentext key="colophon" text="Tiráž"/>
 <gentext key="Copyright" text="Copyright"/>
 <gentext key="copyright" text="Copyright"/>
-<gentext key="Dedication" text="V&#x011B;nov&#x00E1;n&#x00ED;"/>
-<gentext key="dedication" text="V&#x011B;nov&#x00E1;n&#x00ED;"/>
-<gentext key="Edition" text="Vyd&#x00E1;n&#x00ED;"/>
-<gentext key="edition" text="Vyd&#x00E1;n&#x00ED;"/>
+<gentext key="Dedication" text="Věnování"/>
+<gentext key="dedication" text="Věnování"/>
+<gentext key="Edition" text="Vydání"/>
+<gentext key="edition" text="Vydání"/>
 <gentext key="Equation" text="Rovnice"/>
 <gentext key="equation" text="Rovnice"/>
-<gentext key="Example" text="P&#x0159;&#x00ED;klad"/>
-<gentext key="example" text="P&#x0159;&#x00ED;klad"/>
-<gentext key="Figure" text="Obr&#x00E1;zek"/>
-<gentext key="figure" text="Obr&#x00E1;zek"/>
-<gentext key="Glossary" text="Slovn&#x00ED;k"/>
-<gentext key="glossary" text="Slovn&#x00ED;k"/>
+<gentext key="Example" text="Příklad"/>
+<gentext key="example" text="Příklad"/>
+<gentext key="Figure" text="Obrázek"/>
+<gentext key="figure" text="Obrázek"/>
+<gentext key="Glossary" text="Slovník"/>
+<gentext key="glossary" text="Slovník"/>
 <gentext key="GlossSee" text="Viz"/>
 <gentext key="glosssee" text="Viz"/>
-<gentext key="GlossSeeAlso" text="Viz t&#x00E9;&#x017E;"/>
-<gentext key="glossseealso" text="Viz t&#x00E9;&#x017E;"/>
-<gentext key="IMPORTANT" text="D&#x016F;le&#x017E;it&#x00E9;"/>
-<gentext key="Important" text="D&#x016F;le&#x017E;it&#x00E9;"/>
-<gentext key="important" text="D&#x016F;le&#x017E;it&#x00E9;"/>
-<gentext key="Index" text="Rejst&#x0159;&#x00ed;k"/>
-<gentext key="index" text="Rejst&#x0159;&#x00ed;k"/>
+<gentext key="GlossSeeAlso" text="Viz též"/>
+<gentext key="glossseealso" text="Viz též"/>
+<gentext key="IMPORTANT" text="Důležité"/>
+<gentext key="Important" text="Důležité"/>
+<gentext key="important" text="Důležité"/>
+<gentext key="Index" text="Rejstřík"/>
+<gentext key="index" text="Rejstřík"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
-<gentext key="LegalNotice" text="Pr&#x00E1;vn&#x00ED; dolo&#x017E;ka"/>
-<gentext key="legalnotice" text="Pr&#x00E1;vn&#x00ED; dolo&#x017E;ka"/>
+<gentext key="LegalNotice" text="Právní doložka"/>
+<gentext key="legalnotice" text="Právní doložka"/>
 <gentext key="MsgAud" text="Publikum"/>
 <gentext key="msgaud" text="Publikum"/>
-<gentext key="MsgLevel" text="&#x00DA;rove&#x0148;"/>
-<gentext key="msglevel" text="&#x00DA;rove&#x0148;"/>
-<gentext key="MsgOrig" text="P&#x016F;vod"/>
-<gentext key="msgorig" text="P&#x016F;vod"/>
-<gentext key="NOTE" text="Pozn&#x00E1;mka"/>
-<gentext key="Note" text="Pozn&#x00E1;mka"/>
-<gentext key="note" text="Pozn&#x00E1;mka"/>
-<gentext key="Part" text="&#x010C;&#x00E1;st"/>
-<gentext key="part" text="&#x010C;&#x00E1;st"/>
-<gentext key="Preface" text="P&#x0159;edmluva"/>
-<gentext key="preface" text="P&#x0159;edmluva"/>
+<gentext key="MsgLevel" text="Úroveň"/>
+<gentext key="msglevel" text="Úroveň"/>
+<gentext key="MsgOrig" text="Původ"/>
+<gentext key="msgorig" text="Původ"/>
+<gentext key="NOTE" text="Poznámka"/>
+<gentext key="Note" text="Poznámka"/>
+<gentext key="note" text="Poznámka"/>
+<gentext key="Part" text="Část"/>
+<gentext key="part" text="Část"/>
+<gentext key="Preface" text="Předmluva"/>
+<gentext key="preface" text="Předmluva"/>
 <gentext key="Procedure" text="Postup"/>
 <gentext key="procedure" text="Postup"/>
 <gentext key="ProductionSet" text="Produkce"/>
-<gentext key="Published" text="Vyd&#x00E1;no"/>
-<gentext key="published" text="Vyd&#x00E1;no"/>
-<gentext key="Question" text="Ot&#x00E1;zka:"/>
-<gentext key="question" text="Ot&#x00e1;zka:"/>
+<gentext key="Published" text="Vydáno"/>
+<gentext key="published" text="Vydáno"/>
+<gentext key="Question" text="Otázka:"/>
+<gentext key="question" text="Otázka:"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
 <gentext key="Reference" text="Odkaz"/>
 <gentext key="reference" text="Odkaz"/>
-<gentext key="RefName" text="Jm&#x00E9;no"/>
-<gentext key="refname" text="Jm&#x00E9;no"/>
+<gentext key="RefName" text="Jméno"/>
+<gentext key="refname" text="Jméno"/>
 <gentext key="RefSection" text=""/>
 <gentext key="refsection" text=""/>
-<gentext key="RefSynopsisDiv" text="P&#x0159;ehled"/>
-<gentext key="refsynopsisdiv" text="P&#x0159;ehled"/>
-<gentext key="RevHistory" text="P&#x0159;ehled reviz&#x00ED;"/>
-<gentext key="revhistory" text="P&#x0159;ehled reviz&#x00ED;"/>
+<gentext key="RefSynopsisDiv" text="Přehled"/>
+<gentext key="refsynopsisdiv" text="Přehled"/>
+<gentext key="RevHistory" text="Přehled revizí"/>
+<gentext key="revhistory" text="Přehled revizí"/>
 <gentext key="Revision" text="Revize"/>
 <gentext key="revision" text="Revize"/>
-<gentext key="sect1" text="Odd&#x00ed;l"/>
-<gentext key="sect2" text="Odd&#x00ed;l"/>
-<gentext key="sect3" text="Odd&#x00ed;l"/>
-<gentext key="sect4" text="Odd&#x00ed;l"/>
-<gentext key="sect5" text="Odd&#x00ed;l"/>
-<gentext key="Section" text="Odd&#x00ED;l"/>
-<gentext key="section" text="Odd&#x00ED;l"/>
+<gentext key="sect1" text="Oddíl"/>
+<gentext key="sect2" text="Oddíl"/>
+<gentext key="sect3" text="Oddíl"/>
+<gentext key="sect4" text="Oddíl"/>
+<gentext key="sect5" text="Oddíl"/>
+<gentext key="Section" text="Oddíl"/>
+<gentext key="section" text="Oddíl"/>
 <gentext key="See" text="Viz"/>
 <gentext key="see" text="Viz"/>
-<gentext key="SeeAlso" text="Viz t&#x00E9;&#x017E;"/>
-<gentext key="Seealso" text="Viz t&#x00E9;&#x017E;"/>
-<gentext key="seealso" text="Viz t&#x00E9;&#x017E;"/>
+<gentext key="SeeAlso" text="Viz též"/>
+<gentext key="Seealso" text="Viz též"/>
+<gentext key="seealso" text="Viz též"/>
 <gentext key="Set" text="Sada"/>
 <gentext key="set" text="Sada"/>
-<gentext key="SetIndex" text="Rejst&#x0159;&#x00Ed;k sady"/>
-<gentext key="setindex" text="Rejst&#x0159;&#x00Ed;k sady"/>
-<gentext key="Sidebar" text="Margin&#x00e1;lie"/>
-<gentext key="sidebar" text="Margin&#x00e1;lie"/>
+<gentext key="SetIndex" text="Rejstřík sady"/>
+<gentext key="setindex" text="Rejstřík sady"/>
+<gentext key="Sidebar" text="Marginálie"/>
+<gentext key="sidebar" text="Marginálie"/>
 <gentext key="Step" text="Krok"/>
 <gentext key="step" text="krok"/>
 <gentext key="Table" text="Tabulka"/>
@@ -119,53 +119,53 @@
 <gentext key="TIP" text="Tip"/>
 <gentext key="Tip" text="Tip"/>
 <gentext key="tip" text="Tip"/>
-<gentext key="WARNING" text="Varov&#x00E1;n&#x00ED;"/>
-<gentext key="Warning" text="Varov&#x00E1;n&#x00ED;"/>
-<gentext key="warning" text="Varov&#x00E1;n&#x00ED;"/>
+<gentext key="WARNING" text="Varování"/>
+<gentext key="Warning" text="Varování"/>
+<gentext key="warning" text="Varování"/>
 
 <gentext key="and" text="a"/>
 <gentext key="by" text=""/>
-<gentext key="Edited" text="Vyd&#x00E1;no"/>
-<gentext key="edited" text="Vyd&#x00E1;no"/>
+<gentext key="Edited" text="Vydáno"/>
+<gentext key="edited" text="Vydáno"/>
 <gentext key="Editedby" text="Sestavil"/>
 <gentext key="editedby" text="Sestavil"/>
 <gentext key="in" text="v"/>
 <gentext key="lastlistcomma" text=""/>
 <gentext key="listcomma" text=","/>
-<gentext key="nonexistantelement" text="neexistuj&#x00ED;c&#x00ED; prvek"/>
-<gentext key="notes" text="Pozn&#x00E1;mky"/>
-<gentext key="Notes" text="Pozn&#x00E1;mky"/>
+<gentext key="nonexistantelement" text="neexistující prvek"/>
+<gentext key="notes" text="Poznámky"/>
+<gentext key="Notes" text="Poznámky"/>
 <gentext key="Pgs" text="Str."/>
 <gentext key="pgs" text="Str."/>
 <gentext key="Revisedby" text="Revidoval: "/>
 <gentext key="revisedby" text="Revidoval: "/> 
-<gentext key="TableNotes" text="Pozn&#x00E1;mky"/>
-<gentext key="tablenotes" text="Pozn&#x00E1;mky"/>
+<gentext key="TableNotes" text="Poznámky"/>
+<gentext key="tablenotes" text="Poznámky"/>
 <gentext key="TableofContents" text="Obsah"/>
 <gentext key="tableofcontents" text="Obsah"/>
-<gentext key="unexpectedelementname" text="Neo&#x010D;ek&#x00E1;van&#x00E9; jm&#x00E9;no prvku"/>
-<gentext key="unsupported" text="nepodporovan&#x00FD;"/>
+<gentext key="unexpectedelementname" text="Neočekávané jméno prvku"/>
+<gentext key="unsupported" text="nepodporovaný"/>
 <gentext key="xrefto" text="xref k"/>
 
 <gentext key="listofequations" text="Seznam rovnic"/>
 <gentext key="ListofEquations" text="Seznam rovnic"/>
-<gentext key="ListofExamples" text="Seznam p&#x0159;&#x00ED;klad&#x016F;"/>
-<gentext key="listofexamples" text="Seznam p&#x0159;&#x00ED;klad&#x016F;"/>
-<gentext key="ListofFigures" text="Seznam obr&#x00E1;zk&#x016F;"/>
-<gentext key="listoffigures" text="Seznam obr&#x00E1;zk&#x016F;"/>
+<gentext key="ListofExamples" text="Seznam příkladů"/>
+<gentext key="listofexamples" text="Seznam příkladů"/>
+<gentext key="ListofFigures" text="Seznam obrázků"/>
+<gentext key="listoffigures" text="Seznam obrázků"/>
 <gentext key="listoftables" text="Seznam tabulek"/>
 <gentext key="ListofTables" text="Seznam tabulek"/>
-<gentext key="ListofUnknown" text="Seznam nezn&#x00E1;m&#x00E9;ho"/>
-<gentext key="listofunknown" text="Seznam nezn&#x00E1;m&#x00E9;ho"/>
+<gentext key="ListofUnknown" text="Seznam neznámého"/>
+<gentext key="listofunknown" text="Seznam neznámého"/>
 
-<gentext key="nav-home" text="Dom&#x016F;"/>
-<gentext key="nav-next" text="Dal&#x0161;&#x00ED;"/>
-<gentext key="nav-next-sibling" text="Rychle dop&#x0159;edu"/>
-<gentext key="nav-prev" text="P&#x0159;edch&#x00E1;zej&#x00ED;c&#x00ED;"/>
-<gentext key="nav-prev-sibling" text="Rychle zp&#x011B;t"/>
+<gentext key="nav-home" text="Domů"/>
+<gentext key="nav-next" text="Další"/>
+<gentext key="nav-next-sibling" text="Rychle dopředu"/>
+<gentext key="nav-prev" text="Předcházející"/>
+<gentext key="nav-prev-sibling" text="Rychle zpět"/>
 <gentext key="nav-up" text="Nahoru"/>
 
-<gentext key="sectioncalled"  text="odd&#x00ed;l nazvan&#x00fd;"/>
+<gentext key="sectioncalled"  text="oddíl nazvaný"/>
 <gentext key="Draft"         text="Návrh"/> 
 <gentext key="above"         text="nad"/>  
 <gentext key="below"         text="pod"/>  
