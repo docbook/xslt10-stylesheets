@@ -1,77 +1,55 @@
-DOCBOOK 2.4.1 DTD and DOCUMENTATION RELEASE
+6 January 1997
 
-SUMMARY: DocBook Version 2.4.1, a backwards-compatible "bug fix 
-release" of DocBook, is now available from the Davenport Group's 
-site (http://www.ora.com/davenport/ or
-ftp://ftp.ora.com/pub/davenport/index.html).
+SUMMARY: DocBook Version 3.0 has been released and is now available 
+from the Davenport Group's Web site (accessible through
+http://www.ora.com/davenport/index.html and ftp://ftp.ora.com/pub/davenport/).
 
                         *               *               *
 
-This release is being made to correct a couple of problems with V2.4,
-and to provide improved documentation.
+Some of the new and changed features of this version are as follows:
 
-If you have begun using V2.4, you should be able to substitute V2.4.1
-with little disruption.  The FPIs in your references to the DTD and its
-modules will need updating from "V2.4" to "V2.4.1" -- for example, in
-the DOCTYPE declarations of documents, and in the module declarations of
-customization layers.
+o Reworking of the bibliographic markup to make it more flexible and
+  usable.
 
-Following is a list of the main bug fixes in this release; see
-241chg.txt in the distribution for a comprehensive list.
+o New retrieval metadata that applies to whole divisions: flat keywords,
+  hierarchical subject topics, and sets of index terms.
 
-o The %vendor.attrib; entity containing the Vendor effectivity
-  attribute (new in V2.4) has been added to %effectivity.attrib; in
-  order to make the attribute available for use.
+o New inline elements: ErrorCode, Prompt, and EnVar.
 
-o The MenuChoice element (new in V2.4) has been added to
-  %cptr.char.class; in order to make the element available for use.
+o Broadening of FuncSynopsis content.
 
-o The content model of Shortcut (used inside MenuChoice) was changed
-  to match that of KeyCombo.
+o Broadening of Article content.
 
-o Three notation declarations have had their system identifiers removed.
+o Changeover to the SGML Open CALS full table model.
 
-o The Option element was added to the content model of Group.
+o New parameterization scheme for the Role attribute that makes it easier
+  to customize Role individually for each element.
 
-A second "alpha" snapshot of the newly reorganized and filled-out
-documentation is included with this release.  We plan to supply new
-snapshots periodically, culminating in an official documentation release
-coinciding with V3.0 (scheduled to be released in June 1996).  We
-welcome your comments and sample DocBook documents and fragments.
+Current DocBook users should note that a handful of planned
+backwards-incompatible changes have been made.  In general, these should
+not adversely affect existing documents.  Note also that comments have
+been added to the DTD to reflect the planned backwards-incompatible
+changes that will be made in V4.0 (no delivery date scheduled).  There
+is also a 40issues.txt file in the DocBook distribution that summarizes
+these planned changes.
 
-You can download the files related to DocBook V2.4.1 from the following 
+Maintainers and other DTD readers may want to take note of a few small
+name changes that have been made to parameter entities; these may affect
+existing customization layers.
+
+Updated reference documentation for V3.0 is available; fully updated
+maintenance and user's documentation is forthcoming.
+
+You can download the files related to DocBook V3.0 from the following 
 locations:
 
-o ftp://ftp.ora.com/pub/davenport/docbook/docbk241.tar.Z
-  ftp://ftp.ora.com/pub/davenport/docbook/dbg241.tar.Z
+o ftp://ftp.ora.com/pub/davenport/docbook/docbk30.tar.Z
   (requires tar and uncompress)
 
-o ftp://ftp.ora.com/pub/davenport/docbook/docbk241.zip
-  ftp://ftp.ora.com/pub/davenport/docbook/dbg241.zip
+o ftp://ftp.ora.com/pub/davenport/docbook/docbk30.zip
   (requires pkunzip)
-
-The docbk241 files include:
-
-  241chg.txt		Full description of V2.4-to-V2.4.1 changes
-  calstbl.mod		CALS-style table module
-  dbgenent.mod		Placeholder for general entity set declarations
-                        (do not overwrite your own dbgenent.mod if you've
-                         added to the original!)
-  dbhier.mod		Document hierarchy (high-level) module
-  dbpool.mod		Information pool (mid- and low-level) module
-  docbook.cat		SGML Open catalog data
-  docbook.dcl		SGML declaration with settings assumed by DocBook
-  docbook.dtd		Main DTD driver file
-
-All these files are also available individually in the same directory.
-
-The dbg241 files include SGML (DocBook, of course) versions of the
-DocBook documentation.  For the identity of the document entities 
-please see the file named "docorg.txt" in the distribution.
-These files are *not* available individually.
 
 Comments on DocBook are always welcome.  You can send comments and
 questions to the Davenport list (davenport@online.ora.com), or directly
-to the maintainers of DocBook, Terry Allen (terry@ora.com) and Eve Maler
-(elm@arbortext.com).
-
+to the maintainers of DocBook, Terry Allen (tallen@fsc.fujitsu.com) and
+Eve Maler (elm@arbortext.com).  Thank you.

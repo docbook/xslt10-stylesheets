@@ -1,0 +1,123 @@
+6 January 1997
+
+Changes from DocBook V2.4.1 to DocBook V3.0:
+
+Markup:
+
+- Added optional Dedication element after BookInfo.
+
+- Added optional Sect<n>Info elements at the beginnings of Sect<n>
+  and optional RefSect<n>Info and RefSynopsisDivInfo elements at the
+  beginnings of their respective container elements.  These all contain
+  a free mixture of metadata-related elements.  Where IndexTerm was
+  excluded before, this exclusion was removed, since IndexTerm can now
+  legitimately appear inside the new IndexTermSet.
+
+- Added several CALS-based presentational attributes to Graphic and
+  InlineGraphic.
+
+- Added an "SGML" notation.
+
+- Broadened the content of BiblioEntry, DocInfo, BookInfo, and SetInfo
+  (allowing a mixture of any of the bibliographic identifiers and, a new
+  addition, the person.ident.mix elements), changed the way BiblioMisc
+  is to be used, added an intermediate BiblioSet container element, and
+  added the BiblioMixed and BiblioMSet elements for "cooked" entries.
+  Added Relation attribute to BiblioSet and BiblioMSet.
+
+- Removed #PCDATA from SetInfo in the process of updating it to the
+  new bibliographic model (bug fix; backwards-incompatible).
+
+- Defined KeywordSet, ITermSet (index term set), and SubjectSet elements
+  and added them to the bibliographic information elements.
+
+- Added Linkend attribute to ToCfront and ToCback.
+
+- Added Status attribute to Set, Book, Dedication, Appendix, Chapter,
+  Part, Preface, Reference, Sect<n>, Bibliography, BiblioDiv, Glossary,
+  GlossDiv, RefEntry, RefSect<n>, and Article.
+
+- Added ErrorCode, Prompt, and EnVar elements.
+
+- Added Label attribute back to Footnote (bug fix).
+
+- Made FootnoteRef EMPTY and changed its Mark attribute to Label
+  (backwards-incompatible; previously announced).
+
+- Added Pagenum attribute to ToC.
+
+- Added Acronym to word.char.mix and the content of SystemItem, 
+  and excluded it from itself (because Acronym contains word.char.mix).
+
+- Changed Revision* to Revision+ in RevHistory (backwards-incompatible;
+  previously announced).
+
+- Renamed SpanEnd attribute on IndexTerm to StartRef
+  (backwards-incompatible; previously announced).  Added Class attribute.
+
+- Added optional FuncSynopsisInfo at the end of FuncSynopsis.
+
+- Added Conformance effectivity attribute.
+
+- Added Alt element to Equation, InformalEquation, and InlineEquation.
+
+- Added NumCharRef token to Class attribute of SGMLtag.
+
+- Broadened the Article content model and added a Class attribute.
+
+- Added Emphasis to the content model of Superscript and Subscript
+  (bug fix; accidentally removed in V2.4).
+
+Other:
+
+- Defined most of the *Info elements in one fell swoop using a new
+  otherinfo.class parameter entity.
+
+- Moved entities that define xxx.module and xxx.content.module 
+  marked-section status keywords to be near the actual marked sections.
+
+- Removed citerefentry.content.module because its subelements weren't
+  unique only to CiteRefEntry.
+
+- Moved some ELEMENT/ATTLIST declaration pairs out of the "words"
+  section and into the "computer terms" section.
+
+- Added FUTURE USE comments explaining what backwards-incompatible 
+  changes are planned for V4.0.
+
+- Added parameterization that allows individual elements' Role attributes
+  to be easily customized or removed.
+
+- Added reference to local.shortcut.attrib entity in Shortcut (bug fix;
+  it was missing).
+
+- Changed over to the SGML Open full CALS table module.  This should not
+  result in any markup model changes.
+
+- Alphabetized the contents of the word.char.class entity.
+
+- Updated Terry Allen's contact info and copyright statement in comments
+  in the files.
+
+- Added bibliocomponent.mix entity to help manage bibliographic
+  information and reorganized the title/bibliographic section into
+  three sections: titles, bibliographic, and subject set etc.
+
+- Changed the FPI keyword for dbgenent.mod to ENTITIES from ELEMENTS
+  (bug fix).
+
+- Made an entity for the semi-common Width attribute and referenced
+  the entity from the objects that have Width.
+
+- Added a version number to the dbgenent.mod module, its FPI in the
+  catalog, and its FPI reference in docbook.dtd.
+
+- Changed the names of some parameter entities: from
+  [local.]cptr.char.class to [local.]tech.char.class, and from
+  [local.]word.char.class to [local.]gen.char.class.
+
+- Removed the SGMLDECL entry from the docbook.cat file because the
+  DocBook SGML declaration may not be appropriate for other SGML
+  applications.
+
+- General coding and comment cleanup.

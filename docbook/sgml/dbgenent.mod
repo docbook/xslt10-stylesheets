@@ -1,17 +1,25 @@
 <!-- ...................................................................... -->
-<!-- DocBook additional general entities .................................. -->
+<!-- DocBook additional general entities V3.0 ............................. -->
 <!-- File dbgenent.mod .................................................... -->
 
-<!-- Declare and reference any general entities and entity sets here. 
-     For example:
+<!-- You can edit this file to add the following:
 
-     <!ENTITY happyface SDATA "insert-face">
+     o General entity declarations of any kind.  For example:
 
-     <!ENTITY productname "WinWidget">
+       <!ENTITY happyface SDATA "insert-face">    (system-specific data)
+       <!ENTITY productname "WinWidget">          (small boilerplate)
+       <!ENTITY legal-notice SYSTEM "notice.sgm"> (large boilerplate)
 
-     <!ENTITY % all-titles PUBLIC "-//DocTools//ELEMENTS Book Titles//EN">
-     %all-titles;
+     o Notation declarations.  For example:
+
+       <!NOTATION chicken-scratch SYSTEM>
+
+     o Declarations for and references to external parameter entities
+       containing collections of any of the above.  For example:
+
+       <!ENTITY % all-titles PUBLIC "-//DocTools//ELEMENTS Book Titles//EN">
+       %all-titles;
 -->
 
-<!-- End of DocBook additional general entities ........................... -->
+<!-- End of DocBook additional general entities V3.0 ...................... -->
 <!-- ...................................................................... -->
