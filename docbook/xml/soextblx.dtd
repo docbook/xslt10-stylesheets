@@ -26,7 +26,7 @@
      necessary to make the Exchange Table Model a valid XML DTD.
 
      It has been modified slightly for use in the combined HTML/CALS models
-     supported by DocBook V4.4b1.
+     supported by DocBook V4.3 and later.
 -->
 
 <!-- The XML version of the Exchange Table Model differs from
