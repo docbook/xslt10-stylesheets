@@ -321,7 +321,7 @@
   <xsl:param name="home" select="/slides"/>
   <xsl:param name="up"/>
   <xsl:param name="prev"/>
-  <xsl:param name="next" select="(foil|foilset)[1]"/>
+  <xsl:param name="next" select="(foil|foilgroup)[1]"/>
   <xsl:param name="toc"/>
 
   <div class="navhead">

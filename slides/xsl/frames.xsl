@@ -4,7 +4,7 @@
 
 <xsl:import href="slides-common.xsl"/>
 
-<xsl:param name="titlefoil.html" select="'titlepg.html'"/>
+<xsl:param name="titlefoil.html" select="concat('titlepg', $html.ext)"/>
 
 <xsl:param name="css.stylesheet" select="'slides-frames.css'"/>
 
@@ -32,19 +32,19 @@
 
   <xsl:call-template name="write.chunk">
     <xsl:with-param name="indent" select="$output.indent"/>
-    <xsl:with-param name="filename" select="concat($base.dir,'frames.html')"/>
+    <xsl:with-param name="filename" select="concat($base.dir,'frames', $html.ext)"/>
     <xsl:with-param name="content">
       <html>
         <head>
           <title><xsl:value-of select="$title"/></title>
         </head>
         <frameset border="1" cols="{$toc.width},*" name="topframe" framespacing="0">
-          <frame src="toc.html" name="toc" frameborder="1"/>
+          <frame src="{concat('toc', $html.ext)}" name="toc" frameborder="1"/>
           <frame src="{$titlefoil.html}" name="foil"/>
           <noframes>
             <body class="frameset">
               <xsl:call-template name="body.attributes"/>
-              <a href="titleframe.html">
+              <a href="{concat('titleframe', $html.ext)}">
                 <xsl:text>Your browser doesn't support frames.</xsl:text>
               </a>
             </body>
@@ -56,7 +56,7 @@
 
   <xsl:call-template name="write.chunk">
     <xsl:with-param name="indent" select="$output.indent"/>
-    <xsl:with-param name="filename" select="concat($base.dir,'toc.html')"/>
+    <xsl:with-param name="filename" select="concat($base.dir,'toc',$html.ext)"/>
     <xsl:with-param name="content">
       <html>
         <head>
@@ -492,7 +492,7 @@ function init() {
               </span>
             </td>
             <td align="right" width="20%" valign="top">
-              <a href="foil01.html">
+              <a href="{concat('foil01', $html.ext)}">
                 <img alt="{$text.next}" border="0">
                   <xsl:attribute name="src">
                     <xsl:call-template name="next.image"/>
@@ -726,7 +726,7 @@ function init() {
   <xsl:variable name="thisfoilgroup">
     <xsl:text>foilgrp</xsl:text>
     <xsl:number count="foilgroup" level="any" format="01"/>
-    <xsl:text>.html</xsl:text>
+    <xsl:value-of select="$html.ext"/>
   </xsl:variable>
 
   <frameset rows="{$multiframe.navigation.height},*,{$multiframe.navigation.height}"
@@ -751,7 +751,7 @@ function init() {
   <xsl:variable name="foilgroup">
     <xsl:text>foilgrp</xsl:text>
     <xsl:number count="foilgroup" level="any" format="01"/>
-    <xsl:text>.html</xsl:text>
+    <xsl:value-of select="$html.ext"/>
   </xsl:variable>
 
   <xsl:variable name="home" select="/slides"/>
@@ -816,7 +816,7 @@ function init() {
   <xsl:variable name="thisfoilgroup">
     <xsl:text>foilgrp</xsl:text>
     <xsl:number count="foilgroup" level="any" format="01"/>
-    <xsl:text>.html</xsl:text>
+    <xsl:value-of select="$html.ext"/>
   </xsl:variable>
 
   <xsl:call-template name="write.chunk">
@@ -865,7 +865,7 @@ function init() {
   <xsl:variable name="thisfoilgroup">
     <xsl:text>foilgrp</xsl:text>
     <xsl:number count="foilgroup" level="any" format="01"/>
-    <xsl:text>.html</xsl:text>
+    <xsl:value-of select="$html.ext"/>
   </xsl:variable>
 
   <xsl:variable name="home" select="/slides"/>
@@ -1385,7 +1385,7 @@ function init() {
   <xsl:variable name="thisfoilgroup">
     <xsl:text>foilgrp</xsl:text>
     <xsl:number count="foilgroup" level="any" format="01"/>
-    <xsl:text>.html</xsl:text>
+    <xsl:value-of select="$html.ext"/>
   </xsl:variable>
 
   <DIV class="toc-foilgroup" id="{$id}">
