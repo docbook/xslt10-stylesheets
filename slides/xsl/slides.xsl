@@ -1263,14 +1263,14 @@
           <xsl:call-template name="hidetoc.image"/>
 	</xsl:attribute>
 	<xsl:attribute name="onClick">
-if (parent.parent.document.all.topframe.cols=="0,*") {
-   parent.parent.document.all.topframe.cols="<xsl:value-of select="$toc.width"/>,*";
-   this.src = "<xsl:call-template name="hidetoc.image"/>";
-} else {
-   parent.parent.document.all.topframe.cols="0,*";
-   this.src = "<xsl:call-template name="showtoc.image"/>";
-};
-	</xsl:attribute>
+          <xsl:text>toggletoc(this,</xsl:text>
+          <xsl:value-of select="$toc.width"/>
+          <xsl:text>,'</xsl:text>
+          <xsl:call-template name="hidetoc.image"/>
+          <xsl:text>','</xsl:text>
+          <xsl:call-template name="showtoc.image"/>
+          <xsl:text>');</xsl:text>
+        </xsl:attribute>
       </img>
     </td>
   </xsl:if>
