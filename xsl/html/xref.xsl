@@ -889,6 +889,17 @@
         </xsl:call-template>
       </xsl:variable>
     
+      <xsl:if test="string-length($olink.key) = 0">
+        <xsl:message>
+          <xsl:text>Error: unresolved olink: </xsl:text>
+          <xsl:text>targetdoc/targetptr = '</xsl:text>
+          <xsl:value-of select="$targetdoc.att"/>
+          <xsl:text>/</xsl:text>
+          <xsl:value-of select="$targetptr.att"/>
+          <xsl:text>'.</xsl:text>
+        </xsl:message>
+      </xsl:if>
+
       <xsl:variable name="href">
         <xsl:call-template name="make.olink.href">
           <xsl:with-param name="olink.key" select="$olink.key"/>
