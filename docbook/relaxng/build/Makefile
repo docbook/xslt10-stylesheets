@@ -1,6 +1,6 @@
 VPATH=../src
 
-TMPDIR=/tmp
+TMPDIR=/tmp/
 TMPFILE=$(TMPDIR)cleanup.rng
 AUGMENT=../tools/augment.xsl
 INCLUDE=../tools/include.xsl
