@@ -7,7 +7,7 @@
 #
 
 DONE=0
-VERSION=644
+VERSION=65
 DEBUG=0
 JAR=0
 #XARG=""
@@ -26,6 +26,9 @@ while [ "$DONE" = "0" ]; do
 		;;
 	-j)	JAR=1;
 	        echo "Using jar file for extension classes"
+		shift;
+		;;
+	-65)	VERSION=65;
 		shift;
 		;;
 	-644)	VERSION=644;
@@ -104,6 +107,13 @@ if [ "$OUTPUT" != "" ]; then
 fi
 
 case $VERSION in
+   65)	SAXON="/usr/local/java/saxon-6.5/saxon.jar"
+	SAXON_DEBUG="/usr/local/java/saxon-6.4.3/.classes"
+	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon643/.classes";
+	if [ "$JAR" = "1" ]; then
+	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon65.jar"
+	fi
+	;;
    644)	SAXON="/usr/local/java/saxon-6.4.4/saxon.jar"
 	SAXON_DEBUG="/usr/local/java/saxon-6.4.3/.classes"
 	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon643/.classes";
