@@ -96,7 +96,7 @@
         <!-- FIXME: list in @from is probably not complete -->
         <xsl:number level="any" 
                     from="chapter|appendix|preface|article|refentry|bibliography" 
-                    count="footnote[not(@label)][not(ancestor::tgroup)]|ulink[$ulink.footnotes != 0][@url != .][not(ancestor::footnote)]" 
+                    count="footnote[not(@label)][not(ancestor::tgroup)]|ulink[$ulink.footnotes != 0][node()][@url != .][not(ancestor::footnote)]" 
                     format="1"/>
       </xsl:variable>
       <xsl:choose>
