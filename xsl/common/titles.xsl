@@ -78,6 +78,15 @@ title of the element. This does not include the label.
 
 <xsl:template match="preface|chapter|appendix" mode="title.markup">
   <xsl:param name="allow-anchors" select="'0'"/>
+
+<!--
+  <xsl:message>
+    <xsl:value-of select="name(.)"/>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$allow-anchors"/>
+  </xsl:message>
+-->
+
   <xsl:variable name="title" select="(docinfo/title
                                       |prefaceinfo/title
                                       |chapterinfo/title

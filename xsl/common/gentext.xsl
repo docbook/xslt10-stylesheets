@@ -162,11 +162,21 @@
   <xsl:variable name="bef-s" select="substring-before($template, '%s')"/>
   <xsl:variable name="bef-t" select="substring-before($template, '%t')"/>
 
+<!--
+  <xsl:message>
+    <xsl:text>sm: </xsl:text>
+    <xsl:value-of select="name(.)"/>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$allow-anchors"/>
+  </xsl:message>
+-->
+
   <xsl:choose>
     <!-- n=1 -->
     <xsl:when test="starts-with($template, '%n')">
       <xsl:apply-templates select="." mode="label.markup"/>
       <xsl:call-template name="substitute-markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
         <xsl:with-param name="template"
                         select="substring-after($template, '%n')"/>
       </xsl:call-template>
@@ -178,6 +188,7 @@
         <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
       </xsl:apply-templates>
       <xsl:call-template name="substitute-markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
         <xsl:with-param name="template"
                         select="substring-after($template, '%t')"/>
       </xsl:call-template>
@@ -187,6 +198,7 @@
     <xsl:when test="starts-with($template, '%s')">
       <xsl:apply-templates select="." mode="subtitle.markup"/>
       <xsl:call-template name="substitute-markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
         <xsl:with-param name="template"
                         select="substring-after($template, '%s')"/>
       </xsl:call-template>
@@ -203,6 +215,7 @@
           <xsl:value-of select="$bef-n"/>
           <xsl:apply-templates select="." mode="label.markup"/>
           <xsl:call-template name="substitute-markup">
+            <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
             <xsl:with-param name="template"
                             select="substring-after($template, '%n')"/>
           </xsl:call-template>
@@ -213,6 +226,7 @@
           <xsl:value-of select="$bef-s"/>
           <xsl:apply-templates select="." mode="subtitle.markup"/>
           <xsl:call-template name="substitute-markup">
+            <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
             <xsl:with-param name="template"
                             select="substring-after($template, '%s')"/>
           </xsl:call-template>
@@ -224,6 +238,7 @@
             <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
           </xsl:apply-templates>
           <xsl:call-template name="substitute-markup">
+            <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
             <xsl:with-param name="template"
                             select="substring-after($template, '%t')"/>
           </xsl:call-template>
@@ -240,6 +255,7 @@
           <xsl:value-of select="$bef-n"/>
           <xsl:apply-templates select="." mode="label.markup"/>
           <xsl:call-template name="substitute-markup">
+            <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
             <xsl:with-param name="template"
                             select="substring-after($template, '%n')"/>
           </xsl:call-template>
@@ -251,6 +267,7 @@
             <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
           </xsl:apply-templates>
           <xsl:call-template name="substitute-markup">
+            <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
             <xsl:with-param name="template"
                             select="substring-after($template, '%t')"/>
           </xsl:call-template>
@@ -267,6 +284,7 @@
           <xsl:value-of select="$bef-n"/>
           <xsl:apply-templates select="." mode="label.markup"/>
           <xsl:call-template name="substitute-markup">
+            <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
             <xsl:with-param name="template"
                             select="substring-after($template, '%n')"/>
           </xsl:call-template>
@@ -276,6 +294,7 @@
           <xsl:value-of select="$bef-s"/>
           <xsl:apply-templates select="." mode="subtitle.markup"/>
           <xsl:call-template name="substitute-markup">
+            <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
             <xsl:with-param name="template"
                             select="substring-after($template, '%s')"/>
           </xsl:call-template>
@@ -294,6 +313,7 @@
             <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
           </xsl:apply-templates>
           <xsl:call-template name="substitute-markup">
+            <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
             <xsl:with-param name="template"
                             select="substring-after($template, '%t')"/>
           </xsl:call-template>
@@ -303,6 +323,7 @@
           <xsl:value-of select="$bef-s"/>
           <xsl:apply-templates select="." mode="subtitle.markup"/>
           <xsl:call-template name="substitute-markup">
+            <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
             <xsl:with-param name="template"
                             select="substring-after($template, '%s')"/>
           </xsl:call-template>
@@ -315,6 +336,7 @@
       <xsl:value-of select="$bef-n"/>
       <xsl:apply-templates select="." mode="label.markup"/>
       <xsl:call-template name="substitute-markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
         <xsl:with-param name="template"
                         select="substring-after($template, '%n')"/>
       </xsl:call-template>
@@ -327,6 +349,7 @@
         <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
       </xsl:apply-templates>
       <xsl:call-template name="substitute-markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
         <xsl:with-param name="template"
                         select="substring-after($template, '%t')"/>
       </xsl:call-template>
@@ -337,6 +360,7 @@
       <xsl:value-of select="$bef-s"/>
       <xsl:apply-templates select="." mode="subtitle.markup"/>
       <xsl:call-template name="substitute-markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
         <xsl:with-param name="template"
                         select="substring-after($template, '%s')"/>
       </xsl:call-template>
