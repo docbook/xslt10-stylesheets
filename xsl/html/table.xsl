@@ -700,6 +700,12 @@
           </xsl:attribute>
         </xsl:if>
 
+        <xsl:if test="$entry.propagates.style != 0 and @role">
+          <xsl:attribute name="class">
+            <xsl:value-of select="@role"/>
+          </xsl:attribute>
+        </xsl:if>
+
         <xsl:if test="$show.revisionflag and @revisionflag">
           <xsl:attribute name="class">
             <xsl:value-of select="@revisionflag"/>
