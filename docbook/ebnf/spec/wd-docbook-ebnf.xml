@@ -1,0 +1,276 @@
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+                  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY standard "Standard">
+<!ENTITY tracker "http://sourceforge.net/tracker/">
+<!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
+]>
+
+<article status="Working Draft">
+
+<articleinfo>
+<productname>wd-docbook-ebnf</productname>
+<productnumber>1.1-CR1</productnumber>
+
+<releaseinfo role="product"><ulink url="wd-docbook-ebnf-1.1-CR1.xml">XML</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="wd-docbook-ebnf-1.1-CR1.html">HTML</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="wd-docbook-ebnf-1.1-CR1.pdf">PDF</ulink></releaseinfo>
+
+<releaseinfo role="location">http://www.oasis-open.org/docbook/specs</releaseinfo>
+
+<title>The DocBook EBNF Document Type</title>
+
+<authorgroup>
+<editor>
+  <firstname>Norman</firstname><surname>Walsh</surname>
+  <affiliation>
+    <shortaffil>Sun</shortaffil>
+    <orgname>Sun Microsystems, Inc.</orgname>
+    <address><email>Norman.Walsh@Sun.COM</email></address>
+  </affiliation>
+</editor>
+</authorgroup>
+
+<pubdate>12 Sep 2002</pubdate>
+
+<copyright><year>2001</year><year>2002</year>
+<holder>OASIS Open, Inc. All Rights Reserved.</holder></copyright>
+
+<abstract>
+
+<para>DocBook EBNF Document Type is a modular superset of
+<ulink url="http://www.oasis-open.org/docbook/xml/">DocBook XML V4.2</ulink>.
+It is a DocBook extension to support Extended Backus-Naur Form (EBNF) productions.
+</para>
+</abstract>
+
+<legalnotice role="status"><title>Status</title>
+
+<para>This is a working draft constructed by the editor. It is not
+an official committee work product and may not reflect the consensus
+opinion of the committee.</para>
+
+<!--
+<para>This Committee Specification was approved for publication by the
+OASIS DocBook Technical Committee. It represents the
+consensus of the committee. Comments on this document may be
+sent to
+<ulink url="mailto:docbook@lists.oasis-open.org">docbook@lists.oasis-open.org</ulink>.
+</para>
+-->
+
+<para>Please send comments on this specification to the
+<email>docbook@lists.oasis-open.org</email> list. To subscribe, send
+an email message to
+<email>docbook-request@lists.oasis-open.org</email> with the word
+<quote><literal>subscribe</literal></quote> as the body of the
+message.
+</para>
+
+<!--
+<para>The errata page for this specification is at
+<ulink url="http://www.oasis-open.org/docbook/specs/ebnf-errata.html"/>.
+</para>
+-->
+
+</legalnotice>
+
+</articleinfo>
+
+<section id="s.intro">
+<title>Introduction</title>
+
+<para>DocBook is general purpose document type particularly well
+suited to books and papers about computer hardware and software
+(though it is by no means limited to these applications).
+</para>
+
+<para>DocBook EBNF is an extension to provide support for
+Extended Backus-Naur Form (EBNF) productions.
+</para>
+
+<para>The <ulink url="mailto:docbook-tc@oasis-open.org">DocBook
+Technical Committee</ulink> maintains the DocBook EBNF schema.
+DocBook EBNF is officially available as an <xref linkend="xml-rec"/> Document Type
+Definition (DTD).</para>
+
+<para>The Version 1.1 release is based on <xref linkend="bib.docbook42"/>.
+</para>
+
+<para>The DocBook Technical Committee welcomes bug reports and
+requests for enhancement (RFEs) from the user community. The current list
+of outstanding requests is available through the
+<ulink url="http://sourceforge.net/">SourceForge</ulink>
+<ulink url="&tracker;/?atid=384107&amp;group_id=21935&amp;func=browse">tracker</ulink>
+interface. This is also the preferred mechanism for submitting new requests.
+Old RFEs, from a previous legacy tracking system, are
+<ulink url="http://www.oasis-open.org/docbook/old-rfes.html">archived</ulink>
+for reference.</para>
+
+</section>
+
+<section id="s.terminology"><title>Terminology</title>
+
+<para>The key words <glossterm>must</glossterm>, <glossterm>must
+not</glossterm>, <glossterm>required</glossterm>,
+<glossterm>shall</glossterm>, <glossterm>shall not</glossterm>,
+<glossterm>should</glossterm>, <glossterm>should not</glossterm>,
+<glossterm>recommended</glossterm>, <glossterm>may</glossterm>, and
+<glossterm>optional</glossterm> in this &standard; are to be
+interpreted as described in <xref linkend="rfc2119"/>. Note that for
+reasons of style, these words are not capitalized in this
+document.</para>
+
+</section>
+
+<section id="docbook">
+<title>The DocBook EBNF Document Type V1.1CR1</title>
+
+<para>The DocBook EBNF Document Type is a subset of
+<xref linkend="bib.docbook42"/>.
+It is distributed from the
+<ulink url="http://www.oasis-open.org/docbook/">DocBook site</ulink> at
+<ulink url="http://www.oasis-open.org/">OASIS</ulink>.
+</para>
+
+</section>
+
+<section id="s.changes1">
+<title>Changes in DocBook EBNF V1.1CR1</title>
+
+<para>This release updates DocBook EBNF to be a customization of DocBook XML V4.2.
+</para>
+
+<para>There are no substantive changes to the EBNF-specific markup.
+</para>
+</section>
+
+<section><title>Release Notes</title>
+
+<para>None.</para>
+
+</section>
+
+<appendix id="a.committee" role="non-normative">
+<title>OASIS DocBook Technical Committee</title>
+
+<para>The following individuals were members of the committee during
+the formulation of this &standard;:</para>
+
+<itemizedlist spacing="compact">
+<listitem><para>Dennis Evans</para></listitem>
+<listitem><para>Patricia Gee-Best</para></listitem>
+<listitem><para>Paul Grosso</para></listitem>
+<listitem><para>Dick Hamilton</para></listitem>
+<listitem><para>Nancy (Paisner) Harrison</para></listitem>
+<listitem><para>Richard Lander</para></listitem>
+<listitem><para>Sabine Ocker</para></listitem>
+<listitem><para>Michael Sabrio</para></listitem>
+<listitem><para>Michael Smith</para></listitem>
+<listitem><para>Tim Teebken</para></listitem>
+<listitem><para>Norman Walsh (Chair, Editor)</para></listitem>
+</itemizedlist>
+
+</appendix>
+
+<appendix id="a.notices">
+<title>Notices</title>
+
+<para>Copyright &#169; 2001, 2002 OASIS Open, Inc. All Rights Reserved.
+</para>
+
+<para>OASIS takes no position regarding the validity
+or scope of any intellectual property or other rights
+that might be claimed to pertain to the implementation
+or use of the technology described in this document
+or the extent to which any license under such rights
+might or might not be available; neither does it represent
+that it has made any effort to identify any such rights.
+Information on OASIS's procedures with respect to rights
+in OASIS specifications can be found at the OASIS website.
+Copies of claims of rights made available for publication
+and any assurances of licenses to be made available,
+or the result of an attempt made to obtain a general
+license or permission for the use of such proprietary
+rights by implementors or users of this specification,
+can be obtained from the OASIS Executive Director.</para>
+
+<para>OASIS invites any interested party to bring to
+its attention any copyrights, patents or patent applications,
+or other proprietary rights which may cover technology
+that may be required to implement this specification.
+Please address the information to the OASIS Executive
+Director.</para>
+
+<para>This document and translations of it may be copied
+and furnished to others, and derivative works that comment
+on or otherwise explain it or assist in its implementation
+may be prepared, copied, published and distributed,
+in whole or in part, without restriction of any kind,
+provided that the above copyright notice and this paragraph
+are included on all such copies and derivative works.
+However, this document itself may not be modified in
+any way, such as by removing the copyright notice or
+references to OASIS, except as needed for the purpose
+of developing OASIS specifications, in which case the
+procedures for copyrights defined in the OASIS Intellectual
+Property Rights document must be followed, or as required
+to translate it into languages other than English.</para>
+
+<para>The limited permissions granted above are perpetual
+and will not be revoked by OASIS or its successors or
+assigns.</para>
+
+<para>This document and the information contained herein
+is provided on an <quote>AS IS</quote> basis and OASIS DISCLAIMS
+ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES
+OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.</para>
+
+<para>OASIS has been notified of intellectual property
+rights claimed in regard to some or all of the contents
+of this specification. For more information consult
+the online list of claimed rights.</para>
+
+</appendix>
+
+<appendix id="a.ipr">
+<title>Intellectual Property Rights</title>
+
+<para>For information on wether any patents have been disclosed that may be
+essential to implementing this specification, and any offers of patent
+licensing terms, please refer to the Intellectual Property Rights section
+of the DocBook web page
+(<ulink url="http://www.oasis-open.org/docbook/"/>)
+</para>
+
+</appendix>
+
+<appendix id="a.revhistory">
+<title>Revision History</title>
+
+<para><revhistory>
+<revision>
+<revnumber>1.1-CR1</revnumber>
+<date>12 Sep 2002</date>
+<authorinitials>ndw</authorinitials>
+<revremark>Candidate Release 1</revremark>
+</revision>
+</revhistory>
+</para>
+
+</appendix>
+
+<bibliography id="bibl"><title>References</title>
+
+<bibliodiv><title>Normative</title>
+
+<bibliomixed id="xml-rec"/>
+<bibliomixed id="rfc2119"/>
+<bibliomixed id="bib.docbook42"/>
+
+</bibliodiv>
+
+</bibliography>
+
+</article>
