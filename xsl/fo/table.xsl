@@ -125,6 +125,10 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     </xsl:choose>
   </xsl:variable>
 
+  <xsl:attribute name="width">
+    <xsl:value-of select="$table.width"/>
+  </xsl:attribute>
+
   <xsl:choose>
     <xsl:when test="$use.extensions != 0
                     and $tablecolumns.extension != 0">
