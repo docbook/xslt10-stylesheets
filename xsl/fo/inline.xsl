@@ -370,7 +370,7 @@
 
   <xsl:choose>
     <xsl:when test="$class='attribute'">
-      <xsl:call-template name="inline.charseq"/>
+      <xsl:call-template name="inline.monoseq"/>
     </xsl:when>
     <xsl:when test="$class='attvalue'">
       <xsl:call-template name="inline.monoseq"/>
@@ -423,12 +423,30 @@
         </xsl:with-param>
       </xsl:call-template>
     </xsl:when>
+    <xsl:when test="$class='xmlpi'">
+      <xsl:call-template name="inline.monoseq">
+        <xsl:with-param name="content">
+          <xsl:text>&lt;?</xsl:text>
+          <xsl:apply-templates/>
+          <xsl:text>?&gt;</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
     <xsl:when test="$class='starttag'">
       <xsl:call-template name="inline.monoseq">
         <xsl:with-param name="content">
           <xsl:text>&lt;</xsl:text>
           <xsl:apply-templates/>
           <xsl:text>&gt;</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="$class='emptytag'">
+      <xsl:call-template name="inline.monoseq">
+        <xsl:with-param name="content">
+          <xsl:text>&lt;</xsl:text>
+          <xsl:apply-templates/>
+          <xsl:text>/&gt;</xsl:text>
         </xsl:with-param>
       </xsl:call-template>
     </xsl:when>
