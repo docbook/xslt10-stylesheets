@@ -21,6 +21,10 @@
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> See http://docbook.sourceforge.net/ </xsl:comment>
     <xsl:text>&#10;</xsl:text>
+    <xsl:comment> To update this file: edit the corresponding document at </xsl:comment>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:comment> http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/docbook/gentext/locale/ </xsl:comment>
+    <xsl:text>&#10;</xsl:text>
 
     <xsl:apply-templates/>
 
