@@ -1193,7 +1193,7 @@ div {
 
 ctrl:exclude [ from="db.admonition.blocks" exclude="db.admonition.blocks" ]
 
-db.admonition.contentmodel = db.titleonly.info, db.all.blocks+
+db.admonition.contentmodel = db._info.title.only, db.all.blocks+
 
 # ======================================================================
 
