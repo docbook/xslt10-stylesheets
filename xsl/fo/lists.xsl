@@ -215,6 +215,7 @@
                                    local-name()='formalpara']"
               priority="2">
   <fo:block>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
