@@ -22,7 +22,7 @@
   <xsl:param name="target" select="."/>
   <xsl:param name="xref-context" select="false()"/>
 
-  <xsl:variable name="language">
+  <xsl:variable name="mc-language">
     <xsl:choose>
       <xsl:when test="$l10n.gentext.language != ''">
         <xsl:value-of select="$l10n.gentext.language"/>
@@ -64,6 +64,10 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
+
+  <xsl:variable name="language" select="translate($mc-language,
+                                        'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                                        'abcdefghijklmnopqrstuvwxyz')"/>
 
   <xsl:variable name="adjusted.language">
     <xsl:choose>
