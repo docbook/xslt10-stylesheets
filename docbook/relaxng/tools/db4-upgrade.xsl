@@ -7,7 +7,7 @@
                 version="1.0">
 
 <!-- ======================================================================
-# This file is part of DocBook NG: The "Eaux-de-vie" Release.
+# This file is part of DocBook NG: The "Frangelico" Release.
 # A prototype DocBook V4.2 to DocBoook V.next converter.
 #
 # This stylesheet is a "work-in-progress". It converts (some) valid
@@ -900,7 +900,7 @@
       <xsl:element name="{local-name(.)}"
 		   namespace="http://docbook.org/docbook-ng">
 	<xsl:if test="not(parent::*)">
-	  <xsl:attribute name="version">eaux-de-vie</xsl:attribute>
+	  <xsl:attribute name="version">frangelico</xsl:attribute>
 	</xsl:if>
 	<xsl:copy-of select="@*"/>
 	<xsl:apply-templates mode="addNS"/>
@@ -909,7 +909,7 @@
     <xsl:otherwise>
       <xsl:copy>
 	<xsl:if test="not(parent::*)">
-	  <xsl:attribute name="version">eaux-de-vie</xsl:attribute>
+	  <xsl:attribute name="version">frangelico</xsl:attribute>
 	</xsl:if>
 	<xsl:copy-of select="@*"/>
 	<xsl:apply-templates mode="addNS"/>
