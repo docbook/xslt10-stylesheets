@@ -41,8 +41,8 @@
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook/</fm:Mailing-List-URL>
   <fm:Changes>There are no backwards-incompatible changes in this release.
 
-Added the wordsize global effectivity attribute; fixed a few typos in
-public identifiers; added a pointer from the DTD back to the specification.
+Fixed typo in XML docbook.cat file, added rowheader accessibility attribute
+to CALS table and informaltable.
   </fm:Changes>  
 </fm:project>
 
