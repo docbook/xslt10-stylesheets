@@ -17,7 +17,7 @@
 
 <xsl:attribute-set name="book.titlepage.recto.style">
   <xsl:attribute name="font-family">
-    <xsl:value-of select="$title.font.family"/>
+    <xsl:value-of select="$title.fontset"/>
   </xsl:attribute>
   <xsl:attribute name="font-weight">bold</xsl:attribute>
   <xsl:attribute name="font-size">12pt</xsl:attribute>

@@ -224,7 +224,7 @@
 
   <fo:block margin-left="{$title.margin.left}"
 	    font-size="14.4pt"
-            font-family="{$title.font.family}"
+            font-family="{$title.fontset}"
             font-weight="bold"
             keep-with-next.within-column="always"
             space-before.optimum="{$body.font.master}pt"
