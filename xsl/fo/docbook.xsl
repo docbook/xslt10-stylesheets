@@ -219,11 +219,11 @@
     <xsl:call-template name="setup.pagemasters"/>
 
     <xsl:if test="$fop.extensions != 0">
-      <xsl:apply-templates mode="fop.outline"/>
+      <xsl:apply-templates select="$document.element" mode="fop.outline"/>
     </xsl:if>
     <xsl:if test="$xep.extensions != 0">
       <xsl:variable name="bookmarks">
-        <xsl:apply-templates mode="xep.outline"/>
+        <xsl:apply-templates select="$document.element" mode="xep.outline"/>
       </xsl:variable>
       <xsl:if test="string($bookmarks) != ''">
         <rx:outline xmlns:rx="http://www.renderx.com/XSL/Extensions">
