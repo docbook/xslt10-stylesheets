@@ -159,6 +159,13 @@ generate.section.toc.level;
 &table.entry.padding;
 </reference>
 
+<reference><title>Linking</title>
+&target.database.document;
+&use.local.olink.style;
+&current.docid;
+&olink.doctitle;
+</reference>
+
 <reference><title>QAndASet</title>
 &qandadiv.autolabel;
 &qanda.inherit.numeration;
@@ -423,6 +430,7 @@ around all these parameters.</para>
 <src:fragref linkend="column.count.titlepage.frag"/>
 <src:fragref linkend="compact.list.item.spacing.frag"/>
 <src:fragref linkend="component.title.properties.frag"/>
+<src:fragref linkend="current.docid.frag"/>
 <src:fragref linkend="default.table.width.frag"/>
 <src:fragref linkend="default.units.frag"/>
 <src:fragref linkend="dingbat.font.family.frag"/>
@@ -469,6 +477,7 @@ around all these parameters.</para>
 <src:fragref linkend="monospace.verbatim.properties.frag"/>
 <src:fragref linkend="nominal.table.width.frag"/>
 <src:fragref linkend="normal.para.spacing.frag"/>
+<src:fragref linkend="olink.doctitle.frag"/>
 <src:fragref linkend="page.height.frag"/>
 <src:fragref linkend="page.height.portrait.frag"/>
 <src:fragref linkend="page.margin.bottom.frag"/>
@@ -524,6 +533,7 @@ around all these parameters.</para>
 <src:fragref linkend="table.cell.padding.frag"/>
 <src:fragref linkend="table.entry.padding.frag"/>
 <src:fragref linkend="tablecolumns.extension.frag"/>
+<src:fragref linkend="target.database.document.frag"/>
 <src:fragref linkend="tex.math.delims.frag"/>
 <src:fragref linkend="tex.math.in.alt.frag"/>
 <src:fragref linkend="textinsert.extension.frag"/>
@@ -536,12 +546,14 @@ around all these parameters.</para>
 <src:fragref linkend="ulink.hyphenate.frag"/>
 <src:fragref linkend="ulink.show.frag"/>
 <src:fragref linkend="use.extensions.frag"/>
+<src:fragref linkend="use.local.olink.style.frag"/>
 <src:fragref linkend="use.role.as.xrefstyle.frag"/>
 <src:fragref linkend="use.svg.frag"/>
 <src:fragref linkend="variablelist.as.blocks.frag"/>
 <src:fragref linkend="verbatim.properties.frag"/>
 <src:fragref linkend="xep.extensions.frag"/>
 <src:fragref linkend="xref.properties.frag"/>
+
 
 </xsl:stylesheet>
 </src:fragment>
