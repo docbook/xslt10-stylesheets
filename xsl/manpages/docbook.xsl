@@ -39,13 +39,6 @@
   <xsl:text>\fR</xsl:text>
 </xsl:template>
 
-<xsl:template match="refsect2">
-  <xsl:text>&#10;.SS "</xsl:text>
-  <xsl:value-of select="title[1]"/>
-  <xsl:text>"&#10;</xsl:text>
-  <xsl:apply-templates/>
-</xsl:template>
-
 <xsl:template match="caution|important|note|tip|warning">
   <xsl:text>&#10;.RS&#10;.Sh "</xsl:text>
   <!-- capitalize word -->
@@ -61,11 +54,25 @@
   <xsl:text>&#10;.RE&#10;</xsl:text>
 </xsl:template> 
 
-<xsl:template match="refsect1">
-  <xsl:text>&#10;.SH "</xsl:text>
-  <xsl:value-of select="translate(title[1],'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
-  <xsl:text>"
-</xsl:text>
+<xsl:template match="refsection|refsect1">
+  <xsl:choose>
+    <xsl:when test="ancestor::refsection">
+      <xsl:text>&#10;.SS "</xsl:text>
+      <xsl:value-of select="title[1]"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>&#10;.SH "</xsl:text>
+      <xsl:value-of select="translate(title[1],'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:text>"&#10;</xsl:text>
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="refsect2">
+  <xsl:text>&#10;.SS "</xsl:text>
+  <xsl:value-of select="title[1]"/>
+  <xsl:text>"&#10;</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
 
