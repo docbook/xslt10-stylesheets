@@ -30,14 +30,22 @@
 <xsl:param name="toc.hide.show" select="0"/>
 
 <xsl:param name="overlay" select="0"/>
+
 <xsl:param name="ie5" select="0"/>
 
-<xsl:template name="body.attributes">
-  <xsl:attribute name="bgcolor">white</xsl:attribute>
-  <xsl:attribute name="text">black</xsl:attribute>
-  <xsl:attribute name="link">#0000FF</xsl:attribute>
-  <xsl:attribute name="vlink">#840084</xsl:attribute>
-  <xsl:attribute name="alink">#0000FF</xsl:attribute>
+<xsl:param name="output.indent" select="'no'"/>
+
+<!-- ============================================================ -->
+
+<xsl:template name="overlayDiv.attributes">
+  <xsl:choose>
+    <xsl:when test="$overlay != 0">
+      <xsl:attribute name="style">position:absolute;visibility:visible;</xsl:attribute>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:attribute name="style">padding-top: 2in;</xsl:attribute>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ============================================================ -->
@@ -139,11 +147,12 @@
 
 <xsl:template match="slides">
   <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename" select="concat($base.dir, $toc.html)"/>
     <xsl:with-param name="content">
       <html>
         <head>
-          <title><xsl:value-of select="title"/></title>
+          <title><xsl:value-of select="slidesinfo/title"/></title>
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
               <xsl:call-template name="css-stylesheet"/>
@@ -156,6 +165,24 @@
               </xsl:attribute>
             </script>
           </xsl:if>
+          <link rel="top">
+            <xsl:attribute name="href">
+              <xsl:apply-templates select="/slides" mode="filename"/>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:value-of select="/slides/slidesinfo/title[1]"/>
+            </xsl:attribute>
+          </link>
+          <xsl:for-each select="section">
+            <link rel="section">
+              <xsl:attribute name="href">
+                <xsl:apply-templates select="." mode="filename"/>
+              </xsl:attribute>
+              <xsl:attribute name="title">
+                <xsl:value-of select="title[1]"/>
+              </xsl:attribute>
+            </link>
+          </xsl:for-each>
         </head>
         <body class="tocpage">
           <xsl:call-template name="body.attributes"/>
@@ -165,27 +192,19 @@
             </xsl:attribute>
           </xsl:if>
 
-          <h1>
+          <h1 class="title">
             <a href="{$titlefoil.html}">
               <xsl:value-of select="/slides/slidesinfo/title"/>
             </a>
           </h1>
+
           <xsl:apply-templates select="." mode="toc"/>
 
           <div id="overlayDiv" class="navfoot">
-            <xsl:choose>
-              <xsl:when test="$overlay != 0">
-                <xsl:attribute name="style">
-                  <xsl:text>position:absolute;visibility:visible;</xsl:text>
-                </xsl:attribute>
-                <hr/>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:attribute name="style">
-                  <xsl:text>padding-top: 2in;</xsl:text>
-                </xsl:attribute>
-              </xsl:otherwise>
-            </xsl:choose>
+            <xsl:call-template name="overlayDiv.attributes"/>
+            <xsl:if test="$overlay != 0">
+              <hr/>
+            </xsl:if>
 
             <table width="100%" border="0"
                    cellspacing="0" cellpadding="0"
@@ -223,6 +242,7 @@
 
 <xsl:template match="slidesinfo">
   <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename"
                     select="concat($base.dir, $titlefoil.html)"/>
     <xsl:with-param name="content">
@@ -241,6 +261,20 @@
               </xsl:attribute>
             </script>
           </xsl:if>
+          <link rel="contents" href="{$toc.html}">
+            <xsl:attribute name="title">
+              <xsl:value-of select="(following::section|following::foil)[1]/title"/>
+            </xsl:attribute>
+          </link>
+          <link rel="next">
+            <xsl:attribute name="href">
+              <xsl:apply-templates select="(following::section|following::foil)[1]"
+                                   mode="filename"/>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:value-of select="(following::section|following::foil)[1]/title"/>
+            </xsl:attribute>
+          </link>
         </head>
         <body class="titlepage">
           <xsl:call-template name="body.attributes"/>
@@ -249,74 +283,84 @@
               <xsl:text>overlaySetup('lc')</xsl:text>
             </xsl:attribute>
           </xsl:if>
-          <div class="navhead">
-            <table width="100%" border="0" cellpadding="0" cellspacing="0"
-                   summary="Navigation">
-              <tr>
-                <td align="left" width="10%">
-                  <a href="{$toc.html}">
-                    <xsl:call-template name="gentext">
-                      <xsl:with-param name="key">TableofContents</xsl:with-param>
-                    </xsl:call-template>
-                  </a>
-                </td>
-                <td align="center" width="80%">
-                  <xsl:text>&#160;</xsl:text>
-                </td>
-                <td align="right" width="10%">
-                  <xsl:text>&#160;</xsl:text>
-                </td>
-              </tr>
-            </table>
-          </div>
 
-          <div class="{name(.)}">
-            <xsl:apply-templates mode="titlepage.mode"/>
-          </div>
+          <xsl:call-template name="slidesinfo-top-nav"/>
+
+          <xsl:call-template name="slidesinfo-titlepage"/>
 
           <div id="overlayDiv" class="navfoot">
-            <xsl:choose>
-              <xsl:when test="$overlay != 0">
-                <xsl:attribute name="style">
-                  <xsl:text>position:absolute;visibility:visible;</xsl:text>
-                </xsl:attribute>
-                <hr/>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:attribute name="style">
-                  <xsl:text>padding-top: 2in;</xsl:text>
-                </xsl:attribute>
-              </xsl:otherwise>
-            </xsl:choose>
-
-            <table width="100%" border="0"
-                   cellspacing="0" cellpadding="0"
-                   summary="Navigation">
-              <tr>
-                <td align="left" width="80%" valign="top">
-                  <span class="navfooter">
-                    <xsl:apply-templates select="/slides/slidesinfo/copyright"
-                                         mode="slide.navigation.mode"/>
-                  </span>
-                </td>
-                <td align="right" width="20%" valign="top">
-                  <a href="foil01.html">
-                    <img alt="Next" border="0">
-                      <xsl:attribute name="src">
-                        <xsl:call-template name="graphics.dir"/>
-                        <xsl:text>/</xsl:text>
-                        <xsl:value-of select="$right.image"/>
-                      </xsl:attribute>
-                    </img>
-                  </a>
-                </td>
-              </tr>
-            </table>
+            <xsl:call-template name="overlayDiv.attributes"/>
+            <xsl:if test="$overlay != 0">
+              <hr/>
+            </xsl:if>
           </div>
+
+          <xsl:call-template name="slidesinfo-bottom-nav"/>
         </body>
       </html>
     </xsl:with-param>
   </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="slidesinfo-titlepage">
+  <div class="{name(.)}">
+    <xsl:apply-templates mode="titlepage.mode"/>
+  </div>
+</xsl:template>
+
+<xsl:template name="slidesinfo-top-nav">
+  <xsl:param name="prev-target" select="''"/>
+  <xsl:param name="next-target" select="''"/>
+
+  <div class="navhead">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+           summary="Navigation">
+      <tr>
+        <td align="left" width="10%">
+          <a href="{$toc.html}">
+            <xsl:call-template name="gentext">
+              <xsl:with-param name="key">TableofContents</xsl:with-param>
+            </xsl:call-template>
+          </a>
+        </td>
+        <td align="center" width="80%">
+          <xsl:text>&#160;</xsl:text>
+        </td>
+        <td align="right" width="10%">
+          <xsl:text>&#160;</xsl:text>
+        </td>
+      </tr>
+    </table>
+  </div>
+</xsl:template>
+
+<xsl:template name="slidesinfo-bottom-nav">
+  <xsl:param name="prev-target" select="''"/>
+  <xsl:param name="next-target" select="''"/>
+
+  <table width="100%" border="0"
+         cellspacing="0" cellpadding="0"
+         summary="Navigation">
+    <tr>
+      <td align="left" width="80%" valign="top">
+        <span class="navfooter">
+          <xsl:apply-templates select="/slides/slidesinfo/copyright"
+                               mode="slide.navigation.mode"/>
+        </span>
+      </td>
+      <td align="right" width="20%" valign="top">
+        <a href="foil01.html">
+          <img alt="Next" border="0">
+            <xsl:attribute name="src">
+              <xsl:call-template name="graphics.dir"/>
+              <xsl:text>/</xsl:text>
+              <xsl:value-of select="$right.image"/>
+            </xsl:attribute>
+          </img>
+        </a>
+      </td>
+    </tr>
+  </table>
 </xsl:template>
 
 <xsl:template match="slidesinfo/title">
@@ -379,22 +423,13 @@
     <xsl:text>.html</xsl:text>
   </xsl:variable>
 
-  <xsl:variable name="nextfoil">
-    <xsl:apply-templates select="foil[1]" mode="filename"/>
-  </xsl:variable>
+  <xsl:variable name="prevfoil"
+                select="(preceding::foil|/slides)[last()]"/>
 
-  <xsl:variable name="prevfoil">
-    <xsl:choose>
-      <xsl:when test="preceding::foil">
-        <xsl:apply-templates select="preceding::foil[1]" mode="filename"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$titlefoil.html"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
+  <xsl:variable name="nextfoil" select="foil[1]"/>
 
   <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename" select="concat($base.dir, $thissection)"/>
     <xsl:with-param name="content">
       <head>
@@ -411,6 +446,65 @@
             </xsl:attribute>
           </script>
         </xsl:if>
+
+        <link rel="contents" href="{$toc.html}">
+          <xsl:attribute name="title">
+            <xsl:value-of select="(following::section|following::foil)[1]/title"/>
+          </xsl:attribute>
+        </link>
+
+        <link rel="top">
+          <xsl:attribute name="href">
+            <xsl:apply-templates select="/slides" mode="filename"/>
+          </xsl:attribute>
+          <xsl:attribute name="title">
+            <xsl:value-of select="/slides/slidesinfo/title[1]"/>
+          </xsl:attribute>
+        </link>
+
+        <xsl:if test="parent::section">
+          <link rel="up">
+            <xsl:attribute name="href">
+              <xsl:apply-templates select="parent::section[1]" mode="filename"/>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:value-of select="parent::section[1]/title"/>
+            </xsl:attribute>
+          </link>
+        </xsl:if>
+
+        <xsl:if test="$prevfoil">
+          <link rel="previous">
+            <xsl:attribute name="href">
+              <xsl:apply-templates select="$prevfoil" mode="filename"/>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:value-of select="$prevfoil/title"/>
+            </xsl:attribute>
+          </link>
+        </xsl:if>
+
+        <xsl:if test="$nextfoil">
+          <link rel="next">
+            <xsl:attribute name="href">
+              <xsl:apply-templates select="$nextfoil" mode="filename"/>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:value-of select="$nextfoil/title"/>
+            </xsl:attribute>
+          </link>
+        </xsl:if>
+
+        <xsl:for-each select="foil">
+          <link rel="slides">
+            <xsl:attribute name="href">
+              <xsl:apply-templates select="." mode="filename"/>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:value-of select="title[1]"/>
+            </xsl:attribute>
+          </link>
+        </xsl:for-each>
       </head>
       <body class="section">
         <xsl:call-template name="body.attributes"/>
@@ -422,21 +516,11 @@
         <div class="{name(.)}" id="{$id}">
           <a name="{$id}"/>
           <xsl:call-template name="section-top-nav"/>
-          <hr/>
 
-          <div class="{name(.)}" id="{$id}">
-            <a name="{$id}"/>
-            <xsl:apply-templates select="title"/>
-          </div>
+          <xsl:apply-templates select="title"/>
 
           <div id="overlayDiv">
-            <xsl:if test="$overlay != 0">
-              <xsl:attribute name="style">
-                <xsl:text>position:absolute;visibility:visible;</xsl:text>
-              </xsl:attribute>
-            </xsl:if>
-
-            <hr/>
+            <xsl:call-template name="overlayDiv.attributes"/>
             <xsl:call-template name="section-bottom-nav"/>
           </div>
         </div>
@@ -476,29 +560,15 @@
     <xsl:apply-templates select="." mode="filename"/>
   </xsl:variable>
 
-  <xsl:variable name="nextfoil">
-    <xsl:apply-templates select="(following::foil
-                                 |following::section)[1]"
-                         mode="filename"/>
-  </xsl:variable>
+  <xsl:variable name="nextfoil" select="(following::foil
+                                        |following::section)[1]"/>
 
-  <xsl:variable name="prevfoil">
-    <xsl:choose>
-      <xsl:when test="preceding-sibling::foil">
-        <xsl:apply-templates select="preceding-sibling::foil[1]"
-                             mode="filename"/>
-      </xsl:when>
-      <xsl:when test="parent::section">
-        <xsl:apply-templates select="parent::section[1]"
-                             mode="filename"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$titlefoil.html"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
+  <xsl:variable name="prevfoil" select="(preceding-sibling::foil[1]
+                                        |parent::section[1]
+                                        |/slides)[last()]"/>
 
   <xsl:call-template name="write.chunk">
+    <xsl:with-param name="indent" select="$output.indent"/>
     <xsl:with-param name="filename" select="concat($base.dir, $thisfoil)"/>
     <xsl:with-param name="content">
       <head>
@@ -515,6 +585,78 @@
             </xsl:attribute>
           </script>
         </xsl:if>
+
+        <link rel="contents" href="{$toc.html}">
+          <xsl:attribute name="title">
+            <xsl:value-of select="(following::section|following::foil)[1]/title"/>
+          </xsl:attribute>
+        </link>
+
+        <link rel="top">
+          <xsl:attribute name="href">
+            <xsl:apply-templates select="/slides" mode="filename"/>
+          </xsl:attribute>
+          <xsl:attribute name="title">
+            <xsl:value-of select="/slides/slidesinfo/title[1]"/>
+          </xsl:attribute>
+        </link>
+
+        <xsl:if test="parent::section">
+          <link rel="up">
+            <xsl:attribute name="href">
+              <xsl:apply-templates select="parent::section[1]" mode="filename"/>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:value-of select="parent::section[1]/title"/>
+            </xsl:attribute>
+          </link>
+        </xsl:if>
+
+        <xsl:if test="$prevfoil">
+          <link rel="previous">
+            <xsl:attribute name="href">
+              <xsl:apply-templates select="$prevfoil" mode="filename"/>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:value-of select="$prevfoil/title"/>
+            </xsl:attribute>
+          </link>
+        </xsl:if>
+
+        <xsl:if test="preceding-sibling::foil">
+          <link rel="first">
+            <xsl:attribute name="href">
+              <xsl:apply-templates select="preceding-sibling::foil[last()]"
+                                   mode="filename"/>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:value-of select="preceding-sibling::foil[last()]/title"/>
+            </xsl:attribute>
+          </link>
+        </xsl:if>
+
+        <xsl:if test="$nextfoil">
+          <link rel="next">
+            <xsl:attribute name="href">
+              <xsl:apply-templates select="$nextfoil" mode="filename"/>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:value-of select="$nextfoil/title"/>
+            </xsl:attribute>
+          </link>
+        </xsl:if>
+
+        <xsl:if test="following-sibling::foil">
+          <link rel="last">
+            <xsl:attribute name="href">
+              <xsl:apply-templates select="following-sibling::foil[last()]"
+                                   mode="filename"/>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:value-of select="following-sibling::foil[last()]/title"/>
+            </xsl:attribute>
+          </link>
+        </xsl:if>
       </head>
       <body class="foil">
         <xsl:call-template name="body.attributes"/>
@@ -526,18 +668,11 @@
         <div class="{name(.)}" id="{$id}">
           <a name="{$id}"/>
           <xsl:call-template name="foil-top-nav"/>
-          <hr/>
 
           <xsl:apply-templates/>
 
           <div id="overlayDiv">
-            <xsl:if test="$overlay != 0">
-              <xsl:attribute name="style">
-                <xsl:text>position:absolute;visibility:visible;</xsl:text>
-              </xsl:attribute>
-            </xsl:if>
-
-            <hr/>
+            <xsl:call-template name="overlayDiv.attributes"/>
             <xsl:call-template name="foil-bottom-nav"/>
           </div>
         </div>
@@ -548,6 +683,10 @@
 
 <xsl:template match="foil" mode="foilnumber">
   <xsl:number count="foil" level="any"/>
+</xsl:template>
+
+<xsl:template match="slides" mode="filename">
+  <xsl:value-of select="$titlefoil.html"/>
 </xsl:template>
 
 <xsl:template match="foil" mode="filename">
@@ -686,7 +825,7 @@
 <!-- ============================================================ -->
 
 <xsl:template match="slides" mode="toc">
-  <p>
+  <p class="toctitle">
     <b>
       <xsl:call-template name="gentext">
         <xsl:with-param name="key">TableofContents</xsl:with-param>
@@ -727,9 +866,9 @@
   </xsl:variable>
 
   <dt>
+    <xsl:apply-templates select="." mode="foilnumber"/>
+    <xsl:text>. </xsl:text>
     <a href="{$thisfoil}">
-      <xsl:apply-templates select="." mode="foilnumber"/>
-      <xsl:text>. </xsl:text>
       <xsl:value-of select="title"/>
     </a>
   </dt>
@@ -930,11 +1069,13 @@
         </td>
       </tr>
     </table>
+    <hr class="head"/>
   </div>
 </xsl:template>
 
 <xsl:template name="section-bottom-nav">
   <div class="navfoot">
+    <hr class="foot"/>
     <table width="100%" border="0" cellpadding="0" cellspacing="0"
            summary="Navigation">
       <tr>
@@ -1048,11 +1189,13 @@
         </td>
       </tr>
     </table>
+    <hr/>
   </div>
 </xsl:template>
 
 <xsl:template name="foil-bottom-nav">
   <div class="navfoot">
+    <hr/>
     <table width="100%" border="0" cellspacing="0" cellpadding="0"
            summary="Navigation">
       <tr>
@@ -1166,6 +1309,21 @@ else
       </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<!-- ============================================================ -->
+
+<xsl:template match="@*" mode="copy">
+  <xsl:attribute name="{local-name(.)}">
+    <xsl:value-of select="."/>
+  </xsl:attribute>
+</xsl:template>
+
+<xsl:template match="html:*" xmlns:html='http://www.w3.org/1999/xhtml'>
+  <xsl:element name="{local-name(.)}" namespace="">
+    <xsl:apply-templates select="@*" mode="copy"/>
+    <xsl:apply-templates/>
+  </xsl:element>
 </xsl:template>
 
 <!-- ============================================================ -->
