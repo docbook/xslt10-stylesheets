@@ -7,10 +7,10 @@ FMGO=-N
 all: sdocbook.dtd sdocbookref.dtd
 
 test:
-	$(XJPARSE) testcust.xml
-	$(XJPARSE) testrefcust.xml
-	$(XJPARSE) test.xml
-	$(XJPARSE) testcss.xml
+	$(XJPARSE) tests/testcust.xml
+	$(XJPARSE) tests/testrefcust.xml
+	$(XJPARSE) tests/test.xml
+	$(XJPARSE) tests/testcss.xml
 
 freshmeat:
 ifeq ($(VERSION),)
