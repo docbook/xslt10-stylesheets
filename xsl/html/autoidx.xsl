@@ -4,9 +4,9 @@
 <!ENTITY lowercase "'abcdefghijklmnopqrstuvwxyz'">
 <!ENTITY uppercase "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'">
 
-<!ENTITY primary   'concat(primary/@sortas, primary[not(@sortas)])'>
-<!ENTITY secondary 'concat(secondary/@sortas, secondary[not(@sortas)])'>
-<!ENTITY tertiary  'concat(tertiary/@sortas, tertiary[not(@sortas)])'>
+<!ENTITY primary   'normalize-space(concat(primary/@sortas, primary[not(@sortas)]))'>
+<!ENTITY secondary 'normalize-space(concat(secondary/@sortas, secondary[not(@sortas)]))'>
+<!ENTITY tertiary  'normalize-space(concat(tertiary/@sortas, tertiary[not(@sortas)]))'>
 
 <!ENTITY section   '(ancestor-or-self::set
                      |ancestor-or-self::book
