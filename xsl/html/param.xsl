@@ -484,18 +484,6 @@ is produced, this HTML element will be used to make the list.
 </doc:param>
 
 <!-- ==================================================================== -->
-<xsl:param name="check.idref" doc:type='boolean'>1</xsl:param>
-
-<doc:param name="check.idref" xmlns="">
-<refpurpose>Test the target of IDREF attributes?</refpurpose>
-<refdescription>
-<para>If 1, the target of IDREF attributes are tested for presence
-(and uniqueness). This can be very expensive in large documents.
-</para>
-</refdescription>
-</doc:param>
-
-<!-- ==================================================================== -->
 <xsl:param name="use.id.function" doc:type='boolean' select="'1'"/>
 
 <doc:param name="use.id.function" xmlns="">
