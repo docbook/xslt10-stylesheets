@@ -77,8 +77,8 @@
       </xsl:if>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:message terminate="yes">
-        <xsl:text>Fail: this stylesheet relies on the exists() extension function</xsl:text>
+      <xsl:message terminate="no">
+        <xsl:value-of select="$srcFile"/>
       </xsl:message>
     </xsl:otherwise>
   </xsl:choose>
