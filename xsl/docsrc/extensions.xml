@@ -1,9 +1,8 @@
 <chapter>
-<title>Saxon Extensions</title>
+<title>Extensions</title>
 <?dbhtml filename="extensions.html"?>
 
-<para>Beginning with release 1.25, the DocBook XSL Stylesheets include
-a set of Java extensions for Saxon.</para>
+<para>Extensions are supported in recent releases of Saxon and Xalan.</para>
 
 <para>These extensions enable callouts, numbered program listings, and
 the direct inclusion of text:</para>
@@ -73,11 +72,23 @@ both a line and a column.)</para>
 </calloutlist>
 </programlistingco>
 
+<section>
+<title>Saxon Extensions</title>
+
+<para>The DocBook XSL Stylesheets include a set of Java extensions for
+Saxon.</para>
+
 <section><title>Installation</title>
 
 <para>The extensions are included in the distribution in
-<filename>extensions/nwalsh.jar</filename>. Just make sure that jar
-file is in your CLASSPATH when you run Saxon.</para>
+<filename>extensions/saxon642.jar</filename> and
+<filename>extensions/saxon643.jar</filename>. Use the former for Saxon
+version 6.4.2 and the latter for Saxon 6.4.3 or Saxon 6.4.4.  Saxon
+version 6.4.1 and all prior releases contained a significant bug, they
+are not supported.</para>
+
+<para>Just make sure that the right jar file is in your CLASSPATH when
+you run Saxon.</para>
 
 </section>
 
@@ -91,6 +102,37 @@ by default. To enable the extensions, turn on
 <para>For more control over the specific extensions, see
 <olink type="title" localinfo="html/param.html"
                     targetdocent="html-param.xml"/>.</para>
+</section>
+</section>
+
+<section>
+<title>Xalan Extensions</title>
+
+<para>The DocBook XSL Stylesheets include a set of Java extensions for
+XalanJ version 2. Extensions are not provided for XalanC at this time.</para>
+
+<section><title>Installation</title>
+
+<para>The extensions are included in the distribution in
+<filename>extensions/xalan2.jar</filename>.
+Xalan 1 is not supported.</para>
+
+<para>Just make sure that the jar file is in your CLASSPATH when
+you run Xalan.</para>
+
+</section>
+
+<section><title>Using the Extensions</title>
+
+<para>For compatibility with other processors, the extensions are disabled
+by default. To enable the extensions, turn on
+<literal>$xalan.extensions</literal>, for example by passing
+<literal>-PARAM xalan.extensions 1</literal> to Xalan.</para>
+
+<para>For more control over the specific extensions, see
+<olink type="title" localinfo="html/param.html"
+                    targetdocent="html-param.xml"/>.</para>
+</section>
 </section>
 
 </chapter>
