@@ -10,7 +10,7 @@
      information, see http://www.oasis-open.org/.
 <!-->
 
-<!-- This is the catalog data file for DocBook XML V4.2b0. It is provided as
+<!-- This is the catalog data file for DocBook V4.2b0. It is provided as
      a convenience in building your own catalog files. You need not use
      the filenames listed here, and need not use the filename method of
      identifying storage objects at all.  See the documentation for
@@ -28,25 +28,25 @@
 <!-- ...................................................................... -->
 <!-- DocBook modules ...................................................... -->
 
-<public publicId="-//OASIS//DTD DocBook XML CALS Table Model V4.2b0//EN"
+<public publicId="-//OASIS//DTD DocBook CALS Table Model V4.2b0//EN"
         uri="calstblx.dtd"/>
 
 <public publicId="-//OASIS//DTD XML Exchange Table Model 19990315//EN"
         uri="soextblx.dtd"/>
 
-<public publicId="-//OASIS//ELEMENTS DocBook XML Information Pool V4.2b0//EN"
+<public publicId="-//OASIS//ELEMENTS DocBook Information Pool V4.2b0//EN"
         uri="dbpoolx.mod"/>
 
-<public publicId="-//OASIS//ELEMENTS DocBook XML Document Hierarchy V4.2b0//EN"
+<public publicId="-//OASIS//ELEMENTS DocBook Document Hierarchy V4.2b0//EN"
         uri="dbhierx.mod"/>
 
-<public publicId="-//OASIS//ENTITIES DocBook XML Additional General Entities V4.2b0//EN"
+<public publicId="-//OASIS//ENTITIES DocBook Additional General Entities V4.2b0//EN"
         uri="dbgenent.mod"/>
 
-<public publicId="-//OASIS//ENTITIES DocBook XML Notations V4.2b0//EN"
+<public publicId="-//OASIS//ENTITIES DocBook Notations V4.2b0//EN"
         uri="dbnotnx.mod"/>
 
-<public publicId="-//OASIS//ENTITIES DocBook XML Character Entities V4.2b0//EN"
+<public publicId="-//OASIS//ENTITIES DocBook Character Entities V4.2b0//EN"
         uri="dbcentx.mod"/>
 
 <!-- ...................................................................... -->

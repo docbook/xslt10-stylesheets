@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook XML character entities module V4.2b0 ........................... -->
+<!-- DocBook character entities module V4.2b0 ............................... -->
 <!-- File dbcentx.mod ..................................................... -->
 
 <!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
@@ -9,7 +9,7 @@
 
      $Id$
 
-     Permission to use, copy, modify and distribute the DocBook XML DTD
+     Permission to use, copy, modify and distribute the DocBook DTD
      and its accompanying documentation for any purpose and without fee
      is hereby granted in perpetuity, provided that the above copyright
      notice and this paragraph appear in all copies.  The copyright
@@ -17,7 +17,7 @@
      any purpose.  It is provided "as is" without expressed or implied
      warranty.
 
-     If you modify the DocBook XML DTD in any way, except for declaring and
+     If you modify the DocBook DTD in any way, except for declaring and
      referencing additional sets of general entities and declaring
      additional notations, label your DTD as a variant of DocBook.  See
      the maintenance documentation for more information.
@@ -36,7 +36,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbcent PUBLIC
-     "-//OASIS//ENTITIES DocBook XML Character Entities V4.2b0//EN"
+     "-//OASIS//ENTITIES DocBook Character Entities V4.2b0//EN"
      "dbcentx.mod">
      %dbcent;
 
@@ -323,5 +323,5 @@
 %ISOpub;
 %ISOtech;
 
-<!-- End of DocBook XML character entity sets module V4.2b0 ................. -->
+<!-- End of DocBook character entity sets module V4.2b0 ..................... -->
 <!-- ...................................................................... -->

@@ -3390,7 +3390,7 @@ in the text (no (0) value, the default)
 
 <!-- Reference CALS Table Model -->
 <!ENTITY % tablemodel
-  PUBLIC "-//OASIS//DTD DocBook XML CALS Table Model V4.2b0//EN"
+  PUBLIC "-//OASIS//DTD DocBook CALS Table Model V4.2b0//EN"
   "calstblx.dtd">
 ]]>
 

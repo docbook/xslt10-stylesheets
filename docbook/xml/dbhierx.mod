@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook XML document hierarchy module V4.2b0 ........................... -->
+<!-- DocBook document hierarchy module V4.2b0 ............................... -->
 <!-- File dbhierx.mod ..................................................... -->
 
 <!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
@@ -9,7 +9,7 @@
 
      $Id$
 
-     Permission to use, copy, modify and distribute the DocBook XML DTD
+     Permission to use, copy, modify and distribute the DocBook DTD
      and its accompanying documentation for any purpose and without fee
      is hereby granted in perpetuity, provided that the above copyright
      notice and this paragraph appear in all copies.  The copyright
@@ -17,7 +17,7 @@
      any purpose.  It is provided "as is" without expressed or implied
      warranty.
 
-     If you modify the DocBook XML DTD in any way, except for declaring and
+     If you modify the DocBook DTD in any way, except for declaring and
      referencing additional sets of general entities and declaring
      additional notations, label your DTD as a variant of DocBook.  See
      the maintenance documentation for more information.
@@ -43,7 +43,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbhier PUBLIC
-     "-//OASIS//ELEMENTS DocBook XML Document Hierarchy V4.2b0//EN"
+     "-//OASIS//ELEMENTS DocBook Document Hierarchy V4.2b0//EN"
      "dbhierx.mod">
      %dbhier;
 
@@ -2107,5 +2107,5 @@ change will not be made after all. -->
 <!--end of article.attlist-->]]>
 <!--end of article.module-->]]>
 
-<!-- End of DocBook XML document hierarchy module V4.2b0 .................... -->
+<!-- End of DocBook document hierarchy module V4.2b0 ........................ -->
 <!-- ...................................................................... -->

@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook XML notations module V4.2b0 .................................... -->
+<!-- DocBook notations module V4.2b0 ........................................ -->
 <!-- File dbnotnx.mod ..................................................... -->
 
 <!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
@@ -9,7 +9,7 @@
 
      $Id$
 
-     Permission to use, copy, modify and distribute the DocBook XML DTD
+     Permission to use, copy, modify and distribute the DocBook DTD
      and its accompanying documentation for any purpose and without fee
      is hereby granted in perpetuity, provided that the above copyright
      notice and this paragraph appear in all copies.  The copyright
@@ -36,7 +36,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbnotn PUBLIC
-     "-//OASIS//ENTITIES DocBook XML Notations V4.2b0//EN"
+     "-//OASIS//ENTITIES DocBook Notations V4.2b0//EN"
      "dbnotnx.mod">
      %dbnotn;
 
@@ -94,5 +94,5 @@
 <!NOTATION SVG		SYSTEM "http://www.w3.org/TR/SVG/">
 <!NOTATION linespecific	SYSTEM "linespecific">
 
-<!-- End of DocBook XML notations module V4.2b0 ............................. -->
+<!-- End of DocBook notations module V4.2b0 ................................. -->
 <!-- ...................................................................... -->
