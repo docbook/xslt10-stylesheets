@@ -39,7 +39,7 @@
 
 <xsl:template match="refsect2">
   <xsl:text>&#10;.Sh "</xsl:text>
-  <xsl:value-of select="substring-before(title[1],' ')"/>
+  <xsl:value-of select="title[1]"/>
   <xsl:text>"&#10;</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>

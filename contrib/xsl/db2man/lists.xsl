@@ -3,13 +3,14 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version='1.0'>
 
-<xsl:template match="para|remark" mode="list">
+<xsl:template match="para|simpara|remark" mode="list">
   <xsl:variable name="foo">
     <xsl:apply-templates/>
   </xsl:variable>
   <xsl:value-of select="normalize-space($foo)"/>
   <xsl:text>&#10;</xsl:text>
-  <xsl:if test="following-sibling::para or following-sibling::remark">
+  <xsl:if test="following-sibling::para or following-sibling::simpara or
+		following-sibling::remark">
     <!-- Make sure multiple paragraphs within a list item don't -->
     <!-- merge together.                                        -->
     <xsl:text>&#10;</xsl:text>
