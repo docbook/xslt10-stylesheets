@@ -18,6 +18,8 @@
 <xsl:param name="show.revisionflag" select="'1'"/>
 
 <xsl:template name="system.head.content">
+<xsl:param name="node" select="."/>
+
 <style type="text/css">
 <xsl:text>
 div.added    { background-color: #ffff99; }
