@@ -155,7 +155,8 @@
     <xsl:value-of select="primary"/>
 
     <xsl:variable name="page-number-citations">
-      <xsl:for-each select="$refs[not(see) and not(seealso)]">
+      <xsl:for-each select="$refs[not(see) and not(seealso)
+                            and not(secondary)]">
         <xsl:apply-templates select="." mode="reference">
           <xsl:with-param name="scope" select="$scope"/>
         </xsl:apply-templates>
@@ -207,7 +208,8 @@
     <xsl:value-of select="secondary"/>
 
     <xsl:variable name="page-number-citations">
-      <xsl:for-each select="$refs[not(see) and not(seealso)]">
+      <xsl:for-each select="$refs[not(see) and not(seealso)
+                            and not(tertiary)]">
         <xsl:apply-templates select="." mode="reference">
           <xsl:with-param name="scope" select="$scope"/>
         </xsl:apply-templates>
