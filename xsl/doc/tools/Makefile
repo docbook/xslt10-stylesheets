@@ -1,7 +1,7 @@
 include ../../../cvstools/Makefile.incl
-XSLT=xt
+XSLT=saxon
 
-STYLE=../jrefhtml.xsl
+STYLE=../../html/docbook.xsl
 VPATH=../../docsrc/tools
 
 HTMLFILES = profiling.html
