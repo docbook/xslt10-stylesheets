@@ -112,3 +112,8 @@
 <!ENTITY chunk.datafile SYSTEM "../params/chunk.datafile.xml">
 <!ENTITY saxon.character.representation SYSTEM "../params/saxon.character.representation.xml">
 <!ENTITY generate.legalnotice.link SYSTEM "../params/generate.legalnotice.link.xml">
+
+<!ENTITY table.borders.with.css SYSTEM "../params/table.borders.with.css.xml">
+<!ENTITY table.border.thickness SYSTEM "../params/table.border.thickness.xml">
+<!ENTITY table.border.style SYSTEM "../params/table.border.style.xml">
+<!ENTITY table.border.color SYSTEM "../params/table.border.color.xml">

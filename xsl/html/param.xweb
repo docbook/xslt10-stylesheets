@@ -180,6 +180,10 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <reference><title>Tables</title>
 &default.table.width;
 &nominal.table.width;
+&table.borders.with.css;
+&table.border.style;
+&table.border.thickness;
+&table.border.color;
 </reference>
 
 <reference><title>QAndASet</title>
@@ -358,6 +362,10 @@ around all these parameters.</para>
 <src:fragref linkend="use.id.as.filename"/>
 <src:fragref linkend="use.id.function"/>
 <src:fragref linkend="using.chunker"/>
+<src:fragref linkend="table.borders.with.css"/>
+<src:fragref linkend="table.border.thickness"/>
+<src:fragref linkend="table.border.style"/>
+<src:fragref linkend="table.border.color"/>
 
 </xsl:stylesheet>
 </src:fragment>

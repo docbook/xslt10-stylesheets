@@ -168,6 +168,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &verbatim.properties;
 &xep.extensions;
 &xref.properties;
+&table.entry.padding;
 &table.border.thickness;
 &table.border.padding;
 &table.border.style;
@@ -305,6 +306,7 @@ around all these parameters.</para>
 <src:fragref linkend="verbatim.properties"/>
 <src:fragref linkend="xep.extensions"/>
 <src:fragref linkend="xref.properties"/>
+<src:fragref linkend="table.entry.padding"/>
 <src:fragref linkend="table.border.thickness"/>
 <src:fragref linkend="table.border.padding"/>
 <src:fragref linkend="table.border.style"/>
