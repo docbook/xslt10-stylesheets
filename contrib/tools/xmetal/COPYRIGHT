@@ -3,7 +3,7 @@
   PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
 <legalnotice><title>Copyright</title>
-<copyright><year>2001</year><holder>Robert Stayton</holder>
+<copyright><year>2001</year><holder>Robert Stayton</holder></copyright>
 <para>Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation files
 (the <quote>Software</quote>), to deal in the Software without
