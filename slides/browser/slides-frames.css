@@ -12,10 +12,10 @@ h1.title              { margin-top: 0px;
                         padding-top: 0px;
                       }
 
-.navhead              { display: visible;
+.navhead              { visibility: visible;
                       }
 
-.navfoot              { display: visible;
+.navfoot              { visibility: visible;
                       }
 
 /* ====================================================================== */
