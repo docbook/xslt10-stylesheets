@@ -23,6 +23,7 @@ test: check
 #	dtdformat --html slides.xml
 
 distrib: check
+	$(MAKE) -C doc all
 	$(CVS2LOG) -w
 ifeq ($(MERGEVER),)
 	$(MERGELOGS) > WhatsNew
