@@ -40,15 +40,20 @@
             </xsl:call-template>
           </xsl:attribute>
 
-          <xsl:choose>
-            <xsl:when test="$double.sided != 0">
-              <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
-              <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:attribute name="force-page-count">no-force</xsl:attribute>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:attribute name="initial-page-number">
+            <xsl:call-template name="initial.page.number">
+              <xsl:with-param name="element" select="'toc'"/>
+              <xsl:with-param name="master-reference" 
+                              select="$master-reference"/>
+            </xsl:call-template>
+          </xsl:attribute>
+
+          <xsl:attribute name="force-page-count">
+            <xsl:call-template name="force.page.count">
+              <xsl:with-param name="master-reference" 
+	                      select="$master-reference"/>
+            </xsl:call-template>
+          </xsl:attribute>
 
           <xsl:attribute name="hyphenation-character">
             <xsl:call-template name="gentext">
@@ -96,9 +101,14 @@
                               select="$master-reference"/>
             </xsl:call-template>
           </xsl:attribute>
-          <xsl:if test="$double.sided != 0">
-            <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
-          </xsl:if>
+
+          <xsl:attribute name="initial-page-number">
+            <xsl:call-template name="initial.page.number">
+              <xsl:with-param name="element" select="'toc'"/>
+              <xsl:with-param name="master-reference" 
+                              select="$master-reference"/>
+            </xsl:call-template>
+          </xsl:attribute>
 
           <xsl:attribute name="hyphenation-character">
             <xsl:call-template name="gentext">

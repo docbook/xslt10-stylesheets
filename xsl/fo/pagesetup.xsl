@@ -1993,10 +1993,80 @@
   <xsl:param name="master-reference" select="''"/>
 
   <xsl:choose>
-    <xsl:when test="$element = 'toc'">i</xsl:when>
+    <xsl:when test="$element = 'toc' and self::book">i</xsl:when>
     <xsl:when test="$element = 'preface'">i</xsl:when>
     <xsl:when test="$element = 'dedication'">i</xsl:when>
     <xsl:otherwise>1</xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="initial.page.number">
+  <xsl:param name="element" select="local-name(.)"/>
+  <xsl:param name="master-reference" select="''"/>
+
+  <xsl:choose>
+    <!-- double-sided output -->
+    <xsl:when test="$double.sided != 0">
+      <xsl:choose>
+        <xsl:when test="$element = 'toc'">auto-odd</xsl:when>
+        <xsl:when test="$element = 'book'">1</xsl:when>
+        <xsl:when test="$element = 'preface'">auto-odd</xsl:when>
+        <xsl:when test="$element = 'part' and not(preceding::chapter)
+                        and not(preceding::part)">1</xsl:when>
+        <xsl:when test="($element = 'dedication' or $element = 'article') and
+                        not(preceding::chapter
+                            or preceding::preface
+                            or preceding::appendix
+                            or preceding::article
+                            or preceding::dedication
+                            or parent::part
+                            or parent::reference)">1</xsl:when>
+        <xsl:when test="($element = 'chapter' or $element = 'appendix') and
+                        not(preceding::chapter
+                            or preceding::appendix
+                            or preceding::article
+                            or preceding::dedication
+                            or parent::part
+                            or parent::reference)">1</xsl:when>
+        <xsl:otherwise>auto-odd</xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+
+    <!-- single-sided output -->
+    <xsl:otherwise>
+      <xsl:choose>
+        <xsl:when test="$element = 'toc'">auto</xsl:when>
+        <xsl:when test="$element = 'preface'">auto</xsl:when>
+        <xsl:when test="($element = 'dedication' or $element = 'article') and
+                        not(preceding::chapter
+                            or preceding::preface
+                            or preceding::appendix
+                            or preceding::article
+                            or preceding::dedication
+                            or parent::part
+                            or parent::reference)">1</xsl:when>
+        <xsl:when test="($element = 'chapter' or $element = 'appendix') and
+                        not(preceding::chapter
+                            or preceding::appendix
+                            or preceding::article
+                            or preceding::dedication
+                            or parent::part
+                            or parent::reference)">1</xsl:when>
+        <xsl:otherwise>auto</xsl:otherwise>
+      </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="force.page.count">
+  <xsl:param name="element" select="local-name(.)"/>
+  <xsl:param name="master-reference" select="''"/>
+
+  <xsl:choose>
+    <!-- double-sided output -->
+    <xsl:when test="$double.sided != 0">end-on-even</xsl:when>
+    <!-- single-sided output -->
+    <xsl:otherwise>no-force</xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
