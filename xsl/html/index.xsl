@@ -23,6 +23,12 @@
 
   <xsl:if test="count(*)>0 or $generate.index != '0'">
     <div class="{name(.)}">
+      <xsl:if test="$generate.id.attributes != 0">
+        <xsl:attribute name="id">
+          <xsl:call-template name="object.id"/>
+        </xsl:attribute>
+      </xsl:if>
+
       <xsl:call-template name="anchor"/>
       <xsl:call-template name="index.titlepage"/>
       <xsl:apply-templates/>
@@ -56,6 +62,12 @@
 
 <xsl:template match="indexdiv">
   <div class="{name(.)}">
+    <xsl:if test="$generate.id.attributes != 0">
+      <xsl:attribute name="id">
+        <xsl:call-template name="object.id"/>
+      </xsl:attribute>
+    </xsl:if>
+
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates mode="not-indexentrys"/>
     <dl>

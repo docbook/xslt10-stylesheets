@@ -81,6 +81,12 @@
 
 <xsl:template match="colophon">
   <div class="{name(.)}">
+    <xsl:if test="$generate.id.attributes != 0">
+      <xsl:attribute name="id">
+        <xsl:call-template name="object.id"/>
+      </xsl:attribute>
+    </xsl:if>
+
     <xsl:call-template name="component.separator"/>
     <xsl:call-template name="component.title"/>
     <xsl:call-template name="component.subtitle"/>
@@ -96,6 +102,12 @@
 
 <xsl:template match="preface">
   <div class="{name(.)}">
+    <xsl:if test="$generate.id.attributes != 0">
+      <xsl:attribute name="id">
+        <xsl:call-template name="object.id"/>
+      </xsl:attribute>
+    </xsl:if>
+
     <xsl:call-template name="component.separator"/>
     <xsl:call-template name="preface.titlepage"/>
     <xsl:if test="$generate.preface.toc != '0'">
@@ -130,6 +142,12 @@
 
 <xsl:template match="chapter">
   <div class="{name(.)}">
+    <xsl:if test="$generate.id.attributes != 0">
+      <xsl:attribute name="id">
+        <xsl:call-template name="object.id"/>
+      </xsl:attribute>
+    </xsl:if>
+
     <xsl:call-template name="component.separator"/>
     <xsl:call-template name="chapter.titlepage"/>
     <xsl:if test="$generate.chapter.toc != '0'">
@@ -164,6 +182,12 @@
 
 <xsl:template match="appendix">
   <div class="{name(.)}">
+    <xsl:if test="$generate.id.attributes != 0">
+      <xsl:attribute name="id">
+        <xsl:call-template name="object.id"/>
+      </xsl:attribute>
+    </xsl:if>
+
     <xsl:call-template name="component.separator"/>
     <xsl:call-template name="appendix.titlepage"/>
     <xsl:if test="$generate.appendix.toc != '0'">
@@ -176,6 +200,12 @@
 
 <xsl:template match="article/appendix">
   <div class="{name(.)}">
+    <xsl:if test="$generate.id.attributes != 0">
+      <xsl:attribute name="id">
+        <xsl:call-template name="object.id"/>
+      </xsl:attribute>
+    </xsl:if>
+
     <xsl:call-template name="section.heading">
       <xsl:with-param name="level" select="2"/>
       <xsl:with-param name="title">
@@ -279,6 +309,12 @@
 
 <xsl:template match="article">
   <div class="{name(.)}">
+    <xsl:if test="$generate.id.attributes != 0">
+      <xsl:attribute name="id">
+        <xsl:call-template name="object.id"/>
+      </xsl:attribute>
+    </xsl:if>
+
     <xsl:call-template name="article.titlepage"/>
     <xsl:if test="$generate.article.toc != '0'">
       <xsl:call-template name="component.toc"/>

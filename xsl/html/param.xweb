@@ -151,6 +151,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &make.valid.html;
 &html.cleanup;
 &draft.watermark.image;
+&generate.id.attributes;
 </reference>
 
 <reference><title>XSLT Processing</title>
@@ -360,6 +361,7 @@ around all these parameters.</para>
 <src:fragref linkend="generate.chapter.toc.frag"/>
 <src:fragref linkend="generate.component.toc.frag"/>
 <src:fragref linkend="generate.division.toc.frag"/>
+<src:fragref linkend="generate.id.attributes.frag"/>
 <src:fragref linkend="generate.index.frag"/>
 <src:fragref linkend="generate.legalnotice.link.frag"/>
 <src:fragref linkend="generate.part.toc.frag"/>

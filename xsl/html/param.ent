@@ -45,6 +45,7 @@
 <!ENTITY generate.chapter.toc SYSTEM "../params/generate.chapter.toc.xml">
 <!ENTITY generate.component.toc SYSTEM "../params/generate.component.toc.xml">
 <!ENTITY generate.division.toc SYSTEM "../params/generate.division.toc.xml">
+<!ENTITY generate.id.attributes SYSTEM "../params/generate.id.attributes.xml">
 <!ENTITY generate.index SYSTEM "../params/generate.index.xml">
 <!ENTITY generate.legalnotice.link SYSTEM "../params/generate.legalnotice.link.xml">
 <!ENTITY generate.part.toc SYSTEM "../params/generate.part.toc.xml">
