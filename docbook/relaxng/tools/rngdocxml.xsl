@@ -220,9 +220,9 @@
       </doc:content-model>
 
       <xsl:if test="$rules">
-	<rng:rules>
+	<doc:rules>
 	  <xsl:copy-of select="$rules"/>
-	</rng:rules>
+	</doc:rules>
       </xsl:if>
     </xsl:copy>
   </xsl:template>

@@ -317,7 +317,7 @@
       </ul>
 
       <xsl:apply-templates select="doc:attributes"/>
-      <xsl:apply-templates select="rng:rules"/>
+      <xsl:apply-templates select="doc:rules"/>
     </div>
   </xsl:template>
 
@@ -543,7 +543,7 @@
     </li>
   </xsl:template>
 
-  <xsl:template match="rng:rules">
+  <xsl:template match="doc:rules">
     <p>Additional constraints:</p>
     <ul>
       <xsl:for-each select=".//s:assert">
