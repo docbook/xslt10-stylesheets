@@ -934,12 +934,13 @@ if (selectBrowser() == "ie5") {
       <xsl:text disable-output-escaping="yes">&lt;span </xsl:text>
       <xsl:choose>
         <xsl:when test="contains($pidata,'green')">class="green"</xsl:when>
+        <xsl:when test="contains($pidata,'blue')">class="blue"</xsl:when>
         <xsl:when test="contains($pidata,'orange')">class="orange"</xsl:when>
         <xsl:when test="contains($pidata,'red')">class="red"</xsl:when>
         <xsl:when test="contains($pidata,'brown')">class="brown"</xsl:when>
         <xsl:when test="contains($pidata,'violet')">class="violet"</xsl:when>
         <xsl:when test="contains($pidata,'black')">class="black"</xsl:when>
-        <xsl:otherwise>weight="bold"</xsl:otherwise>
+        <xsl:otherwise>class="bold"</xsl:otherwise>
       </xsl:choose>
       <xsl:text disable-output-escaping="yes">&gt;</xsl:text>
     </xsl:when>
