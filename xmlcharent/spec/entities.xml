@@ -41,7 +41,7 @@
   </affiliation>
 </editor>
 </authorgroup>
-<pubdate>04 Feb 2001</pubdate>
+<pubdate>19 Mar 2002</pubdate>
 <releaseinfo role="cvs">$Id$
 </releaseinfo>
 <copyright><year>2001</year><year>2002</year>
@@ -76,9 +76,16 @@ WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
 
 <legalnotice role="status"><title>Status of this Document</title>
 
+<!--
 <para>This is a working draft constructed by the editor. It is not
 an official committee work product and may not reflect the consensus
 opinion of the committee.</para>
+-->
+
+<para>This Working Draft was approved for publication by the OASIS
+DocBook Technical Committee. Comments on this document may be sent to <ulink
+url="mailto:docbook@lists.oasis-open.org">docbook@lists.oasis-open.org</ulink>.</para>
+
 <!--
 <para>This Committee Specification was approved for publication by the
 OASIS DocBook Technical Committee. It represents the
@@ -96,11 +103,11 @@ linkend="iso8879"/>.</para>
 </abstract>
 
 <revhistory>
-<revision role="entities-2002-02-04.html">
+<revision role="entities-2002-03-19.html">
   <revnumber>Working Draft</revnumber>
-  <date>04 Feb 2001</date>
+  <date>19 Mar 2002</date>
 </revision>
-<revision role="entities-2001-11-19.html">
+<revision role="http://www.oasis-open.org/docbook/xmlcharent/0.1/entities-2001-11-19.html">
   <revnumber>Working Draft</revnumber>
   <date>19 Nov 2001</date>
 </revision>
@@ -155,8 +162,9 @@ declaration in the internal subset, is shown in <xref linkend="ex.decl"/>.
 <example id="ex.decl">
 <title>Declaring and Using the ISO Latin 1 Character Entity Set</title>
 <programlisting>&lt;!DOCTYPE doc [
-&lt;!ENTITY iso-lat1 PUBLIC "ISO 8879:1986//ENTITIES Added Latin 1//EN//XML"
-                  "&baseuri;/isolat1.ent">
+&lt;!ENTITY % iso-lat1 PUBLIC "ISO 8879:1986//ENTITIES Added Latin 1//EN//XML"
+                    "&baseuri;/isolat1.ent">
+%iso-lat1;
 ]>
 &lt;doc>
 &lt;p>This document declares the ISO Latin 1 Character Entity Set, providing
