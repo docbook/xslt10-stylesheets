@@ -946,7 +946,7 @@ may suppress some section TOCs.
 </doc:param>
 
 <!-- ==================================================================== -->
-<xsl:param name="generate.section.toc.level" select='10' doc:type='integer'/>
+<xsl:param name="generate.section.toc.level" select='0' doc:type='integer'/>
 
 <doc:param name="generate.section.toc.level" xmlns="">
 <refpurpose>Control depth of TOC generation in sections</refpurpose>
