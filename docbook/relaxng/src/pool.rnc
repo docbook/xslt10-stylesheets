@@ -208,7 +208,8 @@ db.verbatim.attributes =
   attribute continuation { "continues" | "restarts" }?,
   attribute linenumbering { "numbered" | "unnumbered" }?,
   attribute startinglinenumber { xsd:integer }?,
-  attribute language { text }?
+  attribute language { text }?,
+  attribute xml:space { "preserve" }?
 
 # ======================================================================
 
@@ -229,6 +230,7 @@ db.biblio.class-enum.attribute =
    attribute class {
       "doi"
     | "isbn"
+    | "isrn"
     | "issn"
     | "libraryofcongress"
     | "pubnumber"
