@@ -48,6 +48,21 @@
     <xsl:if test="$pagewide != 0">
       <xsl:attribute name="span">all</xsl:attribute>
     </xsl:if>
+    <xsl:attribute name="hyphenation-character">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-character'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="hyphenation-push-character-count">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-push-character-count'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="hyphenation-remain-character-count">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-remain-character-count'"/>
+      </xsl:call-template>
+    </xsl:attribute>
     <xsl:copy-of select="$title"/>
   </fo:block>
 </xsl:template>
@@ -87,6 +102,21 @@
         <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
       </xsl:when>
     </xsl:choose>
+    <xsl:attribute name="hyphenation-character">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-character'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="hyphenation-push-character-count">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-push-character-count'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="hyphenation-remain-character-count">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-remain-character-count'"/>
+      </xsl:call-template>
+    </xsl:attribute>
 
     <xsl:apply-templates select="." mode="running.head.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
@@ -133,6 +163,21 @@
     <xsl:if test="$double.sided != 0">
       <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
     </xsl:if>
+    <xsl:attribute name="hyphenation-character">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-character'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="hyphenation-push-character-count">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-push-character-count'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="hyphenation-remain-character-count">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-remain-character-count'"/>
+      </xsl:call-template>
+    </xsl:attribute>
 
     <xsl:apply-templates select="." mode="running.head.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
@@ -179,6 +224,22 @@
     <xsl:if test="$double.sided != 0">
       <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
     </xsl:if>
+
+    <xsl:attribute name="hyphenation-character">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-character'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="hyphenation-push-character-count">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-push-character-count'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="hyphenation-remain-character-count">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-remain-character-count'"/>
+      </xsl:call-template>
+    </xsl:attribute>
 
     <xsl:apply-templates select="." mode="running.head.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
@@ -248,6 +309,22 @@
       </xsl:when>
     </xsl:choose>
 
+    <xsl:attribute name="hyphenation-character">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-character'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="hyphenation-push-character-count">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-push-character-count'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="hyphenation-remain-character-count">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-remain-character-count'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+
     <xsl:apply-templates select="." mode="running.head.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
@@ -314,6 +391,22 @@
         <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
       </xsl:when>
     </xsl:choose>
+
+    <xsl:attribute name="hyphenation-character">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-character'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="hyphenation-push-character-count">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-push-character-count'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="hyphenation-remain-character-count">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-remain-character-count'"/>
+      </xsl:call-template>
+    </xsl:attribute>
 
     <xsl:apply-templates select="." mode="running.head.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
@@ -383,6 +476,22 @@
         <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
       </xsl:when>
     </xsl:choose>
+
+    <xsl:attribute name="hyphenation-character">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-character'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="hyphenation-push-character-count">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-push-character-count'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="hyphenation-remain-character-count">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'hyphenation-remain-character-count'"/>
+      </xsl:call-template>
+    </xsl:attribute>
 
     <xsl:apply-templates select="." mode="running.head.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
