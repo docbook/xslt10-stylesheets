@@ -210,7 +210,7 @@ domain.inlines =
  | keyboard.inlines
 
 technical.inlines =
-  db.replaceable | db.systemitem | db.option | db.optional
+  db.replaceable | db.systemitem | db.option | db.optional | db.package
 
 error.inlines =
   db.errorcode | db.errortext | db.errorname | db.errortype
@@ -263,6 +263,7 @@ markup.inlines =
  | db.literal
  | db.code
  | db.constant
+ | db.email
 
 # TEI: no class
 
@@ -493,8 +494,6 @@ info.elements =
  | db.bibliosource
  | db.artpagenums
  | db.copyright
- | db.subjectset
- | db.keywordset
  | db.subjectset
  | db.keywordset
  | db.abstract
@@ -2522,7 +2521,7 @@ div {
    db.cmdsynopsis =
       element cmdsynopsis {
          cmdsynopsis.attlist,
-         cmdsynopsis.info?,
+         cmdsynopsis.info,
          (db.command | db.arg | db.group | db.sbr)+,
          db.synopfragment*
       }
@@ -2703,7 +2702,7 @@ div {
    db.funcsynopsis =
       element funcsynopsis {
          funcsynopsis.attlist,
-         funcsynopsis.info?,
+         funcsynopsis.info,
          (db.funcsynopsisinfo | db.funcprototype)+
       }
 }
@@ -2972,7 +2971,7 @@ div {
    db.ooclass =
       element ooclass {
          ooclass.attlist,
-         db.modifier*,
+         (db.package|db.modifier)*,
          db.classname
       }
 }
@@ -2998,7 +2997,7 @@ div {
    db.oointerface =
       element oointerface {
          oointerface.attlist,
-         db.modifier*,
+         (db.package|db.modifier)*,
          db.interfacename
       }
 }
@@ -3024,7 +3023,7 @@ div {
    db.ooexception =
       element ooexception {
          ooexception.attlist,
-         db.modifier*,
+         (db.package|db.modifier)*,
          db.exceptionname
       }
 }
@@ -4163,7 +4162,7 @@ div {
    db.date =
       element date {
          date.attlist,
-         docbook.text
+         (xsd:date|xsd:dateTime|xsd:gYearMonth|xsd:gYear)
       }
 }
 
@@ -4750,7 +4749,7 @@ div {
    db.pubdate =
       element pubdate {
          pubdate.attlist,
-         docbook.text
+         (xsd:date|xsd:dateTime|xsd:gYearMonth|xsd:gYear)
       }
 }
 
@@ -5085,6 +5084,31 @@ div {
    db.application =
       element application {
          application.attlist,
+         docbook.text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "package" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   local.package.attributes = empty
+
+   package.role.attribute = attribute role { text }
+
+   package.attlist =
+      package.role.attribute?
+    & common.attributes
+    & common.linking.attributes
+    & local.package.attributes
+
+   db.package =
+      element package {
+         package.attlist,
          docbook.text
       }
 }
