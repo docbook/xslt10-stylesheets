@@ -500,7 +500,7 @@ its parent.
         <tr>
           <td width="20%" align="left">
             <xsl:if test="count($prev)>0">
-              <a>
+              <a accesskey="p">
                 <xsl:attribute name="href">
                   <xsl:call-template name="href.target">
                     <xsl:with-param name="object" select="$prev"/>
@@ -524,7 +524,7 @@ its parent.
           <td width="20%" align="right">
             <xsl:text>&#160;</xsl:text>
             <xsl:if test="count($next)>0">
-              <a>
+              <a accesskey="n">
                 <xsl:attribute name="href">
                   <xsl:call-template name="href.target">
                     <xsl:with-param name="object" select="$next"/>
@@ -558,7 +558,7 @@ its parent.
         <tr>
           <td width="40%" align="left">
             <xsl:if test="count($prev)>0">
-              <a>
+              <a accesskey="p">
                 <xsl:attribute name="href">
                   <xsl:call-template name="href.target">
                     <xsl:with-param name="object" select="$prev"/>
@@ -574,7 +574,7 @@ its parent.
           <td width="20%" align="center">
             <xsl:choose>
               <xsl:when test="$home != .">
-                <a>
+                <a accesskey="h">
                   <xsl:attribute name="href">
                     <xsl:call-template name="href.target">
                       <xsl:with-param name="object" select="$home"/>
@@ -591,7 +591,7 @@ its parent.
           <td width="40%" align="right">
             <xsl:text>&#160;</xsl:text>
             <xsl:if test="count($next)>0">
-              <a>
+              <a accesskey="n">
                 <xsl:attribute name="href">
                   <xsl:call-template name="href.target">
                     <xsl:with-param name="object" select="$next"/>
@@ -613,7 +613,7 @@ its parent.
           <td width="20%" align="center">
             <xsl:choose>
               <xsl:when test="count($up)>0">
-                <a>
+                <a accesskey="u">
                   <xsl:attribute name="href">
                     <xsl:call-template name="href.target">
                       <xsl:with-param name="object" select="$up"/>
