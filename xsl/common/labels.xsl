@@ -155,7 +155,8 @@ element label.</para>
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:if test="$section.label.includes.component.label != 0
+  <xsl:if test="($section.label.includes.component.label != 0
+                or /article)
                 and $parent.is.component != 0">
     <xsl:variable name="parent.label">
       <xsl:apply-templates select=".." mode="label.markup"/>
