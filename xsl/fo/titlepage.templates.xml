@@ -1028,6 +1028,7 @@
              space-before.maximum="2em"
 	     space-after="0.5em"
 	     margin-left="{$title.margin.left}"
+	     start-indent="0pt"
 	     font-size="&hsize3;"
 	     font-weight="bold"
 	     font-family="{$title.fontset}"/>
@@ -1057,6 +1058,7 @@
              space-before.maximum="2em"
 	     space-after="0.5em"
 	     margin-left="{$title.margin.left}"
+	     start-indent="0pt"
 	     font-size="&hsize3;"
 	     font-weight="bold"
 	     font-family="{$title.fontset}"/>
@@ -1086,6 +1088,7 @@
              space-before.maximum="2em"
 	     space-after="0.5em"
 	     margin-left="{$title.margin.left}"
+	     start-indent="0pt"
 	     font-size="&hsize3;"
 	     font-weight="bold"
 	     font-family="{$title.fontset}"/>
@@ -1115,6 +1118,7 @@
              space-before.maximum="2em"
 	     space-after="0.5em"
 	     margin-left="{$title.margin.left}"
+	     start-indent="0pt"
 	     font-size="&hsize3;"
 	     font-weight="bold"
 	     font-family="{$title.fontset}"/>
@@ -1144,6 +1148,7 @@
              space-before.maximum="2em"
 	     space-after="0.5em"
 	     margin-left="{$title.margin.left}"
+	     start-indent="0pt"
 	     font-size="&hsize3;"
 	     font-weight="bold"
 	     font-family="{$title.fontset}"/>
@@ -1173,6 +1178,7 @@
              space-before.maximum="2em"
 	     space-after="0.5em"
 	     margin-left="{$title.margin.left}"
+	     start-indent="0pt"
 	     font-size="&hsize3;"
 	     font-weight="bold"
 	     font-family="{$title.fontset}"/>
@@ -1202,6 +1208,7 @@
              space-before.maximum="2em"
 	     space-after="0.5em"
 	     margin-left="{$title.margin.left}"
+	     start-indent="0pt"
 	     font-size="&hsize3;"
 	     font-weight="bold"
 	     font-family="{$title.fontset}"/>
