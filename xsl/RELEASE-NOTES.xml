@@ -1,20 +1,169 @@
 <?xml version='1.0'?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
 <article>
-<articleinfo>
-<title>DocBook XSL Stylesheet Release Notes</title>
-<pubdate>10 November 2004</pubdate>
-<releaseinfo role="cvs">$Id$</releaseinfo> 
-<corpauthor>DocBook Open Repository Team</corpauthor> 
-</articleinfo> 
-<para>These are the release notes for the DocBook XSL Stylesheets.
-This file documents (mostly) changes to the public APIs. What,
-exactly, counts as a public API is still somewhat in question, but it
-includes at least the global parameters.</para> 
-<para>You may also be interested in the more detailed <ulink url="WhatsNew"/>.
-</para> 
-<itemizedlist>
+  <articleinfo>
+    <title>DocBook XSL Stylesheet Release Notes</title>
+    <pubdate>29 November 2004</pubdate>
+    <releaseinfo role="cvs">$Id$</releaseinfo> 
+    <corpauthor>DocBook Open Repository Team</corpauthor> 
+  </articleinfo> 
+  <para>These are the release notes for the DocBook XSL Stylesheets.
+  This file documents (mostly) changes to the public APIs. What,
+  exactly, counts as a public API is still somewhat in question, but it
+  includes at least the global parameters.</para> 
+  <para>You may also be interested in the more detailed <ulink url="WhatsNew"/>.
+  </para>
+  <section>
+    <title>Release 1.67.1</title>
+    <para>This release includes a number of bug fixes; for details,
+    see the <ulink url="WhatsNew"/> file.</para>
+      <para>The following lists provide details about API and feature changes.
+      <itemizedlist id="V1671_FO">
+        <title>FO</title>
+        <listitem>
+          <para>Tables: Inherited cell properties are now passed to the
+          <parameter>table.cell.properties</parameter> template so they can
+          be overridden by a customization.</para>
+        </listitem>
+        <listitem>
+          <para>Tables: Added support for bgcolor PI on table row
+          element.</para>
+        </listitem>
+        <listitem>
+          <para>TOCs: Added new parameter
+          <parameter>simplesect.in.toc</parameter>; default value of
+          <literal>0</literal> causes simplesect to be omitted from TOCs; to
+          cause <sgmltag>simplesect</sgmltag> to be included in TOCs, you
+          must set the value of <parameter>simplesect.in.toc</parameter> to
+          <literal>1</literal>.Comment from Norm:
+
+            <blockquote>
+              <para><emphasis>Simplesect elements aren't supposed to
+              appear in the ToC at all... The use case for simplesect
+              is when, for example, every chapter in a book ends with
+              "Exercises" or "For More Information" sections and you
+              don't want those to appear in the ToC.</emphasis></para>
+            </blockquote>
+            </para>
+        </listitem>
+        <listitem>
+          <para>Sections: Reverted change that caused a variable reference
+          to be used in a template match and rewrote code to preserve
+          intended semantics.</para>
+        </listitem>
+        <listitem>
+          <para>Lists: Added workaround to prevent "* 0.60 + 1em" garbage in
+          list output from PassiveTeX</para>
+        </listitem>
+        <listitem>
+          <para>Moved the literal attributes from
+          <parameter>component.title</parameter> to the
+          <parameter>component.title.properties</parameter> attribute-set so
+          they can be customized.</para>
+        </listitem>
+        <listitem>
+          <para>Lists: Added glossdef's first para to special handling in
+          <literal>fo:list-item-body</literal>.</para>
+        </listitem>
+      </itemizedlist>
+
+      <itemizedlist id="V1671_HTML">
+        <title>HTML</title>
+        <listitem>
+          <para>TOCs: Added new parameter
+          <parameter>simplesect.in.toc</parameter>; for details, see
+          the list of <xref linkend="V1671_FO"/> changes for this
+          release.</para>
+        </listitem>
+        <listitem>
+          <para>Indexing: Added new parameter
+          <parameter>index.prefer.titleabbrev</parameter>; when set to
+          <literal>1</literal>, index references will use
+          <sgmltag>titleabbrev</sgmltag> instead of
+          <sgmltag>title</sgmltag> when available.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>HTML Help</title>
+        <listitem>
+          <para>Added support for generating windows-1252-encoded
+          output using Saxon; for more details, see the list of <xref
+          linkend="V1671_EXT"/> changes for this release.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist id="V1671_MAN">
+        <title>man pages</title>
+        <listitem>
+          <para>Replaced named/numeric character-entity references for
+          non-breaking space with groff equivalent (backslash-tilde).</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist id="V1671_EXT">
+        <title>XSL Java extensions</title>
+        <listitem>
+          <para>Saxon extensions: Added the
+          <classname>Windows1252</classname> class.  It extends Saxon
+          6.5.x with the windows-1252 character set, which is
+          particularly useful when generating HTML Help for Western
+          European Languages (code from
+          <personname><firstname>Pontus</firstname>
+          <surname>Haglund</surname></personname> and contributed to the
+          DocBook community by Sectra AB, Sweden.</para>
+          <para>To use:
+          <orderedlist>
+            <listitem>
+              <para>Make sure that the Saxon 6.5.x jar file and the jar file for
+              the DocBook XSL Java extensions are in your <envar>CLASSPATH</envar></para>
+            </listitem>
+            <listitem>
+              <para>Create a DocBook XSL customization layer -- a file named
+              <filename>mystylesheet.xsl</filename> or whatever -- that, at a
+              minimum, contains the following:
+              <screen format="linespecific">  &lt;xsl:stylesheet
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    version='1.0'>
+    &lt;xsl:import href="http://docbook.sourceforge.net/release/xsl/current/htmlhelp/htmlhelp.xsl"/>
+    &lt;xsl:output method="html" encoding="WINDOWS-1252" indent="no"/>
+    &lt;xsl:param name="htmlhelp.encoding" select="WINDOWS-1252">&lt;/xsl:param>
+    &lt;xsl:param name="chunker.output.encoding" select="WINDOWS-1252">&lt;/xsl:param>
+    &lt;xsl:param name="saxon.character.representation" select="native">&lt;/xsl:param>
+  &lt;/xsl:stylesheet></screen>
+              </para>
+              <para>Invoke Saxon with the
+              <literal>encoding.windows-1252</literal> Java system property set
+              to <literal>com.nwalsh.saxon.Windows1252</literal>; for example
+              <screen format="linespecific">  java \
+    -Dencoding.windows-1252=com.nwalsh.saxon.Windows1252 \
+  com.icl.saxon.StyleSheet \
+  mydoc.xml mystylesheet.xsl</screen>
+
+              Or, for a more complete "real world" case showing other
+              options you'll typically want to use:
+              <screen format="linespecific">  java \
+    -Dencoding.windows-1252=com.nwalsh.saxon.Windows1252 \
+    -Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl \
+    -Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl \
+    -Djavax.xml.transform.TransformerFactory=com.icl.saxon.TransformerFactoryImpl \
+  com.icl.saxon.StyleSheet \
+    -x org.apache.xml.resolver.tools.ResolvingXMLReader \
+    -y org.apache.xml.resolver.tools.ResolvingXMLReader \
+    -r org.apache.xml.resolver.tools.CatalogResolver \
+  mydoc.xml mystylesheet.xsl</screen>
+
+              In both cases, the "mystylesheet.xsl" file should be a
+              DocBook customization layer containing the parameters
+              show in step 2.
+              </para>
+            </listitem>
+          </orderedlist>
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
+  </section>
+<section>
   <title>Release 1.67.0</title>
+  <itemizedlist>
   <listitem>
     <para>A number of important bug fixes, documented in <ulink url="WhatsNew"/>.</para>
   </listitem>
@@ -92,8 +241,10 @@ includes at least the global parameters.</para>
     package</para>
   </listitem>
 </itemizedlist>
-<itemizedlist>
+</section>
+<section>
 <title>Release 1.66.1</title>
+  <itemizedlist>
 <listitem>
 <para>A number of important bug fixes, documented in <ulink url="WhatsNew"/>.
 </para>
@@ -359,8 +510,10 @@ Added Bosnian locale file as common/bs.xml.
 </para>
 </listitem> 
 </itemizedlist>
-<itemizedlist>
+</section>
+<section>
 <title>Release 1.65.0</title> 
+<itemizedlist>
 <listitem>
 <para>A number of important bug fixes, documented in <ulink url="WhatsNew"/>.
 </para>
@@ -398,8 +551,10 @@ with xsltproc 1.1.1 and later. Currently supported languages are
 English, Czech, German, French, Spanish and Danish.</para> 
 </listitem> 
 </itemizedlist> 
-<itemizedlist>
+</section>
+<section>
 <title>Release 1.64.1</title> 
+<itemizedlist>
 <para>General bug fixes and improvements. Sorry about the failure to produce
 an updated release notes file for 1.62.0—1.63.2</para> 
 <listitem>
@@ -410,8 +565,10 @@ will work with older Xalan 2 implementations, <filename>xalan25.jar</filename>
 works with Xalan 2.5.</para>
 </listitem>
 </itemizedlist> 
-<itemizedlist>
+</section>
+<section>
 <title>Release 1.61.0</title> 
+<itemizedlist>
 <para>Lots of bug fixes and improvements.</para> 
 <listitem>
 <para>Initial support for timestamp PI. From now you
@@ -593,8 +750,10 @@ and first varlistentry since DocBook 4.2 supports that now.
 </para>
 </listitem>
 </itemizedlist> 
-<itemizedlist>
+</section>
+<section>
 <title>Release 1.60.1</title> 
+<itemizedlist>
 <para>Lots of bug fixes.</para> 
 <listitem>
 <para>The format of the <filename>titlepage.templates.xml</filename> files and
@@ -736,8 +895,10 @@ with the <quote>dbhtml</quote> PI.
 </para>
 </listitem> 
 </itemizedlist> 
-<itemizedlist>
+</section>
+<section>
 <title>Release 1.59.2</title> 
+<itemizedlist>
 <para>The 1.59.2 fixes an FO bug in the page masters that causes FOP to fail.
 </para> 
 <listitem>
@@ -775,8 +936,10 @@ the base font size, not a fixed "12pt".
 </para>
 </listitem>
 </itemizedlist> 
-<itemizedlist>
+</section>
+<section>
 <title>Release 1.59.1</title> 
+<itemizedlist>
 <para>The 1.59.1 fixes a few bugs.
 </para> 
 <listitem>
@@ -827,8 +990,10 @@ and <sgmltag>procedure</sgmltag>s.
 </para>
 </listitem>
 </itemizedlist> 
-<itemizedlist>
+</section>
+<section>
 <title>Release 1.58.0</title> 
+<itemizedlist>
 <para>The 1.58.0 adds some initial support for extensions in xsltproc, adds
 a few features, and fixes bugs.
 </para> 
@@ -874,15 +1039,19 @@ just a simple name.
 </para>
 </listitem>
 </itemizedlist> 
-<itemizedlist>
+</section>
+<section>
 <title>Release 1.57.0</title>
+<itemizedlist>
 <listitem>
 <para>The 1.57.0 release wasn't documented here. Oops.
 </para>
 </listitem>
 </itemizedlist> 
-<itemizedlist>
+</section>
+<section>
 <title>Release 1.56.0</title> 
+<itemizedlist>
 <para>The 1.56.0 release fixes bugs.
 </para> 
 <listitem>
@@ -1050,4 +1219,5 @@ XHTML chunker to output HTML instead of XHTML.
 <note>
 <para>Consult CVS archive for release notes on earlier releases</para>
 </note>
+</section>
 </article>
