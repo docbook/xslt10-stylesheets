@@ -428,7 +428,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
       <xsl:when test="@format = 'SVG'">
         <object data="{$filename}" type="image/svg+xml">
           <xsl:call-template name="process.image.attributes">
-            <xsl:with-param name="alt" select="$alt"/>
+            <!--xsl:with-param name="alt" select="$alt"/ there's no alt here-->
             <xsl:with-param name="html.depth" select="$html.depth"/>
             <xsl:with-param name="html.width" select="$html.width"/>
             <xsl:with-param name="longdesc" select="$longdesc"/>
@@ -446,7 +446,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
           <xsl:if test="$use.embed.for.svg != 0">
             <embed src="{$filename}" type="image/svg+xml">
               <xsl:call-template name="process.image.attributes">
-                <xsl:with-param name="alt" select="$alt"/>
+                <!--xsl:with-param name="alt" select="$alt"/ there's no alt here -->
                 <xsl:with-param name="html.depth" select="$html.depth"/>
                 <xsl:with-param name="html.width" select="$html.width"/>
                 <xsl:with-param name="longdesc" select="$longdesc"/>
