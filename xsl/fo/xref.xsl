@@ -775,12 +775,15 @@
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
+      <xsl:text>????</xsl:text>
+<!--
       <xsl:call-template name="olink.outline">
         <xsl:with-param name="outline.base.uri"
                         select="unparsed-entity-uri(@targetdocent)"/>
         <xsl:with-param name="localinfo" select="@localinfo"/>
         <xsl:with-param name="return" select="'xreftext'"/>
       </xsl:call-template>
+-->
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
