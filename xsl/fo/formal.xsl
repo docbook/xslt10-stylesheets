@@ -202,9 +202,9 @@
     <xsl:choose>
       <xsl:when test="$align != ''">
         <fo:block>
-	  <xsl:attribute name="text-align">
-	    <xsl:value-of select="$align"/>
-	  </xsl:attribute>
+          <xsl:attribute name="text-align">
+            <xsl:value-of select="$align"/>
+          </xsl:attribute>
           <xsl:call-template name="formal.object">
             <xsl:with-param name="placement" select="$placement"/>
           </xsl:call-template>
@@ -263,7 +263,7 @@
       <xsl:variable name="olist" select="mediaobject/imageobject
                      |mediaobject/imageobjectco
                      |mediaobject/videoobject
-		     |mediaobject/audioobject
+                     |mediaobject/audioobject
 		     |mediaobject/textobject"/>
 
       <xsl:variable name="object.index">
@@ -541,6 +541,10 @@
     <xsl:when test="@orient='land'">
       <fo:block-container reference-orientation="90">
         <fo:block>
+	  <!-- Such spans won't work in most FO processors since it does
+	       not follow the XSL spec, which says it must appear on
+	       an element that is a direct child of fo:flow.
+	       Some processors relax that requirement, however. -->
           <xsl:attribute name="span">
             <xsl:choose>
               <xsl:when test="@pgwide=1">all</xsl:when>
