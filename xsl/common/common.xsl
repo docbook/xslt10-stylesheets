@@ -421,6 +421,20 @@ Defaults to the context node.</para>
   -->
   <xsl:param name="node" select="."/>
 
+  <xsl:variable name="style">
+    <xsl:choose>
+      <xsl:when test="$node/@role">
+        <xsl:value-of select="$node/@role"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="gentext.template">
+          <xsl:with-param name="context" select="'styles'"/>
+s          <xsl:with-param name="name" select="'person-name'"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:choose>
     <!-- the personname element is a specialcase -->
     <xsl:when test="$node/personname">
@@ -449,7 +463,7 @@ Defaults to the context node.</para>
       <xsl:variable name="has_l" select="$l_nl"/>
 
       <xsl:choose>
-        <xsl:when test="$node/@role = 'family-given'">
+        <xsl:when test="$style = 'family-given'">
           <!-- The family-given style applies a convention for identifying given -->
           <!-- and family names in locales where it may be ambiguous -->
           <xsl:if test="$has_h">
@@ -480,6 +494,13 @@ Defaults to the context node.</para>
           </xsl:if>
 
           <xsl:text> [FAMILY Given]</xsl:text>
+        </xsl:when>
+        <xsl:when test="$style = 'last-first'">
+          <xsl:value-of select="$s_nl"/>
+          <xsl:if test="$has_f">
+            <xsl:if test="$has_s"><xsl:text>, </xsl:text></xsl:if>
+            <xsl:value-of select="$f_nl"/>
+          </xsl:if>
         </xsl:when>
         <xsl:otherwise>
           <xsl:if test="$has_h">
