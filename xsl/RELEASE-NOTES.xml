@@ -18,6 +18,59 @@ This file documents (mostly) changes to the public APIs. What,
 exactly, counts as a public API is still somewhat in question, but it
 includes at least the global parameters.</para>
 
+<itemizedlist><title>Release 1.60.0</title>
+
+<para>Lots of bug fixes.</para>
+
+<listitem>
+<para>The format of the <filename>titlepage.templates.xml</filename> files and
+the stylesheet that transforms them have been significantly changed. All of the
+attributes used to control the templates are now namespace qualified. So what
+used to be:</para>
+
+<programlisting><![CDATA[<t:titlepage element="article" wrapper="fo:block">]]></programlisting>
+
+<para>is now:</para>
+
+<programlisting><![CDATA[<t:titlepage t:element="article" t:wrapper="fo:block">]]></programlisting>
+
+<para>Attributes from other namespaces (including those that are unqualified) are
+now copied directly through. In practice, this means that the names that used
+to be <quote>fo:</quote> qualified:</para>
+
+<programlisting><![CDATA[<title named-template="component.title"
+       param:node="ancestor-or-self::article[1]"
+       fo:text-align="center"
+       fo:keep-with-next="always"
+       fo:font-size="&hsize5;"
+       fo:font-weight="bold"
+       fo:font-family="{$title.font.family}"/>]]></programlisting>
+
+<para>are now unqualified:</para>
+
+<programlisting><![CDATA[<title t:named-template="component.title"
+       param:node="ancestor-or-self::article[1]"
+       text-align="center"
+       keep-with-next="always"
+       font-size="&hsize5;"
+       font-weight="bold"
+       font-family="{$title.font.family}"/>]]></programlisting>
+
+<para>The <sgmltag>t:titlepage</sgmltag> and <sgmltag>t:titlepage-content</sgmltag>
+elements both generate wrappers now. And unqualified attributes on those elements
+are passed through. This means that you can now make the title font apply to
+ane entire titlepage and make the entire <quote>recto</quote>
+titlepage centered by specifying the font and alignment on the those elements:</para>
+
+<programlisting>&lt;t:titlepage t:element="article" t:wrapper="fo:block"
+             font-family="{$title.font.family}">
+
+  &lt;t:titlepage-content t:side="recto"
+             text-align="center"></programlisting>
+
+</listitem>
+</itemizedlist>
+
 <itemizedlist><title>Release 1.59.2</title>
 
 <para>The 1.59.2 fixes an FO bug in the page masters that causes FOP to fail.
