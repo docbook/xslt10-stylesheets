@@ -1,6 +1,8 @@
 # this file is a -*- makefile -*- snippet
 # targets in the file are used only for release builds
 
+# $Id$
+
 RELEASE-NOTES.html: RELEASE-NOTES.xml
 	$(XJPARSE) $<
 	$(XSLT) $< $(DOC-LINK-STYLE) $@
