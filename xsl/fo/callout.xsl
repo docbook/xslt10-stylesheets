@@ -107,9 +107,48 @@
   <xsl:choose>
     <!-- Draw callouts as images -->
     <xsl:when test="$callout.graphics != '0'
-                  and $conum &lt;= $callout.graphics.number.limit">
+                    and $conum &lt;= $callout.graphics.number.limit">
       <fo:external-graphic
           src="{$callout.graphics.path}{$conum}{$callout.graphics.extension}"/>
+    </xsl:when>
+
+    <xsl:when test="$callout.unicode != 0
+                    and $conum &lt;= $callout.unicode.number.limit">
+      <xsl:choose>
+        <xsl:when test="$callout.unicode.start.character = 10102">
+          <xsl:choose>
+            <xsl:when test="$conum = 1">&#10102;</xsl:when>
+            <xsl:when test="$conum = 2">&#10103;</xsl:when>
+            <xsl:when test="$conum = 3">&#10104;</xsl:when>
+            <xsl:when test="$conum = 4">&#10105;</xsl:when>
+            <xsl:when test="$conum = 5">&#10106;</xsl:when>
+            <xsl:when test="$conum = 6">&#10107;</xsl:when>
+            <xsl:when test="$conum = 7">&#10108;</xsl:when>
+            <xsl:when test="$conum = 8">&#10109;</xsl:when>
+            <xsl:when test="$conum = 9">&#10110;</xsl:when>
+            <xsl:when test="$conum = 10">&#10111;</xsl:when>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:message>
+            <xsl:text>Don't know how to generate Unicode callouts </xsl:text>
+            <xsl:text>when $callout.unicode.start.character is </xsl:text>
+            <xsl:value-of select="$callout.unicode.start.character"/>
+          </xsl:message>
+          <fo:inline background-color="#404040"
+                     color="white"
+                     padding-top="0.1em"
+                     padding-bottom="0.1em"
+                     padding-start="0.2em"
+                     padding-end="0.2em"
+                     baseline-shift="0.1em"
+                     font-family="Times"
+                     font-weight="bold"
+                     font-size="75%">
+            <xsl:value-of select="$conum"/>
+          </fo:inline>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
 
     <!-- Pick callouts from Zapf Dingbats - max 10 -->
@@ -137,8 +176,6 @@
         </xsl:choose>
       </fo:inline>
     </xsl:when>
-
-    <!-- FIXME: how do I do callout.unicode here? -->
 
     <!-- Most safe: draw a dark gray square with a white number inside -->
     <xsl:otherwise>

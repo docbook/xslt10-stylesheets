@@ -168,6 +168,12 @@ element label.</para>
     </xsl:if>
   </xsl:if>
 
+<!--
+  <xsl:message>
+    <xsl:value-of select="$label"/>, <xsl:number count="section"/>
+  </xsl:message>
+-->
+
   <xsl:choose>
     <xsl:when test="@label">
       <xsl:value-of select="@label"/>

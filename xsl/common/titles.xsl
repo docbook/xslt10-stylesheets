@@ -254,8 +254,8 @@ title of the element. This does not include the label.
       </xsl:apply-templates>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:call-template name="gentext.element.name">
-        <xsl:with-param name="element.name" select="name(.)"/>
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'Abstract'"/>
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>

@@ -76,6 +76,15 @@
     <xsl:apply-templates select="." mode="object.title.template"/>
   </xsl:variable>
 
+<!--
+  <xsl:message>
+    <xsl:text>object.title.markup: </xsl:text>
+    <xsl:value-of select="local-name(.)"/>
+    <xsl:text>: </xsl:text>
+    <xsl:value-of select="$template"/>
+  </xsl:message>
+-->
+
   <xsl:call-template name="substitute-markup">
     <xsl:with-param name="allow-anchors" select="1"/>
     <xsl:with-param name="template" select="$template"/>
