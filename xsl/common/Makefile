@@ -5,7 +5,7 @@ SOURCES=af.xml \
         ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml et.xml fi.xml \
         fr.xml hu.xml id.xml it.xml ja.xml ko.xml nl.xml no.xml pl.xml \
         pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sr.xml sv.xml \
-        tr.xml zh_cn.xml zh_tw.xml
+        tr.xml uk.xml zh_cn.xml zh_tw.xml
 
 GENSTYLE=../../gentext/xsl/xsl.xsl
 
@@ -39,6 +39,7 @@ sl.xml: ../../gentext/locale/sl.xml $(GENSTYLE)
 sr.xml: ../../gentext/locale/sr.xml $(GENSTYLE)
 sv.xml: ../../gentext/locale/sv.xml $(GENSTYLE)
 tr.xml: ../../gentext/locale/tr.xml $(GENSTYLE)
+uk.xml: ../../gentext/locale/uk.xml $(GENSTYLE)
 zh_cn.xml: ../../gentext/locale/zh_cn.xml $(GENSTYLE)
 zh_tw.xml: ../../gentext/locale/zh_tw.xml $(GENSTYLE)
 
