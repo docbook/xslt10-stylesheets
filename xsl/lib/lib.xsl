@@ -95,8 +95,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <refpurpose>Substitute one text string for another in a string</refpurpose>
 <refdescription>
 <para>The <function>string.subst</function> template replaces all
-occurances of <param>target</param> in <param>string</param>
-with <param>replacement</param> and returns the result.
+occurances of <parameter>target</parameter> in <parameter>string</parameter>
+with <parameter>replacement</parameter> and returns the result.
 </para>
 </refdescription>
 </doc:template>
@@ -198,7 +198,7 @@ unqualified length ("20" for "20pt") from a dimension.
 <refdescription>
 <para>The <function>length-spec</function> template returns the
 qualified length from a dimension. If an unqualified length is given,
-the <param>default.units</param> will be added to it.
+the <parameter>default.units</parameter> will be added to it.
 </para>
 </refdescription>
 </doc:template>

@@ -1,7 +1,5 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:lxslt="http://xml.apache.org/xslt"
-                exclude-result-prefixes="lxslt"
                 version='1.0'>
 
 <xsl:import href="../html/docbook.xsl"/>
@@ -22,8 +20,6 @@
      ******************************************************************** -->
 
 <!-- ==================================================================== -->
-
-<xsl:template match="lxslt:component"/>
 
 <xsl:param name="part.autolabel" select="0"/>
 
