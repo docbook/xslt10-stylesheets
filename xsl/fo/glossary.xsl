@@ -228,10 +228,13 @@
   <fo:basic-link internal-destination="{$id}"
                  xsl:use-attribute-sets="xref.properties">
     <xsl:apply-templates/>
-    <xsl:call-template name="insert.page.citation">
-      <xsl:with-param name="id" select="$id"/>
-    </xsl:call-template>
   </fo:basic-link>
+
+  <xsl:if test="$insert.xref.page.number != 0">
+    <xsl:apply-templates select="parent::glossentry" mode="page.citation">
+      <xsl:with-param name="id" select="$id"/>
+    </xsl:apply-templates>
+  </xsl:if>
 </xsl:template>
 
 <!-- ==================================================================== -->
