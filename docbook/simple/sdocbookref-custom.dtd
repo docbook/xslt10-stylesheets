@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- Simplified DocBook RefEntry DTD V1.1b2 ................................. -->
+<!-- Simplified DocBook RefEntry DTD V1.1b3 ................................. -->
 <!-- File sdocbookref-custom.dtd .......................................... -->
 
 <!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
@@ -30,17 +30,17 @@
 
 <!-- ...................................................................... -->
 
-<!-- This is the driver file for V1.1b2 of the Simplified DocBook
+<!-- This is the driver file for V1.1b3 of the Simplified DocBook
      RefEntry XML DTD. Please use the following formal public identifier
      to identify it:
 
-     "-//OASIS//DTD Simplified DocBook RefEntry XML V1.1b2//EN"
+     "-//OASIS//DTD Simplified DocBook RefEntry XML V1.1b3//EN"
 
      For example:
 
      <!DOCTYPE article
-               PUBLIC "-//OASIS//DTD Simplified DocBook RefEntry XML V1.1b2//EN"
-      "http://www.oasis-open.org/docbook/xml/simple/1.1b2/sdocbookref.dtd"
+               PUBLIC "-//OASIS//DTD Simplified DocBook RefEntry XML V1.1b3//EN"
+      "http://www.oasis-open.org/docbook/xml/simple/1.1b3/sdocbookref.dtd"
      [...]>
 -->
 
@@ -56,5 +56,5 @@
 <!ENTITY % sdocbook-custom.dtd SYSTEM "sdocbook-custom.dtd">
 %sdocbook-custom.dtd;
 
-<!-- End of Simplified DocBook RefEntry DTD V1.1b2 .......................... -->
+<!-- End of Simplified DocBook RefEntry DTD V1.1b3 .......................... -->
 <!-- ...................................................................... -->

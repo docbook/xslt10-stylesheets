@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- Simplified DocBook Character Entity Module V1.1b2 ...................... -->
+<!-- Simplified DocBook Character Entity Module V1.1b3 ...................... -->
 <!-- File sinclist.mod .................................................... -->
 
 <!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
@@ -63,5 +63,5 @@
 "../../xmlcharent/iso-pub.ent">
 %ISOpub;
 
-<!-- End of Simplified DocBook Character Entity Module V1.1b2 ............... -->
+<!-- End of Simplified DocBook Character Entity Module V1.1b3 ............... -->
 <!-- ...................................................................... -->
