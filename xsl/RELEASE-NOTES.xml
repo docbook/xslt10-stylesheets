@@ -18,6 +18,69 @@ This file documents (mostly) changes to the public APIs. What,
 exactly, counts as a public API is still somewhat in question, but it
 includes at least the global parameters.</para>
 
+<itemizedlist><title>Release 1.59.1</title>
+
+<para>The 1.59.1 fixes a few bugs.
+</para>
+
+<listitem>
+<para>Added Bulgarian localization.
+</para>
+</listitem>
+
+<listitem>
+<para>Indexing improvements; localize book indexes to books but allow setindex
+to index an entire set.
+</para>
+</listitem>
+
+<listitem>
+<para>The default value for rowsep and colsep is now "1" as per CALS.
+</para>
+</listitem>
+
+<listitem>
+<para>Added support for <sgmltag>titleabbrev</sgmltag> (use them for cross
+references).
+</para>
+</listitem>
+
+<listitem>
+<para>Improvements to <sgmltag>mediaobject</sgmltag> for selecting print vs. online
+images.
+</para>
+</listitem>
+
+<listitem>
+<para>Added seperate property sets for <sgmltag>figure</sgmltag>s,
+<sgmltag>example</sgmltag>s, <sgmltag>equation</sgmltag>s, <sgmltag>tables</sgmltag>s,
+and <sgmltag>procedure</sgmltag>s.
+</para>
+</listitem>
+
+<listitem>
+<para>Make <sgmltag>lineannotation</sgmltag>s italic.
+</para>
+</listitem>
+
+<listitem>
+<para>Support <sgmltag class="attribute">xrefstyle</sgmltag> attribute.
+</para>
+</listitem>
+
+<listitem>
+<para>Make <sgmltag class="attribute">endterm</sgmltag> on
+<sgmltag>xref</sgmltag> higher priority than
+<sgmltag class="attribute">xreflabel</sgmltag> target.
+</para>
+</listitem>
+
+<listitem>
+<para>Glossary formatting improvements.
+</para>
+</listitem>
+</itemizedlist>
+
 <itemizedlist><title>Release 1.58.0</title>
 
 <para>The 1.58.0 adds some initial support for extensions in xsltproc, adds
