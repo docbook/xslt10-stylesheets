@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
+                xmlns:exsl="http://exslt.org/common"
+                xmlns:set="http://exslt.org/sets"
 		version="1.0"
-                exclude-result-prefixes="doc">
+                exclude-result-prefixes="doc exsl set">
 
 <!-- ********************************************************************
      $Id$
@@ -134,12 +136,25 @@ Title=</xsl:text>
 </xsl:choose>
 
 <xsl:if test="$htmlhelp.enumerate.images">
+  <xsl:variable name="imagelist">
+    <xsl:choose>
+      <xsl:when test="$rootid != ''">
+        <xsl:apply-templates select="key('id',$rootid)" mode="enumerate-images"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="/" mode="enumerate-images"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
   <xsl:choose>
-    <xsl:when test="$rootid != ''">
-      <xsl:apply-templates select="key('id',$rootid)" mode="enumerate-images"/>
+    <xsl:when test="function-available('exsl:node-set') and function-available('set:distinct')">
+      <xsl:for-each select="set:distinct(exsl:node-set($imagelist)/filename)">
+        <xsl:value-of select="."/>
+        <xsl:text>&#10;</xsl:text>
+      </xsl:for-each>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates select="/" mode="enumerate-images"/>
+      <xsl:value-of select="$imagelist"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:if>
@@ -190,10 +205,13 @@ Title=</xsl:text>
 <!-- ==================================================================== -->
 
 <xsl:template match="graphic|inlinegraphic[@format!='linespecific']" mode="enumerate-images">
-  <xsl:call-template name="mediaobject.filename.enumerate-images">
-    <xsl:with-param name="object" select="."/>
-  </xsl:call-template>  
-  <xsl:text>&#10;</xsl:text>
+  <xsl:call-template name="write.filename.enumerate-images">
+    <xsl:with-param name="filename">
+      <xsl:call-template name="mediaobject.filename.enumerate-images">
+        <xsl:with-param name="object" select="."/>
+      </xsl:call-template>  
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="mediaobject|inlinemediaobject" mode="enumerate-images">
@@ -244,10 +262,13 @@ Title=</xsl:text>
 
     <xsl:choose>
       <xsl:when test="$useobject='1' and $object[not(*/@format='linespecific')]">
-	<xsl:call-template name="mediaobject.filename.enumerate-images">
-	  <xsl:with-param name="object" select="$object"/>
-	</xsl:call-template>
-        <xsl:text>&#10;</xsl:text>
+        <xsl:call-template name="write.filename.enumerate-images">
+          <xsl:with-param name="filename">
+            <xsl:call-template name="mediaobject.filename.enumerate-images">
+              <xsl:with-param name="object" select="$object"/>
+            </xsl:call-template>
+          </xsl:with-param>
+        </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="select.mediaobject.enumerate-images">
@@ -284,6 +305,19 @@ Title=</xsl:text>
 </xsl:template>
 
 <xsl:template match="text()" mode="enumerate-images">
+</xsl:template>
+
+<xsl:template name="write.filename.enumerate-images" mode="enumerate-images">
+  <xsl:param name="filename"/>
+  <xsl:choose>
+    <xsl:when test="function-available('exsl:node-set') and function-available('set:distinct')">
+      <filename><xsl:value-of select="$filename"/></filename>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$filename"/>
+      <xsl:text>&#10;</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
