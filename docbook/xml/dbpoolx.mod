@@ -5301,9 +5301,9 @@ in the text (no (0) value, the default)
 <!ENTITY % bibliocoverage.attlist "INCLUDE">
 <![%bibliocoverage.attlist;[
 <!ATTLIST bibliocoverage
-		spatial	(dcmipoint|iso3166|dcmibox|tgn|other)	#IMPLIED
+		spatial	(dcmipoint|iso3166|dcmibox|tgn|otherspatial)	#IMPLIED
 		otherspatial	CDATA	#IMPLIED
-		temporal (dcmiperiod|w3c-dtf|other) #IMPLIED
+		temporal (dcmiperiod|w3c-dtf|othertemporal) #IMPLIED
 		othertemporal	CDATA	#IMPLIED
 		%common.attrib;
 		%bibliocoverage.role.attrib;
