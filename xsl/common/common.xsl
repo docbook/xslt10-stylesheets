@@ -1661,8 +1661,10 @@ node location.</para>
   <xsl:variable name="srcurl">
     <xsl:call-template name="strippath">
       <xsl:with-param name="filename">
-        <xsl:call-template name="getdir">
-          <xsl:with-param name="filename" select="$filename/ancestor-or-self::*[@xml:base != ''][1]/@xml:base"/>
+        <xsl:call-template name="xml.base.dirs">
+          <xsl:with-param name="base.elem" 
+                          select="$filename/ancestor-or-self::*
+                                   [@xml:base != ''][1]"/>
         </xsl:call-template>
         <xsl:value-of select="$filename"/>
       </xsl:with-param>
@@ -1696,6 +1698,24 @@ node location.</para>
     <xsl:with-param name="count" select="$depth"/>
   </xsl:call-template>
   <xsl:value-of select="$srcurl.trimmed"/>
+
+</xsl:template>
+
+<!-- ===================================== -->
+
+<xsl:template name="xml.base.dirs">
+  <xsl:param name="base.elem" select="NONODE"/>
+
+  <!-- Recursively resolve xml:base attributes -->
+  <xsl:if test="$base.elem/ancestor::*[@xml:base != '']">
+    <xsl:call-template name="xml.base.dirs">
+      <xsl:with-param name="base.elem" 
+                      select="$base.elem/ancestor::*[@xml:base != ''][1]"/>
+    </xsl:call-template>
+  </xsl:if>
+  <xsl:call-template name="getdir">
+    <xsl:with-param name="filename" select="$base.elem/@xml:base"/>
+  </xsl:call-template>
 
 </xsl:template>
 
