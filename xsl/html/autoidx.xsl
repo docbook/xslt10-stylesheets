@@ -29,7 +29,8 @@
                      |ancestor-or-self::simplesect
                      |ancestor-or-self::bibliography
                      |ancestor-or-self::glossary
-                     |ancestor-or-self::index)[last()]'>
+                     |ancestor-or-self::index
+                     |ancestor-or-self::webpage)[last()]'>
 
 <!ENTITY section.id 'generate-id(&section;)'>
 <!ENTITY sep '" "'>
