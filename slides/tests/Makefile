@@ -1,6 +1,6 @@
 include ../../cvstools/Makefile.incl
-HTMLSTYLE=../xsl/linear.xsl
-FOSTYLE=../xsl/slidesfo.xsl
+HTMLSTYLE=../xsl/slides.xsl
+FOSTYLE=../xsl/fo-plain.xsl
 VARS=
 FORMATTER=xep
 BROWSER=
