@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+         xmlns="http://relaxng.org/ns/structure/0.9"
+         xmlns:a="http://relaxng.org/ns/compatibility/annotations/0.9">
+
+<!-- ...................................................................... -->
+<!-- DocBook XML character entities module V4.1.2 ........................... -->
+<!-- File dbcentx.mod ..................................................... -->
+
+<!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
+     O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+     Corporation, Norman Walsh, and the Organization for the Advancement
+     of Structured Information Standards (OASIS).
+
+     $Id$
+
+     Permission to use, copy, modify and distribute the DocBook XML DTD
+     and its accompanying documentation for any purpose and without fee
+     is hereby granted in perpetuity, provided that the above copyright
+     notice and this paragraph appear in all copies.  The copyright
+     holders make no representation about the suitability of the DTD for
+     any purpose.  It is provided "as is" without expressed or implied
+     warranty.
+
+     If you modify the DocBook XML DTD in any way, except for declaring and
+     referencing additional sets of general entities and declaring
+     additional notations, label your DTD as a variant of DocBook.  See
+     the maintenance documentation for more information.
+
+     Please direct all questions, bug reports, or suggestions for
+     changes to the docbook@lists.oasis-open.org mailing list. For more
+     information, see http://www.oasis-open.org/docbook/.
+-->
+
+<!-- ...................................................................... -->
+
+<!-- This module usually contains the entity declarations for the
+     standard ISO entity sets used by DocBook. However, there is no
+     RELAX NG equivalent, so this file is empty. -->
+
+</grammar>

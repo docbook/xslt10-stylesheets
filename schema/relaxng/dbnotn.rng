@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" xmlns="http://relaxng.org/ns/structure/0.9" xmlns:a="http://relaxng.org/ns/compatibility/annotations/0.9">
+<!-- ...................................................................... -->
+<!-- DocBook XML notations module V4.1.2 .................................... -->
+<!-- File dbnotnx.mod ..................................................... -->
+<!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
+     O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+     Corporation, Norman Walsh, and the Organization for the Advancement
+     of Structured Information Standards (OASIS).
+
+     $Id$
+
+     Permission to use, copy, modify and distribute the DocBook XML DTD
+     and its accompanying documentation for any purpose and without fee
+     is hereby granted in perpetuity, provided that the above copyright
+     notice and this paragraph appear in all copies.  The copyright
+     holders make no representation about the suitability of the DTD for
+     any purpose.  It is provided "as is" without expressed or implied
+     warranty.
+
+     If you modify the DocBook DTD in any way, except for declaring and
+     referencing additional sets of general entities and declaring
+     additional notations, label your DTD as a variant of DocBook.  See
+     the maintenance documentation for more information.
+
+     Please direct all questions, bug reports, or suggestions for
+     changes to the docbook@lists.oasis-open.org mailing list. For more
+     information, see http://www.oasis-open.org/docbook/.
+-->
+<!-- ...................................................................... -->
+<!-- This module contains the entity declarations for the standard ISO
+     entity sets used by DocBook.
+
+     In DTD driver files referring to this module, please use an entity
+     declaration that uses the public identifier shown below:
+
+     <!ENTITY % dbnotn PUBLIC
+     "-//OASIS//ENTITIES DocBook XML Notations V4.1.2//EN"
+     "dbnotnx.mod">
+     %dbnotn;
+
+     See the documentation for detailed information on the parameter
+     entity and module scheme used in DocBook, customizing DocBook and
+     planning for interchange, and changes made since the last release
+     of DocBook.
+-->
+  <define name="local.notation.class">
+    <notAllowed/>
+  </define>
+  <define name="notation.class">
+    <choice>
+      <value>BMP</value>
+      <value>CGM-CHAR</value>
+      <value>CGM-BINARY</value>
+      <value>CGM-CLEAR</value>
+      <value>DITROFF</value>
+      <value>DVI</value>
+      <value>EPS</value>
+      <value>EQN</value>
+      <value>FAX</value>
+      <value>GIF</value>
+      <value>GIF87a</value>
+      <value>GIF89a</value>
+      <value>JPG</value>
+      <value>JPEG</value>
+      <value>IGES</value>
+      <value>PCX</value>
+      <value>PIC</value>
+      <value>PNG</value>
+      <value>PS</value>
+      <value>SGML</value>
+      <value>TBL</value>
+      <value>TEX</value>
+      <value>TIFF</value>
+      <value>WMF</value>
+      <value>WPG</value>
+      <value>linespecific</value>
+      <ref name="local.notation.class"/>
+    </choice>
+  </define>
+<!--WordPerfect Graphic format-->
+<!-- End of DocBook XML notations module V4.1.2 ............................. -->
+<!-- ...................................................................... -->
+</grammar>
