@@ -181,40 +181,22 @@
 </xsl:template>
 
 <xsl:template match="refsect1/title">
+  <!-- the ID is output in the block.object call for refsect1 -->
   <h2>
-    <a>
-      <xsl:attribute name="name">
-        <xsl:call-template name="object.id">
-          <xsl:with-param name="object" select="ancestor::refsect1"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </a>
     <xsl:apply-templates/>
   </h2>
 </xsl:template>
 
 <xsl:template match="refsect2/title">
+  <!-- the ID is output in the block.object call for refsect2 -->
   <h3>
-    <a>
-      <xsl:attribute name="name">
-        <xsl:call-template name="object.id">
-          <xsl:with-param name="object" select="ancestor::refsect2"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </a>
     <xsl:apply-templates/>
   </h3>
 </xsl:template>
 
 <xsl:template match="refsect3/title">
+  <!-- the ID is output in the block.object call for refsect3 -->
   <h4>
-    <a>
-      <xsl:attribute name="name">
-        <xsl:call-template name="object.id">
-          <xsl:with-param name="object" select="ancestor::refsect3"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </a>
     <xsl:apply-templates/>
   </h4>
 </xsl:template>
