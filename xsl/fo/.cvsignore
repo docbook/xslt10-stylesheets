@@ -3,3 +3,4 @@ param.xsl
 param.xml
 param.html
 Makefile.param
+profile-docbook.xsl
