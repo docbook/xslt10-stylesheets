@@ -309,6 +309,7 @@
 <template name="chapter"><Chapter/> %n. %t</template>
 <template name="colophon">%t</template>
 <template name="dedication">%t</template>
+<template name="equation"><Equation/> %n</template>
 <template name="example"><Example/> %n. %t</template>
 <template name="figure"><Figure/> %n. %t</template>
 <template name="glossary">%t</template>
