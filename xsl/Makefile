@@ -1,30 +1,34 @@
+CVS2LOG=../cvstools/cvs2log
+MERGELOGS=../cvstools/mergechangelogs
+NEXTVER=../cvstools/nextversion
 DIFFVER=
+
+DIRS=common html fo extensions
 
 .PHONY : distrib clean doc
 
 all:
-	cd common; make
-	cd html; make
-	cd fo; make
-	cd extensions; make
+	for i in $(DIRS) __bogus__; do \
+		if [ $$i != __bogus__ ] ; then \
+			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
+		fi \
+	done
 
 doc:
-	cd docsrc; make
-	cd doc; make
+	$(MAKE) -C docsrc
+	$(MAKE) -C doc
 
 distrib: all doc
-	dbin/cvs2log -w
+	$(CVS2LOG) -w
 ifeq ($(DIFFVER),)
-	dbin/mergechangelogs > WhatsNew
+	$(MERGELOGS) > WhatsNew
 else
-	dbin/mergechangelogs -v $(DIFFVER) > WhatsNew
+	$(MERGELOGS) -v $(DIFFVER) > WhatsNew
 endif
 
 newversion:
-	dbin/nextversion
+	$(NEXTVER)
 	make DIFFVER=$(DIFFVER) distrib
 
 clean:
-	cd doc; make clean
-	cd test; make clean
-
+	$(MAKE) -C doc clean
