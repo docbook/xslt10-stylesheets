@@ -74,6 +74,16 @@ store appropriate part of project file into this parameter.</para>
 </refdescription>
 </doc:param>
 
+<xsl:param name="htmlhelp.enumerate.images" select="0"/>
+
+<doc:param name="htmlhelp.enumerate.images" xmlns="">
+<refpurpose>Should be paths to all used images added to project file?</refpurpose>
+<refdescription>
+<para>You should turn on this flag, if you insert images into your documents 
+as external binary entities or if you are using absolute path in image names.</para>
+</refdescription>
+</doc:param>
+
 <!-- ==================================================================== -->
 <!-- Customizations of standard HTML stylesheet parameters -->
 
@@ -126,8 +136,8 @@ Language=</xsl:text>
   <xsl:value-of select="document('langcodes.xml')//gentext[@lang=string($lang)]"/>
 </xsl:if>
 <xsl:if test="not(//@lang)">
-  <xsl:text>0x0409 English (United States)
-</xsl:text></xsl:if>
+  <xsl:text>0x0409 English (United States)</xsl:text>
+</xsl:if>
 <xsl:text>
 Title=</xsl:text><xsl:value-of select="normalize-space(//title[1])"/>
 <xsl:text>
@@ -135,6 +145,9 @@ Title=</xsl:text><xsl:value-of select="normalize-space(//title[1])"/>
 [FILES]
 </xsl:text>
 <xsl:apply-templates mode="enumerate-files"/>
+<xsl:if test="$htmlhelp.enumerate.images">
+  <xsl:apply-templates mode="enumerate-images"/>
+</xsl:if>
 <xsl:value-of select="$htmlhelp.hhp.tail"/>
 </xsl:template>
 <!-- ==================================================================== -->
@@ -162,6 +175,105 @@ Title=</xsl:text><xsl:value-of select="normalize-space(//title[1])"/>
 </xsl:template>
 
 <xsl:template match="text()" mode="enumerate-files">
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template match="graphic|inlinegraphic[@format!='linespecific']" mode="enumerate-images">
+  <xsl:call-template name="mediaobject.filename.enumerate-images">
+    <xsl:with-param name="object" select="."/>
+  </xsl:call-template>  
+  <xsl:text>&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template match="mediaobject|inlinemediaobject" mode="enumerate-images">
+  <xsl:call-template name="select.mediaobject.enumerate-images"/>
+</xsl:template>
+
+<xsl:template name="select.mediaobject.enumerate-images" mode="enumerate-images">
+  <xsl:param name="olist"
+             select="imageobject|imageobjectco
+                     |videoobject|audioobject|textobject"/>
+  <xsl:param name="count">1</xsl:param>
+
+  <xsl:if test="$count &lt;= count($olist)">
+    <xsl:variable name="object" select="$olist[position()=$count]"/>
+
+    <xsl:variable name="useobject">
+      <xsl:choose>
+	<!-- The phrase is never used -->
+        <xsl:when test="name($object)='textobject' and $object/phrase">
+          <xsl:text>0</xsl:text>
+        </xsl:when>
+	<!-- The first textobject is a reasonable fallback (but not for image in HH) -->
+        <xsl:when test="name($object)='textobject'">
+          <xsl:text>0</xsl:text>
+        </xsl:when>
+	<!-- If there's only one object, use it -->
+	<xsl:when test="$count = 1 and count($olist) = 1">
+	  <xsl:text>1</xsl:text>
+	</xsl:when>
+	<!-- Otherwise, see if this one is a useable graphic -->
+        <xsl:otherwise>
+          <xsl:choose>
+            <!-- peek inside imageobjectco to simplify the test -->
+            <xsl:when test="local-name($object) = 'imageobjectco'">
+              <xsl:call-template name="is.acceptable.mediaobject">
+                <xsl:with-param name="object" select="$object/imageobject"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:call-template name="is.acceptable.mediaobject">
+                <xsl:with-param name="object" select="$object"/>
+              </xsl:call-template>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+    <xsl:choose>
+      <xsl:when test="$useobject='1' and $object[not(*/@format='linespecific')]">
+	<xsl:call-template name="mediaobject.filename.enumerate-images">
+	  <xsl:with-param name="object" select="$object"/>
+	</xsl:call-template>
+        <xsl:text>&#10;</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="select.mediaobject.enumerate-images">
+          <xsl:with-param name="olist" select="$olist"/>
+          <xsl:with-param name="count" select="$count + 1"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="mediaobject.filename.enumerate-images" mode="enumerate-images">
+  <xsl:param name="object"/>
+
+  <xsl:variable name="urifilename">
+    <xsl:call-template name="mediaobject.filename">
+      <xsl:with-param name="object" select="$object"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="filename">
+    <xsl:choose>
+      <xsl:when test="starts-with($urifilename, 'file:/')">
+	<xsl:value-of select="substring-after($urifilename, 'file:/')"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="$urifilename"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:value-of select="translate($filename, '/', '\')"/>
+
+</xsl:template>
+
+<xsl:template match="text()" mode="enumerate-images">
 </xsl:template>
 
 <!-- ==================================================================== -->
