@@ -22,17 +22,8 @@
 
      ******************************************************************** -->
 
-<xsl:template match="screenshot">
-  <fo:block>
-    <xsl:apply-templates/>
-  </fo:block>
-</xsl:template>
-
-<xsl:template match="screeninfo">
-</xsl:template>
-
 <!-- ==================================================================== -->
-<!-- Override these templates for FO -->
+<!-- Graphic format tests for the FO backend -->
 
 <!--
 FIXME: make is.graphic.* work correctly depending on the backend!
@@ -63,6 +54,19 @@ FIXME: make is.graphic.* work correctly depending on the backend!
                 or $ext = 'bmp'">1</xsl:if>
 </xsl:template>
 
+<!-- ==================================================================== -->
+
+<xsl:template match="screenshot">
+  <fo:block>
+    <xsl:apply-templates/>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="screeninfo">
+</xsl:template>
+
+<!-- ==================================================================== -->
+<!-- Override these templates for FO -->
 <!-- ==================================================================== -->
 
 <xsl:template name="process.image">
