@@ -19,8 +19,16 @@ default namespace = "http://docbook.org/docbook-ng"
 
 db.equation.content |= db._any.mml
 
-db._any.mml =
-  element mml:* {
-    db._any.attribute*,
-    (text | db._any)*
-  }
+[
+   db:refname [ "mml:*" ]
+   db:refpurpose [ "Any element from the MathML namespace" ]
+]
+div {
+
+  db._any.mml =
+    element mml:* {
+      db._any.attribute*,
+      (text | db._any)*
+    }
+
+}

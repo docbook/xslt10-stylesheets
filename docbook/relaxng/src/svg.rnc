@@ -19,8 +19,16 @@ default namespace = "http://docbook.org/docbook-ng"
 
 db.imageobject.content |= db._any.svg
 
-db._any.svg =
-  element svg:* {
-    db._any.attribute*,
-    (text | db._any)*
-  }
+[
+   db:refname [ "svg:*" ]
+   db:refpurpose [ "Any element from the SVG namespace" ]
+]
+div {
+
+  db._any.svg =
+    element svg:* {
+      db._any.attribute*,
+      (text | db._any)*
+    }
+}
+
