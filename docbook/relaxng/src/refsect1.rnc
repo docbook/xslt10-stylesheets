@@ -1,0 +1,107 @@
+# This file is part of DocBook NG: The "Cachaça" Release.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.3
+# Release: $Id$
+#
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng"
+default namespace = "http://docbook.org/docbook-ng"
+
+# ======================================================================
+
+[
+   db:refname [ "refsect1" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   db.refsect1.status.attribute = db.status.attribute
+
+   db.refsect1.role.attribute = attribute role { text }
+
+   db.refsect1.attlist =
+      db.refsect1.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.refsect1.status.attribute?
+
+   db.refsect1.info = db._info.title.req
+
+   db.refsect1 |=
+      element refsect1 {
+         db.refsect1.attlist,
+         db.refsect1.info,
+         ((db.all.blocks+, db.refsect2*)
+          | db.refsect2+)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "refsect2" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   db.refsect2.status.attribute = db.status.attribute
+
+   db.refsect2.role.attribute = attribute role { text }
+
+   db.refsect2.attlist =
+      db.refsect2.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.refsect2.status.attribute?
+
+   db.refsect2.info = db._info.title.req
+
+   db.refsect2 |=
+      element refsect2 {
+         db.refsect2.attlist,
+         db.refsect2.info,
+         ((db.all.blocks+, db.refsect3*)
+          | db.refsect3+)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "refsect3" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   db.refsect3.status.attribute = db.status.attribute
+
+   db.refsect3.role.attribute = attribute role { text }
+
+   db.refsect3.attlist =
+      db.refsect3.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.refsect3.status.attribute?
+
+   db.refsect3.info = db._info.title.req
+
+   db.refsect3 =
+      element refsect3 {
+         db.refsect3.attlist,
+         db.refsect3.info,
+         db.all.blocks+
+      }
+}
+

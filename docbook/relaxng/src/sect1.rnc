@@ -1,0 +1,181 @@
+# This file is part of DocBook NG: The "Cachaça" Release.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.3
+# Release: $Id$
+#
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/docbook-ng"
+default namespace = "http://docbook.org/docbook-ng"
+
+db.toplevel.optional.sections |= db.sect1*
+
+db.toplevel.required.sections |= db.sect1+
+
+# ======================================================================
+
+[
+   db:refname [ "sect1" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   db.sect1.status.attribute = db.status.attribute
+
+   db.sect1.role.attribute = attribute role { text }
+
+   db.sect1.attlist =
+      db.sect1.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.sect1.status.attribute?
+
+   db.sect1.info = db._info.title.req
+
+   db.sect1 =
+      element sect1 {
+         db.sect1.attlist,
+         db.sect1.info,
+         ((db.all.blocks+, (db.optional.refentry | (db.sect2*, db.simplesect*)))
+          | db.required.refentry
+          | (db.sect2+, db.simplesect*)
+          | db.simplesect+)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "sect2" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   db.sect2.status.attribute = db.status.attribute
+
+   db.sect2.role.attribute = attribute role { text }
+
+   db.sect2.attlist =
+      db.sect2.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.sect2.status.attribute?
+
+   db.sect2.info = db._info.title.req
+
+   db.sect2 =
+      element sect2 {
+         db.sect2.attlist,
+         db.sect2.info,
+         ((db.all.blocks+, (db.optional.refentry | (db.sect3*, db.simplesect*)))
+          | db.required.refentry
+          | (db.sect3+, db.simplesect*)
+          | db.simplesect+)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "sect3" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   db.sect3.status.attribute = db.status.attribute
+
+   db.sect3.role.attribute = attribute role { text }
+
+   db.sect3.attlist =
+      db.sect3.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.sect3.status.attribute?
+
+   db.sect3.info = db._info.title.req
+
+   db.sect3 =
+      element sect3 {
+         db.sect3.attlist,
+         db.sect3.info,
+         ((db.all.blocks+, (db.optional.refentry | (db.sect4*, db.simplesect*)))
+          | db.required.refentry
+          | (db.sect4+, db.simplesect*)
+          | db.simplesect+)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "sect4" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   db.sect4.status.attribute = db.status.attribute
+
+   db.sect4.role.attribute = attribute role { text }
+
+   db.sect4.attlist =
+      db.sect4.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.sect4.status.attribute?
+
+   db.sect4.info = db._info.title.req
+
+   db.sect4 =
+      element sect4 {
+         db.sect4.attlist,
+         db.sect4.info,
+         ((db.all.blocks+, (db.optional.refentry | (db.sect5*, db.simplesect*)))
+          | db.required.refentry
+          | (db.sect5+, db.simplesect*)
+          | db.simplesect+)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "sect5" ]
+   db:refpurpose [ "" ]
+]
+div {
+
+   db.sect5.status.attribute = db.status.attribute
+
+   db.sect5.role.attribute = attribute role { text }
+
+   db.sect5.attlist =
+      db.sect5.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.sect5.status.attribute?
+
+   db.sect5.info = db._info.title.req
+
+   db.sect5 =
+      element sect5 {
+         db.sect5.attlist,
+         db.sect5.info,
+         ((db.all.blocks+, (db.optional.refentry | db.simplesect*))
+          | db.required.refentry
+          | db.simplesect+)
+      }
+}
+
