@@ -494,6 +494,12 @@
 
     <xsl:otherwise>
       <xsl:element name="{$cellgi}">
+        <xsl:if test="$show.revisionflag and @revisionflag">
+          <xsl:attribute name="class">
+            <xsl:value-of select="@revisionflag"/>
+          </xsl:attribute>
+        </xsl:if>
+
         <xsl:if test="$table.borders.with.css != 0">
           <xsl:attribute name="style">
             <xsl:if test="$colsep &gt; 0">

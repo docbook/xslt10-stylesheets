@@ -62,6 +62,7 @@ span.off     {  }
       </span>
     </xsl:when>
     <xsl:when test="local-name(.) = 'listitem'
+                    or local-name(.) = 'entry'"
                     or local-name(.) = 'title'">
       <!-- nop; these are handled directly in the stylesheet -->
       <xsl:apply-imports/>
