@@ -103,8 +103,8 @@
 <gentext key="SeeAlso" text="Lihat Juga"/>
 <gentext key="set" text="Set"/>
 <gentext key="Set" text="Set"/>
-<gentext key="SetIndex" text="Set Index"/>
-<gentext key="setindex" text="Set Index"/>
+<gentext key="SetIndex" text="Indeks Set"/>
+<gentext key="setindex" text="Indeks Set"/>
 <gentext key="Sidebar" text=""/>
 <gentext key="sidebar" text="sidebar"/>
 <gentext key="step" text="tahap"/>
@@ -153,12 +153,12 @@
 <gentext key="ListofUnknown" text="Daftar Gaib"/>
 <gentext key="listofunknown" text="Daftar Gaib"/>
 
-<gentext key="nav-home" text="Home"/>
-<gentext key="nav-next" text="Next"/>
-<gentext key="nav-next-sibling" text="Fast Forward"/>
-<gentext key="nav-prev" text="Prev"/>
-<gentext key="nav-prev-sibling" text="Fast Backward"/>
-<gentext key="nav-up" text="Up"/>
+<gentext key="nav-home" text="Depan"/>
+<gentext key="nav-next" text="Lanjut"/>
+<gentext key="nav-next-sibling" text="Lewati"/>
+<gentext key="nav-prev" text="Kembali"/>
+<gentext key="nav-prev-sibling" text="Sebelumnya"/>
+<gentext key="nav-up" text="Induk"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
