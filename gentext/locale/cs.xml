@@ -166,13 +166,13 @@
 <gentext key="nav-up" text="Nahoru"/>
 
 <gentext key="sectioncalled"  text="odd&#x00ed;l nazvan&#x00fd;"/>
-<gentext key="Draft"         text="Draft"/>  <!-- en -->
-<gentext key="above"         text="above"/>  <!-- en -->
-<gentext key="below"         text="below"/>  <!-- en -->
+<gentext key="Draft"         text="Návrh"/> 
+<gentext key="above"         text="nad"/>  
+<gentext key="below"         text="pod"/>  
 <gentext key="index symbols" text="Symboly"/>
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!-- en -->
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!-- en -->
+<gentext key="lowercase.alpha" text="aábcèdïeéìfghiíjklmnoópqrøsštuúùvwxyýzž"/>
+<gentext key="uppercase.alpha" text="AÁBCÈDÏEÉÌFGHIÍJKLMNOÓPQRØSŠTUÚÙVWXYÝZŽ"/>
 
 <dingbat key="startquote" text="&#x201e;"/>
 <dingbat key="endquote" text="&#x201c;"/>
