@@ -253,7 +253,7 @@
   </span>
 </xsl:template>
 
-<xsl:template match="artheader|articleinfo" mode="bibliography.mode">
+<xsl:template match="artheader|articleinfo|info" mode="bibliography.mode">
   <span class="{name(.)}">
     <xsl:apply-templates mode="bibliography.mode"/>
     <xsl:value-of select="$biblioentry.item.separator"/>
@@ -274,7 +274,7 @@
   </span>
 </xsl:template>
 
-<xsl:template match="authorblurb" mode="bibliography.mode">
+<xsl:template match="authorblurb|personblurb" mode="bibliography.mode">
   <!-- suppressed -->
 </xsl:template>
 
@@ -752,7 +752,7 @@
   </span>
 </xsl:template>
 
-<xsl:template match="authorblurb" mode="bibliomixed.mode">
+<xsl:template match="authorblurb|personblurb" mode="bibliomixed.mode">
   <span class="{name(.)}">
     <xsl:apply-templates mode="bibliomixed.mode"/>
   </span>
