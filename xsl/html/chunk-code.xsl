@@ -506,7 +506,9 @@
           <xsl:apply-templates select="/" mode="collect.tex.math"/>
         </xsl:if>
         <xsl:if test="$generate.manifest != 0">
-          <xsl:call-template name="generate.manifest"/>
+          <xsl:call-template name="generate.manifest">
+            <xsl:with-param name="node" select="/"/>
+          </xsl:call-template>
         </xsl:if>
       </xsl:if>
     </xsl:otherwise>
