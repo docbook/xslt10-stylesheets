@@ -189,3 +189,10 @@
 <!ENTITY equation.properties SYSTEM "../params/equation.properties.xml">
 <!ENTITY table.properties SYSTEM "../params/table.properties.xml">
 <!ENTITY procedure.properties SYSTEM "../params/procedure.properties.xml">
+<!ENTITY footnote.number.format SYSTEM "../params/footnote.number.format.xml">
+<!ENTITY table.footnote.number.format SYSTEM "../params/table.footnote.number.format.xml">
+<!ENTITY footnote.number.symbols SYSTEM "../params/footnote.number.symbols.xml">
+<!ENTITY table.footnote.number.symbols SYSTEM "../params/table.footnote.number.symbols.xml">
+<!ENTITY glossentry.show.acronym SYSTEM "../params/glossentry.show.acronym.xml">
+<!ENTITY ulink.footnote.number.format SYSTEM "../params/ulink.footnote.number.format.xml">
+
