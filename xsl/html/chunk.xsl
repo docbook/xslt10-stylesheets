@@ -3,8 +3,8 @@
 		version="1.0"
                 exclude-result-prefixes="exsl">
 
-<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl"/>
-<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/html/chunk-common.xsl"/>
+<xsl:import href="docbook.xsl"/>
+<xsl:import href="chunk-common.xsl"/>
 <xsl:include href="manifest.xsl"/>
 
 <xsl:param name="onechunk" select="0"/>
