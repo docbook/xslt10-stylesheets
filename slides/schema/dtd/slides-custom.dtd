@@ -35,6 +35,7 @@
 <!ENTITY % bibliography.attlist "IGNORE">
 <!ENTITY % simple.bibliomixed.element "IGNORE">
 <!ENTITY % bibliomixed.attlist "IGNORE">
+<!ENTITY % bibliomset.module "IGNORE">
 <!ENTITY % simple.bibliodiv.element "IGNORE">
 <!ENTITY % bibliodiv.attlist "IGNORE">
 <!ENTITY % simple.affiliation.element "IGNORE">
