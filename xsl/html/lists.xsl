@@ -21,7 +21,9 @@
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
 
-    <xsl:apply-templates select="*[not(self::listitem or self::title)]"/>
+    <xsl:apply-templates select="*[not(self::listitem
+                                   or self::title
+                                   or self::titleabbrev)]"/>
 
     <ul>
       <xsl:if test="$css.decoration != 0">
@@ -138,7 +140,9 @@
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
 
-    <xsl:apply-templates select="*[not(self::listitem or self::title)]"/>
+    <xsl:apply-templates select="*[not(self::listitem
+                                   or self::title
+                                   or self::titleabbrev)]"/>
 
     <ol>
       <xsl:if test="$start != '1'">
@@ -249,7 +253,9 @@
 
     <xsl:choose>
       <xsl:when test="$presentation = 'table'">
-	<xsl:apply-templates select="*[not(local-name(.) = 'varlistentry')]"/>
+        <xsl:apply-templates select="*[not(self::varlistentry
+                                           or self::title
+                                           or self::titleabbrev)]"/>
         <table border="0">
           <xsl:if test="$list-width != ''">
             <xsl:attribute name="width">
@@ -274,7 +280,9 @@
         </table>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates select="*[not(local-name(.) = 'varlistentry')]"/>
+        <xsl:apply-templates select="*[not(self::varlistentry
+                                           or self::title
+                                           or self::titleabbrev)]"/>
         <dl>
           <xsl:apply-templates select="varlistentry"/>
         </dl>
@@ -615,7 +623,9 @@
   </xsl:variable>
 
   <xsl:variable name="preamble"
-                select="*[not(self::step or self::title)]"/>
+                select="*[not(self::step
+                              or self::title
+                              or self::titleabbrev)]"/>
 
   <div class="{name(.)}">
     <xsl:call-template name="anchor"/>
