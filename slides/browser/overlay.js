@@ -34,7 +34,7 @@ function overlayRefresh() {
     var overlayH = 0;
     var contentH = 0;
 
-    var body = xbGetElementsByName('BODY')[0];
+    var links = document.getElementsByTagName("body")[0];
 
     if (overlayIE) {
 	overlayLx = document.body.clientWidth;
@@ -61,8 +61,8 @@ function overlayRefresh() {
 	overlayLy = window.innerHeight;
 	overlayLx = window.innerWidth;
 	overlayH  = odiv.offsetHeight;
-	overlayW  = body.offsetWidth; // odiv.offsetWidth;
-	contentH  = body.offsetHeight;
+	overlayW  = odiv.offsetWidth; // body.offsetWidth; 
+	contentH  = odiv.offsetHeight;
     }
 
     if (overlayCorner == 'ul') {
@@ -118,6 +118,8 @@ function overlayRefresh() {
 
 	if (contentH > overlayLy) {
 	    div.style.visibility = "hidden";
+	} else {
+	    div.style.visibility = "visible";
 	}
     }
 }
