@@ -4829,7 +4829,7 @@ div {
 
 # ======================================================================
 
-db.computeroutput.inlines = db._text
+db.computeroutput.inlines = text | db.ubiq.inlines | db.os.inlines
 
 # ======================================================================
 
@@ -5950,7 +5950,7 @@ div {
 
 # ======================================================================
 
-db.userinput.inlines = db._text
+db.userinput.inlines = text | db.ubiq.inlines | db.os.inlines
 
 # ======================================================================
 
