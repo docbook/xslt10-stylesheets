@@ -1364,7 +1364,7 @@
 
   <xsl:choose>
       <xsl:when test="$pageclass = 'index'">
-          <xsl:attribute name="margin-left">0</xsl:attribute>
+          <xsl:attribute name="margin-left">0pt</xsl:attribute>
       </xsl:when>
   </xsl:choose>
 
@@ -1597,7 +1597,7 @@
 
   <xsl:choose>
       <xsl:when test="$pageclass = 'index'">
-          <xsl:attribute name="margin-left">0</xsl:attribute>
+          <xsl:attribute name="margin-left">0pt</xsl:attribute>
       </xsl:when>
   </xsl:choose>
 
