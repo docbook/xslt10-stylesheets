@@ -3,10 +3,10 @@ DIFFVER=
 .PHONY : distrib clean doc
 
 all:
+	cd common; make
 	cd html; make
 	cd fo; make
 	cd extensions; make
-	cvs -n update
 
 doc:
 	cd docsrc; make
