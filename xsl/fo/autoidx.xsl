@@ -43,6 +43,10 @@
          match="indexterm"
          use="concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;)"/>
 
+<xsl:key name="endofrange"
+         match="indexterm[@class='endofrange']"
+         use="@startref"/>
+
 <xsl:key name="see-also"
          match="indexterm[seealso]"
          use="concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, seealso)"/>
@@ -52,7 +56,6 @@
          use="concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, see)"/>
 
 <xsl:template name="generate-index">
-  <!-- FIXME: Ignore class='endofrange' terms because they come out wrong -->
   <xsl:variable name="terms"
                 select="//indexterm[count(.|key('letter',
                                                 translate(substring(&primary;, 1, 1),
@@ -255,9 +258,12 @@
 </xsl:template>
 
 <xsl:template match="indexterm" mode="reference">
+  <xsl:param name="separator" select="', '"/>
+
   <xsl:if test="$passivetex.extensions = '0'">
-    <xsl:text>, </xsl:text>
+    <xsl:value-of select="$separator"/>
   </xsl:if>
+
   <xsl:choose>
     <xsl:when test="@zone and string(@zone)">
       <xsl:call-template name="reference">
@@ -269,20 +275,16 @@
         <xsl:call-template name="object.id"/>
       </xsl:variable>
 
-      <xsl:choose>
-        <xsl:when test="@startref and @class='endofrange'">
-          <fo:basic-link internal-destination="{@startref}">
-            <fo:page-number-citation ref-id="{@startref}"/>
-            <xsl:text>-</xsl:text>
-            <fo:page-number-citation ref-id="{$id}"/>
-          </fo:basic-link>
-        </xsl:when>
-        <xsl:otherwise>
-          <fo:basic-link internal-destination="{$id}">
-            <fo:page-number-citation ref-id="{$id}"/>
-          </fo:basic-link>
-        </xsl:otherwise>
-      </xsl:choose>
+      <fo:basic-link internal-destination="{$id}">
+        <fo:page-number-citation ref-id="{$id}"/>
+      </fo:basic-link>
+
+      <xsl:if test="key('endofrange', @id)">
+        <xsl:apply-templates select="key('endofrange', @id)[last()]"
+                             mode="reference">
+          <xsl:with-param name="separator" select="'-'"/>
+        </xsl:apply-templates>
+      </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
