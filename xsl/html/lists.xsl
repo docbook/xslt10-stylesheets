@@ -900,14 +900,27 @@
     <xsl:if test="title">
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
+
+    <!-- Preserve order of PIs and comments -->
+    <xsl:apply-templates 
+         select="*[not(self::callout or self::title or self::titleabbrev)]
+                   |comment()[not(preceding-sibling::callout)]
+		   |processing-instruction()[not(preceding-sibling::callout)]"/>
+
     <xsl:choose>
       <xsl:when test="$callout.list.table != 0">
         <table border="0" summary="Callout list">
-          <xsl:apply-templates/>
-        </table>
+	  <xsl:apply-templates select="callout
+			        |comment()[preceding-sibling::calllout]
+				|processing-instruction()[preceding-sibling::callout]"/>
+	</table>
       </xsl:when>
       <xsl:otherwise>
-        <dl compact="compact"><xsl:apply-templates/></dl>
+	<dl compact="compact">
+	  <xsl:apply-templates select="callout
+			        |comment()[preceding-sibling::calllout]
+				|processing-instruction()[preceding-sibling::callout]"/>
+	</dl>
       </xsl:otherwise>
     </xsl:choose>
   </div>
