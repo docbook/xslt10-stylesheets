@@ -7249,7 +7249,10 @@ OtherCredit. -->
 				|pi
                                 |xmlpi
 				|starttag
-				|sgmlcomment)	#IMPLIED
+				|sgmlcomment
+                                |prefix
+                                |namespace
+                                |localname)	#IMPLIED
 		namespace	CDATA		#IMPLIED
 		%common.attrib;
 		%sgmltag.role.attrib;
