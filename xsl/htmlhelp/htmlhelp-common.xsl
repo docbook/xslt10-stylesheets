@@ -18,7 +18,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:variable name="generate.index" select="//indexterm[1]"/>
+<xsl:variable name="htmlhelp.generate.index" select="//indexterm[1]"/>
 
 <!-- ==================================================================== -->
 
@@ -53,7 +53,7 @@
     <xsl:call-template name="hh-map"/>
     <xsl:call-template name="hh-alias"/>
   </xsl:if>
-  <xsl:if test="$generate.index">
+  <xsl:if test="$htmlhelp.generate.index">
     <xsl:call-template name="hhk"/>
   </xsl:if>
 </xsl:template>
@@ -135,7 +135,7 @@
 </xsl:variable>
 <xsl:text>[OPTIONS]
 </xsl:text>
-<xsl:if test="$generate.index">
+<xsl:if test="$htmlhelp.generate.index">
 <xsl:text>Auto Index=Yes
 </xsl:text></xsl:if>
 <xsl:if test="$htmlhelp.hhc.binary != 0">
@@ -162,7 +162,7 @@ Display compile progress=</xsl:text>
 <xsl:text>
 Full-text search=Yes
 </xsl:text>
-<xsl:if test="$generate.index">
+<xsl:if test="$htmlhelp.generate.index">
 <xsl:text>Index file=</xsl:text><xsl:value-of select="$htmlhelp.hhk"/><xsl:text>
 </xsl:text></xsl:if>
 <xsl:text>Language=</xsl:text>
@@ -208,7 +208,7 @@ Enhanced decompilation=</xsl:text>
 <xsl:value-of select="$htmlhelp.hhp.window"/>
 <xsl:text>=,"</xsl:text><xsl:value-of select="$htmlhelp.hhc"/>
 <xsl:text>",</xsl:text>
-<xsl:if test="$generate.index">
+<xsl:if test="$htmlhelp.generate.index">
   <xsl:text>"</xsl:text>
   <xsl:value-of select="$htmlhelp.hhk"/>
   <xsl:text>"</xsl:text>
@@ -918,7 +918,7 @@ Enhanced decompilation=</xsl:text>
 </OBJECT>
 <UL>]]>
 </xsl:text>
-<xsl:if test="($htmlhelp.use.hhk != 0) and $generate.index">
+<xsl:if test="($htmlhelp.use.hhk != 0) and $htmlhelp.generate.index">
   <xsl:choose>
     <xsl:when test="$rootid != ''">
       <xsl:apply-templates select="key('id',$rootid)" mode="hhk"/>
