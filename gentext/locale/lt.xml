@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <!-- there is no doctype for these files, they are WF only -->
-<locale language="lit"
+<locale language="lt"
         lithuanian-language-name="Lithuanian"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
@@ -13,93 +13,93 @@
 </authorgroup>
 </doc:localeinfo>
 
-   <l:gentext key="Abstract" text="Santrauka"/>
-   <l:gentext key="abstract" text="Santrauka"/>
-   <l:gentext key="Answer" text="Ats:"/>
-   <l:gentext key="answer" text="Ats:"/>
-   <l:gentext key="Appendix" text="Priedas"/>
-   <l:gentext key="appendix" text="priedas"/>
-   <l:gentext key="Article" text="Straipsnis"/>
-   <l:gentext key="article" text="Straipsnis"/>
-   <l:gentext key="Bibliography" text="Bibliografija"/>
-   <l:gentext key="bibliography" text="Bibliografija"/>
-   <l:gentext key="Book" text="Knyga"/>
-   <l:gentext key="book" text="Knyga"/>
-   <l:gentext key="CAUTION" text="ATSARGIAI"/>
-   <l:gentext key="Caution" text="Atsargiai"/>
-   <l:gentext key="caution" text="Atsargiai"/>
-   <l:gentext key="Chapter" text="Skyrius"/>
-   <l:gentext key="chapter" text="skyrius"/>
-   <l:gentext key="Colophon" text="&#x012E;&#x017E;anga &#x012F; knyg&#x0105;"/>
-   <l:gentext key="colophon" text="&#x012E;&#x017E;anga &#x012F; knyg&#x0150;"/>
-   <l:gentext key="Copyright" text="Autorin&#x0117;s teis&#x0117;s"/>
-   <l:gentext key="copyright" text="Autorin&#x0117;s teis&#x0117;s"/>
-   <l:gentext key="Dedication" text="Dedikacija"/>
-   <l:gentext key="dedication" text="Dedikacija"/>
-   <l:gentext key="Edition" text="Leidimas"/>
-   <l:gentext key="edition" text="Leidimas"/>
-   <l:gentext key="Equation" text="Lygtis"/>
-   <l:gentext key="equation" text="Lygtis"/>
-   <l:gentext key="Example" text="Pavyzdys"/>
-   <l:gentext key="example" text="Pavyzdys"/>
-   <l:gentext key="Figure" text="Pav."/>
-   <l:gentext key="figure" text="Pav."/>
-   <l:gentext key="Glossary" text="Termin&#x0173; &#x017E;odyn&#x0117;lis"/>
-   <l:gentext key="glossary" text="Termin&#x0173; &#x017E;odyn&#x0117;lis"/>
-   <l:gentext key="GlossSee" text="Termin&#x0105; &#x017E;r."/>
-   <l:gentext key="glosssee" text="Termin&#x0105; &#x017E;r."/>
-   <l:gentext key="GlossSeeAlso" text="Taip pat &#x017E;r."/>
-   <l:gentext key="glossseealso" text="Taip pat &#x017E;r."/>
-   <l:gentext key="IMPORTANT" text="SVARBU"/>
-   <l:gentext key="important" text="Svarbu"/>
-   <l:gentext key="Important" text="Svarbu"/>
-   <l:gentext key="Index" text="Rodykl&#x0117;"/>
-   <l:gentext key="index" text="Rodykl&#x0117;"/>
-   <l:gentext key="ISBN" text="ISBN"/>
-   <l:gentext key="isbn" text="ISBN"/>
-   <l:gentext key="LegalNotice" text="Teisin&#x0117; pastaba"/>
-   <l:gentext key="legalnotice" text="Teisin&#x0117; pastaba"/>
-   <l:gentext key="MsgAud" text="Auditorija"/>
-   <l:gentext key="msgaud" text="Auditorija"/>
-   <l:gentext key="MsgLevel" text="Lygmuo"/>
-   <l:gentext key="msglevel" text="Lygmuo"/>
-   <l:gentext key="MsgOrig" text="Kilm&#x0117;"/>
-   <l:gentext key="msgorig" text="Kilm&#x0117;"/>
-   <l:gentext key="NOTE" text="PASTABA"/>
-   <l:gentext key="Note" text="Pastaba"/>
-   <l:gentext key="note" text="Pastaba"/>
-   <l:gentext key="Part" text="Dalis"/>
-   <l:gentext key="part" text="Dalis"/>
-   <l:gentext key="Preface" text="&#x012E;&#x017E;anga"/>
-   <l:gentext key="preface" text="&#x012E;&#x017E;anga"/>
-   <l:gentext key="Procedure" text="Proced&#x016B;ra"/>
-   <l:gentext key="procedure" text="Proced&#x016B;ra"/>
-   <l:gentext key="ProductionSet" text="Production"/>
-   <l:gentext key="Published" text="I&#x0161;leistas"/>
-   <l:gentext key="published" text="I&#x0161;leistas"/>
-   <l:gentext key="Question" text="Klausimas:"/>
-   <l:gentext key="question" text="Klausimas:"/>
-   <l:gentext key="RefEntry" text=""/>
-   <l:gentext key="refentry" text=""/>
-   <l:gentext key="Reference" text="Nuoroda"/>
-   <l:gentext key="reference" text="Nuoroda"/>
-   <l:gentext key="RefName" text="Pavadinimas"/>
-   <l:gentext key="refname" text="Pavadinimas"/>
-   <l:gentext key="RefSection" text=""/>
-   <l:gentext key="refsection" text=""/>
-   <l:gentext key="RefSynopsisDiv" text="Trumpa ap&#x017E;valga"/>
-   <l:gentext key="refsynopsisdiv" text="Trumpa ap&#x017E;valga"/>
-   <l:gentext key="RevHistory" text="Pataisym&#x0173; istorija"/>
-   <l:gentext key="revhistory" text="Pataisym&#x0173; istorija"/>
-   <l:gentext key="revision" text="Pataisytas leidimas"/>
-   <l:gentext key="Revision" text="Pataisytas leidimas"/>
-   <l:gentext key="sect1" text="Skyrius"/>
-   <l:gentext key="sect2" text="Skyrius"/>
-   <l:gentext key="sect3" text="Skyrius"/>
-   <l:gentext key="sect4" text="Skyrius"/>
-   <l:gentext key="sect5" text="Skyrius"/>
-   <l:gentext key="section" text="Skyrius"/>
-   <l:gentext key="Section" text="Skyrius"/>
+<gentext key="Abstract" text="Santrauka"/>
+<gentext key="abstract" text="Santrauka"/>
+<gentext key="Answer" text="Ats:"/>
+<gentext key="answer" text="Ats:"/>
+<gentext key="Appendix" text="Priedas"/>
+<gentext key="appendix" text="priedas"/>
+<gentext key="Article" text="Straipsnis"/>
+<gentext key="article" text="Straipsnis"/>
+<gentext key="Bibliography" text="Bibliografija"/>
+<gentext key="bibliography" text="Bibliografija"/>
+<gentext key="Book" text="Knyga"/>
+<gentext key="book" text="Knyga"/>
+<gentext key="CAUTION" text="ATSARGIAI"/>
+<gentext key="Caution" text="Atsargiai"/>
+<gentext key="caution" text="Atsargiai"/>
+<gentext key="Chapter" text="Skyrius"/>
+<gentext key="chapter" text="skyrius"/>
+<gentext key="Colophon" text="&#x012E;&#x017E;anga &#x012F; knyg&#x0105;"/>
+<gentext key="colophon" text="&#x012E;&#x017E;anga &#x012F; knyg&#x0150;"/>
+<gentext key="Copyright" text="Autorin&#x0117;s teis&#x0117;s"/>
+<gentext key="copyright" text="Autorin&#x0117;s teis&#x0117;s"/>
+<gentext key="Dedication" text="Dedikacija"/>
+<gentext key="dedication" text="Dedikacija"/>
+<gentext key="Edition" text="Leidimas"/>
+<gentext key="edition" text="Leidimas"/>
+<gentext key="Equation" text="Lygtis"/>
+<gentext key="equation" text="Lygtis"/>
+<gentext key="Example" text="Pavyzdys"/>
+<gentext key="example" text="Pavyzdys"/>
+<gentext key="Figure" text="Pav."/>
+<gentext key="figure" text="Pav."/>
+<gentext key="Glossary" text="Termin&#x0173; &#x017E;odyn&#x0117;lis"/>
+<gentext key="glossary" text="Termin&#x0173; &#x017E;odyn&#x0117;lis"/>
+<gentext key="GlossSee" text="Termin&#x0105; &#x017E;r."/>
+<gentext key="glosssee" text="Termin&#x0105; &#x017E;r."/>
+<gentext key="GlossSeeAlso" text="Taip pat &#x017E;r."/>
+<gentext key="glossseealso" text="Taip pat &#x017E;r."/>
+<gentext key="IMPORTANT" text="SVARBU"/>
+<gentext key="important" text="Svarbu"/>
+<gentext key="Important" text="Svarbu"/>
+<gentext key="Index" text="Rodykl&#x0117;"/>
+<gentext key="index" text="Rodykl&#x0117;"/>
+<gentext key="ISBN" text="ISBN"/>
+<gentext key="isbn" text="ISBN"/>
+<gentext key="LegalNotice" text="Teisin&#x0117; pastaba"/>
+<gentext key="legalnotice" text="Teisin&#x0117; pastaba"/>
+<gentext key="MsgAud" text="Auditorija"/>
+<gentext key="msgaud" text="Auditorija"/>
+<gentext key="MsgLevel" text="Lygmuo"/>
+<gentext key="msglevel" text="Lygmuo"/>
+<gentext key="MsgOrig" text="Kilm&#x0117;"/>
+<gentext key="msgorig" text="Kilm&#x0117;"/>
+<gentext key="NOTE" text="PASTABA"/>
+<gentext key="Note" text="Pastaba"/>
+<gentext key="note" text="Pastaba"/>
+<gentext key="Part" text="Dalis"/>
+<gentext key="part" text="Dalis"/>
+<gentext key="Preface" text="&#x012E;&#x017E;anga"/>
+<gentext key="preface" text="&#x012E;&#x017E;anga"/>
+<gentext key="Procedure" text="Proced&#x016B;ra"/>
+<gentext key="procedure" text="Proced&#x016B;ra"/>
+<gentext key="ProductionSet" text="Production"/>
+<gentext key="Published" text="I&#x0161;leistas"/>
+<gentext key="published" text="I&#x0161;leistas"/>
+<gentext key="Question" text="Klausimas:"/>
+<gentext key="question" text="Klausimas:"/>
+<gentext key="RefEntry" text=""/>
+<gentext key="refentry" text=""/>
+<gentext key="Reference" text="Nuoroda"/>
+<gentext key="reference" text="Nuoroda"/>
+<gentext key="RefName" text="Pavadinimas"/>
+<gentext key="refname" text="Pavadinimas"/>
+<gentext key="RefSection" text=""/>
+<gentext key="refsection" text=""/>
+<gentext key="RefSynopsisDiv" text="Trumpa ap&#x017E;valga"/>
+<gentext key="refsynopsisdiv" text="Trumpa ap&#x017E;valga"/>
+<gentext key="RevHistory" text="Pataisym&#x0173; istorija"/>
+<gentext key="revhistory" text="Pataisym&#x0173; istorija"/>
+<gentext key="revision" text="Pataisytas leidimas"/>
+<gentext key="Revision" text="Pataisytas leidimas"/>
+<gentext key="sect1" text="Skyrius"/>
+<gentext key="sect2" text="Skyrius"/>
+<gentext key="sect3" text="Skyrius"/>
+<gentext key="sect4" text="Skyrius"/>
+<gentext key="sect5" text="Skyrius"/>
+<gentext key="section" text="Skyrius"/>
+<gentext key="Section" text="Skyrius"/>
 <gentext key="see" text="&#x017E;r."/>             <!-- uncapitalized -->
 <gentext key="seealso" text="&#x017E;r."/>    <!-- uncapitalized -->
 <gentext key="set" text="Set"/>
@@ -108,58 +108,58 @@
 <gentext key="SetIndex" text="Set Index"/>
 <gentext key="Sidebar" text=""/>
 <gentext key="sidebar" text="sidebar"/>
-   <l:gentext key="step" text="&#x017E;ingsnis"/>
-   <l:gentext key="Step" text="&#x017D;ingsnis"/>
-   <l:gentext key="Table" text="Lentel&#x0117;"/>
-   <l:gentext key="table" text="Lentel&#x0117;"/>
-   <l:gentext key="tip" text="Patarimas"/>
-   <l:gentext key="TIP" text="PATARIMAS"/>
-   <l:gentext key="Tip" text="Patarimas"/>
-   <l:gentext key="Warning" text="&#x012E;sp&#x0117;jimas"/>
-   <l:gentext key="warning" text="&#x012E;sp&#x0117;jimas"/>
-   <l:gentext key="WARNING" text="&#x012E;SP&#x0116;JIMAS"/>
+<gentext key="step" text="&#x017E;ingsnis"/>
+<gentext key="Step" text="&#x017D;ingsnis"/>
+<gentext key="Table" text="Lentel&#x0117;"/>
+<gentext key="table" text="Lentel&#x0117;"/>
+<gentext key="tip" text="Patarimas"/>
+<gentext key="TIP" text="PATARIMAS"/>
+<gentext key="Tip" text="Patarimas"/>
+<gentext key="Warning" text="&#x012E;sp&#x0117;jimas"/>
+<gentext key="warning" text="&#x012E;sp&#x0117;jimas"/>
+<gentext key="WARNING" text="&#x012E;SP&#x0116;JIMAS"/>
 
 <gentext key="and" text="ir"/>
 <gentext key="by" text="by"/>
-   <l:gentext key="Edited" text="Redaguotas"/>
-   <l:gentext key="edited" text="Redaguotas"/>
-   <l:gentext key="Editedby" text="Redaguotas:"/>
-   <l:gentext key="editedby" text="Redaguotas:"/>
+<gentext key="Edited" text="Redaguotas"/>
+<gentext key="edited" text="Redaguotas"/>
+<gentext key="Editedby" text="Redaguotas:"/>
+<gentext key="editedby" text="Redaguotas:"/>
 <gentext key="in" text="in"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
-   <l:gentext key="nonexistantelement" text="neegzistuojantis elementas"/>
-   <l:gentext key="notes" text="Pastabos"/>
-   <l:gentext key="Notes" text="Pastabos"/>
+<gentext key="nonexistantelement" text="neegzistuojantis elementas"/>
+<gentext key="notes" text="Pastabos"/>
+<gentext key="Notes" text="Pastabos"/>
 <gentext key="Pgs" text="Pgs."/>
 <gentext key="pgs" text="Pgs."/>
-   <l:gentext key="Revisedby" text="Patais&#x0117;: "/>
-   <l:gentext key="revisedby" text="Patais&#x0117;: "/>
-   <l:gentext key="TableNotes" text="Lentel&#x0117;s pastabos"/>
-   <l:gentext key="tablenotes" text="Lentel&#x0117;s pastabos"/>
-   <l:gentext key="TableofContents" text="T&#x016B;rinys"/>
-   <l:gentext key="tableofcontents" text="T&#x016B;rinys"/>
+<gentext key="Revisedby" text="Patais&#x0117;: "/>
+<gentext key="revisedby" text="Patais&#x0117;: "/>
+<gentext key="TableNotes" text="Lentel&#x0117;s pastabos"/>
+<gentext key="tablenotes" text="Lentel&#x0117;s pastabos"/>
+<gentext key="TableofContents" text="T&#x016B;rinys"/>
+<gentext key="tableofcontents" text="T&#x016B;rinys"/>
 <gentext key="unexpectedelementname" text="Unexpected element name"/>
-   <l:gentext key="unsupported" text="nepalaikomas"/>
+<gentext key="unsupported" text="nepalaikomas"/>
 <gentext key="xrefto" text="xref to"/>
 
-   <l:gentext key="listofequations" text="Lyg&#x010D;i&#x0173; s&#x0105;ra&#x0161;as"/>
-   <l:gentext key="ListofEquations" text="Lyg&#x010D;i&#x0173; s&#x0105;ra&#x0161;as"/>
-   <l:gentext key="ListofExamples" text="Pavyzd&#x017E;i&#x0173; s&#x0105;ra&#x0161;as"/>
-   <l:gentext key="listofexamples" text="Pavyzd&#x017E;i&#x0173; s&#x0105;ra&#x0161;as"/>
-   <l:gentext key="ListofFigures" text="Pav. s&#x0105;ra&#x0161;as"/>
-   <l:gentext key="listoffigures" text="Pav. s&#x0105;ra&#x0161;as"/>
-   <l:gentext key="listoftables" text="Lenteli&#x0173; s&#x0105;ra&#x0161;as"/>
-   <l:gentext key="ListofTables" text="Lenteli&#x0173; s&#x0105;ra&#x0161;as"/>
-   <l:gentext key="ListofUnknown" text="Ne&#x017E;inomas s&#x0105;ra&#x0161;as"/>
-   <l:gentext key="listofunknown" text="Ne&#x017E;inomas s&#x0105;ra&#x0161;as"/>
+<gentext key="listofequations" text="Lyg&#x010D;i&#x0173; s&#x0105;ra&#x0161;as"/>
+<gentext key="ListofEquations" text="Lyg&#x010D;i&#x0173; s&#x0105;ra&#x0161;as"/>
+<gentext key="ListofExamples" text="Pavyzd&#x017E;i&#x0173; s&#x0105;ra&#x0161;as"/>
+<gentext key="listofexamples" text="Pavyzd&#x017E;i&#x0173; s&#x0105;ra&#x0161;as"/>
+<gentext key="ListofFigures" text="Pav. s&#x0105;ra&#x0161;as"/>
+<gentext key="listoffigures" text="Pav. s&#x0105;ra&#x0161;as"/>
+<gentext key="listoftables" text="Lenteli&#x0173; s&#x0105;ra&#x0161;as"/>
+<gentext key="ListofTables" text="Lenteli&#x0173; s&#x0105;ra&#x0161;as"/>
+<gentext key="ListofUnknown" text="Ne&#x017E;inomas s&#x0105;ra&#x0161;as"/>
+<gentext key="listofunknown" text="Ne&#x017E;inomas s&#x0105;ra&#x0161;as"/>
 
-   <l:gentext key="nav-home" text="Namai"/>
-   <l:gentext key="nav-next" text="Sekantis"/>
-   <l:gentext key="nav-next-sibling" text="Fast Forward"/>
-   <l:gentext key="nav-prev" text="Paskesnis"/>
-   <l:gentext key="nav-prev-sibling" text="Fast Backward"/>
-   <l:gentext key="nav-up" text="&#x012E; vir&#x0161;&#x0173;"/>
+<gentext key="nav-home" text="Namai"/>
+<gentext key="nav-next" text="Sekantis"/>
+<gentext key="nav-next-sibling" text="Fast Forward"/>
+<gentext key="nav-prev" text="Paskesnis"/>
+<gentext key="nav-prev-sibling" text="Fast Backward"/>
+<gentext key="nav-up" text="&#x012E; vir&#x0161;&#x0173;"/>
 <gentext key="nav-toc" text="ToC"/>
 
 <gentext key="Draft"         text="Draft"/>
