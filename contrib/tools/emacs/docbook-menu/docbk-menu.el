@@ -65,9 +65,9 @@
 ;;
 ;; To install and use this package:
 ;;
-;; 1. Go to the docbook-menu download site:
+;; 1. Go to the DocBook project download site:
 ;;
-;;      http://www.logopoeia.com/docbook/download
+;;      https://sourceforge.net/project/showfiles.php?group_id=21935 
 ;;
 ;;    And download the latest docbook-menu-N.NN.zip file
 ;;    (for example, docbook-menu-1.00.zip).
@@ -86,7 +86,7 @@
 ;;
 ;; 4. Add the following to your .emacs file exactly as shown:
 ;;
-;;      (require 'dbk-menu)
+;;      (require 'docbk-menu)
 ;;
 ;; ==================================================================
 ;; Note: The *.elc files included in this distribution are
