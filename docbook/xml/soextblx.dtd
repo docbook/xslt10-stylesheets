@@ -24,6 +24,9 @@
 
      This XML version incorporates the logical bare minimum changes
      necessary to make the Exchange Table Model a valid XML DTD.
+
+     It has been modified slightly for use in the combined HTML/CALS models
+     supported by DocBook V4.3.
 -->
 
 <!-- The XML version of the Exchange Table Model differs from
@@ -182,6 +185,9 @@ in useability, presentation, and possible structure information degradation.
 <!ENTITY % tbl.entry.mdl        "(%paracon;)*">
 <!ENTITY % tbl.entry.att        "">
 
+<!ENTITY % tbl.frame.attval     "top|bottom|topbot|all|sides|none">
+<!ENTITY % tbl.tbody.mdl        "row+">
+
 <!-- =====  Element and attribute declarations follow. =====  -->
 
 <!--
@@ -197,7 +203,7 @@ in useability, presentation, and possible structure information degradation.
 <!ELEMENT %tbl.table.name; (%tbl.table.mdl;)>
 
 <!ATTLIST %tbl.table.name;
-        frame           (top|bottom|topbot|all|sides|none)      #IMPLIED
+        frame           (%tbl.frame.attval;)                    #IMPLIED
         colsep          %yesorno;                               #IMPLIED
         rowsep          %yesorno;                               #IMPLIED
         %tbl.table.att;
@@ -260,7 +266,7 @@ in useability, presentation, and possible structure information degradation.
      ENTITY % tbl.tbody.att     ""
 -->
 
-<!ELEMENT tbody (row+)>
+<!ELEMENT tbody (%tbl.tbody.mdl;)>
 
 <!ATTLIST tbody
         valign          (top|middle|bottom)                     #IMPLIED
@@ -291,7 +297,7 @@ in useability, presentation, and possible structure information degradation.
      ENTITY % tbl.entry.att     ""
 -->
 
-<!ELEMENT entry %tbl.entry.mdl;>
+<!ELEMENT entry (%tbl.entry.mdl;)*>
 
 <!ATTLIST entry
         colname         NMTOKEN                                 #IMPLIED

@@ -3408,7 +3408,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % caption.element "INCLUDE">
 <![ %caption.element; [
-<!ELEMENT caption %ho; (%textobject.mix;)*>
+<!ELEMENT caption %ho; (#PCDATA | %textobject.mix;)*>
 <!--end of caption.element-->]]>
 
 <!ENTITY % caption.attlist "INCLUDE">
@@ -3565,6 +3565,22 @@ in the text (no (0) value, the default)
 ]]>
 <!ENTITY % exchange.table.module "INCLUDE">
 
+<!-- Do we allow the HTML table model as well? -->
+<!ENTITY % allow.html.tables "INCLUDE">
+<![%allow.html.tables;[
+  <!-- ====================================================== -->
+  <!--  xhtmltbl.mod defines HTML tables and sets parameter
+        entities so that, when the CALS table module is read,
+        we end up allowing any table to be CALS or HTML.
+        i.e. This include must come first!                    -->
+  <!-- ====================================================== -->
+
+<!ENTITY % htmltbl
+  PUBLIC "-//OASIS//ELEMENTS DocBook XML HTML Tables V4.2//EN"
+  "htmltblx.mod">
+%htmltbl;
+<!--end of allow.html.tables-->]]>
+
 <!ENTITY % tables.role.attrib "%role.attrib;">
 
 <![%cals.table.module;[
@@ -3643,9 +3659,12 @@ in the text (no (0) value, the default)
 
 <!ENTITY % local.informaltable.attrib "">
 
+<!-- the following entity may have been declared by the XHTML table module -->
+<!ENTITY % informal.tbl.table.mdl "graphic+|mediaobject+|tgroup+">
+
 <!ENTITY % informaltable.element "INCLUDE">
 <![%informaltable.element;[
-<!ELEMENT informaltable %ho; (blockinfo?, textobject*, (graphic+|mediaobject+|tgroup+))>
+<!ELEMENT informaltable %ho; (blockinfo?, textobject*, (%informal.tbl.table.mdl;))>
 <!--end of informaltable.element-->]]>
 
 <!-- Frame, Colsep, and Rowsep must be repeated because
@@ -3659,12 +3678,7 @@ in the text (no (0) value, the default)
 <!ENTITY % informaltable.attlist "INCLUDE">
 <![%informaltable.attlist;[
 <!ATTLIST informaltable
-		frame		(top
-				|bottom
-				|topbot
-				|all
-				|sides
-				|none)			#IMPLIED
+		frame		(%tbl.frame.attval;)	#IMPLIED
 		colsep		%yesorno.attvals;	#IMPLIED
 		rowsep		%yesorno.attvals;	#IMPLIED
 		%common.table.attribs;

@@ -34,7 +34,8 @@
 <!-- ...................................................................... -->
 
 <!-- This module contains the definitions for the CALS Table Model
-     converted to XML.
+     converted to XML. It has been modified slightly for use in the
+     combined HTML/CALS models supported by DocBook V4.3.
 -->
 
 <!-- These definitions are not directly related to the table model, but are
@@ -82,12 +83,16 @@ of the current application.
 <!ENTITY % tbl.row.mdl          "(entry|entrytbl)+">
 <!ENTITY % tbl.entrytbl.mdl     "colspec*,spanspec*,thead?,tbody">
 <!ENTITY % tbl.entry.mdl        "(para|warning|caution|note|legend|%paracon;)*">
+
+<!ENTITY % tbl.frame.attval     "top|bottom|topbot|all|sides|none">
+<!ENTITY % tbl.tbody.mdl        "row+">
+
 <!-- =====  Element and attribute declarations follow. =====  -->
 
 <!ELEMENT table %ho; (%tbl.table.mdl;)>
 
 <!ATTLIST table
-        frame           (top|bottom|topbot|all|sides|none)      #IMPLIED
+        frame           (%tbl.frame.attval;)                    #IMPLIED
         colsep          %yesorno;                               #IMPLIED
         rowsep          %yesorno;                               #IMPLIED
         %tbl.table.att;
@@ -146,7 +151,7 @@ of the current application.
         %secur;
 >
 
-<!ELEMENT tbody %ho; (row+)>
+<!ELEMENT tbody %ho; (%tbl.tbody.mdl;)>
 
 <!ATTLIST tbody
         valign          (top|middle|bottom)                     #IMPLIED
