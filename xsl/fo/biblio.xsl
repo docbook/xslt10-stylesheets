@@ -181,6 +181,11 @@
   <xsl:param name="node" select="."/>
 
   <xsl:choose>
+    <xsl:when test="$bibliography.numbered != 0">
+      <xsl:text>[</xsl:text>
+      <xsl:number from="bibliography" count="biblioentry|bibliomixed" format="1"/>
+      <xsl:text>] </xsl:text>
+    </xsl:when>
     <xsl:when test="local-name($node/child::*[1]) = 'abbrev'">
       <xsl:text>[</xsl:text>
       <xsl:apply-templates select="$node/abbrev[1]"/>
@@ -605,10 +610,9 @@
 </xsl:template>
 
 <xsl:template match="revhistory" mode="bibliography.mode">
-  <fo:inline>
-    <xsl:apply-templates mode="bibliography.mode"/>
-    <xsl:value-of select="$biblioentry.item.separator"/>
-  </fo:inline>
+  <fo:block>
+    <xsl:apply-templates select="."/> <!-- use normal mode -->
+  </fo:block>
 </xsl:template>
 
 <xsl:template match="seriesinfo" mode="bibliography.mode">
