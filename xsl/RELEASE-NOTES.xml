@@ -3,7 +3,7 @@
 <article>
   <articleinfo>
     <title>DocBook XSL Stylesheet Release Notes</title>
-    <pubdate>$Date$</pubdate>
+    <pubdate><?dbtimestamp format="Y-m-d"?></pubdate>
     <releaseinfo role="cvs">$Id$</releaseinfo> 
     <corpauthor>DocBook Project Development Team</corpauthor> 
   </articleinfo> 
