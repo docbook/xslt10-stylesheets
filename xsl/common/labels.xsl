@@ -46,6 +46,10 @@ element label.</para>
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="partintro" mode="label.markup">
+  <!-- no label -->
+</xsl:template>
+
 <xsl:template match="preface" mode="label.markup">
   <xsl:choose>
     <xsl:when test="@label">
