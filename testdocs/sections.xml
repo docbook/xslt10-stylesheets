@@ -12,6 +12,7 @@
 
 <sect1>
   <title>sect1 title</title>
+  <subtitle>sect1 subtitle</subtitle>
 
   <para>This is a test paragraph.</para>
 
