@@ -13,7 +13,7 @@ if [[ $CLASSPATH == *trang* ]]; then
   TRANG="java com.thaiopensource.relaxng.translate.Driver";
 else
   # otherwise, try to find trang.jar using the "locate" command
-  if [ "$(locate tng.jar)" ]; then
+  if [ "$(locate trang.jar)" ]; then
     for jar in `locate trang.jar`; do
       TRANG="java -jar $jar";
       break;
@@ -44,7 +44,7 @@ fi
 
 # if trang was found, run it
 if [ -n "$TRANG" ]; then
-    echo $TRANG $1 $2
+  $TRANG $1 $2
 else
   # otherwise, exit with an error
   echo "error: cannot locate trang" 1>&2
