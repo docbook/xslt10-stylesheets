@@ -80,18 +80,6 @@
 <xsl:template match="index/subtitle"></xsl:template>
 <xsl:template match="index/titleabbrev"></xsl:template>
 
-<xsl:template match="index/title" mode="component.title.mode">
-  <h2 class="title">
-    <xsl:apply-templates/>
-  </h2>
-</xsl:template>
-
-<xsl:template match="index/subtitle" mode="component.title.mode">
-  <h3>
-    <i><xsl:apply-templates/></i>
-  </h3>
-</xsl:template>
-
 <!-- ==================================================================== -->
 
 <xsl:template match="indexdiv">

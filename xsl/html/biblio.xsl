@@ -37,21 +37,6 @@
 <xsl:template match="bibliography/subtitle"></xsl:template>
 <xsl:template match="bibliography/titleabbrev"></xsl:template>
 
-<xsl:template match="bibliography/title" mode="component.title.mode">
-  <h2 class="title">
-    <xsl:call-template name="anchor">
-      <xsl:with-param name="node" select=".."/>
-    </xsl:call-template>
-    <xsl:apply-templates/>
-  </h2>
-</xsl:template>
-
-<xsl:template match="bibliography/subtitle" mode="component.title.mode">
-  <h3>
-    <i><xsl:apply-templates/></i>
-  </h3>
-</xsl:template>
-
 <!-- ==================================================================== -->
 
 <xsl:template match="bibliodiv">
