@@ -72,10 +72,10 @@
                           "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 %svg.dtd;
 
-<! -- Provide an alternate imageobject declaration -->
+<!-- Provide an alternate imageobject declaration -->
 
 <!ENTITY % docbook.svg.imageobject.element "INCLUDE">
-<![%docbook.svg.imageobject.element[
+<![%docbook.svg.imageobject.element;[
 <!ELEMENT imageobject (objectinfo?, (imagedata|%SVG.svg.qname;))>
 ]]>
 
