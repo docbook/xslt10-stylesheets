@@ -404,7 +404,11 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="procedure">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
   <div class="{name(.)}">
+    <a name="{$id}"/>
     <xsl:if test="title">
       <xsl:apply-templates select="title" mode="procedure.title.mode"/>
     </xsl:if>
@@ -442,7 +446,14 @@
 </xsl:template>
 
 <xsl:template match="step">
-  <li><xsl:apply-templates/></li>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <li>
+    <a name="{$id}"/>
+    <xsl:apply-templates/>
+  </li>
 </xsl:template>
 
 <xsl:template match="step/title">
