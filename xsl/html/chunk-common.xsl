@@ -825,8 +825,9 @@
               </td>
               <td width="20%" align="center">
                 <xsl:choose>
-                  <xsl:when test="count($up)>0">
-                    <a accesskey="u">
+                  <xsl:when test="count($up)&gt;0
+		                  and generate-id($up) != generate-id($home)">
+		    <a accesskey="u">
                       <xsl:attribute name="href">
                         <xsl:call-template name="href.target">
                           <xsl:with-param name="object" select="$up"/>
