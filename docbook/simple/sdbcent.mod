@@ -32,16 +32,16 @@
 
 <!ENTITY % ISOlat1 PUBLIC
 "ISO 8879:1986//ENTITIES Added Latin 1//EN//XML"
-"ent/iso-lat1.ent">
+"../../xmlcharent/iso-lat1.ent">
 %ISOlat1;
 
 <!ENTITY % ISOnum PUBLIC
 "ISO 8879:1986//ENTITIES Numeric and Special Graphic//EN//XML"
-"ent/iso-num.ent">
+"../../xmlcharent/iso-num.ent">
 %ISOnum;
 
 <!ENTITY % ISOpub PUBLIC
 "ISO 8879:1986//ENTITIES Publishing//EN//XML"
-"ent/iso-pub.ent">
+"../../xmlcharent/iso-pub.ent">
 %ISOpub;
 
