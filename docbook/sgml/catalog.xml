@@ -28,6 +28,18 @@
 <public publicId="-//OASIS//DTD DocBook XML V4.4b1//EN"
         uri="docbookx.dtd"/>
 
+<system systemId="http://www.oasis-open.org/docbook/sgml/4.4b1/docbook.dtd"
+	uri="docbook.dtd"/>
+
+<system systemId="http://docbook.org/sgml/4.4b1/docbook.dtd"
+	uri="docbook.dtd"/>
+
+<system systemId="http://www.oasis-open.org/docbook/xml/4.4b1/docbookx.dtd"
+	uri="docbookx.dtd"/>
+
+<system systemId="http://docbook.org/xml/4.4b1/docbookx.dtd"
+	uri="docbookx.dtd"/>
+
 <!-- ...................................................................... -->
 <!-- DocBook modules ...................................................... -->
 
