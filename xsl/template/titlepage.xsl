@@ -709,6 +709,14 @@ names.</para>
     </xsl:if>
   </xsl:if>
 
+  <!-- info -->
+  <xsl:text>|info</xsl:text>
+  <xsl:text>/</xsl:text>
+  <xsl:value-of select="name(.)"/>
+  <xsl:if test="@t:predicate">
+    <xsl:value-of select="@t:predicate"/>
+  </xsl:if>
+
   <xsl:if test="local-name(.) = 'title'
                 or local-name(.) = 'subtitle'
                 or local-name(.) = 'titleabbrev'">
@@ -890,6 +898,31 @@ names.</para>
               </xsl:element>
             </xsl:if>
 
+            <!-- info -->
+	    <xsl:text>&#xA;    </xsl:text>
+	    <xsl:element name="xsl:when">
+	      <xsl:attribute name="test">
+		<xsl:value-of select="'info'"/>
+		<xsl:text>/</xsl:text>
+		<xsl:value-of select="name(.)"/>
+	      </xsl:attribute>
+	      <xsl:text>&#xA;      </xsl:text>
+	      <xsl:element name="xsl:apply-templates">
+		<xsl:attribute name="mode">
+		  <xsl:value-of select="$mode"/>
+		</xsl:attribute>
+		<xsl:attribute name="select">
+		  <xsl:value-of select="'info'"/>
+		  <xsl:text>/</xsl:text>
+		  <xsl:value-of select="name(.)"/>
+		  <xsl:if test="@t:predicate">
+		    <xsl:value-of select="@t:predicate"/>
+		  </xsl:if>
+		</xsl:attribute>
+	      </xsl:element>
+	      <xsl:text>&#xA;    </xsl:text>
+	    </xsl:element>
+
             <xsl:text>&#xA;    </xsl:text>
             <xsl:element name="xsl:when">
               <xsl:attribute name="test">
@@ -947,6 +980,22 @@ names.</para>
               </xsl:attribute>
             </xsl:element>
           </xsl:if>
+
+	  <!-- info -->
+	  <xsl:text>&#xA;  </xsl:text>
+	  <xsl:element name="xsl:apply-templates">
+	    <xsl:attribute name="mode">
+	      <xsl:value-of select="$mode"/>
+	    </xsl:attribute>
+	    <xsl:attribute name="select">
+	      <xsl:value-of select="'info'"/>
+	      <xsl:text>/</xsl:text>
+	      <xsl:value-of select="name(.)"/>
+	      <xsl:if test="@t:predicate">
+		<xsl:value-of select="@t:predicate"/>
+	      </xsl:if>
+	    </xsl:attribute>
+	  </xsl:element>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
