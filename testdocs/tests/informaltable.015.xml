@@ -10,34 +10,32 @@
 </author>
 </articleinfo>
 
-  <para>Two column table, but entries only in one column.</para>
+  <para>
+Three column table, but entries only in one column.  Last column
+should expand to fill entire horizontal space.</para>
 
-<informaltable id="informaltable" pgwide="1">
-        <tgroup cols="3" colsep="1" rowsep="1" align="left">
-          <colspec colname="cat" colwidth="2in"/>
-          <colspec colname="issue" colwidth="2in"/>
-          <colspec colname="response" colwidth="4in*"/>
-          <thead>
-            <row>
-              <entry>Category</entry>
-              <entry>System Considerations, Issues</entry>
-              <entry>Notes</entry>
-            </row>
-          </thead>
-          <tbody>
-            <row>
-              <entry>General Company Information</entry>
-            </row>
-            <row>
-              <entry>Company Financials</entry>
-            </row>
+  <informaltable id="informaltable" pgwide="1">
+    <tgroup cols="3" colsep="1" rowsep="1" align="left">
+      <colspec colname="cat" colwidth="2in"/>
+      <colspec colname="issue" colwidth="2in"/>
+      <colspec colname="response" colwidth="4in*"/>
+      <thead>
+        <row>
+          <entry>Category</entry>
+          <entry>System Considerations, Issues</entry>
+          <entry>Notes</entry>
+        </row>
+      </thead>
+      <tbody>
+        <row>
+          <entry>General Company Information</entry>
+        </row>
+        <row>
+          <entry>Company Financials</entry>
+        </row>
       </tbody>
     </tgroup>
   </informaltable>
-  <para>
-    As of DocBook DSSSL V1.77, this caused this error:
-<computeroutput>jade:../html/dbtable.dsl:122:44:E: division by zero</computeroutput>
-  </para>
 </article>
 
 
