@@ -20,7 +20,7 @@ clean:
         done
 
 jar: all
-	jar cf ../../xalan2.jar com
+	jar cf ../../xalan2.jar `find com -name "*.class" -print`
 
 %.class : %.java
 	javac -classpath $(CLASSPATH) \
