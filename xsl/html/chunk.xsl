@@ -1096,20 +1096,13 @@
   <xsl:call-template name="process-chunk-element"/>
 </xsl:template>
 
-<xsl:template match="sect1[$chunk.section.depth &gt; 0]
-                     |sect2[$chunk.section.depth &gt; 1]
-                     |sect3[$chunk.section.depth &gt; 2]
-                     |sect4[$chunk.section.depth &gt; 3]
-                     |sect5[$chunk.section.depth &gt; 4]
-                     |section[$chunk.section.depth &gt; count(ancestor::section)]
-                     |/section">
-
+<xsl:template match="sect1|sect2|sect3|sect4|sect5|section">
   <xsl:variable name="ischunk">
     <xsl:call-template name="chunk"/>
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test=". = /section">
+    <xsl:when test="not(parent::*)">
       <xsl:call-template name="process-chunk-element"/>
     </xsl:when>
     <xsl:when test="$ischunk = 0">

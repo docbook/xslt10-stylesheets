@@ -6,6 +6,7 @@ include Makefile.param
 all: titlepage.templates.xsl param.xsl
 
 param.html: param.xml
+	../../cvstools/paramchk -m Makefile.param $<
 	$(XSLT) $< ../docsrc/lrefentry.xsl $@
 
 param.xml: param.xweb $(PARAMS)
