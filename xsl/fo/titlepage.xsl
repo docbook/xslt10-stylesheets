@@ -540,12 +540,16 @@
 <!-- book recto -->
 
 <xsl:template match="bookinfo/authorgroup" mode="titlepage.mode" priority="2">
-  <fo:wrapper>
+  <fo:block>
     <xsl:if test="@id">
       <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
     </xsl:if>
-    <xsl:apply-templates mode="titlepage.mode"/>
-  </fo:wrapper>
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="'by'"/>
+    </xsl:call-template>
+    <xsl:text> </xsl:text>
+    <xsl:call-template name="person.name.list"/>
+  </fo:block>
 </xsl:template>
 
 <!-- book verso -->
@@ -591,16 +595,6 @@
     </xsl:call-template>
     <xsl:text> </xsl:text>
     <xsl:apply-templates/>
-  </fo:block>
-</xsl:template>
-
-<xsl:template match="bookinfo/authorgroup" mode="titlepage.mode" priority="2">
-  <fo:block>
-    <xsl:call-template name="gentext">
-      <xsl:with-param name="key" select="'by'"/>
-    </xsl:call-template>
-    <xsl:text> </xsl:text>
-    <xsl:call-template name="person.name.list"/>
   </fo:block>
 </xsl:template>
 
