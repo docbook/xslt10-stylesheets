@@ -36,7 +36,7 @@
           <xsl:with-param name="terms" select="descendant::label"/>
           <xsl:with-param name="maxlength" select="20"/>
         </xsl:call-template>
-        <xsl:text>em</xsl:text>
+        <xsl:text>em * 0.50</xsl:text>
       </xsl:when>
       <xsl:otherwise>2.5em</xsl:otherwise>
     </xsl:choose>
