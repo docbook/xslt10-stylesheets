@@ -56,7 +56,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="blockquote">
-  <fo:block start-indent="1in" end-indent="1in">
+  <fo:block start-indent="0.5in" end-indent="0.5in">
     <xsl:call-template name="semiformal.object"/>
   </fo:block>
 </xsl:template>
