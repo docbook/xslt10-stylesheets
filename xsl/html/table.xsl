@@ -124,7 +124,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="tgroup">
+<xsl:template match="tgroup" name="tgroup">
   <xsl:variable name="summary">
     <xsl:call-template name="dbhtml-attribute">
       <xsl:with-param name="pis"
@@ -556,14 +556,14 @@
       </xsl:attribute>
     </xsl:if>
 
-    <xsl:apply-templates select="entry[1]">
+    <xsl:apply-templates select="(entry|entrytbl)[1]">
       <xsl:with-param name="spans" select="$spans"/>
     </xsl:apply-templates>
   </tr>
 
   <xsl:if test="following-sibling::row">
     <xsl:variable name="nextspans">
-      <xsl:apply-templates select="entry[1]" mode="span">
+      <xsl:apply-templates select="(entry|entrytbl)[1]" mode="span">
         <xsl:with-param name="spans" select="$spans"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -574,7 +574,7 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="entry" name="entry">
+<xsl:template match="entry|entrytbl" name="entry">
   <xsl:param name="col" select="1"/>
   <xsl:param name="spans"/>
 
@@ -769,6 +769,9 @@
           <xsl:when test="$empty.cell">
             <xsl:text>&#160;</xsl:text>
           </xsl:when>
+          <xsl:when test="self::entrytbl">
+            <xsl:call-template name="tgroup"/>
+          </xsl:when>
           <xsl:otherwise>
             <xsl:apply-templates/>
           </xsl:otherwise>
@@ -776,8 +779,9 @@
       </xsl:element>
 
       <xsl:choose>
-        <xsl:when test="following-sibling::entry">
-          <xsl:apply-templates select="following-sibling::entry[1]">
+        <xsl:when test="following-sibling::entry|following-sibling::entrytbl">
+          <xsl:apply-templates select="(following-sibling::entry
+                                       |following-sibling::entrytbl)[1]">
             <xsl:with-param name="col" select="$col+$entry.colspan"/>
             <xsl:with-param name="spans" select="$following.spans"/>
           </xsl:apply-templates>
@@ -793,7 +797,7 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="entry" name="sentry" mode="span">
+<xsl:template match="entry|entrytbl" name="sentry" mode="span">
   <xsl:param name="col" select="1"/>
   <xsl:param name="spans"/>
 
@@ -850,8 +854,9 @@
       </xsl:call-template>
 
       <xsl:choose>
-        <xsl:when test="following-sibling::entry">
-          <xsl:apply-templates select="following-sibling::entry[1]"
+        <xsl:when test="following-sibling::entry|following-sibling::entrytbl">
+          <xsl:apply-templates select="(following-sibling::entry
+                                        |following-sibling::entrytbl)[1]"
                                mode="span">
             <xsl:with-param name="col" select="$col+$entry.colspan"/>
             <xsl:with-param name="spans" select="$following.spans"/>
