@@ -18,6 +18,7 @@
   <xsl:variable name="depth" select="count(ancestor::section)+1"/>
 
   <div class="{name(.)}">
+    <xsl:call-template name="language.attribute"/>
     <xsl:call-template name="section.titlepage"/>
 
     <xsl:variable name="toc.params">
@@ -71,6 +72,7 @@
 
 <xsl:template match="sect1">
   <div class="{name(.)}">
+    <xsl:call-template name="language.attribute"/>
     <xsl:call-template name="sect1.titlepage"/>
 
     <xsl:variable name="toc.params">
@@ -97,6 +99,7 @@
 
 <xsl:template match="sect2">
   <div class="{name(.)}">
+    <xsl:call-template name="language.attribute"/>
     <xsl:call-template name="sect2.titlepage"/>
 
     <xsl:variable name="toc.params">
@@ -122,6 +125,7 @@
 
 <xsl:template match="sect3">
   <div class="{name(.)}">
+    <xsl:call-template name="language.attribute"/>
     <xsl:call-template name="sect3.titlepage"/>
 
     <xsl:variable name="toc.params">
@@ -147,6 +151,7 @@
 
 <xsl:template match="sect4">
   <div class="{name(.)}">
+    <xsl:call-template name="language.attribute"/>
     <xsl:call-template name="sect4.titlepage"/>
 
     <xsl:variable name="toc.params">
@@ -172,6 +177,7 @@
 
 <xsl:template match="sect5">
   <div class="{name(.)}">
+    <xsl:call-template name="language.attribute"/>
     <xsl:call-template name="sect5.titlepage"/>
 
     <xsl:variable name="toc.params">
@@ -197,6 +203,7 @@
 
 <xsl:template match="simplesect">
   <div class="{name(.)}">
+    <xsl:call-template name="language.attribute"/>
     <xsl:call-template name="simplesect.titlepage"/>
     <xsl:apply-templates/>
   </div>

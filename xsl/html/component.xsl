@@ -54,6 +54,7 @@
 
 <xsl:template match="dedication" mode="dedication">
   <div class="{name(.)}">
+    <xsl:call-template name="language.attribute"/>
     <xsl:call-template name="dedication.titlepage"/>
     <xsl:apply-templates/>
     <xsl:call-template name="process.footnotes"/>
@@ -81,6 +82,7 @@
 
 <xsl:template match="colophon">
   <div class="{name(.)}">
+    <xsl:call-template name="language.attribute"/>
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
         <xsl:call-template name="object.id"/>
@@ -102,6 +104,7 @@
 
 <xsl:template match="preface">
   <div class="{name(.)}">
+    <xsl:call-template name="language.attribute"/>
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
         <xsl:call-template name="object.id"/>
@@ -151,6 +154,7 @@
 
 <xsl:template match="chapter">
   <div class="{name(.)}">
+    <xsl:call-template name="language.attribute"/>
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
         <xsl:call-template name="object.id"/>
@@ -203,6 +207,7 @@
   </xsl:variable>
 
   <div class="{name(.)}">
+    <xsl:call-template name="language.attribute"/>
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
         <xsl:call-template name="object.id"/>
@@ -336,6 +341,7 @@
 
 <xsl:template match="article">
   <div class="{name(.)}">
+    <xsl:call-template name="language.attribute"/>
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
         <xsl:call-template name="object.id"/>
