@@ -363,7 +363,7 @@
                                                   and not(@style)])[1]"/>
 
   <xsl:choose>
-    <xsl:when test="$local.template.node">
+    <xsl:when test="$local.template.node/@text">
       <xsl:value-of select="$local.template.node/@text"/>
     </xsl:when>
     <xsl:when test="$template.node/@text">
@@ -394,6 +394,65 @@ in the context named "</xsl:text>
             <xsl:text>" localization.</xsl:text>
           </xsl:message>
         </xsl:otherwise>
+      </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="gentext.template.exists">
+  <xsl:param name="context" select="'default'"/>
+  <xsl:param name="name" select="'default'"/>
+  <xsl:param name="origname" select="$name"/>
+  <xsl:param name="purpose"/>
+  <xsl:param name="xrefstyle"/>
+  <xsl:param name="referrer"/>
+  <xsl:param name="lang">
+    <xsl:call-template name="l10n.language"/>
+  </xsl:param>
+
+  <xsl:variable name="local.localization.node"
+                select="($local.l10n.xml//l:i18n/l:l10n[@language=$lang])[1]"/>
+
+  <xsl:variable name="localization.node"
+                select="($l10n.xml/l:i18n/l:l10n[@language=$lang])[1]"/>
+
+  <xsl:variable name="local.context.node"
+                select="$local.localization.node/l:context[@name=$context]"/>
+
+  <xsl:variable name="context.node"
+                select="$localization.node/l:context[@name=$context]"/>
+
+  <xsl:variable name="local.template.node"
+                select="($local.context.node/l:template[@name=$name
+                                                        and @style
+                                                        and @style=$xrefstyle]
+                        |$local.context.node/l:template[@name=$name
+                                                        and not(@style)])[1]"/>
+
+  <xsl:variable name="template.node"
+                select="($context.node/l:template[@name=$name
+                                                  and @style
+                                                  and @style=$xrefstyle]
+                        |$context.node/l:template[@name=$name
+                                                  and not(@style)])[1]"/>
+
+  <xsl:choose>
+    <xsl:when test="$local.template.node/@text">1</xsl:when>
+    <xsl:when test="$template.node/@text">1</xsl:when>
+    <xsl:otherwise>
+      <xsl:choose>
+        <xsl:when test="contains($name, '/')">
+          <xsl:call-template name="gentext.template.exists">
+            <xsl:with-param name="context" select="$context"/>
+            <xsl:with-param name="name" select="substring-after($name, '/')"/>
+            <xsl:with-param name="origname" select="$origname"/>
+            <xsl:with-param name="purpose" select="$purpose"/>
+            <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+            <xsl:with-param name="referrer" select="$referrer"/>
+            <xsl:with-param name="lang" select="$lang"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>0</xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
