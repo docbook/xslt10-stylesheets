@@ -360,11 +360,31 @@
 </xsl:template>
 
 <xsl:template match="citerefentry">
-  <xsl:call-template name="inline.charseq"/>
+  <xsl:choose>
+    <xsl:when test="$citerefentry.link != '0'">
+      <a>
+        <xsl:attribute name="href">
+          <xsl:call-template name="generate.citerefentry.link"/>
+        </xsl:attribute>
+        <xsl:call-template name="inline.charseq"/>
+      </a>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="inline.charseq"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
-<xsl:template match="citetitle">
-  <xsl:call-template name="inline.italicseq"/>
+<xsl:template name="generate.citerefentry.link">
+  <!-- nop -->
+</xsl:template>
+
+<xsl:template name="x.generate.citerefentry.link">
+  <xsl:text>http://example.com/cgi-bin/man.cgi?</xsl:text>
+  <xsl:value-of select="refentrytitle"/>
+  <xsl:text>(</xsl:text>
+  <xsl:value-of select="manvolnum"/>
+  <xsl:text>)</xsl:text>
 </xsl:template>
 
 <xsl:template match="emphasis">
