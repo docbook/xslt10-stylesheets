@@ -35,18 +35,6 @@ TIDY=tidy
 # specifies options to feed to tidy
 TIDYOPTS=-iq -latin1 -mn
 
-# specifies command for calling your preferred XML parser for
-# validating the DocBook XML sources for your site
-XMLPARSER=java \
-	-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl \
-	-Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl \
-	org.apache.xml.resolver.apps.xread
-
-# to use xmllint as your XML parser for validating the DocBook XML
-# sources for your site, comment out the above and then uncomment
-# the next line
-#XMLPARSER=xmllint --valid --noout
-
 # specifies command for calling your XSLT engine
 XSLT=java \
 	-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl \
@@ -57,9 +45,20 @@ XSLT=java \
 	-y org.apache.xml.resolver.tools.ResolvingXMLReader \
 	-r org.apache.xml.resolver.tools.CatalogResolver \
 
-# to use xsltproc as your XSLT engine, comment out the above and
-# then uncomment the next line
+# to use xsltproc as your XSLT engine, either uncomment the next
+# line or just run make like this: "make XSLT=xsltproc"
 #XSLT=xsltproc
+
+# XMLPARSER specifies command for calling your preferred XML
+# parser for validating the DocBook XML sources for your site
+ifeq ($(notdir $(XSLT)),xsltproc)
+XMLPARSER=xmllint --valid --noout
+else
+XMLPARSER=java \
+	-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl \
+	-Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl \
+	org.apache.xml.resolver.apps.xread
+endif
 
 # the following is empty by default; put any custom DocBook
 # stylesheet params you want here; they will be applied globally
