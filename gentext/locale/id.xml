@@ -19,16 +19,18 @@
 <gentext key="Answer" text="Jawab:"/>
 <gentext key="answer" text="Jawab:"/>
 <gentext key="Appendix" text="Lampiran"/>
+<gentext key="appendix" text="lampiran"/>
 <gentext key="Article" text="Artikel"/>
 <gentext key="article" text="Artikel"/>
 <gentext key="Bibliography" text="Bibliografi"/>
 <gentext key="bibliography" text="Bibliografi"/>
 <gentext key="Book" text="Buku"/>
 <gentext key="book" text="Buku"/>
-<gentext key="CAUTION" text="PERHATIAN"/>
 <gentext key="Caution" text="Perhatian"/>
 <gentext key="caution" text="Perhatian"/>
+<gentext key="CAUTION" text="PERHATIAN"/>
 <gentext key="Chapter" text="Bab"/>
+<gentext key="chapter" text="bab"/>
 <gentext key="Colophon" text="Kolofon"/>
 <gentext key="colophon" text="Kolofon"/>
 <gentext key="Copyright" text="Hak Cipta"/>
@@ -43,19 +45,19 @@
 <gentext key="example" text="Teladan"/>
 <gentext key="Figure" text="Gambar"/>
 <gentext key="figure" text="Gambar"/>
+<gentext key="Glossary" text="Daftar Istilah"/>
+<gentext key="glossary" text="Daftar Istilah"/>
 <gentext key="GlossSee" text="Lihat"/>
 <gentext key="glosssee" text="Lihat"/>
 <gentext key="GlossSeeAlso" text="Lihat Juga"/>
 <gentext key="glossseealso" text="Lihat Juga"/>
-<gentext key="Glossary" text="Daftar Istilah"/>
-<gentext key="glossary" text="Daftar Istilah"/>
 <gentext key="IMPORTANT" text="PENTING"/>
-<gentext key="ISBN" text="ISBN"/>
-<gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="Penting"/>
 <gentext key="important" text="Penting"/>
 <gentext key="Index" text="Indeks"/>
 <gentext key="index" text="Indeks"/>
+<gentext key="ISBN" text="ISBN"/>
+<gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text="Aspek Hukum"/>
 <gentext key="legalnotice" text="Aspek Hukum"/>
 <gentext key="MsgAud" text="Pemirsa"/>
@@ -64,9 +66,9 @@
 <gentext key="msglevel" text="Tingkatan"/>
 <gentext key="MsgOrig" text="Asal"/>
 <gentext key="msgorig" text="Asal"/>
+<gentext key="note" text="Catatan"/>
 <gentext key="NOTE" text="CATATAN"/>
 <gentext key="Note" text="Catatan"/>
-<gentext key="note" text="Catatan"/>
 <gentext key="Part" text="Bagian"/>
 <gentext key="part" text="Bagian"/>
 <gentext key="Preface" text="Kata Pengantar"/>
@@ -87,77 +89,75 @@
 <gentext key="refsection" text=""/>
 <gentext key="RefSynopsisDiv" text="Sinopsis"/>
 <gentext key="refsynopsisdiv" text="Sinopsis"/>
-<gentext key="Revision" text="Revisi"/>
-<gentext key="revision" text="Revisi"/>
 <gentext key="RevHistory" text="Catatan Revisi"/>
 <gentext key="revhistory" text="Catatan Revisi"/>
+<gentext key="Revision" text="Revisi"/>
+<gentext key="revision" text="Revisi"/>
 <gentext key="Section" text="Bagian"/>
-<gentext key="See" text="Lihat"/>
+<gentext key="section" text="bagian"/>
 <gentext key="see" text="Lihat"/>
-<gentext key="SeeAlso" text="Lihat Juga"/>
+<gentext key="See" text="Lihat"/>
+<gentext key="Seealso" text="Lihat juga"/>
 <gentext key="seealso" text="Lihat Juga"/>
-<gentext key="Set" text="Set"/>
+<gentext key="SeeAlso" text="Lihat Juga"/>
 <gentext key="set" text="Set"/>
+<gentext key="Set" text="Set"/>
 <gentext key="SetIndex" text="Set Index"/>
 <gentext key="setindex" text="Set Index"/>
 <gentext key="Sidebar" text=""/>
+<gentext key="sidebar" text="sidebar"/>
+<gentext key="step" text="tahap"/>
 <gentext key="Step" text="Tahap"/>
-<gentext key="TIP" text="TIP"/>
-<gentext key="Table" text="Tabel"/>
 <gentext key="table" text="Tabel"/>
+<gentext key="Table" text="Tabel"/>
+<gentext key="TIP" text="TIP"/>
 <gentext key="Tip" text="Tip"/>
 <gentext key="tip" text="Tip"/>
 <gentext key="WARNING" text="AWAS"/>
 <gentext key="Warning" text="Awas"/>
 <gentext key="warning" text="Awas"/>
-<gentext key="appendix" text="lampiran"/>
-<gentext key="chapter" text="bab"/>
-<gentext key="section" text="bagian"/>
-<gentext key="sidebar" text="sidebar"/>
-<gentext key="step" text="tahap"/>
-<gentext key="Seealso" text="Lihat juga"/>
 
-<gentext key="TableofContents" text="Daftar Isi"/>
-<gentext key="tableofcontents" text="Daftar Isi"/>
-<gentext key="in" text="di"/>
+<gentext key="and" text="dan"/>
 <gentext key="by" text="oleh"/>
 <gentext key="Edited" text="disunting"/>
 <gentext key="edited" text="disunting"/>
 <gentext key="Editedby" text="disunting oleh"/>
 <gentext key="editedby" text="disunting oleh"/>
-<gentext key="and" text="dan"/>
-<gentext key="listcomma" text=","/>
+<gentext key="in" text="di"/>
 <gentext key="lastlistcomma" text=","/>
-<gentext key="Notes" text="Catatan"/>
-<gentext key="notes" text="Catatan"/>
-<gentext key="TableNotes" text="Catatan"/>
-<gentext key="tablenotes" text="Catatan"/>
+<gentext key="listcomma" text=","/>
 <gentext key="nonexistantelement" text="elemen tak tampak"/>
+<gentext key="notes" text="Catatan"/>
+<gentext key="Notes" text="Catatan"/>
 <gentext key="Pgs" text="Hal."/>
 <gentext key="pgs" text="Hal."/>
-<gentext key="unsupported" text="tidak didukung"/>
-<gentext key="xrefto" text="xref ke"/>
-<gentext key="unexpectedelementname" text="Nama Elemen seharusnya tidak ada"/>
 <gentext key="Revisedby" text="Revised by: "/>
 <gentext key="revisedby" text="Revised by: "/>
+<gentext key="TableNotes" text="Catatan"/>
+<gentext key="tablenotes" text="Catatan"/>
+<gentext key="TableofContents" text="Daftar Isi"/>
+<gentext key="tableofcontents" text="Daftar Isi"/>
+<gentext key="unexpectedelementname" text="Nama Elemen seharusnya tidak ada"/>
+<gentext key="unsupported" text="tidak didukung"/>
+<gentext key="xrefto" text="xref ke"/>
 
-<gentext key="ListofTables" text="Daftar Tabel"/>
-<gentext key="listoftables" text="Daftar Tabel"/>
+<gentext key="listofequations" text="Daftar Persamaan"/>
+<gentext key="ListofEquations" text="Daftar Persamaan"/>
 <gentext key="ListofExamples" text="Daftar Teladan"/>
 <gentext key="listofexamples" text="Daftar Teladan"/>
 <gentext key="ListofFigures" text="Daftar Gambar"/>
 <gentext key="listoffigures" text="Daftar Gambar"/>
-<gentext key="ListofEquations" text="Daftar Persamaan"/>
-<gentext key="listofequations" text="Daftar Persamaan"/>
+<gentext key="listoftables" text="Daftar Tabel"/>
+<gentext key="ListofTables" text="Daftar Tabel"/>
 <gentext key="ListofUnknown" text="Daftar Gaib"/>
 <gentext key="listofunknown" text="Daftar Gaib"/>
 
+<gentext key="nav-home" text="Home"/>
+<gentext key="nav-next" text="Next"/>
+<gentext key="nav-next-sibling" text="Fast Forward"/>
 <gentext key="nav-prev" text="Prev"/>
 <gentext key="nav-prev-sibling" text="Fast Backward"/>
-<gentext key="nav-next-sibling" text="Fast Forward"/>
-<gentext key="nav-next" text="Next"/>
 <gentext key="nav-up" text="Up"/>
-<gentext key="nav-home" text="Home"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
@@ -353,9 +353,9 @@
 </context>
 
 <context name="msgset">
+<template name="MsgAud"><MsgAud/>: </template>
 <template name="MsgLevel"><MsgLevel/>: </template>
 <template name="MsgOrig"><MsgOrig/>: </template>
-<template name="MsgAud"><MsgAud/>: </template>
 </context>
 
 </locale>

@@ -20,16 +20,18 @@
 <gentext key="Answer" text="Antwoord:"/>
 <gentext key="answer" text="Antwoord:"/>
 <gentext key="Appendix" text="Aanhangsel"/>
+<gentext key="appendix" text="aanhangsel"/>
 <gentext key="Article" text="Artikel"/>
 <gentext key="article" text="Artikel"/>
 <gentext key="Bibliography" text="Literatuurlijst"/>
 <gentext key="bibliography" text="Literatuurlijst"/>
 <gentext key="Book" text="Boek"/>
 <gentext key="book" text="Boek"/>
-<gentext key="CAUTION" text="LET OP"/>
 <gentext key="Caution" text="Let op"/>
 <gentext key="caution" text="Let op"/>
+<gentext key="CAUTION" text="LET OP"/>
 <gentext key="Chapter" text="Hoofdstuk"/>
+<gentext key="chapter" text="hoofdstuk"/>
 <gentext key="Colophon" text="Colofon"/>
 <gentext key="colophon" text="Colofon"/>
 <gentext key="Copyright" text="Copyright"/>
@@ -44,19 +46,19 @@
 <gentext key="example" text="Voorbeeld"/>
 <gentext key="Figure" text="Figuur"/>
 <gentext key="figure" text="Figuur"/>
+<gentext key="Glossary" text="Woordenlijst"/>
+<gentext key="glossary" text="Woordenlijst"/>
 <gentext key="GlossSee" text="Zie"/>
 <gentext key="glosssee" text="Zie"/>
 <gentext key="GlossSeeAlso" text="Zie ook"/>
 <gentext key="glossseealso" text="Zie ook"/>
-<gentext key="Glossary" text="Woordenlijst"/>
-<gentext key="glossary" text="Woordenlijst"/>
 <gentext key="IMPORTANT" text="BELANGRIJK"/>
-<gentext key="ISBN" text="ISBN"/>
-<gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="Belangrijk"/>
 <gentext key="important" text="Belangrijk"/>
 <gentext key="Index" text="Register"/>
 <gentext key="index" text="Register"/>
+<gentext key="ISBN" text="ISBN"/>
+<gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text="Bericht"/>
 <gentext key="legalnotice" text="Bericht"/>
 <gentext key="MsgAud" text="Doelgroep"/>
@@ -65,9 +67,9 @@
 <gentext key="msglevel" text="Niveau"/>
 <gentext key="MsgOrig" text="Herkomst"/>
 <gentext key="msgorig" text="Herkomst"/>
+<gentext key="note" text="Opmerking"/>
 <gentext key="NOTE" text="OPMERKING"/>
 <gentext key="Note" text="Opmerking"/>
-<gentext key="note" text="Opmerking"/>
 <gentext key="Part" text="Deel"/>
 <gentext key="part" text="Deel"/>
 <gentext key="Preface" text="Voorwoord"/>
@@ -88,77 +90,75 @@
 <gentext key="refsection" text="Referentieparagraaf"/>
 <gentext key="RefSynopsisDiv" text="Referentiesamenvatting"/>
 <gentext key="refsynopsisdiv" text="Referentiesamenvatting"/>
-<gentext key="Revision" text="Herziening"/>
-<gentext key="revision" text="Herziening"/>
 <gentext key="RevHistory" text="Wijzigingen"/>
 <gentext key="revhistory" text="Wijzigingen"/>
+<gentext key="Revision" text="Herziening"/>
+<gentext key="revision" text="Herziening"/>
 <gentext key="Section" text="Paragraaf"/>
-<gentext key="See" text="Zie"/>
+<gentext key="section" text="paragraaf"/>
 <gentext key="see" text="Zie"/>
-<gentext key="SeeAlso" text="Zie ook"/>
+<gentext key="See" text="Zie"/>
+<gentext key="Seealso" text="Zie ook"/>
 <gentext key="seealso" text="Zie ook"/>
-<gentext key="Set" text="Verzameling"/>
+<gentext key="SeeAlso" text="Zie ook"/>
 <gentext key="set" text="Verzameling"/>
+<gentext key="Set" text="Verzameling"/>
 <gentext key="SetIndex" text="Hoofdregister"/>
 <gentext key="setindex" text="Hoofdregister"/>
 <gentext key="Sidebar" text="Excursie"/>
+<gentext key="sidebar" text="excursie"/>
+<gentext key="step" text="stap"/>
 <gentext key="Step" text="Stap"/>
-<gentext key="TIP" text="TIP"/>
-<gentext key="Table" text="Tabel"/>
 <gentext key="table" text="Tabel"/>
+<gentext key="Table" text="Tabel"/>
+<gentext key="TIP" text="TIP"/>
 <gentext key="Tip" text="Tip"/>
 <gentext key="tip" text="Tip"/>
 <gentext key="WARNING" text="WAARSCHUWING"/>
 <gentext key="Warning" text="Waarschuwing"/>
 <gentext key="warning" text="Waarschuwing"/>
-<gentext key="appendix" text="aanhangsel"/>
-<gentext key="chapter" text="hoofdstuk"/>
-<gentext key="section" text="paragraaf"/>
-<gentext key="sidebar" text="excursie"/>
-<gentext key="step" text="stap"/>
-<gentext key="Seealso" text="Zie ook"/>
 
-<gentext key="TableofContents" text="Inhoudsopgave"/>
-<gentext key="tableofcontents" text="Inhoudsopgave"/>
-<gentext key="in" text="in"/>
+<gentext key="and" text="en"/>
 <gentext key="by" text="door"/>
 <gentext key="Edited" text="Redactie"/>
 <gentext key="edited" text="Redactie"/>
 <gentext key="Editedby" text="Redactie door"/>
 <gentext key="editedby" text="Redactie door"/>
-<gentext key="and" text="en"/>
-<gentext key="listcomma" text=","/>
+<gentext key="in" text="in"/>
 <gentext key="lastlistcomma" text=","/>
-<gentext key="Notes" text="Noten"/>
-<gentext key="notes" text="Noten"/>
-<gentext key="TableNotes" text="Opmerkingen"/>
-<gentext key="tablenotes" text="Opmerkingen"/>
+<gentext key="listcomma" text=","/>
 <gentext key="nonexistantelement" text="niet bestaand element"/>
+<gentext key="notes" text="Noten"/>
+<gentext key="Notes" text="Noten"/>
 <gentext key="Pgs" text="blz."/>
 <gentext key="pgs" text="blz."/>
-<gentext key="unsupported" text="niet ondersteund"/>
-<gentext key="xrefto" text="verwijzing naar"/>
-<gentext key="unexpectedelementname" text="ONVERWACHT-ELEMENT"/>
 <gentext key="Revisedby" text="Herzien door: "/>
 <gentext key="revisedby" text="Herzien door: "/>
+<gentext key="TableNotes" text="Opmerkingen"/>
+<gentext key="tablenotes" text="Opmerkingen"/>
+<gentext key="TableofContents" text="Inhoudsopgave"/>
+<gentext key="tableofcontents" text="Inhoudsopgave"/>
+<gentext key="unexpectedelementname" text="ONVERWACHT-ELEMENT"/>
+<gentext key="unsupported" text="niet ondersteund"/>
+<gentext key="xrefto" text="verwijzing naar"/>
 
-<gentext key="ListofTables" text="Lijst van tabellen"/>
-<gentext key="listoftables" text="Lijst van tabellen"/>
+<gentext key="listofequations" text="Lijst van vergelijkingen"/>
+<gentext key="ListofEquations" text="Lijst van vergelijkingen"/>
 <gentext key="ListofExamples" text="Lijst van voorbeelden"/>
 <gentext key="listofexamples" text="Lijst van voorbeelden"/>
 <gentext key="ListofFigures" text="Lijst van figuren"/>
 <gentext key="listoffigures" text="Lijst van figuren"/>
-<gentext key="ListofEquations" text="Lijst van vergelijkingen"/>
-<gentext key="listofequations" text="Lijst van vergelijkingen"/>
+<gentext key="listoftables" text="Lijst van tabellen"/>
+<gentext key="ListofTables" text="Lijst van tabellen"/>
 <gentext key="ListofUnknown" text="Lijst van ???"/>
 <gentext key="listofunknown" text="Lijst van ???"/>
 
+<gentext key="nav-home" text="Begin"/>
+<gentext key="nav-next" text="Volgende"/>
+<gentext key="nav-next-sibling" text="Verder vooruit"/>
 <gentext key="nav-prev" text="Terug"/>
 <gentext key="nav-prev-sibling" text="Verder terug"/>
-<gentext key="nav-next-sibling" text="Verder vooruit"/>
-<gentext key="nav-next" text="Volgende"/>
 <gentext key="nav-up" text="Omhoog"/>
-<gentext key="nav-home" text="Begin"/>
 
 <gentext key="sectioncalled"       text="de sectie genaamd"/>
 
@@ -356,9 +356,9 @@
 </context>
 
 <context name="msgset">
+<template name="MsgAud"><MsgAud/>: </template>
 <template name="MsgLevel"><MsgLevel/>: </template>
 <template name="MsgOrig"><MsgOrig/>: </template>
-<template name="MsgAud"><MsgAud/>: </template>
 </context>
 
 </locale>
