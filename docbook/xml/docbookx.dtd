@@ -2,7 +2,7 @@
 <!-- DocBook XML DTD V4.3 ................................................. -->
 <!-- File docbookx.dtd .................................................... -->
 
-<!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
+<!-- Copyright 1992-2004 HaL Computer Systems, Inc.,
      O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
      Corporation, Norman Walsh, Sun Microsystems, Inc., and the
      Organization for the Advancement of Structured Information
@@ -40,14 +40,14 @@
      declaration:
 
      <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
-                    "http://www.oasis-open.org/docbook/xml/4.3b2/docbookx.dtd"
+                    "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
                     [...]>
 
      Or, if you have a higher-level driver file that customizes DocBook,
      use the FPI in the parameter entity declaration:
 
      <!ENTITY % DocBookDTD PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
-                "http://www.oasis-open.org/docbook/xml/4.3b2/docbookx.dtd">
+                "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
      %DocBookDTD;
 
      See the documentation for detailed information on the parameter
