@@ -112,8 +112,4 @@
 <xsl:template match="indexentry">
 </xsl:template>
 
-<xsl:template name="generate-index">
-  <!-- nop: use autoidx.xsl to get automatic indexing -->
-</xsl:template>
-
 </xsl:stylesheet>
