@@ -81,6 +81,9 @@ dated 5 November, 2004</releaseinfo>
 <para>Here are the design principles used in this project for selecting Word style names:</para>
 <itemizedlist>
 <listitem>
+<para>Where Word, by default, has a style or feature that corresponds directly to a DocBook element then that style or feature will be used (and documented in this document).  For example, the <literal>Normal</literal> paragraph style maps to a DocBook <sgmltag>para</sgmltag> element, and a Word table (<sgmltag>w:tbl</sgmltag>) maps to a DocBook <sgmltag>table</sgmltag><footnote><para>In some cases Word may posess a feature, but it doesn't function in an acceptable manner.  For example, lists.  In these cases the feature is to be avoided, and a workaround provided.</para></footnote>.</para>
+</listitem>
+<listitem>
 <para>Word paragraph and character style names will match DocBook element names as much as possible. This will enable authors to learn DocBook element names, and help debug problems with conversion.</para>
 </listitem>
 <listitem>
@@ -277,7 +280,7 @@ colwidth="1.00*"/>
 </row>
 <row>
 <entry colname="col1">para</entry>
-<entry colname="col2">para</entry>
+<entry colname="col2">para, Normal</entry>
 <entry colname="col3">Any Word paragraph with style <literal>Normal</literal> will also be converted to a <sgmltag class="element">para</sgmltag> element.</entry>
 </row>
 <row>

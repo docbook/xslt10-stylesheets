@@ -12,7 +12,7 @@
   xmlns:doc='http://www.oasis-open.org/docbook/xml/4.0'
   exclude-result-prefixes='doc'>
 
-  <xsl:output method="xml" indent='yes' standalone='yes' encoding='UTF-8'/>
+  <xsl:output method="xml" indent='no' standalone='yes' encoding='UTF-8'/>
 
   <!-- ********************************************************************
        $Id$
@@ -169,14 +169,18 @@
   <xsl:template match='book|article' mode='toplevel'>
     <w:body>
       <wx:sect>
-        <xsl:apply-templates select='*'/>
+        <wx:sub-section>
+          <xsl:apply-templates select='*'/>
+        </wx:sub-section>
       </wx:sect>
     </w:body>
   </xsl:template>
   <xsl:template match='*' mode='toplevel'>
     <w:body>
       <wx:sect>
-        <xsl:apply-templates select='*'/>
+        <wx:sub-section>
+          <xsl:apply-templates select='*'/>
+        </wx:sub-section>
       </wx:sect>
     </w:body>
   </xsl:template>
@@ -185,6 +189,12 @@
     <wx:sub-section>
       <xsl:apply-templates select='*'/>
     </wx:sub-section>
+  </xsl:template>
+
+  <xsl:template match='articleinfo|bookinfo'>
+    <xsl:apply-templates select='title|subtitle|titleabbrev'/>
+    <xsl:apply-templates select='author'/>
+    <!-- current implementation ignores all other metadata -->
   </xsl:template>
 
   <xsl:template match='title|subtitle|titleabbrev'>
@@ -220,7 +230,7 @@
             </xsl:choose>
           </xsl:attribute>
         </w:pStyle>
-        <w:outlineLvl w:val='{count(ancestor::*) + count(parent::*[contains(name(), "info")]) - 1}'/>
+        <w:outlineLvl w:val='{count(ancestor::*) - count(parent::*[contains(name(), "info")]) - 1}'/>
       </w:pPr>
 
       <xsl:apply-templates/>
@@ -613,17 +623,28 @@
   <xsl:template match='listitem'>
     <w:p>
       <w:pPr>
+        <!-- variablelist listitems are not handled here -->
+        <w:pStyle w:val='{name(..)}{count(ancestor::itemizedlist|ancestor::orderedlist)}'/>
         <w:listPr>
           <wx:t wx:val='&#xB7;'/>
           <wx:font wx:val='Symbol'/>
         </w:listPr>
       </w:pPr>
-      <xsl:apply-templates select='para' mode='list'/>
+      <!-- Normally a para would be the first child of a listitem -->
+      <xsl:apply-templates select='*[1][self::para]/node()' mode='list'/>
     </w:p>
+    <!-- This is to catch the case where a listitem's first child is not a paragraph.
+       - We may not be able to represent this properly.
+      -->
+    <xsl:apply-templates select='*[1][not(self::para)]' mode='list'/>
+
+    <xsl:apply-templates select='*[position() != 1]' mode='list'/>
   </xsl:template>  
 
   <xsl:template match='*' mode='list'>
-    <xsl:apply-templates/>
+    <xsl:apply-templates select='.'>
+      <xsl:with-param name='class' select='"para-continue"'/>
+    </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match='variablelist'>

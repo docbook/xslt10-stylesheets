@@ -2,7 +2,9 @@
 
 	Steve Ball, Bob Stayton
 
-docbook.xsl	Accepts DocBook XML and produces WordML
-wordml.xsl	Accepts WordML and produces DocBook XML
+docbook.xsl		Accepts DocBook XML and produces WordML
+wordml-normalise.xsl	Accepts WordML and produces (1)
+wordml-sections.xsl	Accepts (1) and produces (2)
+wordml-final.xsl	Accepts (2) and produces DocBook XML
 
-
+wordml-*.xsl form a chain of XSL stylesheets to convert WordML into DocBook.
