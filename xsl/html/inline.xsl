@@ -148,7 +148,7 @@
       </xsl:attribute>
     </xsl:if>
 
-    <!-- don't put <b> inside figure, example, or table titles -->
+    <!-- don't put <strong> inside figure, example, or table titles -->
     <xsl:choose>
       <xsl:when test="local-name(..) = 'title'
                       and (local-name(../..) = 'figure'
@@ -157,9 +157,9 @@
         <xsl:copy-of select="$content"/>
       </xsl:when>
       <xsl:otherwise>
-        <b class="{local-name(.)}">
+        <strong class="{local-name(.)}">
           <xsl:copy-of select="$content"/>
-        </b>
+        </strong>
       </xsl:otherwise>
     </xsl:choose>
   </span>
@@ -174,14 +174,14 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:param>
-  <i class="{local-name(.)}">
+  <em class="{local-name(.)}">
     <xsl:if test="@dir">
       <xsl:attribute name="dir">
         <xsl:value-of select="@dir"/>
       </xsl:attribute>
     </xsl:if>
     <xsl:copy-of select="$content"/>
-  </i>
+  </em>
 </xsl:template>
 
 <xsl:template name="inline.boldmonoseq">
@@ -193,8 +193,8 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:param>
-  <!-- don't put <b> inside figure, example, or table titles -->
-  <!-- or other titles that may already be represented with <b>'s. -->
+  <!-- don't put <strong> inside figure, example, or table titles -->
+  <!-- or other titles that may already be represented with <strong>'s. -->
   <xsl:choose>
     <xsl:when test="local-name(..) = 'title'
                     and (local-name(../..) = 'figure'
@@ -211,7 +211,7 @@
       </tt>
     </xsl:when>
     <xsl:otherwise>
-      <b class="{local-name(.)}">
+      <strong class="{local-name(.)}">
         <tt>
           <xsl:if test="@dir">
             <xsl:attribute name="dir">
@@ -220,7 +220,7 @@
           </xsl:if>
           <xsl:copy-of select="$content"/>
         </tt>
-      </b>
+      </strong>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -234,7 +234,7 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:param>
-  <i class="{local-name(.)}">
+  <em class="{local-name(.)}">
     <tt>
       <xsl:if test="@dir">
         <xsl:attribute name="dir">
@@ -243,7 +243,7 @@
       </xsl:if>
       <xsl:copy-of select="$content"/>
     </tt>
-  </i>
+  </em>
 </xsl:template>
 
 <xsl:template name="inline.superscriptseq">
@@ -612,7 +612,7 @@
     <xsl:call-template name="simple.xlink">
       <xsl:with-param name="content">
         <xsl:choose>
-          <xsl:when test="@role = 'bold'">
+          <xsl:when test="@role = 'bold' or @role='strong'">
             <!-- backwards compatibility: make bold into b elements, but -->
             <!-- don't put bold inside figure, example, or table titles -->
             <xsl:choose>
@@ -623,7 +623,7 @@
                 <xsl:apply-templates/>
               </xsl:when>
               <xsl:otherwise>
-                <b><xsl:apply-templates/></b>
+                <strong><xsl:apply-templates/></strong>
               </xsl:otherwise>
             </xsl:choose>
           </xsl:when>
@@ -700,9 +700,9 @@
 </xsl:template>
 
 <xsl:template match="lineannotation">
-  <i class="{local-name(.)}">
+  <em class="{local-name(.)}">
     <xsl:call-template name="inline.charseq"/>
-  </i>
+  </em>
 </xsl:template>
 
 <xsl:template match="superscript">
@@ -1081,7 +1081,7 @@
 
 <xsl:template match="comment|remark">
   <xsl:if test="$show.comments != 0">
-    <i><xsl:call-template name="inline.charseq"/></i>
+    <em><xsl:call-template name="inline.charseq"/></em>
   </xsl:if>
 </xsl:template>
 
