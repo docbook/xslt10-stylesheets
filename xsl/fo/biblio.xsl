@@ -221,10 +221,7 @@
 </xsl:template>
 
 <xsl:template match="abstract" mode="bibliography.mode">
-  <fo:inline>
-    <xsl:apply-templates mode="bibliography.mode"/>
-    <xsl:value-of select="$biblioentry.item.separator"/>
-  </fo:inline>
+  <!-- suppressed -->
 </xsl:template>
 
 <xsl:template match="address" mode="bibliography.mode">
@@ -722,15 +719,21 @@
 <xsl:template match="abbrev" mode="bibliomixed.mode">
   <xsl:if test="preceding-sibling::*">
     <fo:inline>
-      <xsl:apply-templates mode="bibliography.mode"/>
+      <xsl:apply-templates mode="bibliomixed.mode"/>
     </fo:inline>
   </xsl:if>
 </xsl:template>
 
 <xsl:template match="abstract" mode="bibliomixed.mode">
-  <fo:inline>
+  <fo:block start-indent="1in">
     <xsl:apply-templates mode="bibliomixed.mode"/>
-  </fo:inline>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="para" mode="bibliomixed.mode">
+  <fo:block>
+    <xsl:apply-templates mode="bibliomixed.mode"/>
+  </fo:block>
 </xsl:template>
 
 <xsl:template match="address" mode="bibliomixed.mode">
