@@ -113,14 +113,14 @@ cals.table.pgwide.attrib = attribute pgwide { "0" | "1" }?
 cals.table.info = docbook.info.titleonlyreq
 cals.table = element table {
    cals.table.info,
-   db.indexterm*,
+   indexing.inlines*,
    db.textobject*,
    (db.mediaobject+|db.tgroup+) }
 
 cals.informaltable.info = docbook.info.titleforbidden
 cals.informaltable = element informaltable {
    cals.informaltable.info,
-   db.indexterm*,
+   indexing.inlines*,
    db.textobject*,
    (db.mediaobject+|db.tgroup+) }
 

@@ -26,18 +26,20 @@ components =
  | db.article
  | db.colophon
 
-navigation.components =
-   db.toc | db.index | db.glossary | db.bibliography
+navigation.components = notAllowed
 
 component.contentmodel =
   navigation.components*, blocks.or.sections, navigation.components*
 
 # ======================================================================
 
+setindex.components = notAllowed
+toc.components = notAllowed
+
 set.status.attrib = status.attribute?
 set.label.attrib = label.attribute?
 set.info = docbook.info.titlereq
-db.set = element set { set.info, db.toc?, (db.set|db.book)+, db.setindex? }
+db.set = element set { set.info, toc.components?, (db.set|db.book)+, setindex.components? }
 
 book.status.attrib = status.attribute?
 book.label.attrib = label.attribute?
@@ -56,19 +58,6 @@ colophon.label.attrib = label.attribute?
 colophon.info = docbook.info
 db.colophon =
    element colophon { colophon.info, blocks+ }
-
-toc.info = docbook.info.titleonly
-db.toc = element toc { toc.info, blocks*, (db.tocdiv | db.tocentry)* }
-
-tocdiv.pagenum.attrib = pagenum.attribute?
-tocdiv.linkend.attrib = linkend.attribute?
-
-tocdiv.info = docbook.info
-db.tocdiv = element tocdiv { tocdiv.info, blocks*, (db.tocdiv | db.tocentry)+ }
-
-tocentry.pagenum.attrib = pagenum.attribute?
-tocentry.linkend.attrib = linkend.attribute?
-db.tocentry = element tocentry { inlines* }
 
 appendix.status.attrib = status.attribute?
 appendix.label.attrib = label.attribute?
@@ -125,81 +114,6 @@ simplesect.label.attrib = label.attribute?
 simplesect.info = docbook.info.titlereq
 db.simplesect =
   element simplesect { simplesect.info, blocks+ }
-
-bibliography.status.attrib = status.attribute?
-bibliography.label.attrib = label.attribute?
-bibliography.info = docbook.info
-db.bibliography =
-   element bibliography {
-      bibliography.info,
-      blocks*,
-      (db.bibliodiv+ | (db.biblioentry | db.bibliomixed)+)
-   }
-
-bibliodiv.status.attrib = status.attribute?
-bibliodiv.label.attrib = label.attribute?
-bibliodiv.info = docbook.info.titlereq
-db.bibliodiv =
-   element bibliodiv {
-      bibliodiv.info,
-      blocks*,
-      (db.biblioentry | db.bibliomixed)+
-   }
-
-glossary.status.attrib = status.attribute?
-glossary.label.attrib = label.attribute?
-glossary.info = docbook.info
-db.glossary =
-   element glossary {
-      glossary.info,
-      blocks*,
-      (db.glossdiv+ | db.glossentry+),
-      db.bibliography?
-   }
-
-glossdiv.status.attrib = status.attribute?
-glossdiv.label.attrib = label.attribute?
-glossdiv.info = docbook.info.titlereq
-db.glossdiv =
-   element glossdiv { glossdiv.info, blocks*, db.glossentry+ }
-
-index.info = docbook.info
-db.index =
-   element index {
-      index.info,
-      blocks*,
-      (db.indexdiv* | db.indexentry* | db.segmentedlist)
-   }
-
-setindex.info = docbook.info
-db.setindex =
-   element setindex { setindex.info, blocks*, (db.indexdiv* | db.indexentry*) }
-
-indexdiv.info = docbook.info.titlereq
-db.indexdiv =
-   element indexdiv { indexdiv.info, blocks*, (db.indexentry+|db.segmentedlist) }
-
-db.indexentry =
-   element indexentry {
-      db.primaryie,
-      (db.seeie | db.seealsoie)*,
-      (db.secondaryie, (db.seeie | db.seealsoie | db.tertiaryie)*)*
-   }
-
-primaryie.linkends.attrib = linkends.attribute?
-db.primaryie = element primaryie { inlines* }
-
-secondaryie.linkends.attrib = linkends.attribute?
-db.secondaryie = element secondaryie { inlines* }
-
-tertiaryie.linkends.attrib = linkends.attribute?
-db.tertiaryie = element tertiaryie { inlines* }
-
-seeie.linkend.attrib = linkend.attribute?
-db.seeie = element seeie { inlines* }
-
-seealsoie.linkends.attrib = linkends.attribute?
-db.seealsoie = element seealsoie { inlines* }
 
 db.ackno = element ackno { para.blocks+ }
 

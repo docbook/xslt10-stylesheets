@@ -1,0 +1,28 @@
+# This file is part of DocBook NG: The "Absinthe" Release.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.3
+# Release: $Id$
+#
+
+navigation.components |= db.toc
+toc.components |= db.toc
+
+toc.info = docbook.info.titleonly
+db.toc = element toc { toc.info, blocks*, (db.tocdiv | db.tocentry)* }
+
+tocdiv.pagenum.attrib = attribute pagenum { text }
+tocdiv.linkend.attrib = linkend.attribute?
+
+tocdiv.info = docbook.info
+db.tocdiv = element tocdiv { tocdiv.info, blocks*, (db.tocdiv | db.tocentry)+ }
+
+tocentry.pagenum.attrib = pagenum.attribute?
+tocentry.linkend.attrib = linkend.attribute?
+db.tocentry = element tocentry { inlines* }
+

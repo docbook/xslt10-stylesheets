@@ -1,0 +1,59 @@
+# This file is part of DocBook NG: The "Absinthe" Release.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.3
+# Release: $Id$
+#
+
+navigation.components |= db.bibliography
+list.blocks |= db.bibliolist
+
+info.elements |= db.bibliomisc | db.bibliomset | db.bibliorelation | db.biblioset
+
+relation.attribute = attribute relation { text }?
+
+db.biblioentry = element biblioentry { bibliographic.elements+ }
+
+db.bibliomixed = element bibliomixed { (text | bibliographic.elements)* }
+
+biblioset.relation.attrib = relation.attribute
+db.biblioset = element biblioset { bibliographic.elements+ }
+
+bibliomset.relation.attrib = relation.attribute
+db.bibliomset = element bibliomset { (docbook.text | bibliographic.elements)* }
+
+db.bibliomisc = element bibliomisc { docbook.text }
+
+bibliography.status.attrib = status.attribute?
+bibliography.label.attrib = label.attribute?
+bibliography.info = docbook.info
+db.bibliography =
+   element bibliography {
+      bibliography.info,
+      blocks*,
+      (db.bibliodiv+ | (db.biblioentry | db.bibliomixed)+)
+   }
+
+bibliodiv.status.attrib = status.attribute?
+bibliodiv.label.attrib = label.attribute?
+bibliodiv.info = docbook.info.titlereq
+db.bibliodiv =
+   element bibliodiv {
+      bibliodiv.info,
+      blocks*,
+      (db.biblioentry | db.bibliomixed)+
+   }
+
+bibliolist.info = docbook.info.titleonly
+db.bibliolist =
+   element bibliolist {
+      bibliolist.info?,
+      blocks*,
+      (db.biblioentry | db.bibliomixed)+
+   }
+

@@ -132,8 +132,6 @@ common.linking.attributes =
 
 # ======================================================================
 
-relation.attribute = attribute relation { text }?
-
 linenumbering.attribute      = attribute linenumbering { "numbered" | "unnumbered" }
 startinglinenumber.attribute = attribute startinglinenumber { xsd:integer }
 verb-language.attribute      = attribute language { text }
@@ -176,14 +174,9 @@ biblio.class-other.attributes =
 
 biblio.class.attrib = (biblio.class-enum.attribute | biblio.class-other.attributes)
 
-significance.attribute = attribute significance { "normal" | "preferred" }
-zone.attribute = attribute zone { xsd:IDREFS }
-pagenum.attribute = attribute pagenum { text }
-scope.attribute = attribute scope { "all" | "global" | "local" }
-
 # ======================================================================
 
-ubiq.inlines     = db.inlinemediaobject | db.anchor | db.indexterm | db.remark
+ubiq.inlines     = db.inlinemediaobject | db.anchor | db.remark
 
 text.phrase      = element phrase { docbook.text }
 
@@ -197,7 +190,6 @@ general.inlines =
    publishing.inlines
  | product.inlines
  | bibliography.inlines
- | glossary.inlines
  | graphic.inlines
  | indexing.inlines
  | link.inlines
@@ -279,12 +271,6 @@ bibliography.inlines =
  | db.orgname
  | db.editor
 
-# TEI: no class
-
-glossary.inlines =
-   db.firstterm
- | db.glossterm
-
 # TEI: hqPhrase
 
 publishing.inlines =
@@ -310,7 +296,7 @@ graphic.inlines = db.inlinemediaobject
 
 # TEI: metadata
 
-indexing.inlines = db.indexterm
+indexing.inlines = notAllowed
 
 # TEI: 
 
@@ -351,10 +337,10 @@ blocks.nopara =
  | technical.blocks
  | verbatim.blocks
  | synopsis.blocks
- | db.indexterm
  | db.bridgehead
  | db.remark
  | db.revhistory
+ | db.highlights
 
 blocks =
    blocks.nopara
@@ -397,7 +383,6 @@ list.blocks =
  | db.simplelist
  | db.variablelist
  | db.qandaset
- | db.glosslist
  | db.segmentedlist
 
 verbatim.blocks =
@@ -432,23 +417,19 @@ docbook.titleonlyreq = db.title & db.titleabbrev?
 
 info.elements =
    db.biblioid
+ | db.bibliosource
  | db.artpagenums
  | db.copyright
  | db.subjectset
  | db.keywordset
  | db.subjectset
  | db.keywordset
- | db.itermset
  | db.abstract
  | db.authorgroup
  | db.author
  | db.editor
  | db.othercredit
  | db.bibliocoverage
- | db.bibliomisc
- | db.bibliomset
- | db.bibliorelation
- | db.biblioset
  | db.collab
  | db.confgroup
  | db.date
@@ -480,10 +461,6 @@ bibliographic.elements =
  | db.productname
  | db.productnumber
  | db.publishername
-
-db.biblioentry = element biblioentry { bibliographic.elements+ }
-
-db.bibliomixed = element bibliomixed { (text | bibliographic.elements)* }
 
 db.info = element info { docbook.title, info.elements* }
 db.info.titlereq = element info { docbook.titlereq, info.elements* }
@@ -556,14 +533,6 @@ ctrl:alternate-define [
    ]
 ]
 
-biblioset.relation.attrib = relation.attribute
-db.biblioset = element biblioset { bibliographic.elements+ }
-
-bibliomset.relation.attrib = relation.attribute
-db.bibliomset = element bibliomset { (docbook.text | bibliographic.elements)* }
-
-db.bibliomisc = element bibliomisc { docbook.text }
-
 subjectset.scheme.attrib = attribute scheme { xsd:NMTOKEN }?
 db.subjectset = element subjectset { db.subject+ }
 
@@ -575,8 +544,6 @@ db.subjectterm = element subjectterm { text }
 db.keywordset = element keywordset { db.keyword+ }
 
 db.keyword = element keyword { text }
-
-db.itermset = element itermset { indexterm.singular+ }
 
 qandaset.defaultlabel.attrib = attribute defaultlabel { "none" | "number" | "qanda" }?
 qandaset.info = docbook.info.titleonly
@@ -665,7 +632,7 @@ ctrl:exclude [ from="db.footnote" exclude="db.footnote" ]
 db.footnote = element footnote { blocks+ }
 
 db.highlights = element highlights {
-   (list.blocks | admonition.blocks | para.blocks | db.indexterm)+
+   (list.blocks | admonition.blocks | para.blocks | indexing.inlines)+
 }
 
 para.blocks =
@@ -675,7 +642,7 @@ para.blocks =
  | db.simpara
 
 formalpara.info = docbook.info.titleonlyreq
-db.formalpara = element formalpara { formalpara.info, db.indexterm*, db.para }
+db.formalpara = element formalpara { formalpara.info, indexing.inlines*, db.para }
 
 para.info = docbook.info.titleforbidden
 db.para = element para { para.info, (inlines | blocks.nopara)* }
@@ -697,48 +664,6 @@ db.note = element note { admonition.contentmodel }
 db.tip = element tip { admonition.contentmodel }
 
 db.warning = element warning { admonition.contentmodel }
-
-glosslist.info = docbook.info.titleonly
-db.glosslist = element glosslist { glosslist.info?, blocks*, db.glossentry+ }
-
-glossentry.sortas.attrib = sortas.attribute?
-db.glossentry =
-   element glossentry {
-      db.glossterm,
-      db.acronym?,
-      db.abbrev?,
-      db.indexterm*,
-      (db.glosssee | db.glossdef+)
-   }
-
-glossdef.subject.attrib = attribute subject { text }?
-db.glossdef = element glossdef { blocks+, db.glossseealso* }
-
-glosssee.otherterm.attrib = attribute otherterm { xsd:IDREF }?
-db.glosssee =
-   [
-      s:rule [
-         context = "glosssee[@linkend]"
-         s:assert [
-            test = "name(//*[@id=current()/@linkend]) = 'glossentry'"
-            "@linkend on glosssee must point to a glossentry."
-         ]
-      ]
-   ]
-   element glosssee { inlines* }
-
-glossseealso.otherterm.attrib = attribute otherterm { xsd:IDREF }?
-db.glossseealso =
-   [
-      s:rule [
-         context = "glossseealso[@linkend]"
-         s:assert [
-            test = "name(//*[@id=current()/@linkend]) = 'glossentry'"
-            "@linkend on glossseealso must point to a glossentry."
-         ]
-      ]
-   ]
-   element glossseealso { inlines* }
 
 itemizedlist.mark.attrib = attribute mark { text }?
 itemizedlist.spacing.attrib = attribute spacing { "compact" | "normal" }?
@@ -881,7 +806,7 @@ videodata.valign.attrib = attribute valign { "bottom" | "middle" | "top" }?
 videodata.width.attrib = attribute width { text }?
 videodata.contentwidth.attrib = attribute contentwidth { text }?
 videodata.scalefit.attrib = attribute scalefit { "0" | "1" }?
-vidoedata.scale.attrib = attribute scale { text }?
+videodata.scale.attrib = attribute scale { text }?
 videodata.depth.attrib = attribute depth { text }?
 videodata.contentdepth.attrib = attribute contentdepth { text }?
 
@@ -912,7 +837,7 @@ textdata.encoding.attrib = attribute encoding { text }?
 textdata.info = docbook.info.titleforbidden
 db.textdata = element textdata { textdata.info }
 
-db.caption = element caption { blocks+ }
+# db.caption = element caption { blocks+ }
 
 equation.content = db.mediaobject
 
@@ -1222,9 +1147,9 @@ db.confnum = element confnum { docbook.text }
 
 db.confsponsor = element confsponsor { docbook.text }
 
-db.contractnum = element contractnum { docbook.text }
+# db.contractnum = element contractnum { docbook.text }
 
-db.contractsponsor = element contractsponsor { docbook.text }
+# db.contractsponsor = element contractsponsor { docbook.text }
 
 db.copyright = element copyright { db.year+, db.holder* }
 
@@ -1391,7 +1316,7 @@ db.classname = element classname { docbook.text }
 
 db.command = element command { inlines* }
 
-computeroutput.inlines = (inlines|db.co)
+computeroutput.inlines = (inlines)
 
 db.computeroutput = element computeroutput { computeroutput.inlines* }
 
@@ -1549,13 +1474,15 @@ db.optional = element optional { inlines* }
 parameter.class.attrib = attribute class { "command" | "function" | "option" }?
 db.parameter = element parameter { docbook.text }
 
-prompt.inlines = (docbook.text|db.co)
+prompt.inlines = (docbook.text)
 
 db.prompt = element prompt { prompt.inlines* }
 
+replaceable.inlines = (docbook.text)
+
 replaceable.class.attrib =
    attribute class { "command" | "function" | "option" | "parameter" }?
-db.replaceable = element replaceable { (docbook.text|db.co)* }
+db.replaceable = element replaceable { replaceable.inlines* }
 
 db.returnvalue = element returnvalue { docbook.text }
 
@@ -1603,7 +1530,7 @@ systemitem.class.attrib =
     | "username"
    }?
 
-systemitem.inlines = (docbook.text|db.co)
+systemitem.inlines = (docbook.text)
 
 db.systemitem = element systemitem { systemitem.inlines* }
 
@@ -1614,7 +1541,8 @@ db.token = element token { docbook.text }
 
 db.type = element type { docbook.text }
 
-db.userinput = element userinput { (inlines|db.co)* }
+userinput.inlines = inlines
+db.userinput = element userinput { userinput.inlines* }
 
 db.abbrev = element abbrev {
    (docbook.text
@@ -1662,34 +1590,7 @@ db.citetitle = element citetitle { inlines* }
 
 db.emphasis = element emphasis { inlines* }
 
-firstterm.baseform.attrib = glossterm.baseform.attrib
-db.firstterm =
-   [
-      s:rule [
-         context = "firstterm[@linkend]"
-         s:assert [
-            test = "name(//*[@id=current()/@linkend]) = 'glossentry'"
-            "@linkend on firstterm must point to a glossentry."
-         ]
-      ]
-   ]
-   element firstterm { inlines* }
-
 db.foreignphrase = element foreignphrase { inlines* }
-
-glossterm.baseform.attrib = attribute baseform { text }?
-
-db.glossterm =
-   [
-      s:rule [
-         context = "glossterm[@linkend]"
-         s:assert [
-            test = "name(//*[@id=current()/@linkend]) = 'glossentry'"
-            "@linkend on glossterm must point to a glossentry."
-         ]
-      ]
-   ]
-   element glossterm { inlines* }
 
 db.phrase = element phrase { inlines* }
 
@@ -1733,65 +1634,3 @@ ctrl:common-attributes [ element="anchor" attributes="common.attrib.idreq" ]
 
 db.anchor = element anchor { empty }
 
-indexterm.singular.significance.attrib = significance.attribute?
-indexterm.startofrange.significance.attrib = significance.attribute?
-indexterm.endofrange.significance.attrib = significance.attribute?
-
-indexterm.singular.zone.attrib = zone.attribute?
-indexterm.startofrange.zone.attrib = zone.attribute?
-indexterm.endofrange.zone.attrib = zone.attribute?
-
-indexterm.singular.pagenum.attrib = pagenum.attribute?
-indexterm.startofrange.pagenum.attrib =  pagenum.attribute?
-indexterm.endofrange.pagenum.attrib =  pagenum.attribute?
-
-indexterm.singular.scope.attrib = scope.attribute?
-indexterm.startofrange.scope.attrib = scope.attribute?
-indexterm.endofrange.scope.attrib = scope.attribute?
-
-indexterm.singular.class.attrib = attribute class { "singular" }?
-indexterm.startofrange.class.attrib = attribute class { "startofrange" }
-indexterm.endofrange.class.attrib = attribute class { "endofrange" }
-
-indexterm.endofrange.startref.attrib = attribute startref { xsd:IDREF }
-
-indexterm.contentmodel =
-   db.primary?,
-   ((db.secondary,
-      ((db.tertiary, (db.see | db.seealso+)?)
-       | db.see
-       | db.seealso+)?)
-    | db.see
-    | db.seealso+)?
-
-indexterm.singular =
-   element indexterm {
-      indexterm.contentmodel
-   }
-
-indexterm.startofrange =
-   element indexterm {
-      indexterm.contentmodel
-   }
-
-indexterm.endofrange =
-   element indexterm {
-      indexterm.contentmodel
-   }
-
-db.indexterm = (indexterm.singular|indexterm.startofrange|indexterm.endofrange)
-
-sortas.attribute = attribute sortas { text }?
-
-primary.sortas.attrib = sortas.attribute?
-db.primary = element primary { inlines* }
-
-secondary.sortas.attrib = sortas.attribute?
-db.secondary = element secondary { inlines* }
-
-tertiary.sortas.attrib = sortas.attribute?
-db.tertiary = element tertiary { inlines* }
-
-db.see = element see { inlines* }
-
-db.seealso = element seealso { inlines* }

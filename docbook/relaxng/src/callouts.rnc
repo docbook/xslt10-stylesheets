@@ -23,6 +23,9 @@ computeroutput.inlines |= db.co
 verbatim.inlines |= db.co
 prompt.inlines |= db.co
 systemitem.inlines |= db.co
+computeroutput.inlines |= db.co
+userinput.inlines |= db.co
+replaceable.inlines |= db.co
 
 area.units.enumtype.attribute =
    attribute units {

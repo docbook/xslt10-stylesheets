@@ -1,0 +1,131 @@
+# This file is part of DocBook NG: The "Absinthe" Release.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.3
+# Release: $Id$
+#
+
+start |= db.setindex
+
+ubiq.inlines |= db.indexterm
+indexing.inlines |= db.indexterm
+blocks.nopara |= db.indexterm
+navigation.components |= db.index
+setindex.components = db.setindex
+
+info.elements |= db.itermset
+
+significance.attribute = attribute significance { "normal" | "preferred" }
+zone.attribute = attribute zone { xsd:IDREFS }
+pagenum.attribute = attribute pagenum { text }
+scope.attribute = attribute scope { "all" | "global" | "local" }
+
+db.itermset = element itermset { indexterm.singular+ }
+
+indexterm.singular.significance.attrib = significance.attribute?
+indexterm.startofrange.significance.attrib = significance.attribute?
+indexterm.endofrange.significance.attrib = significance.attribute?
+
+indexterm.singular.zone.attrib = zone.attribute?
+indexterm.startofrange.zone.attrib = zone.attribute?
+indexterm.endofrange.zone.attrib = zone.attribute?
+
+indexterm.singular.pagenum.attrib = pagenum.attribute?
+indexterm.startofrange.pagenum.attrib =  pagenum.attribute?
+indexterm.endofrange.pagenum.attrib =  pagenum.attribute?
+
+indexterm.singular.scope.attrib = scope.attribute?
+indexterm.startofrange.scope.attrib = scope.attribute?
+indexterm.endofrange.scope.attrib = scope.attribute?
+
+indexterm.singular.class.attrib = attribute class { "singular" }?
+indexterm.startofrange.class.attrib = attribute class { "startofrange" }
+indexterm.endofrange.class.attrib = attribute class { "endofrange" }
+
+indexterm.endofrange.startref.attrib = attribute startref { xsd:IDREF }
+
+indexterm.contentmodel =
+   db.primary?,
+   ((db.secondary,
+      ((db.tertiary, (db.see | db.seealso+)?)
+       | db.see
+       | db.seealso+)?)
+    | db.see
+    | db.seealso+)?
+
+indexterm.singular =
+   element indexterm {
+      indexterm.contentmodel
+   }
+
+indexterm.startofrange =
+   element indexterm {
+      indexterm.contentmodel
+   }
+
+indexterm.endofrange =
+   element indexterm {
+      indexterm.contentmodel
+   }
+
+db.indexterm = (indexterm.singular|indexterm.startofrange|indexterm.endofrange)
+
+sortas.attribute = attribute sortas { text }?
+
+primary.sortas.attrib = sortas.attribute?
+db.primary = element primary { inlines* }
+
+secondary.sortas.attrib = sortas.attribute?
+db.secondary = element secondary { inlines* }
+
+tertiary.sortas.attrib = sortas.attribute?
+db.tertiary = element tertiary { inlines* }
+
+db.see = element see { inlines* }
+
+db.seealso = element seealso { inlines* }
+
+index.info = docbook.info
+db.index =
+   element index {
+      index.info,
+      blocks*,
+      (db.indexdiv* | db.indexentry* | db.segmentedlist)
+   }
+
+setindex.info = docbook.info
+db.setindex =
+   element setindex { setindex.info, blocks*, (db.indexdiv* | db.indexentry*) }
+
+indexdiv.info = docbook.info.titlereq
+db.indexdiv =
+   element indexdiv { indexdiv.info, blocks*, (db.indexentry+|db.segmentedlist) }
+
+db.indexentry =
+   element indexentry {
+      db.primaryie,
+      (db.seeie | db.seealsoie)*,
+      (db.secondaryie, (db.seeie | db.seealsoie | db.tertiaryie)*)*
+   }
+
+primaryie.linkends.attrib = linkends.attribute?
+db.primaryie = element primaryie { inlines* }
+
+secondaryie.linkends.attrib = linkends.attribute?
+db.secondaryie = element secondaryie { inlines* }
+
+tertiaryie.linkends.attrib = linkends.attribute?
+db.tertiaryie = element tertiaryie { inlines* }
+
+seeie.linkend.attrib = linkend.attribute?
+db.seeie = element seeie { inlines* }
+
+seealsoie.linkends.attrib = linkends.attribute?
+db.seealsoie = element seealsoie { inlines* }
+
+

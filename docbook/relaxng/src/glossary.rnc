@@ -1,0 +1,108 @@
+# This file is part of DocBook NG: The "Absinthe" Release.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.3
+# Release: $Id$
+#
+
+namespace s = "http://www.ascc.net/xml/schematron"
+
+general.inlines |= glossary.inlines
+list.blocks |= db.glosslist
+navigation.components |= db.glossary
+
+glossary.inlines =
+   db.firstterm
+ | db.glossterm
+
+glosslist.info = docbook.info.titleonly
+db.glosslist = element glosslist { glosslist.info?, blocks*, db.glossentry+ }
+
+glossentry.sortas.attrib = attribute sortas { text }?
+db.glossentry =
+   element glossentry {
+      db.glossterm,
+      db.acronym?,
+      db.abbrev?,
+      db.indexterm*,
+      (db.glosssee | db.glossdef+)
+   }
+
+glossdef.subject.attrib = attribute subject { text }?
+db.glossdef = element glossdef { blocks+, db.glossseealso* }
+
+glosssee.otherterm.attrib = attribute otherterm { xsd:IDREF }?
+db.glosssee =
+   [
+      s:rule [
+         context = "glosssee[@linkend]"
+         s:assert [
+            test = "name(//*[@id=current()/@linkend]) = 'glossentry'"
+            "@linkend on glosssee must point to a glossentry."
+         ]
+      ]
+   ]
+   element glosssee { inlines* }
+
+glossseealso.otherterm.attrib = attribute otherterm { xsd:IDREF }?
+db.glossseealso =
+   [
+      s:rule [
+         context = "glossseealso[@linkend]"
+         s:assert [
+            test = "name(//*[@id=current()/@linkend]) = 'glossentry'"
+            "@linkend on glossseealso must point to a glossentry."
+         ]
+      ]
+   ]
+   element glossseealso { inlines* }
+
+firstterm.baseform.attrib = glossterm.baseform.attrib
+db.firstterm =
+   [
+      s:rule [
+         context = "firstterm[@linkend]"
+         s:assert [
+            test = "name(//*[@id=current()/@linkend]) = 'glossentry'"
+            "@linkend on firstterm must point to a glossentry."
+         ]
+      ]
+   ]
+   element firstterm { inlines* }
+
+glossterm.baseform.attrib = attribute baseform { text }?
+
+db.glossterm =
+   [
+      s:rule [
+         context = "glossterm[@linkend]"
+         s:assert [
+            test = "name(//*[@id=current()/@linkend]) = 'glossentry'"
+            "@linkend on glossterm must point to a glossentry."
+         ]
+      ]
+   ]
+   element glossterm { inlines* }
+
+glossary.status.attrib = status.attribute?
+glossary.label.attrib = label.attribute?
+glossary.info = docbook.info
+db.glossary =
+   element glossary {
+      glossary.info,
+      blocks*,
+      (db.glossdiv+ | db.glossentry+),
+      db.bibliography?
+   }
+
+glossdiv.status.attrib = status.attribute?
+glossdiv.label.attrib = label.attribute?
+glossdiv.info = docbook.info.titlereq
+db.glossdiv =
+   element glossdiv { glossdiv.info, blocks*, db.glossentry+ }
+

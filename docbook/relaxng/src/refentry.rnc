@@ -11,6 +11,8 @@
 #
 # ======================================================================
 
+start |= db.refentry
+
 divisions |= db.reference
 
 part.components |= db.refentry | db.reference

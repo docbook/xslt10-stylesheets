@@ -14,18 +14,20 @@
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 
 start = db.set
-        | db.setindex
         | db.book
 	| divisions
 	| components
 	| navigation.components
-	| db.refentry
 	| db.section
 	| db.para
 
 include "hier.rnc"
 include "refentry.rnc"
 include "pool.rnc"
+include "glossary.rnc"
+include "bibliography.rnc"
+include "index.rnc"
+include "toc.rnc"
 include "tasks.rnc"
 include "callouts.rnc"
 include "ebnf.rnc"
