@@ -445,17 +445,18 @@
       <xsl:call-template name="calsTable"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:message>Warning: HTML Tables are not supported yet!</xsl:message>
-      <fo:block font-weight="bold" font-size="16pt"
-                text-align="center"
-                space-before="0.25in" space-after="0.25in">
-        <fo:inline>[[[ Stylesheet error: HTML Tables are not supported yet! ]]]</fo:inline>
-      </fo:block>
+      <xsl:apply-templates select="." mode="htmlTable"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
 <xsl:template name="calsTable">
+  <xsl:if test="tgroup/tbody/tr
+                |tgroup/thead/tr
+                |tgroup/tfoot/tr">
+    <xsl:message terminate="yes">Broken table: tr descendent of CALS Table.</xsl:message>
+  </xsl:if>
+
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -612,12 +613,7 @@
       <xsl:call-template name="informalCalsTable"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:message>Warning: HTML Tables are not supported yet!</xsl:message>
-      <fo:block font-weight="bold" font-size="16pt"
-                text-align="center"
-                space-before="0.25in" space-after="0.25in">
-        <fo:inline>[[[ Stylesheet error: HTML Tables are not supported yet! ]]]</fo:inline>
-      </fo:block>
+      <xsl:apply-templates select="." mode="htmlTable"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
