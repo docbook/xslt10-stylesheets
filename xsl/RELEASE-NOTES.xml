@@ -18,6 +18,197 @@ This file documents (mostly) changes to the public APIs. What,
 exactly, counts as a public API is still somewhat in question, but it
 includes at least the global parameters.</para>
 
+<itemizedlist><title>Release 1.56.0</title>
+
+<para>The 1.56.0 release fixes bugs.
+</para>
+
+<listitem>
+<para>Reworked chunking. <emphasis>This will break all existing customizations
+layers that change the chunking algorithm.</emphasis> If you're customizing chunking,
+look at the new <quote>content</quote> parameter that's passed to
+<literal>process-chunk-element</literal> and friends.
+</para>
+</listitem>
+
+<listitem>
+<para>Support continued and inherited numeration in <sgmltag>orderedlist</sgmltag>
+formatting for FOs.
+</para>
+</listitem>
+
+<listitem>
+<para>Added Thai localization.
+</para>
+</listitem>
+
+<listitem>
+<para>Tweaked stylesheet documentation stylesheets to link to TDG and
+the parameter references.
+</para>
+</listitem>
+
+<listitem>
+<para>Allow title on tables of contents ("Table of Contents") to be optional.
+Added new keyword to <parameter>generate.toc</parameter>.
+Support tables of contents on sections.
+</para>
+</listitem>
+
+<listitem>
+<para>Made separate parameters for table borders and table cell borders:
+<parameter>table.frame.border.color</parameter>,
+<parameter>table.frame.border.style</parameter>,
+<parameter>table.frame.border.thickness</parameter>,
+<parameter>table.cell.border.color</parameter>,
+<parameter>table.cell.border.style</parameter>, and
+<parameter>table.cell.border.thickness</parameter>.
+</para>
+</listitem>
+
+<listitem>
+<para>Suppress formatting of <quote>endofrange</quote> <sgmltag>indexterm</sgmltag>s.
+This is only half-right. They should generate a range, but I haven't figured out how
+to do that yet.
+</para>
+</listitem>
+
+<listitem>
+<para>Support <sgmltag>revdescription</sgmltag>. (Bug #582192)
+</para>
+</listitem>
+
+<listitem>
+<para>Added <parameter>default.float.class</parameter> and fixed figure
+floats. (Bug #497603)
+</para>
+</listitem>
+
+<listitem>
+<para>Fixed formatting of <sgmltag>sbr</sgmltag> in FOs.
+</para>
+</listitem>
+
+<listitem>
+<para>Added context to the <quote>missing template</quote> error message.
+</para>
+</listitem>
+
+<listitem>
+<para>Process <sgmltag>arg</sgmltag> correctly in a <sgmltag>group</sgmltag>.
+(Bug #605150)
+</para>
+</listitem>
+
+<listitem>
+<para>Removed 'keep-with-next' from <parameter>formal.title.properties</parameter>
+attribute set now that the stylesheets support the option of putting
+such titles below the object. Now the $placement value determines if
+'keep-with-next' or 'keep-with-previous' is used in the title block.
+</para>
+</listitem>
+
+<listitem>
+<para>Wrap <quote>url()</quote> around external-destinations when appropriate.
+</para>
+</listitem>
+
+<listitem>
+<para>Fixed typo in compact list spacing. (Bug #615464)
+</para>
+</listitem>
+
+<listitem>
+<para>Removed spurious hash in anchor name. (Bug #617717)
+</para>
+</listitem>
+
+<listitem>
+<para>Address is now displayed verbatim on title pages. (Bug #618600)
+</para>
+</listitem>
+
+<listitem>
+<para>The <parameter>bridgehead.in.toc</parameter> parameter is now properly
+supported.
+</para>
+</listitem>
+
+<listitem>
+<para>Improved effectiveness of HTML cleanup by increasing the number
+of places where it is used. Improve use of HTML cleanup in XHTML stylesheets.
+</para>
+</listitem>
+
+<listitem>
+<para>Support table of contents for <sgmltag>appendix</sgmltag> in
+<sgmltag>article</sgmltag>. (Bug #596599)
+</para>
+</listitem>
+
+<listitem>
+<para>Don't duplicate footnotes in <sgmltag>bibliography</sgmltag>s and
+<sgmltag>glossary</sgmltag>s. (Bug #583282)
+</para>
+</listitem>
+
+<listitem>
+<para>Added <parameter>default.image.width</parameter>. (Bug #516859)
+</para>
+</listitem>
+
+<listitem>
+<para>Totally reworked <sgmltag>funcsynopsis</sgmltag> code; it now
+supports a 'tabular' presentation style for 'wide' prototypes; see
+<parameter>funcsynopsis.tabular.threshold</parameter>. (HTML only
+right now, I think, FO support, uh, real soon now.)
+</para>
+</listitem>
+
+<listitem>
+<para>Reworked support for difference marking; toned down the colors a bit
+and added a <quote>system.head.content</quote> template so that the diff CSS
+wasn't overriding <quote>user.head.content</quote>. (Bug #610660)
+</para>
+</listitem>
+
+<listitem>
+<para>Added call to the <quote>*.head.content</quote> elements when writing
+out long description chunks.
+</para>
+</listitem>
+
+<listitem>
+<para>Make sure <sgmltag>legalnotice</sgmltag> link is correct even when
+chunking to a different <parameter>base.dir</parameter>.
+</para>
+</listitem>
+
+<listitem>
+<para>Use CSS to set viewport characteristics if
+<parameter>css.decoration</parameter> is non-zero, use div instead of p for making
+graphic a block element; make figure <sgmltag>title</sgmltag>s the default alt
+text for images in a <sgmltag>figure</sgmltag>.</para>
+</listitem>
+
+<listitem>
+<para>Added space-after to <parameter>list.block.spacing</parameter>.
+</para>
+</listitem>
+
+<listitem>
+<para>Reworked section.level template to give <quote>correct</quote> answer
+instead of being off by one.
+</para>
+</listitem>
+
+<listitem>
+<para>When processing tables, use the <sgmltag class="attribute">tabstyle</sgmltag>
+attribute as the division class.
+</para>
+</listitem>
+</itemizedlist>
+
 <itemizedlist><title>Release 1.55.0</title>
 
 <para>The 1.55.0 fixes a few bugs and reorganizes some parameters.
