@@ -262,9 +262,21 @@
       <xsl:variable name="id">
         <xsl:call-template name="object.id"/>
       </xsl:variable>
-      <fo:basic-link internal-destination="{$id}">
-        <fo:page-number-citation ref-id="{$id}"/>
-      </fo:basic-link>
+
+      <xsl:choose>
+        <xsl:when test="@startref and @class='endofrange'">
+          <fo:basic-link internal-destination="{@startref}">
+            <fo:page-number-citation ref-id="{@startref}"/>
+            <xsl:text>-</xsl:text>
+            <fo:page-number-citation ref-id="{$id}"/>
+          </fo:basic-link>
+        </xsl:when>
+        <xsl:otherwise>
+          <fo:basic-link internal-destination="{$id}">
+            <fo:page-number-citation ref-id="{$id}"/>
+          </fo:basic-link>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -521,19 +533,37 @@
         <xsl:call-template name="object.id"/>
       </xsl:variable>
 
-      <xsl:text>&lt;phrase role="pageno"&gt;</xsl:text>
-      <xsl:if test="@id">
-        <xsl:text>&lt;link linkend="</xsl:text>
-        <xsl:value-of select="$id"/>
-        <xsl:text>"&gt;</xsl:text>
-      </xsl:if>
-      <fo:basic-link internal-destination="{$id}">
-        <fo:page-number-citation ref-id="{$id}"/>
-      </fo:basic-link>
-      <xsl:if test="@id">
-        <xsl:text>&lt;/link&gt;</xsl:text>
-      </xsl:if>
-      <xsl:text>&lt;/phrase&gt;&#10;</xsl:text>
+
+      <xsl:choose>
+        <xsl:when test="@startref and @class='endofrange'">
+          <xsl:text>&lt;phrase role="pageno"&gt;</xsl:text>
+          <xsl:text>&lt;link linkend="</xsl:text>
+          <xsl:value-of select="@startref"/>
+          <xsl:text>"&gt;</xsl:text>
+          <fo:basic-link internal-destination="{@startref}">
+            <fo:page-number-citation ref-id="{@startref}"/>
+            <xsl:text>-</xsl:text>
+            <fo:page-number-citation ref-id="{$id}"/>
+          </fo:basic-link>
+          <xsl:text>&lt;/link&gt;</xsl:text>
+          <xsl:text>&lt;/phrase&gt;&#10;</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>&lt;phrase role="pageno"&gt;</xsl:text>
+          <xsl:if test="@id">
+            <xsl:text>&lt;link linkend="</xsl:text>
+            <xsl:value-of select="$id"/>
+            <xsl:text>"&gt;</xsl:text>
+          </xsl:if>
+          <fo:basic-link internal-destination="{$id}">
+            <fo:page-number-citation ref-id="{$id}"/>
+          </fo:basic-link>
+          <xsl:if test="@id">
+            <xsl:text>&lt;/link&gt;</xsl:text>
+          </xsl:if>
+          <xsl:text>&lt;/phrase&gt;&#10;</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
