@@ -99,6 +99,7 @@
   <xsl:variable name="alphabetical"
                 select="$terms[contains(concat(&lowercase;, &uppercase;),
                                         substring(&primary;, 1, 1))]"/>
+
   <xsl:variable name="others" select="$terms[not(contains(concat(&lowercase;,
                                                  &uppercase;),
                                              substring(&primary;, 1, 1)))]"/>
@@ -120,8 +121,10 @@
         </dl>
       </div>
     </xsl:if>
+
     <xsl:apply-templates select="$alphabetical[count(.|key('letter',
-                                 translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;))[&scope;][1]) = 1]"
+                                 translate(substring(&primary;, 1, 1),
+                                           &lowercase;,&uppercase;))[&scope;][1]) = 1]"
                          mode="index-div">
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
@@ -132,29 +135,38 @@
 <xsl:template match="indexterm" mode="index-div">
   <xsl:param name="scope" select="."/>
 
-  <xsl:variable name="key" select="translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;)"/>
+  <xsl:variable name="key"
+                select="translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;)"/>
 
-  <div class="indexdiv">
-    <xsl:if test="contains(concat(&lowercase;, &uppercase;), $key)">
-      <h3>
-        <xsl:value-of select="translate($key, &lowercase;, &uppercase;)"/>
-      </h3>
-    </xsl:if>
-    <dl>
-      <xsl:apply-templates select="key('letter', $key)[&scope;][count(.|key('primary', &primary;)[&scope;][1]) = 1]"
-                           mode="index-primary">
-        <xsl:with-param name="scope" select="$scope"/>
-        <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
-      </xsl:apply-templates>
-    </dl>
-  </div>
+  <!-- Make sure that we don't generate a div if there are no terms in scope -->
+  <xsl:if test="key('letter', $key)[&scope;]
+                [count(.|key('primary', &primary;)[&scope;][1]) = 1]">
+    <div class="indexdiv">
+      <xsl:if test="contains(concat(&lowercase;, &uppercase;), $key)">
+        <h3>
+          <xsl:value-of select="translate($key, &lowercase;, &uppercase;)"/>
+        </h3>
+      </xsl:if>
+      <dl>
+        <xsl:apply-templates select="key('letter', $key)[&scope;]
+                                     [count(.|key('primary', &primary;)[&scope;][1])=1]"
+                             mode="index-primary">
+          <xsl:with-param name="scope" select="$scope"/>
+          <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
+        </xsl:apply-templates>
+      </dl>
+    </div>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="indexterm" mode="index-symbol-div">
   <xsl:param name="scope" select="/"/>
-  
-  <xsl:variable name="key" select="translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;)"/>
-  <xsl:apply-templates select="key('letter', $key)[count(.|key('primary', &primary;)[&scope;][1]) = 1]"
+
+  <xsl:variable name="key" select="translate(substring(&primary;, 1, 1),
+                                             &lowercase;,&uppercase;)"/>
+
+  <xsl:apply-templates select="key('letter', $key)
+                               [count(.|key('primary', &primary;)[&scope;][1]) = 1]"
                        mode="index-primary">
     <xsl:with-param name="scope" select="$scope"/>
     <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
