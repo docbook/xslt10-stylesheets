@@ -34,9 +34,10 @@
 <!-- active navigation images -->
 
 <xsl:template name="css.stylesheet">
+  <xsl:param name="css" select="$css.stylesheet"/>
   <!-- Danger Will Robinson: template shadows parameter -->
   <xsl:call-template name="css-file">
-    <xsl:with-param name="css" select="$css.stylesheet"/>
+    <xsl:with-param name="css" select="$css"/>
   </xsl:call-template>
 </xsl:template>
 
