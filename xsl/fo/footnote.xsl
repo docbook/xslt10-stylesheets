@@ -47,7 +47,6 @@
               <xsl:apply-templates select="." mode="footnote.number"/>
             </xsl:with-param>
           </xsl:call-template>
-          <xsl:text> </xsl:text>
         </fo:inline>
         <fo:footnote-body font-family="{$body.fontset}"
                           font-size="{$footnote.font.size}"
