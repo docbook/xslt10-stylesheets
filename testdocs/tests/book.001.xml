@@ -2,22 +2,6 @@
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY blah "<para>Blah blah blah blah. Blah blah blah blah. Blah blah blah blah.
-Blah blah blah blah blah blah blah blah. Blah blah blah blah.
-Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
-Blah blah blah blah blah blah blah blah. Blah blah blah blah.
-Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
-Blah blah blah blah blah blah blah blah. Blah blah blah blah.
-Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
-Blah blah blah blah blah blah blah blah. Blah blah blah blah.
-Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
-Blah blah blah blah blah blah blah blah. Blah blah blah blah.
-Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
-Blah blah blah blah blah blah blah blah. Blah blah blah blah.
-Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
-Blah blah blah blah blah blah blah blah. Blah blah blah blah.
-Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
-Blah blah blah blah blah blah blah blah. Blah blah blah blah.
-Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 </para>">
 ]>
 <book id="book">
@@ -35,14 +19,6 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 <para>
 Some legal notice. Some legal notice. Some legal notice.
 Some legal notice. Some legal notice. Some legal notice.
-Some legal notice. Some legal notice. Some legal notice.
-Some legal notice. Some legal notice. Some legal notice.
-Some legal notice. Some legal notice. Some legal notice.
-Some legal notice. Some legal notice. Some legal notice.
-Some legal notice. Some legal notice. Some legal notice.
-Some legal notice. Some legal notice. Some legal notice.
-Some legal notice. Some legal notice. Some legal notice.
-Some legal notice. Some legal notice. Some legal notice.
 </para>
 </legalnotice>
 <copyright>
@@ -56,11 +32,6 @@ Some legal notice. Some legal notice. Some legal notice.
 <pubdate>18 January 2002</pubdate>
 <abstract>
 <para>Some abstract. Some abstract. Some abstract. Some abstract.
-Some abstract. Some abstract. Some abstract. Some abstract.
-Some abstract. Some abstract. Some abstract. Some abstract.
-Some abstract. Some abstract. Some abstract. Some abstract.
-Some abstract. Some abstract. Some abstract. Some abstract.
-Some abstract. Some abstract. Some abstract. Some abstract.
 </para>
 <para>Some abstract. Some abstract. Some abstract. Some abstract.
 Some abstract. Some abstract. Some abstract. Some abstract.
