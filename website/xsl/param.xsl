@@ -326,7 +326,7 @@ will be used to indent the TOC.</para>
 </xsl:attribute-set>
 
 <doc:attribute-set name="body.attributes" xmlns="">
-<refpurpose></refpurpose>
+<refpurpose>DEPRECATED</refpurpose>
 <refdescription>
 <para></para>
 </refdescription>
