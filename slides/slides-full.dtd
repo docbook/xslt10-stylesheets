@@ -1,0 +1,35 @@
+<!-- ====================================================================== -->
+<!-- Slides Full XML V2.0 DTD
+     Copyright (C) 1999, 2000, 2001, 2002 Norman Walsh
+     http://sourceforge.net/projects/docbook/
+
+     This version of Slides is based on "full" DocBook rather than
+     the Simplified DocBook XML DTD.
+
+     $Id$
+
+     Please direct all questions and comments about this DTD to
+     Norman Walsh, <ndw@nwalsh.com>.
+
+     Common declaration:
+
+     <?xml version='1.0'?>
+     <!DOCTYPE slides
+       PUBLIC "-//Norman Walsh//DTD Slides Full XML V2.0//EN"
+       "http://docbook.sourceforge.net/release/slides/2.0/slides-full.dtd">
+                                                                            -->
+<!-- ====================================================================== -->
+
+<!ENTITY % section.element "IGNORE">
+<!ENTITY % section.attlist "IGNORE">
+
+<!ENTITY % sectioninfo.element "IGNORE">
+<!ENTITY % sectioninfo.attlist "IGNORE">
+
+<!-- In this version, we use full DocBook -->
+<!ENTITY % docbook.dtd PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+%docbook.dtd;
+
+<!ENTITY % slides.mod SYSTEM "slides.mod">
+%slides.mod;
