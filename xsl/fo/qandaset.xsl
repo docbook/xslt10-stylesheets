@@ -43,8 +43,8 @@
   </xsl:variable>
 
   <fo:block id="{$id}">
-    <xsl:if test="blockinfo/title|title">
-      <xsl:apply-templates select="(blockinfo/title|title)[1]"/>
+    <xsl:if test="blockinfo/title|info/title|title">
+      <xsl:apply-templates select="(blockinfo/title|info/title|title)[1]"/>
     </xsl:if>
 
     <xsl:apply-templates select="*[name(.) != 'title'
@@ -70,7 +70,7 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="qandaset/blockinfo/title|qandaset/title">
+<xsl:template match="qandaset/blockinfo/title|qandset/info/title|qandaset/title">
   <xsl:variable name="enclsect" select="(ancestor::section
                                         | ancestor::simplesect
                                         | ancestor::sect5
@@ -129,7 +129,7 @@
   </xsl:variable>
 
   <fo:block id="{$id}">
-    <xsl:apply-templates select="(blockinfo/title|title)[1]"/>
+    <xsl:apply-templates select="(blockinfo/title|info/title|title)[1]"/>
     <xsl:apply-templates select="*[name(.) != 'title'
                                  and name(.) != 'titleabbrev'
                                  and name(.) != 'qandadiv'
@@ -155,7 +155,7 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="qandadiv/blockinfo/title|qandadiv/title">
+<xsl:template match="qandadiv/blockinfo/title|qandadiv/info/title|qandadiv/title">
   <xsl:variable name="enclsect" select="(ancestor::section
                                         | ancestor::simplesect
                                         | ancestor::sect5
