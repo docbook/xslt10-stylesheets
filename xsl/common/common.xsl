@@ -1151,7 +1151,7 @@ pointed to by the link is one of the elements listed in
   <xsl:param name="itemsymbol" select="'default'"/>
   <xsl:choose>
     <!-- Change this list if you want to change the order of symbols -->
-    <xsl:when test="$itemsymbol = 'disc'">round</xsl:when>
+    <xsl:when test="$itemsymbol = 'disc'">circle</xsl:when>
     <xsl:when test="$itemsymbol = 'round'">square</xsl:when>
     <xsl:otherwise>disc</xsl:otherwise>
   </xsl:choose>
