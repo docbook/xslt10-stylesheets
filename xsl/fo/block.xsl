@@ -146,11 +146,7 @@
     <xsl:if test="@id">
       <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
     </xsl:if>
-    <xsl:call-template name="formal.object.heading">
-      <xsl:with-param name="title">
-        <xsl:apply-templates select="." mode="title.markup"/>
-      </xsl:with-param>
-    </xsl:call-template>
+    <xsl:call-template name="formal.object.heading"/>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
