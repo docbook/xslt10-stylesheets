@@ -212,10 +212,12 @@
     </xsl:choose>
   </xsl:variable>
 
+<!--
   <xsl:message>
     <xsl:text>term width: </xsl:text>
     <xsl:value-of select="$termlength"/>
   </xsl:message>
+-->
 
   <xsl:if test="title">
     <xsl:apply-templates select="title" mode="list.title.mode"/>
