@@ -86,8 +86,10 @@
 <xsl:key name="sections" match="*[@id]" use="@id"/>
 
 <xsl:template name="generate-index">
+  <xsl:param name="root" select="/"/>
+
   <xsl:variable name="terms"
-                select="//indexterm[count(.|key('letter',
+                select="$root//indexterm[count(.|key('letter',
                                                 translate(substring(&primary;, 1, 1),
                                                           &lowercase;,
                                                           &uppercase;))[1]) = 1

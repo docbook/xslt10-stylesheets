@@ -56,9 +56,11 @@
          use="concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, see)"/>
 
 <xsl:template name="generate-index">
+  <xsl:param name="root" select="/"/>
+
   <xsl:variable name="scope" select=".." />
   <xsl:variable name="terms"
-                select="..//indexterm[count(.|key('letter',
+                select="$root//indexterm[count(.|key('letter',
                                                 translate(substring(&primary;, 1, 1),
                                                           &lowercase;,
                                                           &uppercase;))[ancestor::* = $scope][1]) = 1
@@ -389,8 +391,10 @@
 <!-- ====================================================================== -->
 
 <xsl:template name="generate-index-markup">
+  <xsl:param name="root" select="/"/>
+
   <xsl:variable name="scope" select=".."/>
-  <xsl:variable name="terms" select="..//indexterm[count(.|key('letter',
+  <xsl:variable name="terms" select="$root//indexterm[count(.|key('letter',
                                      translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;))[ancestor::* = $scope][1]) = 1]"/>
   <xsl:variable name="alphabetical"
                 select="$terms[contains(concat(&lowercase;, &uppercase;),
