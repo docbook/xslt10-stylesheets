@@ -60,13 +60,14 @@
 
 <!ENTITY % svg.xmlns.prefix "svg:">
 <!ENTITY % svg.xmlns.suffix ":svg">
+<!ENTITY % svg-svg "%svg.xmlns.prefix;svg">
 
 <!-- You must also include the SVG DTD -->
 <!ENTITY % svg.dtd PUBLIC "-//W3C//DTD SVG 20001102//EN"
           "svg-20001102-nshack.dtd">
 %svg.dtd;
 
-<!ELEMENT imageobject (objectinfo?, (imagedata|svg:svg))>
+<!ELEMENT imageobject (objectinfo?, (imagedata|%svg-svg;))>
 
 <!-- End of dbsvg.dtd V1.0beta1 ............................................. -->
 <!-- ...................................................................... -->
