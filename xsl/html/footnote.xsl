@@ -140,18 +140,24 @@
     <xsl:apply-templates select="."/>
   </xsl:variable>
 
-  <xsl:variable name="html-nodes" select="exsl:node-set($html)"/>
-
   <xsl:choose>
-    <xsl:when test="$html-nodes//p">
-      <xsl:apply-templates select="$html-nodes" mode="insert.html.p">
-        <xsl:with-param name="mark" select="$footnote.mark"/>
-      </xsl:apply-templates>
+    <xsl:when test="function-avialable('exsl:node-set')">
+      <xsl:variable name="html-nodes" select="exsl:node-set($html)"/>
+      <xsl:choose>
+        <xsl:when test="$html-nodes//p">
+          <xsl:apply-templates select="$html-nodes" mode="insert.html.p">
+            <xsl:with-param name="mark" select="$footnote.mark"/>
+          </xsl:apply-templates>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="$html-nodes" mode="insert.html.text">
+            <xsl:with-param name="mark" select="$footnote.mark"/>
+          </xsl:apply-templates>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates select="$html-nodes" mode="insert.html.text">
-        <xsl:with-param name="mark" select="$footnote.mark"/>
-      </xsl:apply-templates>
+      <xsl:copy-of select="$html"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
