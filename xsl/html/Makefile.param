@@ -231,4 +231,6 @@ PARAMS=../params/admon.graphics.xml \
        ../params/table.footnote.number.symbols.xml \
        ../params/entry.propagates.style.xml \
        ../params/glossentry.show.acronym.xml \
-       ../params/xref.with.number.and.title.xml
+       ../params/xref.with.number.and.title.xml \
+       ../params/ebnf.assignment.xml \
+       ../params/ebnf.statement.terminator.xml
