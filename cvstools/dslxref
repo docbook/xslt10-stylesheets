@@ -3,8 +3,8 @@
 use Getopt::Std;
 use Cwd;
 
-$root = '/sourceforge/docbook/dsssl';
-$bindir  = '/sourceforge/docbook/cvstools';
+$root = '/usr/local/src/docbook/sourceforge/docbook';
+$bindir  = "$root/cvstools";
 
 $usage = "Usage: $0 [ -p prefix ] file\n";
 
