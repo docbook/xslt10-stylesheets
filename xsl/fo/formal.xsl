@@ -163,63 +163,113 @@
 
   <xsl:choose>
     <xsl:when test="$frame='all'">
-      <xsl:attribute name="border-left-style">solid</xsl:attribute>
-      <xsl:attribute name="border-right-style">solid</xsl:attribute>
-      <xsl:attribute name="border-top-style">solid</xsl:attribute>
-      <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
+      <xsl:attribute name="border-left-style">
+        <xsl:value-of select="$table.frame.border.style"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-right-style">
+        <xsl:value-of select="$table.frame.border.style"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-top-style">
+        <xsl:value-of select="$table.frame.border.style"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-bottom-style">
+        <xsl:value-of select="$table.frame.border.style"/>
+      </xsl:attribute>
       <xsl:attribute name="border-left-width">
-        <xsl:value-of select="$table.border.thickness"/>
+        <xsl:value-of select="$table.frame.border.thickness"/>
       </xsl:attribute>
       <xsl:attribute name="border-right-width">
-        <xsl:value-of select="$table.border.thickness"/>
+        <xsl:value-of select="$table.frame.border.thickness"/>
       </xsl:attribute>
       <xsl:attribute name="border-top-width">
-        <xsl:value-of select="$table.border.thickness"/>
+        <xsl:value-of select="$table.frame.border.thickness"/>
       </xsl:attribute>
       <xsl:attribute name="border-bottom-width">
-        <xsl:value-of select="$table.border.thickness"/>
+        <xsl:value-of select="$table.frame.border.thickness"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-left-color">
+        <xsl:value-of select="$table.frame.border.color"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-right-color">
+        <xsl:value-of select="$table.frame.border.color"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-top-color">
+        <xsl:value-of select="$table.frame.border.color"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-bottom-color">
+        <xsl:value-of select="$table.frame.border.color"/>
       </xsl:attribute>
     </xsl:when>
     <xsl:when test="$frame='bottom'">
       <xsl:attribute name="border-left-style">none</xsl:attribute>
       <xsl:attribute name="border-right-style">none</xsl:attribute>
       <xsl:attribute name="border-top-style">none</xsl:attribute>
-      <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
+      <xsl:attribute name="border-bottom-style">
+        <xsl:value-of select="$table.frame.border.style"/>
+      </xsl:attribute>
       <xsl:attribute name="border-bottom-width">
-        <xsl:value-of select="$table.border.thickness"/>
+        <xsl:value-of select="$table.frame.border.thickness"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-bottom-color">
+        <xsl:value-of select="$table.frame.border.color"/>
       </xsl:attribute>
     </xsl:when>
     <xsl:when test="$frame='sides'">
-      <xsl:attribute name="border-left-style">solid</xsl:attribute>
-      <xsl:attribute name="border-right-style">solid</xsl:attribute>
+      <xsl:attribute name="border-left-style">
+        <xsl:value-of select="$table.frame.border.style"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-right-style">
+        <xsl:value-of select="$table.frame.border.style"/>
+      </xsl:attribute>
       <xsl:attribute name="border-top-style">none</xsl:attribute>
       <xsl:attribute name="border-bottom-style">none</xsl:attribute>
       <xsl:attribute name="border-left-width">
-        <xsl:value-of select="$table.border.thickness"/>
+        <xsl:value-of select="$table.frame.border.thickness"/>
       </xsl:attribute>
       <xsl:attribute name="border-right-width">
-        <xsl:value-of select="$table.border.thickness"/>
+        <xsl:value-of select="$table.frame.border.thickness"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-left-color">
+        <xsl:value-of select="$table.frame.border.color"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-right-color">
+        <xsl:value-of select="$table.frame.border.color"/>
       </xsl:attribute>
     </xsl:when>
     <xsl:when test="$frame='top'">
       <xsl:attribute name="border-left-style">none</xsl:attribute>
       <xsl:attribute name="border-right-style">none</xsl:attribute>
-      <xsl:attribute name="border-top-style">solid</xsl:attribute>
+      <xsl:attribute name="border-top-style">
+        <xsl:value-of select="$table.frame.border.style"/>
+      </xsl:attribute>
       <xsl:attribute name="border-bottom-style">none</xsl:attribute>
       <xsl:attribute name="border-top-width">
-        <xsl:value-of select="$table.border.thickness"/>
+        <xsl:value-of select="$table.frame.border.thickness"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-top-color">
+        <xsl:value-of select="$table.frame.border.color"/>
       </xsl:attribute>
     </xsl:when>
     <xsl:when test="$frame='topbot'">
       <xsl:attribute name="border-left-style">none</xsl:attribute>
       <xsl:attribute name="border-right-style">none</xsl:attribute>
-      <xsl:attribute name="border-top-style">solid</xsl:attribute>
-      <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
+      <xsl:attribute name="border-top-style">
+        <xsl:value-of select="$table.frame.border.style"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-bottom-style">
+        <xsl:value-of select="$table.frame.border.style"/>
+      </xsl:attribute>
       <xsl:attribute name="border-top-width">
-        <xsl:value-of select="$table.border.thickness"/>
+        <xsl:value-of select="$table.frame.border.thickness"/>
       </xsl:attribute>
       <xsl:attribute name="border-bottom-width">
-        <xsl:value-of select="$table.border.thickness"/>
+        <xsl:value-of select="$table.frame.border.thickness"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-top-color">
+        <xsl:value-of select="$table.frame.border.color"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-bottom-color">
+        <xsl:value-of select="$table.frame.border.color"/>
       </xsl:attribute>
     </xsl:when>
     <xsl:when test="$frame='none'">
@@ -267,8 +317,7 @@
 
   <xsl:variable name="table.content">
     <fo:block id="{$id}"
-              xsl:use-attribute-sets="formal.object.properties"
-              keep-together.within-column="1">
+              xsl:use-attribute-sets="formal.object.properties">
 
       <xsl:if test="$placement = 'before'">
         <xsl:call-template name="formal.object.heading">
@@ -296,7 +345,6 @@
     <xsl:if test="tgroup//footnote">
       <fo:block font-family="{$body.font.family}"
                 font-size="{$footnote.font.size}"
-                keep-together.within-column="1"
                 keep-with-previous="always">
         <xsl:apply-templates select="tgroup//footnote" mode="table.footnote.mode"/>
       </fo:block>
@@ -392,7 +440,6 @@
     <xsl:if test="tgroup//footnote">
       <fo:block font-family="{$body.font.family}"
                 font-size="{$footnote.font.size}"
-                keep-together.within-column="1"
                 keep-with-previous="always">
         <xsl:apply-templates select="tgroup//footnote" mode="table.footnote.mode"/>
       </fo:block>

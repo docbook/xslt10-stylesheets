@@ -92,13 +92,14 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       </xsl:call-template>
     </xsl:if>
 
-    <xsl:if test="$colsep &gt; 0">
+    <xsl:if test="$colsep &gt; 0 and $colnum &lt; ancestor::tgroup/@cols">
       <xsl:call-template name="border">
         <xsl:with-param name="side" select="'right'"/>
       </xsl:call-template>
     </xsl:if>
 
     <!-- fo:table-cell should not be empty -->
+    <fo:block>colnum: <xsl:value-of select="$colnum"/></fo:block>
     <fo:block/>
   </fo:table-cell>
 </xsl:template>
@@ -109,13 +110,13 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   <xsl:param name="side" select="'left'"/>
 
   <xsl:attribute name="border-{$side}-width">
-    <xsl:value-of select="$table.border.thickness"/>
+    <xsl:value-of select="$table.cell.border.thickness"/>
   </xsl:attribute>
   <xsl:attribute name="border-{$side}-style">
-    <xsl:value-of select="$table.border.style"/>
+    <xsl:value-of select="$table.cell.border.style"/>
   </xsl:attribute>
   <xsl:attribute name="border-{$side}-color">
-    <xsl:value-of select="$table.border.color"/>
+    <xsl:value-of select="$table.cell.border.color"/>
   </xsl:attribute>
 </xsl:template>
 
@@ -485,7 +486,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
           </xsl:call-template>
         </xsl:if>
 
-        <xsl:if test="$colsep &gt; 0">
+        <xsl:if test="$colsep &gt; 0 and $col &lt; ancestor::tgroup/@cols">
           <xsl:call-template name="border">
             <xsl:with-param name="side" select="'right'"/>
           </xsl:call-template>
@@ -540,6 +541,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
           </xsl:attribute>
         </xsl:if>
 -->
+
+        <fo:block>colnum: <xsl:value-of select="$col"/></fo:block>
 
         <xsl:choose>
           <xsl:when test="$xep.extensions != 0 and $orientation != ''">

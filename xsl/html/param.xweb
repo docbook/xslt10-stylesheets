@@ -178,9 +178,12 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &default.table.width;
 &nominal.table.width;
 &table.borders.with.css;
-&table.border.style;
-&table.border.thickness;
-&table.border.color;
+&table.cell.border.style;
+&table.cell.border.thickness;
+&table.cell.border.color;
+&table.frame.border.style;
+&table.frame.border.thickness;
+&table.frame.border.color;
 &html.cellspacing;
 &html.cellpadding;
 </reference>
@@ -566,9 +569,12 @@ around all these parameters.</para>
 <src:fragref linkend="suppress.footer.navigation.frag"/>
 <src:fragref linkend="suppress.header.navigation.frag"/>
 <src:fragref linkend="suppress.navigation.frag"/>
-<src:fragref linkend="table.border.color.frag"/>
-<src:fragref linkend="table.border.style.frag"/>
-<src:fragref linkend="table.border.thickness.frag"/>
+<src:fragref linkend="table.cell.border.color.frag"/>
+<src:fragref linkend="table.cell.border.style.frag"/>
+<src:fragref linkend="table.cell.border.thickness.frag"/>
+<src:fragref linkend="table.frame.border.color.frag"/>
+<src:fragref linkend="table.frame.border.style.frag"/>
+<src:fragref linkend="table.frame.border.thickness.frag"/>
 <src:fragref linkend="table.borders.with.css.frag"/>
 <src:fragref linkend="tablecolumns.extension.frag"/>
 <src:fragref linkend="target.database.document.frag"/>

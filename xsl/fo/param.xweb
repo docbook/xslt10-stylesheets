@@ -155,10 +155,13 @@ generate.section.toc.level;
 <reference><title>Tables</title>
 &default.table.width;
 &nominal.table.width;
-&table.border.thickness;
 &table.cell.padding;
-&table.border.style;
-&table.border.color;
+&table.frame.border.thickness;
+&table.frame.border.style;
+&table.frame.border.color;
+&table.cell.border.thickness;
+&table.cell.border.style;
+&table.cell.border.color;
 </reference>
 
 <reference><title>Linking</title>
@@ -570,9 +573,12 @@ around all these parameters.</para>
 <src:fragref linkend="shade.verbatim.style.frag"/>
 <src:fragref linkend="show.comments.frag"/>
 <src:fragref linkend="sidebar.properties.frag"/>
-<src:fragref linkend="table.border.color.frag"/>
-<src:fragref linkend="table.border.style.frag"/>
-<src:fragref linkend="table.border.thickness.frag"/>
+<src:fragref linkend="table.cell.border.color.frag"/>
+<src:fragref linkend="table.cell.border.style.frag"/>
+<src:fragref linkend="table.cell.border.thickness.frag"/>
+<src:fragref linkend="table.frame.border.color.frag"/>
+<src:fragref linkend="table.frame.border.style.frag"/>
+<src:fragref linkend="table.frame.border.thickness.frag"/>
 <src:fragref linkend="table.cell.padding.frag"/>
 <src:fragref linkend="tablecolumns.extension.frag"/>
 <src:fragref linkend="target.database.document.frag"/>
