@@ -1,11 +1,12 @@
 <!-- ...................................................................... -->
-<!-- DocBook document hierarchy module V4.2CR1 ............................... -->
+<!-- DocBook document hierarchy module V4.2CR3 ............................... -->
 <!-- File dbhierx.mod ..................................................... -->
 
-<!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
+<!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
      O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
-     Corporation, Norman Walsh, and the Organization for the Advancement
-     of Structured Information Standards (OASIS).
+     Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+     Organization for the Advancement of Structured Information
+     Standards (OASIS).
 
      $Id$
 
@@ -43,7 +44,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbhier PUBLIC
-     "-//OASIS//ELEMENTS DocBook Document Hierarchy V4.2CR1//EN"
+     "-//OASIS//ELEMENTS DocBook Document Hierarchy V4.2CR3//EN"
      "dbhierx.mod">
      %dbhier;
 
@@ -722,7 +723,7 @@
 <!ENTITY % part.module "INCLUDE">
 <![%part.module;[
 
-<!-- Note that Part was to have its content model reduced in V4.2CR1.  This
+<!-- Note that Part was to have its content model reduced in V4.2CR3.  This
 change will not be made after all. -->
 
 <!ENTITY % local.part.attrib "">
@@ -2110,5 +2111,5 @@ change will not be made after all. -->
 <!--end of article.attlist-->]]>
 <!--end of article.module-->]]>
 
-<!-- End of DocBook document hierarchy module V4.2CR1 ........................ -->
+<!-- End of DocBook document hierarchy module V4.2CR3 ........................ -->
 <!-- ...................................................................... -->

@@ -1,16 +1,17 @@
 <!-- ...................................................................... -->
-<!-- DocBook additional general entities V4.2CR1 ............................. -->
+<!-- DocBook additional general entities V4.2CR3 ............................. -->
 
-<!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
+<!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
      O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
-     Corporation, and the Organization for the Advancement of
-     Structured Information Standards (OASIS).
+     Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+     Organization for the Advancement of Structured Information
+     Standards (OASIS).
 
      In DTD driver files referring to this module, please use an entity
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbgenent PUBLIC
-     "-//OASIS//ENTITIES DocBook Additional General Entities V4.2CR1//EN"
+     "-//OASIS//ENTITIES DocBook Additional General Entities V4.2CR3//EN"
      "dbgenent.mod">
      %dbgenent;
 -->
@@ -36,5 +37,5 @@
        %all-titles;
 -->
 
-<!-- End of DocBook additional general entities V4.2CR1 ...................... -->
+<!-- End of DocBook additional general entities V4.2CR3 ...................... -->
 <!-- ...................................................................... -->

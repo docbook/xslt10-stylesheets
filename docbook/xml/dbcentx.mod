@@ -1,11 +1,12 @@
 <!-- ...................................................................... -->
-<!-- DocBook character entities module V4.2CR1 ............................... -->
+<!-- DocBook character entities module V4.2CR3 ............................... -->
 <!-- File dbcentx.mod ..................................................... -->
 
-<!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
+<!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
      O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
-     Corporation, Norman Walsh, and the Organization for the Advancement
-     of Structured Information Standards (OASIS).
+     Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+     Organization for the Advancement of Structured Information
+     Standards (OASIS).
 
      $Id$
 
@@ -36,7 +37,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbcent PUBLIC
-     "-//OASIS//ENTITIES DocBook Character Entities V4.2CR1//EN"
+     "-//OASIS//ENTITIES DocBook Character Entities V4.2CR3//EN"
      "dbcentx.mod">
      %dbcent;
 
@@ -379,5 +380,5 @@
 %ISOtech;
 ]]>
 
-<!-- End of DocBook character entity sets module V4.2CR1 ..................... -->
+<!-- End of DocBook character entity sets module V4.2CR3 ..................... -->
 <!-- ...................................................................... -->
