@@ -18,4 +18,16 @@
 </refsect1>
 </refentry>
 
+<refentry>
+<refnamediv>
+<refname>Also Minimal</refname>
+<refpurpose>Another test of a minimal RefEntry</refpurpose>
+</refnamediv>
+
+<refsect1>
+<title>Description</title>
+<para>This is a minimal RefEntry.</para>
+</refsect1>
+</refentry>
+
 </reference>
