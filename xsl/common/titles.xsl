@@ -19,11 +19,12 @@ title of the element. This does not include the label.
 
 <xsl:template match="*" mode="title.markup">
   <xsl:param name="allow-anchors" select="0"/>
+  <xsl:param name="verbose" select="1"/>
 
   <xsl:choose>
     <xsl:when test="title">
       <xsl:apply-templates select="title[1]" mode="title.markup">
-	<xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
       </xsl:apply-templates>
     </xsl:when>
     <xsl:when test="local-name(.) = 'partintro'">
@@ -32,15 +33,17 @@ title of the element. This does not include the label.
       <xsl:apply-templates select="parent::*" mode="title.markup"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:message>
-	<xsl:text>Request for title of element with no title: </xsl:text>
-	<xsl:value-of select="name(.)"/>
-        <xsl:if test="@id">
-          <xsl:text> (id="</xsl:text>
-          <xsl:value-of select="@id"/>
-          <xsl:text>")</xsl:text>
-        </xsl:if>
-      </xsl:message>
+      <xsl:if test="$verbose">
+        <xsl:message>
+          <xsl:text>Request for title of element with no title: </xsl:text>
+          <xsl:value-of select="name(.)"/>
+          <xsl:if test="@id">
+            <xsl:text> (id="</xsl:text>
+            <xsl:value-of select="@id"/>
+            <xsl:text>")</xsl:text>
+          </xsl:if>
+        </xsl:message>
+      </xsl:if>
       <xsl:text>???TITLE???</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
