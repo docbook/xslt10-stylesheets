@@ -130,7 +130,8 @@
     </xsl:if>
 
     <xsl:apply-templates select="$autolayout/autolayout/style
-                                 |$autolayout/autolayout/script"
+                                 |$autolayout/autolayout/script
+                                 |$autolayout/autolayout/headlink"
                          mode="head.mode">
       <xsl:with-param name="webpage" select="ancestor::webpage"/>
     </xsl:apply-templates>
@@ -271,6 +272,12 @@
       </link>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template match="headlink" mode="head.mode">
+  <link>
+    <xsl:copy-of select="@*"/>
+  </link>
 </xsl:template>
 
 <xsl:template match="abstract" mode="head.mode">
