@@ -1059,6 +1059,17 @@ be used.
 </doc:param>
 
 <!-- ==================================================================== -->
+<xsl:param name="callout.dingbats" select="'0'"/>
+
+<doc:param name="callout.dingbats" xmlns="">
+<refpurpose>Use Zapf Dingbats for callouts?</refpurpose>
+<refdescription>
+<para>If non-zero, callouts are presented with Zapf Dingbats.
+</para>
+</refdescription>
+</doc:param>
+
+<!-- ==================================================================== -->
 <xsl:param name="use.id.as.filename" select="'0'" doc:type='boolean'/>
 
 <doc:param name="use.id.as.filename" xmlns="">
