@@ -5,9 +5,12 @@
 <articleinfo>
 <title>Unit Test: article.001.xml</title>
 <releaseinfo role="CVS">$Id$</releaseinfo>
+<authorgroup>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
 </author>
+<author><firstname>Jane</firstname><surname>Doe</surname></author>
+</authorgroup>
 </articleinfo>
 
 <para>This is an article tests.</para>
