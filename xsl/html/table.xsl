@@ -3,8 +3,8 @@
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 xmlns:stbl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.Table"
                 xmlns:xtbl="com.nwalsh.xalan.Table"
-                xmlns:ptbl="http://nwalsh.com/xslt/ext/xsltproc/python/Table"
                 xmlns:lxslt="http://xml.apache.org/xslt"
+                xmlns:ptbl="http://nwalsh.com/xslt/ext/xsltproc/python/Table"
                 exclude-result-prefixes="doc stbl xtbl lxslt ptbl"
                 version='1.0'>
 
