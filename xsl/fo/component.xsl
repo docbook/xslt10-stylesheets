@@ -100,31 +100,18 @@
         <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:call-template>
     </xsl:attribute>
-    <xsl:choose>
-      <xsl:when test="not(preceding::chapter
-                          or preceding::preface
-                          or preceding::appendix
-                          or preceding::article
-                          or preceding::dedication
-                          or parent::part
-                          or parent::reference)">
-        <!-- if there is a preceding component or we're in a part, the -->
-        <!-- page numbering will already be adjusted -->
-        <xsl:attribute name="initial-page-number">1</xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$double.sided != 0">
-        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
-      </xsl:when>
-    </xsl:choose>
 
-    <xsl:choose>
-      <xsl:when test="$double.sided != 0">
-        <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:attribute name="force-page-count">no-force</xsl:attribute>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:attribute name="initial-page-number">
+      <xsl:call-template name="initial.page.number">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
+    </xsl:attribute>
+
+    <xsl:attribute name="force-page-count">
+      <xsl:call-template name="force.page.count">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
+    </xsl:attribute>
 
     <xsl:attribute name="hyphenation-character">
       <xsl:call-template name="gentext">
@@ -186,15 +173,16 @@
         <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:call-template>
     </xsl:attribute>
-    <xsl:choose>
-      <xsl:when test="$double.sided != 0">
-        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
-        <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:attribute name="force-page-count">no-force</xsl:attribute>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:attribute name="initial-page-number">
+      <xsl:call-template name="initial.page.number">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="force-page-count">
+      <xsl:call-template name="force.page.count">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
+    </xsl:attribute>
     <xsl:attribute name="hyphenation-character">
       <xsl:call-template name="gentext">
         <xsl:with-param name="key" select="'hyphenation-character'"/>
@@ -254,16 +242,17 @@
       </xsl:call-template>
     </xsl:attribute>
 
-    <!-- Page numbering for a preface doesn't restart; it continues from the ToC -->
-    <xsl:choose>
-      <xsl:when test="$double.sided != 0">
-        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
-        <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:attribute name="force-page-count">no-force</xsl:attribute>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:attribute name="initial-page-number">
+      <xsl:call-template name="initial.page.number">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
+    </xsl:attribute>
+
+    <xsl:attribute name="force-page-count">
+      <xsl:call-template name="force.page.count">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
+    </xsl:attribute>
 
     <xsl:attribute name="hyphenation-character">
       <xsl:call-template name="gentext">
@@ -335,30 +324,17 @@
         <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:call-template>
     </xsl:attribute>
-    <xsl:choose>
-      <xsl:when test="not(preceding::chapter
-                          or preceding::appendix
-                          or preceding::article
-                          or preceding::dedication
-                          or parent::part
-                          or parent::reference)">
-        <!-- if there is a preceding component or we're in a part, the -->
-        <!-- page numbering will already be adjusted -->
-        <xsl:attribute name="initial-page-number">1</xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$double.sided != 0">
-        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:attribute name="initial-page-number">
+      <xsl:call-template name="initial.page.number">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
+    </xsl:attribute>
 
-    <xsl:choose>
-      <xsl:when test="$double.sided != 0">
-        <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:attribute name="force-page-count">no-force</xsl:attribute>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:attribute name="force-page-count">
+      <xsl:call-template name="force.page.count">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
+    </xsl:attribute>
 
     <xsl:attribute name="hyphenation-character">
       <xsl:call-template name="gentext">
@@ -429,30 +405,17 @@
         <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:call-template>
     </xsl:attribute>
-    <xsl:choose>
-      <xsl:when test="not(preceding::chapter
-                          or preceding::appendix
-                          or preceding::article
-                          or preceding::dedication
-                          or parent::part
-                          or parent::reference)">
-        <!-- if there is a preceding component or we're in a part, the -->
-        <!-- page numbering will already be adjusted -->
-        <xsl:attribute name="initial-page-number">1</xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$double.sided != 0">
-        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:attribute name="initial-page-number">
+      <xsl:call-template name="initial.page.number">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
+    </xsl:attribute>
 
-    <xsl:choose>
-      <xsl:when test="$double.sided != 0">
-        <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:attribute name="force-page-count">no-force</xsl:attribute>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:attribute name="force-page-count">
+      <xsl:call-template name="force.page.count">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
+    </xsl:attribute>
 
     <xsl:attribute name="hyphenation-character">
       <xsl:call-template name="gentext">
@@ -524,31 +487,17 @@
         <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:call-template>
     </xsl:attribute>
-    <xsl:choose>
-      <xsl:when test="not(preceding::chapter
-                          or preceding::preface
-                          or preceding::appendix
-                          or preceding::article
-                          or preceding::dedication
-                          or parent::part
-                          or parent::reference)">
-        <!-- if there is a preceding component or we're in a part, the -->
-        <!-- page numbering will already be adjusted -->
-        <xsl:attribute name="initial-page-number">1</xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$double.sided != 0">
-        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:attribute name="initial-page-number">
+      <xsl:call-template name="initial.page.number">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
+    </xsl:attribute>
 
-    <xsl:choose>
-      <xsl:when test="$double.sided != 0">
-        <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:attribute name="force-page-count">no-force</xsl:attribute>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:attribute name="force-page-count">
+      <xsl:call-template name="force.page.count">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:call-template>
+    </xsl:attribute>
 
     <xsl:attribute name="hyphenation-character">
       <xsl:call-template name="gentext">
