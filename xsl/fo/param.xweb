@@ -177,6 +177,7 @@ generate.section.toc.level;
 <reference><title>QAndASet</title>
 &qandadiv.autolabel;
 &qanda.inherit.numeration;
+&qanda.defaultlabel;
 </reference>
 
 <reference><title>Bibliography</title>
@@ -366,6 +367,9 @@ zero by default, so this is simply the page-master region-left.
 <reference><title>Cross References</title>
 &insert.xref.page.number;
 &xref.properties;
+&xref.label-title.separator;
+&xref.label-page.separator;
+&xref.title-page.separator;
 </reference>
 
 <reference><title>Property Sets</title>
@@ -606,6 +610,7 @@ around all these parameters.</para>
 <src:fragref linkend="profile.value.frag"/>
 <src:fragref linkend="profile.vendor.frag"/>
 <src:fragref linkend="punct.honorific.frag"/>
+<src:fragref linkend="qanda.defaultlabel.frag"/>
 <src:fragref linkend="qanda.inherit.numeration.frag"/>
 <src:fragref linkend="qandadiv.autolabel.frag"/>
 <src:fragref linkend="qanda.title.level1.properties.frag"/>
@@ -674,7 +679,10 @@ around all these parameters.</para>
 <src:fragref linkend="verbatim.properties.frag"/>
 <src:fragref linkend="xep.extensions.frag"/>
 <src:fragref linkend="xep.index.item.properties.frag"/>
+<src:fragref linkend="xref.label-page.separator.frag"/>
+<src:fragref linkend="xref.label-title.separator.frag"/>
 <src:fragref linkend="xref.properties.frag"/>
+<src:fragref linkend="xref.title-page.separator.frag"/>
 <src:fragref linkend="xref.with.number.and.title.frag"/>
 
 </xsl:stylesheet>

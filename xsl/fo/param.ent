@@ -215,3 +215,7 @@
 <!ENTITY qanda.title.level5.properties SYSTEM "../params/qanda.title.level5.properties.xml">
 <!ENTITY qanda.title.level6.properties SYSTEM "../params/qanda.title.level6.properties.xml">
 <!ENTITY variablelist.max.termlength SYSTEM "../params/variablelist.max.termlength.xml">
+<!ENTITY qanda.defaultlabel SYSTEM "../params/qanda.defaultlabel.xml">
+<!ENTITY xref.label-title.separator SYSTEM "../params/xref.label-title.separator.xml">
+<!ENTITY xref.label-page.separator SYSTEM "../params/xref.label-page.separator.xml">
+<!ENTITY xref.title-page.separator SYSTEM "../params/xref.title-page.separator.xml">
