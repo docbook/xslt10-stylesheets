@@ -63,6 +63,7 @@ its parent.
 <!-- ==================================================================== -->
 <!-- What's a chunk?
 
+     The root element
      appendix
      article
      bibliography  in article or book
@@ -105,6 +106,7 @@ its parent.
 -->
 
   <xsl:choose>
+    <xsl:when test="not($node/parent::*)">1</xsl:when>
     <xsl:when test="$chunk.sections != 0
                     and name($node)='sect1'
                     and ($chunk.first.sections != 0
@@ -162,11 +164,14 @@ its parent.
         <xsl:value-of select="$dbhtml-filename"/>
       </xsl:when>
       <!-- if there's no dbhtml filename, and if we're to use IDs as -->
-      <!-- filenames, *and* this isn't the root node, then use the ID -->
-      <!-- to generate the filename. -->
-      <xsl:when test="@id and $use.id.as.filename != 0
-                      and . != /*">
+      <!-- filenames, then use the ID to generate the filename. -->
+      <xsl:when test="@id and $use.id.as.filename != 0">
         <xsl:value-of select="@id"/>
+        <xsl:value-of select="$html.ext"/>
+      </xsl:when>
+      <!-- if this is the root element, use the root.filename -->
+      <xsl:when test="not(parent::*)">
+        <xsl:value-of select="$root.filename"/>
         <xsl:value-of select="$html.ext"/>
       </xsl:when>
       <xsl:otherwise></xsl:otherwise>
@@ -208,15 +213,8 @@ its parent.
     </xsl:when>
 
     <xsl:when test="name(.)='book'">
-      <xsl:choose>
-        <xsl:when test="count(parent::*)>0">
-          <xsl:text>bk</xsl:text>
-          <xsl:number level="any" format="01"/>
-        </xsl:when>
-        <xsl:otherwise>
-	  <xsl:value-of select="$root.filename"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:text>bk</xsl:text>
+      <xsl:number level="any" format="01"/>
       <xsl:if test="not($recursive)">
         <xsl:value-of select="$html.ext"/>
       </xsl:if>
@@ -229,16 +227,8 @@ its parent.
           <xsl:with-param name="recursive" select="true()"/>
         </xsl:apply-templates>
       </xsl:if>
-      <xsl:choose>
-        <xsl:when test="count(parent::*)>0">
-          <!-- if we aren't the root, name them numerically ... -->
-          <xsl:text>ar</xsl:text>
-          <xsl:number level="any" format="01" from="book"/>
-        </xsl:when>
-        <xsl:otherwise>
-	  <xsl:value-of select="$root.filename"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:text>ar</xsl:text>
+      <xsl:number level="any" format="01" from="book"/>
       <xsl:if test="not($recursive)">
         <xsl:value-of select="$html.ext"/>
       </xsl:if>
@@ -970,19 +960,13 @@ its parent.
   <xsl:call-template name="process-chunk-element"/>
 </xsl:template>
 
-<xsl:template match="sect1|section[local-name(parent::*) != 'section']">
-<!--
-  <xsl:message>
-    <xsl:text>cs: </xsl:text>
-    <xsl:value-of select="$chunk.sections"/>
-    <xsl:text> cfs: </xsl:text>
-    <xsl:value-of select="$chunk.first.sections"/>
-    <xsl:text> pos: </xsl:text>
-    <xsl:value-of select="position()"/>
-  </xsl:message>
--->
-
+<xsl:template match="sect1
+                     |/section
+                     |section[local-name(parent::*) != 'section']">
   <xsl:choose>
+    <xsl:when test=". = /section">
+      <xsl:call-template name="process-chunk-element"/>
+    </xsl:when>
     <xsl:when test="$chunk.sections = 0">
       <xsl:apply-imports/>
     </xsl:when>
