@@ -173,8 +173,8 @@
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
 
-<dingbat key="startquote" text="ˢ/>
-<dingbat key="endquote" text="ۢ/>
+<dingbat key="startquote" text="ˢ"/>
+<dingbat key="endquote" text="ۢ"/>
 <dingbat key="nestedstartquote" text="&#8249;"/>
 <dingbat key="nestedendquote" text="&#8250;"/>
 <dingbat key="bullet" text="&#8226;"/>
