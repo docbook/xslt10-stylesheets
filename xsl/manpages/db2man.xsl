@@ -34,7 +34,7 @@
 </xsl:template>
 
 <xsl:template match="refsect2">
-  <xsl:text>&#10;.Sh "</xsl:text>
+  <xsl:text>&#10;.SS "</xsl:text>
   <xsl:value-of select="title[1]"/>
   <xsl:text>"&#10;</xsl:text>
   <xsl:apply-templates/>
