@@ -531,7 +531,6 @@
   <head>
     <xsl:call-template name="system.head.content"/>
     <xsl:call-template name="head.content"/>
-    <xsl:call-template name="user.head.content"/>
 
     <xsl:if test="$home">
       <link rel="home">
@@ -648,6 +647,8 @@
         </link>
       </xsl:for-each>
     </xsl:if>
+
+    <xsl:call-template name="user.head.content"/>
   </head>
 </xsl:template>
 
