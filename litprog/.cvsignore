@@ -1,10 +1,9 @@
-wdocbook.xml
 wdocbook.xsl
-wdocbook.html
 weave.xml
 weave.xsl
 weave.html
 tangle.xml
 tangle.xsl
 tangle.html
+xtangle.xsl
 

@@ -10,18 +10,16 @@
 
 <xsl:output method="xml"/>
 
+<xsl:param name="top" select="'xtop'"/>
+
 <xsl:template match="/">
-  <xsl:apply-templates select="//src:topfragment"/>
+  <xsl:apply-templates select="//src:fragment[@id=$top]"/>
 </xsl:template>
 
 <xsl:template match="text()"/>
 
 <xsl:template match="*">
   <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="src:topfragment">
-  <xsl:apply-templates mode="copy"/>
 </xsl:template>
 
 <xsl:template match="src:fragment">
