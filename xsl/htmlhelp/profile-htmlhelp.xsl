@@ -17,6 +17,6 @@
      ******************************************************************** -->
 
 <xsl:import href="../html/chunk.xsl"/>
-<xsl:include href="htmlhelp-common.xsl"/>
+<xsl:include href="profile-htmlhelp-common.xsl"/>
 
 </xsl:stylesheet>
