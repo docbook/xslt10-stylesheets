@@ -50,6 +50,8 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 </listitem>
 <listitem><para>varlistentry: <xref linkend="varlistentry"/>.</para>
 </listitem>
+<listitem><para>orderedlistitem: <xref linkend="orderedlistitem"/>.</para>
+</listitem>
 </itemizedlist>
 
 </dedication>
@@ -94,6 +96,15 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 </listitem>
 </varlistentry>
 </variablelist>
+
+      <orderedlist>
+        <listitem>
+          <para>first item</para>
+        </listitem>
+        <listitem id="orderedlistitem" xreflabel="ol1">
+          <para>second item, xref as "ol1".</para>
+        </listitem>
+      </orderedlist>
 </chapter>
 
 </part>
