@@ -9,7 +9,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='glossterm.auto.link.frag'><xsl:param name="glossterm.auto.link" select="'0'"/></src:fragment>
+<src:fragment id='glossterm.auto.link.frag'>
+<xsl:param name="glossterm.auto.link" select="0"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
