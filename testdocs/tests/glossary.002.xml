@@ -13,9 +13,11 @@
 
 <glossary role="auto">
 <remark>make sure <glossterm>gloss-2</glossterm> is referenced</remark>
+<glossdiv><title>foo</title>
 <glossentry><glossterm>irrelevant</glossterm>
 <glossdef><para/></glossdef>
 </glossentry>
+</glossdiv>
 </glossary>
 
 </article>

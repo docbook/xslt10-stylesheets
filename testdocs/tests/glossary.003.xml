@@ -7,7 +7,7 @@
 <releaseinfo role="CVS">$Id$</releaseinfo>
 </articleinfo>
 
-<para>This is a test.</para>
+<para>This is a test. Xref to fifo: <xref linkend="fifo"/>.</para>
 
 <glossary>
 <glossentry><glossterm>test1</glossterm>
@@ -18,6 +18,18 @@
 <glossdef><para>First definition</para></glossdef>
 <glossdef><para>Second definition</para></glossdef>
 </glossentry>
+
+<glossentry><glossterm>first thing</glossterm>
+<acronym>FT</acronym>
+<abbrev>fthing</abbrev>
+<glossdef><para>Alphabetically first entry</para></glossdef>
+</glossentry>
+
+<glossentry id="fifo"><glossterm>First-in First-out</glossterm>
+<acronym>FIFO</acronym>
+<glossdef><para>Alphabetically second entry</para></glossdef>
+</glossentry>
+
 </glossary>
 
 </article>
