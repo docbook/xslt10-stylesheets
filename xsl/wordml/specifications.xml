@@ -112,9 +112,6 @@ dated 5 November, 2004</releaseinfo>
 </listitem>
 </itemizedlist>
 <para>Sequential structures are colesced into a single parent element.  For example, a sequence of <sgmltag>itemizedlist</sgmltag> paragraphs becomes a single <sgmltag>itemizedlist</sgmltag> element with several <sgmltag>listitem</sgmltag> children.</para>
-<para>Attributes are a feature of DocBook XML that have no direct counterpart in Word. One approach is to use Word Bookmarks for attributes. For example, a Word Bookmark named <literal>att_role_foobar</literal> could be inserted into a paragraph. When converted to DocBook XML, this would become a <sgmltag class="attribute">role="foobar"</sgmltag> attribute on the element derived from the paragraph containing the Bookmark.</para>
-<para>[Alternatively, we could use hidden text for attributes.]</para>
-<para>[Do we need a parameter to specify whether titles should be placed in the *info subelement?]</para>
 <table>
 <title>DocBook to WordML styles</title>
 <tgroup cols="3"><colspec colnum="1" colname="col1"
@@ -552,5 +549,21 @@ variablelist4</literallayout></entry>
 </tbody>
 </tgroup>
 </table>
+<section>
+<title>Attributes</title>
+<para>Attributes are a feature of DocBook XML that have no direct counterpart in Word.  Several approaches are possible:</para>
+<itemizedlist>
+  <listitem>
+    <para>Use Word comments; the currently implemented approach.  Some dummy text (just a space, using a character style that includes the hidden property) anchors the comment.  Within the comment text, character types are used to indicate attribute names and values (these must be paired).  This approach keeps the attributes separate to the main body and allows multiple attributes to be encoded.</para>
+    <para>A disadvantage to this approach (which also applies to the other approaches below) is that a paragraph may be related to more than one element, but the attributes are associated with only one element (by default the parent).  For example, a section may have an attribute as well as the title child element, but only a single paragraph (with paragraph style <literal>section-title</literal>) represents both elements.  Any attribute defined in a comment would be associated with the <sgmltag>section</sgmltag> element.</para>
+  </listitem>
+  <listitem>
+    <para>Use Word Bookmarks for attributes. For example, a Word Bookmark named <literal>att_role_foobar</literal> could be inserted into a paragraph. When converted to DocBook XML, this would become a <sgmltag class="attribute">role="foobar"</sgmltag> attribute on the element derived from the paragraph containing the Bookmark.</para>
+  </listitem>
+  <listitem>
+    <para>Use hidden text.  Define character styles that have their text hidden, and place these at the beginning of a paragraph.</para>
+  </listitem>
+</itemizedlist>
+</section> 
 </section> 
 </article>
