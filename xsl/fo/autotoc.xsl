@@ -496,6 +496,9 @@
         <xsl:when test="$titles='example'">
           <xsl:call-template name="list.of.examples.titlepage"/>
         </xsl:when>
+        <xsl:when test="$titles='procedure'">
+          <xsl:call-template name="list.of.procedures.titlepage"/>
+        </xsl:when>
         <xsl:otherwise>
           <xsl:call-template name="list.of.unknowns.titlepage"/>
         </xsl:otherwise>
@@ -507,7 +510,7 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="figure|table|example|equation" mode="toc">
+<xsl:template match="figure|table|example|equation|procedure" mode="toc">
   <xsl:call-template name="toc.line"/>
 </xsl:template>
 
