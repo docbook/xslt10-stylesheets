@@ -201,14 +201,14 @@
 </xsl:template>
 
 <xsl:template name="gentext.edited.by">
-  <xsl:call-template name="gentext.element.name">
-    <xsl:with-param name="element.name">Editedby</xsl:with-param>
+  <xsl:call-template name="gentext">
+    <xsl:with-param name="key" select="'Editedby'"/>
   </xsl:call-template>
 </xsl:template>
 
 <xsl:template name="gentext.by">
-  <xsl:call-template name="gentext.element.name">
-    <xsl:with-param name="element.name">by</xsl:with-param>
+  <xsl:call-template name="gentext">
+    <xsl:with-param name="key" select="'by'"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -270,26 +270,26 @@
 </xsl:template>
 
 <xsl:template name="gentext.nav.prev">
-  <xsl:call-template name="gentext.element.name">
-    <xsl:with-param name="element.name">nav-prev</xsl:with-param>
+  <xsl:call-template name="gentext">
+    <xsl:with-param name="key" select="'nav-prev'"/>
   </xsl:call-template>
 </xsl:template>
 
 <xsl:template name="gentext.nav.next">
-  <xsl:call-template name="gentext.element.name">
-    <xsl:with-param name="element.name">nav-next</xsl:with-param>
+  <xsl:call-template name="gentext">
+    <xsl:with-param name="key" select="'nav-next'"/>
   </xsl:call-template>
 </xsl:template>
 
 <xsl:template name="gentext.nav.home">
-  <xsl:call-template name="gentext.element.name">
-    <xsl:with-param name="element.name">nav-home</xsl:with-param>
+  <xsl:call-template name="gentext">
+    <xsl:with-param name="key" select="'nav-home'"/>
   </xsl:call-template>
 </xsl:template>
 
 <xsl:template name="gentext.nav.up">
-  <xsl:call-template name="gentext.element.name">
-    <xsl:with-param name="element.name">nav-up</xsl:with-param>
+  <xsl:call-template name="gentext">
+    <xsl:with-param name="key" select="'nav-up'"/>
   </xsl:call-template>
 </xsl:template>
 
