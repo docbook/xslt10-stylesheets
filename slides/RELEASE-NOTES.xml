@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding="utf-8"?>
+<!DOCTYPE article SYSTEM "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
+<article>
+  <articleinfo>
+    <title>DocBook Slides Release Notes</title>
+    <pubdate>10 November 2004</pubdate>
+    <releaseinfo role="cvs">$Id$</releaseinfo> 
+    <corpauthor>DocBook Open Repository Team</corpauthor> 
+  </articleinfo> 
+  <para>These are the release notes for the DocBook Slides package.
+  At a minimum, this file attempts to document changes to the public
+  APIs and provide a high-level overview of the features added in each
+  release.</para>
+  <section>
+    <title>Release 3.4.0</title>
+    <para>This is a minor feature release that also contains fixes for
+    a few bugs. See the <ulink url="WhatsNew"/> file for a complete
+    list of changes made since the previous release. The following is
+    a summary of the user-visible changes.</para>
+    <section>
+      <title>FO</title>
+      <itemizedlist>
+        <listitem>
+          <simpara>Added attribute-set to easily control appearance of
+          footer</simpara>
+        </listitem>
+        <listitem>
+          <simpara>Added support for
+          <sgmltag>foil</sgmltag>/<sgmltag>subtitle</sgmltag>. Bookmarks
+          in XEP can contain i18n characters.</simpara>
+        </listitem>
+        <listitem>
+          <simpara>Changed attribute namespaces accordingly to new
+          schema used for titlepage templates.</simpara>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section>
+      <title>HTML</title>
+      <itemizedlist>
+        <listitem>
+          <simpara><sgmltag>xref</sgmltag> to <sgmltag>foil</sgmltag>
+          and <sgmltag>foilgroup</sgmltag> is now supported. (You must
+          have the DocBook XSL stylesheets v1.67.0 or greater to use
+          xrefs.)</simpara>
+        </listitem>
+        <listitem>
+          <simpara>Added new parameter
+          <parameter>show.foil.number</parameter> which can enable
+          numbering of slides. Currently works only with
+          <filename>frames.xsl</filename> and
+          <literal>multiframe=0</literal>.</simpara>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section>
+      <title>HTML Help</title>
+      <itemizedlist>
+        <listitem>
+          <para>Slides can now be generated in HTML Help format.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+</article>
