@@ -193,7 +193,7 @@
           <xsl:copy-of select="$label"/>
           <xsl:value-of select="$autotoc.label.separator"/>
         </xsl:if>
-        <xsl:apply-templates select="." mode="title.markup"/>
+        <xsl:apply-templates select="." mode="titleabbrev.markup"/>
       </fo:basic-link>
     </fo:inline>
     <fo:inline keep-together.within-line="always">
