@@ -50,7 +50,10 @@
       </fo:page-sequence>
     </xsl:when>
     <xsl:otherwise>
-      <fo:block id="{$id}">
+      <fo:block id="{$id}"
+                space-before.minimum="1em"
+                space-before.optimum="1.5em"
+                space-before.maximum="2em">
         <xsl:call-template name="component.separator"/>
         <xsl:call-template name="bibliography.titlepage"/>
         <xsl:apply-templates/>
