@@ -3,7 +3,7 @@
   PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
 <!-- test document -->
-<book>
+<book id="book">
 <bookinfo>
 <title>Book Title</title>
 <subtitle>Book Subtitle</subtitle>
@@ -88,16 +88,16 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 <para>Just a test dedication.</para>
 </dedication>
 
-<preface><title>Foreword</title>
+<preface id="pref1"><title>Foreword</title>
 <?dbhtml filename="forward.htm"?>
 <para>This is a test paragraph.</para>
 </preface>
 
-<preface><title>Preface</title>
+<preface id="pref2"><title>Preface</title>
 <para>This is a test preface.</para>
 </preface>
 
-<part>
+<part id="part1">
 <partinfo>
 <title>Part One Title</title>
 <keywordset>
@@ -130,7 +130,7 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 </programlisting>
 </figure>
 </sect1>
-<sect1><title>Second Sect1</title>
+<sect1 id="sect2"><title>Second Sect1</title>
 <para>Paragraph.</para>
 <sect2><title>Sect2</title>
 <para>Paragraph.</para>
@@ -142,7 +142,7 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 </sect3>
 </sect2>
 </sect1>
-<sect1><title>Third Sect1</title>
+<sect1 id="fs3"><title>Third Sect1</title>
 <para>Paragraph.</para>
 <figure id="testfig2"><title>Test Figure</title>
 <programlisting>This is a
@@ -154,7 +154,7 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 </chapter>
 </part>
 
-<chapter>
+<chapter id="chx">
   <chapterinfo><title>First Chapter</title>
   <subtitle>Chapter Subtitle</subtitle>
 </chapterinfo>
@@ -167,7 +167,7 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 </figure>
 </chapter>
 
-<chapter>
+<chapter id="chy">
 <chapterinfo>
 <keywordset>
 <keyword>chapter keyword1</keyword>
@@ -218,11 +218,11 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 </indexterm></para>
 </chapter>
 
-<chapter><title>Third Chapter</title>
+<chapter id="chz"><title>Third Chapter</title>
 <para>This is a test paragraph.</para>
 </chapter>
 
-<appendix><title>First Appendix</title>
+<appendix id="appa"><title>First Appendix</title>
 <para>This is just a test.</para>
 <figure id="testfig4"><title>Test Figure</title>
 <programlisting>This is a
@@ -231,7 +231,7 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 </figure>
 </appendix>
 
-<appendix><title>Second Appendix</title>
+<appendix id="appb"><title>Second Appendix</title>
 <para>This is just a test.
 <indexterm>
 <primary>ap1</primary>
@@ -270,6 +270,6 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 </indexterm></para>
 </appendix>
 
-<index/>
+<index id="idx"/>
 
 </book>

@@ -5,7 +5,7 @@ XSLFO=../xsl/fo/docbook.xsl
 XSLCHUNK=../xsl/html/chunk.xsl
 
 CHUNK=0
-STYLEOPT=use.extensions=1
+STYLEOPT=
 
 FORMATTER=xep
 
@@ -58,6 +58,7 @@ endif
 test-toc: all-toc-dl.$(RESULT) all-toc-ul.$(RESULT) auto-toc.$(RESULT) no-toc.$(RESULT) source-toc.$(RESULT)
 
 %.html : %.xml
+	$(XJPARSE) $<
 ifeq ($(CHUNK),1)
 	$(XSLT) $< $(XSLCHUNK) $@ $(STYLEOPT)
 ifeq ($(USETIDY),1)
