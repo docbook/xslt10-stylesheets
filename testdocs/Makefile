@@ -28,6 +28,9 @@ DSSSLINDEXER	?= perl $(DSSSLROOT)/bin/collateindex.pl
 # additional XSL parameters, if any
 XSLPARAM	?=
 
+# additional Jade/DSSSL parameters, if any
+DSSSLPARAM	?= -V%generate-article-toc%
+
 # what to use to format XSL FO
 FO_FORMATTER	?= tex
 
@@ -72,9 +75,9 @@ else
 endif				# chunk
 else				# mode is DSSSL
 ifeq ($(CHUNK),1)
-	$(JADE) sgml $(DSSSLHTML) $< -V%html-ext%=.html
+	$(JADE) sgml $(DSSSLHTML) $< -V%html-ext%=.html $(DSSSLPARAM)
 else
-	$(JADE) sgml $(DSSSLHTML) $< -V%html-ext%=.html -Vnochunks > $@
+	$(JADE) sgml $(DSSSLHTML) $< -V%html-ext%=.html -Vnochunks $(DSSSLPARAM)> $@
 endif
 endif
 ifeq ($(USETIDY),1)
@@ -91,7 +94,7 @@ ifeq ($(MODE),xsl)
 	exit 1
 else
 	@test -f $*.index.xml || ( echo $(DSSSLINDEXER) -N -o $*.index.xml ; $(DSSSLINDEXER) -N -o $*.index.xml )
-	$(JADE) sgml $(DSSSLHTML) $< -Vhtml-index -Vhtml-index-filename=$*.index.xml
+	$(JADE) sgml $(DSSSLHTML) $< -Vhtml-index -Vhtml-index-filename=$*.index.xml $(DSSSLPARAM)
 	@test ! -f HTML.index || test HTML.index -ot $@ || ( echo mv HTML.index $@ ; mv HTML.index $@ )
 endif
 
@@ -110,7 +113,7 @@ endif
 ifeq ($(MODE),xsl)
 	$(XSLT) $< $(XSLFO) $@ $(FO_FORMATTER).extensions=1 $(XSLPARAM)
 else
-	$(JADE) fo $(DSSSLPRINT) $< -o $@
+	$(JADE) fo $(DSSSLPRINT) $< -o $@ $(DSSSLPARAM)
 endif
 
 .xml.rtf:
@@ -121,7 +124,7 @@ ifeq ($(MODE),xsl)
 	@echo "not sure how to make RTF"
 	exit 1
 else
-	$(JADE) rtf $(DSSSLPRINT) $< -o $@
+	$(JADE) rtf $(DSSSLPRINT) $< -o $@ $(DSSSLPARAM)
 endif
 
 ifeq ($(MODE),dsssl)
@@ -129,15 +132,13 @@ ifeq ($(MODE),dsssl)
 ifeq ($(VALIDATE),1)
 	$(XJPARSE) $<
 endif
-	$(JADE) tex $(DSSSLPRINT) $< -o $@
+	$(JADE) tex $(DSSSLPRINT) $< -o $@ $(DSSSLPARAM)
 endif
 
 ifeq ($(MODE),dsssl)
 .tex.dvi:
 	jadetex $<
-endif
 
-ifeq ($(MODE),xsl)
 .tex.pdf:
 	pdfjadetex $<
 endif
