@@ -341,7 +341,6 @@
 
 <context name="xref">
 <template name="abstract">%t</template>
-<template name="answer"><Answer/> %n</template>
 <template name="answer"><Answer/>&#160;%n</template>
 <template name="appendix">%t</template>
 <template name="article">%t</template>
@@ -358,7 +357,6 @@
 <template name="colophon">%t</template>
 <template name="constraintdef">%t</template>
 <template name="dedication">%t</template>
-<template name="equation">%t</template>
 <template name="equation">%t</template>
 <template name="example">%t</template>
 <template name="figure">%t</template>
@@ -399,7 +397,6 @@
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
-<template name="varlistentry">%n</template>
 <template name="varlistentry">%n</template>
 <template name="warning">%t</template>
 <template name="page.citation"> [%p]</template>
