@@ -9,5 +9,17 @@
 <literal>tocentry</literal> in
 the <filename>layout.xml</filename> file to mark pages as "added" or
 "changed".</para>
+
+<informaltable>
+<tgroup cols="2">
+<tbody>
+<row>
+  <entry role="left">Testing something</entry>
+  <entry role="right">unrelated to revisionflag.</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+
 </webpage>
 
