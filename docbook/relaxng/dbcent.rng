@@ -1,14 +1,15 @@
-<grammar xmlns="http://www.thaiopensource.com/trex"
-	 xmlns:xsd="http://www.w3.org/2000/10/XMLSchema"
-	 xmlns:dtd="http://www.oasis-open.org/docbook/dtd"
-	 ns="">
+<?xml version="1.0"?>
+<grammar xmlns="http://relaxng.org/ns/structure/0.9"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+	 xmlns:dtd="http://www.oasis-open.org/docbook/relaxng/dtdannotations"
+         ns="">
 
 <dtd:comment> ...................................................................... </dtd:comment>
 <dtd:comment> DocBook XML character entities module V4.1.2 ........................... </dtd:comment>
 <dtd:comment> File dbcentx.mod ..................................................... </dtd:comment>
 
 <dtd:comment> Copyright 1992-2000 HaL Computer Systems, Inc.,
-     O'Reilly &amp; Associates, Inc., ArborText, Inc., Fujitsu Software
+     O'Reilly &#38; Associates, Inc., ArborText, Inc., Fujitsu Software
      Corporation, Norman Walsh, and the Organization for the Advancement
      of Structured Information Standards (OASIS).
 
@@ -40,7 +41,7 @@
      In DTD driver files referring to this module, please use an entity
      declaration that uses the public identifier shown below:
 
-     &lt;!ENTITY % dbcent PUBLIC
+     &#60;!ENTITY % dbcent PUBLIC
      "-//OASIS//ENTITIES DocBook XML Character Entities V4.1.2//EN"
      "dbcentx.mod">
      %dbcent;

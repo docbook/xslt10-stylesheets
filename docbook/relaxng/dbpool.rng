@@ -1,14 +1,15 @@
 <?xml version="1.0"?>
-<grammar xmlns="http://www.thaiopensource.com/trex"
-	 xmlns:xsd="http://www.w3.org/2000/10/XMLSchema"
-	 xmlns:dtd="http://www.oasis-open.org/docbook/dtd"
-	 ns="">
+<grammar xmlns="http://relaxng.org/ns/structure/0.9"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+	 xmlns:dtd="http://www.oasis-open.org/docbook/relaxng/dtdannotations"
+         ns="">
+
 <dtd:comment> ...................................................................... </dtd:comment>
 <dtd:comment> DocBook XML information pool module V4.1.2 ............................. </dtd:comment>
 <dtd:comment> File dbpoolx.mod ..................................................... </dtd:comment>
 
 <dtd:comment> Copyright 1992-2000 HaL Computer Systems, Inc.,
-     O'Reilly &amp; Associates, Inc., ArborText, Inc., Fujitsu Software
+     O'Reilly &#38; Associates, Inc., ArborText, Inc., Fujitsu Software
      Corporation, Norman Walsh and the Organization for the Advancement
      of Structured Information Standards (OASIS).
 
@@ -53,7 +54,7 @@
      In DTD driver files referring to this module, please use an entity
      declaration that uses the public identifier shown below:
 
-     &lt;!ENTITY % dbpool PUBLIC
+     &#60;!ENTITY % dbpool PUBLIC
      "-//OASIS//ELEMENTS DocBook XML Information Pool V4.1.2//EN"
      "dbpoolx.mod">
      %dbpool;
@@ -68,7 +69,7 @@
 <dtd:comment> General-purpose semantics entities ................................... </dtd:comment>
 
 <define name="yesorno.attvals">
-  <anyString/>
+  <text/>
 </define>
 
 <dtd:comment> ...................................................................... </dtd:comment>
@@ -659,114 +660,149 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <notAllowed/>
 </define>
 <define name="para.char.mix">
-  <ref name="#PCDATA.element"/>
-  <ref name="xref.char.class"/>
-  <ref name="gen.char.class"/>
-  <ref name="link.char.class"/>
-  <ref name="tech.char.class"/>
-  <ref name="base.char.class"/>
-  <ref name="docinfo.char.class"/>
-  <ref name="other.char.class"/>
-  <ref name="inlineobj.char.class"/>
-  <ref name="synop.class"/>
-  <ref name="ndxterm.class"/>
-  <ref name="beginpage.element"/>
-  <ref name="forminlines.hook"/>
+  <mixed>
+    <zeroOrMore>
+      <choice>
+        <ref name="xref.char.class"/>
+        <ref name="gen.char.class"/>
+        <ref name="link.char.class"/>
+        <ref name="tech.char.class"/>
+        <ref name="base.char.class"/>
+        <ref name="docinfo.char.class"/>
+        <ref name="other.char.class"/>
+        <ref name="inlineobj.char.class"/>
+        <ref name="synop.class"/>
+        <ref name="ndxterm.class"/>
+        <ref name="beginpage.element"/>
+        <ref name="forminlines.hook"/>
+      </choice>
+    </zeroOrMore>
+  </mixed>
 </define>
 
 <define name="local.title.char.mix">
   <notAllowed/>
 </define>
 <define name="title.char.mix">
-  <ref name="#PCDATA.element"/>
-  <ref name="xref.char.class"/>
-  <ref name="gen.char.class"/>
-  <ref name="link.char.class"/>
-  <ref name="tech.char.class"/>
-  <ref name="base.char.class"/>
-  <ref name="docinfo.char.class"/>
-  <ref name="other.char.class"/>
-  <ref name="inlineobj.char.class"/>
-  <ref name="ndxterm.class"/>
+  <mixed>
+    <zeroOrMore>
+      <choice>
+        <ref name="xref.char.class"/>
+        <ref name="gen.char.class"/>
+        <ref name="link.char.class"/>
+        <ref name="tech.char.class"/>
+        <ref name="base.char.class"/>
+        <ref name="docinfo.char.class"/>
+        <ref name="other.char.class"/>
+        <ref name="inlineobj.char.class"/>
+        <ref name="ndxterm.class"/>
+      </choice>
+    </zeroOrMore>
+  </mixed>
 </define>
 
 <define name="local.ndxterm.char.mix">
   <notAllowed/>
 </define>
 <define name="ndxterm.char.mix">
-  <ref name="#PCDATA.element"/>
-  <ref name="xref.char.class"/>
-  <ref name="gen.char.class"/>
-  <ref name="link.char.class"/>
-  <ref name="tech.char.class"/>
-  <ref name="base.char.class"/>
-  <ref name="docinfo.char.class"/>
-  <ref name="other.char.class"/>
-  <ref name="inlinegraphic.element"/>
-  <ref name="inlinemediaobject.element"/>
-  <ref name="local.ndxterm.char.mix"/>
+  <mixed>
+    <zeroOrMore>
+      <choice>
+        <ref name="xref.char.class"/>
+        <ref name="gen.char.class"/>
+        <ref name="link.char.class"/>
+        <ref name="tech.char.class"/>
+        <ref name="base.char.class"/>
+        <ref name="docinfo.char.class"/>
+        <ref name="other.char.class"/>
+        <ref name="inlinegraphic.element"/>
+        <ref name="inlinemediaobject.element"/>
+        <ref name="local.ndxterm.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </mixed>
 </define>
 
 <define name="local.cptr.char.mix">
   <notAllowed/>
 </define>
 <define name="cptr.char.mix">
-  <ref name="#PCDATA.element"/>
-  <ref name="link.char.class"/>
-  <ref name="tech.char.class"/>
-  <ref name="base.char.class"/>
-  <ref name="other.char.class"/>
-  <ref name="inlinegraphic.element"/>
-  <ref name="inlinemediaobject.element"/>
-  <ref name="ndxterm.class"/>
-  <ref name="beginpage.element"/>
-  <ref name="local.cptr.char.mix"/>
+  <mixed>
+    <zeroOrMore>
+      <choice>
+        <ref name="link.char.class"/>
+        <ref name="tech.char.class"/>
+        <ref name="base.char.class"/>
+        <ref name="other.char.class"/>
+        <ref name="inlinegraphic.element"/>
+        <ref name="inlinemediaobject.element"/>
+        <ref name="ndxterm.class"/>
+        <ref name="beginpage.element"/>
+        <ref name="local.cptr.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </mixed>
 </define>
 
 <define name="local.smallcptr.char.mix">
   <notAllowed/>
 </define>
 <define name="smallcptr.char.mix">
-  <ref name="#PCDATA.element"/>
-  <ref name="replaceable.element"/>
-  <ref name="inlinegraphic.element"/>
-  <ref name="inlinemediaobject.element"/>
-  <ref name="ndxterm.class"/>
-  <ref name="beginpage.element"/>
-  <ref name="local.smallcptr.char.mix"/>
+  <mixed>
+    <zeroOrMore>
+      <choice>
+        <ref name="replaceable.element"/>
+        <ref name="inlinegraphic.element"/>
+        <ref name="inlinemediaobject.element"/>
+        <ref name="ndxterm.class"/>
+        <ref name="beginpage.element"/>
+        <ref name="local.smallcptr.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </mixed>
 </define>
 
 <define name="local.word.char.mix">
   <notAllowed/>
 </define>
 <define name="word.char.mix">
-  <ref name="#PCDATA.element"/>
-  <ref name="acronym.element"/>
-  <ref name="emphasis.element"/>
-  <ref name="trademark.element"/>
-  <ref name="link.char.class"/>
-  <ref name="base.char.class"/>
-  <ref name="other.char.class"/>
-  <ref name="inlinegraphic.element"/>
-  <ref name="inlinemediaobject.element"/>
-  <ref name="ndxterm.class"/>
-  <ref name="beginpage.element"/>
-  <ref name="local.word.char.mix"/>
+  <mixed>
+    <zeroOrMore>
+      <choice>
+        <ref name="acronym.element"/>
+        <ref name="emphasis.element"/>
+        <ref name="trademark.element"/>
+        <ref name="link.char.class"/>
+        <ref name="base.char.class"/>
+        <ref name="other.char.class"/>
+        <ref name="inlinegraphic.element"/>
+        <ref name="inlinemediaobject.element"/>
+        <ref name="ndxterm.class"/>
+        <ref name="beginpage.element"/>
+        <ref name="local.word.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </mixed>
 </define>
 
 <define name="local.docinfo.char.mix">
   <notAllowed/>
 </define>
 <define name="docinfo.char.mix">
-  <ref name="#PCDATA.element"/>
-  <ref name="link.char.class"/>
-  <ref name="emphasis.element"/>
-  <ref name="trademark.element"/>
-  <ref name="replaceable.element"/>
-  <ref name="other.char.class"/>
-  <ref name="inlinegraphic.element"/>
-  <ref name="inlinemediaobject.element"/>
-  <ref name="ndxterm.class"/>
+  <mixed>
+    <zeroOrMore>
+      <choice>
+        <ref name="link.char.class"/>
+        <ref name="emphasis.element"/>
+        <ref name="trademark.element"/>
+        <ref name="replaceable.element"/>
+        <ref name="other.char.class"/>
+        <ref name="inlinegraphic.element"/>
+        <ref name="inlinemediaobject.element"/>
+        <ref name="ndxterm.class"/>
+      </choice>
+    </zeroOrMore>
+  </mixed>
 </define>
 <dtd:comment>ENTITY % bibliocomponent.mix (see Bibliographic section, below)</dtd:comment>
 <dtd:comment>ENTITY % person.ident.mix (see Bibliographic section, below)</dtd:comment>
@@ -876,7 +912,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <define name="id.attrib">
   <optional>
     <attribute name="id">
-      <data type="xsd:ID"/>
+      <data type="ID"/>
     </attribute>
   </optional>
 </define>
@@ -886,7 +922,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <define name="idreq.attrib">
   <attribute name="id">
-    <data type="xsd:ID"/>
+    <data type="ID"/>
   </attribute>
 </define>
 
@@ -932,10 +968,10 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <optional>
     <attribute name="revisionflag">
       <choice>
-	<string>changed</string>
-	<string>added</string>
-	<string>deleted</string>
-	<string>off</string>
+	<value>changed</value>
+	<value>added</value>
+	<value>deleted</value>
+	<value>off</value>
       </choice>
     </attribute>
   </optional>
@@ -991,7 +1027,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <define name="graphics.attrib">
   <optional>
     <attribute name="entityref">
-      <data type="xsd:ENTITY"/>
+      <data type="ENTITY"/>
     </attribute>
   </optional>
   <optional>
@@ -1014,9 +1050,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <optional>
     <attribute name="align">
       <choice>
-	<string>left</string>
-	<string>right</string>
-	<string>center</string>
+	<value>left</value>
+	<value>right</value>
+	<value>center</value>
       </choice>
     </attribute>
   </optional>
@@ -1044,12 +1080,12 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <optional>
     <attribute name="action">
       <choice>
-        <string>click</string>
-        <string>double-click</string>
-        <string>press</string>
-        <string>seq</string>
-        <string>simul</string>
-        <string>other</string>
+        <value>click</value>
+        <value>double-click</value>
+        <value>press</value>
+        <value>seq</value>
+        <value>simul</value>
+        <value>other</value>
       </choice>
     </attribute>
   </optional>
@@ -1077,15 +1113,15 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
                dtd:format="NOTATION"
                dtd:default="linespecific">
       <choice>
-        <string>linespecific</string>
+        <value>linespecific</value>
       </choice>
     </attribute>
   </optional>
   <optional>
     <attribute name="linenumbering">
       <choice>
-        <string>numbered</string>
-        <string>unnumbered</string>
+        <value>numbered</value>
+        <value>unnumbered</value>
       </choice>
     </attribute>
   </optional>
@@ -1096,7 +1132,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <define name="linkend.attrib">
   <optional>
     <attribute name="linkend">
-      <data type="xsd:IDREF"/>
+      <data type="IDREF"/>
     </attribute>
   </optional>
 </define>
@@ -1105,7 +1141,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <define name="linkendreq.attrib">
   <attribute name="linkend">
-    <data type="xsd:IDREF"/>
+    <data type="IDREF"/>
   </attribute>
 </define>
 
@@ -1115,7 +1151,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <define name="linkends.attrib">
   <optional>
     <attribute name="linkends">
-      <data type="xsd:IDREFS"/>
+      <data type="IDREFS"/>
     </attribute>
   </optional>
 </define>
@@ -1137,8 +1173,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <optional>
     <attribute name="moreinfo" dtd:default="none">
       <choice>
-	<string>refentry</string>
-	<string>none</string>
+	<value>refentry</value>
+	<value>none</value>
       </choice>
     </attribute>
   </optional>
@@ -1383,13 +1419,14 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <dtd:marked-section start="bibliomixed.element"/>
 <define name="bibliomixed.element">
   <element name="bibliomixed">
-    <zeroOrMore>
-      <choice>
-        <pcdata/>
-        <ref name="bibliocomponent.mix"/>
-        <ref name="bibliomset.element"/>
-      </choice>
-    </zeroOrMore>
+    <mixed>
+      <zeroOrMore>
+        <choice>
+          <ref name="bibliocomponent.mix"/>
+          <ref name="bibliomset.element"/>
+        </choice>
+      </zeroOrMore>
+    </mixed>
   </element>
 </define>
 <dtd:marked-section end="bibliomixed.element"/>
@@ -1489,13 +1526,14 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <dtd:marked-section start="bibliomset.element"/>
 <define name="bibliomset.element">
   <element name="bibliomset">
-    <zeroOrMore>
-      <choice>
-        <pcdata/>
-        <ref name="bibliocomponent.mix"/>
-        <ref name="bibliomset.element"/>
-      </choice>
-    </zeroOrMore>
+    <mixed>
+      <zeroOrMore>
+        <choice>
+          <ref name="bibliocomponent.mix"/>
+          <ref name="bibliomset.element"/>
+        </choice>
+      </zeroOrMore>
+    </mixed>
   </element>
 </define>
 <dtd:marked-section end="bibliomset.element"/>
@@ -1575,7 +1613,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <define name="subjectset.attlist">
   <optional>
     <attribute name="scheme">
-      <data type="xsd:NMTOKEN"/>
+      <data type="NMTOKEN"/>
     </attribute>
   </optional>
   <ref name="common.attrib"/>
@@ -1632,9 +1670,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <dtd:marked-section start="subjectterm.element"/>
 <define name="subjectterm.element">
   <element name="subjectterm">
-    <group>
-      <pcdata/>
-    </group>
+    <text/>
   </element>
 </define>
 <dtd:marked-section end="subjectterm.element"/>
@@ -1690,9 +1726,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <dtd:marked-section start="keyword.element"/>
 <define name="keyword.element">
   <element name="keyword">
-    <group>
-      <pcdata/>
-    </group>
+    <text/>
   </element>
 </define>
 <dtd:marked-section end="keyword.element"/>
@@ -2180,9 +2214,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <optional>
     <attribute name="defaultlabel">
       <choice>
-        <string>qanda</string>
-        <string>number</string>
-        <string>none</string>
+        <value>qanda</value>
+        <value>number</value>
+        <value>none</value>
       </choice>
     </attribute>
   </optional>
@@ -2469,8 +2503,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <optional>
     <attribute name="performance" dtd:default="required">
       <choice>
-        <string>optional</string>
-        <string>required</string>
+        <value>optional</value>
+        <value>required</value>
       </choice>
     </attribute>
   </optional>
@@ -2510,8 +2544,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <optional>
     <attribute name="performance" dtd:default="required">
       <choice>
-        <string>optional</string>
-        <string>required</string>
+        <value>optional</value>
+        <value>required</value>
       </choice>
     </attribute>
   </optional>
@@ -2772,12 +2806,12 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <optional>
     <attribute name="renderas">
       <choice>
-        <string>other</string>
-        <string>sect1</string>
-        <string>sect2</string>
-        <string>sect3</string>
-        <string>sect4</string>
-        <string>sect5</string>
+        <value>other</value>
+        <value>sect1</value>
+        <value>sect2</value>
+        <value>sect3</value>
+        <value>sect4</value>
+        <value>sect5</value>
       </choice>
     </attribute>
   </optional>
@@ -3305,7 +3339,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <define name="glosssee.attlist">
   <optional>
     <attribute name="otherterm">
-      <data type="xsd:IDREF"/>
+      <data type="IDREF"/>
     </attribute>
   </optional>
   <ref name="common.attrib"/>
@@ -3343,7 +3377,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <define name="glossseealso.attlist">
   <optional>
     <attribute name="otherterm">
-      <data type="xsd:IDREF"/>
+      <data type="IDREF"/>
     </attribute>
   </optional>
   <ref name="common.attrib"/>
@@ -3392,8 +3426,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <optional>
     <attribute name="spacing">
       <choice>
-        <string>normal</string>
-        <string>compact</string>
+        <value>normal</value>
+        <value>compact</value>
       </choice>
     </attribute>
   </optional>
@@ -3448,35 +3482,35 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <optional>
     <attribute name="numeration">
       <choice>
-        <string>arabic</string>
-        <string>upperalpha</string>
-        <string>loweralpha</string>
-        <string>upperroman</string>
-        <string>lowerroman</string>
+        <value>arabic</value>
+        <value>upperalpha</value>
+        <value>loweralpha</value>
+        <value>upperroman</value>
+        <value>lowerroman</value>
       </choice>
     </attribute>
   </optional>
   <optional>
     <attribute name="inheritnum" dtd:default="ignore">
       <choice>
-        <string>inherit</string>
-        <string>ignore</string>
+        <value>inherit</value>
+        <value>ignore</value>
       </choice>
     </attribute>
   </optional>
   <optional>
     <attribute name="continuation" dtd:default="restarts">
       <choice>
-        <string>continues</string>
-        <string>restarts</string>
+        <value>continues</value>
+        <value>restarts</value>
       </choice>
     </attribute>
   </optional>
   <optional>
     <attribute name="spacing">
       <choice>
-        <string>normal</string>
-        <string>compact</string>
+        <value>normal</value>
+        <value>compact</value>
       </choice>
     </attribute>
   </optional>
@@ -3695,9 +3729,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <optional>
     <attribute name="type" dtd:default="vert">
       <choice>
-        <string>inline</string>
-        <string>vert</string>
-        <string>horiz</string>
+        <value>inline</value>
+        <value>vert</value>
+        <value>horiz</value>
       </choice>
     </attribute>
   </optional>
@@ -3911,7 +3945,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <dtd:marked-section start="callout.attlist"/>
 <define name="callout.attlist">
   <attribute name="arearefs">
-    <data type="xsd:IDREFS"/>
+    <data type="IDREFS"/>
   </attribute>
   <ref name="common.attrib"/>
   <ref name="callout.role.attrib"/>
@@ -4083,17 +4117,17 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <optional>
     <attribute name="units">
       <choice>
-        <string>calspair</string>
-        <string>linecolumn</string>
-        <string>linerange</string>
-        <string>linecolumnpair</string>
-        <string>other</string>
+        <value>calspair</value>
+        <value>linecolumn</value>
+        <value>linerange</value>
+        <value>linecolumnpair</value>
+        <value>other</value>
       </choice>
     </attribute>
   </optional>
   <optional>
     <attribute name="otherunits">
-      <data type="xsd:NMTOKEN"/>
+      <data type="NMTOKEN"/>
     </attribute>
   </optional>
   <ref name="common.attrib"/>
@@ -4133,17 +4167,17 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <optional>
     <attribute name="units">
       <choice>
-        <string>calspair</string>
-        <string>linecolumn</string>
-        <string>linerange</string>
-        <string>linecolumnpair</string>
-        <string>other</string>
+        <value>calspair</value>
+        <value>linecolumn</value>
+        <value>linerange</value>
+        <value>linecolumnpair</value>
+        <value>other</value>
       </choice>
     </attribute>
   </optional>
   <optional>
     <attribute name="otherunits">
-      <data type="xsd:NMTOKEN"/>
+      <data type="NMTOKEN"/>
     </attribute>
   </optional>
   <attribute name="coords"/>
@@ -4185,17 +4219,17 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <optional>
     <attribute name="units">
       <choice>
-        <string>calspair</string>
-        <string>linecolumn</string>
-        <string>linerange</string>
-        <string>linecolumnpair</string>
-        <string>other</string>
+        <value>calspair</value>
+        <value>linecolumn</value>
+        <value>linerange</value>
+        <value>linecolumnpair</value>
+        <value>other</value>
       </choice>
     </attribute>
   </optional>
   <optional>
     <attribute name="otherunits">
-      <data type="xsd:NMTOKEN"/>
+      <data type="NMTOKEN"/>
     </attribute>
   </optional>
   <attribute name="coords"/>
@@ -4269,8 +4303,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <optional>
     <attribute name="class" dtd:default="normal">
       <choice>
-        <string>monospaced</string>
-        <string>normal</string>
+        <value>monospaced</value>
+        <value>normal</value>
       </choice>
     </attribute>
   </optional>
@@ -4863,7 +4897,7 @@ in the text (no (0) value, the default)
 <define name="graphics.attrib">
   <optional>
     <attribute name="entityref">
-      <data type="xsd:ENTITY"/>
+      <data type="ENTITY"/>
     </attribute>
   </optional>
   <optional>
@@ -4916,9 +4950,9 @@ in the text (no (0) value, the default)
     <optional>
       <attribute name="align">
         <choice>
-          <string>left</string>
-          <string>right</string>
-          <string>center</string>
+          <value>left</value>
+          <value>right</value>
+          <value>center</value>
         </choice>
       </attribute>
     </optional>
@@ -4998,9 +5032,9 @@ in the text (no (0) value, the default)
     <optional>
       <attribute name="align">
         <choice>
-          <string>left</string>
-          <string>right</string>
-          <string>center</string>
+          <value>left</value>
+          <value>right</value>
+          <value>center</value>
         </choice>
       </attribute>
     </optional>
@@ -5253,15 +5287,13 @@ in the text (no (0) value, the default)
 <dtd:marked-section start="alt.element"/>
 <define name="alt.element">
   <element name="alt">
-    <group>
-      <pcdata/>
-    </group>
+    <text/>
   </element>
 </define>
 <dtd:marked-section end="alt.element"/>
 
 <dtd:marked-section start="alt.attlist"/>
-<define name="alt .attlist">
+<define name="alt.attlist">
   <ref name="common.attrib"/>
   <ref name="alt.role.attrib"/>
   <ref name="local.alt.attrib"/>
@@ -5459,12 +5491,12 @@ in the text (no (0) value, the default)
   <optional>
     <attribute name="frame">
       <choice>
-        <string>top</string>
-        <string>bottom</string>
-        <string>topbot</string>
-        <string>all</string>
-        <string>sides</string>
-        <string>none</string>
+        <value>top</value>
+        <value>bottom</value>
+        <value>topbot</value>
+        <value>all</value>
+        <value>sides</value>
+        <value>none</value>
       </choice>
     </attribute>
   </optional>
@@ -5559,7 +5591,7 @@ in the text (no (0) value, the default)
 <dtd:marked-section end="cmdsynopsis.element"/>
 
 <dtd:comment> Sepchar: Character that should separate command and all 
-		top-level arguments; alternate value might be e.g., &amp;Delta; </dtd:comment>
+		top-level arguments; alternate value might be e.g., &#38;Delta; </dtd:comment>
 
 
 <dtd:marked-section start="cmdsynopsis.attlist"/>
@@ -5589,17 +5621,18 @@ in the text (no (0) value, the default)
 <dtd:marked-section start="arg.element"/>
 <define name="arg.element">
   <element name="arg">
-    <zeroOrMore>
-      <choice>
-        <pcdata/>
-        <ref name="arg.element"/>
-        <ref name="group.element"/>
-        <ref name="option.element"/>
-        <ref name="synopfragmentref.element"/>
-        <ref name="replaceable.element"/>
-        <ref name="sbr.element"/>
-      </choice>
-    </zeroOrMore>
+    <mixed>
+      <zeroOrMore>
+        <choice>
+          <ref name="arg.element"/>
+          <ref name="group.element"/>
+          <ref name="option.element"/>
+          <ref name="synopfragmentref.element"/>
+          <ref name="replaceable.element"/>
+          <ref name="sbr.element"/>
+        </choice>
+      </zeroOrMore>
+    </mixed>
   </element>
 </define>
 <dtd:marked-section end="arg.element"/>
@@ -5613,11 +5646,23 @@ in the text (no (0) value, the default)
 
 <dtd:marked-section start="arg.attlist"/>
 <define name="arg.attlist">
-		choice		(opt
-				|req
-				|plain)		'opt'
-		rep		(norepeat
-				|repeat)	'norepeat'
+  <optional>
+    <attribute name="choice" dtd:default="opt">
+      <choice>
+	<value>opt</value>
+	<value>req</value>
+	<value>plain</value>
+      </choice>
+    </attribute>
+  </optional>
+  <optional>
+    <attribute name="rep" dtd:default="norepeat">
+      <choice>
+	<value>norepeat</value>
+	<value>repeat</value>
+      </choice>
+    </attribute>
+  </optional>
   <ref name="common.attrib"/>
   <ref name="arg.role.attrib"/>
   <ref name="local.arg.attrib"/>
@@ -5665,11 +5710,23 @@ in the text (no (0) value, the default)
 
 <dtd:marked-section start="group.attlist"/>
 <define name="group.attlist">
-		choice		(opt
-				|req
-				|plain)         'opt'
-		rep		(norepeat
-				|repeat)	'norepeat'
+  <optional>
+    <attribute name="choice" dtd:default="opt">
+      <choice>
+	<value>opt</value>
+	<value>req</value>
+	<value>plain</value>
+      </choice>
+    </attribute>
+  </optional>
+  <optional>
+    <attribute name="rep" dtd:default="norepeat">
+      <choice>
+	<value>norepeat</value>
+	<value>repeat</value>
+      </choice>
+    </attribute>
+  </optional>
   <ref name="common.attrib"/>
   <ref name="group.role.attrib"/>
   <ref name="local.group.attrib"/>
@@ -5714,9 +5771,7 @@ in the text (no (0) value, the default)
 <dtd:marked-section start="synopfragmentref.element"/>
 <define name="synopfragmentref.element">
   <element name="synopfragmentref">
-    <group>
-      <pcdata/>
-    </group>
+    <text/>
   </element>
 </define>
 <dtd:marked-section end="synopfragmentref.element"/>
@@ -5885,13 +5940,14 @@ in the text (no (0) value, the default)
 <dtd:marked-section start="funcdef.element"/>
 <define name="funcdef.element">
   <element name="funcdef">
-    <zeroOrMore>
-      <choice>
-        <pcdata/>
-        <ref name="replaceable.element"/>
-        <ref name="function.element"/>
-      </choice>
-    </zeroOrMore>
+    <mixed>
+      <zeroOrMore>
+        <choice>
+          <ref name="replaceable.element"/>
+          <ref name="function.element"/>
+        </choice>
+      </zeroOrMore>
+    </mixed>
   </element>
 </define>
 <dtd:marked-section end="funcdef.element"/>
@@ -5971,14 +6027,15 @@ in the text (no (0) value, the default)
 <dtd:marked-section start="paramdef.element"/>
 <define name="paramdef.element">
   <element name="paramdef">
-    <zeroOrMore>
-      <choice>
-        <pcdata/>
-        <ref name="replaceable.element"/>
-        <ref name="parameter.element"/>
-        <ref name="funcparams.element"/>
-      </choice>
-    </zeroOrMore>
+    <mixed>
+      <zeroOrMore>
+        <choice>
+          <ref name="replaceable.element"/>
+          <ref name="parameter.element"/>
+          <ref name="funcparams.element"/>
+        </choice>
+      </zeroOrMore>
+    </mixed>
   </element>
 </define>
 <dtd:marked-section end="paramdef.element"/>
@@ -6073,8 +6130,8 @@ in the text (no (0) value, the default)
   <optional>
     <attribute name="class">
       <choice>
-        <string>class</string>
-        <string>interface</string>
+        <value>class</value>
+        <value>interface</value>
       </choice>
     </attribute>
   </optional>
@@ -6554,11 +6611,23 @@ in the text (no (0) value, the default)
   <ref name="common.attrib"/>
   <ref name="methodparam.role.attrib"/>
   <ref name="local.methodparam.attrib"/>
-	choice		(opt
-			|req
-			|plain)		"req"
-	rep		(norepeat
-			|repeat)	"norepeat"
+  <optional>
+    <attribute name="choice" dtd:default="opt">
+      <choice>
+	<value>opt</value>
+	<value>req</value>
+	<value>plain</value>
+      </choice>
+    </attribute>
+  </optional>
+  <optional>
+    <attribute name="rep" dtd:default="norepeat">
+      <choice>
+	<value>norepeat</value>
+	<value>repeat</value>
+      </choice>
+    </attribute>
+  </optional>
 </define>
 <dtd:marked-section end="methodparam.attlist"/>
 <dtd:marked-section end="methodparam.module"/>
@@ -6621,22 +6690,23 @@ in the text (no (0) value, the default)
 <dtd:marked-section start="address.element"/>
 <define name="address.element">
   <element name="address">
-    <zeroOrMore>
-      <choice>
-        <pcdata/>
-        <ref name="person.ident.mix"/>
-        <ref name="street.element"/>
-        <ref name="pob.element"/>
-        <ref name="postcode.element"/>
-        <ref name="city.element"/>
-        <ref name="state.element"/>
-        <ref name="country.element"/>
-        <ref name="phone.element"/>
-        <ref name="fax.element"/>
-        <ref name="email.element"/>
-        <ref name="otheraddr.element"/>
-      </choice>
-    </zeroOrMore>
+    <mixed>
+      <zeroOrMore>
+        <choice>
+          <ref name="person.ident.mix"/>
+          <ref name="street.element"/>
+          <ref name="pob.element"/>
+          <ref name="postcode.element"/>
+          <ref name="city.element"/>
+          <ref name="state.element"/>
+          <ref name="country.element"/>
+          <ref name="phone.element"/>
+          <ref name="fax.element"/>
+          <ref name="email.element"/>
+          <ref name="otheraddr.element"/>
+        </choice>
+      </zeroOrMore>
+    </mixed>
   </element>
 </define>
 <dtd:marked-section end="address.element"/>
@@ -8265,10 +8335,16 @@ OtherCredit. </dtd:comment>
 
 <dtd:marked-section start="productname.attlist"/>
 <define name="productname.attlist">
-		class		(service
-				|trade
-				|registered
-				|copyright)	'trade'
+  <optional>
+    <attribute name="class" dtd:default="trade">
+      <choice>
+	<value>service</value>
+	<value>trade</value>
+	<value>registered</value>
+	<value>copyright</value>
+      </choice>
+    </attribute>
+  </optional>
   <ref name="common.attrib"/>
   <ref name="productname.role.attrib"/>
   <ref name="local.productname.attrib"/>
@@ -8782,8 +8858,8 @@ OtherCredit. </dtd:comment>
   <optional>
     <attribute name="class">
       <choice>
-        <string>hardware</string>
-        <string>software</string>
+        <value>hardware</value>
+        <value>software</value>
       </choice>
     </attribute>
   </optional>
@@ -8945,12 +9021,12 @@ OtherCredit. </dtd:comment>
   <optional>
     <attribute name="class">
       <choice>
-        <string>name</string>
-        <string>table</string>
-        <string>field</string>
-        <string>key1</string>
-        <string>key2</string>
-        <string>record</string>
+        <value>name</value>
+        <value>table</value>
+        <value>field</value>
+        <value>key1</value>
+        <value>key2</value>
+        <value>record</value>
       </choice>
     </attribute>
   </optional>
@@ -9139,11 +9215,11 @@ OtherCredit. </dtd:comment>
   <optional>
     <attribute name="class">
       <choice>
-        <string>headerfile</string>
-        <string>devicefile</string>
-        <string>libraryfile</string>
-        <string>directory</string>
-        <string>symlink</string>
+        <value>headerfile</value>
+        <value>devicefile</value>
+        <value>libraryfile</value>
+        <value>directory</value>
+        <value>symlink</value>
       </choice>
     </attribute>
   </optional>
@@ -9649,7 +9725,7 @@ OtherCredit. </dtd:comment>
   <optional>
     <attribute name="class">
       <choice>
-        <string>limit</string>
+        <value>limit</value>
       </choice>
     </attribute>
   </optional>
@@ -9743,10 +9819,10 @@ OtherCredit. </dtd:comment>
   <optional>
     <attribute name="class">
       <choice>
-        <string>cartridge</string>
-        <string>cdrom</string>
-        <string>disk</string>
-        <string>tape</string>
+        <value>cartridge</value>
+        <value>cdrom</value>
+        <value>disk</value>
+        <value>tape</value>
       </choice>
     </attribute>
   </optional>
@@ -9984,9 +10060,9 @@ OtherCredit. </dtd:comment>
   <optional>
     <attribute name="class">
       <choice>
-        <string>command</string>
-        <string>function</string>
-        <string>option</string>
+        <value>command</value>
+        <value>function</value>
+        <value>option</value>
       </choice>
     </attribute>
   </optional>
@@ -10069,17 +10145,18 @@ OtherCredit. </dtd:comment>
 <dtd:marked-section start="replaceable.element"/>
 <define name="replaceable.element">
   <element name="replaceable">
-    <zeroOrMore>
-      <choice>
-        <pcdata/>
-        <ref name="link.char.class"/>
-        <ref name="optional.element"/>
-        <ref name="base.char.class"/>
-        <ref name="other.char.class"/>
-        <ref name="inlinegraphic.element"/>
-        <ref name="inlinemediaobject.element"/>
-      </choice>
-    </zeroOrMore>
+    <mixed>
+      <zeroOrMore>
+        <choice>
+          <ref name="link.char.class"/>
+          <ref name="optional.element"/>
+          <ref name="base.char.class"/>
+          <ref name="other.char.class"/>
+          <ref name="inlinegraphic.element"/>
+          <ref name="inlinemediaobject.element"/>
+        </choice>
+      </zeroOrMore>
+    </mixed>
   </element>
 </define>
 <dtd:marked-section end="replaceable.element"/>
@@ -10093,10 +10170,10 @@ OtherCredit. </dtd:comment>
   <optional>
     <attribute name="class">
       <choice>
-        <string>command</string>
-        <string>function</string>
-        <string>option</string>
-        <string>parameter</string>
+        <value>command</value>
+        <value>function</value>
+        <value>option</value>
+        <value>parameter</value>
       </choice>
     </attribute>
   </optional>
@@ -10164,18 +10241,18 @@ OtherCredit. </dtd:comment>
   <optional>
     <attribute name="class">
       <choice>
-        <string>attribute</string>
-        <string>attvalue</string>
-        <string>element</string>
-        <string>endtag</string>
-        <string>emptytag</string>
-        <string>genentity</string>
-        <string>numcharref</string>
-        <string>paramentity</string>
-        <string>pi</string>
-        <string>xmlpi</string>
-        <string>starttag</string>
-        <string>sgmlcomment</string>
+        <value>attribute</value>
+        <value>attvalue</value>
+        <value>element</value>
+        <value>endtag</value>
+        <value>emptytag</value>
+        <value>genentity</value>
+        <value>numcharref</value>
+        <value>paramentity</value>
+        <value>pi</value>
+        <value>xmlpi</value>
+        <value>starttag</value>
+        <value>sgmlcomment</value>
       </choice>
     </attribute>
   </optional>
@@ -10272,7 +10349,7 @@ OtherCredit. </dtd:comment>
   <optional>
     <attribute name="class">
       <choice>
-        <string>limit</string>
+        <value>limit</value>
       </choice>
     </attribute>
   </optional>
@@ -10311,14 +10388,14 @@ OtherCredit. </dtd:comment>
   <optional>
     <attribute name="class">
       <choice>
-        <string>constant</string>
-        <string>groupname</string>
-        <string>library</string>
-        <string>macro</string>
-        <string>osname</string>
-        <string>resource</string>
-        <string>systemname</string>
-        <string>username</string>
+        <value>constant</value>
+        <value>groupname</value>
+        <value>library</value>
+        <value>macro</value>
+        <value>osname</value>
+        <value>resource</value>
+        <value>systemname</value>
+        <value>username</value>
       </choice>
     </attribute>
   </optional>
@@ -10624,16 +10701,16 @@ OtherCredit. </dtd:comment>
   <optional>
     <attribute name="pubwork">
       <choice>
-        <string>article</string>
-        <string>book</string>
-        <string>chapter</string>
-        <string>part</string>
-        <string>refentry</string>
-        <string>section</string>
-        <string>journal</string>
-        <string>series</string>
-        <string>set</string>
-        <string>manuscript</string>
+        <value>article</value>
+        <value>book</value>
+        <value>chapter</value>
+        <value>part</value>
+        <value>refentry</value>
+        <value>section</value>
+        <value>journal</value>
+        <value>series</value>
+        <value>set</value>
+        <value>manuscript</value>
       </choice>
     </attribute>
   </optional>
@@ -10698,7 +10775,8 @@ OtherCredit. </dtd:comment>
 
 <dtd:marked-section start="firstterm.attlist"/>
 <define name="firstterm.attlist">
-  <ref name="linkend.attrib"/>		%common.attrib;
+  <ref name="linkend.attrib"/>
+  <ref name="common.attrib"/>
   <ref name="firstterm.role.attrib"/>
   <ref name="local.firstterm.attrib"/>
 </define>
@@ -10841,19 +10919,20 @@ OtherCredit. </dtd:comment>
 <dtd:marked-section start="subscript.element"/>
 <define name="subscript.element">
   <element name="subscript">
-    <zeroOrMore>
-      <choice>
-        <pcdata/>
-        <ref name="link.char.class"/>
-        <ref name="emphasis.element"/>
-        <ref name="replaceable.element"/>
-        <ref name="symbol.element"/>
-        <ref name="inlinegraphic.element"/>
-        <ref name="inlinemediaobject.element"/>
-        <ref name="base.char.class"/>
-        <ref name="other.char.class"/>
-      </choice>
-    </zeroOrMore>
+    <mixed>
+      <zeroOrMore>
+        <choice>
+          <ref name="link.char.class"/>
+          <ref name="emphasis.element"/>
+          <ref name="replaceable.element"/>
+          <ref name="symbol.element"/>
+          <ref name="inlinegraphic.element"/>
+          <ref name="inlinemediaobject.element"/>
+          <ref name="base.char.class"/>
+          <ref name="other.char.class"/>
+        </choice>
+      </zeroOrMore>
+    </mixed>
   </element>
 </define>
 <dtd:marked-section end="subscript.element"/>
@@ -10869,19 +10948,20 @@ OtherCredit. </dtd:comment>
 <dtd:marked-section start="superscript.element"/>
 <define name="superscript.element">
   <element name="superscript">
-    <zeroOrMore>
-      <choice>
-        <pcdata/>
-        <ref name="link.char.class"/>
-        <ref name="emphasis.element"/>
-        <ref name="replaceable.element"/>
-        <ref name="symbol.element"/>
-        <ref name="inlinegraphic.element"/>
-        <ref name="inlinemediaobject.element"/>
-        <ref name="base.char.class"/>
-        <ref name="other.char.class"/>
-      </choice>
-    </zeroOrMore>
+    <mixed>
+      <zeroOrMore>
+        <choice>
+          <ref name="link.char.class"/>
+          <ref name="emphasis.element"/>
+          <ref name="replaceable.element"/>
+          <ref name="symbol.element"/>
+          <ref name="inlinegraphic.element"/>
+          <ref name="inlinemediaobject.element"/>
+          <ref name="base.char.class"/>
+          <ref name="other.char.class"/>
+        </choice>
+      </zeroOrMore>
+    </mixed>
   </element>
 </define>
 <dtd:marked-section end="superscript.element"/>
@@ -10906,18 +10986,19 @@ OtherCredit. </dtd:comment>
 <dtd:marked-section start="trademark.element"/>
 <define name="trademark.element">
   <element name="trademark">
-    <zeroOrMore>
-      <choice>
-        <pcdata/>
-        <ref name="link.char.class"/>
-        <ref name="tech.char.class"/>
-        <ref name="base.char.class"/>
-        <ref name="other.char.class"/>
-        <ref name="inlinegraphic.element"/>
-        <ref name="inlinemediaobject.element"/>
-        <ref name="emphasis.element"/>
-      </choice>
-    </zeroOrMore>
+    <mixed>
+      <zeroOrMore>
+        <choice>
+          <ref name="link.char.class"/>
+          <ref name="tech.char.class"/>
+          <ref name="base.char.class"/>
+          <ref name="other.char.class"/>
+          <ref name="inlinegraphic.element"/>
+          <ref name="inlinemediaobject.element"/>
+          <ref name="emphasis.element"/>
+        </choice>
+      </zeroOrMore>
+    </mixed>
   </element>
 </define>
 <dtd:marked-section end="trademark.element"/>
@@ -10927,10 +11008,16 @@ OtherCredit. </dtd:comment>
 
 <dtd:marked-section start="trademark.attlist"/>
 <define name="trademark.attlist">
-		class		(service
-				|trade
-				|registered
-				|copyright)	'trade'
+  <optional>
+    <attribute name="class" dtd:default="trade">
+      <choice>
+	<value>service</value>
+	<value>trade</value>
+	<value>registered</value>
+	<value>copyright</value>
+      </choice>
+    </attribute>
+  </optional>
   <ref name="common.attrib"/>
   <ref name="trademark.role.attrib"/>
   <ref name="local.trademark.attrib"/>
@@ -11000,7 +11087,7 @@ OtherCredit. </dtd:comment>
 <define name="link.attlist">
   <optional>
     <attribute name="endterm">
-      <data type="xsd:IDREF"/>
+      <data type="IDREF"/>
     </attribute>
   </optional>
   <ref name="linkendreq.attrib"/>
@@ -11045,12 +11132,12 @@ OtherCredit. </dtd:comment>
 <define name="olink.attlist">
   <optional>
     <attribute name="targetdocent">
-      <data type="xsd:ENTITY"/>
+      <data type="ENTITY"/>
     </attribute>
   </optional>
   <optional>
     <attribute name="linkmode">
-      <data type="xsd:IDREF"/>
+      <data type="IDREF"/>
     </attribute>
   </optional>
   <optional>
@@ -11124,7 +11211,8 @@ OtherCredit. </dtd:comment>
 
 <dtd:marked-section start="footnoteref.attlist"/>
 <define name="footnoteref.attlist">
-  <ref name="linkendreq.attrib"/>		%label.attrib;
+  <ref name="linkendreq.attrib"/>
+  <ref name="label.attrib"/>
   <ref name="common.attrib"/>
   <ref name="footnoteref.role.attrib"/>
   <ref name="local.footnoteref.attrib"/>
@@ -11158,7 +11246,7 @@ OtherCredit. </dtd:comment>
 <define name="xref.attlist">
   <optional>
     <attribute name="endterm">
-      <data type="xsd:IDREF"/>
+      <data type="IDREF"/>
     </attribute>
   </optional>
   <ref name="linkendreq.attrib"/>
@@ -11193,7 +11281,9 @@ OtherCredit. </dtd:comment>
 
 <dtd:marked-section start="anchor.attlist"/>
 <define name="anchor.attlist">
-  <ref name="idreq.attrib"/>		%pagenum.attrib;		%remap.attrib;
+  <ref name="idreq.attrib"/>
+  <ref name="pagenum.attrib"/>
+  <ref name="remap.attrib"/>
   <ref name="xreflabel.attrib"/>
   <ref name="revisionflag.attrib"/>
   <ref name="effectivity.attrib"/>
@@ -11308,37 +11398,37 @@ OtherCredit. </dtd:comment>
   <optional>
     <attribute name="scope">
       <choice>
-        <string>all</string>
-        <string>global</string>
-        <string>local</string>
+        <value>all</value>
+        <value>global</value>
+        <value>local</value>
       </choice>
     </attribute>
   </optional>
   <optional>
     <attribute name="significance" dtd:default="normal">
       <choice>
-        <string>preferred</string>
-        <string>normal</string>
+        <value>preferred</value>
+        <value>normal</value>
       </choice>
     </attribute>
   </optional>
   <optional>
     <attribute name="class">
       <choice>
-        <string>singular</string>
-        <string>startofrange</string>
-        <string>endofrange</string>
+        <value>singular</value>
+        <value>startofrange</value>
+        <value>endofrange</value>
       </choice>
     </attribute>
   </optional>
   <optional>
     <attribute name="startref">
-      <data type="xsd:IDREF"/>
+      <data type="IDREF"/>
     </attribute>
   </optional>
   <optional>
     <attribute name="zone">
-      <data type="xsd:IDREFS"/>
+      <data type="IDREFS"/>
     </attribute>
   </optional>
   <ref name="common.attrib"/>

@@ -1,7 +1,8 @@
-<grammar xmlns="http://www.thaiopensource.com/trex"
-	 xmlns:xsd="http://www.w3.org/2000/10/XMLSchema"
-	 xmlns:dtd="http://www.oasis-open.org/docbook/dtd"
-	 ns="">
+<?xml version="1.0"?>
+<grammar xmlns="http://relaxng.org/ns/structure/0.9"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+	 xmlns:dtd="http://www.oasis-open.org/docbook/relaxng/dtdannotations"
+         ns="">
 
 <dtd:comment> ...................................................................... </dtd:comment>
 <dtd:comment> DocBook XML notations module V4.1.2 .................................... </dtd:comment>
@@ -57,32 +58,32 @@
 
 <define name="notation.class">
   <choice>
-    <string>BMP</string>
-    <string>CGM-CHAR</string>
-    <string>CGM-BINARY</string>
-    <string>CGM-CLEAR</string>
-    <string>DITROFF</string>
-    <string>DVI</string>
-    <string>EPS</string>
-    <string>EQN</string>
-    <string>FAX</string>
-    <string>GIF</string>
-    <string>GIF87a</string>
-    <string>GIF89a</string>
-    <string>JPG</string>
-    <string>JPEG</string>
-    <string>IGES</string>
-    <string>PCX</string>
-    <string>PIC</string>
-    <string>PNG</string>
-    <string>PS</string>
-    <string>SGML</string>
-    <string>TBL</string>
-    <string>TEX</string>
-    <string>TIFF</string>
-    <string>WMF</string>
-    <string>WPG</string>
-    <string>linespecific</string>
+    <value>BMP</value>
+    <value>CGM-CHAR</value>
+    <value>CGM-BINARY</value>
+    <value>CGM-CLEAR</value>
+    <value>DITROFF</value>
+    <value>DVI</value>
+    <value>EPS</value>
+    <value>EQN</value>
+    <value>FAX</value>
+    <value>GIF</value>
+    <value>GIF87a</value>
+    <value>GIF89a</value>
+    <value>JPG</value>
+    <value>JPEG</value>
+    <value>IGES</value>
+    <value>PCX</value>
+    <value>PIC</value>
+    <value>PNG</value>
+    <value>PS</value>
+    <value>SGML</value>
+    <value>TBL</value>
+    <value>TEX</value>
+    <value>TIFF</value>
+    <value>WMF</value>
+    <value>WPG</value>
+    <value>linespecific</value>
     <ref name="local.notation.class"/>
   </choice>
 </define>

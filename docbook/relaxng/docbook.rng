@@ -1,14 +1,15 @@
-<grammar xmlns="http://www.thaiopensource.com/trex"
-	 xmlns:xsd="http://www.w3.org/2000/10/XMLSchema"
-	 xmlns:dtd="http://www.oasis-open.org/docbook/dtd"
-	 ns="">
+<?xml version="1.0"?>
+<grammar xmlns="http://relaxng.org/ns/structure/0.9"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+	 xmlns:dtd="http://www.oasis-open.org/docbook/relaxng/dtdannotations"
+         ns="">
 
 <dtd:comment> ...................................................................... </dtd:comment>
 <dtd:comment> DocBook XML DTD V4.1.2 ................................................. </dtd:comment>
 <dtd:comment> File docbookx.dtd .................................................... </dtd:comment>
 
 <dtd:comment> Copyright 1992-2000 HaL Computer Systems, Inc.,
-     O'Reilly &amp; Associates, Inc., ArborText, Inc., Fujitsu Software
+     O'Reilly &#38; Associates, Inc., ArborText, Inc., Fujitsu Software
      Corporation, Norman Walsh, and the Organization for the Advancement
      of Structured Information Standards (OASIS).
 
@@ -43,14 +44,14 @@
      you are using DocBook directly, use the FPI in the DOCTYPE
      declaration:
 
-     &lt;!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+     &#60;!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                     "http://www.oasis-open.org/docbook/xml/4.0/docbookx.dtd"
                     [...]>
 
      Or, if you have a higher-level driver file that customizes DocBook,
      use the FPI in the parameter entity declaration:
 
-     &lt;!ENTITY % DocBookDTD PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+     &#60;!ENTITY % DocBookDTD PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                 "http://www.oasis-open.org/docbook/xml/4.0/docbookx.dtd">
      %DocBookDTD;
 
@@ -71,6 +72,8 @@
 <dtd:pe-ref name="dbnotn"/>
 <dtd:marked-section end="dbnotn.module"/>
 
+<include href="dbnotn.rng"/>
+
 <dtd:comment> ...................................................................... </dtd:comment>
 <dtd:comment> ISO character entity sets ............................................ </dtd:comment>
 
@@ -82,6 +85,8 @@
              system="dbcentx.mod"/>
 <dtd:pe-ref name="dbcent"/>
 <dtd:marked-section end="dbcent.module"/>
+
+<include href="dbcent.rng"/>
 
 <dtd:comment> ...................................................................... </dtd:comment>
 <dtd:comment> DTD modules .......................................................... </dtd:comment>
@@ -95,6 +100,8 @@
              system="dbpoolx.mod"/>
 <dtd:pe-ref name="dbpool"/>
 <dtd:marked-section end="dbpool.module"/>
+
+<include href="dbpool.rng"/>
 
 <dtd:comment> Redeclaration placeholder ..... </dtd:comment>
 
@@ -114,6 +121,8 @@
              system="dbhierx.mod"/>
 <dtd:pe-ref name="dbhier"/>
 <dtd:marked-section end="dbhier.module"/>
+
+<include href="dbhier.rng"/>
 
 <dtd:comment> ...................................................................... </dtd:comment>
 <dtd:comment> Other general entities ............................................... </dtd:comment>
