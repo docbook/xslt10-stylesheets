@@ -23,7 +23,9 @@
     </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="title">
-    <xsl:apply-templates select="$node" mode="object.title.markup"/>
+    <xsl:apply-templates select="$node" mode="object.title.markup">
+      <xsl:with-param name="allow-anchors" select="1"/>
+    </xsl:apply-templates>
   </xsl:variable>
 
   <xsl:if test="$passivetex.extensions != 0">
