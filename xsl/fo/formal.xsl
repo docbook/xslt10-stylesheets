@@ -127,6 +127,9 @@
         <xsl:otherwise>none</xsl:otherwise>
       </xsl:choose>
     </xsl:attribute>
+    <xsl:if test="@orient='land'">
+      <xsl:attribute name="reference-orientation">90</xsl:attribute>
+    </xsl:if>
 
     <fo:table-and-caption id="{$id}"
                           xsl:use-attribute-sets="formal.object.properties"
@@ -175,6 +178,9 @@
         <xsl:otherwise>none</xsl:otherwise>
       </xsl:choose>
     </xsl:attribute>
+    <xsl:if test="@orient='land'">
+      <xsl:attribute name="reference-orientation">90</xsl:attribute>
+    </xsl:if>
 
     <fo:table>
       <xsl:call-template name="table.frame"/>
