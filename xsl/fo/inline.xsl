@@ -121,6 +121,10 @@
   <xsl:call-template name="inline.monoseq"/>
 </xsl:template>
 
+<xsl:template match="constant">
+  <xsl:call-template name="inline.monoseq"/>
+</xsl:template>
+
 <xsl:template match="database">
   <xsl:call-template name="inline.charseq"/>
 </xsl:template>
