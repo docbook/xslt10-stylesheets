@@ -388,6 +388,13 @@ zero by default, so this is simply the page-master region-left.
 &section.title.level4.properties;
 &section.title.level5.properties;
 &section.title.level6.properties;
+&section.properties;
+&section.level1.properties;
+&section.level2.properties;
+&section.level3.properties;
+&section.level4.properties;
+&section.level5.properties;
+&section.level6.properties;
 &figure.properties;
 &example.properties;
 &equation.properties;
@@ -641,6 +648,13 @@ around all these parameters.</para>
 <src:fragref linkend="section.title.level5.properties.frag"/>
 <src:fragref linkend="section.title.level6.properties.frag"/>
 <src:fragref linkend="section.title.properties.frag"/>
+<src:fragref linkend="section.level1.properties.frag"/>
+<src:fragref linkend="section.level2.properties.frag"/>
+<src:fragref linkend="section.level3.properties.frag"/>
+<src:fragref linkend="section.level4.properties.frag"/>
+<src:fragref linkend="section.level5.properties.frag"/>
+<src:fragref linkend="section.level6.properties.frag"/>
+<src:fragref linkend="section.properties.frag"/>
 <src:fragref linkend="segmentedlist.as.table.frag"/>
 <src:fragref linkend="shade.verbatim.frag"/>
 <src:fragref linkend="shade.verbatim.style.frag"/>
