@@ -1,4 +1,4 @@
-<!DOCTYPE webpage SYSTEM "../website.dtd">
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd">
 <webpage id="buildmake">
 <config param="desc" value="Building with Make"/>
 <config param="rcsdate" value="$Date$"/>

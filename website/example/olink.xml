@@ -1,4 +1,4 @@
-<!DOCTYPE webpage SYSTEM "../website.dtd">
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd">
 <webpage id="olink">
 <config param="desc" value="Linking Pages"/>
 <config param="rcsdate" value="$Date$"/>

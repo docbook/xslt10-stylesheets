@@ -1,4 +1,4 @@
-<!DOCTYPE webpage SYSTEM "../website.dtd">
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd">
 <webpage id="textonly">
 <config param="desc" value="Building Text-only Websites"/>
 <config param="rcsdate" value="$Date$"/>
