@@ -227,7 +227,6 @@ generate.section.toc.level;
 &blockquote.properties;
 &ulink.show;
 &ulink.footnotes;
-&ulink.footnote.number.format;
 &ulink.hyphenate;
 &shade.verbatim;
 &shade.verbatim.style;
@@ -745,7 +744,6 @@ around all these parameters.</para>
 <src:fragref linkend="toc.indent.width.frag"/>
 <src:fragref linkend="toc.margin.properties.frag"/>
 <src:fragref linkend="toc.section.depth.frag"/>
-<src:fragref linkend="ulink.footnote.number.format.frag"/>
 <src:fragref linkend="ulink.footnotes.frag"/>
 <src:fragref linkend="ulink.hyphenate.frag"/>
 <src:fragref linkend="ulink.show.frag"/>
