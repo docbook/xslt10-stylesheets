@@ -25,6 +25,7 @@ start = db.set
 	| db.section
 	| db.para
 
+include "xlink.rnc"
 include "hier.rnc"
 include "sect1.rnc"
 include "refentry.rnc"
