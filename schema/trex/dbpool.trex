@@ -2146,7 +2146,9 @@
    <define name="admonitionType.label">
       <choice>
          <group>
-            <ref name="title.label"/>
+            <optional>
+              <ref name="title.label"/>
+            </optional>
             <oneOrMore>
                <ref name="admon.mix.label"/>
             </oneOrMore>
@@ -7907,6 +7909,7 @@
       <empty/>
       <ref name="role.attrib.role"/>
    </define>
+
    <define name="indexterm.label">
       <choice>
          <element name="indexterm">
@@ -7951,6 +7954,7 @@
          </element>
       </choice>
    </define>
+
    <define name="indexterm.role">
       <empty/>
       <ref name="common.attrib.role"/>
