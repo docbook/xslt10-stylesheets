@@ -1448,8 +1448,9 @@
     </fo:block>
   </fo:static-content>
 
+  <xsl:call-template name="footnote-separator"/>
+
   <xsl:if test="$fop.extensions = 0">
-    <xsl:call-template name="footnote-separator"/>
     <xsl:call-template name="blank.page.content"/>
   </xsl:if>
 </xsl:template>
