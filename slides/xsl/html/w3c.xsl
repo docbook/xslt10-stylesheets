@@ -360,6 +360,12 @@
   <xsl:apply-templates select="*[name(.) != 'title'
                                 and name(.) != 'foil'
                                 and name(.) != 'foilgroup']"/>
+
+  <xsl:if test="$foilgroup.toc != 0">
+    <dl class="toc">
+      <xsl:apply-templates select="foil" mode="toc"/>
+    </dl>
+  </xsl:if>
 </xsl:template>
 
 <!-- ====================================================================== -->
