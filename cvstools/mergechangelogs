@@ -134,13 +134,25 @@ sub last_version {
 	die "Cannot find version in VERSION.\n";
     }
 
-    if ($version =~ /(\d+)\.(\d+)/) {
+    if ($version =~ /^(\d+)\.(\d+)$/) {
 	my $major = $1;
 	my $minor = $2;
 
 	$minor--;
 
 	return "$major.$minor";
+    } elsif ($version =~ /^(\d+)\.(\d+)\.(\d+)$/) {
+	my $major = $1;
+	my $middle = $2;
+	my $minor = $3;
+
+	if ($minor == 0) {
+	    die "Can\'t calculate preceding from $version.\n";
+	} else {
+	    $minor--;
+	}
+
+	return "$major.$middle.$minor";
     } else {
 	return $version;
     }
