@@ -377,8 +377,29 @@
 </xsl:template>
 
 <xsl:template match="othercredit" mode="titlepage.mode">
+  <xsl:variable name="contrib" select="string(contrib)"/>
+  <xsl:choose>
+    <xsl:when test="contrib">
+      <xsl:if test="not(preceding-sibling::othercredit[string(contrib)=$contrib])">
+        <fo:block>
+          <xsl:apply-templates mode="titlepage.mode" select="contrib"/>
+          <xsl:text>: </xsl:text>
+          <xsl:call-template name="person.name"/>
+          <xsl:apply-templates mode="titlepage.mode" select="affiliation"/>
+          <xsl:apply-templates select="following-sibling::othercredit[string(contrib)=$contrib]" mode="titlepage.othercredits"/>
+        </fo:block>
+      </xsl:if>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:block><xsl:call-template name="person.name"/></fo:block>
+      <xsl:apply-templates mode="titlepage.mode" select="./affiliation"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="othercredit" mode="titlepage.othercredits">
+  <xsl:text>, </xsl:text>
   <xsl:call-template name="person.name"/>
-  <xsl:apply-templates mode="titlepage.mode" select="affiliation"/>
 </xsl:template>
 
 <xsl:template match="othername" mode="titlepage.mode">
