@@ -24,7 +24,7 @@
   <xsl:text>&#10;</xsl:text>
   <xsl:text>distclean: clean
 &#9;-rm -f </xsl:text>
-  <xsl:text>autolayout.xml depends.tabular</xsl:text>
+  <xsl:text>autolayout.xml depends.tabular depends.nontabular website.database.xml</xsl:text>
   <xsl:text>&#10;&#10;</xsl:text>
   <xsl:text>clean:&#10;</xsl:text>
   <xsl:choose>
