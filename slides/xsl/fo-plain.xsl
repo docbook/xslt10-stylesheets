@@ -11,6 +11,8 @@
   <l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="en">
     <l:context name="title">
       <l:template name="slides" text="%t"/>
+      <l:template name="foilgroup" text="%t"/>
+      <l:template name="foil" text="%t"/>
     </l:context>
   </l:l10n>
 </i18n>
@@ -28,7 +30,7 @@
   </xsl:attribute>
 </xsl:attribute-set>
 
-<xsl:attribute-set name="section.properties">
+<xsl:attribute-set name="foilgroup.properties">
   <xsl:attribute name="font-family">
     <xsl:value-of select="$slide.font.family"/>
   </xsl:attribute>
@@ -51,8 +53,8 @@
 
 <xsl:attribute-set name="slides.titlepage.recto.style"/>
 <xsl:attribute-set name="slides.titlepage.verso.style"/>
-<xsl:attribute-set name="section.titlepage.recto.style"/>
-<xsl:attribute-set name="section.titlepage.verso.style"/>
+<xsl:attribute-set name="foilgroup.titlepage.recto.style"/>
+<xsl:attribute-set name="foilgroup.titlepage.verso.style"/>
 <xsl:attribute-set name="foil.titlepage.recto.style"/>
 <xsl:attribute-set name="foil.titlepage.verso.style"/>
 
@@ -61,32 +63,40 @@
 <xsl:template name="user.pagemasters">
   <fo:page-sequence-master master-name="twoside1-with-titlepage">
     <fo:repeatable-page-master-alternatives>
-      <fo:conditional-page-master-reference master-reference="first1"
+      <fo:conditional-page-master-reference master-reference="titlepage-first"
                                             page-position="first"/>
       <fo:conditional-page-master-reference master-reference="blank"
                                             blank-or-not-blank="blank"/>
-      <fo:conditional-page-master-reference master-reference="right1"
+      <fo:conditional-page-master-reference master-reference="body-odd"
                                             odd-or-even="odd"/>
-      <fo:conditional-page-master-reference master-reference="left1"
+      <fo:conditional-page-master-reference master-reference="body-even"
                                             odd-or-even="even"/>
     </fo:repeatable-page-master-alternatives>
   </fo:page-sequence-master>
 
   <fo:page-sequence-master master-name="oneside1-with-titlepage">
     <fo:repeatable-page-master-alternatives>
-      <fo:conditional-page-master-reference master-reference="first1"
+      <fo:conditional-page-master-reference master-reference="titlepage-first"
                                             page-position="first"/>
-      <fo:conditional-page-master-reference master-reference="simple1"/>
+      <fo:conditional-page-master-reference master-reference="body-odd"/>
+    </fo:repeatable-page-master-alternatives>
+  </fo:page-sequence-master>
+
+  <fo:page-sequence-master master-name="titlepage1">
+    <fo:repeatable-page-master-alternatives>
+      <fo:conditional-page-master-reference master-reference="titlepage-first"
+                                            page-position="first"/>
+      <fo:conditional-page-master-reference master-reference="body-odd"/>
     </fo:repeatable-page-master-alternatives>
   </fo:page-sequence-master>
 </xsl:template>
 
 <xsl:template match="*" mode="running.head.mode">
   <xsl:param name="master-reference" select="'unknown'"/>
-  <!-- use the section title if there is one -->
+  <!-- use the foilgroup title if there is one -->
   <fo:static-content flow-name="xsl-region-before">
     <fo:block text-align="center" font-size="14pt">
-      <xsl:apply-templates select="ancestor-or-self::section"
+      <xsl:apply-templates select="ancestor-or-self::foilgroup"
                            mode="object.title.markup"/>
     </fo:block>
   </fo:static-content>
@@ -131,22 +141,14 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template name="select.doublesided.pagemaster">
-  <xsl:param name="element" select="local-name(.)"/>
-  <xsl:choose>
-    <xsl:when test="$element='slides'">
-      <xsl:text>titlepage1</xsl:text>
-    </xsl:when>
-    <xsl:otherwise>twoside1-with-titlepage</xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
+<xsl:template name="select.user.pagemaster">
+  <xsl:param name="element"/>
+  <xsl:param name="pageclass"/>
+  <xsl:param name="default-pagemaster"/>
 
-<xsl:template name="select.singlesided.pagemaster">
-  <xsl:param name="element" select="local-name(.)"/>
   <xsl:choose>
-    <xsl:when test="$element='slides'">
-      <xsl:text>titlepage1</xsl:text>
-    </xsl:when>
+    <xsl:when test="$element = 'slides'">titlepage1</xsl:when>
+    <xsl:when test="$double.sided != 0">twoside1-with-titlepage</xsl:when>
     <xsl:otherwise>oneside1-with-titlepage</xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -175,7 +177,7 @@
       <xsl:apply-templates select="foil"/>
     </fo:flow>
   </fo:page-sequence>
-  <xsl:apply-templates select="section"/>
+  <xsl:apply-templates select="foilgroup"/>
 </xsl:template>
 
 <xsl:template match="slidesinfo"/>
@@ -190,7 +192,7 @@
 
 <!-- ============================================================ -->
 
-<xsl:template match="section">
+<xsl:template match="foilgroup">
   <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
@@ -208,19 +210,23 @@
       <xsl:with-param name="master-reference" select="$master-reference"/>
     </xsl:apply-templates>
     <fo:flow flow-name="xsl-region-body"
-             xsl:use-attribute-sets="slides.properties">
-      <xsl:call-template name="section.titlepage"/>
+             xsl:use-attribute-sets="foilgroup.properties">
+      <xsl:call-template name="foilgroup.titlepage"/>
       <xsl:apply-templates select="speakernotes"/>
-      <xsl:apply-templates/>
+      <xsl:apply-templates select="foil"/>
     </fo:flow>
   </fo:page-sequence>
 </xsl:template>
 
-<xsl:template match="slides/section/title" mode="titlepage.mode">
+<xsl:template match="foilgroup/title">
+  <!-- suppress -->
+</xsl:template>
+
+<xsl:template match="slides/foilgroup/title" mode="titlepage.mode">
   <xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="title" mode="section.titlepage.recto.mode">
+<xsl:template match="title" mode="foilgroup.titlepage.recto.mode">
   <fo:block>
     <fo:inline color="white">.</fo:inline>
     <fo:block space-before="2in">
@@ -229,13 +235,13 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="sectioninfo"/>
+<xsl:template match="foilgroupinfo"/>
 
 <!-- ============================================================ -->
 
 <xsl:template match="foil">
   <fo:block break-before="page"
-            xsl:use-attribute-sets="section.properties">
+            xsl:use-attribute-sets="foil.properties">
     <xsl:call-template name="foil.titlepage"/>
 
     <fo:block xsl:use-attribute-sets="foil.properties">
