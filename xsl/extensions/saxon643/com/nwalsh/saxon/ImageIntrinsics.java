@@ -89,9 +89,11 @@ public class ImageIntrinsics implements ImageObserver {
 	    }
 	    line = ir.readLine();
 	  }
+	} else {
+	  System.err.println("Failed to interpret image: " + imageFn);
 	}
       } catch (Exception e) {
-	// nop;
+	System.err.println("Failed to load image: " + imageFn);
       }
 
       if (ir != null) {
