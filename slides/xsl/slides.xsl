@@ -3,9 +3,9 @@
 		version="1.0">
 
 <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/html/chunk.xsl"/>
+<xsl:include href="param.xsl"/>
 <xsl:include href="jscript.xsl"/>
 <xsl:include href="graphics.xsl"/>
-<xsl:include href="param.xsl"/>
 
 <xsl:output method="html"/>
 
@@ -16,7 +16,9 @@
 <xsl:template name="overlayDiv.attributes">
   <xsl:choose>
     <xsl:when test="$overlay != 0">
-      <xsl:attribute name="style">position:absolute;visibility:visible;</xsl:attribute>
+      <xsl:attribute name="style">
+        <xsl:text>position: absolute; visibility: visible;</xsl:text>
+      </xsl:attribute>
     </xsl:when>
     <xsl:otherwise>
       <xsl:attribute name="style">padding-top: 2in;</xsl:attribute>
