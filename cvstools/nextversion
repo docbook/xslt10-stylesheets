@@ -11,17 +11,11 @@ my $usage = "Usage: $0 [-v version]\n";
 die $usage if ! getopts('v:');
 my $version = $opt_v || undef;
 
-my @cvsbad = `cvs -n update 2>&1 | grep -v ^cvs`;
-if (@cvsbad) {
-    print STDERR @cvsbad;
-    die "CVS is not up-to-date!\n";
-}
-
 open (F, 'VERSION') || die "Cannot find VERSION.\n";
 read (F, $_, -s 'VERSION');
 close (F);
 
-if (/^(.*name=.VERSION.>)([\.\d]+)\+?(<.*)$/s) {
+if (/^(.*name=.VERSION.>)([\.\d]+.*?)\+?(<.*)$/s) {
     # ok
 } elsif (/^(.*?)([\.\d]+)\+?(.*)$/s) {
     # ok
@@ -32,6 +26,12 @@ if (/^(.*name=.VERSION.>)([\.\d]+)\+?(<.*)$/s) {
 my $pre = $1;
 my $fvers = $2;
 my $post = $3;
+
+my @cvsbad = `cvs -n update 2>&1 | grep -v ^cvs`;
+if (@cvsbad) {
+    print STDERR @cvsbad;
+    die "CVS is not up-to-date!\n";
+}
 
 my $major = undef;
 my $middle = undef;
