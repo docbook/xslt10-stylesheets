@@ -63,7 +63,7 @@
 
 <xsl:template match="refentry">
   <div class="{name(.)}">
-    <xsl:if test="$refentry.separator and preceding-sibling::refentry">
+    <xsl:if test="$refentry.separator != 0 and preceding-sibling::refentry">
       <div class="refentry.separator">
         <hr/>
       </div>
