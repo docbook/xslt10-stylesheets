@@ -199,7 +199,7 @@ element label.</para>
   </xsl:variable>
 
   <xsl:if test="$section.label.includes.component.label != 0
-                and $parent.is.component">
+                and $parent.is.component != 0">
     <xsl:variable name="parent.label">
       <xsl:apply-templates select=".." mode="label.markup"/>
     </xsl:variable>
