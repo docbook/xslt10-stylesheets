@@ -678,7 +678,14 @@
                 |processing-instruction()[not(preceding-sibling::step)]"/>
 
   <div class="{name(.)}">
-    <xsl:call-template name="anchor"/>
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="conditional">
+        <xsl:choose>
+	  <xsl:when test="title">0</xsl:when>
+	  <xsl:otherwise>1</xsl:otherwise>
+	</xsl:choose>
+      </xsl:with-param>
+    </xsl:call-template>
 
     <xsl:if test="title and $placement = 'before'">
       <xsl:call-template name="formal.object.heading"/>
