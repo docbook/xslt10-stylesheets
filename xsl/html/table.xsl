@@ -29,7 +29,7 @@
   <xsl:variable name="rowsep">
     <xsl:choose>
       <!-- If this is the last row, rowsep never applies. -->
-      <xsl:when test="not(ancestor-or-self::row/following-sibling::row
+      <xsl:when test="not(ancestor-or-self::row[1]/following-sibling::row
                           or ancestor-or-self::thead/following-sibling::tbody
                           or ancestor-or-self::tbody/preceding-sibling::tfoot)">
         <xsl:value-of select="0"/>
@@ -635,22 +635,14 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:variable name="more.cols.str">
-    <xsl:choose>
-      <xsl:when test="following-sibling::entry|following-sibling::entrytbl">X</xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="has-more-td">
-          <xsl:with-param name="spans" select="$following.spans"/>
-          <xsl:with-param name="col" select="$col+$entry.colspan"/>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
   <xsl:variable name="rowsep">
     <xsl:choose>
       <!-- If this is the last row, rowsep never applies. -->
-      <xsl:when test="not(ancestor-or-self::row/following-sibling::row
+      <xsl:when test="ancestor::entrytbl
+                      and not (ancestor-or-self::row[1]/following-sibling::row)">
+        <xsl:value-of select="0"/>
+      </xsl:when>
+      <xsl:when test="not(ancestor-or-self::row[1]/following-sibling::row
                           or ancestor-or-self::thead/following-sibling::tbody
                           or ancestor-or-self::tbody/preceding-sibling::tfoot)">
         <xsl:value-of select="0"/>
@@ -668,7 +660,7 @@
   <xsl:variable name="colsep">
     <xsl:choose>
       <!-- If this is the last column, colsep never applies. -->
-      <xsl:when test="$more.cols.str = ''">0</xsl:when>
+      <xsl:when test="$following.spans = ''">0</xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="inherited.table.attribute">
           <xsl:with-param name="entry" select="."/>
