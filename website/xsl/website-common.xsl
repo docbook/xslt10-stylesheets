@@ -88,7 +88,6 @@ node.</para>
 
 <xsl:template name="webpage.footer">
   <xsl:variable name="page" select="."/>
-  <xsl:variable name="rcsdate" select="$page/config[@param='rcsdate']/@value"/>
   <xsl:variable name="footers" select="$page/config[@param='footer']
                                        |$page/config[@param='footlink']
                                        |$autolayout/autolayout/config[@param='footer']
@@ -117,7 +116,12 @@ node.</para>
     <table width="100%" border="0" summary="Footer navigation">
       <tr>
         <td width="33%" align="left">
-          <span class="footdate"><xsl:value-of select="$rcsdate"/></span>
+          <span class="footdate">
+            <xsl:call-template name="rcsdate.format">
+              <xsl:with-param name="rcsdate"
+                              select="$page/config[@param='rcsdate']/@value"/>
+            </xsl:call-template>
+          </span>
         </td>
         <td width="34%" align="center">
           <xsl:choose>
@@ -230,6 +234,11 @@ node.</para>
       </xsl:if>
     </table>
   </div>
+</xsl:template>
+
+<xsl:template name="rcsdate.format">
+  <xsl:param name="rcsdate" select="./config[@param='rcsdate']/@value"/>
+  <xsl:value-of select="$rcsdate"/>
 </xsl:template>
 
 <xsl:template match="config" mode="footer.link.mode">
