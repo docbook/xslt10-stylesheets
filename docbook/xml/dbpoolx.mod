@@ -671,10 +671,15 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 	format		(%notation.class;) #IMPLIED
 	srccredit	CDATA		#IMPLIED
 	width		CDATA		#IMPLIED
+	contentwidth	CDATA		#IMPLIED
 	depth		CDATA		#IMPLIED
+	contentdepth	CDATA		#IMPLIED
 	align		(left
 			|right
 			|center)	#IMPLIED
+	valign		(top
+			|middle
+			|bottom)	#IMPLIED
 	scale		CDATA		#IMPLIED
 	scalefit	%yesorno.attvals;
 					#IMPLIED
@@ -3142,10 +3147,15 @@ in the text (no (0) value, the default)
 <!--Scalefit: Same as CALS scalefit-->
 <!ATTLIST videodata
 	width		CDATA		#IMPLIED
+	contentwidth	CDATA		#IMPLIED
 	depth		CDATA		#IMPLIED
+	contentdepth	CDATA		#IMPLIED
 	align		(left
 			|right
 			|center)	#IMPLIED
+	valign		(top
+			|middle
+			|bottom)	#IMPLIED
 	scale		CDATA		#IMPLIED
 	scalefit	%yesorno.attvals;
 					#IMPLIED
@@ -3199,10 +3209,15 @@ in the text (no (0) value, the default)
 <!--Scalefit: Same as CALS scalefit-->
 <!ATTLIST imagedata
 	width		CDATA		#IMPLIED
+	contentwidth	CDATA		#IMPLIED
 	depth		CDATA		#IMPLIED
+	contentdepth	CDATA		#IMPLIED
 	align		(left
 			|right
 			|center)	#IMPLIED
+	valign		(top
+			|middle
+			|bottom)	#IMPLIED
 	scale		CDATA		#IMPLIED
 	scalefit	%yesorno.attvals;
 					#IMPLIED
