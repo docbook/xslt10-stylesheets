@@ -295,11 +295,11 @@ public class Verbatim {
 
     boolean useGraphics = false;
     boolean useUnicode = false;
-    boolean useDingbats = false;
 
     int unicodeStart = 49;
     int unicodeMax = 0;
-    int dingbatMax = 10;
+
+    String unicodeFont = "";
 
     // Hardcoded defaults
     defaultColumn = 60;
@@ -332,10 +332,6 @@ public class Verbatim {
     // Use unicode at all?
     varString = getVariable(context, "callout.unicode");
     useUnicode = !(varString.equals("0") || varString.equals(""));
-
-    // Use dingbats at all?
-    varString = getVariable(context, "callout.dingbats");
-    useDingbats = !(varString.equals("0") || varString.equals(""));
 
     if (useGraphics) {
       // Get the graphics path
@@ -382,13 +378,16 @@ public class Verbatim {
 	unicodeStart = 0;
       }
 
+      // Get the font
+      unicodeFont = getVariable(context, "callout.unicode.font");
+      if (unicodeFont == null) {
+	unicodeFont = "";
+      }
+
       fCallout = new FormatUnicodeCallout(namePool,
+					  unicodeFont,
 					  unicodeStart,
 					  unicodeMax,
-					  foStylesheet);
-    } else if (useDingbats) {
-      fCallout = new FormatDingbatCallout(namePool,
-					  dingbatMax,
 					  foStylesheet);
     } else {
       fCallout = new FormatTextCallout(namePool, foStylesheet);
