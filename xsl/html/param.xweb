@@ -140,6 +140,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &html.cleanup;
 &draft.watermark.image;
 &generate.id.attributes;
+&generate.meta.abstract;
 </reference>
 
 <reference><title>XSLT Processing</title>
@@ -220,6 +221,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &pixels.per.inch;
 &points.per.em;
 &use.svg;
+&use.role.as.xrefstyle;
 </reference>
 
 <reference><title>Chunking</title>
@@ -349,6 +351,7 @@ around all these parameters.</para>
 <src:fragref linkend="funcsynopsis.decoration.frag"/>
 <src:fragref linkend="funcsynopsis.style.frag"/>
 <src:fragref linkend="function.parens.frag"/>
+<src:fragref linkend="generate.meta.abstract.frag"/>
 <src:fragref linkend="generate.id.attributes.frag"/>
 <src:fragref linkend="generate.index.frag"/>
 <src:fragref linkend="generate.legalnotice.link.frag"/>
@@ -461,6 +464,7 @@ around all these parameters.</para>
 <src:fragref linkend="ulink.target.frag"/>
 <src:fragref linkend="use.extensions.frag"/>
 <src:fragref linkend="use.id.as.filename.frag"/>
+<src:fragref linkend="use.role.as.xrefstyle.frag"/>
 <src:fragref linkend="use.svg.frag"/>
 <src:fragref linkend="variablelist.as.table.frag"/>
 
