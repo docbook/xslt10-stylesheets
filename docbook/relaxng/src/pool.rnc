@@ -4415,7 +4415,7 @@ div {
    db.revision =
       element revision {
          db.revision.attlist,
-         db.revnumber,
+         db.revnumber?,
          db.date,
          (db.authorinitials | db.author)*,
          (db.revremark | db.revdescription)?
