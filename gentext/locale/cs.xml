@@ -166,7 +166,9 @@
 <gentext key="nav-up" text="Nahoru"/>
 
 <gentext key="sectioncalled"  text="odd&#x00ed;l nazvan&#x00fd;"/>
-
+<gentext key="Draft"         text="Draft"/>  <!-- en -->
+<gentext key="above"         text="above"/>  <!-- en -->
+<gentext key="below"         text="below"/>  <!-- en -->
 <gentext key="index symbols" text="Symboly"/>
 
 <dingbat key="startquote" text="&#x201e;"/>
@@ -370,6 +372,9 @@
 <template name="qandaset">%t</template>
 <template name="question">%n</template>
 <template name="reference">%t</template>
+<template name="refsect1">%t</template>
+<template name="refsect2">%t</template>
+<template name="refsect3">%t</template>
 <template name="refsynopsisdiv">%t</template>
 <template name="segmentedlist">%t</template>
 <template name="set">%t</template>
@@ -381,12 +386,16 @@
 <template name="variablelist">%t</template>
 <template name="varlistentry">%n</template>
 <template name="warning">%t</template>
+<template name="page.citation"> [%p]</template>
 
 </context>
 
 <context name="section-xref">
 
 <template name="bridgehead">&#x201E;%t&#x201C;</template>
+<template name="refsect1">&#x201E;%t&#x201C;</template>
+<template name="refsect2">&#x201E;%t&#x201C;</template>
+<template name="refsect3">&#x201E;%t&#x201C;</template>
 <template name="sect1">&#x201E;%t&#x201C;</template>
 <template name="sect2">&#x201E;%t&#x201C;</template>
 <template name="sect3">&#x201E;%t&#x201C;</template>
@@ -400,6 +409,9 @@
 <context name="section-xref-numbered">
 
 <template name="bridgehead">%n</template>
+<template name="refsect1">&#x201E;%t&#x201C;</template>
+<template name="refsect2">&#x201E;%t&#x201C;</template>
+<template name="refsect3">&#x201E;%t&#x201C;</template>
 <template name="sect1">%n</template>
 <template name="sect2">%n</template>
 <template name="sect3">%n</template>
