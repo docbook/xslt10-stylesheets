@@ -1,24 +1,20 @@
 <?xml version='1.0'?>
 <!-- there is no doctype for these files, they are WF only -->
-<!DOCTYPE locale [
-<!ENTITY % iso-lat1.ent SYSTEM "../../xmlcharent/iso-lat1.ent">
-%iso-lat1.ent;
-]>
 <locale language="da"
         english-language-name="Danish"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo xmlns="">
 <authorgroup>
-  <author><firstname>Erik</firstname><surname>Kj&aelig;r Pedersen</surname>
-    <affiliation><address><email>erik@binghamton.edu</email></address>
-    </affiliation>
+  <author><firstname>Erik</firstname><surname>Kj&#xE6;r Pedersen</surname>
+          <affiliation><address><email>erik@binghamton.edu</email></address>
+          </affiliation>
   </author>
 </authorgroup>
 </doc:localeinfo>
 
-<gentext key="Abstract" text="Resum&eacute;"/>
-<gentext key="abstract" text="resum&eacute;"/>
+<gentext key="Abstract" text="Resum&#xE9;"/>
+<gentext key="abstract" text="resum&#xE9;"/>
 <gentext key="Answer" text="Svar"/>
 <gentext key="answer" text="svar"/>
 <gentext key="Appendix" text="Appendiks"/>
@@ -29,9 +25,9 @@
 <gentext key="bibliography" text="litteraturliste"/>
 <gentext key="Book" text="Bog"/>
 <gentext key="book" text="bog"/>
-<gentext key="CAUTION" text="PAS P&Aring;"/>
-<gentext key="Caution" text="Pas p&aring;"/>
-<gentext key="caution" text="pas p&aring;"/>
+<gentext key="CAUTION" text="PAS P&#xE5;"/>
+<gentext key="Caution" text="Pas p&#xE5;"/>
+<gentext key="caution" text="pas p&#xE5;"/>
 <gentext key="Chapter" text="Kapitel"/>
 <gentext key="chapter" text="kapitel"/>
 <gentext key="Colophon" text="Kolofon"/>
@@ -52,8 +48,8 @@
 <gentext key="glossary" text="ordliste"/>
 <gentext key="GlossSee" text="Se"/>
 <gentext key="glosssee" text="se"/>
-<gentext key="GlossSeeAlso" text="Se ogs&aring;"/>
-<gentext key="glossseealso" text="se ogs&aring;"/>
+<gentext key="GlossSeeAlso" text="Se ogs&#xE5;"/>
+<gentext key="glossseealso" text="se ogs&#xE5;"/>
 <gentext key="IMPORTANT" text="VIGTIGT"/>
 <gentext key="Important" text="Vigtigt"/>
 <gentext key="important" text="vigtigt"/>
@@ -63,15 +59,15 @@
 <gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text="Retslig note"/>
 <gentext key="legalnotice" text="retslig note"/>
-<gentext key="MsgAud" text="M&aring;lgruppe"/>
-<gentext key="msgaud" text="m&aring;lgruppe"/>
+<gentext key="MsgAud" text="M&#xE5;lgruppe"/>
+<gentext key="msgaud" text="m&#xE5;lgruppe"/>
 <gentext key="MsgLevel" text="Niveau"/>
 <gentext key="msglevel" text="niveau"/>
 <gentext key="MsgOrig" text="Grundlag"/>
 <gentext key="msgorig" text="grundlag"/>
-<gentext key="NOTE" text="BEM&AElig;rk"/>
-<gentext key="Note" text="Bem&aelig;rk"/>
-<gentext key="note" text="bem&aelig;rk"/>
+<gentext key="NOTE" text="BEM&#xE6;rk"/>
+<gentext key="Note" text="Bem&#xE6;rk"/>
+<gentext key="note" text="bem&#xE6;rk"/>
 <gentext key="Part" text="Del"/>
 <gentext key="part" text="del"/>
 <gentext key="Preface" text="Forord"/>
@@ -81,8 +77,8 @@
 <gentext key="ProductionSet" text="Produktion"/>
 <gentext key="Published" text="Udgivet"/>
 <gentext key="published" text="udgivet"/>
-<gentext key="Question" text="Sp&oslash;rgsm&aring;l"/>
-<gentext key="question" text="sp&oslash;rgsm&aring;l"/>
+<gentext key="Question" text="Sp&#xF8;rgsm&#xE5;l"/>
+<gentext key="question" text="sp&#xF8;rgsm&#xE5;l"/>
 <gentext key="RefEntry" text="Punkt"/>
 <gentext key="refentry" text="punkt"/>
 <gentext key="Reference" text="Henvisning"/>
@@ -106,15 +102,15 @@
 <gentext key="Section" text="Afsnit"/>
 <gentext key="See" text="Se"/>
 <gentext key="see" text="se"/>
-<gentext key="SeeAlso" text="Se ogs&aring;"/>
-<gentext key="seealso" text="se ogs&aring;"/>
-<gentext key="Seealso" text="Se ogs&aring;"/>
-<gentext key="set" text="s&aelig;t"/>
-<gentext key="Set" text="S&aelig;t"/>
-<gentext key="setindex" text="s&aelig;t indeks"/>
-<gentext key="SetIndex" text="S&aelig;t indeks"/>
-<gentext key="Sidebar" text="Sidebj&aelig;lke"/>
-<gentext key="sidebar" text="sidebj&aelig;lke"/>
+<gentext key="SeeAlso" text="Se ogs&#xE5;"/>
+<gentext key="seealso" text="se ogs&#xE5;"/>
+<gentext key="Seealso" text="Se ogs&#xE5;"/>
+<gentext key="set" text="s&#xE6;t"/>
+<gentext key="Set" text="S&#xE6;t"/>
+<gentext key="setindex" text="s&#xE6;t indeks"/>
+<gentext key="SetIndex" text="S&#xE6;t indeks"/>
+<gentext key="Sidebar" text="Sidebj&#xE6;lke"/>
+<gentext key="sidebar" text="sidebj&#xE6;lke"/>
 <gentext key="step" text="trin"/>
 <gentext key="Step" text="Trin"/>
 <gentext key="Table" text="Tabel"/>
@@ -136,8 +132,8 @@
 <gentext key="lastlistcomma" text=" og "/>
 <gentext key="listcomma" text=", "/>
 <gentext key="nonexistantelement" text="ikke-eksisterende element"/>
-<gentext key="notes" text="slutbem&aelig;rkning:"/>
-<gentext key="Notes" text="Slutbem&aelig;rkning:"/>
+<gentext key="notes" text="slutbem&#xE6;rkning:"/>
+<gentext key="Notes" text="Slutbem&#xE6;rkning:"/>
 <gentext key="Pgs" text="Siderne"/>
 <gentext key="pgs" text="siderne"/>
 <gentext key="Revisedby" text="Revideret af: "/>
@@ -147,7 +143,7 @@
 <gentext key="TableofContents" text="Indholdsfortegnelse"/>
 <gentext key="tableofcontents" text="indholdsfortegnelse"/>
 <gentext key="unexpectedelementname" text="uventet elementnavn"/>
-<gentext key="unsupported" text="ikke underst&oslash;ttet"/>
+<gentext key="unsupported" text="ikke underst&#xF8;ttet"/>
 <gentext key="xrefto" text="krydshenvisning til"/>
 
 <gentext key="listofequations" text="ligningsliste"/>
@@ -162,7 +158,7 @@
 <gentext key="listofunknown" text="liste over ukendte"/>
 
 <gentext key="nav-home" text="hjem"/>
-<gentext key="nav-next" text="n&aelig;ste"/>
+<gentext key="nav-next" text="n&#xE6;ste"/>
 <gentext key="nav-next-sibling" text="hurtigt fremad"/>
 <gentext key="nav-prev" text="forrige"/>
 <gentext key="nav-prev-sibling" text="hurtigt tilbage"/>
@@ -173,9 +169,9 @@
 <gentext key="index symbols"            text="symboler"/>
 
 <gentext key="lowercase.alpha"
- text="abcdefghijklmnopqrstuvwxyz&aelig;&oslash;&aring;"/>
+ text="abcdefghijklmnopqrstuvwxyz&#xE6;&#xF8;&#xE5;"/>
 <gentext key="uppercase.alpha"
- text="ABCDEFGHIJKLMNOPQRSTUVWXYZ&AElig;&Oslash;&Aring;"/>
+ text="ABCDEFGHIJKLMNOPQRSTUVWXYZ&#xE6;&#xF8;&#xE5;"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
@@ -330,32 +326,65 @@
 
 <context name="xref">
 
+<template name="abstract">%t</template>
 <template name="answer"><Answer/> %n</template>
-<template name="appendix"><Appendix/> %n. %t</template>
+<template name="appendix"><Appendix/> %n</template>
 <template name="article">%t</template>
+<template name="authorblurb">%t</template>
+<template name="bibliodiv">%t</template>
 <template name="bibliography">%t</template>
+<template name="bibliomset">%t</template>
+<template name="biblioset">%t</template>
+<template name="blockquote">%t</template>
 <template name="book">%t</template>
-<template name="chapter"><Chapter/> %n. %t</template>
+<template name="calloutlist">%t</template>
+<template name="caution">%t</template>
+<template name="chapter"><Chapter/> %n</template>
 <template name="colophon">%t</template>
+<template name="constraintdef">%t</template>
 <template name="dedication">%t</template>
 <template name="equation"><Equation/> %n</template>
-<template name="example"><Example/> %n. %t</template>
-<template name="figure"><Figure/> %n. %t</template>
+<template name="example"><Example/> %n</template>
+<template name="figure"><Figure/> %n</template>
+<template name="formalpara">%t</template>
 <template name="glossary">%t</template>
+<template name="glossdiv">%t</template>
+<template name="important">%t</template>
 <template name="index">%t</template>
+<template name="indexdiv">%t</template>
+<template name="itemizedlist">%t</template>
+<template name="legalnotice">%t</template>
 <template name="listitem">%n</template>
-<template name="part"><Part/> %n. %t</template>
+<template name="lot">%t</template>
+<template name="msg">%t</template>
+<template name="msgexplan">%t</template>
+<template name="msgmain">%t</template>
+<template name="msgrel">%t</template>
+<template name="msgset">%t</template>
+<template name="msgsub">%t</template>
+<template name="note">%t</template>
+<template name="orderedlist">%t</template>
+<template name="part"><Part/> %n</template>
+<template name="partintro">%t</template>
 <template name="preface">%t</template>
 <template name="procedure"><Procedure/> %n</template>
+<template name="productionset">%t</template>
 <template name="qandadiv">%t</template>
 <template name="qandaentry"><Question/> %n</template>
 <template name="qandaset">%t</template>
 <template name="question"><Question/> %n</template>
 <template name="reference">%t</template>
+<template name="refsynopsisdiv">%t</template>
+<template name="segmentedlist">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
-<template name="table"><Table/> %n. %t</template>
+<template name="sidebar">%t</template>
+<template name="table"><Table/> %n</template>
+<template name="tip">%t</template>
+<template name="toc">%t</template>
+<template name="variablelist">%t</template>
 <template name="varlistentry">%n</template>
+<template name="warning">%t</template>
 
 </context>
 
