@@ -124,7 +124,9 @@
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <fo:block id="{$id}" xsl:use-attribute-sets="normal.para.spacing">
+      <fo:block id="{$id}" xsl:use-attribute-sets="normal.para.spacing"
+                start-indent="0.5in" text-indent="-0.5in">
+        <xsl:call-template name="biblioentry.label"/>
         <xsl:apply-templates mode="bibliography.mode"/>
       </fo:block>
     </xsl:otherwise>
@@ -158,19 +160,28 @@
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <fo:block id="{$id}" xsl:use-attribute-sets="normal.para.spacing">
-        <xsl:choose>
-          <xsl:when test="local-name(*[1]) = 'abbrev'">
-            <xsl:apply-templates select="*[position()&gt;1]|text()"
-                                 mode="bibliomixed.mode"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates mode="bibliomixed.mode"/>
-          </xsl:otherwise>
-        </xsl:choose>
+      <fo:block id="{$id}" xsl:use-attribute-sets="normal.para.spacing"
+                start-indent="0.5in" text-indent="-0.5in">
+        <xsl:call-template name="biblioentry.label"/>
+        <xsl:apply-templates mode="bibliomixed.mode"/>
       </fo:block>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template name="biblioentry.label">
+  <xsl:param name="node" select="."/>
+
+  <xsl:text>[</xsl:text>
+  <xsl:choose>
+    <xsl:when test="local-name($node/child::*[1]) = 'abbrev'">
+      <xsl:apply-templates select="$node/abbrev[1]"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$node/@id"/>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:text>] </xsl:text>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -180,11 +191,11 @@
 </xsl:template>
 
 <xsl:template match="abbrev" mode="bibliography.mode">
-  <fo:inline>
-    <xsl:text>[</xsl:text>
-    <xsl:apply-templates mode="bibliography.mode"/>
-    <xsl:text>] </xsl:text>
-  </fo:inline>
+  <xsl:if test="preceding-sibling::*">
+    <fo:inline>
+      <xsl:apply-templates mode="bibliography.mode"/>
+    </fo:inline>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="abstract" mode="bibliography.mode">
@@ -676,9 +687,11 @@
 </xsl:template>
 
 <xsl:template match="abbrev" mode="bibliomixed.mode">
-  <fo:inline>
-    <xsl:apply-templates mode="bibliomixed.mode"/>
-  </fo:inline>
+  <xsl:if test="preceding-sibling::*">
+    <fo:inline>
+      <xsl:apply-templates mode="bibliography.mode"/>
+    </fo:inline>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="abstract" mode="bibliomixed.mode">
