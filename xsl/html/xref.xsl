@@ -1254,7 +1254,7 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="chapter" mode="insert.title.markup">
+<xsl:template match="chapter|appendix" mode="insert.title.markup">
   <xsl:param name="purpose"/>
   <xsl:param name="xrefstyle"/>
   <xsl:param name="title"/>
