@@ -1,5 +1,6 @@
 include ../../cvstools/Makefile.incl
-NOFRAMESTYLE=../xsl/html/slides.xsl
+STYLE=tables
+NOFRAMESTYLE=../xsl/html/$(STYLE).xsl
 FRAMESTYLE=../xsl/html/frames.xsl
 FOSTYLE=../xsl/fo/plain.xsl
 VARS=
@@ -43,6 +44,11 @@ ifeq ($(TIDY),1)
 		fi \
 	done
 endif
+
+%.html: %.xml
+	$(XJPARSE) -w $<
+	$(XSLT) $< $(HTMLSTYLE) - $(PARAMS)
+	make tidy
 
 %.fo : %.xml
 ifeq ($(FORMATTER),tex)
