@@ -92,7 +92,14 @@
   <!-- child elements that require different markup (such as       -->
   <!-- <replaceable>).                                             -->
   <xsl:text>\fB</xsl:text>
-  <xsl:apply-templates/>
+  <xsl:variable name="arg">
+    <xsl:apply-templates/>
+  </xsl:variable>
+  <xsl:call-template name="replace-string">
+    <xsl:with-param name="content" select="normalize-space($arg)"/>
+    <xsl:with-param name="replace" select="' '"/>
+    <xsl:with-param name="with" select="'\ '"/>
+  </xsl:call-template>
   <xsl:text>\fR</xsl:text>
 </xsl:template>
 
