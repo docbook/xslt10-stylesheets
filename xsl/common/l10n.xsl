@@ -32,7 +32,7 @@
       <xsl:when test="$xref-context or $l10n.gentext.use.xref.language">
         <xsl:variable name="lang-attr"
                       select="($target/ancestor-or-self::*/@lang
-                               |$target/ancestor-or-self::*/@xml:lang)[1]"/>
+                               |$target/ancestor-or-self::*/@xml:lang)[last()]"/>
         <xsl:choose>
           <xsl:when test="string($lang-attr) = ''">
             <xsl:value-of select="$l10n.gentext.default.language"/>
@@ -46,7 +46,7 @@
       <xsl:otherwise>
         <xsl:variable name="lang-attr" 
                       select="(ancestor-or-self::*/@lang
-                               |ancestor-or-self::*/@xml:lang)[1]"/>
+                               |ancestor-or-self::*/@xml:lang)[last()]"/>
         <xsl:choose>
           <xsl:when test="string($lang-attr) = ''">
             <xsl:value-of select="$l10n.gentext.default.language"/>
