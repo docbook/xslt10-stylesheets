@@ -256,6 +256,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &footnote.number.symbols;
 &table.footnote.number.symbols;
 &xref.with.number.and.title;
+&xref.label-page.separator;
+&xref.label-title.separator;
+&xref.title-page.separator;
 </reference>
 
 <reference><title>Graphics</title>
@@ -634,6 +637,9 @@ around all these parameters.</para>
 <src:fragref linkend="use.svg.frag"/>
 <src:fragref linkend="variablelist.as.table.frag"/>
 <src:fragref linkend="xref.with.number.and.title.frag"/>
+<src:fragref linkend="xref.label-title.separator.frag"/>
+<src:fragref linkend="xref.label-page.separator.frag"/>
+<src:fragref linkend="xref.title-page.separator.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>
