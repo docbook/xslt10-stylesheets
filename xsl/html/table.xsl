@@ -536,11 +536,21 @@ or nothing (the empty string)</para>
                 <xsl:value-of select="$colspec/@colwidth"/>
               </xsl:attribute>
             </xsl:if>
-            <xsl:if test="$colspec/@align">
-              <xsl:attribute name="align">
-                <xsl:value-of select="$colspec/@align"/>
-              </xsl:attribute>
-            </xsl:if>
+
+            <xsl:choose>
+              <xsl:when test="$colspec/@align">
+                <xsl:attribute name="align">
+                  <xsl:value-of select="$colspec/@align"/>
+                </xsl:attribute>
+              </xsl:when>
+              <!-- Suggested by Pavel ZAMPACH <zampach@nemcb.cz> -->
+              <xsl:when test="$colspecs/ancestor::tgroup/@align">
+                <xsl:attribute name="align">
+                  <xsl:value-of select="$colspecs/ancestor::tgroup/@align"/>
+                </xsl:attribute>
+              </xsl:when>
+            </xsl:choose>
+
             <xsl:if test="$colspec/@char">
               <xsl:attribute name="char">
                 <xsl:value-of select="$colspec/@char"/>
