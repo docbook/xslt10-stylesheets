@@ -193,7 +193,12 @@ GlossEntry ::=
       </xsl:call-template>
       <xsl:choose>
         <xsl:when test="$target">
-          <a href="#{@otherterm}">
+          <a>
+            <xsl:attribute name="href">
+              <xsl:call-template name="href.target">
+                <xsl:with-param name="object" select="$target"/>
+              </xsl:call-template>
+            </xsl:attribute>
             <xsl:apply-templates select="$target" mode="xref-to"/>
           </a>
         </xsl:when>
@@ -235,7 +240,12 @@ GlossEntry ::=
 
   <xsl:choose>
     <xsl:when test="$target">
-      <a href="#{@otherterm}">
+      <a>
+        <xsl:attribute name="href">
+          <xsl:call-template name="href.target">
+            <xsl:with-param name="object" select="$target"/>
+          </xsl:call-template>
+        </xsl:attribute>
         <xsl:apply-templates select="$target" mode="xref-to"/>
       </a>
     </xsl:when>
