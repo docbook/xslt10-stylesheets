@@ -458,6 +458,19 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 -->
 
         <fo:block>
+          <!-- are we missing any indexterms? -->
+          <xsl:if test="not(preceding-sibling::entry)
+                        and not(parent::row/preceding-sibling::row)">
+            <!-- this is the first entry of the first row -->
+            <xsl:if test="ancestor::thead or
+                          (ancestor::tbody
+                           and not(ancestor::tbody/preceding-sibling::thead
+                                   or ancestor::tbody/preceding-sibling::tbody))">
+              <!-- of the thead or the first tbody -->
+              <xsl:apply-templates select="ancestor::tgroup/preceding-sibling::indexterm"/>
+            </xsl:if>
+          </xsl:if>
+
           <!--
           <xsl:text>(</xsl:text>
           <xsl:value-of select="$rowsep"/>
