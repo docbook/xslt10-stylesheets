@@ -499,9 +499,15 @@
       <xsl:when test="$chunk.tocs.and.lots != 0 and not(parent::*)">
         <xsl:call-template name="write.chunk">
           <xsl:with-param name="filename">
-            <xsl:apply-templates select="." mode="recursive-chunk-filename"/>
-            <xsl:text>-toc</xsl:text>
-            <xsl:value-of select="$html.ext"/>
+            <xsl:call-template name="make-relative-filename">
+              <xsl:with-param name="base.dir" select="$base.dir"/>
+              <xsl:with-param name="base.name">
+                <xsl:call-template name="dbhtml-dir"/>
+                <xsl:apply-templates select="." mode="recursive-chunk-filename"/>
+                <xsl:text>-toc</xsl:text>
+                <xsl:value-of select="$html.ext"/>
+              </xsl:with-param>
+            </xsl:call-template>
           </xsl:with-param>
           <xsl:with-param name="content">
             <xsl:call-template name="chunk-element-content">
