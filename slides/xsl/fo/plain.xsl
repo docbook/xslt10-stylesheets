@@ -127,6 +127,14 @@
   </xsl:attribute>
 </xsl:attribute-set>
 
+<xsl:attribute-set name="running.foot.properties">
+  <xsl:attribute name="font-family">
+    <xsl:value-of select="$slide.font.family"/>
+  </xsl:attribute>
+  <xsl:attribute name="font-size">14pt</xsl:attribute>
+  <xsl:attribute name="color">#9F9F9F</xsl:attribute>
+</xsl:attribute-set>
+
 <!-- ============================================================ -->
 
 <xsl:param name="page.margin.top" select="'0.25in'"/>
@@ -257,9 +265,7 @@
 
   <xsl:variable name="content">
     <fo:table table-layout="fixed" width="100%"
-              font-family="{$slide.font.family}"
-              font-size="14pt"
-              color="#9F9F9F">
+              xsl:use-attribute-sets="running.foot.properties">
       <fo:table-column column-number="1" column-width="33%"/>
       <fo:table-column column-number="2" column-width="34%"/>
       <fo:table-column column-number="3" column-width="33%"/>
