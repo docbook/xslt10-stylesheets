@@ -6,7 +6,7 @@
       an entry like this to your XML catalog file, editing the
       path to match the location of your Slides installation:
 
-    <nextCatalog catalog="/usr/share/xml/slides-3.1.0/catalog.xml" />
+    <nextCatalog catalog="/usr/share/xml/slides-3.3.0/catalog.xml" />
 -->
 
 <!-- Slides DTD locations -->
@@ -16,22 +16,22 @@
        prefer="public">
 
   <public
-    publicId="-//Norman Walsh//DTD Slides V3.1.0//EN"
+    publicId="-//Norman Walsh//DTD Slides V3.3.0//EN"
     uri="slides.dtd"/>
     <!-- this could be the slides-custom.dtd instead -->
 
   <public
-    publicId="-//Norman Walsh//DTD Slides Custom V3.1.0//EN"
+    publicId="-//Norman Walsh//DTD Slides Custom V3.3.0//EN"
     uri="slides-custom.dtd"/>
 
   <public
-    publicId="-//Norman Walsh//DTD slides Full V3.1.0//EN"
+    publicId="-//Norman Walsh//DTD slides Full V3.3.0//EN"
     uri="slides-full.dtd"/>
 </group>
 
 <!-- Slides RelaxNG locations -->
 
-<group xml:base="schema/relaxng/"
+<group xml:base="schema/rng/"
        id="slides-relaxng"
        prefer="public">
 
@@ -40,8 +40,8 @@
       uri="slides.rng"/>
 
   <uri
-      name="slides-full.rng"
-      uri="slides-full.rng"/>
+      name="full/slides-full.rng"
+      uri="full/slides-full.rng"/>
 </group>
 
 <!-- Slides XSL locations -->
