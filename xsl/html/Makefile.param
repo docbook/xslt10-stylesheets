@@ -263,4 +263,5 @@ PARAMS=../params/admon.graphics.xml \
        ../params/eclipse.plugin.name.xml \
        ../params/eclipse.plugin.id.xml \
        ../params/eclipse.plugin.provider.xml \
-       ../params/insert.xref.page.number.xml
+       ../params/insert.xref.page.number.xml \
+       ../params/component.label.includes.part.label.xml
