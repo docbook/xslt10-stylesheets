@@ -695,10 +695,12 @@
 <!ENTITY U2202 SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/U2202.png" NDATA PNG>
 <!ENTITY U2203 SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/U2203.png" NDATA PNG>
 <!ENTITY U2204 SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/U2204.png" NDATA PNG>
+<!ENTITY U2205 SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/U2205.png" NDATA PNG>
 <!ENTITY U2207 SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/U2207.png" NDATA PNG>
 <!ENTITY U2208 SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/U2208.png" NDATA PNG>
 <!ENTITY U2209 SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/U2209.png" NDATA PNG>
 <!ENTITY U220B SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/U220B.png" NDATA PNG>
+<!ENTITY U220D SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/U220D.png" NDATA PNG>
 <!ENTITY U220F SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/U220F.png" NDATA PNG>
 <!ENTITY U2210 SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/U2210.png" NDATA PNG>
 <!ENTITY U2210 SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/U2210.png" NDATA PNG>
@@ -982,5 +984,7 @@
 <!ENTITY U3008 SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/U3008.png" NDATA PNG>
 <!ENTITY U3009 SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/U3009.png" NDATA PNG>
 <!ENTITY UFB00 SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/UFB00.png" NDATA PNG>
+<!ENTITY UFB01 SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/UFB01.png" NDATA PNG>
+<!ENTITY UFB02 SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/UFB02.png" NDATA PNG>
 <!ENTITY UFB03 SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/UFB03.png" NDATA PNG>
 <!ENTITY UFB04 SYSTEM "http://www.oasis-open.org/docbook/xmlcharent/glyphs/100dpi/UFB04.png" NDATA PNG>
