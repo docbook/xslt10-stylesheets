@@ -1129,8 +1129,10 @@ that the appropriate document type declaration is associated with the
 documents. This is a simple change to the <sgmltag>xsl:output</sgmltag>
 instruction.</para>
 
-<para>This stylesheet imports <filename>weave.xsl</filename> for the
-weaving functionality and simply sets the public and system identifiers.
+<para>This stylesheet turns source fragments and fragment references into
+DocBook elements and removes namespace bindings. Note that <sgmltag>xsl:element</sgmltag>
+is used explicitly instead of <sgmltag>xsl:copy</sgmltag> so that namespace bindings
+aren't copied.
 </para>
 
 <src:fragment id="w2docbook" mundane-result-prefixes="xsl">
@@ -1147,10 +1149,10 @@ weaving functionality and simply sets the public and system identifiers.
   <xsl:preserve-space elements="*"/>
 
   <xsl:template match="*">
-    <xsl:copy>
+    <xsl:element name="{local-name(.)}">
       <xsl:copy-of select="@*"/>
       <xsl:apply-templates/>
-    </xsl:copy>
+    </xsl:element>
   </xsl:template>
 
   <xsl:template match="src:fragment" priority="2">
