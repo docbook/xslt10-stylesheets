@@ -62,7 +62,8 @@
           </link>
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
-                        or $dynamic.toc != 0 or $active.toc != 0">
+                        or $dynamic.toc != 0 or $active.toc != 0
+                        or $overlay.logo != ''">
             <script language="JavaScript1.2"/>
           </xsl:if>
 
@@ -78,7 +79,7 @@
             </xsl:call-template>
           </xsl:if>
 
-          <xsl:if test="$overlay != '0'">
+          <xsl:if test="$overlay != '0' or $overlay.logo != ''">
             <xsl:call-template name="overlay.js">
               <xsl:with-param name="language" select="'JavaScript'"/>
             </xsl:call-template>
@@ -116,11 +117,21 @@ function init() {
         </head>
         <body class="toc">
           <xsl:call-template name="body.attributes"/>
+
+          <xsl:if test="$overlay.logo != ''">
+            <xsl:attribute name="onload">
+              <xsl:text>overlaySetup('lc');</xsl:text>
+            </xsl:attribute>
+          </xsl:if>
+
           <xsl:if test="$dynamic.toc != 0">
             <xsl:attribute name="onload">
               <xsl:text>init(</xsl:text>
               <xsl:value-of select="$overlay"/>
               <xsl:text>);</xsl:text>
+              <xsl:if test="$overlay.logo != ''">
+                <xsl:text>overlaySetup('lc');</xsl:text>
+              </xsl:if>
             </xsl:attribute>
           </xsl:if>
 
@@ -134,6 +145,12 @@ function init() {
               <div id="spacer"/>
             </xsl:otherwise>
           </xsl:choose>
+
+          <xsl:if test="$overlay.logo != ''">
+            <div style="position: absolute;" id="overlayDiv">
+              <img src="{$overlay.logo}" alt="logo" vspace="20"/>
+            </div>
+          </xsl:if>
         </body>
       </html>
     </xsl:with-param>
@@ -215,7 +232,7 @@ function init() {
             </xsl:when>
             <xsl:when test="$overlay != 0">
               <xsl:attribute name="onload">
-                <xsl:text>overlaySetup('lc')</xsl:text>
+                <xsl:text>overlaySetup('lc');</xsl:text>
               </xsl:attribute>
             </xsl:when>
           </xsl:choose>
@@ -593,7 +610,7 @@ function init() {
       </xsl:when>
       <xsl:when test="$overlay != 0">
         <xsl:attribute name="onload">
-          <xsl:text>overlaySetup('lc')</xsl:text>
+          <xsl:text>overlaySetup('lc');</xsl:text>
         </xsl:attribute>
       </xsl:when>
     </xsl:choose>
@@ -932,7 +949,7 @@ function init() {
       </xsl:when>
       <xsl:when test="$overlay != 0">
         <xsl:attribute name="onload">
-          <xsl:text>overlaySetup('lc')</xsl:text>
+          <xsl:text>overlaySetup('lc');</xsl:text>
         </xsl:attribute>
       </xsl:when>
     </xsl:choose>
