@@ -29,6 +29,7 @@
 <xsl:include href="../common/titles.xsl"/>
 <xsl:include href="../common/subtitles.xsl"/>
 <xsl:include href="../common/gentext.xsl"/>
+<xsl:include href="../common/targets.xsl"/>
 <xsl:include href="autotoc.xsl"/>
 <xsl:include href="autoidx.xsl"/>
 <xsl:include href="lists.xsl"/>
@@ -266,17 +267,32 @@ body { background-image: url('</xsl:text>
           </xsl:message>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="key('id',$rootid)" mode="process.root"/>
-          <xsl:if test="$tex.math.in.alt != ''">
-            <xsl:apply-templates select="key('id',$rootid)" mode="collect.tex.math"/>
+          <xsl:if test="$collect.xref.targets = 'yes' or
+                        $collect.xref.targets = 'only'">
+            <xsl:apply-templates select="key('id', $rootid)"
+                        mode="collect.targets"/>
+          </xsl:if>
+          <xsl:if test="$collect.xref.targets != 'only'">
+            <xsl:apply-templates select="key('id',$rootid)"
+                        mode="process.root"/>
+            <xsl:if test="$tex.math.in.alt != ''">
+              <xsl:apply-templates select="key('id',$rootid)"
+                          mode="collect.tex.math"/>
+            </xsl:if>
           </xsl:if>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates select="/" mode="process.root"/>
-      <xsl:if test="$tex.math.in.alt != ''">
-        <xsl:apply-templates select="/" mode="collect.tex.math"/>
+      <xsl:if test="$collect.xref.targets = 'yes' or
+                    $collect.xref.targets = 'only'">
+        <xsl:apply-templates select="/" mode="collect.targets"/>
+      </xsl:if>
+      <xsl:if test="$collect.xref.targets != 'only'">
+        <xsl:apply-templates select="/" mode="process.root"/>
+        <xsl:if test="$tex.math.in.alt != ''">
+          <xsl:apply-templates select="/" mode="collect.tex.math"/>
+        </xsl:if>
       </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
