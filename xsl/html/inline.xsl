@@ -102,7 +102,14 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:param>
-  <span class="{local-name(.)}"><xsl:copy-of select="$content"/></span>
+  <span class="{local-name(.)}">
+    <xsl:if test="@dir">
+      <xsl:attribute name="dir">
+        <xsl:value-of select="@dir"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:copy-of select="$content"/>
+  </span>
 </xsl:template>
 
 <xsl:template name="inline.monoseq">
@@ -114,7 +121,14 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:param>
-  <tt class="{local-name(.)}"><xsl:copy-of select="$content"/></tt>
+  <tt class="{local-name(.)}">
+    <xsl:if test="@dir">
+      <xsl:attribute name="dir">
+        <xsl:value-of select="@dir"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:copy-of select="$content"/>
+  </tt>
 </xsl:template>
 
 <xsl:template name="inline.boldseq">
@@ -126,18 +140,29 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:param>
-  <!-- don't put <b> inside figure, example, or table titles -->
-  <xsl:choose>
-    <xsl:when test="local-name(..) = 'title'
-                    and (local-name(../..) = 'figure'
-                         or local-name(../..) = 'example'
-                         or local-name(../..) = 'table')">
-      <xsl:copy-of select="$content"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <b class="{local-name(.)}"><xsl:copy-of select="$content"/></b>
-    </xsl:otherwise>
-  </xsl:choose>
+
+  <span>
+    <xsl:if test="@dir">
+      <xsl:attribute name="dir">
+        <xsl:value-of select="@dir"/>
+      </xsl:attribute>
+    </xsl:if>
+
+    <!-- don't put <b> inside figure, example, or table titles -->
+    <xsl:choose>
+      <xsl:when test="local-name(..) = 'title'
+                      and (local-name(../..) = 'figure'
+                      or local-name(../..) = 'example'
+                      or local-name(../..) = 'table')">
+        <xsl:copy-of select="$content"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <b class="{local-name(.)}">
+          <xsl:copy-of select="$content"/>
+        </b>
+      </xsl:otherwise>
+    </xsl:choose>
+  </span>
 </xsl:template>
 
 <xsl:template name="inline.italicseq">
@@ -149,7 +174,14 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:param>
-  <i class="{local-name(.)}"><xsl:copy-of select="$content"/></i>
+  <i class="{local-name(.)}">
+    <xsl:if test="@dir">
+      <xsl:attribute name="dir">
+        <xsl:value-of select="@dir"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:copy-of select="$content"/>
+  </i>
 </xsl:template>
 
 <xsl:template name="inline.boldmonoseq">
@@ -169,10 +201,26 @@
                          or local-name(../..) = 'example'
                          or local-name(../..) = 'table'
                          or local-name(../..) = 'formalpara')">
-      <tt class="{local-name(.)}"><xsl:copy-of select="$content"/></tt>
+      <tt class="{local-name(.)}">
+        <xsl:if test="@dir">
+          <xsl:attribute name="dir">
+            <xsl:value-of select="@dir"/>
+          </xsl:attribute>
+        </xsl:if>
+        <xsl:copy-of select="$content"/>
+      </tt>
     </xsl:when>
     <xsl:otherwise>
-      <b class="{local-name(.)}"><tt><xsl:copy-of select="$content"/></tt></b>
+      <b class="{local-name(.)}">
+        <tt>
+          <xsl:if test="@dir">
+            <xsl:attribute name="dir">
+              <xsl:value-of select="@dir"/>
+            </xsl:attribute>
+          </xsl:if>
+          <xsl:copy-of select="$content"/>
+        </tt>
+      </b>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -186,7 +234,16 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:param>
-  <i class="{local-name(.)}"><tt><xsl:copy-of select="$content"/></tt></i>
+  <i class="{local-name(.)}">
+    <tt>
+      <xsl:if test="@dir">
+        <xsl:attribute name="dir">
+          <xsl:value-of select="@dir"/>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:copy-of select="$content"/>
+    </tt>
+  </i>
 </xsl:template>
 
 <xsl:template name="inline.superscriptseq">
@@ -198,7 +255,14 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:param>
-  <sup><xsl:copy-of select="$content"/></sup>
+  <sup>
+    <xsl:if test="@dir">
+      <xsl:attribute name="dir">
+        <xsl:value-of select="@dir"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:copy-of select="$content"/>
+  </sup>
 </xsl:template>
 
 <xsl:template name="inline.subscriptseq">
@@ -210,7 +274,14 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:param>
-  <sub><xsl:copy-of select="$content"/></sub>
+  <sub>
+    <xsl:if test="@dir">
+      <xsl:attribute name="dir">
+        <xsl:value-of select="@dir"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:copy-of select="$content"/>
+  </sub>
 </xsl:template>
 
 <!-- ==================================================================== -->
