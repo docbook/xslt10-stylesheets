@@ -1,5 +1,5 @@
 <!-- ====================================================================== -->
-<!-- Website DTD Forms Module V2.2
+<!-- Website DTD Forms Module V2.3
      Part of the Website distribution
      http://sourceforge.net/projects/docbook/
 
@@ -130,5 +130,5 @@
 	onchange	CDATA		#IMPLIED
 >
 
-<!-- End of forms.mod V2.2 ................................................ -->
+<!-- End of forms.mod V2.3 ................................................ -->
 <!-- ...................................................................... -->

@@ -1,5 +1,5 @@
 <!-- ====================================================================== -->
-<!-- Website Module V2.2
+<!-- Website Module V2.3
      Copyright (C) 2002 Norman Walsh
      http://sourceforge.net/projects/docbook/
 
@@ -94,16 +94,16 @@
 >
 
 <![%allowrddl;[
-<!ENTITY % rddl.mod PUBLIC "-//Norman Walsh//DTD Website RDDL Module V2.2//EN"
+<!ENTITY % rddl.mod PUBLIC "-//Norman Walsh//DTD Website RDDL Module V2.3//EN"
                     "rddl.mod">
 %rddl.mod;
 ]]>
 
 <![%allowforms;[
-<!ENTITY % forms.mod PUBLIC "-//Norman Walsh//DTD Website Forms Module V2.2//EN"
+<!ENTITY % forms.mod PUBLIC "-//Norman Walsh//DTD Website Forms Module V2.3//EN"
                      "forms.mod">
 %forms.mod;
 ]]>
 
-<!-- End of Website Module V2.2 ........................................... -->
+<!-- End of Website Module V2.3 ........................................... -->
 <!-- ...................................................................... -->

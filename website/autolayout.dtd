@@ -1,16 +1,16 @@
 <!-- ====================================================================== -->
-<!-- Website Autolayout DTD V2.2
+<!-- Website Autolayout DTD V2.3
      Part of the Website distribution
      http://sourceforge.net/projects/docbook/
 
      Please use the following formal public identifier to identify it:
 
-     "-//Norman Walsh//DTD Website Autolayout V2.2//EN"
+     "-//Norman Walsh//DTD Website Autolayout V2.3//EN"
 
      For example:
 
-     <!DOCTYPE autolayout PUBLIC "-//Norman Walsh//DTD Website Autolayout V2.2//EN"
-               "http://docbook.sourceforge.net/release/website/2.2/autolayout.dtd">
+     <!DOCTYPE autolayout PUBLIC "-//Norman Walsh//DTD Website Autolayout V2.3//EN"
+               "http://docbook.sourceforge.net/release/website/2.3/autolayout.dtd">
 
      Please direct all questions and comments about this DTD to
      Norman Walsh, <ndw@nwalsh.com>.
@@ -97,5 +97,5 @@
 	filename	CDATA	#REQUIRED
 >
 
-<!-- End of autolayout.dtd V2.2 ........................................... -->
+<!-- End of autolayout.dtd V2.3 ........................................... -->
 <!-- ...................................................................... -->
