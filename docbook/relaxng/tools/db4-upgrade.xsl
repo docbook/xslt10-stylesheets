@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
 		xmlns:db = "http://docbook.org/docbook-ng"
+		xmlns:xlink="http://www.w3.org/1999/xlink"
                 exclude-result-prefixes="exsl db"
                 version="1.0">
 
@@ -468,7 +469,7 @@
 	<xsl:text>Converting ulink to link.</xsl:text>
       </xsl:message>
 
-      <link href="{@url}">
+      <link xlink:href="{@url}">
 	<xsl:call-template name="copy.attributes">
 	  <xsl:with-param name="suppress.url" select="1"/>
 	</xsl:call-template>
@@ -480,7 +481,7 @@
 	<xsl:text>Converting ulink to uri.</xsl:text>
       </xsl:message>
 
-      <uri href="{@url}">
+      <uri xlink:href="{@url}">
 	<xsl:call-template name="copy.attributes">
 	  <xsl:with-param name="suppress.url" select="1"/>
 	</xsl:call-template>
@@ -803,7 +804,7 @@
 	<xsl:text>Converting ulink to phrase.</xsl:text>
       </xsl:message>
 
-      <phrase href="{@url}">
+      <phrase xlink:href="{@url}">
 	<xsl:call-template name="copy.attributes">
 	  <xsl:with-param name="suppress.url" select="1"/>
 	</xsl:call-template>
@@ -815,7 +816,7 @@
 	<xsl:text>Converting ulink to uri.</xsl:text>
       </xsl:message>
 
-      <uri href="{@url}">
+      <uri xlink:href="{@url}">
 	<xsl:call-template name="copy.attributes">
 	  <xsl:with-param name="suppress.url" select="1"/>
 	</xsl:call-template>
@@ -870,6 +871,11 @@
       </xsl:when>
       <xsl:when test="local-name(.) = 'lang'">
         <xsl:attribute name="xml:lang">
+          <xsl:value-of select="."/>
+        </xsl:attribute>
+      </xsl:when>
+      <xsl:when test="local-name(.) = 'id'">
+        <xsl:attribute name="xml:id">
           <xsl:value-of select="."/>
         </xsl:attribute>
       </xsl:when>
