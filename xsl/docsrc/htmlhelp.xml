@@ -1,6 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
+<!--
 <!DOCTYPE chapter PUBLIC '-//OASIS//DTD DocBook XML V4.1.2//EN'
                       'http://www.oasis-open.org/docbook/xml/4.0/docbookx.dtd'>
+-->
 <chapter lang="en">
 <chapterinfo>
 <author>
@@ -32,11 +34,7 @@ Help Start Page</ulink>.</para>
 stylesheets. Simply run your favorite XSLT processor on your document
 with the HH stylesheet:</para>
 
-<screen format="linespecific">saxon <replaceable>yourfile</replaceable> <replaceable>/path/to/stylesheets/</replaceable>contrib/htmlhelp/htmlhelp.xsl</screen>
-
-<para>If you are using the XT processor, you should use the stylesheet
-<filename moreinfo="none">xthtmlhelp.xsl</filename> instead of
-<filename moreinfo="none">htmlhelp.xsl</filename>.</para>
+<screen format="linespecific">saxon <replaceable>yourfile</replaceable> <replaceable>/path/to/stylesheets/</replaceable>htmlhelp/htmlhelp.xsl</screen>
 
 <para>The stylesheet imports the standard chunking stylesheet, so a set of
 HTML files is created in the usual way. Other files are also created
@@ -89,7 +87,7 @@ the start and the bottom of each page. If you want to enable the
 links instead, start your XSLT processor with the parameter <parameter
 moreinfo="none">suppress.navigation</parameter> set to 0.</para>
 
-<screen format="linespecific">saxon <replaceable>yourfile</replaceable> <replaceable>/path/to/stylesheets/</replaceable>contrib/htmlhelp/htmlhelp.xsl "suppress.navigation=0"</screen>
+<screen format="linespecific">saxon <replaceable>yourfile</replaceable> <replaceable>/path/to/stylesheets/</replaceable>htmlhelp/htmlhelp.xsl "suppress.navigation=0"</screen>
 
 <para>Another approach is to create a driver file, which overrides
 the default parameter value.</para>
@@ -97,7 +95,7 @@ the default parameter value.</para>
 <programlisting><![CDATA[<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	        version="1.0">
 
-  <xsl:import href="]]><replaceable>/path/to/stylesheets/</replaceable>contrib/htmlhelp/htmlhelp.xsl<![CDATA["/>
+  <xsl:import href="]]><replaceable>/path/to/stylesheets/</replaceable>htmlhelp/htmlhelp.xsl<![CDATA["/>
 
   <xsl:param name="suppress.navigation" select="0"/>
 
@@ -127,7 +125,22 @@ entities in the TOC file and index entries. This can be easily done using a
 </xsl:stylesheet>
 ]]></programlisting>
 
-<para>Default encoding is ISO-8859-1 (aka ISO Latin 1).</para>
+<para>Default encoding is ISO-8859-1 (aka ISO Latin 1). If you get
+some strange message about characters from your XSLT processor and
+your document is in some of Western European languages, try changing
+encoding to <literal>windows-1252</literal>. This encoding is similar
+to ISO-8859-1 but contains some additional characters like
+<quote>typographical quotes</quote> and dashes.</para>
+
+</section>
+
+<section>
+<title>More about customizing</title>
+
+<para>More info will come in a near future (I hope and
+believe). Meanwhile look into reference for description of <ulink
+url="http://docbook.sourceforge.net/release/xsl/snapshot/doc/html/">HTML Help
+specific parameters</ulink>.</para>
 
 </section>
 

@@ -7,6 +7,7 @@
 <!ENTITY templates.xml SYSTEM "templates.xml">
 <!ENTITY html-param.xml SYSTEM "html/param.xml" NDATA SGML>
 <!ENTITY tools-profiling.xml SYSTEM "tools/profiling.xml" NDATA SGML>
+<!ENTITY htmlhelp.xml SYSTEM "htmlhelp.xml">
 ]>
 <book>
 <bookinfo>
@@ -62,5 +63,6 @@ directory <filename>tools</filename>.</para>
 </chapter>
 
 &templates.xml;
+&htmlhelp.xml;
 </book>
 
