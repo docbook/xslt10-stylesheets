@@ -385,7 +385,7 @@
 
 <xsl:template match="section|simplesect
                      |sect1|sect2|sect3|sect4|sect5
-                     |refsect1|refsect2|refsect3" mode="xref-to">
+                     |refsect1|refsect2|refsect3|refsection" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
 
