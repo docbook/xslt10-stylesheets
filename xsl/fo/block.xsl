@@ -43,7 +43,9 @@
 </xsl:template>
 
 <xsl:template match="formalpara/title">
-  <xsl:variable name="titleStr" select="."/>
+  <xsl:variable name="titleStr">
+      <xsl:apply-templates/>
+  </xsl:variable>
   <xsl:variable name="lastChar">
     <xsl:if test="$titleStr != ''">
       <xsl:value-of select="substring($titleStr,string-length($titleStr),1)"/>
@@ -53,7 +55,7 @@
   <fo:inline font-weight="bold"
              keep-with-next.within-line="always"
              padding-end="1em">
-    <xsl:apply-templates/>
+    <xsl:copy-of select="$titleStr"/>
     <xsl:if test="$lastChar != ''
                   and not(contains($runinhead.title.end.punct, $lastChar))">
       <xsl:value-of select="$runinhead.default.title.end.punct"/>
