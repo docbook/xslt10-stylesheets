@@ -12,33 +12,41 @@
 
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 
-msgset.info = docbook.info
+msgset.info = docbook.info.titleonly
 
 db.msgset = element msgset { msgset.info, (db.msgentry+|db.simplemsgentry+) }
 
-db.msgentry = element msgentry { db.msg+, db.msginfo, db.msgexplan* }
+db.msgentry = element msgentry { db.msg+, db.msginfo?, db.msgexplan* }
 
+simplemsgentry.audience.attrib = attribute audience { text }
+simplemsgentry.origin.attrib = attribute origin { text }
+simplemsgentry.level.attrib = attribute level { text }
 db.simplemsgentry = element simplemsgentry { db.msgtext, db.msgexplan+ }
 
-db.msg = element msg { db.title?, db.msgmain, (db.msgsub|db.msgrel)* }
+msg.info = docbook.info.titleonly
+db.msg = element msg { msg.info, db.msgmain, (db.msgsub|db.msgrel)* }
 
-db.msgmain = element msgmain { db.title?, db.msgtext }
+msgmain.info = docbook.info.titleonly
+db.msgmain = element msgmain { msgmain.info, db.msgtext }
 
-db.msgsub = element msgsub { db.title?, db.msgtext }
+msgsub.info = docbook.info.titleonly
+db.msgsub = element msgsub { msgsub.info, db.msgtext }
 
-db.msgrel = element msgrel { db.title?, db.msgtext }
+msgrel.info = docbook.info.titleonly
+db.msgrel = element msgrel { msgrel.info, db.msgtext }
 
 db.msgtext = element msgtext { blocks+ }
 
 db.msginfo = element msginfo { (db.msglevel|db.msgorig|db.msgaud)* }
 
-db.msglevel = element msglevel { ubiq.inlines* }
+db.msglevel = element msglevel { docbook.text }
 
-db.msgorig = element msgorig { ubiq.inlines* }
+db.msgorig = element msgorig { docbook.text }
 
-db.msgaud = element msgaud { ubiq.inlines* }
+db.msgaud = element msgaud { docbook.text }
 
-db.msgexplan = element msgexplan { db.title?, blocks+ }
+msgexplan.info = docbook.info.titleonly
+db.msgexplan = element msgexplan { msgexplan.info, blocks+ }
 
 technical.blocks |= db.msgset
 

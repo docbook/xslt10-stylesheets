@@ -40,13 +40,13 @@ area.units.attribute =
    (area.units.enumtype.attribute | area.units.othertype.attributes)
 
 
-calloutlist.info = db.info
+calloutlist.info = docbook.info.titleonly
 db.calloutlist = element calloutlist { calloutlist.info, blocks*, db.callout+ }
 
 callout.arearefs.attrib = attribute arearefs { xsd:IDREFS }
 db.callout = element callout { blocks+ }
 
-programlistingco.info = db.info
+programlistingco.info = docbook.info.titleforbidden
 db.programlistingco =
    element programlistingco {
       programlistingco.info,
@@ -74,7 +74,7 @@ areaset.units.attrib = area.units.attribute
 areaset.label.attrib = attribute label { text }?
 db.areaset = element areaset { db.area+ }
 
-screenco.info = db.info
+screenco.info = docbook.info.titleforbidden
 db.screenco =
    element screenco {
       screenco.info,
@@ -83,7 +83,7 @@ db.screenco =
       db.calloutlist*
    }
 
-mediaobjectco.info = db.info
+mediaobjectco.info = docbook.info.titleforbidden
 db.mediaobjectco =
    element mediaobjectco {
       mediaobjectco.info,
@@ -91,10 +91,10 @@ db.mediaobjectco =
       (db.imageobjectco | db.textobject)*
    }
 
-imageobjectco.info = db.info
+imageobjectco.info = docbook.info.titleforbidden
 db.imageobjectco =
    element imageobjectco {
-      imageobjectco.info,
+      imageobjectco.info?,
       db.areaspec,
       db.imageobject,
       db.calloutlist*

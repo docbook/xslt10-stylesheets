@@ -1,0 +1,77 @@
+# (Part of) A prototype DocBook V.next RELAX NG grammar.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.1 and V4.2
+# Release: $Id$
+#
+# ======================================================================
+
+divisions |= db.reference
+
+part.components |= db.refentry | db.reference
+
+article.components.optional |= db.refentry*
+article.components.required |= db.refentry+
+
+reference.status.attrib = status.attribute?
+reference.label.attrib = label.attribute?
+reference.info = docbook.info.titlereq
+db.reference =
+   element reference { reference.info, db.partintro?, db.refentry+ }
+
+refsections.optional = db.refsection* | db.simplesect*
+
+refsections.required = db.refsection+ | db.simplesect*
+
+blocks.or.refsections =
+  (blocks+, refsections.optional) | refsections.required
+
+refentry.status.attrib = status.attribute?
+refentry.label.attrib = label.attribute?
+refentry.info = docbook.info.titleforbidden
+db.refentry =
+   element refentry {
+      db.indexterm*,
+      refentry.info,
+      db.refmeta?,
+      db.refnamediv+,
+      db.refsynopsisdiv?,
+      db.refsection+
+   }
+
+db.refmeta =
+   element refmeta {
+      db.indexterm*,
+      db.refentrytitle,
+      db.manvolnum?,
+      db.refmiscinfo*,
+      db.indexterm*}
+
+refmiscinfo.class.attrib = attribute class { text }
+db.refmiscinfo = element refmiscinfo { docbook.text }
+
+db.refnamediv =
+   element refnamediv { db.refdescriptor?, db.refname+, db.refpurpose, db.refclass* }
+
+db.refdescriptor = element refdescriptor { inlines* }
+
+db.refname = element refname { inlines* }
+
+db.refpurpose = element refpurpose { inlines* }
+
+db.refclass = element refclass { text | db.application* }
+
+refsynopsisdiv.info = docbook.info
+db.refsynopsisdiv =
+   element refsynopsisdiv { refsynopsisdiv.info, blocks.or.refsections }
+
+refsection.status.attrib = status.attribute?
+refsection.label.attrib = label.attribute?
+refsection.info = docbook.info.titlereq
+db.refsection =
+  element refsection { refsection.info, blocks.or.refsections }

@@ -13,15 +13,15 @@
 
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 
-char.attribute = attribute char { text }?
-charoff.attribute = attribute charoff { text }?
-colsep.attribute = attribute colsep { text }?
-rowsep.attribute = attribute rowsep { text }?
+char.attribute = attribute char { text }
+charoff.attribute = attribute charoff { text }
+colsep.attribute = attribute colsep { text }
+rowsep.attribute = attribute rowsep { text }
 align.attribute =
-  attribute align { "center" | "char" | "justify" | "left" | "right" }?
-valign.attribute = attribute valign { "bottom" | "middle" | "top" }?
-spanname.attribute = attribute spanname { text }?
-colname.attribute = attribute colname { text }?
+  attribute align { "center" | "char" | "justify" | "left" | "right" }
+valign.attribute = attribute valign { "bottom" | "middle" | "top" }
+spanname.attribute = attribute spanname { text }
+colname.attribute = attribute colname { text }
 
 tgroup.char.attrib = char.attribute?
 tgroup.charoff.attrib = charoff.attribute?
@@ -49,8 +49,8 @@ colspec.rowsep.attrib = rowsep.attribute?
 colspec.align.attrib = align.attribute?
 db.colspec = element colspec { empty }
 
-spanspec.namest.attrib = attribute namest { text }?
-spanspec.nameend.attrib = attribute nameend { text }?
+spanspec.namest.attrib = attribute namest { text }
+spanspec.nameend.attrib = attribute nameend { text }
 spanspec.spanname.attrib = spanname.attribute
 spanspec.char.attrib = char.attribute?
 spanspec.colsep.attrib = colsep.attribute?
@@ -99,7 +99,6 @@ entrytbl.colname.attrib = colname.attribute?
 entrytbl.align.attrib = align.attribute?
 db.entrytbl = element entrytbl { (db.colspec*, db.spanspec*, cals.thead?, cals.tbody) }
 
-cals.table.model = db.tgroup
 cals.table.tabstyle.attrib = attribute tabstyle { text }?
 cals.table.orient.attrib = attribute orient { "land" | "port" }?
 cals.table.colsep.attrib = colsep.attribute?
@@ -109,17 +108,28 @@ cals.table.frame.attrib =
       "all" | "bottom" | "none" | "sides" | "top" | "topbot"
    }?
 
-cals.table.pgwide.attrib = attribute pgwide { "0" | "1" }
+cals.table.pgwide.attrib = attribute pgwide { "0" | "1" }?
 
-cals.table.info = docbook.info.titlereq
-cals.table = element table { cals.table.info, cals.table.model }
+cals.table.info = docbook.info.titleonlyreq
+cals.table = element table {
+   cals.table.info,
+   db.indexterm*,
+   db.textobject*,
+   (db.mediaobject+|db.tgroup+) }
+
+cals.informaltable.info = docbook.info.titleforbidden
+cals.informaltable = element informaltable {
+   cals.informaltable.info,
+   db.indexterm*,
+   db.textobject*,
+   (db.mediaobject+|db.tgroup+) }
+
+cals.informaltable.tabstyle.attrib = cals.table.tabstyle.attrib
+cals.informaltable.orient.attrib = cals.table.orient.attrib
+cals.informaltable.colsep.attrib = cals.table.colsep.attrib
+cals.informaltable.rowsep.attrib = cals.table.rowsep.attrib
+cals.informaltable.frame.attrib = cals.table.frame.attrib
+cals.informaltable.pgwide.attrib = cals.table.pgwide.attrib
 
 table.choice |= cals.table
-table.contentmodel |= cals.table.model
-
-informaltable.tabstyle.attrib |= cals.table.tabstyle.attrib
-informaltable.orient.attrib |= cals.table.orient.attrib
-informaltable.colsep.attrib |= cals.table.colsep.attrib
-informaltable.rowsep.attrib |= cals.table.rowsep.attrib
-informaltable.frame.attrib |= cals.table.frame.attrib
-informaltable.pgwide.attrib |= cals.table.pgwide.attrib
+informaltable.choice |= cals.informaltable

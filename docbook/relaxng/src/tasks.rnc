@@ -1,0 +1,35 @@
+# (Part of) A prototype DocBook V.next RELAX NG grammar.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.1 and V4.2
+# Release: $Id$
+#
+# ======================================================================
+
+technical.blocks |= db.task
+
+task.info = docbook.info.titleonly
+
+db.task = element task { task.info,
+                         db.tasksummary?,
+			 db.taskprerequisites?,
+			 db.procedure,
+			 db.example*,
+			 db.taskrelated? }
+
+tasksummary.info = docbook.info.titleonly
+
+db.tasksummary = element tasksummary { tasksummary.info, blocks+ }
+
+taskprerequisites.info = docbook.info.titleonly
+
+db.taskprerequisites = element taskprerequisites { taskprerequisites.info, blocks+ }
+
+taskrelated.info = docbook.info.titleonly
+
+db.taskrelated = element taskrelated { taskrelated.info, blocks+ }

@@ -9,29 +9,16 @@
 # Source: Derived from DocBook XML V4.1 and V4.2
 # Release: $Id$
 #
-# ======================================================================
 
+namespace svg = "http://www.w3.org/2000/svg"
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 
-start = db.set
-        | db.setindex
-        | db.book
-	| divisions
-	| components
-	| navigation.components
-	| db.refentry
-	| db.section
-	| db.para
+any.svg =
+   element svg:*
+   {
+      (attribute * { text }
+       | text
+       | any.svg*)*
+   }
 
-include "hier.rnc"
-include "refentry.rnc"
-include "pool.rnc"
-include "tasks.rnc"
-include "callouts.rnc"
-include "ebnf.rnc"
-include "calstbl.rnc"
-include "htmltbl.rnc"
-include "msgset.rnc"
-include "mathml.rnc"
-include "svg.rnc"
-#include "htmlform.rnc"
+imageobject.content |= any.svg

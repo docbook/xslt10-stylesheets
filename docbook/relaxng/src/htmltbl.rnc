@@ -13,6 +13,7 @@
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 
 html.table.model =
+   html.caption,
    (html.col* | html.colgroup*),
    html.thead?,
    html.tfoot?,
@@ -71,6 +72,15 @@ html.cellhalign &=
 html.cellvalign &=
   attribute valign { "top" | "middle" | "bottom" | "baseline" }?
 
+ctrl:common-attributes [ define="html.caption" suppress="1" ]
+
+ctrl:common-linking [ define="html.caption" suppress="1" ]
+
+ctrl:role [ define="html.caption" suppress="1" ]
+
+html.caption.html.attrib = html.attrs
+html.caption = element caption { text }
+
 html.col.html.attrib = html.attrs
 html.col.span.attrib = attribute span { text }?
 html.col.width.attrib = attribute width { text }?
@@ -83,7 +93,7 @@ html.colgroup.span.attrib = attribute span { text }?
 html.colgroup.width.attrib = attribute width { text }?
 html.colgroup.cellhalign.attrib = html.cellhalign
 html.colgroup.cellvalign.attrib = html.cellvalign
-html.colgroup = element colgroup { html.col+ }
+html.colgroup = element colgroup { html.col* }
 
 html.thead.html.attrib = html.attrs
 html.thead.cellhalign.attrib = html.cellhalign
@@ -127,7 +137,22 @@ html.td.cellhalign.attrib = html.cellhalign
 html.td.cellvalign.attrib = html.cellvalign
 html.td = element td { (inlines* | blocks*) }
 
-table.choice |= html.table
-table.contentmodel |= html.table.model
+html.informaltable.model =
+   (html.col* | html.colgroup*),
+   html.thead?,
+   html.tfoot?,
+   (html.tbody+ | html.tr+)
 
-informaltable.frame.attrib |= html.table.frame.attrib
+html.informaltable.html.attrib = html.table.html.attrib
+html.informaltable.summary.attrib = html.table.summary.attrib
+html.informaltable.width.attrib = html.table.width.attrib
+html.informaltable.border.attrib = html.table.border.attrib
+html.informaltable.frame.attrib = html.table.frame.attrib
+html.informaltable.rules.attrib = html.table.rules.attrib
+html.informaltable.cellspacing.attrib = html.table.cellspacing.attrib
+html.informaltable.cellpadding.attrib = html.table.cellpadding.attrib
+
+html.informaltable = element informaltable { html.informaltable.model }
+
+table.choice |= html.table
+informaltable.choice |= html.informaltable

@@ -1,0 +1,40 @@
+# (Part of) A prototype DocBook V.next RELAX NG grammar.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.1 and V4.2
+# Release: $Id$
+#
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+
+productionset.info = docbook.info.titleonly
+
+db.productionset =
+   element productionset { productionset.info, (db.production|db.productionrecap)+ }
+
+ctrl:common-attributes [ element="production" attributes="common.attrib.idreq" ]
+
+db.production = element production { db.lhs, db.rhs, db.constraint* }
+
+db.lhs = element lhs { text }
+
+db.rhs = element rhs { (text|db.nonterminal|db.lineannotation|db.sbr)* }
+
+nonterminal.def.attrib = attribute def { text }
+db.nonterminal = element nonterminal { text }
+
+db.constraint = element constraint { empty }
+
+productionrecap.linkend.attrib = attribute linkend { xsd:IDREF }
+db.productionrecap = element productionrecap { empty }
+
+constraintdef.info = docbook.info.titleonly
+db.constraintdef = element constraintdef { constraintdef.info, blocks+ }
+
+technical.inlines |= db.nonterminal
+technical.blocks |= db.productionset | db.constraintdef
