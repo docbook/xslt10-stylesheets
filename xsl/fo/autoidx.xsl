@@ -52,8 +52,14 @@
          use="concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, see)"/>
 
 <xsl:template name="generate-index">
-  <xsl:variable name="terms" select="//indexterm[count(.|key('letter',
-                                     translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;))[1]) = 1]"/>
+  <!-- FIXME: Ignore class='endofrange' terms because they come out wrong -->
+  <xsl:variable name="terms"
+                select="//indexterm[count(.|key('letter',
+                                                translate(substring(&primary;, 1, 1),
+                                                          &lowercase;,
+                                                          &uppercase;))[1]) = 1
+                                    and not(@class = 'endofrange')]"/>
+
   <xsl:variable name="alphabetical"
                 select="$terms[contains(concat(&lowercase;, &uppercase;),
                                         substring(&primary;, 1, 1))]"/>
