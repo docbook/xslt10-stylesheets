@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+                  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<chapter id="chapter">
+<chapterinfo>
+<releaseinfo role="CVS">$Id$</releaseinfo>
+<author><firstname>Norman</firstname><surname>Walsh</surname>
+        <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
+</author>
+</chapterinfo>
+<title>Unit Test: chapter.001.xml</title>
+
+<para>This is a chapter test.</para>
+
+<para>It's self-referential, too: <xref linkend="chapter"/>.</para>
+
+</chapter>

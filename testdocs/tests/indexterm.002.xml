@@ -19,6 +19,9 @@
 <indexterm>
 <primary>ap2</primary>
 </indexterm>
+<indexterm id="spanstart" class="startofrange">
+<primary>spanning</primary>
+</indexterm>
 
 <indexterm>
 <primary>bp1</primary>
@@ -692,6 +695,10 @@
 <indexterm>
   <primary>gq</primary>
 </indexterm></para>
+
+<indexterm startref="spanstart" class="endofrange">
+<primary>spanning</primary>
+</indexterm>
 
 </appendix>
 

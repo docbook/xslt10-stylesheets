@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
                   "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
-<article>
-<articleinfo>
-<title>Unit Test: refentry.002</title>
+<refentry id="lessminimal">
+<refentryinfo>
+<title>Unit Test: refentry.006</title>
 <releaseinfo role="CVS">$Id$</releaseinfo>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
 </author>
-</articleinfo>
+</refentryinfo>
 
-<refentry id="lessminimal">
 <refmeta>
 <refentrytitle>Also Minimal Title</refentrytitle>
 <manvolnum>3</manvolnum>
@@ -20,31 +19,29 @@
 <refpurpose>Another test of a minimal RefEntry</refpurpose>
 </refnamediv>
 
-<refsection>
+<refsect1>
 <title>Description</title>
 <para>This is a minimal RefEntry.</para>
 
-<refsection>
+<refsect2>
 <title>Subsection</title>
 <para>This is a minimal RefEntry.</para>
 
-<refsection>
+<refsect3>
 <title>Sub-subsection</title>
 <para>This is a minimal RefEntry.</para>
-</refsection>
-</refsection>
-</refsection>
+</refsect3>
+</refsect2>
+</refsect1>
 
-<refsection>
+<refsect1>
 <title>More Description</title>
 <para>This is a not-so minimal RefEntry.</para>
-</refsection>
+</refsect1>
 
-<refsection>
+<refsect1>
 <title>Even More Description</title>
 <para>This is an even less minimal RefEntry.</para>
-</refsection>
+</refsect1>
 
 </refentry>
-
-</article>

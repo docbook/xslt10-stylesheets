@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE glossary PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-                   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
-<glossary>
-<?dbfo glossterm-width="1in"?>
-<glossaryinfo>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                      "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<book>
+<bookinfo>
 <title>Unit Test: glossary.001</title>
 <releaseinfo role="CVS">$Id$</releaseinfo>
 <editor><firstname>Eric</firstname><surname>Raymond</surname></editor>
 <subtitle>Jargon File 4.2.3 (abridged)</subtitle>
 <releaseinfo>Just some test data</releaseinfo>
-</glossaryinfo>
+</bookinfo>
+
+<chapter>
+<title>A Chapter</title>
+
+<para>There's a <sgmltag>firstterm</sgmltag> here:
+<firstterm>1TBS</firstterm>.</para>
+
+<para>And there's a couple of <sgmltag>glossterm</sgmltag>s here:
+<glossterm>1TBS</glossterm>, <glossterm>@-party</glossterm>.</para>
+</chapter>
+
+<glossary>
+<?dbfo glossterm-width="1in"?>
 
 <glossdiv><title>0</title>
 
@@ -272,3 +284,4 @@ that took on a life of their own.  See {Eric Conspiracy} for one example.</para>
 </glossentry>
 </glossdiv>
 </glossary>
+</book>

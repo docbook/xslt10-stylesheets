@@ -12,18 +12,26 @@
 
 <chapter><title>First Chapter</title>
 
+<indexterm zone="app"><primary>Appendix</primary></indexterm>
+
 <para>This is a test paragraph.
-<indexterm>
+<indexterm id="foo">
 <primary>@foo</primary>
 </indexterm>
 <indexterm>
 <primary>&gt; operator</primary>
 </indexterm>
 <indexterm>
+<primary>&lt; operator</primary>
+</indexterm>
+<indexterm id="ap1.a">
 <primary>ap1</primary>
 </indexterm>
 
-<indexterm>
+<indexterm id="ap1.b">
+<primary>ap1</primary>
+</indexterm>
+<indexterm id="ap1.d">
 <primary>ap1</primary>
 </indexterm>
 <indexterm>
@@ -61,14 +69,15 @@
 </indexterm>
 <indexterm>
 <primary>dp2</primary>
+<seealso>dp1, dp1ds1</seealso>
 </indexterm></para>
 
 </chapter>
 
-<appendix><title>First Appendix</title>
+<appendix id="app"><title>First Appendix</title>
 
 <para>This is just a test.
-<indexterm>
+<indexterm id="ap1.e">
 <primary>ap1</primary>
 </indexterm>
 <indexterm>
@@ -103,6 +112,22 @@
 <indexterm>
 <primary>dp2</primary>
 </indexterm></para>
+</appendix>
+
+<appendix><title>Another Appendix</title>
+
+<para>More testing.</para>
+
+<indexterm>
+<primary id="ap1.c">ap1</primary>
+</indexterm>
+<indexterm>
+<primary>ap1</primary>
+</indexterm>
+<indexterm>
+<primary>ap2</primary>
+</indexterm>
+
 </appendix>
 
 <index id="idx"/>

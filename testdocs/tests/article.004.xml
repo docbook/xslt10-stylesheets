@@ -3,7 +3,7 @@
                   "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
 <article id="article">
 <articleinfo>
-<title>Unit Test: article.001.xml</title>
+<title>Unit Test: article.004.xml</title>
 <releaseinfo role="CVS">$Id$</releaseinfo>
 <authorgroup>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
@@ -16,6 +16,7 @@
 <para>It has several paras.</para>
 <para>It has several paras.</para>
 </abstract>
+<copyright><year>2002</year><holder>No one in particular</holder></copyright>
 </articleinfo>
 
 <para>This is an article tests.</para>

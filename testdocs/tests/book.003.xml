@@ -100,6 +100,7 @@ Some abstract. Some abstract. Some abstract. Some abstract.
 </abstract>
 </chapterinfo>
 <title>First Chapter</title>
+
 &blah;
 
 <figure id="figduck"><title>A Test Figure</title>
@@ -109,7 +110,17 @@ A figure. Just to test the numeration.</programlisting>
 
 <section><title>First Section</title>
 
+<figure id="figduck2"><title>Another Test Figure</title>
+<programlisting>
+A figure. Just to test the numeration.</programlisting>
+</figure>
+
  &blah;
+
+<example id="example"><title>Test Example</title>
+<programlisting>
+An example.</programlisting>
+</example>
 
 <section><title>First Subsection</title>
 

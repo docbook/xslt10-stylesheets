@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+                  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<article>
+<articleinfo>
+<title>Unit Test: glossary.003</title>
+<releaseinfo role="CVS">$Id$</releaseinfo>
+</articleinfo>
+
+<para>This is a test.</para>
+
+<glossary>
+<glossentry><glossterm>test1</glossterm>
+<glossdef><para>First definition</para></glossdef>
+</glossentry>
+
+<glossentry><glossterm>test2</glossterm>
+<glossdef><para>First definition</para></glossdef>
+<glossdef><para>Second definition</para></glossdef>
+</glossentry>
+</glossary>
+
+</article>

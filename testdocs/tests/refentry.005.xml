@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
                   "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
-<article>
-<articleinfo>
-<title>Unit Test: refentry.002</title>
+<refentry id="lessminimal">
+<refentryinfo>
+<title>Unit Test: refentry.005</title>
 <releaseinfo role="CVS">$Id$</releaseinfo>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
 </author>
-</articleinfo>
+</refentryinfo>
 
-<refentry id="lessminimal">
 <refmeta>
 <refentrytitle>Also Minimal Title</refentrytitle>
 <manvolnum>3</manvolnum>
@@ -46,5 +45,3 @@
 </refsection>
 
 </refentry>
-
-</article>
