@@ -1,4 +1,4 @@
-README for the Website DTD V2.1b1
+README for the Website DTD V2.2
 
 Website is an XML DTD for building, er, web sites.
 
@@ -11,12 +11,12 @@ catalogs, so this may be irrelevant for you).
 
 Please use the following formal public identifier to identify this DTD:
 
-  "-//Norman Walsh//DTD Website V2.1b1//EN"
+  "-//Norman Walsh//DTD Website V2.2//EN"
 
 For example:
 
-  <!DOCTYPE website PUBLIC "-//Norman Walsh//DTD Website V2.1b1//EN"
-            "http://docbook.sourceforge.net/release/website/2.1b1/website.dtd">
+  <!DOCTYPE website PUBLIC "-//Norman Walsh//DTD Website V2.2//EN"
+            "http://docbook.sourceforge.net/release/website/2.2/website.dtd">
 
 XSL Installation
 ----------------

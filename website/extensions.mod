@@ -1,5 +1,5 @@
 <!-- ====================================================================== -->
-<!-- Website Extensions V2.1b1
+<!-- Website Extensions V2.2
      Copyright (C) 2002 Norman Walsh
      http://sourceforge.net/projects/docbook/
 
@@ -46,5 +46,5 @@
 		| linespecific
 		%local.notation.class;">
 
-<!-- End of Website Extensions V2.1b1 ..................................... -->
+<!-- End of Website Extensions V2.2 ....................................... -->
 <!-- ...................................................................... -->
