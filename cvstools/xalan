@@ -24,14 +24,14 @@ while [ "$DONE" = "0" ]; do
         -2)     shift
 		VERSION=2
 		;;
-        -D11)   shift
-		VERSION=D11
-		;;
         -220)   shift
 		VERSION=220
 		;;
         -231)   shift
 		VERSION=231
+		;;
+        -24D1)  shift
+		VERSION=24D1
 		;;
 	-*)	DONE=1;
 	        ;;
@@ -40,38 +40,32 @@ while [ "$DONE" = "0" ]; do
     esac
 done
 
-JAXP="${JAXP:-/projects/sun/resolver/.classes}:"
-RESOLVER="${RESOLVER:-/projects/sun/resolver/.classes}:"
+JAXP="${JAXP:-/usr/local/jaxp-1.1/jaxp.jar}:"
+RESOLVER="${RESOLVER:-/projects/apache/xml-commons/java/build/classes}:"
 XERCES="${XERCES:-/projects/apache/xml-xerces/java/build/classes}:"
 NDWEXT="/sourceforge/docbook/xsl/extensions/xalan2/.classes";
 
+URES="-URIRESOLVER org.apache.xml.resolver.tools.CatalogResolver"
+ERES="-ENTITYRESOLVER org.apache.xml.resolver.tools.CatalogResolver"
+RESOLVERS="$URES $ERES"
+
 if [ "$VERSION" = "1" ]; then
+    URES=
+    ERES=
     RESOLVERS=
     XALANROOT="${XALANROOT:-/usr/local/java/xalan-1.2.2}"
     XALAN="$XALANROOT/bsf.jar:"
 elif [ "$VERSION" = "2" ]; then
-    URES="-URIRESOLVER com.sun.resolver.tools.CatalogResolver"
-    ERES="-ENTITYRESOLVER com.sun.resolver.tools.CatalogResolver"
-    RESOLVERS="$URES $ERES"
     XALANROOT="${XALANROOT:-/projects/apache/xml-xalan/java}";
     XALAN="$XALANROOT/build/classes:$XALANROOT/bin/bsf.jar:"
-elif [ "$VERSION" = "D11" ]; then
-    URES="-URIRESOLVER com.sun.resolver.tools.CatalogResolver"
-    ERES="-ENTITYRESOLVER com.sun.resolver.tools.CatalogResolver"
-    RESOLVERS="$URES $ERES"
-    XALANROOT="/usr/local/java/xalan-j_2_2_D11/bin"
-    XALAN="$XALANROOT/xalan.jar:$XALANROOT/xml.jar"
 elif [ "$VERSION" = "220" ]; then
-    URES="-URIRESOLVER com.sun.resolver.tools.CatalogResolver"
-    ERES="-ENTITYRESOLVER com.sun.resolver.tools.CatalogResolver"
-    RESOLVERS="$URES $ERES"
     XALANROOT="/usr/local/java/xalan-j_2_2_0/bin"
     XALAN="$XALANROOT/xalan.jar:$XALANROOT/xml-apis.jar"
 elif [ "$VERSION" = "231" ]; then
-#    URES="-URIRESOLVER com.sun.resolver.tools.CatalogResolver"
-#    ERES="-ENTITYRESOLVER com.sun.resolver.tools.CatalogResolver"
-    RESOLVERS="$URES $ERES"
     XALANROOT="/usr/local/java/xalan-j_2_3_1/bin"
+    XALAN="$XALANROOT/xalan.jar:$XALANROOT/xml-apis.jar"
+elif [ "$VERSION" = "24D1" ]; then
+    XALANROOT="/usr/local/java/xalan-j_2_4_D1/bin"
     XALAN="$XALANROOT/xalan.jar:$XALANROOT/xml-apis.jar"
 else
     echo "Unexpected Xalan version $VERSION"
