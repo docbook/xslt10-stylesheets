@@ -3,12 +3,15 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version='1.0'>
 
-<xsl:template match="para|simpara|remark" mode="list">
+<xsl:template match="para[ancestor::listitem or ancestor::step]|
+	             simpara[ancestor::listitem or ancestor::step]|
+		     remark[ancestor::listitem or ancestor::step]">
   <xsl:for-each select="node()">
     <xsl:choose>
-      <xsl:when test="self::literallayout|self::screen|self::programlisting|self::itemizedlist|self::orderedlist|self::variablelist">
+      <xsl:when test="self::literallayout|self::screen|self::programlisting|
+		      self::itemizedlist|self::orderedlist|self::variablelist">
         <xsl:text>&#10;</xsl:text>
-        <xsl:apply-templates select="." mode="list"/>
+        <xsl:apply-templates select="."/>
       </xsl:when>
       <xsl:when test="self::text()">
 	<xsl:if test="starts-with(translate(.,'&#10;',' '), ' ') and
@@ -49,7 +52,8 @@
   <xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="variablelist|glosslist" mode="list">
+<xsl:template match="variablelist[ancestor::listitem or ancestor::step]|
+	             glosslist[ancestor::listitem or ancestor::step]">
   <xsl:text>&#10;.RS&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>&#10;.RE&#10;</xsl:text>
@@ -74,12 +78,12 @@
 
 <xsl:template match="varlistentry/listitem|glossdef">
   <xsl:text>&#10;</xsl:text>
-  <xsl:apply-templates mode="list"/>
+  <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="itemizedlist/listitem">
   <xsl:text>\(bu&#10;</xsl:text>
-  <xsl:apply-templates mode="list"/>
+  <xsl:apply-templates/>
   <xsl:if test="position()!=last()">
     <xsl:text>.TP&#10;</xsl:text>
   </xsl:if>
@@ -88,7 +92,7 @@
 <xsl:template match="orderedlist/listitem|procedure/step">
   <xsl:number format="1."/>
   <xsl:text>&#10;</xsl:text>
-  <xsl:apply-templates mode="list"/>
+  <xsl:apply-templates/>
   <xsl:if test="position()!=last()">
     <xsl:text>.TP&#10;</xsl:text>
   </xsl:if>
@@ -100,7 +104,9 @@
   <xsl:text>.LP&#10;</xsl:text>
 </xsl:template>
 
-<xsl:template match="itemizedlist|orderedlist|procedure" mode="list">
+<xsl:template match="itemizedlist[ancestor::listitem or ancestor::step]|
+	             orderedlist[ancestor::listitem or ancestor::step]|
+		     procedure[ancestor::listitem or ancestor::step]">
   <xsl:text>&#10;.RS&#10;.TP 3&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>.LP&#10;.RE&#10;</xsl:text>
