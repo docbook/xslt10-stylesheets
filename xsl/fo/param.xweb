@@ -173,6 +173,10 @@ generate.section.toc.level;
 &glossterm.auto.link;
 &firstterm.only.link;
 &glossary.collection;
+&glossterm.separation;
+&glossterm.width;
+&glossary.as.blocks;
+&glosslist.as.blocks;
 </reference>
 
 <reference><title>Miscellaneous</title>
@@ -423,8 +427,12 @@ around all these parameters.</para>
 <src:fragref linkend="function.parens.frag"/>
 <src:fragref linkend="generate.index.frag"/>
 <src:fragref linkend="generate.toc.frag"/>
+<src:fragref linkend="glossary.as.blocks.frag"/>
 <src:fragref linkend="glossary.collection.frag"/>
+<src:fragref linkend="glosslist.as.blocks.frag"/>
 <src:fragref linkend="glossterm.auto.link.frag"/>
+<src:fragref linkend="glossterm.separation.frag"/>
+<src:fragref linkend="glossterm.width.frag"/>
 <src:fragref linkend="graphic.default.extension.frag"/>
 <src:fragref linkend="hyphenate.frag"/>
 <src:fragref linkend="informal.object.properties.frag"/>
@@ -459,6 +467,7 @@ around all these parameters.</para>
 <src:fragref linkend="process.empty.source.toc.frag"/>
 <src:fragref linkend="process.source.toc.frag"/>
 <src:fragref linkend="profile.arch.frag"/>
+<src:fragref linkend="profile.attribute.frag"/>
 <src:fragref linkend="profile.condition.frag"/>
 <src:fragref linkend="profile.conformance.frag"/>
 <src:fragref linkend="profile.lang.frag"/>
@@ -467,11 +476,10 @@ around all these parameters.</para>
 <src:fragref linkend="profile.revisionflag.frag"/>
 <src:fragref linkend="profile.role.frag"/>
 <src:fragref linkend="profile.security.frag"/>
-<src:fragref linkend="profile.userlevel.frag"/>
-<src:fragref linkend="profile.vendor.frag"/>
-<src:fragref linkend="profile.attribute.frag"/>
-<src:fragref linkend="profile.value.frag"/>
 <src:fragref linkend="profile.separator.frag"/>
+<src:fragref linkend="profile.userlevel.frag"/>
+<src:fragref linkend="profile.value.frag"/>
+<src:fragref linkend="profile.vendor.frag"/>
 <src:fragref linkend="punct.honorific.frag"/>
 <src:fragref linkend="qanda.inherit.numeration.frag"/>
 <src:fragref linkend="qandadiv.autolabel.frag"/>
@@ -498,20 +506,20 @@ around all these parameters.</para>
 <src:fragref linkend="table.cell.padding.frag"/>
 <src:fragref linkend="table.entry.padding.frag"/>
 <src:fragref linkend="tablecolumns.extension.frag"/>
-<src:fragref linkend="textinsert.extension.frag"/>
-<src:fragref linkend="tex.math.in.alt.frag"/>
 <src:fragref linkend="tex.math.delims.frag"/>
+<src:fragref linkend="tex.math.in.alt.frag"/>
+<src:fragref linkend="textinsert.extension.frag"/>
 <src:fragref linkend="title.font.family.frag"/>
 <src:fragref linkend="title.margin.left.frag"/>
 <src:fragref linkend="toc.indent.width.frag"/>
 <src:fragref linkend="toc.margin.properties.frag"/>
 <src:fragref linkend="toc.section.depth.frag"/>
-<src:fragref linkend="use.extensions.frag"/>
-<src:fragref linkend="use.role.as.xrefstyle.frag"/>
-<src:fragref linkend="use.svg.frag"/>
 <src:fragref linkend="ulink.footnotes.frag"/>
 <src:fragref linkend="ulink.hyphenate.frag"/>
 <src:fragref linkend="ulink.show.frag"/>
+<src:fragref linkend="use.extensions.frag"/>
+<src:fragref linkend="use.role.as.xrefstyle.frag"/>
+<src:fragref linkend="use.svg.frag"/>
 <src:fragref linkend="variablelist.as.blocks.frag"/>
 <src:fragref linkend="verbatim.properties.frag"/>
 <src:fragref linkend="xep.extensions.frag"/>
