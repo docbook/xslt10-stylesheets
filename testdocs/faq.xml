@@ -28,7 +28,7 @@ See <xref linkend="faq-Two"/></para>
     </qandaentry>
 
     <qandaentry>
-      <question id="faq-Two"><para>Question two.</para></question>
+      <question id="faq-Twoc"><para>Question two.</para></question>
       <answer>
 	<orderedlist>
 	  <listitem><para>testing a list</para></listitem>

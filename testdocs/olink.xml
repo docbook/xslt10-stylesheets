@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article
+  PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY book.xml SYSTEM "book.xml" NDATA SGML>
+]>
+<article>
+<articleinfo>
+<title>OLink Test</title>
+<modespec id="book">file:///sourceforge/projects/docbook/testdocs/book.html</modespec>
+</articleinfo>
+
+<para>This is an <olink targetdocent="book.xml" linkmode="book">OLink</olink>
+with a linkmode.
+</para>
+
+<para>This is an <olink targetdocent="book.xml">OLink</olink>
+without a linkmode.
+</para>
+
+<para>This is an olink to a figure:
+<olink targetdocent="book.xml" localinfo="testfig2" type="href"/>.
+</para>
+
+</article>

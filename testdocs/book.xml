@@ -123,7 +123,7 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 <title id="chaptertitle">Section <anchor id="stestfoo"/>Tests</title>
 
 <sect1><title>First Sect1</title>
-<para>Paragraph.</para>
+<para>Paragraph. See <xref linkend="testfig1"/>.</para>
 <figure id="testfig1"><title>Test Figure</title>
 <programlisting>This is a
   ProgramListing

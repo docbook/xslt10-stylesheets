@@ -4,6 +4,24 @@
 <chapter>
 <title>Tables</title>
 
+<table>
+<title>TFoot Test</title>
+<tgroup cols="2">
+<tfoot>
+<row>
+<entry>Foot Left</entry>
+<entry>Foot Right</entry>
+</row>
+</tfoot>
+<tbody>
+<row>
+<entry>Body Left</entry>
+<entry>Body Right</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
 <table id="ug-t3-2">
 <title>Slicing Options</title>
 <tgroup cols="4" align="left">
@@ -74,4 +92,148 @@
 </tbody>
 </tgroup>
 </table>
+
+<para>1:</para>
+
+<!--
++........+........+........+........+
+|        |   B    |        |   D    |
++   A    +........+   C    +........+
+|        |        |        |   E    |
++........+........+........+........+
+-->
+
+<informaltable>
+<tgroup cols="4">
+<colspec colname="c4a" colnum="4"/>
+<tbody>
+<row>
+  <entry morerows="1">A</entry>
+  <entry>B</entry>
+  <entry morerows="1">C</entry>
+  <entry>D</entry>
+</row>
+<row>
+  <entry namest="c4a">E</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+
+<para>2:</para>
+
+<!--
++........+........+........+........+
+|   A    |   B    |   C    |   D    |
++........+........+        +        +
+|   E    |   F    |        |        |
++        +........+        +        +
+|        |   G    |        |        |
++        +........+........+........+
+|        |   H    |        |   I    |
++........+........+........+........+
+-->
+
+<informaltable>
+<tgroup cols="4">
+<colspec colname="c4b" colnum="4"/>
+<tbody>
+<row>
+  <entry>A</entry>
+  <entry>B</entry>
+  <entry morerows="2">C</entry>
+  <entry morerows="2">D</entry>
+</row>
+<row>
+  <entry morerows="2">E</entry>
+  <entry>F</entry>
+</row>
+<row>
+  <entry>G</entry>
+</row>
+<row>
+  <entry>H</entry>
+  <entry namest="c4b">I</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+
+<para>3:</para>
+
+<!--
++........+........+........+........+
+|   A    |   B    |   C    |   D    |
++........+        +........+        +
+|   E    |        |   F    |        |
++        +        +........+........+
+|        |        |        |   G    |
++........+........+........+........+
+|   H    |        |   I    |   J    |
++........+........+........+........+
+-->
+
+<informaltable>
+<tgroup cols="4">
+<colspec colname="c3c" colnum="3"/>
+<colspec colname="c4c" colnum="4"/>
+<tbody>
+<row>
+  <entry>A</entry>
+  <entry morerows="2">B</entry>
+  <entry>C</entry>
+  <entry morerows="1">D</entry>
+</row>
+<row>
+  <entry morerows="1">E</entry>
+  <entry>F</entry>
+</row>
+<row>
+  <entry namest="c4c">G</entry>
+</row>
+<row>
+  <entry>H</entry>
+  <entry namest="c3c">I</entry>
+  <entry>J</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+
+<para>4:</para>
+
+<!--
++........+........+........+........+
+|   A    |        |        |        |
++        +........+........+........+
+|        |   B    |        |   C    |
++        +........+........+........+
+|        |        |   D    |        |
++........+........+        +........+
+|        |        |        |   E    |
++........+........+........+........+
+-->
+
+<informaltable>
+<tgroup cols="4">
+<colspec colname="c3d" colnum="3"/>
+<colspec colname="c4d" colnum="4"/>
+<tbody>
+<row>
+  <entry morerows="2">A</entry>
+</row>
+<row>
+  <entry>B</entry>
+  <entry namest="c4d">C</entry>
+</row>
+<row>
+  <entry namest="c3d" morerows="1">D</entry>
+</row>
+<row>
+  <entry namest="c4d">E</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+
 </chapter>
