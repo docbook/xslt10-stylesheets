@@ -42,9 +42,13 @@
 	param	CDATA	#REQUIRED
 	value	CDATA	#REQUIRED
 	altval	CDATA	#IMPLIED
+        %common.attrib;
 >
 
 <!ELEMENT summary (%word.char.mix;)*>
+<!ATTLIST summary
+        %common.attrib;
+>
 
 <!ELEMENT base EMPTY>
 <!ATTLIST base
@@ -53,7 +57,9 @@
 >
 
 <!ELEMENT keywords (#PCDATA)>
-
+<!ATTLIST keywords
+        %common.attrib;
+>
 
 <!ELEMENT webpage (%webpage.mix;)>
 <!ATTLIST webpage
@@ -61,11 +67,19 @@
 	%xlink-xmlns;	CDATA	#FIXED %xlink-namespace;
 	%rddl-xmlns;	CDATA	#FIXED %rddl-namespace;
 	navto		(yes|no)	"yes"
-	role		CDATA	#IMPLIED
-	id		ID	#REQUIRED
+        %common.attrib;
 >
 
 <!ELEMENT webtoc EMPTY>
+<!ATTLIST webtoc
+        %common.attrib;
+>
+
+<!ELEMENT rss EMPTY>
+<!ATTLIST rss
+	feed	CDATA	#REQUIRED
+        %common.attrib;
+>
 
 <![%allowrddl;[
 <!ENTITY % rddl.mod SYSTEM "rddl.mod">
