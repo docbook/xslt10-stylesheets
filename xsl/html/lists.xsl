@@ -700,6 +700,13 @@
   </li>
 </xsl:template>
 
+<xsl:template match="stepalternatives">
+  <xsl:call-template name="anchor"/>
+  <ul>
+    <xsl:apply-templates/>
+  </ul>
+</xsl:template>
+
 <xsl:template match="step/title">
   <p class="title">
     <b>
