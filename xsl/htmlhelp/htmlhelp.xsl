@@ -285,7 +285,7 @@ Title=</xsl:text><xsl:value-of select="normalize-space(//title[1])"/>
       <xsl:apply-templates select="key('id',$rootid)" mode="hhc"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates mode="hhc"/>
+      <xsl:apply-templates select="." mode="hhc"/>
     </xsl:otherwise>
   </xsl:choose>
 

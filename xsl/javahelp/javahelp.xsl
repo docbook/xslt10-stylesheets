@@ -144,7 +144,7 @@ references. In that case you can select appropriate encoding here.</para>
         <xsl:apply-templates select="key('id',$rootid)" mode="toc"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates mode="toc"/>
+        <xsl:apply-templates select="." mode="toc"/>
       </xsl:otherwise>
     </xsl:choose>
   </toc>
