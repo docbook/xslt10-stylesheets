@@ -149,6 +149,8 @@
 <gentext key="listofexamples" text="List of Examples"/>
 <gentext key="ListofFigures" text="List of Figures"/>
 <gentext key="listoffigures" text="List of Figures"/>
+<gentext key="ListofProcedures" text="List of Procedures"/>
+<gentext key="listofprocedures" text="List of Procedures"/>
 <gentext key="listoftables" text="List of Tables"/>
 <gentext key="ListofTables" text="List of Tables"/>
 <gentext key="ListofUnknown" text="List of Unknown"/>
@@ -354,6 +356,7 @@
 <template name="dedication">%t</template>
 <template name="equation"><Equation/>&#160;%n</template>
 <template name="example"><Example/>&#160;%n</template>
+<template name="figure" style="title"><Figure/>&#160;%n.&#160;%t</template>
 <template name="figure"><Figure/>&#160;%n</template>
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
