@@ -1,0 +1,392 @@
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+                  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY standard "Standard">
+<!ENTITY tracker "http://sourceforge.net/tracker/">
+<!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
+]>
+<article status="Working Draft &ldquo;Beta 0&rdquo;">
+<articleinfo>
+<title>The DocBook Document Type Version 4.2b0</title>
+<subtitle>OASIS DocBook Technical Committee</subtitle>
+<authorgroup>
+<editor>
+  <firstname>Norman</firstname><surname>Walsh</surname>
+  <affiliation>
+    <shortaffil>Sun</shortaffil>
+    <orgname>Sun Microsystems, Inc.</orgname>
+    <address><email>Norman.Walsh@Sun.COM</email></address>
+  </affiliation>
+</editor>
+</authorgroup>
+<pubdate>13 Nov 2001</pubdate>
+<releaseinfo role="meta">
+$Id$
+</releaseinfo>
+<copyright><year>2001</year>
+<holder>
+The Organization for the Advancement of Structured Information
+Standards [OASIS]. All Rights Reserved.
+</holder></copyright>
+<legalnotice>
+<para>This document and translations of it may be copied and furnished to
+others, and derivative works that comment on or otherwise explain it
+or assist in its implementation may be prepared, copied, published and
+distributed, in whole or in part, without restriction of any kind,
+provided that the above copyright notice and this paragraph are
+included on all such copies and derivative works. However, this
+document itself may not be modified in any way, such as by removing
+the copyright notice or references to OASIS, except as needed for the
+purpose of developing OASIS specifications, in which case the
+procedures for copyrights defined in the OASIS Intellectual Property
+Rights document must be followed, or as required to translate it into
+languages other than English.</para>
+
+<para>The limited permissions granted above are perpetual and will not be
+revoked by OASIS or its successors or assigns.</para>
+
+<para>This document and the information contained herein is provided
+on an <quote>AS IS</quote> basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE
+INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED
+WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+</para>
+</legalnotice>
+
+<legalnotice role="status"><title>Status of this Document</title>
+
+<para>This is a working draft constructed by the editor. It is not
+an official committee work product and may not reflect the consensus
+opinion of the committee.</para>
+
+<!--
+<para>This Committee Specification was approved for publication by the
+OASIS DocBook Technical Committee. It represents the
+consensus of the committee. Comments on this document may be
+sent to
+<ulink url="mailto:docbook@lists.oasis-open.org">docbook@lists.oasis-open.org</ulink>.
+</para>
+-->
+
+</legalnotice>
+
+<abstract><title>Abstract</title>
+
+<para>DocBook is general purpose XML and SGML document type
+particularly well suited to books and papers about computer hardware
+and software (though it is by no means limited to these applications).
+</para>
+
+<para>The Version 4.2 release is a maintainance release. It introduces
+no backwards-incompatible changes.</para>
+
+</abstract>
+
+<revhistory>
+<revision role="docbook-4.2b0.html">
+  <revnumber>Working Draft &ldquo;Beta 0&rdquo;</revnumber>
+  <date>13 Nov 2001</date>
+</revision>
+</revhistory>
+</articleinfo>
+
+<section id="s.intro">
+<title>Introduction</title>
+
+<para>DocBook is general purpose XML and SGML document type
+particularly well suited to books and papers about computer hardware
+and software (though it is by no means limited to these applications).
+</para>
+
+<para>The <ulink url="mailto:docbook-tc@oasis-open.org">DocBook
+Technical Committee</ulink> maintains the DocBook schema. DocBook is
+officially available as a Document Type Definition (DTD) for
+both
+<ulink url="http://xml.coverpages.org/xmlIntro.html">XML</ulink> and
+<ulink url="http://xml.coverpages.org/general.html#overview">SGML</ulink>.
+It is unofficially available in other forms as well.</para>
+
+<para>The Version 4.2 release is a maintainance release. It introduces
+no backwards-incompatible changes.</para>
+
+<para>The DocBook Technical Committee welcomes bug reports and
+requests for enhancement (RFEs) from the user community. The current list
+of outstanding requests is available through the
+<ulink url="http://sourceforge.net/">SourceForge</ulink>
+<ulink url="&tracker;/?atid=384107&amp;group_id=21935&amp;func=browse">tracker</ulink>
+interface. This is also the preferred mechanism for submitting new requests.
+Old RFEs, from a previous legacy tracking system, are
+<ulink url="http://www.oasis-open.org/docbook/old-rfes.html">archived</ulink>
+for reference.</para>
+
+</section>
+
+<section id="s.terminology"><title>Terminology</title>
+
+<para>The key words <glossterm>must</glossterm>, <glossterm>must
+not</glossterm>, <glossterm>required</glossterm>,
+<glossterm>shall</glossterm>, <glossterm>shall not</glossterm>,
+<glossterm>should</glossterm>, <glossterm>should not</glossterm>,
+<glossterm>recommended</glossterm>, <glossterm>may</glossterm>, and
+<glossterm>optional</glossterm> in this &standard; are to be
+interpreted as described in <xref linkend="rfc2119"/>. Note that for
+reasons of style, these words are not capitalized in this
+document.</para>
+
+</section>
+
+<section id="s.changes">
+<title>Changes from DocBook V4.1</title>
+
+<para>Each of the changes made between DocBook V4.1 and DocBook XML V4.1.2
+is summarized here. For complete details, consult the individual RFEs and
+the <ulink url="http://www.oasis-open.org/docbook/#meetings">meeting
+minutes</ulink>.</para>
+
+<section id="s.bugs">
+<title>Bug Fixes</title>
+
+<itemizedlist>
+<listitem id="rfe.434439"><para><ulink url="&RFE;aid=434439">RFE 434439</ulink>:
+Add language attribute to MethodSynopsis
+</para></listitem>
+<listitem id="rfe.435485"><para><ulink url="&RFE;aid=435485">RFE 435485</ulink>:
+Parameter entity <sgmltag class="paramentity">tbl.table.mdl</sgmltag> can't be redefined cleanly
+</para></listitem>
+<listitem id="rfe.cm"><para>Expand the content model of the following
+elements from <sgmltag class="paramentity">smallcptr.char.mix</sgmltag> back to
+<sgmltag class="paramentity">cptr.char.mix</sgmltag>: <sgmltag>interfacename</sgmltag>,
+<sgmltag>action</sgmltag>, <sgmltag>database</sgmltag>,
+<sgmltag>filename</sgmltag>, <sgmltag>hardware</sgmltag>,
+<sgmltag>keycap</sgmltag>, <sgmltag>option</sgmltag>,
+<sgmltag>parameter</sgmltag>, <sgmltag>property</sgmltag>, and
+<sgmltag>systemitem</sgmltag> (<sgmltag>command</sgmltag>,
+<sgmltag>interface</sgmltag>, and <sgmltag>literal</sgmltag> were
+never reduced).</para></listitem>
+</itemizedlist>
+
+</section>
+<section id="s.enhancements">
+<title>Enhancements</title>
+
+<itemizedlist>
+<listitem id="rfe.417671"><para><ulink url="&RFE;aid=417671">RFE 417671</ulink>:
+Add recursive section element to Refentry
+</para></listitem>
+<listitem id="rfe.426382"><para><ulink url="&RFE;aid=426382">RFE 426382</ulink>:
+Allow SimpleSect inside Section
+</para></listitem>
+<listitem id="rfe.431413"><para><ulink url="&RFE;aid=431413">RFE 431413</ulink>:
+Former RFE 121: Add markup for signals
+</para></listitem>
+<listitem id="rfe.431415"><para><ulink url="&RFE;aid=431415">RFE 431415</ulink>:
+Former RFE 124: Add markup for host identifiers
+</para></listitem>
+<listitem id="rfe.431418"><para><ulink url="&RFE;aid=431418">RFE 431418</ulink>:
+Former RFE 128: Typing and linking in FuncDef (partially implemented)
+</para></listitem>
+<listitem id="rfe.431419"><para><ulink url="&RFE;aid=431419">RFE 431419</ulink>:
+Former RFE 130: Markup protocol, Filesystem type, and partion.
+</para></listitem>
+<listitem id="rfe.435466"><para><ulink url="&RFE;aid=435466">RFE 435466</ulink>:
+%beginpage.exclusion; not used in dbpool.mod
+</para></listitem>
+<listitem id="rfe.436072"><para><ulink url="&RFE;aid=436072">RFE 436072</ulink>:
+Need parameter entity for info* content
+</para></listitem>
+<listitem id="rfe.439136"><para><ulink url="&RFE;aid=439136">RFE 439136</ulink>:
+Allow literallayout in <sgmltag>epigraph</sgmltag>
+</para></listitem>
+<listitem id="rfe.440597"><para><ulink url="&RFE;aid=440597">RFE 440597</ulink>:
+Add SVG notation
+</para></listitem>
+<listitem id="rfe.480956"><para><ulink url="&RFE;aid=480956">RFE 480956</ulink>:
+Add <sgmltag>co</sgmltag> to <sgmltag>userinput</sgmltag>, etc.
+</para></listitem>
+<listitem id="rfe.133"><para>Former RFE 133:
+Added <sgmltag>newsgroup</sgmltag> class to <sgmltag>systemitem</sgmltag>.
+</para></listitem>
+<listitem id="rfe.140"><para>Former RFE 140:
+Allow multiple <sgmltag>msgexplan</sgmltag> inside <sgmltag>simplemsgentry</sgmltag>.
+</para></listitem>
+</itemizedlist>
+
+</section>
+</section>
+
+<section id="docbook">
+<title>The DocBook Document Type V4.2b0</title>
+
+<para>The DocBook document type is distributed for
+<ulink url="http://www.oasis-open.org/docbook/xml/">XML</ulink> and
+<ulink url="http://www.oasis-open.org/docbook/sgml/">SGML</ulink>
+from the
+<ulink url="http://www.oasis-open.org/docbook/">DocBook site</ulink> at
+<ulink url="http://www.oasis-open.org/">OASIS</ulink>
+</para>
+
+<!--
+<section>
+<title>DocBook SGML</title>
+
+<itemizedlist>
+<listitem>
+<para>Public identifier: -//OASIS//DTD DocBook V4.2b0//EN
+</para>
+</listitem>
+<listitem>
+<para>System identifier: http://www.oasis-open.org/docbook/sgml/4.2b0/docbook.dtd
+</para>
+</listitem>
+</itemizedlist>
+
+<screen><inlinemediaobject>
+<imageobject>
+<imagedata fileref="../sgml/docbook.dtd" format="linespecific"/>
+</imageobject>
+</inlinemediaobject></screen>
+</section>
+
+<section>
+<title>DocBook XML</title>
+
+<itemizedlist>
+<listitem>
+<para>Public identifier: -//OASIS//DTD DocBook XML V4.2b0//EN
+</para>
+</listitem>
+<listitem>
+<para>System identifier: http://www.oasis-open.org/docbook/xml/4.2b0/docbookx.dtd
+</para>
+</listitem>
+</itemizedlist>
+
+<screen><inlinemediaobject>
+<imageobject>
+<imagedata fileref="docbookx.dtd" format="linespecific"/>
+</imageobject>
+</inlinemediaobject></screen>
+</section>
+
+<section>
+<title>DocBook Notations</title>
+
+<itemizedlist>
+<listitem>
+<para>Public identifier: -//OASIS//ENTITIES DocBook Notations V4.2b0//EN
+</para>
+</listitem>
+</itemizedlist>
+
+<screen><inlinemediaobject>
+<imageobject>
+<imagedata fileref="dbnotnx.mod" format="linespecific"/>
+</imageobject>
+</inlinemediaobject></screen>
+</section>
+
+<section>
+<title>DocBook Character Entities</title>
+
+<itemizedlist>
+<listitem>
+<para>Public identifier: -//OASIS//ENTITIES DocBook Character Entities V4.2b0//EN
+</para>
+</listitem>
+</itemizedlist>
+
+<screen><inlinemediaobject>
+<imageobject>
+<imagedata fileref="dbcentx.mod" format="linespecific"/>
+</imageobject>
+</inlinemediaobject></screen>
+</section>
+
+<section>
+<title>DocBook Information Pool</title>
+
+<itemizedlist>
+<listitem>
+<para>Public identifier: -//OASIS//ENTITIES DocBook Information Pool V4.2b0//EN
+</para>
+</listitem>
+</itemizedlist>
+
+<screen><inlinemediaobject>
+<imageobject>
+<imagedata fileref="dbpoolx.mod" format="linespecific"/>
+</imageobject>
+</inlinemediaobject></screen>
+</section>
+
+<section>
+<title>DocBook Hierarchy</title>
+
+<itemizedlist>
+<listitem>
+<para>Public identifier: -//OASIS//ENTITIES DocBook Document Hierarchy V4.2b0//EN
+</para>
+</listitem>
+</itemizedlist>
+
+<screen><inlinemediaobject>
+<imageobject>
+<imagedata fileref="dbhierx.mod" format="linespecific"/>
+</imageobject>
+</inlinemediaobject></screen>
+</section>
+
+<section>
+<title>DocBook General Entities</title>
+
+<itemizedlist>
+<listitem>
+<para>Public identifier: -//OASIS//ENTITIES DocBook Additional General Entities V4.2b0//EN
+</para>
+</listitem>
+</itemizedlist>
+
+<screen><inlinemediaobject>
+<imageobject>
+<imagedata fileref="dbgenent.mod" format="linespecific"/>
+</imageobject>
+</inlinemediaobject></screen>
+</section>
+-->
+
+</section>
+
+<appendix id="a.committee" role="non-normative">
+<title>OASIS DocBook Technical Committee</title>
+
+<para>The following individuals were members of the committee during
+the formulation of this &standard;:</para>
+
+<itemizedlist>
+<listitem><para>Dennis Evans</para></listitem>
+<listitem><para>Patricia Gee-Best</para></listitem>
+<listitem><para>Dick Hamilton</para></listitem>
+<listitem><para>Nancy (Paisner) Harrison</para></listitem>
+<listitem><para>Sabine Ocker</para></listitem>
+<listitem><para>Michael Sabrio</para></listitem>
+<listitem><para>Michael Smith</para></listitem>
+<listitem><para>Norman Walsh (Chair,Editor)</para></listitem>
+</itemizedlist>
+
+</appendix>
+
+<bibliography id="bibl"><title>References</title>
+
+<bibliodiv><title>Normative</title>
+
+<bibliomixed id="iso8879"/>
+<bibliomixed id="xml-rec"/>
+<bibliomixed id="xml-names"/>
+<bibliomixed id="rfc2119"/>
+<bibliomixed id="tr9401"/>
+<bibliomixed id="xmlcatalogs"/>
+
+</bibliodiv>
+
+</bibliography>
+
+</article>
