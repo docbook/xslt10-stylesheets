@@ -22,14 +22,20 @@
   <xsl:apply-templates mode="bold" select="node-you-want" />
 -->
 <xsl:template mode="bold" match="*">
+  <xsl:variable name="content">
+    <xsl:apply-templates/>
+  </xsl:variable>
   <xsl:text>\fB</xsl:text>
-  <xsl:value-of select="."/>
+  <xsl:value-of select="$content"/>
   <xsl:text>\fR</xsl:text>
 </xsl:template>
 
 <xsl:template mode="italic" match="*">
+  <xsl:variable name="content">
+    <xsl:apply-templates/>
+  </xsl:variable>
   <xsl:text>\fI</xsl:text>
-  <xsl:value-of select="."/>
+  <xsl:value-of select="$content"/>
   <xsl:text>\fR</xsl:text>
 </xsl:template>
 
@@ -278,13 +284,13 @@
 </xsl:template>
 
 <xsl:template match="copyright">
-  <xsl:text>Copyright </xsl:text>
+  <xsl:text>Copyright \(co  </xsl:text>
   <xsl:apply-templates select="./year" />
   <xsl:text>&#10;.Sp&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="email">
-  <xsl:text>  &lt;</xsl:text>
+  <xsl:text> &lt;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>&gt;</xsl:text>
 </xsl:template>
@@ -398,6 +404,24 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template name="replace-dash">
+  <xsl:param name="content" select="''"/>
+  <xsl:call-template name="replace-string">
+    <xsl:with-param name="content" select="$content"/>
+    <xsl:with-param name="replace" select="'-'"/>
+    <xsl:with-param name="with" select="'\-'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="replace-ndash">
+  <xsl:param name="content" select="''"/>
+  <xsl:call-template name="replace-string">
+    <xsl:with-param name="content" select="$content"/>
+    <xsl:with-param name="replace" select="'&#8211;'"/>
+    <xsl:with-param name="with" select="'-'"/>
+  </xsl:call-template>
+</xsl:template>
+
 <xsl:template name="replace-mdash">
   <xsl:param name="content" select="''"/>
   <xsl:call-template name="replace-string">
@@ -459,12 +483,20 @@
         <xsl:with-param name="content">
           <xsl:call-template name="replace-mdash">
             <xsl:with-param name="content">
-              <xsl:call-template name="replace-setmn">
+              <xsl:call-template name="replace-ndash">
                 <xsl:with-param name="content">
-		  <xsl:call-template name="replace-period">
+                  <xsl:call-template name="replace-dash">
                     <xsl:with-param name="content">
-                      <xsl:call-template name="replace-backslash">
-		        <xsl:with-param name="content" select="$content"/>
+                      <xsl:call-template name="replace-setmn">
+                        <xsl:with-param name="content">
+        		  <xsl:call-template name="replace-period">
+                            <xsl:with-param name="content">
+                              <xsl:call-template name="replace-backslash">
+		                <xsl:with-param name="content" select="$content"/>
+			      </xsl:call-template>
+			    </xsl:with-param>
+			  </xsl:call-template>
+			</xsl:with-param>
                       </xsl:call-template>
                     </xsl:with-param>
 		  </xsl:call-template>

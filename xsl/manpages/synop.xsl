@@ -42,6 +42,19 @@
   <xsl:variable name="arg">
     <xsl:apply-templates/>
   </xsl:variable>
+  <xsl:choose>
+    <xsl:when test="local-name(.) = 'arg'">
+      <!-- Prevent breaking up an argument by wrapping it -->
+      <xsl:call-template name="replace-string">
+        <xsl:with-param name="content" select="normalize-space($arg)"/>
+        <xsl:with-param name="replace" select="' '"/>
+        <xsl:with-param name="with" select="'\ '"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="normalize-space($arg)"/>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:value-of select="normalize-space($arg)"/>
   <xsl:choose>
     <xsl:when test="$rep='repeat'">
@@ -96,75 +109,15 @@
   <xsl:apply-templates mode="italic" select="."/>
 </xsl:template>
 
-<xsl:template match="sbr">
-  <xsl:variable name="cmd" select="ancestor::cmdsynopsis/command"/>
-  <xsl:text>&#10;</xsl:text>
-  <xsl:value-of select="translate($cmd,$cmd,'                        ')"/>
-</xsl:template>
-
-<xsl:template name="wrap-cmd">
-  <xsl:param name="indent" select="''"/>
-  <xsl:param name="text" select="''"/>
-  <xsl:param name="allow" select="75"/>
-  <xsl:param name="width" select="$allow - string-length($indent)"/>
-  <xsl:variable name="total" select="string-length($text)"/>
-  <xsl:variable name="split"
-                select="substring($text,$width+1,$total - $width)"/>
-  <xsl:variable name="fragment" select="substring-before($split,' ')"/>
-  <xsl:variable name="line">
-    <xsl:value-of select="substring($text,1,$width)"/>
-    <xsl:choose>
-      <xsl:when test="$fragment!=''">
-        <xsl:value-of select="$fragment"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$split"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:choose>
-    <xsl:when test="$split=''">
-      <xsl:value-of select="$line"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="$line"/>
-      <xsl:text>&#10;</xsl:text>
-      <xsl:value-of select="$indent"/>
-      <xsl:variable name="done" select="string-length($line)"/>
-      <xsl:variable name="remaining" select="$total - $done + 1"/>
-      <xsl:call-template name="wrap-cmd">
-        <xsl:with-param name="indent" select="$indent"/>
-        <xsl:with-param name="text"
-                        select="substring($text,1+$done,$remaining)"/>
-      </xsl:call-template>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
+<xsl:template match="sbr" />
 
 <xsl:template match="cmdsynopsis">
-  <xsl:text>&#10;.nf&#10;</xsl:text>
-  <xsl:choose>
-    <xsl:when test=".//sbr">
-      <!-- The author has put explicit formatting hints in for us. -->
-      <xsl:apply-templates/>
-    </xsl:when>
-    <xsl:otherwise>
-      <!-- Try to do some smart formatting. -->
-      <xsl:variable name="cmdsynopsis">
-        <xsl:apply-templates/>
-      </xsl:variable>
-      <xsl:variable name="cmd" select="command"/>
-      <xsl:variable name="indent"
-                    select="translate($cmd,$cmd,'                         ')"/>
-      <xsl:text>\fB</xsl:text>
-      <xsl:value-of select="$cmd"/><xsl:text>\fR </xsl:text>
-      <xsl:call-template name="wrap-cmd">
-        <xsl:with-param name="indent" select="$indent"/>
-        <xsl:with-param name="text" select="substring-after($cmdsynopsis,' ')"/>
-      </xsl:call-template>
-    </xsl:otherwise>
-  </xsl:choose>
-  <xsl:text>&#10;.fi&#10;</xsl:text>
+  <xsl:text>.ad l&#10;.hy 0&#10;</xsl:text>
+  <xsl:text>.HP </xsl:text>
+  <xsl:value-of select="string-length (normalize-space (command)) + 1"/>
+  <xsl:text>&#10;</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>&#10;.ad&#10;.hy&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="synopsis">
