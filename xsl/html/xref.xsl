@@ -400,6 +400,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="link" name="link">
+  <xsl:param name="a.target"/>
+
   <xsl:variable name="targets" select="key('id',@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
 
@@ -410,6 +412,10 @@
   <a>
     <xsl:if test="@id">
       <xsl:attribute name="name"><xsl:value-of select="@id"/></xsl:attribute>
+    </xsl:if>
+
+    <xsl:if test="$a.target">
+      <xsl:attribute name="target"><xsl:value-of select="$a.target"/></xsl:attribute>
     </xsl:if>
 
     <xsl:attribute name="href">
