@@ -17,15 +17,15 @@
   <fm:License>MIT/X Consortium License</fm:License>
 -->
   <fm:Release-Focus>
-  <!-- initial freshmeat announcement -->
-  <!-- documentation -->
-  <!-- code cleanup -->
+  <!-- Initial freshmeat announcement -->
+  <!-- Documentation -->
+  <!-- Code cleanup -->
   <!-- Minor feature enhancements -->
-  major feature enhancements
+  Major feature enhancements
   <!-- Minor bugfixes -->
-  <!-- major bugfixes -->
-  <!-- minor security fixes -->
-  <!-- major security fixes -->
+  <!-- Major bugfixes -->
+  <!-- Minor security fixes -->
+  <!-- Major security fixes -->
   </fm:Release-Focus>
   <fm:Home-Page-URL>http://sourceforge.net/projects/docbook/</fm:Home-Page-URL>
   <fm:Gzipped-Tar-URL>http://prdownloads.sourceforge.net/docbook/docbook-xsl-{VERSION}.tar.gz?download</fm:Gzipped-Tar-URL>
