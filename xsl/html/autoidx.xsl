@@ -189,7 +189,7 @@
                                              &lowercase;,&uppercase;)"/>
 
   <xsl:apply-templates select="key('letter', $key)
-                               [count(.|key('primary', &primary;)[&scope;][1]) = 1]"
+                               [&scope;][count(.|key('primary', &primary;)[1]) = 1]"
                        mode="index-primary">
     <xsl:with-param name="scope" select="$scope"/>
     <xsl:with-param name="role" select="$role"/>
