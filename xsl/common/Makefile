@@ -1,6 +1,6 @@
 include ../../cvstools/Makefile.incl
 
-SOURCES=af.xml bg.xml \
+SOURCES=af.xml ar.xml bg.xml \
         ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml et.xml eu.xml fi.xml \
         fr.xml he.xml hu.xml id.xml it.xml ja.xml ko.xml lt.xml nl.xml nn.xml \
         no.xml pl.xml \
@@ -12,6 +12,7 @@ GENSTYLE=../../gentext/xsl/xsl.xsl
 all: $(SOURCES)
 
 af.xml: ../../gentext/locale/af.xml $(GENSTYLE)
+ar.xml: ../../gentext/locale/ar.xml $(GENSTYLE)
 bg.xml: ../../gentext/locale/bg.xml $(GENSTYLE)
 ca.xml: ../../gentext/locale/ca.xml $(GENSTYLE)
 cs.xml: ../../gentext/locale/cs.xml $(GENSTYLE)
