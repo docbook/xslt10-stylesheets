@@ -1,5 +1,6 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 exclude-result-prefixes="doc"
                 version='1.0'>
@@ -21,7 +22,7 @@ $Id$
 </releaseinfo>
 <author><surname>Walsh</surname>
 <firstname>Norman</firstname></author>
-<copyright><year>1999</year><year>2000</year>
+<copyright><year>1999</year><year>2000</year><year>2001</year>
 <holder>Norman Walsh</holder>
 </copyright>
 </referenceinfo>
@@ -50,124 +51,93 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <!-- ==================================================================== -->
 
-<xsl:param name="ebnf.table.bgcolor">#F5DCB3</xsl:param>
-
-<doc:param name="ebnf.table.bgcolor" xmlns="">
-<refpurpose>Background color for EBNF tables</refpurpose>
-<refdescription>
-<para>Sets the background color for EBNF tables. No <sgmltag>bgcolor</sgmltag>
-attribute is output if <varname>ebnf.table.bgcolor</varname> is set to
-the null string. The default value matches the value used in recent
-online versions of the W3C's XML Spec productions.</para>
-</refdescription>
-</doc:param>
-
-<xsl:param name="ebnf.table.border">1</xsl:param>
-
-<doc:param name="ebnf.table.border" xmlns="">
-<refpurpose>Selects border on EBNF tables</refpurpose>
-<refdescription>
-<para>Selects the border on EBNF tables. If non-zero, the tables have
-borders, otherwise they don't.</para>
-</refdescription>
-</doc:param>
-
-<!-- ==================================================================== -->
-
 <xsl:template match="productionset">
-  <table width="100%" cellpadding="5">
-    <xsl:if test="$ebnf.table.bgcolor != ''">
-      <xsl:attribute name="bgcolor">
-	<xsl:value-of select="$ebnf.table.bgcolor"/>
-      </xsl:attribute>
-    </xsl:if>
-    <xsl:if test="$ebnf.table.border != 0">
-      <xsl:attribute name="border">1</xsl:attribute>
-    </xsl:if>
-    <xsl:attribute name="class">
-      <xsl:value-of select="name(.)"/>
-    </xsl:attribute>
-    <xsl:attribute name="summary">
-      <xsl:text>EBNF</xsl:text>
-      <xsl:if test="title">
-	<xsl:text> for </xsl:text>
-	<xsl:value-of select="title"/>
-      </xsl:if>
-    </xsl:attribute>
+  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
-    <xsl:if test="title">
-      <tr>
-	<th align="left" valign="top" class="{name(.)}">
-	  <xsl:apply-templates select="title"/>
-	</th>
-      </tr>
-    </xsl:if>
-    <tr>
-      <td>
-	<table border="0" width="99%" cellpadding="0">
-	  <xsl:if test="$ebnf.table.bgcolor != ''">
-	    <xsl:attribute name="bgcolor">
-	      <xsl:value-of select="$ebnf.table.bgcolor"/>
-	    </xsl:attribute>
-	  </xsl:if>
-	  <xsl:attribute name="class">
-	    <xsl:value-of select="name(.)"/>
-	  </xsl:attribute>
-	  <xsl:attribute name="summary">EBNF productions</xsl:attribute>
-	  <xsl:apply-templates select="production|productionrecap"/>
-	</table>
-      </td>
-    </tr>
-  </table>
+  <xsl:choose>
+    <xsl:when test="title">
+      <fo:table-and-caption id="{$id}"
+                            xsl:use-attribute-sets="formal.object.properties">
+        <fo:table-caption>
+          <fo:block xsl:use-attribute-sets="formal.title.properties">
+            <xsl:apply-templates select="." mode="object.title.markup"/>
+          </fo:block>
+        </fo:table-caption>
+        <fo:table table-layout="fixed" width="100%">
+          <fo:table-body>
+            <xsl:apply-templates select="production|productionrecap"/>
+          </fo:table-body>
+        </fo:table>
+      </fo:table-and-caption>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:table table-layout="fixed" width="100%">
+        <fo:table-body>
+          <xsl:apply-templates select="production|productionrecap"/>
+        </fo:table-body>
+      </fo:table>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="productionset/title">
-  <xsl:apply-templates/>
+  <!-- suppressed -->
 </xsl:template>
 
 <xsl:template match="production">
   <xsl:param name="recap" select="false()"/>
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
-  <tr>
-    <td align="left" valign="top" width="3%">
-      <xsl:text>[</xsl:text>
-      <xsl:number count="production" level="any"/>
-      <xsl:text>]</xsl:text>
-    </td>
-    <td align="right" valign="top" width="10%">
-      <xsl:choose>
-	<xsl:when test="$recap">
-	  <a>
-	    <xsl:attribute name="href">
-	      <xsl:call-template name="href.target">
-		<xsl:with-param name="object" select="."/>
-	      </xsl:call-template>
-	    </xsl:attribute>
-	    <xsl:apply-templates select="lhs"/>
-	  </a>
-	</xsl:when>
-	<xsl:otherwise>
-	  <a name="{$id}"/>
-	  <xsl:apply-templates select="lhs"/>
-	</xsl:otherwise>
-      </xsl:choose>
-    </td>
-    <td valign="top" width="5%" align="center"><tt>::=</tt></td>
-    <td valign="top" width="52%">
-      <xsl:apply-templates select="rhs"/>
-    </td>
-    <td align="left" valign="top" width="30%">
-      <xsl:choose>
-	<xsl:when test="rhs/lineannotation|constraint">
-	  <xsl:apply-templates select="rhs/lineannotation" mode="rhslo"/>
-	  <xsl:apply-templates select="constraint"/>
-	</xsl:when>
-	<xsl:otherwise>
-	  <xsl:text>&#160;</xsl:text>
-	</xsl:otherwise>
-      </xsl:choose>
-    </td>
-  </tr>
+  <fo:table-row>
+    <fo:table-cell width="3%">
+      <fo:block text-align="start">
+        <xsl:text>[</xsl:text>
+        <xsl:number count="production" level="any"/>
+        <xsl:text>]</xsl:text>
+      </fo:block>
+    </fo:table-cell>
+    <fo:table-cell width="10%">
+      <fo:block text-align="end">
+        <xsl:choose>
+          <xsl:when test="$recap">
+            <fo:basic-link internal-destination="{$id}"
+                           xsl:use-attribute-sets="xref.properties">
+              <xsl:apply-templates select="lhs"/>
+            </fo:basic-link>
+          </xsl:when>
+          <xsl:otherwise>
+            <fo:wrapper id="{$id}">
+              <xsl:apply-templates select="lhs"/>
+            </fo:wrapper>
+          </xsl:otherwise>
+        </xsl:choose>
+      </fo:block>
+    </fo:table-cell>
+    <fo:table-cell width="5%">
+      <fo:block text-align="center">
+        <fo:inline font-family="{$monospace.font.family}">
+          <xsl:text>::=</xsl:text>
+        </fo:inline>
+      </fo:block>
+    </fo:table-cell>
+    <fo:table-cell width="52%">
+      <fo:block>
+        <xsl:apply-templates select="rhs"/>
+      </fo:block>
+    </fo:table-cell>
+    <fo:table-cell width="30%" border-start-width="3pt">
+      <fo:block text-align="start">
+        <xsl:choose>
+          <xsl:when test="rhs/lineannotation|constraint">
+            <xsl:apply-templates select="rhs/lineannotation" mode="rhslo"/>
+            <xsl:apply-templates select="constraint"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>&#160;</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </fo:block>
+    </fo:table-cell>
+  </fo:table-row>
 </xsl:template>
 
 <xsl:template match="productionrecap">
@@ -241,9 +211,9 @@ borders, otherwise they don't.</para>
       <xsl:when test="$linkend != ''">
 	<xsl:variable name="targets" select="id($linkend)"/>
 	<xsl:variable name="target" select="$targets[1]"/>
-	<xsl:call-template name="href.target">
-	  <xsl:with-param name="object" select="$target"/>
-	</xsl:call-template>
+        <xsl:call-template name="object.id">
+          <xsl:with-param name="object" select="$target"/>
+        </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
 	<xsl:value-of select="@def"/>
@@ -251,25 +221,26 @@ borders, otherwise they don't.</para>
     </xsl:choose>
   </xsl:variable>
 
-  <a href="{$href}">
+  <fo:basic-link internal-destination="{$href}"
+                 xsl:use-attribute-sets="xref.properties">
     <xsl:choose>
       <xsl:when test="*|text()">
-	<xsl:apply-templates/>
+        <xsl:apply-templates/>
       </xsl:when>
       <xsl:otherwise>
-	<xsl:choose>
-	  <xsl:when test="$linkend != ''">
-	    <xsl:variable name="targets" select="id($linkend)"/>
-	    <xsl:variable name="target" select="$targets[1]"/>
-	    <xsl:apply-templates select="$target/lhs"/>
-	  </xsl:when>
-	  <xsl:otherwise>
-	    <xsl:text>???</xsl:text>
-	  </xsl:otherwise>
-	</xsl:choose>
+        <xsl:choose>
+          <xsl:when test="$linkend != ''">
+            <xsl:variable name="targets" select="id($linkend)"/>
+            <xsl:variable name="target" select="$targets[1]"/>
+            <xsl:apply-templates select="$target/lhs"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>???</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:otherwise>
     </xsl:choose>
-  </a>
+  </fo:basic-link>
 </xsl:template>
 
 <xsl:template match="rhs/lineannotation">
@@ -295,13 +266,13 @@ borders, otherwise they don't.</para>
   <xsl:variable name="href">
     <xsl:variable name="targets" select="id(@linkend)"/>
     <xsl:variable name="target" select="$targets[1]"/>
-    <xsl:call-template name="href.target">
+    <xsl:call-template name="object.id">
       <xsl:with-param name="object" select="$target"/>
     </xsl:call-template>
   </xsl:variable>
 
   <xsl:if test="preceding-sibling::constraint">
-    <br/>
+    <fo:inline linefeed-treatment="preserve">&#xA;</fo:inline>
   </xsl:if>
   <xsl:text>[&#160;</xsl:text>
 
@@ -320,24 +291,26 @@ borders, otherwise they don't.</para>
     </xsl:otherwise>
   </xsl:choose>
 
-  <a href="{$href}">
+  <fo:basic-link internal-destination="{$href}"
+                 xsl:use-attribute-sets="xref.properties">
     <xsl:variable name="targets" select="id(@linkend)"/>
     <xsl:variable name="target" select="$targets[1]"/>
     <xsl:apply-templates select="$target" mode="title.markup"/>
-  </a>
+  </fo:basic-link>
   <xsl:text>&#160;]</xsl:text>
 </xsl:template>
 
 <xsl:template match="constraintdef">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
-  <div class="{name(.)}">
-    <a name="{$id}"/>
+  <fo:block id="{$id}">
     <xsl:apply-templates/>
-  </div>
+  </fo:block>
 </xsl:template>
 
 <xsl:template match="constraintdef/title">
-  <p><b><xsl:apply-templates/></b></p>
+  <fo:block font-weight="bold">
+    <xsl:apply-templates/>
+  </fo:block>
 </xsl:template>
 
 <!-- ==================================================================== -->
