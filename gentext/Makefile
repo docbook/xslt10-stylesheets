@@ -56,7 +56,7 @@ dbl1zhtw.ent: locale/zh_tw.xml
 
 %.xml: locale/%.xml
 	$(XJPARSE) -w $<
-	$(XSLT) $< xsl/xsl.xsl $@
+	$(XSLT) locale/en.xml xsl/xsl.xsl $@ locale.file=$@
 
 %.ent:
 	$(XJPARSE) -w $<
