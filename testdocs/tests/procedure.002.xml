@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-                  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                  "http://docbook.org/xml/4.3/docbookx.dtd">
 <article>
 <articleinfo>
 <title>Unit Test: procedure.002</title>
@@ -22,19 +22,19 @@
 <step><title>Setup</title>
 <para>Select SETUP.</para>
 <substeps>
-<step><para>Should be an &ldquo;a&rdquo;</para>
+<step><para>Should be an “a”</para>
 </step>
-<step><para>Should be a &ldquo;b&rdquo;</para>
+<step><para>Should be a “b”</para>
 </step>
-<step><para>Should be a &ldquo;c&rdquo;</para>
+<step><para>Should be a “c”</para>
 </step>
-<step><para>Should be a &ldquo;d&rdquo;</para>
+<step><para>Should be a “d”</para>
 </step>
-<step><para>should be an &ldquo;e&rdquo;</para>
+<step><para>should be an “e”</para>
 <substeps>
-<step><para>should be an &ldquo;i&rdquo;</para>
+<step><para>should be an “i”</para>
 </step>
-<step><para>should be an &ldquo;ii&rdquo;</para>
+<step><para>should be an “ii”</para>
 </step>
 </substeps>
 </step>

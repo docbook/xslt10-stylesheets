@@ -36,7 +36,14 @@ East Yahoo, XX</address></footnote></entry>
 </tgroup>
 </table>
 
-<para>This paragraph contains a footnote<footnote>
-<para>This is a footnote.</para></footnote>.</para>
+<para>This is a longer paragraph. It will eventually contain a footnote, but first
+it has enough text to make the footnote appear in the middle of the paragraph.
+This is so we can test the effect of changing the
+<property>line-height-shift-adjustment</property> property. This paragraph
+contains a footnote<footnote>
+<para>This is a footnote.</para></footnote> (see, I said it would).
+Now it has more text to make the footnote appear in the middle of the paragraph.
+Now it has more text to make the footnote appear in the middle of the paragraph.
+</para>
 
 </article>
