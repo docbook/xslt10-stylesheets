@@ -12,11 +12,11 @@
 
        <qandaset>
     <?dbhtml toc="0"?>
-         <qandaentry>
-           <question>
+         <qandaentry id="qa1">
+           <question id="q1">
              <para>Blah blah blah.</para>
            </question>
-	  <answer>
+	  <answer id="a1">
 	    <example>
 	      <title><filename
 	          moreinfo="none">file.name</filename></title>
