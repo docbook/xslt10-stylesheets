@@ -660,8 +660,39 @@
           <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
+
       <xsl:variable name="cterm"
            select="(document($glossary.collection,.)//glossentry[glossterm=$term])[1]"/>
+
+      <!-- HACK HACK HACK! But it works... -->
+      <!-- You'd need to do more work if you wanted to chunk on glossdiv, though -->
+
+      <xsl:variable name="glossary" select="//glossary[@role='auto']"/>
+
+      <xsl:if test="count($glossary) != 1">
+        <xsl:message>
+          <xsl:text>Warning: glossary.collection specified, but there are </xsl:text>
+          <xsl:value-of select="count($glossary)"/>
+          <xsl:text> automatic glossaries</xsl:text>
+        </xsl:message>
+      </xsl:if>
+
+      <xsl:variable name="glosschunk">
+        <xsl:call-template name="href.target">
+          <xsl:with-param name="object" select="$glossary"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:variable name="chunkbase">
+        <xsl:choose>
+          <xsl:when test="contains($glosschunk, '#')">
+            <xsl:value-of select="substring-before($glosschunk, '#')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$glosschunk"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
 
       <xsl:choose>
         <xsl:when test="not($cterm)">
@@ -685,7 +716,7 @@
               </xsl:otherwise>
             </xsl:choose>
           </xsl:variable>
-          <a href="#{$id}">
+          <a href="{$chunkbase}#{$id}">
             <xsl:call-template name="inline.italicseq"/>
           </a>
         </xsl:otherwise>
