@@ -29,7 +29,9 @@
     <xsl:if test="(contains($toc.params, 'toc')
                    and $depth &lt;= $generate.section.toc.level)
                   or refentry">
-      <xsl:call-template name="section.toc"/>
+      <xsl:call-template name="section.toc">
+        <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
+      </xsl:call-template>
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:call-template name="process.chunk.footnotes"/>
@@ -80,7 +82,9 @@
     <xsl:if test="(contains($toc.params, 'toc')
                    and $generate.section.toc.level &gt;= 1)
                   or refentry">
-      <xsl:call-template name="section.toc"/>
+      <xsl:call-template name="section.toc">
+        <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
+      </xsl:call-template>
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:call-template name="process.chunk.footnotes"/>
@@ -104,7 +108,9 @@
     <xsl:if test="(contains($toc.params, 'toc')
                    and $generate.section.toc.level &gt;= 2)
                   or refentry">
-      <xsl:call-template name="section.toc"/>
+      <xsl:call-template name="section.toc">
+        <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
+      </xsl:call-template>
     </xsl:if>
     <xsl:apply-templates/>
   </div>
@@ -127,7 +133,9 @@
     <xsl:if test="(contains($toc.params, 'toc')
                    and $generate.section.toc.level &gt;= 3)
                   or refentry">
-      <xsl:call-template name="section.toc"/>
+      <xsl:call-template name="section.toc">
+        <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
+      </xsl:call-template>
     </xsl:if>
     <xsl:apply-templates/>
   </div>
@@ -150,7 +158,9 @@
     <xsl:if test="(contains($toc.params, 'toc')
                    and $generate.section.toc.level &gt;= 4)
                   or refentry">
-      <xsl:call-template name="section.toc"/>
+      <xsl:call-template name="section.toc">
+        <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
+      </xsl:call-template>
     </xsl:if>
     <xsl:apply-templates/>
   </div>
@@ -173,7 +183,9 @@
     <xsl:if test="(contains($toc.params, 'toc')
                    and $generate.section.toc.level &gt;= 5)
                   or refentry">
-      <xsl:call-template name="section.toc"/>
+      <xsl:call-template name="section.toc">
+        <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
+      </xsl:call-template>
     </xsl:if>
     <xsl:apply-templates/>
   </div>

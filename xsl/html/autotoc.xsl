@@ -29,16 +29,19 @@
 
 <xsl:template name="make.toc">
   <xsl:param name="toc-context" select="."/>
+  <xsl:param name="toc.title.p" select="true()"/>
   <xsl:param name="nodes" select="/NOT-AN-ELEMENT"/>
 
   <xsl:variable name="toc.title">
-    <p>
-      <b>
-        <xsl:call-template name="gentext">
-          <xsl:with-param name="key">TableofContents</xsl:with-param>
-        </xsl:call-template>
-      </b>
-    </p>
+    <xsl:if test="$toc.title.p">
+      <p>
+        <b>
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key">TableofContents</xsl:with-param>
+          </xsl:call-template>
+        </b>
+      </p>
+    </xsl:if>
   </xsl:variable>
 
   <xsl:choose>
@@ -139,9 +142,11 @@
 
 <xsl:template name="component.toc">
   <xsl:param name="toc-context" select="."/>
+  <xsl:param name="toc.title.p" select="true()"/>
 
   <xsl:call-template name="make.toc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
+    <xsl:with-param name="toc.title.p" select="$toc.title.p"/>
     <xsl:with-param name="nodes" select="section|sect1|refentry
                                          |article|bibliography|glossary
                                          |appendix
@@ -154,9 +159,11 @@
 
 <xsl:template name="section.toc">
   <xsl:param name="toc-context" select="."/>
+  <xsl:param name="toc.title.p" select="true()"/>
 
   <xsl:call-template name="make.toc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
+    <xsl:with-param name="toc.title.p" select="$toc.title.p"/>
     <xsl:with-param name="nodes"
                     select="section|sect1|sect2|sect3|sect4|sect5|refentry
                            |bridgehead[$bridgehead.in.toc != 0]"/>
