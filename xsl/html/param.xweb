@@ -230,6 +230,16 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &chunk.datafile;
 </reference>
 
+<reference><title>HTML Help</title>
+&htmlhelp.encoding;
+&htmlhelp.autolabel;
+&htmlhelp.chm;
+&htmlhelp.hhp;
+&htmlhelp.hhc;
+&htmlhelp.hhp.tail;
+&htmlhelp.enumerate.images;
+</reference>
+
 <appendix><title>The Stylesheet</title>
 
 <para>The <filename>param.xsl</filename> stylesheet is just a wrapper
@@ -370,7 +380,13 @@ around all these parameters.</para>
 <src:fragref linkend="table.border.thickness"/>
 <src:fragref linkend="table.border.style"/>
 <src:fragref linkend="table.border.color"/>
-
+<src:fragref linkend="htmlhelp.encoding"/>
+<src:fragref linkend="htmlhelp.autolabel"/>
+<src:fragref linkend="htmlhelp.chm"/>
+<src:fragref linkend="htmlhelp.hhp"/>
+<src:fragref linkend="htmlhelp.hhc"/>
+<src:fragref linkend="htmlhelp.hhp.tail"/>
+<src:fragref linkend="htmlhelp.enumerate.images"/>
 </xsl:stylesheet>
 </src:fragment>
 
