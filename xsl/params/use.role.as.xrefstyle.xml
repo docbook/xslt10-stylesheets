@@ -1,0 +1,29 @@
+<refentry id="use.role.as.xrefstyle">
+<refmeta>
+<refentrytitle>use.role.as.xrefstyle</refentrytitle>
+<refmiscinfo role="type">boolean</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>use.role.as.xrefstyle</refname>
+<refpurpose>Use <sgmltag class="attribute">role</sgmltag> attribute for
+<sgmltag class="attribute">xrefstyle</sgmltag> on <sgmltag>xref</sgmltag>?</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='use.role.as.xrefstyle.frag'>
+<xsl:param name="use.role.as.xrefstyle" select="1"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>If non-zero, the <sgmltag class="attribute">role</sgmltag> attribute on
+<sgmltag>xref</sgmltag> will be used to select the cross reference style.
+It is likely that the <ulink url="http://www.oasis-open.org/docbook/">DocBook
+Technical Committee</ulink> will eventually add an
+<sgmltag class="attribute">xrefstyle</sgmltag> attribute for this purpose.
+Until then, this flag allows <sgmltag class="attribute">role</sgmltag> to
+serve that purpose.</para>
+
+</refsect1>
+</refentry>
