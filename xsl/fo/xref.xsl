@@ -555,6 +555,7 @@
 <xsl:template match="para" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose"/>
 
   <xsl:variable name="context" select="(ancestor::simplesect
                                        |ancestor::section
@@ -580,7 +581,9 @@
                                        |ancestor::listitem
                                        |ancestor::varlistentry)[last()]"/>
 
-  <xsl:apply-templates select="$context" mode="xref-to"/>
+  <xsl:apply-templates select="$context" mode="xref-to">
+    <xsl:with-param name="verbose" select="$verbose"/>
+  </xsl:apply-templates>
 <!--
   <xsl:apply-templates select="." mode="object.xref.markup">
     <xsl:with-param name="purpose" select="'xref'"/>
