@@ -90,6 +90,18 @@ element label.</para>
     <xsl:when test="$chapter.autolabel != 0">
       <xsl:choose>
         <xsl:when test="$label.from.part != 0 and ancestor::part">
+          <xsl:if test="$component.label.includes.part.label != 0 and
+                          ancestor::part">
+            <xsl:variable name="part.label">
+              <xsl:apply-templates select="ancestor::part" 
+                                   mode="label.markup"/>
+            </xsl:variable>
+            <xsl:if test="$part.label != ''">
+              <xsl:value-of select="$part.label"/>
+              <xsl:apply-templates select="ancestor::part" 
+                                   mode="intralabel.punctuation"/>
+            </xsl:if>
+          </xsl:if>
           <xsl:number from="part" count="chapter" format="1" level="any"/>
         </xsl:when>
         <xsl:otherwise>
@@ -326,11 +338,11 @@ element label.</para>
     <xsl:when test="$section.autolabel != 0">
       <xsl:choose>
         <xsl:when test="local-name(.) = 'refsect2'">
-	  <xsl:number count="refsect2"/>
-	</xsl:when>
+          <xsl:number count="refsect2"/>
+        </xsl:when>
         <xsl:otherwise>
-	  <xsl:number count="refsect3"/>
-	</xsl:otherwise>
+          <xsl:number count="refsect3"/>
+        </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
   </xsl:choose>
