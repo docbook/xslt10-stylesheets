@@ -103,6 +103,10 @@
       uri="chunk-tabular.xsl"/>
 
     <uri
+      name="chunk-common.xsl"
+      uri="chunk-common.xsl"/>
+
+    <uri
       name="chunk-website.xsl"
       uri="chunk-website.xsl"/>
 
