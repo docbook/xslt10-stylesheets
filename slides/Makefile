@@ -68,15 +68,15 @@ else
 	mkdir /tmp/slides-demo-$(ZIPVER)
 	rm -f /tmp/tar.exclude
 	touch /tmp/tar.exclude
-	find demo -print | grep /CVS$$ | cut -c3- >> /tmp/tar.exclude
-	find demo -print | grep /CVS/ | cut -c3- >> /tmp/tar.exclude
-	find demo -print | grep .classes | cut -c3- >> /tmp/tar.exclude
-	find demo -print | grep .cvskeep | cut -c3- >> /tmp/tar.exclude
-	find demo -print | grep "~$$" | cut -c3- >> /tmp/tar.exclude
-	find demo -type f -name "#*"  | cut -c3- >> /tmp/tar.exclude
-	find demo -type f -name ".cvsignore"  | cut -c3- >> /tmp/tar.exclude
-	find demo -type f -name "Makefile*"   | cut -c3- >> /tmp/tar.exclude
-	find demo -type f -name "README.CVS"   | cut -c3- >> /tmp/tar.exclude
+	-find demo -print | grep /CVS$$    >> /tmp/tar.exclude
+	-find demo -print | grep /CVS/     >> /tmp/tar.exclude
+	-find demo -print | grep .classes  >> /tmp/tar.exclude
+	-find demo -print | grep .cvskeep  >> /tmp/tar.exclude
+	-find demo -print | grep "~$$"     >> /tmp/tar.exclude
+	-find demo -type f -name "#*"      >> /tmp/tar.exclude
+	-find demo -type f -name ".cvsignore" >> /tmp/tar.exclude
+	-find demo -type f -name "Makefile*"  >> /tmp/tar.exclude
+	-find demo -type f -name "README.CVS" >> /tmp/tar.exclude
 	tar cf - demo --exclude-from /tmp/tar.exclude | (cd /tmp/slides-demo-$(ZIPVER); tar xf -)
 	cd /tmp && zip -rpD slides-demo-$(ZIPVER).zip slides-demo-$(ZIPVER)
 	rm -f tar.exclude
