@@ -13,7 +13,8 @@ XARG=""
 YARG=""
 RARG=""
 MEMORY=""
-QUIET=0
+# which parser to use
+PARSER=auto
 
 
 MYDIR=`dirname $0`
@@ -53,8 +54,15 @@ while [ "$DONE" = "0" ]; do
 		MEMORY="-Xmx$1";
 		shift;
 		;;
+        -parser) shift
+		PARSER="$1"
+                shift
+		;;
         -q)     shift
-		QUIET=1
+		VERBOSE=false
+		;;
+        -v)     shift
+		VERBOSE=true
 		;;
         -X)     shift
 		DOCBOOKXSL="$1";
@@ -87,10 +95,20 @@ if [ ! -d "$DOCBOOKXSL" ]; then
 fi
 
 case $VERSION in
-   652|651|65|644|643)
+    652|651|65|644|643)
         :                       # handled normally below
 	;;
     *)	echo "unexpected Saxon version $VERSION" 1>&2
+	exit 1
+	;;
+esac
+
+case $PARSER in
+    auto|xerces2|xerces1|crimson|native)
+        :                       # handled normally below
+	;;
+    *)	echo "unexpected parser selected, '$PARSER'" 1>&2
+        echo "must be one of 'auto', 'xerces2', 'xerces1', 'crimson', or 'native'" 1>&2
 	exit 1
 	;;
 esac
@@ -147,26 +165,60 @@ if [ "$DEBUG" = "1" ]; then
 fi
 
 ##
-## locate Xerces classpath
+## set the desired parser
 ##
-XERCES=`findxerces1`
-if [ "$XERCES" ]; then
-  DBFACTORY="-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"
-  SPFACTORY="-Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"
+## From SAXON documentation:
+##
+## SAXON comes with a bundled XML parser, a modified copy of the
+## Ælfred parser, adapted to notify comments to the application. SAXON
+## has been tested successfully in the past with Xerces, Lark, SUN
+## Project X, Crimson, Oracle XML, xerces, xml4j, and xp. Use of a
+## SAX2-compliant parser is preferred, as SAX1 does not allow XML
+## comments to be passed to the application. However, SAXON works with
+## either. All the relevant classes must be installed on your Java
+## CLASSPATH.
+##
+## These are the settings which control the parser:
+##   javax.xml.parsers.DocumentBuilderFactory
+##   javax.xml.parsers.SAXParserFactory
+## 
+
+# first choice is xerces2
+if [ "$PARSER" = "xerces2" -o "$PARSER" = "auto" ]; then
+  PARSERCLASS=`findxerces2`
+  if [ "$PARSERCLASS" ]; then
+    DBFACTORY="-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"
+    SPFACTORY="-Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"
+  fi
 fi
 
-##
-## locate JAXP classpath
-##
-JAXP=`findjaxp`
-if [ "$JAXP" ]; then
-  echo "don't know how to set javax.xml.parsers.DocumentBuilderFactory nor javax.xml.parsers.SAXParserFactory for Sun JAXP"
+# next choice is xerces1
+if [ "$PARSER" = "xerces1" ] || [ ! "$PARSERCLASS" -a "$PARSER" = "auto" ]; then
+  PARSERCLASS=`findxerces1`
+  if [ "$PARSERCLASS" ]; then
+    DBFACTORY="-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"
+    SPFACTORY="-Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"
+  fi
 fi
 
-if [ ! "$JAXP" -a ! "$XERCES" ]; then
+# next choice is crimson
+if [ "$PARSER" = "crimson" ] || [ ! "$PARSERCLASS" -a "$PARSER" = "auto" ]; then
+  PARSERCLASS=`findcrimson`
+  if [ "$PARSERCLASS" ]; then
+    DBFACTORY="-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.crimson.jaxp.DocumentBuilderFactoryImpl"
+    SPFACTORY="-Djavax.xml.parsers.SAXParserFactory=org.apache.crimson.jaxp.SAXParserFactoryImpl"
+  fi
+fi
+
+if [ "$PARSER" != "native" -a ! "$PARSERCLASS" ]; then
   echo "warning: cannot locate an alternate SAX parser, PEs may not work correctly" 1>&2
-  # FIXME: test that it works at all
 fi
+
+##
+## selecting the transformer not handled.  xalan2 can provide this, 
+## javax.xml.transform.TransformerFactory
+##  = org.apache.xalan.processor.TransformerFactoryImpl
+TRANSFACTORY=com.icl.saxon.TransformerFactoryImpl
 
 ##
 ## optionally replace the URI resolver with the Apache
@@ -187,29 +239,21 @@ if [ -f "$RESOLVER" -o -d "$RESOLVER" ]; then
   RARG=${RARG:--r org.apache.xml.resolver.tools.CatalogResolver}
 fi
 
-CLASSPATH=$SAXON:$NDWEXT:$JAXP:$RESOLVER:$XERCES:$CLASSPATH
-
-# echo "classpath is $CLASSPATH"
-
-if [ "$QUIET" = "0" ]; then
-  echo saxon$VERSION $OUTPUT $XMLSRC $XMLSTY "$@"
-
-  if [ "$MEMORY" != "" ]; then
-      echo "java $MEMORY ..."
-  fi
-fi
-
-TRANSFACTORY=com.icl.saxon.TransformerFactoryImpl
+CLASSPATH=`fixclasspath "$SAXON:$NDWEXT:$RESOLVER:$PARSERCLASS:$CLASSPATH"`
 
 TFLAG=
 if [ "$DEBUG" != "0" ]; then
   TFLAG="-T"
 fi
 
-exec java $MEMORY $FOO \
-     -cp $CLASSPATH \
-     $DBFACTORY $SPFACTORY \
+if [ ${VERBOSE} ] && ${VERBOSE}; then
+  echo java $MEMORY $FOO -cp $CLASSPATH $DBFACTORY $SPFACTORY \
+      -Djavax.xml.transform.TransformerFactory=$TRANSFACTORY \
+      com.icl.saxon.StyleSheet $TFLAG \
+      $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY "$@"
+fi
+
+exec java $MEMORY $FOO -cp $CLASSPATH $DBFACTORY $SPFACTORY \
      -Djavax.xml.transform.TransformerFactory=$TRANSFACTORY \
-     com.icl.saxon.StyleSheet \
-     $TFLAG \
+     com.icl.saxon.StyleSheet $TFLAG \
      $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY "$@"
