@@ -77,6 +77,29 @@
     </fo:page-sequence>
   </xsl:if>
 
+  <xsl:if test="$generate.set.toc != '0'">
+    <fo:page-sequence hyphenate="{$hyphenate}"
+                      format="i"
+                      master-reference="{$master-reference}">
+      <xsl:attribute name="language">
+        <xsl:call-template name="l10n.language"/>
+      </xsl:attribute>
+      <xsl:if test="$double.sided != 0">
+        <xsl:attribute name="force-page-count">end-on-even</xsl:attribute>
+      </xsl:if>
+
+      <xsl:apply-templates select="." mode="running.head.mode">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:apply-templates>
+      <xsl:apply-templates select="." mode="running.foot.mode">
+        <xsl:with-param name="master-reference" select="$master-reference"/>
+      </xsl:apply-templates>
+      <fo:flow flow-name="xsl-region-body">
+        <xsl:call-template name="set.toc"/>
+      </fo:flow>
+    </fo:page-sequence>
+  </xsl:if>
+
   <xsl:apply-templates select="$content"/>
 </xsl:template>
 
@@ -122,6 +145,8 @@
       </fo:flow>
     </fo:page-sequence>
   </xsl:if>
+
+  <xsl:apply-templates select="dedication" mode="dedication"/>
 
   <xsl:if test="$generate.book.toc != '0'">
     <fo:page-sequence hyphenate="{$hyphenate}"
@@ -249,8 +274,6 @@
       </fo:flow>
     </fo:page-sequence>
   </xsl:if>
-
-  <xsl:apply-templates select="dedication" mode="dedication"/>
 
   <xsl:apply-templates select="$content"/>
 </xsl:template>
