@@ -345,6 +345,10 @@ around all these parameters.</para>
 <src:fragref linkend="refentry.separator"/>
 <src:fragref linkend="shade.verbatim"/>
 <src:fragref linkend="shade.verbatim.style"/>
+<src:fragref linkend="ebnf.table.bgcolor"/>
+<src:fragref linkend="ebnf.table.border"/>
+<src:fragref linkend="autotoc.label.separator"/>
+<src:fragref linkend="chunk.datafile"/>
 
 </xsl:stylesheet>
 </src:fragment>
