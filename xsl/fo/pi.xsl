@@ -1,5 +1,6 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -197,6 +198,9 @@
   </xsl:variable>
 
   <xsl:choose>
+    <xsl:when test="$fop.extensions != 0">
+      <!-- Doesn't work in fop -->
+    </xsl:when>
     <xsl:when test="$pi-before != ''">
       <fo:block space-after="0pt" space-before="{$pi-before}">
         <xsl:copy-of select="$spacer"/>
@@ -264,6 +268,9 @@
   </xsl:choose>
 
   <xsl:choose>
+    <xsl:when test="$fop.extensions != 0">
+      <!-- Doesn't work in fop -->
+    </xsl:when>
     <xsl:when test="following-sibling::listitem or
                     following-sibling::step">
       <fo:list-item space-before.precedence="force"
