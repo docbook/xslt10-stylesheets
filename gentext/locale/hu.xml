@@ -30,9 +30,9 @@
 <gentext key="bibliography" text="irodalomjegyz&#x00E9;k"/>
 <gentext key="Book" text="K&#x00F6;nyv"/>
 <gentext key="book" text="k&#x00F6;nyv"/>
+<gentext key="CAUTION" text="FIGYELEM"/>
 <gentext key="Caution" text="Figyelem"/>
 <gentext key="caution" text="figyelem"/>
-<gentext key="CAUTION" text="FIGYELEM"/>
 <gentext key="Chapter" text="Fejezet"/>
 <gentext key="chapter" text="fejezet"/>
 <gentext key="Colophon" text="V&#x00E9;gsz&#x00F3;"/>
@@ -79,6 +79,7 @@
 <gentext key="preface" text="el&#x0151;sz&#x00F3;"/>
 <gentext key="Procedure" text="Elj&#x00E1;r&#x00E1;s"/>
 <gentext key="procedure" text="elj&#x00E1;r&#x00E1;s"/>
+<gentext key="ProductionSet" text="Production"/> <!-- en -->
 <gentext key="Published" text="Megjelent"/>
 <gentext key="published" text="megjelent"/>
 <gentext key="Question" text="K&#x00E9;rd&#x00E9;s"/>
@@ -97,26 +98,31 @@
 <gentext key="revhistory" text="verzi&#x00F3;t&#x00F6;rt&#x00E9;net"/>
 <gentext key="Revision" text="Verzi&#x00F3;"/>
 <gentext key="revision" text="verzi&#x00F3;"/>
+<gentext key="sect1" text="Section"/> <!-- en -->
+<gentext key="sect2" text="Section"/> <!-- en -->
+<gentext key="sect3" text="Section"/> <!-- en -->
+<gentext key="sect4" text="Section"/> <!-- en -->
+<gentext key="sect5" text="Section"/> <!-- en -->
 <gentext key="Section" text="Szakasz"/>
 <gentext key="section" text="szakasz"/>
 <gentext key="See" text="L&#x00E1;sd"/>
 <gentext key="see" text="l&#x00E1;sd"/>
-<gentext key="seealso" text="l&#x00E1;sd m&#x00E9;g"/>
 <gentext key="SeeAlso" text="L&#x00E1;sd m&#x00E9;g"/>
 <gentext key="Seealso" text="L&#x00E1;sd m&#x00E9;g"/>
+<gentext key="seealso" text="l&#x00E1;sd m&#x00E9;g"/>
 <gentext key="Set" text="Set"/>
 <gentext key="set" text="Set"/> <!-- en -->
 <gentext key="SetIndex" text="Set Index"/>
 <gentext key="setindex" text="Set Index"/> <!-- en -->
-<gentext key="sidebar" text="sz&#x00E9;ljegyzet"/>
 <gentext key="Sidebar" text="Sz&#x00E9;ljegyzet"/>
-<gentext key="step" text="l&#x00E9;p&#x00E9;s"/>
+<gentext key="sidebar" text="sz&#x00E9;ljegyzet"/>
 <gentext key="Step" text="L&#x00E9;p&#x00E9;s"/>
+<gentext key="step" text="l&#x00E9;p&#x00E9;s"/>
 <gentext key="Table" text="T&#x00E1;bl&#x00E1;zat"/>
 <gentext key="table" text="t&#x00E1;bl&#x00E1;zat"/>
-<gentext key="tip" text="tipp"/>
 <gentext key="TIP" text="TIPP"/>
 <gentext key="Tip" text="Tipp"/>
+<gentext key="tip" text="tipp"/>
 <gentext key="WARNING" text="FIGYELEM"/>
 <gentext key="Warning" text="Figyelem"/>
 <gentext key="warning" text="figyelem"/>
@@ -163,6 +169,15 @@
 <gentext key="nav-prev-sibling" text="Gyors vissza"/>
 <gentext key="nav-up" text="Fel"/>
 
+<gentext key="sectioncalled" text="the section called"/> <!-- en -->
+<gentext key="Draft"         text="Draft"/> <!-- en -->
+<gentext key="above"         text="above"/> <!-- en -->
+<gentext key="below"         text="below"/> <!-- en -->
+<gentext key="index symbols" text="Symbols"/> <!-- en -->
+
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
+
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
 <dingbat key="nestedstartquote" text="&#x2018;"/>
@@ -172,6 +187,7 @@
 <context name="title">
 
 <template name="abstract">%t</template>
+<template name="answer">%t</template>
 <template name="appendix">%n. <appendix/> - %t</template>
 <template name="article">%t</template>
 <template name="authorblurb">%t</template>
@@ -213,8 +229,14 @@
 <template name="partintro">%t</template>
 <template name="preface">%t</template>
 <template name="procedure">%t</template>
+<template name="procedure.formal"><Procedure/>&#160;%n.&#160;%t</template>
+<template name="productionset">%t</template>
+<template name="productionset.formal"><ProductionSet/>&#160;%n</template>
 <template name="qandadiv">%t</template>
+<template name="qandaentry">%t</template>
 <template name="qandaset">%t</template>
+<template name="question">%t</template>
+<template name="refentry">%t</template>
 <template name="reference">%t</template>
 <template name="refsect1">%t</template>
 <template name="refsect2">%t</template>
@@ -237,6 +259,7 @@
 <context name="title-unnumbered">
 
 <template name="appendix">%t</template>
+<template name="bridgehead">%t</template>
 <template name="chapter">%t</template>
 <template name="sect1">%t</template>
 <template name="sect2">%t</template>
@@ -251,6 +274,7 @@
 <context name="title-numbered">
 
 <template name="appendix">%n. <appendix/> - %t</template>
+<template name="bridgehead">%t</template>
 <template name="chapter">%n. <chapter/> - %t</template>
 <template name="sect1">%n. %t</template>
 <template name="sect2">%n. %t</template>
@@ -306,29 +330,78 @@
 
 <context name="xref">
 
+<template name="abstract">%t</template>
+<template name="answer"><Answer/>&#160;%n</template>
 <template name="appendix">%n. <appendix/> - %t</template>
 <template name="article">%t</template>
+<template name="authorblurb">%t</template>
+<template name="bibliodiv">%t</template>
 <template name="bibliography">%t</template>
+<template name="bibliomset">%t</template>
+<template name="biblioset">%t</template>
+<template name="blockquote">%t</template>
 <template name="book">%t</template>
+<template name="calloutlist">%t</template>
+<template name="caution">%t</template>
 <template name="chapter">%n. <chapter/> - %t</template>
 <template name="colophon">%t</template>
+<template name="constraintdef">%t</template>
 <template name="dedication">%t</template>
+<template name="equation"><Equation/>&#160;%n</template>
 <template name="example">%n. <example/> - %t</template>
 <template name="figure">%n. <figure/> - %t</template>
+<template name="formalpara">%t</template>
 <template name="glossary">%t</template>
+<template name="glossdiv">%t</template>
+<template name="important">%t</template>
 <template name="index">%t</template>
+<template name="indexdiv">%t</template>
+<template name="itemizedlist">%t</template>
+<template name="legalnotice">%t</template>
 <template name="listitem">%n</template>
+<template name="lot">%t</template>
+<template name="msg">%t</template>
+<template name="msgexplan">%t</template>
+<template name="msgmain">%t</template>
+<template name="msgrel">%t</template>
+<template name="msgset">%t</template>
+<template name="msgsub">%t</template>
+<template name="note">%t</template>
+<template name="orderedlist">%t</template>
 <template name="part">%n. <part/> - %t</template>
+<template name="partintro">%t</template>
 <template name="preface">%t</template>
+<template name="procedure"><Procedure/>&#160;%n</template>
+<template name="productionset">%t</template>
+<template name="qandadiv">%t</template>
+<template name="qandaentry"><Question/>&#160;%n</template>
+<template name="qandaset">%t</template>
+<template name="question"><Question/>&#160;%n</template>
 <template name="reference">%t</template>
+<template name="refsect1">%t</template>
+<template name="refsect2">%t</template>
+<template name="refsect3">%t</template>
+<template name="refsynopsisdiv">%t</template>
+<template name="segmentedlist">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
+<template name="sidebar">%t</template>
 <template name="table">%n. <table/> - %t</template>
+<template name="tip">%t</template>
+<template name="toc">%t</template>
+<template name="variablelist">%t</template>
+<template name="varlistentry">%n</template>
+<template name="warning">%t</template>
+<template name="page.citation"> [%p]</template>
 
 </context>
 
 <context name="section-xref">
 
+<template name="bridgehead">&#x201C;%t&#x201D;</template>
+<template name="refsect1">&#x201C;%t&#x201D;</template>
+<template name="refsect2">&#x201C;%t&#x201D;</template>
+<template name="refsect3">&#x201C;%t&#x201D;</template>
 <template name="sect1">&#x201C;%t&#x201D;</template>
 <template name="sect2">&#x201C;%t&#x201D;</template>
 <template name="sect3">&#x201C;%t&#x201D;</template>
@@ -341,6 +414,10 @@
 
 <context name="section-xref-numbered">
 
+<template name="bridgehead">&#x201C;%t&#x201D;</template>
+<template name="refsect1">&#x201C;%t&#x201D;</template>
+<template name="refsect2">&#x201C;%t&#x201D;</template>
+<template name="refsect3">&#x201C;%t&#x201D;</template>
 <template name="sect1">%n. <section/></template>
 <template name="sect2">%n. <section/></template>
 <template name="sect3">%n. <section/></template>
