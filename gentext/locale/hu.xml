@@ -178,11 +178,17 @@
 <gentext key="lowercase.alpha" text="a&#x00E1;bcde&#x00E9;fghi&#x00ED;jklmno&#x00F3;&#x00F6;&#x0151;pqrstu&#x00FA;&#x00FC;&#0171;vwxyz"/>
 <gentext key="uppercase.alpha" text="A&#x00C1;BCDE&#x00C9;FGHI&#x00CD;JKLMNO&#x00D3;&#x00D6;&#x0150;PQRSTU&#x00DA;&#x00DC;&#x0170;VWXYZ"/>
 
-<dingbat key="startquote" text="&#x201C;"/>
+<dingbat key="startquote" text="&#x201E;"/>
 <dingbat key="endquote" text="&#x201D;"/>
-<dingbat key="nestedstartquote" text="&#x2018;"/>
-<dingbat key="nestedendquote" text="&#x2019;"/>
+<dingbat key="nestedstartquote" text="&#x00BB;"/>
+<dingbat key="nestedendquote" text="&#x00AB;"/>
 <dingbat key="bullet" text="&#x2022;"/>
+
+<context name="styles">
+
+<template name="person-name">last-first</template>
+
+</context>
 
 <context name="title">
 
