@@ -29,5 +29,26 @@ stylesheets (<filename>profile-docbook.xsl</filename>,
 ones (<filename>docbook.xsl</filename>,
 <filename>chunk.xsl</filename>, &#x2026;).</para>
 
+<warning>
+<para>Note that <sgmltag class="attribute">role</sgmltag> is often
+used for other purposes than profiling. For example it is commonly
+used to get emphasize in bold font:</para>
+
+<programlisting><![CDATA[<emphasis role="bold">very important</emphasis>]]></programlisting>
+
+<para>If you are using <sgmltag class="attribute">role</sgmltag> for
+these purposes do not forget to add values like <literal>bold</literal> to
+value of this parameter. If you forgot you will get document with
+small pieces missing which are very hard to track.</para>
+
+<para>For this reason it is not recommended to use <sgmltag
+class="attribute">role</sgmltag> attribute for profiling. You should
+rather use profiling specific attributes like <sgmltag
+class="attribute">userlevel</sgmltag>, <sgmltag
+class="attribute">os</sgmltag>, <sgmltag
+class="attribute">arch</sgmltag>, <sgmltag
+class="attribute">condition</sgmltag>, &hellip;</para>
+</warning>
+
 </refsect1>
 </refentry>
