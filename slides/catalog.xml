@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+<!--  XML Catalog file for Slides. If you are already using
+      an XML catalog, you can just include this one by adding
+      an entry like this to your XML catalog file, editing the
+      path to match the location of your Slides installation:
+
+    <nextCatalog catalog="/usr/share/xml/slides-3.1.0/catalog.xml" />
+-->
+
+<!-- Slides DTD locations -->
+
+<group xml:base="schema/dtd/"
+       id="slides-dtd"
+       prefer="public">
+
+  <public
+    publicId="-//Norman Walsh//DTD Slides V3.1.0//EN"
+    uri="slides.dtd"/>
+    <!-- this could be the slides-custom.dtd instead -->
+
+  <public
+    publicId="-//Norman Walsh//DTD Slides Custom V3.1.0//EN"
+    uri="slides-custom.dtd"/>
+
+  <public
+    publicId="-//Norman Walsh//DTD slides Full V3.1.0//EN"
+    uri="slides-full.dtd"/>
+</group>
+
+<!-- Slides RelaxNG locations -->
+
+<group xml:base="schema/relaxng/"
+       id="slides-relaxng"
+       prefer="public">
+
+  <uri
+      name="slides.rng"
+      uri="slides.rng"/>
+
+  <uri
+      name="slides-full.rng"
+      uri="slides-full.rng"/>
+</group>
+
+<!-- Slides XSL locations -->
+
+<group xml:base="xsl/"
+       id="slides-xsl">
+
+    <uri
+      name="fo/plain.xsl"
+      uri="fo/plain.xsl"/>
+
+    <uri
+      name="fo/plain-titlepage.xsl"
+      uri="fo/plain-titlepage.xsl"/>
+
+    <uri
+      name="html/param.xsl"
+      uri="html/param.xsl"/>
+
+    <uri
+      name="html/default.xsl"
+      uri="html/default.xsl"/>
+
+    <uri
+      name="html/frames.xsl"
+      uri="html/frames.xsl"/>
+
+    <uri
+      name="html/graphics.xsl"
+      uri="html/graphics.xsl"/>
+
+    <uri
+      name="html/jscript.xsl"
+      uri="html/jscript.xsl"/>
+
+    <uri
+      name="html/plain.xsl"
+      uri="html/plain.xsl"/>
+
+    <uri
+      name="html/slides-common.xsl"
+      uri="html/slides-common.xsl"/>
+
+    <uri
+      name="html/tables.xsl"
+      uri="html/tables.xsl"/>
+
+    <uri
+      name="html/vslides.xsl"
+      uri="html/vslides.xsl"/>
+
+    <uri
+      name="html/w3c.xsl"
+      uri="html/w3c.xsl"/>
+
+    <uri
+      name="xhtml/html2xhtml.xsl"
+      uri="xhtml/html2xhtml.xsl"/>
+
+    <uri
+      name="xhtml/default.xsl"
+      uri="xhtml/default.xsl"/>
+
+    <uri
+      name="xhtml/frames.xsl"
+      uri="xhtml/frames.xsl"/>
+
+    <uri
+      name="xhtml/graphics.xsl"
+      uri="xhtml/graphics.xsl"/>
+
+    <uri
+      name="xhtml/jscript.xsl"
+      uri="xhtml/jscript.xsl"/>
+
+    <uri
+      name="xhtml/param.xsl"
+      uri="xhtml/param.xsl"/>
+
+    <uri
+      name="xhtml/plain.xsl"
+      uri="xhtml/plain.xsl"/>
+
+    <uri
+      name="xhtml/slides-common.xsl"
+      uri="xhtml/slides-common.xsl"/>
+
+    <uri
+      name="xhtml/tables.xsl"
+      uri="xhtml/tables.xsl"/>
+
+    <uri
+      name="xhtml/vslides.xsl"
+      uri="xhtml/vslides.xsl"/>
+
+    <uri
+      name="xhtml/w3c.xsl"
+      uri="xhtml/w3c.xsl"/>
+</group>
+
+<!-- You can also put entries like these into your
+     main catalog.xml file to map web URLs to local
+     paths to avoid pulling docbook files over the web.
+     Change the '/usr/share/xml' path to match the
+     location on your local system.
+-->
+
+<!-- Map web references to DocBook XSL -->
+<!--
+  <rewriteURI
+    uriStartString="http://docbook.sourceforge.net/release/xsl/current/"
+    rewritePrefix="/usr/share/xml/docbook-xsl-1.59.1/"/>
+-->
+
+<!-- Map web references to DocBook 4.2 DTD -->
+<!--
+   <nextCatalog catalog="/usr/share/xml/docbook42/catalog.xml" />
+
+-->
+
+</catalog>
