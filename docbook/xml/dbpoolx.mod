@@ -7357,7 +7357,11 @@ OtherCredit. -->
 			|resource
 			|systemname
 			|username
-			|newsgroup)	#IMPLIED
+			|newsgroup
+                        |process
+                        |service
+                        |server
+                        |daemon)	#IMPLIED
 		%moreinfo.attrib;
 		%common.attrib;
 		%systemitem.role.attrib;
