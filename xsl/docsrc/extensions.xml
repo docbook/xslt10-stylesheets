@@ -30,7 +30,7 @@
   </para>
 
   <para>The line numbers and callouts in the following example are
-  made possible through the use of the DocBook XSLT extention
+  made possible through the use of the DocBook XSLT extension
   functions.
     <example>
     <title>A program listing with line numbering and callouts</title>
@@ -112,7 +112,7 @@ both a line and a column.)</para>
       <para>To use the extensions, you need to:</para>
       <step>
           <para>Determine which extension jar file (in the <filename
-            class="directory">extensions</filename>)corresponds mostly
+            class="directory">extensions</filename> directory) corresponds most
           closely to the Java XSLT engine you use.</para>
         </step>
         <step>
@@ -139,7 +139,7 @@ both a line and a column.)</para>
           Xalan-Java 1 or for versions of Saxon prior to 6.4.3. And
           because the only current implementation of the extensions is
           written in Java, you can't yet use them with xsltproc (which
-          is a written in C) or with the Xalan-C++.
+          is a written in C) or with Xalan-C++.
         </para>
       </note>
 
@@ -148,16 +148,18 @@ both a line and a column.)</para>
       parameter to <literal>1</literal> (instead of the default
       <literal>0</literal>).</para>
     <example>
-      <title>Enabling the Extensions from the Command Line</title>
-      <para>To enable the extensions for the command line, you need to
+      <title>Enabling the extensions from the command line</title>
+      <para>To enable the extensions from the command line, you need to
         pass the <parameter>use.extensions</parameter> parameter
       to your XSLT engine. Here's an example of how to do that with Saxon:
-        <screen>
-java  com.icl.saxon.StyleSheet  <replaceable>filename.xml</replaceable> <replaceable>docbook/html/docbook.xsl</replaceable> use.extensions=1 &gt; <replaceable>output.html</replaceable>
+        <screen format="linespecific">
+  java com.icl.saxon.StyleSheet  <replaceable>filename.xml</replaceable> <replaceable>docbook/html/docbook.xsl \
+</replaceable>    use.extensions=1 &gt; <replaceable>output.html</replaceable>
 </screen>
       and here's an example of how to do it with Xalan:
-        <screen>
-java org.apache.xalan.xslt.Process -IN <replaceable>filename.xml</replaceable> -XSL <replaceable>docbook/html/docbook.xsl</replaceable> -PARAM use.extensions 1 -OUT <replaceable>output.html</replaceable>  
+        <screen format="linespecific">
+  java org.apache.xalan.xslt.Process -IN <replaceable>filename.xml</replaceable> -XSL <replaceable>docbook/html/docbook.xsl</replaceable> \
+    -PARAM use.extensions 1 -OUT <replaceable>output.html</replaceable>  
 </screen>
       </para>
     </example>
