@@ -24,7 +24,9 @@
   <xsl:choose>
     <xsl:when test="$make.index.markup != 0">
       <fo:block>
-        <xsl:call-template name="generate-index-markup"/>
+        <xsl:call-template name="generate-index-markup">
+          <xsl:with-param name="root" select="(ancestor::book|/)[last()]"/>
+        </xsl:call-template>
       </fo:block>
     </xsl:when>
     <xsl:otherwise>
@@ -33,7 +35,9 @@
         <xsl:call-template name="index.titlepage"/>
         <xsl:apply-templates/>
         <xsl:if test="count(indexentry) = 0 and count(indexdiv) = 0">
-          <xsl:call-template name="generate-index"/>
+          <xsl:call-template name="generate-index">
+            <xsl:with-param name="root" select="(ancestor::book|/)[last()]"/>
+          </xsl:call-template>
         </xsl:if>
       </fo:block>
     </xsl:otherwise>
@@ -86,14 +90,83 @@
                       white-space-collapse='false'
                       xsl:use-attribute-sets="monospace.verbatim.properties"
                       linefeed-treatment="preserve">
-              <xsl:call-template name="generate-index-markup"/>
+              <xsl:call-template name="generate-index-markup">
+                <xsl:with-param name="root" select="(ancestor::book|/)[last()]"/>
+              </xsl:call-template>
             </fo:block>
           </xsl:when>
           <xsl:when test="indexentry|indexdiv/indexentry">
             <xsl:apply-templates/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:call-template name="generate-index"/>
+            <xsl:call-template name="generate-index">
+              <xsl:with-param name="root" select="(ancestor::book|/)[last()]"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:if>
+    </fo:flow>
+  </fo:page-sequence>
+ </xsl:if>
+</xsl:template>
+
+<xsl:template match="setindex">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+ <xsl:if test="$generate.index != 0">
+  <xsl:variable name="master-reference">
+    <xsl:call-template name="select.pagemaster">
+      <xsl:with-param name="pageclass">
+        <xsl:if test="$make.index.markup != 0">body</xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <fo:page-sequence id="{$id}"
+                    hyphenate="{$hyphenate}"
+                    master-reference="{$master-reference}">
+    <xsl:attribute name="language">
+      <xsl:call-template name="l10n.language"/>
+    </xsl:attribute>
+    <xsl:attribute name="format">
+      <xsl:call-template name="page.number.format"/>
+    </xsl:attribute>
+    <xsl:if test="$double.sided != 0">
+      <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
+    </xsl:if>
+
+    <xsl:apply-templates select="." mode="running.head.mode">
+      <xsl:with-param name="master-reference" select="$master-reference"/>
+    </xsl:apply-templates>
+    <xsl:apply-templates select="." mode="running.foot.mode">
+      <xsl:with-param name="master-reference" select="$master-reference"/>
+    </xsl:apply-templates>
+
+    <fo:flow flow-name="xsl-region-body">
+      <xsl:call-template name="index.titlepage"/>
+      <xsl:apply-templates/>
+      <xsl:if test="count(indexentry) = 0 and count(indexdiv) = 0">
+
+        <xsl:choose>
+          <xsl:when test="$make.index.markup != 0">
+            <fo:block wrap-option='no-wrap'
+                      white-space-collapse='false'
+                      xsl:use-attribute-sets="monospace.verbatim.properties"
+                      linefeed-treatment="preserve">
+              <xsl:call-template name="generate-index-markup">
+                <xsl:with-param name="root" select="/"/>
+              </xsl:call-template>
+            </fo:block>
+          </xsl:when>
+          <xsl:when test="indexentry|indexdiv/indexentry">
+            <xsl:apply-templates/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="generate-index">
+              <xsl:with-param name="root" select="/"/>
+            </xsl:call-template>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:if>
