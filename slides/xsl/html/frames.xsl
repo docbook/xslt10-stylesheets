@@ -207,7 +207,7 @@ function init() {
             </script>
             <style type="text/css">
               <xsl:text>#spacer { position: absolute; height: </xsl:text>
-              <xsl:value-of select="$toc.height"/>px
+              <xsl:value-of select="$toc.height"/>
   <xsl:text>; }
 </xsl:text>
             </style>
@@ -888,72 +888,72 @@ function init() {
     <xsl:with-param name="filename" select="concat($base.dir,$thisfoilgroup)"/>
     <xsl:with-param name="content">
       <html>
-      <head>
-        <title><xsl:value-of select="title"/></title>
+	<head>
+	  <title><xsl:value-of select="title"/></title>
 
-        <xsl:call-template name="system.head.content"/>
-
-        <xsl:if test="$css.stylesheet != ''">
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
-        </xsl:if>
-        <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
-
-        <xsl:call-template name="links">
-          <xsl:with-param name="home" select="$home"/>
-          <xsl:with-param name="up" select="$up"/>
-          <xsl:with-param name="next" select="$next"/>
-          <xsl:with-param name="prev" select="$prev"/>
-        </xsl:call-template>
-
-        <xsl:if test="$overlay != 0 or $keyboard.nav != 0
-                      or $dynamic.toc != 0 or $active.toc != 0">
-            <script language="javascript" type="text/javascript">
-            <xsl:text> </xsl:text>
-          </script>
-        </xsl:if>
-
-        <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
-          <xsl:call-template name="ua.js"/>
-          <xsl:call-template name="xbDOM.js">
-              <xsl:with-param name="language" select="'javascript'"/>
-          </xsl:call-template>
-            <xsl:call-template name="xbLibrary.js"/>
-            <script language="javascript" type="text/javascript">
-              <xsl:text disable-output-escaping="yes">
-                &lt;!--
+	  <xsl:call-template name="system.head.content"/>
+	  
+	  <xsl:if test="$css.stylesheet != ''">
+	    <link type="text/css" rel="stylesheet">
+	      <xsl:attribute name="href">
+		<xsl:call-template name="css.stylesheet"/>
+	      </xsl:attribute>
+	    </link>
+	  </xsl:if>
+	  <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
+	  
+	  <xsl:call-template name="links">
+	    <xsl:with-param name="home" select="$home"/>
+	    <xsl:with-param name="up" select="$up"/>
+	    <xsl:with-param name="next" select="$next"/>
+	    <xsl:with-param name="prev" select="$prev"/>
+	  </xsl:call-template>
+	  
+	  <xsl:if test="$overlay != 0 or $keyboard.nav != 0
+		  or $dynamic.toc != 0 or $active.toc != 0">
+	    <script language="javascript" type="text/javascript">
+	      <xsl:text> </xsl:text>
+	    </script>
+	  </xsl:if>
+	  
+	  <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
+	    <xsl:call-template name="ua.js"/>
+	    <xsl:call-template name="xbDOM.js">
+	      <xsl:with-param name="language" select="'javascript'"/>
+	    </xsl:call-template>
+	    <xsl:call-template name="xbLibrary.js"/>
+	    <script language="javascript" type="text/javascript">
+	      <xsl:text disable-output-escaping="yes">
+		&lt;!--
                 xblibrary = new xbLibrary('</xsl:text>
               <xsl:call-template name="script-dir"/>
               <xsl:text disable-output-escaping="yes">');
                 // --&gt;
-              </xsl:text>
-            </script>
-          <xsl:call-template name="xbStyle.js"/>
-          <xsl:call-template name="xbCollapsibleLists.js"/>
-          <xsl:call-template name="slides.js">
-              <xsl:with-param name="language" select="'javascript'"/>
-          </xsl:call-template>
-        </xsl:if>
-
-        <xsl:if test="$overlay != '0'">
-          <xsl:call-template name="overlay.js">
-              <xsl:with-param name="language" select="'javascript'"/>
-          </xsl:call-template>
-        </xsl:if>
-
-        <xsl:call-template name="user.head.content"/>
-      </head>
-      <xsl:choose>
-        <xsl:when test="$multiframe != 0">
-          <xsl:apply-templates select="." mode="multiframe"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-templates select="." mode="singleframe"/>
-        </xsl:otherwise>
-      </xsl:choose>
+	      </xsl:text>
+	    </script>
+	    <xsl:call-template name="xbStyle.js"/>
+	    <xsl:call-template name="xbCollapsibleLists.js"/>
+	    <xsl:call-template name="slides.js">
+	      <xsl:with-param name="language" select="'javascript'"/>
+	    </xsl:call-template>
+	  </xsl:if>
+	  
+	  <xsl:if test="$overlay != '0'">
+	    <xsl:call-template name="overlay.js">
+	      <xsl:with-param name="language" select="'javascript'"/>
+	    </xsl:call-template>
+	  </xsl:if>
+	  
+	  <xsl:call-template name="user.head.content"/>
+	</head>
+	<xsl:choose>
+	  <xsl:when test="$multiframe != 0">
+	    <xsl:apply-templates select="." mode="multiframe"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:apply-templates select="." mode="singleframe"/>
+	  </xsl:otherwise>
+	</xsl:choose>
       </html>
     </xsl:with-param>
   </xsl:call-template>
@@ -1284,6 +1284,7 @@ function init() {
     </xsl:if>
 
     <div class="{name(.)}" id="{$id}">
+      <a name="{$id}"/>
       <xsl:if test="$multiframe=0">
         <xsl:call-template name="foilgroup-top-nav">
           <xsl:with-param name="home" select="$home"/>
@@ -1293,13 +1294,14 @@ function init() {
         </xsl:call-template>
       </xsl:if>
 
-      <div class="foilgroup-body">
-        <xsl:call-template name="foilgroup-body">
-          <xsl:with-param name="home" select="$home"/>
-          <xsl:with-param name="up" select="$up"/>
-          <xsl:with-param name="next" select="$next"/>
-          <xsl:with-param name="prev" select="$prev"/>
-        </xsl:call-template>
+      <div class="foilgroup-body" id="{$id}">
+	<a name="{$id}"/>
+	<xsl:call-template name="foilgroup-body">
+	  <xsl:with-param name="home" select="$home"/>
+	  <xsl:with-param name="up" select="$up"/>
+	  <xsl:with-param name="next" select="$next"/>
+	  <xsl:with-param name="prev" select="$prev"/>
+	</xsl:call-template>
       </div>
 
       <xsl:if test="$multiframe=0">
@@ -1357,42 +1359,42 @@ function init() {
     <xsl:with-param name="filename" select="concat($base.dir,$thisfoil)"/>
     <xsl:with-param name="content">
       <html>
-      <head>
-        <title><xsl:value-of select="title"/></title>
+	<head>
+	  <title><xsl:value-of select="title"/></title>
 
-        <xsl:call-template name="system.head.content"/>
+	  <xsl:call-template name="system.head.content"/>
 
-        <xsl:if test="$css.stylesheet != ''">
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
-        </xsl:if>
-        <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
+	  <xsl:if test="$css.stylesheet != ''">
+	    <link type="text/css" rel="stylesheet">
+	      <xsl:attribute name="href">
+		<xsl:call-template name="css.stylesheet"/>
+	      </xsl:attribute>
+	    </link>
+	  </xsl:if>
+	  <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
-        <xsl:call-template name="links">
-          <xsl:with-param name="home" select="$home"/>
-          <xsl:with-param name="up" select="$up"/>
-          <xsl:with-param name="next" select="$next"/>
-          <xsl:with-param name="prev" select="$prev"/>
-        </xsl:call-template>
+	  <xsl:call-template name="links">
+	    <xsl:with-param name="home" select="$home"/>
+	    <xsl:with-param name="up" select="$up"/>
+	    <xsl:with-param name="next" select="$next"/>
+	    <xsl:with-param name="prev" select="$prev"/>
+	  </xsl:call-template>
 
-        <xsl:if test="$overlay != 0 or $keyboard.nav != 0
-                      or $dynamic.toc != 0 or $active.toc != 0">
-            <script language="javascript" type="text/javascript">
-            <xsl:text> </xsl:text>
-          </script>
-        </xsl:if>
+	  <xsl:if test="$overlay != 0 or $keyboard.nav != 0
+		  or $dynamic.toc != 0 or $active.toc != 0">
+	    <script language="javascript" type="text/javascript">
+	      <xsl:text> </xsl:text>
+	    </script>
+	  </xsl:if>
 
-        <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
-          <xsl:call-template name="ua.js"/>
-          <xsl:call-template name="xbDOM.js">
-              <xsl:with-param name="language" select="'javascript'"/>
-          </xsl:call-template>
-            <xsl:call-template name="xbLibrary.js"/>
-            <script language="javascript" type="text/javascript">
-              <xsl:text disable-output-escaping="yes">
+	  <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
+	    <xsl:call-template name="ua.js"/>
+	    <xsl:call-template name="xbDOM.js">
+	      <xsl:with-param name="language" select="'javascript'"/>
+	    </xsl:call-template>
+	    <xsl:call-template name="xbLibrary.js"/>
+	    <script language="javascript" type="text/javascript">
+	      <xsl:text disable-output-escaping="yes">
                 &lt;!--
                 xblibrary = new xbLibrary('</xsl:text>
               <xsl:call-template name="script-dir"/>
@@ -1400,29 +1402,29 @@ function init() {
                 // --&gt;
               </xsl:text>
             </script>
-          <xsl:call-template name="xbStyle.js"/>
-          <xsl:call-template name="xbCollapsibleLists.js"/>
-          <xsl:call-template name="slides.js">
-              <xsl:with-param name="language" select="'javascript'"/>
-          </xsl:call-template>
-        </xsl:if>
+	    <xsl:call-template name="xbStyle.js"/>
+	    <xsl:call-template name="xbCollapsibleLists.js"/>
+	    <xsl:call-template name="slides.js">
+	      <xsl:with-param name="language" select="'javascript'"/>
+	    </xsl:call-template>
+	  </xsl:if>
 
-        <xsl:if test="$overlay != '0'">
-          <xsl:call-template name="overlay.js">
-              <xsl:with-param name="language" select="'javascript'"/>
-          </xsl:call-template>
-        </xsl:if>
+	  <xsl:if test="$overlay != '0'">
+	    <xsl:call-template name="overlay.js">
+	      <xsl:with-param name="language" select="'javascript'"/>
+	    </xsl:call-template>
+	  </xsl:if>
 
-        <xsl:call-template name="user.head.content"/>
-      </head>
-      <xsl:choose>
-        <xsl:when test="$multiframe != 0">
-          <xsl:apply-templates select="." mode="multiframe"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-templates select="." mode="singleframe"/>
-        </xsl:otherwise>
-      </xsl:choose>
+	  <xsl:call-template name="user.head.content"/>
+	</head>
+	<xsl:choose>
+	  <xsl:when test="$multiframe != 0">
+	    <xsl:apply-templates select="." mode="multiframe"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:apply-templates select="." mode="singleframe"/>
+	  </xsl:otherwise>
+	</xsl:choose>
       </html>
     </xsl:with-param>
   </xsl:call-template>
@@ -1752,6 +1754,7 @@ function init() {
     </xsl:if>
 
     <div class="{name(.)}" id="{$id}">
+      <a name="{$id}"/>
       <xsl:if test="$multiframe=0">
         <xsl:call-template name="foil-top-nav">
           <xsl:with-param name="home" select="$home"/>
@@ -1762,7 +1765,7 @@ function init() {
       </xsl:if>
 
       <div class="foil-body">
-      <xsl:apply-templates/>
+	<xsl:apply-templates/>
       </div>
 
       <xsl:if test="$multiframe=0">
