@@ -472,6 +472,10 @@
   <xsl:call-template name="inline.monoseq"/>
 </xsl:template>
 
+<xsl:template match="code">
+  <xsl:call-template name="inline.monoseq"/>
+</xsl:template>
+
 <xsl:template match="medialabel">
   <xsl:call-template name="inline.italicseq"/>
 </xsl:template>
