@@ -185,8 +185,16 @@ GlossEntry ::=
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
-  <fo:list-item id="{$id}"
-                xsl:use-attribute-sets="normal.para.spacing">
+  <fo:list-item xsl:use-attribute-sets="normal.para.spacing">
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="conditional">
+        <xsl:choose>
+          <xsl:when test="$glossterm.auto.link != 0
+                          or $glossary.collection != ''">0</xsl:when>
+          <xsl:otherwise>1</xsl:otherwise>
+        </xsl:choose>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:apply-templates/>
   </fo:list-item>
 </xsl:template>
@@ -194,23 +202,6 @@ GlossEntry ::=
 <xsl:template match="glossentry/glossterm">
   <fo:list-item-label end-indent="label-end()">
     <fo:block>
-      <xsl:apply-templates/>
-    </fo:block>
-  </fo:list-item-label>
-</xsl:template>
-
-<xsl:template match="glossentry/glossterm[1]" priority="2">
-  <fo:list-item-label end-indent="label-end()">
-    <fo:block>
-      <xsl:call-template name="anchor">
-        <xsl:with-param name="node" select=".."/>
-        <xsl:with-param name="conditional">
-          <xsl:choose>
-            <xsl:when test="$glossterm.auto.link != 0">0</xsl:when>
-            <xsl:otherwise>1</xsl:otherwise>
-          </xsl:choose>
-        </xsl:with-param>
-      </xsl:call-template>
       <xsl:apply-templates/>
     </fo:block>
   </fo:list-item-label>
