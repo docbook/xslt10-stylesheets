@@ -214,3 +214,4 @@
 <!ENTITY qanda.title.level4.properties SYSTEM "../params/qanda.title.level4.properties.xml">
 <!ENTITY qanda.title.level5.properties SYSTEM "../params/qanda.title.level5.properties.xml">
 <!ENTITY qanda.title.level6.properties SYSTEM "../params/qanda.title.level6.properties.xml">
+<!ENTITY variablelist.max.termlength SYSTEM "../params/variablelist.max.termlength.xml">
