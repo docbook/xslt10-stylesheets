@@ -60,22 +60,15 @@ works</quote>.</para>
 to be incomplete. Don't forget to read the source, too :-)</para>
 </preface>
 
-<reference><title>The Parameters</title>
+<reference><title>Admonitions</title>
 &admon.graphics;
 &admon.graphics.extension;
 &admon.graphics.path;
 &admonition.title.properties;
-&alignment;
-&appendix.autolabel;
-&arbortext.extensions;
-&author.othername.in.middle;
-&biblioentry.item.separator;
-&bibliography.collection;
-&body.font.family;
-&body.font.master;
-&body.font.size;
-&body.margin.bottom;
-&body.margin.top;
+&admonition.properties;
+</reference>
+
+<reference><title>Callouts</title>
 &callout.defaultcolumn;
 &callout.graphics;
 &callout.graphics.extension;
@@ -86,26 +79,18 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &callout.unicode.number.limit;
 &callout.unicode.start.character;
 &callouts.extension;
-&chapter.autolabel;
-&column.count;
-&component.title.properties;
-&default.table.width;
-&default.units;
-&dingbat.font.family;
-&double.sided;
-&footnote.font.size;
-&fop.extensions;
-&formal.object.properties;
-&formal.procedures;
-&formal.title.properties;
-&format.variablelist.as.list;
-&funcsynopsis.decoration;
-&funcsynopsis.style;
+</reference>
+
+<reference><title>ToC/LoT/Index Generation</title>
+&autotoc.label.separator;
+&process.empty.source.toc;
+&process.source.toc;
 &generate.book.equation.lot;
 &generate.book.example.lot;
 &generate.book.figure.lot;
 &generate.book.table.lot;
 &generate.book.toc;
+&generate.set.toc;
 &generate.component.toc;
 &generate.division.equation.lot;
 &generate.division.example.lot;
@@ -113,24 +98,96 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &generate.division.table.lot;
 &generate.division.toc;
 &generate.index;
-&graphic.default.extension;
-&html.stylesheet;
-&html.stylesheet.type;
-&hyphenate;
-&insert.xref.page.number;
-&label.from.part;
+&toc.section.depth;
+&toc.indent.width;
+&toc.margin.properties;
+</reference>
+
+<reference><title>Processor Extensions</title>
+&arbortext.extensions;
+&fop.extensions;
+&passivetex.extensions;
+&xep.extensions;
+</reference>
+
+<reference><title>Stylesheet Extensions</title>
 &linenumbering.everyNth;
 &linenumbering.extension;
 &linenumbering.separator;
 &linenumbering.width;
-&list.block.spacing;
-&list.item.spacing;
+&tablecolumns.extension;
+&textinsert.extension;
+&use.extensions;
+</reference>
+
+<reference><title>Automatic labelling</title>
+&appendix.autolabel;
+&chapter.autolabel;
+&part.autolabel;
+&preface.autolabel;
+&section.autolabel;
+&section.label.includes.component.label;
+&label.from.part;
+</reference>
+
+<reference><title>XSLT Processing</title>
+&rootid;
+</reference>
+
+<reference><title>Meta/*Info</title>
 &make.single.year.ranges;
 &make.year.ranges;
-&monospace.font.family;
-&monospace.verbatim.properties;
+&author.othername.in.middle;
+</reference>
+
+<reference><title>Reference Pages</title>
+&funcsynopsis.decoration;
+&funcsynopsis.style;
+&function.parens;
+&refentry.generate.name;
+&refentry.xref.manvolnum;
+</reference>
+
+<reference><title>Tables</title>
+&default.table.width;
 &nominal.table.width;
-&normal.para.spacing;
+&table.border.thickness;
+&table.border.padding;
+&table.border.style;
+&table.border.color;
+&table.entry.padding;
+</reference>
+
+<reference><title>QAndASet</title>
+&qandadiv.autolabel;
+&qanda.inherit.numeration;
+</reference>
+
+<reference><title>Linking</title>
+&glossterm.auto.link;
+</reference>
+
+<reference><title>Bibliography</title>
+&biblioentry.item.separator;
+&bibliography.collection;
+</reference>
+
+<reference><title>Miscellaneous</title>
+&graphic.default.extension;
+&formal.procedures;
+&runinhead.default.title.end.punct;
+&runinhead.title.end.punct;
+&show.comments;
+&punct.honorific;
+&segmentedlist.as.table;
+&format.variablelist.as.list;
+</reference>
+
+<reference><title>FO</title>
+&stylesheet.result.type;
+</reference>
+
+<reference><title>Pagination and General Styles</title>
 &page.height;
 &page.height.portrait;
 &page.margin.bottom;
@@ -141,42 +198,53 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &page.width;
 &page.width.portrait;
 &paper.type;
-&part.autolabel;
-&passivetex.extensions;
-&preface.autolabel;
-&process.empty.source.toc;
-&process.source.toc;
-&qanda.inherit.numeration;
-&qandadiv.autolabel;
-&refentry.generate.name;
-&refentry.xref.manvolnum;
+&double.sided;
+&body.margin.bottom;
+&body.margin.top;
+&alignment;
+&hyphenate;
+&line-height;
+&column.count;
 &region.after.extent;
 &region.before.extent;
-&rootid;
-&runinhead.default.title.end.punct;
-&runinhead.title.end.punct;
-&sans.font.family;
-&section.autolabel;
-&section.label.includes.component.label;
-&show.comments;
-&stylesheet.result.type;
-&tablecolumns.extension;
-&textinsert.extension;
-&title.font.family;
-&toc.margin.properties;
-&use.extensions;
-&verbatim.properties;
-&xep.extensions;
-&xref.properties;
-&table.entry.padding;
-&table.border.thickness;
-&table.border.padding;
-&table.border.style;
-&table.border.color;
+&default.units;
+&normal.para.spacing;
+&body.font.master;
+&body.font.size;
+&footnote.font.size;
 &title.margin.left;
-&punct.honorific;
-&segmentedlist.as.table;
 </reference>
+
+<reference><title>Font Families</title>
+&body.font.family;
+&dingbat.font.family;
+&monospace.font.family;
+&sans.font.family;
+&title.font.family;
+</reference>
+
+<reference><title>Lists</title>
+&list.block.spacing;
+&list.item.spacing;
+</reference>
+
+<reference><title>Cross References</title>
+&insert.xref.page.number;
+&xref.properties;
+</reference>
+
+<reference><title>Property Sets</title>
+&component.title.properties;
+&formal.object.properties;
+&formal.title.properties;
+&monospace.verbatim.properties;
+&verbatim.properties;
+</reference>
+
+<!--
+<reference><title></title>
+</reference>
+-->
 
 <appendix><title>The Stylesheet</title>
 
@@ -200,14 +268,16 @@ around all these parameters.</para>
 
      ******************************************************************** -->
 
-<src:fragref linkend="admon.graphics.frag"/>
 <src:fragref linkend="admon.graphics.extension.frag"/>
+<src:fragref linkend="admon.graphics.frag"/>
 <src:fragref linkend="admon.graphics.path.frag"/>
+<src:fragref linkend="admonition.properties.frag"/>
 <src:fragref linkend="admonition.title.properties.frag"/>
 <src:fragref linkend="alignment.frag"/>
 <src:fragref linkend="appendix.autolabel.frag"/>
 <src:fragref linkend="arbortext.extensions.frag"/>
 <src:fragref linkend="author.othername.in.middle.frag"/>
+<src:fragref linkend="autotoc.label.separator.frag"/>
 <src:fragref linkend="biblioentry.item.separator.frag"/>
 <src:fragref linkend="bibliography.collection.frag"/>
 <src:fragref linkend="body.font.family.frag"/>
@@ -216,12 +286,12 @@ around all these parameters.</para>
 <src:fragref linkend="body.margin.bottom.frag"/>
 <src:fragref linkend="body.margin.top.frag"/>
 <src:fragref linkend="callout.defaultcolumn.frag"/>
-<src:fragref linkend="callout.graphics.frag"/>
 <src:fragref linkend="callout.graphics.extension.frag"/>
+<src:fragref linkend="callout.graphics.frag"/>
 <src:fragref linkend="callout.graphics.number.limit.frag"/>
 <src:fragref linkend="callout.graphics.path.frag"/>
-<src:fragref linkend="callout.unicode.frag"/>
 <src:fragref linkend="callout.unicode.font.frag"/>
+<src:fragref linkend="callout.unicode.frag"/>
 <src:fragref linkend="callout.unicode.number.limit.frag"/>
 <src:fragref linkend="callout.unicode.start.character.frag"/>
 <src:fragref linkend="callouts.extension.frag"/>
@@ -240,6 +310,7 @@ around all these parameters.</para>
 <src:fragref linkend="format.variablelist.as.list.frag"/>
 <src:fragref linkend="funcsynopsis.decoration.frag"/>
 <src:fragref linkend="funcsynopsis.style.frag"/>
+<src:fragref linkend="function.parens.frag"/>
 <src:fragref linkend="generate.book.equation.lot.frag"/>
 <src:fragref linkend="generate.book.example.lot.frag"/>
 <src:fragref linkend="generate.book.figure.lot.frag"/>
@@ -252,12 +323,13 @@ around all these parameters.</para>
 <src:fragref linkend="generate.division.table.lot.frag"/>
 <src:fragref linkend="generate.division.toc.frag"/>
 <src:fragref linkend="generate.index.frag"/>
+<src:fragref linkend="generate.set.toc.frag"/>
+<src:fragref linkend="glossterm.auto.link.frag"/>
 <src:fragref linkend="graphic.default.extension.frag"/>
-<src:fragref linkend="html.stylesheet.frag"/>
-<src:fragref linkend="html.stylesheet.type.frag"/>
 <src:fragref linkend="hyphenate.frag"/>
 <src:fragref linkend="insert.xref.page.number.frag"/>
 <src:fragref linkend="label.from.part.frag"/>
+<src:fragref linkend="line-height.frag"/>
 <src:fragref linkend="linenumbering.everyNth.frag"/>
 <src:fragref linkend="linenumbering.extension.frag"/>
 <src:fragref linkend="linenumbering.separator.frag"/>
@@ -285,6 +357,7 @@ around all these parameters.</para>
 <src:fragref linkend="preface.autolabel.frag"/>
 <src:fragref linkend="process.empty.source.toc.frag"/>
 <src:fragref linkend="process.source.toc.frag"/>
+<src:fragref linkend="punct.honorific.frag"/>
 <src:fragref linkend="qanda.inherit.numeration.frag"/>
 <src:fragref linkend="qandadiv.autolabel.frag"/>
 <src:fragref linkend="refentry.generate.name.frag"/>
@@ -297,24 +370,26 @@ around all these parameters.</para>
 <src:fragref linkend="sans.font.family.frag"/>
 <src:fragref linkend="section.autolabel.frag"/>
 <src:fragref linkend="section.label.includes.component.label.frag"/>
+<src:fragref linkend="segmentedlist.as.table.frag"/>
 <src:fragref linkend="show.comments.frag"/>
 <src:fragref linkend="stylesheet.result.type.frag"/>
+<src:fragref linkend="table.border.color.frag"/>
+<src:fragref linkend="table.border.padding.frag"/>
+<src:fragref linkend="table.border.style.frag"/>
+<src:fragref linkend="table.border.thickness.frag"/>
+<src:fragref linkend="table.entry.padding.frag"/>
 <src:fragref linkend="tablecolumns.extension.frag"/>
 <src:fragref linkend="textinsert.extension.frag"/>
 <src:fragref linkend="title.font.family.frag"/>
+<src:fragref linkend="title.margin.left.frag"/>
+<src:fragref linkend="toc.indent.width.frag"/>
 <src:fragref linkend="toc.margin.properties.frag"/>
+<src:fragref linkend="toc.section.depth.frag"/>
 <src:fragref linkend="use.extensions.frag"/>
 <src:fragref linkend="verbatim.properties.frag"/>
 <src:fragref linkend="xep.extensions.frag"/>
 <src:fragref linkend="xref.properties.frag"/>
-<src:fragref linkend="table.entry.padding.frag"/>
-<src:fragref linkend="table.border.thickness.frag"/>
-<src:fragref linkend="table.border.padding.frag"/>
-<src:fragref linkend="table.border.style.frag"/>
-<src:fragref linkend="table.border.color.frag"/>
-<src:fragref linkend="title.margin.left.frag"/>
-<src:fragref linkend="punct.honorific.frag"/>
-<src:fragref linkend="segmentedlist.as.table.frag"/>
+
 </xsl:stylesheet>
 </src:fragment>
 
