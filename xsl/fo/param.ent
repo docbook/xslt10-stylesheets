@@ -226,7 +226,6 @@
 <!ENTITY footnote.number.symbols SYSTEM "../params/footnote.number.symbols.xml">
 <!ENTITY table.footnote.number.symbols SYSTEM "../params/table.footnote.number.symbols.xml">
 <!ENTITY glossentry.show.acronym SYSTEM "../params/glossentry.show.acronym.xml">
-<!ENTITY ulink.footnote.number.format SYSTEM "../params/ulink.footnote.number.format.xml">
 <!ENTITY xref.with.number.and.title SYSTEM "../params/xref.with.number.and.title.xml">
 <!ENTITY ebnf.assignment SYSTEM "../params/ebnf.assignment.xml">
 <!ENTITY ebnf.statement.terminator SYSTEM "../params/ebnf.statement.terminator.xml">
