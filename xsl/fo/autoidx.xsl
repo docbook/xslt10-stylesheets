@@ -564,25 +564,29 @@
 <xsl:template match="indexterm" mode="index-seealso">
    <xsl:param name="scope" select="."/>
   <xsl:param name="role" select="''"/>
+  <xsl:param name="type" select="''"/>
 
-   <fo:block>
-     <xsl:text>(</xsl:text>
-     <xsl:call-template name="gentext">
-       <xsl:with-param name="key" select="'seealso'"/>
-     </xsl:call-template>
-     <xsl:text> </xsl:text>
-     <xsl:value-of select="seealso"/>
-     <xsl:text>)</xsl:text>
-   </fo:block>
+  <xsl:for-each select="seealso">
+    <xsl:sort select="translate(., &lowercase;, &uppercase;)"/>
+    <fo:block>
+      <xsl:text>(</xsl:text>
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'seealso'"/>
+      </xsl:call-template>
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="."/>
+      <xsl:text>)</xsl:text>
+    </fo:block>
+  </xsl:for-each>
+
 </xsl:template>
 
 <!-- ====================================================================== -->
 
 <xsl:template name="generate-index-markup">
   <xsl:param name="scope" select="(ancestor::book|/)[last()]"/>
-
-  <xsl:variable name="role" select="@role"/>
-  <xsl:variable name="type" select="@type"/>
+  <xsl:param name="role" select="@role"/>
+  <xsl:param name="type" select="@type"/>
 
   <xsl:variable name="terms" select="$scope//indexterm[count(.|key('letter',
                                      translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;))[&scope;][1]) = 1]"/>
