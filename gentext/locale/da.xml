@@ -25,7 +25,7 @@
 <gentext key="bibliography" text="litteraturliste"/>
 <gentext key="Book" text="Bog"/>
 <gentext key="book" text="bog"/>
-<gentext key="CAUTION" text="PAS P&#xE5;"/>
+<gentext key="CAUTION" text="PAS P&#xC5;"/>
 <gentext key="Caution" text="Pas p&#xE5;"/>
 <gentext key="caution" text="pas p&#xE5;"/>
 <gentext key="Chapter" text="Kapitel"/>
@@ -65,7 +65,7 @@
 <gentext key="msglevel" text="niveau"/>
 <gentext key="MsgOrig" text="Grundlag"/>
 <gentext key="msgorig" text="grundlag"/>
-<gentext key="NOTE" text="BEM&#xE6;rk"/>
+<gentext key="NOTE" text="BEM&#xC6;RK"/>
 <gentext key="Note" text="Bem&#xE6;rk"/>
 <gentext key="note" text="bem&#xE6;rk"/>
 <gentext key="Part" text="Del"/>
@@ -173,7 +173,7 @@
 <gentext key="lowercase.alpha"
  text="abcdefghijklmnopqrstuvwxyz&#xE6;&#xF8;&#xE5;"/>
 <gentext key="uppercase.alpha"
- text="ABCDEFGHIJKLMNOPQRSTUVWXYZ&#xE6;&#xF8;&#xE5;"/>
+ text="ABCDEFGHIJKLMNOPQRSTUVWXYZ&#xC6;&#xD8;&#xC5;"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
