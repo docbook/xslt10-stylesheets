@@ -97,9 +97,12 @@
   </xsl:choose>
 
   <xsl:if test="$insert.xref.page.number != 0 or local-name($target) = 'para'">
-    <xsl:apply-templates select="$target" mode="page.citation">
-      <xsl:with-param name="id" select="@linkend"/>
-    </xsl:apply-templates>
+    <fo:basic-link internal-destination="{@linkend}"
+                   xsl:use-attribute-sets="xref.properties">
+      <xsl:apply-templates select="$target" mode="page.citation">
+        <xsl:with-param name="id" select="@linkend"/>
+      </xsl:apply-templates>
+    </fo:basic-link>
   </xsl:if>
 </xsl:template>
 
