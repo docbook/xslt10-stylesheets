@@ -336,7 +336,7 @@
   <xsl:text>''</xsl:text>
 </xsl:template>
 
-<xsl:template match="programlisting">
+<xsl:template match="programlisting|literallayout">
   <xsl:text>&#10;.nf&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>&#10;.fi&#10;</xsl:text>
