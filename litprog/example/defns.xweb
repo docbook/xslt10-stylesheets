@@ -1,0 +1,27 @@
+<html xmlns:src="http://nwalsh.com/xmlns/litprog/fragment">
+<head>
+<title>Default Namespace</title>
+</head>
+<body>
+
+<p>This document is in the default namespace. (This document is just a test
+of this special case.)</p>
+
+<src:fragment id="top">
+  <grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+         xmlns:doc="http://nwalsh.com/xmlns/doc"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    <src:fragref linkend="nop"/>
+  </grammar>
+</src:fragment>
+
+<p>Dummy content.</p>
+
+<src:fragment id="nop" xmlns:doc="http://nwalsh.com/xmlns/doc">
+<doc:nop>There's nothing here. (This isn't a real grammar)</doc:nop>
+</src:fragment>
+
+</body>
+</html>
+
