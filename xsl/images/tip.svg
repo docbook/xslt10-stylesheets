@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 9.0, SVG Export Plug-In  -->
+<!DOCTYPE svg [
+	<!ENTITY st0 "fill-rule:nonzero;clip-rule:nonzero;fill:#FFFFFF;stroke:#000000;stroke-width:2.3937;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;">
+	<!ENTITY st1 "fill:#000000;stroke:none;">
+	<!ENTITY st2 "fill:#FFFFBA;stroke-width:1.7953;stroke-linecap:butt;stroke-linejoin:miter;">
+	<!ENTITY st3 "fill:none;stroke-width:0.5984;stroke-linecap:butt;stroke-linejoin:miter;">
+]>
+<svg  width="15.8pt" height="26.1pt" viewBox="0 0 15.8 26.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+	<g id="Layer_x0020_1" style="&st0;">
+		<g>
+			<path style="&st2;" d="M14.9,7.9c0,3.9-3.1,7-7,7c-3.9,0-7-3.1-7-7c0-3.9,3.1-7,7-7c3.9,0,7,3.1,7,7z"/>
+			<path d="M10.8,22.3l-5.6,0.6"/>
+			<path d="M10.8,19.7l-5.6,0.6"/>
+			<path d="M10.8,17.1l-5.6,0.6"/>
+			<path style="&st1;" d="M7,24.3v0.7c0,0.7,0.5,1.2,1.2,1.2c0.7,0,1.2-0.5,1.2-1.2v-0.7H7z"/>
+			<path style="&st3;" d="M6.9,14L5,8.1c0,0,3.6,2.1,5.8,0"/>
+		</g>
+	</g>
+</svg>
