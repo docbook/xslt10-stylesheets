@@ -37,7 +37,7 @@ Website.</para>
 </listitem></itemizedlist> 
 <section>
 <title>Olinks with XSLT build method</title>
-<para>Here is how you process a website with olinks using  the <olink targetdoc="buildmake" targetptr="buildmake">XSLT build</olink> method.</para>
+<para>Here is how you process a website with olinks using  the <olink targetdoc="buildext">XSLT build</olink> method.</para>
 <orderedlist>
 <listitem>
 <para>Create your <filename>layout.xml</filename> file the same as before.</para>
