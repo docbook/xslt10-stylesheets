@@ -21,10 +21,26 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
+  <xsl:variable name="renderas">
+    <xsl:choose>
+      <xsl:when test="@renderas = 'sect1'">1</xsl:when>
+      <xsl:when test="@renderas = 'sect2'">2</xsl:when>
+      <xsl:when test="@renderas = 'sect3'">3</xsl:when>
+      <xsl:when test="@renderas = 'sect4'">4</xsl:when>
+      <xsl:when test="@renderas = 'sect5'">5</xsl:when>
+      <xsl:otherwise><xsl:value-of select="''"/></xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:variable name="level">
-    <xsl:call-template name="section.level">
-      <xsl:with-param name="node" select="."/>
-    </xsl:call-template>
+    <xsl:choose>
+      <xsl:when test="$renderas != ''">
+        <xsl:value-of select="$renderas"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="section.level"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
 
   <!-- xsl:use-attribute-sets takes only a Qname, not a variable -->
@@ -182,10 +198,28 @@
       </xsl:call-template>
     </xsl:variable>
 
+    <xsl:variable name="renderas">
+      <xsl:choose>
+        <xsl:when test="$section/@renderas = 'sect1'">1</xsl:when>
+        <xsl:when test="$section/@renderas = 'sect2'">2</xsl:when>
+        <xsl:when test="$section/@renderas = 'sect3'">3</xsl:when>
+        <xsl:when test="$section/@renderas = 'sect4'">4</xsl:when>
+        <xsl:when test="$section/@renderas = 'sect5'">5</xsl:when>
+        <xsl:otherwise><xsl:value-of select="''"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+  
     <xsl:variable name="level">
-      <xsl:call-template name="section.level">
-        <xsl:with-param name="node" select="$section"/>
-      </xsl:call-template>
+      <xsl:choose>
+        <xsl:when test="$renderas != ''">
+          <xsl:value-of select="$renderas"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="section.level">
+            <xsl:with-param name="node" select="$section"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:variable>
 
     <xsl:variable name="marker">
