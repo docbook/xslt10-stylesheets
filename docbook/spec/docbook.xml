@@ -1,8 +1,8 @@
 <!DOCTYPE article [
-<!ENTITY name "cd-docbook-docbook">
-<!ENTITY version "4.3">
-<!ENTITY standard "Committee Draft">
-<!ENTITY tracker "http://sourceforge.net/tracker/">
+<!ENTITY name "wd-docbook-docbook">
+<!ENTITY version "4.4b1">
+<!ENTITY standard "Working Draft">
+<!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
 <!ENTITY root "http://docbook.org/">
 ]>
@@ -34,7 +34,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>31 Mar 2004</pubdate>
+<pubdate>09 Jun 2004</pubdate>
 
 <copyright><year>2001</year><year>2002</year><year>2003</year><year>2004</year>
 <holder>
@@ -48,31 +48,29 @@ Standards [OASIS]. All Rights Reserved.
 particularly well suited to books and papers about computer hardware
 and software (though it is by no means limited to these applications).
 </para>
-<para>The Version 4.3 release is a maintenance release. It introduces
+<para>The Version 4.4b1 release is a maintenance release. It introduces
 no backwards-incompatible changes.</para>
 </abstract>
 
 <legalnotice role="status"><title>Status</title>
+<!--
 <para>This &standard; was
 <ulink url="http://lists.oasis-open.org/archives/docbook-tc/200403/msg00010.html">approved</ulink>
 for publication by the
 OASIS DocBook Technical Committee. It represents the
 consensus of the committee.
 </para>
+-->
 
-<!--
 <para>This &standard; is an editor's draft. It does not necessarily
 represent the consensus of the committee.
 </para>
--->
 
 <para>Please send comments on this specification to the
-<email>docbook@lists.oasis-open.org</email> list. To subscribe, send
-an email message to
-<email>docbook-request@lists.oasis-open.org</email> with the word
-<quote><literal>subscribe</literal></quote> as the body of the
-message.
-</para>
+<email>docbook@lists.oasis-open.org</email> list. To subscribe, please
+use the
+<ulink url="http://lists.oasis-open.org/ob/adm.pl">OASIS Subscription
+Manager</ulink>.</para>
 
 <para>The errata page for this specification is at
 <ulink url="&root;specs/docbook-errata.html"/>.
@@ -96,9 +94,14 @@ both
 <ulink url="http://xml.coverpages.org/general.html#overview">SGML</ulink>.
 It is unofficially available in other forms as well.</para>
 
-<para>The Version 4.3 release is a maintainance release. It introduces
-no backwards-incompatible changes. All valid DocBook 4.2 documents are
-also valid DocBook 4.3 documents.</para>
+<para>The Version 4.4b1 release is a maintainance release. It introduces
+no backwards-incompatible changes. All valid DocBook 4.3 documents are
+also valid DocBook 4.4b1 documents.</para>
+
+<para>The genesis of this release is a bug in the catalog files for
+DocBook V4.3. The Committee decided to produce a 4.4 release, incorporating
+a few recent backwards-compatible changes, rather than simply produce
+a 4.3.1 release to fix the bugs.</para>
 
 <para>The DocBook Technical Committee welcomes bug reports and
 requests for enhancement (RFEs) from the user community. The current list
@@ -127,7 +130,7 @@ document.</para>
 </section>
 
 <section id="docbook">
-<title>The DocBook Document Type V4.3</title>
+<title>The DocBook Document Type V4.4b1</title>
 
 <para>The DocBook document type is distributed for
 <ulink url="&root;xml/">XML</ulink> and
@@ -140,294 +143,59 @@ the mirror on
 </para>
 
 <section id="s.cs">
-<title>Changes in DocBook V4.3</title>
-
-<para>There are no substantive changes in this release. This is the &standard;
-</para>
-
-</section>
-
-<section id="s.cr3">
-<title>Changes in DocBook V4.3CR3</title>
+<title>Changes in DocBook V4.4b1</title>
 
 <para>There are no backwards-incompatible changes in this release.
 </para>
 
-<itemizedlist spacing="compact">
-<listitem><para>Add <sgmltag class="attribute">floatstyle</sgmltag> to
-<sgmltag>table</sgmltag> and <sgmltag>informaltable</sgmltag> per the
-<ulink url="http://lists.oasis-open.org/archives/docbook-tc/200211/msg00012.html">November, 2002</ulink> 
-meeting.
-</para></listitem>
-</itemizedlist>
-</section>
-
-<section id="s.cr2">
-<title>Changes in DocBook V4.3CR2</title>
-
-<para>There are no backwards-incompatible changes in this release.
-</para>
-
-<itemizedlist spacing="compact">
-<listitem><para>If HTML tables are allowed, make sure that
-<sgmltag>caption</sgmltag> gets all of the HTML attributes.
-</para></listitem>
-<listitem><para>Refactored parameter entities for <sgmltag>informaltable</sgmltag>
-so that the initial <sgmltag>textobject</sgmltag> is allowed when (and only when)
-the CALS table model is used.
-</para></listitem>
-</itemizedlist>
-</section>
-
-<section id="s.cr1">
-<title>Changes in DocBook V4.3CR1</title>
-
-<para>There are no backwards-incompatible changes in this release.
-</para>
-
-<para>Per the decision at the
-<ulink url="http://lists.oasis-open.org/archives/docbook/200311/msg00016.html">19 Nov 2003</ulink>
-Technical Committee meeting, DocBook V4.3b5 is republished as DocBook
-V4.3CR1 (Candidate Release 1). There have been no technical changes since V4.3b5.</para>
-</section>
-
-<section id="s.b5">
-<title>Changes in DocBook V4.3b5</title>
-
-<para>There are no backwards-incompatible changes in this release.
-</para>
-
-<para>Each of the changes made between DocBook V4.2b4 and DocBook XML V4.3b5
+<para>Each of the changes made between DocBook V4.3 and DocBook V4.4b1
 is summarized here. For complete details, consult the individual RFEs and
 the <ulink url="&root;meetings">meeting minutes</ulink>.</para>
 
-<section id="sb5.bugs">
+<section id="sb1.bugs">
 <title>Bug Fixes</title>
 
 <itemizedlist spacing="compact">
-
-<listitem><para>Made the content model of <sgmltag>firstterm</sgmltag> identical
-to <sgmltag>glossterm</sgmltag>.</para>
-</listitem>
+<listitem><para>Added the HTML Table Module to the catalog files for
+DocBook and DocBook XML.
+</para></listitem>
 </itemizedlist>
 </section>
-</section>
 
-<section id="s.b4">
-<title>Changes in DocBook V4.3b4</title>
-
-<para>There are no backwards-incompatible changes in this release.
-</para>
-
-<para>Each of the changes made between DocBook V4.2b3 and DocBook XML V4.3b4
-is summarized here. For complete details, consult the individual RFEs and
-the <ulink url="&root;meetings">meeting
-minutes</ulink>.</para>
-
-<section id="sb4.enhancements">
+<section id="sb1.enhancements">
 <title>Enhancements</title>
 
 <itemizedlist spacing="compact">
+<listitem><para>Added <sgmltag>package</sgmltag> element per the
+<ulink url="http://docbook.org/minutes/2004-02-18.txt">Febuary, 2004</ulink> 
+meeting.
+</para></listitem>
 
-<listitem><para><ulink url="&RFE;aid=518074">RFE 518074</ulink>:
-Added a number of new values to the
-<sgmltag class="attribute">class</sgmltag> attribute of
-<sgmltag>database</sgmltag>.
-</para>
-</listitem>
+<listitem><para>Allow <sgmltag>imageobjectco</sgmltag> as a child of
+<sgmltag>mediaobject</sgmltag> (this effectively makes
+<sgmltag>mediaobjectco</sgmltag> unnecessary) per the
+<ulink url="http://docbook.org/minutes/2004-02-18.txt">Febuary, 2004</ulink> 
+meeting.
+</para></listitem>
 
-<listitem><para><ulink url="&RFE;aid=517604">RFE 517604</ulink>:
-Allow optional <sgmltag>title</sgmltag> on <sgmltag>glosslist</sgmltag>.
-</para>
-</listitem>
+<listitem><para>Added <sgmltag>biblioref</sgmltag> element per the
+<ulink url="http://docbook.org/minutes/2004-05-19.txt">May, 2004</ulink> 
+meeting.
+</para></listitem>
 
-<listitem><para><ulink url="&RFE;aid=507975">RFE 507975</ulink>:
-Revision should allow <sgmltag>author</sgmltag> or <sgmltag>authorinitials</sgmltag>.
-</para>
-</listitem>
+<listitem><para>Added <sgmltag class="attribute">spacing</sgmltag> attribute
+to <sgmltag>variablelist</sgmltag> per the
+<ulink url="http://docbook.org/minutes/2004-04-21.txt">April, 2004</ulink> 
+meeting.
+</para></listitem>
 
-<listitem><para><ulink url="&RFE;aid=533734">RFE 533734</ulink>:
-Allow <sgmltag>void</sgmltag> to be optional on
-<sgmltag>methodsynopsis</sgmltag>,
-<sgmltag>consstructorsynopsis</sgmltag>, and
-<sgmltag>destructorsynopsis</sgmltag>.
-</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=570068">RFE 570068</ulink>:
-Added <literal>emailmessage</literal>, <literal>webpage</literal>, and
-<literal>newsposting</literal> as
-<sgmltag class="attribute">pubwork</sgmltag> values for <sgmltag>citetitle</sgmltag>.
-</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=564776">RFE 564776</ulink>:
-Added <literal>process</literal>, <literal>service</literal>, <literal>server</literal>,
-and <literal>daemon</literal> to the <sgmltag class="attribute">class</sgmltag>
-values of <sgmltag>systemitem</sgmltag>.
-</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=573812">RFE 573812</ulink>:
-Allow <sgmltag>blockinfo</sgmltag> on <sgmltag>blockquote</sgmltag>.
-</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=571998">RFE 571998</ulink>:
-Added <sgmltag>initializer</sgmltag> to <sgmltag>paramdef</sgmltag>.
-</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=571996">RFE 571996</ulink>:
-Added <literal>prefix</literal>, <literal>namespace</literal>, and
-<literal>localname</literal> to <sgmltag class="attribute">class</sgmltag> for
-<sgmltag>sgmltag</sgmltag>.
-</para>
-</listitem>
-
-<listitem><para>
-Added <sgmltag>StepAlternatives</sgmltag>.
-</para>
-</listitem>
-</itemizedlist>
-</section>
-</section>
-
-<section id="s.b3">
-<title>Changes in DocBook V4.3b3</title>
-
-<para>There are no backwards-incompatible changes in this release.
-</para>
-
-<para>Each of the changes made between DocBook V4.2b2 and DocBook XML V4.3b3
-is summarized here. For complete details, consult the individual RFEs and
-the <ulink url="&root;meetings">meeting
-minutes</ulink>.</para>
-
-<section id="sb3.enhancements">
-<title>Enhancements</title>
-
-<itemizedlist spacing="compact">
-<listitem><para>Added <sgmltag>code</sgmltag> inline with
-<sgmltag class="attribute">language</sgmltag> attribute.</para>
-</listitem>
-
-<listitem><para>Fixed oversights that removed <sgmltag>blockinfo</sgmltag> and
-<sgmltag>textobject</sgmltag> from CALS tables.</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=615587">RFE 615587</ulink>:
-add <sgmltag class="attribute">xml:base</sgmltag> to common attributes (2002 Nov)
-</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=616216">RFE 616216</ulink>:
-Allow <sgmltag>set</sgmltag>s to be recursive. (2002 Nov)
-</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=615473">RFE 615473</ulink>:
-Add <sgmltag class="attribute">floatstyle</sgmltag> to
-<simplelist type="inline">
-<member><sgmltag>figure</sgmltag></member>
-<member><sgmltag>informalfigure</sgmltag></member>
-<member><sgmltag>example</sgmltag></member>
-<member><sgmltag>informalexample</sgmltag></member>
-<member><sgmltag>equation</sgmltag></member>
-<member><sgmltag>informalequation</sgmltag></member>
-</simplelist>.
-</para>
-</listitem>
-
-<listitem><para>Fixed parameter entity declaration problems that resulted in
-duplicate attribute declarations for some table-related elements.
-</para>
-</listitem>
-
-<listitem><para>Added <sgmltag class="attribute">type</sgmltag> attribute to
-<sgmltag>indexterm</sgmltag> and <sgmltag>index</sgmltag>.
-</para>
-</listitem>
-</itemizedlist>
-</section>
-</section>
-
-<section id="s.b2">
-<title>Changes in DocBook V4.3b2</title>
-
-<para>There are no backwards-incompatible changes in this release.
-</para>
-
-<para>Each of the changes made between DocBook V4.2 and DocBook XML V4.3b2
-is summarized here. For complete details, consult the individual RFEs and
-the <ulink url="&root;meetings">meeting
-minutes</ulink>.</para>
-
-<para>There was no public beta 1 release.</para>
-
-<section id="sb2.enhancements">
-<title>Enhancements</title>
-
-<itemizedlist spacing="compact">
-<listitem><para>Allow HTML table models in addition to CALS or SOEx
-table models (2003 Apr)</para>
-<para>Note: the editor has changed the content model of <sgmltag>caption</sgmltag>
-to support HTML tables with captions more directly.</para>
-</listitem>
-
-<listitem><para>Support <sgmltag>task</sgmltag> markup (2003 Jun).</para>
-</listitem>
-
-<listitem><para>Related to RFE 679316: add orgname to inlines (2003 Jul)</para>
-</listitem>
-
-<listitem><para>Added function attribute to keycap for improved semantics (2003 Jul)
-</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=705885">RFE 705885</ulink>:
-add namespace attribute to sgmltag (2003 May)</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=691762">RFE 691762</ulink>:
-add language attribute to verbatim environments (2003 May)</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=573419">RFE 573419</ulink>:
-add bidirectional text override (2003 Apr)</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=565716">RFE 565716</ulink>:
-support for URI element (2003 Apr)</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=660044">RFE 660044</ulink>:
-support continuation and startinglinenumber on verbatims (2003 Feb)</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=655526">RFE 655526</ulink>:
-support modifier in funcprototype (2003 Feb)</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=638456">RFE 638456</ulink>:
-support translators (2003 Feb)</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=582822">RFE 582822</ulink>:
-paramdef and varargs on funcprototype (2003 Feb)</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=473365">RFE 473365</ulink>:
-choice attribute for paramdef (2003 Feb)</para>
-</listitem>
-
-<listitem><para><ulink url="&RFE;aid=570068">RFE 570068</ulink>:
-new values for pubwork (2003 Jan)</para>
-</listitem>
-
-<listitem><para>Added xrefstyle (2002 Dec)</para>
-</listitem>
-
+<listitem><para>Added <sgmltag>superscript</sgmltag> and
+<sgmltag>subscript</sgmltag> to the content model of the
+<sgmltag>gui<replaceable>*</replaceable></sgmltag> elements
+per the
+<ulink url="http://docbook.org/minutes/2004-05-19.txt">May, 2004</ulink> 
+meeting.
+</para></listitem>
 </itemizedlist>
 </section>
 </section>
@@ -854,37 +622,9 @@ of the DocBook web page
 
 <para>
 <revhistory>
-<revision role="&root;specs/cd-docbook-docbook-4.3.html">
-  <revnumber>Committee Draft</revnumber>
-  <date>31 Mar 2004</date>
-</revision>
-<revision role="&root;specs/wd-docbook-docbook-4.3cr3.html">
-  <revnumber>Working Draft “Candidate Release 3”</revnumber>
-  <date>21 Jan 2004</date>
-</revision>
-<revision role="&root;specs/wd-docbook-docbook-4.3cr2.html">
-  <revnumber>Working Draft “Candidate Release 2”</revnumber>
-  <date>21 Dec 2003</date>
-</revision>
-<revision role="&root;specs/wd-docbook-docbook-4.3cr1.html">
-  <revnumber>Working Draft “Candidate Release 1”</revnumber>
-  <date>02 Dec 2003</date>
-</revision>
-<revision role="&root;specs/wd-docbook-docbook-4.3b5.html">
-  <revnumber>Working Draft “Beta 5”</revnumber>
-  <date>29 Oct 2003</date>
-</revision>
-<revision role="&root;specs/wd-docbook-docbook-4.3b4.html">
-  <revnumber>Working Draft “Beta 4”</revnumber>
-  <date>30 Sep 2003</date>
-</revision>
-<revision role="&root;specs/wd-docbook-docbook-4.3b3.html">
-  <revnumber>Working Draft “Beta 3”</revnumber>
-  <date>26 Sep 2003</date>
-</revision>
-<revision>
-  <revnumber>Working Draft “Beta 2” (Beta 1 was never released.)</revnumber>
-  <date>15 Aug 2003</date>
+<revision role="&root;specs/wd-docbook-docbook-4.4b1.html">
+  <revnumber>Working Draft “Beta 1”</revnumber>
+  <date>09 Jun 2004</date>
 </revision>
 </revhistory>
 </para>
