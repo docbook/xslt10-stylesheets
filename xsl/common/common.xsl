@@ -429,7 +429,7 @@ Defaults to the context node.</para>
       <xsl:otherwise>
         <xsl:call-template name="gentext.template">
           <xsl:with-param name="context" select="'styles'"/>
-s          <xsl:with-param name="name" select="'person-name'"/>
+          <xsl:with-param name="name" select="'person-name'"/>
         </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
