@@ -134,14 +134,17 @@
 <xsl:template match="*" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
 
-  <xsl:message>
-    <xsl:text>Don't know what gentext to create for xref to: "</xsl:text>
-    <xsl:value-of select="name(.)"/>
-    <xsl:text>", ("</xsl:text>
-    <xsl:value-of select="@id"/>
-    <xsl:text>")</xsl:text>
-  </xsl:message>
+  <xsl:if test="$verbose">
+    <xsl:message>
+      <xsl:text>Don't know what gentext to create for xref to: "</xsl:text>
+      <xsl:value-of select="name(.)"/>
+      <xsl:text>", ("</xsl:text>
+      <xsl:value-of select="@id"/>
+      <xsl:text>")</xsl:text>
+    </xsl:message>
+  </xsl:if>
   <xsl:text>???</xsl:text>
 </xsl:template>
 
@@ -799,7 +802,8 @@
           <!-- Was the database document parameter not set? -->
           <xsl:when test="$target.database.document = ''">
             <xsl:message>
-              <xsl:text>Olinks not processed: must specify a $target.database.document parameter</xsl:text>
+              <xsl:text>Olinks not processed: must specify a $target.database.document parameter
+              </xsl:text>
               <xsl:text>when using olinks with targetdoc and targetptr attributes.</xsl:text>
             </xsl:message>
           </xsl:when>
