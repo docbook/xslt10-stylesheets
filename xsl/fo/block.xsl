@@ -119,40 +119,105 @@
 <!-- ==================================================================== -->
 
 <xsl:template name="floater">
-  <xsl:param name="float.type" select="'none'"/>
+  <xsl:param name="position" select="'none'"/>
+  <xsl:param name="clear" select="'both'"/>
   <xsl:param name="width"/>
   <xsl:param name="content"/>
+  <xsl:param name="start.indent">0pt</xsl:param>
+  <xsl:param name="end.indent">0pt</xsl:param>
 
   <xsl:choose>
     <xsl:when test="$fop.extensions">
       <!-- fop 0.20.5 does not support floats -->
       <xsl:copy-of select="$content"/>
     </xsl:when>
-    <xsl:when test="$float.type = 'none'">
+    <xsl:when test="$position = 'none'">
       <xsl:copy-of select="$content"/>
     </xsl:when>
-    <xsl:when test="$float.type = 'before'">
+    <xsl:when test="$position = 'before'">
       <fo:float float="before">
         <xsl:copy-of select="$content"/>
       </fo:float>
     </xsl:when>
-    <xsl:when test="$float.type = 'left' or
-                    $float.type = 'right' or
-                    $float.type = 'inside' or
-                    $float.type = 'outside'">
-      <fo:float float="{$float.type}"
-                clear="both"
-                start-indent="0pt"
-                end-indent="0pt">
-        <fo:block-container xsl:use-attribute-sets="side.float.properties">
-          <xsl:if test="$width != ''">
-            <xsl:attribute name="width">
-              <xsl:value-of select="$width"/>
-            </xsl:attribute>
-          </xsl:if>
-          <xsl:copy-of select="$content"/>
-        </fo:block-container>
-      </fo:float>
+    <xsl:when test="$position = 'left' or
+                    $position = 'start' or
+                    $position = 'right' or
+                    $position = 'end' or
+                    $position = 'inside' or
+                    $position = 'outside'">
+      <xsl:variable name="float">
+        <fo:float float="{$position}"
+                  clear="{$clear}">
+          <fo:block-container 
+                    start-indent="{$start.indent}"
+                    end-indent="{$end.indent}">
+            <xsl:if test="$width != ''">
+              <xsl:attribute name="inline-progression-dimension">
+                <xsl:value-of select="$width"/>
+              </xsl:attribute>
+            </xsl:if>
+            <fo:block>
+              <xsl:copy-of select="$content"/>
+            </fo:block>
+          </fo:block-container>
+        </fo:float>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="$axf.extensions != 0 and self::sidebar">
+          <fo:block xsl:use-attribute-sets="normal.para.spacing"
+                    space-after="0pt"
+                    space-after.precedence="force"
+                    start-indent="0pt" end-indent="0pt">
+            <xsl:copy-of select="$float"/>
+          </fo:block>
+        </xsl:when>
+        <xsl:when test="$axf.extensions != 0 and 
+                        ($position = 'left' or $position = 'start')">
+          <!-- Special case for handling inline floats in Antenna House-->
+          <fo:float float="{$position}"
+                    clear="{$clear}">
+            <fo:block-container 
+                      inline-progression-dimension=".001mm"
+                      start-indent="-{$body.start.indent}"
+                      end-indent="{$start.indent} + {$width} + {$end.indent}">
+              <fo:block start-indent="{$start.indent}"
+                        end-indent="-{$start.indent} - {$width}">
+                <xsl:copy-of select="$content"/>
+              </fo:block>
+            </fo:block-container>
+          </fo:float>
+
+        </xsl:when>
+        <xsl:when test="$axf.extensions != 0 and 
+                        ($position = 'right' or $position = 'end')">
+          <!-- Special case for handling inline floats in Antenna House-->
+          <fo:float float="{$position}"
+                    clear="{$clear}">
+            <fo:block-container 
+                      inline-progression-dimension=".001mm"
+                      end-indent="-{$body.end.indent}"
+                      start-indent="{$start.indent} + {$width} + {$end.indent}">
+              <fo:block end-indent="{$end.indent}"
+                        start-indent="-{$end.indent} - {$width}">
+                <xsl:copy-of select="$content"/>
+              </fo:block>
+            </fo:block-container>
+          </fo:float>
+
+        </xsl:when>
+        <xsl:when test="$xep.extensions != 0 and self::sidebar">
+          <!-- float needs some space above  to line up with following para -->
+          <fo:block xsl:use-attribute-sets="normal.para.spacing">
+            <xsl:copy-of select="$float"/>
+          </fo:block>
+        </xsl:when>
+        <xsl:when test="$xep.extensions != 0">
+          <xsl:copy-of select="$float"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:copy-of select="$float"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
       <xsl:copy-of select="$content"/>
@@ -161,18 +226,103 @@
 </xsl:template>
 
 <xsl:template match="sidebar" name="sidebar">
-  <xsl:variable name="content">
-    <fo:block xsl:use-attribute-sets="sidebar.properties">
+  <!-- Also does margin notes -->
+  <xsl:variable name="pi-type">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'float-type'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$pi-type = 'margin.note'">
+      <xsl:call-template name="margin.note"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="content">
+        <fo:block xsl:use-attribute-sets="sidebar.properties">
+          <xsl:if test="./title">
+            <fo:block xsl:use-attribute-sets="sidebar.title.properties">
+              <xsl:apply-templates select="./title" mode="sidebar.title.mode"/>
+            </fo:block>
+          </xsl:if>
+          <xsl:apply-templates/>
+        </fo:block>
+      </xsl:variable>
+    
+      <xsl:variable name="pi-width">
+        <xsl:call-template name="dbfo-attribute">
+          <xsl:with-param name="pis"
+                          select="processing-instruction('dbfo')"/>
+          <xsl:with-param name="attribute" select="'sidebar-width'"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:variable name="position">
+        <xsl:choose>
+          <xsl:when test="$pi-type != ''">
+            <xsl:value-of select="$pi-type"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$sidebar.float.type"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+    
+      <xsl:call-template name="floater">
+        <xsl:with-param name="content" select="$content"/>
+        <xsl:with-param name="position" select="$position"/>
+        <xsl:with-param name="width">
+          <xsl:choose>
+            <xsl:when test="$pi-width != ''">
+              <xsl:value-of select="$pi-width"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$sidebar.float.width"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:with-param>
+        <xsl:with-param name="start.indent">
+          <xsl:choose>
+            <xsl:when test="$position = 'start' or 
+                            $position = 'left'">0pt</xsl:when>
+            <xsl:when test="$position = 'end' or 
+                            $position = 'right'">0.5em</xsl:when>
+          </xsl:choose>
+        </xsl:with-param>
+        <xsl:with-param name="end.indent">
+          <xsl:choose>
+            <xsl:when test="$position = 'start' or 
+                            $position = 'left'">0.5em</xsl:when>
+            <xsl:when test="$position = 'end' or 
+                            $position = 'right'">0pt</xsl:when>
+          </xsl:choose>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+
+</xsl:template>
+
+<xsl:template match="sidebar/title">
+</xsl:template>
+
+<xsl:template match="sidebar/title" mode="sidebar.title.mode">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template name="margin.note">
+  <xsl:param name="content">
+    <fo:block xsl:use-attribute-sets="margin.note.properties">
       <xsl:if test="./title">
-        <fo:block font-weight="bold"
-                  keep-with-next.within-column="always"
-                  hyphenate="false">
-          <xsl:apply-templates select="./title" mode="sidebar.title.mode"/>
+        <fo:block xsl:use-attribute-sets="margin.note.title.properties">
+          <xsl:apply-templates select="./title" mode="margin.note.title.mode"/>
         </fo:block>
       </xsl:if>
       <xsl:apply-templates/>
     </fo:block>
-  </xsl:variable>
+  </xsl:param>
 
   <xsl:variable name="pi-width">
     <xsl:call-template name="dbfo-attribute">
@@ -182,35 +332,41 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:variable name="pi-type">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'float-type'"/>
-    </xsl:call-template>
-  </xsl:variable>
+  <xsl:variable name="position" select="$margin.note.float.type"/>
 
   <xsl:call-template name="floater">
     <xsl:with-param name="content" select="$content"/>
-    <xsl:with-param name="float.type">
+    <xsl:with-param name="position" select="$position"/>
+    <xsl:with-param name="width" >
       <xsl:choose>
-        <xsl:when test="$pi-type != ''">
-          <xsl:value-of select="$pi-type"/>
+        <xsl:when test="$pi-width != ''">
+          <xsl:value-of select="$pi-width"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="$sidebar.float.type"/>
+          <xsl:value-of select="$margin.note.width"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:with-param>
-    <xsl:with-param name="width" select="$pi-width"/>
+    <xsl:with-param name="start.indent">
+      <xsl:choose>
+        <xsl:when test="$position = 'start' or 
+                        $position = 'left'">0pt</xsl:when>
+        <xsl:when test="$position = 'end' or 
+                        $position = 'right'">0.5em</xsl:when>
+      </xsl:choose>
+    </xsl:with-param>
+    <xsl:with-param name="end.indent">
+      <xsl:choose>
+        <xsl:when test="$position = 'start' or 
+                        $position = 'left'">0.5em</xsl:when>
+        <xsl:when test="$position = 'end' or 
+                        $position = 'right'">0pt</xsl:when>
+      </xsl:choose>
+    </xsl:with-param>
   </xsl:call-template>
-
 </xsl:template>
 
-<xsl:template match="sidebar/title">
-</xsl:template>
-
-<xsl:template match="sidebar/title" mode="sidebar.title.mode">
+<xsl:template match="sidebar/title" mode="margin.note.title.mode">
   <xsl:apply-templates/>
 </xsl:template>
 
