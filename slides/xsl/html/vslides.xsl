@@ -430,13 +430,19 @@
 
 <!-- ============================================================ -->
 
-<xsl:template match="*" mode="header">
+<xsl:template match="slidesinfo" mode="header">
+  <div class="navhead">
+    <!-- nop -->
+  </div>
+</xsl:template>
+
+<xsl:template match="foil|foilgroup" mode="header">
   <div class="navhead">
     <table border="0" width="100%" summary="Header table"
            cellpadding="0" cellspacing="0">
       <tr>
         <td align="left">
-          <xsl:apply-templates select="/slides/slidesinfo/copyright"
+          <xsl:apply-templates select="/slides/slidesinfo/title"
                                mode="slide.footer.mode"/>
         </td>
         <td align="right">
@@ -450,7 +456,13 @@
   </div>
 </xsl:template>
 
-<xsl:template match="*" mode="footer">
+<xsl:template match="slidesinfo" mode="footer">
+  <div class="navfoot">
+    <!-- nop -->
+  </div>
+</xsl:template>
+
+<xsl:template match="foil|foilgroup" mode="footer">
   <div class="navfoot">
     <table border="0" width="100%" summary="Header table"
            cellpadding="0" cellspacing="0">
