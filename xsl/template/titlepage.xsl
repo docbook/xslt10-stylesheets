@@ -184,8 +184,6 @@ and <quote>verso</quote> sides of the title page.</para>
       <xsl:text>&#xA;    </xsl:text>
       <xsl:element name="xsl:variable">
         <xsl:attribute name="name">recto.content</xsl:attribute>
-        <xsl:apply-templates select="t:titlepage-content[@t:side='recto']/@*"
-                             mode="copy.literal.atts"/>
         <xsl:text>&#xA;      </xsl:text>
         <xsl:element name="xsl:call-template">
           <xsl:attribute name="name">
@@ -207,6 +205,8 @@ and <quote>verso</quote> sides of the title page.</para>
         <xsl:attribute name="test">normalize-space($recto.content) != ''</xsl:attribute>
         <xsl:text>&#xA;      </xsl:text>
         <xsl:element name="{@t:wrapper}">
+          <xsl:apply-templates select="t:titlepage-content[@t:side='recto']/@*"
+                               mode="copy.literal.atts"/>
           <xsl:element name="xsl:copy-of">
             <xsl:attribute name="select">$recto.content</xsl:attribute>
           </xsl:element>
@@ -216,8 +216,6 @@ and <quote>verso</quote> sides of the title page.</para>
       <xsl:text>&#xA;    </xsl:text>
       <xsl:element name="xsl:variable">
         <xsl:attribute name="name">verso.content</xsl:attribute>
-        <xsl:apply-templates select="t:titlepage-content[@t:side='verso']/@*"
-                             mode="copy.literal.atts"/>
         <xsl:text>&#xA;      </xsl:text>
         <xsl:element name="xsl:call-template">
           <xsl:attribute name="name">
@@ -239,6 +237,8 @@ and <quote>verso</quote> sides of the title page.</para>
         <xsl:attribute name="test">normalize-space($verso.content) != ''</xsl:attribute>
         <xsl:text>&#xA;      </xsl:text>
         <xsl:element name="{@t:wrapper}">
+          <xsl:apply-templates select="t:titlepage-content[@t:side='verso']/@*"
+                               mode="copy.literal.atts"/>
           <xsl:element name="xsl:copy-of">
             <xsl:attribute name="select">$verso.content</xsl:attribute>
           </xsl:element>
