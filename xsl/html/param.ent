@@ -243,3 +243,4 @@
 <!ENTITY eclipse.plugin.name SYSTEM "../params/eclipse.plugin.name.xml">
 <!ENTITY eclipse.plugin.id SYSTEM "../params/eclipse.plugin.id.xml">
 <!ENTITY eclipse.plugin.provider SYSTEM "../params/eclipse.plugin.provider.xml">
+<!ENTITY insert.xref.page.number SYSTEM "../params/insert.xref.page.number.xml">
