@@ -56,6 +56,31 @@
 -->
 
 <!-- ...................................................................... -->
+<!-- Enable SGML features ................................................. -->
+
+<!ENTITY % sgml.features "IGNORE">
+<![%sgml.features;[
+<!ENTITY % xml.features "IGNORE">
+]]>
+<!ENTITY % xml.features "INCLUDE">
+
+<![%sgml.features;[
+<![%xml.features;[
+ERROR: Exactly one of xml.features and sgml.features must be turned on!
+]]>
+]]>
+
+<![%sgml.features;[
+<!ENTITY % ho "- O">
+<!ENTITY % hh "- -">
+]]>
+
+<![%xml.features;[
+<!ENTITY % ho "">
+<!ENTITY % hh "">
+]]>
+
+<!-- ...................................................................... -->
 <!-- Notation declarations ................................................ -->
 
 <!ENTITY % dbnotn.module "INCLUDE">
@@ -71,7 +96,14 @@
 
 <!ENTITY % dbcent.module "INCLUDE">
 <![%dbcent.module;[
+
+<![%sgml.features;[
+<!ENTITY euro "[euro  ]"><!-- euro sign, U+20AC NEW -->
+]]>
+<![%xml.features;[
 <!ENTITY euro "&#x20AC;"><!-- euro sign, U+20AC NEW -->
+]]>
+
 <!ENTITY % dbcent PUBLIC 
 "-//OASIS//ENTITIES DocBook XML Character Entities V4.1.2//EN"
 "dbcentx.mod">

@@ -360,6 +360,46 @@ f. Just BlockQuote; no other informal objects.
 
 <!-- Character-level mixtures ............................................. -->
 
+<![%sgml.features;[
+<!ENTITY % local.ubiq.mix "">
+<!ENTITY % ubiq.mix "%ndxterm.class;|beginpage %local.ubiq.mix;">
+
+<!ENTITY % ubiq.exclusion "-(%ubiq.mix)">
+<!ENTITY % ubiq.inclusion "+(%ubiq.mix)">
+
+<!ENTITY % footnote.exclusion "-(footnote|%formal.class;)">
+<!ENTITY % highlights.exclusion "-(%ubiq.mix;|%formal.class;)">
+<!ENTITY % admon.exclusion "-(%admon.class;)">
+<!ENTITY % formal.exclusion "-(%formal.class;)">
+<!ENTITY % acronym.exclusion "-(acronym)">
+<!ENTITY % beginpage.exclusion "-(beginpage)">
+<!ENTITY % ndxterm.exclusion "-(%ndxterm.class;)">
+<!ENTITY % blockquote.exclusion "-(epigraph)">
+<!ENTITY % remark.exclusion "-(remark|%ubiq.mix;)">
+<!ENTITY % glossterm.exclusion "-(glossterm)">
+<!ENTITY % links.exclusion "-(link|olink|ulink|xref)">
+]]><!-- sgml.features -->
+
+<!-- not [sgml.features[ -->
+<!ENTITY % local.ubiq.mix "">
+<!ENTITY % ubiq.mix "">
+
+<!ENTITY % ubiq.exclusion "">
+<!ENTITY % ubiq.inclusion "">
+
+<!ENTITY % footnote.exclusion "">
+<!ENTITY % highlights.exclusion "">
+<!ENTITY % admon.exclusion "">
+<!ENTITY % formal.exclusion "">
+<!ENTITY % acronym.exclusion "">
+<!ENTITY % beginpage.exclusion "">
+<!ENTITY % ndxterm.exclusion "">
+<!ENTITY % blockquote.exclusion "">
+<!ENTITY % remark.exclusion "">
+<!ENTITY % glossterm.exclusion "">
+<!ENTITY % links.exclusion "">
+<!-- ]] not sgml.features -->
+
 <!--
                     #PCD xref word link cptr base dnfo othr inob (synop)
 para.char.mix         X    X    X    X    X    X    X    X    X
@@ -732,7 +772,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % title.element "INCLUDE">
 <![%title.element;[
-<!ELEMENT title (%title.char.mix;)*>
+<!ELEMENT title %ho; (%title.char.mix;)*>
 <!--end of title.element-->]]>
 
 <!ENTITY % title.attlist "INCLUDE">
@@ -753,7 +793,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % titleabbrev.element "INCLUDE">
 <![%titleabbrev.element;[
-<!ELEMENT titleabbrev (%title.char.mix;)*>
+<!ELEMENT titleabbrev %ho; (%title.char.mix;)*>
 <!--end of titleabbrev.element-->]]>
 
 <!ENTITY % titleabbrev.attlist "INCLUDE">
@@ -773,7 +813,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % subtitle.element "INCLUDE">
 <![%subtitle.element;[
-<!ELEMENT subtitle (%title.char.mix;)*>
+<!ELEMENT subtitle %ho; (%title.char.mix;)*>
 <!--end of subtitle.element-->]]>
 
 <!ENTITY % subtitle.attlist "INCLUDE">
@@ -821,7 +861,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % biblioentry.element "INCLUDE">
 <![%biblioentry.element;[
-<!ELEMENT biblioentry ((articleinfo | (%bibliocomponent.mix;))+)>
+<!ELEMENT biblioentry %ho; ((articleinfo | (%bibliocomponent.mix;))+)
+                      %ubiq.exclusion;>
 <!--end of biblioentry.element-->]]>
 
 <!ENTITY % biblioentry.attlist "INCLUDE">
@@ -841,7 +882,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % bibliomixed.element "INCLUDE">
 <![%bibliomixed.element;[
-<!ELEMENT bibliomixed (#PCDATA | %bibliocomponent.mix; | bibliomset)*>
+<!ELEMENT bibliomixed %ho; (#PCDATA | %bibliocomponent.mix; | bibliomset)*
+                      %ubiq.exclusion;>
 <!--end of bibliomixed.element-->]]>
 
 <!ENTITY % bibliomixed.attlist "INCLUDE">
@@ -861,7 +903,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % articleinfo.element "INCLUDE">
 <![%articleinfo.element;[
-<!ELEMENT articleinfo ((graphic | mediaobject | legalnotice | modespec 
+<!ELEMENT articleinfo %ho; ((graphic | mediaobject | legalnotice | modespec 
 	| subjectset | keywordset | itermset | %bibliocomponent.mix;)+)>
 <!--end of articleinfo.element-->]]>
 
@@ -882,7 +924,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % biblioset.element "INCLUDE">
 <![%biblioset.element;[
-<!ELEMENT biblioset ((%bibliocomponent.mix;)+)>
+<!ELEMENT biblioset %ho; ((%bibliocomponent.mix;)+)
+                      %ubiq.exclusion;>
 <!--end of biblioset.element-->]]>
 
 <!-- Relation: Relationship of elements contained within BiblioSet -->
@@ -906,7 +949,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % bibliomset.element "INCLUDE">
 <![%bibliomset.element;[
-<!ELEMENT bibliomset (#PCDATA | %bibliocomponent.mix; | bibliomset)*>
+<!ELEMENT bibliomset %ho; (#PCDATA | %bibliocomponent.mix; | bibliomset)*
+                      %ubiq.exclusion;>
 <!--end of bibliomset.element-->]]>
 
 <!-- Relation: Relationship of elements contained within BiblioMSet -->
@@ -930,7 +974,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % bibliomisc.element "INCLUDE">
 <![%bibliomisc.element;[
-<!ELEMENT bibliomisc (%para.char.mix;)*>
+<!ELEMENT bibliomisc %ho; (%para.char.mix;)*>
 <!--end of bibliomisc.element-->]]>
 
 <!ENTITY % bibliomisc.attlist "INCLUDE">
@@ -955,7 +999,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % subjectset.element "INCLUDE">
 <![%subjectset.element;[
-<!ELEMENT subjectset (subject+)>
+<!ELEMENT subjectset %ho; (subject+)>
 <!--end of subjectset.element-->]]>
 
 <!-- Scheme: Controlled vocabulary employed in SubjectTerms -->
@@ -979,7 +1023,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % subject.element "INCLUDE">
 <![%subject.element;[
-<!ELEMENT subject (subjectterm+)>
+<!ELEMENT subject %ho; (subjectterm+)>
 <!--end of subject.element-->]]>
 
 <!-- Weight: Ranking of this group of SubjectTerms relative 
@@ -1004,7 +1048,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % subjectterm.element "INCLUDE">
 <![%subjectterm.element;[
-<!ELEMENT subjectterm (#PCDATA)>
+<!ELEMENT subjectterm %ho; (#PCDATA)>
 <!--end of subjectterm.element-->]]>
 
 <!ENTITY % subjectterm.attlist "INCLUDE">
@@ -1027,7 +1071,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % keywordset.element "INCLUDE">
 <![%keywordset.element;[
-<!ELEMENT keywordset (keyword+)>
+<!ELEMENT keywordset %ho; (keyword+)>
 <!--end of keywordset.element-->]]>
 
 <!ENTITY % keywordset.attlist "INCLUDE">
@@ -1047,7 +1091,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % keyword.element "INCLUDE">
 <![%keyword.element;[
-<!ELEMENT keyword (#PCDATA)>
+<!ELEMENT keyword %ho; (#PCDATA)>
 <!--end of keyword.element-->]]>
 
 <!ENTITY % keyword.attlist "INCLUDE">
@@ -1068,7 +1112,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % itermset.element "INCLUDE">
 <![%itermset.element;[
-<!ELEMENT itermset (indexterm+)>
+<!ELEMENT itermset %ho; (indexterm+)>
 <!--end of itermset.element-->]]>
 
 <!ENTITY % itermset.attlist "INCLUDE">
@@ -1095,7 +1139,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % msgset.element "INCLUDE">
 <![%msgset.element;[
-<!ELEMENT msgset ((%formalobject.title.content;)?, (msgentry+|simplemsgentry+))>
+<!ELEMENT msgset %ho; ((%formalobject.title.content;)?, (msgentry+|simplemsgentry+))>
 <!--end of msgset.element-->]]>
 
 <!ENTITY % msgset.attlist "INCLUDE">
@@ -1115,7 +1159,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % msgentry.element "INCLUDE">
 <![%msgentry.element;[
-<!ELEMENT msgentry (msg+, msginfo?, msgexplan*)>
+<!ELEMENT msgentry %ho; (msg+, msginfo?, msgexplan*)>
 <!--end of msgentry.element-->]]>
 
 <!ENTITY % msgentry.attlist "INCLUDE">
@@ -1135,7 +1179,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % simplemsgentry.element "INCLUDE">
 <![ %simplemsgentry.element; [
-<!ELEMENT simplemsgentry (msgtext, msgexplan+)>
+<!ELEMENT simplemsgentry %ho; (msgtext, msgexplan+)>
 <!--end of simplemsgentry.element-->]]>
 
 <!ENTITY % simplemsgentry.attlist "INCLUDE">
@@ -1158,7 +1202,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % msg.element "INCLUDE">
 <![%msg.element;[
-<!ELEMENT msg (title?, msgmain, (msgsub | msgrel)*)>
+<!ELEMENT msg %ho; (title?, msgmain, (msgsub | msgrel)*)>
 <!--end of msg.element-->]]>
 
 <!ENTITY % msg.attlist "INCLUDE">
@@ -1178,7 +1222,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % msgmain.element "INCLUDE">
 <![%msgmain.element;[
-<!ELEMENT msgmain (title?, msgtext)>
+<!ELEMENT msgmain %ho; (title?, msgtext)>
 <!--end of msgmain.element-->]]>
 
 <!ENTITY % msgmain.attlist "INCLUDE">
@@ -1198,7 +1242,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % msgsub.element "INCLUDE">
 <![%msgsub.element;[
-<!ELEMENT msgsub (title?, msgtext)>
+<!ELEMENT msgsub %ho; (title?, msgtext)>
 <!--end of msgsub.element-->]]>
 
 <!ENTITY % msgsub.attlist "INCLUDE">
@@ -1218,7 +1262,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % msgrel.element "INCLUDE">
 <![%msgrel.element;[
-<!ELEMENT msgrel (title?, msgtext)>
+<!ELEMENT msgrel %ho; (title?, msgtext)>
 <!--end of msgrel.element-->]]>
 
 <!ENTITY % msgrel.attlist "INCLUDE">
@@ -1240,7 +1284,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % msginfo.element "INCLUDE">
 <![%msginfo.element;[
-<!ELEMENT msginfo ((msglevel | msgorig | msgaud)*)>
+<!ELEMENT msginfo %ho; ((msglevel | msgorig | msgaud)*)>
 <!--end of msginfo.element-->]]>
 
 <!ENTITY % msginfo.attlist "INCLUDE">
@@ -1260,7 +1304,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % msglevel.element "INCLUDE">
 <![%msglevel.element;[
-<!ELEMENT msglevel (%smallcptr.char.mix;)*>
+<!ELEMENT msglevel %ho; (%smallcptr.char.mix;)*>
 <!--end of msglevel.element-->]]>
 
 <!ENTITY % msglevel.attlist "INCLUDE">
@@ -1280,7 +1324,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % msgorig.element "INCLUDE">
 <![%msgorig.element;[
-<!ELEMENT msgorig (%smallcptr.char.mix;)*>
+<!ELEMENT msgorig %ho; (%smallcptr.char.mix;)*>
 <!--end of msgorig.element-->]]>
 
 <!ENTITY % msgorig.attlist "INCLUDE">
@@ -1300,7 +1344,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % msgaud.element "INCLUDE">
 <![%msgaud.element;[
-<!ELEMENT msgaud (%para.char.mix;)*>
+<!ELEMENT msgaud %ho; (%para.char.mix;)*>
 <!--end of msgaud.element-->]]>
 
 <!ENTITY % msgaud.attlist "INCLUDE">
@@ -1320,7 +1364,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % msgexplan.element "INCLUDE">
 <![%msgexplan.element;[
-<!ELEMENT msgexplan (title?, (%component.mix;)+)>
+<!ELEMENT msgexplan %ho; (title?, (%component.mix;)+)>
 <!--end of msgexplan.element-->]]>
 
 <!ENTITY % msgexplan.attlist "INCLUDE">
@@ -1344,7 +1388,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % qandset.element "INCLUDE">
 <![ %qandset.element; [
-<!ELEMENT qandaset ((%formalobject.title.content;)?,
+<!ELEMENT qandaset %ho; ((%formalobject.title.content;)?,
 			(%qandaset.mix;)*,
                         (qandadiv+|qandaentry+))>
 <!--end of qandset.element-->]]>
@@ -1366,7 +1410,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % qandadiv.element "INCLUDE">
 <![ %qandadiv.element; [
-<!ELEMENT qandadiv ((%formalobject.title.content;)?, 
+<!ELEMENT qandadiv %ho; ((%formalobject.title.content;)?, 
 			(%qandaset.mix;)*,
 			(qandadiv+|qandaentry+))>
 <!--end of qandadiv.element-->]]>
@@ -1387,7 +1431,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % qandaentry.element "INCLUDE">
 <![ %qandaentry.element; [
-<!ELEMENT qandaentry (revhistory?, question, answer*)>
+<!ELEMENT qandaentry %ho; (revhistory?, question, answer*)>
 <!--end of qandaentry.element-->]]>
 
 <!ENTITY % qandaentry.attlist "INCLUDE">
@@ -1406,7 +1450,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % question.element "INCLUDE">
 <![ %question.element; [
-<!ELEMENT question (label?, (%qandaset.mix;)+)>
+<!ELEMENT question %ho; (label?, (%qandaset.mix;)+)>
 <!--end of question.element-->]]>
 
 <!ENTITY % question.attlist "INCLUDE">
@@ -1426,7 +1470,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % answer.element "INCLUDE">
 <![ %answer.element; [
-<!ELEMENT answer (label?, (%qandaset.mix;)*, qandaentry*)>
+<!ELEMENT answer %ho; (label?, (%qandaset.mix;)*, qandaentry*)>
 <!--end of answer.element-->]]>
 
 <!ENTITY % answer.attlist "INCLUDE">
@@ -1446,7 +1490,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % label.element "INCLUDE">
 <![ %label.element; [
-<!ELEMENT label (%word.char.mix;)*>
+<!ELEMENT label %ho; (%word.char.mix;)*>
 <!--end of label.element-->]]>
 
 <!ENTITY % label.attlist "INCLUDE">
@@ -1471,7 +1515,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % procedure.element "INCLUDE">
 <![%procedure.element;[
-<!ELEMENT procedure ((%formalobject.title.content;)?,
+<!ELEMENT procedure %ho; ((%formalobject.title.content;)?,
 	(%component.mix;)*, step+)>
 <!--end of procedure.element-->]]>
 
@@ -1492,7 +1536,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % step.element "INCLUDE">
 <![%step.element;[
-<!ELEMENT step (title?, (((%component.mix;)+, (substeps,
+<!ELEMENT step %ho; (title?, (((%component.mix;)+, (substeps,
 		(%component.mix;)*)?) | (substeps, (%component.mix;)*)))>
 <!--end of step.element-->]]>
 
@@ -1519,7 +1563,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % substeps.element "INCLUDE">
 <![%substeps.element;[
-<!ELEMENT substeps (step+)>
+<!ELEMENT substeps %ho; (step+)>
 <!--end of substeps.element-->]]>
 
 <!-- Performance: whether entire set of substeps must be performed -->
@@ -1551,7 +1595,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % sidebarinfo.element "INCLUDE">
 <![ %sidebarinfo.element; [
-<!ELEMENT sidebarinfo ((graphic | mediaobject | legalnotice | modespec 
+<!ELEMENT sidebarinfo %ho; ((graphic | mediaobject | legalnotice | modespec 
 	| subjectset | keywordset | itermset | %bibliocomponent.mix;)+)>
 <!--end of sidebarinfo.element-->]]>
 
@@ -1572,7 +1616,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % sidebar.element "INCLUDE">
 <![%sidebar.element;[
-<!ELEMENT sidebar (sidebarinfo?, 
+<!ELEMENT sidebar %ho; (sidebarinfo?, 
                    (%formalobject.title.content;)?,
                    (%sidebar.mix;)+)>
 <!--end of sidebar.element-->]]>
@@ -1598,7 +1642,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % abstract.element "INCLUDE">
 <![%abstract.element;[
-<!ELEMENT abstract (title?, (%para.class;)+)>
+<!ELEMENT abstract %ho; (title?, (%para.class;)+)>
 <!--end of abstract.element-->]]>
 
 <!ENTITY % abstract.attlist "INCLUDE">
@@ -1618,7 +1662,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % authorblurb.element "INCLUDE">
 <![%authorblurb.element;[
-<!ELEMENT authorblurb (title?, (%para.class;)+)>
+<!ELEMENT authorblurb %ho; (title?, (%para.class;)+)>
 <!--end of authorblurb.element-->]]>
 
 <!ENTITY % authorblurb.attlist "INCLUDE">
@@ -1639,7 +1683,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % blockquote.element "INCLUDE">
 <![%blockquote.element;[
-<!ELEMENT blockquote (title?, attribution?, (%component.mix;)+)>
+<!ELEMENT blockquote %ho; (title?, attribution?, (%component.mix;)+)
+                      %blockquote.exclusion;>
 <!--end of blockquote.element-->]]>
 
 <!ENTITY % blockquote.attlist "INCLUDE">
@@ -1659,7 +1704,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % attribution.element "INCLUDE">
 <![%attribution.element;[
-<!ELEMENT attribution (%para.char.mix;)*>
+<!ELEMENT attribution %ho; (%para.char.mix;)*>
 <!--end of attribution.element-->]]>
 
 <!ENTITY % attribution.attlist "INCLUDE">
@@ -1679,7 +1724,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % bridgehead.element "INCLUDE">
 <![%bridgehead.element;[
-<!ELEMENT bridgehead (%title.char.mix;)*>
+<!ELEMENT bridgehead %ho; (%title.char.mix;)*>
 <!--end of bridgehead.element-->]]>
 
 <!-- Renderas: Indicates the format in which the BridgeHead
@@ -1709,7 +1754,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % remark.element "INCLUDE">
 <![%remark.element;[
-<!ELEMENT remark (%para.char.mix;)*>
+<!ELEMENT remark %ho; (%para.char.mix;)*
+                      %remark.exclusion;>
 <!--end of remark.element-->]]>
 
 <!ENTITY % remark.attlist "INCLUDE">
@@ -1729,7 +1775,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % epigraph.element "INCLUDE">
 <![%epigraph.element;[
-<!ELEMENT epigraph (attribution?, (%para.class;)+)>
+<!ELEMENT epigraph %ho; (attribution?, (%para.class;)+)>
 <!--end of epigraph.element-->]]>
 
 <!ENTITY % epigraph.attlist "INCLUDE">
@@ -1750,7 +1796,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % footnote.element "INCLUDE">
 <![%footnote.element;[
-<!ELEMENT footnote ((%footnote.mix;)+)>
+<!ELEMENT footnote %ho; ((%footnote.mix;)+)
+                      %footnote.exclusion;>
 <!--end of footnote.element-->]]>
 
 <!ENTITY % footnote.attlist "INCLUDE">
@@ -1771,7 +1818,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % highlights.element "INCLUDE">
 <![%highlights.element;[
-<!ELEMENT highlights ((%highlights.mix;)+)>
+<!ELEMENT highlights %ho; ((%highlights.mix;)+)
+                      %highlights.exclusion;>
 <!--end of highlights.element-->]]>
 
 <!ENTITY % highlights.attlist "INCLUDE">
@@ -1791,7 +1839,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % formalpara.element "INCLUDE">
 <![%formalpara.element;[
-<!ELEMENT formalpara (title, (%ndxterm.class;)*, para)>
+<!ELEMENT formalpara %ho; (title, (%ndxterm.class;)*, para)>
 <!--end of formalpara.element-->]]>
 
 <!ENTITY % formalpara.attlist "INCLUDE">
@@ -1811,7 +1859,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % para.element "INCLUDE">
 <![%para.element;[
-<!ELEMENT para (%para.char.mix; | %para.mix;)*>
+<!ELEMENT para %ho; (%para.char.mix; | %para.mix;)*>
 <!--end of para.element-->]]>
 
 <!ENTITY % para.attlist "INCLUDE">
@@ -1831,7 +1879,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % simpara.element "INCLUDE">
 <![%simpara.element;[
-<!ELEMENT simpara (%para.char.mix;)*>
+<!ELEMENT simpara %ho; (%para.char.mix;)*>
 <!--end of simpara.element-->]]>
 
 <!ENTITY % simpara.attlist "INCLUDE">
@@ -1852,7 +1900,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % caution.element "INCLUDE">
 <![%caution.element;[
-<!ELEMENT caution (title?, (%admon.mix;)+)>
+<!ELEMENT caution %ho; (title?, (%admon.mix;)+)
+                      %admon.exclusion;>
 <!--end of caution.element-->]]>
 
 <!ENTITY % caution.attlist "INCLUDE">
@@ -1867,7 +1916,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % important.element "INCLUDE">
 <![%important.element;[
-<!ELEMENT important (title?, (%admon.mix;)+)>
+<!ELEMENT important %ho; (title?, (%admon.mix;)+)
+                      %admon.exclusion;>
 <!--end of important.element-->]]>
 
 <!ENTITY % important.attlist "INCLUDE">
@@ -1882,7 +1932,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % note.element "INCLUDE">
 <![%note.element;[
-<!ELEMENT note (title?, (%admon.mix;)+)>
+<!ELEMENT note %ho; (title?, (%admon.mix;)+)
+                      %admon.exclusion;>
 <!--end of note.element-->]]>
 
 <!ENTITY % note.attlist "INCLUDE">
@@ -1894,10 +1945,10 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 >
 <!--end of note.attlist-->]]>
 
-
 <!ENTITY % tip.element "INCLUDE">
 <![%tip.element;[
-<!ELEMENT tip (title?, (%admon.mix;)+)>
+<!ELEMENT tip %ho; (title?, (%admon.mix;)+)
+                      %admon.exclusion;>
 <!--end of tip.element-->]]>
 
 <!ENTITY % tip.attlist "INCLUDE">
@@ -1912,7 +1963,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % warning.element "INCLUDE">
 <![%warning.element;[
-<!ELEMENT warning (title?, (%admon.mix;)+)>
+<!ELEMENT warning %ho; (title?, (%admon.mix;)+)
+                      %admon.exclusion;>
 <!--end of warning.element-->]]>
 
 <!ENTITY % warning.attlist "INCLUDE">
@@ -1938,7 +1990,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % glosslist.element "INCLUDE">
 <![%glosslist.element;[
-<!ELEMENT glosslist (glossentry+)>
+<!ELEMENT glosslist %ho; (glossentry+)>
 <!--end of glosslist.element-->]]>
 
 <!ENTITY % glosslist.attlist "INCLUDE">
@@ -1960,7 +2012,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % glossentry.element "INCLUDE">
 <![%glossentry.element;[
-<!ELEMENT glossentry (glossterm, acronym?, abbrev?,
+<!ELEMENT glossentry %ho; (glossterm, acronym?, abbrev?,
                       (%ndxterm.class;)*,
                       revhistory?, (glosssee|glossdef+))>
 <!--end of glossentry.element-->]]>
@@ -1988,7 +2040,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % glossdef.element "INCLUDE">
 <![%glossdef.element;[
-<!ELEMENT glossdef ((%glossdef.mix;)+, glossseealso*)>
+<!ELEMENT glossdef %ho; ((%glossdef.mix;)+, glossseealso*)>
 <!--end of glossdef.element-->]]>
 
 <!-- Subject: List of subjects; keywords for the definition -->
@@ -2012,7 +2064,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % glosssee.element "INCLUDE">
 <![%glosssee.element;[
-<!ELEMENT glosssee (%para.char.mix;)*>
+<!ELEMENT glosssee %ho; (%para.char.mix;)*>
 <!--end of glosssee.element-->]]>
 
 <!-- OtherTerm: Reference to the GlossEntry whose GlossTerm
@@ -2037,7 +2089,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % glossseealso.element "INCLUDE">
 <![%glossseealso.element;[
-<!ELEMENT glossseealso (%para.char.mix;)*>
+<!ELEMENT glossseealso %ho; (%para.char.mix;)*>
 <!--end of glossseealso.element-->]]>
 
 <!-- OtherTerm: Reference to the GlossEntry whose GlossTerm
@@ -2065,7 +2117,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % itemizedlist.element "INCLUDE">
 <![%itemizedlist.element;[
-<!ELEMENT itemizedlist ((%formalobject.title.content;)?, listitem+)>
+<!ELEMENT itemizedlist %ho; ((%formalobject.title.content;)?, listitem+)>
 <!--end of itemizedlist.element-->]]>
 
 <!-- Spacing: Whether the vertical space in the list should be
@@ -2093,7 +2145,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % orderedlist.element "INCLUDE">
 <![%orderedlist.element;[
-<!ELEMENT orderedlist ((%formalobject.title.content;)?, listitem+)>
+<!ELEMENT orderedlist %ho; ((%formalobject.title.content;)?, listitem+)>
 <!--end of orderedlist.element-->]]>
 
 <!-- Numeration: Style of ListItem numbered; default is expected
@@ -2137,7 +2189,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % listitem.element "INCLUDE">
 <![%listitem.element;[
-<!ELEMENT listitem ((%component.mix;)+)>
+<!ELEMENT listitem %ho; ((%component.mix;)+)>
 <!--end of listitem.element-->]]>
 
 <!-- Override: Indicates the mark to be used for this ListItem
@@ -2166,7 +2218,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % segmentedlist.element "INCLUDE">
 <![%segmentedlist.element;[
-<!ELEMENT segmentedlist ((%formalobject.title.content;)?,
+<!ELEMENT segmentedlist %ho; ((%formalobject.title.content;)?,
                          segtitle, segtitle+,
                          seglistitem+)>
 <!--end of segmentedlist.element-->]]>
@@ -2188,7 +2240,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % segtitle.element "INCLUDE">
 <![%segtitle.element;[
-<!ELEMENT segtitle (%title.char.mix;)*>
+<!ELEMENT segtitle %ho; (%title.char.mix;)*>
 <!--end of segtitle.element-->]]>
 
 <!ENTITY % segtitle.attlist "INCLUDE">
@@ -2208,7 +2260,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % seglistitem.element "INCLUDE">
 <![%seglistitem.element;[
-<!ELEMENT seglistitem (seg, seg+)>
+<!ELEMENT seglistitem %ho; (seg, seg+)>
 <!--end of seglistitem.element-->]]>
 
 <!ENTITY % seglistitem.attlist "INCLUDE">
@@ -2228,7 +2280,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % seg.element "INCLUDE">
 <![%seg.element;[
-<!ELEMENT seg (%para.char.mix;)*>
+<!ELEMENT seg %ho; (%para.char.mix;)*>
 <!--end of seg.element-->]]>
 
 <!ENTITY % seg.attlist "INCLUDE">
@@ -2253,7 +2305,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % simplelist.element "INCLUDE">
 <![%simplelist.element;[
-<!ELEMENT simplelist (member+)>
+<!ELEMENT simplelist %ho; (member+)>
 <!--end of simplelist.element-->]]>
 
 <!-- Columns: The number of columns the array should contain -->
@@ -2286,7 +2338,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % member.element "INCLUDE">
 <![%member.element;[
-<!ELEMENT member (%para.char.mix;)*>
+<!ELEMENT member %ho; (%para.char.mix;)*>
 <!--end of member.element-->]]>
 
 <!ENTITY % member.attlist "INCLUDE">
@@ -2311,7 +2363,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % variablelist.element "INCLUDE">
 <![%variablelist.element;[
-<!ELEMENT variablelist ((%formalobject.title.content;)?, varlistentry+)>
+<!ELEMENT variablelist %ho; ((%formalobject.title.content;)?, varlistentry+)>
 <!--end of variablelist.element-->]]>
 
 <!-- TermLength: Length beyond which the presentation engine
@@ -2337,7 +2389,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % varlistentry.element "INCLUDE">
 <![%varlistentry.element;[
-<!ELEMENT varlistentry (term+, listitem)>
+<!ELEMENT varlistentry %ho; (term+, listitem)>
 <!--end of varlistentry.element-->]]>
 
 <!ENTITY % varlistentry.attlist "INCLUDE">
@@ -2357,7 +2409,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % term.element "INCLUDE">
 <![%term.element;[
-<!ELEMENT term (%para.char.mix;)*>
+<!ELEMENT term %ho; (%para.char.mix;)*>
 <!--end of term.element-->]]>
 
 <!ENTITY % term.attlist "INCLUDE">
@@ -2384,7 +2436,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % calloutlist.element "INCLUDE">
 <![%calloutlist.element;[
-<!ELEMENT calloutlist ((%formalobject.title.content;)?, callout+)>
+<!ELEMENT calloutlist %ho; ((%formalobject.title.content;)?, callout+)>
 <!--end of calloutlist.element-->]]>
 
 <!ENTITY % calloutlist.attlist "INCLUDE">
@@ -2404,7 +2456,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % callout.element "INCLUDE">
 <![%callout.element;[
-<!ELEMENT callout ((%component.mix;)+)>
+<!ELEMENT callout %ho; ((%component.mix;)+)>
 <!--end of callout.element-->]]>
 
 <!-- AreaRefs: IDs of one or more Areas or AreaSets described
@@ -2435,7 +2487,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % example.element "INCLUDE">
 <![%example.element;[
-<!ELEMENT example ((%formalobject.title.content;), (%example.mix;)+)>
+<!ELEMENT example %ho; ((%formalobject.title.content;), (%example.mix;)+)
+		%formal.exclusion;>
 <!--end of example.element-->]]>
 
 <!ENTITY % example.attlist "INCLUDE">
@@ -2457,7 +2510,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % informalexample.element "INCLUDE">
 <![%informalexample.element;[
-<!ELEMENT informalexample ((%example.mix;)+)>
+<!ELEMENT informalexample %ho; ((%example.mix;)+)>
 <!--end of informalexample.element-->]]>
 
 <!ENTITY % informalexample.attlist "INCLUDE">
@@ -2478,7 +2531,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % programlistingco.element "INCLUDE">
 <![%programlistingco.element;[
-<!ELEMENT programlistingco (areaspec, programlisting, calloutlist*)>
+<!ELEMENT programlistingco %ho; (areaspec, programlisting, calloutlist*)>
 <!--end of programlistingco.element-->]]>
 
 <!ENTITY % programlistingco.attlist "INCLUDE">
@@ -2501,7 +2554,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % areaspec.element "INCLUDE">
 <![%areaspec.element;[
-<!ELEMENT areaspec ((area|areaset)+)>
+<!ELEMENT areaspec %ho; ((area|areaset)+)>
 <!--end of areaspec.element-->]]>
 
 <!-- Units: global unit of measure in which coordinates in
@@ -2555,7 +2608,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % area.element "INCLUDE">
 <![%area.element;[
-<!ELEMENT area EMPTY>
+<!ELEMENT area %ho; EMPTY>
 <!--end of area.element-->]]>
 
 <!-- bug number/symbol override or initialization -->
@@ -2591,7 +2644,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % areaset.element "INCLUDE">
 <![%areaset.element;[
-<!ELEMENT areaset (area+)>
+<!ELEMENT areaset %ho; (area+)>
 <!--end of areaset.element-->]]>
 
 <!-- bug number/symbol override or initialization -->
@@ -2625,7 +2678,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % programlisting.element "INCLUDE">
 <![%programlisting.element;[
-<!ELEMENT programlisting (%para.char.mix; | co | lineannotation)*>
+<!ELEMENT programlisting %ho; (%para.char.mix; | co | lineannotation)*>
 <!--end of programlisting.element-->]]>
 
 <!ENTITY % programlisting.attlist "INCLUDE">
@@ -2647,7 +2700,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % literallayout.element "INCLUDE">
 <![%literallayout.element;[
-<!ELEMENT literallayout (%para.char.mix; | lineannotation | co)*>
+<!ELEMENT literallayout %ho; (%para.char.mix; | lineannotation | co)*>
 <!--end of literallayout.element-->]]>
 
 <!ENTITY % literallayout.attlist "INCLUDE">
@@ -2671,7 +2724,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % screenco.element "INCLUDE">
 <![%screenco.element;[
-<!ELEMENT screenco (areaspec, screen, calloutlist*)>
+<!ELEMENT screenco %ho; (areaspec, screen, calloutlist*)>
 <!--end of screenco.element-->]]>
 
 <!ENTITY % screenco.attlist "INCLUDE">
@@ -2693,7 +2746,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % screen.element "INCLUDE">
 <![%screen.element;[
-<!ELEMENT screen (%para.char.mix; | co | lineannotation)*>
+<!ELEMENT screen %ho; (%para.char.mix; | co | lineannotation)*>
 <!--end of screen.element-->]]>
 
 <!ENTITY % screen.attlist "INCLUDE">
@@ -2717,7 +2770,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % screenshot.element "INCLUDE">
 <![%screenshot.element;[
-<!ELEMENT screenshot (screeninfo?,
+<!ELEMENT screenshot %ho; (screeninfo?,
                       (graphic|graphicco
                       |mediaobject|mediaobjectco))>
 <!--end of screenshot.element-->]]>
@@ -2739,7 +2792,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % screeninfo.element "INCLUDE">
 <![%screeninfo.element;[
-<!ELEMENT screeninfo (%para.char.mix;)*>
+<!ELEMENT screeninfo %ho; (%para.char.mix;)*
+		%ubiq.exclusion;>
 <!--end of screeninfo.element-->]]>
 
 <!ENTITY % screeninfo.attlist "INCLUDE">
@@ -2762,7 +2816,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % figure.element "INCLUDE">
 <![%figure.element;[
-<!ELEMENT figure ((%formalobject.title.content;), (%figure.mix; |
+<!ELEMENT figure %ho; ((%formalobject.title.content;), (%figure.mix; |
 		%link.char.class;)+)>
 <!--end of figure.element-->]]>
 
@@ -2791,7 +2845,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % informalfigure.element "INCLUDE">
 <![ %informalfigure.element; [
-<!ELEMENT informalfigure ((%figure.mix; | %link.char.class;)+)>
+<!ELEMENT informalfigure %ho; ((%figure.mix; | %link.char.class;)+)>
 <!--end of informalfigure.element-->]]>
 
 <!ENTITY % informalfigure.attlist "INCLUDE">
@@ -2819,7 +2873,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % graphicco.element "INCLUDE">
 <![%graphicco.element;[
-<!ELEMENT graphicco (areaspec, graphic, calloutlist*)>
+<!ELEMENT graphicco %ho; (areaspec, graphic, calloutlist*)>
 <!--end of graphicco.element-->]]>
 
 <!ENTITY % graphicco.attlist "INCLUDE">
@@ -2845,7 +2899,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % graphic.element "INCLUDE">
 <![%graphic.element;[
-<!ELEMENT graphic EMPTY>
+<!ELEMENT graphic %ho; EMPTY>
 <!--end of graphic.element-->]]>
 
 <!ENTITY % graphic.attlist "INCLUDE">
@@ -2866,7 +2920,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % inlinegraphic.element "INCLUDE">
 <![%inlinegraphic.element;[
-<!ELEMENT inlinegraphic EMPTY>
+<!ELEMENT inlinegraphic %ho; EMPTY>
 <!--end of inlinegraphic.element-->]]>
 
 <!ENTITY % inlinegraphic.attlist "INCLUDE">
@@ -2890,7 +2944,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % mediaobject.element "INCLUDE">
 <![ %mediaobject.element; [
-<!ELEMENT mediaobject (objectinfo?,
+<!ELEMENT mediaobject %ho; (objectinfo?,
                            (%mediaobject.mix;),
 			   (%mediaobject.mix;|textobject)*,
 			   caption?)>
@@ -2913,7 +2967,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % inlinemediaobject.element "INCLUDE">
 <![ %inlinemediaobject.element; [
-<!ELEMENT inlinemediaobject (objectinfo?,
+<!ELEMENT inlinemediaobject %ho; (objectinfo?,
                 	         (%mediaobject.mix;),
 				 (%mediaobject.mix;|textobject)*)>
 <!--end of inlinemediaobject.element-->]]>
@@ -2935,7 +2989,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % videoobject.element "INCLUDE">
 <![ %videoobject.element; [
-<!ELEMENT videoobject (objectinfo?, videodata)>
+<!ELEMENT videoobject %ho; (objectinfo?, videodata)>
 <!--end of videoobject.element-->]]>
 
 <!ENTITY % videoobject.attlist "INCLUDE">
@@ -2955,7 +3009,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % audioobject.element "INCLUDE">
 <![ %audioobject.element; [
-<!ELEMENT audioobject (objectinfo?, audiodata)>
+<!ELEMENT audioobject %ho; (objectinfo?, audiodata)>
 <!--end of audioobject.element-->]]>
 
 <!ENTITY % audioobject.attlist "INCLUDE">
@@ -2975,7 +3029,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % imageobject.element "INCLUDE">
 <![ %imageobject.element; [
-<!ELEMENT imageobject (objectinfo?, imagedata)>
+<!ELEMENT imageobject %ho; (objectinfo?, imagedata)>
 <!--end of imageobject.element-->]]>
 
 <!ENTITY % imageobject.attlist "INCLUDE">
@@ -2995,7 +3049,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % textobject.element "INCLUDE">
 <![ %textobject.element; [
-<!ELEMENT textobject (objectinfo?, (phrase|(%textobject.mix;)+))>
+<!ELEMENT textobject %ho; (objectinfo?, (phrase|(%textobject.mix;)+))>
 <!--end of textobject.element-->]]>
 
 <!ENTITY % textobject.attlist "INCLUDE">
@@ -3015,7 +3069,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % objectinfo.element "INCLUDE">
 <![ %objectinfo.element; [
-<!ELEMENT objectinfo ((graphic | mediaobject | legalnotice | modespec 
+<!ELEMENT objectinfo %ho; ((graphic | mediaobject | legalnotice | modespec 
 	| subjectset | keywordset | itermset | %bibliocomponent.mix;)+)>
 <!--end of objectinfo.element-->]]>
 
@@ -3053,7 +3107,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % videodata.element "INCLUDE">
 <![ %videodata.element; [
-<!ELEMENT videodata EMPTY>
+<!ELEMENT videodata %ho; EMPTY>
 <!--end of videodata.element-->]]>
 
 <!ENTITY % videodata.attlist "INCLUDE">
@@ -3089,7 +3143,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % audiodata.element "INCLUDE">
 <![ %audiodata.element; [
-<!ELEMENT audiodata EMPTY>
+<!ELEMENT audiodata %ho; EMPTY>
 <!--end of audiodata.element-->]]>
 
 <!ENTITY % audiodata.attlist "INCLUDE">
@@ -3110,7 +3164,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % imagedata.element "INCLUDE">
 <![ %imagedata.element; [
-<!ELEMENT imagedata EMPTY>
+<!ELEMENT imagedata %ho; EMPTY>
 <!--end of imagedata.element-->]]>
 
 <!ENTITY % imagedata.attlist "INCLUDE">
@@ -3146,7 +3200,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % caption.element "INCLUDE">
 <![ %caption.element; [
-<!ELEMENT caption (%textobject.mix;)*>
+<!ELEMENT caption %ho; (%textobject.mix;)*>
 <!--end of caption.element-->]]>
 
 <!ENTITY % caption.attlist "INCLUDE">
@@ -3166,7 +3220,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % mediaobjectco.element "INCLUDE">
 <![ %mediaobjectco.element; [
-<!ELEMENT mediaobjectco (objectinfo?, imageobjectco,
+<!ELEMENT mediaobjectco %ho; (objectinfo?, imageobjectco,
 			   (imageobjectco|textobject)*)>
 <!--end of mediaobjectco.element-->]]>
 
@@ -3187,7 +3241,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % imageobjectco.element "INCLUDE">
 <![ %imageobjectco.element; [
-<!ELEMENT imageobjectco (areaspec, imageobject, calloutlist*)>
+<!ELEMENT imageobjectco %ho; (areaspec, imageobject, calloutlist*)>
 <!--end of imageobjectco.element-->]]>
 
 <!ENTITY % imageobjectco.attlist "INCLUDE">
@@ -3215,7 +3269,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % equation.element "INCLUDE">
 <![%equation.element;[
-<!ELEMENT equation ((%formalobject.title.content;)?, (informalequation |
+<!ELEMENT equation %ho; ((%formalobject.title.content;)?, (informalequation |
 		%equation.content;))>
 <!--end of equation.element-->]]>
 
@@ -3237,7 +3291,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % informalequation.element "INCLUDE">
 <![%informalequation.element;[
-<!ELEMENT informalequation (%equation.content;) >
+<!ELEMENT informalequation %ho; (%equation.content;) >
 <!--end of informalequation.element-->]]>
 
 <!ENTITY % informalequation.attlist "INCLUDE">
@@ -3257,7 +3311,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % inlineequation.element "INCLUDE">
 <![%inlineequation.element;[
-<!ELEMENT inlineequation (%inlineequation.content;)>
+<!ELEMENT inlineequation %ho; (%inlineequation.content;)>
 <!--end of inlineequation.element-->]]>
 
 <!ENTITY % inlineequation.attlist "INCLUDE">
@@ -3277,7 +3331,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % alt.element "INCLUDE">
 <![%alt.element;[
-<!ELEMENT alt (#PCDATA)>
+<!ELEMENT alt %ho; (#PCDATA)>
 <!--end of alt.element-->]]>
 
 <!ENTITY % alt.attlist "INCLUDE">
@@ -3382,7 +3436,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % informaltable.element "INCLUDE">
 <![%informaltable.element;[
-<!ELEMENT informaltable (graphic+|mediaobject+|tgroup+)>
+<!ELEMENT informaltable %ho; (graphic+|mediaobject+|tgroup+)>
 <!--end of informaltable.element-->]]>
 
 <!-- Frame, Colsep, and Rowsep must be repeated because
@@ -3423,7 +3477,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % synopsis.element "INCLUDE">
 <![%synopsis.element;[
-<!ELEMENT synopsis (%para.char.mix; | graphic | mediaobject | lineannotation | co)*>
+<!ELEMENT synopsis %ho; (%para.char.mix; | graphic | mediaobject | lineannotation | co)*>
 <!--end of synopsis.element-->]]>
 
 <!ENTITY % synopsis.attlist "INCLUDE">
@@ -3451,7 +3505,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % cmdsynopsis.element "INCLUDE">
 <![%cmdsynopsis.element;[
-<!ELEMENT cmdsynopsis ((command | arg | group | sbr)+, synopfragment*)>
+<!ELEMENT cmdsynopsis %ho; ((command | arg | group | sbr)+, synopfragment*)>
 <!--end of cmdsynopsis.element-->]]>
 
 <!-- Sepchar: Character that should separate command and all 
@@ -3478,7 +3532,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % arg.element "INCLUDE">
 <![%arg.element;[
-<!ELEMENT arg (#PCDATA 
+<!ELEMENT arg %ho; (#PCDATA 
 		| arg 
 		| group 
 		| option 
@@ -3517,7 +3571,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % group.element "INCLUDE">
 <![%group.element;[
-<!ELEMENT group ((arg | group | option | synopfragmentref 
+<!ELEMENT group %ho; ((arg | group | option | synopfragmentref 
 		| replaceable | sbr)+)>
 <!--end of group.element-->]]>
 
@@ -3554,7 +3608,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % sbr.element "INCLUDE">
 <![%sbr.element;[
-<!ELEMENT sbr EMPTY>
+<!ELEMENT sbr %ho; EMPTY>
 <!--end of sbr.element-->]]>
 
 <!ENTITY % sbr.attlist "INCLUDE">
@@ -3574,7 +3628,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % synopfragmentref.element "INCLUDE">
 <![%synopfragmentref.element;[
-<!ELEMENT synopfragmentref (#PCDATA)>
+<!ELEMENT synopfragmentref %ho; (#PCDATA)>
 <!--end of synopfragmentref.element-->]]>
 
 <!-- to SynopFragment of complex synopsis
@@ -3598,7 +3652,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % synopfragment.element "INCLUDE">
 <![%synopfragment.element;[
-<!ELEMENT synopfragment ((arg | group)+)>
+<!ELEMENT synopfragment %ho; ((arg | group)+)>
 <!--end of synopfragment.element-->]]>
 
 <!ENTITY % synopfragment.attlist "INCLUDE">
@@ -3628,7 +3682,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % funcsynopsis.element "INCLUDE">
 <![%funcsynopsis.element;[
-<!ELEMENT funcsynopsis ((funcsynopsisinfo | funcprototype)+)>
+<!ELEMENT funcsynopsis %ho; ((funcsynopsisinfo | funcprototype)+)>
 <!--end of funcsynopsis.element-->]]>
 
 <!ENTITY % funcsynopsis.attlist "INCLUDE">
@@ -3649,7 +3703,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % funcsynopsisinfo.element "INCLUDE">
 <![%funcsynopsisinfo.element;[
-<!ELEMENT funcsynopsisinfo (%cptr.char.mix; | lineannotation)*>
+<!ELEMENT funcsynopsisinfo %ho; (%cptr.char.mix; | lineannotation)*>
 <!--end of funcsynopsisinfo.element-->]]>
 
 <!ENTITY % funcsynopsisinfo.attlist "INCLUDE">
@@ -3670,7 +3724,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % funcprototype.element "INCLUDE">
 <![%funcprototype.element;[
-<!ELEMENT funcprototype (funcdef, (void | varargs | paramdef+))>
+<!ELEMENT funcprototype %ho; (funcdef, (void | varargs | paramdef+))>
 <!--end of funcprototype.element-->]]>
 
 <!ENTITY % funcprototype.attlist "INCLUDE">
@@ -3690,7 +3744,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % funcdef.element "INCLUDE">
 <![%funcdef.element;[
-<!ELEMENT funcdef (#PCDATA 
+<!ELEMENT funcdef %ho; (#PCDATA 
 		| replaceable 
 		| function)*>
 <!--end of funcdef.element-->]]>
@@ -3712,7 +3766,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % void.element "INCLUDE">
 <![%void.element;[
-<!ELEMENT void EMPTY>
+<!ELEMENT void %ho; EMPTY>
 <!--end of void.element-->]]>
 
 <!ENTITY % void.attlist "INCLUDE">
@@ -3732,7 +3786,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % varargs.element "INCLUDE">
 <![%varargs.element;[
-<!ELEMENT varargs EMPTY>
+<!ELEMENT varargs %ho; EMPTY>
 <!--end of varargs.element-->]]>
 
 <!ENTITY % varargs.attlist "INCLUDE">
@@ -3757,7 +3811,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % paramdef.element "INCLUDE">
 <![%paramdef.element;[
-<!ELEMENT paramdef (#PCDATA 
+<!ELEMENT paramdef %ho; (#PCDATA 
 		| replaceable 
 		| parameter 
 		| funcparams)*>
@@ -3780,7 +3834,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % funcparams.element "INCLUDE">
 <![%funcparams.element;[
-<!ELEMENT funcparams (%cptr.char.mix;)*>
+<!ELEMENT funcparams %ho; (%cptr.char.mix;)*>
 <!--end of funcparams.element-->]]>
 
 <!ENTITY % funcparams.attlist "INCLUDE">
@@ -3811,7 +3865,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % classsynopsis.element "INCLUDE">
 <![%classsynopsis.element;[
-<!ELEMENT classsynopsis ((ooclass|oointerface|ooexception)+,
+<!ELEMENT classsynopsis %ho; ((ooclass|oointerface|ooexception)+,
                          (classsynopsisinfo
                           |fieldsynopsis|%method.synop.class;)*)>
 <!--end of classsynopsis.element-->]]>
@@ -3835,7 +3889,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % classsynopsisinfo.element "INCLUDE">
 <![ %classsynopsisinfo.element; [
-<!ELEMENT classsynopsisinfo (%cptr.char.mix; | lineannotation)*>
+<!ELEMENT classsynopsisinfo %ho; (%cptr.char.mix; | lineannotation)*>
 <!--end of classsynopsisinfo.element-->]]>
 
 <!ENTITY % classsynopsisinfo.attlist "INCLUDE">
@@ -3856,7 +3910,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % ooclass.element "INCLUDE">
 <![%ooclass.element;[
-<!ELEMENT ooclass (modifier*, classname)>
+<!ELEMENT ooclass %ho; (modifier*, classname)>
 <!--end of ooclass.element-->]]>
 
 <!ENTITY % ooclass.attlist "INCLUDE">
@@ -3876,7 +3930,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % oointerface.element "INCLUDE">
 <![%oointerface.element;[
-<!ELEMENT oointerface (modifier*, interfacename)>
+<!ELEMENT oointerface %ho; (modifier*, interfacename)>
 <!--end of oointerface.element-->]]>
 
 <!ENTITY % oointerface.attlist "INCLUDE">
@@ -3896,7 +3950,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % ooexception.element "INCLUDE">
 <![%ooexception.element;[
-<!ELEMENT ooexception (modifier*, exceptionname)>
+<!ELEMENT ooexception %ho; (modifier*, exceptionname)>
 <!--end of ooexception.element-->]]>
 
 <!ENTITY % ooexception.attlist "INCLUDE">
@@ -3916,7 +3970,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % modifier.element "INCLUDE">
 <![%modifier.element;[
-<!ELEMENT modifier (%smallcptr.char.mix;)*>
+<!ELEMENT modifier %ho; (%smallcptr.char.mix;)*>
 <!--end of modifier.element-->]]>
 
 <!ENTITY % modifier.attlist "INCLUDE">
@@ -3936,7 +3990,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % interfacename.element "INCLUDE">
 <![%interfacename.element;[
-<!ELEMENT interfacename (%smallcptr.char.mix;)*>
+<!ELEMENT interfacename %ho; (%smallcptr.char.mix;)*>
 <!--end of interfacename.element-->]]>
 
 <!ENTITY % interfacename.attlist "INCLUDE">
@@ -3956,7 +4010,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % exceptionname.element "INCLUDE">
 <![%exceptionname.element;[
-<!ELEMENT exceptionname (%smallcptr.char.mix;)*>
+<!ELEMENT exceptionname %ho; (%smallcptr.char.mix;)*>
 <!--end of exceptionname.element-->]]>
 
 <!ENTITY % exceptionname.attlist "INCLUDE">
@@ -3976,7 +4030,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % fieldsynopsis.element "INCLUDE">
 <![%fieldsynopsis.element;[
-<!ELEMENT fieldsynopsis (modifier*, type?, varname, initializer?)>
+<!ELEMENT fieldsynopsis %ho; (modifier*, type?, varname, initializer?)>
 <!--end of fieldsynopsis.element-->]]>
 
 <!ENTITY % fieldsynopsis.attlist "INCLUDE">
@@ -3996,7 +4050,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % initializer.element "INCLUDE">
 <![%initializer.element;[
-<!ELEMENT initializer (%smallcptr.char.mix;)*>
+<!ELEMENT initializer %ho; (%smallcptr.char.mix;)*>
 <!--end of initializer.element-->]]>
 
 <!ENTITY % initializer.attlist "INCLUDE">
@@ -4016,7 +4070,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % constructorsynopsis.element "INCLUDE">
 <![%constructorsynopsis.element;[
-<!ELEMENT constructorsynopsis (modifier*,
+<!ELEMENT constructorsynopsis %ho; (modifier*,
                                methodname?,
                                (methodparam+|void),
                                exceptionname*)>
@@ -4039,7 +4093,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % destructorsynopsis.element "INCLUDE">
 <![%destructorsynopsis.element;[
-<!ELEMENT destructorsynopsis (modifier*,
+<!ELEMENT destructorsynopsis %ho; (modifier*,
                               methodname?,
                               (methodparam+|void),
                               exceptionname*)>
@@ -4062,7 +4116,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % methodsynopsis.element "INCLUDE">
 <![%methodsynopsis.element;[
-<!ELEMENT methodsynopsis (modifier*,
+<!ELEMENT methodsynopsis %ho; (modifier*,
                           (type|void)?,
                           methodname,
                           (methodparam+|void),
@@ -4087,7 +4141,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % methodname.element "INCLUDE">
 <![%methodname.element;[
-<!ELEMENT methodname (%smallcptr.char.mix;)*>
+<!ELEMENT methodname %ho; (%smallcptr.char.mix;)*>
 <!--end of methodname.element-->]]>
 
 <!ENTITY % methodname.attlist "INCLUDE">
@@ -4107,7 +4161,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % methodparam.element "INCLUDE">
 <![%methodparam.element;[
-<!ELEMENT methodparam (modifier*,
+<!ELEMENT methodparam %ho; (modifier*,
                        type?,
                        ((parameter,initializer?)|funcparams),
                        modifier*)>
@@ -4151,7 +4205,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % ackno.element "INCLUDE">
 <![%ackno.element;[
-<!ELEMENT ackno (%docinfo.char.mix;)*>
+<!ELEMENT ackno %ho; (%docinfo.char.mix;)*>
 <!--end of ackno.element-->]]>
 
 <!ENTITY % ackno.attlist "INCLUDE">
@@ -4175,7 +4229,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % address.element "INCLUDE">
 <![%address.element;[
-<!ELEMENT address (#PCDATA|%person.ident.mix;
+<!ELEMENT address %ho; (#PCDATA|%person.ident.mix;
 		|street|pob|postcode|city|state|country|phone
 		|fax|email|otheraddr)*>
 <!--end of address.element-->]]>
@@ -4198,7 +4252,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % street.element "INCLUDE">
 <![%street.element;[
-<!ELEMENT street (%docinfo.char.mix;)*>
+<!ELEMENT street %ho; (%docinfo.char.mix;)*>
 <!--end of street.element-->]]>
   
 <!ENTITY % street.attlist "INCLUDE">
@@ -4218,7 +4272,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % pob.element "INCLUDE">
 <![%pob.element;[
-<!ELEMENT pob (%docinfo.char.mix;)*>
+<!ELEMENT pob %ho; (%docinfo.char.mix;)*>
 <!--end of pob.element-->]]>
   
 <!ENTITY % pob.attlist "INCLUDE">
@@ -4238,7 +4292,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % postcode.element "INCLUDE">
 <![%postcode.element;[
-<!ELEMENT postcode (%docinfo.char.mix;)*>
+<!ELEMENT postcode %ho; (%docinfo.char.mix;)*>
 <!--end of postcode.element-->]]>
   
 <!ENTITY % postcode.attlist "INCLUDE">
@@ -4258,7 +4312,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % city.element "INCLUDE">
 <![%city.element;[
-<!ELEMENT city (%docinfo.char.mix;)*>
+<!ELEMENT city %ho; (%docinfo.char.mix;)*>
 <!--end of city.element-->]]>
   
 <!ENTITY % city.attlist "INCLUDE">
@@ -4278,7 +4332,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % state.element "INCLUDE">
 <![%state.element;[
-<!ELEMENT state (%docinfo.char.mix;)*>
+<!ELEMENT state %ho; (%docinfo.char.mix;)*>
 <!--end of state.element-->]]>
   
 <!ENTITY % state.attlist "INCLUDE">
@@ -4298,7 +4352,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % country.element "INCLUDE">
 <![%country.element;[
-<!ELEMENT country (%docinfo.char.mix;)*>
+<!ELEMENT country %ho; (%docinfo.char.mix;)*>
 <!--end of country.element-->]]>
   
 <!ENTITY % country.attlist "INCLUDE">
@@ -4318,7 +4372,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % phone.element "INCLUDE">
 <![%phone.element;[
-<!ELEMENT phone (%docinfo.char.mix;)*>
+<!ELEMENT phone %ho; (%docinfo.char.mix;)*>
 <!--end of phone.element-->]]>
   
 <!ENTITY % phone.attlist "INCLUDE">
@@ -4338,7 +4392,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % fax.element "INCLUDE">
 <![%fax.element;[
-<!ELEMENT fax (%docinfo.char.mix;)*>
+<!ELEMENT fax %ho; (%docinfo.char.mix;)*>
 <!--end of fax.element-->]]>
   
 <!ENTITY % fax.attlist "INCLUDE">
@@ -4360,7 +4414,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % otheraddr.element "INCLUDE">
 <![%otheraddr.element;[
-<!ELEMENT otheraddr (%docinfo.char.mix;)*>
+<!ELEMENT otheraddr %ho; (%docinfo.char.mix;)*>
 <!--end of otheraddr.element-->]]>
   
 <!ENTITY % otheraddr.attlist "INCLUDE">
@@ -4385,7 +4439,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % affiliation.element "INCLUDE">
 <![%affiliation.element;[
-<!ELEMENT affiliation (shortaffil?, jobtitle*, orgname?, orgdiv*,
+<!ELEMENT affiliation %ho; (shortaffil?, jobtitle*, orgname?, orgdiv*,
 		address*)>
 <!--end of affiliation.element-->]]>
 
@@ -4406,7 +4460,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % shortaffil.element "INCLUDE">
 <![%shortaffil.element;[
-<!ELEMENT shortaffil (%docinfo.char.mix;)*>
+<!ELEMENT shortaffil %ho; (%docinfo.char.mix;)*>
 <!--end of shortaffil.element-->]]>
   
 <!ENTITY % shortaffil.attlist "INCLUDE">
@@ -4426,7 +4480,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % jobtitle.element "INCLUDE">
 <![%jobtitle.element;[
-<!ELEMENT jobtitle (%docinfo.char.mix;)*>
+<!ELEMENT jobtitle %ho; (%docinfo.char.mix;)*>
 <!--end of jobtitle.element-->]]>
   
 <!ENTITY % jobtitle.attlist "INCLUDE">
@@ -4448,7 +4502,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % orgdiv.element "INCLUDE">
 <![%orgdiv.element;[
-<!ELEMENT orgdiv (%docinfo.char.mix;)*>
+<!ELEMENT orgdiv %ho; (%docinfo.char.mix;)*>
 <!--end of orgdiv.element-->]]>
   
 <!ENTITY % orgdiv.attlist "INCLUDE">
@@ -4473,7 +4527,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % artpagenums.element "INCLUDE">
 <![%artpagenums.element;[
-<!ELEMENT artpagenums (%docinfo.char.mix;)*>
+<!ELEMENT artpagenums %ho; (%docinfo.char.mix;)*>
 <!--end of artpagenums.element-->]]>
 
 <!ENTITY % artpagenums.attlist "INCLUDE">
@@ -4495,7 +4549,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % author.element "INCLUDE">
 <![%author.element;[
-<!ELEMENT author ((%person.ident.mix;)+)>
+<!ELEMENT author %ho; ((%person.ident.mix;)+)>
 <!--end of author.element-->]]>
 
 <!ENTITY % author.attlist "INCLUDE">
@@ -4520,7 +4574,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % authorgroup.element "INCLUDE">
 <![%authorgroup.element;[
-<!ELEMENT authorgroup ((author|editor|collab|corpauthor|othercredit)+)>
+<!ELEMENT authorgroup %ho; ((author|editor|collab|corpauthor|othercredit)+)>
 <!--end of authorgroup.element-->]]>
 
 <!ENTITY % authorgroup.attlist "INCLUDE">
@@ -4545,7 +4599,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % collab.element "INCLUDE">
 <![%collab.element;[
-<!ELEMENT collab (collabname, affiliation*)>
+<!ELEMENT collab %ho; (collabname, affiliation*)>
 <!--end of collab.element-->]]>
   
 <!ENTITY % collab.attlist "INCLUDE">
@@ -4565,7 +4619,7 @@ in the text (no (0) value, the default)
     
 <!ENTITY % collabname.element "INCLUDE">
 <![%collabname.element;[
-<!ELEMENT collabname (%docinfo.char.mix;)*>
+<!ELEMENT collabname %ho; (%docinfo.char.mix;)*>
 <!--end of collabname.element-->]]>
     
 <!ENTITY % collabname.attlist "INCLUDE">
@@ -4595,7 +4649,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % authorinitials.element "INCLUDE">
 <![%authorinitials.element;[
-<!ELEMENT authorinitials (%docinfo.char.mix;)*>
+<!ELEMENT authorinitials %ho; (%docinfo.char.mix;)*>
 <!--end of authorinitials.element-->]]>
 
 <!ENTITY % authorinitials.attlist "INCLUDE">
@@ -4619,7 +4673,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % confgroup.element "INCLUDE">
 <![%confgroup.element;[
-<!ELEMENT confgroup ((confdates|conftitle|confnum|address|confsponsor)*)>
+<!ELEMENT confgroup %ho; ((confdates|conftitle|confnum|address|confsponsor)*)>
 <!--end of confgroup.element-->]]>
 
 <!ENTITY % confgroup.attlist "INCLUDE">
@@ -4639,7 +4693,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % confdates.element "INCLUDE">
 <![%confdates.element;[
-<!ELEMENT confdates (%docinfo.char.mix;)*>
+<!ELEMENT confdates %ho; (%docinfo.char.mix;)*>
 <!--end of confdates.element-->]]>
   
 <!ENTITY % confdates.attlist "INCLUDE">
@@ -4659,7 +4713,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % conftitle.element "INCLUDE">
 <![%conftitle.element;[
-<!ELEMENT conftitle (%docinfo.char.mix;)*>
+<!ELEMENT conftitle %ho; (%docinfo.char.mix;)*>
 <!--end of conftitle.element-->]]>
   
 <!ENTITY % conftitle.attlist "INCLUDE">
@@ -4679,7 +4733,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % confnum.element "INCLUDE">
 <![%confnum.element;[
-<!ELEMENT confnum (%docinfo.char.mix;)*>
+<!ELEMENT confnum %ho; (%docinfo.char.mix;)*>
 <!--end of confnum.element-->]]>
   
 <!ENTITY % confnum.attlist "INCLUDE">
@@ -4701,7 +4755,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % confsponsor.element "INCLUDE">
 <![%confsponsor.element;[
-<!ELEMENT confsponsor (%docinfo.char.mix;)*>
+<!ELEMENT confsponsor %ho; (%docinfo.char.mix;)*>
 <!--end of confsponsor.element-->]]>
   
 <!ENTITY % confsponsor.attlist "INCLUDE">
@@ -4724,7 +4778,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % contractnum.element "INCLUDE">
 <![%contractnum.element;[
-<!ELEMENT contractnum (%docinfo.char.mix;)*>
+<!ELEMENT contractnum %ho; (%docinfo.char.mix;)*>
 <!--end of contractnum.element-->]]>
 
 <!ENTITY % contractnum.attlist "INCLUDE">
@@ -4746,7 +4800,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % contractsponsor.element "INCLUDE">
 <![%contractsponsor.element;[
-<!ELEMENT contractsponsor (%docinfo.char.mix;)*>
+<!ELEMENT contractsponsor %ho; (%docinfo.char.mix;)*>
 <!--end of contractsponsor.element-->]]>
 
 <!ENTITY % contractsponsor.attlist "INCLUDE">
@@ -4770,7 +4824,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % copyright.element "INCLUDE">
 <![%copyright.element;[
-<!ELEMENT copyright (year+, holder*)>
+<!ELEMENT copyright %ho; (year+, holder*)>
 <!--end of copyright.element-->]]>
 
 <!ENTITY % copyright.attlist "INCLUDE">
@@ -4790,7 +4844,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % year.element "INCLUDE">
 <![%year.element;[
-<!ELEMENT year (%docinfo.char.mix;)*>
+<!ELEMENT year %ho; (%docinfo.char.mix;)*>
 <!--end of year.element-->]]>
   
 <!ENTITY % year.attlist "INCLUDE">
@@ -4810,7 +4864,7 @@ in the text (no (0) value, the default)
   
 <!ENTITY % holder.element "INCLUDE">
 <![%holder.element;[
-<!ELEMENT holder (%docinfo.char.mix;)*>
+<!ELEMENT holder %ho; (%docinfo.char.mix;)*>
 <!--end of holder.element-->]]>
   
 <!ENTITY % holder.attlist "INCLUDE">
@@ -4833,7 +4887,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % corpauthor.element "INCLUDE">
 <![%corpauthor.element;[
-<!ELEMENT corpauthor (%docinfo.char.mix;)*>
+<!ELEMENT corpauthor %ho; (%docinfo.char.mix;)*>
 <!--end of corpauthor.element-->]]>
 
 <!ENTITY % corpauthor.attlist "INCLUDE">
@@ -4854,7 +4908,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % corpname.element "INCLUDE">
 <![%corpname.element;[
-<!ELEMENT corpname (%docinfo.char.mix;)*>
+<!ELEMENT corpname %ho; (%docinfo.char.mix;)*>
 <!--end of corpname.element-->]]>
 <!ENTITY % corpname.role.attrib "%role.attrib;">
 
@@ -4877,7 +4931,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % date.element "INCLUDE">
 <![%date.element;[
-<!ELEMENT date (%docinfo.char.mix;)*>
+<!ELEMENT date %ho; (%docinfo.char.mix;)*>
 <!--end of date.element-->]]>
 
 <!ENTITY % date.attlist "INCLUDE">
@@ -4899,7 +4953,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % edition.element "INCLUDE">
 <![%edition.element;[
-<!ELEMENT edition (%docinfo.char.mix;)*>
+<!ELEMENT edition %ho; (%docinfo.char.mix;)*>
 <!--end of edition.element-->]]>
 
 <!ENTITY % edition.attlist "INCLUDE">
@@ -4921,7 +4975,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % editor.element "INCLUDE">
 <![%editor.element;[
-<!ELEMENT editor ((%person.ident.mix;)+)>
+<!ELEMENT editor %ho; ((%person.ident.mix;)+)>
 <!--end of editor.element-->]]>
 
 <!ENTITY % editor.attlist "INCLUDE">
@@ -4944,7 +4998,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % isbn.element "INCLUDE">
 <![%isbn.element;[
-<!ELEMENT isbn (%docinfo.char.mix;)*>
+<!ELEMENT isbn %ho; (%docinfo.char.mix;)*>
 <!--end of isbn.element-->]]>
 
 <!ENTITY % isbn.attlist "INCLUDE">
@@ -4966,7 +5020,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % issn.element "INCLUDE">
 <![%issn.element;[
-<!ELEMENT issn (%docinfo.char.mix;)*>
+<!ELEMENT issn %ho; (%docinfo.char.mix;)*>
 <!--end of issn.element-->]]>
 
 <!ENTITY % issn.attlist "INCLUDE">
@@ -4988,7 +5042,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % invpartnumber.element "INCLUDE">
 <![%invpartnumber.element;[
-<!ELEMENT invpartnumber (%docinfo.char.mix;)*>
+<!ELEMENT invpartnumber %ho; (%docinfo.char.mix;)*>
 <!--end of invpartnumber.element-->]]>
 
 <!ENTITY % invpartnumber.attlist "INCLUDE">
@@ -5010,7 +5064,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % issuenum.element "INCLUDE">
 <![%issuenum.element;[
-<!ELEMENT issuenum (%docinfo.char.mix;)*>
+<!ELEMENT issuenum %ho; (%docinfo.char.mix;)*>
 <!--end of issuenum.element-->]]>
 
 <!ENTITY % issuenum.attlist "INCLUDE">
@@ -5032,7 +5086,8 @@ in the text (no (0) value, the default)
 
 <!ENTITY % legalnotice.element "INCLUDE">
 <![%legalnotice.element;[
-<!ELEMENT legalnotice (title?, (%legalnotice.mix;)+)>
+<!ELEMENT legalnotice %ho; (title?, (%legalnotice.mix;)+)
+		%formal.exclusion;>
 <!--end of legalnotice.element-->]]>
 
 <!ENTITY % legalnotice.attlist "INCLUDE">
@@ -5054,7 +5109,8 @@ in the text (no (0) value, the default)
 
 <!ENTITY % modespec.element "INCLUDE">
 <![%modespec.element;[
-<!ELEMENT modespec (%docinfo.char.mix;)*>
+<!ELEMENT modespec %ho; (%docinfo.char.mix;)*
+		%ubiq.exclusion;>
 <!--end of modespec.element-->]]>
 
 <!-- Application: Type of action required for completion
@@ -5083,7 +5139,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % orgname.element "INCLUDE">
 <![%orgname.element;[
-<!ELEMENT orgname (%docinfo.char.mix;)*>
+<!ELEMENT orgname %ho; (%docinfo.char.mix;)*>
 <!--end of orgname.element-->]]>
 
 <!ENTITY % orgname.attlist "INCLUDE">
@@ -5105,7 +5161,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % othercredit.element "INCLUDE">
 <![%othercredit.element;[
-<!ELEMENT othercredit ((%person.ident.mix;)+)>
+<!ELEMENT othercredit %ho; ((%person.ident.mix;)+)>
 <!--end of othercredit.element-->]]>
 
 <!ENTITY % othercredit.attlist "INCLUDE">
@@ -5128,7 +5184,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % pagenums.element "INCLUDE">
 <![%pagenums.element;[
-<!ELEMENT pagenums (%docinfo.char.mix;)*>
+<!ELEMENT pagenums %ho; (%docinfo.char.mix;)*>
 <!--end of pagenums.element-->]]>
 
 <!ENTITY % pagenums.attlist "INCLUDE">
@@ -5155,7 +5211,7 @@ OtherCredit. -->
   
 <!ENTITY % contrib.element "INCLUDE">
 <![%contrib.element;[
-<!ELEMENT contrib (%docinfo.char.mix;)*>
+<!ELEMENT contrib %ho; (%docinfo.char.mix;)*>
 <!--end of contrib.element-->]]>
   
 <!ENTITY % contrib.attlist "INCLUDE">
@@ -5175,7 +5231,7 @@ OtherCredit. -->
   
 <!ENTITY % firstname.element "INCLUDE">
 <![%firstname.element;[
-<!ELEMENT firstname (%docinfo.char.mix;)*>
+<!ELEMENT firstname %ho; (%docinfo.char.mix;)*>
 <!--end of firstname.element-->]]>
   
 <!ENTITY % firstname.attlist "INCLUDE">
@@ -5195,7 +5251,7 @@ OtherCredit. -->
   
 <!ENTITY % honorific.element "INCLUDE">
 <![%honorific.element;[
-<!ELEMENT honorific (%docinfo.char.mix;)*>
+<!ELEMENT honorific %ho; (%docinfo.char.mix;)*>
 <!--end of honorific.element-->]]>
   
 <!ENTITY % honorific.attlist "INCLUDE">
@@ -5215,7 +5271,7 @@ OtherCredit. -->
   
 <!ENTITY % lineage.element "INCLUDE">
 <![%lineage.element;[
-<!ELEMENT lineage (%docinfo.char.mix;)*>
+<!ELEMENT lineage %ho; (%docinfo.char.mix;)*>
 <!--end of lineage.element-->]]>
   
 <!ENTITY % lineage.attlist "INCLUDE">
@@ -5235,7 +5291,7 @@ OtherCredit. -->
   
 <!ENTITY % othername.element "INCLUDE">
 <![%othername.element;[
-<!ELEMENT othername (%docinfo.char.mix;)*>
+<!ELEMENT othername %ho; (%docinfo.char.mix;)*>
 <!--end of othername.element-->]]>
   
 <!ENTITY % othername.attlist "INCLUDE">
@@ -5255,7 +5311,7 @@ OtherCredit. -->
   
 <!ENTITY % surname.element "INCLUDE">
 <![%surname.element;[
-<!ELEMENT surname (%docinfo.char.mix;)*>
+<!ELEMENT surname %ho; (%docinfo.char.mix;)*>
 <!--end of surname.element-->]]>
   
 <!ENTITY % surname.attlist "INCLUDE">
@@ -5278,7 +5334,7 @@ OtherCredit. -->
 
 <!ENTITY % printhistory.element "INCLUDE">
 <![%printhistory.element;[
-<!ELEMENT printhistory ((%para.class;)+)>
+<!ELEMENT printhistory %ho; ((%para.class;)+)>
 <!--end of printhistory.element-->]]>
 
 <!ENTITY % printhistory.attlist "INCLUDE">
@@ -5300,7 +5356,7 @@ OtherCredit. -->
 
 <!ENTITY % productname.element "INCLUDE">
 <![%productname.element;[
-<!ELEMENT productname (%para.char.mix;)*>
+<!ELEMENT productname %ho; (%para.char.mix;)*>
 <!--end of productname.element-->]]>
 
 <!-- Class: More precisely identifies the item the element names -->
@@ -5329,7 +5385,7 @@ OtherCredit. -->
 
 <!ENTITY % productnumber.element "INCLUDE">
 <![%productnumber.element;[
-<!ELEMENT productnumber (%docinfo.char.mix;)*>
+<!ELEMENT productnumber %ho; (%docinfo.char.mix;)*>
 <!--end of productnumber.element-->]]>
 
 <!ENTITY % productnumber.attlist "INCLUDE">
@@ -5351,7 +5407,7 @@ OtherCredit. -->
 
 <!ENTITY % pubdate.element "INCLUDE">
 <![%pubdate.element;[
-<!ELEMENT pubdate (%docinfo.char.mix;)*>
+<!ELEMENT pubdate %ho; (%docinfo.char.mix;)*>
 <!--end of pubdate.element-->]]>
 
 <!ENTITY % pubdate.attlist "INCLUDE">
@@ -5375,7 +5431,7 @@ OtherCredit. -->
 
 <!ENTITY % publisher.element "INCLUDE">
 <![%publisher.element;[
-<!ELEMENT publisher (publishername, address*)>
+<!ELEMENT publisher %ho; (publishername, address*)>
 <!--end of publisher.element-->]]>
 
 <!ENTITY % publisher.attlist "INCLUDE">
@@ -5395,7 +5451,7 @@ OtherCredit. -->
   
 <!ENTITY % publishername.element "INCLUDE">
 <![%publishername.element;[
-<!ELEMENT publishername (%docinfo.char.mix;)*>
+<!ELEMENT publishername %ho; (%docinfo.char.mix;)*>
 <!--end of publishername.element-->]]>
   
 <!ENTITY % publishername.attlist "INCLUDE">
@@ -5420,7 +5476,7 @@ OtherCredit. -->
 
 <!ENTITY % pubsnumber.element "INCLUDE">
 <![%pubsnumber.element;[
-<!ELEMENT pubsnumber (%docinfo.char.mix;)*>
+<!ELEMENT pubsnumber %ho; (%docinfo.char.mix;)*>
 <!--end of pubsnumber.element-->]]>
 
 <!ENTITY % pubsnumber.attlist "INCLUDE">
@@ -5442,7 +5498,7 @@ OtherCredit. -->
 
 <!ENTITY % releaseinfo.element "INCLUDE">
 <![%releaseinfo.element;[
-<!ELEMENT releaseinfo (%docinfo.char.mix;)*>
+<!ELEMENT releaseinfo %ho; (%docinfo.char.mix;)*>
 <!--end of releaseinfo.element-->]]>
 
 <!ENTITY % releaseinfo.attlist "INCLUDE">
@@ -5466,7 +5522,7 @@ OtherCredit. -->
 
 <!ENTITY % revhistory.element "INCLUDE">
 <![%revhistory.element;[
-<!ELEMENT revhistory (revision+)>
+<!ELEMENT revhistory %ho; (revision+)>
 <!--end of revhistory.element-->]]>
 
 <!ENTITY % revhistory.attlist "INCLUDE">
@@ -5486,7 +5542,7 @@ OtherCredit. -->
 
 <!ENTITY % revision.element "INCLUDE">
 <![%revision.element;[
-<!ELEMENT revision (revnumber, date, authorinitials*, 
+<!ELEMENT revision %ho; (revnumber, date, authorinitials*, 
                     (revremark|revdescription)?)>
 <!--end of revision.element-->]]>
 
@@ -5507,7 +5563,7 @@ OtherCredit. -->
 
 <!ENTITY % revnumber.element "INCLUDE">
 <![%revnumber.element;[
-<!ELEMENT revnumber (%docinfo.char.mix;)*>
+<!ELEMENT revnumber %ho; (%docinfo.char.mix;)*>
 <!--end of revnumber.element-->]]>
 
 <!ENTITY % revnumber.attlist "INCLUDE">
@@ -5530,7 +5586,7 @@ OtherCredit. -->
 
 <!ENTITY % revremark.element "INCLUDE">
 <![%revremark.element;[
-<!ELEMENT revremark (%docinfo.char.mix;)*>
+<!ELEMENT revremark %ho; (%docinfo.char.mix;)*>
 <!--end of revremark.element-->]]>
 
 <!ENTITY % revremark.attlist "INCLUDE">
@@ -5550,7 +5606,7 @@ OtherCredit. -->
 
 <!ENTITY % revdescription.element "INCLUDE">
 <![ %revdescription.element; [
-<!ELEMENT revdescription ((%revdescription.mix;)+)>
+<!ELEMENT revdescription %ho; ((%revdescription.mix;)+)>
 <!--end of revdescription.element-->]]>
 
 <!ENTITY % revdescription.attlist "INCLUDE">
@@ -5573,7 +5629,7 @@ OtherCredit. -->
 
 <!ENTITY % seriesvolnums.element "INCLUDE">
 <![%seriesvolnums.element;[
-<!ELEMENT seriesvolnums (%docinfo.char.mix;)*>
+<!ELEMENT seriesvolnums %ho; (%docinfo.char.mix;)*>
 <!--end of seriesvolnums.element-->]]>
 
 <!ENTITY % seriesvolnums.attlist "INCLUDE">
@@ -5595,7 +5651,7 @@ OtherCredit. -->
 
 <!ENTITY % volumenum.element "INCLUDE">
 <![%volumenum.element;[
-<!ELEMENT volumenum (%docinfo.char.mix;)*>
+<!ELEMENT volumenum %ho; (%docinfo.char.mix;)*>
 <!--end of volumenum.element-->]]>
 
 <!ENTITY % volumenum.attlist "INCLUDE">
@@ -5624,7 +5680,7 @@ OtherCredit. -->
 
 <!ENTITY % accel.element "INCLUDE">
 <![%accel.element;[
-<!ELEMENT accel (%smallcptr.char.mix;)*>
+<!ELEMENT accel %ho; (%smallcptr.char.mix;)*>
 <!--end of accel.element-->]]>
 
 <!ENTITY % accel.attlist "INCLUDE">
@@ -5644,7 +5700,7 @@ OtherCredit. -->
 
 <!ENTITY % action.element "INCLUDE">
 <![%action.element;[
-<!ELEMENT action (%smallcptr.char.mix;)*>
+<!ELEMENT action %ho; (%smallcptr.char.mix;)*>
 <!--end of action.element-->]]>
 
 <!ENTITY % action.attlist "INCLUDE">
@@ -5665,7 +5721,7 @@ OtherCredit. -->
 
 <!ENTITY % application.element "INCLUDE">
 <![%application.element;[
-<!ELEMENT application (%para.char.mix;)*>
+<!ELEMENT application %ho; (%para.char.mix;)*>
 <!--end of application.element-->]]>
 
 <!ENTITY % application.attlist "INCLUDE">
@@ -5688,7 +5744,7 @@ OtherCredit. -->
 
 <!ENTITY % classname.element "INCLUDE">
 <![%classname.element;[
-<!ELEMENT classname (%smallcptr.char.mix;)*>
+<!ELEMENT classname %ho; (%smallcptr.char.mix;)*>
 <!--end of classname.element-->]]>
 
 <!ENTITY % classname.attlist "INCLUDE">
@@ -5710,7 +5766,7 @@ OtherCredit. -->
 
 <!ENTITY % co.element "INCLUDE">
 <![%co.element;[
-<!ELEMENT co EMPTY>
+<!ELEMENT co %ho; EMPTY>
 <!--end of co.element-->]]>
 
 <!-- bug number/symbol override or initialization -->
@@ -5736,7 +5792,7 @@ OtherCredit. -->
 
 <!ENTITY % command.element "INCLUDE">
 <![%command.element;[
-<!ELEMENT command (%cptr.char.mix;)*>
+<!ELEMENT command %ho; (%cptr.char.mix;)*>
 <!--end of command.element-->]]>
 
 <!ENTITY % command.attlist "INCLUDE">
@@ -5757,7 +5813,7 @@ OtherCredit. -->
 
 <!ENTITY % computeroutput.element "INCLUDE">
 <![%computeroutput.element;[
-<!ELEMENT computeroutput (%cptr.char.mix;)*>
+<!ELEMENT computeroutput %ho; (%cptr.char.mix;)*>
 <!--end of computeroutput.element-->]]>
 
 <!ENTITY % computeroutput.attlist "INCLUDE">
@@ -5778,7 +5834,7 @@ OtherCredit. -->
 
 <!ENTITY % database.element "INCLUDE">
 <![%database.element;[
-<!ELEMENT database (%smallcptr.char.mix;)*>
+<!ELEMENT database %ho; (%smallcptr.char.mix;)*>
 <!--end of database.element-->]]>
 
 <!-- Class: Type of database the element names; no default -->
@@ -5808,7 +5864,7 @@ OtherCredit. -->
 
 <!ENTITY % email.element "INCLUDE">
 <![%email.element;[
-<!ELEMENT email (%docinfo.char.mix;)*>
+<!ELEMENT email %ho; (%docinfo.char.mix;)*>
 <!--end of email.element-->]]>
 
 <!ENTITY % email.attlist "INCLUDE">
@@ -5828,7 +5884,7 @@ OtherCredit. -->
 
 <!ENTITY % envar.element "INCLUDE">
 <![%envar.element;[
-<!ELEMENT envar (%smallcptr.char.mix;)*>
+<!ELEMENT envar %ho; (%smallcptr.char.mix;)*>
 <!--end of envar.element-->]]>
 
 <!ENTITY % envar.attlist "INCLUDE">
@@ -5849,7 +5905,7 @@ OtherCredit. -->
 
 <!ENTITY % errorcode.element "INCLUDE">
 <![%errorcode.element;[
-<!ELEMENT errorcode (%smallcptr.char.mix;)*>
+<!ELEMENT errorcode %ho; (%smallcptr.char.mix;)*>
 <!--end of errorcode.element-->]]>
 
 <!ENTITY % errorcode.attlist "INCLUDE">
@@ -5870,7 +5926,7 @@ OtherCredit. -->
 
 <!ENTITY % errorname.element "INCLUDE">
 <![%errorname.element;[
-<!ELEMENT errorname (%smallcptr.char.mix;)*>
+<!ELEMENT errorname %ho; (%smallcptr.char.mix;)*>
 <!--end of errorname.element-->]]>
 
 <!ENTITY % errorname.attlist "INCLUDE">
@@ -5890,7 +5946,7 @@ OtherCredit. -->
 
 <!ENTITY % errortype.element "INCLUDE">
 <![%errortype.element;[
-<!ELEMENT errortype (%smallcptr.char.mix;)*>
+<!ELEMENT errortype %ho; (%smallcptr.char.mix;)*>
 <!--end of errortype.element-->]]>
 
 <!ENTITY % errortype.attlist "INCLUDE">
@@ -5910,7 +5966,7 @@ OtherCredit. -->
 
 <!ENTITY % filename.element "INCLUDE">
 <![%filename.element;[
-<!ELEMENT filename (%smallcptr.char.mix;)*>
+<!ELEMENT filename %ho; (%smallcptr.char.mix;)*>
 <!--end of filename.element-->]]>
 
 <!-- Class: Type of filename the element names; no default -->
@@ -5942,7 +5998,7 @@ OtherCredit. -->
 
 <!ENTITY % function.element "INCLUDE">
 <![%function.element;[
-<!ELEMENT function (%cptr.char.mix;)*>
+<!ELEMENT function %ho; (%cptr.char.mix;)*>
 <!--end of function.element-->]]>
 
 <!ENTITY % function.attlist "INCLUDE">
@@ -5963,7 +6019,7 @@ OtherCredit. -->
 
 <!ENTITY % guibutton.element "INCLUDE">
 <![%guibutton.element;[
-<!ELEMENT guibutton (%smallcptr.char.mix;|accel)*>
+<!ELEMENT guibutton %ho; (%smallcptr.char.mix;|accel)*>
 <!--end of guibutton.element-->]]>
 
 <!ENTITY % guibutton.attlist "INCLUDE">
@@ -5984,7 +6040,7 @@ OtherCredit. -->
 
 <!ENTITY % guiicon.element "INCLUDE">
 <![%guiicon.element;[
-<!ELEMENT guiicon (%smallcptr.char.mix;|accel)*>
+<!ELEMENT guiicon %ho; (%smallcptr.char.mix;|accel)*>
 <!--end of guiicon.element-->]]>
 
 <!ENTITY % guiicon.attlist "INCLUDE">
@@ -6005,7 +6061,7 @@ OtherCredit. -->
 
 <!ENTITY % guilabel.element "INCLUDE">
 <![%guilabel.element;[
-<!ELEMENT guilabel (%smallcptr.char.mix;|accel)*>
+<!ELEMENT guilabel %ho; (%smallcptr.char.mix;|accel)*>
 <!--end of guilabel.element-->]]>
 
 <!ENTITY % guilabel.attlist "INCLUDE">
@@ -6026,7 +6082,7 @@ OtherCredit. -->
 
 <!ENTITY % guimenu.element "INCLUDE">
 <![%guimenu.element;[
-<!ELEMENT guimenu (%smallcptr.char.mix;|accel)*>
+<!ELEMENT guimenu %ho; (%smallcptr.char.mix;|accel)*>
 <!--end of guimenu.element-->]]>
 
 <!ENTITY % guimenu.attlist "INCLUDE">
@@ -6047,7 +6103,7 @@ OtherCredit. -->
 
 <!ENTITY % guimenuitem.element "INCLUDE">
 <![%guimenuitem.element;[
-<!ELEMENT guimenuitem (%smallcptr.char.mix;|accel)*>
+<!ELEMENT guimenuitem %ho; (%smallcptr.char.mix;|accel)*>
 <!--end of guimenuitem.element-->]]>
 
 <!ENTITY % guimenuitem.attlist "INCLUDE">
@@ -6068,7 +6124,7 @@ OtherCredit. -->
 
 <!ENTITY % guisubmenu.element "INCLUDE">
 <![%guisubmenu.element;[
-<!ELEMENT guisubmenu (%smallcptr.char.mix;|accel)*>
+<!ELEMENT guisubmenu %ho; (%smallcptr.char.mix;|accel)*>
 <!--end of guisubmenu.element-->]]>
 
 <!ENTITY % guisubmenu.attlist "INCLUDE">
@@ -6089,7 +6145,7 @@ OtherCredit. -->
 
 <!ENTITY % hardware.element "INCLUDE">
 <![%hardware.element;[
-<!ELEMENT hardware (%smallcptr.char.mix;)*>
+<!ELEMENT hardware %ho; (%smallcptr.char.mix;)*>
 <!--end of hardware.element-->]]>
 
 <!ENTITY % hardware.attlist "INCLUDE">
@@ -6110,7 +6166,7 @@ OtherCredit. -->
 
 <!ENTITY % interface.element "INCLUDE">
 <![%interface.element;[
-<!ELEMENT interface (%smallcptr.char.mix;|accel)*>
+<!ELEMENT interface %ho; (%smallcptr.char.mix;|accel)*>
 <!--end of interface.element-->]]>
 
 <!-- Class: Type of the Interface item; no default -->
@@ -6134,7 +6190,7 @@ OtherCredit. -->
 
 <!ENTITY % keycap.element "INCLUDE">
 <![%keycap.element;[
-<!ELEMENT keycap (%smallcptr.char.mix;)*>
+<!ELEMENT keycap %ho; (%smallcptr.char.mix;)*>
 <!--end of keycap.element-->]]>
 
 <!ENTITY % keycap.attlist "INCLUDE">
@@ -6155,7 +6211,7 @@ OtherCredit. -->
 
 <!ENTITY % keycode.element "INCLUDE">
 <![%keycode.element;[
-<!ELEMENT keycode (%smallcptr.char.mix;)*>
+<!ELEMENT keycode %ho; (%smallcptr.char.mix;)*>
 <!--end of keycode.element-->]]>
 
 <!ENTITY % keycode.attlist "INCLUDE">
@@ -6175,7 +6231,7 @@ OtherCredit. -->
 
 <!ENTITY % keycombo.element "INCLUDE">
 <![%keycombo.element;[
-<!ELEMENT keycombo ((keycap|keycombo|keysym|mousebutton)+)>
+<!ELEMENT keycombo %ho; ((keycap|keycombo|keysym|mousebutton)+)>
 <!--end of keycombo.element-->]]>
 
 <!ENTITY % keycombo.attlist "INCLUDE">
@@ -6197,7 +6253,7 @@ OtherCredit. -->
 
 <!ENTITY % keysym.element "INCLUDE">
 <![%keysym.element;[
-<!ELEMENT keysym (%smallcptr.char.mix;)*>
+<!ELEMENT keysym %ho; (%smallcptr.char.mix;)*>
 <!--end of keysym.element-->]]>
 
 <!ENTITY % keysym.attlist "INCLUDE">
@@ -6217,7 +6273,7 @@ OtherCredit. -->
 
 <!ENTITY % lineannotation.element "INCLUDE">
 <![%lineannotation.element;[
-<!ELEMENT lineannotation (%para.char.mix;)*>
+<!ELEMENT lineannotation %ho; (%para.char.mix;)*>
 <!--end of lineannotation.element-->]]>
 
 <!ENTITY % lineannotation.attlist "INCLUDE">
@@ -6237,7 +6293,7 @@ OtherCredit. -->
 
 <!ENTITY % literal.element "INCLUDE">
 <![%literal.element;[
-<!ELEMENT literal (%cptr.char.mix;)*>
+<!ELEMENT literal %ho; (%cptr.char.mix;)*>
 <!--end of literal.element-->]]>
 
 <!ENTITY % literal.attlist "INCLUDE">
@@ -6258,7 +6314,7 @@ OtherCredit. -->
 
 <!ENTITY % constant.element "INCLUDE">
 <![ %constant.element; [
-<!ELEMENT constant (%smallcptr.char.mix;)*>
+<!ELEMENT constant %ho; (%smallcptr.char.mix;)*>
 <!--end of constant.element-->]]>
 
 <!ENTITY % constant.attlist "INCLUDE">
@@ -6279,7 +6335,7 @@ OtherCredit. -->
 
 <!ENTITY % varname.element "INCLUDE">
 <![ %varname.element; [
-<!ELEMENT varname (%smallcptr.char.mix;)*>
+<!ELEMENT varname %ho; (%smallcptr.char.mix;)*>
 <!--end of varname.element-->]]>
 
 <!ENTITY % varname.attlist "INCLUDE">
@@ -6299,7 +6355,7 @@ OtherCredit. -->
 
 <!ENTITY % markup.element "INCLUDE">
 <![%markup.element;[
-<!ELEMENT markup (%smallcptr.char.mix;)*>
+<!ELEMENT markup %ho; (%smallcptr.char.mix;)*>
 <!--end of markup.element-->]]>
 
 <!ENTITY % markup.attlist "INCLUDE">
@@ -6319,7 +6375,7 @@ OtherCredit. -->
 
 <!ENTITY % medialabel.element "INCLUDE">
 <![%medialabel.element;[
-<!ELEMENT medialabel (%smallcptr.char.mix;)*>
+<!ELEMENT medialabel %ho; (%smallcptr.char.mix;)*>
 <!--end of medialabel.element-->]]>
 
 <!-- Class: Type of medium named by the element; no default -->
@@ -6348,7 +6404,7 @@ OtherCredit. -->
 
 <!ENTITY % menuchoice.element "INCLUDE">
 <![%menuchoice.element;[
-<!ELEMENT menuchoice (shortcut?, (guibutton|guiicon|guilabel
+<!ELEMENT menuchoice %ho; (shortcut?, (guibutton|guiicon|guilabel
 		|guimenu|guimenuitem|guisubmenu|interface)+)>
 <!--end of menuchoice.element-->]]>
 
@@ -6371,7 +6427,7 @@ OtherCredit. -->
 
 <!ENTITY % shortcut.element "INCLUDE">
 <![%shortcut.element;[
-<!ELEMENT shortcut ((keycap|keycombo|keysym|mousebutton)+)>
+<!ELEMENT shortcut %ho; ((keycap|keycombo|keysym|mousebutton)+)>
 <!--end of shortcut.element-->]]>
 
 <!ENTITY % shortcut.attlist "INCLUDE">
@@ -6394,7 +6450,7 @@ OtherCredit. -->
 
 <!ENTITY % mousebutton.element "INCLUDE">
 <![%mousebutton.element;[
-<!ELEMENT mousebutton (%smallcptr.char.mix;)*>
+<!ELEMENT mousebutton %ho; (%smallcptr.char.mix;)*>
 <!--end of mousebutton.element-->]]>
 
 <!ENTITY % mousebutton.attlist "INCLUDE">
@@ -6415,7 +6471,7 @@ OtherCredit. -->
 
 <!ENTITY % msgtext.element "INCLUDE">
 <![%msgtext.element;[
-<!ELEMENT msgtext ((%component.mix;)+)>
+<!ELEMENT msgtext %ho; ((%component.mix;)+)>
 <!--end of msgtext.element-->]]>
 
 <!ENTITY % msgtext.attlist "INCLUDE">
@@ -6435,7 +6491,7 @@ OtherCredit. -->
 
 <!ENTITY % option.element "INCLUDE">
 <![%option.element;[
-<!ELEMENT option (%smallcptr.char.mix;)*>
+<!ELEMENT option %ho; (%smallcptr.char.mix;)*>
 <!--end of option.element-->]]>
 
 <!ENTITY % option.attlist "INCLUDE">
@@ -6455,7 +6511,7 @@ OtherCredit. -->
 
 <!ENTITY % optional.element "INCLUDE">
 <![%optional.element;[
-<!ELEMENT optional (%cptr.char.mix;)*>
+<!ELEMENT optional %ho; (%cptr.char.mix;)*>
 <!--end of optional.element-->]]>
 
 <!ENTITY % optional.attlist "INCLUDE">
@@ -6475,7 +6531,7 @@ OtherCredit. -->
 
 <!ENTITY % parameter.element "INCLUDE">
 <![%parameter.element;[
-<!ELEMENT parameter (%smallcptr.char.mix;)*>
+<!ELEMENT parameter %ho; (%smallcptr.char.mix;)*>
 <!--end of parameter.element-->]]>
 
 <!-- Class: Type of the Parameter; no default -->
@@ -6502,7 +6558,7 @@ OtherCredit. -->
 
 <!ENTITY % prompt.element "INCLUDE">
 <![%prompt.element;[
-<!ELEMENT prompt (%smallcptr.char.mix;)*>
+<!ELEMENT prompt %ho; (%smallcptr.char.mix;)*>
 <!--end of prompt.element-->]]>
 
 <!ENTITY % prompt.attlist "INCLUDE">
@@ -6523,7 +6579,7 @@ OtherCredit. -->
 
 <!ENTITY % property.element "INCLUDE">
 <![%property.element;[
-<!ELEMENT property (%smallcptr.char.mix;)*>
+<!ELEMENT property %ho; (%smallcptr.char.mix;)*>
 <!--end of property.element-->]]>
 
 <!ENTITY % property.attlist "INCLUDE">
@@ -6544,7 +6600,7 @@ OtherCredit. -->
 
 <!ENTITY % replaceable.element "INCLUDE">
 <![%replaceable.element;[
-<!ELEMENT replaceable (#PCDATA 
+<!ELEMENT replaceable %ho; (#PCDATA 
 		| %link.char.class; 
 		| optional
 		| %base.char.class; 
@@ -6578,7 +6634,7 @@ OtherCredit. -->
 
 <!ENTITY % returnvalue.element "INCLUDE">
 <![%returnvalue.element;[
-<!ELEMENT returnvalue (%smallcptr.char.mix;)*>
+<!ELEMENT returnvalue %ho; (%smallcptr.char.mix;)*>
 <!--end of returnvalue.element-->]]>
 
 <!ENTITY % returnvalue.attlist "INCLUDE">
@@ -6598,7 +6654,7 @@ OtherCredit. -->
 
 <!ENTITY % sgmltag.element "INCLUDE">
 <![%sgmltag.element;[
-<!ELEMENT sgmltag (%smallcptr.char.mix;)*>
+<!ELEMENT sgmltag %ho; (%smallcptr.char.mix;)*>
 <!--end of sgmltag.element-->]]>
 
 <!-- Class: Type of SGML construct the element names; no default -->
@@ -6633,7 +6689,7 @@ OtherCredit. -->
 
 <!ENTITY % structfield.element "INCLUDE">
 <![%structfield.element;[
-<!ELEMENT structfield (%smallcptr.char.mix;)*>
+<!ELEMENT structfield %ho; (%smallcptr.char.mix;)*>
 <!--end of structfield.element-->]]>
 
 <!ENTITY % structfield.attlist "INCLUDE">
@@ -6653,7 +6709,7 @@ OtherCredit. -->
 
 <!ENTITY % structname.element "INCLUDE">
 <![%structname.element;[
-<!ELEMENT structname (%smallcptr.char.mix;)*>
+<!ELEMENT structname %ho; (%smallcptr.char.mix;)*>
 <!--end of structname.element-->]]>
 
 <!ENTITY % structname.attlist "INCLUDE">
@@ -6673,7 +6729,7 @@ OtherCredit. -->
 
 <!ENTITY % symbol.element "INCLUDE">
 <![%symbol.element;[
-<!ELEMENT symbol (%smallcptr.char.mix;)*>
+<!ELEMENT symbol %ho; (%smallcptr.char.mix;)*>
 <!--end of symbol.element-->]]>
 
 <!-- Class: Type of symbol; no default -->
@@ -6697,7 +6753,7 @@ OtherCredit. -->
 
 <!ENTITY % systemitem.element "INCLUDE">
 <![%systemitem.element;[
-<!ELEMENT systemitem (%smallcptr.char.mix; | acronym)*>
+<!ELEMENT systemitem %ho; (%smallcptr.char.mix; | acronym)*>
 <!--end of systemitem.element-->]]>
 
 <!-- Class: Type of system item the element names; no default -->
@@ -6729,7 +6785,7 @@ OtherCredit. -->
 
 <!ENTITY % token.element "INCLUDE">
 <![%token.element;[
-<!ELEMENT token (%smallcptr.char.mix;)*>
+<!ELEMENT token %ho; (%smallcptr.char.mix;)*>
 <!--end of token.element-->]]>
 
 <!ENTITY % token.attlist "INCLUDE">
@@ -6749,7 +6805,7 @@ OtherCredit. -->
 
 <!ENTITY % type.element "INCLUDE">
 <![%type.element;[
-<!ELEMENT type (%smallcptr.char.mix;)*>
+<!ELEMENT type %ho; (%smallcptr.char.mix;)*>
 <!--end of type.element-->]]>
 
 <!ENTITY % type.attlist "INCLUDE">
@@ -6769,7 +6825,7 @@ OtherCredit. -->
 
 <!ENTITY % userinput.element "INCLUDE">
 <![%userinput.element;[
-<!ELEMENT userinput (%cptr.char.mix;)*>
+<!ELEMENT userinput %ho; (%cptr.char.mix;)*>
 <!--end of userinput.element-->]]>
 
 <!ENTITY % userinput.attlist "INCLUDE">
@@ -6792,7 +6848,7 @@ OtherCredit. -->
 
 <!ENTITY % abbrev.element "INCLUDE">
 <![%abbrev.element;[
-<!ELEMENT abbrev (%word.char.mix;)*>
+<!ELEMENT abbrev %ho; (%word.char.mix;)*>
 <!--end of abbrev.element-->]]>
 
 <!ENTITY % abbrev.attlist "INCLUDE">
@@ -6812,7 +6868,8 @@ OtherCredit. -->
 
 <!ENTITY % acronym.element "INCLUDE">
 <![%acronym.element;[
-<!ELEMENT acronym (%word.char.mix;)*>
+<!ELEMENT acronym %ho; (%word.char.mix;)*
+		%acronym.exclusion;>
 <!--end of acronym.element-->]]>
 
 <!ENTITY % acronym.attlist "INCLUDE">
@@ -6832,7 +6889,7 @@ OtherCredit. -->
 
 <!ENTITY % citation.element "INCLUDE">
 <![%citation.element;[
-<!ELEMENT citation (%para.char.mix;)*>
+<!ELEMENT citation %ho; (%para.char.mix;)*>
 <!--end of citation.element-->]]>
 
 <!ENTITY % citation.attlist "INCLUDE">
@@ -6852,7 +6909,7 @@ OtherCredit. -->
 
 <!ENTITY % citerefentry.element "INCLUDE">
 <![%citerefentry.element;[
-<!ELEMENT citerefentry (refentrytitle, manvolnum?)>
+<!ELEMENT citerefentry %ho; (refentrytitle, manvolnum?)>
 <!--end of citerefentry.element-->]]>
 
 <!ENTITY % citerefentry.attlist "INCLUDE">
@@ -6872,7 +6929,7 @@ OtherCredit. -->
 
 <!ENTITY % refentrytitle.element "INCLUDE">
 <![%refentrytitle.element;[
-<!ELEMENT refentrytitle (%para.char.mix;)*>
+<!ELEMENT refentrytitle %ho; (%para.char.mix;)*>
 <!--end of refentrytitle.element-->]]>
 
 <!ENTITY % refentrytitle.attlist "INCLUDE">
@@ -6892,7 +6949,7 @@ OtherCredit. -->
 
 <!ENTITY % manvolnum.element "INCLUDE">
 <![%manvolnum.element;[
-<!ELEMENT manvolnum (%word.char.mix;)*>
+<!ELEMENT manvolnum %ho; (%word.char.mix;)*>
 <!--end of manvolnum.element-->]]>
 
 <!ENTITY % manvolnum.attlist "INCLUDE">
@@ -6912,7 +6969,7 @@ OtherCredit. -->
 
 <!ENTITY % citetitle.element "INCLUDE">
 <![%citetitle.element;[
-<!ELEMENT citetitle (%para.char.mix;)*>
+<!ELEMENT citetitle %ho; (%para.char.mix;)*>
 <!--end of citetitle.element-->]]>
 
 <!-- Pubwork: Genre of published work cited; no default -->
@@ -6945,7 +7002,7 @@ OtherCredit. -->
 
 <!ENTITY % emphasis.element "INCLUDE">
 <![%emphasis.element;[
-<!ELEMENT emphasis (%para.char.mix;)*>
+<!ELEMENT emphasis %ho; (%para.char.mix;)*>
 <!--end of emphasis.element-->]]>
 
 <!ENTITY % emphasis.attlist "INCLUDE">
@@ -6965,7 +7022,7 @@ OtherCredit. -->
 
 <!ENTITY % firstterm.element "INCLUDE">
 <![%firstterm.element;[
-<!ELEMENT firstterm (%word.char.mix;)*>
+<!ELEMENT firstterm %ho; (%word.char.mix;)*>
 <!--end of firstterm.element-->]]>
 
 <!-- to GlossEntry or other explanation -->
@@ -6988,7 +7045,7 @@ OtherCredit. -->
 
 <!ENTITY % foreignphrase.element "INCLUDE">
 <![%foreignphrase.element;[
-<!ELEMENT foreignphrase (%para.char.mix;)*>
+<!ELEMENT foreignphrase %ho; (%para.char.mix;)*>
 <!--end of foreignphrase.element-->]]>
 
 <!ENTITY % foreignphrase.attlist "INCLUDE">
@@ -7008,7 +7065,8 @@ OtherCredit. -->
 
 <!ENTITY % glossterm.element "INCLUDE">
 <![%glossterm.element;[
-<!ELEMENT glossterm (%para.char.mix;)*>
+<!ELEMENT glossterm %ho; (%para.char.mix;)*
+		%glossterm.exclusion;>
 <!--end of glossterm.element-->]]>
 
 <!-- to GlossEntry if Glossterm used in text -->
@@ -7034,7 +7092,7 @@ OtherCredit. -->
 
 <!ENTITY % phrase.element "INCLUDE">
 <![%phrase.element;[
-<!ELEMENT phrase (%para.char.mix;)*>
+<!ELEMENT phrase %ho; (%para.char.mix;)*>
 <!--end of phrase.element-->]]>
 
 <!ENTITY % phrase.attlist "INCLUDE">
@@ -7054,7 +7112,7 @@ OtherCredit. -->
 
 <!ENTITY % quote.element "INCLUDE">
 <![%quote.element;[
-<!ELEMENT quote (%para.char.mix;)*>
+<!ELEMENT quote %ho; (%para.char.mix;)*>
 <!--end of quote.element-->]]>
 
 <!ENTITY % quote.attlist "INCLUDE">
@@ -7074,7 +7132,7 @@ OtherCredit. -->
 
 <!ENTITY % subscript.element "INCLUDE">
 <![%subscript.element;[
-<!ELEMENT subscript (#PCDATA 
+<!ELEMENT subscript %ho; (#PCDATA 
 		| %link.char.class;
 		| emphasis
 		| replaceable 
@@ -7082,7 +7140,8 @@ OtherCredit. -->
 		| inlinegraphic
                 | inlinemediaobject
 		| %base.char.class; 
-		| %other.char.class;)*>
+		| %other.char.class;)*
+		%ubiq.exclusion;>
 <!--end of subscript.element-->]]>
 
 <!ENTITY % subscript.attlist "INCLUDE">
@@ -7096,7 +7155,7 @@ OtherCredit. -->
 
 <!ENTITY % superscript.element "INCLUDE">
 <![%superscript.element;[
-<!ELEMENT superscript (#PCDATA 
+<!ELEMENT superscript %ho; (#PCDATA 
 		| %link.char.class;
 		| emphasis
 		| replaceable 
@@ -7104,7 +7163,8 @@ OtherCredit. -->
 		| inlinegraphic
                 | inlinemediaobject 
 		| %base.char.class; 
-		| %other.char.class;)*>
+		| %other.char.class;)*
+		%ubiq.exclusion;>
 <!--end of superscript.element-->]]>
 
 <!ENTITY % superscript.attlist "INCLUDE">
@@ -7124,7 +7184,7 @@ OtherCredit. -->
 
 <!ENTITY % trademark.element "INCLUDE">
 <![%trademark.element;[
-<!ELEMENT trademark (#PCDATA 
+<!ELEMENT trademark %ho; (#PCDATA 
 		| %link.char.class; 
 		| %tech.char.class;
 		| %base.char.class; 
@@ -7158,7 +7218,7 @@ OtherCredit. -->
 
 <!ENTITY % wordasword.element "INCLUDE">
 <![%wordasword.element;[
-<!ELEMENT wordasword (%word.char.mix;)*>
+<!ELEMENT wordasword %ho; (%word.char.mix;)*>
 <!--end of wordasword.element-->]]>
 
 <!ENTITY % wordasword.attlist "INCLUDE">
@@ -7180,7 +7240,8 @@ OtherCredit. -->
 
 <!ENTITY % link.element "INCLUDE">
 <![%link.element;[
-<!ELEMENT link (%para.char.mix;)*>
+<!ELEMENT link %ho; (%para.char.mix;)*
+		%links.exclusion;>
 <!--end of link.element-->]]>
 
 <!-- Endterm: ID of element containing text that is to be
@@ -7209,7 +7270,8 @@ OtherCredit. -->
 
 <!ENTITY % olink.element "INCLUDE">
 <![%olink.element;[
-<!ELEMENT olink (%para.char.mix;)*>
+<!ELEMENT olink %ho; (%para.char.mix;)*
+		%links.exclusion;>
 <!--end of olink.element-->]]>
 
 <!-- TargetDocEnt: Name of an entity to be the target of the link -->
@@ -7240,7 +7302,8 @@ OtherCredit. -->
 
 <!ENTITY % ulink.element "INCLUDE">
 <![%ulink.element;[
-<!ELEMENT ulink (%para.char.mix;)*>
+<!ELEMENT ulink %ho; (%para.char.mix;)*
+		%links.exclusion;>
 <!--end of ulink.element-->]]>
 
 <!-- URL: uniform resource locator; the target of the ULink -->
@@ -7266,7 +7329,7 @@ OtherCredit. -->
 
 <!ENTITY % footnoteref.element "INCLUDE">
 <![%footnoteref.element;[
-<!ELEMENT footnoteref EMPTY>
+<!ELEMENT footnoteref %ho; EMPTY>
 <!--end of footnoteref.element-->]]>
 
 <!-- to footnote content supplied elsewhere -->
@@ -7290,7 +7353,7 @@ OtherCredit. -->
 
 <!ENTITY % xref.element "INCLUDE">
 <![%xref.element;[
-<!ELEMENT xref EMPTY>
+<!ELEMENT xref %ho; EMPTY>
 <!--end of xref.element-->]]>
 
 <!-- Endterm: ID of element containing text that is to be
@@ -7319,7 +7382,7 @@ OtherCredit. -->
 
 <!ENTITY % anchor.element "INCLUDE">
 <![%anchor.element;[
-<!ELEMENT anchor EMPTY>
+<!ELEMENT anchor %ho; EMPTY>
 <!--end of anchor.element-->]]>
 
 <!-- required -->
@@ -7346,7 +7409,7 @@ OtherCredit. -->
 
 <!ENTITY % beginpage.element "INCLUDE">
 <![%beginpage.element;[
-<!ELEMENT beginpage EMPTY>
+<!ELEMENT beginpage %ho; EMPTY>
 <!--end of beginpage.element-->]]>
 
 <!-- PageNum: Number of page that begins at this point -->
@@ -7375,8 +7438,9 @@ OtherCredit. -->
 
 <!ENTITY % indexterm.element "INCLUDE">
 <![%indexterm.element;[
-<!ELEMENT indexterm (primary?, ((secondary, ((tertiary, (see|seealso+)?)
-		| see | seealso+)?) | see | seealso+)?)>
+<!ELEMENT indexterm %ho; (primary?, ((secondary, ((tertiary, (see|seealso+)?)
+		| see | seealso+)?) | see | seealso+)?)
+			%ubiq.exclusion;>
 <!--end of indexterm.element-->]]>
 
 <!-- Scope: Indicates which generated indices the IndexTerm
@@ -7424,7 +7488,7 @@ OtherCredit. -->
 
 <!ENTITY % primary.element "INCLUDE">
 <![%primary.element;[
-<!ELEMENT primary   (%ndxterm.char.mix;)*>
+<!ELEMENT primary %ho;   (%ndxterm.char.mix;)*>
 <!--end of primary.element-->]]>
 <!-- SortAs: Alternate sort string for index sorting, e.g.,
 		"fourteen" for an element containing "14" -->
@@ -7442,7 +7506,7 @@ OtherCredit. -->
 
 <!ENTITY % secondary.element "INCLUDE">
 <![%secondary.element;[
-<!ELEMENT secondary (%ndxterm.char.mix;)*>
+<!ELEMENT secondary %ho; (%ndxterm.char.mix;)*>
 <!--end of secondary.element-->]]>
 <!-- SortAs: Alternate sort string for index sorting, e.g.,
 		"fourteen" for an element containing "14" -->
@@ -7460,7 +7524,7 @@ OtherCredit. -->
 
 <!ENTITY % tertiary.element "INCLUDE">
 <![%tertiary.element;[
-<!ELEMENT tertiary  (%ndxterm.char.mix;)*>
+<!ELEMENT tertiary %ho;  (%ndxterm.char.mix;)*>
 <!--end of tertiary.element-->]]>
 <!-- SortAs: Alternate sort string for index sorting, e.g.,
 		"fourteen" for an element containing "14" -->
@@ -7484,7 +7548,7 @@ OtherCredit. -->
 
 <!ENTITY % see.element "INCLUDE">
 <![%see.element;[
-<!ELEMENT see (%ndxterm.char.mix;)*>
+<!ELEMENT see %ho; (%ndxterm.char.mix;)*>
 <!--end of see.element-->]]>
 
 <!ENTITY % see.attlist "INCLUDE">
@@ -7498,7 +7562,7 @@ OtherCredit. -->
 
 <!ENTITY % seealso.element "INCLUDE">
 <![%seealso.element;[
-<!ELEMENT seealso (%ndxterm.char.mix;)*>
+<!ELEMENT seealso %ho; (%ndxterm.char.mix;)*>
 <!--end of seealso.element-->]]>
 
 <!ENTITY % seealso.attlist "INCLUDE">
