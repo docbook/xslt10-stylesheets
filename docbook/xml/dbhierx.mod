@@ -1605,6 +1605,7 @@ change will not be made after all. -->
 <!ENTITY % index.attlist "INCLUDE">
 <![%index.attlist;[
 <!ATTLIST index
+		type		CDATA		#IMPLIED
 		%common.attrib;
 		%indexes.role.attrib;
 		%local.indexes.attrib;

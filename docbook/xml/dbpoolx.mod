@@ -8067,8 +8067,9 @@ OtherCredit. -->
 		class		(singular
 				|startofrange
 				|endofrange)	#IMPLIED
-		startref		IDREF		#IMPLIED
-		zone			IDREFS		#IMPLIED
+		startref	IDREF		#IMPLIED
+		zone		IDREFS		#IMPLIED
+		type		CDATA		#IMPLIED
 		%common.attrib;
 		%indexterm.role.attrib;
 		%local.indexterm.attrib;
