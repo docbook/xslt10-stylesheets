@@ -3,7 +3,7 @@ XJPARSE=../cvstools/xjparse
 
 SOURCES=af.xml bg.xml bn.xml ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml \
 	et.xml fi.xml fr.xml hu.xml id.xml it.xml ja.xml ko.xml nl.xml  \
-	no.xml pl.xml pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml 
+	no.xml pl.xml pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml \
 	sr.xml sv.xml tr.xml zh_cn.xml zh_tw.xml
 
 DSSSLENT=dbl1af.ent dbl1bg.ent dbl1bn.ent dbl1ca.ent dbl1cs.ent dbl1da.ent \
