@@ -68,8 +68,11 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
   <xsl:variable name="bookmark-label">
+    <xsl:apply-templates select="." mode="object.title.markup"/>
+<!--
     <xsl:apply-templates select="." mode="label.markup"/>
     <xsl:apply-templates select="." mode="title.markup"/>
+-->
   </xsl:variable>
 
   <xsl:choose>
