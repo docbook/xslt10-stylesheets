@@ -254,6 +254,8 @@
   <fo:block font-size="{$fsize}pt"
             font-weight="bold"
             font-family="{$title.font.family}"
+            margin-left="4pc"
+            text-indent="-4pc"
             space-before.minimum="1em"
             space-before.optimum="1.5em"
             space-before.maximum="2em">
