@@ -1082,4 +1082,19 @@ will be used.
 </refdescription>
 </doc:param>
 
+<!-- ==================================================================== -->
+<xsl:param name="label.from.part" select="'0'" doc:type='boolean'/>
+
+<doc:param name="label.from.part" xmlns="">
+<refpurpose>Renumber chapters in each part?</refpurpose>
+<refdescription>
+<para>If <parameter>label.from.part</parameter> is non-zero, components
+(<sgmltag>chapter</sgmltag>s, <sgmltag>appendixe</sgmltag>s, etc.)
+will be numbered from 1 in each <sgmltag>part</sgmltag>. Otherwise,
+they will be numbered monotonically throughout each
+<sgmltag>book</sgmltag>.
+</para>
+</refdescription>
+</doc:param>
+
 </xsl:stylesheet>

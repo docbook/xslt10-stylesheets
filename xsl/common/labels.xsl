@@ -18,8 +18,6 @@ element label.</para>
 </refdescription>
 </doc:mode>
 
-<xsl:param name="label.from.part" select="'1'"/>
-
 <xsl:template match="*" mode="intralabel.punctuation">
   <xsl:text>.</xsl:text>
 </xsl:template>
