@@ -94,4 +94,22 @@
   </table>
 </xsl:template>
 
+<!-- ====================================================================== -->
+<!-- Special handling for elements -->
+
+<xsl:template match="parameter">
+  <!-- link parameters to their reference pages -->
+  <a href="{.}.html">
+    <xsl:apply-imports/>
+  </a>
+</xsl:template>
+
+<xsl:template match="sgmltag[(not(@class) or @class='element')
+                             and (not(@role) or @role != 'html')]">
+  <!-- link sgmltags to thier reference pages -->
+  <a href="http://docbook.org/tdg/en/html/{.}.html">
+    <xsl:apply-imports/>
+  </a>
+</xsl:template>
+
 </xsl:stylesheet>
