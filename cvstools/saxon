@@ -228,7 +228,7 @@ CLASSPATH=$SAXON:$NDWEXT:$JAXP:$RESOLVER$XERCES:$CLASSPATH
 # echo "classpath is $CLASSPATH"
 
 if [ "$QUIET" = "0" ]; then
-  echo saxon$VERSION $OUTPUT $XMLSRC $XMLSTY $@
+  echo saxon$VERSION $OUTPUT $XMLSRC $XMLSTY "$@"
 
   if [ "$MEMORY" != "" ]; then
       echo "java $MEMORY ..."
@@ -247,7 +247,7 @@ java $MEMORY $FOO \
      -Djavax.xml.parsers.SAXParserFactory=$SPFACTORY \
      -Djavax.xml.transform.TransformerFactory=$TRANSFACTORY \
      com.icl.saxon.StyleSheet \
-     $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY $@
+     $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY "$@"
 
 if [ $? != 0 ]; then
   echo ""
