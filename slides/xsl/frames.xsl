@@ -147,7 +147,7 @@ function init() {
           </xsl:choose>
 
           <xsl:if test="$overlay.logo != ''">
-            <div style="position: absolute;" id="overlayDiv">
+            <div style="position: absolute; visibility: visible;" id="overlayDiv">
               <img src="{$overlay.logo}" alt="logo" vspace="20"/>
             </div>
           </xsl:if>
