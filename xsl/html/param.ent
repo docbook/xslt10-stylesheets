@@ -95,6 +95,7 @@
 <!ENTITY output.method SYSTEM "../params/output.method.xml">
 <!ENTITY part.autolabel SYSTEM "../params/part.autolabel.xml">
 <!ENTITY phrase.propagates.style SYSTEM "../params/phrase.propagates.style.xml">
+<!ENTITY pixels.per.inch SYSTEM "../params/pixels.per.inch.xml">
 <!ENTITY preface.autolabel SYSTEM "../params/preface.autolabel.xml">
 <!ENTITY process.empty.source.toc SYSTEM "../params/process.empty.source.toc.xml">
 <!ENTITY process.source.toc SYSTEM "../params/process.source.toc.xml">

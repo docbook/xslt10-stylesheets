@@ -224,6 +224,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &variablelist.as.table;
 &tex.math.in.alt;
 &tex.math.file;
+&pixels.per.inch;
 </reference>
 
 <reference><title>Chunking</title>
@@ -377,6 +378,7 @@ around all these parameters.</para>
 <src:fragref linkend="output.method.frag"/>
 <src:fragref linkend="part.autolabel.frag"/>
 <src:fragref linkend="phrase.propagates.style.frag"/>
+<src:fragref linkend="pixels.per.inch.frag"/>
 <src:fragref linkend="preface.autolabel.frag"/>
 <src:fragref linkend="process.empty.source.toc.frag"/>
 <src:fragref linkend="process.source.toc.frag"/>
