@@ -3,8 +3,6 @@
 		version="1.0"
                 exclude-result-prefixes="doc">
 
-<xsl:import href="docbook.xsl"/>
-
 <xsl:output method="html"
             encoding="ISO-8859-1"
             indent="no"/>
@@ -1006,7 +1004,7 @@ its parent.
   <!-- some implementations use completely empty index tags to indicate -->
   <!-- where an automatically generated index should be inserted. so -->
   <!-- if the index is completely empty, skip it. -->
-  <xsl:if test="count(*)>0">
+  <xsl:if test="count(*)>0 or $generate.index != '0'">
     <xsl:call-template name="process-chunk-element"/>
   </xsl:if>
 </xsl:template>

@@ -9,6 +9,7 @@
 
 <!-- This stylesheet works with Saxon and Xalan; for XT use xtchunk.xsl -->
 
+<xsl:import href="autoidx.xsl"/>
 <xsl:include href="chunk-common.xsl"/>
 <xsl:include href="chunker.xsl"/>
 
