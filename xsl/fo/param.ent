@@ -161,3 +161,4 @@
 <!ENTITY sidebar.properties SYSTEM "../params/sidebar.properties.xml">
 <!ENTITY menuchoice.separator SYSTEM "../params/menuchoice.separator.xml">
 <!ENTITY menuchoice.menu.separator SYSTEM "../params/menuchoice.menu.separator.xml">
+<!ENTITY bibliography.numbered SYSTEM "../params/bibliography.numbered.xml">
