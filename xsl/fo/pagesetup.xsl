@@ -417,8 +417,7 @@
                              margin-right="{$page.margin.inner}">
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -450,8 +449,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.titlepage}"
                         column-count="{$column.count.titlepage}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -482,8 +480,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.titlepage}"
                         column-count="{$column.count.titlepage}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -514,8 +511,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.titlepage}"
                         column-count="{$column.count.titlepage}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -547,8 +543,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.lot}"
                         column-count="{$column.count.lot}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -579,8 +574,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.lot}"
                         column-count="{$column.count.lot}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -611,8 +605,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.lot}"
                         column-count="{$column.count.lot}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -644,8 +637,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.front}"
                         column-count="{$column.count.front}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -676,8 +668,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.front}"
                         column-count="{$column.count.front}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -708,8 +699,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.front}"
                         column-count="{$column.count.front}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -741,8 +731,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.body}"
                         column-count="{$column.count.body}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -773,8 +762,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.body}"
                         column-count="{$column.count.body}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -805,8 +793,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.body}"
                         column-count="{$column.count.body}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -838,8 +825,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.back}"
                         column-count="{$column.count.back}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -870,8 +856,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.back}"
                         column-count="{$column.count.back}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -902,8 +887,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.back}"
                         column-count="{$column.count.back}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -935,8 +919,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.index}"
                         column-count="{$column.count.index}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -967,8 +950,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.index}"
                         column-count="{$column.count.index}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
@@ -999,8 +981,7 @@
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.index}"
                         column-count="{$column.count.index}">
-          <xsl:if test="$draft.watermark.image != ''
-                        and $fop.extensions = 0">
+          <xsl:if test="$draft.watermark.image != ''">
             <xsl:attribute name="background-image">
               <xsl:call-template name="fo-external-image">
                 <xsl:with-param name="filename" select="$draft.watermark.image"/>
