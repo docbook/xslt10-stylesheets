@@ -34,7 +34,18 @@
 
 <xsl:template name="formal.object.heading">
   <xsl:param name="object" select="."/>
+  <xsl:param name="placement" select="'before'"/>
   <fo:block xsl:use-attribute-sets="formal.title.properties">
+    <xsl:choose>
+      <xsl:when test="$placement = 'before'">
+        <xsl:attribute
+               name="keep-with-next.within-column">always</xsl:attribute>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:attribute
+               name="keep-with-previous.within-column">always</xsl:attribute>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:apply-templates select="$object" mode="object.title.markup">
       <xsl:with-param name="allow-anchors" select="1"/>
     </xsl:apply-templates>
@@ -237,7 +248,9 @@
               keep-together.within-column="1">
 
       <xsl:if test="$placement = 'before'">
-        <xsl:call-template name="formal.object.heading"/>
+        <xsl:call-template name="formal.object.heading">
+          <xsl:with-param name="placement" select="$placement"/>
+        </xsl:call-template>
       </xsl:if>
 
       <fo:table border-collapse="collapse">
@@ -249,7 +262,9 @@
       </fo:table>
 
       <xsl:if test="$placement != 'before'">
-        <xsl:call-template name="formal.object.heading"/>
+        <xsl:call-template name="formal.object.heading">
+          <xsl:with-param name="placement" select="$placement"/>
+        </xsl:call-template>
       </xsl:if>
     </fo:block>
   </xsl:variable>
