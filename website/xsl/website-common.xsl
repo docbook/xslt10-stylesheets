@@ -22,6 +22,7 @@
 <xsl:include href="VERSION"/>
 <xsl:include href="param.xsl"/>
 <xsl:include href="head.xsl"/>
+<xsl:include href="rss.xsl"/>
 
 <xsl:preserve-space elements="*"/>
 <xsl:strip-space elements="website webpage"/>
