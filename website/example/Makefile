@@ -34,7 +34,7 @@ autolayout.xml: layout.xml
 chunk: autolayout.xml
 	$(PROC) $(PROCOPT) autolayout.xml $(STYLECHUNK) - output-root=$(DESTPATH)
 
-%.html: autolayout.xml
+%.html: autolayout.xml 
 	xjparse $(filter-out autolayout.xml,$^)
 	$(PROC) $(PROCOPT) $(filter-out autolayout.xml,$^) $(STYLESHEET) $@ $(TEXTOPT) $(STYLEOPT)
 ifeq ($(USETIDY),1)
@@ -50,3 +50,5 @@ depends: autolayout.xml
 	xjparse $<
 	$(PROC) $(PROCOPT) $< ../xsl/makefile-dep.xsl .tabular
 	$(PROC) $(PROCOPT) $< ../xsl/makefile-dep.xsl .textonly prefix=txt
+	$(PROC) $(PROCOPT) $< ../xsl/website-targets.xsl website.database.xml
+
