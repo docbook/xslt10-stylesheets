@@ -563,15 +563,18 @@ node.</para>
 
 <!-- ==================================================================== -->
 
-<xsl:template name="link.to.page">
+<xsl:template name="page.uri">
   <xsl:param name="href" select="''"/>
   <xsl:param name="page" select="ancestor-or-self::tocentry"/>
-  <xsl:param name="linktext" select="'???'"/>
   <xsl:param name="relpath">
     <xsl:call-template name="toc-rel-path">
       <xsl:with-param name="pageid" select="$page/@id"/>
     </xsl:call-template>
   </xsl:param>
+
+<!--
+  <xsl:message><xsl:value-of select="$page/@id"/>: <xsl:value-of select="$relpath"/></xsl:message>
+-->
 
   <xsl:variable name="dir">
     <xsl:choose>
@@ -596,7 +599,27 @@ node.</para>
     </xsl:choose>
   </xsl:variable>
 
-  <a href="{$html.href}">
+  <xsl:value-of select="$html.href"/>
+</xsl:template>
+
+<xsl:template name="link.to.page">
+  <xsl:param name="href" select="''"/>
+  <xsl:param name="page" select="ancestor-or-self::tocentry"/>
+  <xsl:param name="relpath">
+    <xsl:call-template name="toc-rel-path">
+      <xsl:with-param name="pageid" select="$page/@id"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:param name="linktext" select="'???'"/>
+
+  <a>
+    <xsl:attribute name="href">
+      <xsl:call-template name="page.uri">
+        <xsl:with-param name="href" select="$href"/>
+        <xsl:with-param name="page" select="$page"/>
+        <xsl:with-param name="relpath" select="$relpath"/>
+      </xsl:call-template>
+    </xsl:attribute>
     <xsl:if test="summary">
       <xsl:attribute name="title">
         <xsl:value-of select="summary"/>
@@ -605,7 +628,6 @@ node.</para>
     <xsl:copy-of select="$linktext"/>
   </a>
 </xsl:template>
-
 
 <xsl:template name="next.page">
   <xsl:param name="page" select="ancestor-or-self::webpage"/>
@@ -654,6 +676,53 @@ node.</para>
     </xsl:choose>
   </xsl:variable>
   <xsl:value-of select="$previd"/>
+</xsl:template>
+
+<xsl:template name="top.page">
+  <xsl:param name="page" select="ancestor-or-self::webpage"/>
+  <xsl:variable name="id" select="$page/@id"/>
+  <xsl:variable name="tocentry"
+                select="$autolayout//*[@id=$id]"/>
+
+  <xsl:value-of select="$tocentry/ancestor::toc/@id"/>
+</xsl:template>
+
+<xsl:template name="up.page">
+  <xsl:param name="page" select="ancestor-or-self::webpage"/>
+  <xsl:variable name="id" select="$page/@id"/>
+  <xsl:variable name="tocentry"
+                select="$autolayout//*[@id=$id]"/>
+
+  <xsl:choose>
+    <xsl:when test="$tocentry/ancestor::tocentry">
+      <xsl:value-of select="$tocentry/ancestor::tocentry[1]/@id"/>
+    </xsl:when>
+    <xsl:when test="$tocentry/ancestor::toc">
+      <xsl:value-of select="$tocentry/ancestor::toc[1]/@id"/>
+    </xsl:when>
+    <xsl:otherwise></xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="first.page">
+  <xsl:param name="page" select="ancestor-or-self::webpage"/>
+  <xsl:variable name="id" select="$page/@id"/>
+  <xsl:variable name="tocentry"
+                select="$autolayout//*[@id=$id]"/>
+
+  <xsl:value-of select="$tocentry/preceding-sibling::tocentry[last()]/@id"/>
+</xsl:template>
+
+<xsl:template name="last.page">
+  <xsl:param name="page" select="ancestor-or-self::webpage"/>
+  <xsl:variable name="id" select="$page/@id"/>
+  <xsl:variable name="tocentry"
+                select="$autolayout//*[@id=$id]"/>
+
+  <xsl:variable name="prev-sibling"
+                select="$tocentry/preceding-sibling::tocentry[1]"/>
+
+  <xsl:value-of select="$tocentry/following-sibling::tocentry[last()]/@id"/>
 </xsl:template>
 
 </xsl:stylesheet>
