@@ -153,6 +153,7 @@
 
   <xsl:variable name="width-units">
     <xsl:choose>
+      <xsl:when test="$ignore.image.scaling != 0"></xsl:when>
       <xsl:when test="@width">
         <xsl:call-template name="length-units">
           <xsl:with-param name="length" select="@width"/>
@@ -168,6 +169,7 @@
 
   <xsl:variable name="width">
     <xsl:choose>
+      <xsl:when test="$ignore.image.scaling != 0"></xsl:when>
       <xsl:when test="@width">
         <xsl:choose>
           <xsl:when test="$width-units = '%'">
@@ -188,6 +190,7 @@
 
   <xsl:variable name="scalefit">
     <xsl:choose>
+      <xsl:when test="$ignore.image.scaling != 0">0</xsl:when>
       <xsl:when test="@contentwidth or @contentdepth">0</xsl:when>
       <xsl:when test="@scale">0</xsl:when>
       <xsl:when test="@scalefit"><xsl:value-of select="@scalefit"/></xsl:when>
@@ -198,6 +201,7 @@
 
   <xsl:variable name="scale">
     <xsl:choose>
+      <xsl:when test="$ignore.image.scaling != 0">1.0</xsl:when>
       <xsl:when test="@contentwidth or @contentdepth">1.0</xsl:when>
       <xsl:when test="@scale">
         <xsl:value-of select="@scale div 100.0"/>
@@ -320,6 +324,7 @@
 
   <xsl:variable name="html.width">
     <xsl:choose>
+      <xsl:when test="$ignore.image.scaling != 0"></xsl:when>
       <xsl:when test="$width-units = '%'">
         <xsl:value-of select="$width"/>
       </xsl:when>
@@ -408,6 +413,7 @@
 
   <xsl:variable name="html.depth">
     <xsl:choose>
+      <xsl:when test="$ignore.image.scaling != 0"></xsl:when>
       <xsl:when test="$depth-units = '%'">
         <xsl:value-of select="$depth"/>
       </xsl:when>
@@ -427,6 +433,7 @@
 
   <xsl:variable name="viewport">
     <xsl:choose>
+      <xsl:when test="$ignore.image.scaling != 0">0</xsl:when>
       <xsl:when test="local-name(.) = 'inlinegraphic'
                       or ancestor::inlinemediaobject
                       or ancestor::inlineequation">0</xsl:when>
@@ -472,7 +479,12 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
           </xsl:call-template>
           <xsl:if test="@align">
             <xsl:attribute name="align">
-              <xsl:value-of select="@align"/>
+                <xsl:choose>
+                  <xsl:when test="@align = 'center'">middle</xsl:when>
+                  <xsl:otherwise>
+                    <xsl:value-of select="@align"/>
+                  </xsl:otherwise>
+                </xsl:choose>
             </xsl:attribute>
           </xsl:if>
           <xsl:if test="$use.embed.for.svg != 0">
@@ -500,7 +512,12 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 
           <xsl:if test="@align">
             <xsl:attribute name="align">
-              <xsl:value-of select="@align"/>
+              <xsl:choose>
+                <xsl:when test="@align = 'center'">middle</xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="@align"/>
+                </xsl:otherwise>
+              </xsl:choose>
             </xsl:attribute>
           </xsl:if>
 
@@ -712,7 +729,12 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 
   <xsl:if test="@align and $viewport = 0">
     <xsl:attribute name="align">
-      <xsl:value-of select="@align"/>
+      <xsl:choose>
+        <xsl:when test="@align = 'center'">middle</xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="@align"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:attribute>
   </xsl:if>
 </xsl:template>
