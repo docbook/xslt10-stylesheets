@@ -70,28 +70,6 @@
   </xsl:if>
 </xsl:template>
 
-<!-- Modified versions of finaltd and sfinaltd, return a non-empty string -->
-<!-- if there are more table cells in this row -->
-
-<xsl:template name="has-more-td">
-  <xsl:param name="spans"/>
-  <xsl:param name="col" select="0"/>
-
-  <xsl:if test="$spans != ''">
-    <xsl:choose>
-      <xsl:when test="starts-with($spans,'0:')">
-        <xsl:text>X</xsl:text>
-      </xsl:when>
-      <xsl:otherwise></xsl:otherwise>
-    </xsl:choose>
-
-    <xsl:call-template name="has-more-td">
-      <xsl:with-param name="spans" select="substring-after($spans,':')"/>
-      <xsl:with-param name="col" select="$col+1"/>
-    </xsl:call-template>
-  </xsl:if>
-</xsl:template>
-
 <xsl:template name="entry.colnum">
   <xsl:param name="entry" select="."/>
 
