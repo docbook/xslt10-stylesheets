@@ -14,8 +14,9 @@
 
 <xsl:template name="formal.object">
   <xsl:param name="placement" select="'before'"/>
+  <xsl:param name="class" select="local-name(.)"/>
 
-  <div class="{name(.)}">
+  <div class="{$class}">
     <xsl:call-template name="anchor">
       <xsl:with-param name="conditional" select="0"/>
     </xsl:call-template>
@@ -61,7 +62,9 @@
 </xsl:template>
 
 <xsl:template name="informal.object">
-  <div class="{name(.)}">
+  <xsl:param name="class" select="local-name(.)"/>
+
+  <div class="{$class}">
     <xsl:if test="$spacing.paras != 0"><p/></xsl:if>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
@@ -78,14 +81,19 @@
 
 <xsl:template name="semiformal.object">
   <xsl:param name="placement" select="'before'"/>
+  <xsl:param name="class" select="local-name(.)"/>
+
   <xsl:choose>
     <xsl:when test="title">
       <xsl:call-template name="formal.object">
         <xsl:with-param name="placement" select="$placement"/>
+        <xsl:with-param name="class" select="$class"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:call-template name="informal.object"/>
+      <xsl:call-template name="informal.object">
+        <xsl:with-param name="class" select="$class"/>
+      </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -160,6 +168,17 @@
 
   <xsl:call-template name="formal.object">
     <xsl:with-param name="placement" select="$placement"/>
+    <xsl:with-param name="class">
+      <xsl:choose>
+        <xsl:when test="@tabstyle">
+          <!-- hack, this will only ever occur on table, not example -->
+          <xsl:value-of select="@tabstyle"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="local-name(.)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
 
@@ -200,7 +219,18 @@
 </xsl:template>
 
 <xsl:template match="informaltable">
-  <xsl:call-template name="informal.object"/>
+  <xsl:call-template name="informal.object">
+    <xsl:with-param name="class">
+      <xsl:choose>
+        <xsl:when test="@tabstyle">
+          <xsl:value-of select="@tabstyle"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="local-name(.)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="informaltable/textobject"></xsl:template>
