@@ -16,7 +16,6 @@
   <xsl:include href="VERSION"/>
 
   <src:fragref linkend="space"/>
-  <src:fragref linkend="output"/>
   <src:fragref linkend="param.ex.result.prefixes"/>
   <src:fragref linkend="root.template"/>
   <src:fragref linkend="default.template"/>
@@ -34,15 +33,7 @@
 </src:fragment>
 
 </section>
-<section><title>Output Method</title>
 
-<src:fragment id="output">
-<xsl:output method="xml"
-            doctype-public="-//DocBook Open Repository//DTD DocBook Literate Programming V0.0//EN"
-            doctype-system="litprog.dtd"/>
-</src:fragment>
-
-</section>
 <section><title>Default Exclude Result Prefixes</title>
 
 <src:fragment id="param.ex.result.prefixes">
