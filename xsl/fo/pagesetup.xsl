@@ -25,7 +25,9 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$page.margin.inner}"
                            margin-right="{$page.margin.outer}">
-      <fo:region-body margin-bottom="{$body.margin.bottom}"
+      <fo:region-body region-name="blank-body"
+                      display-align="center"
+                      margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}">
       </fo:region-body>
       <fo:region-before region-name="xsl-region-before-blank"
@@ -1289,6 +1291,7 @@
 
   <xsl:if test="$fop.extensions = 0">
     <xsl:call-template name="footnote-separator"/>
+    <xsl:call-template name="blank.page.content"/>
   </xsl:if>
 </xsl:template>
 
@@ -1297,6 +1300,12 @@
     <fo:block>
       <fo:leader color="black" leader-pattern="rule" leader-length="1in"/>
     </fo:block>
+  </fo:static-content>
+</xsl:template>
+
+<xsl:template name="blank.page.content">
+  <fo:static-content flow-name="blank-body">
+    <fo:block text-align="center"/>
   </fo:static-content>
 </xsl:template>
 
