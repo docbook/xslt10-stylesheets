@@ -439,7 +439,7 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="sect5" mode="toc">
+<xsl:template match="sect5|simplesect" mode="toc">
   <xsl:param name="toc-context" select="."/>
 
   <xsl:call-template name="toc.line"/>
