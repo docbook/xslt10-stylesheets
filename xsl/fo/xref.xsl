@@ -425,4 +425,8 @@
   </xsl:if>
 </xsl:template>
 
+<xsl:template match="*" mode="pagenumber.markup">
+  <fo:page-number-citation ref-id="{@id}"/>
+</xsl:template>
+
 </xsl:stylesheet>

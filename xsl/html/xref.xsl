@@ -619,4 +619,10 @@
   <xsl:call-template name="inline.monoseq"/>
 </xsl:template>
 
+<xsl:template match="*" mode="pagenumber.markup">
+  <xsl:message>
+    <xsl:text>Page numbers make no sense in HTML! (Don't use %p in templates)</xsl:text>
+  </xsl:message>
+</xsl:template>
+
 </xsl:stylesheet>
