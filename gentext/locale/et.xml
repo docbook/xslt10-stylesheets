@@ -132,6 +132,8 @@
 <gentext key="Editedby" text="Redaktsiooni autor(id)"/>
 <gentext key="editedby" text="Redaktsiooni autor(id)"/>
 <gentext key="and" text="ja"/>
+<gentext key="listcomma" text=","/>
+<gentext key="lastlistcomma" text=","/>
 <gentext key="Notes" text="M&#228;rkused"/>
 <gentext key="notes" text="M&#228;rkused"/> <!-- "M&#228;rkused" -->
 <gentext key="TableNotes" text="M&#228;rkused"/>
@@ -346,9 +348,9 @@
 </context>
 
 <context name="authorgroup">
-<template name="sep">,</template>
+<template name="sep"><listcomma/> </template>
 <template name="sep2"> <and/> </template>
-<template name="seplast">, <and/> </template>
+<template name="seplast"><lastlistcomma/> <and/> </template>
 </context>
 
 <context name="glossary">

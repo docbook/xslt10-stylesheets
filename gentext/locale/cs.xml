@@ -130,6 +130,8 @@
 <gentext key="Editedby" text="Sestavil"/>
 <gentext key="editedby" text="Sestavil"/>
 <gentext key="and" text="a"/>
+<gentext key="listcomma" text=","/>
+<gentext key="lastlistcomma" text=""/>
 <gentext key="Notes" text="Pozn&#x00E1;mky"/>
 <gentext key="notes" text="Pozn&#x00E1;mky"/>
 <gentext key="TableNotes" text="Pozn&#x00E1;mky"/>
@@ -346,9 +348,9 @@
 </context>
 
 <context name="authorgroup">
-<template name="sep">,</template>
+<template name="sep"><listcomma/> </template>
 <template name="sep2"> <and/> </template>
-<template name="seplast"> <and/> </template>
+<template name="seplast"><lastlistcomma/> <and/> </template>
 </context>
 
 <context name="glossary">
