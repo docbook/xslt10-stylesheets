@@ -12,7 +12,8 @@
 <xsl:template match="doc:*"/>
 
 <xsl:template match="locale">
-  <l:l10n language="{@language}">
+  <l:l10n language="{@language}" 
+          english-language-name="{@english-language-name}">
     <xsl:text>&#10;</xsl:text>
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> This file is generated automatically. </xsl:comment>
