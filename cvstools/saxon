@@ -8,7 +8,7 @@
 VARIABLES=""
 EXTENSIONS=1
 DONE="0"
-VERSION="622"
+VERSION="642"
 DEBUG=0
 JAR=0
 #XARG=""
@@ -44,6 +44,9 @@ while [ "$DONE" = "0" ]; do
 		shift;
 		;;
 	-621)	VERSION=621;
+		shift;
+		;;
+	-642)	VERSION=642;
 		shift;
 		;;
 	-64)	VERSION=64;
@@ -108,6 +111,13 @@ if [ "$OUTPUT" != "" ]; then
 fi
 
 case $VERSION in
+   642)	SAXON="/usr/local/java/saxon-6.4.2/saxon.jar"
+	SAXON_DEBUG="/usr/local/java/saxon-6.4.2/.classes"
+	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon64/.classes";
+	if [ "$JAR" = "1" ]; then
+	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon64.jar"
+	fi
+	;;
    64)	SAXON="/usr/local/java/saxon-6.4/saxon.jar"
 	SAXON_DEBUG="/usr/local/java/saxon-6.4/.classes"
 	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon64/.classes";
