@@ -11,7 +11,7 @@ xsi:schemaLocation CDATA #IMPLIED
 <!ENTITY trade "(TM)">
 ]>
 <article xmlns='http://www.oasis-open.org/docbook/xmlschema/4.1.2'
-	 xmlns:xsi='http://www.w3.org/2000/10/XMLSchema-instance'
+	 xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
 	 xmlns:tbl='http://www.oasis-open.org/tables/exchange/1.0'
 	 xsi:schemaLocation='
 	     http://www.oasis-open.org/docbook/xmlschema/4.1.2
