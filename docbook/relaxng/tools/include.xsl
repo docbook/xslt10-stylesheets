@@ -30,8 +30,15 @@
   <xsl:template match="rng:include" mode="include">
     <xsl:message>Including <xsl:value-of select="@href"/></xsl:message>
     <xsl:variable name="doc" select="document(@href,.)"/>
-    <xsl:apply-templates select="$doc/rng:grammar/*" mode="include"/>
-    <xsl:apply-templates mode="markOverride"/>
+
+    <xsl:variable name="nestedGrammar">
+      <xsl:apply-templates select="$doc/rng:grammar/*" mode="include"/>
+      <xsl:apply-templates mode="markOverride"/>
+    </xsl:variable>
+
+    <xsl:apply-templates select="exsl:node-set($nestedGrammar)/*" mode="override"/>
+
+    <xsl:message>Done including <xsl:value-of select="@href"/></xsl:message>
   </xsl:template>
 
   <xsl:template match="*" mode="include">
@@ -51,15 +58,21 @@
     <xsl:copy>
       <xsl:copy-of select="@*"/>
       <xsl:if test="parent::rng:include">
-	<xsl:if test="not(self::rng:define)">
+	<xsl:if test="not(self::rng:define) and not(self::rng:start)">
 	  <xsl:message>
 	    <xsl:text>Warning: only expecting rng:define children </xsl:text>
-	    <xsl:text>of rng:include</xsl:text>
+	    <xsl:text>of rng:include (got </xsl:text>
+	    <xsl:value-of select="name(.)"/>
+	    <xsl:text>)</xsl:text>
 	  </xsl:message>
 	</xsl:if>
-	<xsl:attribute name="override">
-	  <xsl:value-of select="parent::rng:include/@href"/>
-	</xsl:attribute>
+
+	<xsl:if test="not(@combine) or @combine != 'choice'">
+	  <xsl:message>Adding override to <xsl:value-of select="@name"/></xsl:message>
+	  <xsl:attribute name="override">
+	    <xsl:value-of select="parent::rng:include/@href"/>
+	  </xsl:attribute>
+	</xsl:if>
       </xsl:if>
       <xsl:apply-templates mode="markOverride"/>
     </xsl:copy>
@@ -177,6 +190,28 @@
   </xsl:template>
 
   <!-- ====================================================================== -->
+
+  <xsl:template match="rng:start" mode="override">
+    <xsl:choose>
+      <xsl:when test="@override">
+	<xsl:copy>
+	  <xsl:copy-of select="@*[name(.) != 'override']"/>
+	  <xsl:apply-templates mode="override"/>
+	</xsl:copy>
+      </xsl:when>
+      <xsl:when test="//rng:start[@override]">
+	<xsl:message>
+	  <xsl:text>Suppressing original definition of start</xsl:text>
+	</xsl:message>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:copy>
+	  <xsl:copy-of select="@*"/>
+	  <xsl:apply-templates mode="override"/>
+	</xsl:copy>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 
   <xsl:template match="rng:define" mode="override">
     <xsl:variable name="over" select="key('overrides', @name)"/>
