@@ -4,7 +4,7 @@
                 version="1.0">
 
 <xsl:import href="/sourceforge/docbook/xsl/fo/docbook.xsl"/>
-<xsl:include href="slides-fo-titlepage.xsl"/>
+<xsl:include href="titlepage-fo-plain.xsl"/>
 
 <xsl:param name="page.orientation" select="'landscape'"/>
 
