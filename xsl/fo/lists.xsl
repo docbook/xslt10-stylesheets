@@ -300,11 +300,15 @@
     <xsl:apply-templates select="title" mode="list.title.mode"/>
   </xsl:if>
 
+  <xsl:apply-templates select="*[not(self::varlistentry
+                                  or self::title
+                                  or self::titleabbrev)]"/>
+
   <fo:list-block id="{$id}"
                  provisional-distance-between-starts="{$termlength}"
                  provisional-label-separation="0.25in"
                  xsl:use-attribute-sets="list.block.spacing">
-    <xsl:apply-templates mode="vl.as.list"/>
+    <xsl:apply-templates select="varlistentry" mode="vl.as.list"/>
   </fo:list-block>
 </xsl:template>
 
@@ -362,8 +366,12 @@
     <xsl:apply-templates select="title" mode="list.title.mode"/>
   </xsl:if>
 
+  <xsl:apply-templates select="*[not(self::varlistentry
+                                  or self::title
+                                  or self::titleabbrev)]"/>
+
   <fo:block id="{$id}" xsl:use-attribute-sets="list.block.spacing">
-    <xsl:apply-templates mode="vl.as.blocks"/>
+    <xsl:apply-templates select="varlistentry" mode="vl.as.blocks"/>
   </fo:block>
 </xsl:template>
 
