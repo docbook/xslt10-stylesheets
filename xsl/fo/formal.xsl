@@ -23,11 +23,15 @@
   <fo:block id="{$id}"
             xsl:use-attribute-sets="formal.object.properties">
     <xsl:if test="$placement = 'before'">
-      <xsl:call-template name="formal.object.heading"/>
+      <xsl:call-template name="formal.object.heading"> 
+        <xsl:with-param name="placement" select="$placement"/> 
+      </xsl:call-template> 
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:if test="$placement != 'before'">
-      <xsl:call-template name="formal.object.heading"/>
+      <xsl:call-template name="formal.object.heading"> 
+        <xsl:with-param name="placement" select="$placement"/> 
+      </xsl:call-template> 
     </xsl:if>
   </fo:block>
 </xsl:template>
