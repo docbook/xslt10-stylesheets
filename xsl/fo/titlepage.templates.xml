@@ -744,6 +744,35 @@
 
 <!-- ==================================================================== -->
 
+  <t:titlepage element="colophon" wrapper="fo:block">
+    <t:titlepage-content side="recto">
+      <title
+	     force="1"
+	     named-template="component.title"
+	     param:node="ancestor-or-self::colophon[1]"
+	     fo:margin-left="-4pc"
+	     fo:font-size="&hsize3;"
+	     fo:font-family="{$title.font.family}"
+	     fo:font-weight="bold"/>
+      <subtitle
+		fo:font-family="{$title.font.family}"/>
+    </t:titlepage-content>
+
+  <t:titlepage-content side="verso">
+  </t:titlepage-content>
+
+  <t:titlepage-separator>
+  </t:titlepage-separator>
+
+  <t:titlepage-before side="recto">
+  </t:titlepage-before>
+
+  <t:titlepage-before side="verso">
+  </t:titlepage-before>
+</t:titlepage>
+
+<!-- ==================================================================== -->
+
   <t:titlepage element="table.of.contents" wrapper="fo:block">
     <t:titlepage-content side="recto">
       <title
