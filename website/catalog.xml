@@ -9,6 +9,14 @@
     <nextCatalog catalog="/usr/share/xml/website-2.4.0/catalog.xml" />
 -->
 
+<!-- Rewrite rules for the whole tree -->
+
+<rewriteURI uriStartString="http://docbook.sourceforge.net/release/website/2.4.1/schema/"
+            rewritePrefix="schema/"/>
+
+<rewriteURI uriStartString="http://docbook.sourceforge.net/release/website/2.4.1/xsl/"
+            rewritePrefix="xsl/"/>
+
 <!-- Website DTD locations -->
 
 <group xml:base="schema/dtd/"
