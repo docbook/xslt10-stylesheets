@@ -12,15 +12,6 @@
 
      ******************************************************************** -->
 
-<xsl:template name="href.target">
-  <xsl:param name="context" select="."/>
-  <xsl:param name="object" select="."/>
-  <xsl:text>#</xsl:text>
-  <xsl:call-template name="object.id">
-    <xsl:with-param name="object" select="$object"/>
-  </xsl:call-template>
-</xsl:template>
-
 <xsl:variable name="toc.listitem.type">
   <xsl:choose>
     <xsl:when test="$toc.list.type = 'dl'">dt</xsl:when>

@@ -25,6 +25,24 @@
   </xsl:if>
 </xsl:template>
 
+<xsl:template name="href.target.uri">
+  <xsl:param name="context" select="."/>
+  <xsl:param name="object" select="."/>
+  <xsl:text>#</xsl:text>
+  <xsl:call-template name="object.id">
+    <xsl:with-param name="object" select="$object"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="href.target">
+  <xsl:param name="context" select="."/>
+  <xsl:param name="object" select="."/>
+  <xsl:text>#</xsl:text>
+  <xsl:call-template name="object.id">
+    <xsl:with-param name="object" select="$object"/>
+  </xsl:call-template>
+</xsl:template>
+
 <xsl:template name="dingbat">
   <xsl:param name="dingbat">bullet</xsl:param>
   <xsl:call-template name="dingbat.characters">
