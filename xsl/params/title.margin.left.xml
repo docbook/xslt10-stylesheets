@@ -35,7 +35,7 @@ the FO processor will report errors.
 </para>
 <para>
 This parameter is set to 0pt if the
-<parameter>passivetex.extensions</paramater>
+<parameter>passivetex.extensions</parameter>
 parameter is nonzero because PassiveTeX cannot handle
 the math expression with negative values 
 used to calculate the indents.
