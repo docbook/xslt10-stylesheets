@@ -124,7 +124,10 @@
 <xsl:template match="co" mode="callout-bug">
   <xsl:call-template name="callout-bug">
     <xsl:with-param name="conum">
-      <xsl:number count="co" format="1"/>
+      <xsl:number count="co"
+                  level="any"
+                  from="programlisting|screen|literallayout|synopsis"
+                  format="1"/>
     </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
