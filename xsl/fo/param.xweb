@@ -224,6 +224,8 @@ generate.section.toc.level;
 &footnote.number.symbols;
 &table.footnote.number.symbols;
 &xref.with.number.and.title;
+&superscript.properties;
+&subscript.properties;
 </reference>
 
 <reference><title>Graphics</title>
@@ -662,6 +664,8 @@ around all these parameters.</para>
 <src:fragref linkend="shade.verbatim.style.frag"/>
 <src:fragref linkend="show.comments.frag"/>
 <src:fragref linkend="sidebar.properties.frag"/>
+<src:fragref linkend="subscript.properties.frag"/>
+<src:fragref linkend="superscript.properties.frag"/>
 <src:fragref linkend="symbol.font.family.frag"/>
 <src:fragref linkend="table.cell.border.color.frag"/>
 <src:fragref linkend="table.cell.border.style.frag"/>
