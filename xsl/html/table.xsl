@@ -68,51 +68,54 @@
 <xsl:template name="border">
   <xsl:param name="side" select="'left'"/>
   <xsl:param name="padding" select="0"/>
+  <xsl:param name="style" select="$table.cell.border.style"/>
+  <xsl:param name="color" select="$table.cell.border.color"/>
+  <xsl:param name="thickness" select="$table.cell.border.thickness"/>
 
   <!-- Note: Some browsers (mozilla) require at least a width and style. -->
 
   <xsl:choose>
-    <xsl:when test="($table.border.thickness != ''
-                     and $table.border.style != ''
-                     and $table.border.color != '')
-                    or ($table.border.thickness != ''
-                        and $table.border.style != '')
-                    or ($table.border.thickness != '')">
+    <xsl:when test="($thickness != ''
+                     and $style != ''
+                     and $color != '')
+                    or ($thickness != ''
+                        and $style != '')
+                    or ($thickness != '')">
       <!-- use the compound property if we can: -->
       <!-- it saves space and probably works more reliably -->
       <xsl:text>border-</xsl:text>
       <xsl:value-of select="$side"/>
       <xsl:text>: </xsl:text>
-      <xsl:value-of select="$table.border.thickness"/>
+      <xsl:value-of select="$thickness"/>
       <xsl:text> </xsl:text>
-      <xsl:value-of select="$table.border.style"/>
+      <xsl:value-of select="$style"/>
       <xsl:text> </xsl:text>
-      <xsl:value-of select="$table.border.color"/>
+      <xsl:value-of select="$color"/>
       <xsl:text>; </xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <!-- we need to specify the styles individually -->
-      <xsl:if test="$table.border.thickness != ''">
+      <xsl:if test="$thickness != ''">
         <xsl:text>border-</xsl:text>
         <xsl:value-of select="$side"/>
         <xsl:text>-width: </xsl:text>
-        <xsl:value-of select="$table.border.thickness"/>
+        <xsl:value-of select="$thickness"/>
         <xsl:text>; </xsl:text>
       </xsl:if>
 
-      <xsl:if test="$table.border.style != ''">
+      <xsl:if test="$style != ''">
         <xsl:text>border-</xsl:text>
         <xsl:value-of select="$side"/>
         <xsl:text>-style: </xsl:text>
-        <xsl:value-of select="$table.border.style"/>
+        <xsl:value-of select="$style"/>
         <xsl:text>; </xsl:text>
       </xsl:if>
 
-      <xsl:if test="$table.border.color != ''">
+      <xsl:if test="$color != ''">
         <xsl:text>border-</xsl:text>
         <xsl:value-of select="$side"/>
         <xsl:text>-color: </xsl:text>
-        <xsl:value-of select="$table.border.color"/>
+        <xsl:value-of select="$color"/>
         <xsl:text>; </xsl:text>
       </xsl:if>
     </xsl:otherwise>
@@ -213,15 +216,27 @@
               <xsl:text>border-collapse: collapse;</xsl:text>
               <xsl:call-template name="border">
                 <xsl:with-param name="side" select="'top'"/>
+                <xsl:with-param name="style" select="$table.frame.border.style"/>
+                <xsl:with-param name="color" select="$table.frame.border.color"/>
+                <xsl:with-param name="thickness" select="$table.frame.border.thickness"/>
               </xsl:call-template>
               <xsl:call-template name="border">
                 <xsl:with-param name="side" select="'bottom'"/>
+                <xsl:with-param name="style" select="$table.frame.border.style"/>
+                <xsl:with-param name="color" select="$table.frame.border.color"/>
+                <xsl:with-param name="thickness" select="$table.frame.border.thickness"/>
               </xsl:call-template>
               <xsl:call-template name="border">
                 <xsl:with-param name="side" select="'left'"/>
+                <xsl:with-param name="style" select="$table.frame.border.style"/>
+                <xsl:with-param name="color" select="$table.frame.border.color"/>
+                <xsl:with-param name="thickness" select="$table.frame.border.thickness"/>
               </xsl:call-template>
               <xsl:call-template name="border">
                 <xsl:with-param name="side" select="'right'"/>
+                <xsl:with-param name="style" select="$table.frame.border.style"/>
+                <xsl:with-param name="color" select="$table.frame.border.color"/>
+                <xsl:with-param name="thickness" select="$table.frame.border.thickness"/>
               </xsl:call-template>
             </xsl:attribute>
           </xsl:when>
@@ -230,9 +245,15 @@
               <xsl:text>border-collapse: collapse;</xsl:text>
               <xsl:call-template name="border">
                 <xsl:with-param name="side" select="'top'"/>
+                <xsl:with-param name="style" select="$table.frame.border.style"/>
+                <xsl:with-param name="color" select="$table.frame.border.color"/>
+                <xsl:with-param name="thickness" select="$table.frame.border.thickness"/>
               </xsl:call-template>
               <xsl:call-template name="border">
                 <xsl:with-param name="side" select="'bottom'"/>
+                <xsl:with-param name="style" select="$table.frame.border.style"/>
+                <xsl:with-param name="color" select="$table.frame.border.color"/>
+                <xsl:with-param name="thickness" select="$table.frame.border.thickness"/>
               </xsl:call-template>
             </xsl:attribute>
           </xsl:when>
@@ -241,6 +262,9 @@
               <xsl:text>border-collapse: collapse;</xsl:text>
               <xsl:call-template name="border">
                 <xsl:with-param name="side" select="'top'"/>
+                <xsl:with-param name="style" select="$table.frame.border.style"/>
+                <xsl:with-param name="color" select="$table.frame.border.color"/>
+                <xsl:with-param name="thickness" select="$table.frame.border.thickness"/>
               </xsl:call-template>
             </xsl:attribute>
           </xsl:when>
@@ -249,6 +273,9 @@
               <xsl:text>border-collapse: collapse;</xsl:text>
               <xsl:call-template name="border">
                 <xsl:with-param name="side" select="'bottom'"/>
+                <xsl:with-param name="style" select="$table.frame.border.style"/>
+                <xsl:with-param name="color" select="$table.frame.border.color"/>
+                <xsl:with-param name="thickness" select="$table.frame.border.thickness"/>
               </xsl:call-template>
             </xsl:attribute>
           </xsl:when>
@@ -257,9 +284,15 @@
               <xsl:text>border-collapse: collapse;</xsl:text>
               <xsl:call-template name="border">
                 <xsl:with-param name="side" select="'left'"/>
+                <xsl:with-param name="style" select="$table.frame.border.style"/>
+                <xsl:with-param name="color" select="$table.frame.border.color"/>
+                <xsl:with-param name="thickness" select="$table.frame.border.thickness"/>
               </xsl:call-template>
               <xsl:call-template name="border">
                 <xsl:with-param name="side" select="'right'"/>
+                <xsl:with-param name="style" select="$table.frame.border.style"/>
+                <xsl:with-param name="color" select="$table.frame.border.color"/>
+                <xsl:with-param name="thickness" select="$table.frame.border.thickness"/>
               </xsl:call-template>
             </xsl:attribute>
           </xsl:when>
