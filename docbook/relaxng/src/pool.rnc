@@ -4361,7 +4361,7 @@ div {
    bibliocoverage.spatial-enum.attribute =
       attribute spatial {
          "dcmipoint" | "iso3166" | "dcmibox" | "tgn"
-      }
+      }?
 
    bibliocoverage.spatial-other.attributes =
       attribute spatial { "otherspatial" }?,
@@ -4377,7 +4377,7 @@ div {
    bibliocoverage.temporal-enum.attribute =
       attribute temporal {
          "dcmiperiod" | "w3c-dtf"
-      }
+      }?
 
    bibliocoverage.temporal-other.attributes =
       attribute temporal { "othertemporal" }?,
@@ -4387,8 +4387,7 @@ div {
       (bibliocoverage.temporal-enum.attribute | bibliocoverage.temporal-other.attributes)
 
    bibliocoverage.coverage.attrib =
-      (bibliocoverage.spatial.attrs | bibliocoverage.temporal.attrs)
-    | (bibliocoverage.spatial.attrs & bibliocoverage.temporal.attrs)
+      bibliocoverage.spatial.attrs & bibliocoverage.temporal.attrs
 
    bibliocoverage.role.attribute = attribute role { text }
 
