@@ -9,13 +9,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='page.margin.bottom.frag'><xsl:param name="page.margin.bottom">1in</xsl:param></src:fragment>
+<src:fragment id='page.margin.bottom.frag'>
+<xsl:param name="page.margin.bottom">0.5in</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
 
-<para>The bottom page margin is the distance from the physical bottom of
-the page to the last line of text (body or footer).
+<para>The bottom page margin is the distance from the bottom of the region-after
+to the physical bottom of the page.
 </para>
 
 </refsect1>

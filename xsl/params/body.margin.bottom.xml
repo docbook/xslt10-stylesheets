@@ -9,15 +9,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='body.margin.bottom.frag'><xsl:param name="body.margin.bottom">24pt</xsl:param></src:fragment>
+<src:fragment id='body.margin.bottom.frag'>
+<xsl:param name="body.margin.bottom">0.5in</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
 
 <para>The body bottom margin is the distance from the last line of text
-in the page body to the bottom page margin. Note that the page footer, if
-any, appears in the space between the body bottom margin and the page
-bottom margin.
+in the page body to the bottom of the region-after.
 </para>
 
 </refsect1>

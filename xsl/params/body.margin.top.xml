@@ -9,16 +9,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='body.margin.top.frag'><xsl:param name="body.margin.top">24pt</xsl:param></src:fragment>
+<src:fragment id='body.margin.top.frag'>
+<xsl:param name="body.margin.top">1in</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
 
-<para>The body top margin is the distance from the page top margin to
-the first line of text
-in the page body. Note that the page header, if
-any, appears in the space between the page top margin and the body
-top margin.
+<para>The body top margin is the distance from the top of the region-before
+to the first line of text in the page body.
 </para>
 
 </refsect1>

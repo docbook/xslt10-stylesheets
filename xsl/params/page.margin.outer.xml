@@ -12,7 +12,7 @@
 <src:fragment id='page.margin.outer.frag'><xsl:param name="page.margin.outer">
   <xsl:choose>
     <xsl:when test="$double.sided != 0">0.75in</xsl:when>
-    <xsl:otherwise>10pc</xsl:otherwise>
+    <xsl:otherwise>1in</xsl:otherwise>
   </xsl:choose>
 </xsl:param></src:fragment>
 </refsynopsisdiv>
