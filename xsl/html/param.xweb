@@ -124,6 +124,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &preface.autolabel;
 &qandadiv.autolabel;
 &section.autolabel;
+&section.autolabel.max.depth;
 &section.label.includes.component.label;
 &label.from.part;
 </reference>
@@ -622,6 +623,7 @@ around all these parameters.</para>
 <src:fragref linkend="runinhead.default.title.end.punct.frag"/>
 <src:fragref linkend="runinhead.title.end.punct.frag"/>
 <src:fragref linkend="section.autolabel.frag"/>
+<src:fragref linkend="section.autolabel.max.depth.frag"/>
 <src:fragref linkend="section.label.includes.component.label.frag"/>
 <src:fragref linkend="segmentedlist.as.table.frag"/>
 <src:fragref linkend="shade.verbatim.frag"/>
