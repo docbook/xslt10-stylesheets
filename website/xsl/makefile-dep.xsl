@@ -4,11 +4,18 @@
 
 <xsl:param name="filename-prefix" select="''"/>
 <xsl:param name="output-root" select="''"/>
+<!-- Additional dependencies for target website -->
+<xsl:param name="add-website-depends" select="''"/>
+<!-- Remove output root dir instead removing each html output file.
+     Useful for removing subdirs and none html files: images, css etc. -->
+<xsl:param name="remove-output-root" select="0"/>
 
 <xsl:output method="text"/>
 
 <xsl:template match="autolayout">
   <xsl:text>website: </xsl:text>
+  <xsl:value-of select="$add-website-depends"/>
+  <xsl:text> </xsl:text>
   <xsl:apply-templates select="toc" mode="all"/>
   <xsl:apply-templates select="notoc" mode="all"/>
   <xsl:text>&#10;&#10;</xsl:text>
@@ -16,13 +23,21 @@
   <xsl:apply-templates select="notoc"/>
   <xsl:text>&#10;</xsl:text>
   <xsl:text>distclean: clean
-&#9;rm -f </xsl:text>
+&#9;-rm -f </xsl:text>
   <xsl:text>autolayout.xml depends.tabular</xsl:text>
   <xsl:text>&#10;&#10;</xsl:text>
-  <xsl:text>clean:
-&#9;rm -f </xsl:text>
-  <xsl:apply-templates select="toc" mode="all"/>
-  <xsl:apply-templates select="notoc" mode="all"/>
+  <xsl:text>clean:&#10;</xsl:text>
+  <xsl:choose>
+    <xsl:when test="$remove-output-root and not($output-root='')">
+      <xsl:text>&#9;-rm -rf </xsl:text>
+      <xsl:call-template name="output-root"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>&#9;-rm -f </xsl:text>
+      <xsl:apply-templates select="toc" mode="all"/>
+      <xsl:apply-templates select="notoc" mode="all"/>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:text>&#10;&#10;</xsl:text>
 </xsl:template>
 
