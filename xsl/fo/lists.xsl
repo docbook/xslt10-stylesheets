@@ -346,10 +346,10 @@
     <xsl:when test="not($terms)">
       <xsl:value-of select="$longest"/>
     </xsl:when>
-    <xsl:when test="string-length($terms[1]/*[not(indexterm)]) &gt; $longest">
+    <xsl:when test="string-length($terms[1]/node()[not(indexterm)]) &gt; $longest">
       <xsl:call-template name="longest.term">
         <xsl:with-param name="longest" 
-                        select="string-length($terms[1]/*[not(indexterm)])"/>
+	    select="string-length($terms[1]/node()[not(indexterm)])"/>
         <xsl:with-param name="maxlength" select="$maxlength"/>
         <xsl:with-param name="terms" select="$terms[position() &gt; 1]"/>
       </xsl:call-template>
