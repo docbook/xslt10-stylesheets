@@ -56,7 +56,7 @@
 	             glosslist[ancestor::listitem or ancestor::step]">
   <xsl:text>&#10;.RS&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>&#10;.RE&#10;</xsl:text>
+  <xsl:text>&#10;.RE&#10;.IP&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="varlistentry/term|glossterm">
@@ -109,7 +109,7 @@
 		     procedure[ancestor::listitem or ancestor::step]">
   <xsl:text>&#10;.RS&#10;.TP 3&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>.LP&#10;.RE&#10;</xsl:text>
+  <xsl:text>.LP&#10;.RE&#10;.IP&#10;</xsl:text>
 </xsl:template>
 
 </xsl:stylesheet>
