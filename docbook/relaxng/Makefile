@@ -26,7 +26,7 @@ sdocbook.rng: $(RNCFILES)
 
 slides-ng.rng: $(RNCFILES)
 	$(MAKE) -C build $@
-	perl tools/trimgrammar.pl -o ,$@ $@
+	perl tools/trimgrammar.pl -o ,$@ build/$@
 	saxon ,$@ tools/trimgrammar.xsl $@ use.extensions=1
 
 website-ng.rng: $(RNCFILES)
