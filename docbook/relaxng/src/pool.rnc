@@ -1011,7 +1011,7 @@ div {
       db.bridgehead.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute renderas { "other" | "sect1" | "sect2" | "sect3" | "sect4" | "sect5"  }
+    & attribute renderas { "other" | "sect1" | "sect2" | "sect3" | "sect4" | "sect5"  }?
 
    db.bridgehead =
       element bridgehead {
