@@ -1,7 +1,7 @@
 <!-- ...................................................................... -->
 <!-- DocBook additional general entities V4.3 ............................. -->
 
-<!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
+<!-- Copyright 1992-2004 HaL Computer Systems, Inc.,
      O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
      Corporation, Norman Walsh, Sun Microsystems, Inc., and the
      Organization for the Advancement of Structured Information

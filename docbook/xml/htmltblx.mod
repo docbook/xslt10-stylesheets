@@ -2,8 +2,8 @@
 <!-- DocBook XML HTML Table Module V4.3 ................................... -->
 <!-- File htmltblx.mod .................................................... -->
 
-<!-- Copyright 2003 ArborText, Inc., Norman Walsh, Sun Microsystems, Inc.,
-     and the Organization for the Advancement of Structured Information
+<!-- Copyright 2003, 2004 ArborText, Inc., Norman Walsh, Sun Microsystems,
+     Inc., and the Organization for the Advancement of Structured Information
      Standards (OASIS).
 
      $Id$
