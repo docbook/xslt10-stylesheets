@@ -230,6 +230,8 @@
     <!-- setup for single-sided, 1 column -->
     <fo:page-sequence-master master-name="oneside1">
       <fo:repeatable-page-master-alternatives>
+        <fo:conditional-page-master-reference master-reference="first1"
+                                              page-position="first"/>
         <fo:conditional-page-master-reference master-reference="simple1"/>
       </fo:repeatable-page-master-alternatives>
     </fo:page-sequence-master>
