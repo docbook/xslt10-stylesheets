@@ -44,10 +44,12 @@ while (<F>) {
 
     if (/<src:fragref\s+linkend=[\"\']([^\"\']+)\.frag[\"\']/) {
 	my $param = $1;
+
 	if ($params{$param} != 0) {
 	    warn "Duplicate fragref: $param\n";
 	    $ok = 0;
 	}
+
 	if (!defined $params{$param}) {
 	    warn "Fragref for unused param: $param\n";
 	    $ok = 0;
@@ -59,6 +61,12 @@ while (<F>) {
 close (F);
 
 foreach my $param (keys %params) {
+    # nb: chunker.output.* and saxon.character.representation are special!
+    if ($param eq 'saxon.character.representation'
+	|| $param =~ /^chunker\.output\./) {
+	next;
+    }
+
     if ($params{$param} == 0) {
 	warn "No fragref for param: $param\n";
 	$ok = 0;
