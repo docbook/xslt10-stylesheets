@@ -233,7 +233,16 @@ GlossEntry ::=
 
 <xsl:template match="glossentry/glossdef">
   <fo:list-item-body start-indent="body-start()">
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="*[local-name(.) != 'glossseealso']"/>
+    <xsl:if test="glossseealso">
+      <fo:block>
+        <xsl:call-template name="gentext.template">
+          <xsl:with-param name="context" select="'glossary'"/>
+          <xsl:with-param name="name" select="'seealso'"/>
+        </xsl:call-template>
+        <xsl:apply-templates select="glossseealso"/>
+      </fo:block>
+    </xsl:if>
   </fo:list-item-body>
 </xsl:template>
 
@@ -247,21 +256,24 @@ GlossEntry ::=
   <xsl:variable name="otherterm" select="@otherterm"/>
   <xsl:variable name="targets" select="//node()[@id=$otherterm]"/>
   <xsl:variable name="target" select="$targets[1]"/>
-  <fo:block>
-    <xsl:call-template name="gentext.template">
-      <xsl:with-param name="context" select="'glossary'"/>
-      <xsl:with-param name="name" select="'seealso'"/>
-    </xsl:call-template>
-    <xsl:choose>
-      <xsl:when test="@otherterm">
-        <xsl:apply-templates select="$target" mode="xref"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates/>
-      </xsl:otherwise>
-    </xsl:choose>
-    <xsl:text>.</xsl:text>
-  </fo:block>
+
+  <xsl:choose>
+    <xsl:when test="@otherterm">
+      <xsl:apply-templates select="$target" mode="xref"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates/>
+    </xsl:otherwise>
+  </xsl:choose>
+
+  <xsl:choose>
+    <xsl:when test="position() = last()">
+      <xsl:text>.</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>, </xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
