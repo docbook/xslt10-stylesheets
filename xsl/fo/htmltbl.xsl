@@ -26,6 +26,10 @@
       <xsl:message terminate="yes">Broken table: row descendent of HTML table.</xsl:message>
     </xsl:if>
 
+    <xsl:variable name="id">
+      <xsl:call-template name="object.id"/>
+    </xsl:variable>
+
     <xsl:variable name="numcols">
       <xsl:call-template name="widest-html-row">
         <xsl:with-param name="rows" select=".//tr"/>
@@ -34,7 +38,7 @@
 
     <xsl:choose>
       <xsl:when test="caption">
-        <fo:table-and-caption>
+        <fo:table-and-caption id="{$id}">
           <xsl:apply-templates select="caption" mode="htmlTable"/>
           <fo:table table-layout="fixed">
             <xsl:attribute name="width">
@@ -53,7 +57,7 @@
         </fo:table-and-caption>
       </xsl:when>
       <xsl:otherwise>
-        <fo:table table-layout="fixed">
+        <fo:table table-layout="fixed" id="{$id}">
           <xsl:attribute name="width">
             <xsl:choose>
               <xsl:when test="@width">
