@@ -65,7 +65,7 @@
 
         <xsl:apply-templates select="./head/title" mode="title.mode"/>
 
-        <xsl:apply-templates select="child::*[name(.)!='webpage']"/>
+        <xsl:apply-templates select="child::node()[not(self::webpage)]"/>
 
         <xsl:call-template name="process.footnotes"/>
 
