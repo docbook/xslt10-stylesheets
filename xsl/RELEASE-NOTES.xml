@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <!DOCTYPE article
-  PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+  PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+  "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
 <article>
 <articleinfo>
 <title>DocBook XSL Stylesheets Release Notes</title>
@@ -17,6 +17,66 @@
 This file documents (mostly) changes to the public APIs. What,
 exactly, counts as a public API is still somewhat in question, but it
 includes at least the global parameters.</para>
+
+<itemizedlist><title>Release 1.53.0</title>
+
+<para>The 1.53.0 release fixes some bugs, refactors page masters, and
+adds some new parameters.</para>
+
+<listitem>
+<para>Reworked page headers and footers.
+</para>
+</listitem>
+<listitem>
+<para>Support numbered bibliography styles.
+</para>
+</listitem>
+<listitem>
+<para>Added new property set for inline monospaced elements.
+</para>
+</listitem>
+<listitem>
+<para>Added menuchoice separator parameter.
+</para>
+</listitem>
+<listitem>
+<para>Added property sets for each section level heading to remove hard coded
+font sizes.
+</para>
+</listitem>
+<listitem>
+<para>Make table headers bold by default in FO.
+</para>
+</listitem>
+<listitem>
+<para>Use basic
+initial-page-number property instead of extended
+force-page-count property to get components to start on odd
+pages in double.sided mode.
+</para>
+</listitem>
+<listitem>
+<para>Added format.page.number template to set
+the page number format for all page sequences
+</para>
+</listitem>
+<listitem>
+<para>Don't include equations without titles in the LoT for equations.
+</para>
+</listitem>
+<listitem>
+<para>Added support for <parameter>para.propagates.style</parameter>.
+</para>
+</listitem>
+<listitem>
+<para>Added cell padding and spacing parameters for HTML.
+</para>
+</listitem>
+<listitem>
+<para>Added tr.attributes named template (for odd-row coloring and such).
+</para>
+</listitem>
+</itemizedlist>
 
 <itemizedlist><title>Release 1.52.0</title>
 
