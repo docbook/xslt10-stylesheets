@@ -20,6 +20,7 @@
 <!ENTITY it SYSTEM "it.xml">
 <!ENTITY ja SYSTEM "ja.xml">
 <!ENTITY ko SYSTEM "ko.xml">
+<!ENTITY la SYSTEM "la.xml">
 <!ENTITY lit SYSTEM "lt.xml">
 <!ENTITY nl SYSTEM "nl.xml">
 <!ENTITY nn SYSTEM "nn.xml">
@@ -62,6 +63,7 @@
 &it;
 &ja;
 &ko;
+&la;
 &lit;
 &nl;
 &nn;
