@@ -252,7 +252,7 @@ FIXME: make is.graphic.* work correctly depending on the backend!
 
 <!-- ==================================================================== -->
 
-<xsl:template match="mediaobject">
+<xsl:template match="mediaobject|mediaobjectco">
   <fo:block>
     <xsl:call-template name="select.mediaobject"/>
     <xsl:apply-templates select="caption"/>
