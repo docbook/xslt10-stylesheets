@@ -112,6 +112,13 @@
       <xsl:with-param name="nodes" select=".//equation[title]"/>
     </xsl:call-template>
   </xsl:if>
+
+  <xsl:if test="contains($toc.params, 'procedure')">
+    <xsl:call-template name="list.of.titles">
+      <xsl:with-param name="titles" select="'procedure'"/>
+      <xsl:with-param name="nodes" select=".//procedure[title]"/>
+    </xsl:call-template>
+  </xsl:if>
 </xsl:template>
 
 <!-- ====================================================================== -->
@@ -498,7 +505,8 @@
                 <xsl:when test="$titles='figure'">ListofFigures</xsl:when>
                 <xsl:when test="$titles='equation'">ListofEquations</xsl:when>
                 <xsl:when test="$titles='example'">ListofExamples</xsl:when>
-                <xsl:otherwise>ListofUnknowns</xsl:otherwise>
+                <xsl:when test="$titles='procedure'">ListofProcedures</xsl:when>
+                <xsl:otherwise>ListofUnknown</xsl:otherwise>
               </xsl:choose>
             </xsl:with-param>
           </xsl:call-template>
@@ -514,7 +522,7 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="figure|table|example|equation" mode="toc">
+<xsl:template match="figure|table|example|equation|procedure" mode="toc">
   <xsl:param name="toc-context" select="."/>
 
   <xsl:element name="{$toc.listitem.type}">
