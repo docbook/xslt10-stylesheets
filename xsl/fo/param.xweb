@@ -324,6 +324,12 @@ zero by default, so this is simply the page-master region-left.
 &column.count.index;
 &column.count.lot;
 &column.count.titlepage;
+&column.gap.back;
+&column.gap.body;
+&column.gap.front;
+&column.gap.index;
+&column.gap.lot;
+&column.gap.titlepage;
 &region.after.extent;
 &region.before.extent;
 &default.units;
@@ -484,6 +490,12 @@ around all these parameters.</para>
 <src:fragref linkend="column.count.index.frag"/>
 <src:fragref linkend="column.count.lot.frag"/>
 <src:fragref linkend="column.count.titlepage.frag"/>
+<src:fragref linkend="column.gap.back.frag"/>
+<src:fragref linkend="column.gap.body.frag"/>
+<src:fragref linkend="column.gap.front.frag"/>
+<src:fragref linkend="column.gap.index.frag"/>
+<src:fragref linkend="column.gap.lot.frag"/>
+<src:fragref linkend="column.gap.titlepage.frag"/>
 <src:fragref linkend="compact.list.item.spacing.frag"/>
 <src:fragref linkend="current.docid.frag"/>
 <src:fragref linkend="default.float.class.frag"/>
