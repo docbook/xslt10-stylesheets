@@ -6,8 +6,8 @@
 
 <!-- Generate DocBook instance with correct DOCTYPE -->
 <xsl:output method="xml" 
-            doctype-public="-//OASIS//DTD DocBook XML V4.1.2//EN"
-            doctype-system="http://www.oasis-open.org/docbook/xml/4.0/docbookx.dtd"/>
+            doctype-public="-//OASIS//DTD DocBook XML V4.2//EN"
+            doctype-system="http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"/>
 
 <!-- Profiling parameters -->
 <xsl:param name="profile.arch" select="''"/>
