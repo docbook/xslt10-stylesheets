@@ -79,15 +79,26 @@
 	</xsl:if>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:variable name="foo">
+        <xsl:variable name="content">
           <xsl:apply-templates select="."/>
         </xsl:variable>
-        <xsl:value-of select="normalize-space($foo)"/>
+        <xsl:value-of select="normalize-space($content)"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:for-each>
   <xsl:text>&#10;</xsl:text>
 </xsl:template>
+
+<xsl:template match="simpara">
+  <xsl:variable name="content">
+    <xsl:apply-templates/>
+  </xsl:variable>
+  <xsl:text>&#10;&#10;</xsl:text>
+  <xsl:value-of select="normalize-space($content)"/>
+  <xsl:text>
+</xsl:text>
+</xsl:template>
+
   
 <xsl:template match="refentry">
   <xsl:variable name="section" select="refmeta/manvolnum"/>
