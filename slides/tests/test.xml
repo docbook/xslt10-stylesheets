@@ -1,4 +1,5 @@
 <?xml version='1.0'?>
+<!DOCTYPE slides SYSTEM "../slides.dtd">
 <?dbhtml graphics-dir="../graphics"?>
 <?dbhtml css-stylesheet="../browser/slides.css"?>
 <?dbhtml script-dir="../browser"?>
@@ -178,17 +179,6 @@ this is a long screen
 <screen>
 this is a screen
 </screen>
-</foil>
-
-<foil><title>Test Slides Title 3</title>
-<para>...</para>
-<screen>
-this is a screen
-</screen>
-
-<html:p>This foil contains some XHTML:</html:p>
-<html:ol><html:li>item 1</html:li><html:li>item 2</html:li></html:ol>
-
 </foil>
 
 </section>
