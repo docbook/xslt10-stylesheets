@@ -2,16 +2,16 @@ include ../../../cvstools/Makefile.incl
 
 XSLT=xsltproc
 
-STATUS=wd
+STATUS=cs
 OASISTC=docbook
 SPECNAME=simple
-SPECVER=1.0-CR3
+SPECVER=1.0
 
-SPECROOT=$(STATUS)-$(OASISTC)-$(SPECNAME)
-SPECBASE=$(SPECROOT)-$(SPECVER)
+SPECROOT=$(OASISTC)-$(SPECNAME)
+SPECBASE=$(STATUS)-$(SPECROOT)-$(SPECVER)
 
 HTMLSTYLE=/projects/oasis/spectools/stylesheets/oasis-docbook-html.xsl
-HTMLPARAM=
+HTMLPARAM=bibliography.collection=file:///home/ndw/.bibliography.xml
 
 FOSTYLE=/projects/oasis/spectools/stylesheets/oasis-docbook-fo.xsl
 FOPARAM=oasis.logo=/projects/oasis/spectools/images/oasis.png
