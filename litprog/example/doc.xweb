@@ -5,24 +5,82 @@
 <head>
 <title>Document Schema</title>
 </head>
+<body>
 
 <div>
 <h1>A Simple Document W3C XML Schema</h1>
 
-<p>This schema defines elements in the
-<tt>urn:publicid:-:Norman+Walsh:Schema Example:EN</tt> namespace.</p>
-
-<p>This schema defines several elements and their complex types.
+<p>This schema defines the
+<tt>urn:publicid:-:Norman+Walsh:Schema Example:EN</tt> namespace
+by defining several elements and their complex types.
 </p>
 
-<src:fragment id="top" mundane-result-prefixes="ex xs">
-<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'
-           xmlns:ex='urn:publicid:-:Norman+Walsh:Schema Example:EN'
-           targetNamespace='urn:publicid:-:Norman+Walsh:Schema Example:EN'
-           elementFormDefault='qualified'>
-  <src:fragref linkend="types"/>
-  <src:fragref linkend="elements"/>
-</xs:schema>
+<p>Documents that conform to this schema have the general form:</p>
+
+<pre>&lt;doc xmlns="urn:publicid:-:Norman+Walsh:Schema Example:EN">
+  &lt;title>Sample Document&lt;/title>
+  &lt;para>Some paragraphs.&lt;/para>
+&lt;/doc></pre>
+</div>
+
+<div>
+<h1><a name="types"/>The Types</h1>
+
+<p>This schema only defines three element types: <tt>doc</tt>,
+<tt>title</tt>, and <tt>para</tt>.</p>
+
+<div>
+<h2>The <tt>doc</tt> Type</h2>
+
+<p>This is a document.</p>
+
+<src:fragment id="doc.type">
+  <xs:complexType name='doc'>
+    <xs:sequence>
+      <xs:element ref="ex:title" minOccurs='0' maxOccurs='1'/>
+      <xs:choice minOccurs='1' maxOccurs='unbounded'>
+        <xs:element ref='ex:para'/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+</src:fragment>
+</div>
+
+<div>
+<h2>The <tt>title</tt> Type</h2>
+
+<p>This is a title.</p>
+
+<src:fragment id="title.type">
+  <xs:complexType name='title' mixed="true">
+    <src:fragref linkend="role.attrib"/>
+    <xs:anyAttribute namespace="##other" processContents="lax"/>
+  </xs:complexType>
+</src:fragment>
+</div>
+
+<div>
+<h2>The <tt>para</tt> Type</h2>
+
+<p>This is a paragraph.</p>
+
+<src:fragment id="para.type">
+  <xs:complexType name='para' mixed="true">
+    <src:fragref linkend="role.attrib"/>
+    <xs:anyAttribute namespace="##other" processContents="lax"/>
+  </xs:complexType>
+</src:fragment>
+</div>
+</div>
+
+<div>
+<h1>The <tt>role</tt> Attribute</h1>
+
+<p>Each of the complex types in this schema allows an optional role attribute.
+The role attribute is simply a string.</p>
+
+<src:fragment id="role.attrib">
+    <xs:attribute name="role" type="xs:string"/>
 </src:fragment>
 </div>
 
@@ -40,63 +98,23 @@ type</a>.</p>
 </div>
 
 <div>
-<h1><a name="types"/>The Complex Types</h1>
+<h1>The Schema</h1>
 
-<p>There are three complex types in this schema: <tt>doc</tt>,
-<tt>title</tt>, and <tt>para</tt>.</p>
+<p>The schema wrapper surrounds all these definitions.</p>
 
-<src:fragment id="types">
+<src:fragment id="top" mundane-result-prefixes="ex xs">
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'
+           xmlns:ex='urn:publicid:-:Norman+Walsh:Schema Example:EN'
+           targetNamespace='urn:publicid:-:Norman+Walsh:Schema Example:EN'
+           elementFormDefault='qualified'>
   <src:fragref linkend="doc.type"/>
   <src:fragref linkend="title.type"/>
   <src:fragref linkend="para.type"/>
-</src:fragment>
-
-<div>
-<h2>The <tt>role</tt> Attribute</h2>
-
-<p>Each of the complex types in this schema allows an optional role attribute.
-The role attribute is simply a string.</p>
-
-<src:fragment id="role.attrib">
-    <xs:attribute name="role" type="xs:string"/>
+  <src:fragref linkend="elements"/>
+</xs:schema>
 </src:fragment>
 </div>
 
-<div>
-<h2>The <tt>doc</tt> Type</h2>
-
-<src:fragment id="doc.type">
-  <xs:complexType name='doc'>
-    <xs:sequence>
-      <xs:element ref="ex:title" minOccurs='0' maxOccurs='1'/>
-      <xs:choice minOccurs='1' maxOccurs='unbounded'>
-        <xs:element ref='ex:para'/>
-      </xs:choice>
-    </xs:sequence>
-  </xs:complexType>
-</src:fragment>
-</div>
-
-<div>
-<h2>The <tt>title</tt> Type</h2>
-
-<src:fragment id="title.type">
-  <xs:complexType name='title' mixed="true">
-    <src:fragref linkend="role.attrib"/>
-    <xs:anyAttribute namespace="##other" processContents="lax"/>
-  </xs:complexType>
-</src:fragment>
-</div>
-
-<div>
-<h2>The <tt>para</tt> Type</h2>
-
-<src:fragment id="para.type">
-  <xs:complexType name='para' mixed="true">
-    <src:fragref linkend="role.attrib"/>
-    <xs:anyAttribute namespace="##other" processContents="lax"/>
-  </xs:complexType>
-</src:fragment>
-</div>
-</div>
+</body>
 </html>
+
