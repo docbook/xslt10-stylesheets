@@ -1,0 +1,15 @@
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook SVG Module V1.0beta1//EN"
+              "dbsvg.dtd">
+<book>
+<title>Book Title</title>
+<chapter><title>Chapter Title</title>
+<para>Content.</para>
+
+<mediaobject>
+<imageobject>
+<svg:svg/>
+</imageobject>
+</mediaobject>
+
+</chapter>
+</book>
