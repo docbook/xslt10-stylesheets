@@ -55,6 +55,7 @@
 <!-- ********************************************************************
      Pdf bookmarks
      ******************************************************************** -->
+
 <xsl:template match="*" mode="xep.outline">
   <xsl:apply-templates select="*" mode="xep.outline"/>
 </xsl:template>
@@ -69,10 +70,6 @@
   </xsl:variable>
   <xsl:variable name="bookmark-label">
     <xsl:apply-templates select="." mode="object.title.markup"/>
-<!--
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:apply-templates select="." mode="title.markup"/>
--->
   </xsl:variable>
 
   <xsl:choose>
