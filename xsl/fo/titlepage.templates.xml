@@ -720,6 +720,7 @@
 	     force="1"
 	     named-template="component.title"
 	     param:node="ancestor-or-self::index[1]"
+             param:pagewide="1"
 	     fo:margin-left="{$title.margin.left}"
 	     fo:font-size="&hsize3;"
 	     fo:font-family="{$title.font.family}"

@@ -17,6 +17,7 @@
 
 <xsl:template name="component.title">
   <xsl:param name="node" select="."/>
+  <xsl:param name="pagewide" select="0"/>
   <xsl:variable name="id">
     <xsl:call-template name="object.id">
       <xsl:with-param name="object" select="$node"/>
@@ -38,6 +39,9 @@
 
   <fo:block keep-with-next.within-column="always"
             hyphenate="false">
+    <xsl:if test="$pagewide != 0">
+      <xsl:attribute name="span">all</xsl:attribute>
+    </xsl:if>
     <xsl:copy-of select="$title"/>
   </fo:block>
 </xsl:template>
