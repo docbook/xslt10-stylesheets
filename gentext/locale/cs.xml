@@ -166,6 +166,8 @@
 
 <gentext key="sectioncalled"  text="odd&#x00ed;l nazvan&#x00fd;"/>
 
+<gentext key="index symbols" text="Symboly"/>
+
 <dingbat key="startquote" text="&#x201e;"/>
 <dingbat key="endquote" text="&#x201c;"/>
 <dingbat key="nestedstartquote" text="&#x201a;"/>
