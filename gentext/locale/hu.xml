@@ -1,4 +1,23 @@
-<locale language="hu">
+<?xml version='1.0'?>
+<!-- there is no doctype for these files, they are WF only -->
+<!DOCTYPE locale [
+<!ENTITY % lat1 PUBLIC "-//ISO 8879-1986//ENTITIES Added Latin 1//EN//XML"
+                "../../xmlcharent/iso-lat1.ent">
+%lat1;
+]>
+<locale language="hu"
+        xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
+
+<doc:localeinfo xmlns="">
+<!-- FIXME: list the real contributors
+<authorgroup>
+  <author><firstname>Norman</firstname><surname>Walsh</surname>
+          <affiliation><address><email>ndw@nwalsh.com</email></address>
+          </affiliation>
+  </author>
+</authorgroup>
+-->
+</doc:localeinfo>
 
 <gentext key="Abstract" text="Kivonat"/>
 <gentext key="abstract" text="Kivonat"/>
@@ -155,11 +174,197 @@
 <dingbat key="nestedendquote" text="&#x2019;"/>
 <dingbat key="bullet" text="&#x2022;"/>
 
-<xref element="bibliography" text="%t"/>
-<xref element="chapter" text="%n %g %t"/>
-<xref element="dedication" text="%t"/>
-<xref element="glossary" text="%t"/>
-<xref element="index" text="%t"/>
-<xref element="preface" text="%t"/>
+<context name="title">
+
+<template name="abstract">%t</template>
+<template name="appendix"><Appendix/> %n. %t</template>
+<template name="article">%t</template>
+<template name="authorblurb">%t</template>
+<template name="bibliodiv">%t</template>
+<template name="biblioentry">%t</template>
+<template name="bibliography">%t</template>
+<template name="bibliomixed">%t</template>
+<template name="bibliomset">%t</template>
+<template name="biblioset">%t</template>
+<template name="blockquote">%t</template>
+<template name="book">%t</template>
+<template name="calloutlist">%t</template>
+<template name="caution">%t</template>
+<template name="chapter"><Chapter/> %n. %t</template>
+<template name="colophon">%t</template>
+<template name="dedication">%t</template>
+<template name="equation"><Equation/> %n. %t</template>
+<template name="example"><Example/> %n. %t</template>
+<template name="figure"><Figure/> %n. %t</template>
+<template name="formalpara">%t</template>
+<template name="glossary">%t</template>
+<template name="glossdiv">%t</template>
+<template name="important">%t</template>
+<template name="index">%t</template>
+<template name="indexdiv">%t</template>
+<template name="itemizedlist">%t</template>
+<template name="legalnotice">%t</template>
+<template name="lot">%t</template>
+<template name="msg">%t</template>
+<template name="msgexplan">%t</template>
+<template name="msgmain">%t</template>
+<template name="msgrel">%t</template>
+<template name="msgset">%t</template>
+<template name="msgsub">%t</template>
+<template name="note">%t</template>
+<template name="orderedlist">%t</template>
+<template name="part"><Part/> %n. %t</template>
+<template name="partintro">%t</template>
+<template name="preface">%t</template>
+<template name="procedure">%t</template>
+<template name="qandadiv">%t</template>
+<template name="qandaset">%t</template>
+<template name="reference">%t</template>
+<template name="refsect1">%t</template>
+<template name="refsect2">%t</template>
+<template name="refsect3">%t</template>
+<template name="refsynopsisdiv">%t</template>
+<template name="refsynopsisdivinfo">%t</template>
+<template name="segmentedlist">%t</template>
+<template name="set">%t</template>
+<template name="setindex">%t</template>
+<template name="sidebar">%t</template>
+<template name="step">%t</template>
+<template name="table"><Table/> %n. %t</template>
+<template name="tip">%t</template>
+<template name="toc">%t</template>
+<template name="variablelist">%t</template>
+<template name="warning">%t</template>
+
+</context>
+
+<context name="section-title">
+
+<template name="sect1">%t</template>
+<template name="sect2">%t</template>
+<template name="sect3">%t</template>
+<template name="sect4">%t</template>
+<template name="sect5">%t</template>
+<template name="section">%t</template>
+<template name="simplesect">%t</template>
+
+</context>
+
+<context name="section-title-numbered">
+
+<template name="sect1">%n. %t</template>
+<template name="sect2">%n. %t</template>
+<template name="sect3">%n. %t</template>
+<template name="sect4">%n. %t</template>
+<template name="sect5">%n. %t</template>
+<template name="section">%n. %t</template>
+<template name="simplesect">%n. %t</template>
+
+</context>
+
+<context name="subtitle">
+
+<template name="appendix">%s</template>
+<template name="article">%s</template>
+<template name="bibliodiv">%s</template>
+<template name="biblioentry">%s</template>
+<template name="bibliography">%s</template>
+<template name="bibliomixed">%s</template>
+<template name="bibliomset">%s</template>
+<template name="biblioset">%s</template>
+<template name="book">%s</template>
+<template name="chapter">%s</template>
+<template name="colophon">%s</template>
+<template name="dedication">%s</template>
+<template name="glossary">%s</template>
+<template name="glossdiv">%s</template>
+<template name="index">%s</template>
+<template name="indexdiv">%s</template>
+<template name="lot">%s</template>
+<template name="part">%s</template>
+<template name="partintro">%s</template>
+<template name="preface">%s</template>
+<template name="refentry">%s</template>
+<template name="reference">%s</template>
+<template name="refsect1">%s</template>
+<template name="refsect2">%s</template>
+<template name="refsect3">%s</template>
+<template name="refsynopsisdiv">%s</template>
+<template name="sect1">%s</template>
+<template name="sect2">%s</template>
+<template name="sect3">%s</template>
+<template name="sect4">%s</template>
+<template name="sect5">%s</template>
+<template name="section">%s</template>
+<template name="set">%s</template>
+<template name="setindex">%s</template>
+<template name="sidebar">%s</template>
+<template name="simplesect">%s</template>
+<template name="toc">%s</template>
+
+</context>
+
+<context name="xref">
+
+<template name="appendix"><Appendix/> %n. %t</template>
+<template name="article">%t</template>
+<template name="bibliography">%t</template>
+<template name="book">%t</template>
+<template name="chapter"><Chapter/> %n. %t</template>
+<template name="colophon">%t</template>
+<template name="dedication">%t</template>
+<template name="example"><Example/> %n. %t</template>
+<template name="figure"><Figure/> %n. %t</template>
+<template name="glossary">%t</template>
+<template name="index">%t</template>
+<template name="part"><Part/> %n. %t</template>
+<template name="preface">%t</template>
+<template name="reference">%t</template>
+<template name="set">%t</template>
+<template name="setindex">%t</template>
+<template name="table"><Table/> %n. %t</template>
+
+</context>
+
+<context name="section-xref">
+
+<template name="sect1"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="sect2"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="sect3"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="sect4"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="sect5"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="section"><sectioncalled/> &#x201C;%t&#x201D;</template>
+<template name="simplesect"><sectioncalled/> &#x201C;%t&#x201D;</template>
+
+</context>
+
+<context name="section-xref-numbered">
+
+<template name="sect1"><Section/> %n</template>
+<template name="sect2"><Section/> %n</template>
+<template name="sect3"><Section/> %n</template>
+<template name="sect4"><Section/> %n</template>
+<template name="sect5"><Section/> %n</template>
+<template name="section"><Section/> %n</template>
+<template name="simplesect"><sectioncalled/> &#x201C;%t&#x201D;</template>
+
+</context>
+
+<context name="authorgroup">
+<template name="sep">,</template>
+<template name="sep2"> <and/> </template>
+<template name="seplast">, <and/> </template>
+</context>
+
+<context name="glossary">
+<template name="see"><GlossSee/> </template>
+<template name="seealso"><GlossSeeAlso/> </template>
+</context>
+
+<context name="msgset">
+<template name="MsgLevel"><MsgLevel/>: </template>
+<template name="MsgOrig"><MsgOrig/>: </template>
+<template name="MsgAud"><MsgAud/>: </template>
+</context>
 
 </locale>
