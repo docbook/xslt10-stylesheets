@@ -534,7 +534,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       <fo:table-cell xsl:use-attribute-sets="table.cell.padding">
         <xsl:if test="$xep.extensions != 0">
           <!-- Suggested by RenderX to workaround a bug in their implementation -->
-          <xsl:attribute name="keep-together.within-column">always</xsl:attribute>
+          <!--          <xsl:attribute name="keep-together.within-column">always</xsl:attribute> -->
         </xsl:if>
 
         <xsl:if test="$bgcolor != ''">
