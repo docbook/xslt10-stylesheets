@@ -104,11 +104,8 @@
 <gentext key="sect5" text="Kısım"/>
 <gentext key="section" text="Kısım"/>
 <gentext key="Section" text="Kısım"/>
-<gentext key="See" text="Bkz."/>
 <gentext key="see" text="Bkz."/>
-<gentext key="SeeAlso" text="Bkz."/>
 <gentext key="seealso" text="Bkz."/>
-<gentext key="Seealso" text="Bkz."/>
 <gentext key="set" text="Takım"/>
 <gentext key="Set" text="Takım"/>
 <gentext key="setindex" text="Takım Dizini"/>
@@ -158,6 +155,8 @@
 <gentext key="listoffigures" text="Şekiller"/>
 <gentext key="listoftables" text="Tablolar"/>
 <gentext key="ListofTables" text="Tablolar"/>
+<gentext key="ListofProcedures" text="Yönergeler"/>
+<gentext key="listofprocedures" text="Yönergeler"/>
 <gentext key="ListofUnknown" text="Bilinmeyenler"/>
 <gentext key="listofunknown" text="Bilinmeyenler"/>
 
@@ -167,6 +166,7 @@
 <gentext key="nav-prev" text="Önceki"/>
 <gentext key="nav-prev-sibling" text="Önceki Bölüm"/>
 <gentext key="nav-up" text="Yukarı"/>
+<gentext key="nav-toc" text="İçindekiler"/>
 
 <gentext key="sectioncalled"       text=""/>
 <gentext key="Draft"         text="Taslak"/> 
@@ -209,6 +209,7 @@
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
+<template name="glossentry">%t</template>
 <template name="important">%t</template>
 <template name="index">%t</template>
 <template name="indexdiv">%t</template>
@@ -266,6 +267,7 @@
 <context name="title-unnumbered">
 
 <template name="appendix">%t</template>
+<template name="article/appendix">%t</template>
 <template name="bridgehead">%t</template>
 <template name="chapter">%t</template>
 <template name="sect1">%t</template>
@@ -281,6 +283,7 @@
 <context name="title-numbered">
 
 <template name="appendix"><Appendix/> %n. %t</template>
+<template name="article/appendix">%n.&#160;%t</template>
 <template name="bridgehead">%n. %t</template>
 <template name="chapter"><Chapter/> %n. %t</template>
 <template name="sect1">%n. %t</template>
