@@ -126,6 +126,9 @@ if ($processor eq 'saxon') {
 }
 
 my $startTime = time();
+if (! $quiet) {
+    print "$cmd\n";
+}
 system($cmd);
 my $endTime = time();
 
