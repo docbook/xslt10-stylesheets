@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article>
+<info><title>Unit Test: <!--FIXME-->
+</title>
+
+<releaseinfo role="CVS">$Id$</releaseinfo>
+<!-- Change this: -->
+<author><personname><firstname>Norman</firstname><surname>Walsh</surname></personname><affiliation><address><email>ndw@nwalsh.com</email></address></affiliation></author>
+</info>
+
+<!-- put your test here -->
+
+</article>
