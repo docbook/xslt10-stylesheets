@@ -314,6 +314,12 @@
   <xsl:text>&#10;.fi&#10;</xsl:text>
 </xsl:template>
 
+<xsl:template match="optional">
+  <xsl:value-of select="$arg.choice.opt.open.str"/>
+  <xsl:apply-templates/>
+  <xsl:value-of select="$arg.choice.opt.close.str"/>
+</xsl:template>
+
 <xsl:template name="do-citerefentry">
   <xsl:param name="refentrytitle" select="''"/>
   <xsl:param name="manvolnum" select="''"/>
