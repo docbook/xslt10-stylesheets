@@ -17,7 +17,15 @@
 
 <xsl:template name="format.footnote.mark">
   <xsl:param name="mark" select="'?'"/>
-  <fo:inline baseline-shift="super" font-size="90%">
+  <fo:inline font-size="90%">
+    <xsl:choose>
+      <xsl:when test="$fop.extensions != 0">
+        <xsl:attribute name="vertical-align">super</xsl:attribute>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:attribute name="baseline-shift">super</xsl:attribute>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:copy-of select="$mark"/>
   </fo:inline>
 </xsl:template>
