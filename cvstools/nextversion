@@ -17,7 +17,7 @@ close (F);
 
 if (/^(.*name=.VERSION.>)([\.\d]+.*?)\+?(<.*)$/s) {
     # ok
-} elsif (/^(.*?)([\.\d]+)\+?(.*)$/s) {
+} elsif (/^(.*?)([\.\d]+.*?)\+?\s*$/s) {
     # ok
 } else {
     die "Cannot find version in VERSION.\n";
@@ -45,7 +45,7 @@ if ($fvers =~ /^(\d+)\.(\d+)\.(\d+)$/) {
     $minor = $3;
     $minor++;
     $fvers = "$major.$middle.$minor";
-} elsif ($fvers =~ /^(\d+)\.(\d+)$/) {
+} elsif ($fvers =~ /^(\d+)\.(\d+.*)$/) {
     $major = $1;
     $minor = $2;
     $minor++;
