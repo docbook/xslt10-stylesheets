@@ -148,6 +148,25 @@
 </xsl:template>
 
 <!-- ==================================================================== -->
+<!-- some special cases -->
+
+<xsl:template match="author">
+  <xsl:call-template name="person.name"/>
+</xsl:template>
+
+<xsl:template match="editor">
+  <xsl:call-template name="person.name"/>
+</xsl:template>
+
+<xsl:template match="othercredit">
+  <xsl:call-template name="person.name"/>
+</xsl:template>
+
+<xsl:template match="authorinitials">
+  <xsl:call-template name="inline.charseq"/>
+</xsl:template>
+
+<!-- ==================================================================== -->
 
 <xsl:template match="accel">
   <xsl:call-template name="inline.charseq"/>
