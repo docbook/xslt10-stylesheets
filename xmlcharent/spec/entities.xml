@@ -1,0 +1,500 @@
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+                  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY % glyphs SYSTEM "glyphs100.ent">
+%glyphs;
+<!ENTITY standard "Standard">
+<!ENTITY baseuri "http://www.oasis-open.org/entities">
+<!ENTITY iso-lat1-table SYSTEM "iso-lat1.gen">
+<!ENTITY iso-lat2-table SYSTEM "iso-lat2.gen">
+<!ENTITY iso-grk1-table SYSTEM "iso-grk1.gen">
+<!ENTITY iso-grk2-table SYSTEM "iso-grk2.gen">
+<!ENTITY iso-cyr1-table SYSTEM "iso-cyr1.gen">
+<!ENTITY iso-cyr2-table SYSTEM "iso-cyr2.gen">
+<!ENTITY iso-num-table SYSTEM "iso-num.gen">
+<!ENTITY iso-dia-table SYSTEM "iso-dia.gen">
+<!ENTITY iso-pub-table SYSTEM "iso-pub.gen">
+<!ENTITY iso-box-table SYSTEM "iso-box.gen">
+<!ENTITY iso-tech-table SYSTEM "iso-tech.gen">
+<!ENTITY iso-grk3-table SYSTEM "iso-grk3.gen">
+<!ENTITY iso-grk4-table SYSTEM "iso-grk4.gen">
+<!ENTITY iso-amso-table SYSTEM "iso-amso.gen">
+<!ENTITY iso-amsb-table SYSTEM "iso-amsb.gen">
+<!ENTITY iso-amsr-table SYSTEM "iso-amsr.gen">
+<!ENTITY iso-amsn-table SYSTEM "iso-amsn.gen">
+<!ENTITY iso-amsa-table SYSTEM "iso-amsa.gen">
+<!ENTITY iso-amsc-table SYSTEM "iso-amsc.gen">
+]>
+<article status="Working Draft">
+<articleinfo>
+<title>XML Character Entities</title>
+<subtitle>OASIS DocBook Technical Committee</subtitle>
+<authorgroup>
+<editor>
+  <firstname>Norman</firstname><surname>Walsh</surname>
+  <affiliation>
+    <shortaffil>Sun</shortaffil>
+    <orgname>Sun Microsystems, Inc.</orgname>
+    <address><email>Norman.Walsh@Sun.COM</email></address>
+  </affiliation>
+</editor>
+</authorgroup>
+<pubdate>19 Nov 2001</pubdate>
+<releaseinfo role="meta">
+$Id$
+</releaseinfo>
+<copyright><year>2001</year>
+<holder>
+The Organization for the Advancement of Structured Information
+Standards [OASIS]. All Rights Reserved.
+</holder></copyright>
+<legalnotice>
+<para>This document and translations of it may be copied and furnished to
+others, and derivative works that comment on or otherwise explain it
+or assist in its implementation may be prepared, copied, published and
+distributed, in whole or in part, without restriction of any kind,
+provided that the above copyright notice and this paragraph are
+included on all such copies and derivative works. However, this
+document itself may not be modified in any way, such as by removing
+the copyright notice or references to OASIS, except as needed for the
+purpose of developing OASIS specifications, in which case the
+procedures for copyrights defined in the OASIS Intellectual Property
+Rights document must be followed, or as required to translate it into
+languages other than English.</para>
+
+<para>The limited permissions granted above are perpetual and will not be
+revoked by OASIS or its successors or assigns.</para>
+
+<para>This document and the information contained herein is provided
+on an <quote>AS IS</quote> basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE
+INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED
+WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+</para>
+</legalnotice>
+
+<legalnotice role="status"><title>Status of this Document</title>
+
+<para>This is a working draft constructed by the editor. It is not
+an official committee work product and may not reflect the consensus
+opinion of the committee.</para>
+<!--
+<para>This Committee Specification was approved for publication by the
+OASIS DocBook Technical Committee. It represents the
+consensus of the committee. Comments on this document may be
+sent to
+<ulink url="mailto:docbook@lists.oasis-open.org">docbook@lists.oasis-open.org</ulink>.</para>
+-->
+</legalnotice>
+
+<abstract><title>Abstract</title>
+<para>Non-normative Annex D of <xref linkend="iso8879"/> defines 19
+standard character entity sets. The SGML declarations for these
+entities use the specific character data (SDATA) entity type. The
+SDATA entity type is not supported in XML.  This &standard; defines a
+set of XML alternatives to the 19 standard character entity
+sets.</para>
+</abstract>
+
+<revhistory>
+<revision role="xmlents-20010807.html">
+  <revnumber>Working Draft</revnumber>
+  <date>07 Aug 2001</date>
+</revision>
+</revhistory>
+</articleinfo>
+
+<para>Non-normative Annex D of <xref linkend="iso8879"/> defines 19
+standard character entity sets (<simplelist type="inline">
+<member>Added Latin 1</member>
+<member>Added Latin 2</member>
+<member>Greek Letters</member>
+<member>Monotoniko Greek</member>
+<member>Russian Cyrillic</member>
+<member>Non-Russian Cyrillic</member>
+<member>Numeric and Special Graphic</member>
+<member>Diacritical Marks</member>
+<member>Publishing</member>
+<member>Box and Line Drawing</member>
+<member>General Technical</member>
+<member>Greek Symbols</member>
+<member>Alternative Greek Symbols</member>
+<member>Added Math Symbols: Ordinary</member>
+<member>Added Math Symbols: Binary Operators</member>
+<member>Added Math Symbols: Relations</member>
+<member>Added Math Symbols: Negated Relations</member>
+<member>Added Math Symbols: Arrow Relations</member>
+<member>Added Math Symbols: Delimiters</member>
+</simplelist>). The SGML declarations for these entities use the
+specific character data (SDATA) entity type. The SDATA entity type is
+not supported in XML, so alternative XML declarations must be used.
+This &standard; defines a set of XML alternatives to the 19 standard
+character entity sets.</para>
+
+<para>In XML, the specific character data of each entity can be expressed
+as a <xref linkend="unicode20"/> character.</para>
+
+<section id="entities"><title>XML Character Entity Sets</title>
+
+<note>
+<para>The Unicode reference glyphs in this document are examples
+only. Some characters have more than one Unicode representation and
+different Unicode characters may be appropriate in different
+contexts. The glyph images offer only one of many possible
+representations for the specified character.
+</para>
+</note>
+
+<section id="isolat1"><title>Added Latin 1</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Added Latin 1//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isolat1.ent</member>
+</simplelist>
+
+<para>
+The following character entities are defined in this entity set:
+</para>
+
+&iso-lat1-table;
+
+</section>
+
+<section id="isolat2"><title>Added Latin 2</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Added Latin 2//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isolat2.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-lat2-table;
+
+</section>
+
+<section id="isogrk1"><title>Greek Letters</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Greek Letters//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isogrk1.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-grk1-table;
+
+</section>
+
+<section id="isogrk2"><title>Monotoniko Greek</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Monotoniko Greek//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isogrk2.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-grk2-table;
+
+</section>
+
+<section id="isocyr1"><title>Russian Cyrillic</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Russian Cyrillic//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isocyr1.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-cyr1-table;
+
+</section>
+
+<section id="isocyr2"><title>Non-Russian Cyrillic</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Non-Russian Cyrillic//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isocyr2.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-cyr2-table;
+
+</section>
+
+<section id="isonum"><title>Numeric and Special Graphic</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Numeric and Special Graphic//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isonum.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-num-table;
+
+</section>
+
+<section id="isodia"><title>Diacritical Marks</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Diacritical Marks//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isodia.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-dia-table;
+
+</section>
+
+<section id="isopub"><title>Publishing</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Publishing//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isopub.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-pub-table;
+
+</section>
+
+<section id="isobox"><title>Box and Line Drawing</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Box and Line Drawing//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isobox.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-box-table;
+
+</section>
+
+<section id="isotech"><title>General Technical</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES General Technical//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isotech.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-tech-table;
+
+</section>
+
+<section id="isogrk3"><title>Greek Symbols</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Greek Symbols//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isogrk3.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-grk3-table;
+
+</section>
+
+<section id="isogrk4"><title>Alternative Greek Symbols</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Alternative Greek Symbols//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isogrk4.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-grk4-table;
+
+</section>
+
+<section id="isoamso"><title>Added Math Symbols: Ordinary</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Added Math Symbols: Ordinary//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isoamso.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-amso-table;
+
+</section>
+
+<section id="isoamsb"><title>Added Math Symbols: Binary Operators</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Added Math Symbols: Binary Operators//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isoamsb.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-amsb-table;
+
+</section>
+
+<section id="isoamsr"><title>Added Math Symbols: Relations</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Added Math Symbols: Relations//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isoamsr.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-amsr-table;
+
+</section>
+
+<section id="isoamsn"><title>Added Math Symbols: Negated Relations</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Added Math Symbols: Negated Relations//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isoamsn.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-amsn-table;
+
+</section>
+
+<section id="isoamsa"><title>Added Math Symbols: Arrow Relations</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Added Math Symbols: Arrow Relations//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isoamsa.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-amsa-table;
+
+</section>
+
+<section id="isoamsc"><title>Added Math Symbols: Delimiters</title>
+
+<para>Identifiers for this entity set:</para>
+
+<simplelist type="vert">
+<member><emphasis role="bold">Public identifier:</emphasis> ISO 8879:1986//ENTITIES Added Math Symbols: Delimiters//EN//XML</member>
+<member><emphasis role="bold">System identifier:</emphasis> &baseuri;/isoamsc.ent</member>
+</simplelist>
+
+<para>The following character entities are defined in this entity set:
+</para>
+
+&iso-amsc-table;
+
+</section>
+</section>
+
+<appendix><title>Unicode Glyphs</title>
+
+<para>Most of the glyphs this reference are from the TmsPF Roman font
+by
+<ulink url="http://ourworld.compuserve.com/homepages/profirst/homepagx.htm">Production
+First Software</ulink>. A few glyphs are from
+<ulink url="http://www.indigo.ie/egt/celtscript/">Everson Mono</ulink>.
+</para>
+
+<para>Unicode support requires much more than a simple character to glyph
+mapping; for more information on Unicode, consult
+<citetitle><ulink url="http://www.unicode.org/unicode/uni2book/u2.html">The
+Unicode Standard, Version 2.0</ulink></citetitle> and
+<citetitle>
+<ulink url="http://www.unicode.org/unicode/reports/tr8.html">Unicode
+Technical Report #8</ulink></citetitle>, which describes Unicode Version 2.1.
+</para>
+</appendix>
+
+<appendix id="committee" role="non-normative">
+<title>OASIS DocBook Technical Committee</title>
+
+<itemizedlist>
+<listitem><para>Dennis Evans</para></listitem>
+<listitem><para>Patricia Gee-Best</para></listitem>
+<listitem><para>Dick Hamilton</para></listitem>
+<listitem><para>Nancy (Paisner) Harrison</para></listitem>
+<listitem><para>Sabine Ocker</para></listitem>
+<listitem><para>Michael Sabrio</para></listitem>
+<listitem><para>Michael Smith</para></listitem>
+<listitem><para>Norman Walsh (Chair,Editor)</para></listitem>
+</itemizedlist>
+
+</appendix>
+
+<bibliography id="bibl"><title>References</title>
+
+<bibliodiv><title>Normative</title>
+
+<bibliomixed id="iso8879"/>
+
+<bibliomixed id="unicode20"/>
+
+</bibliodiv>
+
+</bibliography>
+
+</article>
