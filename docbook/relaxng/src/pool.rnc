@@ -59,6 +59,7 @@ namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 namespace rng  = "http://relaxng.org/ns/structure/1.0"
 namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
+namespace dbx = "http://sourceforge.net/projects/docbook/defguide/schema/extra-markup"
 default namespace = "http://docbook.org/docbook-ng"
 
 # ======================================================================
@@ -343,6 +344,7 @@ db.keyboard.inlines =
 
 db.link.inlines =
    db.xref
+ | db.link
  | db.uri
  | db.anchor
 
@@ -5786,7 +5788,7 @@ div {
    db.citation =
       element citation {
          db.citation.attlist,
-         db._text
+         db.all.inlines*
       }
 }
 
@@ -6135,6 +6137,66 @@ div {
       element xref {
          db.xref.attlist,
          empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "link" ]
+   db:refpurpose [ "A hypertext link" ]
+   dbx:description [
+      db:para [
+      "The "
+      db:tag [ "link" ]
+      " element is a general purpose hypertext element. Usually, "
+      db:tag [ "link" ]
+      " surrounds the text that should be made “hot” (unlike "
+      db:tag [ "xref" ]
+      " which must generate the text) but the "
+      db:tag [ class = "attribute" "endterm" ]
+      " attribute can be used to copy text from another element."
+    ]
+  ]
+  dbx:expectations [
+    db:para [
+      dbx:format [ class = "inline" ]
+    ]
+    db:para [
+      "If the "
+      db:tag [ "link" ]
+      " element has content, then that content is processed for output " ~
+      "as the “hot” text. If the "
+      db:tag [ "link" ]
+      " element has content and an "
+      db:tag [ class = "attribute" "endterm" ]
+      " attribute, then the content is used and the "
+      db:tag [ class = "attribute" "endterm" ]
+      " is ignored. If the "
+      db:tag [ "link" ]
+      " element has an "
+      db:tag [ class = "attribute" "endterm" ]
+      " attribute and no content, then the content of the element pointed to by "
+      db:tag [ class = "attribute" "endterm" ]
+      "should be repeated at the location of the "
+      db:tag [ "link" ]
+      " and used as the “hot” text."
+    ]
+  ]
+]
+div {
+
+   db.link.role.attribute = attribute role { text }
+
+   db.link.attlist =
+      db.link.role.attribute?
+    & db.common.attributes
+    & db.common.req.linking.attributes
+
+   db.link =
+      element link {
+         db.link.attlist,
+         db.all.inlines*
       }
 }
 
