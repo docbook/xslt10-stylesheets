@@ -22,7 +22,7 @@
 
 <!ELEMENT div (ttl?, objttl?, xreftext?, page?, (div|obj)*)>
 <!ATTLIST div
-        targetid  CDATA   #REQUIRED
+        targetptr  CDATA   #REQUIRED
         element   CDATA   #IMPLIED
         name      CDATA   #IMPLIED
         number    CDATA   #IMPLIED
