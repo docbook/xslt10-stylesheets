@@ -17,11 +17,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="anchor">
-  <a>
-    <xsl:attribute name="name">
-      <xsl:call-template name="object.id"/>
-    </xsl:attribute>
-  </a>
+  <xsl:call-template name="anchor"/>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -35,9 +31,7 @@
     <xsl:with-param name="linkend" select="@linkend"/>
   </xsl:call-template>
 
-  <xsl:if test="@id">
-    <a name="{@id}"/>
-  </xsl:if>
+  <xsl:call-template name="anchor"/>
 
   <xsl:choose>
     <xsl:when test="count($target) = 0">
@@ -486,10 +480,7 @@
 </xsl:template>
 
 <xsl:template match="olink">
-  <xsl:if test="@id">
-    <a name="{@id}"/>
-  </xsl:if>
-
+  <xsl:call-template name="anchor"/>
   <xsl:variable name="localinfo" select="@localinfo"/>
 
   <xsl:variable name="href">

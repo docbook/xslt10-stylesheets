@@ -30,15 +30,11 @@
 <xsl:template match="bibliography/titleabbrev"></xsl:template>
 
 <xsl:template match="bibliography/title" mode="component.title.mode">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select=".."/>
-    </xsl:call-template>
-  </xsl:variable>
   <h2 class="title">
-    <a name="{$id}">
-      <xsl:apply-templates/>
-    </a>
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="node" select=".."/>
+    </xsl:call-template>
+    <xsl:apply-templates/>
   </h2>
 </xsl:template>
 
@@ -57,22 +53,21 @@
 </xsl:template>
 
 <xsl:template match="bibliodiv/title">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select=".."/>
-    </xsl:call-template>
-  </xsl:variable>
   <h3 class="{name(.)}">
-    <a name="{$id}">
-      <xsl:apply-templates/>
-    </a>
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="node" select=".."/>
+    </xsl:call-template>
+    <xsl:apply-templates/>
   </h3>
 </xsl:template>
 
 <!-- ==================================================================== -->
 
 <xsl:template match="biblioentry">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="string(.) = ''">
       <xsl:variable name="bib" select="document($bibliography.collection)"/>
@@ -88,8 +83,8 @@
             <xsl:text> found in </xsl:text>
             <xsl:value-of select="$bibliography.collection"/>
           </xsl:message>
-          <div id="{$id}" class="{name(.)}">
-            <a name="{$id}"/>
+          <div class="{name(.)}">
+            <xsl:call-template name="anchor"/>
             <p>
               <xsl:text>Error: no bibliography entry: </xsl:text>
               <xsl:value-of select="$id"/>
@@ -101,8 +96,8 @@
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <div id="{$id}" class="{name(.)}">
-        <a name="{$id}"/>
+      <div class="{name(.)}">
+        <xsl:call-template name="anchor"/>
         <p>
           <xsl:apply-templates mode="bibliography.mode"/>
         </p>
@@ -112,7 +107,10 @@
 </xsl:template>
 
 <xsl:template match="bibliomixed">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="string(.) = ''">
       <xsl:variable name="bib" select="document($bibliography.collection)"/>
@@ -129,7 +127,7 @@
             <xsl:value-of select="$bibliography.collection"/>
           </xsl:message>
           <div id="{$id}" class="{name(.)}">
-            <a name="{$id}"/>
+            <xsl:call-template name="anchor"/>
             <p>
               <xsl:text>Error: no bibliography entry: </xsl:text>
               <xsl:value-of select="$id"/>
@@ -142,7 +140,7 @@
     </xsl:when>
     <xsl:otherwise>
       <div id="{$id}" class="{name(.)}">
-        <a name="{$id}"/>
+        <xsl:call-template name="anchor"/>
         <p>
           <xsl:choose>
             <xsl:when test="local-name(*[1]) = 'abbrev'">

@@ -24,9 +24,7 @@
   <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
-  <xsl:if test="@id">
-    <a href="{$id}"/>
-  </xsl:if>
+  <xsl:call-template name="anchor"/>
 
   <xsl:variable name="content">
     <xsl:choose>

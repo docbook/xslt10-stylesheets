@@ -58,17 +58,14 @@
   <xsl:variable name="qalevel">
     <xsl:call-template name="qandadiv.section.level"/>
   </xsl:variable>
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select="parent::*"/>
-    </xsl:call-template>
-  </xsl:variable>
 
   <xsl:element name="h{string(number($qalevel)+1)}">
     <xsl:attribute name="class">
       <xsl:value-of select="name(.)"/>
     </xsl:attribute>
-    <a name="{$id}"/>
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="node" select=".."/>
+    </xsl:call-template>
     <xsl:apply-templates select="parent::qandadiv" mode="label.markup"/>
     <xsl:text> </xsl:text>
     <xsl:apply-templates/>
@@ -105,16 +102,10 @@
 
   <div class="{name(.)}">
     <p>
-      <xsl:if test="../@id">
-        <a>
-          <xsl:attribute name="name">
-            <xsl:call-template name="object.id">
-              <xsl:with-param name="object" select="parent::*"/>
-            </xsl:call-template>
-          </xsl:attribute>
-        </a>
-      </xsl:if>
-      <a name="{$id}"/>
+      <xsl:call-template name="anchor">
+        <xsl:with-param name="node" select=".."/>
+      </xsl:call-template>
+      <xsl:call-template name="anchor"/>
 
       <xsl:choose>
         <xsl:when test="$deflabel = 'none'">
@@ -137,13 +128,10 @@
 <xsl:template match="answer">
   <xsl:variable name="firstch" select="(*[name(.)!='label'])[1]"/>
   <xsl:variable name="restch" select="(*[name(.)!='label'])[position()!=1]"/>
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
 
   <div class="{name(.)}">
     <p>
-      <a name="{$id}"/>
+      <xsl:call-template name="anchor"/>
       <b>
         <xsl:apply-templates select="." mode="label.markup"/>
       </b>

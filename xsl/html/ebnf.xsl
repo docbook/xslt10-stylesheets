@@ -127,7 +127,6 @@ borders, otherwise they don't.</para>
 
 <xsl:template match="production">
   <xsl:param name="recap" select="false()"/>
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
   <tr>
     <td align="left" valign="top" width="3%">
       <xsl:text>[</xsl:text>
@@ -147,7 +146,7 @@ borders, otherwise they don't.</para>
 	  </a>
 	</xsl:when>
 	<xsl:otherwise>
-	  <a name="{$id}"/>
+          <xsl:call-template name="anchor"/>
 	  <xsl:apply-templates select="lhs"/>
 	</xsl:otherwise>
       </xsl:choose>
@@ -334,9 +333,8 @@ borders, otherwise they don't.</para>
 </xsl:template>
 
 <xsl:template match="constraintdef">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
   <div class="{name(.)}">
-    <a name="{$id}"/>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </div>
 </xsl:template>

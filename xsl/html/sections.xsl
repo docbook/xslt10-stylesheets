@@ -15,11 +15,9 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="section">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
   <xsl:variable name="depth" select="count(ancestor::section)+1"/>
 
   <div class="{name(.)}">
-    <a name="{$id}"/>
     <xsl:call-template name="section.titlepage"/>
     <xsl:if test="($generate.section.toc != '0'
                    and $depth &lt;= $generate.section.toc.level)
@@ -63,12 +61,7 @@
 </xsl:template>
 
 <xsl:template match="sect1">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
   <div class="{name(.)}">
-    <a name="{$id}"/>
     <xsl:call-template name="sect1.titlepage"/>
     <xsl:if test="($generate.section.toc != '0'
                    and $generate.section.toc.level &gt;= 1)
@@ -85,12 +78,7 @@
 </xsl:template>
 
 <xsl:template match="sect2">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
   <div class="{name(.)}">
-    <a name="{$id}"/>
     <xsl:call-template name="sect2.titlepage"/>
     <xsl:if test="($generate.section.toc != '0'
                    and $generate.section.toc.level &gt;= 2)
@@ -106,12 +94,7 @@
 </xsl:template>
 
 <xsl:template match="sect3">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
   <div class="{name(.)}">
-    <a name="{$id}"/>
     <xsl:call-template name="sect3.titlepage"/>
     <xsl:if test="($generate.section.toc != '0'
                    and $generate.section.toc.level &gt;= 3)
@@ -127,12 +110,7 @@
 </xsl:template>
 
 <xsl:template match="sect4">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
   <div class="{name(.)}">
-    <a name="{$id}"/>
     <xsl:call-template name="sect4.titlepage"/>
     <xsl:if test="($generate.section.toc != '0'
                    and $generate.section.toc.level &gt;= 4)
@@ -148,12 +126,7 @@
 </xsl:template>
 
 <xsl:template match="sect5">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
   <div class="{name(.)}">
-    <a name="{$id}"/>
     <xsl:call-template name="sect5.titlepage"/>
     <xsl:if test="($generate.section.toc != '0'
                    and $generate.section.toc.level &gt;= 5)
@@ -169,12 +142,7 @@
 </xsl:template>
 
 <xsl:template match="simplesect">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
   <div class="{name(.)}">
-    <a name="{$id}"/>
     <xsl:call-template name="simplesect.titlepage"/>
     <xsl:apply-templates/>
   </div>
@@ -224,6 +192,23 @@
   <xsl:param name="section" select="."/>
   <xsl:param name="level" select="'1'"/>
   <xsl:param name="title"/>
+
+  <xsl:variable name="id">
+    <xsl:choose>
+      <!-- if title is in an *info wrapper, get the grandparent -->
+      <xsl:when test="contains(local-name(..), 'info')">
+        <xsl:call-template name="object.id">
+          <xsl:with-param name="object" select="../.."/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="object.id">
+          <xsl:with-param name="object" select=".."/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:element name="h{$level}">
     <xsl:attribute name="class">title</xsl:attribute>
     <xsl:if test="$css.decoration != '0'">
@@ -231,13 +216,10 @@
         <xsl:attribute name="style">clear: both</xsl:attribute>
       </xsl:if>
     </xsl:if>
-    <a>
-      <xsl:attribute name="name">
-        <xsl:call-template name="object.id">
-          <xsl:with-param name="object" select="$section"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </a>
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="node" select="$section"/>
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
     <xsl:copy-of select="$title"/>
   </xsl:element>
 </xsl:template>
@@ -315,12 +297,10 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
   <xsl:element name="h{$level}">
-    <a name="{$id}"/>
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
     <xsl:apply-templates/>
   </xsl:element>
 </xsl:template>

@@ -21,11 +21,7 @@
 
 <xsl:template name="formal.object.heading">
   <p>
-    <a>
-      <xsl:attribute name="name">
-	<xsl:call-template name="object.id"/>
-      </xsl:attribute>
-    </a>
+    <xsl:call-template name="anchor"/>
     <b>
       <xsl:apply-templates select="." mode="object.title.markup">
         <xsl:with-param name="allow-anchors" select="1"/>
@@ -35,11 +31,9 @@
 </xsl:template>
 
 <xsl:template name="informal.object">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
-
-  <div class="{name(.)}" id="{$id}">
+  <div class="{name(.)}">
     <xsl:if test="$spacing.paras != 0"><p/></xsl:if>
-    <a name="{$id}"/>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
     <xsl:if test="$spacing.paras != 0"><p/></xsl:if>
   </div>

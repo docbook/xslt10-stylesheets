@@ -65,12 +65,7 @@
 
 <xsl:template match="glosslist">
   <div class="{name(.)}">
-    <a>
-      <xsl:attribute name="name">
-        <xsl:call-template name="object.id"/>
-      </xsl:attribute>
-    </a>
-
+    <xsl:call-template name="anchor"/>
     <dl>
       <xsl:apply-templates/>
     </dl>
@@ -117,15 +112,10 @@ GlossEntry ::=
 
 <xsl:template match="glossentry/glossterm[1]" priority="2">
   <dt>
-    <a>
-      <xsl:attribute name="name">
-        <xsl:call-template name="object.id">
-           <xsl:with-param name="object" select=".."/>
-        </xsl:call-template>
-      </xsl:attribute>
-
-      <xsl:apply-templates/>
-    </a>
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="node" select=".."/>
+    </xsl:call-template>
+    <xsl:apply-templates/>
   </dt>
 </xsl:template>
 

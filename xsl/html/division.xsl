@@ -15,11 +15,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="set">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
-  <div class="{name(.)}" id="{$id}">
+  <div class="{name(.)}">
     <xsl:call-template name="set.titlepage"/>
     <xsl:if test="$generate.set.toc != '0'">
       <xsl:call-template name="set.toc"/>
@@ -36,11 +32,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="book">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
-  <div class="{name(.)}" id="{$id}">
+  <div class="{name(.)}">
     <xsl:call-template name="book.titlepage"/>
     <xsl:apply-templates select="dedication" mode="dedication"/>
     <xsl:if test="$generate.book.toc != '0'">
@@ -58,11 +50,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="part">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
-  <div class="{name(.)}" id="{$id}">
+  <div class="{name(.)}">
     <xsl:call-template name="part.titlepage"/>
     <xsl:if test="not(partintro) and $generate.part.toc != '0'">
       <xsl:call-template name="division.toc"/>
@@ -102,15 +90,8 @@
 <xsl:template match="partintro/subtitle"></xsl:template>
 
 <xsl:template match="partintro/title" mode="partintro.title.mode">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select=".."/>
-    </xsl:call-template>
-  </xsl:variable>
   <h2>
-    <a name="{$id}">
-      <xsl:apply-templates/>
-    </a>
+    <xsl:apply-templates/>
   </h2>
 </xsl:template>
 

@@ -143,9 +143,7 @@
 
 <xsl:template match="graphic">
   <p>
-    <xsl:if test="@id">
-      <a name="{@id}"/>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:call-template name="process.image"/>
   </p>
 </xsl:template>
