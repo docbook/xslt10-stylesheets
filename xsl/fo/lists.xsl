@@ -204,8 +204,10 @@
         </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
+        <!-- FIXME: this should be a parameter! -->
         <xsl:call-template name="longest.term">
           <xsl:with-param name="terms" select="varlistentry/term"/>
+          <xsl:with-param name="maxlength" select="12"/>
         </xsl:call-template>
         <xsl:text>em</xsl:text>
       </xsl:otherwise>
@@ -234,20 +236,26 @@
 <xsl:template name="longest.term">
   <xsl:param name="longest" select="0"/>
   <xsl:param name="terms" select="."/>
+  <xsl:param name="maxlength" select="-1"/>
 
   <xsl:choose>
+    <xsl:when test="$longest &gt; $maxlength and $maxlength &gt; 0">
+      <xsl:value-of select="$maxlength"/>
+    </xsl:when>
     <xsl:when test="not($terms)">
       <xsl:value-of select="$longest"/>
     </xsl:when>
     <xsl:when test="string-length($terms[1]) &gt; $longest">
       <xsl:call-template name="longest.term">
         <xsl:with-param name="longest" select="string-length($terms[1])"/>
+        <xsl:with-param name="maxlength" select="$maxlength"/>
         <xsl:with-param name="terms" select="terms[position() &gt; 1]"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="longest.term">
         <xsl:with-param name="longest" select="$longest"/>
+        <xsl:with-param name="maxlength" select="$maxlength"/>
         <xsl:with-param name="terms" select="terms[position() &gt; 1]"/>
       </xsl:call-template>
     </xsl:otherwise>
