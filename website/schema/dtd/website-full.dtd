@@ -1,5 +1,5 @@
 <!-- ====================================================================== -->
-<!-- Website Full DTD V2.5.0
+<!-- Website Full DTD V2.5.1
      Copyright (C) 2002 Norman Walsh
      http://sourceforge.net/projects/docbook/
 
@@ -12,8 +12,8 @@
 
      <?xml version="1.0"?>
      <!DOCTYPE webpage
-       PUBLIC "-//Norman Walsh//DTD Website Full V2.5.0//EN"
-       "http://docbook.sourceforge.net/release/website/2.5.0/website-full.dtd">
+       PUBLIC "-//Norman Walsh//DTD Website Full V2.5.1//EN"
+       "http://docbook.sourceforge.net/release/website/current/schema/dtd/website-full.dtd">
                                                                             -->
 <!-- ====================================================================== -->
 
@@ -23,8 +23,8 @@
 %extensions.mod;
 
 <!-- In this version, we use full DocBook -->
-<!ENTITY % docbook.dtd PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
-  "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<!ENTITY % docbook.dtd PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 %docbook.dtd;
 
 <!-- be more generous about the content of webpages in website-full -->
