@@ -94,10 +94,12 @@
   <fo:block>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates select="para|simpara|formalpara|literallayout"/>
-    <fo:inline>
-      <xsl:text>--</xsl:text>
-      <xsl:apply-templates select="attribution"/>
-    </fo:inline>
+    <xsl:if test="attribution">
+      <fo:inline>
+        <xsl:text>--</xsl:text>
+        <xsl:apply-templates select="attribution"/>
+      </fo:inline>
+    </xsl:if>
   </fo:block>
 </xsl:template>
 
