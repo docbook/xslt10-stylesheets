@@ -10,7 +10,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='index.on.role.frag'>
-<xsl:param name="index.on.role" select="1"/>
+<xsl:param name="index.on.role" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 
