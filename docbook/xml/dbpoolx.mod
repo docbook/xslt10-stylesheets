@@ -50,7 +50,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbpool PUBLIC
-     "-//OASIS//ELEMENTS DocBook XML Information Pool V4.4b1//EN"
+     "-//OASIS//ELEMENTS DocBook XML Information Pool V4.4CR1//EN"
      "dbpoolx.mod">
      %dbpool;
 
@@ -562,11 +562,15 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!ENTITY % userlevel.attrib
 	"userlevel	CDATA		#IMPLIED">
 
-
 <!-- Vendor: Computer vendor to which element applies; no default -->
 
 <!ENTITY % vendor.attrib
 	"vendor		CDATA		#IMPLIED">
+
+<!-- Wordsize: Computer word size (32 bit, 64 bit, etc.); no default -->
+
+<!ENTITY % wordsize.attrib
+	"wordsize	CDATA		#IMPLIED">
 
 <!ENTITY % local.effectivity.attrib "">
 <!ENTITY % effectivity.attrib
@@ -578,6 +582,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
         %security.attrib;
 	%userlevel.attrib;
 	%vendor.attrib;
+	%wordsize.attrib;
 	%local.effectivity.attrib;"
 >
 
@@ -3645,7 +3650,7 @@ in the text (no (0) value, the default)
   <!-- ====================================================== -->
 
 <!ENTITY % htmltbl
-  PUBLIC "-//OASIS//ELEMENTS DocBook XML HTML Tables V4.4b1//EN"
+  PUBLIC "-//OASIS//ELEMENTS DocBook XML HTML Tables V4.4CR1//EN"
   "htmltblx.mod">
 %htmltbl;
 <!--end of allow.html.tables-->]]>
@@ -3680,7 +3685,7 @@ in the text (no (0) value, the default)
 
 <!-- Reference CALS Table Model -->
 <!ENTITY % tablemodel
-  PUBLIC "-//OASIS//DTD DocBook CALS Table Model V4.4b1//EN"
+  PUBLIC "-//OASIS//DTD DocBook CALS Table Model V4.4CR1//EN"
   "calstblx.dtd">
 ]]>
 
