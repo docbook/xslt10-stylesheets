@@ -29,7 +29,15 @@
   </fo:list-block>
 </xsl:template>
 
-<xsl:template match="itemizedlist/title|orderedlist/title|variablelist/title">
+<xsl:template match="itemizedlist/title|orderedlist/title">
+  <!--nop-->
+</xsl:template>
+
+<xsl:template match="variablelist/title" mode="vl.as.list">
+  <!--nop-->
+</xsl:template>
+
+<xsl:template match="variablelist/title" mode="vl.as.blocks">
   <!--nop-->
 </xsl:template>
 
@@ -88,6 +96,17 @@
 </xsl:template>
 
 <xsl:template match="variablelist">
+  <xsl:choose>
+    <xsl:when test="$format.variablelist.as.list = 0">
+      <xsl:apply-templates select="." mode="vl.as.blocks"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="." mode="vl.as.list"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="variablelist" mode="vl.as.list">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -114,11 +133,11 @@
                  provisional-distance-between-starts="{$termlength}"
                  provisional-label-separation="0.25in"
                  xsl:use-attribute-sets="list.block.spacing">
-    <xsl:apply-templates/>
+    <xsl:apply-templates mode="vl.as.list"/>
   </fo:list-block>
 </xsl:template>
 
-<xsl:template match="varlistentry">
+<xsl:template match="varlistentry" mode="vl.as.list">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
   <fo:list-item id="{$id}" xsl:use-attribute-sets="list.item.spacing">
     <fo:list-item-label end-indent="label-end()">
@@ -130,6 +149,34 @@
       <xsl:apply-templates select="listitem"/>
     </fo:list-item-body>
   </fo:list-item>
+</xsl:template>
+
+<xsl:template match="variablelist" mode="vl.as.blocks">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <!-- termlength is irrelevant -->
+
+  <xsl:if test="title">
+    <xsl:apply-templates select="title" mode="list.title.mode"/>
+  </xsl:if>
+
+  <fo:block id="{$id}" xsl:use-attribute-sets="list.block.spacing">
+    <xsl:apply-templates mode="vl.as.blocks"/>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="varlistentry" mode="vl.as.blocks">
+  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+
+  <fo:block id="{$id}" xsl:use-attribute-sets="list.item.spacing">
+    <xsl:apply-templates select="term"/>
+  </fo:block>
+
+  <fo:block margin-start="0.25in">
+    <xsl:apply-templates select="listitem"/>
+  </fo:block>
 </xsl:template>
 
 <xsl:template match="varlistentry/term">
@@ -147,7 +194,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="title" mode="list.title.mode">
-  <fo:block font-size="12pt" font-weight="bold">
+  <fo:block font-size="12pt" font-weight="bold"
+            xsl:use-attribute-sets="list.block.spacing">
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
