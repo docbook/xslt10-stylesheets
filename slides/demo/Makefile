@@ -12,10 +12,11 @@ frames: frames1 frames2 frames3 frames4 frames5 frames6 frames7
         frames1 frames2 frames3 frames4 frames5 frames6 frames7
 
 browser:
-	cd browser && cp ../../browser/*.css ../../browser/*.js ../../browser/*.js .
+	mkdir -p browser
+	cd browser && cp ../../browser/*.css ../../browser/*.js .
 
 graphics:
-	cd ../graphics && tar cf - `find . -type f -name "*.gif" -o -name "*.png"` | (cd ../demo/graphics; tar xvf -)
+	cd ../graphics && tar cf - `find . -type f -name "*.gif" -o -name "*.png"` | (cd ../demo/graphics; tar xf -)
 
 default:
 	cd default && rm -f *.html && $(XSLT) ../../xsl/$(HTML)/default.xsl
