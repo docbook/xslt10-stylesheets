@@ -530,16 +530,22 @@ GlossEntry ::=
         </xsl:choose>
       </xsl:with-param>
     </xsl:call-template>
-    <xsl:apply-templates mode="glossary.as.list"/>
+
+    <fo:list-item-label end-indent="label-end()">
+      <fo:block>
+        <xsl:apply-templates select="glossterm" mode="glossary.as.list"/>
+        <xsl:apply-templates select="indexterm"/>
+      </fo:block>
+    </fo:list-item-label>
+
+    <fo:list-item-body start-indent="body-start()">
+      <xsl:apply-templates select="glosssee|glossdef" mode="glossary.as.list"/>
+    </fo:list-item-body>
   </fo:list-item>
 </xsl:template>
 
 <xsl:template match="glossentry/glossterm" mode="glossary.as.list">
-  <fo:list-item-label end-indent="label-end()">
-    <fo:block>
-      <xsl:apply-templates/>
-    </fo:block>
-  </fo:list-item-label>
+  <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="glossentry/acronym" mode="glossary.as.list">
@@ -555,38 +561,35 @@ GlossEntry ::=
   <xsl:variable name="otherterm" select="@otherterm"/>
   <xsl:variable name="targets" select="//node()[@id=$otherterm]"/>
   <xsl:variable name="target" select="$targets[1]"/>
-  <fo:list-item-body start-indent="body-start()">
-    <fo:block>
-      <xsl:call-template name="gentext.template">
-        <xsl:with-param name="context" select="'glossary'"/>
-        <xsl:with-param name="name" select="'see'"/>
-      </xsl:call-template>
-      <xsl:choose>
-        <xsl:when test="@otherterm">
-          <xsl:apply-templates select="$target" mode="xref"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-templates mode="glossary.as.list"/>
-        </xsl:otherwise>
-      </xsl:choose>
-      <xsl:text>.</xsl:text>
-    </fo:block>
-  </fo:list-item-body>
+
+  <fo:block>
+    <xsl:call-template name="gentext.template">
+      <xsl:with-param name="context" select="'glossary'"/>
+      <xsl:with-param name="name" select="'see'"/>
+    </xsl:call-template>
+    <xsl:choose>
+      <xsl:when test="@otherterm">
+        <xsl:apply-templates select="$target" mode="xref"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates mode="glossary.as.list"/>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>.</xsl:text>
+  </fo:block>
 </xsl:template>
 
 <xsl:template match="glossentry/glossdef" mode="glossary.as.list">
-  <fo:list-item-body start-indent="body-start()">
-    <xsl:apply-templates select="*[local-name(.) != 'glossseealso']"/>
-    <xsl:if test="glossseealso">
-      <fo:block>
-        <xsl:call-template name="gentext.template">
-          <xsl:with-param name="context" select="'glossary'"/>
-          <xsl:with-param name="name" select="'seealso'"/>
-        </xsl:call-template>
-        <xsl:apply-templates select="glossseealso" mode="glossary.as.list"/>
-      </fo:block>
-    </xsl:if>
-  </fo:list-item-body>
+  <xsl:apply-templates select="*[local-name(.) != 'glossseealso']"/>
+  <xsl:if test="glossseealso">
+    <fo:block>
+      <xsl:call-template name="gentext.template">
+        <xsl:with-param name="context" select="'glossary'"/>
+        <xsl:with-param name="name" select="'seealso'"/>
+      </xsl:call-template>
+      <xsl:apply-templates select="glossseealso" mode="glossary.as.list"/>
+    </fo:block>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="glossentry/glossdef/para[1]|glossentry/glossdef/simpara[1]"
