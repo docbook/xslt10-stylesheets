@@ -103,6 +103,9 @@ Norman Walsh, <email>ndw@nwalsh.com</email>.</para>
     <optional>
       <attribute name="type"/>
     </optional>
+    <optional>
+      <attribute name="language"/>
+    </optional>
   </define>
 
   <define name="script">

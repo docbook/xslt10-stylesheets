@@ -122,6 +122,9 @@ Norman Walsh, <email>ndw@nwalsh.com</email>.</para>
     <optional>
       <attribute name="language"/>
     </optional>
+    <optional>
+      <attribute name="type"/>
+    </optional>
     <text/>
   </element>
 </define>
