@@ -396,7 +396,12 @@ db.biblio.class.attribute =
 
 # ======================================================================
 
-db.ubiq.inlines  = db.inlinemediaobject | db.anchor | db.remark
+db.ubiq.inlines =
+   db.inlinemediaobject
+ | db.remark
+ | db.superscript
+ | db.subscript
+ | db.link.inlines
 
 db._text         = (text | db.ubiq.inlines | db._phrase | db.replaceable)*
 
@@ -518,6 +523,7 @@ db.markup.inlines =
  | db.code
  | db.constant
  | db.email
+ | db.uri
 
 # TEI: no class
 
@@ -536,6 +542,7 @@ db.bibliography.inlines =
 db.publishing.inlines =
    db.abbrev
  | db.acronym
+ | db.date
  | db.emphasis
  | db.footnote
  | db.footnoteref
@@ -581,7 +588,6 @@ db.keyboard.inlines =
 db.link.inlines =
    db.xref
  | db.link
- | db.uri
  | db.anchor
 
 db.extension.inlines = notAllowed
