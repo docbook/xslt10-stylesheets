@@ -3661,6 +3661,7 @@ in the text (no (0) value, the default)
 <!-- Add label and role attributes to table and informaltable -->
 <!ENTITY % bodyatt "
 		floatstyle	CDATA			#IMPLIED
+		rowheader	(firstcol|norowheader)	#IMPLIED
                 %label.attrib;"
 >
 
@@ -3694,6 +3695,7 @@ in the text (no (0) value, the default)
 <!-- InformalTable.                                             -->
 <!ENTITY % bodyatt
 	"%common.attrib;
+	rowheader	(firstcol|norowheader)	#IMPLIED
 	%label.attrib;
 	%tables.role.attrib;">
 
@@ -3757,6 +3759,7 @@ in the text (no (0) value, the default)
 		frame		(%tbl.frame.attval;)	#IMPLIED
 		colsep		%yesorno.attvals;	#IMPLIED
 		rowsep		%yesorno.attvals;	#IMPLIED
+		rowheader	(firstcol|norowheader)	#IMPLIED
 		%common.table.attribs;
 		%tbl.table.att;
 		%local.informaltable.attrib;

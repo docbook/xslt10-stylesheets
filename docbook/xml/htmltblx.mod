@@ -163,6 +163,7 @@
 <!-- Add label and role attributes to table and informaltable -->
 <!ENTITY % bodyatt "
 		floatstyle	CDATA			#IMPLIED
+		rowheader	(firstcol|norowheader)	#IMPLIED
                 %label.attrib;"
 >
 
