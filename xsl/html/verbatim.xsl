@@ -268,27 +268,38 @@
 
 <xsl:template name="make-verbatim">
   <xsl:param name="text" select="''"/>
+
+  <xsl:call-template name="make-verbatim-recursive">
+    <xsl:with-param name="text" select="translate($text, ' ', '&#160;')"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="make-verbatim-recursive">
+  <xsl:param name="text" select="''"/>
+
   <xsl:choose>
     <xsl:when test="not(contains($text, '&#xA;'))">
       <xsl:value-of select="$text"/>
     </xsl:when>
+
     <xsl:otherwise>
       <xsl:variable name="len" select="string-length($text)"/>
+
       <xsl:choose>
         <xsl:when test="$len = 1">
           <br/><xsl:text>&#xA;</xsl:text>
         </xsl:when>
+
         <xsl:otherwise>
-          <xsl:variable name="half" select="$len div 2"/>
-          <xsl:call-template name="make-verbatim">
-            <xsl:with-param name="text" select="substring($text, 1,
-$half)"/>
-          </xsl:call-template>
-          <xsl:call-template name="make-verbatim">
-            <xsl:with-param name="text"
-                            select="substring($text, ($half + 1), $len)"/>
-          </xsl:call-template>
-        </xsl:otherwise>
+    	  <xsl:variable name="half" select="$len div 2"/>
+    	  <xsl:call-template name="make-verbatim-recursive">
+    	    <xsl:with-param name="text" select="substring($text, 1, $half)"/>
+    	  </xsl:call-template>
+    	  <xsl:call-template name="make-verbatim-recursive">
+    	    <xsl:with-param name="text"
+    			    select="substring($text, ($half + 1), $len)"/>
+    	  </xsl:call-template>
+    	</xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
