@@ -272,6 +272,9 @@
 <xsl:template name="gentext.template">
   <xsl:param name="context" select="'default'"/>
   <xsl:param name="name" select="'default'"/>
+  <xsl:param name="purpose"/>
+  <xsl:param name="xrefstyle"/>
+  <xsl:param name="referrer"/>
   <xsl:param name="lang">
     <xsl:call-template name="l10n.language"/>
   </xsl:param>
@@ -309,10 +312,18 @@
   </xsl:if>
 
   <xsl:variable name="local.template.node"
-                select="$local.context.node/l:template[@name=$name][1]"/>
+                select="($local.context.node/l:template[@name=$name
+                                                        and @style
+                                                        and @style=$xrefstyle]
+                        |$local.context.node/l:template[@name=$name
+                                                        and not(@style)])[1]"/>
 
   <xsl:variable name="template.node"
-                select="$context.node/l:template[@name=$name][1]"/>
+                select="($context.node/l:template[@name=$name
+                                                  and @style
+                                                  and @style=$xrefstyle]
+                        |$context.node/l:template[@name=$name
+                                                  and not(@style)])[1]"/>
 
   <xsl:choose>
     <xsl:when test="$local.template.node">
