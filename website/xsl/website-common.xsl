@@ -712,12 +712,14 @@ node.</para>
       <xsl:variable name="filename">
         <xsl:choose>
           <xsl:when test="@filename">
+            <xsl:value-of select="$filename-prefix"/>
             <xsl:value-of select="@filename"/>
           </xsl:when>
           <xsl:when test="/layout/config[@param='default-filename']">
+            <xsl:value-of select="$filename-prefix"/>
             <xsl:value-of select="(/layout/config[@param='default-filename'])[1]/@value"/>
           </xsl:when>
-          <xsl:otherwise>index.html</xsl:otherwise>
+          <xsl:otherwise><xsl:value-of select="$filename-prefix"/>index.html</xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
     
