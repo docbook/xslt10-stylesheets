@@ -85,11 +85,13 @@
       </rx:bookmark>
     </xsl:when>
     <xsl:otherwise>
-      <rx:bookmark internal-destination="{$id}">
-        <rx:bookmark-label>
-          <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
-        </rx:bookmark-label>
-      </rx:bookmark>
+      <xsl:if test="$bookmark-label != ''">
+        <rx:bookmark internal-destination="{$id}">
+          <rx:bookmark-label>
+            <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+          </rx:bookmark-label>
+        </rx:bookmark>
+      </xsl:if>
 
       <xsl:variable name="toc.params">
         <xsl:call-template name="find.path.params">
