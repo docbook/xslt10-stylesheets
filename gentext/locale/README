@@ -111,6 +111,9 @@ If you have a new language, then copy the en.xml file
 and translate all entries in that.  You don't have to
 translate empty elements such as '<Chapter/>' that
 are used in the <template> element content.
+If you are using native characters instead of Unicode
+numerical character entities, be sure to indicate the
+file's encoding in the XML prolog.
 
 Only the source files are checked into CVS, so the
 translation has to be done on the source file.  However,
