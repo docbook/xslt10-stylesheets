@@ -24,7 +24,9 @@
   <xsl:choose>
     <xsl:when test="$make.index.markup != 0">
       <fo:block>
-        <xsl:call-template name="generate-index-markup"/>
+        <xsl:call-template name="generate-index-markup">
+          <xsl:with-param name="scope" select="(ancestor::book|/)[last()]"/>
+        </xsl:call-template>
       </fo:block>
     </xsl:when>
     <xsl:otherwise>
@@ -33,7 +35,9 @@
         <xsl:call-template name="index.titlepage"/>
         <xsl:apply-templates/>
         <xsl:if test="count(indexentry) = 0 and count(indexdiv) = 0">
-          <xsl:call-template name="generate-index"/>
+          <xsl:call-template name="generate-index">
+            <xsl:with-param name="scope" select="(ancestor::book|/)[last()]"/>
+          </xsl:call-template>
         </xsl:if>
       </fo:block>
     </xsl:otherwise>
@@ -86,14 +90,18 @@
                       white-space-collapse='false'
                       xsl:use-attribute-sets="monospace.verbatim.properties"
                       linefeed-treatment="preserve">
-              <xsl:call-template name="generate-index-markup"/>
+              <xsl:call-template name="generate-index-markup">
+                <xsl:with-param name="scope" select="(ancestor::book|/)[last()]"/>
+              </xsl:call-template>
             </fo:block>
           </xsl:when>
           <xsl:when test="indexentry|indexdiv/indexentry">
             <xsl:apply-templates/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:call-template name="generate-index"/>
+            <xsl:call-template name="generate-index">
+              <xsl:with-param name="scope" select="(ancestor::book|/)[last()]"/>
+            </xsl:call-template>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:if>
@@ -111,7 +119,10 @@
   <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster">
       <xsl:with-param name="pageclass">
-        <xsl:if test="$make.index.markup != 0">body</xsl:if>
+        <xsl:choose>
+          <xsl:when test="$make.index.markup != 0">body</xsl:when>
+          <xsl:otherwise>index</xsl:otherwise>
+        </xsl:choose>
       </xsl:with-param>
     </xsl:call-template>
   </xsl:variable>
@@ -147,14 +158,18 @@
                       white-space-collapse='false'
                       xsl:use-attribute-sets="monospace.verbatim.properties"
                       linefeed-treatment="preserve">
-              <xsl:call-template name="generate-setindex-markup"/>
+              <xsl:call-template name="generate-index-markup">
+                <xsl:with-param name="scope" select="/"/>
+              </xsl:call-template>
             </fo:block>
           </xsl:when>
           <xsl:when test="indexentry|indexdiv/indexentry">
             <xsl:apply-templates/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:call-template name="generate-setindex"/>
+            <xsl:call-template name="generate-index">
+              <xsl:with-param name="scope" select="/"/>
+            </xsl:call-template>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:if>
