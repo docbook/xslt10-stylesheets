@@ -176,7 +176,7 @@
 		|keycode|keycombo|keysym|literal|constant|markup|medialabel
 		|menuchoice|mousebutton|option|optional|parameter
 		|prompt|property|replaceable|returnvalue|sgmltag|structfield
-		|structname|symbol|systemitem|token|type|userinput|varname
+		|structname|symbol|systemitem|uri|token|type|userinput|varname
                 %ebnf.inline.hook;
 		%local.tech.char.class;">
 
@@ -7161,6 +7161,28 @@ OtherCredit. -->
 <!--end of systemitem.attlist-->]]>
 <!--end of systemitem.module-->]]>
 
+<!ENTITY % uri.module "INCLUDE">
+<![%uri.module;[
+<!ENTITY % local.uri.attrib "">
+<!ENTITY % uri.role.attrib "%role.attrib;">
+
+<!ENTITY % uri.element "INCLUDE">
+<![%uri.element;[
+<!ELEMENT uri %ho; (%smallcptr.char.mix;)*>
+<!--end of uri.element-->]]>
+
+<!-- Type: Type of URI; no default -->
+
+<!ENTITY % uri.attlist "INCLUDE">
+<![%uri.attlist;[
+<!ATTLIST uri
+		type	CDATA	#IMPLIED
+		%common.attrib;
+		%uri.role.attrib;
+		%local.uri.attrib;
+>
+<!--end of uri.attlist-->]]>
+<!--end of uri.module-->]]>
 
 <!ENTITY % token.module "INCLUDE">
 <![%token.module;[
