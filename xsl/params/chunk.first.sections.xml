@@ -9,7 +9,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='chunk.first.sections.frag'><xsl:param name="chunk.first.sections" select="'0'"/></src:fragment>
+<src:fragment id='chunk.first.sections.frag'>
+<xsl:param name="chunk.first.sections" select="0"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
