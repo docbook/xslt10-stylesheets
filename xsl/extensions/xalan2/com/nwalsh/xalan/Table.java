@@ -173,63 +173,6 @@ public class Table {
   }
 
   /**
-   * <p>Find the string value of a stylesheet variable or parameter</p>
-   *
-   * <p>Returns the string value of <code>varName</code> in the current
-   * <code>context</code>. Returns the empty string if the variable is
-   * not defined.</p>
-   *
-   * @param context The current stylesheet context
-   * @param varName The name of the variable (without the dollar sign)
-   *
-   * @return The string value of the variable
-   */
-  private String getStringVariable(ExpressionContext context,
-				   String varName) {
-    try {
-      XPathContext xpc = (XPathContext) context;
-      XObject var = xpc.getVariable(new QName(varName));
-      if (var != null) {
-	return var.toString();
-      } else {
-	System.out.println("$" + varName + " is not a defined parameter.");
-	return "";
-      }
-    } catch (TransformerException te) {
-      System.out.println("Transformer exception getting value of $" + varName);
-      return "";
-    }
-  }
-
-  private int getIntVariable(ExpressionContext context,
-			     String varName) {
-    String stringValue = getStringVariable(context, varName);
-    if (stringValue != null) {
-      try {
-	int value = Integer.parseInt(stringValue);
-	return value;
-      } catch (NumberFormatException e) {
-	System.out.println("$" + varName + " is not an integer.");
-      }
-    }
-    return 0;
-  }
-
-  private boolean getBooleanVariable(ExpressionContext context,
-				     String varName) {
-    String stringValue = getStringVariable(context, varName);
-    if (stringValue != null) {
-      if (stringValue.equals("0") || stringValue.equals("")) {
-	return false;
-      } else {
-	return true;
-      }
-    } else {
-      return false;
-    }
-  }
-
-  /**
    * <p>Adjust column widths in an HTML table.</p>
    *
    * <p>The specification of column widths in CALS (a relative width
