@@ -1,5 +1,4 @@
 include ../../../cvstools/Makefile.incl
-XSLT=saxon
 
 STYLE=../jrefhtml.xsl
 VPATH=../../docsrc/fo
