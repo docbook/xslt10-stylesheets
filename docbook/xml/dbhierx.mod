@@ -1300,8 +1300,8 @@ change will not be made after all. -->
 			(%sect.title.content;),
 			(%nav.class;)*,
 			(((%divcomponent.mix;)+,
- 			  ((%refentry.class;)*|section*))
-			 | (%refentry.class;)+|section+),
+ 			  ((%refentry.class;)*|section*|simplesect*))
+			 | (%refentry.class;)+|section+|simplesect+),
 			(%nav.class;)*)
 		%ubiq.inclusion;>
 <!--end of section.element-->]]>
