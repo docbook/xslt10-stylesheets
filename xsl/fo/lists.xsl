@@ -400,10 +400,7 @@
                 select="*[not(self::step or self::title)]"/>
   <xsl:variable name="steps" select="step"/>
 
-  <fo:block id="{$id}"
-            space-before.optimum="1em"
-            space-before.minimum="0.8em"
-            space-before.maximum="1.2em">
+  <fo:block id="{$id}" xsl:use-attribute-sets="list.block.spacing">
     <xsl:if test="./title">
       <fo:block font-weight="bold">
         <xsl:apply-templates select="./title" mode="procedure.title.mode"/>
@@ -439,13 +436,18 @@
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
   <fo:list-item>
     <fo:list-item-label end-indent="label-end()">
-      <fo:block id="{$id}"
-                space-before.optimum="1em"
-                space-before.minimum="0.8em"
-                space-before.maximum="1.2em">
-        <xsl:apply-templates select="." mode="number">
-          <xsl:with-param name="recursive" select="0"/>
-        </xsl:apply-templates>
+      <fo:block id="{$id}" xsl:use-attribute-sets="list.item.spacing">
+        <!-- dwc: fix for one step procedures. Use a bullet if there's no step 2 -->
+        <xsl:choose>
+          <xsl:when test="count(../step) = 1">
+            <xsl:text>&#x2022;</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="." mode="number">
+              <xsl:with-param name="recursive" select="0"/>
+            </xsl:apply-templates>.
+          </xsl:otherwise>
+        </xsl:choose>
       </fo:block>
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">

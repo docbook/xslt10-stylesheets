@@ -558,12 +558,22 @@
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
     <xsl:apply-templates select="*[local-name()!='step']"/>
-    <ol>
-      <xsl:attribute name="type">
-        <xsl:value-of select="substring($procedure.step.numeration.formats,1,1)"/>
-      </xsl:attribute>
-      <xsl:apply-templates select="step"/>
-    </ol>
+
+    <xsl:choose>
+      <xsl:when test="count(step) = 1">
+        <ul>
+          <xsl:apply-templates select="step"/>
+        </ul>
+      </xsl:when>
+      <xsl:otherwise>
+        <ol>
+          <xsl:attribute name="type">
+            <xsl:value-of select="substring($procedure.step.numeration.formats,1,1)"/>
+          </xsl:attribute>
+          <xsl:apply-templates select="step"/>
+        </ol>
+      </xsl:otherwise>
+    </xsl:choose>
   </div>
 </xsl:template>
 
