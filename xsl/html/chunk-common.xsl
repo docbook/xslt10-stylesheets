@@ -24,12 +24,12 @@
        The root element
        appendix
        article
-       bibliography  in article or book
+       bibliography  in article or part or book
        book
        chapter
        colophon
-       glossary      in article or book
-       index         in article or book
+       glossary      in article or part or book
+       index         in article or part or book
        part
        preface
        refentry
@@ -118,13 +118,19 @@
     <xsl:when test="name($node)='refentry'">1</xsl:when>
     <xsl:when test="name($node)='index' and $generate.index != 0
                     and (name($node/parent::*) = 'article'
-                         or name($node/parent::*) = 'book')">1</xsl:when>
+                    or name($node/parent::*) = 'book'
+                    or name($node/parent::*) = 'part'
+                    )">1</xsl:when>
     <xsl:when test="name($node)='bibliography'
                     and (name($node/parent::*) = 'article'
-                         or name($node/parent::*) = 'book')">1</xsl:when>
+                    or name($node/parent::*) = 'book'
+                    or name($node/parent::*) = 'part'
+                    )">1</xsl:when>
     <xsl:when test="name($node)='glossary'
                     and (name($node/parent::*) = 'article'
-                         or name($node/parent::*) = 'book')">1</xsl:when>
+                    or name($node/parent::*) = 'book'
+                    or name($node/parent::*) = 'part'
+                    )">1</xsl:when>
     <xsl:when test="name($node)='colophon'">1</xsl:when>
     <xsl:when test="name($node)='book'">1</xsl:when>
     <xsl:when test="name($node)='set'">1</xsl:when>
