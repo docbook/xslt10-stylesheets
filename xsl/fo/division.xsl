@@ -65,8 +65,7 @@
   </xsl:variable>
 
   <xsl:if test="$preamble">
-    <fo:page-sequence id="{$id}"
-                      hyphenate="{$hyphenate}"
+    <fo:page-sequence hyphenate="{$hyphenate}"
                       master-reference="{$titlepage-master-reference}">
       <xsl:attribute name="language">
         <xsl:call-template name="l10n.language"/>
@@ -87,7 +86,9 @@
       </xsl:apply-templates>
 
       <fo:flow flow-name="xsl-region-body">
-        <xsl:call-template name="set.titlepage"/>
+        <fo:block id="{$id}">
+          <xsl:call-template name="set.titlepage"/>
+        </fo:block>
       </fo:flow>
     </fo:page-sequence>
   </xsl:if>
@@ -163,8 +164,7 @@
   </xsl:variable>
 
   <xsl:if test="$preamble">
-    <fo:page-sequence id="{$id}"
-                      hyphenate="{$hyphenate}"
+    <fo:page-sequence hyphenate="{$hyphenate}"
                       master-reference="{$titlepage-master-reference}"
                       initial-page-number="1">
       <xsl:attribute name="language">
@@ -186,7 +186,9 @@
       </xsl:apply-templates>
 
       <fo:flow flow-name="xsl-region-body">
-        <xsl:call-template name="book.titlepage"/>
+        <fo:block id="{$id}">
+          <xsl:call-template name="book.titlepage"/>
+        </fo:block>
       </fo:flow>
     </fo:page-sequence>
   </xsl:if>
@@ -437,8 +439,7 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <fo:page-sequence id="{$id}"
-                    hyphenate="{$hyphenate}"
+  <fo:page-sequence hyphenate="{$hyphenate}"
                     master-reference="{$titlepage-master-reference}">
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
@@ -468,7 +469,9 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
-      <xsl:call-template name="part.titlepage"/>
+      <fo:block id="{$id}">
+        <xsl:call-template name="part.titlepage"/>
+      </fo:block>
       <xsl:copy-of select="$additional.content"/>
     </fo:flow>
   </fo:page-sequence>

@@ -16,12 +16,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="glossary">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-  <fo:block id="{$id}">
-    <xsl:call-template name="make-glossary"/>
-  </fo:block>
+  <xsl:call-template name="make-glossary"/>
 </xsl:template>
 
 <xsl:template match="glossdiv/title"/>
@@ -37,6 +32,10 @@
                                            or self::subtitle
                                            or self::glossdiv
                                            or self::glossentry)]"/>
+
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
 
   <xsl:variable name="presentation">
     <xsl:call-template name="dbfo-attribute">
@@ -65,7 +64,9 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:call-template name="glossary.titlepage"/>
+  <fo:block id="{$id}">
+    <xsl:call-template name="glossary.titlepage"/>
+  </fo:block>
 
   <xsl:if test="$preamble">
     <xsl:apply-templates select="$preamble"/>
@@ -116,8 +117,7 @@
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
 
-  <fo:page-sequence id="{$id}"
-                    hyphenate="{$hyphenate}"
+  <fo:page-sequence hyphenate="{$hyphenate}"
                     master-reference="{$master-reference}">
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
@@ -205,8 +205,6 @@
 <!-- Glossary collection -->
 
 <xsl:template match="glossary[@role='auto']" priority="2">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
-
   <xsl:if test="$glossary.collection = ''">
     <xsl:message>
       <xsl:text>Warning: processing automatic glossary </xsl:text>
@@ -214,9 +212,7 @@
     </xsl:message>
   </xsl:if>
 
-  <fo:block id="{$id}">
-    <xsl:call-template name="make-auto-glossary"/>
-  </fo:block>
+  <xsl:call-template name="make-auto-glossary"/>
 </xsl:template>
 
 <xsl:template name="make-auto-glossary">
@@ -226,6 +222,10 @@
                                            or self::subtitle
                                            or self::glossdiv
                                            or self::glossentry)]"/>
+
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
 
   <xsl:variable name="presentation">
     <xsl:call-template name="dbfo-attribute">
@@ -261,7 +261,9 @@
     </xsl:message>
   </xsl:if>
 
-  <xsl:call-template name="glossary.titlepage"/>
+  <fo:block id="{$id}">
+    <xsl:call-template name="glossary.titlepage"/>
+  </fo:block>
 
   <xsl:if test="$preamble">
     <xsl:apply-templates select="$preamble"/>
@@ -369,8 +371,7 @@
     </xsl:message>
   </xsl:if>
 
-  <fo:page-sequence id="{$id}"
-                    hyphenate="{$hyphenate}"
+  <fo:page-sequence hyphenate="{$hyphenate}"
                     master-reference="{$master-reference}">
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>

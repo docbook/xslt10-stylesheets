@@ -63,8 +63,7 @@
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
 
-  <fo:page-sequence id="{$id}"
-                    hyphenate="{$hyphenate}"
+  <fo:page-sequence hyphenate="{$hyphenate}"
                     master-reference="{$master-reference}">
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
@@ -98,7 +97,9 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
-      <xsl:call-template name="dedication.titlepage"/>
+      <fo:block id="{$id}">
+        <xsl:call-template name="dedication.titlepage"/>
+      </fo:block>
       <xsl:apply-templates/>
     </fo:flow>
   </fo:page-sequence>
@@ -121,8 +122,7 @@
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
 
-  <fo:page-sequence id="{$id}"
-                    hyphenate="{$hyphenate}"
+  <fo:page-sequence hyphenate="{$hyphenate}"
                     master-reference="{$master-reference}">
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
@@ -143,7 +143,9 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
-      <xsl:call-template name="colophon.titlepage"/>
+      <fo:block id="{$id}">
+        <xsl:call-template name="colophon.titlepage"/>
+      </fo:block>
       <xsl:apply-templates/>
     </fo:flow>
   </fo:page-sequence>
@@ -164,8 +166,7 @@
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
 
-  <fo:page-sequence id="{$id}"
-                    hyphenate="{$hyphenate}"
+  <fo:page-sequence hyphenate="{$hyphenate}"
                     master-reference="{$master-reference}">
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
@@ -188,7 +189,9 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
-      <xsl:call-template name="preface.titlepage"/>
+      <fo:block id="{$id}">
+        <xsl:call-template name="preface.titlepage"/>
+      </fo:block>
 
       <xsl:variable name="toc.params">
         <xsl:call-template name="find.path.params">
@@ -221,8 +224,7 @@
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
 
-  <fo:page-sequence id="{$id}"
-                    hyphenate="{$hyphenate}"
+  <fo:page-sequence hyphenate="{$hyphenate}"
                     master-reference="{$master-reference}">
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
@@ -255,7 +257,9 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
-      <xsl:call-template name="chapter.titlepage"/>
+      <fo:block id="{$id}">
+        <xsl:call-template name="chapter.titlepage"/>
+      </fo:block>
 
       <xsl:variable name="toc.params">
         <xsl:call-template name="find.path.params">
@@ -287,8 +291,7 @@
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
 
-  <fo:page-sequence id="{$id}"
-                    hyphenate="{$hyphenate}"
+  <fo:page-sequence hyphenate="{$hyphenate}"
                     master-reference="{$master-reference}">
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
@@ -321,7 +324,9 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
-      <xsl:call-template name="appendix.titlepage"/>
+      <fo:block id="{$id}">
+        <xsl:call-template name="appendix.titlepage"/>
+      </fo:block>
 
       <xsl:variable name="toc.params">
         <xsl:call-template name="find.path.params">
@@ -354,8 +359,7 @@
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
 
-  <fo:page-sequence id="{$id}"
-                    hyphenate="{$hyphenate}"
+  <fo:page-sequence hyphenate="{$hyphenate}"
                     master-reference="{$master-reference}">
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
@@ -389,7 +393,9 @@
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
-      <xsl:call-template name="article.titlepage"/>
+      <fo:block id="{$id}">
+        <xsl:call-template name="article.titlepage"/>
+      </fo:block>
 
       <xsl:variable name="toc.params">
         <xsl:call-template name="find.path.params">
