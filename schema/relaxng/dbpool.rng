@@ -9421,6 +9421,18 @@ OtherCredit. -->
               <value>key1</value>
               <value>key2</value>
               <value>record</value>
+              <value>index</value>
+              <value>view</value>
+              <value>primarykey</value>
+              <value>foreignkey</value>
+              <value>altkey</value>
+              <value>procedure</value>
+              <value>datatype</value>
+              <value>constraint</value>
+              <value>rule</value>
+              <value>user</value>
+              <value>group</value>
+              <value>secondarykey</value>
             </choice>
           </attribute>
         </optional>
