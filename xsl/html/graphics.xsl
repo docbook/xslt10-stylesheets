@@ -263,7 +263,7 @@
           </xsl:when>
           <xsl:when test="function-available('ximg:getDepth')">
             <xsl:value-of select="ximg:getDepth(ximg:new($filename),
-                                                $nominal.image.width)"/>
+                                                $nominal.image.depth)"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="$nominal.image.depth"/>
