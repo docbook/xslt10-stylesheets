@@ -440,31 +440,66 @@ Defaults to the context node.</para>
       <xsl:variable name="has_s" select="$s_nl"/>
       <xsl:variable name="has_l" select="$l_nl"/>
 
-      <xsl:if test="$has_h">
-        <xsl:value-of select="$h_nl"/>.
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="$node/@role = 'family-given'">
+          <!-- The family-given style applies a convention for identifying given -->
+          <!-- and family names in locales where it may be ambiguous -->
+          <xsl:if test="$has_h">
+            <xsl:value-of select="$h_nl"/>.
+          </xsl:if>
 
-      <xsl:if test="$has_f">
-        <xsl:if test="$has_h"><xsl:text> </xsl:text></xsl:if>
-        <xsl:value-of select="$f_nl"/>
-      </xsl:if>
+          <xsl:if test="$has_s">
+            <xsl:if test="$has_h">
+              <xsl:text> </xsl:text>
+            </xsl:if>
+            <xsl:value-of select="$s_nl"/>
+          </xsl:if>
 
-      <xsl:if test="$has_o">
-        <xsl:if test="$has_h or $has_f"><xsl:text> </xsl:text></xsl:if>
-        <xsl:value-of select="$o_nl"/>
-      </xsl:if>
+          <xsl:if test="$has_o">
+            <xsl:if test="$has_h or $has_f"><xsl:text> </xsl:text></xsl:if>
+            <xsl:value-of select="$o_nl"/>
+          </xsl:if>
 
-      <xsl:if test="$has_s">
-        <xsl:if test="$has_h or $has_f or $has_o">
-          <xsl:text> </xsl:text>
-        </xsl:if>
-        <xsl:value-of select="$s_nl"/>
-      </xsl:if>
+          <xsl:if test="$has_f">
+            <xsl:if test="$has_h or $has_s or $has_o"><xsl:text> </xsl:text></xsl:if>
+            <xsl:value-of select="$f_nl"/>
+          </xsl:if>
 
-      <xsl:if test="$has_l">
-        <xsl:text>, </xsl:text>
-        <xsl:value-of select="$l_nl"/>
-      </xsl:if>
+          <xsl:if test="$has_l">
+            <xsl:text>, </xsl:text>
+            <xsl:value-of select="$l_nl"/>
+          </xsl:if>
+
+          <xsl:text> [FAMILY Given]</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:if test="$has_h">
+            <xsl:value-of select="$h_nl"/>.
+          </xsl:if>
+
+          <xsl:if test="$has_f">
+            <xsl:if test="$has_h"><xsl:text> </xsl:text></xsl:if>
+            <xsl:value-of select="$f_nl"/>
+          </xsl:if>
+
+          <xsl:if test="$has_o">
+            <xsl:if test="$has_h or $has_f"><xsl:text> </xsl:text></xsl:if>
+            <xsl:value-of select="$o_nl"/>
+          </xsl:if>
+
+          <xsl:if test="$has_s">
+            <xsl:if test="$has_h or $has_f or $has_o">
+              <xsl:text> </xsl:text>
+            </xsl:if>
+            <xsl:value-of select="$s_nl"/>
+          </xsl:if>
+
+          <xsl:if test="$has_l">
+            <xsl:text>, </xsl:text>
+            <xsl:value-of select="$l_nl"/>
+          </xsl:if>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template> <!-- person.name -->
