@@ -10,6 +10,33 @@
 </author>
 </articleinfo>
 
+<para>Here's a <sgmltag>methodsynopsis</sgmltag> in a <sgmltag>classsynopsis</sgmltag>:
+</para>
+
+<classsynopsis>
+<ooclass>
+<classname>Foo</classname>
+</ooclass>
+<methodsynopsis>
+<modifier>public</modifier>
+<modifier>static</modifier>
+<type>double</type>
+<methodname>getQuote</methodname>
+<methodparam>
+<type>String</type>
+<parameter>symbol</parameter>
+</methodparam>
+<methodparam>
+<type>double</type>
+<parameter>price</parameter>
+</methodparam>
+</methodsynopsis>
+</classsynopsis>
+
+<para>Here's a <sgmltag>methodsynopsis</sgmltag>
+<emphasis>outside</emphasis> a <sgmltag>classsynopsis</sgmltag>:
+</para>
+
 <methodsynopsis>
 <modifier>public</modifier>
 <modifier>static</modifier>
