@@ -68,7 +68,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="blockquote">
-  <fo:block start-indent="0.5in" end-indent="0.5in">
+  <fo:block xsl:use-attribute-sets="blockquote.properties">
     <fo:block>
       <xsl:if test="title">
         <fo:block xsl:use-attribute-sets="formal.title.properties">
