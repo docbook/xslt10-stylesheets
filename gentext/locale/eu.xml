@@ -164,9 +164,9 @@
 <gentext key="nav-up" text="Gora"/>
 
 <gentext key="sectioncalled"       text="honela deritzon atala"/>
-<gentext key="Draft"         text="Draft"/> <!-- en -->
-<gentext key="above"         text="above"/> <!-- en -->
-<gentext key="below"         text="below"/> <!-- en -->
+<gentext key="Draft"         text="Zirriborroa"/> 
+<gentext key="above"         text="goian"/>
+<gentext key="below"         text="behean"/> 
 <gentext key="index symbols"            text="Ikurrak"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
