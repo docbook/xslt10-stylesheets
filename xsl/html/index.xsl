@@ -17,7 +17,9 @@
 <xsl:template match="index|setindex">
   <!-- some implementations use completely empty index tags to indicate -->
   <!-- where an automatically generated index should be inserted. so -->
-  <!-- if the index is completely empty, skip it. -->
+  <!-- if the index is completely empty, skip it. Unless generate.index -->
+  <!-- is non-zero, in which case, this is where the automatically -->
+  <!-- generated index should go. -->
 
   <xsl:if test="count(*)>0 or $generate.index != '0'">
     <xsl:variable name="id">
