@@ -2,14 +2,15 @@ include ../../../cvstools/Makefile.incl
 
 SCHEMADIR=../../../schema
 RELAXNG=$(SCHEMADIR)/relaxng
+DOCBOOKRNG=/share/doctypes/docbook42/relaxng
 
 all: websitedb.rng
 
-elements.xml: union.xml
-	$(XSLT) $(RELAXNG)/simple/elements.xml $(RELAXNG)/tools/union-elements.xsl $@ \
+config.xml: union.xml
+	$(XSLT) $(RELAXNG)/simple/config.xml $(SCHEMADIR)/tools/union-config.xsl $@ \
                 union.xml=/sourceforge/docbook/website/schema/relaxng/union.xml
 
-websitedb.rng: elements.xml
-	$(XSLT) $(RELAXNG)/docbook.rng $(RELAXNG)/tools/subset.xsl $@ \
-                elements=/sourceforge/docbook/website/schema/relaxng/$< \
-                remove.start=1
+websitedb.rng: config.xml
+	$(XSLT) $(DOCBOOKRNG)/docbook.rng $(SCHEMADIR)/tools/configure.xsl $@ \
+                config=/sourceforge/docbook/website/schema/relaxng/$<
+
