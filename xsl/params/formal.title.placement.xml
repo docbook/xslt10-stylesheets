@@ -16,6 +16,7 @@ example before
 equation before
 table before
 procedure before
+task before
 </xsl:param>
 </src:fragment>
 </refsynopsisdiv>
