@@ -1,0 +1,4008 @@
+<grammar xmlns="http://www.thaiopensource.com/trex"
+	 xmlns:xsd="http://www.w3.org/2000/10/XMLSchema"
+	 xmlns:dtd="http://www.oasis-open.org/docbook/dtd"
+	 ns="">
+
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> DocBook XML document hierarchy module V4.1.2 ........................... </dtd:comment>
+<dtd:comment> File dbhierx.mod ..................................................... </dtd:comment>
+
+<dtd:comment> Copyright 1992-2000 HaL Computer Systems, Inc.,
+     O'Reilly &amp; Associates, Inc., ArborText, Inc., Fujitsu Software
+     Corporation, Norman Walsh, and the Organization for the Advancement
+     of Structured Information Standards (OASIS).
+
+     $Id$
+
+     Permission to use, copy, modify and distribute the DocBook XML DTD
+     and its accompanying documentation for any purpose and without fee
+     is hereby granted in perpetuity, provided that the above copyright
+     notice and this paragraph appear in all copies.  The copyright
+     holders make no representation about the suitability of the DTD for
+     any purpose.  It is provided "as is" without expressed or implied
+     warranty.
+
+     If you modify the DocBook XML DTD in any way, except for declaring and
+     referencing additional sets of general entities and declaring
+     additional notations, label your DTD as a variant of DocBook.  See
+     the maintenance documentation for more information.
+
+     Please direct all questions, bug reports, or suggestions for
+     changes to the docbook@lists.oasis-open.org mailing list. For more
+     information, see http://www.oasis-open.org/docbook/.
+</dtd:comment>
+
+<dtd:comment> ...................................................................... </dtd:comment>
+
+<dtd:comment> This module contains the definitions for the overall document
+     hierarchies of DocBook documents.  It covers computer documentation
+     manuals and manual fragments, as well as reference entries (such as
+     man pages) and technical journals or anthologies containing
+     articles.
+
+     This module depends on the DocBook information pool module.  All
+     elements and entities referenced but not defined here are assumed
+     to be defined in the information pool module.
+
+     In DTD driver files referring to this module, please use an entity
+     declaration that uses the public identifier shown below:
+
+     &lt;!ENTITY % dbhier PUBLIC
+     "-//OASIS//ELEMENTS DocBook XML Document Hierarchy V4.1.2//EN"
+     "dbhierx.mod">
+     %dbhier;
+
+     See the documentation for detailed information on the parameter
+     entity and module scheme used in DocBook, customizing DocBook and
+     planning for interchange, and changes made since the last release
+     of DocBook.
+</dtd:comment>
+
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> Entities for module inclusions ....................................... </dtd:comment>
+
+<dtd:pe-decl name="dbhier.redecl.module">IGNORE</dtd:pe-decl>
+<dtd:pe-decl name="dbhier.redecl2.module">IGNORE</dtd:pe-decl>
+
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> Entities for element classes ......................................... </dtd:comment>
+
+<define name="local.appendix.class">
+</define>
+<define name="appendix.class">
+  <ref name="appendix.element"/>
+  <ref name="local.appendix.class"/>
+</define>
+
+<define name="local.article.class">
+</define>
+<define name="article.class">
+  <ref name="article.element"/>
+  <ref name="local.article.class"/>
+</define>
+
+<define name="local.book.class">
+</define>
+<define name="book.class">
+  <ref name="book.element"/>
+  <ref name="local.book.class"/>
+</define>
+
+<define name="local.chapter.class">
+</define>
+<define name="chapter.class">
+  <ref name="chapter.element"/>
+  <ref name="local.chapter.class"/>
+</define>
+
+<define name="local.index.class">
+</define>
+<define name="index.class">
+  <ref name="index.element"/>
+  <ref name="setindex.element"/>
+  <ref name="local.index.class"/>
+</define>
+
+<define name="local.refentry.class">
+</define>
+<define name="refentry.class">
+  <ref name="refentry.element"/>
+  <ref name="local.refentry.class"/>
+</define>
+
+<define name="local.nav.class">
+</define>
+<define name="nav.class">
+  <ref name="toc.element"/>
+  <ref name="lot.element"/>
+  <ref name="index.element"/>
+  <ref name="glossary.element"/>
+  <ref name="bibliography.element"/>
+  <ref name="local.nav.class"/>
+</define>
+
+<dtd:comment> Redeclaration placeholder ............................................ </dtd:comment>
+
+<dtd:comment> For redeclaring entities that are declared after this point while
+     retaining their references to the entities that are declared before
+     this point </dtd:comment>
+
+<dtd:marked-section start="dbhier.redecl.module"/>
+<dtd:comment> Defining rdbhier here makes some buggy XML parsers happy. </dtd:comment>
+<dtd:pe-decl name="rdbhier"/>
+<dtd:pe-ref name="rdbhier"/>
+<dtd:marked-section end="dbhier.redecl.module"/>
+
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> Entities for element mixtures ........................................ </dtd:comment>
+
+<dtd:comment> The DocBook TC may produce an official forms module for DocBook. </dtd:comment>
+<dtd:comment> This PE provides the hook by which it can be inserted into the DTD. </dtd:comment>
+<dtd:pe-decl name="forms.hook"/>
+
+<define name="local.divcomponent.mix">
+</define>
+<define name="divcomponent.mix">
+  <ref name="list.class"/>
+  <ref name="admon.class"/>
+  <ref name="linespecific.class"/>
+  <ref name="synop.class"/>
+  <ref name="para.class"/>
+  <ref name="informal.class"/>
+  <ref name="formal.class"/>
+  <ref name="compound.class"/>
+  <ref name="genobj.class"/>
+  <ref name="descobj.class"/>
+  <ref name="ndxterm.class"/>
+  <ref name="beginpage.element"/>
+  <ref name="forms.hook"/>
+</define>
+
+<define name="local.refcomponent.mix">
+</define>
+<define name="refcomponent.mix">
+  <ref name="list.class"/>
+  <ref name="admon.class"/>
+  <ref name="linespecific.class"/>
+  <ref name="synop.class"/>
+  <ref name="para.class"/>
+  <ref name="informal.class"/>
+  <ref name="formal.class"/>
+  <ref name="compound.class"/>
+  <ref name="genobj.class"/>
+  <ref name="descobj.class"/>
+  <ref name="ndxterm.class"/>
+  <ref name="beginpage.element"/>
+  <ref name="local.refcomponent.mix"/>
+</define>
+
+<define name="local.indexdivcomponent.mix">
+</define>
+<define name="indexdivcomponent.mix">
+  <ref name="itemizedlist.element"/>
+  <ref name="orderedlist.element"/>
+  <ref name="variablelist.element"/>
+  <ref name="simplelist.element"/>
+  <ref name="linespecific.class"/>
+  <ref name="synop.class"/>
+  <ref name="para.class"/>
+  <ref name="informal.class"/>
+  <ref name="anchor.element"/>
+  <ref name="remark.element"/>
+  <ref name="link.char.class"/>
+  <ref name="beginpage.element"/>
+  <ref name="local.indexdivcomponent.mix"/>
+</define>
+
+<define name="local.refname.char.mix">
+</define>
+<define name="refname.char.mix">
+  <ref name="#PCDATA.element"/>
+  <ref name="tech.char.class"/>
+</define>
+
+<define name="local.partcontent.mix">
+</define>
+<define name="partcontent.mix">
+  <ref name="appendix.class"/>
+  <ref name="chapter.class"/>
+  <ref name="nav.class"/>
+  <ref name="article.class"/>
+  <ref name="preface.element"/>
+  <ref name="refentry.class"/>
+  <ref name="reference.element"/>
+  <ref name="local.partcontent.mix"/>
+</define>
+
+<define name="local.refinline.char.mix">
+</define>
+<define name="refinline.char.mix">
+  <ref name="#PCDATA.element"/>
+  <ref name="xref.char.class"/>
+  <ref name="gen.char.class"/>
+  <ref name="link.char.class"/>
+  <ref name="tech.char.class"/>
+  <ref name="base.char.class"/>
+  <ref name="docinfo.char.class"/>
+  <ref name="other.char.class"/>
+  <ref name="ndxterm.class"/>
+  <ref name="beginpage.element"/>
+  <ref name="local.refinline.char.mix"/>
+</define>
+
+<define name="local.refclass.char.mix">
+</define>
+<define name="refclass.char.mix">
+  <ref name="#PCDATA.element"/>
+  <ref name="application.element"/>
+  <ref name="local.refclass.char.mix"/>
+</define>
+
+<dtd:comment> Redeclaration placeholder 2 .......................................... </dtd:comment>
+
+<dtd:comment> For redeclaring entities that are declared after this point while
+     retaining their references to the entities that are declared before
+     this point </dtd:comment>
+
+<dtd:marked-section start="dbhier.redecl2.module"/>
+<dtd:comment> Defining rdbhier2 here makes some buggy XML parsers happy. </dtd:comment>
+<dtd:pe-decl name="rdbhier2"/>
+<dtd:pe-ref name="rdbhier2"/>
+<dtd:marked-section end="dbhier.redecl2.module"/>
+
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> Entities for content models .......................................... </dtd:comment>
+
+<define name="div.title.content">
+  <ref name="title"/>
+  <optional>
+    <ref name="subtitle"/>
+  </optional>
+  <optional>
+    <ref name="titleabbrev"/>
+  </optional>
+</define>
+
+<define name="bookcomponent.title.content">
+  <ref name="title"/>
+  <optional>
+    <ref name="subtitle"/>
+  </optional>
+  <optional>
+    <ref name="titleabbrev"/>
+  </optional>
+</define>
+
+<define name="sect.title.content">
+  <ref name="title"/>
+  <optional>
+    <ref name="subtitle"/>
+  </optional>
+  <optional>
+    <ref name="titleabbrev"/>
+  </optional>
+</define>
+
+<define name="refsect.title.content">
+  <ref name="title"/>
+  <optional>
+    <ref name="subtitle"/>
+  </optional>
+  <optional>
+    <ref name="titleabbrev"/>
+  </optional>
+</define>
+
+<define name="bookcomponent.content">
+  <group>
+    <oneOrMore>
+      <choice>
+        <ref name="divcomponent.mix"/>
+      </choice>
+    </oneOrMore>
+    <choice>
+      <zeroOrMore>
+        <ref name="sect1"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <choice>
+          <ref name="refentry.class"/>
+        </choice>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="simplesect"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="section"/>
+      </zeroOrMore>
+    </choice>
+  </group>
+  <choice>
+    <oneOrMore>
+      <ref name="sect1"/>
+    </oneOrMore>
+    <oneOrMore>
+      <choice>
+        <ref name="refentry.class"/>
+      </choice>
+    </oneOrMore>
+    <oneOrMore>
+      <ref name="simplesect"/>
+    </oneOrMore>
+    <oneOrMore>
+      <ref name="section"/>
+    </oneOrMore>
+  </choice>
+</define>
+     
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> Set and SetInfo ...................................................... </dtd:comment>
+
+<dtd:pe-decl name="set.content.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="set.content.module"/>
+<dtd:pe-decl name="set.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="set.module"/>
+<define name="local.set.attrib">
+  <notAllowed/>
+</define>
+<define name="set.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="set.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="set.element"/>
+<define name="set.element">
+  <element name="set">
+    <group>
+      <optional>
+        <group>
+          <ref name="div.title.content"/>
+        </group>
+      </optional>
+      <optional>
+        <ref name="setinfo.element"/>
+      </optional>
+      <optional>
+        <ref name="toc.element"/>
+      </optional>
+      <oneOrMore>
+        <choice>
+          <ref name="book.class"/>
+        </choice>
+      </oneOrMore>
+      <optional>
+        <ref name="setindex.element"/>
+      </optional>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="set.element"/>
+
+<dtd:comment> FPI: SGML formal public identifier </dtd:comment>
+
+
+<dtd:pe-decl name="set.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="set.attlist"/>
+<define name="set.attlist">
+  <optional>
+    <attribute name="fpi"/>
+  </optional>
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="set.role.attrib"/>
+  <ref name="local.set.attrib"/>
+</define>
+<dtd:marked-section end="set.attlist"/>
+<dtd:marked-section end="set.module"/>
+
+<dtd:pe-decl name="setinfo.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="setinfo.module"/>
+<define name="local.setinfo.attrib">
+  <notAllowed/>
+</define>
+<define name="setinfo.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="setinfo.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="setinfo.element"/>
+<define name="setinfo.element">
+  <element name="setinfo">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="setinfo.element"/>
+
+<dtd:comment> Contents: IDs of the ToC, Books, and SetIndex that comprise 
+		the set, in the order of their appearance </dtd:comment>
+
+
+<dtd:pe-decl name="setinfo.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="setinfo.attlist"/>
+<define name="setinfo.attlist">
+  <optional>
+    <attribute name="contents">
+      <data type="xsd:IDREFS"/>
+    </attribute>
+  </optional>
+  <ref name="common.attrib"/>
+  <ref name="setinfo.role.attrib"/>
+  <ref name="local.setinfo.attrib"/>
+</define>
+<dtd:marked-section end="setinfo.attlist"/>
+<dtd:marked-section end="setinfo.module"/>
+<dtd:marked-section end="set.content.module"/>
+
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> Book and BookInfo .................................................... </dtd:comment>
+
+<dtd:pe-decl name="book.content.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="book.content.module"/>
+<dtd:pe-decl name="book.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="book.module"/>
+
+<define name="local.book.attrib">
+  <notAllowed/>
+</define>
+<define name="book.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="book.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="book.element"/>
+<define name="book.element">
+  <element name="book">
+    <group>
+      <optional>
+        <group>
+          <ref name="div.title.content"/>
+        </group>
+      </optional>
+      <optional>
+        <ref name="bookinfo.element"/>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="dedication.element"/>
+          <ref name="toc.element"/>
+          <ref name="lot.element"/>
+          <ref name="glossary.element"/>
+          <ref name="bibliography.element"/>
+          <ref name="preface.element"/>
+          <ref name="chapter.class"/>
+          <ref name="reference.element"/>
+          <ref name="part.element"/>
+          <ref name="article.class"/>
+          <ref name="appendix.class"/>
+          <ref name="index.class"/>
+          <ref name="colophon.element"/>
+        </choice>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="book.element"/>
+
+<dtd:comment> FPI: SGML formal public identifier </dtd:comment>
+
+
+<dtd:pe-decl name="book.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="book.attlist"/>
+<define name="book.attlist">
+  <optional>
+    <attribute name="fpi"/>
+  </optional>
+  <ref name="label.attrib"/>
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="book.role.attrib"/>
+  <ref name="local.book.attrib"/>
+</define>
+<dtd:marked-section end="book.attlist"/>
+<dtd:marked-section end="book.module"/>
+
+<dtd:pe-decl name="bookinfo.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="bookinfo.module"/>
+<define name="local.bookinfo.attrib">
+  <notAllowed/>
+</define>
+<define name="bookinfo.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="bookinfo.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="bookinfo.element"/>
+<define name="bookinfo.element">
+  <element name="bookinfo">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="bookinfo.element"/>
+
+<dtd:comment> Contents: IDs of the ToC, LoTs, Prefaces, Parts, Chapters,
+		Appendixes, References, GLossary, Bibliography, and indexes
+		comprising the Book, in the order of their appearance </dtd:comment>
+
+
+<dtd:pe-decl name="bookinfo.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="bookinfo.attlist"/>
+<define name="bookinfo.attlist">
+  <optional>
+    <attribute name="contents">
+      <data type="xsd:IDREFS"/>
+    </attribute>
+  </optional>
+  <ref name="common.attrib"/>
+  <ref name="bookinfo.role.attrib"/>
+  <ref name="local.bookinfo.attrib"/>
+</define>
+<dtd:marked-section end="bookinfo.attlist"/>
+<dtd:marked-section end="bookinfo.module"/>
+<dtd:marked-section end="book.content.module"/>
+
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> Dedication, ToC, and LoT ............................................. </dtd:comment>
+
+<dtd:pe-decl name="dedication.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="dedication.module"/>
+<define name="local.dedication.attrib">
+  <notAllowed/>
+</define>
+<define name="dedication.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="dedication.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="dedication.element"/>
+<define name="dedication.element">
+  <element name="dedication">
+    <group>
+      <optional>
+        <group>
+          <ref name="sect.title.content"/>
+        </group>
+      </optional>
+      <oneOrMore>
+        <choice>
+          <ref name="legalnotice.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="dedication.element"/>
+
+<dtd:pe-decl name="dedication.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="dedication.attlist"/>
+<define name="dedication.attlist">
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="dedication.role.attrib"/>
+  <ref name="local.dedication.attrib"/>
+</define>
+<dtd:marked-section end="dedication.attlist"/>
+<dtd:marked-section end="dedication.module"/>
+
+<dtd:pe-decl name="colophon.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="colophon.module"/>
+<define name="local.colophon.attrib">
+  <notAllowed/>
+</define>
+<define name="colophon.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="colophon.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="colophon.element"/>
+<define name="colophon.element">
+  <element name="colophon">
+    <group>
+      <optional>
+        <group>
+          <ref name="sect.title.content"/>
+        </group>
+      </optional>
+      <oneOrMore>
+        <choice>
+          <ref name="textobject.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="colophon.element"/>
+
+<dtd:pe-decl name="colophon.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="colophon.attlist"/>
+<define name="colophon.attlist">
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="colophon.role.attrib"/>
+  <ref name="local.colophon.attrib"/>
+</define>
+<dtd:marked-section end="colophon.attlist"/>
+<dtd:marked-section end="colophon.module"/>
+
+<dtd:pe-decl name="toc.content.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toc.content.module"/>
+<dtd:pe-decl name="toc.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toc.module"/>
+<define name="local.toc.attrib">
+  <notAllowed/>
+</define>
+<define name="toc.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="toc.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toc.element"/>
+<define name="toc.element">
+  <element name="toc">
+    <group>
+      <optional>
+        <ref name="beginpage.element"/>
+      </optional>
+      <optional>
+        <group>
+          <ref name="bookcomponent.title.content"/>
+        </group>
+      </optional>
+      <zeroOrMore>
+        <ref name="tocfront.element"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <choice>
+          <ref name="tocpart.element"/>
+          <ref name="tocchap.element"/>
+        </choice>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="tocback.element"/>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="toc.element"/>
+
+<dtd:pe-decl name="toc.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toc.attlist"/>
+<define name="toc.attlist">
+  <ref name="pagenum.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="toc.role.attrib"/>
+  <ref name="local.toc.attrib"/>
+</define>
+<dtd:marked-section end="toc.attlist"/>
+<dtd:marked-section end="toc.module"/>
+
+<dtd:pe-decl name="tocfront.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="tocfront.module"/>
+<define name="local.tocfront.attrib">
+  <notAllowed/>
+</define>
+<define name="tocfront.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="tocfront.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="tocfront.element"/>
+<define name="tocfront.element">
+  <element name="tocfront">
+    <zeroOrMore>
+      <choice>
+        <ref name="para.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </element>
+</define>
+<dtd:marked-section end="tocfront.element"/>
+
+<dtd:comment> to element that this entry represents </dtd:comment>
+
+
+<dtd:pe-decl name="tocfront.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="tocfront.attlist"/>
+<define name="tocfront.attlist">
+  <ref name="label.attrib"/>
+  <ref name="linkend.attrib"/>		%pagenum.attrib;
+  <ref name="common.attrib"/>
+  <ref name="tocfront.role.attrib"/>
+  <ref name="local.tocfront.attrib"/>
+</define>
+<dtd:marked-section end="tocfront.attlist"/>
+<dtd:marked-section end="tocfront.module"/>
+
+<dtd:pe-decl name="tocentry.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="tocentry.module"/>
+<define name="local.tocentry.attrib">
+  <notAllowed/>
+</define>
+<define name="tocentry.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="tocentry.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="tocentry.element"/>
+<define name="tocentry.element">
+  <element name="tocentry">
+    <zeroOrMore>
+      <choice>
+        <ref name="para.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </element>
+</define>
+<dtd:marked-section end="tocentry.element"/>
+
+<dtd:comment> to element that this entry represents </dtd:comment>
+
+
+<dtd:pe-decl name="tocentry.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="tocentry.attlist"/>
+<define name="tocentry.attlist">
+  <ref name="linkend.attrib"/>		%pagenum.attrib;
+  <ref name="common.attrib"/>
+  <ref name="tocentry.role.attrib"/>
+  <ref name="local.tocentry.attrib"/>
+</define>
+<dtd:marked-section end="tocentry.attlist"/>
+<dtd:marked-section end="tocentry.module"/>
+
+<dtd:pe-decl name="tocpart.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="tocpart.module"/>
+<define name="local.tocpart.attrib">
+  <notAllowed/>
+</define>
+<define name="tocpart.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="tocpart.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="tocpart.element"/>
+<define name="tocpart.element">
+  <element name="tocpart">
+    <group>
+      <oneOrMore>
+        <ref name="tocentry.element"/>
+      </oneOrMore>
+      <zeroOrMore>
+        <ref name="tocchap.element"/>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="tocpart.element"/>
+
+<dtd:pe-decl name="tocpart.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="tocpart.attlist"/>
+<define name="tocpart.attlist">
+  <ref name="common.attrib"/>
+  <ref name="tocpart.role.attrib"/>
+  <ref name="local.tocpart.attrib"/>
+</define>
+<dtd:marked-section end="tocpart.attlist"/>
+<dtd:marked-section end="tocpart.module"/>
+
+<dtd:pe-decl name="tocchap.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="tocchap.module"/>
+<define name="local.tocchap.attrib">
+  <notAllowed/>
+</define>
+<define name="tocchap.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="tocchap.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="tocchap.element"/>
+<define name="tocchap.element">
+  <element name="tocchap">
+    <group>
+      <oneOrMore>
+        <ref name="tocentry.element"/>
+      </oneOrMore>
+      <zeroOrMore>
+        <ref name="toclevel1.element"/>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="tocchap.element"/>
+
+<dtd:pe-decl name="tocchap.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="tocchap.attlist"/>
+<define name="tocchap.attlist">
+  <ref name="label.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="tocchap.role.attrib"/>
+  <ref name="local.tocchap.attrib"/>
+</define>
+<dtd:marked-section end="tocchap.attlist"/>
+<dtd:marked-section end="tocchap.module"/>
+
+<dtd:pe-decl name="toclevel1.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toclevel1.module"/>
+<define name="local.toclevel1.attrib">
+  <notAllowed/>
+</define>
+<define name="toclevel1.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="toclevel1.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toclevel1.element"/>
+<define name="toclevel1.element">
+  <element name="toclevel1">
+    <group>
+      <oneOrMore>
+        <ref name="tocentry.element"/>
+      </oneOrMore>
+      <zeroOrMore>
+        <ref name="toclevel2.element"/>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="toclevel1.element"/>
+
+<dtd:pe-decl name="toclevel1.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toclevel1.attlist"/>
+<define name="toclevel1.attlist">
+  <ref name="common.attrib"/>
+  <ref name="toclevel1.role.attrib"/>
+  <ref name="local.toclevel1.attrib"/>
+</define>
+<dtd:marked-section end="toclevel1.attlist"/>
+<dtd:marked-section end="toclevel1.module"/>
+
+<dtd:pe-decl name="toclevel2.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toclevel2.module"/>
+<define name="local.toclevel2.attrib">
+  <notAllowed/>
+</define>
+<define name="toclevel2.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="toclevel2.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toclevel2.element"/>
+<define name="toclevel2.element">
+  <element name="toclevel2">
+    <group>
+      <oneOrMore>
+        <ref name="tocentry.element"/>
+      </oneOrMore>
+      <zeroOrMore>
+        <ref name="toclevel3.element"/>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="toclevel2.element"/>
+
+<dtd:pe-decl name="toclevel2.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toclevel2.attlist"/>
+<define name="toclevel2.attlist">
+  <ref name="common.attrib"/>
+  <ref name="toclevel2.role.attrib"/>
+  <ref name="local.toclevel2.attrib"/>
+</define>
+<dtd:marked-section end="toclevel2.attlist"/>
+<dtd:marked-section end="toclevel2.module"/>
+
+<dtd:pe-decl name="toclevel3.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toclevel3.module"/>
+<define name="local.toclevel3.attrib">
+  <notAllowed/>
+</define>
+<define name="toclevel3.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="toclevel3.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toclevel3.element"/>
+<define name="toclevel3.element">
+  <element name="toclevel3">
+    <group>
+      <oneOrMore>
+        <ref name="tocentry.element"/>
+      </oneOrMore>
+      <zeroOrMore>
+        <ref name="toclevel4.element"/>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="toclevel3.element"/>
+
+<dtd:pe-decl name="toclevel3.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toclevel3.attlist"/>
+<define name="toclevel3.attlist">
+  <ref name="common.attrib"/>
+  <ref name="toclevel3.role.attrib"/>
+  <ref name="local.toclevel3.attrib"/>
+</define>
+<dtd:marked-section end="toclevel3.attlist"/>
+<dtd:marked-section end="toclevel3.module"/>
+
+<dtd:pe-decl name="toclevel4.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toclevel4.module"/>
+<define name="local.toclevel4.attrib">
+  <notAllowed/>
+</define>
+<define name="toclevel4.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="toclevel4.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toclevel4.element"/>
+<define name="toclevel4.element">
+  <element name="toclevel4">
+    <group>
+      <oneOrMore>
+        <ref name="tocentry.element"/>
+      </oneOrMore>
+      <zeroOrMore>
+        <ref name="toclevel5.element"/>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="toclevel4.element"/>
+
+<dtd:pe-decl name="toclevel4.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toclevel4.attlist"/>
+<define name="toclevel4.attlist">
+  <ref name="common.attrib"/>
+  <ref name="toclevel4.role.attrib"/>
+  <ref name="local.toclevel4.attrib"/>
+</define>
+<dtd:marked-section end="toclevel4.attlist"/>
+<dtd:marked-section end="toclevel4.module"/>
+
+<dtd:pe-decl name="toclevel5.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toclevel5.module"/>
+<define name="local.toclevel5.attrib">
+  <notAllowed/>
+</define>
+<define name="toclevel5.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="toclevel5.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toclevel5.element"/>
+<define name="toclevel5.element">
+  <element name="toclevel5">
+    <group>
+      <oneOrMore>
+        <ref name="tocentry.element"/>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="toclevel5.element"/>
+
+<dtd:pe-decl name="toclevel5.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="toclevel5.attlist"/>
+<define name="toclevel5.attlist">
+  <ref name="common.attrib"/>
+  <ref name="toclevel5.role.attrib"/>
+  <ref name="local.toclevel5.attrib"/>
+</define>
+<dtd:marked-section end="toclevel5.attlist"/>
+<dtd:marked-section end="toclevel5.module"/>
+
+<dtd:pe-decl name="tocback.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="tocback.module"/>
+<define name="local.tocback.attrib">
+  <notAllowed/>
+</define>
+<define name="tocback.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="tocback.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="tocback.element"/>
+<define name="tocback.element">
+  <element name="tocback">
+    <zeroOrMore>
+      <choice>
+        <ref name="para.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </element>
+</define>
+<dtd:marked-section end="tocback.element"/>
+
+<dtd:comment> to element that this entry represents </dtd:comment>
+
+
+<dtd:pe-decl name="tocback.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="tocback.attlist"/>
+<define name="tocback.attlist">
+  <ref name="label.attrib"/>
+  <ref name="linkend.attrib"/>		%pagenum.attrib;
+  <ref name="common.attrib"/>
+  <ref name="tocback.role.attrib"/>
+  <ref name="local.tocback.attrib"/>
+</define>
+<dtd:marked-section end="tocback.attlist"/>
+<dtd:marked-section end="tocback.module"/>
+<dtd:marked-section end="toc.content.module"/>
+
+<dtd:pe-decl name="lot.content.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="lot.content.module"/>
+<dtd:pe-decl name="lot.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="lot.module"/>
+<define name="local.lot.attrib">
+  <notAllowed/>
+</define>
+<define name="lot.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="lot.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="lot.element"/>
+<define name="lot.element">
+  <element name="lot">
+    <group>
+      <optional>
+        <ref name="beginpage.element"/>
+      </optional>
+      <optional>
+        <group>
+          <ref name="bookcomponent.title.content"/>
+        </group>
+      </optional>
+      <zeroOrMore>
+        <ref name="lotentry.element"/>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="lot.element"/>
+
+<dtd:pe-decl name="lot.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="lot.attlist"/>
+<define name="lot.attlist">
+  <ref name="label.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="lot.role.attrib"/>
+  <ref name="local.lot.attrib"/>
+</define>
+<dtd:marked-section end="lot.attlist"/>
+<dtd:marked-section end="lot.module"/>
+
+<dtd:pe-decl name="lotentry.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="lotentry.module"/>
+<define name="local.lotentry.attrib">
+  <notAllowed/>
+</define>
+<define name="lotentry.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="lotentry.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="lotentry.element"/>
+<define name="lotentry.element">
+  <element name="lotentry">
+    <zeroOrMore>
+      <choice>
+        <ref name="para.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </element>
+</define>
+<dtd:marked-section end="lotentry.element"/>
+
+<dtd:comment> SrcCredit: Information about the source of the entry, 
+		as for a list of illustrations </dtd:comment>
+<dtd:comment> linkend: to element that this entry represents</dtd:comment>
+<dtd:pe-decl name="lotentry.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="lotentry.attlist"/>
+<define name="lotentry.attlist">
+  <optional>
+    <attribute name="srccredit"/>
+  </optional>
+  <ref name="pagenum.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="linkend.attrib"/>
+  <ref name="lotentry.role.attrib"/>
+  <ref name="local.lotentry.attrib"/>
+</define>
+<dtd:marked-section end="lotentry.attlist"/>
+<dtd:marked-section end="lotentry.module"/>
+<dtd:marked-section end="lot.content.module"/>
+
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> Appendix, Chapter, Part, Preface, Reference, PartIntro ............... </dtd:comment>
+
+<dtd:pe-decl name="appendix.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="appendix.module"/>
+<define name="local.appendix.attrib">
+  <notAllowed/>
+</define>
+<define name="appendix.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="appendix.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="appendix.element"/>
+<define name="appendix.element">
+  <element name="appendix">
+    <group>
+      <optional>
+        <ref name="beginpage.element"/>
+      </optional>
+      <optional>
+        <ref name="appendixinfo.element"/>
+      </optional>
+      <group>
+        <ref name="bookcomponent.title.content"/>
+      </group>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+      <optional>
+        <ref name="tocchap.element"/>
+      </optional>
+      <group>
+        <ref name="bookcomponent.content"/>
+      </group>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="appendix.element"/>
+
+<dtd:pe-decl name="appendix.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="appendix.attlist"/>
+<define name="appendix.attlist">
+  <ref name="label.attrib"/>
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="appendix.role.attrib"/>
+  <ref name="local.appendix.attrib"/>
+</define>
+<dtd:marked-section end="appendix.attlist"/>
+<dtd:marked-section end="appendix.module"/>
+
+<dtd:pe-decl name="chapter.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="chapter.module"/>
+<define name="local.chapter.attrib">
+  <notAllowed/>
+</define>
+<define name="chapter.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="chapter.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="chapter.element"/>
+<define name="chapter.element">
+  <element name="chapter">
+    <group>
+      <optional>
+        <ref name="beginpage.element"/>
+      </optional>
+      <optional>
+        <ref name="chapterinfo.element"/>
+      </optional>
+      <group>
+        <ref name="bookcomponent.title.content"/>
+      </group>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+      <optional>
+        <ref name="tocchap.element"/>
+      </optional>
+      <group>
+        <ref name="bookcomponent.content"/>
+      </group>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="chapter.element"/>
+
+<dtd:pe-decl name="chapter.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="chapter.attlist"/>
+<define name="chapter.attlist">
+  <ref name="label.attrib"/>
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="chapter.role.attrib"/>
+  <ref name="local.chapter.attrib"/>
+</define>
+<dtd:marked-section end="chapter.attlist"/>
+<dtd:marked-section end="chapter.module"/>
+
+<dtd:pe-decl name="part.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="part.module"/>
+
+<dtd:comment> Note that Part was to have its content model reduced in V4.1.2.  This
+change will not be made after all. </dtd:comment>
+
+<define name="local.part.attrib">
+  <notAllowed/>
+</define>
+<define name="part.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="part.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="part.element"/>
+<define name="part.element">
+  <element name="part">
+    <group>
+      <optional>
+        <ref name="beginpage.element"/>
+      </optional>
+      <optional>
+        <ref name="partinfo.element"/>
+      </optional>
+      <group>
+        <ref name="bookcomponent.title.content"/>
+      </group>
+      <optional>
+        <ref name="partintro.element"/>
+      </optional>
+      <oneOrMore>
+        <choice>
+          <ref name="partcontent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="part.element"/>
+
+<dtd:pe-decl name="part.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="part.attlist"/>
+<define name="part.attlist">
+  <ref name="label.attrib"/>
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="part.role.attrib"/>
+  <ref name="local.part.attrib"/>
+</define>
+<dtd:marked-section end="part.attlist"/>
+<dtd:comment>ELEMENT PartIntro (defined below)</dtd:comment>
+<dtd:marked-section end="part.module"/>
+
+<dtd:pe-decl name="preface.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="preface.module"/>
+<define name="local.preface.attrib">
+  <notAllowed/>
+</define>
+<define name="preface.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="preface.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="preface.element"/>
+<define name="preface.element">
+  <element name="preface">
+    <group>
+      <optional>
+        <ref name="beginpage.element"/>
+      </optional>
+      <optional>
+        <ref name="prefaceinfo.element"/>
+      </optional>
+      <group>
+        <ref name="bookcomponent.title.content"/>
+      </group>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+      <optional>
+        <ref name="tocchap.element"/>
+      </optional>
+      <group>
+        <ref name="bookcomponent.content"/>
+      </group>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="preface.element"/>
+
+<dtd:pe-decl name="preface.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="preface.attlist"/>
+<define name="preface.attlist">
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="preface.role.attrib"/>
+  <ref name="local.preface.attrib"/>
+</define>
+<dtd:marked-section end="preface.attlist"/>
+<dtd:marked-section end="preface.module"/>
+
+<dtd:pe-decl name="reference.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="reference.module"/>
+<define name="local.reference.attrib">
+  <notAllowed/>
+</define>
+<define name="reference.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="reference.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="reference.element"/>
+<define name="reference.element">
+  <element name="reference">
+    <group>
+      <optional>
+        <ref name="beginpage.element"/>
+      </optional>
+      <optional>
+        <ref name="referenceinfo.element"/>
+      </optional>
+      <group>
+        <ref name="bookcomponent.title.content"/>
+      </group>
+      <optional>
+        <ref name="partintro.element"/>
+      </optional>
+      <oneOrMore>
+        <choice>
+          <ref name="refentry.class"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="reference.element"/>
+
+<dtd:pe-decl name="reference.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="reference.attlist"/>
+<define name="reference.attlist">
+  <ref name="label.attrib"/>
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="reference.role.attrib"/>
+  <ref name="local.reference.attrib"/>
+</define>
+<dtd:marked-section end="reference.attlist"/>
+<dtd:comment>ELEMENT PartIntro (defined below)</dtd:comment>
+<dtd:marked-section end="reference.module"/>
+
+<dtd:pe-decl name="partintro.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="partintro.module"/>
+<define name="local.partintro.attrib">
+  <notAllowed/>
+</define>
+<define name="partintro.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="partintro.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="partintro.element"/>
+<define name="partintro.element">
+  <element name="partintro">
+    <group>
+      <optional>
+        <group>
+          <ref name="div.title.content"/>
+        </group>
+      </optional>
+      <group>
+        <ref name="bookcomponent.content"/>
+      </group>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="partintro.element"/>
+
+<dtd:pe-decl name="partintro.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="partintro.attlist"/>
+<define name="partintro.attlist">	
+  <ref name="label.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="local.partintro.attrib"/>
+  <ref name="partintro.role.attrib"/>
+</define>
+<dtd:marked-section end="partintro.attlist"/>
+<dtd:marked-section end="partintro.module"/>
+
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> Other Info elements .................................................. </dtd:comment>
+
+<dtd:pe-decl name="appendixinfo.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="appendixinfo.module"/>
+<define name="local.appendixinfo.attrib">
+  <notAllowed/>
+</define>
+<define name="appendixinfo.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="appendixinfo.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="appendixinfo.element"/>
+<define name="appendixinfo.element">
+  <element name="appendixinfo">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="appendixinfo.element"/>
+
+<dtd:pe-decl name="appendixinfo.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="appendixinfo.attlist"/>
+<define name="appendixinfo.attlist">
+  <ref name="common.attrib"/>
+  <ref name="appendixinfo.role.attrib"/>
+  <ref name="local.appendixinfo.attrib"/>
+</define>
+<dtd:marked-section end="appendixinfo.attlist"/>
+<dtd:marked-section end="appendixinfo.module"/>
+
+<dtd:pe-decl name="bibliographyinfo.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="bibliographyinfo.module"/>
+<define name="local.bibliographyinfo.attrib">
+  <notAllowed/>
+</define>
+<define name="bibliographyinfo.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="bibliographyinfo.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="bibliographyinfo.element"/>
+<define name="bibliographyinfo.element">
+  <element name="bibliographyinfo">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="bibliographyinfo.element"/>
+
+<dtd:pe-decl name="bibliographyinfo.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="bibliographyinfo.attlist"/>
+<define name="bibliographyinfo.attlist">
+  <ref name="common.attrib"/>
+  <ref name="bibliographyinfo.role.attrib"/>
+  <ref name="local.bibliographyinfo.attrib"/>
+</define>
+<dtd:marked-section end="bibliographyinfo.attlist"/>
+<dtd:marked-section end="bibliographyinfo.module"/>
+
+<dtd:pe-decl name="chapterinfo.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="chapterinfo.module"/>
+<define name="local.chapterinfo.attrib">
+  <notAllowed/>
+</define>
+<define name="chapterinfo.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="chapterinfo.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="chapterinfo.element"/>
+<define name="chapterinfo.element">
+  <element name="chapterinfo">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="chapterinfo.element"/>
+
+<dtd:pe-decl name="chapterinfo.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="chapterinfo.attlist"/>
+<define name="chapterinfo.attlist">
+  <ref name="common.attrib"/>
+  <ref name="chapterinfo.role.attrib"/>
+  <ref name="local.chapterinfo.attrib"/>
+</define>
+<dtd:marked-section end="chapterinfo.attlist"/>
+<dtd:marked-section end="chapterinfo.module"/>
+
+<dtd:pe-decl name="glossaryinfo.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="glossaryinfo.module"/>
+<define name="local.glossaryinfo.attrib">
+  <notAllowed/>
+</define>
+<define name="glossaryinfo.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="glossaryinfo.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="glossaryinfo.element"/>
+<define name="glossaryinfo.element">
+  <element name="glossaryinfo">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="glossaryinfo.element"/>
+
+<dtd:pe-decl name="glossaryinfo.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="glossaryinfo.attlist"/>
+<define name="glossaryinfo.attlist">
+  <ref name="common.attrib"/>
+  <ref name="glossaryinfo.role.attrib"/>
+  <ref name="local.glossaryinfo.attrib"/>
+</define>
+<dtd:marked-section end="glossaryinfo.attlist"/>
+<dtd:marked-section end="glossaryinfo.module"/>
+
+<dtd:pe-decl name="indexinfo.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="indexinfo.module"/>
+<define name="local.indexinfo.attrib">
+  <notAllowed/>
+</define>
+<define name="indexinfo.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="indexinfo.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="indexinfo.element"/>
+<define name="indexinfo.element">
+  <element name="indexinfo">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="indexinfo.element"/>
+
+<dtd:pe-decl name="indexinfo.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="indexinfo.attlist"/>
+<define name="indexinfo.attlist">
+  <ref name="common.attrib"/>
+  <ref name="indexinfo.role.attrib"/>
+  <ref name="local.indexinfo.attrib"/>
+</define>
+<dtd:marked-section end="indexinfo.attlist"/>
+<dtd:marked-section end="indexinfo.module"/>
+
+<dtd:pe-decl name="setindexinfo.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="setindexinfo.module"/>
+<define name="local.setindexinfo.attrib">
+  <notAllowed/>
+</define>
+<define name="setindexinfo.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="setindexinfo.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="setindexinfo.element"/>
+<define name="setindexinfo.element">
+  <element name="setindexinfo">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="setindexinfo.element"/>
+
+<dtd:pe-decl name="setindexinfo.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="setindexinfo.attlist"/>
+<define name="setindexinfo.attlist">
+  <ref name="common.attrib"/>
+  <ref name="setindexinfo.role.attrib"/>
+  <ref name="local.setindexinfo.attrib"/>
+</define>
+<dtd:marked-section end="setindexinfo.attlist"/>
+<dtd:marked-section end="setindexinfo.module"/>
+
+<dtd:pe-decl name="partinfo.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="partinfo.module"/>
+<define name="local.partinfo.attrib">
+  <notAllowed/>
+</define>
+<define name="partinfo.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="partinfo.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="partinfo.element"/>
+<define name="partinfo.element">
+  <element name="partinfo">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="partinfo.element"/>
+
+<dtd:pe-decl name="partinfo.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="partinfo.attlist"/>
+<define name="partinfo.attlist">
+  <ref name="common.attrib"/>
+  <ref name="partinfo.role.attrib"/>
+  <ref name="local.partinfo.attrib"/>
+</define>
+<dtd:marked-section end="partinfo.attlist"/>
+<dtd:marked-section end="partinfo.module"/>
+
+<dtd:pe-decl name="prefaceinfo.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="prefaceinfo.module"/>
+<define name="local.prefaceinfo.attrib">
+  <notAllowed/>
+</define>
+<define name="prefaceinfo.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="prefaceinfo.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="prefaceinfo.element"/>
+<define name="prefaceinfo.element">
+  <element name="prefaceinfo">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="prefaceinfo.element"/>
+
+<dtd:pe-decl name="prefaceinfo.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="prefaceinfo.attlist"/>
+<define name="prefaceinfo.attlist">
+  <ref name="common.attrib"/>
+  <ref name="prefaceinfo.role.attrib"/>
+  <ref name="local.prefaceinfo.attrib"/>
+</define>
+<dtd:marked-section end="prefaceinfo.attlist"/>
+<dtd:marked-section end="prefaceinfo.module"/>
+
+<dtd:pe-decl name="refentryinfo.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refentryinfo.module"/>
+<define name="local.refentryinfo.attrib">
+  <notAllowed/>
+</define>
+<define name="refentryinfo.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="refentryinfo.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refentryinfo.element"/>
+<define name="refentryinfo.element">
+  <element name="refentryinfo">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="refentryinfo.element"/>
+
+<dtd:pe-decl name="refentryinfo.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refentryinfo.attlist"/>
+<define name="refentryinfo.attlist">
+  <ref name="common.attrib"/>
+  <ref name="refentryinfo.role.attrib"/>
+  <ref name="local.refentryinfo.attrib"/>
+</define>
+<dtd:marked-section end="refentryinfo.attlist"/>
+<dtd:marked-section end="refentryinfo.module"/>
+
+<dtd:pe-decl name="refsect1info.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect1info.module"/>
+<define name="local.refsect1info.attrib">
+  <notAllowed/>
+</define>
+<define name="refsect1info.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="refsect1info.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect1info.element"/>
+<define name="refsect1info.element">
+  <element name="refsect1info">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="refsect1info.element"/>
+
+<dtd:pe-decl name="refsect1info.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect1info.attlist"/>
+<define name="refsect1info.attlist">
+  <ref name="common.attrib"/>
+  <ref name="refsect1info.role.attrib"/>
+  <ref name="local.refsect1info.attrib"/>
+</define>
+<dtd:marked-section end="refsect1info.attlist"/>
+<dtd:marked-section end="refsect1info.module"/>
+
+<dtd:pe-decl name="refsect2info.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect2info.module"/>
+<define name="local.refsect2info.attrib">
+  <notAllowed/>
+</define>
+<define name="refsect2info.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="refsect2info.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect2info.element"/>
+<define name="refsect2info.element">
+  <element name="refsect2info">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="refsect2info.element"/>
+
+<dtd:pe-decl name="refsect2info.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect2info.attlist"/>
+<define name="refsect2info.attlist">
+  <ref name="common.attrib"/>
+  <ref name="refsect2info.role.attrib"/>
+  <ref name="local.refsect2info.attrib"/>
+</define>
+<dtd:marked-section end="refsect2info.attlist"/>
+<dtd:marked-section end="refsect2info.module"/>
+
+<dtd:pe-decl name="refsect3info.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect3info.module"/>
+<define name="local.refsect3info.attrib">
+  <notAllowed/>
+</define>
+<define name="refsect3info.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="refsect3info.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect3info.element"/>
+<define name="refsect3info.element">
+  <element name="refsect3info">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="refsect3info.element"/>
+
+<dtd:pe-decl name="refsect3info.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect3info.attlist"/>
+<define name="refsect3info.attlist">
+  <ref name="common.attrib"/>
+  <ref name="refsect3info.role.attrib"/>
+  <ref name="local.refsect3info.attrib"/>
+</define>
+<dtd:marked-section end="refsect3info.attlist"/>
+<dtd:marked-section end="refsect3info.module"/>
+
+<dtd:pe-decl name="refsynopsisdivinfo.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsynopsisdivinfo.module"/>
+<define name="local.refsynopsisdivinfo.attrib">
+  <notAllowed/>
+</define>
+<define name="refsynopsisdivinfo.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="refsynopsisdivinfo.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsynopsisdivinfo.element"/>
+<define name="refsynopsisdivinfo.element">
+  <element name="refsynopsisdivinfo">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="refsynopsisdivinfo.element"/>
+
+<dtd:pe-decl name="refsynopsisdivinfo.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsynopsisdivinfo.attlist"/>
+<define name="refsynopsisdivinfo.attlist">
+  <ref name="common.attrib"/>
+  <ref name="refsynopsisdivinfo.role.attrib"/>
+  <ref name="local.refsynopsisdivinfo.attrib"/>
+</define>
+<dtd:marked-section end="refsynopsisdivinfo.attlist"/>
+<dtd:marked-section end="refsynopsisdivinfo.module"/>
+
+<dtd:pe-decl name="referenceinfo.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="referenceinfo.module"/>
+<define name="local.referenceinfo.attrib">
+  <notAllowed/>
+</define>
+<define name="referenceinfo.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="referenceinfo.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="referenceinfo.element"/>
+<define name="referenceinfo.element">
+  <element name="referenceinfo">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="referenceinfo.element"/>
+
+<dtd:pe-decl name="referenceinfo.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="referenceinfo.attlist"/>
+<define name="referenceinfo.attlist">
+  <ref name="common.attrib"/>
+  <ref name="referenceinfo.role.attrib"/>
+  <ref name="local.referenceinfo.attrib"/>
+</define>
+<dtd:marked-section end="referenceinfo.attlist"/>
+<dtd:marked-section end="referenceinfo.module"/>
+
+<define name="local.sect1info.attrib">
+  <notAllowed/>
+</define>
+<define name="sect1info.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="sect1info.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect1info.element"/>
+<define name="sect1info.element">
+  <element name="sect1info">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="sect1info.element"/>
+
+<dtd:pe-decl name="sect1info.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect1info.attlist"/>
+<define name="sect1info.attlist">
+  <ref name="common.attrib"/>
+  <ref name="sect1info.role.attrib"/>
+  <ref name="local.sect1info.attrib"/>
+</define>
+<dtd:marked-section end="sect1info.attlist"/>
+
+<define name="local.sect2info.attrib">
+  <notAllowed/>
+</define>
+<define name="sect2info.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="sect2info.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect2info.element"/>
+<define name="sect2info.element">
+  <element name="sect2info">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="sect2info.element"/>
+
+<dtd:pe-decl name="sect2info.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect2info.attlist"/>
+<define name="sect2info.attlist">
+  <ref name="common.attrib"/>
+  <ref name="sect2info.role.attrib"/>
+  <ref name="local.sect2info.attrib"/>
+</define>
+<dtd:marked-section end="sect2info.attlist"/>
+
+<define name="local.sect3info.attrib">
+  <notAllowed/>
+</define>
+<define name="sect3info.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="sect3info.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect3info.element"/>
+<define name="sect3info.element">
+  <element name="sect3info">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="sect3info.element"/>
+
+<dtd:pe-decl name="sect3info.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect3info.attlist"/>
+<define name="sect3info.attlist">
+  <ref name="common.attrib"/>
+  <ref name="sect3info.role.attrib"/>
+  <ref name="local.sect3info.attrib"/>
+</define>
+<dtd:marked-section end="sect3info.attlist"/>
+
+<define name="local.sect4info.attrib">
+  <notAllowed/>
+</define>
+<define name="sect4info.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="sect4info.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect4info.element"/>
+<define name="sect4info.element">
+  <element name="sect4info">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="sect4info.element"/>
+
+<dtd:pe-decl name="sect4info.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect4info.attlist"/>
+<define name="sect4info.attlist">
+  <ref name="common.attrib"/>
+  <ref name="sect4info.role.attrib"/>
+  <ref name="local.sect4info.attrib"/>
+</define>
+<dtd:marked-section end="sect4info.attlist"/>
+
+<define name="local.sect5info.attrib">
+  <notAllowed/>
+</define>
+<define name="sect5info.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="sect5info.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect5info.element"/>
+<define name="sect5info.element">
+  <element name="sect5info">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="sect5info.element"/>
+
+<dtd:pe-decl name="sect5info.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect5info.attlist"/>
+<define name="sect5info.attlist">
+  <ref name="common.attrib"/>
+  <ref name="sect5info.role.attrib"/>
+  <ref name="local.sect5info.attrib"/>
+</define>
+<dtd:marked-section end="sect5info.attlist"/>
+
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> Section (parallel to Sect*) ......................................... </dtd:comment>
+
+<dtd:pe-decl name="section.content.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="section.content.module"/>
+<dtd:pe-decl name="section.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="section.module"/>
+<define name="local.section.attrib">
+  <notAllowed/>
+</define>
+<define name="section.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="section.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="section.element"/>
+<define name="section.element">
+  <element name="section">
+    <group>
+      <optional>
+        <ref name="sectioninfo.element"/>
+      </optional>
+      <group>
+        <ref name="sect.title.content"/>
+      </group>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+      <choice>
+        <group>
+          <oneOrMore>
+            <choice>
+              <ref name="divcomponent.mix"/>
+            </choice>
+          </oneOrMore>
+          <choice>
+            <zeroOrMore>
+              <choice>
+                <ref name="refentry.class"/>
+              </choice>
+            </zeroOrMore>
+            <zeroOrMore>
+              <ref name="section.element"/>
+            </zeroOrMore>
+          </choice>
+        </group>
+        <oneOrMore>
+          <choice>
+            <ref name="refentry.class"/>
+          </choice>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="section.element"/>
+        </oneOrMore>
+      </choice>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="section.element"/>
+
+<dtd:pe-decl name="section.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="section.attlist"/>
+<define name="section.attlist">
+  <ref name="label.attrib"/>
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="section.role.attrib"/>
+  <ref name="local.section.attrib"/>
+</define>
+<dtd:marked-section end="section.attlist"/>
+<dtd:marked-section end="section.module"/>
+
+<dtd:pe-decl name="sectioninfo.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sectioninfo.module"/>
+<define name="sectioninfo.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+<define name="local.sectioninfo.attrib">
+  <notAllowed/>
+</define>
+
+<dtd:pe-decl name="sectioninfo.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sectioninfo.element"/>
+<define name="sectioninfo.element">
+  <element name="sectioninfo">
+    <group>
+      <oneOrMore>
+        <choice>
+          <ref name="graphic.element"/>
+          <ref name="mediaobject.element"/>
+          <ref name="legalnotice.element"/>
+          <ref name="modespec.element"/>
+          <ref name="subjectset.element"/>
+          <ref name="keywordset.element"/>
+          <ref name="itermset.element"/>
+          <ref name="bibliocomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="sectioninfo.element"/>
+
+<dtd:pe-decl name="sectioninfo.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sectioninfo.attlist"/>
+<define name="sectioninfo.attlist">
+  <ref name="common.attrib"/>
+  <ref name="sectioninfo.role.attrib"/>
+  <ref name="local.sectioninfo.attrib"/>
+</define>
+<dtd:marked-section end="sectioninfo.attlist"/>
+<dtd:marked-section end="sectioninfo.module"/>
+<dtd:marked-section end="section.content.module"/>
+
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> Sect1, Sect2, Sect3, Sect4, Sect5 .................................... </dtd:comment>
+
+<dtd:pe-decl name="sect1.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect1.module"/>
+<define name="local.sect1.attrib">
+  <notAllowed/>
+</define>
+<define name="sect1.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="sect1.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect1.element"/>
+<define name="sect1.element">
+  <element name="sect1">
+    <group>
+      <optional>
+        <ref name="sect1info.element"/>
+      </optional>
+      <group>
+        <ref name="sect.title.content"/>
+      </group>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+      <choice>
+        <group>
+          <oneOrMore>
+            <choice>
+              <ref name="divcomponent.mix"/>
+            </choice>
+          </oneOrMore>
+          <choice>
+            <zeroOrMore>
+              <choice>
+                <ref name="refentry.class"/>
+              </choice>
+            </zeroOrMore>
+            <zeroOrMore>
+              <ref name="sect2.element"/>
+            </zeroOrMore>
+            <zeroOrMore>
+              <ref name="simplesect.element"/>
+            </zeroOrMore>
+          </choice>
+        </group>
+        <oneOrMore>
+          <choice>
+            <ref name="refentry.class"/>
+          </choice>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="sect2.element"/>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="simplesect.element"/>
+        </oneOrMore>
+      </choice>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="sect1.element"/>
+
+<dtd:comment> Renderas: Indicates the format in which the heading should
+		appear </dtd:comment>
+
+
+<dtd:pe-decl name="sect1.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect1.attlist"/>
+<define name="sect1.attlist">
+  <optional>
+    <attribute name="renderas">
+      <choice>
+        <string>sect2</string>
+        <string>sect3</string>
+        <string>sect4</string>
+        <string>sect5</string>
+      </choice>
+    </attribute>
+  </optional>
+  <ref name="label.attrib"/>
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="sect1.role.attrib"/>
+  <ref name="local.sect1.attrib"/>
+</define>
+<dtd:marked-section end="sect1.attlist"/>
+<dtd:marked-section end="sect1.module"/>
+
+<dtd:pe-decl name="sect2.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect2.module"/>
+<define name="local.sect2.attrib">
+  <notAllowed/>
+</define>
+<define name="sect2.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="sect2.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect2.element"/>
+<define name="sect2.element">
+  <element name="sect2">
+    <group>
+      <optional>
+        <ref name="sect2info.element"/>
+      </optional>
+      <group>
+        <ref name="sect.title.content"/>
+      </group>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+      <choice>
+        <group>
+          <oneOrMore>
+            <choice>
+              <ref name="divcomponent.mix"/>
+            </choice>
+          </oneOrMore>
+          <choice>
+            <zeroOrMore>
+              <choice>
+                <ref name="refentry.class"/>
+              </choice>
+            </zeroOrMore>
+            <zeroOrMore>
+              <ref name="sect3.element"/>
+            </zeroOrMore>
+            <zeroOrMore>
+              <ref name="simplesect.element"/>
+            </zeroOrMore>
+          </choice>
+        </group>
+        <oneOrMore>
+          <choice>
+            <ref name="refentry.class"/>
+          </choice>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="sect3.element"/>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="simplesect.element"/>
+        </oneOrMore>
+      </choice>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="sect2.element"/>
+
+<dtd:comment> Renderas: Indicates the format in which the heading should
+		appear </dtd:comment>
+
+
+<dtd:pe-decl name="sect2.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect2.attlist"/>
+<define name="sect2.attlist">
+  <optional>
+    <attribute name="renderas">
+      <choice>
+        <string>sect1</string>
+        <string>sect3</string>
+        <string>sect4</string>
+        <string>sect5</string>
+      </choice>
+    </attribute>
+  </optional>
+  <ref name="label.attrib"/>
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="sect2.role.attrib"/>
+  <ref name="local.sect2.attrib"/>
+</define>
+<dtd:marked-section end="sect2.attlist"/>
+<dtd:marked-section end="sect2.module"/>
+
+<dtd:pe-decl name="sect3.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect3.module"/>
+<define name="local.sect3.attrib">
+  <notAllowed/>
+</define>
+<define name="sect3.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="sect3.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect3.element"/>
+<define name="sect3.element">
+  <element name="sect3">
+    <group>
+      <optional>
+        <ref name="sect3info.element"/>
+      </optional>
+      <group>
+        <ref name="sect.title.content"/>
+      </group>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+      <choice>
+        <group>
+          <oneOrMore>
+            <choice>
+              <ref name="divcomponent.mix"/>
+            </choice>
+          </oneOrMore>
+          <choice>
+            <zeroOrMore>
+              <choice>
+                <ref name="refentry.class"/>
+              </choice>
+            </zeroOrMore>
+            <zeroOrMore>
+              <ref name="sect4.element"/>
+            </zeroOrMore>
+            <zeroOrMore>
+              <ref name="simplesect.element"/>
+            </zeroOrMore>
+          </choice>
+        </group>
+        <oneOrMore>
+          <choice>
+            <ref name="refentry.class"/>
+          </choice>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="sect4.element"/>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="simplesect.element"/>
+        </oneOrMore>
+      </choice>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="sect3.element"/>
+
+<dtd:comment> Renderas: Indicates the format in which the heading should
+		appear </dtd:comment>
+
+
+<dtd:pe-decl name="sect3.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect3.attlist"/>
+<define name="sect3.attlist">
+  <optional>
+    <attribute name="renderas">
+      <choice>
+        <string>sect1</string>
+        <string>sect2</string>
+        <string>sect4</string>
+        <string>sect5</string>
+      </choice>
+    </attribute>
+  </optional>
+  <ref name="label.attrib"/>
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="sect3.role.attrib"/>
+  <ref name="local.sect3.attrib"/>
+</define>
+<dtd:marked-section end="sect3.attlist"/>
+<dtd:marked-section end="sect3.module"/>
+
+<dtd:pe-decl name="sect4.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect4.module"/>
+<define name="local.sect4.attrib">
+  <notAllowed/>
+</define>
+<define name="sect4.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="sect4.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect4.element"/>
+<define name="sect4.element">
+  <element name="sect4">
+    <group>
+      <optional>
+        <ref name="sect4info.element"/>
+      </optional>
+      <group>
+        <ref name="sect.title.content"/>
+      </group>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+      <choice>
+        <group>
+          <oneOrMore>
+            <choice>
+              <ref name="divcomponent.mix"/>
+            </choice>
+          </oneOrMore>
+          <choice>
+            <zeroOrMore>
+              <choice>
+                <ref name="refentry.class"/>
+              </choice>
+            </zeroOrMore>
+            <zeroOrMore>
+              <ref name="sect5.element"/>
+            </zeroOrMore>
+            <zeroOrMore>
+              <ref name="simplesect.element"/>
+            </zeroOrMore>
+          </choice>
+        </group>
+        <oneOrMore>
+          <choice>
+            <ref name="refentry.class"/>
+          </choice>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="sect5.element"/>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="simplesect.element"/>
+        </oneOrMore>
+      </choice>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="sect4.element"/>
+
+<dtd:comment> Renderas: Indicates the format in which the heading should
+		appear </dtd:comment>
+
+
+<dtd:pe-decl name="sect4.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect4.attlist"/>
+<define name="sect4.attlist">
+  <optional>
+    <attribute name="renderas">
+      <choice>
+        <string>sect1</string>
+        <string>sect2</string>
+        <string>sect3</string>
+        <string>sect5</string>
+      </choice>
+    </attribute>
+  </optional>
+  <ref name="label.attrib"/>
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="sect4.role.attrib"/>
+  <ref name="local.sect4.attrib"/>
+</define>
+<dtd:marked-section end="sect4.attlist"/>
+<dtd:marked-section end="sect4.module"/>
+
+<dtd:pe-decl name="sect5.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect5.module"/>
+<define name="local.sect5.attrib">
+  <notAllowed/>
+</define>
+<define name="sect5.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="sect5.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect5.element"/>
+<define name="sect5.element">
+  <element name="sect5">
+    <group>
+      <optional>
+        <ref name="sect5info.element"/>
+      </optional>
+      <group>
+        <ref name="sect.title.content"/>
+      </group>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+      <choice>
+        <group>
+          <oneOrMore>
+            <choice>
+              <ref name="divcomponent.mix"/>
+            </choice>
+          </oneOrMore>
+          <choice>
+            <zeroOrMore>
+              <choice>
+                <ref name="refentry.class"/>
+              </choice>
+            </zeroOrMore>
+            <zeroOrMore>
+              <ref name="simplesect.element"/>
+            </zeroOrMore>
+          </choice>
+        </group>
+        <oneOrMore>
+          <choice>
+            <ref name="refentry.class"/>
+          </choice>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="simplesect.element"/>
+        </oneOrMore>
+      </choice>
+      <zeroOrMore>
+        <choice>
+          <ref name="nav.class"/>
+        </choice>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="sect5.element"/>
+
+<dtd:comment> Renderas: Indicates the format in which the heading should
+		appear </dtd:comment>
+
+
+<dtd:pe-decl name="sect5.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="sect5.attlist"/>
+<define name="sect5.attlist">
+  <optional>
+    <attribute name="renderas">
+      <choice>
+        <string>sect1</string>
+        <string>sect2</string>
+        <string>sect3</string>
+        <string>sect4</string>
+      </choice>
+    </attribute>
+  </optional>
+  <ref name="label.attrib"/>
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="sect5.role.attrib"/>
+  <ref name="local.sect5.attrib"/>
+</define>
+<dtd:marked-section end="sect5.attlist"/>
+<dtd:marked-section end="sect5.module"/>
+
+<dtd:pe-decl name="simplesect.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="simplesect.module"/>
+<define name="local.simplesect.attrib">
+  <notAllowed/>
+</define>
+<define name="simplesect.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="simplesect.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="simplesect.element"/>
+<define name="simplesect.element">
+  <element name="simplesect">
+    <group>
+      <group>
+        <ref name="sect.title.content"/>
+      </group>
+      <oneOrMore>
+        <choice>
+          <ref name="divcomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="simplesect.element"/>
+
+<dtd:pe-decl name="simplesect.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="simplesect.attlist"/>
+<define name="simplesect.attlist">
+  <ref name="common.attrib"/>
+  <ref name="simplesect.role.attrib"/>
+  <ref name="local.simplesect.attrib"/>
+</define>
+<dtd:marked-section end="simplesect.attlist"/>
+<dtd:marked-section end="simplesect.module"/>
+
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> Bibliography ......................................................... </dtd:comment>
+
+<dtd:pe-decl name="bibliography.content.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="bibliography.content.module"/>
+<dtd:pe-decl name="bibliography.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="bibliography.module"/>
+<define name="local.bibliography.attrib">
+  <notAllowed/>
+</define>
+<define name="bibliography.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="bibliography.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="bibliography.element"/>
+<define name="bibliography.element">
+  <element name="bibliography">
+    <group>
+      <optional>
+        <ref name="bibliographyinfo.element"/>
+      </optional>
+      <optional>
+        <group>
+          <ref name="bookcomponent.title.content"/>
+        </group>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="component.mix"/>
+        </choice>
+      </zeroOrMore>
+      <choice>
+        <oneOrMore>
+          <ref name="bibliodiv.element"/>
+        </oneOrMore>
+        <oneOrMore>
+          <choice>
+            <ref name="biblioentry.element"/>
+            <ref name="bibliomixed.element"/>
+          </choice>
+        </oneOrMore>
+      </choice>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="bibliography.element"/>
+
+<dtd:pe-decl name="bibliography.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="bibliography.attlist"/>
+<define name="bibliography.attlist">
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="bibliography.role.attrib"/>
+  <ref name="local.bibliography.attrib"/>
+</define>
+<dtd:marked-section end="bibliography.attlist"/>
+<dtd:marked-section end="bibliography.module"/>
+
+<dtd:pe-decl name="bibliodiv.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="bibliodiv.module"/>
+<define name="local.bibliodiv.attrib">
+  <notAllowed/>
+</define>
+<define name="bibliodiv.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="bibliodiv.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="bibliodiv.element"/>
+<define name="bibliodiv.element">
+  <element name="bibliodiv">
+    <group>
+      <optional>
+        <group>
+          <ref name="sect.title.content"/>
+        </group>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="component.mix"/>
+        </choice>
+      </zeroOrMore>
+      <oneOrMore>
+        <choice>
+          <ref name="biblioentry.element"/>
+          <ref name="bibliomixed.element"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="bibliodiv.element"/>
+
+<dtd:pe-decl name="bibliodiv.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="bibliodiv.attlist"/>
+<define name="bibliodiv.attlist">
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="bibliodiv.role.attrib"/>
+  <ref name="local.bibliodiv.attrib"/>
+</define>
+<dtd:marked-section end="bibliodiv.attlist"/>
+<dtd:marked-section end="bibliodiv.module"/>
+<dtd:marked-section end="bibliography.content.module"/>
+
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> Glossary ............................................................. </dtd:comment>
+
+<dtd:pe-decl name="glossary.content.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="glossary.content.module"/>
+<dtd:pe-decl name="glossary.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="glossary.module"/>
+<define name="local.glossary.attrib">
+  <notAllowed/>
+</define>
+<define name="glossary.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="glossary.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="glossary.element"/>
+<define name="glossary.element">
+  <element name="glossary">
+    <group>
+      <optional>
+        <ref name="glossaryinfo.element"/>
+      </optional>
+      <optional>
+        <group>
+          <ref name="bookcomponent.title.content"/>
+        </group>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="component.mix"/>
+        </choice>
+      </zeroOrMore>
+      <choice>
+        <oneOrMore>
+          <ref name="glossdiv.element"/>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="glossentry.element"/>
+        </oneOrMore>
+      </choice>
+      <optional>
+        <ref name="bibliography.element"/>
+      </optional>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="glossary.element"/>
+
+<dtd:pe-decl name="glossary.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="glossary.attlist"/>
+<define name="glossary.attlist">
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="glossary.role.attrib"/>
+  <ref name="local.glossary.attrib"/>
+</define>
+<dtd:marked-section end="glossary.attlist"/>
+<dtd:marked-section end="glossary.module"/>
+
+<dtd:pe-decl name="glossdiv.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="glossdiv.module"/>
+<define name="local.glossdiv.attrib">
+  <notAllowed/>
+</define>
+<define name="glossdiv.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="glossdiv.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="glossdiv.element"/>
+<define name="glossdiv.element">
+  <element name="glossdiv">
+    <group>
+      <group>
+        <ref name="sect.title.content"/>
+      </group>
+      <zeroOrMore>
+        <choice>
+          <ref name="component.mix"/>
+        </choice>
+      </zeroOrMore>
+      <oneOrMore>
+        <ref name="glossentry.element"/>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="glossdiv.element"/>
+
+<dtd:pe-decl name="glossdiv.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="glossdiv.attlist"/>
+<define name="glossdiv.attlist">
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="glossdiv.role.attrib"/>
+  <ref name="local.glossdiv.attrib"/>
+</define>
+<dtd:marked-section end="glossdiv.attlist"/>
+<dtd:marked-section end="glossdiv.module"/>
+<dtd:marked-section end="glossary.content.module"/>
+
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> Index and SetIndex ................................................... </dtd:comment>
+
+<dtd:pe-decl name="index.content.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="index.content.module"/>
+<dtd:pe-decl name="indexes.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="indexes.module"/>
+<define name="local.indexes.attrib">
+  <notAllowed/>
+</define>
+<define name="indexes.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="index.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="index.element"/>
+<define name="index.element">
+  <element name="index">
+    <group>
+      <optional>
+        <ref name="indexinfo.element"/>
+      </optional>
+      <optional>
+        <group>
+          <ref name="bookcomponent.title.content"/>
+        </group>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="component.mix"/>
+        </choice>
+      </zeroOrMore>
+      <choice>
+        <zeroOrMore>
+          <ref name="indexdiv.element"/>
+        </zeroOrMore>
+        <zeroOrMore>
+          <ref name="indexentry.element"/>
+        </zeroOrMore>
+      </choice>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="index.element"/>
+
+<dtd:pe-decl name="index.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="index.attlist"/>
+<define name="index.attlist">
+  <ref name="common.attrib"/>
+  <ref name="indexes.role.attrib"/>
+  <ref name="local.indexes.attrib"/>
+</define>
+<dtd:marked-section end="index.attlist"/>
+
+<dtd:pe-decl name="setindex.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="setindex.element"/>
+<define name="setindex.element">
+  <element name="setindex">
+    <group>
+      <optional>
+        <ref name="setindexinfo.element"/>
+      </optional>
+      <optional>
+        <group>
+          <ref name="bookcomponent.title.content"/>
+        </group>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="component.mix"/>
+        </choice>
+      </zeroOrMore>
+      <choice>
+        <zeroOrMore>
+          <ref name="indexdiv.element"/>
+        </zeroOrMore>
+        <zeroOrMore>
+          <ref name="indexentry.element"/>
+        </zeroOrMore>
+      </choice>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="setindex.element"/>
+
+<dtd:pe-decl name="setindex.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="setindex.attlist"/>
+<define name="setindex.attlist">
+  <ref name="common.attrib"/>
+  <ref name="indexes.role.attrib"/>
+  <ref name="local.indexes.attrib"/>
+</define>
+<dtd:marked-section end="setindex.attlist"/>
+<dtd:marked-section end="indexes.module"/>
+
+<dtd:pe-decl name="indexdiv.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="indexdiv.module"/>
+
+<dtd:comment> SegmentedList in this content is useful for marking up permuted
+     indices. </dtd:comment>
+
+<define name="local.indexdiv.attrib">
+  <notAllowed/>
+</define>
+<define name="indexdiv.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="indexdiv.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="indexdiv.element"/>
+<define name="indexdiv.element">
+  <element name="indexdiv">
+    <group>
+      <optional>
+        <group>
+          <ref name="sect.title.content"/>
+        </group>
+      </optional>
+      <group>
+        <zeroOrMore>
+          <choice>
+            <ref name="indexdivcomponent.mix"/>
+          </choice>
+        </zeroOrMore>
+        <choice>
+          <oneOrMore>
+            <ref name="indexentry.element"/>
+          </oneOrMore>
+          <ref name="segmentedlist.element"/>
+        </choice>
+      </group>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="indexdiv.element"/>
+
+<dtd:pe-decl name="indexdiv.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="indexdiv.attlist"/>
+<define name="indexdiv.attlist">
+  <ref name="common.attrib"/>
+  <ref name="indexdiv.role.attrib"/>
+  <ref name="local.indexdiv.attrib"/>
+</define>
+<dtd:marked-section end="indexdiv.attlist"/>
+<dtd:marked-section end="indexdiv.module"/>
+
+<dtd:pe-decl name="indexentry.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="indexentry.module"/>
+<dtd:comment> Index entries appear in the index, not the text. </dtd:comment>
+
+<define name="local.indexentry.attrib">
+  <notAllowed/>
+</define>
+<define name="indexentry.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="indexentry.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="indexentry.element"/>
+<define name="indexentry.element">
+  <element name="indexentry">
+    <group>
+      <ref name="primaryie.element"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="seeie.element"/>
+          <ref name="seealsoie.element"/>
+        </choice>
+      </zeroOrMore>
+      <zeroOrMore>
+        <group>
+          <ref name="secondaryie.element"/>
+          <zeroOrMore>
+            <choice>
+              <ref name="seeie.element"/>
+              <ref name="seealsoie.element"/>
+              <ref name="tertiaryie.element"/>
+            </choice>
+          </zeroOrMore>
+        </group>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="indexentry.element"/>
+
+<dtd:pe-decl name="indexentry.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="indexentry.attlist"/>
+<define name="indexentry.attlist">
+  <ref name="common.attrib"/>
+  <ref name="indexentry.role.attrib"/>
+  <ref name="local.indexentry.attrib"/>
+</define>
+<dtd:marked-section end="indexentry.attlist"/>
+<dtd:marked-section end="indexentry.module"/>
+
+<dtd:pe-decl name="primsecterie.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="primsecterie.module"/>
+<define name="local.primsecterie.attrib">
+  <notAllowed/>
+</define>
+<define name="primsecterie.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="primaryie.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="primaryie.element"/>
+<define name="primaryie.element">
+  <element name="primaryie">
+    <zeroOrMore>
+      <choice>
+        <ref name="ndxterm.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </element>
+</define>
+<dtd:marked-section end="primaryie.element"/>
+
+<dtd:comment> to IndexTerms that these entries represent </dtd:comment>
+
+<dtd:pe-decl name="primaryie.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="primaryie.attlist"/>
+<define name="primaryie.attlist">
+  <ref name="linkends.attrib"/>		%common.attrib;
+  <ref name="primsecterie.role.attrib"/>
+  <ref name="local.primsecterie.attrib"/>
+</define>
+<dtd:marked-section end="primaryie.attlist"/>
+
+<dtd:pe-decl name="secondaryie.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="secondaryie.element"/>
+<define name="secondaryie.element">
+  <element name="secondaryie">
+    <zeroOrMore>
+      <choice>
+        <ref name="ndxterm.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </element>
+</define>
+<dtd:marked-section end="secondaryie.element"/>
+
+<dtd:comment> to IndexTerms that these entries represent </dtd:comment>
+
+<dtd:pe-decl name="secondaryie.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="secondaryie.attlist"/>
+<define name="secondaryie.attlist">
+  <ref name="linkends.attrib"/>		%common.attrib;
+  <ref name="primsecterie.role.attrib"/>
+  <ref name="local.primsecterie.attrib"/>
+</define>
+<dtd:marked-section end="secondaryie.attlist"/>
+
+<dtd:pe-decl name="tertiaryie.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="tertiaryie.element"/>
+<define name="tertiaryie.element">
+  <element name="tertiaryie">
+    <zeroOrMore>
+      <choice>
+        <ref name="ndxterm.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </element>
+</define>
+<dtd:marked-section end="tertiaryie.element"/>
+
+<dtd:comment> to IndexTerms that these entries represent </dtd:comment>
+
+<dtd:pe-decl name="tertiaryie.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="tertiaryie.attlist"/>
+<define name="tertiaryie.attlist">
+  <ref name="linkends.attrib"/>		%common.attrib;
+  <ref name="primsecterie.role.attrib"/>
+  <ref name="local.primsecterie.attrib"/>
+</define>
+<dtd:marked-section end="tertiaryie.attlist"/>
+
+<dtd:marked-section end="primsecterie.module"/>
+	
+<dtd:pe-decl name="seeie.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="seeie.module"/>
+<define name="local.seeie.attrib">
+  <notAllowed/>
+</define>
+<define name="seeie.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="seeie.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="seeie.element"/>
+<define name="seeie.element">
+  <element name="seeie">
+    <zeroOrMore>
+      <choice>
+        <ref name="ndxterm.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </element>
+</define>
+<dtd:marked-section end="seeie.element"/>
+
+<dtd:comment> to IndexEntry to look up </dtd:comment>
+
+
+<dtd:pe-decl name="seeie.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="seeie.attlist"/>
+<define name="seeie.attlist">
+  <ref name="linkend.attrib"/>		%common.attrib;
+  <ref name="seeie.role.attrib"/>
+  <ref name="local.seeie.attrib"/>
+</define>
+<dtd:marked-section end="seeie.attlist"/>
+<dtd:marked-section end="seeie.module"/>
+
+<dtd:pe-decl name="seealsoie.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="seealsoie.module"/>
+<define name="local.seealsoie.attrib">
+  <notAllowed/>
+</define>
+<define name="seealsoie.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="seealsoie.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="seealsoie.element"/>
+<define name="seealsoie.element">
+  <element name="seealsoie">
+    <zeroOrMore>
+      <choice>
+        <ref name="ndxterm.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </element>
+</define>
+<dtd:marked-section end="seealsoie.element"/>
+
+<dtd:comment> to related IndexEntries </dtd:comment>
+
+
+<dtd:pe-decl name="seealsoie.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="seealsoie.attlist"/>
+<define name="seealsoie.attlist">
+  <ref name="linkends.attrib"/>		%common.attrib;
+  <ref name="seealsoie.role.attrib"/>
+  <ref name="local.seealsoie.attrib"/>
+</define>
+<dtd:marked-section end="seealsoie.attlist"/>
+<dtd:marked-section end="seealsoie.module"/>
+<dtd:marked-section end="index.content.module"/>
+
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> RefEntry ............................................................. </dtd:comment>
+
+<dtd:pe-decl name="refentry.content.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refentry.content.module"/>
+<dtd:pe-decl name="refentry.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refentry.module"/>
+<define name="local.refentry.attrib">
+  <notAllowed/>
+</define>
+<define name="refentry.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="refentry.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refentry.element"/>
+<define name="refentry.element">
+  <element name="refentry">
+    <group>
+      <optional>
+        <ref name="beginpage.element"/>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="ndxterm.class"/>
+        </choice>
+      </zeroOrMore>
+      <optional>
+        <ref name="refentryinfo.element"/>
+      </optional>
+      <optional>
+        <ref name="refmeta.element"/>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="remark.element"/>
+          <ref name="link.char.class"/>
+        </choice>
+      </zeroOrMore>
+      <ref name="refnamediv.element"/>
+      <optional>
+        <ref name="refsynopsisdiv.element"/>
+      </optional>
+      <oneOrMore>
+        <ref name="refsect1.element"/>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="refentry.element"/>
+
+<dtd:pe-decl name="refentry.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refentry.attlist"/>
+<define name="refentry.attlist">
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="refentry.role.attrib"/>
+  <ref name="local.refentry.attrib"/>
+</define>
+<dtd:marked-section end="refentry.attlist"/>
+<dtd:marked-section end="refentry.module"/>
+
+<dtd:pe-decl name="refmeta.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refmeta.module"/>
+<define name="local.refmeta.attrib">
+  <notAllowed/>
+</define>
+<define name="refmeta.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="refmeta.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refmeta.element"/>
+<define name="refmeta.element">
+  <element name="refmeta">
+    <group>
+      <zeroOrMore>
+        <choice>
+          <ref name="ndxterm.class"/>
+        </choice>
+      </zeroOrMore>
+      <ref name="refentrytitle.element"/>
+      <optional>
+        <ref name="manvolnum.element"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="refmiscinfo.element"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <choice>
+          <ref name="ndxterm.class"/>
+        </choice>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="refmeta.element"/>
+
+<dtd:pe-decl name="refmeta.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refmeta.attlist"/>
+<define name="refmeta.attlist">
+  <ref name="common.attrib"/>
+  <ref name="refmeta.role.attrib"/>
+  <ref name="local.refmeta.attrib"/>
+</define>
+<dtd:marked-section end="refmeta.attlist"/>
+<dtd:marked-section end="refmeta.module"/>
+
+<dtd:pe-decl name="refmiscinfo.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refmiscinfo.module"/>
+<define name="local.refmiscinfo.attrib">
+  <notAllowed/>
+</define>
+<define name="refmiscinfo.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="refmiscinfo.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refmiscinfo.element"/>
+<define name="refmiscinfo.element">
+  <element name="refmiscinfo">
+    <zeroOrMore>
+      <choice>
+        <ref name="docinfo.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </element>
+</define>
+<dtd:marked-section end="refmiscinfo.element"/>
+
+<dtd:comment> Class: Freely assignable parameter; no default </dtd:comment>
+
+
+<dtd:pe-decl name="refmiscinfo.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refmiscinfo.attlist"/>
+<define name="refmiscinfo.attlist">
+  <optional>
+    <attribute name="class"/>
+  </optional>
+  <ref name="common.attrib"/>
+  <ref name="refmiscinfo.role.attrib"/>
+  <ref name="local.refmiscinfo.attrib"/>
+</define>
+<dtd:marked-section end="refmiscinfo.attlist"/>
+<dtd:marked-section end="refmiscinfo.module"/>
+
+<dtd:pe-decl name="refnamediv.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refnamediv.module"/>
+<define name="local.refnamediv.attrib">
+  <notAllowed/>
+</define>
+<define name="refnamediv.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="refnamediv.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refnamediv.element"/>
+<define name="refnamediv.element">
+  <element name="refnamediv">
+    <group>
+      <optional>
+        <ref name="refdescriptor.element"/>
+      </optional>
+      <oneOrMore>
+        <ref name="refname.element"/>
+      </oneOrMore>
+      <ref name="refpurpose.element"/>
+      <zeroOrMore>
+        <ref name="refclass.element"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <choice>
+          <ref name="remark.element"/>
+          <ref name="link.char.class"/>
+        </choice>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="refnamediv.element"/>
+
+<dtd:pe-decl name="refnamediv.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refnamediv.attlist"/>
+<define name="refnamediv.attlist">
+  <ref name="common.attrib"/>
+  <ref name="refnamediv.role.attrib"/>
+  <ref name="local.refnamediv.attrib"/>
+</define>
+<dtd:marked-section end="refnamediv.attlist"/>
+<dtd:marked-section end="refnamediv.module"/>
+	
+<dtd:pe-decl name="refdescriptor.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refdescriptor.module"/>
+<define name="local.refdescriptor.attrib">
+  <notAllowed/>
+</define>
+<define name="refdescriptor.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="refdescriptor.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refdescriptor.element"/>
+<define name="refdescriptor.element">
+  <element name="refdescriptor">
+    <zeroOrMore>
+      <choice>
+        <ref name="refname.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </element>
+</define>
+<dtd:marked-section end="refdescriptor.element"/>
+
+<dtd:pe-decl name="refdescriptor.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refdescriptor.attlist"/>
+<define name="refdescriptor.attlist">
+  <ref name="common.attrib"/>
+  <ref name="refdescriptor.role.attrib"/>
+  <ref name="local.refdescriptor.attrib"/>
+</define>
+<dtd:marked-section end="refdescriptor.attlist"/>
+<dtd:marked-section end="refdescriptor.module"/>
+
+<dtd:pe-decl name="refname.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refname.module"/>
+<define name="local.refname.attrib">
+  <notAllowed/>
+</define>
+<define name="refname.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="refname.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refname.element"/>
+<define name="refname.element">
+  <element name="refname">
+    <zeroOrMore>
+      <choice>
+        <ref name="refname.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </element>
+</define>
+<dtd:marked-section end="refname.element"/>
+
+<dtd:pe-decl name="refname.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refname.attlist"/>
+<define name="refname.attlist">
+  <ref name="common.attrib"/>
+  <ref name="refname.role.attrib"/>
+  <ref name="local.refname.attrib"/>
+</define>
+<dtd:marked-section end="refname.attlist"/>
+<dtd:marked-section end="refname.module"/>
+
+<dtd:pe-decl name="refpurpose.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refpurpose.module"/>
+<define name="local.refpurpose.attrib">
+  <notAllowed/>
+</define>
+<define name="refpurpose.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="refpurpose.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refpurpose.element"/>
+<define name="refpurpose.element">
+  <element name="refpurpose">
+    <zeroOrMore>
+      <choice>
+        <ref name="refinline.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </element>
+</define>
+<dtd:marked-section end="refpurpose.element"/>
+
+<dtd:pe-decl name="refpurpose.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refpurpose.attlist"/>
+<define name="refpurpose.attlist">
+  <ref name="common.attrib"/>
+  <ref name="refpurpose.role.attrib"/>
+  <ref name="local.refpurpose.attrib"/>
+</define>
+<dtd:marked-section end="refpurpose.attlist"/>
+<dtd:marked-section end="refpurpose.module"/>
+
+<dtd:pe-decl name="refclass.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refclass.module"/>
+<define name="local.refclass.attrib">
+  <notAllowed/>
+</define>
+<define name="refclass.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="refclass.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refclass.element"/>
+<define name="refclass.element">
+  <element name="refclass">
+    <zeroOrMore>
+      <choice>
+        <ref name="refclass.char.mix"/>
+      </choice>
+    </zeroOrMore>
+  </element>
+</define>
+<dtd:marked-section end="refclass.element"/>
+
+<dtd:pe-decl name="refclass.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refclass.attlist"/>
+<define name="refclass.attlist">
+  <ref name="common.attrib"/>
+  <ref name="refclass.role.attrib"/>
+  <ref name="local.refclass.attrib"/>
+</define>
+<dtd:marked-section end="refclass.attlist"/>
+<dtd:marked-section end="refclass.module"/>
+
+<dtd:pe-decl name="refsynopsisdiv.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsynopsisdiv.module"/>
+<define name="local.refsynopsisdiv.attrib">
+  <notAllowed/>
+</define>
+<define name="refsynopsisdiv.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="refsynopsisdiv.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsynopsisdiv.element"/>
+<define name="refsynopsisdiv.element">
+  <element name="refsynopsisdiv">
+    <group>
+      <optional>
+        <ref name="refsynopsisdivinfo.element"/>
+      </optional>
+      <optional>
+        <group>
+          <ref name="refsect.title.content"/>
+        </group>
+      </optional>
+      <choice>
+        <group>
+          <oneOrMore>
+            <choice>
+              <ref name="refcomponent.mix"/>
+            </choice>
+          </oneOrMore>
+          <zeroOrMore>
+            <ref name="refsect2.element"/>
+          </zeroOrMore>
+        </group>
+        <group>
+          <oneOrMore>
+            <ref name="refsect2.element"/>
+          </oneOrMore>
+        </group>
+      </choice>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="refsynopsisdiv.element"/>
+
+<dtd:pe-decl name="refsynopsisdiv.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsynopsisdiv.attlist"/>
+<define name="refsynopsisdiv.attlist">
+  <ref name="common.attrib"/>
+  <ref name="refsynopsisdiv.role.attrib"/>
+  <ref name="local.refsynopsisdiv.attrib"/>
+</define>
+<dtd:marked-section end="refsynopsisdiv.attlist"/>
+<dtd:marked-section end="refsynopsisdiv.module"/>
+
+<dtd:pe-decl name="refsect1.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect1.module"/>
+<define name="local.refsect1.attrib">
+  <notAllowed/>
+</define>
+<define name="refsect1.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="refsect1.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect1.element"/>
+<define name="refsect1.element">
+  <element name="refsect1">
+    <group>
+      <optional>
+        <ref name="refsect1info.element"/>
+      </optional>
+      <group>
+        <ref name="refsect.title.content"/>
+      </group>
+      <choice>
+        <group>
+          <oneOrMore>
+            <choice>
+              <ref name="refcomponent.mix"/>
+            </choice>
+          </oneOrMore>
+          <zeroOrMore>
+            <ref name="refsect2.element"/>
+          </zeroOrMore>
+        </group>
+        <oneOrMore>
+          <ref name="refsect2.element"/>
+        </oneOrMore>
+      </choice>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="refsect1.element"/>
+
+<dtd:pe-decl name="refsect1.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect1.attlist"/>
+<define name="refsect1.attlist">
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="refsect1.role.attrib"/>
+  <ref name="local.refsect1.attrib"/>
+</define>
+<dtd:marked-section end="refsect1.attlist"/>
+<dtd:marked-section end="refsect1.module"/>
+
+<dtd:pe-decl name="refsect2.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect2.module"/>
+<define name="local.refsect2.attrib">
+  <notAllowed/>
+</define>
+<define name="refsect2.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="refsect2.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect2.element"/>
+<define name="refsect2.element">
+  <element name="refsect2">
+    <group>
+      <optional>
+        <ref name="refsect2info.element"/>
+      </optional>
+      <group>
+        <ref name="refsect.title.content"/>
+      </group>
+      <choice>
+        <group>
+          <oneOrMore>
+            <choice>
+              <ref name="refcomponent.mix"/>
+            </choice>
+          </oneOrMore>
+          <zeroOrMore>
+            <ref name="refsect3.element"/>
+          </zeroOrMore>
+        </group>
+        <oneOrMore>
+          <ref name="refsect3.element"/>
+        </oneOrMore>
+      </choice>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="refsect2.element"/>
+
+<dtd:pe-decl name="refsect2.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect2.attlist"/>
+<define name="refsect2.attlist">
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="refsect2.role.attrib"/>
+  <ref name="local.refsect2.attrib"/>
+</define>
+<dtd:marked-section end="refsect2.attlist"/>
+<dtd:marked-section end="refsect2.module"/>
+
+<dtd:pe-decl name="refsect3.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect3.module"/>
+<define name="local.refsect3.attrib">
+  <notAllowed/>
+</define>
+<define name="refsect3.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="refsect3.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect3.element"/>
+<define name="refsect3.element">
+  <element name="refsect3">
+    <group>
+      <optional>
+        <ref name="refsect3info.element"/>
+      </optional>
+      <group>
+        <ref name="refsect.title.content"/>
+      </group>
+      <oneOrMore>
+        <choice>
+          <ref name="refcomponent.mix"/>
+        </choice>
+      </oneOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="refsect3.element"/>
+
+<dtd:pe-decl name="refsect3.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="refsect3.attlist"/>
+<define name="refsect3.attlist">
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="refsect3.role.attrib"/>
+  <ref name="local.refsect3.attrib"/>
+</define>
+<dtd:marked-section end="refsect3.attlist"/>
+<dtd:marked-section end="refsect3.module"/>
+<dtd:marked-section end="refentry.content.module"/>
+
+<dtd:comment> ...................................................................... </dtd:comment>
+<dtd:comment> Article .............................................................. </dtd:comment>
+
+<dtd:pe-decl name="article.module">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="article.module"/>
+<dtd:comment> An Article is a chapter-level, stand-alone document that is often,
+     but need not be, collected into a Book. </dtd:comment>
+
+<define name="local.article.attrib">
+  <notAllowed/>
+</define>
+<define name="article.role.attrib">
+  <ref name="role.attrib"/>
+</define>
+
+<dtd:pe-decl name="article.element">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="article.element"/>
+<define name="article.element">
+  <element name="article">
+    <group>
+      <optional>
+        <group>
+          <ref name="div.title.content"/>
+        </group>
+      </optional>
+      <optional>
+        <ref name="articleinfo.element"/>
+      </optional>
+      <optional>
+        <ref name="tocchap.element"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="lot.element"/>
+      </zeroOrMore>
+      <group>
+        <ref name="bookcomponent.content"/>
+      </group>
+      <zeroOrMore>
+        <choice>
+          <choice>
+            <ref name="nav.class"/>
+          </choice>
+          <choice>
+            <ref name="appendix.class"/>
+          </choice>
+          <ref name="ackno.element"/>
+        </choice>
+      </zeroOrMore>
+    </group>
+  </element>
+</define>
+<dtd:marked-section end="article.element"/>
+
+<dtd:comment> Class: Indicates the type of a particular article;
+		all articles have the same structure and general purpose.
+		No default. </dtd:comment>
+<dtd:comment> ParentBook: ID of the enclosing Book </dtd:comment>
+
+
+<dtd:pe-decl name="article.attlist">INCLUDE</dtd:pe-decl>
+<dtd:marked-section start="article.attlist"/>
+<define name="article.attlist">
+  <optional>
+    <attribute name="class">
+      <choice>
+        <string>journalarticle</string>
+        <string>productsheet</string>
+        <string>whitepaper</string>
+        <string>techreport</string>
+        <string>specification</string>
+        <string>faq</string>
+      </choice>
+    </attribute>
+  </optional>
+  <optional>
+    <attribute name="parentbook">
+      <data type="xsd:IDREF"/>
+    </attribute>
+  </optional>
+  <ref name="status.attrib"/>
+  <ref name="common.attrib"/>
+  <ref name="article.role.attrib"/>
+  <ref name="local.article.attrib"/>
+</define>
+<dtd:marked-section end="article.attlist"/>
+<dtd:marked-section end="article.module"/>
+
+<dtd:comment> End of DocBook XML document hierarchy module V4.1.2 .................... </dtd:comment>
+<dtd:comment> ...................................................................... </dtd:comment>
+
+</grammar>
