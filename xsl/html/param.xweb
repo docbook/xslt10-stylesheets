@@ -217,6 +217,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &show.revisionflag;
 &shade.verbatim;
 &shade.verbatim.style;
+&punct.honorific;
 </reference>
 
 <reference><title>Chunking</title>
@@ -374,6 +375,7 @@ around all these parameters.</para>
 <src:fragref linkend="section.label.includes.component.label.frag"/>
 <src:fragref linkend="shade.verbatim.frag"/>
 <src:fragref linkend="shade.verbatim.style.frag"/>
+<src:fragref linkend="punct.honorific.frag"/>
 <src:fragref linkend="show.comments.frag"/>
 <src:fragref linkend="show.revisionflag.frag"/>
 <src:fragref linkend="spacing.paras.frag"/>

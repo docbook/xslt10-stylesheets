@@ -131,6 +131,8 @@
 <!ENTITY htmlhelp.hhc SYSTEM "../params/htmlhelp.hhc.xml">
 <!ENTITY htmlhelp.hhp.tail SYSTEM "../params/htmlhelp.hhp.tail.xml">
 <!ENTITY htmlhelp.enumerate.images SYSTEM "../params/htmlhelp.enumerate.images.xml">
+<!ENTITY punct.honorific SYSTEM "../params/punct.honorific.xml">
 <!ENTITY htmlhelp.force.map.and.alias SYSTEM "../params/htmlhelp.force.map.and.alias.xml">
 <!ENTITY htmlhelp.map.file SYSTEM "../params/htmlhelp.map.file.xml">
 <!ENTITY htmlhelp.alias.file SYSTEM "../params/htmlhelp.alias.file.xml">
+

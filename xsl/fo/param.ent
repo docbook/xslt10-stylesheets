@@ -111,3 +111,5 @@
 <!ENTITY table.border.color SYSTEM "../params/table.border.color.xml">
 <!ENTITY title.margin.left SYSTEM "../params/title.margin.left.xml">
 <!ENTITY table.entry.padding SYSTEM "../params/table.entry.padding.xml">
+
+<!ENTITY punct.honorific SYSTEM "../params/punct.honorific.xml">
