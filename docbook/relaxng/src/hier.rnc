@@ -49,6 +49,8 @@ toc.components = notAllowed
 ]
 div {
 
+   local.set.attributes = empty
+
    set.status.attrib = status.attribute
 
    set.role.attribute = attribute role { text }
@@ -59,6 +61,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & set.status.attrib?
+    & local.set.attributes
 
    set.info = docbook.info.titlereq
 
@@ -80,6 +83,8 @@ div {
 ]
 div {
 
+   local.book.attributes = empty
+
    book.status.attrib = status.attribute
 
    book.role.attribute = attribute role { text }
@@ -90,6 +95,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & book.status.attrib?
+    & local.book.attributes
 
    book.info = docbook.info.titlereq
 
@@ -109,6 +115,8 @@ div {
 ]
 div {
 
+   local.dedication.attributes = empty
+
    dedication.status.attrib = status.attribute
 
    dedication.role.attribute = attribute role { text }
@@ -119,6 +127,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & dedication.status.attrib?
+    & local.dedication.attributes
 
    dedication.info = docbook.info
 
@@ -138,6 +147,8 @@ div {
 ]
 div {
 
+   local.colophon.attributes = empty
+
    colophon.status.attrib = status.attribute
 
    colophon.role.attribute = attribute role { text }
@@ -148,6 +159,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & colophon.status.attrib?
+    & local.colophon.attributes
 
    colophon.info = docbook.info
 
@@ -167,6 +179,8 @@ div {
 ]
 div {
 
+   local.appendix.attributes = empty
+
    appendix.status.attrib = status.attribute
 
    appendix.role.attribute = attribute role { text }
@@ -177,6 +191,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & appendix.status.attrib?
+    & local.appendix.attributes
 
    appendix.info = docbook.info.titlereq
 
@@ -196,6 +211,8 @@ div {
 ]
 div {
 
+   local.chapter.attributes = empty
+
    chapter.status.attrib = status.attribute
 
    chapter.role.attribute = attribute role { text }
@@ -206,6 +223,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & chapter.status.attrib?
+    & local.chapter.attributes
 
    chapter.info = docbook.info.titlereq
 
@@ -229,6 +247,8 @@ part.components = navigation.components | components
 ]
 div {
 
+   local.part.attributes = empty
+
    part.status.attrib = status.attribute
 
    part.role.attribute = attribute role { text }
@@ -239,6 +259,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & part.status.attrib?
+    & local.part.attributes
 
    part.info = docbook.info.titlereq
 
@@ -259,6 +280,8 @@ div {
 ]
 div {
 
+   local.preface.attributes = empty
+
    preface.status.attrib = status.attribute
 
    preface.role.attribute = attribute role { text }
@@ -269,6 +292,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & preface.status.attrib?
+    & local.preface.attributes
 
    preface.info = docbook.info
 
@@ -288,6 +312,8 @@ div {
 ]
 div {
 
+   local.partintro.attributes = empty
+
    partintro.status.attrib = status.attribute
 
    partintro.role.attribute = attribute role { text }
@@ -298,6 +324,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & partintro.status.attrib?
+    & local.partintro.attributes
 
    partintro.info = docbook.info
 
@@ -326,6 +353,8 @@ blocks.or.sections =
 ]
 div {
 
+   local.section.attributes = empty
+
    section.status.attrib = status.attribute
 
    section.role.attribute = attribute role { text }
@@ -336,6 +365,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & section.status.attrib?
+    & local.section.attributes
 
    section.info = docbook.info.titlereq
 
@@ -355,6 +385,8 @@ div {
 ]
 div {
 
+   local.simplesect.attributes = empty
+
    simplesect.status.attrib = status.attribute
 
    simplesect.role.attribute = attribute role { text }
@@ -365,6 +397,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & simplesect.status.attrib?
+    & local.simplesect.attributes
 
    simplesect.info = docbook.info.titlereq
 
@@ -384,12 +417,15 @@ div {
 ]
 div {
 
+   local.ackno.attributes = empty
+
    ackno.role.attribute = attribute role { text }
 
    ackno.attr =
       ackno.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.ackno.attributes
 
    db.ackno=
       element ackno {
@@ -410,6 +446,8 @@ article.components.required = db.section+ | db.simplesect+
    db:refpurpose [ "" ]
 ]
 div {
+
+   local.article.attributes = empty
 
    article.status.attrib = status.attribute
 
@@ -432,6 +470,7 @@ div {
     & label.attribute?
     & article.status.attrib?
     & article.class.attrib?
+    & local.article.attributes
 
    article.info = docbook.info.titlereq
 

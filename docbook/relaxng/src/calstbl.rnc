@@ -38,6 +38,8 @@ colname.attribute = attribute colname { text }
 ]
 div {
 
+   local.tgroup.attributes = empty
+
    tgroup.role.attribute = attribute role { text }
 
    tgroup.attr =
@@ -51,6 +53,7 @@ div {
     & colsep.attribute?
     & rowsep.attribute?
     & align.attribute?
+    & local.tgroup.attributes
 
    db.tgroup =
       element tgroup {
@@ -71,6 +74,8 @@ div {
 ]
 div {
 
+   local.colspec.attributes = empty
+
    colspec.role.attribute = attribute role { text }
 
    colspec.attr =
@@ -85,6 +90,7 @@ div {
     & colname.attribute?
     & rowsep.attribute?
     & align.attribute?
+    & local.colspec.attributes
 
    db.colspec =
       element colspec {
@@ -101,6 +107,8 @@ div {
 ]
 div {
 
+   local.spanspec.attributes = empty
+
    spanspec.role.attribute = attribute role { text }
 
    spanspec.attr =
@@ -115,6 +123,7 @@ div {
     & charoff.attribute?
     & rowsep.attribute?
     & align.attribute?
+    & local.spanspec.attributes
 
    db.spanspec =
       element spanspec {
@@ -131,6 +140,8 @@ div {
 ]
 div {
 
+   local.cals.thead.attributes = empty
+
    cals.thead.role.attribute = attribute role { text }
 
    cals.thead.attr =
@@ -138,6 +149,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & valign.attribute?
+    & local.cals.thead.attributes
 
    cals.thead =
       element thead {
@@ -155,6 +167,8 @@ div {
 ]
 div {
 
+   local.cals.tfoot.attributes = empty
+
    cals.tfoot.role.attribute = attribute role { text }
 
    cals.tfoot.attr =
@@ -162,6 +176,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & valign.attribute?
+    & local.cals.tfoot.attributes
 
    cals.tfoot =
       element tfoot {
@@ -179,6 +194,8 @@ div {
 ]
 div {
 
+   local.cals.tbody.attributes = empty
+
    cals.tbody.role.attribute = attribute role { text }
 
    cals.tbody.attr =
@@ -186,6 +203,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & valign.attribute?
+    & local.cals.tbody.attributes
 
    cals.tbody =
       element tbody {
@@ -202,6 +220,8 @@ div {
 ]
 div {
 
+   local.row.attributes = empty
+
    row.role.attribute = attribute role { text }
 
    row.attr =
@@ -210,6 +230,7 @@ div {
     & common.linking.attributes
     & rowsep.attribute?
     & valign.attribute?
+    & local.row.attributes
 
    db.row = element row {
       row.attr,
@@ -224,6 +245,8 @@ div {
    db:refpurpose [ "" ]
 ]
 div {
+
+   local.entry.attributes = empty
 
    entry.role.attribute = attribute role { text }
 
@@ -243,6 +266,7 @@ div {
     & rowsep.attribute?
     & attribute rotate { text }?
     & align.attribute?
+    & local.entry.attributes
 
    db.entry = element entry {
       entry.attr,
@@ -257,6 +281,8 @@ div {
    db:refpurpose [ "" ]
 ]
 div {
+
+   local.entrytbl.attributes = empty
 
    entrytbl.role.attribute = attribute role { text }
 
@@ -275,6 +301,7 @@ div {
     & rowsep.attribute?
     & colname.attribute?
     & align.attribute?
+    & local.entrytbl.attributes
 
    db.entrytbl =
       element entrytbl {
@@ -294,6 +321,8 @@ div {
 ]
 div {
 
+   local.cals.table.attributes = empty
+
    cals.table.role.attribute = attribute role { text }
 
    cals.table.attr =
@@ -306,6 +335,7 @@ div {
     & rowsep.attribute?
     & attribute frame { "all" | "bottom" | "none" | "sides" | "top" | "topbot" }?
     & attribute pgwide { "0" | "1" }?
+    & local.cals.table.attributes
 
    cals.table.info = docbook.info.titleonlyreq
 
@@ -326,6 +356,8 @@ div {
 ]
 div {
 
+   local.cals.informaltable.attributes = empty
+
    cals.informaltable.role.attribute = attribute role { text }
 
    cals.informaltable.attr =
@@ -338,6 +370,7 @@ div {
     & rowsep.attribute?
     & attribute frame { "all" | "bottom" | "none" | "sides" | "top" | "topbot" }?
     & attribute pgwide { "0" | "1" }?
+    & local.cals.informaltable.attributes
 
    cals.informaltable.info = docbook.info.titleforbidden
 

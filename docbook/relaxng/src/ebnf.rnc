@@ -27,12 +27,15 @@ technical.blocks |= db.productionset | db.constraintdef
 ]
 div {
 
+   local.productionset.attributes = empty
+
    productionset.role.attribute = attribute role { text }
 
    productionset.attr =
       productionset.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.productionset.attributes
 
    productionset.info = docbook.info.titleonly
 
@@ -52,12 +55,15 @@ div {
 ]
 div {
 
+   local.production.attributes = empty
+
    production.role.attribute = attribute role { text }
 
    production.attr =
       production.role.attribute?
     & common.attributes.idreq
     & common.linking.attributes
+    & local.production.attributes
 
    db.production =
       element production {
@@ -76,12 +82,15 @@ div {
 ]
 div {
 
+   local.lhs.attributes = empty
+
    lhs.role.attribute = attribute role { text }
 
    lhs.attr =
       lhs.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.lhs.attributes
 
    db.lhs =
       element lhs {
@@ -98,12 +107,15 @@ div {
 ]
 div {
 
+   local.rhs.attributes = empty
+
    rhs.role.attribute = attribute role { text }
 
    rhs.attr =
       rhs.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.rhs.attributes
 
    db.rhs =
       element rhs {
@@ -120,6 +132,8 @@ div {
 ]
 div {
 
+   local.nonterminal.attributes = empty
+
    nonterminal.role.attribute = attribute role { text }
 
    nonterminal.attr =
@@ -127,6 +141,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & attribute def { text }
+    & local.nonterminal.attributes
 
    db.nonterminal =
       element nonterminal {
@@ -143,12 +158,15 @@ div {
 ]
 div {
 
+   local.constraint.attributes = empty
+
    constraint.role.attribute = attribute role { text }
 
    constraint.attr =
       constraint.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.constraint.attributes
 
    db.constraint =
       element constraint {
@@ -165,12 +183,15 @@ div {
 ]
 div {
 
+   local.productionrecap.attributes = empty
+
    productionrecap.role.attribute = attribute role { text }
 
    productionrecap.attr =
       productionrecap.role.attribute?
     & common.attributes
     & common.linking.attributes.req
+    & local.productionrecap.attributes
 
    db.productionrecap =
       element productionrecap {
@@ -187,12 +208,15 @@ div {
 ]
 div {
 
+   local.constraintdef.attributes = empty
+
    constraintdef.role.attribute = attribute role { text }
 
    constraintdef.attr =
       constraintdef.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.constraintdef.attributes
 
    constraintdef.info = docbook.info.titleonly
 

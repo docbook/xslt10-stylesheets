@@ -40,12 +40,15 @@ sortas.attribute = attribute sortas { text }
 ]
 div {
 
+   local.itermset.attributes = empty
+
    itermset.role.attribute = attribute role { text }
 
    itermset.attr =
       itermset.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.itermset.attributes
 
    db.itermset =
       element itermset {
@@ -73,6 +76,8 @@ indexterm.contentmodel =
 ]
 div {
 
+   local.indexterm.singular.attributes = empty
+
    indexterm.singular.role.attribute = attribute role { text }
 
    indexterm.singular.attr =
@@ -84,6 +89,7 @@ div {
     & pagenum.attribute?
     & scope.attribute?
     & attribute class { "singular" }?
+    & local.indexterm.singular.attributes
 
    indexterm.singular =
       element indexterm {
@@ -100,6 +106,8 @@ div {
 ]
 div {
 
+   local.indexterm.startofrange.attributes = empty
+
    indexterm.startofrange.role.attribute = attribute role { text }
 
    indexterm.startofrange.attr =
@@ -111,6 +119,7 @@ div {
     & pagenum.attribute?
     & scope.attribute?
     & attribute class { "startofrange" }
+    & local.indexterm.startofrange.attributes
 
    indexterm.startofrange =
       element indexterm {
@@ -127,6 +136,8 @@ div {
 ]
 div {
 
+   local.indexterm.endofrange.attributes = empty
+
    indexterm.endofrange.role.attribute = attribute role { text }
 
    indexterm.endofrange.attr =
@@ -139,6 +150,7 @@ div {
     & scope.attribute?
     & attribute class { "endofrange" }
     & attribute startref { xsd:IDREF }
+    & local.indexterm.endofrange.attributes
 
    indexterm.endofrange =
       element indexterm {
@@ -167,6 +179,8 @@ div {
 ]
 div {
 
+   local.primary.attributes = empty
+
    primary.role.attribute = attribute role { text }
 
    primary.attr =
@@ -174,6 +188,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & sortas.attribute?
+    & local.primary.attributes
 
    db.primary =
       element primary {
@@ -190,6 +205,8 @@ div {
 ]
 div {
 
+   local.secondary.attributes = empty
+
    secondary.role.attribute = attribute role { text }
 
    secondary.attr =
@@ -197,6 +214,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & sortas.attribute?
+    & local.secondary.attributes
 
    db.secondary =
       element secondary {
@@ -213,6 +231,8 @@ div {
 ]
 div {
 
+   local.tertiary.attributes = empty
+
    tertiary.role.attribute = attribute role { text }
 
    tertiary.attr =
@@ -220,6 +240,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & sortas.attribute?
+    & local.tertiary.attributes
 
    db.tertiary =
       element tertiary {
@@ -236,12 +257,15 @@ div {
 ]
 div {
 
+   local.see.attributes = empty
+
    see.role.attribute = attribute role { text }
 
    see.attr =
       see.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.see.attributes
 
    db.see =
       element see {
@@ -258,12 +282,15 @@ div {
 ]
 div {
 
+   local.seealso.attributes = empty
+
    seealso.role.attribute = attribute role { text }
 
    seealso.attr =
       seealso.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.seealso.attributes
 
    db.seealso =
       element seealso {
@@ -280,6 +307,8 @@ div {
 ]
 div {
 
+   local.index.attributes = empty
+
    index.status.attribute = status.attribute
 
    index.role.attribute = attribute role { text }
@@ -290,6 +319,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & index.status.attribute?
+    & local.index.attributes
 
    index.info = docbook.info
 
@@ -310,6 +340,8 @@ div {
 ]
 div {
 
+   local.setindex.attributes = empty
+
    setindex.status.attribute = status.attribute
 
    setindex.role.attribute = attribute role { text }
@@ -320,6 +352,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & setindex.status.attribute?
+    & local.setindex.attributes
 
    setindex.info = docbook.info
 
@@ -340,6 +373,8 @@ div {
 ]
 div {
 
+   local.indexdiv.attributes = empty
+
    indexdiv.status.attribute = status.attribute
 
    indexdiv.role.attribute = attribute role { text }
@@ -350,6 +385,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & indexdiv.status.attribute?
+    & local.indexdiv.attributes
 
    indexdiv.info = docbook.info.titlereq
 
@@ -370,12 +406,15 @@ div {
 ]
 div {
 
+   local.indexentry.attributes = empty
+
    indexentry.role.attribute = attribute role { text }
 
    indexentry.attr =
       indexentry.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.indexentry.attributes
 
    db.indexentry =
       element indexentry {
@@ -394,12 +433,15 @@ div {
 ]
 div {
 
+   local.primaryie.attributes = empty
+
    primaryie.role.attribute = attribute role { text }
 
    primaryie.attr =
       primaryie.role.attribute?
     & common.attributes
     & linkends.attribute?
+    & local.primaryie.attributes
 
    db.primaryie =
       element primaryie {
@@ -416,12 +458,15 @@ div {
 ]
 div {
 
+   local.secondaryie.attributes = empty
+
    secondaryie.role.attribute = attribute role { text }
 
    secondaryie.attr =
       secondaryie.role.attribute?
     & common.attributes
     & linkends.attribute?
+    & local.secondaryie.attributes
 
    db.secondaryie =
       element secondaryie {
@@ -438,12 +483,15 @@ div {
 ]
 div {
 
+   local.tertiaryie.attributes = empty
+
    tertiaryie.role.attribute = attribute role { text }
 
    tertiaryie.attr =
       tertiaryie.role.attribute?
     & common.attributes
     & linkends.attribute?
+    & local.tertiaryie.attributes
 
    db.tertiaryie =
       element tertiaryie {
@@ -460,12 +508,15 @@ div {
 ]
 div {
 
+   local.seeie.attributes = empty
+
    seeie.role.attribute = attribute role { text }
 
    seeie.attr =
       seeie.role.attribute?
     & common.attributes
     & linkend.attribute?
+    & local.seeie.attributes
 
    db.seeie =
       element seeie {
@@ -482,12 +533,15 @@ div {
 ]
 div {
 
+   local.seealsoie.attributes = empty
+
    seealsoie.role.attribute = attribute role { text }
 
    seealsoie.attr =
       seealsoie.role.attribute?
     & common.attributes
     & linkends.attribute?
+    & local.seealsoie.attributes
 
    db.seealsoie =
       element seealsoie {

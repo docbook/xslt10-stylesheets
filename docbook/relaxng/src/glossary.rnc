@@ -33,12 +33,15 @@ baseform.attribute = attribute baseform { text }?
 ]
 div {
 
+   local.glosslist.attributes = empty
+
    glosslist.role.attribute = attribute role { text }
 
    glosslist.attr =
       glosslist.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.glosslist.attributes
 
    glosslist.info = docbook.info.titleonly
 
@@ -59,6 +62,8 @@ div {
 ]
 div {
 
+   local.glossentry.attributes = empty
+
    glossentry.role.attribute = attribute role { text }
 
    glossentry.attr =
@@ -66,6 +71,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & attribute sortas { text }?
+    & local.glossentry.attributes
 
    db.glossentry =
       element glossentry {
@@ -86,6 +92,8 @@ div {
 ]
 div {
 
+   local.glossdef.attributes = empty
+
    glossdef.role.attribute = attribute role { text }
 
    glossdef.attr =
@@ -93,6 +101,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & attribute subject { text }?
+    & local.glossdef.attributes
 
    db.glossdef =
       element glossdef {
@@ -110,6 +119,8 @@ div {
 ]
 div {
 
+   local.glosssee.attributes = empty
+
    glosssee.role.attribute = attribute role { text }
 
    glosssee.attr =
@@ -117,6 +128,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & attribute otherterm { xsd:IDREF }?
+    & local.glosssee.attributes
 
    db.glosssee =
       [
@@ -142,6 +154,8 @@ div {
 ]
 div {
 
+   local.glossseealso.attributes = empty
+
    glossseealso.role.attribute = attribute role { text }
 
    glossseealso.attr =
@@ -149,6 +163,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & attribute otherterm { xsd:IDREF }?
+    & local.glossseealso.attributes
 
    db.glossseealso =
       [
@@ -174,6 +189,8 @@ div {
 ]
 div {
 
+   local.firstterm.attributes = empty
+
    firstterm.role.attribute = attribute role { text }
 
    firstterm.attr =
@@ -181,6 +198,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & baseform.attribute
+    & local.firstterm.attributes
 
    db.firstterm =
       [
@@ -206,6 +224,8 @@ div {
 ]
 div {
 
+   local.glossterm.attributes = empty
+
    glossterm.role.attribute = attribute role { text }
 
    glossterm.attr =
@@ -213,6 +233,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & baseform.attribute
+    & local.glossterm.attributes
 
    db.glossterm =
       [
@@ -238,6 +259,8 @@ div {
 ]
 div {
 
+   local.glossary.attributes = empty
+
    glossary.status.attribute = status.attribute
 
    glossary.role.attribute = attribute role { text }
@@ -248,6 +271,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & glossary.status.attribute?
+    & local.glossary.attributes
 
    glossary.info = docbook.info
 
@@ -269,6 +293,8 @@ div {
 ]
 div {
 
+   local.glossdiv.attributes = empty
+
    glossdiv.status.attribute = status.attribute
 
    glossdiv.role.attribute = attribute role { text }
@@ -279,6 +305,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & glossdiv.status.attribute?
+    & local.glossdiv.attributes
 
    glossdiv.info = docbook.info.titlereq
 

@@ -26,12 +26,15 @@ technical.blocks |= db.msgset
 ]
 div {
 
+   local.msgset.attributes = empty
+
    msgset.role.attribute = attribute role { text }
 
    msgset.attr =
       msgset.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.msgset.attributes
 
    msgset.info = docbook.info.titleonly
 
@@ -51,12 +54,15 @@ div {
 ]
 div {
 
+   local.msgentry.attributes = empty
+
    msgentry.role.attribute = attribute role { text }
 
    msgentry.attr =
       msgentry.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.msgentry.attributes
 
    db.msgentry =
       element msgentry {
@@ -75,6 +81,8 @@ div {
 ]
 div {
 
+   local.simplemsgentry.attributes = empty
+
    simplemsgentry.role.attribute = attribute role { text }
 
    simplemsgentry.attr =
@@ -84,6 +92,7 @@ div {
     & attribute audience { text }
     & attribute origin { text }
     & attribute level { text }
+    & local.simplemsgentry.attributes
 
    db.simplemsgentry =
       element simplemsgentry {
@@ -101,12 +110,15 @@ div {
 ]
 div {
 
+   local.msg.attributes = empty
+
    msg.role.attribute = attribute role { text }
 
    msg.attr =
       msg.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.msg.attributes
 
    msg.info = docbook.info.titleonly
 
@@ -127,12 +139,15 @@ div {
 ]
 div {
 
+   local.msgmain.attributes = empty
+
    msgmain.role.attribute = attribute role { text }
 
    msgmain.attr =
       msgmain.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.msgmain.attributes
 
    msgmain.info = docbook.info.titleonly
 
@@ -152,12 +167,15 @@ div {
 ]
 div {
 
+   local.msgsub.attributes = empty
+
    msgsub.role.attribute = attribute role { text }
 
    msgsub.attr =
       msgsub.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.msgsub.attributes
 
    msgsub.info = docbook.info.titleonly
 
@@ -177,12 +195,15 @@ div {
 ]
 div {
 
+   local.msgrel.attributes = empty
+
    msgrel.role.attribute = attribute role { text }
 
    msgrel.attr =
       msgrel.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.msgrel.attributes
 
    msgrel.info = docbook.info.titleonly
 
@@ -202,12 +223,15 @@ div {
 ]
 div {
 
+   local.msgtext.attributes = empty
+
    msgtext.role.attribute = attribute role { text }
 
    msgtext.attr =
       msgtext.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.msgtext.attributes
 
    db.msgtext =
       element msgtext {
@@ -224,12 +248,15 @@ div {
 ]
 div {
 
+   local.msginfo.attributes = empty
+
    msginfo.role.attribute = attribute role { text }
 
    msginfo.attr =
       msginfo.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.msginfo.attributes
 
    db.msginfo =
       element msginfo {
@@ -246,12 +273,15 @@ div {
 ]
 div {
 
+   local.msglevel.attributes = empty
+
    msglevel.role.attribute = attribute role { text }
 
    msglevel.attr =
       msglevel.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.msglevel.attributes
 
    db.msglevel =
       element msglevel {
@@ -268,12 +298,15 @@ div {
 ]
 div {
 
+   local.msgorig.attributes = empty
+
    msgorig.role.attribute = attribute role { text }
 
    msgorig.attr =
       msgorig.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.msgorig.attributes
 
    db.msgorig =
       element msgorig {
@@ -290,12 +323,15 @@ div {
 ]
 div {
 
+   local.msgaud.attributes = empty
+
    msgaud.role.attribute = attribute role { text }
 
    msgaud.attr =
       msgaud.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.msgaud.attributes
 
    db.msgaud =
       element msgaud {
@@ -312,12 +348,15 @@ div {
 ]
 div {
 
+   local.msgexplan.attributes = empty
+
    msgexplan.role.attribute = attribute role { text }
 
    msgexplan.attr =
       msgexplan.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.msgexplan.attributes
 
    msgexplan.info = docbook.info.titleonly
 

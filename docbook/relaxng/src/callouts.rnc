@@ -60,12 +60,15 @@ area.units.attrib =
 ]
 div {
 
+   local.calloutlist.attributes = empty
+
    calloutlist.role.attribute = attribute role { text }
 
    calloutlist.attr =
       calloutlist.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.calloutlist.attributes
 
    calloutlist.info = docbook.info.titleonly
 
@@ -86,12 +89,15 @@ div {
 ]
 div {
 
+   local.callout.attributes = empty
+
    callout.role.attribute = attribute role { text }
 
    callout.attr =
       callout.role.attribute?
     & common.attributes
     & attribute arearefs { xsd:IDREFS }
+    & local.callout.attributes
 
    db.callout =
       element callout {
@@ -108,12 +114,15 @@ div {
 ]
 div {
 
+   local.programlistingco.attributes = empty
+
    programlistingco.role.attribute = attribute role { text }
 
    programlistingco.attr =
       programlistingco.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.programlistingco.attributes
 
    programlistingco.info = docbook.info.titleforbidden
 
@@ -135,6 +144,8 @@ div {
 ]
 div {
 
+   local.areaspec.attributes = empty
+
    areaspec.role.attribute = attribute role { text }
 
    areaspec.attr =
@@ -142,6 +153,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & area.units.attrib
+    & local.areaspec.attributes
 
    db.areaspec =
       element areaspec {
@@ -158,6 +170,8 @@ div {
 ]
 div {
 
+   local.area.attributes = empty
+
    area.role.attribute = attribute role { text }
 
    area.attr =
@@ -167,6 +181,7 @@ div {
     & attribute linkends { xsd:IDREFS }?
     & attribute label { text }?
     & attribute coords { text }
+    & local.area.attributes
 
    db.area =
       element area {
@@ -183,6 +198,8 @@ div {
 ]
 div {
 
+   local.areaset.attributes = empty
+
    areaset.role.attribute = attribute role { text }
 
    areaset.attr =
@@ -190,6 +207,7 @@ div {
     & common.attributes.idreq
     & area.units.attrib
     & attribute label { text }?
+    & local.areaset.attributes
 
    db.areaset =
       element areaset {
@@ -206,12 +224,15 @@ div {
 ]
 div {
 
+   local.screenco.attributes = empty
+
    screenco.role.attribute = attribute role { text }
 
    screenco.attr =
       screenco.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.screenco.attributes
 
    screenco.info = docbook.info.titleforbidden
 
@@ -233,12 +254,15 @@ div {
 ]
 div {
 
+   local.mediaobjectco.attributes = empty
+
    mediaobjectco.role.attribute = attribute role { text }
 
    mediaobjectco.attr =
       mediaobjectco.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.mediaobjectco.attributes
 
    mediaobjectco.info = docbook.info.titleforbidden
 
@@ -259,12 +283,15 @@ div {
 ]
 div {
 
+   local.imageobjectco.attributes = empty
+
    imageobjectco.role.attribute = attribute role { text }
 
    imageobjectco.attr =
       imageobjectco.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.imageobjectco.attributes
 
    imageobjectco.info = docbook.info.titleforbidden
 
@@ -286,6 +313,8 @@ div {
 ]
 div {
 
+   local.co.attributes = empty
+
    co.role.attribute = attribute role { text }
 
    co.attr =
@@ -293,6 +322,7 @@ div {
     & common.attributes.idreq
     & attribute linkends { xsd:IDREFS }?
     & attribute label { text }?
+    & local.co.attributes
 
    db.co =
       element co {
@@ -309,6 +339,8 @@ div {
 ]
 div {
 
+   local.coref.attributes = empty
+
    coref.role.attribute = attribute role { text }
 
    coref.attr =
@@ -316,6 +348,7 @@ div {
     & common.attributes
     & attribute linkend { xsd:IDREF }
     & attribute label { text }?
+    & local.coref.attributes
 
    db.coref =
       element coref {

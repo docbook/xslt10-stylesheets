@@ -28,12 +28,15 @@ task.info = docbook.info.titleonly
 ]
 div {
 
+   local.task.attributes = empty
+
    task.role.attribute = attribute role { text }
 
    task.attr =
       task.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.task.attributes
 
    db.task =
       element task {
@@ -55,12 +58,15 @@ div {
 ]
 div {
 
+   local.tasksummary.attributes = empty
+
    tasksummary.role.attribute = attribute role { text }
 
    tasksummary.attr =
       tasksummary.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.tasksummary.attributes
 
    tasksummary.info = docbook.info.titleonly
 
@@ -80,12 +86,15 @@ div {
 ]
 div {
 
+   local.taskprerequisites.attributes = empty
+
    taskprerequisites.role.attribute = attribute role { text }
 
    taskprerequisites.attr =
       taskprerequisites.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.taskprerequisites.attributes
 
    taskprerequisites.info = docbook.info.titleonly
 
@@ -105,12 +114,15 @@ div {
 ]
 div {
 
+   local.taskrelated.attributes = empty
+
    taskrelated.role.attribute = attribute role { text }
 
    taskrelated.attr =
       taskrelated.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.taskrelated.attributes
 
    taskrelated.info = docbook.info.titleonly
 

@@ -31,12 +31,15 @@ extension.inlines |= html.input | html.button | html.label | html.select | html.
 ]
 div {
 
+   local.html.form.attributes = empty
+
    html.form.attr =
       html.attrs
     & attribute action { text }
     & attribute method { "GET" | "POST" }?
     & attribute onsubmit { text }?
     & attribute onreset { text }?
+    & local.html.form.attributes
 
    html.form =
       element html:form {
@@ -57,6 +60,8 @@ div {
    db:refpurpose [ "" ]
 ]
 div {
+
+   local.html.input.attributes = empty
 
    html.input.attr =
       html.attrs
@@ -87,6 +92,7 @@ div {
     & attribute onblur { text }?
     & attribute onselect { text }?
     & attribute onchange { text }?
+    & local.html.input.attributes
 
    html.input =
       element html:input {
@@ -103,6 +109,8 @@ div {
 ]
 div {
 
+   local.html.button.attributes = empty
+
    html.button.attr =
       html.attrs
     & attribute name { text }?
@@ -113,6 +121,7 @@ div {
     & attribute accesskey { text }?
     & attribute onfocus { text }?
     & attribute onblur { text }?
+    & local.html.button.attributes
 
    html.button =
       element html:button {
@@ -129,11 +138,14 @@ div {
 ]
 div {
 
+   local.html.label.attributes = empty
+
    html.label.attr =
       html.attrs
     & attribute accesskey { text }?
     & attribute onfocus { text }?
     & attribute onblur { text }?
+    & local.html.label.attributes
 
    html.label =
       element html:label {
@@ -150,6 +162,8 @@ div {
 ]
 div {
 
+   local.html.select.attributes = empty
+
    html.select.attr =
       html.attrs
     & attribute name { text }?
@@ -160,6 +174,7 @@ div {
     & attribute onfocus { text }?
     & attribute onblur { text }?
     & attribute onchange { text }?
+    & local.html.select.attributes
 
    html.select =
       element html:select {
@@ -176,11 +191,14 @@ div {
 ]
 div {
 
+   local.html.option.attributes = empty
+
    html.option.attr =
       html.attrs
     & attribute selected { "selected" }?
     & attribute disabled { "disabled" }?
     & attribute value { text }?
+    & local.html.option.attributes
 
    html.option =
       element html:option {
@@ -197,6 +215,8 @@ div {
 ]
 div {
 
+   local.html.textarea.attributes = empty
+
    html.textarea.attr =
       html.attrs
     & attribute name { text }?
@@ -210,6 +230,7 @@ div {
     & attribute onblur { text }?
     & attribute onselect { text }?
     & attribute onchange { text }?
+    & local.html.textarea.attributes
 
    html.textarea =
       element html:textarea {

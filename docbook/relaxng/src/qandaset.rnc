@@ -27,6 +27,8 @@ list.blocks |= db.qandaset
 ]
 div {
 
+   local.qandaset.attributes = empty
+
    qandaset.role.attribute = attribute role { text }
 
    qandaset.attr =
@@ -34,6 +36,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & attribute defaultlabel { "none" | "number" | "qanda" }?
+    & local.qandaset.attributes
 
    qandaset.info = docbook.info.titleonly
 
@@ -54,12 +57,15 @@ div {
 ]
 div {
 
+   local.qandadiv.attributes = empty
+
    qandadiv.role.attribute = attribute role { text }
 
    qandadiv.attr =
       qandadiv.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.qandadiv.attributes
 
    qandadiv.info = docbook.info.titleonly
 
@@ -80,12 +86,15 @@ div {
 ]
 div {
 
+   local.qandaentry.attributes = empty
+
    qandaentry.role.attribute = attribute role { text }
 
    qandaentry.attr =
       qandaentry.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.qandaentry.attributes
 
    qandaentry.info = docbook.info.titleforbidden
 
@@ -106,12 +115,15 @@ div {
 ]
 div {
 
+   local.question.attributes = empty
+
    question.role.attribute = attribute role { text }
 
    question.attr =
       question.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.question.attributes
 
    db.question =
       element question {
@@ -129,12 +141,15 @@ div {
 ]
 div {
 
+   local.answer.attributes = empty
+
    answer.role.attribute = attribute role { text }
 
    answer.attr =
       answer.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.answer.attributes
 
    db.answer =
       element answer {
@@ -152,12 +167,15 @@ div {
 ]
 div {
 
+   local.label.attributes = empty
+
    label.role.attribute = attribute role { text }
 
    label.attr =
       label.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.label.attributes
 
    db.label =
       element label {

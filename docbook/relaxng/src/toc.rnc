@@ -26,12 +26,15 @@ toc.components |= db.toc
 ]
 div {
 
+   local.toc.attributes = empty
+
    toc.role.attribute = attribute role { text }
 
    toc.attr =
       toc.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.toc.attributes
 
    toc.info = docbook.info.titleonly
 
@@ -52,6 +55,8 @@ div {
 ]
 div {
 
+   local.tocdiv.attributes = empty
+
    tocdiv.role.attribute = attribute role { text }
 
    tocdiv.attr =
@@ -59,6 +64,7 @@ div {
     & common.attributes
     & attribute pagenum { text }?
     & linkend.attribute?
+    & local.tocdiv.attributes
 
    tocdiv.info = docbook.info
 
@@ -79,6 +85,8 @@ div {
 ]
 div {
 
+   local.tocentry.attributes = empty
+
    tocentry.role.attribute = attribute role { text }
 
    tocentry.attr =
@@ -86,6 +94,7 @@ div {
     & common.attributes
     & attribute pagenum { text }?
     & linkend.attribute?
+    & local.tocentry.attributes
 
    db.tocentry =
       element tocentry {

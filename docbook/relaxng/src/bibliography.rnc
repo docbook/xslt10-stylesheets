@@ -32,12 +32,15 @@ relation.attribute = attribute relation { text }
 ]
 div {
 
+   local.biblioentry.attributes = empty
+
    biblioentry.role.attribute = attribute role { text }
 
    biblioentry.attr =
       biblioentry.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.biblioentry.attributes
 
    db.biblioentry =
       element biblioentry {
@@ -54,12 +57,15 @@ div {
 ]
 div {
 
+   local.bibliomixed.attributes = empty
+
    bibliomixed.role.attribute = attribute role { text }
 
    bibliomixed.attr =
       bibliomixed.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.bibliomixed.attributes
 
    db.bibliomixed =
       element bibliomixed {
@@ -76,6 +82,8 @@ div {
 ]
 div {
 
+   local.biblioset.attributes = empty
+
    biblioset.relation.attrib = relation.attribute
 
    biblioset.role.attribute = attribute role { text }
@@ -85,6 +93,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & biblioset.relation.attrib?
+    & local.biblioset.attributes
 
    db.biblioset =
       element biblioset {
@@ -101,6 +110,8 @@ div {
 ]
 div {
 
+   local.bibliomset.attributes = empty
+
    bibliomset.relation.attrib = relation.attribute
 
    bibliomset.role.attribute = attribute role { text }
@@ -110,6 +121,7 @@ div {
     & common.attributes
     & common.linking.attributes
     & bibliomset.relation.attrib?
+    & local.bibliomset.attributes
 
    db.bibliomset =
       element bibliomset {
@@ -126,12 +138,15 @@ div {
 ]
 div {
 
+   local.bibliomisc.attributes = empty
+
    bibliomisc.role.attribute = attribute role { text }
 
    bibliomisc.attr =
       bibliomisc.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.bibliomisc.attributes
 
    db.bibliomisc =
       element bibliomisc {
@@ -148,6 +163,8 @@ div {
 ]
 div {
 
+   local.bibliography.attributes = empty
+
    bibliography.status.attrib = status.attribute
 
    bibliography.role.attribute = attribute role { text }
@@ -158,6 +175,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & bibliography.status.attrib?
+    & local.bibliography.attributes
 
    bibliography.info = docbook.info
 
@@ -178,6 +196,8 @@ div {
 ]
 div {
 
+   local.bibliodiv.attributes = empty
+
    bibliodiv.status.attrib = status.attribute
 
    bibliodiv.role.attribute = attribute role { text }
@@ -188,6 +208,7 @@ div {
     & common.linking.attributes
     & label.attribute?
     & bibliodiv.status.attrib?
+    & local.bibliodiv.attributes
 
    bibliodiv.info = docbook.info.titlereq
 
@@ -208,12 +229,15 @@ div {
 ]
 div {
 
+   local.bibliolist.attributes = empty
+
    bibliolist.role.attribute = attribute role { text }
 
    bibliolist.attr =
       bibliolist.role.attribute?
     & common.attributes
     & common.linking.attributes
+    & local.bibliolist.attributes
 
    bibliolist.info = docbook.info.titleonly
 

@@ -71,6 +71,8 @@ html.informaltable.model =
 ]
 div {
 
+   local.html.table.attributes = empty
+
    html.table.attr =
       html.attrs
     & attribute summary { text }?
@@ -90,6 +92,7 @@ div {
     & attribute rules { "none" | "groups" | "rows" | "cols" | "all" }?
     & attribute cellspacing { text }?
     & attribute cellpadding { text }?
+    & local.html.table.attributes
 
    html.table =
       element table {
@@ -105,6 +108,8 @@ div {
    db:refpurpose [ "" ]
 ]
 div {
+
+   local.html.informaltable.attributes = empty
 
    html.informaltable.attr =
       html.attrs
@@ -125,6 +130,7 @@ div {
     & attribute rules { "none" | "groups" | "rows" | "cols" | "all" }?
     & attribute cellspacing { text }?
     & attribute cellpadding { text }?
+    & local.html.informaltable.attributes
 
    html.informaltable =
       element informaltable {
@@ -141,8 +147,11 @@ div {
 ]
 div {
 
+   local.caption.attributes = empty
+
    html.caption.attr =
       html.attrs
+    & local.caption.attributes
 
    html.caption =
       element caption {
@@ -159,12 +168,15 @@ div {
 ]
 div {
 
+   local.col.attributes = empty
+
    html.col.attr =
       html.attrs
     & attribute span { text }?
     & attribute width { text }?
     & html.cellhalign
     & html.cellvalign
+    & local.col.attributes
 
    html.col =
       element col {
@@ -181,12 +193,15 @@ div {
 ]
 div {
 
+   local.colgroup.attributes = empty
+
    html.colgroup.attr =
       html.attrs
     & attribute span { text }?
     & attribute width { text }?
     & html.cellhalign
     & html.cellvalign
+    & local.colgroup.attributes
 
    html.colgroup =
       element colgroup {
@@ -203,10 +218,13 @@ div {
 ]
 div {
 
+   local.html.thead.attributes = empty
+
    html.thead.attr =
       html.attrs
     & html.cellhalign
     & html.cellvalign
+    & local.html.thead.attributes
 
    html.thead =
       element thead {
@@ -223,10 +241,13 @@ div {
 ]
 div {
 
+   local.html.tfoot.attributes = empty
+
    html.tfoot.attr =
       html.attrs
     & html.cellhalign
     & html.cellvalign
+    & local.html.tfoot.attributes
 
    html.tfoot =
       element tfoot {
@@ -243,10 +264,13 @@ div {
 ]
 div {
 
+   local.html.tbody.attributes = empty
+
    html.tbody.attr =
       html.attrs
     & html.cellhalign
     & html.cellvalign
+    & local.html.tbody.attributes
 
    html.tbody =
       element tbody {
@@ -263,10 +287,13 @@ div {
 ]
 div {
 
+   local.tr.attributes = empty
+
    html.tr.attr =
       html.attrs
     & html.cellhalign
     & html.cellvalign
+    & local.tr.attributes
 
    html.tr =
       element tr {
@@ -283,6 +310,8 @@ div {
 ]
 div {
 
+   local.th.attributes = empty
+
    html.th.attr =
       html.attrs
     & attribute abbr { text }?
@@ -293,6 +322,7 @@ div {
     & attribute colspan { text }?
     & html.cellhalign
     & html.cellvalign
+    & local.th.attributes
 
    html.th =
       element th {
@@ -309,6 +339,8 @@ div {
 ]
 div {
 
+   local.td.attributes = empty
+
    html.td.attr =
       html.attrs
     & attribute abbr { text }?
@@ -319,6 +351,7 @@ div {
     & attribute colspan { text }?
     & html.cellhalign
     & html.cellvalign
+    & local.td.attributes
 
    html.td =
       element td {
