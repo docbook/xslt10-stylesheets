@@ -12,7 +12,7 @@ all: $(HTMLFILES)
 	$(XSLT) $< $(STYLE) $@
 
 param.html: param.xml
-	$(XSLT) $< ../../docsrc/lrefentry.xsl $@
+	$(XSLT) $< ../../docsrc/clrefentry.xsl
 
 clean:
 	rm -f $(HTMLFILES)

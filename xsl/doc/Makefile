@@ -6,6 +6,7 @@ PROCOPT=
 .PHONY : clean
 
 RSTYLE=reference.xsl
+CRSTYLE=creference.xsl
 BSTYLE=book.xsl
 VPATH=../docsrc
 
