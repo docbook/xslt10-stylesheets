@@ -157,10 +157,11 @@ Title=</xsl:text>
 <xsl:template match="set|book|part|preface|chapter|appendix
                      |article
                      |reference|refentry
-                     |sect1[position()>1]
-                     |section[position()>1 and name(parent::*) != 'section']
+                     |sect1|sect2|sect3|sect4|sect5
+                     |section
                      |book/glossary|article/glossary
                      |book/bibliography|article/bibliography
+                     |book/glossary|article/glossary
                      |colophon"
               mode="enumerate-files">
   <xsl:variable name="ischunk"><xsl:call-template name="chunk"/></xsl:variable>
