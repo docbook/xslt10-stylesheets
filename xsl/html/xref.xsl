@@ -754,7 +754,7 @@
 
 <xsl:template match="olink" name="olink">
   <xsl:param name="target.database" 
-    select="document($target.database.document)"/>
+      select="document($target.database.document, /)"/>
 
   <xsl:call-template name="anchor"/>
 
