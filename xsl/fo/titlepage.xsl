@@ -547,10 +547,10 @@
 </xsl:template>
 
 <xsl:template match="revhistory/revision" mode="titlepage.mode">
-  <xsl:variable name="revnumber" select=".//revnumber"/>
-  <xsl:variable name="revdate"   select=".//date"/>
-  <xsl:variable name="revauthor" select=".//authorinitials"/>
-  <xsl:variable name="revremark" select=".//revremark|.//revdescription"/>
+  <xsl:variable name="revnumber" select="revnumber"/>
+  <xsl:variable name="revdate"   select="date"/>
+  <xsl:variable name="revauthor" select="authorinitials"/>
+  <xsl:variable name="revremark" select="revremark|revdescription"/>
   <fo:table-row>
     <fo:table-cell>
       <fo:block>
@@ -570,7 +570,12 @@
     </fo:table-cell>
     <fo:table-cell>
       <fo:block>
-        <xsl:apply-templates select="$revauthor[1]" mode="titlepage.mode"/>
+        <xsl:for-each select="$revauthor">
+          <xsl:apply-templates select="." mode="titlepage.mode"/>
+          <xsl:if test="position() != last()">
+            <xsl:text>, </xsl:text>
+          </xsl:if>
+        </xsl:for-each>
       </fo:block>
     </fo:table-cell>
   </fo:table-row>
@@ -647,7 +652,7 @@
 <!-- book recto -->
 
 <xsl:template match="bookinfo/authorgroup|info/authorgroup"
-	      mode="titlepage.mode" priority="2">
+              mode="titlepage.mode" priority="2">
   <fo:block>
     <xsl:if test="@id">
       <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
@@ -698,21 +703,21 @@
 </xsl:template>
 
 <xsl:template match="bookinfo/author|info/author"
-	      mode="titlepage.mode" priority="2">
+              mode="titlepage.mode" priority="2">
   <fo:block>
     <xsl:call-template name="person.name"/>
   </fo:block>
 </xsl:template>
 
 <xsl:template match="bookinfo/corpauthor|info/corpauthor"
-	      mode="titlepage.mode" priority="2">
+              mode="titlepage.mode" priority="2">
   <fo:block>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
 
 <xsl:template match="bookinfo/pubdate|info/pubdate"
-	      mode="titlepage.mode" priority="2">
+              mode="titlepage.mode" priority="2">
   <fo:block>
     <xsl:call-template name="gentext">
       <xsl:with-param name="key" select="'published'"/>
