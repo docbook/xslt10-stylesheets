@@ -31,6 +31,12 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="article/appendix"
+              mode="object.title.template">
+  <!-- FIXME: HACK HACK HACK! -->
+  <xsl:text>%n. %t</xsl:text>
+</xsl:template>
+
 <!-- ============================================================ -->
 
 <xsl:template match="*" mode="object.subtitle.template">
