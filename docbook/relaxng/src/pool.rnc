@@ -4829,7 +4829,12 @@ div {
 
 # ======================================================================
 
-db.computeroutput.inlines = text | db.ubiq.inlines | db.os.inlines
+db.computeroutput.inlines =
+   text
+ | db.ubiq.inlines
+ | db.os.inlines
+ | db.technical.inlines
+ | db.markup.inlines
 
 # ======================================================================
 
@@ -5950,7 +5955,12 @@ div {
 
 # ======================================================================
 
-db.userinput.inlines = text | db.ubiq.inlines | db.os.inlines
+db.userinput.inlines =
+   text
+ | db.ubiq.inlines
+ | db.os.inlines
+ | db.technical.inlines
+ | db.markup.inlines
 
 # ======================================================================
 
