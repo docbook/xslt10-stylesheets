@@ -2,11 +2,10 @@
 
 # $Id$
 
-# This script attempts to find and run trang with "simple"
-# conversions (one input file and output file specified, with no
-# other arguments).
+# This script attempts to find and run trang. Any arguments given
+# to it are passed "as is" to trang.
 #
-# Usage: trang <inputFileOrUri> <outputFile>
+# Usage: runtrang <arg>...
 
 # if trang is found in CLASSPATH, then call trang "manually"
 if [[ $CLASSPATH == *trang* ]]; then
@@ -44,7 +43,9 @@ fi
 
 # if trang was found, run it
 if [ -n "$TRANG" ]; then
-  $TRANG $1 $2
+  echo
+  echo "$TRANG $@"
+  $TRANG $@
 else
   # otherwise, exit with an error
   echo "error: cannot locate trang" 1>&2
