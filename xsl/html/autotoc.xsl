@@ -12,7 +12,7 @@
 
      ******************************************************************** -->
 
-<xsl:param name="autotoc.label.separator" select="' '"/>
+<xsl:param name="autotoc.label.separator" select="'. '"/>
 
 <xsl:template name="href.target">
   <xsl:param name="object" select="."/>
@@ -153,8 +153,13 @@
   </xsl:variable>
 
   <xsl:element name="{$toc.listitem.type}">
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:value-of select="$autotoc.label.separator"/>
+    <xsl:variable name="label">
+      <xsl:apply-templates select="." mode="label.markup"/>
+    </xsl:variable>
+    <xsl:copy-of select="$label"/>
+    <xsl:if test="$label != ''">
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <a>
       <xsl:attribute name="href">
         <xsl:call-template name="href.target"/>
@@ -198,8 +203,13 @@
   </xsl:variable>
 
   <xsl:element name="{$toc.listitem.type}">
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:value-of select="$autotoc.label.separator"/>
+    <xsl:variable name="label">
+      <xsl:apply-templates select="." mode="label.markup"/>
+    </xsl:variable>
+    <xsl:copy-of select="$label"/>
+    <xsl:if test="$label != ''">
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <a>
       <xsl:attribute name="href">
         <xsl:call-template name="href.target"/>
@@ -238,8 +248,13 @@
   </xsl:variable>
 
   <xsl:element name="{$toc.listitem.type}">
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:value-of select="$autotoc.label.separator"/>
+    <xsl:variable name="label">
+      <xsl:apply-templates select="." mode="label.markup"/>
+    </xsl:variable>
+    <xsl:copy-of select="$label"/>
+    <xsl:if test="$label != ''">
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <a>
       <xsl:attribute name="href">
         <xsl:call-template name="href.target"/>
@@ -278,8 +293,13 @@
   </xsl:variable>
 
   <xsl:element name="{$toc.listitem.type}">
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:value-of select="$autotoc.label.separator"/>
+    <xsl:variable name="label">
+      <xsl:apply-templates select="." mode="label.markup"/>
+    </xsl:variable>
+    <xsl:copy-of select="$label"/>
+    <xsl:if test="$label != ''">
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <a>
       <xsl:attribute name="href">
         <xsl:call-template name="href.target"/>
@@ -318,8 +338,13 @@
   </xsl:variable>
 
   <xsl:element name="{$toc.listitem.type}">
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:value-of select="$autotoc.label.separator"/>
+    <xsl:variable name="label">
+      <xsl:apply-templates select="." mode="label.markup"/>
+    </xsl:variable>
+    <xsl:copy-of select="$label"/>
+    <xsl:if test="$label != ''">
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <a>
       <xsl:attribute name="href">
         <xsl:call-template name="href.target"/>
@@ -358,8 +383,13 @@
   </xsl:variable>
 
   <xsl:element name="{$toc.listitem.type}">
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:value-of select="$autotoc.label.separator"/>
+    <xsl:variable name="label">
+      <xsl:apply-templates select="." mode="label.markup"/>
+    </xsl:variable>
+    <xsl:copy-of select="$label"/>
+    <xsl:if test="$label != ''">
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <a>
       <xsl:attribute name="href">
         <xsl:call-template name="href.target"/>
@@ -398,8 +428,13 @@
   </xsl:variable>
 
   <xsl:element name="{$toc.listitem.type}">
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:value-of select="$autotoc.label.separator"/>
+    <xsl:variable name="label">
+      <xsl:apply-templates select="." mode="label.markup"/>
+    </xsl:variable>
+    <xsl:copy-of select="$label"/>
+    <xsl:if test="$label != ''">
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <a>
       <xsl:attribute name="href">
         <xsl:call-template name="href.target"/>
@@ -419,8 +454,13 @@
 
 <xsl:template match="sect5" mode="toc">
   <xsl:element name="{$toc.listitem.type}">
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:value-of select="$autotoc.label.separator"/>
+    <xsl:variable name="label">
+      <xsl:apply-templates select="." mode="label.markup"/>
+    </xsl:variable>
+    <xsl:copy-of select="$label"/>
+    <xsl:if test="$label != ''">
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <a>
       <xsl:attribute name="href">
         <xsl:call-template name="href.target"/>
@@ -465,8 +505,13 @@
   </xsl:variable>
 
   <xsl:element name="{$toc.listitem.type}">
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:value-of select="$autotoc.label.separator"/>
+    <xsl:variable name="label">
+      <xsl:apply-templates select="." mode="label.markup"/>
+    </xsl:variable>
+    <xsl:copy-of select="$label"/>
+    <xsl:if test="$label != ''">
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
     <a>
       <xsl:attribute name="href">
         <xsl:call-template name="href.target"/>
@@ -487,8 +532,13 @@
 <xsl:template match="bridgehead" mode="toc">
   <xsl:if test="$bridgehead.in.toc != 0">
     <xsl:element name="{$toc.listitem.type}">
-      <xsl:apply-templates select="." mode="label.markup"/>
-      <xsl:value-of select="$autotoc.label.separator"/>
+      <xsl:variable name="label">
+        <xsl:apply-templates select="." mode="label.markup"/>
+      </xsl:variable>
+      <xsl:copy-of select="$label"/>
+      <xsl:if test="$label != ''">
+        <xsl:value-of select="$autotoc.label.separator"/>
+      </xsl:if>
       <a>
         <xsl:attribute name="href">
           <xsl:call-template name="href.target"/>
