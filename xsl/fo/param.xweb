@@ -446,6 +446,7 @@ around all these parameters.</para>
 <src:fragref linkend="admon.graphics.extension.frag"/>
 <src:fragref linkend="admon.graphics.frag"/>
 <src:fragref linkend="admon.graphics.path.frag"/>
+<src:fragref linkend="admon.textlabel.frag"/>
 <src:fragref linkend="admonition.properties.frag"/>
 <src:fragref linkend="admonition.title.properties.frag"/>
 <src:fragref linkend="alignment.frag"/>
