@@ -464,11 +464,12 @@ title of the element. This does not include the label.
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="preface|chapter|appendix" mode="titleabbrev.markup">
+<xsl:template match="book|preface|chapter|appendix" mode="titleabbrev.markup">
   <xsl:param name="allow-anchors" select="0"/>
   <xsl:param name="verbose" select="1"/>
 
   <xsl:variable name="titleabbrev" select="(docinfo/titleabbrev
+                                           |bookinfo/titleabbrev
                                            |info/titleabbrev
                                            |prefaceinfo/titleabbrev
                                            |chapterinfo/titleabbrev
