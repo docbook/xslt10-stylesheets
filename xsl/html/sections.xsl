@@ -254,6 +254,7 @@
   <xsl:param name="level" select="1"/>
   <xsl:param name="allow-anchors" select="1"/>
   <xsl:param name="title"/>
+  <xsl:param name="class" select="'title'"/>
 
   <xsl:variable name="id">
     <xsl:choose>
@@ -274,7 +275,7 @@
   <!-- HTML H level is one higher than section level -->
   <xsl:variable name="hlevel" select="$level + 1"/>
   <xsl:element name="h{$hlevel}">
-    <xsl:attribute name="class">title</xsl:attribute>
+    <xsl:attribute name="class"><xsl:value-of select="$class"/></xsl:attribute>
     <xsl:if test="$css.decoration != '0'">
       <xsl:if test="$hlevel&lt;3">
         <xsl:attribute name="style">clear: both</xsl:attribute>
@@ -417,6 +418,7 @@
     <xsl:with-param name="allow-anchors" select="0"/>
     <!-- subtitle heading level one higher than section level -->
     <xsl:with-param name="level" select="$level + 1"/>
+    <xsl:with-param name="class" select="'subtitle'"/>
     <xsl:with-param name="title">
       <xsl:apply-templates select="$section" mode="object.subtitle.markup">
         <xsl:with-param name="allow-anchors" select="0"/>
