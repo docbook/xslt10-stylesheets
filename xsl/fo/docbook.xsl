@@ -59,8 +59,10 @@
 <xsl:include href="titlepage.templates.xsl"/>
 <xsl:include href="pagesetup.xsl"/>
 <xsl:include href="pi.xsl"/>
+<xsl:include href="ebnf.xsl"/>
 
 <xsl:include href="fop.xsl"/>
+<xsl:include href="xep.xsl"/>
 
 <!-- ==================================================================== -->
 
@@ -125,6 +127,9 @@
             <xsl:if test="$fop.extensions != 0">
               <xsl:apply-templates select="id($rootid)" mode="outline"/>
             </xsl:if>
+            <xsl:if test="$xep.extensions != 0">
+              <xsl:apply-templates select="id($rootid)" mode="xep.outline"/>
+            </xsl:if>
             <xsl:apply-templates select="id($rootid)"/>
           </xsl:otherwise>
         </xsl:choose>
@@ -132,6 +137,9 @@
       <xsl:otherwise>
         <xsl:if test="$fop.extensions != 0">
           <xsl:apply-templates mode="outline"/>
+        </xsl:if>
+        <xsl:if test="$xep.extensions != 0">
+          <xsl:apply-templates mode="xep.outline"/>
         </xsl:if>
         <xsl:apply-templates/>
       </xsl:otherwise>

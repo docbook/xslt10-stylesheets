@@ -58,6 +58,7 @@
 <xsl:include href="titlepage.xsl"/>
 <xsl:include href="titlepage.templates.xsl"/>
 <xsl:include href="pi.xsl"/>
+<xsl:include href="ebnf.xsl"/>
 
 <!-- ==================================================================== -->
 
