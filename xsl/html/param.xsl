@@ -228,7 +228,7 @@ a graphic.  Default graphics are provided in the distribution.
 </doc:param>
 
 <!-- ==================================================================== -->
-<xsl:param name="admon.graphics.path" doc:type='string'>../images/</xsl:param>
+<xsl:param name="admon.graphics.path" doc:type='string'>images/</xsl:param>
 
 <doc:param name="admon.graphics.path" xmlns="">
 <refpurpose>Path to admonition graphics</refpurpose>
@@ -620,7 +620,7 @@ Default graphics are provided in the distribution.
 </doc:param>
 
 <!-- ==================================================================== -->
-<xsl:param name="callout.graphics.path" select="'../images/callouts/'" doc:type='string'/>
+<xsl:param name="callout.graphics.path" select="'images/callouts/'" doc:type='string'/>
 
 <doc:param name="callout.graphics.path" xmlns="">
 <refpurpose>Path to callout graphics</refpurpose>
