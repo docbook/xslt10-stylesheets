@@ -233,7 +233,7 @@
       <xsl:when test="$table.borders.with.css != 0">
         <xsl:attribute name="border">0</xsl:attribute>
         <xsl:choose>
-          <xsl:when test="../@frame='all'">
+          <xsl:when test="../@frame='all' or (not(../@frame) and $default.table.frame='all')">
             <xsl:attribute name="style">
               <xsl:text>border-collapse: collapse;</xsl:text>
               <xsl:call-template name="border">
@@ -262,7 +262,7 @@
               </xsl:call-template>
             </xsl:attribute>
           </xsl:when>
-          <xsl:when test="../@frame='topbot'">
+          <xsl:when test="../@frame='topbot' or (not(../@frame) and $default.table.frame='topbot')">
             <xsl:attribute name="style">
               <xsl:text>border-collapse: collapse;</xsl:text>
               <xsl:call-template name="border">
@@ -279,7 +279,7 @@
               </xsl:call-template>
             </xsl:attribute>
           </xsl:when>
-          <xsl:when test="../@frame='top'">
+          <xsl:when test="../@frame='top' or (not(../@frame) and $default.table.frame='top')">
             <xsl:attribute name="style">
               <xsl:text>border-collapse: collapse;</xsl:text>
               <xsl:call-template name="border">
@@ -290,7 +290,7 @@
               </xsl:call-template>
             </xsl:attribute>
           </xsl:when>
-          <xsl:when test="../@frame='bottom'">
+          <xsl:when test="../@frame='bottom' or (not(../@frame) and $default.table.frame='bottom')">
             <xsl:attribute name="style">
               <xsl:text>border-collapse: collapse;</xsl:text>
               <xsl:call-template name="border">
@@ -301,7 +301,7 @@
               </xsl:call-template>
             </xsl:attribute>
           </xsl:when>
-          <xsl:when test="../@frame='sides'">
+          <xsl:when test="../@frame='sides' or (not(../@frame) and $default.table.frame='sides')">
             <xsl:attribute name="style">
               <xsl:text>border-collapse: collapse;</xsl:text>
               <xsl:call-template name="border">
@@ -325,7 +325,7 @@
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
-      <xsl:when test="../@frame='none' or local-name(.) = 'entrytbl'">
+      <xsl:when test="../@frame='none' or (not(../@frame) and $default.table.frame='none') or local-name(.) = 'entrytbl'">
         <xsl:attribute name="border">0</xsl:attribute>
       </xsl:when>
       <xsl:otherwise>
