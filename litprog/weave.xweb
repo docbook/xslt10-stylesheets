@@ -691,7 +691,9 @@ like an attribute in the result.</para>
 <para>The applicable namespaces are determined by walking recursively
 over the list of namespace nodes associated with an element.</para>
 
-<para>For each namespace node, if it has a prefix that is in the list
+<para>For each namespace node, if it's already on some ancestor, then it doesn't
+have to be output again, otherwise
+if it has a prefix that is in the list
 of excluded prefixes or if it is the Literate Programming namespace,
 it is not counted (because it will not be output). Otherwise, it is
 counted.</para>
@@ -708,23 +710,24 @@ returned.</para>
              select="'http://nwalsh.com/xmlns/litprog/fragment'"/>
   <xsl:param name="count" select="'0'"/>
 
+  <xsl:variable name="on-ancestor">
+    <xsl:call-template name="matching.namespace">
+      <xsl:with-param name="context" select=".."/>
+      <xsl:with-param name="prefix" select="name($namespaces[1])"/>
+      <xsl:with-param name="uri" select="$namespaces[1]"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="count($namespaces) = 0">
       <xsl:value-of select="$count"/>
     </xsl:when>
 
-    <xsl:when test="not(contains($exclude-prefixes, name($namespaces[1]))
-                        or ($namespaces[1] = $exclude-uri))">
-      <xsl:call-template name="count.applicable.namespaces">
-        <xsl:with-param name="namespaces"
-                        select="$namespaces[position()&gt;1]"/>
-        <xsl:with-param name="exclude-prefixes" select="$exclude-prefixes"/>
-        <xsl:with-param name="exclude-uri" select="$exclude-uri"/>
-        <xsl:with-param name="count" select="$count + 1"/>
-      </xsl:call-template>
-    </xsl:when>
-
-    <xsl:otherwise>
+    <xsl:when test="$on-ancestor != 0
+                    or $namespaces[1] = $exclude-uri
+                    or (contains($exclude-prefixes, name($namespaces[1]))
+                        and name($namespaces[1]) != '')">
+      <!-- this one doesn't count -->
       <xsl:call-template name="count.applicable.namespaces">
         <xsl:with-param name="namespaces"
                         select="$namespaces[position()&gt;1]"/>
@@ -732,10 +735,76 @@ returned.</para>
         <xsl:with-param name="exclude-uri" select="$exclude-uri"/>
         <xsl:with-param name="count" select="$count"/>
       </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="count.applicable.namespaces">
+        <xsl:with-param name="namespaces"
+                        select="$namespaces[position()&gt;1]"/>
+        <xsl:with-param name="exclude-prefixes" select="$exclude-prefixes"/>
+        <xsl:with-param name="exclude-uri" select="$exclude-uri"/>
+        <xsl:with-param name="count" select="$count + 1"/>
+      </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+
+<src:fragref linkend="matching.namespaces"/>
 </src:fragment>
+
+<section>
+<title>Matching Namespaces</title>
+
+<para>Returns 1 if the specified namespace occurs on the context element or some
+ancestor of the context element, up to but not including <sgmltag>src:fragment</sgmltag>
+element.</para>
+
+<para>Testing for this condition in copying applicable namespaces
+avoids duplicating namespace declarations repeatedly in a given
+fragment. By not including the <sgmltag>src:fragment</sgmltag> elment
+(or any of its ancestors) in the search, we can make sure that each
+fragment will have a complete set of declarations.</para>
+
+<src:fragment id="matching.namespaces">
+<xsl:template name="matching.namespace">
+  <xsl:param name="context" select="."/>
+  <xsl:param name="prefix" select="''"/>
+  <xsl:param name="uri" select="''"/>
+
+  <xsl:variable name="c-match">
+    <xsl:choose>
+      <xsl:when test="$context/self::src:fragment">
+        <xsl:text>0</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>0</xsl:text>
+        <xsl:for-each select="$context/namespace::*">
+          <xsl:if test="name(.) = $prefix and string(.) = $uri">1</xsl:if>
+        </xsl:for-each>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="match">
+    <xsl:choose>
+      <xsl:when test="number($c-match) = 0 and $context/parent::*
+                      and not($context/parent::src:fragment)
+                      and not($context/self::src:fragment)">
+        <xsl:call-template name="matching.namespace">
+          <xsl:with-param name="context" select="$context/parent::*"/>
+          <xsl:with-param name="prefix" select="$prefix"/>
+          <xsl:with-param name="uri" select="$uri"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$c-match"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:value-of select="number($match)"/>
+</xsl:template>
+</src:fragment>
+</section>
 </section>
 
 <section id="s.output.atts">
@@ -783,12 +852,32 @@ been exhausted.</para>
              select="'http://nwalsh.com/xmlns/litprog/fragment'"/>
   <xsl:param name="first" select="'1'"/>
 
+  <xsl:variable name="on-ancestor">
+    <xsl:call-template name="matching.namespace">
+      <xsl:with-param name="context" select=".."/>
+      <xsl:with-param name="prefix" select="name($namespaces[1])"/>
+      <xsl:with-param name="uri" select="$namespaces[1]"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="count($namespaces) = 0">
       <!-- do nothing -->
     </xsl:when>
-    <xsl:when test="not(contains($exclude-prefixes, name($namespaces[1]))
-                        or ($namespaces[1] = $exclude-uri))">
+    <xsl:when test="$on-ancestor != 0
+                    or $namespaces[1] = $exclude-uri
+                    or (contains($exclude-prefixes, name($namespaces[1]))
+                        and name($namespaces[1]) != '')">
+      <!-- this one doesn't count -->
+      <xsl:call-template name="output.applicable.namespaces">
+        <xsl:with-param name="namespaces"
+                        select="$namespaces[position()&gt;1]"/>
+        <xsl:with-param name="exclude-prefixes" select="$exclude-prefixes"/>
+        <xsl:with-param name="exclude-uri" select="$exclude-uri"/>
+        <xsl:with-param name="count" select="$first"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
       <src:fragref linkend="indent-attribute"/>
       <xsl:text>xmlns</xsl:text>
       <xsl:if test="name($namespaces[1]) != ''">:</xsl:if>
@@ -802,15 +891,6 @@ been exhausted.</para>
         <xsl:with-param name="exclude-prefixes" select="$exclude-prefixes"/>
         <xsl:with-param name="exclude-uri" select="$exclude-uri"/>
         <xsl:with-param name="first" select="0"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="output.applicable.namespaces">
-        <xsl:with-param name="namespaces"
-                        select="$namespaces[position()&gt;1]"/>
-        <xsl:with-param name="exclude-prefixes" select="$exclude-prefixes"/>
-        <xsl:with-param name="exclude-uri" select="$exclude-uri"/>
-        <xsl:with-param name="count" select="$first"/>
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
@@ -998,11 +1078,13 @@ around this problem by explicitly testing for that namespace and not
 copying it.
 </para>
 
-<src:fragment id="copy-namespaces">        <xsl:for-each select="namespace::*">
-          <xsl:if test="string(.) != namespace-uri($node)">
-            <xsl:copy/>
-          </xsl:if>
-        </xsl:for-each></src:fragment>
+<src:fragment id="copy-namespaces">
+   <xsl:for-each select="namespace::*">
+     <xsl:if test="string(.) != namespace-uri($node)">
+       <xsl:copy/>
+     </xsl:if>
+   </xsl:for-each>
+</src:fragment>
 </section>
 </section>
 
