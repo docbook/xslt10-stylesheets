@@ -141,7 +141,6 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &html.base;
 &html.stylesheet.type;
 &html.stylesheet;
-&use.id.as.filename;
 &css.decoration;
 &spacing.paras;
 &emphasis.propagates.style;
@@ -300,6 +299,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &chunker.output.standalone;
 &saxon.character.representation;
 &html.ext;
+&use.id.as.filename;
 &html.extra.head.links;
 &root.filename;
 &base.dir;
