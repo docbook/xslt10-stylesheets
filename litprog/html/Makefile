@@ -1,6 +1,6 @@
 include ../../cvstools/Makefile.incl
 
-all: ldocbook.xsl
+all: ldocbook.xsl cldocbook.xsl
 
 xml: ldocbook.xml
 
@@ -14,6 +14,9 @@ ldocbook.xml: ldocbook.xweb ../wdocbook.xsl
 
 ldocbook.xsl: ldocbook.xweb ../xtangle.xsl
 	$(XSLT) $< ../xtangle.xsl $@
+
+cldocbook.xsl: ldocbook.xweb ../xtangle.xsl
+	$(XSLT) $< ../xtangle.xsl $@ top=top-chunk
 
 realclean: clean
 	rm -f ldocbook.xsl
