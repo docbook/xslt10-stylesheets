@@ -198,7 +198,7 @@
   </div>
 </xsl:template>
 
-<xsl:template match="authorblurb" mode="titlepage.mode">
+<xsl:template match="authorblurb|personblurb" mode="titlepage.mode">
   <div class="{name(.)}">
     <xsl:apply-templates mode="titlepage.mode"/>
   </div>
