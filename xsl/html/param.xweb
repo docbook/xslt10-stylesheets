@@ -266,6 +266,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &generate.manifest;
 &manifest;
 &chunk.toc;
+&chunk.tocs.and.lots;
 &chunk.section.depth;
 &chunk.first.sections;
 &chunk.quietly;
@@ -394,6 +395,7 @@ around all these parameters.</para>
 <src:fragref linkend="chunk.quietly.frag"/>
 <src:fragref linkend="chunk.section.depth.frag"/>
 <src:fragref linkend="chunk.toc.frag"/>
+<src:fragref linkend="chunk.tocs.and.lots.frag"/>
 <src:fragref linkend="citerefentry.link.frag"/>
 <src:fragref linkend="collect.xref.targets.frag"/>
 <src:fragref linkend="css.decoration.frag"/>
