@@ -6578,6 +6578,29 @@ OtherCredit. -->
 <!ENTITY % keycap.attlist "INCLUDE">
 <![%keycap.attlist;[
 <!ATTLIST keycap
+		function	(alt
+				|control
+				|shift
+				|meta
+				|escape
+				|enter
+				|tab
+				|backspace
+				|command
+				|option
+				|space
+				|delete
+				|insert
+				|up
+				|down
+				|left
+				|right
+				|home
+				|end
+				|pageup
+				|pagedown
+				|other)		#IMPLIED
+		otherfunction	CDATA		#IMPLIED
 		%moreinfo.attrib;
 		%common.attrib;
 		%keycap.role.attrib;
