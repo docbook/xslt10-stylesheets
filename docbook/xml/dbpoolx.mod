@@ -3437,26 +3437,6 @@ in the text (no (0) value, the default)
 <!--end of textdata.attlist-->]]>
 <!--end of textdata.module-->]]>
 
-<!ENTITY % caption.module "INCLUDE">
-<![ %caption.module; [
-<!ENTITY % local.caption.attrib "">
-<!ENTITY % caption.role.attrib "%role.attrib;">
-
-<!ENTITY % caption.element "INCLUDE">
-<![ %caption.element; [
-<!ELEMENT caption %ho; (#PCDATA | %textobject.mix;)*>
-<!--end of caption.element-->]]>
-
-<!ENTITY % caption.attlist "INCLUDE">
-<![ %caption.attlist; [
-<!ATTLIST caption
-		%common.attrib;
-		%caption.role.attrib;
-		%local.caption.attrib;
->
-<!--end of caption.attlist-->]]>
-<!--end of caption.module-->]]>
-
 <!ENTITY % mediaobjectco.module "INCLUDE">
 <![ %mediaobjectco.module; [
 <!ENTITY % local.mediaobjectco.attrib "">
@@ -3712,7 +3692,6 @@ in the text (no (0) value, the default)
 <!-- includes Label -->
 <!-- includes common attributes -->
 
-
 <!ENTITY % informaltable.attlist "INCLUDE">
 <![%informaltable.attlist;[
 <!ATTLIST informaltable
@@ -3725,6 +3704,40 @@ in the text (no (0) value, the default)
 >
 <!--end of informaltable.attlist-->]]>
 <!--end of informaltable.module-->]]>
+
+<!ENTITY % caption.module "INCLUDE">
+<![ %caption.module; [
+<!ENTITY % local.caption.attrib "">
+<!ENTITY % caption.role.attrib "%role.attrib;">
+
+<!ENTITY % caption.element "INCLUDE">
+<![ %caption.element; [
+<!ELEMENT caption %ho; (#PCDATA | %textobject.mix;)*>
+<!--end of caption.element-->]]>
+
+<!ENTITY % caption.attlist "INCLUDE">
+<![ %caption.attlist; [
+<!-- attrs comes from HTML tables ... -->
+
+<![ %allow.html.tables; [
+<!ENTITY % caption.attlist.content "
+		%common.attrib;
+		%caption.role.attrib;
+		%attrs;
+		align	(top|bottom|left|right)	#IMPLIED
+		%local.caption.attrib;
+">
+]]>
+<!ENTITY % caption.attlist.content "
+		%common.attrib;
+		%caption.role.attrib;
+		%local.caption.attrib;
+">
+
+<!ATTLIST caption %caption.attlist.content;>
+
+<!--end of caption.attlist-->]]>
+<!--end of caption.module-->]]>
 
 <!-- ...................................................................... -->
 <!-- Synopses ............................................................. -->
