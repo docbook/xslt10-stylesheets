@@ -133,7 +133,7 @@
 <gentext key="Editedby" text="Redigeret af"/>
 <gentext key="editedby" text="redigeret af"/>
 <gentext key="in" text="i"/>
-<gentext key="lastlistcomma" text=" og "/>
+<gentext key="lastlistcomma" text=""/>
 <gentext key="listcomma" text=", "/>
 <gentext key="nonexistantelement" text="ikke-eksisterende element"/>
 <gentext key="notes" text="slutbem&#xE6;rkning:"/>
