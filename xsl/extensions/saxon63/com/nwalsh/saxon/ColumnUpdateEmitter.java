@@ -4,9 +4,7 @@ import org.xml.sax.*;
 import com.icl.saxon.output.*;
 import com.icl.saxon.om.*;
 import javax.xml.transform.TransformerException;
-import com.icl.saxon.tinytree.TinyBuilder;
 import com.icl.saxon.expr.FragmentValue;
-import com.icl.saxon.Builder;
 import com.icl.saxon.tree.AttributeCollection;
 
 /**

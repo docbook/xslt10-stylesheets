@@ -5,14 +5,12 @@ import java.util.StringTokenizer;
 import org.xml.sax.*;
 import org.w3c.dom.*;
 import javax.xml.transform.TransformerException;
-import com.icl.saxon.Builder;
 import com.icl.saxon.Context;
 import com.icl.saxon.expr.*;
 import com.icl.saxon.functions.Extensions;
 import com.icl.saxon.om.*;
 import com.icl.saxon.output.*;
 import com.icl.saxon.pattern.*;
-import com.icl.saxon.tinytree.TinyBuilder;
 import com.icl.saxon.tree.*;
 
 /**
@@ -121,7 +119,7 @@ public class CalloutEmitter extends CopyEmitter {
    * @param areaspecNodeSet The source document &lt;areaspec&gt; element.
    *
    */
-  public void setupCallouts (NodeSetIntent areaspecNodeSet) {
+  public void setupCallouts (NodeList areaspecNodeList) {
     callout = new Callout[10];
     calloutCount = 0;
     calloutPos = 0;
@@ -138,45 +136,41 @@ public class CalloutEmitter extends CopyEmitter {
     //  <area id="ex.plco.ret" coords="12"/>
     //  <area id="ex.plco.dest" coords="12"/>
     //  </areaspec>
-    try {
-      int pos = 0;
-      int coNum = 0;
-      boolean inAreaSet = false;
-      NodeInfo areaspec = areaspecNodeSet.getFirst();
-      NodeInfo children[] = areaspec.getAllChildNodes();
+    int pos = 0;
+    int coNum = 0;
+    boolean inAreaSet = false;
+    Node areaspec = areaspecNodeList.item(0);
+    NodeList children = areaspec.getChildNodes();
 
-      for (int count = 0; count < children.length; count++) {
-	NodeInfo node = children[count];
-	if (node.getNodeType() == NodeInfo.ELEMENT) {
-	  if (node.getNodeName().equalsIgnoreCase("areaset")) {
-	    coNum++;
-	    NodeInfo areas[] = node.getAllChildNodes();
-	    for (int acount = 0; acount < areas.length; acount++) {
-	      NodeInfo area = areas[acount];
-	      if (area.getNodeType() == NodeInfo.ELEMENT) {
-		if (area.getNodeName().equalsIgnoreCase("area")) {
-		  addCallout(coNum, area, defaultColumn);
-		} else {
-		  System.out.println("Unexpected element in areaset: "
-				     + area.getNodeName());
-		}
+    for (int count = 0; count < children.getLength(); count++) {
+      Node node = children.item(count);
+      if (node.getNodeType() == Node.ELEMENT_NODE) {
+	if (node.getNodeName().equalsIgnoreCase("areaset")) {
+	  coNum++;
+	  NodeList areas = node.getChildNodes();
+	  for (int acount = 0; acount < areas.getLength(); acount++) {
+	    Node area = areas.item(acount);
+	    if (area.getNodeType() == Node.ELEMENT_NODE) {
+	      if (area.getNodeName().equalsIgnoreCase("area")) {
+		addCallout(coNum, area, defaultColumn);
+	      } else {
+		System.out.println("Unexpected element in areaset: "
+				   + area.getNodeName());
 	      }
 	    }
-	  } else if (node.getNodeName().equalsIgnoreCase("area")) {
-	    coNum++;
-	    addCallout(coNum, node, defaultColumn);
-	  } else {
-	    System.out.println("Unexpected element in areaspec: "
-			       + node.getNodeName());
 	  }
+	} else if (node.getNodeName().equalsIgnoreCase("area")) {
+	  coNum++;
+	  addCallout(coNum, node, defaultColumn);
+	} else {
+	  System.out.println("Unexpected element in areaspec: "
+			     + node.getNodeName());
 	}
       }
-
-      // Now sort them
-      java.util.Arrays.sort(callout, 0, calloutCount);
-    } catch (TransformerException e) {
-      //nop;
     }
+
+    // Now sort them
+    java.util.Arrays.sort(callout, 0, calloutCount);
   }
 
   /** Process characters. */
@@ -296,7 +290,7 @@ public class CalloutEmitter extends CopyEmitter {
    * @param defaultColumn The default column for callouts.
    */
   protected void addCallout (int coNum,
-			     NodeInfo node,
+			     Node node,
 			     int defaultColumn) {
 
     ElementInfo area = (ElementInfo) node;
