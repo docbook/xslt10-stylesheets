@@ -320,14 +320,14 @@
       <xsl:call-template name="longest.term">
         <xsl:with-param name="longest" select="string-length($terms[1])"/>
         <xsl:with-param name="maxlength" select="$maxlength"/>
-        <xsl:with-param name="terms" select="terms[position() &gt; 1]"/>
+        <xsl:with-param name="terms" select="$terms[position() &gt; 1]"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="longest.term">
         <xsl:with-param name="longest" select="$longest"/>
         <xsl:with-param name="maxlength" select="$maxlength"/>
-        <xsl:with-param name="terms" select="terms[position() &gt; 1]"/>
+        <xsl:with-param name="terms" select="$terms[position() &gt; 1]"/>
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
