@@ -11,7 +11,7 @@ attribute value</refpurpose>
 
 <refsynopsisdiv>
 <src:fragment id='index.on.type.frag'>
-<xsl:param name="index.on.type" select="1"/>
+<xsl:param name="index.on.type" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 
