@@ -47,6 +47,34 @@
       <xsl:text>???</xsl:text>
     </xsl:when>
 
+    <xsl:when test="@endterm">
+      <xsl:variable name="href">
+        <xsl:call-template name="href.target">
+          <xsl:with-param name="object" select="$target"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:variable name="etargets" select="key('id',@endterm)"/>
+      <xsl:variable name="etarget" select="$etargets[1]"/>
+      <xsl:choose>
+        <xsl:when test="count($etarget) = 0">
+          <xsl:message>
+            <xsl:value-of select="count($etargets)"/>
+            <xsl:text>Endterm points to nonexistent ID: </xsl:text>
+            <xsl:value-of select="@endterm"/>
+          </xsl:message>
+          <a href="{$href}">
+            <xsl:text>???</xsl:text>
+          </a>
+        </xsl:when>
+        <xsl:otherwise>
+          <a href="{$href}">
+            <xsl:apply-templates select="$etarget" mode="endterm"/>
+          </a>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+
     <xsl:when test="$target/@xreflabel">
       <a>
         <xsl:attribute name="href">
@@ -67,56 +95,30 @@
         </xsl:call-template>
       </xsl:variable>
 
-      <xsl:choose>
-        <xsl:when test="@endterm">
-          <xsl:variable name="etargets" select="key('id',@endterm)"/>
-          <xsl:variable name="etarget" select="$etargets[1]"/>
-          <xsl:choose>
-            <xsl:when test="count($etarget) = 0">
-              <xsl:message>
-                <xsl:value-of select="count($etargets)"/>
-                <xsl:text>Endterm points to nonexistent ID: </xsl:text>
-                <xsl:value-of select="@endterm"/>
-              </xsl:message>
-              <a href="{$href}">
-                <xsl:text>???</xsl:text>
-              </a>
-            </xsl:when>
-            <xsl:otherwise>
-              <a href="{$href}">
-                <xsl:apply-templates select="$etarget" mode="endterm"/>
-              </a>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:when>
+      <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
 
-        <xsl:otherwise>
-          <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
+      <a href="{$href}">
+        <xsl:if test="$target/title or $target/*/title">
+          <xsl:attribute name="title">
+            <xsl:apply-templates select="$target" mode="xref-title"/>
+          </xsl:attribute>
+        </xsl:if>
+        <xsl:apply-templates select="$target" mode="xref-to">
+          <xsl:with-param name="referrer" select="."/>
+          <xsl:with-param name="xrefstyle">
+            <xsl:choose>
+              <xsl:when test="$use.role.as.xrefstyle != 0">
+                <xsl:value-of select="@role"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="@xrefstyle"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:with-param>
+        </xsl:apply-templates>
+      </a>
 
-          <a href="{$href}">
-            <xsl:if test="$target/title or $target/*/title">
-              <xsl:attribute name="title">
-                <xsl:apply-templates select="$target" mode="xref-title"/>
-              </xsl:attribute>
-            </xsl:if>
-            <xsl:apply-templates select="$target" mode="xref-to">
-              <xsl:with-param name="referrer" select="."/>
-              <xsl:with-param name="xrefstyle">
-                <xsl:choose>
-                  <xsl:when test="$use.role.as.xrefstyle != 0">
-                    <xsl:value-of select="@role"/>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:value-of select="@xrefstyle"/>
-                  </xsl:otherwise>
-                </xsl:choose>
-              </xsl:with-param>
-            </xsl:apply-templates>
-          </a>
-
-          <xsl:apply-templates select="$target" mode="xref-to-suffix"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:apply-templates select="$target" mode="xref-to-suffix"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
