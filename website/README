@@ -1,6 +1,7 @@
-README for the Website DTD V2.4.0
+README for the DocBook Website distribution
 
-Website is an XML DTD for building, er, web sites.
+Website is an XML DTD and XSL stylesheet collection
+for building, er, web sites.
 
 DTD Installation
 ----------------
@@ -11,17 +12,21 @@ catalogs, so this may be irrelevant for you).
 
 Please use the following formal public identifier to identify this DTD:
 
-  "-//Norman Walsh//DTD Website V2.4.0//EN"
+  "-//Norman Walsh//DTD Website V2.5.0//EN"
 
 For example:
 
-  <!DOCTYPE website PUBLIC "-//Norman Walsh//DTD Website V2.4.0//EN"
-  "http://docbook.sourceforge.net/release/website/2.4.0/schema/dtd/website.dtd">
+  <!DOCTYPE website PUBLIC "-//Norman Walsh//DTD Website V2.5.0//EN"
+  "http://docbook.sourceforge.net/release/website/2.5.0/schema/dtd/website.dtd">
 
 XSL Installation
 ----------------
 
 Place the XSL files in this distribution somewhere on your machine.
+
+Update the included catalog.xml file to point to a local
+version of the stock DocBook XSL distribution, of which website
+is a customization.
 
 Use
 ---
@@ -35,7 +40,7 @@ http://docbook.sourceforge.net/release/website/2.4.0/example/
 Copyright
 ---------
 
-Copyright (C) 1999, 2000, 2001, 2002, 2003 Norman Walsh
+Copyright (C) 1999 - 2005 Norman Walsh
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
