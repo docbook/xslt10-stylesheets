@@ -7,7 +7,7 @@ PARAMSTRIP=.param.stripped
 include Makefile.param
 
 all: titlepage.templates.xsl param.xsl \
-     profile-docbook.xsl profile-chunk.xsl profile-onechunk.xsl
+     profile-docbook.xsl profile-chunk-code.xsl
 
 xml: param.xml
 
@@ -40,10 +40,7 @@ Makefile.param:
 profile-docbook.xsl: docbook.xsl ../profiling/xsl2profile.xsl
 	$(XSLT) $< ../profiling/xsl2profile.xsl $@
 
-profile-chunk.xsl: chunk.xsl ../profiling/xsl2profile.xsl
-	$(XSLT) $< ../profiling/xsl2profile.xsl $@
-
-profile-onechunk.xsl: onechunk.xsl ../profiling/xsl2profile.xsl
+profile-chunk-code.xsl: chunk-code.xsl ../profiling/xsl2profile.xsl
 	$(XSLT) $< ../profiling/xsl2profile.xsl $@
 
 clean:
