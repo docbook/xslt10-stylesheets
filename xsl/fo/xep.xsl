@@ -61,7 +61,7 @@
 </xsl:template>
 
 <xsl:template match="set|book|part|reference|preface|chapter|appendix|article
-                     |glossary|bibliography|index
+                     |glossary|bibliography|index|setindex
                      |refentry
                      |sect1|sect2|sect3|sect4|sect5|section"
               mode="xep.outline">
@@ -71,6 +71,9 @@
   <xsl:variable name="bookmark-label">
     <xsl:apply-templates select="." mode="object.title.markup"/>
   </xsl:variable>
+
+  <!-- Put the root element bookmark at the same level as its children -->
+  <!-- If the object is a set or book, generate a bookmark for the toc -->
 
   <xsl:choose>
     <xsl:when test="parent::*">
@@ -82,6 +85,21 @@
       </rx:bookmark>
     </xsl:when>
     <xsl:otherwise>
+      <rx:bookmark internal-destination="{$id}">
+        <rx:bookmark-label>
+          <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+        </rx:bookmark-label>
+      </rx:bookmark>
+      <xsl:if test="(local-name(.) = 'set' and $generate.set.toc != 0)
+                    or (local-name(.) = 'book' and $generate.book.toc != 0)">
+        <rx:bookmark internal-destination="toc...{$id}">
+          <rx:bookmark-label>
+            <xsl:call-template name="gentext">
+              <xsl:with-param name="key" select="'TableofContents'"/>
+            </xsl:call-template>
+          </rx:bookmark-label>
+        </rx:bookmark>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="xep.outline"/>
     </xsl:otherwise>
   </xsl:choose>
