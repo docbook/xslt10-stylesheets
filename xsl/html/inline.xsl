@@ -917,6 +917,20 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="termdef">
+  <span class="{local-name(.)}">
+    <xsl:call-template name="gentext.template">
+      <xsl:with-param name="context" select="'termdef'"/>
+      <xsl:with-param name="name" select="'prefix'"/>
+    </xsl:call-template>
+    <xsl:apply-templates/>
+    <xsl:call-template name="gentext.template">
+      <xsl:with-param name="context" select="'termdef'"/>
+      <xsl:with-param name="name" select="'suffix'"/>
+    </xsl:call-template>
+  </span>
+</xsl:template>
+
 <xsl:template match="sgmltag|tag">
   <xsl:call-template name="format.sgmltag"/>
 </xsl:template>
