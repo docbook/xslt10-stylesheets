@@ -299,8 +299,9 @@
   <xsl:call-template name="person.name"/>
 </xsl:template>
 
-<xsl:template match="editor[position()=1]" priority="2" mode="titlepage.mode">
+<xsl:template match="editor[1]" priority="2" mode="titlepage.mode">
   <xsl:call-template name="gentext.edited.by"/>
+  <xsl:call-template name="gentext.space"/>
   <xsl:call-template name="person.name"/>
 </xsl:template>
 
