@@ -10,7 +10,7 @@
                                                                             -->
 <!-- ====================================================================== -->
 
-<!ENTITY % only-in-full-nav-class "|%nav.class;">
+<!ENTITY % only-in-full-nav.class "|%nav.class;">
 
 <!ELEMENT slides (slidesinfo, speakernotes?, foil*, foilgroup*)>
 
