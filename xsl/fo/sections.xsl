@@ -189,6 +189,13 @@
       <xsl:apply-templates select="$section" mode="titleabbrev.markup"/>
     </xsl:variable>
 
+    <!-- Use for running head only if actual titleabbrev element -->
+    <xsl:variable name="titleabbrev.elem">
+      <xsl:if test="$section/titleabbrev">
+        <xsl:apply-templates select="$section" mode="titleabbrev.markup"/>
+      </xsl:if>
+    </xsl:variable>
+
     <xsl:if test="$passivetex.extensions != 0">
       <fotex:bookmark xmlns:fotex="http://www.tug.org/fotex" 
                       fotex-bookmark-level="{$level + 2}" 
@@ -210,7 +217,7 @@
     <xsl:call-template name="section.heading">
       <xsl:with-param name="level" select="$level"/>
       <xsl:with-param name="title" select="$title"/>
-      <xsl:with-param name="titleabbrev" select="$titleabbrev"/>
+      <xsl:with-param name="titleabbrev" select="$titleabbrev.elem"/>
     </xsl:call-template>
   </fo:block>
 </xsl:template>
