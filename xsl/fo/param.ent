@@ -7,6 +7,7 @@
 <!ENTITY alignment SYSTEM "../params/alignment.xml">
 <!ENTITY appendix.autolabel SYSTEM "../params/appendix.autolabel.xml">
 <!ENTITY arbortext.extensions SYSTEM "../params/arbortext.extensions.xml">
+<!ENTITY article.appendix.title.properties SYSTEM "../params/article.appendix.title.properties.xml">
 <!ENTITY author.othername.in.middle SYSTEM "../params/author.othername.in.middle.xml">
 <!ENTITY autotoc.label.separator SYSTEM "../params/autotoc.label.separator.xml">
 <!ENTITY axf.extensions SYSTEM "../params/axf.extensions.xml">

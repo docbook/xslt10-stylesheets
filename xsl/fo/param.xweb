@@ -412,6 +412,7 @@ zero by default, so this is simply the page-master region-left.
 &qanda.title.level4.properties;
 &qanda.title.level5.properties;
 &qanda.title.level6.properties;
+&article.appendix.title.properties;
 </reference>
 
 <reference><title>Profiling</title>
@@ -484,6 +485,7 @@ around all these parameters.</para>
 <src:fragref linkend="alignment.frag"/>
 <src:fragref linkend="appendix.autolabel.frag"/>
 <src:fragref linkend="arbortext.extensions.frag"/>
+<src:fragref linkend="article.appendix.title.properties.frag"/>
 <src:fragref linkend="author.othername.in.middle.frag"/>
 <src:fragref linkend="autotoc.label.separator.frag"/>
 <src:fragref linkend="axf.extensions.frag"/>
