@@ -61,7 +61,8 @@
     select=".//colspec[contains(@colwidth, '*')]"/>
 
   <fo:table-and-caption id="{$id}"
-                        xsl:use-attribute-sets="formal.object.properties">
+                        xsl:use-attribute-sets="formal.object.properties"
+                        keep-together.within-column="1">
     <fo:table-caption>
       <fo:block xsl:use-attribute-sets="formal.title.properties">
         <xsl:apply-templates select="." mode="object.title.markup"/>
