@@ -7,6 +7,7 @@
                 xmlns:doc="http://nwalsh.com/xmlns/schema-doc/"
 		xmlns:s="http://www.ascc.net/xml/schematron"
                 exclude-result-prefixes="exsl ctrl s set"
+                extension-element-prefixes="exsl"
                 version="1.0">
 
   <xsl:output method="xml" encoding="utf-8" indent="yes"/>
@@ -121,7 +122,7 @@
 	<xsl:when test="ancestor::rng:define[@name=$name]">
 	  <!-- don't expand recursively -->
 	</xsl:when>
-	<xsl:when test="$ref and $ref/rng:element">
+	<xsl:when test="$ref and ($ref/rng:element or $ref/rng:choice/rng:element)">
 	  <!-- don't expand element patterns -->
 	</xsl:when>
 	<xsl:when test="$ref and $ref/rng:empty">
@@ -148,7 +149,7 @@
 	  <xsl:apply-templates mode="expand"/>
 	</xsl:copy>
       </xsl:when>
-      <xsl:when test="$ref and $ref/rng:element">
+      <xsl:when test="$ref and ($ref/rng:element or $ref/rng:choice/rng:element)">
 	<!-- don't expand element patterns -->
 	<xsl:copy>
 	  <xsl:copy-of select="@*"/>
@@ -242,6 +243,7 @@
 
   <xsl:template name="flatten">
     <xsl:param name="root"/>
+    <xsl:param name="count" select="1"/>
 
     <xsl:variable name="canFlatten">
       <xsl:apply-templates select="$root" mode="flattenTest"/>
@@ -257,8 +259,10 @@
 	<xsl:variable name="flattened">
 	  <xsl:apply-templates select="$root" mode="flatten"/>
 	</xsl:variable>
+
 	<xsl:call-template name="flatten">
 	  <xsl:with-param name="root" select="exsl:node-set($flattened)"/>
+	  <xsl:with-param name="count" select="$count + 1"/>
 	</xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
@@ -269,6 +273,7 @@
 
   <xsl:template match="/" mode="flattenTest">
     <xsl:value-of select="count(//doc:content-model//rng:choice/rng:choice
+		                |//doc:content-model//rng:choice[count(*)=1]
                                 |//doc:content-model//rng:zeroOrMore/rng:choice
                                 |//doc:content-model//rng:oneOrMore/rng:choice
                                 |//doc:content-model//rng:zeroOrMore/rng:zeroOrMore
@@ -280,6 +285,7 @@
   </xsl:template>
 
   <xsl:template match="doc:content-model//rng:choice/rng:choice
+		       |doc:content-model//rng:choice[count(*)=1]
 		       |doc:content-model//rng:zeroOrMore/rng:choice
 		       |doc:content-model//rng:oneOrMore/rng:choice
 		       |doc:content-model//rng:zeroOrMore/rng:zeroOrMore
@@ -330,6 +336,10 @@
 	</xsl:copy>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="rng:choice[count(*)=1]" mode="flatten">
+    <xsl:apply-templates mode="flatten"/>
   </xsl:template>
 
   <xsl:template match="*" mode="flatten">
