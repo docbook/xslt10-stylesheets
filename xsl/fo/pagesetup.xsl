@@ -324,9 +324,7 @@
   <xsl:param name="master-name" select="'unknown'"/>
   <xsl:variable name="head">
     <fo:block font-size="{$body.font.size}">
-      <xsl:apply-templates select="." mode="label.markup"/>
-      <xsl:text> </xsl:text>
-      <xsl:apply-templates select="." mode="title.markup"/>
+      <xsl:apply-templates select="." mode="object.title.markup"/>
     </fo:block>
   </xsl:variable>
 
