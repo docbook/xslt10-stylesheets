@@ -620,11 +620,57 @@
       </w:pPr>
       <xsl:apply-templates select='para' mode='list'/>
     </w:p>
-    
   </xsl:template>  
 
   <xsl:template match='*' mode='list'>
     <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match='variablelist'>
+    <xsl:apply-templates select='*[not(self::varlistentry)]'/>
+
+    <w:tbl>
+      <w:tblPr>
+        <w:tblW w:w='0' w:type='auto'/>
+        <w:tblInd w:w='108' w:type='dxa'/>
+        <w:tblLayout w:type='Fixed'/>
+      </w:tblPr>
+      <w:tblGrid>
+        <w:gridcol w:w='2160'/>
+        <w:gridcol w:w='6480'/>
+      </w:tblGrid>
+      <xsl:apply-templates select='varlistentry'/>
+    </w:tbl>
+  </xsl:template>
+  <xsl:template match='varlistentry'>
+    <w:tr>
+      <w:trPr>
+      </w:trPr>
+
+      <w:tc>
+        <w:tcPr>
+          <w:tcW w:w='2160' w:type='dxa'/>
+        </w:tcPr>
+        <w:p>
+          <w:pPr>
+            <w:pStyle w:val='variablelist-term'/>
+          </w:pPr>
+          <xsl:apply-templates select='term[1]/node()'/>
+          <xsl:for-each select='term[position() != 1]'>
+            <w:r>
+              <w:br/>
+            </w:r>
+            <xsl:apply-templates/>
+          </xsl:for-each>
+        </w:p>
+      </w:tc>
+      <w:tc>
+        <w:tcPr>
+          <w:tcW w:w='6480' w:type='dxa'/>
+        </w:tcPr>
+        <xsl:apply-templates select='listitem/node()'/>
+      </w:tc>
+    </w:tr>
   </xsl:template>
 
   <!-- These elements are not displayed.
@@ -745,8 +791,6 @@
                       self::task |
                       self::textobject |
                       self::toc |
-                      self::variablelist |
-                      self::varlistentry |
                       self::videodata |
                       self::videoobject |
                       self::*[not(starts-with(name(), "informal")) and contains(name(), "info")]'>
