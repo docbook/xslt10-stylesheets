@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook XML additional general entities V4.1.2 ......................... -->
+<!-- DocBook XML additional general entities V4.2b0 ......................... -->
 
 <!-- Copyright 1992-2000 HaL Computer Systems, Inc.,
      O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
@@ -10,7 +10,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbgenent PUBLIC
-     "-//OASIS//ENTITIES DocBook XML Additional General Entities V4.1.2//EN"
+     "-//OASIS//ENTITIES DocBook XML Additional General Entities V4.2b0//EN"
      "dbgenent.mod">
      %dbgenent;
 -->
@@ -21,7 +21,6 @@
 
      o General entity declarations of any kind.  For example:
 
-       <!ENTITY happyface SDATA "insert-face">    (system-specific data)
        <!ENTITY productname "WinWidget">          (small boilerplate)
        <!ENTITY legal-notice SYSTEM "notice.sgm"> (large boilerplate)
 
@@ -37,5 +36,5 @@
        %all-titles;
 -->
 
-<!-- End of DocBook XML additional general entities V4.1.2 .................. -->
+<!-- End of DocBook XML additional general entities V4.2b0 .................. -->
 <!-- ...................................................................... -->
