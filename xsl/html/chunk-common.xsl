@@ -113,9 +113,9 @@ its parent.
     </xsl:when>
     <xsl:when test="$chunk.sections != 0
                     and name($node)='section'
+                    and count($node/parent::section) = 0
                     and ($chunk.first.sections != 0
-                         or (count($node/parent::section) = 0
-                             and count($node/preceding-sibling::section)))>0">
+                         or count($node/preceding-sibling::section))>0">
       <xsl:text>1</xsl:text>
     </xsl:when>
     <xsl:when test="name($node)='preface'">1</xsl:when>
