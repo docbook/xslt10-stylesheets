@@ -14,8 +14,7 @@
 
 <gentext key="Abstract" text="Abstrakt"/>
 <gentext key="abstract" text="Abstrakt"/>
-<gentext key="Answer" text="A:"/>
-<gentext key="answer" text="A:"/> <!-- en -->
+<gentext key="Answer" text="Odp:"/>
 <gentext key="Appendix" text="Dodatek"/>
 <gentext key="appendix" text="dodatek"/>
 <gentext key="Article" text="Artyku&#322;"/>
@@ -73,8 +72,7 @@
 <gentext key="procedure" text="Procedura"/>
 <gentext key="Published" text="Data wydania"/>
 <gentext key="published" text="Data wydania"/>
-<gentext key="Question" text="Q:"/>
-<gentext key="question" text="Q:"/> <!-- en -->
+<gentext key="Question" text="Pyt:"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
 <gentext key="Reference" text="Materia&#322;y &#378;r&#243;d&#322;owe"/>
