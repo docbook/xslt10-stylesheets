@@ -1098,5 +1098,177 @@ pointed to by the link is one of the elements listed in
 
 <!-- ====================================================================== -->
 
+<doc:template name="copyright.years" xmlns="">
+<refpurpose>Print a set of years with collapsed ranges</refpurpose>
+
+<refdescription>
+<para>This template prints a list of year elements with consecutive
+years printed as a range. In other words:</para>
+
+<screen><![CDATA[<year>1992</year>
+<year>1993</year>
+<year>1994</year>]]></screen>
+
+<para>is printed <quote>1992-1994</quote>, whereas:</para>
+
+<screen><![CDATA[<year>1992</year>
+<year>1994</year>]]></screen>
+
+<para>is printed <quote>1992, 1994</quote>.</para>
+
+<para>This template assumes that all the year elements contain only
+decimal year numbers, that the elements are sorted in increasing
+numerical order, that there are no duplicates, and that all the years
+are expressed in full <quote>century+year</quote>
+(<quote>1999</quote> not <quote>99</quote>) notation.</para>
+</refdescription>
+
+<refparameter>
+<variablelist>
+<varlistentry><term>years</term>
+<listitem>
+<para>The initial set of year elements.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>print.ranges</term>
+<listitem>
+<para>If non-zero, multi-year ranges are collapsed. If zero, all years
+are printed discretely.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>single.year.ranges</term>
+<listitem>
+<para>If non-zero, two consecutive years will be printed as a range,
+otherwise, they will be printed discretely. In other words, a single
+year range is <quote>1991-1992</quote> but discretely it's
+<quote>1991, 1992</quote>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refparameter>
+
+<refreturn>
+<para>This template returns the formatted list of years.</para>
+</refreturn>
+</doc:template>
+
+<xsl:template name="copyright.years">
+  <xsl:param name="years"/>
+  <xsl:param name="print.ranges" select="1"/>
+  <xsl:param name="single.year.ranges" select="0"/>
+  <xsl:param name="firstyear" select="0"/>
+  <xsl:param name="nextyear" select="0"/>
+
+  <!--
+  <xsl:message terminate="no">
+    <xsl:text>CY: </xsl:text>
+    <xsl:value-of select="count($years)"/>
+    <xsl:text>, </xsl:text>
+    <xsl:value-of select="$firstyear"/>
+    <xsl:text>, </xsl:text>
+    <xsl:value-of select="$nextyear"/>
+    <xsl:text> (</xsl:text>
+    <xsl:value-of select="$years[1]"/>
+    <xsl:text>)</xsl:text>
+  </xsl:message>
+  -->
+
+  <xsl:choose>
+    <xsl:when test="$print.ranges = 0">
+      <xsl:choose>
+        <xsl:when test="count($years) = 1">
+          <xsl:value-of select="$years[1]"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$years[1]"/>
+          <xsl:text>, </xsl:text>
+          <xsl:call-template name="copyright.years">
+            <xsl:with-param name="years"
+                            select="$years[position() &gt; 1]"/>
+            <xsl:with-param name="print.ranges" select="$print.ranges"/>
+            <xsl:with-param name="single.year.ranges"
+                            select="$single.year.ranges"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:when test="count($years) = 0">
+      <xsl:variable name="lastyear" select="$nextyear - 1"/>
+      <xsl:choose>
+        <xsl:when test="$firstyear = 0">
+          <!-- there weren't any years at all -->
+        </xsl:when>
+        <xsl:when test="$firstyear = $lastyear">
+          <xsl:value-of select="$firstyear"/>
+        </xsl:when>
+        <xsl:when test="$single.year.ranges = 0
+                        and $lastyear = $firstyear + 1">
+          <xsl:value-of select="$firstyear"/>
+          <xsl:text>, </xsl:text>
+          <xsl:value-of select="$lastyear"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$firstyear"/>
+          <xsl:text>-</xsl:text>
+          <xsl:value-of select="$lastyear"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:when test="$firstyear = 0">
+      <xsl:call-template name="copyright.years">
+        <xsl:with-param name="years"
+                        select="$years[position() &gt; 1]"/>
+        <xsl:with-param name="firstyear" select="$years[1]"/>
+        <xsl:with-param name="nextyear" select="$years[1] + 1"/>
+        <xsl:with-param name="print.ranges" select="$print.ranges"/>
+        <xsl:with-param name="single.year.ranges"
+                        select="$single.year.ranges"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="$nextyear = $years[1]">
+      <xsl:call-template name="copyright.years">
+        <xsl:with-param name="years"
+                        select="$years[position() &gt; 1]"/>
+        <xsl:with-param name="firstyear" select="$firstyear"/>
+        <xsl:with-param name="nextyear" select="$nextyear + 1"/>
+        <xsl:with-param name="print.ranges" select="$print.ranges"/>
+        <xsl:with-param name="single.year.ranges"
+                        select="$single.year.ranges"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- we have years left, but they aren't in the current range -->
+      <xsl:choose>
+        <xsl:when test="$nextyear = $firstyear + 1">
+          <xsl:value-of select="$firstyear"/>
+          <xsl:text>, </xsl:text>
+        </xsl:when>
+        <xsl:when test="$single.year.ranges = 0
+                        and $nextyear = $firstyear + 2">
+          <xsl:value-of select="$firstyear"/>
+          <xsl:text>, </xsl:text>
+          <xsl:value-of select="$nextyear - 1"/>
+          <xsl:text>, </xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$firstyear"/>
+          <xsl:text>-</xsl:text>
+          <xsl:value-of select="$nextyear - 1"/>
+          <xsl:text>, </xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:call-template name="copyright.years">
+        <xsl:with-param name="years"
+                        select="$years[position() &gt; 1]"/>
+        <xsl:with-param name="firstyear" select="$years[1]"/>
+        <xsl:with-param name="nextyear" select="$years[1] + 1"/>
+        <xsl:with-param name="print.ranges" select="$print.ranges"/>
+        <xsl:with-param name="single.year.ranges"
+                        select="$single.year.ranges"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 </xsl:stylesheet>
 

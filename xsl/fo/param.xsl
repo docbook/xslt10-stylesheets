@@ -1264,5 +1264,27 @@ Otherwise, nested fo:blocks will be used.
 </refdescription>
 </doc:param>
 
+<!-- ==================================================================== -->
+<xsl:param name="make.year.ranges" select="0" doc:type="boolean"/>
+
+<doc:param name="make.year.ranges" xmlns="">
+<refpurpose>Collate copyright years into ranges?</refpurpose>
+<refdescription>
+<para>If non-zero, copyright years will be collated into ranges.</para>
+</refdescription>
+</doc:param>
+
+<!-- ==================================================================== -->
+<xsl:param name="make.single.year.ranges" select="0" doc:type="boolean"/>
+
+<doc:param name="make.single.year.ranges" xmlns="">
+<refpurpose>Print single-year ranges (e.g., 1998-1999)</refpurpose>
+<refdescription>
+<para>If non-zero, year ranges that span a single year will be printed
+in range notation (1998-1999) instead of discrete notation
+(1998, 1999).</para>
+</refdescription>
+</doc:param>
+
 </xsl:stylesheet>
 

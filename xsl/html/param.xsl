@@ -1211,11 +1211,15 @@ will be passed through to the HTML as a class attribute on a
 </refdescription>
 </doc:param>
 
+<!-- ==================================================================== -->
+
 <xsl:param name="olink.fragid" select="'fragid='" doc:type='string'/>
 <xsl:param name="olink.outline.ext" select="'.olink'" doc:type='string'/>
 <xsl:param name="olink.pubid" select="'pubid='" doc:type='string'/>
 <xsl:param name="olink.sysid" select="'sysid='" doc:type='string'/>
 <xsl:param name="olink.resolver" select="'/cgi-bin/olink'" doc:type='string'/>
+
+<!-- ==================================================================== -->
 
 <xsl:param name="shade.verbatim" select="0" doc:type="boolean"/>
 
@@ -1235,5 +1239,27 @@ will be passed through to the HTML as a class attribute on a
   <xsl:attribute name="border">0</xsl:attribute>
   <xsl:attribute name="bgcolor">#E0E0E0</xsl:attribute>
 </xsl:attribute-set>
+
+<!-- ==================================================================== -->
+<xsl:param name="make.year.ranges" select="0" doc:type="boolean"/>
+
+<doc:param name="make.year.ranges" xmlns="">
+<refpurpose>Collate copyright years into ranges?</refpurpose>
+<refdescription>
+<para>If non-zero, copyright years will be collated into ranges.</para>
+</refdescription>
+</doc:param>
+
+<!-- ==================================================================== -->
+<xsl:param name="make.single.year.ranges" select="0" doc:type="boolean"/>
+
+<doc:param name="make.single.year.ranges" xmlns="">
+<refpurpose>Print single-year ranges (e.g., 1998-1999)</refpurpose>
+<refdescription>
+<para>If non-zero, year ranges that span a single year will be printed
+in range notation (1998-1999) instead of discrete notation
+(1998, 1999).</para>
+</refdescription>
+</doc:param>
 
 </xsl:stylesheet>
