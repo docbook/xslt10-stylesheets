@@ -46,7 +46,8 @@
     <xsl:when test="$shade.verbatim != 0">
       <fo:block wrap-option='no-wrap'
                 white-space-collapse='false'
-                linefeed-treatment="preserve"
+		white-space-treatment='preserve'
+                linefeed-treatment='preserve'
                 xsl:use-attribute-sets="monospace.verbatim.properties shade.verbatim.style">
 
         <xsl:copy-of select="$content"/>
@@ -55,6 +56,7 @@
     <xsl:otherwise>
       <fo:block wrap-option='no-wrap'
                 white-space-collapse='false'
+		white-space-treatment='preserve'
                 linefeed-treatment="preserve"
                 xsl:use-attribute-sets="monospace.verbatim.properties">
         <xsl:copy-of select="$content"/>
@@ -90,6 +92,7 @@
         <xsl:when test="$shade.verbatim != 0">
           <fo:block wrap-option='no-wrap'
                     white-space-collapse='false'
+		    white-space-treatment='preserve'
                     linefeed-treatment="preserve"
                     xsl:use-attribute-sets="monospace.verbatim.properties shade.verbatim.style">
 
@@ -99,6 +102,7 @@
         <xsl:otherwise>
           <fo:block wrap-option='no-wrap'
                     white-space-collapse='false'
+		    white-space-treatment='preserve'
                     linefeed-treatment="preserve"
                     xsl:use-attribute-sets="monospace.verbatim.properties">
             <xsl:copy-of select="$content"/>
@@ -111,6 +115,7 @@
         <xsl:when test="$shade.verbatim != 0">
           <fo:block wrap-option='no-wrap'
                     white-space-collapse='false'
+		    white-space-treatment='preserve'
                     text-align='start'
                     linefeed-treatment="preserve"
                     xsl:use-attribute-sets="verbatim.properties shade.verbatim.style">
@@ -120,6 +125,7 @@
         <xsl:otherwise>
           <fo:block wrap-option='no-wrap'
                     white-space-collapse='false'
+		    white-space-treatment='preserve'
                     text-align='start'
                     linefeed-treatment="preserve"
                     xsl:use-attribute-sets="verbatim.properties">
@@ -154,6 +160,7 @@
 
   <fo:block wrap-option='no-wrap'
             white-space-collapse='false'
+	    white-space-treatment='preserve'
             linefeed-treatment="preserve"
             xsl:use-attribute-sets="verbatim.properties">
     <xsl:copy-of select="$content"/>
