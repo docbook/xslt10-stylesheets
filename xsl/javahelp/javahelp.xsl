@@ -70,7 +70,7 @@ references. In that case you can select appropriate encoding here.</para>
 
 <xsl:template name="helpset">
   <xsl:call-template name="write.chunk.with.doctype">
-    <xsl:with-param name="filename" select="'jhelpset.hs'"/>
+    <xsl:with-param name="filename" select="concat($base.dir,'jhelpset.hs')"/>
     <xsl:with-param name="method" select="'xml'"/>
     <xsl:with-param name="indent" select="'yes'"/>
     <xsl:with-param name="doctype-public" select="'-//Sun Microsystems Inc.//DTD JavaHelp HelpSet Version 1.0//EN'"/>
@@ -125,7 +125,7 @@ references. In that case you can select appropriate encoding here.</para>
 
 <xsl:template name="helptoc">
   <xsl:call-template name="write.chunk.with.doctype">
-    <xsl:with-param name="filename" select="'jhelptoc.xml'"/>
+    <xsl:with-param name="filename" select="concat($base.dir,'jhelptoc.xml')"/>
     <xsl:with-param name="method" select="'xml'"/>
     <xsl:with-param name="indent" select="'yes'"/>
     <xsl:with-param name="doctype-public" select="'-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 1.0//EN'"/>
@@ -303,7 +303,7 @@ references. In that case you can select appropriate encoding here.</para>
 
 <xsl:template name="helpmap">
   <xsl:call-template name="write.chunk.with.doctype">
-    <xsl:with-param name="filename" select="'jhelpmap.jhm'"/>
+    <xsl:with-param name="filename" select="concat($base.dir, 'jhelpmap.jhm')"/>
     <xsl:with-param name="method" select="'xml'"/>
     <xsl:with-param name="indent" select="'yes'"/>
     <xsl:with-param name="doctype-public" select="'-//Sun Microsystems Inc.//DTD JavaHelp Map Version 1.0//EN'"/>
@@ -429,7 +429,7 @@ references. In that case you can select appropriate encoding here.</para>
 
 <xsl:template name="helpidx">
   <xsl:call-template name="write.chunk.with.doctype">
-    <xsl:with-param name="filename" select="'jhelpidx.xml'"/>
+    <xsl:with-param name="filename" select="concat($base.dir, 'jhelpidx.xml')"/>
     <xsl:with-param name="method" select="'xml'"/>
     <xsl:with-param name="indent" select="'yes'"/>
     <xsl:with-param name="doctype-public" select="'-//Sun Microsystems Inc.//DTD JavaHelp Index Version 1.0//EN'"/>
