@@ -1,28 +1,20 @@
 VPATH=src
 
-COMBINE=tools/combine.xsl
+AUGMENT=tools/augment.xsl
 CLEANUP=tools/cleanup.pl
-TEMP1=/tmp/temp1.rng
-TEMP2=/tmp/temp2.rng
+TMPFILE=/tmp/cleanup
 
-MODULES=docbook.rnx pool.rnx hier.rnx \
-        calstbl.rnx htmltbl.rnx \
-        callouts.rnx msgset.rnx \
-        mathml.rnx
-
-.SUFFIXES: .rnc .rnx .rng
+.SUFFIXES: .rnc .rng .rnx
 
 all: docbook.rng
 
-docbook.rng: $(MODULES)
-	saxon $< $(COMBINE) $(TEMP1) modules="$(filter-out $<,$^)" use.extensions=1
-	perl $(CLEANUP) < $(TEMP1) > $@
-	-rm -f $(TEMP1)
+docbook.rng: docbook.rnx hier.rnx pool.rnx
 
-small.rng: docbook.rnx pool.rnx hier.rnx
-	saxon $< $(COMBINE) $(TEMP1) modules="$(filter-out $<,$^)" use.extensions=1
-	perl $(CLEANUP) < $(TEMP1) > $@
-	-rm -f $(TEMP1)
+dbmsg.rng: dbmsg.rnx hier.rnx pool.rnx msgset.rnx
+
+.rnx.rng:
+	saxon $< $(AUGMENT) $(TMPFILE) src=$< use.extensions=1
+	@for f in `cat $(TMPFILE)`; do perl -i $(CLEANUP) $$f; done
 
 .rnc.rnx:
 	trang -O rng $< $@
