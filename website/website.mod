@@ -15,7 +15,7 @@
 
 <!ELEMENT head (title, titleabbrev?, subtitle?, summary?, base?, keywords?,
                (copyright | author | edition
-                | meta | script | style | abstract | revhistory
+                | meta | headlink | script | style | abstract | revhistory
                 %rddl.elements;)*)>
 
 <!ELEMENT meta EMPTY>
@@ -23,6 +23,18 @@
 	http-equiv	CDATA	#IMPLIED
 	name	CDATA	#IMPLIED
 	content	CDATA	#REQUIRED
+>
+
+<!ELEMENT headlink EMPTY>
+<!ATTLIST headlink
+	href	CDATA	#IMPLIED
+	media	CDATA	#IMPLIED
+	name	CDATA	#IMPLIED
+	rel	CDATA	#IMPLIED
+	rev	CDATA	#IMPLIED
+	src	CDATA	#IMPLIED
+	title	CDATA	#IMPLIED
+	type	CDATA	#IMPLIED
 >
 
 <!ELEMENT script (#PCDATA)>

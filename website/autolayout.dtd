@@ -17,7 +17,7 @@
                                                                             -->
 <!-- ====================================================================== -->
 
-<!ELEMENT autolayout ((copyright|style|script|config)*, toc+, notoc*)>
+<!ELEMENT autolayout ((copyright|style|script|headlink|config)*, toc+, notoc*)>
 
 <!ELEMENT toc (title, titleabbrev?, summary?, tocentry*)>
 <!ATTLIST toc
@@ -50,6 +50,18 @@
 <!ATTLIST script
 	src	CDATA	#IMPLIED
 	language	CDATA	#IMPLIED
+>
+
+<!ELEMENT headlink EMPTY>
+<!ATTLIST headlink
+	href	CDATA	#IMPLIED
+	media	CDATA	#IMPLIED
+	name	CDATA	#IMPLIED
+	rel	CDATA	#IMPLIED
+	rev	CDATA	#IMPLIED
+	src	CDATA	#IMPLIED
+	title	CDATA	#IMPLIED
+	type	CDATA	#IMPLIED
 >
 
 <!ELEMENT copyright (year+, holder+)>
