@@ -125,7 +125,7 @@
           </xsl:if>
           <tr>
             <td xsl:use-attribute-sets="table.navigation.cell.properties">
-              <img src="{$table.spacer.image}" alt=" " width="1" height="1"/>
+              <img src="{$relpath}{$table.spacer.image}" alt=" " width="1" height="1"/>
             </td>
             <xsl:call-template name="hspacer">
               <xsl:with-param name="vspacer" select="1"/>
