@@ -6762,6 +6762,8 @@ OtherCredit. -->
 <![%systemitem.attlist;[
 <!ATTLIST systemitem
 		class	(constant
+			|event
+			|eventhandler
 			|groupname
                         |library
 			|macro
