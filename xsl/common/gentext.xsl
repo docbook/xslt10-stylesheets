@@ -360,6 +360,45 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="question" mode="object.xref.markup">
+  <xsl:param name="purpose"/>
+  <xsl:param name="xrefstyle"/>
+  <xsl:param name="referrer"/>
+
+  <xsl:variable name="deflabel">
+    <xsl:choose>
+      <xsl:when test="ancestor-or-self::*[@defaultlabel]">
+        <xsl:value-of select="(ancestor-or-self::*[@defaultlabel])[last()]
+                              /@defaultlabel"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$qanda.defaultlabel"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="template">
+    <xsl:choose>
+      <!-- This avoids double Q: Q: in xref when defaultlabel=qanda -->
+      <xsl:when test="$deflabel = 'qanda' and not(label)">%n</xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="." mode="object.xref.template">
+          <xsl:with-param name="purpose" select="$purpose"/>
+          <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+          <xsl:with-param name="referrer" select="$referrer"/>
+        </xsl:apply-templates>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:call-template name="substitute-markup">
+    <xsl:with-param name="purpose" select="$purpose"/>
+    <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+    <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="template" select="$template"/>
+  </xsl:call-template>
+</xsl:template>
+
 <!-- ============================================================ -->
 
 <xsl:template name="substitute-markup">
