@@ -155,6 +155,7 @@
 <!ENTITY variablelist.as.blocks SYSTEM "../params/variablelist.as.blocks.xml">
 <!ENTITY verbatim.properties SYSTEM "../params/verbatim.properties.xml">
 <!ENTITY xep.extensions SYSTEM "../params/xep.extensions.xml">
+<!ENTITY xep.index.item.properties SYSTEM "../params/xep.index.item.properties.xml">
 <!ENTITY xref.properties SYSTEM "../params/xref.properties.xml">
 <!ENTITY sidebar.properties SYSTEM "../params/sidebar.properties.xml">
 <!ENTITY menuchoice.separator SYSTEM "../params/menuchoice.separator.xml">

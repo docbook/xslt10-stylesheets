@@ -1,6 +1,7 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                xmlns:rx="http://www.renderx.com/XSL/Extensions"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -255,14 +256,14 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="indexterm">
+<xsl:template match="indexterm" name="indexterm">
   <fo:wrapper>
     <xsl:attribute name="id">
       <xsl:call-template name="object.id"/>
     </xsl:attribute>
-    <xsl:comment>
-      <xsl:call-template name="comment-escape-string">
-        <xsl:with-param name="string">
+    <xsl:choose>
+      <xsl:when test="$xep.extensions != 0">
+        <xsl:attribute name="rx:key">
           <xsl:value-of select="primary"/>
           <xsl:if test="secondary">
             <xsl:text>, </xsl:text>
@@ -272,10 +273,69 @@
             <xsl:text>, </xsl:text>
             <xsl:value-of select="tertiary"/>
           </xsl:if>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:comment>
+        </xsl:attribute>        
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:comment>
+          <xsl:call-template name="comment-escape-string">
+            <xsl:with-param name="string">
+              <xsl:value-of select="primary"/>
+              <xsl:if test="secondary">
+                <xsl:text>, </xsl:text>
+                <xsl:value-of select="secondary"/>
+              </xsl:if>
+              <xsl:if test="tertiary">
+                <xsl:text>, </xsl:text>
+                <xsl:value-of select="tertiary"/>
+              </xsl:if>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:comment>
+      </xsl:otherwise>
+    </xsl:choose>
   </fo:wrapper>
+</xsl:template>
+
+<xsl:template match="indexterm[@class='startofrange']">
+  <xsl:choose>
+    <xsl:when test="$xep.extensions != 0">
+      <rx:begin-index-range>
+        <xsl:attribute name="id">
+          <xsl:value-of select="@id"/>
+        </xsl:attribute>
+        
+        <xsl:attribute name="rx:key">
+          <xsl:value-of select="primary"/>
+          <xsl:if test="secondary">
+            <xsl:text>, </xsl:text>
+            <xsl:value-of select="secondary"/>
+          </xsl:if>
+          <xsl:if test="tertiary">
+            <xsl:text>, </xsl:text>
+            <xsl:value-of select="tertiary"/>
+          </xsl:if>
+        </xsl:attribute>
+      </rx:begin-index-range>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="indexterm"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="indexterm[@class='endofrange']">
+  <xsl:choose>
+    <xsl:when test="$xep.extensions != 0">
+      <rx:end-index-range>
+        <xsl:attribute name="ref-id">
+          <xsl:value-of select="@startref"/>
+        </xsl:attribute>
+      </rx:end-index-range>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="indexterm"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->

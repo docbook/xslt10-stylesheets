@@ -89,6 +89,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &generate.toc;
 &generate.index;
 &make.index.markup;
+&xep.index.item.properties;
 &toc.section.depth;
 &toc.indent.width;
 &toc.margin.properties;
@@ -642,6 +643,7 @@ around all these parameters.</para>
 <src:fragref linkend="variablelist.as.blocks.frag"/>
 <src:fragref linkend="verbatim.properties.frag"/>
 <src:fragref linkend="xep.extensions.frag"/>
+<src:fragref linkend="xep.index.item.properties.frag"/>
 <src:fragref linkend="xref.properties.frag"/>
 <src:fragref linkend="xref.with.number.and.title.frag"/>
 
