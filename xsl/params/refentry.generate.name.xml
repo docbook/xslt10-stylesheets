@@ -15,7 +15,8 @@
 <refsect1><title>Description</title>
 
 <para>If true (non-zero), a "NAME" section title is output before the list
-of 'RefName's.
+of 'RefName's. This parameter and
+<parameter>refentry.generate.title</parameter> are mutually exclusive.
 </para>
 
 </refsect1>
