@@ -118,18 +118,93 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="sidebar">
-  <fo:block xsl:use-attribute-sets="sidebar.properties">
-    <xsl:if test="./title">
-      <fo:block font-weight="bold"
-                keep-with-next.within-column="always"
-                hyphenate="false">
-        <xsl:apply-templates select="./title" mode="sidebar.title.mode"/>
-      </fo:block>
-    </xsl:if>
+<xsl:template name="floater">
+  <xsl:param name="float.type" select="'none'"/>
+  <xsl:param name="width"/>
+  <xsl:param name="content"/>
 
-    <xsl:apply-templates/>
-  </fo:block>
+  <xsl:choose>
+    <xsl:when test="$fop.extensions">
+      <!-- fop 0.20.5 does not support floats -->
+      <xsl:copy-of select="$content"/>
+    </xsl:when>
+    <xsl:when test="$float.type = 'none'">
+      <xsl:copy-of select="$content"/>
+    </xsl:when>
+    <xsl:when test="$float.type = 'before'">
+      <fo:float float="before">
+        <xsl:copy-of select="$content"/>
+      </fo:float>
+    </xsl:when>
+    <xsl:when test="$float.type = 'left' or
+                    $float.type = 'right' or
+                    $float.type = 'inside' or
+                    $float.type = 'outside'">
+      <fo:float float="{$float.type}"
+                clear="both"
+                start-indent="0pt"
+                end-indent="0pt">
+        <fo:block-container xsl:use-attribute-sets="side.float.properties">
+          <xsl:if test="$width != ''">
+            <xsl:attribute name="width">
+              <xsl:value-of select="$width"/>
+            </xsl:attribute>
+          </xsl:if>
+          <xsl:copy-of select="$content"/>
+        </fo:block-container>
+      </fo:float>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy-of select="$content"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="sidebar" name="sidebar">
+  <xsl:variable name="content">
+    <fo:block xsl:use-attribute-sets="sidebar.properties">
+      <xsl:if test="./title">
+        <fo:block font-weight="bold"
+                  keep-with-next.within-column="always"
+                  hyphenate="false">
+          <xsl:apply-templates select="./title" mode="sidebar.title.mode"/>
+        </fo:block>
+      </xsl:if>
+      <xsl:apply-templates/>
+    </fo:block>
+  </xsl:variable>
+
+  <xsl:variable name="pi-width">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'sidebar-width'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="pi-type">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'float-type'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:call-template name="floater">
+    <xsl:with-param name="content" select="$content"/>
+    <xsl:with-param name="float.type">
+      <xsl:choose>
+        <xsl:when test="$pi-type != ''">
+          <xsl:value-of select="$pi-type"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$sidebar.float.type"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:with-param>
+    <xsl:with-param name="width" select="$pi-width"/>
+  </xsl:call-template>
+
 </xsl:template>
 
 <xsl:template match="sidebar/title">
