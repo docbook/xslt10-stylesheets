@@ -61,14 +61,15 @@
       <html>
         <head>
           <title>TOC - <xsl:value-of select="$title"/></title>
-
           <xsl:call-template name="system.head.content"/>
-
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
+          <xsl:if test="$css.stylesheet != ''">
+            <link type="text/css" rel="stylesheet">
+              <xsl:attribute name="href">
+                <xsl:call-template name="css.stylesheet"/>
+              </xsl:attribute>
+            </link>
+          </xsl:if>
+          <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0
@@ -189,11 +190,14 @@ function init() {
             <xsl:with-param name="node" select=".."/>
           </xsl:call-template>
 
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
+          <xsl:if test="$css.stylesheet != ''">
+            <link type="text/css" rel="stylesheet">
+              <xsl:attribute name="href">
+                <xsl:call-template name="css.stylesheet"/>
+              </xsl:attribute>
+            </link>
+          </xsl:if>
+          <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
           <xsl:call-template name="links">
             <xsl:with-param name="next" select="$next"/>
@@ -300,11 +304,14 @@ function init() {
             <xsl:with-param name="node" select=".."/>
           </xsl:call-template>
 
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
+          <xsl:if test="$css.stylesheet != ''">
+            <link type="text/css" rel="stylesheet">
+              <xsl:attribute name="href">
+                <xsl:call-template name="css.stylesheet"/>
+              </xsl:attribute>
+            </link>
+          </xsl:if>
+          <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
@@ -360,11 +367,14 @@ function init() {
             <xsl:with-param name="node" select=".."/>
           </xsl:call-template>
 
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
+          <xsl:if test="$css.stylesheet != ''">
+            <link type="text/css" rel="stylesheet">
+              <xsl:attribute name="href">
+                <xsl:call-template name="css.stylesheet"/>
+              </xsl:attribute>
+            </link>
+          </xsl:if>
+          <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
@@ -419,11 +429,14 @@ function init() {
             <xsl:with-param name="node" select=".."/>
           </xsl:call-template>
 
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
+          <xsl:if test="$css.stylesheet != ''">
+            <link type="text/css" rel="stylesheet">
+              <xsl:attribute name="href">
+                <xsl:call-template name="css.stylesheet"/>
+              </xsl:attribute>
+            </link>
+          </xsl:if>
+          <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
@@ -532,7 +545,10 @@ function init() {
               </span>
             </td>
             <td align="right" width="20%" valign="top">
-              <a href="{concat('foil01', $html.ext)}">
+              <a>
+                <xsl:attribute name="href">
+                  <xsl:apply-templates select="$next" mode="filename"/>
+                </xsl:attribute>
                 <img alt="{$text.next}" border="0">
                   <xsl:attribute name="src">
                     <xsl:call-template name="next.image"/>
@@ -709,11 +725,14 @@ function init() {
 
         <xsl:call-template name="system.head.content"/>
 
-        <link type="text/css" rel="stylesheet">
-          <xsl:attribute name="href">
-            <xsl:call-template name="css.stylesheet"/>
-          </xsl:attribute>
-        </link>
+        <xsl:if test="$css.stylesheet != ''">
+          <link type="text/css" rel="stylesheet">
+            <xsl:attribute name="href">
+              <xsl:call-template name="css.stylesheet"/>
+            </xsl:attribute>
+          </link>
+        </xsl:if>
+        <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
         <xsl:call-template name="links">
           <xsl:with-param name="home" select="$home"/>
@@ -814,11 +833,14 @@ function init() {
 
           <xsl:call-template name="system.head.content"/>
 
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
+          <xsl:if test="$css.stylesheet != ''">
+            <link type="text/css" rel="stylesheet">
+              <xsl:attribute name="href">
+                <xsl:call-template name="css.stylesheet"/>
+              </xsl:attribute>
+            </link>
+          </xsl:if>
+          <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
@@ -879,11 +901,14 @@ function init() {
 
           <xsl:call-template name="system.head.content"/>
 
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
+          <xsl:if test="$css.stylesheet != ''">
+            <link type="text/css" rel="stylesheet">
+              <xsl:attribute name="href">
+                <xsl:call-template name="css.stylesheet"/>
+              </xsl:attribute>
+            </link>
+          </xsl:if>
+          <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
@@ -938,11 +963,14 @@ function init() {
 
           <xsl:call-template name="system.head.content"/>
 
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
+          <xsl:if test="$css.stylesheet != ''">
+            <link type="text/css" rel="stylesheet">
+              <xsl:attribute name="href">
+                <xsl:call-template name="css.stylesheet"/>
+              </xsl:attribute>
+            </link>
+          </xsl:if>
+          <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
@@ -1084,11 +1112,14 @@ function init() {
 
         <xsl:call-template name="system.head.content"/>
 
-        <link type="text/css" rel="stylesheet">
-          <xsl:attribute name="href">
-            <xsl:call-template name="css.stylesheet"/>
-          </xsl:attribute>
-        </link>
+        <xsl:if test="$css.stylesheet != ''">
+          <link type="text/css" rel="stylesheet">
+            <xsl:attribute name="href">
+              <xsl:call-template name="css.stylesheet"/>
+            </xsl:attribute>
+          </link>
+        </xsl:if>
+        <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
         <xsl:call-template name="links">
           <xsl:with-param name="home" select="$home"/>
@@ -1200,11 +1231,14 @@ function init() {
 
           <xsl:call-template name="system.head.content"/>
 
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
+          <xsl:if test="$css.stylesheet != ''">
+            <link type="text/css" rel="stylesheet">
+              <xsl:attribute name="href">
+                <xsl:call-template name="css.stylesheet"/>
+              </xsl:attribute>
+            </link>
+          </xsl:if>
+          <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
@@ -1259,11 +1293,14 @@ function init() {
 
           <xsl:call-template name="system.head.content"/>
 
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
+          <xsl:if test="$css.stylesheet != ''">
+            <link type="text/css" rel="stylesheet">
+              <xsl:attribute name="href">
+                <xsl:call-template name="css.stylesheet"/>
+              </xsl:attribute>
+            </link>
+          </xsl:if>
+          <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
@@ -1320,11 +1357,14 @@ function init() {
 
           <xsl:call-template name="system.head.content"/>
 
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
+          <xsl:if test="$css.stylesheet != ''">
+            <link type="text/css" rel="stylesheet">
+              <xsl:attribute name="href">
+                <xsl:call-template name="css.stylesheet"/>
+              </xsl:attribute>
+            </link>
+          </xsl:if>
+          <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
