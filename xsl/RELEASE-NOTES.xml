@@ -21,9 +21,20 @@ includes at least the global parameters.</para>
 <para>You may also be interested in the more detailed <ulink url="WhatsNew"/>.
 </para>
 
-<!-- Norm, this is my attempt to write something about new indexing -->
-<!-- method. Hope this helps. - Jirka -->
-<itemizedlist><title>Release 1.64.X</title>
+<itemizedlist><title>Release 1.65.0</title>
+
+<listitem>
+<para>A number of important bug fixes, documented in <ulink url="WhatsNew"/>.
+</para>
+</listitem>
+
+<listitem>
+<para>Added a workaround to allow these stylesheets to process DocBook NG
+documents. (It’s a hack that pre-processes the document to strip off the
+namespace and then uses <function>exsl:node-set</function> to process
+the result.)
+</para>
+</listitem>
 
 <listitem>
 <para>Added alternative indexing mechanism which has better
