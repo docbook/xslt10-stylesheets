@@ -32,7 +32,7 @@
 
 <xsl:template match="footnote">
   <xsl:choose>
-    <xsl:when test="ancestor::tgroup">
+    <xsl:when test="ancestor::table or ancestor::informaltable">
       <xsl:call-template name="format.footnote.mark">
         <xsl:with-param name="mark">
           <xsl:apply-templates select="." mode="footnote.number"/>
@@ -70,7 +70,7 @@
     <xsl:when test="string-length(@label) != 0">
       <xsl:value-of select="@label"/>
     </xsl:when>
-    <xsl:when test="ancestor::tgroup">
+    <xsl:when test="ancestor::table or ancestor::informaltable">
       <xsl:variable name="tfnum">
         <xsl:number level="any" from="table|informaltable" format="1"/>
       </xsl:variable>
@@ -80,7 +80,7 @@
           <xsl:value-of select="substring($table.footnote.number.symbols, $tfnum, 1)"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:number level="any" from="tgroup"
+          <xsl:number level="any" from="table|informaltable"
                       format="{$table.footnote.number.format}"/>
         </xsl:otherwise>
       </xsl:choose>
@@ -90,7 +90,7 @@
         <!-- FIXME: list in @from is probably not complete -->
         <xsl:number level="any" 
                     from="chapter|appendix|preface|article|refentry|bibliography" 
-                    count="footnote[not(@label)][not(ancestor::tgroup)]|ulink[$ulink.footnotes != 0][node()][@url != .][not(ancestor::footnote)]" 
+                    count="footnote[not(@label)][not(ancestor::table) and not(ancestor::informaltable]|ulink[$ulink.footnotes != 0][node()][@url != .][not(ancestor::footnote)]" 
                     format="1"/>
       </xsl:variable>
       <xsl:choose>

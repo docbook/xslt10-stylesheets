@@ -543,11 +543,11 @@
   </xsl:variable>
 
   <xsl:variable name="footnotes">
-    <xsl:if test="tgroup//footnote">
+    <xsl:if test=".//footnote">
       <fo:block font-family="{$body.fontset}"
                 font-size="{$footnote.font.size}"
                 keep-with-previous="always">
-        <xsl:apply-templates select="tgroup//footnote" mode="table.footnote.mode"/>
+        <xsl:apply-templates select=".//footnote" mode="table.footnote.mode"/>
       </fo:block>
     </xsl:if>
   </xsl:variable>
@@ -687,11 +687,11 @@
   </xsl:variable>
 
   <xsl:variable name="footnotes">
-    <xsl:if test="tgroup//footnote">
+    <xsl:if test=".//footnote">
       <fo:block font-family="{$body.fontset}"
                 font-size="{$footnote.font.size}"
                 keep-with-previous="always">
-        <xsl:apply-templates select="tgroup//footnote" mode="table.footnote.mode"/>
+        <xsl:apply-templates select=".//footnote" mode="table.footnote.mode"/>
       </fo:block>
     </xsl:if>
   </xsl:variable>

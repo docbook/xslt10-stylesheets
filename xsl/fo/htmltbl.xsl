@@ -36,6 +36,16 @@
     </xsl:call-template>
   </xsl:variable>
 
+  <xsl:variable name="footnotes">
+    <xsl:if test=".//footnote">
+      <fo:block font-family="{$body.fontset}"
+                font-size="{$footnote.font.size}"
+                keep-with-previous="always">
+        <xsl:apply-templates select=".//footnote" mode="table.footnote.mode"/>
+      </fo:block>
+    </xsl:if>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="caption">
       <fo:table-and-caption id="{$id}" 
@@ -73,6 +83,7 @@
           </xsl:choose>
         </fo:table>
       </fo:table-and-caption>
+      <xsl:copy-of select="$footnotes"/>
     </xsl:when>
     <xsl:otherwise>
       <fo:block id="{$id}"
@@ -93,6 +104,7 @@
           <xsl:apply-templates mode="htmlTable"/>
         </fo:table>
       </fo:block>
+      <xsl:copy-of select="$footnotes"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
