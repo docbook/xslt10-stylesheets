@@ -9,7 +9,7 @@ RSTYLE=reference.xsl
 BSTYLE=book.xsl
 VPATH=../docsrc
 
-DIRS=common lib html fo
+DIRS=common lib html fo tools
 
 all: copyright.html warranty.html reference.html index.html
 	for i in $(DIRS) __bogus__; do \
