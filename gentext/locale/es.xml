@@ -141,11 +141,11 @@
 <gentext key="nonexistantelement" text="elemento inexistente"/>
 <gentext key="notes" text="notas"/>
 <gentext key="Notes" text="Notas"/>
-<gentext key="Pgs" text="Pags."/>
-<gentext key="pgs" text="pags."/>
+<gentext key="Pgs" text="P&aacute;gs."/>
+<gentext key="pgs" text="p&aacute;gs."/>
 <gentext key="Revisedby" text="Revisado por: "/>
 <gentext key="revisedby" text="revisado por: "/>
-<gentext key="TableNotes" text="Notas de Tabla"/>
+<gentext key="TableNotes" text="Notas de tabla"/>
 <gentext key="tablenotes" text="notas de tabla"/>
 <gentext key="TableofContents" text="Tabla de contenidos"/>
 <gentext key="tableofcontents" text="tabla de contenidos"/>
