@@ -1,30 +1,99 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
+                xmlns:exsl="http://exslt.org/common"
 		version="1.0"
-                exclude-result-prefixes="doc">
+                exclude-result-prefixes="exsl">
 
-<xsl:import href="docbook.xsl"/>
-<xsl:import href="chunk-common.xsl"/>
+<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl"/>
+<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/html/chunk-common.xsl"/>
 <xsl:include href="manifest.xsl"/>
 
 <xsl:param name="onechunk" select="0"/>
 <xsl:param name="refentry.separator" select="0"/>
+<xsl:param name="chunk.fast" select="0"/>
+
+<xsl:key name="genid" match="*" use="generate-id()"/>
+
+<!-- ==================================================================== -->
+
+<xsl:variable name="chunk.hierarchy">
+  <xsl:if test="$chunk.fast != 0">
+    <xsl:choose>
+      <xsl:when test="function-available('exsl:node-set')">
+        <xsl:message>Computing chunks...</xsl:message>
+        <xsl:apply-templates select="/*" mode="find.chunks"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:message>
+          <xsl:text>Fast chunking requires exsl:node-set(). </xsl:text>
+          <xsl:text>Using "slow" chunking.</xsl:text>
+        </xsl:message>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:if>
+</xsl:variable>
+
+<xsl:template match="*" mode="find.chunks">
+  <xsl:variable name="chunk">
+    <xsl:call-template name="chunk"/>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$chunk != 0">
+      <div class="{local-name(.)}" id="{generate-id()}">
+        <xsl:apply-templates select="*" mode="find.chunks"/>
+      </div>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="*" mode="find.chunks"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
 
 <!-- ==================================================================== -->
 
 <xsl:template name="process-chunk-element">
   <xsl:choose>
-    <xsl:when test="$onechunk != 0 and not(parent::*)">
-      <xsl:call-template name="chunk-all-sections"/>
-    </xsl:when>
-    <xsl:when test="$onechunk != 0">
-      <xsl:apply-imports/>
-    </xsl:when>
-    <xsl:when test="$chunk.first.sections = 0">
-      <xsl:call-template name="chunk-first-section-with-parent"/>
+    <xsl:when test="$chunk.fast != 0 and function-available('exsl:node-set')">
+      <xsl:variable name="chunks" select="exsl:node-set($chunk.hierarchy)//div"/>
+      <xsl:variable name="genid" select="generate-id()"/>
+
+      <xsl:variable name="div" select="$chunks[@id=$genid]"/>
+
+      <xsl:variable name="prevdiv"
+                    select="($div/preceding-sibling::div|$div/preceding::div|$div/parent::div)[last()]"/>
+      <xsl:variable name="prev" select="key('genid', $prevdiv/@id)"/>
+
+      <xsl:variable name="nextdiv"
+                    select="($div/following-sibling::div|$div/following::div|$div/div)[1]"/>
+      <xsl:variable name="next" select="key('genid', $nextdiv/@id)"/>
+
+      <xsl:choose>
+        <xsl:when test="$onechunk != 0 and parent::*">
+          <xsl:apply-imports/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="process-chunk">
+            <xsl:with-param name="prev" select="$prev"/>
+            <xsl:with-param name="next" select="$next"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:call-template name="chunk-all-sections"/>
+      <xsl:choose>
+        <xsl:when test="$onechunk != 0 and not(parent::*)">
+          <xsl:call-template name="chunk-all-sections"/>
+        </xsl:when>
+        <xsl:when test="$onechunk != 0">
+          <xsl:apply-imports/>
+        </xsl:when>
+        <xsl:when test="$chunk.first.sections = 0">
+          <xsl:call-template name="chunk-first-section-with-parent"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="chunk-all-sections"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -409,6 +478,8 @@
   <xsl:apply-templates select="."/>
 </xsl:template>
 
+<!-- ====================================================================== -->
+
 <xsl:template match="set|book|part|preface|chapter|appendix
                      |article
                      |reference|refentry
@@ -713,5 +784,7 @@
     <xsl:call-template name="process.footnotes"/>
   </xsl:if>
 </xsl:template>
+
+<!-- ====================================================================== -->
 
 </xsl:stylesheet>
