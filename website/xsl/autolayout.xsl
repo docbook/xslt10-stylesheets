@@ -17,7 +17,7 @@
   <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
-<xsl:template match="style|script|copyright|config">
+<xsl:template match="style|script|headlink|copyright|config">
   <xsl:apply-templates select="." mode="copy"/>
 </xsl:template>
 
