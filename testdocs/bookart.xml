@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book
+  PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<!-- test document -->
+<book id="book">
+<bookinfo>
+<title>Book Title</title>
+<subtitle>Book Subtitle</subtitle>
+</bookinfo>
+
+<article><title>First Article</title>
+
+<figure>
+  <title>The Duck</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata
+        align="center"
+        fileref="graphics/duck-small.gif"
+        format="GIF"
+        srccredit="O'Reilly &amp; Associates/Dover Archives"/>
+    </imageobject>
+    <imageobject>
+      <imagedata
+        align="center"
+        fileref="graphics/duck-small.png"
+        format="PNG"
+        srccredit="O'Reilly &amp; Associates/Dover Archives"/>
+    </imageobject>
+    <textobject><phrase>The DocBook: TDG Duck</phrase></textobject>
+  </mediaobject>
+</figure>
+
+</article>
+
+<article><title>Second Article</title>
+
+<figure>
+  <title>The Duck</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata
+        align="center"
+        fileref="graphics/duck-small.gif"
+        format="GIF"
+        srccredit="O'Reilly &amp; Associates/Dover Archives"/>
+    </imageobject>
+    <imageobject>
+      <imagedata
+        align="center"
+        fileref="graphics/duck-small.png"
+        format="PNG"
+        srccredit="O'Reilly &amp; Associates/Dover Archives"/>
+    </imageobject>
+    <textobject><phrase>The DocBook: TDG Duck</phrase></textobject>
+  </mediaobject>
+</figure>
+
+</article>
+
+<article><title>Third Article</title>
+
+<figure>
+  <title>The Duck</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata
+        align="center"
+        fileref="graphics/duck-small.gif"
+        format="GIF"
+        srccredit="O'Reilly &amp; Associates/Dover Archives"/>
+    </imageobject>
+    <imageobject>
+      <imagedata
+        align="center"
+        fileref="graphics/duck-small.png"
+        format="PNG"
+        srccredit="O'Reilly &amp; Associates/Dover Archives"/>
+    </imageobject>
+    <textobject><phrase>The DocBook: TDG Duck</phrase></textobject>
+  </mediaobject>
+</figure>
+
+</article>
+
+</book>

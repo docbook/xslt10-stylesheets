@@ -25,7 +25,7 @@
           <orderedlist>
           <listitem><para>Level 5</para>
             <orderedlist>
-            <listitem><para>Level 6</para>
+            <listitem override="13"><para>Level 6, override=13</para>
             </listitem>
             </orderedlist>
           </listitem>
@@ -38,6 +38,31 @@
   </orderedlist>
 </listitem>
 </orderedlist>
+
+<itemizedlist>
+  <listitem><para>Level 1</para>
+    <itemizedlist>
+    <listitem><para>Level 2</para>
+      <itemizedlist>
+      <listitem id="someOtherILI"><para>Level 3</para>
+        <itemizedlist>
+        <listitem><para>Level 4</para>
+          <itemizedlist mark="disc">
+          <listitem><para>Level 5</para>
+            <itemizedlist mark="disc">
+            <listitem override="round"><para>Level 6, override=round</para>
+            </listitem>
+            </itemizedlist>
+          </listitem>
+          </itemizedlist>
+        </listitem>
+        </itemizedlist>
+    </listitem>
+    </itemizedlist>
+  </listitem>
+  </itemizedlist>
+</listitem>
+</itemizedlist>
 
 <orderedlist numeration="loweralpha">
   <listitem><para>Level 1, numeration="loweralpha"</para>
@@ -115,6 +140,24 @@ outrageous humor, no seasonal cards.</otheraddr></address></listitem>
 <listitem><para>Definition of Term3a,b,c</para></listitem>
 </varlistentry>
 </variablelist>
+
+<segmentedlist><title>State Capitals</title>
+<segtitle>State</segtitle>
+<segtitle>Capital</segtitle>
+<seglistitem><seg>Alabama</seg><seg>Montgomery</seg></seglistitem>
+<seglistitem><seg>Alaska</seg><seg>Anchorage</seg></seglistitem>
+<seglistitem><seg>Arkansas</seg><seg>Little Rock</seg></seglistitem>
+</segmentedlist>
+
+<segmentedlist><title>State Capitals</title>
+<?dbhtml list-presentation='table' table-summary="testing summary"?>
+<?dbfo list-presentation='table'?>
+<segtitle>State</segtitle>
+<segtitle>Capital</segtitle>
+<seglistitem><seg>Alabama</seg><seg>Montgomery</seg></seglistitem>
+<seglistitem><seg>Alaska</seg><seg>Anchorage</seg></seglistitem>
+<seglistitem><seg>Arkansas</seg><seg>Little Rock</seg></seglistitem>
+</segmentedlist>
 
 </article>
 

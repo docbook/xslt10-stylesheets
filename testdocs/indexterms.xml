@@ -1,0 +1,28 @@
+<?xml version='1.0'?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<chapter>
+<title>Index Terms</title>
+
+<table>
+<title>Server machine minimum required software</title>
+<indexterm>
+<primary>System requirements</primary>
+<secondary>Software</secondary>
+</indexterm>
+<tgroup cols="1">
+<colspec colname="col1" colnum="1" colwidth="2.50in"/>
+<thead valign="top">
+<row>
+<entry>Foo</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry>foo</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+</chapter>

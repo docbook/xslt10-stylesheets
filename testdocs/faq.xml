@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE article
-  PUBLIC "-//OASIS//DTD DocBook XML V4.1//EN"
-  "http://www.oasis-open.org/docbook/xml/4.1/docbookx.dtd" >
+  PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" >
 <article id="xyzzy" class="faq">
   <articleinfo>
     <title>An xref to a Question</title>
@@ -12,6 +12,7 @@
   </articleinfo>
 
   <qandaset defaultlabel='number'>
+    <?dbhtml table-summary="summary"?>
     <qandaentry>
       <question><para>Question one.</para></question>
       <answer>
@@ -39,4 +40,105 @@ See <xref linkend="faq-Two"/></para>
     </qandaentry>
 
   </qandaset>
+
+       <qandaset>
+    <?dbhtml toc="0"?>
+         <qandaentry>
+           <question>
+             <para>Blah blah blah.</para>
+           </question>
+	  <answer>
+	    <example>
+	      <title><filename
+	          moreinfo="none">file.name</filename></title>
+	      <programlisting format="linespecific">// Hello, World</programlisting>
+	    </example>
+	    <example>
+	      <title><filename
+	          moreinfo="none">file2.name</filename></title>
+	      <programlisting format="linespecific">// Goodbye, World</programlisting>
+	    </example>
+	  </answer>
+         </qandaentry>
+       </qandaset>
+
+       <qandaset>
+    <title>QandA Title</title>
+<para>Some introductory preamble. Some introductory preamble.
+Some introductory preamble. Some introductory preamble.
+Some introductory preamble. Some introductory preamble.
+Some introductory preamble. Some introductory preamble.</para>
+<para>Some introductory preamble. Some introductory preamble.
+Some introductory preamble. Some introductory preamble.
+Some introductory preamble. Some introductory preamble.
+Some introductory preamble. Some introductory preamble.</para>
+    <qandadiv><title>Division 1</title>
+         <qandaentry>
+           <question>
+             <para>Blah blah blah.</para>
+           </question>
+	  <answer>
+	    <example>
+	      <title><filename
+	          moreinfo="none">file.name</filename></title>
+	      <programlisting format="linespecific">// Hello, World</programlisting>
+	    </example>
+	    <example>
+	      <title><filename
+	          moreinfo="none">file2.name</filename></title>
+	      <programlisting format="linespecific">// Goodbye, World</programlisting>
+	    </example>
+	  </answer>
+         </qandaentry>
+    </qandadiv>
+    <qandadiv><title>Division 2</title>
+<para>Some introductory preamble. Some introductory preamble.
+Some introductory preamble. Some introductory preamble.
+Some introductory preamble. Some introductory preamble.
+Some introductory preamble. Some introductory preamble.</para>
+<para>Some introductory preamble. Some introductory preamble.
+Some introductory preamble. Some introductory preamble.
+Some introductory preamble. Some introductory preamble.
+Some introductory preamble. Some introductory preamble.</para>
+    <qandadiv><title>Division 2.1</title>
+         <qandaentry>
+           <question>
+             <para>Blah blah blah.</para>
+           </question>
+	  <answer>
+	    <example>
+	      <title><filename
+	          moreinfo="none">file.name</filename></title>
+	      <programlisting format="linespecific">// Hello, World</programlisting>
+	    </example>
+	    <example>
+	      <title><filename
+	          moreinfo="none">file2.name</filename></title>
+	      <programlisting format="linespecific">// Goodbye, World</programlisting>
+	    </example>
+	  </answer>
+         </qandaentry>
+    </qandadiv>
+    <qandadiv><title>Division 2.2</title>
+         <qandaentry>
+           <question>
+             <para>Blah blah blah.</para>
+           </question>
+	  <answer>
+	    <example>
+	      <title><filename
+	          moreinfo="none">file.name</filename></title>
+	      <programlisting format="linespecific">// Hello, World</programlisting>
+	    </example>
+	    <example>
+	      <title><filename
+	          moreinfo="none">file2.name</filename></title>
+	      <programlisting format="linespecific">// Goodbye, World</programlisting>
+	    </example>
+	  </answer>
+         </qandaentry>
+    </qandadiv>
+    </qandadiv>
+       </qandaset>
+
 </article>
