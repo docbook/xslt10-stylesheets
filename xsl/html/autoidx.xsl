@@ -312,12 +312,6 @@
   <xsl:if test="$refs/seealso">
     <dd>
       <dl>
-        <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, see))[&scope;][1])]"
-                             mode="index-see">
-          <xsl:with-param name="scope" select="$scope"/>
-          <xsl:with-param name="role" select="$role"/>
-          <xsl:sort select="translate(see, &lowercase;, &uppercase;)"/>
-        </xsl:apply-templates>
         <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, seealso))[&scope;][1])]"
                              mode="index-seealso">
           <xsl:with-param name="scope" select="$scope"/>
