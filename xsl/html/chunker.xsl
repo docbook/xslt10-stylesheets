@@ -39,7 +39,17 @@
   <xsl:param name="filename" select="''"/>
   <xsl:param name="method" select="'html'"/>
   <xsl:param name="encoding" select="'ISO-8859-1'"/>
+  <xsl:param name="indent" select="'no'"/>
   <xsl:param name="content" select="''"/>
+
+  <xsl:message>
+    <xsl:text>Writing </xsl:text>
+    <xsl:value-of select="$filename"/>
+    <xsl:if test="name(.) != ''">
+      <xsl:text> for </xsl:text>
+      <xsl:value-of select="name(.)"/>
+    </xsl:if>
+  </xsl:message>
 
   <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
 
@@ -48,7 +58,8 @@
       <!-- Saxon 6.2.x uses xsl:document -->
       <xsl:document href="{$filename}"
                     method="{$method}"
-                    encoding="{$encoding}">
+                    encoding="{$encoding}"
+                    indent="{$indent}">
         <xsl:copy-of select="$content"/>
       </xsl:document>
     </xsl:when>
@@ -57,7 +68,69 @@
       <saxon:output file="{$filename}"
                     href="{$filename}"
                     method="{$method}"
-                    encoding="{$encoding}">
+                    encoding="{$encoding}"
+                    indent="{$indent}">
+        <xsl:copy-of select="$content"/>
+      </saxon:output>
+    </xsl:when>
+    <xsl:when test="contains($vendor, 'Apache')">
+      <!-- Xalan uses xalanredirect -->
+      <xalanredirect:write file="{$filename}">
+        <xsl:copy-of select="$content"/>
+      </xalanredirect:write>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- it doesn't matter since we won't be making chunks... -->
+      <xsl:message terminate="yes">
+        <xsl:text>Can't make chunks with </xsl:text>
+        <xsl:value-of select="$vendor"/>
+        <xsl:text>'s processor.</xsl:text>
+      </xsl:message>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="write.chunk.with.doctype">
+  <xsl:param name="filename" select="''"/>
+  <xsl:param name="method" select="'html'"/>
+  <xsl:param name="encoding" select="'ISO-8859-1'"/>
+  <xsl:param name="indent" select="'no'"/>
+  <xsl:param name="doctype-public" select="''"/>
+  <xsl:param name="doctype-system" select="''"/>
+  <xsl:param name="content" select="''"/>
+
+  <xsl:message>
+    <xsl:text>Writing </xsl:text>
+    <xsl:value-of select="$filename"/>
+    <xsl:if test="name(.) != ''">
+      <xsl:text> for </xsl:text>
+      <xsl:value-of select="name(.)"/>
+    </xsl:if>
+  </xsl:message>
+
+  <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
+
+  <xsl:choose>
+    <xsl:when test="contains($vendor, 'SAXON 6.2')">
+      <!-- Saxon 6.2.x uses xsl:document -->
+      <xsl:document href="{$filename}"
+                    method="{$method}"
+                    encoding="{$encoding}"
+                    indent="{$indent}"
+                    doctype-public="{$doctype-public}"
+                    doctype-system="{$doctype-system}">
+        <xsl:copy-of select="$content"/>
+      </xsl:document>
+    </xsl:when>
+    <xsl:when test="contains($vendor, 'SAXON')">
+      <!-- Saxon uses saxon:output -->
+      <saxon:output file="{$filename}"
+                    href="{$filename}"
+                    method="{$method}"
+                    encoding="{$encoding}"
+                    indent="{$indent}"
+                    doctype-public="{$doctype-public}"
+                    doctype-system="{$doctype-system}">
         <xsl:copy-of select="$content"/>
       </saxon:output>
     </xsl:when>
