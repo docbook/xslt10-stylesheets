@@ -1222,6 +1222,10 @@
 <!-- ==================================================================== -->
 
 <xsl:template name="head.sep.rule">
+  <xsl:param name="pageclass"/>
+  <xsl:param name="sequence"/>
+  <xsl:param name="gentext-key"/>
+
   <xsl:if test="$header.rule != 0">
     <xsl:attribute name="border-bottom-width">0.5pt</xsl:attribute>
     <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
@@ -1230,6 +1234,10 @@
 </xsl:template>
 
 <xsl:template name="foot.sep.rule">
+  <xsl:param name="pageclass"/>
+  <xsl:param name="sequence"/>
+  <xsl:param name="gentext-key"/>
+
   <xsl:if test="$footer.rule != 0">
     <xsl:attribute name="border-top-width">0.5pt</xsl:attribute>
     <xsl:attribute name="border-top-style">solid</xsl:attribute>
@@ -1325,7 +1333,12 @@
 
   <xsl:variable name="candidate">
     <fo:table table-layout="fixed" width="100%">
-      <xsl:call-template name="head.sep.rule"/>
+      <xsl:call-template name="head.sep.rule">
+        <xsl:with-param name="pageclass" select="$pageclass"/>
+        <xsl:with-param name="sequence" select="$sequence"/>
+        <xsl:with-param name="gentext-key" select="$gentext-key"/>
+      </xsl:call-template>
+
       <fo:table-column column-number="1" column-width="proportional-column-width(1)"/>
       <fo:table-column column-number="2" column-width="proportional-column-width(1)"/>
       <fo:table-column column-number="3" column-width="proportional-column-width(1)"/>
@@ -1550,7 +1563,11 @@
 
   <xsl:variable name="candidate">
     <fo:table table-layout="fixed" width="100%">
-      <xsl:call-template name="foot.sep.rule"/>
+      <xsl:call-template name="foot.sep.rule">
+        <xsl:with-param name="pageclass" select="$pageclass"/>
+        <xsl:with-param name="sequence" select="$sequence"/>
+        <xsl:with-param name="gentext-key" select="$gentext-key"/>
+      </xsl:call-template>
       <fo:table-column column-number="1" column-width="proportional-column-width(1)"/>
       <fo:table-column column-number="2" column-width="proportional-column-width(1)"/>
       <fo:table-column column-number="3" column-width="proportional-column-width(1)"/>
