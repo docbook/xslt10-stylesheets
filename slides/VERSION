@@ -38,13 +38,20 @@ V4.3CR2.
 </fm:project>
 
 <xsl:template match="/" priority="-100">
-  <xsl:if test="$sf-relid = 0">
-    <xsl:message terminate="yes">
-      <xsl:text>You must specify the sf-relid as a parameter.</xsl:text>
-    </xsl:message>
-  </xsl:if>
+  <xsl:choose>
+    <xsl:when test="xsl:*">
+      <xsl:if test="$sf-relid = 0">
+	<xsl:message terminate="yes">
+	  <xsl:text>You must specify the sf-relid as a parameter.</xsl:text>
+	</xsl:message>
+      </xsl:if>
 
-  <xsl:apply-templates select="//fm:project"/>
+      <xsl:apply-templates select="//fm:project"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-imports/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="fm:project">
