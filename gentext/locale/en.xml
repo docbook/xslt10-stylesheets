@@ -71,6 +71,7 @@
 <gentext key="preface" text="Preface"/>
 <gentext key="Procedure" text="Procedure"/>
 <gentext key="procedure" text="Procedure"/>
+<gentext key="ProductionSet" text="Production"/>
 <gentext key="Published" text="Published"/>
 <gentext key="published" text="Published"/>
 <gentext key="Question" text="Q:"/>
@@ -215,9 +216,13 @@
 <template name="partintro">%t</template>
 <template name="preface">%t</template>
 <template name="procedure">%t</template>
+<template name="procedure.formal"><Procedure/> %n. %t</template>
+<template name="productionset">%t</template>
+<template name="productionset.formal"><ProductionSet/> %n</template>
 <template name="qandadiv">%t</template>
 <template name="qandaset">%t</template>
 <template name="reference">%t</template>
+<template name="refentry">%t</template>
 <template name="refsect1">%t</template>
 <template name="refsect2">%t</template>
 <template name="refsect3">%t</template>
@@ -318,6 +323,7 @@
 <template name="index">%t</template>
 <template name="part"><Part/> %n</template>
 <template name="preface">%t</template>
+<template name="procedure"><Procedure/> %n</template>
 <template name="question"><Question/> %n</template>
 <template name="answer"><Answer/> %n</template>
 <template name="reference">%t</template>
