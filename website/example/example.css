@@ -78,3 +78,10 @@ SPAN.shrink1           { font-size: 80%; }
 SPAN.shrink2           { font-size: 70%; }
 SPAN.shrink3           { font-size: 70%; }
 
+/* Turn off toc for print output */
+@media print { 
+	.navtoc { 
+		display: none; 
+	} 
+} 
+
