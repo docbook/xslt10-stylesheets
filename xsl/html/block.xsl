@@ -151,11 +151,11 @@
             <td width="10%" valign="top">&#160;</td>
           </tr>
           <tr>
+            <td width="10%" valign="top">&#160;</td>
             <td colspan="2" align="right" valign="top">
               <xsl:text>--</xsl:text>
               <xsl:apply-templates select="attribution"/>
             </td>
-            <td width="10%" valign="top">&#160;</td>
           </tr>
         </table>
       </xsl:when>
