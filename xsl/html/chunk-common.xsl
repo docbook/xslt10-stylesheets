@@ -506,9 +506,7 @@ its parent.
                     <xsl:with-param name="object" select="$prev"/>
                   </xsl:call-template>
                 </xsl:attribute>
-                <xsl:call-template name="gentext">
-                  <xsl:with-param name="key">nav-prev</xsl:with-param>
-                </xsl:call-template>
+                <xsl:call-template name="gentext.nav.prev"/>
               </a>
             </xsl:if>
             <xsl:text>&#160;</xsl:text>
@@ -530,9 +528,7 @@ its parent.
                     <xsl:with-param name="object" select="$next"/>
                   </xsl:call-template>
                 </xsl:attribute>
-                <xsl:call-template name="gentext">
-                  <xsl:with-param name="key">nav-next</xsl:with-param>
-                </xsl:call-template>
+                <xsl:call-template name="gentext.nav.next"/>
               </a>
             </xsl:if>
           </td>
@@ -564,9 +560,7 @@ its parent.
                     <xsl:with-param name="object" select="$prev"/>
                   </xsl:call-template>
                 </xsl:attribute>
-                <xsl:call-template name="gentext">
-                  <xsl:with-param name="key">nav-prev</xsl:with-param>
-                </xsl:call-template>
+                <xsl:call-template name="gentext.nav.prev"/>
               </a>
             </xsl:if>
             <xsl:text>&#160;</xsl:text>
@@ -580,9 +574,7 @@ its parent.
                       <xsl:with-param name="object" select="$home"/>
                     </xsl:call-template>
                   </xsl:attribute>
-                  <xsl:call-template name="gentext">
-                    <xsl:with-param name="key">nav-home</xsl:with-param>
-                  </xsl:call-template>
+                  <xsl:call-template name="gentext.nav.home"/>
                 </a>
               </xsl:when>
               <xsl:otherwise>&#160;</xsl:otherwise>
@@ -597,9 +589,7 @@ its parent.
                     <xsl:with-param name="object" select="$next"/>
                   </xsl:call-template>
                 </xsl:attribute>
-                <xsl:call-template name="gentext">
-                  <xsl:with-param name="key">nav-next</xsl:with-param>
-                </xsl:call-template>
+                <xsl:call-template name="gentext.nav.next"/>
               </a>
             </xsl:if>
           </td>
@@ -619,9 +609,7 @@ its parent.
                       <xsl:with-param name="object" select="$up"/>
                     </xsl:call-template>
                   </xsl:attribute>
-                  <xsl:call-template name="gentext">
-                    <xsl:with-param name="key">nav-up</xsl:with-param>
-                  </xsl:call-template>
+                  <xsl:call-template name="gentext.nav.up"/>
                 </a>
               </xsl:when>
               <xsl:otherwise>&#160;</xsl:otherwise>
