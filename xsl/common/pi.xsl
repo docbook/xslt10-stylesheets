@@ -94,19 +94,19 @@
     <xsl:choose>
       <xsl:when test="$char = 'a'">
         <xsl:call-template name="gentext.template">
-          <xsl:with-param name="context" select="'datetime'"/>
+          <xsl:with-param name="context" select="'datetime-abbrev'"/>
           <xsl:with-param name="name" select="date:day-abbreviation($date)"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:when test="$char = 'A'">
         <xsl:call-template name="gentext.template">
-          <xsl:with-param name="context" select="'datetime'"/>
+          <xsl:with-param name="context" select="'datetime-full'"/>
           <xsl:with-param name="name" select="date:day-name($date)"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:when test="$char = 'b'">
         <xsl:call-template name="gentext.template">
-          <xsl:with-param name="context" select="'datetime'"/>
+          <xsl:with-param name="context" select="'datetime-abbrev'"/>
           <xsl:with-param name="name" select="date:month-abbreviation($date)"/>
         </xsl:call-template>
       </xsl:when>
@@ -117,7 +117,7 @@
       </xsl:when>
       <xsl:when test="$char = 'B'">
         <xsl:call-template name="gentext.template">
-          <xsl:with-param name="context" select="'datetime'"/>
+          <xsl:with-param name="context" select="'datetime-abbrev'"/>
           <xsl:with-param name="name" select="date:month-name($date)"/>
         </xsl:call-template>
       </xsl:when>
