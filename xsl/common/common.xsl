@@ -1724,6 +1724,13 @@ node location.</para>
 <xsl:template name="strippath">
   <xsl:param name="filename" select="''"/>
   <xsl:choose>
+    <!-- Leading .. are not eliminated -->
+    <xsl:when test="starts-with($filename, '../')">
+      <xsl:value-of select="'../'"/>
+      <xsl:call-template name="strippath">
+        <xsl:with-param name="filename" select="substring-after($filename, '../')"/>
+      </xsl:call-template>
+    </xsl:when>
     <xsl:when test="contains($filename, '/../')">
       <xsl:call-template name="strippath">
         <xsl:with-param name="filename">
