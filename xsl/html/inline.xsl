@@ -982,5 +982,12 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template match="personname">
+  <xsl:call-template name="anchor"/>
+  <xsl:call-template name="person.name"/>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
 </xsl:stylesheet>
 
