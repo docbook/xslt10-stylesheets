@@ -30,7 +30,8 @@
             </xsl:attribute>
           </link>
         </head>
-        <body class="titlepage" xsl:use-attribute-sets="body-attrs">
+        <body class="titlepage">
+          <xsl:call-template name="body.attributes"/>
           <div class="{name(.)}">
             <xsl:apply-templates mode="titlepage.mode"/>
           </div>
@@ -107,7 +108,8 @@
           </xsl:attribute>
         </link>
       </head>
-      <body class="section" xsl:use-attribute-sets="body-attrs">
+      <body class="section">
+        <xsl:call-template name="body.attributes"/>
         <table border="0" width="100%" summary="Navigation and body table"
                cellpadding="0" cellspacing="0">
           <tr>
@@ -202,7 +204,8 @@
           </xsl:attribute>
         </link>
       </head>
-      <body class="foil" xsl:use-attribute-sets="body-attrs">
+      <body class="foil">
+        <xsl:call-template name="body.attributes"/>
         <table border="0" width="100%" summary="Navigation and body table"
                cellpadding="0" cellspacing="0">
           <tr>
