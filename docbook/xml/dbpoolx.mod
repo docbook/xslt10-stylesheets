@@ -845,7 +845,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 		|authorgroup|authorinitials|bibliomisc|biblioset
 		|collab|confgroup|contractnum|contractsponsor
 		|copyright|corpauthor|corpname|date|edition
-		|editor|invpartnumber|isbn|issn|issuenum|orgname
+		|editor|invpartnumber|isbn|issn|biblioid|citebiblioid|issuenum|orgname
 		|othercredit|pagenums|printhistory|productname
 		|productnumber|pubdate|publisher|publishername
 		|pubsnumber|releaseinfo|revhistory|seriesvolnums
@@ -5045,6 +5045,54 @@ in the text (no (0) value, the default)
 >
 <!--end of issn.attlist-->]]>
 <!--end of issn.module-->]]>
+
+<!-- BiblioId ................. -->
+
+<!ENTITY % biblioid.module "INCLUDE">
+<![%biblioid.module;[
+<!ENTITY % local.biblioid.attrib "">
+<!ENTITY % biblioid.role.attrib "%role.attrib;">
+
+<!ENTITY % biblioid.element "INCLUDE">
+<![%biblioid.element;[
+<!ELEMENT biblioid %ho; (%docinfo.char.mix;)*>
+<!--end of biblioid.element-->]]>
+
+<!ENTITY % biblioid.attlist "INCLUDE">
+<![%biblioid.attlist;[
+<!ATTLIST biblioid
+		%common.attrib;
+		class	(urn|doi|isbn|issn|pubnumber|other)	#IMPLIED
+		otherclass	CDATA	#IMPLIED
+		%biblioid.role.attrib;
+		%local.biblioid.attrib;
+>
+<!--end of biblioid.attlist-->]]>
+<!--end of biblioid.module-->]]>
+
+<!-- CiteBiblioId ................. -->
+
+<!ENTITY % citebiblioid.module "INCLUDE">
+<![%citebiblioid.module;[
+<!ENTITY % local.citebiblioid.attrib "">
+<!ENTITY % citebiblioid.role.attrib "%role.attrib;">
+
+<!ENTITY % citebiblioid.element "INCLUDE">
+<![%citebiblioid.element;[
+<!ELEMENT citebiblioid %ho; (%docinfo.char.mix;)*>
+<!--end of citebiblioid.element-->]]>
+
+<!ENTITY % citebiblioid.attlist "INCLUDE">
+<![%citebiblioid.attlist;[
+<!ATTLIST citebiblioid
+		%common.attrib;
+		class	(urn|doi|isbn|issn|pubnumber|other)	#IMPLIED
+		otherclass	CDATA	#IMPLIED
+		%citebiblioid.role.attrib;
+		%local.citebiblioid.attrib;
+>
+<!--end of citebiblioid.attlist-->]]>
+<!--end of citebiblioid.module-->]]>
 
 <!-- InvPartNumber .................... -->
 
