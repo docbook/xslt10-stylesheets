@@ -9,6 +9,7 @@
 <!ENTITY arbortext.extensions SYSTEM "../params/arbortext.extensions.xml">
 <!ENTITY author.othername.in.middle SYSTEM "../params/author.othername.in.middle.xml">
 <!ENTITY autotoc.label.separator SYSTEM "../params/autotoc.label.separator.xml">
+<!ENTITY axf.extensions SYSTEM "../params/axf.extensions.xml">
 <!ENTITY biblioentry.item.separator SYSTEM "../params/biblioentry.item.separator.xml">
 <!ENTITY bibliography.collection SYSTEM "../params/bibliography.collection.xml">
 <!ENTITY blockquote.properties SYSTEM "../params/blockquote.properties.xml">

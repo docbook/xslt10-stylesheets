@@ -257,7 +257,15 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="indexterm" name="indexterm">
-  <fo:wrapper>
+  <!-- Temporal workaround for bug in AXF -->
+  <xsl:variable name="wrapper.name">
+    <xsl:choose>
+      <xsl:when test="$axf.extensions != 0">fo:block</xsl:when>
+      <xsl:otherwise>fo:wrapper</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:element name="{$wrapper.name}">
     <xsl:attribute name="id">
       <xsl:call-template name="object.id"/>
     </xsl:attribute>
@@ -293,7 +301,7 @@
         </xsl:comment>
       </xsl:otherwise>
     </xsl:choose>
-  </fo:wrapper>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="indexterm[@class='startofrange']">
