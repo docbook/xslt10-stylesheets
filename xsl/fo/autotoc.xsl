@@ -99,6 +99,7 @@
 
 <xsl:template name="section.toc">
   <xsl:param name="toc-context" select="."/>
+  <xsl:param name="toc.title.p" select="true()"/>
 
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
@@ -122,16 +123,18 @@
     <fo:block id="toc...{$id}"
               xsl:use-attribute-sets="toc.margin.properties">
 
-      <xsl:call-template name="section.heading">
-        <xsl:with-param name="level" select="$level + 1"/>
-        <xsl:with-param name="title">
-          <fo:block space-after="0.5em">
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key" select="'TableofContents'"/>
-            </xsl:call-template>
-          </fo:block>
-        </xsl:with-param>
-      </xsl:call-template>
+      <xsl:if test="$toc.title.p">
+        <xsl:call-template name="section.heading">
+          <xsl:with-param name="level" select="$level + 1"/>
+          <xsl:with-param name="title">
+            <fo:block space-after="0.5em">
+              <xsl:call-template name="gentext">
+                <xsl:with-param name="key" select="'TableofContents'"/>
+              </xsl:call-template>
+            </fo:block>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
 
       <xsl:apply-templates select="$nodes" mode="toc">
         <xsl:with-param name="toc-context" select="$toc-context"/>
