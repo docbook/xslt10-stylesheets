@@ -32,5 +32,12 @@ If <literal>index.on.role</literal> is zero, then the
 on selecting indexterms for an index.
 </para>
 
+<para>If you are using DocBook version 4.3 or later, you should
+use the <sgmltag>type</sgmltag> attribute instead of <sgmltag>role</sgmltag>
+on <sgmltag>indexterm</sgmltag> and <sgmltag>index</sgmltag>,
+and set the <parameter>index.on.type</parameter> to a nonzero
+value.
+</para>
+
 </refsect1>
 </refentry>
