@@ -341,8 +341,9 @@ zero by default, so this is simply the page-master region-left.
 &formal.object.properties;
 &formal.title.properties;
 &informal.object.properties;
-&monospace.verbatim.properties;
+&monospace.properties;
 &verbatim.properties;
+&monospace.verbatim.properties;
 &sidebar.properties;
 &section.title.properties;
 &section.title.level1.properties;
@@ -487,6 +488,7 @@ around all these parameters.</para>
 <src:fragref linkend="menuchoice.menu.separator.frag"/>
 <src:fragref linkend="menuchoice.separator.frag"/>
 <src:fragref linkend="monospace.font.family.frag"/>
+<src:fragref linkend="monospace.properties.frag"/>
 <src:fragref linkend="monospace.verbatim.properties.frag"/>
 <src:fragref linkend="nominal.table.width.frag"/>
 <src:fragref linkend="normal.para.spacing.frag"/>

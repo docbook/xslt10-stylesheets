@@ -168,3 +168,4 @@
 <!ENTITY section.title.level4.properties SYSTEM "../params/section.title.level4.properties.xml">
 <!ENTITY section.title.level5.properties SYSTEM "../params/section.title.level5.properties.xml">
 <!ENTITY section.title.level6.properties SYSTEM "../params/section.title.level6.properties.xml">
+<!ENTITY monospace.properties SYSTEM "../params/monospace.properties.xml">

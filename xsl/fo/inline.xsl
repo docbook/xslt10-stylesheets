@@ -88,7 +88,7 @@
   <xsl:param name="content">
     <xsl:apply-templates/>
   </xsl:param>
-  <fo:inline font-family="{$monospace.font.family}">
+  <fo:inline xsl:use-attribute-sets="monospace.properties">
     <xsl:copy-of select="$content"/>
   </fo:inline>
 </xsl:template>
@@ -115,7 +115,7 @@
   <xsl:param name="content">
     <xsl:apply-templates/>
   </xsl:param>
-  <fo:inline font-weight="bold" font-family="{$monospace.font.family}">
+  <fo:inline font-weight="bold" xsl:use-attribute-sets="monospace.properties">
     <xsl:copy-of select="$content"/>
   </fo:inline>
 </xsl:template>
@@ -124,7 +124,7 @@
   <xsl:param name="content">
     <xsl:apply-templates/>
   </xsl:param>
-  <fo:inline font-style="italic" font-family="{$monospace.font.family}">
+  <fo:inline font-style="italic" xsl:use-attribute-sets="monospace.properties">
     <xsl:copy-of select="$content"/>
   </fo:inline>
 </xsl:template>
