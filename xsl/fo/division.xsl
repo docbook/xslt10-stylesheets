@@ -418,6 +418,7 @@
 <xsl:template match="part">
   <xsl:if test="not(partintro)">
     <xsl:apply-templates select="." mode="part.titlepage.mode"/>
+    <xsl:call-template name="generate.part.toc"/>
   </xsl:if>
   <xsl:apply-templates/>
 </xsl:template>
@@ -479,6 +480,56 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template name="generate.part.toc">
+  <xsl:param name="part" select="."/>
+
+  <xsl:variable name="lot-master-reference">
+    <xsl:call-template name="select.pagemaster">
+      <xsl:with-param name="pageclass" select="'lot'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="toc.params">
+    <xsl:call-template name="find.path.params">
+      <xsl:with-param name="node" select="$part"/>
+      <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:if test="contains($toc.params, 'toc')">
+    <fo:page-sequence hyphenate="{$hyphenate}"
+                      master-reference="{$lot-master-reference}">
+      <xsl:attribute name="language">
+        <xsl:call-template name="l10n.language"/>
+      </xsl:attribute>
+      <xsl:attribute name="format">
+        <xsl:call-template name="page.number.format">
+          <xsl:with-param name="element" select="'toc'"/>
+        </xsl:call-template>
+      </xsl:attribute>
+      <xsl:if test="$double.sided != 0">
+        <xsl:attribute name="initial-page-number">auto-odd</xsl:attribute>
+      </xsl:if>
+
+      <xsl:apply-templates select="$part" mode="running.head.mode">
+        <xsl:with-param name="master-reference" select="$lot-master-reference"/>
+      </xsl:apply-templates>
+
+      <xsl:apply-templates select="$part" mode="running.foot.mode">
+        <xsl:with-param name="master-reference" select="$lot-master-reference"/>
+      </xsl:apply-templates>
+
+      <fo:flow flow-name="xsl-region-body">
+        <xsl:call-template name="division.toc">
+          <xsl:with-param name="toc-context" select="$part"/>
+        </xsl:call-template>
+      </fo:flow>
+    </fo:page-sequence>
+  </xsl:if>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
 <xsl:template match="part/partintro">
   <xsl:apply-templates select=".." mode="part.titlepage.mode">
     <xsl:with-param name="additional.content">
@@ -488,6 +539,10 @@
       <xsl:apply-templates/>
     </xsl:with-param>
   </xsl:apply-templates>
+
+  <xsl:call-template name="generate.part.toc">
+    <xsl:with-param name="part" select=".."/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="partintro/title"></xsl:template>
