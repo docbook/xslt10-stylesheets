@@ -297,7 +297,7 @@ FIXME: make is.graphic.* work correctly depending on the backend!
             <xsl:with-param name="default.units" select="'px'"/>
           </xsl:call-template>
         </xsl:when>
-        <xsl:when test="$scale != 1.0">
+        <xsl:when test="number($scale) != 1.0">
           <xsl:value-of select="$scale * 100"/>
           <xsl:text>%</xsl:text>
         </xsl:when>
@@ -316,7 +316,7 @@ FIXME: make is.graphic.* work correctly depending on the backend!
             <xsl:with-param name="default.units" select="'px'"/>
           </xsl:call-template>
         </xsl:when>
-        <xsl:when test="$scale != 1.0">
+        <xsl:when test="number($scale) != 1.0">
           <xsl:value-of select="$scale * 100"/>
           <xsl:text>%</xsl:text>
         </xsl:when>

@@ -191,10 +191,10 @@
 
   <xsl:variable name="intrinsicwidth">
     <xsl:choose>
-      <xsl:when test="function-available('simg:getWidth')">
+      <xsl:when test="$use.extensions != 0 and function-available('simg:getWidth')">
         <xsl:value-of select="simg:getWidth(simg:new($filename), $nominal.image.width)"/>
       </xsl:when>
-      <xsl:when test="function-available('ximg:getWidth')">
+      <xsl:when test="$use.extensions != 0 and function-available('ximg:getWidth')">
         <xsl:value-of select="ximg:getWidth(ximg:new($filename), $nominal.image.width)"/>
       </xsl:when>
       <xsl:otherwise>
@@ -205,10 +205,10 @@
 
   <xsl:variable name="intrinsicdepth">
     <xsl:choose>
-      <xsl:when test="function-available('simg:getDepth')">
+      <xsl:when test="$use.extensions != 0 and function-available('simg:getDepth')">
         <xsl:value-of select="simg:getDepth(simg:new($filename), $nominal.image.depth)"/>
       </xsl:when>
-      <xsl:when test="function-available('ximg:getDepth')">
+      <xsl:when test="$use.extensions != 0 and function-available('ximg:getDepth')">
         <xsl:value-of select="ximg:getDepth(ximg:new($filename), $nominal.image.width)"/>
       </xsl:when>
       <xsl:otherwise>
@@ -573,7 +573,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
       </xsl:if>
     </xsl:when>
 
-    <xsl:when test="$scale != 1.0">
+    <xsl:when test="number($scale) != 1.0">
       <!-- scaling is always uniform, so we only have to specify one dimension -->
       <!-- ignore @scalefit if specified -->
       <xsl:attribute name="width">
