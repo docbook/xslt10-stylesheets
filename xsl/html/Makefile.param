@@ -234,9 +234,13 @@ PARAMS=../params/admon.graphics.xml \
        ../params/entry.propagates.style.xml \
        ../params/glossentry.show.acronym.xml \
        ../params/xref.with.number.and.title.xml \
+       ../params/xref.label-title.separator.xml \
+       ../params/xref.label-page.separator.xml \
+       ../params/xref.title-page.separator.xml \
        ../params/ebnf.assignment.xml \
        ../params/ebnf.statement.terminator.xml \
        ../params/eclipse.autolabel.xml \
        ../params/eclipse.plugin.name.xml \
        ../params/eclipse.plugin.id.xml \
-       ../params/eclipse.plugin.provider.xml
+       ../params/eclipse.plugin.provider.xml \
+       ../params/insert.xref.page.number.xml

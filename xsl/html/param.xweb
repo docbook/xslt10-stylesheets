@@ -259,6 +259,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &xref.label-page.separator;
 &xref.label-title.separator;
 &xref.title-page.separator;
+&insert.xref.page.number;
 </reference>
 
 <reference><title>Graphics</title>
@@ -640,6 +641,7 @@ around all these parameters.</para>
 <src:fragref linkend="xref.label-title.separator.frag"/>
 <src:fragref linkend="xref.label-page.separator.frag"/>
 <src:fragref linkend="xref.title-page.separator.frag"/>
+<src:fragref linkend="insert.xref.page.number.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>
