@@ -1,0 +1,13 @@
+<!DOCTYPE webpage SYSTEM "../website.dtd">
+<webpage id="revflag">
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>Revision Flags</title>
+<summary>Revision Flags</summary>
+</head>
+<para>You can now use the <literal>revisionflag</literal> attribute on
+<literal>tocentry</literal> in
+the <filename>layout.xml</filename> file to mark pages as "added" or
+"changed".</para>
+</webpage>
+

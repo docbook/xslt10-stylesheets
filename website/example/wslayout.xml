@@ -46,6 +46,8 @@ generated from <filename>doc2.xml</filename>
 </para></listitem>
 </orderedlist>
 
+<para>(See also: <ulink url="revflag.html">revision flags</ulink>)</para>
+
 <para>Using this layout file, the hierarchical structure of the website
 is a main page <filename>index.html</filename> with two subordinate
 pages that are siblings:</para>

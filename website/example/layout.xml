@@ -21,10 +21,10 @@
   <style src="example.css" type="text/css"/>
 
   <toc page="website.xml" filename="index.html">
-    <tocentry page="wslayout.xml" filename="layout.html"/>
-    <tocentry revisionflag="changed" page="olink.xml" filename="linking.html"/>
+    <tocentry revisionflag="changed" page="wslayout.xml" filename="layout.html"/>
+    <tocentry page="olink.xml" filename="linking.html"/>
     <tocentry page="custom.xml" filename="custom.html"/>
-    <tocentry revisionflag="added" page="building.xml" filename="building.html" tocskip='1'>
+    <tocentry page="building.xml" filename="building.html" tocskip='1'>
       <tocentry page="build-make.xml" filename="buildmake.html"/>
       <tocentry page="build-ext.xml" filename="buildext.html"/>
       <tocentry page="build-textonly.xml" filename="textonly.html"/>
@@ -33,6 +33,7 @@
     <tocentry page="test3.xml" filename="test3.html"/>
     <tocentry page="rddl.xml" filename="rddl.html"/>
     <tocentry page="php.xml" filename="php.html"/>
+    <tocentry revisionflag="added" page="revflag.xml" filename="revflag.html"/>
     <tocentry id="nwalsh.com" href="http://nwalsh.com/">
       <title>nwalsh.com</title>
     </tocentry>
