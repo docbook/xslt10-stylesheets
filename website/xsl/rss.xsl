@@ -107,8 +107,8 @@
 
 <xsl:template match="rss:items">
   <dl>
-    <xsl:for-each select="rdf:Seq/rdf:li[@resource and @resource != '']">
-      <xsl:variable name="resource" select="@resource"/>
+    <xsl:for-each select="rdf:Seq/rdf:li[@rdf:resource and @rdf:resource != '']">
+      <xsl:variable name="resource" select="@rdf:resource"/>
       <xsl:variable name="item" select="//rss:item[@rdf:about = $resource]"/>
       <xsl:if test="not($item)">
         <xsl:message>
