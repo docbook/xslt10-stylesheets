@@ -1,0 +1,3315 @@
+<CHAPTER><TITLE>The Elements Alphabetized</TITLE>
+<PARA>Emphasized entries indicate
+block-oriented elements.
+&ldquo;Dropped&rdquo; elements appeared in version 1.2.2 but do not
+appear in the current version; many have been shifted
+to attribute values in cptrphrase.gp.
+</PARA>
+<SECT1><TITLE>Common Attributes</TITLE>
+<PARA>Common attributes now include ID, Lang (language), Remap
+(to store the former GI of an element in a document filtered
+to Docbook), Role (to type Docbook elements when
+need be), and XRefLabel (text to be displayed as the 
+label of cross references to a block-oriented element).
+</PARA>
+<PARA>ID is an identifier, which must be a
+string that is unique at least within the document and
+which must begin with a letter.  Lang should be a
+language code drawn from ISO 639 (perhaps extended with
+a country code drawn from ISO 3166, as en&lowbar;US).  Use 
+it when you need to signal your application to change
+hyphenation and other display characteristics.
+Remap is a device for
+preserving a previous tag name when fitting a document
+to the DocBook DTD.  
+Think of <SGMLTAG>CHAPTER Remap=&ldquo;Fascicle&rdquo;</SGMLTAG>
+as saying, &ldquo;I'm a Chapter now, but in a previous life
+I was a Fascicle.&rdquo;  Role allows you to clone DocBook
+elements without creating new ones:  if you have lists
+of vegetables and lists of fruit (perhaps displayed
+differently), give them 
+<SGMLTAG>Role=vegetables</SGMLTAG> and <SGMLTAG>Role=fruit</SGMLTAG> attributes.
+</PARA></SECT1>
+<SECT1><TITLE>Other Attributes</TITLE>
+<PARA>Certain other attributes occur regularly.  PageNum is
+the number of the page on which a given element begins
+or occurs in a printed book.  Label holds some text 
+associated with its element that is to be output when
+the document is rendered.  XRefLabel holds some text
+that is to be used when a cross reference (XRef)
+is made to its element.  Type is used with links,
+as it is clear that different types of links may be
+required; it duplicates the function of Role.
+</PARA>
+<PARA>The Class attribute has been introduced in an attempt to
+control the number of computer-specific in-line elements.
+The elements that bear the Class attribute, such as 
+Interface, have general
+meanings that can be made more specific 
+by providing a value for Class from the delimited list
+for that element.  For example, for the Interface element
+one may specify Menu, or Button; for the MediaLabel
+element one may specify CDRom or Tape.  Each element
+has its own list of permissible values for Class, and
+no default is set, so you can ignore this attribute
+if you wish.  
+</PARA>
+<PARA>Some attributes are defined with the keyword &percnt;yesorno;,
+which resolves to NUMBER.  To supply the required number,
+which must be either 1 or 0, you can use the 
+parameter entities &percnt;yes; (1); or &percnt;no; (0).
+</PARA>
+<PARA>An attributes that has the keyword IMPLIED bears no
+processing expections if it is absent or its 
+value is null.  Application designers might wish to
+supply plausible defaults, but none is specified here.
+However, it would be plausible to imply that the 
+language of a DocBook instance is U.S. English 
+unless specified otherwise.  (This matter may be clarified
+when character set specification is added to the DTD;
+for now, the character set must be inferred from the
+Lang attribute value, if present.)
+</PARA></SECT1>
+<SECT1><TITLE>cptrphrase.gp</TITLE>
+<PARA>This parameter entity has been introduced to provide
+some structure for in-line elements related to computers.
+Its contents are:  plain text,
+Anchor, BeginPage, all the index
+terms, Comment, Subscript, Superscript,
+all the kinds of links, Action, Application, ClassName,
+Command, 
+ComputerOutput,
+Database, ErrorName, ErrorType, 
+EventStructure, EventType,
+Filename, Function, Hardware, Interface,
+InterfaceDefinition, KeyCap, KeyCode, KeySym, LineAnnotation,
+Literal, Mask, MediaLabel, MsgText, Option,
+Optional, Parameter, Property, ProtocolRequest,
+Replaceable, ReturnValue, StructField, StructName, Symbol,
+SystemDialog, SystemItem, Token, Type, and UserInput.
+</PARA>
+<PARA>Many of these elements now have attributes 
+with delimited value lists; some former in-line elements now appear as 
+values for those attributes.
+</PARA></SECT1>
+<SECT1><TITLE>&ldquo;In-line&rdquo; vs. &ldquo;In flow&rdquo;</TITLE>
+<PARA>In this document, &ldquo;in-line&rdquo; means &rdquo;occuring within a line 
+of text, like a character or character string, not causing
+a line break.&rdquo;  This term is sometimes used to 
+refer to objects such as an illustration around which 
+something like a paragraph is wrapped; here that circumstance
+will be called &ldquo;in flow.&rdquo;  There is no provision yet
+for indicating that an object is in flow, but one could
+make creative use of the Role attribute to do so.
+</PARA>
+<PARA>A related point:  formal objects have titles; informal 
+objects do not.  That an object is informal does not mean
+that it is in-line:  these are two different 
+characteristics.
+</PARA></SECT1>
+<SECT1><TITLE>CALS Tables</TITLE>
+<PARA>In this revision, the former Table models have been 
+replaced by one derived from MIL-M-28001B, dated
+26 July 1993 (supersedes MIL-M-28001A of 20 July 
+1990.)
+The documentation of Table and its subelements,
+below, has been taken from that document,
+with some editing and attempts at clarification.
+</PARA></SECT1>
+<SECT1>
+<TITLE>List of Elements</TITLE>
+<VARIABLELIST>
+<VARLISTENTRY><TERM><EMPHASIS>Abstract</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A document summary. 
+Abstract contains an optional Title followed by 
+paragraphs, and 
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Abbrev</TERM>
+<LISTITEM>
+<PARA>An abbreviation, especially one
+followed by a period.  It contains plain text and 
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Ackno</TERM>
+<LISTITEM>
+<PARA>Acknowledgements in an Article.
+It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Acronym</TERM>
+<LISTITEM>
+<PARA>A pronounceable contraction of
+initials, usually printed in all caps or small caps.  
+It contains plain text and 
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Action</TERM>
+<LISTITEM>
+<PARA>A function invoked in response to a user event.  It may contain members of cptrphrase.gp,
+and has common and MoreInfo attributes.
+For the MoreInfo
+attribute see <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Address</TERM>
+<LISTITEM>
+<PARA>A real-world address.  It contains
+any number, in any order, of:  Street, POB, Postcode,
+City, State, Country, Phone, Fax, and Email.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Affiliation</TERM>
+<LISTITEM>
+<PARA>Author's institutional affiliation.
+It contains, in order, an optional ShortAffil, any number
+of JobTitles, optional OrgName, any number of 
+Orgdivs, and any number of Addresses.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Anchor</TERM>
+<LISTITEM>
+<PARA>Marks a target for a Link.  
+Anchor may appear almost anywhere, and has no content.
+Anchor has ID, Pagenum, Remap, Role, and XRefLabel attributes;
+the ID is required.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Appendix</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>May occur only after Chapters 
+or References, in a Book.
+Appendix begins  with an optional DocInfo, followed by
+a required Title, optional TitleAbbrev, and anything
+found in the body of a Chapter.
+It has common and  Label attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Application</TERM>
+<LISTITEM>
+<PARA> The name of a software program.
+It may contain members of cptrphrase.gp,
+and has common, Class, and MoreInfo attributes.
+Class may be Hardware or Software (no default).  MoreInfo
+may have the value RefEntry, indicating that a
+RefEntry exists containing additional information 
+about this term.  The default value for MoreInfo is None.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Arg</TERM>
+<LISTITEM>
+<PARA>Argument in a CmdSynopsis.  Arg may contain
+any number of Args, Groups, Options, SynopFragmentRefs, Replaceables,
+in any order, mixed with plain text.  Arg is defined in 
+the DTD as having common attributes and the attributes
+defined by the parameter entities argchcatt and repatt.
+</PARA>
+<PARA><EMPHASIS>argchcatt</EMPHASIS> or &ldquo;argument choice attribute&rdquo;
+resolves to the attribute
+Choice, with allowed values Opt (the Arg is
+optional; the default), Req (it is required), 
+and Plain (neither optional nor required).  
+</PARA>
+<PARA><EMPHASIS>repatt</EMPHASIS> or &ldquo;repetition attribute&rdquo;
+resolves to the attribute Rep, with allowed 
+values Repeat (the Arg may be repeated; the default)
+and Norepeat (the Arg does not repeat).
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>ArtHeader</EMPHASIS></TERM>
+<LISTITEM>
+<PARA> Metainformation for an Article.
+ArtHeader has, in order, a required Title, optional
+TitleAbbrev, optional Subtitle, one or more AuthorGroups,
+optional BookBiblio, a required ArtPageNums, 
+any number of 
+Abstracts, any number of ConfGroups, and finally any number 
+ContractNums and ContractSponsors, in any order.
+ArtHeader has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Article</EMPHASIS></TERM>
+<LISTITEM>
+<PARA> An article in a journal.  Book may
+be used to hold Articles.  An Article has, in order,
+a required ArtHeader, main contents as for Chapter,
+then any number of Indexes, Glossaries, Bibliographies,
+Appendixes and Acknos, in any order.  Article has
+common and ParentBook attributes, the latter pointing
+to the ID of the enclosing Book.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ArtPageNums</TERM>
+<LISTITEM>
+<PARA> Page numbers of an Article
+as published.  It contains plain text (e.g., 23-147).
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Author</TERM>
+<LISTITEM>
+<PARA>Author of a document, occuring in 
+AuthorGroup.  It consists of
+one or more of the following, in any order:
+Honorific, Firstname, Surname, Lineage, OtherName,
+Affiliation, and AuthorBlurb.  It has common 
+attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>AuthorBlurb</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Short description of
+author.
+AuthorBlurb contains an optional Title followed by 
+paragraphs, and 
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>AuthorGroup</TERM>
+<LISTITEM>
+<PARA>Wrapper for Author information.
+It contains one or more CorpAuthors, Collabs, and
+Authors, in any order.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>AuthorInitials</TERM>
+<LISTITEM>
+<PARA>Indicates the author of
+a Revision or Comment.  It contains plain text
+and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>BeginPage</TERM>
+<LISTITEM>
+<PARA>Marks a page break in a print
+version of a work that may be displayed online.
+It is without content, but has ID, PageNum, Remap, Role, and
+XRefLabel attributes.  The ID is required.
+The value of PageNum, which is
+not required, should be
+the folio (page number) of the page beginning at that
+point.  <EMPHASIS>Usage Note:</EMPHASIS>  Once you give
+a PageNum to a BeginPage, subsequent BeginPages should
+be assumed to indicate that value incremented by one per
+BeginPage.  You can indicate a change or reset in page
+numbering by providing a PageNum value for a later
+BeginPage.  
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>BiblioDiv</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A section of a 
+Bibliography.  It may have, in order, an
+optional Title, optional TitleAbbrev,
+any number of block-oriented elements, 
+followed by one or more BiblioEntries.
+It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>BiblioEntry</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>An entry in a Bibliography.
+It may begin and end with BiblioMiscs,
+between which must be an ArtHeader, BookBiblio, 
+or SeriesInfo.  That is, the main content of a 
+BiblioEntry may be identical to a section of 
+metainformation.  BiblioEntry has common attributes.
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM><EMPHASIS>Bibliography</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A bibliography.  It may be a
+book component on its own, or may appear within a Preface, Chapter, or Appendix, or at 
+the end of a Glossary.  It may have a DocInfo,
+a Title and a TitleAbbrev, then optional
+block-oriented elements, and then 
+one or more BiblioEntries or one or more BiblioDivs.  
+It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>BiblioMisc</TERM>
+<LISTITEM>
+<PARA>Untyped information required in a 
+BiblioEntry or BookInfo, in addition to the elements
+required there.  It contains plain text and 
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>BlockQuote</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A quotation set off from the main text,
+rather than occurring in-line.  It may have a Title, followed
+by block-oriented elements.  It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Book</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A collection of book components.
+The Book content model has been drawn
+more tightly since version 1.2.2, but is loose enough
+to accomodate English, French, and Japanese books.  
+A Book may have
+a Title and TitleAbbrev, followed in order by an optional
+BookInfo, an optional ToC,
+any number of LoTs, any number of Prefaces, 
+main contents, and back matter.  The main contents are
+required, and must be one or more Parts;
+one or more Chapters followed by any 
+number of References;
+one or more Articles; or one or more References.  
+All back matter is optional, but must appear in order:
+any number of Appendices, 
+a Glossary, a Bibliography, and any number of Indexes
+and SetIndexes,
+followed by any number of LoTs followed by an optional
+ToC. Book has common, FPI, and Label
+attributes.  The FPI attribute is intended to hold an
+SGML Formal Public Identifier for the Book;
+the Label attribute can be used to supply the 
+number of a Book, or you can use the content of the VolumeNum element in BookInfo.  
+in constructing Formal Public Identifiers you use
+your ISBN publisher's prefix.  In the ISBN 
+1&ndash;565692&ndash;043&ndash;0, for example, the publisher's 
+prefix is 565692. 
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>BookAcronym</TERM>
+<LISTITEM>
+<PARA>Dropped.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>BookBiblio</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>All the information about a book 
+that may be relevant
+to a bibliographical citation; occurs in BookInfo and 
+may be used in BiblioEntry.
+Only Title and AuthorGroup
+are required.  BookBiblio may contain, in order:  
+the required Title, optional TitleAbbrev, 
+Subtitle, and Edition, followed one or more required
+AuthorGroups; then, optionally, either an ISBN followed
+by an 
+optional VolumeNum or an ISSN followed by
+optional VolumeNum, optional IssueNum, and an
+optional PageNums.  After these elements there may 
+occur, again optionally and in order,
+InvPartNumber, ProductNumber, ProductName, 
+PubsNumber, and ReleaseInfo; then there may be any number
+of Pubdates followed by any number of Publishers,
+followed by optional
+Copyright, then optional SeriesInfo; then any number of
+Abstracts, any number of ConfGroups, any number
+of ContractNums mixed with any number of ContractSponsors,
+and an optional
+PrintHistory followed by an optional RevHistory.
+BookBiblio has common attributes.
+is the numbers of the pages contained in a given issue
+or volume
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>BookInfo</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Metainformation for a Book,
+in which it may appear.  BookInfo must contain
+a BookBiblio, followed by any number of LegalNotices, 
+followed by any number of ModeSpecs (which 
+are pointed to by the LinkMode attribute of OLink,
+and are collected here for convenience).  
+BookInfo has common attributes 
+and a Contents attribute, the
+values of which are the IDs of the ToC, LoTs, 
+Prefaces, Parts, Chapters, Appendixes, References,
+Glossary, Bibliography, and indexes
+comprising the Book, in the order of their appearance.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>BookTitle</TERM>
+<LISTITEM>
+<PARA>Dropped.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>BridgeHead</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A free-floating heading not
+tied to the Sect hierarchy.  It may contain 
+in-line elements and has common and Renderas
+attributes.  Use the Renderas attribute to indicate
+the format in which the BridgeHead should appear (Sect1,
+Sect2, Sect3, Sect4, Sect5, or Other, the default).
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Button</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>Interface.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Caution</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>An admonition set off from the text;
+Tip, Warning, Important, and Note all share its model.
+Its contents may include paragraphs, lists, and so forth,
+but not another admonition.
+Caution and its sisters have common attributes.
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM><EMPHASIS>Chapter</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A part of a Book.
+Chapter contain anything except 
+higher-level elements
+such as  Part, Book, and Set, or peers such as 
+Appendix and Preface.  A Chapter 
+may begin with a DocInfo, followed by
+a required Title, optional TitleAbbrev, and body.
+The body may be 
+either paragraphs and block-oriented elements or Sects containing
+them.  At the beginning and end of the body of
+a Chapter, or the beginning and end of any Sect,
+there may be any number of ToCs, LoTs, Indexes, Glossaries,
+and Bibliographies, not that such an organization is
+recommended for ordinary use. 
+Chapter has common and  Label attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Character</TERM>
+<LISTITEM>
+<PARA>An element of a writing
+system.  Characters may belong to Charsets, and in some contexts
+fonts represent characters.  
+(See <EMPHASIS>Glyph,</EMPHASIS> <EMPHASIS>Font</EMPHASIS>.) It contains plain text and 
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Charset</TERM>
+<LISTITEM>
+<PARA>A conventionally defined 
+set of characters, (not a font).
+It contains plain text and 
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Citation</TERM>
+<LISTITEM>
+<PARA>Any in-line bibliographic
+reference to another published work that uses a reference
+string, such as an abbreviation in a Bibliography.
+Compare CiteTitle.
+Citation contains plain text and 
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM>CiteTitle</TERM>
+<LISTITEM>
+<PARA>A citation for some published
+work.  Compare Citation.
+It may contain members of cptrphrase.gp,
+and has common and Pubwork attributes.
+The value of Pubwork should indicate the type
+of work cited; it may be Article, Book, Chapter,
+RefEntry, or Section (no default).
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>CiteBook</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>CiteTitle.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM>CiteChap</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>CiteTitle.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>CiteRefEntry</TERM>
+<LISTITEM>
+<PARA> A citation of a reference
+entry.  It must have a RefEntryTitle, followed
+by an optional ManVolNum.  It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>CiteSect</TERM>
+<LISTITEM>
+<PARA> Dropped.  See <EMPHASIS>CiteTitle.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>City</TERM>
+<LISTITEM>
+<PARA>Part of Address.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Classname</TERM>
+<LISTITEM>
+<PARA>The name of the class to which a 
+program component belongs.  
+It contains plain text and 
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>CmdSynopsis</TERM>
+<LISTITEM>
+<PARA>Synopsis for a Command.  A
+CmdSynopsis contains any number of
+Args and Groups, in any order, followed by a 
+single required
+Command, another set of any number of Args and 
+Groups, in any order, and ending with any number of 
+optional SynopFragments.  CmdSynopsis has common,
+Label, and Sepchar attributes.  Label has no 
+default; Sepchar has the default &ldquo; &rdquo;.
+The following is courtesy Eve Maler (see also
+the entries for the subelements elsewhere in
+this list:
+</PARA>
+<PARA>An argument at the command level (Arg)
+is a parameter passed to a
+command to specify or modify the command's behavior; it 
+often consists of a variable value 
+(Replaceable) 
+such as a filename field, or an option
+(Option) and its own nested 
+argument (Arg).  If the contents of an
+argument are not marked up further, they are assumed to be 
+something the user must type as shown (probably an option, 
+but this is implicit).  The Choice attribute on the two 
+argument elements indicates whether the argument must be 
+present (&ldquo;Req&rdquo;, the default), whether it
+is optional (&ldquo;Opt&rdquo;), or whether no indication of presence 
+is given (&ldquo;Plain&rdquo;, the default).  
+</PARA>
+<PARA>A group (Group) as a peer 
+or child of an argument is a 
+collection of arguments, options, or other constructs that must appear in some
+relation to each other.  For example, three options that are 
+exclusive of each other and are optional would be in a group 
+with a choice of &ldquo;Opt&rdquo; (the default).  
+The &ldquo;Optmult&rdquo; choice allows zero or more of the
+children of the group to be supplied, and the &ldquo;Reqmult&rdquo; 
+choice requires one or more of the children of the group to 
+be supplied.
+</PARA>
+<PARA>An option (Option) is a literal string or name of a 
+parameter-keyword controlling the behavior of the command; a 
+variable value (Replaceable) is a
+mnemonic name for a value that the user must supply, such as 
+an input file name.  The Option and Replaceable 
+elements are available in text as
+well as in synopses.  Stacks of options (for example, 
+&ldquo;-aefstuv&rdquo;) should 
+be put into a single Option element for simplicity.
+</PARA>
+<PARA>Depressingly complex constructs may 
+appear anywhere within a 
+synopsis.  A SynopFragment reference (SynopFragmentRef) is a
+special kind of variable value assigned in place of this 
+construct, which is 
+then broken out into its own synopsis subset (SynopFragment) for
+clarity.  A SynopFragment must have an ID, and any 
+SynopFragmentRefs supplied 
+must point to some SynopFragment.  
+</PARA>
+<PARA>Plain text within a CmdSynopsis 
+is allowed only inside Cmd, Arg,
+Option, Replaceable, and SynopFragmentRef.  The
+top-level separator character attribute 
+value (&ldquo; &rdquo; by default) should 
+be used to separate arguments and groups 
+from their repeat indicators (&ldquo;. . .&rdquo;) and 
+to separate Commands and their arguments and groups at the top level.
+</PARA>
+<PARA>The CmdSynopsis structure does 
+not meet the needs of DCL 
+and other VMS-related command languages that have command 
+parameters such 
+as /[NO]WRITE, positional versus nonpositional parameters, and so on.
+Probably additional low-level elements would have to be 
+added to the mix and the top-level structure enhanced 
+slightly to account for
+these.  However, CmdSynopsis
+appears to meet most UNIX-related needs.
+</PARA>
+<PARA><EMPHASIS>Processing expectations:</EMPHASIS>
+The &ldquo;Opt&rdquo; settings on arguments and groups (and probably 
+&ldquo;Optmult&rdquo; as
+well for now) should produce square brackets.  
+The &ldquo;Req&rdquo;
+settings (and probably &ldquo;Reqmult&rdquo; as well for now) 
+should produce curly braces.  The children of Group (if 
+there is more than one child) should be either separated by vertical bars or formatted as a stacked list.
+Spacing at the Command and Group levels
+is controlled by formatter defaults and/or the 
+sepchar setting.  
+</PARA>
+<SCREEN>
+Example command synopsis in typical UNIX(tm) format:
+
+  rm [-f] [-r] [-i] [-] {filename|dirname} . . .
+  |    |    |    |   |  |   |       |    |
+  |    optional args    |   |       |    repeat indicator
+  |    (contain options)|   |       |
+  |                     |   |       second child of group
+  command name          |   |
+                        |   first child of group
+                        |
+                        required repeatable group
+
+     SGML source for this example:
+<SGMLTAG>CMDSYNOPSIS</SGMLTAG>
+<SGMLTAG>COMMAND</SGMLTAG>rm<SGMLTAG>/COMMAND</SGMLTAG>
+<SGMLTAG>ARG Choice=&ldquo;opt&rdquo;</SGMLTAG>-f<SGMLTAG>/ARG</SGMLTAG>        (<SGMLTAG>OPTION</SGMLTAG> not required for arg contents
+<SGMLTAG>ARG Choice=&ldquo;opt&rdquo;</SGMLTAG>-r<SGMLTAG>/ARG</SGMLTAG>        unless doing extra-special processing)
+<SGMLTAG>ARG Choice=&ldquo;opt&rdquo;</SGMLTAG>-i<SGMLTAG>/ARG</SGMLTAG>
+<SGMLTAG>ARG Choice=&ldquo;opt&rdquo;</SGMLTAG>-<SGMLTAG>/ARG</SGMLTAG>         (various synopsis formats 
+<SGMLTAG>GROUP Choice=&ldquo;req&rdquo; Rep=&ldquo;repeat&rdquo;</SGMLTAG>      can be generated)
+<SGMLTAG>REPLACEABLE</SGMLTAG>filename<SGMLTAG>/REPLACEABLE</SGMLTAG>
+<SGMLTAG>REPLACEABLE</SGMLTAG>dirname<SGMLTAG>/REPLACEABLE</SGMLTAG>
+<SGMLTAG>/GROUP</SGMLTAG>
+<SGMLTAG>/CMDSYNOPSIS</SGMLTAG>
+</SCREEN>
+</LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Collab</TERM>
+<LISTITEM>
+<PARA>A collaborative group
+of authors.  It contains a required CollabName
+followed by any number of Affiliations.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>CollabName</TERM>
+<LISTITEM>
+<PARA>Name of a collaborative group
+of authors.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ColSpec</TERM>
+<LISTITEM>
+<PARA>Column specifier,
+that is, formatting information for a 
+column in a Table, part of TGroup, THead, or TGroup.  
+ColSpec is an empty element, bearing common 
+and Align, Char, Charoff,
+Colname, Colnum, Colsep, Colwidth, and Rowsep
+attributes.  The default values come from the TGroup, 
+THead, or TFoot that starts the current enclosing group.  
+Each ColSpec is for a single column, so it properly has a  
+column number, Colnum, implicitly in order starting  
+from 1, and an optional Colname by which it is known when 
+used in any SpanSpec or in Entry. 
+A ColSpec set on THead or TFoot should be complete for 
+all columns.  It overrides those on the containing TGroup 
+and applies to just the THead or 
+TFoot.  If there is no ColSpec used within THead or 
+TFoot, then the ColSpec of the containing TGroup (or the  
+prior TGroup) is used.  ColSpecs from the containing 
+TGroup apply to TBody. 
+</PARA>
+<PARA>For <EMPHASIS>TGroupStyle</EMPHASIS>, see <EMPHASIS>TGroup.</EMPHASIS>
+</PARA>
+<PARA><EMPHASIS>Align</EMPHASIS> controls the horizontal position 
+of text within the column.  
+The value of Align may be Left (quad flush left), 
+Center (centered), Right (quad flush right), 
+Justify (both quad left and right), or Char (align to
+the left of Char, positioned by Charoff).  There is
+no default. 
+</PARA>
+<PARA><EMPHASIS>Char</EMPHASIS> contributes to Align.  If the
+value of Align is &ldquo;char&rdquo;, the value of Char
+should be a character on the first occurrance
+of which the entry is to be aligned.  If that 
+character does not occur in the entry, the entry 
+is aligned to the left of the position determined
+by Charoff.  (Think of using the decimal point to
+align decimal numbers:  Char=&ldquo;. &rdquo;and
+Charoff says how far over in the column the decimals
+should be; if no decimal occurs, the number is an
+integer and is aligned to the left of the decimals.)
+No value implies there
+is no character to align on.
+The default is implied, from the enclosing TGroup.
+(That is, you normally declare that an entire TGroup
+shall be decimal-aligned, but if you need to align
+a specific column differently, you can do it by
+specifying another Char at the ColSpec level.) 
+</PARA>
+<PARA><EMPHASIS>Charoff</EMPHASIS> contributes with Char to Align.
+Charoff is the proportion
+of the current column width, expressed in percentage,
+to be allowed before the left edge of the first occurrence
+of the character given as the value of Char.
+The default is inherited from the enclosing TGroup. 
+That is, if columns in a TGroup are to be decimal-aligned,
+and the decimal point is to fall three-quarters of the
+way across each cell (most of your numbers are of the 
+form 123.4), you could set Charoff to 75 in
+TGroup; that value would be inherited by ColSpec, where
+you could modify it for a specific column (for
+example, by setting it to
+50 for a column of numbers of the form 12.34).
+</PARA>
+<PARA><EMPHASIS>Colname</EMPHASIS> gives the name of the column, which
+is used 
+to specify the position in a row, or the start or end of a 
+horizontal span of columns (SpanSpec).  There is no default.
+</PARA>
+<PARA><EMPHASIS>Colnum</EMPHASIS> gives the number of the column, 
+counting from 1 at left of the table.
+There is no default. 
+</PARA>
+<PARA><EMPHASIS>Colsep</EMPHASIS> 
+determines column separators.  If its value
+is Yes, display the internal column rulings to 
+the right of each item; if No, do not 
+display it.  It is ignored for the last column, where the 
+Frame setting applies.  There is no default.  The
+value is inherited from TGroupStyle if used.  
+</PARA>
+<PARA><EMPHASIS>Colwidth</EMPHASIS> is either a proportional 
+measure of the form <EMPHASIS>number*</EMPHASIS>, such as &ldquo;5*&rdquo; for  
+5 times the proportion, or &ldquo;*&rdquo; (=&ldquo;1*&rdquo;); or a  
+fixed measure, such as 2pt for 2 
+points, 3pc for 3 picas; or a mixed measure, such as 2*+3pt.  
+Coefficients are positive numbers with up to 
+two decimal places.  There is no default.
+If no value is given, the value should
+be obtained from the FOSI, or, if there is no FOSI value, 
+the value 1 should be used.  (Perhaps this means that 
+you can vary the width of columns by stating their relative
+proportions, or you can give fixed widths.  If you use
+a decimal number less than zero, express it in the form
+0.2, not .2.)
+</PARA>
+<PARA><EMPHASIS>Rowsep</EMPHASIS> 
+determines row separators.  If its content is 
+Yes, display the internal vertical row ruling 
+below each item; if No, do not display it.  It is 
+ignored for the last row of the table, where 
+the value of Frame applies to the entire Table.  
+There is no default.
+The value is inherited from TGroupStyle, if used.  
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Command</TERM>
+<LISTITEM>
+<PARA>An executable program, or
+the entry a user makes to execute a command.
+It may contain members of cptrphrase.gp,
+and has common and MoreInfo attributes.
+For the MoreInfo
+attribute see <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM><EMPHASIS>Comment</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A remark made within the document file that
+is intended for use during interim stages of production.
+A Comment should not be displayed to the reader of the 
+finished, published work.  It may appear almost anywhere, 
+and may contain almost anything
+below the Section level.  Note that,
+unlike an SGML comment, unless you take steps
+to suppress it, the Comment element
+will be output by an SGML parser
+or application.  You may wish to do this to display Comments
+along with text during the editorial process.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ComputerOutput</TERM>
+<LISTITEM>
+<PARA>Data presented to the user by
+a computer.
+It may contain elements from cptrphrase.gp,
+and has common and 
+MoreInfo attributes  For the MoreInfo attribute
+see <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ConfGroup</TERM>
+<LISTITEM>
+<PARA>A wrapper for information about
+a conference.  It contains any number of ConfDates,
+ConfTitles, ConfNums, Addresses, and ConfSponsors, 
+in any order.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ConfNum</TERM>
+<LISTITEM>
+<PARA>The number of a conference.  It 
+contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ConfSponsor</TERM>
+<LISTITEM>
+<PARA>Sponsor of a conference in connection
+with which a document was written.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ConfDates</TERM>
+<LISTITEM>
+<PARA>Dates of a conference in connection
+with which a document was written.  It contains plain text
+(e.g., 21-24 May 1927).
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ConfTitle</TERM>
+<LISTITEM>
+<PARA>Title of a conference in connection
+with which a document was written.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Constant</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>SystemItem.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ContractNum</TERM>
+<LISTITEM>
+<PARA>Number of a contract under which
+a document was written.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ContractSponsor</TERM>
+<LISTITEM>
+<PARA>Sponsor of a contract under which
+a document was written.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Copyright</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Copyright information about
+a document.  It consists of one or
+more Years followed by any number of Holders.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>CorpAuthor</TERM>
+<LISTITEM>
+<PARA>Corporate author of a book, for use 
+in BookInfo or BiblioEntry.  It contains plain text
+and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>CorpName</TERM>
+<LISTITEM>
+<PARA>Name of a corporation.  It contains
+plain text.
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM>Country</TERM>
+<LISTITEM>
+<PARA>Part of Address.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Data</TERM>
+<LISTITEM>
+<PARA>Optional component of FuncParam and 
+ParamDef.  It wraps plain text, Replaceable, more Data,
+Emphasis, and may contain links and indexing information.
+It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Date</TERM>
+<LISTITEM>
+<PARA>Date of publication or revision.
+It contains plain text.  (No provision
+has been made for representing eras; you could include this
+information along with the date data.)  
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Database</TERM>
+<LISTITEM>
+<PARA>An organized set of data.
+It may contain members of cptrphrase.gp,
+and has common, Class, and MoreInfo attributes.
+Class may have the value
+Name, Table, Field, Key1, Key2, or Record
+(no default).  For the MoreInfo
+attribute see <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>DbField</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>Database.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>DbName</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>Database.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>DbRecord</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>Database.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>DbTable</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>Database.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>DocBook</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Dropped.  Use the book component's
+name 
+(<EMPHASIS>e.g.,</EMPHASIS> Chapter) as the Doctype, or construct
+a shell Book in which you can insert individual
+book components as entities.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>DocInfo</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Metainformation for a book
+component, in which it may appear.  Only Title and AuthorGroup
+are required.  DocInfo may contain, in order:  
+the required Title, optional TitleAbbrev and 
+Subtitle, followed by one or more 
+AuthorGroups, any number of
+Abstracts, an optional RevHistory, and any number of 
+LegalNotices.
+DocInfo has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Edition</TERM>
+<LISTITEM>
+<PARA>The edition of a document.  It contains
+plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Editor</TERM>
+<LISTITEM>
+<PARA>The editor of a document.  
+Contents are the same as for <EMPHASIS>Author.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Email</TERM>
+<LISTITEM>
+<PARA>Part of Address.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Emphasis</TERM>
+<LISTITEM>
+<PARA>Provided for use where you would 
+traditionally use italics
+or bold type to emphasize a word or phrase.
+It contains plain text and 
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Entry</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A euphemism for a cell in a table&mdash;you'd
+rather be in an Entry than in a Cell, wouldn't you?  
+An Entry occurs in
+a Row, and must have either some assortment 
+of paragraphs, admonitions, lists,
+and Graphics, or in-line elements.  
+Entry has common
+and Align, Char, Charoff, Colname, Colsep,
+Morerows, Nameend, Namest, 
+Rotate, Rowsep, Spanname, and VAlign attributes.  
+Attribute values may be inherited
+from enclosing elements that share the same
+attribute.
+&ldquo;An Entry not specified by a SpanSpec gets its
+defaults from its starting column.&rdquo;
+</PARA>
+<PARA><EMPHASIS>Align</EMPHASIS> controls the horizontal position 
+of text within the column.  
+The value of Align may be Left (quad flush left), 
+Center (centered), Right (quad flush right), 
+Justify (both quad left and right), or Char (align on  
+leftmost of Char, positioned by Charoff).  There is
+no default; the value may be inherited from 
+ColSpec or SpanSpec. 
+</PARA>
+<PARA><EMPHASIS>Char</EMPHASIS> contributes to Align.  If the
+value of Align is &ldquo;char&rdquo;, the value of Char
+should be a character on the first occurrance
+of which the entry is to be aligned.  If that 
+character does not occur in the entry, the entry 
+is aligned to the left (the original doc incorrectly
+specifies &ldquo;right&rdquo;)
+of the position determined
+by Charoff.  
+The default is inherited; no value implies there
+is no character to align on.
+</PARA>
+<PARA><EMPHASIS>Charoff</EMPHASIS> contributes with Char to Align.
+Charoff is the proportion
+of the current column width, expressed in percentage,
+to be allowed before the left edge of the first occurrence
+of the character given as the value of Char, if any.
+The default is inherited from ColSpec or SpanSpec. 
+</PARA>
+<PARA><EMPHASIS>Colname</EMPHASIS> gives the name of the column, 
+which is used 
+to specify the position in a row, or the start or end of a 
+horizontal span of columns (SpanSpec).  There is no default;
+omit if SpanName is present.  The implied value is either
+the first column of the Row, or, if already in a Row,
+the next column after the end of the prior Entry or 
+EntryTbl.
+</PARA> 
+<PARA><EMPHASIS>Colsep</EMPHASIS> determines column separators.  
+If its value
+is Yes, display the internal column rulings to 
+the right of each Entry; if No, do not 
+display it.  It is ignored for the last column, where the 
+Frame setting applies.  (In CALS, 
+Yes is expressed as 1 and No as 0.) 
+There is no default; if no value is given the
+value is inherited from ColSpec or SpanSpec.  
+</PARA>
+<PARA><EMPHASIS>Morerows</EMPHASIS> is the number of 
+additional rows in a 
+vertical straddle.  The default is 0.
+</PARA>
+<PARA><EMPHASIS>Nameend</EMPHASIS> is the name of the rightmost 
+column of a span.  Names are identified in the
+ColSpec of the current TGroup.  There is no default.
+</PARA>
+<PARA><EMPHASIS>Namest</EMPHASIS> or Name Start,
+is the name of the leftmost column 
+of a span.  Names are identified in the
+ColSpec of the current TGroup.  
+</PARA>
+<PARA><EMPHASIS>Rotate</EMPHASIS> 
+governs rotations, which are not additive to 
+those specified in the FOSI.  
+Values may be Yes or No (1 or 0).
+No specifies no rotation; Yes specifies 
+90 degrees rotation counterclockwise 
+to table orientation.  No other values are 
+supported!
+</PARA>
+<PARA><EMPHASIS>Rowsep</EMPHASIS> 
+determines row separators.  If its content is 
+Yes, display the internal vertical row ruling 
+below each item; if No, do not display it.  It is 
+ignored for the last row of the table, where 
+the frame value applies.  There is no default.
+The value is inherited from Row, if used there.  
+</PARA>
+<PARA><EMPHASIS>Spanname</EMPHASIS> is the name of a horizontal span. 
+No default.
+</PARA>
+<PARA><EMPHASIS>VAlign</EMPHASIS> governs the vertical 
+positioning of text within an Entry.  
+Allowed values are Top, Middle, and Bottom
+(no default).
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>EntryTbl</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A form of subtable. It
+may occur in Row, along with Entry.  
+Several EntryTbls of differing formats 
+may occur in the same Row of a
+TBody, but EntryTbl may not contain itself.  Aside
+from that restriction, EntryTbl contains one or
+more sets of these elements, in order:
+any number of ColSpecs, any number of SpanSpecs,
+an optional THead, and a required TBody.
+There is no implication
+of alignment of subrows in different EntryTbls.
+Default attribute values come instead from those
+of like-named attributes on enclosing
+elements:  Table, TGroup,
+ColSpec, SpanSpec, THead, TFoot, TBody, or
+Row.  EntryTbl has common, Align,
+Char, Charoff, ColName, Cols, Colsep, Nameend, Namest,
+Rowsep, Spanname, and TGroupStyle attributes.
+</PARA>
+<PARA><EMPHASIS>Align</EMPHASIS> controls the horizontal position 
+of text within the column.  
+The value of Align may be Left (quad flush left), 
+Center (centered), Right (quad flush right), 
+Justify (both quad left and right), or Char (align to
+the  
+left of Char, positioned by Charoff).  There is
+no default; the value may be inherited from ColSpec
+or SpanSpec. 
+</PARA>
+<PARA><EMPHASIS>Char</EMPHASIS> contributes to Align.  If the
+value of Align is &ldquo;char&rdquo;, the value of Char
+should be a character on the first occurrance
+of which the entry is to be aligned.  If that 
+character does not occur in the entry, the entry 
+is aligned to the left (the original doc incorrectly
+specifies &ldquo;right&rdquo;) of the position determined
+by Charoff.  There is no default.
+</PARA>
+<PARA><EMPHASIS>Charoff</EMPHASIS> contributes with Char to Align.
+Charoff is the proportion
+of the current column width, expressed in percentage,
+to be allowed before the left edge of the first occurrence
+of the character given as the value of Char, if any.
+The default is inherited from the enclosing TGroup. 
+</PARA>
+<PARA><EMPHASIS>Colname</EMPHASIS> gives the name of the 
+leftmost column of EntryTbl.  There is no default.
+</PARA>
+<PARA><EMPHASIS>Cols</EMPHASIS> is the number of columns in the
+EntryTbl.  There is no default.
+</PARA>
+<PARA><EMPHASIS>Colsep</EMPHASIS> 
+determines column separators.  If its value
+is Yes, display the internal column rulings to 
+the right of the EntryTbl, 
+except if the EntryTbl falls in the the last column, where the siderule (<EMPHASIS>sic</EMPHASIS>)
+setting applies; if No, do not display it.  
+There is no default.  The
+value is inherited from the enclosing TGroup.  
+</PARA>
+<PARA><EMPHASIS>Nameend</EMPHASIS> is the name of the rightmost 
+column of a span.  Names are identified in the
+ColSpec of the current TGroup.  There is no default.
+</PARA>
+<PARA><EMPHASIS>Namest</EMPHASIS> or Name Start,
+is the name of the leftmost column 
+of a span.  Names are identified in the
+ColSpec of the current TGroup.  There is no default.
+</PARA>
+<PARA><EMPHASIS>Rowsep</EMPHASIS> 
+determines row separators.  If its content is 
+Yes, display the internal vertical row ruling 
+below the EntryTbl; if No, do not display it.  It is 
+ignored for the last row of the table, where 
+the frame value applies.  There is no default.
+The value is inherited from the enclosing
+TGroup.  
+</PARA>
+<PARA><EMPHASIS>Spanname</EMPHASIS> is the name of a horizontal span.  
+</PARA>
+<PARA><EMPHASIS>TGroupStyle</EMPHASIS> is the name of 
+a table group style
+defined in the FOSI.  There is no default.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Epigraph</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A brief section of poetry or prose
+at the start of a chapter.  It contains paragraphs and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Equation</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A titled mathematical equation displayed
+on a line by itself, rather than in-line.  It has an optional
+Title and TitleAbbrev, followed by either
+an InformalEquation or a Graphic (see <EMPHASIS>Graphic</EMPHASIS>). 
+Equation has common and Label attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ErrorName</TERM>
+<LISTITEM>
+<PARA>An error message reported by a computer.
+It contains plain text and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ErrorType</TERM>
+<LISTITEM>
+<PARA>A classification of an error message
+reported by a computer. 
+It contains plain text and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>EventStructure</TERM>
+<LISTITEM>
+<PARA>The code that defines an Event.
+It contains plain text and 
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>EventType</TERM>
+<LISTITEM>
+<PARA>A classification of an event.
+It contains plain text and 
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Example</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Intended for sections of program source code
+that are provided as examples in the text.  
+It contains a required Title and an
+optional TitleAbbrev, followed by one or more block-oriented
+elements in any combination.  It has common and Label
+attributes.  A simple Example might contain a Title 
+and a ProgramListing. 
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ExternalLink</TERM>
+<LISTITEM>
+<PARA> Dropped.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Fax</TERM>
+<LISTITEM>
+<PARA>Part of Address.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Figure</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>An illustration.  
+It must have a Title, and may have a
+TitleAbbrev, followed by one or more of
+BlockQuote,   
+InformalEquation, Graphic,
+InformalTable, Link, LiteralLayout, 
+OLink, ProgramListing, Screen, Synopsis, and ULink,
+in any order.  Figure has common,
+Label, and Float attributes; Float indicates
+whether the Figure is supposed to be rendered 
+where convenient (yes) or at
+the place it occurs in the text (no, the default). To
+reference an external file containing graphical
+content use the Graphic element within Figure.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Filename</TERM>
+<LISTITEM>
+<PARA> The
+name of a file, including pathname if this
+information is present.  It may contain members of cptrphrase.gp,
+and has common and MoreInfo attributes.
+For the MoreInfo
+attribute see <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM>FirstName</TERM>
+<LISTITEM>
+<PARA> (Western-style) given name 
+of Author, 
+Editor, or OtherCredit.  It contains
+plain text. 
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>FirstTerm</TERM>
+<LISTITEM>
+<PARA>First occurrence 
+of a word in a given context.  
+It contains plain text and 
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Font</TERM>
+<LISTITEM>
+<PARA>A collection of Glyphs (see <EMPHASIS>Glyph</EMPHASIS>).
+It contains plain text and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Footnote</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>The contents of a footnote, when
+the note occurs outside the block-oriented element in
+which the FootnoteRef occurs.  
+(Compare <EMPHASIS>InlineNote.</EMPHASIS>)
+The point in the text where the mark for a specific 
+footnote goes is indicated by FootnoteRef.
+Footnote may contain Para, SimPara, BlockQuote, InformalEquation, InformalTable,
+Graphic, Synopsis, LiteralLayout, ProgramListing,
+Screen, and any kind of list.
+It has ID, Label, Lang, Remap, Role, and XRefLabel 
+attributes; the ID attribute is required, as 
+a FootnoteRef must point to it.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>FootnoteRef</TERM>
+<LISTITEM>
+<PARA>Identifies the location for a footnote mark.
+It may contain plain text, which is the mark to be displayed, or it may be empty, in which case the Mark 
+attribute provides
+another way of indicating the contents of the mark (such as an asterisk,~*, a number, 84, or a dingbat specified by
+a name that is to be interpreted by the application).  
+FootnoteRef has ID, Linkend, and Mark
+attributes.  The Linkend attribute,
+which is required, has as its value the ID of
+the associated Footnote, and the Mark.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ForeignPhrase</TERM>
+<LISTITEM>
+<PARA>Any word or words
+from a language other than
+that of the document which you want to mark off
+in some way.  In English, <EMPHASIS>inter alia</EMPHASIS> and
+<EMPHASIS>c'est la vie</EMPHASIS> are ForeignPhrases.
+It contains plain text and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>FormalPara</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A paragraph with a Title.
+FormalPara contains a required Title followed
+by a required Para, and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>FuncDef</TERM>
+<LISTITEM>
+<PARA> Part of a FuncSynopsis.
+Like Paramdef, it provides
+data type information and the name of the
+Function (or Parameter, in the case of ParamDef) 
+this information applies
+to.  A FuncDef may contain any combination of 
+plain text, Replaceable, Data, or Function, in any order.
+It has common attributes.
+</PARA>
+<PARA>Separating this information from the rest of 
+the synopsis avoids messing with data type 
+information that appears before <EMPHASIS>or after</EMPHASIS>
+the item it applies to, such as array
+information (&ldquo;[]&rdquo;).  It also avoids the issue of 
+placing the pointer (&ldquo;*&rdquo;) indicator (next to the rest of 
+the left-hand data type or next to the Parameter or Function 
+name?).  Any spaces that surround the
+Parameter or Function must be inserted by the writer.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>FuncParams</TERM>
+<LISTITEM>
+<PARA>Optional component of ParamDef.
+It supplies &ldquo;inner parameters&rdquo; for Paramters that
+are pointers to Functions.  FuncParams
+ contains elements from ctprphrase.gp and has
+common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>FuncSynopsis</TERM>
+<LISTITEM>
+<PARA>(contributed Eve Maler, along
+with remarks on its subelements.)
+A C synopsis that shows a prototype or 
+definition indicating a function's name.  A FuncSynopsis 
+also indicates the data type of its return value, and 
+the positions, purposes, and data types of its
+parameters.  A FuncSynopsis begins with an
+optional FuncSynopsisInfo, which contains additional
+information about the synopsis that follows; line breaks
+and leading white space are significant within a 
+FuncSynopsisInfo.  This is followed by 
+one or more blocks defining a function (you might
+use more than one for connecting related sets of functions).  
+Each of these blocks consists of a required FuncDef, 
+followed by a Void, a VarArgs, or one or more ParamDefs.  
+Void, Varargs, and and ParamDef
+are mutually exclusive.  <EMPHASIS>Usage Note:</EMPHASIS>
+You should supply no specific information on the arguments before the ellipsis that VarArgs should output when 
+rendered, but if it is necessary
+to represent the ellipsis in the source it may 
+ben enclosed within a final ParamDef.
+FuncSynopsis has common and Label attributes.
+</PARA>
+<PARA>The processing application is expected to 
+provide all parentheses, semicolons, and the like.  The 
+exceptions are any spaces surrounding function and parameter 
+names, any parentheses or commas or spacing 
+inside lists of data types of parameters that are pointers 
+to functions, and the parentheses around those parameter 
+names themselves.  These exceptions are a bit confusing in 
+the unusual case (pointers to functions), but they 
+<EMPHASIS>greatly</EMPHASIS> simplify tagging and still
+allow either K&amp;R style or ANSI C style to be produced 
+(assuming writers have cooperated in supplying enough 
+information for ANSI).
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>FuncSynopsisInfo</TERM>
+<LISTITEM>
+<PARA>Information supplementing
+the FuncDefs of a FuncSynopsis.  It contains elements
+of ctprphrase.gp, and within it line breaks
+and leading white space are significant. 
+See <EMPHASIS>FuncSynopsis.</EMPHASIS>  It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Function</TERM>
+<LISTITEM>
+<PARA> A subroutine in a program or external
+library. It may contain members of cptrphrase.gp,
+and has common and MoreInfo attributes.
+For the MoreInfo
+attribute see <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>FunctionParam</TERM>
+<LISTITEM>
+<PARA>Dropped.
+See <EMPHASIS>Parameter.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Glossary</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A glossary of terms.  Glossary
+may occur within a Chapter, Appendix, or Preface,
+or may be a book component in its own right.
+It contains in order an optional DocInfo, optional
+Title, and optional TitleAbbrev, followed by 
+any number of 
+block-oriented elements, followed by 
+one or more GlossEntries or one or more GlossDivs.
+It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>GlossDef</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>The definition attached to a GlossTerm
+in a GlossEntry.  It may
+contain Comments, GlossSeeAlsos,
+paragraphs, and other block-oriented
+elements, in
+any order; it has common and Subject attributes.  The Subject
+attribute may hold a list of subject areas (e.g., DCE RPC 
+General) as keywords.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>GlossDiv</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A division of a Glossary.
+It may have a Title and TitleAbbrev, followed by
+block-oriented elements, followed by
+one or more GlossEntries.  It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>GlossEntry</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>An entry in a Glossary.  
+It contains, in order, a required
+GlossTerm, an optional Acronym,
+an optional Abbrev, and any number of 
+GlossSees and GlossDefs, in any order.  
+It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM>GlossSee</TERM>
+<LISTITEM>
+<PARA>A cross-reference from one
+GlossEntry to another.  It may contain plain 
+text or no content, and has common and OtherTerm 
+attributes.  OtherTerm is a reference to the
+GlossTerm within the cross-referenced GlossEntry; that
+GlossTerm should be displayed at the point of the GlossSee.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>GlossSeeAlso</TERM>
+<LISTITEM>
+<PARA>A cross-reference from one
+GlossDef to another GlossEntry.  It may contain plain 
+text or no content, and has common and OtherTerm 
+attributes.  OtherTerm is a reference to the
+GlossTerm within the cross-referenced GlossEntry; that
+GlossTerm should be displayed at the point of the GlossSee.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>GlossTerm</TERM>
+<LISTITEM>
+<PARA>A term in the 
+text of a Chapter (for example) that is glossed in a Glossary; also used for those terms in GlossEntries, in the
+Glossary itself.  As you may not want to tag all occurrences
+of these words outside of Glossaries, you might consider 
+GlossTerm, when used outside of Glossaries, to be similar
+to FirstTerm, except that GlossTerm may contain other 
+in-line elements.  GlossTerm contains in-line elements
+and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Glyph</TERM>
+<LISTITEM>
+<PARA>A mark, a component of a font.  A character
+or ligature might be made up of one, two, or more Glyphs.
+<EMPHASIS>Cf.</EMPHASIS> Character.
+It contains plain text and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Graphic</TERM>
+<LISTITEM>
+<PARA>Encloses graphical data or 
+points via an attribute to an external file containing such data,
+and is to be rendered as an object, not in-line.
+It has Format,
+Fileref, Entityref, and ID attributes.
+The format attribute may have the value of 
+any of the formats defined at the head of the DTD,
+including CGM-CHAR, CGM-CLEAR, DITROFF, DVI, EPS, 
+EQN, FAX, FAXTILE, GIF, IGES, PIC, PS, TBL, TEX,
+TIFF. 
+</PARA>
+<PARA>The value of
+Fileref should be a filename, qualified by a pathname
+if desired; the value of Entityref should be that of an
+external data entity.  If data is given as the 
+content of Graphic, both Entityref and Fileref,
+if present at all, should
+be ignored, but a Format value should be supplied.
+if no data is given as the content of 
+Graphic and a value for Entityref
+is given, Fileref, if present, should be ignored
+but no Format value should be supplied.
+Finally, if there is no content for Graphic and
+Entityref is absent or null, Fileref must be 
+given the appropriate value, and again no
+Format value should be supplied.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Group</TERM>
+<LISTITEM>
+<PARA>A group of constituent parts of a 
+CmdSynopsis.  A Group consists of one or more Args, Groups,
+SynopFragmentrefs, 
+and Replaceables, in any order.  See <EMPHASIS>CmdSynopsis.</EMPHASIS>
+Group has common, grpchcatt, and repatt attributes.
+</PARA>
+<PARA><EMPHASIS>argchcatt</EMPHASIS> or &ldquo;argument choice attribute&rdquo;
+resolves to the attribute
+Choice, with allowed values Opt (the Arg is
+optional; the default), Req (it is required), and Plain (neither 
+optional nor required).  
+</PARA>
+<PARA><EMPHASIS>repatt</EMPHASIS> or &ldquo;repetition attribute&rdquo;
+resolves to the attribute Rep, with allowed 
+values Norepeat (the Arg may be repeated; the default)
+and Repeat (the Arg does not repeat).
+</PARA>
+<PARA><EMPHASIS>grpchcatt</EMPHASIS> or &ldquo;group choice attribute&rdquo;
+is a parameter entity that
+resolves to the the Choice attribute for the element Group.
+The allowed values are Opt (the Arg is
+optional; the 
+default), Req (it is required), Plain (neither 
+optional nor required), OptMult (optional and
+repeatable), and ReqMult (required
+multiple times).  
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Hardware</TERM>
+<LISTITEM>
+<PARA> A physical part of a computer system.
+It may contain members of cptrphrase.gp,
+and has common and MoreInfo attributes.
+For the MoreInfo
+attribute see <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM><EMPHASIS>Highlights</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A list of main points discussed
+in a book component such as a Chapter.  It may contain 
+paragraphs, 
+lists, and admonitions, and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Holder</TERM>
+<LISTITEM>
+<PARA>Part of Copyright; the
+holder of the copyright of the document.  It contains 
+plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Honorific</TERM>
+<LISTITEM>
+<PARA>A person's title, to be used as part of 
+Author, Editor, or OtherCredit.  It contains 
+plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>HWapplic</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Icon</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>Interface.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Important</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>An admonition set off from the text. 
+See <EMPHASIS>Caution.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Index</EMPHASIS></TERM>
+<LISTITEM>
+<PARA> An index to a Chapter, 
+Appendix, Preface, or Book.
+It contains an optional DocInfo, Title, and TitleAbbrev,
+followed by 
+any number of block-oriented elements, 
+and then one or more IndexEntries or one or more IndexDivs.
+It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>IndexAs</TERM>
+<LISTITEM>
+<PARA>Dropped.  
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>IndexDiv</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A division of an Index.
+It may have a Title and TitleAbbrev,
+some optional introductory matter (block-oriented elements, 
+Anchors, Comments), and must then 
+contain one or more IndexEntries or a SegmentedList (use
+a SegmentedList for a permuted index).
+It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>IndexEntry</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Part of Index.  It contains a
+PrimaryIE, which may be accompanied by SecondaryIE,
+TertiaryIE, SeeIE, and SeeAlsoIE.  It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>IndexTerm</TERM>
+<LISTITEM>
+<PARA>A character string to be indexed,
+occurring in the text flow but not in the text itself.
+(And remember, IndexTerm appears in the text, 
+not in the Index!)  
+Primary, Secondary, and Tertiary 
+index items are nested within this tag, as are See and
+SeeAlso items.  It has common, SpanEnd, PageNum, and 
+Significance attributes.
+The SpanEnd attribute may not be used if IndexTerm
+has content; it should be used only 
+to mark the end of a span
+of text that begins earlier
+at an IndexTerm that does have
+content. 
+The value of SpanEnd must be the 
+ID of that earlier IndexTerm.
+The PageNum attribute may be used to
+indicate the page on which the indexed term is found in print.   Significance 
+may have the value Preferred, indicating that the
+entry is the most pertinent of the series, or Normal (the
+default).
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>InformalEquation</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>An untitled mathematical equation 
+displayed on a line by itself, rather than in-line.  
+It contains a Graphic, and
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>InformalTable</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>
+An array of text that has no Title. 
+Otherwise, it is just like Table except that it lacks the 
+ShortEntry and ToCEntry attributes.  See <EMPHASIS>Table.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>InlineEquation</TERM>
+<LISTITEM>
+<PARA>An untitled mathematical equation 
+occurring in-line or as the content of an Equation. 
+It contains a Graphic, and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>InlineFootnote</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>The contents of a footnote, when
+the note occurs within the block-oriented element in
+which the FootnoteRef occurs.  
+(Compare <EMPHASIS>Footnote.</EMPHASIS>)
+The point in the text where the mark for a specific 
+footnote goes is indicated by FootnoteRef.
+InlineFootnote, like Footnote,
+ may contain paragraphs, BlockQuote, InformalEquation, InformalTable,
+Graphic, Synopsis, LiteralLayout, ProgramListing,
+Screen, and any kind of list.
+It has ID, Label, Lang, Remap, Role, and XRefLabel 
+attributes; the ID attribute is required, as 
+a FootnoteRef must point to it.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>InlineGraphic</TERM>
+<LISTITEM>
+<PARA>Encloses graphical data or 
+points via an attribute to an external file containing such data,
+and is to be rendered in-line.
+InlineGraphic has Format, Fileref, Entityref, and 
+ID attributes.
+The format attribute may have the value of 
+any of the formats defined at the head of the DTD,
+under &ldquo;Notations.&rdquo;
+If it is desired to point to an external file, a filename may 
+be supplied as the value of the Fileref attribute, or an
+external entity name may be supplied as the value of the 
+Entityref attribute. 
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>InlineNote</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>The contents of a footnote, when
+the note occurs within the block-oriented element in
+which the FootnoteRef occurs.  For usage and 
+attributes see <EMPHASIS>Footnote.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Interface</TERM>
+<LISTITEM>
+<PARA>Any part of a graphical user
+interface.
+It may contain members of cptrphrase.gp,
+and has common, Class, and MoreInfo attributes.
+Class may have the value Button, Icon, Menu, or MenuItem
+(no default).  For the MoreInfo
+attribute see <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>InterfaceDefinition</TERM>
+<LISTITEM>
+<PARA>A specification for a graphical user
+interface.  It may contain members of cptrphrase.gp,
+and has common and MoreInfo attributes.
+For the MoreInfo
+attribute see <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>InvPartNumber</TERM>
+<LISTITEM>
+<PARA>An inventory part number.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM>ISBN</TERM>
+<LISTITEM>
+<PARA>International
+Standard Book Number of a document.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ISSN</TERM>
+<LISTITEM>
+<PARA>International
+Standard Serial Number of a journal.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>IssueNum</TERM>
+<LISTITEM>
+<PARA>The number of an issue of a journal.
+It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>ItemizedList</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A list in which each item is marked with
+a bullet, dash, or other dingbat (or no mark at all).  
+It consists of one or more ListItems.  A ListItem in an
+ItemizedList contains paragraphs and other 
+block-oriented elements, which
+may in turn contain other lists; an ItemizedList may be 
+nested within other lists, too.  
+It has common attributes and
+a Mark attribute.  Your application might supply the mark to be used
+for an ItemizedList, but you can use this attribute to 
+indicate the mark you desire to be used; there
+is no fixed list of these.
+<EMPHASIS>Usage Note:</EMPHASIS>  
+You might want to use one of the ISO text entities
+that designates an appropriate dingbat.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>JobTitle</TERM>
+<LISTITEM>
+<PARA>Part of Affiliation.  It contains
+plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>JournalInfo</TERM>
+<LISTITEM>
+<PARA>Information about the journal in
+which an Article appears, in that Article's ArtHeader.
+It contains, in order, a required Title, optional
+TitleAbbrev, Subtitle, ISSN, VolumeNum, IssueNum,
+PageNums, PubDate, Publisher, and Copyright.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>KeyCap</TERM>
+<LISTITEM>
+<PARA>The text printed on a physical key on a 
+computer keyboard, not necessarily the same thing as a
+KeyCode.  It may contain members of cptrphrase.gp,
+and has common and MoreInfo attributes.
+For the MoreInfo
+attribute see <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Keycode</TERM>
+<LISTITEM>
+<PARA>The computer's numeric designation of a key on
+a computer keyboard.  Keycode contains plain text and has common 
+attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Keysym</TERM>
+<LISTITEM>
+<PARA>A key symbol name, which is not 
+necessarily the same thing
+as a Keycap.  For example, the Keysym for 
+the H key (Keycap H) might be <EMPHASIS>h.</EMPHASIS> 
+It contains plain text, and 
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM><EMPHASIS>LegalNotice</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>An
+acknowledgement of trademarks, etc.  It 
+may have a Title, followed by paragraphs,
+and BlockQuotes in any order.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Lineage</TERM>
+<LISTITEM>
+<PARA>Part of an author's name, such 
+as &ldquo;Jr.&rdquo; It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>LineAnnotation</TERM>
+<LISTITEM>
+<PARA>A writer's or editor's comment on
+a line of program code within an Example, ProgramListing,
+or Screen.  LineAnnotations are a document author's 
+comments on the code, not the comments written
+into the code itself by the code's author.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Link</TERM>
+<LISTITEM>
+<PARA>A hypertext link.  At present, all
+the link types represented in the DTD are
+provisional.  Link is less provisional than the
+others, however.  In HyTime parlance, Link is a 
+clink.  It may contain in-line elements
+and has Endterm, Linkend, and Type attributes.  The required
+Linkend attribute specifies the target of the link, 
+and the optional Endterm attribute specifies 
+text that is to be fetched from elsewhere in the document
+to appear in the Link.  You can also supply this text directly as
+the content of the Link, <EMPHASIS>in which case the
+Endterm attribute is to be ignored (new and tentative
+rule for this version, comments invited)</EMPHASIS>. 
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM><EMPHASIS>ListItem</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A wrapper for the elements of
+items in an ItemizedList or OrderedList; it also
+occurs within VarListEntry in VariableList.
+It may contain just about anything except Sects and book 
+components.
+It has common attributes and an Override attribute, which
+may have any of the values of ItemizedList's
+Mark attribute; use Override to override the mark
+set at the ItemizedList level, when you desire to create
+ItemizedLists with varying marks.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Literal</TERM>
+<LISTITEM>
+<PARA>Any literal string, used in-line, that is part of
+data in a computer.  This may be as precise as
+the value of an argument, but Literal may also be used
+as a catch-all element.  
+It may contain members of cptrphrase.gp,
+and has common and MoreInfo attributes.
+For the MoreInfo
+attribute see <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>LiteralLayout</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>The wrapper for lines set off from
+the main text that are not tagged as Screens, Examples,
+or ProgramListing, in which line breaks and leading
+white space are to be regarded as significant.
+It contains in-line elements, and has common 
+and Width attributes, for
+specifying a number representing the maximum width of
+the contents.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>LoT</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>The generic tag for such things as a List
+of Figures or List of Tables.  An LoT may occur within a Chapter, or Appendix, or may be a book 
+component on its own.
+It contains, in order, an optional DocInfo, Title, and TitleAbbrev, 
+followed by one or more LoTentries.  It has 
+common and Label attributes; in this case the values of
+Label may be Equation, Examples, Figures, or Tables,
+with no default.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>LoTentry</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>An element of LoT.  It contains
+the text of the thing to be listed,
+including, if desired, in-line elements.  It has 
+common and PageNum attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Macro</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>SystemItem.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ManVolNum</TERM>
+<LISTITEM>
+<PARA>Specific to UNIX man pages, it
+designates the section of a complete set of
+reference pages that a reference page belongs to.  It appears
+within RefMeta, contains plain text, and has common
+attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Markup</TERM>
+<LISTITEM>
+<PARA>A string of formatting markup in text,
+which it is desired to represent literally.  See also
+<EMPHASIS>SGMLTag.</EMPHASIS>
+It contains plain text and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Mask</TERM>
+<LISTITEM>
+<PARA>Values in a specified structure that should
+be read when updating resource values.  
+Mask contains plain text and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>MediaLabel</TERM>
+<LISTITEM>
+<PARA>The physical medium on or in which 
+some information is contained.  
+MediaLabel may contain plain text,
+and has common, Class, and MoreInfo attributes.
+Class may have the value Cartridge, CDRom, Disk, or Tape
+(no default).  For the MoreInfo
+attribute see <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Member</TERM>
+<LISTITEM>
+<PARA>Part of a SimpleList.  It contains 
+in-line elements and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Menu</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>Interface.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>MenuItem</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>Interface.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ModeSpec</TERM>
+<LISTITEM>
+<PARA>Contains application-specific
+information necessary for 
+the completion of an OLink; see <EMPHASIS>
+OLink.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Msg</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>The part of a MsgEntry that contains
+the error message and its subparts, along with 
+explanatory text.  A Msg has a required MsgMain, 
+followed by any number of MsgSubs and MsgRels, in any
+order.  It has common and Label attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>MsgAud</TERM>
+<LISTITEM>
+<PARA>Describes the audience 
+to which a Msg is 
+relevant.  It contains plain text only, and  
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>MsgEntry</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A wrapper for an entry in a MsgSet.  
+A MsgEntry
+must contain one or more Msgs, followed by an optional
+MsgInfo, then any number of MsgExplans.  
+MsgEntry has common
+attributes. 
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM>MsgExplan</TERM>
+<LISTITEM>
+<PARA> Holder for any kind of explanatory 
+material relating to the 
+Msg.  MsgExplan begins with an optional Title
+(typically something such as
+&ldquo;Explanation:&rdquo; or &ldquo;Action:&rdquo;)
+and may contain block-oriented elements.
+It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>MsgInfo</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Information about the Msg
+containing it.  It may have any number of MsgLevels,
+MsgOrigs, and MsgAuds, in any order, and has common
+attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>MsgLevel</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>The level of importance or severity
+of a Msg.  It contains only plain text, and has common
+attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>MsgMain</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>The main error message of a 
+Msg.  MsgMain begins with an optional Title and contains
+MsgText, which is the text of the message.  It
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM>MsgOrig</TERM>
+<LISTITEM>
+<PARA>The origin of a Msg.
+It contains only plain text and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>MsgRel</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>An optional subpart of a Msg, containing
+a message that is related to the main message 
+(MsgMain) but which appears in a
+different place.  For example, MsgMain 
+might be a message that appears on a
+network client, and MsgRel a related message 
+that appears at the
+server console in response to the same condition or event.
+MsgRel begins with an optional Title and contains 
+MsgText.  It has common attributes.  
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>MsgSet</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A list of error messages produced
+by a system, with various additional information.
+MsgSet contains one or more MsgEntries, and has
+common attributes. 
+<EMPHASIS>Usage Note:</EMPHASIS>
+The entire Msg* construction is new and complicated;
+it may be simplified in the future.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>MsgSub</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>An optional subpart of a Msg, which 
+might contain messages that appear in various contexts.  It
+contains a an optional Title followed by 
+MsgText.  MsgSub has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>MsgText</TERM>
+<LISTITEM>
+<PARA>Contents of the parts of Msg.
+It may contain block-oriented elements,
+and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM><EMPHASIS>Note</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A message to the user, set off from the text.
+See <EMPHASIS>Caution.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>OLink</TERM>
+<LISTITEM>
+<PARA>A link that may perform some operation to
+find its target.  In contrast to Link, OLink has no 
+Linkend attribute, but rather a TargetDocEnt, the value of 
+which is the name of a text or data entity already 
+defined by the user.  The LinkMode attribute points by
+ID to a ModeSpec; for convenience, ModeSpecs 
+located in the BookInfo.  ModeSpec contains 
+instructions (probably application-specific) for operating
+on the entity named by TargetDocEnt, <EMPHASIS>e.g.,</EMPHASIS> the
+TargetDocEnt is another Book, and the ModeSpec specifies
+that all the second-level headings should be searched 
+for a phrase.  The LocalInfo attribute may be used to
+hold such a phrase, which may be thought of as a 
+replacement for some variable in ModeSpec.  Finally,
+OLink has a Type attribute, also. 
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Option</TERM>
+<LISTITEM>
+<PARA>An option for a computer program command.
+It may have members of cptrphrase.gp, and has common 
+attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Optional</TERM>
+<LISTITEM>
+<PARA>For use in Synopsis, as in a
+RefEntry, where optional parameters 
+conventionally are shown in square
+brackets.  Optional should replace those brackets.  It may contain 
+elements from cptrphrase.gp, and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>OrderedList</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A numbered or lettered list, consisting of
+ListItems.  A ListItem in an
+OrderedList contains paragraphs and other 
+block-oriented elements, which
+may in turn contain other lists; an OrderedList may be 
+nested within other lists, too. 
+OrderedList has common attributes, along with 
+a Numeration attribute, which
+may have the value Arabic, Upperalpha, Loweralpha,
+Upperroman, or Lowerroman.  If no value is supplied,
+the processing expectation should be that Arabic
+numbering (1, 2, 3, . . .) is to be used.  
+It has an InheritNum attribute, for which the
+value Inherit specifies for a
+nested list that the numbering of ListItems should include the 
+number of the item within which they are nested (2a, 2b, etc.,
+rather than a, b, etc.); the default value is Ignore.  
+It has a Continuation attribute, with values 
+Continues or Restarts (the default), 
+which may be used to
+indicate whether the numbering of a list begins afresh (default)
+or continues that of the immediately preceding list (Continues).  
+You need supply the Continuation attribute only
+if your list continues the numbering of the preceding list.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>OrgName</TERM>
+<LISTITEM>
+<PARA>An organization that is not
+a corporation (<EMPHASIS>cf.</EMPHASIS> CorpName)
+It contains plain text. 
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>OrgDiv</TERM>
+<LISTITEM>
+<PARA>Part of an organization.
+It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>OSname</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>SystemItem.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>OtherCredit</TERM>
+<LISTITEM>
+<PARA>Supplements
+Author and Editor; you could use it to credit a contributor,
+a contributing editor, or some deserving production person.
+Contents are as for <EMPHASIS>Author.</EMPHASIS>  It has common
+attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>OtherName</TERM>
+<LISTITEM>
+<PARA>An alternative to Firstname and
+Surname, for use in Author, Editor, or OtherCredit.  
+It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>PageNums</TERM>
+<LISTITEM>
+<PARA>The numbers of the pages contained
+in a Book, for use in its BookBiblio.  
+It contains plain text (e.g., ix, 292).
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Para</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A paragraph.  A Para may not
+have a Title:  to attach a Title to a Para use
+FormalPara.  Para
+may contain any in-line element and almost
+any block-oriented element.  Abstract, AuthorBlurb, Caution, 
+Important, Note, and
+Warning are excluded, as are Sects and higher-level 
+elements.  Para has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Paragraphs</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>See <EMPHASIS>Para.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ParamDef</TERM>
+<LISTITEM>
+<PARA> Part of a FuncSynopsis, providing
+data type information and the name of the
+Parameter this information applies
+to.  A ParamDef may contain any combination of 
+plain text, Replaceable, Data, or Parameter, in any order.
+It has common attributes.  See <EMPHASIS>FuncDef,</EMPHASIS> <EMPHASIS>
+FuncSynopsis.</EMPHASIS>  It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Parameter</TERM>
+<LISTITEM>
+<PARA>Part of an instruction to a computer.
+It may contain members of cptrphrase.gp,
+and has common, Class, and MoreInfo attributes.
+Class may have the value Command, Function, or Option
+(no default).  For the MoreInfo
+attribute see <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Part</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A section of a Book containing
+book components.
+Part contains an optional DocInfo, a required Title, an optional TitleAbbrev, 
+an optional PartIntro, 
+followed by one or more book components.
+It has common and Label attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>PartIntro</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Introduction to the contents
+of a Part; 
+may also appear in 
+Reference.  It has optional Title and TitleAbbrev,
+and then may contain anything that can appear in a Chapter.
+PartIntro has common and Label attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Phone</TERM>
+<LISTITEM>
+<PARA>Part of Address.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>POB</TERM>
+<LISTITEM>
+<PARA>Part of Address.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Postcode</TERM>
+<LISTITEM>
+<PARA>Part of Address.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Preface</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Any introductory matter in a Book.
+Preface may occur more than once in Book, before 
+any Chapter, Part, or Reference:  for example,
+you might have two Prefaces, one titled &ldquo;Preface&rdquo;
+and the other &ldquo;Introduction.&rdquo;
+Preface may begin with a DocInfo, followed by
+a required Title, optional TitleAbbrev, and anything
+found in the body of a Chapter.
+Preface has common attributes.  
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Primary</TERM>
+<LISTITEM>
+<PARA>A word or phrase occurring in 
+the text that is to
+appear in the index under as a primary entry.  It must be
+nested within IndexTerm tags.  Primary may contain in-line 
+elements.  It has SortAs and common attributes.  
+SortAs can be used to provide 
+an alternate string for alphabetizing the index:  if Primary
+has the content &ldquo;14&rdquo;
+one might give Primary the attribute
+Sortas=&ldquo;fourteen&rdquo;.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>PrimaryIE</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A primary entry in an Index, not in the 
+text.  It may contain only plain text.  It has common
+attributes and a Linkends attribute, which has the
+value of some list of element IDs.  
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>PrintHistory</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>The printing history of
+a Book.  It contains paragraphs.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Procedure</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A list of operations to 
+be performed.  Procedure may have a Title and
+TitleAbbrev, followed by block-oriented elements,
+such as paragraphs, followed by one or more Steps.
+A Step may have a SubSteps wrapper for Steps nested 
+within it, and this nesting may continue indefinitely
+(contrast the methods of nesting lists and Sects).
+This construction is intended to maximize the reusability
+of subsections of Procedures.
+Procedure has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ProductName</TERM>
+<LISTITEM>
+<PARA>Formal name for any product.  
+It contains in-line elements, and has common and
+Class attributes.  The Class attribute may have the
+values Service, Trade (the default), Registered, Copyright,
+or Logo.  Thus a trademark is a Productname with the
+default Class attribute value.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ProductNumber</TERM>
+<LISTITEM>
+<PARA>A number assigned to a product.
+It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM><EMPHASIS>ProgramListing</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A listing of a program. 
+Line breaks and leading 
+white space are significant in a ProgramListing, which  
+may contain in-line elements, including LineAnnotations.
+(LineAnnotations are a document author's 
+comments on the code, not the comments written
+into the code itself by the code's author.)
+ProgramListing has common and Width attributes, the 
+latter for specifying a number representing the maximum 
+width of the contents.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Prompt</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>SystemItem.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Property</TERM>
+<LISTITEM>
+<PARA>A defined set of data
+associated with a window.  It may contain members of cptrphrase.gp,
+and has common and MoreInfo attributes.
+For the MoreInfo
+attribute see <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ProtocolRequest</TERM>
+<LISTITEM>
+<PARA>Message sent from a program to a 
+server. It may contain members of cptrphrase.gp,
+and has common and MoreInfo attributes.
+For the MoreInfo
+attribute see <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>PubDate</TERM>
+<LISTITEM>
+<PARA>The date of publication of a document.
+It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Publisher</TERM>
+<LISTITEM>
+<PARA>The publisher of a document.  It contains a PublisherName and any number of Addresses.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>PublisherName</TERM>
+<LISTITEM>
+<PARA>The name of a publisher of a document.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>PubsNumber</TERM>
+<LISTITEM>
+<PARA>A number assigned to a publication,
+other than an ISBN or ISSN or InvPartNumber.
+It contains plain text and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Quote</TERM>
+<LISTITEM>
+<PARA>An in-line quotation.  For block quotes 
+use BlockQuote.  Quote may contain members of cptrphrase.gp,
+and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>RefClass</TERM>
+<LISTITEM>
+<PARA>An element of RefNameDiv, in which the 
+applicability or scope of the topic of a RefEntry may be
+indicated.  It may contain
+plain text or Application.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>RefDescriptor</TERM>
+<LISTITEM>
+<PARA>A substitute for RefName to be used 
+when a
+RefEntry covers more than one topic and none of the topic names
+is to be used as the sort name.  It contains plain
+text and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>RefEntry</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A reference page.  It contains,
+in order, an optional DocInfo and optional RefMeta;
+any number of Comments and members of links.gp, in any order;
+a required RefNameDiv, an optional RefSynopsisDiv,
+and one or more RefSect1s.
+It has common attributes.  
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Reference</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A collection of RefEntries,
+formin a book component. 
+Reference has an optional DocInfo,
+a required Title, 
+an optional TitleAbbrev, an optional PartIntro, and 
+one or more RefEntries.  
+It has common and Label attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>RefEntryTitle</TERM>
+<LISTITEM>
+<PARA>Primary name given to a 
+reference page for
+sorting and indexing.  It may be the same as the first of
+the RefNames, or it may be the same as the RefDescriptor.
+It may contain in-line elements, and has common 
+attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>RefFileName</TERM>
+<LISTITEM>
+<PARA>Dropped.  It is now called 
+RefEntryTitle.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>RefMeta</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>The first major division of a reference page,
+in which metainformation about the reference page is supplied.
+RefMeta contains, in order, a required RefEntryTitle,
+an optional ManVolNum, and any number of 
+RefMiscInfos.  It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>RefMiscInfo</TERM>
+<LISTITEM>
+<PARA>Marks information in 
+RefMeta that may be
+supplied by vendors, such as copyright, release date, revision
+date, print status, operating system, hardware architecture, 
+or a descriptive phrase for use in a print header.  
+It contains plain text, and has common and Class attributes.
+The Class attribute can be used to distinguish categories of
+RefMiscInfos.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>RefName</TERM>
+<LISTITEM>
+<PARA>The subject or subjects of a
+reference page.  It appears within RefNameDiv.  
+It may contain plain text and in-line elements, and 
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>RefNameDiv</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>The second major division of a reference page.
+It contains, in order, an optional RefDescriptor, one or more
+RefNames, a required RefPurpose, and an optional RefClass, 
+followed by any number of Comments and links, in any order.
+It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>RefPurpose</TERM>
+<LISTITEM>
+<PARA>A short phrase describing the 
+subject of
+the reference page. It may contain in-line elements 
+and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>RefSect1</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Equivalent to a Sect1 in the DocBook DTD.
+It contains a Title, followed by any of the allowable contents
+of a Sect, except that only two levels of subsection
+are allowed, RefSect2 and RefSect3.  It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>RefSect2</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Equivalent to a Sect2 in the DocBook DTD, and may
+occur within RefSect1 or RefSynopsisDiv.  It may contain any of the 
+allowable contents of a Sect, except that only RefSect3
+is allowed as a further subsections.  It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>RefSect3</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Subdivision of RefSect2.  No further
+subdivisions allowed; contents otherwise as for RefSect2.
+It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>RefSynopsisDiv</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>The third major division of a reference page,
+in which the syntax of the subject of the reference page is
+indicated.  It contains, in order, 
+an optional Title and TitleAbbrev, followed by either one or more
+synopses (Synopsis, CmdSynopsis, or FuncSynopsis) succeeded
+by any number of RefSect2s, or simply one or more RefSect2s.
+It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>ReleaseInfo</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Information about a particular version of a 
+document.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Replaceable</TERM>
+<LISTITEM>
+<PARA>Part of a synopsis or command line,
+indicating that its contents may be replaced.
+It may contain basic in-line elements (not cptrphrase.gp)
+and has common and Class attributes.
+Class may have the value 
+Command, Function, Option, or Parameter
+(no default). 
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM>Resource</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>SystemItem.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ReturnValue</TERM>
+<LISTITEM>
+<PARA>A value returned by a function.
+It contains plain text and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM><EMPHASIS>RevHistory</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A section of BookInfo or DocInfo
+recording revisions to the document.  It 
+consists of any number of Revisions, and 
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Revision</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>An entry in RevHistory, 
+describing some
+revision made to the text.  It contains, in order, 
+a required RevNumber, required Date, 
+one or more sets of AuthorInitials, and 
+a required RevRemark.  
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM>RevNumber</TERM>
+<LISTITEM>
+<PARA>The number of a Revision.
+It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM>RevRemark</TERM>
+<LISTITEM>
+<PARA>An element 
+of Revision, describing the Revision.
+It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Row</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A row in a TBody, THead, or TFoot.  
+It contains one or more Entries or 
+EntryTbls, in any order.  
+It has common, Rowsep, and VAlign attributes.
+</PARA>
+<PARA><EMPHASIS>Rowsep</EMPHASIS> determines Row separators.  If its content is 
+Yes, display the internal vertical row ruling 
+below each Row; if No, do not display it.  It is 
+ignored for the last Row of the TGroup, THead, 
+or TFoot, where 
+the frame value applies.  There is no default.
+The value is inherited from TGroupStyle, if used.  
+</PARA>
+<PARA><EMPHASIS>Valign</EMPHASIS> governs the vertical 
+positioning of text within a Row.  
+Allowed values are Top, Middle, and Bottom
+(no default).
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Screen</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Intended to represent what the user sees or
+might see on a computer screen. It 
+consists of in-line elements, in which line breaks 
+and leading white space are considered
+significant.  It has common attributes and a Width
+attribute for specifying a number representing the maximum width of
+the contents.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ScreenInfo</TERM>
+<LISTITEM>
+<PARA>Part of ScreenShot 
+(see <EMPHASIS>ScreenShot</EMPHASIS>).  A ScreenInfo 
+indicates how the Graphic with which it is paired was created,
+as a guide for future revisions.  It may contain only plain
+text, and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>ScreenShot</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Like Screen,
+intended to represent what the user sees or
+might see on a computer screen. It 
+consists of an optional ScreenInfo
+and a required Graphic.
+It has common attributes and a Width
+attribute for specifying a number representing the maximum width of
+the contents.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Secondary</TERM>
+<LISTITEM>
+<PARA>A word or phrase in the text that is to
+appear in the index beneath a Primary entry.  It must be
+nested within IndexTerm tags and must follow a Primary element.
+It may contain in-line elements, and has 
+SortAs and common attributes.  See <EMPHASIS>Primary.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>SecondaryIE</TERM>
+<LISTITEM>
+<PARA>Part of IndexEntry, 
+like PrimaryIE (see <EMPHASIS>PrimaryIE</EMPHASIS>).
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Sect1</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A top-level section of a book component,
+including the Title of that section.  Sect2&ndash;5 nest
+in order within Sect1.  Anything may occur
+within a Sect1 except a DocInfo, Preface,
+Chapter, Appendix, or
+another Sect1, including a Glossary, Bibliography, RefEntry, ToC, Index,
+or LoT.  A Sect must have a Title, which is the text
+of the heading itself, and may have a TitleAbbrev; it must
+include some content, whether paragraphs or other block-oriented elements, including
+a Sect2.  Sect1&ndash;5 have common,
+Label, and Renderas attributes.  The Renderas attribute may
+have the value Sect1 through Sect5, and may be used to 
+specify that the Sect (particularly its heading) is to be
+presented in the format defined for a Sect of some other level.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Sect2</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A section beginning with a second-level
+heading; must be nested within a Sect1.  
+Allowable and required contents
+for Sect2, and its attributes, are like those for Sect1.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Sect3</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>See <EMPHASIS>Sect1, Sect2</EMPHASIS>.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Sect4</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>See <EMPHASIS>Sect1, Sect2</EMPHASIS>.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Sect5</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>See <EMPHASIS>Sect1, Sect2</EMPHASIS>.  Sect5 may
+not contain Sects of any level, and 
+no further subdivisions are supplied in the DocBook DTD.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>See</TERM>
+<LISTITEM>
+<PARA>Part of IndexTerm, indicating, for
+a word or phrase in the text, the index entry to
+which the reader is to be directed when he consults
+the stub index entry for another element within
+the IndexTerm.
+See must be nested within IndexTerm tags and must
+follow a Primary or Secondary element.  
+It may contain in-line
+elements, and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>SeeAlso</TERM>
+<LISTITEM>
+<PARA>Like See, but indicates 
+the index entries to which the reader is <EMPHASIS>also</EMPHASIS>
+to be directed when he consults a full index entry.
+SeeAlso must be nested within IndexTerm tags and must
+follow a Primary or Secondary element. 
+It may contain in-line
+elements, and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>SeeAlsoIE</TERM>
+<LISTITEM>
+<PARA>A &ldquo;see also&rdquo; entry in an Index, not 
+in the text, occurring 
+unnested within IndexEntry at the PrimaryIE or
+SecondaryIE level.  
+It may contain plain text only. It has common
+attributes and a Linkends attribute, which has the
+value of some list of IndexEntry IDs.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>SeeIE</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A &ldquo;see&rdquo; entry in an Index, not in the 
+text, occurring 
+unnested within IndexEntry at the PrimaryIE or
+SecondaryIE level.  
+It may contain plain text only.  It has common
+attributes and a Linkend attribute, which has the
+value of some IndexEntry ID.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Seg</TERM>
+<LISTITEM>
+<PARA>A component of a SegmentedList.  Segs are the 
+only content of a SegmentedList's 
+SegListItems.  Seg may contain in-line
+elements.  It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>SegListItem</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A list item in a SegmentedList.  
+It consists
+of two or more Segs, and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>SegmentedList</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A list of sets of units.  
+It may be used to represent 
+sets of information often presented as simple tables.  
+SegmentedList may have a Title and TitleAbbrev, followed by any number
+of SegTitles, and one or more SegListItems.  
+It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>SegTitle</TERM>
+<LISTITEM>
+<PARA>A title that pertains to one Seg in each 
+SegListItem:  the first SegTitle to the first Seg, the second SegTitle
+to the second Seg, and so on.  It may contain in-line elements.
+SegTitles
+are grouped at the beginning of a SegmentedList, before the SegListItems.
+It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Series</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Dropped.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>SeriesInfo</TERM>
+<LISTITEM>
+<PARA>Part of BookInfo or BiblioEntry,
+containing information about the publication series of
+which the book is a part.  SeriesInfo contains,
+in order, a
+required Title, optional TitleAbbrev and Subtitle;
+any number of AuthorGroups, optional ISBN, 
+VolumeNum, and IssueNum; a required SeriesVolNums,
+any number of PubDates and Publishers, and finally
+an optional Copyright. 
+It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>SeriesVolNums</TERM>
+<LISTITEM>
+<PARA>The numbers of all the volumes
+in a Series, for use in SeriesInfo.  It contains plain text
+(e.g., 1-5).
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Set</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Two or more Books.  Set may have,
+in order, a 
+Title, TitleAbbrev, SetInfo, and ToC, followed by
+the Books, followed by an optional SetIndex.  Note that
+a SetIndex may appear in a Book, too.
+Set has common attributes. 
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>SetIndex</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Index to a Set.  It may 
+occur within a Set or one of the Books in a Set.
+It contains an optional DocInfo, Title, and TitleAbbrev,
+followed by any number of block-oriented elements
+and then one or more IndexEntries or one
+or more IndexDivs.
+It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>SetInfo</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Metainformation for a Set,
+in which it may appear.  It may contain, in any order,
+any number of:  Author, AuthorInitials, 
+Copyright, CorpAuthor, CorpName, Date, 
+Editor, Edition, InvPartNumber, ISBN, LegalNotice,
+OrgName, OtherCredit,
+PrintHistory, ProductName, ProductNumber,
+Publisher, PubsNumber, ReleaseInfo, RevHistory,  
+Title, Subtitle, and VolumeNum.  
+SetInfo has common attributes and a Contents attribute.
+Contents is partly a stub for future development; at the
+moment its values should be the IDs of the ToC, Books,
+and SetIndex that comprise the Set, in the order of
+their appearance.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>SGMLTag</TERM>
+<LISTITEM>
+<PARA>An element tag in SGML.  This
+element contains plain text, and should not include
+delimiting angle brackets, ampersands, 
+percent signs, or semicolons:  those should be 
+supplied by the renderer if appropriate.  It has common and Class
+attributes.  Class may be Attribute, Element,
+GenEntity, or ParamEntity; there is no default.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ShortAffil</TERM>
+<LISTITEM>
+<PARA>Brief version of of Affiliation, in
+which it may appear.  It contains
+plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Sidebar</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Segment of a book component
+that is isolated from the narrative flow
+of the main text, typically boxed and floating.  
+Sidebar may have
+a Title and a TitleAbbrev, followed by
+paragraphs, lists, and other block-oriented
+elements.  No Sects allowed.  
+Sidebar has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>SimPara</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A paragraph that is only a text block,
+without included block-oriented elements.  It
+may contain InlineGraphic, InlineEquation, and synopses.
+SimPara has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>SimpleList</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Intended for long lists of single words
+or short phrases.  It consists of one or more Members, and
+has common, Columns, and Type attributes.  The value of 
+the Type attribute may be Inline, Horiz, or Vert (the 
+default), indicating that the list should be formatted
+as part of a regular paragraph, as an array reading L to R
+then top to bottom, or 
+as an array reading top to bottom then L to R.
+The Columns attribute value must be a number, the number
+of columns the array should contain.  Further details
+on rendering may be found in the comment in the DTD,
+but these details may required some revision in the 
+future. 
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>SpanSpec</TERM>
+<LISTITEM>
+<PARA>Formatting information for a 
+spanned column in a TGroup (part of Table).  
+SpanSpec is an empty element, bearing common, Align, 
+Char, Charoff, Colsep, Nameend (required),
+Namest (required), Rowsep, and Spanname,
+(required) attributes.
+SpanSpec identifies a horizontal span of  
+columns and associated attributes that can 
+subsequently be referenced by its SpanName to 
+provide attributes repeatedly used in the Entries or 
+EntryTbls in the Rows of the TGroup that is
+nested within the THead, TFoot, or TBody in which the  
+SpanSpec occurs.  
+</PARA>
+<PARA>The reason Colname is used rather than Colnum 
+in identifying 
+SpanSpec is that the names are independent of revisions that 
+may change the number of inserted/deleted columns, as  
+long as Namest remains to the left of (has a smaller colnum 
+than) Nameend.  SpanSpecs set on THead or TFoot override 
+those on the containing TGroup and apply to just the THead 
+or TFoot.  SpanSpecs from the containing TGroup apply to  
+TBody. 
+</PARA>
+<PARA><EMPHASIS>Align</EMPHASIS> controls the horizontal position 
+of text within the column.  
+The value of Align may be Left (quad flush left), 
+Center (centered), Right (quad flush right), 
+Justify (both quad left and right), or Char (align to the
+left of Char, positioned by Charoff).  The default
+is Center. 
+</PARA>
+<PARA><EMPHASIS>Char</EMPHASIS> contributes to Align.  If the
+value of Align is &ldquo;char&rdquo;, the value of Char
+should be a character on the first occurrance
+of which the entry is to be aligned.  If that 
+character does not occur in the entry, the entry 
+is aligned to the left of the position determined
+by Charoff.  The default is inherited
+from the ColSpec of the column named by Namest.
+</PARA>
+<PARA><EMPHASIS>Charoff</EMPHASIS> contributes with Char to Align.
+Charoff is the proportion
+of the current column width, expressed in percentage,
+to be allowed before the left edge of the first occurrence
+of the character given as the value of Char, if any.
+The default is inherited from the ColSpec of 
+the column named by Namest.
+</PARA>
+<PARA><EMPHASIS>Colsep</EMPHASIS> determines column separators.  If its value
+is Yes, display the internal column rulings to 
+the right of each item; if No, do not 
+display it.  It is ignored for the last column, where the 
+Frame setting applies.  (In CALS, 
+Yes is expressed as 1 and No as 0.) 
+The default is inherited from the ColSpec of
+the column named by Namest.  
+</PARA>
+<PARA><EMPHASIS>Nameend</EMPHASIS> is the name of the rightmost 
+column of the span.  Names are identified in the
+Colspec of the current TGroup. 
+</PARA>
+<PARA><EMPHASIS>Namest</EMPHASIS> or Name Start, 
+is the name of the leftmost column 
+of the span.  Names are identified in the
+Colspec of the current TGroup.  
+</PARA>
+<PARA><EMPHASIS>Rowsep</EMPHASIS> determines Row separators.  If its content is 
+Yes, display the internal vertical Row ruling 
+below each item; if No, do not display it.  It is 
+ignored for the last Row of the table, where 
+the frame value applies.  There is no default.
+The value is inherited from the ColSpec of
+the column named by Namest.  
+</PARA>
+<PARA><EMPHASIS>Spanname</EMPHASIS> is the name of the  
+horizontal span.  
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>State</TERM>
+<LISTITEM>
+<PARA>Part of Address.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Step</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Part of a Procedure.  After its 
+optional Title, Step must consist either 
+of block-oriented elements such as
+paragraphs followed optionally by a SubSteps element, 
+or simply a
+SubSteps element.  SubSteps then contains one or more 
+Steps&mdash;it is a wrapper.
+Step has common attributes
+and a Performance attribute, which indicates whether
+the step must be performed:  the values are Optional
+and Required (the default).
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Street</TERM>
+<LISTITEM>
+<PARA>Part of Address.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>StructField</TERM>
+<LISTITEM>
+<PARA>A field in a Structure.  
+It contains plain text and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>StructName</TERM>
+<LISTITEM>
+<PARA> The name of a Structure.  It contains 
+plain text and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>SubSteps</TERM>
+<LISTITEM>
+<PARA>A wrapper for Steps within Steps.
+See <EMPHASIS>Procedure, Step.</EMPHASIS>  Note that SubSteps, like
+Step, has a Performance attribute, the values of which
+may be Optional or Required (the default). 
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Subscript</TERM>
+<LISTITEM>
+<PARA>A subscript.  
+It may contain basic in-line elements and Replaceable,
+and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Subtitle</TERM>
+<LISTITEM>
+<PARA>Subtitle of a document.  
+It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM>Superscript</TERM>
+<LISTITEM>
+<PARA>A superscript. 
+It may contain basic in-line elements and Replaceable,
+and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM>Surname</TERM>
+<LISTITEM>
+<PARA>(Western-style) family name
+of an author.  It contains plain text.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>SWapplic</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Symbol</TERM>
+<LISTITEM>
+<PARA>A name that is replaced by a value before 
+processing.  It contains plain text and has common 
+attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Synopsis</TERM>
+<LISTITEM>
+<PARA>The
+syntax of a command or function.  It appears
+within RefSynopsisDiv, and may occur elsewhere in
+a document, too.  
+Synopsis has an optional title, followed by one or more
+in-line elements and Graphics; within it,
+line breaks and white space are significant.  
+It has common attributes.  CmdSynopsis and FuncSynopsis
+are alternates to Synopsis, but they may not contain
+Graphics and within them line breaks and white space are 
+not significant.  Synopsis should be displayed as
+a block-oriented element, not in-line.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>SynopFragment</TERM>
+<LISTITEM>
+<PARA>Part of CmdSynopsis.  It contains
+one or more Args or Groups, in any order, and has
+the attributes ID (the only required attribute),
+Lang, Remap, Role, and XRefLabel.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>SynopFragmentRef</TERM>
+<LISTITEM>
+<PARA>Part of a CmdSynopsis.  It
+contains RCDATA (characters, in which entity 
+references and character references are 
+recognized in parsing) rather than elements.
+It has common and Linkend (required) attributes.
+Linkend should point to SynopFragment.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>SystemItem</TERM>
+<LISTITEM>
+<PARA>Any system-related item.
+It may contain members of cptrphrase.gp,
+and has common, Class, and MoreInfo attributes.
+Class may have
+the value Constant, EnvironVar, Macro, OSname, Prompt,
+Resource, or SystemName
+(no default).  For the MoreInfo
+attribute see <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>SystemName</TERM>
+<LISTITEM>
+<PARA>Dropped.  See <EMPHASIS>SystemItem.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM><EMPHASIS>Table</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>An array of text. 
+The Table models available in version 1.2.2 have been
+dropped in favor of a CALS-compliant Table model.
+The present Table element has a required Title, 
+an optional TitleAbbrev, and either one or more Graphics
+or one or more TGroups.  Tables may not contain 
+either Tables or InformalTables.
+Table has common, Colsep, Frame, Label, Orient, Pgwide, Rowsep, Shortentry,
+Tabstyle, and Tocentry attributes.
+elements that may be contained within 
+TGroup are specified as having omissible
+end tags, except for EntryTbl.  Who said the military
+isn't thoughtful?
+</PARA>
+<PARA><EMPHASIS>Colsep</EMPHASIS> determines column separators.  If its value
+is Yes, display the internal column rulings to 
+the right of each item; if No, do not 
+display it.  It is ignored for the last column, where the 
+value of Frame applies.  There is no default; the
+value may be inherited from Tabstyle in the FOSI.  
+</PARA>
+<PARA><EMPHASIS>Frame</EMPHASIS> describes the positioning of 
+framing rules around the Table.  The allowed values are
+Sides (left and right), Top (below title), 
+Bottom (after last Row, possibly the last Row of
+TFoot), Topbot (both top and bottom), All
+(all of the aforementioned), and None.  
+There is no default.  The value may be
+inherited from Tabstyle in the FOSI.
+</PARA>
+<PARA><EMPHASIS>Label</EMPHASIS> is just the same as DocBook's
+Label attribute:  a reference string, such as a 
+number, to be prefixed to the Title. 
+</PARA>
+<PARA><EMPHASIS>Orient</EMPHASIS> determines the orientation of the
+Table.  The allowed values are Port (the orientation
+of the rest of the text of the Book, that is, upright)
+and Land (90 degrees counterclockwise from the
+orientation of the rest of the text of the Book).  
+If you assume that the page is taller than
+it is wide, tables that take up a whole page and 
+are wider than they are tall should be given the Land value.
+There is no default, the value may be 
+inherited from the FOSI.
+</PARA>
+<PARA><EMPHASIS>Pgwide</EMPHASIS> constrains the table to
+or liberates it from the boundaries of its
+column.  If the value is
+Yes, the table runs
+across the entire page; if No, the table &ldquo;runs
+across just the (galley) width of the 
+current column of the page,  regardless
+of the value of Orient. If the
+value is No, it has no meaning for the case when
+Orient is set to Land.
+The value may be inherited from Tabstyle in 
+the FOSI, if available.
+</PARA>
+<PARA><EMPHASIS>Rowsep</EMPHASIS> determines row separators.  If its content is 
+Yes, display the internal vertical row ruling 
+below each item; if No, do not display it.  It is 
+ignored for the last row of the table, where 
+the value of Frame applies.  There is no default.
+The value may be inherited from TabStyle.  
+</PARA>
+<PARA><EMPHASIS>Shortentry</EMPHASIS> determines whether value of ShortEntry is be used 
+in the an Index or ToC or LoT.  If the value is No,
+the TitleAbbrev is not used; if Yes, the ShortEntry
+is used.
+<EMPHASIS>Usage Note:</EMPHASIS>  Be aware that
+this mechanism duplicates the DocBook element 
+TitleAbbrev.  It would be better, for any given
+work, to choose one mechanism
+or the other, rather than mix them.
+</PARA>
+<PARA><EMPHASIS>Tabstyle</EMPHASIS> is the name of 
+a table style defined in the FOSI.  There is no default.
+</PARA>
+<PARA><EMPHASIS>Tocentry</EMPHASIS> determines whether the 
+Table's Title should be included in an LoT.	 
+The value may be Yes (include) or No (exclude).
+The default is Yes (include).
+should be ignored if the optional Title is
+omitted; that would be the case if you were using Table, 
+instead of InformalTable, for a Table that has no
+Title; presumably only a reference string could then
+appear in an LoT.  
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Term</TERM>
+<LISTITEM>
+<PARA>The hanging term attached to a ListItem 
+within a VarListEntry in a
+VariableList; visually, a VariableList 
+is a set of Terms with attached items such as paragraphs.  Each
+ListItem may be associated with a set of Terms.  Term may contain
+in-line elements or synopses. It has 
+common attributes.  
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM>Tertiary</TERM>
+<LISTITEM>
+<PARA>A word or phrase that is to
+appear in the index under a Secondary entry.  It must be
+nested within IndexTerm tags and must follow a Secondary 
+element.  It may contain in-line elements, and has SortAs
+and common  attributes.  See <EMPHASIS>Primary.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>TertiaryIE</TERM>
+<LISTITEM>
+<PARA>Part of IndexEntry, like PrimaryIE 
+see <EMPHASIS>PrimaryIE</EMPHASIS>).
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM><EMPHASIS>TBody</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Wrapper for the Rows of a Table or
+InformalTable.  It contains simply one or more Rows,
+and has common and VAlign attributes.
+VAlign governs the vertical 
+positioning of text within a Row.  
+Allowed values are Top (the default), Middle, and Bottom.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>TFoot</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>TFoot is a optional part of TGroup
+(part of Table), identifying the footer information in a 
+Table, which is displayed after the TBody and also at the 
+bottom of any TBody Rows before a page break.  
+TFoot must have one or 
+more Rows.  It has common and VAlign attributes, the latter
+with the allowed values of Top (the default), Middle
+(approximately centered vertically), and Bottom.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>TGroup</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>The part of a Table that is 
+contains an array along with its formatting information.
+In order, a TGroup has any number of ColSpecs,
+any number of SpanSpecs, an optional THead, and optional
+TFoot, and a required TBody.  
+Each TGroup effectively identifies a new 
+portion of a Table.  If a new ColSpec is provided, it
+replaces a previous one.  If both ColSpec and SpanSpec 
+are new, that SpanSpec should refer to columns in the most 
+recent ColSpec.  If only a new SpanSpec is provided, it 
+should refer to columns defined by the most immediately 
+prior ColSpecs in a TGroup of the  
+Table.  On the other hand, a new ColSpec to 
+either a THead or TFoot replaces all prior column 
+definitions.  TGroup has common, Align, Char, Charoff, Cols,
+Colsep, Rowsep, and TGroupStyle attributes.
+</PARA>
+<PARA><EMPHASIS>Align</EMPHASIS> controls the horizontal position 
+of text within the column.  
+The value of Align may be Left (quad flush left), 
+Center (centered), Right (quad flush right), 
+Justify (both quad left and right), or Char (align to the
+left of Char, positioned by Charoff).  The default
+is Left, unless overridden by TGroupStyle. 
+</PARA>
+<PARA><EMPHASIS>Char</EMPHASIS> contributes to Align.  If the
+value of Align is &ldquo;char&rdquo;, the value of Char
+should be a character on the first occurrance
+of which the entry is to be aligned.  If that 
+character does not occur in the entry, the entry 
+is is aligned to the left (the original doc incorrectly
+specifies &ldquo;right&rdquo;) of that character. 
+The default is &ldquo;&rdquo;, unless inherited
+from TGroupStyle. 
+</PARA>
+<PARA><EMPHASIS>Charoff</EMPHASIS> contributes with Char to Align.
+Charoff is the proportion
+of the current column width, expressed in percentage,
+to be allowed before the left edge of the first occurrence
+of the character given as the value of Char, if any.
+The default is 50 unless overridden by TGroupStyle. 
+</PARA>
+<PARA><EMPHASIS>Cols</EMPHASIS> is the number of columns in the table 
+(required).  
+</PARA>
+<PARA><EMPHASIS>Colsep</EMPHASIS> 
+determines column separators.  If its value
+is Yes, display the internal column rulings to 
+the right of each item; if No, do not 
+display it.  It is ignored for the last column, where the 
+value of Frame applies.  There is no default.  The
+value is inherited from TGroupStyle, if used.  
+</PARA>
+<PARA><EMPHASIS>Rowsep</EMPHASIS> 
+determines row separators.  If its content is 
+Yes, display the internal vertical row ruling 
+below each item; if No, do not display it.  It is 
+ignored for the last row of the table, where 
+the value of Frame applies.  There is no default.
+The value is inherited from TGroupStyle, if used.  
+</PARA>
+<PARA><EMPHASIS>TGroupStyle</EMPHASIS> is a unique table group 
+style defined in a FOSI (no default).   
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>THead</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>THead is a optional part of TGroup
+(part of Table).  THead may have any
+number of ColSpecs, followed by one or more required
+Rows.  It has common and VAlign attributes, the latter
+with the allowed values of Top, Middle, and Bottom
+(the default).
+THead identifies the heading information in a Table,
+which is displayed at the top of 
+the Table and again at the top of any continuation after a 
+page break between Rows in TBody. 
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Tip</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A suggestion to the user, set off from 
+the text. See <EMPHASIS>Caution.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Title</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>The text of a heading or the title of a
+block-oriented element.  Title may contain
+in-line elements, and has common and PageNum attributes.
+</PARA></LISTITEM></VARLISTENTRY> 
+<VARLISTENTRY><TERM>TitleAbbrev</TERM>
+<LISTITEM>
+<PARA>An optional, abbreviated 
+version of any Title.  
+You may want to use this element when a
+title is so long that it might be truncated in
+some part of an online display, such as a title bar.  
+TitleAbbrev may contain
+in-line elements and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>ToC</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A Table of Contents, which may be 
+a book component on its own or may
+occur within other book components.  It may
+have a DocInfo, Title, and TitleAbbrev.  Formerly,
+ToC contained only ToCentry1s, but in this revision 
+it has been subdivided to follow the divisions of a book:  
+following the optional Title and
+TitleAbbrev, a ToC may have any number of ToCFronts, which
+are the entries for the front matter.  Following the
+ToCFronts, if any, ToC
+must have either
+one or more ToCParts (entries for Parts)
+or ToCChaps (entries for Chapters and Appendices), 
+and may have any number of ToCBacks 
+(entries for back matter).
+A ToCPart may begin with in-line elements (in all 
+cases, this is the 
+actual entry, which was formerly ToCEntry), then contains
+any number of ToCChaps.  A ToCChap may begin with 
+in-line elements, then may have any number of ToCLevel1s,
+which are entries for Sect1s.
+ToCLevel1s may begin with in-line elements, then may have
+any number of ToCLevel2s, and so on  down to ToCLevel5,
+which may have only in-line elements.  Thus if you have a
+Table of Contents that shows section headings, the second-level entries
+are nested within the first-level entries, and so on.
+ToC has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>ToCBack</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Entry for back matter in a ToC.
+See <EMPHASIS>ToC.</EMPHASIS>
+It has common, Linkend, Pagenum, and Label attributes.
+The Label attribute may take the value of Bib, Gloss, or
+Index,
+depending on the identity of the 
+piece of front matter concerned.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>ToCChap</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>See <EMPHASIS>ToC.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>ToCFront</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>Entry for introductory matter in a ToC.
+See <EMPHASIS>ToC.</EMPHASIS>
+It has common, Linkend, Pagenum, and Label attributes.
+The Label attribute may take the value of Equations, Examples,
+Figures, Preface, or Tables, depending on the identity of the 
+piece of front matter concerned.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>ToCLevel1</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>The top-level tag for entries in a ToC. 
+See <EMPHASIS>ToC.</EMPHASIS> 
+ToCLevel2&ndash;5 may be nested within it, in order.  All 
+have common attributes and Linkend and 
+PageNum attributes.  PageNum is for indicating the page numbers on which
+the Table of Contents entries appear in a printed book.  Linkend,
+should you choose to use it,
+should have the value of the ID of the relevant book part. 
+ToCLevel1&ndash;5 may contain
+in-line elements.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>ToCPart</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>See <EMPHASIS>ToC.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Token</TERM>
+<LISTITEM>
+<PARA>A unit of information in the context of 
+lexical analysis.  It contains plain text and 
+has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Trademark</TERM>
+<LISTITEM>
+<PARA>A trademark.  
+It may contain members of cptrphrase.gp,
+and has common and Class attributes.
+Class may have the values Service, Trade, Registered,
+or Copyright; the default is Trade.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Type</TERM>
+<LISTITEM>
+<PARA>Indicates the classification of a value.
+It contains plain text and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>ULink</TERM>
+<LISTITEM>
+<PARA>A link containing a URL.
+A URL is a Uniform Resource Locator, as used with the 
+World Wide Web.  Very generally,
+a URL is a string specifying, according to a defined
+protocol, a method,
+a path to a target, and possibly some additional information.  
+The URL should be given as the value
+of the URL attribute; there is also a Type attribute.
+While ULink is powerful, 
+it is experimental and may be dropped in future
+revisions.  Users should not expect
+it to be supported by SGML browsers.  
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>UserInput</TERM>
+<LISTITEM>
+<PARA>Data entered by the user.  
+It may contain elements from cptrphrase.gp,
+and has common and 
+MoreInfo attributes.  For the MoreInfo attribute 
+see <EMPHASIS>Application.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>VarArgs</TERM>
+<LISTITEM>
+<PARA>An empty element, part of FuncSynopsis,
+indicating that the Function in question
+has a variable number of arguments.  The string
+&ldquo;(...)&rdquo; should be output.  
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>VariableList</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>An optionally 
+titled list of VarListEntries, which are
+composed of sets of one or more Terms with associated
+ListItems; ListItems contain paragraphs and other block-oriented
+elements in any order.  Inclusions 
+are as for OrderedList (see <EMPHASIS>OrderedList</EMPHASIS>).  
+VariableList has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>VarListEntry</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>A component of VariableList (see <EMPHASIS>VariableList</EMPHASIS>).  It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>VarParam</TERM>
+<LISTITEM>
+<PARA>Dropped.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Void</TERM>
+<LISTITEM>
+<PARA>An empty element, part of FuncSynopsis,
+that indicates that the Function in question 
+takes no arguments.  The string &ldquo;(void)&rdquo; 
+should be output.  See <EMPHASIS>VarArgs.</EMPHASIS>
+It has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>VolumeNum</TERM>
+<LISTITEM>
+<PARA>The number of a Book in
+relation to Set, or of a journal, when Book
+is used to represent a journal by containing
+Articles.  It contains plain text
+and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM><EMPHASIS>Warning</EMPHASIS></TERM>
+<LISTITEM>
+<PARA>An admonition set off from the text.
+See <EMPHASIS>Caution.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>WordAsWord</TERM>
+<LISTITEM>
+<PARA>A word (or letter or
+number) used not to represent the thing or idea it usually
+represents, but merely as the word itself.  For example, 
+&ldquo;The term <SGMLTAG>WORDASWORD</SGMLTAG>Gothic<SGMLTAG>/WORDASWORD</SGMLTAG> means different
+things to art historians and typographers,&rdquo; or for a single 
+character, &ldquo;the
+letter <SGMLTAG>WORDASWORD</SGMLTAG>X<SGMLTAG>/WORDASWORD</SGMLTAG>&rdquo;.  
+It contains plain text and has common attributes.
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>XRef</TERM>
+<LISTITEM>
+<PARA>Cross reference link to another part of the 
+document.  
+It has Linkend and Endterm attributes, just like Link,
+but like Anchor, it may have no content.
+XRef must have a Linkend, but the Endterm is optional.
+If it is used, the content of the element it points
+to is displayed as the text of the cross reference;
+if it is absent, the XRefLabel of the cross-referenced
+object is displayed.
+See <EMPHASIS>Link.</EMPHASIS>
+</PARA></LISTITEM></VARLISTENTRY>
+<VARLISTENTRY><TERM>Year</TERM>
+<LISTITEM>
+<PARA>Year of publication, for use in Copyright.
+It contains plain text.  
+</PARA></LISTITEM></VARLISTENTRY>
+</VARIABLELIST>
+</SECT1>
+</CHAPTER>
+ 
