@@ -3,6 +3,8 @@
 		version="1.0"
                 exclude-result-prefixes="doc">
 
+<xsl:import href="docbook.xsl"/>
+
 <!-- ==================================================================== -->
 <!-- What's a chunk?
 
@@ -476,32 +478,17 @@
   <xsl:call-template name="process-chunk"/>
 </xsl:template>
 
-<xsl:template match="sect1
-                     |/section
-                     |section[local-name(parent::*) != 'section']">
+<xsl:template match="sect1|sect2|sect3|sect4|sect5|section">
+  <xsl:variable name="ischunk">
+    <xsl:call-template name="chunk"/>
+  </xsl:variable>
+
   <xsl:choose>
-    <xsl:when test=". = /section">
+    <xsl:when test="$ischunk != 0">
       <xsl:call-template name="process-chunk"/>
-    </xsl:when>
-    <xsl:when test="$chunk.sections = 0">
-      <xsl:apply-imports/>
-    </xsl:when>
-    <xsl:when test="ancestor::partintro">
-      <xsl:apply-imports/>
-    </xsl:when>
-    <xsl:when test="$chunk.first.sections = 0">
-      <xsl:choose>
-        <xsl:when test="count(preceding-sibling::section) &gt; 0
-                        or count(preceding-sibling::sect1) &gt; 0">
-          <xsl:call-template name="process-chunk"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-imports/>
-        </xsl:otherwise>
-      </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:call-template name="process-chunk"/>
+      <xsl:apply-imports/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
