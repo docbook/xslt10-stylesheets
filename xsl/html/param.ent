@@ -110,3 +110,5 @@
 <!ENTITY ebnf.table.border SYSTEM "../params/ebnf.table.border.xml">
 <!ENTITY autotoc.label.separator SYSTEM "../params/autotoc.label.separator.xml">
 <!ENTITY chunk.datafile SYSTEM "../params/chunk.datafile.xml">
+<!ENTITY saxon.character.representation SYSTEM "../params/saxon.character.representation.xml">
+<!ENTITY generate.legalnotice.link SYSTEM "../params/generate.legalnotice.link.xml">
