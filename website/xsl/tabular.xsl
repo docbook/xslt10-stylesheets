@@ -116,7 +116,7 @@
     <body class="tabular">
       <xsl:call-template name="body.attributes"/>
 
-      <div id="{$id}" class="{name(.)}">
+      <div class="{name(.)}">
         <a name="{$id}"/>
 
         <table xsl:use-attribute-sets="table.properties">

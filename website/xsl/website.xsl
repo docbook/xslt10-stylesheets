@@ -47,7 +47,7 @@
     <body class="website">
       <xsl:call-template name="body.attributes"/>
 
-      <div id="{$id}" class="{name(.)}">
+      <div class="{name(.)}">
         <a name="{$id}"/>
 
         <xsl:if test="$toc">
