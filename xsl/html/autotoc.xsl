@@ -379,10 +379,10 @@
   <xsl:variable name="title">
     <xsl:choose>
       <xsl:when test="$refentrytitle">
-        <xsl:apply-templates select="$refentrytitle[1]" mode="title"/>
+        <xsl:apply-templates select="$refentrytitle[1]" mode="title.markup"/>
       </xsl:when>
       <xsl:when test="$refname">
-        <xsl:apply-templates select="$refname[1]" mode="title"/>
+        <xsl:apply-templates select="$refname[1]" mode="title.markup"/>
       </xsl:when>
       <xsl:otherwise></xsl:otherwise>
     </xsl:choose>
