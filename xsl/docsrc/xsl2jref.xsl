@@ -1,7 +1,4 @@
 <?xml version='1.0'?>
-<!DOCTYPE xsl:stylesheet [
-<!ENTITY RE "<xsl:text>&#10;</xsl:text>">
-]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version='1.0'
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
@@ -70,12 +67,12 @@
                                              or name(.) = 'sidebar'
                                              or name(.) = 'variablelist'
                                              or name(.) = 'itemizedlist'"/>
-  <xsl:if test="$block-element">&RE;</xsl:if>
+  <xsl:if test="$block-element"><xsl:text>&#10;</xsl:text></xsl:if>
   <xsl:element namespace="" name="{name(.)}">
     <xsl:apply-templates select="@*" mode="copy-attr"/>
     <xsl:apply-templates/>
   </xsl:element>
-  <xsl:if test="$block-element">&RE;</xsl:if>
+  <xsl:if test="$block-element"><xsl:text>&#10;</xsl:text></xsl:if>
 </xsl:template>
 
 <xsl:template match="@*" mode="copy-attr">
@@ -92,7 +89,7 @@
       <reference>
         <xsl:apply-templates/>
       </reference>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <xsl:apply-templates/>
@@ -163,96 +160,96 @@
 <xsl:template match="doc:variable">
   <xsl:variable name="name" select="@name"/>
 
-  &RE;
+  <xsl:text>&#10;</xsl:text>
   <refentry id="var.{$name}">
-    &RE;
+    <xsl:text>&#10;</xsl:text>
     <refnamediv>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
       <refname><xsl:value-of select="$name"/></refname>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
       <xsl:apply-templates select="refpurpose"/>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
     </refnamediv>
-    &RE;
+    <xsl:text>&#10;</xsl:text>
     <refsynopsisdiv>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
       <synopsis>
         <xsl:apply-templates select="../xsl:variable[@name=$name]"
                              mode="copy-template"/>
       </synopsis>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
     </refsynopsisdiv>
-    &RE;
+    <xsl:text>&#10;</xsl:text>
     <xsl:apply-templates select="*[name(.)!='refpurpose']"/>
   </refentry>
-  &RE;
+  <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="doc:param">
   <xsl:variable name="name" select="@name"/>
 
-  &RE;
+  <xsl:text>&#10;</xsl:text>
   <refentry id="param.{$name}">
-    &RE;
+    <xsl:text>&#10;</xsl:text>
     <refnamediv>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
       <refname><xsl:value-of select="$name"/></refname>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
       <xsl:apply-templates select="refpurpose"/>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
     </refnamediv>
-    &RE;
+    <xsl:text>&#10;</xsl:text>
     <refsynopsisdiv>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
       <synopsis>
         <xsl:apply-templates select="../xsl:param[@name=$name]"
                              mode="copy-template"/>
       </synopsis>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
     </refsynopsisdiv>
-    &RE;
+    <xsl:text>&#10;</xsl:text>
     <xsl:apply-templates select="*[name(.)!='refpurpose']"/>
   </refentry>
-  &RE;
+  <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="doc:template[@name]">
   <xsl:variable name="name" select="@name"/>
 
-  &RE;
+  <xsl:text>&#10;</xsl:text>
   <refentry id="template.{$name}">
-    &RE;
+    <xsl:text>&#10;</xsl:text>
     <refnamediv>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
       <refname><xsl:value-of select="$name"/></refname>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
       <xsl:apply-templates select="refpurpose"/>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
     </refnamediv>
-    &RE;
+    <xsl:text>&#10;</xsl:text>
     <refsynopsisdiv>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
       <synopsis>
         <xsl:apply-templates select="../xsl:template[@name=$name]"
                              mode="copy-template"/>
       </synopsis>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
     </refsynopsisdiv>
-    &RE;
+    <xsl:text>&#10;</xsl:text>
     <xsl:apply-templates select="*[name(.)!='refpurpose']"/>
   </refentry>
-  &RE;
+  <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="doc:template[@match]">
   <xsl:variable name="match" select="@match"/>
   <xsl:variable name="mode" select="@mode"/>
 
-  &RE;
+  <xsl:text>&#10;</xsl:text>
   <refentry>
-    &RE;
+    <xsl:text>&#10;</xsl:text>
     <refnamediv>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
       <refname>
         <xsl:value-of select="$match"/>
         <xsl:if test="@mode">
@@ -261,13 +258,13 @@
           <xsl:text> mode)</xsl:text>
         </xsl:if>
       </refname>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
       <xsl:apply-templates select="refpurpose"/>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
     </refnamediv>
-    &RE;
+    <xsl:text>&#10;</xsl:text>
     <refsynopsisdiv>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
       <synopsis>
         <xsl:choose>
           <xsl:when test="@mode">
@@ -280,12 +277,12 @@
           </xsl:otherwise>
         </xsl:choose>
       </synopsis>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
     </refsynopsisdiv>
-    &RE;
+    <xsl:text>&#10;</xsl:text>
     <xsl:apply-templates select="*[name(.)!='refpurpose']"/>
   </refentry>
-  &RE;
+  <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="doc:mode">
@@ -320,7 +317,7 @@
 </xsl:template>
 
 <xsl:template match="xsl:param" mode="copy-template">
-  &RE;
+  <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates select="." mode="copy"/>
 </xsl:template>
 
@@ -340,9 +337,9 @@
     <xsl:otherwise>
       <xsl:text>&gt;</xsl:text>
       <xsl:copy-of select="$content"/>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
       <xsl:text>  ...</xsl:text>
-      &RE;
+      <xsl:text>&#10;</xsl:text>
       <xsl:text>&lt;/</xsl:text>
       <xsl:value-of select="name(.)"/>
       <xsl:text>&gt;</xsl:text>
