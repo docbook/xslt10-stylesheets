@@ -1,7 +1,12 @@
 *.html
+WhatsNew
+focustom.xsl
+htmlcustom.xsl
+*.htm
+*.index
+*.index.xml
+*.fo
+mlang.fo
 mlang.sgm
 mlang.xml
-mlang.fo
-WhatsNew
 mtest
-focustom.xsl htmlcustom.xsl
