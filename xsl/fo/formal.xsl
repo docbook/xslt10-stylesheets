@@ -49,7 +49,21 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="figure|example">
+<xsl:template match="figure">
+  <!-- FIXME: is this too careless? -->
+  <xsl:choose>
+    <xsl:when test=".//imagedata[@align][1]">
+      <fo:block text-align="{.//imagedata[@align][1]/@align}">
+        <xsl:call-template name="formal.object"/>
+      </fo:block>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="formal.object"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="example">
   <xsl:call-template name="formal.object"/>
 </xsl:template>
 
