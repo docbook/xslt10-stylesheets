@@ -1164,4 +1164,28 @@ TOC entries will be displayed.
 </refdescription>
 </doc:param>
 
+<!-- ==================================================================== -->
+<xsl:param name="emphasis.propagates.style" select="1" doc:type='boolean'/>
+
+<doc:param name="emphasis.propagates.style" xmlns="">
+<refpurpose>Pass emphasis role attribute through to HTML?</refpurpose>
+<refdescription>
+<para>If true, the role attribute of <sgmltag>emphasis</sgmltag> elements
+will be passed through to the HTML as a class attribute on a
+<sgmltag>span</sgmltag> that surrounds the emphasis.</para>
+</refdescription>
+</doc:param>
+
+<!-- ==================================================================== -->
+<xsl:param name="phrase.propagates.style" select="1" doc:type='boolean'/>
+
+<doc:param name="phrase.propagates.style" xmlns="">
+<refpurpose>Pass phrase role attribute through to HTML?</refpurpose>
+<refdescription>
+<para>If true, the role attribute of <sgmltag>phrase</sgmltag> elements
+will be passed through to the HTML as a class attribute on a
+<sgmltag>span</sgmltag> that surrounds the phrase.</para>
+</refdescription>
+</doc:param>
+
 </xsl:stylesheet>

@@ -392,14 +392,44 @@
 </xsl:template>
 
 <xsl:template match="emphasis">
-  <xsl:choose>
-    <xsl:when test="@role='bold'">
-      <xsl:call-template name="inline.boldseq"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="inline.italicseq"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <span>
+    <xsl:choose>
+      <xsl:when test="@role and $emphasis.propagates.style != 0">
+        <xsl:attribute name="class">
+          <xsl:value-of select="@role"/>
+        </xsl:attribute>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:attribute name="class">
+          <xsl:text>emphasis</xsl:text>
+        </xsl:attribute>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:if test="@id">
+      <a name="{@id}"/>
+    </xsl:if>
+
+    <xsl:choose>
+      <xsl:when test="@role = 'bold'">
+        <!-- backwards compatibility: make bold into b elements, but -->
+        <!-- don't put bold inside figure, example, or table titles -->
+        <xsl:choose>
+          <xsl:when test="local-name(..) = 'title'
+                          and (local-name(../..) = 'figure'
+                               or local-name(../..) = 'example'
+                               or local-name(../..) = 'table')">
+            <xsl:apply-templates/>
+          </xsl:when>
+          <xsl:otherwise>
+            <b><xsl:apply-templates/></b>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <i><xsl:apply-templates/></i>
+      </xsl:otherwise>
+    </xsl:choose>
+  </span>
 </xsl:template>
 
 <xsl:template match="foreignphrase">
@@ -411,7 +441,17 @@
 </xsl:template>
 
 <xsl:template match="phrase">
-  <xsl:call-template name="inline.charseq"/>
+  <span>
+    <xsl:if test="@role and $phrase.propagates.style != 0">
+      <xsl:attribute name="class">
+        <xsl:value-of select="@role"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:if test="@id">
+      <a name="{@id}"/>
+    </xsl:if>
+    <xsl:apply-templates/>
+  </span>
 </xsl:template>
 
 <xsl:template match="quote">
