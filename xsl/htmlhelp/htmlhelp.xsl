@@ -463,7 +463,7 @@ Title=</xsl:text>
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="part|reference|preface|chapter|bibliography|appendix|article|glossary"
+<xsl:template match="part|reference|preface|chapter|bibliography|appendix|article|colophon|glossary"
               mode="hhc">
   <xsl:variable name="title">
     <xsl:if test="$htmlhelp.autolabel=1">
