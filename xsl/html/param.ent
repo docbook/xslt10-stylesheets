@@ -194,6 +194,7 @@
 <!ENTITY textinsert.extension SYSTEM "../params/textinsert.extension.xml">
 <!ENTITY toc.list.type SYSTEM "../params/toc.list.type.xml">
 <!ENTITY toc.section.depth SYSTEM "../params/toc.section.depth.xml">
+<!ENTITY toc.max.depth SYSTEM "../params/toc.max.depth.xml">
 <!ENTITY ulink.target SYSTEM "../params/ulink.target.xml">
 <!ENTITY use.embed.for.svg SYSTEM "../params/use.embed.for.svg.xml">
 <!ENTITY use.extensions SYSTEM "../params/use.extensions.xml">
