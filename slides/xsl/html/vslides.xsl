@@ -86,8 +86,12 @@
             </tr>
 
             <tr>
-              <td bgcolor="{$toc.bg.color}" width="{$toc.width}"
-                  valign="top" align="left">
+              <td width="{$toc.width}" valign="top" align="left">
+		<xsl:if test="$toc.bg.color != ''">
+		  <xsl:attribute name="bgcolor">
+		    <xsl:value-of select="$toc.bg.color"/>
+		  </xsl:attribute>
+		</xsl:if>
 
                 <xsl:call-template name="vertical-navigation">
                   <xsl:with-param name="next" select="/slides"/>
@@ -95,7 +99,13 @@
                 </xsl:call-template>
 
               </td>
-              <td bgcolor="{$body.bg.color}" valign="top" align="left">
+              <td valign="top" align="left">
+		<xsl:if test="$body.bg.color != ''">
+		  <xsl:attribute name="bgcolor">
+		    <xsl:value-of select="$body.bg.color"/>
+		  </xsl:attribute>
+		</xsl:if>
+
                 <div class="{name(.)}">
 
                   <div class="toc-body">
@@ -183,8 +193,12 @@
             </tr>
 
             <tr>
-              <td bgcolor="{$toc.bg.color}" width="{$toc.width}"
-                  valign="top" align="left">
+              <td width="{$toc.width}" valign="top" align="left">
+		<xsl:if test="$toc.bg.color != ''">
+		  <xsl:attribute name="bgcolor">
+		    <xsl:value-of select="$toc.bg.color"/>
+		  </xsl:attribute>
+		</xsl:if>
 
                 <xsl:call-template name="vertical-navigation">
                   <xsl:with-param name="first"/>
@@ -193,7 +207,12 @@
                 </xsl:call-template>
 
               </td>
-              <td bgcolor="{$body.bg.color}" valign="top" align="left">
+              <td valign="top" align="left">
+		<xsl:if test="$body.bg.color != ''">
+		  <xsl:attribute name="bgcolor">
+		    <xsl:value-of select="$body.bg.color"/>
+		  </xsl:attribute>
+		</xsl:if>
                 <div class="{name(.)}">
                   <xsl:apply-templates mode="titlepage.mode"/>
                 </div>
@@ -287,8 +306,12 @@
           </tr>
 
           <tr>
-            <td bgcolor="{$toc.bg.color}" width="{$toc.width}"
-                valign="top" align="left">
+            <td width="{$toc.width}" valign="top" align="left">
+	      <xsl:if test="$toc.bg.color != ''">
+		<xsl:attribute name="bgcolor">
+		  <xsl:value-of select="$toc.bg.color"/>
+		</xsl:attribute>
+	      </xsl:if>
 
               <xsl:call-template name="vertical-navigation">
                 <xsl:with-param name="last" select="$lastfoil"/>
@@ -297,7 +320,13 @@
               </xsl:call-template>
 
             </td>
-            <td bgcolor="{$body.bg.color}" valign="top" align="left">
+            <td valign="top" align="left">
+	      <xsl:if test="$body.bg.color != ''">
+		<xsl:attribute name="bgcolor">
+		  <xsl:value-of select="$body.bg.color"/>
+		</xsl:attribute>
+	      </xsl:if>
+
               <div class="{name(.)}">
                 <xsl:apply-templates/>
               </div>
@@ -400,8 +429,12 @@
           </tr>
 
           <tr>
-            <td bgcolor="{$toc.bg.color}" width="{$toc.width}"
-                valign="top" align="left">
+            <td width="{$toc.width}" valign="top" align="left">
+	      <xsl:if test="$toc.bg.color != ''">
+		<xsl:attribute name="bgcolor">
+		  <xsl:value-of select="$toc.bg.color"/>
+		</xsl:attribute>
+	      </xsl:if>
 
               <xsl:call-template name="vertical-navigation">
                 <xsl:with-param name="last" select="$lastfoil"/>
@@ -410,7 +443,13 @@
               </xsl:call-template>
 
             </td>
-            <td bgcolor="{$body.bg.color}" valign="top" align="left">
+            <td valign="top" align="left">
+	      <xsl:if test="$body.bg.color != ''">
+		<xsl:attribute name="bgcolor">
+		  <xsl:value-of select="$body.bg.color"/>
+		</xsl:attribute>
+	      </xsl:if>
+
               <div class="{name(.)}">
                 <xsl:apply-templates/>
               </div>
