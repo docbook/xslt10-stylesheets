@@ -10,51 +10,6 @@
 # Release: $Id$
 #
 
-# TEI:
-#
-# addrPart = address contents
-# agent = individuals or corporations?
-# bibl = bibliographic items
-# biblPart = contents of a bibliographic item
-# inter = things that can appear between or within chunks
-# chunk = blocks that can't contain themselves (contains para)
-# common = chunk and inter (things in all bases)
-# data = inline names, dates, numbers, measures, etc.
-#        (abbr, address, date, daterange, datestruct, expan, geogname, ...)
-# date = date expressions
-# demographic = elements describing demographics in a linguistic context
-#               (used person and persongroup)
-# dict.parts = inlines elements in a dictionary entry 
-# dict.toplevel = tags for blocks in a dictionary 
-# divBot = elements that can occur at the end of a division
-#          (byline, closing, epigraph, signed, ...)
-# divTop = elements that can occur at the start of a division
-#          (similar to divBot)
-# dramaFront = elements that occur at the elemenets of divisions in a drama
-#              (castlist, epilog, performance, prologue, set)
-# edit = inline for editorial corrections (deletions, edits...)
-# editIncl = same but can be anywhere (gap)
-# fm.chunk = frontmatter when no titlepage
-# front, back = level of divisions in front or back matter
-#               (divGen, dramaFront)
-# hqInter = highlighting (q, quote, cit)
-# hqPhrase = highlighting (distinct, emph, foreign, gloss, hi, mentioned, socalled,
-#                          term, title)
-# Incl = (anchor, etc.)
-# lists = listlike elements
-# listBibl = biblist
-# metadata (metadata Incl: links, certainty, index)
-# names = persons. places, things (bloc, country, goegname, personname, region, ...)
-# notes = notelike elements (footnote, remark)
-# personPart = first, surname, ...
-# phrase = inlines
-# phrase.verse = verses
-# placePart = names of places
-# seg = elements used for arbitrary segmentation (clauses, phrase, morphemes, words)
-# sgmlKeywords = att, gi
-# stageDirection = camera, caption, move, sound, tech, view
-# tpParts = title page parts (as in a written work)
-
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 namespace rng  = "http://relaxng.org/ns/structure/1.0"
 namespace s = "http://www.ascc.net/xml/schematron"
@@ -72,14 +27,125 @@ db._any.attribute = attribute * { text }
 # ======================================================================
 
 db.effectivity.attributes =
+  [
+    dbx:description [
+      db:para [
+        "The "
+        db:tag [ class="attribute" "arch" ]
+        " attribute designates the computer or chip architecture" ~
+        " to which the element applies."
+      ]
+    ]
+  ]
   attribute arch        { text }?,
+
+  [
+    dbx:description [
+      db:para [
+        "The "
+        db:tag [ class="attribute" "condition" ]
+        " attribute provides a standard place for" ~
+        " application-specific effectivity."
+      ]
+      db:para [
+        "Many DocBook users observed that in order to add an" ~
+        " effectivity condition that was unique to their environment" ~
+        " required "
+        db:quote [ "abusing" ]
+        " the semantics of one of the existing attributes, or adding" ~
+        " their own, making their customization "
+        db:link [ linkend="s-notdocbook" "an extension rather than a subset" ]
+        ". The"
+        db:tag [ class="attribute" "condition" ]
+        " attribute is a general-purpose effectivity attribute" ~
+        " with no specified semantics."
+      ]
+    ]
+  ]
   attribute condition   { text }?,
+
+  [
+    dbx:description [
+      "The "
+      db:tag [ class="attribute" "conformance" ]
+      " attribute indicates standards conformance characteristics" ~
+      " of the item contained in the element. These characteristics" ~
+      " are application-specific; DocBook provides no default semantics."
+    ]
+  ]
   attribute conformance { text }?,
+
+  [
+    dbx:description [
+      db:para [
+        "The "
+        db:tag [ class="attribute" "os" ]
+        " attribute indicates the operating" ~
+        " system to which the element is applicable."
+      ]
+    ]
+  ]
   attribute os          { text }?,
+
+  [
+    dbx:description [
+      db:para [
+        "The "
+        db:tag [ class="attribute" "revision" ]
+        " attribute indicates the" ~
+        " editorial revision to which the element belongs."
+      ]
+    ]
+  ]
   attribute revision    { text }?,
+
+  [
+    dbx:description [
+      db:para [
+        "The "
+        db:tag [ class="attribute" "security" ]
+        " attribute indicates something about" ~
+        " the security level associated with the element to which it applies."
+      ]
+    ]
+  ]
   attribute security    { text }?,
+
+  [
+    dbx:description [
+      db:para [
+        "The "
+        db:tag [ class="attribute" "userlevel" ]
+        " attribute indicates the" ~
+        " level of user experience to which element applies."
+      ]
+    ]
+  ]
   attribute userlevel   { text }?,
-  attribute vendor      { text }?
+
+  [
+    dbx:description [
+      db:para [
+        "The "
+        db:tag [ class="attribute" "vendor" ]
+        " attribute indicates the" ~
+        " computer vendor to which the element applies."
+      ]
+    ]
+  ]
+  attribute vendor      { text }?,
+
+  [
+    dbx:description [
+      db:para [
+        "The "
+        db:tag [ class="attribute" "wordsize" ]
+        " attribute indicates the word size (width in bits)" ~
+        " of the computer architecture to which the element applies."
+      ]
+    ]
+  ]
+  attribute wordsize    { text }?
 
 # ======================================================================
 
@@ -457,6 +523,8 @@ db.info.elements =
  | db.bibliosource
  | db.collab
  | db.confgroup
+ | db.contractsponsor
+ | db.contractnum
  | db.copyright
  | db.date
  | db.edition
@@ -464,6 +532,7 @@ db.info.elements =
  | db.issuenum
  | db.keywordset
  | db.legalnotice
+ | db.mediaobject
  | db.orgname
  | db.othercredit
  | db.pagenums
@@ -492,7 +561,7 @@ db.bibliographic.elements =
 
 [
    db:refname [ "title" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The text of the title of a section of a document or of a formal block-level element" ]
 ]
 div {
 
@@ -1003,7 +1072,7 @@ div {
    db.attribution =
       element attribution {
          db.attribution.attlist,
-         (db._text | db.personname)+
+         (db._text | db.personname | db.citetitle)+
       }
 }
 
@@ -3679,7 +3748,7 @@ div {
 
 # ======================================================================
 
-db.date.contentmodel = (xsd:date|xsd:dateTime|xsd:gYearMonth|xsd:gYear)
+db.date.contentmodel = (xsd:date|xsd:dateTime|xsd:gYearMonth|xsd:gYear|text)
 
 # ======================================================================
 
@@ -5740,7 +5809,7 @@ div {
 
 [
    db:refname [ "abbrev" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An abbreviation, especially one followed by a period" ]
 ]
 div {
 
@@ -6208,6 +6277,7 @@ div {
       db.link.role.attribute?
     & db.common.attributes
     & db.common.req.linking.attributes
+    & attribute endterm { xsd:IDREF }?
 
    db.link =
       element link {
