@@ -114,6 +114,12 @@ GlossEntry ::=
   <dt>
     <xsl:call-template name="anchor">
       <xsl:with-param name="node" select=".."/>
+      <xsl:with-param name="conditional">
+        <xsl:choose>
+          <xsl:when test="$glossterm.auto.link != 0">0</xsl:when>
+          <xsl:otherwise>1</xsl:otherwise>
+        </xsl:choose>
+      </xsl:with-param>
     </xsl:call-template>
     <xsl:apply-templates/>
   </dt>

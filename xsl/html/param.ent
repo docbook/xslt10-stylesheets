@@ -46,6 +46,7 @@
 <!ENTITY generate.section.toc SYSTEM "../params/generate.section.toc.xml">
 <!ENTITY generate.section.toc.level SYSTEM "../params/generate.section.toc.level.xml">
 <!ENTITY generate.set.toc SYSTEM "../params/generate.set.toc.xml">
+<!ENTITY glossterm.auto.link SYSTEM "../params/glossterm.auto.link.xml">
 <!ENTITY graphic.default.extension SYSTEM "../params/graphic.default.extension.xml">
 <!ENTITY html.base SYSTEM "../params/html.base.xml">
 <!ENTITY html.longdesc SYSTEM "../params/html.longdesc.xml">
