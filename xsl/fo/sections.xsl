@@ -251,6 +251,9 @@
   <xsl:param name="title"/>
 
   <fo:block xsl:use-attribute-sets="section.title.properties">
+    <fo:marker marker-class-name="section.head.marker">
+      <xsl:copy-of select="$title"/>
+    </fo:marker>
     <xsl:choose>
       <xsl:when test="$level=1">
         <fo:block xsl:use-attribute-sets="section.title.level1.properties">
@@ -283,9 +286,6 @@
         </fo:block>
       </xsl:otherwise>
     </xsl:choose>
-    <fo:marker marker-class-name="section.head.marker">
-      <xsl:copy-of select="$title"/>
-    </fo:marker>
   </fo:block>
 </xsl:template>
 
