@@ -21,11 +21,25 @@
       <xsl:when test="$placement = 'before'">
         <xsl:call-template name="formal.object.heading"/>
         <xsl:apply-templates/>
+
+        <!-- HACK: This doesn't belong inside formal.object; it should be done by -->
+        <!-- the table template, but I want the link to be inside the DIV, so... -->
+        <xsl:if test="local-name(.) = 'table'">
+          <xsl:call-template name="table.longdesc"/>
+        </xsl:if>
+
         <xsl:if test="$spacing.paras != 0"><p/></xsl:if>
       </xsl:when>
       <xsl:otherwise>
         <xsl:if test="$spacing.paras != 0"><p/></xsl:if>
         <xsl:apply-templates/>
+
+        <!-- HACK: This doesn't belong inside formal.object; it should be done by -->
+        <!-- the table template, but I want the link to be inside the DIV, so... -->
+        <xsl:if test="local-name(.) = 'table'">
+          <xsl:call-template name="table.longdesc"/>
+        </xsl:if>
+
         <xsl:call-template name="formal.object.heading"/>
       </xsl:otherwise>
     </xsl:choose>
@@ -47,6 +61,13 @@
     <xsl:if test="$spacing.paras != 0"><p/></xsl:if>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
+
+    <!-- HACK: This doesn't belong inside formal.object; it should be done by -->
+    <!-- the table template, but I want the link to be inside the DIV, so... -->
+    <xsl:if test="local-name(.) = 'informaltable'">
+      <xsl:call-template name="table.longdesc"/>
+    </xsl:if>
+
     <xsl:if test="$spacing.paras != 0"><p/></xsl:if>
   </div>
 </xsl:template>
@@ -111,6 +132,7 @@
 
 <xsl:template match="figure/title"></xsl:template>
 <xsl:template match="table/title"></xsl:template>
+<xsl:template match="table/textobject"></xsl:template>
 <xsl:template match="example/title"></xsl:template>
 <xsl:template match="equation/title"></xsl:template>
 
@@ -124,6 +146,32 @@
 
 <xsl:template match="informaltable">
   <xsl:call-template name="informal.object"/>
+</xsl:template>
+
+<xsl:template match="informaltable/textobject"></xsl:template>
+
+<xsl:template name="table.longdesc">
+  <!-- HACK: This doesn't belong inside formal.objectt; it should be done by -->
+  <!-- the table template, but I want the link to be inside the DIV, so... -->
+  <xsl:variable name="longdesc.uri">
+    <xsl:call-template name="longdesc.uri">
+      <xsl:with-param name="mediaobject" select="."/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="irrelevant">
+    <!-- write.longdesc returns the filename ... -->
+    <xsl:call-template name="write.longdesc">
+      <xsl:with-param name="mediaobject" select="."/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:if test="$html.longdesc != 0 and $html.longdesc.link != 0
+                and textobject[not(phrase)]">
+    <xsl:call-template name="longdesc.link">
+      <xsl:with-param name="longdesc.uri" select="$longdesc.uri"/>
+    </xsl:call-template>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="informalequation">
