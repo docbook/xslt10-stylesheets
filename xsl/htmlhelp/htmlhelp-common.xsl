@@ -146,13 +146,12 @@ Full-text search=Yes
 <xsl:text>Index file=</xsl:text><xsl:value-of select="$htmlhelp.hhk"/><xsl:text>
 </xsl:text></xsl:if>
 <xsl:text>Language=</xsl:text>
-<xsl:if test="//@lang">
-  <xsl:variable name="lang" select="//@lang[1]"/>
-  <xsl:value-of select="document('langcodes.xml')//gentext[@lang=string($lang)]"/>
-</xsl:if>
-<xsl:if test="not(//@lang)">
-  <xsl:text>0x0409 English (United States)</xsl:text>
-</xsl:if>
+<xsl:for-each select="*">   <!-- Change context from / to root element -->
+  <xsl:call-template name="gentext.template">
+    <xsl:with-param name="context" select="'htmlhelp'"/>
+    <xsl:with-param name="name" select="'langcode'"/>
+  </xsl:call-template>
+</xsl:for-each>
 <xsl:text>
 Title=</xsl:text>
   <xsl:choose>
