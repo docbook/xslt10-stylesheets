@@ -145,14 +145,17 @@
     <xsl:for-each select="$refs[generate-id() = generate-id(key('primary-section', concat($key, &sep;, &section.id;))[1])]">
       <xsl:apply-templates select="." mode="reference"/>
     </xsl:for-each>
+
+    <xsl:if test="$refs[not(secondary)]/*[self::see]">
+      <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &sep;, &sep;, see))[1])]"
+                           mode="index-see">
+        <xsl:sort select="see"/>
+      </xsl:apply-templates>
+    </xsl:if>
   </dt>
-  <xsl:if test="$refs/secondary or $refs[not(secondary)]/*[self::see or self::seealso]">
+  <xsl:if test="$refs/secondary or $refs[not(secondary)]/*[self::seealso]">
     <dd>
       <dl>
-        <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &sep;, &sep;, see))[1])]"
-                             mode="index-see">
-          <xsl:sort select="see"/>
-        </xsl:apply-templates>
         <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &sep;, &sep;, seealso))[1])]"
                              mode="index-seealso">
           <xsl:sort select="seealso"/>
@@ -174,14 +177,17 @@
     <xsl:for-each select="$refs[generate-id() = generate-id(key('secondary-section', concat($key, &sep;, &section.id;))[1])]">
       <xsl:apply-templates select="." mode="reference"/>
     </xsl:for-each>
+
+    <xsl:if test="$refs[not(tertiary)]/*[self::see]">
+      <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, see))[1])]"
+                           mode="index-see">
+        <xsl:sort select="see"/>
+      </xsl:apply-templates>
+    </xsl:if>
   </dt>
-  <xsl:if test="$refs/tertiary or $refs[not(tertiary)]/*[self::see or self::seealso]">
+  <xsl:if test="$refs/tertiary or $refs[not(tertiary)]/*[self::seealso]">
     <dd>
       <dl>
-        <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, see))[1])]"
-                             mode="index-see">
-          <xsl:sort select="see"/>
-        </xsl:apply-templates>
         <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, seealso))[1])]"
                              mode="index-seealso">
           <xsl:sort select="seealso"/>
@@ -203,9 +209,15 @@
     <xsl:for-each select="$refs[generate-id() = generate-id(key('tertiary-section', concat($key, &sep;, &section.id;))[1])]">
       <xsl:apply-templates select="." mode="reference"/>
     </xsl:for-each>
+
+    <xsl:if test="$refs/see">
+      <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, see))[1])]"
+                           mode="index-see">
+        <xsl:sort select="see"/>
+      </xsl:apply-templates>
+    </xsl:if>
   </dt>
-  <xsl:variable name="see" select="$refs/see | $refs/seealso"/>
-  <xsl:if test="$see">
+  <xsl:if test="$refs/seealso">
     <dd>
       <dl>
         <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, see))[1])]"
@@ -284,11 +296,23 @@
 </xsl:template>
 
 <xsl:template match="indexterm" mode="index-see">
-   <dt><xsl:value-of select="see"/></dt>
+  <xsl:text> (</xsl:text>
+  <xsl:call-template name="gentext">
+    <xsl:with-param name="key" select="'see'"/>
+  </xsl:call-template>
+  <xsl:text> </xsl:text>
+  <xsl:value-of select="see"/>
+  <xsl:text>)</xsl:text>
 </xsl:template>
 
 <xsl:template match="indexterm" mode="index-seealso">
-   <dt><xsl:value-of select="seealso"/></dt>
+  <xsl:text>(</xsl:text>
+  <xsl:call-template name="gentext">
+    <xsl:with-param name="key" select="'seealso'"/>
+  </xsl:call-template>
+  <xsl:text> </xsl:text>
+  <xsl:value-of select="seealso"/>
+  <xsl:text>)</xsl:text>
 </xsl:template>
 
 <xsl:template match="*" mode="index-title-content">
