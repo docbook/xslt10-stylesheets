@@ -3397,6 +3397,7 @@ in the text (no (0) value, the default)
 <!-- Content model for Table. -->
 <!ENTITY % tbl.table.mdl
 	"((%formalobject.title.content;), (%ndxterm.class;)*,
+	  textobject*,
           (graphic+|mediaobject+|tgroup+))">
 
 <!-- Allow either objects or inlines; beware of REs between elements. -->
@@ -3430,9 +3431,9 @@ in the text (no (0) value, the default)
 
 <!-- Content model for Table. -->
 <!ENTITY % tbl.table.mdl
-	"((%formalobject.title.content;),
-          (%ndxterm.class;)*,
-          (graphic+|tgroup+))">
+	"((%formalobject.title.content;), (%ndxterm.class;)*,
+	  textobject*,
+          (graphic+|mediaobject+|tgroup+))">
 
 <!-- Allow either objects or inlines; beware of REs between elements. -->
 <!ENTITY % tbl.entry.mdl "(%para.char.mix; | %tabentry.mix;)*">
@@ -3457,7 +3458,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % informaltable.element "INCLUDE">
 <![%informaltable.element;[
-<!ELEMENT informaltable %ho; (graphic+|mediaobject+|tgroup+)>
+<!ELEMENT informaltable %ho; (textobject*, (graphic+|mediaobject+|tgroup+))>
 <!--end of informaltable.element-->]]>
 
 <!-- Frame, Colsep, and Rowsep must be repeated because
