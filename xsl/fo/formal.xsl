@@ -83,30 +83,60 @@
       <xsl:attribute name="border-right-style">solid</xsl:attribute>
       <xsl:attribute name="border-top-style">solid</xsl:attribute>
       <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
+      <xsl:attribute name="border-left-width">
+        <xsl:value-of select="$table.border.thickness"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-right-width">
+        <xsl:value-of select="$table.border.thickness"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-top-width">
+        <xsl:value-of select="$table.border.thickness"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-bottom-width">
+        <xsl:value-of select="$table.border.thickness"/>
+      </xsl:attribute>
     </xsl:when>
     <xsl:when test="$frame='bottom'">
       <xsl:attribute name="border-left-style">none</xsl:attribute>
       <xsl:attribute name="border-right-style">none</xsl:attribute>
       <xsl:attribute name="border-top-style">none</xsl:attribute>
       <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
+      <xsl:attribute name="border-bottom-width">
+        <xsl:value-of select="$table.border.thickness"/>
+      </xsl:attribute>
     </xsl:when>
     <xsl:when test="$frame='sides'">
       <xsl:attribute name="border-left-style">solid</xsl:attribute>
       <xsl:attribute name="border-right-style">solid</xsl:attribute>
       <xsl:attribute name="border-top-style">none</xsl:attribute>
       <xsl:attribute name="border-bottom-style">none</xsl:attribute>
+      <xsl:attribute name="border-left-width">
+        <xsl:value-of select="$table.border.thickness"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-right-width">
+        <xsl:value-of select="$table.border.thickness"/>
+      </xsl:attribute>
     </xsl:when>
     <xsl:when test="$frame='top'">
       <xsl:attribute name="border-left-style">none</xsl:attribute>
       <xsl:attribute name="border-right-style">none</xsl:attribute>
       <xsl:attribute name="border-top-style">solid</xsl:attribute>
       <xsl:attribute name="border-bottom-style">none</xsl:attribute>
+      <xsl:attribute name="border-top-width">
+        <xsl:value-of select="$table.border.thickness"/>
+      </xsl:attribute>
     </xsl:when>
     <xsl:when test="$frame='topbot'">
       <xsl:attribute name="border-left-style">none</xsl:attribute>
       <xsl:attribute name="border-right-style">none</xsl:attribute>
       <xsl:attribute name="border-top-style">solid</xsl:attribute>
       <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
+      <xsl:attribute name="border-top-width">
+        <xsl:value-of select="$table.border.thickness"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-bottom-width">
+        <xsl:value-of select="$table.border.thickness"/>
+      </xsl:attribute>
     </xsl:when>
     <xsl:when test="$frame='none'">
       <xsl:attribute name="border-left-style">none</xsl:attribute>
