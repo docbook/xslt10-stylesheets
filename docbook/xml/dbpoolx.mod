@@ -130,7 +130,7 @@
 
 <!ENTITY % local.compound.class "">
 <!ENTITY % compound.class
-		"msgset|procedure|sidebar|qandaset
+		"msgset|procedure|sidebar|qandaset|task
                  %ebnf.block.hook;
                  %local.compound.class;">
 
@@ -1435,6 +1435,101 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!--end of msgexplan.attlist-->]]>
 <!--end of msgexplan.module-->]]>
 <!--end of msgset.content.module-->]]>
+
+<!ENTITY % task.content.module "INCLUDE">
+<![%task.content.module;[
+<!ENTITY % task.module "INCLUDE">
+<![%task.module;[
+<!ENTITY % local.task.attrib "">
+<!ENTITY % task.role.attrib "%role.attrib;">
+
+<!ENTITY % task.element "INCLUDE">
+<![%task.element;[
+<!ELEMENT task %ho; (blockinfo?,(%ndxterm.class;)*,
+                     (%formalobject.title.content;),
+                     tasksummary?,
+                     taskprerequisites?,
+                     procedure,
+                     example*,
+                     taskrelated?)>
+<!--end of task.element-->]]>
+
+<!ENTITY % task.attlist "INCLUDE">
+<![%task.attlist;[
+<!ATTLIST task
+		%common.attrib;
+		%task.role.attrib;
+		%local.task.attrib;
+>
+<!--end of task.attlist-->]]>
+<!--end of task.module-->]]>
+
+<!ENTITY % tasksummary.module "INCLUDE">
+<![%tasksummary.module;[
+<!ENTITY % local.tasksummary.attrib "">
+<!ENTITY % tasksummary.role.attrib "%role.attrib;">
+
+<!ENTITY % tasksummary.element "INCLUDE">
+<![%tasksummary.element;[
+<!ELEMENT tasksummary %ho; (blockinfo?,
+                            (%formalobject.title.content;)?,
+                            (%component.mix;)+)>
+<!--end of tasksummary.element-->]]>
+
+<!ENTITY % tasksummary.attlist "INCLUDE">
+<![%tasksummary.attlist;[
+<!ATTLIST tasksummary
+		%common.attrib;
+		%tasksummary.role.attrib;
+		%local.tasksummary.attrib;
+>
+<!--end of tasksummary.attlist-->]]>
+<!--end of tasksummary.module-->]]>
+
+<!ENTITY % taskprerequisites.module "INCLUDE">
+<![%taskprerequisites.module;[
+<!ENTITY % local.taskprerequisites.attrib "">
+<!ENTITY % taskprerequisites.role.attrib "%role.attrib;">
+
+<!ENTITY % taskprerequisites.element "INCLUDE">
+<![%taskprerequisites.element;[
+<!ELEMENT taskprerequisites %ho; (blockinfo?,
+                                  (%formalobject.title.content;)?,
+                                  (%component.mix;)+)>
+<!--end of taskprerequisites.element-->]]>
+
+<!ENTITY % taskprerequisites.attlist "INCLUDE">
+<![%taskprerequisites.attlist;[
+<!ATTLIST taskprerequisites
+		%common.attrib;
+		%taskprerequisites.role.attrib;
+		%local.taskprerequisites.attrib;
+>
+<!--end of taskprerequisites.attlist-->]]>
+<!--end of taskprerequisites.module-->]]>
+
+<!ENTITY % taskrelated.module "INCLUDE">
+<![%taskrelated.module;[
+<!ENTITY % local.taskrelated.attrib "">
+<!ENTITY % taskrelated.role.attrib "%role.attrib;">
+
+<!ENTITY % taskrelated.element "INCLUDE">
+<![%taskrelated.element;[
+<!ELEMENT taskrelated %ho; (blockinfo?,
+                            (%formalobject.title.content;)?,
+                            (%component.mix;)+)>
+<!--end of taskrelated.element-->]]>
+
+<!ENTITY % taskrelated.attlist "INCLUDE">
+<![%taskrelated.attlist;[
+<!ATTLIST taskrelated
+		%common.attrib;
+		%taskrelated.role.attrib;
+		%local.taskrelated.attrib;
+>
+<!--end of taskrelated.attlist-->]]>
+<!--end of taskrelated.module-->]]>
+<!--end of task.content.module-->]]>
 
 <!-- QandASet ........................ -->
 <!ENTITY % qandaset.content.module "INCLUDE">
