@@ -44,16 +44,19 @@
 
 <xsl:template name="is.graphic.extension">
   <xsl:param name="ext"></xsl:param>
-  <xsl:if test="$ext = 'svg'
-                or $ext = 'png'
-                or $ext = 'jpeg'
-                or $ext = 'jpg'
-                or $ext = 'avi'
-                or $ext = 'mpg'
-                or $ext = 'mpeg'
-                or $ext = 'qt'
-                or $ext = 'gif'
-                or $ext = 'bmp'">1</xsl:if>
+  <xsl:variable name="lcext" select="translate($ext,
+                                       'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                                       'abcdefghijklmnopqrstuvwxyz')"/>
+  <xsl:if test="$lcext = 'svg'
+             or $lcext = 'png'
+             or $lcext = 'jpeg'
+             or $lcext = 'jpg'
+             or $lcext = 'avi'
+             or $lcext = 'mpg'
+             or $lcext = 'mpeg'
+             or $lcext = 'qt'
+             or $lcext = 'gif'
+             or $lcext = 'bmp'">1</xsl:if>
 </xsl:template>
 
 <!-- ==================================================================== -->
