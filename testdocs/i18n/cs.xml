@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<chapter lang='cs' id='cschap'>
+<chapterinfo>
+<othercredit>
+  <surname>Kosek</surname>
+  <firstname>Jirka</firstname>
+  <affiliation><address><email>jirka@kosek.cz</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+<title lang="en">Czech</title>
+
+<para lang="cs">DocBook je <ulink
+url="http://www.ucc.ie/xml/#doctype">definice typu dokumentu</ulink>
+(DTD) spravovaná <ulink
+url="mailto:docbook-tc@oasis-open.org">Technickým výborem pro
+DocBook</ulink> sdružení <ulink
+url="http://www.oasis-open.org/">OASIS</ulink>. Obzvláště se hodí pro
+přípravu knih a článků o počítačovém hardwaru a softwaru (v žádném
+případě však není omezena jen pro toto použití).</para>
+
+<para lang="cs">Protože se jedná o velké a robustní DTD, jehož hlavní
+struktury odpovídají obecné představě o tom, z čeho se skládá
+<quote>kniha</quote>, DocBook je přijímán velkou a stále se zvětšující
+komunitou autorů různorodých dokumentů. DocBook je přímo podporován
+několika komerčními nástroji a podpora v mnoha free softwarových
+prostředích se rychle zvětšuje. Tyto vlastnosti dělají z DocBooku
+obecně snadno pochopitelné, široce užitečné a velmi populární
+DTD. Mnoho organizací po celém světě používá DocBook pro miliony
+stránek dokumentace v různých tiskových a online formátech.</para>
+
+</chapter>

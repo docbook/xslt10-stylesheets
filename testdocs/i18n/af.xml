@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<chapter lang='af' id='afchap'>
+<chapterinfo>
+<othercredit>
+  <surname>Thirion</surname>
+  <firstname>Frikkie</firstname>
+  <affiliation><address><email>frix@expertron.co.za</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+<title lang="en">Afrikaans</title>
+
+<para lang="af">
+DocBook is 'n <ulink url="http://www.ucc.ie/xml/#doctype">Dokument Tipe
+Definisie</ulink> (DTD) onderhou deur die <ulink
+url="mailto:docbook-tc@oasis-open.org">DocBook Tegniese
+kommittee</ulink> van <ulink
+url="http://www.oasis-open.org/">OASIS</ulink>. Dit is veral
+geskik vir boeke en verslae oor rekenaar hardeware en sagteware
+(alhoewel dit geensins beperk is tot hierdie onderwerpe nie).
+</para>
+
+<para lang="af">
+Hierdie groot en robuste DTD is verander deur 'n groot en
+groeiende gemeenskap van skrywers van alle tipes dokumente.
+Die hoof rede vir hierdie bydraes is omdat die struktuur
+ooreenstem met die algemene riglyne van wat alom bekend
+staan as 'n <quote>boek</quote>.
+DocBook word <quote>uit die boks</quote> ondersteun deur 'n
+verskeidenheid komersiële produkte en die ondersteuning
+in gratis sagteware omgewings is besig om vinnig te groei.
+Hierdie eienskappe het bygedra dat DocBook redelik maklik
+is om te verstaan, baie bruikbaar is en 'n baie gewilde DTD
+is. Dosyne organisasies gebruik DocBook wêreldwyd vir miljoene
+bladsye dokumentasie in verskeie gedrukte en aanlyn formate.
+</para>
+
+</chapter>
