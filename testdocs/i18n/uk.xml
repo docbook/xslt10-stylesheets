@@ -1,41 +1,23 @@
-<?xml version='1.0' encoding='ISO-8859-1'?>
+<?xml version='1.0' encoding='utf-8'?>
 <chapter lang='uk' id='ukchap'>
-<!--
 <chapterinfo>
 <othercredit>
-  <surname></surname>
-  <firstname></firstname>
-  <affiliation><address><email></email></address></affiliation>
+  <surname>Tkatchenko</surname>
+  <firstname>Olexij</firstname>
+  <affiliation><address><email>ot@parcs.de</email></address></affiliation>
   <contrib>Translation</contrib>
 </othercredit>
 </chapterinfo>
--->
+
 <title lang="en">Ukranian</title>
 
-<para>No translation available.</para>
-
-<para lang="en_us">
-DocBook is a <ulink url="http://www.ucc.ie/xml/#doctype">Document Type
-Definition</ulink> (DTD) maintained by the <ulink
-url="mailto:docbook-tc@oasis-open.org">DocBook Technical
-Committee</ulink> of <ulink
-url="http://www.oasis-open.org/">OASIS</ulink>. It is particularly
-well suited to books and papers about computer hardware and software
-(though it is by no means limited to these applications).
+<para lang="uk">
+Docbook це <ulink url="http://www.ucc.ie/xml/#doctype">Document Type
+Definition</ulink> (DTD, oзначення типу документу), яке підтримується <ulink url="mailto:docbook-tc@oasis-open.org">DocBook Technical Committee</ulink> з <ulink url="http://www.oasis-open.org/">OASIS</ulink>. Воно зокрема добре придатне для створення книжок та статей які стосуються апаратного та програмного забезпечення (хоча цим застосуванням ніяк не обмежується).
 </para>
 
-<para lang="en_us">
-Because it is a large and robust DTD, and because its main
-structures correspond to the general notion of what constitutes
-a <quote>book</quote>, DocBook has been adopted by a large and
-growing community of authors writing documents of all kinds. DocBook
-is supported <quote>out of the box</quote> by a number of
-commercial tools, and there is rapidly expanding support for it
-in a number of free software environments. These features have
-combined to make DocBook a generally easy to understand, widely
-useful, and very popular DTD. Dozens of organizations are using
-DocBook for millions of pages of documentation, in various print
-and online formats, worldwide.
+<para lang="uk">
+Поскільки це велике та надійне DTD, і поскільки його основні структури відповідають загальним поняттям структури <quote>книжки</quote>, DocBook був прийнятий великою і постійно зростаючою громадою авторів документів різних тиів. DocBook підтримуєтся багатьма комерційними продуктами, його підтримка у вільних програмних середовищах швидко зростає. Ці ознаки зробили DocBook загальнозрозумілим, багатостороннім і дуже популярним DTD. Десятки організацій по цілому світу використовують DocBook для написання мільйонів сторінок документації в різних друкованих та онлайн-форматах.
 </para>
 
 </chapter>
