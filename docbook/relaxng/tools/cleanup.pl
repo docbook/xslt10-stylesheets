@@ -9,8 +9,6 @@ while (<>) {
     s/<\/rng:/<\//g;
     s/\s+xmlns:rng=[\"\'].*?[\"\']\s+/ /g;
     s/\s*xmlns:rng=[\"\'].*?[\"\']\s*//g;
-    s/\s+xmlns:ctrl=[\"\'].*?[\"\']\s+/ /g;
-    s/\s*xmlns:ctrl=[\"\'].*?[\"\']\s*//g;
     print $_;
     print "\n" if /<\/define>/;
 }
