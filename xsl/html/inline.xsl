@@ -21,7 +21,8 @@
   </xsl:param>
 
   <xsl:choose>
-    <xsl:when test="$node/@xlink:type='simple' and $node/@xlink:href">
+    <xsl:when test="$node/@xlink:href
+                    and (not($node/@xlink:type) or $node/@xlink:type='simple')">
       <a>
         <xsl:if test="@xlink.title">
           <xsl:attribute name="title">
