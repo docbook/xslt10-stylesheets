@@ -70,6 +70,7 @@
 <xsl:include href="docbookng.xsl"/>
 
 <xsl:param name="stylesheet.result.type" select="'html'"/>
+<xsl:param name="htmlhelp.output" select="0"/>
 
 <!-- ==================================================================== -->
 
