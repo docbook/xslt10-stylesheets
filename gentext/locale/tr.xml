@@ -10,162 +10,170 @@
           <affiliation><address><email>ibr@gantek.com</email></address>
           </affiliation>
   </author>
-  <author><firstname>Togan</firstname><surname>Muftuoglu</surname>
+  <author><firstname>Togan</firstname><surname>Müftüoğlu</surname>
           <affiliation><address><email>toganm@users.sourceforge.net</email></address>
           </affiliation>
   </author>
 </authorgroup>
 </doc:localeinfo>
 
-<gentext key="Abstract" text="&#214;zet"/>
-<gentext key="abstract" text="&#214;zet"/>
+<gentext key="Abstract" text="Özet"/>
+<gentext key="abstract" text="Özet"/>
 <gentext key="Answer" text="Cevap:"/>
 <gentext key="answer" text="Cevap:"/>
 <gentext key="Appendix" text="Ek"/>
-<gentext key="appendix" text="Ek"/>
+<gentext key="appendix" text="ek"/>
 <gentext key="Article" text="Makale"/>
 <gentext key="article" text="Makale"/>
-<gentext key="Bibliography" text="Kaynak&#231;a"/>
-<gentext key="bibliography" text="Kaynak&#231;a"/>
+<gentext key="Bibliography" text="Kaynakça"/>
+<gentext key="bibliography" text="Kaynakça"/>
 <gentext key="Book" text="Kitap"/>
 <gentext key="book" text="Kitap"/>
-<gentext key="CAUTION" text="D&#221;KKAT"/>
+<gentext key="CAUTION" text="DİKKAT"/>
 <gentext key="Caution" text="Dikkat"/>
 <gentext key="caution" text="Dikkat"/>
-<gentext key="Chapter" text="B&#246;l&#252;m"/>
-<gentext key="chapter" text="B&#246;l&#252;m"/>
-<gentext key="Colophon" text="Colophon"/>
-<gentext key="colophon" text="Colophon"/>
-<gentext key="Copyright" text="Telif hakk&#253;"/>
-<gentext key="copyright" text="Telif hakk&#253;"/>
-<gentext key="Dedication" text="&#221;thaf"/>
-<gentext key="dedication" text="&#221;thaf"/>
-<gentext key="Edition" text="Bask&#253;"/>
-<gentext key="edition" text="Bask&#253;"/>
+<gentext key="Chapter" text="Bölüm"/>
+<gentext key="chapter" text="bölüm"/>
+<gentext key="Colophon" text="Kitap hakkında"/>
+<gentext key="colophon" text="Kitap hakkında"/>
+<gentext key="Copyright" text="Telif Hakkı"/>
+<gentext key="copyright" text="Telif Hakkı"/>
+<gentext key="Dedication" text="İthaf"/>
+<gentext key="dedication" text="İthaf"/>
+<gentext key="Edition" text="Baskı"/>
+<gentext key="edition" text="Baskı"/>
 <gentext key="Equation" text="Denklem"/>
 <gentext key="equation" text="Denklem"/>
-<gentext key="Example" text="&#214;rnek"/>
-<gentext key="example" text="&#214;rnek"/>
-<gentext key="Figure" text="&#222;ekil"/>
-<gentext key="figure" text="&#254;ekil"/>
-<gentext key="Glossary" text="S&#246;zl&#252;k"/>
-<gentext key="glossary" text="S&#246;zl&#252;k"/>
+<gentext key="Example" text="Örnek"/>
+<gentext key="example" text="Örnek"/>
+<gentext key="Figure" text="Şekil"/>
+<gentext key="figure" text="Şekil"/>
+<gentext key="Glossary" text="Sözlük"/>
+<gentext key="glossary" text="Sözlük"/>
 <gentext key="GlossSee" text="Bkz."/>
 <gentext key="glosssee" text="Bkz."/>
 <gentext key="GlossSeeAlso" text="Bkz."/>
 <gentext key="glossseealso" text="Bkz."/>
-<gentext key="IMPORTANT" text="&#214;NEML&#221;"/>
-<gentext key="Important" text="&#214;nemli"/>
-<gentext key="important" text="&#214;nemli"/>
+<gentext key="IMPORTANT" text="ÖNEMLİ"/>
+<gentext key="important" text="Önemli"/>
+<gentext key="Important" text="Önemli"/>
 <gentext key="Index" text="Dizin"/>
 <gentext key="index" text="Dizin"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
-<gentext key="LegalNotice" text="Yasal Not"/>
-<gentext key="legalnotice" text="Yasal Not"/>
-<gentext key="MsgAud" text="Hedef okuyucu kitlesi"/>
-<gentext key="msgaud" text="Hedef okuyucu kitlesi"/>
-<gentext key="MsgLevel" text="D&#252;zey"/>
-<gentext key="msglevel" text="D&#252;zey"/>
-<gentext key="MsgOrig" text="Kaynak"/>
+<gentext key="LegalNotice" text="Yasal Uyarı"/>
+<gentext key="legalnotice" text="Yasal Uyarı"/>
+<gentext key="MsgAud" text="Hedef Okuyucu"/>
+<gentext key="msgaud" text="Hedef Okuyucu"/>
+<gentext key="MsgLevel" text="Level"/>
+<gentext key="msglevel" text="Düzey"/>
+<gentext key="MsgOrig" text="Düzey"/>
 <gentext key="msgorig" text="Kaynak"/>
 <gentext key="NOTE" text="NOT"/>
 <gentext key="Note" text="Not"/>
 <gentext key="note" text="Not"/>
-<gentext key="Part" text="K&#253;s&#253;m"/>
-<gentext key="part" text="K&#253;s&#253;m"/>
-<gentext key="Preface" text="&#214;ns&#246;z"/>
-<gentext key="preface" text="&#214;ns&#246;z"/>
-<gentext key="Procedure" text="Y&#246;nerge"/>
-<gentext key="procedure" text="Y&#246;nerge"/>
-<gentext key="ProductionSet" text="Production"/>
-<gentext key="Published" text="Yay&#253;mland&#253;"/>
-<gentext key="published" text="Yay&#253;mland&#253;"/>
+<gentext key="Part" text="Kısım"/>
+<gentext key="part" text="Kısım"/>
+<gentext key="Preface" text="Önsöz"/>
+<gentext key="preface" text="Önsöz"/>
+<gentext key="Procedure" text="Yönerge"/>
+<gentext key="procedure" text="Yönerge"/>
+<gentext key="ProductionSet" text="Prodüksiyon"/>
+<gentext key="Published" text="Yayımlanma"/>
+<gentext key="published" text="Yayımlanma"/>
 <gentext key="Question" text="Soru:"/>
 <gentext key="question" text="Soru:"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
 <gentext key="Reference" text="Referans"/>
 <gentext key="reference" text="Referans"/>
-<gentext key="RefName" text="Referans Ad&#253;"/>
-<gentext key="refname" text="Referans Ad&#253;"/>
+<gentext key="RefName" text="Referans Adı"/>
+<gentext key="refname" text="Referans Adı"/>
 <gentext key="RefSection" text=""/>
 <gentext key="refsection" text=""/>
 <gentext key="RefSynopsisDiv" text="Synopsis"/>
 <gentext key="refsynopsisdiv" text="Synopsis"/>
-<gentext key="RevHistory" text="Bask&#253; Tarih&#231;esi"/>
-<gentext key="revhistory" text="Bask&#253; Tarih&#231;esi"/>
-<gentext key="Revision" text="Bask&#253;"/>
-<gentext key="revision" text="Bask&#253;"/>
-<gentext key="section" text="K&#253;s&#253;"/>
-<gentext key="Section" text="K&#253;s&#253;m"/>
+<gentext key="RevHistory" text="Baskı Tarihçesi"/>
+<gentext key="revhistory" text="Baskı Tarihçesi"/>
+<gentext key="revision" text="Baskı"/>
+<gentext key="Revision" text="Baskı"/>
+<gentext key="sect1" text="Kısım"/>
+<gentext key="sect2" text="Kısım"/>
+<gentext key="sect3" text="Kısım"/>
+<gentext key="sect4" text="Kısım"/>
+<gentext key="sect5" text="Kısım"/>
+<gentext key="section" text="Kısım"/>
+<gentext key="Section" text="Kısım"/>
 <gentext key="See" text="Bkz."/>
 <gentext key="see" text="Bkz."/>
 <gentext key="SeeAlso" text="Bkz."/>
 <gentext key="seealso" text="Bkz."/>
 <gentext key="Seealso" text="Bkz."/>
-<gentext key="Set" text="Tak&#253;m"/>
-<gentext key="set" text="Tak&#253;m"/>
-<gentext key="SetIndex" text="Tak&#253;m Dizini"/>
-<gentext key="setindex" text="Tak&#253;m Dizini"/>
-<gentext key="Sidebar" text="Yan S&#252;tun"/>
-<gentext key="sidebar" text="Yan S&#252;tun"/>
-<gentext key="Step" text="Ad&#253;m"/>
-<gentext key="step" text="Ad&#253;m"/>
+<gentext key="set" text="Takım"/>
+<gentext key="Set" text="Takım"/>
+<gentext key="setindex" text="Takım Dizini"/>
+<gentext key="SetIndex" text="Takım Dizini"/>
+<gentext key="Sidebar" text=""/>
+<gentext key="sidebar" text=""/>
+<gentext key="step" text="adım"/>
+<gentext key="Step" text="Adım"/>
 <gentext key="Table" text="Tablo"/>
 <gentext key="table" text="Tablo"/>
-<gentext key="TIP" text="&#221;PUCU"/>
-<gentext key="Tip" text="&#221;pucu"/>
-<gentext key="tip" text="&#221;pucu"/>
-<gentext key="Warning" text="Uyar&#253;"/>
-<gentext key="warning" text="Uyar&#253;"/>
+<gentext key="tip" text="İpucu"/>
+<gentext key="TIP" text="İPUCU"/>
+<gentext key="Tip" text="İpucu"/>
+<gentext key="Warning" text="Uyarı"/>
+<gentext key="warning" text="Uyarı"/>
 <gentext key="WARNING" text="UYARI"/>
 
 <gentext key="and" text="ve"/>
 <gentext key="by" text=""/>
-<gentext key="Edited" text="Yay&#253;na Haz&#253;rlayan"/>
-<gentext key="edited" text="yay&#253;na haz&#253;rlayan"/>
-<gentext key="Editedby" text="Yay&#253;na Haz&#253;rlayan "/>
-<gentext key="editedby" text="Yay&#253;na Haz&#253;rlayan "/>
+<gentext key="Edited" text="Yayına hazırlayan"/>
+<gentext key="edited" text="yayına hazırlayan"/>
+<gentext key="Editedby" text="Yayına hazırlayan"/>
+<gentext key="editedby" text="yayına hazırlayan"/>
 <gentext key="in" text=""/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
-<gentext key="nonexistantelement" text="var olmayan eleman"/>
+<gentext key="nonexistantelement" text="varolmayan eleman"/>
 <gentext key="notes" text="Notlar"/>
 <gentext key="Notes" text="Notlar"/>
 <gentext key="Pgs" text="Sayfa"/>
 <gentext key="pgs" text="Sayfa"/>
-<gentext key="Revisedby" text="D&#252;zeltmeler: "/>
-<gentext key="revisedby" text="D&#252;zeltmeler: "/>
+<gentext key="Revisedby" text="Düzeltmeler: "/>
+<gentext key="revisedby" text="Düzeltmeler: "/>
 <gentext key="TableNotes" text="Notlar"/>
 <gentext key="tablenotes" text="Notlar"/>
-<gentext key="TableofContents" text="&#221;&#231;indekiler"/>
-<gentext key="tableofcontents" text="&#221;&#231;indekiler"/>
-<gentext key="unexpectedelementname" text="Beklenmedik eleman ad&#253;"/>
+<gentext key="TableofContents" text="İçindekiler"/>
+<gentext key="tableofcontents" text="İçindekiler"/>
+<gentext key="unexpectedelementname" text="Beklenmeyen eleman adı"/>
 <gentext key="unsupported" text="desteklenmiyor"/>
 <gentext key="xrefto" text="xref to"/>
 
 <gentext key="listofequations" text="Denklemler"/>
 <gentext key="ListofEquations" text="Denklemler"/>
-<gentext key="ListofExamples" text="&#214;rnekler"/>
-<gentext key="listofexamples" text="&#214;rnekler"/>
-<gentext key="ListofFigures" text="&#222;ekiller"/>
-<gentext key="listoffigures" text="&#222;ekiller"/>
+<gentext key="ListofExamples" text="Örnekler"/>
+<gentext key="listofexamples" text="Örnekler"/>
+<gentext key="ListofFigures" text="Şekiller"/>
+<gentext key="listoffigures" text="Şekiller"/>
 <gentext key="listoftables" text="Tablolar"/>
 <gentext key="ListofTables" text="Tablolar"/>
 <gentext key="ListofUnknown" text="Bilinmeyenler"/>
 <gentext key="listofunknown" text="Bilinmeyenler"/>
 
-<gentext key="nav-home" text="Ba&#254;lang&#253;&#231;"/>
+<gentext key="nav-home" text="Başlangıç"/>
 <gentext key="nav-next" text="Sonraki"/>
-<gentext key="nav-next-sibling" text="Sonraki b&#246;l&#252;m"/>
-<gentext key="nav-prev" text="&#214;nceki"/>
-<gentext key="nav-prev-sibling" text="&#214;nceki b&#246;l&#252;m"/>
-<gentext key="nav-up" text="Yukar&#253;"/>
+<gentext key="nav-next-sibling" text="Sonraki Bölüm"/>
+<gentext key="nav-prev" text="Önceki"/>
+<gentext key="nav-prev-sibling" text="Önceki Bölüm"/>
+<gentext key="nav-up" text="Yukarı"/>
 
 <gentext key="sectioncalled"       text=""/>
 
-<gentext key="index symbols"            text="Semboller"/>
+<gentext key="index symbols"            text="Semboler"/>
+
+<gentext key="lowercase.alpha" text="abcçdefgğhıijklmnoöprsştuüvyz"/>
+<gentext key="uppercase.alpha" text="ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
@@ -176,6 +184,7 @@
 <context name="title">
 
 <template name="abstract">%t</template>
+<template name="answer">%t</template>
 <template name="appendix"><Appendix/> %n. %t</template>
 <template name="article">%t</template>
 <template name="authorblurb">%t</template>
@@ -219,9 +228,11 @@
 <template name="procedure">%t</template>
 <template name="procedure.formal"><Procedure/> %n. %t</template>
 <template name="productionset">%t</template>
-<template name="productionset.formal"><ProductionSet/> %n. %t</template>
+<template name="productionset.formal"><ProductionSet/> %n</template>
 <template name="qandadiv">%t</template>
+<template name="qandaentry">%t</template>
 <template name="qandaset">%t</template>
+<template name="question">%t</template>
 <template name="refentry">%t</template>
 <template name="reference">%t</template>
 <template name="refsect1">%t</template>
@@ -238,6 +249,7 @@
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
+<template name="varlistentry"/>
 <template name="warning">%t</template>
 
 </context>
@@ -245,6 +257,7 @@
 <context name="title-unnumbered">
 
 <template name="appendix">%t</template>
+<template name="bridgehead">%t</template>
 <template name="chapter">%t</template>
 <template name="sect1">%t</template>
 <template name="sect2">%t</template>
@@ -259,6 +272,7 @@
 <context name="title-numbered">
 
 <template name="appendix"><Appendix/> %n. %t</template>
+<template name="bridgehead">%n. %t</template>
 <template name="chapter"><Chapter/> %n. %t</template>
 <template name="sect1">%n. %t</template>
 <template name="sect2">%n. %t</template>
@@ -266,7 +280,7 @@
 <template name="sect4">%n. %t</template>
 <template name="sect5">%n. %t</template>
 <template name="section">%n. %t</template>
-<template name="simplesect">%n. %t</template>
+<template name="simplesect">%t</template>
 
 </context>
 
@@ -314,33 +328,71 @@
 
 <context name="xref">
 
+<template name="abstract">%t</template>
 <template name="answer"><Answer/> %n</template>
 <template name="appendix"><Appendix/> %n</template>
 <template name="article">%t</template>
+<template name="authorblurb">%t</template>
+<template name="bibliodiv">%t</template>
 <template name="bibliography">%t</template>
+<template name="bibliomset">%t</template>
+<template name="biblioset">%t</template>
+<template name="blockquote">%t</template>
 <template name="book">%t</template>
+<template name="calloutlist">%t</template>
+<template name="caution">%t</template>
 <template name="chapter"><Chapter/> %n</template>
 <template name="colophon">%t</template>
+<template name="constraintdef">%t</template>
 <template name="dedication">%t</template>
 <template name="equation"><Equation/> %n</template>
 <template name="example"><Example/> %n</template>
 <template name="figure"><Figure/> %n</template>
+<template name="formalpara">%t</template>
 <template name="glossary">%t</template>
+<template name="glossdiv">%t</template>
+<template name="important">%t</template>
 <template name="index">%t</template>
+<template name="indexdiv">%t</template>
+<template name="itemizedlist">%t</template>
+<template name="legalnotice">%t</template>
 <template name="listitem">%n</template>
+<template name="lot">%t</template>
+<template name="msg">%t</template>
+<template name="msgexplan">%t</template>
+<template name="msgmain">%t</template>
+<template name="msgrel">%t</template>
+<template name="msgset">%t</template>
+<template name="msgsub">%t</template>
+<template name="note">%t</template>
+<template name="orderedlist">%t</template>
 <template name="part"><Part/> %n</template>
+<template name="partintro">%t</template>
 <template name="preface">%t</template>
 <template name="procedure"><Procedure/> %n</template>
+<template name="productionset">%t</template>
+<template name="qandadiv">%t</template>
+<template name="qandaentry"><Question/> %n</template>
+<template name="qandaset">%t</template>
 <template name="question"><Question/> %n</template>
 <template name="reference">%t</template>
+<template name="refsynopsisdiv">%t</template>
+<template name="segmentedlist">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
+<template name="sidebar">%t</template>
 <template name="table"><Table/> %n</template>
+<template name="tip">%t</template>
+<template name="toc">%t</template>
+<template name="variablelist">%t</template>
+<template name="varlistentry">%n</template>
+<template name="warning">%t</template>
 
 </context>
 
 <context name="section-xref">
 
+<template name="bridgehead"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="sect1"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="sect2"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="sect3"><sectioncalled/> &#x201C;%t&#x201D;</template>
@@ -353,6 +405,7 @@
 
 <context name="section-xref-numbered">
 
+<template name="bridgehead"><Section/> %n</template>
 <template name="sect1"><Section/> %n</template>
 <template name="sect2"><Section/> %n</template>
 <template name="sect3"><Section/> %n</template>
