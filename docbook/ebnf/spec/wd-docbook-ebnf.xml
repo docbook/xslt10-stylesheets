@@ -290,6 +290,13 @@ of the DocBook web page
 
 </bibliodiv>
 
+<bibliodiv><title>Non-Normative</title>
+
+<bibliomixed id="iso-14977"/>
+<bibliomixed id="rfc2234"/>
+
+</bibliodiv>
+
 </bibliography>
 
 </article>
