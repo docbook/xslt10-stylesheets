@@ -106,7 +106,7 @@
 <![%dbcent.module;[
 
 <![%sgml.features;[
-<!ENTITY euro "[euro  ]"><!-- euro sign, U+20AC NEW -->
+<!ENTITY euro SDATA "[euro  ]"><!-- euro sign -->
 ]]>
 <![%xml.features;[
 <!ENTITY euro "&#x20AC;"><!-- euro sign, U+20AC NEW -->
