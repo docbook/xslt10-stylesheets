@@ -805,6 +805,7 @@
 
 <xsl:template match="seglistitem">
   <div class="seglistitem">
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </div>
 </xsl:template>
