@@ -157,9 +157,11 @@
     <!--
     <xsl:when test="$itemsymbol='square'">&#x25A0;</xsl:when>
     <xsl:when test="$itemsymbol='box'">&#x25A0;</xsl:when>
+    <xsl:when test="$itemsymbol='smallblacksquare'">&#x25AA;</xsl:when>
     <xsl:when test="$itemsymbol='circle'">&#x25CB;</xsl:when>
     <xsl:when test="$itemsymbol='opencircle'">&#x25CB;</xsl:when>
     <xsl:when test="$itemsymbol='whitesquare'">&#x25A1;</xsl:when>
+    <xsl:when test="$itemsymbol='smallwhitesquare'">&#x25AB;</xsl:when>
     <xsl:when test="$itemsymbol='round'">&#x25CF;</xsl:when>
     <xsl:when test="$itemsymbol='blackcircle'">&#x25CF;</xsl:when>
     <xsl:when test="$itemsymbol='whitebullet'">&#x25E6;</xsl:when>
@@ -378,16 +380,16 @@
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="@termlength"/>
-	    <xsl:choose>
-	      <!-- workaround for passivetex lack of support for non-constant expressions -->
-	      <xsl:when test="$passivetex.extensions != 0">
-		<xsl:text>em</xsl:text>
-	      </xsl:when>
-	      <xsl:otherwise>
-		<xsl:text>em * 0.60</xsl:text>
-	      </xsl:otherwise>
-	    </xsl:choose>
-	  </xsl:otherwise>
+            <xsl:choose>
+              <!-- workaround for passivetex lack of support for non-constant expressions -->
+              <xsl:when test="$passivetex.extensions != 0">
+                <xsl:text>em</xsl:text>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:text>em * 0.60</xsl:text>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
@@ -395,15 +397,15 @@
           <xsl:with-param name="terms" select="varlistentry/term"/>
           <xsl:with-param name="maxlength" select="$variablelist.max.termlength"/>
         </xsl:call-template>
-	<xsl:choose>
-	  <!-- workaround for passivetex lack of support for non-constant expressions -->
-	  <xsl:when test="$passivetex.extensions != 0">
-	    <xsl:text>em</xsl:text>
-	  </xsl:when>
-	  <xsl:otherwise>
-	    <xsl:text>em * 0.60</xsl:text>
-	  </xsl:otherwise>
-	</xsl:choose>
+        <xsl:choose>
+          <!-- workaround for passivetex lack of support for non-constant expressions -->
+          <xsl:when test="$passivetex.extensions != 0">
+            <xsl:text>em</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>em * 0.60</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -420,12 +422,12 @@
     <xsl:choose>
       <!-- workaround for passivetex lack of support for non-constant expressions -->
       <xsl:when test="$passivetex.extensions != 0">
-	<xsl:value-of select="$termlength"/>
+        <xsl:value-of select="$termlength"/>
       </xsl:when>
       <xsl:otherwise>
-	<xsl:value-of select="$termlength"/>
-	<xsl:text>+</xsl:text>
-	<xsl:value-of select="$label-separation"/>
+        <xsl:value-of select="$termlength"/>
+        <xsl:text>+</xsl:text>
+        <xsl:value-of select="$label-separation"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
