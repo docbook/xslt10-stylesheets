@@ -35,12 +35,14 @@
   <xsl:apply-templates select="exsl:node-set($converted)/*" mode="addNS"/>
 </xsl:template>
 
-<xsl:template match="bookinfo|chapterinfo|articleinfo|artheader|appendixinfo|blockinfo
-                     |bibliographyinfo|glossaryinfo|indexinfo|setinfo|setindexinfo
+<xsl:template match="bookinfo|chapterinfo|articleinfo|artheader|appendixinfo
+		     |blockinfo
+                     |bibliographyinfo|glossaryinfo|indexinfo|setinfo
+		     |setindexinfo
                      |sect1info|sect2info|sect3info|sect4info|sect5info
                      |sectioninfo
                      |refsect1info|refsect2info|refsect3info|refsectioninfo
-		     |referenceinfo"
+		     |referenceinfo|partinfo"
               priority="200">
   <info>
     <xsl:call-template name="copy.attributes"/>
@@ -264,7 +266,8 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="sect1|sect2|sect3|sect4|sect5|section" priority="200">
+<xsl:template match="sect1|sect2|sect3|sect4|sect5|section|simplesect"
+	      priority="200">
   <section>
     <xsl:call-template name="copy.attributes"/>
 
@@ -438,6 +441,14 @@
     <xsl:value-of select="."/>
     <xsl:text>).</xsl:text>
   </xsl:message>
+</xsl:template>
+
+<xsl:template match="remark" priority="200">
+  <!-- get rid of any embedded markup -->
+  <remark>
+    <xsl:copy-of select="@*"/>
+    <xsl:value-of select="."/>
+  </remark>
 </xsl:template>
 
 <xsl:template match="biblioentry/contrib
