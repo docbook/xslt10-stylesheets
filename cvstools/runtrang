@@ -43,8 +43,7 @@ fi
 
 # if trang was found, run it
 if [ -n "$TRANG" ]; then
-  echo
-  echo "$TRANG $@"
+  echo "$0: using $TRANG"
   $TRANG $@
 else
   # otherwise, exit with an error
