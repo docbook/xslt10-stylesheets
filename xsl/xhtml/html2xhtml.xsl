@@ -46,6 +46,13 @@
   </xsl:copy>
 </xsl:template>
 
+<xsl:template match="xsl:param[@name='chunker.output.method']">
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:attribute name="select">'xml'</xsl:attribute>
+  </xsl:copy>
+</xsl:template>
+
 <xsl:template match="xsl:attribute[@name='name']">
   <xsl:choose>
     <xsl:when test="ancestor::a">
