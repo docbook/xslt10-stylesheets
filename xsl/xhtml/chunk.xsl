@@ -2,7 +2,9 @@
                 xmlns:mml="http://www.w3.org/1998/Math/MathML"
 		version="1.0">
 
-<xsl:import href="../html/xtchunk.xsl"/>
+<!-- This stylesheet works with Saxon and Xalan; for XT use xtchunk.xsl -->
+
+<xsl:import href="../html/chunk.xsl"/>
 
 <xsl:param name="html.ext" select="'.xhtm'"/>
 
