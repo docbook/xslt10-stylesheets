@@ -1,41 +1,26 @@
 include ../../../cvstools/Makefile.incl
 
-XSLT=xsltproc
-
-STATUS=wd
-OASISTC=docbook
-SPECNAME=ebnf
-SPECVER=1.1-CR1
-
-SPECROOT=$(STATUS)-$(OASISTC)-$(SPECNAME)
-SPECBASE=$(SPECROOT)-$(SPECVER)
+XJPARSE=/home/ndw/bin/xjparse
 
 HTMLSTYLE=/projects/oasis/spectools/stylesheets/oasis-docbook-html.xsl
-HTMLPARAM=
+FOSTYLE=fo.xsl
 
-FOSTYLE=/projects/oasis/spectools/stylesheets/oasis-docbook-fo.xsl
-FOPARAM=oasis.logo=/projects/oasis/spectools/images/oasis.png
+XSLPARAM=""
 
-all: html pdf
+all: ebnf.html
 
-valid: $(SPECROOT).xml
+ebnf.html: ebnf.xml
 	$(XJPARSE) $<
+	$(XSLT) $< $(HTMLSTYLE) $@ $(XSLPARAM)
+	tidy -q -utf8 -mn -asxml $@
 
-html: $(SPECBASE).html
+ebnf.fo: ebnf.xml
+	$(XJPARSE) $<
+	$(XSLT) $< $(FOSTYLE) ebnf.fo $(XSLPARAM)
 
-fo: $(SPECBASE).fo
-
-pdf: $(SPECBASE).pdf
-
-$(SPECBASE).html: $(SPECROOT).xml valid
-	$(XSLT) $< $(HTMLSTYLE) $(SPECBASE).html $(HTMLPARAM)
-
-$(SPECBASE).fo: $(SPECROOT).xml valid
-	$(XSLT) $< $(FOSTYLE) $(SPECBASE).fo $(FOPARAM)
-
-$(SPECBASE).pdf: $(SPECBASE).fo
-	xep -2 $(SPECBASE).fo
-	rm -f $(SPECBASE).fo
+ebnf.pdf: ebnf.fo
+	xep $<
 
 clean:
-	$(RM) -f *.html *.pdf *.fo
+	$(RM) *.html
+
