@@ -35,31 +35,31 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="local-name(.) = 'figure'">
+    <xsl:when test="self::figure">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="figure.properties">
         <xsl:copy-of select="$content"/>
       </fo:block>
     </xsl:when>
-    <xsl:when test="local-name(.) = 'example'">
+    <xsl:when test="self::example">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="example.properties">
         <xsl:copy-of select="$content"/>
       </fo:block>
     </xsl:when>
-    <xsl:when test="local-name(.) = 'equation'">
+    <xsl:when test="self::equation">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="equation.properties">
         <xsl:copy-of select="$content"/>
       </fo:block>
     </xsl:when>
-    <xsl:when test="local-name(.) = 'table'">
+    <xsl:when test="self::table">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="table.properties">
         <xsl:copy-of select="$content"/>
       </fo:block>
     </xsl:when>
-    <xsl:when test="local-name(.) = 'procedure'">
+    <xsl:when test="self::procedure">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="procedure.properties">
         <xsl:copy-of select="$content"/>
@@ -440,6 +440,22 @@
 </xsl:template>
 
 <xsl:template match="table">
+  <xsl:choose>
+    <xsl:when test="tgroup|mediaobject|graphic">
+      <xsl:call-template name="calsTable"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message>Warning: HTML Tables are not supported yet!</xsl:message>
+      <fo:block font-weight="bold" font-size="16pt"
+                text-align="center"
+                space-before="0.25in" space-after="0.25in">
+        <fo:inline>[[[ Stylesheet error: HTML Tables are not supported yet! ]]]</fo:inline>
+      </fo:block>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="calsTable">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -591,6 +607,22 @@
 </xsl:template>
 
 <xsl:template match="informaltable">
+  <xsl:choose>
+    <xsl:when test="tgroup|mediaobject|graphic">
+      <xsl:call-template name="informalCalsTable"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message>Warning: HTML Tables are not supported yet!</xsl:message>
+      <fo:block font-weight="bold" font-size="16pt"
+                text-align="center"
+                space-before="0.25in" space-after="0.25in">
+        <fo:inline>[[[ Stylesheet error: HTML Tables are not supported yet! ]]]</fo:inline>
+      </fo:block>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="informalCalsTable">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
