@@ -10,7 +10,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='headers.on.blank.pages.frag'>
-<xsl:param name="headers.on.blank.pages" select="0"/>
+<xsl:param name="headers.on.blank.pages" select="1"/>
 </src:fragment>
 </refsynopsisdiv>
 
