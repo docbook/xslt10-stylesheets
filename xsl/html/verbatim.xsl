@@ -28,24 +28,41 @@
     <a href="{$id}"/>
   </xsl:if>
 
+  <xsl:variable name="content">
+    <xsl:choose>
+      <xsl:when test="$suppress-numbers = '0'
+                      and @linenumbering = 'numbered'
+                      and $use.extensions != '0'
+                      and $linenumbering.extension != '0'">
+        <xsl:variable name="rtf">
+          <xsl:apply-templates/>
+        </xsl:variable>
+        <pre class="{name(.)}">
+          <xsl:call-template name="number.rtf.lines">
+            <xsl:with-param name="rtf" select="$rtf"/>
+          </xsl:call-template>
+        </pre>
+      </xsl:when>
+      <xsl:otherwise>
+        <pre class="{name(.)}">
+          <xsl:apply-templates/>
+        </pre>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:choose>
-    <xsl:when test="$suppress-numbers = '0'
-                    and @linenumbering = 'numbered'
-                    and $use.extensions != '0'
-                    and $linenumbering.extension != '0'">
-      <xsl:variable name="rtf">
-        <xsl:apply-templates/>
-      </xsl:variable>
-      <pre class="{name(.)}">
-        <xsl:call-template name="number.rtf.lines">
-          <xsl:with-param name="rtf" select="$rtf"/>
-        </xsl:call-template>
-      </pre>
+    <xsl:when test="$shade.verbatim != 0">
+      <table xsl:use-attribute-sets="shade.verbatim.style">
+        <tr>
+          <td>
+            <xsl:copy-of select="$content"/>
+          </td>
+        </tr>
+      </table>
     </xsl:when>
     <xsl:otherwise>
-      <pre class="{name(.)}">
-        <xsl:apply-templates/>
-      </pre>
+      <xsl:copy-of select="$content"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -58,42 +75,59 @@
     <xsl:apply-templates/>
   </xsl:variable>
 
-  <xsl:choose>
-    <xsl:when test="$suppress-numbers = '0'
-                    and @linenumbering = 'numbered'
-                    and $use.extensions != '0'
-                    and $linenumbering.extension != '0'">
-      <xsl:choose>
-        <xsl:when test="@class='monospaced'">
-          <pre class="{name(.)}">
-            <xsl:call-template name="number.rtf.lines">
-              <xsl:with-param name="rtf" select="$rtf"/>
-            </xsl:call-template>
-          </pre>
-        </xsl:when>
-        <xsl:otherwise>
-          <div class="{name(.)}">
-            <xsl:call-template name="number.rtf.lines">
-              <xsl:with-param name="rtf" select="$rtf"/>
-            </xsl:call-template>
-          </div>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:when>
+  <xsl:variable name="content">
+    <xsl:choose>
+      <xsl:when test="$suppress-numbers = '0'
+                      and @linenumbering = 'numbered'
+                      and $use.extensions != '0'
+                      and $linenumbering.extension != '0'">
+        <xsl:choose>
+          <xsl:when test="@class='monospaced'">
+            <pre class="{name(.)}">
+              <xsl:call-template name="number.rtf.lines">
+                <xsl:with-param name="rtf" select="$rtf"/>
+              </xsl:call-template>
+            </pre>
+          </xsl:when>
+          <xsl:otherwise>
+            <div class="{name(.)}">
+              <xsl:call-template name="number.rtf.lines">
+                <xsl:with-param name="rtf" select="$rtf"/>
+              </xsl:call-template>
+            </div>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
 
+      <xsl:otherwise>
+        <xsl:choose>
+          <xsl:when test="@class='monospaced'">
+            <pre class="{name(.)}">
+              <xsl:copy-of select="$rtf"/>
+            </pre>
+          </xsl:when>
+          <xsl:otherwise>
+            <div class="{name(.)}">
+              <xsl:copy-of select="$rtf"/>
+            </div>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$shade.verbatim != 0 and @class='monospaced'">
+      <table xsl:use-attribute-sets="shade.verbatim.style">
+        <tr>
+          <td>
+            <xsl:copy-of select="$content"/>
+          </td>
+        </tr>
+      </table>
+    </xsl:when>
     <xsl:otherwise>
-      <xsl:choose>
-        <xsl:when test="@class='monospaced'">
-          <pre class="{name(.)}">
-            <xsl:copy-of select="$rtf"/>
-          </pre>
-        </xsl:when>
-        <xsl:otherwise>
-          <div class="{name(.)}">
-            <xsl:copy-of select="$rtf"/>
-          </div>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:copy-of select="$content"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
