@@ -1,6 +1,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
-		version="1.0"
+                version="1.0"
                 exclude-result-prefixes="exsl">
 
 <!-- ********************************************************************
@@ -570,33 +570,116 @@
     </xsl:if>
 
     <xsl:if test="contains($toc.params, 'figure')">
-      <xsl:call-template name="list.of.titles">
-        <xsl:with-param name="titles" select="'figure'"/>
-        <xsl:with-param name="nodes" select=".//figure"/>
-      </xsl:call-template>
+      <xsl:choose>
+        <xsl:when test="$chunk.separate.lots != '0'">
+          <xsl:call-template name="make.lot.chunk">
+            <xsl:with-param name="type" select="'figure'"/>
+            <xsl:with-param name="lot">
+              <xsl:call-template name="list.of.titles">
+                <xsl:with-param name="titles" select="'figure'"/>
+                <xsl:with-param name="nodes" select=".//figure"/>
+              </xsl:call-template>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="list.of.titles">
+            <xsl:with-param name="titles" select="'figure'"/>
+            <xsl:with-param name="nodes" select=".//figure"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
 
     <xsl:if test="contains($toc.params, 'table')">
-      <xsl:call-template name="list.of.titles">
-        <xsl:with-param name="titles" select="'table'"/>
-        <xsl:with-param name="nodes" select=".//table"/>
-      </xsl:call-template>
+      <xsl:choose>
+        <xsl:when test="$chunk.separate.lots != '0'">
+          <xsl:call-template name="make.lot.chunk">
+            <xsl:with-param name="type" select="'table'"/>
+            <xsl:with-param name="lot">
+              <xsl:call-template name="list.of.titles">
+                <xsl:with-param name="titles" select="'table'"/>
+                <xsl:with-param name="nodes" select=".//table"/>
+              </xsl:call-template>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="list.of.titles">
+            <xsl:with-param name="titles" select="'table'"/>
+            <xsl:with-param name="nodes" select=".//table"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
 
     <xsl:if test="contains($toc.params, 'example')">
-      <xsl:call-template name="list.of.titles">
-        <xsl:with-param name="titles" select="'example'"/>
-        <xsl:with-param name="nodes" select=".//example"/>
-      </xsl:call-template>
+      <xsl:choose>
+        <xsl:when test="$chunk.separate.lots != '0'">
+          <xsl:call-template name="make.lot.chunk">
+            <xsl:with-param name="type" select="'example'"/>
+            <xsl:with-param name="lot">
+              <xsl:call-template name="list.of.titles">
+                <xsl:with-param name="titles" select="'example'"/>
+                <xsl:with-param name="nodes" select=".//example"/>
+              </xsl:call-template>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="list.of.titles">
+            <xsl:with-param name="titles" select="'example'"/>
+            <xsl:with-param name="nodes" select=".//example"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
 
     <xsl:if test="contains($toc.params, 'equation')">
-      <xsl:call-template name="list.of.titles">
-        <xsl:with-param name="titles" select="'equation'"/>
-        <xsl:with-param name="nodes" select=".//equation[title]"/>
-      </xsl:call-template>
+      <xsl:choose>
+        <xsl:when test="$chunk.separate.lots != '0'">
+          <xsl:call-template name="make.lot.chunk">
+            <xsl:with-param name="type" select="'equation'"/>
+            <xsl:with-param name="lot">
+              <xsl:call-template name="list.of.titles">
+                <xsl:with-param name="titles" select="'equation'"/>
+                <xsl:with-param name="nodes" select=".//equation"/>
+              </xsl:call-template>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="list.of.titles">
+            <xsl:with-param name="titles" select="'equation'"/>
+            <xsl:with-param name="nodes" select=".//equation"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
+
+    <xsl:if test="contains($toc.params, 'procedure')">
+      <xsl:choose>
+        <xsl:when test="$chunk.separate.lots != '0'">
+          <xsl:call-template name="make.lot.chunk">
+            <xsl:with-param name="type" select="'procedure'"/>
+            <xsl:with-param name="lot">
+              <xsl:call-template name="list.of.titles">
+                <xsl:with-param name="titles" select="'procedure'"/>
+                <xsl:with-param name="nodes" select=".//procedure[title]"/>
+              </xsl:call-template>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="list.of.titles">
+            <xsl:with-param name="titles" select="'procedure'"/>
+            <xsl:with-param name="nodes" select=".//procedure[title]"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
   </xsl:variable>
+
 
   <xsl:if test="string($lots) != ''">
     <xsl:choose>
