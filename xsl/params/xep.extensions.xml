@@ -16,7 +16,8 @@
 
 <para>If non-zero,
 <ulink url="http://www.renderx.com/">XEP</ulink>
-extensions will be used. XEP extensions consists of PDF bookmarks and document information.
+extensions will be used. XEP extensions consists of PDF bookmarks,
+document information and better index processing.
 </para>
 
 </refsect1>

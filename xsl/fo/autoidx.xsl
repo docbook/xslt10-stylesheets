@@ -14,6 +14,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:rx="http://www.renderx.com/XSL/Extensions"
+                xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions"
                 version="1.0">
 
 <!-- ********************************************************************
@@ -153,6 +154,9 @@
   <xsl:variable name="key" select="&primary;"/>
   <xsl:variable name="refs" select="key('primary', $key)[&scope;]"/>
   <fo:block>
+    <xsl:if test="$axf.extensions != 0">
+      <xsl:attribute name="axf:suppress-duplicate-page-number">true</xsl:attribute>
+    </xsl:if>
     <xsl:value-of select="primary"/>
 
     <xsl:choose>
@@ -223,6 +227,9 @@
   <xsl:variable name="key" select="concat(&primary;, &sep;, &secondary;)"/>
   <xsl:variable name="refs" select="key('secondary', $key)[&scope;]"/>
   <fo:block>
+    <xsl:if test="$axf.extensions != 0">
+      <xsl:attribute name="axf:suppress-duplicate-page-number">true</xsl:attribute>
+    </xsl:if>
     <xsl:value-of select="secondary"/>
 
     <xsl:choose>
@@ -294,6 +301,9 @@
   <xsl:variable name="key" select="concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;)"/>
   <xsl:variable name="refs" select="key('tertiary', $key)[&scope;]"/>
   <fo:block>
+    <xsl:if test="$axf.extensions != 0">
+      <xsl:attribute name="axf:suppress-duplicate-page-number">true</xsl:attribute>
+    </xsl:if>
     <xsl:value-of select="tertiary"/>
 
     <xsl:choose>

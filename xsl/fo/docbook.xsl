@@ -69,6 +69,7 @@
 <xsl:include href="fop.xsl"/>
 <xsl:include href="passivetex.xsl"/>
 <xsl:include href="xep.xsl"/>
+<xsl:include href="axf.xsl"/>
 
 <xsl:param name="stylesheet.result.type" select="'fo'"/>
 
@@ -122,6 +123,9 @@
 
     <xsl:if test="$xep.extensions != 0">
       <xsl:call-template name="xep-document-information"/>
+    </xsl:if>
+    <xsl:if test="$axf.extensions != 0">
+      <xsl:call-template name="axf-document-information"/>
     </xsl:if>
     <xsl:call-template name="setup.pagemasters"/>
     <xsl:choose>
