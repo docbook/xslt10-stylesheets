@@ -151,6 +151,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &emphasis.propagates.style;
 &phrase.propagates.style;
 &stylesheet.result.type;
+&html.longdesc;
+&html.longdesc.link;
 </reference>
 
 <reference><title>XSLT Processing</title>
@@ -308,6 +310,8 @@ around all these parameters.</para>
 <src:fragref linkend="graphic.default.extension"/>
 <src:fragref linkend="html.base"/>
 <src:fragref linkend="html.ext"/>
+<src:fragref linkend="html.longdesc"/>
+<src:fragref linkend="html.longdesc.link"/>
 <src:fragref linkend="html.stylesheet"/>
 <src:fragref linkend="html.stylesheet.type"/>
 <src:fragref linkend="inherit.keywords"/>
