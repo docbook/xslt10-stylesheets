@@ -130,6 +130,7 @@
 <!ENTITY toc.margin.properties SYSTEM "../params/toc.margin.properties.xml">
 <!ENTITY toc.section.depth SYSTEM "../params/toc.section.depth.xml">
 <!ENTITY use.extensions SYSTEM "../params/use.extensions.xml">
+<!ENTITY use.svg SYSTEM "../params/use.svg.xml">
 <!ENTITY ulink.footnotes SYSTEM "../params/ulink.footnotes.xml">
 <!ENTITY ulink.hyphenate SYSTEM "../params/ulink.hyphenate.xml">
 <!ENTITY ulink.show SYSTEM "../params/ulink.show.xml">

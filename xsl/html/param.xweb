@@ -219,6 +219,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &tex.math.delims;
 &pixels.per.inch;
 &points.per.em;
+&use.svg;
 </reference>
 
 <reference><title>Chunking</title>
@@ -460,6 +461,7 @@ around all these parameters.</para>
 <src:fragref linkend="ulink.target.frag"/>
 <src:fragref linkend="use.extensions.frag"/>
 <src:fragref linkend="use.id.as.filename.frag"/>
+<src:fragref linkend="use.svg.frag"/>
 <src:fragref linkend="variablelist.as.table.frag"/>
 
 </xsl:stylesheet>

@@ -887,6 +887,8 @@ object is recognized as a graphic.</para>
   </xsl:variable>
 
   <xsl:choose>
+    <xsl:when xmlns:svg="http://www.w3.org/2000/svg"
+              test="$use.svg != 0 and $object/svg:*">1</xsl:when>
     <xsl:when test="$graphic.format = '1'">1</xsl:when>
     <xsl:when test="$graphic.ext = '1'">1</xsl:when>
     <xsl:otherwise>0</xsl:otherwise>
