@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-                  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+                  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ATTLIST xref
+  xrefstyle CDATA #IMPLIED
+>
+]>
 <article>
 <articleinfo>
-<title>Unit Test: figure.001</title>
+<title>Unit Test: figure.003</title>
 <releaseinfo role="CVS">$Id$</releaseinfo>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
 </author>
 </articleinfo>
 
+<para>Cross reference to the figure: <xref linkend="figduck" xrefstyle="title"/>.</para>
+
 <figure id="figduck">
-  <title>The Duck</title>
+  <title>The Wood Duck as seen on the Cover of DocBook: The Definitive Guide</title>
+  <titleabbrev>The Duck</titleabbrev>
   <mediaobject>
     <imageobject>
       <imagedata
@@ -25,20 +32,6 @@
         align="center"
         fileref="graphics/duck-small.png"
         format="PNG"
-        srccredit="O'Reilly &amp; Associates/Dover Archives"/>
-    </imageobject>
-    <imageobject>
-      <imagedata
-        align="center"
-        fileref="graphics/duck-small.gif"
-        format="GIF"
-        srccredit="O'Reilly &amp; Associates/Dover Archives"/>
-    </imageobject>
-    <imageobject>
-      <imagedata
-        align="center"
-        fileref="graphics/duck-small.bmp"
-        format="BMP"
         srccredit="O'Reilly &amp; Associates/Dover Archives"/>
     </imageobject>
     <textobject><phrase>The DocBook: TDG Duck</phrase></textobject>

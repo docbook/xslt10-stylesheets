@@ -14,16 +14,16 @@
     <imageobject>
       <imagedata
         align="right"
-        width="50%"
-        fileref="graphics/duck-small.gif"
+        width="6in"
+        fileref="graphics/duck-small.png"
+        format="PNG"
         srccredit="O'Reilly &amp; Associates/Dover Archives"/>
     </imageobject>
     <imageobject>
       <imagedata
         align="right"
-        width="50%"
-        fileref="graphics/duck-small.png"
-        format="PNG"
+        width="6in"
+        fileref="graphics/duck-small.gif"
         srccredit="O'Reilly &amp; Associates/Dover Archives"/>
     </imageobject>
     <textobject><phrase>The DocBook: TDG Duck</phrase></textobject>
