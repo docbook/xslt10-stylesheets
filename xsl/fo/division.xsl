@@ -364,7 +364,7 @@
       <fo:flow flow-name="xsl-region-body">
         <xsl:call-template name="list.of.titles">
           <xsl:with-param name="titles" select="'equation'"/>
-          <xsl:with-param name="nodes" select=".//equation"/>
+          <xsl:with-param name="nodes" select=".//equation[title]"/>
         </xsl:call-template>
       </fo:flow>
     </fo:page-sequence>
