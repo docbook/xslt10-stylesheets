@@ -118,7 +118,11 @@
 <xsl:template match="refnamediv">
   <div class="{name(.)}">
     <xsl:call-template name="anchor"/>
+
     <xsl:choose>
+      <xsl:when test="preceding-sibling::refnamediv">
+	<!-- no title on secondary refnamedivs! -->
+      </xsl:when>
       <xsl:when test="$refentry.generate.name != 0">
         <h2>
           <xsl:call-template name="gentext">
@@ -139,6 +143,7 @@
         </h2>
       </xsl:when>
     </xsl:choose>
+
     <p>
       <xsl:apply-templates/>
     </p>
