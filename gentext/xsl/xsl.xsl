@@ -11,7 +11,7 @@
 <xsl:template match="doc:*"/>
 
 <xsl:template match="locale">
-  <localization language="{@language}">
+  <l10n language="{@language}">
     <xsl:text>&#10;</xsl:text>
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> This file is generated automatically. </xsl:comment>
@@ -23,7 +23,7 @@
 
     <xsl:apply-templates/>
 
-  </localization>
+  </l10n>
   <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
