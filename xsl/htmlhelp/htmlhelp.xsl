@@ -705,11 +705,14 @@ Title=</xsl:text>
       <xsl:with-param name="attribute" select="'topicname'"/>
     </xsl:call-template>
   </xsl:variable>
+  <xsl:variable name="href">
+    <xsl:call-template name="href.target.with.base.dir">
+      <xsl:with-param name="object" select=".."/>
+    </xsl:call-template>
+  </xsl:variable>
   <xsl:value-of select="$topicname"/>
   <xsl:text>=</xsl:text>
-  <xsl:call-template name="href.target.with.base.dir">
-    <xsl:with-param name="object" select=".."/>
-  </xsl:call-template>
+  <xsl:value-of select="substring-before(concat($href, '#'), '#')"/>
   <xsl:text>&#xA;</xsl:text>
 </xsl:template>
 
