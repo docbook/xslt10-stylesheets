@@ -22,164 +22,53 @@ translates characters with code>255 back to ASCII.
 <xsl:variable name="a-asc" select=
 "'aaaccccddeeeeeegggghhiiiiijklllllnnnnooorrrsssstttuuuuuuwyzzzAAACCCCDDEEEEEEGGGGHHIIIIIJKLLLLLNNNNOOORRRSSSSTTTUUUUUUWYYZZZ'"/>
 
+<xsl:template match="*" mode="fop.outline">
+  <xsl:apply-templates select="*" mode="fop.outline"/>
+</xsl:template>
 
-<xsl:template match="set" mode="outline">
+<xsl:template match="set|book|part|reference|preface|chapter|appendix|article
+                     |glossary|bibliography|index|setindex
+                     |refentry
+                     |sect1|sect2|sect3|sect4|sect5|section"
+              mode="fop.outline">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
-
   <xsl:variable name="bookmark-label">
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:apply-templates select="." mode="title.markup"/>
+    <xsl:apply-templates select="." mode="object.title.markup"/>
   </xsl:variable>
 
-  <fox:outline internal-destination="{$id}">
-    <fox:label>
-      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
-    </fox:label>
-  <xsl:if test="book">
-      <xsl:apply-templates select="book"
-                           mode="outline"/>
-  </xsl:if>
-  </fox:outline>
-</xsl:template>
+  <!-- Put the root element bookmark at the same level as its children -->
+  <!-- If the object is a set or book, generate a bookmark for the toc -->
 
-<xsl:template match="book" mode="outline">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
-  <xsl:variable name="bookmark-label">
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:apply-templates select="." mode="title.markup"/>
-  </xsl:variable>
-
-  <fox:outline internal-destination="{$id}">
-    <fox:label>
-      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
-    </fox:label>
-
-  <xsl:if test="part|preface|chapter|appendix">
-      <xsl:apply-templates select="part|preface|chapter|appendix"
-                           mode="outline"/>
-  </xsl:if>
-  </fox:outline>
-</xsl:template>
-
-
-<xsl:template match="part" mode="outline">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
-  <xsl:variable name="bookmark-label">
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:apply-templates select="." mode="title.markup"/>
-  </xsl:variable>
-
-  <fox:outline internal-destination="{$id}">
-    <fox:label>
-      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
-    </fox:label>
-
-  <xsl:if test="chapter|appendix|preface|reference">
-      <xsl:apply-templates select="chapter|appendix|preface|reference"
-                           mode="outline"/>
-  </xsl:if>
-  </fox:outline>
-</xsl:template>
-
-<xsl:template match="preface|chapter|appendix"
-              mode="outline">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
-  <xsl:variable name="bookmark-label">
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:apply-templates select="." mode="title.markup"/>
-  </xsl:variable>
-
-  <fox:outline internal-destination="{$id}">
-    <fox:label>
-      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
-    </fox:label>
-
-  <xsl:if test="section|sect1">
-      <xsl:apply-templates select="section|sect1"
-                           mode="outline"/>
-  </xsl:if>
-  </fox:outline>
-</xsl:template>
-
-<xsl:template match="section|sect1|sect2|sect3|sect4|sect5"
-              mode="outline">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
-  <xsl:variable name="bookmark-label">
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:apply-templates select="." mode="title.markup"/>
-  </xsl:variable>
-
-  <fox:outline internal-destination="{$id}">
-    <fox:label>
-      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
-    </fox:label>
-
-  <xsl:if test="section|sect2|sect3|sect4|sect5">
-      <xsl:apply-templates select="section|sect2|sect3|sect4|sect5"
-                           mode="outline"/>
-  </xsl:if>
-  </fox:outline>
-</xsl:template>
-
-<!-- Added missing template for "article" -->
-<xsl:template match="article"
-              mode="outline">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
-  <xsl:variable name="bookmark-label">
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:apply-templates select="." mode="title.markup"/>
-  </xsl:variable>
-
-  <fox:outline internal-destination="{$id}">
-    <fox:label>
-      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
-    </fox:label>
-
-  <xsl:if test="section|sect1|appendix|bibliography|glossary|index">
-      <xsl:apply-templates select="section|sect1|appendix|bibliography|glossary|index"
-                           mode="outline"/>
-  </xsl:if>
-  </fox:outline>
-</xsl:template>
-
-
-<xsl:template match="bibliography|glossary|index"
-              mode="outline">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
-  <xsl:variable name="bookmark-label">
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:apply-templates select="." mode="title.markup"/>
-  </xsl:variable>
-
-  <fox:outline internal-destination="{$id}">
-    <fox:label>
-      <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
-    </fox:label>
-  </fox:outline>
-</xsl:template>
-
-<xsl:template match="title" mode="outline">
-  <xsl:apply-templates/>
+  <xsl:choose>
+    <xsl:when test="parent::*">
+      <fox:outline internal-destination="{$id}">
+        <fox:label>
+          <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+        </fox:label>
+        <xsl:apply-templates select="*" mode="fop.outline"/>
+      </fox:outline>
+    </xsl:when>
+    <xsl:otherwise>
+      <fox:outline internal-destination="{$id}">
+        <fox:label>
+          <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+        </fox:label>
+      </fox:outline>
+      <xsl:if test="(local-name(.) = 'set' and $generate.set.toc != 0)
+                    or (local-name(.) = 'book' and $generate.book.toc != 0)">
+        <fox:outline internal-destination="toc...{$id}">
+          <fox:label>
+            <xsl:call-template name="gentext">
+              <xsl:with-param name="key" select="'TableofContents'"/>
+            </xsl:call-template>
+          </fox:label>
+        </fox:outline>
+      </xsl:if>
+      <xsl:apply-templates select="*" mode="fop.outline"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
