@@ -220,8 +220,10 @@ public class Verbatim {
    *
    * @return The modified result tree fragment.
    */
-  public static FragmentValue numberLines (Context context,
-					   FragmentValue rtf) {
+  public static NodeSetValue numberLines (Context context,
+					  NodeSetValue rtf_ns) {
+
+    FragmentValue rtf = (FragmentValue) rtf_ns;
 
     setupLineNumbering(context);
 
@@ -434,9 +436,11 @@ public class Verbatim {
    * @return The modified result tree fragment.
    */
 
-  public static FragmentValue insertCallouts (Context context,
-					      NodeSetIntent areaspecNodeSet,
-					      FragmentValue rtf) {
+  public static NodeSetValue insertCallouts (Context context,
+					     NodeList areaspecNodeList,
+					     NodeSetValue rtf_ns) {
+
+    FragmentValue rtf = (FragmentValue) rtf_ns;
 
     setupCallouts(context);
 
@@ -446,7 +450,7 @@ public class Verbatim {
 						   defaultColumn,
 						   foStylesheet,
 						   fCallout);
-      cEmitter.setupCallouts(areaspecNodeSet);
+      cEmitter.setupCallouts(areaspecNodeList);
       rtf.replay(cEmitter);
       return cEmitter.getResultTreeFragment();
     } catch (TransformerException e) {

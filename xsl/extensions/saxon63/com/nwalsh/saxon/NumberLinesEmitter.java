@@ -8,9 +8,7 @@ import javax.xml.transform.TransformerException;
 import com.icl.saxon.output.*;
 import com.icl.saxon.om.*;
 import com.icl.saxon.tree.AttributeCollection;
-import com.icl.saxon.tinytree.TinyBuilder;
 import com.icl.saxon.expr.FragmentValue;
-import com.icl.saxon.Builder;
 
 /**
  * <p>Saxon extension to decorate a result tree fragment with line numbers.</p>
