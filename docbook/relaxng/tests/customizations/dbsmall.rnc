@@ -1,4 +1,4 @@
-# This file is part of DocBook NG: The "Bourbon" Release.
+# This file is part of DocBook NG: The "Cachaça" Release.
 
 # This schema is a "work-in-progress". It validates a DocBook-like grammar that
 # may, in some incarnation, form the basis for DocBook V.next. Or it may not.
@@ -15,9 +15,9 @@ namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 
 start = db.set
         | db.book
-	| divisions
-	| components
-	| navigation.components
+	| db.divisions
+	| db.components
+	| db.navigation.components
 	| db.section
 	| db.para
 

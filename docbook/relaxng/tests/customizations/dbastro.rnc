@@ -1,4 +1,4 @@
-# This file is part of DocBook NG: The "Bourbon" Release.
+# This file is part of DocBook NG: The "Cachaça" Release.
 
 # This schema is a "work-in-progress". It validates a DocBook-like grammar that
 # may, in some incarnation, form the basis for DocBook V.next. Or it may not.
@@ -17,11 +17,11 @@ start = db.article
 
 include "../../src/hier.rnc"
 include "../../src/pool.rnc" {
-  domain.inlines = db.planet | db.star
-  product.inlines = db.trademark
-  admonition.blocks = notAllowed
-  technical.blocks = notAllowed
-  verbatim.blocks = notAllowed
+  db.domain.inlines = db.planet | db.star
+  db.product.inlines = db.trademark
+  db.admonition.blocks = notAllowed
+  db.technical.blocks = notAllowed
+  db.verbatim.blocks = notAllowed
   db.bridgehead = notAllowed
   db.revhistory = notAllowed
 }
