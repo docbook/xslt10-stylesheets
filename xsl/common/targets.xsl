@@ -4,7 +4,18 @@
                 exclude-result-prefixes="doc"
                 version='1.0'>
 
-<!-- ============================================================ -->
+<!-- ********************************************************************
+     $Id$
+     ********************************************************************
+
+     This file is part of the XSL DocBook Stylesheet distribution.
+     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
+     and other information.
+
+     ******************************************************************** -->
+
+<!-- ==================================================================== -->
+
 <!-- cross reference target collection  -->
 
 <doc:mode mode="collect.targets" xmlns="">
