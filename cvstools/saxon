@@ -16,8 +16,10 @@ JAR=0
 #RARG=""
 XARG="-x com.sun.resolver.tools.ResolvingXMLReader"
 YARG="-y com.sun.resolver.tools.ResolvingXMLReader"
-RARG="-r com.sun.resolver.tools.CatalogURIResolver"
+RARG="-r com.sun.resolver.tools.CatalogResolver"
 MEMORY=""
+QUIET=0
+TIME=0
 
 while [ "$DONE" = "0" ]; do
     case $1 in
@@ -42,6 +44,9 @@ while [ "$DONE" = "0" ]; do
 		shift;
 		;;
 	-621)	VERSION=621;
+		shift;
+		;;
+	-63)	VERSION=63;
 		shift;
 		;;
 	-62)	VERSION=62;
@@ -70,6 +75,12 @@ while [ "$DONE" = "0" ]; do
 		MEMORY="-Xmx$1";
 		shift;
 		;;
+        -q)     shift
+		QUIET=1
+		;;
+        -t)     shift
+		TIME=1
+		;;
 	-*)	DONE=1;
 		echo "Unexpected arguments!";
 		echo "  $*"
@@ -94,47 +105,54 @@ if [ "$OUTPUT" != "" ]; then
 fi
 
 case $VERSION in
+   63)	SAXON="/usr/local/java/saxon-6.3/saxon.jar"
+	SAXON_DEBUG="/usr/local/java/saxon-6.3/.classes"
+	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon63/.classes";
+	if [ "$JAR" = "1" ]; then
+	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon63.jar"
+	fi
+	;;
   622)	SAXON="/usr/local/java/saxon-6.2.2/saxon.jar"
 	SAXON_DEBUG="/usr/local/java/saxon-6.2.2/.classes"
-	NDWEXT="/share/xsl/docbook/extensions/saxon61/.classes";
-	NDWEXT="/share/xsl/docbook/extensions/saxon61/.classes:/share/doctypes/website-pages/extensions/saxon61/.classes";
+	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61/.classes";
+	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61/.classes:/share/doctypes/website-pages/extensions/saxon61/.classes";
 	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/share/xsl/docbook/extensions/saxon61.jar"
+	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61.jar"
 	fi
 	;;
   621)	SAXON="/usr/local/java/saxon-6.2.1/saxon.jar"
 	SAXON_DEBUG="/usr/local/java/saxon-6.2.1/.classes"
-	NDWEXT="/share/xsl/docbook/extensions/saxon61/.classes";
+	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61/.classes";
 	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/share/xsl/docbook/extensions/saxon61.jar"
+	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61.jar"
 	fi
 	;;
    62)	SAXON="/usr/local/java/saxon-6.2/saxon.jar"
 	SAXON_DEBUG="/usr/local/java/saxon-6.2/.classes"
-	NDWEXT="/share/xsl/docbook/extensions/saxon61/.classes";
+	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61/.classes";
 	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/share/xsl/docbook/extensions/saxon61.jar"
+	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61.jar"
 	fi
 	;;
    61)	SAXON="/usr/local/java/saxon-6.1/saxon.jar"
 	SAXON_DEBUG="/usr/local/java/saxon-6.1/.classes"
-	NDWEXT="/share/xsl/docbook/extensions/saxon61/.classes";
+	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61/.classes";
 	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/share/xsl/docbook/extensions/saxon61.jar"
+	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon61.jar"
 	fi
 	;;
     6)	SAXON="/usr/local/java/saxon-6.0.2/saxon.jar"
 	SAXON_DEBUG="/usr/local/java/saxon-6.0.2/.classes"
-	NDWEXT="/share/xsl/docbook/extensions/saxon6/.classes";
+	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon6/.classes";
 	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/share/xsl/docbook/extensions/saxon6.jar"
+	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon6.jar"
 	fi
 	;;
     5)	SAXON="/usr/local/java/saxon-5.5.1/saxon.jar"
 	SAXON_DEBUG="/usr/local/java/saxon-5.5.1/.classes"
-	NDWEXT="/share/xsl/docbook/extensions/saxon551/.classes";
+	NDWEXT="/sourceforge/docbook/xsl/extensions/saxon551/.classes";
 	if [ "$JAR" = "1" ]; then
-	    NDWEXT="/share/xsl/docbook/extensions/saxon551.jar"
+	    NDWEXT="/sourceforge/docbook/xsl/extensions/saxon551.jar"
 	fi
 	;;
     *)	echo "Unexpected Saxon version $VERSION"
@@ -154,17 +172,27 @@ CLASSPATH=$SAXON:$JAXP:$SUN:$NDWEXT:~/java
 
 #echo $CLASSPATH
 
-echo saxon$VERSION $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY $VARIABLES $*
+if [ "$QUIET" = "0" ]; then
+  echo saxon$VERSION $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY $VARIABLES $*
 
-if [ "$MEMORY" != "" ]; then
-    echo "java $MEMORY ..."
+  if [ "$MEMORY" != "" ]; then
+      echo "java $MEMORY ..."
+  fi
 fi
 
-time java $MEMORY \
- -cp $CLASSPATH \
--Djavax.xml.transform.TransformerFactory=com.icl.saxon.TransformerFactoryImpl \
- com.icl.saxon.StyleSheet \
- $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY $VARIABLES $*
+if [ "$TIME" != "0" ]; then
+  time java $MEMORY \
+   -cp $CLASSPATH \
+   -Djavax.xml.transform.TransformerFactory=com.icl.saxon.TransformerFactoryImpl \
+   com.icl.saxon.StyleSheet \
+   $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY $VARIABLES $*
+else
+  java $MEMORY \
+   -cp $CLASSPATH \
+   -Djavax.xml.transform.TransformerFactory=com.icl.saxon.TransformerFactoryImpl \
+   com.icl.saxon.StyleSheet \
+   $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY $VARIABLES $*
+fi
 
 if [ $? != 0 ]; then
   echo ""
