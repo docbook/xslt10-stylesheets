@@ -665,7 +665,7 @@
   <xsl:variable name="row1" select="$navig.showtitles != 0"/>
   <xsl:variable name="row2" select="count($prev) &gt; 0
                                     or (count($up) &gt; 0 
-                                        and $up != $home
+					and generate-id($up) != generate-id($home)
                                         and $navig.showtitles != 0)
                                     or count($next) &gt; 0"/>
 
@@ -701,7 +701,7 @@
               <th width="60%" align="center">
                 <xsl:choose>
                   <xsl:when test="count($up) > 0
-                                  and $up != $home
+				  and generate-id($up) != generate-id($home)
                                   and $navig.showtitles != 0">
                     <xsl:apply-templates select="$up" mode="object.title.markup"/>
                   </xsl:when>
