@@ -523,7 +523,7 @@
             </xsl:choose>
           </xsl:when>
           <xsl:otherwise>
-            <i><xsl:apply-templates/></i>
+            <em><xsl:apply-templates/></em>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:with-param>
