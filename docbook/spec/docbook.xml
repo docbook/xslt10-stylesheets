@@ -4,11 +4,11 @@
 <!ENTITY tracker "http://sourceforge.net/tracker/">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
 ]>
-<article status="Candidate Release 1">
+<article status="Working Draft">
 <?dbhtml filename="docbook-4.2-cr1.html"?>
 <articleinfo>
 <title>The DocBook Document Type</title>
-<productnumber>Version 4.2</productnumber>
+<productnumber>Version 4.2 Candidate Release 1</productnumber>
 <subtitle>OASIS DocBook Technical Committee</subtitle>
 <authorgroup>
 <editor>
@@ -85,11 +85,11 @@ no backwards-incompatible changes.</para>
 </abstract>
 
 <revhistory>
-<revision role="http://www.oasis-open.org/docbook/xml/4.2CR1/docbook-4.2-CR1.html">
+<revision role="http://www.oasis-open.org/docbook/docbook-4.2-CR1.html">
   <revnumber>Candidate Release 1</revnumber>
   <date>19 Mar 2002</date>
 </revision>
-<revision role="http://www.oasis-open.org/docbook/xml/4.2b1/docbook-4.2b1.html">
+<revision role="http://www.oasis-open.org/docbook/docbook-4.2b1.html">
   <revnumber>Working Draft &ldquo;Beta 1&rdquo;</revnumber>
   <date>20 Nov 2001</date>
 </revision>
