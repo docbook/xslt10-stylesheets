@@ -3,12 +3,12 @@
 # This shell script will definitely need to be hacked to run on your system!
 #
 # Usage: xjparse [opts] src.xml
-#
 
-SUN="/projects/sun/resolver/.classes";
-JAXP="/usr/local/jaxp-1.1/jaxp.jar:/usr/local/jaxp-1.1/crimson.jar"
+JAXP="${JAXP:-/projects/sun/resolver/.classes}:"
+RESOLVER="${RESOLVER:-/projects/sun/resolver/.classes}:"
+XERCES="${XERCES:-/projects/apache/xml-xerces/java/build/classes}:"
 
-CLASSPATH=$JAXP:$SUN:~/java
+CLASSPATH=$JAXP$RESOLVER$XERCES$CLASSPATH
 
 #echo $CLASSPATH
 
@@ -21,5 +21,3 @@ if [ $? != 0 ]; then
   echo ""
   exit 1
 fi
-
-
