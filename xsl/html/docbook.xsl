@@ -104,9 +104,12 @@
 
 <xsl:template name="head.content">
   <xsl:param name="node" select="."/>
+  <xsl:param name="title">
+    <xsl:apply-templates select="$node" mode="object.title.markup.textonly"/>
+  </xsl:param>
 
   <title>
-    <xsl:apply-templates select="$node" mode="object.title.markup.textonly"/>
+    <xsl:copy-of select="$title"/>
   </title>
 
   <xsl:if test="$html.stylesheet != ''">
@@ -235,6 +238,17 @@ body { background-image: url('</xsl:text>
 
 <!-- ============================================================ -->
 
+<xsl:template name="system.head.content">
+  <xsl:param name="node" select="."/>
+
+  <!-- system.head.content is like user.head.content, except that
+       it is called before head.content. This is important because it
+       means, for example, that <style> elements output by system.head.content
+       have a lower CSS precedence than the users stylesheet. -->
+</xsl:template>
+
+<!-- ============================================================ -->
+
 <xsl:template name="user.head.content">
   <xsl:param name="node" select="."/>
 </xsl:template>
@@ -305,6 +319,9 @@ body { background-image: url('</xsl:text>
 
   <html>
     <head>
+      <xsl:call-template name="system.head.content">
+        <xsl:with-param name="node" select="$doc"/>
+      </xsl:call-template>
       <xsl:call-template name="head.content">
         <xsl:with-param name="node" select="$doc"/>
       </xsl:call-template>
