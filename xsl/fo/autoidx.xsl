@@ -277,7 +277,9 @@
       <xsl:variable name="id">
         <xsl:call-template name="object.id"/>
       </xsl:variable>
-      <fo:page-number-citation ref-id="{$id}"/>
+      <fo:basic-link internal-destination="{$id}">
+        <fo:page-number-citation ref-id="{$id}"/>
+      </fo:basic-link>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -295,7 +297,9 @@
         </xsl:call-template>
       </xsl:variable>
 
-      <fo:page-number-citation ref-id="{$id}"/>
+      <fo:basic-link internal-destination="{$id}">
+        <fo:page-number-citation ref-id="{$id}"/>
+      </fo:basic-link>
 
       <xsl:if test="$passivetex.extensions = '0'">
         <xsl:text>, </xsl:text>
@@ -314,7 +318,9 @@
         </xsl:call-template>
       </xsl:variable>
 
-      <fo:page-number-citation ref-id="{$id}"/>
+      <fo:basic-link internal-destination="{$id}">
+        <fo:page-number-citation ref-id="{$id}"/>
+      </fo:basic-link>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
