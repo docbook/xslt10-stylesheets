@@ -95,6 +95,10 @@ Some abstract. Some abstract. Some abstract. Some abstract.
 </bookinfo>
 
 <chapter id="chap1"><title>First Chapter</title>
+<chapterinfo>
+<abstract><para>bla in the first chapter</para>
+</abstract>
+</chapterinfo>
 
 &blah;
 
