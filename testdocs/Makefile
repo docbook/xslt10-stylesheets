@@ -31,12 +31,34 @@ XSLPARAM	?=
 # what to use to format XSL FO
 FO_FORMATTER	?= tex
 
+TESTS		:= $(basename $(wildcard tests/*.xml))
+TESTBASE	:= $(shell ls -1 tests/*.xml | sed -e 's/\.[0-9][0-9][0-9]\.xml$$//' | sort | uniq)
 
 # ======================================================================
 
-# default rule, run all tests
+# default rule
 .PHONY: test
 test:
+	@echo "no default rule; try 'make xref.001.html' or 'make alltests'"
+
+.PHONY: $(TESTS)
+$(TESTS):
+ifeq ($(MODE),xsl)
+	$(MAKE) $(notdir $@).html $(notdir $@).pdf
+else
+	$(MAKE) $(notdir $@).html $(notdir $@).dvi
+endif
+
+# run all tests in a given category
+.PHONY: $(TESTBASE)
+$(TESTBASE):
+	$(MAKE) $(basename $(notdir $(wildcard $@.[0-9][0-9][0-9].xml)))
+
+# run all tests
+.PHONY: alltests
+alltests: $(TESTS)
+
+# ======================================================================
 
 .xml.html:
 ifeq ($(VALIDATE),1)
