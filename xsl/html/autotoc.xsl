@@ -229,6 +229,40 @@
     </xsl:element>
   </xsl:variable>
 
+  <xsl:variable name="depth">
+    <xsl:choose>
+      <xsl:when test="local-name(.) = 'section'">
+        <xsl:value-of select="count(ancestor::section) + 1"/>
+      </xsl:when>
+      <xsl:when test="local-name(.) = 'sect1'">1</xsl:when>
+      <xsl:when test="local-name(.) = 'sect2'">2</xsl:when>
+      <xsl:when test="local-name(.) = 'sect3'">3</xsl:when>
+      <xsl:when test="local-name(.) = 'sect4'">4</xsl:when>
+      <xsl:when test="local-name(.) = 'sect5'">5</xsl:when>
+      <xsl:when test="local-name(.) = 'refsect1'">1</xsl:when>
+      <xsl:when test="local-name(.) = 'refsect2'">2</xsl:when>
+      <xsl:when test="local-name(.) = 'refsect3'">3</xsl:when>
+      <xsl:when test="local-name(.) = 'simplesect'">
+        <!-- sigh... -->
+        <xsl:choose>
+          <xsl:when test="local-name(..) = 'section'">
+            <xsl:value-of select="count(ancestor::section)"/>
+          </xsl:when>
+          <xsl:when test="local-name(..) = 'sect1'">2</xsl:when>
+          <xsl:when test="local-name(..) = 'sect2'">3</xsl:when>
+          <xsl:when test="local-name(..) = 'sect3'">4</xsl:when>
+          <xsl:when test="local-name(..) = 'sect4'">5</xsl:when>
+          <xsl:when test="local-name(..) = 'sect5'">6</xsl:when>
+          <xsl:when test="local-name(..) = 'refsect1'">2</xsl:when>
+          <xsl:when test="local-name(..) = 'refsect2'">3</xsl:when>
+          <xsl:when test="local-name(..) = 'refsect3'">4</xsl:when>
+          <xsl:otherwise>1</xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>0</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:variable name="subtoc.list">
     <xsl:choose>
       <xsl:when test="$toc.dd.type = ''">
@@ -250,6 +284,7 @@
     <xsl:if test="$label != ''">
       <xsl:value-of select="$autotoc.label.separator"/>
     </xsl:if>
+
     <a>
       <xsl:attribute name="href">
         <xsl:call-template name="href.target"/>
@@ -257,12 +292,12 @@
       <xsl:apply-templates select="." mode="title.markup"/>
     </a>
     <xsl:if test="$toc.listitem.type = 'li'
-                  and $toc.section.depth>0 and count($nodes)&gt;0">
+                  and $toc.section.depth > $depth and count($nodes)&gt;0">
       <xsl:copy-of select="$subtoc.list"/>
     </xsl:if>
   </xsl:element>
   <xsl:if test="$toc.listitem.type != 'li'
-                and $toc.section.depth>0 and count($nodes)&gt;0">
+                and $toc.section.depth > $depth and count($nodes)&gt;0">
     <xsl:copy-of select="$subtoc.list"/>
   </xsl:if>
 </xsl:template>
@@ -322,32 +357,9 @@
 </xsl:template>
 
 <xsl:template match="section" mode="toc">
-  <xsl:variable name="toodeep">
-    <xsl:choose>
-      <!-- if the depth is less than 2, we're already deep enough -->
-      <xsl:when test="$toc.section.depth &lt; 2">yes</xsl:when>
-      <!-- if the current section has n-1 section ancestors -->
-      <!-- then we've already reached depth n -->
-      <xsl:when test="ancestor::section[position()=$toc.section.depth - 1]">
-        <xsl:text>yes</xsl:text>
-      </xsl:when>
-      <!-- otherwise, keep going -->
-      <xsl:otherwise>no</xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <xsl:choose>
-    <xsl:when test="$toodeep = 'no'">
-      <xsl:call-template name="subtoc">
-        <xsl:with-param name="nodes" select="section|bridgehead"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="subtoc">
-        <xsl:with-param name="nodes" select="section|bridgehead"/>
-      </xsl:call-template>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:call-template name="subtoc">
+    <xsl:with-param name="nodes" select="section|bridgehead"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="bridgehead" mode="toc">
