@@ -93,7 +93,7 @@
 
 <xsl:template match="procedure" mode="object.title.template">
   <xsl:choose>
-    <xsl:when test="$formal.procedures != 0" and title>
+    <xsl:when test="$formal.procedures != 0 and title">
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'title'"/>
         <xsl:with-param name="name">
