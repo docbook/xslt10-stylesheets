@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# This shell script will definitely need to be hacked to run on your system!
+#
+# Usage: xjparse [opts] src.xml
+#
+
+SUN="/projects/sun/resolver/.classes";
+JAXP="/usr/local/jaxp-1.1/jaxp.jar:/usr/local/jaxp-1.1/crimson.jar"
+
+CLASSPATH=$JAXP:$SUN:~/java
+
+#echo $CLASSPATH
+
+java \
+  com.sun.resolver.apps.xparse $*
+
+if [ $? != 0 ]; then
+  echo ""
+  echo FAILED
+  echo ""
+  exit 1
+fi
+
+
