@@ -14,11 +14,7 @@
 
 <xsl:template name="formal.object">
   <div class="{name(.)}">
-    <xsl:call-template name="formal.object.heading">
-       <xsl:with-param name="title">
-         <xsl:apply-templates select="." mode="title.markup"/>
-       </xsl:with-param>
-    </xsl:call-template>
+    <xsl:call-template name="formal.object.heading"/>
     <xsl:apply-templates/>
   </div>
 </xsl:template>
