@@ -186,6 +186,13 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 </reference>
 
 <reference><title>Linking</title>
+&target.database.document;
+&targets.filename;
+&collect.xref.targets;
+&olink.base.uri;
+&use.local.olink.style;
+&current.docid;
+&olink.doctitle;
 &link.mailto.url;
 &ulink.target;
 &olink.fragid;
@@ -382,7 +389,9 @@ around all these parameters.</para>
 <src:fragref linkend="chunk.section.depth.frag"/>
 <src:fragref linkend="chunk.toc.frag"/>
 <src:fragref linkend="citerefentry.link.frag"/>
+<src:fragref linkend="collect.xref.targets.frag"/>
 <src:fragref linkend="css.decoration.frag"/>
+<src:fragref linkend="current.docid.frag"/>
 <src:fragref linkend="default.table.width.frag"/>
 <src:fragref linkend="draft.watermark.image.frag"/>
 <src:fragref linkend="ebnf.table.bgcolor.frag"/>
@@ -475,6 +484,8 @@ around all these parameters.</para>
 <src:fragref linkend="nominal.image.depth.frag"/>
 <src:fragref linkend="nominal.image.width.frag"/>
 <src:fragref linkend="nominal.table.width.frag"/>
+<src:fragref linkend="olink.base.uri.frag"/>
+<src:fragref linkend="olink.doctitle.frag"/>
 <src:fragref linkend="olink.fragid.frag"/>
 <src:fragref linkend="olink.outline.ext.frag"/>
 <src:fragref linkend="olink.pubid.frag"/>
@@ -529,6 +540,8 @@ around all these parameters.</para>
 <src:fragref linkend="table.border.thickness.frag"/>
 <src:fragref linkend="table.borders.with.css.frag"/>
 <src:fragref linkend="tablecolumns.extension.frag"/>
+<src:fragref linkend="target.database.document.frag"/>
+<src:fragref linkend="targets.filename.frag"/>
 <src:fragref linkend="tex.math.delims.frag"/>
 <src:fragref linkend="tex.math.file.frag"/>
 <src:fragref linkend="tex.math.in.alt.frag"/>
@@ -539,6 +552,7 @@ around all these parameters.</para>
 <src:fragref linkend="use.embed.for.svg.frag"/>
 <src:fragref linkend="use.extensions.frag"/>
 <src:fragref linkend="use.id.as.filename.frag"/>
+<src:fragref linkend="use.local.olink.style.frag"/>
 <src:fragref linkend="use.role.as.xrefstyle.frag"/>
 <src:fragref linkend="use.svg.frag"/>
 <src:fragref linkend="variablelist.as.table.frag"/>
