@@ -118,7 +118,7 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="not(parent::*) or parent::reference">
+    <xsl:when test="not(parent::*) or parent::reference or parent::part">
       <!-- make a page sequence -->
       <fo:page-sequence hyphenate="{$hyphenate}"
                         master-reference="{$master-reference}">
