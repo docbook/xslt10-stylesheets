@@ -498,6 +498,7 @@
     </xsl:when>
     <xsl:otherwise>
       <div class="{local-name(.)}">
+        <a name="{$id}"/>
         <xsl:apply-templates mode="titlepage.mode"/>
       </div>
     </xsl:otherwise>
