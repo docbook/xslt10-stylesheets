@@ -59,7 +59,8 @@
                                        |preface|chapter|appendix
                                        |article
                                        |bibliography|glossary|index
-                                       |refentry"/>
+                                       |refentry
+                                       |bridgehead"/>
     <xsl:if test="$nodes">
       <div class="toc">
         <p>
@@ -81,7 +82,8 @@
   <xsl:if test="$generate.component.toc != 0">
     <xsl:variable name="nodes" select="section|sect1|refentry
                                        |article|bibliography|glossary
-                                       |appendix"/>
+                                       |appendix|bridgehead[not(@renderas)]
+                                       |.//bridgehead[@renderas='sect1']"/>
     <xsl:if test="$nodes">
       <div class="toc">
         <p>
@@ -100,7 +102,9 @@
 </xsl:template>
 
 <xsl:template name="section.toc">
-  <xsl:variable name="nodes" select="section|sect1|sect2|sect3|sect4|sect5|refentry"/>
+  <xsl:variable name="nodes"
+                select="section|sect1|sect2|sect3|sect4|sect5|refentry
+                        |bridgehead"/>
   <xsl:if test="$nodes">
     <div class="toc">
       <p>
@@ -124,7 +128,8 @@
                                      |preface|chapter|appendix
                                      |article
                                      |bibliography|glossary|index
-                                     |refentry"/>
+                                     |refentry
+                                     |bridgehead"/>
 
   <xsl:variable name="subtoc">
     <xsl:element name="{$toc.list.type}">
@@ -168,7 +173,8 @@
 <xsl:template match="part|reference" mode="toc">
   <xsl:variable name="nodes" select="appendix|chapter|article
                                      |index|glossary|bibliography
-                                     |preface|reference|refentry"/>
+                                     |preface|reference|refentry
+                                     |bridgehead"/>
 
   <xsl:variable name="subtoc">
     <xsl:element name="{$toc.list.type}">
@@ -212,7 +218,7 @@
 <xsl:template match="preface|chapter|appendix|article" mode="toc">
   <xsl:variable name="subtoc">
     <xsl:element name="{$toc.list.type}">
-      <xsl:apply-templates select="section|sect1" mode="toc"/>
+      <xsl:apply-templates select="section|sect1|bridgehead" mode="toc"/>
     </xsl:element>
   </xsl:variable>
 
@@ -252,7 +258,7 @@
 <xsl:template match="sect1" mode="toc">
   <xsl:variable name="subtoc">
     <xsl:element name="{$toc.list.type}">
-      <xsl:apply-templates select="sect2" mode="toc"/>
+      <xsl:apply-templates select="sect2|bridgehead" mode="toc"/>
     </xsl:element>
   </xsl:variable>
 
@@ -292,7 +298,7 @@
 <xsl:template match="sect2" mode="toc">
   <xsl:variable name="subtoc">
     <xsl:element name="{$toc.list.type}">
-      <xsl:apply-templates select="sect3" mode="toc"/>
+      <xsl:apply-templates select="sect3|bridgehead" mode="toc"/>
     </xsl:element>
   </xsl:variable>
 
@@ -332,7 +338,7 @@
 <xsl:template match="sect3" mode="toc">
   <xsl:variable name="subtoc">
     <xsl:element name="{$toc.list.type}">
-      <xsl:apply-templates select="sect4" mode="toc"/>
+      <xsl:apply-templates select="sect4|bridgehead" mode="toc"/>
     </xsl:element>
   </xsl:variable>
 
@@ -372,7 +378,7 @@
 <xsl:template match="sect4" mode="toc">
   <xsl:variable name="subtoc">
     <xsl:element name="{$toc.list.type}">
-      <xsl:apply-templates select="sect5" mode="toc"/>
+      <xsl:apply-templates select="sect5|bridgehead" mode="toc"/>
     </xsl:element>
   </xsl:variable>
 
@@ -425,7 +431,7 @@
 <xsl:template match="section" mode="toc">
   <xsl:variable name="subtoc">
     <xsl:element name="{$toc.list.type}">
-      <xsl:apply-templates select="section" mode="toc"/>
+      <xsl:apply-templates select="section|bridgehead" mode="toc"/>
     </xsl:element>
   </xsl:variable>
 
@@ -473,6 +479,21 @@
   <xsl:if test="$toc.listitem.type != 'li'
                 and $toodeep='no' and section">
     <xsl:copy-of select="$subtoc.list"/>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="bridgehead" mode="toc">
+  <xsl:if test="$bridgehead.in.toc != 0">
+    <xsl:element name="{$toc.listitem.type}">
+      <xsl:apply-templates select="." mode="label.markup"/>
+      <xsl:text> </xsl:text>
+      <a>
+        <xsl:attribute name="href">
+          <xsl:call-template name="href.target"/>
+        </xsl:attribute>
+        <xsl:apply-templates/>
+      </a>
+    </xsl:element>
   </xsl:if>
 </xsl:template>
 
