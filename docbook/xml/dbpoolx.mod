@@ -1697,8 +1697,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % step.element "INCLUDE">
 <![%step.element;[
-<!ELEMENT step %ho; (title?, (((%component.mix;)+, (substeps,
-		(%component.mix;)*)?) | (substeps, (%component.mix;)*)))>
+<!ELEMENT step %ho; (title?, (((%component.mix;)+, ((substeps|stepalternatives), (%component.mix;)*)?)
+                    | ((substeps|stepalternatives), (%component.mix;)*)))>
 <!--end of step.element-->]]>
 
 <!-- Performance: Whether the Step must be performed -->
@@ -1730,7 +1730,6 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!-- Performance: whether entire set of substeps must be performed -->
 <!-- not #REQUIRED! -->
 
-
 <!ENTITY % substeps.attlist "INCLUDE">
 <![%substeps.attlist;[
 <!ATTLIST substeps
@@ -1742,6 +1741,31 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 >
 <!--end of substeps.attlist-->]]>
 <!--end of substeps.module-->]]>
+
+<!ENTITY % stepalternatives.module "INCLUDE">
+<![%stepalternatives.module;[
+<!ENTITY % local.stepalternatives.attrib "">
+<!ENTITY % stepalternatives.role.attrib "%role.attrib;">
+
+<!ENTITY % stepalternatives.element "INCLUDE">
+<![%stepalternatives.element;[
+<!ELEMENT stepalternatives %ho; (step+)>
+<!--end of stepalternatives.element-->]]>
+
+<!-- Performance: Whether (one of) the alternatives must be performed -->
+<!-- not #REQUIRED! -->
+
+<!ENTITY % stepalternatives.attlist "INCLUDE">
+<![%stepalternatives.attlist;[
+<!ATTLIST stepalternatives
+		performance	(optional
+				|required)	"required"
+		%common.attrib;
+		%stepalternatives.role.attrib;
+		%local.stepalternatives.attrib;
+>
+<!--end of stepalternatives.attlist-->]]>
+<!--end of stepalternatives.module-->]]>
 <!--end of procedure.content.module-->]]>
 
 <!-- Sidebar .......................... -->
