@@ -691,13 +691,6 @@ is system dependent.)</para>
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:message>
-    <xsl:text>Writing </xsl:text>
-    <xsl:value-of select="$filename"/>
-    <xsl:text> for </xsl:text>
-    <xsl:value-of select="name(.)"/>
-  </xsl:message>
-
   <xsl:call-template name="write.chunk">
     <xsl:with-param name="filename" select="$filename"/>
     <xsl:with-param name="content">
