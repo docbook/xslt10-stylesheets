@@ -1445,8 +1445,8 @@ function init() {
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
-  <DIV id="{$id}" class="toc-slidesinfo">
-    <A href="{$titlefoil.html}" target="foil">
+  <div id="{$id}" class="toc-slidesinfo">
+    <a href="{$titlefoil.html}" target="foil">
       <xsl:choose>
         <xsl:when test="titleabbrev">
           <xsl:apply-templates select="titleabbrev" mode="toc"/>
@@ -1455,9 +1455,9 @@ function init() {
           <xsl:apply-templates select="title" mode="toc"/>
         </xsl:otherwise>
       </xsl:choose>
-    </A>
+    </a>
     <hr/>
-  </DIV>
+  </div>
 </xsl:template>
 
 <xsl:template match="foilgroup" mode="toc">
@@ -1469,13 +1469,13 @@ function init() {
     <xsl:value-of select="$html.ext"/>
   </xsl:variable>
 
-  <DIV class="toc-foilgroup" id="{$id}">
+  <div class="toc-foilgroup" id="{$id}">
     <img alt="-">
       <xsl:attribute name="src">
         <xsl:call-template name="minus.image"/>
       </xsl:attribute>
     </img>
-    <A href="{$thisfoilgroup}" target="foil">
+    <a href="{$thisfoilgroup}" target="foil">
       <xsl:choose>
         <xsl:when test="titleabbrev">
           <xsl:apply-templates select="titleabbrev" mode="toc"/>
@@ -1484,9 +1484,9 @@ function init() {
           <xsl:apply-templates select="title" mode="toc"/>
         </xsl:otherwise>
       </xsl:choose>
-    </A>
+    </a>
     <xsl:apply-templates select="foil" mode="toc"/>
-  </DIV>
+  </div>
 </xsl:template>
 
 <xsl:template match="foil" mode="toc">
@@ -1495,13 +1495,13 @@ function init() {
     <xsl:apply-templates select="." mode="filename"/>
   </xsl:variable>
 
-  <DIV id="{$id}" class="toc-foil">
+  <div id="{$id}" class="toc-foil">
     <img alt="-">
       <xsl:attribute name="src">
         <xsl:call-template name="bullet.image"/>
       </xsl:attribute>
     </img>
-    <A href="{$foil}" target="foil">
+    <a href="{$foil}" target="foil">
       <xsl:choose>
         <xsl:when test="titleabbrev">
           <xsl:apply-templates select="titleabbrev" mode="toc"/>
@@ -1510,8 +1510,8 @@ function init() {
           <xsl:apply-templates select="title" mode="toc"/>
         </xsl:otherwise>
       </xsl:choose>
-    </A>
-  </DIV>
+    </a>
+  </div>
 </xsl:template>
 
 <!-- ====================================================================== -->
@@ -1523,11 +1523,11 @@ function init() {
 
   <xsl:text>myList.addItem('</xsl:text>
 
-  <xsl:text disable-output-escaping="yes">&lt;DIV id="</xsl:text>
+  <xsl:text disable-output-escaping="yes">&lt;div id="</xsl:text>
   <xsl:value-of select="$id"/>
   <xsl:text disable-output-escaping="yes">" class="toc-slidesinfo"&gt;</xsl:text>
 
-  <xsl:text disable-output-escaping="yes">&lt;A href="</xsl:text>
+  <xsl:text disable-output-escaping="yes">&lt;a href="</xsl:text>
   <xsl:value-of select="$titlefoil.html"/>
   <xsl:text disable-output-escaping="yes">" target="foil"&gt;</xsl:text>
 
@@ -1546,7 +1546,7 @@ function init() {
     <xsl:with-param name="replacement">\'</xsl:with-param>
   </xsl:call-template>
 
-  <xsl:text disable-output-escaping="yes">&lt;/A&gt;&lt;/DIV&gt;</xsl:text>
+  <xsl:text disable-output-escaping="yes">&lt;/a&gt;&lt;/div&gt;</xsl:text>
   <xsl:text>');&#10;</xsl:text>
 </xsl:template>
 
@@ -1563,11 +1563,11 @@ function init() {
 
   <xsl:text>myList.addList(subList, '</xsl:text>
 
-  <xsl:text disable-output-escaping="yes">&lt;DIV id="</xsl:text>
+  <xsl:text disable-output-escaping="yes">&lt;div id="</xsl:text>
   <xsl:value-of select="$id"/>
   <xsl:text disable-output-escaping="yes">" class="toc-section"&gt;</xsl:text>
 
-  <xsl:text disable-output-escaping="yes">&lt;A href="</xsl:text>
+  <xsl:text disable-output-escaping="yes">&lt;a href="</xsl:text>
   <xsl:apply-templates select="." mode="filename"/>
   <xsl:text disable-output-escaping="yes">" target="foil"&gt;</xsl:text>
 
@@ -1580,7 +1580,7 @@ function init() {
     </xsl:otherwise>
   </xsl:choose>
 
-  <xsl:text disable-output-escaping="yes">&lt;/A&gt;&lt;/DIV&gt;</xsl:text>
+  <xsl:text disable-output-escaping="yes">&lt;/a&gt;&lt;/div&gt;</xsl:text>
   <xsl:text>');&#10;</xsl:text>
 </xsl:template>
 
@@ -1596,15 +1596,15 @@ function init() {
     </xsl:otherwise>
   </xsl:choose>
 
-  <xsl:text disable-output-escaping="yes">&lt;DIV id="</xsl:text>
+  <xsl:text disable-output-escaping="yes">&lt;div id="</xsl:text>
   <xsl:value-of select="$id"/>
   <xsl:text disable-output-escaping="yes">" class="toc-foil"&gt;</xsl:text>
 
   <xsl:text disable-output-escaping="yes">&lt;img alt="-" src="</xsl:text>
   <xsl:call-template name="bullet.image"/>
-  <xsl:text disable-output-escaping="yes">"&gt;</xsl:text>
+  <xsl:text disable-output-escaping="yes">"&gt;&lt;/img&gt;</xsl:text>
 
-  <xsl:text disable-output-escaping="yes">&lt;A href="</xsl:text>
+  <xsl:text disable-output-escaping="yes">&lt;a href="</xsl:text>
   <xsl:apply-templates select="." mode="filename"/>
   <xsl:text disable-output-escaping="yes">" target="foil"&gt;</xsl:text>
 
@@ -1617,7 +1617,7 @@ function init() {
     </xsl:otherwise>
   </xsl:choose>
 
-  <xsl:text disable-output-escaping="yes">&lt;/A&gt;&lt;/DIV&gt;</xsl:text>
+  <xsl:text disable-output-escaping="yes">&lt;/a&gt;&lt;/div&gt;</xsl:text>
   <xsl:text>');&#10;</xsl:text>
 </xsl:template>
 
