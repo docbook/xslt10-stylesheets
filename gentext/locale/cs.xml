@@ -102,12 +102,14 @@
 <gentext key="See" text="Viz"/>
 <gentext key="see" text="Viz"/>
 <gentext key="SeeAlso" text="Viz t&#x00E9;&#x017E;"/>
+<gentext key="Seealso" text="Viz t&#x00E9;&#x017E;"/>
 <gentext key="seealso" text="Viz t&#x00E9;&#x017E;"/>
 <gentext key="Set" text="Sada"/>
 <gentext key="set" text="Sada"/>
 <gentext key="SetIndex" text="Rejst&#x0159;&#x00Ed;k sady"/>
 <gentext key="setindex" text="Rejst&#x0159;&#x00Ed;k sady"/>
 <gentext key="Sidebar" text="Margin&#x00e1;lie"/>
+<gentext key="sidebar" text="Margin&#x00e1;lie"/>
 <gentext key="Step" text="Krok"/>
 <gentext key="step" text="krok"/>
 <gentext key="Table" text="Tabulka"/>
