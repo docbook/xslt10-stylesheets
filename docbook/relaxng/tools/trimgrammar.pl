@@ -7,7 +7,7 @@ use vars qw($opt_o $opt_v $opt_r);
 
 my $usage = "Usage: $0 [-v] [-r] [-o file] file\n";
 
-die $usage if ! getopts('o:v');
+die $usage if ! getopts('o:rv');
 
 my $output = $opt_o || "-";
 my $verbose = $opt_v;
@@ -68,6 +68,8 @@ sub findPatterns {
 		$patterns{$child->getAttribute('name')} = $child;
 	    } elsif ($child->getTagName() eq 'start') {
 		$patterns{"*start"} = $child;
+	    } elsif ($child->getTagName() eq 'div') {
+		findPatterns($child);
 	    }
 	}
 
@@ -90,6 +92,7 @@ sub recurse {
 		if (! exists $used{$name}) {
 		    $used{$name} = 1;
 		    print "D", " " x $depth, $name, "\n" if $showRecurse;
+		    die "No pattern for $name\n" if ! exists $patterns{$name};
 		    recurse($patterns{$name},$depth+1);
 		}
 	    } elsif ($child->getTagName() eq 'ref') {
@@ -97,6 +100,7 @@ sub recurse {
 		if (! exists $used{$name}) {
 		    $used{$name} = 1;
 		    print "R", " " x $depth, $name, "\n" if $showRecurse;
+		    die "No pattern for $name\n" if ! exists $patterns{$name};
 		    recurse($patterns{$name},$depth+1);
 		}
 	    } else {
@@ -109,6 +113,51 @@ sub recurse {
 }
 
 sub printXML {
+    my $node = shift;
+
+    if ($node->getNodeType() == XML::DOM::ELEMENT_NODE) {
+	my $child = $node->getFirstChild();
+	my $attrs = $node->getAttributes();
+
+	print "<";
+	print $node->getTagName();
+
+	for (my $count = 0; $count < $attrs->getLength(); $count++) {
+	    my $attr = $attrs->item($count);
+	    my $name = $attr->getName();
+	    my $value = $attr->getValue();
+	    print " $name=\"$value\"";
+	}
+
+	if ($node->getTagName eq 'define'
+	    && !$used{$node->getAttribute('name')}) {
+	    print " unused=\"1\"";
+	}
+
+	if ($child) {
+	    print ">";
+	    while ($child) {
+		printXML($child);
+		$child = $child->getNextSibling();
+	    }
+	    print "</";
+	    print $node->getTagName();
+	    print ">";
+	} else {
+	    print "/>";
+	}
+    } elsif ($node->getNodeType() == XML::DOM::TEXT_NODE) {
+	print $node->getData();
+    } elsif ($node->getNodeType() == XML::DOM::COMMENT_NODE) {
+	print "<!--", $node->getData(), "-->";
+    } elsif ($node->getNodeType() == XML::DOM::PROCESSING_INSTRUCTION_NODE) {
+	print "<?", $node->getTarget(), " ", $node->getData(), "?>";
+    } else {
+	die "Unexpected node type: ", $node->getNodeType(), "\n";
+    }
+}
+
+sub printXML_OLD {
     my $node = shift;
 
     if ($node->getNodeType() == XML::DOM::ELEMENT_NODE) {
