@@ -942,6 +942,31 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="callout/simpara" priority="2">
+  <!-- If a callout contains only a single simpara, don't output
+       the <p> wrapper; this has the effect of creating an li
+       with simple text content. -->
+  <xsl:choose>
+    <xsl:when test="not(preceding-sibling::*)
+                    and not (following-sibling::*)">
+      <xsl:call-template name="anchor"/>
+      <xsl:apply-templates/>
+    </xsl:when>
+    <xsl:otherwise>
+      <p>
+        <xsl:if test="@role and $para.propagates.style != 0">
+          <xsl:attribute name="class">
+            <xsl:value-of select="@role"/>
+          </xsl:attribute>
+        </xsl:if>
+
+        <xsl:call-template name="anchor"/>
+        <xsl:apply-templates/>
+      </p>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template name="callout.arearefs">
   <xsl:param name="arearefs"></xsl:param>
   <xsl:if test="$arearefs!=''">
