@@ -12,6 +12,7 @@ XSLCHUNK=../xsl/html/chunk.xsl
 CHUNK=0
 USETIDY=1
 XSLPARAM=
+VALIDATE=1
 
 FORMATTER=xep
 
@@ -27,7 +28,9 @@ clean:
 # ======================================================================
 
 .xml.html:
+ifeq ($(VALIDATE),1)
 	$(XJPARSE) $<
+endif
 ifeq ($(CHUNK),1)
 	$(XSLT) $< $(XSLCHUNK) $@ $(XSLPARAM)
 ifeq ($(USETIDY),1)
@@ -41,6 +44,9 @@ endif
 endif
 
 .xml.fo:
+ifeq ($(VALIDATE),1)
+	$(XJPARSE) $<
+endif
 ifeq ($(FORMATTER),tex)
 	$(XSLT) $< $(XSLFO) $@ passivetex.extensions=1 $(XSLPARAM)
 else
