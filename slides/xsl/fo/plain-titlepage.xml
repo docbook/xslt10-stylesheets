@@ -19,59 +19,59 @@
 
 <!-- ==================================================================== -->
 
-<t:titlepage element="slides" wrapper="fo:block">
-  <t:titlepage-content side="recto">
-      <title predicate="[1]"
-	     named-template="component.title"
+<t:titlepage t:element="slides" t:wrapper="fo:block">
+  <t:titlepage-content t:side="recto">
+      <title t:predicate="[1]"
+	     t:named-template="component.title"
 	     param:node="ancestor-or-self::slides[1]"
-	     fo:text-align="center"
-	     fo:space-after="1em"
-             fo:padding-top="1.5in"
-	     fo:keep-with-next="always"
-	     fo:font-size="{$foil.title.size}"
-	     fo:font-weight="bold"
-	     fo:font-family="{$slide.title.font.family}"/>
+	     text-align="center"
+	     space-after="1em"
+             padding-top="1.5in"
+	     keep-with-next="always"
+	     font-size="{$foil.title.size}"
+	     font-weight="bold"
+	     font-family="{$slide.title.font.family}"/>
 
-    <subtitle predicate="[1]"
-	      fo:text-align="center"
-	      fo:font-family="{$slide.title.font.family}"/>
+    <subtitle t:predicate="[1]"
+	      text-align="center"
+	      font-family="{$slide.title.font.family}"/>
 
-    <corpauthor fo:font-size="&hsize4;"
-		fo:text-align="center"
-		fo:space-after="1em"/>
+    <corpauthor font-size="&hsize4;"
+		text-align="center"
+		space-after="1em"/>
     <authorgroup/>
-    <author fo:font-size="&hsize4;"
-	    fo:text-align="center"
-	    fo:space-after="1em"/>
+    <author font-size="&hsize4;"
+	    text-align="center"
+	    space-after="1em"/>
 
-    <pubdate fo:font-size="&hsize3;"
-	     fo:text-align="center"
-	     fo:space-after="1em"/>
+    <pubdate font-size="&hsize3;"
+	     text-align="center"
+	     space-after="1em"/>
 
-    <confgroup fo:font-size="&hsize3;"
-	       fo:text-align="center"
-	       fo:space-after="1em"/>
+    <confgroup font-size="&hsize3;"
+	       text-align="center"
+	       space-after="1em"/>
 
-    <releaseinfo fo:font-size="&hsize3;"
-		 fo:text-align="center"
-		 fo:space-after="1em"/>
+    <releaseinfo font-size="&hsize3;"
+		 text-align="center"
+		 space-after="1em"/>
 
-    <copyright fo:font-size="&hsize3;"
-	       fo:text-align="center"/>
+    <copyright font-size="&hsize3;"
+	       text-align="center"/>
 
-    <revision fo:text-align="center"/>
+    <revision text-align="center"/>
   </t:titlepage-content>
 
-  <t:titlepage-content side="verso">
+  <t:titlepage-content t:side="verso">
   </t:titlepage-content>
 
   <t:titlepage-separator>
   </t:titlepage-separator>
 
-  <t:titlepage-before side="recto">
+  <t:titlepage-before t:side="recto">
   </t:titlepage-before>
 
-  <t:titlepage-before side="verso">
+  <t:titlepage-before t:side="verso">
   </t:titlepage-before>
 </t:titlepage>
 
