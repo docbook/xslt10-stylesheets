@@ -678,6 +678,14 @@
   </span>
 </xsl:template>
 
+<xsl:template match="bibliocoverage|biblioid|bibliorelation|bibliosource"
+              mode="bibliography.mode">
+  <span class="{name(.)}">
+    <xsl:apply-templates mode="bibliography.mode"/>
+    <xsl:value-of select="$biblioentry.item.separator"/>
+  </span>
+</xsl:template>
+
 <!-- ==================================================================== -->
 
 <xsl:template match="*" mode="bibliomixed.mode">
@@ -1035,11 +1043,11 @@
   </span>
 </xsl:template>
 
-<!-- ==================================================================== -->
-
-<xsl:template match="bibliosource">
-  <!-- FIXME: is this right? -->
-  <xsl:apply-templates/>
+<xsl:template match="bibliocoverage|biblioid|bibliorelation|bibliosource"
+              mode="bibliomixed.mode">
+  <span class="{name(.)}">
+    <xsl:apply-templates mode="bibliomixed.mode"/>
+  </span>
 </xsl:template>
 
 <!-- ==================================================================== -->
