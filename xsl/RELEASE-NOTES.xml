@@ -21,8 +21,8 @@
 
   <section>
     <title>Release 1.68.0</title>
-    <para>This release includes some features changes and a number of
-    bug fixes.
+    <para>This release includes some features changes, particularly
+    for FO/PDF output, and a number of bug fixes.
       <itemizedlist id="V1680_FO">
         <title>FO</title>
         <listitem>
@@ -146,7 +146,25 @@
       <itemizedlist id="V1680_HTML">
         <title>HTML</title>
         <listitem>
-          <para></para>
+          <para>Added support for
+          <sgmltag>refdescriptor</sgmltag>.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for multiple <sgmltag>refnamediv</sgmltag>s.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for <sgmltag
+          class="attribute">xml:id</sgmltag></para>
+        </listitem>
+        <listitem>
+          <para><sgmltag>refsynopsisdiv</sgmltag> as a section for
+          counting section levels</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist id="V1680_images">
+        <title>Images</title>
+        <listitem>
+          <para>Added new SVG admonition graphics and navigation images.</para>
         </listitem>
       </itemizedlist>
     </para>
