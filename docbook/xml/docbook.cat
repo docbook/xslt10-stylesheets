@@ -53,61 +53,61 @@ PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.4CR2//EN"
   -- ISO entity sets ...................................................... --
 
 PUBLIC "ISO 8879:1986//ENTITIES Diacritical Marks//EN//XML"
-       "ent/iso-dia.ent"
+       "ent/isodia.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES Numeric and Special Graphic//EN//XML"
-       "ent/iso-num.ent"
+       "ent/isonum.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES Publishing//EN//XML"
-       "ent/iso-pub.ent"
+       "ent/isopub.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES General Technical//EN//XML"
-       "ent/iso-tech.ent"
+       "ent/isotech.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES Added Latin 1//EN//XML"
-       "ent/iso-lat1.ent"
+       "ent/isolat1.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES Added Latin 2//EN//XML"
-       "ent/iso-lat2.ent"
+       "ent/isolat2.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES Greek Letters//EN//XML"
-       "ent/iso-grk1.ent"
+       "ent/isogrk1.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES Monotoniko Greek//EN//XML"
-       "ent/iso-grk2.ent"
+       "ent/isogrk2.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES Greek Symbols//EN//XML"
-       "ent/iso-grk3.ent"
+       "ent/isogrk3.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES Alternative Greek Symbols//EN//XML"
-       "ent/iso-grk4.ent"
+       "ent/isogrk4.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Arrow Relations//EN//XML"
-       "ent/iso-amsa.ent"
+       "ent/isoamsa.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Binary Operators//EN//XML"
-       "ent/iso-amsb.ent"
+       "ent/isoamsb.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Delimiters//EN//XML"
-       "ent/iso-amsc.ent"
+       "ent/isoamsc.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Negated Relations//EN//XML"
-       "ent/iso-amsn.ent"
+       "ent/isoamsn.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Ordinary//EN//XML"
-       "ent/iso-amso.ent"
+       "ent/isoamso.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Relations//EN//XML"
-       "ent/iso-amsr.ent"
+       "ent/isoamsr.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES Box and Line Drawing//EN//XML"
-       "ent/iso-box.ent"
+       "ent/isobox.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES Russian Cyrillic//EN//XML"
-       "ent/iso-cyr1.ent"
+       "ent/isocyr1.ent"
 
 PUBLIC "ISO 8879:1986//ENTITIES Non-Russian Cyrillic//EN//XML"
-       "ent/iso-cyr2.ent"
+       "ent/isocyr2.ent"
 
   -- End of catalog data for DocBook XML V4.4CR2 ............................. --
   -- ...................................................................... --
