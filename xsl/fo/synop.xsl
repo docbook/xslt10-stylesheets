@@ -39,7 +39,7 @@
   <xsl:text> </xsl:text>
 </xsl:template>
 
-<xsl:template match="group|arg">
+<xsl:template match="group|arg" name="group-or-arg">
   <xsl:variable name="choice" select="@choice"/>
   <xsl:variable name="rep" select="@rep"/>
   <xsl:variable name="sepchar">
@@ -99,7 +99,7 @@
   <xsl:variable name="choice" select="@choice"/>
   <xsl:variable name="rep" select="@rep"/>
   <xsl:if test="position()>1"><xsl:value-of select="$arg.or.sep"/></xsl:if>
-  <xsl:apply-templates/>
+  <xsl:call-template name="group-or-arg"/>
 </xsl:template>
 
 <xsl:template match="sbr">
