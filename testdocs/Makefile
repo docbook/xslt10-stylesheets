@@ -34,12 +34,12 @@ endif
 ifeq ($(CHUNK),1)
 	$(XSLT) $< $(XSLCHUNK) $@ $(XSLPARAM)
 ifeq ($(USETIDY),1)
-	$(TIDY) -iq -latin1 -mn *.html
+	$(TIDY) -iq -n -ascii -mn *.html
 endif
 else
 	$(XSLT)  $< $(XSLHTML) $@ $(XSLPARAM)
 ifeq ($(USETIDY),1)
-	$(TIDY) -iq -latin1 -mn $@
+	$(TIDY) -iq -n -ascii -mn $@
 endif
 endif
 
@@ -47,19 +47,7 @@ endif
 ifeq ($(VALIDATE),1)
 	$(XJPARSE) $<
 endif
-ifeq ($(FORMATTER),tex)
-	$(XSLT) $< $(XSLFO) $@ passivetex.extensions=1 $(XSLPARAM)
-else
-ifeq ($(FORMATTER),fop)
-	$(XSLT) $< $(XSLFO) $@ fop.extensions=1 $(XSLPARAM)
-else
-ifeq ($(FORMATTER),xep)
-	$(XSLT) $< $(XSLFO) $@ xep.extensions=1 $(XSLPARAM)
-else
-	$(XSLT) $< $(XSLFO) $@ $(XSLPARAM)
-endif
-endif
-endif
+	$(XSLT) $< $(XSLFO) $@ $(FORMATTER).extensions=1 $(XSLPARAM)
 
 .fo.pdf:
 ifeq ($(FORMATTER),tex)
