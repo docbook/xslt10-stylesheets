@@ -3,8 +3,8 @@ XJPARSE=../../cvstools/xjparse
 
 SOURCES=ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml et.xml fi.xml \
           fr.xml hu.xml id.xml it.xml ja.xml ko.xml nl.xml no.xml pl.xml \
-          pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sv.xml zh_cn.xml \
-          zh_tw.xml
+          pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sr.xml sv.xml \
+          zh_cn.xml zh_tw.xml
 
 all: $(SOURCES)
 
@@ -32,6 +32,7 @@ ro.xml: ../../gentext/locale/ro.xml
 ru.xml: ../../gentext/locale/ru.xml
 sk.xml: ../../gentext/locale/sk.xml
 sl.xml: ../../gentext/locale/sl.xml
+sr.xml: ../../gentext/locale/sr.xml
 sv.xml: ../../gentext/locale/sv.xml
 zh_cn.xml: ../../gentext/locale/zh_cn.xml
 zh_tw.xml: ../../gentext/locale/zh_tw.xml
