@@ -130,9 +130,9 @@
     version='1.0'>
     &lt;xsl:import href="http://docbook.sourceforge.net/release/xsl/current/htmlhelp/htmlhelp.xsl"/>
     &lt;xsl:output method="html" encoding="WINDOWS-1252" indent="no"/>
-    &lt;xsl:param name="htmlhelp.encoding" select="WINDOWS-1252">&lt;/xsl:param>
-    &lt;xsl:param name="chunker.output.encoding" select="WINDOWS-1252">&lt;/xsl:param>
-    &lt;xsl:param name="saxon.character.representation" select="native">&lt;/xsl:param>
+    &lt;xsl:param name="htmlhelp.encoding" select="'WINDOWS-1252'">&lt;/xsl:param>
+    &lt;xsl:param name="chunker.output.encoding" select="'WINDOWS-1252'">&lt;/xsl:param>
+    &lt;xsl:param name="saxon.character.representation" select="'native'">&lt;/xsl:param>
   &lt;/xsl:stylesheet></screen>
               </para>
               <para>Invoke Saxon with the
