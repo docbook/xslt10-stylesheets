@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- -*- XML -*- -->
+
+<module moduleVersion="1.2"
+	relaxCoreVersion="1.0"
+	targetNamespace=""
+	xmlns="http://www.xml.gr.jp/xmlns/relaxCore">
+
+  <interface>
+    <export label='set'/>
+    <export label='book'/>
+    <export label='chapter'/>
+    <export label='appendix'/>
+    <export label='article'/>
+    <export label='part'/>
+    <export label='reference'/>
+    <export label='refentry'/>
+    <export label='section'/>
+    <export label='sect1'/>
+    <export label='sect2'/>
+    <export label='sect3'/>
+    <export label='sect4'/>
+    <export label='sect5'/>
+    <export label="para"/>
+  </interface>
+
+  <include moduleLocation="dbpool.rlx"/>
+  <include moduleLocation="dbhier.rlx"/>
+  <include moduleLocation="dbtables.rlx"/>
+</module>

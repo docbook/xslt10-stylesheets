@@ -1,0 +1,94 @@
+<!DOCTYPE article
+  PUBLIC "-//Norman Walsh//DTD Simplified DocBook XML V4.1.2.4//EN"
+  "http://nwalsh.com/docbook/simple/4.1.2.4/sdocbook.dtd" [
+<!ENTITY version "V4.1.2.3">
+]>
+<article>
+<articleinfo>
+<title>DocBook XML Schema</title>
+<pubdate>12 Jan 2001</pubdate>
+<releaseinfo role="meta">
+$Id$
+</releaseinfo>
+
+<revhistory>
+<revision>
+<revnumber>4.1.2.3</revnumber>
+<date>12 Jan 2001</date>
+<authorinitials>ndw</authorinitials>
+<revremark>Updated experimental release.</revremark>
+</revision>
+<revision>
+<revnumber>4.1.2.2</revnumber>
+<date>10 Jan 2001</date>
+<authorinitials>ndw</authorinitials>
+<revremark>Updated experimental release.</revremark>
+</revision>
+<revision>
+<revnumber>4.1.2.1</revnumber>
+<date>16 Oct 2000</date>
+<authorinitials>ndw</authorinitials>
+<revremark>Initial experimental release.</revremark>
+</revision>
+</revhistory>
+
+<author><firstname>Norman</firstname><surname>Walsh</surname>
+</author>
+</articleinfo>
+
+<para>This is the README for the
+<ulink role="linktable" url="http://www.oasis-open.org/docbook/">DocBook</ulink>
+<ulink role="linktable" url="http://www.w3.org/XML/Schema">XML Schema</ulink>.
+</para>
+
+<para>
+The <ulink role="linktable" url="dbxs4121.zip">DocBook
+XML Schema &version;</ulink> attempts to be an accurate translation of the
+<ulink url="http://www.oasis-open.org/docbook/xml">DocBook
+XML V4.1.2 DTD</ulink>.</para>
+
+<para>In this version, the parameterization of the schema is roughly
+identical to the parameterization of the DTD. This may change as I
+begin to experiment with the construction of derivative schemas.</para>
+
+<note><title>Alpha Release</title>
+<para>DocBook XML Schema &version; is an experimental release.
+It validates with
+<ulink role="linktable" url="http://www.w3.org/2000/06/webdata/xsv">XSV</ulink>
+version SV 1.173.2.10/1.82 of 2000/10/31 16:30:47 on my system.</para>
+<para>I welcome reports of success or failure with other XML Schema
+validation tools.</para>
+</note>
+
+<para>
+The namespace names (URIs) used in this schema are purely
+imaginary. They have no official status, nor do they foreshadow the
+future existence of any similar official URIs. I had to use something.
+</para>
+
+<para>The DocBook XML Schema is known to differ from the DocBook
+DTD in the following ways:</para>
+
+<itemizedlist>
+<listitem><para>There are no named character entities. You can't
+define those in XML Schema.</para></listitem>
+
+<listitem><para>The table model is the OASIS Exchange Table Model,
+not the CALS Table Model. This table model is less rich than the 
+CALS model, lacking <literal>spanspec</literal>, <literal>tfoot</literal>,
+and a few other things.
+</para></listitem>
+
+<listitem><para>Inside the table model, the <literal>tgroup</literal>
+element and all of its descendants are in a different namespace.
+</para></listitem>
+
+<listitem><para>There are bugs, perhaps dozens, possibly hundreds.
+</para></listitem>
+</itemizedlist>
+
+<para>With the exception of tables, which will definitely require some
+markup changes in the instances, documents that are valid against the
+DTD should be valid against this schema.</para>
+
+</article>

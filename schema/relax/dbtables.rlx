@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- -*- XML -*- -->
+
+<module moduleVersion="1.2"
+	relaxCoreVersion="1.0"
+	xmlns="http://www.xml.gr.jp/xmlns/relaxCore">
+
+  <interface/>
+
+<attPool role='table.att'/>
+<attPool role='tgroup.att'/>
+<attPool role='colspec.att'/>
+<attPool role='thead.att'/>
+<attPool role='tbody.att'/>
+<attPool role='row.att'/>
+<attPool role='entry.att'/>
+
+<!-- Tables ........................... -->
+
+<elementRule role='table'>
+  <sequence>
+    <hedgeRef label='formalobject.title.content'/>
+    <hedgeRef label='ndxterm.class' occurs='?'/>
+    <choice>
+      <ref label='graphic' occurs='+'/>
+      <ref label='mediaobject' occurs='+'/>
+      <ref label='tgroup' occurs='+'/>
+    </choice>
+  </sequence>
+  <!-- % tbl.table.mdl
+         "((%formalobject.title.content;),
+          (%ndxterm.class;)*,
+          (graphic+|tgroup+))"-->
+</elementRule>
+
+<tag name='table'>
+  <ref role='table.att'/>
+  <attribute name='frame' type='NMTOKEN'>
+    <enumeration value='top'/>
+    <enumeration value='bottom'/>
+    <enumeration value='topbot'/>
+    <enumeration value='all'/>
+    <enumeration value='sides'/>
+    <enumeration value='none'/>
+  </attribute>
+  <attribute name='colsep' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+  <attribute name='rowsep' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+</tag>
+
+<elementRule role='informaltable'>
+  <choice>
+    <ref label='graphic' occurs='+'/>
+    <ref label='mediaobject' occurs='+'/>
+    <ref label='tgroup' occurs='+'/>
+  </choice>
+</elementRule>
+
+<tag name='informaltable'>
+  <ref role='table.att'/>
+  <attribute name='frame' type='NMTOKEN'>
+    <enumeration value='top'/>
+    <enumeration value='bottom'/>
+    <enumeration value='topbot'/>
+    <enumeration value='all'/>
+    <enumeration value='sides'/>
+    <enumeration value='none'/>
+  </attribute>
+  <attribute name='colsep' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+  <attribute name='rowsep' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+</tag>
+
+<elementRule role='tgroup'>
+  <sequence>
+    <ref label='colspec' occurs='*'/>
+    <ref label='thead' occurs='?'/>
+    <ref label='tbody'/>
+  </sequence>
+</elementRule>
+
+<tag name='tgroup'>
+  <ref role='tgroup.att'/>
+  <attribute name='cols' type='integer' required='true'/>
+  <attribute name='colsep' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+  <attribute name='rowsep' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+  <attribute name='align' type='NMTOKEN'>
+    <enumeration value='left'/>
+    <enumeration value='right'/>
+    <enumeration value='center'/>
+    <enumeration value='justify'/>
+  </attribute>
+</tag>
+
+<elementRule role='colspec'>
+  <empty/>
+  <!-- EMPTY -->
+</elementRule>
+
+<tag name='colspec'>
+  <ref role='colspec.att'/>
+  <attribute name='colnum' type='integer'/>
+  <attribute name='colname' type='NMTOKEN'/>
+  <attribute name='colwidth' type='string'/>
+  <attribute name='colsep' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+  <attribute name='rowsep' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+  <attribute name='align' type='NMTOKEN'>
+    <enumeration value='left'/>
+    <enumeration value='right'/>
+    <enumeration value='center'/>
+    <enumeration value='justify'/>
+    <enumeration value='char'/>
+  </attribute>
+  <attribute name='char' type='string'/>
+  <attribute name='charoff' type='NMTOKEN'/>
+</tag>
+
+<elementRule role='thead'>
+  <choice>
+    <ref label='row' occurs='+'/>
+  </choice>
+</elementRule>
+
+<tag name='thead'>
+  <ref role='thead.att'/>
+  <attribute name='valign' type='NMTOKEN'>
+    <enumeration value='top'/>
+    <enumeration value='middle'/>
+    <enumeration value='bottom'/>
+  </attribute>
+</tag>
+
+<elementRule role='tbody'>
+  <choice>
+    <ref label='row' occurs='+'/>
+  </choice>
+</elementRule>
+
+<tag name='tbody'>
+  <ref role='tbody.att'/>
+  <attribute name='valign' type='NMTOKEN'>
+    <enumeration value='top'/>
+    <enumeration value='middle'/>
+    <enumeration value='bottom'/>
+  </attribute>
+</tag>
+
+<elementRule role='row'>
+  <choice>
+    <ref label='entry' occurs='+'/>
+  </choice>
+</elementRule>
+
+<tag name='row'>
+  <ref role='row.att'/>
+  <attribute name='rowsep' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+  <attribute name='valign' type='NMTOKEN'>
+    <enumeration value='top'/>
+    <enumeration value='middle'/>
+    <enumeration value='bottom'/>
+  </attribute>
+</tag>
+
+<elementRule role='entry'>
+  <mixed>
+    <choice occurs='*'>
+      <hedgeRef label='para.char.mix'/>
+      <hedgeRef label='tabentry.mix'/>
+    </choice>
+  </mixed>
+</elementRule>
+
+<tag name='entry'>
+  <ref role='entry.att'/>
+  <attribute name='colname' type='NMTOKEN'/>
+  <attribute name='namest' type='NMTOKEN'/>
+  <attribute name='nameend' type='NMTOKEN'/>
+  <attribute name='morerows' type='integer'/>
+  <attribute name='colsep' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+  <attribute name='rowsep' type='string'>
+    <enumeration value='0'/>
+    <enumeration value='1'/>
+  </attribute>
+  <attribute name='align' type='NMTOKEN'>
+    <enumeration value='left'/>
+    <enumeration value='right'/>
+    <enumeration value='center'/>
+    <enumeration value='justify'/>
+    <enumeration value='char'/>
+  </attribute>
+  <attribute name='char' type='string'/>
+  <attribute name='charoff' type='NMTOKEN'/>
+  <attribute name='valign' type='NMTOKEN'>
+    <enumeration value='top'/>
+    <enumeration value='middle'/>
+    <enumeration value='bottom'/>
+  </attribute>
+</tag>
+
+</module>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<grammar xmlns="http://www.thaiopensource.com/trex"
+         xmlns:xsd="http://www.w3.org/2000/10/XMLSchema"
+         ns="http://www.oasis-open.org/docbook/xmlschema/4.1.2">
+
+   <start>
+      <choice>
+         <ref name="set.label"/>
+         <ref name="book.label"/>
+         <ref name="chapter.label"/>
+         <ref name="appendix.label"/>
+         <ref name="article.label"/>
+         <ref name="part.label"/>
+         <ref name="reference.label"/>
+         <ref name="refentry.label"/>
+         <ref name="section.label"/>
+         <ref name="sect1.label"/>
+         <ref name="sect2.label"/>
+         <ref name="sect3.label"/>
+         <ref name="sect4.label"/>
+         <ref name="sect5.label"/>
+         <ref name="para.label"/>
+      </choice>
+   </start>
+
+   <include href="dbpool.trex"/>
+   <include href="dbhier.trex"/>
+   <include href="dbtables.trex"/>
+
+</grammar>

@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<grammar xmlns="http://www.thaiopensource.com/trex"
+         xmlns:xsd="http://www.w3.org/2000/10/XMLSchema"
+         ns="http://www.oasis-open.org/docbook/xmlschema/4.1.2">
+
+   <define name="table.att.role">
+      <empty/>
+   </define>
+   <define name="tgroup.att.role">
+      <empty/>
+   </define>
+   <define name="colspec.att.role">
+      <empty/>
+   </define>
+   <define name="thead.att.role">
+      <empty/>
+   </define>
+   <define name="tbody.att.role">
+      <empty/>
+   </define>
+   <define name="row.att.role">
+      <empty/>
+   </define>
+   <define name="entry.att.role">
+      <empty/>
+   </define>
+   <define name="table.label">
+      <choice>
+         <element name="table">
+            <ref name="table.role"/>
+            <group>
+               <ref name="formalobject.title.content.label"/>
+               <optional>
+                  <ref name="ndxterm.class.label"/>
+               </optional>
+               <choice>
+                  <oneOrMore>
+                     <ref name="graphic.label"/>
+                  </oneOrMore>
+                  <oneOrMore>
+                     <ref name="mediaobject.label"/>
+                  </oneOrMore>
+                  <oneOrMore>
+                     <ref name="tgroup.label"/>
+                  </oneOrMore>
+               </choice>
+            </group>
+         </element>
+      </choice>
+   </define>
+   <define name="table.role">
+      <empty/>
+      <ref name="table.att.role"/>
+      <optional>
+         <attribute name="frame">
+            <choice>
+               <string>top</string>
+               <string>bottom</string>
+               <string>topbot</string>
+               <string>all</string>
+               <string>sides</string>
+               <string>none</string>
+            </choice>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="colsep">
+            <choice>
+               <string>0</string>
+               <string>1</string>
+            </choice>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="rowsep">
+            <choice>
+               <string>0</string>
+               <string>1</string>
+            </choice>
+         </attribute>
+      </optional>
+   </define>
+   <define name="informaltable.label">
+      <choice>
+         <element name="informaltable">
+            <ref name="informaltable.role"/>
+            <choice>
+               <oneOrMore>
+                  <ref name="graphic.label"/>
+               </oneOrMore>
+               <oneOrMore>
+                  <ref name="mediaobject.label"/>
+               </oneOrMore>
+               <oneOrMore>
+                  <ref name="tgroup.label"/>
+               </oneOrMore>
+            </choice>
+         </element>
+      </choice>
+   </define>
+   <define name="informaltable.role">
+      <empty/>
+      <ref name="table.att.role"/>
+      <optional>
+         <attribute name="frame">
+            <choice>
+               <string>top</string>
+               <string>bottom</string>
+               <string>topbot</string>
+               <string>all</string>
+               <string>sides</string>
+               <string>none</string>
+            </choice>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="colsep">
+            <choice>
+               <string>0</string>
+               <string>1</string>
+            </choice>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="rowsep">
+            <choice>
+               <string>0</string>
+               <string>1</string>
+            </choice>
+         </attribute>
+      </optional>
+   </define>
+   <define name="tgroup.label">
+      <choice>
+         <element name="tgroup">
+            <ref name="tgroup.role"/>
+            <group>
+               <zeroOrMore>
+                  <ref name="colspec.label"/>
+               </zeroOrMore>
+               <optional>
+                  <ref name="thead.label"/>
+               </optional>
+               <ref name="tbody.label"/>
+            </group>
+         </element>
+      </choice>
+   </define>
+   <define name="tgroup.role">
+      <empty/>
+      <ref name="tgroup.att.role"/>
+      <attribute name="cols">
+         <data type="xsd:integer"/>
+      </attribute>
+      <optional>
+         <attribute name="colsep">
+            <choice>
+               <string>0</string>
+               <string>1</string>
+            </choice>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="rowsep">
+            <choice>
+               <string>0</string>
+               <string>1</string>
+            </choice>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="align">
+            <choice>
+               <string>left</string>
+               <string>right</string>
+               <string>center</string>
+               <string>justify</string>
+            </choice>
+         </attribute>
+      </optional>
+   </define>
+   <define name="colspec.label">
+      <choice>
+         <element name="colspec">
+            <ref name="colspec.role"/>
+            <empty/>
+         </element>
+      </choice>
+   </define>
+   <define name="colspec.role">
+      <empty/>
+      <ref name="colspec.att.role"/>
+      <optional>
+         <attribute name="colnum">
+            <data type="xsd:integer"/>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="colname">
+            <data type="xsd:NMTOKEN"/>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="colwidth">
+            <anyString/>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="colsep">
+            <choice>
+               <string>0</string>
+               <string>1</string>
+            </choice>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="rowsep">
+            <choice>
+               <string>0</string>
+               <string>1</string>
+            </choice>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="align">
+            <choice>
+               <string>left</string>
+               <string>right</string>
+               <string>center</string>
+               <string>justify</string>
+               <string>char</string>
+            </choice>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="char">
+            <anyString/>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="charoff">
+            <data type="xsd:NMTOKEN"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="thead.label">
+      <choice>
+         <element name="thead">
+            <ref name="thead.role"/>
+            <choice>
+               <oneOrMore>
+                  <ref name="row.label"/>
+               </oneOrMore>
+            </choice>
+         </element>
+      </choice>
+   </define>
+   <define name="thead.role">
+      <empty/>
+      <ref name="thead.att.role"/>
+      <optional>
+         <attribute name="valign">
+            <choice>
+               <string>top</string>
+               <string>middle</string>
+               <string>bottom</string>
+            </choice>
+         </attribute>
+      </optional>
+   </define>
+   <define name="tbody.label">
+      <choice>
+         <element name="tbody">
+            <ref name="tbody.role"/>
+            <choice>
+               <oneOrMore>
+                  <ref name="row.label"/>
+               </oneOrMore>
+            </choice>
+         </element>
+      </choice>
+   </define>
+   <define name="tbody.role">
+      <empty/>
+      <ref name="tbody.att.role"/>
+      <optional>
+         <attribute name="valign">
+            <choice>
+               <string>top</string>
+               <string>middle</string>
+               <string>bottom</string>
+            </choice>
+         </attribute>
+      </optional>
+   </define>
+   <define name="row.label">
+      <choice>
+         <element name="row">
+            <ref name="row.role"/>
+            <choice>
+               <oneOrMore>
+                  <ref name="entry.label"/>
+               </oneOrMore>
+            </choice>
+         </element>
+      </choice>
+   </define>
+   <define name="row.role">
+      <empty/>
+      <ref name="row.att.role"/>
+      <optional>
+         <attribute name="rowsep">
+            <choice>
+               <string>0</string>
+               <string>1</string>
+            </choice>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="valign">
+            <choice>
+               <string>top</string>
+               <string>middle</string>
+               <string>bottom</string>
+            </choice>
+         </attribute>
+      </optional>
+   </define>
+   <define name="entry.label">
+      <choice>
+         <element name="entry">
+            <ref name="entry.role"/>
+            <mixed>
+               <zeroOrMore>
+                 <ref name="para.char.mix.label"/>
+                 <ref name="tabentry.mix.label"/>
+               </zeroOrMore>
+            </mixed>
+         </element>
+      </choice>
+   </define>
+   <define name="entry.role">
+      <empty/>
+      <ref name="entry.att.role"/>
+      <optional>
+         <attribute name="colname">
+            <data type="xsd:NMTOKEN"/>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="namest">
+            <data type="xsd:NMTOKEN"/>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="nameend">
+            <data type="xsd:NMTOKEN"/>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="morerows">
+            <data type="xsd:integer"/>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="colsep">
+            <choice>
+               <string>0</string>
+               <string>1</string>
+            </choice>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="rowsep">
+            <choice>
+               <string>0</string>
+               <string>1</string>
+            </choice>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="align">
+            <choice>
+               <string>left</string>
+               <string>right</string>
+               <string>center</string>
+               <string>justify</string>
+               <string>char</string>
+            </choice>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="char">
+            <anyString/>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="charoff">
+            <data type="xsd:NMTOKEN"/>
+         </attribute>
+      </optional>
+      <optional>
+         <attribute name="valign">
+            <choice>
+               <string>top</string>
+               <string>middle</string>
+               <string>bottom</string>
+            </choice>
+         </attribute>
+      </optional>
+   </define>
+</grammar>
