@@ -1,10 +1,12 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-<!ENTITY version "0.1">
+<!ENTITY version "0.2">
 <!ENTITY standard "Standard">
 <!ENTITY % glyphs SYSTEM "glyphs100.ent">
 %glyphs;
 <!ENTITY baseuri "http://www.oasis-open.org/docbook/xmlcharent/&version;">
+<!ENTITY charns "http://www.oasis-open.org/docbook/xmlcharent/names">
+<!ENTITY xmlrecuri "http://www.w3.org/TR/REC-xml">
 <!ENTITY iso-lat1-table SYSTEM "iso-lat1.gen">
 <!ENTITY iso-lat2-table SYSTEM "iso-lat2.gen">
 <!ENTITY iso-grk1-table SYSTEM "iso-grk1.gen">
@@ -27,7 +29,7 @@
 ]>
 <article status="Working Draft">
 <articleinfo>
-<title>XML Character Entities Version 0.1</title>
+<title>XML Character Entities Version &version;</title>
 <subtitle>OASIS DocBook Technical Committee</subtitle>
 <authorgroup>
 <editor>
@@ -39,11 +41,10 @@
   </affiliation>
 </editor>
 </authorgroup>
-<pubdate>19 Nov 2001</pubdate>
-<releaseinfo role="meta">
-$Id$
+<pubdate>04 Feb 2001</pubdate>
+<releaseinfo role="cvs">$Id$
 </releaseinfo>
-<copyright><year>2001</year>
+<copyright><year>2001</year><year>2002</year>
 <holder>
 The Organization for the Advancement of Structured Information
 Standards [OASIS]. All Rights Reserved.
@@ -88,15 +89,17 @@ sent to
 </legalnotice>
 
 <abstract><title>Abstract</title>
-<para>Non-normative Annex D of <xref linkend="iso8879"/> defines 19
-standard character entity sets. The SGML declarations for these
-entities use the specific character data (SDATA) entity type. The
-SDATA entity type is not supported in XML.  This &standard; defines a
-set of XML alternatives to the 19 standard character entity
-sets.</para>
+
+<para>This &standard; defines XML encodings of the 19 standard
+character entity sets defined in Non-normative Annex D of <xref
+linkend="iso8879"/>.</para>
 </abstract>
 
 <revhistory>
+<revision role="entities-2002-02-04.html">
+  <revnumber>Working Draft</revnumber>
+  <date>04 Feb 2001</date>
+</revision>
 <revision role="entities-2001-11-19.html">
   <revnumber>Working Draft</revnumber>
   <date>19 Nov 2001</date>
@@ -104,8 +107,12 @@ sets.</para>
 </revhistory>
 </articleinfo>
 
+<para>This &standard; defines XML encodings of the standard SGML
+character entity sets.</para>
+
 <para>Non-normative Annex D of <xref linkend="iso8879"/> defines 19
-standard character entity sets (<simplelist type="inline">
+standard SGML character entity sets:
+<simplelist type="inline">
 <member>Added Latin 1</member>
 <member>Added Latin 2</member>
 <member>Greek Letters</member>
@@ -125,27 +132,414 @@ standard character entity sets (<simplelist type="inline">
 <member>Added Math Symbols: Negated Relations</member>
 <member>Added Math Symbols: Arrow Relations</member>
 <member>Added Math Symbols: Delimiters</member>
-</simplelist>). The SGML declarations for these entities use the
-specific character data (SDATA) entity type. The SDATA entity type is
-not supported in XML, so alternative XML declarations must be used.
-This &standard; defines a set of XML alternatives to the 19 standard
-character entity sets.</para>
+</simplelist>. The SGML declarations for these entities use the
+specific character data (SDATA) entity type that is
+not supported in XML, so alternative XML declarations are necessary.
+</para>
 
-<para>In XML, the specific character data of each entity can be expressed
+<para>In XML, the specific character data of most entities can be expressed
 as a <xref linkend="unicode20"/> character.</para>
 
 <section id="entities"><title>XML Character Entity Sets</title>
 
-<note>
-<para>The Unicode reference glyphs in this document are examples
-only. Some characters have more than one Unicode representation and
-different Unicode characters may be appropriate in different
-contexts. The glyph images offer only one of many possible
-representations for the specified character.
+<para>The character entity sets defined by this &standard; are
+summarized in <xref linkend="isolat1"/> through <xref
+linkend="isoamsc"/>.</para>
+
+<para>In order to use these entities in a document, they must be declared.
+Entities can be declared in the external subset or the internal subset,
+as described in <xref linkend="xml-rec"/>. An example document, with the
+declaration in the internal subset, is shown in <xref linkend="ex.decl"/>.
 </para>
+
+<example id="ex.decl">
+<title>Declaring and Using the ISO Latin 1 Character Entity Set</title>
+<programlisting>&lt;!DOCTYPE doc [
+&lt;!ENTITY iso-lat1 PUBLIC "ISO 8879:1986//ENTITIES Added Latin 1//EN//XML"
+                  "&baseuri;/isolat1.ent">
+]>
+&lt;doc>
+&lt;p>This document declares the ISO Latin 1 Character Entity Set, providing
+access to the ISO Latin 1 entities, such as "&amp;eacute;" and "&amp;copy;".&lt;/p>
+&lt;/doc></programlisting>
+</example>
+
+<note>
+<para>Non-validating XML Parsers may choose not to process externally
+declared entities. This &standard; does not alter the semantics of XML
+processors. If a processor does not see the declaration for an entity,
+it will not be able to report the correct replacement text for that
+entity.</para>
 </note>
 
-<section id="isolat1"><title>Added Latin 1</title>
+<section><title>Multi-Character Replacements</title>
+
+<para>The replacement text of some entities includes more than a single
+Unicode character. Some characters are composed with the
+<quote>combining reverse solidus overlay</quote> (<literal>20E5</literal>)
+and some are composed with a variation selector
+(<literal>FE00</literal>, <literal>FE01</literal>, &hellip;).
+</para>
+
+</section>
+
+<section><title>Duplicate Entities</title>
+
+<para>Historically, the <literal>inodot</literal> entity is multiply
+defined in <link linkend="inodot.1">iso-lat2.ent</link> and <link
+linkend="inodot.2">iso-amso.ent</link>. If both entity sets are
+included, some parsers will warn about redefinition of this entity.
+The warning can be ignored.</para>
+
+</section>
+
+<section><title>Entities with no Mapping</title>
+
+<para>There are a small number of entities that have no
+<xref linkend="unicode20"/> representation. These entities are all mapped to
+the Unicode character <quote><literal>FFFD</literal></quote>, the
+<quote>replacement character</quote>.
+</para>
+
+<informaltable pgwide="1">
+<tgroup cols="3">
+<colspec colwidth="0.75in"/>
+<colspec colwidth="1.25in"/>
+<thead>
+<row>
+  <entry>Entity <?lb?>Name</entry>
+  <entry>Entity Set</entry>
+  <entry>Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+  <entry><link linkend="fjlig">fjlig</link></entry>
+  <entry><filename>iso-pub.ent</filename></entry>
+  <entry>Small fj ligature</entry>
+</row>
+<row>
+  <entry><link linkend="gnap">gnap</link></entry>
+  <entry><filename>iso-amsn.ent</filename></entry>
+  <entry>Greater, not approximate</entry>
+</row>
+<row>
+  <entry><link linkend="jnodot">jnodot</link></entry>
+  <entry><filename>iso-amso.ent</filename></entry>
+  <entry>Small j, no dot</entry>
+</row>
+<row>
+  <entry><link linkend="lnap">lnap</link></entry>
+  <entry><filename>iso-amsn.ent</filename></entry>
+  <entry>Less, not approximate</entry>
+</row>
+<row>
+  <entry><link linkend="lpargt">lpargt</link></entry>
+  <entry><filename>iso-amsc.ent</filename></entry>
+  <entry>Greater than, left arc</entry>
+</row>
+<row>
+  <entry><link linkend="nsmid">nsmid</link></entry>
+  <entry><filename>iso-amsn.ent</filename></entry>
+  <entry>Negated short mid</entry>
+</row>
+<row>
+  <entry><link linkend="prnE">prnE</link></entry>
+  <entry><filename>iso-amsn.ent</filename></entry>
+  <entry>Precedes, not double equals</entry>
+</row>
+<row>
+  <entry><link linkend="rpargt">rpargt</link></entry>
+  <entry><filename>iso-amsc.ent</filename></entry>
+  <entry>Right paren, greater than</entry>
+</row>
+<row>
+  <entry><link linkend="scnE">scnE</link></entry>
+  <entry><filename>iso-amsn.ent</filename></entry>
+  <entry>Succeeds, not double equals</entry>
+</row>
+<row>
+  <entry><link linkend="smid">smid</link></entry>
+  <entry><filename>iso-amsr.ent</filename></entry>
+  <entry>shortmid r</entry>
+</row>
+<row>
+  <entry><link linkend="vsubnE">vsubnE</link></entry>
+  <entry><filename>iso-amsn.ent</filename></entry>
+  <entry>Subset not double equals, variant</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+
+<para>Users needing these characters will have to rely on the private use
+area or other non-portable mechanisms to access them.</para>
+
+</section>
+
+<section><title>Entities with Substituted Mappings</title>
+
+<para>There are a few more for which there is no specific
+<xref linkend="unicode20"/> representation but where a reasonable
+substitution has been used:</para>
+
+<informaltable pgwide="1">
+<tgroup cols="4">
+<colspec colwidth="0.75in"/>
+<colspec colwidth="1.25in"/>
+<colspec colwidth="1in"/>
+<thead>
+<row>
+  <entry>Entity <?lb?>Name</entry>
+  <entry>Entity Set</entry>
+  <entry>Substitution</entry>
+  <entry>Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+  <entry><link linkend="bepsi">bepsi</link></entry>
+  <entry><filename>iso-amsr.ent</filename></entry>
+  <entry>220D</entry>
+  <entry>Back epsilon: such that</entry>
+</row>
+<row>
+  <entry><link linkend="ges">ges</link></entry>
+  <entry><filename>iso-amsr.ent</filename></entry>
+  <entry>2265</entry>
+  <entry>Greater-or-equal, slanted</entry>
+</row>
+<row>
+  <entry><link linkend="gvnE">gvnE</link></entry>
+  <entry><filename>iso-amsn.ent</filename></entry>
+  <entry>2269</entry>
+  <entry>Gt, vert, not double equals</entry>
+</row>
+<row>
+  <entry><link linkend="iff">iff</link></entry>
+  <entry><filename>iso-tech.ent</filename></entry>
+  <entry>21D4</entry>
+  <entry>If and only if</entry>
+</row>
+<row>
+  <entry><link linkend="les">les</link></entry>
+  <entry><filename>iso-amsr.ent</filename></entry>
+  <entry>2264</entry>
+  <entry>Less-than-or-equal, slanted</entry>
+</row>
+<row>
+  <entry><link linkend="lozf">lozf</link></entry>
+  <entry><filename>iso-pub.ent</filename></entry>
+  <entry>2726</entry>
+  <entry>Lozenge, filled</entry>
+</row>
+<row>
+  <entry><link linkend="lvnE">lvnE</link></entry>
+  <entry><filename>iso-amsn.ent</filename></entry>
+  <entry>2268</entry>
+  <entry>Less, vert, not double equals</entry>
+</row>
+<row>
+  <entry><link linkend="nge">nge</link></entry>
+  <entry><filename>iso-amsn.ent</filename></entry>
+  <entry>2271</entry>
+  <entry>Neither greater-than nor equal to</entry>
+</row>
+<row>
+  <entry><link linkend="nle">nle</link></entry>
+  <entry><filename>iso-amsn.ent</filename></entry>
+  <entry>2270</entry>
+  <entry>Not less-than-or-equal</entry>
+</row>
+<row>
+  <entry><link linkend="npre">npre</link></entry>
+  <entry><filename>iso-amsn.ent</filename></entry>
+  <entry>22E0</entry>
+  <entry>Not precedes, equals</entry>
+</row>
+<row>
+  <entry><link linkend="nsce">nsce</link></entry>
+  <entry><filename>iso-amsn.ent</filename></entry>
+  <entry>22E1</entry>
+  <entry>Not succeeds, equals</entry>
+</row>
+<row>
+  <entry><link linkend="nspar">nspar</link></entry>
+  <entry><filename>iso-amsn.ent</filename></entry>
+  <entry>2226</entry>
+  <entry>Not short parallel</entry>
+</row>
+<row>
+  <entry><link linkend="pre">pre</link></entry>
+  <entry><filename>iso-amsr.ent</filename></entry>
+  <entry>227C</entry>
+  <entry>Precedes, equals</entry>
+</row>
+<row>
+  <entry><link linkend="spar">spar</link></entry>
+  <entry><filename>iso-amsr.ent</filename></entry>
+  <entry>2225</entry>
+  <entry>Short parallel</entry>
+</row>
+<row>
+  <entry><link linkend="ssetmn">ssetmn</link></entry>
+  <entry><filename>iso-amsb.ent</filename></entry>
+  <entry>2216</entry>
+  <entry>Small set minus (reverse solidus)</entry>
+</row>
+<row>
+  <entry><link linkend="star">star</link></entry>
+  <entry><filename>iso-pub.ent</filename></entry>
+  <entry>22C6</entry>
+  <entry>Star operator</entry>
+</row>
+<row>
+  <entry><link linkend="starf">starf</link></entry>
+  <entry><filename>iso-pub.ent</filename></entry>
+  <entry>2605</entry>
+  <entry>Black star</entry>
+</row>
+<row>
+  <entry><link linkend="thkap">thkap</link></entry>
+  <entry><filename>iso-amsr.ent</filename></entry>
+  <entry>2248</entry>
+  <entry>Thick approximate</entry>
+</row>
+<row>
+  <entry><link linkend="thksim">thksim</link></entry>
+  <entry><filename>iso-amsr.ent</filename></entry>
+  <entry>223C</entry>
+  <entry>Thick similar</entry>
+</row>
+<row>
+  <entry><link linkend="vsubne">vsubne</link></entry>
+  <entry><filename>iso-amsn.ent</filename></entry>
+  <entry>228A</entry>
+  <entry>Subset, not equals, variant</entry>
+</row>
+<row>
+  <entry><link linkend="vsupnE">vsupnE</link></entry>
+  <entry><filename>iso-amsn.ent</filename></entry>
+  <entry>228B</entry>
+  <entry>Subset not double equals, variant</entry>
+</row>
+<row>
+  <entry><link linkend="vsupne">vsupne</link></entry>
+  <entry><filename>iso-amsn.ent</filename></entry>
+  <entry>228B</entry>
+  <entry>Superset, not equals, variant</entry>
+</row>
+<row>
+  <entry><link linkend="xhArr">xhArr</link></entry>
+  <entry><filename>iso-amsa.ent</filename></entry>
+  <entry>2194</entry>
+  <entry>Long left and right double arr</entry>
+</row>
+<row>
+  <entry><link linkend="xharr">xharr</link></entry>
+  <entry><filename>iso-amsa.ent</filename></entry>
+  <entry>2194</entry>
+  <entry>Long left and right arr</entry>
+</row>
+<row>
+  <entry><link linkend="xlArr">xlArr</link></entry>
+  <entry><filename>iso-amsa.ent</filename></entry>
+  <entry>21D0</entry>
+  <entry>Long left double arrow</entry>
+</row>
+<row>
+  <entry><link linkend="xrArr">xrArr</link></entry>
+  <entry><filename>iso-amsa.ent</filename></entry>
+  <entry>21D2</entry>
+  <entry>Long right double arr</entry>
+</row>
+<row>
+  <entry><link linkend="ssmile">ssmile</link></entry>
+  <entry><filename>iso-amsr.ent</filename></entry>
+  <entry>2323</entry>
+  <entry>Small smile</entry>
+</row>
+<row>
+  <entry><link linkend="sfrown">sfrown</link></entry>
+  <entry><filename>iso-amsr.ent</filename></entry>
+  <entry>2322</entry>
+  <entry>Small frown</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+
+<para>Users needing alternate glyphs for these characters will have to
+rely on redefining them to use the private use area or other
+non-portable mechanisms to access them.</para>
+
+</section>
+
+</section>
+
+<section id="char"><title>XML Character Elements</title>
+
+<para>Named XML entities (except for the five
+<ulink url="&xmlrecuri;#sec-predefined-ent">predefined entities</ulink>) cannot
+be used if they are not declared. Entity declaration requires either an external
+or an internal subset. Some classes of applications forbid the occurrence of
+markup declarations in documents. For these documents, named character entities are
+inaccessible.</para>
+
+<para>In this section, we introduce an XML vocabulary with the semantics of
+character entity reference. This &standard; defines the semantics of elements
+and attributes declared in the <quote><literal>&charns;</literal></quote>
+namespace.</para>
+
+<para>This namespace contains exactly one element, <sgmltag>char</sgmltag>.
+The <sgmltag>char</sgmltag> element has two attributes,
+<sgmltag class="attribute">entity</sgmltag> and
+<sgmltag class="attribute">name</sgmltag>. They are mutually exclusive.</para>
+
+<para>The <sgmltag class="attribute">entity</sgmltag> attribute identifies
+characters by their character entity names. (The set of valid names
+is the closed set of names associated with character entity sets defined
+by this &standard;.) Case is significant in entity names.</para>
+
+<para>The <sgmltag class="attribute">name</sgmltag> attribute identifies
+characters by their Unicode character names. (The set of valid names
+is the set of character names published in the <xref linkend="unicode20"/>
+specification, or any later version of that specification.) Case is
+insignificant in character names.</para>
+
+<para>The <xref linkend="relaxng"/> definition of this namespace is
+shown in figure <xref linkend="fig.charns"/>.</para>
+
+<figure id="fig.charns">
+<title>The RELAX NG Definition of the <literal>&charns;</literal> Namespace</title>
+<programlisting><inlinemediaobject>
+<imageobject>
+<imagedata fileref="../chars.rng" format="linespecific"/>
+</imageobject>
+</inlinemediaobject>
+</programlisting>
+</figure>
+
+<para><xref linkend="ex.charns"/>
+shows a sample document using this mechanism.</para>
+
+<example id="ex.charns">
+<title>Declaring and Using the ISO Latin 1 Character Entity Set</title>
+<programlisting>&lt;doc xmlns:e="&charns;">
+&lt;p>This document uses the character names element to access
+character entities, such as "&lt;e:char name="eacute"/>" and
+"&lt;e:char name="COPYRIGHT SIGN"/>".&lt;/p>
+&lt;/doc></programlisting>
+</example>
+
+<para>The character names element is limited to contexts where elements may
+occur. In particular, elements may not occur in XML attribute values. Note,
+however, that internationalization requirements such as bidirectional language
+support and Ruby already require structure in arbitrary contexts. It is probably
+an error to use attributes for human-readable content.</para>
+
+</section>
+<appendix id="isolat1"><title>Added Latin 1</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -160,9 +554,9 @@ The following character entities are defined in this entity set:
 
 &iso-lat1-table;
 
-</section>
+</appendix>
 
-<section id="isolat2"><title>Added Latin 2</title>
+<appendix id="isolat2"><title>Added Latin 2</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -176,9 +570,9 @@ The following character entities are defined in this entity set:
 
 &iso-lat2-table;
 
-</section>
+</appendix>
 
-<section id="isogrk1"><title>Greek Letters</title>
+<appendix id="isogrk1"><title>Greek Letters</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -192,9 +586,9 @@ The following character entities are defined in this entity set:
 
 &iso-grk1-table;
 
-</section>
+</appendix>
 
-<section id="isogrk2"><title>Monotoniko Greek</title>
+<appendix id="isogrk2"><title>Monotoniko Greek</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -208,9 +602,9 @@ The following character entities are defined in this entity set:
 
 &iso-grk2-table;
 
-</section>
+</appendix>
 
-<section id="isocyr1"><title>Russian Cyrillic</title>
+<appendix id="isocyr1"><title>Russian Cyrillic</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -224,9 +618,9 @@ The following character entities are defined in this entity set:
 
 &iso-cyr1-table;
 
-</section>
+</appendix>
 
-<section id="isocyr2"><title>Non-Russian Cyrillic</title>
+<appendix id="isocyr2"><title>Non-Russian Cyrillic</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -240,9 +634,9 @@ The following character entities are defined in this entity set:
 
 &iso-cyr2-table;
 
-</section>
+</appendix>
 
-<section id="isonum"><title>Numeric and Special Graphic</title>
+<appendix id="isonum"><title>Numeric and Special Graphic</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -256,9 +650,9 @@ The following character entities are defined in this entity set:
 
 &iso-num-table;
 
-</section>
+</appendix>
 
-<section id="isodia"><title>Diacritical Marks</title>
+<appendix id="isodia"><title>Diacritical Marks</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -272,9 +666,9 @@ The following character entities are defined in this entity set:
 
 &iso-dia-table;
 
-</section>
+</appendix>
 
-<section id="isopub"><title>Publishing</title>
+<appendix id="isopub"><title>Publishing</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -288,9 +682,9 @@ The following character entities are defined in this entity set:
 
 &iso-pub-table;
 
-</section>
+</appendix>
 
-<section id="isobox"><title>Box and Line Drawing</title>
+<appendix id="isobox"><title>Box and Line Drawing</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -304,9 +698,9 @@ The following character entities are defined in this entity set:
 
 &iso-box-table;
 
-</section>
+</appendix>
 
-<section id="isotech"><title>General Technical</title>
+<appendix id="isotech"><title>General Technical</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -320,9 +714,9 @@ The following character entities are defined in this entity set:
 
 &iso-tech-table;
 
-</section>
+</appendix>
 
-<section id="isogrk3"><title>Greek Symbols</title>
+<appendix id="isogrk3"><title>Greek Symbols</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -336,9 +730,9 @@ The following character entities are defined in this entity set:
 
 &iso-grk3-table;
 
-</section>
+</appendix>
 
-<section id="isogrk4"><title>Alternative Greek Symbols</title>
+<appendix id="isogrk4"><title>Alternative Greek Symbols</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -352,9 +746,9 @@ The following character entities are defined in this entity set:
 
 &iso-grk4-table;
 
-</section>
+</appendix>
 
-<section id="isoamso"><title>Added Math Symbols: Ordinary</title>
+<appendix id="isoamso"><title>Added Math Symbols: Ordinary</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -368,9 +762,9 @@ The following character entities are defined in this entity set:
 
 &iso-amso-table;
 
-</section>
+</appendix>
 
-<section id="isoamsb"><title>Added Math Symbols: Binary Operators</title>
+<appendix id="isoamsb"><title>Added Math Symbols: Binary Operators</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -384,9 +778,9 @@ The following character entities are defined in this entity set:
 
 &iso-amsb-table;
 
-</section>
+</appendix>
 
-<section id="isoamsr"><title>Added Math Symbols: Relations</title>
+<appendix id="isoamsr"><title>Added Math Symbols: Relations</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -400,9 +794,9 @@ The following character entities are defined in this entity set:
 
 &iso-amsr-table;
 
-</section>
+</appendix>
 
-<section id="isoamsn"><title>Added Math Symbols: Negated Relations</title>
+<appendix id="isoamsn"><title>Added Math Symbols: Negated Relations</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -416,9 +810,9 @@ The following character entities are defined in this entity set:
 
 &iso-amsn-table;
 
-</section>
+</appendix>
 
-<section id="isoamsa"><title>Added Math Symbols: Arrow Relations</title>
+<appendix id="isoamsa"><title>Added Math Symbols: Arrow Relations</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -432,9 +826,9 @@ The following character entities are defined in this entity set:
 
 &iso-amsa-table;
 
-</section>
+</appendix>
 
-<section id="isoamsc"><title>Added Math Symbols: Delimiters</title>
+<appendix id="isoamsc"><title>Added Math Symbols: Delimiters</title>
 
 <para>Identifiers for this entity set:</para>
 
@@ -448,10 +842,16 @@ The following character entities are defined in this entity set:
 
 &iso-amsc-table;
 
-</section>
-</section>
+</appendix>
 
-<appendix><title>Unicode Glyphs</title>
+<appendix id="glyphs"><title>Unicode Glyphs</title>
+
+<para>The Unicode reference glyphs in this document are examples
+only. Some characters have more than one Unicode representation and
+different Unicode characters may be appropriate in different
+contexts. The glyph images offer only one of many possible
+representations for the specified character.
+</para>
 
 <para>Most of the glyphs this reference are from the TmsPF Roman font
 by
@@ -475,13 +875,12 @@ Technical Report #8</ulink></citetitle>, which describes Unicode Version 2.1.
 
 <itemizedlist>
 <listitem><para>Dennis Evans</para></listitem>
-<listitem><para>Patricia Gee-Best</para></listitem>
 <listitem><para>Dick Hamilton</para></listitem>
 <listitem><para>Nancy (Paisner) Harrison</para></listitem>
 <listitem><para>Sabine Ocker</para></listitem>
-<listitem><para>Michael Sabrio</para></listitem>
 <listitem><para>Michael Smith</para></listitem>
-<listitem><para>Norman Walsh (Chair,Editor)</para></listitem>
+<listitem><para>Bob Stayton</para></listitem>
+<listitem><para>Norman Walsh (Chair)</para></listitem>
 </itemizedlist>
 
 </appendix>
@@ -491,7 +890,9 @@ Technical Report #8</ulink></citetitle>, which describes Unicode Version 2.1.
 <bibliodiv><title>Normative</title>
 
 <bibliomixed id="iso8879"/>
-
+<bibliomixed id="xml-rec"/>
+<bibliomixed id="xml-names"/>
+<bibliomixed id="relaxng"/>
 <bibliomixed id="unicode20"/>
 
 </bibliodiv>
