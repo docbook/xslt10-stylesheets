@@ -10,6 +10,13 @@
 </author>
 </articleinfo>
 
+<para>This is a para.</para>
+
+<para>This is another para.  See the space of separate between
+    paragraphs.  The following lists should have additional space
+    before/after them, since they are not within paragraphs and thus
+    should use paragraph spacing.</para>
+
 <itemizedlist>
   <listitem><para>some text (not compact)</para></listitem>
   <listitem><para>some text (not compact)</para></listitem>
@@ -50,4 +57,20 @@
   <listitem><para>some text (compact)</para></listitem>
 </orderedlist>
 
+<para>Here is a para.</para>
+
+<para>
+The following two itemizedlists are within a block element and such
+    should use paragraph spacing between them.
+
+<itemizedlist spacing="compact">
+  <listitem><para>some text (compact)</para></listitem>
+  <listitem><para>some text (compact)</para></listitem>
+</itemizedlist>
+
+<itemizedlist spacing="compact">
+  <listitem><para>some text (compact)</para></listitem>
+  <listitem><para>some text (compact)</para></listitem>
+</itemizedlist>
+  </para>
 </article>
