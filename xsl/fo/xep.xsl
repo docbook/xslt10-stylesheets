@@ -17,26 +17,29 @@
      Document information
      ******************************************************************** -->
 
-<xsl:template name="document-information">
-  <xsl:param name="document-title" select="//title[1]"/>
+<xsl:template name="xep-document-information">
   <rx:meta-info>
-    <xsl:element name="rx:meta-field">
-      <xsl:attribute name="name">author</xsl:attribute>
-      <xsl:attribute name="value">
-        <xsl:choose>
-          <xsl:when test="bookinfo/author">
-            <xsl:value-of select="bookinfo/author"/>
-          </xsl:when>
-          <xsl:otherwise>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:attribute>
-    </xsl:element>
+    <xsl:if test="//author[1]">
+      <xsl:element name="rx:meta-field">
+        <xsl:attribute name="name">author</xsl:attribute>
+        <xsl:attribute name="value">
+          <xsl:call-template name="person.name">
+            <xsl:with-param name="node" select="//author[1]"/>
+          </xsl:call-template>
+        </xsl:attribute>
+      </xsl:element>
+    </xsl:if>
+
+    <xsl:variable name="title">
+      <xsl:apply-templates select="/*[1]" mode="label.markup"/>
+      <xsl:apply-templates select="/*[1]" mode="title.markup"/>
+    </xsl:variable>
+
     <xsl:element name="rx:meta-field">
       <xsl:attribute name="name">title</xsl:attribute>
-        <xsl:attribute name="value">
-            <xsl:value-of select="$document-title"/>
-        </xsl:attribute>
+      <xsl:attribute name="value">
+        <xsl:value-of select="$title"/>
+      </xsl:attribute>
     </xsl:element>
   </rx:meta-info>
 </xsl:template>
@@ -69,8 +72,8 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
   <xsl:variable name="bookmark-label">
-    <xsl:apply-templates select="." mode="label.content"/>
-    <xsl:apply-templates select="." mode="title.content"/>
+    <xsl:apply-templates select="." mode="label.markup"/>
+    <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
   <rx:bookmark internal-destination="{$id}">
@@ -78,10 +81,10 @@
       <xsl:value-of select="$bookmark-label"/>
     </rx:bookmark-label>
 
-  <xsl:if test="part|preface|chapter|appendix">
+    <xsl:if test="part|preface|chapter|appendix">
       <xsl:apply-templates select="part|preface|chapter|appendix"
                            mode="xep.outline"/>
-  </xsl:if>
+    </xsl:if>
   </rx:bookmark>
 </xsl:template>
 
@@ -91,8 +94,8 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
   <xsl:variable name="bookmark-label">
-    <xsl:apply-templates select="." mode="label.content"/>
-    <xsl:apply-templates select="." mode="title.content"/>
+    <xsl:apply-templates select="." mode="label.markup"/>
+    <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
   <rx:bookmark internal-destination="{$id}">
@@ -113,8 +116,8 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
   <xsl:variable name="bookmark-label">
-    <xsl:apply-templates select="." mode="label.content"/>
-    <xsl:apply-templates select="." mode="title.content"/>
+    <xsl:apply-templates select="." mode="label.markup"/>
+    <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
   <rx:bookmark internal-destination="{$id}">
@@ -135,8 +138,8 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
   <xsl:variable name="bookmark-label">
-    <xsl:apply-templates select="." mode="label.content"/>
-    <xsl:apply-templates select="." mode="title.content"/>
+    <xsl:apply-templates select="." mode="label.markup"/>
+    <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
   <rx:bookmark internal-destination="{$id}">
@@ -157,8 +160,8 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
   <xsl:variable name="bookmark-label">
-    <xsl:apply-templates select="." mode="label.content"/>
-    <xsl:apply-templates select="." mode="title.content"/>
+    <xsl:apply-templates select="." mode="label.markup"/>
+    <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
   <rx:bookmark internal-destination="{$id}">

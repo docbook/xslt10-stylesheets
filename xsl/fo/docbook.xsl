@@ -112,6 +112,9 @@
   <fo:root font-family="{$body.font.family}"
            font-size="{$body.font.size}"
            text-align="{$alignment}">
+    <xsl:if test="$xep.extensions != 0">
+      <xsl:call-template name="xep-document-information"/>
+    </xsl:if>
     <xsl:call-template name="setup.pagemasters"/>
     <xsl:choose>
       <xsl:when test="$rootid != ''">
@@ -128,7 +131,9 @@
               <xsl:apply-templates select="id($rootid)" mode="outline"/>
             </xsl:if>
             <xsl:if test="$xep.extensions != 0">
-              <xsl:apply-templates select="id($rootid)" mode="xep.outline"/>
+              <rx:outline xmlns:rx="http://www.renderx.com/XSL/Extensions">
+                <xsl:apply-templates select="id($rootid)" mode="xep.outline"/>
+              </rx:outline>
             </xsl:if>
             <xsl:apply-templates select="id($rootid)"/>
           </xsl:otherwise>
@@ -139,7 +144,9 @@
           <xsl:apply-templates mode="outline"/>
         </xsl:if>
         <xsl:if test="$xep.extensions != 0">
-          <xsl:apply-templates mode="xep.outline"/>
+          <rx:outline xmlns:rx="http://www.renderx.com/XSL/Extensions">
+            <xsl:apply-templates mode="xep.outline"/>
+          </rx:outline>
         </xsl:if>
         <xsl:apply-templates/>
       </xsl:otherwise>
