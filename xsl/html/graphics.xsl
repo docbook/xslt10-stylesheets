@@ -72,6 +72,7 @@
   <!-- handle them all in one place.                             -->
   <xsl:param name="tag" select="'img'"/>
   <xsl:param name="alt"/>
+  <xsl:param name="longdesc"/>
 
   <xsl:variable name="filename">
     <xsl:choose>
@@ -115,7 +116,6 @@
     <xsl:attribute name="src">
       <xsl:value-of select="$filename"/>
     </xsl:attribute>
-
     <xsl:if test="$align != ''">
       <xsl:attribute name="align">
         <xsl:value-of select="$align"/>
@@ -134,6 +134,11 @@
     <xsl:if test="$alt != ''">
       <xsl:attribute name="alt">
         <xsl:value-of select="$alt"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:if test="$longdesc != ''">
+      <xsl:attribute name="longdesc">
+        <xsl:value-of select="$longdesc"/>
       </xsl:attribute>
     </xsl:if>
   </xsl:element>
@@ -269,13 +274,102 @@
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
+      <xsl:variable name="longdesc.uri">
+        <xsl:call-template name="longdesc.uri">
+          <xsl:with-param name="mediaobject"
+                          select="ancestor::imageobject/parent::*"/>
+        </xsl:call-template>
+      </xsl:variable>
+
       <xsl:call-template name="process.image">
         <xsl:with-param name="alt">
           <xsl:apply-templates select="(../../textobject/phrase)[1]"/>
         </xsl:with-param>
+        <xsl:with-param name="longdesc">
+          <xsl:call-template name="write.longdesc">
+            <xsl:with-param name="mediaobject"
+                            select="ancestor::imageobject/parent::*"/>
+          </xsl:call-template>
+        </xsl:with-param>
       </xsl:call-template>
+
+      <xsl:if test="$html.longdesc &gt; 0
+                    and $html.longdesc.link &gt; 0">
+        <xsl:call-template name="longdesc.link">
+          <xsl:with-param name="longdesc.uri" select="$longdesc.uri"/>
+        </xsl:call-template>
+      </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template name="longdesc.uri">
+  <xsl:param name="mediaobject" select="."/>
+
+  <xsl:if test="$html.longdesc">
+    <xsl:if test="$mediaobject/textobject[not(phrase)]">
+      <xsl:variable name="image-id">
+        <xsl:call-template name="object.id">
+          <xsl:with-param name="object" select="$mediaobject"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:variable name="filename">
+        <xsl:call-template name="make-relative-filename">
+          <xsl:with-param name="base.dir" select="$base.dir"/>
+          <xsl:with-param name="base.name"
+                          select="concat('ld-',$image-id,$html.ext)"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:value-of select="$filename"/>
+    </xsl:if>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="write.longdesc">
+  <xsl:param name="mediaobject" select="."/>
+  <xsl:if test="$html.longdesc">
+    <xsl:if test="$mediaobject/textobject[not(phrase)]">
+      <xsl:variable name="filename">
+        <xsl:call-template name="longdesc.uri">
+          <xsl:with-param name="mediaobject" select="$mediaobject"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:value-of select="$filename"/>
+
+      <xsl:call-template name="write.chunk">
+        <xsl:with-param name="filename" select="$filename"/>
+        <xsl:with-param name="content">
+          <html>
+            <head>
+              <title>Long Description</title>
+            </head>
+            <body>
+              <xsl:call-template name="body.attributes"/>
+              <xsl:for-each select="$mediaobject/textobject[not(phrase)]">
+                <xsl:apply-templates select="./*"/>
+              </xsl:for-each>
+            </body>
+          </html>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="longdesc.link">
+  <xsl:param name="longdesc.uri" select="''"/>
+  <div class="longdesc-link" align="right">
+    <br clear="all"/>
+    <span style="font-size: 8pt;">
+      <xsl:text>[</xsl:text>
+      <a href="{$longdesc.uri}" target="longdesc">D</a>
+      <xsl:text>]</xsl:text>
+    </span>
+  </div>
 </xsl:template>
 
 <!-- ==================================================================== -->
