@@ -82,12 +82,14 @@
 >
 
 <![%allowrddl;[
-<!ENTITY % rddl.mod SYSTEM "rddl.mod">
+<!ENTITY % rddl.mod PUBLIC "-//Norman Walsh//DTD Website RDDL Module V2.2//EN"
+                    "rddl.mod">
 %rddl.mod;
 ]]>
 
 <![%allowforms;[
-<!ENTITY % forms.mod SYSTEM "forms.mod">
+<!ENTITY % forms.mod PUBLIC "-//Norman Walsh//DTD Website Forms Module V2.2//EN"
+                     "forms.mod">
 %forms.mod;
 ]]>
 

@@ -42,8 +42,8 @@
 <!-- Now that individual XML pages are possible; it makes sense to use the -->
 <!-- simple subset for maximum utility in sending these pages across the -->
 <!-- web directly. -->
-<!ENTITY % sdocbook PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.0CR2//EN"
-      "http://www.oasis-open.org/docbook/xml/simple/1.0CR2/sdocbook-custom.dtd">
+<!ENTITY % sdocbook PUBLIC "-//OASIS//DTD Simplified DocBook XML Customization V1.0CR3//EN"
+      "http://www.oasis-open.org/docbook/xml/simple/1.0CR3/sdocbook-custom.dtd">
 %sdocbook;
 
 <!ENTITY % website.mod SYSTEM "website.mod">
