@@ -87,9 +87,34 @@
 </xsl:template>
 
 <xsl:template match="co">
-  <xsl:call-template name="anchor"/>
-  <xsl:apply-templates select="." mode="callout-bug"/>
+  <!-- Support a single linkend in HTML -->
+  <xsl:variable name="targets" select="key('id', @linkends)"/>
+  <xsl:variable name="target" select="$targets[1]"/>
+  <xsl:choose>
+    <xsl:when test="$target">
+      <a>
+        <xsl:if test="@id">
+          <xsl:attribute name="name">
+            <xsl:value-of select="@id"/>
+          </xsl:attribute>
+        </xsl:if>
+        <xsl:attribute name="href">
+          <xsl:call-template name="href.target">
+            <xsl:with-param name="object" select="$target"/>
+          </xsl:call-template>
+        </xsl:attribute>
+        <xsl:apply-templates select="." mode="callout-bug"/>
+      </a>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="anchor"/>
+      <xsl:apply-templates select="." mode="callout-bug"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
+
+
+
 
 <xsl:template match="co" mode="callout-bug">
   <xsl:call-template name="callout-bug">
