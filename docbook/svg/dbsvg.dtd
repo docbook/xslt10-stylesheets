@@ -46,10 +46,9 @@
                 "http://www.oasis-open.org/docbook/xml/svg/1.0beta2/dbsvg.dtd">
      %DocBookSVGDTD;
 
-     See the documentation for detailed information on the parameter
-     entity and module scheme used in DocBook, customizing DocBook and
-     planning for interchange, and changes made since the last release
-     of DocBook.
+     See the DocBook documentation for detailed information on the parameter
+     entity and module scheme used in DocBook, customizing DocBook, and
+     planning for interchange.
 -->
 
 <!-- Suppress the imageobject declaration -->
@@ -75,7 +74,10 @@
 
 <! -- Provide an alternate imageobject declaration -->
 
+<!ENTITY % docbook.svg.imageobject.element "INCLUDE">
+<![%docbook.svg.imageobject.element[
 <!ELEMENT imageobject (objectinfo?, (imagedata|%SVG.svg.qname;))>
+]]>
 
 <!-- End of dbsvg.dtd V1.0beta2 ............................................. -->
 <!-- ...................................................................... -->
