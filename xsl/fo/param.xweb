@@ -536,6 +536,7 @@ around all these parameters.</para>
 <src:fragref linkend="part.autolabel.frag"/>
 <src:fragref linkend="passivetex.extensions.frag"/>
 <src:fragref linkend="preface.autolabel.frag"/>
+<src:fragref linkend="preferred.mediaobject.role.frag"/>
 <src:fragref linkend="process.empty.source.toc.frag"/>
 <src:fragref linkend="process.source.toc.frag"/>
 <src:fragref linkend="profile.arch.frag"/>
@@ -602,6 +603,7 @@ around all these parameters.</para>
 <src:fragref linkend="use.extensions.frag"/>
 <src:fragref linkend="use.local.olink.style.frag"/>
 <src:fragref linkend="use.role.as.xrefstyle.frag"/>
+<src:fragref linkend="use.role.for.mediaobject.frag"/>
 <src:fragref linkend="use.svg.frag"/>
 <src:fragref linkend="variablelist.as.blocks.frag"/>
 <src:fragref linkend="verbatim.properties.frag"/>
