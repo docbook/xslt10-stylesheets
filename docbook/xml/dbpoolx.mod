@@ -2699,7 +2699,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % programlisting.element "INCLUDE">
 <![%programlisting.element;[
-<!ELEMENT programlisting %ho; (%para.char.mix; | co | lineannotation)*>
+<!ELEMENT programlisting %ho; (%para.char.mix; | co | coref | lineannotation)*>
 <!--end of programlisting.element-->]]>
 
 <!ENTITY % programlisting.attlist "INCLUDE">
@@ -2721,7 +2721,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % literallayout.element "INCLUDE">
 <![%literallayout.element;[
-<!ELEMENT literallayout %ho; (%para.char.mix; | lineannotation | co)*>
+<!ELEMENT literallayout %ho; (%para.char.mix; | co| coref | lineannotation)*>
 <!--end of literallayout.element-->]]>
 
 <!ENTITY % literallayout.attlist "INCLUDE">
@@ -2767,7 +2767,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % screen.element "INCLUDE">
 <![%screen.element;[
-<!ELEMENT screen %ho; (%para.char.mix; | co | lineannotation)*>
+<!ELEMENT screen %ho; (%para.char.mix; | co | coref | lineannotation)*>
 <!--end of screen.element-->]]>
 
 <!ENTITY % screen.attlist "INCLUDE">
@@ -3498,7 +3498,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % synopsis.element "INCLUDE">
 <![%synopsis.element;[
-<!ELEMENT synopsis %ho; (%para.char.mix; | graphic | mediaobject | lineannotation | co)*>
+<!ELEMENT synopsis %ho; (%para.char.mix;|graphic|mediaobject|co|coref|lineannotation)*>
 <!--end of synopsis.element-->]]>
 
 <!ENTITY % synopsis.attlist "INCLUDE">
@@ -5859,6 +5859,32 @@ OtherCredit. -->
 >
 <!--end of co.attlist-->]]>
 <!--end of co.module-->]]>
+
+<!ENTITY % coref.module "INCLUDE">
+<![%coref.module;[
+<!ENTITY % local.coref.attrib "">
+<!-- COREF is a reference to a CO -->
+<!ENTITY % coref.role.attrib "%role.attrib;">
+
+<!ENTITY % coref.element "INCLUDE">
+<![%coref.element;[
+<!ELEMENT coref %ho; EMPTY>
+<!--end of coref.element-->]]>
+
+<!-- bug number/symbol override or initialization -->
+<!-- to any related information -->
+
+<!ENTITY % coref.attlist "INCLUDE">
+<![%coref.attlist;[
+<!ATTLIST coref
+		%label.attrib;
+		%linkendreq.attrib;
+		%common.attrib;
+		%coref.role.attrib;
+		%local.coref.attrib;
+>
+<!--end of coref.attlist-->]]>
+<!--end of coref.module-->]]>
 
 <!ENTITY % command.module "INCLUDE">
 <![%command.module;[
