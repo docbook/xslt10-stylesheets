@@ -361,6 +361,12 @@
     </xsl:call-template>
   </xsl:variable>
   <tr>
+    <xsl:call-template name="tr.attributes">
+      <xsl:with-param name="rownum">
+        <xsl:number from="variablelist" count="varlistentry"/>
+      </xsl:with-param>
+    </xsl:call-template>
+
     <td>
       <xsl:call-template name="anchor"/>
       <xsl:choose>
@@ -489,6 +495,11 @@
 
   <xsl:if test="$cell &lt;= count($members)">
     <tr>
+      <xsl:call-template name="tr.attributes">
+        <xsl:with-param name="row" select="$members[1]"/>
+        <xsl:with-param name="rownum" select="(($cell - 1) div $cols) + 1"/>
+      </xsl:call-template>
+
       <xsl:call-template name="simplelist.horiz.row">
         <xsl:with-param name="cols" select="$cols"/>
         <xsl:with-param name="cell" select="$cell"/>
@@ -538,6 +549,11 @@
 
   <xsl:if test="$cell &lt;= $rows">
     <tr>
+      <xsl:call-template name="tr.attributes">
+        <xsl:with-param name="row" select="$members[1]"/>
+        <xsl:with-param name="rownum" select="$cell"/>
+      </xsl:call-template>
+
       <xsl:call-template name="simplelist.vert.row">
 	<xsl:with-param name="cols" select="$cols"/>
 	<xsl:with-param name="rows" select="$rows"/>
@@ -779,6 +795,10 @@
     </xsl:if>
     <thead>
       <tr>
+        <xsl:call-template name="tr.attributes">
+          <xsl:with-param name="row" select="segtitle[1]"/>
+          <xsl:with-param name="rownum" select="1"/>
+        </xsl:call-template>
         <xsl:apply-templates select="segtitle" mode="seglist-table"/>
       </tr>
     </thead>
@@ -793,7 +813,14 @@
 </xsl:template>
 
 <xsl:template match="seglistitem" mode="seglist-table">
+  <xsl:variable name="seglinum">
+    <xsl:number from="segmentedlist" count="seglistitem"/>
+  </xsl:variable>
+
   <tr>
+    <xsl:call-template name="tr.attributes">
+      <xsl:with-param name="rownum" select="$seglinum + 1"/>
+    </xsl:call-template>
     <xsl:apply-templates mode="seglist-table"/>
   </tr>
 </xsl:template>
@@ -830,6 +857,12 @@
   <xsl:choose>
     <xsl:when test="$callout.list.table != 0">
       <tr>
+        <xsl:call-template name="tr.attributes">
+          <xsl:with-param name="rownum">
+            <xsl:number from="calloutlist" count="callout"/>
+          </xsl:with-param>
+        </xsl:call-template>
+
         <td width="5%" valign="top" align="left">
           <xsl:call-template name="anchor"/>
           <xsl:call-template name="callout.arearefs">
