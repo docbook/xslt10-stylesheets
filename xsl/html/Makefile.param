@@ -94,7 +94,9 @@ PARAMS=../params/admon.graphics.xml \
        ../params/htmlhelp.button.zoom.xml \
        ../params/htmlhelp.chm.xml \
        ../params/htmlhelp.default.topic.xml \
+       ../params/htmlhelp.display.progress.xml \
        ../params/htmlhelp.encoding.xml \
+       ../params/htmlhelp.enhanced.decompilation.xml \
        ../params/htmlhelp.enumerate.images.xml \
        ../params/htmlhelp.force.map.and.alias.xml \
        ../params/htmlhelp.hhc.xml \
@@ -102,17 +104,22 @@ PARAMS=../params/admon.graphics.xml \
        ../params/htmlhelp.hhc.folders.instead.books.xml \
        ../params/htmlhelp.hhc.section.depth.xml \
        ../params/htmlhelp.hhc.show.root.xml \
+       ../params/htmlhelp.hhc.width.xml \
+       ../params/htmlhelp.hhp.windows.xml \
        ../params/htmlhelp.hhk.xml \
        ../params/htmlhelp.hhp.xml \
        ../params/htmlhelp.hhp.tail.xml \
        ../params/htmlhelp.hhp.window.xml \
        ../params/htmlhelp.map.file.xml \
        ../params/htmlhelp.only.xml \
+       ../params/htmlhelp.remember.window.position.xml \
        ../params/htmlhelp.show.advanced.search.xml \
        ../params/htmlhelp.show.favorities.xml \
        ../params/htmlhelp.show.menu.xml \
+       ../params/htmlhelp.show.toolbar.text.xml \
        ../params/htmlhelp.title.xml \
        ../params/htmlhelp.use.hhk.xml \
+       ../params/htmlhelp.window.geometry.xml \
        ../params/inherit.keywords.xml \
        ../params/label.from.part.xml \
        ../params/linenumbering.everyNth.xml \
