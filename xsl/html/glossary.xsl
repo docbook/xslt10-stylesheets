@@ -55,18 +55,6 @@
 <xsl:template match="glossary/subtitle"></xsl:template>
 <xsl:template match="glossary/titleabbrev"></xsl:template>
 
-<xsl:template match="glossary/title" mode="component.title.mode">
-  <h2>
-    <xsl:apply-templates/>
-  </h2>
-</xsl:template>
-
-<xsl:template match="glossary/subtitle" mode="component.title.mode">
-  <h3>
-    <i><xsl:apply-templates/></i>
-  </h3>
-</xsl:template>
-
 <!-- ==================================================================== -->
 
 <xsl:template match="glosslist">
