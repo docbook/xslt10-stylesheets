@@ -67,6 +67,27 @@
   </xsl:copy>
 </xsl:template>
 
+<xsl:template match="xsl:param[@name='chunker.output.encoding']">
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:attribute name="select">'UTF-8'</xsl:attribute>
+  </xsl:copy>
+</xsl:template>
+
+<xsl:template match="xsl:param[@name='chunker.output.doctype-public']">
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:attribute name="select">'-//W3C//DTD XHTML 1.0 Transitional//EN'</xsl:attribute>
+  </xsl:copy>
+</xsl:template>
+
+<xsl:template match="xsl:param[@name='chunker.output.doctype-system']">
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:attribute name="select">'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'</xsl:attribute>
+  </xsl:copy>
+</xsl:template>
+
 <xsl:template match="xsl:attribute[@name='name']">
   <xsl:choose>
     <xsl:when test="ancestor::a">
