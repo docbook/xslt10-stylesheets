@@ -230,6 +230,8 @@
 <!ENTITY % computeroutput.element "IGNORE">
 <!ENTITY % userinput.element "IGNORE">
 <!ENTITY % blockquote.element  "IGNORE">
+<!ENTITY % subscript.element "IGNORE">
+<!ENTITY % superscript.element "IGNORE">
 
 <!ENTITY % cals.table.module "INCLUDE">
 <!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
@@ -426,6 +428,24 @@
 <![%simple.blockquote.element;[
 <!ELEMENT blockquote %ho; (title?, attribution?, (%component.mix;)+)>
 ]]>
+
+<!ELEMENT subscript  (#PCDATA
+		| %link.char.class;
+		| emphasis
+		| replaceable
+                | inlinemediaobject
+		| %base.char.class;
+		| %other.char.class;)*
+		>
+
+<!ELEMENT superscript  (#PCDATA
+		| %link.char.class;
+		| emphasis
+		| replaceable
+                | inlinemediaobject
+		| %base.char.class;
+		| %other.char.class;)*
+		>
 
 <!-- End of Simplified DocBook DTD V1.1CR1 ................................... -->
 <!-- ...................................................................... -->
