@@ -65,14 +65,14 @@
             </fo:block>
           </fo:table-cell>
           <fo:table-cell>
-            <fo:block>
+            <fo:block xsl:use-attribute-sets="admonition.title.properties">
               <xsl:apply-templates select="." mode="object.title.markup"/>
             </fo:block>
           </fo:table-cell>
         </fo:table-row>
         <fo:table-row>
           <fo:table-cell number-columns-spanned="2">
-            <fo:block>
+            <fo:block xsl:use-attribute-sets="admonition.properties">
               <xsl:apply-templates/>
             </fo:block>
           </fo:table-cell>
@@ -93,11 +93,14 @@
             start-indent="0.25in"
             end-indent="0.25in"
             id="{$id}">
-    <fo:block font-size="14pt" font-weight="bold" keep-with-next='always'>
+    <fo:block keep-with-next='always'
+              xsl:use-attribute-sets="admonition.title.properties">
       <xsl:apply-templates select="." mode="object.title.markup"/>
     </fo:block>
 
-    <xsl:apply-templates/>
+    <fo:block xsl:use-attribute-sets="admonition.properties">
+      <xsl:apply-templates/>
+    </fo:block>
   </fo:block>
 </xsl:template>
 
@@ -106,11 +109,5 @@
 <xsl:template match="warning/title"></xsl:template>
 <xsl:template match="caution/title"></xsl:template>
 <xsl:template match="tip/title"></xsl:template>
-
-<xsl:template match="title" mode="admonition.title.mode">
-  <fo:block font-size="14pt" font-weight="bold" keep-with-next='always'>
-    <xsl:apply-templates/>
-  </fo:block>
-</xsl:template>
 
 </xsl:stylesheet>
