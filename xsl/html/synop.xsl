@@ -135,7 +135,7 @@
     <xsl:apply-templates select="." mode="synopfragment.number"/>
   </xsl:variable>
   <p>
-    <a name="#{@id}">
+    <a name="{@id}">
       <xsl:text>(</xsl:text>
       <xsl:value-of select="$snum"/>
       <xsl:text>)</xsl:text>
