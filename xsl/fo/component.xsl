@@ -47,7 +47,8 @@
             space-before.maximum="{$body.font.master * 1.2}pt"
             hyphenate="false">
     <xsl:if test="$pagewide != 0">
-      <xsl:attribute name="span">all</xsl:attribute>
+      <!-- Doesn't work to use 'all' here since not a child of fo:flow -->
+      <xsl:attribute name="span">inherit</xsl:attribute>
     </xsl:if>
     <xsl:attribute name="hyphenation-character">
       <xsl:call-template name="gentext">
