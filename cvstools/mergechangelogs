@@ -1,25 +1,30 @@
 #!/usr/bin/perl -- # --*-Perl-*--
 
+use strict;
 use Getopt::Std;
+use vars qw($opt_v);
+use Cwd;
 
-$usage = "Usage: $0 [-v version]\n";
+my $usage = "Usage: $0 [-v version]\n";
 
 die $usage if ! getopts('v:');
-$version = $opt_v || &last_version();
-
-# .../docbook must be the current directory
+my $version = $opt_v || &last_version();
 
 die "Cannot find ChangeLog.\n" if ! -f "ChangeLog";
 
-@dirs = ();
-@ldirs = ('.');
+my $root = cwd();
+
+$root =~ s/^.*\/([^\/]+)$/$1/;
+
+my @dirs = ();
+my @ldirs = ('.');
 while (@ldirs) {
-    $dir = shift @ldirs;
+    my $dir = shift @ldirs;
     push (@dirs, $dir);
 
     opendir (DIR, $dir);
-    while ($name = readdir(DIR)) {
-	$file = "$dir/$name";
+    while (my $name = readdir(DIR)) {
+	my $file = "$dir/$name";
 	next if $name =~ /^\.\.?$/;
 	next if ! -d $file;
 	next if $name eq 'CVS';
@@ -29,7 +34,8 @@ while (@ldirs) {
     closedir (DIR);
 }
 
-$found = 0;
+my $date = "";
+my $found = 0;
 open (F, "ChangeLog");
 while (<F>) {
     chop;
@@ -48,14 +54,14 @@ print "Changes since version $version ($date)\n\n";
 $date =~ /(\d+)-(\d+)-(\d+)/;
 $date = sprintf("%04d%02d%02d", $1, $2, $3);
 
-foreach $dir (@dirs) {
+foreach my $dir (@dirs) {
     $found = 0;
-    @LINES = ();
+    my @LINES = ();
     open(F, "$dir/ChangeLog");
     while (<F>) {
 	chop;
 	if (/^(\d+)-(\d+)-(\d+)/) {
-	    $cdate = sprintf("%04d%02d%02d", $1, $2, $3);
+	    my $cdate = sprintf("%04d%02d%02d", $1, $2, $3);
 	    $found = ($cdate <= $date);
 	}
 
@@ -67,10 +73,10 @@ foreach $dir (@dirs) {
 
     next if !@LINES;
 
-    $dir =~ s/^\./docbook/;
+    $dir =~ s/^\./$root/;
     print "Changes to $dir/*\n\n";
 
-    @entry = ();
+    my @entry = ();
     foreach $_ (@LINES) {
 	if (/^\t/) {
 	    push (@entry, $_);
