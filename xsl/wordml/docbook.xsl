@@ -35,7 +35,7 @@
       <xsl:message terminate='yes'>Please specify the template document with the "wordml.template" parameter</xsl:message>
     </xsl:if>
     <xsl:if test='not($templatedoc)'>
-      <xsl:message terminate='yes'>Unable to open template document</xsl:message>
+      <xsl:message terminate='yes'>Unable to open template document "<xsl:value-of select='$wordml.template'/>"</xsl:message>
     </xsl:if>
 
     <xsl:processing-instruction name='mso-application'>
@@ -71,14 +71,7 @@
             <xsl:otherwise>Unknown</xsl:otherwise>
           </xsl:choose>
         </o:LastAuthor>
-        <o:Revision>
-          <xsl:choose>
-            <xsl:when test='$info/revhistory/revision[1]/revnumber'>
-              <xsl:value-of select='$info/revhistory/revision[1]/revnumber'/>
-            </xsl:when>
-            <xsl:otherwise>1</xsl:otherwise>
-          </xsl:choose>
-        </o:Revision>
+        <o:Revision>1</o:Revision>
         <o:TotalTime></o:TotalTime>
 
         <!-- dummy values -->
@@ -186,7 +179,7 @@
     </w:body>
   </xsl:template>
 
-  <xsl:template match='section|sect1|sect2|sect3|sect4|sect5|simplesect'>
+  <xsl:template match='book|article|section|sect1|sect2|sect3|sect4|sect5|simplesect'>
     <wx:sect>
       <xsl:apply-templates select='*'/>
     </wx:sect>
@@ -200,10 +193,12 @@
             <xsl:choose>
               <xsl:when test='contains(name(..), "info")'>
                 <xsl:value-of select='name(../..)'/>
+                <xsl:text>-</xsl:text>
                 <xsl:value-of select='name()'/>
               </xsl:when>
               <xsl:otherwise>
                 <xsl:value-of select='name(..)'/>
+                <xsl:text>-</xsl:text>
                 <xsl:value-of select='name()'/>
               </xsl:otherwise>
             </xsl:choose>
@@ -225,19 +220,80 @@
   <xsl:template match='para'>
     <xsl:param name='class'/>
 
+    <xsl:variable name='block' select='blockquote|calloutlist|classsynopsis|funcsynopsis|figure|glosslist|graphic|informalfigure|informaltable|itemizedlist|literallayout|mediaobject|note|orderedlist|programlisting|revhistory|segmentedlist|simplelist|table|variablelist'/>
+
+    <xsl:choose>
+      <xsl:when test='$block'>
+        <w:p>
+          <w:pPr>
+            <w:pStyle>
+              <xsl:attribute name='w:val'>
+                <xsl:choose>
+                  <xsl:when test='$class != ""'>
+                    <xsl:value-of select='$class'/>
+                  </xsl:when>
+                  <xsl:otherwise>Normal</xsl:otherwise>
+                </xsl:choose>
+              </xsl:attribute>
+            </w:pStyle>
+          </w:pPr>
+          <xsl:apply-templates select='$block[1]/preceding-sibling::node()'/>
+        </w:p>
+        <xsl:for-each select='$block'>
+          <xsl:apply-templates select='.'/>
+          <w:p>
+            <w:pPr>
+              <w:pStyle>
+                <xsl:attribute name='w:val'>
+                  <xsl:choose>
+                    <xsl:when test='$class != ""'>
+                      <xsl:value-of select='$class'/>
+                    </xsl:when>
+                    <xsl:otherwise>Normal</xsl:otherwise>
+                  </xsl:choose>
+                </xsl:attribute>
+              </w:pStyle>
+            </w:pPr>
+            <xsl:apply-templates select='following-sibling::node()[generate-id(preceding-sibling::*[self::blockquote|self::calloutlist|self::figure|self::glosslist|self::graphic|self::informalfigure|self::informaltable|self::itemizedlist|self::literallayout|self::mediaobject|self::note|self::orderedlist|self::programlisting|self::revhistory|self::segmentedlist|self::simplelist|self::table|self::variablelist][1]) = generate-id(current())]'/>
+          </w:p>
+        </xsl:for-each>
+      </xsl:when>
+      <xsl:otherwise>
+        <w:p>
+          <w:pPr>
+            <w:pStyle>
+              <xsl:attribute name='w:val'>
+                <xsl:choose>
+                  <xsl:when test='$class != ""'>
+                    <xsl:value-of select='$class'/>
+                  </xsl:when>
+                  <xsl:otherwise>Normal</xsl:otherwise>
+                </xsl:choose>
+              </xsl:attribute>
+            </w:pStyle>
+          </w:pPr>
+          <xsl:apply-templates/>
+        </w:p>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  <xsl:template match='simpara'>
+    <xsl:param name='class'/>
+
     <w:p>
       <w:pPr>
         <w:pStyle>
           <xsl:attribute name='w:val'>
             <xsl:choose>
               <xsl:when test='$class != ""'>
-                <xsl:value-of select='$class'/>
+                <xsl:value-of select='concat("sim-", $class)'/>
               </xsl:when>
-              <xsl:otherwise>Normal</xsl:otherwise>
+              <xsl:otherwise>simpara</xsl:otherwise>
             </xsl:choose>
           </xsl:attribute>
         </w:pStyle>
       </w:pPr>
+
       <xsl:apply-templates/>
     </w:p>
   </xsl:template>
@@ -254,7 +310,9 @@
       </w:rPr>
     </w:r>
     <w:r>
-      <w:t><xsl:value-of select='.'/></w:t>
+      <w:t>
+        <xsl:value-of select='.'/>
+      </w:t>
     </w:r>
   </xsl:template>
 
@@ -308,7 +366,8 @@
   <xsl:template match='entry'>
 
     <!-- 
-         Position = Sum(i,preceding-sibling[@colspan = ""]) + entry[i].@colspan)    -->
+         Position = Sum(i,preceding-sibling[@colspan = ""]) + entry[i].@colspan)
+      -->
 
     <xsl:variable name='position'>
       <xsl:call-template name='sumSibling'>
@@ -324,7 +383,9 @@
           <xsl:when test='@colspan != ""'>
 
             <!-- Select all the colspec nodes which correspond to the
-                 column. That is all the nodes between the current column number and the column number plus the span -->
+                 column. That is all the nodes between the current 
+                 column number and the column number plus the span.
+              -->
 
             <xsl:variable name='combinedWidth'>
               <xsl:call-template name='sum'>
@@ -349,13 +410,24 @@
       <xsl:if test='@colspan != ""'>
         <w:gridspan w:val='{@colspan}'/>
       </xsl:if>
-      <xsl:apply-templates/>
+      <xsl:choose>
+        <xsl:when test='not(para)'>
+          <!-- TODO: check for any block elements -->
+          <w:p>
+            <xsl:apply-templates/>
+          </w:p>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates/>
+        </xsl:otherwise>
+      </xsl:choose>
     </w:tc>
   </xsl:template>
 
   <!-- Calculates the position by adding the 
        count of the preceding siblings where they aren't colspans
-       and adding the colspans of those entries which do. -->
+       and adding the colspans of those entries which do.
+    -->
 
   <xsl:template name='sumSibling'>    
     <xsl:param name='sum'/>
@@ -406,7 +478,7 @@
 
   </xsl:template>
 
-  <xsl:template match='para/text()[string-length(normalize-space(.)) != 0]'>
+  <xsl:template match='*[self::para|self::simpara]/text()[string-length(normalize-space(.)) != 0]'>
     <w:r>
       <w:t>
         <xsl:value-of select='.'/>
@@ -414,7 +486,7 @@
     </w:r>
   </xsl:template>
 
-  <xsl:template match='text()[not(parent::para)][string-length(normalize-space(.)) != 0]'>
+  <xsl:template match='text()[not(parent::para|parent::simpara)][string-length(normalize-space(.)) != 0]'>
     <w:r>
       <w:t>
         <xsl:value-of select='.'/>
@@ -423,12 +495,31 @@
   </xsl:template>
   <xsl:template match='text()[string-length(normalize-space(.)) = 0]'/>
 
-  <xsl:template match='authorblurb|blockquote|formalpara|simpara|legalnotice|note'>
-    <xsl:apply-templates select='para'>
+  <xsl:template match='authorblurb|formalpara|legalnotice|note'>
+    <xsl:apply-templates select='*'>
       <xsl:with-param name='class'>
         <xsl:value-of select='name()'/>
       </xsl:with-param>
     </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match='blockquote'>
+    <xsl:apply-templates select='blockinfo|title'>
+      <xsl:with-param name='class'>
+        <xsl:value-of select='name()'/>
+      </xsl:with-param>
+    </xsl:apply-templates>
+    <xsl:apply-templates select='*[not(self::blockinfo|self::title|self::attribution)]'>
+      <xsl:with-param name='class' select='"blockquote"'/>
+    </xsl:apply-templates>
+    <xsl:if test='attribution'>
+      <w:p>
+        <w:pPr>
+          <w:pStyle w:val='blockquote-attribution'/>
+        </w:pPr>
+        <xsl:apply-templates select='attribution/node()'/>
+      </w:p>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match='itemizedlist|orderedlist'>
@@ -480,6 +571,7 @@
                       self::address |
                       self::answer |
                       self::appendix |
+                      self::artheader |
                       self::authorgroup |
                       self::bibliodiv |
                       self::biblioentry |
@@ -492,6 +584,7 @@
                       self::caption |
                       self::caution |
                       self::chapter |
+                      self::classsynopsis |
                       self::colophon |
                       self::constraintdef |
                       self::copyright |
@@ -500,6 +593,7 @@
                       self::equation |
                       self::example |
                       self::figure |
+                      self::funcsynopsis |
                       self::glossary |
                       self::glossdef |
                       self::glossdiv |
@@ -594,29 +688,31 @@
         </w:p>
       </xsl:when>
       <!-- Some elements are sometimes blocks, sometimes inline
-         - affiliation
-         - alt
-         - attribution
-         - collab
-         - collabname
-         - confdates
-         - confgroup
-         - confnum
-         - confsponsor
-         - conftitle
-         - contractnum
-         - contractsponsor
-         - contrib
-         - corpauthor
-         - corpcredit
-         - corpname
-         - edition
-         - editor
-         - jobtitle
-         - personname
-         - publishername
-         - remark
-        -->
+      <xsl:when test='self::affiliation |
+                      self::alt |
+                      self::attribution |
+                      self::collab |
+                      self::collabname |
+                      self::confdates |
+                      self::confgroup |
+                      self::confnum |
+                      self::confsponsor |
+                      self::conftitle |
+                      self::contractnum |
+                      self::contractsponsor |
+                      self::contrib |
+                      self::corpauthor |
+                      self::corpcredit |
+                      self::corpname |
+                      self::edition |
+                      self::editor |
+                      self::jobtitle |
+                      self::personname |
+                      self::publishername |
+                      self::remark'>
+
+      </xsl:when>
+      -->
       <xsl:otherwise>
         <w:r>
           <w:rPr>
