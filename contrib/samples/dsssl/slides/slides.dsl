@@ -20,7 +20,7 @@
     (("tiny") 8pt)
     (("normal") 10pt)
     (("eleven") 11pt)
-    (("my") 14pt)
+    (("my") 13.5pt)
     (("presbyopic") 12pt)
     (("large-type") 24pt)))
 
@@ -44,7 +44,8 @@
 ;;    left-footer:   (literal (data (select-elements (children (select-elements (children (current-node)) (normalize "slidesinfo"))) (normalize "title"))))
     left-footer: ($left-footer$)
     center-footer: ($center-footer$)
-    right-footer:  ($right-footer$)
+;;    right-footer:  ($right-footer$)
+    right-footer: (literal "")
     start-indent: %body-start-indent%
     input-whitespace-treatment: 'collapse
     quadding: %default-quadding%
@@ -60,7 +61,12 @@
     quadding: 'center
     space-before: 96pt
     space-after: 96pt
-  (next-match)))
+  (next-match)
+  (process-node-list (select-elements (children (current-node)) (normalize "email") ))))
+
+(element (slidesinfo author email)
+  (make paragraph
+    (process-children)))
 
 (element (slidesinfo confgroup)
   (make paragraph
@@ -73,7 +79,15 @@
     (next-match)))
 
 (element (slidesinfo copyright)
-  (empty-sosofo))
+  (make paragraph
+    space-before: 242pt
+    font-size: 10pt
+    (next-match)))
+
+(element (slidesinfo releaseinfo)
+  (make paragraph
+    font-size: 10pt
+    (process-children)))
 
 (element (slidesinfo title)
   (let* ((renderas (attribute-string "renderas"))
@@ -140,7 +154,7 @@
 				(normalize "slidesinfo")))
 			      (normalize "title"))))
     center-footer: ($center-footer$)
-    right-footer:  ($right-footer$)
+    right-footer:  (literal (format-number (element-number (current-node)) "1"))
     start-indent: %body-start-indent%
     input-whitespace-treatment: 'collapse
     quadding: %default-quadding%
@@ -156,7 +170,7 @@
       font-posture: (if (< hlevel 5) 'upright 'italic)
       font-size: hs
       line-spacing: (* hs %line-spacing-factor%)
-      space-before: (* hs %head-before-factor%)
+      ;; space-before: (* hs %head-before-factor%)
       space-after: (* hs %head-after-factor%)
       start-indent: (if (< hlevel 3)
 			0pt
@@ -193,8 +207,7 @@
   (empty-sosofo))
 
 (define (named-formal-objects)
-  (list (normalize "figure")
-	(normalize "equation")))
+  (list (normalize "equation")))
 
 </style-specification>
 
