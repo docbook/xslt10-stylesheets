@@ -224,25 +224,32 @@
   <xsl:apply-templates select="." mode="section.titlepage.recto.mode"/>
 </xsl:template>
 
+<xsl:template match="section/subtitle"></xsl:template>
 <xsl:template match="section/title"></xsl:template>
 <xsl:template match="sectioninfo"></xsl:template>
 
 <xsl:template match="sect1/title"></xsl:template>
+<xsl:template match="sect1/subtitle"></xsl:template>
 <xsl:template match="sect1info"></xsl:template>
 
 <xsl:template match="sect2/title"></xsl:template>
+<xsl:template match="sect2/subtitle"></xsl:template>
 <xsl:template match="sect2info"></xsl:template>
 
 <xsl:template match="sect3/title"></xsl:template>
+<xsl:template match="sect3/subtitle"></xsl:template>
 <xsl:template match="sect3info"></xsl:template>
 
 <xsl:template match="sect4/title"></xsl:template>
+<xsl:template match="sect4/subtitle"></xsl:template>
 <xsl:template match="sect4info"></xsl:template>
 
 <xsl:template match="sect5/title"></xsl:template>
+<xsl:template match="sect5/subtitle"></xsl:template>
 <xsl:template match="sect5info"></xsl:template>
 
 <xsl:template match="simplesect/title"></xsl:template>
+<xsl:template match="simplesect/subtitle"></xsl:template>
 
 <!-- ==================================================================== -->
 
