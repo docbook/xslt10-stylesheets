@@ -63,38 +63,35 @@
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
+  <xsl:variable name="graphic.width">
+     <xsl:call-template name="admon.graphic.width"/>
+  </xsl:variable>
 
   <fo:block id="{$id}">
-    <fo:table>
-      <fo:table-body>
-        <fo:table-row>
-          <fo:table-cell number-rows-spanned="2">
+    <fo:list-block provisional-distance-between-starts="{$graphic.width} + 18pt"
+    		provisional-label-separation="18pt"
+		xsl:use-attribute-sets="list.block.spacing">
+      <fo:list-item>
+          <fo:list-item-label end-indent="label-end()">
             <fo:block>
-              <fo:external-graphic width="auto" height="auto">
+              <fo:external-graphic width="auto" height="auto"
+	      		           content-width="{$graphic.width}" >
                 <xsl:attribute name="src">
                   <xsl:call-template name="admon.graphic"/>
                 </xsl:attribute>
-                <xsl:attribute name="content-width">
-                  <xsl:call-template name="admon.graphic.width"/>
-                </xsl:attribute>
               </fo:external-graphic>
             </fo:block>
-          </fo:table-cell>
-          <fo:table-cell>
+          </fo:list-item-label>
+          <fo:list-item-body start-indent="body-start()">
             <fo:block xsl:use-attribute-sets="admonition.title.properties">
               <xsl:apply-templates select="." mode="object.title.markup"/>
             </fo:block>
-          </fo:table-cell>
-        </fo:table-row>
-        <fo:table-row>
-          <fo:table-cell number-columns-spanned="2">
             <fo:block xsl:use-attribute-sets="admonition.properties">
               <xsl:apply-templates/>
             </fo:block>
-          </fo:table-cell>
-        </fo:table-row>
-      </fo:table-body>
-    </fo:table>
+          </fo:list-item-body>
+      </fo:list-item>
+    </fo:list-block>
   </fo:block>
 </xsl:template>
 
