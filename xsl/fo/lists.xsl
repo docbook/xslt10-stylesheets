@@ -32,7 +32,9 @@
     <xsl:apply-templates select="title" mode="list.title.mode"/>
   </xsl:if>
 
-  <xsl:apply-templates select="*[not(self::listitem or self::title)]"/>
+  <xsl:apply-templates select="*[not(self::listitem 
+                                  or self::title
+                                  or self::titleabbrev)]"/>
 
   <fo:list-block id="{$id}" xsl:use-attribute-sets="list.block.spacing"
                  provisional-label-separation="0.2em">
@@ -57,6 +59,18 @@
 </xsl:template>
 
 <xsl:template match="variablelist/title" mode="vl.as.blocks">
+  <!--nop-->
+</xsl:template>
+
+<xsl:template match="itemizedlist/titleabbrev|orderedlist/titleabbrev">
+  <!--nop-->
+</xsl:template>
+
+<xsl:template match="variablelist/titleabbrev" mode="vl.as.list">
+  <!--nop-->
+</xsl:template>
+
+<xsl:template match="variablelist/titleabbrev" mode="vl.as.blocks">
   <!--nop-->
 </xsl:template>
 
@@ -122,7 +136,9 @@
     <xsl:apply-templates select="title" mode="list.title.mode"/>
   </xsl:if>
 
-  <xsl:apply-templates select="*[not(self::listitem or self::title)]"/>
+  <xsl:apply-templates select="*[not(self::listitem 
+                                  or self::title
+                                  or self::titleabbrev)]"/>
 
   <fo:list-block id="{$id}" xsl:use-attribute-sets="list.block.spacing"
                  provisional-label-separation="0.2em">
