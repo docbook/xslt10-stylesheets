@@ -26,7 +26,7 @@ all:
 	@echo Select a target
 
 test: test.xml
-	$(XJPARSE) $<
+	$(XJPARSE) -w $<
 	$(XSLT) $< $(HTMLSTYLE) $(PARAMS)
 	make tidy
 
