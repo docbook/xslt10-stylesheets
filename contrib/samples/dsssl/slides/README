@@ -2,7 +2,7 @@ This directory contains slides.dsl stylesheet which can be used for
 rendering DocBook Slides. It outputs one slide to one page and you can
 use auxiliary tools or print drivers to get 2up or 4up page
 arrangements. I use this stylesheet to print slides for my
-students. Stylesheet is not perfect, but does amount of usable work.
+students. Stylesheet is not perfect, but it does amount of usable work.
 
 Typical usage is:
 
