@@ -118,3 +118,11 @@
 <!ENTITY table.border.thickness SYSTEM "../params/table.border.thickness.xml">
 <!ENTITY table.border.style SYSTEM "../params/table.border.style.xml">
 <!ENTITY table.border.color SYSTEM "../params/table.border.color.xml">
+
+<!ENTITY htmlhelp.encoding SYSTEM "../params/htmlhelp.encoding.xml">
+<!ENTITY htmlhelp.autolabel SYSTEM "../params/htmlhelp.autolabel.xml">
+<!ENTITY htmlhelp.chm SYSTEM "../params/htmlhelp.chm.xml">
+<!ENTITY htmlhelp.hhp SYSTEM "../params/htmlhelp.hhp.xml">
+<!ENTITY htmlhelp.hhc SYSTEM "../params/htmlhelp.hhc.xml">
+<!ENTITY htmlhelp.hhp.tail SYSTEM "../params/htmlhelp.hhp.tail.xml">
+<!ENTITY htmlhelp.enumerate.images SYSTEM "../params/htmlhelp.enumerate.images.xml">
