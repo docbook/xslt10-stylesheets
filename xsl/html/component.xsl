@@ -217,7 +217,7 @@
     <xsl:choose>
       <xsl:when test="parent::article and $ischunk = 0">
         <xsl:call-template name="section.heading">
-          <xsl:with-param name="level" select="2"/>
+          <xsl:with-param name="level" select="1"/>
           <xsl:with-param name="title">
             <xsl:apply-templates select="." mode="object.title.markup"/>
           </xsl:with-param>
