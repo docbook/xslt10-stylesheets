@@ -72,8 +72,11 @@
 <xsl:template match="glosslist">
   <div class="{name(.)}">
     <xsl:call-template name="anchor"/>
+    <xsl:if test="blockinfo/title|title">
+      <xsl:call-template name="formal.object.heading"/>
+    </xsl:if>
     <dl>
-      <xsl:apply-templates/>
+      <xsl:apply-templates select="glossentry"/>
     </dl>
   </div>
 </xsl:template>
