@@ -986,7 +986,7 @@ in the CALS table.
 <!-- ==================================================================== -->
 <xsl:param name="process.empty.source.toc" select='0' doc:type='boolean'/>
 
-<doc:param name="process.source.toc" xmlns="">
+<doc:param name="process.empty.source.toc" xmlns="">
 <refpurpose>FIXME:</refpurpose>
 <refdescription>
 <para>FIXME:
