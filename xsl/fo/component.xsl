@@ -198,7 +198,10 @@
     <xsl:attribute name="language">
       <xsl:call-template name="l10n.language"/>
     </xsl:attribute>
-    <xsl:if test="not(preceding::chapter)">
+
+    <!-- if there is a preceding chapter or this chapter appears in a part, the -->
+    <!-- page numbering will already be adjusted -->
+    <xsl:if test="not(preceding::chapter) and not(parent::part)">
       <xsl:attribute name="initial-page-number">1</xsl:attribute>
     </xsl:if>
     <xsl:if test="$double.sided != 0">
