@@ -226,11 +226,15 @@
     <xsl:otherwise>
       <xsl:copy>
         <xsl:call-template name="copy.attributes"/>
-        <info>
-          <xsl:apply-templates select="title" mode="copy"/>
-          <xsl:apply-templates select="titleabbrev" mode="copy"/>
-          <xsl:apply-templates select="subtitle" mode="copy"/>
-        </info>
+
+	<xsl:if test="title|titleabbrev|subtitle">
+	  <info>
+	    <xsl:apply-templates select="title" mode="copy"/>
+	    <xsl:apply-templates select="titleabbrev" mode="copy"/>
+	    <xsl:apply-templates select="subtitle" mode="copy"/>
+	  </info>
+	</xsl:if>
+
         <xsl:apply-templates/>
       </xsl:copy>
     </xsl:otherwise>
