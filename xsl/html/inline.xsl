@@ -621,6 +621,7 @@
 
 <xsl:template match="glossterm">
   <xsl:choose>
+
     <xsl:when test="@linkend">
       <xsl:variable name="targets" select="key('id',@linkend)"/>
       <xsl:variable name="target" select="$targets[1]"/>
@@ -645,6 +646,40 @@
         <xsl:call-template name="inline.italicseq"/>
       </a>
     </xsl:when>
+
+    <xsl:when test="$glossterm.auto.link != 0">
+      <xsl:variable name="targets" select="//glossentry[glossterm=string(current())]"/>
+      <xsl:variable name="target" select="$targets[1]"/>
+
+      <xsl:choose>
+        <xsl:when test="count($targets)=0">
+          <xsl:message>
+            <xsl:text>Error: no glossentry for glossterm: </xsl:text>
+            <xsl:value-of select="."/>
+            <xsl:text>.</xsl:text>
+          </xsl:message>
+          <xsl:call-template name="inline.italicseq"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <a>
+            <xsl:if test="@id">
+              <xsl:attribute name="name">
+                <xsl:value-of select="@id"/>
+              </xsl:attribute>
+            </xsl:if>
+            
+            <xsl:attribute name="href">
+              <xsl:call-template name="href.target">
+                <xsl:with-param name="object" select="$target"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            
+            <xsl:call-template name="inline.italicseq"/>
+          </a>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+
     <xsl:otherwise>
       <xsl:call-template name="inline.italicseq"/>
     </xsl:otherwise>

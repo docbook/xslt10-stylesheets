@@ -49,6 +49,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/generate.section.toc.xml \
        ../params/generate.section.toc.level.xml \
        ../params/generate.set.toc.xml \
+       ../params/glossterm.auto.link.xml \
        ../params/graphic.default.extension.xml \
        ../params/html.base.xml \
        ../params/html.longdesc.xml \
