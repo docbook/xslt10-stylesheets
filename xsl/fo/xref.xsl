@@ -708,11 +708,7 @@
       <xsl:when test="$ulink.footnotes != 0 and not(ancestor::footnote)">
         <fo:footnote>
           <xsl:call-template name="ulink.footnote.number"/>
-          <fo:footnote-body font-family="{$body.fontset}"
-                            start-indent="0pt"
-                            font-size="{$footnote.font.size}"
-                            font-weight="normal"
-                            font-style="normal">
+          <fo:footnote-body xsl:use-attribute-sets="footnote.properties">
             <fo:block>
               <xsl:call-template name="ulink.footnote.number"/>
               <xsl:text> </xsl:text>
@@ -737,7 +733,7 @@
 </xsl:template>
 
 <xsl:template name="ulink.footnote.number">
-  <fo:inline xsl:use-attribute-sets="superscript.properties">
+  <fo:inline xsl:use-attribute-sets="footnote.mark.properties">
     <xsl:choose>
       <xsl:when test="$fop.extensions != 0">
         <xsl:attribute name="vertical-align">super</xsl:attribute>

@@ -17,7 +17,7 @@
 
 <xsl:template name="format.footnote.mark">
   <xsl:param name="mark" select="'?'"/>
-  <fo:inline xsl:use-attribute-sets="superscript.properties">
+  <fo:inline xsl:use-attribute-sets="footnote.mark.properties">
     <xsl:choose>
       <xsl:when test="$fop.extensions != 0">
         <xsl:attribute name="vertical-align">super</xsl:attribute>
@@ -48,12 +48,7 @@
             </xsl:with-param>
           </xsl:call-template>
         </fo:inline>
-        <fo:footnote-body font-family="{$body.fontset}"
-                          font-size="{$footnote.font.size}"
-                          font-weight="normal"
-                          font-style="normal"
-                          text-align="{$alignment}"
-                          start-indent="0pt">
+        <fo:footnote-body xsl:use-attribute-sets="footnote.properties">
           <xsl:apply-templates/>
         </fo:footnote-body>
       </fo:footnote>
