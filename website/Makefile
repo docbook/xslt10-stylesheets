@@ -8,7 +8,6 @@ NEXTVER=
 all:
 	make -C schema all
 	make -C extensions all
-	make -C extensions jars
 
 distrib:
 	make -C example all
