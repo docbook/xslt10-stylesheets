@@ -7607,7 +7607,10 @@ OtherCredit. -->
 				|dvd
 				|wiki
 				|gopher
-				|bbs)	#IMPLIED
+				|bbs
+                                |emailmessage
+                                |webpage
+                                |newsposting)	#IMPLIED
 		%common.attrib;
 		%citetitle.role.attrib;
 		%local.citetitle.attrib;
