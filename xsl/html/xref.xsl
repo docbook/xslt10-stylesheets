@@ -16,6 +16,11 @@
 
 <!-- ==================================================================== -->
 
+<!-- Create keys for quickly looking up olink targets -->
+<xsl:key name="targetdoc-key" match="document" use="@targetdoc" />
+<xsl:key name="targetptr-key"  match="div|obj"
+         use="concat(ancestor::document/@targetdoc, '/', @targetptr)" />
+
 <xsl:template match="anchor">
   <xsl:call-template name="anchor"/>
 </xsl:template>
@@ -736,7 +741,12 @@
 
 <xsl:template match="olink" name="olink">
   <xsl:call-template name="anchor"/>
+
   <xsl:variable name="localinfo" select="@localinfo"/>
+
+  <!-- Open the olink targets data base -->
+  <xsl:param name="target.database" 
+    select="document($target.database.document)"/>
 
   <xsl:variable name="href">
     <xsl:choose>
@@ -761,6 +771,133 @@
           <xsl:with-param name="return" select="'href'"/>
         </xsl:call-template>
       </xsl:when>
+      <!-- Olinks resolved by stylesheet and target database -->
+      <xsl:when test="@targetdoc and not(@targetptr)" >
+        <xsl:message>Olink missing @targetptr attribute value</xsl:message>
+      </xsl:when>
+      <xsl:when test="not(@targetdoc) and @targetptr" >
+        <xsl:message>Olink missing @targetdoc attribute value</xsl:message>
+      </xsl:when>
+      <xsl:when test="@targetdoc and @targetptr">
+        <xsl:variable name="seek.targetdoc" select="@targetdoc"/>
+        <xsl:variable name="seek.targetptr" select="@targetptr"/>
+        <xsl:variable name="targetdoc.key" >
+          <xsl:for-each select="$target.database" >
+            <xsl:value-of select="key('targetdoc-key', $seek.targetdoc)/@targetdoc" />
+          </xsl:for-each>
+        </xsl:variable>
+        <xsl:variable name="targetptr.key" >
+          <xsl:for-each select="$target.database" >
+            <xsl:value-of select="key('targetptr-key', concat($seek.targetdoc, '/', $seek.targetptr))/@targetptr" />
+          </xsl:for-each>
+        </xsl:variable>
+<!-- debug
+<xsl:message>seek.targetdoc is <xsl:value-of select="$seek.targetdoc"/></xsl:message>
+<xsl:message>seek.targetptr is <xsl:value-of select="$seek.targetptr"/></xsl:message>
+-->
+        <xsl:choose>
+          <!-- Was the database document parameter not set? -->
+          <xsl:when test="$target.database.document = ''">
+            <xsl:message>
+              <xsl:text>Olinks not processed: must specify a $target.database.document parameter</xsl:text>
+              <xsl:text>when using olinks with targetdoc and targetptr attributes.</xsl:text>
+            </xsl:message>
+          </xsl:when>
+          <!-- Did it not open? Should be a targetset element -->
+          <xsl:when test="not($target.database/targetset)">
+            <xsl:message>Olink error: could not open target database <xsl:value-of select="$target.database.document"/>.  </xsl:message>
+          </xsl:when>
+          <!-- Does it not have this document id? -->
+          <xsl:when test="$targetdoc.key = ''" >
+            <xsl:message>Olink error: document id <xsl:value-of select="$seek.targetdoc"/> not in target database.</xsl:message>
+          </xsl:when>
+
+          <!-- Does this document not have this targetptr? -->
+          <xsl:when test="$targetptr.key = ''" >
+            <!-- Does this document have *any* content? -->
+            <xsl:variable name="document.root">
+              <xsl:for-each select="$target.database" >
+                <xsl:value-of select="key('targetdoc-key', $seek.targetdoc)/div/@element"/>
+              </xsl:for-each>
+            </xsl:variable>
+            <xsl:choose>
+              <xsl:when test="$document.root = ''">
+                <xsl:message>Olink error: could not open data file for document id '<xsl:value-of select="$seek.targetdoc"/>'.</xsl:message>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:message>Olink error: targetptr <xsl:value-of select="$seek.targetptr"/> not found in document id <xsl:value-of select="$seek.targetdoc"/>.</xsl:message>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+
+          <!-- Proceed with good olink syntax -->
+          <xsl:otherwise>
+            
+            <!-- Does the target database use a sitemap? -->
+            <xsl:variable name="use.sitemap">
+              <xsl:for-each select="$target.database" >
+                <xsl:value-of select="key('targetdoc-key', $seek.targetdoc)/parent::dir/@name"/>
+              </xsl:for-each>
+            </xsl:variable>
+            <xsl:variable name="target.href" >
+              <xsl:for-each select="$target.database" >
+                <xsl:value-of select="key('targetptr-key', concat($seek.targetdoc, '/', $seek.targetptr))/@href" />
+
+              </xsl:for-each>
+            </xsl:variable>
+
+            <!-- Get the baseuri for this targetptr -->
+
+            <xsl:variable name="baseuri" >
+              <xsl:choose>
+                <!-- Does the database use a sitemap? -->
+                <xsl:when test="$use.sitemap != ''" >
+                  <xsl:choose>
+                    <!-- Was current.docid parameter set? -->
+                    <xsl:when test="$current.docid != ''">
+                      <xsl:for-each select="$target.database" >
+                        <xsl:call-template name="targetpath" >
+                          <xsl:with-param name="dirnode" select="key('targetdoc-key', $current.docid)/parent::dir"/>
+                          <xsl:with-param name="targetdoc" select="$seek.targetdoc"/>
+                        </xsl:call-template>
+                      </xsl:for-each >
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:message>Olink warning: cannot compute relative sitemap path without $current.docid parameter</xsl:message>
+                    </xsl:otherwise>
+                  </xsl:choose> 
+                  <!-- In either case, add baseuri from its document entry-->
+                  <xsl:variable name="docbaseuri">
+                    <xsl:for-each select="$target.database" >
+                      <xsl:value-of select="key('targetdoc-key', $seek.targetdoc)/@baseuri" />
+                    </xsl:for-each>
+                  </xsl:variable>
+                  <xsl:if test="$docbaseuri != ''" >
+                    <xsl:value-of select="$docbaseuri"/>
+                  </xsl:if>
+                </xsl:when>
+                <!-- No database sitemap in use -->
+                <xsl:otherwise>
+                  <!-- Just use any baseuri from its document entry -->
+                  <xsl:variable name="docbaseuri"  select="key('targetdoc-key', $seek.targetdoc)/@baseuri" />
+                  <xsl:if test="$docbaseuri != ''" >
+                    <xsl:value-of select="$docbaseuri"/>
+                  </xsl:if>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:variable>
+
+            <!-- Form the href information -->
+            <xsl:if test="$baseuri != ''">
+              <xsl:value-of select="$baseuri"/>
+              <xsl:if test="substring($target.href,1,1) != '#'">
+                <!--xsl:text>/</xsl:text-->
+              </xsl:if>
+            </xsl:if>
+            <xsl:value-of select="$target.href"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$olink.resolver"/>
         <xsl:text>?</xsl:text>
@@ -776,21 +913,20 @@
     </xsl:choose>
   </xsl:variable>
 
-  <a href="{$href}">
-    <xsl:choose>
-      <xsl:when test="count(node()) &gt; 0">
-        <xsl:apply-templates/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="olink.outline">
-          <xsl:with-param name="outline.base.uri"
-                          select="unparsed-entity-uri(@targetdocent)"/>
-          <xsl:with-param name="localinfo" select="@localinfo"/>
-          <xsl:with-param name="return" select="'xref'"/>
+  <xsl:choose>
+    <xsl:when test="$href != ''">
+      <a href="{$href}">
+        <xsl:call-template name="olink.hottext">
+          <xsl:with-param name="target.database" select="$target.database"/>
         </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
-  </a>
+      </a>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="olink.hottext">
+        <xsl:with-param name="target.database" select="$target.database"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="olink.outline">
@@ -837,6 +973,134 @@
     </xsl:when>
     <xsl:otherwise>
       <xsl:copy-of select="$node-xref"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="olink.hottext">
+  <xsl:param name="target.database"/>
+    <xsl:choose>
+      <!-- If it has elements or text (not just PI or comment) -->
+      <xsl:when test="child::text() or child::*">
+        <xsl:apply-templates/>
+      </xsl:when>
+      <xsl:when test="@targetdoc and @targetptr">
+        <!-- Get the xref text for this record -->
+        <xsl:variable name="seek.targetdoc" select="@targetdoc"/>
+        <xsl:variable name="seek.targetptr" select="@targetptr"/>
+        <xsl:variable name="xref.text" >
+          <xsl:for-each select="$target.database" >
+            <xsl:value-of select="key('targetptr-key', concat($seek.targetdoc, '/', $seek.targetptr))/xreftext" />
+
+          </xsl:for-each>
+        </xsl:variable>
+
+
+        <xsl:choose>
+          <xsl:when test="$use.local.olink.style != 0">
+            <!-- Get the element name and lang for this targetptr -->
+            <xsl:variable name="element" >
+              <xsl:for-each select="$target.database" >
+                <xsl:value-of select="key('targetptr-key', concat($seek.targetdoc, '/', $seek.targetptr))/@element" />
+              </xsl:for-each>
+            </xsl:variable>
+
+            <xsl:variable name="lang">
+              <xsl:variable name="candidate">
+                <xsl:for-each select="$target.database" >
+                  <xsl:value-of select="key('targetptr-key', concat($seek.targetdoc, '/', $seek.targetptr))/@lang" />
+                </xsl:for-each>
+              </xsl:variable>
+              <xsl:choose>
+                <xsl:when test="$candidate != ''">
+                  <xsl:value-of select="$candidate"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="'en'"/>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:variable> 
+            <xsl:variable name="template">
+              <xsl:call-template name="gentext.template">
+                <xsl:with-param name="context" select="'title'"/>
+                <xsl:with-param name="name" select="$element"/>
+                <xsl:with-param name="lang" select="$lang"/>
+              </xsl:call-template>
+            </xsl:variable>
+            <xsl:call-template name="substitute-markup">
+              <xsl:with-param name="template" select="$template"/>
+              <xsl:with-param name="title">
+                <xsl:for-each select="$target.database" >
+                  <xsl:value-of select="key('targetptr-key', concat($seek.targetdoc, '/', $seek.targetptr))/ttl" />
+                </xsl:for-each>
+              </xsl:with-param>
+              <xsl:with-param name="label">
+                <xsl:for-each select="$target.database" >
+                  <xsl:value-of select="key('targetptr-key', concat($seek.targetdoc, '/', $seek.targetptr))/@number" />
+                </xsl:for-each>
+              </xsl:with-param>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="$xref.text !=''">
+            <xsl:value-of select="$xref.text"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:message>Olink error: no generated text for targetdoc/targetptr = <xsl:value-of select="@targetdoc"/>/<xsl:value-of select="@targetptr"/></xsl:message>
+            <xsl:text>????</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="olink.outline">
+          <xsl:with-param name="outline.base.uri"
+                          select="unparsed-entity-uri(@targetdocent)"/>
+          <xsl:with-param name="localinfo" select="@localinfo"/>
+          <xsl:with-param name="return" select="'xreftext'"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+</xsl:template>
+
+<xsl:template name="targetpath">
+  <xsl:param name="dirnode" />
+  <xsl:param name="targetdoc" select="''"/>
+
+<!-- 
+<xsl:message>dirnode is <xsl:value-of select="$dirnode/@name"/></xsl:message>
+<xsl:message>targetdoc is <xsl:value-of select="$targetdoc"/></xsl:message>
+-->
+  <!-- recursive template generates path to olink target directory -->
+  <xsl:choose>
+    <!-- Have we arrived at the final path step? -->
+    <xsl:when test="$dirnode/child::document[@targetdoc = $targetdoc]">
+      <!-- We are done -->
+    </xsl:when>
+    <!-- Have we reached the top without a match? -->
+    <xsl:when test="name($dirnode) != 'dir'" >
+        <xsl:message>Olink error: cannot locate targetdoc <xsl:value-of select="$targetdoc"/> in sitemap</xsl:message>
+    </xsl:when>
+    <!-- Is the target in a descendant? -->
+    <xsl:when test="$dirnode/descendant::document/@targetdoc = $targetdoc">
+      <xsl:variable name="step" select="$dirnode/child::dir[descendant::document/@targetdoc = $targetdoc]"/>
+      <xsl:if test = "$step">
+        <xsl:value-of select="$step/@name"/>
+        <xsl:text>/</xsl:text>
+      </xsl:if>
+      <!-- Now recurse with the child -->
+      <xsl:call-template name="targetpath" >
+        <xsl:with-param name="dirnode" select="$step"/>
+        <xsl:with-param name="targetdoc" select="$targetdoc"/>
+      </xsl:call-template>
+    </xsl:when>
+    <!-- Otherwise we need to move up a step -->
+    <xsl:otherwise>
+      <xsl:if test="$dirnode/parent::dir">
+        <xsl:text>../</xsl:text>
+      </xsl:if>
+      <xsl:call-template name="targetpath" >
+        <xsl:with-param name="dirnode" select="$dirnode/parent::*"/>
+        <xsl:with-param name="targetdoc" select="$targetdoc"/>
+      </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
