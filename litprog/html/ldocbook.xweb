@@ -212,7 +212,12 @@ if possible. A table is used to make the listings stand out.</para>
             <xsl:text>: </xsl:text>
             <xsl:for-each select="$referents">
               <xsl:if test="position() &gt; 1">, </xsl:if>
-              <a href="#{@id}">
+              <a>
+                <xsl:attribute name="href">
+                  <xsl:call-template name="href.target">
+                    <xsl:with-param name="object" select="."/>
+                  </xsl:call-template>
+                </xsl:attribute>
                 <xsl:apply-templates select="." mode="label.markup"/>
               </a>
             </xsl:for-each>
