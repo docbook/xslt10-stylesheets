@@ -108,7 +108,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="sidebar">
-  <fo:block>
+  <fo:block xsl:use-attribute-sets="sidebar.properties">
     <xsl:if test="./title">
       <fo:block font-weight="bold"
                 keep-with-next.within-column="always"

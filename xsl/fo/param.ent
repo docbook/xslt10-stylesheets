@@ -158,3 +158,4 @@
 <!ENTITY verbatim.properties SYSTEM "../params/verbatim.properties.xml">
 <!ENTITY xep.extensions SYSTEM "../params/xep.extensions.xml">
 <!ENTITY xref.properties SYSTEM "../params/xref.properties.xml">
+<!ENTITY sidebar.properties SYSTEM "../params/sidebar.properties.xml">
