@@ -22,6 +22,19 @@
 
   <fo:block id="{$id}">
     <xsl:call-template name="section.titlepage"/>
+
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:if test="(contains($toc.params, 'toc')
+                   and (count(ancestor::section)+1) &lt;= $generate.section.toc.level)
+                  or refentry">
+      <xsl:call-template name="section.toc"/>
+    </xsl:if>
+
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
@@ -58,6 +71,19 @@
 
     <fo:flow flow-name="xsl-region-body">
       <xsl:call-template name="section.titlepage"/>
+
+      <xsl:variable name="toc.params">
+        <xsl:call-template name="find.path.params">
+          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:if test="(contains($toc.params, 'toc')
+                     and (count(ancestor::section)+1) &lt;= $generate.section.toc.level)
+                    or refentry">
+        <xsl:call-template name="section.toc"/>
+      </xsl:if>
+
       <xsl:apply-templates/>
    </fo:flow>
   </fo:page-sequence>
@@ -114,6 +140,19 @@
 
   <fo:block id="{$id}">
     <xsl:call-template name="sect1.titlepage"/>
+
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:if test="(contains($toc.params, 'toc')
+                   and ($generate.section.toc.level &gt;= 1))
+                  or refentry">
+      <xsl:call-template name="section.toc"/>
+    </xsl:if>
+
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
@@ -150,6 +189,19 @@
 
     <fo:flow flow-name="xsl-region-body">
       <xsl:call-template name="sect1.titlepage"/>
+
+      <xsl:variable name="toc.params">
+        <xsl:call-template name="find.path.params">
+          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:if test="(contains($toc.params, 'toc')
+                     and ($generate.section.toc.level &gt;= 1))
+                    or refentry">
+        <xsl:call-template name="section.toc"/>
+      </xsl:if>
+
       <xsl:apply-templates/>
    </fo:flow>
   </fo:page-sequence>
@@ -162,6 +214,19 @@
 
   <fo:block id="{$id}">
     <xsl:call-template name="sect2.titlepage"/>
+
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:if test="(contains($toc.params, 'toc')
+                   and ($generate.section.toc.level &gt;= 2))
+                  or refentry">
+      <xsl:call-template name="section.toc"/>
+    </xsl:if>
+
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
@@ -173,6 +238,19 @@
 
   <fo:block id="{$id}">
     <xsl:call-template name="sect3.titlepage"/>
+
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:if test="(contains($toc.params, 'toc')
+                   and ($generate.section.toc.level &gt;= 3))
+                  or refentry">
+      <xsl:call-template name="section.toc"/>
+    </xsl:if>
+
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
@@ -184,6 +262,19 @@
 
   <fo:block id="{$id}">
     <xsl:call-template name="sect4.titlepage"/>
+
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:if test="(contains($toc.params, 'toc')
+                   and ($generate.section.toc.level &gt;= 4))
+                  or refentry">
+      <xsl:call-template name="section.toc"/>
+    </xsl:if>
+
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
@@ -195,6 +286,19 @@
 
   <fo:block id="{$id}">
     <xsl:call-template name="sect5.titlepage"/>
+
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:if test="(contains($toc.params, 'toc')
+                   and ($generate.section.toc.level &gt;= 5))
+                  or refentry">
+      <xsl:call-template name="section.toc"/>
+    </xsl:if>
+
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
