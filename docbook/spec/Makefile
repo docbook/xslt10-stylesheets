@@ -1,6 +1,7 @@
 include ../../cvstools/Makefile.incl
 
-SPECVER=
+SPECVER=4.2-CR1
+
 ifeq ($(SPECVER),)
 SPECSEP=
 else
@@ -11,9 +12,11 @@ HTMLSTYLE=/projects/oasis/stylesheets/tr.xsl
 HTML-CSS=spec.css
 
 OASIS-LOGO=http://www.oasis-open.org/docbook/oasis.png
-BIBLIO=file:///home/ndw/bibliography.xml
-XSLPARAM="html.stylesheet=$(HTML-CSS) oasis.logo=$(OASIS-LOGO) bibliography.collection=$(BIBLIO)"
+XSLPARAM="html.stylesheet=$(HTML-CSS) oasis.logo=$(OASIS-LOGO)"
 
 docbook.html: docbook.xml
 	$(XJPARSE) $<
 	$(XSLT) $< $(HTMLSTYLE) docbook$(SPECSEP)$(SPECVER).html $(XSLPARAM)
+
+clean:
+	$(RM) *.html
