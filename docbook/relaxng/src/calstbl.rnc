@@ -42,7 +42,7 @@ div {
 
    tgroup.role.attribute = attribute role { text }
 
-   tgroup.attr =
+   tgroup.attlist =
       tgroup.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -57,7 +57,7 @@ div {
 
    db.tgroup =
       element tgroup {
-         tgroup.attr,
+         tgroup.attlist,
          db.colspec*,
          db.spanspec*,
          cals.thead?,
@@ -78,7 +78,7 @@ div {
 
    colspec.role.attribute = attribute role { text }
 
-   colspec.attr =
+   colspec.attlist =
       colspec.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -94,7 +94,7 @@ div {
 
    db.colspec =
       element colspec {
-         colspec.attr,
+         colspec.attlist,
          empty
       }
 }
@@ -111,7 +111,7 @@ div {
 
    spanspec.role.attribute = attribute role { text }
 
-   spanspec.attr =
+   spanspec.attlist =
       spanspec.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -127,7 +127,7 @@ div {
 
    db.spanspec =
       element spanspec {
-         spanspec.attr,
+         spanspec.attlist,
          empty
       }
 }
@@ -144,7 +144,7 @@ div {
 
    cals.thead.role.attribute = attribute role { text }
 
-   cals.thead.attr =
+   cals.thead.attlist =
       cals.thead.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -153,7 +153,7 @@ div {
 
    cals.thead =
       element thead {
-         cals.thead.attr,
+         cals.thead.attlist,
          db.colspec*,
          db.row+
       }
@@ -171,7 +171,7 @@ div {
 
    cals.tfoot.role.attribute = attribute role { text }
 
-   cals.tfoot.attr =
+   cals.tfoot.attlist =
       cals.tfoot.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -180,7 +180,7 @@ div {
 
    cals.tfoot =
       element tfoot {
-         cals.tfoot.attr,
+         cals.tfoot.attlist,
          db.colspec*,
          db.row+
       }
@@ -198,7 +198,7 @@ div {
 
    cals.tbody.role.attribute = attribute role { text }
 
-   cals.tbody.attr =
+   cals.tbody.attlist =
       cals.tbody.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -207,7 +207,7 @@ div {
 
    cals.tbody =
       element tbody {
-         cals.tbody.attr,
+         cals.tbody.attlist,
          db.row+
       }
 }
@@ -224,7 +224,7 @@ div {
 
    row.role.attribute = attribute role { text }
 
-   row.attr =
+   row.attlist =
       row.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -233,7 +233,7 @@ div {
     & local.row.attributes
 
    db.row = element row {
-      row.attr,
+      row.attlist,
       (db.entry | db.entrytbl)+
    }
 }
@@ -250,7 +250,7 @@ div {
 
    entry.role.attribute = attribute role { text }
 
-   entry.attr =
+   entry.attlist =
       entry.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -269,7 +269,7 @@ div {
     & local.entry.attributes
 
    db.entry = element entry {
-      entry.attr,
+      entry.attlist,
       (inlines* | blocks*)
    }
 }
@@ -286,7 +286,7 @@ div {
 
    entrytbl.role.attribute = attribute role { text }
 
-   entrytbl.attr =
+   entrytbl.attlist =
       entrytbl.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -305,7 +305,7 @@ div {
 
    db.entrytbl =
       element entrytbl {
-         entrytbl.attr,
+         entrytbl.attlist,
          db.colspec*,
          db.spanspec*,
          cals.thead?,
@@ -325,7 +325,7 @@ div {
 
    cals.table.role.attribute = attribute role { text }
 
-   cals.table.attr =
+   cals.table.attlist =
       cals.table.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -340,7 +340,7 @@ div {
    cals.table.info = docbook.info.titleonlyreq
 
    cals.table = element table {
-      cals.table.attr,
+      cals.table.attlist,
       cals.table.info,
       indexing.inlines*,
       db.textobject*,
@@ -360,7 +360,7 @@ div {
 
    cals.informaltable.role.attribute = attribute role { text }
 
-   cals.informaltable.attr =
+   cals.informaltable.attlist =
       cals.informaltable.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -376,7 +376,7 @@ div {
 
    cals.informaltable =
       element informaltable {
-         cals.informaltable.attr,
+         cals.informaltable.attlist,
          cals.informaltable.info,
          indexing.inlines*,
          db.textobject*,

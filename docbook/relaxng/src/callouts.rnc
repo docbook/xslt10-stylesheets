@@ -64,7 +64,7 @@ div {
 
    calloutlist.role.attribute = attribute role { text }
 
-   calloutlist.attr =
+   calloutlist.attlist =
       calloutlist.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -74,7 +74,7 @@ div {
 
    db.calloutlist =
       element calloutlist {
-         calloutlist.attr,
+         calloutlist.attlist,
          calloutlist.info,
          blocks*,
          db.callout+
@@ -93,7 +93,7 @@ div {
 
    callout.role.attribute = attribute role { text }
 
-   callout.attr =
+   callout.attlist =
       callout.role.attribute?
     & common.attributes
     & attribute arearefs { xsd:IDREFS }
@@ -101,7 +101,7 @@ div {
 
    db.callout =
       element callout {
-         callout.attr,
+         callout.attlist,
          blocks+
       }
 }
@@ -118,7 +118,7 @@ div {
 
    programlistingco.role.attribute = attribute role { text }
 
-   programlistingco.attr =
+   programlistingco.attlist =
       programlistingco.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -128,7 +128,7 @@ div {
 
    db.programlistingco =
       element programlistingco {
-         programlistingco.attr,
+         programlistingco.attlist,
          programlistingco.info,
          db.areaspec,
          db.programlisting,
@@ -148,7 +148,7 @@ div {
 
    areaspec.role.attribute = attribute role { text }
 
-   areaspec.attr =
+   areaspec.attlist =
       areaspec.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -157,7 +157,7 @@ div {
 
    db.areaspec =
       element areaspec {
-         areaspec.attr,
+         areaspec.attlist,
          (db.area | db.areaset)+
       }
 }
@@ -174,7 +174,7 @@ div {
 
    area.role.attribute = attribute role { text }
 
-   area.attr =
+   area.attlist =
       area.role.attribute?
     & common.attributes.idreq
     & area.units.attrib
@@ -185,7 +185,7 @@ div {
 
    db.area =
       element area {
-         area.attr,
+         area.attlist,
          empty
       }
 }
@@ -202,7 +202,7 @@ div {
 
    areaset.role.attribute = attribute role { text }
 
-   areaset.attr =
+   areaset.attlist =
       areaset.role.attribute?
     & common.attributes.idreq
     & area.units.attrib
@@ -211,7 +211,7 @@ div {
 
    db.areaset =
       element areaset {
-         areaset.attr,
+         areaset.attlist,
          db.area+
       }
 }
@@ -228,7 +228,7 @@ div {
 
    screenco.role.attribute = attribute role { text }
 
-   screenco.attr =
+   screenco.attlist =
       screenco.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -238,7 +238,7 @@ div {
 
    db.screenco =
       element screenco {
-         screenco.attr,
+         screenco.attlist,
          screenco.info,
          db.areaspec,
          db.screen,
@@ -258,7 +258,7 @@ div {
 
    mediaobjectco.role.attribute = attribute role { text }
 
-   mediaobjectco.attr =
+   mediaobjectco.attlist =
       mediaobjectco.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -268,7 +268,7 @@ div {
 
    db.mediaobjectco =
       element mediaobjectco {
-         mediaobjectco.attr,
+         mediaobjectco.attlist,
          mediaobjectco.info,
          db.imageobjectco,
          (db.imageobjectco | db.textobject)*
@@ -287,7 +287,7 @@ div {
 
    imageobjectco.role.attribute = attribute role { text }
 
-   imageobjectco.attr =
+   imageobjectco.attlist =
       imageobjectco.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -297,7 +297,7 @@ div {
 
    db.imageobjectco =
       element imageobjectco {
-         imageobjectco.attr,
+         imageobjectco.attlist,
          imageobjectco.info?,
          db.areaspec,
          db.imageobject,
@@ -317,7 +317,7 @@ div {
 
    co.role.attribute = attribute role { text }
 
-   co.attr =
+   co.attlist =
       co.role.attribute?
     & common.attributes.idreq
     & attribute linkends { xsd:IDREFS }?
@@ -326,7 +326,7 @@ div {
 
    db.co =
       element co {
-         co.attr,
+         co.attlist,
          empty
       }
 }
@@ -343,7 +343,7 @@ div {
 
    coref.role.attribute = attribute role { text }
 
-   coref.attr =
+   coref.attlist =
       coref.role.attribute?
     & common.attributes
     & attribute linkend { xsd:IDREF }
@@ -352,7 +352,7 @@ div {
 
    db.coref =
       element coref {
-         coref.attr,
+         coref.attlist,
          empty
       }
 }

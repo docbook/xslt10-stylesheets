@@ -32,7 +32,7 @@ div {
 
    task.role.attribute = attribute role { text }
 
-   task.attr =
+   task.attlist =
       task.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -40,7 +40,7 @@ div {
 
    db.task =
       element task {
-         task.attr,
+         task.attlist,
          task.info,
          db.tasksummary?,
          db.taskprerequisites?,
@@ -62,7 +62,7 @@ div {
 
    tasksummary.role.attribute = attribute role { text }
 
-   tasksummary.attr =
+   tasksummary.attlist =
       tasksummary.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -72,7 +72,7 @@ div {
 
    db.tasksummary =
       element tasksummary {
-         tasksummary.attr,
+         tasksummary.attlist,
          tasksummary.info,
          blocks+
       }
@@ -90,7 +90,7 @@ div {
 
    taskprerequisites.role.attribute = attribute role { text }
 
-   taskprerequisites.attr =
+   taskprerequisites.attlist =
       taskprerequisites.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -100,7 +100,7 @@ div {
 
    db.taskprerequisites =
       element taskprerequisites {
-         taskprerequisites.attr,
+         taskprerequisites.attlist,
          taskprerequisites.info,
          blocks+
       }
@@ -118,7 +118,7 @@ div {
 
    taskrelated.role.attribute = attribute role { text }
 
-   taskrelated.attr =
+   taskrelated.attlist =
       taskrelated.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -128,7 +128,7 @@ div {
 
    db.taskrelated =
       element taskrelated {
-         taskrelated.attr,
+         taskrelated.attlist,
          taskrelated.info,
          blocks+
       }

@@ -31,7 +31,7 @@ div {
 
    productionset.role.attribute = attribute role { text }
 
-   productionset.attr =
+   productionset.attlist =
       productionset.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -41,7 +41,7 @@ div {
 
    db.productionset =
       element productionset {
-         productionset.attr,
+         productionset.attlist,
          productionset.info,
          (db.production|db.productionrecap)+
       }
@@ -59,7 +59,7 @@ div {
 
    production.role.attribute = attribute role { text }
 
-   production.attr =
+   production.attlist =
       production.role.attribute?
     & common.attributes.idreq
     & common.linking.attributes
@@ -67,7 +67,7 @@ div {
 
    db.production =
       element production {
-         production.attr,
+         production.attlist,
          db.lhs,
          db.rhs,
          db.constraint*
@@ -86,7 +86,7 @@ div {
 
    lhs.role.attribute = attribute role { text }
 
-   lhs.attr =
+   lhs.attlist =
       lhs.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -94,7 +94,7 @@ div {
 
    db.lhs =
       element lhs {
-         lhs.attr,
+         lhs.attlist,
          text
       }
 }
@@ -111,7 +111,7 @@ div {
 
    rhs.role.attribute = attribute role { text }
 
-   rhs.attr =
+   rhs.attlist =
       rhs.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -119,7 +119,7 @@ div {
 
    db.rhs =
       element rhs {
-         rhs.attr,
+         rhs.attlist,
          (text|db.nonterminal|db.lineannotation|db.sbr)*
       }
 }
@@ -136,7 +136,7 @@ div {
 
    nonterminal.role.attribute = attribute role { text }
 
-   nonterminal.attr =
+   nonterminal.attlist =
       nonterminal.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -145,7 +145,7 @@ div {
 
    db.nonterminal =
       element nonterminal {
-         nonterminal.attr,
+         nonterminal.attlist,
          text
       }
 }
@@ -162,7 +162,7 @@ div {
 
    constraint.role.attribute = attribute role { text }
 
-   constraint.attr =
+   constraint.attlist =
       constraint.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -170,7 +170,7 @@ div {
 
    db.constraint =
       element constraint {
-         constraint.attr,
+         constraint.attlist,
          empty
       }
 }
@@ -187,7 +187,7 @@ div {
 
    productionrecap.role.attribute = attribute role { text }
 
-   productionrecap.attr =
+   productionrecap.attlist =
       productionrecap.role.attribute?
     & common.attributes
     & common.linking.attributes.req
@@ -195,7 +195,7 @@ div {
 
    db.productionrecap =
       element productionrecap {
-         productionrecap.attr,
+         productionrecap.attlist,
          empty
       }
 }
@@ -212,7 +212,7 @@ div {
 
    constraintdef.role.attribute = attribute role { text }
 
-   constraintdef.attr =
+   constraintdef.attlist =
       constraintdef.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -222,7 +222,7 @@ div {
 
    db.constraintdef =
       element constraintdef {
-         constraintdef.attr,
+         constraintdef.attlist,
          constraintdef.info,
          blocks+
       }

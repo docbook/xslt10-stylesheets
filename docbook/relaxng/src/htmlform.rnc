@@ -33,7 +33,7 @@ div {
 
    local.html.form.attributes = empty
 
-   html.form.attr =
+   html.form.attlist =
       html.attrs
     & attribute action { text }
     & attribute method { "GET" | "POST" }?
@@ -43,7 +43,7 @@ div {
 
    html.form =
       element html:form {
-         html.form.attr,
+         html.form.attlist,
          ( blocks
           | html.input
           | html.button
@@ -63,7 +63,7 @@ div {
 
    local.html.input.attributes = empty
 
-   html.input.attr =
+   html.input.attlist =
       html.attrs
     & attribute type {
        "text"
@@ -96,7 +96,7 @@ div {
 
    html.input =
       element html:input {
-         html.input.attr,
+         html.input.attlist,
          empty
       }
 }
@@ -111,7 +111,7 @@ div {
 
    local.html.button.attributes = empty
 
-   html.button.attr =
+   html.button.attlist =
       html.attrs
     & attribute name { text }?
     & attribute value { text }?
@@ -125,7 +125,7 @@ div {
 
    html.button =
       element html:button {
-         html.button.attr,
+         html.button.attlist,
          inlines*
       }
 }
@@ -140,7 +140,7 @@ div {
 
    local.html.label.attributes = empty
 
-   html.label.attr =
+   html.label.attlist =
       html.attrs
     & attribute accesskey { text }?
     & attribute onfocus { text }?
@@ -149,7 +149,7 @@ div {
 
    html.label =
       element html:label {
-         html.label.attr,
+         html.label.attlist,
          inlines*
       }
 }
@@ -164,7 +164,7 @@ div {
 
    local.html.select.attributes = empty
 
-   html.select.attr =
+   html.select.attlist =
       html.attrs
     & attribute name { text }?
     & attribute size { text }?
@@ -178,7 +178,7 @@ div {
 
    html.select =
       element html:select {
-         html.select.attr,
+         html.select.attlist,
          html.option+
       }
 }
@@ -193,7 +193,7 @@ div {
 
    local.html.option.attributes = empty
 
-   html.option.attr =
+   html.option.attlist =
       html.attrs
     & attribute selected { "selected" }?
     & attribute disabled { "disabled" }?
@@ -202,7 +202,7 @@ div {
 
    html.option =
       element html:option {
-         html.option.attr,
+         html.option.attlist,
          text
       }
 }
@@ -217,7 +217,7 @@ div {
 
    local.html.textarea.attributes = empty
 
-   html.textarea.attr =
+   html.textarea.attlist =
       html.attrs
     & attribute name { text }?
     & attribute rows { text }
@@ -234,7 +234,7 @@ div {
 
    html.textarea =
       element html:textarea {
-         html.textarea.attr,
+         html.textarea.attlist,
          text
       }
 }

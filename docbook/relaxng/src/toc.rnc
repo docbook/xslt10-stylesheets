@@ -30,7 +30,7 @@ div {
 
    toc.role.attribute = attribute role { text }
 
-   toc.attr =
+   toc.attlist =
       toc.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -40,7 +40,7 @@ div {
 
    db.toc =
       element toc {
-         toc.attr,
+         toc.attlist,
          toc.info,
          blocks*,
          (db.tocdiv | db.tocentry)*
@@ -59,7 +59,7 @@ div {
 
    tocdiv.role.attribute = attribute role { text }
 
-   tocdiv.attr =
+   tocdiv.attlist =
       tocdiv.role.attribute?
     & common.attributes
     & attribute pagenum { text }?
@@ -70,7 +70,7 @@ div {
 
    db.tocdiv =
       element tocdiv {
-         tocdiv.attr,
+         tocdiv.attlist,
          tocdiv.info,
          blocks*,
          (db.tocdiv | db.tocentry)+
@@ -89,7 +89,7 @@ div {
 
    tocentry.role.attribute = attribute role { text }
 
-   tocentry.attr =
+   tocentry.attlist =
       tocentry.role.attribute?
     & common.attributes
     & attribute pagenum { text }?
@@ -98,7 +98,7 @@ div {
 
    db.tocentry =
       element tocentry {
-         tocentry.attr,
+         tocentry.attlist,
          inlines*
       }
 }

@@ -418,7 +418,7 @@ div {
 
    title.role.attribute = attribute role { text }
 
-   title.attr =
+   title.attlist =
       title.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -426,7 +426,7 @@ div {
 
    db.title =
       element title {
-         title.attr,
+         title.attlist,
          inlines*
       }
 }
@@ -443,7 +443,7 @@ div {
 
    titleabbrev.role.attribute = attribute role { text }
 
-   titleabbrev.attr =
+   titleabbrev.attlist =
       titleabbrev.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -451,7 +451,7 @@ div {
 
    db.titleabbrev =
       element titleabbrev {
-         titleabbrev.attr,
+         titleabbrev.attlist,
          inlines*
       }
 }
@@ -468,7 +468,7 @@ div {
 
    subtitle.role.attribute = attribute role { text }
 
-   subtitle.attr =
+   subtitle.attlist =
       subtitle.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -476,7 +476,7 @@ div {
 
    db.subtitle =
       element subtitle {
-         subtitle.attr,
+         subtitle.attlist,
          inlines*
       }
 }
@@ -612,14 +612,14 @@ div {
 
    info.role.attribute = attribute role { text }
 
-   info.attr =
+   info.attlist =
       info.role.attribute?
     & common.attributes
     & local.info.attributes
 
    db.info =
       element info {
-         info.attr,
+         info.attlist,
          docbook.title,
          info.elements*
       }
@@ -637,14 +637,14 @@ div {
 
    info.titlereq.role.attribute = attribute role { text }
 
-   info.titlereq.attr =
+   info.titlereq.attlist =
       info.titlereq.role.attribute?
     & common.attributes
     & local.info.titlereq.attributes
 
    db.info.titlereq =
       element info {
-         info.titlereq.attr,
+         info.titlereq.attlist,
          docbook.titlereq,
          info.elements*
       }
@@ -662,14 +662,14 @@ div {
 
    info.titleonly.role.attribute = attribute role { text }
 
-   info.titleonly.attr =
+   info.titleonly.attlist =
       info.titleonly.role.attribute?
     & common.attributes
     & local.info.titleonly.attributes
 
    db.info.titleonly =
       element info {
-         info.titleonly.attr,
+         info.titleonly.attlist,
          docbook.titleonly,
          info.elements*
       }
@@ -687,14 +687,14 @@ div {
 
    info.titleonlyreq.role.attribute = attribute role { text }
 
-   info.titleonlyreq.attr =
+   info.titleonlyreq.attlist =
       info.titleonlyreq.role.attribute?
     & common.attributes
     & local.info.titleonlyreq.attributes
 
    db.info.titleonlyreq =
       element info {
-         info.titleonlyreq.attr,
+         info.titleonlyreq.attlist,
          docbook.titleonlyreq,
          info.elements*
       }
@@ -712,14 +712,14 @@ div {
 
    info.titleforbidden.role.attribute = attribute role { text }
 
-   info.titleforbidden.attr =
+   info.titleforbidden.attlist =
       info.titleforbidden.role.attribute?
     & common.attributes
     & local.info.titleforbidden.attributes
 
    db.info.titleforbidden =
       element info {
-         info.titleforbidden.attr,
+         info.titleforbidden.attlist,
          info.elements*
       }
 }
@@ -736,7 +736,7 @@ div {
 
    subjectset.role.attribute = attribute role { text }
 
-   subjectset.attr =
+   subjectset.attlist =
       subjectset.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -745,7 +745,7 @@ div {
 
    db.subjectset =
       element subjectset {
-         subjectset.attr,
+         subjectset.attlist,
          db.subject+
       }
 }
@@ -762,7 +762,7 @@ div {
 
    subject.role.attribute = attribute role { text }
 
-   subject.attr =
+   subject.attlist =
       subject.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -771,7 +771,7 @@ div {
 
    db.subject =
       element subject {
-         subject.attr,
+         subject.attlist,
          db.subjectterm+
       }
 }
@@ -788,7 +788,7 @@ div {
 
    subjectterm.role.attribute = attribute role { text }
 
-   subjectterm.attr =
+   subjectterm.attlist =
       subjectterm.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -796,7 +796,7 @@ div {
 
    db.subjectterm =
       element subjectterm {
-         subjectterm.attr,
+         subjectterm.attlist,
          text
       }
 }
@@ -813,14 +813,14 @@ div {
 
    keywordset.role.attribute = attribute role { text }
 
-   keywordset.attr =
+   keywordset.attlist =
       keywordset.role.attribute?
     & common.attributes
     & common.linking.attributes
     & local.keywordset.attributes
 
    db.keywordset = element keywordset {
-      keywordset.attr,
+      keywordset.attlist,
       db.keyword+
    }
 }
@@ -837,14 +837,14 @@ div {
 
    keyword.role.attribute = attribute role { text }
 
-   keyword.attr =
+   keyword.attlist =
       keyword.role.attribute?
     & common.attributes
     & common.linking.attributes
     & local.keyword.attributes
 
    db.keyword = element keyword {
-      keyword.attr,
+      keyword.attlist,
       text
    }
 }
@@ -869,7 +869,7 @@ div {
 
    procedure.role.attribute = attribute role { text }
 
-   procedure.attr =
+   procedure.attlist =
       procedure.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -879,7 +879,7 @@ div {
 
    db.procedure =
       element procedure {
-         procedure.attr,
+         procedure.attlist,
          procedure.info,
          blocks*,
          db.step+
@@ -902,7 +902,7 @@ div {
 
    step.role.attribute = attribute role { text }
 
-   step.attr =
+   step.attlist =
       step.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -912,7 +912,7 @@ div {
    step.info = docbook.info.titleonly
 
    db.step = element step {
-      step.attr,
+      step.attlist,
       step.info,
       blocks*,
       (db.substeps|db.stepalternatives)?,
@@ -932,7 +932,7 @@ div {
 
    stepalternatives.role.attribute = attribute role { text }
 
-   stepalternatives.attr =
+   stepalternatives.attlist =
       stepalternatives.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -943,7 +943,7 @@ div {
 
    db.stepalternatives =
       element stepalternatives {
-         stepalternatives.attr,
+         stepalternatives.attlist,
          stepalternatives.info,
          db.step+
       }
@@ -961,7 +961,7 @@ div {
 
    substeps.role.attribute = attribute role { text }
 
-   substeps.attr =
+   substeps.attlist =
       substeps.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -970,7 +970,7 @@ div {
 
    db.substeps =
       element substeps {
-         substeps.attr,
+         substeps.attlist,
          db.step+
       }
 }
@@ -989,7 +989,7 @@ div {
 
    sidebar.role.attribute = attribute role { text }
 
-   sidebar.attr =
+   sidebar.attlist =
       sidebar.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -999,7 +999,7 @@ div {
 
    db.sidebar =
       element sidebar {
-         sidebar.attr,
+         sidebar.attlist,
          sidebar.info,
          blocks+
       }
@@ -1017,7 +1017,7 @@ div {
 
    abstract.role.attribute = attribute role { text }
 
-   abstract.attr =
+   abstract.attlist =
       abstract.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1026,7 +1026,7 @@ div {
    abstract.info = docbook.info.titleonly
 
    db.abstract = element abstract {
-      abstract.attr,
+      abstract.attlist,
       abstract.info,
       para.blocks+
    }
@@ -1044,7 +1044,7 @@ div {
 
    personblurb.role.attribute = attribute role { text }
 
-   personblurb.attr =
+   personblurb.attlist =
       personblurb.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1054,7 +1054,7 @@ div {
 
    db.personblurb =
       element personblurb {
-         personblurb.attr,
+         personblurb.attlist,
          personblurb.info,
          para.blocks+
       }
@@ -1072,7 +1072,7 @@ div {
 
    blockquote.role.attribute = attribute role { text }
 
-   blockquote.attr =
+   blockquote.attlist =
       blockquote.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1082,7 +1082,7 @@ div {
 
    db.blockquote =
       element blockquote {
-         blockquote.attr,
+         blockquote.attlist,
          blockquote.info,
          db.attribution?,
          blocks+
@@ -1101,7 +1101,7 @@ div {
 
    attribution.role.attribute = attribute role { text }
 
-   attribution.attr =
+   attribution.attlist =
       attribution.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1109,7 +1109,7 @@ div {
 
    db.attribution =
       element attribution {
-         attribution.attr,
+         attribution.attlist,
          (docbook.text | db.personname)
       }
 }
@@ -1137,7 +1137,7 @@ div {
 
    bridgehead.role.attribute = attribute role { text }
 
-   bridgehead.attr =
+   bridgehead.attlist =
       bridgehead.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1146,7 +1146,7 @@ div {
 
    db.bridgehead =
       element bridgehead {
-         bridgehead.attr,
+         bridgehead.attlist,
          inlines*
       }
 }
@@ -1163,14 +1163,14 @@ div {
 
    remark.role.attribute = attribute role { text }
 
-   remark.attr =
+   remark.attlist =
       remark.role.attribute?
     & common.attributes
     & common.linking.attributes
     & local.remark.attributes
 
    db.remark = element remark {
-      remark.attr,
+      remark.attlist,
       docbook.text
    }
 }
@@ -1187,7 +1187,7 @@ div {
 
    epigraph.role.attribute = attribute role { text }
 
-   epigraph.attr =
+   epigraph.attlist =
       epigraph.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1197,7 +1197,7 @@ div {
 
    db.epigraph =
       element epigraph {
-         epigraph.attr,
+         epigraph.attlist,
          epigraph.info,
          db.attribution?,
          (para.blocks | db.literallayout)+
@@ -1218,7 +1218,7 @@ div {
 
    footnote.role.attribute = attribute role { text }
 
-   footnote.attr =
+   footnote.attlist =
       footnote.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1226,7 +1226,7 @@ div {
 
    db.footnote =
       element footnote {
-         footnote.attr,
+         footnote.attlist,
          blocks+
       }
 }
@@ -1243,7 +1243,7 @@ div {
 
    highlights.role.attribute = attribute role { text }
 
-   highlights.attr =
+   highlights.attlist =
       highlights.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1251,7 +1251,7 @@ div {
 
    db.highlights =
       element highlights {
-         highlights.attr,
+         highlights.attlist,
          (list.blocks | admonition.blocks | para.blocks | indexing.inlines)+
       }
 }
@@ -1276,7 +1276,7 @@ div {
 
    formalpara.role.attribute = attribute role { text }
 
-   formalpara.attr =
+   formalpara.attlist =
       formalpara.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1286,7 +1286,7 @@ div {
 
    db.formalpara =
       element formalpara {
-         formalpara.attr,
+         formalpara.attlist,
          formalpara.info,
          indexing.inlines*,
          db.para
@@ -1305,7 +1305,7 @@ div {
 
    para.role.attribute = attribute role { text }
 
-   para.attr =
+   para.attlist =
       para.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1315,7 +1315,7 @@ div {
 
    db.para =
       element para {
-         para.attr,
+         para.attlist,
          para.info,
          (inlines | blocks.nopara)*
       }
@@ -1333,7 +1333,7 @@ div {
 
    simpara.role.attribute = attribute role { text }
 
-   simpara.attr =
+   simpara.attlist =
       simpara.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1343,7 +1343,7 @@ div {
 
    db.simpara =
       element simpara {
-         simpara.attr,
+         simpara.attlist,
          simpara.info,
          inlines*
       }
@@ -1367,7 +1367,7 @@ div {
 
    caution.role.attribute = attribute role { text }
 
-   caution.attr =
+   caution.attlist =
       caution.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1375,7 +1375,7 @@ div {
 
    db.caution =
       element caution {
-         caution.attr,
+         caution.attlist,
          admonition.contentmodel
       }
 }
@@ -1392,7 +1392,7 @@ div {
 
    important.role.attribute = attribute role { text }
 
-   important.attr =
+   important.attlist =
       important.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1400,7 +1400,7 @@ div {
 
    db.important =
       element important {
-         important.attr,
+         important.attlist,
          admonition.contentmodel
       }
 }
@@ -1417,7 +1417,7 @@ div {
 
    note.role.attribute = attribute role { text }
 
-   note.attr =
+   note.attlist =
       note.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1425,7 +1425,7 @@ div {
 
    db.note =
       element note {
-         note.attr,
+         note.attlist,
          admonition.contentmodel
       }
 }
@@ -1442,7 +1442,7 @@ div {
 
    tip.role.attribute = attribute role { text }
 
-   tip.attr =
+   tip.attlist =
       tip.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1450,7 +1450,7 @@ div {
 
    db.tip =
       element tip {
-         tip.attr,
+         tip.attlist,
          admonition.contentmodel
       }
 }
@@ -1467,7 +1467,7 @@ div {
 
    warning.role.attribute = attribute role { text }
 
-   warning.attr =
+   warning.attlist =
       warning.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1475,7 +1475,7 @@ div {
 
    db.warning =
       element warning {
-         warning.attr,
+         warning.attlist,
          admonition.contentmodel
       }
 }
@@ -1496,7 +1496,7 @@ div {
 
    itemizedlist.role.attribute = attribute role { text }
 
-   itemizedlist.attr =
+   itemizedlist.attlist =
       itemizedlist.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1508,7 +1508,7 @@ div {
 
    db.itemizedlist =
       element itemizedlist {
-         itemizedlist.attr,
+         itemizedlist.attlist,
          itemizedlist.info,
          blocks*,
          db.listitem+
@@ -1527,7 +1527,7 @@ div {
 
    orderedlist.role.attribute = attribute role { text }
 
-   orderedlist.attr =
+   orderedlist.attlist =
       orderedlist.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1540,7 +1540,7 @@ div {
    orderedlist.info = docbook.info.titleonly
 
    db.orderedlist = element orderedlist {
-      orderedlist.attr,
+      orderedlist.attlist,
       orderedlist.info,
       blocks*,
       db.listitem+
@@ -1559,7 +1559,7 @@ div {
 
    listitem.role.attribute = attribute role { text }
 
-   listitem.attr =
+   listitem.attlist =
       listitem.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1567,7 +1567,7 @@ div {
     & local.listitem.attributes
 
    db.listitem = element listitem {
-      listitem.attr,
+      listitem.attlist,
       blocks+
    }
 }
@@ -1584,7 +1584,7 @@ div {
 
    segmentedlist.role.attribute = attribute role { text }
 
-   segmentedlist.attr =
+   segmentedlist.attlist =
       segmentedlist.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1594,7 +1594,7 @@ div {
 
    db.segmentedlist =
       element segmentedlist {
-         segmentedlist.attr,
+         segmentedlist.attlist,
          segmentedlist.info,
          db.segtitle+,
          db.seglistitem+
@@ -1613,7 +1613,7 @@ div {
 
    segtitle.role.attribute = attribute role { text }
 
-   segtitle.attr =
+   segtitle.attlist =
       segtitle.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1621,7 +1621,7 @@ div {
 
    db.segtitle =
       element segtitle {
-         segtitle.attr,
+         segtitle.attlist,
          inlines*
       }
 }
@@ -1638,7 +1638,7 @@ div {
 
    seglistitem.role.attribute = attribute role { text }
 
-   seglistitem.attr =
+   seglistitem.attlist =
       seglistitem.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1656,7 +1656,7 @@ div {
          ]
       ]
       element seglistitem {
-         seglistitem.attr,
+         seglistitem.attlist,
          db.seg+
       }
 }
@@ -1673,14 +1673,14 @@ div {
 
    seg.role.attribute = attribute role { text }
 
-   seg.attr =
+   seg.attlist =
       seg.role.attribute?
     & common.attributes
     & common.linking.attributes
     & local.seg.attributes
 
    db.seg = element seg {
-      seg.attr,
+      seg.attlist,
       inlines*
    }
 }
@@ -1697,7 +1697,7 @@ div {
 
    simplelist.role.attribute = attribute role { text }
 
-   simplelist.attr =
+   simplelist.attlist =
       simplelist.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1707,7 +1707,7 @@ div {
 
    db.simplelist =
       element simplelist {
-         simplelist.attr,
+         simplelist.attlist,
          db.member+
       }
 }
@@ -1724,7 +1724,7 @@ div {
 
    member.role.attribute = attribute role { text }
 
-   member.attr =
+   member.attlist =
       member.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1732,7 +1732,7 @@ div {
 
    db.member =
       element member {
-         member.attr,
+         member.attlist,
          inlines*
       }
 }
@@ -1749,7 +1749,7 @@ div {
 
    variablelist.role.attribute = attribute role { text }
 
-   variablelist.attr =
+   variablelist.attlist =
       variablelist.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1760,7 +1760,7 @@ div {
 
    db.variablelist =
       element variablelist {
-         variablelist.attr,
+         variablelist.attlist,
          variablelist.info,
          blocks*,
          db.varlistentry+
@@ -1779,7 +1779,7 @@ div {
 
    varlistentry.role.attribute = attribute role { text }
 
-   varlistentry.attr =
+   varlistentry.attlist =
       varlistentry.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1787,7 +1787,7 @@ div {
 
    db.varlistentry =
       element varlistentry {
-         varlistentry.attr,
+         varlistentry.attlist,
          db.term+,
          db.listitem
       }
@@ -1805,7 +1805,7 @@ div {
 
    term.role.attribute = attribute role { text }
 
-   term.attr =
+   term.attlist =
       term.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1813,7 +1813,7 @@ div {
 
    db.term =
       element term {
-         term.attr,
+         term.attlist,
          inlines*
       }
 }
@@ -1834,7 +1834,7 @@ div {
 
    example.role.attribute = attribute role { text }
 
-   example.attr =
+   example.attlist =
       example.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1847,7 +1847,7 @@ div {
 
    db.example =
       element example {
-         example.attr,
+         example.attlist,
          example.info,
          blocks+
       }
@@ -1865,7 +1865,7 @@ div {
 
    informalexample.role.attribute = attribute role { text }
 
-   informalexample.attr =
+   informalexample.attlist =
       informalexample.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1877,7 +1877,7 @@ div {
 
    db.informalexample =
       element informalexample {
-         informalexample.attr,
+         informalexample.attlist,
          informalexample.info,
          blocks+
       }
@@ -1901,7 +1901,7 @@ div {
 
    programlisting.role.attribute = attribute role { text }
 
-   programlisting.attr =
+   programlisting.attlist =
       programlisting.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1911,7 +1911,7 @@ div {
 
    db.programlisting =
       element programlisting {
-         programlisting.attr,
+         programlisting.attlist,
          verbatim.contentmodel
       }
 }
@@ -1928,7 +1928,7 @@ div {
 
    literallayout.role.attribute = attribute role { text }
 
-   literallayout.attr =
+   literallayout.attlist =
       literallayout.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1938,7 +1938,7 @@ div {
 
    db.literallayout =
       element literallayout {
-         literallayout.attr,
+         literallayout.attlist,
          verbatim.contentmodel
       }
 }
@@ -1955,7 +1955,7 @@ div {
 
    screen.role.attribute = attribute role { text }
 
-   screen.attr =
+   screen.attlist =
       screen.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1965,7 +1965,7 @@ div {
 
    db.screen =
       element screen {
-         screen.attr,
+         screen.attlist,
          verbatim.contentmodel
       }
 }
@@ -1986,7 +1986,7 @@ div {
 
    screenshot.role.attribute = attribute role { text }
 
-   screenshot.attr =
+   screenshot.attlist =
       screenshot.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -1996,7 +1996,7 @@ div {
 
    db.screenshot =
       element screenshot {
-         screenshot.attr,
+         screenshot.attlist,
          screenshot.info,
          screenshot.block
       }
@@ -2014,7 +2014,7 @@ div {
 
    figure.role.attribute = attribute role { text }
 
-   figure.attr =
+   figure.attlist =
       figure.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2028,7 +2028,7 @@ div {
 
    db.figure =
       element figure {
-         figure.attr,
+         figure.attlist,
          figure.info,
          blocks+
       }
@@ -2046,7 +2046,7 @@ div {
 
    informalfigure.role.attribute = attribute role { text }
 
-   informalfigure.attr =
+   informalfigure.attlist =
       informalfigure.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2060,7 +2060,7 @@ div {
 
    db.informalfigure =
       element informalfigure {
-         informalfigure.attr,
+         informalfigure.attlist,
          informalfigure.info,
          blocks+
       }
@@ -2083,7 +2083,7 @@ div {
 
    mediaobject.role.attribute = attribute role { text }
 
-   mediaobject.attr =
+   mediaobject.attlist =
       mediaobject.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2093,7 +2093,7 @@ div {
 
    db.mediaobject =
       element mediaobject {
-         mediaobject.attr,
+         mediaobject.attlist,
          mediaobject.info,
          mediaobject.content+
       }
@@ -2116,7 +2116,7 @@ div {
 
    inlinemediaobject.role.attribute = attribute role { text }
 
-   inlinemediaobject.attr =
+   inlinemediaobject.attlist =
       inlinemediaobject.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2126,7 +2126,7 @@ div {
 
    db.inlinemediaobject =
       element inlinemediaobject {
-         inlinemediaobject.attr,
+         inlinemediaobject.attlist,
          inlinemediaobject.info,
          inlinemediaobject.content+
       }
@@ -2144,7 +2144,7 @@ div {
 
    videoobject.role.attribute = attribute role { text }
 
-   videoobject.attr =
+   videoobject.attlist =
       videoobject.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2154,7 +2154,7 @@ div {
 
    db.videoobject =
       element videoobject {
-         videoobject.attr,
+         videoobject.attlist,
          videoobject.info,
          db.videodata
       }
@@ -2172,7 +2172,7 @@ div {
 
    audioobject.role.attribute = attribute role { text }
 
-   audioobject.attr =
+   audioobject.attlist =
       audioobject.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2182,7 +2182,7 @@ div {
 
    db.audioobject =
       element audioobject {
-         audioobject.attr,
+         audioobject.attlist,
          audioobject.info,
          db.audiodata
       }
@@ -2204,7 +2204,7 @@ div {
 
    imageobject.role.attribute = attribute role { text }
 
-   imageobject.attr =
+   imageobject.attlist =
       imageobject.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2214,7 +2214,7 @@ div {
 
    db.imageobject =
       element imageobject {
-         imageobject.attr,
+         imageobject.attlist,
          imageobject.info,
          imageobject.content
       }
@@ -2232,7 +2232,7 @@ div {
 
    textobject.role.attribute = attribute role { text }
 
-   textobject.attr =
+   textobject.attlist =
       textobject.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2242,7 +2242,7 @@ div {
 
    db.textobject =
       element textobject {
-         textobject.attr,
+         textobject.attlist,
          textobject.info,
          (db.phrase | db.textdata | blocks+)
       }
@@ -2260,7 +2260,7 @@ div {
 
    videodata.role.attribute = attribute role { text }
 
-   videodata.attr =
+   videodata.attlist =
       videodata.role.attribute?
     & common.attributes
     & data.common.attrib
@@ -2277,7 +2277,7 @@ div {
    videodata.info = docbook.info.titleforbidden
 
    db.videodata = element videodata {
-      videodata.attr,
+      videodata.attlist,
       videodata.info
    }
 }
@@ -2294,7 +2294,7 @@ div {
 
    audiodata.role.attribute = attribute role { text }
 
-   audiodata.attr =
+   audiodata.attlist =
       audiodata.role.attribute?
     & common.attributes
     & data.common.attrib
@@ -2304,7 +2304,7 @@ div {
 
    db.audiodata =
       element audiodata {
-         audiodata.attr,
+         audiodata.attlist,
          audiodata.info
       }
 }
@@ -2321,7 +2321,7 @@ div {
 
    imagedata.role.attribute = attribute role { text }
 
-   imagedata.attr =
+   imagedata.attlist =
       imagedata.role.attribute?
     & common.attributes
     & data.common.attrib
@@ -2339,7 +2339,7 @@ div {
 
    db.imagedata =
       element imagedata {
-         imagedata.attr,
+         imagedata.attlist,
          imagedata.info
       }
 }
@@ -2356,7 +2356,7 @@ div {
 
    textdata.role.attribute = attribute role { text }
 
-   textdata.attr =
+   textdata.attlist =
       textdata.role.attribute?
     & common.attributes
     & data.common.attrib
@@ -2367,7 +2367,7 @@ div {
 
    db.textdata =
       element textdata {
-         textdata.attr,
+         textdata.attlist,
          textdata.info
       }
 }
@@ -2390,7 +2390,7 @@ div {
 
    equation.role.attribute = attribute role { text }
 
-   equation.attr =
+   equation.attlist =
       equation.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2400,7 +2400,7 @@ div {
 
    db.equation =
       element equation {
-         equation.attr,
+         equation.attlist,
          equation.info,
          equation.content+
       }
@@ -2418,7 +2418,7 @@ div {
 
    informalequation.role.attribute = attribute role { text }
 
-   informalequation.attr =
+   informalequation.attlist =
       informalequation.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2428,7 +2428,7 @@ div {
 
    db.informalequation =
       element informalequation {
-         informalequation.attr,
+         informalequation.attlist,
          informalequation.info,
          equation.content+
       }
@@ -2450,7 +2450,7 @@ div {
 
    inlineequation.role.attribute = attribute role { text }
 
-   inlineequation.attr =
+   inlineequation.attlist =
       inlineequation.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2458,7 +2458,7 @@ div {
 
    db.inlineequation =
       element inlineequation {
-         inlineequation.attr,
+         inlineequation.attlist,
          inlineequation.content+
       }
 }
@@ -2475,7 +2475,7 @@ div {
 
    synopsis.role.attribute = attribute role { text }
 
-   synopsis.attr =
+   synopsis.attlist =
       synopsis.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2485,7 +2485,7 @@ div {
 
    db.synopsis =
       element synopsis {
-         synopsis.attr,
+         synopsis.attlist,
          verbatim.contentmodel
       }
 }
@@ -2502,7 +2502,7 @@ div {
 
    cmdsynopsis.role.attribute = attribute role { text }
 
-   cmdsynopsis.attr =
+   cmdsynopsis.attlist =
       cmdsynopsis.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2515,7 +2515,7 @@ div {
 
    db.cmdsynopsis =
       element cmdsynopsis {
-         cmdsynopsis.attr,
+         cmdsynopsis.attlist,
          cmdsynopsis.info?,
          (db.command | db.arg | db.group | db.sbr)+,
          db.synopfragment*
@@ -2539,7 +2539,7 @@ div {
 
    arg.role.attribute = attribute role { text }
 
-   arg.attr =
+   arg.attlist =
       arg.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2549,7 +2549,7 @@ div {
 
    db.arg =
       element arg {
-         arg.attr,
+         arg.attlist,
          (docbook.text
           | db.arg
           | db.group
@@ -2571,7 +2571,7 @@ div {
 
    group.role.attribute = attribute role { text }
 
-   group.attr =
+   group.attlist =
       group.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2581,7 +2581,7 @@ div {
 
    db.group =
       element group {
-         group.attr,
+         group.attlist,
          (db.arg
           | db.group
           | db.option
@@ -2603,14 +2603,14 @@ div {
 
    sbr.role.attribute = attribute role { text }
 
-   sbr.attr =
+   sbr.attlist =
       sbr.role.attribute?
     & common.attributes
     & local.sbr.attributes
 
    db.sbr =
       element sbr {
-         sbr.attr,
+         sbr.attlist,
          empty
       }
 }
@@ -2627,7 +2627,7 @@ div {
 
    synopfragment.role.attribute = attribute role { text }
 
-   synopfragment.attr =
+   synopfragment.attlist =
       synopfragment.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2635,7 +2635,7 @@ div {
 
    db.synopfragment =
       element synopfragment {
-         synopfragment.attr,
+         synopfragment.attlist,
          (db.arg | db.group)+
       }
 }
@@ -2652,7 +2652,7 @@ div {
 
    synopfragmentref.role.attribute = attribute role { text }
 
-   synopfragmentref.attr =
+   synopfragmentref.attlist =
       synopfragmentref.role.attribute?
     & common.attributes
     & linkend.attribute
@@ -2669,7 +2669,7 @@ div {
          ]
       ]
       element synopfragmentref {
-         synopfragmentref.attr,
+         synopfragmentref.attlist,
          text
       }
 }
@@ -2686,7 +2686,7 @@ div {
 
    funcsynopsis.role.attribute = attribute role { text }
 
-   funcsynopsis.attr =
+   funcsynopsis.attlist =
       funcsynopsis.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2696,7 +2696,7 @@ div {
 
    db.funcsynopsis =
       element funcsynopsis {
-         funcsynopsis.attr,
+         funcsynopsis.attlist,
          funcsynopsis.info?,
          (db.funcsynopsisinfo | db.funcprototype)+
       }
@@ -2714,7 +2714,7 @@ div {
 
    funcsynopsisinfo.role.attribute = attribute role { text }
 
-   funcsynopsisinfo.attr =
+   funcsynopsisinfo.attlist =
       funcsynopsisinfo.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2723,7 +2723,7 @@ div {
 
    db.funcsynopsisinfo =
       element funcsynopsisinfo {
-         funcsynopsisinfo.attr,
+         funcsynopsisinfo.attlist,
          verbatim.contentmodel
       }
 }
@@ -2740,7 +2740,7 @@ div {
 
    funcprototype.role.attribute = attribute role { text }
 
-   funcprototype.attr =
+   funcprototype.attlist =
       funcprototype.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2748,7 +2748,7 @@ div {
 
    db.funcprototype =
       element funcprototype {
-         funcprototype.attr,
+         funcprototype.attlist,
          db.modifier*,
          db.funcdef,
          (db.void | db.varargs | (db.paramdef+, db.varargs?)),
@@ -2768,7 +2768,7 @@ div {
 
    funcdef.role.attribute = attribute role { text }
 
-   funcdef.attr =
+   funcdef.attlist =
       funcdef.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2776,7 +2776,7 @@ div {
 
    db.funcdef =
       element funcdef {
-         funcdef.attr,
+         funcdef.attlist,
          (docbook.text | db.type | db.function)*
       }
 }
@@ -2793,7 +2793,7 @@ div {
 
    void.role.attribute = attribute role { text }
 
-   void.attr =
+   void.attlist =
       void.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2801,7 +2801,7 @@ div {
 
    db.void =
       element void {
-         void.attr,
+         void.attlist,
          empty
       }
 }
@@ -2818,7 +2818,7 @@ div {
 
    varargs.role.attribute = attribute role { text }
 
-   varargs.attr =
+   varargs.attlist =
       varargs.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2826,7 +2826,7 @@ div {
 
    db.varargs =
       element varargs {
-         varargs.attr,
+         varargs.attlist,
          empty
       }
 }
@@ -2843,7 +2843,7 @@ div {
 
    paramdef.role.attribute = attribute role { text }
 
-   paramdef.attr =
+   paramdef.attlist =
       paramdef.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2852,7 +2852,7 @@ div {
 
    db.paramdef =
       element paramdef {
-         paramdef.attr,
+         paramdef.attlist,
          (docbook.text | db.type | db.parameter | db.funcparams)*
       }
 }
@@ -2869,7 +2869,7 @@ div {
 
    funcparams.role.attribute = attribute role { text }
 
-   funcparams.attr =
+   funcparams.attlist =
       funcparams.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2877,7 +2877,7 @@ div {
 
    db.funcparams =
       element funcparams {
-         funcparams.attr,
+         funcparams.attlist,
          inlines*
       }
 }
@@ -2901,7 +2901,7 @@ div {
 
    classsynopsis.role.attribute = attribute role { text }
 
-   classsynopsis.attr =
+   classsynopsis.attlist =
       classsynopsis.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2911,7 +2911,7 @@ div {
 
    db.classsynopsis =
       element classsynopsis {
-         classsynopsis.attr,
+         classsynopsis.attlist,
          oo.inlines+,
          (db.classsynopsisinfo
           | oo-method.synopsis.blocks
@@ -2931,7 +2931,7 @@ div {
 
    classsynopsisinfo.role.attribute = attribute role { text }
 
-   classsynopsisinfo.attr =
+   classsynopsisinfo.attlist =
       classsynopsisinfo.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2940,7 +2940,7 @@ div {
 
    db.classsynopsisinfo =
       element classsynopsisinfo {
-         classsynopsisinfo.attr,
+         classsynopsisinfo.attlist,
          verbatim.contentmodel
       }
 }
@@ -2957,7 +2957,7 @@ div {
 
    ooclass.role.attribute = attribute role { text }
 
-   ooclass.attr =
+   ooclass.attlist =
       ooclass.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2965,7 +2965,7 @@ div {
 
    db.ooclass =
       element ooclass {
-         ooclass.attr,
+         ooclass.attlist,
          db.modifier*,
          db.classname
       }
@@ -2983,7 +2983,7 @@ div {
 
    oointerface.role.attribute = attribute role { text }
 
-   oointerface.attr =
+   oointerface.attlist =
       oointerface.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -2991,7 +2991,7 @@ div {
 
    db.oointerface =
       element oointerface {
-         oointerface.attr,
+         oointerface.attlist,
          db.modifier*,
          db.interfacename
       }
@@ -3009,7 +3009,7 @@ div {
 
    ooexception.role.attribute = attribute role { text }
 
-   ooexception.attr =
+   ooexception.attlist =
       ooexception.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3017,7 +3017,7 @@ div {
 
    db.ooexception =
       element ooexception {
-         ooexception.attr,
+         ooexception.attlist,
          db.modifier*,
          db.exceptionname
       }
@@ -3035,7 +3035,7 @@ div {
 
    modifier.role.attribute = attribute role { text }
 
-   modifier.attr =
+   modifier.attlist =
       modifier.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3043,7 +3043,7 @@ div {
 
    db.modifier =
       element modifier {
-         modifier.attr,
+         modifier.attlist,
          docbook.text
       }
 }
@@ -3060,7 +3060,7 @@ div {
 
    interfacename.role.attribute = attribute role { text }
 
-   interfacename.attr =
+   interfacename.attlist =
       interfacename.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3068,7 +3068,7 @@ div {
 
    db.interfacename =
       element interfacename {
-         interfacename.attr,
+         interfacename.attlist,
          docbook.text
       }
 }
@@ -3085,7 +3085,7 @@ div {
 
    exceptionname.role.attribute = attribute role { text }
 
-   exceptionname.attr =
+   exceptionname.attlist =
       exceptionname.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3093,7 +3093,7 @@ div {
 
    db.exceptionname =
       element exceptionname {
-         exceptionname.attr,
+         exceptionname.attlist,
          docbook.text
       }
 }
@@ -3110,7 +3110,7 @@ div {
 
    fieldsynopsis.role.attribute = attribute role { text }
 
-   fieldsynopsis.attr =
+   fieldsynopsis.attlist =
       fieldsynopsis.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3119,7 +3119,7 @@ div {
 
    db.fieldsynopsis =
       element fieldsynopsis {
-         fieldsynopsis.attr,
+         fieldsynopsis.attlist,
          db.modifier*,
          db.type?,
          db.varname,
@@ -3139,7 +3139,7 @@ div {
 
    initializer.role.attribute = attribute role { text }
 
-   initializer.attr =
+   initializer.attlist =
       initializer.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3147,7 +3147,7 @@ div {
 
    db.initializer =
       element initializer {
-         initializer.attr,
+         initializer.attlist,
          docbook.text
       }
 }
@@ -3164,7 +3164,7 @@ div {
 
    constructorsynopsis.role.attribute = attribute role { text }
 
-   constructorsynopsis.attr =
+   constructorsynopsis.attlist =
       constructorsynopsis.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3173,7 +3173,7 @@ div {
 
    db.constructorsynopsis =
       element constructorsynopsis {
-         constructorsynopsis.attr,
+         constructorsynopsis.attlist,
          db.modifier*,
          db.methodname?,
          (db.methodparam+ | db.void?),
@@ -3193,7 +3193,7 @@ div {
 
    destructorsynopsis.role.attribute = attribute role { text }
 
-   destructorsynopsis.attr =
+   destructorsynopsis.attlist =
       destructorsynopsis.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3202,7 +3202,7 @@ div {
 
    db.destructorsynopsis =
       element destructorsynopsis {
-         destructorsynopsis.attr,
+         destructorsynopsis.attlist,
          db.modifier*,
          db.methodname?,
          (db.methodparam+ | db.void?),
@@ -3222,7 +3222,7 @@ div {
 
    methodsynopsis.role.attribute = attribute role { text }
 
-   methodsynopsis.attr =
+   methodsynopsis.attlist =
       methodsynopsis.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3231,7 +3231,7 @@ div {
 
    db.methodsynopsis =
       element methodsynopsis {
-         methodsynopsis.attr,
+         methodsynopsis.attlist,
          db.modifier*,
          (db.type | db.void)?,
          db.methodname,
@@ -3253,7 +3253,7 @@ div {
 
    methodname.role.attribute = attribute role { text }
 
-   methodname.attr =
+   methodname.attlist =
       methodname.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3261,7 +3261,7 @@ div {
 
    db.methodname =
       element methodname {
-         methodname.attr,
+         methodname.attlist,
          docbook.text
       }
 }
@@ -3278,7 +3278,7 @@ div {
 
    methodparam.role.attribute = attribute role { text }
 
-   methodparam.attr =
+   methodparam.attlist =
       methodparam.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3288,7 +3288,7 @@ div {
 
    db.methodparam =
       element methodparam {
-         methodparam.attr,
+         methodparam.attlist,
          db.modifier*,
          db.type?,
          ((db.parameter, db.initializer?) | db.funcparams),
@@ -3309,7 +3309,7 @@ div {
 
    address.role.attribute = attribute role { text }
 
-   address.attr =
+   address.attlist =
       address.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3318,7 +3318,7 @@ div {
 
    db.address =
       element address {
-         address.attr,
+         address.attlist,
          (docbook.text
           | db.personname
           | db.pob
@@ -3346,7 +3346,7 @@ div {
 
    street.role.attribute = attribute role { text }
 
-   street.attr =
+   street.attlist =
       street.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3354,7 +3354,7 @@ div {
 
    db.street =
       element street {
-         street.attr,
+         street.attlist,
          docbook.text
       }
 }
@@ -3371,7 +3371,7 @@ div {
 
    pob.role.attribute = attribute role { text }
 
-   pob.attr =
+   pob.attlist =
       pob.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3379,7 +3379,7 @@ div {
 
    db.pob =
       element pob {
-         pob.attr,
+         pob.attlist,
          docbook.text
       }
 }
@@ -3396,7 +3396,7 @@ div {
 
    postcode.role.attribute = attribute role { text }
 
-   postcode.attr =
+   postcode.attlist =
       postcode.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3404,7 +3404,7 @@ div {
 
    db.postcode =
       element postcode {
-         postcode.attr,
+         postcode.attlist,
          docbook.text
       }
 }
@@ -3421,7 +3421,7 @@ div {
 
    city.role.attribute = attribute role { text }
 
-   city.attr =
+   city.attlist =
       city.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3429,7 +3429,7 @@ div {
 
    db.city =
       element city {
-         city.attr,
+         city.attlist,
          docbook.text
       }
 }
@@ -3446,7 +3446,7 @@ div {
 
    state.role.attribute = attribute role { text }
 
-   state.attr =
+   state.attlist =
       state.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3454,7 +3454,7 @@ div {
 
    db.state =
       element state {
-         state.attr,
+         state.attlist,
          docbook.text
       }
 }
@@ -3471,7 +3471,7 @@ div {
 
    country.role.attribute = attribute role { text }
 
-   country.attr =
+   country.attlist =
       country.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3479,7 +3479,7 @@ div {
 
    db.country =
       element country {
-         country.attr,
+         country.attlist,
          docbook.text
       }
 }
@@ -3496,7 +3496,7 @@ div {
 
    phone.role.attribute = attribute role { text }
 
-   phone.attr =
+   phone.attlist =
       phone.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3504,7 +3504,7 @@ div {
 
    db.phone =
       element phone {
-         phone.attr,
+         phone.attlist,
          docbook.text
       }
 }
@@ -3521,7 +3521,7 @@ div {
 
    fax.role.attribute = attribute role { text }
 
-   fax.attr =
+   fax.attlist =
       fax.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3529,7 +3529,7 @@ div {
 
    db.fax =
       element fax {
-         fax.attr,
+         fax.attlist,
          docbook.text
       }
 }
@@ -3546,7 +3546,7 @@ div {
 
    otheraddr.role.attribute = attribute role { text }
 
-   otheraddr.attr =
+   otheraddr.attlist =
       otheraddr.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3554,7 +3554,7 @@ div {
 
    db.otheraddr =
       element otheraddr {
-         otheraddr.attr,
+         otheraddr.attlist,
          docbook.text
       }
 }
@@ -3571,7 +3571,7 @@ div {
 
    affiliation.role.attribute = attribute role { text }
 
-   affiliation.attr =
+   affiliation.attlist =
       affiliation.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3579,7 +3579,7 @@ div {
 
    db.affiliation =
       element affiliation {
-         affiliation.attr,
+         affiliation.attlist,
          db.shortaffil?,
          db.jobtitle*,
          db.orgname?,
@@ -3600,7 +3600,7 @@ div {
 
    shortaffil.role.attribute = attribute role { text }
 
-   shortaffil.attr =
+   shortaffil.attlist =
       shortaffil.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3608,7 +3608,7 @@ div {
 
    db.shortaffil =
       element shortaffil {
-         shortaffil.attr,
+         shortaffil.attlist,
          docbook.text
       }
 }
@@ -3625,7 +3625,7 @@ div {
 
    jobtitle.role.attribute = attribute role { text }
 
-   jobtitle.attr =
+   jobtitle.attlist =
       jobtitle.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3633,7 +3633,7 @@ div {
 
    db.jobtitle =
       element jobtitle {
-         jobtitle.attr,
+         jobtitle.attlist,
          docbook.text
       }
 }
@@ -3666,7 +3666,7 @@ div {
 
    orgname.role.attribute = attribute role { text }
 
-   orgname.attr =
+   orgname.attlist =
       orgname.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3675,7 +3675,7 @@ div {
 
    db.orgname =
       element orgname {
-         orgname.attr,
+         orgname.attlist,
          docbook.text
       }
 }
@@ -3692,7 +3692,7 @@ div {
 
    orgdiv.role.attribute = attribute role { text }
 
-   orgdiv.attr =
+   orgdiv.attlist =
       orgdiv.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3700,7 +3700,7 @@ div {
 
    db.orgdiv =
       element orgdiv {
-         orgdiv.attr,
+         orgdiv.attlist,
          inlines*
       }
 }
@@ -3717,7 +3717,7 @@ div {
 
    artpagenums.role.attribute = attribute role { text }
 
-   artpagenums.attr =
+   artpagenums.attlist =
       artpagenums.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3725,7 +3725,7 @@ div {
 
    db.artpagenums =
       element artpagenums {
-         artpagenums.attr,
+         artpagenums.attlist,
          docbook.text
       }
 }
@@ -3742,7 +3742,7 @@ div {
 
    personname.role.attribute = attribute role { text }
 
-   personname.attr =
+   personname.attlist =
       personname.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3750,7 +3750,7 @@ div {
 
    db.personname =
       element personname {
-         personname.attr,
+         personname.attlist,
          (docbook.text
           | (db.honorific
            | db.firstname
@@ -3792,7 +3792,7 @@ div {
 
    author.role.attribute = attribute role { text }
 
-   author.attr =
+   author.attlist =
       author.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3800,7 +3800,7 @@ div {
 
    db.author =
       element author {
-         author.attr,
+         author.attlist,
          credit.contentmodel
       }
 }
@@ -3817,7 +3817,7 @@ div {
 
    authorgroup.role.attribute = attribute role { text }
 
-   authorgroup.attr =
+   authorgroup.attlist =
       authorgroup.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3825,7 +3825,7 @@ div {
 
    db.authorgroup =
       element authorgroup {
-         authorgroup.attr,
+         authorgroup.attlist,
          (db.author | db.editor | db.othercredit)+
       }
 }
@@ -3842,7 +3842,7 @@ div {
 
    collab.role.attribute = attribute role { text }
 
-   collab.attr =
+   collab.attlist =
       collab.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3850,7 +3850,7 @@ div {
 
    db.collab =
       element collab {
-         collab.attr,
+         collab.attlist,
          (db.personname | db.orgname)+,
          db.affiliation*
       }
@@ -3868,7 +3868,7 @@ div {
 
    authorinitials.role.attribute = attribute role { text }
 
-   authorinitials.attr =
+   authorinitials.attlist =
       authorinitials.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3876,7 +3876,7 @@ div {
 
    db.authorinitials =
       element authorinitials {
-         authorinitials.attr,
+         authorinitials.attlist,
          docbook.text
       }
 }
@@ -3893,7 +3893,7 @@ div {
 
    confgroup.role.attribute = attribute role { text }
 
-   confgroup.attr =
+   confgroup.attlist =
       confgroup.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3901,7 +3901,7 @@ div {
 
    db.confgroup =
       element confgroup {
-         confgroup.attr,
+         confgroup.attlist,
          (db.confdates
           | db.conftitle
           | db.confnum
@@ -3922,7 +3922,7 @@ div {
 
    confdates.role.attribute = attribute role { text }
 
-   confdates.attr =
+   confdates.attlist =
       confdates.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3930,7 +3930,7 @@ div {
 
    db.confdates =
       element confdates {
-         confdates.attr,
+         confdates.attlist,
          docbook.text
       }
 }
@@ -3947,7 +3947,7 @@ div {
 
    conftitle.role.attribute = attribute role { text }
 
-   conftitle.attr =
+   conftitle.attlist =
       conftitle.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3955,7 +3955,7 @@ div {
 
    db.conftitle =
       element conftitle {
-         conftitle.attr,
+         conftitle.attlist,
          docbook.text
       }
 }
@@ -3972,7 +3972,7 @@ div {
 
    confnum.role.attribute = attribute role { text }
 
-   confnum.attr =
+   confnum.attlist =
       confnum.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -3980,7 +3980,7 @@ div {
 
    db.confnum =
       element confnum {
-         confnum.attr,
+         confnum.attlist,
          docbook.text
       }
 }
@@ -3997,7 +3997,7 @@ div {
 
    confsponsor.role.attribute = attribute role { text }
 
-   confsponsor.attr =
+   confsponsor.attlist =
       confsponsor.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4005,7 +4005,7 @@ div {
 
    db.confsponsor =
       element confsponsor {
-         confsponsor.attr,
+         confsponsor.attlist,
          docbook.text
       }
 }
@@ -4022,7 +4022,7 @@ div {
 
    contractnum.role.attribute = attribute role { text }
 
-   contractnum.attr =
+   contractnum.attlist =
       contractnum.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4030,7 +4030,7 @@ div {
 
    db.contractnum =
       element contractnum {
-         contractnum.attr,
+         contractnum.attlist,
          docbook.text
       }
 }
@@ -4047,7 +4047,7 @@ div {
 
    contractsponsor.role.attribute = attribute role { text }
 
-   contractsponsor.attr =
+   contractsponsor.attlist =
       contractsponsor.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4055,7 +4055,7 @@ div {
 
    db.contractsponsor =
       element contractsponsor {
-         contractsponsor.attr,
+         contractsponsor.attlist,
          docbook.text
       }
 }
@@ -4072,7 +4072,7 @@ div {
 
    copyright.role.attribute = attribute role { text }
 
-   copyright.attr =
+   copyright.attlist =
       copyright.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4080,7 +4080,7 @@ div {
 
    db.copyright =
       element copyright {
-         copyright.attr,
+         copyright.attlist,
          db.year+,
          db.holder*
       }
@@ -4098,7 +4098,7 @@ div {
 
    year.role.attribute = attribute role { text }
 
-   year.attr =
+   year.attlist =
       year.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4106,7 +4106,7 @@ div {
 
    db.year =
       element year {
-         year.attr,
+         year.attlist,
          docbook.text
       }
 }
@@ -4123,7 +4123,7 @@ div {
 
    holder.role.attribute = attribute role { text }
 
-   holder.attr =
+   holder.attlist =
       holder.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4131,7 +4131,7 @@ div {
 
    db.holder =
       element holder {
-         holder.attr,
+         holder.attlist,
          docbook.text
       }
 }
@@ -4148,7 +4148,7 @@ div {
 
    date.role.attribute = attribute role { text }
 
-   date.attr =
+   date.attlist =
       date.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4156,7 +4156,7 @@ div {
 
    db.date =
       element date {
-         date.attr,
+         date.attlist,
          docbook.text
       }
 }
@@ -4173,7 +4173,7 @@ div {
 
    edition.role.attribute = attribute role { text }
 
-   edition.attr =
+   edition.attlist =
       edition.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4181,7 +4181,7 @@ div {
 
    db.edition =
       element edition {
-         edition.attr,
+         edition.attlist,
          docbook.text
       }
 }
@@ -4198,7 +4198,7 @@ div {
 
    editor.role.attribute = attribute role { text }
 
-   editor.attr =
+   editor.attlist =
       editor.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4206,7 +4206,7 @@ div {
 
    db.editor =
       element editor {
-         editor.attr,
+         editor.attlist,
          credit.contentmodel
       }
 }
@@ -4223,7 +4223,7 @@ div {
 
    biblioid.role.attribute = attribute role { text }
 
-   biblioid.attr =
+   biblioid.attlist =
       biblioid.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4232,7 +4232,7 @@ div {
 
    db.biblioid =
       element biblioid {
-         biblioid.attr,
+         biblioid.attlist,
          docbook.text
       }
 }
@@ -4249,7 +4249,7 @@ div {
 
    citebiblioid.role.attribute = attribute role { text }
 
-   citebiblioid.attr =
+   citebiblioid.attlist =
       citebiblioid.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4258,7 +4258,7 @@ div {
 
    db.citebiblioid =
       element citebiblioid {
-         citebiblioid.attr,
+         citebiblioid.attlist,
          docbook.text
       }
 }
@@ -4275,7 +4275,7 @@ div {
 
    bibliosource.role.attribute = attribute role { text }
 
-   bibliosource.attr =
+   bibliosource.attlist =
       bibliosource.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4284,7 +4284,7 @@ div {
 
    db.bibliosource =
       element bibliosource {
-         bibliosource.attr,
+         bibliosource.attlist,
          docbook.text
       }
 }
@@ -4329,7 +4329,7 @@ div {
 
    bibliorelation.role.attribute = attribute role { text }
 
-   bibliorelation.attr =
+   bibliorelation.attlist =
       bibliorelation.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4339,7 +4339,7 @@ div {
 
    db.bibliorelation =
       element bibliorelation {
-         bibliorelation.attr,
+         bibliorelation.attlist,
          docbook.text
       }
 }
@@ -4391,7 +4391,7 @@ div {
 
    bibliocoverage.role.attribute = attribute role { text }
 
-   bibliocoverage.attr =
+   bibliocoverage.attlist =
       bibliocoverage.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4400,7 +4400,7 @@ div {
 
    db.bibliocoverage =
       element bibliocoverage {
-         bibliocoverage.attr,
+         bibliocoverage.attlist,
          docbook.text
       }
 }
@@ -4417,7 +4417,7 @@ div {
 
    legalnotice.role.attribute = attribute role { text }
 
-   legalnotice.attr =
+   legalnotice.attlist =
       legalnotice.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4427,7 +4427,7 @@ div {
 
    db.legalnotice =
       element legalnotice {
-         legalnotice.attr,
+         legalnotice.attlist,
          legalnotice.info,
          blocks+
       }
@@ -4454,7 +4454,7 @@ div {
 
    othercredit.role.attribute = attribute role { text }
 
-   othercredit.attr =
+   othercredit.attlist =
       othercredit.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4463,7 +4463,7 @@ div {
 
    db.othercredit =
       element othercredit {
-         othercredit.attr,
+         othercredit.attlist,
          credit.contentmodel
       }
 }
@@ -4480,7 +4480,7 @@ div {
 
    pagenums.role.attribute = attribute role { text }
 
-   pagenums.attr =
+   pagenums.attlist =
       pagenums.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4488,7 +4488,7 @@ div {
 
    db.pagenums =
       element pagenums {
-         pagenums.attr,
+         pagenums.attlist,
          docbook.text
       }
 }
@@ -4505,7 +4505,7 @@ div {
 
    contrib.role.attribute = attribute role { text }
 
-   contrib.attr =
+   contrib.attlist =
       contrib.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4513,7 +4513,7 @@ div {
 
    db.contrib =
       element contrib {
-         contrib.attr,
+         contrib.attlist,
          docbook.text
       }
 }
@@ -4530,7 +4530,7 @@ div {
 
    honorific.role.attribute = attribute role { text }
 
-   honorific.attr =
+   honorific.attlist =
       honorific.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4538,7 +4538,7 @@ div {
 
    db.honorific =
       element honorific {
-         honorific.attr,
+         honorific.attlist,
          docbook.text
       }
 }
@@ -4555,7 +4555,7 @@ div {
 
    firstname.role.attribute = attribute role { text }
 
-   firstname.attr =
+   firstname.attlist =
       firstname.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4563,7 +4563,7 @@ div {
 
    db.firstname =
       element firstname {
-         firstname.attr,
+         firstname.attlist,
          docbook.text
       }
 }
@@ -4580,7 +4580,7 @@ div {
 
    surname.role.attribute = attribute role { text }
 
-   surname.attr =
+   surname.attlist =
       surname.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4588,7 +4588,7 @@ div {
 
    db.surname =
       element surname {
-         surname.attr,
+         surname.attlist,
          docbook.text
       }
 }
@@ -4605,7 +4605,7 @@ div {
 
    lineage.role.attribute = attribute role { text }
 
-   lineage.attr =
+   lineage.attlist =
       lineage.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4613,7 +4613,7 @@ div {
 
    db.lineage =
       element lineage {
-         lineage.attr,
+         lineage.attlist,
          docbook.text
       }
 }
@@ -4630,7 +4630,7 @@ div {
 
    othername.role.attribute = attribute role { text }
 
-   othername.attr =
+   othername.attlist =
       othername.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4638,7 +4638,7 @@ div {
 
    db.othername =
       element othername {
-         othername.attr,
+         othername.attlist,
          docbook.text
       }
 }
@@ -4655,7 +4655,7 @@ div {
 
    printhistory.role.attribute = attribute role { text }
 
-   printhistory.attr =
+   printhistory.attlist =
       printhistory.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4663,7 +4663,7 @@ div {
 
    db.printhistory =
       element printhistory {
-         printhistory.attr,
+         printhistory.attlist,
          para.blocks+
       }
 }
@@ -4684,7 +4684,7 @@ div {
 
    productname.role.attribute = attribute role { text }
 
-   productname.attr =
+   productname.attlist =
       productname.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4693,7 +4693,7 @@ div {
 
    db.productname =
       element productname {
-         productname.attr,
+         productname.attlist,
          docbook.text
       }
 }
@@ -4710,7 +4710,7 @@ div {
 
    productnumber.role.attribute = attribute role { text }
 
-   productnumber.attr =
+   productnumber.attlist =
       productnumber.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4718,7 +4718,7 @@ div {
 
    db.productnumber =
       element productnumber {
-         productnumber.attr,
+         productnumber.attlist,
          docbook.text
       }
 }
@@ -4735,7 +4735,7 @@ div {
 
    pubdate.role.attribute = attribute role { text }
 
-   pubdate.attr =
+   pubdate.attlist =
       pubdate.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4743,7 +4743,7 @@ div {
 
    db.pubdate =
       element pubdate {
-         pubdate.attr,
+         pubdate.attlist,
          docbook.text
       }
 }
@@ -4760,7 +4760,7 @@ div {
 
    publisher.role.attribute = attribute role { text }
 
-   publisher.attr =
+   publisher.attlist =
       publisher.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4768,7 +4768,7 @@ div {
 
    db.publisher =
       element publisher {
-         publisher.attr,
+         publisher.attlist,
          db.publishername,
          db.address*
       }
@@ -4786,7 +4786,7 @@ div {
 
    publishername.role.attribute = attribute role { text }
 
-   publishername.attr =
+   publishername.attlist =
       publishername.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4794,7 +4794,7 @@ div {
 
    db.publishername =
       element publishername {
-         publishername.attr,
+         publishername.attlist,
          docbook.text
       }
 }
@@ -4811,7 +4811,7 @@ div {
 
    releaseinfo.role.attribute = attribute role { text }
 
-   releaseinfo.attr =
+   releaseinfo.attlist =
       releaseinfo.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4819,7 +4819,7 @@ div {
 
    db.releaseinfo =
       element releaseinfo {
-         releaseinfo.attr,
+         releaseinfo.attlist,
          docbook.text
       }
 }
@@ -4836,7 +4836,7 @@ div {
 
    revhistory.role.attribute = attribute role { text }
 
-   revhistory.attr =
+   revhistory.attlist =
       revhistory.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4846,7 +4846,7 @@ div {
 
    db.revhistory =
       element revhistory {
-         revhistory.attr,
+         revhistory.attlist,
          revhistory.info,
          db.revision+
       }
@@ -4864,7 +4864,7 @@ div {
 
    revision.role.attribute = attribute role { text }
 
-   revision.attr =
+   revision.attlist =
       revision.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4872,7 +4872,7 @@ div {
 
    db.revision =
       element revision {
-         revision.attr,
+         revision.attlist,
          db.revnumber,
          db.date,
          (db.authorinitials | db.author)*,
@@ -4892,7 +4892,7 @@ div {
 
    revnumber.role.attribute = attribute role { text }
 
-   revnumber.attr =
+   revnumber.attlist =
       revnumber.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4900,7 +4900,7 @@ div {
 
    db.revnumber =
       element revnumber {
-         revnumber.attr,
+         revnumber.attlist,
          docbook.text
       }
 }
@@ -4917,7 +4917,7 @@ div {
 
    revremark.role.attribute = attribute role { text }
 
-   revremark.attr =
+   revremark.attlist =
       revremark.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4925,7 +4925,7 @@ div {
 
    db.revremark =
       element revremark {
-         revremark.attr,
+         revremark.attlist,
          docbook.text
       }
 }
@@ -4942,7 +4942,7 @@ div {
 
    revdescription.role.attribute = attribute role { text }
 
-   revdescription.attr =
+   revdescription.attlist =
       revdescription.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4950,7 +4950,7 @@ div {
 
    db.revdescription =
       element revdescription {
-         revdescription.attr,
+         revdescription.attlist,
          blocks*
       }
 }
@@ -4967,7 +4967,7 @@ div {
 
    seriesvolnums.role.attribute = attribute role { text }
 
-   seriesvolnums.attr =
+   seriesvolnums.attlist =
       seriesvolnums.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -4975,7 +4975,7 @@ div {
 
    db.seriesvolnums =
       element seriesvolnums {
-         seriesvolnums.attr,
+         seriesvolnums.attlist,
          docbook.text
       }
 }
@@ -4992,7 +4992,7 @@ div {
 
    volumenum.role.attribute = attribute role { text }
 
-   volumenum.attr =
+   volumenum.attlist =
       volumenum.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5000,7 +5000,7 @@ div {
 
    db.volumenum =
       element volumenum {
-         volumenum.attr,
+         volumenum.attlist,
          docbook.text
       }
 }
@@ -5017,7 +5017,7 @@ div {
 
    issuenum.role.attribute = attribute role { text }
 
-   issuenum.attr =
+   issuenum.attlist =
       issuenum.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5025,7 +5025,7 @@ div {
 
    db.issuenum =
       element issuenum {
-         issuenum.attr,
+         issuenum.attlist,
          docbook.text
       }
 }
@@ -5042,7 +5042,7 @@ div {
 
    accel.role.attribute = attribute role { text }
 
-   accel.attr =
+   accel.attlist =
       accel.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5050,7 +5050,7 @@ div {
 
    db.accel  =
       element accel {
-         accel.attr,
+         accel.attlist,
          docbook.text
       }
 }
@@ -5069,7 +5069,7 @@ div {
 
    application.role.attribute = attribute role { text }
 
-   application.attr =
+   application.attlist =
       application.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5078,7 +5078,7 @@ div {
 
    db.application =
       element application {
-         application.attr,
+         application.attlist,
          docbook.text
       }
 }
@@ -5095,7 +5095,7 @@ div {
 
    classname.role.attribute = attribute role { text }
 
-   classname.attr =
+   classname.attlist =
       classname.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5103,7 +5103,7 @@ div {
 
    db.classname =
       element classname {
-         classname.attr,
+         classname.attlist,
          docbook.text
       }
 }
@@ -5120,7 +5120,7 @@ div {
 
    command.role.attribute = attribute role { text }
 
-   command.attr =
+   command.attlist =
       command.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5128,7 +5128,7 @@ div {
 
    db.command =
       element command {
-         command.attr,
+         command.attlist,
          inlines*
       }
 }
@@ -5149,7 +5149,7 @@ div {
 
    computeroutput.role.attribute = attribute role { text }
 
-   computeroutput.attr =
+   computeroutput.attlist =
       computeroutput.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5157,7 +5157,7 @@ div {
 
    db.computeroutput =
       element computeroutput {
-         computeroutput.attr,
+         computeroutput.attlist,
          computeroutput.inlines*
       }
 }
@@ -5196,7 +5196,7 @@ div {
 
    database.role.attribute = attribute role { text }
 
-   database.attr =
+   database.attlist =
       database.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5205,7 +5205,7 @@ div {
 
    db.database =
       element database {
-         database.attr,
+         database.attlist,
          docbook.text
       }
 }
@@ -5222,7 +5222,7 @@ div {
 
    email.role.attribute = attribute role { text }
 
-   email.attr =
+   email.attlist =
       email.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5230,7 +5230,7 @@ div {
 
    db.email =
       element email {
-         email.attr,
+         email.attlist,
          docbook.text
       }
 }
@@ -5247,7 +5247,7 @@ div {
 
    envar.role.attribute = attribute role { text }
 
-   envar.attr =
+   envar.attlist =
       envar.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5255,7 +5255,7 @@ div {
 
    db.envar =
       element envar {
-         envar.attr,
+         envar.attlist,
          docbook.text
       }
 }
@@ -5272,7 +5272,7 @@ div {
 
    errorcode.role.attribute = attribute role { text }
 
-   errorcode.attr =
+   errorcode.attlist =
       errorcode.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5280,7 +5280,7 @@ div {
 
    db.errorcode =
       element errorcode {
-         errorcode.attr,
+         errorcode.attlist,
          docbook.text
       }
 }
@@ -5297,7 +5297,7 @@ div {
 
    errorname.role.attribute = attribute role { text }
 
-   errorname.attr =
+   errorname.attlist =
       errorname.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5305,7 +5305,7 @@ div {
 
    db.errorname =
       element errorname {
-         errorname.attr,
+         errorname.attlist,
          docbook.text
       }
 }
@@ -5322,7 +5322,7 @@ div {
 
    errortext.role.attribute = attribute role { text }
 
-   errortext.attr =
+   errortext.attlist =
       errortext.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5330,7 +5330,7 @@ div {
 
    db.errortext =
       element errortext {
-         errortext.attr,
+         errortext.attlist,
          docbook.text
       }
 }
@@ -5347,7 +5347,7 @@ div {
 
    errortype.role.attribute = attribute role { text }
 
-   errortype.attr =
+   errortype.attlist =
       errortype.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5355,7 +5355,7 @@ div {
 
    db.errortype =
       element errortype {
-         errortype.attr,
+         errortype.attlist,
          docbook.text
       }
 }
@@ -5384,7 +5384,7 @@ div {
 
    filename.role.attribute = attribute role { text }
 
-   filename.attr =
+   filename.attlist =
       filename.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5394,7 +5394,7 @@ div {
 
    db.filename =
       element filename {
-         filename.attr,
+         filename.attlist,
          docbook.text
       }
 }
@@ -5411,7 +5411,7 @@ div {
 
    function.role.attribute = attribute role { text }
 
-   function.attr =
+   function.attlist =
       function.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5419,7 +5419,7 @@ div {
 
    db.function =
       element function {
-         function.attr,
+         function.attlist,
          docbook.text
       }
 }
@@ -5436,7 +5436,7 @@ div {
 
    guibutton.role.attribute = attribute role { text }
 
-   guibutton.attr =
+   guibutton.attlist =
       guibutton.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5444,7 +5444,7 @@ div {
 
    db.guibutton =
       element guibutton {
-         guibutton.attr,
+         guibutton.attlist,
          (docbook.text | db.accel)*
       }
 }
@@ -5461,7 +5461,7 @@ div {
 
    guiicon.role.attribute = attribute role { text }
 
-   guiicon.attr =
+   guiicon.attlist =
       guiicon.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5469,7 +5469,7 @@ div {
 
    db.guiicon =
       element guiicon {
-         guiicon.attr,
+         guiicon.attlist,
          (docbook.text | db.accel)*
       }
 }
@@ -5486,7 +5486,7 @@ div {
 
    guilabel.role.attribute = attribute role { text }
 
-   guilabel.attr =
+   guilabel.attlist =
       guilabel.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5494,7 +5494,7 @@ div {
 
    db.guilabel =
       element guilabel {
-         guilabel.attr,
+         guilabel.attlist,
          (docbook.text | db.accel)*
       }
 }
@@ -5511,7 +5511,7 @@ div {
 
    guimenu.role.attribute = attribute role { text }
 
-   guimenu.attr =
+   guimenu.attlist =
       guimenu.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5519,7 +5519,7 @@ div {
 
    db.guimenu =
       element guimenu {
-         guimenu.attr,
+         guimenu.attlist,
          (docbook.text | db.accel)*
       }
 }
@@ -5536,7 +5536,7 @@ div {
 
    guimenuitem.role.attribute = attribute role { text }
 
-   guimenuitem.attr =
+   guimenuitem.attlist =
       guimenuitem.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5544,7 +5544,7 @@ div {
 
    db.guimenuitem =
       element guimenuitem {
-         guimenuitem.attr,
+         guimenuitem.attlist,
          (docbook.text | db.accel)*
       }
 }
@@ -5561,7 +5561,7 @@ div {
 
    guisubmenu.role.attribute = attribute role { text }
 
-   guisubmenu.attr =
+   guisubmenu.attlist =
       guisubmenu.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5569,7 +5569,7 @@ div {
 
    db.guisubmenu =
       element guisubmenu {
-         guisubmenu.attr,
+         guisubmenu.attlist,
          (docbook.text | db.accel)*
       }
 }
@@ -5586,7 +5586,7 @@ div {
 
    hardware.role.attribute = attribute role { text }
 
-   hardware.attr =
+   hardware.attlist =
       hardware.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5594,7 +5594,7 @@ div {
 
    db.hardware =
       element hardware {
-         hardware.attr,
+         hardware.attlist,
          docbook.text
       }
 }
@@ -5647,7 +5647,7 @@ div {
 
    keycap.role.attribute = attribute role { text }
 
-   keycap.attr =
+   keycap.attlist =
       keycap.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5656,7 +5656,7 @@ div {
 
    db.keycap =
       element keycap {
-         keycap.attr,
+         keycap.attlist,
          docbook.text
       }
 }
@@ -5673,7 +5673,7 @@ div {
 
    keycode.role.attribute = attribute role { text }
 
-   keycode.attr =
+   keycode.attlist =
       keycode.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5681,7 +5681,7 @@ div {
 
    db.keycode =
       element keycode {
-         keycode.attr,
+         keycode.attlist,
          docbook.text
       }
 }
@@ -5714,7 +5714,7 @@ div {
 
    keycombo.role.attribute = attribute role { text }
 
-   keycombo.attr =
+   keycombo.attlist =
       keycombo.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5723,7 +5723,7 @@ div {
 
    db.keycombo =
       element keycombo {
-         keycombo.attr,
+         keycombo.attlist,
          (db.keycap|db.keycombo|db.keysym|db.mousebutton)+
       }
 }
@@ -5740,7 +5740,7 @@ div {
 
    keysym.role.attribute = attribute role { text }
 
-   keysym.attr =
+   keysym.attlist =
       keysym.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5748,7 +5748,7 @@ div {
 
    db.keysym =
       element keysym {
-         keysym.attr,
+         keysym.attlist,
          docbook.text
       }
 }
@@ -5765,7 +5765,7 @@ div {
 
    lineannotation.role.attribute = attribute role { text }
 
-   lineannotation.attr =
+   lineannotation.attlist =
       lineannotation.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5773,7 +5773,7 @@ div {
 
    db.lineannotation =
       element lineannotation {
-         lineannotation.attr,
+         lineannotation.attlist,
          inlines*
       }
 }
@@ -5790,7 +5790,7 @@ div {
 
    literal.role.attribute = attribute role { text }
 
-   literal.attr =
+   literal.attlist =
       literal.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5798,7 +5798,7 @@ div {
 
    db.literal =
       element literal {
-         literal.attr,
+         literal.attlist,
          inlines*
       }
 }
@@ -5817,7 +5817,7 @@ div {
 
    code.role.attribute = attribute role { text }
 
-   code.attr =
+   code.attlist =
       code.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5826,7 +5826,7 @@ div {
 
    db.code =
       element code {
-         code.attr,
+         code.attlist,
          inlines*
       }
 }
@@ -5845,7 +5845,7 @@ div {
 
    constant.role.attribute = attribute role { text }
 
-   constant.attr =
+   constant.attlist =
       constant.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5854,7 +5854,7 @@ div {
 
    db.constant =
       element constant {
-         constant.attr,
+         constant.attlist,
          docbook.text
       }
 }
@@ -5871,7 +5871,7 @@ div {
 
    varname.role.attribute = attribute role { text }
 
-   varname.attr =
+   varname.attlist =
       varname.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5879,7 +5879,7 @@ div {
 
    db.varname =
       element varname {
-         varname.attr,
+         varname.attlist,
          docbook.text
       }
 }
@@ -5896,7 +5896,7 @@ div {
 
    markup.role.attribute = attribute role { text }
 
-   markup.attr =
+   markup.attlist =
       markup.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5904,7 +5904,7 @@ div {
 
    db.markup =
       element markup {
-         markup.attr,
+         markup.attlist,
          docbook.text
       }
 }
@@ -5921,7 +5921,7 @@ div {
 
    menuchoice.role.attribute = attribute role { text }
 
-   menuchoice.attr =
+   menuchoice.attlist =
       menuchoice.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5929,7 +5929,7 @@ div {
 
    db.menuchoice =
       element menuchoice {
-         menuchoice.attr,
+         menuchoice.attlist,
          db.shortcut?,
          (db.guibutton|db.guiicon|db.guilabel|db.guimenu|db.guimenuitem|db.guisubmenu)+
       }
@@ -5949,7 +5949,7 @@ div {
 
    shortcut.role.attribute = attribute role { text }
 
-   shortcut.attr =
+   shortcut.attlist =
       shortcut.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5958,7 +5958,7 @@ div {
 
    db.shortcut =
       element shortcut {
-         shortcut.attr,
+         shortcut.attlist,
          (db.keycap|db.keycombo|db.keysym|db.mousebutton)+
       }
 }
@@ -5975,7 +5975,7 @@ div {
 
    mousebutton.role.attribute = attribute role { text }
 
-   mousebutton.attr =
+   mousebutton.attlist =
       mousebutton.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -5983,7 +5983,7 @@ div {
 
    db.mousebutton =
       element mousebutton {
-         mousebutton.attr,
+         mousebutton.attlist,
          docbook.text
       }
 }
@@ -6000,7 +6000,7 @@ div {
 
    option.role.attribute = attribute role { text }
 
-   option.attr =
+   option.attlist =
       option.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6008,7 +6008,7 @@ div {
 
    db.option =
       element option {
-         option.attr,
+         option.attlist,
          docbook.text
       }
 }
@@ -6025,7 +6025,7 @@ div {
 
    optional.role.attribute = attribute role { text }
 
-   optional.attr =
+   optional.attlist =
       optional.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6033,7 +6033,7 @@ div {
 
    db.optional =
       element optional {
-         optional.attr,
+         optional.attlist,
          inlines*
       }
 }
@@ -6052,7 +6052,7 @@ div {
 
    parameter.role.attribute = attribute role { text }
 
-   parameter.attr =
+   parameter.attlist =
       parameter.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6061,7 +6061,7 @@ div {
 
    db.parameter =
       element parameter {
-         parameter.attr,
+         parameter.attlist,
          docbook.text
       }
 }
@@ -6083,7 +6083,7 @@ div {
 
    prompt.role.attribute = attribute role { text }
 
-   prompt.attr =
+   prompt.attlist =
       prompt.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6091,7 +6091,7 @@ div {
 
    db.prompt =
       element prompt {
-         prompt.attr,
+         prompt.attlist,
          prompt.inlines*
       }
 }
@@ -6114,7 +6114,7 @@ div {
 
    replaceable.role.attribute = attribute role { text }
 
-   replaceable.attr =
+   replaceable.attlist =
       replaceable.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6123,7 +6123,7 @@ div {
 
    db.replaceable =
       element replaceable {
-         replaceable.attr,
+         replaceable.attlist,
          replaceable.inlines*
       }
 }
@@ -6140,7 +6140,7 @@ div {
 
    returnvalue.role.attribute = attribute role { text }
 
-   returnvalue.attr =
+   returnvalue.attlist =
       returnvalue.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6148,7 +6148,7 @@ div {
 
    db.returnvalue =
       element returnvalue {
-         returnvalue.attr,
+         returnvalue.attlist,
          docbook.text
       }
 }
@@ -6181,7 +6181,7 @@ div {
 
    tag.role.attribute = attribute role { text }
 
-   tag.attr =
+   tag.attlist =
       tag.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6190,7 +6190,7 @@ div {
 
    db.tag =
       element tag {
-         tag.attr,
+         tag.attlist,
          docbook.text
       }
 }
@@ -6209,7 +6209,7 @@ div {
 
    symbol.role.attribute = attribute role { text }
 
-   symbol.attr =
+   symbol.attlist =
       symbol.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6218,7 +6218,7 @@ div {
 
    db.symbol =
       element symbol {
-         symbol.attr,
+         symbol.attlist,
          docbook.text
       }
 }
@@ -6263,7 +6263,7 @@ div {
 
    systemitem.role.attribute = attribute role { text }
 
-   systemitem.attr =
+   systemitem.attlist =
       systemitem.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6272,7 +6272,7 @@ div {
 
    db.systemitem =
       element systemitem {
-         systemitem.attr,
+         systemitem.attlist,
          systemitem.inlines*
       }
 }
@@ -6291,7 +6291,7 @@ div {
 
    uri.role.attribute = attribute role { text }
 
-   uri.attr =
+   uri.attlist =
       uri.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6300,7 +6300,7 @@ div {
 
    db.uri =
       element uri {
-         uri.attr,
+         uri.attlist,
          docbook.text
       }
 }
@@ -6317,7 +6317,7 @@ div {
 
    token.role.attribute = attribute role { text }
 
-   token.attr =
+   token.attlist =
       token.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6325,7 +6325,7 @@ div {
 
    db.token =
       element token {
-         token.attr,
+         token.attlist,
          docbook.text
       }
 }
@@ -6342,7 +6342,7 @@ div {
 
    type.role.attribute = attribute role { text }
 
-   type.attr =
+   type.attlist =
       type.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6350,7 +6350,7 @@ div {
 
    db.type =
       element type {
-         type.attr,
+         type.attlist,
          docbook.text
       }
 }
@@ -6371,7 +6371,7 @@ div {
 
    userinput.role.attribute = attribute role { text }
 
-   userinput.attr =
+   userinput.attlist =
       userinput.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6379,7 +6379,7 @@ div {
 
    db.userinput =
       element userinput {
-         userinput.attr,
+         userinput.attlist,
          userinput.inlines*
       }
 }
@@ -6396,7 +6396,7 @@ div {
 
    abbrev.role.attribute = attribute role { text }
 
-   abbrev.attr =
+   abbrev.attlist =
       abbrev.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6404,7 +6404,7 @@ div {
 
    db.abbrev =
       element abbrev {
-         abbrev.attr,
+         abbrev.attlist,
          (docbook.text
           | db.superscript
           | db.subscript
@@ -6424,7 +6424,7 @@ div {
 
    acronym.role.attribute = attribute role { text }
 
-   acronym.attr =
+   acronym.attlist =
       acronym.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6432,7 +6432,7 @@ div {
 
    db.acronym =
       element acronym {
-         acronym.attr,
+         acronym.attlist,
          (docbook.text
           | db.superscript
           | db.subscript
@@ -6452,7 +6452,7 @@ div {
 
    citation.role.attribute = attribute role { text }
 
-   citation.attr =
+   citation.attlist =
       citation.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6460,7 +6460,7 @@ div {
 
    db.citation =
       element citation {
-         citation.attr,
+         citation.attlist,
          docbook.text
       }
 }
@@ -6477,7 +6477,7 @@ div {
 
    citerefentry.role.attribute = attribute role { text }
 
-   citerefentry.attr =
+   citerefentry.attlist =
       citerefentry.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6485,7 +6485,7 @@ div {
 
    db.citerefentry =
       element citerefentry {
-         citerefentry.attr,
+         citerefentry.attlist,
          db.refentrytitle,
          db.manvolnum?
       }
@@ -6503,7 +6503,7 @@ div {
 
    refentrytitle.role.attribute = attribute role { text }
 
-   refentrytitle.attr =
+   refentrytitle.attlist =
       refentrytitle.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6511,7 +6511,7 @@ div {
 
    db.refentrytitle =
       element refentrytitle {
-         refentrytitle.attr,
+         refentrytitle.attlist,
          inlines*
       }
 }
@@ -6528,7 +6528,7 @@ div {
 
    manvolnum.role.attribute = attribute role { text }
 
-   manvolnum.attr =
+   manvolnum.attlist =
       manvolnum.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6536,7 +6536,7 @@ div {
 
    db.manvolnum =
       element manvolnum {
-         manvolnum.attr,
+         manvolnum.attlist,
          docbook.text
       }
 }
@@ -6575,7 +6575,7 @@ div {
 
    citetitle.role.attribute = attribute role { text }
 
-   citetitle.attr =
+   citetitle.attlist =
       citetitle.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6584,7 +6584,7 @@ div {
 
    db.citetitle =
       element citetitle {
-         citetitle.attr,
+         citetitle.attlist,
          inlines*
       }
 }
@@ -6601,7 +6601,7 @@ div {
 
    emphasis.role.attribute = attribute role { text }
 
-   emphasis.attr =
+   emphasis.attlist =
       emphasis.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6609,7 +6609,7 @@ div {
 
    db.emphasis =
       element emphasis {
-         emphasis.attr,
+         emphasis.attlist,
          inlines*
       }
 }
@@ -6626,7 +6626,7 @@ div {
 
    foreignphrase.role.attribute = attribute role { text }
 
-   foreignphrase.attr =
+   foreignphrase.attlist =
       foreignphrase.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6634,7 +6634,7 @@ div {
 
    db.foreignphrase =
       element foreignphrase {
-         foreignphrase.attr,
+         foreignphrase.attlist,
          inlines*
       }
 }
@@ -6651,7 +6651,7 @@ div {
 
    phrase.role.attribute = attribute role { text }
 
-   phrase.attr =
+   phrase.attlist =
       phrase.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6659,7 +6659,7 @@ div {
 
    db.phrase =
       element phrase {
-         phrase.attr,
+         phrase.attlist,
          inlines*
       }
 }
@@ -6676,7 +6676,7 @@ div {
 
    quote.role.attribute = attribute role { text }
 
-   quote.attr =
+   quote.attlist =
       quote.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6684,7 +6684,7 @@ div {
 
    db.quote =
       element quote {
-         quote.attr,
+         quote.attlist,
          inlines*
       }
 }
@@ -6701,7 +6701,7 @@ div {
 
    subscript.role.attribute = attribute role { text }
 
-   subscript.attr =
+   subscript.attlist =
       subscript.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6709,7 +6709,7 @@ div {
 
    db.subscript =
       element subscript {
-         subscript.attr,
+         subscript.attlist,
          docbook.text
       }
 }
@@ -6726,7 +6726,7 @@ div {
 
    superscript.role.attribute = attribute role { text }
 
-   superscript.attr =
+   superscript.attlist =
       superscript.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6734,7 +6734,7 @@ div {
 
    db.superscript =
       element superscript {
-         superscript.attr,
+         superscript.attlist,
          docbook.text
       }
 }
@@ -6754,7 +6754,7 @@ div {
 
    trademark.role.attribute = attribute role { text }
 
-   trademark.attr =
+   trademark.attlist =
       trademark.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6763,7 +6763,7 @@ div {
 
    db.trademark =
       element trademark {
-         trademark.attr,
+         trademark.attlist,
          docbook.text
       }
 }
@@ -6780,7 +6780,7 @@ div {
 
    wordasword.role.attribute = attribute role { text }
 
-   wordasword.attr =
+   wordasword.attlist =
       wordasword.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -6788,7 +6788,7 @@ div {
 
    db.wordasword =
       element wordasword {
-         wordasword.attr,
+         wordasword.attlist,
          docbook.text
       }
 }
@@ -6805,7 +6805,7 @@ div {
 
    footnoteref.role.attribute = attribute role { text }
 
-   footnoteref.attr =
+   footnoteref.attlist =
       footnoteref.role.attribute?
     & common.attributes
     & linkend.attribute
@@ -6823,7 +6823,7 @@ div {
          ]
       ]
       element footnoteref {
-         footnoteref.attr,
+         footnoteref.attlist,
          empty
       }
 }
@@ -6840,7 +6840,7 @@ div {
 
    xref.role.attribute = attribute role { text }
 
-   xref.attr =
+   xref.attlist =
       xref.role.attribute?
     & common.attributes
     & common.linking.attributes.req
@@ -6850,7 +6850,7 @@ div {
 
    db.xref =
       element xref {
-         xref.attr,
+         xref.attlist,
          empty
       }
 }
@@ -6867,14 +6867,14 @@ div {
 
    anchor.role.attribute = attribute role { text }
 
-   anchor.attr =
+   anchor.attlist =
       anchor.role.attribute?
     & common.attributes.idreq
     & local.anchor.attributes
 
    db.anchor =
       element anchor {
-         anchor.attr,
+         anchor.attlist,
          empty
       }
 }

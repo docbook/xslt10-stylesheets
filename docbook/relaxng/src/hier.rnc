@@ -55,7 +55,7 @@ div {
 
    set.role.attribute = attribute role { text }
 
-   set.attr =
+   set.attlist =
       set.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -67,7 +67,7 @@ div {
 
    db.set =
       element set {
-         set.attr,
+         set.attlist,
          set.info,
          toc.components?,
          (db.set|db.book)+,
@@ -89,7 +89,7 @@ div {
 
    book.role.attribute = attribute role { text }
 
-   book.attr =
+   book.attlist =
       book.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -101,7 +101,7 @@ div {
 
    db.book =
       element book {
-         book.attr,
+         book.attlist,
          book.info,
          (navigation.components | components | divisions)+
       }
@@ -121,7 +121,7 @@ div {
 
    dedication.role.attribute = attribute role { text }
 
-   dedication.attr =
+   dedication.attlist =
       dedication.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -133,7 +133,7 @@ div {
 
    db.dedication =
       element dedication {
-         dedication.attr,
+         dedication.attlist,
          dedication.info,
          blocks+
       }
@@ -153,7 +153,7 @@ div {
 
    colophon.role.attribute = attribute role { text }
 
-   colophon.attr =
+   colophon.attlist =
       colophon.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -165,7 +165,7 @@ div {
 
    db.colophon =
       element colophon {
-         colophon.attr,
+         colophon.attlist,
          colophon.info,
          blocks+
       }
@@ -185,7 +185,7 @@ div {
 
    appendix.role.attribute = attribute role { text }
 
-   appendix.attr =
+   appendix.attlist =
       appendix.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -197,7 +197,7 @@ div {
 
    db.appendix =
       element appendix {
-         appendix.attr,
+         appendix.attlist,
          appendix.info,
          component.contentmodel
       }
@@ -217,7 +217,7 @@ div {
 
    chapter.role.attribute = attribute role { text }
 
-   chapter.attr =
+   chapter.attlist =
       chapter.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -229,7 +229,7 @@ div {
 
    db.chapter =
       element chapter {
-         chapter.attr,
+         chapter.attlist,
          chapter.info,
          component.contentmodel
       }
@@ -253,7 +253,7 @@ div {
 
    part.role.attribute = attribute role { text }
 
-   part.attr =
+   part.attlist =
       part.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -265,7 +265,7 @@ div {
 
    db.part =
       element part {
-         part.attr,
+         part.attlist,
          part.info,
          db.partintro?,
          part.components+
@@ -286,7 +286,7 @@ div {
 
    preface.role.attribute = attribute role { text }
 
-   preface.attr =
+   preface.attlist =
       preface.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -298,7 +298,7 @@ div {
 
    db.preface =
       element preface {
-         preface.attr,
+         preface.attlist,
          preface.info,
          component.contentmodel
       }
@@ -318,7 +318,7 @@ div {
 
    partintro.role.attribute = attribute role { text }
 
-   partintro.attr =
+   partintro.attlist =
       partintro.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -330,7 +330,7 @@ div {
 
    db.partintro =
       element partintro {
-         partintro.attr,
+         partintro.attlist,
          partintro.info,
          blocks.or.sections
       }
@@ -359,7 +359,7 @@ div {
 
    section.role.attribute = attribute role { text }
 
-   section.attr =
+   section.attlist =
       section.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -371,7 +371,7 @@ div {
 
    db.section =
       element section {
-         section.attr,
+         section.attlist,
          section.info,
          blocks.or.sections
       }
@@ -391,7 +391,7 @@ div {
 
    simplesect.role.attribute = attribute role { text }
 
-   simplesect.attr =
+   simplesect.attlist =
       simplesect.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -403,7 +403,7 @@ div {
 
    db.simplesect =
       element simplesect {
-         simplesect.attr,
+         simplesect.attlist,
          simplesect.info,
          blocks+
       }
@@ -421,7 +421,7 @@ div {
 
    ackno.role.attribute = attribute role { text }
 
-   ackno.attr =
+   ackno.attlist =
       ackno.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -429,7 +429,7 @@ div {
 
    db.ackno=
       element ackno {
-         ackno.attr,
+         ackno.attlist,
          para.blocks+
       }
 }
@@ -463,7 +463,7 @@ div {
 
    article.role.attribute = attribute role { text }
 
-   article.attr =
+   article.attlist =
       article.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -476,7 +476,7 @@ div {
 
    db.article =
       element article {
-         article.attr,
+         article.attlist,
          article.info,
          navigation.components*,
          ((blocks+, article.components.optional) | article.components.required),

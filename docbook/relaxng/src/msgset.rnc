@@ -30,7 +30,7 @@ div {
 
    msgset.role.attribute = attribute role { text }
 
-   msgset.attr =
+   msgset.attlist =
       msgset.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -40,7 +40,7 @@ div {
 
    db.msgset =
       element msgset {
-         msgset.attr,
+         msgset.attlist,
          msgset.info,
          (db.msgentry+|db.simplemsgentry+)
       }
@@ -58,7 +58,7 @@ div {
 
    msgentry.role.attribute = attribute role { text }
 
-   msgentry.attr =
+   msgentry.attlist =
       msgentry.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -66,7 +66,7 @@ div {
 
    db.msgentry =
       element msgentry {
-         msgentry.attr,
+         msgentry.attlist,
          db.msg+,
          db.msginfo?,
          db.msgexplan*
@@ -85,7 +85,7 @@ div {
 
    simplemsgentry.role.attribute = attribute role { text }
 
-   simplemsgentry.attr =
+   simplemsgentry.attlist =
       simplemsgentry.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -96,7 +96,7 @@ div {
 
    db.simplemsgentry =
       element simplemsgentry {
-         simplemsgentry.attr,
+         simplemsgentry.attlist,
          db.msgtext,
          db.msgexplan+
       }
@@ -114,7 +114,7 @@ div {
 
    msg.role.attribute = attribute role { text }
 
-   msg.attr =
+   msg.attlist =
       msg.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -124,7 +124,7 @@ div {
 
    db.msg =
       element msg {
-         msg.attr,
+         msg.attlist,
          msg.info,
          db.msgmain,
          (db.msgsub|db.msgrel)*
@@ -143,7 +143,7 @@ div {
 
    msgmain.role.attribute = attribute role { text }
 
-   msgmain.attr =
+   msgmain.attlist =
       msgmain.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -153,7 +153,7 @@ div {
 
    db.msgmain =
       element msgmain {
-         msgmain.attr,
+         msgmain.attlist,
          msgmain.info,
          db.msgtext
       }
@@ -171,7 +171,7 @@ div {
 
    msgsub.role.attribute = attribute role { text }
 
-   msgsub.attr =
+   msgsub.attlist =
       msgsub.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -181,7 +181,7 @@ div {
 
    db.msgsub =
       element msgsub {
-         msgsub.attr,
+         msgsub.attlist,
          msgsub.info,
          db.msgtext
       }
@@ -199,7 +199,7 @@ div {
 
    msgrel.role.attribute = attribute role { text }
 
-   msgrel.attr =
+   msgrel.attlist =
       msgrel.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -209,7 +209,7 @@ div {
 
    db.msgrel =
       element msgrel {
-         msgrel.attr,
+         msgrel.attlist,
          msgrel.info,
          db.msgtext
       }
@@ -227,7 +227,7 @@ div {
 
    msgtext.role.attribute = attribute role { text }
 
-   msgtext.attr =
+   msgtext.attlist =
       msgtext.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -235,7 +235,7 @@ div {
 
    db.msgtext =
       element msgtext {
-         msgtext.attr,
+         msgtext.attlist,
          blocks+
       }
 }
@@ -252,7 +252,7 @@ div {
 
    msginfo.role.attribute = attribute role { text }
 
-   msginfo.attr =
+   msginfo.attlist =
       msginfo.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -260,7 +260,7 @@ div {
 
    db.msginfo =
       element msginfo {
-         msginfo.attr,
+         msginfo.attlist,
          (db.msglevel|db.msgorig|db.msgaud)*
       }
 }
@@ -277,7 +277,7 @@ div {
 
    msglevel.role.attribute = attribute role { text }
 
-   msglevel.attr =
+   msglevel.attlist =
       msglevel.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -285,7 +285,7 @@ div {
 
    db.msglevel =
       element msglevel {
-         msglevel.attr,
+         msglevel.attlist,
          docbook.text
       }
 }
@@ -302,7 +302,7 @@ div {
 
    msgorig.role.attribute = attribute role { text }
 
-   msgorig.attr =
+   msgorig.attlist =
       msgorig.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -310,7 +310,7 @@ div {
 
    db.msgorig =
       element msgorig {
-         msgorig.attr,
+         msgorig.attlist,
          docbook.text
       }
 }
@@ -327,7 +327,7 @@ div {
 
    msgaud.role.attribute = attribute role { text }
 
-   msgaud.attr =
+   msgaud.attlist =
       msgaud.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -335,7 +335,7 @@ div {
 
    db.msgaud =
       element msgaud {
-         msgaud.attr,
+         msgaud.attlist,
          docbook.text
       }
 }
@@ -352,7 +352,7 @@ div {
 
    msgexplan.role.attribute = attribute role { text }
 
-   msgexplan.attr =
+   msgexplan.attlist =
       msgexplan.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -362,7 +362,7 @@ div {
 
    db.msgexplan =
       element msgexplan {
-         msgexplan.attr,
+         msgexplan.attlist,
          msgexplan.info,
          blocks+
       }

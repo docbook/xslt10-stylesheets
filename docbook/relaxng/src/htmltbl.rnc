@@ -73,7 +73,7 @@ div {
 
    local.html.table.attributes = empty
 
-   html.table.attr =
+   html.table.attlist =
       html.attrs
     & attribute summary { text }?
     & attribute width { text }?
@@ -96,7 +96,7 @@ div {
 
    html.table =
       element table {
-         html.table.attr,
+         html.table.attlist,
          html.table.model
       }
 }
@@ -111,7 +111,7 @@ div {
 
    local.html.informaltable.attributes = empty
 
-   html.informaltable.attr =
+   html.informaltable.attlist =
       html.attrs
     & attribute summary { text }?
     & attribute width { text }?
@@ -134,7 +134,7 @@ div {
 
    html.informaltable =
       element informaltable {
-         html.informaltable.attr,
+         html.informaltable.attlist,
          html.informaltable.model
       }
 }
@@ -149,13 +149,13 @@ div {
 
    local.caption.attributes = empty
 
-   html.caption.attr =
+   html.caption.attlist =
       html.attrs
     & local.caption.attributes
 
    html.caption =
       element caption {
-         html.caption.attr,
+         html.caption.attlist,
          text
       }
 }
@@ -170,7 +170,7 @@ div {
 
    local.col.attributes = empty
 
-   html.col.attr =
+   html.col.attlist =
       html.attrs
     & attribute span { text }?
     & attribute width { text }?
@@ -180,7 +180,7 @@ div {
 
    html.col =
       element col {
-         html.col.attr,
+         html.col.attlist,
          empty
       }
 }
@@ -195,7 +195,7 @@ div {
 
    local.colgroup.attributes = empty
 
-   html.colgroup.attr =
+   html.colgroup.attlist =
       html.attrs
     & attribute span { text }?
     & attribute width { text }?
@@ -205,7 +205,7 @@ div {
 
    html.colgroup =
       element colgroup {
-         html.colgroup.attr,
+         html.colgroup.attlist,
          html.col*
       }
 }
@@ -220,7 +220,7 @@ div {
 
    local.html.thead.attributes = empty
 
-   html.thead.attr =
+   html.thead.attlist =
       html.attrs
     & html.cellhalign
     & html.cellvalign
@@ -228,7 +228,7 @@ div {
 
    html.thead =
       element thead {
-         html.thead.attr,
+         html.thead.attlist,
          html.tr+
       }
 }
@@ -243,7 +243,7 @@ div {
 
    local.html.tfoot.attributes = empty
 
-   html.tfoot.attr =
+   html.tfoot.attlist =
       html.attrs
     & html.cellhalign
     & html.cellvalign
@@ -251,7 +251,7 @@ div {
 
    html.tfoot =
       element tfoot {
-         html.tfoot.attr,
+         html.tfoot.attlist,
          html.tr+
       }
 }
@@ -266,7 +266,7 @@ div {
 
    local.html.tbody.attributes = empty
 
-   html.tbody.attr =
+   html.tbody.attlist =
       html.attrs
     & html.cellhalign
     & html.cellvalign
@@ -274,7 +274,7 @@ div {
 
    html.tbody =
       element tbody {
-         html.tbody.attr,
+         html.tbody.attlist,
          html.tr+
       }
 }
@@ -289,7 +289,7 @@ div {
 
    local.tr.attributes = empty
 
-   html.tr.attr =
+   html.tr.attlist =
       html.attrs
     & html.cellhalign
     & html.cellvalign
@@ -297,7 +297,7 @@ div {
 
    html.tr =
       element tr {
-         html.tr.attr,
+         html.tr.attlist,
          (html.th | html.td)+
       }
 }
@@ -312,7 +312,7 @@ div {
 
    local.th.attributes = empty
 
-   html.th.attr =
+   html.th.attlist =
       html.attrs
     & attribute abbr { text }?
     & attribute axis { text }?
@@ -326,7 +326,7 @@ div {
 
    html.th =
       element th {
-         html.th.attr,
+         html.th.attlist,
          (inlines* | blocks*)
       }
 }
@@ -341,7 +341,7 @@ div {
 
    local.td.attributes = empty
 
-   html.td.attr =
+   html.td.attlist =
       html.attrs
     & attribute abbr { text }?
     & attribute axis { text }?
@@ -355,7 +355,7 @@ div {
 
    html.td =
       element td {
-         html.td.attr,
+         html.td.attlist,
          (inlines* | blocks*)
       }
 }

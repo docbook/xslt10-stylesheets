@@ -44,7 +44,7 @@ div {
 
    itermset.role.attribute = attribute role { text }
 
-   itermset.attr =
+   itermset.attlist =
       itermset.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -52,7 +52,7 @@ div {
 
    db.itermset =
       element itermset {
-         itermset.attr,
+         itermset.attlist,
          indexterm.singular+
       }
 }
@@ -80,7 +80,7 @@ div {
 
    indexterm.singular.role.attribute = attribute role { text }
 
-   indexterm.singular.attr =
+   indexterm.singular.attlist =
       indexterm.singular.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -93,7 +93,7 @@ div {
 
    indexterm.singular =
       element indexterm {
-         indexterm.singular.attr,
+         indexterm.singular.attlist,
          indexterm.contentmodel
       }
 }
@@ -110,7 +110,7 @@ div {
 
    indexterm.startofrange.role.attribute = attribute role { text }
 
-   indexterm.startofrange.attr =
+   indexterm.startofrange.attlist =
       indexterm.startofrange.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -123,7 +123,7 @@ div {
 
    indexterm.startofrange =
       element indexterm {
-         indexterm.startofrange.attr,
+         indexterm.startofrange.attlist,
          indexterm.contentmodel
       }
 }
@@ -140,7 +140,7 @@ div {
 
    indexterm.endofrange.role.attribute = attribute role { text }
 
-   indexterm.endofrange.attr =
+   indexterm.endofrange.attlist =
       indexterm.endofrange.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -150,7 +150,7 @@ div {
 
    indexterm.endofrange =
       element indexterm {
-         indexterm.endofrange.attr,
+         indexterm.endofrange.attlist,
          empty
       }
 }
@@ -179,7 +179,7 @@ div {
 
    primary.role.attribute = attribute role { text }
 
-   primary.attr =
+   primary.attlist =
       primary.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -188,7 +188,7 @@ div {
 
    db.primary =
       element primary {
-         primary.attr,
+         primary.attlist,
          inlines*
       }
 }
@@ -205,7 +205,7 @@ div {
 
    secondary.role.attribute = attribute role { text }
 
-   secondary.attr =
+   secondary.attlist =
       secondary.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -214,7 +214,7 @@ div {
 
    db.secondary =
       element secondary {
-         secondary.attr,
+         secondary.attlist,
          inlines*
       }
 }
@@ -231,7 +231,7 @@ div {
 
    tertiary.role.attribute = attribute role { text }
 
-   tertiary.attr =
+   tertiary.attlist =
       tertiary.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -240,7 +240,7 @@ div {
 
    db.tertiary =
       element tertiary {
-         tertiary.attr,
+         tertiary.attlist,
          inlines*
       }
 }
@@ -257,7 +257,7 @@ div {
 
    see.role.attribute = attribute role { text }
 
-   see.attr =
+   see.attlist =
       see.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -265,7 +265,7 @@ div {
 
    db.see =
       element see {
-         see.attr,
+         see.attlist,
          inlines*
       }
 }
@@ -282,7 +282,7 @@ div {
 
    seealso.role.attribute = attribute role { text }
 
-   seealso.attr =
+   seealso.attlist =
       seealso.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -290,7 +290,7 @@ div {
 
    db.seealso =
       element seealso {
-         seealso.attr,
+         seealso.attlist,
          inlines*
       }
 }
@@ -309,7 +309,7 @@ div {
 
    index.role.attribute = attribute role { text }
 
-   index.attr =
+   index.attlist =
       index.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -321,7 +321,7 @@ div {
 
    db.index =
       element index {
-         index.attr,
+         index.attlist,
          index.info,
          blocks*,
          (db.indexdiv* | db.indexentry* | db.segmentedlist)
@@ -342,7 +342,7 @@ div {
 
    setindex.role.attribute = attribute role { text }
 
-   setindex.attr =
+   setindex.attlist =
       setindex.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -354,7 +354,7 @@ div {
 
    db.setindex =
       element setindex {
-         setindex.attr,
+         setindex.attlist,
          setindex.info,
          blocks*,
          (db.indexdiv* | db.indexentry*)
@@ -375,7 +375,7 @@ div {
 
    indexdiv.role.attribute = attribute role { text }
 
-   indexdiv.attr =
+   indexdiv.attlist =
       indexdiv.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -387,7 +387,7 @@ div {
 
    db.indexdiv =
       element indexdiv {
-         indexdiv.attr,
+         indexdiv.attlist,
          indexdiv.info,
          blocks*,
          (db.indexentry+|db.segmentedlist)
@@ -406,7 +406,7 @@ div {
 
    indexentry.role.attribute = attribute role { text }
 
-   indexentry.attr =
+   indexentry.attlist =
       indexentry.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -414,7 +414,7 @@ div {
 
    db.indexentry =
       element indexentry {
-         indexentry.attr,
+         indexentry.attlist,
          db.primaryie,
          (db.seeie | db.seealsoie)*,
          (db.secondaryie, (db.seeie | db.seealsoie | db.tertiaryie)*)*
@@ -433,7 +433,7 @@ div {
 
    primaryie.role.attribute = attribute role { text }
 
-   primaryie.attr =
+   primaryie.attlist =
       primaryie.role.attribute?
     & common.attributes
     & linkends.attribute?
@@ -441,7 +441,7 @@ div {
 
    db.primaryie =
       element primaryie {
-         primaryie.attr,
+         primaryie.attlist,
          inlines*
       }
 }
@@ -458,7 +458,7 @@ div {
 
    secondaryie.role.attribute = attribute role { text }
 
-   secondaryie.attr =
+   secondaryie.attlist =
       secondaryie.role.attribute?
     & common.attributes
     & linkends.attribute?
@@ -466,7 +466,7 @@ div {
 
    db.secondaryie =
       element secondaryie {
-         secondaryie.attr,
+         secondaryie.attlist,
          inlines*
       }
 }
@@ -483,7 +483,7 @@ div {
 
    tertiaryie.role.attribute = attribute role { text }
 
-   tertiaryie.attr =
+   tertiaryie.attlist =
       tertiaryie.role.attribute?
     & common.attributes
     & linkends.attribute?
@@ -491,7 +491,7 @@ div {
 
    db.tertiaryie =
       element tertiaryie {
-         tertiaryie.attr,
+         tertiaryie.attlist,
          inlines*
       }
 }
@@ -508,7 +508,7 @@ div {
 
    seeie.role.attribute = attribute role { text }
 
-   seeie.attr =
+   seeie.attlist =
       seeie.role.attribute?
     & common.attributes
     & linkend.attribute?
@@ -516,7 +516,7 @@ div {
 
    db.seeie =
       element seeie {
-         seeie.attr,
+         seeie.attlist,
          inlines*
       }
 }
@@ -533,7 +533,7 @@ div {
 
    seealsoie.role.attribute = attribute role { text }
 
-   seealsoie.attr =
+   seealsoie.attlist =
       seealsoie.role.attribute?
     & common.attributes
     & linkends.attribute?
@@ -541,7 +541,7 @@ div {
 
    db.seealsoie =
       element seealsoie {
-         seealsoie.attr,
+         seealsoie.attlist,
          inlines*
       }
 }

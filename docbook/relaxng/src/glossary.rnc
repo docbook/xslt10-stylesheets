@@ -37,7 +37,7 @@ div {
 
    glosslist.role.attribute = attribute role { text }
 
-   glosslist.attr =
+   glosslist.attlist =
       glosslist.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -47,7 +47,7 @@ div {
 
    db.glosslist =
       element glosslist {
-         glosslist.attr,
+         glosslist.attlist,
          glosslist.info?,
          blocks*,
          db.glossentry+
@@ -66,7 +66,7 @@ div {
 
    glossentry.role.attribute = attribute role { text }
 
-   glossentry.attr =
+   glossentry.attlist =
       glossentry.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -75,7 +75,7 @@ div {
 
    db.glossentry =
       element glossentry {
-         glossentry.attr,
+         glossentry.attlist,
          db.glossterm,
          db.acronym?,
          db.abbrev?,
@@ -96,7 +96,7 @@ div {
 
    glossdef.role.attribute = attribute role { text }
 
-   glossdef.attr =
+   glossdef.attlist =
       glossdef.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -105,7 +105,7 @@ div {
 
    db.glossdef =
       element glossdef {
-         glossdef.attr,
+         glossdef.attlist,
          blocks+,
          db.glossseealso*
       }
@@ -123,7 +123,7 @@ div {
 
    glosssee.role.attribute = attribute role { text }
 
-   glosssee.attr =
+   glosssee.attlist =
       glosssee.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -141,7 +141,7 @@ div {
          ]
       ]
       element glosssee {
-         glosssee.attr,
+         glosssee.attlist,
          inlines*
       }
 }
@@ -158,7 +158,7 @@ div {
 
    glossseealso.role.attribute = attribute role { text }
 
-   glossseealso.attr =
+   glossseealso.attlist =
       glossseealso.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -176,7 +176,7 @@ div {
          ]
       ]
       element glossseealso {
-         glossseealso.attr,
+         glossseealso.attlist,
          inlines*
       }
 }
@@ -193,7 +193,7 @@ div {
 
    firstterm.role.attribute = attribute role { text }
 
-   firstterm.attr =
+   firstterm.attlist =
       firstterm.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -211,7 +211,7 @@ div {
          ]
       ]
       element firstterm {
-         firstterm.attr,
+         firstterm.attlist,
          inlines*
       }
 }
@@ -228,7 +228,7 @@ div {
 
    glossterm.role.attribute = attribute role { text }
 
-   glossterm.attr =
+   glossterm.attlist =
       glossterm.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -246,7 +246,7 @@ div {
          ]
       ]
       element glossterm {
-         glossterm.attr,
+         glossterm.attlist,
          inlines*
       }
 }
@@ -265,7 +265,7 @@ div {
 
    glossary.role.attribute = attribute role { text }
 
-   glossary.attr =
+   glossary.attlist =
       glossary.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -277,7 +277,7 @@ div {
 
    db.glossary =
       element glossary {
-         glossary.attr,
+         glossary.attlist,
          glossary.info,
          blocks*,
          (db.glossdiv+ | db.glossentry+),
@@ -299,7 +299,7 @@ div {
 
    glossdiv.role.attribute = attribute role { text }
 
-   glossdiv.attr =
+   glossdiv.attlist =
       glossdiv.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -311,7 +311,7 @@ div {
 
    db.glossdiv =
       element glossdiv {
-         glossdiv.attr,
+         glossdiv.attlist,
          glossdiv.info,
          blocks*,
          db.glossentry+

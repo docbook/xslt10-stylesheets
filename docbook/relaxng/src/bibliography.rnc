@@ -36,7 +36,7 @@ div {
 
    biblioentry.role.attribute = attribute role { text }
 
-   biblioentry.attr =
+   biblioentry.attlist =
       biblioentry.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -44,7 +44,7 @@ div {
 
    db.biblioentry =
       element biblioentry {
-         biblioentry.attr,
+         biblioentry.attlist,
          bibliographic.elements+
       }
 }
@@ -61,7 +61,7 @@ div {
 
    bibliomixed.role.attribute = attribute role { text }
 
-   bibliomixed.attr =
+   bibliomixed.attlist =
       bibliomixed.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -69,7 +69,7 @@ div {
 
    db.bibliomixed =
       element bibliomixed {
-         bibliomixed.attr,
+         bibliomixed.attlist,
          (text | bibliographic.elements)*
       }
 }
@@ -88,7 +88,7 @@ div {
 
    biblioset.role.attribute = attribute role { text }
 
-   biblioset.attr =
+   biblioset.attlist =
       biblioset.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -97,7 +97,7 @@ div {
 
    db.biblioset =
       element biblioset {
-         biblioset.attr,
+         biblioset.attlist,
          bibliographic.elements+
       }
 }
@@ -116,7 +116,7 @@ div {
 
    bibliomset.role.attribute = attribute role { text }
 
-   bibliomset.attr =
+   bibliomset.attlist =
       bibliomset.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -125,7 +125,7 @@ div {
 
    db.bibliomset =
       element bibliomset {
-         bibliomset.attr,
+         bibliomset.attlist,
          (docbook.text | bibliographic.elements)*
       }
 }
@@ -142,7 +142,7 @@ div {
 
    bibliomisc.role.attribute = attribute role { text }
 
-   bibliomisc.attr =
+   bibliomisc.attlist =
       bibliomisc.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -150,7 +150,7 @@ div {
 
    db.bibliomisc =
       element bibliomisc {
-         bibliomisc.attr,
+         bibliomisc.attlist,
          docbook.text
       }
 }
@@ -169,7 +169,7 @@ div {
 
    bibliography.role.attribute = attribute role { text }
 
-   bibliography.attr =
+   bibliography.attlist =
       bibliography.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -181,7 +181,7 @@ div {
 
    db.bibliography =
       element bibliography {
-         bibliography.attr,
+         bibliography.attlist,
          bibliography.info,
          blocks*,
          (db.bibliodiv+ | (db.biblioentry | db.bibliomixed)+)
@@ -202,7 +202,7 @@ div {
 
    bibliodiv.role.attribute = attribute role { text }
 
-   bibliodiv.attr =
+   bibliodiv.attlist =
       bibliodiv.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -214,7 +214,7 @@ div {
 
    db.bibliodiv =
       element bibliodiv {
-         bibliodiv.attr,
+         bibliodiv.attlist,
          bibliodiv.info,
          blocks*,
          (db.biblioentry | db.bibliomixed)+
@@ -233,7 +233,7 @@ div {
 
    bibliolist.role.attribute = attribute role { text }
 
-   bibliolist.attr =
+   bibliolist.attlist =
       bibliolist.role.attribute?
     & common.attributes
     & common.linking.attributes
@@ -243,7 +243,7 @@ div {
 
    db.bibliolist =
       element bibliolist {
-         bibliolist.attr,
+         bibliolist.attlist,
          bibliolist.info?,
          blocks*,
          (db.biblioentry | db.bibliomixed)+
