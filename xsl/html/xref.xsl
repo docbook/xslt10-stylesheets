@@ -83,7 +83,7 @@
 		<xsl:text>???</xsl:text>
 	      </xsl:when>
 	      <xsl:otherwise>
-		<xsl:apply-templates select="$etarget" mode="xref.text"/>
+		<xsl:apply-templates select="$etarget" mode="endterm"/>
 	      </xsl:otherwise>
 	    </xsl:choose>
 	  </xsl:when>
@@ -99,6 +99,10 @@
       </a>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template match="*" mode="endterm">
+  <xsl:apply-templates select="./node()"/>
 </xsl:template>
 
 <!-- ==================================================================== -->
