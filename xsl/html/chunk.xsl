@@ -366,25 +366,40 @@
           </xsl:message>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="key('id',$rootid)"/>
-          <xsl:if test="$tex.math.in.alt != ''">
-            <xsl:apply-templates select="key('id',$rootid)" mode="collect.tex.math"/>
+          <xsl:if test="$collect.xref.targets = 'yes' or
+                        $collect.xref.targets = 'only'">
+            <xsl:apply-templates select="key('id', $rootid)"
+                        mode="collect.targets"/>
           </xsl:if>
-          <xsl:if test="$generate.manifest != 0">
-            <xsl:call-template name="generate.manifest">
-              <xsl:with-param name="node" select="key('id',$rootid)"/>
-            </xsl:call-template>
+          <xsl:if test="$collect.xref.targets != 'only'">
+            <xsl:apply-templates select="key('id',$rootid)"
+                        mode="process.root"/>
+            <xsl:if test="$tex.math.in.alt != ''">
+              <xsl:apply-templates select="key('id',$rootid)"
+                          mode="collect.tex.math"/>
+            </xsl:if>
+            <xsl:if test="$generate.manifest != 0">
+              <xsl:call-template name="generate.manifest">
+                <xsl:with-param name="node" select="key('id',$rootid)"/>
+              </xsl:call-template>
+            </xsl:if>
           </xsl:if>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates select="/" mode="process.root"/>
-      <xsl:if test="$tex.math.in.alt != ''">
-        <xsl:apply-templates select="/" mode="collect.tex.math"/>
+      <xsl:if test="$collect.xref.targets = 'yes' or
+                    $collect.xref.targets = 'only'">
+        <xsl:apply-templates select="/" mode="collect.targets"/>
       </xsl:if>
-      <xsl:if test="$generate.manifest != 0">
-        <xsl:call-template name="generate.manifest"/>
+      <xsl:if test="$collect.xref.targets != 'only'">
+        <xsl:apply-templates select="/" mode="process.root"/>
+        <xsl:if test="$tex.math.in.alt != ''">
+          <xsl:apply-templates select="/" mode="collect.tex.math"/>
+        </xsl:if>
+        <xsl:if test="$generate.manifest != 0">
+          <xsl:call-template name="generate.manifest"/>
+        </xsl:if>
       </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
