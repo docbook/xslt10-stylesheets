@@ -6764,6 +6764,11 @@ OtherCredit. -->
 		class	(constant
 			|event
 			|eventhandler
+			|domainname
+			|fqdomainname
+			|ipaddress
+			|netmask
+			|etheraddress
 			|groupname
                         |library
 			|macro
