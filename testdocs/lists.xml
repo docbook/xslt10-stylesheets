@@ -10,6 +10,60 @@
 <title>Lists</title>
 </articleinfo>
 
+<para>Can I xref to ordered list items: <xref linkend="someOLI"/>.</para>
+<para>Can I xref to itemized list items: <xref linkend="someILI"/>.</para>
+<para>Can I xref to variable list items: <xref linkend="someVLI"/>.</para>
+
+<orderedlist>
+  <listitem><para>Level 1</para>
+    <orderedlist>
+    <listitem><para>Level 2</para>
+      <orderedlist>
+      <listitem id="someOLI"><para>Level 3</para>
+        <orderedlist>
+        <listitem><para>Level 4</para>
+          <orderedlist>
+          <listitem><para>Level 5</para>
+            <orderedlist>
+            <listitem><para>Level 6</para>
+            </listitem>
+            </orderedlist>
+          </listitem>
+          </orderedlist>
+        </listitem>
+        </orderedlist>
+    </listitem>
+    </orderedlist>
+  </listitem>
+  </orderedlist>
+</listitem>
+</orderedlist>
+
+<orderedlist numeration="loweralpha">
+  <listitem><para>Level 1, numeration="loweralpha"</para>
+    <orderedlist>
+    <listitem><para>Level 2</para>
+      <orderedlist>
+      <listitem><para>Level 3</para>
+        <orderedlist>
+        <listitem><para>Level 4</para>
+          <orderedlist>
+          <listitem><para>Level 5</para>
+            <orderedlist>
+            <listitem><para>Level 6</para>
+            </listitem>
+            </orderedlist>
+          </listitem>
+          </orderedlist>
+        </listitem>
+        </orderedlist>
+    </listitem>
+    </orderedlist>
+  </listitem>
+  </orderedlist>
+</listitem>
+</orderedlist>
+
 <variablelist>
 <title>VariableList Title</title>
 <varlistentry><term>Term1</term>
@@ -18,7 +72,7 @@
 <varlistentry><term>Term2</term>
 <listitem><para>Definition of Term2</para></listitem>
 </varlistentry>
-<varlistentry><term>Term3a</term><term>Term3b</term><term>Term3c</term>
+<varlistentry id="someVLI"><term>Term3a</term><term>Term3b</term><term>Term3c</term>
 <listitem><para>Definition of Term3a,b,c</para></listitem>
 </varlistentry>
 </variablelist>
@@ -31,11 +85,11 @@
 Company,</emphasis></otheraddr> <street>11510 Goldcoast Drive,</street>
 <city>Cincinnati,</city> <state>OH</state> <postcode>45249-1695.</postcode>
 <phone>(513) 489-2775.</phone> <otheraddr><emphasis>Looking for:</emphasis>
-outrageous humor, no seasonal cards.</otheraddr></address><para/></listitem>
+outrageous humor, no seasonal cards.</otheraddr></address></listitem>
 <listitem><simpara>This is the second item of an itemized list. (Using simpara.)
 &blah; &blah; &blah; &blah; &blah;</simpara>
 </listitem>
-<listitem><para>This is the third. It contains several paragraphs.
+<listitem id="someILI"><para>This is the third. It contains several paragraphs.
 &blah; &blah; &blah; &blah; &blah;</para>
 <para>&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
 </para>
