@@ -83,7 +83,7 @@
 
 <!ENTITY % local.list.class "">
 <!ENTITY % list.class
-		"calloutlist|glosslist|itemizedlist|orderedlist|segmentedlist
+		"calloutlist|glosslist|bibliolist|itemizedlist|orderedlist|segmentedlist
 		|simplelist|variablelist %local.list.class;">
 
 <!ENTITY % local.admon.class "">
@@ -896,6 +896,30 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 		"graphic | mediaobject | legalnotice | modespec
 		 | subjectset | keywordset | itermset | %bibliocomponent.mix;
                  %local.info.class;">
+
+
+<!-- BiblioList ........................ -->
+
+<!ENTITY % bibliolist.module "INCLUDE">
+<![%bibliolist.module;[
+<!ENTITY % local.bibliolist.attrib "">
+<!ENTITY % bibliolist.role.attrib "%role.attrib;">
+
+<!ENTITY % bibliolist.element "INCLUDE">
+<![%bibliolist.element;[
+<!ELEMENT bibliolist %ho; (blockinfo?, (%formalobject.title.content;)?,
+                           (biblioentry|bibliomixed)+)>
+<!--end of bibliolist.element-->]]>
+
+<!ENTITY % bibliolist.attlist "INCLUDE">
+<![%bibliolist.attlist;[
+<!ATTLIST bibliolist
+		%common.attrib;
+		%bibliolist.role.attrib;
+		%local.bibliolist.attrib;
+>
+<!--end of bibliolist.attlist-->]]>
+<!--end of bibliolist.module-->]]>
 
 <!ENTITY % biblioentry.module "INCLUDE">
 <![%biblioentry.module;[
