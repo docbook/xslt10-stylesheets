@@ -193,9 +193,16 @@ FIXME: make is.graphic.* work correctly depending on the backend!
 <!-- ==================================================================== -->
 
 <xsl:template match="graphic">
-  <fo:block>
-    <xsl:call-template name="process.image"/>
-  </fo:block>
+  <xsl:choose>
+    <xsl:when test="../inlineequation">
+      <xsl:call-template name="process.image"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:block>
+        <xsl:call-template name="process.image"/>
+      </fo:block>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="inlinegraphic">
