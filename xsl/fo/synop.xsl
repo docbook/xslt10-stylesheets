@@ -114,9 +114,14 @@
     <xsl:apply-templates select="$target" mode="synopfragment.number"/>
   </xsl:variable>
   <fo:inline font-style="italic">
-    <xsl:text>(</xsl:text>
-    <xsl:value-of select="$snum"/>
-    <xsl:text>)</xsl:text>
+    <fo:basic-link internal-destination="{@linkend}"
+                   xsl:use-attribute-sets="xref.properties">
+      <xsl:text>(</xsl:text>
+      <xsl:value-of select="$snum"/>
+      <xsl:text>)</xsl:text>
+    </fo:basic-link>
+    <xsl:text>&#160;</xsl:text>
+    <xsl:apply-templates/>
   </fo:inline>
 </xsl:template>
 
@@ -135,7 +140,7 @@
     <xsl:text> </xsl:text>
     <xsl:apply-templates/>
   </fo:block>
-</xsl:template>   
+</xsl:template>
 
 <xsl:template match="funcsynopsis">
   <xsl:call-template name="informal.object"/>
