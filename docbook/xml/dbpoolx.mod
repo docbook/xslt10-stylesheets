@@ -6609,7 +6609,7 @@ OtherCredit. -->
 
 <!ENTITY % guibutton.element "INCLUDE">
 <![%guibutton.element;[
-<!ELEMENT guibutton %ho; (%smallcptr.char.mix;|accel)*>
+<!ELEMENT guibutton %ho; (%smallcptr.char.mix;|accel|superscript|subscript)*>
 <!--end of guibutton.element-->]]>
 
 <!ENTITY % guibutton.attlist "INCLUDE">
@@ -6630,7 +6630,7 @@ OtherCredit. -->
 
 <!ENTITY % guiicon.element "INCLUDE">
 <![%guiicon.element;[
-<!ELEMENT guiicon %ho; (%smallcptr.char.mix;|accel)*>
+<!ELEMENT guiicon %ho; (%smallcptr.char.mix;|accel|superscript|subscript)*>
 <!--end of guiicon.element-->]]>
 
 <!ENTITY % guiicon.attlist "INCLUDE">
@@ -6651,7 +6651,7 @@ OtherCredit. -->
 
 <!ENTITY % guilabel.element "INCLUDE">
 <![%guilabel.element;[
-<!ELEMENT guilabel %ho; (%smallcptr.char.mix;|accel)*>
+<!ELEMENT guilabel %ho; (%smallcptr.char.mix;|accel|superscript|subscript)*>
 <!--end of guilabel.element-->]]>
 
 <!ENTITY % guilabel.attlist "INCLUDE">
@@ -6672,7 +6672,7 @@ OtherCredit. -->
 
 <!ENTITY % guimenu.element "INCLUDE">
 <![%guimenu.element;[
-<!ELEMENT guimenu %ho; (%smallcptr.char.mix;|accel)*>
+<!ELEMENT guimenu %ho; (%smallcptr.char.mix;|accel|superscript|subscript)*>
 <!--end of guimenu.element-->]]>
 
 <!ENTITY % guimenu.attlist "INCLUDE">
@@ -6693,7 +6693,7 @@ OtherCredit. -->
 
 <!ENTITY % guimenuitem.element "INCLUDE">
 <![%guimenuitem.element;[
-<!ELEMENT guimenuitem %ho; (%smallcptr.char.mix;|accel)*>
+<!ELEMENT guimenuitem %ho; (%smallcptr.char.mix;|accel|superscript|subscript)*>
 <!--end of guimenuitem.element-->]]>
 
 <!ENTITY % guimenuitem.attlist "INCLUDE">
@@ -6714,7 +6714,7 @@ OtherCredit. -->
 
 <!ENTITY % guisubmenu.element "INCLUDE">
 <![%guisubmenu.element;[
-<!ELEMENT guisubmenu %ho; (%smallcptr.char.mix;|accel)*>
+<!ELEMENT guisubmenu %ho; (%smallcptr.char.mix;|accel|superscript|subscript)*>
 <!--end of guisubmenu.element-->]]>
 
 <!ENTITY % guisubmenu.attlist "INCLUDE">
