@@ -149,6 +149,7 @@
   <xsl:param name="itemsymbol" select="'disc'"/>
 
   <xsl:choose>
+    <xsl:when test="$itemsymbol='none'"></xsl:when>
     <xsl:when test="$itemsymbol='disc'">&#x2022;</xsl:when>
     <xsl:when test="$itemsymbol='bullet'">&#x2022;</xsl:when>
     <xsl:when test="$itemsymbol='endash'">&#x2013;</xsl:when>
