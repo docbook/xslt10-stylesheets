@@ -21,6 +21,9 @@
       <xsl:with-param name="webpage" select="ancestor::webpage"/>
     </xsl:apply-templates>
     <xsl:apply-templates mode="head.mode"/>
+    <xsl:call-template name="user.head.content">
+      <xsl:with-param name="node" select="ancestor::webpage"/>
+    </xsl:call-template>
   </head>
 </xsl:template>
 
