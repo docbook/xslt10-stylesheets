@@ -18,7 +18,6 @@ xalan2:
 	$(MAKE) -C xalan2/.classes
 
 jars: saxon643 saxon644 xalan2
-	$(MAKE) -C saxon642/.classes jar
 	$(MAKE) -C saxon643/.classes jar
 	cp saxon643.jar saxon644.jar
 	cp saxon643.jar saxon65.jar
