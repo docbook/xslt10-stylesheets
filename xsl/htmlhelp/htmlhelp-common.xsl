@@ -109,7 +109,9 @@
   <xsl:call-template name="toHex">
     <xsl:with-param name="n" select="9504 + $htmlhelp.show.menu * 65536
                                           + $htmlhelp.show.advanced.search * 131072
-                                          + $htmlhelp.show.favorities * 4096"/>
+                                          + $htmlhelp.show.favorities * 4096
+                                          + (1 - $htmlhelp.show.toolbar.text) * 64
+                                          + $htmlhelp.remember.window.position * 262144"/>
   </xsl:call-template>
 </xsl:variable>
 <xsl:variable name="xbuttons">
@@ -148,7 +150,16 @@ Contents file=</xsl:text><xsl:value-of select="$htmlhelp.hhc"/><xsl:text>
 </xsl:text></xsl:if>
 <xsl:text>Default topic=</xsl:text><xsl:value-of select="$default.topic"/>
 <xsl:text>
-Display compile progress=Yes
+Display compile progress=</xsl:text>
+  <xsl:choose>
+    <xsl:when test="$htmlhelp.display.progress != 1">
+      <xsl:text>No</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>Yes</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+<xsl:text>
 Full-text search=Yes
 </xsl:text>
 <xsl:if test="$generate.index">
@@ -176,6 +187,16 @@ Title=</xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="$htmlhelp.title"/>
+    </xsl:otherwise>
+  </xsl:choose>
+<xsl:text>
+Enhanced decompilation=</xsl:text>
+  <xsl:choose>
+    <xsl:when test="$htmlhelp.enhanced.decompilation != 0">
+      <xsl:text>Yes</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>No</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
 
@@ -231,12 +252,15 @@ Title=</xsl:text>
 </xsl:if>
 <xsl:text>,</xsl:text>
 <xsl:value-of select="$xnavigation"/>
-<xsl:text>,,</xsl:text>
+<xsl:text>,</xsl:text><xsl:value-of select="$htmlhelp.hhc.width"/><xsl:text>,</xsl:text>
 <xsl:value-of select="$xbuttons"/>
-<xsl:text>,,,,,,,,0
+<xsl:text>,</xsl:text><xsl:value-of select="$htmlhelp.window.geometry"/><xsl:text>,,,,,,,0
 </xsl:text>
 </xsl:if>
 
+<xsl:if test="$htmlhelp.hhp.windows">
+  <xsl:value-of select="$htmlhelp.hhp.windows"/>
+</xsl:if>
 <xsl:text>
 
 [FILES]
