@@ -191,9 +191,14 @@
 
 <xsl:template match="refnamediv">
   <xsl:text>.SH NAME&#10;</xsl:text>
-  <xsl:value-of select="refname"/>
+  <xsl:for-each select="refname">
+    <xsl:if test="position()>1">
+      <xsl:text>, </xsl:text>
+    </xsl:if>
+    <xsl:value-of select="."/>
+  </xsl:for-each>
   <xsl:text> \- </xsl:text>
-  <xsl:value-of select="refpurpose"/>
+  <xsl:value-of select="normalize-space (refpurpose)"/>
 </xsl:template>
 
 <xsl:template match="refentry/refentryinfo"></xsl:template>
