@@ -15,10 +15,6 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="itemizedlist">
-  <xsl:variable name="itemsymbol">
-    <xsl:call-template name="list.itemsymbol"/>
-  </xsl:variable>
-
   <div class="{name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:if test="title">
@@ -27,7 +23,13 @@
 
     <xsl:apply-templates select="*[not(self::listitem or self::title)]"/>
 
-    <ul type="{$itemsymbol}">
+    <ul>
+      <xsl:if test="$css.decoration != 0">
+        <xsl:attribute name="type">
+          <xsl:call-template name="list.itemsymbol"/>
+        </xsl:attribute>
+      </xsl:if>
+
       <xsl:if test="@spacing='compact'">
         <xsl:attribute name="compact">
           <xsl:value-of select="@spacing"/>
