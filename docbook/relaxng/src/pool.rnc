@@ -21,8 +21,16 @@ default namespace = "http://docbook.org/docbook-ng"
 
 # ======================================================================
 
-db._any           = element * - db:* { db._any.attribute*, (text, db._any)* }
-db._any.attribute = attribute * { text }
+[
+   db:refname [ "*:*" ]
+   db:refpurpose [ "Any element from any namespace except the DocBook namespace" ]
+]
+div {
+
+  db._any           = element * - db:* { db._any.attribute*, (text, db._any)* }
+  db._any.attribute = attribute * { text }
+
+}
 
 # ======================================================================
 
@@ -227,8 +235,8 @@ db.biblio.class-enum.attribute =
     | "uri" }?
 
 db.biblio.class-other.attributes =
-   attribute class { "other" }?,
-   attribute otherclass { xsd:NMTOKEN }
+   attribute class { "other" }
+ & attribute otherclass { xsd:NMTOKEN }
 
 db.biblio.class.attribute =
   (db.biblio.class-enum.attribute | db.biblio.class-other.attributes)
@@ -627,7 +635,7 @@ div {
 
 [
    db:refname [ "info" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for information about a component or other block" ]
 ]
 div {
 
@@ -649,7 +657,7 @@ div {
 
 [
    db:refname [ "info" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for information about a component or other block with a required title" ]
 ]
 div {
 
@@ -671,7 +679,7 @@ div {
 
 [
    db:refname [ "info" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for information about a component or other block with only a title" ]
 ]
 div {
 
@@ -693,7 +701,7 @@ div {
 
 [
    db:refname [ "info" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for information about a component or other block with only a required title" ]
 ]
 div {
 
@@ -715,7 +723,7 @@ div {
 
 [
    db:refname [ "info" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for information about a component or other block without a title" ]
 ]
 div {
 
@@ -3320,8 +3328,8 @@ div {
        | "nonprofit" }?
 
    db.orgname.class-other.attributes =
-      attribute class { "other" }?,
-      attribute otherclass { text }
+      attribute class { "other" }
+      & attribute otherclass { text }
 
    db.orgname.class.attribute =
       (db.orgname.class-enum.attribute | db.orgname.class-other.attributes)
@@ -4549,8 +4557,8 @@ div {
 # ======================================================================
 
 [
-   db:refname [ "" ]
-   db:refpurpose [ "" ]
+   db:refname [ "accel" ]
+   db:refpurpose [ "A graphical user interface (GUI) keyboard shortcut" ]
 ]
 div {
 
@@ -4597,7 +4605,7 @@ div {
 
 [
    db:refname [ "package" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A software or application package" ]
 ]
 div {
 
@@ -5598,7 +5606,7 @@ div {
 
 [
    db:refname [ "tag" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A component of XML (or SGML) markup" ]
 ]
 div {
 
