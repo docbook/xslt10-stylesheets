@@ -33,9 +33,7 @@
 <pubdate>12 Sep 2002</pubdate>
 
 <copyright><year>2001</year><year>2002</year>
-<holder>The Organization for the Advancement of Structured Information
-Standards [OASIS]. All Rights Reserved.
-</holder></copyright>
+<holder>OASIS Open, Inc. All Rights Reserved.</holder></copyright>
 
 <abstract>
 
@@ -257,10 +255,11 @@ the formulation of this &standard;:</para>
 <listitem><para>Paul Grosso</para></listitem>
 <listitem><para>Dick Hamilton</para></listitem>
 <listitem><para>Nancy (Paisner) Harrison</para></listitem>
+<listitem><para>Richard Lander</para></listitem>
 <listitem><para>Sabine Ocker</para></listitem>
 <listitem><para>Michael Sabrio</para></listitem>
 <listitem><para>Michael Smith</para></listitem>
-<listitem><para>Tim Teebken (prospective)</para></listitem>
+<listitem><para>Tim Teebken</para></listitem>
 <listitem><para>Norman Walsh (Chair, Editor)</para></listitem>
 </itemizedlist>
 
@@ -269,9 +268,8 @@ the formulation of this &standard;:</para>
 <appendix id="a.notices">
 <title>Notices</title>
 
-<para>Copyright &#169; The Organization for the Advancement of
-Structured Information Standards [OASIS] 2001, 2002. All Rights
-Reserved.</para>
+<para>Copyright &#169; 2001, 2002 OASIS Open, Inc. All Rights Reserved.
+</para>
 
 <para>OASIS takes no position regarding the validity
 or scope of any intellectual property or other rights
