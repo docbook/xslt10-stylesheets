@@ -54,6 +54,12 @@
     </xsl:choose>
   </xsl:variable>
 
+  <xsl:variable name="alt">
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="$admon.type"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <div class="{name(.)}">
     <xsl:if test="$admon.style != ''">
       <xsl:attribute name="style">
@@ -74,7 +80,7 @@
           <xsl:attribute name="width">
             <xsl:call-template name="admon.graphic.width"/>
           </xsl:attribute>
-          <img alt="[{$admon.type}]">
+          <img alt="[{$alt}]">
             <xsl:attribute name="src">
               <xsl:call-template name="admon.graphic"/>
             </xsl:attribute>
