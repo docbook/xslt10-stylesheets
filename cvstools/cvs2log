@@ -14,6 +14,8 @@ my %authorName = ('adicarlo' => 'Adam Di Carlo ',
 		  'mrjohnson' => 'Mark Johnson ',
 		  'nikclayton' => 'Nik Clayton ',
 		  'nwalsh' => 'Norman Walsh ',
+		  'nyraghu' => 'N. Raghavendra ',
+		  'petere78' => 'Peter Eisentraut ',
 		  'xmldoc' => 'Michael Smith ');
 
 # Open the log file...
