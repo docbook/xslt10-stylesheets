@@ -1,13 +1,15 @@
 XSLT=../../cvstools/saxon
 XJPARSE=../../cvstools/xjparse
 
-SOURCES=ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml et.xml fi.xml \
-          fr.xml hu.xml id.xml it.xml ja.xml ko.xml nl.xml no.xml pl.xml \
-          pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sr.xml sv.xml \
-          tr.xml zh_cn.xml zh_tw.xml
+SOURCES=af.xml \
+        ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml et.xml fi.xml \
+        fr.xml hu.xml id.xml it.xml ja.xml ko.xml nl.xml no.xml pl.xml \
+        pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sr.xml sv.xml \
+        tr.xml zh_cn.xml zh_tw.xml
 
 all: $(SOURCES)
 
+af.xml: ../../gentext/locale/af.xml
 ca.xml: ../../gentext/locale/ca.xml
 cs.xml: ../../gentext/locale/cs.xml
 da.xml: ../../gentext/locale/da.xml
