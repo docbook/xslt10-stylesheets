@@ -201,23 +201,6 @@
 	   is now obsolete and thus deleted
 -->
 
-<!-- evaluates to parameter string with all space characters converted
-     to non-breaking spaces. -->
-<xsl:template name="nbspace">
-  <xsl:param name="string" select="''"/>
-  <xsl:choose>
-    <xsl:when test="contains($string, ' ')">
-      <xsl:value-of select="substring-before($string, ' ')"/>
-      <xsl:text>\ </xsl:text>
-      <xsl:call-template name="nbspace">
-	<xsl:with-param name="string" select="substring-after($string, ' ')"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="$string"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
 
 <!-- replaces all spaces within the funcdef/paramdef with non-breaking
      spaces -->
@@ -225,8 +208,10 @@
   <xsl:variable name="content">
     <xsl:apply-templates select="*|./*|text()"/>
   </xsl:variable>
-  <xsl:call-template name="nbspace">
-    <xsl:with-param name="string" select="$content"/>
+  <xsl:call-template name="replace-string">
+    <xsl:with-param name="content" select="$content"/>
+    <xsl:with-param name="replace" select="' '"/>
+    <xsl:with-param name="with" select="'\ '"/>
   </xsl:call-template>
   <xsl:if test="local-name(.) = 'paramdef' and 
 	  (following-sibling::paramdef or following-sibling::varargs)">
