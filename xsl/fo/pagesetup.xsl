@@ -19,9 +19,11 @@
                       margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"/>
       <fo:region-before region-name="xsl-region-before-blank"
-                        extent="{$region.before.extent}"/>
+                        extent="{$region.before.extent}"
+                        display-align="after"/>
       <fo:region-after region-name="xsl-region-after-blank"
-                       extent="{$region.after.extent}"/>
+                       extent="{$region.after.extent}"
+                        display-align="after"/>
     </fo:simple-page-master>
 
     <!-- one sided, single column -->
@@ -35,8 +37,10 @@
       <fo:region-body
                       margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"/>
-      <fo:region-before extent="{$region.before.extent}"/>
-      <fo:region-after extent="{$region.after.extent}"/>
+      <fo:region-before extent="{$region.before.extent}"
+                        display-align="after"/>
+      <fo:region-after extent="{$region.after.extent}"
+                        display-align="after"/>
     </fo:simple-page-master>
 
     <!-- for left-hand/even pages in twosided mode, single column -->
@@ -51,9 +55,11 @@
                       margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"/>
       <fo:region-before region-name="xsl-region-before-left"
-                        extent="{$region.before.extent}"/>
+                        extent="{$region.before.extent}"
+                        display-align="after"/>
       <fo:region-after region-name="xsl-region-after-left"
-                       extent="{$region.after.extent}"/>
+                       extent="{$region.after.extent}"
+                        display-align="after"/>
     </fo:simple-page-master>
 
     <!-- for right-hand/odd pages in twosided mode, single column -->
@@ -68,9 +74,11 @@
                       margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"/>
       <fo:region-before region-name="xsl-region-before-right"
-                        extent="{$region.before.extent}"/>
+                        extent="{$region.before.extent}"
+                        display-align="after"/>
       <fo:region-after region-name="xsl-region-after-right"
-                       extent="{$region.after.extent}"/>
+                       extent="{$region.after.extent}"
+                        display-align="after"/>
     </fo:simple-page-master>
 
     <!-- special case of first page in either mode, single column -->
@@ -85,9 +93,11 @@
                       margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"/>
       <fo:region-before region-name="xsl-region-before-first"
-                        extent="{$region.before.extent}"/>
+                        extent="{$region.before.extent}"
+                        display-align="after"/>
       <fo:region-after region-name="xsl-region-after-first"
-                       extent="{$region.after.extent}"/>
+                       extent="{$region.after.extent}"
+                        display-align="after"/>
     </fo:simple-page-master>
 
     <!-- for pages in one-side mode, 2 column -->
@@ -102,8 +112,10 @@
                       column-count="{$column.count}"
                       margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"/>
-      <fo:region-before extent="{$region.before.extent}"/>
-      <fo:region-after extent="{$region.after.extent}"/>
+      <fo:region-before extent="{$region.before.extent}"
+                        display-align="after"/>
+      <fo:region-after extent="{$region.after.extent}"
+                        display-align="after"/>
     </fo:simple-page-master>
 
     <!-- for left-hand/even pages in twosided mode, 2 column -->
@@ -119,9 +131,11 @@
                       margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"/>
       <fo:region-before region-name="xsl-region-before-left"
-                        extent="{$region.before.extent}"/>
+                        extent="{$region.before.extent}"
+                        display-align="after"/>
       <fo:region-after region-name="xsl-region-after-left"
-                       extent="{$region.after.extent}"/>
+                       extent="{$region.after.extent}"
+                        display-align="after"/>
     </fo:simple-page-master>
 
     <!-- for right-hand/odd pages in twosided mode, 2 column -->
@@ -137,9 +151,11 @@
                       margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"/>
       <fo:region-before region-name="xsl-region-before-right"
-                        extent="{$region.before.extent}"/>
+                        extent="{$region.before.extent}"
+                        display-align="after"/>
       <fo:region-after region-name="xsl-region-after-right"
-                       extent="{$region.after.extent}"/>
+                       extent="{$region.after.extent}"
+                        display-align="after"/>
     </fo:simple-page-master>
 
     <!-- special case of first page in either mode -->
@@ -155,9 +171,11 @@
                       margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"/>
       <fo:region-before region-name="xsl-region-before-first"
-                        extent="{$region.before.extent}"/>
+                        extent="{$region.before.extent}"
+                        display-align="after"/>
       <fo:region-after region-name="xsl-region-after-first"
-                       extent="{$region.after.extent}"/>
+                       extent="{$region.after.extent}"
+                        display-align="after"/>
     </fo:simple-page-master>
 
     <!-- setup for title-page, 1 column -->
@@ -369,6 +387,15 @@
         </fo:block>
       </fo:static-content>
     </xsl:when>
+    <xsl:otherwise>
+      <xsl:message>
+        <xsl:text>Unexpected master-reference (</xsl:text>
+        <xsl:value-of select="$master-reference"/>
+        <xsl:text>) in running.head.mode for </xsl:text>
+        <xsl:value-of select="name(.)"/>
+        <xsl:text>. No header generated.</xsl:text>
+      </xsl:message>
+    </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
