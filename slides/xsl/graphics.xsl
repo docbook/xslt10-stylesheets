@@ -4,18 +4,6 @@
 
 <xsl:output method="html"/>
 
-<xsl:param name="graphics.dir" select="''"/>
-
-<xsl:param name="bullet.image" select="'bullet.gif'"/>
-<xsl:param name="right.image" select="'right.gif'"/>
-<xsl:param name="left.image" select="'left.gif'"/>
-
-<xsl:param name="plus.image" select="'plus.gif'"/>
-<xsl:param name="minus.image" select="'minus.gif'"/>
-
-<xsl:param name="hidetoc.image" select="'hidetoc.gif'"/>
-<xsl:param name="showtoc.image" select="'showtoc.gif'"/>
-
 <xsl:template name="graphics-file">
   <xsl:param name="image" select="'bullet.gif'"/>
 
