@@ -1,0 +1,151 @@
+<!DOCTYPE t:templates [
+<!ENTITY hsize0 "10pt">
+<!ENTITY hsize1 "12pt">
+<!ENTITY hsize2 "14.4pt">
+<!ENTITY hsize3 "17.28pt">
+<!ENTITY hsize4 "20.736pt">
+<!ENTITY hsize5 "24.8832pt">
+<!ENTITY hsize0space "7.5pt"> <!-- 0.75 * hsize0 -->
+<!ENTITY hsize1space "9pt"> <!-- 0.75 * hsize1 -->
+<!ENTITY hsize2space "10.8pt"> <!-- 0.75 * hsize2 -->
+<!ENTITY hsize3space "12.96pt"> <!-- 0.75 * hsize3 -->
+<!ENTITY hsize4space "15.552pt"> <!-- 0.75 * hsize4 -->
+<!ENTITY hsize5space "18.6624pt"> <!-- 0.75 * hsize5 -->
+]>
+<t:templates xmlns:t="http://nwalsh.com/docbook/xsl/template/1.0"
+	     xmlns:param="http://nwalsh.com/docbook/xsl/template/1.0/param"
+             xmlns:fo="http://www.w3.org/1999/XSL/Format"
+             xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<!-- ==================================================================== -->
+
+<t:titlepage element="slides" wrapper="fo:block">
+  <t:titlepage-content side="recto">
+      <title predicate="[1]"
+	     named-template="component.title"
+	     param:node="ancestor-or-self::slides[1]"
+	     fo:text-align="center"
+	     fo:space-after="1em"
+	     fo:keep-with-next="always"
+	     fo:font-size="&hsize5;"
+	     fo:font-weight="bold"
+	     fo:font-family="{$slide.title.font.family}"/>
+
+    <subtitle predicate="[1]"
+	      fo:text-align="center"
+	      fo:font-family="{$slide.title.font.family}"/>
+
+    <corpauthor fo:font-size="&hsize4;"
+		fo:text-align="center"
+		fo:space-after="1em"/>
+    <authorgroup/>
+    <author fo:font-size="&hsize4;"
+	    fo:text-align="center"
+	    fo:space-after="1em"/>
+
+    <pubdate fo:font-size="&hsize3;"
+	     fo:text-align="center"
+	     fo:space-after="1em"/>
+
+    <confgroup fo:font-size="&hsize3;"
+	       fo:text-align="center"
+	       fo:space-after="1em"/>
+
+    <releaseinfo fo:font-size="&hsize3;"
+		 fo:text-align="center"
+		 fo:space-after="1em"/>
+
+    <copyright fo:font-size="&hsize3;"
+	       fo:text-align="center"/>
+
+    <revision fo:text-align="center"/>
+  </t:titlepage-content>
+
+  <t:titlepage-content side="verso">
+  </t:titlepage-content>
+
+  <t:titlepage-separator>
+  </t:titlepage-separator>
+
+  <t:titlepage-before side="recto">
+  </t:titlepage-before>
+
+  <t:titlepage-before side="verso">
+  </t:titlepage-before>
+</t:titlepage>
+
+<!-- ==================================================================== -->
+
+<t:titlepage element="section" wrapper="fo:block">
+  <t:titlepage-content side="recto">
+    <title predicate="[1]"
+	   fo:font-size="&hsize5;"
+	   fo:text-align="center"
+	   fo:font-weight="bold"
+	   fo:font-family="{$slide.title.font.family}"/>
+    <subtitle predicate="[1]"
+	      fo:font-family="{$slide.title.font.family}"/>
+    <corpauthor/>
+    <authorgroup/>
+    <author/>
+    <releaseinfo/>
+    <copyright/>
+    <legalnotice/>
+    <pubdate/>
+    <revision/>
+    <revhistory/>
+    <abstract/>
+  </t:titlepage-content>
+
+  <t:titlepage-content side="verso">
+  </t:titlepage-content>
+
+  <t:titlepage-separator>
+  </t:titlepage-separator>
+
+  <t:titlepage-before side="recto">
+  </t:titlepage-before>
+
+  <t:titlepage-before side="verso">
+  </t:titlepage-before>
+</t:titlepage>
+
+<!-- ==================================================================== -->
+
+<t:titlepage element="foil" wrapper="fo:block">
+  <t:titlepage-content side="recto">
+    <title predicate="[1]"
+	   fo:font-size="&hsize4;"
+	   fo:font-weight="bold"
+	   fo:text-align="center"
+	   fo:font-family="{$slide.title.font.family}"/>
+    <subtitle predicate="[1]"
+	      fo:font-family="{$slide.title.font.family}"/>
+    <corpauthor/>
+    <authorgroup/>
+    <author/>
+    <releaseinfo/>
+    <copyright/>
+    <legalnotice/>
+    <pubdate/>
+    <revision/>
+    <revhistory/>
+    <abstract/>
+  </t:titlepage-content>
+
+  <t:titlepage-content side="verso">
+  </t:titlepage-content>
+
+  <t:titlepage-separator>
+  </t:titlepage-separator>
+
+  <t:titlepage-before side="recto">
+  </t:titlepage-before>
+
+  <t:titlepage-before side="verso">
+  </t:titlepage-before>
+</t:titlepage>
+
+<!-- ==================================================================== -->
+
+</t:templates>
