@@ -353,8 +353,9 @@ will be used to indent the TOC.</para>
 </doc:param>
 
 <!-- ==================================================================== -->
+<xsl:param name="banner.before.navigation" select="1"/>
 
-<doc:param name="" xmlns="">
+<doc:param name="banner.before.navigation" xmlns="">
 <refpurpose></refpurpose>
 <refdescription>
 <para></para>

@@ -50,6 +50,10 @@
       <div class="{name(.)}">
         <a name="{$id}"/>
 
+        <xsl:if test="$banner.before.navigation != 0">
+          <xsl:call-template name="allpages.banner"/>
+        </xsl:if>
+
         <xsl:if test="$toc">
           <div class="navhead">
             <xsl:apply-templates select="$toc">
@@ -57,6 +61,10 @@
             </xsl:apply-templates>
             <xsl:if test="$header.hr != 0"><hr/></xsl:if>
           </div>
+        </xsl:if>
+
+        <xsl:if test="$banner.before.navigation = 0">
+          <xsl:call-template name="allpages.banner"/>
         </xsl:if>
 
         <xsl:apply-templates select="./head/title" mode="title.mode"/>
