@@ -791,7 +791,9 @@
 </xsl:template>
 
 <xsl:template match="segmentedlist/title">
-  <p><b><xsl:apply-templates/></b></p>
+  <div class="title">
+    <strong><span class="title"><xsl:apply-templates/></span></strong>
+  </div>
 </xsl:template>
 
 <xsl:template match="segtitle">
@@ -802,7 +804,9 @@
 </xsl:template>
 
 <xsl:template match="seglistitem">
-  <xsl:apply-templates/>
+  <div class="seglistitem">
+    <xsl:apply-templates/>
+  </div>
 </xsl:template>
 
 <xsl:template match="seg">
@@ -816,14 +820,16 @@
      you'll get something odd...maybe an error
   -->
 
-  <p>
-    <b>
-      <xsl:apply-templates select="$segtitles[$segnum=position()]"
-                           mode="segtitle-in-seg"/>
-      <xsl:text>: </xsl:text>
-    </b>
+  <div class="seg">
+    <strong>
+      <span class="segtitle">
+        <xsl:apply-templates select="$segtitles[$segnum=position()]"
+                             mode="segtitle-in-seg"/>
+        <xsl:text>: </xsl:text>
+      </span>
+    </strong>
     <xsl:apply-templates/>
-  </p>
+  </div>
 </xsl:template>
 
 <xsl:template match="segmentedlist" mode="seglist-table">
