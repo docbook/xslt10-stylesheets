@@ -25,8 +25,7 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$page.margin.inner}"
                            margin-right="{$page.margin.outer}">
-      <fo:region-body region-name="blank-body"
-                      display-align="center"
+      <fo:region-body display-align="center"
                       margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}">
       </fo:region-body>
