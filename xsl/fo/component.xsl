@@ -58,12 +58,7 @@
     </fotex:bookmark>
   </xsl:if>
 
-  <fo:block keep-with-next.within-column="always"
-            space-before.optimum="{$body.font.master}pt"
-            space-before.minimum="{$body.font.master * 0.8}pt"
-            space-before.maximum="{$body.font.master * 1.2}pt"
-            hyphenate="false"
-            xsl:use-attribute-sets="component.title.properties">
+  <fo:block xsl:use-attribute-sets="component.title.properties">
     <xsl:if test="$pagewide != 0">
       <!-- Doesn't work to use 'all' here since not a child of fo:flow -->
       <xsl:attribute name="span">inherit</xsl:attribute>
