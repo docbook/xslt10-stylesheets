@@ -5,6 +5,12 @@
 <!-- test document -->
 <book><title>Glossary Tests</title>
 
+<chapter><title>Testing</title>
+
+<para>What about <glossterm linkend="foo">glossterm</glossterm>.</para>
+
+</chapter>
+
 <glossary id="glossary">
 <glossentry>
 <glossterm>foo</glossterm>
@@ -33,7 +39,7 @@ variables used in syntax examples.</para>
 <glossary id="glossary-div">
 <glossdiv>
 <title>Glossary Division</title>
-<glossentry>
+<glossentry id="foo">
 <glossterm>foo</glossterm>
 <glossdef>
 <para>1. interj. Term of disgust. 2. [very common] Used very generally

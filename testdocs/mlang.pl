@@ -26,7 +26,8 @@ foreach my $key (keys %option) {
     $option{$key} = $opt{$key} if exists($opt{$key});
 }
 
-my %languages = ('ca' => 'Catalan',
+my %languages = ('af' => 'Afrikaans',
+		 'ca' => 'Catalan',
 		 'cs' => 'Czech',
 		 'da' => 'Danish',
 		 'de' => 'German',
@@ -52,6 +53,7 @@ my %languages = ('ca' => 'Catalan',
 		 'sl' => 'Slovenian',
 		 'sr' => 'Serbian',
 		 'sv' => 'Swedish',
+		 'tr' => 'Turkish',
 		 'zh_cn' => 'Chinese (Continental)',
 		 'zh_tw' => 'Chinese (Traditional)');
 

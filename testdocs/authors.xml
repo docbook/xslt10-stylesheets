@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book
+  PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<!-- test document -->
+<book>
+<bookinfo>
+<title>Book Title</title>
+<keywordset>
+<keyword>book keyword1</keyword>
+<keyword>book keyword2</keyword>
+</keywordset>
+<authorgroup id="authors">
+<author id="j.doe">
+<firstname>John</firstname>
+<surname>Doe</surname>
+</author>
+<author>
+<firstname>Jane</firstname>
+<surname>Doe</surname>
+<contrib>Some contribution</contrib>
+</author>
+<author>
+<firstname>A.</firstname>
+<surname>Nonymous</surname>
+</author>
+<author>
+<firstname>Janice</firstname>
+<surname>Doe</surname>
+</author>
+</authorgroup>
+<legalnotice>
+<para>
+Some legal notice. Some legal notice. Some legal notice.
+</para>
+</legalnotice>
+<pubdate>16 December 2000</pubdate>
+<abstract>
+<para>Some abstract. Some abstract. Some abstract. Some abstract.
+Some abstract. Some abstract. Some abstract. Some abstract.
+Some abstract. Some abstract. Some abstract. Some abstract.
+Some abstract. Some abstract. Some abstract. Some abstract.
+Some abstract. Some abstract. Some abstract. Some abstract.
+Some abstract. Some abstract. Some abstract. Some abstract.
+</para>
+<para>Some abstract. Some abstract. Some abstract. Some abstract.
+Some abstract. Some abstract. Some abstract. Some abstract.
+</para>
+</abstract>
+<revhistory>
+<revision>
+<revnumber>1.0</revnumber>
+<date>20 Nov 1998</date>
+<authorinitials>ndw</authorinitials>
+<revremark>Some remark about the revision</revremark>
+</revision>
+<revision>
+<revnumber>0.9</revnumber>
+<date>19 Nov 1998</date>
+<authorinitials>ndw</authorinitials>
+<revremark>Some remark about the revision</revremark>
+</revision>
+<revision>
+<revnumber>0.4</revnumber>
+<date>18 Nov 1998</date>
+<authorinitials>ndw</authorinitials>
+<revremark>Some remark about the revision</revremark>
+</revision>
+</revhistory>
+</bookinfo>
+
+<chapter><title>Book Chapter</title>
+
+<para>What about <xref linkend="j.doe"/>, one of the authors:
+<xref linkend="authors"/>.</para>
+
+</chapter>
+
+</book>
