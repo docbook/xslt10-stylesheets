@@ -81,7 +81,7 @@
     <xsl:attribute name="class">title</xsl:attribute>
     <xsl:if test="$css.decoration != '0'">
       <xsl:if test="$level&lt;3">
-        <xsl:attribute name="style">clear: all</xsl:attribute>
+        <xsl:attribute name="style">clear: both</xsl:attribute>
       </xsl:if>
     </xsl:if>
     <a>
@@ -250,7 +250,7 @@
     <xsl:attribute name="class">title</xsl:attribute>
     <xsl:if test="$css.decoration != '0'">
       <xsl:if test="$level&lt;3">
-        <xsl:attribute name="style">clear: all</xsl:attribute>
+        <xsl:attribute name="style">clear: both</xsl:attribute>
       </xsl:if>
     </xsl:if>
     <a>
