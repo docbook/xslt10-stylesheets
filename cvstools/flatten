@@ -51,14 +51,15 @@ sub read_dtd {
     local(*F, $_);
 
     # HACK HACK HACK
-    if ($dtd =~ /http:\/\/www.oasis-open.org\/docbook\/xml\/.*?\//
-	|| $dtd =~ /http:\/\/docbook.org\/xml\/.*?\//) {
-	$dtd = "/sourceforge/docbook/docbook/xml/$'";
+    if ($dtd =~ /http:\/\/www.oasis-open.org\/docbook\/xml\/simple\/.*\/([^\/]+)$/) {
+	print STDERR "match: $1\n";
+	$dtd = "/sourceforge/docbook/docbook/simple/$1";
     }
 
     # HACK HACK HACK
-    if ($dtd =~ /http:\/\/nwalsh.com\/docbook\/simple\/.*\/([^\/]+)$/) {
-	$dtd = "/sourceforge/docbook/simple/$1";
+    if ($dtd =~ /http:\/\/www.oasis-open.org\/docbook\/xml\/.*?\//
+	|| $dtd =~ /http:\/\/docbook.org\/xml\/.*?\//) {
+	$dtd = "/sourceforge/docbook/docbook/xml/$'";
     }
 
     if (! -f $dtd) {
