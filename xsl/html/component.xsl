@@ -194,6 +194,10 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="appendix">
+  <xsl:variable name="ischunk">
+    <xsl:call-template name="chunk"/>
+  </xsl:variable>
+
   <div class="{name(.)}">
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
@@ -201,36 +205,20 @@
       </xsl:attribute>
     </xsl:if>
 
-    <xsl:call-template name="component.separator"/>
-    <xsl:call-template name="appendix.titlepage"/>
-
-    <xsl:variable name="toc.params">
-      <xsl:call-template name="find.path.params">
-        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:if test="contains($toc.params, 'toc')">
-      <xsl:call-template name="component.toc"/>
-    </xsl:if>
-    <xsl:apply-templates/>
-    <xsl:call-template name="process.footnotes"/>
-  </div>
-</xsl:template>
-
-<xsl:template match="article/appendix">
-  <div class="{name(.)}">
-    <xsl:if test="$generate.id.attributes != 0">
-      <xsl:attribute name="id">
-        <xsl:call-template name="object.id"/>
-      </xsl:attribute>
-    </xsl:if>
-
-    <xsl:call-template name="section.heading">
-      <xsl:with-param name="level" select="2"/>
-      <xsl:with-param name="title">
-        <xsl:apply-templates select="." mode="object.title.markup"/>
-      </xsl:with-param>
-    </xsl:call-template>
+    <xsl:choose>
+      <xsl:when test="parent::article and $ischunk = 0">
+        <xsl:call-template name="section.heading">
+          <xsl:with-param name="level" select="2"/>
+          <xsl:with-param name="title">
+            <xsl:apply-templates select="." mode="object.title.markup"/>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="component.separator"/>
+        <xsl:call-template name="appendix.titlepage"/>
+      </xsl:otherwise>
+    </xsl:choose>
 
     <xsl:variable name="toc.params">
       <xsl:call-template name="find.path.params">
@@ -242,6 +230,10 @@
     </xsl:if>
 
     <xsl:apply-templates/>
+
+    <xsl:if test="not(parent::article) or $ischunk != 0">
+      <xsl:call-template name="process.footnotes"/>
+    </xsl:if>
   </div>
 </xsl:template>
 
