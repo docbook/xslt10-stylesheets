@@ -59,6 +59,10 @@
          match="indexterm"
          use="concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;)"/>
 
+<xsl:key name="endofrange"
+         match="indexterm[@class='endofrange']"
+         use="@startref"/>
+
 <xsl:key name="primary-section"
          match="indexterm[not(secondary) and not(see)]"
          use="concat(&primary;, &sep;, &section.id;)"/>
@@ -82,7 +86,6 @@
 <xsl:key name="sections" match="*[@id]" use="@id"/>
 
 <xsl:template name="generate-index">
-  <!-- FIXME: Ignore class='endofrange' terms because they come out wrong -->
   <xsl:variable name="terms"
                 select="//indexterm[count(.|key('letter',
                                                 translate(substring(&primary;, 1, 1),
@@ -241,7 +244,9 @@
 </xsl:template>
 
 <xsl:template match="indexterm" mode="reference">
-  <xsl:text>, </xsl:text>
+  <xsl:param name="separator" select="', '"/>
+
+  <xsl:value-of select="$separator"/>
   <xsl:choose>
     <xsl:when test="@zone and string(@zone)">
       <xsl:call-template name="reference">
@@ -262,6 +267,13 @@
 
         <xsl:value-of select="$title"/> <!-- text only -->
       </a>
+
+      <xsl:if test="key('endofrange', @id)">
+        <xsl:apply-templates select="key('endofrange', @id)[last()]"
+                             mode="reference">
+          <xsl:with-param name="separator" select="'-'"/>
+        </xsl:apply-templates>
+      </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
