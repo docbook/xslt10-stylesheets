@@ -171,6 +171,11 @@
 <gentext key="nav-prev-sibling" text="Schnell zur&uuml;ck"/>
 <gentext key="nav-up" text="Nach oben"/>
 
+<gentext key="index symbols"   text="Symbole"/>
+
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
+
 <dingbat key="startquote" text="&#x201E;"/>
 <dingbat key="endquote" text="&#x201C;"/>
 <dingbat key="nestedstartquote" text="&#x201A;"/>
