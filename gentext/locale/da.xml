@@ -1,21 +1,23 @@
 <?xml version='1.0'?>
 <!-- there is no doctype for these files, they are WF only -->
+<!DOCTYPE locale [
+<!ENTITY % iso-lat1.ent SYSTEM "../../xmlcharent/iso-lat1.ent">
+%iso-lat1.ent;
+]>
 <locale language="da"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo xmlns="">
-<!-- FIXME: list the real contributors
 <authorgroup>
-  <author><firstname>Norman</firstname><surname>Walsh</surname>
-          <affiliation><address><email>ndw@nwalsh.com</email></address>
-          </affiliation>
+  <author><firstname>Erik</firstname><surname>Kj&aelig;r Pedersen</surname>
+    <affiliation><address><email>erik@binghamton.edu</email></address>
+    </affiliation>
   </author>
 </authorgroup>
--->
 </doc:localeinfo>
 
-<gentext key="Abstract" text="Abstract"/>
-<gentext key="abstract" text="Abstract"/>
+<gentext key="Abstract" text="Resum&eacute;"/>
+<gentext key="abstract" text="Resum&eacute;"/>
 <gentext key="Answer" text="Svar"/>
 <gentext key="answer" text="Svar"/>
 <gentext key="Appendix" text="Appendiks"/>
@@ -26,15 +28,15 @@
 <gentext key="bibliography" text="Bibliografi"/>
 <gentext key="Book" text="Bog"/>
 <gentext key="book" text="Bog"/>
-<gentext key="CAUTION" text="BEM&#198;RK"/>
-<gentext key="caution" text="Bem&#230;rk"/>
-<gentext key="Caution" text="Bem&#230;rk"/>
+<gentext key="CAUTION" text="PAS P&Aring;"/>
+<gentext key="caution" text="PAS P&Aring;"/>
+<gentext key="Caution" text="Pas p&aring;"/>
 <gentext key="Chapter" text="Kapitel"/>
 <gentext key="chapter" text="kapitel"/>
 <gentext key="Colophon" text="Colophon"/>
 <gentext key="colophon" text="Colophon"/>
-<gentext key="Copyright" text="Copyright"/>
-<gentext key="copyright" text="Copyright"/>
+<gentext key="Copyright" text="Ophavsret"/>
+<gentext key="copyright" text="Ophavsret"/>
 <gentext key="Dedication" text="Tilegnet"/>
 <gentext key="dedication" text="Tilegnet"/>
 <gentext key="Edition" text="Udgave"/>
@@ -49,26 +51,26 @@
 <gentext key="glossary" text="Stikordregister"/>
 <gentext key="GlossSee" text="Se"/>
 <gentext key="glosssee" text="Se"/>
-<gentext key="GlossSeeAlso" text="Se ogs&#229;"/>
-<gentext key="glossseealso" text="Se ogs&#229;"/>
+<gentext key="GlossSeeAlso" text="Se ogs&aring;"/>
+<gentext key="glossseealso" text="Se ogs&aring;"/>
 <gentext key="IMPORTANT" text="VIGTIGT"/>
 <gentext key="Important" text="Vigtigt"/>
 <gentext key="important" text="Vigtigt"/>
-<gentext key="Index" text="Index"/>
-<gentext key="index" text="Index"/>
+<gentext key="Index" text="Indeks"/>
+<gentext key="index" text="Indeks"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text="Retslig note"/>
 <gentext key="legalnotice" text="Retslig note"/>
-<gentext key="MsgAud" text="M&#229;lgruppe"/>
-<gentext key="msgaud" text="M&#229;lgruppe"/>
+<gentext key="MsgAud" text="M&aring;lgruppe"/>
+<gentext key="msgaud" text="M&aring;lgruppe"/>
 <gentext key="MsgLevel" text="Niveau"/>
 <gentext key="msglevel" text="Niveau"/>
 <gentext key="MsgOrig" text="Grundlag"/>
 <gentext key="msgorig" text="Grundlag"/>
-<gentext key="note" text="Note"/>
-<gentext key="NOTE" text="NOTE"/>
-<gentext key="Note" text="Note"/>
+<gentext key="note" text="Bem&aelig;rk"/>
+<gentext key="NOTE" text="BEM&AElig;rk"/>
+<gentext key="Note" text="Bem&aelig;rk"/>
 <gentext key="Part" text="Del"/>
 <gentext key="part" text="Del"/>
 <gentext key="Preface" text="Forord"/>
@@ -77,10 +79,10 @@
 <gentext key="procedure" text="Procedure"/>
 <gentext key="PubDate" text="Udgivet"/>
 <gentext key="pubdate" text="Udgivet"/>
-<gentext key="Published" text="Publiseret"/>
-<gentext key="published" text="Publiseret"/>
-<gentext key="Question" text="Sp&#248;rgsm&#229;l"/>
-<gentext key="question" text="Sp&#248;rgsm&#229;l"/>
+<gentext key="Published" text="Publiceret"/>
+<gentext key="published" text="Publiceret"/>
+<gentext key="Question" text="Sp&oslash;rgsm&aring;l"/>
+<gentext key="question" text="Sp&oslash;rgsm&aring;l"/>
 <gentext key="RefEntry" text="Enhed"/>
 <gentext key="refentry" text="Enhed"/>
 <gentext key="Reference" text="Reference"/>
@@ -91,30 +93,30 @@
 <gentext key="refsection" text="Sektion"/>
 <gentext key="RefSynopsisDiv" text="Synopsis"/>
 <gentext key="refsynopsisdiv" text="Synopsis"/>
-<gentext key="RevHistory" text="Revision historie"/>
-<gentext key="revhistory" text="Revision historie"/>
+<gentext key="RevHistory" text="Revisionshistorie"/>
+<gentext key="revhistory" text="Revisionshistorie"/>
 <gentext key="Revision" text="Revision"/>
 <gentext key="revision" text="Revision"/>
 <gentext key="Section" text="Afsnit"/>
 <gentext key="section" text="afsnit"/>
 <gentext key="see" text="Se"/>
 <gentext key="See" text="Se"/>
-<gentext key="seealso" text="Se ogs&#229;"/>
-<gentext key="SeeAlso" text="Se ogs&#229;"/>
-<gentext key="Seealso" text="Se ogs&#229;"/>
-<gentext key="Set" text="S&#230;t"/>
-<gentext key="set" text="S&#230;t"/>
-<gentext key="SetIndex" text="S&#230;t indeks"/>
-<gentext key="setindex" text="S&#230;t indeks"/>
-<gentext key="sidebar" text="side bar"/>
-<gentext key="Sidebar" text="Side bar"/>
-<gentext key="step" text="skridt"/>
-<gentext key="Step" text="Skridt"/>
+<gentext key="seealso" text="Se ogs&aring;"/>
+<gentext key="SeeAlso" text="Se ogs&aring;"/>
+<gentext key="Seealso" text="Se ogs&aring;"/>
+<gentext key="Set" text="S&aelig;t"/>
+<gentext key="set" text="S&aelig;t"/>
+<gentext key="SetIndex" text="S&aelig;t indeks"/>
+<gentext key="setindex" text="S&aelig;t indeks"/>
+<gentext key="sidebar" text="sidebj&aelig;lke"/>
+<gentext key="Sidebar" text="Sidebj&aelig;lke"/>
+<gentext key="step" text="trin"/>
+<gentext key="Step" text="Trin"/>
 <gentext key="table" text="Tabel"/>
 <gentext key="Table" text="Tabel"/>
-<gentext key="TIP" text="TIP"/>
-<gentext key="Tip" text="Tip"/>
-<gentext key="tip" text="Tip"/>
+<gentext key="TIP" text="VINK"/>
+<gentext key="Tip" text="Vink"/>
+<gentext key="tip" text="Vink"/>
 <gentext key="WARNING" text="ADVARSEL"/>
 <gentext key="Warning" text="Advarsel"/>
 <gentext key="warning" text="Advarsel"/>
@@ -129,8 +131,8 @@
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
 <gentext key="nonexistantelement" text="ikke-eksisterende element"/>
-<gentext key="notes" text="Slutbem&#230;rkning:"/>
-<gentext key="Notes" text="Slutbem&#230;rkning:"/>
+<gentext key="notes" text="Slutbem&aelig;rkning:"/>
+<gentext key="Notes" text="Slutbem&aelig;rkning:"/>
 <gentext key="Pgs" text="siderne"/>
 <gentext key="pgs" text="siderne"/>
 <gentext key="Revisedby" text="Revideret af: "/>
@@ -140,7 +142,7 @@
 <gentext key="TableofContents" text="Indholdsfortegnelse"/>
 <gentext key="tableofcontents" text="Indholdsfortegnelse"/>
 <gentext key="unexpectedelementname" text="Uventet element navn"/>
-<gentext key="unsupported" text="ikke underst&#248;ttet"/>
+<gentext key="unsupported" text="ikke underst&oslash;ttet"/>
 <gentext key="xrefto" text="xref til"/>
 
 <gentext key="listofequations" text="Liste over alle ligninger"/>
@@ -155,7 +157,7 @@
 <gentext key="listofunknown" text="Liste over alle ????"/>
 
 <gentext key="nav-home" text="Hjem"/>
-<gentext key="nav-next" text="N&#230;ste"/>
+<gentext key="nav-next" text="N&aelig;ste"/>
 <gentext key="nav-next-sibling" text="Hurtigt fremad"/>
 <gentext key="nav-prev" text="Forrige"/>
 <gentext key="nav-prev-sibling" text="Hurtigt tilbage"/>

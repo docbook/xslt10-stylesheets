@@ -4,14 +4,12 @@
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo xmlns="">
-<!-- FIXME: list the real contributors
 <authorgroup>
-  <author><firstname>Norman</firstname><surname>Walsh</surname>
-          <affiliation><address><email>ndw@nwalsh.com</email></address>
+  <author><firstname>Stanislav</firstname>Visnovsky<surname></surname>
+          <affiliation><address><email>visnovsky@nenya.ms.mff.cuni.cz</email></address>
           </affiliation>
   </author>
 </authorgroup>
--->
 </doc:localeinfo>
 
 <gentext key="Abstract" text="Obsah"/>
@@ -153,7 +151,7 @@
 <gentext key="listofunknown" text="Zoznam nezn&#x00E1;meho"/>
 
 <gentext key="nav-home" text="Domov"/>
-<gentext key="nav-next" text="&#x010E;al&#x0161;&#x00ED;"/>
+<gentext key="nav-next" text="Nasleduj&#250;ci"/>
 <gentext key="nav-next-sibling" text="R&#x00FD;chlo dopredu"/>
 <gentext key="nav-prev" text="Predch&#x00E1;dzaj&#x00FA;ci"/>
 <gentext key="nav-prev-sibling" text="R&#x00FD;chlo nazp&#x00E4;t"/>
@@ -208,8 +206,10 @@
 <template name="partintro">%t</template>
 <template name="preface">%t</template>
 <template name="procedure">%t</template>
+<template name="procedure.formal">%t</template>
 <template name="qandadiv">%t</template>
 <template name="qandaset">%t</template>
+<template name="question">%t</template>
 <template name="reference">%t</template>
 <template name="refsect1">%t</template>
 <template name="refsect2">%t</template>
@@ -310,6 +310,7 @@
 <template name="index">%t</template>
 <template name="part"><Part/> %n. %t</template>
 <template name="preface">%t</template>
+<template name="question">%t</template>
 <template name="reference">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
