@@ -194,6 +194,11 @@
 		%local.docinfo.char.mix;">
 
 <!ENTITY % tbl.table.excep "">
+<![%allow.html.tables;[
+<!ENTITY % tbl.table.mdl
+	"((title, (mediaobject+|tgroup+))
+          |(caption, (col*|colgroup*), thead?, tfoot?, (tbody+|tr+)))">
+]]>
 <!ENTITY % tbl.table.mdl
 	"(title, (mediaobject+|tgroup+))">
 
