@@ -132,6 +132,27 @@ It is distributed from the
 <ulink url="http://www.oasis-open.org/">OASIS</ulink>.
 </para>
 
+<section id="usage">
+<title>Usage</title>
+
+<para>To use this module, specify the public and system identifiers of this
+module in your document type declaration. For example, to use this module
+to write a book, use the following document type declaration:</para>
+
+<screen><![CDATA[<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook EBNF Module V1.1CR1//EN"
+               "http://www.oasis-open.org/docbook/xml/ebnf/1.1CR1/dbebnf.dtd">]]></screen>
+
+<para>Naturally, you can include an internal subset if you wish.</para>
+
+<para>To incorporate this module into a higher-level customization layer, use the
+public and system identifiers of this module in your customization layer. For
+example:</para>
+
+<screen><![CDATA[<!DOCTYPE % docbookebnf PUBLIC "-//OASIS//DTD DocBook EBNF Module V1.1CR1//EN"
+                        "http://www.oasis-open.org/docbook/xml/ebnf/1.1CR1/dbebnf.dtd">
+%docbookebnf;]]></screen>
+
+</section>
 </section>
 
 <section id="s.changes1">
