@@ -393,11 +393,16 @@
 </xsl:template>
 
 <xsl:template match="emphasis">
+  <xsl:variable name="depth">
+    <xsl:call-template name="dot.count">
+      <xsl:with-param name="string"><xsl:number level="multiple"/></xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="@role='bold'">
       <xsl:call-template name="inline.boldseq"/>
     </xsl:when>
-<!-- what about these?
     <xsl:when test="@role='underline'">
       <fo:inline text-decoration="underline">
         <xsl:call-template name="inline.charseq"/>
@@ -408,9 +413,17 @@
         <xsl:call-template name="inline.charseq"/>
       </fo:inline>
     </xsl:when>
--->
     <xsl:otherwise>
-      <xsl:call-template name="inline.italicseq"/>
+      <xsl:choose>
+        <xsl:when test="$depth mod 2 = 1">
+          <fo:inline font-style="normal">
+            <xsl:apply-templates/>
+          </fo:inline>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="inline.italicseq"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
