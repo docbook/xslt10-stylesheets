@@ -187,7 +187,8 @@ public class Verbatim {
 
     tree.setConfiguration(config);
     builder.setConfiguration(config);
-    tree.startDocument();
+    tree.open();
+    tree.startDocument(0);
 
     wrapper = findWrapper(wrapperns);
 
@@ -244,6 +245,7 @@ public class Verbatim {
     }
 
     tree.endDocument();
+    tree.close();
     return builder.getCurrentDocument();
   }
 
@@ -305,13 +307,13 @@ public class Verbatim {
     // Maybe node is an element, a text node, a comment, or a PI
     switch (node.getNodeKind()) {
     case Type.ELEMENT:
-      tree.startElement(node.getNameCode(), 0, 0);
+      tree.startElement(node.getNameCode(), 0, 0, 0);
 
       {
 	AxisIterator attrIter = node.iterateAxis(Axis.ATTRIBUTE);
 	NodeInfo attr = (NodeInfo) attrIter.next();
 	while (attr != null) {
-	  tree.attribute(attr.getNameCode(), 0, attr.getStringValue(), 0);
+	  tree.attribute(attr.getNameCode(), 0, attr.getStringValue(), 0, 0);
 	  attr = (NodeInfo) attrIter.next();
 	}
       }
@@ -336,7 +338,7 @@ public class Verbatim {
       String text = node.getStringValue();
       int pos = text.indexOf('\n');
       while (pos >= 0) {
-	tree.characters(text.substring(0, pos), 0);
+	tree.characters(text.substring(0, pos), 0, 0);
 
 	// Close any open elements
 	for (int openpos = 0; openpos < openElements.size(); openpos++) {
@@ -344,7 +346,7 @@ public class Verbatim {
 	}
 
 	// Output the line number
-	tree.characters("\n", 0);
+	tree.characters("\n", 0, 0);
 	lineNumber++;
 	formatLineNumber(pool, tree);
 
@@ -352,14 +354,14 @@ public class Verbatim {
 	for (int openpos = 0; openpos < openElements.size(); openpos++) {
 	  NodeInfo onode = (NodeInfo) openElements.get(openpos);
 
-	  tree.startElement(onode.getNameCode(), 0, 0);
+	  tree.startElement(onode.getNameCode(), 0, 0, 0);
 
 	  AxisIterator oattrIter = onode.iterateAxis(Axis.ATTRIBUTE);
 	  NodeInfo attr = (NodeInfo) oattrIter.next();
 	  while (attr != null) {
 	    // Don't output {xml:}id attributes again
 	    if (!"id".equals(attr.getLocalPart())) {
-	      tree.attribute(attr.getNameCode(), 0, attr.getStringValue(), 0);
+	      tree.attribute(attr.getNameCode(), 0, attr.getStringValue(), 0, 0);
 	    }
 	    attr = (NodeInfo) oattrIter.next();
 	  }
@@ -370,14 +372,14 @@ public class Verbatim {
 	text = text.substring(pos+1);
 	pos = text.indexOf('\n');
       }
-      tree.characters(text, 0);
+      tree.characters(text, 0, 0);
       break;
     case Type.COMMENT:
-      tree.comment(node.getStringValue(), 0);
+      tree.comment(node.getStringValue(), 0, 0);
       break;
     case Type.PROCESSING_INSTRUCTION:
       tree.processingInstruction(node.getDisplayName(),
-				 node.getStringValue(), 0);
+				 node.getStringValue(), 0, 0);
       break;
     default:
       System.err.println("Error!");
@@ -403,17 +405,17 @@ public class Verbatim {
     lno += separator;
 
     if (wrapper != null) {
-      tree.startElement(wrapper.getNameCode(), 0, 0);
+      tree.startElement(wrapper.getNameCode(), 0, 0, 0);
       AxisIterator attrIter = wrapper.iterateAxis(Axis.ATTRIBUTE);
       NodeInfo attr = (NodeInfo) attrIter.next();
       while (attr != null) {
-	tree.attribute(attr.getNameCode(), 0, attr.getStringValue(), 0);
+	tree.attribute(attr.getNameCode(), 0, attr.getStringValue(), 0, 0);
 	attr = (NodeInfo) attrIter.next();
       }
       tree.startContent();
     }
 
-    tree.characters(lno, 0);
+    tree.characters(lno, 0, 0);
 
     if (wrapper != null) {
       tree.endElement();
@@ -468,7 +470,8 @@ public class Verbatim {
 
     tree.setConfiguration(config);
     builder.setConfiguration(config);
-    tree.startDocument();
+    tree.open();
+    tree.startDocument(0);
 
     // Start at (1,1)
     lineNumber = 1;
@@ -493,6 +496,7 @@ public class Verbatim {
     }
 
     tree.endDocument();
+    tree.close();
     return builder.getCurrentDocument();
   }
 
@@ -504,13 +508,13 @@ public class Verbatim {
     // Maybe node is an element, a text node, a comment, or a PI
     switch (node.getNodeKind()) {
     case Type.ELEMENT:
-      tree.startElement(node.getNameCode(), 0, 0);
+      tree.startElement(node.getNameCode(), 0, 0, 0);
 
       {
 	AxisIterator attrIter = node.iterateAxis(Axis.ATTRIBUTE);
 	NodeInfo attr = (NodeInfo) attrIter.next();
 	while (attr != null) {
-	  tree.attribute(attr.getNameCode(), 0, attr.getStringValue(), 0);
+	  tree.attribute(attr.getNameCode(), 0, attr.getStringValue(), 0, 0);
 	  attr = (NodeInfo) attrIter.next();
 	}
       }
@@ -559,7 +563,7 @@ public class Verbatim {
 
 	  while (callout != null && "\n".equals(ch)
 		 && lineNumber == callout.getLine()) {
-	    tree.characters(" ", 0);
+	    tree.characters(" ", 0, 0);
 	    colNumber++;
 
 	    done = false;
@@ -578,7 +582,7 @@ public class Verbatim {
 	    }
 	  }
 
-	  tree.characters(ch, 0);
+	  tree.characters(ch, 0, 0);
 
 	  if ("\n".equals(ch)) {
 	    lineNumber++;
@@ -588,15 +592,15 @@ public class Verbatim {
 	  }
 	}
       } else {
-	tree.characters(text, 0);
+	tree.characters(text, 0, 0);
       }
       break;
     case Type.COMMENT:
-      tree.comment(node.getStringValue(), 0);
+      tree.comment(node.getStringValue(), 0, 0);
       break;
     case Type.PROCESSING_INSTRUCTION:
       tree.processingInstruction(node.getDisplayName(),
-				 node.getStringValue(), 0);
+				 node.getStringValue(), 0, 0);
       break;
     default:
       System.err.println("Error!");
@@ -627,7 +631,7 @@ public class Verbatim {
     switch (style) {
     case CALLOUT_TEXT:
       startCalloutWrapper(callout, textWrapper, tree);
-      tree.characters(textPrefix + callout.getCallout() + textSuffix, 0);
+      tree.characters(textPrefix + callout.getCallout() + textSuffix, 0, 0);
       endCalloutWrapper(textWrapper, tree);
       break;
     case CALLOUT_UNICODE:
@@ -636,7 +640,7 @@ public class Verbatim {
       char chars[] = new char[1];
       chars[0] = (char) codepoint;
       String unicodeCh = new String(chars);
-      tree.characters(unicodeCh, 0);
+      tree.characters(unicodeCh, 0, 0);
       endCalloutWrapper(unicodeWrapper, tree);
       break;
     case CALLOUT_GRAPHICS:
@@ -650,14 +654,14 @@ public class Verbatim {
     for (int openpos = 0; openpos < openElements.size(); openpos++) {
       NodeInfo onode = (NodeInfo) openElements.get(openpos);
 
-      tree.startElement(onode.getNameCode(), 0, 0);
+      tree.startElement(onode.getNameCode(), 0, 0, 0);
 
       AxisIterator oattrIter = onode.iterateAxis(Axis.ATTRIBUTE);
       NodeInfo attr = (NodeInfo) oattrIter.next();
       while (attr != null) {
 	// Don't output {xml:}id attributes again
 	if (!"id".equals(attr.getLocalPart())) {
-	  tree.attribute(attr.getNameCode(), 0, attr.getStringValue(), 0);
+	  tree.attribute(attr.getNameCode(), 0, attr.getStringValue(), 0, 0);
 	}
 	attr = (NodeInfo) oattrIter.next();
       }
@@ -671,13 +675,13 @@ public class Verbatim {
 					   Receiver tree)
     throws TransformerException {
     if (wrapper != null) {
-      tree.startElement(wrapper.getNameCode(), 0, 0);
+      tree.startElement(wrapper.getNameCode(), 0, 0, 0);
       AxisIterator attrIter = wrapper.iterateAxis(Axis.ATTRIBUTE);
       NodeInfo attr = (NodeInfo) attrIter.next();
       while (attr != null) {
 	String value = attr.getStringValue().replaceAll("\\{CALLOUT\\}",
 							""+callout.getCallout());
-	tree.attribute(attr.getNameCode(), 0, value, 0);
+	tree.attribute(attr.getNameCode(), 0, value, 0, 0);
 	attr = (NodeInfo) attrIter.next();
       }
       tree.startContent();
