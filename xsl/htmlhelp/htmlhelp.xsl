@@ -443,7 +443,7 @@ Title=</xsl:text>
       <xsl:text>"&gt;
     &lt;/OBJECT&gt;</xsl:text>
   </xsl:if>
-  <xsl:if test="part|reference|preface|chapter|appendix|bibliography|article|colophon">
+  <xsl:if test="part|reference|preface|chapter|appendix|bibliography|article|colophon|glossary">
     <xsl:text>&lt;UL&gt;</xsl:text>
       <xsl:if test="$generate.book.toc != 0 and $htmlhelp.hhc.show.root = 0 and not(parent::*)">
         <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
@@ -457,13 +457,13 @@ Title=</xsl:text>
           <xsl:text>"&gt;
         &lt;/OBJECT&gt;</xsl:text>
       </xsl:if>
-      <xsl:apply-templates select="part|reference|preface|chapter|bibliography|appendix|article|colophon"
+      <xsl:apply-templates select="part|reference|preface|chapter|bibliography|appendix|article|colophon|glossary"
 			   mode="hhc"/>
     <xsl:text>&lt;/UL&gt;</xsl:text>
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="part|reference|preface|chapter|bibliography|appendix|article"
+<xsl:template match="part|reference|preface|chapter|bibliography|appendix|article|glossary"
               mode="hhc">
   <xsl:variable name="title">
     <xsl:if test="$htmlhelp.autolabel=1">
@@ -519,9 +519,9 @@ Title=</xsl:text>
       <xsl:text>"&gt;
     &lt;/OBJECT&gt;</xsl:text>
   </xsl:if>
-  <xsl:if test="section[count(ancestor::section) &lt; $htmlhelp.hhc.section.depth]">
+  <xsl:if test="section[count(ancestor::section) &lt; $htmlhelp.hhc.section.depth]|refentry">
     <xsl:text>&lt;UL&gt;</xsl:text>
-      <xsl:apply-templates select="section" mode="hhc"/>
+      <xsl:apply-templates select="section|refentry" mode="hhc"/>
     <xsl:text>&lt;/UL&gt;</xsl:text>
   </xsl:if>
 </xsl:template>
@@ -549,9 +549,9 @@ Title=</xsl:text>
       <xsl:text>"&gt;
     &lt;/OBJECT&gt;</xsl:text>
   </xsl:if>
-  <xsl:if test="sect2[$htmlhelp.hhc.section.depth > 1]">
+  <xsl:if test="sect2[$htmlhelp.hhc.section.depth > 1]|refentry">
     <xsl:text>&lt;UL&gt;</xsl:text>
-      <xsl:apply-templates select="sect2"
+      <xsl:apply-templates select="sect2|refentry"
 			   mode="hhc"/>
     <xsl:text>&lt;/UL&gt;</xsl:text>
   </xsl:if>
@@ -580,9 +580,9 @@ Title=</xsl:text>
       <xsl:text>"&gt;
     &lt;/OBJECT&gt;</xsl:text>
   </xsl:if>
-  <xsl:if test="sect3[$htmlhelp.hhc.section.depth > 2]">
+  <xsl:if test="sect3[$htmlhelp.hhc.section.depth > 2]|refentry">
     <xsl:text>&lt;UL&gt;</xsl:text>
-      <xsl:apply-templates select="sect3"
+      <xsl:apply-templates select="sect3|refentry"
 			   mode="hhc"/>
     <xsl:text>&lt;/UL&gt;</xsl:text>
   </xsl:if>
@@ -611,9 +611,9 @@ Title=</xsl:text>
       <xsl:text>"&gt;
     &lt;/OBJECT&gt;</xsl:text>
   </xsl:if>
-  <xsl:if test="sect4[$htmlhelp.hhc.section.depth > 3]">
+  <xsl:if test="sect4[$htmlhelp.hhc.section.depth > 3]|refentry">
     <xsl:text>&lt;UL&gt;</xsl:text>
-      <xsl:apply-templates select="sect4"
+      <xsl:apply-templates select="sect4|refentry"
 			   mode="hhc"/>
     <xsl:text>&lt;/UL&gt;</xsl:text>
   </xsl:if>
@@ -642,9 +642,9 @@ Title=</xsl:text>
       <xsl:text>"&gt;
     &lt;/OBJECT&gt;</xsl:text>
   </xsl:if>
-  <xsl:if test="sect5[$htmlhelp.hhc.section.depth > 4]">
+  <xsl:if test="sect5[$htmlhelp.hhc.section.depth > 4]|refentry">
     <xsl:text>&lt;UL&gt;</xsl:text>
-      <xsl:apply-templates select="sect5"
+      <xsl:apply-templates select="sect5|refentry"
 			   mode="hhc"/>
     <xsl:text>&lt;/UL&gt;</xsl:text>
   </xsl:if>
@@ -672,6 +672,12 @@ Title=</xsl:text>
           <xsl:call-template name="href.target.with.base.dir"/>
       <xsl:text>"&gt;
     &lt;/OBJECT&gt;</xsl:text>
+  </xsl:if>
+  <xsl:if test="refentry">
+    <xsl:text>&lt;UL&gt;</xsl:text>
+      <xsl:apply-templates select="refentry"
+			   mode="hhc"/>
+    <xsl:text>&lt;/UL&gt;</xsl:text>
   </xsl:if>
 </xsl:template>
 
