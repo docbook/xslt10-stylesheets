@@ -35,6 +35,7 @@
     <tocentry page="rddl.xml" filename="rddl.html"/>
     <tocentry page="php.xml" filename="php.html"/>
     <tocentry page="rss.xml" filename="rss.html" revisionflag="added"/>
+    <tocentry page="full.xml" filename="full.html" revisionflag="added"/>
     <tocentry page="revflag.xml" filename="revflag.html"/>
     <tocentry id="nwalsh.com" href="http://nwalsh.com/">
       <title>nwalsh.com</title>
