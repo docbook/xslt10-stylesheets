@@ -121,11 +121,27 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:variable name="isopen">
+  <xsl:variable name="use.toc.expand.depth">
+    <xsl:variable name="config-param" select="ancestor::autolayout/config[@param='toc.expand.depth']/@value"/>
+    <xsl:choose>
+      <!-- toc.expand.depth attribute is not in DTD -->
+      <xsl:when test="ancestor::toc/@toc.expand.depth">
+        <xsl:value-of select="ancestor::toc/@toc.expand.depth"/>
+      </xsl:when>
+      <xsl:when test="floor($config-param) > 0">
+        <xsl:value-of select="$config-param"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$toc.expand.depth"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="is.open">
     <xsl:choose>
       <xsl:when test="$pageid = @id
                       or $isancestor='1'
-                      or $depth &lt; $toc.expand.depth">1</xsl:when>
+                      or $depth &lt; $use.toc.expand.depth">1</xsl:when>
       <xsl:otherwise>0</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -160,7 +176,7 @@
           <xsl:when test="$hasdescendant = 0">
             <xsl:text>/other/leaf</xsl:text>
           </xsl:when>
-          <xsl:when test="$isancestor != 0 or $depth &lt; $toc.expand.depth">
+          <xsl:when test="$is.open != 0">
             <xsl:text>/other/open</xsl:text>
           </xsl:when>
           <xsl:otherwise>
@@ -313,7 +329,7 @@
     </xsl:choose>
   </span>
 
-  <xsl:if test="$pageid = @id or $isancestor='1' or $depth &lt; $toc.expand.depth">
+  <xsl:if test="$is.open != 0">
     <xsl:apply-templates select="tocentry">
       <xsl:with-param name="pageid" select="$pageid"/>
       <xsl:with-param name="relpath" select="$relpath"/>
