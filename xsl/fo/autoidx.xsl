@@ -163,8 +163,8 @@
       <xsl:when test="$xep.extensions != 0">
         <xsl:if test="$refs[not(see) and not(seealso) and not(secondary)]">
           <xsl:text>, </xsl:text>
-          <xsl:variable name="primary" select="primary"/>
-          <xsl:variable name="primary.significant" select="concat(primary, $significant.flag)"/>
+          <xsl:variable name="primary" select="&primary;"/>
+          <xsl:variable name="primary.significant" select="concat(&primary;, $significant.flag)"/>
           <rx:page-index>
             <xsl:if test="$refs[@significance='preferred'][not(see) and not(seealso) and not(secondary)]">
               <rx:index-item xsl:use-attribute-sets="index.preferred.page.properties xep.index.item.properties"
@@ -241,9 +241,9 @@
       <xsl:when test="$xep.extensions != 0">
         <xsl:if test="$refs[not(see) and not(seealso) and not(tertiary)]">
           <xsl:text>, </xsl:text>
-          <xsl:variable name="primary" select="primary"/>
-          <xsl:variable name="secondary" select="secondary"/>
-          <xsl:variable name="primary.significant" select="concat(primary, $significant.flag)"/>
+          <xsl:variable name="primary" select="&primary;"/>
+          <xsl:variable name="secondary" select="&secondary;"/>
+          <xsl:variable name="primary.significant" select="concat(&primary;, $significant.flag)"/>
           <rx:page-index>
             <xsl:if test="$refs[@significance='preferred'][not(see) and not(seealso) and not(tertiary)]">
               <rx:index-item xsl:use-attribute-sets="index.preferred.page.properties xep.index.item.properties">
@@ -329,10 +329,10 @@
       <xsl:when test="$xep.extensions != 0">
         <xsl:if test="$refs[not(see) and not(seealso)]">
           <xsl:text>, </xsl:text>
-          <xsl:variable name="primary" select="primary"/>
-          <xsl:variable name="secondary" select="secondary"/>
-          <xsl:variable name="tertiary" select="tertiary"/>
-          <xsl:variable name="primary.significant" select="concat(primary, $significant.flag)"/>
+          <xsl:variable name="primary" select="&primary;"/>
+          <xsl:variable name="secondary" select="&secondary;"/>
+          <xsl:variable name="tertiary" select="&tertiary;"/>
+          <xsl:variable name="primary.significant" select="concat(&primary;, $significant.flag)"/>
           <rx:page-index>
             <xsl:if test="$refs[@significance='preferred'][not(see) and not(seealso)]">
               <rx:index-item xsl:use-attribute-sets="index.preferred.page.properties xep.index.item.properties">
