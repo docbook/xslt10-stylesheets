@@ -37,7 +37,17 @@
   <xsl:attribute name="align">left</xsl:attribute>
   <!-- width is set with $navotocwidth -->
   <xsl:attribute name="bgcolor">
-    <xsl:value-of select="$navbgcolor"/>
+    <xsl:choose>
+      <xsl:when test="/webpage/config[@param='navbgcolor']/@value[. != '']">
+        <xsl:value-of select="/webpage/config[@param='navbgcolor']/@value"/>
+      </xsl:when>
+      <xsl:when test="$autolayout/autolayout/config[@param='navbgcolor']/@value[. != '']">
+        <xsl:value-of select="$autolayout/autolayout/config[@param='navbgcolor']/@value"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$navbgcolor"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:attribute>
 </xsl:attribute-set>
 
@@ -104,7 +114,8 @@
   <html>
     <xsl:apply-templates select="head" mode="head.mode"/>
     <xsl:apply-templates select="config" mode="head.mode"/>
-    <body xsl:use-attribute-sets="body.attributes" class="tabular">
+    <body class="tabular">
+      <xsl:call-template name="body.attributes"/>
 
       <div id="{$id}" class="{name(.)}">
         <a name="{$id}"/>
@@ -119,7 +130,17 @@
             <td xsl:use-attribute-sets="table.navigation.cell.properties">
               <xsl:if test="$navtocwidth != ''">
                 <xsl:attribute name="width">
-                  <xsl:value-of select="$navtocwidth"/>
+                  <xsl:choose>
+                    <xsl:when test="/webpage/config[@param='navtocwidth']/@value[. != '']">
+                      <xsl:value-of select="/webpage/config[@param='navtocwidth']/@value"/>
+                    </xsl:when>
+                    <xsl:when test="$autolayout/autolayout/config[@param='navtocwidth']/@value[. != '']">
+                      <xsl:value-of select="$autolayout/autolayout/config[@param='navtocwidth']/@value"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:value-of select="$navtocwidth"/>
+                    </xsl:otherwise>
+                  </xsl:choose>
                 </xsl:attribute>
               </xsl:if>
               <xsl:choose>
