@@ -1147,6 +1147,29 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!--end of itermset.attlist-->]]>
 <!--end of itermset.module-->]]>
 
+<!-- Bibliographic info for "blocks" -->
+
+<!ENTITY % blockinfo.module "INCLUDE">
+<![ %blockinfo.module; [
+<!ENTITY % local.blockinfo.attrib "">
+<!ENTITY % blockinfo.role.attrib "%role.attrib;">
+
+<!ENTITY % blockinfo.element "INCLUDE">
+<![ %blockinfo.element; [
+<!ELEMENT blockinfo %ho; ((%info.class;)+)
+	%beginpage.exclusion;>
+<!--end of blockinfo.element-->]]>
+
+<!ENTITY % blockinfo.attlist "INCLUDE">
+<![ %blockinfo.attlist; [
+<!ATTLIST blockinfo
+		%common.attrib;
+		%blockinfo.role.attrib;
+		%local.blockinfo.attrib;
+>
+<!--end of blockinfo.attlist-->]]>
+<!--end of blockinfo.module-->]]>
+
 <!-- ...................................................................... -->
 <!-- Compound (section-ish) elements ...................................... -->
 
@@ -1161,7 +1184,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % msgset.element "INCLUDE">
 <![%msgset.element;[
-<!ELEMENT msgset %ho; ((%formalobject.title.content;)?, (msgentry+|simplemsgentry+))>
+<!ELEMENT msgset %ho; (blockinfo?, (%formalobject.title.content;)?,
+                       (msgentry+|simplemsgentry+))>
 <!--end of msgset.element-->]]>
 
 <!ENTITY % msgset.attlist "INCLUDE">
@@ -1410,7 +1434,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % qandaset.element "INCLUDE">
 <![ %qandaset.element; [
-<!ELEMENT qandaset %ho; ((%formalobject.title.content;)?,
+<!ELEMENT qandaset %ho; (blockinfo?, (%formalobject.title.content;)?,
 			(%qandaset.mix;)*,
                         (qandadiv+|qandaentry+))>
 <!--end of qandaset.element-->]]>
@@ -1432,7 +1456,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % qandadiv.element "INCLUDE">
 <![ %qandadiv.element; [
-<!ELEMENT qandadiv %ho; ((%formalobject.title.content;)?,
+<!ELEMENT qandadiv %ho; (blockinfo?, (%formalobject.title.content;)?,
 			(%qandaset.mix;)*,
 			(qandadiv+|qandaentry+))>
 <!--end of qandadiv.element-->]]>
@@ -1453,7 +1477,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % qandaentry.element "INCLUDE">
 <![ %qandaentry.element; [
-<!ELEMENT qandaentry %ho; (revhistory?, question, answer*)>
+<!ELEMENT qandaentry %ho; (blockinfo?, revhistory?, question, answer*)>
 <!--end of qandaentry.element-->]]>
 
 <!ENTITY % qandaentry.attlist "INCLUDE">
@@ -1537,8 +1561,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % procedure.element "INCLUDE">
 <![%procedure.element;[
-<!ELEMENT procedure %ho; ((%formalobject.title.content;)?,
-	(%component.mix;)*, step+)>
+<!ELEMENT procedure %ho; (blockinfo?, (%formalobject.title.content;)?,
+                          (%component.mix;)*, step+)>
 <!--end of procedure.element-->]]>
 
 <!ENTITY % procedure.attlist "INCLUDE">
@@ -2159,7 +2183,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % itemizedlist.element "INCLUDE">
 <![%itemizedlist.element;[
-<!ELEMENT itemizedlist %ho; ((%formalobject.title.content;)?,
+<!ELEMENT itemizedlist %ho; (blockinfo?, (%formalobject.title.content;)?,
  			    (%listpreamble.mix;)*, listitem+)>
 
 <!--end of itemizedlist.element-->]]>
@@ -2189,7 +2213,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % orderedlist.element "INCLUDE">
 <![%orderedlist.element;[
-<!ELEMENT orderedlist %ho; ((%formalobject.title.content;)?,
+<!ELEMENT orderedlist %ho; (blockinfo?, (%formalobject.title.content;)?,
  			    (%listpreamble.mix;)*, listitem+)>
 
 <!--end of orderedlist.element-->]]>
@@ -2409,7 +2433,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % variablelist.element "INCLUDE">
 <![%variablelist.element;[
-<!ELEMENT variablelist %ho; ((%formalobject.title.content;)?,
+<!ELEMENT variablelist %ho; (blockinfo?, (%formalobject.title.content;)?,
  			    (%listpreamble.mix;)*, varlistentry+)>
 <!--end of variablelist.element-->]]>
 
@@ -2534,7 +2558,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % example.element "INCLUDE">
 <![%example.element;[
-<!ELEMENT example %ho; ((%formalobject.title.content;), (%example.mix;)+)
+<!ELEMENT example %ho; (blockinfo?, (%formalobject.title.content;), (%example.mix;)+)
 		%formal.exclusion;>
 <!--end of example.element-->]]>
 
@@ -2557,7 +2581,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % informalexample.element "INCLUDE">
 <![%informalexample.element;[
-<!ELEMENT informalexample %ho; ((%example.mix;)+)>
+<!ELEMENT informalexample %ho; (blockinfo?, (%example.mix;)+)>
 <!--end of informalexample.element-->]]>
 
 <!ENTITY % informalexample.attlist "INCLUDE">
@@ -2863,8 +2887,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % figure.element "INCLUDE">
 <![%figure.element;[
-<!ELEMENT figure %ho; ((%formalobject.title.content;), (%figure.mix; |
-		%link.char.class;)+)>
+<!ELEMENT figure %ho; (blockinfo?, (%formalobject.title.content;),
+                       (%figure.mix; | %link.char.class;)+)>
 <!--end of figure.element-->]]>
 
 <!-- Float: Whether the Figure is supposed to be rendered
@@ -2892,7 +2916,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % informalfigure.element "INCLUDE">
 <![ %informalfigure.element; [
-<!ELEMENT informalfigure %ho; ((%figure.mix; | %link.char.class;)+)>
+<!ELEMENT informalfigure %ho; (blockinfo?, (%figure.mix; | %link.char.class;)+)>
 <!--end of informalfigure.element-->]]>
 
 <!ENTITY % informalfigure.attlist "INCLUDE">
@@ -3326,8 +3350,8 @@ in the text (no (0) value, the default)
 
 <!ENTITY % equation.element "INCLUDE">
 <![%equation.element;[
-<!ELEMENT equation %ho; ((%formalobject.title.content;)?, (informalequation |
-		%equation.content;))>
+<!ELEMENT equation %ho; (blockinfo?, (%formalobject.title.content;)?,
+                         (informalequation | %equation.content;))>
 <!--end of equation.element-->]]>
 
 <!ENTITY % equation.attlist "INCLUDE">
@@ -3348,7 +3372,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % informalequation.element "INCLUDE">
 <![%informalequation.element;[
-<!ELEMENT informalequation %ho; (%equation.content;) >
+<!ELEMENT informalequation %ho; (blockinfo?, %equation.content;) >
 <!--end of informalequation.element-->]]>
 
 <!ENTITY % informalequation.attlist "INCLUDE">
@@ -3432,7 +3456,7 @@ in the text (no (0) value, the default)
 
 <!-- Content model for Table. -->
 <!ENTITY % tbl.table.mdl
-	"((%formalobject.title.content;), (%ndxterm.class;)*,
+	"(blockinfo?, (%formalobject.title.content;), (%ndxterm.class;)*,
 	  textobject*,
           (graphic+|mediaobject+|tgroup+))">
 
@@ -3467,7 +3491,7 @@ in the text (no (0) value, the default)
 
 <!-- Content model for Table. -->
 <!ENTITY % tbl.table.mdl
-	"((%formalobject.title.content;), (%ndxterm.class;)*,
+	"(blockinfo?, (%formalobject.title.content;), (%ndxterm.class;)*,
 	  textobject*,
           (graphic+|mediaobject+|tgroup+))">
 
@@ -3494,7 +3518,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % informaltable.element "INCLUDE">
 <![%informaltable.element;[
-<!ELEMENT informaltable %ho; (textobject*, (graphic+|mediaobject+|tgroup+))>
+<!ELEMENT informaltable %ho; (blockinfo?, textobject*, (graphic+|mediaobject+|tgroup+))>
 <!--end of informaltable.element-->]]>
 
 <!-- Frame, Colsep, and Rowsep must be repeated because
@@ -5316,7 +5340,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % legalnotice.element "INCLUDE">
 <![%legalnotice.element;[
-<!ELEMENT legalnotice %ho; (title?, (%legalnotice.mix;)+)
+<!ELEMENT legalnotice %ho; (blockinfo?, title?, (%legalnotice.mix;)+)
 		%formal.exclusion;>
 <!--end of legalnotice.element-->]]>
 
