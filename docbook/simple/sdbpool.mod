@@ -149,7 +149,7 @@
 <!ENTITY % local.para.char.mix "">
 <!ENTITY % para.char.mix
 		"#PCDATA
-					|%gen.char.class;
+		|%xref.char.class;	|%gen.char.class;
 		|%link.char.class;	|%tech.char.class;
 					|%inlineobj.char.class;
 		%local.para.char.mix;">
@@ -157,7 +157,7 @@
 <!ENTITY % local.title.char.mix "">
 <!ENTITY % title.char.mix
 		"#PCDATA
-					|%gen.char.class;
+		|%xref.char.class;	|%gen.char.class;
 		|%link.char.class;	|%tech.char.class;
 					|%docinfo.char.class;
 					|%inlineobj.char.class;

@@ -46,7 +46,7 @@
 <!ENTITY % local.refinline.char.mix "">
 <!ENTITY % refinline.char.mix
 		"#PCDATA
-					|%gen.char.class;
+		|%xref.char.class;	|%gen.char.class;
 		|%link.char.class;	|%tech.char.class;
 		%local.refinline.char.mix;">
 
