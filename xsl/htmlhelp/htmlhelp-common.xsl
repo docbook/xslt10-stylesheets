@@ -139,7 +139,7 @@ Contents file=</xsl:text><xsl:value-of select="$htmlhelp.hhc"/><xsl:text>
 </xsl:text></xsl:if>
 <xsl:text>Default topic=</xsl:text><xsl:value-of select="$default.topic"/>
 <xsl:text>
-Display compile progress=No
+Display compile progress=Yes
 Full-text search=Yes
 </xsl:text>
 <xsl:if test="$generate.index">
