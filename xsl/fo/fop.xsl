@@ -45,7 +45,7 @@ translates characters with code>255 back to ASCII.
     <xsl:when test="parent::*">
       <fox:outline internal-destination="{$id}">
         <fox:label>
-          <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+          <xsl:value-of select="normalize-space(translate($bookmark-label, $a-dia, $a-asc))"/>
         </fox:label>
         <xsl:apply-templates select="*" mode="fop.outline"/>
       </fox:outline>
@@ -53,7 +53,7 @@ translates characters with code>255 back to ASCII.
     <xsl:otherwise>
       <fox:outline internal-destination="{$id}">
         <fox:label>
-          <xsl:value-of select="translate($bookmark-label, $a-dia, $a-asc)"/>
+          <xsl:value-of select="normalize-space(translate($bookmark-label, $a-dia, $a-asc))"/>
         </fox:label>
       </fox:outline>
 
