@@ -21,7 +21,7 @@ footnotes from the body text.
 These are properties applied to the fo:leader used as
 the separator.
 </para>
-If you want to do more than just set properties on
+<para>If you want to do more than just set properties on
 the leader element, then you can customize the template
 named <literal>footnote.separator</literal> in 
 <filename>fo/pagesetup.xsl</filename>.</para>
