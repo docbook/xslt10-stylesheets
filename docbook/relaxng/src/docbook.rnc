@@ -1,4 +1,4 @@
-# This file is part of DocBook NG: The "Bourbon" Release.
+# This file is part of DocBook NG: The "Cachaça" Release.
 
 # This schema is a "work-in-progress". It validates a DocBook-like grammar that
 # may, in some incarnation, form the basis for DocBook V.next. Or it may not.
@@ -26,7 +26,9 @@ start = db.set
 	| db.para
 
 include "hier.rnc"
+include "sect1.rnc"
 include "refentry.rnc"
+include "refsect1.rnc"
 include "pool.rnc"
 include "glossary.rnc"
 include "bibliography.rnc"
