@@ -738,6 +738,11 @@
 <xsl:template match="glossterm" name="glossterm">
   <xsl:param name="firstterm" select="0"/>
 
+  <!-- To avoid extra <a name=""> anchor from inline.italicseq -->
+  <xsl:variable name="content">
+    <xsl:apply-templates/>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="($firstterm.only.link = 0 or $firstterm = 1) and @linkend">
       <xsl:variable name="targets" select="key('id',@linkend)"/>
@@ -760,7 +765,9 @@
           </xsl:call-template>
         </xsl:attribute>
 
-        <xsl:call-template name="inline.italicseq"/>
+        <xsl:call-template name="inline.italicseq">
+          <xsl:with-param name="content" select="$content"/>
+        </xsl:call-template>
       </a>
     </xsl:when>
 
@@ -830,7 +837,9 @@
             </xsl:choose>
           </xsl:variable>
           <a href="{$chunkbase}#{$id}">
-            <xsl:call-template name="inline.italicseq"/>
+            <xsl:call-template name="inline.italicseq">
+              <xsl:with-param name="content" select="$content"/>
+            </xsl:call-template>
           </a>
         </xsl:otherwise>
       </xsl:choose>
@@ -877,7 +886,9 @@
               </xsl:call-template>
             </xsl:attribute>
 
-            <xsl:call-template name="inline.italicseq"/>
+            <xsl:call-template name="inline.italicseq">
+              <xsl:with-param name="content" select="$content"/>
+            </xsl:call-template>
           </a>
         </xsl:otherwise>
       </xsl:choose>
