@@ -100,12 +100,11 @@
   </fo:block>
 </xsl:template>
 
+<!-- Update this list if new root elements supported -->
+<xsl:variable name="root.elements" select="' appendix article bibliography book chapter colophon dedication glossary index part preface refentry reference sect1 section set setindex '"/>
+
 <xsl:template match="/">
-
   <xsl:variable name="document.element" select="*[1]"/>
-
-  <!-- Update this list if new root elements supported -->
-  <xsl:variable name="root.elements" select="' appendix article bibliography book chapter colophon dedication glossary index part preface refentry reference sect1 section set setindex '"/>
 
   <xsl:if test="not(contains( $root.elements, concat(' ', local-name($document.element), ' ')))">
       <xsl:message terminate="yes">
