@@ -15,10 +15,8 @@
 
 <xsl:template match="footnote">
   <fo:footnote>
-    <fo:inline>
-      <xsl:text>[</xsl:text>
+    <fo:inline baseline-shift="super" font-size="90%">
       <xsl:apply-templates select="." mode="footnote.number"/>
-      <xsl:text>]</xsl:text>
     </fo:inline>
     <fo:footnote-body font-size="{$footnote.font.size}">
       <xsl:apply-templates/>
@@ -28,10 +26,8 @@
 
 <xsl:template match="footnoteref">
   <xsl:variable name="footnote" select="key('id',@linkend)"/>
-  <fo:inline>
-    <xsl:text>[</xsl:text>
+  <fo:inline baseline-shift="super" font-size="90%">
     <xsl:apply-templates select="$footnote" mode="footnote.number"/>
-    <xsl:text>]</xsl:text>
   </fo:inline>
 </xsl:template>
 
@@ -48,9 +44,9 @@
   <!-- this only works if the first thing in a footnote is a para, -->
   <!-- which is ok, because it usually is. -->
   <fo:block>
-    <xsl:text>[</xsl:text>
-    <xsl:apply-templates select="ancestor::footnote" mode="footnote.number"/>
-    <xsl:text>] </xsl:text>
+    <fo:inline baseline-shift="super" font-size="90%">
+      <xsl:apply-templates select="ancestor::footnote" mode="footnote.number"/>
+    </fo:inline>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
