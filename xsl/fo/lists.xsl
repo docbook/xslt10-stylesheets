@@ -654,7 +654,7 @@
 
   <fo:table xsl:use-attribute-sets="normal.para.spacing">
     <xsl:choose>
-      <xsl:when test="$axf.extensions != 0">
+      <xsl:when test="$axf.extensions != 0 or $xep.extensions != 0">
         <xsl:attribute name="table-layout">auto</xsl:attribute>
         <xsl:if test="$explicit.table.width != ''">
           <xsl:attribute name="width"><xsl:value-of 
