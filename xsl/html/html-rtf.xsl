@@ -117,7 +117,7 @@
                         |html:menu|html:ol|html:ul|html:form"/>
   <xsl:choose>
     <xsl:when test="$blocks">
-      <xsl:call-template name="unwrap.nodes">
+      <xsl:call-template name="unwrap.p.nodes">
         <xsl:with-param name="wrap" select="."/>
         <xsl:with-param name="first" select="1"/>
         <xsl:with-param name="nodes" select="node()"/>
@@ -144,7 +144,7 @@
   <xsl:copy/>
 </xsl:template>
 
-<xsl:template name="unwrap.nodes">
+<xsl:template name="unwrap.p.nodes">
   <xsl:param name="wrap" select="."/>
   <xsl:param name="first" select="0"/>
   <xsl:param name="nodes"/>
@@ -175,7 +175,7 @@
         <xsl:apply-templates select="$block" mode="unwrap.p"/>
 
         <xsl:if test="$trailing">
-          <xsl:call-template name="unwrap.nodes">
+          <xsl:call-template name="unwrap.p.nodes">
             <xsl:with-param name="wrap" select="$wrap"/>
             <xsl:with-param name="nodes" select="$trailing"/>
             <xsl:with-param name="blocks" select="$blocks[position() &gt; 1]"/>
