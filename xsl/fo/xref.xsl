@@ -668,11 +668,12 @@
     <!-- yes, show the URI -->
     <xsl:choose>
       <xsl:when test="$ulink.footnotes != 0 and not(ancestor::footnote)">
-        <xsl:text>&#xA0;</xsl:text>
         <fo:footnote>
           <xsl:call-template name="ulink.footnote.number"/>
           <fo:footnote-body font-family="{$body.fontset}"
-                            font-size="{$footnote.font.size}">
+                            font-size="{$footnote.font.size}"
+                            font-weight="normal"
+                            font-style="normal">
             <fo:block>
               <xsl:call-template name="ulink.footnote.number"/>
               <xsl:text> </xsl:text>
@@ -697,13 +698,30 @@
 </xsl:template>
 
 <xsl:template name="ulink.footnote.number">
-  <fo:inline font-size="90%">
-    <!-- FIXME: this isn't going to be perfect! -->
-    <xsl:text>[</xsl:text>
-    <xsl:number level="any"
-                from="chapter|appendix|preface|article|refentry"
-                format="{$ulink.footnote.number.format}"/>
-    <xsl:text>]</xsl:text>
+  <fo:inline xsl:use-attribute-sets="superscript.properties">
+    <xsl:choose>
+      <xsl:when test="$fop.extensions != 0">
+        <xsl:attribute name="vertical-align">super</xsl:attribute>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:attribute name="baseline-shift">super</xsl:attribute>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:variable name="fnum">
+      <!-- FIXME: list in @from is probably not complete -->
+      <xsl:number level="any" 
+                  from="chapter|appendix|preface|article|refentry|bibliography" 
+                  count="footnote[not(@label)][not(ancestor::tgroup)]|ulink[@url != .][not(ancestor::footnote)]" 
+                  format="1"/>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="string-length($footnote.number.symbols) &gt;= $fnum">
+        <xsl:value-of select="substring($footnote.number.symbols, $fnum, 1)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:number value="$fnum" format="{$footnote.number.format}"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </fo:inline>
 </xsl:template>
 

@@ -121,6 +121,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/htmlhelp.title.xml \
        ../params/htmlhelp.use.hhk.xml \
        ../params/htmlhelp.window.geometry.xml \
+       ../params/img.src.path.xml \
        ../params/index.on.role.xml \
        ../params/index.on.type.xml \
        ../params/inherit.keywords.xml \
@@ -146,6 +147,12 @@ PARAMS=../params/admon.graphics.xml \
        ../params/nominal.table.width.xml \
        ../params/olink.base.uri.xml \
        ../params/olink.doctitle.xml \
+       ../params/olink.properties.xml \
+       ../params/olink.debug.xml \
+       ../params/prefer.internal.olink.xml \
+       ../params/insert.olink.page.number.xml \
+       ../params/insert.olink.pdf.frag.xml \
+       ../params/olink.lang.fallback.sequence.xml \
        ../params/olink.fragid.xml \
        ../params/olink.outline.ext.xml \
        ../params/olink.pubid.xml \
@@ -187,6 +194,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/runinhead.title.end.punct.xml \
        ../params/saxon.character.representation.xml \
        ../params/section.autolabel.xml \
+       ../params/section.autolabel.max.depth.xml \
        ../params/section.label.includes.component.label.xml \
        ../params/segmentedlist.as.table.xml \
        ../params/shade.verbatim.xml \
