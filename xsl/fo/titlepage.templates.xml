@@ -17,6 +17,16 @@
              xmlns:fo="http://www.w3.org/1999/XSL/Format"
              xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+<!-- ********************************************************************
+     $Id$
+     ********************************************************************
+
+     This file is part of the DocBook XSL Stylesheet distribution.
+     See ../README or http://docbook.sf.net/ for copyright
+     and other information.
+
+     ******************************************************************** -->
+
 <!-- ==================================================================== -->
 
 <t:titlepage element="article" wrapper="fo:block">
