@@ -134,6 +134,7 @@
 <!ENTITY shade.verbatim SYSTEM "../params/shade.verbatim.xml">
 <!ENTITY shade.verbatim.style SYSTEM "../params/shade.verbatim.style.xml">
 <!ENTITY show.comments SYSTEM "../params/show.comments.xml">
+<!ENTITY symbol.font.family SYSTEM "../params/symbol.font.family.xml">
 <!ENTITY table.cell.padding SYSTEM "../params/table.cell.padding.xml">
 <!ENTITY tablecolumns.extension SYSTEM "../params/tablecolumns.extension.xml">
 <!ENTITY target.database.document SYSTEM "../params/target.database.document.xml">

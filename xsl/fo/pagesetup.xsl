@@ -15,6 +15,20 @@
 
 <!-- ==================================================================== -->
 
+<xsl:param name="body.fontset">
+  <xsl:value-of select="$body.font.family"/>
+  <xsl:if test="$body.font.family != ''
+                and $symbol.font.family  != ''">,</xsl:if>
+    <xsl:value-of select="$symbol.font.family"/>
+</xsl:param>
+
+<xsl:param name="title.fontset">
+  <xsl:value-of select="$title.font.family"/>
+  <xsl:if test="$title.font.family != ''
+                and $symbol.font.family  != ''">,</xsl:if>
+    <xsl:value-of select="$symbol.font.family"/>
+</xsl:param>
+
 <xsl:template name="setup.pagemasters">
   <fo:layout-master-set>
     <!-- blank pages -->

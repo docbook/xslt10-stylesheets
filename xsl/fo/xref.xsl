@@ -661,7 +661,7 @@
       <xsl:when test="$ulink.footnotes != 0 and not(ancestor::footnote)">
         <fo:footnote>
           <xsl:call-template name="ulink.footnote.number"/>
-          <fo:footnote-body font-family="{$body.font.family}"
+          <fo:footnote-body font-family="{$body.fontset}"
                             font-size="{$footnote.font.size}">
             <fo:block>
               <xsl:call-template name="ulink.footnote.number"/>
