@@ -62,11 +62,13 @@ def adjustColumnWidths(ctx, nodeset):
         ctxt = pctxt.context()
         tctxt = ctxt.transformContext()
         nodeName = tctxt.insertNode().name
+        node = tctxt.insertNode();
     except:
         pass
 
     print "called with nodeset: "
     print nodeset
+    print "name=" + nodeName
 
     return ""
 
