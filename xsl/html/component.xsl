@@ -119,6 +119,8 @@
 </xsl:template>
 
 <xsl:template match="colophon/title"></xsl:template>
+<xsl:template match="colophon/subtitle"></xsl:template>
+<xsl:template match="colophon/titleabbrev"></xsl:template>
 
 <!-- ==================================================================== -->
 
