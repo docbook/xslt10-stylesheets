@@ -1,2 +1,14 @@
-.rng
-.rnc
+autolayout.rnc
+layout.rnc
+website.rnc
+website-full.rnc
+calstblx.rnc
+docbookx.rnc
+dbhierx.mod.rnc
+dbpoolx.mod.rnc
+extensions.mod.rnc
+forms.mod.rnc
+htmltblx.mod.rnc
+namespaces.mod.rnc
+rddl.mod.rnc
+website.mod.rnc

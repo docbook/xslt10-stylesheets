@@ -1,5 +1,5 @@
-autolayout.xml
 *.html
-.tabular
-.textonly
-
+autolayout.xml
+website.database.xml
+depends.tabular
+depends.nontabular
