@@ -219,6 +219,7 @@ generate.section.toc.level;
 &default.image.width;
 &preferred.mediaobject.role;
 &use.role.for.mediaobject;
+&ignore.image.scaling;
 </reference>
 
 <reference><title>Pagination and General Styles</title>
@@ -366,6 +367,11 @@ zero by default, so this is simply the page-master region-left.
 &section.title.level4.properties;
 &section.title.level5.properties;
 &section.title.level6.properties;
+&figure.properties;
+&example.properties;
+&equation.properties;
+&table.properties;
+&procedure.properties;
 </reference>
 
 <reference><title>Profiling</title>
@@ -472,6 +478,9 @@ around all these parameters.</para>
 <src:fragref linkend="double.sided.frag"/>
 <src:fragref linkend="draft.mode.frag"/>
 <src:fragref linkend="draft.watermark.image.frag"/>
+<src:fragref linkend="equation.properties.frag"/>
+<src:fragref linkend="example.properties.frag"/>
+<src:fragref linkend="figure.properties.frag"/>
 <src:fragref linkend="firstterm.only.link.frag"/>
 <src:fragref linkend="footer.content.properties.frag"/>
 <src:fragref linkend="footer.rule.frag"/>
@@ -499,10 +508,11 @@ around all these parameters.</para>
 <src:fragref linkend="header.rule.frag"/>
 <src:fragref linkend="headers.on.blank.pages.frag"/>
 <src:fragref linkend="hyphenate.frag"/>
+<src:fragref linkend="ignore.image.scaling.frag"/>
 <src:fragref linkend="informal.object.properties.frag"/>
 <src:fragref linkend="insert.xref.page.number.frag"/>
-<src:fragref linkend="l10n.gentext.language.frag"/>
 <src:fragref linkend="l10n.gentext.default.language.frag"/>
+<src:fragref linkend="l10n.gentext.language.frag"/>
 <src:fragref linkend="l10n.gentext.use.xref.language.frag"/>
 <src:fragref linkend="label.from.part.frag"/>
 <src:fragref linkend="line-height.frag"/>
@@ -537,6 +547,7 @@ around all these parameters.</para>
 <src:fragref linkend="passivetex.extensions.frag"/>
 <src:fragref linkend="preface.autolabel.frag"/>
 <src:fragref linkend="preferred.mediaobject.role.frag"/>
+<src:fragref linkend="procedure.properties.frag"/>
 <src:fragref linkend="process.empty.source.toc.frag"/>
 <src:fragref linkend="process.source.toc.frag"/>
 <src:fragref linkend="profile.arch.frag"/>
@@ -583,10 +594,11 @@ around all these parameters.</para>
 <src:fragref linkend="table.cell.border.color.frag"/>
 <src:fragref linkend="table.cell.border.style.frag"/>
 <src:fragref linkend="table.cell.border.thickness.frag"/>
+<src:fragref linkend="table.cell.padding.frag"/>
 <src:fragref linkend="table.frame.border.color.frag"/>
 <src:fragref linkend="table.frame.border.style.frag"/>
 <src:fragref linkend="table.frame.border.thickness.frag"/>
-<src:fragref linkend="table.cell.padding.frag"/>
+<src:fragref linkend="table.properties.frag"/>
 <src:fragref linkend="tablecolumns.extension.frag"/>
 <src:fragref linkend="target.database.document.frag"/>
 <src:fragref linkend="tex.math.delims.frag"/>
@@ -609,7 +621,6 @@ around all these parameters.</para>
 <src:fragref linkend="verbatim.properties.frag"/>
 <src:fragref linkend="xep.extensions.frag"/>
 <src:fragref linkend="xref.properties.frag"/>
-
 
 </xsl:stylesheet>
 </src:fragment>
