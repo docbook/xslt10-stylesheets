@@ -465,4 +465,8 @@
 
 </context>
 
+<context name="htmlhelp">
+<template name="langcode">0x0814 Norwegian (Nynorsk)</template>
+</context>
+
 </locale>

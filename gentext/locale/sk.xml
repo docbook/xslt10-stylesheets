@@ -493,4 +493,8 @@
 <template name="Sun">ne</template>
 </context>
 
+<context name="htmlhelp">
+<template name="langcode">0x041b Slovak</template>
+</context>
+
 </locale>

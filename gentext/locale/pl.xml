@@ -451,4 +451,8 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<context name="htmlhelp">
+<template name="langcode">0x0415 Polish</template>
+</context>
+
 </locale>

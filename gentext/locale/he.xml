@@ -452,4 +452,8 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<context name="htmlhelp">
+<template name="langcode">0x040d Hebrew (ISRAEL)</template>
+</context>
+
 </locale>
