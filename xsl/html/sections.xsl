@@ -315,7 +315,12 @@
     </xsl:choose>
   </xsl:variable>
 
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <xsl:element name="h{$level}">
+    <a name="{$id}"/>
     <xsl:apply-templates/>
   </xsl:element>
 </xsl:template>
