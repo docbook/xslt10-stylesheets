@@ -1,1 +1,4 @@
 Makefile.param
+param.xml
+param.xsl
+profile-docbook.xsl
