@@ -292,6 +292,10 @@ around all these parameters.</para>
 <src:fragref linkend="callouts.extension.frag"/>
 <src:fragref linkend="chapter.autolabel.frag"/>
 <src:fragref linkend="chunk.datafile.frag"/>
+<src:fragref linkend="navig.graphics.frag"/>
+<src:fragref linkend="navig.graphics.extension.frag"/>
+<src:fragref linkend="navig.graphics.path.frag"/>
+<src:fragref linkend="navig.showtitles.frag"/>
 <src:fragref linkend="chunk.first.sections.frag"/>
 <src:fragref linkend="chunk.sections.frag"/>
 <src:fragref linkend="citerefentry.link.frag"/>
