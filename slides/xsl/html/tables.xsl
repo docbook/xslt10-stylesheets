@@ -18,14 +18,23 @@
   <table border="0" width="100%" summary="Navigation and body table"
          cellpadding="0" cellspacing="0">
     <tr>
-      <td bgcolor="{$toc.bg.color}" width="{$toc.width}"
-          valign="top" align="left">
+      <td width="{$toc.width}" valign="top" align="left">
+	<xsl:if test="$toc.bg.color != ''">
+	  <xsl:attribute name="bgcolor">
+	    <xsl:value-of select="$toc.bg.color"/>
+	  </xsl:attribute>
+	</xsl:if>
         <div class="ttoc">
           <xsl:apply-templates select="." mode="t-toc"/>
         </div>
       </td>
       <td>&#160;</td>
-      <td bgcolor="{$body.bg.color}" valign="top" align="left">
+      <td valign="top" align="left">
+	<xsl:if test="$body.bg.color != ''">
+	  <xsl:attribute name="bgcolor">
+	    <xsl:value-of select="$body.bg.color"/>
+	  </xsl:attribute>
+	</xsl:if>
         <div class="{name(.)}">
           <xsl:apply-templates select="*[name(.) != 'foil'
                                          and name(.) != 'foilgroup']"/>
@@ -39,14 +48,23 @@
   <table border="0" width="100%" summary="Navigation and body table"
          cellpadding="0" cellspacing="0">
     <tr>
-      <td bgcolor="{$toc.bg.color}" width="{$toc.width}"
-          valign="top" align="left">
+      <td width="{$toc.width}" valign="top" align="left">
+	<xsl:if test="$toc.bg.color != ''">
+	  <xsl:attribute name="bgcolor">
+	    <xsl:value-of select="$toc.bg.color"/>
+	  </xsl:attribute>
+	</xsl:if>
         <div class="ttoc">
           <xsl:apply-templates select="." mode="t-toc"/>
         </div>
       </td>
       <td>&#160;</td>
-      <td bgcolor="{$body.bg.color}" valign="top" align="left">
+      <td valign="top" align="left">
+	<xsl:if test="$body.bg.color != ''">
+	  <xsl:attribute name="bgcolor">
+	    <xsl:value-of select="$body.bg.color"/>
+	  </xsl:attribute>
+	</xsl:if>
         <div class="{name(.)}">
           <xsl:apply-templates/>
         </div>
