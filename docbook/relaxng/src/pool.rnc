@@ -1002,7 +1002,7 @@ div {
    db.attribution =
       element attribution {
          db.attribution.attlist,
-         (db._text | db.personname)
+         (db._text | db.personname)+
       }
 }
 
@@ -2392,6 +2392,7 @@ div {
       db.funcsynopsis.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
+    & db.language.attribute
 
    db.funcsynopsis.info = db._info.title.forbidden
 
@@ -5545,7 +5546,7 @@ div {
        | "sgmlcomment"
        | "starttag"
        | "xmlpi"
-      }?
+      }
 
    db.tag.role.attribute = attribute role { text }
 
@@ -5553,7 +5554,8 @@ div {
       db.tag.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.tag.class.attribute
+    & db.tag.class.attribute?
+    & attribute namespace { text }?
 
    db.tag =
       element tag {
