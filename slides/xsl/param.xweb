@@ -117,7 +117,7 @@ can be set in the source document with the &lt;?dbhtml?&gt; pseudo-attribute
 
 <refsynopsisdiv>
 <src:fragment id='titlefoil.html.frag'>
-<xsl:param name="titlefoil.html" select="'titlefoil.html'"/>
+<xsl:param name="titlefoil.html" select="'index.html'"/>
 </src:fragment>
 </refsynopsisdiv>
 
@@ -582,7 +582,7 @@ image paths.</para>
 
 <refsynopsisdiv>
 <src:fragment id='bullet.image.frag'>
-<xsl:param name="bullet.image" select="'bullet.gif'"/>
+<xsl:param name="bullet.image" select="'toc/bullet.png'"/>
 </src:fragment>
 </refsynopsisdiv>
 
@@ -594,19 +594,19 @@ framed ToC.</para>
 </refsect1>
 </refentry>
 
-<refentry id="right.image">
+<refentry id="next.image">
 <refmeta>
-<refentrytitle>right.image</refentrytitle>
+<refentrytitle>next.image</refentrytitle>
 <refmiscinfo role="type">filename</refmiscinfo>
 </refmeta>
 <refnamediv>
-<refname>right.image</refname>
+<refname>next.image</refname>
 <refpurpose>Right-arrow image</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='right.image.frag'>
-<xsl:param name="right.image" select="'right.gif'"/>
+<src:fragment id='next.image.frag'>
+<xsl:param name="next.image" select="'active/nav-next.png'"/>
 </src:fragment>
 </refsynopsisdiv>
 
@@ -617,19 +617,19 @@ framed ToC.</para>
 </refsect1>
 </refentry>
 
-<refentry id="left.image">
+<refentry id="prev.image">
 <refmeta>
-<refentrytitle>left.image</refentrytitle>
+<refentrytitle>prev.image</refentrytitle>
 <refmiscinfo role="type">filename</refmiscinfo>
 </refmeta>
 <refnamediv>
-<refname>left.image</refname>
+<refname>prev.image</refname>
 <refpurpose>Left-arrow image</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='left.image.frag'>
-<xsl:param name="left.image" select="'left.gif'"/>
+<src:fragment id='prev.image.frag'>
+<xsl:param name="prev.image" select="'active/nav-prev.png'"/>
 </src:fragment>
 </refsynopsisdiv>
 
@@ -639,6 +639,194 @@ framed ToC.</para>
 
 </refsect1>
 </refentry>
+
+<refentry id="up.image">
+<refmeta>
+<refentrytitle>up.image</refentrytitle>
+<refmiscinfo role="type">filename</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>up.image</refname>
+<refpurpose>Up-arrow image</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='up.image.frag'>
+<xsl:param name="up.image" select="'active/nav-up.png'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>Specifies the filename of the upward-pointing navigation arrow.</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="home.image">
+<refmeta>
+<refentrytitle>home.image</refentrytitle>
+<refmiscinfo role="type">filename</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>home.image</refname>
+<refpurpose>Home image</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='home.image.frag'>
+<xsl:param name="home.image" select="'active/nav-home.png'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>Specifies the filename of the home navigation icon.</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="toc.image">
+<refmeta>
+<refentrytitle>toc.image</refentrytitle>
+<refmiscinfo role="type">filename</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>toc.image</refname>
+<refpurpose>ToC image</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='toc.image.frag'>
+<xsl:param name="toc.image" select="'active/nav-toc.png'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>Specifies the filename of the ToC navigation icon.</para>
+
+</refsect1>
+</refentry>
+
+<!-- ====================================================================== -->
+
+<refentry id="no.next.image">
+<refmeta>
+<refentrytitle>no.next.image</refentrytitle>
+<refmiscinfo role="type">filename</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>no.next.image</refname>
+<refpurpose>Inactive right-arrow image</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='no.next.image.frag'>
+<xsl:param name="no.next.image" select="'inactive/nav-next.png'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>Specifies the filename of the inactive right-pointing navigation arrow.</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="no.prev.image">
+<refmeta>
+<refentrytitle>no.prev.image</refentrytitle>
+<refmiscinfo role="type">filename</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>no.prev.image</refname>
+<refpurpose>Inactive left-arrow image</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='no.prev.image.frag'>
+<xsl:param name="no.prev.image" select="'inactive/nav-prev.png'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>Specifies the filename of the inactive left-pointing navigation arrow.</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="no.up.image">
+<refmeta>
+<refentrytitle>no.up.image</refentrytitle>
+<refmiscinfo role="type">filename</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>no.up.image</refname>
+<refpurpose>Inactive up-arrow image</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='no.up.image.frag'>
+<xsl:param name="no.up.image" select="'inactive/nav-up.png'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>Specifies the filename of the inactive upward-pointing navigation arrow.</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="no.home.image">
+<refmeta>
+<refentrytitle>no.home.image</refentrytitle>
+<refmiscinfo role="type">filename</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>no.home.image</refname>
+<refpurpose>Inactive home image</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='no.home.image.frag'>
+<xsl:param name="no.home.image" select="'inactive/nav-home.png'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>Specifies the filename of the inactive home navigation icon.</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="no.toc.image">
+<refmeta>
+<refentrytitle>no.toc.image</refentrytitle>
+<refmiscinfo role="type">filename</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>no.toc.image</refname>
+<refpurpose>Inactive ToC image</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='no.toc.image.frag'>
+<xsl:param name="no.toc.image" select="'inactive/nav-toc.png'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>Specifies the filename of the inactive ToC navigation icon.</para>
+
+</refsect1>
+</refentry>
+
+<!-- ====================================================================== -->
 
 <refentry id="plus.image">
 <refmeta>
@@ -652,7 +840,7 @@ framed ToC.</para>
 
 <refsynopsisdiv>
 <src:fragment id='plus.image.frag'>
-<xsl:param name="plus.image" select="'plus.gif'"/>
+<xsl:param name="plus.image" select="'toc/closed.png'"/>
 </src:fragment>
 </refsynopsisdiv>
 
@@ -677,7 +865,7 @@ can be expanded.</para>
 
 <refsynopsisdiv>
 <src:fragment id='minus.image.frag'>
-<xsl:param name="minus.image" select="'minus.gif'"/>
+<xsl:param name="minus.image" select="'toc/open.png'"/>
 </src:fragment>
 </refsynopsisdiv>
 
@@ -919,6 +1107,151 @@ that you will ever need to change this parameter.</para>
 </refentry>
 </reference>
 
+<reference>
+<title>Localization Parameters</title>
+
+<refentry id="text.home">
+<refmeta>
+<refentrytitle>text.home</refentrytitle>
+<refmiscinfo role="type">string</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>text.home</refname>
+<refpurpose>Home</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='text.home.frag'>
+<xsl:param name="text.home" select="'Home'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="text.toc">
+<refmeta>
+<refentrytitle>text.toc</refentrytitle>
+<refmiscinfo role="type">string</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>text.toc</refname>
+<refpurpose>FIXME:</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='text.toc.frag'>
+<xsl:param name="text.toc" select="'ToC'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="text.prev">
+<refmeta>
+<refentrytitle>text.prev</refentrytitle>
+<refmiscinfo role="type">string</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>text.prev</refname>
+<refpurpose>FIXME:</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='text.prev.frag'>
+<xsl:param name="text.prev" select="'Prev'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="text.up">
+<refmeta>
+<refentrytitle>text.up</refentrytitle>
+<refmiscinfo role="type">string</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>text.up</refname>
+<refpurpose>FIXME:</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='text.up.frag'>
+<xsl:param name="text.up" select="'Up'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="text.next">
+<refmeta>
+<refentrytitle>text.next</refentrytitle>
+<refmiscinfo role="type">string</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>text.next</refname>
+<refpurpose>FIXME:</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='text.next.frag'>
+<xsl:param name="text.next" select="'Next'"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+
+<!--
+<refentry id="">
+<refmeta>
+<refentrytitle></refentrytitle>
+<refmiscinfo role="type">string</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname></refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='.frag'>
+<xsl:param name="" select="''"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+-->
+
+</reference>
+
 <appendix><title>The Stylesheet</title>
 
 <para>The <filename>param.xsl</filename> stylesheet is just a wrapper
@@ -942,40 +1275,53 @@ around all these parameters.</para>
 
      ******************************************************************** -->
 
-<src:fragref linkend="keyboard.nav.frag"/>
+<src:fragref linkend="active.toc.frag"/>
+<src:fragref linkend="body.bg.color.frag"/>
+<src:fragref linkend="bullet.image.frag"/>
 <src:fragref linkend="css.stylesheet.frag"/>
-<src:fragref linkend="titlefoil.html.frag"/>
-<src:fragref linkend="toc.html.frag"/>
+<src:fragref linkend="dynamic.toc.frag"/>
+<src:fragref linkend="graphics.dir.frag"/>
+<src:fragref linkend="hidetoc.image.frag"/>
+<src:fragref linkend="home.image.frag"/>
+<src:fragref linkend="keyboard.nav.frag"/>
+<src:fragref linkend="minus.image.frag"/>
+<src:fragref linkend="multiframe.bottom.bgcolor.frag"/>
+<src:fragref linkend="multiframe.frag"/>
+<src:fragref linkend="multiframe.navigation.height.frag"/>
+<src:fragref linkend="multiframe.top.bgcolor.frag"/>
+<src:fragref linkend="nav.separator.frag"/>
+<src:fragref linkend="next.image.frag"/>
+<src:fragref linkend="no.home.image.frag"/>
+<src:fragref linkend="no.next.image.frag"/>
+<src:fragref linkend="no.prev.image.frag"/>
+<src:fragref linkend="no.toc.image.frag"/>
+<src:fragref linkend="no.up.image.frag"/>
 <src:fragref linkend="output.indent.frag"/>
 <src:fragref linkend="overlay.frag"/>
-<src:fragref linkend="nav.separator.frag"/>
-<src:fragref linkend="toc.row.height.frag"/>
-<src:fragref linkend="toc.bg.color.frag"/>
-<src:fragref linkend="toc.width.frag"/>
-<src:fragref linkend="toc.hide.show.frag"/>
-<src:fragref linkend="dynamic.toc.frag"/>
-<src:fragref linkend="body.bg.color.frag"/>
-<src:fragref linkend="active.toc.frag"/>
+<src:fragref linkend="overlay.js.frag"/>
 <src:fragref linkend="overlay.logo.frag"/>
-<src:fragref linkend="multiframe.frag"/>
-<src:fragref linkend="multiframe.top.bgcolor.frag"/>
-<src:fragref linkend="multiframe.bottom.bgcolor.frag"/>
-<src:fragref linkend="multiframe.navigation.height.frag"/>
-<src:fragref linkend="graphics.dir.frag"/>
-<src:fragref linkend="bullet.image.frag"/>
-<src:fragref linkend="right.image.frag"/>
-<src:fragref linkend="left.image.frag"/>
 <src:fragref linkend="plus.image.frag"/>
-<src:fragref linkend="minus.image.frag"/>
-<src:fragref linkend="hidetoc.image.frag"/>
-<src:fragref linkend="showtoc.image.frag"/>
+<src:fragref linkend="prev.image.frag"/>
 <src:fragref linkend="script.dir.frag"/>
+<src:fragref linkend="showtoc.image.frag"/>
+<src:fragref linkend="slides.js.frag"/>
+<src:fragref linkend="text.home.frag"/>
+<src:fragref linkend="text.next.frag"/>
+<src:fragref linkend="text.prev.frag"/>
+<src:fragref linkend="text.toc.frag"/>
+<src:fragref linkend="text.up.frag"/>
+<src:fragref linkend="titlefoil.html.frag"/>
+<src:fragref linkend="toc.bg.color.frag"/>
+<src:fragref linkend="toc.hide.show.frag"/>
+<src:fragref linkend="toc.html.frag"/>
+<src:fragref linkend="toc.image.frag"/>
+<src:fragref linkend="toc.row.height.frag"/>
+<src:fragref linkend="toc.width.frag"/>
 <src:fragref linkend="ua.js.frag"/>
+<src:fragref linkend="up.image.frag"/>
+<src:fragref linkend="xbCollapsibleLists.js.frag"/>
 <src:fragref linkend="xbDOM.js.frag"/>
 <src:fragref linkend="xbStyle.js.frag"/>
-<src:fragref linkend="xbCollapsibleLists.js.frag"/>
-<src:fragref linkend="overlay.js.frag"/>
-<src:fragref linkend="slides.js.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>

@@ -2,7 +2,7 @@
 <?dbhtml graphics-dir="../graphics"?>
 <?dbhtml css-stylesheet="../browser/slides.css"?>
 <?dbhtml script-dir="../browser"?>
-<slides xmlns:html='http://www.w3.org/1999/xhtml'>
+<slides>
 <slidesinfo>
   <title>HTML Test Slides Title</title>
   <copyright><year>2001</year><holder>Norman Walsh</holder></copyright>
@@ -54,8 +54,10 @@ this is a screen
 this is a screen
 </screen>
 
+<html:div xmlns:html='http://www.w3.org/1999/xhtml'>
 <html:p>This foil contains some XHTML:</html:p>
 <html:ol><html:li>item 1</html:li><html:li>item 2</html:li></html:ol>
+</html:div>
 
 </foil>
 

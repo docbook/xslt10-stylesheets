@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
-<xsl:output method="html"/>
+<!-- ====================================================================== -->
 
 <xsl:template name="graphics-file">
   <xsl:param name="image" select="'bullet.gif'"/>
@@ -27,24 +27,88 @@
   <xsl:value-of select="$image"/>
 </xsl:template>
 
+<!-- ====================================================================== -->
+<!-- active navigation images -->
+
+<xsl:template name="toc.image">
+  <!-- Danger Will Robinson: template shadows parameter -->
+  <xsl:call-template name="graphics-file">
+    <xsl:with-param name="image" select="$toc.image"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="home.image">
+  <!-- Danger Will Robinson: template shadows parameter -->
+  <xsl:call-template name="graphics-file">
+    <xsl:with-param name="image" select="$home.image"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="up.image">
+  <!-- Danger Will Robinson: template shadows parameter -->
+  <xsl:call-template name="graphics-file">
+    <xsl:with-param name="image" select="$up.image"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="prev.image">
+  <!-- Danger Will Robinson: template shadows parameter -->
+  <xsl:call-template name="graphics-file">
+    <xsl:with-param name="image" select="$prev.image"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="next.image">
+  <!-- Danger Will Robinson: template shadows parameter -->
+  <xsl:call-template name="graphics-file">
+    <xsl:with-param name="image" select="$next.image"/>
+  </xsl:call-template>
+</xsl:template>
+
+<!-- inactive navigation images -->
+
+<xsl:template name="no.toc.image">
+  <!-- Danger Will Robinson: template shadows parameter -->
+  <xsl:call-template name="graphics-file">
+    <xsl:with-param name="image" select="$no.toc.image"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="no.home.image">
+  <!-- Danger Will Robinson: template shadows parameter -->
+  <xsl:call-template name="graphics-file">
+    <xsl:with-param name="image" select="$no.home.image"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="no.up.image">
+  <!-- Danger Will Robinson: template shadows parameter -->
+  <xsl:call-template name="graphics-file">
+    <xsl:with-param name="image" select="$no.up.image"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="no.prev.image">
+  <!-- Danger Will Robinson: template shadows parameter -->
+  <xsl:call-template name="graphics-file">
+    <xsl:with-param name="image" select="$no.prev.image"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="no.next.image">
+  <!-- Danger Will Robinson: template shadows parameter -->
+  <xsl:call-template name="graphics-file">
+    <xsl:with-param name="image" select="$no.next.image"/>
+  </xsl:call-template>
+</xsl:template>
+
+<!-- ====================================================================== -->
+<!-- icon images -->
+
 <xsl:template name="bullet.image">
   <!-- Danger Will Robinson: template shadows parameter -->
   <xsl:call-template name="graphics-file">
     <xsl:with-param name="image" select="$bullet.image"/>
-  </xsl:call-template>
-</xsl:template>
-
-<xsl:template name="left.image">
-  <!-- Danger Will Robinson: template shadows parameter -->
-  <xsl:call-template name="graphics-file">
-    <xsl:with-param name="image" select="$left.image"/>
-  </xsl:call-template>
-</xsl:template>
-
-<xsl:template name="right.image">
-  <!-- Danger Will Robinson: template shadows parameter -->
-  <xsl:call-template name="graphics-file">
-    <xsl:with-param name="image" select="$right.image"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -62,6 +126,9 @@
   </xsl:call-template>
 </xsl:template>
 
+<!-- ====================================================================== -->
+<!-- hide/show ToC images -->
+
 <xsl:template name="hidetoc.image">
   <!-- Danger Will Robinson: template shadows parameter -->
   <xsl:call-template name="graphics-file">
@@ -76,34 +143,6 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template name="w3c.bleft.image">
-  <xsl:call-template name="graphics-file">
-    <xsl:with-param name="image" select="'bleft.png'"/>
-  </xsl:call-template>
-</xsl:template>
-
-<xsl:template name="w3c.left.image">
-  <xsl:call-template name="graphics-file">
-    <xsl:with-param name="image" select="'left.png'"/>
-  </xsl:call-template>
-</xsl:template>
-
-<xsl:template name="w3c.bright.image">
-  <xsl:call-template name="graphics-file">
-    <xsl:with-param name="image" select="'bright.png'"/>
-  </xsl:call-template>
-</xsl:template>
-
-<xsl:template name="w3c.right.image">
-  <xsl:call-template name="graphics-file">
-    <xsl:with-param name="image" select="'right.png'"/>
-  </xsl:call-template>
-</xsl:template>
-
-<xsl:template name="w3c.toc.image">
-  <xsl:call-template name="graphics-file">
-    <xsl:with-param name="image" select="'toc.png'"/>
-  </xsl:call-template>
-</xsl:template>
+<!-- ====================================================================== -->
 
 </xsl:stylesheet>
