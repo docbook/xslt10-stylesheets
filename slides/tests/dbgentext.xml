@@ -20,12 +20,21 @@
 </slidesinfo>
 
 <foil><title>Introduction</title>
+
+<speakernotes>
+<para>Say something pithy in the introduction</para>
+</speakernotes>
+
 <para>This is the introductory slide</para>
 </foil>
 
 <foilgroup><title>The Problem</title>
 
-<para>This is one the foilgroup slide.</para>
+<para>This is on the foilgroup slide.</para>
+
+<speakernotes>
+<para>Remember to describe the use-caess</para>
+</speakernotes>
 
 <foil><title>Generated Text</title>
 <itemizedlist>
