@@ -144,10 +144,6 @@ div {
       indexterm.endofrange.role.attribute?
     & common.attributes
     & common.linking.attributes
-    & significance.attribute?
-    & zone.attribute?
-    & pagenum.attribute?
-    & scope.attribute?
     & attribute class { "endofrange" }
     & attribute startref { xsd:IDREF }
     & local.indexterm.endofrange.attributes
@@ -155,7 +151,7 @@ div {
    indexterm.endofrange =
       element indexterm {
          indexterm.endofrange.attr,
-         indexterm.contentmodel
+         empty
       }
 }
 
