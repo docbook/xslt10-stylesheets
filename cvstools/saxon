@@ -10,16 +10,19 @@ DONE=0
 VERSION=652
 EXTVERSION=643
 DEBUG=0
-JAR=0
 XARG=""
 YARG=""
 RARG=""
 MEMORY=""
 QUIET=0
 
+
+MYDIR=`dirname $0`
+. $MYDIR/common-functions.sh
+
 # identify the directory for DocBook XSL
 for dir in "/sourceforge/docbook/xsl" \
-           `dirname $0/../xsl` \
+           "$MYDIR/xsl" \
            "/usr/share/sgml/docbook/stylesheet/xsl/nwalsh" ; do
   if [ -d "$dir" ]; then
     DOCBOOKXSL="$dir"
@@ -30,9 +33,6 @@ done
 while [ "$DONE" = "0" ]; do
     case $1 in
 	-d)	DEBUG=1;
-		shift;
-		;;
-	-j)	JAR=1;
 		shift;
 		;;
 	-652)	VERSION=652;
@@ -129,21 +129,20 @@ if [ ! -f "$SAXON" ]; then
   echo "warning: cannot locate Saxon JAR file" 1>&2
 fi
 
-
 ##
 ## DocBook extensions
 ##
-if [ "$JAR" = "1" ]; then
-  NDWEXT="$DOCBOOKXSL/extensions/saxon$EXTVERSION.jar"
-
-  if [ ! -f "$NDWEXT" ]; then
-    echo "warning: cannot locate DocBook XSL Saxon extensions ($NDWEXT)" 1>&2
-  fi
-else
-  NDWEXT="$DOCBOOKXSL/extensions/saxon$EXTVERSION/.classes";
-
-  if [ ! -d "$NDWEXT" ]; then
-    echo "warning: cannot locate DocBook XSL Saxon extensions ($NDWEXT)" 1>&2
+if [ ! "$NDWEXT" ]; then
+  for ext in "$DOCBOOKXSL/extensions/saxon$EXTVERSION/.classes" \
+             "$DOCBOOKXSL/extensions/saxon$EXTVERSION.jar" \
+             "/usr/share/sgml/docbook/stylesheet/xsl/nwalsh/extensions/saxon$EXTVERSION.jar" ; do
+    if [ -d $ext -o -f $ext ]; then
+      NDWEXT=$ext;
+      break
+    fi
+  done
+  if [ ! "$NDWEXT" ]; then
+    echo "warning: cannot locate DocBook XSL Saxon extensions" 1>&2
   fi
 fi
 
@@ -163,34 +162,16 @@ fi
 ##
 ## locate Xerces classpath
 ##
-if [ ! "$XERCES" ]; then
-  for path in "/projects/apache/xml-xerces/java/build/classes" \
-              "/usr/local/share/java/xerces.jar" \
-              "/usr/local/java/xerces.jar" \
-              "/usr/share/java/xerces.jar"; do
-    if [ -f "$path" -o -d "$path" ]; then
-      XERCES="$path"
-    fi
-  done
-fi
+XERCES=`findxerces`
 if [ ! "$XERCES" ]; then
   echo "warning: cannot locate Xerces (xerces.jar)" 1>&2
 fi
 
+
 ##
 ## locate JAXP classpath
 ##
-if [ ! "$JAXP" ]; then
-  for path in "/usr/local/share/java/jaxp.jar" \
-              "/usr/local/java/jaxp.jar" \
-              "/usr/local/jaxp-1.1/jaxp.jar" \
-              "/usr/local/share/java/jaxp-1.1/jaxp.jar" \
-              "/usr/share/java/jaxp.jar"; do
-    if [ -f "$path" -o -d "$path" ]; then
-      JAXP="$path"
-    fi
-  done
-fi
+JAXP=`findjaxp`
 if [ ! "$JAXP" ]; then
   echo "warning: cannot locate JAXP (jaxp.jar)" 1>&2
 fi
@@ -207,7 +188,7 @@ for path in $RESOLVER \
   fi
 done
 if [ -f "$RESOLVER" -o -d "$RESOLVER" ]; then
-  # use the sun resolver
+  # use the apache resolver
   if [ ! "$XARG" ]; then
     XARG="-x org.apache.xml.resolver.tools.ResolvingXMLReader"
   fi
@@ -244,10 +225,3 @@ exec java $MEMORY $FOO \
      -Djavax.xml.transform.TransformerFactory=$TRANSFACTORY \
      com.icl.saxon.StyleSheet \
      $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY "$@"
-
-if [ $? != 0 ]; then
-  echo ""
-  echo FAILED
-  echo ""
-  exit 1
-fi
