@@ -16,13 +16,13 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="anchor">
+<xsl:template match="anchor" name="anchor">
   <xsl:call-template name="anchor"/>
 </xsl:template>
 
 <!-- ==================================================================== -->
 
-<xsl:template match="xref">
+<xsl:template match="xref" name="xref">
   <xsl:variable name="targets" select="id(@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
   <xsl:variable name="refelem" select="local-name($target)"/>
@@ -371,7 +371,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="link">
+<xsl:template match="link" name="link">
   <xsl:variable name="targets" select="id(@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
 
@@ -455,7 +455,7 @@
   </a>
 </xsl:template>
 
-<xsl:template match="ulink">
+<xsl:template match="ulink" name="ulink">
   <a>
     <xsl:if test="@id">
       <xsl:attribute name="name">
@@ -479,7 +479,7 @@
   </a>
 </xsl:template>
 
-<xsl:template match="olink">
+<xsl:template match="olink" name="olink">
   <xsl:call-template name="anchor"/>
   <xsl:variable name="localinfo" select="@localinfo"/>
 
