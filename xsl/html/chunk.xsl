@@ -10,8 +10,8 @@
 <xsl:param name="onechunk" select="0"/>
 <xsl:param name="refentry.separator" select="0"/>
 
-<!-- this doesn't work and I have misgivings about ever getting it to work -->
-<xsl:param name="chunk.tocs.and.lots" select="0"/>
+<!-- this doesn't work yet... -->
+<xsl:param name="chunk.tocs.and.lots" select="1"/>
 
 <!-- ==================================================================== -->
 
@@ -459,82 +459,74 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template name="division.toc">
-  <xsl:param name="toc-context" select="."/>
+<xsl:template name="make.lots">
+  <xsl:param name="toc.params" select="''"/>
+  <xsl:param name="toc"/>
 
-  <xsl:variable name="toc.title">
-    <p>
-      <b>
-        <xsl:call-template name="gentext">
-          <xsl:with-param name="key">TableofContents</xsl:with-param>
-        </xsl:call-template>
-      </b>
-    </p>
+  <xsl:variable name="lots">
+    <xsl:if test="contains($toc.params, 'toc')">
+      <xsl:copy-of select="$toc"/>
+    </xsl:if>
+
+    <xsl:if test="contains($toc.params, 'figure')">
+      <xsl:call-template name="list.of.titles">
+        <xsl:with-param name="titles" select="'figure'"/>
+        <xsl:with-param name="nodes" select=".//figure"/>
+      </xsl:call-template>
+    </xsl:if>
+
+    <xsl:if test="contains($toc.params, 'table')">
+      <xsl:call-template name="list.of.titles">
+        <xsl:with-param name="titles" select="'table'"/>
+        <xsl:with-param name="nodes" select=".//table"/>
+      </xsl:call-template>
+    </xsl:if>
+
+    <xsl:if test="contains($toc.params, 'example')">
+      <xsl:call-template name="list.of.titles">
+        <xsl:with-param name="titles" select="'example'"/>
+        <xsl:with-param name="nodes" select=".//example"/>
+      </xsl:call-template>
+    </xsl:if>
+
+    <xsl:if test="contains($toc.params, 'equation')">
+      <xsl:call-template name="list.of.titles">
+        <xsl:with-param name="titles" select="'equation'"/>
+        <xsl:with-param name="nodes" select=".//equation[title]"/>
+      </xsl:call-template>
+    </xsl:if>
   </xsl:variable>
 
-  <xsl:variable name="toc">
+  <xsl:if test="string($lots) != ''">
     <xsl:choose>
-      <xsl:when test="$manual.toc != ''">
-        <xsl:variable name="id">
-          <xsl:call-template name="object.id"/>
-        </xsl:variable>
-        <xsl:variable name="toc" select="document($manual.toc, .)"/>
-        <xsl:variable name="tocentry" select="$toc//tocentry[@linkend=$id]"/>
-        <xsl:if test="$tocentry and $tocentry/*">
-          <div class="toc">
-            <xsl:copy-of select="$toc.title"/>
-            <xsl:element name="{$toc.list.type}">
-              <xsl:call-template name="manual-toc">
-                <xsl:with-param name="tocentry" select="$tocentry/*[1]"/>
-              </xsl:call-template>
-            </xsl:element>
-          </div>
-        </xsl:if>
+      <xsl:when test="$chunk.tocs.and.lots != 0 and not(parent::*)">
+        <xsl:call-template name="write.chunk">
+          <xsl:with-param name="filename">
+            <xsl:apply-templates select="." mode="recursive-chunk-filename"/>
+            <xsl:text>-toc</xsl:text>
+            <xsl:value-of select="$html.ext"/>
+          </xsl:with-param>
+          <xsl:with-param name="content">
+            <xsl:call-template name="chunk-element-content">
+              <xsl:with-param name="prev" select="/foo"/>
+              <xsl:with-param name="next" select="/foo"/>
+              <xsl:with-param name="nav.context" select="'toc'"/>
+              <xsl:with-param name="content">
+                <h1>
+                  <xsl:apply-templates select="." mode="object.title.markup"/>
+                </h1>
+                <xsl:copy-of select="$lots"/>
+              </xsl:with-param>
+            </xsl:call-template>
+          </xsl:with-param>
+          <xsl:with-param name="quiet" select="$chunk.quietly"/>
+        </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:variable name="nodes" select="part|reference
-                                           |preface|chapter|appendix
-                                           |article
-                                           |bibliography|glossary|index
-                                           |refentry
-                                           |bridgehead"/>
-        <xsl:if test="$nodes">
-          <div class="toc">
-            <xsl:copy-of select="$toc.title"/>
-            <xsl:element name="{$toc.list.type}">
-              <xsl:apply-templates select="$nodes" mode="toc">
-                <xsl:with-param name="toc-context" select="$toc-context"/>
-              </xsl:apply-templates>
-            </xsl:element>
-          </div>
-        </xsl:if>
+        <xsl:copy-of select="$lots"/>
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:variable>
-
-  <xsl:choose>
-    <xsl:when test="$chunk.tocs.and.lots != 0">
-      <xsl:call-template name="write.chunk">
-        <xsl:with-param name="filename">
-          <xsl:apply-templates select="." mode="chunk-filename"/>
-          <xsl:text>-toc.html</xsl:text>
-        </xsl:with-param>
-        <xsl:with-param name="content">
-          <xsl:call-template name="chunk-element-content">
-            <xsl:with-param name="prev" select="/foo"/>
-            <xsl:with-param name="next" select="/foo"/>
-            <xsl:with-param name="content">
-              <xsl:copy-of select="$toc"/>
-            </xsl:with-param>
-          </xsl:call-template>
-        </xsl:with-param>
-        <xsl:with-param name="quiet" select="$chunk.quietly"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:copy-of select="$toc"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  </xsl:if>
 </xsl:template>
 
 <!-- ==================================================================== -->
