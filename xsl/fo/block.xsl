@@ -173,13 +173,21 @@
         </xsl:when>
         <xsl:when test="$axf.extensions != 0 and 
                         ($position = 'left' or $position = 'start')">
-          <!-- Special case for handling inline floats in Antenna House-->
           <fo:float float="{$position}"
                     clear="{$clear}">
             <fo:block-container 
                       inline-progression-dimension=".001mm"
-                      start-indent="-{$body.start.indent}"
                       end-indent="{$start.indent} + {$width} + {$end.indent}">
+              <xsl:attribute name="start-indent">
+                <xsl:choose>
+                  <xsl:when test="ancestor::para">
+                    <!-- Special case for handling inline floats
+		         in Antenna House-->
+                    <xsl:value-of select="concat('-', $body.start.indent)"/>
+                  </xsl:when>
+                  <xsl:otherwise>0pt</xsl:otherwise>
+                </xsl:choose>
+	      </xsl:attribute>
               <fo:block start-indent="{$start.indent}"
                         end-indent="-{$start.indent} - {$width}">
                 <xsl:copy-of select="$content"/>
