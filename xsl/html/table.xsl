@@ -3,8 +3,9 @@
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 xmlns:stbl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.Table"
                 xmlns:xtbl="com.nwalsh.xalan.Table"
+                xmlns:ptbl="http://nwalsh.com/xslt/ext/xsltproc/python/Table"
                 xmlns:lxslt="http://xml.apache.org/xslt"
-                exclude-result-prefixes="doc stbl xtbl lxslt"
+                exclude-result-prefixes="doc stbl xtbl lxslt ptbl"
                 version='1.0'>
 
 <xsl:include href="../common/table.xsl"/>
@@ -95,13 +96,39 @@
         <xsl:variable name="summary">
           <xsl:call-template name="dbhtml-attribute">
             <xsl:with-param name="pis"
-                            select="processing-instruction('dbhtml')[1]"/>
+                            select="processing-instruction('dbhtml')"/>
             <xsl:with-param name="attribute" select="'table-summary'"/>
           </xsl:call-template>
         </xsl:variable>
         <xsl:if test="$summary != ''">
           <xsl:attribute name="summary">
             <xsl:value-of select="$summary"/>
+          </xsl:attribute>
+        </xsl:if>
+
+        <xsl:variable name="cellspacing">
+          <xsl:call-template name="dbhtml-attribute">
+            <xsl:with-param name="pis"
+                            select="processing-instruction('dbhtml')"/>
+            <xsl:with-param name="attribute" select="'cellspacing'"/>
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:if test="$cellspacing != ''">
+          <xsl:attribute name="cellspacing">
+            <xsl:value-of select="$cellspacing"/>
+          </xsl:attribute>
+        </xsl:if>
+
+        <xsl:variable name="cellpadding">
+          <xsl:call-template name="dbhtml-attribute">
+            <xsl:with-param name="pis"
+                            select="processing-instruction('dbhtml')[1]"/>
+            <xsl:with-param name="attribute" select="'cellpadding'"/>
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:if test="$cellpadding != ''">
+          <xsl:attribute name="cellpadding">
+            <xsl:value-of select="$cellpadding"/>
           </xsl:attribute>
         </xsl:if>
       </xsl:when>
@@ -264,6 +291,9 @@
           </xsl:when>
           <xsl:when test="function-available('xtbl:adjustColumnWidths')">
             <xsl:copy-of select="xtbl:adjustColumnWidths($colgroup)"/>
+          </xsl:when>
+          <xsl:when test="function-available('ptbl:adjustColumnWidths')">
+            <xsl:copy-of select="ptbl:adjustColumnWidths($colgroup)"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:message terminate="yes">
