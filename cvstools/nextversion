@@ -21,22 +21,38 @@ open (F, 'VERSION') || die "Cannot find VERSION.\n";
 read (F, $_, -s 'VERSION');
 close (F);
 
-if (/^(.*name=.VERSION.>)(\d+)\.(\d+)\+?(<.*)$/s) {
+if (/^(.*name=.VERSION.>)([\.\d]+)\+?(<.*)$/s) {
     # ok
-} elsif (/^(.*?)(\d+)\.(\d+)\+?(.*)$/s) {
+} elsif (/^(.*?)([\.\d]+)\+?(.*)$/s) {
     # ok
 } else {
     die "Cannot find version in VERSION.\n";
 }
 
 my $pre = $1;
-my $major = $2;
-my $minor = $3;
-my $post = $4;
+my $fvers = $2;
+my $post = $3;
 
-$minor++;
+my $major = undef;
+my $middle = undef;
+my $minor = undef;
 
-$version = "$major.$minor" if !$version;
+if ($fvers =~ /^(\d+)\.(\d+)\.(\d+)$/) {
+    $major = $1;
+    $middle = $2;
+    $minor = $3;
+    $minor++;
+    $fvers = "$major.$middle.$minor";
+} elsif ($fvers =~ /^(\d+)\.(\d+)$/) {
+    $major = $1;
+    $minor = $2;
+    $minor++;
+    $fvers = "$major.$minor";
+} else {
+    die "Cannot parse version: $fvers\n";
+}
+
+$version = "$fvers" if !$version;
 
 print "About to release $version; are you sure? ";
 chop($_ = scalar(<>));
