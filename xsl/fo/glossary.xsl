@@ -567,7 +567,7 @@ GlossEntry ::=
     </xsl:call-template>
     <xsl:choose>
       <xsl:when test="$target">
-        <xsl:apply-templates select="$target" mode="xref"/>
+        <xsl:apply-templates select="$target" mode="xref-to"/>
       </xsl:when>
       <xsl:when test="$otherterm != '' and not($target)">
         <xsl:message>
@@ -611,7 +611,7 @@ GlossEntry ::=
 
   <xsl:choose>
     <xsl:when test="$target">
-      <xsl:apply-templates select="$target" mode="xref"/>
+      <xsl:apply-templates select="$target" mode="xref-to"/>
     </xsl:when>
     <xsl:when test="$otherterm != '' and not($target)">
       <xsl:message>
@@ -740,7 +740,7 @@ GlossEntry ::=
   </xsl:call-template>
   <xsl:choose>
     <xsl:when test="$target">
-      <xsl:apply-templates select="$target" mode="xref"/>
+      <xsl:apply-templates select="$target" mode="xref-to"/>
     </xsl:when>
     <xsl:when test="$otherterm != '' and not($target)">
       <xsl:message>
@@ -783,7 +783,7 @@ GlossEntry ::=
 
   <xsl:choose>
     <xsl:when test="$target">
-      <xsl:apply-templates select="$target" mode="xref"/>
+      <xsl:apply-templates select="$target" mode="xref-to"/>
     </xsl:when>
     <xsl:when test="$otherterm != '' and not($target)">
       <xsl:message>
