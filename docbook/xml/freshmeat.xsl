@@ -41,10 +41,8 @@
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook/</fm:Mailing-List-URL>
   <fm:Changes>There are no backwards-incompatible changes in this release.
 
-The W3C XML Entity Declarations for Characters are now used. The xml:base
-attribute has been removed from the SGML DTD. HTML tables can now nest.
-A bug in the rules attribute of HTML tables has been fixed. The bibliolist
-element has been added. The euro character entity can now be suppressed.
+Added the wordsize global effectivity attribute; fixed a few typos in
+public identifiers; added a pointer from the DTD back to the specification.
   </fm:Changes>  
 </fm:project>
 
