@@ -7,7 +7,6 @@
 MYDIR=`dirname $0`
 . $MYDIR/common-functions.sh
 
-
 JAXP=`findjaxp`
 XERCES=`findxerces`
 RESOLVER=`findresolver`
@@ -15,17 +14,6 @@ if [ ! "$RESOLVER" ]; then
   echo "cannot find resolver classes" 1>&2
   exit 1
 fi
-<<<<<<< xjparse
-
-for path in "/usr/local/jaxp-1.1/jaxp.jar" \
-            "/usr/local/java/jaxp-1.1/jaxp.jar" \
-            "/usr/local/share/java/jaxp-1.1/jaxp.jar" \
-            "/usr/share/java/jaxp.jar"; do
-  if [ -f "$path" -o -d "$path" ]; then
-    JAXP="$path"
-    break
-  fi
-done
 
 HTTP_PROXY=
 HTTPS_PROXY=
