@@ -256,6 +256,9 @@
   <fo:block xsl:use-attribute-sets="section.title.properties"
             font-size="{$fsize}pt">
     <xsl:copy-of select="$title"/>
+    <fo:marker marker-class-name="section.head.marker">
+      <xsl:copy-of select="$title"/>
+    </fo:marker>
   </fo:block>
 </xsl:template>
 
