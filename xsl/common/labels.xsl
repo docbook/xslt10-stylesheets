@@ -511,6 +511,10 @@ element label.</para>
     <xsl:when test="@label">
       <xsl:value-of select="@label"/>
     </xsl:when>
+    <xsl:when test="local-name() = 'procedure' and
+                    $formal.procedures = 0">
+      <!-- No label -->
+    </xsl:when>
     <xsl:otherwise>
       <xsl:choose>
         <xsl:when test="count($pchap)>0">
