@@ -1,5 +1,5 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
-                  "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+                  "http://docbook.org/xml/4.3/docbookx.dtd" [
 <!ENTITY standard "Working Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker/">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
