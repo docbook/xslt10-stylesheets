@@ -121,7 +121,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <!-- ==================================================================== -->
 
-<xsl:template match="tgroup">
+<xsl:template match="tgroup" name="tgroup">
   <xsl:variable name="explicit.table.width">
     <xsl:call-template name="dbfo-attribute">
       <xsl:with-param name="pis"
@@ -249,14 +249,14 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   <fo:table-row>
     <xsl:call-template name="anchor"/>
 
-    <xsl:apply-templates select="entry[1]">
+    <xsl:apply-templates select="(entry|entrytbl)[1]">
       <xsl:with-param name="spans" select="$spans"/>
     </xsl:apply-templates>
   </fo:table-row>
 
   <xsl:if test="following-sibling::row">
     <xsl:variable name="nextspans">
-      <xsl:apply-templates select="entry[1]" mode="span">
+      <xsl:apply-templates select="(entry|entrytbl)[1]" mode="span">
         <xsl:with-param name="spans" select="$spans"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -267,7 +267,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="entry" name="entry">
+<xsl:template match="entry|entrytbl" name="entry">
   <xsl:param name="col" select="1"/>
   <xsl:param name="spans"/>
 
@@ -409,6 +409,16 @@ to be incomplete. Don't forget to read the source, too :-)</para>
           <xsl:choose>
             <xsl:when test="$empty.cell">
               <xsl:text>&#160;</xsl:text>
+            </xsl:when>
+            <xsl:when test="self::entrytbl">
+              <xsl:variable name="prop-columns"
+                            select=".//colspec[contains(@colwidth, '*')]"/>
+              <fo:table border-collapse="collapse">
+                <xsl:if test="count($prop-columns) != 0">
+                  <xsl:attribute name="table-layout">fixed</xsl:attribute>
+                </xsl:if>
+                <xsl:call-template name="tgroup"/>
+              </fo:table>
             </xsl:when>
             <xsl:otherwise>
               <xsl:apply-templates/>
@@ -559,8 +569,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       </fo:table-cell>
 
       <xsl:choose>
-        <xsl:when test="following-sibling::entry">
-          <xsl:apply-templates select="following-sibling::entry[1]">
+        <xsl:when test="following-sibling::entry|following-sibling::entrytbl">
+          <xsl:apply-templates select="(following-sibling::entry
+                                       |following-sibling::entrytbl)[1]">
             <xsl:with-param name="col" select="$col+$entry.colspan"/>
             <xsl:with-param name="spans" select="$following.spans"/>
           </xsl:apply-templates>
@@ -576,7 +587,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="entry" name="sentry" mode="span">
+<xsl:template match="entry|entrytbl" name="sentry" mode="span">
   <xsl:param name="col" select="1"/>
   <xsl:param name="spans"/>
 
@@ -633,8 +644,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       </xsl:call-template>
 
       <xsl:choose>
-        <xsl:when test="following-sibling::entry">
-          <xsl:apply-templates select="following-sibling::entry[1]"
+        <xsl:when test="following-sibling::entry|following-sibling::entrytbl">
+          <xsl:apply-templates select="(following-sibling::entry
+                                       |following-sibling::entrytbl)[1]"
                                mode="span">
             <xsl:with-param name="col" select="$col+$entry.colspan"/>
             <xsl:with-param name="spans" select="$following.spans"/>
