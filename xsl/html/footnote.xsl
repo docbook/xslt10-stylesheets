@@ -44,7 +44,7 @@
 </xsl:template>
 
 <xsl:template match="footnoteref">
-  <xsl:variable name="targets" select="id(@linkend)"/>
+  <xsl:variable name="targets" select="key('id',@linkend)"/>
   <xsl:variable name="footnote" select="$targets[1]"/>
   <xsl:variable name="href">
     <xsl:text>#ftn.</xsl:text>

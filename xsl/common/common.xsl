@@ -971,7 +971,7 @@ the ID is not unique.</para>
 <xsl:template name="check.id.unique">
   <xsl:param name="linkend"></xsl:param>
   <xsl:if test="$linkend != ''">
-    <xsl:variable name="targets" select="id($linkend)"/>
+    <xsl:variable name="targets" select="key('id',$linkend)"/>
     <xsl:variable name="target" select="$targets[1]"/>
 
     <xsl:if test="count($targets)=0">
@@ -1012,7 +1012,7 @@ pointed to by the link is one of the elements listed in
   <xsl:param name="linkend"></xsl:param>
   <xsl:param name="element-list"></xsl:param>
   <xsl:if test="$linkend != ''">
-    <xsl:variable name="targets" select="id($linkend)"/>
+    <xsl:variable name="targets" select="key('id',$linkend)"/>
     <xsl:variable name="target" select="$targets[1]"/>
 
     <xsl:if test="count($target) &gt; 0">

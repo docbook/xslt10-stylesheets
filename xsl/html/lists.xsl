@@ -615,7 +615,7 @@
 
 <xsl:template name="callout.arearef">
   <xsl:param name="arearef"></xsl:param>
-  <xsl:variable name="targets" select="id($arearef)"/>
+  <xsl:variable name="targets" select="key('id',$arearef)"/>
   <xsl:variable name="target" select="$targets[1]"/>
 
   <xsl:call-template name="check.id.unique">

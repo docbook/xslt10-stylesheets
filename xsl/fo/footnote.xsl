@@ -27,7 +27,7 @@
 </xsl:template>
 
 <xsl:template match="footnoteref">
-  <xsl:variable name="footnote" select="id(@linkend)"/>
+  <xsl:variable name="footnote" select="key('id',@linkend)"/>
   <fo:inline>
     <xsl:text>[</xsl:text>
     <xsl:apply-templates select="$footnote" mode="footnote.number"/>

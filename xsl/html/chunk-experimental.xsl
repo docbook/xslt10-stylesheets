@@ -348,8 +348,8 @@
   <xsl:variable name="next-id"
                 select="$chunk/following-sibling::chunk[1]/@id"/>
 
-  <xsl:variable name="prev" select="id($prev-id)"/>
-  <xsl:variable name="next" select="id($next-id)"/>
+  <xsl:variable name="prev" select="key('id',$prev-id)"/>
+  <xsl:variable name="next" select="key('id',$next-id)"/>
 
   <xsl:variable name="ischunk">
     <xsl:call-template name="chunk"/>
@@ -523,7 +523,7 @@
   <xsl:choose>
     <xsl:when test="$rootid != ''">
       <xsl:choose>
-        <xsl:when test="count(id($rootid)) = 0">
+        <xsl:when test="count(key('id',$rootid)) = 0">
           <xsl:message terminate="yes">
             <xsl:text>ID '</xsl:text>
             <xsl:value-of select="$rootid"/>
@@ -531,7 +531,7 @@
           </xsl:message>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="id($rootid)"/>
+          <xsl:apply-templates select="key('id',$rootid)"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>

@@ -69,6 +69,10 @@
 
 <!-- ==================================================================== -->
 
+<xsl:key name="id" match="*" use="@id"/>
+
+<!-- ==================================================================== -->
+
 <xsl:template match="*">
   <xsl:message>
     <xsl:value-of select="name(.)"/>
@@ -122,7 +126,7 @@
     <xsl:choose>
       <xsl:when test="$rootid != ''">
         <xsl:choose>
-          <xsl:when test="count(id($rootid)) = 0">
+          <xsl:when test="count(key('id',$rootid)) = 0">
             <xsl:message terminate="yes">
               <xsl:text>ID '</xsl:text>
               <xsl:value-of select="$rootid"/>
@@ -131,14 +135,14 @@
           </xsl:when>
           <xsl:otherwise>
             <xsl:if test="$fop.extensions != 0">
-              <xsl:apply-templates select="id($rootid)" mode="outline"/>
+              <xsl:apply-templates select="key('id',$rootid)" mode="outline"/>
             </xsl:if>
             <xsl:if test="$xep.extensions != 0">
               <rx:outline xmlns:rx="http://www.renderx.com/XSL/Extensions">
-                <xsl:apply-templates select="id($rootid)" mode="xep.outline"/>
+                <xsl:apply-templates select="key('id',$rootid)" mode="xep.outline"/>
               </rx:outline>
             </xsl:if>
-            <xsl:apply-templates select="id($rootid)"/>
+            <xsl:apply-templates select="key('id',$rootid)"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>

@@ -23,7 +23,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="xref" name="xref">
-  <xsl:variable name="targets" select="id(@linkend)"/>
+  <xsl:variable name="targets" select="key('id',@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
   <xsl:variable name="refelem" select="local-name($target)"/>
 
@@ -64,7 +64,7 @@
 
       <xsl:choose>
         <xsl:when test="@endterm">
-          <xsl:variable name="etargets" select="id(@endterm)"/>
+          <xsl:variable name="etargets" select="key('id',@endterm)"/>
           <xsl:variable name="etarget" select="$etargets[1]"/>
           <xsl:choose>
             <xsl:when test="count($etarget) = 0">
@@ -388,7 +388,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="link" name="link">
-  <xsl:variable name="targets" select="id(@linkend)"/>
+  <xsl:variable name="targets" select="key('id',@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
 
   <xsl:call-template name="check.id.unique">
@@ -440,7 +440,7 @@
         <!-- else look for an endterm -->
         <xsl:choose>
           <xsl:when test="@endterm">
-            <xsl:variable name="etargets" select="id(@endterm)"/>
+            <xsl:variable name="etargets" select="key('id',@endterm)"/>
             <xsl:variable name="etarget" select="$etargets[1]"/>
             <xsl:choose>
               <xsl:when test="count($etarget) = 0">
@@ -503,7 +503,7 @@
     <xsl:choose>
       <xsl:when test="@linkmode">
         <!-- use the linkmode to get the base URI, use localinfo as fragid -->
-        <xsl:variable name="modespec" select="id(@linkmode)"/>
+        <xsl:variable name="modespec" select="key('id',@linkmode)"/>
         <xsl:if test="count($modespec) != 1
                       or local-name($modespec) != 'modespec'">
           <xsl:message>Warning: olink linkmode pointer is wrong.</xsl:message>

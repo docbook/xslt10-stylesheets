@@ -156,7 +156,6 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 </reference>
 
 <reference><title>XSLT Processing</title>
-&use.id.function;
 &rootid;
 &suppress.navigation;
 </reference>
@@ -382,7 +381,6 @@ around all these parameters.</para>
 <src:fragref linkend="ulink.target.frag"/>
 <src:fragref linkend="use.extensions.frag"/>
 <src:fragref linkend="use.id.as.filename.frag"/>
-<src:fragref linkend="use.id.function.frag"/>
 <src:fragref linkend="using.chunker.frag"/>
 <src:fragref linkend="table.borders.with.css.frag"/>
 <src:fragref linkend="table.border.thickness.frag"/>

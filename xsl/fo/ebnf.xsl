@@ -141,7 +141,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 </xsl:template>
 
 <xsl:template match="productionrecap">
-  <xsl:variable name="targets" select="id(@linkend)"/>
+  <xsl:variable name="targets" select="key('id',@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
 
   <xsl:if test="count($targets)=0">
@@ -209,7 +209,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   <xsl:variable name="href">
     <xsl:choose>
       <xsl:when test="$linkend != ''">
-	<xsl:variable name="targets" select="id($linkend)"/>
+	<xsl:variable name="targets" select="key('id',$linkend)"/>
 	<xsl:variable name="target" select="$targets[1]"/>
         <xsl:call-template name="object.id">
           <xsl:with-param name="object" select="$target"/>
@@ -230,7 +230,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       <xsl:otherwise>
         <xsl:choose>
           <xsl:when test="$linkend != ''">
-            <xsl:variable name="targets" select="id($linkend)"/>
+            <xsl:variable name="targets" select="key('id',$linkend)"/>
             <xsl:variable name="target" select="$targets[1]"/>
             <xsl:apply-templates select="$target/lhs"/>
           </xsl:when>
@@ -264,7 +264,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   </xsl:call-template>
 
   <xsl:variable name="href">
-    <xsl:variable name="targets" select="id(@linkend)"/>
+    <xsl:variable name="targets" select="key('id',@linkend)"/>
     <xsl:variable name="target" select="$targets[1]"/>
     <xsl:call-template name="object.id">
       <xsl:with-param name="object" select="$target"/>
@@ -282,7 +282,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       <xsl:text>: </xsl:text>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:variable name="targets" select="id(@linkend)"/>
+      <xsl:variable name="targets" select="key('id',@linkend)"/>
       <xsl:variable name="target" select="$targets[1]"/>
       <xsl:if test="$target/@role">
 	<xsl:value-of select="$target/@role"/>
@@ -293,7 +293,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
   <fo:basic-link internal-destination="{$href}"
                  xsl:use-attribute-sets="xref.properties">
-    <xsl:variable name="targets" select="id(@linkend)"/>
+    <xsl:variable name="targets" select="key('id',@linkend)"/>
     <xsl:variable name="target" select="$targets[1]"/>
     <xsl:apply-templates select="$target" mode="title.markup"/>
   </fo:basic-link>
