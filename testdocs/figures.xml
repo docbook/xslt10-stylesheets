@@ -17,14 +17,14 @@
   <mediaobject>
     <imageobject>
       <imagedata
-        align="right"
+        align="center"
         fileref="graphics/duck-small.gif"
         format="GIF"
         srccredit="O'Reilly &amp; Associates/Dover Archives"/>
     </imageobject>
     <imageobject>
       <imagedata
-        align="right"
+        align="center"
         fileref="graphics/duck-small.png"
         format="PNG"
         srccredit="O'Reilly &amp; Associates/Dover Archives"/>

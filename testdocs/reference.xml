@@ -5,8 +5,16 @@
 <!-- test document -->
 <reference>
 <title>A Test Reference</title>
+<partintro>
+<para>What about an xref to a refentry:
+<xref linkend="minimal"/>.</para>
+<para>What about an xref to a refentry:
+<xref linkend="lessminimal"/>.</para>
+<para>What about an xref to a refentry:
+<xref linkend="evenlessminimal"/>.</para>
+</partintro>
 
-<refentry>
+<refentry id="minimal">
 <refnamediv>
 <refname>Minimal</refname>
 <refpurpose>Test of a minimal RefEntry</refpurpose>
@@ -18,10 +26,31 @@
 </refsect1>
 </refentry>
 
-<refentry>
+<refentry id="lessminimal">
+<refmeta>
+<refentrytitle>Also Minimal Title</refentrytitle>
+<manvolnum>3</manvolnum>
+</refmeta>
 <refnamediv>
 <refname>Also Minimal</refname>
 <refpurpose>Another test of a minimal RefEntry</refpurpose>
+</refnamediv>
+
+<refsect1>
+<title>Description</title>
+<para>This is a minimal RefEntry.</para>
+</refsect1>
+</refentry>
+
+<refentry id="evenlessminimal">
+<refmeta>
+<refentrytitle>Fred</refentrytitle>
+<manvolnum>3</manvolnum>
+</refmeta>
+<refnamediv>
+<refname>Less Minimal</refname>
+<refname>Even Less Minimal</refname>
+<refpurpose>Test of a minimal RefEntry</refpurpose>
 </refnamediv>
 
 <refsect1>

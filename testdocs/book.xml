@@ -12,6 +12,11 @@
 <keyword>book keyword2</keyword>
 </keywordset>
 <authorgroup>
+<corpauthor>SomeCorp</corpauthor>
+<editor><firstname>Jane</firstname><surname>Doe</surname></editor>
+</authorgroup>
+<!--
+<authorgroup>
 <author>
 <firstname>John</firstname>
 <surname>Doe</surname>
@@ -21,8 +26,19 @@
 <surname>Doe</surname>
 <contrib>Some contribution</contrib>
 </author>
+<editor>
+<firstname>Editor</firstname>
+<surname>Name1</surname>
+<contrib>Some contribution</contrib>
+</editor>
+<editor>
+<firstname>Editor</firstname>
+<surname>Name2</surname>
+<contrib>Some contribution</contrib>
+</editor>
 </authorgroup>
-<legalnotice>
+-->
+<legalnotice id="foo">
 <para>
 Some legal notice. Some legal notice. Some legal notice.
 </para>
@@ -111,9 +127,11 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 <keyword>part keyword1</keyword>
 <keyword>part keyword2</keyword>
 </keywordset>
+<!--
 <legalnotice>
 <para>Foo! A legal notice in a part!</para>
 </legalnotice>
+-->
 </partinfo>
 <title>Part One Title</title>
 <partintro>
@@ -129,7 +147,16 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 <chapter id="chapter">
 <title id="chaptertitle">Section <anchor id="stestfoo"/>Tests</title>
 
-<sect1><title>First Sect1</title>
+<sect1>
+<sect1info>
+<legalnotice>
+<para>
+Some legal notice. Some legal notice. Some legal notice.
+</para>
+</legalnotice>
+</sect1info>
+<title>First Sect1</title>
+
 <para>Paragraph. See <xref linkend="testfig1"/>.</para>
 <figure id="testfig1"><title>Test Figure</title>
 <programlisting>This is a

@@ -78,7 +78,11 @@ else
 ifeq ($(FORMATTER),fop)
 	$(XSLT) $< $(XSLFO) $@ fop.extensions=1 $(STYLEOPT)
 else
+ifeq ($(FORMATTER),xep)
+	$(XSLT) $< $(XSLFO) $@ xep.extensions=1 $(STYLEOPT)
+else
 	$(XSLT) $< $(XSLFO) $@ $(STYLEOPT)
+endif
 endif
 endif
 
