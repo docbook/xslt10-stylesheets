@@ -20,14 +20,6 @@
   <xsl:param name="base.name" select="''"/>
 
   <xsl:choose>
-    <xsl:when test="element-available('saxon:output')">
-      <!-- Saxon doesn't make the chunks relative -->
-      <xsl:value-of select="concat($base.dir,$base.name)"/>
-    </xsl:when>
-    <xsl:when test="element-available('xalanredirect:write')">
-      <!-- Xalan doesn't make the chunks relative -->
-      <xsl:value-of select="concat($base.dir,$base.name)"/>
-    </xsl:when>
     <xsl:when test="element-available('exsl:document')">
       <!-- EXSL document does make the chunks relative, I think -->
       <xsl:choose>
@@ -38,6 +30,14 @@
           <xsl:value-of select="$base.name"/>
         </xsl:otherwise>
       </xsl:choose>
+    </xsl:when>
+    <xsl:when test="element-available('saxon:output')">
+      <!-- Saxon doesn't make the chunks relative -->
+      <xsl:value-of select="concat($base.dir,$base.name)"/>
+    </xsl:when>
+    <xsl:when test="element-available('xalanredirect:write')">
+      <!-- Xalan doesn't make the chunks relative -->
+      <xsl:value-of select="concat($base.dir,$base.name)"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:message terminate="yes">
@@ -70,6 +70,14 @@
   </xsl:message>
 
   <xsl:choose>
+    <xsl:when test="element-available('exsl:document')">
+      <exsl:document href="{$filename}"
+                     method="{$method}"
+                     encoding="{$encoding}"
+                     indent="{$indent}">
+        <xsl:copy-of select="$content"/>
+      </exsl:document>
+    </xsl:when>
     <xsl:when test="element-available('saxon:output')">
       <saxon:output href="{$filename}"
                     method="{$method}"
@@ -84,14 +92,6 @@
       <xalanredirect:write file="{$filename}">
         <xsl:copy-of select="$content"/>
       </xalanredirect:write>
-    </xsl:when>
-    <xsl:when test="element-available('exsl:document')">
-      <exsl:document href="{$filename}"
-                     method="{$method}"
-                     encoding="{$encoding}"
-                     indent="{$indent}">
-        <xsl:copy-of select="$content"/>
-      </exsl:document>
     </xsl:when>
     <xsl:otherwise>
       <!-- it doesn't matter since we won't be making chunks... -->
@@ -124,6 +124,16 @@
 
 
   <xsl:choose>
+    <xsl:when test="element-available('exsl:document')">
+      <exsl:document href="{$filename}"
+                     method="{$method}"
+                     encoding="{$encoding}"
+                     indent="{$indent}"
+                     doctype-public="{$doctype-public}"
+                     doctype-system="{$doctype-system}">
+        <xsl:copy-of select="$content"/>
+      </exsl:document>
+    </xsl:when>
     <xsl:when test="element-available('saxon:output')">
       <!-- Saxon uses saxon:output -->
       <saxon:output href="{$filename}"
@@ -141,16 +151,6 @@
       <xalanredirect:write file="{$filename}">
         <xsl:copy-of select="$content"/>
       </xalanredirect:write>
-    </xsl:when>
-    <xsl:when test="element-available('exsl:document')">
-      <exsl:document href="{$filename}"
-                     method="{$method}"
-                     encoding="{$encoding}"
-                     indent="{$indent}"
-                     doctype-public="{$doctype-public}"
-                     doctype-system="{$doctype-system}">
-        <xsl:copy-of select="$content"/>
-      </exsl:document>
     </xsl:when>
     <xsl:otherwise>
       <!-- it doesn't matter since we won't be making chunks... -->
