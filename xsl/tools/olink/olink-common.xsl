@@ -29,50 +29,56 @@
     </xsl:attribute>
   </xsl:if>
 
+  <xsl:if test="$nd/@lang">
+    <xsl:attribute name="lang">
+      <xsl:value-of select="$nd/@lang"/>
+    </xsl:attribute>
+  </xsl:if>
+
   <xsl:if test="$nd/@arch">
-    <xsl:attribute name="id">
+    <xsl:attribute name="arch">
       <xsl:value-of select="$nd/@arch"/>
     </xsl:attribute>
   </xsl:if>
 
   <xsl:if test="$nd/@conformance">
-    <xsl:attribute name="id">
+    <xsl:attribute name="conformance">
       <xsl:value-of select="$nd/@conformance"/>
     </xsl:attribute>
   </xsl:if>
 
   <xsl:if test="$nd/@os">
-    <xsl:attribute name="id">
+    <xsl:attribute name="os">
       <xsl:value-of select="$nd/@os"/>
     </xsl:attribute>
   </xsl:if>
 
   <xsl:if test="$nd/@revision">
-    <xsl:attribute name="id">
+    <xsl:attribute name="revision">
       <xsl:value-of select="$nd/@revision"/>
     </xsl:attribute>
   </xsl:if>
 
   <xsl:if test="$nd/@userlevel">
-    <xsl:attribute name="id">
+    <xsl:attribute name="userlevel">
       <xsl:value-of select="$nd/@userlevel"/>
     </xsl:attribute>
   </xsl:if>
 
   <xsl:if test="$nd/@vendor">
-    <xsl:attribute name="id">
+    <xsl:attribute name="vendor">
       <xsl:value-of select="$nd/@vendor"/>
     </xsl:attribute>
   </xsl:if>
 
   <xsl:if test="$nd/@condition">
-    <xsl:attribute name="id">
+    <xsl:attribute name="condition">
       <xsl:value-of select="$nd/@condition"/>
     </xsl:attribute>
   </xsl:if>
 
   <xsl:if test="$nd/@security">
-    <xsl:attribute name="id">
+    <xsl:attribute name="security">
       <xsl:value-of select="$nd/@security"/>
     </xsl:attribute>
   </xsl:if>
