@@ -21,9 +21,9 @@ open (F, 'VERSION') || die "Cannot find VERSION.\n";
 read (F, $_, -s 'VERSION');
 close (F);
 
-if (/^(.*name=.VERSION.>)(\d+)\.(\d+)(<.*)$/s) {
+if (/^(.*name=.VERSION.>)(\d+)\.(\d+)\+?(<.*)$/s) {
     # ok
-} elsif (/^(.*?)(\d+)\.(\d+)(.*)$/s) {
+} elsif (/^(.*?)(\d+)\.(\d+)\+?(.*)$/s) {
     # ok
 } else {
     die "Cannot find version in VERSION.\n";
