@@ -322,8 +322,7 @@ Defaults to the context node.</para>
   <xsl:variable name="label" select="@label"/>
 
 <!--
-	 (hnr      (hierarchical-number-recursive (normalize "qandadiv")
-						  node))
+ (hnr      (hierarchical-number-recursive (normalize "qandadiv") node))
 
 	 (parsect  (ancestor-member node (section-element-list)))
 
@@ -766,17 +765,16 @@ Defaults to the context node.</para>
 <!-- ====================================================================== -->
 
 <doc:template name="select.mediaobject" xmlns="">
-<refpurpose>Selects an appropriate media object from a list</refpurpose>
+<refpurpose>Selects and processes an appropriate media object from a list</refpurpose>
 
 <refdescription>
-<para>This template examines a list of media objects (usually the
+<para>This template takes a list of media objects (usually the
 children of a mediaobject or inlinemediaobject) and processes
 the "right" object.</para>
 
-<para>This template relies on a template named "is.acceptable.mediaobject"
-to determine if a given object is an acceptable graphic. The semantics
-of media objects is that the first acceptable graphic should be used.
-</para>
+<para>This template relies on a template named 
+"select.mediaobject.index" to determine which object
+in the list is appropriate.</para>
 
 <para>If no acceptable object is located, nothing happens.</para>
 </refdescription>
@@ -800,56 +798,161 @@ of media objects is that the first acceptable graphic should be used.
   <xsl:param name="olist"
              select="imageobject|imageobjectco
                      |videoobject|audioobject|textobject"/>
+  
+  <xsl:variable name="mediaobject.index">
+    <xsl:call-template name="select.mediaobject.index">
+      <xsl:with-param name="olist" select="$olist"/>
+      <xsl:with-param name="count" select="1"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:if test="$mediaobject.index != ''">
+    <xsl:apply-templates select="$olist[position() = $mediaobject.index]"/>
+  </xsl:if>
+</xsl:template>
+
+<!-- ====================================================================== -->
+
+<doc:template name="select.mediaobject.index" xmlns="">
+<refpurpose>Selects the position of the appropriate media object from a list</refpurpose>
+
+<refdescription>
+<para>This template takes a list of media objects (usually the
+children of a mediaobject or inlinemediaobject) and determines
+the "right" object. It returns the position of that object
+to be used by the calling template.</para>
+
+<para>If the parameter <parameter>use.role.for.mediaobject</parameter>
+is nonzero, then it first checks for an object with
+a role attribute of the appropriate value.  It takes the first
+of those.  Otherwise, it takes the first acceptable object
+through a recursive pass through the list.</para>
+
+<para>This template relies on a template named "is.acceptable.mediaobject"
+to determine if a given object is an acceptable graphic. The semantics
+of media objects is that the first acceptable graphic should be used.
+</para>
+
+<para>If no acceptable object is located, no index is returned.</para>
+</refdescription>
+
+<refparameter>
+<variablelist>
+<varlistentry><term>olist</term>
+<listitem>
+<para>The node list of potential objects to examine.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>count</term>
+<listitem>
+<para>The position in the list currently being considered by the 
+recursive process.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refparameter>
+
+<refreturn>
+<para>Returns the position in the original list of the selected object.</para>
+</refreturn>
+</doc:template>
+
+<xsl:template name="select.mediaobject.index">
+  <xsl:param name="olist"
+             select="imageobject|imageobjectco
+                     |videoobject|audioobject|textobject"/>
   <xsl:param name="count">1</xsl:param>
 
-  <xsl:if test="$count &lt;= count($olist)">
-    <xsl:variable name="object" select="$olist[position()=$count]"/>
+  <xsl:choose>
+    <!-- Test for objects preferred by role -->
+    <xsl:when test="$use.role.for.mediaobject != 0 
+               and $preferred.mediaobject.role != ''
+               and $olist[@role = $preferred.mediaobject.role]"> 
+      
+      <!-- Get the first hit's position index -->
+      <xsl:variable name="hit">
+        <xsl:for-each select="$olist">
+	  <xsl:if test="@role = $preferred.mediaobject.role and
+	  	not(preceding-sibling::*[@role = $preferred.mediaobject.role])"> 
+            <xsl:value-of select="position()"/> 
+	  </xsl:if>
+        </xsl:for-each>
+      </xsl:variable>
+      <xsl:value-of select="$hit"/>
+    </xsl:when>
 
-    <xsl:variable name="useobject">
-      <xsl:choose>
-	<!-- The phrase is never used -->
-        <xsl:when test="name($object)='textobject' and $object/phrase">
-          <xsl:text>0</xsl:text>
-        </xsl:when>
-	<!-- The first textobject is a reasonable fallback -->
-        <xsl:when test="name($object)='textobject' and $object[not(@role) or @role!='tex']">
-          <xsl:text>1</xsl:text>
-        </xsl:when>
-	<!-- If there's only one object, use it -->
-	<xsl:when test="$count = 1 and count($olist) = 1">
-	  <xsl:text>1</xsl:text>
-	</xsl:when>
-	<!-- Otherwise, see if this one is a useable graphic -->
-        <xsl:otherwise>
+    <xsl:when test="$use.role.for.mediaobject != 0 
+               and $olist[@role = 'fo']">
+      <!-- Get the first hit's position index -->
+      <xsl:variable name="hit">
+        <xsl:for-each select="$olist">
+	  <xsl:if test="@role = 'fo' and 
+	  	not(preceding-sibling::*[@role = 'fo'])"> 
+            <xsl:value-of select="position()"/> 
+	  </xsl:if>
+        </xsl:for-each>
+      </xsl:variable>
+      <xsl:value-of select="$hit"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- Otherwise select first acceptable object -->
+      <xsl:if test="$count &lt;= count($olist)">
+        <xsl:variable name="object" select="$olist[position()=$count]"/>
+    
+        <xsl:variable name="useobject">
           <xsl:choose>
-            <!-- peek inside imageobjectco to simplify the test -->
-            <xsl:when test="local-name($object) = 'imageobjectco'">
-              <xsl:call-template name="is.acceptable.mediaobject">
-                <xsl:with-param name="object" select="$object/imageobject"/>
-              </xsl:call-template>
+          <!-- The phrase is never used -->
+            <xsl:when test="name($object)='textobject' and $object/phrase">
+              <xsl:text>0</xsl:text>
             </xsl:when>
+            <xsl:when test="name($object)='textobject'
+	                     and $object/ancestor::equation ">
+	    <!-- The first textobject is not a reasonable fallback
+	         for equation image -->
+              <xsl:text>0</xsl:text>
+	    </xsl:when>
+            <!-- The first textobject is a reasonable fallback -->
+            <xsl:when test="name($object)='textobject'
+	                    and $object[not(@role) or @role!='tex']">
+              <xsl:text>1</xsl:text>
+            </xsl:when>
+            <!-- If there's only one object, use it -->
+            <xsl:when test="$count = 1 and count($olist) = 1">
+               <xsl:text>1</xsl:text>
+            </xsl:when>
+            <!-- Otherwise, see if this one is a useable graphic -->
             <xsl:otherwise>
-              <xsl:call-template name="is.acceptable.mediaobject">
-                <xsl:with-param name="object" select="$object"/>
-              </xsl:call-template>
+              <xsl:choose>
+                <!-- peek inside imageobjectco to simplify the test -->
+                <xsl:when test="local-name($object) = 'imageobjectco'">
+                  <xsl:call-template name="is.acceptable.mediaobject">
+                    <xsl:with-param name="object" select="$object/imageobject"/>
+                  </xsl:call-template>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:call-template name="is.acceptable.mediaobject">
+                    <xsl:with-param name="object" select="$object"/>
+                  </xsl:call-template>
+                </xsl:otherwise>
+              </xsl:choose>
             </xsl:otherwise>
           </xsl:choose>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-
-    <xsl:choose>
-      <xsl:when test="$useobject='1'">
-        <xsl:apply-templates select="$object"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="select.mediaobject">
-          <xsl:with-param name="olist" select="$olist"/>
-          <xsl:with-param name="count" select="$count + 1"/>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:if>
+        </xsl:variable>
+    
+        <xsl:choose>
+          <xsl:when test="$useobject='1'">
+            <xsl:value-of select="$count"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="select.mediaobject.index">
+              <xsl:with-param name="olist" select="$olist"/>
+              <xsl:with-param name="count" select="$count + 1"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <doc:template name="is.acceptable.mediaobject" xmlns="">
@@ -1016,13 +1119,13 @@ the ID is not unique.</para>
 
     <xsl:if test="count($targets)=0">
       <xsl:message>
-	<xsl:text>Error: no ID for constraint linkend: </xsl:text>
-	<xsl:value-of select="$linkend"/>
-	<xsl:text>.</xsl:text>
+        <xsl:text>Error: no ID for constraint linkend: </xsl:text>
+        <xsl:value-of select="$linkend"/>
+        <xsl:text>.</xsl:text>
       </xsl:message>
       <!--
       <xsl:message>
-	<xsl:text>If the ID exists in your document, did your </xsl:text>
+        <xsl:text>If the ID exists in your document, did your </xsl:text>
         <xsl:text>XSLT Processor load the DTD?</xsl:text>
       </xsl:message>
       -->
@@ -1030,9 +1133,9 @@ the ID is not unique.</para>
 
     <xsl:if test="count($targets)>1">
       <xsl:message>
-	<xsl:text>Warning: multiple "IDs" for constraint linkend: </xsl:text>
-	<xsl:value-of select="$linkend"/>
-	<xsl:text>.</xsl:text>
+        <xsl:text>Warning: multiple "IDs" for constraint linkend: </xsl:text>
+        <xsl:value-of select="$linkend"/>
+        <xsl:text>.</xsl:text>
       </xsl:message>
     </xsl:if>
   </xsl:if>
@@ -1057,14 +1160,14 @@ pointed to by the link is one of the elements listed in
 
     <xsl:if test="count($target) &gt; 0">
       <xsl:if test="not(contains(concat(' ', $element-list, ' '), name($target)))">
-	<xsl:message>
-	  <xsl:text>Error: linkend (</xsl:text>
-	  <xsl:value-of select="$linkend"/>
-	  <xsl:text>) points to "</xsl:text>
-	  <xsl:value-of select="name($target)"/>
-	  <xsl:text>" not (one of): </xsl:text>
-	  <xsl:value-of select="$element-list"/>
-	</xsl:message>
+        <xsl:message>
+          <xsl:text>Error: linkend (</xsl:text>
+          <xsl:value-of select="$linkend"/>
+          <xsl:text>) points to "</xsl:text>
+          <xsl:value-of select="name($target)"/>
+          <xsl:text>" not (one of): </xsl:text>
+          <xsl:value-of select="$element-list"/>
+        </xsl:message>
       </xsl:if>
     </xsl:if>
   </xsl:if>
