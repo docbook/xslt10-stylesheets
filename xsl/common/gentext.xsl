@@ -31,6 +31,23 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="procedure" mode="object.title.template">
+  <xsl:choose>
+    <xsl:when test="$formal.procedures != 0">
+      <xsl:call-template name="gentext.template">
+        <xsl:with-param name="context" select="'title'"/>
+        <xsl:with-param name="name" select="'procedure.formal'"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="gentext.template">
+        <xsl:with-param name="context" select="'title'"/>
+        <xsl:with-param name="name" select="local-name(.)"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="article/appendix"
               mode="object.title.template">
   <!-- FIXME: HACK HACK HACK! -->
