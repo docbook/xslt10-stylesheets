@@ -121,14 +121,75 @@
 </xsl:template>
 
 <xsl:template match="variablelist">
+  <xsl:variable name="presentation">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'list-presentation'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="list-width">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'list-width'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="term-width">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'term-width'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="table-summary">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'table-summary'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <div class="{name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:if test="title">
       <xsl:apply-templates select="title"/>
     </xsl:if>
-    <dl>
-    <xsl:apply-templates select="varlistentry"/>
-    </dl>
+
+    <xsl:choose>
+      <xsl:when test="$presentation = 'table'">
+        <table border="0">
+          <xsl:if test="$list-width != ''">
+            <xsl:attribute name="width">
+              <xsl:value-of select="$list-width"/>
+            </xsl:attribute>
+          </xsl:if>
+          <xsl:if test="$table-summary != ''">
+            <xsl:attribute name="summary">
+              <xsl:value-of select="$table-summary"/>
+            </xsl:attribute>
+          </xsl:if>
+          <col align="left">
+            <xsl:if test="$term-width != ''">
+              <xsl:attribute name="width">
+                <xsl:value-of select="$term-width"/>
+              </xsl:attribute>
+            </xsl:if>
+          </col>
+          <tbody>
+            <xsl:apply-templates select="varlistentry" mode="varlist-table"/>
+          </tbody>
+        </table>
+      </xsl:when>
+      <xsl:otherwise>
+        <dl>
+          <xsl:apply-templates select="varlistentry"/>
+        </dl>
+      </xsl:otherwise>
+    </xsl:choose>
   </div>
 </xsl:template>
 
@@ -220,6 +281,58 @@
   <dd>
     <xsl:apply-templates select="listitem"/>
   </dd>
+</xsl:template>
+
+<xsl:template match="varlistentry" mode="varlist-table">
+  <xsl:variable name="presentation">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="../processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'term-presentation'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="separator">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="../processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'term-separator'"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <tr>
+    <td>
+      <xsl:call-template name="anchor"/>
+      <xsl:choose>
+        <xsl:when test="$presentation = 'bold'">
+          <b>
+            <xsl:apply-templates select="term"/>
+            <xsl:value-of select="$separator"/>
+          </b>
+        </xsl:when>
+        <xsl:when test="$presentation = 'italic'">
+          <i>
+            <xsl:apply-templates select="term"/>
+            <xsl:value-of select="$separator"/>
+          </i>
+        </xsl:when>
+        <xsl:when test="$presentation = 'bold-italic'">
+          <b>
+            <i>
+              <xsl:apply-templates select="term"/>
+              <xsl:value-of select="$separator"/>
+            </i>
+          </b>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="term"/>
+          <xsl:value-of select="$separator"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </td>
+    <td>
+      <xsl:apply-templates select="listitem"/>
+    </td>
+  </tr>
 </xsl:template>
 
 <xsl:template match="varlistentry/term">
