@@ -533,6 +533,7 @@
 
     <xsl:when test="not(@linkend)
                     and ($firstterm.only.link = 0 or $firstterm = 1)
+                    and ($glossterm.auto.link != 0)
                     and $glossary.collection != ''">
       <xsl:variable name="term">
         <xsl:choose>
@@ -555,7 +556,6 @@
         </xsl:when>
         <xsl:otherwise>
           <xsl:variable name="id">
-            <xsl:text>gl.</xsl:text>
             <xsl:choose>
               <xsl:when test="$cterm/@id">
                 <xsl:value-of select="$cterm/@id"/>
