@@ -194,15 +194,15 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 	<xsl:call-template name="href.target.with.base.dir"/>
     <xsl:text>"&gt;
   &lt;/OBJECT&gt;</xsl:text>
-  <xsl:if test="part|reference|preface|chapter|appendix|article|colophon">
+  <xsl:if test="part|reference|preface|chapter|appendix|bibliography|article|colophon">
     <xsl:text>&lt;UL&gt;</xsl:text>
-      <xsl:apply-templates select="part|reference|preface|chapter|appendix|article|colophon"
+      <xsl:apply-templates select="part|reference|preface|chapter|bibliography|appendix|article|colophon"
 			   mode="hhc"/>
     <xsl:text>&lt;/UL&gt;</xsl:text>
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="part|reference|preface|chapter|appendix|article"
+<xsl:template match="part|reference|preface|chapter|bibliography|appendix|article"
               mode="hhc">
   <xsl:variable name="title">
     <xsl:if test="$htmlhelp.autolabel=1">
@@ -220,10 +220,10 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 	<xsl:call-template name="href.target.with.base.dir"/>
     <xsl:text>"&gt;
   &lt;/OBJECT&gt;</xsl:text>
-  <xsl:if test="reference|preface|chapter|appendix|refentry|section|sect1">
+  <xsl:if test="reference|preface|chapter|appendix|refentry|section|sect1|bibliodiv">
     <xsl:text>&lt;UL&gt;</xsl:text>
       <xsl:apply-templates
-	select="reference|preface|chapter|appendix|refentry|section|sect1"
+	select="reference|preface|chapter|appendix|refentry|section|sect1|bibliodiv"
 	mode="hhc"/>
     <xsl:text>&lt;/UL&gt;</xsl:text>
   </xsl:if>
@@ -353,7 +353,7 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="sect5|refentry|colophon" mode="hhc">
+<xsl:template match="sect5|refentry|colophon|bibliodiv" mode="hhc">
   <xsl:variable name="title">
     <xsl:if test="$htmlhelp.autolabel=1">
       <xsl:apply-templates select="." mode="label.markup"/>
@@ -373,6 +373,10 @@ Title=</xsl:text><xsl:value-of select="//title[1]"/>
 </xsl:template>
 
 <!-- ==================================================================== -->
+
+<!-- no separate HTML page with index -->
+<xsl:template match="index"/>   
+<xsl:template match="index" mode="toc"/>
 
 <xsl:template match="indexterm">
 
