@@ -121,6 +121,7 @@
 <!ENTITY toc.section.depth SYSTEM "../params/toc.section.depth.xml">
 <!ENTITY use.extensions SYSTEM "../params/use.extensions.xml">
 <!ENTITY ulink.footnotes SYSTEM "../params/ulink.footnotes.xml">
+<!ENTITY ulink.hyphenate SYSTEM "../params/ulink.hyphenate.xml">
 <!ENTITY ulink.show SYSTEM "../params/ulink.show.xml">
 <!ENTITY variablelist.as.blocks SYSTEM "../params/variablelist.as.blocks.xml">
 <!ENTITY verbatim.properties SYSTEM "../params/verbatim.properties.xml">
