@@ -6,7 +6,6 @@
 <title>Building with Make</title>
 <titleabbrev>Using Make</titleabbrev>
 <summary>Building with Make</summary>
-<headlink rel="linktest" type="nop"/>
 </head>
 
 <para>The following instructions work with recent versions of GNU Make;
@@ -21,13 +20,12 @@ file.</para></listitem>
 <listitem><para>Create a skeletal <filename>Makefile</filename> like this:
 </para>
 
-<programlisting><![CDATA[PROC=xslproc
+<programlisting><![CDATA[PROC=xsltproc
 STYLEDIR=../xsl
 TABSTYLE=$(STYLEDIR)/tabular.xsl
 STYLESHEET=$(TABSTYLE)
-
-# Note: you must set the autolayout-file to a fully qualified path!
-STYLEOPT="autolayout-file=/full/path/to/autolayout.xml"
+# Change the path in output-root to put your HTML output elsewhere
+STYLEOPT= --stringparam output-root .
 
 .PHONY : clean
 
@@ -37,14 +35,14 @@ all:
 include depends.tabular
 
 autolayout.xml: layout.xml
-	$(PROC) $< $(STYLEDIR)/autolayout.xsl $@
+	$(PROC) --output $@ $(STYLEDIR)/autolayout.xsl $<
 	make depends
 
 %.html: autolayout.xml
-	$(PROC) $(filter-out autolayout.xml,$^) $(STYLESHEET) $@ $(STYLEOPT)
+	$(PROC) --output $@  $(STYLEOPT)  $(STYLESHEET)  $(filter-out autolayout.xml,$^) 
 
 depends: autolayout.xml
-	$(PROC) $< ../xsl/makefile-dep.xsl depends.tabular
+	$(PROC) --output depends.tabular $(STYLEOPT) $(STYLEDIR)/makefile-dep.xsl $<
 ]]></programlisting>
 
 <para>You'll have to change the <literal>PROC</literal> setting and
