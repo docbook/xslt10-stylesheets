@@ -109,45 +109,45 @@
 <gentext key="Warning" text="Ostrze&#191;enie"/>
 <gentext key="warning" text="Ostrze&#191;enie"/>
 
-<gentext key="TableofContents" text="Spis tre&#347;ci"/>
-<gentext key="tableofcontents" text="Spis tre&#347;ci"/>
-<gentext key="in" text="w"/>
+<gentext key="and" text="i"/>
 <gentext key="by" text=""/>
 <gentext key="Editedby" text="Redakcja: "/>
 <gentext key="editedby" text="Redakcja: "/>
-<gentext key="and" text="i"/>
-<gentext key="listcomma" text=","/>
+<gentext key="in" text="w"/>
 <gentext key="lastlistcomma" text=","/>
-<gentext key="Notes" text="Przypisy"/>
-<gentext key="notes" text="Przypisy"/>
-<gentext key="TableNotes" text="Przypisy"/>
-<gentext key="tablenotes" text="Przypisy"/>
+<gentext key="listcomma" text=","/>
 <gentext key="nonexistantelement" text="nie istniej&#261;cy element"/>
+<gentext key="notes" text="Przypisy"/>
+<gentext key="Notes" text="Przypisy"/>
 <gentext key="Pgs" text="stron"/>
 <gentext key="pgs" text="stron"/>
-<gentext key="unsupported" text="nie wspierany"/>
-<gentext key="xrefto" text="xref to"/>
-<gentext key="unexpectedelementname" text="Unexpected element name"/>
 <gentext key="Revisedby" text="Revised by: "/> <!-- en -->
 <gentext key="revisedby" text="Revised by: "/> <!-- en -->
+<gentext key="TableNotes" text="Przypisy"/>
+<gentext key="tablenotes" text="Przypisy"/>
+<gentext key="TableofContents" text="Spis tre&#347;ci"/>
+<gentext key="tableofcontents" text="Spis tre&#347;ci"/>
+<gentext key="unexpectedelementname" text="Unexpected element name"/>
+<gentext key="unsupported" text="nie wspierany"/>
+<gentext key="xrefto" text="xref to"/>
 
-<gentext key="ListofTables" text="Spis tabel"/>
-<gentext key="listoftables" text="Spis tabel"/>
+<gentext key="listofequations" text="Spis r&#243;wna&#324;"/>
+<gentext key="ListofEquations" text="Spis r&#243;wna&#324;"/>
 <gentext key="ListofExamples" text="Spis przyk&#322;ad&#243;w"/>
 <gentext key="listofexamples" text="Spis przyk&#322;ad&#243;w"/>
 <gentext key="ListofFigures" text="Spis rysunk&#243;w"/>
 <gentext key="listoffigures" text="Spis rysunk&#243;w"/>
-<gentext key="ListofEquations" text="Spis r&#243;wna&#324;"/>
-<gentext key="listofequations" text="Spis r&#243;wna&#324;"/>
+<gentext key="listoftables" text="Spis tabel"/>
+<gentext key="ListofTables" text="Spis tabel"/>
 <gentext key="ListofUnknown" text="Spis ???"/>
 <gentext key="listofunknown" text="Spis ???"/>
 
+<gentext key="nav-home" text="Spis tre&#347;ci"/>
+<gentext key="nav-next" text="Nast&#234;pny"/>
+<gentext key="nav-next-sibling" text="Nast&#281;pny rozdzia&#322;"/>
 <gentext key="nav-prev" text="Poprzedni"/>
 <gentext key="nav-prev-sibling" text="Poprzedni rozdzia&#322;"/>
-<gentext key="nav-next-sibling" text="Nast&#281;pny rozdzia&#322;"/>
-<gentext key="nav-next" text="Nast&#234;pny"/>
 <gentext key="nav-up" text="Pocz&#261;tek rozdzia&#322;u"/>
-<gentext key="nav-home" text="Spis tre&#347;ci"/>
 
 <dingbat key="startquote" text="&#x201E;"/>
 <dingbat key="endquote" text="&#x201D;"/>
@@ -343,9 +343,9 @@
 </context>
 
 <context name="msgset">
+<template name="MsgAud"><MsgAud/>: </template>
 <template name="MsgLevel"><MsgLevel/>: </template>
 <template name="MsgOrig"><MsgOrig/>: </template>
-<template name="MsgAud"><MsgAud/>: </template>
 </context>
 
 </locale>

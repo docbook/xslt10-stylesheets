@@ -17,6 +17,7 @@
 <gentext key="Answer" text="A:"/>
 <gentext key="answer" text="A:"/>
 <gentext key="Appendix" text="Appendix"/>
+<gentext key="appendix" text="appendix"/>
 <gentext key="Article" text="Article"/>
 <gentext key="article" text="Article"/>
 <gentext key="Bibliography" text="Bibliography"/>
@@ -27,6 +28,7 @@
 <gentext key="Caution" text="Caution"/>
 <gentext key="caution" text="Caution"/>
 <gentext key="Chapter" text="Chapter"/>
+<gentext key="chapter" text="chapter"/>
 <gentext key="Colophon" text="Colophon"/>
 <gentext key="colophon" text="Colophon"/>
 <gentext key="Copyright" text="Copyright"/>
@@ -41,19 +43,19 @@
 <gentext key="example" text="Example"/>
 <gentext key="Figure" text="Figure"/>
 <gentext key="figure" text="Figure"/>
+<gentext key="Glossary" text="Glossary"/>
+<gentext key="glossary" text="Glossary"/>
 <gentext key="GlossSee" text="See"/>
 <gentext key="glosssee" text="See"/>
 <gentext key="GlossSeeAlso" text="See Also"/>
 <gentext key="glossseealso" text="See Also"/>
-<gentext key="Glossary" text="Glossary"/>
-<gentext key="glossary" text="Glossary"/>
 <gentext key="IMPORTANT" text="IMPORTANT"/>
 <gentext key="important" text="Important"/>
-<gentext key="ISBN" text="ISBN"/>
-<gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="Important"/>
 <gentext key="Index" text="Index"/>
 <gentext key="index" text="Index"/>
+<gentext key="ISBN" text="ISBN"/>
+<gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text="Legal Notice"/>
 <gentext key="legalnotice" text="Legal Notice"/>
 <gentext key="MsgAud" text="Audience"/>
@@ -86,82 +88,80 @@
 <gentext key="refsection" text=""/>
 <gentext key="RefSynopsisDiv" text="Synopsis"/>
 <gentext key="refsynopsisdiv" text="Synopsis"/>
-<gentext key="Revision" text="Revision"/>
-<gentext key="revision" text="Revision"/>
 <gentext key="RevHistory" text="Revision History"/>
 <gentext key="revhistory" text="Revision History"/>
-<gentext key="Section" text="Section"/>
-<gentext key="See" text="See"/>
-<gentext key="see" text="See"/>
-<gentext key="SeeAlso" text="See Also"/>
-<gentext key="seealso" text="See Also"/>
-<gentext key="Set" text="Set"/>
-<gentext key="set" text="Set"/>
-<gentext key="SetIndex" text="Set Index"/>
-<gentext key="setindex" text="Set Index"/>
-<gentext key="Sidebar" text=""/>
-<gentext key="Step" text="Step"/>
-<gentext key="TIP" text="TIP"/>
-<gentext key="Table" text="Table"/>
-<gentext key="table" text="Table"/>
-<gentext key="Tip" text="Tip"/>
-<gentext key="tip" text="Tip"/>
-<gentext key="WARNING" text="WARNING"/>
-<gentext key="Warning" text="Warning"/>
-<gentext key="warning" text="Warning"/>
-<gentext key="appendix" text="appendix"/>
-<gentext key="chapter" text="chapter"/>
-<gentext key="section" text="Section"/>
+<gentext key="revision" text="Revision"/>
+<gentext key="Revision" text="Revision"/>
 <gentext key="sect1" text="Section"/>
 <gentext key="sect2" text="Section"/>
 <gentext key="sect3" text="Section"/>
 <gentext key="sect4" text="Section"/>
 <gentext key="sect5" text="Section"/>
+<gentext key="section" text="Section"/>
+<gentext key="Section" text="Section"/>
+<gentext key="See" text="See"/>
+<gentext key="see" text="See"/>
+<gentext key="SeeAlso" text="See Also"/>
+<gentext key="seealso" text="See Also"/>
+<gentext key="Seealso" text="See also"/>
+<gentext key="set" text="Set"/>
+<gentext key="Set" text="Set"/>
+<gentext key="setindex" text="Set Index"/>
+<gentext key="SetIndex" text="Set Index"/>
+<gentext key="Sidebar" text=""/>
 <gentext key="sidebar" text="sidebar"/>
 <gentext key="step" text="step"/>
-<gentext key="Seealso" text="See also"/>
+<gentext key="Step" text="Step"/>
+<gentext key="Table" text="Table"/>
+<gentext key="table" text="Table"/>
+<gentext key="tip" text="Tip"/>
+<gentext key="TIP" text="TIP"/>
+<gentext key="Tip" text="Tip"/>
+<gentext key="Warning" text="Warning"/>
+<gentext key="warning" text="Warning"/>
+<gentext key="WARNING" text="WARNING"/>
 
-<gentext key="TableofContents" text="Table of Contents"/>
-<gentext key="tableofcontents" text="Table of Contents"/>
-<gentext key="in" text="in"/>
+<gentext key="and" text="and"/>
 <gentext key="by" text="by"/>
 <gentext key="Edited" text="Edited"/>
 <gentext key="edited" text="Edited"/>
 <gentext key="Editedby" text="Edited by"/>
 <gentext key="editedby" text="Edited by"/>
-<gentext key="and" text="and"/>
-<gentext key="listcomma" text=","/>
+<gentext key="in" text="in"/>
 <gentext key="lastlistcomma" text=","/>
-<gentext key="Notes" text="Notes"/>
-<gentext key="notes" text="Notes"/>
-<gentext key="TableNotes" text="Notes"/>
-<gentext key="tablenotes" text="Notes"/>
+<gentext key="listcomma" text=","/>
 <gentext key="nonexistantelement" text="non-existant element"/>
+<gentext key="notes" text="Notes"/>
+<gentext key="Notes" text="Notes"/>
 <gentext key="Pgs" text="Pgs."/>
 <gentext key="pgs" text="Pgs."/>
-<gentext key="unsupported" text="unsupported"/>
-<gentext key="xrefto" text="xref to"/>
-<gentext key="unexpectedelementname" text="Unexpected element name"/>
 <gentext key="Revisedby" text="Revised by: "/>
 <gentext key="revisedby" text="Revised by: "/>
+<gentext key="TableNotes" text="Notes"/>
+<gentext key="tablenotes" text="Notes"/>
+<gentext key="TableofContents" text="Table of Contents"/>
+<gentext key="tableofcontents" text="Table of Contents"/>
+<gentext key="unexpectedelementname" text="Unexpected element name"/>
+<gentext key="unsupported" text="unsupported"/>
+<gentext key="xrefto" text="xref to"/>
 
-<gentext key="ListofTables" text="List of Tables"/>
-<gentext key="listoftables" text="List of Tables"/>
+<gentext key="listofequations" text="List of Equations"/>
+<gentext key="ListofEquations" text="List of Equations"/>
 <gentext key="ListofExamples" text="List of Examples"/>
 <gentext key="listofexamples" text="List of Examples"/>
 <gentext key="ListofFigures" text="List of Figures"/>
 <gentext key="listoffigures" text="List of Figures"/>
-<gentext key="ListofEquations" text="List of Equations"/>
-<gentext key="listofequations" text="List of Equations"/>
+<gentext key="listoftables" text="List of Tables"/>
+<gentext key="ListofTables" text="List of Tables"/>
 <gentext key="ListofUnknown" text="List of Unknown"/>
 <gentext key="listofunknown" text="List of Unknown"/>
 
+<gentext key="nav-home" text="Home"/>
+<gentext key="nav-next" text="Next"/>
+<gentext key="nav-next-sibling" text="Fast Forward"/>
 <gentext key="nav-prev" text="Prev"/>
 <gentext key="nav-prev-sibling" text="Fast Backward"/>
-<gentext key="nav-next-sibling" text="Fast Forward"/>
-<gentext key="nav-next" text="Next"/>
 <gentext key="nav-up" text="Up"/>
-<gentext key="nav-home" text="Home"/>
 
 <gentext key="sectioncalled"       text="the section called"/>
 
@@ -227,8 +227,8 @@
 <template name="qandaentry">%t</template>
 <template name="qandaset">%t</template>
 <template name="question">%t</template>
-<template name="reference">%t</template>
 <template name="refentry">%t</template>
+<template name="reference">%t</template>
 <template name="refsect1">%t</template>
 <template name="refsect2">%t</template>
 <template name="refsect3">%t</template>
@@ -249,6 +249,7 @@
 
 <context name="section-title">
 
+<template name="bridgehead">%t</template>
 <template name="sect1">%t</template>
 <template name="sect2">%t</template>
 <template name="sect3">%t</template>
@@ -256,12 +257,12 @@
 <template name="sect5">%t</template>
 <template name="section">%t</template>
 <template name="simplesect">%t</template>
-<template name="bridgehead">%t</template>
 
 </context>
 
 <context name="section-title-numbered">
 
+<template name="bridgehead">%n. %t</template>
 <template name="sect1">%n. %t</template>
 <template name="sect2">%n. %t</template>
 <template name="sect3">%n. %t</template>
@@ -269,7 +270,6 @@
 <template name="sect5">%n. %t</template>
 <template name="section">%n. %t</template>
 <template name="simplesect">%t</template>
-<template name="bridgehead">%n. %t</template>
 
 </context>
 
@@ -346,6 +346,7 @@
 
 <context name="section-xref">
 
+<template name="bridgehead"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="sect1"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="sect2"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="sect3"><sectioncalled/> &#x201C;%t&#x201D;</template>
@@ -353,12 +354,12 @@
 <template name="sect5"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="section"><sectioncalled/> &#x201C;%t&#x201D;</template>
 <template name="simplesect"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="bridgehead"><sectioncalled/> &#x201C;%t&#x201D;</template>
 
 </context>
 
 <context name="section-xref-numbered">
 
+<template name="bridgehead"><Section/> %n</template>
 <template name="sect1"><Section/> %n</template>
 <template name="sect2"><Section/> %n</template>
 <template name="sect3"><Section/> %n</template>
@@ -366,7 +367,6 @@
 <template name="sect5"><Section/> %n</template>
 <template name="section"><Section/> %n</template>
 <template name="simplesect"><sectioncalled/> &#x201C;%t&#x201D;</template>
-<template name="bridgehead"><Section/> %n</template>
 
 </context>
 
@@ -382,9 +382,9 @@
 </context>
 
 <context name="msgset">
+<template name="MsgAud"><MsgAud/>: </template>
 <template name="MsgLevel"><MsgLevel/>: </template>
 <template name="MsgOrig"><MsgOrig/>: </template>
-<template name="MsgAud"><MsgAud/>: </template>
 </context>
 
 </locale>

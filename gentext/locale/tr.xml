@@ -47,19 +47,19 @@
 <gentext key="example" text="&#214;rnek"/>
 <gentext key="Figure" text="&#222;ekil"/>
 <gentext key="figure" text="&#254;ekil"/>
+<gentext key="Glossary" text="S&#246;zl&#252;k"/>
+<gentext key="glossary" text="S&#246;zl&#252;k"/>
 <gentext key="GlossSee" text="Bkz."/>
 <gentext key="glosssee" text="Bkz."/>
 <gentext key="GlossSeeAlso" text="Bkz."/>
 <gentext key="glossseealso" text="Bkz."/>
-<gentext key="Glossary" text="S&#246;zl&#252;k"/>
-<gentext key="glossary" text="S&#246;zl&#252;k"/>
 <gentext key="IMPORTANT" text="&#214;NEML&#221;"/>
-<gentext key="ISBN" text="ISBN"/>
-<gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="&#214;nemli"/>
 <gentext key="important" text="&#214;nemli"/>
 <gentext key="Index" text="Dizin"/>
 <gentext key="index" text="Dizin"/>
+<gentext key="ISBN" text="ISBN"/>
+<gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text="Yasal Not"/>
 <gentext key="legalnotice" text="Yasal Not"/>
 <gentext key="MsgAud" text="Hedef okuyucu kitlesi"/>
@@ -92,16 +92,17 @@
 <gentext key="refsection" text=""/>
 <gentext key="RefSynopsisDiv" text="Synopsis"/>
 <gentext key="refsynopsisdiv" text="Synopsis"/>
-<gentext key="Revision" text="Bask&#253;"/>
-<gentext key="revision" text="Bask&#253;"/>
 <gentext key="RevHistory" text="Bask&#253; Tarih&#231;esi"/>
 <gentext key="revhistory" text="Bask&#253; Tarih&#231;esi"/>
-<gentext key="Section" text="K&#253;s&#253;m"/>
+<gentext key="Revision" text="Bask&#253;"/>
+<gentext key="revision" text="Bask&#253;"/>
 <gentext key="section" text="K&#253;s&#253;"/>
+<gentext key="Section" text="K&#253;s&#253;m"/>
 <gentext key="See" text="Bkz."/>
 <gentext key="see" text="Bkz."/>
 <gentext key="SeeAlso" text="Bkz."/>
 <gentext key="seealso" text="Bkz."/>
+<gentext key="Seealso" text="Bkz."/>
 <gentext key="Set" text="Tak&#253;m"/>
 <gentext key="set" text="Tak&#253;m"/>
 <gentext key="SetIndex" text="Tak&#253;m Dizini"/>
@@ -110,57 +111,56 @@
 <gentext key="sidebar" text="Yan S&#252;tun"/>
 <gentext key="Step" text="Ad&#253;m"/>
 <gentext key="step" text="Ad&#253;m"/>
-<gentext key="TIP" text="&#221;PUCU"/>
 <gentext key="Table" text="Tablo"/>
 <gentext key="table" text="Tablo"/>
+<gentext key="TIP" text="&#221;PUCU"/>
 <gentext key="Tip" text="&#221;pucu"/>
 <gentext key="tip" text="&#221;pucu"/>
-<gentext key="WARNING" text="UYARI"/>
 <gentext key="Warning" text="Uyar&#253;"/>
 <gentext key="warning" text="Uyar&#253;"/>
-<gentext key="Seealso" text="Bkz."/>
+<gentext key="WARNING" text="UYARI"/>
 
-<gentext key="TableofContents" text="&#221;&#231;indekiler"/>
-<gentext key="tableofcontents" text="&#221;&#231;indekiler"/>
-<gentext key="in" text=""/>
+<gentext key="and" text="ve"/>
 <gentext key="by" text=""/>
 <gentext key="Edited" text="Yay&#253;na Haz&#253;rlayan"/>
 <gentext key="edited" text="yay&#253;na haz&#253;rlayan"/>
 <gentext key="Editedby" text="Yay&#253;na Haz&#253;rlayan "/>
 <gentext key="editedby" text="Yay&#253;na Haz&#253;rlayan "/>
-<gentext key="and" text="ve"/>
-<gentext key="listcomma" text=","/>
+<gentext key="in" text=""/>
 <gentext key="lastlistcomma" text=","/>
-<gentext key="Notes" text="Notlar"/>
-<gentext key="notes" text="Notlar"/>
-<gentext key="TableNotes" text="Notlar"/>
-<gentext key="tablenotes" text="Notlar"/>
+<gentext key="listcomma" text=","/>
 <gentext key="nonexistantelement" text="var olmayan eleman"/>
+<gentext key="notes" text="Notlar"/>
+<gentext key="Notes" text="Notlar"/>
 <gentext key="Pgs" text="Sayfa"/>
 <gentext key="pgs" text="Sayfa"/>
-<gentext key="unsupported" text="desteklenmiyor"/>
-<gentext key="xrefto" text="xref to"/>
-<gentext key="unexpectedelementname" text="Beklenmedik eleman ad&#253;"/>
 <gentext key="Revisedby" text="D&#252;zeltmeler: "/>
 <gentext key="revisedby" text="D&#252;zeltmeler: "/>
+<gentext key="TableNotes" text="Notlar"/>
+<gentext key="tablenotes" text="Notlar"/>
+<gentext key="TableofContents" text="&#221;&#231;indekiler"/>
+<gentext key="tableofcontents" text="&#221;&#231;indekiler"/>
+<gentext key="unexpectedelementname" text="Beklenmedik eleman ad&#253;"/>
+<gentext key="unsupported" text="desteklenmiyor"/>
+<gentext key="xrefto" text="xref to"/>
 
-<gentext key="ListofTables" text="Tablolar"/>
-<gentext key="listoftables" text="Tablolar"/>
+<gentext key="listofequations" text="Denklemler"/>
+<gentext key="ListofEquations" text="Denklemler"/>
 <gentext key="ListofExamples" text="&#214;rnekler"/>
 <gentext key="listofexamples" text="&#214;rnekler"/>
 <gentext key="ListofFigures" text="&#222;ekiller"/>
 <gentext key="listoffigures" text="&#222;ekiller"/>
-<gentext key="ListofEquations" text="Denklemler"/>
-<gentext key="listofequations" text="Denklemler"/>
+<gentext key="listoftables" text="Tablolar"/>
+<gentext key="ListofTables" text="Tablolar"/>
 <gentext key="ListofUnknown" text="Bilinmeyenler"/>
 <gentext key="listofunknown" text="Bilinmeyenler"/>
 
+<gentext key="nav-home" text="Ba&#254;lang&#253;&#231;"/>
+<gentext key="nav-next" text="Sonraki"/>
+<gentext key="nav-next-sibling" text="Sonraki b&#246;l&#252;m"/>
 <gentext key="nav-prev" text="&#214;nceki"/>
 <gentext key="nav-prev-sibling" text="&#214;nceki b&#246;l&#252;m"/>
-<gentext key="nav-next-sibling" text="Sonraki b&#246;l&#252;m"/>
-<gentext key="nav-next" text="Sonraki"/>
 <gentext key="nav-up" text="Yukar&#253;"/>
-<gentext key="nav-home" text="Ba&#254;lang&#253;&#231;"/>
 
 <gentext key="sectioncalled"       text=""/>
 
@@ -220,8 +220,8 @@
 <template name="productionset.formal"><ProductionSet/> %n. %t</template>
 <template name="qandadiv">%t</template>
 <template name="qandaset">%t</template>
-<template name="reference">%t</template>
 <template name="refentry">%t</template>
+<template name="reference">%t</template>
 <template name="refsect1">%t</template>
 <template name="refsect2">%t</template>
 <template name="refsect3">%t</template>
@@ -308,6 +308,7 @@
 
 <context name="xref">
 
+<template name="answer"><Answer/> %n</template>
 <template name="appendix"><Appendix/> %n</template>
 <template name="article">%t</template>
 <template name="bibliography">%t</template>
@@ -324,7 +325,6 @@
 <template name="preface">%t</template>
 <template name="procedure"><Procedure/> %n</template>
 <template name="question"><Question/> %n</template>
-<template name="answer"><Answer/> %n</template>
 <template name="reference">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
@@ -368,9 +368,9 @@
 </context>
 
 <context name="msgset">
+<template name="MsgAud"><MsgAud/>: </template>
 <template name="MsgLevel"><MsgLevel/>: </template>
 <template name="MsgOrig"><MsgOrig/>: </template>
-<template name="MsgAud"><MsgAud/>: </template>
 </context>
 
 </locale>

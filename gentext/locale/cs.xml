@@ -121,47 +121,47 @@
 <gentext key="Warning" text="Varov&#x00E1;n&#x00ED;"/>
 <gentext key="warning" text="Varov&#x00E1;n&#x00ED;"/>
 
-<gentext key="TableofContents" text="Obsah"/>
-<gentext key="tableofcontents" text="Obsah"/>
-<gentext key="in" text="v"/>
+<gentext key="and" text="a"/>
 <gentext key="by" text=""/>
 <gentext key="Edited" text="Vyd&#x00E1;no"/>
 <gentext key="edited" text="Vyd&#x00E1;no"/>
 <gentext key="Editedby" text="Sestavil"/>
 <gentext key="editedby" text="Sestavil"/>
-<gentext key="and" text="a"/>
-<gentext key="listcomma" text=","/>
+<gentext key="in" text="v"/>
 <gentext key="lastlistcomma" text=""/>
-<gentext key="Notes" text="Pozn&#x00E1;mky"/>
-<gentext key="notes" text="Pozn&#x00E1;mky"/>
-<gentext key="TableNotes" text="Pozn&#x00E1;mky"/>
-<gentext key="tablenotes" text="Pozn&#x00E1;mky"/>
+<gentext key="listcomma" text=","/>
 <gentext key="nonexistantelement" text="neexistuj&#x00ED;c&#x00ED; prvek"/>
+<gentext key="notes" text="Pozn&#x00E1;mky"/>
+<gentext key="Notes" text="Pozn&#x00E1;mky"/>
 <gentext key="Pgs" text="Str."/>
 <gentext key="pgs" text="Str."/>
-<gentext key="unsupported" text="nepodporovan&#x00FD;"/>
-<gentext key="xrefto" text="xref k"/>
-<gentext key="unexpectedelementname" text="Neo&#x010D;ek&#x00E1;van&#x00E9; jm&#x00E9;no prvku"/>
 <gentext key="Revisedby" text="Revidoval: "/>
 <gentext key="revisedby" text="Revidoval: "/> 
+<gentext key="TableNotes" text="Pozn&#x00E1;mky"/>
+<gentext key="tablenotes" text="Pozn&#x00E1;mky"/>
+<gentext key="TableofContents" text="Obsah"/>
+<gentext key="tableofcontents" text="Obsah"/>
+<gentext key="unexpectedelementname" text="Neo&#x010D;ek&#x00E1;van&#x00E9; jm&#x00E9;no prvku"/>
+<gentext key="unsupported" text="nepodporovan&#x00FD;"/>
+<gentext key="xrefto" text="xref k"/>
 
-<gentext key="ListofTables" text="Seznam tabulek"/>
-<gentext key="listoftables" text="Seznam tabulek"/>
+<gentext key="listofequations" text="Seznam rovnic"/>
+<gentext key="ListofEquations" text="Seznam rovnic"/>
 <gentext key="ListofExamples" text="Seznam p&#x0159;&#x00ED;klad&#x016F;"/>
 <gentext key="listofexamples" text="Seznam p&#x0159;&#x00ED;klad&#x016F;"/>
 <gentext key="ListofFigures" text="Seznam obr&#x00E1;zk&#x016F;"/>
 <gentext key="listoffigures" text="Seznam obr&#x00E1;zk&#x016F;"/>
-<gentext key="ListofEquations" text="Seznam rovnic"/>
-<gentext key="listofequations" text="Seznam rovnic"/>
+<gentext key="listoftables" text="Seznam tabulek"/>
+<gentext key="ListofTables" text="Seznam tabulek"/>
 <gentext key="ListofUnknown" text="Seznam nezn&#x00E1;m&#x00E9;ho"/>
 <gentext key="listofunknown" text="Seznam nezn&#x00E1;m&#x00E9;ho"/>
 
+<gentext key="nav-home" text="Dom&#x016F;"/>
+<gentext key="nav-next" text="Dal&#x0161;&#x00ED;"/>
+<gentext key="nav-next-sibling" text="Rychle dop&#x0159;edu"/>
 <gentext key="nav-prev" text="P&#x0159;edch&#x00E1;zej&#x00ED;c&#x00ED;"/>
 <gentext key="nav-prev-sibling" text="Rychle zp&#x011B;t"/>
-<gentext key="nav-next-sibling" text="Rychle dop&#x0159;edu"/>
-<gentext key="nav-next" text="Dal&#x0161;&#x00ED;"/>
 <gentext key="nav-up" text="Nahoru"/>
-<gentext key="nav-home" text="Dom&#x016F;"/>
 
 <gentext key="sectioncalled"  text="odd&#x00ed;l nazvan&#x00fd;"/>
 
@@ -359,9 +359,9 @@
 </context>
 
 <context name="msgset">
+<template name="MsgAud"><MsgAud/>: </template>
 <template name="MsgLevel"><MsgLevel/>: </template>
 <template name="MsgOrig"><MsgOrig/>: </template>
-<template name="MsgAud"><MsgAud/>: </template>
 </context>
 
 </locale>

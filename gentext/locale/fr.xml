@@ -24,16 +24,18 @@
 <gentext key="Answer" text="R&#x00A0;:"/>
 <gentext key="answer" text="R&#x00A0;:"/>
 <gentext key="Appendix" text="Annexe"/>
+<gentext key="appendix" text="annexe"/>
 <gentext key="Article" text="Article"/>
 <gentext key="article" text="Article"/>
 <gentext key="Bibliography" text="Bibliographie"/>
 <gentext key="bibliography" text="Bibliographie"/>
 <gentext key="Book" text="Livre"/>
 <gentext key="book" text="Livre"/>
-<gentext key="CAUTION" text="ATTENTION"/>
 <gentext key="Caution" text="Attention"/>
 <gentext key="caution" text="Attention"/>
+<gentext key="CAUTION" text="ATTENTION"/>
 <gentext key="Chapter" text="Chapitre"/>
+<gentext key="chapter" text="chapitre"/>
 <gentext key="Colophon" text="Colophon"/>
 <gentext key="colophon" text="Colophon"/>
 <gentext key="Copyright" text="Copyright"/>
@@ -48,19 +50,19 @@
 <gentext key="example" text="Exemple"/>
 <gentext key="Figure" text="Figure"/>
 <gentext key="figure" text="Figure"/>
+<gentext key="Glossary" text="Glossaire"/>
+<gentext key="glossary" text="Glossaire"/>
 <gentext key="GlossSee" text="Voir"/>
 <gentext key="glosssee" text="Voir"/>
 <gentext key="GlossSeeAlso" text="Voir aussi"/>
 <gentext key="glossseealso" text="Voir aussi"/>
-<gentext key="Glossary" text="Glossaire"/>
-<gentext key="glossary" text="Glossaire"/>
 <gentext key="IMPORTANT" text="IMPORTANT"/>
-<gentext key="ISBN" text="ISBN"/>
-<gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="Important"/>
 <gentext key="important" text="Important"/>
 <gentext key="Index" text="Index"/>
 <gentext key="index" text="Index"/>
+<gentext key="ISBN" text="ISBN"/>
+<gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text="Note l&eacute;gale"/>
 <gentext key="legalnotice" text="Note l&eacute;gale"/>
 <gentext key="MsgAud" text="Public vis&eacute;"/>
@@ -69,9 +71,9 @@
 <gentext key="msglevel" text="Niveau"/>
 <gentext key="MsgOrig" text="Origine"/>
 <gentext key="msgorig" text="Origine"/>
+<gentext key="Note" text="Note"/>
 <gentext key="NOTE" text="NOTE"/>
 <gentext key="note" text="NOTE"/>
-<gentext key="Note" text="Note"/>
 <gentext key="Part" text="Partie"/>
 <gentext key="part" text="Partie"/>
 <gentext key="Preface" text="Pr&eacute;face"/>
@@ -84,85 +86,83 @@
 <gentext key="question" text="Q&#x00A0;:"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
+<gentext key="Reference" text="R&eacute;f&eacute;rence"/>
+<gentext key="reference" text="R&eacute;f&eacute;rence"/>
 <gentext key="RefName" text="Nom"/>
 <gentext key="refname" text="Nom"/>
 <gentext key="RefSection" text=""/>
 <gentext key="refsection" text=""/>
 <gentext key="RefSynopsisDiv" text="Synopsis"/>
 <gentext key="refsynopsisdiv" text="Synopsis"/>
-<gentext key="Reference" text="R&eacute;f&eacute;rence"/>
-<gentext key="reference" text="R&eacute;f&eacute;rence"/>
 <gentext key="RevHistory" text="Historique des versions"/>
 <gentext key="revhistory" text="Historique des versions"/>
 <gentext key="Revision" text="Version"/>
 <gentext key="revision" text="Version"/>
 <gentext key="Section" text="Section"/>
-<gentext key="See" text="Voir"/>
+<gentext key="section" text="section"/>
 <gentext key="see" text="Voir"/>
-<gentext key="SeeAlso" text="Voir Aussi"/>
+<gentext key="See" text="Voir"/>
 <gentext key="seealso" text="Voir Aussi"/>
+<gentext key="SeeAlso" text="Voir Aussi"/>
 <gentext key="Seealso" text="Voir aussi"/>
 <gentext key="Set" text="Ensemble"/>
 <gentext key="set" text="Ensemble"/>
-<gentext key="SetIndex" text="Index"/>
 <gentext key="setindex" text="Index"/>
+<gentext key="SetIndex" text="Index"/>
+<gentext key="sidebar" text=""/>
 <gentext key="Sidebar" text=""/>
 <gentext key="Step" text="&Eacute;tape"/>
-<gentext key="TIP" text="TUYAU"/>
-<gentext key="tip" text="TUYAU"/>
-<gentext key="Table" text="Tableau"/>
+<gentext key="step" text="&eacute;tape"/>
 <gentext key="table" text="Tableau"/>
+<gentext key="Table" text="Tableau"/>
+<gentext key="tip" text="TUYAU"/>
+<gentext key="TIP" text="TUYAU"/>
 <gentext key="Tip" text="Tuyau"/>
+<gentext key="Warning" text="Avertissement"/>
 <gentext key="WARNING" text="AVERTISSEMENT"/>
 <gentext key="warning" text="AVERTISSEMENT"/>
-<gentext key="Warning" text="Avertissement"/>
-<gentext key="appendix" text="annexe"/>
-<gentext key="chapter" text="chapitre"/>
-<gentext key="sidebar" text=""/>
-<gentext key="section" text="section"/>
-<gentext key="step" text="&eacute;tape"/>
 
-<gentext key="TableofContents" text="Table des mati&egrave;res"/>
-<gentext key="tableofcontents" text="Table des mati&egrave;res"/>
-<gentext key="in" text="dans"/>
+<gentext key="and" text="et"/>
 <gentext key="by" text="par"/>
 <gentext key="Edited" text="Publi&eacute;"/>
 <gentext key="edited" text="Publi&eacute;"/>
 <gentext key="Editedby" text="Publi&eacute; par"/>
 <gentext key="editedby" text="Publi&eacute; par"/>
-<gentext key="and" text="et"/>
-<gentext key="listcomma" text=","/>
+<gentext key="in" text="dans"/>
 <gentext key="lastlistcomma" text=","/>
-<gentext key="Notes" text="Notes"/>
-<gentext key="notes" text="Notes"/>
-<gentext key="TableNotes" text="Remarques"/>
-<gentext key="tablenotes" text="Remarques"/>
+<gentext key="listcomma" text=","/>
 <gentext key="nonexistantelement" text="Cet &eacute;l&eacute;ment n'existe pas"/>
+<gentext key="notes" text="Notes"/>
+<gentext key="Notes" text="Notes"/>
 <gentext key="Pgs" text="Pages"/>
 <gentext key="pgs" text="Pages"/>
-<gentext key="unsupported" text="Non reconnu par le syst&egrave;me"/>
-<gentext key="xrefto" text="R&eacute;f&eacute;rence vers"/>
-<gentext key="unexpectedelementname" text="Nom d'&eacute;l&eacute;ment non attendu"/>
 <gentext key="Revisedby" text="Revu par&#x00A0;: "/>
 <gentext key="revisedby" text="Revu par&#x00A0;: "/>
+<gentext key="TableNotes" text="Remarques"/>
+<gentext key="tablenotes" text="Remarques"/>
+<gentext key="TableofContents" text="Table des mati&egrave;res"/>
+<gentext key="tableofcontents" text="Table des mati&egrave;res"/>
+<gentext key="unexpectedelementname" text="Nom d'&eacute;l&eacute;ment non attendu"/>
+<gentext key="unsupported" text="Non reconnu par le syst&egrave;me"/>
+<gentext key="xrefto" text="R&eacute;f&eacute;rence vers"/>
 
-<gentext key="ListofTables" text="Liste des tableaux"/>
-<gentext key="listoftables" text="Liste des tableaux"/>
+<gentext key="listofequations" text="Liste des &eacute;quations"/>
+<gentext key="ListofEquations" text="Liste des &eacute;quations"/>
 <gentext key="ListofExamples" text="Liste des exemples"/>
 <gentext key="listofexamples" text="Liste des exemples"/>
 <gentext key="ListofFigures" text="Liste des illustrations"/>
 <gentext key="listoffigures" text="Liste des illustrations"/>
-<gentext key="ListofEquations" text="Liste des &eacute;quations"/>
-<gentext key="listofequations" text="Liste des &eacute;quations"/>
+<gentext key="listoftables" text="Liste des tableaux"/>
+<gentext key="ListofTables" text="Liste des tableaux"/>
 <gentext key="ListofUnknown" text="Liste des inconnues"/>
 <gentext key="listofunknown" text="Liste des inconnues"/>
 
+<gentext key="nav-home" text="Sommaire"/>
+<gentext key="nav-next" text="Suivant"/>
+<gentext key="nav-next-sibling" text="Avance rapide"/>
 <gentext key="nav-prev" text="Pr&#x00E9;c&#x00E9;dent"/>
 <gentext key="nav-prev-sibling" text="Arri&#xE8;re rapide"/>
-<gentext key="nav-next-sibling" text="Avance rapide"/>
-<gentext key="nav-next" text="Suivant"/>
 <gentext key="nav-up" text="Niveau sup&#x00E9;rieur"/>
-<gentext key="nav-home" text="Sommaire"/>
 
 <gentext key="sectioncalled" text="la section intitul&eacute;e" />
 
@@ -365,9 +365,9 @@
 </context>
 
 <context name="msgset">
+<template name="MsgAud"><MsgAud/>: </template>
 <template name="MsgLevel"><MsgLevel/>: </template>
 <template name="MsgOrig"><MsgOrig/>: </template>
-<template name="MsgAud"><MsgAud/>: </template>
 </context>
 
 </locale>

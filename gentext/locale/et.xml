@@ -19,16 +19,18 @@
 <gentext key="Answer" text="V:"/>
 <gentext key="answer" text="V:"/>
 <gentext key="Appendix" text="Lisa"/>
+<gentext key="appendix" text="lisa"/>
 <gentext key="Article" text="Artikkel"/>
 <gentext key="article" text="Artikkel"/>
 <gentext key="Bibliography" text="Bibliograafia"/>
 <gentext key="bibliography" text="Bibliograafia"/>
 <gentext key="Book" text="Raamat"/>
 <gentext key="book" text="Raamat"/>
-<gentext key="CAUTION" text="ETTEVAATUST"/>
 <gentext key="Caution" text="Ettevaatust"/>
 <gentext key="caution" text="Ettevaatust"/>
+<gentext key="CAUTION" text="ETTEVAATUST"/>
 <gentext key="Chapter" text="Peat&#252;kk"/> <!-- "Peat&#252;kk" -->
+<gentext key="chapter" text="peat&#252;kk"/> <!-- "peat&#252;kk" -->
 <gentext key="Colophon" text="L&#245;pum&#228;rgis"/>
 <gentext key="colophon" text="L&#245;pum&#228;rgis"/> <!-- "L&#245;pum&#228;rgis" -->
 <gentext key="Copyright" text="Autori&#245;igus"/>
@@ -41,21 +43,21 @@
 <gentext key="equation" text="Valem"/>
 <gentext key="Example" text="N&#228;ide"/>
 <gentext key="example" text="N&#228;ide"/> <!-- "N&#228;ide" -->
-<gentext key="Figure" text="Joonis"/>
 <gentext key="figure" text="Joonis"/>
+<gentext key="Figure" text="Joonis"/>
+<gentext key="Glossary" text="S&#245;nastik"/>
+<gentext key="glossary" text="S&#245;nastik"/> <!-- "S&#245;nastik" -->
 <gentext key="GlossSee" text="Vt."/>
 <gentext key="glosssee" text="Vt."/>
 <gentext key="GlossSeeAlso" text="Vt. ka"/>
 <gentext key="glossseealso" text="Vt. ka"/>
-<gentext key="Glossary" text="S&#245;nastik"/>
-<gentext key="glossary" text="S&#245;nastik"/> <!-- "S&#245;nastik" -->
 <gentext key="IMPORTANT" text="OLULINE"/>
-<gentext key="ISBN" text="ISBN"/>
-<gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="Oluline"/>
 <gentext key="important" text="Oluline"/>
 <gentext key="Index" text="Aineregister"/>
 <gentext key="index" text="Aineregister"/>
+<gentext key="ISBN" text="ISBN"/>
+<gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text="Autori&#245;iguse m&#228;rge"/>
 <gentext key="legalnotice" text="Autori&#245;iguse m&#228;rge"/> <!-- "Autori&#245;iguse m&#228;rge" -->
 <gentext key="MsgAud" text="Auditoorium"/>
@@ -87,77 +89,75 @@
 <gentext key="refsection" text="L&#245;ik"/> <!-- "L&#245;ik" -->
 <gentext key="RefSynopsisDiv" text="S&#252;nopsis"/>
 <gentext key="refsynopsisdiv" text="S&#252;nopsis"/> <!-- "S&#252;nopsis" -->
-<gentext key="Revision" text="Vigade parandus"/>
-<gentext key="revision" text="Vigade parandus"/>
 <gentext key="RevHistory" text="Vigade paranduste ajalugu"/>
 <gentext key="revhistory" text="Vigade paranduste ajalugu"/>
+<gentext key="Revision" text="Vigade parandus"/>
+<gentext key="revision" text="Vigade parandus"/>
+<gentext key="section" text="l&#245;ik"/> <!-- "l&#245;ik" -->
 <gentext key="Section" text="Sektsioon"/>
-<gentext key="See" text="Vt."/>
 <gentext key="see" text="Vt."/>
-<gentext key="SeeAlso" text="Vt. ka"/>
+<gentext key="See" text="Vt."/>
 <gentext key="seealso" text="Vt. ka"/>
+<gentext key="SeeAlso" text="Vt. ka"/>
+<gentext key="Seealso" text="Vt. ka"/>
 <gentext key="Set" text="Sea"/>
 <gentext key="set" text="Sea"/>
 <gentext key="SetIndex" text="Sea indeks"/>
 <gentext key="setindex" text="Sea indeks"/>
 <gentext key="Sidebar" text=""/>
+<gentext key="sidebar" text="k&#252;lgriba"/> <!-- "k&#252;lgriba" -->
+<gentext key="step" text="samm"/>
 <gentext key="Step" text="Samm"/>
-<gentext key="TIP" text="VIHJE"/>
-<gentext key="Table" text="Tabel"/>
 <gentext key="table" text="Tabel"/>
+<gentext key="Table" text="Tabel"/>
+<gentext key="TIP" text="VIHJE"/>
 <gentext key="Tip" text="Vihje"/>
 <gentext key="tip" text="Vihje"/>
 <gentext key="WARNING" text="HOIATUS"/>
 <gentext key="Warning" text="Hoiatus"/>
 <gentext key="warning" text="Hoiatus"/>
-<gentext key="appendix" text="lisa"/>
-<gentext key="chapter" text="peat&#252;kk"/> <!-- "peat&#252;kk" -->
-<gentext key="section" text="l&#245;ik"/> <!-- "l&#245;ik" -->
-<gentext key="sidebar" text="k&#252;lgriba"/> <!-- "k&#252;lgriba" -->
-<gentext key="step" text="samm"/>
-<gentext key="Seealso" text="Vt. ka"/>
 
-<gentext key="TableofContents" text="Sisukord"/>
-<gentext key="tableofcontents" text="Sisukord"/>
-<gentext key="in" text=""/>
+<gentext key="and" text="ja"/>
 <gentext key="by" text=""/>
 <gentext key="Edited" text="Redaktsioon"/>
 <gentext key="edited" text="Redaktsioon"/>
 <gentext key="Editedby" text="Redaktsiooni autor(id)"/>
 <gentext key="editedby" text="Redaktsiooni autor(id)"/>
-<gentext key="and" text="ja"/>
-<gentext key="listcomma" text=","/>
+<gentext key="in" text=""/>
 <gentext key="lastlistcomma" text=","/>
+<gentext key="listcomma" text=","/>
+<gentext key="nonexistantelement" text="mitte eksisteeriv element"/>
 <gentext key="Notes" text="M&#228;rkused"/>
 <gentext key="notes" text="M&#228;rkused"/> <!-- "M&#228;rkused" -->
-<gentext key="TableNotes" text="M&#228;rkused"/>
-<gentext key="tablenotes" text="M&#228;rkused"/> <!-- "M&#228;rkused" -->
-<gentext key="nonexistantelement" text="mitte eksisteeriv element"/>
 <gentext key="Pgs" text="Lk."/>
 <gentext key="pgs" text="Lk."/>
-<gentext key="unsupported" text="toetuseta"/>
-<gentext key="xrefto" text="viide"/>
-<gentext key="unexpectedelementname" text="Ootamatu elemendi nimi"/>
 <gentext key="Revisedby" text="&#220;le vaadanud: "/>
 <gentext key="revisedby" text="&#220;le vaadanud: "/> <!-- "&#220;le vaadanud: " -->
+<gentext key="TableNotes" text="M&#228;rkused"/>
+<gentext key="tablenotes" text="M&#228;rkused"/> <!-- "M&#228;rkused" -->
+<gentext key="TableofContents" text="Sisukord"/>
+<gentext key="tableofcontents" text="Sisukord"/>
+<gentext key="unexpectedelementname" text="Ootamatu elemendi nimi"/>
+<gentext key="unsupported" text="toetuseta"/>
+<gentext key="xrefto" text="viide"/>
 
-<gentext key="ListofTables" text="Tabelite nimekiri"/>
-<gentext key="listoftables" text="Tabelite nimekiri"/>
+<gentext key="listofequations" text="Valemite nimekiri"/>
+<gentext key="ListofEquations" text="Valemite nimekiri"/>
 <gentext key="ListofExamples" text="N&#228;idete nimekiri"/>
 <gentext key="listofexamples" text="N&#228;idete nimekiri"/> <!-- "N&#228;idete nimekiri" -->
 <gentext key="ListofFigures" text="Jooniste nimekiri"/>
 <gentext key="listoffigures" text="Jooniste nimekiri"/>
-<gentext key="ListofEquations" text="Valemite nimekiri"/>
-<gentext key="listofequations" text="Valemite nimekiri"/>
+<gentext key="listoftables" text="Tabelite nimekiri"/>
+<gentext key="ListofTables" text="Tabelite nimekiri"/>
 <gentext key="ListofUnknown" text="Tundmatute nimekiri"/>
 <gentext key="listofunknown" text="Tundmatute nimekiri"/>
 
+<gentext key="nav-home" text="Koju"/>
+<gentext key="nav-next" text="J&#228;rgmine"/> <!-- "J&#228;rgmine" -->
+<gentext key="nav-next-sibling" text="Kiiresti edasi"/>
 <gentext key="nav-prev" text="Eelmine"/>
 <gentext key="nav-prev-sibling" text="Kiiresti tagasi"/>
-<gentext key="nav-next-sibling" text="Kiiresti edasi"/>
-<gentext key="nav-next" text="J&#228;rgmine"/> <!-- "J&#228;rgmine" -->
 <gentext key="nav-up" text="&#220;les"/> <!-- "&#220;les" -->
-<gentext key="nav-home" text="Koju"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
@@ -353,9 +353,9 @@
 </context>
 
 <context name="msgset">
+<template name="MsgAud"><MsgAud/>: </template>
 <template name="MsgLevel"><MsgLevel/>: </template>
 <template name="MsgOrig"><MsgOrig/>: </template>
-<template name="MsgAud"><MsgAud/>: </template>
 </context>
 
 </locale>
