@@ -337,7 +337,7 @@
 
     <xsl:if test="$passivetex.extensions != 0">
       <fotex:bookmark xmlns:fotex="http://www.tug.org/fotex" 
-                      fotex-bookmark-level="{$level + 1}" 
+                      fotex-bookmark-level="{$level + 2}" 
                       fotex-bookmark-label="{$id}">
         <xsl:value-of select="$title"/>
       </fotex:bookmark>
