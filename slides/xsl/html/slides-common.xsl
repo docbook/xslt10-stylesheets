@@ -1383,7 +1383,7 @@
 </xsl:template>
 
 <xsl:template match="subtitle">
-  <h2>
+  <h2 class="subtitle">
     <xsl:apply-templates/>
   </h2>
 </xsl:template>
