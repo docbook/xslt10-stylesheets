@@ -106,18 +106,6 @@
   </xsl:variable>
 
   <xsl:variable name="refentry.content">
-<!-- FIXME: what should this be?
-    <fo:block font-size="20pt" font-weight="bold">
-      <xsl:choose>
-        <xsl:when test="refmeta/refentrytitle">
-          <xsl:apply-templates select="refmeta/refentrytitle" mode="title"/>
-        </xsl:when>
-        <xsl:when test="refnamediv/refname">
-          <xsl:apply-templates select="refnamediv/refname" mode="title"/>
-        </xsl:when>
-      </xsl:choose>
-    </fo:block>
--->
     <fo:block id="{$id}">
       <xsl:apply-templates/>
     </fo:block>
@@ -177,14 +165,15 @@
   <fo:block>
     <xsl:choose>
       <xsl:when test="$refentry.generate.name != 0">
-        <fo:block font-size="18pt" font-weight="bold">
+        <fo:block xsl:use-attribute-sets="refentry.title.properties">
           <xsl:call-template name="gentext">
             <xsl:with-param name="key" select="'RefName'"/>
           </xsl:call-template>
         </fo:block>
       </xsl:when>
+
       <xsl:when test="$refentry.generate.title != 0">
-        <fo:block font-size="18pt" font-weight="bold">
+        <fo:block xsl:use-attribute-sets="refentry.title.properties">
           <xsl:choose>
             <xsl:when test="../refmeta/refentrytitle">
               <xsl:apply-templates select="../refmeta/refentrytitle"/>
@@ -197,7 +186,7 @@
       </xsl:when>
     </xsl:choose>
 
-    <fo:block>
+    <fo:block space-after="1em">
       <xsl:choose>
         <xsl:when test="../refmeta/refentrytitle">
           <xsl:apply-templates select="../refmeta/refentrytitle"/>
@@ -248,49 +237,107 @@
 </xsl:template>
 
 <xsl:template match="refsynopsisdiv">
-  <fo:block>
-    <xsl:attribute name="id">
-      <xsl:call-template name="object.id"/>
-    </xsl:attribute>
-    <fo:block font-size="18pt" font-weight="bold">
-      <xsl:choose>
-        <xsl:when test="refsynopsisdiv/title|title">
-          <xsl:apply-templates select="(refsynopsisdiv/title|title)[1]"
-                               mode="titlepage.mode"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:call-template name="gentext">
-            <xsl:with-param name="key" select="'RefSynopsisDiv'"/>
-          </xsl:call-template>
-        </xsl:otherwise>
-      </xsl:choose>
-    </fo:block>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <fo:block id="{$id}">
+    <xsl:call-template name="refsynopsisdiv.titlepage"/>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="refsynopsisdiv/title">
-</xsl:template>
+<xsl:template match="refsection">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
 
-<xsl:template match="refsect1|refsect2|refsect3">
-  <xsl:call-template name="block.object"/>
-</xsl:template>
-
-<xsl:template match="refsect1/title">
-  <fo:block font-size="18pt" font-weight="bold">
+  <fo:block id="{$id}">
+    <xsl:call-template name="refsection.titlepage"/>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="refsect2/title">
-  <fo:block font-size="16pt" font-weight="bold">
+<xsl:template match="refsect1">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <fo:block id="{$id}">
+    <xsl:call-template name="refsect1.titlepage"/>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="refsect3/title">
-  <fo:block font-size="14pt" font-weight="bold">
+<xsl:template match="refsect2">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <fo:block id="{$id}">
+    <xsl:call-template name="refsect2.titlepage"/>
     <xsl:apply-templates/>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="refsect3">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <fo:block id="{$id}">
+    <xsl:call-template name="refsect3.titlepage"/>
+    <xsl:apply-templates/>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="refsynopsisdiv/title
+                     |refsection/title
+                     |refsect1/title
+                     |refsect2/title
+                     |refsect3/title">
+  <!-- nop; titlepage.mode instead -->
+</xsl:template>
+
+<xsl:template match="refsynopsisdiv/title
+                     |refsection/title
+                     |refsect1/title
+                     |refsect2/title
+                     |refsect3/title"
+              mode="titlepage.mode"
+              priority="2">
+  <xsl:variable name="section" select="parent::*"/>
+  <fo:block keep-with-next.within-column="always">
+    <xsl:variable name="id">
+      <xsl:call-template name="object.id">
+        <xsl:with-param name="object" select="$section"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:variable name="level">
+      <xsl:call-template name="section.level">
+        <xsl:with-param name="node" select="$section"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:variable name="title">
+      <xsl:apply-templates select="$section" mode="object.title.markup">
+        <xsl:with-param name="allow-anchors" select="1"/>
+      </xsl:apply-templates>
+    </xsl:variable>
+
+    <xsl:if test="$passivetex.extensions != 0">
+      <fotex:bookmark xmlns:fotex="http://www.tug.org/fotex" 
+                      fotex-bookmark-level="{$level + 1}" 
+                      fotex-bookmark-label="{$id}">
+        <xsl:value-of select="$title"/>
+      </fotex:bookmark>
+    </xsl:if>
+
+    <xsl:call-template name="section.heading">
+      <xsl:with-param name="level" select="$level"/>
+      <xsl:with-param name="title" select="$title"/>
+    </xsl:call-template>
   </fo:block>
 </xsl:template>
 
