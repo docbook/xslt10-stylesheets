@@ -31,14 +31,15 @@ while [ "$DONE" = "0" ]; do
     esac
 done
 
-JAXP="/usr/local/jaxp-1.1/jaxp.jar:/usr/local/jaxp-1.1/crimson.jar"
+JAXP="/usr/local/jaxp-1.1/jaxp.jar"
 SUN="/projects/sun/resolver/.classes"
 NDWEXT="/sourceforge/docbook/xsl/extensions/xalan2/.classes";
+WEBEXT="/sourceforge/docbook/website/extensions/xalan2/.classes";
 
 if [ "$VERSION" = "1" ]; then
     RESOLVERS=
     XALANROOT="/usr/local/java/xalan-1.2.2"
-    CLASSPATH="$NDWEXT:$JAXP:$XALANROOT/xalan.jar:$XALANROOT/xerces.jar:$XALANROOT/bsf.jar"
+    CLASSPATH="$NDWEXT:$WEBEXT:$JAXP:$XALANROOT/xalan.jar:$XALANROOT/xerces.jar:$XALANROOT/bsf.jar"
 elif [ "$VERSION" = "2" ]; then
     URES="-URIRESOLVER com.sun.resolver.tools.CatalogResolver"
     ERES="-ENTITYRESOLVER com.sun.resolver.tools.CatalogResolver"
@@ -48,7 +49,7 @@ elif [ "$VERSION" = "2" ]; then
     XERCESROOT="/projects/apache/xml-xerces/java"
     XERCES="$XERCESROOT/build/classes"
     XJARS="$XALANROOT/bin/bsf.jar:$XALANROOT/bin/xerces.jar"
-    CLASSPATH=$NDWEXT:$JAXP:$XALAN:$XJARS:$SUN:$XERCES:$CLASSPATH
+    CLASSPATH=$NDWEXT:$WEBEXT:$JAXP:$XALAN:$XJARS:$SUN:$XERCES:$CLASSPATH
 else
     echo "Unexpected Xalan version $VERSION"
     exit 1
@@ -62,6 +63,11 @@ if [ "$QUIET" = "0" ]; then
 	echo "java $MEMORY ..."
     fi
 fi
+
+# -Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl
+# -Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"
+
+echo org.apache.xalan.xslt.Process $RESOLVERS $@
 
 java $MEMORY \
  org.apache.xalan.xslt.Process $RESOLVERS $@
