@@ -182,6 +182,10 @@ of the current application.
     <element name="table">
       <ref name="table.attlist"/>
       <ref name="tbl.table.mdl"/>
+      <s:assert test="count(.//equation/title) = 0">&lt;table&gt; contains &lt;equation&gt;</s:assert>
+      <s:assert test="count(.//example) = 0">&lt;table&gt; contains &lt;example&gt;</s:assert>
+      <s:assert test="count(.//figure) = 0">&lt;table&gt; contains &lt;figure&gt;</s:assert>
+      <s:assert test="count(.//table) = 0">&lt;table&gt; contains &lt;table&gt;</s:assert>
     </element>
   </define>
   <define name="table.attlist" combine="interleave">
