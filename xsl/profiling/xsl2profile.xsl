@@ -116,7 +116,7 @@
 <xsl:template match="fo:root//xsl:apply-templates" mode="correct">
   <xsl:copy>
     <xsl:copy-of select="@*"/>
-    <xsl:attribute name="select">$profiled-nodes</xsl:attribute>
+    <xsl:attribute name="select">$profiled-nodes/node()</xsl:attribute>
     <xsl:apply-templates mode="correct"/>
   </xsl:copy>
 </xsl:template>
