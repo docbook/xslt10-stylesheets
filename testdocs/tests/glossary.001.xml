@@ -4,7 +4,7 @@
 <glossary>
 <glossaryinfo>
 <title>Unit Test: glossary.001</title>
-<releaseinfo role="CVS">$Id</releaseinfo>
+<releaseinfo role="CVS">$Id$</releaseinfo>
 <editor><firstname>Eric</firstname><surname>Raymond</surname></editor>
 <subtitle>Jargon File 4.2.3 (abridged)</subtitle>
 <releaseinfo>Just some test data</releaseinfo>

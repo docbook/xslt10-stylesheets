@@ -5,7 +5,7 @@
 <articleinfo>
 <title>Unit Test: <!--FIXME-->
 </title>
-<releaseinfo role="CVS">$Id</releaseinfo>
+<releaseinfo role="CVS">$Id$</releaseinfo>
 <!-- Change this: -->
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>

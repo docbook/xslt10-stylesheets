@@ -23,7 +23,7 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 <book>
 <bookinfo>
 <title>Unit Test: book.001</title>
-<releaseinfo role="CVS">$Id</releaseinfo>
+<releaseinfo role="CVS">$Id$</releaseinfo>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
 </author>

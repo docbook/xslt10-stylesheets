@@ -4,7 +4,7 @@
 <book>
 <bookinfo>
 <title>Unit Test: bookinfo.001</title>
-<releaseinfo role="CVS">$Id</releaseinfo>
+<releaseinfo role="CVS">$Id$</releaseinfo>
 
 <abstract>
 <para>Some abstract. Some abstract. Some abstract. Some abstract.
