@@ -95,8 +95,8 @@
 <!ELEMENT colgroup (col)*>
 <!ELEMENT col      EMPTY>
 <!ELEMENT tr       (th|td)+>
-<!ELEMENT th       (%para.char.mix; | %tabentry.mix;)*>
-<!ELEMENT td       (%para.char.mix; | %tabentry.mix;)*>
+<!ELEMENT th       (%para.char.mix; | %tabentry.mix; | table | informaltable)*>
+<!ELEMENT td       (%para.char.mix; | %tabentry.mix; | table | informaltable)*>
 
 <!ATTLIST colgroup
   %attrs;
