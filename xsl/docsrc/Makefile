@@ -1,4 +1,4 @@
-DIRS=common html fo template tools pi
+DIRS=common html fo manpages template tools pi
 
 all: xsl-params.xsl
 	for i in $(DIRS) __bogus__; do \
