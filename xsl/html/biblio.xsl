@@ -310,6 +310,7 @@
         <xsl:call-template name="inline.italicseq"/>
       </xsl:otherwise>
     </xsl:choose>
+    <xsl:value-of select="$biblioentry.item.separator"/>
   </span>
 </xsl:template>
 
