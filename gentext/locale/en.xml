@@ -414,8 +414,12 @@
 <template name="variablelist">%t</template>
 <template name="varlistentry">%n</template>
 <template name="warning">%t</template>
+<template name="olink.document.citation"> in %o</template>
+<template name="olink.page.citation"> (page %p)</template>
 <template name="page.citation"> [%p]</template>
 <template name="page">(page %p)</template>
+<template name="docname"> in %o</template>
+<template name="docnamelong"> in the document titled %o</template>
 <template name="pageabbrev">(p. %p)</template>
 <template name="Page">Page %p</template>
 
