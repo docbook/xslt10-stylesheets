@@ -33,6 +33,7 @@
       <xsl:call-template name="section.toc">
         <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
       </xsl:call-template>
+      <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:call-template name="process.chunk.footnotes"/>
@@ -87,6 +88,7 @@
       <xsl:call-template name="section.toc">
         <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
       </xsl:call-template>
+      <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:call-template name="process.chunk.footnotes"/>
@@ -114,6 +116,7 @@
       <xsl:call-template name="section.toc">
         <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
       </xsl:call-template>
+      <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
     <xsl:apply-templates/>
   </div>
@@ -140,6 +143,7 @@
       <xsl:call-template name="section.toc">
         <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
       </xsl:call-template>
+      <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
     <xsl:apply-templates/>
   </div>
@@ -166,6 +170,7 @@
       <xsl:call-template name="section.toc">
         <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
       </xsl:call-template>
+      <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
     <xsl:apply-templates/>
   </div>
@@ -192,6 +197,7 @@
       <xsl:call-template name="section.toc">
         <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
       </xsl:call-template>
+      <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
     <xsl:apply-templates/>
   </div>
