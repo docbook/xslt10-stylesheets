@@ -19,9 +19,6 @@ check:
 	$(XJPARSE) tests/testcust.xml
 	$(XJPARSE) tests/testfull.xml
 
-test: check
-	$(SAXON) test.xml xsl/html/slides.xsl
-
 distrib: check
 	$(MAKE) -C doc all
 	$(CVS2LOG) -w
