@@ -99,6 +99,10 @@
   <xsl:call-template name="person.name"/>
 </xsl:template>
 
+<xsl:template match="authorgroup" mode="xref-to">
+  <xsl:call-template name="person.name.list"/>
+</xsl:template>
+
 <xsl:template match="figure" mode="xref-to">
   <xsl:apply-templates select="." mode="object.xref.markup"/>
 </xsl:template>

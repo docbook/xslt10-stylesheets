@@ -164,8 +164,13 @@
 </xsl:template>
 
 <xsl:template match="author" mode="titlepage.mode">
-  <xsl:call-template name="person.name"/>
-  <xsl:apply-templates select="affiliation" mode="titlepage.mode"/>
+  <fo:wrapper>
+    <xsl:if test="@id">
+      <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
+    </xsl:if>
+    <xsl:call-template name="person.name"/>
+    <xsl:apply-templates select="affiliation" mode="titlepage.mode"/>
+  </fo:wrapper>
 </xsl:template>
 
 <xsl:template match="authorblurb" mode="titlepage.mode">
@@ -173,7 +178,12 @@
 </xsl:template>
 
 <xsl:template match="authorgroup" mode="titlepage.mode">
-  <xsl:apply-templates mode="titlepage.mode"/>
+  <fo:wrapper>
+    <xsl:if test="@id">
+      <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
+    </xsl:if>
+    <xsl:apply-templates mode="titlepage.mode"/>
+  </fo:wrapper>
 </xsl:template>
 
 <xsl:template match="authorinitials" mode="titlepage.mode">
@@ -526,7 +536,12 @@
 <!-- book recto -->
 
 <xsl:template match="authorgroup" mode="book.titlepage.recto.mode">
-  <xsl:apply-templates mode="book.titlepage.recto.auto.mode"/>
+  <fo:wrapper>
+    <xsl:if test="@id">
+      <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
+    </xsl:if>
+    <xsl:apply-templates mode="book.titlepage.recto.auto.mode"/>
+  </fo:wrapper>
 </xsl:template>
 
 <!-- book verso -->
@@ -580,56 +595,8 @@
       <xsl:with-param name="key" select="'by'"/>
     </xsl:call-template>
     <xsl:text> </xsl:text>
-    <xsl:apply-templates mode="book.titlepage.verso.mode"/>
+    <xsl:call-template name="person.name.list"/>
   </fo:block>
-</xsl:template>
-
-<xsl:template match="authorgroup/author" mode="book.titlepage.verso.mode">
-  <xsl:variable name="before" select="count(preceding-sibling::*)"/>
-  <xsl:variable name="after" select="count(following-sibling::*)"/>
-
-  <xsl:choose>
-    <xsl:when test="$before &gt; 1">
-      <xsl:text>, </xsl:text>
-    </xsl:when>
-    <xsl:when test="$before = 1 and $after &gt; 0">
-      <xsl:text>, </xsl:text>
-    </xsl:when>
-  </xsl:choose>
-
-  <xsl:if test="$before &gt; 0 and $after = 0">
-    <xsl:text> </xsl:text>
-    <xsl:call-template name="gentext">
-      <xsl:with-param name="key" select="'and'"/>
-    </xsl:call-template>
-    <xsl:text> </xsl:text>
-  </xsl:if>
-
-  <xsl:call-template name="person.name"/>
-</xsl:template>
-
-<xsl:template match="authorgroup/corpauthor" mode="book.titlepage.verso.mode">
-  <xsl:variable name="before" select="count(preceding-sibling::*)"/>
-  <xsl:variable name="after" select="count(following-sibling::*)"/>
-
-  <xsl:choose>
-    <xsl:when test="$before &gt; 1">
-      <xsl:text>, </xsl:text>
-    </xsl:when>
-    <xsl:when test="$before = 1 and $after &gt; 0">
-      <xsl:text>, </xsl:text>
-    </xsl:when>
-  </xsl:choose>
-
-  <xsl:if test="$after = 0 and $before &gt; 0">
-    <xsl:text> </xsl:text>
-    <xsl:call-template name="gentext">
-      <xsl:with-param name="key" select="'and'"/>
-    </xsl:call-template>
-    <xsl:text> </xsl:text>
-  </xsl:if>
-
-  <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="pubdate" mode="book.titlepage.verso.mode">
