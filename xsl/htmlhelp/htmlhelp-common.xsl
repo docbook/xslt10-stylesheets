@@ -1053,7 +1053,9 @@ Title=</xsl:text>
   </xsl:variable>
   <xsl:value-of select="$topicname"/>
   <xsl:text>=</xsl:text>
-  <xsl:value-of select="substring-before(concat($href, '#'), '#')"/>
+  <!-- Some versions of HH doesn't like fragment identifires, but some does. -->
+  <!-- <xsl:value-of select="substring-before(concat($href, '#'), '#')"/> -->
+  <xsl:value-of select="$href"/>
   <xsl:text>&#xA;</xsl:text>
 </xsl:template>
 
