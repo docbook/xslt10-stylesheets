@@ -201,7 +201,9 @@
     <xsl:when test="$fop.extensions != 0">
       <!-- Doesn't work in fop -->
     </xsl:when>
-    <xsl:when test="$pi-before != ''">
+    <xsl:when test="$pi-before != '' and
+                    not(following-sibling::listitem) and
+                    not(following-sibling::step)">
       <fo:block space-after="0pt" space-before="{$pi-before}">
         <xsl:copy-of select="$spacer"/>
       </fo:block>
