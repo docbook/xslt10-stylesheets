@@ -6,7 +6,7 @@
 <!ENTITY tracker "http://sourceforge.net/tracker/">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
 ]>
-<article status="Committee Specification">
+<article status="&standard;">
 <articleinfo>
 <releaseinfo role="cvs">
 $Id$
@@ -126,7 +126,7 @@ document.</para>
 <ulink url="http://www.oasis-open.org/docbook/sgml/">SGML</ulink>
 from the
 <ulink url="http://www.oasis-open.org/docbook/">DocBook site</ulink> at
-<ulink url="http://www.oasis-open.org/">OASIS</ulink>
+<ulink url="http://www.oasis-open.org/">OASIS</ulink>.
 </para>
 
 <section id="s.changes4">
