@@ -20,7 +20,7 @@ check:
 	$(XJPARSE) tests/testfull.xml
 
 test: check
-	$(SAXON) test.xml xsl/slides.xsl
+	$(SAXON) test.xml xsl/html/slides.xsl
 
 distrib: check
 	$(MAKE) -C doc all
