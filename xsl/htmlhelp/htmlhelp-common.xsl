@@ -424,18 +424,38 @@ Title=</xsl:text><xsl:value-of select="normalize-space(//title[1])"/>
 
 <xsl:template match="indexterm">
 
+  <xsl:variable name="primary" select="normalize-space(primary)"/>
+  <xsl:variable name="secondary" select="normalize-space(secondary)"/>
+  <xsl:variable name="tertiary" select="normalize-space(tertiary)"/>
+
   <xsl:variable name="text">
-    <xsl:value-of select="normalize-space(primary)"/>
+    <xsl:value-of select="$primary"/>
     <xsl:if test="secondary">
       <xsl:text>, </xsl:text>
-      <xsl:value-of select="normalize-space(secondary)"/>
+      <xsl:value-of select="$secondary"/>
     </xsl:if>
     <xsl:if test="tertiary">
       <xsl:text>, </xsl:text>
-      <xsl:value-of select="normalize-space(tertiary)"/>
+      <xsl:value-of select="$tertiary"/>
     </xsl:if>
   </xsl:variable>
 
+  <xsl:if test="secondary">
+    <xsl:if test="not(//indexterm[normalize-space(primary)=$primary and not(secondary)])">
+      <xsl:call-template name="write.indexterm">
+        <xsl:with-param name="text" select="$primary"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:if>
+
+  <xsl:call-template name="write.indexterm">
+    <xsl:with-param name="text" select="$text"/>
+  </xsl:call-template>
+
+</xsl:template>
+
+<xsl:template name="write.indexterm">
+  <xsl:param name="text"/>
   <OBJECT type="application/x-oleobject"
           classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
     <param name="Keyword" value="{$text}"/>
