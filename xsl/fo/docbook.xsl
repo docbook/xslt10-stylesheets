@@ -107,9 +107,9 @@
     </xsl:choose>
   </xsl:variable>
 
-  <fo:root font-family="Times Roman"
-           font-size="12pt"
-           text-align="justify">
+  <fo:root font-family="{$body.font.family}"
+           font-size="{$body.font.size}"
+           text-align="{$alignment}">
     <xsl:call-template name="setup.pagemasters"/>
     <xsl:choose>
       <xsl:when test="$rootid != ''">
