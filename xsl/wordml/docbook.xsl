@@ -233,6 +233,10 @@
         <w:outlineLvl w:val='{count(ancestor::*) - count(parent::*[contains(name(), "info")]) - 1}'/>
       </w:pPr>
 
+      <xsl:call-template name='attributes'>
+        <xsl:with-param name='node' select='..'/>
+      </xsl:call-template>
+
       <xsl:apply-templates/>
     </w:p>
   </xsl:template>
@@ -244,22 +248,50 @@
   </doc:template>
   <xsl:template match='*[contains(name(), "info")]/*[not(self::title|self::subtitle|self::titleabbrev)]' priority='0'/>
 
-  <xsl:template match='author|editor|othercontrib'>
+  <xsl:template match='author|editor|othercredit'>
     <w:p>
       <w:pPr>
         <w:pStyle w:val='{name()}'/>
       </w:pPr>
 
+      <xsl:call-template name='attributes'/>
+
       <xsl:apply-templates select='personname|surname|firstname|honorific|lineage|othername|contrib'/>
     </w:p>
-    <xsl:apply-templates select='address'/>
+    <xsl:apply-templates select='affiliation|address'/>
     <xsl:apply-templates select='authorblurb|personblurb'/>
   </xsl:template>
+  <xsl:template match='affiliation'>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val='affiliation'/>
+      </w:pPr>
+
+      <xsl:call-template name='attributes'/>
+
+      <xsl:apply-templates/>
+    </w:p>
+  </xsl:template>
+  <xsl:template match='address[parent::author|parent::editor|parent::othercredit]'>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val='para-continue'/>
+      </w:pPr>
+
+      <xsl:call-template name='attributes'/>
+
+      <xsl:apply-templates/>
+    </w:p>
+  </xsl:template>
+  <!-- do not attempt to handle recursive structures -->
+  <xsl:template match='address[not(parent::author|parent::editor|parent::othercredit)]'>
+    <xsl:apply-templates select='node()[not(self::affiliation|self::authorblurb)]'/>
+  </xsl:template>
   <!-- TODO -->
-  <xsl:template match='address|authorblurb|personblurb'/>
+  <xsl:template match='authorblurb|personblurb'/>
 
   <!-- TODO: handle inline markup (eg. emphasis) -->
-  <xsl:template match='surname|firstname|honorific|lineage|othername|contrib|email'>
+  <xsl:template match='surname|firstname|honorific|lineage|othername|contrib|email|shortaffil|jobtitle|orgname|orgdiv|street|pob|postcode|city|state|country|phone|fax'>
     <xsl:if test='preceding-sibling::*'>
       <w:r>
         <w:t>
@@ -275,6 +307,85 @@
       <xsl:apply-templates mode='text-run'/>
     </w:r>
   </xsl:template>
+  <xsl:template match='email'>
+    <xsl:variable name='address'>
+      <xsl:choose>
+        <xsl:when test='starts-with(., "mailto:")'>
+          <xsl:value-of select='.'/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>mailto:</xsl:text>
+          <xsl:value-of select='.'/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <w:hlink w:dest='{$address}'>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val='Hyperlink'/>
+        </w:rPr>
+        <xsl:apply-templates mode='text-run'/>
+      </w:r>
+    </w:hlink>
+  </xsl:template>
+  <!-- otheraddr often contains ulink -->
+  <xsl:template match='otheraddr'>
+    <xsl:choose>
+      <xsl:when test='ulink'>
+        <xsl:for-each select='ulink'>
+          <xsl:variable name='prev' select='preceding-sibling::ulink[1]'/>
+          <xsl:choose>
+            <xsl:when test='$prev'>
+              <xsl:for-each
+                select='preceding-sibling::node()[generate-id(following-sibling::ulink[1]) = generate-id(current())]'>
+                <w:r>
+                  <w:rPr>
+                    <w:rStyle w:val='otheraddr'/>
+                  </w:rPr>
+                  <xsl:apply-templates select='.' mode='text-run'/>
+                </w:r>
+              </xsl:for-each>
+            </xsl:when>
+            <xsl:when test='preceding-sibling::node()'>
+              <w:r>
+                <w:rPr>
+                  <w:rStyle w:val='otheraddr'/>
+                </w:rPr>
+                <xsl:apply-templates mode='text-run'/>
+              </w:r>
+            </xsl:when>
+          </xsl:choose>
+          <xsl:apply-templates select='.'/>
+        </xsl:for-each>
+        <xsl:if test='ulink[last()]/following-sibling::node()'>
+          <w:r>
+            <w:rPr>
+              <w:rStyle w:val='otheraddr'/>
+            </w:rPr>
+            <xsl:apply-templates select='ulink[last()]/following-sibling::node()' mode='text-run'/>
+          </w:r>
+        </xsl:if>
+      </xsl:when>
+      <xsl:otherwise>
+        <w:r>
+          <w:rPr>
+            <w:rStyle w:val='otheraddr'/>
+          </w:rPr>
+          <xsl:apply-templates mode='text-run'/>
+        </w:r>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  <xsl:template match='ulink'>
+    <w:hlink w:dest='{@url}'>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val='Hyperlink'/>
+        </w:rPr>
+      </w:r>
+      <xsl:apply-templates mode='text-run'/>
+    </w:hlink>
+  </xsl:template>
 
   <!-- Cannot round-trip this element -->
   <xsl:template match='personname'>
@@ -286,6 +397,9 @@
       <w:pPr>
         <w:pStyle w:val='releaseinfo'/>
       </w:pPr>
+
+      <xsl:call-template name='attributes'/>
+
       <xsl:apply-templates/>
     </w:p>
   </xsl:template>
@@ -310,6 +424,9 @@
               </xsl:attribute>
             </w:pStyle>
           </w:pPr>
+
+          <xsl:call-template name='attributes'/>
+
           <xsl:apply-templates select='$block[1]/preceding-sibling::node()'/>
         </w:p>
         <xsl:for-each select='$block'>
@@ -345,6 +462,9 @@
               </xsl:attribute>
             </w:pStyle>
           </w:pPr>
+
+          <xsl:call-template name='attributes'/>
+
           <xsl:apply-templates/>
         </w:p>
       </xsl:otherwise>
@@ -366,6 +486,8 @@
           </xsl:attribute>
         </w:pStyle>
       </w:pPr>
+
+      <xsl:call-template name='attributes'/>
 
       <xsl:apply-templates/>
     </w:p>
@@ -650,6 +772,9 @@
         <w:pPr>
           <w:pStyle w:val='blockquote-attribution'/>
         </w:pPr>
+
+        <xsl:call-template name='attributes'/>
+
         <xsl:apply-templates select='attribution/node()'/>
       </w:p>
     </xsl:if>
@@ -662,6 +787,8 @@
       <w:pPr>
         <w:pStyle w:val='literallayout'/>
       </w:pPr>
+
+      <xsl:call-template name='attributes'/>
 
       <xsl:apply-templates/>
     </w:p>
@@ -925,6 +1052,62 @@
         </w:r>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name='attributes'>
+    <xsl:param name='node' select='.'/>
+
+    <xsl:if test='$node/@*'>
+      <aml:annotation aml:id='{count(preceding::*) + 1}' w:type='Word.Comment.Start'/>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val='attributes'/>
+        </w:rPr>
+        <w:t> </w:t>
+      </w:r>
+      <aml:annotation aml:id='{count(preceding::*) + 1}' w:type='Word.Comment.End'/>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val='CommentReference'/>
+        </w:rPr>
+        <aml:annotation aml:id='{count(preceding::*) + 1}' aml:author="DocBook" aml:createdate='2004-12-23T00:01:00' w:type='Word.Comment' w:initials='DBK'>
+          <aml:content>
+            <w:p>
+              <w:pPr>
+                <w:pStyle w:val='CommentText'/>
+              </w:pPr>
+              <w:r>
+                <w:rPr>
+                  <w:rStyle w:val='CommentReference'/>
+                </w:rPr>
+                <w:annotationRef/>
+              </w:r>
+              <xsl:for-each select='$node/@*'>
+                <w:r>
+                  <w:rPr>
+                    <w:rStyle w:val='attribute-name'/>
+                  </w:rPr>
+                  <w:t>
+                    <xsl:value-of select='name()'/>
+                  </w:t>
+                </w:r>
+                <w:r>
+                  <w:t>=</w:t>
+                </w:r>
+                <w:r>
+                  <w:rPr>
+                    <w:rStyle w:val='attribute-value'/>
+                  </w:rPr>
+                  <w:t>
+                    <xsl:value-of select='.'/>
+                  </w:t>
+                </w:r>
+              </xsl:for-each>
+            </w:p>
+          </aml:content>
+        </aml:annotation>
+      </w:r>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match='*' mode='copy'>
