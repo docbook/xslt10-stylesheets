@@ -544,101 +544,67 @@
     </xsl:choose>
   </xsl:param>
 
-  <xsl:choose>
-    <xsl:when test="$class='attribute'">
-      <xsl:call-template name="inline.monoseq"/>
-    </xsl:when>
-    <xsl:when test="$class='attvalue'">
-      <xsl:call-template name="inline.monoseq"/>
-    </xsl:when>
-    <xsl:when test="$class='element'">
-      <xsl:call-template name="inline.monoseq"/>
-    </xsl:when>
-    <xsl:when test="$class='endtag'">
-      <xsl:call-template name="inline.monoseq">
-        <xsl:with-param name="content">
-          <xsl:text>&lt;/</xsl:text>
-          <xsl:apply-templates/>
-          <xsl:text>&gt;</xsl:text>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:when test="$class='genentity'">
-      <xsl:call-template name="inline.monoseq">
-        <xsl:with-param name="content">
-          <xsl:text>&amp;</xsl:text>
-          <xsl:apply-templates/>
-          <xsl:text>;</xsl:text>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:when test="$class='numcharref'">
-      <xsl:call-template name="inline.monoseq">
-        <xsl:with-param name="content">
-          <xsl:text>&amp;#</xsl:text>
-          <xsl:apply-templates/>
-          <xsl:text>;</xsl:text>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:when test="$class='paramentity'">
-      <xsl:call-template name="inline.monoseq">
-        <xsl:with-param name="content">
-          <xsl:text>%</xsl:text>
-          <xsl:apply-templates/>
-          <xsl:text>;</xsl:text>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:when test="$class='pi'">
-      <xsl:call-template name="inline.monoseq">
-        <xsl:with-param name="content">
-          <xsl:text>&lt;?</xsl:text>
-          <xsl:apply-templates/>
-          <xsl:text>&gt;</xsl:text>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:when test="$class='xmlpi'">
-      <xsl:call-template name="inline.monoseq">
-        <xsl:with-param name="content">
-          <xsl:text>&lt;?</xsl:text>
-          <xsl:apply-templates/>
-          <xsl:text>?&gt;</xsl:text>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:when test="$class='starttag'">
-      <xsl:call-template name="inline.monoseq">
-        <xsl:with-param name="content">
-          <xsl:text>&lt;</xsl:text>
-          <xsl:apply-templates/>
-          <xsl:text>&gt;</xsl:text>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:when test="$class='emptytag'">
-      <xsl:call-template name="inline.monoseq">
-        <xsl:with-param name="content">
-          <xsl:text>&lt;</xsl:text>
-          <xsl:apply-templates/>
-          <xsl:text>/&gt;</xsl:text>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:when test="$class='sgmlcomment'">
-      <xsl:call-template name="inline.monoseq">
-        <xsl:with-param name="content">
-          <xsl:text>&lt;!--</xsl:text>
-          <xsl:apply-templates/>
-          <xsl:text>--&gt;</xsl:text>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="inline.charseq"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <tt class="sgmltag-{$class}">
+    <xsl:choose>
+      <xsl:when test="$class='attribute'">
+        <xsl:apply-templates/>
+      </xsl:when>
+      <xsl:when test="$class='attvalue'">
+        <xsl:apply-templates/>
+      </xsl:when>
+      <xsl:when test="$class='element'">
+        <xsl:apply-templates/>
+      </xsl:when>
+      <xsl:when test="$class='endtag'">
+        <xsl:text>&lt;/</xsl:text>
+        <xsl:apply-templates/>
+        <xsl:text>&gt;</xsl:text>
+      </xsl:when>
+      <xsl:when test="$class='genentity'">
+        <xsl:text>&amp;</xsl:text>
+        <xsl:apply-templates/>
+        <xsl:text>;</xsl:text>
+      </xsl:when>
+      <xsl:when test="$class='numcharref'">
+        <xsl:text>&amp;#</xsl:text>
+        <xsl:apply-templates/>
+        <xsl:text>;</xsl:text>
+      </xsl:when>
+      <xsl:when test="$class='paramentity'">
+        <xsl:text>%</xsl:text>
+        <xsl:apply-templates/>
+        <xsl:text>;</xsl:text>
+      </xsl:when>
+      <xsl:when test="$class='pi'">
+        <xsl:text>&lt;?</xsl:text>
+        <xsl:apply-templates/>
+        <xsl:text>&gt;</xsl:text>
+      </xsl:when>
+      <xsl:when test="$class='xmlpi'">
+        <xsl:text>&lt;?</xsl:text>
+        <xsl:apply-templates/>
+        <xsl:text>?&gt;</xsl:text>
+      </xsl:when>
+      <xsl:when test="$class='starttag'">
+        <xsl:text>&lt;</xsl:text>
+        <xsl:apply-templates/>
+        <xsl:text>&gt;</xsl:text>
+      </xsl:when>
+      <xsl:when test="$class='emptytag'">
+        <xsl:text>&lt;</xsl:text>
+        <xsl:apply-templates/>
+        <xsl:text>/&gt;</xsl:text>
+      </xsl:when>
+      <xsl:when test="$class='sgmlcomment'">
+        <xsl:text>&lt;!--</xsl:text>
+        <xsl:apply-templates/>
+        <xsl:text>--&gt;</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </tt>
 </xsl:template>
 
 <xsl:template match="email">
