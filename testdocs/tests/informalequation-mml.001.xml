@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook MathML Module V1.0//EN"
+                  "http://www.oasis-open.org/docbook/xml/mathml/1.0/dbmathml.dtd" [
+<!ENTITY % local.article.attrib "xmlns:mml CDATA #REQUIRED">
+]>
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML">
+<articleinfo>
+<title>Unit Test: informalequation-mml.001</title>
+<releaseinfo role="CVS">$Id</releaseinfo>
+<author><firstname>Norman</firstname><surname>Walsh</surname>
+        <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
+</author>
+</articleinfo>
+
+<informalequation>
+<mml:math><mml:apply><mml:divide/></mml:apply></mml:math>
+</informalequation>
+
+</article>

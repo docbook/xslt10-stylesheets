@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY blah "<para>Blah blah blah blah. Blah blah blah blah. Blah blah blah blah.
+Blah blah blah blah blah blah blah blah. Blah blah blah blah.
+Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
+Blah blah blah blah blah blah blah blah. Blah blah blah blah.
+Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
+Blah blah blah blah blah blah blah blah. Blah blah blah blah.
+Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
+Blah blah blah blah blah blah blah blah. Blah blah blah blah.
+Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
+Blah blah blah blah blah blah blah blah. Blah blah blah blah.
+Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
+Blah blah blah blah blah blah blah blah. Blah blah blah blah.
+Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
+Blah blah blah blah blah blah blah blah. Blah blah blah blah.
+Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
+Blah blah blah blah blah blah blah blah. Blah blah blah blah.
+Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
+</para>">
+]>
+<book>
+<bookinfo>
+<title>Unit Test: xref.001</title>
+<releaseinfo role="CVS">$Id</releaseinfo>
+<author><firstname>Norman</firstname><surname>Walsh</surname>
+        <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
+</author>
+</bookinfo>
+
+<dedication id="dedication"><title>Dedication</title>
+
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+
+<para>For no good reason, this dedication includes cross-references:</para>
+
+<itemizedlist>
+<listitem><para>dedication: <xref linkend="dedication"/>.</para>
+</listitem>
+<listitem><para>preface: <xref linkend="preface"/>.</para>
+</listitem>
+<listitem><para>part: <xref linkend="part"/>.</para>
+</listitem>
+<listitem><para>chapter: <xref linkend="chapter"/>.</para>
+</listitem>
+<listitem><para>appendix: <xref linkend="appendix"/>.</para>
+</listitem>
+</itemizedlist>
+
+</dedication>
+
+<preface id="preface"><title>Preface</title>
+
+<para>A preface.</para>
+
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+
+</preface>
+
+<part id="part">
+<title>Part One Title</title>
+<partintro>
+<title>PartIntro Title</title>
+
+<para>Partintro content<footnote>
+<para>This is a footnote in a partintro.</para>
+</footnote>.</para>
+
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+
+<sect1>
+<title>PartIntro Section</title>
+<para>PartIntros can actually have section content as well.</para>
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+</sect1>
+</partintro>
+
+<chapter id="chapter"><title>Chapter</title>
+
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+
+</chapter>
+
+</part>
+<part><title>Appendixes</title>
+
+<appendix id="appendix"><title>First Appendix</title>
+
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+&blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah; &blah;
+
+</appendix>
+
+</part>
+</book>

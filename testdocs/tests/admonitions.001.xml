@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+                  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<article>
+<articleinfo>
+<title>Unit Test: admonitions.001</title>
+<releaseinfo role="CVS">$Id</releaseinfo>
+<author><firstname>Norman</firstname><surname>Walsh</surname>
+        <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
+</author>
+</articleinfo>
+
+<para>This article tests admonitions.</para>
+
+<tip>
+<para>This tip has no title.</para>
+</tip>
+
+<note>
+<para>This note has no title.</para>
+</note>
+
+<important>
+<para>This important has no title.</para>
+</important>
+
+<warning>
+<para>This warning has no title.</para>
+</warning>
+
+<caution>
+<para>This caution has no title.</para>
+</caution>
+
+<note>
+<title>Who can do this</title>
+<para>All operators</para>
+</note>
+
+</article>
