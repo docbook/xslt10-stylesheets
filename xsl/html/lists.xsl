@@ -150,7 +150,7 @@
       </xsl:if>
       <xsl:if test="@spacing='compact'">
         <xsl:attribute name="compact">
-          <xsl:value-of select="compact"/>
+          <xsl:value-of select="@spacing"/>
         </xsl:attribute>
       </xsl:if>
       <xsl:apply-templates select="listitem"/>
