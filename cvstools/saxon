@@ -208,7 +208,6 @@ java $MEMORY $FOO \
      -cp $CLASSPATH \
      -Djavax.xml.parsers.DocumentBuilderFactory=$DBFACTORY \
      -Djavax.xml.parsers.SAXParserFactory=$SPFACTORY \
-     -Djavax.xml.transform.TransformerFactory=$FACTORY \
      com.icl.saxon.StyleSheet \
      $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY $@
 
