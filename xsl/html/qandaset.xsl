@@ -125,7 +125,6 @@
         <xsl:otherwise>
           <b>
             <xsl:apply-templates select="." mode="label.markup"/>
-            <xsl:text> </xsl:text>
           </b>
           <xsl:apply-templates select="$firstch" mode="no.wrapper.mode"/>
         </xsl:otherwise>
@@ -147,7 +146,6 @@
       <a name="{$id}"/>
       <b>
         <xsl:apply-templates select="." mode="label.markup"/>
-        <xsl:text> </xsl:text>
       </b>
       <xsl:apply-templates select="$firstch" mode="no.wrapper.mode"/>
     </p>
