@@ -1,0 +1,38 @@
+<!DOCTYPE webpage SYSTEM "../website.dtd" [
+<!ENTITY buildmake.xml SYSTEM "build-make.xml" NDATA XML>
+]>
+<webpage id="buildext">
+<config param="desc" value="Building with XSLT Extensions"/>
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>Building with XSLT</title>
+<titleabbrev>Using XSLT</titleabbrev>
+<summary>Building with XSLT Extensions</summary>
+</head>
+
+<para>The alternative to <olink targetdocent="buildmake.xml">using
+make</olink> is to use XSLT extension functions. Naturally this will
+only be possible if you're using a processor for which the extensions
+have been implemented. The Website distribution includes extensions
+for Xalan and Saxon.</para>
+
+<orderedlist>
+<listitem><para>Create your webpages and your <filename>layout.xml</filename>
+file.</para></listitem>
+
+<listitem><para>Use XSLT to create <filename>autolayout.xml</filename>.
+Do this by processing your <filename>layout.xml</filename> with the
+<filename>autolayout.xsl</filename> stylesheet.
+</para></listitem>
+
+<listitem><para>Use XSLT to build the website: process the
+<filename>autolayout.xml</filename> file with the
+<filename>chunk-tabular.xsl</filename> stylesheet. That should build your
+website.
+</para>
+
+<para>You can use the <literal>output-root</literal> parameter to direct
+where the result documents are produced.</para>
+</listitem>
+</orderedlist>
+</webpage>

@@ -1,7 +1,14 @@
+<!DOCTYPE webpage SYSTEM "../website.dtd" [
+<!ENTITY blah "<para>blah blah blah blah blah blah blah blah blah blah blah blah blah 
+blah blah blah blah blah blah blah blah blah blah blah blah blah 
+blah blah blah blah blah blah blah blah blah blah blah blah blah 
+blah blah blah blah blah blah blah blah blah blah blah blah blah 
+blah blah blah blah blah blah blah blah blah blah blah blah blah 
+blah blah blah blah blah blah blah blah blah blah blah blah blah 
+</para>">
+]>
 <webpage id="test1a">
 <config param="rcsdate" value="$Date$"/>
-<config param="filename" value="test1a.html"/>
-<config param="dir" value="subdir"/>
 <head>
 <title>Test 1a</title>
 <summary>Test 1a Page</summary>
@@ -9,8 +16,35 @@
 <para>This is just a test page.</para>
 
 <para>But it contains a broken inlinegraphic:
-<ulink url="foo.com"><inlinegraphic fileref="foo.jpg"/></ulink>.
+<ulink url="foo.com"><inlinemediaobject>
+<imageobject>
+<imagedata fileref="foo.jpg"/>
+</imageobject>
+<textobject><phrase>A broken graphic</phrase></textobject>
+</inlinemediaobject></ulink>.
 </para>
+
+<section><title>Test Section</title>
+
+&blah;
+&blah;
+&blah;
+&blah;
+&blah;
+&blah;
+&blah;
+
+<section id="xxx"><title>Another test section</title>
+
+&blah;
+&blah;
+&blah;
+&blah;
+&blah;
+&blah;
+
+</section>
+</section>
 
 </webpage>
 

@@ -1,0 +1,53 @@
+<!DOCTYPE webpage SYSTEM "../website.dtd">
+<webpage id="parameters">
+<config param="desc" value="Parameters"/>
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>Stylesheet Parameters</title>
+<titleabbrev>Parameters</titleabbrev>
+<summary>Stylesheet parameter summary</summary>
+</head>
+
+<section><title>General Parameters</title>
+param.xsl:<xsl:param name="header.hr" select="1"/>
+param.xsl:<xsl:param name="footer.hr" select="1"/>
+param.xsl:<xsl:param name="feedback.href"></xsl:param>
+param.xsl:<xsl:param name="feedback.title" select="0"/>
+param.xsl:<xsl:param name="feedback.link.text">Feedback</xsl:param>
+param.xsl:<xsl:param name="filename-prefix" select="''"/>
+</section>
+
+<section><title>Chunking Parameters</title>
+chunk-common.xsl:<xsl:param name="autolayout-file" select="'autolayout.xml'"/>
+chunk-common.xsl:<xsl:param name="output-root" select="'.'"/>
+chunk-common.xsl:<xsl:param name="dry-run" select="'0'"/>
+chunk-common.xsl:<xsl:param name="rebuild-all" select="'0'"/>
+</section>
+
+<section><title>Tabular Parameters</title>
+tabular.xsl:<xsl:param name="autolayout-file" select="'autolayout.xml'"/>
+tabular.xsl:<xsl:param name="admon.style" select="''"/>
+tabular.xsl:<xsl:param name="admon.graphics" select="1"/>
+tabular.xsl:<xsl:param name="admon.graphics.path">graphics/</xsl:param>
+tabular.xsl:<xsl:param name="admon.graphics.extension">.gif</xsl:param>
+tabular.xsl:<xsl:param name="nav.table.summary">Navigation</xsl:param>
+tabular.xsl:<xsl:param name="navtocwidth">220</xsl:param>
+tabular.xsl:<xsl:param name="navbodywidth">600</xsl:param>
+tabular.xsl:<xsl:param name="textbgcolor">white</xsl:param>
+tabular.xsl:<xsl:param name="navbgcolor">#4080FF</xsl:param>
+toc-tabular.xsl:<xsl:param name="toc.spacer.graphic" select="1"/>
+toc-tabular.xsl:<xsl:param name="toc.spacer.text">&#160;&#160;&#160;</xsl:param>
+toc-tabular.xsl:<xsl:param name="toc.spacer.image">graphics/blank.gif</xsl:param>
+toc-tabular.xsl:<xsl:param name="toc.pointer.graphic" select="1"/>
+toc-tabular.xsl:<xsl:param name="toc.pointer.text">&#160;&gt;&#160;</xsl:param>
+toc-tabular.xsl:<xsl:param name="toc.pointer.image">graphics/arrow.gif</xsl:param>
+toc-tabular.xsl:<xsl:param name="toc.blank.graphic" select="1"/>
+toc-tabular.xsl:<xsl:param name="toc.blank.text">&#160;&#160;&#160;</xsl:param>
+toc-tabular.xsl:<xsl:param name="toc.blank.image">graphics/blank.gif</xsl:param>
+</section>
+
+<section><title>Dependency Parameters</title>
+makefile-dep.xsl:<xsl:param name="prefix" select="''"/>
+</section>
+
+</webpage>

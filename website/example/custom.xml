@@ -1,0 +1,54 @@
+<!DOCTYPE webpage SYSTEM "../website.dtd">
+<webpage id="customize">
+<config param="desc" value="Customizing the Stylesheets"/>
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>Customizing the Stylesheets</title>
+<titleabbrev>Customization</titleabbrev>
+<summary>Stylesheet customization instructions</summary>
+</head>
+
+<para>You can customize the stylesheets for your particular website
+by making a driver like this:</para>
+
+<programlisting><![CDATA[
+<?xml version='1.0'?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                version='1.0'>
+
+<xsl:import href="/path/to/the/website.xsl"/>
+
+<!-- put your customizations here -->
+
+</xsl:stylesheet>]]></programlisting>
+
+<para>If you use the tabular style, you'll discover that the
+Website home page has two ugly features: "home.navhead" and
+"home.navhead.upperright".</para>
+
+<para>In order to remove these, you have to write a custom stylesheet
+that puts the text (or whatever) you want on the homepage in those
+locations. Your stylesheet should look like this:</para>
+
+<programlisting><![CDATA[
+<?xml version='1.0'?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                version='1.0'>
+
+<xsl:import href="/path/to/the/tabular.xsl"/>
+
+<!-- Replace the text in these templates with whatever you want -->
+<!-- to appear in the respective location on the home page. -->
+
+<xsl:template name="home.navhead">
+<xsl:text>home.navhead</xsl:text>
+</xsl:template>
+
+<xsl:template name="home.navhead.upperright">
+<xsl:text>home.navhead.upperright</xsl:text>
+</xsl:template>
+
+<!-- put your customizations here -->
+</xsl:stylesheet>]]></programlisting>
+
+</webpage>

@@ -1,19 +1,12 @@
-<?xml version='1.0'?>
+<?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:html='http://www.w3.org/1999/xhtml'
-                xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
-		version="1.0"
-                exclude-result-prefixes="html doc">
+                xmlns:xweb="xalan://com.nwalsh.xalan.Website"
+                xmlns:sweb="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.Website"
+                exclude-result-prefixes="sweb xweb"
+                version="1.0">
 
-<!-- ********************************************************************
-     $Id$
-     ******************************************************************** -->
-
-<xsl:import href="chunk-website-common.xsl"/>
-<xsl:include href="/share/xsl/docbook/html/chunker.xsl"/>
-
-<xsl:output method="html"
-            encoding="iso-8859-1"
-/>
+<xsl:import href="website.xsl"/>
+<xsl:import href="http://docbook.sourceforge.net/release/xsl/snapshot/html/chunker.xsl"/>
+<xsl:include href="chunk-common.xsl"/>
 
 </xsl:stylesheet>

@@ -1,6 +1,7 @@
-<webpage id="test2">
+<!DOCTYPE webpage SYSTEM "../website.dtd">
+<webpage id="test2" xmlns:html="http://www.w3.org/1999/xhtml">
 <config param="rcsdate" value="$Date$"/>
-<config param="filename" value="formtest.html"/><head>
+<head>
 <title>Form Test</title>
 <summary>Form Test Page</summary>
 </head>

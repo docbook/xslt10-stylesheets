@@ -1,3 +1,6 @@
+body               {
+                   }
+
 .navhomehead       { padding-top: 0; 
                      margin-bottom: 0;
                      padding-bottom: 0;
@@ -24,6 +27,9 @@
 
 .navfoot a:link    { color: black; }
 .navfoot a:visited { color: black; }
+
+pre.programlisting { font-size: 80%;
+                   }
 
 span.footdate      { color: black;
                      font-size: 70%;

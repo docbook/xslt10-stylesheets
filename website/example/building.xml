@@ -1,0 +1,13 @@
+<!DOCTYPE webpage SYSTEM "../website.dtd">
+<webpage id="building">
+<config param="desc" value="Building the HTML Pages"/>
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>Building the HTML Pages</title>
+<titleabbrev>Building</titleabbrev>
+<summary>Building strategies</summary>
+</head>
+
+<para>dummy page</para>
+
+</webpage>

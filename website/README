@@ -1,15 +1,6 @@
-README for the Website DTD V1.10
+README for the Website DTD V2.0b1
 
 Website is an XML DTD for building, er, web sites.
-
-Manifest
---------
-
-README                - This readme file
-VERSION               - The version number
-website.dtd           - The DTD, a customization layer on top of DocBook XML
-example/              - An example website
-xsl/                  - XSL stylesheets for converting the Website DTD to HTML
 
 DTD Installation
 ----------------
@@ -20,14 +11,12 @@ catalogs, so this may be irrelevant for you).
 
 Please use the following formal public identifier to identify this DTD:
 
-  "-//Norman Walsh//DTD Website V1.10//EN"
+  "-//Norman Walsh//DTD Website V2.0b1//EN"
 
 For example:
 
-  <!DOCTYPE website PUBLIC "-//Norman Walsh//DTD Website V1.10//EN"
-                    "http://docbook.sourceforge.net/repository/website/1.10/website.dtd" [
-  ...
-  ]>
+  <!DOCTYPE website PUBLIC "-//Norman Walsh//DTD Website V2.0b1//EN"
+            "http://docbook.sourceforge.net/release/website/2.0b1/website.dtd">
 
 XSL Installation
 ----------------
@@ -37,25 +26,11 @@ Place the XSL files in this distribution somewhere on your machine.
 Use
 ---
 
-Process your Website documents with one of the following stylesheets
-using your favorite XSLT processor:
+There are several ways to process the website XML files to produce an
+HTML website.
 
-  website.xsl   produces a flat-text website
-  tabular.xsl   produces a tabular website with navigation in the
-                left-hand column and page contents in the right-hand
-                column.
-
-    Both of these stylesheets produce a monolithic file that must be
-    chunked. The chunk control files and libraries included in this
-    distribution simplify this process, if you are using the chunk.pl
-    file included in the DocBook XSL Stylesheet distribution.
-
-  chunk-website.xsl produces a flat-text website, chunked by XSLT
-  chunk-tabular.xsl produces a tabular website, chunked by XSLT
-
-    In order for the chunking process to succeed, all necessary
-    subdirectories must be created before you begin running the
-    XSLT engine. The chunking versions support XT, Saxon, and Xalan.
+For more detailed instructions, see
+http://docbook.sourceforge.net/release/website/example/
 
 Copyright
 ---------
