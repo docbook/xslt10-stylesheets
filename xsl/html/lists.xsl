@@ -321,6 +321,12 @@
     </xsl:when>
     <xsl:otherwise>
       <p>
+        <xsl:if test="@role and $para.propagates.style != 0">
+          <xsl:attribute name="class">
+            <xsl:value-of select="@role"/>
+          </xsl:attribute>
+        </xsl:if>
+
         <xsl:call-template name="anchor"/>
         <xsl:apply-templates/>
       </p>
