@@ -211,6 +211,7 @@
 <template name="bibliodiv">%t</template>
 <template name="biblioentry">%t</template>
 <template name="bibliography">%t</template>
+<template name="bibliolist">%t</template>
 <template name="bibliomixed">%t</template>
 <template name="bibliomset">%t</template>
 <template name="biblioset">%t</template>
