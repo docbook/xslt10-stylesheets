@@ -164,6 +164,7 @@
 <gentext key="nav-prev-sibling" text="Fast Backward"/>
 <gentext key="nav-up" text="Up"/>
 
+<gentext key="Draft"         text="Draft"/>
 <gentext key="above"         text="above"/>
 <gentext key="below"         text="below"/>
 <gentext key="sectioncalled" text="the section called"/>
@@ -384,6 +385,7 @@
 <template name="variablelist">%t</template>
 <template name="varlistentry">%n</template>
 <template name="warning">%t</template>
+<template name="page.citation"> [%p]</template>
 
 </context>
 
