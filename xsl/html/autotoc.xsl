@@ -294,7 +294,7 @@
   </span>
 </xsl:template>
 
-<xsl:template match="book|setindex" mode="toc">
+<xsl:template match="book" mode="toc">
   <xsl:param name="toc-context" select="."/>
 
   <xsl:call-template name="subtoc">
@@ -306,6 +306,17 @@
                                          |refentry
                                          |bridgehead[$bridgehead.in.toc != 0]"/>
   </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="setindex" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
+  <!-- If the setindex tag is not empty, it should be it in the TOC -->
+  <xsl:if test="* or $generate.index != 0">
+    <xsl:call-template name="subtoc">
+      <xsl:with-param name="toc-context" select="$toc-context"/>
+    </xsl:call-template>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="part|reference" mode="toc">
@@ -408,7 +419,7 @@
 <xsl:template match="index" mode="toc">
   <xsl:param name="toc-context" select="."/>
 
-  <!-- If the index tag is empty, don't point at it from the TOC -->
+  <!-- If the index tag is not empty, it should be it in the TOC -->
   <xsl:if test="* or $generate.index != 0">
     <xsl:call-template name="subtoc">
       <xsl:with-param name="toc-context" select="$toc-context"/>
