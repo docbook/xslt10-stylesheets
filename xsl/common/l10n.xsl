@@ -218,13 +218,11 @@
     <xsl:call-template name="l10n.language"/>
   </xsl:param>
 
-  <xsl:variable name="local.l10n.dingbat">
-    <xsl:value-of select="($local.l10n.xml//l:i18n/l:l10n[@language=$lang]/l:dingbat[@key=$dingbat])[1]"/>
-  </xsl:variable>
+  <xsl:variable name="local.l10n.dingbat"
+                select="($local.l10n.xml//l:i18n/l:l10n[@language=$lang]/l:dingbat[@key=$dingbat])[1]"/>
 
-  <xsl:variable name="l10n.dingbat">
-    <xsl:value-of select="($l10n.xml/l:i18n/l:l10n[@language=$lang]/l:dingbat[@key=$dingbat])[1]"/>
-  </xsl:variable>
+  <xsl:variable name="l10n.dingbat"
+                select="($l10n.xml/l:i18n/l:l10n[@language=$lang]/l:dingbat[@key=$dingbat])[1]"/>
 
   <xsl:choose>
     <xsl:when test="count($local.l10n.dingbat) &gt; 0">
