@@ -14,6 +14,9 @@
 
 <xsl:template name="process-chunk-element">
   <xsl:choose>
+    <xsl:when test="$onechunk != 0 and not(parent::*)">
+      <xsl:call-template name="chunk-all-sections"/>
+    </xsl:when>
     <xsl:when test="$onechunk != 0">
       <xsl:apply-imports/>
     </xsl:when>
@@ -397,7 +400,14 @@
                      |book/glossary|article/glossary
                      |book/bibliography|article/bibliography
                      |colophon">
-  <xsl:call-template name="process-chunk-element"/>
+  <xsl:choose>
+    <xsl:when test="$onechunk != 0 and parent::*">
+      <xsl:apply-imports/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="process-chunk-element"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="sect1|sect2|sect3|sect4|sect5|section">
