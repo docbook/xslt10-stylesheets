@@ -190,13 +190,11 @@ if [ "$DEBUG" = "1" ]; then
   SAXON="$SAXON_DEBUG:$SAXON"
 fi
 
-SUN="/projects/sun/resolver/.classes"
-JAXP="/usr/local/jaxp-1.1/jaxp.jar"
+JAXP="${JAXP:-/projects/sun/resolver/.classes}:"
+RESOLVER="${RESOLVER:-/projects/sun/resolver/.classes}:"
+XERCES="${XERCES:-/projects/apache/xml-xerces/java/build/classes}:"
 
-XERCESROOT="/projects/apache/xml-xerces/java"
-XERCES="$XERCESROOT/build/classes"
-
-CLASSPATH=$SAXON:$JAXP:$XERCES:$SUN:$NDWEXT:~/java
+CLASSPATH=$SAXON:$NDWEXT:$JAXP$RESOLVER$XERCES$CLASSPATH
 
 #echo $CLASSPATH
 
