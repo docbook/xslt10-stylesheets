@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook XML information pool module V4.3CR1 ............................. -->
+<!-- DocBook XML information pool module V4.3CR2 ............................. -->
 <!-- File dbpoolx.mod ..................................................... -->
 
 <!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
@@ -50,7 +50,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbpool PUBLIC
-     "-//OASIS//ELEMENTS DocBook XML Information Pool V4.3CR1//EN"
+     "-//OASIS//ELEMENTS DocBook XML Information Pool V4.3CR2//EN"
      "dbpoolx.mod">
      %dbpool;
 
@@ -3594,7 +3594,7 @@ in the text (no (0) value, the default)
   <!-- ====================================================== -->
 
 <!ENTITY % htmltbl
-  PUBLIC "-//OASIS//ELEMENTS DocBook XML HTML Tables V4.3CR1//EN"
+  PUBLIC "-//OASIS//ELEMENTS DocBook XML HTML Tables V4.3CR2//EN"
   "htmltblx.mod">
 %htmltbl;
 <!--end of allow.html.tables-->]]>
@@ -3626,7 +3626,7 @@ in the text (no (0) value, the default)
 
 <!-- Reference CALS Table Model -->
 <!ENTITY % tablemodel
-  PUBLIC "-//OASIS//DTD DocBook CALS Table Model V4.3CR1//EN"
+  PUBLIC "-//OASIS//DTD DocBook CALS Table Model V4.3CR2//EN"
   "calstblx.dtd">
 ]]>
 
@@ -8243,5 +8243,5 @@ OtherCredit. -->
 <!--end of seeseealso.module-->]]>
 <!--end of indexterm.content.module-->]]>
 
-<!-- End of DocBook XML information pool module V4.3CR1 ...................... -->
+<!-- End of DocBook XML information pool module V4.3CR2 ...................... -->
 <!-- ...................................................................... -->
