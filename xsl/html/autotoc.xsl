@@ -132,7 +132,8 @@
                                          |article
                                          |bibliography|glossary|index
                                          |refentry
-                                         |bridgehead"/>
+                                         |bridgehead[$bridgehead.in.toc != 0]"/>
+
   </xsl:call-template>
 </xsl:template>
 
@@ -143,8 +144,11 @@
     <xsl:with-param name="toc-context" select="$toc-context"/>
     <xsl:with-param name="nodes" select="section|sect1|refentry
                                          |article|bibliography|glossary
-                                         |appendix|bridgehead[not(@renderas)]
-                                         |.//bridgehead[@renderas='sect1']"/>
+                                         |appendix
+                                         |bridgehead[not(@renderas)
+                                                     and $bridgehead.in.toc != 0]
+                                         |.//bridgehead[@renderas='sect1'
+                                                        and $bridgehead.in.toc != 0]"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -155,7 +159,8 @@
     <xsl:with-param name="toc-context" select="$toc-context"/>
     <xsl:with-param name="nodes"
                     select="section|sect1|sect2|sect3|sect4|sect5|refentry
-                            |bridgehead"/>
+                           |bridgehead[$bridgehead.in.toc != 0]"/>
+
   </xsl:call-template>
 </xsl:template>
 
@@ -258,7 +263,7 @@
                                          |article
                                          |bibliography|glossary|index
                                          |refentry
-                                         |bridgehead"/>
+                                         |bridgehead[$bridgehead.in.toc != 0]"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -270,7 +275,7 @@
     <xsl:with-param name="nodes" select="appendix|chapter|article
                                          |index|glossary|bibliography
                                          |preface|reference|refentry
-                                         |bridgehead"/>
+                                         |bridgehead[$bridgehead.in.toc != 0]"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -279,7 +284,8 @@
 
   <xsl:call-template name="subtoc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
-    <xsl:with-param name="nodes" select="section|sect1|bridgehead"/>
+    <xsl:with-param name="nodes" select="section|sect1
+                                         |bridgehead[$bridgehead.in.toc != 0]"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -287,7 +293,8 @@
   <xsl:param name="toc-context" select="."/>
   <xsl:call-template name="subtoc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
-    <xsl:with-param name="nodes" select="sect2|bridgehead"/>
+    <xsl:with-param name="nodes" select="sect2
+                                         |bridgehead[$bridgehead.in.toc != 0]"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -296,7 +303,8 @@
 
   <xsl:call-template name="subtoc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
-    <xsl:with-param name="nodes" select="sect3|bridgehead"/>
+    <xsl:with-param name="nodes" select="sect3
+                                         |bridgehead[$bridgehead.in.toc != 0]"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -305,7 +313,8 @@
 
   <xsl:call-template name="subtoc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
-    <xsl:with-param name="nodes" select="sect4|bridgehead"/>
+    <xsl:with-param name="nodes" select="sect4
+                                         |bridgehead[$bridgehead.in.toc != 0]"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -314,7 +323,8 @@
 
   <xsl:call-template name="subtoc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
-    <xsl:with-param name="nodes" select="sect5|bridgehead"/>
+    <xsl:with-param name="nodes" select="sect5
+                                         |bridgehead[$bridgehead.in.toc != 0]"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -331,7 +341,8 @@
 
   <xsl:call-template name="subtoc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
-    <xsl:with-param name="nodes" select="section|bridgehead"/>
+    <xsl:with-param name="nodes" select="section
+                                         |bridgehead[$bridgehead.in.toc != 0]"/>
   </xsl:call-template>
 </xsl:template>
 
