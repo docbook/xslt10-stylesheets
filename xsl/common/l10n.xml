@@ -1,5 +1,5 @@
 <?xml version='1.0'?>
-<!DOCTYPE internationalization SYSTEM "l10n.dtd" [
+<!DOCTYPE i18n SYSTEM "l10n.dtd" [
 <!ENTITY af SYSTEM "af.xml">
 <!ENTITY ca SYSTEM "ca.xml">
 <!ENTITY cs SYSTEM "cs.xml">
@@ -31,7 +31,7 @@
 <!ENTITY zh_cn SYSTEM "zh_cn.xml">
 <!ENTITY zh_tw SYSTEM "zh_tw.xml">
 ]>
-<internationalization>
+<i18n xmlns="http://docbook.sourceforge.net/xmlns/l10n/1.0">
 &af;
 &ca;
 &cs;
@@ -62,4 +62,4 @@
 &tr;
 &zh_cn;
 &zh_tw;
-</internationalization>
+</i18n>
