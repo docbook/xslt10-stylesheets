@@ -165,9 +165,9 @@
 <gentext key="nav-up" text="למעלה"/>
 
 <gentext key="sectioncalled"       text="הסעיף שנקרא"/>
-<gentext key="Draft"         text="טיוטה"/> <!-- en -->
-<gentext key="above"         text="למעלה"/> <!-- en -->
-<gentext key="below"         text="למטה"/> <!-- en -->
+<gentext key="Draft"         text="טיוטה"/> 
+<gentext key="above"         text="למעלה"/> 
+<gentext key="below"         text="למטה"/> 
 <gentext key="index symbols"            text="סמלים"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
