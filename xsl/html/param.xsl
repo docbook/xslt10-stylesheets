@@ -1022,7 +1022,7 @@ stylesheets.
            doc:type='integer'/>
 
 <doc:param name="callout.unicode.start.character" xmlns="">
-<refpurpose>Number of the largest callout graphic</refpurpose>
+<refpurpose>First Unicode character to use, decimal value.</refpurpose>
 <refdescription>
 <para>If <parameter>callout.graphics</parameter>
 is non-zero, graphics are used to represent
@@ -1143,6 +1143,34 @@ in default.encoding, set this parameter to value <literal>native</literal>.
 <refpurpose>Selects formal or informal procedures</refpurpose>
 <refdescription>
 <para>Formal procedures are numbered and always hav a title.
+</para>
+</refdescription>
+</doc:param>
+
+<!-- ==================================================================== -->
+<xsl:param name="bibliography.collection" doc:type='string'
+           select="'http://docbook.sourceforge.net/release/bibliography/bibliography.xml'"/>
+
+<doc:param name="bibliography.collection" xmlns="">
+<refpurpose>Name of the bibliography collection file</refpurpose>
+<refdescription>
+<para>Tired of copying bibliography entries from one document to another?
+Now you can maintain a central bibliography and let the stylesheets do
+the copying for you. This parameter identifies the file (by URI reference)
+that contains your complete bibliography collection.
+</para>
+</refdescription>
+</doc:param>
+
+<!-- ==================================================================== -->
+<xsl:param name="annotate.toc" select="1" doc:type='boolean'/>
+
+<doc:param name="annotate.toc" xmlns="">
+<refpurpose>Annotate the Table of Contents?</refpurpose>
+<refdescription>
+<para>If true, TOCs will be annotated. At present, this just means
+that the <sgmltag>RefPurpose</sgmltag> of <sgmltag>RefEntry</sgmltag>
+TOC entries will be displayed.
 </para>
 </refdescription>
 </doc:param>

@@ -1201,5 +1201,20 @@ they will be numbered monotonically throughout each
 </refdescription>
 </doc:param>
 
+<!-- ==================================================================== -->
+<xsl:param name="bibliography.collection" doc:type='string'
+           select="'http://docbook.sourceforge.net/release/bibliography/bibliography.xml'"/>
+
+<doc:param name="bibliography.collection" xmlns="">
+<refpurpose>Name of the bibliography collection file</refpurpose>
+<refdescription>
+<para>Tired of copying bibliography entries from one document to another?
+Now you can maintain a central bibliography and let the stylesheets do
+the copying for you. This parameter identifies the file (by URI reference)
+that contains your complete bibliography collection.
+</para>
+</refdescription>
+</doc:param>
+
 </xsl:stylesheet>
 
