@@ -12,7 +12,15 @@
 <xsl:param name="rebuild-all" select="'0'"/>
 
 <xsl:template match="autolayout">
-  <xsl:apply-templates select="toc|notoc" mode="make"/>
+  <!-- Regenerate olink database? -->
+  <xsl:if test="$collect.xref.targets = 'yes' or
+                $collect.xref.targets = 'only'">
+    <xsl:apply-templates select="." mode="collect.targets"/>
+  </xsl:if>
+
+  <xsl:if test="$collect.xref.targets != 'only'" >
+    <xsl:apply-templates select="toc|notoc" mode="make"/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="toc|tocentry|notoc" mode="make">
@@ -177,6 +185,43 @@
       <!-- nop -->
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template match="autolayout" mode="collect.targets">
+  <xsl:choose>
+    <xsl:when test="$website.database.document = ''">
+      <xsl:message>
+        Must specify a $website.database.document parameter when
+        $collect.xref.targets is set to 'yes' or 'only'.
+        The xref targets were not collected.
+      </xsl:message>
+    </xsl:when> 
+    <xsl:otherwise>
+      <xsl:choose>
+        <xsl:when test="$website.database.document">
+          <xsl:call-template name="write.chunk">
+            <xsl:with-param name="filename"
+	                    select="$website.database.document"/>
+            <xsl:with-param name="method" select="'xml'"/>
+            <xsl:with-param name="encoding" select="'utf-8'"/>
+            <xsl:with-param name="omit-xml-declaration" select="'no'"/>
+            <xsl:with-param name="indent" select="'yes'"/>
+            <xsl:with-param name="quiet" select="0"/>
+            <xsl:with-param name="content">
+              <targetset>
+                <xsl:apply-templates select="." mode="olink.mode"/>
+              </targetset>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- Else write to standard output -->
+          <xsl:apply-templates select="." mode="olink.mode"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
+ 
 </xsl:template>
 
 </xsl:stylesheet>
