@@ -1,7 +1,7 @@
 <refentry id="verbatim.properties">
 <refnamediv>
 <refname>verbatim.properties</refname>
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>Properties associated with verbatim text</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -12,7 +12,9 @@
   <xsl:attribute name="space-before.maximum">1.2em</xsl:attribute>
 </xsl:attribute-set></src:fragment>
 </refsynopsisdiv>
+
 <refsect1><title>Description</title>
-<para>FIXME:</para>
+<para>This attribute set is used on all verbatim environments.</para>
 </refsect1>
+
 </refentry>
