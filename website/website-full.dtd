@@ -17,13 +17,16 @@
                                                                             -->
 <!-- ====================================================================== -->
 
-<!ENTITY % extensions.mod SYSTEM "extensions.mod">
+<!ENTITY % extensions.mod
+           PUBLIC "-//Norman Walsh//DTD Website Extensions Module V2.2//EN"
+                  "extensions.mod">
 %extensions.mod;
 
 <!-- In this version, we use full DocBook -->
-<!ENTITY % docbook.dtd PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<!ENTITY % docbook.dtd PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+  "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
 %docbook.dtd;
 
-<!ENTITY % website.mod SYSTEM "website.mod">
+<!ENTITY % website.mod PUBLIC "-//Norman Walsh//DTD Website Module V2.2//EN"
+                              "website.mod">
 %website.mod;

@@ -13,7 +13,9 @@
 <!-- allow webtoc to occur anywhere a para can occur -->
 <!ENTITY % local.para.class "|webtoc|rss">
 
-<!ENTITY % namespaces.mod SYSTEM "namespaces.mod">
+<!ENTITY % namespaces.mod
+           PUBLIC "-//Norman Walsh//DTD Website Namespaces Module V2.2//EN"
+                  "namespaces.mod">
 %namespaces.mod;
 
 <!-- RDDL? -->
