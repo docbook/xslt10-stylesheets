@@ -29,6 +29,7 @@
 <!ENTITY sv SYSTEM "sv.xml">
 <!ENTITY tr SYSTEM "tr.xml">
 <!ENTITY uk SYSTEM "uk.xml">
+<!ENTITY xh SYSTEM "xh.xml">
 <!ENTITY zh_cn SYSTEM "zh_cn.xml">
 <!ENTITY zh_tw SYSTEM "zh_tw.xml">
 ]>
@@ -62,6 +63,7 @@
 &sv;
 &tr;
 &uk;
+&xh;
 &zh_cn;
 &zh_tw;
 </i18n>
