@@ -166,6 +166,12 @@
             <xsl:with-param name="default.units" select="'px'"/>
           </xsl:call-template>
         </xsl:when>
+        <xsl:when test="not(@depth) and $default.image.width != ''">
+          <xsl:call-template name="length-spec">
+            <xsl:with-param name="length" select="$default.image.width"/>
+            <xsl:with-param name="default.units" select="'px'"/>
+          </xsl:call-template>
+        </xsl:when>
         <xsl:otherwise>auto</xsl:otherwise>
       </xsl:choose>
     </xsl:attribute>
