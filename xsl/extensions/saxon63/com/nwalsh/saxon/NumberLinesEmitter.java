@@ -263,13 +263,14 @@ public class NumberLinesEmitter extends CopyEmitter {
    */
   protected boolean skipThisElement(int nameCode) {
     if (firstElement) {
+      int thisFingerprint    = namePool.getFingerprint(nameCode);
       int foBlockFingerprint = namePool.getFingerprint(foURI, "block");
       int htmlPreFingerprint = namePool.getFingerprint("", "pre");
       int htmlDivFingerprint = namePool.getFingerprint("", "div");
 
-      if ((foStylesheet && nameCode == foBlockFingerprint)
-	  || (!foStylesheet && (nameCode == htmlPreFingerprint
-				|| nameCode == htmlDivFingerprint))) {
+      if ((foStylesheet && thisFingerprint == foBlockFingerprint)
+	  || (!foStylesheet && (thisFingerprint == htmlPreFingerprint
+				|| thisFingerprint == htmlDivFingerprint))) {
 	// Don't push the outer-most wrapping div, pre, or fo:block
 	return true;
       }
