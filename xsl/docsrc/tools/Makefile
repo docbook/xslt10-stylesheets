@@ -9,7 +9,7 @@ XMLFILES = profiling.xml
 all: $(XMLFILES)
 
 clean:
-	rm -f $(XMLFILES)
+	-echo nop
 
 %.xml : %.xsl $(JSTYLE) ../../docsrc/legalnotice.xml
 	$(XSLT) $< $(JSTYLE) /dev/null output-file=$@

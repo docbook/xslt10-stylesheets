@@ -4,7 +4,6 @@
 <!ENTITY common.xml SYSTEM "common/common.xml" NDATA SGML>
 <!ENTITY lib.xml SYSTEM "lib/lib.xml" NDATA SGML>
 <!ENTITY html-param.xml SYSTEM "html/param.xml" NDATA SGML>
-<!ENTITY html-ebnf.xml SYSTEM "html/ebnf.xml" NDATA SGML>
 <!ENTITY fo-param.xml SYSTEM "fo/param.xml" NDATA SGML>
 <!ENTITY fo-table.xml SYSTEM "fo/table.xml" NDATA SGML>
 <!ENTITY titlepage.xml SYSTEM "template/titlepage.xml" NDATA SGML>
@@ -39,9 +38,6 @@ of references generated from the stylesheet sources:</para>
 </listitem>
 <listitem><para><olink type="title" localinfo="html/param.html"
                        targetdocent="html-param.xml"/></para>
-</listitem>
-<listitem><para><olink type="title" localinfo="html/ebnf.html"
-                       targetdocent="html-ebnf.xml"/></para>
 </listitem>
 <listitem><para><olink type="title" localinfo="fo/param.html"
                        targetdocent="fo-param.xml"/></para>

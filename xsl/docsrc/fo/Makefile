@@ -14,3 +14,7 @@ clean:
 %.xml : %.xsl $(JSTYLE)
 	$(XSLT) $< $(JSTYLE) /dev/null output-file=$@
 	$(XJPARSE) $@
+
+param.xml: param.xweb
+	$(MAKE) -C ../../fo param.xml
+	cp ../../fo/param.xml .
