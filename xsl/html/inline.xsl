@@ -217,15 +217,24 @@
 <!-- some special cases -->
 
 <xsl:template match="author">
-  <span class="{name(.)}"><xsl:call-template name="person.name"/></span>
+  <span class="{name(.)}">
+    <xsl:call-template name="anchor"/>
+    <xsl:call-template name="person.name"/>
+  </span>
 </xsl:template>
 
 <xsl:template match="editor">
-  <span class="{name(.)}"><xsl:call-template name="person.name"/></span>
+  <span class="{name(.)}">
+    <xsl:call-template name="anchor"/>
+    <xsl:call-template name="person.name"/>
+  </span>
 </xsl:template>
 
 <xsl:template match="othercredit">
-  <span class="{name(.)}"><xsl:call-template name="person.name"/></span>
+  <span class="{name(.)}">
+    <xsl:call-template name="anchor"/>
+    <xsl:call-template name="person.name"/>
+  </span>
 </xsl:template>
 
 <xsl:template match="authorinitials">
