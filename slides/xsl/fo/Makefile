@@ -1,5 +1,5 @@
 include ../../../cvstools/Makefile.incl
-TTLTEMPLATEXSL=/sourceforge/docbook/xsl/template/titlepage.xsl
+TTLTEMPLATEXSL=../../../xsl/template/titlepage.xsl
 
 PARAMPROF=.param.profiled
 PARAMSTRIP=.param.stripped
