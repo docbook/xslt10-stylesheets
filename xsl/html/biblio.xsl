@@ -15,11 +15,17 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="bibliography">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+  <div class="{name(.)}">
+    <xsl:if test="$generate.id.attributes != 0">
+      <xsl:attribute name="id">
+        <xsl:call-template name="object.id"/>
+      </xsl:attribute>
+    </xsl:if>
 
-  <div id="{$id}" class="{name(.)}">
     <xsl:call-template name="bibliography.titlepage"/>
+
     <xsl:apply-templates/>
+
     <xsl:call-template name="process.footnotes"/>
   </div>
 </xsl:template>
@@ -598,10 +604,7 @@
 </xsl:template>
 
 <xsl:template match="revhistory" mode="bibliography.mode">
-  <span class="{name(.)}">
-    <xsl:apply-templates mode="bibliography.mode"/>
-    <xsl:value-of select="$biblioentry.item.separator"/>
-  </span>
+  <!-- suppressed; how could this be represented? -->
 </xsl:template>
 
 <xsl:template match="seriesinfo" mode="bibliography.mode">
@@ -964,9 +967,7 @@
 </xsl:template>
 
 <xsl:template match="revhistory" mode="bibliomixed.mode">
-  <span class="{name(.)}">
-    <xsl:apply-templates mode="bibliomixed.mode"/>
-  </span>
+  <!-- suppressed; how could this be represented? -->
 </xsl:template>
 
 <xsl:template match="seriesvolnums" mode="bibliomixed.mode">
