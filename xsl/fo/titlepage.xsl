@@ -338,13 +338,16 @@
 </xsl:template>
 
 <xsl:template match="editor" mode="titlepage.mode">
-  <xsl:call-template name="person.name"/>
+  <!-- The first editor is dealt with in the following template,
+       which in turn displays all editors of the same mode. -->
 </xsl:template>
 
 <xsl:template match="editor[1]" priority="2" mode="titlepage.mode">
   <xsl:call-template name="gentext.edited.by"/>
   <xsl:call-template name="gentext.space"/>
-  <xsl:call-template name="person.name"/>
+  <xsl:call-template name="person.name.list">
+    <xsl:with-param name="person.list" select="../editor"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="firstname" mode="titlepage.mode">
