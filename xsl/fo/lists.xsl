@@ -702,7 +702,7 @@
 
   <fo:block id="{$id}">
     <xsl:if test="./title">
-      <fo:block font-weight="bold">
+      <fo:block xsl:use-attribute-sets="formal.title.properties">
         <xsl:apply-templates select="./title" mode="calloutlist.title.mode"/>
       </fo:block>
     </xsl:if>
