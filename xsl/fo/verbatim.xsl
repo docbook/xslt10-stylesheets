@@ -232,6 +232,60 @@
     </xsl:choose>
   </xsl:variable>
 
+  <xsl:variable name="linenumbering.startinglinenumber">
+    <xsl:choose>
+      <xsl:when test="@startinglinenumber">
+        <xsl:value-of select="@startinglinenumber"/>
+      </xsl:when>
+      <xsl:when test="@continuation='continues'">
+        <xsl:variable name="lastLine">
+          <xsl:choose>
+            <xsl:when test="self::programlisting">
+              <xsl:call-template name="lastLineNumber">
+                <xsl:with-param name="listings"
+                     select="preceding::programlisting[@linenumbering='numbered']"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="self::screen">
+              <xsl:call-template name="lastLineNumber">
+                <xsl:with-param name="listings"
+                     select="preceding::screen[@linenumbering='numbered']"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="self::literallayout">
+              <xsl:call-template name="lastLineNumber">
+                <xsl:with-param name="listings"
+                     select="preceding::literallayout[@linenumbering='numbered']"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="self::address">
+              <xsl:call-template name="lastLineNumber">
+                <xsl:with-param name="listings"
+                     select="preceding::address[@linenumbering='numbered']"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="self::synopsis">
+              <xsl:call-template name="lastLineNumber">
+                <xsl:with-param name="listings"
+                     select="preceding::synopsis[@linenumbering='numbered']"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:message>
+                <xsl:text>Unexpected verbatim environment: </xsl:text>
+                <xsl:value-of select="local-name(.)"/>
+              </xsl:message>
+              <xsl:value-of select="0"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+
+        <xsl:value-of select="$lastLine + 1"/>
+      </xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="function-available('sverb:numberLines')">
       <xsl:copy-of select="sverb:numberLines($rtf)"/>
@@ -243,6 +297,54 @@
       <xsl:message terminate="yes">
         <xsl:text>No numberLines function available.</xsl:text>
       </xsl:message>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!-- ======================================================================== -->
+
+<xsl:template name="lastLineNumber">
+  <xsl:param name="listings"/>
+  <xsl:param name="number" select="0"/>
+
+  <xsl:variable name="lines">
+    <xsl:call-template name="countLines">
+      <xsl:with-param name="listing" select="string($listings[1])"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="not($listings)">
+      <xsl:value-of select="$number"/>
+    </xsl:when>
+    <xsl:when test="$listings[1]/@startinglinenumber">
+      <xsl:value-of select="$number + $listings[1]/@startinglinenumber + $lines - 1"/>
+    </xsl:when>
+    <xsl:when test="$listings[1]/@continuation='continues'">
+      <xsl:call-template name="lastLineNumber">
+        <xsl:with-param name="listings" select="listings[position() &gt; 1]"/>
+        <xsl:with-param name="number" select="$number + $lines"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$lines"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="countLines">
+  <xsl:param name="listing"/>
+  <xsl:param name="count" select="1"/>
+
+  <xsl:choose>
+    <xsl:when test="contains($listing, '&#10;')">
+      <xsl:call-template name="countLines">
+        <xsl:with-param name="listing" select="substring-after($listing, '&#10;')"/>
+        <xsl:with-param name="count" select="$count + 1"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$count"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
