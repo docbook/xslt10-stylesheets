@@ -243,7 +243,7 @@ div {
    db.biblioref.attlist =
       db.biblioref.role.attribute?
     & db.common.attributes
-    & db.common.linking.attributes
+    & db.common.req.linking.attributes
     & attribute xrefstyle { text }?
     & attribute endterm { xsd:IDREF }?
     & attribute units { xsd:token }?
