@@ -170,10 +170,10 @@
 <gentext key="nav-prev-sibling" text="Schnell zur&uuml;ck"/>
 <gentext key="nav-up" text="Nach oben"/>
 
-<dingbat key="startquote" text="&#x201C;"/>
-<dingbat key="endquote" text="&#x201D;"/>
-<dingbat key="nestedstartquote" text="&#x2018;"/>
-<dingbat key="nestedendquote" text="&#x2019;"/>
+<dingbat key="startquote" text="&#x201E;"/>
+<dingbat key="endquote" text="&#x201C;"/>
+<dingbat key="nestedstartquote" text="&#x201A;"/>
+<dingbat key="nestedendquote" text="&#x2018;"/>
 <dingbat key="bullet" text="&#x2022;"/>
 
 <context name="title">
@@ -331,13 +331,13 @@
 
 <context name="section-xref">
 
-<template name="sect1">&#x201C;%t&#x201D;</template>
-<template name="sect2">&#x201C;%t&#x201D;</template>
-<template name="sect3">&#x201C;%t&#x201D;</template>
-<template name="sect4">&#x201C;%t&#x201D;</template>
-<template name="sect5">&#x201C;%t&#x201D;</template>
-<template name="section">&#x201C;%t&#x201D;</template>
-<template name="simplesect">&#x201C;%t&#x201D;</template>
+<template name="sect1">&#x201E;%t&#x201C;</template>
+<template name="sect2">&#x201E;%t&#x201C;</template>
+<template name="sect3">&#x201E;%t&#x201C;</template>
+<template name="sect4">&#x201E;%t&#x201C;</template>
+<template name="sect5">&#x201E;%t&#x201C;</template>
+<template name="section">&#x201E;%t&#x201C;</template>
+<template name="simplesect">&#x201E;%t&#x201C;</template>
 
 </context>
 
@@ -349,7 +349,7 @@
 <template name="sect4"><Section/> %n</template>
 <template name="sect5"><Section/> %n</template>
 <template name="section"><Section/> %n</template>
-<template name="simplesect">&#x201C;%t&#x201D;</template>
+<template name="simplesect">&#x201E;%t&#x201C;</template>
 
 </context>
 
