@@ -1,4 +1,4 @@
-<?xml version='1.0'?>
+<?xml version='1.0' encoding="utf-8"?>
 <!-- there is no doctype for these files, they are WF only -->
 <locale language="cs"
         english-language-name="Czech"
@@ -166,13 +166,13 @@
 <gentext key="nav-up" text="Nahoru"/>
 
 <gentext key="sectioncalled"  text="odd&#x00ed;l nazvan&#x00fd;"/>
-<gentext key="Draft"         text="Návrh"/> 
+<gentext key="Draft"         text="NÃ¡vrh"/> 
 <gentext key="above"         text="nad"/>  
 <gentext key="below"         text="pod"/>  
 <gentext key="index symbols" text="Symboly"/>
 
-<gentext key="lowercase.alpha" text="aábcèdïeéìfghiíjklmnoópqrøsštuúùvwxyýzž"/>
-<gentext key="uppercase.alpha" text="AÁBCÈDÏEÉÌFGHIÍJKLMNOÓPQRØSŠTUÚÙVWXYÝZŽ"/>
+<gentext key="lowercase.alpha" text="aÃ¡bcÄdÄeÃ©Ä›fghiÃ­jklmnoÃ³pqrÅ™sÅ¡tÅ¥uÃºÅ¯vwxyÃ½zÅ¾"/>
+<gentext key="uppercase.alpha" text="AÃBCÄŒDÄŽEÃ‰ÄšFGHIÃJKLMNOÃ“PQRÅ˜SÅ TÅ¤UÃšÅ®VWXYÃZÅ½"/>
 
 <dingbat key="startquote" text="&#x201e;"/>
 <dingbat key="endquote" text="&#x201c;"/>
