@@ -4,8 +4,8 @@
 #
 # Usage: xjparse [opts] src.xml
 
-JAXP="${JAXP:-/projects/sun/resolver/.classes}:"
-RESOLVER="${RESOLVER:-/projects/sun/resolver/.classes}:"
+JAXP="${JAXP:-/usr/local/jaxp-1.1/jaxp.jar}:"
+RESOLVER="${RESOLVER:-/projects/apache/xml-commons/java/build/classes}:"
 XERCES="${XERCES:-/projects/apache/xml-xerces/java/build/classes}:"
 
 CLASSPATH=$JAXP$RESOLVER$XERCES$CLASSPATH
@@ -13,7 +13,7 @@ CLASSPATH=$JAXP$RESOLVER$XERCES$CLASSPATH
 #echo $CLASSPATH
 
 java \
-  com.sun.resolver.apps.xread $*
+  org.apache.xml.resolver.apps.xread $*
 
 if [ $? != 0 ]; then
   echo ""
