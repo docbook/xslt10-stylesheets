@@ -106,8 +106,8 @@
 <gentext key="table" text="Tabela"/>
 <gentext key="Tip" text="Podpowied&#378;"/>
 <gentext key="tip" text="Podpowied&#378;"/>
-<gentext key="Warning" text="Ostrze&#191;enie"/>
-<gentext key="warning" text="Ostrze&#191;enie"/>
+<gentext key="Warning" text="Ostrze&#380;enie"/>
+<gentext key="warning" text="Ostrze&#380;enie"/>
 
 <gentext key="and" text="i"/>
 <gentext key="by" text=""/>
@@ -143,7 +143,7 @@
 <gentext key="listofunknown" text="Spis ???"/>
 
 <gentext key="nav-home" text="Spis tre&#347;ci"/>
-<gentext key="nav-next" text="Nast&#234;pny"/>
+<gentext key="nav-next" text="Nast&#281;pny"/>
 <gentext key="nav-next-sibling" text="Nast&#281;pny rozdzia&#322;"/>
 <gentext key="nav-prev" text="Poprzedni"/>
 <gentext key="nav-prev-sibling" text="Poprzedni rozdzia&#322;"/>
