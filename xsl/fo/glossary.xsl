@@ -209,25 +209,29 @@
     </xsl:choose>
   </xsl:variable>
 
+  <xsl:if test="title">
+    <xsl:apply-templates select="title" mode="list.title.mode"/>
+  </xsl:if>
+
   <xsl:choose>
     <xsl:when test="$presentation = 'list'">
       <fo:list-block provisional-distance-between-starts="{$width}"
                      provisional-label-separation="{$glossterm.separation}"
                      xsl:use-attribute-sets="normal.para.spacing">
-        <xsl:apply-templates mode="glossary.as.list"/>
+        <xsl:apply-templates mode="glossary.as.list" select="glossentry"/>
       </fo:list-block>
     </xsl:when>
     <xsl:when test="$presentation = 'blocks'">
-      <xsl:apply-templates mode="glossary.as.blocks"/>
+      <xsl:apply-templates mode="glossary.as.blocks" select="glossentry"/>
     </xsl:when>
     <xsl:when test="$glosslist.as.blocks != 0">
-      <xsl:apply-templates mode="glossary.as.blocks"/>
+      <xsl:apply-templates mode="glossary.as.blocks" select="glossentry"/>
     </xsl:when>
     <xsl:otherwise>
       <fo:list-block provisional-distance-between-starts="{$width}"
                      provisional-label-separation="{$glossterm.separation}"
                      xsl:use-attribute-sets="normal.para.spacing">
-        <xsl:apply-templates mode="glossary.as.list"/>
+        <xsl:apply-templates mode="glossary.as.list" select="glossentry"/>
       </fo:list-block>
     </xsl:otherwise>
   </xsl:choose>
