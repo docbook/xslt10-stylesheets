@@ -180,6 +180,12 @@ PrintHistory, printhistory, printhistory. PrintHistory, printhistory.
 <volumenum>VolumeNum</volumenum>
 </biblioentry>
 
+</bibliodiv>
+
+<bibliodiv><title>Citetitle Test</title>
+
+<bibliomixed><abbrev>bt</abbrev><citetitle>Book Title</citetitle></bibliomixed>
+<bibliomixed><abbrev>at</abbrev><citetitle pubwork="article">Article Title</citetitle></bibliomixed>
 
 </bibliodiv>
 
