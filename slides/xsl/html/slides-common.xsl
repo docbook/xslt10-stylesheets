@@ -298,6 +298,15 @@
         <xsl:value-of select="($home/title|$home/slidesinfo/title)[1]"/>
       </xsl:attribute>
     </link>
+
+    <link rel="first">
+      <xsl:attribute name="href">
+        <xsl:apply-templates select="$home" mode="filename"/>
+      </xsl:attribute>
+      <xsl:attribute name="title">
+        <xsl:value-of select="($home/title|$home/slidesinfo/title)[1]"/>
+      </xsl:attribute>
+    </link>
   </xsl:if>
 
   <xsl:if test="$up">
@@ -331,6 +340,18 @@
         <xsl:value-of select="$next/title"/>
       </xsl:attribute>
     </link>
+
+    <xsl:variable name="last" select="$next/following::foil[last()]"/>
+    <xsl:if test="$last">
+      <link rel="last">
+        <xsl:attribute name="href">
+          <xsl:apply-templates select="$last" mode="filename"/>
+        </xsl:attribute>
+        <xsl:attribute name="title">
+          <xsl:value-of select="$last/title"/>
+        </xsl:attribute>
+      </link>
+    </xsl:if>
   </xsl:if>
 
   <xsl:for-each select="foil">
@@ -1020,6 +1041,12 @@
                 <xsl:with-param name="next" select="$next"/>
                 <xsl:with-param name="prev" select="$prev"/>
               </xsl:call-template>
+
+              <xsl:if test="$foilgroup.toc != 0">
+                <dl>
+                  <xsl:apply-templates select="foil" mode="toc"/>
+                </dl>
+              </xsl:if>
             </div>
 
             <div id="overlayDiv">
@@ -1122,7 +1149,7 @@
     <xsl:otherwise>
       <link type="text/css" rel="stylesheet">
         <xsl:attribute name="href">
-          <xsl:call-template name="css.stylesheet">
+          <xsl:call-template name="css-file">
             <xsl:with-param name="css" select="$href"/>
           </xsl:call-template>
         </xsl:attribute>
