@@ -153,7 +153,7 @@
 <!ENTITY % local.gen.char.class "">
 <!ENTITY % gen.char.class
 		"abbrev|acronym|citation|citerefentry|citetitle|emphasis
-		|firstterm|foreignphrase|glossterm|footnote|phrase
+		|firstterm|foreignphrase|glossterm|footnote|phrase|orgname
 		|quote|trademark|wordasword|personname %local.gen.char.class;">
 
 <!ENTITY % local.link.char.class "">
