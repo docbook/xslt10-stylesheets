@@ -402,8 +402,13 @@ Title=</xsl:text>
     &lt;/OBJECT&gt;</xsl:text>
   </xsl:if>
   <xsl:if test="book">
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+      </xsl:call-template>
+    </xsl:variable>
     <xsl:text>&lt;UL&gt;</xsl:text>
-      <xsl:if test="$generate.set.toc != 0 and $htmlhelp.hhc.show.root = 0">
+      <xsl:if test="contains($toc.params, 'toc') and $htmlhelp.hhc.show.root = 0">
         <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
           &lt;param name="Name" value="</xsl:text>
             <xsl:call-template name="gentext">
@@ -444,8 +449,13 @@ Title=</xsl:text>
     &lt;/OBJECT&gt;</xsl:text>
   </xsl:if>
   <xsl:if test="part|reference|preface|chapter|appendix|bibliography|article|colophon|glossary">
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+      </xsl:call-template>
+    </xsl:variable>
     <xsl:text>&lt;UL&gt;</xsl:text>
-      <xsl:if test="$generate.book.toc != 0 and $htmlhelp.hhc.show.root = 0 and not(parent::*)">
+      <xsl:if test="contains($toc.params, 'toc') and $htmlhelp.hhc.show.root = 0 and not(parent::*)">
         <xsl:text>&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
           &lt;param name="Name" value="</xsl:text>
             <xsl:call-template name="gentext">
