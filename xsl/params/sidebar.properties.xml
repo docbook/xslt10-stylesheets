@@ -20,9 +20,9 @@
   <xsl:attribute name="padding-right">12pt</xsl:attribute>
   <xsl:attribute name="padding-top">6pt</xsl:attribute>
   <xsl:attribute name="padding-bottom">6pt</xsl:attribute>
+  <xsl:attribute name="margin-left">0pt</xsl:attribute>
+  <xsl:attribute name="margin-right">0pt</xsl:attribute>
 <!--
-  <xsl:attribute name="margin-left">12pt</xsl:attribute>
-  <xsl:attribute name="margin-right">12pt</xsl:attribute>
   <xsl:attribute name="margin-top">6pt</xsl:attribute>
   <xsl:attribute name="margin-bottom">6pt</xsl:attribute>
 -->
