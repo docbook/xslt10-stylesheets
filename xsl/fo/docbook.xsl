@@ -32,6 +32,7 @@
 <xsl:include href="../common/subtitles.xsl"/>
 <xsl:include href="../common/gentext.xsl"/>
 <xsl:include href="autotoc.xsl"/>
+<xsl:include href="autoidx.xsl"/>
 <xsl:include href="lists.xsl"/>
 <xsl:include href="callout.xsl"/>
 <xsl:include href="verbatim.xsl"/>

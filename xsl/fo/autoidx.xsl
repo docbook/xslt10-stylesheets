@@ -37,8 +37,6 @@
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 version="1.0">
 
-<xsl:import href="docbook.xsl"/>
-
 <!-- ==================================================================== -->
 <!-- Derived from Jeni Tennison's work in the HTML case -->
 
