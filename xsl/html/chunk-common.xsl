@@ -168,10 +168,6 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:variable name="dir">
-    <xsl:call-template name="dbhtml-dir"/>
-  </xsl:variable>
-
   <xsl:choose>
     <xsl:when test="$ischunk='0'">
       <!-- if called on something that isn't a chunk, walk up... -->
@@ -188,10 +184,7 @@
 
     <xsl:when test="not($recursive) and $filename != ''">
       <!-- if this chunk has an explicit name, use it -->
-      <xsl:if test="$dir != ''">
-        <xsl:value-of select="$dir"/>
-        <xsl:text>/</xsl:text>
-      </xsl:if>
+      <xsl:call-template name="dbhtml-dir"/>
       <xsl:value-of select="$filename"/>
     </xsl:when>
 
@@ -402,7 +395,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template name="href.target">
+<xsl:template name="href.target.uri">
   <xsl:param name="object" select="."/>
   <xsl:variable name="ischunk">
     <xsl:call-template name="chunk">
@@ -418,6 +411,70 @@
       <xsl:with-param name="object" select="$object"/>
     </xsl:call-template>
   </xsl:if>
+</xsl:template>
+
+<xsl:template name="href.target">
+  <xsl:param name="context" select="."/>
+  <xsl:param name="object" select="."/>
+
+  <xsl:variable name="href.to.uri">
+    <xsl:call-template name="href.target.uri">
+      <xsl:with-param name="object" select="$object"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="href.from.uri">
+    <xsl:call-template name="href.target.uri">
+      <xsl:with-param name="object" select="$context"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="href.to">
+    <xsl:call-template name="trim.common.uri.paths">
+      <xsl:with-param name="uriA" select="$href.to.uri"/>
+      <xsl:with-param name="uriB" select="$href.from.uri"/>
+      <xsl:with-param name="return" select="'A'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="href.from">
+    <xsl:call-template name="trim.common.uri.paths">
+      <xsl:with-param name="uriA" select="$href.to.uri"/>
+      <xsl:with-param name="uriB" select="$href.from.uri"/>
+      <xsl:with-param name="return" select="'B'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="depth">
+    <xsl:call-template name="count.uri.path.depth">
+      <xsl:with-param name="filename" select="$href.from"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="href">
+    <xsl:call-template name="copy-string">
+      <xsl:with-param name="string" select="'../'"/>
+      <xsl:with-param name="count" select="$depth"/>
+    </xsl:call-template>
+    <xsl:value-of select="$href.to"/>
+  </xsl:variable>
+
+<!--
+  <xsl:message>
+    <xsl:text>In </xsl:text>
+    <xsl:value-of select="name(.)"/>
+    <xsl:text> (</xsl:text>
+    <xsl:value-of select="$href.from"/>
+    <xsl:text>,</xsl:text>
+    <xsl:value-of select="$depth"/>
+    <xsl:text>) </xsl:text>
+    <xsl:value-of select="name($object)"/>
+    <xsl:text> href=</xsl:text>
+    <xsl:value-of select="$href"/>
+  </xsl:message>
+-->
+
+  <xsl:value-of select="$href"/>
 </xsl:template>
 
 <!-- ==================================================================== -->

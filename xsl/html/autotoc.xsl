@@ -13,6 +13,7 @@
      ******************************************************************** -->
 
 <xsl:template name="href.target">
+  <xsl:param name="context" select="."/>
   <xsl:param name="object" select="."/>
   <xsl:text>#</xsl:text>
   <xsl:call-template name="object.id">
@@ -36,6 +37,8 @@
 </xsl:variable>
 
 <xsl:template name="set.toc">
+  <xsl:param name="toc-context" select="."/>
+
   <xsl:variable name="toc.title">
     <p>
       <b>
@@ -71,7 +74,9 @@
         <div class="toc">
           <xsl:copy-of select="$toc.title"/>
           <xsl:element name="{$toc.list.type}">
-            <xsl:apply-templates select="$nodes" mode="toc"/>
+            <xsl:apply-templates select="$nodes" mode="toc">
+              <xsl:with-param name="toc-context" select="$toc-context"/>
+            </xsl:apply-templates>
           </xsl:element>
         </div>
       </xsl:if>
@@ -80,6 +85,8 @@
 </xsl:template>
 
 <xsl:template name="division.toc">
+  <xsl:param name="toc-context" select="."/>
+
   <xsl:variable name="toc.title">
     <p>
       <b>
@@ -119,7 +126,9 @@
         <div class="toc">
           <xsl:copy-of select="$toc.title"/>
           <xsl:element name="{$toc.list.type}">
-            <xsl:apply-templates select="$nodes" mode="toc"/>
+            <xsl:apply-templates select="$nodes" mode="toc">
+              <xsl:with-param name="toc-context" select="$toc-context"/>
+            </xsl:apply-templates>
           </xsl:element>
         </div>
       </xsl:if>
@@ -128,6 +137,8 @@
 </xsl:template>
 
 <xsl:template name="component.toc">
+  <xsl:param name="toc-context" select="."/>
+
   <xsl:variable name="toc.title">
     <p>
       <b>
@@ -165,7 +176,9 @@
         <div class="toc">
           <xsl:copy-of select="$toc.title"/>
           <xsl:element name="{$toc.list.type}">
-            <xsl:apply-templates select="$nodes" mode="toc"/>
+            <xsl:apply-templates select="$nodes" mode="toc">
+              <xsl:with-param name="toc-context" select="$toc-context"/>
+            </xsl:apply-templates>
           </xsl:element>
         </div>
       </xsl:if>
@@ -174,6 +187,8 @@
 </xsl:template>
 
 <xsl:template name="section.toc">
+  <xsl:param name="toc-context" select="."/>
+
   <xsl:variable name="toc.title">
     <p>
       <b>
@@ -210,7 +225,9 @@
         <div class="toc">
           <xsl:copy-of select="$toc.title"/>
           <xsl:element name="{$toc.list.type}">
-            <xsl:apply-templates select="$nodes" mode="toc"/>
+            <xsl:apply-templates select="$nodes" mode="toc">
+              <xsl:with-param name="toc-context" select="$toc-context"/>
+            </xsl:apply-templates>
           </xsl:element>
         </div>
       </xsl:if>
@@ -221,11 +238,14 @@
 <!-- ==================================================================== -->
 
 <xsl:template name="subtoc">
+  <xsl:param name="toc-context" select="."/>
   <xsl:param name="nodes" select="NOT-AN-ELEMENT"/>
 
   <xsl:variable name="subtoc">
     <xsl:element name="{$toc.list.type}">
-      <xsl:apply-templates mode="toc" select="$nodes"/>
+      <xsl:apply-templates mode="toc" select="$nodes">
+        <xsl:with-param name="toc-context" select="$toc-context"/>
+      </xsl:apply-templates>
     </xsl:element>
   </xsl:variable>
 
@@ -287,7 +307,9 @@
 
     <a>
       <xsl:attribute name="href">
-        <xsl:call-template name="href.target"/>
+        <xsl:call-template name="href.target">
+          <xsl:with-param name="context" select="$toc-context"/>
+        </xsl:call-template>
       </xsl:attribute>
       <xsl:apply-templates select="." mode="title.markup"/>
     </a>
@@ -303,7 +325,10 @@
 </xsl:template>
 
 <xsl:template match="book|setindex" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
   <xsl:call-template name="subtoc">
+    <xsl:with-param name="toc-context" select="$toc-context"/>
     <xsl:with-param name="nodes" select="part|reference
                                          |preface|chapter|appendix
                                          |article
@@ -314,7 +339,10 @@
 </xsl:template>
 
 <xsl:template match="part|reference" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
   <xsl:call-template name="subtoc">
+    <xsl:with-param name="toc-context" select="$toc-context"/>
     <xsl:with-param name="nodes" select="appendix|chapter|article
                                          |index|glossary|bibliography
                                          |preface|reference|refentry
@@ -323,63 +351,98 @@
 </xsl:template>
 
 <xsl:template match="preface|chapter|appendix|article" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
   <xsl:call-template name="subtoc">
+    <xsl:with-param name="toc-context" select="$toc-context"/>
     <xsl:with-param name="nodes" select="section|sect1|bridgehead"/>
   </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="sect1" mode="toc">
+  <xsl:param name="toc-context" select="."/>
   <xsl:call-template name="subtoc">
+    <xsl:with-param name="toc-context" select="$toc-context"/>
     <xsl:with-param name="nodes" select="sect2|bridgehead"/>
   </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="sect2" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
   <xsl:call-template name="subtoc">
+    <xsl:with-param name="toc-context" select="$toc-context"/>
     <xsl:with-param name="nodes" select="sect3|bridgehead"/>
   </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="sect3" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
   <xsl:call-template name="subtoc">
+    <xsl:with-param name="toc-context" select="$toc-context"/>
     <xsl:with-param name="nodes" select="sect4|bridgehead"/>
   </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="sect4" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
   <xsl:call-template name="subtoc">
+    <xsl:with-param name="toc-context" select="$toc-context"/>
     <xsl:with-param name="nodes" select="sect5|bridgehead"/>
   </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="sect5" mode="toc">
-  <xsl:call-template name="subtoc"/>
+  <xsl:param name="toc-context" select="."/>
+
+  <xsl:call-template name="subtoc">
+    <xsl:with-param name="toc-context" select="$toc-context"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="section" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
   <xsl:call-template name="subtoc">
+    <xsl:with-param name="toc-context" select="$toc-context"/>
     <xsl:with-param name="nodes" select="section|bridgehead"/>
   </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="bridgehead" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
   <xsl:if test="$bridgehead.in.toc != 0">
-    <xsl:call-template name="subtoc"/>
+    <xsl:call-template name="subtoc">
+      <xsl:with-param name="toc-context" select="$toc-context"/>
+    </xsl:call-template>
   </xsl:if>
 </xsl:template>
 
 <xsl:template match="bibliography|glossary" mode="toc">
-  <xsl:call-template name="subtoc"/>
+  <xsl:param name="toc-context" select="."/>
+
+  <xsl:call-template name="subtoc">
+    <xsl:with-param name="toc-context" select="$toc-context"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="index" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
   <!-- If the index tag is empty, don't point at it from the TOC -->
   <xsl:if test="* or $generate.index">
-    <xsl:call-template name="subtoc"/>
+    <xsl:call-template name="subtoc">
+      <xsl:with-param name="toc-context" select="$toc-context"/>
+    </xsl:call-template>
   </xsl:if>
 </xsl:template>
 
 <xsl:template match="refentry" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
   <xsl:variable name="refmeta" select=".//refmeta"/>
   <xsl:variable name="refentrytitle" select="$refmeta//refentrytitle"/>
   <xsl:variable name="refnamediv" select=".//refnamediv"/>
@@ -411,6 +474,8 @@
 </xsl:template>
 
 <xsl:template match="title" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
   <a>
     <xsl:attribute name="href">
       <xsl:call-template name="href.target">
@@ -422,6 +487,7 @@
 </xsl:template>
 
 <xsl:template name="manual-toc">
+  <xsl:param name="toc-context" select="."/>
   <xsl:param name="tocentry"/>
 
   <!-- be careful, we don't want to change the current document to the other tree! -->
@@ -466,6 +532,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template name="list.of.titles">
+  <xsl:param name="toc-context" select="."/>
   <xsl:param name="titles" select="'table'"/>
   <xsl:param name="nodes" select=".//table"/>
 
@@ -488,13 +555,17 @@
       </p>
 
       <xsl:element name="{$toc.list.type}">
-        <xsl:apply-templates select="$nodes" mode="toc"/>
+        <xsl:apply-templates select="$nodes" mode="toc">
+          <xsl:with-param name="toc-context" select="$toc-context"/>
+        </xsl:apply-templates>
       </xsl:element>
     </div>
   </xsl:if>
 </xsl:template>
 
 <xsl:template match="figure|table|example|equation" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
   <xsl:element name="{$toc.listitem.type}">
     <xsl:variable name="label">
       <xsl:apply-templates select="." mode="label.markup"/>
