@@ -105,7 +105,10 @@
 <gentext key="section" text="Kısım"/>
 <gentext key="Section" text="Kısım"/>
 <gentext key="see" text="Bkz."/>
+<gentext key="See" text="Bkz."/>
 <gentext key="seealso" text="Bkz."/>
+<gentext key="Seealso" text="Bkz."/>
+<gentext key="SeeAlso" text="Bkz."/>
 <gentext key="set" text="Takım"/>
 <gentext key="Set" text="Takım"/>
 <gentext key="setindex" text="Takım Dizini"/>
