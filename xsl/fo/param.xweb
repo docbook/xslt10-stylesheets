@@ -91,6 +91,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &toc.section.depth;
 &toc.indent.width;
 &toc.margin.properties;
+&bridgehead.in.toc;
+&generate.section.toc.level;
 
 <!--
 annotate.toc;
@@ -188,7 +190,6 @@ generate.section.toc.level;
 </reference>
 
 <reference><title>Miscellaneous</title>
-&graphic.default.extension;
 &formal.procedures;
 &formal.title.placement;
 &runinhead.default.title.end.punct;
@@ -207,6 +208,12 @@ generate.section.toc.level;
 &use.role.as.xrefstyle;
 &menuchoice.separator;
 &menuchoice.menu.separator;
+&default.float.class;
+</reference>
+
+<reference><title>Graphics</title>
+&graphic.default.extension;
+&default.image.width;
 </reference>
 
 <reference><title>Pagination and General Styles</title>
@@ -424,6 +431,7 @@ around all these parameters.</para>
 <src:fragref linkend="bibliography.collection.frag"/>
 <src:fragref linkend="bibliography.numbered.frag"/>
 <src:fragref linkend="blockquote.properties.frag"/>
+<src:fragref linkend="bridgehead.in.toc.frag"/>
 <src:fragref linkend="body.font.family.frag"/>
 <src:fragref linkend="body.font.master.frag"/>
 <src:fragref linkend="body.font.size.frag"/>
@@ -449,6 +457,8 @@ around all these parameters.</para>
 <src:fragref linkend="compact.list.item.spacing.frag"/>
 <src:fragref linkend="component.title.properties.frag"/>
 <src:fragref linkend="current.docid.frag"/>
+<src:fragref linkend="default.float.class.frag"/>
+<src:fragref linkend="default.image.width.frag"/>
 <src:fragref linkend="default.table.width.frag"/>
 <src:fragref linkend="default.units.frag"/>
 <src:fragref linkend="dingbat.font.family.frag"/>
@@ -468,6 +478,7 @@ around all these parameters.</para>
 <src:fragref linkend="funcsynopsis.style.frag"/>
 <src:fragref linkend="function.parens.frag"/>
 <src:fragref linkend="generate.index.frag"/>
+<src:fragref linkend="generate.section.toc.level.frag"/>
 <src:fragref linkend="generate.toc.frag"/>
 <src:fragref linkend="glossary.as.blocks.frag"/>
 <src:fragref linkend="glossary.collection.frag"/>
