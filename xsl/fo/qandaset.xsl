@@ -43,8 +43,8 @@
   </xsl:variable>
 
   <fo:block id="{$id}">
-    <xsl:if test="title">
-      <xsl:apply-templates select="title"/>
+    <xsl:if test="blockinfo/title|title">
+      <xsl:apply-templates select="(blockinfo/title|title)[1]"/>
     </xsl:if>
 
     <xsl:apply-templates select="*[name(.) != 'title'
@@ -70,7 +70,7 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="qandaset/title">
+<xsl:template match="qandaset/blockinfo/title|qandaset/title">
   <xsl:variable name="enclsect" select="(ancestor::section
                                         | ancestor::simplesect
                                         | ancestor::sect5
@@ -94,6 +94,11 @@
       <xsl:apply-templates/>
     </xsl:with-param>
   </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="qandaset/blockinfo">
+  <!-- what should this template really do? -->
+  <xsl:apply-templates select="legalnotice" mode="titlepage.mode"/>
 </xsl:template>
 
 <xsl:template match="qandadiv">
@@ -124,7 +129,7 @@
   </xsl:variable>
 
   <fo:block id="{$id}">
-    <xsl:apply-templates select="title"/>
+    <xsl:apply-templates select="(blockinfo/title|title)[1]"/>
     <xsl:apply-templates select="*[name(.) != 'title'
                                  and name(.) != 'titleabbrev'
                                  and name(.) != 'qandadiv'
@@ -150,7 +155,7 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="qandadiv/title">
+<xsl:template match="qandadiv/blockinfo/title|qandadiv/title">
   <xsl:variable name="enclsect" select="(ancestor::section
                                         | ancestor::simplesect
                                         | ancestor::sect5
