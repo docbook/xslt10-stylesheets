@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <grammar xmlns="http://relaxng.org/ns/structure/0.9"
+         xmlns:a="http://relaxng.org/ns/annotation/0.9"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
 	 xmlns:dtd="http://www.oasis-open.org/docbook/relaxng/dtdannotations"
          ns="">
@@ -911,8 +912,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <define name="id.attrib">
   <optional>
-    <attribute name="id">
-      <data type="ID"/>
+    <attribute name="id" a:attributeType="ID">
+      <data type="token"/>
     </attribute>
   </optional>
 </define>
@@ -921,8 +922,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 	default </dtd:comment>
 
 <define name="idreq.attrib">
-  <attribute name="id">
-    <data type="ID"/>
+  <attribute name="id" a:attributeType="ID">
+    <data type="token"/>
   </attribute>
 </define>
 
@@ -1076,7 +1077,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 	Other, the OtherAction attribute must have a nonempty value </dtd:comment>
 <dtd:comment> OtherAction: User-defined key combination type </dtd:comment>
 
-<define name="keyaction.attrib.group">
+<define name="keyaction.attrib">
   <optional>
     <attribute name="action">
       <choice>
@@ -1131,8 +1132,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <define name="linkend.attrib">
   <optional>
-    <attribute name="linkend">
-      <data type="IDREF"/>
+    <attribute name="linkend" a:attributeType="IDREF">
+      <data type="token"/>
     </attribute>
   </optional>
 </define>
@@ -1140,8 +1141,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <dtd:comment> Linkend: required link to related information </dtd:comment>
 
 <define name="linkendreq.attrib">
-  <attribute name="linkend">
-    <data type="IDREF"/>
+  <attribute name="linkend" a:attributeType="IDREF">
+    <data type="token"/>
   </attribute>
 </define>
 
@@ -1150,8 +1151,12 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <define name="linkends.attrib">
   <optional>
-    <attribute name="linkends">
-      <data type="IDREFS"/>
+    <attribute name="linkends" a:attributeType="IDREFS">
+      <list>
+        <oneOrMore>
+          <data type="token"/>
+        </oneOrMore>
+      </list>
     </attribute>
   </optional>
 </define>
@@ -3518,8 +3523,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <div dtd:marked-section="glosssee.attlist">
 <define name="glosssee.attlist">
   <optional>
-    <attribute name="otherterm">
-      <data type="IDREF"/>
+    <attribute name="otherterm" a:attributeType="IDREF">
+      <data type="token"/>
     </attribute>
   </optional>
   <ref name="common.attrib"/>
@@ -3559,8 +3564,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <div dtd:marked-section="glossseealso.attlist">
 <define name="glossseealso.attlist">
   <optional>
-    <attribute name="otherterm">
-      <data type="IDREF"/>
+    <attribute name="otherterm" a:attributeType="IDREF">
+      <data type="token"/>
     </attribute>
   </optional>
   <ref name="common.attrib"/>
@@ -4173,8 +4178,12 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <dtd:pe-decl name="callout.attlist">INCLUDE</dtd:pe-decl>
 <div dtd:marked-section="callout.attlist">
 <define name="callout.attlist">
-  <attribute name="arearefs">
-    <data type="IDREFS"/>
+  <attribute name="arearefs" a:attributeType="IDREFS">
+    <list>
+      <oneOrMore>
+        <data type="token"/>
+      </oneOrMore>
+    </list>
   </attribute>
   <ref name="common.attrib"/>
   <ref name="callout.role.attrib"/>
@@ -5651,7 +5660,20 @@ in the text (no (0) value, the default)
   <ref name="role.attrib"/>
 </define>
 
-<dtd:div dtd:marked-section="cals.table.module">
+<!-- hacks -->
+<define name="common.table.attribs">
+  <ref name="bodyatt"/>
+  <ref name="secur"/>
+</define>
+<define name="secur">
+  <ref name="common.attrib"/>
+  <ref name="tables.role.attrib"/>
+</define>
+<!-- /hacks -->
+
+
+<!--
+<div dtd:marked-section="cals.table.module">
 <dtd:comment> Add label and role attributes to table and informaltable </dtd:comment>
 <define name="bodyatt">
   <ref name="label.attrib"/>
@@ -5707,8 +5729,11 @@ in the text (no (0) value, the default)
 <dtd:pe-decl name="tablemodel"
              public="-//OASIS//DTD DocBook XML CALS Table Model V4.1.2//EN"
              system="calstblx.dtd"/>
-</dtd:div> <!-- cals.table.module -->
+</div>
+-->
+ <!-- cals.table.module -->
 
+<!--
 <dtd:pe-decl name="exchange.table.module">INCLUDE</dtd:pe-decl>
 <div dtd:marked-section="exchange.table.module">
 <dtd:comment> Add common attributes and the Label attribute to Table and </dtd:comment>
@@ -5782,7 +5807,9 @@ in the text (no (0) value, the default)
 <dtd:pe-decl name="tablemodel"
              public="-//OASIS//DTD XML Exchange Table Model 19990315//EN"
              system="soextblx.dtd"/>
-</div> <!-- exchange.table.module -->
+</div>
+-->
+<!-- exchange.table.module -->
 <dtd:pe-ref name="tablemodel"/>
 
 <include href="soextblx.rng"/>
@@ -11938,8 +11965,8 @@ OtherCredit. </dtd:comment>
 <div dtd:marked-section="link.attlist">
 <define name="link.attlist">
   <optional>
-    <attribute name="endterm">
-      <data type="IDREF"/>
+    <attribute name="endterm" a:attributeType="IDREF">
+      <data type="token"/>
     </attribute>
   </optional>
   <ref name="linkendreq.attrib"/>
@@ -11991,8 +12018,8 @@ OtherCredit. </dtd:comment>
     </attribute>
   </optional>
   <optional>
-    <attribute name="linkmode">
-      <data type="IDREF"/>
+    <attribute name="linkmode" a:attributeType="IDREF">
+      <data type="token"/>
     </attribute>
   </optional>
   <optional>
@@ -12109,8 +12136,8 @@ OtherCredit. </dtd:comment>
 <div dtd:marked-section="xref.attlist">
 <define name="xref.attlist">
   <optional>
-    <attribute name="endterm">
-      <data type="IDREF"/>
+    <attribute name="endterm" a:attributeType="IDREF">
+      <data type="token"/>
     </attribute>
   </optional>
   <ref name="linkendreq.attrib"/>
@@ -12296,13 +12323,17 @@ OtherCredit. </dtd:comment>
     </attribute>
   </optional>
   <optional>
-    <attribute name="startref">
-      <data type="IDREF"/>
+    <attribute name="startref" a:attributeType="IDREF">
+      <data type="token"/>
     </attribute>
   </optional>
   <optional>
-    <attribute name="zone">
-      <data type="IDREFS"/>
+    <attribute name="zone" a:attributeType="IDREFS">
+      <list>
+        <oneOrMore>
+          <data type="token"/>
+        </oneOrMore>
+      </list>
     </attribute>
   </optional>
   <ref name="common.attrib"/>
