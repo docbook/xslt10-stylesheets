@@ -1,26 +1,41 @@
 include ../../cvstools/Makefile.incl
 
-SPECVER=
+XSLT=xsltproc
 
-ifeq ($(SPECVER),)
-SPECSEP=
-else
-SPECSEP=-
-endif
+STATUS=wd
+OASISTC=docbook
+SPECNAME=xmlcharent
+SPECVER=0.3
 
-HTMLSTYLE=/projects/oasis/stylesheets/tr.xsl
-HTML-CSS=spec.css
+SPECROOT=$(STATUS)-$(OASISTC)-$(SPECNAME)
+SPECBASE=$(SPECROOT)-$(SPECVER)
 
-OASIS-LOGO=http://www.oasis-open.org/docbook/oasis.png
-XSLPARAM=html.stylesheet=$(HTML-CSS) oasis.logo=$(OASIS-LOGO)
+HTMLSTYLE=/projects/oasis/spectools/stylesheets/oasis-docbook-html.xsl
+HTMLPARAM=
 
-XSLT=saxon
+FOSTYLE=/projects/oasis/spectools/stylesheets/oasis-docbook-fo.xsl
+FOPARAM=oasis.logo=/projects/oasis/spectools/images/oasis.png
 
-all: entities.html
+all: html pdf
 
-tables:
-	perl gentext.pl
-
-entities.html: entities.xml
+valid: $(SPECROOT).xml
 	$(XJPARSE) $<
-	$(XSLT) $< $(HTMLSTYLE) entities$(SPECSEP)$(SPECVER).html $(XSLPARAM)
+
+html: $(SPECBASE).html
+
+fo: $(SPECBASE).fo
+
+pdf: $(SPECBASE).pdf
+
+$(SPECBASE).html: $(SPECROOT).xml valid
+	$(XSLT) $< $(HTMLSTYLE) $(SPECBASE).html $(HTMLPARAM)
+
+$(SPECBASE).fo: $(SPECROOT).xml valid
+	$(XSLT) $< $(FOSTYLE) $(SPECBASE).fo $(FOPARAM)
+
+$(SPECBASE).pdf: $(SPECBASE).fo
+	xep $(SPECBASE).fo
+	rm -f $(SPECBASE).fo
+
+clean:
+	$(RM) -f *.html *.pdf *.fo
