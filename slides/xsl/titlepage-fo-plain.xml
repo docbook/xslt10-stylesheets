@@ -27,7 +27,7 @@
 	     fo:text-align="center"
 	     fo:space-after="1em"
 	     fo:keep-with-next="always"
-	     fo:font-size="&hsize5;"
+	     fo:font-size="24pt"
 	     fo:font-weight="bold"
 	     fo:font-family="{$slide.title.font.family}"/>
 
@@ -79,7 +79,7 @@
 <t:titlepage element="section" wrapper="fo:block">
   <t:titlepage-content side="recto">
     <title predicate="[1]"
-	   fo:font-size="&hsize5;"
+	   fo:font-size="24pt"
 	   fo:text-align="center"
 	   fo:font-weight="bold"
 	   fo:font-family="{$slide.title.font.family}"/>
@@ -115,7 +115,7 @@
 <t:titlepage element="foil" wrapper="fo:block">
   <t:titlepage-content side="recto">
     <title predicate="[1]"
-	   fo:font-size="&hsize4;"
+	   fo:font-size="22pt"
 	   fo:font-weight="bold"
 	   fo:text-align="center"
 	   fo:font-family="{$slide.title.font.family}"/>
