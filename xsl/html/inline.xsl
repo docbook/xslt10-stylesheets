@@ -1030,5 +1030,9 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template match="beginpage">
+  <!-- does nothing; this *is not* markup to force a page break. -->
+</xsl:template>
+
 </xsl:stylesheet>
 
