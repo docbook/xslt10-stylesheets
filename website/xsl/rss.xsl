@@ -79,7 +79,7 @@
           <xsl:value-of select="../dc:date[1]"/>
           <xsl:text>)</xsl:text>
         </xsl:when>
-        <xsl:otherwise>
+        <xsl:when test="function-available('cvsf:localTime')">
           <xsl:variable name="timeString" select="cvsf:localTime(../cvs:date[1])"/>
           <xsl:text> (</xsl:text>
           <xsl:value-of select="substring($timeString, 1, 3)"/>
@@ -90,6 +90,9 @@
           <xsl:text> </xsl:text>
           <xsl:value-of select="substring($timeString, 25, 4)"/>
           <xsl:text>)</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="../cvs:date[1]"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:if>
