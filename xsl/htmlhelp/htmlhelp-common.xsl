@@ -766,35 +766,47 @@ Title=</xsl:text>
 <xsl:template match="index" mode="toc"/>
 
 <xsl:template match="indexterm">
-
-  <xsl:variable name="primary" select="normalize-space(primary)"/>
-  <xsl:variable name="secondary" select="normalize-space(secondary)"/>
-  <xsl:variable name="tertiary" select="normalize-space(tertiary)"/>
-
-  <xsl:variable name="text">
-    <xsl:value-of select="$primary"/>
-    <xsl:if test="secondary">
-      <xsl:text>, </xsl:text>
-      <xsl:value-of select="$secondary"/>
-    </xsl:if>
-    <xsl:if test="tertiary">
-      <xsl:text>, </xsl:text>
-      <xsl:value-of select="$tertiary"/>
-    </xsl:if>
-  </xsl:variable>
-
-  <xsl:if test="secondary">
-    <xsl:if test="not(//indexterm[normalize-space(primary)=$primary and not(secondary)])">
+  <xsl:choose>
+    <xsl:when test="$htmlhelp.use.hhk = 0">
+  
+      <xsl:variable name="primary" select="normalize-space(primary)"/>
+      <xsl:variable name="secondary" select="normalize-space(secondary)"/>
+      <xsl:variable name="tertiary" select="normalize-space(tertiary)"/>
+      
+      <xsl:variable name="text">
+        <xsl:value-of select="$primary"/>
+        <xsl:if test="secondary">
+          <xsl:text>, </xsl:text>
+          <xsl:value-of select="$secondary"/>
+        </xsl:if>
+        <xsl:if test="tertiary">
+          <xsl:text>, </xsl:text>
+          <xsl:value-of select="$tertiary"/>
+        </xsl:if>
+      </xsl:variable>
+      
+      <xsl:if test="secondary">
+        <xsl:if test="not(//indexterm[normalize-space(primary)=$primary and not(secondary)])">
+          <xsl:call-template name="write.indexterm">
+            <xsl:with-param name="text" select="$primary"/>
+          </xsl:call-template>
+        </xsl:if>
+      </xsl:if>
+      
       <xsl:call-template name="write.indexterm">
-        <xsl:with-param name="text" select="$primary"/>
+        <xsl:with-param name="text" select="$text"/>
       </xsl:call-template>
-    </xsl:if>
-  </xsl:if>
-
-  <xsl:call-template name="write.indexterm">
-    <xsl:with-param name="text" select="$text"/>
-  </xsl:call-template>
-
+      
+    </xsl:when>
+    <xsl:otherwise>
+      <a>
+        <xsl:attribute name="name">
+          <xsl:call-template name="object.id"/>
+        </xsl:attribute>
+      </a>
+    </xsl:otherwise>
+    
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="write.indexterm">
@@ -814,12 +826,94 @@ Title=</xsl:text>
     <xsl:with-param name="content"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <HTML>
 <HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
 </HEAD><BODY>
-<UL>
-</UL>
+<OBJECT type="text/site properties">
+</OBJECT>
+<UL>]]>
+<xsl:if test="($htmlhelp.use.hhk != 0) and $generate.index">
+  <xsl:choose>
+    <xsl:when test="$rootid != ''">
+      <xsl:apply-templates select="key('id',$rootid)" mode="hhk"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="/" mode="hhk"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:if>
+<![CDATA[</UL>
 </BODY></HTML>]]></xsl:with-param>
     <xsl:with-param name="encoding" select="$htmlhelp.encoding"/>
   </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="indexterm[@class='endofrange']" mode="hhk"/>
+
+<xsl:template match="indexterm" mode="hhk">
+  <xsl:variable name="primary" select="normalize-space(primary)"/>
+  <xsl:variable name="secondary" select="normalize-space(secondary)"/>
+  <xsl:variable name="tertiary" select="normalize-space(tertiary)"/>
+
+  <xsl:call-template name="write.indexterm.hhk">
+    <xsl:with-param name="text" select="$primary"/>
+    <xsl:with-param name="seealso" select="seealso"/>
+  </xsl:call-template>
+
+  <xsl:if test="secondary">
+    <xsl:if test="not(//indexterm[normalize-space(primary)=$primary and not(secondary)])">
+      <xsl:call-template name="write.indexterm.hhk">
+        <!-- We must create fake entry when there is secondary without primary --> 
+        <xsl:with-param name="text" select="$primary"/>
+        <xsl:with-param name="seealso" select="$primary"/>
+      </xsl:call-template>
+    </xsl:if>
+    <![CDATA[<UL>]]>
+    <xsl:call-template name="write.indexterm.hhk">
+      <xsl:with-param name="text" select="$secondary"/>
+      <xsl:with-param name="seealso" select="secondary/seealso"/>
+    </xsl:call-template>
+    <xsl:if test="tertiary">
+      <![CDATA[<UL>]]>
+      <xsl:call-template name="write.indexterm.hhk">
+        <xsl:with-param name="text" select="$tertiary"/>
+        <xsl:with-param name="seealso" select="tertiary/seealso"/>
+      </xsl:call-template>
+      <![CDATA[</UL>]]>
+    </xsl:if>
+    <![CDATA[</UL>]]>
+  </xsl:if>
+
+</xsl:template>
+
+<xsl:template name="write.indexterm.hhk">
+  <xsl:param name="text"/>
+  <xsl:param name="seealso"/>
+  <![CDATA[<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="]]><xsl:value-of select="$text"/><xsl:text><![CDATA[">]]></xsl:text>
+      <xsl:if test="not(seealso)">
+        <xsl:variable name="href">
+          <xsl:call-template name="href.target.with.base.dir"/>
+        </xsl:variable>
+        <xsl:variable name="title">
+          <xsl:call-template name="nearest.title">
+            <xsl:with-param name="object" select=".."/>
+          </xsl:call-template>
+        </xsl:variable>
+        <![CDATA[<param name="Name" value="]]><xsl:value-of select="$title"/><![CDATA[">]]>
+        <![CDATA[<param name="Local" value="]]><xsl:value-of select="$href"/><![CDATA[">]]>
+      </xsl:if>
+      <xsl:if test="seealso">
+        <![CDATA[<param name="See Also" value="]]><xsl:value-of select="$seealso"/><![CDATA[">]]>
+      </xsl:if>
+      <xsl:text><![CDATA[ </OBJECT>]]></xsl:text>
+</xsl:template>
+
+<xsl:template match="text()" mode="hhk"/>
+
+<xsl:template name="nearest.title">
+  <xsl:param name="object"/>
+  <xsl:apply-templates select="$object/ancestor-or-self::*[title][1]" mode="title.markup"/>
 </xsl:template>
 
 <!-- ==================================================================== -->

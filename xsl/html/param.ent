@@ -110,6 +110,7 @@
 <!ENTITY htmlhelp.show.favorities SYSTEM "../params/htmlhelp.show.favorities.xml">
 <!ENTITY htmlhelp.show.menu SYSTEM "../params/htmlhelp.show.menu.xml">
 <!ENTITY htmlhelp.title SYSTEM "../params/htmlhelp.title.xml">
+<!ENTITY htmlhelp.use.hhk SYSTEM "../params/htmlhelp.use.hhk.xml">
 <!ENTITY inherit.keywords SYSTEM "../params/inherit.keywords.xml">
 <!ENTITY label.from.part SYSTEM "../params/label.from.part.xml">
 <!ENTITY linenumbering.everyNth SYSTEM "../params/linenumbering.everyNth.xml">

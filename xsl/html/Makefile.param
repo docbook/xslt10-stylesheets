@@ -21,7 +21,6 @@ PARAMS=../params/admon.graphics.xml \
        ../params/callout.unicode.start.character.xml \
        ../params/callouts.extension.xml \
        ../params/chapter.autolabel.xml \
-       ../params/chunk.datafile.xml \
        ../params/chunk.first.sections.xml \
        ../params/chunk.quietly.xml \
        ../params/chunk.section.depth.xml \
@@ -36,13 +35,16 @@ PARAMS=../params/admon.graphics.xml \
        ../params/chunker.output.omit-xml-declaration.xml \
        ../params/chunker.output.standalone.xml \
        ../params/citerefentry.link.xml \
+       ../params/collect.xref.targets.xml \
        ../params/css.decoration.xml \
+       ../params/current.docid.xml \
        ../params/default.table.width.xml \
        ../params/draft.watermark.image.xml \
        ../params/ebnf.table.bgcolor.xml \
        ../params/ebnf.table.border.xml \
        ../params/emphasis.propagates.style.xml \
        ../params/firstterm.only.link.xml \
+       ../params/footer.rule.xml \
        ../params/formal.procedures.xml \
        ../params/formal.title.placement.xml \
        ../params/funcsynopsis.decoration.xml \
@@ -58,6 +60,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/glossary.collection.xml \
        ../params/glossterm.auto.link.xml \
        ../params/graphic.default.extension.xml \
+       ../params/header.rule.xml \
        ../params/html.base.xml \
        ../params/html.cleanup.xml \
        ../params/html.ext.xml \
@@ -68,6 +71,25 @@ PARAMS=../params/admon.graphics.xml \
        ../params/html.stylesheet.type.xml \
        ../params/htmlhelp.alias.file.xml \
        ../params/htmlhelp.autolabel.xml \
+       ../params/htmlhelp.button.back.xml \
+       ../params/htmlhelp.button.forward.xml \
+       ../params/htmlhelp.button.hideshow.xml \
+       ../params/htmlhelp.button.home.xml \
+       ../params/htmlhelp.button.home.url.xml \
+       ../params/htmlhelp.button.jump1.xml \
+       ../params/htmlhelp.button.jump1.title.xml \
+       ../params/htmlhelp.button.jump1.url.xml \
+       ../params/htmlhelp.button.jump2.xml \
+       ../params/htmlhelp.button.jump2.title.xml \
+       ../params/htmlhelp.button.jump2.url.xml \
+       ../params/htmlhelp.button.locate.xml \
+       ../params/htmlhelp.button.next.xml \
+       ../params/htmlhelp.button.options.xml \
+       ../params/htmlhelp.button.prev.xml \
+       ../params/htmlhelp.button.print.xml \
+       ../params/htmlhelp.button.refresh.xml \
+       ../params/htmlhelp.button.stop.xml \
+       ../params/htmlhelp.button.zoom.xml \
        ../params/htmlhelp.chm.xml \
        ../params/htmlhelp.default.topic.xml \
        ../params/htmlhelp.encoding.xml \
@@ -84,29 +106,11 @@ PARAMS=../params/admon.graphics.xml \
        ../params/htmlhelp.hhp.window.xml \
        ../params/htmlhelp.map.file.xml \
        ../params/htmlhelp.only.xml \
-       ../params/htmlhelp.title.xml \
-       ../params/htmlhelp.show.menu.xml \
        ../params/htmlhelp.show.advanced.search.xml \
        ../params/htmlhelp.show.favorities.xml \
-       ../params/htmlhelp.button.hideshow.xml \
-       ../params/htmlhelp.button.back.xml \
-       ../params/htmlhelp.button.forward.xml \
-       ../params/htmlhelp.button.stop.xml \
-       ../params/htmlhelp.button.refresh.xml \
-       ../params/htmlhelp.button.home.xml \
-       ../params/htmlhelp.button.home.url.xml \
-       ../params/htmlhelp.button.options.xml \
-       ../params/htmlhelp.button.print.xml \
-       ../params/htmlhelp.button.locate.xml \
-       ../params/htmlhelp.button.jump1.xml \
-       ../params/htmlhelp.button.jump1.url.xml \
-       ../params/htmlhelp.button.jump1.title.xml \
-       ../params/htmlhelp.button.jump2.xml \
-       ../params/htmlhelp.button.jump2.url.xml \
-       ../params/htmlhelp.button.jump2.title.xml \
-       ../params/htmlhelp.button.next.xml \
-       ../params/htmlhelp.button.prev.xml \
-       ../params/htmlhelp.button.zoom.xml \
+       ../params/htmlhelp.show.menu.xml \
+       ../params/htmlhelp.title.xml \
+       ../params/htmlhelp.use.hhk.xml \
        ../params/inherit.keywords.xml \
        ../params/label.from.part.xml \
        ../params/linenumbering.everyNth.xml \
@@ -127,6 +131,8 @@ PARAMS=../params/admon.graphics.xml \
        ../params/nominal.image.depth.xml \
        ../params/nominal.image.width.xml \
        ../params/nominal.table.width.xml \
+       ../params/olink.base.uri.xml \
+       ../params/olink.doctitle.xml \
        ../params/olink.fragid.xml \
        ../params/olink.outline.ext.xml \
        ../params/olink.pubid.xml \
@@ -174,14 +180,16 @@ PARAMS=../params/admon.graphics.xml \
        ../params/show.comments.xml \
        ../params/show.revisionflag.xml \
        ../params/spacing.paras.xml \
-       ../params/suppress.navigation.xml \
-       ../params/suppress.header.navigation.xml \
        ../params/suppress.footer.navigation.xml \
+       ../params/suppress.header.navigation.xml \
+       ../params/suppress.navigation.xml \
        ../params/table.border.color.xml \
        ../params/table.border.style.xml \
        ../params/table.border.thickness.xml \
        ../params/table.borders.with.css.xml \
        ../params/tablecolumns.extension.xml \
+       ../params/targets.filename.xml \
+       ../params/target.database.document.xml \
        ../params/tex.math.delims.xml \
        ../params/tex.math.file.xml \
        ../params/tex.math.in.alt.xml \
@@ -192,6 +200,13 @@ PARAMS=../params/admon.graphics.xml \
        ../params/use.embed.for.svg.xml \
        ../params/use.extensions.xml \
        ../params/use.id.as.filename.xml \
+       ../params/use.local.olink.style.xml \
        ../params/use.role.as.xrefstyle.xml \
        ../params/use.svg.xml \
-       ../params/variablelist.as.table.xml
+       ../params/variablelist.as.table.xml \
+       ../params/para.propagates.style.xml \
+       ../params/html.cellpadding.xml \
+       ../params/html.cellspacing.xml \
+       ../params/menuchoice.separator.xml \
+       ../params/menuchoice.menu.separator.xml \
+       ../params/bibliography.numbered.xml
