@@ -1,18 +1,17 @@
 <?xml version='1.0'?>
 <!-- there is no doctype for these files, they are WF only -->
+<!-- $Id$ -->
 <locale language="sl"
         english-language-name="Slovenian"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo xmlns="">
-<!-- FIXME: list the real contributors
 <authorgroup>
-  <author><firstname>Norman</firstname><surname>Walsh</surname>
-          <affiliation><address><email>ndw@nwalsh.com</email></address>
+  <author><firstname>Roman</firstname><surname>Maurer</surname>
+          <affiliation><address><email>roman.maurer@amis.net</email></address>
           </affiliation>
   </author>
 </authorgroup>
--->
 </doc:localeinfo>
 
 <gentext key="Abstract" text="Povzetek"/>
@@ -76,6 +75,7 @@
 <gentext key="preface" text="Predgovor"/>
 <gentext key="Procedure" text="Postopek"/>
 <gentext key="procedure" text="Postopek"/>
+<gentext key="ProductionSet" text="Izdelava"/>
 <gentext key="Published" text="Izdano"/>
 <gentext key="published" text="Izdano"/>
 <gentext key="Question" text="V:"/>
@@ -94,6 +94,11 @@
 <gentext key="revhistory" text="Zgodovina razli&#x010D;ic"/>
 <gentext key="Revision" text="Razli&#x010D;ica"/>
 <gentext key="revision" text="Razli&#x010D;ica"/>
+<gentext key="sect1" text="Razdelek"/>
+<gentext key="sect2" text="Razdelek"/>
+<gentext key="sect3" text="Razdelek"/>
+<gentext key="sect4" text="Razdelek"/>
+<gentext key="sect5" text="Razdelek"/>
 <gentext key="Section" text="Razdelek"/>
 <gentext key="section" text="razdelek"/>
 <gentext key="see" text="glej"/>
@@ -122,8 +127,8 @@
 <gentext key="by" text="od"/>              <!-- ? -->
 <gentext key="Edited" text="Urejeno"/>
 <gentext key="edited" text="Urejeno"/>         <!-- ? -->
-<gentext key="Editedby" text="Urejeno od"/>
-<gentext key="editedby" text="Urejeno od"/>   <!-- ? -->
+<gentext key="Editedby" text="Uredil"/>
+<gentext key="editedby" text="Uredil"/>   <!-- ? -->
 <gentext key="in" text="v"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
@@ -132,8 +137,8 @@
 <gentext key="notes" text="Notes"/>           <!-- ? -->
 <gentext key="Pgs" text="Str."/>
 <gentext key="pgs" text="Str."/>
-<gentext key="Revisedby" text="Revised by: "/>
-<gentext key="revisedby" text="Revised by: "/>
+<gentext key="Revisedby" text="Pregledal: "/>
+<gentext key="revisedby" text="Pregledal: "/>
 <gentext key="TableNotes" text="Notes"/>
 <gentext key="tablenotes" text="Notes"/>           <!-- ? -->
 <gentext key="TableofContents" text="Kazalo"/>
@@ -160,6 +165,13 @@
 <gentext key="nav-prev-sibling" text="Hitro nazaj"/>
 <gentext key="nav-up" text="Gor"/>
 
+<gentext key="sectioncalled"       text="razdelek, imenovan"/>
+
+<gentext key="index symbols"            text="Simboli"/>
+
+<gentext key="lowercase.alpha" text="abc&#x010D;defghijklmnopqrs&#x0161;tuvwxyz&#x017E;"/>
+<gentext key="uppercase.alpha" text="ABC&#x010C;DEFGHIJKLMNOPQRS&#x0160;TUVWXYZ&#x017D;"/>
+
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
 <dingbat key="nestedstartquote" text="&#x2018;"/>
@@ -169,6 +181,7 @@
 <context name="title">
 
 <template name="abstract">%t</template>
+<template name="answer">%t</template>
 <template name="appendix"><Appendix/> %n. %t</template>
 <template name="article">%t</template>
 <template name="authorblurb">%t</template>
@@ -210,7 +223,11 @@
 <template name="partintro">%t</template>
 <template name="preface">%t</template>
 <template name="procedure">%t</template>
+<template name="procedure.formal"><Procedure/> %n. %t</template>
+<template name="productionset">%t</template>
+<template name="productionset.formal"><ProductionSet/> %n</template>
 <template name="qandadiv">%t</template>
+<template name="qandaentry">%t</template>
 <template name="qandaset">%t</template>
 <template name="reference">%t</template>
 <template name="refsect1">%t</template>
@@ -227,6 +244,7 @@
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
+<template name="varlistentry"/>
 <template name="warning">%t</template>
 
 </context>
@@ -234,6 +252,7 @@
 <context name="title-unnumbered">
 
 <template name="appendix">%t</template>
+<template name="bridgehead">%t</template>
 <template name="chapter">%t</template>
 <template name="sect1">%t</template>
 <template name="sect2">%t</template>
