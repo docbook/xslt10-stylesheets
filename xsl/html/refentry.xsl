@@ -199,11 +199,11 @@
   <xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="refsect1|refsect2|refsect3">
+<xsl:template match="refsection|refsect1|refsect2|refsect3">
   <xsl:call-template name="block.object"/>
 </xsl:template>
 
-<xsl:template match="refsect1/title">
+<xsl:template match="refsection/title|refsect1/title">
   <!-- the ID is output in the block.object call for refsect1 -->
   <h2>
     <xsl:apply-templates/>
