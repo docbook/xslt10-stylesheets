@@ -6,6 +6,10 @@
 .slidesinfo h1.author { color: green;
                       }
 
+.section              { font-family: sans-serif;
+                        font-size: 14pt;
+                        font-weight: bold;
+                      }
 .section   h1.title   { text-align: center;
                         color: red;
                         font-family: Arial;
