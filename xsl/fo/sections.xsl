@@ -84,7 +84,9 @@
     </xsl:variable>
 
     <xsl:variable name="title">
-      <xsl:apply-templates select="$section" mode="object.title.markup"/>
+      <xsl:apply-templates select="$section" mode="object.title.markup">
+        <xsl:with-param name="allow-anchors" select="1"/>
+      </xsl:apply-templates>
     </xsl:variable>
 
     <xsl:if test="$passivetex.extensions != 0">
@@ -256,6 +258,7 @@
             font-family="{$title.font.family}"
             margin-left="4pc"
             text-indent="-4pc"
+            keep-with-next.within-column="always"
             space-before.minimum="1em"
             space-before.optimum="1.5em"
             space-before.maximum="2em">
