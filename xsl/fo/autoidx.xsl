@@ -110,7 +110,7 @@
       <fo:block>
         <xsl:apply-templates select="$others[count(.|key('primary',
                                      &primary;)[1]) = 1]"
-                             mode="index-primary">
+                             mode="index-symbol-div">
           <xsl:sort select="&primary;"/>
         </xsl:apply-templates>
       </fo:block>
@@ -126,10 +126,6 @@
 <xsl:template match="indexterm" mode="index-div">
   <xsl:variable name="key" select="translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;)"/>
   <fo:block>
-    <!-- this isn't quite exactly right. ideally all the symbols would -->
-    <!-- be grouped together. as it stands, they all get separate divs -->
-    <!-- but at least this test makes sure that they don't all get     -->
-    <!-- separate titles as well. -->
     <xsl:if test="contains(concat(&lowercase;, &uppercase;), $key)">
       <fo:block font-size="16pt"
                 font-weight="bold"
@@ -144,6 +140,17 @@
         <xsl:sort select="&primary;"/>
       </xsl:apply-templates>
     </fo:block>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="indexterm" mode="index-symbol-div">
+  <xsl:variable name="key" select="translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;)"/>
+
+  <fo:block>
+    <xsl:apply-templates select="key('letter', $key)[count(.|key('primary', &primary;)[1]) = 1]"
+                         mode="index-primary">
+      <xsl:sort select="&primary;"/>
+    </xsl:apply-templates>
   </fo:block>
 </xsl:template>
 
