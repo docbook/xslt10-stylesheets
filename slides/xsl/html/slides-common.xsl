@@ -374,13 +374,15 @@
         <head>
           <title><xsl:value-of select="title"/></title>
 
-          <!-- Links -->
+          <xsl:call-template name="system.head.content">
+            <xsl:with-param name="node" select=".."/>
+          </xsl:call-template>
 
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
+          <!-- Links -->
+          <xsl:if test="$css.stylesheet != ''">
+            <link type="text/css" rel="stylesheet" href="{$css.stylesheet}"/>
+          </xsl:if>
+          <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
           <xsl:call-template name="links">
             <xsl:with-param name="home" select="/slides"/>
@@ -411,8 +413,20 @@
               <xsl:with-param name="language" select="'JavaScript'"/>
             </xsl:call-template>
           </xsl:if>
+
+          <xsl:call-template name="user.head.content">
+            <xsl:with-param name="node" select=".."/>
+          </xsl:call-template>
         </head>
-        <body class="titlepage">
+        <body>
+          <xsl:attribute name="class">
+            <xsl:text>titlepage</xsl:text>
+            <xsl:if test="@role">
+              <xsl:text>-</xsl:text>
+              <xsl:value-of select="@role"/>
+            </xsl:if>
+          </xsl:attribute>
+
           <xsl:call-template name="body.attributes"/>
           <xsl:if test="$overlay != 0">
             <xsl:attribute name="onload">
@@ -532,13 +546,13 @@
         <head>
           <title><xsl:value-of select="slidesinfo/title"/></title>
 
-          <!-- Links -->
+          <xsl:call-template name="system.head.content"/>
 
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
+          <!-- Links -->
+          <xsl:if test="$css.stylesheet != ''">
+            <link type="text/css" rel="stylesheet" href="{$css.stylesheet}"/>
+          </xsl:if>
+          <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
           <xsl:call-template name="links">
             <xsl:with-param name="home" select="$home"/>
@@ -570,6 +584,8 @@
               <xsl:with-param name="language" select="'JavaScript'"/>
             </xsl:call-template>
           </xsl:if>
+
+          <xsl:call-template name="user.head.content"/>
         </head>
 
         <body class="tocpage">
@@ -598,12 +614,15 @@
               <xsl:call-template name="toc-body"/>
             </div>
 
-            <xsl:call-template name="toc-bottom-nav">
-              <xsl:with-param name="home" select="$home"/>
-              <xsl:with-param name="up" select="$up"/>
-              <xsl:with-param name="next" select="$next"/>
-              <xsl:with-param name="tocfile" select="$tocfile"/>
-            </xsl:call-template>
+            <div id="overlayDiv">
+              <xsl:call-template name="overlayDiv.attributes"/>
+              <xsl:call-template name="toc-bottom-nav">
+                <xsl:with-param name="home" select="$home"/>
+                <xsl:with-param name="up" select="$up"/>
+                <xsl:with-param name="next" select="$next"/>
+                <xsl:with-param name="tocfile" select="$tocfile"/>
+              </xsl:call-template>
+            </div>
           </div>
         </body>
       </html>
@@ -729,13 +748,13 @@
         <head>
           <title><xsl:value-of select="title"/></title>
 
-          <!-- Links -->
+          <xsl:call-template name="system.head.content"/>
 
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
+          <!-- Links -->
+          <xsl:if test="$css.stylesheet != ''">
+            <link type="text/css" rel="stylesheet" href="{$css.stylesheet}"/>
+          </xsl:if>
+          <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
           <xsl:call-template name="links">
             <xsl:with-param name="home" select="$home"/>
@@ -767,8 +786,18 @@
               <xsl:with-param name="language" select="'JavaScript'"/>
             </xsl:call-template>
           </xsl:if>
+
+          <xsl:call-template name="user.head.content"/>
         </head>
-        <body class="foil">
+        <body>
+          <xsl:attribute name="class">
+            <xsl:value-of select="local-name(.)"/>
+            <xsl:if test="@role">
+              <xsl:text>-</xsl:text>
+              <xsl:value-of select="@role"/>
+            </xsl:if>
+          </xsl:attribute>
+
           <xsl:call-template name="body.attributes"/>
           <xsl:if test="$overlay != 0">
             <xsl:attribute name="onload">
@@ -888,13 +917,13 @@
         <head>
           <title><xsl:value-of select="title"/></title>
 
-          <!-- Links -->
+          <xsl:call-template name="system.head.content"/>
 
-          <link type="text/css" rel="stylesheet">
-            <xsl:attribute name="href">
-              <xsl:call-template name="css.stylesheet"/>
-            </xsl:attribute>
-          </link>
+          <!-- Links -->
+          <xsl:if test="$css.stylesheet != ''">
+            <link type="text/css" rel="stylesheet" href="{$css.stylesheet}"/>
+          </xsl:if>
+          <xsl:apply-templates select="/processing-instruction('dbhtml')" mode="css.pi"/>
 
           <xsl:call-template name="links">
             <xsl:with-param name="home" select="$home"/>
@@ -926,8 +955,18 @@
               <xsl:with-param name="language" select="'JavaScript'"/>
             </xsl:call-template>
           </xsl:if>
+
+          <xsl:call-template name="user.head.content"/>
         </head>
-        <body class="foilgroup">
+        <body>
+          <xsl:attribute name="class">
+            <xsl:value-of select="local-name(.)"/>
+            <xsl:if test="@role">
+              <xsl:text>-</xsl:text>
+              <xsl:value-of select="@role"/>
+            </xsl:if>
+          </xsl:attribute>
+
           <xsl:call-template name="body.attributes"/>
           <xsl:if test="$overlay != 0">
             <xsl:attribute name="onload">
@@ -1042,6 +1081,7 @@
 
 <xsl:template name="css.stylesheet">
   <!-- danger will robinson: template shadows parameter -->
+  <xsl:message>Warning: css.stylesheet has been deprecated.</xsl:message>
   <xsl:variable name="source.css.stylesheet">
     <xsl:call-template name="dbhtml-attribute">
       <xsl:with-param name="pis" select="/processing-instruction('dbhtml')"/>
@@ -1068,6 +1108,19 @@
       <xsl:value-of select="$css.stylesheet"/>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template match="processing-instruction('dbhtml')" mode="css.pi">
+  <xsl:variable name="href">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis" select="."/>
+      <xsl:with-param name="attribute" select="'css-stylesheet'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:if test="$href != ''">
+    <link type="text/css" rel="stylesheet" href="{$href}"/>
+  </xsl:if>
 </xsl:template>
 
 <!-- ====================================================================== -->
