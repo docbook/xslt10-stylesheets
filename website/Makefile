@@ -9,10 +9,10 @@ DISTRO = website
 # targets for this distro's "distrib" target to depend on
 DISTRIB_DEPENDS = example
 
-# value of ZIP_EXCLUDES is a space-separated list of any file or
-# directory names (shell wildcards OK) that should be excluded
-# from the zip file and tarball for the release
-DISTRIB_EXCLUDES = tests$$
+# value of DISTRIB_EXCLUDES is a space-separated list of any file
+# or directory names (regular expressions OK) that should be
+# excluded from the zip file and tarball for the release
+DISTRIB_EXCLUDES = /tests$$
 
 .PHONY : distrib clean example
 
@@ -26,7 +26,7 @@ example:
 clean:
 	$(MAKE) -C extensions clean
 	$(MAKE) -C example clean
-	$(MAKE) -C example TEXTONLY=1 clean
+	$(MAKE) -C example MAKENONTAB=1 clean
 
 realclean: clean
 	$(MAKE) -C extensions realclean
