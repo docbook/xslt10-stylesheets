@@ -607,6 +607,16 @@
   </xsl:if>
 </xsl:template>
 
+<xsl:template name="verso.authorgroup">
+  <fo:block>
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="'by'"/>
+    </xsl:call-template>
+    <xsl:text> </xsl:text>
+    <xsl:call-template name="person.name.list"/>
+  </fo:block>
+</xsl:template>
+
 <xsl:template match="bookinfo/author" mode="titlepage.mode" priority="2">
   <fo:block>
     <xsl:call-template name="gentext">
