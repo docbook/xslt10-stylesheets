@@ -7,7 +7,7 @@
                 version="1.0">
 
 <!-- ======================================================================
-# This file is part of DocBook NG: The "Gin" Release.
+# This file is part of DocBook NG: The "Hard Cider" Release.
 # A prototype DocBook V4.2 to DocBoook V.next converter.
 #
 # This stylesheet is a "work-in-progress". It converts (some) valid
@@ -26,7 +26,7 @@
 <xsl:output method="xml" encoding="utf-8" indent="no"/>
 <xsl:preserve-space elements="*"/>
 
-<xsl:param name="defaultDate" select="'1970-01-01'"/>
+<xsl:param name="defaultDate" select="''"/>
 
 <xsl:template match="/">
   <xsl:variable name="converted">
@@ -169,7 +169,7 @@
                      |classsynopsisinfo|literallayout" priority="200">
   <xsl:copy>
     <xsl:call-template name="copy.attributes">
-      <xsl:with-param name="suppress.format" select="1"/>
+      <xsl:with-param name="suppress" select="'format'"/>
     </xsl:call-template>
     <xsl:apply-templates/>
   </xsl:copy>
@@ -179,7 +179,7 @@
   <xsl:message>Dropping class attribute from productname</xsl:message>
   <xsl:copy>
     <xsl:call-template name="copy.attributes">
-      <xsl:with-param name="suppress.class" select="1"/>
+      <xsl:with-param name="suppress" select="'class'"/>
     </xsl:call-template>
     <xsl:apply-templates/>
   </xsl:copy>
@@ -300,7 +300,7 @@
 <xsl:template match="imagedata|videodata|audiodata|textdata" priority="200">
   <xsl:copy>
     <xsl:call-template name="copy.attributes">
-      <xsl:with-param name="suppress.srccredit" select="1"/>
+      <xsl:with-param name="suppress" select="'srccredit'"/>
     </xsl:call-template>
     <xsl:if test="@srccredit">
       <xsl:message>
@@ -392,6 +392,15 @@
   </biblioid>
 </xsl:template>
 
+<xsl:template match="biblioid[count(*) = 1
+		              and ulink
+			      and normalize-space(text()) = '']" priority="200">
+  <biblioid xlink:href="{ulink/@url}">
+    <xsl:call-template name="copy.attributes"/>
+    <xsl:apply-templates select="ulink/node()"/>
+  </biblioid>
+</xsl:template>
+
 <xsl:template match="authorblurb" priority="200">
   <personblurb>
     <xsl:call-template name="copy.attributes"/>
@@ -400,13 +409,12 @@
 </xsl:template>
 
 <xsl:template match="ackno" priority="200">
-  <xsl:message>
-    <xsl:text>Converting ackno to para role="ackno".</xsl:text>
-  </xsl:message>
-  <para role="ackno">
+  <ackno>
     <xsl:call-template name="copy.attributes"/>
-    <xsl:apply-templates/>
-  </para>
+    <para>
+      <xsl:apply-templates/>
+    </para>
+  </ackno>
 </xsl:template>
 
 <xsl:template match="collabname" priority="200">
@@ -482,7 +490,7 @@
 
       <link xlink:href="{@url}">
 	<xsl:call-template name="copy.attributes">
-	  <xsl:with-param name="suppress.url" select="1"/>
+	  <xsl:with-param name="suppress" select="'url'"/>
 	</xsl:call-template>
 	<xsl:apply-templates/>
       </link>
@@ -494,7 +502,7 @@
 
       <uri xlink:href="{@url}">
 	<xsl:call-template name="copy.attributes">
-	  <xsl:with-param name="suppress.url" select="1"/>
+	  <xsl:with-param name="suppress" select="'url'"/>
 	</xsl:call-template>
 	<xsl:value-of select="@url"/>
       </uri>
@@ -535,7 +543,7 @@
 <xsl:template match="areaset" priority="200">
   <xsl:copy>
     <xsl:call-template name="copy.attributes">
-      <xsl:with-param name="suppress.coords" select="1"/>
+      <xsl:with-param name="suppress" select="'coords'"/>
     </xsl:call-template>
     <xsl:apply-templates/>
   </xsl:copy>
@@ -762,13 +770,14 @@
     </xsl:when>
 
     <xsl:otherwise>
+      <!-- these don't really matter anymore
       <xsl:message>
 	<xsl:text>Unparseable date: </xsl:text>
 	<xsl:value-of select="normalize-space(.)"/>
 	<xsl:text> in </xsl:text>
 	<xsl:value-of select="name(.)"/>
       </xsl:message>
-
+      -->
       <xsl:copy>
 	<xsl:copy-of select="@*"/>
 	<xsl:apply-templates/>
@@ -783,15 +792,14 @@
 
 <xsl:template match="indexterm">
   <!-- don't copy the defaulted significance='normal' attribute -->
-  <xsl:copy>
-    <xsl:for-each select="@*">
-      <xsl:if test="name(.) != 'significance'
-	            or string(.) != 'normal'">
-	<xsl:copy/>
-      </xsl:if>
-    </xsl:for-each>
+  <indexterm>
+    <xsl:call-template name="copy.attributes">
+      <xsl:with-param name="suppress">
+	<xsl:if test="@significance = 'normal'">significance</xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:apply-templates/>
-  </xsl:copy>
+  </indexterm>
 </xsl:template>
 
 <!-- ====================================================================== -->
@@ -805,7 +813,7 @@
 
       <phrase xlink:href="{@url}">
 	<xsl:call-template name="copy.attributes">
-	  <xsl:with-param name="suppress.url" select="1"/>
+	  <xsl:with-param name="suppress" select="'url'"/>
 	</xsl:call-template>
 	<xsl:apply-templates/>
       </phrase>
@@ -817,7 +825,7 @@
 
       <uri xlink:href="{@url}">
 	<xsl:call-template name="copy.attributes">
-	  <xsl:with-param name="suppress.url" select="1"/>
+	  <xsl:with-param name="suppress" select="'url'"/>
 	</xsl:call-template>
 	<xsl:value-of select="@url"/>
       </uri>
@@ -853,12 +861,7 @@
 
 <xsl:template name="copy.attributes">
   <xsl:param name="src" select="."/>
-  <xsl:param name="suppress.format" select="0"/>
-  <xsl:param name="suppress.class" select="0"/>
-  <xsl:param name="suppress.srccredit" select="0"/>
-  <xsl:param name="suppress.role" select="0"/>
-  <xsl:param name="suppress.url" select="0"/>
-  <xsl:param name="suppress.coords" select="0"/>
+  <xsl:param name="suppress" select="''"/>
 
   <xsl:for-each select="$src/@*">
     <xsl:choose>
@@ -878,12 +881,7 @@
           <xsl:value-of select="."/>
         </xsl:attribute>
       </xsl:when>
-      <xsl:when test="$suppress.format != 0 and local-name(.) = 'format'"/>
-      <xsl:when test="$suppress.class != 0 and local-name(.) = 'class'"/>
-      <xsl:when test="$suppress.srccredit != 0 and local-name(.) = 'srccredit'"/>
-      <xsl:when test="$suppress.role != 0 and local-name(.) = 'role'"/>
-      <xsl:when test="$suppress.url != 0 and local-name(.) = 'url'"/>
-      <xsl:when test="$suppress.coords != 0 and local-name(.) = 'coords'"/>
+      <xsl:when test="$suppress = local-name(.)"/>
       <xsl:otherwise>
         <xsl:copy/>
       </xsl:otherwise>
@@ -899,7 +897,7 @@
       <xsl:element name="{local-name(.)}"
 		   namespace="http://docbook.org/docbook-ng">
 	<xsl:if test="not(parent::*)">
-	  <xsl:attribute name="version">gin</xsl:attribute>
+	  <xsl:attribute name="version">hard cider</xsl:attribute>
 	</xsl:if>
 	<xsl:copy-of select="@*"/>
 	<xsl:apply-templates mode="addNS"/>
@@ -908,7 +906,7 @@
     <xsl:otherwise>
       <xsl:copy>
 	<xsl:if test="not(parent::*)">
-	  <xsl:attribute name="version">gin</xsl:attribute>
+	  <xsl:attribute name="version">hard cider</xsl:attribute>
 	</xsl:if>
 	<xsl:copy-of select="@*"/>
 	<xsl:apply-templates mode="addNS"/>
