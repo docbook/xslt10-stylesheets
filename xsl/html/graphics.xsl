@@ -217,6 +217,12 @@
   </span>
 </xsl:template>
 
+<xsl:template match="programlisting/inlinemediaobject
+                     |screen/inlinemediaobject" priority="2">
+  <!-- the additional span causes problems in some cases -->
+  <xsl:call-template name="select.mediaobject"/>
+</xsl:template>
+
 <!-- ==================================================================== -->
 
 <xsl:template match="imageobjectco">
