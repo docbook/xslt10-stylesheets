@@ -58,6 +58,7 @@
 <xsl:include href="biblio.xsl"/>
 <xsl:include href="glossary.xsl"/>
 <xsl:include href="block.xsl"/>
+<xsl:include href="task.xsl"/>
 <xsl:include href="qandaset.xsl"/>
 <xsl:include href="synop.xsl"/>
 <xsl:include href="titlepage.xsl"/>
