@@ -21,12 +21,14 @@
 
   <section>
     <title>Release 1.68.1</title>
-    <para>This is a minor bug-fix update to the 1.68.0 release. The
-    main thing it fixes is a build error that caused the XSLT Java
-    extensions to be jarred up with the wrong package
-    structure. Thanks to Jens Stavnstrup for quickly reporting the
-    problem, and to Mauritz Jeanson for investigating and reporting
-    the cause.</para>
+    <para>The release adds localization support for Farsi (thanks to
+    Sina Heshmati) and improved support for the XLink-based DocBook NG
+    <sgmltag>db:link</sgmltag> element. Other than that, it is a minor
+    bug-fix update to the 1.68.0 release. The main thing it fixes is a
+    build error that caused the XSLT Java extensions to be jarred up
+    with the wrong package structure. Thanks to Jens Stavnstrup for
+    quickly reporting the problem, and to Mauritz Jeanson for
+    investigating and finding the cause.</para>
   </section>
   <!-- end of notes for 1.68.1 release -->
 
