@@ -24,14 +24,13 @@
 </xsl:template>
 
 <xsl:template name="formal.object.heading">
-  <xsl:param name="title"></xsl:param>
   <p>
     <a>
       <xsl:attribute name="name">
 	<xsl:call-template name="object.id"/>
       </xsl:attribute>
     </a>
-    <b><xsl:copy-of select="$title"/></b>
+    <b><xsl:apply-templates select="." mode="object.title.markup"/></b>
   </p>
 </xsl:template>
 
