@@ -25,9 +25,9 @@
   <fm:Version>{VERSION}</fm:Version>
   <fm:Release-Focus>
   <!-- initial freshmeat announcement -->
-  Documentation
+  <!-- Documentation -->
   <!-- code cleanup -->
-  <!-- minor feature enhancements -->
+  Minor feature enhancements
   <!-- major feature enhancements -->
   <!-- Minor bugfixes -->
   <!-- major bugfixes -->
@@ -41,7 +41,11 @@
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook/</fm:Mailing-List-URL>
   <fm:Changes>There are no backwards-incompatible changes in this release.
 
-This is official release of DocBook V4.3. It is unchanged from CR3.
+A bug in the catalog files was fixed; a package element was added; a
+biblioref element was added; imageobjectco is now allowed in
+mediaobject (making mediaobjectco obsolete); the spacing attribute was
+added to variablelist; and subscript and superscript are now allowed
+in gui*
   </fm:Changes>  
 </fm:project>
 
