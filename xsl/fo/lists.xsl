@@ -199,7 +199,7 @@
     <xsl:apply-templates select="term"/>
   </fo:block>
 
-  <fo:block margin-start="0.25in">
+  <fo:block margin-left="0.25in">
     <xsl:apply-templates select="listitem"/>
   </fo:block>
 </xsl:template>
