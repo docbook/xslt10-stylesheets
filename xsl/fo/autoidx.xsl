@@ -55,20 +55,58 @@
          match="indexterm[see]"
          use="concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, see)"/>
 
+<!-- The obvious way to implement generate-index, generate-setindex, and
+     generate-index-from-terms would be to pass the root node for term
+     selection as a parameter. But if you do that, Saxon says:
+
+     java.lang.UnsupportedOperationException: Cannot create intensional
+       node-set with context dependencies: class com.icl.saxon.expr.PathExpression:128
+       at com.icl.saxon.expr.NodeSetIntent.<init>(NodeSetIntent.java:26)
+       ...
+
+     I can't decide if that's a Saxon bug or an XSLT limitation. But I want
+     to avoid it in either event. -->
+
 <xsl:template name="generate-index">
   <xsl:param name="root" select="/"/>
 
-  <xsl:variable name="scope" select=".." />
+  <xsl:variable name="scope" select="(ancestor::book|/)[last()]"/>
   <xsl:variable name="terms"
-                select="$root//indexterm[count(.|key('letter',
+                select="(ancestor::book|/)[last()]//indexterm[count(.|key('letter',
                                                 translate(substring(&primary;, 1, 1),
                                                           &lowercase;,
                                                           &uppercase;))[ancestor::* = $scope][1]) = 1
                                     and not(@class = 'endofrange')]"/>
 
+  <xsl:call-template name="generate-index-from-terms">
+    <xsl:with-param name="terms" select="$terms"/>
+    <xsl:with-param name="scope" select="$scope"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="generate-setindex">
+  <xsl:variable name="scope" select="/"/>
+  <xsl:variable name="terms"
+                select="//indexterm[count(.|key('letter',
+                                                translate(substring(&primary;, 1, 1),
+                                                          &lowercase;,
+                                                          &uppercase;))[ancestor::* = $scope][1]) = 1
+                                    and not(@class = 'endofrange')]"/>
+
+  <xsl:call-template name="generate-index-from-terms">
+    <xsl:with-param name="terms" select="$terms"/>
+    <xsl:with-param name="scope" select="$scope"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="generate-index-from-terms">
+  <xsl:param name="terms"/>
+  <xsl:param name="scope"/>
+
   <xsl:variable name="alphabetical"
                 select="$terms[contains(concat(&lowercase;, &uppercase;),
                                         substring(&primary;, 1, 1))]"/>
+
   <xsl:variable name="others" select="$terms[not(contains(concat(&lowercase;,
                                                  &uppercase;),
                                              substring(&primary;, 1, 1)))]"/>
@@ -102,6 +140,7 @@
 
 <xsl:template match="indexterm" mode="index-div">
   <xsl:param name="scope" select="."/>
+
   <xsl:variable name="key" select="translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;)"/>
   <xsl:variable name="terms" select="key('letter', $key)[ancestor::* = $scope][count(.|key('primary', &primary;)[1]) = 1]"/>
   <fo:block>
@@ -116,8 +155,8 @@
     <fo:block>
       <xsl:apply-templates select="$terms"
                            mode="index-primary">
-        <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
         <xsl:with-param name="scope" select="$scope"/>
+        <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
       </xsl:apply-templates>
     </fo:block>
   </fo:block>
@@ -391,14 +430,37 @@
 <!-- ====================================================================== -->
 
 <xsl:template name="generate-index-markup">
-  <xsl:param name="root" select="/"/>
+  <xsl:variable name="scope" select="(ancestor::book|/)[last()]"/>
+  <xsl:variable name="terms" select="$scope//indexterm[count(.|key('letter',
+                                     translate(substring(&primary;, 1, 1),&lowercase;,
+                                     &uppercase;))[ancestor::* = $scope][1]) = 1]"/>
 
-  <xsl:variable name="scope" select=".."/>
-  <xsl:variable name="terms" select="$root//indexterm[count(.|key('letter',
-                                     translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;))[ancestor::* = $scope][1]) = 1]"/>
+  <xsl:call-template name="generate-index-markup-from-terms">
+    <xsl:with-param name="terms" select="$terms"/>
+    <xsl:with-param name="scope" select="$scope"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="generate-setindex-markup">
+  <xsl:variable name="scope" select="/"/>
+  <xsl:variable name="terms" select="$scope//indexterm[count(.|key('letter',
+                                     translate(substring(&primary;, 1, 1),&lowercase;,
+                                     &uppercase;))[ancestor::* = $scope][1]) = 1]"/>
+
+  <xsl:call-template name="generate-index-markup-from-terms">
+    <xsl:with-param name="terms" select="$terms"/>
+    <xsl:with-param name="scope" select="$scope"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="generate-index-markup-from-terms">
+  <xsl:param name="terms"/>
+  <xsl:param name="scope"/>
+
   <xsl:variable name="alphabetical"
                 select="$terms[contains(concat(&lowercase;, &uppercase;),
                                         substring(&primary;, 1, 1))]"/>
+
   <xsl:variable name="others" select="$terms[not(contains(concat(&lowercase;,
                                                  &uppercase;),
                                              substring(&primary;, 1, 1)))]"/>
