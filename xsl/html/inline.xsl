@@ -14,9 +14,7 @@
 
 <xsl:template name="inline.charseq">
   <xsl:param name="content">
-    <xsl:if test="@id">
-      <a name="{@id}"/>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </xsl:param>
   <xsl:copy-of select="$content"/>
@@ -24,9 +22,7 @@
 
 <xsl:template name="inline.monoseq">
   <xsl:param name="content">
-    <xsl:if test="@id">
-      <a name="{@id}"/>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </xsl:param>
   <tt><xsl:copy-of select="$content"/></tt>
@@ -34,9 +30,7 @@
 
 <xsl:template name="inline.boldseq">
   <xsl:param name="content">
-    <xsl:if test="@id">
-      <a name="{@id}"/>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </xsl:param>
   <!-- don't put <b> inside figure, example, or table titles -->
@@ -55,9 +49,7 @@
 
 <xsl:template name="inline.italicseq">
   <xsl:param name="content">
-    <xsl:if test="@id">
-      <a name="{@id}"/>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </xsl:param>
   <i><xsl:copy-of select="$content"/></i>
@@ -65,9 +57,7 @@
 
 <xsl:template name="inline.boldmonoseq">
   <xsl:param name="content">
-    <xsl:if test="@id">
-      <a name="{@id}"/>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </xsl:param>
   <!-- don't put <b> inside figure, example, or table titles -->
@@ -88,9 +78,7 @@
 
 <xsl:template name="inline.italicmonoseq">
   <xsl:param name="content">
-    <xsl:if test="@id">
-      <a name="{@id}"/>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </xsl:param>
   <i><tt><xsl:copy-of select="$content"/></tt></i>
@@ -98,9 +86,7 @@
 
 <xsl:template name="inline.superscriptseq">
   <xsl:param name="content">
-    <xsl:if test="@id">
-      <a name="{@id}"/>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </xsl:param>
   <sup><xsl:copy-of select="$content"/></sup>
@@ -108,9 +94,7 @@
 
 <xsl:template name="inline.subscriptseq">
   <xsl:param name="content">
-    <xsl:if test="@id">
-      <a name="{@id}"/>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </xsl:param>
   <sub><xsl:copy-of select="$content"/></sub>
@@ -405,9 +389,7 @@
         </xsl:attribute>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:if test="@id">
-      <a name="{@id}"/>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
 
     <xsl:choose>
       <xsl:when test="@role = 'bold'">
@@ -447,9 +429,7 @@
         <xsl:value-of select="@role"/>
       </xsl:attribute>
     </xsl:if>
-    <xsl:if test="@id">
-      <a name="{@id}"/>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </span>
 </xsl:template>

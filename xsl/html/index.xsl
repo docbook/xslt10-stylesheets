@@ -22,11 +22,8 @@
   <!-- generated index should go. -->
 
   <xsl:if test="count(*)>0 or $generate.index != '0'">
-    <xsl:variable name="id">
-      <xsl:call-template name="object.id"/>
-    </xsl:variable>
-
-    <div id="{$id}" class="{name(.)}">
+    <div class="{name(.)}">
+      <xsl:call-template name="anchor"/>
       <xsl:call-template name="index.titlepage"/>
       <xsl:apply-templates/>
 
@@ -44,15 +41,8 @@
 <xsl:template match="index/titleabbrev"></xsl:template>
 
 <xsl:template match="index/title" mode="component.title.mode">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select=".."/>
-    </xsl:call-template>
-  </xsl:variable>
   <h2 class="title">
-    <a name="{$id}">
-      <xsl:apply-templates/>
-    </a>
+    <xsl:apply-templates/>
   </h2>
 </xsl:template>
 
@@ -66,6 +56,7 @@
 
 <xsl:template match="indexdiv">
   <div class="{name(.)}">
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates mode="not-indexentrys"/>
     <dl>
       <xsl:apply-templates select="indexentry"/>
@@ -78,21 +69,15 @@
 </xsl:template>
 
 <xsl:template match="indexdiv/title">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select=".."/>
-    </xsl:call-template>
-  </xsl:variable>
   <h3 class="{name(.)}">
-    <a name="{$id}">
-      <xsl:apply-templates/>
-    </a>
+    <xsl:apply-templates/>
   </h3>
 </xsl:template>
 
 <!-- ==================================================================== -->
 
 <xsl:template match="indexterm">
+  <!-- this one must have a name, even if it doesn't have an ID -->
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>

@@ -89,7 +89,7 @@
 </xsl:template>
 
 <xsl:template match="co">
-  <a name="{@id}"/>
+  <xsl:call-template name="anchor"/>
   <xsl:apply-templates select="." mode="callout-bug"/>
 </xsl:template>
 

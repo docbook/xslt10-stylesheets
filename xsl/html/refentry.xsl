@@ -15,14 +15,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="reference">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
-
   <div class="{name(.)}">
-    <xsl:if test="@id">
-      <a name="{$id}"/>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:call-template name="reference.titlepage"/>
     <xsl:if test="not(partintro) and $generate.reference.toc != '0'">
       <xsl:call-template name="division.toc"/>
@@ -61,11 +55,7 @@
 
   <div class="{name(.)}">
     <h1 class="title">
-      <a>
-        <xsl:attribute name="name">
-          <xsl:call-template name="object.id"/>
-        </xsl:attribute>
-      </a>
+      <xsl:call-template name="anchor"/>
       <xsl:copy-of select="$title"/>
     </h1>
     <xsl:apply-templates/>
@@ -99,11 +89,7 @@
 
 <xsl:template match="refnamediv">
   <div class="{name(.)}">
-    <a>
-      <xsl:attribute name="name">
-        <xsl:call-template name="object.id"/>
-      </xsl:attribute>
-    </a>
+    <xsl:call-template name="anchor"/>
     <xsl:if test="$refentry.generate.name != 0">
       <h2>
         <xsl:call-template name="gentext">
@@ -151,11 +137,7 @@
 
 <xsl:template match="refsynopsisdiv">
   <div class="{name(.)}">
-    <a>
-      <xsl:attribute name="name">
-        <xsl:call-template name="object.id"/>
-      </xsl:attribute>
-    </a>
+    <xsl:call-template name="anchor"/>
     <h2>
       <xsl:choose>
         <xsl:when test="refsynopsisdiv/title|title">

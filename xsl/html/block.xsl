@@ -16,11 +16,7 @@
 
 <xsl:template name="block.object">
   <div class="{name(.)}">
-    <a>
-      <xsl:attribute name="name">
-        <xsl:call-template name="object.id"/>
-      </xsl:attribute>
-    </a>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </div>
 </xsl:template>
@@ -30,18 +26,12 @@
 <xsl:template match="para">
   <p>
     <xsl:if test="position() = 1 and parent::listitem">
-      <a>
-        <xsl:attribute name="name">
-          <xsl:call-template name="object.id">
-            <xsl:with-param name="object" select="parent::listitem"/>
-          </xsl:call-template>
-        </xsl:attribute>
-      </a>
+      <xsl:call-template name="anchor">
+        <xsl:with-param name="node" select="parent::listitem"/>
+      </xsl:call-template>
     </xsl:if>
 
-    <xsl:if test="@id">
-      <a name="{@id}"/>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </p>
 </xsl:template>
@@ -49,18 +39,14 @@
 <xsl:template match="simpara">
   <!-- see also listitem/simpara in lists.xsl -->
   <p>
-    <xsl:if test="@id">
-      <a name="{@id}"/>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </p>
 </xsl:template>
 
 <xsl:template match="formalpara">
   <p>
-    <xsl:if test="@id">
-      <a name="{@id}"/>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </p>
 </xsl:template>
@@ -90,9 +76,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="blockquote">
-  <xsl:if test="@id">
-    <a name="{@id}"/>
-  </xsl:if>
+  <xsl:call-template name="anchor"/>
   <xsl:choose>
     <xsl:when test="attribution">
       <table border="0" width="100%"
@@ -138,12 +122,7 @@
 
 <xsl:template match="sidebar">
   <div class="{name(.)}">
-    <a>
-      <xsl:attribute name="name">
-        <xsl:call-template name="object.id"/>
-      </xsl:attribute>
-    </a>
-
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </div>
 </xsl:template>

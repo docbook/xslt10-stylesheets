@@ -62,11 +62,7 @@
         </img>
       </td>
       <th>
-        <a>
-          <xsl:attribute name="name">
-            <xsl:call-template name="object.id"/>
-          </xsl:attribute>
-        </a>
+        <xsl:call-template name="anchor"/>
         <xsl:apply-templates select="." mode="object.title.markup"/>
       </th>
     </tr>
@@ -88,11 +84,7 @@
     </xsl:if>
 
     <h3 class="title">
-      <a>
-        <xsl:attribute name="name">
-          <xsl:call-template name="object.id"/>
-        </xsl:attribute>
-      </a>
+      <xsl:call-template name="anchor"/>
       <xsl:apply-templates select="." mode="object.title.markup"/>
     </h3>
 
@@ -105,31 +97,5 @@
 <xsl:template match="warning/title"></xsl:template>
 <xsl:template match="caution/title"></xsl:template>
 <xsl:template match="tip/title"></xsl:template>
-
-<xsl:template match="title" mode="admonition.title.mode">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select=".."/>
-    </xsl:call-template>
-  </xsl:variable>
-  <h3 class="title">
-    <a name="{$id}">
-      <xsl:apply-templates/>
-    </a>
-  </h3>
-</xsl:template>
-
-<xsl:template match="title" mode="graphic.admonition.title.mode">
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select=".."/>
-    </xsl:call-template>
-  </xsl:variable>
-  <b class="title">
-    <a name="{$id}">
-      <xsl:apply-templates/>
-    </a>
-  </b>
-</xsl:template>
 
 </xsl:stylesheet>
