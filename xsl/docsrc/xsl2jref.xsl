@@ -13,8 +13,8 @@
 
 <xsl:output
      method="xml"
-     doctype-public="-//Norman Walsh//DTD JRefEntry V1.0//EN"
-     doctype-system="http://nwalsh.com/docbook/jrefentry/1.0/jrefentry.dtd"
+     doctype-public="-//Norman Walsh//DTD JRefEntry V1.1//EN"
+     doctype-system="http://docbook.sf.net/release/jrefentry/1.1/jrefentry.dtd"
 />
 
 <xsl:preserve-space elements="xsl:variable"/>
