@@ -512,24 +512,6 @@ more pleasing visual appearance in many browsers.
 </doc:param>
 
 <!-- ==================================================================== -->
-<xsl:attribute-set name="body.attrs">
-  <xsl:attribute name="bgcolor">white</xsl:attribute>
-  <xsl:attribute name="text">black</xsl:attribute>
-  <xsl:attribute name="link">#0000FF</xsl:attribute>
-  <xsl:attribute name="vlink">#840084</xsl:attribute>
-  <xsl:attribute name="alink">#0000FF</xsl:attribute>
-</xsl:attribute-set>
-
-<doc:attribute-set name="body.attrs" xmlns="">
-<refpurpose>Additional attributes for the HTML body tag</refpurpose>
-<refdescription>
-<para>The attributes defined by this attribute set are added to the
-HTML &lt;body&gt; tag.
-</para>
-</refdescription>
-</doc:attribute-set>
-
-<!-- ==================================================================== -->
 <xsl:param name="css.decoration" doc:type='boolean'>1</xsl:param>
 
 <doc:param name="css.decoration" xmlns="">
