@@ -18,8 +18,8 @@
 <gentext key="answer" text="O:"/>
 <gentext key="Appendix" text="Dodatak"/>
 <gentext key="appendix" text="dodatak"/>
-<gentext key="Article" text="\&#x010C;lanak"/>
-<gentext key="article" text="\&#x010C;lanak"/>
+<gentext key="Article" text="&#x010C;lanak"/>
+<gentext key="article" text="&#x010C;lanak"/>
 <gentext key="Bibliography" text="Literatura"/>
 <gentext key="bibliography" text="Literatura"/>
 <gentext key="Book" text="Knjiga"/>
@@ -31,33 +31,33 @@
 <gentext key="chapter" text="poglavlje"/>
 <gentext key="Colophon" text="Kolofon"/>
 <gentext key="colophon" text="Kolofon"/>
-<gentext key="Copyright" text="Pravna za\&#x0161;tita"/>
-<gentext key="copyright" text="Pravna za\&#x0161;tita"/>
+<gentext key="Copyright" text="Pravna za&#x0161;tita"/>
+<gentext key="copyright" text="Pravna za&#x0161;tita"/>
 <gentext key="Dedication" text="Posveta"/>
 <gentext key="dedication" text="Posveta"/>
 <gentext key="Edition" text="Izdanje"/>
 <gentext key="edition" text="Izdanje"/>
-<gentext key="Equation" text="Jedna\&#x010D;ina"/>
-<gentext key="equation" text="Jedna\&#x010D;ina"/>
+<gentext key="Equation" text="Jedna&#x010D;ina"/>
+<gentext key="equation" text="Jedna&#x010D;ina"/>
 <gentext key="Example" text="Primer"/>
 <gentext key="example" text="Primer"/>
 <gentext key="Figure" text="Slika"/>
 <gentext key="figure" text="Slika"/>
-<gentext key="Glossary" text="Re\&#x010D;nik"/>
-<gentext key="glossary" text="Re\&#x010D;nik"/>
+<gentext key="Glossary" text="Re&#x010D;nik"/>
+<gentext key="glossary" text="Re&#x010D;nik"/>
 <gentext key="GlossSee" text="Vidi"/>
 <gentext key="glosssee" text="Vidi"/>
-<gentext key="GlossSeeAlso" text="Vidi tako\&#x0111;e"/>
-<gentext key="glossseealso" text="Vidi tako\&#x0111;e"/>
-<gentext key="IMPORTANT" text="VA\&#x017D;NO"/>
-<gentext key="Important" text="Va\&#x017E;no"/>
-<gentext key="important" text="Va\&#x017E;no"/>
+<gentext key="GlossSeeAlso" text="Vidi tako&#x0111;e"/>
+<gentext key="glossseealso" text="Vidi tako&#x0111;e"/>
+<gentext key="IMPORTANT" text="VA&#x017D;NO"/>
+<gentext key="Important" text="Va&#x017E;no"/>
+<gentext key="important" text="Va&#x017E;no"/>
 <gentext key="Index" text="Indeks"/>
 <gentext key="index" text="Indeks"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
-<gentext key="LegalNotice" text="Pravno obave\&#x0161;tenje"/>
-<gentext key="legalnotice" text="Pravno obave\&#x0161;tenje"/>
+<gentext key="LegalNotice" text="Pravno obave&#x0161;tenje"/>
+<gentext key="legalnotice" text="Pravno obave&#x0161;tenje"/>
 <gentext key="MsgAud" text="MsgAud"/>
 <gentext key="msgaud" text="MsgAud"/>
 <gentext key="MsgLevel" text="Nivo"/>
@@ -95,9 +95,9 @@
 <gentext key="section" text="sekcija"/>
 <gentext key="see" text="vidi"/>
 <gentext key="See" text="vidi"/>
-<gentext key="Seealso" text="Vidi tako\&#x0111;e"/>
-<gentext key="seealso" text="vidi tako\&#x0111;e"/>
-<gentext key="SeeAlso" text="vidi tako\&#x0111;e"/>
+<gentext key="Seealso" text="Vidi tako&#x0111;e"/>
+<gentext key="seealso" text="vidi tako&#x0111;e"/>
+<gentext key="SeeAlso" text="vidi tako&#x0111;e"/>
 <gentext key="set" text="Postavi"/>
 <gentext key="Set" text="Postavi"/>
 <gentext key="SetIndex" text="Postavi indeks"/>
@@ -117,14 +117,14 @@
 
 <gentext key="and" text="i"/>
 <gentext key="by" text="od"/>
-<gentext key="Edited" text="Ure\&#x0111;eno"/>
-<gentext key="edited" text="Ure\&#x0111;eno"/>
-<gentext key="Editedby" text="Ure\&#x0111;eno od"/>
-<gentext key="editedby" text="Ure\&#x0111;eno od"/>
+<gentext key="Edited" text="Ure&#x0111;eno"/>
+<gentext key="edited" text="Ure&#x0111;eno"/>
+<gentext key="Editedby" text="Ure&#x0111;eno od"/>
+<gentext key="editedby" text="Ure&#x0111;eno od"/>
 <gentext key="in" text="u"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
-<gentext key="nonexistantelement" text="nepostoje\&#x0107;i element"/>
+<gentext key="nonexistantelement" text="nepostoje&#x0107;i element"/>
 <gentext key="notes" text="Notes"/>
 <gentext key="Notes" text="Notes"/>
 <gentext key="Pgs" text="Str."/>
@@ -133,14 +133,14 @@
 <gentext key="revisedby" text="Revised by: "/> <!-- en -->
 <gentext key="TableNotes" text="Notes"/>
 <gentext key="tablenotes" text="Notes"/>
-<gentext key="TableofContents" text="Sadr\&#x017E;aj"/>
-<gentext key="tableofcontents" text="Sadr\&#x017E;aj"/>
-<gentext key="unexpectedelementname" text="Neo\&#x010D;ekivano ime elementa"/>
-<gentext key="unsupported" text="nepodr\&#x017E;ano"/>
+<gentext key="TableofContents" text="Sadr&#x017E;aj"/>
+<gentext key="tableofcontents" text="Sadr&#x017E;aj"/>
+<gentext key="unexpectedelementname" text="Neo&#x010D;ekivano ime elementa"/>
+<gentext key="unsupported" text="nepodr&#x017E;ano"/>
 <gentext key="xrefto" text="xref na"/>
 
-<gentext key="listofequations" text="Spisak jedna\&#x010D;ina"/>
-<gentext key="ListofEquations" text="Spisak jedna\&#x010D;ina"/>
+<gentext key="listofequations" text="Spisak jedna&#x010D;ina"/>
+<gentext key="ListofEquations" text="Spisak jedna&#x010D;ina"/>
 <gentext key="ListofExamples" text="Spisak primera"/>
 <gentext key="listofexamples" text="Spisak primera"/>
 <gentext key="ListofFigures" text="Spisak slika"/>
@@ -150,7 +150,7 @@
 <gentext key="ListofUnknown" text="Spisak nepoznanica"/>
 <gentext key="listofunknown" text="Spisak nepoznanica"/>
 
-<gentext key="nav-home" text="Ku\&#x0107;i"/>
+<gentext key="nav-home" text="Ku&#x0107;i"/>
 <gentext key="nav-next" text="Napred"/>
 <gentext key="nav-next-sibling" text="Brzo napred"/>
 <gentext key="nav-prev" text="Nazad"/>
