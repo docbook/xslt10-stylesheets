@@ -7,9 +7,9 @@
   <title>The Slides Document Type</title>
   <titleabbrev>Slides</titleabbrev>
   <author><firstname>Norman</firstname><surname>Walsh</surname></author>
-  <pubdate>Tuesday, 25 June 2002</pubdate>
-  <releaseinfo role="version">3.1.0</releaseinfo>
-  <copyright><year>2002</year>
+  <pubdate>Friday, 19 Dec 2003</pubdate>
+  <releaseinfo role="version">3.3.0</releaseinfo>
+  <copyright><year>2002</year><year>2003</year>
              <holder>Norman Walsh</holder></copyright>
 </slidesinfo>
 
@@ -173,13 +173,19 @@ to keep the navigation static on the pages (only works on recent browsers)
 <listitem><para><ulink url="../frames3/frames.html">multiframe</ulink> uses additional frames
 to keep the navigation static on the pages
 </para></listitem>
-<listitem><para><ulink url="../frames4/frames.html">dynamic.toc</ulink> uses JavaScript to keep
-the table of contents and the current slide in sync (only works on recent browsers)
-</para></listitem>
-<listitem><para><ulink url="../frames5/frames.html">active.toc</ulink> uses JavaScript to make
-the table of context <quote>active</quote> so that you can open and close the foil
-groups (only works on recent browsers)
-</para></listitem>
+
+<listitem>
+<para><ulink url="../frames4/frames.html">dynamic.toc</ulink> uses
+JavaScript to make the table of context <quote>active</quote> so that
+you can open and close the foil groups (only works on recent browsers)</para>
+</listitem>
+
+<listitem>
+<para><ulink url="../frames5/frames.html">active.toc</ulink> uses
+JavaScript to keep the table of contents and the current slide in sync
+(only works on recent browsers)</para>
+</listitem>
+
 <listitem><para>These toc styles can be combined with
 <ulink url="../frames6/frames.html">overlay</ulink> or <ulink url="../frames7/frames.html">multiframe</ulink>
 </para></listitem>
