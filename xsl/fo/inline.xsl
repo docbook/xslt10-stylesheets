@@ -740,7 +740,7 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="sgmltag">
+<xsl:template match="sgmltag|tag">
   <xsl:variable name="class">
     <xsl:choose>
       <xsl:when test="@class">
