@@ -465,7 +465,7 @@
 </context>
 
 <context name="datetime">
-<template name="format">/m/Y</template>
+<template name="format">d/m/Y</template>
 <template name="January">Ocak</template>
 <template name="February">Şubat</template>
 <template name="March">Mart</template>
