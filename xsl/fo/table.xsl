@@ -379,6 +379,98 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     </xsl:when>
 
     <xsl:otherwise>
+      <xsl:variable name="cell.content">
+        <fo:block>
+          <!-- highlight this entry? -->
+          <xsl:if test="ancestor::thead">
+            <xsl:attribute name="font-weight">bold</xsl:attribute>
+          </xsl:if>
+
+          <!-- are we missing any indexterms? -->
+          <xsl:if test="not(preceding-sibling::entry)
+                        and not(parent::row/preceding-sibling::row)">
+            <!-- this is the first entry of the first row -->
+            <xsl:if test="ancestor::thead or
+                          (ancestor::tbody
+                           and not(ancestor::tbody/preceding-sibling::thead
+                                   or ancestor::tbody/preceding-sibling::tbody))">
+              <!-- of the thead or the first tbody -->
+              <xsl:apply-templates select="ancestor::tgroup/preceding-sibling::indexterm"/>
+            </xsl:if>
+          </xsl:if>
+
+          <!--
+          <xsl:text>(</xsl:text>
+          <xsl:value-of select="$rowsep"/>
+          <xsl:text>,</xsl:text>
+          <xsl:value-of select="$colsep"/>
+          <xsl:text>)</xsl:text>
+          -->
+          <xsl:choose>
+            <xsl:when test="$empty.cell">
+              <xsl:text>&#160;</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </fo:block>
+      </xsl:variable>
+
+      <xsl:variable name="cell-orientation">
+        <xsl:call-template name="dbfo-attribute">
+          <xsl:with-param name="pis"
+                          select="ancestor-or-self::entry/processing-instruction('dbfo')"/>
+          <xsl:with-param name="attribute" select="'orientation'"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:variable name="row-orientation">
+        <xsl:call-template name="dbfo-attribute">
+          <xsl:with-param name="pis"
+                          select="ancestor-or-self::row/processing-instruction('dbfo')"/>
+          <xsl:with-param name="attribute" select="'orientation'"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:variable name="cell-width">
+        <xsl:call-template name="dbfo-attribute">
+          <xsl:with-param name="pis"
+                          select="ancestor-or-self::entry/processing-instruction('dbfo')"/>
+          <xsl:with-param name="attribute" select="'rotated-width'"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:variable name="row-width">
+        <xsl:call-template name="dbfo-attribute">
+          <xsl:with-param name="pis"
+                          select="ancestor-or-self::row/processing-instruction('dbfo')"/>
+          <xsl:with-param name="attribute" select="'rotated-width'"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:variable name="orientation">
+        <xsl:choose>
+          <xsl:when test="$cell-orientation != ''">
+            <xsl:value-of select="$cell-orientation"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$row-orientation"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+
+      <xsl:variable name="rotated-width">
+        <xsl:choose>
+          <xsl:when test="$cell-width != ''">
+            <xsl:value-of select="$cell-width"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$row-width"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+
       <fo:table-cell xsl:use-attribute-sets="table.cell.padding">
         <xsl:if test="$xep.extensions != 0">
           <!-- Suggested by RenderX to workaround a bug in their implementation -->
@@ -449,41 +541,21 @@ to be incomplete. Don't forget to read the source, too :-)</para>
         </xsl:if>
 -->
 
-        <fo:block>
-          <!-- highlight this entry? -->
-          <xsl:if test="ancestor::thead">
-            <xsl:attribute name="font-weight">bold</xsl:attribute>
-          </xsl:if>
-
-          <!-- are we missing any indexterms? -->
-          <xsl:if test="not(preceding-sibling::entry)
-                        and not(parent::row/preceding-sibling::row)">
-            <!-- this is the first entry of the first row -->
-            <xsl:if test="ancestor::thead or
-                          (ancestor::tbody
-                           and not(ancestor::tbody/preceding-sibling::thead
-                                   or ancestor::tbody/preceding-sibling::tbody))">
-              <!-- of the thead or the first tbody -->
-              <xsl:apply-templates select="ancestor::tgroup/preceding-sibling::indexterm"/>
-            </xsl:if>
-          </xsl:if>
-
-          <!--
-          <xsl:text>(</xsl:text>
-          <xsl:value-of select="$rowsep"/>
-          <xsl:text>,</xsl:text>
-          <xsl:value-of select="$colsep"/>
-          <xsl:text>)</xsl:text>
-          -->
-          <xsl:choose>
-            <xsl:when test="$empty.cell">
-              <xsl:text>&#160;</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:apply-templates/>
-            </xsl:otherwise>
-          </xsl:choose>
-        </fo:block>
+        <xsl:choose>
+          <xsl:when test="$xep.extensions != 0 and $orientation != ''">
+            <fo:block-container reference-orientation="{$orientation}">
+              <xsl:if test="$rotated-width != ''">
+                <xsl:attribute name="width">
+                  <xsl:value-of select="$rotated-width"/>
+                </xsl:attribute>
+              </xsl:if>
+              <xsl:copy-of select="$cell.content"/>
+            </fo:block-container>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:copy-of select="$cell.content"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </fo:table-cell>
 
       <xsl:choose>
