@@ -169,3 +169,6 @@
 <!ENTITY section.title.level6.properties SYSTEM "../params/section.title.level6.properties.xml">
 <!ENTITY monospace.properties SYSTEM "../params/monospace.properties.xml">
 <!ENTITY make.index.markup SYSTEM "../params/make.index.markup.xml">
+<!ENTITY l10n.gentext.language SYSTEM "../params/l10n.gentext.language.xml">
+<!ENTITY l10n.gentext.default.language SYSTEM "../params/l10n.gentext.default.language.xml">
+<!ENTITY l10n.gentext.use.xref.language SYSTEM "../params/l10n.gentext.use.xref.language.xml">
