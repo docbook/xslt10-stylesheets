@@ -161,8 +161,9 @@ sub handle {
 
 	    $entity{$ent} = "%%%";
 	}
-    } elsif ($decl =~ /^ENTITY % (\S+)\s+[\'\"](.*?)[\'\"]/s) {
-	my($ent, $val) = ($1, $2);
+    } elsif ($decl =~ /^ENTITY % (\S+)\s+([\'\"])(.*?)\2/s) {
+	my($ent, $val) = ($1, $3);
+
 	if (!exists($entity{$ent})) {
 	    $entity{$ent} = $val;
 
@@ -171,8 +172,8 @@ sub handle {
 #		$used{$ent} = 1;
 #	    }
 	}
-    } elsif ($decl =~ /^ENTITY\s+(\S+)\s+[\'\"](.*?)[\'\"]/s) {
-	my($ent, $val) = ($1, $2);
+    } elsif ($decl =~ /^ENTITY\s+(\S+)\s+([\'\"])(.*?)\2/s) {
+	my($ent, $val) = ($1, $3);
 	if (!exists($entity{$ent})) {
 	    $entity{$ent} = $val;
 	    $used{$ent} = 1;
@@ -224,8 +225,8 @@ sub output {
 		&read_dtd($3);
 	    }
 	}
-    } elsif ($decl =~ /^ENTITY % (\S+)\s+[\'\"](.*?)[\'\"]/s) {
-	my($ent, $val) = ($1, $2);
+    } elsif ($decl =~ /^ENTITY % (\S+)\s+([\'\"])(.*?)\2/s) {
+	my($ent, $val) = ($1, $3);
 #	print "ot: $ent = ", $used{$ent}, "\n";
 
 	$decl = &trim_null($decl);
@@ -236,8 +237,8 @@ sub output {
 	    }
 	    $entity{$ent} = $val;
 	}
-    } elsif ($decl =~ /^ENTITY\s+(\S+)\s+[\'\"](.*?)[\'\"]/s) {
-	my($ent, $val) = ($1, $2);
+    } elsif ($decl =~ /^ENTITY\s+(\S+)\s+([\'\"])(.*?)\2/s) {
+	my($ent, $val) = ($1, $3);
 
 	if (!exists($entity{$ent})) {
 	    if ($val ne '' || $ent =~ /^local\./) {
@@ -274,6 +275,8 @@ sub trim_null {
 	$new .= $1;
 	$ent = $2;
 	$decl = $';
+
+#	print STDERR "entity{$ent} = $entity{$ent}\n";
 
 	if ($entity{$ent} ne '' || $ent =~ /^local\./) {
 	    $new .= "%$ent;";
