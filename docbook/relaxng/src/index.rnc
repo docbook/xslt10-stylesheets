@@ -70,7 +70,7 @@ db.indexterm.contentmodel =
 
 [
    db:refname [ "indexterm" ]
-   db:refpurpose [ "A wrapper for terms to be indexed" ]
+   db:refpurpose [ "A wrapper for an indexed term" ]
 ]
 div {
 
@@ -97,7 +97,7 @@ div {
 
 [
    db:refname [ "indexterm" ]
-   db:refpurpose [ "A wrapper for terms to be indexed" ]
+   db:refpurpose [ "A wrapper for an indexed term that covers a range" ]
 ]
 div {
 
@@ -124,7 +124,7 @@ div {
 
 [
    db:refname [ "indexterm" ]
-   db:refpurpose [ "A wrapper for terms to be indexed" ]
+   db:refpurpose [ "Identifies the end of a range associated with an indexed term" ]
 ]
 div {
 
