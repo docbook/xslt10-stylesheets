@@ -1123,6 +1123,53 @@ pointed to by the link is one of the elements listed in
 <!-- ====================================================================== -->
 <!-- OrderedList Numeration -->
 
+<xsl:template name="orderedlist-starting-number">
+  <xsl:param name="list" select="."/>
+  <xsl:choose>
+    <xsl:when test="$list/@continuation != 'continues'">1</xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="prevlist"
+                    select="$list/preceding::orderedlist[1]"/>
+      <xsl:choose>
+        <xsl:when test="count($prevlist) = 0">2</xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="prevlength" select="count($prevlist/listitem)"/>
+          <xsl:variable name="prevstart">
+            <xsl:call-template name="orderedlist-starting-number">
+              <xsl:with-param name="list" select="$prevlist"/>
+            </xsl:call-template>
+          </xsl:variable>
+          <xsl:value-of select="$prevstart + $prevlength"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="orderedlist-item-number">
+  <!-- context node must be a listitem in an orderedlist -->
+  <xsl:param name="node" select="."/>
+
+  <xsl:choose>
+    <xsl:when test="$node/@override">
+      <xsl:value-of select="$node/@override"/>
+    </xsl:when>
+    <xsl:when test="$node/preceding-sibling::listitem">
+      <xsl:variable name="pnum">
+        <xsl:call-template name="orderedlist-item-number">
+          <xsl:with-param name="node" select="$node/preceding-sibling::listitem[1]"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:value-of select="$pnum + 1"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="orderedlist-starting-number">
+        <xsl:with-param name="list" select="parent::*"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template name="next.numeration">
   <xsl:param name="numeration" select="'default'"/>
   <xsl:choose>
