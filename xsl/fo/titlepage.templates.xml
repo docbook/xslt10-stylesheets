@@ -133,7 +133,7 @@
 	     fo:font-weight="bold"
 	     fo:font-family="{$title.font.family}"/>
       <corpauthor/>
-      <authorgroup/>
+      <authorgroup named-template="verso.authorgroup"/>
       <author/>
       <othercredit/>
       <pubdate fo:space-before="1em"/>
