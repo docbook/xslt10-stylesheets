@@ -1,0 +1,15 @@
+<?xml version='1.0'?><?emacs -*- XML -*- ?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"
+         xmlns:ext="http://nwalsh.com/xcatalog/1.0"
+         prefer="public">
+
+  <public publicId="-//Norman Walsh//DTD Slides Full XML V3.0b2//EN"
+          uri="slides-full.dtd"/>
+
+  <public publicId="-//Norman Walsh//DTD Slides XML Customization V3.0b2//EN"
+          uri="slides-custom.dtd"/>
+
+  <public publicId="-//Norman Walsh//DTD Slides XML V3.0b2//EN"
+          uri="slides.dtd"/>
+
+</catalog>
