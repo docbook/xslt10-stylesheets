@@ -207,6 +207,16 @@
 	<xsl:attribute name="language">JavaScript</xsl:attribute>
       </xsl:otherwise>
     </xsl:choose>
+    <xsl:choose>
+      <xsl:when test="@type">
+	<xsl:attribute name="type">
+	  <xsl:value-of select="@type"/>
+	</xsl:attribute>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:attribute name="type">text/javascript</xsl:attribute>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:apply-templates/>
   </script>
 </xsl:template>
@@ -228,7 +238,16 @@
     </xsl:choose>
   </xsl:variable>
 
-  <script src="{$relpath}{@src}" language="{$language}"/>
+  <xsl:variable name="type">
+    <xsl:choose>
+      <xsl:when test="@type">
+	<xsl:value-of select="@type"/>
+      </xsl:when>
+      <xsl:otherwise>text/javascript</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <script src="{$relpath}{@src}" language="{$language}" type="{$type}"/>
 </xsl:template>
 
 <xsl:template match="style" mode="head.mode">
