@@ -123,7 +123,7 @@
     </fo:page-sequence>
   </xsl:if>
 
-  <xsl:if test="$generate.division.toc != '0'">
+  <xsl:if test="$generate.book.toc != '0'">
     <fo:page-sequence hyphenate="{$hyphenate}"
                       format="i"
                       master-name="{$master-name}">
@@ -146,7 +146,7 @@
     </fo:page-sequence>
   </xsl:if>
 
-  <xsl:if test="$generate.division.figure.lot != '0' and .//figure">
+  <xsl:if test="$generate.book.figure.lot != '0' and .//figure">
     <fo:page-sequence hyphenate="{$hyphenate}"
                       format="i"
                       master-name="{$master-name}">
@@ -172,7 +172,7 @@
     </fo:page-sequence>
   </xsl:if>
 
-  <xsl:if test="$generate.division.table.lot != '0' and .//table">
+  <xsl:if test="$generate.book.table.lot != '0' and .//table">
     <fo:page-sequence hyphenate="{$hyphenate}"
                       format="i"
                       master-name="{$master-name}">
@@ -198,7 +198,7 @@
     </fo:page-sequence>
   </xsl:if>
 
-  <xsl:if test="$generate.division.example.lot != '0' and .//example">
+  <xsl:if test="$generate.book.example.lot != '0' and .//example">
     <fo:page-sequence hyphenate="{$hyphenate}"
                       format="i"
                       master-name="{$master-name}">
@@ -224,7 +224,7 @@
     </fo:page-sequence>
   </xsl:if>
 
-  <xsl:if test="$generate.division.equation.lot != '0' and .//equation">
+  <xsl:if test="$generate.book.equation.lot != '0' and .//equation">
     <fo:page-sequence hyphenate="{$hyphenate}"
                       format="i"
                       master-name="{$master-name}">
