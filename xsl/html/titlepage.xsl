@@ -163,7 +163,9 @@
       <div class="{name(.)}">
         <xsl:call-template name="paragraph">
           <xsl:with-param name="content">
-            <xsl:apply-templates mode="titlepage.mode"/>
+            <xsl:call-template name="make-verbatim">
+              <xsl:with-param name="rtf" select="$rtf"/>
+            </xsl:call-template>
           </xsl:with-param>
         </xsl:call-template>
       </div>
