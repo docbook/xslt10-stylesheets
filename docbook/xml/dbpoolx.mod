@@ -2195,7 +2195,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % glosslist.element "INCLUDE">
 <![%glosslist.element;[
-<!ELEMENT glosslist %ho; (glossentry+)>
+<!ELEMENT glosslist %ho; (blockinfo?, (%formalobject.title.content;)?, glossentry+)>
 <!--end of glosslist.element-->]]>
 
 <!ENTITY % glosslist.attlist "INCLUDE">
