@@ -108,8 +108,6 @@ public class Verbatim {
   private static final String foURI = "http://www.w3.org/1999/XSL/Format";
   private static final String xhURI = "http://www.w3.org/1999/xhtml";
 
-  protected DOMHelper dh = null;
-
   /**
    * <p>Constructor for Verbatim</p>
    *
@@ -159,10 +157,6 @@ public class Verbatim {
    */
   public DocumentFragment numberLines (ExpressionContext context,
 				       NodeIterator xalanNI) {
-
-    // HACK!!!
-    XPathContext xpcontext = (XPathContext) context;
-    dh = xpcontext.getDOMHelper();
 
     int xalanMod = Params.getInt(context, "linenumbering.everyNth");
     int xalanWidth = Params.getInt(context, "linenumbering.width");
@@ -264,10 +258,10 @@ public class Verbatim {
 	String ns = node.getNamespaceURI();
 	String localName = node.getLocalName();
 	String name = ((Element) node).getTagName();
-	NamedNodeMap domAttr = node.getAttributes();
-	AttList attr = new AttList(domAttr, dh);
 
-	rtf.startElement(ns, localName, name, attr);
+	rtf.startElement(ns, localName, name,
+			 copyAttributes((Element) node));
+
 	elementStack.push(node);
 
 	Node child = node.getFirstChild();
@@ -449,10 +443,6 @@ public class Verbatim {
 					  NodeIterator areaspecNodeSet,
 					  NodeIterator xalanNI) {
 
-    // HACK!!!
-    XPathContext xpcontext = (XPathContext) context;
-    dh = xpcontext.getDOMHelper();
-
     String type = Params.getString(context, "stylesheet.result.type");
     boolean useFO = type.equals("fo");
     int defaultColumn = Params.getInt(context, "callout.defaultcolumn");
@@ -468,6 +458,10 @@ public class Verbatim {
       int uMax = Params.getInt(context, "callout.unicode.number.limit");
       return insertUnicodeCallouts(areaspecNodeSet, xalanNI, defaultColumn,
 				   uStart, uMax, useFO);
+    } else if (Params.getBoolean(context, "callout.dingbats")) {
+      int dMax = 10;
+      return insertDingbatCallouts(areaspecNodeSet, xalanNI, defaultColumn,
+				   dMax, useFO);
     } else {
       return insertTextCallouts(areaspecNodeSet, xalanNI, defaultColumn, useFO);
     }
@@ -492,6 +486,15 @@ public class Verbatim {
 						 boolean useFO) {
     FormatUnicodeCallout fuc = new FormatUnicodeCallout(uStart, uMax, useFO);
     return insertCallouts(areaspecNodeSet, xalanNI, defaultColumn, fuc);
+  }
+
+  public DocumentFragment insertDingbatCallouts (NodeIterator areaspecNodeSet,
+						 NodeIterator xalanNI,
+						 int defaultColumn,
+						 int gMax,
+						 boolean useFO) {
+    FormatDingbatCallout fdc = new FormatDingbatCallout(gMax,useFO);
+    return insertCallouts(areaspecNodeSet, xalanNI, defaultColumn, fdc);
   }
 
   public DocumentFragment insertTextCallouts (NodeIterator areaspecNodeSet,
@@ -609,10 +612,10 @@ public class Verbatim {
 	String ns = node.getNamespaceURI();
 	String localName = node.getLocalName();
 	String name = ((Element) node).getTagName();
-	NamedNodeMap domAttr = node.getAttributes();
-	AttList attr = new AttList(domAttr, dh);
 
-	rtf.startElement(ns, localName, name, attr);
+	rtf.startElement(ns, localName, name,
+			 copyAttributes((Element) node));
+
 	elementStack.push(node);
 
 	Node child = node.getFirstChild();
@@ -730,12 +733,9 @@ public class Verbatim {
 			   int defaultColumn) {
     Element area = (Element) node;
 
-    NamedNodeMap domAttr = node.getAttributes();
-    AttList attr = new AttList(domAttr, dh);
-
-    String units = attr.getValue("units");
-    String otherUnits = attr.getValue("otherunits");
-    String coords = attr.getValue("coords");
+    String units = area.getAttribute("units");
+    String otherUnits = area.getAttribute("otherunits");
+    String coords = area.getAttribute("coords");
     int type = 0;
     String otherType = null;
 
@@ -907,5 +907,21 @@ public class Verbatim {
     }
 
     tempStack = null;
+  }
+
+  private Attributes copyAttributes(Element node) {
+    AttributesImpl attrs = new AttributesImpl();
+    NamedNodeMap nnm = node.getAttributes();
+    for (int count = 0; count < nnm.getLength(); count++) {
+      Attr attr = (Attr) nnm.item(count);
+      String name = attr.getName();
+      if (name.startsWith("xmlns:") || name.equals("xmlns")) {
+	// Skip it; (don't ya just love it!!)
+      } else {
+	attrs.addAttribute(attr.getNamespaceURI(), attr.getName(),
+			   attr.getName(), "CDATA", attr.getValue());
+      }
+    }
+    return attrs;
   }
 }
