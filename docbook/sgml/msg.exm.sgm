@@ -1,0 +1,54 @@
+<MSGENTRY>
+<MSG>
+<MSGMAIN>
+<MSGTEXT>
+<PARA>Auto removal: Token-ring lobe
+</PARA>
+</MSGTEXT>
+</MSGMAIN>
+<MSGSUB>
+<TITLE>Failure
+</TITLE>
+<MSGTEXT>
+<PARA>Local token-ring adapter
+</PARA>
+<PARA>Local access unit
+</PARA>
+<PARA>Local lobe cables
+</PARA>
+</MSGTEXT>
+</MSGSUB>
+<MSGREL>
+<TITLE>NetWare message:
+</TITLE>
+<MSGTEXT>
+<PARA>TOKEN-NW-237-Adapter <REPLACEABLE>number</REPLACEABLE&
+gt; -board <REPLACEABLE>number</REPLACEABLE> : The adapter
+is beaconing.
+</PARA>
+<PARA>Ring status = <REPLACEABLE>code</REPLACEABLE>
+ .
+</PARA>
+</MSGTEXT>
+</MSGREL>
+     </MSG>
+<MSGINFO>
+<MSGORIG>NetView for NetWare
+</MSGORIG>
+<MSGLEVEL>Informative
+</MSGLEVEL>
+     </MSGINFO>
+<MSGEXPLAN>
+<TITLE>Explanation:
+</TITLE>
+<PARA>Adapter left the ring as part of the beacon automatic
+recovery process.
+</PARA>
+</MSGEXPLAN>
+<MSGEXPLAN>
+<TITLE>Action:
+</TITLE>
+<PARA>Ask the LAN administrator to review the link data.
+</PARA>
+</MSGEXPLAN>
+</MSGENTRY>

@@ -1,63 +1,33 @@
 README
 
-This directory contains several versions of the DocBook DTD,
-their documentation, an SGML declaration, and some sample files.  
-As of 13 March 1993 two versions of this DTD are available, 1.0 
-(for historical reference) and 1.2.1 (the current version).  
-The documentation for DTD version 1.0 is out of date, 
-but may still be useful, especially for RefEntries (man pages).  
+This directory contains the current version of the DocBook DTD,
+its documentation, an SGML declaration, an SGML Open-style 
+entity catalogue, and some sample files.  
 
-As of 13 March 1993 the documentation for the DTD version 1.2.1 
-consists of an alphabetical list of elements, with definitions.  
-This list is available in both PostScript and SGML formats.
-Additional documentation will be forthcoming.  
+As of 25 February 1995 the latest revision of the DTD is version 2.2.1.
+The previous version, 2.1, may be found in the subdirectory
+"docbook.2.1".
 
-DocBook 1.2 was an expanded and revised version of 1.0, including 
-many in-line elements, some specific, some general and inclusive.  
-Valid documents may of course be constructed with a subset of
-these in-line elements---don't feel you must use them all.
+As of 25 December 1995 the documentation for the DTD version 2.2.1
+consists of a "Guide" that includes an alphabetical list of 
+elements, with definitions, in both SGML and PostScript.  A sample 
+Chapter and sample RefEntry (man page) are also provided.
+The entity file "orathree" contains local entities
+for use with these examples.
 
-DocBook 1.2.1 merely fixes some errors and omissions in 1.2 (see
-the list below).
+DocBook 2.2.1 is an expanded and revised version of 2.1
+Instances conforming to 2.1 may require some changes
+to conform to 2.2.1 (see the Guide for a list of changes in
+the DTD).
+
+More documentation may be made available as time permits.  Suggestions
+for improving the documentation are welcome.
 
 The DTD does not establish detailed rules for the usage of 
 elements.  This is a matter for editors and writers to deal with.
 
-Please note that the DTD has an associated SGML declaration,
-also to be found in this directory.
+Please note that the DTD has an associated SGML declaration.
 
-To get all of the files relevant to version 1.2.1, obtain the files
-named docbook1.2.1.shar, docbook.ps.Z, and docbook1.2.1.doc.ps.Z.
-
-
-***  CHANGES in 1.2.1
-
-The version number in the public identifier for the DTD was corrected
-	and incremented (was 1.1.1, should have been 1.2, now is 1.2.1).
-
-Semicolons missing from some parameter entities have been supplied.
-
-BookAcronym, Holder, Revision, RevNumber, RevRemark, AuthorInitials, 
-	Year, Firstname, and Surname have been removed from 
-	docinfo.content.gp, as they may occur only within other 
-	elements already in this parameter entity.
-
-OtherAuthor should have been OtherName, and now is.  OtherName is an
-	alternative to Firstname and (or) Surname in Author or Editor.
-
-The HasRefentry attribute has been removed from the Primary, Secondary,
-	etc. index elements.
-
-FORMAL has been set to YES in the SGML declaration.
-
-Several errors in the file docbook1.2.doc.sgml have been corrected,
-	and an external entity file has been provided for it (ORAents.v3m).
-
-Part has been allowed in Book, where it had been omitted by mistake.
-	Suggestions for improving the Book model are invited (the addition
-	of a Body element has been suggested).  Particularly interesting
-	would be examples of real books that can't be represented 
-	in this model.
-
-The DOCTYPE line has been deleted from the sample man page.
+To get all of the files relevant to version 2.2.1, obtain the files
+named docbook.2.2.1.shar and docbook.ps.Z.
 
