@@ -29,6 +29,22 @@ while ($index =~ /^(.*?)((<phrase role=\"pageno\">.*?<\/phrase>\s*)+)/s) {
 
     my @pages = m/<phrase role=\"pageno\">.*?<\/phrase>\s*/sg;
 
+    # Expand ranges
+    if ($#pages >= 0) {
+	my @mpages = ();
+	foreach my $page (@pages) {
+	    my $pageno = &pageno($page);
+	    if ($pageno =~ /^([0-9]+)[^0-9]([0-9]+)$/) { # funky -
+		for (my $count = $1; $count <= $2; $count++) {
+		    push (@mpages, "<phrase role=\"$pageno\">$count</phrase>");
+		}
+	    } else {
+		push (@mpages, $page);
+	    }
+	}
+	@pages = sort rangesort @mpages;
+    }
+
     # Remove duplicates...
     if ($#pages > 0) {
 	my @mpages = ();
@@ -89,6 +105,16 @@ sub pageno {
 
     return $1 if $page =~ /^([^<>]+)/;
     return "?";
+}
+
+sub rangesort {
+    my $apno = &pageno($a);
+    my $bpno = &pageno($b);
+
+    # Make sure roman pages come before arabic ones, otherwise sort them in order
+    return -1 if ($apno !~ /^\d+/ && $bpno =~ /^\d+/);
+    return  1 if ($apno =~ /^\d+/ && $bpno !~ /^\d+/);
+    return $apno cmp $bpno;
 }
 
 sub rangelen {
