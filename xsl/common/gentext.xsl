@@ -13,19 +13,53 @@
   </xsl:call-template>
 </xsl:template>
 
+<xsl:template match="chapter" mode="object.title.template">
+  <xsl:choose>
+    <xsl:when test="$chapter.autolabel != 0">
+      <xsl:call-template name="gentext.template">
+        <xsl:with-param name="context" select="'title-numbered'"/>
+        <xsl:with-param name="name" select="local-name(.)"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="gentext.template">
+        <xsl:with-param name="context" select="'title-unnumbered'"/>
+        <xsl:with-param name="name" select="local-name(.)"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="appendix" mode="object.title.template">
+  <xsl:choose>
+    <xsl:when test="$appendix.autolabel != 0">
+      <xsl:call-template name="gentext.template">
+        <xsl:with-param name="context" select="'title-numbered'"/>
+        <xsl:with-param name="name" select="local-name(.)"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="gentext.template">
+        <xsl:with-param name="context" select="'title-unnumbered'"/>
+        <xsl:with-param name="name" select="local-name(.)"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="section|sect1|sect2|sect3|sect4|sect5|simplesect
                      |bridgehead"
               mode="object.title.template">
   <xsl:choose>
     <xsl:when test="$section.autolabel != 0">
       <xsl:call-template name="gentext.template">
-        <xsl:with-param name="context" select="'section-title-numbered'"/>
+        <xsl:with-param name="context" select="'title-numbered'"/>
         <xsl:with-param name="name" select="local-name(.)"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="gentext.template">
-        <xsl:with-param name="context" select="'section-title'"/>
+        <xsl:with-param name="context" select="'title-unnumbered'"/>
         <xsl:with-param name="name" select="local-name(.)"/>
       </xsl:call-template>
     </xsl:otherwise>
