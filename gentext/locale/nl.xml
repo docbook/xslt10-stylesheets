@@ -5,15 +5,12 @@
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo xmlns="">
-<!-- Updated by Frederik Fouvry, fouvry@sfs.nphil.uni-tuebingen.de -->
-<!-- FIXME: list the real contributors
 <authorgroup>
-  <author><firstname>Norman</firstname><surname>Walsh</surname>
-          <affiliation><address><email>ndw@nwalsh.com</email></address>
+  <author><firstname>Frederik</firstname><surname>Fouvry</surname>
+          <affiliation><address><email>fouvry@coli.uni-sb.de</email></address>
           </affiliation>
   </author>
 </authorgroup>
--->
 </doc:localeinfo>
 
 <!-- Updated by Frederik Fouvry, fouvry@sfs.nphil.uni-tuebingen.de -->
@@ -97,11 +94,11 @@
 <gentext key="revhistory" text="Wijzigingen"/>
 <gentext key="Revision" text="Herziening"/>
 <gentext key="revision" text="Herziening"/>
-<gentext key="sect1" text="Section"/> <!-- en -->
-<gentext key="sect2" text="Section"/> <!-- en -->
-<gentext key="sect3" text="Section"/> <!-- en -->
-<gentext key="sect4" text="Section"/> <!-- en -->
-<gentext key="sect5" text="Section"/> <!-- en -->
+<gentext key="sect1" text="Paragraaf"/>
+<gentext key="sect2" text="Paragraaf"/>
+<gentext key="sect3" text="Paragraaf"/>
+<gentext key="sect4" text="Paragraaf"/>
+<gentext key="sect5" text="Paragraaf"/>
 <gentext key="Section" text="Paragraaf"/>
 <gentext key="section" text="paragraaf"/>
 <gentext key="See" text="Zie"/>
@@ -168,16 +165,16 @@
 <gentext key="nav-prev-sibling" text="Verder terug"/>
 <gentext key="nav-up" text="Omhoog"/>
 
-<gentext key="Draft"         text="Draft"/> <!-- en -->
-<gentext key="above"         text="above"/> <!-- en -->
-<gentext key="below"         text="below"/> <!-- en -->
-<gentext key="index symbols" text="Symbols"/> <!-- en -->
-<gentext key="sectioncalled"       text="de sectie genaamd"/>
+<gentext key="Draft"         text="Ontwerp"/>
+<gentext key="above"         text="boven"/>
+<gentext key="below"         text="onder"/>
+<gentext key="index symbols" text="Symbolen"/>
+<gentext key="sectioncalled"       text="de paragraaf"/>
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzëïé"/>
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZËÏÉ"/>
 
-<dingbat key="startquote" text="&#x201C;"/>
+<DINGBAT key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
 <dingbat key="nestedstartquote" text="&#x2018;"/>
 <dingbat key="nestedendquote" text="&#x2019;"/>
