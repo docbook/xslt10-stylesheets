@@ -40,16 +40,6 @@
       </xsl:otherwise>
     </xsl:choose>
 
-    <xsl:choose>
-      <xsl:when test="glossdiv">
-        <xsl:apply-templates select="(glossdiv[1]/following-sibling::*)"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates select="(glossentry[1]/following-sibling::*)"/>
-      </xsl:otherwise>
-    </xsl:choose>
-
-
     <xsl:call-template name="process.footnotes"/>
   </div>
 </xsl:template>
