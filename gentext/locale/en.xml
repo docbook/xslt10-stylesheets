@@ -225,6 +225,8 @@
 <template name="equation"><Equation/>&#160;%n.&#160;%t</template>
 <template name="example"><Example/>&#160;%n.&#160;%t</template>
 <template name="figure"><Figure/>&#160;%n.&#160;%t</template>
+<template name="foil">%t</template>	<!-- For Slides document type -->
+<template name="foilgroup">%t</template>  <!-- For Slides document type -->
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
@@ -375,6 +377,8 @@
 <template name="equation">%t</template>
 <template name="example">%t</template>
 <template name="figure">%t</template>
+<template name="foil">%t</template>	<!-- For Slides document type -->
+<template name="foilgroup">%t</template> <!-- For Slides document type -->
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
