@@ -41,6 +41,7 @@
 <!ATTLIST script
 	src	CDATA	#IMPLIED
 	language	CDATA	#IMPLIED
+	type	CDATA	#IMPLIED
 >
 
 <!ELEMENT style (#PCDATA)>
