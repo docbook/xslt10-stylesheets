@@ -111,6 +111,40 @@
   </l:template>
 </xsl:template>
 
+<xsl:template match="letters">
+  <xsl:text>&#10;</xsl:text>
+  <!-- Use localized text if available -->
+  <!-- otherwise use english -->
+  <xsl:variable name="localnode"
+      select="$locale/locale/*[local-name(.) = local-name(current())]"/>
+  <xsl:element name="l:{name(.)}">
+    <!-- Add lang=en if not in localized file or if marked as en there -->
+    <xsl:if test="$localnode/@lang = 'en' or not($localnode)">
+      <xsl:attribute name="lang">en</xsl:attribute>
+    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="$localnode">
+        <!-- <xsl:copy-of select="$localnode/*"/> -->
+        <xsl:for-each select="$localnode/*">
+          <xsl:element name="l:{name(.)}">
+            <xsl:copy-of select="@*"/>
+            <xsl:value-of select="."/>
+          </xsl:element>
+        </xsl:for-each>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- <xsl:copy-of select="*"/> -->
+        <xsl:for-each select="*">
+          <xsl:element name="l:{name(.)}">
+            <xsl:copy-of select="@*"/>
+            <xsl:value-of select="."/>
+          </xsl:element>
+        </xsl:for-each>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:element>
+</xsl:template>
+
 <!-- ============================================================ -->
 
 <xsl:template match="*" mode="template-text">
