@@ -128,7 +128,8 @@ select="$target.database.document"/>
   <xsl:variable name="website.targetptr.key" >
     <xsl:for-each select="$website.target.database" >
       <xsl:value-of select="key('targetptr-key', concat($seek.targetdoc,
-                                '/', $seek.targetptr))/@targetptr" />
+                                '/', $seek.targetptr, '/', 
+                                ancestor::document/@lang))/@targetptr" />
     </xsl:for-each>
   </xsl:variable>
 
