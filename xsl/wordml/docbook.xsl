@@ -168,7 +168,9 @@
 
   <xsl:template match='book|article' mode='toplevel'>
     <w:body>
-      <xsl:apply-templates select='*'/>
+      <wx:sect>
+        <xsl:apply-templates select='*'/>
+      </wx:sect>
     </w:body>
   </xsl:template>
   <xsl:template match='*' mode='toplevel'>
@@ -180,9 +182,9 @@
   </xsl:template>
 
   <xsl:template match='book|article|section|sect1|sect2|sect3|sect4|sect5|simplesect'>
-    <wx:sect>
+    <wx:sub-section>
       <xsl:apply-templates select='*'/>
-    </wx:sect>
+    </wx:sub-section>
   </xsl:template>
 
   <xsl:template match='title|subtitle|titleabbrev'>
@@ -191,6 +193,13 @@
         <w:pStyle>
           <xsl:attribute name='w:val'>
             <xsl:choose>
+              <xsl:when test='parent::section or
+                              parent::sectioninfo/parent::section'>
+                <xsl:text>sect</xsl:text>
+                <xsl:value-of select='count(ancestor::section)'/>
+                <xsl:text>-</xsl:text>
+                <xsl:value-of select='name()'/>
+              </xsl:when>
               <xsl:when test='contains(name(..), "info")'>
                 <xsl:value-of select='name(../..)'/>
                 <xsl:text>-</xsl:text>
@@ -204,18 +213,8 @@
             </xsl:choose>
           </xsl:attribute>
         </w:pStyle>
+        <w:outlineLvl w:val='{count(ancestor::*) + count(parent::*[contains(name(), "info")]) - 1}'/>
       </w:pPr>
-
-      <xsl:if test='parent::section|parent::sectioninfo/parent::section'>
-        <w:r>
-          <w:rPr>
-            <w:rStyle w:val='section-level'/>
-          </w:rPr>
-          <w:t>
-            <xsl:value-of select='count(ancestor::section)'/>
-          </w:t>
-        </w:r>
-      </xsl:if>
 
       <xsl:apply-templates/>
     </w:p>
