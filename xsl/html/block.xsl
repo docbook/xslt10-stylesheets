@@ -1,7 +1,5 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:exsl="http://exslt.org/common"
-                exclude-result-prefixes="exsl"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -26,23 +24,29 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="para">
-  <xsl:variable name="the-p">
-  <p>
-    <xsl:if test="position() = 1 and parent::listitem">
-      <xsl:call-template name="anchor">
-        <xsl:with-param name="node" select="parent::listitem"/>
-      </xsl:call-template>
-    </xsl:if>
+  <xsl:variable name="p">
+    <p>
+      <xsl:if test="position() = 1 and parent::listitem">
+        <xsl:call-template name="anchor">
+          <xsl:with-param name="node" select="parent::listitem"/>
+        </xsl:call-template>
+      </xsl:if>
 
-    <xsl:call-template name="anchor"/>
-    <xsl:apply-templates/>
-  </p>
+      <xsl:call-template name="anchor"/>
+      <xsl:apply-templates/>
+    </p>
   </xsl:variable>
 
-  <xsl:copy-of select="$the-p"/>
-<!--
-  <xsl:apply-templates select="exsl:node-set($the-p)" mode="unwrap.p"/>
--->
+  <xsl:choose>
+    <xsl:when test="$html.cleanup != 0">
+      <xsl:call-template name="unwrap.p">
+        <xsl:with-param name="p" select="$p"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy-of select="$p"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="simpara">

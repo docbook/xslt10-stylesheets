@@ -21,5 +21,10 @@ extra effort to ensure that the resulting HTML is valid. This may mean that some
 <sgmltag>para</sgmltag> tags are translated into HTML <sgmltag>div</sgmltag>s or
 that other substitutions occur.</para>
 
+<para>This parameter is different from <parameter>html.cleanup</parameter>
+because it changes the resulting markup; it does not use extension functions
+to manipulate result-tree-fragments and is therefore applicable to any
+XSLT processor.</para>
+
 </refsect1>
 </refentry>

@@ -149,6 +149,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &html.longdesc;
 &html.longdesc.link;
 &make.valid.html;
+&html.cleanup;
 </reference>
 
 <reference><title>XSLT Processing</title>
@@ -340,6 +341,7 @@ around all these parameters.</para>
 <src:fragref linkend="glossterm.auto.link.frag"/>
 <src:fragref linkend="graphic.default.extension.frag"/>
 <src:fragref linkend="html.base.frag"/>
+<src:fragref linkend="html.cleanup.frag"/>
 <src:fragref linkend="html.ext.frag"/>
 <src:fragref linkend="html.longdesc.frag"/>
 <src:fragref linkend="html.longdesc.link.frag"/>
