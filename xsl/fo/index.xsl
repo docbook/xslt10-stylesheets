@@ -199,7 +199,7 @@
             space-before.maximum="{$body.font.master * 1.2}pt">
     <xsl:choose>
       <xsl:when test="$title">
-        <xsl:apply-templates select="$title" mode="object.title.markup">
+        <xsl:apply-templates select="." mode="object.title.markup">
           <xsl:with-param name="allow-anchors" select="1"/>
         </xsl:apply-templates>
       </xsl:when>
