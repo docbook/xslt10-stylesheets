@@ -122,6 +122,7 @@
 <!ENTITY htmlhelp.use.hhk SYSTEM "../params/htmlhelp.use.hhk.xml">
 <!ENTITY htmlhelp.window.geometry SYSTEM "../params/htmlhelp.window.geometry.xml">
 <!ENTITY index.on.role SYSTEM "../params/index.on.role.xml">
+<!ENTITY index.on.type SYSTEM "../params/index.on.type.xml">
 <!ENTITY inherit.keywords SYSTEM "../params/inherit.keywords.xml">
 <!ENTITY label.from.part SYSTEM "../params/label.from.part.xml">
 <!ENTITY linenumbering.everyNth SYSTEM "../params/linenumbering.everyNth.xml">
