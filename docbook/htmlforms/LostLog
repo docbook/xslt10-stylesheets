@@ -1,0 +1,12 @@
+2000-08-24  Norman Walsh  <ndw@nwalsh.com>
+
+	* dbforms.dtd, testform.xml: s/beta1/beta2/
+
+2000-08-12  Norman Walsh  <ndw@nwalsh.com>
+
+	* dbforms.dtd: Updated to DocBook XML V4.1.1
+
+2000-07-06  Norman Walsh  <ndw@nwalsh.com>
+
+	* dbforms.dtd, testform.xml: New file.
+

@@ -1,0 +1,18 @@
+2000-08-24  Norman Walsh  <ndw@nwalsh.com>
+
+	* dbmathml.dtd, testmath.xml: s/beta1/beta2/
+
+2000-08-12  Norman Walsh  <ndw@nwalsh.com>
+
+	* dbmathml.dtd: Updated to DocBook XML V4.1.1
+
+2000-07-29  Norman Walsh  <ndw@nwalsh.com>
+
+	* dbmathml.dtd: Fixed system identifier of mathml.dtd
+
+	* testmath.xml: Added mml namespace declaration
+
+2000-07-06  Norman Walsh  <ndw@nwalsh.com>
+
+	* dbmathml.dtd, testmath.xml: New file.
+
