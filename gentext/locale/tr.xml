@@ -145,7 +145,7 @@
 <gentext key="tableofcontents" text="İçindekiler"/>
 <gentext key="unexpectedelementname" text="Beklenmeyen eleman adı"/>
 <gentext key="unsupported" text="desteklenmiyor"/>
-<gentext key="xrefto" text="xref to"/>
+<gentext key="xrefto" text=""/> 
 
 <gentext key="listofequations" text="Denklemler"/>
 <gentext key="ListofEquations" text="Denklemler"/>
@@ -463,5 +463,48 @@
 <template name="MsgLevel"><MsgLevel/>: </template>
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
+
+<context name="datetime">
+<template name="format">/m/Y</template>
+<template name="January">Ocak</template>
+<template name="February">Şubat</template>
+<template name="March">Mart</template>
+<template name="April">Nisan</template>
+<template name="May">Mayıs</template>
+<template name="June">Haziran</template>
+<template name="July">Temmuz</template>
+<template name="August">Ağustos</template>
+<template name="September">Eylül</template>
+<template name="October">Ekim</template>
+<template name="November">Kasım</template>
+<template name="December">Aralık</template>
+<template name="Jan">Oca</template>
+<template name="Feb">Şub</template>
+<template name="Mar">Mar</template>
+<template name="Apr">Nis</template>
+<template name="May">May</template>
+<template name="Jun">Haz</template>
+<template name="Jul">Tem</template>
+<template name="Aug">Ağu</template>
+<template name="Sep">Eyl</template>
+<template name="Oct">Eki</template>
+<template name="Nov">Kas</template>
+<template name="Dec">Ara</template>
+<template name="Monday">Pazartesi</template>
+<template name="Tuesday">Salı</template>
+<template name="Wednesday">Çarşamba</template>
+<template name="Thursday">Perşembe</template>
+<template name="Friday">Cuma</template>
+<template name="Saturday">Cumartesi</template>
+<template name="Sunday">Pazar</template>
+<template name="Mon">Pzt</template>
+<template name="Tue">Sal</template>
+<template name="Wed">Çar</template>
+<template name="Thu">Per</template>
+<template name="Fri">Cum</template>
+<template name="Sat">Cts</template>
+<template name="Sun">Paz</template>
+</context>
+
 
 </locale>
