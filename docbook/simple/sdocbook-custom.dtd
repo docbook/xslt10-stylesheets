@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- Simplified DocBook DTD V1.1b3 .......................................... -->
+<!-- Simplified DocBook DTD V1.1CR1 .......................................... -->
 <!-- File sdocbook-custom.dtd ............................................. -->
 
 <!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
@@ -30,16 +30,16 @@
 
 <!-- ...................................................................... -->
 
-<!-- This is the driver file for V1.1b3 of the Simplified DocBook XML DTD.
+<!-- This is the driver file for V1.1CR1 of the Simplified DocBook XML DTD.
      Please use the following formal public identifier to identify it:
 
-     "-//OASIS//DTD Simplified DocBook XML V1.1b3//EN"
+     "-//OASIS//DTD Simplified DocBook XML V1.1CR1//EN"
 
      For example:
 
      <!DOCTYPE article
-               PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.1b3//EN"
-      "http://www.oasis-open.org/docbook/xml/simple/1.1b3/sdocbook.dtd"
+               PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.1CR1//EN"
+      "http://www.oasis-open.org/docbook/xml/simple/1.1CR1/sdocbook.dtd"
      [...]>
 -->
 
@@ -130,6 +130,10 @@
 		"author|corpauthor|othercredit
 		|revhistory
 		%local.docinfo.char.class;">
+
+<!ENTITY % local.other.char.class "">
+<!ENTITY % other.char.class
+		"subscript|superscript %local.other.char.class;">
 
 <!ENTITY % local.inlineobj.char.class "">
 <!ENTITY % inlineobj.char.class
@@ -423,5 +427,5 @@
 <!ELEMENT blockquote %ho; (title?, attribution?, (%component.mix;)+)>
 ]]>
 
-<!-- End of Simplified DocBook DTD V1.1b3 ................................... -->
+<!-- End of Simplified DocBook DTD V1.1CR1 ................................... -->
 <!-- ...................................................................... -->

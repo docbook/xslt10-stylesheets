@@ -44,7 +44,6 @@
 <!ENTITY % biblioentry.module "IGNORE">
 <!ENTITY % glossary.content.module "IGNORE">
 <!ENTITY % glossentry.content.module "IGNORE">
-<!ENTITY % ssscript.module "IGNORE">
 <!ENTITY % caution.element "IGNORE">
 <!ENTITY % caution.attlist "IGNORE">
 <!ENTITY % important.element "IGNORE">

@@ -154,7 +154,7 @@
 		|%xref.char.class;	|%gen.char.class;
 		|%link.char.class;	|%tech.char.class;
                 |%base.char.class;
-					|%inlineobj.char.class;
+		|%other.char.class;	|%inlineobj.char.class;
 		%local.para.char.mix;">
 
 <!ENTITY % local.title.char.mix "">
@@ -164,7 +164,7 @@
 		|%link.char.class;	|%tech.char.class;
                 |%base.char.class;
 					|%docinfo.char.class;
-					|%inlineobj.char.class;
+		|%other.char.class;	|%inlineobj.char.class;
 		%local.title.char.mix;">
 
 <!ENTITY % local.cptr.char.mix "">
@@ -172,7 +172,7 @@
 		"#PCDATA
 		|%link.char.class;	|%tech.char.class;
                 |%base.char.class;
-					|inlinemediaobject
+		|%other.char.class;	|inlinemediaobject
 		%local.cptr.char.mix;">
 
 <!ENTITY % local.smallcptr.char.mix "">
@@ -188,7 +188,7 @@
 					|acronym|emphasis|trademark
 		|%link.char.class;
                 |%base.char.class;
-					|inlinemediaobject
+		|%other.char.class;	|inlinemediaobject
 		%local.word.char.mix;">
 
 <!ENTITY % local.docinfo.char.mix "">
@@ -197,7 +197,7 @@
 		|%link.char.class;
 					|emphasis|trademark
 					|replaceable
-					|inlinemediaobject
+		|%other.char.class;	|inlinemediaobject
 		%local.docinfo.char.mix;">
 
 <!ENTITY % tbl.table.excep "">
