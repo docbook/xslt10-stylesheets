@@ -22,8 +22,8 @@
 
 <gentext key="Abstract" text="&Acy;&ncy;&ncy;&ocy;&tcy;&acy;&tscy;&icy;&yacy;"/>
 <gentext key="abstract" text="&Acy;&ncy;&ncy;&ocy;&tcy;&acy;&tscy;&icy;&yacy;"/>
-<gentext key="Answer" text="A:"/>
-<gentext key="answer" text="A:"/> <!-- en -->
+<gentext key="Answer" text="&Ocy;:"/>
+<gentext key="answer" text="&Ocy;:"/>
 <gentext key="Appendix" text="&Pcy;&rcy;&icy;&lcy;&ocy;&zhcy;&iecy;&ncy;&icy;&iecy;"/>
 <gentext key="appendix" text="&pcy;&rcy;&icy;&lcy;&ocy;&zhcy;&iecy;&ncy;&icy;&iecy;"/>
 <gentext key="Appendix.abr" text="&Pcy;&rcy;&icy;&lcy;."/>
@@ -65,10 +65,10 @@
 <gentext key="figure.abr" text="&Rcy;&icy;&scy;."/>
 <gentext key="Glossary" text="&Gcy;&lcy;&ocy;&scy;&scy;&acy;&rcy;&icy;&jcy;"/>
 <gentext key="glossary" text="&Gcy;&lcy;&ocy;&scy;&scy;&acy;&rcy;&icy;&jcy;"/>
-<gentext key="GlossSee" text="See"/>
-<gentext key="glosssee" text="See"/> <!-- en -->
-<gentext key="GlossSeeAlso" text="See Also"/>
-<gentext key="glossseealso" text="See Also"/> <!-- en -->
+<gentext key="GlossSee" text="&Scy;&mcy;."/>
+<gentext key="glosssee" text="&Scy;&mcy;."/>
+<gentext key="GlossSeeAlso" text="&Scy;&mcy;. &tcy;&acy;&kcy;&zhcy;&iecy;"/>
+<gentext key="glossseealso" text="&Scy;&mcy;. &tcy;&acy;&kcy;&zhcy;&iecy;"/>
 <gentext key="IMPORTANT" text="&Vcy;&Acy;&ZHcy;&Ncy;&Ocy;"/>
 <gentext key="Important" text="&Vcy;&acy;&zhcy;&ncy;&ocy;"/>
 <gentext key="important" text="&Vcy;&acy;&zhcy;&ncy;&ocy;"/>
@@ -106,8 +106,8 @@
 <gentext key="ProductionSet" text="Production"/> <!-- en -->
 <gentext key="Published" text="&Ocy;&pcy;&ucy;&bcy;&lcy;&icy;&kcy;&ocy;&vcy;&acy;&ncy;&ocy;"/>
 <gentext key="published" text="&Ocy;&pcy;&ucy;&bcy;&lcy;&icy;&kcy;&ocy;&vcy;&acy;&ncy;&ocy;"/>
-<gentext key="Question" text="Q:"/>
-<gentext key="question" text="Q:"/> <!-- en -->
+<gentext key="Question" text="&Vcy;:"/>
+<gentext key="question" text="&Vcy;:"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
 <gentext key="Reference" text="&Scy;&scy;&ycy;&lcy;&kcy;&acy;"/>
@@ -116,17 +116,17 @@
 <gentext key="refname" text="&Ncy;&acy;&zcy;&vcy;&acy;&ncy;&icy;&iecy;"/>
 <gentext key="RefSection" text=""/>
 <gentext key="refsection" text=""/>
-<gentext key="RefSynopsisDiv" text="Synopsis"/>
-<gentext key="refsynopsisdiv" text="Synopsis"/> <!-- en -->
+<gentext key="RefSynopsisDiv" text="&Scy;&icy;&ncy;&tcy;&acy;&kcy;&scy;&icy;&scy;"/>
+<gentext key="refsynopsisdiv" text="&Scy;&icy;&ncy;&tcy;&acy;&kcy;&scy;&icy;&scy;"/>
 <gentext key="RevHistory" text="&Icy;&scy;&tcy;&ocy;&rcy;&icy;&yacy; &pcy;&iecy;&rcy;&iecy;&icy;&zcy;&dcy;&acy;&ncy;&icy;&yacy;"/>
 <gentext key="revhistory" text="&Icy;&scy;&tcy;&ocy;&rcy;&icy;&yacy; &pcy;&iecy;&rcy;&iecy;&icy;&zcy;&dcy;&acy;&ncy;&icy;&yacy;"/>
 <gentext key="Revision" text="&Icy;&zcy;&dcy;&acy;&ncy;&icy;&iecy;"/>
 <gentext key="revision" text="&Icy;&zcy;&dcy;&acy;&ncy;&icy;&iecy;"/>
-<gentext key="sect1" text="Section"/> <!-- en -->
-<gentext key="sect2" text="Section"/> <!-- en -->
-<gentext key="sect3" text="Section"/> <!-- en -->
-<gentext key="sect4" text="Section"/> <!-- en -->
-<gentext key="sect5" text="Section"/> <!-- en -->
+<gentext key="sect1" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
+<gentext key="sect2" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
+<gentext key="sect3" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
+<gentext key="sect4" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
+<gentext key="sect5" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
 <gentext key="Section" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
 <gentext key="section" text="&rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
 <gentext key="Section.abr" text="&Rcy;&acy;&zcy;&dcy;."/>
@@ -209,13 +209,13 @@
 <gentext key="nav-up" text="&Ucy;&rcy;&ocy;&vcy;&iecy;&ncy;&softcy; &vcy;&ycy;&shcy;&iecy;"/>
 
 <gentext key="sectioncalled" text="the section called"/> <!-- en -->
-<gentext key="Draft"         text="Draft"/> <!-- en -->
-<gentext key="above"         text="above"/> <!-- en -->
-<gentext key="below"         text="below"/> <!-- en -->
+<gentext key="Draft"         text="&CHcy;&iecy;&rcy;&ncy;&ocy;&vcy;&icy;&kcy;"/>
+<gentext key="above"         text="&vcy;&ycy;&shcy;&iecy;"/>
+<gentext key="below"         text="&ncy;&icy;&zhcy;&iecy;"/>
 <gentext key="index symbols" text="Symbols"/> <!-- en -->
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
+<gentext key="lowercase.alpha" text="&acy;&bcy;&vcy;&gcy;&dcy;&iecy;&iocy;&zhcy;&zcy;&icy;&jcy;&kcy;&lcy;&mcy;&ncy;&ocy;&pcy;&rcy;&scy;&tcy;&ucy;&fcy;&khcy;&tscy;&chcy;&shcy;&shchcy;&hardcy;&ycy;&softcy;&ecy;&yucy;&yacy;"/>
+<gentext key="uppercase.alpha" text="&Acy;&Bcy;&Vcy;&Gcy;&Dcy;&IEcy;&IOcy;&ZHcy;&Zcy;&Icy;&Jcy;&Kcy;&Lcy;&Mcy;&Ncy;&Ocy;&Pcy;&Rcy;&Scy;&Tcy;&Ucy;&Fcy;&KHcy;&TScy;&CHcy;&SHcy;&SHCHcy;&HARDcy;&Ycy;&SOFTcy;&Ecy;&YUcy;&YAcy;"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
