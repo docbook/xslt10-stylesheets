@@ -33,22 +33,22 @@ w3c:
 	cd w3c && rm -f *.html && $(XSLT) ../../xsl/$(HTML)/w3c.xsl
 
 frames1:
-	cd frames1 && rm -f *.html && $(XSLT) ../../xsl/$(HTML)/frames.xsl overlay=0 multiframe=0 dynamic.toc=0 active.toc=0
+	cd frames1 && rm -f *.html && $(XSLT) ../../xsl/$(HTML)/frames.xsl - overlay=0 multiframe=0 dynamic.toc=0 active.toc=0
 
 frames2:
-	cd frames2 && rm -f *.html && $(XSLT) ../../xsl/$(HTML)/frames.xsl overlay=1 multiframe=0 dynamic.toc=0 active.toc=0
+	cd frames2 && rm -f *.html && $(XSLT) ../../xsl/$(HTML)/frames.xsl - overlay=1 multiframe=0 dynamic.toc=0 active.toc=0
 
 frames3:
-	cd frames3 && rm -f *.html && $(XSLT) ../../xsl/$(HTML)/frames.xsl overlay=0 multiframe=1 dynamic.toc=0 active.toc=0
+	cd frames3 && rm -f *.html && $(XSLT) ../../xsl/$(HTML)/frames.xsl - overlay=0 multiframe=1 dynamic.toc=0 active.toc=0
 
 frames4:
-	cd frames4 && rm -f *.html && $(XSLT) ../../xsl/$(HTML)/frames.xsl overlay=0 multiframe=0 dynamic.toc=1 active.toc=0
+	cd frames4 && rm -f *.html && $(XSLT) ../../xsl/$(HTML)/frames.xsl - overlay=0 multiframe=0 dynamic.toc=1 active.toc=0
 
 frames5:
-	cd frames5 && rm -f *.html && $(XSLT) ../../xsl/$(HTML)/frames.xsl overlay=0 multiframe=0 dynamic.toc=0 active.toc=1
+	cd frames5 && rm -f *.html && $(XSLT) ../../xsl/$(HTML)/frames.xsl - overlay=0 multiframe=0 dynamic.toc=0 active.toc=1
 
 frames6:
-	cd frames6 && rm -f *.html && $(XSLT) ../../xsl/$(HTML)/frames.xsl overlay=1 multiframe=0 dynamic.toc=1 active.toc=1
+	cd frames6 && rm -f *.html && $(XSLT) ../../xsl/$(HTML)/frames.xsl - overlay=1 multiframe=0 dynamic.toc=1 active.toc=1
 
 frames7:
-	cd frames7 && rm -f *.html && $(XSLT) ../../xsl/$(HTML)/frames.xsl overlay=0 multiframe=1 dynamic.toc=1 active.toc=1
+	cd frames7 && rm -f *.html && $(XSLT) ../../xsl/$(HTML)/frames.xsl - overlay=0 multiframe=1 dynamic.toc=1 active.toc=1
