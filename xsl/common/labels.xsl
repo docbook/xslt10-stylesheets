@@ -512,10 +512,10 @@ element label.</para>
             <xsl:apply-templates select="$pchap" mode="label.markup"/>
             <xsl:apply-templates select="$pchap" mode="intralabel.punctuation"/>
           </xsl:if>
-          <xsl:number format="1" from="chapter|appendix" level="any"/>
+          <xsl:number format="1" count="equation[title]" from="chapter|appendix" level="any"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:number format="1" from="book|article" level="any"/>
+          <xsl:number format="1" count="equation[title]" from="book|article" level="any"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
