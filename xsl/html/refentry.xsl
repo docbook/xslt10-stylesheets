@@ -43,6 +43,7 @@
 <xsl:template match="reference/referenceinfo"></xsl:template>
 <xsl:template match="reference/title"></xsl:template>
 <xsl:template match="reference/subtitle"></xsl:template>
+<xsl:template match="reference/titleabbrev"></xsl:template>
 
 <!-- ==================================================================== -->
 
