@@ -183,33 +183,41 @@ or 0 (the empty string)</para>
                       select="$entry/ancestor::tgroup/colspec[@colname=$namest]"/>
     </xsl:call-template>
   </xsl:variable>
+
   <xsl:variable name="ecol">
     <xsl:call-template name="colspec.colnum">
       <xsl:with-param name="colspec"
                       select="$entry/ancestor::tgroup/colspec[@colname=$nameend]"/>
     </xsl:call-template>
   </xsl:variable>
-  <xsl:value-of select="$ecol - $scol + 1"/>
-</xsl:template>
-
-<xsl:template name="X.calculate.rowsep">
-  <xsl:param name="entry" select="."/>
-  <xsl:param name="colnum" select="0"/>
 
   <xsl:choose>
-    <xsl:when test="$entry/ancestor::table/@frame = 'all'
-                    or $entry/ancestor::informaltable/@frame = 'all'">1</xsl:when>
-    <xsl:when test="$entry/@rowsep">
-      <xsl:value-of select="$entry/@rowsep"/>
+    <xsl:when test="$namest != '' and $nameend != ''">
+      <xsl:choose>
+        <xsl:when test="$ecol &gt;= $scol">
+          <xsl:value-of select="$ecol - $scol + 1"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$scol - $ecol + 1"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
-    <xsl:when test="$entry/ancestor::row[1]/@rowsep">
-      <xsl:value-of select="$entry/ancestor::row[1]/@rowsep"/>
-    </xsl:when>
-    <xsl:otherwise>0</xsl:otherwise>
+    <xsl:otherwise>1</xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
 <xsl:template name="calculate.rowsep">
+  <xsl:param name="entry" select="."/>
+  <xsl:param name="colnum" select="0"/>
+
+  <xsl:call-template name="inherited.table.attribute">
+    <xsl:with-param name="entry" select="$entry"/>
+    <xsl:with-param name="colnum" select="$colnum"/>
+    <xsl:with-param name="attribute" select="'rowsep'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="X.calculate.rowsep">
   <xsl:param name="entry" select="."/>
   <xsl:param name="colnum" select="0"/>
 
@@ -279,6 +287,17 @@ or 0 (the empty string)</para>
   <xsl:param name="entry" select="."/>
   <xsl:param name="colnum" select="0"/>
 
+  <xsl:call-template name="inherited.table.attribute">
+    <xsl:with-param name="entry" select="$entry"/>
+    <xsl:with-param name="colnum" select="$colnum"/>
+    <xsl:with-param name="attribute" select="'colsep'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="X.calculate.colsep">
+  <xsl:param name="entry" select="."/>
+  <xsl:param name="colnum" select="0"/>
+
 <!--
   <xsl:text>[</xsl:text>
   <xsl:value-of select="$colnum"/>
@@ -338,6 +357,123 @@ or 0 (the empty string)</para>
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>0</xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="inherited.table.attribute">
+  <xsl:param name="entry" select="."/>
+  <xsl:param name="colnum" select="0"/>
+  <xsl:param name="attribute" select="'colsep'"/>
+
+  <xsl:variable name="entry.value">
+    <xsl:call-template name="get-attribute">
+      <xsl:with-param name="element" select="$entry"/>
+      <xsl:with-param name="attribute" select="$attribute"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="row.value">
+    <xsl:call-template name="get-attribute">
+      <xsl:with-param name="element" select="$entry/ancestor::row[1]"/>
+      <xsl:with-param name="attribute" select="$attribute"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="span.value">
+    <xsl:if test="$entry/@spanname">
+      <xsl:variable name="spanname" select="$entry/@spanname"/>
+      <xsl:variable name="spanspec"
+                    select="$entry/ancestor::tgroup/spanspec[@spanname=$spanname]"/>
+      <xsl:variable name="span.colspec"
+                    select="$entry/ancestor::tgroup/colspec[@colname=$spanspec/@namest]"/>
+
+      <xsl:variable name="spanspec.value">
+        <xsl:call-template name="get-attribute">
+          <xsl:with-param name="element" select="$spanspec"/>
+          <xsl:with-param name="attribute" select="$attribute"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:variable name="scolspec.value">
+        <xsl:call-template name="get-attribute">
+          <xsl:with-param name="element" select="$span.colspec"/>
+          <xsl:with-param name="attribute" select="$attribute"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:choose>
+        <xsl:when test="$spanspec.value != ''">
+          <xsl:value-of select="$spanspec.value"/>
+        </xsl:when>
+        <xsl:when test="$scolspec.value != ''">
+          <xsl:value-of select="$scolspec.value"/>
+        </xsl:when>
+        <xsl:otherwise></xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:variable>
+
+  <xsl:variable name="namest.value">
+    <xsl:if test="$entry/@namest">
+      <xsl:variable name="namest" select="$entry/@namest"/>
+      <xsl:variable name="colspec"
+                    select="$entry/ancestor::tgroup/colspec[@colname=$namest]"/>
+
+      <xsl:variable name="namest.value">
+        <xsl:call-template name="get-attribute">
+          <xsl:with-param name="element" select="$colspec"/>
+          <xsl:with-param name="attribute" select="$attribute"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:choose>
+        <xsl:when test="$namest.value">
+          <xsl:value-of select="$namest.value"/>
+        </xsl:when>
+        <xsl:otherwise></xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:variable>
+
+  <xsl:variable name="tgroup.value">
+    <xsl:call-template name="get-attribute">
+      <xsl:with-param name="element" select="$entry/ancestor::tgroup[1]"/>
+      <xsl:with-param name="attribute" select="$attribute"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$entry.value != ''">
+      <xsl:value-of select="$entry.value"/>
+    </xsl:when>
+    <xsl:when test="$row.value != ''">
+      <xsl:value-of select="$row.value"/>
+    </xsl:when>
+    <xsl:when test="$span.value">
+      <xsl:value-of select="$span.value"/>
+    </xsl:when>
+    <xsl:when test="$namest.value">
+      <xsl:value-of select="$namest.value"/>
+    </xsl:when>
+    <xsl:when test="$colnum &gt; 0">
+      <xsl:variable name="calc.colvalue">
+        <xsl:call-template name="colnum.colspec">
+          <xsl:with-param name="colnum" select="$colnum"/>
+          <xsl:with-param name="attribute" select="$attribute"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="$calc.colvalue != ''">
+          <xsl:value-of select="$calc.colvalue"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$tgroup.value"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$tgroup.value"/>
+    </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
