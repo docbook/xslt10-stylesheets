@@ -33,6 +33,7 @@
 <!ENTITY default.units SYSTEM "../params/default.units.xml">
 <!ENTITY dingbat.font.family SYSTEM "../params/dingbat.font.family.xml">
 <!ENTITY double.sided SYSTEM "../params/double.sided.xml">
+<!ENTITY draft.watermark.image SYSTEM "../params/draft.watermark.image.xml">
 <!ENTITY firstterm.only.link SYSTEM "../params/firstterm.only.link.xml">
 <!ENTITY footnote.font.size SYSTEM "../params/footnote.font.size.xml">
 <!ENTITY fop.extensions SYSTEM "../params/fop.extensions.xml">

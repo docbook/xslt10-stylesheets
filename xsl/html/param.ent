@@ -28,6 +28,7 @@
 <!ENTITY css.decoration SYSTEM "../params/css.decoration.xml">
 <!ENTITY default.encoding SYSTEM "../params/default.encoding.xml">
 <!ENTITY default.table.width SYSTEM "../params/default.table.width.xml">
+<!ENTITY draft.watermark.image SYSTEM "../params/draft.watermark.image.xml">
 <!ENTITY ebnf.table.bgcolor SYSTEM "../params/ebnf.table.bgcolor.xml">
 <!ENTITY ebnf.table.border SYSTEM "../params/ebnf.table.border.xml">
 <!ENTITY emphasis.propagates.style SYSTEM "../params/emphasis.propagates.style.xml">
