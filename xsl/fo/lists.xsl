@@ -990,19 +990,29 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="calloutlist">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+  <xsl:variable name="id">
+  <xsl:call-template name="object.id"/>
+  </xsl:variable>
 
   <fo:block id="{$id}">
     <xsl:if test="title">
       <xsl:apply-templates select="title" mode="list.title.mode"/>
     </xsl:if>
 
+    <!-- Preserve order of PIs and comments -->
+    <xsl:apply-templates 
+         select="*[not(self::callout or self::title or self::titleabbrev)]
+                   |comment()[not(preceding-sibling::callout)]
+		   |processing-instruction()[not(preceding-sibling::callout)]"/>
+
     <fo:list-block space-before.optimum="1em"
                    space-before.minimum="0.8em"
                    space-before.maximum="1.2em"
                    provisional-distance-between-starts="2.2em"
                    provisional-label-separation="0.2em">
-      <xsl:apply-templates/>
+      <xsl:apply-templates select="callout
+			        |comment()[preceding-sibling::calllout]
+				|processing-instruction()[preceding-sibling::callout]"/>
     </fo:list-block>
   </fo:block>
 </xsl:template>
