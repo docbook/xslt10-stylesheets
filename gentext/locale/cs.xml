@@ -334,10 +334,9 @@
 </context>
 
 <context name="xref">
-
 <template name="abstract">%t</template>
 <template name="answer">%n</template>
-<template name="appendix">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="appendix">%t</template>
 <template name="article">%t</template>
 <template name="authorblurb">%t</template>
 <template name="bibliodiv">%t</template>
@@ -348,13 +347,13 @@
 <template name="book">%t</template>
 <template name="calloutlist">%t</template>
 <template name="caution">%t</template>
-<template name="chapter">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="chapter">%t</template>
 <template name="colophon">%t</template>
 <template name="constraintdef">%t</template>
 <template name="dedication">%t</template>
-<template name="equation">%n</template>
-<template name="example">%n</template>
-<template name="figure">%n</template>
+<template name="equation">%t</template>
+<template name="example">%t</template>
+<template name="figure">%t</template>
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
@@ -373,26 +372,22 @@
 <template name="msgsub">%t</template>
 <template name="note">%t</template>
 <template name="orderedlist">%t</template>
-<template name="part">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="part">%t</template>
 <template name="partintro">%t</template>
 <template name="preface">%t</template>
-<template name="procedure">%n</template>
+<template name="procedure">%t</template>
 <template name="productionset">%t</template>
 <template name="qandadiv">%t</template>
 <template name="qandaentry">%n</template>
 <template name="qandaset">%t</template>
 <template name="question">%n</template>
 <template name="reference">%t</template>
-<template name="refsection">%t</template>
-<template name="refsect1">%t</template>
-<template name="refsect2">%t</template>
-<template name="refsect3">%t</template>
 <template name="refsynopsisdiv">%t</template>
 <template name="segmentedlist">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
 <template name="sidebar">%t</template>
-<template name="table">%n</template>
+<template name="table">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
@@ -400,39 +395,70 @@
 <template name="warning">%t</template>
 <template name="page.citation"> [%p]</template>
 
-</context>
-
-<context name="section-xref">
-
-<template name="bridgehead">&#x201E;%t&#x201C;</template>
-<template name="refsection">&#x201E;%t&#x201C;</template>
-<template name="refsect1">&#x201E;%t&#x201C;</template>
-<template name="refsect2">&#x201E;%t&#x201C;</template>
-<template name="refsect3">&#x201E;%t&#x201C;</template>
-<template name="sect1">&#x201E;%t&#x201C;</template>
-<template name="sect2">&#x201E;%t&#x201C;</template>
-<template name="sect3">&#x201E;%t&#x201C;</template>
-<template name="sect4">&#x201E;%t&#x201C;</template>
-<template name="sect5">&#x201E;%t&#x201C;</template>
-<template name="section">&#x201E;%t&#x201C;</template>
-<template name="simplesect">&#x201E;%t&#x201C;</template>
+<template name="bridgehead"><startquote/>%t<endquote/></template>
+<template name="refsection"><startquote/>%t<endquote/></template>
+<template name="refsect1"><startquote/>%t<endquote/></template>
+<template name="refsect2"><startquote/>%t<endquote/></template>
+<template name="refsect3"><startquote/>%t<endquote/></template>
+<template name="sect1"><startquote/>%t<endquote/></template>
+<template name="sect2"><startquote/>%t<endquote/></template>
+<template name="sect3"><startquote/>%t<endquote/></template>
+<template name="sect4"><startquote/>%t<endquote/></template>
+<template name="sect5"><startquote/>%t<endquote/></template>
+<template name="section"><startquote/>%t<endquote/></template>
+<template name="simplesect"><startquote/>%t<endquote/></template>
 
 </context>
 
-<context name="section-xref-numbered">
+<context name="xref-number">
 
+<template name="answer">%n</template>
+<template name="appendix">%n</template>
 <template name="bridgehead">%n</template>
-<template name="refsection">&#x201E;%t&#x201C;</template>
-<template name="refsect1">&#x201E;%t&#x201C;</template>
-<template name="refsect2">&#x201E;%t&#x201C;</template>
-<template name="refsect3">&#x201E;%t&#x201C;</template>
+<template name="chapter">%n</template>
+<template name="equation">%n</template>
+<template name="example">%n</template>
+<template name="figure">%n</template>
+<template name="part">%n</template>
+<template name="procedure">%n</template>
+<template name="productionset">%n</template>
+<template name="qandadiv">%n</template>
+<template name="qandaentry">%n</template>
+<template name="question">%n</template>
 <template name="sect1">%n</template>
 <template name="sect2">%n</template>
 <template name="sect3">%n</template>
 <template name="sect4">%n</template>
 <template name="sect5">%n</template>
 <template name="section">%n</template>
-<template name="simplesect">&#x201E;%t&#x201C;</template>
+<template name="table">%n</template>
+
+</context>
+
+<context name="xref-number-and-title">
+
+<template name="appendix">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="bridgehead">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="chapter">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="equation">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="example">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="figure">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="part">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="procedure">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="productionset">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="qandadiv">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="refsect1"><startquote/>%t<endquote/></template>
+<template name="refsect2"><startquote/>%t<endquote/></template>
+<template name="refsect3"><startquote/>%t<endquote/></template>
+<template name="refsection"><startquote/>%t<endquote/></template>
+<template name="sect1">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="sect2">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="sect3">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="sect4">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="sect5">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="section">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="simplesect">%n &#x2013; &#x201E;%t&#x201C;</template>
+<template name="table">%n &#x2013; &#x201E;%t&#x201C;</template>
 
 </context>
 
@@ -455,6 +481,9 @@
 
 <context name="datetime">
 <template name="format">d.&#160;B Y</template>
+</context>
+
+<context name="datetime-full">
 <template name="January">ledna</template>
 <template name="February">února</template>
 <template name="March">března</template>
@@ -467,6 +496,16 @@
 <template name="October">října</template>
 <template name="November">listopadu</template>
 <template name="December">prosince</template>
+<template name="Monday">pondělí</template>
+<template name="Tuesday">úterý</template>
+<template name="Wednesday">středa</template>
+<template name="Thursday">čtvrtek</template>
+<template name="Friday">pátek</template>
+<template name="Saturday">sobota</template>
+<template name="Sunday">neděle</template>
+</context>
+
+<context name="datetime-abbrev">
 <template name="Jan">led</template>
 <template name="Feb">úno</template>
 <template name="Mar">bře</template>
@@ -479,13 +518,6 @@
 <template name="Oct">řij</template>
 <template name="Nov">lis</template>
 <template name="Dec">pro</template>
-<template name="Monday">pondělí</template>
-<template name="Tuesday">úterý</template>
-<template name="Wednesday">středa</template>
-<template name="Thursday">čtvrtek</template>
-<template name="Friday">pátek</template>
-<template name="Saturday">sobota</template>
-<template name="Sunday">neděle</template>
 <template name="Mon">po</template>
 <template name="Tue">út</template>
 <template name="Wed">st</template>
