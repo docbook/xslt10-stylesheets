@@ -1055,6 +1055,48 @@ pointed to by the link is one of the elements listed in
 </xsl:template>
 
 <!-- ====================================================================== -->
+<!-- OrderedList Numeration -->
+
+<xsl:template name="next.numeration">
+  <xsl:param name="numeration" select="'default'"/>
+  <xsl:choose>
+    <!-- Change this list if you want to change the order of numerations -->
+    <xsl:when test="$numeration = 'arabic'">loweralpha</xsl:when>
+    <xsl:when test="$numeration = 'loweralpha'">lowerroman</xsl:when>
+    <xsl:when test="$numeration = 'lowerroman'">upperalpha</xsl:when>
+    <xsl:when test="$numeration = 'upperalpha'">upperroman</xsl:when>
+    <xsl:when test="$numeration = 'upperroman'">arabic</xsl:when>
+    <xsl:otherwise>arabic</xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="list.numeration">
+  <xsl:param name="node" select="."/>
+
+  <xsl:choose>
+    <xsl:when test="$node/@numeration">
+      <xsl:value-of select="$node/@numeration"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:choose>
+        <xsl:when test="$node/ancestor::orderedlist">
+          <xsl:call-template name="next.numeration">
+            <xsl:with-param name="numeration">
+              <xsl:call-template name="list.numeration">
+                <xsl:with-param name="node" select="$node/ancestor::orderedlist[1]"/>
+              </xsl:call-template>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="next.numeration"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!-- ====================================================================== -->
 
 </xsl:stylesheet>
 

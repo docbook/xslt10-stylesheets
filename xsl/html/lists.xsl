@@ -69,27 +69,29 @@
       <xsl:otherwise>1</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
+
   <xsl:variable name="numeration">
+    <xsl:call-template name="list.numeration"/>
+  </xsl:variable>
+
+  <xsl:variable name="type">
     <xsl:choose>
-      <xsl:when test="@numeration='arabic'">1</xsl:when>
-      <xsl:when test="@numeration='loweralpha'">a</xsl:when>
-      <xsl:when test="@numeration='lowerroman'">i</xsl:when>
-      <xsl:when test="@numeration='upperalpha'">A</xsl:when>
-      <xsl:when test="@numeration='upperroman'">I</xsl:when>
+      <xsl:when test="$numeration='arabic'">1</xsl:when>
+      <xsl:when test="$numeration='loweralpha'">a</xsl:when>
+      <xsl:when test="$numeration='lowerroman'">i</xsl:when>
+      <xsl:when test="$numeration='upperalpha'">A</xsl:when>
+      <xsl:when test="$numeration='upperroman'">I</xsl:when>
+      <!-- What!? This should never happen -->
       <xsl:otherwise>
-        <!-- alternate the numeration based on depth -->
-        <xsl:variable name="depth" select="count(ancestor::orderedlist)"/>
-        <xsl:variable name="type" select="$depth mod 5"/>
-        <xsl:choose>
-          <xsl:when test="$type = 0">1</xsl:when>
-          <xsl:when test="$type = 1">a</xsl:when>
-          <xsl:when test="$type = 2">i</xsl:when>
-          <xsl:when test="$type = 3">A</xsl:when>
-          <xsl:when test="$type = 4">I</xsl:when>
-        </xsl:choose>
+        <xsl:message>
+          <xsl:text>Unexpected numeration: </xsl:text>
+          <xsl:value-of select="$numeration"/>
+        </xsl:message>
+        <xsl:value-of select="1"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
+
   <div class="{name(.)}">
     <xsl:if test="@id">
       <a name="{@id}"/>
@@ -105,7 +107,7 @@
     </xsl:if>
     <xsl:if test="$numeration != ''">
       <xsl:attribute name="type">
-	<xsl:value-of select="$numeration"/>
+	<xsl:value-of select="$type"/>
       </xsl:attribute>
     </xsl:if>
     <xsl:if test="@spacing='compact'">
