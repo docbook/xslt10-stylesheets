@@ -18,6 +18,69 @@ This file documents (mostly) changes to the public APIs. What,
 exactly, counts as a public API is still somewhat in question, but it
 includes at least the global parameters.</para>
 
+<itemizedlist><title>Release 1.55.0</title>
+
+<para>The 1.55.0 fixes a few bugs and reorganizes some parameters.
+</para>
+
+<listitem>
+<para>Added Lithuanian and Vietnamese localizations.
+</para>
+</listitem>
+
+<listitem>
+<para>Support <literal>orientation</literal>, <literal>rotated-width</literal>, and
+<literal>rotated-height</literal> on a <sgmltag class="pi">dbfo</sgmltag> processing
+instruction to rotate table cells in FO output.
+</para>
+</listitem>
+
+<listitem>
+<para>Restart all <sgmltag>book</sgmltag>s on page 1.
+</para>
+</listitem>
+
+<listitem>
+<para>Added experimental <quote>chunkfast</quote> support.
+</para>
+</listitem>
+
+<listitem>
+<para>Support automatic indexes in <sgmltag>webpage</sgmltag> elements.
+This isn't as useful as it first sounds, because as the code stands only a single
+page (not an entire site) will be indexed. Also, moving this directly into the
+<filename>autoidx.xsl</filename> file may not be the best strategy. It would be
+better if it was somehow contained in the Website stylesheets.
+</para>
+</listitem>
+
+<listitem>
+<para>Fixed bug where <sgmltag class="pi">dbhtml</sgmltag> processing instructions
+to specify filenames and directories were used even if they occurred in components
+that weren't being chunked.
+</para>
+</listitem>
+
+<listitem>
+<para>Allow <parameter>generate.toc</parameter> parameter to control ToCs in
+<sgmltag>article</sgmltag> <sgmltag>appendix</sgmltag>es. Suppressed by default.
+</para>
+</listitem>
+
+<listitem>
+<para>Fixed bug where the code that searches for pseudo-attributes in
+processing instructions would match suffixes instead of only whole attributes.
+(In other words, <quote><literal>xxxfoo</literal></quote> would match
+<quote><literal>foo</literal></quote>.)
+</para>
+</listitem>
+
+<listitem>
+<para>Left-align monospaced verbatim environments in FO.
+</para>
+</listitem>
+</itemizedlist>
+
 <itemizedlist><title>Release 1.54.1</title>
 
 <para>The 1.54.1 release fixes a couple of bugs in 1.54.0.
