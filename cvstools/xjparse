@@ -1,45 +1,29 @@
 #!/bin/bash
 
-# This shell script will definitely need to be hacked to run on your system!
 #
 # Usage: xjparse [opts] src.xml
 #
 
-for path in $RESOLVER \
-	    "/projects/apache/xml-commons/java/build/classes" \
-	    "/projects/sun/resolver/.classes" ; do
-  if [ -f "$path" -o -d "$path" ]; then
-    RESOLVER="$path"
-    break
-  fi
-done
+MYDIR=`dirname $0`
+. $MYDIR/common-functions.sh
+
+
+JAXP=`findjaxp`
+XERCES=`findxerces`
+RESOLVER=`findresolver`
 if [ ! "$RESOLVER" ]; then
-  echo "cannot find sun/resolver classes" 1>&2
+  echo "cannot find resolver classes" 1>&2
   exit 1
 fi
-
-for path in "/usr/local/jaxp-1.1/jaxp.jar" \
-            "/usr/local/java/jaxp-1.1/jaxp.jar" \
-            "/usr/local/share/java/jaxp-1.1/jaxp.jar" \
-            "/usr/share/java/jaxp.jar"; do
-  if [ -f "$path" -o -d "$path" ]; then
-    JAXP="$path"
-    break
-  fi
-done
-
-XERCES="${XERCES:-/projects/apache/xml-xerces/java/build/classes}:"
+if [ ${RESOLVER/sun/} != ${RESOLVER} ]; then
+    # guess this is the sun resolver
+    XREAD=com.sun.resolver.apps.xread
+else
+    # guess this is the Apache resolver
+    XREAD=org.apache.xml.resolver.apps.xread
+fi
 
 CLASSPATH=$JAXP:$RESOLVER:$XERCES:$CLASSPATH
 
-#echo $CLASSPATH
+exec java -cp $CLASSPATH $XREAD $*
 
-java -cp $CLASSPATH \
-  org.apache.xml.resolver.apps.xread $*
-
-if [ $? != 0 ]; then
-  echo ""
-  echo FAILED
-  echo ""
-  exit 1
-fi
