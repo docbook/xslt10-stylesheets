@@ -41,11 +41,10 @@
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook/</fm:Mailing-List-URL>
   <fm:Changes>There are no backwards-incompatible changes in this release.
 
-A bug in the catalog files was fixed; a package element was added; a
-biblioref element was added; imageobjectco is now allowed in
-mediaobject (making mediaobjectco obsolete); the spacing attribute was
-added to variablelist; and subscript and superscript are now allowed
-in gui*
+The W3C XML Entity Declarations for Characters are now used. The xml:base
+attribute has been removed from the SGML DTD. HTML tables can now nest.
+A bug in the rules attribute of HTML tables has been fixed. The bibliolist
+element has been added. The euro character entity can now be suppressed.
   </fm:Changes>  
 </fm:project>
 
