@@ -5476,7 +5476,7 @@ div {
    db.guibutton =
       element guibutton {
          guibutton.attlist,
-         (docbook.text | db.accel)*
+         (docbook.text | db.accel | db.superscript | db.subscript)*
       }
 }
 
@@ -5501,7 +5501,7 @@ div {
    db.guiicon =
       element guiicon {
          guiicon.attlist,
-         (docbook.text | db.accel)*
+         (docbook.text | db.accel | db.superscript | db.subscript)*
       }
 }
 
@@ -5526,7 +5526,7 @@ div {
    db.guilabel =
       element guilabel {
          guilabel.attlist,
-         (docbook.text | db.accel)*
+         (docbook.text | db.accel | db.superscript | db.subscript)*
       }
 }
 
@@ -5551,7 +5551,7 @@ div {
    db.guimenu =
       element guimenu {
          guimenu.attlist,
-         (docbook.text | db.accel)*
+         (docbook.text | db.accel | db.superscript | db.subscript)*
       }
 }
 
@@ -5576,7 +5576,7 @@ div {
    db.guimenuitem =
       element guimenuitem {
          guimenuitem.attlist,
-         (docbook.text | db.accel)*
+         (docbook.text | db.accel | db.superscript | db.subscript)*
       }
 }
 
@@ -5601,7 +5601,7 @@ div {
    db.guisubmenu =
       element guisubmenu {
          guisubmenu.attlist,
-         (docbook.text | db.accel)*
+         (docbook.text | db.accel | db.superscript | db.subscript)*
       }
 }
 
