@@ -112,7 +112,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="synopfragmentref">
-  <xsl:variable name="target" select="id(@linkend)"/>
+  <xsl:variable name="target" select="key('id',@linkend)"/>
   <xsl:variable name="snum">
     <xsl:apply-templates select="$target" mode="synopfragment.number"/>
   </xsl:variable>

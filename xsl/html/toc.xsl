@@ -120,7 +120,7 @@
 </xsl:template>
 
 <xsl:template name="tocentry-content">
-  <xsl:variable name="targets" select="id(@linkend)"/>
+  <xsl:variable name="targets" select="key('id',@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
 
   <xsl:choose>

@@ -510,7 +510,7 @@
 <xsl:template match="glossterm">
   <xsl:choose>
     <xsl:when test="@linkend">
-      <xsl:variable name="targets" select="id(@linkend)"/>
+      <xsl:variable name="targets" select="key('id',@linkend)"/>
       <xsl:variable name="target" select="$targets[1]"/>
 
       <xsl:call-template name="check.id.unique">

@@ -22,7 +22,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="xref" name="xref">
-  <xsl:variable name="targets" select="id(@linkend)"/>
+  <xsl:variable name="targets" select="key('id',@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
   <xsl:variable name="refelem" select="local-name($target)"/>
 
@@ -53,7 +53,7 @@
                      xsl:use-attribute-sets="xref.properties">
         <xsl:choose>
 	  <xsl:when test="@endterm">
-	    <xsl:variable name="etargets" select="id(@endterm)"/>
+	    <xsl:variable name="etargets" select="key('id',@endterm)"/>
 	    <xsl:variable name="etarget" select="$etargets[1]"/>
 	    <xsl:choose>
 	      <xsl:when test="count($etarget) = 0">
@@ -278,7 +278,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="link" name="link">
-  <xsl:variable name="targets" select="id(@linkend)"/>
+  <xsl:variable name="targets" select="key('id',@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
 
   <xsl:call-template name="check.id.unique">
@@ -296,7 +296,7 @@
         <!-- else look for an endterm -->
         <xsl:choose>
           <xsl:when test="@endterm">
-            <xsl:variable name="etargets" select="id(@endterm)"/>
+            <xsl:variable name="etargets" select="key('id',@endterm)"/>
             <xsl:variable name="etarget" select="$etargets[1]"/>
             <xsl:choose>
               <xsl:when test="count($etarget) = 0">
