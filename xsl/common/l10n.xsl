@@ -314,25 +314,28 @@
   <xsl:variable name="template.node"
                 select="$context.node/l:template[@name=$name][1]"/>
 
-  <xsl:if test="count($template.node) = 0
-                and count($local.template.node) = 0">
-    <xsl:message>
-      <xsl:text>No template named "</xsl:text>
-      <xsl:value-of select="$name"/>
-      <xsl:text>" exists in the context named "</xsl:text>
-      <xsl:value-of select="$context"/>
-      <xsl:text>" in the "</xsl:text>
-      <xsl:value-of select="$lang"/>
-      <xsl:text>" localization.</xsl:text>
-    </xsl:message>
-  </xsl:if>
-
   <xsl:choose>
     <xsl:when test="$local.template.node">
       <xsl:value-of select="$local.template.node/@text"/>
     </xsl:when>
-    <xsl:otherwise>
+    <xsl:when test="$template.node/@text">
       <xsl:value-of select="$template.node/@text"/>
+    </xsl:when>
+<!-- I'm not sure this is a good idea ...
+    <xsl:when test="$context = 'xref'">
+      <xsl:text>%t</xsl:text>
+    </xsl:when>
+-->
+    <xsl:otherwise>
+      <xsl:message>
+        <xsl:text>No template named "</xsl:text>
+        <xsl:value-of select="$name"/>
+        <xsl:text>" exists in the context named "</xsl:text>
+        <xsl:value-of select="$context"/>
+        <xsl:text>" in the "</xsl:text>
+        <xsl:value-of select="$lang"/>
+        <xsl:text>" localization.</xsl:text>
+      </xsl:message>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
