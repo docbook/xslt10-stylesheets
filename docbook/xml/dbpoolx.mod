@@ -3759,7 +3759,6 @@ in the text (no (0) value, the default)
 		frame		(%tbl.frame.attval;)	#IMPLIED
 		colsep		%yesorno.attvals;	#IMPLIED
 		rowsep		%yesorno.attvals;	#IMPLIED
-		rowheader	(firstcol|norowheader)	#IMPLIED
 		%common.table.attribs;
 		%tbl.table.att;
 		%local.informaltable.attrib;
