@@ -234,7 +234,7 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="abstract|authorblurb|bibliodiv|bibliomset
+<xsl:template match="abstract|authorblurb|personblurb|bibliodiv|bibliomset
                      |biblioset|blockquote|calloutlist|caution|colophon
                      |constraintdef|formalpara|glossdiv|important|indexdiv
                      |itemizedlist|legalnotice|lot|msg|msgexplan|msgmain
