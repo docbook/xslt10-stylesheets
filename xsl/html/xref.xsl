@@ -40,7 +40,7 @@
   </xsl:if>
 
   <xsl:choose>
-    <xsl:when test="$refelem=''">
+    <xsl:when test="count($target) = 0">
       <xsl:message>
 	<xsl:text>XRef to nonexistent id: </xsl:text>
 	<xsl:value-of select="@linkend"/>
@@ -233,6 +233,31 @@
       </xsl:call-template>
     </xsl:attribute>
 
+    <!-- FIXME: is there a better way to tell what elements have a title? -->
+    <xsl:if test="local-name($target) = 'book'
+                  or local-name($target) = 'set'
+                  or local-name($target) = 'chapter'
+                  or local-name($target) = 'preface'
+                  or local-name($target) = 'appendix'
+                  or local-name($target) = 'bibliography'
+                  or local-name($target) = 'glossary'
+                  or local-name($target) = 'index'
+                  or local-name($target) = 'part'
+                  or local-name($target) = 'refentry'
+                  or local-name($target) = 'reference'
+                  or local-name($target) = 'example'
+                  or local-name($target) = 'equation'
+                  or local-name($target) = 'table'
+                  or local-name($target) = 'figure'
+                  or local-name($target) = 'simplesect'
+                  or starts-with(local-name($target),'sect')
+                  or starts-with(local-name($target),'refsect')">
+      <xsl:attribute name="title">
+        <xsl:apply-templates select="$target"
+                             mode="object.title.markup.textonly"/>
+      </xsl:attribute>
+    </xsl:if>
+
     <xsl:apply-templates/>
   </a>
 </xsl:template>
@@ -264,38 +289,6 @@
     <a name="{@id}"/>
   </xsl:if>
   <xsl:apply-templates/>
-</xsl:template>
-
-<!-- ==================================================================== -->
-
-<xsl:template name="title.xref">
-  <xsl:param name="target" select="."/>
-  <xsl:choose>
-    <xsl:when test="local-name($target) = 'figure'
-                    or local-name($target) = 'example'
-                    or local-name($target) = 'equation'
-                    or local-name($target) = 'table'
-                    or local-name($target) = 'dedication'
-                    or local-name($target) = 'preface'
-                    or local-name($target) = 'bibliography'
-                    or local-name($target) = 'glossary'
-                    or local-name($target) = 'index'
-                    or local-name($target) = 'setindex'
-                    or local-name($target) = 'colophon'">
-      <xsl:call-template name="gentext.startquote"/>
-      <xsl:apply-templates select="$target" mode="title.markup"/>
-      <xsl:call-template name="gentext.endquote"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <i>
-        <xsl:apply-templates select="$target" mode="title.markup"/>
-      </i>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-<xsl:template name="number.xref">
-  <xsl:apply-templates select="." mode="label.markup"/>
 </xsl:template>
 
 <!-- ==================================================================== -->
