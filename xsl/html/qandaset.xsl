@@ -163,6 +163,7 @@
       <xsl:with-param name="conditional" select="0"/>
     </xsl:call-template>
     <xsl:apply-templates select="parent::qandadiv" mode="label.markup"/>
+    <xsl:value-of select="$autotoc.label.separator"/>
     <xsl:text> </xsl:text>
     <xsl:apply-templates/>
   </xsl:element>
@@ -255,6 +256,7 @@
   </xsl:variable>
 
   <xsl:apply-templates select="parent::qandadiv" mode="label.markup"/>
+  <xsl:value-of select="$autotoc.label.separator"/>
   <xsl:text> </xsl:text>
   <a>
     <xsl:attribute name="href">

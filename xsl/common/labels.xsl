@@ -411,6 +411,11 @@ element label.</para>
         <xsl:apply-templates select="$lparent" mode="label.markup"/>
         <xsl:apply-templates select="$lparent" mode="intralabel.punctuation"/>
       </xsl:if>
+      <xsl:if test="ancestor::qandadiv">
+        <xsl:apply-templates select="ancestor::qandadiv[1]" mode="label.markup"/>
+        <xsl:apply-templates select="ancestor::qandadiv[1]"
+                             mode="intralabel.punctuation"/>
+      </xsl:if>
     </xsl:if>
   </xsl:variable>
 
