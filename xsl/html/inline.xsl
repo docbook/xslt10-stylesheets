@@ -621,7 +621,9 @@
 </xsl:template>
 
 <xsl:template match="lineannotation">
-  <xsl:call-template name="inline.charseq"/>
+  <i class="{local-name(.)}">
+    <xsl:call-template name="inline.charseq"/>
+  </i>
 </xsl:template>
 
 <xsl:template match="superscript">
