@@ -174,21 +174,31 @@
 </xsl:template>
 
 <xsl:template match="refnamediv">
-  <xsl:call-template name="block.object"/>
+  <fo:block>
+    <fo:block>
+      <xsl:apply-templates select="refname[1]"/>
+      <xsl:apply-templates select="refpurpose"/>
+    </fo:block>
+
+    <xsl:if test="$refentry.generate.name != 0">
+      <fo:block font-size="18pt" font-weight="bold">
+        <xsl:call-template name="gentext">
+          <xsl:with-param name="key" select="'RefName'"/>
+        </xsl:call-template>
+      </fo:block>
+    </xsl:if>
+
+    <xsl:for-each select="refname">
+      <xsl:apply-templates select="."/>
+      <xsl:if test="following-sibling::refname">
+        <xsl:text>, </xsl:text>
+      </xsl:if>
+    </xsl:for-each>
+  </fo:block>
 </xsl:template>
 
 <xsl:template match="refname">
-  <xsl:if test="$refentry.generate.name != 0">
-    <fo:block font-size="18pt" font-weight="bold">
-      <xsl:call-template name="gentext">
-        <xsl:with-param name="key" select="'RefName'"/>
-      </xsl:call-template>
-     </fo:block>
-  </xsl:if>
   <xsl:apply-templates/>
-  <xsl:if test="following-sibling::refname">
-    <xsl:text>, </xsl:text>
-  </xsl:if>
 </xsl:template>
 
 <xsl:template match="refpurpose">
