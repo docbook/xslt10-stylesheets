@@ -21,6 +21,13 @@ includes at least the global parameters.</para>
 <itemizedlist><title>Release 1.50.0</title>
 
 <listitem>
+<para>This release introduces a new version numbering scheme. Version
+numbers are now three part: major.middle.minor. Changes to the middle
+version number indicate a change in the public API. Changes in only the
+minor number indicate simply a new release.</para>
+</listitem>
+
+<listitem>
 <para>The <parameter>generate.<replaceable>*</replaceable>.toc</parameter>
 and <parameter>generate.<replaceable>*</replaceable>.lot</parameter>
 parameters have been replaced by a single structured parameter,
