@@ -3,10 +3,8 @@ ZIPVER=
 DIFFVER=
 NEXTVER=
 
-all: slides.dtd
-
-slides.dtd: slides-custom.dtd slides.mod
-	$(FLATTEN) $< > $@
+all:
+	make -C schema
 
 check:
 	$(XJPARSE) tests/test.xml
