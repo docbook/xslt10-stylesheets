@@ -117,7 +117,7 @@
     <xsl:apply-templates select="$target" mode="synopfragment.number"/>
   </xsl:variable>
   <i>
-    <a href="{@linkend}">
+    <a href="#{@linkend}">
       <xsl:text>(</xsl:text>
       <xsl:value-of select="$snum"/>
       <xsl:text>)</xsl:text>
