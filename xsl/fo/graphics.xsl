@@ -241,6 +241,7 @@
           <xsl:value-of select="$scale * 100"/>
           <xsl:text>%</xsl:text>
         </xsl:when>
+        <xsl:when test="$scalefit = 1">scale-to-fit</xsl:when>
         <xsl:otherwise>auto</xsl:otherwise>
       </xsl:choose>
     </xsl:attribute>
