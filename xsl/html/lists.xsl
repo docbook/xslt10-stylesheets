@@ -191,6 +191,29 @@
   <xsl:number format="1"/>
 </xsl:template>
 
+<xsl:template match="listitem/simpara" priority="2">
+  <!-- If a listitem contains only a single simpara, don't output
+       the <p> wrapper; this has the effect of creating an li
+       with simple text content. -->
+  <xsl:choose>
+    <xsl:when test="not(preceding-sibling::*)
+                    and not (following-sibling::*)">
+      <xsl:if test="@id">
+        <a name="{@id}"/>
+      </xsl:if>
+      <xsl:apply-templates/>
+    </xsl:when>
+    <xsl:otherwise>
+      <p>
+        <xsl:if test="@id">
+          <a name="{@id}"/>
+        </xsl:if>
+        <xsl:apply-templates/>
+      </p>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="varlistentry">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
