@@ -5,7 +5,7 @@
 <article>
 <articleinfo>
 <title>DocBook XSL Stylesheets Release Notes</title>
-<pubdate>20 Mar 2002</pubdate>
+<pubdate>02 Jun 2002</pubdate>
 <releaseinfo role="cvs">$Id$
 </releaseinfo>
 
@@ -17,6 +17,93 @@
 This file documents (mostly) changes to the public APIs. What,
 exactly, counts as a public API is still somewhat in question, but it
 includes at least the global parameters.</para>
+
+<itemizedlist><title>Release 1.51.0</title>
+
+<listitem>
+<para>Added an extension function to determine the intrinsic size of
+an image. Works for the image formats supported by the Java Image
+class and or PostScript-derived formats.</para>
+</listitem>
+
+<listitem>
+<para>Added callout bullets 11-15.
+</para>
+</listitem>
+
+<listitem>
+<para>Removed obsolete <parameter>using.chunker</parameter> parameter.
+</para>
+</listitem>
+
+<listitem>
+<para>Added <parameter>points.per.em</parameter> parameter.
+</para>
+</listitem>
+
+<listitem>
+<para>Added <parameter>generate.manifest</parameter> parameter.
+</para>
+</listitem>
+
+<listitem>
+<para>Added <parameter>manifest</parameter> parameter.
+</para>
+</listitem>
+
+<listitem>
+<para>Added <parameter>compact.list.item.spacing</parameter> parameter.
+</para>
+</listitem>
+
+<listitem>
+<para>Added <parameter>html.extra.head.links</parameter> parameter.
+</para>
+</listitem>
+
+<listitem>
+<para>Added <parameter>use.svg</parameter> parameter; support SVG in HTML.
+</para>
+</listitem>
+
+<listitem>
+<para>Convert the library code to a literate programming style with xweb.
+</para>
+</listitem>
+
+<listitem>
+<para>Support <sgmltag>xref</sgmltag> to any element that has a title (at least
+when it has a title).
+</para>
+</listitem>
+
+<listitem>
+<para>Pass MathML through unchanged.
+</para>
+</listitem>
+
+<listitem>
+<para>Completely reworked support for graphic attributes in HTML.
+</para>
+</listitem>
+
+<listitem>
+<para>Add additional <sgmltag>LINK</sgmltag> elements to the HTML
+<sgmltag>HEAD</sgmltag> (for site navigation as in Mozilla---note,
+however, that Mozilla has disabled this recently for the 1.0 release).
+</para>
+</listitem>
+
+<listitem>
+<para>Support <parameter>shade.verbatim</parameter> parameter in FO.
+</para>
+</listitem>
+
+<listitem>
+<para>Support compact list spacing in FO.
+</para>
+</listitem>
+</itemizedlist>
 
 <itemizedlist><title>Release 1.50.0</title>
 
