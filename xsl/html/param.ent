@@ -25,6 +25,7 @@
 <!ENTITY chunk.first.sections SYSTEM "../params/chunk.first.sections.xml">
 <!ENTITY chunk.quietly SYSTEM "../params/chunk.quietly.xml">
 <!ENTITY chunk.section.depth SYSTEM "../params/chunk.section.depth.xml">
+<!ENTITY chunk.separate.lots SYSTEM "../params/chunk.separate.lots.xml">
 <!ENTITY chunk.toc SYSTEM "../params/chunk.toc.xml">
 <!ENTITY chunker.output.cdata-section-elements SYSTEM "../params/chunker.output.cdata-section-elements.xml">
 <!ENTITY chunker.output.doctype-public SYSTEM "../params/chunker.output.doctype-public.xml">
