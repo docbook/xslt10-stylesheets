@@ -197,6 +197,11 @@
          | ((col*|colgroup*), thead?, tfoot?, (tbody+|tr+))">
 
 <!-- Attributes for Table (including HTML ones) -->
+
+<!-- N.B. rules = (none | groups | rows | cols | all) but it can't be spec'd -->
+<!-- that way because 'all' already occurs in a different enumeration in -->
+<!-- CALS tables (frame). -->
+
 <!ENTITY % tbl.table.att        '
     tabstyle    CDATA           #IMPLIED
     tocentry    %yesorno.attvals;       #IMPLIED
@@ -206,7 +211,7 @@
     summary     CDATA          #IMPLIED
     width       CDATA        #IMPLIED
     border      CDATA        #IMPLIED
-    rules       (none | groups | rows | cols | all)      #IMPLIED
+    rules       CDATA		#IMPLIED
     cellspacing CDATA        #IMPLIED
     cellpadding CDATA        #IMPLIED
     align       (left|center|right)   #IMPLIED
