@@ -366,6 +366,13 @@ url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http:
 &htmlhelp.only;
 </reference>
 
+<reference><title>Eclipse Help Platform</title>
+&eclipse.autolabel;
+&eclipse.plugin.name;
+&eclipse.plugin.id;
+&eclipse.plugin.provider;
+</reference>
+
 <reference><title>Localization</title>
 &l10n.gentext.language;
 &l10n.gentext.default.language;
@@ -438,6 +445,10 @@ around all these parameters.</para>
 <src:fragref linkend="ebnf.table.border.frag"/>
 <src:fragref linkend="ebnf.assignment.frag"/>
 <src:fragref linkend="ebnf.statement.terminator.frag"/>
+<src:fragref linkend="eclipse.autolabel.frag"/>
+<src:fragref linkend="eclipse.plugin.name.frag"/>
+<src:fragref linkend="eclipse.plugin.id.frag"/>
+<src:fragref linkend="eclipse.plugin.provider.frag"/>
 <src:fragref linkend="emphasis.propagates.style.frag"/>
 <src:fragref linkend="entry.propagates.style.frag"/>
 <src:fragref linkend="firstterm.only.link.frag"/>

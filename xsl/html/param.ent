@@ -236,3 +236,7 @@
 <!ENTITY xref.with.number.and.title SYSTEM "../params/xref.with.number.and.title.xml">
 <!ENTITY ebnf.assignment SYSTEM "../params/ebnf.assignment.xml">
 <!ENTITY ebnf.statement.terminator SYSTEM "../params/ebnf.statement.terminator.xml">
+<!ENTITY eclipse.autolabel SYSTEM "../params/eclipse.autolabel.xml">
+<!ENTITY eclipse.plugin.name SYSTEM "../params/eclipse.plugin.name.xml">
+<!ENTITY eclipse.plugin.id SYSTEM "../params/eclipse.plugin.id.xml">
+<!ENTITY eclipse.plugin.provider SYSTEM "../params/eclipse.plugin.provider.xml">
