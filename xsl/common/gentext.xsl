@@ -217,86 +217,84 @@
 <xsl:template name="substitute-markup">
   <xsl:param name="template" select="''"/>
   <xsl:param name="allow-anchors" select="'0'"/>
-  <xsl:variable name="bef-perc" select="substring-before($template, '%')"/>
-
+  <xsl:param name="title" select="''"/>
+  <xsl:param name="subtitle" select="''"/>
+  <xsl:param name="label" select="''"/>
+  <xsl:param name="pagenumber" select="''"/>
+  
   <xsl:choose>
-    <xsl:when test="not(contains($template, '%'))">
-      <xsl:value-of select="$template"/>
-    </xsl:when>
-    <xsl:when test="starts-with($template, '%')">
+    <xsl:when test="contains($template, '%')">
+      <xsl:value-of select="substring-before($template, '%')"/>
+      <xsl:variable name="candidate"
+             select="substring(substring-after($template, '%'), 1, 1)"/>
       <xsl:choose>
-        <!-- n=1 -->
-        <xsl:when test="starts-with($template, '%n')">
-          <xsl:apply-templates select="." mode="label.markup"/>
-          <xsl:call-template name="substitute-markup">
-            <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
-            <xsl:with-param name="template"
-                            select="substring-after($template, '%n')"/>
-          </xsl:call-template>
+        <xsl:when test="$candidate = 't' ">
+          <xsl:choose>
+            <xsl:when test="$title != ''">
+              <xsl:value-of select="$title"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="." mode="title.markup">
+                <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+              </xsl:apply-templates>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:when>
-
-        <!-- t=1 -->
-        <xsl:when test="starts-with($template, '%t')">
-          <xsl:apply-templates select="." mode="title.markup">
-            <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
-          </xsl:apply-templates>
-          <xsl:call-template name="substitute-markup">
-            <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
-            <xsl:with-param name="template"
-                            select="substring-after($template, '%t')"/>
-          </xsl:call-template>
+        <xsl:when test="$candidate = 's' ">
+          <xsl:choose>
+            <xsl:when test="$subtitle != ''">
+              <xsl:value-of select="$subtitle"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="." mode="subtitle.markup">
+                <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+              </xsl:apply-templates>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:when>
-
-        <!-- s=1 -->
-        <xsl:when test="starts-with($template, '%s')">
-          <xsl:apply-templates select="." mode="subtitle.markup"/>
-          <xsl:call-template name="substitute-markup">
-            <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
-            <xsl:with-param name="template"
-                            select="substring-after($template, '%s')"/>
-          </xsl:call-template>
+        <xsl:when test="$candidate = 'n' ">
+          <xsl:choose>
+            <xsl:when test="$label != ''">
+              <xsl:value-of select="$label"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="." mode="label.markup"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:when>
-
-        <!-- p=1 -->
-        <xsl:when test="starts-with($template, '%p')">
-          <xsl:apply-templates select="." mode="pagenumber.markup"/>
-          <xsl:call-template name="substitute-markup">
-            <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
-            <xsl:with-param name="template"
-                            select="substring-after($template, '%p')"/>
-          </xsl:call-template>
+        <xsl:when test="$candidate = 'p' ">
+          <xsl:choose>
+            <xsl:when test="$pagenumber != ''">
+              <xsl:value-of select="$pagenumber"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="." mode="pagenumber.markup"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:when>
-
-        <!-- %% -->
-        <xsl:when test="starts-with($template, '%%')">
-          <xsl:value-of select="'%'"/>
-          <xsl:call-template name="substitute-markup">
-            <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
-            <xsl:with-param name="template"
-                            select="substring-after($template, '%p')"/>
-          </xsl:call-template>
+        <xsl:when test="$candidate = '%' ">
+          <xsl:text>%</xsl:text>
         </xsl:when>
-
         <xsl:otherwise>
-          <xsl:message>
-            <xsl:text>Unexpected %-value in template: </xsl:text>
-            <xsl:value-of select="substring($template, 1, 2)"/>
-          </xsl:message>
-          <xsl:call-template name="substitute-markup">
-            <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
-            <xsl:with-param name="template"
-                            select="substring-after($template, '%')"/>
-          </xsl:call-template>
+          <xsl:text>%</xsl:text><xsl:value-of select="$candidate"/>
         </xsl:otherwise>
       </xsl:choose>
+      <!-- recurse with the rest of the template string -->
+      <xsl:variable name="rest"
+            select="substring($template,
+            string-length(substring-before($template, '%'))+3)"/>
+      <xsl:call-template name="substitute-markup">
+        <xsl:with-param name="template" select="$rest"/>
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+        <xsl:with-param name="title" select="$title"/>
+        <xsl:with-param name="subtitle" select="$subtitle"/>
+        <xsl:with-param name="label" select="$label"/>
+        <xsl:with-param name="pagenumber" select="$label"/>
+      </xsl:call-template>  
+        
     </xsl:when>
     <xsl:otherwise>
-      <xsl:value-of select="$bef-perc"/>
-      <xsl:call-template name="substitute-markup">
-        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
-        <xsl:with-param name="template"
-                        select="concat('%',substring-after($template, '%'))"/>
-      </xsl:call-template>
+      <xsl:value-of select="$template"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
