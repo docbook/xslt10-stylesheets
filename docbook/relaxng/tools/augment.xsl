@@ -5,7 +5,8 @@
                 xmlns:ctrl="http://nwalsh.com/xmlns/schema-control/"
 		xmlns:s="http://www.ascc.net/xml/schematron"
 		xmlns:db="http://docbook.org/docbook-ng"
-                exclude-result-prefixes="exsl ctrl rng s db"
+		xmlns:dbx = "http://sourceforge.net/projects/docbook/defguide/schema/extra-markup"
+                exclude-result-prefixes="exsl ctrl"
                 version="1.0">
 
   <xsl:output method="xml" encoding="utf-8" indent="yes"/>
@@ -32,7 +33,11 @@
   </xsl:template>
 
   <xsl:template match="rng:grammar" priority="2">
-    <xsl:copy>
+    <grammar xmlns="http://relaxng.org/ns/structure/1.0"
+	     xmlns:s="http://www.ascc.net/xml/schematron"
+	     xmlns:db="http://docbook.org/docbook-ng"
+	     xmlns:dbx = "http://sourceforge.net/projects/docbook/defguide/schema/extra-markup">
+
       <!-- Make sure the datatypeLibrary is specified -->
       <xsl:attribute name="datatypeLibrary">
 	<xsl:value-of select="'http://www.w3.org/2001/XMLSchema-datatypes'"/>
@@ -53,7 +58,7 @@
       <xsl:text>&#10;</xsl:text>
 
       <xsl:apply-templates/>
-    </xsl:copy>
+    </grammar>
   </xsl:template>
 
   <xsl:template match="rng:element[@name]" priority="2">
