@@ -2,7 +2,7 @@
                 xmlns:saxon="http://icl.com/saxon"
                 xmlns:lxslt="http://xml.apache.org/xslt"
                 xmlns:xalanredirect="org.apache.xalan.xslt.extensions.Redirect"
-                xmlns:exsl="http://exslt.org/elements/document"
+                xmlns:exsl="http://exslt.org/common"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
 		version="1.1"
                 exclude-result-prefixes="doc"
