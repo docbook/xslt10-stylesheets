@@ -342,7 +342,9 @@
 
   <xsl:choose>
     <xsl:when test="$toodeep = 'no'">
-      <xsl:call-template name="subtoc"/>
+      <xsl:call-template name="subtoc">
+        <xsl:with-param name="nodes" select="section|bridgehead"/>
+      </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="subtoc">
