@@ -53,6 +53,7 @@
       <xsl:for-each select=".//rng:ref">
 	<xsl:if test="key('defs',@name)/rng:element">1</xsl:if>
       </xsl:for-each>
+      <xsl:if test="count(rng:attribute|rng:optional/rng:attribute) &gt; 0">1</xsl:if>
     </xsl:variable>
 
     <xsl:copy>
