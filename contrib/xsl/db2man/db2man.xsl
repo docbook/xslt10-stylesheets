@@ -237,7 +237,7 @@
     <xsl:if test="position() > 1">
       <xsl:text>, </xsl:text>
     </xsl:if>
-    <xsl:apply-templates select="."/>
+    <xsl:apply-templates select="normalize-space(.)"/>
   </xsl:for-each>
   <xsl:text>.&#10;</xsl:text>
   <xsl:if test=".//editor">
