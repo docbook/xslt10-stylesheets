@@ -250,6 +250,18 @@
   <xsl:apply-templates select="." mode="object.xref.markup"/>
 </xsl:template>
 
+<xsl:template match="refentry" mode="xref-to">
+  <xsl:choose>
+    <xsl:when test="refmeta/refentrytitle">
+      <xsl:apply-templates select="refmeta/refentrytitle"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="refnamediv/refname[1]"/>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:apply-templates select="refmeta/manvolnum"/>
+</xsl:template>
+
 <xsl:template match="step" mode="xref-to">
   <xsl:call-template name="gentext">
     <xsl:with-param name="key" select="'Step'"/>
