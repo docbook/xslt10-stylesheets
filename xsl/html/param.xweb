@@ -218,6 +218,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &shade.verbatim;
 &shade.verbatim.style;
 &punct.honorific;
+&segmentedlist.as.table;
 </reference>
 
 <reference><title>Chunking</title>
@@ -403,6 +404,7 @@ around all these parameters.</para>
 <src:fragref linkend="htmlhelp.force.map.and.alias.frag"/>
 <src:fragref linkend="htmlhelp.map.file.frag"/>
 <src:fragref linkend="htmlhelp.alias.file.frag"/>
+<src:fragref linkend="segmentedlist.as.table.frag"/>
 </xsl:stylesheet>
 </src:fragment>
 

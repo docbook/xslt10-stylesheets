@@ -175,7 +175,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &table.border.color;
 &title.margin.left;
 &punct.honorific;
-
+&segmentedlist.as.table;
 </reference>
 
 <appendix><title>The Stylesheet</title>
@@ -314,7 +314,7 @@ around all these parameters.</para>
 <src:fragref linkend="table.border.color.frag"/>
 <src:fragref linkend="title.margin.left.frag"/>
 <src:fragref linkend="punct.honorific.frag"/>
-
+<src:fragref linkend="segmentedlist.as.table.frag"/>
 </xsl:stylesheet>
 </src:fragment>
 

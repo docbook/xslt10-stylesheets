@@ -604,8 +604,30 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="segmentedlist">
+  <xsl:variable name="presentation">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'list-presentation'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:call-template name="anchor"/>
-  <xsl:apply-templates/>
+
+  <xsl:choose>
+    <xsl:when test="$presentation = 'table'">
+      <xsl:apply-templates select="." mode="seglist-table"/>
+    </xsl:when>
+    <xsl:when test="$presentation = 'list'">
+      <xsl:apply-templates/>
+    </xsl:when>
+    <xsl:when test="$segmentedlist.as.table != 0">
+      <xsl:apply-templates select="." mode="seglist-table"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="segmentedlist/title">
@@ -642,6 +664,60 @@
     </b>
     <xsl:apply-templates/>
   </p>
+</xsl:template>
+
+<xsl:template match="segmentedlist" mode="seglist-table">
+  <xsl:variable name="table-summary">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'table-summary'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="list-width">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'list-width'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:apply-templates select="title" mode="seglist-table"/>
+  <table border="0">
+    <xsl:if test="$list-width != ''">
+      <xsl:attribute name="width">
+        <xsl:value-of select="$list-width"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:if test="$table-summary != ''">
+      <xsl:attribute name="summary">
+        <xsl:value-of select="$table-summary"/>
+      </xsl:attribute>
+    </xsl:if>
+    <thead>
+      <tr>
+        <xsl:apply-templates select="segtitle" mode="seglist-table"/>
+      </tr>
+    </thead>
+    <tbody>
+      <xsl:apply-templates select="seglistitem" mode="seglist-table"/>
+    </tbody>
+  </table>
+</xsl:template>
+
+<xsl:template match="segtitle" mode="seglist-table">
+  <th><xsl:apply-templates/></th>
+</xsl:template>
+
+<xsl:template match="seglistitem" mode="seglist-table">
+  <tr>
+    <xsl:apply-templates mode="seglist-table"/>
+  </tr>
+</xsl:template>
+
+<xsl:template match="seg" mode="seglist-table">
+  <td><xsl:apply-templates/></td>
 </xsl:template>
 
 <!-- ==================================================================== -->
