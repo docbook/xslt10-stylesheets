@@ -240,7 +240,10 @@
     <xsl:if test="position() > 1">
       <xsl:text>, </xsl:text>
     </xsl:if>
-    <xsl:apply-templates select="."/>
+    <xsl:variable name="author">
+      <xsl:apply-templates select="."/>
+    </xsl:variable>
+    <xsl:value-of select="normalize-space($author)"/>    
   </xsl:for-each>
   <xsl:text>.&#10;</xsl:text>
   <xsl:if test=".//editor">
