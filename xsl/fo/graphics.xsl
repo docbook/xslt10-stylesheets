@@ -19,6 +19,7 @@
 
      Contributors:
      Colin Paul Adams, <colin@colina.demon.co.uk>
+     Paul Grosso, <pgrosso@arbortext.com>
 
      ******************************************************************** -->
 
@@ -144,27 +145,65 @@ FIXME: make is.graphic.* work correctly depending on the backend!
     </xsl:choose>
   </xsl:variable>
 
-  <!-- Scaling seems to require calculating an absolute width and height
-       from a scale factor and the intrinsic width and height (possibly
-       with contributions from the specified width and height). I'm not
-       sure how to specify that... -->
+  <!-- DocBook has four attributes related to image size: width, depth,
+       scalefit, and scale. Width and depth identify the desired dimensions
+       of the image (what CALS calls the repro area dimensions). Scale
+       indicates the percentage by which the image should be scaled, and
+       scalefit indicates whether or not the actual image should be scaled
+       to fit the specified width and/or depth. It is illogical to specify
+       both scale and scalefit: scale wins. My thanks to Paul Grosso for
+       analyzing this situation with me. -->
+
+  <xsl:variable name="scalefit">
+    <xsl:choose>
+      <xsl:when test="@scalefit">
+        <xsl:value-of select="@scalefit"/>
+      </xsl:when>
+      <xsl:otherwise>0</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <!-- if scalefit != 0, set both content-height and content-width to
+       scale-to-fit elseif scale != auto, set both content-height and
+       content-width to it else set both content-height and
+       content-width to auto.  -->
+
+  <xsl:variable name="content-width">
+    <xsl:choose>
+      <xsl:when test="$scale != 'auto'">
+        <xsl:value-of select="$scale"/>
+      </xsl:when>
+      <xsl:when test="$scalefit != '0'">scale-to-fit</xsl:when>
+      <xsl:otherwise>auto</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="content-height">
+    <xsl:choose>
+      <xsl:when test="$scale != 'auto'">
+        <xsl:value-of select="$scale"/>
+      </xsl:when>
+      <xsl:when test="$scalefit != '0'">scale-to-fit</xsl:when>
+      <xsl:otherwise>auto</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <xsl:choose>
     <xsl:when test="$passivetex.extensions != 0
                     or $fop.extensions != 0
                     or $arbortext.extensions != 0">
       <fo:external-graphic src="{$filename}"
-                           content-width="{$width}"
-                           content-height="{$height}"
-                           width="auto"
-                           height="auto"/>
+                           width="$width"
+                           height="$height"
+                           content-width="{$content-width}"
+                           content-height="{$content-height}"/>
     </xsl:when>
     <xsl:otherwise>
       <fo:external-graphic src="url({$filename})"
-                           content-width="{$width}"
-                           content-height="{$height}"
-                           width="auto"
-                           height="auto"/>
+                           width="$width"
+                           height="$height"
+                           content-width="{$content-width}"
+                           content-height="{$content-height}"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
