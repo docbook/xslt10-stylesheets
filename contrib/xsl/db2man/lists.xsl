@@ -17,18 +17,18 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="varlistentry">
+<xsl:template match="varlistentry|glossentry">
   <xsl:text>&#10;.TP&#10;</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="variablelist" mode="list">
+<xsl:template match="variablelist|glosslist" mode="list">
   <xsl:text>&#10;.RS&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>&#10;.RE&#10;</xsl:text>
 </xsl:template>
 
-<xsl:template match="varlistentry/term">
+<xsl:template match="varlistentry/term|glossterm">
   <xsl:variable name="content">
     <xsl:apply-templates/>
   </xsl:variable>
@@ -36,14 +36,16 @@
   <xsl:text>, </xsl:text>
 </xsl:template>
 
-<xsl:template match="varlistentry/term[position()=last()]" priority="2">
+<xsl:template
+     match="varlistentry/term[position()=last()]|glossterm[position()=last()]"
+     priority="2">
   <xsl:variable name="content">
     <xsl:apply-templates/>
   </xsl:variable>
   <xsl:value-of select="normalize-space($content)"/>
 </xsl:template>
 
-<xsl:template match="varlistentry/listitem">
+<xsl:template match="varlistentry/listitem|glossdef">
   <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates mode="list"/>
 </xsl:template>
