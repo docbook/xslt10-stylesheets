@@ -121,6 +121,8 @@
       <xsl:value-of select="$snum"/>
       <xsl:text>)</xsl:text>
     </a>
+    <xsl:text>&#160;</xsl:text>
+    <xsl:apply-templates/>
   </i>
 </xsl:template>
 
