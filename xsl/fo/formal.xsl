@@ -184,6 +184,14 @@
     </fo:table-and-caption>
   </xsl:variable>
 
+  <xsl:variable name="footnotes">
+    <xsl:if test=".//footnote">
+      <fo:block>
+        <xsl:apply-templates select=".//footnote" mode="table.footnote.mode"/>
+      </fo:block>
+    </xsl:if>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="@orient='land'">
       <fo:block-container reference-orientation="90">
@@ -195,6 +203,7 @@
             </xsl:choose>
           </xsl:attribute>
           <xsl:copy-of select="$table.content"/>
+          <xsl:copy-of select="$footnotes"/>
         </fo:block>
       </fo:block-container>
     </xsl:when>
@@ -207,6 +216,7 @@
           </xsl:choose>
         </xsl:attribute>
         <xsl:copy-of select="$table.content"/>
+        <xsl:copy-of select="$footnotes"/>
       </fo:block>
     </xsl:otherwise>
   </xsl:choose>
@@ -247,6 +257,15 @@
     </fo:table>
   </xsl:variable>
 
+  <xsl:variable name="footnotes">
+    <xsl:if test=".//footnote">
+      <fo:block font-family="{$body.font.family}"
+                font-size="{$footnote.font.size}">
+        <xsl:apply-templates select=".//footnote" mode="table.footnote.mode"/>
+      </fo:block>
+    </xsl:if>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="@orient='land'">
       <fo:block-container reference-orientation="90">
@@ -258,6 +277,7 @@
             </xsl:choose>
           </xsl:attribute>
           <xsl:copy-of select="$table.content"/>
+          <xsl:copy-of select="$footnotes"/>
         </fo:block>
       </fo:block-container>
     </xsl:when>
@@ -270,6 +290,7 @@
           </xsl:choose>
         </xsl:attribute>
         <xsl:copy-of select="$table.content"/>
+        <xsl:copy-of select="$footnotes"/>
       </fo:block>
     </xsl:otherwise>
   </xsl:choose>

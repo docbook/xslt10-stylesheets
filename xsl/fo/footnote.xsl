@@ -1,6 +1,8 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                xmlns:exsl="http://exslt.org/common"
+                exclude-result-prefixes="exsl"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -14,14 +16,24 @@
      ******************************************************************** -->
 
 <xsl:template match="footnote">
-  <fo:footnote>
-    <fo:inline baseline-shift="super" font-size="90%">
-      <xsl:apply-templates select="." mode="footnote.number"/>
-    </fo:inline>
-    <fo:footnote-body font-size="{$footnote.font.size}">
-      <xsl:apply-templates/>
-    </fo:footnote-body>
-  </fo:footnote>
+  <xsl:choose>
+    <xsl:when test="ancestor::tgroup">
+      <fo:inline baseline-shift="super" font-size="90%">
+        <xsl:apply-templates select="." mode="footnote.number"/>
+      </fo:inline>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:footnote>
+        <fo:inline baseline-shift="super" font-size="90%">
+          <xsl:apply-templates select="." mode="footnote.number"/>
+        </fo:inline>
+        <fo:footnote-body font-family="{$body.font.family}"
+                          font-size="{$footnote.font.size}">
+          <xsl:apply-templates/>
+        </fo:footnote-body>
+      </fo:footnote>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="footnoteref">
@@ -32,7 +44,46 @@
 </xsl:template>
 
 <xsl:template match="footnote" mode="footnote.number">
-  <xsl:number level="any" format="1"/>
+  <xsl:choose>
+    <xsl:when test="ancestor::tgroup">
+      <xsl:number level="any" from="tgroup" format="a"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="pfoot" select="preceding::footnote"/>
+      <xsl:variable name="ptfoot" select="preceding::table//footnote
+                                          |preceding::informaltable//footnote"/>
+      <xsl:number value="count($pfoot) - count($ptfoot) + 1" format="1"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template match="*" mode="footnote.body.number">
+  <xsl:variable name="footnote.mark">
+    <fo:inline baseline-shift="super" font-size="90%">
+      <xsl:apply-templates select="ancestor::footnote" mode="footnote.number"/>
+    </fo:inline>
+  </xsl:variable>
+
+  <xsl:variable name="fo">
+    <xsl:apply-templates select="."/>
+  </xsl:variable>
+
+  <xsl:variable name="fo-nodes" select="exsl:node-set($fo)"/>
+
+  <xsl:choose>
+    <xsl:when test="$fo-nodes//fo:block">
+      <xsl:apply-templates select="$fo-nodes" mode="insert.fo.fnum">
+        <xsl:with-param name="mark" select="$footnote.mark"/>
+      </xsl:apply-templates>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="$fo-nodes" mode="insert.fo.text">
+        <xsl:with-param name="mark" select="$footnote.mark"/>
+      </xsl:apply-templates>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -49,6 +100,35 @@
     </fo:inline>
     <xsl:apply-templates/>
   </fo:block>
+</xsl:template>
+
+<xsl:template match="footnote" name="process.footnote" mode="table.footnote.mode">
+  <xsl:choose>
+    <xsl:when test="local-name(*[1]) = 'para' or local-name(*[1]) = 'simpara'">
+      <fo:block>
+        <xsl:apply-templates/>
+      </fo:block>
+    </xsl:when>
+
+    <xsl:when test="function-available('exsl:node-set')">
+      <fo:block>
+        <xsl:apply-templates select="*[1]" mode="footnote.body.number"/>
+        <xsl:apply-templates select="*[position() &gt; 1]"/>
+      </fo:block>
+    </xsl:when>
+
+    <xsl:otherwise>
+      <xsl:message>
+        <xsl:text>Warning: footnote number may not be generated </xsl:text>
+        <xsl:text>correctly; </xsl:text>
+        <xsl:value-of select="local-name(*[1])"/>
+        <xsl:text> unexpected as first child of footnote.</xsl:text>
+      </xsl:message>
+      <fo:block>
+        <xsl:apply-templates/>
+      </fo:block>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>

@@ -44,6 +44,7 @@
 <xsl:include href="inline.xsl"/>
 <xsl:include href="footnote.xsl"/>
 <xsl:include href="fo.xsl"/>
+<xsl:include href="fo-rtf.xsl"/>
 <xsl:include href="info.xsl"/>
 <xsl:include href="keywords.xsl"/>
 <xsl:include href="division.xsl"/>
