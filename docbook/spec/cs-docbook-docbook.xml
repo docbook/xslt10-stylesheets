@@ -1,15 +1,28 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-<!ENTITY standard "Standard">
+<!ENTITY name "cs-docbook-docbook">
+<!ENTITY version "4.2">
+<!ENTITY standard "Committee Specification">
 <!ENTITY tracker "http://sourceforge.net/tracker/">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
 ]>
-<article status="Working Draft">
-<?dbhtml filename="docbook-4.2-cr3.html"?>
+<article status="Committee Specification">
 <articleinfo>
+<releaseinfo role="cvs">
+$Id$
+</releaseinfo>
+
+<productname>&name;</productname>
+<productnumber>&version;</productnumber>
+
+<releaseinfo role="product"><ulink url="&name;-&version;.xml">XML</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="&name;-&version;.html">HTML</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="&name;-&version;.pdf">PDF</ulink></releaseinfo>
+
+<releaseinfo role="location">http://www.oasis-open.org/docbook/specs</releaseinfo>
+
 <title>The DocBook Document Type</title>
-<productnumber>Version 4.2 Candidate Release 3</productnumber>
-<subtitle>OASIS DocBook Technical Committee</subtitle>
+
 <authorgroup>
 <editor>
   <firstname>Norman</firstname><surname>Walsh</surname>
@@ -20,88 +33,43 @@
   </affiliation>
 </editor>
 </authorgroup>
-<pubdate>28 May 2002</pubdate>
-<releaseinfo role="cvs">
-$Id$
-</releaseinfo>
+
+<pubdate>16 July 2002</pubdate>
+
 <copyright><year>2001</year><year>2002</year>
 <holder>
 The Organization for the Advancement of Structured Information
 Standards [OASIS]. All Rights Reserved.
 </holder></copyright>
-<legalnotice>
-<para>This document and translations of it may be copied and furnished to
-others, and derivative works that comment on or otherwise explain it
-or assist in its implementation may be prepared, copied, published and
-distributed, in whole or in part, without restriction of any kind,
-provided that the above copyright notice and this paragraph are
-included on all such copies and derivative works. However, this
-document itself may not be modified in any way, such as by removing
-the copyright notice or references to OASIS, except as needed for the
-purpose of developing OASIS specifications, in which case the
-procedures for copyrights defined in the OASIS Intellectual Property
-Rights document must be followed, or as required to translate it into
-languages other than English.</para>
-
-<para>The limited permissions granted above are perpetual and will not be
-revoked by OASIS or its successors or assigns.</para>
-
-<para>This document and the information contained herein is provided
-on an <quote>AS IS</quote> basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE
-INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED
-WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
-</para>
-</legalnotice>
-
-<legalnotice role="status"><title>Status of this Document</title>
-
-<para>This is a working draft constructed by the editor. It is not
-an official committee work product and may not reflect the consensus
-opinion of the committee.</para>
-
-<!--
-<para>This Committee Specification was approved for publication by the
-OASIS DocBook Technical Committee. It represents the
-consensus of the committee. Comments on this document may be
-sent to
-<ulink url="mailto:docbook@lists.oasis-open.org">docbook@lists.oasis-open.org</ulink>.
-</para>
--->
-
-</legalnotice>
 
 <abstract><title>Abstract</title>
-
 <para>DocBook is general purpose <xref linkend="xml-rec"/> and
 <xref linkend="iso8879"/> document type
 particularly well suited to books and papers about computer hardware
 and software (though it is by no means limited to these applications).
 </para>
-
 <para>The Version 4.2 release is a maintainance release. It introduces
 no backwards-incompatible changes.</para>
-
 </abstract>
 
-<revhistory>
-<revision role="http://www.oasis-open.org/docbook/docbook-4.2-CR3.html">
-  <revnumber>Candidate Release 3</revnumber>
-  <date>28 May 2002</date>
-</revision>
-<revision role="http://www.oasis-open.org/docbook/docbook-4.2-CR2.html">
-  <revnumber>Candidate Release 2</revnumber>
-  <date>21 May 2002</date>
-</revision>
-<revision role="http://www.oasis-open.org/docbook/docbook-4.2-CR1.html">
-  <revnumber>Candidate Release 1</revnumber>
-  <date>19 Mar 2002</date>
-</revision>
-<revision role="http://www.oasis-open.org/docbook/docbook-4.2b1.html">
-  <revnumber>Working Draft &ldquo;Beta 1&rdquo;</revnumber>
-  <date>20 Nov 2001</date>
-</revision>
-</revhistory>
+<legalnotice role="status"><title>Status</title>
+<para>This Committee Specification was approved for publication by the
+OASIS DocBook Technical Committee. It represents the
+consensus of the committee.
+</para>
+
+<para>Please send comments on this specification to the
+<email>docbook@lists.oasis-open.org</email> list. To subscribe, send
+an email message to
+<email>docbook-request@lists.oasis-open.org</email> with the word
+<quote><literal>subscribe</literal></quote> as the body of the
+message.
+</para>
+
+<para>The errata page for this specification is at
+<ulink url="http://www.oasis-open.org/docbook/specs/&name;-4.2-errata.html"/>.
+</para>
+</legalnotice>
 </articleinfo>
 
 <section id="s.intro">
@@ -151,7 +119,7 @@ document.</para>
 </section>
 
 <section id="docbook">
-<title>The DocBook Document Type V4.2CR3</title>
+<title>The DocBook Document Type V4.2</title>
 
 <para>The DocBook document type is distributed for
 <ulink url="http://www.oasis-open.org/docbook/xml/">XML</ulink> and
@@ -161,6 +129,17 @@ from the
 <ulink url="http://www.oasis-open.org/">OASIS</ulink>
 </para>
 
+<section id="s.changes4">
+<title>Changes in DocBook V4.2</title>
+
+<para>There are no backwards-incompatible changes in this release.
+</para>
+
+<para>Each of the changes made between DocBook V4.2CR3 and DocBook V4.2
+is summarized here.</para>
+
+<para>The appellation <quote>CR3</quote> was removed from comments, public,
+and system identifiers.</para>
 </section>
 
 <section id="s.changes3">
@@ -176,7 +155,6 @@ is summarized here.</para>
 the various modules. The previous release, labelled <quote>Candidate
 Release 2</quote>, erroneously contained the CR1 files. This release
 fixes that error.</para>
-
 </section>
 
 <section id="s.changes2">
@@ -228,7 +206,7 @@ minutes</ulink>.</para>
 <section id="s.bugs">
 <title>Bug Fixes</title>
 
-<itemizedlist>
+<itemizedlist spacing="compact">
 <listitem id="rfe.434439"><para><ulink url="&RFE;aid=434439">RFE 434439</ulink>:
 Add language attribute to MethodSynopsis
 </para></listitem>
@@ -251,7 +229,7 @@ never reduced).</para></listitem>
 <section id="s.enhancements">
 <title>Enhancements</title>
 
-<itemizedlist>
+<itemizedlist spacing="compact">
 <listitem id="rfe.417671"><para><ulink url="&RFE;aid=417671">RFE 417671</ulink>:
 Add recursive section element to Refentry
 </para></listitem>
@@ -383,6 +361,8 @@ Core Metadata Element Set</ulink>, Version 1.0.</para>
 
 </itemizedlist>
 </section>
+</section>
+</section>
 
 <section><title>Release Notes</title>
 
@@ -398,10 +378,11 @@ than the requirements for maintaining customer information.</para>
 <ulink url="http://www.oasis-open.org/committees/ciq/ciq.shtml#5">xNL</ulink>
 markup with the following simple transformation:</para>
 
-<informaltable>
+<informaltable frame="none">
 <tgroup cols="2">
+<colspec colsep="1"/>
 <thead>
-<row>
+<row rowsep="1">
   <entry>DocBook Element</entry>
   <entry>QIC xNL Element</entry>
 </row>
@@ -447,10 +428,12 @@ Core mapping for DocBook</ulink>
 (<ulink url="http://lists.oasis-open.org/archives/docbook-tc/200203/msg00010.html">as
 amended</ulink>).</para>
 
-<informaltable>
+<informaltable frame="none">
 <tgroup cols="3">
+<colspec colsep="1"/>
+<colspec colsep="1"/>
 <thead>
-<row>
+<row rowsep="1">
   <entry>DC Element</entry>
   <entry>DC Label</entry>
   <entry>DocBook Element(s)</entry>
@@ -546,7 +529,6 @@ amended</ulink>).</para>
 or other logic may be required to determine the best mapping.</para>
 </section>
 </section>
-</section>
 
 <section id="docbook.v5">
 <title>Changes Proposed for DocBook V5.0</title>
@@ -561,7 +543,7 @@ details, consult the individual RFEs and the <ulink
 url="http://www.oasis-open.org/docbook/#meetings">meeting
 minutes</ulink>.</para>
 
-<itemizedlist>
+<itemizedlist spacing="compact">
 <listitem id="rfe.xml"><para>DocBook V5.0 will be primarily an XML
 DTD. This will require a wide range of changes. As a result, DocBook
 V5.0 will more closely resemble The XML version of DocBook V4.x than
@@ -635,7 +617,7 @@ details, consult the individual RFEs and the <ulink
 url="http://www.oasis-open.org/docbook/#meetings">meeting
 minutes</ulink>.</para>
 
-<itemizedlist>
+<itemizedlist spacing="compact">
 <listitem id="rfe.412476"><para><ulink url="&RFE;aid=412476">RFE 412476</ulink>:
 The <sgmltag class="attribute">class</sgmltag> attribute on
 <sgmltag>productname</sgmltag> will be <literal>#IMPLIED</literal>.
@@ -695,10 +677,10 @@ proposed</ulink>.
 <para>The following individuals were members of the committee during
 the formulation of this &standard;:</para>
 
-<itemizedlist>
+<itemizedlist spacing="compact">
 <listitem><para>Dennis Evans</para></listitem>
 <listitem><para>Patricia Gee-Best</para></listitem>
-<listitem><para>Paul Grosso (prospective)</para></listitem>
+<listitem><para>Paul Grosso</para></listitem>
 <listitem><para>Dick Hamilton</para></listitem>
 <listitem><para>Nancy (Paisner) Harrison</para></listitem>
 <listitem><para>Sabine Ocker</para></listitem>
@@ -707,6 +689,111 @@ the formulation of this &standard;:</para>
 <listitem><para>Tim Teebken (prospective)</para></listitem>
 <listitem><para>Norman Walsh (Chair, Editor)</para></listitem>
 </itemizedlist>
+
+</appendix>
+
+<appendix id="a.notices">
+<title>Notices</title>
+
+<para>Copyright &#169; The Organization for the Advancement of
+Structured Information Standards [OASIS] 2001, 2002. All Rights
+Reserved.</para>
+
+<para>OASIS takes no position regarding the validity
+or scope of any intellectual property or other rights
+that might be claimed to pertain to the implementation
+or use of the technology described in this document
+or the extent to which any license under such rights
+might or might not be available; neither does it represent
+that it has made any effort to identify any such rights.
+Information on OASIS's procedures with respect to rights
+in OASIS specifications can be found at the OASIS website.
+Copies of claims of rights made available for publication
+and any assurances of licenses to be made available,
+or the result of an attempt made to obtain a general
+license or permission for the use of such proprietary
+rights by implementors or users of this specification,
+can be obtained from the OASIS Executive Director.</para>
+
+<para>OASIS invites any interested party to bring to
+its attention any copyrights, patents or patent applications,
+or other proprietary rights which may cover technology
+that may be required to implement this specification.
+Please address the information to the OASIS Executive
+Director.</para>
+
+<para>This document and translations of it may be copied
+and furnished to others, and derivative works that comment
+on or otherwise explain it or assist in its implementation
+may be prepared, copied, published and distributed,
+in whole or in part, without restriction of any kind,
+provided that the above copyright notice and this paragraph
+are included on all such copies and derivative works.
+However, this document itself may not be modified in
+any way, such as by removing the copyright notice or
+references to OASIS, except as needed for the purpose
+of developing OASIS specifications, in which case the
+procedures for copyrights defined in the OASIS Intellectual
+Property Rights document must be followed, or as required
+to translate it into languages other than English.</para>
+
+<para>The limited permissions granted above are perpetual
+and will not be revoked by OASIS or its successors or
+assigns.</para>
+
+<para>This document and the information contained herein
+is provided on an <quote>AS IS</quote> basis and OASIS DISCLAIMS
+ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES
+OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.</para>
+
+<para>OASIS has been notified of intellectual property
+rights claimed in regard to some or all of the contents
+of this specification. For more information consult
+the online list of claimed rights.</para>
+
+</appendix>
+
+<appendix id="a.ipr">
+<title>Intellectual Property Rights</title>
+
+<para>For information on wether any patents have been disclosed that may be
+essential to implementing this specification, and any offers of patent
+licensing terms, please refer to the Intellectual Property Rights section
+of the DocBook web page
+(<ulink url="http://www.oasis-open.org/committees/docbook/"/>)
+</para>
+
+</appendix>
+
+<appendix id="a.revhistory">
+<title>Revision History</title>
+
+<para>
+<revhistory>
+<revision role="http://www.oasis-open.org/docbook/specs/cs-docbook-docbook-4.2.html">
+  <revnumber>Committee Specification</revnumber>
+  <date>16 Jul 2002</date>
+</revision>
+<revision role="http://www.oasis-open.org/docbook/docbook-4.2-CR3.html">
+  <revnumber>Candidate Release 3</revnumber>
+  <date>28 May 2002</date>
+</revision>
+<revision role="http://www.oasis-open.org/docbook/docbook-4.2-CR2.html">
+  <revnumber>Candidate Release 2</revnumber>
+  <date>21 May 2002</date>
+</revision>
+<revision role="http://www.oasis-open.org/docbook/docbook-4.2-CR1.html">
+  <revnumber>Candidate Release 1</revnumber>
+  <date>19 Mar 2002</date>
+</revision>
+<revision role="http://www.oasis-open.org/docbook/docbook-4.2b1.html">
+  <revnumber>Working Draft &ldquo;Beta 1&rdquo;</revnumber>
+  <date>20 Nov 2001</date>
+</revision>
+</revhistory>
+</para>
 
 </appendix>
 
