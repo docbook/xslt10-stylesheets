@@ -1,5 +1,5 @@
 <!DOCTYPE xsd:schema SYSTEM
-  "http://www.w3.org/2000/10/XMLSchema.dtd" [
+  "http://www.w3.org/2001/XMLSchema.dtd" [
 
 <!ENTITY % p 'xsd:'>
 <!ENTITY % s ':xsd'>
@@ -10,7 +10,7 @@
 ">
 ]>
 
-<xsd:schema xmlns:xsd='http://www.w3.org/2000/10/XMLSchema'
+<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'
   targetNamespace='http://www.oasis-open.org/docbook/xmlschema/4.1.2'
   xmlns:db='http://www.oasis-open.org/docbook/xmlschema/4.1.2'
   xmlns:xml='http://www.w3.org/XML/1998/namespace'

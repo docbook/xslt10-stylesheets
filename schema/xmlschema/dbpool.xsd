@@ -1,5 +1,5 @@
 <!DOCTYPE xsd:schema SYSTEM
-  "http://www.w3.org/2000/10/XMLSchema.dtd" [
+  "http://www.w3.org/2001/XMLSchema.dtd" [
 
 <!ENTITY % p 'xsd:'>
 <!ENTITY % s ':xsd'>
@@ -10,7 +10,7 @@
 ">
 ]>
 
-<xsd:schema xmlns:xsd='http://www.w3.org/2000/10/XMLSchema'
+<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'
   targetNamespace='http://www.oasis-open.org/docbook/xmlschema/4.1.2'
   xmlns:db='http://www.oasis-open.org/docbook/xmlschema/4.1.2'
   xmlns:xml='http://www.w3.org/XML/1998/namespace'
@@ -1061,7 +1061,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!-- MoreInfo: whether element's content has an associated RefEntry -->
 
 <xsd:attributeGroup name='moreinfo.attrib'>
-  <xsd:attribute name='moreinfo' use='default' value='none'>
+  <xsd:attribute name='moreinfo' default='none'>
     <xsd:simpleType>
       <xsd:restriction base='xsd:string'>
         <xsd:enumeration value='refentry'/>
@@ -1119,7 +1119,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <xsd:complexType name='titleabbrev' mixed='true'>
   <xsd:choice minOccurs='0' maxOccurs='unbounded'>
-    <xsd:group ref='title.char.mix'/>
+    <xsd:group ref='db:title.char.mix'/>
   </xsd:choice>
   <!-- (%title.char.mix;)* -->
 
@@ -1134,7 +1134,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <xsd:complexType name='subtitle' mixed='true'>
   <xsd:choice minOccurs='0' maxOccurs='unbounded'>
-    <xsd:group ref='title.char.mix'/>
+    <xsd:group ref='db:title.char.mix'/>
   </xsd:choice>
   <!-- (%title.char.mix;)* -->
 
@@ -2094,7 +2094,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <xsd:complexType name='admonitionType'>
   <xsd:sequence>
-    <xsd:element ref='db:title'/>
+    <xsd:element ref='db:title' minOccurs='0' maxOccurs='1'/>
     <xsd:group ref='db:admon.mix' minOccurs='1' maxOccurs='unbounded'/>
   </xsd:sequence>
   <!-- (title?, (%admon.mix;)+) -->
@@ -2274,7 +2274,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
        of ListItems should include the number of the item
        within which they are nested (e.g., 1a and 1b within 1,
        rather than a and b) -->
-  <xsd:attribute name='inheritnum' use='default' value='ignore'>
+  <xsd:attribute name='inheritnum' default='ignore'>
     <xsd:simpleType>
       <xsd:restriction base='xsd:string'>
         <xsd:enumeration value='inherit'/>
@@ -2286,7 +2286,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <!-- Continuation: Where list numbering begins afresh (Restarts,
        the default) or continues that of the immediately preceding
        list (Continues) -->
-  <xsd:attribute name='continuation' use='default' value='restarts'>
+  <xsd:attribute name='continuation' default='restarts'>
     <xsd:simpleType>
       <xsd:restriction base='xsd:string'>
         <xsd:enumeration value='continues'/>
@@ -2417,7 +2417,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
        the direction of text flow) in n Columns.  If Column
        is 1 or implied, Type=Vert and Type=Horiz give the same
        results. -->
-  <xsd:attribute name='type' use='default' value='vert'>
+  <xsd:attribute name='type' default='vert'>
     <xsd:simpleType>
       <xsd:restriction base='xsd:string'>
         <xsd:enumeration value='inline'/>
@@ -2759,7 +2759,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   </xsd:choice>
   <!-- (%para.char.mix; | lineannotation | co)* -->
 
-  <xsd:attribute name='class' use='default' value='normal'>
+  <xsd:attribute name='class' default='normal'>
     <xsd:simpleType>
       <xsd:restriction base='xsd:string'>
         <xsd:enumeration value='monospaced'/>
@@ -2874,7 +2874,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <!-- Float: Whether the Figure is supposed to be rendered
        where convenient (yes (1) value) or at the place it occurs
        in the text (no (0) value, the default) -->
-  <xsd:attribute name='float' type='db:yesorno.attvals' use='default' value='0'/>
+  <xsd:attribute name='float' type='db:yesorno.attvals' default='0'/>
   <xsd:attribute name='pgwide' type='db:yesorno.attvals'/>
   <xsd:attributeGroup ref='db:label.attrib'/>
   <xsd:attributeGroup ref='db:common.attrib'/>
@@ -2896,7 +2896,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <!-- Float: Whether the Figure is supposed to be rendered
        where convenient (yes (1) value) or at the place it occurs
        in the text (no (0) value, the default) -->
-  <xsd:attribute name='float' type='db:yesorno.attvals' use='default' value='0'/>
+  <xsd:attribute name='float' type='db:yesorno.attvals' default='0'/>
   <xsd:attribute name='pgwide' type='db:yesorno.attvals'/>
   <xsd:attributeGroup ref='db:label.attrib'/>
   <xsd:attributeGroup ref='db:common.attrib'/>
@@ -3203,7 +3203,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <xsd:complexType name='caption'>
   <xsd:sequence>
-    <xsd:group ref='db:textobject' minOccurs='0' maxOccurs='unbounded'/>
+    <xsd:group ref='db:textobject.mix' minOccurs='0' maxOccurs='unbounded'/>
   </xsd:sequence>
 
   <xsd:attributeGroup ref='db:common.attrib'/>
@@ -3424,7 +3424,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
   <!-- Sepchar: Character that should separate command and all
        top-level arguments; alternate value might be e.g., &Delta; -->
-  <xsd:attribute name='sepchar' type='xsd:string' use='default' value=' '/>
+  <xsd:attribute name='sepchar' type='xsd:string' default=' '/>
   <xsd:attributeGroup ref='db:label.attrib'/>
   <xsd:attribute name='cmdlength' type='xsd:integer'/>
   <xsd:attributeGroup ref='db:common.attrib'/>
@@ -3456,7 +3456,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <!-- Choice: Whether Arg must be supplied: Opt (optional to
        supply, e.g. [arg]; the default), Req (required to supply,
        e.g. {arg}), or Plain (required to supply, e.g. arg) -->
-  <xsd:attribute name='choice' use='default' value='opt'>
+  <xsd:attribute name='choice' default='opt'>
     <xsd:simpleType>
       <xsd:restriction base='xsd:string'>
         <xsd:enumeration value='opt'/>
@@ -3468,7 +3468,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
   <!-- Rep: whether Arg is repeatable: Norepeat (e.g. arg without
        ellipsis; the default), or Repeat (e.g. arg...) -->
-  <xsd:attribute name='rep' use='default' value='norepeat'>
+  <xsd:attribute name='rep' default='norepeat'>
     <xsd:simpleType>
       <xsd:restriction base='xsd:string'>
         <xsd:enumeration value='norepeat'/>
@@ -3501,7 +3501,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <!-- Choice: Whether Arg must be supplied: Opt (optional to
        supply, e.g. [arg]; the default), Req (required to supply,
        e.g. {arg}), or Plain (required to supply, e.g. arg) -->
-  <xsd:attribute name='choice' use='default' value='opt'>
+  <xsd:attribute name='choice' default='opt'>
     <xsd:simpleType>
       <xsd:restriction base='xsd:string'>
         <xsd:enumeration value='opt'/>
@@ -3513,7 +3513,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
   <!-- Rep: whether Arg is repeatable: Norepeat (e.g. arg without
        ellipsis; the default), or Repeat (e.g. arg...) -->
-  <xsd:attribute name='rep' use='default' value='norepeat'>
+  <xsd:attribute name='rep' default='norepeat'>
     <xsd:simpleType>
       <xsd:restriction base='xsd:string'>
         <xsd:enumeration value='norepeat'/>
@@ -3757,7 +3757,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <xsd:attributeGroup ref='db:classsynopsis.role.attrib'/>
   <!-- %local.classsynopsis.attrib; -->
   <xsd:attribute name='language' type='xsd:string'/>
-  <xsd:attribute name='class' use='default' value='class'>
+  <xsd:attribute name='class' default='class'>
     <xsd:simpleType>
       <xsd:restriction base='xsd:string'>
         <xsd:enumeration value='class'/>
@@ -4010,16 +4010,16 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <xsd:complexType name='methodparam'>
   <xsd:sequence>
-    <xsd:element name='db:modifier' minOccurs='0' maxOccurs='unbounded'/>
-    <xsd:element name='db:type' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='db:modifier' minOccurs='0' maxOccurs='unbounded'/>
+    <xsd:element ref='db:type' minOccurs='0' maxOccurs='1'/>
     <xsd:choice>
       <xsd:sequence>
-        <xsd:element name='db:parameter'/>
-        <xsd:element name='db:initializer' minOccurs='0' maxOccurs='1'/>
+        <xsd:element ref='db:parameter'/>
+        <xsd:element ref='db:initializer' minOccurs='0' maxOccurs='1'/>
       </xsd:sequence>
-      <xsd:element name='db:funcparams'/>
+      <xsd:element ref='db:funcparams'/>
     </xsd:choice>
-    <xsd:element name='db:modifier' minOccurs='0' maxOccurs='unbounded'/>
+    <xsd:element ref='db:modifier' minOccurs='0' maxOccurs='unbounded'/>
   </xsd:sequence>
   <!-- (modifier*,
                        type?,
@@ -4033,7 +4033,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <!-- Choice: Whether Arg must be supplied: Opt (optional to
        supply, e.g. [arg]; the default), Req (required to supply,
        e.g. {arg}), or Plain (required to supply, e.g. arg) -->
-  <xsd:attribute name='choice' use='default' value='opt'>
+  <xsd:attribute name='choice' default='opt'>
     <xsd:simpleType>
       <xsd:restriction base='xsd:string'>
         <xsd:enumeration value='opt'/>
@@ -4045,7 +4045,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
   <!-- Rep: whether Arg is repeatable: Norepeat (e.g. arg without
        ellipsis; the default), or Repeat (e.g. arg...) -->
-  <xsd:attribute name='rep' use='default' value='norepeat'>
+  <xsd:attribute name='rep' default='norepeat'>
     <xsd:simpleType>
       <xsd:restriction base='xsd:string'>
         <xsd:enumeration value='norepeat'/>
@@ -4969,7 +4969,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
   <!-- (%para.char.mix;)* -->
 
   <!-- Class: More precisely identifies the item the element names -->
-  <xsd:attribute name='class' use='default' value='trade'>
+  <xsd:attribute name='class' default='trade'>
     <xsd:simpleType>
       <xsd:restriction base='xsd:string'>
         <xsd:enumeration value='service'/>
@@ -6486,7 +6486,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 		| emphasis)* -->
 
   <!-- Class: More precisely identifies the item the element names -->
-  <xsd:attribute name='class' use='default' value='trade'>
+  <xsd:attribute name='class' default='trade'>
     <xsd:simpleType>
       <xsd:restriction base='xsd:string'>
         <xsd:enumeration value='service'/>
@@ -6701,9 +6701,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
           <xsd:element ref='db:see'/>
           <xsd:element ref='db:seealso' minOccurs='1' maxOccurs='unbounded'/>
         </xsd:choice>
-        <xsd:element ref='db:see'/>
-        <xsd:element ref='db:seealso' minOccurs='1' maxOccurs='unbounded'/>
       </xsd:sequence>
+      <xsd:element ref='db:see'/>
+      <xsd:element ref='db:seealso' minOccurs='1' maxOccurs='unbounded'/>
     </xsd:choice>
   </xsd:sequence>
   <!-- (primary?, ((secondary, ((tertiary, (see|seealso+)?)
@@ -6724,7 +6724,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
   <!-- Significance: Whether this IndexTerm is the most pertinent
        of its series (Preferred) or not (Normal, the default) -->
-  <xsd:attribute name='significance' use='default' value='normal'>
+  <xsd:attribute name='significance' default='normal'>
     <xsd:simpleType>
       <xsd:restriction base='xsd:string'>
         <xsd:enumeration value='preferred'/>
