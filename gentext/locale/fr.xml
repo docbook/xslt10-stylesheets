@@ -13,8 +13,10 @@
 <authorgroup>
   <author><firstname>Sylvain</firstname><surname>Amrani</surname>
   </author>
+  <author><firstname>Frédéric</firstname><surname>Boiteux</surname>
+      <email>fboiteux@calistel.com</email>
+  </author>
 </authorgroup>
-
 </doc:localeinfo>
 
 <gentext key="Abstract" text="R&eacute;sum&eacute;"/>
@@ -55,8 +57,8 @@
 <gentext key="GlossSeeAlso" text="Voir aussi"/>
 <gentext key="glossseealso" text="Voir aussi"/>
 <gentext key="IMPORTANT" text="IMPORTANT"/>
-<gentext key="Important" text="Important"/>
 <gentext key="important" text="Important"/>
+<gentext key="Important" text="Important"/>
 <gentext key="Index" text="Index"/>
 <gentext key="index" text="Index"/>
 <gentext key="ISBN" text="ISBN"/>
@@ -69,9 +71,9 @@
 <gentext key="msglevel" text="Niveau"/>
 <gentext key="MsgOrig" text="Origine"/>
 <gentext key="msgorig" text="Origine"/>
-<gentext key="Note" text="Note"/>
 <gentext key="NOTE" text="NOTE"/>
-<gentext key="note" text="NOTE"/>
+<gentext key="Note" text="Note"/>
+<gentext key="note" text="Note"/>
 <gentext key="Part" text="Partie"/>
 <gentext key="part" text="Partie"/>
 <gentext key="Preface" text="Pr&eacute;face"/>
@@ -79,8 +81,12 @@
 <gentext key="Procedure" text="Proc&eacute;dure"/>
 <gentext key="procedure" text="Proc&eacute;dure"/>
 <gentext key="ProductionSet" text="Production"/>
+<gentext key="PubDate" text="Date de publication"/>
+<gentext key="pubdate" text="Date de publication"/>
 <gentext key="Published" text="Publi&eacute;"/>
 <gentext key="published" text="Publi&eacute;"/>
+<gentext key="Qandadiv" text="Q &amp; R"/>
+<gentext key="qandadiv" text="Q &amp; R"/>
 <gentext key="Question" text="Q&#x00A0;:"/>
 <gentext key="question" text="Q&#x00A0;:"/>
 <gentext key="RefEntry" text=""/>
@@ -102,23 +108,23 @@
 <gentext key="sect3" text="Section"/>
 <gentext key="sect4" text="Section"/>
 <gentext key="sect5" text="Section"/>
-<gentext key="Section" text="Section"/>
 <gentext key="section" text="section"/>
-<gentext key="see" text="Voir"/>
+<gentext key="Section" text="Section"/>
+<gentext key="see" text="voir"/>             <!-- pas de majuscule -->
 <gentext key="See" text="Voir"/>
-<gentext key="seealso" text="Voir Aussi"/>
-<gentext key="SeeAlso" text="Voir Aussi"/>
+<gentext key="seealso" text="voir aussi"/>   <!-- pas de majuscule -->
 <gentext key="Seealso" text="Voir aussi"/>
-<gentext key="Set" text="Ensemble"/>
+<gentext key="SeeAlso" text="Voir Aussi"/>
 <gentext key="set" text="Ensemble"/>
+<gentext key="Set" text="Ensemble"/>
 <gentext key="setindex" text="Index"/>
 <gentext key="SetIndex" text="Index"/>
-<gentext key="sidebar" text=""/>
 <gentext key="Sidebar" text=""/>
-<gentext key="Step" text="&Eacute;tape"/>
+<gentext key="sidebar" text=""/>
 <gentext key="step" text="&eacute;tape"/>
-<gentext key="table" text="Tableau"/>
+<gentext key="Step" text="&Eacute;tape"/>
 <gentext key="Table" text="Tableau"/>
+<gentext key="table" text="Tableau"/>
 <gentext key="tip" text="ASTUCE"/>
 <gentext key="TIP" text="ASTUCE"/>
 <gentext key="Tip" text="Astuce"/>
@@ -128,6 +134,7 @@
 
 <gentext key="and" text="et"/>
 <gentext key="by" text="par"/>
+<gentext key="called" text="intitul&eacute;"/>
 <gentext key="Edited" text="Publi&eacute;"/>
 <gentext key="edited" text="Publi&eacute;"/>
 <gentext key="Editedby" text="Publi&eacute; par"/>
@@ -146,6 +153,7 @@
 <gentext key="tablenotes" text="Remarques"/>
 <gentext key="TableofContents" text="Table des mati&egrave;res"/>
 <gentext key="tableofcontents" text="Table des mati&egrave;res"/>
+<gentext key="the" text=""/>
 <gentext key="unexpectedelementname" text="Nom d'&eacute;l&eacute;ment non attendu"/>
 <gentext key="unsupported" text="Non reconnu par le syst&egrave;me"/>
 <gentext key="xrefto" text="R&eacute;f&eacute;rence vers"/>
@@ -156,6 +164,8 @@
 <gentext key="listofexamples" text="Liste des exemples"/>
 <gentext key="ListofFigures" text="Liste des illustrations"/>
 <gentext key="listoffigures" text="Liste des illustrations"/>
+<gentext key="ListofProcedures" text="Liste des proc&eacute;dures"/>
+<gentext key="listofprocedures" text="Liste des proc&eacute;dures"/>
 <gentext key="listoftables" text="Liste des tableaux"/>
 <gentext key="ListofTables" text="Liste des tableaux"/>
 <gentext key="ListofUnknown" text="Liste des inconnues"/>
@@ -167,24 +177,31 @@
 <gentext key="nav-prev" text="Pr&#x00E9;c&#x00E9;dent"/>
 <gentext key="nav-prev-sibling" text="Arri&#xE8;re rapide"/>
 <gentext key="nav-up" text="Niveau sup&#x00E9;rieur"/>
+<gentext key="nav-toc" text="TdM"/>
 
+<gentext key="Draft"         text="Brouillon"/>
+<gentext key="above"         text="au dessus"/>
+<gentext key="below"         text="au dessous"/>
 <gentext key="sectioncalled" text="la section intitul&eacute;e" />
-<gentext key="Draft"         text="Draft"/> <!-- en -->
-<gentext key="above"         text="above"/> <!-- en -->
-<gentext key="below"         text="below"/> <!-- en -->
 <gentext key="index symbols" text="Symboles"/>
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz&acirc;&ecirc;&icirc;&ocirc;&ucirc;&euml;&iuml;&uuml;&agrave;&egrave;&ugrave;&eacute;&ccedil;&aelig;&oelig;"/>
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ&Acirc;&Ecirc;&Icirc;&Ocirc;&Ucirc;&Euml;&Iuml;&Uuml;&Agrave;&Egrave;&Ugrave;&Eacute;&Ccedil;&AElig;&OElig;"/>
 
-<dingbat key="startquote" text="&#x00AB;"/>
-<dingbat key="endquote" text="&#x00BB;"/>
+<dingbat key="startquote" text="&#x00AB;&#x00A0;"/>
+<dingbat key="endquote" text="&#x00A0;&#x00BB;"/>
+<dingbat key="nestedstartquote" text="&#x00AB;&#x00A0;"/>
+<dingbat key="nestedendquote" text="&#x00A0;&#x00BB;"/>
 <dingbat key="singlestartquote" text="&#x2039;"/>
 <dingbat key="singleendquote" text="&#x203A;"/>
 
-<dingbat key="nestedstartquote" text="&#x00AB;"/>
-<dingbat key="nestedendquote" text="&#x00BB;"/>
 <dingbat key="bullet" text="&#x2022;"/>
+
+<!-- n.b. &#x2010; serait sans doute mieux, mais il n'est pas toujours -->
+<!-- affiche correctement -->
+<gentext key="hyphenation-character" text="-"/>
+<gentext key="hyphenation-push-character-count" text="2"/>
+<gentext key="hyphenation-remain-character-count" text="2"/>
 
 <context name="styles">
 
@@ -196,7 +213,7 @@
 
 <template name="abstract">%t</template>
 <template name="answer">%t</template>
-<template name="appendix"><Appendix/> %n. %t</template>
+<template name="appendix"><Appendix/>&#160;%n.&#160;%t</template>
 <template name="article">%t</template>
 <template name="authorblurb">%t</template>
 <template name="bibliodiv">%t</template>
@@ -209,15 +226,16 @@
 <template name="book">%t</template>
 <template name="calloutlist">%t</template>
 <template name="caution">%t</template>
-<template name="chapter"><Chapter/> %n. %t</template>
+<template name="chapter"><Chapter/>&#160;%n.&#160;%t</template>
 <template name="colophon">%t</template>
 <template name="dedication">%t</template>
-<template name="equation"><Equation/> %n. %t</template>
-<template name="example"><Example/> %n. %t</template>
-<template name="figure"><Figure/> %n. %t</template>
+<template name="equation"><Equation/>&#160;%n.&#160;%t</template>
+<template name="example"><Example/>&#160;%n.&#160;%t</template>
+<template name="figure"><Figure/>&#160;%n.&#160;%t</template>
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
+<template name="glossentry">%t</template>
 <template name="important">%t</template>
 <template name="index">%t</template>
 <template name="indexdiv">%t</template>
@@ -233,13 +251,13 @@
 <template name="msgsub">%t</template>
 <template name="note">%t</template>
 <template name="orderedlist">%t</template>
-<template name="part"><Part/> %n. %t</template>
+<template name="part"><Part/>&#160;%n.&#160;%t</template>
 <template name="partintro">%t</template>
 <template name="preface">%t</template>
 <template name="procedure">%t</template>
-<template name="procedure.formal"><Procedure/> %n. %t</template>
+<template name="procedure.formal"><Procedure/>&#160;%n.&#160;%t</template>
 <template name="productionset">%t</template>
-<template name="productionset.formal"><ProductionSet/> %n</template>
+<template name="productionset.formal"><ProductionSet/>&#160;%n</template>
 <template name="qandadiv">%t</template>
 <template name="qandaentry">%t</template>
 <template name="qandaset">%t</template>
@@ -257,10 +275,12 @@
 <template name="setindex">%t</template>
 <template name="sidebar">%t</template>
 <template name="step">%t</template>
-<template name="table"><Table/> %n. %t</template>
+<template name="table"><Table/>&#160;%n.&#160;%t</template>
+<template name="task">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
+<template name="varlistentry"/>
 <template name="warning">%t</template>
 
 </context>
@@ -268,6 +288,7 @@
 <context name="title-unnumbered">
 
 <template name="appendix">%t</template>
+<template name="article/appendix">%t</template>
 <template name="bridgehead">%t</template>
 <template name="chapter">%t</template>
 <template name="sect1">%t</template>
@@ -282,15 +303,16 @@
 
 <context name="title-numbered">
 
-<template name="appendix"><Appendix/> %n. %t</template>
-<template name="bridgehead">%n. %t</template>
-<template name="chapter"><Chapter/> %n. %t</template>
-<template name="sect1">%n. %t</template>
-<template name="sect2">%n. %t</template>
-<template name="sect3">%n. %t</template>
-<template name="sect4">%n. %t</template>
-<template name="sect5">%n. %t</template>
-<template name="section">%n. %t</template>
+<template name="appendix"><Appendix/>&#160;%n.&#160;%t</template>
+<template name="article/appendix">%n.&#160;%t</template>
+<template name="bridgehead">%n.&#160;%t</template>
+<template name="chapter"><Chapter/>&#160;%n.&#160;%t</template>
+<template name="sect1">%n.&#160;%t</template>
+<template name="sect2">%n.&#160;%t</template>
+<template name="sect3">%n.&#160;%t</template>
+<template name="sect4">%n.&#160;%t</template>
+<template name="sect5">%n.&#160;%t</template>
+<template name="section">%n.&#160;%t</template>
 <template name="simplesect">%t</template>
 
 </context>
@@ -399,8 +421,11 @@
 <template name="varlistentry">%n</template>
 <template name="warning">%t</template>
 <template name="page.citation"> [%p]</template>
-<template name="bridgehead"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="page">(page %p)</template>
+<template name="pageabbrev">(p. %p)</template>
+<template name="Page">Page %p</template>
 
+<template name="bridgehead"><sectioncalled/> <startquote/>%t<endquote/></template>
 <template name="refsection"><sectioncalled/> <startquote/>%t<endquote/></template>
 <template name="refsect1"><sectioncalled/> <startquote/>%t<endquote/></template>
 <template name="refsect2"><sectioncalled/> <startquote/>%t<endquote/></template>
@@ -448,7 +473,6 @@
 <template name="equation"><Equation/>&#160;%n, <startquote/>%t<endquote/></template>
 <template name="example"><Example/>&#160;%n, <startquote/>%t<endquote/></template>
 <template name="figure"><Figure/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="part"><Part/>&#160;%n, <startquote/>%t<endquote/></template>
 <template name="procedure"><Procedure/>&#160;%n, <startquote/>%t<endquote/></template>
 <template name="productionset"><ProductionSet/>&#160;%n, <startquote/>%t<endquote/></template>
 <template name="qandadiv"><Qandadiv/>&#160;%n, <startquote/>%t<endquote/></template>
@@ -482,6 +506,54 @@
 <template name="MsgAud"><MsgAud/>: </template>
 <template name="MsgLevel"><MsgLevel/>: </template>
 <template name="MsgOrig"><MsgOrig/>: </template>
+</context>
+
+<context name="datetime">
+<template name="format">d/m/Y</template>
+</context>
+
+<context name="datetime-full">
+<template name="January">janvier</template>
+<template name="February">f&eacute;vrier</template>
+<template name="March">mars</template>
+<template name="April">avril</template>
+<template name="May">mai</template>
+<template name="June">juin</template>
+<template name="July">juillet</template>
+<template name="August">ao&ucirc;t</template>
+<template name="September">septembre</template>
+<template name="October">octobre</template>
+<template name="November">novembre</template>
+<template name="December">d&eacute;cembre</template>
+<template name="Monday">lundi</template>
+<template name="Tuesday">mardi</template>
+<template name="Wednesday">mercredi</template>
+<template name="Thursday">jeudi</template>
+<template name="Friday">vendredi</template>
+<template name="Saturday">samedi</template>
+<template name="Sunday">dimanche</template>
+</context>
+
+<context name="datetime-abbrev">
+<template name="Jan">jan</template>
+<template name="Feb">f&eacute;v</template>
+<template name="Mar">mar</template>
+<template name="Apr">avr</template>
+<template name="May">mai</template>
+<template name="Jun">jun</template>
+<template name="Jul">jui</template>
+<template name="Aug">ao&ucirc;</template>
+<template name="Sep">sep</template>
+<template name="Oct">oct</template>
+<template name="Nov">nov</template>
+<template name="Dec">d&eacute;c</template>
+<template name="Mon">lun</template>
+<template name="Tue">mar</template>
+<template name="Wed">mer</template>
+<template name="Thu">jeu</template>
+<template name="Fri">ven</template>
+<template name="Sat">sam</template>
+<template name="Sun">dim</template>
 </context>
 
 <context name="htmlhelp">
