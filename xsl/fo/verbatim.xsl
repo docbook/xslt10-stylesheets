@@ -20,7 +20,7 @@
 <lxslt:component prefix="xverb"
                  functions="numberLines"/>
 
-<xsl:template match="programlisting|screen">
+<xsl:template match="programlisting|screen|synopsis">
   <xsl:param name="suppress-numbers" select="'0'"/>
   <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
