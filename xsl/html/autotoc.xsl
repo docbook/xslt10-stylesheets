@@ -448,16 +448,20 @@
   </xsl:variable>
 
   <xsl:element name="{$toc.listitem.type}">
-    <a>
-      <xsl:attribute name="href">
-        <xsl:call-template name="href.target"/>
-      </xsl:attribute>
-      <xsl:copy-of select="$title"/>
-    </a>
-    <xsl:if test="$annotate.toc != 0">
-      <xsl:text> - </xsl:text>
-      <xsl:value-of select="refnamediv/refpurpose"/>
-    </xsl:if>
+    <span class='refentrytitle'>
+      <a>
+        <xsl:attribute name="href">
+          <xsl:call-template name="href.target"/>
+        </xsl:attribute>
+        <xsl:copy-of select="$title"/>
+      </a>
+    </span>
+    <span class='refpurpose'>
+      <xsl:if test="$annotate.toc != 0">
+        <xsl:text> - </xsl:text>
+        <xsl:value-of select="refnamediv/refpurpose"/>
+      </xsl:if>
+    </span>
   </xsl:element>
 </xsl:template>
 
