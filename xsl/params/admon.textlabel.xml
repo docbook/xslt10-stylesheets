@@ -10,7 +10,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='admon.textlabel.frag'>
-<xsl:param name="admon.textlabel" select="0"/>
+<xsl:param name="admon.textlabel" select="1"/>
 </src:fragment>
 </refsynopsisdiv>
 
@@ -18,8 +18,7 @@
 
 <para>If true (non-zero), admonitions are presented with a generated
 text label such as Note or Warning in the appropriate language.
-Default graphics are provided in the distribution.
-The default value is true.
+The default value is 1.
 </para>
 
 </refsect1>
