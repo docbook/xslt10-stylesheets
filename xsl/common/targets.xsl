@@ -85,7 +85,7 @@ document output.
 
   <xsl:value-of select="$olink.base.uri"/>
   <xsl:call-template name="href.target">
-    <xsl:with-param name="obj" select="$nd"/>
+    <xsl:with-param name="object" select="$nd"/>
   </xsl:call-template>
 </xsl:template>
 
