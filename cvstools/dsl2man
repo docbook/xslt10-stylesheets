@@ -47,7 +47,7 @@ while (@FILES) {
     $file = shift @FILES;
 
     ($reference = $file) =~ s/\.dsl/\.sgm/;
-    $reference = basename($file);
+    $reference = basename($reference);
     open (REF, ">$outputdir/$reference") or
         die("cannot write to $outputdir/$reference: $!\n");
 
