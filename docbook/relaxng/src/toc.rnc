@@ -22,7 +22,7 @@ db.toc.components |= db.toc
 
 [
    db:refname [ "toc" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A table of contents" ]
 ]
 div {
 
@@ -75,7 +75,7 @@ div {
 
 [
    db:refname [ "tocentry" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A component title in a table of contents" ]
 ]
 div {
 

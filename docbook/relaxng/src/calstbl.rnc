@@ -34,7 +34,7 @@ db.colname.attribute = attribute colname { text }
 
 [
    db:refname [ "tgroup" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for the main content of a table, or part of a table" ]
 ]
 div {
 
@@ -67,7 +67,7 @@ div {
 
 [
    db:refname [ "colspec" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Specifications for a column in a table" ]
 ]
 div {
 
@@ -97,7 +97,7 @@ div {
 
 [
    db:refname [ "spanspec" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Formatting information for a spanned column in a table" ]
 ]
 div {
 
@@ -127,7 +127,7 @@ div {
 
 [
    db:refname [ "thead" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A table header consisting of one or more rows" ]
 ]
 div {
 
@@ -151,7 +151,7 @@ div {
 
 [
    db:refname [ "tfoot" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A table footer consisting of one or more rows" ]
 ]
 div {
 
@@ -175,7 +175,7 @@ div {
 
 [
    db:refname [ "tbody" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for the rows of a table or informal table" ]
 ]
 div {
 
@@ -198,7 +198,7 @@ div {
 
 [
    db:refname [ "row" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A row in a table" ]
 ]
 div {
 
@@ -221,7 +221,7 @@ div {
 
 [
    db:refname [ "entry" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A cell in a table" ]
 ]
 div {
 
@@ -254,7 +254,7 @@ div {
 
 [
    db:refname [ "entrytbl" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A subtable appearing in place of an Entry in a table" ]
 ]
 div {
 
@@ -290,7 +290,7 @@ div {
 
 [
    db:refname [ "thead" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A table header consisting of one or more rows" ]
 ]
 div {
 
@@ -314,7 +314,7 @@ div {
 
 [
    db:refname [ "tbody" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for the rows of a table or informal table" ]
 ]
 div {
 
@@ -337,7 +337,7 @@ div {
 
 [
    db:refname [ "row" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A row in a table" ]
 ]
 div {
 
@@ -360,7 +360,7 @@ div {
 
 [
    db:refname [ "table" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A formal table in a document" ]
 ]
 div {
 
@@ -396,7 +396,7 @@ div {
 
 [
    db:refname [ "informaltable" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A table without a title" ]
 ]
 div {
 

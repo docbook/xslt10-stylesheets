@@ -24,7 +24,7 @@ db.extension.inlines |= db.html.input | db.html.button | db.html.label | db.html
 
 [
    db:refname [ "html:form" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An HTML form" ]
 ]
 div {
 

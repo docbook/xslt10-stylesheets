@@ -37,7 +37,7 @@ db.all.inlines |= db.tag
 
 [
    db:refname [ "olink" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A link that addresses its target indirectly, through an entity" ]
 ]
 div {
 

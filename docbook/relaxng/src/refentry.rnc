@@ -41,7 +41,7 @@ db.refsect2 = notAllowed
 
 [
    db:refname [ "reference" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A collection of reference entries" ]
 ]
 div {
 
@@ -69,7 +69,7 @@ div {
 
 [
    db:refname [ "refentry" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A reference page (originally a UNIX man-style reference page)" ]
 ]
 div {
 
@@ -100,7 +100,7 @@ div {
 
 [
    db:refname [ "refmeta" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Meta-information for a reference entry" ]
 ]
 div {
 
@@ -149,7 +149,7 @@ div {
 
 [
    db:refname [ "refnamediv" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name, purpose, and classification of a reference page" ]
 ]
 div {
 
@@ -174,7 +174,7 @@ div {
 
 [
    db:refname [ "refdescriptor" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A description of the topic of a reference page" ]
 ]
 div {
 
@@ -196,7 +196,7 @@ div {
 
 [
    db:refname [ "refname" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of (one of) the subject(s) of a reference page" ]
 ]
 div {
 
@@ -218,7 +218,7 @@ div {
 
 [
    db:refname [ "refpurpose" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A short (one sentence) synopsis of the topic of a reference page" ]
 ]
 div {
 
@@ -240,7 +240,7 @@ div {
 
 [
    db:refname [ "refclass" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The scope or other indication of applicability of a reference entry" ]
 ]
 div {
 
@@ -262,7 +262,7 @@ div {
 
 [
    db:refname [ "refsynopsisdiv" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A syntactic synopsis of the subject of the reference page" ]
 ]
 div {
 
@@ -288,7 +288,7 @@ div {
 
 [
    db:refname [ "refsection" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A recursive section in a refentry" ]
 ]
 div {
 

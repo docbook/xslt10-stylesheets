@@ -583,7 +583,7 @@ div {
 
 [
    db:refname [ "titleabbrev" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The abbreviation of a Title" ]
 ]
 div {
 
@@ -605,7 +605,7 @@ div {
 
 [
    db:refname [ "subtitle" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The subtitle of a document" ]
 ]
 div {
 
@@ -736,7 +736,7 @@ div {
 
 [
    db:refname [ "subjectset" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A set of terms describing the subject matter of a document" ]
 ]
 div {
 
@@ -759,7 +759,7 @@ div {
 
 [
    db:refname [ "subject" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "One of a group of terms describing the subject matter of a document" ]
 ]
 div {
 
@@ -782,7 +782,7 @@ div {
 
 [
    db:refname [ "subjectterm" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A term in a group of terms describing the subject matter of a document" ]
 ]
 div {
 
@@ -804,7 +804,7 @@ div {
 
 [
    db:refname [ "keywordset" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A set of keywords describing the content of a document" ]
 ]
 div {
 
@@ -825,7 +825,7 @@ div {
 
 [
    db:refname [ "keyword" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "One of a set of keywords describing the content of a document" ]
 ]
 div {
 
@@ -854,7 +854,7 @@ db.informaltable = db.informaltable.choice
 
 [
    db:refname [ "procedure" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A list of operations to be performed in a well-defined sequence" ]
 ]
 div {
 
@@ -880,7 +880,7 @@ div {
 
 [
    db:refname [ "step" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A unit of action in a procedure" ]
 ]
 div {
 
@@ -907,7 +907,7 @@ div {
 
 [
    db:refname [ "stepalternatives" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Alternative steps in a procedure" ]
 ]
 div {
 
@@ -933,7 +933,7 @@ div {
 
 [
    db:refname [ "substeps" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for steps that occur within steps in a procedure" ]
 ]
 div {
 
@@ -956,7 +956,7 @@ div {
 
 [
    db:refname [ "sidebar" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A portion of a document that is isolated from the main narrative flow" ]
 ]
 div {
 
@@ -983,7 +983,7 @@ div {
 
 [
    db:refname [ "abstract" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A summary" ]
 ]
 div {
 
@@ -1007,7 +1007,7 @@ div {
 
 [
    db:refname [ "personblurb" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A short description or note about a person" ]
 ]
 div {
 
@@ -1032,7 +1032,7 @@ div {
 
 [
    db:refname [ "blockquote" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A quotation set off from the main text" ]
 ]
 div {
 
@@ -1058,7 +1058,7 @@ div {
 
 [
    db:refname [ "attribution" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The source of a block quote or epigraph" ]
 ]
 div {
 
@@ -1080,7 +1080,7 @@ div {
 
 [
    db:refname [ "bridgehead" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A free-floating heading" ]
 ]
 div {
 
@@ -1103,7 +1103,7 @@ div {
 
 [
    db:refname [ "remark" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A remark (or comment) intended for presentation in a draft manuscript" ]
 ]
 div {
 
@@ -1124,7 +1124,7 @@ div {
 
 [
    db:refname [ "epigraph" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A short inscription at the beginning of a document or component" ]
 ]
 div {
 
@@ -1150,7 +1150,7 @@ div {
 
 [
    db:refname [ "footnote" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A footnote" ]
 ]
 div {
 
@@ -1175,7 +1175,7 @@ div {
 
 [
    db:refname [ "highlights" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A summary of the main points of the discussed component" ]
 ]
 div {
 
@@ -1197,7 +1197,7 @@ div {
 
 [
    db:refname [ "formalpara" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A paragraph with a title" ]
 ]
 div {
 
@@ -1223,7 +1223,7 @@ div {
 
 [
    db:refname [ "para" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A paragraph" ]
 ]
 div {
 
@@ -1248,7 +1248,7 @@ div {
 
 [
    db:refname [ "simpara" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A paragraph that contains only text and inline markup, no block elements" ]
 ]
 div {
 
@@ -1279,7 +1279,7 @@ db.admonition.contentmodel = db._info.title.only, db.all.blocks+
 
 [
    db:refname [ "caution" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A note of caution" ]
 ]
 div {
 
@@ -1301,7 +1301,7 @@ div {
 
 [
    db:refname [ "important" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An admonition set off from the text" ]
 ]
 div {
 
@@ -1323,7 +1323,7 @@ div {
 
 [
    db:refname [ "note" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A message set off from the text" ]
 ]
 div {
 
@@ -1345,7 +1345,7 @@ div {
 
 [
    db:refname [ "tip" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A suggestion to the user, set off from the text" ]
 ]
 div {
 
@@ -1367,7 +1367,7 @@ div {
 
 [
    db:refname [ "warning" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An admonition set off from the text" ]
 ]
 div {
 
@@ -1389,7 +1389,7 @@ div {
 
 [
    db:refname [ "itemizedlist" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A list in which each entry is marked with a bullet or other dingbat" ]
 ]
 div {
 
@@ -1417,7 +1417,7 @@ div {
 
 [
    db:refname [ "orderedlist" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A list in which each entry is marked with a sequentially incremented label" ]
 ]
 div {
 
@@ -1451,7 +1451,7 @@ div {
 
 [
    db:refname [ "listitem" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for the elements of a list item" ]
 ]
 div {
 
@@ -1473,7 +1473,7 @@ div {
 
 [
    db:refname [ "segmentedlist" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A segmented list, a list of sets of elements" ]
 ]
 div {
 
@@ -1499,7 +1499,7 @@ div {
 
 [
    db:refname [ "segtitle" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The title of an element of a list item in a segmented list" ]
 ]
 div {
 
@@ -1521,7 +1521,7 @@ div {
 
 [
    db:refname [ "seglistitem" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A list item in a segmented list" ]
 ]
 div {
 
@@ -1553,7 +1553,7 @@ div {
 
 [
    db:refname [ "seg" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An element of a list item in a segmented list" ]
 ]
 div {
 
@@ -1574,7 +1574,7 @@ div {
 
 [
    db:refname [ "simplelist" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An undecorated list of single words or short phrases" ]
 ]
 div {
 
@@ -1598,7 +1598,7 @@ div {
 
 [
    db:refname [ "member" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An element of a simple list" ]
 ]
 div {
 
@@ -1620,7 +1620,7 @@ div {
 
 [
    db:refname [ "variablelist" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A list in which each entry is composed of a set of one or more terms and an associated description" ]
 ]
 div {
 
@@ -1648,7 +1648,7 @@ div {
 
 [
    db:refname [ "varlistentry" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for a set of terms and the associated description in a variable list" ]
 ]
 div {
 
@@ -1671,7 +1671,7 @@ div {
 
 [
    db:refname [ "term" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The word or phrase being defined or described in a variable list" ]
 ]
 div {
 
@@ -1693,7 +1693,7 @@ div {
 
 [
    db:refname [ "example" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A formal example, with a title" ]
 ]
 div {
 
@@ -1722,7 +1722,7 @@ div {
 
 [
    db:refname [ "informalexample" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A displayed example without a title" ]
 ]
 div {
 
@@ -1756,7 +1756,7 @@ db.verbatim.contentmodel =
 
 [
    db:refname [ "programlisting" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A literal listing of all or part of a program" ]
 ]
 div {
 
@@ -1780,7 +1780,7 @@ div {
 
 [
    db:refname [ "literallayout" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A block of text in which line breaks and white space are to be reproduced faithfully" ]
 ]
 div {
 
@@ -1804,7 +1804,7 @@ div {
 
 [
    db:refname [ "screen" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Text that a user sees or might see on a computer screen" ]
 ]
 div {
 
@@ -1828,7 +1828,7 @@ div {
 
 [
    db:refname [ "screenshot" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A representation of what the user sees or might see on a computer screen" ]
 ]
 div {
 
@@ -1853,7 +1853,7 @@ div {
 
 [
    db:refname [ "figure" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A formal figure, generally an illustration, with a title" ]
 ]
 div {
 
@@ -1882,7 +1882,7 @@ div {
 
 [
    db:refname [ "informalfigure" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A untitled figure" ]
 ]
 div {
 
@@ -1916,7 +1916,7 @@ db.mediaobject.content =
 
 [
    db:refname [ "mediaobject" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A displayed media object (video, audio, image, etc.)" ]
 ]
 div {
 
@@ -1941,7 +1941,7 @@ div {
 
 [
    db:refname [ "inlinemediaobject" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An inline media object (video, audio, image, and so on)" ]
 ]
 div {
 
@@ -1966,7 +1966,7 @@ div {
 
 [
    db:refname [ "videoobject" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for video data and its associated meta-information" ]
 ]
 div {
 
@@ -1991,7 +1991,7 @@ div {
 
 [
    db:refname [ "audioobject" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for audio data and its associated meta-information" ]
 ]
 div {
 
@@ -2020,7 +2020,7 @@ db.imageobject.content = db.imagedata
 
 [
    db:refname [ "imageobject" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for image data and its associated meta-information" ]
 ]
 div {
 
@@ -2045,7 +2045,7 @@ div {
 
 [
    db:refname [ "textobject" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for a text description of an object and its associated meta-information" ]
 ]
 div {
 
@@ -2070,7 +2070,7 @@ div {
 
 [
    db:refname [ "videodata" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Pointer to external video data" ]
 ]
 div {
 
@@ -2101,7 +2101,7 @@ div {
 
 [
    db:refname [ "audiodata" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Pointer to external audio data" ]
 ]
 div {
 
@@ -2125,7 +2125,7 @@ div {
 
 [
    db:refname [ "imagedata" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Pointer to external image data" ]
 ]
 div {
 
@@ -2157,7 +2157,7 @@ div {
 
 [
    db:refname [ "textdata" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Pointer to external text data" ]
 ]
 div {
 
@@ -2186,7 +2186,7 @@ db.equation.content = db.mediaobject
 
 [
    db:refname [ "equation" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A displayed mathematical equation" ]
 ]
 div {
 
@@ -2215,7 +2215,7 @@ div {
 
 [
    db:refname [ "informalequation" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A displayed mathematical equation without a title" ]
 ]
 div {
 
@@ -2240,7 +2240,7 @@ div {
 
 [
    db:refname [ "inlineequation" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A mathematical equation or expression occurring inline" ]
 ]
 div {
 
@@ -2262,7 +2262,7 @@ div {
 
 [
    db:refname [ "synopsis" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A general-purpose element for representing the syntax of commands or functions" ]
 ]
 div {
 
@@ -2286,7 +2286,7 @@ div {
 
 [
    db:refname [ "cmdsynopsis" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A syntax summary for a software command" ]
 ]
 div {
 
@@ -2320,7 +2320,7 @@ choice.attribute = attribute choice { "opt" | "plain" | "req" }
 
 [
    db:refname [ "arg" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An argument in a CmdSynopsis" ]
 ]
 div {
 
@@ -2349,7 +2349,7 @@ div {
 
 [
    db:refname [ "group" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A group of elements in a CmdSynopsis" ]
 ]
 div {
 
@@ -2378,7 +2378,7 @@ div {
 
 [
    db:refname [ "sbr" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An explicit line break in a command synopsis" ]
 ]
 div {
 
@@ -2399,7 +2399,7 @@ div {
 
 [
    db:refname [ "synopfragment" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A portion of a CmdSynopsis broken out from the main body of the synopsis" ]
 ]
 div {
 
@@ -2421,7 +2421,7 @@ div {
 
 [
    db:refname [ "synopfragmentref" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A reference to a fragment of a command synopsis" ]
 ]
 div {
 
@@ -2452,7 +2452,7 @@ div {
 
 [
    db:refname [ "funcsynopsis" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The syntax summary for a function definition" ]
 ]
 div {
 
@@ -2478,7 +2478,7 @@ div {
 
 [
    db:refname [ "funcsynopsisinfo" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Information supplementing the FuncDefs of a FuncSynopsis" ]
 ]
 div {
 
@@ -2501,7 +2501,7 @@ div {
 
 [
    db:refname [ "funcprototype" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The prototype of a function" ]
 ]
 div {
 
@@ -2526,7 +2526,7 @@ div {
 
 [
    db:refname [ "funcdef" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A function (subroutine) name and its return type" ]
 ]
 div {
 
@@ -2548,7 +2548,7 @@ div {
 
 [
    db:refname [ "void" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An empty element in a function synopsis indicating that the function in question takes no arguments" ]
 ]
 div {
 
@@ -2570,7 +2570,7 @@ div {
 
 [
    db:refname [ "varargs" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An empty element in a function synopsis indicating a variable number of arguments" ]
 ]
 div {
 
@@ -2592,7 +2592,7 @@ div {
 
 [
    db:refname [ "paramdef" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Information about a function parameter in a programming language" ]
 ]
 div {
 
@@ -2615,7 +2615,7 @@ div {
 
 [
    db:refname [ "funcparams" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Parameters for a function referenced through a function pointer in a synopsis" ]
 ]
 div {
 
@@ -2637,7 +2637,7 @@ div {
 
 [
    db:refname [ "classsynopsis" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The syntax summary for a class definition" ]
 ]
 div {
 
@@ -2666,7 +2666,7 @@ div {
 
 [
    db:refname [ "classsynopsisinfo" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Information supplementing the contents of a ClassSynopsis" ]
 ]
 div {
 
@@ -2689,7 +2689,7 @@ div {
 
 [
    db:refname [ "ooclass" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A class in an object-oriented programming language" ]
 ]
 div {
 
@@ -2712,7 +2712,7 @@ div {
 
 [
    db:refname [ "oointerface" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An interface in an object-oriented programming language" ]
 ]
 div {
 
@@ -2735,7 +2735,7 @@ div {
 
 [
    db:refname [ "ooexception" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An exception in an object-oriented programming language" ]
 ]
 div {
 
@@ -2758,7 +2758,7 @@ div {
 
 [
    db:refname [ "modifier" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Modifiers in a synopsis" ]
 ]
 div {
 
@@ -2780,7 +2780,7 @@ div {
 
 [
    db:refname [ "interfacename" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of an interface" ]
 ]
 div {
 
@@ -2802,7 +2802,7 @@ div {
 
 [
    db:refname [ "exceptionname" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of an exception" ]
 ]
 div {
 
@@ -2824,7 +2824,7 @@ div {
 
 [
    db:refname [ "fieldsynopsis" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of a field in a class definition" ]
 ]
 div {
 
@@ -2850,7 +2850,7 @@ div {
 
 [
    db:refname [ "initializer" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The initializer for a FieldSynopsis" ]
 ]
 div {
 
@@ -2872,7 +2872,7 @@ div {
 
 [
    db:refname [ "constructorsynopsis" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A syntax summary for a constructor" ]
 ]
 div {
 
@@ -2898,7 +2898,7 @@ div {
 
 [
    db:refname [ "destructorsynopsis" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A syntax summary for a destructor" ]
 ]
 div {
 
@@ -2924,7 +2924,7 @@ div {
 
 [
    db:refname [ "methodsynopsis" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A syntax summary for a method" ]
 ]
 div {
 
@@ -2952,7 +2952,7 @@ div {
 
 [
    db:refname [ "methodname" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of a method" ]
 ]
 div {
 
@@ -2974,7 +2974,7 @@ div {
 
 [
    db:refname [ "methodparam" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Parameters to a method" ]
 ]
 div {
 
@@ -3002,7 +3002,7 @@ div {
 
 [
    db:refname [ "address" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A real-world address, generally a postal address" ]
 ]
 div {
 
@@ -3036,7 +3036,7 @@ div {
 
 [
    db:refname [ "street" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A street address in an address" ]
 ]
 div {
 
@@ -3058,7 +3058,7 @@ div {
 
 [
    db:refname [ "pob" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A post office box in an address" ]
 ]
 div {
 
@@ -3080,7 +3080,7 @@ div {
 
 [
    db:refname [ "postcode" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A postal code in an address" ]
 ]
 div {
 
@@ -3102,7 +3102,7 @@ div {
 
 [
    db:refname [ "city" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of a city in an address" ]
 ]
 div {
 
@@ -3124,7 +3124,7 @@ div {
 
 [
    db:refname [ "state" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A state or province in an address" ]
 ]
 div {
 
@@ -3146,7 +3146,7 @@ div {
 
 [
    db:refname [ "country" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of a country" ]
 ]
 div {
 
@@ -3168,7 +3168,7 @@ div {
 
 [
    db:refname [ "phone" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A telephone number" ]
 ]
 div {
 
@@ -3190,7 +3190,7 @@ div {
 
 [
    db:refname [ "fax" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A fax number" ]
 ]
 div {
 
@@ -3212,7 +3212,7 @@ div {
 
 [
    db:refname [ "otheraddr" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Uncategorized information in address" ]
 ]
 div {
 
@@ -3234,7 +3234,7 @@ div {
 
 [
    db:refname [ "affiliation" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The institutional affiliation of an individual" ]
 ]
 div {
 
@@ -3260,7 +3260,7 @@ div {
 
 [
    db:refname [ "shortaffil" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A brief description of an affiliation" ]
 ]
 div {
 
@@ -3282,7 +3282,7 @@ div {
 
 [
    db:refname [ "jobtitle" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The title of an individual in an organization" ]
 ]
 div {
 
@@ -3304,7 +3304,7 @@ div {
 
 [
    db:refname [ "orgname" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of an organization other than a corporation " ]
 ]
 div {
 
@@ -3345,7 +3345,7 @@ div {
 
 [
    db:refname [ "orgdiv" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A division of an organization" ]
 ]
 div {
 
@@ -3367,7 +3367,7 @@ div {
 
 [
    db:refname [ "artpagenums" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The page numbers of an article as published" ]
 ]
 div {
 
@@ -3389,7 +3389,7 @@ div {
 
 [
    db:refname [ "personname" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The personal name of an individual" ]
 ]
 div {
 
@@ -3436,7 +3436,7 @@ db.credit.contentmodel = db.person.author.contentmodel | db.org.author.contentmo
 
 [
    db:refname [ "author" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of an individual author" ]
 ]
 div {
 
@@ -3458,7 +3458,7 @@ div {
 
 [
    db:refname [ "authorgroup" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Wrapper for author information when a document has multiple authors or collabarators" ]
 ]
 div {
 
@@ -3480,7 +3480,7 @@ div {
 
 [
    db:refname [ "collab" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Identifies a collaborator" ]
 ]
 div {
 
@@ -3503,7 +3503,7 @@ div {
 
 [
    db:refname [ "authorinitials" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The initials or other short identifier for an author" ]
 ]
 div {
 
@@ -3525,7 +3525,7 @@ div {
 
 [
    db:refname [ "confgroup" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for document meta-information about a conference" ]
 ]
 div {
 
@@ -3551,7 +3551,7 @@ div {
 
 [
    db:refname [ "confdates" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The dates of a conference for which a document was written" ]
 ]
 div {
 
@@ -3573,7 +3573,7 @@ div {
 
 [
    db:refname [ "conftitle" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The title of a conference for which a document was written" ]
 ]
 div {
 
@@ -3595,7 +3595,7 @@ div {
 
 [
    db:refname [ "confnum" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An identifier, frequently numerical, associated with a conference for which a document was written" ]
 ]
 div {
 
@@ -3617,7 +3617,7 @@ div {
 
 [
    db:refname [ "confsponsor" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The sponsor of a conference for which a document was written" ]
 ]
 div {
 
@@ -3639,7 +3639,7 @@ div {
 
 [
    db:refname [ "contractnum" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The contract number of a document" ]
 ]
 div {
 
@@ -3661,7 +3661,7 @@ div {
 
 [
    db:refname [ "contractsponsor" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The sponsor of a contract" ]
 ]
 div {
 
@@ -3683,7 +3683,7 @@ div {
 
 [
    db:refname [ "copyright" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Copyright information about a document" ]
 ]
 div {
 
@@ -3706,7 +3706,7 @@ div {
 
 [
    db:refname [ "year" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The year of publication of a document" ]
 ]
 div {
 
@@ -3728,7 +3728,7 @@ div {
 
 [
    db:refname [ "holder" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of the individual or organization that holds a copyright" ]
 ]
 div {
 
@@ -3754,7 +3754,7 @@ db.date.contentmodel = (xsd:date|xsd:dateTime|xsd:gYearMonth|xsd:gYear|text)
 
 [
    db:refname [ "date" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The date of publication or revision of a document" ]
 ]
 div {
 
@@ -3776,7 +3776,7 @@ div {
 
 [
    db:refname [ "edition" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name or number of an edition of a document" ]
 ]
 div {
 
@@ -3798,7 +3798,7 @@ div {
 
 [
    db:refname [ "editor" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of the editor of a document" ]
 ]
 div {
 
@@ -3820,7 +3820,7 @@ div {
 
 [
    db:refname [ "biblioid" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An identifier for a document" ]
 ]
 div {
 
@@ -3843,7 +3843,7 @@ div {
 
 [
    db:refname [ "citebiblioid" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A citation of a bibliographic identifier" ]
 ]
 div {
 
@@ -3866,7 +3866,7 @@ div {
 
 [
    db:refname [ "bibliosource" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The source of a document" ]
 ]
 div {
 
@@ -3889,7 +3889,7 @@ div {
 
 [
    db:refname [ "bibliorelation" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The relationship of a document to another" ]
 ]
 div {
 
@@ -3941,7 +3941,7 @@ div {
 
 [
    db:refname [ "bibliocoverage" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The spatial or temporal coverage of a document" ]
 ]
 div {
 
@@ -4001,7 +4001,7 @@ div {
 
 [
    db:refname [ "legalnotice" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A statement of legal obligations or requirements" ]
 ]
 div {
 
@@ -4026,7 +4026,7 @@ div {
 
 [
    db:refname [ "othercredit" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A person or entity, other than an author or editor, credited in a document" ]
 ]
 div {
 
@@ -4058,7 +4058,7 @@ div {
 
 [
    db:refname [ "pagenums" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The numbers of the pages in a book, for use in a bibliographic entry" ]
 ]
 div {
 
@@ -4080,7 +4080,7 @@ div {
 
 [
    db:refname [ "contrib" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A summary of the contributions made to a document by a credited source" ]
 ]
 div {
 
@@ -4102,7 +4102,7 @@ div {
 
 [
    db:refname [ "honorific" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The title of a person" ]
 ]
 div {
 
@@ -4124,7 +4124,7 @@ div {
 
 [
    db:refname [ "firstname" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The first name of a person" ]
 ]
 div {
 
@@ -4146,7 +4146,7 @@ div {
 
 [
    db:refname [ "surname" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A family name; in western cultures the last name" ]
 ]
 div {
 
@@ -4168,7 +4168,7 @@ div {
 
 [
    db:refname [ "lineage" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The portion of a person's name indicating a relationship to ancestors" ]
 ]
 div {
 
@@ -4190,7 +4190,7 @@ div {
 
 [
    db:refname [ "othername" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A component of a persons name that is not a first name, surname, or lineage" ]
 ]
 div {
 
@@ -4212,7 +4212,7 @@ div {
 
 [
    db:refname [ "printhistory" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The printing history of a document" ]
 ]
 div {
 
@@ -4234,7 +4234,7 @@ div {
 
 [
    db:refname [ "productname" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The formal name of a product" ]
 ]
 div {
 
@@ -4257,7 +4257,7 @@ div {
 
 [
    db:refname [ "productnumber" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A number assigned to a product" ]
 ]
 div {
 
@@ -4279,7 +4279,7 @@ div {
 
 [
    db:refname [ "pubdate" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The date of publication of a document" ]
 ]
 div {
 
@@ -4301,7 +4301,7 @@ div {
 
 [
    db:refname [ "publisher" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The publisher of a document" ]
 ]
 div {
 
@@ -4324,7 +4324,7 @@ div {
 
 [
    db:refname [ "publishername" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of the publisher of a document" ]
 ]
 div {
 
@@ -4346,7 +4346,7 @@ div {
 
 [
    db:refname [ "releaseinfo" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Information about a particular release of a document" ]
 ]
 div {
 
@@ -4368,7 +4368,7 @@ div {
 
 [
    db:refname [ "revhistory" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A history of the revisions to a document" ]
 ]
 div {
 
@@ -4393,7 +4393,7 @@ div {
 
 [
    db:refname [ "revision" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An entry describing a single revision in the history of the revisions to a document" ]
 ]
 div {
 
@@ -4418,7 +4418,7 @@ div {
 
 [
    db:refname [ "revnumber" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A document revision number" ]
 ]
 div {
 
@@ -4440,7 +4440,7 @@ div {
 
 [
    db:refname [ "revremark" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A description of a revision to a document" ]
 ]
 div {
 
@@ -4462,7 +4462,7 @@ div {
 
 [
    db:refname [ "revdescription" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A extended description of a revision to a document" ]
 ]
 div {
 
@@ -4484,7 +4484,7 @@ div {
 
 [
    db:refname [ "seriesvolnums" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Numbers of the volumes in a series of books" ]
 ]
 div {
 
@@ -4506,7 +4506,7 @@ div {
 
 [
    db:refname [ "volumenum" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The volume number of a document in a set (as of books in a set or articles in a journal)" ]
 ]
 div {
 
@@ -4528,7 +4528,7 @@ div {
 
 [
    db:refname [ "issuenum" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The number of an issue of a journal" ]
 ]
 div {
 
@@ -4572,7 +4572,7 @@ div {
 
 [
    db:refname [ "application" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of a software program" ]
 ]
 div {
 
@@ -4619,7 +4619,7 @@ div {
 
 [
    db:refname [ "classname" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of a class, in the object-oriented programming sense" ]
 ]
 div {
 
@@ -4641,7 +4641,7 @@ div {
 
 [
    db:refname [ "command" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of an executable program or other software command" ]
 ]
 div {
 
@@ -4667,7 +4667,7 @@ db.computeroutput.inlines = db.all.inlines
 
 [
    db:refname [ "computeroutput" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Data, generally text, displayed or presented by a computer" ]
 ]
 div {
 
@@ -4689,7 +4689,7 @@ div {
 
 [
    db:refname [ "database" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of a database, or part of a database" ]
 ]
 div {
 
@@ -4734,7 +4734,7 @@ div {
 
 [
    db:refname [ "email" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An email address" ]
 ]
 div {
 
@@ -4756,7 +4756,7 @@ div {
 
 [
    db:refname [ "envar" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A software environment variable" ]
 ]
 div {
 
@@ -4778,7 +4778,7 @@ div {
 
 [
    db:refname [ "errorcode" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An error code" ]
 ]
 div {
 
@@ -4800,7 +4800,7 @@ div {
 
 [
    db:refname [ "errorname" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An error name" ]
 ]
 div {
 
@@ -4822,7 +4822,7 @@ div {
 
 [
    db:refname [ "errortext" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An error message." ]
 ]
 div {
 
@@ -4844,7 +4844,7 @@ div {
 
 [
    db:refname [ "errortype" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The classification of an error message" ]
 ]
 div {
 
@@ -4866,7 +4866,7 @@ div {
 
 [
    db:refname [ "filename" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of a file" ]
 ]
 div {
 
@@ -4902,7 +4902,7 @@ div {
 
 [
    db:refname [ "function" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of a function or subroutine, as in a programming language" ]
 ]
 div {
 
@@ -4924,7 +4924,7 @@ div {
 
 [
    db:refname [ "guibutton" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The text on a button in a GUI" ]
 ]
 div {
 
@@ -4946,7 +4946,7 @@ div {
 
 [
    db:refname [ "guiicon" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Graphic and/or text appearing as a icon in a GUI" ]
 ]
 div {
 
@@ -4968,7 +4968,7 @@ div {
 
 [
    db:refname [ "guilabel" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The text of a label in a GUI" ]
 ]
 div {
 
@@ -4990,7 +4990,7 @@ div {
 
 [
    db:refname [ "guimenu" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of a menu in a GUI" ]
 ]
 div {
 
@@ -5012,7 +5012,7 @@ div {
 
 [
    db:refname [ "guimenuitem" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of a terminal menu item in a GUI" ]
 ]
 div {
 
@@ -5034,7 +5034,7 @@ div {
 
 [
    db:refname [ "guisubmenu" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of a submenu in a GUI" ]
 ]
 div {
 
@@ -5056,7 +5056,7 @@ div {
 
 [
    db:refname [ "hardware" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A physical part of a computer system" ]
 ]
 div {
 
@@ -5078,7 +5078,7 @@ div {
 
 [
    db:refname [ "keycap" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The text printed on a key on a keyboard" ]
 ]
 div {
 
@@ -5137,7 +5137,7 @@ div {
 
 [
    db:refname [ "keycode" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The internal, frequently numeric, identifier for a key on a keyboard" ]
 ]
 div {
 
@@ -5159,7 +5159,7 @@ div {
 
 [
    db:refname [ "keycombo" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A combination of input actions" ]
 ]
 div {
 
@@ -5198,7 +5198,7 @@ div {
 
 [
    db:refname [ "keysym" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The symbolic name of a key on a keyboard" ]
 ]
 div {
 
@@ -5220,7 +5220,7 @@ div {
 
 [
    db:refname [ "lineannotation" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A comment on a line in a verbatim listing" ]
 ]
 div {
 
@@ -5242,7 +5242,7 @@ div {
 
 [
    db:refname [ "literal" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Inline text that is some literal value" ]
 ]
 div {
 
@@ -5264,7 +5264,7 @@ div {
 
 [
    db:refname [ "code" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An inline code fragment" ]
 ]
 div {
 
@@ -5289,7 +5289,7 @@ div {
 
 [
    db:refname [ "constant" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A programming or system constant" ]
 ]
 div {
 
@@ -5314,7 +5314,7 @@ div {
 
 [
    db:refname [ "varname" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The name of a variable" ]
 ]
 div {
 
@@ -5336,7 +5336,7 @@ div {
 
 [
    db:refname [ "markup" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A string of formatting markup in text that is to be represented literally" ]
 ]
 div {
 
@@ -5358,7 +5358,7 @@ div {
 
 [
    db:refname [ "menuchoice" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A selection or series of selections from a menu" ]
 ]
 div {
 
@@ -5381,7 +5381,7 @@ div {
 
 [
    db:refname [ "shortcut" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A key combination for an action that is also accessible through a menu" ]
 ]
 div {
 
@@ -5406,7 +5406,7 @@ div {
 
 [
    db:refname [ "mousebutton" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The conventional name of a mouse button" ]
 ]
 div {
 
@@ -5428,7 +5428,7 @@ div {
 
 [
    db:refname [ "option" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An option for a software command" ]
 ]
 div {
 
@@ -5450,7 +5450,7 @@ div {
 
 [
    db:refname [ "optional" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Optional information" ]
 ]
 div {
 
@@ -5472,7 +5472,7 @@ div {
 
 [
    db:refname [ "property" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A unit of data associated with some part of a computer system" ]
 ]
 div {
 
@@ -5494,7 +5494,7 @@ div {
 
 [
    db:refname [ "parameter" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A value or a symbolic reference to a value" ]
 ]
 div {
 
@@ -5523,7 +5523,7 @@ db.prompt.inlines = db._text
 
 [
    db:refname [ "prompt" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A character or string indicating the start of an input field in a  computer display" ]
 ]
 div {
 
@@ -5550,7 +5550,7 @@ db.replaceable.inlines = db._text
 
 [
    db:refname [ "replaceable" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Content that may or must be replaced by the user" ]
 ]
 div {
 
@@ -5576,7 +5576,7 @@ div {
 
 [
    db:refname [ "returnvalue" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The value returned by a function" ]
 ]
 div {
 
@@ -5638,7 +5638,7 @@ div {
 
 [
    db:refname [ "symbol" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A name that is replaced by a value before processing" ]
 ]
 div {
 
@@ -5667,7 +5667,7 @@ db.systemitem.inlines = db._text
 
 [
    db:refname [ "systemitem" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A system-related item or term" ]
 ]
 div {
 
@@ -5714,7 +5714,7 @@ div {
 
 [
    db:refname [ "uri" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A Uniform Resource Identifier" ]
 ]
 div {
 
@@ -5739,7 +5739,7 @@ div {
 
 [
    db:refname [ "token" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A unit of information" ]
 ]
 div {
 
@@ -5761,7 +5761,7 @@ div {
 
 [
    db:refname [ "type" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The classification of a value" ]
 ]
 div {
 
@@ -5787,7 +5787,7 @@ db.userinput.inlines = db.all.inlines
 
 [
    db:refname [ "userinput" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Data entered by the user" ]
 ]
 div {
 
@@ -5834,7 +5834,7 @@ div {
 
 [
    db:refname [ "acronym" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An often pronounceable word made from the initial (or selected) letters of a name or phrase" ]
 ]
 div {
 
@@ -5859,7 +5859,7 @@ div {
 
 [
    db:refname [ "citation" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An inline bibliographic reference to another published work" ]
 ]
 div {
 
@@ -5881,7 +5881,7 @@ div {
 
 [
    db:refname [ "citerefentry" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A citation to a reference page" ]
 ]
 div {
 
@@ -5904,7 +5904,7 @@ div {
 
 [
    db:refname [ "refentrytitle" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The title of a reference page" ]
 ]
 div {
 
@@ -5926,7 +5926,7 @@ div {
 
 [
    db:refname [ "manvolnum" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A reference volume number" ]
 ]
 div {
 
@@ -5948,7 +5948,7 @@ div {
 
 [
    db:refname [ "citetitle" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The title of a cited work" ]
 ]
 div {
 
@@ -5993,7 +5993,7 @@ div {
 
 [
    db:refname [ "emphasis" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Emphasized text" ]
 ]
 div {
 
@@ -6015,7 +6015,7 @@ div {
 
 [
    db:refname [ "foreignphrase" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A word or phrase in a language other than the primary language of the document" ]
 ]
 div {
 
@@ -6037,7 +6037,7 @@ div {
 
 [
    db:refname [ "phrase" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A span of text" ]
 ]
 div {
 
@@ -6059,7 +6059,7 @@ div {
 
 [
    db:refname [ "quote" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An inline quotation" ]
 ]
 div {
 
@@ -6081,7 +6081,7 @@ div {
 
 [
    db:refname [ "subscript" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A subscript (as in H2O, the molecular formula for water)" ]
 ]
 div {
 
@@ -6103,7 +6103,7 @@ div {
 
 [
    db:refname [ "superscript" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A superscript (as in x2, the mathematical notation for x multiplied by itself)" ]
 ]
 div {
 
@@ -6125,7 +6125,7 @@ div {
 
 [
    db:refname [ "trademark" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A trademark" ]
 ]
 div {
 
@@ -6151,7 +6151,7 @@ div {
 
 [
    db:refname [ "wordasword" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A word meant specifically as a word and not representing anything else" ]
 ]
 div {
 
@@ -6173,7 +6173,7 @@ div {
 
 [
    db:refname [ "footnoteref" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A cross reference to a footnote (a footnote mark)" ]
 ]
 div {
 
@@ -6205,7 +6205,7 @@ div {
 
 [
    db:refname [ "xref" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A cross reference to another part of the document" ]
 ]
 div {
 
@@ -6290,7 +6290,7 @@ div {
 
 [
    db:refname [ "anchor" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A spot in the document" ]
 ]
 div {
 

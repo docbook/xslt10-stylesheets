@@ -22,7 +22,7 @@ db.technical.blocks |= db.msgset
 
 [
    db:refname [ "msgset" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A detailed set of messages, usually error messages" ]
 ]
 div {
 
@@ -47,7 +47,7 @@ div {
 
 [
    db:refname [ "msgentry" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for an entry in a message set" ]
 ]
 div {
 
@@ -71,7 +71,7 @@ div {
 
 [
    db:refname [ "simplemsgentry" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for a simpler entry in a message set" ]
 ]
 div {
 
@@ -97,7 +97,7 @@ div {
 
 [
    db:refname [ "msg" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A message in a message set" ]
 ]
 div {
 
@@ -123,7 +123,7 @@ div {
 
 [
    db:refname [ "msgmain" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The primary component of a message in a message set " ]
 ]
 div {
 
@@ -148,7 +148,7 @@ div {
 
 [
    db:refname [ "msgsub" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A subcomponent of a message in a message set" ]
 ]
 div {
 
@@ -173,7 +173,7 @@ div {
 
 [
    db:refname [ "msgrel" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A related component of a message in a message set" ]
 ]
 div {
 
@@ -198,7 +198,7 @@ div {
 
 [
    db:refname [ "msgtext" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The actual text of a message component in a message set" ]
 ]
 div {
 
@@ -220,7 +220,7 @@ div {
 
 [
    db:refname [ "msginfo" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Information about a message in a message set" ]
 ]
 div {
 
@@ -242,7 +242,7 @@ div {
 
 [
    db:refname [ "msglevel" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The level of importance or severity of a message in a message set" ]
 ]
 div {
 
@@ -264,7 +264,7 @@ div {
 
 [
    db:refname [ "msgorig" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The origin of a message in a message set" ]
 ]
 div {
 
@@ -286,7 +286,7 @@ div {
 
 [
    db:refname [ "msgaud" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The audience to which a message in a message set is relevant" ]
 ]
 div {
 
@@ -308,7 +308,7 @@ div {
 
 [
    db:refname [ "msgexplan" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Explanatory material relating to a message in a message set" ]
 ]
 div {
 

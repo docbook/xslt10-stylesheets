@@ -24,7 +24,7 @@ db.toplevel.required.sections |= db.sect1+
 
 [
    db:refname [ "sect1" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A top-level section of document" ]
 ]
 div {
 
@@ -56,7 +56,7 @@ div {
 
 [
    db:refname [ "sect2" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A subsection within a Sect1" ]
 ]
 div {
 
@@ -88,7 +88,7 @@ div {
 
 [
    db:refname [ "sect3" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A subsection within a Sect2" ]
 ]
 div {
 
@@ -120,7 +120,7 @@ div {
 
 [
    db:refname [ "sect4" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A subsection within a Sect3" ]
 ]
 div {
 
@@ -152,7 +152,7 @@ div {
 
 [
    db:refname [ "sect5" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A subsection within a Sect4" ]
 ]
 div {
 

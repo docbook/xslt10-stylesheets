@@ -32,7 +32,7 @@ db.relation.attribute = attribute relation { text }
 
 [
    db:refname [ "biblioentry" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An entry in a Bibliography" ]
 ]
 div {
 
@@ -54,7 +54,7 @@ div {
 
 [
    db:refname [ "bibliomixed" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An entry in a Bibliography" ]
 ]
 div {
 
@@ -76,7 +76,7 @@ div {
 
 [
    db:refname [ "biblioset" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A raw container for related bibliographic information" ]
 ]
 div {
 
@@ -101,7 +101,7 @@ div {
 
 [
    db:refname [ "bibliomset" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A cooked container for related bibliographic information" ]
 ]
 div {
 
@@ -126,7 +126,7 @@ div {
 
 [
    db:refname [ "bibliomisc" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Untyped bibliographic information" ]
 ]
 div {
 
@@ -148,7 +148,7 @@ div {
 
 [
    db:refname [ "bibliography" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A bibliography" ]
 ]
 div {
 
@@ -178,7 +178,7 @@ div {
 
 [
    db:refname [ "bibliodiv" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A section of a Bibliography" ]
 ]
 div {
 

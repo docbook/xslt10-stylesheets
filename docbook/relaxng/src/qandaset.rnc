@@ -23,7 +23,7 @@ db.list.blocks |= db.qandaset
 
 [
    db:refname [ "qandaset" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A question-and-answer set" ]
 ]
 div {
 
@@ -50,7 +50,7 @@ div {
 
 [
    db:refname [ "qandadiv" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A titled division in a QandASet" ]
 ]
 div {
 
@@ -76,7 +76,7 @@ div {
 
 [
    db:refname [ "qandaentry" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A question/answer set within a QandASet" ]
 ]
 div {
 
@@ -102,7 +102,7 @@ div {
 
 [
    db:refname [ "question" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A question in a QandASet" ]
 ]
 div {
 
@@ -125,7 +125,7 @@ div {
 
 [
    db:refname [ "answer" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An answer to a question posed in a QandASet" ]
 ]
 div {
 
@@ -148,7 +148,7 @@ div {
 
 [
    db:refname [ "label" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A label on a Question or Answer" ]
 ]
 div {
 

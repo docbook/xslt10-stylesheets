@@ -67,7 +67,7 @@ db.html.informaltable.model =
 
 [
    db:refname [ "table" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A formal table in a document" ]
 ]
 div {
 
@@ -102,7 +102,7 @@ div {
 
 [
    db:refname [ "informaltable" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A table without a title" ]
 ]
 div {
 
@@ -137,7 +137,7 @@ div {
 
 [
    db:refname [ "caption" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A caption" ]
 ]
 div {
 
@@ -155,7 +155,7 @@ div {
 
 [
    db:refname [ "col" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Specifications for a column in an HTML table" ]
 ]
 div {
 
@@ -177,7 +177,7 @@ div {
 
 [
    db:refname [ "colgroup" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A group of columns in an HTML table" ]
 ]
 div {
 
@@ -199,7 +199,7 @@ div {
 
 [
    db:refname [ "thead" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A table header consisting of one or more rows" ]
 ]
 div {
 
@@ -219,7 +219,7 @@ div {
 
 [
    db:refname [ "tfoot" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A table footer consisting of one or more rows" ]
 ]
 div {
 
@@ -239,7 +239,7 @@ div {
 
 [
    db:refname [ "tbody" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for the rows of a table or informal table" ]
 ]
 div {
 
@@ -259,7 +259,7 @@ div {
 
 [
    db:refname [ "tr" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A row in an HTML table" ]
 ]
 div {
 
@@ -279,7 +279,7 @@ div {
 
 [
    db:refname [ "th" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A table header entry in an HTML table" ]
 ]
 div {
 
@@ -305,7 +305,7 @@ div {
 
 [
    db:refname [ "td" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A table entry in an HTML table" ]
 ]
 div {
 

@@ -23,7 +23,7 @@ db.technical.blocks |= db.productionset | db.constraintdef
 
 [
    db:refname [ "productionset" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A set of EBNF productions" ]
 ]
 div {
 
@@ -48,7 +48,7 @@ div {
 
 [
    db:refname [ "production" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A production in a set of EBNF productions" ]
 ]
 div {
 
@@ -72,7 +72,7 @@ div {
 
 [
    db:refname [ "lhs" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The left-hand side of an EBNF production" ]
 ]
 div {
 
@@ -94,7 +94,7 @@ div {
 
 [
    db:refname [ "rhs" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The right-hand side of an EBNF production" ]
 ]
 div {
 
@@ -116,7 +116,7 @@ div {
 
 [
    db:refname [ "nonterminal" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A non-terminal in an EBNF production" ]
 ]
 div {
 
@@ -139,7 +139,7 @@ div {
 
 [
    db:refname [ "constraint" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A constraint in an EBNF production" ]
 ]
 div {
 
@@ -161,7 +161,7 @@ div {
 
 [
    db:refname [ "productionrecap" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A cross-reference to an EBNF production" ]
 ]
 div {
 
@@ -183,7 +183,7 @@ div {
 
 [
    db:refname [ "constraintdef" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The definition of a constraint in an EBNF production" ]
 ]
 div {
 

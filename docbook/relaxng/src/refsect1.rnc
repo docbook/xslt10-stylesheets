@@ -20,7 +20,7 @@ default namespace = "http://docbook.org/docbook-ng"
 
 [
    db:refname [ "refsect1" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A major subsection of a reference entry" ]
 ]
 div {
 
@@ -50,7 +50,7 @@ div {
 
 [
    db:refname [ "refsect2" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A subsection of a RefSect1" ]
 ]
 div {
 
@@ -80,7 +80,7 @@ div {
 
 [
    db:refname [ "refsect3" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A subsection of a RefSect2" ]
 ]
 div {
 

@@ -24,7 +24,7 @@ db.task.info = db._info.title.only
 
 [
    db:refname [ "task" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A task to be completed" ]
 ]
 div {
 
@@ -51,7 +51,7 @@ div {
 
 [
    db:refname [ "tasksummary" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A summary of a task" ]
 ]
 div {
 
@@ -76,7 +76,7 @@ div {
 
 [
    db:refname [ "taskprerequisites" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The prerequisites for a task" ]
 ]
 div {
 
@@ -101,7 +101,7 @@ div {
 
 [
    db:refname [ "taskrelated" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Information related to a task" ]
 ]
 div {
 

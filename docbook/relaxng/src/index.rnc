@@ -37,7 +37,7 @@ db.sortas.attribute       = attribute sortas { text }
 
 [
    db:refname [ "itermset" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A set of index terms in the meta-information of a document" ]
 ]
 div {
 

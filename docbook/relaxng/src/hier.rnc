@@ -103,7 +103,7 @@ db.toc.components = notAllowed
 
 [
    db:refname [ "set" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A collection of books" ]
 ]
 div {
 
@@ -134,7 +134,7 @@ div {
 
 [
    db:refname [ "book" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A book" ]
 ]
 div {
 
@@ -163,7 +163,7 @@ div {
 
 [
    db:refname [ "dedication" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for the dedication section of a book" ]
 ]
 div {
 
@@ -192,7 +192,7 @@ div {
 
 [
    db:refname [ "colophon" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Text at the back of a book describing facts about its production" ]
 ]
 div {
 
@@ -221,7 +221,7 @@ div {
 
 [
    db:refname [ "appendix" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An appendix in a Book or Article" ]
 ]
 div {
 
@@ -250,7 +250,7 @@ div {
 
 [
    db:refname [ "chapter" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A chapter, as of a book" ]
 ]
 div {
 
@@ -283,7 +283,7 @@ db.part.components = db.navigation.components | db.components
 
 [
    db:refname [ "part" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A division in a book" ]
 ]
 div {
 
@@ -313,7 +313,7 @@ div {
 
 [
    db:refname [ "preface" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Introductory matter preceding the first chapter of a book" ]
 ]
 div {
 
@@ -342,7 +342,7 @@ div {
 
 [
    db:refname [ "partintro" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An introduction to the contents of a part" ]
 ]
 div {
 
@@ -371,7 +371,7 @@ div {
 
 [
    db:refname [ "section" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A recursive section" ]
 ]
 div {
 
@@ -400,7 +400,7 @@ div {
 
 [
    db:refname [ "simplesect" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A section of a document with no subdivisions" ]
 ]
 div {
 
@@ -429,7 +429,7 @@ div {
 
 [
    db:refname [ "ackno" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Acknowledgements in an Article" ]
 ]
 div {
 

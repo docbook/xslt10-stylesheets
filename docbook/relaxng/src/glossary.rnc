@@ -31,7 +31,7 @@ db.baseform.attribute = attribute baseform { text }?
 
 [
    db:refname [ "glosslist" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A wrapper for a set of GlossEntrys" ]
 ]
 div {
 
@@ -57,7 +57,7 @@ div {
 
 [
    db:refname [ "glossentry" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An entry in a Glossary or GlossList" ]
 ]
 div {
 
@@ -84,7 +84,7 @@ div {
 
 [
    db:refname [ "glossdef" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A definition in a GlossEntry" ]
 ]
 div {
 
@@ -108,7 +108,7 @@ div {
 
 [
    db:refname [ "glosssee" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A cross-reference from one GlossEntry to another" ]
 ]
 div {
 
@@ -140,7 +140,7 @@ div {
 
 [
    db:refname [ "glossseealso" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A cross-reference from one GlossEntry to another" ]
 ]
 div {
 
@@ -172,7 +172,7 @@ div {
 
 [
    db:refname [ "firstterm" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "The first occurrence of a term" ]
 ]
 div {
 
@@ -204,7 +204,7 @@ div {
 
 [
    db:refname [ "glossterm" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A glossary term" ]
 ]
 div {
 
@@ -236,7 +236,7 @@ div {
 
 [
    db:refname [ "glossary" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A glossary" ]
 ]
 div {
 
@@ -267,7 +267,7 @@ div {
 
 [
    db:refname [ "glossdiv" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A division in a Glossary" ]
 ]
 div {
 
