@@ -71,8 +71,8 @@
 <!ENTITY % local.component.mix "|speakernotes">
 
 <!ENTITY % sdocbook.dtd 
-      PUBLIC "-//OASIS//DTD Simplified DocBook XML Customization V1.0CR3//EN"
-      "http://www.oasis-open.org/docbook/xml/simple/1.0CR3/sdocbook-custom.dtd">
+      PUBLIC "-//OASIS//DTD Simplified DocBook XML Customization V1.0//EN"
+      "http://www.oasis-open.org/docbook/xml/simple/1.0/sdocbook-custom.dtd">
 %sdocbook.dtd;
 
 <!-- ====================================================================== -->
