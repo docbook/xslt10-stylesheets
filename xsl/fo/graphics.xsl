@@ -172,15 +172,15 @@ FIXME: make is.graphic.* work correctly depending on the backend!
                     or $fop.extensions != 0
                     or $arbortext.extensions != 0">
       <fo:external-graphic src="{$filename}"
-                           width="$width"
-                           height="$height"
+                           width="{$width}"
+                           height="{$height}"
                            content-width="{$content-width}"
                            content-height="{$content-height}"/>
     </xsl:when>
     <xsl:otherwise>
       <fo:external-graphic src="url({$filename})"
-                           width="$width"
-                           height="$height"
+                           width="{$width}"
+                           height="{$height}"
                            content-width="{$content-width}"
                            content-height="{$content-height}"/>
     </xsl:otherwise>
