@@ -3678,11 +3678,11 @@ in the text (no (0) value, the default)
 <!ENTITY % local.informaltable.attrib "">
 
 <!-- the following entity may have been declared by the XHTML table module -->
-<!ENTITY % informal.tbl.table.mdl "graphic+|mediaobject+|tgroup+">
+<!ENTITY % informal.tbl.table.mdl "textobject*, (graphic+|mediaobject+|tgroup+)">
 
 <!ENTITY % informaltable.element "INCLUDE">
 <![%informaltable.element;[
-<!ELEMENT informaltable %ho; (blockinfo?, textobject*, (%informal.tbl.table.mdl;))>
+<!ELEMENT informaltable %ho; (blockinfo?, (%informal.tbl.table.mdl;))>
 <!--end of informaltable.element-->]]>
 
 <!-- Frame, Colsep, and Rowsep must be repeated because
@@ -3720,8 +3720,16 @@ in the text (no (0) value, the default)
 <!-- attrs comes from HTML tables ... -->
 
 <![ %allow.html.tables; [
+<!-- common.attrib, but without ID because ID is in attrs -->
 <!ENTITY % caption.attlist.content "
-		%common.attrib;
+	%lang.attrib;
+	%remap.attrib;
+	%xreflabel.attrib;
+	%revisionflag.attrib;
+	%effectivity.attrib;
+	%dir.attrib;
+	%xml-base.attrib;
+	%local.common.attrib;
 		%caption.role.attrib;
 		%attrs;
 		align	(top|bottom|left|right)	#IMPLIED
