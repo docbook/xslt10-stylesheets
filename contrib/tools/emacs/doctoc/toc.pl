@@ -1,36 +1,17 @@
 #!/usr/bin/perl -w
 # Generate a table of contents for a docbook document
 # tags are case insensitive
-# Copyright (C) 2001 Jens Emmerich <Jens.Emmerich@itp.uni-leipzig.de>
-# 2001-04-13 Jens Emmerich
-#
-## This Program is free software; you can redistribute it and/or
-## modify it under the terms of the GNU General Public License as
-## published by the Free Software Foundation; version 2.
-##
-## This Program is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-## GNU General Public License for more details.
-##
-## This program is intended (but not limited) to be used together with (X)Emacs.
-## You should have received a copy of the GNU General Public License
-## along with GNU Emacs or XEmacs; see the file COPYING.  If not,
-## write to the Free Software Foundation Inc., 59 Temple Place - Suite
-## 330, Boston, MA 02111-1307, USA.
+# part of doctoc version 2.0
 
 use XML::Parser;
 use integer;
 use strict;
-#use utf8;			# for recent perl versions; can be
-                                # omitted, results in some "garbage" in
-                                # output then
-use Unicode::String;		# used to convert utf8 to latin1
+#use utf8;
 
 package Toc;
 # levels:
 #       >=0 absolute level
-#        -1 additional level relative to current, numbered
+#        -1 additional level relative to current, numbered            
 #        -2 additional level relative to current, not numbered,
 #           doesn't increase level
 #        -3 don't include into toc
@@ -120,13 +101,14 @@ package Toc;
 @Toc::secnums = (0) x (max(values %Toc::levels)+1); # section numbers
 $Toc::parent = "";		# parent of last <title>
 $Toc::parentline_no = 0;	# line no of parent
+$Toc::parentbase = "";		# base URL of parent
 $Toc::minlevel = 0;		# =0 for book, =1 for article
                                 # detected automatically
 $Toc::currentlevel = 0;		# level of current $title
 $Toc::title = "";		# current <title> or <titleabbrev>
 $Toc::extraindent_step = 0;	# additionally indent toc entry 
                                 # by this much per level
-$Toc::width = 75;		# 3 characters needed for emacs' outline minor mode
+$Toc::width = 75;		# 3 characters needed for outline minor mode
 $Toc::fill_character = ".";	# "·" might be nice in some fonts
 
 # return largest
@@ -141,11 +123,11 @@ sub max {
 # emit an toc entry for $parent, $title
 sub tocentry {
   use Text::Wrap;
-  use TexT::Tabs;
   my $text         = $Toc::title;
   $Toc::title = "";
   my $parent_level = $Toc::levels{$Toc::parent};
   my $line_no      = $Toc::parentline_no;
+  my $base         = $Toc::parentbase;
   my $clevel       = $Toc::currentlevel;
   my $mlevel       = $Toc::minlevel;
   my $extra_indent = max(0,($clevel-$mlevel)*$Toc::extraindent_step);
@@ -153,6 +135,9 @@ sub tocentry {
   # strip tags and superflous whitespace
   $text=~s/<[^>]+>//g;
   $text=~s/\s+/ /g;
+
+  # prepend base URL to line number
+  $line_no = "$base :$line_no" unless $base eq "-";
 
   # generate complete number
   my $num="";
@@ -162,24 +147,35 @@ sub tocentry {
       $num .= $Toc::secnums[$i].".";
     }
     chop($num) if $num;
-    $num .= " " x (3*($clevel-$mlevel  )-1-length($num));
+    $num .= " " x (3*($clevel-$mlevel)-1-length($num));
   } else {
-    $num  = " " x (3*($clevel-$mlevel+2)-1);    # unnumbered entry
+    # unnumbered entry
+    $num  = " " x (3*($clevel-$mlevel+1)-1);
   }
 
   # wrap title
-  my $pre1 = (" " x $extra_indent).$num." ";
+  my $pre1 = " " x $extra_indent.$num." ";
   my $pre2 = " " x length($pre1);
-  my $lp = length($line_no);
-  $Text::Wrap::columns = $Toc::width-1-$lp;
-  $text =~ tr/\t/ /;
+  $Text::Wrap::columns = $Toc::width-1-6; # 6 digits for line number
   $text = wrap($pre1, $pre2, $text);
-  $text = Text::Tabs::expand($text);
-
+  $text =~ tr/\t/ /;
 
   # fill last line with points, $l is bare length of last line
   my $l=length($text)-(rindex($text,"\n")+1);
+  my $lp = length($line_no);
+  # take possibly long position into account
   my $fill=$Toc::width-$lp-$l;
+  if($fill < 0) {
+    # needs to be on line by itself
+    $fill=$Toc::width-$l-6;
+    if($lp > $Toc::width-length($pre2)) {
+      # doesn't even fit on a regular line
+      $line_no = "\n". $pre2 . $line_no;
+    } else {
+      # fits
+      $line_no = "\n". " " x ($Toc::width-$lp) . $line_no;
+    }
+  }
   unless($fill < 2) {
     $fill = " ".($Toc::fill_character x ($fill-2))." ";
   } else {
@@ -214,6 +210,7 @@ sub stag {
     &tocentry if $Toc::title; # title was not yet emitted to toc
     $Toc::parent=$tagname;
     $Toc::parentline_no = $parser->current_line();
+    $Toc::parentbase = $parser->base();
     $element_level=$Toc::levels{$tagname};
     if($element_level>=0) {
       # look for gaps
@@ -253,19 +250,17 @@ sub etag {
 
 # character data handler
 sub cdata {
-  # translate utf8 to latin1 
-  # (solution on http://www.perldoc.com/perl5.6/pod/perlunicode.html does not work with 
-  # the cygnus perl 5.6.0 tr-operator)
-  my $u= Unicode::String::utf8( $_[1]);	# create Unicode::String
-  $Toc::title .= $u->latin1;	# convert string to latin1
+  $Toc::title .= $_[1];
 }
 
 # "main"
+
 my $file = '-';
 unshift(@ARGV, $file) unless @ARGV;
 
+  
 while(defined($file = shift)) {
-  my $parser = new XML::Parser(ErrorContext => 2, NoLWP => 1);
+  my $parser = new XML::Parser(ErrorContext => 2);
   $parser->setHandlers(Start => \&first_stag,
 		       End   => \&etag);
   $parser->parsefile($file);
