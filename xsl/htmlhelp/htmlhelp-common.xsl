@@ -864,7 +864,7 @@ Title=</xsl:text>
   <xsl:call-template name="write.text.chunk">
     <xsl:with-param name="filename" select="$htmlhelp.hhk"/>
     <xsl:with-param name="method" select="'text'"/>
-    <xsl:with-param name="content"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+    <xsl:with-param name="content"><xsl:text disable-output-escaping="yes"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <HTML>
 <HEAD>
 <meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
@@ -873,6 +873,7 @@ Title=</xsl:text>
 <OBJECT type="text/site properties">
 </OBJECT>
 <UL>]]>
+</xsl:text>
 <xsl:if test="($htmlhelp.use.hhk != 0) and $generate.index">
   <xsl:choose>
     <xsl:when test="$rootid != ''">
@@ -883,8 +884,9 @@ Title=</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:if>
-<![CDATA[</UL>
-</BODY></HTML>]]></xsl:with-param>
+<xsl:text disable-output-escaping="yes"><![CDATA[</UL>
+</BODY></HTML>]]>
+</xsl:text></xsl:with-param>
     <xsl:with-param name="encoding" select="$htmlhelp.encoding"/>
   </xsl:call-template>
 </xsl:template>
@@ -909,20 +911,20 @@ Title=</xsl:text>
         <xsl:with-param name="seealso" select="$primary"/>
       </xsl:call-template>
     </xsl:if>
-    <![CDATA[<UL>]]>
+    <xsl:text disable-output-escaping="yes"><![CDATA[<UL>]]>&#10;</xsl:text>
     <xsl:call-template name="write.indexterm.hhk">
       <xsl:with-param name="text" select="$secondary"/>
       <xsl:with-param name="seealso" select="secondary/seealso"/>
     </xsl:call-template>
     <xsl:if test="tertiary">
-      <![CDATA[<UL>]]>
+      <xsl:text disable-output-escaping="yes"><![CDATA[<UL>]]>&#10;</xsl:text>
       <xsl:call-template name="write.indexterm.hhk">
         <xsl:with-param name="text" select="$tertiary"/>
         <xsl:with-param name="seealso" select="tertiary/seealso"/>
       </xsl:call-template>
-      <![CDATA[</UL>]]>
+      <xsl:text disable-output-escaping="yes"><![CDATA[</UL>]]>&#10;</xsl:text>
     </xsl:if>
-    <![CDATA[</UL>]]>
+    <xsl:text disable-output-escaping="yes"><![CDATA[</UL>]]>&#10;</xsl:text>
   </xsl:if>
 
 </xsl:template>
@@ -936,8 +938,8 @@ Title=</xsl:text>
     </xsl:call-template>
   </xsl:variable>
 
-  <![CDATA[<LI> <OBJECT type="text/sitemap">
-        <param name="Name" value="]]><xsl:value-of select="$text.escaped"/><xsl:text><![CDATA[">]]></xsl:text>
+  <xsl:text disable-output-escaping="yes"><![CDATA[<LI> <OBJECT type="text/sitemap">
+    <param name="Name" value="]]></xsl:text><xsl:value-of select="$text.escaped"/><xsl:text disable-output-escaping="yes"><![CDATA[">]]></xsl:text>
       <xsl:if test="not(seealso)">
         <xsl:variable name="href">
           <xsl:call-template name="href.target.with.base.dir"/>
@@ -951,13 +953,19 @@ Title=</xsl:text>
             </xsl:with-param>
           </xsl:call-template>
         </xsl:variable>
-        <![CDATA[<param name="Name" value="]]><xsl:value-of select="$title"/><![CDATA[">]]>
-        <![CDATA[<param name="Local" value="]]><xsl:value-of select="$href"/><![CDATA[">]]>
+        <xsl:text disable-output-escaping="yes"><![CDATA[<param name="Name" value="]]></xsl:text>
+          <xsl:value-of select="$title"/>
+        <xsl:text disable-output-escaping="yes"><![CDATA[">]]></xsl:text>
+        <xsl:text disable-output-escaping="yes"><![CDATA[<param name="Local" value="]]></xsl:text>
+          <xsl:value-of select="$href"/>
+        <xsl:text disable-output-escaping="yes"><![CDATA[">]]></xsl:text>
       </xsl:if>
       <xsl:if test="seealso">
-        <![CDATA[<param name="See Also" value="]]><xsl:value-of select="$seealso"/><![CDATA[">]]>
+        <xsl:text disable-output-escaping="yes"><![CDATA[<param name="See Also" value="]]></xsl:text>
+          <xsl:value-of select="$seealso"/>
+        <xsl:text disable-output-escaping="yes"><![CDATA[">]]></xsl:text>
       </xsl:if>
-      <xsl:text><![CDATA[ </OBJECT>]]></xsl:text>
+      <xsl:text disable-output-escaping="yes"><![CDATA[ </OBJECT>]]></xsl:text>
 </xsl:template>
 
 <xsl:template match="text()" mode="hhk"/>
