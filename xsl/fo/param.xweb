@@ -412,6 +412,10 @@ zero by default, so this is simply the page-master region-left.
 &example.properties;
 &equation.properties;
 &table.properties;
+&informal.figure.properties;
+&informal.example.properties;
+&informal.equation.properties;
+&informal.table.properties;
 &procedure.properties;
 &root.properties;
 &qanda.title.properties;
@@ -582,7 +586,11 @@ around all these parameters.</para>
 <src:fragref linkend="ignore.image.scaling.frag"/>
 <src:fragref linkend="index.on.role.frag"/>
 <src:fragref linkend="index.on.type.frag"/>
+<src:fragref linkend="informal.equation.properties.frag"/>
+<src:fragref linkend="informal.example.properties.frag"/>
+<src:fragref linkend="informal.figure.properties.frag"/>
 <src:fragref linkend="informal.object.properties.frag"/>
+<src:fragref linkend="informal.table.properties.frag"/>
 <src:fragref linkend="index.preferred.page.properties.frag"/>
 <src:fragref linkend="insert.xref.page.number.frag"/>
 <src:fragref linkend="l10n.gentext.default.language.frag"/>
