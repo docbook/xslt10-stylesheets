@@ -1398,6 +1398,20 @@
       </xsl:when>
   </xsl:choose>
 
+  <xsl:variable name="column1">
+    <xsl:choose>
+      <xsl:when test="$sequence = 'first' or $sequence = 'odd'">1</xsl:when>
+      <xsl:otherwise>3</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="column3">
+    <xsl:choose>
+      <xsl:when test="$sequence = 'first' or $sequence = 'odd'">3</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:variable name="candidate">
     <fo:table table-layout="fixed" width="100%">
       <xsl:call-template name="head.sep.rule">
@@ -1406,9 +1420,37 @@
         <xsl:with-param name="gentext-key" select="$gentext-key"/>
       </xsl:call-template>
 
-      <fo:table-column column-number="1" column-width="proportional-column-width(1)"/>
-      <fo:table-column column-number="2" column-width="proportional-column-width(1)"/>
-      <fo:table-column column-number="3" column-width="proportional-column-width(1)"/>
+      <fo:table-column column-number="1">
+        <xsl:attribute name="column-width">
+          <xsl:text>proportional-column-width(</xsl:text>
+          <xsl:call-template name="header.footer.width">
+            <xsl:with-param name="location">header</xsl:with-param>
+            <xsl:with-param name="position" select="$column1"/>
+          </xsl:call-template>
+          <xsl:text>)</xsl:text>
+        </xsl:attribute>
+      </fo:table-column>
+      <fo:table-column column-number="2">
+        <xsl:attribute name="column-width">
+          <xsl:text>proportional-column-width(</xsl:text>
+          <xsl:call-template name="header.footer.width">
+            <xsl:with-param name="location">header</xsl:with-param>
+            <xsl:with-param name="position" select="2"/>
+          </xsl:call-template>
+          <xsl:text>)</xsl:text>
+        </xsl:attribute>
+      </fo:table-column>
+      <fo:table-column column-number="3">
+        <xsl:attribute name="column-width">
+          <xsl:text>proportional-column-width(</xsl:text>
+          <xsl:call-template name="header.footer.width">
+            <xsl:with-param name="location">header</xsl:with-param>
+            <xsl:with-param name="position" select="$column3"/>
+          </xsl:call-template>
+          <xsl:text>)</xsl:text>
+        </xsl:attribute>
+      </fo:table-column>
+
       <fo:table-body>
         <fo:table-row height="14pt">
           <fo:table-cell text-align="left"
@@ -1540,6 +1582,48 @@
   </fo:block>
 </xsl:template>
 
+<xsl:template name="header.footer.width">
+  <xsl:param name="location" select="'header'"/>
+  <xsl:param name="position" select="1"/>
+
+  <xsl:variable name="width.set">
+    <xsl:choose>
+      <xsl:when test="$location = 'header'">
+        <xsl:value-of select="normalize-space($header.column.widths)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="normalize-space($footer.column.widths)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+
+  <xsl:variable name="width">
+    <xsl:choose>
+      <xsl:when test="$position = 1">
+        <xsl:value-of select="substring-before($width.set, ' ')"/>
+      </xsl:when>
+      <xsl:when test="$position = 2">
+        <xsl:value-of select="substring-before(substring-after($width.set, ' '), ' ')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="substring-after(substring-after($width.set, ' '), ' ')"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <!-- Make sure it is a number -->
+  <xsl:choose>
+    <xsl:when test = "$width = number($width)">
+      <xsl:value-of select="$width"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message>Error: value in <xsl:value-of select="$location"/>.column.widths at position <xsl:value-of select="$position"/> is not a number.</xsl:message>
+      <xsl:text>1</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template name="draft.text">
   <xsl:choose>
     <xsl:when test="$draft.mode = 'yes'">
@@ -1625,14 +1709,28 @@
   <xsl:param name="sequence" select="''"/>
   <xsl:param name="gentext-key" select="''"/>
 
+  <!-- default is a single table style for all footers -->
+  <!-- Customize it for different page classes or sequence location -->
+
   <xsl:choose>
       <xsl:when test="$pageclass = 'index'">
           <xsl:attribute name="margin-left">0pt</xsl:attribute>
       </xsl:when>
   </xsl:choose>
 
-  <!-- default is a single table style for all footers -->
-  <!-- Customize it for different page classes or sequence location -->
+  <xsl:variable name="column1">
+    <xsl:choose>
+      <xsl:when test="$sequence = 'first' or $sequence = 'odd'">1</xsl:when>
+      <xsl:otherwise>3</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="column3">
+    <xsl:choose>
+      <xsl:when test="$sequence = 'first' or $sequence = 'odd'">3</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <xsl:variable name="candidate">
     <fo:table table-layout="fixed" width="100%">
@@ -1641,9 +1739,37 @@
         <xsl:with-param name="sequence" select="$sequence"/>
         <xsl:with-param name="gentext-key" select="$gentext-key"/>
       </xsl:call-template>
-      <fo:table-column column-number="1" column-width="proportional-column-width(1)"/>
-      <fo:table-column column-number="2" column-width="proportional-column-width(1)"/>
-      <fo:table-column column-number="3" column-width="proportional-column-width(1)"/>
+      <fo:table-column column-number="1">
+        <xsl:attribute name="column-width">
+          <xsl:text>proportional-column-width(</xsl:text>
+          <xsl:call-template name="header.footer.width">
+            <xsl:with-param name="location">footer</xsl:with-param>
+            <xsl:with-param name="position" select="$column1"/>
+          </xsl:call-template>
+          <xsl:text>)</xsl:text>
+        </xsl:attribute>
+      </fo:table-column>
+      <fo:table-column column-number="2">
+        <xsl:attribute name="column-width">
+          <xsl:text>proportional-column-width(</xsl:text>
+          <xsl:call-template name="header.footer.width">
+            <xsl:with-param name="location">footer</xsl:with-param>
+            <xsl:with-param name="position" select="2"/>
+          </xsl:call-template>
+          <xsl:text>)</xsl:text>
+        </xsl:attribute>
+      </fo:table-column>
+      <fo:table-column column-number="3">
+        <xsl:attribute name="column-width">
+          <xsl:text>proportional-column-width(</xsl:text>
+          <xsl:call-template name="header.footer.width">
+            <xsl:with-param name="location">footer</xsl:with-param>
+            <xsl:with-param name="position" select="$column3"/>
+          </xsl:call-template>
+          <xsl:text>)</xsl:text>
+        </xsl:attribute>
+      </fo:table-column>
+
       <fo:table-body>
         <fo:table-row height="14pt">
           <fo:table-cell text-align="left"
