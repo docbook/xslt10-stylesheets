@@ -27,6 +27,11 @@
   "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
 %docbook.dtd;
 
+<!-- be more generous about the content of webpages in website-full -->
+<!ENTITY % webpage.mix "(config*, head, (%bookcomponent.content;),
+                        appendix*, (index|glossary|bibliography)*)">
+
+
 <!ENTITY % website.mod PUBLIC "-//Norman Walsh//DTD Website Module V2.2//EN"
                               "website.mod">
 %website.mod;
