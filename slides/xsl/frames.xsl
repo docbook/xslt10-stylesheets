@@ -10,6 +10,9 @@
 <xsl:param name="ie5" select="0"/>
 <xsl:param name="multiframe" select="0"/>
 
+<xsl:param name="multiframe.top.bgcolor" select="'white'"/>
+<xsl:param name="multiframe.bottom.bgcolor" select="'white'"/>
+
 <xsl:template match="slides">
   <xsl:variable name="title">
     <xsl:choose>
@@ -31,8 +34,8 @@
         <head>
           <title><xsl:value-of select="$title"/></title>
         </head>
-        <frameset border="1" cols="{$toc.width},*" name="topframe">
-          <frame src="toc.html" name="toc"/>
+        <frameset border="1" cols="{$toc.width},*" name="topframe" framespacing="0">
+          <frame src="toc.html" name="toc" frameborder="1"/>
           <frame src="{$titlefoil.html}" name="foil"/>
           <noframes>
             <body class="frameset" xsl:use-attribute-sets="body-attrs">
@@ -341,9 +344,9 @@ if (selectBrowser() == "ie5") {
   </xsl:variable>
 
   <frameset rows="25,*,25" border="0" name="foil" framespacing="0">
-    <frame src="top-{$thissection}" name="top" marginheight="0" scrolling="no"/>
-    <frame src="body-{$thissection}" name="body" marginheight="0"/>
-    <frame src="bot-{$thissection}" name="bottom" marginheight="0" scrolling="no"/>
+    <frame src="top-{$thissection}" name="top" marginheight="0" scrolling="no" frameborder="0"/>
+    <frame src="body-{$thissection}" name="body" marginheight="0" frameborder="0"/>
+    <frame src="bot-{$thissection}" name="bottom" marginheight="0" scrolling="no" frameborder="0"/>
     <noframes>
       <body class="frameset" xsl:use-attribute-sets="body-attrs">
         <p>
@@ -380,7 +383,7 @@ if (selectBrowser() == "ie5") {
             </script>
           </xsl:if>
         </head>
-        <body class="navigation">
+        <body class="navigation" bgcolor="{$multiframe.top.bgcolor}">
           <xsl:call-template name="section-top-nav">
             <xsl:with-param name="prev-target" select="'foil'"/>
             <xsl:with-param name="next-target" select="'foil'"/>
@@ -496,7 +499,7 @@ if (selectBrowser() == "ie5") {
             </script>
           </xsl:if>
         </head>
-        <body class="navigation">
+        <body class="navigation" bgcolor="{$multiframe.bottom.bgcolor}">
           <xsl:call-template name="section-bottom-nav"/>
         </body>
       </html>
@@ -675,7 +678,7 @@ if (selectBrowser() == "ie5") {
       <xsl:value-of select="$nextfoil"/>
       <xsl:text>')</xsl:text>
     </xsl:attribute>
-    <frame src="top-{$thisfoil}" name="top" marginheight="0" scrolling="no">
+    <frame src="top-{$thisfoil}" name="top" marginheight="0" scrolling="no" frameborder="0">
       <xsl:attribute name="onkeypress">
         <xsl:text>navigate('</xsl:text>
         <xsl:value-of select="$prevfoil"/>
@@ -684,7 +687,7 @@ if (selectBrowser() == "ie5") {
         <xsl:text>')</xsl:text>
       </xsl:attribute>
     </frame>
-    <frame src="body-{$thisfoil}" name="body" marginheight="0">
+    <frame src="body-{$thisfoil}" name="body" marginheight="0" frameborder="0">
       <xsl:attribute name="onkeypress">
         <xsl:text>navigate('</xsl:text>
         <xsl:value-of select="$prevfoil"/>
@@ -693,7 +696,7 @@ if (selectBrowser() == "ie5") {
         <xsl:text>')</xsl:text>
       </xsl:attribute>
     </frame>
-    <frame src="bot-{$thisfoil}" name="bottom" marginheight="0" scrolling="no">
+    <frame src="bot-{$thisfoil}" name="bottom" marginheight="0" scrolling="no" frameborder="0">
       <xsl:attribute name="onkeypress">
         <xsl:text>navigate('</xsl:text>
         <xsl:value-of select="$prevfoil"/>
@@ -736,7 +739,7 @@ if (selectBrowser() == "ie5") {
             </script>
           </xsl:if>
         </head>
-        <body class="navigation">
+        <body class="navigation" bgcolor="{$multiframe.top.bgcolor}">
           <xsl:call-template name="foil-top-nav">
             <xsl:with-param name="prev-target" select="'foil'"/>
             <xsl:with-param name="next-target" select="'foil'"/>
@@ -801,7 +804,7 @@ if (selectBrowser() == "ie5") {
             </script>
           </xsl:if>
         </head>
-        <body class="navigation">
+        <body class="navigation" bgcolor="{$multiframe.bottom.bgcolor}">
           <xsl:call-template name="foil-bottom-nav"/>
         </body>
       </html>

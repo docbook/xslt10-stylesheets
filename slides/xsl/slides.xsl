@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 		version="1.0">
 
-<xsl:import href="/sourceforge/docbook/xsl/html/chunk.xsl"/>
+<xsl:import href="../../xsl/html/chunk.xsl"/>
 
 <xsl:output method="html"/>
 
@@ -25,6 +25,9 @@
 
 <xsl:param name="toc.bg.color">#FFFFFF</xsl:param>
 <xsl:param name="toc.width">250</xsl:param>
+<xsl:param name="toc.hide.show" select="0"/>
+
+<xsl:param name="ie5" select="0"/>
 
 <xsl:attribute-set name="body-attrs">
   <xsl:attribute name="bgcolor">white</xsl:attribute>
@@ -739,6 +742,7 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0"
            summary="Navigation">
       <tr>
+        <xsl:call-template name="generate.toc.hide.show"/>
         <td align="left" width="10%">
           <xsl:choose>
             <xsl:when test="$prevfoil != ''">
@@ -847,6 +851,7 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0"
            summary="Navigation">
       <tr>
+        <xsl:call-template name="generate.toc.hide.show"/>
         <td align="left" width="10%">
           <xsl:choose>
             <xsl:when test="$prevfoil != ''">
@@ -932,6 +937,36 @@
       </tr>
     </table>
   </div>
+</xsl:template>
+
+<xsl:template name="generate.toc.hide.show">
+  <xsl:if test="$toc.hide.show=1 and $ie5=1">
+    <td>    
+      <img hspace="4">
+	<xsl:attribute name="src">
+	  <xsl:call-template name="graphics.dir"/>
+	  <xsl:text>/</xsl:text>
+	  <xsl:value-of select="'hidetoc.gif'"/>
+	</xsl:attribute>
+	<xsl:attribute name="onClick">
+if (parent.parent.document.all.topframe.cols=="0,*") 
+{ 
+   parent.parent.document.all.topframe.cols="<xsl:value-of select="$toc.width"/>,*"; 
+   this.src = "<xsl:call-template name="graphics.dir"/>
+              <xsl:text>/</xsl:text>
+              <xsl:value-of select="'hidetoc.gif'"/>";
+}
+else 
+{
+   parent.parent.document.all.topframe.cols="0,*";
+   this.src = "<xsl:call-template name="graphics.dir"/>
+              <xsl:text>/</xsl:text>
+              <xsl:value-of select="'showtoc.gif'"/>";
+};              
+	</xsl:attribute>
+      </img>
+    </td>
+  </xsl:if>
 </xsl:template>
 
 <!-- ============================================================ -->

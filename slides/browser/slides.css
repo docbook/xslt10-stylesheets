@@ -20,6 +20,12 @@
 			padding-top: 0pt;
 			margin-top: 0pt;
                       }
+.foil      h2.subtitle   { text-align: center;
+                        color: blue;
+                        font-family: Arial;
+			padding-top: 0pt;
+			margin-top: 0pt;
+                      }
 
 .mediaobject          { text-align: center;
                       }
