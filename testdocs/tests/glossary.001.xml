@@ -2,6 +2,7 @@
 <!DOCTYPE glossary PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
 <glossary>
+<?dbfo glossterm-width="1in"?>
 <glossaryinfo>
 <title>Unit Test: glossary.001</title>
 <releaseinfo role="CVS">$Id$</releaseinfo>
