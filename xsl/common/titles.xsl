@@ -171,7 +171,15 @@ title of the element. This does not include the label.
 </xsl:template>
 
 <xsl:template match="refentrytitle|refname" mode="title.markup">
-  <xsl:apply-templates/>
+  <xsl:param name="allow-anchors" select="0"/>
+  <xsl:choose>
+    <xsl:when test="$allow-anchors != 0">
+      <xsl:apply-templates/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates mode="no.anchor.mode"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="section
