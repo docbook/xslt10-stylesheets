@@ -188,6 +188,12 @@
 <dingbat key="nestedendquote" text="&#8217;"/>
 <dingbat key="bullet" text="&#8226;"/>
 
+<context name="styles">
+
+<template name="person-name">first-last</template>
+
+</context>
+
 <context name="title">
 
 <template name="abstract">%t</template>
