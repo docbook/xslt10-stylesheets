@@ -73,10 +73,7 @@
                 text-align='start'
                 white-space-collapse='false'
                 linefeed-treatment="preserve"
-                font-family='{$monospace.font.family}'
-                space-before.minimum="0.8em"
-                space-before.optimum="1em"
-                space-before.maximum="1.2em">
+                xsl:use-attribute-sets="monospace.verbatim.properties">
         <xsl:call-template name="number.rtf.lines">
           <xsl:with-param name="rtf" select="$rtf"/>
           <xsl:with-param name="linenumbering.everyNth"
@@ -93,10 +90,7 @@
                 text-align='start'
                 white-space-collapse='false'
                 linefeed-treatment="preserve"
-                font-family='{$monospace.font.family}'
-                space-before.minimum="0.8em"
-                space-before.optimum="1em"
-                space-before.maximum="1.2em">
+                xsl:use-attribute-sets="monospace.verbatim.properties">
         <xsl:apply-templates/>
       </fo:block>
     </xsl:otherwise>
@@ -121,11 +115,8 @@
           <fo:block wrap-option='no-wrap'
                     text-align='start'
                     linefeed-treatment="preserve"
-                    font-family='{$monospace.font.family}'
                     white-space-collapse='false'
-                    space-before.minimum="0.8em"
-                    space-before.optimum="1em"
-                    space-before.maximum="1.2em">
+                    xsl:use-attribute-sets="monospace.verbatim.properties">
             <xsl:call-template name="number.rtf.lines">
               <xsl:with-param name="rtf" select="$rtf"/>
               <xsl:with-param name="linenumbering.everyNth"
@@ -142,9 +133,7 @@
                     text-align='start'
                     linefeed-treatment="preserve"
                     white-space-collapse='false'
-                    space-before.minimum="0.8em"
-                    space-before.optimum="1em"
-                    space-before.maximum="1.2em">
+                    xsl:use-attribute-sets="verbatim.properties">
             <xsl:call-template name="number.rtf.lines">
               <xsl:with-param name="rtf" select="$rtf"/>
               <xsl:with-param name="linenumbering.everyNth"
@@ -163,12 +152,9 @@
         <xsl:when test="@class='monospaced'">
           <fo:block wrap-option='no-wrap'
                     text-align='start'
-                    font-family='{$monospace.font.family}'
                     linefeed-treatment="preserve"
                     white-space-collapse='false'
-                    space-before.minimum="0.8em"
-                    space-before.optimum="1em"
-                    space-before.maximum="1.2em">
+                    xsl:use-attribute-sets="monospace.verbatim.properties">
             <xsl:copy-of select="$rtf"/>
           </fo:block>
         </xsl:when>
@@ -177,9 +163,7 @@
                     text-align='start'
                     linefeed-treatment="preserve"
                     white-space-collapse='false'
-                    space-before.minimum="0.8em"
-                    space-before.optimum="1em"
-                    space-before.maximum="1.2em">
+                    xsl:use-attribute-sets="verbatim.properties">
             <xsl:copy-of select="$rtf"/>
           </fo:block>
         </xsl:otherwise>
@@ -204,9 +188,7 @@
       <fo:block wrap-option='no-wrap'
                 white-space-collapse='false'
                 linefeed-treatment="preserve"
-                space-before.minimum="0.8em"
-                space-before.optimum="1em"
-                space-before.maximum="1.2em">
+                xsl:use-attribute-sets="verbatim.properties">
         <xsl:call-template name="number.rtf.lines">
           <xsl:with-param name="rtf" select="$rtf"/>
           <xsl:with-param name="linenumbering.everyNth"
@@ -223,9 +205,7 @@
                 text-align='start'
                 linefeed-treatment="preserve"
                 white-space-collapse='false'
-                space-before.minimum="0.8em"
-                space-before.optimum="1em"
-                space-before.maximum="1.2em">
+                xsl:use-attribute-sets="verbatim.properties">
         <xsl:apply-templates/>
       </fo:block>
     </xsl:otherwise>
