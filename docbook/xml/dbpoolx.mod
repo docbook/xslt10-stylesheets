@@ -5248,18 +5248,9 @@ in the text (no (0) value, the default)
 <![%bibliorelation.module;[
 <!ENTITY % local.bibliorelation.attrib "">
 <!ENTITY % local.bibliorelation.types "">
-<!ENTITY % bibliorelation.role.attrib "%role.attrib;">
 
-<!ENTITY % bibliorelation.element "INCLUDE">
-<![%bibliorelation.element;[
-<!ELEMENT bibliorelation %ho; (%docinfo.char.mix;)*>
-<!--end of bibliorelation.element-->]]>
-
-<!ENTITY % bibliorelation.attlist "INCLUDE">
-<![%bibliorelation.attlist;[
-<!ATTLIST bibliorelation
-		%biblio.class.attrib;
-                type     (isversionof
+<!ENTITY % bibliorelation.type.attrib
+                "type    (isversionof
                          |hasversion
                          |isreplacedby
                          |replaces
@@ -5274,6 +5265,20 @@ in the text (no (0) value, the default)
                          |other
                          %local.bibliorelation.types;)       #IMPLIED
 		othertype	CDATA	#IMPLIED
+">
+
+<!ENTITY % bibliorelation.role.attrib "%role.attrib;">
+
+<!ENTITY % bibliorelation.element "INCLUDE">
+<![%bibliorelation.element;[
+<!ELEMENT bibliorelation %ho; (%docinfo.char.mix;)*>
+<!--end of bibliorelation.element-->]]>
+
+<!ENTITY % bibliorelation.attlist "INCLUDE">
+<![%bibliorelation.attlist;[
+<!ATTLIST bibliorelation
+		%biblio.class.attrib;
+		%bibliorelation.type.attrib;
 		%common.attrib;
 		%bibliorelation.role.attrib;
 		%local.bibliorelation.attrib;
