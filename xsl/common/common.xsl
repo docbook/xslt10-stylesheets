@@ -422,7 +422,7 @@ Defaults to the context node.</para>
   <xsl:param name="node" select="."/>
 
   <xsl:choose>
-    <!-- EXPERIMENTAL: the personname element is a specialcase -->
+    <!-- the personname element is a specialcase -->
     <xsl:when test="$node/personname">
       <xsl:call-template name="person.name">
         <xsl:with-param name="node" select="$node/personname"/>
