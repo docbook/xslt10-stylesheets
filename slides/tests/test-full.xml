@@ -1,0 +1,38 @@
+<?xml version='1.0'?>
+<!DOCTYPE slides SYSTEM "../slides-full.dtd">
+<slides>
+<slidesinfo>
+  <title>Test Slides Title</title>
+  <copyright><year>2001</year><holder>Norman Walsh</holder></copyright>
+</slidesinfo>
+
+<section><title>Section 1</title>
+
+<foil><title>Test Slides Title 1</title>
+<para>...<keycombo><keycap>X</keycap></keycombo></para>
+</foil>
+
+<foil><title>Test Slides Title 2</title>
+<para>...</para>
+<screen>
+this is a screen
+</screen>
+</foil>
+
+</section>
+<section><title>Section 2</title>
+
+<foil><title>Test Slides Title 1</title>
+<para>...</para>
+</foil>
+
+<foil><title>Test Slides Title 2</title>
+<para>...</para>
+<screen>
+this is a screen
+</screen>
+</foil>
+
+</section>
+
+</slides>
