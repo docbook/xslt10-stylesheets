@@ -429,7 +429,6 @@ element label.</para>
 
   <xsl:choose>
     <xsl:when test="count($label)>0">
-      <xsl:value-of select="$prefix"/>
       <xsl:apply-templates select="$label"/>
     </xsl:when>
 
