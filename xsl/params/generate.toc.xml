@@ -12,6 +12,7 @@
 <src:fragment id='generate.toc.frag'>
 <xsl:param condition="html" name="generate.toc">
 appendix  toc
+article/appendix  nop
 article   toc
 book      toc,figure,table,example,equation
 chapter   toc
@@ -30,6 +31,7 @@ set       toc
 </xsl:param>
 <xsl:param condition="fo" name="generate.toc">
 /appendix toc
+article/appendix  nop
 /article  toc
 book      toc,figure,table,example,equation
 /chapter  toc
