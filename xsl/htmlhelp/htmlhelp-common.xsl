@@ -200,8 +200,12 @@ Title=</xsl:text><xsl:value-of select="normalize-space(//title[1])"/>
 <xsl:template match="set" mode="hhc">
   <xsl:variable name="title">
     <xsl:if test="$htmlhelp.autolabel=1">
-      <xsl:apply-templates select="." mode="label.markup"/>
-      <xsl:value-of select="$autotoc.label.separator"/>
+      <xsl:variable name="label.markup">
+        <xsl:apply-templates select="." mode="label.markup"/>
+      </xsl:variable>
+      <xsl:if test="normalize-space($label.markup)">
+        <xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
+      </xsl:if>
     </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
@@ -224,8 +228,12 @@ Title=</xsl:text><xsl:value-of select="normalize-space(//title[1])"/>
 <xsl:template match="book" mode="hhc">
   <xsl:variable name="title">
     <xsl:if test="$htmlhelp.autolabel=1">
-      <xsl:apply-templates select="." mode="label.markup"/>
-      <xsl:value-of select="$autotoc.label.separator"/>
+      <xsl:variable name="label.markup">
+        <xsl:apply-templates select="." mode="label.markup"/>
+      </xsl:variable>
+      <xsl:if test="normalize-space($label.markup)">
+        <xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
+      </xsl:if>
     </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
@@ -250,8 +258,12 @@ Title=</xsl:text><xsl:value-of select="normalize-space(//title[1])"/>
               mode="hhc">
   <xsl:variable name="title">
     <xsl:if test="$htmlhelp.autolabel=1">
-      <xsl:apply-templates select="." mode="label.markup"/>
-      <xsl:value-of select="$autotoc.label.separator"/>
+      <xsl:variable name="label.markup">
+        <xsl:apply-templates select="." mode="label.markup"/>
+      </xsl:variable>
+      <xsl:if test="normalize-space($label.markup)">
+        <xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
+      </xsl:if>
     </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
@@ -276,8 +288,12 @@ Title=</xsl:text><xsl:value-of select="normalize-space(//title[1])"/>
 <xsl:template match="section" mode="hhc">
   <xsl:variable name="title">
     <xsl:if test="$htmlhelp.autolabel=1">
-      <xsl:apply-templates select="." mode="label.markup"/>
-      <xsl:value-of select="$autotoc.label.separator"/>
+      <xsl:variable name="label.markup">
+        <xsl:apply-templates select="." mode="label.markup"/>
+      </xsl:variable>
+      <xsl:if test="normalize-space($label.markup)">
+        <xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
+      </xsl:if>
     </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
@@ -300,8 +316,12 @@ Title=</xsl:text><xsl:value-of select="normalize-space(//title[1])"/>
 <xsl:template match="sect1" mode="hhc">
   <xsl:variable name="title">
     <xsl:if test="$htmlhelp.autolabel=1">
-      <xsl:apply-templates select="." mode="label.markup"/>
-      <xsl:value-of select="$autotoc.label.separator"/>
+      <xsl:variable name="label.markup">
+        <xsl:apply-templates select="." mode="label.markup"/>
+      </xsl:variable>
+      <xsl:if test="normalize-space($label.markup)">
+        <xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
+      </xsl:if>
     </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
@@ -325,8 +345,12 @@ Title=</xsl:text><xsl:value-of select="normalize-space(//title[1])"/>
 <xsl:template match="sect2" mode="hhc">
   <xsl:variable name="title">
     <xsl:if test="$htmlhelp.autolabel=1">
-      <xsl:apply-templates select="." mode="label.markup"/>
-      <xsl:value-of select="$autotoc.label.separator"/>
+      <xsl:variable name="label.markup">
+        <xsl:apply-templates select="." mode="label.markup"/>
+      </xsl:variable>
+      <xsl:if test="normalize-space($label.markup)">
+        <xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
+      </xsl:if>
     </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
@@ -350,8 +374,12 @@ Title=</xsl:text><xsl:value-of select="normalize-space(//title[1])"/>
 <xsl:template match="sect3" mode="hhc">
   <xsl:variable name="title">
     <xsl:if test="$htmlhelp.autolabel=1">
-      <xsl:apply-templates select="." mode="label.markup"/>
-      <xsl:value-of select="$autotoc.label.separator"/>
+      <xsl:variable name="label.markup">
+        <xsl:apply-templates select="." mode="label.markup"/>
+      </xsl:variable>
+      <xsl:if test="normalize-space($label.markup)">
+        <xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
+      </xsl:if>
     </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
@@ -375,8 +403,12 @@ Title=</xsl:text><xsl:value-of select="normalize-space(//title[1])"/>
 <xsl:template match="sect4" mode="hhc">
   <xsl:variable name="title">
     <xsl:if test="$htmlhelp.autolabel=1">
-      <xsl:apply-templates select="." mode="label.markup"/>
-      <xsl:value-of select="$autotoc.label.separator"/>
+      <xsl:variable name="label.markup">
+        <xsl:apply-templates select="." mode="label.markup"/>
+      </xsl:variable>
+      <xsl:if test="normalize-space($label.markup)">
+        <xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
+      </xsl:if>
     </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
@@ -400,8 +432,12 @@ Title=</xsl:text><xsl:value-of select="normalize-space(//title[1])"/>
 <xsl:template match="sect5|refentry|colophon|bibliodiv" mode="hhc">
   <xsl:variable name="title">
     <xsl:if test="$htmlhelp.autolabel=1">
-      <xsl:apply-templates select="." mode="label.markup"/>
-      <xsl:value-of select="$autotoc.label.separator"/>
+      <xsl:variable name="label.markup">
+        <xsl:apply-templates select="." mode="label.markup"/>
+      </xsl:variable>
+      <xsl:if test="normalize-space($label.markup)">
+        <xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
+      </xsl:if>
     </xsl:if>
     <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
