@@ -1,7 +1,7 @@
 <refentry>
 <refnamediv>
 <refname>admonition.title.properties</refname>
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>To set the style for admonitions.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -13,6 +13,8 @@
 </xsl:attribute-set></src:fragment>
 </refsynopsisdiv>
 <refsect1><title>Description</title>
-<para>FIXME:</para>
+<para>How do you want admonitions styled? </para>
+<para>Set the font-size, weight etc to the style required</para>
+
 </refsect1>
 </refentry>

@@ -5,7 +5,7 @@
 </refmeta>
 <refnamediv>
 <refname>generate.book.equation.lot</refname>
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>Should a lot be generated for equations?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -13,6 +13,6 @@
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
-<para>FIXME:</para>
+<para>Specify if  list of equations, like a table of contents, is required.</para>
 </refsect1>
 </refentry>

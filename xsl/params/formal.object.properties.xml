@@ -1,7 +1,7 @@
 <refentry>
 <refnamediv>
 <refname>formal.object.properties</refname>
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>Properties associated with a formal object such as a figure, or other component that has a title</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -16,6 +16,6 @@
 </xsl:attribute-set></src:fragment>
 </refsynopsisdiv>
 <refsect1><title>Description</title>
-<para>FIXME:</para>
+<para>The styling for formal objects in docbook. Specify the spacing before and after the object.</para>
 </refsect1>
 </refentry>

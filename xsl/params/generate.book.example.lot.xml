@@ -5,7 +5,7 @@
 </refmeta>
 <refnamediv>
 <refname>generate.book.example.lot</refname>
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>Is a list of equations required?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -13,6 +13,6 @@
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
-<para>FIXME:</para>
+<para>Specify if a list of examples is required, similar to a table of contents but for examples.</para>
 </refsect1>
 </refentry>

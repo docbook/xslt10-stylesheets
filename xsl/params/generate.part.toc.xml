@@ -5,7 +5,7 @@
 </refmeta>
 <refnamediv>
 <refname>generate.part.toc</refname>
-<refpurpose>FIXME:</refpurpose>
+<refpurpose>Do you want an index for each part?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -14,7 +14,7 @@
 
 <refsect1><title>Description</title>
 
-<para>FIXME:
+<para>Specify if an index should be generated for each part.
 </para>
 
 </refsect1>
