@@ -378,12 +378,6 @@ node.</para>
 
 <!-- ==================================================================== -->
 
-<xsl:template match="webpage" mode="title.markup">
-  <xsl:apply-templates select="head/title"/>
-</xsl:template>
-
-<!-- ==================================================================== -->
-
 <xsl:template name="directory-depth">
   <xsl:param name="dir"></xsl:param>
   <xsl:param name="count" select="0"/>
@@ -780,7 +774,7 @@ node.</para>
 
 <xsl:template match="webpage" mode="title.markup">
   <xsl:param name="allow-anchors" select="0"/>
-  <xsl:apply-templates select=".//head/title"
+  <xsl:apply-templates select="head/title"
                        mode="title.markup">
     <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
   </xsl:apply-templates>
