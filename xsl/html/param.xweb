@@ -146,6 +146,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <reference><title>XSLT Processing</title>
 &rootid;
 &suppress.navigation;
+&suppress.header.navigation;
+&suppress.footer.navigation;
 </reference>
 
 <reference><title>Meta/*Info</title>
@@ -460,6 +462,8 @@ around all these parameters.</para>
 <src:fragref linkend="show.revisionflag.frag"/>
 <src:fragref linkend="spacing.paras.frag"/>
 <src:fragref linkend="suppress.navigation.frag"/>
+<src:fragref linkend="suppress.header.navigation.frag"/>
+<src:fragref linkend="suppress.footer.navigation.frag"/>
 <src:fragref linkend="table.border.color.frag"/>
 <src:fragref linkend="table.border.style.frag"/>
 <src:fragref linkend="table.border.thickness.frag"/>
