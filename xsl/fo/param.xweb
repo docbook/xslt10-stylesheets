@@ -188,6 +188,8 @@ generate.section.toc.level;
 &ulink.show;
 &ulink.footnotes;
 &ulink.hyphenate;
+&shade.verbatim;
+&shade.verbatim.style;
 </reference>
 
 <reference><title>Pagination and General Styles</title>
@@ -479,6 +481,8 @@ around all these parameters.</para>
 <src:fragref linkend="section.autolabel.frag"/>
 <src:fragref linkend="section.label.includes.component.label.frag"/>
 <src:fragref linkend="segmentedlist.as.table.frag"/>
+<src:fragref linkend="shade.verbatim.frag"/>
+<src:fragref linkend="shade.verbatim.style.frag"/>
 <src:fragref linkend="show.comments.frag"/>
 <src:fragref linkend="table.border.color.frag"/>
 <src:fragref linkend="table.border.style.frag"/>
