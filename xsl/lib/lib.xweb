@@ -384,7 +384,7 @@ which is initially <literal>10</literal> (for 10pt).</para>
       <xsl:value-of select="$magnitude * 72.0"/>
     </xsl:when>
     <xsl:when test="$units = 'pc'">
-      <xsl:value-of select="$magnitude div 6.0 * 72.0"/>
+      <xsl:value-of select="$magnitude * 12.0"/>
     </xsl:when>
     <xsl:when test="$units = 'px'">
       <xsl:value-of select="$magnitude div $pixels.per.inch * 72.0"/>
