@@ -142,7 +142,11 @@
 </xsl:template>
 
 <xsl:template match="funcsynopsisinfo">
-  <fo:block><xsl:apply-templates/></fo:block>
+  <fo:block space-after.minimum="0.8em"
+            space-after.optimum="1em"
+            space-after.maximum="1.2em">
+    <xsl:apply-templates/>
+  </fo:block>
 </xsl:template>
 
 <xsl:template match="funcprototype">
