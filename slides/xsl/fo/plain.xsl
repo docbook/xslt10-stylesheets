@@ -415,10 +415,14 @@
         <xsl:call-template name="anchor">
           <xsl:with-param name="conditional" select="0"/>
         </xsl:call-template>
+
+	<xsl:if test="*[not(self::foil)]">
+	  <fo:block xsl:use-attribute-sets="foil.properties" space-after="1em">
+	    <xsl:apply-templates select="*[not(self::foil)]"/>
+	  </fo:block>
+	</xsl:if>
+
 	<xsl:call-template name="foilgroup.titlepage"/>
-        <fo:block xsl:use-attribute-sets="foil.properties">
-          <xsl:apply-templates select="*[not(self::foil)]"/>
-        </fo:block>
       </fo:block>
     </fo:flow>
   </fo:page-sequence>
