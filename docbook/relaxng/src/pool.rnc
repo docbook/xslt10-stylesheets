@@ -2797,7 +2797,7 @@ div {
    db.funcparams =
       element funcparams {
          db.funcparams.attlist,
-         db.all.inlines*
+         db._text
       }
 }
 
@@ -4823,13 +4823,13 @@ div {
    db.command =
       element command {
          db.command.attlist,
-         db.all.inlines*
+         db._text
       }
 }
 
 # ======================================================================
 
-db.computeroutput.inlines = db.all.inlines
+db.computeroutput.inlines = db._text
 
 # ======================================================================
 
@@ -5402,7 +5402,7 @@ div {
    db.lineannotation =
       element lineannotation {
          db.lineannotation.attlist,
-         db.all.inlines*
+         db._text
       }
 }
 
@@ -5424,7 +5424,7 @@ div {
    db.literal =
       element literal {
          db.literal.attlist,
-         db.all.inlines*
+         db._text
       }
 }
 
@@ -5449,7 +5449,7 @@ div {
    db.code =
       element code {
          db.code.attlist,
-         db.all.inlines*
+         db._text
       }
 }
 
@@ -5632,7 +5632,7 @@ div {
    db.optional =
       element optional {
          db.optional.attlist,
-         db.all.inlines*
+         db.text
       }
 }
 
@@ -5654,7 +5654,7 @@ div {
    db.property =
       element property {
          db.property.attlist,
-         db.all.inlines*
+         db._text
       }
 }
 
@@ -5950,7 +5950,7 @@ div {
 
 # ======================================================================
 
-db.userinput.inlines = db.all.inlines
+db.userinput.inlines = db._text
 
 # ======================================================================
 
