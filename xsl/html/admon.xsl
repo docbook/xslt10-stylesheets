@@ -94,7 +94,7 @@
         </th>
       </tr>
       <tr>
-        <td colspan="2" align="left" valign="top">
+        <td align="left" valign="top">
           <xsl:apply-templates/>
         </td>
       </tr>
