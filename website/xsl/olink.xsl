@@ -5,6 +5,100 @@
 <xsl:param name="website.database.document"
            select="'website.database.xml'"/>
 
+<xsl:template match="olink">
+  <xsl:choose>
+    <xsl:when test="@targetdoc != '' or @targetptr != ''">
+      <xsl:apply-imports/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="olink-entity"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="olink-entity">
+  <xsl:variable name="xmlfile"
+                select="document(unparsed-entity-uri(@targetdocent),$autolayout)"/>
+  <xsl:variable name="webpage"
+                select="$xmlfile/webpage"/>
+  <xsl:variable name="tocentry"
+                select="$autolayout//*[$webpage/@id=@id]"/>
+
+  <xsl:variable name="dir">
+    <xsl:choose>
+      <xsl:when test="starts-with($tocentry/@dir, '/')">
+        <xsl:value-of select="substring($tocentry/@dir, 2)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$tocentry/@dir"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+<!-- debug
+  <xsl:message>Olink for <xsl:value-of select="unparsed-entity-uri(@targetdocent)"/></xsl:message>
+  <xsl:message>Page id <xsl:value-of select="$webpage/@id"/></xsl:message>
+-->
+
+  <xsl:choose>
+    <xsl:when test="@type = 'embed'">
+      <xsl:apply-templates select="$xmlfile"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- @type = 'replace' or @type = 'new' -->
+      <a>
+        <xsl:if test="@id">
+          <xsl:attribute name="name">
+            <xsl:value-of select="@id"/>
+          </xsl:attribute>
+        </xsl:if>
+
+<!-- debug
+        <xsl:message>
+          <xsl:text>href: </xsl:text>
+          <xsl:call-template name="root-rel-path"/>
+          <xsl:text>::</xsl:text>
+          <xsl:value-of select="$dir"/>
+          <xsl:text>::</xsl:text>
+          <xsl:value-of select="$filename-prefix"/>
+          <xsl:text>::</xsl:text>
+          <xsl:value-of select="$tocentry/@filename"/>
+          <xsl:text>::</xsl:text>
+          <xsl:if test="@localinfo">
+            <xsl:text>#</xsl:text>
+            <xsl:value-of select="@localinfo"/>
+          </xsl:if>
+        </xsl:message>
+-->
+
+        <xsl:attribute name="href">
+          <xsl:call-template name="root-rel-path"/>
+          <xsl:value-of select="$dir"/>
+          <xsl:value-of select="$filename-prefix"/>
+          <xsl:value-of select="$tocentry/@filename"/>
+          <xsl:if test="@localinfo">
+            <xsl:text>#</xsl:text>
+            <xsl:value-of select="@localinfo"/>
+          </xsl:if>
+        </xsl:attribute>
+
+        <xsl:if test="@type = 'new'">
+          <xsl:attribute name="target">_blank</xsl:attribute>
+        </xsl:if>
+
+        <xsl:choose>
+          <xsl:when test="count(node()) = 0">
+            <xsl:apply-templates select="$webpage/head/title"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </a>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <!-- Customize the selection to use both website and offsite databases -->
 <xsl:template name="select.target.database">
   <xsl:param name="targetdoc.att" select="''"/>
