@@ -34,7 +34,7 @@
                       select="($target/ancestor-or-self::*[@lang]
                                |$target/ancestor-or-self::*[@xml:lang])[last()]"/>
         <xsl:variable name="lang-attr"
-                      select="$lang-scope/@lang | $lang-scope/@xml:lang"/>
+                      select="($lang-scope/@lang | $lang-scope/@xml:lang)[1]"/>
         <xsl:choose>
           <xsl:when test="string($lang-attr) = ''">
             <xsl:value-of select="$l10n.gentext.default.language"/>
@@ -51,7 +51,7 @@
                       select="(ancestor-or-self::*[@lang]
                                |ancestor-or-self::*[@xml:lang])[last()]"/>
         <xsl:variable name="lang-attr"
-                      select="$lang-scope/@lang | $lang-scope/@xml:lang"/>
+                      select="($lang-scope/@lang | $lang-scope/@xml:lang)[1]"/>
 
         <xsl:choose>
           <xsl:when test="string($lang-attr) = ''">
@@ -104,6 +104,42 @@
       <xsl:value-of select="$l10n.gentext.default.language"/>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template name="language.attribute">
+  <xsl:param name="node" select="."/>
+
+  <xsl:variable name="language">
+    <xsl:choose>
+      <xsl:when test="$l10n.gentext.language != ''">
+        <xsl:value-of select="$l10n.gentext.language"/>
+      </xsl:when>
+
+      <xsl:otherwise>
+        <!-- can't do this one step: attributes are unordered! -->
+        <xsl:variable name="lang-scope"
+                      select="($node/ancestor-or-self::*[@lang]
+                               |$node/ancestor-or-self::*[@xml:lang])[last()]"/>
+        <xsl:variable name="lang-attr"
+                      select="($lang-scope/@lang | $lang-scope/@xml:lang)[1]"/>
+
+        <xsl:choose>
+          <xsl:when test="string($lang-attr) = ''">
+            <xsl:value-of select="$l10n.gentext.default.language"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$lang-attr"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:if test="$language != ''">
+    <xsl:attribute name="lang">
+      <xsl:value-of select="$language"/>
+    </xsl:attribute>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template name="gentext">

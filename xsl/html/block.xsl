@@ -123,35 +123,40 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="blockquote">
-  <xsl:call-template name="anchor"/>
-  <xsl:choose>
-    <xsl:when test="attribution">
-      <table border="0" width="100%"
-	     cellspacing="0" cellpadding="0" class="blockquote"
-             summary="Block quote">
-	<tr>
-	  <td width="10%" valign="top">&#160;</td>
-	  <td width="80%" valign="top">
-	    <xsl:apply-templates
-	      select="child::*[local-name(.)!='attribution']"/>
-	  </td>
-	  <td width="10%" valign="top">&#160;</td>
-	</tr>
-	<tr>
-	  <td colspan="2" align="right" valign="top">
-	    <xsl:text>--</xsl:text>
-	    <xsl:apply-templates select="attribution"/>
-	  </td>
-	  <td width="10%" valign="top">&#160;</td>
-	</tr>
-      </table>
-    </xsl:when>
-    <xsl:otherwise>
-      <blockquote class="blockquote">
-	<xsl:apply-templates/>
-      </blockquote>
-    </xsl:otherwise>
-  </xsl:choose>
+  <div class="{local-name(.)}">
+    <xsl:if test="@lang or @xml:lang">
+      <xsl:call-template name="language.attribute"/>
+    </xsl:if>
+    <xsl:call-template name="anchor"/>
+
+    <xsl:choose>
+      <xsl:when test="attribution">
+        <table border="0" width="100%"
+               cellspacing="0" cellpadding="0" class="blockquote"
+               summary="Block quote">
+          <tr>
+            <td width="10%" valign="top">&#160;</td>
+            <td width="80%" valign="top">
+              <xsl:apply-templates select="child::*[local-name(.)!='attribution']"/>
+            </td>
+            <td width="10%" valign="top">&#160;</td>
+          </tr>
+          <tr>
+            <td colspan="2" align="right" valign="top">
+              <xsl:text>--</xsl:text>
+              <xsl:apply-templates select="attribution"/>
+            </td>
+            <td width="10%" valign="top">&#160;</td>
+          </tr>
+        </table>
+      </xsl:when>
+      <xsl:otherwise>
+        <blockquote class="{local-name(.)}">
+          <xsl:apply-templates/>
+        </blockquote>
+      </xsl:otherwise>
+    </xsl:choose>
+  </div>
 </xsl:template>
 
 <xsl:template match="blockquote/title">

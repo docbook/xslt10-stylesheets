@@ -16,6 +16,7 @@
 
 <xsl:template match="reference">
   <div class="{name(.)}">
+    <xsl:call-template name="language.attribute"/>
     <xsl:call-template name="anchor">
       <xsl:with-param name="conditional" select="0"/>
     </xsl:call-template>
@@ -70,6 +71,7 @@
 
 <xsl:template match="refentry">
   <div class="{name(.)}">
+    <xsl:call-template name="language.attribute"/>
     <xsl:if test="$refentry.separator != 0 and preceding-sibling::refentry">
       <div class="refentry.separator">
         <hr/>
@@ -200,7 +202,11 @@
 </xsl:template>
 
 <xsl:template match="refsection|refsect1|refsect2|refsect3">
-  <xsl:call-template name="block.object"/>
+  <div class="{name(.)}">
+    <xsl:call-template name="language.attribute"/>
+    <xsl:call-template name="anchor"/>
+    <xsl:apply-templates/>
+  </div>
 </xsl:template>
 
 <xsl:template match="refsection/title|refsect1/title">
