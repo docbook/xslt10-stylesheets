@@ -3,7 +3,7 @@
 use strict;
 use Getopt::Long;
 
-my $defaultProc = $ENV{'XSLTPROC'} || 'xalan';
+my $defaultProc = $ENV{'XSLTPROC'} || 'saxon';
 my $defaultOpts = $ENV{'XSLTPROCOPTS'} || undef;
 
 my $usage = "Usage: $0 [options] files\n";
