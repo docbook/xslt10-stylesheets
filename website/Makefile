@@ -52,5 +52,9 @@ else
 endif
 
 clean:
+	make -C extensions clean
 	make -C example clean
 	make -C example TEXTONLY=1 clean
+
+realclean: clean
+	make -C extensions realclean
