@@ -440,6 +440,14 @@ node.</para>
 
 <!-- ==================================================================== -->
 
+<xsl:template match="processing-instruction('php')">
+  <xsl:processing-instruction name="php">
+    <xsl:value-of select="."/>
+  </xsl:processing-instruction>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
 <xsl:template match="rddl:*" xmlns:rddl='http://www.rddl.org/'>
   <xsl:element name="{name(.)}">
     <xsl:apply-templates select="@*" mode="copy"/>
