@@ -19,6 +19,8 @@
   </l:l10n>
 </i18n>
 
+<xsl:variable name="root.elements" select="' slides '"/>
+
 <xsl:param name="preferred.mediaobject.role" select="'print'"/>
 
 <xsl:param name="page.orientation" select="'landscape'"/>
