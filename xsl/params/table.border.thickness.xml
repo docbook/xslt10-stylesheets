@@ -1,16 +1,16 @@
 <refentry>
 <refmeta>
-<refentrytitle>[[NAME]]</refentrytitle>
+<refentrytitle>table.border.thickness</refentrytitle>
 <refmiscinfo role="type"></refmiscinfo>
 </refmeta>
 <refnamediv>
-<refname>[[NAME]]</refname>
+<refname>table.border.thickness</refname>
 <refpurpose></refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="[[NAME]]">
-<xsl:param name="[[NAME]]" select=""/>
+<src:fragment id="table.border.thickness">
+<xsl:param name="table.border.thickness" select="'0.5pt'"/>
 </src:fragment>
 </refsynopsisdiv>
 

@@ -1,16 +1,16 @@
 <refentry>
 <refmeta>
-<refentrytitle>[[NAME]]</refentrytitle>
+<refentrytitle>table.border.color</refentrytitle>
 <refmiscinfo role="type"></refmiscinfo>
 </refmeta>
 <refnamediv>
-<refname>[[NAME]]</refname>
+<refname>table.border.color</refname>
 <refpurpose></refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id="[[NAME]]">
-<xsl:param name="[[NAME]]" select=""/>
+<src:fragment id="table.border.color">
+<xsl:param name="table.border.color" select="'black'"/>
 </src:fragment>
 </refsynopsisdiv>
 
