@@ -934,7 +934,11 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
       <xsl:with-param name="content">
         <html>
           <head>
-            <title>Long Description</title>
+            <xsl:call-template name="system.head.content"/>
+            <xsl:call-template name="head.content">
+              <xsl:with-param name="title" select="'Long Description'"/>
+            </xsl:call-template>
+            <xsl:call-template name="user.head.content"/>
           </head>
           <body>
             <xsl:call-template name="body.attributes"/>
