@@ -1,6 +1,6 @@
 VPATH=../src ../tests/customizations
 
-RNCFILES=$(subst $(VPATH)/,,$(wildcard $(VPATH)/*.rnc))
+RNCFILES=$(subst ../src/,,$(wildcard ../src/*.rnc))
 RNXFILES=$(subst .rnc,.rnx,$(RNCFILES))
 MODULES=$(filter-out docbook.rnx,$(RNXFILES))
 
