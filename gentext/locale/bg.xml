@@ -1,0 +1,475 @@
+<?xml version='1.0'?>
+<!-- there is no doctype for these files, they are WF only -->
+<!-- DOCTYPE locale [
+<!ENTITY % cyr1 PUBLIC "ISO 8879:1986//ENTITIES Russian Cyrillic//EN//XML"
+                "../../xmlcharent/iso-cyr1.ent">
+%cyr1;
+]-->
+<locale language="bg"
+        english-language-name="Bulgarian"
+        xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
+
+<doc:localeinfo xmlns="">
+  <authorgroup>
+    <author>
+      <firstname>Radostin</firstname><surname>Radnev</surname>
+      <affiliation><address><email>radnev@yahoo.com</email></address></affiliation>
+    </author>
+  </authorgroup>
+</doc:localeinfo>
+
+<gentext key="Abstract" text="&Acy;&ncy;&ocy;&tcy;&acy;&tscy;&icy;&yacy;"/>
+<gentext key="abstract" text="&Acy;&ncy;&ocy;&tcy;&acy;&tscy;&icy;&yacy;"/>
+<gentext key="Answer" text="&Ocy;:"/>
+<gentext key="answer" text="&Ocy;:"/>
+<gentext key="Appendix" text="&Pcy;&rcy;&icy;&lcy;&ocy;&zhcy;&iecy;&ncy;&icy;&iecy;"/>
+<gentext key="appendix" text="&pcy;&rcy;&icy;&lcy;&ocy;&zhcy;&iecy;&ncy;&icy;&iecy;"/>
+<gentext key="Article" text="&Scy;&tcy;&acy;&tcy;&icy;&yacy;"/>
+<gentext key="article" text="&Scy;&tcy;&acy;&tcy;&icy;&yacy;"/>
+<gentext key="Bibliography" text="&Lcy;&icy;&tcy;&iecy;&rcy;&acy;&tcy;&ucy;&rcy;&acy;"/>
+<gentext key="bibliography" text="&Lcy;&icy;&tcy;&iecy;&rcy;&acy;&tcy;&ucy;&rcy;&acy;"/>
+<gentext key="Book" text="&Kcy;&ncy;&icy;&gcy;&acy;"/>
+<gentext key="book" text="&Kcy;&ncy;&icy;&gcy;&acy;"/>
+<gentext key="CAUTION" text="&Vcy;&Ncy;&Icy;&Mcy;&Acy;&Ncy;&Icy;&IEcy;"/>
+<gentext key="Caution" text="&Vcy;&ncy;&icy;&mcy;&acy;&ncy;&icy;&iecy;"/>
+<gentext key="caution" text="&Vcy;&ncy;&icy;&mcy;&acy;&ncy;&icy;&iecy;"/>
+<gentext key="Chapter" text="&Gcy;&lcy;&acy;&vcy;&acy;"/>
+<gentext key="chapter" text="&gcy;&lcy;&acy;&vcy;&acy;"/>
+<gentext key="Colophon" text="Colophon"/>
+<gentext key="colophon" text="Colophon"/>
+<gentext key="Copyright" text="Copyright"/>
+<gentext key="copyright" text="Copyright"/>
+<gentext key="Dedication" text="&Pcy;&ocy;&scy;&vcy;&iecy;&shchcy;&iecy;&ncy;&icy;&iecy;"/>
+<gentext key="dedication" text="&Pcy;&ocy;&scy;&vcy;&iecy;&shchcy;&iecy;&ncy;&icy;&iecy;"/>
+<gentext key="Edition" text="&Icy;&zcy;&dcy;&acy;&ncy;&icy;&iecy;"/>
+<gentext key="edition" text="&Icy;&zcy;&dcy;&acy;&ncy;&icy;&iecy;"/>
+<gentext key="Equation" text="&Fcy;&ocy;&rcy;&mcy;&ucy;&lcy;&acy;"/>
+<gentext key="equation" text="&Fcy;&ocy;&rcy;&mcy;&ucy;&lcy;&acy;"/>
+<gentext key="Example" text="&Pcy;&rcy;&icy;&mcy;&iecy;&rcy;"/>
+<gentext key="example" text="&Pcy;&rcy;&icy;&mcy;&iecy;&rcy;"/>
+<gentext key="Figure" text="&Fcy;&icy;&gcy;&ucy;&rcy;&acy;"/>
+<gentext key="figure" text="&Fcy;&icy;&gcy;&ucy;&rcy;&acy;"/>
+<gentext key="Glossary" text="&Tcy;&iecy;&rcy;&mcy;&icy;&ncy;&ocy;&lcy;&ocy;&gcy;&icy;&chcy;&iecy;&ncy; &rcy;&iecy;&chcy;&ncy;&icy;&kcy;"/>
+<gentext key="glossary" text="&Tcy;&iecy;&rcy;&mcy;&icy;&ncy;&ocy;&lcy;&ocy;&gcy;&icy;&chcy;&iecy;&ncy; &rcy;&iecy;&chcy;&ncy;&icy;&kcy;"/>
+<gentext key="GlossSee" text="&vcy;&zhcy;."/>
+<gentext key="glosssee" text="&vcy;&zhcy;."/>
+<gentext key="GlossSeeAlso" text="&vcy;&zhcy;. &scy;&hardcy;&shchcy;&ocy;"/>
+<gentext key="glossseealso" text="&vcy;&zhcy;. &scy;&hardcy;&shchcy;&ocy;"/>
+<gentext key="IMPORTANT" text="&Vcy;&Acy;&ZHcy;&Ncy;&Ocy;"/>
+<gentext key="important" text="&Vcy;&acy;&zhcy;&ncy;&ocy;"/>
+<gentext key="Important" text="&Vcy;&acy;&zhcy;&ncy;&ocy;"/>
+<gentext key="Index" text="&Icy;&ncy;&dcy;&iecy;&kcy;&scy;"/>
+<gentext key="index" text="&Icy;&ncy;&dcy;&iecy;&kcy;&scy;"/>
+<gentext key="ISBN" text="ISBN"/>
+<gentext key="isbn" text="ISBN"/>
+<gentext key="LegalNotice" text="&Acy;&vcy;&tcy;&ocy;&rcy;&scy;&kcy;&icy; &pcy;&rcy;&acy;&vcy;&acy;"/>
+<gentext key="legalnotice" text="&Acy;&vcy;&tcy;&ocy;&rcy;&scy;&kcy;&icy; &pcy;&rcy;&acy;&vcy;&acy;"/>
+<gentext key="MsgAud" text="Audience"/>
+<gentext key="msgaud" text="Audience"/>
+<gentext key="MsgLevel" text="&Ncy;&icy;&vcy;&ocy;"/>
+<gentext key="msglevel" text="&Ncy;&icy;&vcy;&ocy;"/>
+<gentext key="MsgOrig" text="&Icy;&zcy;&tcy;&ocy;&chcy;&ncy;&icy;&kcy;"/>
+<gentext key="msgorig" text="&Icy;&zcy;&tcy;&ocy;&chcy;&ncy;&icy;&kcy;"/>
+<gentext key="NOTE" text="&Zcy;&Acy;&Bcy;&IEcy;&Lcy;&IEcy;&ZHcy;&Kcy;&Acy;"/>
+<gentext key="Note" text="&Zcy;&acy;&bcy;&iecy;&lcy;&iecy;&zhcy;&kcy;&acy;"/>
+<gentext key="note" text="&Zcy;&acy;&bcy;&iecy;&lcy;&iecy;&zhcy;&kcy;&acy;"/>
+<gentext key="Part" text="&CHcy;&acy;&scy;&tcy;"/>
+<gentext key="part" text="&CHcy;&acy;&scy;&tcy;"/>
+<gentext key="Preface" text="&Pcy;&rcy;&iecy;&dcy;&gcy;&ocy;&vcy;&ocy;&rcy;"/>
+<gentext key="preface" text="&Pcy;&rcy;&iecy;&dcy;&gcy;&ocy;&vcy;&ocy;&rcy;"/>
+<gentext key="Procedure" text="&Pcy;&rcy;&ocy;&tscy;&iecy;&dcy;&ucy;&rcy;&acy;"/>
+<gentext key="procedure" text="&Pcy;&rcy;&ocy;&tscy;&iecy;&dcy;&ucy;&rcy;&acy;"/>
+<gentext key="ProductionSet" text="Production"/>
+<gentext key="Published" text="&Icy;&zcy;&dcy;&acy;&dcy;&iecy;&ncy;"/>
+<gentext key="published" text="&Icy;&zcy;&dcy;&acy;&dcy;&iecy;&ncy;"/>
+<gentext key="Question" text="&Vcy;:"/>
+<gentext key="question" text="&Vcy;:"/>
+<gentext key="RefEntry" text=""/>
+<gentext key="refentry" text=""/>
+<gentext key="Reference" text="&Scy;&pcy;&rcy;&acy;&vcy;&ocy;&chcy;&ncy;&icy;&kcy;"/>
+<gentext key="reference" text="&Scy;&pcy;&rcy;&acy;&vcy;&ocy;&chcy;&ncy;&icy;&kcy;"/>
+<gentext key="RefName" text="&Ncy;&acy;&zcy;&vcy;&acy;&ncy;&icy;&iecy;"/>
+<gentext key="refname" text="&Ncy;&acy;&zcy;&vcy;&acy;&ncy;&icy;&iecy;"/>
+<gentext key="RefSection" text=""/>
+<gentext key="refsection" text=""/>
+<gentext key="RefSynopsisDiv" text="&Scy;&icy;&ncy;&tcy;&acy;&kcy;&scy;&icy;&scy;"/>
+<gentext key="refsynopsisdiv" text="&Scy;&icy;&ncy;&tcy;&acy;&kcy;&scy;&icy;&scy;"/>
+<gentext key="RevHistory" text="&Pcy;&rcy;&ocy;&mcy;&iecy;&ncy;&icy;"/>
+<gentext key="revhistory" text="&Pcy;&rcy;&ocy;&mcy;&iecy;&ncy;&icy;"/>
+<gentext key="revision" text="&Icy;&zcy;&dcy;&acy;&ncy;&icy;&iecy;"/>
+<gentext key="Revision" text="&Icy;&zcy;&dcy;&acy;&ncy;&icy;&iecy;"/>
+<gentext key="sect1" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
+<gentext key="sect2" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
+<gentext key="sect3" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
+<gentext key="sect4" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
+<gentext key="sect5" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
+<gentext key="section" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
+<gentext key="Section" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
+<gentext key="see" text="&vcy;&zhcy;."/>
+<gentext key="seealso" text="&vcy;&zhcy;. &scy;&hardcy;&shchcy;&ocy;"/>
+<gentext key="set" text="&Ucy;&kcy;&acy;&zcy;&acy;&tcy;&iecy;&lcy;"/>
+<gentext key="Set" text="&Ucy;&kcy;&acy;&zcy;&acy;&tcy;&iecy;&lcy;"/>
+<gentext key="setindex" text="&Ucy;&kcy;&acy;&zcy;&acy;&tcy;&iecy;&lcy;"/>
+<gentext key="SetIndex" text="&Ucy;&kcy;&acy;&zcy;&acy;&tcy;&iecy;&lcy;"/>
+<gentext key="Sidebar" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;&icy;&tcy;&iecy;&lcy;"/>
+<gentext key="sidebar" text="&rcy;&acy;&zcy;&dcy;&iecy;&lcy;&icy;&tcy;&iecy;&lcy;"/>
+<gentext key="step" text="&Scy;&tcy;&hardcy;&pcy;&kcy;&acy;"/>
+<gentext key="Step" text="&Scy;&tcy;&hardcy;&pcy;&kcy;&acy;"/>
+<gentext key="Table" text="&Tcy;&acy;&bcy;&lcy;&icy;&tscy;&acy;"/>
+<gentext key="table" text="&Tcy;&acy;&bcy;&lcy;&icy;&tscy;&acy;"/>
+<gentext key="tip" text="&Pcy;&ocy;&zcy;&dcy;&scy;&kcy;&acy;&zcy;&kcy;&acy;"/>
+<gentext key="TIP" text="&Pcy;&Ocy;&Dcy;&Scy;&Kcy;&Acy;&Zcy;&Kcy;&Acy;"/>
+<gentext key="Tip" text="&Pcy;&ocy;&zcy;&dcy;&scy;&kcy;&acy;&zcy;&kcy;&acy;"/>
+<gentext key="Warning" text="&Vcy;&ncy;&icy;&mcy;&acy;&ncy;&icy;&iecy;"/>
+<gentext key="warning" text="&Vcy;&ncy;&icy;&mcy;&acy;&ncy;&icy;&iecy;"/>
+<gentext key="WARNING" text="&Vcy;&Ncy;&Icy;&Mcy;&Acy;&Ncy;&Icy;&IEcy;"/>
+<gentext key="and" text=""/>
+<gentext key="by" text=""/>
+<gentext key="Edited" text="&Rcy;&iecy;&dcy;&acy;&kcy;&tcy;&icy;&rcy;&acy;&ncy;&ocy; &ocy;&tcy;"/>
+<gentext key="edited" text="&Rcy;&iecy;&dcy;&acy;&kcy;&tcy;&icy;&rcy;&acy;&ncy;&ocy; &ocy;&tcy;"/>
+<gentext key="Editedby" text="&Rcy;&iecy;&dcy;&acy;&kcy;&tcy;&icy;&rcy;&acy;&ncy;&ocy; &ocy;&tcy;"/>
+<gentext key="editedby" text="&Rcy;&iecy;&dcy;&acy;&kcy;&tcy;&icy;&rcy;&acy;&ncy;&ocy; &ocy;&tcy;"/>
+<gentext key="in" text="&vcy;"/>
+<gentext key="lastlistcomma" text=","/>
+<gentext key="listcomma" text=","/>
+<gentext key="nonexistantelement" text="non-existant element"/>
+<gentext key="notes" text="&Zcy;&acy;&bcy;&iecy;&lcy;&iecy;&zhcy;&kcy;&icy;"/>
+<gentext key="Notes" text="&Zcy;&acy;&bcy;&iecy;&lcy;&iecy;&zhcy;&kcy;&icy;"/>
+<gentext key="Pgs" text="&scy;&tcy;&rcy;."/>
+<gentext key="pgs" text="&scy;&tcy;&rcy;."/>
+<gentext key="Revisedby" text="&Ocy;&dcy;&ocy;&bcy;&rcy;&iecy;&ncy;&ocy; &ocy;&tcy;: "/>
+<gentext key="revisedby" text="&Ocy;&dcy;&ocy;&bcy;&rcy;&iecy;&ncy;&ocy; &ocy;&tcy;: "/>
+<gentext key="TableNotes" text="&Zcy;&acy;&bcy;&iecy;&lcy;&iecy;&zhcy;&kcy;&icy;"/>
+<gentext key="tablenotes" text="&Zcy;&acy;&bcy;&iecy;&lcy;&iecy;&zhcy;&kcy;&icy;"/>
+<gentext key="TableofContents" text="&Scy;&hardcy;&dcy;&hardcy;&rcy;&zhcy;&acy;&ncy;&icy;&iecy;"/>
+<gentext key="tableofcontents" text="&Scy;&hardcy;&dcy;&hardcy;&rcy;&zhcy;&acy;&ncy;&icy;&iecy;"/>
+<gentext key="unexpectedelementname" text="unexpected element name"/>
+<gentext key="unsupported" text="unsupported"/>
+<gentext key="xrefto" text="xref to"/>
+<gentext key="listofequations" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &fcy;&ocy;&rcy;&mcy;&ucy;&lcy;&icy;&tcy;&iecy;"/>
+<gentext key="ListofEquations" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &fcy;&ocy;&rcy;&mcy;&ucy;&lcy;&icy;&tcy;&iecy;"/>
+<gentext key="ListofExamples" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &pcy;&rcy;&icy;&mcy;&iecy;&rcy;&icy;&tcy;&iecy;"/>
+<gentext key="listofexamples" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &pcy;&rcy;&icy;&mcy;&iecy;&rcy;&icy;&tcy;&iecy;"/>
+<gentext key="ListofFigures" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &fcy;&icy;&gcy;&ucy;&rcy;&icy;&tcy;&iecy;"/>
+<gentext key="listoffigures" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &fcy;&icy;&gcy;&ucy;&rcy;&icy;&tcy;&iecy;"/>
+<gentext key="listoftables" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &tcy;&acy;&bcy;&lcy;&icy;&tscy;&icy;&tcy;&iecy;"/>
+<gentext key="ListofTables" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &tcy;&acy;&bcy;&lcy;&icy;&tscy;&icy;&tcy;&iecy;"/>
+<gentext key="ListofUnknown" text="&Ncy;&iecy;&ocy;&pcy;&rcy;&iecy;&dcy;&iecy;&lcy;&iecy;&ncy; &scy;&pcy;&icy;&scy;&hardcy;&kcy;"/>
+<gentext key="listofunknown" text="&Ncy;&iecy;&ocy;&pcy;&rcy;&iecy;&dcy;&iecy;&lcy;&iecy;&ncy; &scy;&pcy;&icy;&scy;&hardcy;&kcy;"/>
+
+<gentext key="nav-home" text="&Ncy;&acy;&chcy;&acy;&lcy;&ocy;"/>
+<gentext key="nav-next" text="&Scy;&lcy;&iecy;&dcy;&vcy;&acy;&shchcy;&acy; &scy;&tcy;&rcy;&acy;&ncy;&icy;&tscy;&acy;"/>
+<gentext key="nav-next-sibling" text="&Scy;&lcy;&iecy;&dcy;&vcy;&acy;&shchcy; &rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
+<gentext key="nav-prev" text="&Pcy;&rcy;&iecy;&dcy;&icy;&shcy;&ncy;&acy; &scy;&tcy;&rcy;&acy;&ncy;&icy;&tscy;&acy;"/>
+<gentext key="nav-prev-sibling" text="&Pcy;&rcy;&iecy;&dcy;&icy;&shcy;&iecy;&ncy; &rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
+<gentext key="nav-up" text="&Ncy;&acy;&chcy;&acy;&lcy;&ocy; &ncy;&acy; &rcy;&acy;&zcy;&dcy;&iecy;&lcy;&acy;"/>
+<gentext key="nav-toc" text="&Scy;&hardcy;&dcy;&hardcy;&rcy;&zhcy;&acy;&ncy;&icy;&iecy;"/>
+
+<gentext key="Draft" text="&CHcy;&iecy;&rcy;&ncy;&ocy;&vcy;&acy;"/>
+<gentext key="above" text="&pcy;&ocy;-&gcy;&ocy;&rcy;&iecy;"/>
+<gentext key="below" text="&pcy;&ocy;-&dcy;&ocy;&lcy;&ucy;"/>
+<gentext key="sectioncalled" text="the section called"/>
+<gentext key="index symbols" text="&Scy;&icy;&mcy;&vcy;&ocy;&lcy;&icy;"/>
+
+<gentext key="lowercase.alpha" text="&acy;&bcy;&vcy;&gcy;&dcy;&iecy;&zhcy;&zcy;&icy;&jcy;&kcy;&lcy;&mcy;&ncy;&ocy;&pcy;&rcy;&scy;&tcy;&ucy;&fcy;&khcy;&tscy;&chcy;&shcy;&shchcy;&hardcy;&ycy;&softcy;&ecy;&yucy;&yacy;"/>
+<gentext key="uppercase.alpha" text="&Acy;&Bcy;&Vcy;&Gcy;&Dcy;&IEcy;&ZHcy;&Zcy;&Icy;&Jcy;&Kcy;&Lcy;&Mcy;&Ncy;&Ocy;&Pcy;&Rcy;&Scy;&Tcy;&Ucy;&Fcy;&KHcy;&TScy;&CHcy;&SHcy;&SHCHcy;&HARDcy;&Ycy;&SOFTcy;&Ecy;&YUcy;&YAcy;"/>
+
+<dingbat key="startquote" text="&#8220;"/>
+<dingbat key="endquote" text="&#8221;"/>
+<dingbat key="nestedstartquote" text="&#8216;"/>
+<dingbat key="nestedendquote" text="&#8217;"/>
+<dingbat key="bullet" text="&#8226;"/>
+
+
+<context name="styles">
+
+<template name="person-name" text="first-last"/>
+
+<context>
+
+
+<context name="title">
+
+<template name="abstract" text="%t"/>
+<template name="answer" text="%t"/>
+<template name="appendix" text="&Pcy;&rcy;&icy;&lcy;&ocy;&zhcy;&iecy;&ncy;&icy;&iecy;&#160;%n.&#160;%t"/>
+<template name="article" text="%t"/>
+<template name="authorblurb" text="%t"/>
+<template name="bibliodiv" text="%t"/>
+<template name="biblioentry" text="%t"/>
+<template name="bibliography" text="%t"/>
+<template name="bibliomixed" text="%t"/>
+<template name="bibliomset" text="%t"/>
+<template name="biblioset" text="%t"/>
+<template name="blockquote" text="%t"/>
+<template name="book" text="%t"/>
+<template name="calloutlist" text="%t"/>
+<template name="caution" text="%t"/>
+<template name="chapter" text="&Gcy;&lcy;&acy;&vcy;&acy;&#160;%n.&#160;%t"/>
+<template name="colophon" text="%t"/>
+<template name="dedication" text="%t"/>
+<template name="equation" text="&Fcy;&ocy;&rcy;&mcy;&ucy;&lcy;&acy;&#160;%n.&#160;%t"/>
+<template name="example" text="&Pcy;&rcy;&icy;&mcy;&iecy;&rcy;&#160;%n.&#160;%t"/>
+<template name="figure" text="&Fcy;&icy;&gcy;&ucy;&rcy;&acy;&#160;%n.&#160;%t"/>
+<template name="formalpara" text="%t"/>
+<template name="glossary" text="%t"/>
+<template name="glossdiv" text="%t"/>
+<template name="glossentry" text="%t"/>
+<template name="important" text="%t"/>
+<template name="index" text="%t"/>
+<template name="indexdiv" text="%t"/>
+<template name="itemizedlist" text="%t"/>
+<template name="legalnotice" text="%t"/>
+<template name="listitem" text=""/>
+<template name="lot" text="%t"/>
+<template name="msg" text="%t"/>
+<template name="msgexplan" text="%t"/>
+<template name="msgmain" text="%t"/>
+<template name="msgrel" text="%t"/>
+<template name="msgset" text="%t"/>
+<template name="msgsub" text="%t"/>
+<template name="note" text="%t"/>
+<template name="orderedlist" text="%t"/>
+<template name="part" text="&CHcy;&acy;&scy;&tcy;&#160;%n.&#160;%t"/>
+<template name="partintro" text="%t"/>
+<template name="preface" text="%t"/>
+<template name="procedure" text="%t"/>
+<template name="procedure.formal" text="&Pcy;&rcy;&ocy;&tscy;&iecy;&dcy;&ucy;&rcy;&acy;&#160;%n.&#160;%t"/>
+<template name="productionset" text="%t"/>
+<template name="productionset.formal" text="Production&#160;%n"/>
+<template name="qandadiv" text="%t"/>
+<template name="qandaentry" text="%t"/>
+<template name="qandaset" text="%t"/>
+<template name="question" text="%t"/>
+<template name="refentry" text="%t"/>
+<template name="reference" text="%t"/>
+<template name="refsection" text="%t"/>
+<template name="refsect1" text="%t"/>
+<template name="refsect2" text="%t"/>
+<template name="refsect3" text="%t"/>
+<template name="refsynopsisdiv" text="%t"/>
+<template name="refsynopsisdivinfo" text="%t"/>
+<template name="segmentedlist" text="%t"/>
+<template name="set" text="%t"/>
+<template name="setindex" text="%t"/>
+<template name="sidebar" text="%t"/>
+<template name="step" text="%t"/>
+<template name="table" text="&Tcy;&acy;&bcy;&lcy;&icy;&tscy;&acy;&#160;%n.&#160;%t"/>
+<template name="tip" text="%t"/>
+<template name="toc" text="%t"/>
+<template name="variablelist" text="%t"/>
+<template name="varlistentry" text=""/>
+<template name="warning" text="%t"/>
+
+</context>
+
+
+<context name="title-unnumbered">
+
+<template name="appendix" text="%t"/>
+<template name="bridgehead" text="%t"/>
+<template name="chapter" text="%t"/>
+<template name="sect1" text="%t"/>
+<template name="sect2" text="%t"/>
+<template name="sect3" text="%t"/>
+<template name="sect4" text="%t"/>
+<template name="sect5" text="%t"/>
+<template name="section" text="%t"/>
+<template name="simplesect" text="%t"/>
+
+<context>
+
+
+<context name="title-numbered">
+
+<template name="appendix" text="&Pcy;&rcy;&icy;&lcy;&ocy;&zhcy;&iecy;&ncy;&icy;&iecy;&#160;%n.&#160;%t"/>
+<template name="bridgehead" text="%n.&#160;%t"/>
+<template name="chapter" text="&Gcy;&lcy;&acy;&vcy;&acy;&#160;%n.&#160;%t"/>
+<template name="sect1" text="%n.&#160;%t"/>
+<template name="sect2" text="%n.&#160;%t"/>
+<template name="sect3" text="%n.&#160;%t"/>
+<template name="sect4" text="%n.&#160;%t"/>
+<template name="sect5" text="%n.&#160;%t"/>
+<template name="section" text="%n.&#160;%t"/>
+<template name="simplesect" text="%t"/>
+
+</context>
+
+
+<context name="subtitle">
+
+<template name="appendix" text="%s"/>
+<template name="article" text="%s"/>
+<template name="bibliodiv" text="%s"/>
+<template name="biblioentry" text="%s"/>
+<template name="bibliography" text="%s"/>
+<template name="bibliomixed" text="%s"/>
+<template name="bibliomset" text="%s"/>
+<template name="biblioset" text="%s"/>
+<template name="book" text="%s"/>
+<template name="chapter" text="%s"/>
+<template name="colophon" text="%s"/>
+<template name="dedication" text="%s"/>
+<template name="glossary" text="%s"/>
+<template name="glossdiv" text="%s"/>
+<template name="index" text="%s"/>
+<template name="indexdiv" text="%s"/>
+<template name="lot" text="%s"/>
+<template name="part" text="%s"/>
+<template name="partintro" text="%s"/>
+<template name="preface" text="%s"/>
+<template name="refentry" text="%s"/>
+<template name="reference" text="%s"/>
+<template name="refsection" text="%s"/>
+<template name="refsect1" text="%s"/>
+<template name="refsect2" text="%s"/>
+<template name="refsect3" text="%s"/>
+<template name="refsynopsisdiv" text="%s"/>
+<template name="sect1" text="%s"/>
+<template name="sect2" text="%s"/>
+<template name="sect3" text="%s"/>
+<template name="sect4" text="%s"/>
+<template name="sect5" text="%s"/>
+<template name="section" text="%s"/>
+<template name="set" text="%s"/>
+<template name="setindex" text="%s"/>
+<template name="sidebar" text="%s"/>
+<template name="simplesect" text="%s"/>
+<template name="toc" text="%s"/>
+
+<context>
+
+
+<context name="xref">
+
+<template name="abstract" text="%t"/>
+<template name="answer" text="&Ocy;:&#160;%n"/>
+<template name="appendix" text="&Pcy;&rcy;&icy;&lcy;&ocy;&zhcy;&iecy;&ncy;&icy;&iecy;&#160;%n"/>
+<template name="article" text="%t"/>
+<template name="authorblurb" text="%t"/>
+<template name="bibliodiv" text="%t"/>
+<template name="bibliography" text="%t"/>
+<template name="bibliomset" text="%t"/>
+<template name="biblioset" text="%t"/>
+<template name="blockquote" text="%t"/>
+<template name="book" text="%t"/>
+<template name="calloutlist" text="%t"/>
+<template name="caution" text="%t"/>
+<template name="chapter" text="&Gcy;&lcy;&acy;&vcy;&acy;&#160;%n"/>
+<template name="colophon" text="%t"/>
+<template name="constraintdef" text="%t"/>
+<template name="dedication" text="%t"/>
+<template name="equation" text="&Fcy;&ocy;&rcy;&mcy;&ucy;&lcy;&acy;&#160;%n"/>
+<template name="example" text="&Pcy;&rcy;&icy;&mcy;&iecy;&rcy;&#160;%n"/>
+<template name="figure" text="&Fcy;&icy;&gcy;&ucy;&rcy;&acy;&#160;%n"/>
+<template name="formalpara" text="%t"/>
+<template name="glossary" text="%t"/>
+<template name="glossdiv" text="%t"/>
+<template name="important" text="%t"/>
+<template name="index" text="%t"/>
+<template name="indexdiv" text="%t"/>
+<template name="itemizedlist" text="%t"/>
+<template name="legalnotice" text="%t"/>
+<template name="listitem" text="%n"/>
+<template name="lot" text="%t"/>
+<template name="msg" text="%t"/>
+<template name="msgexplan" text="%t"/>
+<template name="msgmain" text="%t"/>
+<template name="msgrel" text="%t"/>
+<template name="msgset" text="%t"/>
+<template name="msgsub" text="%t"/>
+<template name="note" text="%t"/>
+<template name="orderedlist" text="%t"/>
+<template name="part" text="&CHcy;&acy;&scy;&tcy;&#160;%n"/>
+<template name="partintro" text="%t"/>
+<template name="preface" text="%t"/>
+<template name="procedure" text="&Pcy;&rcy;&ocy;&tscy;&iecy;&dcy;&ucy;&rcy;&acy;&#160;%n"/>
+<template name="productionset" text="%t"/>
+<template name="qandadiv" text="%t"/>
+<template name="qandaentry" text="&Vcy;:&#160;%n"/>
+<template name="qandaset" text="%t"/>
+<template name="question" text="&Vcy;:&#160;%n"/>
+<template name="reference" text="%t"/>
+<template name="refsection" text="%t"/>
+<template name="refsect1" text="%t"/>
+<template name="refsect2" text="%t"/>
+<template name="refsect3" text="%t"/>
+<template name="refsynopsisdiv" text="%t"/>
+<template name="segmentedlist" text="%t"/>
+<template name="set" text="%t"/>
+<template name="setindex" text="%t"/>
+<template name="sidebar" text="%t"/>
+<template name="table" text="&Tcy;&acy;&bcy;&lcy;&icy;&tscy;&acy;&#160;%n"/>
+<template name="tip" text="%t"/>
+<template name="toc" text="%t"/>
+<template name="variablelist" text="%t"/>
+<template name="varlistentry" text="%n"/>
+<template name="warning" text="%t"/>
+<template name="page.citation" text=" [%p]"/>
+
+</context>
+
+
+<context name="section-xref">
+
+<template name="bridgehead" text="&#8220;%t&#8221;"/>
+<template name="refsection" text="&#8220;%t&#8221;"/>
+<template name="refsect1" text="&#8220;%t&#8221;"/>
+<template name="refsect2" text="&#8220;%t&#8221;"/>
+<template name="refsect3" text="&#8220;%t&#8221;"/>
+<template name="sect1" text="&#8220;%t&#8221;"/>
+<template name="sect2" text="&#8220;%t&#8221;"/>
+<template name="sect3" text="&#8220;%t&#8221;"/>
+<template name="sect4" text="&#8220;%t&#8221;"/>
+<template name="sect5" text="&#8220;%t&#8221;"/>
+<template name="section" text="&#8220;%t&#8221;"/>
+<template name="simplesect" text="&#8220;%t&#8221;"/>
+
+</context>
+
+
+<context name="section-xref-numbered">
+
+<template name="bridgehead" text="&#8220;%t&#8221;"/>
+<template name="refsection" text="&#8220;%t&#8221;"/>
+<template name="refsect1" text="&#8220;%t&#8221;"/>
+<template name="refsect2" text="&#8220;%t&#8221;"/>
+<template name="refsect3" text="&#8220;%t&#8221;"/>
+<template name="sect1" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;&#160;%n"/>
+<template name="sect2" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;&#160;%n"/>
+<template name="sect3" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;&#160;%n"/>
+<template name="sect4" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;&#160;%n"/>
+<template name="sect5" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;&#160;%n"/>
+<template name="section" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;&#160;%n"/>
+<template name="simplesect" text="&#8220;%t&#8221;"/>
+
+</context>
+
+
+<context name="authorgroup">
+
+<template name="sep" text=", "/>
+<template name="sep2" text=" "/>
+<template name="seplast" text=" "/>
+
+</context>
+
+
+<context name="glossary">
+
+<template name="see" text="&vcy;&zhcy;. "/>
+<template name="seealso" text="&vcy;&zhcy;. &scy;&hardcy;&shchcy;&ocy; "/>
+
+</context>
+
+
+<context name="msgset">
+
+<template name="MsgAud" text="Audience: "/>
+<template name="MsgLevel" text="Level: "/>
+<template name="MsgOrig" text="Origin: "/>
+
+</context>
+
+
+</locale>
