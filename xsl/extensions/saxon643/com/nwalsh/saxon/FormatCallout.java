@@ -46,7 +46,7 @@ public abstract class FormatCallout {
   public String areaLabel(Element area) {
     String label = null;
 
-    if (area.getAttribute("label") != null) {
+    if (area.hasAttribute("label")) {
       // If this area has a label, use it
       label = area.getAttribute("label");
     } else {
@@ -54,7 +54,7 @@ public abstract class FormatCallout {
       Element parent = (Element) area.getParentNode();
       if (parent != null
 	  && parent.getLocalName().equalsIgnoreCase("areaset")
-	  && parent.getAttribute("label") != null) {
+	  && parent.hasAttribute("label")) {
 	label = parent.getAttribute("label");
       }
     }
