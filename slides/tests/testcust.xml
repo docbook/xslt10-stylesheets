@@ -1,5 +1,8 @@
 <?xml version='1.0'?>
 <!DOCTYPE slides SYSTEM "../slides-custom.dtd">
+<?dbhtml graphics-dir="../graphics"?>
+<?dbhtml css-stylesheet="../browser/slides.css"?>
+<?dbhtml script-dir="../browser"?>
 <slides>
 <slidesinfo>
 <title>Test Slides Title</title>

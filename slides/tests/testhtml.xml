@@ -1,0 +1,64 @@
+<?xml version='1.0'?>
+<?dbhtml graphics-dir="../graphics"?>
+<?dbhtml css-stylesheet="../browser/slides.css"?>
+<?dbhtml script-dir="../browser"?>
+<slides xmlns:html='http://www.w3.org/1999/xhtml'>
+<slidesinfo>
+  <title>HTML Test Slides Title</title>
+  <copyright><year>2001</year><holder>Norman Walsh</holder></copyright>
+</slidesinfo>
+
+<speakernotes>
+<para>Welcome the audience</para>
+</speakernotes>
+
+<section><title>Section 1</title>
+
+<speakernotes>
+<para>Introduce the section</para>
+</speakernotes>
+
+<foil><title>Test Slides Title 1</title>
+
+<speakernotes>
+<para>Tell a funny joke. Remember, I said a funny one.</para>
+</speakernotes>
+
+<para>...</para>
+</foil>
+
+<foil><title>Test Slides Title 2</title>
+<para>...</para>
+<screen>
+this is a screen
+</screen>
+</foil>
+
+</section>
+<section><title>Section 2</title>
+
+<foil><title>Test Slides Title 1</title>
+<para>...</para>
+</foil>
+
+<foil><title>Test Slides Title 2</title>
+<para>...</para>
+<screen>
+this is a screen
+</screen>
+</foil>
+
+<foil><title>Test Slides Title 3</title>
+<para>...</para>
+<screen>
+this is a screen
+</screen>
+
+<html:p>This foil contains some XHTML:</html:p>
+<html:ol><html:li>item 1</html:li><html:li>item 2</html:li></html:ol>
+
+</foil>
+
+</section>
+
+</slides>
