@@ -159,8 +159,8 @@ borders, otherwise they don't.</para>
     <td align="left" valign="top" width="30%">
       <xsl:choose>
 	<xsl:when test="rhs/lineannotation|constraint">
-	  <xsl:apply-templates select="rhs/lineannotation" mode="rhslo"/>
-	  <xsl:apply-templates select="constraint"/>
+          <xsl:apply-templates select="rhs/lineannotation" mode="rhslo"/>
+          <xsl:apply-templates select="constraint"/>
 	</xsl:when>
 	<xsl:otherwise>
 	  <xsl:text>&#160;</xsl:text>
@@ -201,6 +201,10 @@ borders, otherwise they don't.</para>
 
 <xsl:template match="rhs">
   <xsl:apply-templates/>
+  <xsl:if test="following-sibling::rhs">
+    <xsl:text> |</xsl:text>
+    <br/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="nonterminal">
@@ -280,6 +284,7 @@ borders, otherwise they don't.</para>
   <xsl:text>/*&#160;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>&#160;*/</xsl:text>
+  <br/>
 </xsl:template>
 
 <xsl:template match="constraint">
@@ -300,9 +305,6 @@ borders, otherwise they don't.</para>
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:if test="preceding-sibling::constraint">
-    <br/>
-  </xsl:if>
   <xsl:text>[&#160;</xsl:text>
 
   <xsl:choose>
@@ -326,6 +328,9 @@ borders, otherwise they don't.</para>
     <xsl:apply-templates select="$target" mode="title.markup"/>
   </a>
   <xsl:text>&#160;]</xsl:text>
+  <xsl:if test="following-sibling::constraint">
+    <br/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="constraintdef">
