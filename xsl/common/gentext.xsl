@@ -101,12 +101,14 @@
     <xsl:apply-templates select="." mode="object.xref.template"/>
   </xsl:variable>
 
+<!--
   <xsl:message>
     <xsl:text>object.xref.markup: </xsl:text>
     <xsl:value-of select="local-name(.)"/>
     <xsl:text>: </xsl:text>
     <xsl:value-of select="$template"/>
   </xsl:message>
+-->
 
   <xsl:call-template name="substitute-markup">
     <xsl:with-param name="template" select="$template"/>
@@ -121,12 +123,14 @@
     <xsl:apply-templates select="." mode="object.xref.template"/>
   </xsl:variable>
 
+<!--
   <xsl:message>
     <xsl:text>object.xref.markup: </xsl:text>
     <xsl:value-of select="local-name(.)"/>
     <xsl:text>: </xsl:text>
     <xsl:value-of select="$template"/>
   </xsl:message>
+-->
 
   <xsl:call-template name="substitute-markup">
     <xsl:with-param name="template" select="$template"/>
