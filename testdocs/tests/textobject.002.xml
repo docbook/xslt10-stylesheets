@@ -13,7 +13,7 @@
 <para>The XML source for this document is:</para>
 
 <programlisting linenumbering="numbered"><textobject>
-<textdata fileref="textobject.001.xml"/>
+<textdata fileref="http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"/>
 </textobject></programlisting>
 
 </article>
