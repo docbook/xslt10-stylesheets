@@ -191,6 +191,11 @@
       <xsl:apply-templates select="$node/abbrev[1]"/>
       <xsl:text>] </xsl:text>
     </xsl:when>
+    <xsl:when test="$node/@xreflabel">
+      <xsl:text>[</xsl:text>
+      <xsl:value-of select="$node/@xreflabel"/>
+      <xsl:text>] </xsl:text>
+    </xsl:when>
     <xsl:when test="$node/@id">
       <xsl:text>[</xsl:text>
       <xsl:value-of select="$node/@id"/>
