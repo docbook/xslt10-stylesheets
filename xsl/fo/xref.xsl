@@ -659,7 +659,7 @@
 
 <xsl:template match="olink">
   <xsl:param name="target.database"
-      select="document($target.database.document)"/>
+      select="document($target.database.document, /)"/>
 
   <xsl:variable name="localinfo" select="@localinfo"/>
 
