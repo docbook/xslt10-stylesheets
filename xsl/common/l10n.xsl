@@ -308,6 +308,7 @@
 <xsl:template name="gentext.template">
   <xsl:param name="context" select="'default'"/>
   <xsl:param name="name" select="'default'"/>
+  <xsl:param name="origname" select="$name"/>
   <xsl:param name="purpose"/>
   <xsl:param name="xrefstyle"/>
   <xsl:param name="referrer"/>
@@ -368,21 +369,32 @@
     <xsl:when test="$template.node/@text">
       <xsl:value-of select="$template.node/@text"/>
     </xsl:when>
-<!-- I'm not sure this is a good idea ...
-    <xsl:when test="$context = 'xref'">
-      <xsl:text>%t</xsl:text>
-    </xsl:when>
--->
     <xsl:otherwise>
-      <xsl:message>
-        <xsl:text>No template named "</xsl:text>
-        <xsl:value-of select="$name"/>
-        <xsl:text>" exists in the context named "</xsl:text>
-        <xsl:value-of select="$context"/>
-        <xsl:text>" in the "</xsl:text>
-        <xsl:value-of select="$lang"/>
-        <xsl:text>" localization.</xsl:text>
-      </xsl:message>
+      <xsl:choose>
+        <xsl:when test="contains($name, '/')">
+          <xsl:call-template name="gentext.template">
+            <xsl:with-param name="context" select="$context"/>
+            <xsl:with-param name="name" select="substring-after($name, '/')"/>
+            <xsl:with-param name="origname" select="$origname"/>
+            <xsl:with-param name="purpose" select="$purpose"/>
+            <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+            <xsl:with-param name="referrer" select="$referrer"/>
+            <xsl:with-param name="lang" select="$lang"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:message>
+            <xsl:text>No template for "</xsl:text>
+            <xsl:value-of select="$origname"/>
+            <xsl:text>" (or any of its leaves) exists
+in the context named "</xsl:text>
+            <xsl:value-of select="$context"/>
+            <xsl:text>" in the "</xsl:text>
+            <xsl:value-of select="$lang"/>
+            <xsl:text>" localization.</xsl:text>
+          </xsl:message>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
