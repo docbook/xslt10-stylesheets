@@ -31,6 +31,7 @@
 <!ENTITY sl SYSTEM "sl.xml">
 <!ENTITY sr SYSTEM "sr.xml">
 <!ENTITY sv SYSTEM "sv.xml">
+<!ENTITY th SYSTEM "th.xml">
 <!ENTITY tr SYSTEM "tr.xml">
 <!ENTITY uk SYSTEM "uk.xml">
 <!ENTITY vi SYSTEM "vi.xml">
@@ -70,6 +71,7 @@
 &sl;
 &sr;
 &sv;
+&th;
 &tr;
 &uk;
 &vi;
