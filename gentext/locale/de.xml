@@ -43,8 +43,8 @@
 <gentext key="CAUTION" text="ACHTUNG"/>
 <gentext key="Chapter" text="Kapitel"/>
 <gentext key="chapter" text="Kapitel"/>
-<gentext key="Colophon" text="Colophon"/>
-<gentext key="colophon" text="Colophon"/> <!-- en -->
+<gentext key="Colophon" text="Kolophon"/>
+<gentext key="colophon" text="Kolophon"/> 
 <gentext key="Copyright" text="Copyright"/>
 <gentext key="copyright" text="Copyright"/>
 <gentext key="Dedication" text="Widmung"/>
@@ -102,18 +102,18 @@
 <gentext key="RefSection" text="Abschnitt"/>
 <gentext key="refsection" text="Abschnitt"/>
 <gentext key="RefSynopsisDiv" text="Synopsis"/>
-<gentext key="refsynopsisdiv" text="Synopsis"/> <!--en-->
+<gentext key="refsynopsisdiv" text="Synopsis"/> 
 <gentext key="RevHistory" text="Versionsgeschichte"/>
 <gentext key="revhistory" text="Versionsgeschichte"/>
 <gentext key="Revision" text="Version"/>
 <gentext key="revision" text="Version"/>
 <gentext key="Section" text="Abschnitt"/>
 <gentext key="section" text="Abschnitt"/>
-<gentext key="sect1" text="Section"/> <!-- en -->
-<gentext key="sect2" text="Section"/> <!-- en -->
-<gentext key="sect3" text="Section"/> <!-- en -->
-<gentext key="sect4" text="Section"/> <!-- en -->
-<gentext key="sect5" text="Section"/> <!-- en -->
+<gentext key="sect1" text="Abschnitt"/> 
+<gentext key="sect2" text="Abschnitt"/> 
+<gentext key="sect3" text="Abschnitt"/> 
+<gentext key="sect4" text="Abschnitt"/> 
+<gentext key="sect5" text="Abschnitt"/> 
 <gentext key="see" text="Siehe"/>
 <gentext key="See" text="Siehe"/>
 <gentext key="SeeAlso" text="Siehe auch"/>
@@ -178,14 +178,14 @@
 <gentext key="nav-prev-sibling" text="Schnell zur&uuml;ck"/>
 <gentext key="nav-up" text="Nach oben"/>
 
-<gentext key="sectioncalled" text="the section called"/> <!-- en -->
-<gentext key="Draft"         text="Draft"/> <!-- en -->
-<gentext key="above"         text="above"/> <!-- en -->
-<gentext key="below"         text="below"/> <!-- en -->
+<gentext key="sectioncalled" text="der Abschnitt namens"/> 
+<gentext key="Draft"         text="Entwurf"/> 
+<gentext key="above"         text="oben"/> 
+<gentext key="below"         text="unten"/> 
 <gentext key="index symbols"   text="Symbole"/>
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz&#x00E4;&#x00F6;&#x00FC;&#x00DF;"/> 
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ&#x00C4;&#x00D6;&#x00DC;&#x00DF;"/> 
 
 <dingbat key="startquote" text="&#x201E;"/>
 <dingbat key="endquote" text="&#x201C;"/>
