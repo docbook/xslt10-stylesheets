@@ -17,7 +17,7 @@
 <title lang="en">Turkish</title>
 
 <para lang="tr">
-DocBook <ulink url="http://www.ucc.ie/xml/#doctype"> bir Doküman Tip
+DocBook <ulink url="http://www.ucc.ie/xml/#doctype"> bir Döküman Tip
 Tanımlamasıdır.</ulink> (DTD) <ulink
 url="http://www.oasis-open.org/">OASIS</ulink><ulink url="mailto:docbook-tc@oasis-open.org">DocBook Technical
 Committee</ulink> tarafından geliştirilir. Özellikle bilgisayar donanımı ve
@@ -35,31 +35,36 @@ alanları olan ve oldukça popüler bir DTD olmasına yol açmıştır. Pek çok
 kuruluş Docbook kullanarak tüm dünyada değişik basılı çıktılarda ve online
 formatlarda milyonlarca sayfa dokümantasyon hazırlamıştır.</para>
 
+<!-- ************************************************************
+	Note the below paragraphs had wrong charset they were not UTF-8 
+	but now they are proper UTF-8 
+***************************************************************** -->	
+
 <para lang="tr">
-DocBook, <ulink url="http://www.oasis-open.org/">Yapýsal Bilgi
-Standartlarý Geliþtirme ve Teþvik Örgütü</ulink>
+DocBook, <ulink url="http://www.oasis-open.org/">Yapısal Bilgi
+Standartları Geliştirme ve Teşvik Örgütü</ulink>
 (<foreignphrase>Organization for Advancement of Structured Information
 Standards</foreignphrase>, <foreignphrase>OASIS</foreignphrase>) 'nün
 <ulink url="mailto:docbook-tc@oasis-open.org">DocBook Teknik
-Komitesi</ulink> tarafýndan desteklenen bir <ulink
-url="http://www.ucc.ie/xml/#doctype">belge tür tanýmý</ulink>
+Komitesi</ulink> tarafından desteklenen bir <ulink
+url="http://www.ucc.ie/xml/#doctype">belge tür tanımı</ulink>
 (<foreignphrase>Document Type Definition</foreignphrase>,
-<foreignphrase>DTD</foreignphrase>) 'dýr. DocBook, özellikle biliþim
-konusunda kitap ve makale hazýrlamak için uygun iken, bu kullaným
-biçimleri ile kesinlikle sýnýrlý deðildir.
+<foreignphrase>DTD</foreignphrase>) 'dır. DocBook, özellikle bilişim
+konusunda kitap ve makale hazırlamak için uygun iken, bu kullanım
+biçimleri ile kesinlikle sınırlı değildir.
 </para>
 
 <para lang="tr">
-Büyük ve saðlam bir DTD olmasýnýn yanýsýra; temel yapýlarýnýn, bir
-<quote>kitap</quote> ý oluþturan unsurlara karþýlýk gelmesinden dolayý
-DocBook, her türlü belge hazýrlayan büyük ve büyümeye devam eden bir
-yazar kitlesince benimsenmiþtir. DocBook, birtarkým ticarî uygulamalar
-tarafýndan doðrudan ("kutudan çýkan haliyle") desteklenmekte, birçok
-serbest yazýlým ortamýnýn desteði ise hýzla geliþmektedir. Tüm bu
-özelliklerden dolayý DocBook, anlaþýlmasý kolay, baþarýlý ve yaygýn bir
-DTD olmuþtur. DocBook, dünyanýn her yerinde, birçok kuruluþ tarafýndan,
-çeþitli baský ve çevrimiçi formatlarýnda, milyonlarca sayfa
-dokümantasyon için kullanýlmaktadýr.
+Büyük ve sağlam bir DTD olmasının yanısıra; temel yapılarının, bir
+<quote>kitap</quote> ı oluşturan unsurlara karşılık gelmesinden dolayı
+DocBook, her türlü belge hazırlayan büyük ve büyümeye devam eden bir
+yazar kitlesince benimsenmiştir. DocBook, birtarkım ticarî uygulamalar
+tarafından doğrudan ("kutudan çıkan haliyle") desteklenmekte, birçok
+serbest yazılım ortamının desteği ise hızla gelişmektedir. Tüm bu
+özelliklerden dolayı DocBook, anlaşılması kolay, başarılı ve yaygın bir
+DTD olmuştur. DocBook, dünyanın her yerinde, birçok kuruluş tarafından,
+çeşitli baskı ve çevrimiçi formatlarında, milyonlarca sayfa
+dokümantasyon için kullanılmaktadır.
 </para>
 
 </chapter>
