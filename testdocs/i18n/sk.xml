@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='ISO-8859-2'?>
+<chapter lang='sk' id='skchap'>
+<chapterinfo>
+<othercredit>
+  <surname>Visnovsky</surname>
+  <firstname>Stanislav</firstname>
+  <affiliation><address><email>visnovsky@nenya.ms.mff.cuni.cz</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+<title lang="en">Slovak</title>
+
+<para lang="sk">
+DocBook je definícia <ulink url="http://www.ucc.ie/xml/#doctype">Document Type
+Definition</ulink> (DTD), o ktorú sa stará <ulink
+url="mailto:docbook-tc@oasis-open.org">Technická komisia DocBook</ulink> z <ulink
+url="http://www.oasis-open.org/">OASIS</ulink>. Veľmi dobre sa hodí
+pre vytváranie kníh a článkov o počítačoch a sofware
+(ale samozrejme sa dá použiť aj v iných oblastiach).
+</para>
+
+<para lang="sk">
+Pretože je to obsiahle a robustné DTD, a pretože jeho hlavné štruktúry
+odpovedajú predstave z čoho sa skladá
+<quote>kniha</quote>, DocBook používa rozrastajúca sa
+komunita autorov rôznych dokumentov. DocBook
+<quote>priamo</quote> podporuje veľké množstvo komerčných nástrojov a
+neustále sa rozširuje aj jeho podpora v prostredí voľne šíriteľného
+software. Preto je DocBook známe, dobre použiteľné a veľmi populárne DTD.
+Veľa organizácií po celom svete ho používa pre vytváranie miliónov
+stránok dokumentácie určených pre tlač aj pre publikáciu on-line.
+</para>
+
+</chapter>

@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<chapter lang='de' id='dechap'>
+<chapterinfo>
+<othercredit>
+  <surname>Wiedmann</surname>
+  <firstname>Michael</firstname>
+  <affiliation><address><email>michael.wiedmann@detewe.de</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+<othercredit role="translator">
+  <surname>Udemadu</surname>
+  <firstname>Katharina</firstname>
+  <affiliation><address><email>katharina.udemadu@WiredMinds.de</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+<title lang="en">German</title>
+
+<para lang="de">
+DocBook ist eine 
+<ulink url="http://www.ucc.ie/xml/#doctype">Document Type Definition</ulink> 
+(DTD) entwickelt durch das 
+<ulink url="mailto:docbook-tc@oasis-open.org">DocBook Technical
+Committee</ulink> 
+von <ulink url="http://www.oasis-open.org/">OASIS</ulink>. 
+Es ist im Speziellen gut geeignet für Bücher und Dokumente über Computer 
+Hardware und Software (obwohl es in keiner Weise auf diese Anwendungen 
+beschränkt ist).
+</para>
+
+<para lang="de">
+Weil es eine komplexe und robuste DTD ist und weil dessen wichtigsten
+Strukturen dem generellen Layout eines <quote>Buches</quote> entsprechen,
+wurde DocBook durch eine große und ständig wachsende Anzahl von Autoren
+für alle Arten von Dokumenten angenommen. DocBook wird 
+<quote>out of the box</quote> unterstützt von einer Vielzahl von 
+kommerziellen Tools und die Unterstützung durch Freie Software wächst 
+sehr schnell. Diese Merkmale machten DocBook zu einer generell einfach 
+zu verstehenden, vielfältig nützlichen und sehr populären DTD. 
+Dutzende von Organisationen benutzen DocBook zur Erzeugung von Millionen 
+Seiten von Dokumentation, in verschiedenen Druck- und Online-Formaten, 
+weltweit.
+</para>
+
+<para lang="de">
+DocBook ist eine <ulink
+url="http://www.ucc.ie/xml/#doctype">Dokumententypdefinition
+(Document Type Definition)</ulink> (DTD), die von dem  <ulink
+url="mailto:docbook-tc@oasis-open.org">Technischen DocBook Ausschuss
+(DocBook Technical Committee)</ulink> von <ulink
+url="http://www.oasis-open.org/">OASIS</ulink> gepflegt wird. Sie ist
+besonders geeignet für die Erstellung von Büchern und Artikeln, welche
+Computer
+Hard- oder Software beschreiben (ist aber nicht auf diese Anwendungen
+beschränkt).
+</para>
+
+<para lang="de">
+Weil es sich um eine umfangreiche und stabile DTD handelt,
+und weil ihre Strukturen dem üblichen Aufbau von einem
+<quote>Buch</quote> entsprechen, ist DocBook von einer
+großen und weiterhin wachsenden Anzahl von Autoren
+angenommen worden, die Dokumente aller Art erstellen.
+DocBook wird <quote>out of the box</quote> von mehreren
+kommerziellen Tools unterstützt. Zudem gibt es einen enormen
+Zuwachs bei der Unterstützung durch verschiedene freie
+Software-Umgebungen. Diese Eigenschaften zusammengenommen
+machen DocBook zu einer im allgemeinen leicht verständlichen,
+variable einsetzbaren und sehr beliebten DTD. Dutzende von
+Organisationen weltweit verwenden DocBook für die Erstellung
+von Tausenden von Seiten Dokumentation in verschiedenen
+Print- und Online-Formaten.
+</para>
+
+</chapter>

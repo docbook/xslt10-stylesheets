@@ -1,0 +1,39 @@
+<chapter lang='sv' id='svchap'>
+<chapterinfo>
+<othercredit>
+  <surname>Svensson</surname>
+  <firstname>Fredrik</firstname>
+  <affiliation><address><email>fred@ludd.luth.se</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+<title lang="en">Swedish</title>
+
+<para lang="sv">
+DocBook &auml;r en <ulink url="http://www.ucc.ie/xml/#doctype">
+Dokument Typ Definition</ulink> (DTD) utvecklad av <ulink
+url="mailto:docbook-tc@oasis-open.org">DocBooks tekiska
+kommitt&eacute;</ulink> p&aring; <ulink
+url="http://www.oasis-open.org/">OASIS</ulink>.
+Den &auml;r s&auml;rskillt v&auml; l&auml;mpad f&ouml;r b&ouml;cker och
+artiklar om dator h&aring;rdvara och mjukvara. (Den &auml;r dock inte
+begr&auml;nsad till dessa anv&auml;ndningsomr&aring;den).
+</para>
+
+<para lang="sv">
+Eftersom det &auml;r en stor och robust DTD, och eftersom huvudstrukturen
+&ouml;verenst&auml;mmer med vad som i allm&auml;nnhet innefattar en
+<quote>bok</quote>, s&aring; har DocBook blivit anv&auml;nd av en
+stor och v&auml;xande f&ouml;rsamling f&ouml;rfattare som skriver
+alla m&ouml;jliga typer av dokument.
+DocBook har <quote>out of the box</quote> st&ouml;d av flera
+komersiella verktyg, och det finns ett snabbt v&auml;xande st&ouml;d
+i flera milj&ouml;er som anv&auml;nder fri mjukvara.
+Dessa egenskaper har kombinerats f&ouml;r att g&ouml;ra DocBook en
+l&auml;tt f&ouml;rst&aring;lig, brett anv&auml;ndbar och popul&auml;r DTD.
+Dussintals organisationer anv&auml;nder DocBook f&ouml;r milliontals sidor
+dokumentation, i olika tryck och online format, &ouml;ver hela
+v&auml;rlden.
+</para>
+
+</chapter>

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<chapter lang='zh_tw' id='zh_twchap'>
+<chapterinfo>
+<othercredit>
+  <surname>Lu</surname>
+  <firstname>Hsueh-Hsiang</firstname>
+  <affiliation><address><email>lu@gate.sinica.edu.tw</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+<title lang="en">Chinese (Traditional)</title>
+
+<para>
+DocBook 是一種<ulink
+url="http://www.ucc.ie/xml/#doctype">文件格式定義</ulink>(DTD), 由<ulink
+url="http://www.oasis-open.org">OASIS</ulink>的 DocBook
+技術委員會所維護.它特別適用於有關電腦硬體及軟體的書籍和文件(雖然它決不僅限於上述應用).
+</para>
+
+<para>由於 DocBook 是一大而強韌的文件格式定義,
+且其主要結構對應於一般<quote>書本</quote>的架構觀念,
+所以已被撰寫各種文件的作者所組成大而擴展中的社群所接受.
+諸多<quote>商品化</quote>的商業工具都支援 DocBook,
+且在許多自由軟體的環境裡有快速且擴大支援 DocBook 的功能. 這些特徵使得
+DocBook 成為一個易於瞭解, 大有用處且廣受歡迎的文件格式定義.
+許多機構組織正應用 DocBook 於數以百萬計的文件資料,
+在全球或以列印或以線上格式產出.
+</para>
+
+</chapter>

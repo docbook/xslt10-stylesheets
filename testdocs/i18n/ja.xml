@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<chapter lang='ja' id='jachap'>
+<chapterinfo>
+<othercredit role="family-given">
+  <surname>SATO</surname>
+  <firstname>Hiroki</firstname>
+  <affiliation><address><email>hrs@FreeBSD.org</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+<title lang="en">Japanese</title>
+<para lang="ja">
+DocBook は <ulink url="http://www.oasis-open.org/">OASIS</ulink> の
+<ulink url="mailto:docbook-tc@oasis-open.org">DocBook Technical
+Committee</ulink> が保守管理している
+<ulink url="http://www.ucc.ie/xml/#doctype">Document Type
+Definition</ulink> (DTD) です.  この DTD は特に,
+コンピュータのハードウェアやソフトウェアに関連する書籍および
+論文の作成に適しています (ただし, もちろん
+応用範囲がそれに限定されるというわけではありません).
+</para>
+
+<para lang="ja">
+DocBook は大規模で堅牢な DTD であり, 中心となる構造は一般的な
+<quote>書籍</quote> の構成要素に対応しています.
+そのため, さまざまな文書を書いている人々のコミュニティに
+広く受け入れられています.
+また, <quote>購入してすぐに使うことができる</quote>
+DocBook に対応した商用ツールが数多く存在し,
+フリーソフトウェア環境における対応も急速に広がっています.
+DocBook にはこのような特徴があるため, 学習が容易なだけでなく,
+さまざまな場面で利用できる人気のある DTD となっているのです.
+世界中の国々では現在何十もの組織において,
+何百万ページにもわたる文書の印刷物やオンライン版の作成に
+DocBook が利用されています.
+</para>
+</chapter>
