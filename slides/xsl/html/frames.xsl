@@ -74,7 +74,9 @@
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0
                         or $overlay.logo != ''">
-            <script language="JavaScript1.2" type="text/javascript"/>
+            <script language="JavaScript1.2" type="text/javascript">
+              <xsl:text> </xsl:text>
+            </script>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
@@ -205,7 +207,9 @@ function init() {
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
-            <script language="JavaScript1.2" type="text/javascript"/>
+            <script language="JavaScript1.2" type="text/javascript">
+              <xsl:text> </xsl:text>
+            </script>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
@@ -315,7 +319,9 @@ function init() {
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
-            <script language="JavaScript1.2" type="text/javascript"/>
+            <script language="JavaScript1.2" type="text/javascript">
+              <xsl:text> </xsl:text>
+            </script>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
@@ -378,7 +384,9 @@ function init() {
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
-            <script language="JavaScript1.2" type="text/javascript"/>
+            <script language="JavaScript1.2" type="text/javascript">
+              <xsl:text> </xsl:text>
+            </script>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
@@ -440,7 +448,9 @@ function init() {
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
-            <script language="JavaScript1.2" type="text/javascript"/>
+            <script language="JavaScript1.2" type="text/javascript">
+              <xsl:text> </xsl:text>
+            </script>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
@@ -743,7 +753,9 @@ function init() {
 
         <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                       or $dynamic.toc != 0 or $active.toc != 0">
-          <script language="JavaScript1.2" type="text/javascript"/>
+          <script language="JavaScript1.2" type="text/javascript">
+            <xsl:text> </xsl:text>
+          </script>
         </xsl:if>
 
         <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
@@ -844,7 +856,9 @@ function init() {
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
-            <script language="JavaScript1.2" type="text/javascript"/>
+            <script language="JavaScript1.2" type="text/javascript">
+              <xsl:text> </xsl:text>
+            </script>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
@@ -912,7 +926,9 @@ function init() {
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
-            <script language="JavaScript1.2" type="text/javascript"/>
+            <script language="JavaScript1.2" type="text/javascript">
+              <xsl:text> </xsl:text>
+            </script>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
@@ -974,7 +990,9 @@ function init() {
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
-            <script language="JavaScript1.2" type="text/javascript"/>
+            <script language="JavaScript1.2" type="text/javascript">
+              <xsl:text> </xsl:text>
+            </script>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
@@ -1130,7 +1148,9 @@ function init() {
 
         <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                       or $dynamic.toc != 0 or $active.toc != 0">
-          <script language="JavaScript1.2" type="text/javascript"/>
+          <script language="JavaScript1.2" type="text/javascript">
+            <xsl:text> </xsl:text>
+          </script>
         </xsl:if>
 
         <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
@@ -1242,7 +1262,9 @@ function init() {
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
-            <script language="JavaScript1.2" type="text/javascript"/>
+            <script language="JavaScript1.2" type="text/javascript">
+              <xsl:text> </xsl:text>
+            </script>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
@@ -1304,7 +1326,9 @@ function init() {
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
-            <script language="JavaScript1.2" type="text/javascript"/>
+            <script language="JavaScript1.2" type="text/javascript">
+              <xsl:text> </xsl:text>
+            </script>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
@@ -1368,7 +1392,9 @@ function init() {
 
           <xsl:if test="$overlay != 0 or $keyboard.nav != 0
                         or $dynamic.toc != 0 or $active.toc != 0">
-            <script language="JavaScript1.2" type="text/javascript"/>
+            <script language="JavaScript1.2" type="text/javascript">
+              <xsl:text> </xsl:text>
+            </script>
           </xsl:if>
 
           <xsl:if test="$keyboard.nav != 0 or $dynamic.toc != 0 or $active.toc != 0">
