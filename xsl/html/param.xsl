@@ -1217,4 +1217,23 @@ will be passed through to the HTML as a class attribute on a
 <xsl:param name="olink.sysid" select="'sysid='" doc:type='string'/>
 <xsl:param name="olink.resolver" select="'/cgi-bin/olink?'" doc:type='string'/>
 
+<xsl:param name="shade.verbatim" select="0" doc:type="boolean"/>
+
+<!--
+  ;; REFENTRY shade-verbatim
+  ;; PURP Should verbatim environments be shaded?
+  ;; DESC
+  ;; If true, a table with '($shade-verbatim-attr$)' attributes will be
+  ;; wrapped around each verbatim environment.  This gives the effect
+  ;; of a shaded verbatim environment.
+  ;; /DESC
+  ;; AUTHOR N/A
+  ;; /REFENTRY
+-->
+
+<xsl:attribute-set name="shade.verbatim.style">
+  <xsl:attribute name="border">0</xsl:attribute>
+  <xsl:attribute name="bgcolor">#E0E0E0</xsl:attribute>
+</xsl:attribute-set>
+
 </xsl:stylesheet>
