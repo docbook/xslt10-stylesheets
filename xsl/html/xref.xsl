@@ -412,7 +412,9 @@
 <xsl:template match="ulink">
   <a>
     <xsl:if test="@id">
-      <xsl:attribute name="name"><xsl:value-of select="@id"/></xsl:attribute>
+      <xsl:attribute name="name">
+        <xsl:value-of select="@id"/>
+      </xsl:attribute>
     </xsl:if>
     <xsl:attribute name="href"><xsl:value-of select="@url"/></xsl:attribute>
     <xsl:if test="$ulink.target != ''">
@@ -435,7 +437,110 @@
   <xsl:if test="@id">
     <a name="{@id}"/>
   </xsl:if>
-  <xsl:apply-templates/>
+
+  <xsl:variable name="localinfo" select="@localinfo"/>
+
+  <xsl:variable name="href">
+    <xsl:choose>
+      <xsl:when test="@linkmode">
+        <!-- use the linkmode to get the base URI, use localinfo as fragid -->
+        <xsl:variable name="modespec" select="id(@linkmode)"/>
+        <xsl:if test="count($modespec) != 1
+                      or local-name($modespec) != 'modespec'">
+          <xsl:message>Warning: olink linkmode pointer is wrong.</xsl:message>
+        </xsl:if>
+        <xsl:value-of select="$modespec"/>
+        <xsl:if test="@localinfo">
+          <xsl:text>#</xsl:text>
+          <xsl:value-of select="@localinfo"/>
+        </xsl:if>
+      </xsl:when>
+      <xsl:when test="@type = 'href'">
+        <xsl:call-template name="olink.outline">
+          <xsl:with-param name="outline.base.uri"
+                          select="unparsed-entity-uri(@targetdocent)"/>
+          <xsl:with-param name="localinfo" select="@localinfo"/>
+          <xsl:with-param name="return" select="'href'"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$olink.resolver"/>
+        <xsl:text>?</xsl:text>
+        <xsl:value-of select="$olink.sysid"/>
+        <xsl:value-of select="unparsed-entity-uri(@targetdocent)"/>
+        <!-- XSL gives no access to the public identifier (grumble...) -->
+        <xsl:if test="@localinfo">
+          <xsl:text>&amp;</xsl:text>
+          <xsl:value-of select="$olink.fragid"/>
+          <xsl:value-of select="@localinfo"/>
+        </xsl:if>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <a href="{$href}">
+    <xsl:choose>
+      <xsl:when test="count(node()) &gt; 0">
+        <xsl:apply-templates/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="olink.outline">
+          <xsl:with-param name="outline.base.uri"
+                          select="unparsed-entity-uri(@targetdocent)"/>
+          <xsl:with-param name="localinfo" select="@localinfo"/>
+          <xsl:with-param name="return" select="'xref'"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </a>
+</xsl:template>
+
+<xsl:template name="olink.outline">
+  <xsl:param name="outline.base.uri"/>
+  <xsl:param name="localinfo"/>
+  <xsl:param name="return" select="href"/>
+
+  <xsl:variable name="outline-file"
+                select="concat($outline.base.uri,
+                               $olink.outline.ext)"/>
+
+  <xsl:variable name="outline" select="document($outline-file,.)/div"/>
+
+  <xsl:variable name="node-href">
+    <xsl:choose>
+      <xsl:when test="$localinfo != ''">
+        <xsl:variable name="node" select="$outline//*[@id=$localinfo]"/>
+        <xsl:value-of select="$node/@href"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$outline/@href"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="node-xref">
+    <xsl:choose>
+      <xsl:when test="$localinfo != ''">
+        <xsl:variable name="node" select="$outline//*[@id=$localinfo]"/>
+        <xsl:copy-of select="$node/xref"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$outline/xref"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$return = 'href'">
+      <xsl:value-of select="$node-href"/>
+    </xsl:when>
+    <xsl:when test="$return = 'xref'">
+      <xsl:value-of select="$node-xref"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy-of select="$node-xref"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
