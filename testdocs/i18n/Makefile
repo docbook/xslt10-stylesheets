@@ -1,57 +1,68 @@
+# -*- Makefile -*-
 include ../../cvstools/Makefile.incl
 
-XSLT=$(CVSTOOLSROOT)/xslt --processor=xsltproc
+.SUFFIXES: .html .fo .xml .pdf
 
-XSLHTML=../xsl/html/docbook.xsl
+XSLHTML=../../xsl/html/docbook.xsl
 XSLFO=i18n-fo.xsl
-XSLCHUNK=../xsl/html/chunk.xsl
+XSLCHUNK=../../xsl/html/chunk.xsl
 
-STYLEOPT=
+CHUNK=0
+USETIDY=1
+XSLPARAM=
 
 FORMATTER=xep
 
-RESULT=html
+XMLFILES=book.xml af.xml ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml \
+         et.xml eu.xml fi.xml fr.xml hu.xml id.xml it.xml ja.xml ko.xml nl.xml \
+         nn.xml no.xml pl.xml pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml \
+         sr.xml sv.xml test.xml th.xml tr.xml uk.xml xh.xml zh_cn.xml zh_tw.xml
 
-ifeq ($(RESULT),html)
-   STYLE=$(XSLHTML)
-   USETIDY=1
+all: book.html book.pdf
+
+book.html: $(XMLFILES)
+
+book.pdf: $(XMLFILES) titlepage-fo.xsl $(XSLFO)
+
+titlepage-fo.xsl: titlepage-fo.xml
+	$(XSLT) $< ../../xsl/template/titlepage.xsl $@
+
+clean:
+	rm -f *.html *.htm *.fo *.pdf *.ps *.rtf
+	rm -f *.log *.aux *.out *.tex *.dvi
+
+######################################################################
+
+.xml.html:
+	$(XJPARSE) $<
+ifeq ($(CHUNK),1)
+	$(XSLT) $< $(XSLCHUNK) $@ $(XSLPARAM)
+ifeq ($(USETIDY),1)
+	-$(TIDY) -iq -latin1 -mn *.html
+endif
 else
-   STYLE=$(XSLFO)
-   USETIDY=0
-endif
-
-all: i18n.pdf i18n.html index.html
-
-index.html:
-	$(XJPARSE) $<
-	$(XSLT) $< $(XSLCHUNK) $@ $(STYLEOPT)
+	$(XSLT)  $< $(XSLHTML) $@ $(XSLPARAM)
 ifeq ($(USETIDY),1)
-	$(TIDY) -iq -latin1 -mn *.html
+	-$(TIDY) -iq -latin1 -mn $@
+endif
 endif
 
-%.html : %.xml
-	$(XJPARSE) $<
-	$(XSLT)  $< $(XSLHTML) $@ $(STYLEOPT)
-ifeq ($(USETIDY),1)
-	$(TIDY) -iq -latin1 -mn $@
-endif
-
-%.fo : %.xml $(XSLFO) titlepage-fo.xsl
+.xml.fo:
 ifeq ($(FORMATTER),tex)
-	$(XSLT) $< $(XSLFO) $@ passivetex.extensions=1 $(STYLEOPT)
+	$(XSLT) $< $(XSLFO) $@ passivetex.extensions=1 $(XSLPARAM)
 else
 ifeq ($(FORMATTER),fop)
-	$(XSLT) $< $(XSLFO) $@ fop.extensions=1 $(STYLEOPT)
+	$(XSLT) $< $(XSLFO) $@ fop.extensions=1 $(XSLPARAM)
 else
 ifeq ($(FORMATTER),xep)
-	$(XSLT) $< $(XSLFO) $@ xep.extensions=1 $(STYLEOPT)
+	$(XSLT) $< $(XSLFO) $@ xep.extensions=1 $(XSLPARAM)
 else
-	$(XSLT) $< $(XSLFO) $@ $(STYLEOPT)
+	$(XSLT) $< $(XSLFO) $@ $(XSLPARAM)
 endif
 endif
 endif
 
-%.pdf : %.fo
+.fo.pdf:
 ifeq ($(FORMATTER),tex)
 	pdftex "&pdfxmltex" $<
 	@if [ `grep Rerun $(basename $@).log | wc -l` -gt 0 ]; then \
@@ -67,18 +78,9 @@ else
 ifeq ($(FORMATTER),xep)
 	xep $<
 else
-	echo How would you like me to make the PDF file?
+	echo No formatter specified. How would you like me to make the PDF file?
 endif
 endif
 endif
 
-titlepage-fo.xsl: titlepage-fo.xml
-	$(XSLT) $< ../../xsl/template/titlepage.xsl $@
-
-clean:
-	rm -f *.html *.htm *.fo *.pdf *.ps *.rtf
-	rm -f *.log *.aux *.out *.tex *.dvi
-	rm -f mlang.xml mlang.sgm
-	rm -f toc.hhc htmlhelp.hhp htmlhelp.chm Index.hhk
-	rm -f HTML.index
-	rm -f jhelpidx.xml jhelpmap.jhm jhelpset.hs jhelptoc.xml
+#EOF

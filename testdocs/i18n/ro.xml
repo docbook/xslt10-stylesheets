@@ -1,11 +1,15 @@
 <?xml version='1.0' encoding='ISO-8859-1'?>
 <chapter lang='ro' id='rochap'>
-<chapterinfo>
 <!--
+<chapterinfo>
 <othercredit>
   <surname></surname>
--->
+  <firstname></firstname>
+  <affiliation><address><email></email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
 </chapterinfo>
+-->
 <title lang="en">Romanian</title>
 
 <para>No translation available.</para>
