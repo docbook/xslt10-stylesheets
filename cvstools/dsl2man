@@ -4,24 +4,27 @@ use Text::DelimMatch;
 use Getopt::Std;
 use File::Basename;
 use English;
+use strict;
+use vars qw($opt_i $opt_d $opt_D);
 
 # call \share\dsssl\bin\dsl2man -i lib -d ..\docsrc\libref dblib.dsl
 
-$usage = "Usage: $0 -i idprefix -d dir [-D] [ file ... ]\n";
+my $usage = "Usage: $0 -i idprefix -d dir [-D] [ file ... ]\n";
 die $usage if ! getopts('i:d:D');
 
-$pubid = "-//OASIS//DTD DocBook V3.1//EN";
+my $pubid = "-//OASIS//DTD DocBook V3.1//EN";
 
-$psearch = new Text::DelimMatch '\(', '\)';
+my $psearch = new Text::DelimMatch '\(', '\)';
 
-$DOCINFO = "";
+my $DOCINFO = "";
 
-%FNAME = ();
-%FFUNC = ();
-%FFILE = ();
+my %FNAME = ();
+my %FFUNC = ();
+my %FFILE = ();
+my %FDEFN = ();
 
-$idprefix = $opt_i || die $usage; # idprefix doesn't seem to be implemented
-$outputdir = $opt_d || die $usage;
+my $idprefix = $opt_i || die $usage; # idprefix doesn't seem to be implemented
+my $outputdir = $opt_d || die $usage;
 
 sub debugmsg {
     if ( $opt_D ) {
@@ -29,10 +32,11 @@ sub debugmsg {
     }
 }
 
-@FILES = @ARGV;
+my @FILES = @ARGV;
 if (!@FILES) {
-    opendir (DIR, ".");
-    while ($file = readdir(DIR)) {
+    opendir (DIR, ".") or
+        die("error opening dir '.': $!\n");
+    while (my $file = readdir(DIR)) {
 	next if -d $file;
 	next if $file !~ /\.dsl$/;
 	push (@FILES, $file);
@@ -41,10 +45,11 @@ if (!@FILES) {
 
 open(SGM, ">$outputdir/refentry.sgm") or
     die("cannot write to $outputdir/refentry.sgm: $!\n");
-$inref = 0;
+my $inref = 0;
 
 while (@FILES) {
-    $file = shift @FILES;
+    my $file = shift @FILES;
+    my $reference, $DOCINFO;
 
     ($reference = $file) =~ s/\.dsl/\.sgm/;
     $reference = basename($reference);
@@ -74,8 +79,8 @@ while (@FILES) {
 
     while ($_ ne "") {
 	debugmsg("_  : " . substr($_, 0, 30));
-
 	my ($pre, $match, $post) = $psearch->match($_);
+
 	$_ = $post;
 
 #	print "pre: ", substr($pre, 0, 30), "\n";
@@ -95,6 +100,7 @@ while (@FILES) {
 	    my($function) = $match;
 	    my($funcmatch) = new Text::DelimMatch '\(', '\)';
 	    my($func) = $';     # '
+            my($fname);
 
 	    if ($func =~ /^\(/) {
 		$func = $funcmatch->match($func);
@@ -129,7 +135,7 @@ while (@FILES) {
 	    $FDEFN{$fname} = $function;
 
 	    { # for SGML file ...
-		my($html_filename, $refpurp, $desc, $example, $author, $email);
+		my($html_filename, $refpurp, $desc, $example, $author, $email, $id);
 		if ($function =~ /;; REFENTRY/) {
 		    ($html_filename, $refpurp, $desc,
 		     $example, $author, $email) 
@@ -179,7 +185,7 @@ close (SGM);
 open (ENT, ">$outputdir/refentry.ent") or
     die("cannot write to $outputdir/refentry.ent: $!\n");
 
-foreach $func (keys %FFUNC) {
+foreach my $func (keys %FFUNC) {
     my($refname, $synopsis) = ("", "");
     my($refpurp, $desc, $example) = ("", "", "");
     my($author, $email) = ("", "");
