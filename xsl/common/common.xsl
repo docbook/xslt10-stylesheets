@@ -1110,7 +1110,7 @@ object is recognized as a graphic.</para>
   <xsl:variable name="filename">
     <xsl:choose>
       <xsl:when test="$data[@fileref]">
-        <xsl:value-of select="$data/@fileref"/>
+        <xsl:apply-templates select="$data/@fileref"/>
       </xsl:when>
       <xsl:when test="$data[@entityref]">
         <xsl:value-of select="unparsed-entity-uri($data/@entityref)"/>

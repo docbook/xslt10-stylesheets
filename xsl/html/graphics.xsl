@@ -771,7 +771,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
         <xsl:value-of select="unparsed-entity-uri(@entityref)"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="@fileref"/>
+        <xsl:apply-templates select="@fileref"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -1096,7 +1096,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
         <xsl:value-of select="unparsed-entity-uri(@entityref)"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="@fileref"/>
+        <xsl:apply-templates select="@fileref"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
