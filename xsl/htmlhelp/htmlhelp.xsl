@@ -105,11 +105,18 @@ Language=</xsl:text>
 <xsl:text>
 Title=</xsl:text>
   <xsl:choose>
-    <xsl:when test="$rootid != ''">
-      <xsl:value-of select="normalize-space(key('id',$rootid)//title[1])"/>
+    <xsl:when test="$htmlhelp.title = ''">
+      <xsl:choose>
+        <xsl:when test="$rootid != ''">
+          <xsl:apply-templates select="key('id',$rootid)" mode="title.markup"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="/*" mode="title.markup"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:value-of select="normalize-space(//title[1])"/>
+      <xsl:value-of select="$htmlhelp.title"/>
     </xsl:otherwise>
   </xsl:choose>
 <xsl:text>

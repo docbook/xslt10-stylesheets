@@ -75,6 +75,7 @@
 <!ENTITY htmlhelp.hhp SYSTEM "../params/htmlhelp.hhp.xml">
 <!ENTITY htmlhelp.hhp.tail SYSTEM "../params/htmlhelp.hhp.tail.xml">
 <!ENTITY htmlhelp.map.file SYSTEM "../params/htmlhelp.map.file.xml">
+<!ENTITY htmlhelp.title SYSTEM "../params/htmlhelp.title.xml">
 <!ENTITY inherit.keywords SYSTEM "../params/inherit.keywords.xml">
 <!ENTITY label.from.part SYSTEM "../params/label.from.part.xml">
 <!ENTITY linenumbering.everyNth SYSTEM "../params/linenumbering.everyNth.xml">
