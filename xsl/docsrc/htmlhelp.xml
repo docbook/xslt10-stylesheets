@@ -10,7 +10,7 @@
 <surname>Kosek</surname>
 </author>
 <copyright>
-<year>2001</year>
+<year>2001-2003</year>
 <holder>Ji&rcaron;&iacute; Kosek</holder>
 </copyright>
 <releaseinfo>$Id$</releaseinfo>
@@ -119,7 +119,7 @@ entities in the TOC file and index entries. This can be easily done using a
   <xsl:import href="]]><replaceable>/path/to/stylesheets/</replaceable>contrib/htmlhelp/htmlhelp.xsl<![CDATA["/>
 
   <xsl:param name="htmlhelp.encoding" select="'windows-1250'"/>
-  <xsl:param name="default.encoding" select="'windows-1250'"/>
+  <xsl:param name="chunker.output.encoding" select="'windows-1250'"/>
   <xsl:param name="saxon.character.representation" select="'native'"/>
 
 </xsl:stylesheet>
