@@ -20,6 +20,9 @@
                                                                             -->
 <!-- ====================================================================== -->
 
+<!ENTITY % local.divcomponent.mix "|speakernotes">
+<!ENTITY % local.component.mix "|speakernotes">
+
 <!-- In this version, we use full DocBook -->
 <!ENTITY % docbook.dtd PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
   "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
