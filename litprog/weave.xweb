@@ -630,7 +630,7 @@ conditions:</para>
 <orderedlist>
 <listitem><para>If the element we are copying is inside a
 <sgmltag>src:fragment</sgmltag> element that specifies a set of
-<sgmltag class="attribute">exclude-result-prefixes</sgmltag>, use
+<sgmltag class="attribute">mundane-result-prefixes</sgmltag>, use
 those prefixes.
 </para></listitem>
 <listitem><para>Otherwise, use the
@@ -644,7 +644,7 @@ with <quote><literal>xml</literal></quote>.</para>
 
 <src:fragment id="calculate-excluded-prefixes">
     <xsl:choose>
-      <xsl:when test="ancestor::src:fragment/@exclude-result-prefixes">
+      <xsl:when test="ancestor::src:fragment/@mundane-result-prefixes">
         <xsl:value-of select="concat(' xml ',
                               ancestor::src:fragment/@exclude-result-prefixes,
                               ' ')"/>
