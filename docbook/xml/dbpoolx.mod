@@ -1888,7 +1888,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 
 <!ENTITY % blockquote.element "INCLUDE">
 <![%blockquote.element;[
-<!ELEMENT blockquote %ho; (title?, attribution?, (%component.mix;)+)
+<!ELEMENT blockquote %ho; (blockinfo?, title?, attribution?, (%component.mix;)+)
                       %blockquote.exclusion;>
 <!--end of blockquote.element-->]]>
 
