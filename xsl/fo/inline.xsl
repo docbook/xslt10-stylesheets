@@ -392,9 +392,28 @@
   </xsl:choose>
 </xsl:template>
 
-
 <xsl:template match="emphasis">
   <xsl:call-template name="inline.italicseq"/>
+  <xsl:choose>
+    <xsl:when test="@role='bold'">
+      <xsl:call-template name="inline.boldseq"/>
+    </xsl:when>
+<!-- what about these?
+    <xsl:when test="@role='underline'">
+      <fo:inline text-decoration="underline">
+        <xsl:call-template name="inline.charseq"/>
+      </fo:inline>
+    </xsl:when>
+    <xsl:when test="@role='strikethrough'">
+      <fo:inline text-decoration="line-through">
+        <xsl:call-template name="inline.charseq"/>
+      </fo:inline>
+    </xsl:when>
+-->
+    <xsl:otherwise>
+      <xsl:call-template name="inline.italicseq"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="foreignphrase">
