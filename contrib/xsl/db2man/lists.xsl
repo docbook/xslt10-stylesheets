@@ -4,9 +4,7 @@
                 version='1.0'>
 
 <xsl:template match="varlistentry">
-  <xsl:text>
-.TP
-</xsl:text>
+  <xsl:text>&#10;.TP&#10;</xsl:text>
 <xsl:apply-templates/>
 </xsl:template>
 
@@ -20,23 +18,18 @@
 </xsl:template>
 
 <xsl:template match="itemizedlist/listitem">
-  <xsl:text>
-\(bu </xsl:text>
+  <xsl:text>&#10;\(bu </xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>
-.Sp
-</xsl:text>
+  <xsl:text>&#10;.Sp&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="varlistentry/listitem/para">
   <xsl:variable name="foo">
     <xsl:apply-templates/>
   </xsl:variable>
-  <xsl:text>
-</xsl:text>
+  <xsl:text>&#10;</xsl:text>
   <xsl:value-of select="normalize-space($foo)"/>
-  <xsl:text>
-</xsl:text>
+  <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 </xsl:stylesheet>

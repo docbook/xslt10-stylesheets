@@ -34,11 +34,9 @@
 </xsl:template>
 
 <xsl:template match="refsect2">
-  <xsl:text>
-.Sh "</xsl:text>
+  <xsl:text>&#10;.Sh "</xsl:text>
   <xsl:value-of select="substring-before(title[1],' ')"/>
-  <xsl:text>"
-</xsl:text>
+  <xsl:text>"&#10;</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
 <xsl:template match="refsect2/programlisting"></xsl:template>
@@ -53,8 +51,7 @@
 </xsl:template>
 
 <xsl:template match="refsect1">
-  <xsl:text>
-.SH "</xsl:text>
+  <xsl:text>&#10;.SH "</xsl:text>
   <xsl:value-of select="translate(title[1],'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
   <xsl:text>"
 </xsl:text>
@@ -62,9 +59,7 @@
 </xsl:template>
 
 <xsl:template match="refsynopsisdiv">
-  <xsl:text>
-.SH "SYNOPSIS"
-</xsl:text>
+  <xsl:text>&#10;.SH "SYNOPSIS"&#10;</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
 
@@ -73,9 +68,7 @@
   <xsl:variable name="foo">
     <xsl:apply-templates/>
   </xsl:variable>
-  <xsl:text>
-.PP
-</xsl:text>
+  <xsl:text>&#10;.PP&#10;</xsl:text>
   <xsl:value-of select="normalize-space($foo)"/>
   <xsl:text>
 </xsl:text>
@@ -183,9 +176,7 @@
 <xsl:template match="copyright">
   <xsl:text>Copyright </xsl:text>
   <xsl:apply-templates select="./year" />
-  <xsl:text>
-.Sp
-</xsl:text>
+  <xsl:text>&#10;.Sp&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="email">
@@ -195,8 +186,7 @@
 </xsl:template>
 
 <xsl:template match="refnamediv">
-  <xsl:text>.SH NAME
-</xsl:text>
+  <xsl:text>.SH NAME&#10;</xsl:text>
   <xsl:value-of select="refname"/>
   <xsl:text> \- </xsl:text>
   <xsl:value-of select="refpurpose"/>
@@ -213,8 +203,7 @@
 </xsl:template>
 
 <xsl:template match="filename">
-  <xsl:text>
-.FN </xsl:text><xsl:apply-templates/>
+  <xsl:text>&#10;.FN </xsl:text><xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="userinput">

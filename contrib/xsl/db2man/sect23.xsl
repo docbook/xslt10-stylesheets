@@ -3,27 +3,22 @@
                 version='1.0'>
 
 <xsl:template match="refsect2">
-  <xsl:text>
-.Sh "</xsl:text>
+  <xsl:text>&#10;.Sh "</xsl:text>
   <xsl:value-of select="substring-before(title[1],' ')"/>
-  <xsl:text>"
-</xsl:text>
+  <xsl:text>"&#10;</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
 <xsl:template match="refsect2/title"></xsl:template>
 <xsl:template match="refsect2/programlisting"></xsl:template>
 
 <xsl:template match="funcsynopsis">
-  <xsl:text>
-.BI "</xsl:text>
+  <xsl:text>&#10;.BI "</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="funcsynopsis/funcprototype">
   <xsl:apply-templates/>
-  <xsl:text> );
-.br
-</xsl:text>
+  <xsl:text> );&#10;.br&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="funcsynopsis/funcprototype/funcdef">
@@ -50,25 +45,20 @@
   <xsl:value-of select="entry[1]/parameter[1]"/>
   <xsl:text>\s0 \- </xsl:text>
   <xsl:value-of select="normalize-space(entry[2])"/>
-  <xsl:text>"
-</xsl:text>
+  <xsl:text>"&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="refsect1">
-  <xsl:text>
-.SH "</xsl:text>
+  <xsl:text>&#10;.SH "</xsl:text>
   <xsl:value-of select="translate(title[1],'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
-  <xsl:text>"
-</xsl:text>
+  <xsl:text>"&#10;</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="refsynopsisdiv">
-  <xsl:text>
-.SH "</xsl:text>
+  <xsl:text>&#10;.SH "</xsl:text>
   <xsl:value-of select="translate(title[1],'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
-  <xsl:text>"
-</xsl:text>
+  <xsl:text>"&#10;</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
 <xsl:template match="refsynopsisdiv/title"></xsl:template>
@@ -76,8 +66,7 @@
 <xsl:template match="refsect1/title"></xsl:template>
 
 <xsl:template match="para">
-     <xsl:text>.PP
-</xsl:text>
+     <xsl:text>.PP&#10;</xsl:text>
      <xsl:apply-templates/>
 </xsl:template>
 
@@ -109,16 +98,14 @@
   <xsl:value-of select="refmeta/manvolnum[1]"/>
   <xsl:text> "</xsl:text>
   <xsl:value-of select="@revision"/>
-  <xsl:text>"
-</xsl:text>
+  <xsl:text>"&#10;</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="refmeta"></xsl:template>
 
 <xsl:template match="refnamediv">
-  <xsl:text>.SH NAME
-</xsl:text>
+  <xsl:text>.SH NAME&#10;</xsl:text>
   <xsl:value-of select="refname"/>
   <xsl:text> \- </xsl:text>
   <xsl:value-of select="refpurpose"/>
@@ -132,9 +119,7 @@
 </xsl:template>
 
 <xsl:template match="varlistentry">
-  <xsl:text>
-.TP
-</xsl:text>
+  <xsl:text>&#10;.TP&#10;</xsl:text>
 <xsl:apply-templates select="./term"/>
 <xsl:apply-templates select="./listitem"/>
 </xsl:template>
@@ -144,14 +129,11 @@
 </xsl:template>
 
 <xsl:template match="filename">
-  <xsl:text>
-.FN </xsl:text><xsl:apply-templates/>
+  <xsl:text>&#10;.FN </xsl:text><xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="userinput">
-  <xsl:text>
-.IP
-.B </xsl:text><xsl:apply-templates/>
+  <xsl:text>&#10;.IP&#10;.B </xsl:text><xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="envar">
