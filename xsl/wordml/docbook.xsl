@@ -193,6 +193,13 @@
         <w:pStyle>
           <xsl:attribute name='w:val'>
             <xsl:choose>
+              <xsl:when test='(parent::section or
+                              parent::sectioninfo/parent::section) and
+                              count(ancestor::section) > 5'>
+                <xsl:message>section nested deeper than 5 levels</xsl:message>
+                <xsl:text>sect5-</xsl:text>
+                <xsl:value-of select='name()'/>
+              </xsl:when>
               <xsl:when test='parent::section or
                               parent::sectioninfo/parent::section'>
                 <xsl:text>sect</xsl:text>
@@ -230,7 +237,7 @@
   <xsl:template match='para'>
     <xsl:param name='class'/>
 
-    <xsl:variable name='block' select='blockquote|calloutlist|classsynopsis|funcsynopsis|figure|glosslist|graphic|informalfigure|informaltable|itemizedlist|literallayout|mediaobject|note|orderedlist|programlisting|revhistory|segmentedlist|simplelist|table|variablelist'/>
+    <xsl:variable name='block' select='blockquote|calloutlist|classsynopsis|funcsynopsis|figure|glosslist|graphic|informalfigure|informaltable|itemizedlist|literallayout|mediaobject|note|caution|warning|important|tip|orderedlist|programlisting|revhistory|segmentedlist|simplelist|table|variablelist'/>
 
     <xsl:choose>
       <xsl:when test='$block'>
@@ -264,7 +271,7 @@
                 </xsl:attribute>
               </w:pStyle>
             </w:pPr>
-            <xsl:apply-templates select='following-sibling::node()[generate-id(preceding-sibling::*[self::blockquote|self::calloutlist|self::figure|self::glosslist|self::graphic|self::informalfigure|self::informaltable|self::itemizedlist|self::literallayout|self::mediaobject|self::note|self::orderedlist|self::programlisting|self::revhistory|self::segmentedlist|self::simplelist|self::table|self::variablelist][1]) = generate-id(current())]'/>
+            <xsl:apply-templates select='following-sibling::node()[generate-id(preceding-sibling::*[self::blockquote|self::calloutlist|self::figure|self::glosslist|self::graphic|self::informalfigure|self::informaltable|self::itemizedlist|self::literallayout|self::mediaobject|self::note|self::caution|self::warning|self::important|self::tip|self::orderedlist|self::programlisting|self::revhistory|self::segmentedlist|self::simplelist|self::table|self::variablelist][1]) = generate-id(current())]'/>
           </w:p>
         </xsl:for-each>
       </xsl:when>
@@ -496,7 +503,7 @@
     </w:r>
   </xsl:template>
 
-  <xsl:template match='text()[not(parent::para|parent::simpara)][string-length(normalize-space(.)) != 0]'>
+  <xsl:template match='text()[not(parent::para|parent::simpara|parent::literallayout)][string-length(normalize-space(.)) != 0]'>
     <w:r>
       <w:t>
         <xsl:value-of select='.'/>
@@ -504,8 +511,63 @@
     </w:r>
   </xsl:template>
   <xsl:template match='text()[string-length(normalize-space(.)) = 0]'/>
+  <xsl:template match='literallayout/text()'>
+    <xsl:call-template name='handle-linebreaks'/>
+  </xsl:template>
+  <xsl:template name='handle-linebreaks'>
+    <xsl:param name='text' select='.'/>
 
-  <xsl:template match='authorblurb|formalpara|legalnotice|note'>
+    <xsl:choose>
+      <xsl:when test='not($text)'/>
+      <xsl:when test='contains($text, "&#xa;")'>
+        <w:r>
+          <w:t>
+            <xsl:value-of select='substring-before($text, "&#xa;")'/>
+          </w:t>
+        </w:r>
+        <xsl:call-template name='handle-linebreaks-aux'>
+          <xsl:with-param name='text'
+            select='substring-after($text, "&#xa;")'/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <w:r>
+          <w:t>
+            <xsl:value-of select='$text'/>
+          </w:t>
+        </w:r>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- pre-condition: leading linefeed has been stripped -->
+  <xsl:template name='handle-linebreaks-aux'>
+    <xsl:param name='text'/>
+
+    <xsl:choose>
+      <xsl:when test='contains($text, "&#xa;")'>
+        <w:r>
+          <w:br/>
+          <w:t>
+            <xsl:value-of select='substring-before($text, "&#xa;")'/>
+          </w:t>
+        </w:r>
+        <xsl:call-template name='handle-linebreaks-aux'>
+          <xsl:with-param name='text' select='substring-after($text, "&#xa;")'/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <w:r>
+          <w:br/>
+          <w:t>
+            <xsl:value-of select='$text'/>
+          </w:t>
+        </w:r>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match='authorblurb|formalpara|legalnotice|note|caution|warning|important|tip'>
     <xsl:apply-templates select='*'>
       <xsl:with-param name='class'>
         <xsl:value-of select='name()'/>
@@ -530,6 +592,18 @@
         <xsl:apply-templates select='attribution/node()'/>
       </w:p>
     </xsl:if>
+  </xsl:template>
+
+  <xsl:template match='literallayout'>
+    <xsl:param name='class'/>
+
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val='literallayout'/>
+      </w:pPr>
+
+      <xsl:apply-templates/>
+    </w:p>
   </xsl:template>
 
   <xsl:template match='itemizedlist|orderedlist'>
@@ -592,7 +666,6 @@
                       self::bridgehead |
                       self::calloutlist |
                       self::caption |
-                      self::caution |
                       self::chapter |
                       self::classsynopsis |
                       self::colophon |
@@ -613,7 +686,6 @@
                       self::highlights |
                       self::imageobject |
                       self::imageobjectco |
-                      self::important |
                       self::index |
                       self::indexdiv |
                       self::indexentry |
@@ -672,13 +744,11 @@
                       self::substeps |
                       self::task |
                       self::textobject |
-                      self::tip |
                       self::toc |
                       self::variablelist |
                       self::varlistentry |
                       self::videodata |
                       self::videoobject |
-                      self::warning |
                       self::*[not(starts-with(name(), "informal")) and contains(name(), "info")]'>
         <w:p>
           <w:pPr>
