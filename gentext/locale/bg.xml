@@ -1,10 +1,10 @@
 <?xml version='1.0'?>
 <!-- there is no doctype for these files, they are WF only -->
-<!-- DOCTYPE locale [
+<!DOCTYPE locale [
 <!ENTITY % cyr1 PUBLIC "ISO 8879:1986//ENTITIES Russian Cyrillic//EN//XML"
                 "../../xmlcharent/iso-cyr1.ent">
 %cyr1;
-]-->
+]>
 <locale language="bg"
         english-language-name="Bulgarian"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
