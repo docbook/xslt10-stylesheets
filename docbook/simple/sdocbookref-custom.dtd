@@ -28,6 +28,24 @@
      information, see http://www.oasis-open.org/docbook/.
 -->
 
+<!-- ...................................................................... -->
+
+<!-- This is the driver file for V4.1.2.5 of the Simplified DocBook
+     RefEntry XML DTD. Please use the following formal public identifier
+     to identify it:
+
+     "-//OASIS//DTD Simplified DocBook RefEntry XML V4.1.2.5//EN"
+
+     For example:
+
+     <!DOCTYPE article
+               PUBLIC "-//OASIS//DTD Simplified DocBook RefEntry XML V4.1.2.5//EN"
+      "http://www.oasis-open.org/docbook/xml/simple/4.1.2.5/sdocbookref.dtd"
+     [...]>
+-->
+
+<!-- ...................................................................... -->
+
 <!ENTITY % include.refentry "INCLUDE">
 
 <!ENTITY % local.refclass.char.mix "">

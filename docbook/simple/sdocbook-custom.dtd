@@ -28,6 +28,23 @@
      information, see http://www.oasis-open.org/docbook/.
 -->
 
+<!-- ...................................................................... -->
+
+<!-- This is the driver file for V4.1.2.5 of the Simplified DocBook XML DTD.
+     Please use the following formal public identifier to identify it:
+
+     "-//OASIS//DTD Simplified DocBook XML V4.1.2.5//EN"
+
+     For example:
+
+     <!DOCTYPE article
+               PUBLIC "-//OASIS//DTD Simplified DocBook XML V4.1.2.5//EN"
+      "http://www.oasis-open.org/docbook/xml/simple/4.1.2.5/sdocbook.dtd"
+     [...]>
+-->
+
+<!-- ...................................................................... -->
+
 <!ENTITY % include.refentry "IGNORE">
 <![ %include.refentry; [
 <!ENTITY % exclude.refentry "IGNORE">
@@ -192,7 +209,7 @@
 
 <!ENTITY % cals.table.module "IGNORE">
 <!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-                   "http://docbook.org/xml/4.1.2/docbookx.dtd"
+                   "../xml/docbookx.dtd"
 >
 %docbook;
 
