@@ -185,5 +185,63 @@ point to your global glossary.</para>
 <para>The stylesheets will format the glossary in your document as if
 all of the entries implicilty referenced appeared there literally.</para>
 </refsect2>
+
+<refsect2><title>Limitations</title>
+
+<para>Glossary cross-references <emphasis>within the glossary</emphasis> are
+not supported. For example, this <emphasis>will not</emphasis> work:</para>
+
+<informalexample>
+<programlisting><![CDATA[<glossentry>
+<glossterm>gloss-1</glossterm>
+<glossdef><para>A description that references <glossterm>gloss-2</glossterm>.</para>
+<glossseealso>gloss-2</glossseealso>
+</glossdef>
+</glossentry>]]></programlisting>
+</informalexample>
+
+<para>If you put glossary cross-references in your glossary that way,
+you'll get the cryptic error: <computeroutput>Warning:
+glossary.collection specified, but there are 0 automatic
+glossaries</computeroutput>.</para>
+
+<para>Instead, you must do two things:</para>
+
+<orderedlist>
+<listitem>
+<para>Markup your glossary using <sgmltag>glossseealso</sgmltag>:</para>
+
+<informalexample>
+<programlisting><![CDATA[<glossentry>
+<glossterm>gloss-1</glossterm>
+<glossdef><para>A description that references <glossterm>gloss-2</glossterm>.</para>
+<glossseealso>gloss-2</glossseealso>
+</glossdef>
+</glossentry>]]></programlisting>
+</informalexample>
+</listitem>
+
+<listitem>
+<para>Make sure there is at least one <sgmltag>glossterm</sgmltag> reference to
+<glossterm>gloss-2</glossterm> <emphasis>in your document</emphasis>. The
+easiest way to do that is probably within a <sgmltag>remark</sgmltag> in your
+automatic glossary:</para>
+
+<informalexample>
+<programlisting><![CDATA[<glossary role="auto">
+<remark>Make sure there's a reference to <glossterm>gloss-2</glossterm>.</remark>
+<glossentry>
+<glossterm>Irrelevant</glossterm>
+<glossdef>
+<para>If you can see this, the document was processed incorrectly. Use
+the <parameter>glossary.collection</parameter> parameter.</para>
+</glossdef>
+</glossentry>
+</glossary>]]></programlisting>
+</informalexample>
+</listitem>
+</orderedlist>
+</refsect2>
+
 </refsect1>
 </refentry>
