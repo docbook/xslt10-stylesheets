@@ -9,8 +9,8 @@ html: ldocbook.html
 ldocbook.html: ldocbook.xml ldocbook.xsl
 	$(XSLT) $< ldocbook.xsl $@
 
-ldocbook.xml: ldocbook.xweb ../wdocbook.xsl
-	$(XSLT) $< ../wdocbook.xsl $@
+ldocbook.xml: ldocbook.xweb ../w2docbook.xsl
+	$(XSLT) $< ../w2docbook.xsl $@
 
 ldocbook.xsl: ldocbook.xweb ../xtangle.xsl
 	$(XSLT) $< ../xtangle.xsl $@

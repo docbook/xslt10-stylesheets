@@ -18,7 +18,7 @@ param.html: param.xml
 param.xml: param.xweb
 	$(XSLT) $< ../../../xsl/profiling/profile.xsl $(PARAMPROF) profile.condition=html
 	$(XSLT) $(PARAMPROF) ../../../xsl/profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
-	$(XSLT) $(PARAMSTRIP) ../../../litprog/wdocbook.xsl $@
+	$(XSLT) $(PARAMSTRIP) ../../../litprog/w2docbook.xsl $@
 	$(RM) $(PARAMPROF) $(PARAMSTRIP)
 
 param.xsl: param.xweb

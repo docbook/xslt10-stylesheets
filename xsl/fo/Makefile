@@ -15,7 +15,7 @@ param.xml: param.xweb $(PARAMS)
 	../../cvstools/paramchk -m Makefile.param $<
 	$(XSLT) $< ../profiling/profile.xsl $(PARAMPROF) profile.condition=fo
 	$(XSLT) $(PARAMPROF) ../profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
-	$(XSLT) $(PARAMSTRIP) ../../litprog/wdocbook.xsl $@
+	$(XSLT) $(PARAMSTRIP) ../../litprog/w2docbook.xsl $@
 	$(RM) $(PARAMPROF) $(PARAMSTRIP)
 
 param.xsl: param.xweb $(PARAMS)
