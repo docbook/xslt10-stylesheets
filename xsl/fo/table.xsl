@@ -146,11 +146,22 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   </xsl:if>
 
   <xsl:variable name="explicit.table.width">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="../processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'table-width'"/>
-    </xsl:call-template>
+    <xsl:choose>
+      <xsl:when test="self::entrytbl">
+        <xsl:call-template name="dbfo-attribute">
+          <xsl:with-param name="pis" 
+                          select="processing-instruction('dbfo')"/>
+          <xsl:with-param name="attribute" select="'table-width'"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="dbfo-attribute">
+          <xsl:with-param name="pis" 
+                          select="../processing-instruction('dbfo')"/>
+          <xsl:with-param name="attribute" select="'table-width'"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
 
   <xsl:variable name="table.width">
