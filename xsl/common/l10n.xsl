@@ -18,10 +18,6 @@
 <xsl:param name="l10n.xml" select="document('../common/l10n.xml')"/>
 <xsl:param name="local.l10n.xml" select="document('')"/>
 
-<xsl:param name="l10n.gentext.language" select="''"/>
-<xsl:param name="l10n.gentext.default.language" select="'en'"/>
-<xsl:param name="l10n.gentext.use.xref.language" select="false()"/>
-
 <xsl:template name="l10n.language">
   <xsl:param name="target" select="."/>
   <xsl:param name="xref-context" select="false()"/>
@@ -32,7 +28,7 @@
         <xsl:value-of select="$l10n.gentext.language"/>
       </xsl:when>
 
-      <xsl:when test="$xref-context or $l10n.gentext.use.xref.language">
+      <xsl:when test="$xref-context or $l10n.gentext.use.xref.language != 0">
         <!-- can't do this one step: attributes are unordered! -->
         <xsl:variable name="lang-scope"
                       select="($target/ancestor-or-self::*[@lang]
