@@ -104,6 +104,7 @@ dated 5 November, 2004</releaseinfo>
 </itemizedlist>
 <para>Attributes are a feature of DocBook XML that have no direct counterpart in Word. One approach is to use Word Bookmarks for attributes. For example, a Word Bookmark named <literal>att_role_foobar</literal> could be inserted into a paragraph. When converted to DocBook XML, this would become a <sgmltag class="attribute">role="foobar"</sgmltag> attribute on the element derived from the paragraph containing the Bookmark.</para>
 <para>[Alternatively, we could use hidden text for attributes.]</para>
+<para>[Do we need a parameter to specify whether titles should be placed in the *info subelement?]</para>
 <table>
 <title>DocBook to WordML styles</title>
 <tgroup cols="3"><colspec colnum="1" colname="col1"
@@ -122,69 +123,154 @@ colwidth="1.00*"/>
 <entry namest="col1" nameend="col3"><emphasis role="bold">Components and sections</emphasis></entry>
 </row>
 <row>
-<entry colname="col1">book</entry>
+<entry colname="col1">book/bookinfo/title</entry>
 <entry colname="col2">book-title</entry>
 <entry colname="col3"></entry>
 </row>
 <row>
-<entry colname="col1">chapter</entry>
+<entry colname="col1">book/bookinfo/subtitle</entry>
+<entry colname="col2">book-subtitle</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">book/bookinfo/titleabbrev</entry>
+<entry colname="col2">book-titleabbrev</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">chapter/chapterinfo/title</entry>
 <entry colname="col2">chapter-title</entry>
 <entry colname="col3">Assigned Word outline level 1.</entry>
 </row>
 <row>
-<entry colname="col1">appendix</entry>
+<entry colname="col1">chapter/chapterinfo/subtitle</entry>
+<entry colname="col2">chapter-subtitle</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">chapter/chapterinfo/titleabbrev</entry>
+<entry colname="col2">chapter-titleabbrev</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">appendix/appendixinfo/title</entry>
 <entry colname="col2">appendix-title</entry>
 <entry colname="col3">Assigned Word outline level 1.</entry>
 </row>
 <row>
-<entry colname="col1">preface</entry>
+<entry colname="col1">preface/prefaceinfo/title</entry>
 <entry colname="col2">preface-title</entry>
 <entry colname="col3">Assigned Word outline level 1.</entry>
 </row>
 <row>
-<entry colname="col1">article</entry>
+<entry colname="col1">article/articleinfo/title</entry>
 <entry colname="col2">article-title</entry>
 <entry colname="col3">Assigned Word outline level 1.</entry>
 </row>
 <row>
-<entry colname="col1">bibliography</entry>
+<entry colname="col1">article/articleinfo/subtitle</entry>
+<entry colname="col2">article-subtitle</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">article/articleinfo/titleabbrev</entry>
+<entry colname="col2">article-titleabbrev</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">bibliography/bibliographyinfo/title</entry>
 <entry colname="col2">bibliography-title</entry>
 <entry colname="col3">Assigned Word outline level 1.</entry>
 </row>
 <row>
-<entry colname="col1">glossary</entry>
+<entry colname="col1">glossary/glossaryinfo/title</entry>
 <entry colname="col2">glossary-title</entry>
 <entry colname="col3">Assigned Word outline level 1.</entry>
 </row>
 <row>
-<entry colname="col1">index</entry>
+<entry colname="col1">index/indexinfo/title</entry>
 <entry colname="col2">index-title</entry>
 <entry colname="col3">Assigned Word outline level 1.</entry>
 </row>
 <row>
-<entry colname="col1">sect1</entry>
+<entry colname="col1">sect1/sect1info/title</entry>
 <entry colname="col2">sect1-title</entry>
 <entry colname="col3">Assigned Word outline level 2.</entry>
 </row>
 <row>
-<entry colname="col1">sect2</entry>
+<entry colname="col1">sect1/sect1info/subtitle</entry>
+<entry colname="col2">sect1-subtitle</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">sect1/sect1info/titleabbrev</entry>
+<entry colname="col2">sect1-titleabbrev</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">sect2/sect2info/title</entry>
 <entry colname="col2">sect2-title</entry>
 <entry colname="col3">Assigned Word outline level 3.</entry>
 </row>
 <row>
-<entry colname="col1">sect3</entry>
+<entry colname="col1">sect2/sect2info/subtitle</entry>
+<entry colname="col2">sect2-subtitle</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">sect2/sect2info/titleabbrev</entry>
+<entry colname="col2">sect2-titleabbrev</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">sect3/sect3info/title</entry>
 <entry colname="col2">sect3-title</entry>
 <entry colname="col3">Assigned Word outline level 4.</entry>
 </row>
 <row>
-<entry colname="col1">sect4</entry>
+<entry colname="col1">sect3/sect3info/subtitle</entry>
+<entry colname="col2">sect3-subtitle</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">sect3/sect3info/titleabbrev</entry>
+<entry colname="col2">sect3-titleabbrev</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">sect4/sect4info/title</entry>
 <entry colname="col2">sect4-title</entry>
 <entry colname="col3">Assigned Word outline level 5.</entry>
 </row>
 <row>
-<entry colname="col1">sect5</entry>
+<entry colname="col1">sect4/sect4info/subtitle</entry>
+<entry colname="col2">sect4-subtitle</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">sect4/sect4info/titleabbrev</entry>
+<entry colname="col2">sect4-titleabbrev</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">sect5/sect5info/title</entry>
 <entry colname="col2">sect5-title</entry>
 <entry colname="col3">Assigned Word outline level 6.</entry>
+</row>
+<row>
+<entry colname="col1">sect5/sect5info/subtitle</entry>
+<entry colname="col2">sect5-subtitle</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">sect5/sect5info/titleabbrev</entry>
+<entry colname="col2">sect5-titleabbrev</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">section</entry>
+<entry colname="col2">sectN-title</entry>
+<entry colname="col3">Unnumbered sections are mapped to their numbered equivalent.  A parameter (named?) may be set to map numbered sections (<literal>sect1</literal>, etc) back to unnumbered sections.</entry>
 </row>
 <row>
 <entry namest="col1" nameend="col3"><emphasis role="bold">Block-level elements</emphasis></entry>
