@@ -103,6 +103,28 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template match="bibliolist">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <fo:block id="{$id}"
+	    space-before.minimum="1em"
+	    space-before.optimum="1.5em"
+	    space-before.maximum="2em">
+
+    <xsl:if test="blockinfo/title|title">
+      <xsl:call-template name="formal.object.heading"/>
+    </xsl:if>
+
+    <xsl:apply-templates select="*[not(self::blockinfo)
+			           and not(self::title)
+				   and not(self::titleabbrev)]"/>
+  </fo:block>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
 <xsl:template match="biblioentry">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
   <xsl:choose>

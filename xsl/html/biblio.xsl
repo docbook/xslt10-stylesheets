@@ -71,6 +71,25 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template match="bibliolist">
+  <div class="{name(.)}">
+    <xsl:call-template name="anchor"/>
+    <xsl:if test="blockinfo/title|title">
+      <xsl:call-template name="formal.object.heading"/>
+    </xsl:if>
+    <xsl:apply-templates select="*[not(self::blockinfo)
+			           and not(self::title)
+				   and not(self::titleabbrev)
+			           and not(self::biblioentry)
+				   and not(self::bibliomixed)]"/>
+    <dl>
+      <xsl:apply-templates select="biblioentry|bibliomixed"/>
+    </dl>
+  </div>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
 <xsl:template match="biblioentry">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
