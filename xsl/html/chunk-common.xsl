@@ -116,7 +116,7 @@
     <xsl:when test="name($node)='part'">1</xsl:when>
     <xsl:when test="name($node)='reference'">1</xsl:when>
     <xsl:when test="name($node)='refentry'">1</xsl:when>
-    <xsl:when test="name($node)='index'
+    <xsl:when test="name($node)='index' and $generate.index != 0
                     and (name($node/parent::*) = 'article'
                          or name($node/parent::*) = 'book')">1</xsl:when>
     <xsl:when test="name($node)='bibliography'
