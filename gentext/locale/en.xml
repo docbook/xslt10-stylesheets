@@ -515,6 +515,11 @@
 <template name="format">m/d/Y</template>
 </context>
 
+<context name="termdef">
+<template name="prefix">[Definition: </template>
+<template name="suffix">]</template>
+</context>
+
 <context name="datetime-full">
 <template name="January">January</template>
 <template name="February">February</template>
