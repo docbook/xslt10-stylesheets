@@ -20,7 +20,7 @@ TODO        about planned features not yet implemented
 VERSION     the current version number (note that this is an XSL stylesheet,
             included by both fo/docbook.xsl and html/docbook.xsl)
 WhatsNew    changes since the last public release (for cumulative lists of
-            changes, see the ChangeLog files in each subdirectory
+            changes, see the ChangeLog files in each subdirectory)
 common/     contains code common to both the HTML and FO stylesheets
 doc/        documentation
 docsrc/     documentation sources
