@@ -325,6 +325,7 @@ url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http:
 &htmlhelp.button.next;
 &htmlhelp.button.prev;
 &htmlhelp.button.zoom;
+&htmlhelp.only;
 </reference>
 
 <appendix><title>The Stylesheet</title>
@@ -449,6 +450,7 @@ around all these parameters.</para>
 <src:fragref linkend="htmlhelp.button.next.frag"/>
 <src:fragref linkend="htmlhelp.button.prev.frag"/>
 <src:fragref linkend="htmlhelp.button.zoom.frag"/>
+<src:fragref linkend="htmlhelp.only.frag"/>
 <src:fragref linkend="inherit.keywords.frag"/>
 <src:fragref linkend="label.from.part.frag"/>
 <src:fragref linkend="linenumbering.everyNth.frag"/>
