@@ -52,6 +52,7 @@
 		| EPS | EQN | FAX | GIF | GIF87a | GIF89a
 		| JPG | JPEG | IGES | PCX
 		| PIC | PNG | PS | SGML | TBL | TEX | TIFF | WMF | WPG
+                | SVG
 		| linespecific
 		%local.notation.class;">
 
