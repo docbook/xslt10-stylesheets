@@ -9,12 +9,17 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.net.MalformedURLException;
+
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerConfigurationException;
-import com.icl.saxon.*;
-import com.icl.saxon.style.*;
-import com.icl.saxon.expr.*;
-import com.icl.saxon.output.*;
+import javax.xml.transform.URIResolver;
+import javax.xml.transform.Source;
+
+import com.icl.saxon.Context;
+import com.icl.saxon.style.StyleElement;
+import com.icl.saxon.output.Outputter;
+import com.icl.saxon.expr.Expression;
+
 import org.xml.sax.AttributeList;
 
 /**
@@ -105,19 +110,36 @@ public class Text extends StyleElement {
     String hrefAtt = getAttribute("href");
     Expression hrefExpr = makeAttributeValueTemplate(hrefAtt);
     String href = hrefExpr.evaluateAsString(context);
-    
+
     String encodingAtt = getAttribute("encoding");
     Expression encodingExpr = makeAttributeValueTemplate(encodingAtt);
     String encoding = encodingExpr.evaluateAsString(context);
-    
+
+    String baseURI = context.getContextNodeInfo().getBaseURI();
+
+    URIResolver resolver = context.getController().getURIResolver();
+
+    if (resolver != null) {
+      Source source = resolver.resolve(href, baseURI);
+      href = source.getSystemId();
+    }
+
+    URL baseURL = null;
     URL fileURL = null;
 
     try {
+      baseURL = new URL(baseURI);
+    } catch (MalformedURLException e0) {
+      // what the!?
+      baseURL = null;
+    }
+
+    try {
       try {
-        fileURL = new URL(href);
+        fileURL = new URL(baseURL, href);
       } catch (MalformedURLException e1) {
         try {
-          fileURL = new URL("file:" + href);
+          fileURL = new URL(baseURL, "file:" + href);
         } catch (MalformedURLException e2) {
           System.out.println("Cannot open " + href);
           return;
@@ -129,7 +151,7 @@ public class Text extends StyleElement {
         isr = new InputStreamReader(fileURL.openStream());
       else
         isr = new InputStreamReader(fileURL.openStream(), encoding);
-                  
+
       BufferedReader is = new BufferedReader(isr);
 
       final int BUFFER_SIZE = 4096;
@@ -139,32 +161,27 @@ public class Text extends StyleElement {
       int i = 0;
       int carry = -1;
 
-      while ((len = is.read(chars)) > 0) 
-      {
-        // various new lines are normalized to LF to prevent blank lines between lines
+      while ((len = is.read(chars)) > 0) {
+        // various new lines are normalized to LF to prevent blank lines
+	// between lines
+
         int nlen = 0;
-        for (i=0; i<len; i++)
-        {
+        for (i=0; i<len; i++) {
           // is current char CR?
-          if (chars[i] == '\r')
-          {
-            if (i < (len - 1))
-            {
+          if (chars[i] == '\r') {
+            if (i < (len - 1)) {
               // skip it if next char is LF
               if (chars[i+1] == '\n') continue;
               // single CR -> LF to normalize MAC line endings
               nchars[nlen] = '\n';
               nlen++;
               continue;
-            }
-            else
-            {
+            } else {
               // if CR is last char of buffer we must look ahead
               carry = is.read();
               nchars[nlen] = '\n';
               nlen++;
-              if (carry == '\n')
-              {
+              if (carry == '\n') {
                 carry = -1;
               }
               break;
