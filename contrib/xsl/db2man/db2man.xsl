@@ -3,6 +3,12 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version='1.0'>
 
+<!-- Needed for chunker.xsl (for now): -->
+<xsl:param name="output.method" select="'text'"/>
+<xsl:param name="default.encoding" select="'ISO-8859-1'"/>
+<xsl:param name="saxon.character.representation" select="'entity;decimal'"/>
+<xsl:param name="chunk.quietly" select="'0'"/>
+
 <xsl:include href="http://docbook.sourceforge.net/release/xsl/current/common/common.xsl"/>
 <xsl:include href="http://docbook.sourceforge.net/release/xsl/current/html/chunker.xsl"/>
 
@@ -17,17 +23,15 @@
 <!--
   named templates for bold and italic. call like:
 
-  <xsl:apply-templates name="bold" />
-  or,
-  <xsl:apply-templates name="bold" select="node-you-want" />
+  <xsl:apply-templates mode="bold" select="node-you-want" />
 -->
-<xsl:template name="bold">
+<xsl:template mode="bold" match="*">
   <xsl:text>\fB</xsl:text>
   <xsl:value-of select="."/>
   <xsl:text>\fR</xsl:text>
 </xsl:template>
 
-<xsl:template name="italic">
+<xsl:template mode="italic" match="*">
   <xsl:text>\fI</xsl:text>
   <xsl:value-of select="."/>
   <xsl:text>\fR</xsl:text>
@@ -195,11 +199,11 @@
 <xsl:template match="refentry/refentryinfo"></xsl:template>
 
 <xsl:template match="option">
-  <xsl:apply-templates name="bold" />
+  <xsl:apply-templates mode="bold" select="."/>
 </xsl:template>
 
 <xsl:template match="replaceable|varname">
-  <xsl:apply-templates name="italic" />
+  <xsl:apply-templates mode="italic" select="."/>
 </xsl:template>
 
 <xsl:template match="filename">
@@ -207,7 +211,7 @@
 </xsl:template>
 
 <xsl:template match="userinput">
-  <xsl:apply-templates name="bold" />
+  <xsl:apply-templates mode="bold" select="."/>
 </xsl:template>
 
 <xsl:template match="informalexample|screen">
@@ -217,15 +221,15 @@
 </xsl:template>
 
 <xsl:template match="envar">
-  <xsl:apply-templates name="bold" />
+  <xsl:apply-templates mode="bold" select="."/>
 </xsl:template>
 
 <xsl:template match="filename">
-  <xsl:apply-templates name="italic" />
+  <xsl:apply-templates mode="italic" select="."/>
 </xsl:template>
 
 <xsl:template match="errorcode|constant|type">
-  <xsl:apply-templates name="bold" />
+  <xsl:apply-templates mode="bold" select="."/>
 </xsl:template>
 
 <xsl:template match="quote">
@@ -244,9 +248,7 @@
   <xsl:param name="refentrytitle" select="''"/>
   <xsl:param name="manvolnum" select="''"/>
 
-  <xsl:call-template name="fB">
-    <xsl:with-param name="content" select="$refentrytitle"/>
-  </xsl:call-template>
+  <xsl:apply-templates mode="bold" select="$refentrytitle"/>
   <xsl:text>(</xsl:text>
   <xsl:value-of select="$manvolnum"/>
   <xsl:text>)</xsl:text>
@@ -262,7 +264,7 @@
 <xsl:template match="ulink">
   <xsl:apply-templates/>
   <xsl:text>: </xsl:text>
-  <xsl:apply-templates name="italic" select="@url" />
+  <xsl:apply-templates mode="italic" select="@url" />
 </xsl:template>
 
 <xsl:template match="/">
