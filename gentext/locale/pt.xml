@@ -198,6 +198,7 @@
 <template name="indexdiv">%t</template>
 <template name="itemizedlist">%t</template>
 <template name="legalnotice">%t</template>
+<template name="listitem"/>
 <template name="lot">%t</template>
 <template name="msg">%t</template>
 <template name="msgexplan">%t</template>
@@ -312,6 +313,7 @@
 <template name="figure"><Figure/> %n. %t</template>
 <template name="glossary">%t</template>
 <template name="index">%t</template>
+<template name="listitem">%n</template>
 <template name="part"><Part/> %n. %t</template>
 <template name="preface">%t</template>
 <template name="reference">%t</template>

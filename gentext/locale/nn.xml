@@ -200,6 +200,7 @@
 <template name="indexdiv" text="%t"/>
 <template name="itemizedlist" text="%t"/>
 <template name="legalnotice" text="%t"/>
+<template name="listitem"/>
 <template name="lot" text="%t"/>
 <template name="msg" text="%t"/>
 <template name="msgexplan" text="%t"/>
@@ -312,6 +313,7 @@
 <template name="figure" text="Figur %n. %t"/>
 <template name="glossary" text="%t"/>
 <template name="index" text="%t"/>
+<template name="listitem">%n</template>
 <template name="part" text="Del %n. %t"/>
 <template name="preface" text="%t"/>
 <template name="reference" text="%t"/>
