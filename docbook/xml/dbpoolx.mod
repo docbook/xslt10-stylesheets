@@ -904,7 +904,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!ENTITY % articleinfo.element "INCLUDE">
 <![%articleinfo.element;[
 <!ELEMENT articleinfo %ho; ((graphic | mediaobject | legalnotice | modespec
-	| subjectset | keywordset | itermset | %bibliocomponent.mix;)+)>
+	| subjectset | keywordset | itermset | %bibliocomponent.mix;)+)
+	%beginpage.exclusion;>
 <!--end of articleinfo.element-->]]>
 
 <!ENTITY % articleinfo.attlist "INCLUDE">
@@ -1596,7 +1597,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!ENTITY % sidebarinfo.element "INCLUDE">
 <![ %sidebarinfo.element; [
 <!ELEMENT sidebarinfo %ho; ((graphic | mediaobject | legalnotice | modespec
-	| subjectset | keywordset | itermset | %bibliocomponent.mix;)+)>
+	| subjectset | keywordset | itermset | %bibliocomponent.mix;)+)
+	%beginpage.exclusion;>
 <!--end of sidebarinfo.element-->]]>
 
 <!ENTITY % sidebarinfo.attlist "INCLUDE">
@@ -3070,7 +3072,8 @@ in the text (no (0) value, the default)
 <!ENTITY % objectinfo.element "INCLUDE">
 <![ %objectinfo.element; [
 <!ELEMENT objectinfo %ho; ((graphic | mediaobject | legalnotice | modespec
-	| subjectset | keywordset | itermset | %bibliocomponent.mix;)+)>
+	| subjectset | keywordset | itermset | %bibliocomponent.mix;)+)
+	%beginpage.exclusion;>
 <!--end of objectinfo.element-->]]>
 
 <!ENTITY % objectinfo.attlist "INCLUDE">
