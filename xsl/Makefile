@@ -64,6 +64,7 @@ else
 	find . -print  | grep .classes | cut -c3- >> /tmp/tar.exclude
 	find . -type f -name "*~"  | cut -c3- >> /tmp/tar.exclude
 	find . -type f -name ".*~"  | cut -c3- >> /tmp/tar.exclude
+	find . -type f -name ".*.pyc"  | cut -c3- >> /tmp/tar.exclude
 	find . -type f -name "#*"  | cut -c3- >> /tmp/tar.exclude
 	find . -type f -name ".#*"  | cut -c3- >> /tmp/tar.exclude
 	find . -type f -name ".cvsignore"  | cut -c3- >> /tmp/tar.exclude
