@@ -188,6 +188,10 @@
 <xsl:template match="refsynopsisdiv/title">
 </xsl:template>
 
+<xsl:template match="refsynopsisdiv/title" mode="titlepage.mode">
+  <xsl:apply-templates/>
+</xsl:template>
+
 <xsl:template match="refsect1|refsect2|refsect3">
   <xsl:call-template name="block.object"/>
 </xsl:template>
