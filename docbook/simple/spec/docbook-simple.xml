@@ -7,12 +7,12 @@
 <article status="&standard;">
 
 <articleinfo>
-<productname>wd-docbook-simple</productname>
+<productname>cs-docbook-simple</productname>
 <productnumber>1.1</productnumber>
 
-<releaseinfo role="product"><ulink url="wd-docbook-simple-1.1.xml">XML</ulink></releaseinfo>
-<releaseinfo role="product"><ulink url="wd-docbook-simple-1.1.html">HTML</ulink></releaseinfo>
-<releaseinfo role="product"><ulink url="wd-docbook-simple-1.1.pdf">PDF</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="cs-docbook-simple-1.1.xml">XML</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="cs-docbook-simple-1.1.html">HTML</ulink></releaseinfo>
+<releaseinfo role="product"><ulink url="cs-docbook-simple-1.1.pdf">PDF</ulink></releaseinfo>
 
 <releaseinfo role="location">http://docbook.org/specs</releaseinfo>
 
