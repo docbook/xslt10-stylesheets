@@ -284,20 +284,8 @@
 
 <xsl:template match="refentry/refentryinfo"></xsl:template>
 
-<xsl:template match="option">
-  <xsl:apply-templates mode="bold" select="."/>
-</xsl:template>
-
-<xsl:template match="replaceable|varname">
-  <xsl:apply-templates mode="italic" select="."/>
-</xsl:template>
-
 <xsl:template match="filename">
   <xsl:text>&#10;.FN </xsl:text><xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="userinput">
-  <xsl:apply-templates mode="bold" select="."/>
 </xsl:template>
 
 <xsl:template match="informalexample|screen">
@@ -306,16 +294,12 @@
   <xsl:text>&#10;.fi&#10;</xsl:text>
 </xsl:template>
 
-<xsl:template match="envar">
-  <xsl:apply-templates mode="bold" select="."/>
+<xsl:template match="filename|replaceable|varname">
+  <xsl:text>\fI</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
 </xsl:template>
 
-<xsl:template match="filename">
-  <xsl:apply-templates mode="italic" select="."/>
-</xsl:template>
-
-<xsl:template match="errorcode|constant|type">
-  <xsl:apply-templates mode="bold" select="."/>
+<xsl:template match="option|userinput|envar|errorcode|constant|type">
+  <xsl:text>\fB</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
 </xsl:template>
 
 <xsl:template match="quote">
