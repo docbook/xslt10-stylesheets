@@ -1064,6 +1064,8 @@
               <xsl:with-param name="prev" select="$prev"/>
             </xsl:call-template>
 
+	    <!-- n.b. the foilgroup-body template is responsible for generating -->
+	    <!-- the foilgroup toc -->
             <div class="foilgroup-body">
               <xsl:call-template name="foilgroup-body">
                 <xsl:with-param name="home" select="$home"/>
@@ -1071,12 +1073,6 @@
                 <xsl:with-param name="next" select="$next"/>
                 <xsl:with-param name="prev" select="$prev"/>
               </xsl:call-template>
-
-              <xsl:if test="$foilgroup.toc != 0">
-                <dl class="toc">
-                  <xsl:apply-templates select="foil" mode="toc"/>
-                </dl>
-              </xsl:if>
             </div>
 
             <div id="overlayDiv">
@@ -1112,6 +1108,12 @@
 
   <xsl:apply-templates select="*[name(.) != 'foil'
                                 and name(.) != 'foilgroup']"/>
+
+  <xsl:if test="$foilgroup.toc != 0">
+    <dl class="toc">
+      <xsl:apply-templates select="foil" mode="toc"/>
+    </dl>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template name="foilgroup-top-nav">
