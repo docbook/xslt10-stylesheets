@@ -622,11 +622,7 @@
     <xsl:if test="@id">
       <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
     </xsl:if>
-    <xsl:call-template name="gentext">
-      <xsl:with-param name="key" select="'by'"/>
-    </xsl:call-template>
-    <xsl:text> </xsl:text>
-    <xsl:call-template name="person.name.list"/>
+    <xsl:apply-templates mode="titlepage.mode"/>
   </fo:block>
 </xsl:template>
 
@@ -662,26 +658,21 @@
       <xsl:with-param name="key" select="'by'"/>
     </xsl:call-template>
     <xsl:text> </xsl:text>
-    <xsl:call-template name="person.name.list"/>
+    <xsl:call-template name="person.name.list">
+      <xsl:with-param name="person.list" select="author|corpauthor|editor"/>
+    </xsl:call-template>
   </fo:block>
+  <xsl:apply-templates select="othercredit" mode="titlepage.mode"/>
 </xsl:template>
 
 <xsl:template match="bookinfo/author" mode="titlepage.mode" priority="2">
   <fo:block>
-    <xsl:call-template name="gentext">
-      <xsl:with-param name="key" select="'by'"/>
-    </xsl:call-template>
-    <xsl:text> </xsl:text>
     <xsl:call-template name="person.name"/>
   </fo:block>
 </xsl:template>
 
 <xsl:template match="bookinfo/corpauthor" mode="titlepage.mode" priority="2">
   <fo:block>
-    <xsl:call-template name="gentext">
-      <xsl:with-param name="key" select="'by'"/>
-    </xsl:call-template>
-    <xsl:text> </xsl:text>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
