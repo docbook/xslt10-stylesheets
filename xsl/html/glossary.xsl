@@ -203,7 +203,7 @@ GlossEntry ::=
       <xsl:choose>
         <xsl:when test="$target">
           <a href="#{@otherterm}">
-            <xsl:apply-templates select="$target" mode="xref"/>
+            <xsl:apply-templates select="$target" mode="xref-to"/>
           </a>
         </xsl:when>
         <xsl:when test="$otherterm != '' and not($target)">
@@ -245,7 +245,7 @@ GlossEntry ::=
   <xsl:choose>
     <xsl:when test="$target">
       <a href="#{@otherterm}">
-        <xsl:apply-templates select="$target" mode="xref"/>
+        <xsl:apply-templates select="$target" mode="xref-to"/>
       </a>
     </xsl:when>
     <xsl:when test="$otherterm != '' and not($target)">
