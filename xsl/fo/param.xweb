@@ -343,8 +343,14 @@ zero by default, so this is simply the page-master region-left.
 &informal.object.properties;
 &monospace.verbatim.properties;
 &verbatim.properties;
-&section.title.properties;
 &sidebar.properties;
+&section.title.properties;
+&section.title.level1.properties;
+&section.title.level2.properties;
+&section.title.level3.properties;
+&section.title.level4.properties;
+&section.title.level5.properties;
+&section.title.level6.properties;
 </reference>
 
 <reference><title>Profiling</title>
@@ -529,6 +535,12 @@ around all these parameters.</para>
 <src:fragref linkend="sans.font.family.frag"/>
 <src:fragref linkend="section.autolabel.frag"/>
 <src:fragref linkend="section.label.includes.component.label.frag"/>
+<src:fragref linkend="section.title.level1.properties.frag"/>
+<src:fragref linkend="section.title.level2.properties.frag"/>
+<src:fragref linkend="section.title.level3.properties.frag"/>
+<src:fragref linkend="section.title.level4.properties.frag"/>
+<src:fragref linkend="section.title.level5.properties.frag"/>
+<src:fragref linkend="section.title.level6.properties.frag"/>
 <src:fragref linkend="section.title.properties.frag"/>
 <src:fragref linkend="segmentedlist.as.table.frag"/>
 <src:fragref linkend="shade.verbatim.frag"/>
