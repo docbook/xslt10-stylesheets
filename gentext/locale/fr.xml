@@ -119,9 +119,9 @@
 <gentext key="step" text="&eacute;tape"/>
 <gentext key="table" text="Tableau"/>
 <gentext key="Table" text="Tableau"/>
-<gentext key="tip" text="TUYAU"/>
-<gentext key="TIP" text="TUYAU"/>
-<gentext key="Tip" text="Tuyau"/>
+<gentext key="tip" text="ASTUCE"/>
+<gentext key="TIP" text="ASTUCE"/>
+<gentext key="Tip" text="Astuce"/>
 <gentext key="Warning" text="Avertissement"/>
 <gentext key="WARNING" text="AVERTISSEMENT"/>
 <gentext key="warning" text="AVERTISSEMENT"/>
