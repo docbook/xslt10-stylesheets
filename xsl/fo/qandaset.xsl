@@ -122,7 +122,7 @@
 -->
 </xsl:template>
 
-<xsl:template match="question|answer">
+<xsl:template match="question">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
   <xsl:variable name="entry.id">
     <xsl:call-template name="object.id">
@@ -131,6 +131,26 @@
   </xsl:variable>
 
   <fo:list-item id="{$entry.id}" xsl:use-attribute-sets="list.item.spacing">
+    <fo:list-item-label id="{$id}" end-indent="label-end()">
+      <fo:block>
+        <xsl:call-template name="question.answer.label"/>
+      </fo:block>
+    </fo:list-item-label>
+    <fo:list-item-body start-indent="body-start()">
+      <xsl:apply-templates/>
+    </fo:list-item-body>
+  </fo:list-item>
+</xsl:template>
+
+<xsl:template match="answer">
+  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+  <xsl:variable name="entry.id">
+    <xsl:call-template name="object.id">
+      <xsl:with-param name="object" select="parent::*"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <fo:list-item xsl:use-attribute-sets="list.item.spacing">
     <fo:list-item-label id="{$id}" end-indent="label-end()">
       <fo:block>
         <xsl:call-template name="question.answer.label"/>
