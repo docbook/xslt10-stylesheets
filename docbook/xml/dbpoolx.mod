@@ -720,7 +720,9 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!ENTITY % linespecific.attrib
 	"format		NOTATION
 			(linespecific)	'linespecific'
-         linenumbering	(numbered|unnumbered) 	#IMPLIED">
+         linenumbering	(numbered|unnumbered) 	#IMPLIED
+         continuation	(continues|restarts)	#IMPLIED
+         startinglinenumber	CDATA		#IMPLIED">
 
 
 <!-- Linkend: link to related information; no default -->
