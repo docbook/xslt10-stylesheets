@@ -486,6 +486,7 @@
   <xsl:variable name="up" select="parent::*"/>
 
   <head>
+    <xsl:call-template name="system.head.content"/>
     <xsl:call-template name="head.content"/>
     <xsl:call-template name="user.head.content"/>
 
