@@ -1,7 +1,7 @@
 <refentry id="admonition.title.properties">
 <refnamediv>
 <refname>admonition.title.properties</refname>
-<refpurpose>To set the style for admonitions.</refpurpose>
+<refpurpose>To set the style for admonitions titles.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -13,7 +13,7 @@
 </xsl:attribute-set></src:fragment>
 </refsynopsisdiv>
 <refsect1><title>Description</title>
-<para>How do you want admonitions styled? </para>
+<para>How do you want admonitions titles styled? </para>
 <para>Set the font-size, weight etc to the style required</para>
 
 </refsect1>
