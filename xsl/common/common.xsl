@@ -551,7 +551,7 @@ Defaults to the context node.</para>
        John Doe, Jane Doe, and A. Nonymous
   -->
   <xsl:param name="person.list"
-             select="./author|./corpauthor|./othercredit|./editor"/>
+             select="author|corpauthor|othercredit|editor"/>
   <xsl:param name="person.count" select="count($person.list)"/>
   <xsl:param name="count" select="1"/>
 
@@ -1037,6 +1037,7 @@ object is recognized as a graphic.</para>
   </xsl:variable>
 
   <xsl:choose>
+    <xsl:when test="$use.svg = 0 and $format = 'SVG'">0</xsl:when>
     <xsl:when xmlns:svg="http://www.w3.org/2000/svg"
               test="$use.svg != 0 and $object/svg:*">1</xsl:when>
     <xsl:when test="$graphic.format = '1'">1</xsl:when>
