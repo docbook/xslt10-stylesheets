@@ -1,12 +1,12 @@
 <!-- ...................................................................... -->
-<!-- Simplified DocBook Hierarchy V1.0b2 ................................ -->
+<!-- Simplified DocBook Hierarchy V1.0CR2 ................................ -->
 <!-- File sdbhier.mod ..................................................... -->
 
-<!-- Copyright 1992-2001 HaL Computer Systems, Inc.,
+<!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
      O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
-     Corporation, Norman Walsh, Sun Microsystems, Inc. and the
-     Organization for the Advancement of Structured Information Standards
-     (OASIS).
+     Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+     Organization for the Advancement of Structured Information
+     Standards (OASIS).
 
      $Id$
 
@@ -85,5 +85,5 @@
 
 ]]>
 
-<!-- End of Simplified DocBook Hierarchy V1.0b2 ......................... -->
+<!-- End of Simplified DocBook Hierarchy V1.0CR2 ......................... -->
 <!-- ...................................................................... -->
