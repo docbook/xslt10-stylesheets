@@ -115,7 +115,17 @@
 
   
 <xsl:template match="refentry">
-  <xsl:variable name="section" select="refmeta/manvolnum"/>
+
+  <xsl:variable name="section">
+    <xsl:choose>
+      <xsl:when test="refmeta/manvolnum">
+        <xsl:value-of select="refmeta/manvolnum[1]"/>
+      </xsl:when>
+      <xsl:when test=".//funcsynopsis">3</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:variable name="name" select="refnamediv/refname[1]"/>
 
   <!-- standard man page width is 64 chars; 6 chars needed for the two
@@ -193,7 +203,7 @@
 .TH "</xsl:text>
       <xsl:value-of select="translate($reftitle,'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
       <xsl:text>" </xsl:text>
-      <xsl:value-of select="refmeta/manvolnum[1]"/>
+      <xsl:value-of select="$section"/>
       <xsl:text> "</xsl:text>
       <xsl:value-of select="normalize-space($date)"/>
       <xsl:text>" "</xsl:text>
