@@ -216,6 +216,7 @@ Defaults to the context node.</para>
     <xsl:when test="name($node)='sect5'">5</xsl:when>
     <xsl:when test="name($node)='section'">
       <xsl:choose>
+        <xsl:when test="$node/../../../../../../section">6</xsl:when>
         <xsl:when test="$node/../../../../../section">5</xsl:when>
         <xsl:when test="$node/../../../../section">4</xsl:when>
         <xsl:when test="$node/../../../section">3</xsl:when>
