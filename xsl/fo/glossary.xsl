@@ -707,7 +707,7 @@ GlossEntry ::=
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
-  <fo:block xsl:use-attribute-sets="list.block.spacing"
+  <fo:block xsl:use-attribute-sets="list.item.spacing"
  	  keep-with-next.within-column="always" 
  	  keep-together.within-column="always">
     <xsl:call-template name="anchor">
@@ -801,7 +801,8 @@ GlossEntry ::=
 </xsl:template>
 
 <xsl:template match="glossentry/glossdef" mode="glossary.as.blocks">
-  <xsl:apply-templates select="*[local-name(.) != 'glossseealso']"/>
+  <xsl:apply-templates select="*[local-name(.) != 'glossseealso']"
+                       mode="glossary.as.blocks"/>
   <xsl:if test="glossseealso">
     <fo:block>
       <xsl:call-template name="gentext.template">
@@ -818,6 +819,11 @@ GlossEntry ::=
   <fo:block>
     <xsl:apply-templates/>
   </fo:block>
+</xsl:template>
+
+<!-- Handle any other glossdef content normally -->
+<xsl:template match="*" mode="glossary.as.blocks">
+  <xsl:apply-templates select="." />
 </xsl:template>
 
 <xsl:template match="glossseealso" mode="glossary.as.blocks">
