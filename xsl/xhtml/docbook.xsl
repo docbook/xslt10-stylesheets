@@ -16,7 +16,9 @@
 <xsl:include href="../html/docbook.xsl"/>
 
  <!-- this has to be last because of document order nonsense -->
-<xsl:output method="xml"/>
+<xsl:output method="xml"
+            doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+            doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
 
 <xsl:template match="mml:*">
   <xsl:element name="{name(.)}">
