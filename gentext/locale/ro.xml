@@ -34,7 +34,6 @@
 <gentext key="Book" text="Carte"/>
 <gentext key="book" text="Carte"/>
 <gentext key="CAUTION" text="ATEN&#222;IE"/>
-<gentext key="caution" text="ATEN&#222;IE"/>
 <gentext key="Caution" text="Aten&#254;ie"/>
 <gentext key="caution" text="Aten&#254;ie"/>
 <gentext key="Chapter" text="Cap."/>
@@ -59,7 +58,6 @@
 <gentext key="GlossSeeAlso" text="Vezi &scedil;i"/>
 <gentext key="glossseealso" text="Vezi &scedil;i"/>
 <gentext key="IMPORTANT" text="IMPORTANT"/>
-<gentext key="important" text="IMPORTANT"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="Important"/>
@@ -75,13 +73,10 @@
 <gentext key="MsgOrig" text="Origine"/>
 <gentext key="msgorig" text="Origine"/>
 <gentext key="NOTE" text="NOT&#195;"/>
-<gentext key="note" text="NOT&#195;"/>
 <gentext key="Note" text="Not&#227;"/>
 <gentext key="note" text="Not&#227;"/>
 <gentext key="RefName" text="Nume"/>
 <gentext key="refname" text="Nume"/>
-<gentext key="Note" text="Not&#227;"/>
-<gentext key="note" text="Not&#227;"/>
 <gentext key="Part" text="Parte"/>
 <gentext key="part" text="Parte"/>
 <gentext key="Preface" text="Prefa&#254;&#227;"/>
@@ -92,14 +87,10 @@
 <gentext key="published" text="Publicat"/>
 <gentext key="Question" text="Q:"/>
 <gentext key="question" text="Q:"/> <!-- en -->
-<gentext key="Reference" text="Referin&#254;&#227;"/>
-<gentext key="reference" text="Referin&#254;&#227;"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
 <gentext key="Reference" text="Referin&#254;&#227;"/>
 <gentext key="reference" text="Referin&#254;&#227;"/>
-<gentext key="RefName" text="Name"/>
-<gentext key="refname" text="Name"/>
 <gentext key="RefSection" text=""/>
 <gentext key="refsection" text=""/>
 <gentext key="RefSynopsisDiv" text="Rezumat"/>
@@ -120,13 +111,11 @@
 <gentext key="Sidebar" text=""/>
 <gentext key="Step" text="Opera&#254;ie"/>
 <gentext key="TIP" text="INDICA&#222;IE"/>
-<gentext key="tip" text="INDICA&#222;IE"/>
 <gentext key="Table" text="Tabel"/>
 <gentext key="table" text="Tabel"/>
 <gentext key="Tip" text="Indica&#254;ie"/>
 <gentext key="tip" text="Indica&#254;ie"/>
 <gentext key="WARNING" text="AVERTISMENT"/>
-<gentext key="warning" text="AVERTISMENT"/>
 <gentext key="Warning" text="Avertisment"/>
 <gentext key="warning" text="Avertisment"/>
 <gentext key="appendix" text="anexa"/>
@@ -135,7 +124,6 @@
 <gentext key="section" text="sec."/>
 <gentext key="step" text="opera&#254;iune"/>
 <gentext key="Seealso" text="Vezi &scedil;i"/>
-<gentext key="seealso" text="Vezi &scedil;i"/>
 
 <gentext key="TableofContents" text="Cuprins"/>
 <gentext key="tableofcontents" text="Cuprins"/>

@@ -29,7 +29,6 @@
 <gentext key="Book" text="Kitap"/>
 <gentext key="book" text="Kitap"/>
 <gentext key="CAUTION" text="D&#221;KKAT"/>
-<gentext key="caution" text="D&#221;KKAT"/>
 <gentext key="Caution" text="Dikkat"/>
 <gentext key="caution" text="Dikkat"/>
 <gentext key="Chapter" text="B&#246;l&#252;m"/>
@@ -55,7 +54,6 @@
 <gentext key="Glossary" text="S&#246;zl&#252;k"/>
 <gentext key="glossary" text="S&#246;zl&#252;k"/>
 <gentext key="IMPORTANT" text="&#214;NEML&#221;"/>
-<gentext key="important" text="&#214;NEML&#221;"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="&#214;nemli"/>
@@ -71,7 +69,6 @@
 <gentext key="MsgOrig" text="Kaynak"/>
 <gentext key="msgorig" text="Kaynak"/>
 <gentext key="NOTE" text="NOT"/>
-<gentext key="note" text="NOT"/>
 <gentext key="Note" text="Not"/>
 <gentext key="note" text="Not"/>
 <gentext key="Part" text="K&#253;s&#253;m"/>
@@ -114,22 +111,14 @@
 <gentext key="Step" text="Ad&#253;m"/>
 <gentext key="step" text="Ad&#253;m"/>
 <gentext key="TIP" text="&#221;PUCU"/>
-<gentext key="tip" text="&#221;PUCU"/>
 <gentext key="Table" text="Tablo"/>
 <gentext key="table" text="Tablo"/>
 <gentext key="Tip" text="&#221;pucu"/>
 <gentext key="tip" text="&#221;pucu"/>
 <gentext key="WARNING" text="UYARI"/>
-<gentext key="warning" text="UYARI"/>
 <gentext key="Warning" text="Uyar&#253;"/>
 <gentext key="warning" text="Uyar&#253;"/>
-<gentext key="appendix" text="ek"/>
-<gentext key="chapter" text="b&#246;l&#252;m"/>
-<gentext key="section" text="k&#253;s&#253;m"/>
-<gentext key="sidebar" text="yan s&#252;tun"/>
-<gentext key="step" text="ad&#253;m"/>
 <gentext key="Seealso" text="Bkz."/>
-<gentext key="seealso" text="Bkz."/>
 
 <gentext key="TableofContents" text="&#221;&#231;indekiler"/>
 <gentext key="tableofcontents" text="&#221;&#231;indekiler"/>

@@ -27,7 +27,6 @@
 <gentext key="Book" text="Boek"/>
 <gentext key="book" text="Boek"/>
 <gentext key="CAUTION" text="LET OP"/>
-<gentext key="caution" text="LET OP"/>
 <gentext key="Caution" text="Let op"/>
 <gentext key="caution" text="Let op"/>
 <gentext key="Chapter" text="Hoofdstuk"/>
@@ -52,7 +51,6 @@
 <gentext key="Glossary" text="Woordenlijst"/>
 <gentext key="glossary" text="Woordenlijst"/>
 <gentext key="IMPORTANT" text="BELANGRIJK"/>
-<gentext key="important" text="BELANGRIJK"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="Belangrijk"/>
@@ -68,7 +66,6 @@
 <gentext key="MsgOrig" text="Herkomst"/>
 <gentext key="msgorig" text="Herkomst"/>
 <gentext key="NOTE" text="OPMERKING"/>
-<gentext key="note" text="OPMERKING"/>
 <gentext key="Note" text="Opmerking"/>
 <gentext key="note" text="Opmerking"/>
 <gentext key="Part" text="Deel"/>
@@ -107,13 +104,11 @@
 <gentext key="Sidebar" text="Excursie"/>
 <gentext key="Step" text="Stap"/>
 <gentext key="TIP" text="TIP"/>
-<gentext key="tip" text="TIP"/>
 <gentext key="Table" text="Tabel"/>
 <gentext key="table" text="Tabel"/>
 <gentext key="Tip" text="Tip"/>
 <gentext key="tip" text="Tip"/>
 <gentext key="WARNING" text="WAARSCHUWING"/>
-<gentext key="warning" text="WAARSCHUWING"/>
 <gentext key="Warning" text="Waarschuwing"/>
 <gentext key="warning" text="Waarschuwing"/>
 <gentext key="appendix" text="aanhangsel"/>
@@ -122,7 +117,6 @@
 <gentext key="sidebar" text="excursie"/>
 <gentext key="step" text="stap"/>
 <gentext key="Seealso" text="Zie ook"/>
-<gentext key="seealso" text="Zie ook"/>
 
 <gentext key="TableofContents" text="Inhoudsopgave"/>
 <gentext key="tableofcontents" text="Inhoudsopgave"/>

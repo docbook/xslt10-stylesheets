@@ -24,7 +24,6 @@
 <gentext key="Book" text="Knjiga"/>
 <gentext key="book" text="Knjiga"/>
 <gentext key="CAUTION" text="UPOZORENJE"/>
-<gentext key="caution" text="UPOZORENJE"/>
 <gentext key="Caution" text="Upozorenje"/>
 <gentext key="caution" text="Upozorenje"/>
 <gentext key="Chapter" text="Poglavlje"/>
@@ -49,7 +48,6 @@
 <gentext key="Glossary" text="Re\&#x010D;nik"/>
 <gentext key="glossary" text="Re\&#x010D;nik"/>
 <gentext key="IMPORTANT" text="VA\&#x017D;NO"/>
-<gentext key="important" text="VA\&#x017D;NO"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="Va\&#x017E;no"/>
@@ -65,7 +63,6 @@
 <gentext key="MsgOrig" text="Izvor"/>
 <gentext key="msgorig" text="Izvor"/>
 <gentext key="NOTE" text="PRIMEDBA"/>
-<gentext key="note" text="Primedba"/>
 <gentext key="Note" text="Primedba"/>
 <gentext key="note" text="Primedba"/>
 <gentext key="Part" text="Deo"/>
@@ -104,13 +101,11 @@
 <gentext key="Sidebar" text=""/>
 <gentext key="Step" text="Korak"/>
 <gentext key="TIP" text="SAVET"/>
-<gentext key="tip" text="SAVET"/>
 <gentext key="Table" text="Tabela"/>
 <gentext key="table" text="Tabela"/>
 <gentext key="Tip" text="Savet"/>
 <gentext key="tip" text="Savet"/>
 <gentext key="WARNING" text="UPOZORENJE"/>
-<gentext key="warning" text="UPOZORENJE"/>
 <gentext key="Warning" text="Upozorenje"/>
 <gentext key="warning" text="Upozorenje"/>
 <gentext key="appendix" text="dodatak"/>
@@ -119,7 +114,6 @@
 <gentext key="sidebar" text="sidebar"/>
 <gentext key="step" text="korak"/>
 <gentext key="Seealso" text="Vidi tako\&#x0111;e"/>
-<gentext key="seealso" text="Vidi tako\&#x0111;e"/>
 
 <gentext key="TableofContents" text="Sadr\&#x017E;aj"/>
 <gentext key="tableofcontents" text="Sadr\&#x017E;aj"/>

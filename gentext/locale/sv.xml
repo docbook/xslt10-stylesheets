@@ -26,7 +26,6 @@
 <gentext key="Book" text="Bok"/>
 <gentext key="book" text="Bok"/>
 <gentext key="CAUTION" text="OBSERVERA"/>
-<gentext key="caution" text="OBSERVERA"/> 
 <gentext key="Caution" text="Observera"/>
 <gentext key="caution" text="Observera"/> 
 <gentext key="Chapter" text="Kapitel"/>
@@ -51,7 +50,6 @@
 <gentext key="Glossary" text="Gloslista"/>
 <gentext key="glossary" text="Gloslista"/>
 <gentext key="IMPORTANT" text="VIKTIGT"/>
-<gentext key="important" text="VIKTIGT"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="Important" text="Viktigt"/>
@@ -67,7 +65,6 @@
 <gentext key="MsgOrig" text="Ursprung"/>
 <gentext key="msgorig" text="Ursprung"/>
 <gentext key="NOTE" text="NOT"/>
-<gentext key="note" text="NOT"/>
 <gentext key="Note" text="Not"/>
 <gentext key="note" text="Not"/>
 <gentext key="Part" text="Del"/>
@@ -107,13 +104,11 @@
 <gentext key="sidebar" text="sidebar"/>
 <gentext key="Step" text="Steg"/>
 <gentext key="TIP" text="TIPS"/>
-<gentext key="tip" text="TIPS"/>
 <gentext key="Table" text="Tabell"/>
 <gentext key="table" text="Tabell"/>
 <gentext key="Tip" text="Tips"/>
 <gentext key="tip" text="Tips"/>
 <gentext key="WARNING" text="VARNING"/>
-<gentext key="warning" text="VARNING"/>
 <gentext key="Warning" text="Varning"/>
 <gentext key="warning" text="Varning"/>
 <gentext key="appendix" text="appendix"/>
@@ -121,7 +116,6 @@
 <gentext key="section" text="avsnitt"/>
 <gentext key="step" text="steg"/>
 <gentext key="Seealso" text="Se &#228;ven"/>
-<gentext key="seealso" text="Se &#228;ven"/>
 
 <gentext key="TableofContents" text="Inneh&#229;llsf&#246;rteckning"/>
 <gentext key="tableofcontents" text="Inneh&#229;llsf&#246;rteckning"/>
@@ -136,7 +130,6 @@
 <gentext key="listcomma" text=","/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="Notes" text="Noter"/>
-<gentext key="notes" text="Noter"/>
 <gentext key="TableNotes" text="Noter"/>
 <gentext key="tablenotes" text="Noter"/>
 <gentext key="nonexistantelement" text="non-existant element"/>

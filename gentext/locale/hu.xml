@@ -29,7 +29,6 @@
 <gentext key="Book" text="K&#x00F6;nyv"/>
 <gentext key="book" text="k&#x00F6;nyv"/>
 <gentext key="CAUTION" text="FIGYELEM"/>
-<gentext key="caution" text="figyelem"/>
 <gentext key="Caution" text="Figyelem"/>
 <gentext key="caution" text="figyelem"/>
 <gentext key="Chapter" text="Fejezet"/>
@@ -54,7 +53,6 @@
 <gentext key="Glossary" text="Sz&#x00F3;jegyz&#x00E9;k"/>
 <gentext key="glossary" text="sz&#x00F3;jegyz&#x00E9;k"/>
 <gentext key="IMPORTANT" text="FONTOS"/>
-<gentext key="important" text="fontos"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="isbn"/>
 <gentext key="Important" text="Fontos"/>
@@ -70,7 +68,6 @@
 <gentext key="MsgOrig" text="Eredet"/>
 <gentext key="msgorig" text="eredet"/>
 <gentext key="NOTE" text="MEGJEGYZ&#x00C9;S"/>
-<gentext key="note" text="megjegyz&#x00E9;s"/>
 <gentext key="Note" text="Megjegyz&#x00E9;s"/>
 <gentext key="note" text="megjegyz&#x00E9;s"/>
 <gentext key="Part" text="R&#x00E9;sz"/>
@@ -113,9 +110,7 @@
 <gentext key="Table" text="T&#x00E1;bl&#x00E1;zat"/>
 <gentext key="table" text="t&#x00E1;bl&#x00E1;zat"/>
 <gentext key="Tip" text="Tipp"/>
-<gentext key="tip" text="tipp"/>
 <gentext key="WARNING" text="FIGYELEM"/>
-<gentext key="warning" text="figyelem"/>
 <gentext key="Warning" text="Figyelem"/>
 <gentext key="warning" text="figyelem"/>
 <gentext key="appendix" text="f&#x00FC;ggel&#x00E9;k"/>
@@ -124,7 +119,6 @@
 <gentext key="sidebar" text="sz&#x00E9;ljegyzet"/>
 <gentext key="step" text="l&#x00E9;p&#x00E9;s"/>
 <gentext key="Seealso" text="L&#x00E1;sd m&#x00E9;g"/>
-<gentext key="seealso" text="l&#x00E1;sd m&#x00E9;g"/>
 
 <gentext key="TableofContents" text="Tartalom"/>
 <gentext key="tableofcontents" text="tartalom"/>
