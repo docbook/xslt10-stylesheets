@@ -24,7 +24,6 @@
       <title named-template="component.title"
 	     param:node="ancestor-or-self::article[1]"
 	     fo:text-align="center"
-	     fo:margin-left="{$title.margin.left}"
 	     fo:keep-with-next="always"
 	     fo:font-size="&hsize5;"
 	     fo:font-weight="bold"
