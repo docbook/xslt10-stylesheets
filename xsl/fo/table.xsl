@@ -321,6 +321,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       </xsl:attribute>
     </xsl:if>
     <xsl:if test="@namest">
+      <xsl:attribute name="column-number">
+        <xsl:call-template name="colspec.colnum">
+          <xsl:with-param name="colname" select="@namest"/>
+        </xsl:call-template>
+      </xsl:attribute>
       <xsl:attribute name="number-columns-spanned">
         <xsl:call-template name="calculate.colspan"/>
       </xsl:attribute>
