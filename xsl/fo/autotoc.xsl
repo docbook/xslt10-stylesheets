@@ -231,7 +231,11 @@
   <xsl:variable name="nodes" select="glossary|bibliography|preface|chapter
                                      |reference|part|article|appendix|index"/>
 
-  <xsl:if test="$toc.section.depth &gt; 0 and $nodes">
+  <xsl:variable name="depth.from.context" select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
+
+  <xsl:if test="$toc.section.depth > 0 
+                and $toc.max.depth > $depth.from.context
+                and $nodes">
     <fo:block id="toc.{$cid}.{$id}"
               start-indent="{count(ancestor::*)*$toc.indent.width}pt">
       <xsl:apply-templates select="$nodes" mode="toc">
@@ -260,7 +264,11 @@
                                      refentry|article|index|glossary|
 				     bibliography"/>
 
-  <xsl:if test="$toc.section.depth &gt; 0 and $nodes">
+  <xsl:variable name="depth.from.context" select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
+
+  <xsl:if test="$toc.section.depth > 0 
+                and $toc.max.depth > $depth.from.context
+                and $nodes">
     <fo:block id="toc.{$cid}.{$id}"
               start-indent="{count(ancestor::*)*$toc.indent.width}pt">
       <xsl:apply-templates select="$nodes" mode="toc">
@@ -283,9 +291,13 @@
     </xsl:call-template>
   </xsl:variable>
 
+  <xsl:variable name="depth.from.context" select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
+
   <xsl:call-template name="toc.line"/>
 
-  <xsl:if test="$toc.section.depth &gt; 0 and refentry">
+  <xsl:if test="$toc.section.depth > 0
+                and $toc.max.depth > $depth.from.context
+                and refentry">
     <fo:block id="toc.{$cid}.{$id}"
               start-indent="{count(ancestor::*)*$toc.indent.width}pt">
       <xsl:apply-templates select="refentry" mode="toc">
@@ -321,7 +333,11 @@
 				     |simplesect[$simplesect.in.toc != 0]
 				     |refentry"/>
 
-  <xsl:if test="$toc.section.depth &gt; 0 and $nodes">
+  <xsl:variable name="depth.from.context" select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
+
+  <xsl:if test="$toc.section.depth > 0 
+                and $toc.max.depth > $depth.from.context
+                and $nodes">
     <fo:block id="toc.{$cid}.{$id}"
               start-indent="{count(ancestor::*)*$toc.indent.width}pt">
       <xsl:apply-templates select="$nodes" mode="toc">
@@ -346,7 +362,11 @@
 
   <xsl:call-template name="toc.line"/>
 
-  <xsl:if test="$toc.section.depth &gt; 1 and sect2">
+  <xsl:variable name="depth.from.context" select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
+
+  <xsl:if test="$toc.section.depth > 1 
+                and $toc.max.depth > $depth.from.context
+                and sect2">
     <fo:block id="toc.{$cid}.{$id}"
               start-indent="{count(ancestor::*)*$toc.indent.width}pt">
       <xsl:apply-templates select="sect2" mode="toc">
@@ -374,7 +394,11 @@
   <xsl:variable name="reldepth"
                 select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
 
-  <xsl:if test="$toc.section.depth &gt; 2 and sect3">
+  <xsl:variable name="depth.from.context" select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
+
+  <xsl:if test="$toc.section.depth > 2 
+                and $toc.max.depth > $depth.from.context
+                and sect3">
     <fo:block id="toc.{$cid}.{$id}"
               start-indent="{$reldepth*$toc.indent.width}pt">
       <xsl:apply-templates select="sect3" mode="toc">
@@ -402,7 +426,11 @@
   <xsl:variable name="reldepth"
                 select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
 
-  <xsl:if test="$toc.section.depth &gt; 3 and sect4">
+  <xsl:variable name="depth.from.context" select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
+
+  <xsl:if test="$toc.section.depth > 3 
+                and $toc.max.depth > $depth.from.context
+                and sect4">
     <fo:block id="toc.{$cid}.{$id}"
               start-indent="{$reldepth*$toc.indent.width}pt">
       <xsl:apply-templates select="sect4" mode="toc">
@@ -430,7 +458,11 @@
   <xsl:variable name="reldepth"
                 select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
 
-  <xsl:if test="$toc.section.depth &gt; 4 and sect5">
+  <xsl:variable name="depth.from.context" select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
+
+  <xsl:if test="$toc.section.depth > 4 
+                and $toc.max.depth > $depth.from.context
+                and sect5">
     <fo:block id="toc.{$cid}.{$id}"
               start-indent="{$reldepth*$toc.indent.width}pt">
       <xsl:apply-templates select="sect5" mode="toc">
@@ -463,10 +495,14 @@
   <xsl:variable name="reldepth"
                 select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
 
+  <xsl:variable name="depth.from.context" select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
+
   <xsl:if test="$toc.section.depth &gt;= $depth">
     <xsl:call-template name="toc.line"/>
 
-    <xsl:if test="$toc.section.depth &gt; $depth and section">
+    <xsl:if test="$toc.section.depth > $depth 
+                  and $toc.max.depth > $depth.from.context
+                  and section">
       <fo:block id="toc.{$cid}.{$id}"
                 start-indent="{$reldepth*$toc.indent.width}pt">
         <xsl:apply-templates select="section" mode="toc">

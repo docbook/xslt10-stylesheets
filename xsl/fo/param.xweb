@@ -98,6 +98,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &index.div.title.properties;
 &xep.index.item.properties;
 &toc.section.depth;
+&toc.max.depth;
 &toc.indent.width;
 &toc.margin.properties;
 &bridgehead.in.toc;
@@ -773,6 +774,7 @@ around all these parameters.</para>
 <src:fragref linkend="title.margin.left.frag"/>
 <src:fragref linkend="toc.indent.width.frag"/>
 <src:fragref linkend="toc.margin.properties.frag"/>
+<src:fragref linkend="toc.max.depth.frag"/>
 <src:fragref linkend="toc.section.depth.frag"/>
 <src:fragref linkend="ulink.footnotes.frag"/>
 <src:fragref linkend="ulink.hyphenate.frag"/>
