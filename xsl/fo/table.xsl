@@ -145,37 +145,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     </xsl:message>
   </xsl:if>
 
-  <xsl:variable name="explicit.table.width">
-    <xsl:choose>
-      <xsl:when test="self::entrytbl">
-        <xsl:call-template name="dbfo-attribute">
-          <xsl:with-param name="pis" 
-                          select="processing-instruction('dbfo')"/>
-          <xsl:with-param name="attribute" select="'table-width'"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="dbfo-attribute">
-          <xsl:with-param name="pis" 
-                          select="../processing-instruction('dbfo')"/>
-          <xsl:with-param name="attribute" select="'table-width'"/>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
   <xsl:variable name="table.width">
-    <xsl:choose>
-      <xsl:when test="$explicit.table.width != ''">
-        <xsl:value-of select="$explicit.table.width"/>
-      </xsl:when>
-      <xsl:when test="$default.table.width = ''">
-        <xsl:text>100%</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$default.table.width"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:call-template name="table.width"/>
   </xsl:variable>
 
   <xsl:variable name="colspecs">
@@ -234,6 +205,59 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 </xsl:template>
 
 <xsl:template match="colspec"></xsl:template>
+
+<xsl:template name="table.width">
+  <xsl:variable name="explicit.table.width">
+    <xsl:choose>
+      <xsl:when test="self::entrytbl">
+        <xsl:call-template name="dbfo-attribute">
+          <xsl:with-param name="pis" 
+                          select="processing-instruction('dbfo')"/>
+          <xsl:with-param name="attribute" select="'table-width'"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="self::table or self::informaltable">
+        <xsl:call-template name="dbfo-attribute">
+          <xsl:with-param name="pis" 
+                          select="processing-instruction('dbfo')"/>
+          <xsl:with-param name="attribute" select="'table-width'"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="dbfo-attribute">
+          <xsl:with-param name="pis" 
+                          select="../processing-instruction('dbfo')"/>
+          <xsl:with-param name="attribute" select="'table-width'"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="table.width">
+    <xsl:choose>
+      <xsl:when test="$explicit.table.width != ''">
+        <xsl:value-of select="$explicit.table.width"/>
+      </xsl:when>
+      <xsl:when test="$default.table.width = ''">
+        <xsl:choose>
+          <!-- These processors don't support table-layout="auto" -->
+          <xsl:when test="$fop.extensions != 0 or
+                          $passivetex.extensions != 0">
+            <xsl:text>100%</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>auto</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$default.table.width"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:value-of select="$table.width"/>
+
+</xsl:template>
 
 <xsl:template match="spanspec"></xsl:template>
 
@@ -585,7 +609,8 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 -->
 
         <xsl:choose>
-          <xsl:when test="$xep.extensions != 0 and $orientation != ''">
+          <xsl:when test="$fop.extensions = 0 and $passivetex.extensions = 0
+	                  and $orientation != ''">
             <fo:block-container reference-orientation="{$orientation}">
               <xsl:if test="$rotated-width != ''">
                 <xsl:attribute name="width">
