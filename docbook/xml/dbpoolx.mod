@@ -153,7 +153,7 @@
 <!ENTITY % gen.char.class
 		"abbrev|acronym|citation|citerefentry|citetitle|emphasis
 		|firstterm|foreignphrase|glossterm|footnote|phrase
-		|quote|trademark|wordasword %local.gen.char.class;">
+		|quote|trademark|wordasword|personname %local.gen.char.class;">
 
 <!ENTITY % local.link.char.class "">
 <!ENTITY % link.char.class
@@ -864,7 +864,7 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 		|productnumber|pubdate|publisher|publishername
 		|pubsnumber|releaseinfo|revhistory|seriesvolnums
 		|subtitle|title|titleabbrev|volumenum|citetitle
-		|%person.ident.mix;
+		|personname|%person.ident.mix;
 		|%ndxterm.class;
 		%local.bibliocomponent.mix;">
 
@@ -1695,6 +1695,26 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 >
 <!--end of authorblurb.attlist-->]]>
 <!--end of authorblurb.module-->]]>
+
+<!ENTITY % personblurb.module "INCLUDE">
+<![%personblurb.module;[
+<!ENTITY % local.personblurb.attrib "">
+<!ENTITY % personblurb.role.attrib "%role.attrib;">
+
+<!ENTITY % personblurb.element "INCLUDE">
+<![%personblurb.element;[
+<!ELEMENT personblurb %ho; (title?, (%para.class;)+)>
+<!--end of personblurb.element-->]]>
+
+<!ENTITY % personblurb.attlist "INCLUDE">
+<![%personblurb.attlist;[
+<!ATTLIST personblurb
+		%common.attrib;
+		%personblurb.role.attrib;
+		%local.personblurb.attrib;
+>
+<!--end of personblurb.attlist-->]]>
+<!--end of personblurb.module-->]]>
 
 <!ENTITY % blockquote.module "INCLUDE">
 <![%blockquote.module;[
@@ -4272,7 +4292,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % address.element "INCLUDE">
 <![%address.element;[
-<!ELEMENT address %ho; (#PCDATA|%person.ident.mix;
+<!ELEMENT address %ho; (#PCDATA|personname|%person.ident.mix;
 		|street|pob|postcode|city|state|country|phone
 		|fax|email|otheraddr)*>
 <!--end of address.element-->]]>
@@ -4583,6 +4603,28 @@ in the text (no (0) value, the default)
 <!--end of artpagenums.attlist-->]]>
 <!--end of artpagenums.module-->]]>
 
+<!-- PersonName -->
+
+<!ENTITY % personname.module "INCLUDE">
+<![%personname.module;[
+<!ENTITY % local.personname.attrib "">
+<!ENTITY % personname.role.attrib "%role.attrib;">
+
+<!ENTITY % personname.element "INCLUDE">
+<![%personname.element;[
+<!ELEMENT personname %ho; ((honorific|firstname|surname|lineage|othername)+)>
+<!--end of personname.element-->]]>
+
+<!ENTITY % personname.attlist "INCLUDE">
+<![%personname.attlist;[
+<!ATTLIST personname
+		%common.attrib;
+		%personname.role.attrib;
+		%local.personname.attrib;
+>
+<!--end of personname.attlist-->]]>
+<!--end of personname.module-->]]>
+
 <!-- Author ........................... -->
 
 <!ENTITY % author.module "INCLUDE">
@@ -4592,7 +4634,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % author.element "INCLUDE">
 <![%author.element;[
-<!ELEMENT author %ho; ((%person.ident.mix;)+)>
+<!ELEMENT author %ho; ((personname|(%person.ident.mix;)+),(personblurb|email|address)*)>
 <!--end of author.element-->]]>
 
 <!ENTITY % author.attlist "INCLUDE">
@@ -5018,7 +5060,7 @@ in the text (no (0) value, the default)
 
 <!ENTITY % editor.element "INCLUDE">
 <![%editor.element;[
-<!ELEMENT editor %ho; ((%person.ident.mix;)+)>
+<!ELEMENT editor %ho; ((personname|(%person.ident.mix;)+),(personblurb|email|address)*)>
 <!--end of editor.element-->]]>
 
 <!ENTITY % editor.attlist "INCLUDE">
@@ -5254,7 +5296,8 @@ in the text (no (0) value, the default)
 
 <!ENTITY % othercredit.element "INCLUDE">
 <![%othercredit.element;[
-<!ELEMENT othercredit %ho; ((%person.ident.mix;)+)>
+<!ELEMENT othercredit %ho; ((personname|(%person.ident.mix;)+),
+                            (personblurb|email|address)*)>
 <!--end of othercredit.element-->]]>
 
 <!ENTITY % othercredit.attlist "INCLUDE">
