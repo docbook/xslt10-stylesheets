@@ -1,4 +1,4 @@
-# This file is part of DocBook NG: The "Cacha�a" Release.
+# This file is part of DocBook NG: The "Cachaça" Release.
 
 # This schema is a "work-in-progress". It validates a DocBook-like grammar that
 # may, in some incarnation, form the basis for DocBook V.next. Or it may not.
@@ -14,9 +14,48 @@
 namespace rng  = "http://relaxng.org/ns/structure/1.0"
 namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
+namespace dbx = "http://sourceforge.net/projects/docbook/defguide/schema/extra-markup"
 default namespace = "http://docbook.org/docbook-ng"
 
+[
+   db:refpurpose [
+      "Identifies the editorial or publication status of the element " ~
+      "on which it occurs"
+   ]
+   dbx:description [
+      db:para [
+         "Publication status might be used to control formatting " ~
+         "(for example, printing a “draft” watermark on drafts) " ~
+         "or processing (perhaps a document with a status of " ~
+         "“final” should not include any components that are not " ~
+         "final)."
+      ]
+   ]
+]
 db.status.attribute = attribute status { text }
+
+[
+   db:refpurpose [
+      "Specifies an identifying string for presentation purposes"
+   ]
+   dbx:description [
+      db:para [
+         "Generally, an explicit Label attribute is used only if the " ~
+         "processing system is incapable of generating the label automatically. " ~
+         "Under such circumstances, the third "
+         db:tag [ "book" ]
+         " in a "
+         db:tag [ "set" ]
+         " might be labeled “Volume III”, for example."
+      ]
+      db:para [
+         "If present, the "
+         db:tag [ class = "attribute" "label" ]
+         " is normative; it will used even if the " ~
+         "processing system is capable of automatic labelling."
+      ]
+   ]
+]
 db.label.attribute = attribute label { text }
 
 # ======================================================================
@@ -417,12 +456,47 @@ db.article.required.components = db.section+ | db.simplesect+
 
 [
    db:refname [ "article" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An article" ]
+   dbx:description [
+      db:para [
+         "The "
+         db:tag [ "article" ]
+         " element is a general-purpose container for " ~
+         " articles.  The content model is both quite complex and rather loose in " ~
+         "order to accommodate the wide range of possible "
+         db:tag [ "article" ]
+         " structures.  Although changes to the "
+         db:tag [ "article" ]
+         " element have been discussed on several occasions, " ~
+         "no better model has been presented."
+      ]
+      db:para [
+         "An "
+         db:tag [ "article" ]
+         " is composed of a header and a body.  The body " ~
+         " may include a table of contents and multiple lists of tables, figures, " ~
+         " and so on, before the main text of the article and may include a number of" ~
+         " common end-matter components at the end."
+      ]
+   ]
+   dbx:expectations [
+      db:para [
+         dbx:format [ class="block" ]
+         "Formatted as a displayed block. " ~
+         "Frequently causes a forced page break in print media. " ~
+         "May be numbered separately and presented in the table of contents."
+      ]
+   ]
 ]
 div {
 
    db.article.status.attribute = db.status.attribute
 
+   [
+      db:refpurpose [
+         "Class identifies the type of article."
+      ]
+   ]
    db.article.class.attribute =
       attribute class {
          "faq"
