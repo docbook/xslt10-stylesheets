@@ -21,6 +21,41 @@ includes at least the global parameters.</para>
 <para>You may also be interested in the more detailed <ulink url="WhatsNew"/>.
 </para>
 
+<!-- Norm, this is my attempt to write something about new indexing -->
+<!-- method. Hope this helps. - Jirka -->
+<itemizedlist><title>Release 1.64.X</title>
+
+<listitem>
+<para>Added alternative indexing mechanism which has better
+internationalization support. New indexing method allows grouping of
+accented letters like e, é, ë into the same group under letter "e". It
+can also treat special letters (e.g. "ch") as one character and place
+them in the correct position (e.g. between "h" and "i" in Czech
+language).</para>
+
+<para>In order to use this mechanism you must create customization
+layer which imports some base stylesheet (like
+<filename>fo/docbook.xsl</filename>,
+<filename>html/chunk.xsl</filename>) and then includes appropriate
+stylesheet with new indexing code
+(<filename>fo/autoidx-ng.xsl</filename> or
+<filename>html/autoidx-ng.xsl</filename>). For example:</para>
+
+<programlisting><![CDATA[<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                version="1.0">
+
+<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/fo/docbook.xsl"/>
+<xsl:include href="http://docbook.sourceforge.net/release/xsl/current/fo/autoidx-ng.xsl"/>
+
+</xsl:stylesheet>]]></programlisting>
+
+<para>New method is known to work with Saxon and it should also work
+with xsltproc 1.1.1 and later. Currently supported languages are
+English, Czech, German, French, Spanish and Danish.</para>
+</listitem>
+
+</itemizedlist>
+
 <itemizedlist><title>Release 1.64.1</title>
 
 <para>General bug fixes and improvements. Sorry about the failure to produce
