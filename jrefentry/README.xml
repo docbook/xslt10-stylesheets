@@ -1,9 +1,10 @@
 <!DOCTYPE article
-  PUBLIC "-//Norman Walsh//DTD Simplified DocBk XML V3.1.7.1//EN"
-  "http://nwalsh.com/docbook/simple/3.1.7.1/sdocbook.dtd">
+  PUBLIC "-//OASIS//DTD Simplified DocBook XML V4.1.2.5//EN"
+  "http://www.oasis-open.org/docbook/xml/simple/4.1.2.5/sdocbook.dtd">
 <article>
-<artheader><title>README for the JRefEntry DTD V1.0</title>
-<copyright><year>2000</year><holder>Norman Walsh</holder></copyright>
+<artheader><title>README for the JRefEntry DTD V1.1</title>
+<copyright><year>2000</year><year>2001</year>
+<holder>Norman Walsh</holder></copyright>
 <legalnotice>
 <para>Java and JavaDoc are registered trademarks of
 Sun Microsystems, Inc.</para>
@@ -149,7 +150,7 @@ http://nwalsh.com/docbook/jrefentry/
 <para>Please direct all questions and comments about this DTD to
 Norman Walsh, <email>ndw@nwalsh.com</email>.</para>
 
-<para>This DTD is based on DocBook V4.0 from OASIS.</para>
+<para>This DTD is based on DocBook XML V4.1.2 from OASIS.</para>
 
 <para>For more information about the DocBook DTD, see
 <ulink url="http://www.oasis-open.org/docbook/">http://www.oasis-open.org/docbook/</ulink>.</para>
@@ -169,12 +170,9 @@ OTHER DEALINGS IN THE SOFTWARE.</para>
 </section>
 <section><title>Contacting the Author</title>
 
-<para>This DTD is maintained by Norman Walsh,
-<email>ndw@nwalsh.com</email>.</para>
-
-<para>The best way to reach norm is by email.  You will find additional
-contact information at
-<ulink url="http://nwalsh.com/~ndw/contact.html">http://nwalsh.com/~ndw/contact.html</ulink>.</para>
+<para>This DTD is maintained by the DocBook Open Repository team on
+<ulink url="http://sourceforge.net/projects/docbook/">SourceForge</ulink>.
+</para>
 
 </section>
 </article>
