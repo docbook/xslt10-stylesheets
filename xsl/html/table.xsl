@@ -122,21 +122,18 @@
     </xsl:if>
 
     <xsl:choose>
-      <xsl:when test="../@frame='none'">
-        <xsl:attribute name="border">0</xsl:attribute>
-      </xsl:when>
       <xsl:when test="$table.borders.with.css != 0">
         <xsl:attribute name="border">0</xsl:attribute>
         <xsl:choose>
-          <xsl:when test="../@frame='topbot' or ../@frame='top'">
+          <xsl:when test="../@frame='all'">
             <xsl:attribute name="style">
+              <xsl:text>border-collapse: collapse;</xsl:text>
               <xsl:call-template name="border">
                 <xsl:with-param name="side" select="'top'"/>
               </xsl:call-template>
-            </xsl:attribute>
-          </xsl:when>
-          <xsl:when test="../@frame='sides'">
-            <xsl:attribute name="style">
+              <xsl:call-template name="border">
+                <xsl:with-param name="side" select="'bottom'"/>
+              </xsl:call-template>
               <xsl:call-template name="border">
                 <xsl:with-param name="side" select="'left'"/>
               </xsl:call-template>
@@ -145,7 +142,53 @@
               </xsl:call-template>
             </xsl:attribute>
           </xsl:when>
+          <xsl:when test="../@frame='topbot'">
+            <xsl:attribute name="style">
+              <xsl:text>border-collapse: collapse;</xsl:text>
+              <xsl:call-template name="border">
+                <xsl:with-param name="side" select="'top'"/>
+              </xsl:call-template>
+              <xsl:call-template name="border">
+                <xsl:with-param name="side" select="'bottom'"/>
+              </xsl:call-template>
+            </xsl:attribute>
+          </xsl:when>
+          <xsl:when test="../@frame='top'">
+            <xsl:attribute name="style">
+              <xsl:text>border-collapse: collapse;</xsl:text>
+              <xsl:call-template name="border">
+                <xsl:with-param name="side" select="'top'"/>
+              </xsl:call-template>
+            </xsl:attribute>
+          </xsl:when>
+          <xsl:when test="../@frame='bottom'">
+            <xsl:attribute name="style">
+              <xsl:text>border-collapse: collapse;</xsl:text>
+              <xsl:call-template name="border">
+                <xsl:with-param name="side" select="'bottom'"/>
+              </xsl:call-template>
+            </xsl:attribute>
+          </xsl:when>
+          <xsl:when test="../@frame='sides'">
+            <xsl:attribute name="style">
+              <xsl:text>border-collapse: collapse;</xsl:text>
+              <xsl:call-template name="border">
+                <xsl:with-param name="side" select="'left'"/>
+              </xsl:call-template>
+              <xsl:call-template name="border">
+                <xsl:with-param name="side" select="'right'"/>
+              </xsl:call-template>
+            </xsl:attribute>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:attribute name="style">
+              <xsl:text>border-collapse: collapse;</xsl:text>
+            </xsl:attribute>
+          </xsl:otherwise>
         </xsl:choose>
+      </xsl:when>
+      <xsl:when test="../@frame='none'">
+        <xsl:attribute name="border">0</xsl:attribute>
       </xsl:when>
       <xsl:otherwise>
         <xsl:attribute name="border">1</xsl:attribute>
@@ -341,7 +384,22 @@
 <xsl:template match="row">
   <xsl:param name="spans"/>
 
+  <xsl:variable name="row-height">
+    <xsl:if test="processing-instruction('dbhtml')">
+      <xsl:call-template name="dbhtml-attribute">
+        <xsl:with-param name="pis" select="processing-instruction('dbhtml')"/>
+        <xsl:with-param name="attribute" select="'row-height'"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+
   <tr>
+    <xsl:if test="$row-height != ''">
+      <xsl:attribute name="height">
+        <xsl:value-of select="$row-height"/>
+      </xsl:attribute>
+    </xsl:if>
+
     <xsl:if test="$table.borders.with.css != 0">
       <xsl:if test="@rowsep = 1">
         <xsl:attribute name="style">
@@ -501,7 +559,22 @@
     </xsl:when>
 
     <xsl:otherwise>
+      <xsl:variable name="entry-bgcolor">
+        <xsl:if test="processing-instruction('dbhtml')">
+          <xsl:call-template name="dbhtml-attribute">
+            <xsl:with-param name="pis" select="processing-instruction('dbhtml')"/>
+            <xsl:with-param name="attribute" select="'entry-bgcolor'"/>
+          </xsl:call-template>
+        </xsl:if>
+      </xsl:variable>
+
       <xsl:element name="{$cellgi}">
+        <xsl:if test="$entry-bgcolor != ''">
+          <xsl:attribute name="bgcolor">
+            <xsl:value-of select="$entry-bgcolor"/>
+          </xsl:attribute>
+        </xsl:if>
+
         <xsl:if test="$show.revisionflag and @revisionflag">
           <xsl:attribute name="class">
             <xsl:value-of select="@revisionflag"/>
