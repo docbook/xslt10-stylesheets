@@ -102,7 +102,7 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:param>
-  <xsl:copy-of select="$content"/>
+  <span class="{local-name(.)}"><xsl:copy-of select="$content"/></span>
 </xsl:template>
 
 <xsl:template name="inline.monoseq">
@@ -114,7 +114,7 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:param>
-  <tt><xsl:copy-of select="$content"/></tt>
+  <tt class="{local-name(.)}"><xsl:copy-of select="$content"/></tt>
 </xsl:template>
 
 <xsl:template name="inline.boldseq">
@@ -135,7 +135,7 @@
       <xsl:copy-of select="$content"/>
     </xsl:when>
     <xsl:otherwise>
-      <b><xsl:copy-of select="$content"/></b>
+      <b class="{local-name(.)}"><xsl:copy-of select="$content"/></b>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -149,7 +149,7 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:param>
-  <i><xsl:copy-of select="$content"/></i>
+  <i class="{local-name(.)}"><xsl:copy-of select="$content"/></i>
 </xsl:template>
 
 <xsl:template name="inline.boldmonoseq">
@@ -169,10 +169,10 @@
                          or local-name(../..) = 'example'
                          or local-name(../..) = 'table'
                          or local-name(../..) = 'formalpara')">
-      <tt><xsl:copy-of select="$content"/></tt>
+      <tt class="{local-name(.)}"><xsl:copy-of select="$content"/></tt>
     </xsl:when>
     <xsl:otherwise>
-      <b><tt><xsl:copy-of select="$content"/></tt></b>
+      <b class="{local-name(.)}"><tt><xsl:copy-of select="$content"/></tt></b>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -186,7 +186,7 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:param>
-  <i><tt><xsl:copy-of select="$content"/></tt></i>
+  <i class="{local-name(.)}"><tt><xsl:copy-of select="$content"/></tt></i>
 </xsl:template>
 
 <xsl:template name="inline.superscriptseq">
