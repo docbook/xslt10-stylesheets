@@ -116,6 +116,7 @@
 <!ENTITY table.entry.padding SYSTEM "../params/table.entry.padding.xml">
 <!ENTITY tablecolumns.extension SYSTEM "../params/tablecolumns.extension.xml">
 <!ENTITY textinsert.extension SYSTEM "../params/textinsert.extension.xml">
+<!ENTITY tex.math.delims SYSTEM "../params/tex.math.delims.xml">
 <!ENTITY tex.math.in.alt SYSTEM "../params/tex.math.in.alt.xml">
 <!ENTITY title.font.family SYSTEM "../params/title.font.family.xml">
 <!ENTITY title.margin.left SYSTEM "../params/title.margin.left.xml">

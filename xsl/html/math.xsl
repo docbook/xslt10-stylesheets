@@ -74,13 +74,23 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:text>\special{dvi2bitmap outputfile </xsl:text>
-  <xsl:value-of select="$filename"/>
-  <xsl:text>} &#xA;</xsl:text>
-  <xsl:text>$</xsl:text>
-  <xsl:value-of select="alt[@role='tex'] | inlinemediaobject/textobject[@role='tex']"/>
-  <xsl:text>$ &#xA;</xsl:text>
-  <xsl:text>\vfill\eject &#xA;</xsl:text>
+  <xsl:variable name="output.delims">
+    <xsl:call-template name="tex.math.output.delims"/>
+  </xsl:variable>
+  <xsl:variable name="tex" select="alt[@role='tex'] | inlinemediaobject/textobject[@role='tex']"/>
+  <xsl:if test="$tex">
+    <xsl:text>\special{dvi2bitmap outputfile </xsl:text>
+    <xsl:value-of select="$filename"/>
+    <xsl:text>} &#xA;</xsl:text>
+    <xsl:if test="$output.delims != 0">
+      <xsl:text>$</xsl:text>
+    </xsl:if>
+    <xsl:value-of select="$tex"/>
+    <xsl:if test="$output.delims != 0">
+      <xsl:text>$ &#xA;</xsl:text>
+    </xsl:if>
+    <xsl:text>\vfill\eject &#xA;</xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="equation|informalequation" mode="collect.tex.math.plain">
@@ -98,13 +108,23 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:text>\special{dvi2bitmap outputfile </xsl:text>
-  <xsl:value-of select="$filename"/>
-  <xsl:text>} &#xA;</xsl:text>
-  <xsl:text>$$</xsl:text>
-  <xsl:value-of select="alt[@role='tex'] | mediaobject/textobject[@role='tex']"/>
-  <xsl:text>$$ &#xA;</xsl:text>
-  <xsl:text>\vfill\eject &#xA;</xsl:text>
+  <xsl:variable name="output.delims">
+    <xsl:call-template name="tex.math.output.delims"/>
+  </xsl:variable>
+  <xsl:variable name="tex" select="alt[@role='tex'] | mediaobject/textobject[@role='tex']"/>
+  <xsl:if test="$tex">
+    <xsl:text>\special{dvi2bitmap outputfile </xsl:text>
+    <xsl:value-of select="$filename"/>
+    <xsl:text>} &#xA;</xsl:text>
+    <xsl:if test="$output.delims != 0">
+      <xsl:text>$$</xsl:text>
+    </xsl:if>
+    <xsl:value-of select="$tex"/>
+    <xsl:if test="$output.delims != 0">
+      <xsl:text>$$ &#xA;</xsl:text>
+    </xsl:if>
+    <xsl:text>\vfill\eject &#xA;</xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="text()" mode="collect.tex.math.plain"/>
@@ -136,13 +156,23 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:text>\special{dvi2bitmap outputfile </xsl:text>
-  <xsl:value-of select="$filename"/>
-  <xsl:text>} &#xA;</xsl:text>
-  <xsl:text>$</xsl:text>
-  <xsl:value-of select="alt[@role='tex'] | inlinemediaobject/textobject[@role='tex']"/>
-  <xsl:text>$ &#xA;</xsl:text>
-  <xsl:text>\newpage &#xA;</xsl:text>
+  <xsl:variable name="output.delims">
+    <xsl:call-template name="tex.math.output.delims"/>
+  </xsl:variable>
+  <xsl:variable name="tex" select="alt[@role='tex'] | inlinemediaobject/textobject[@role='tex']"/>
+  <xsl:if test="$tex">
+    <xsl:text>\special{dvi2bitmap outputfile </xsl:text>
+    <xsl:value-of select="$filename"/>
+    <xsl:text>} &#xA;</xsl:text>
+    <xsl:if test="$output.delims != 0">  
+      <xsl:text>$</xsl:text>
+    </xsl:if>
+    <xsl:value-of select="$tex"/>
+    <xsl:if test="$output.delims != 0">  
+      <xsl:text>$ &#xA;</xsl:text>
+    </xsl:if>
+    <xsl:text>\newpage &#xA;</xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="equation|informalequation" mode="collect.tex.math.latex">
@@ -160,13 +190,23 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:text>\special{dvi2bitmap outputfile </xsl:text>
-  <xsl:value-of select="$filename"/>
-  <xsl:text>} &#xA;</xsl:text>
-  <xsl:text>$$</xsl:text>
-  <xsl:value-of select="alt[@role='tex'] | mediaobject/textobject[@role='tex']"/>
-  <xsl:text>$$ &#xA;</xsl:text>
-  <xsl:text>\newpage &#xA;</xsl:text>
+  <xsl:variable name="output.delims">
+    <xsl:call-template name="tex.math.output.delims"/>
+  </xsl:variable>
+  <xsl:variable name="tex" select="alt[@role='tex'] | mediaobject/textobject[@role='tex']"/>
+  <xsl:if test="$tex">
+    <xsl:text>\special{dvi2bitmap outputfile </xsl:text>
+    <xsl:value-of select="$filename"/>
+    <xsl:text>} &#xA;</xsl:text>
+    <xsl:if test="$output.delims != 0">
+      <xsl:text>$$</xsl:text>
+    </xsl:if>
+    <xsl:value-of select="$tex"/>
+    <xsl:if test="$output.delims != 0">
+      <xsl:text>$$ &#xA;</xsl:text>
+    </xsl:if>
+    <xsl:text>\newpage &#xA;</xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="text()" mode="collect.tex.math.latex"/>
@@ -229,6 +269,23 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:if>
+</xsl:template>
+
+<xsl:template name="tex.math.output.delims">
+  <xsl:variable name="pi.delims">
+    <xsl:call-template name="pi-attribute">
+      <xsl:with-param name="pis" select=".//processing-instruction('dbtex')"/>
+      <xsl:with-param name="attribute" select="'delims'"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="result">
+    <xsl:choose>
+      <xsl:when test="$pi.delims = 'no'">0</xsl:when>
+      <xsl:when test="$pi.delims = '' and $tex.math.delims = 0">0</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:value-of select="$result"/>
 </xsl:template>
 
 </xsl:stylesheet>
