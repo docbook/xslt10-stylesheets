@@ -1619,10 +1619,28 @@
 -->
 
   <fo:block>
-
+    <!-- pageclass can be front, body, back -->
     <!-- sequence can be odd, even, first, blank -->
     <!-- position can be left, center, right -->
     <xsl:choose>
+      <xsl:when test="$pageclass = 'titlepage'">
+        <!-- nop; no footer on title pages -->
+      </xsl:when>
+
+      <xsl:when test="$double.sided != 0 and $sequence = 'even'
+                      and $position='left'">
+        <fo:page-number/>
+      </xsl:when>
+
+      <xsl:when test="$double.sided != 0 and ($sequence = 'odd' or $sequence = 'first')
+                      and $position='right'">
+        <fo:page-number/>
+      </xsl:when>
+
+      <xsl:when test="$double.sided = 0 and $position='center'">
+        <fo:page-number/>
+      </xsl:when>
+
       <xsl:when test="$sequence='blank'">
         <xsl:choose>
           <xsl:when test="$double.sided != 0 and $position = 'left'">
@@ -1637,21 +1655,6 @@
         </xsl:choose>
       </xsl:when>
 
-      <xsl:when test="$pageclass='titlepage'">
-        <!-- nop: other titlepage sequences have no footer -->
-      </xsl:when>
-
-      <xsl:when test="$double.sided != 0 and $sequence = 'even' and $position='left'">
-        <fo:page-number/>
-      </xsl:when>
-
-      <xsl:when test="$double.sided != 0 and $sequence = 'odd' and $position='right'">
-        <fo:page-number/>
-      </xsl:when>
-
-      <xsl:when test="$double.sided = 0 and $position='center'">
-        <fo:page-number/>
-      </xsl:when>
 
       <xsl:otherwise>
         <!-- nop -->
