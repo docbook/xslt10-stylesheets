@@ -52,8 +52,21 @@
      of DocBook.
 -->
 
-<!ENTITY % forminlines.hook "|html:input|html:button|html:label|html:select|html:textarea">
-<!ENTITY % forms.hook "|html:form">
+<!ENTITY % html-prefix   'html:'>
+<!ENTITY % html-suffix   ':html'>
+<!ENTITY % html-xmlns    'xmlns%html-suffix;'>
+<!ENTITY % html-namespace "'http://www.w3.org/1999/xhtml'">
+
+<!ENTITY % html-form     "%html-prefix;form">
+<!ENTITY % html-input    "%html-prefix;input">
+<!ENTITY % html-button   "%html-prefix;button">
+<!ENTITY % html-label    "%html-prefix;label">
+<!ENTITY % html-select   "%html-prefix;select">
+<!ENTITY % html-option   "%html-prefix;option">
+<!ENTITY % html-textarea "%html-prefix;textarea">
+
+<!ENTITY % forminlines.hook "|%html-input;|%html-button;|%html-label;|%html-select;|%html-textarea;">
+<!ENTITY % forms.hook "|%html-form;">
 
 <!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
@@ -72,10 +85,11 @@
   onkeyup		CDATA		#IMPLIED"
 >
 
-<!ELEMENT html:form ((%component.mix;)|html:input|html:button
-			|html:label|html:select|html:textarea)+>
+<!ELEMENT %html-form; ((%component.mix;)|%html-input;|%html-button;
+			|%html-label;|%html-select;|%html-textarea;)+>
 
-<!ATTLIST html:form
+<!ATTLIST %html-form;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
 	%common.attrib;
 	%events;
 	action		CDATA		#REQUIRED
@@ -87,8 +101,9 @@
 <!ENTITY % inputtype  "(text | password | checkbox | radio
                        | submit | reset | file | hidden | image | button)">
 
-<!ELEMENT html:input EMPTY>
-<!ATTLIST html:input
+<!ELEMENT %html-input; EMPTY>
+<!ATTLIST %html-input;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
 	%common.attrib;
 	%events;
 	type		%inputtype;	"text"
@@ -110,8 +125,9 @@
 	onchange	CDATA		#IMPLIED
 >
 
-<!ELEMENT html:button (%para.char.mix;)*>
-<!ATTLIST html:button
+<!ELEMENT %html-button; (%para.char.mix;)*>
+<!ATTLIST %html-button;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
 	%common.attrib;
 	%events;
 	name		CDATA		#IMPLIED
@@ -124,8 +140,9 @@
 	onblur		CDATA		#IMPLIED
 >
 
-<!ELEMENT html:label (%para.char.mix;)*>
-<!ATTLIST html:label
+<!ELEMENT %html-label; (%para.char.mix;)*>
+<!ATTLIST %html-label;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
 	%common.attrib;
 	%events;
 	for		IDREF		#IMPLIED
@@ -134,8 +151,9 @@
 	onblur		CDATA		#IMPLIED
 >
 
-<!ELEMENT html:select (html:option)+>
-<!ATTLIST html:select
+<!ELEMENT %html-select; (%html-option;)+>
+<!ATTLIST %html-select;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
 	%common.attrib;
 	%events;
 	name		CDATA		#IMPLIED
@@ -148,8 +166,9 @@
 	onchange	CDATA		#IMPLIED
 >
 
-<!ELEMENT html:option (#PCDATA)>
-<!ATTLIST html:option
+<!ELEMENT %html-option; (#PCDATA)>
+<!ATTLIST %html-option;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
 	%common.attrib;
 	%events;
 	selected    	(selected)	#IMPLIED
@@ -157,8 +176,9 @@
 	value		CDATA		#IMPLIED
 >
 
-<!ELEMENT html:textarea (#PCDATA)>
-<!ATTLIST html:textarea
+<!ELEMENT %html-textarea; (#PCDATA)>
+<!ATTLIST %html-textarea;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
 	%common.attrib;
 	%events;
 	name		CDATA		#IMPLIED
