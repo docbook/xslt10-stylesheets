@@ -205,10 +205,12 @@
 
       <xsl:apply-templates select="." mode="running.head.mode">
         <xsl:with-param name="master-reference" select="$lot-master-reference"/>
+        <xsl:with-param name="gentext-key" select="'TableofContents'"/>
       </xsl:apply-templates>
 
       <xsl:apply-templates select="." mode="running.foot.mode">
         <xsl:with-param name="master-reference" select="$lot-master-reference"/>
+        <xsl:with-param name="gentext-key" select="'TableofContents'"/>
       </xsl:apply-templates>
 
       <fo:flow flow-name="xsl-region-body">
@@ -231,10 +233,12 @@
 
       <xsl:apply-templates select="." mode="running.head.mode">
         <xsl:with-param name="master-reference" select="$lot-master-reference"/>
+        <xsl:with-param name="gentext-key" select="'ListofFigures'"/>
       </xsl:apply-templates>
 
       <xsl:apply-templates select="." mode="running.foot.mode">
         <xsl:with-param name="master-reference" select="$lot-master-reference"/>
+        <xsl:with-param name="gentext-key" select="'ListofFigures'"/>
       </xsl:apply-templates>
 
       <fo:flow flow-name="xsl-region-body">
@@ -260,10 +264,12 @@
 
       <xsl:apply-templates select="." mode="running.head.mode">
         <xsl:with-param name="master-reference" select="$lot-master-reference"/>
+        <xsl:with-param name="gentext-key" select="'ListofTables'"/>
       </xsl:apply-templates>
 
       <xsl:apply-templates select="." mode="running.foot.mode">
         <xsl:with-param name="master-reference" select="$lot-master-reference"/>
+        <xsl:with-param name="gentext-key" select="'ListofTables'"/>
       </xsl:apply-templates>
 
       <fo:flow flow-name="xsl-region-body">
@@ -289,10 +295,12 @@
 
       <xsl:apply-templates select="." mode="running.head.mode">
         <xsl:with-param name="master-reference" select="$lot-master-reference"/>
+        <xsl:with-param name="gentext-key" select="'ListofExamples'"/>
       </xsl:apply-templates>
 
       <xsl:apply-templates select="." mode="running.foot.mode">
         <xsl:with-param name="master-reference" select="$lot-master-reference"/>
+        <xsl:with-param name="gentext-key" select="'ListofExamples'"/>
       </xsl:apply-templates>
 
       <fo:flow flow-name="xsl-region-body">
@@ -318,10 +326,12 @@
 
       <xsl:apply-templates select="." mode="running.head.mode">
         <xsl:with-param name="master-reference" select="$lot-master-reference"/>
+        <xsl:with-param name="gentext-key" select="'ListofEquations'"/>
       </xsl:apply-templates>
 
       <xsl:apply-templates select="." mode="running.foot.mode">
         <xsl:with-param name="master-reference" select="$lot-master-reference"/>
+        <xsl:with-param name="gentext-key" select="'ListofEquations'"/>
       </xsl:apply-templates>
 
       <fo:flow flow-name="xsl-region-body">
