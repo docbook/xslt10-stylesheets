@@ -670,22 +670,24 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:call-template name="anchor"/>
+  <div class="{name(.)}">
+    <xsl:call-template name="anchor"/>
 
-  <xsl:choose>
-    <xsl:when test="$presentation = 'table'">
-      <xsl:apply-templates select="." mode="seglist-table"/>
-    </xsl:when>
-    <xsl:when test="$presentation = 'list'">
-      <xsl:apply-templates/>
-    </xsl:when>
-    <xsl:when test="$segmentedlist.as.table != 0">
-      <xsl:apply-templates select="." mode="seglist-table"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:apply-templates/>
-    </xsl:otherwise>
-  </xsl:choose>
+    <xsl:choose>
+      <xsl:when test="$presentation = 'table'">
+        <xsl:apply-templates select="." mode="seglist-table"/>
+      </xsl:when>
+      <xsl:when test="$presentation = 'list'">
+        <xsl:apply-templates/>
+      </xsl:when>
+      <xsl:when test="$segmentedlist.as.table != 0">
+        <xsl:apply-templates select="." mode="seglist-table"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </div>
 </xsl:template>
 
 <xsl:template match="segmentedlist/title">
@@ -741,7 +743,8 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:apply-templates select="title" mode="seglist-table"/>
+  <xsl:apply-templates select="title"/>
+
   <table border="0">
     <xsl:if test="$list-width != ''">
       <xsl:attribute name="width">
