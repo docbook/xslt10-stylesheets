@@ -1,4 +1,4 @@
-findxerces () {
+findxerces1 () {
   if [ ! "$XERCES" ]; then
     for path in "/projects/apache/xml-xerces/java/build/classes" \
                 "/usr/local/share/java/xerces.jar" \
@@ -13,14 +13,46 @@ findxerces () {
   echo $XERCES
 }
 
+findcrimson () {
+  # crimson, an older Java XML parser
+  if [ ! "$CRIMSON" ]; then
+    for path in "/projects/apache/xml-crimson/java/build/classes" \
+                "/usr/local/share/java/crimson.jar" \
+                "/usr/local/java/crimson.jar" \
+                "/usr/share/java/crimson.jar"; do
+      if [ -f "$path" -o -d "$path" ]; then
+        CRIMSON="$path"
+        break
+      fi
+    done
+  fi
+  echo $CRIMSON
+}
+
+findxerces2 () {
+  # xerces2, which requires two jars, xercesImpl.jar and xmlParserAPIs.jar
+  if [ ! "$XERCES" ]; then
+    for path in "/usr/local/share/java" \
+                "/usr/local/java" \
+                "/usr/share/java"; do
+      if [ -d "$path" -a -f "$path/xercesImpl.jar" -a \
+	 		 -f "$path/xmlParserAPIs.jar" ]; then
+        XERCES="$path/xercesImpl.jar:$path/xmlParserAPIs.jar"
+        break
+      fi
+    done
+  fi
+  echo $XERCES
+}
+
 findjaxp () {
+  # locate the JAXP reference implementation
   if [ ! "$JAXP" ]; then
     for path in "/usr/local/share/java/jaxp.jar" \
                 "/usr/local/java/jaxp.jar" \
                 "/usr/local/jaxp-1.1/jaxp.jar" \
                 "/usr/local/share/java/jaxp-1.1/jaxp.jar" \
-                "/usr/share/java/jaxp.jar" \
-                "/usr/share/java/xercesImpl.jar"; do
+                "/usr/share/java/jaxp.jar"; do
       if [ -f "$path" -o -d "$path" ]; then
         JAXP="$path"
         break
@@ -31,16 +63,31 @@ findjaxp () {
 }
 
 findresolver () {
+  # Finding CatalogXMLReader.class
+  # FIXME: use saxon-catalog.jar, cz/kosek/CatalogXMLReader.class
+  # FIXME: return both CatalogXMLReader.class and jarfile
   if [ ! "$RESOLVER" ]; then
     for path in "/projects/apache/xml-commons/java/build/classes" \
                 "/projects/sun/resolver/.classes" \
+                "/usr/local/share/java/sun-resolver.jar" \
+                "/usr/local/java/sun-resolver.jar" \
                 "/usr/share/java/sun-resolver.jar"; do
       if [ -f "$path" -o -d "$path" ]; then
         RESOLVER="$path"
-        echo found $path 1>&2
         break
       fi
     done
   fi
   echo $RESOLVER
+}
+
+fixclasspath () {
+  cp=$1
+  # get rid of ::
+  cp="${cp//::/:}"
+  # FIXME: get rid of duplicated entries
+  if [ ${CLASSPATH_DEBUG} ] && ${CLASSPATH_DEBUG}; then
+    echo "D: classpath is $cp" 1>&2
+  fi
+  echo $cp
 }
