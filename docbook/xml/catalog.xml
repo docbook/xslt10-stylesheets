@@ -31,6 +31,9 @@
 <public publicId="-//OASIS//DTD DocBook CALS Table Model V4.3//EN"
         uri="calstblx.dtd"/>
 
+<public publicId="-//OASIS//ELEMENTS DocBook XML HTML Tables V4.3//EN"
+	uri="htmltblx.mod"/>
+
 <public publicId="-//OASIS//DTD XML Exchange Table Model 19990315//EN"
         uri="soextblx.dtd"/>
 

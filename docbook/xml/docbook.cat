@@ -28,6 +28,9 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
 PUBLIC "-//OASIS//DTD DocBook CALS Table Model V4.3//EN"
        "calstblx.dtd"
 
+PUBLIC "-//OASIS//ELEMENTS DocBook XML HTML Tables V4.3//EN"
+       "htmltblx.mod"
+
 PUBLIC "-//OASIS//DTD XML Exchange Table Model 19990315//EN"
        "soextblx.dtd"
 
