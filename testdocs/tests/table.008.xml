@@ -10,7 +10,9 @@
 </author>
 </articleinfo>
 
-<para>Table style test.</para>
+<para>Table style test.  The following tables should have column
+  separator between 2nd and 3rd columns, a row separator between the
+  2nd and 3rd rows, and an empty center cell.</para>
 
 <informaltable frame="none" tabstyle="style1">
 <tgroup cols="3">
@@ -34,6 +36,8 @@
 </tbody>
 </tgroup>
 </informaltable>
+
+<para>...</para>
 
 <informaltable frame="none">
 <tgroup cols="3">
