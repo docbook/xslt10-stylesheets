@@ -69,7 +69,22 @@
 
 <xsl:template match="blockquote">
   <fo:block start-indent="0.5in" end-indent="0.5in">
-    <xsl:call-template name="semiformal.object"/>
+    <fo:block>
+      <xsl:if test="title">
+        <fo:block xsl:use-attribute-sets="formal.title.properties">
+          <xsl:apply-templates select="." mode="object.title.markup"/>
+        </fo:block>
+      </xsl:if>
+      <xsl:apply-templates select="*[local-name(.) != 'title'
+                                   and local-name(.) != 'attribution']"/>
+    </fo:block>
+    <xsl:if test="attribution">
+      <fo:block text-align="right">
+        <!-- mdash -->
+        <xsl:text>&#x2014;</xsl:text>
+        <xsl:apply-templates select="attribution"/>
+      </fo:block>
+    </xsl:if>
   </fo:block>
 </xsl:template>
 
