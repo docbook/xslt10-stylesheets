@@ -39,13 +39,6 @@
   </xsl:copy>
 </xsl:template>
 
-<xsl:template match="xsl:param[@name='html.ext']">
-  <xsl:copy>
-    <xsl:copy-of select="@*"/>
-    <xsl:attribute name="select">'xhtm'</xsl:attribute>
-  </xsl:copy>
-</xsl:template>
-
 <xsl:template match="xsl:attribute[@name='name']">
   <xsl:choose>
     <xsl:when test="ancestor::a">
