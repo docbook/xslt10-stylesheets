@@ -133,7 +133,15 @@
   <xsl:param name="content">
     <xsl:apply-templates/>
   </xsl:param>
-  <fo:inline baseline-shift="super">
+  <fo:inline>
+    <xsl:choose>
+      <xsl:when test="$fop.extensions != 0">
+        <xsl:attribute name="vertical-align">super</xsl:attribute>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:attribute name="baseline-shift">super</xsl:attribute>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:copy-of select="$content"/>
   </fo:inline>
 </xsl:template>
@@ -142,7 +150,15 @@
   <xsl:param name="content">
     <xsl:apply-templates/>
   </xsl:param>
-  <fo:inline baseline-shift="sub">
+  <fo:inline>
+    <xsl:choose>
+      <xsl:when test="$fop.extensions != 0">
+        <xsl:attribute name="vertical-align">sub</xsl:attribute>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:attribute name="baseline-shift">sub</xsl:attribute>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:copy-of select="$content"/>
   </fo:inline>
 </xsl:template>
