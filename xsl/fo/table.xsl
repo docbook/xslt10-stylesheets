@@ -423,10 +423,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     <xsl:otherwise>
       <xsl:variable name="cell.content">
         <fo:block>
-          <!-- highlight this entry? -->
-          <xsl:if test="ancestor::thead">
-            <xsl:attribute name="font-weight">bold</xsl:attribute>
-          </xsl:if>
+          <xsl:call-template name="table.cell.block.properties"/>
 
           <!-- are we missing any indexterms? -->
           <xsl:if test="not(preceding-sibling::entry)
@@ -532,6 +529,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       </xsl:variable>
 
       <fo:table-cell xsl:use-attribute-sets="table.cell.padding">
+        <xsl:call-template name="table.cell.properties"/>
         <xsl:if test="$xep.extensions != 0">
           <!-- Suggested by RenderX to workaround a bug in their implementation -->
           <!--          <xsl:attribute name="keep-together.within-column">always</xsl:attribute> -->
@@ -641,6 +639,18 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<!-- Expand this template to add properties to any fo:table-cell -->
+<xsl:template name="table.cell.properties">
+</xsl:template>
+
+<!-- Expand this template to add properties to any cell's block -->
+<xsl:template name="table.cell.block.properties">
+  <!-- highlight this entry? -->
+  <xsl:if test="ancestor::thead">
+    <xsl:attribute name="font-weight">bold</xsl:attribute>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="entry|entrytbl" name="sentry" mode="span">
