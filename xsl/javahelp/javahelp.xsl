@@ -371,7 +371,7 @@ references. In that case you can select appropriate encoding here.</para>
 
   <mapID target="{$id}">
     <xsl:attribute name="url">
-      <xsl:apply-templates mode="chunk-filename" select="."/>
+      <xsl:call-template name="href.target.uri"/>
     </xsl:attribute>
   </mapID>
 </xsl:template>
@@ -383,7 +383,7 @@ references. In that case you can select appropriate encoding here.</para>
 
   <mapID target="{$id}">
     <xsl:attribute name="url">
-      <xsl:apply-templates mode="chunk-filename" select="."/>
+      <xsl:call-template name="href.target.uri"/>
     </xsl:attribute>
   </mapID>
 </xsl:template>
@@ -396,7 +396,7 @@ references. In that case you can select appropriate encoding here.</para>
 
   <mapID target="{$id}">
     <xsl:attribute name="url">
-      <xsl:apply-templates mode="chunk-filename" select="."/>
+      <xsl:call-template name="href.target.uri"/>
     </xsl:attribute>
   </mapID>
 </xsl:template>
@@ -408,7 +408,7 @@ references. In that case you can select appropriate encoding here.</para>
 
   <mapID target="{$id}">
     <xsl:attribute name="url">
-      <xsl:apply-templates mode="chunk-filename" select="."/>
+      <xsl:call-template name="href.target.uri"/>
     </xsl:attribute>
   </mapID>
 </xsl:template>
@@ -420,7 +420,7 @@ references. In that case you can select appropriate encoding here.</para>
 
   <mapID target="{$id}">
     <xsl:attribute name="url">
-      <xsl:apply-templates mode="chunk-filename" select="."/>
+      <xsl:call-template name="href.target.uri"/>
     </xsl:attribute>
   </mapID>
 </xsl:template>
