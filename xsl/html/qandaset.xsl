@@ -175,8 +175,10 @@
       <xsl:with-param name="conditional" select="0"/>
     </xsl:call-template>
     <xsl:apply-templates select="parent::qandadiv" mode="label.markup"/>
-    <xsl:value-of select="$autotoc.label.separator"/>
-    <xsl:text> </xsl:text>
+    <xsl:if test="$qandadiv.autolabel != 0">
+      <xsl:apply-templates select="." mode="intralabel.punctuation"/>
+      <xsl:text> </xsl:text>
+    </xsl:if>
     <xsl:apply-templates/>
   </xsl:element>
 </xsl:template>
@@ -210,7 +212,9 @@
 
       <b>
         <xsl:apply-templates select="." mode="label.markup"/>
-        <xsl:text>. </xsl:text> <!-- FIXME: Hack!!! This should be in the locale! -->
+        <xsl:if test="$deflabel = 'number' and not(label)">
+          <xsl:apply-templates select="." mode="intralabel.punctuation"/>
+	</xsl:if>
       </b>
     </td>
     <td align="left" valign="top">
@@ -227,18 +231,26 @@
 </xsl:template>
 
 <xsl:template match="answer">
+  <xsl:variable name="deflabel">
+    <xsl:choose>
+      <xsl:when test="ancestor-or-self::*[@defaultlabel]">
+        <xsl:value-of select="(ancestor-or-self::*[@defaultlabel])[last()]
+                              /@defaultlabel"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$qanda.defaultlabel"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <tr class="{name(.)}">
     <td align="left" valign="top">
       <xsl:call-template name="anchor"/>
       <b>
-        <!-- FIXME: Hack!!! This should be in the locale! -->
         <xsl:variable name="answer.label">
           <xsl:apply-templates select="." mode="label.markup"/>
         </xsl:variable>
         <xsl:copy-of select="$answer.label"/>
-        <xsl:if test="string($answer.label) != ''">
-          <xsl:text>. </xsl:text>
-        </xsl:if>
       </b>
     </td>
     <td align="left" valign="top">
