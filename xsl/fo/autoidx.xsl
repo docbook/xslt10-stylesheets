@@ -85,7 +85,7 @@
                                      &primary;)[ancestor::* = $scope][1]) = 1]"
                              mode="index-symbol-div">
           <xsl:with-param name="scope" select="$scope"/>
-          <xsl:sort select="&primary;"/>
+          <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
         </xsl:apply-templates>
       </fo:block>
     </xsl:if>
@@ -93,7 +93,7 @@
                                  translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;))[ancestor::* = $scope][1]) = 1]"
                          mode="index-div">
       <xsl:with-param name="scope" select="$scope"/>
-      <xsl:sort select="&primary;"/>
+      <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
   </fo:block>
 </xsl:template>
@@ -114,7 +114,7 @@
     <fo:block>
       <xsl:apply-templates select="$terms"
                            mode="index-primary">
-        <xsl:sort select="&primary;"/>
+        <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
         <xsl:with-param name="scope" select="$scope"/>
       </xsl:apply-templates>
     </fo:block>
@@ -129,7 +129,7 @@
     <xsl:apply-templates select="key('letter', $key)[count(.|key('primary', &primary;)[ancestor::* = $scope][1]) = 1]"
                          mode="index-primary">
       <xsl:with-param name="scope" select="$scope"/>
-      <xsl:sort select="&primary;"/>
+      <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
   </fo:block>
 </xsl:template>
@@ -152,7 +152,7 @@
         <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &sep;, &sep;, see))[ancestor::* = $scope][1])]"
                              mode="index-see">
            <xsl:with-param name="scope" select="$scope"/>
-           <xsl:sort select="see"/>
+           <xsl:sort select="translate(see, &lowercase;, &uppercase;)"/>
         </xsl:apply-templates>
       </xsl:if>
     </xsl:variable>
@@ -174,12 +174,12 @@
       <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &sep;, &sep;, seealso))[ancestor::* = $scope][1])]"
                            mode="index-seealso">
          <xsl:with-param name="scope" select="$scope"/>
-         <xsl:sort select="seealso"/>
+         <xsl:sort select="translate(seealso, &lowercase;, &uppercase;)"/>
       </xsl:apply-templates>
       <xsl:apply-templates select="$refs[secondary and count(.|key('secondary', concat($key, &sep;, &secondary;))[ancestor::* = $scope][1]) = 1]"
                            mode="index-secondary">
        <xsl:with-param name="scope" select="$scope"/>
-       <xsl:sort select="&secondary;"/>
+       <xsl:sort select="translate(&secondary;, &lowercase;, &uppercase;)"/>
       </xsl:apply-templates>
     </fo:block>
   </xsl:if>
@@ -203,7 +203,7 @@
         <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, see))[ancestor::* = $scope][1])]"
                              mode="index-see">
           <xsl:with-param name="scope" select="$scope"/>
-          <xsl:sort select="see"/>
+          <xsl:sort select="translate(see, &lowercase;, &uppercase;)"/>
         </xsl:apply-templates>
       </xsl:if>
     </xsl:variable>
@@ -225,12 +225,12 @@
       <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, seealso))[ancestor::* = $scope][1])]"
                            mode="index-seealso">
           <xsl:with-param name="scope" select="$scope"/>
-          <xsl:sort select="seealso"/>
+          <xsl:sort select="translate(seealso, &lowercase;, &uppercase;)"/>
       </xsl:apply-templates>
       <xsl:apply-templates select="$refs[tertiary and count(.|key('tertiary', concat($key, &sep;, &tertiary;))[ancestor::* = $scope][1]) = 1]" 
                            mode="index-tertiary">
           <xsl:with-param name="scope" select="$scope"/>
-          <xsl:sort select="&tertiary;"/>
+          <xsl:sort select="translate(&tertiary;, &lowercase;, &uppercase;)"/>
       </xsl:apply-templates>
     </fo:block>
   </xsl:if>
@@ -254,7 +254,7 @@
         <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, see))[ancestor::* = $scope][1])]"
                              mode="index-see">
           <xsl:with-param name="scope" select="$scope"/>
-          <xsl:sort select="see"/>
+          <xsl:sort select="translate(see, &lowercase;, &uppercase;)"/>
         </xsl:apply-templates>
       </xsl:if>
     </xsl:variable>
@@ -276,7 +276,7 @@
       <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, seealso))[ancestor::* = $scope][1])]"
                            mode="index-seealso">
         <xsl:with-param name="scope" select="$scope"/>
-        <xsl:sort select="seealso"/>
+        <xsl:sort select="translate(seealso, &lowercase;, &uppercase;)"/>
       </xsl:apply-templates>
     </fo:block>
   </xsl:if>
@@ -411,7 +411,7 @@
                                  &primary;)[ancestor::* = $scope][1]) = 1]"
                          mode="index-symbol-div-markup">
       <xsl:with-param name="scope" select="$scope"/>
-      <xsl:sort select="&primary;"/>
+      <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
     <xsl:text>&lt;/indexdiv&gt;&#10;</xsl:text>
   </xsl:if>
@@ -420,7 +420,7 @@
                                translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;))[ancestor::* = $scope][1]) = 1]"
                        mode="index-div-markup">
       <xsl:with-param name="scope" select="$scope"/>
-      <xsl:sort select="&primary;"/>
+      <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
   </xsl:apply-templates>
   <xsl:text>&lt;/index&gt;&#10;</xsl:text>
 </xsl:template>
@@ -447,7 +447,7 @@
   <xsl:apply-templates select="key('letter', $key)[count(.|key('primary', &primary;)[ancestor::* = $scope][1]) = 1]"
                        mode="index-primary-markup">
     <xsl:with-param name="scope" select="$scope"/>
-    <xsl:sort select="&primary;"/>
+    <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
   </xsl:apply-templates>
   <xsl:text>&lt;/indexdiv&gt;&#10;</xsl:text>
 </xsl:template>
@@ -459,7 +459,7 @@
   <xsl:apply-templates select="key('letter', $key)[count(.|key('primary', &primary;)[ancestor::* = $scope][1]) = 1]"
                        mode="index-primary-markup">
     <xsl:with-param name="scope" select="$scope"/>
-    <xsl:sort select="&primary;"/>
+    <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
   </xsl:apply-templates>
 </xsl:template>
 
@@ -491,19 +491,19 @@
     <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &sep;, &sep;, see))[ancestor::* = $scope][1])]"
                          mode="index-see-markup">
       <xsl:with-param name="scope" select="$scope"/>
-      <xsl:sort select="see"/>
+      <xsl:sort select="translate(see, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
 
     <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &sep;, &sep;, seealso))[ancestor::* = $scope][1])]"
                          mode="index-seealso-markup">
       <xsl:with-param name="scope" select="$scope"/>
-      <xsl:sort select="seealso"/>
+      <xsl:sort select="translate(seealso, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
 
     <xsl:apply-templates select="$refs[secondary and count(.|key('secondary', concat($key, &sep;, &secondary;))[ancestor::* = $scope][1]) = 1]" 
                          mode="index-secondary-markup">
       <xsl:with-param name="scope" select="$scope"/>
-      <xsl:sort select="&secondary;"/>
+      <xsl:sort select="translate(&secondary;, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
   </xsl:if>
   <xsl:text>&lt;/indexentry&gt;&#10;</xsl:text>
@@ -536,17 +536,17 @@
     <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, see))[ancestor::* = $scope][1])]"
                          mode="index-see-markup">
       <xsl:with-param name="scope" select="$scope"/>
-      <xsl:sort select="see"/>
+      <xsl:sort select="translate(see, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, seealso))[ancestor::* = $scope][1])]"
                          mode="index-seealso-markup">
       <xsl:with-param name="scope" select="$scope"/>
-      <xsl:sort select="seealso"/>
+      <xsl:sort select="translate(seealso, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="$refs[tertiary and count(.|key('tertiary', concat($key, &sep;, &tertiary;))[ancestor::* = $scope][1]) = 1]" 
                          mode="index-tertiary-markup">
       <xsl:with-param name="scope" select="$scope"/>
-      <xsl:sort select="&tertiary;"/>
+      <xsl:sort select="translate(&tertiary;, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
   </xsl:if>
 </xsl:template>
@@ -579,12 +579,12 @@
     <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, see))[ancestor::* = $scope][1])]"
                          mode="index-see-markup">
       <xsl:with-param name="scope" select="$scope"/>
-      <xsl:sort select="see"/>
+      <xsl:sort select="translate(see, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, seealso))[ancestor::* = $scope][1])]"
                          mode="index-seealso-markup">
       <xsl:with-param name="scope" select="$scope"/>
-      <xsl:sort select="seealso"/>
+      <xsl:sort select="translate(seealso, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
   </xsl:if>
 </xsl:template>
