@@ -26,36 +26,56 @@
 <!-- ==================================================================== -->
 <!-- Graphic format tests for the FO backend -->
 
-<!--
-FIXME: make is.graphic.* work correctly depending on the backend!
-<xsl:param name="passivetex.extensions" select="0" doc:type='boolean'/>
-<xsl:param name="fop.extensions" select="0" doc:type='boolean'/>
--->
+<xsl:param name="graphic.notations">
+  <!-- n.b. exactly one leading space, one trailing space, and one inter-word space -->
+  <xsl:choose>
+    <xsl:when test="$passivetex.extensions != 0">
+      <xsl:text> PNG PDF JPG JPEG linespecific </xsl:text>
+    </xsl:when>
+    <xsl:when test="$fop.extensions != 0">
+      <xsl:text> SVG PNG PDF JPG JPEG linespecific </xsl:text>
+    </xsl:when>
+    <xsl:when test="$arbortext.extensions != 0">
+      <xsl:text> PNG PDF JPG JPEG linespecific GIF GIF87a GIF89a TIFF BMP </xsl:text>
+    </xsl:when>
+    <xsl:when test="$xep.extensions != 0">
+      <xsl:text> PNG PDF JPG JPEG linespecific GIF GIF87a GIF89a TIFF BMP </xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text> PNG PDF JPG JPEG linespecific GIF GIF87a GIF89a TIFF BMP </xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
 
 <xsl:template name="is.graphic.format">
-  <xsl:param name="format"></xsl:param>
-  <xsl:if test="$format = 'PNG'
-                or $format = 'PDF'
-                or $format = 'JPG'
-                or $format = 'JPEG'
-                or $format = 'linespecific'
-                or $format = 'GIF'
-                or $format = 'GIF87a'
-                or $format = 'GIF89a'
-                or $format = 'TIFF'
-                or $format = 'BMP'">1</xsl:if>
+  <xsl:param name="format"/>
+  <xsl:if test="contains($graphic.notations, concat(' ',$format,' '))">1</xsl:if>
 </xsl:template>
 
+<xsl:param name="graphic.extensions">
+  <!-- n.b. exactly one leading space, one trailing space, and one inter-word space -->
+  <xsl:choose>
+    <xsl:when test="$passivetex.extensions != 0">
+      <xsl:text> png pdf jpg jpeg </xsl:text>
+    </xsl:when>
+    <xsl:when test="$fop.extensions != 0">
+      <xsl:text> svg png pdf jpg jpeg </xsl:text>
+    </xsl:when>
+    <xsl:when test="$arbortext.extensions != 0">
+      <xsl:text> png pdf jpg jpeg gif tif tiff bmp </xsl:text>
+    </xsl:when>
+    <xsl:when test="$xep.extensions != 0">
+      <xsl:text> png pdf jpg jpeg gif tif tiff bmp </xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text> png pdf jpg jpeg gif tif tiff bmp </xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
+
 <xsl:template name="is.graphic.extension">
-  <xsl:param name="ext"></xsl:param>
-  <xsl:if test="$ext = 'png'
-                or $ext = 'pdf'
-                or $ext = 'jpeg'
-                or $ext = 'jpg'
-                or $ext = 'gif'
-                or $ext = 'tif'
-                or $ext = 'tiff'
-                or $ext = 'bmp'">1</xsl:if>
+  <xsl:param name="ext"/>
+  <xsl:if test="contains($graphic.extensions, concat(' ', $ext, ' '))">1</xsl:if>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -72,123 +92,6 @@ FIXME: make is.graphic.* work correctly depending on the backend!
 <!-- ==================================================================== -->
 <!-- Override these templates for FO -->
 <!-- ==================================================================== -->
-
-<xsl:template name="X.process.image">
-  <!-- When this template is called, the current node should be  -->
-  <!-- a graphic, inlinegraphic, imagedata, or videodata. All    -->
-  <!-- those elements have the same set of attributes, so we can -->
-  <!-- handle them all in one place.                             -->
-  <xsl:variable name="filename">
-    <xsl:choose>
-      <xsl:when test="local-name(.) = 'graphic'
-                      or local-name(.) = 'inlinegraphic'">
-        <!-- handle legacy graphic and inlinegraphic by new template --> 
-        <xsl:call-template name="mediaobject.filename">
-          <xsl:with-param name="object" select="."/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>
-        <!-- imagedata, videodata, audiodata -->
-        <xsl:call-template name="mediaobject.filename">
-          <xsl:with-param name="object" select=".."/>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <xsl:variable name="scale">
-    <xsl:choose>
-      <xsl:when test="@scale"><xsl:value-of select="@scale"/>%</xsl:when>
-      <xsl:otherwise>auto</xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <xsl:variable name="width">
-    <xsl:choose>
-      <xsl:when test="@width">
-        <xsl:call-template name="length-spec">
-          <xsl:with-param name="length" select="@width"/>
-          <xsl:with-param name="default.units" select="$default.units"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>auto</xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <xsl:variable name="height">
-    <xsl:choose>
-      <xsl:when test="@depth">
-        <xsl:call-template name="length-spec">
-          <xsl:with-param name="length" select="@depth"/>
-          <xsl:with-param name="default.units" select="$default.units"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>auto</xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <!-- DocBook has four attributes related to image size: width, depth,
-       scalefit, and scale. Width and depth identify the desired dimensions
-       of the image (what CALS calls the repro area dimensions). Scale
-       indicates the percentage by which the image should be scaled, and
-       scalefit indicates whether or not the actual image should be scaled
-       to fit the specified width and/or depth. It is illogical to specify
-       both scale and scalefit: scale wins. My thanks to Paul Grosso for
-       analyzing this situation with me. -->
-
-  <xsl:variable name="scalefit">
-    <xsl:choose>
-      <xsl:when test="@scalefit">
-        <xsl:value-of select="@scalefit"/>
-      </xsl:when>
-      <xsl:otherwise>0</xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <!-- if scalefit != 0, set both content-height and content-width to
-       scale-to-fit elseif scale != auto, set both content-height and
-       content-width to it else set both content-height and
-       content-width to auto.  -->
-
-  <xsl:variable name="content-width">
-    <xsl:choose>
-      <xsl:when test="$scale != 'auto'">
-        <xsl:value-of select="$scale"/>
-      </xsl:when>
-      <xsl:when test="$scalefit != '0'">scale-to-fit</xsl:when>
-      <xsl:otherwise>auto</xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <xsl:variable name="content-height">
-    <xsl:choose>
-      <xsl:when test="$scale != 'auto'">
-        <xsl:value-of select="$scale"/>
-      </xsl:when>
-      <xsl:when test="$scalefit != '0'">scale-to-fit</xsl:when>
-      <xsl:otherwise>auto</xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <xsl:choose>
-    <xsl:when test="$passivetex.extensions != 0
-                    or $fop.extensions != 0
-                    or $arbortext.extensions != 0">
-      <fo:external-graphic src="{$filename}"
-                           width="{$width}"
-                           height="{$height}"
-                           content-width="{$content-width}"
-                           content-height="{$content-height}"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <fo:external-graphic src="url({$filename})"
-                           width="{$width}"
-                           height="{$height}"
-                           content-width="{$content-width}"
-                           content-height="{$content-height}"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
 
 <xsl:template name="process.image">
   <!-- When this template is called, the current node should be  -->
