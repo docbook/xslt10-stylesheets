@@ -1,4 +1,4 @@
-# This file is part of DocBook NG: The "Bourbon" Release.
+# This file is part of DocBook NG: The "Cachaça" Release.
 
 # This schema is a "work-in-progress". It validates a DocBook-like grammar that
 # may, in some incarnation, form the basis for DocBook V.next. Or it may not.
@@ -24,6 +24,18 @@ db.part.components |= db.refentry | db.reference
 
 db.article.optional.components |= db.refentry*
 db.article.required.components |= db.refentry+
+
+db.toplevel.optional.sections |= db.refentry*
+db.toplevel.required.sections |= db.refentry+
+
+db.recursive.optional.sections |= db.refentry*
+db.recursive.required.sections |= db.refentry+
+
+db.optional.refentry |= db.refentry*
+db.required.refentry |= db.refentry+
+
+db.refsect1 = notAllowed
+db.refsect2 = notAllowed
 
 # ======================================================================
 
@@ -55,15 +67,6 @@ div {
 
 # ======================================================================
 
-db.optional.refsections = db.refsection* | db.simplesect*
-
-db.required.refsections = db.refsection+ | db.simplesect*
-
-db.blocks.or.refsections =
-  (db.all.blocks+, db.optional.refsections) | db.required.refsections
-
-# ======================================================================
-
 [
    db:refname [ "refentry" ]
    db:refpurpose [ "" ]
@@ -89,7 +92,7 @@ div {
          db.refmeta?,
          db.refnamediv+,
          db.refsynopsisdiv?,
-         db.refsection+
+         (db.refsection+|db.refsect1+)
       }
 }
 
@@ -276,7 +279,8 @@ div {
       element refsynopsisdiv {
          db.refsynopsisdiv.attlist,
          db.refsynopsisdiv.info,
-         db.blocks.or.refsections
+         ((db.all.blocks+, (db.refsection* | db.refsect2*))
+          | (db.refsection+ | db.refsect2+))
       }
 }
 
@@ -303,6 +307,7 @@ div {
       element refsection {
          db.refsection.attlist,
          db.refsection.info,
-         db.blocks.or.refsections
+         ((db.all.blocks+, db.refsection*)
+          | db.refsection+)
       }
 }

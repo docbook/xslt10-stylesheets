@@ -1,4 +1,4 @@
-# This file is part of DocBook NG: The "Bourbon" Release.
+# This file is part of DocBook NG: The "Cachaça" Release.
 
 # This schema is a "work-in-progress". It validates a DocBook-like grammar that
 # may, in some incarnation, form the basis for DocBook V.next. Or it may not.
@@ -21,12 +21,22 @@ db.label.attribute = attribute label { text }
 
 # ======================================================================
 
-db.optional.sections = db.section* | db.simplesect*
+db.toplevel.optional.sections = db.section* | db.simplesect*
 
-db.required.sections = db.section+ | db.simplesect+
+db.toplevel.required.sections = db.section+ | db.simplesect+
 
-db.blocks.or.sections =
-  (db.all.blocks+, db.optional.sections) | db.required.sections
+db.toplevel.blocks.or.sections =
+  (db.all.blocks+, db.toplevel.optional.sections) | db.toplevel.required.sections
+
+db.recursive.optional.sections = db.section* | db.simplesect*
+
+db.recursive.required.sections = db.section+ | db.simplesect+
+
+db.recursive.blocks.or.sections =
+  (db.all.blocks+, db.recursive.optional.sections) | db.recursive.required.sections
+
+db.optional.refentry = notAllowed
+db.required.refentry = notAllowed
 
 # ======================================================================
 
@@ -43,7 +53,7 @@ db.components =
 db.navigation.components = notAllowed
 
 db.component.contentmodel =
-  db.navigation.components*, db.blocks.or.sections, db.navigation.components*
+  db.navigation.components*, db.toplevel.blocks.or.sections, db.navigation.components*
 
 # ======================================================================
 
@@ -314,7 +324,7 @@ div {
       element partintro {
          db.partintro.attlist,
          db.partintro.info,
-         db.blocks.or.sections
+         db.toplevel.blocks.or.sections
       }
 }
 
@@ -343,7 +353,7 @@ div {
       element section {
          db.section.attlist,
          db.section.info,
-         db.blocks.or.sections
+         db.recursive.blocks.or.sections
       }
 }
 

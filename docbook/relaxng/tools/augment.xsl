@@ -47,7 +47,7 @@
 
       <xsl:text>&#10;</xsl:text>
       <xsl:text>&#10;</xsl:text>
-      <xsl:comment> DocBook NG: The "Bourbon" Release </xsl:comment>
+      <xsl:comment> DocBook NG: The "Cachaça" Release </xsl:comment>
       <xsl:text>&#10;</xsl:text>
       <xsl:comment> See http://docbook.org/docbook-ng/ </xsl:comment>
       <xsl:text>&#10;</xsl:text>
