@@ -685,9 +685,7 @@
 </xsl:template>
 
 <xsl:template match="segmentedlist/title">
-  <fo:block font-weight="bold">
-    <xsl:apply-templates/>
-  </fo:block>
+  <xsl:apply-templates select="." mode="list.title.mode" />
 </xsl:template>
 
 <xsl:template match="segtitle">
@@ -723,7 +721,7 @@
 </xsl:template>
 
 <xsl:template match="segmentedlist" mode="seglist-table">
-  <xsl:apply-templates select="title" mode="seglist-table"/>
+  <xsl:apply-templates select="title" mode="list.title.mode" />
   <fo:table>
     <fo:table-header>
       <fo:table-row>
