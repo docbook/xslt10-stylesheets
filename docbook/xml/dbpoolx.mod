@@ -6024,7 +6024,7 @@ OtherCredit. -->
 
 <!ENTITY % revision.element "INCLUDE">
 <![%revision.element;[
-<!ELEMENT revision %ho; (revnumber, date, authorinitials*,
+<!ELEMENT revision %ho; (revnumber, date, (author|authorinitials)*,
                     (revremark|revdescription)?)>
 <!--end of revision.element-->]]>
 
