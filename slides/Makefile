@@ -11,6 +11,7 @@ slides.dtd: slides-custom.dtd slides.mod
 check:
 	$(XJPARSE) tests/test.xml
 	$(XJPARSE) tests/testcust.xml
+	$(XJPARSE) tests/testfull.xml
 
 test: check
 	$(SAXON) test.xml xsl/slides.xsl
