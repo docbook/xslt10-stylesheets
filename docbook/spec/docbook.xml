@@ -4,9 +4,9 @@
 <!ENTITY tracker "http://sourceforge.net/tracker/">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
 ]>
-<article status="Working Draft &ldquo;Beta 0&rdquo;">
+<article status="Working Draft &ldquo;Beta 1&rdquo;">
 <articleinfo>
-<title>The DocBook Document Type Version 4.2b0</title>
+<title>The DocBook Document Type Version 4.2b1</title>
 <subtitle>OASIS DocBook Technical Committee</subtitle>
 <authorgroup>
 <editor>
@@ -18,7 +18,7 @@
   </affiliation>
 </editor>
 </authorgroup>
-<pubdate>18 Nov 2001</pubdate>
+<pubdate>20 Nov 2001</pubdate>
 <releaseinfo role="meta">
 $Id$
 </releaseinfo>
@@ -82,9 +82,9 @@ no backwards-incompatible changes.</para>
 </abstract>
 
 <revhistory>
-<revision role="docbook-4.2b0.html">
-  <revnumber>Working Draft &ldquo;Beta 0&rdquo;</revnumber>
-  <date>13 Nov 2001</date>
+<revision role="docbook-4.2b1.html">
+  <revnumber>Working Draft &ldquo;Beta 1&rdquo;</revnumber>
+  <date>20 Nov 2001</date>
 </revision>
 </revhistory>
 </articleinfo>
@@ -136,7 +136,7 @@ document.</para>
 </section>
 
 <section id="docbook">
-<title>The DocBook Document Type V4.2b0</title>
+<title>The DocBook Document Type V4.2b1</title>
 
 <para>The DocBook document type is distributed for
 <ulink url="http://www.oasis-open.org/docbook/xml/">XML</ulink> and
@@ -152,11 +152,11 @@ from the
 
 <itemizedlist>
 <listitem>
-<para>Public identifier: -//OASIS//DTD DocBook V4.2b0//EN
+<para>Public identifier: -//OASIS//DTD DocBook V4.2b1//EN
 </para>
 </listitem>
 <listitem>
-<para>System identifier: http://www.oasis-open.org/docbook/sgml/4.2b0/docbook.dtd
+<para>System identifier: http://www.oasis-open.org/docbook/sgml/4.2b1/docbook.dtd
 </para>
 </listitem>
 </itemizedlist>
@@ -173,11 +173,11 @@ from the
 
 <itemizedlist>
 <listitem>
-<para>Public identifier: -//OASIS//DTD DocBook XML V4.2b0//EN
+<para>Public identifier: -//OASIS//DTD DocBook XML V4.2b1//EN
 </para>
 </listitem>
 <listitem>
-<para>System identifier: http://www.oasis-open.org/docbook/xml/4.2b0/docbookx.dtd
+<para>System identifier: http://www.oasis-open.org/docbook/xml/4.2b1/docbookx.dtd
 </para>
 </listitem>
 </itemizedlist>
@@ -194,7 +194,7 @@ from the
 
 <itemizedlist>
 <listitem>
-<para>Public identifier: -//OASIS//ENTITIES DocBook Notations V4.2b0//EN
+<para>Public identifier: -//OASIS//ENTITIES DocBook Notations V4.2b1//EN
 </para>
 </listitem>
 </itemizedlist>
@@ -211,7 +211,7 @@ from the
 
 <itemizedlist>
 <listitem>
-<para>Public identifier: -//OASIS//ENTITIES DocBook Character Entities V4.2b0//EN
+<para>Public identifier: -//OASIS//ENTITIES DocBook Character Entities V4.2b1//EN
 </para>
 </listitem>
 </itemizedlist>
@@ -228,7 +228,7 @@ from the
 
 <itemizedlist>
 <listitem>
-<para>Public identifier: -//OASIS//ENTITIES DocBook Information Pool V4.2b0//EN
+<para>Public identifier: -//OASIS//ENTITIES DocBook Information Pool V4.2b1//EN
 </para>
 </listitem>
 </itemizedlist>
@@ -245,7 +245,7 @@ from the
 
 <itemizedlist>
 <listitem>
-<para>Public identifier: -//OASIS//ENTITIES DocBook Document Hierarchy V4.2b0//EN
+<para>Public identifier: -//OASIS//ENTITIES DocBook Document Hierarchy V4.2b1//EN
 </para>
 </listitem>
 </itemizedlist>
@@ -262,7 +262,7 @@ from the
 
 <itemizedlist>
 <listitem>
-<para>Public identifier: -//OASIS//ENTITIES DocBook Additional General Entities V4.2b0//EN
+<para>Public identifier: -//OASIS//ENTITIES DocBook Additional General Entities V4.2b1//EN
 </para>
 </listitem>
 </itemizedlist>
@@ -278,7 +278,7 @@ from the
 </section>
 
 <section id="s.changes">
-<title>Changes in DocBook V4.2b0</title>
+<title>Changes in DocBook V4.2b1</title>
 
 <para>There are no backwards-incompatible changes in this release.
 </para>
@@ -368,7 +368,7 @@ An <literal>extension</literal> value will be added to the
 <sgmltag>filename</sgmltag>.</para>
 </listitem>
 <listitem id="rfe.482821"><para><ulink url="&RFE;aid=482821">RFE 482821</ulink>:
-Add introductory material to the beginning of list elements. [TBD]</para>
+Add introductory material to the beginning of list elements.</para>
 </listitem>
 </itemizedlist>
 </section>
