@@ -7,8 +7,7 @@
 MYDIR=`dirname $0`
 . $MYDIR/common-functions.sh
 
-# FIXME: why not xerces 2?
-XERCES=`findxerces1`
+XERCES=`findxerces2`
 RESOLVER=`findresolver`
 if [ ! "$RESOLVER" ]; then
   echo "cannot find resolver classes" 1>&2
