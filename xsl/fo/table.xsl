@@ -449,6 +449,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 -->
 
         <fo:block>
+          <!-- highlight this entry? -->
+          <xsl:if test="ancestor::thead">
+            <xsl:attribute name="font-weight">bold</xsl:attribute>
+          </xsl:if>
+
           <!-- are we missing any indexterms? -->
           <xsl:if test="not(preceding-sibling::entry)
                         and not(parent::row/preceding-sibling::row)">
