@@ -5,8 +5,7 @@ XSLFO=../xsl/fo/docbook.xsl
 XSLCHUNK=../xsl/html/chunk.xsl
 
 CHUNK=0
-STYLEOPT=
-
+STYLEOPT=use.extensions=1
 
 FORMATTER=xep
 
