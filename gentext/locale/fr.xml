@@ -164,8 +164,8 @@
 <gentext key="listofunknown" text="Liste des inconnues"/>
 
 <gentext key="nav-prev" text="Pr&#x00E9;c&#x00E9;dent"/>
-<gentext key="nav-prev-sibling" text="Fast Backward"/>
-<gentext key="nav-next-sibling" text="Fast Forward"/>
+<gentext key="nav-prev-sibling" text="Arri&#xE8;re rapide"/>
+<gentext key="nav-next-sibling" text="Avance rapide"/>
 <gentext key="nav-next" text="Suivant"/>
 <gentext key="nav-up" text="Niveau sup&#x00E9;rieur"/>
 <gentext key="nav-home" text="Sommaire"/>
