@@ -565,8 +565,13 @@
 </xsl:template>
 
 <xsl:template match="ulink" name="ulink">
-  <fo:basic-link external-destination="{@url}"
-                 xsl:use-attribute-sets="xref.properties">
+  <fo:basic-link xsl:use-attribute-sets="xref.properties">
+    <xsl:attribute name="external-destination">
+      <xsl:call-template name="fo-external-image">
+        <xsl:with-param name="filename" select="@url"/>
+      </xsl:call-template>
+    </xsl:attribute>
+
     <xsl:choose>
       <xsl:when test="count(child::node())=0">
         <xsl:call-template name="hyphenate-url">
