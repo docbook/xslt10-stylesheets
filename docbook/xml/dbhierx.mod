@@ -1785,7 +1785,8 @@ change will not be made after all. -->
 
 <!ENTITY % refentry.element "INCLUDE">
 <![%refentry.element;[
-<!ELEMENT refentry ((%ndxterm.class;)*,
+<!ELEMENT refentry (beginpage?,
+                    (%ndxterm.class;)*,
                     refentryinfo?, refmeta?, (remark|%link.char.class;)*,
                     refnamediv, refsynopsisdiv?, refsect1+)>
 <!--end of refentry.element-->]]>
