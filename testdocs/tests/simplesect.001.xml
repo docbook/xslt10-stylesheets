@@ -5,7 +5,7 @@
 <chapterinfo>
 <releaseinfo role="CVS">$Id$</releaseinfo>
 </chapterinfo>
-<title>Unit Test: bibliography.005</title>
+<title>Unit Test: simplesect</title>
 
 <para>This test case is for simplesect.</para>
 
@@ -32,6 +32,7 @@
 
 <simplesect>
 <title>Second Simplesect</title>
+<subtitle>Subtitle</subtitle>
 <para>Some content</para>
 </simplesect>
 </section>
