@@ -321,12 +321,14 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="procedure">
+  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
   <xsl:variable name="title" select="title"/>
   <xsl:variable name="preamble"
                 select="*[not(self::step or self::title)]"/>
   <xsl:variable name="steps" select="step"/>
 
-  <fo:block space-before.optimum="1em"
+  <fo:block id="{$id}"
+            space-before.optimum="1em"
             space-before.minimum="0.8em"
             space-before.maximum="1.2em">
     <xsl:if test="./title">
@@ -361,32 +363,13 @@
 </xsl:template>
 
 <xsl:template match="step">
-  <xsl:variable name="depth" select="count(ancestor::substeps)"/>
-  <xsl:variable name="type" select="$depth mod 5"/>
-
+  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
   <fo:list-item>
     <fo:list-item-label end-indent="label-end()">
-      <fo:block>
-        <xsl:choose>
-          <xsl:when test="$depth = 0">
-            <xsl:number count="step" format="1."/>
-          </xsl:when>
-          <xsl:when test="$type = 1">
-            <xsl:number count="step" format="a."/>
-          </xsl:when>
-          <xsl:when test="$type = 2">
-            <xsl:number count="step" format="i."/>
-          </xsl:when>
-          <xsl:when test="$type = 3">
-            <xsl:number count="step" format="A."/>
-          </xsl:when>
-          <xsl:when test="$type = 4">
-            <xsl:number count="step" format="I."/>
-          </xsl:when>
-          <xsl:when test="$type = 0">
-            <xsl:number count="step" format="1."/>
-          </xsl:when>
-        </xsl:choose>
+      <fo:block id="{$id}">
+        <xsl:apply-templates select="." mode="number">
+          <xsl:with-param name="recursive" select="0"/>
+        </xsl:apply-templates>
       </fo:block>
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">

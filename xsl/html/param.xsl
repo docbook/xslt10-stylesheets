@@ -1148,5 +1148,15 @@ in default.encoding, set this parameter to value <literal>native</literal>.
 </refdescription>
 </doc:param>
 
+<!-- ==================================================================== -->
+<xsl:param name="formal.procedures" select="1" doc:type='boolean'/>
+
+<doc:param name="formal.procedures" xmlns="">
+<refpurpose>Selects formal or informal procedures</refpurpose>
+<refdescription>
+<para>Formal procedures are numbered and always hav a title.
+</para>
+</refdescription>
+</doc:param>
 
 </xsl:stylesheet>

@@ -119,6 +119,10 @@
   <xsl:apply-templates select="." mode="object.xref.markup"/>
 </xsl:template>
 
+<xsl:template match="procedure" mode="xref-to">
+  <xsl:apply-templates select="." mode="object.xref.markup"/>
+</xsl:template>
+
 <xsl:template match="cmdsynopsis" mode="xref-to">
   <xsl:apply-templates select="(.//command)[1]" mode="xref"/>
 </xsl:template>
@@ -190,6 +194,14 @@
 
 <xsl:template match="reference" mode="xref-to">
   <xsl:apply-templates select="." mode="object.xref.markup"/>
+</xsl:template>
+
+<xsl:template match="step" mode="xref-to">
+  <xsl:call-template name="gentext">
+    <xsl:with-param name="key" select="'Step'"/>
+  </xsl:call-template>
+  <xsl:text> </xsl:text>
+  <xsl:apply-templates select="." mode="number"/>
 </xsl:template>
 
 <xsl:template match="co" mode="xref-to">
