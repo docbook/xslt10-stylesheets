@@ -412,7 +412,7 @@
     </xsl:attribute>
 
     <xsl:choose>
-      <xsl:when test="not(preceding::chapter or preceding::preface)
+      <xsl:when test="not(preceding::chapter)
                       and not(preceding::part)">
         <!-- if there is a preceding chapter or part, page numbering will already -->
         <!-- be adjusted, otherwise restart the page numbers -->
