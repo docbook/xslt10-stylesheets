@@ -746,7 +746,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 
 <xsl:template match="graphic">
   <xsl:choose>
-    <xsl:when test="../inlineequation">
+    <xsl:when test="parent::inlineequation">
       <xsl:call-template name="anchor"/>
       <xsl:call-template name="process.image"/>
     </xsl:when>
