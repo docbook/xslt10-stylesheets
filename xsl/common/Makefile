@@ -1,5 +1,4 @@
-XSLT=../../cvstools/saxon
-XJPARSE=../../cvstools/xjparse
+include ../../cvstools/Makefile.incl
 
 SOURCES=af.xml bg.xml \
         ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml et.xml eu.xml fi.xml \
