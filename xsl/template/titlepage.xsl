@@ -4,7 +4,7 @@
                 xmlns:t="http://nwalsh.com/docbook/xsl/template/1.0"
                 xmlns:param="http://nwalsh.com/docbook/xsl/template/1.0/param"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
-                exclude-result-prefixes="doc"
+                exclude-result-prefixes="doc t param"
                 version='1.0'>
 
 <!-- ********************************************************************
