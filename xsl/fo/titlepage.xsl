@@ -401,7 +401,12 @@
 </xsl:template>
 
 <xsl:template match="legalnotice" mode="titlepage.mode">
-  <fo:block>
+
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <fo:block id="{$id}">
     <xsl:if test="title"> <!-- FIXME: add param for using default title? -->
     <xsl:call-template name="formal.object.heading">
         <xsl:with-param name="title">
