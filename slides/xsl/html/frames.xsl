@@ -1450,14 +1450,20 @@ function init() {
   <xsl:value-of select="$titlefoil.html"/>
   <xsl:text disable-output-escaping="yes">" target="foil"&gt;</xsl:text>
 
-  <xsl:choose>
-    <xsl:when test="titleabbrev">
-      <xsl:value-of select="titleabbrev"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="title"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:call-template name="string.subst">
+    <xsl:with-param name="string">
+      <xsl:choose>
+        <xsl:when test="titleabbrev">
+          <xsl:value-of select="titleabbrev"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="title"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:with-param>
+    <xsl:with-param name="target">'</xsl:with-param>
+    <xsl:with-param name="replacement">\'</xsl:with-param>
+  </xsl:call-template>
 
   <xsl:text disable-output-escaping="yes">&lt;/A&gt;&lt;/DIV&gt;</xsl:text>
   <xsl:text>');&#10;</xsl:text>
