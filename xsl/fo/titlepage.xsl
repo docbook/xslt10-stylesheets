@@ -61,14 +61,23 @@
 <xsl:attribute-set name="bibliography.titlepage.recto.style"/>
 <xsl:attribute-set name="bibliography.titlepage.verso.style"/>
 
+<xsl:attribute-set name="bibliodiv.titlepage.recto.style"/>
+<xsl:attribute-set name="bibliodiv.titlepage.verso.style"/>
+
 <xsl:attribute-set name="glossary.titlepage.recto.style"/>
 <xsl:attribute-set name="glossary.titlepage.verso.style"/>
+
+<xsl:attribute-set name="glossdiv.titlepage.recto.style"/>
+<xsl:attribute-set name="glossdiv.titlepage.verso.style"/>
 
 <xsl:attribute-set name="index.titlepage.recto.style"/>
 <xsl:attribute-set name="index.titlepage.verso.style"/>
 
 <xsl:attribute-set name="setindex.titlepage.recto.style"/>
 <xsl:attribute-set name="setindex.titlepage.verso.style"/>
+
+<xsl:attribute-set name="indexdiv.titlepage.recto.style"/>
+<xsl:attribute-set name="indexdiv.titlepage.verso.style"/>
 
 <xsl:attribute-set name="colophon.titlepage.recto.style"/>
 <xsl:attribute-set name="colophon.titlepage.verso.style"/>
@@ -207,7 +216,14 @@
   <fo:block>
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="person.name"/>
-    <xsl:apply-templates select="affiliation" mode="titlepage.mode"/>
+    <xsl:if test="affiliation/orgname">
+      <xsl:text>, </xsl:text>
+      <xsl:apply-templates select="affiliation/orgname" mode="titlepage.mode"/>
+    </xsl:if>
+    <xsl:if test="email|affiliation/address/email">
+      <xsl:text> </xsl:text>
+      <xsl:apply-templates select="(email|affiliation/address/email)[1]"/>
+    </xsl:if>
   </fo:block>
 </xsl:template>
 
@@ -410,9 +426,7 @@
 </xsl:template>
 
 <xsl:template match="orgname" mode="titlepage.mode">
-  <fo:block>
-    <xsl:apply-templates mode="titlepage.mode"/>
-  </fo:block>
+  <xsl:apply-templates mode="titlepage.mode"/>
 </xsl:template>
 
 <xsl:template match="othercredit" mode="titlepage.mode">
