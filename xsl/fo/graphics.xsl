@@ -421,6 +421,42 @@
   <xsl:apply-templates/>
 </xsl:template>
 
+<xsl:template match="textdata">
+  <xsl:variable name="filename">
+    <xsl:choose>
+      <xsl:when test="@entityref">
+        <xsl:value-of select="unparsed-entity-uri(@entityref)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="@fileref"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$use.extensions != '0'
+                    and $textinsert.extension != '0'">
+      <xsl:choose>
+        <xsl:when test="element-available('stext:insertfile')">
+          <stext:insertfile href="{$filename}"/>
+        </xsl:when>
+        <xsl:when test="element-available('xtext:insertfile')">
+          <xtext:insertfile href="{$filename}"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:message terminate="yes">
+            <xsl:text>No insertfile extension available.</xsl:text>
+          </xsl:message>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <a xlink:type="simple" xlink:show="embed" xlink:actuate="onLoad"
+         href="{$filename}"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <!-- ==================================================================== -->
 
 <xsl:template match="caption">
