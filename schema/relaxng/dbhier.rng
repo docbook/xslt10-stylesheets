@@ -173,6 +173,7 @@ of DocBook.</para>
   <define name="forms.hook">
     <notAllowed/>
   </define>
+
   <define name="local.divcomponent.mix">
     <notAllowed/>
   </define>
@@ -2595,6 +2596,7 @@ change will not be made after all. -->
                 <ref name="indexentry"/>
               </zeroOrMore>
             </choice>
+            <s:assert test="count(.//indexterm) = 0">&lt;index&gt; contains &lt;indexterm&gt;</s:assert>
           </element>
         </define>
       </div>
@@ -2628,6 +2630,7 @@ change will not be made after all. -->
                 <ref name="indexentry"/>
               </zeroOrMore>
             </choice>
+            <s:assert test="count(.//indexterm) = 0">&lt;setindex&gt; contains &lt;indexterm&gt;</s:assert>
           </element>
         </define>
       </div>
@@ -3392,6 +3395,9 @@ change will not be made after all. -->
               <ref name="ackno"/>
             </choice>
           </zeroOrMore>
+<!-- this test doesn't work yet because of a bug in relames
+          <s:assert test="count(title) = 0 or count(articleinfo/title) = 0 or articleinfo/title = title">&lt;article&gt;/&lt;title&gt; and &lt;articleinfo&gt;/&lt;title&gt; differ</s:assert>
+-->
         </element>
       </define>
     </div>
