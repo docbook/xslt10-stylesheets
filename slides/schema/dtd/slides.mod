@@ -1,5 +1,5 @@
 <!-- ====================================================================== -->
-<!-- Slides Module V3.1.0
+<!-- Slides Module V3.3.0
      Copyright (C) 1999, 2000, 2001, 2002, 2003 Norman Walsh
      http://sourceforge.net/projects/docbook/
 
@@ -9,6 +9,8 @@
      Norman Walsh, <ndw@nwalsh.com>.
                                                                             -->
 <!-- ====================================================================== -->
+
+<!ENTITY % only-in-full-nav-class "|%nav.class;">
 
 <!ELEMENT slides (slidesinfo, speakernotes?, foil*, foilgroup*)>
 
@@ -30,7 +32,7 @@
 >
 
 <!ELEMENT foilgroup (foilgroupinfo?, title, subtitle?, titleabbrev?,
-                   (%divcomponent.mix;)*,
+                   (%divcomponent.mix;%only-in-full-nav.class;)*,
                    foil+)>
 <!ATTLIST foilgroup
 		%label.attrib;
@@ -50,7 +52,7 @@
 >
 
 <!ELEMENT foil (foilinfo?, title, subtitle?, titleabbrev?,
-                (%divcomponent.mix;)+)>
+                (%divcomponent.mix;%only-in-full-nav.class;)+)>
 
 <!ATTLIST foil
 		%label.attrib;
@@ -75,5 +77,5 @@
 		%role.attrib;
 >
 
-<!-- End of Slides Module V3.1.0 .......................................... -->
+<!-- End of Slides Module V3.3.0 .......................................... -->
 <!-- ...................................................................... -->
