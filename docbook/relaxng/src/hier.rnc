@@ -328,7 +328,7 @@ div {
     & db.label.attribute?
     & db.preface.status.attribute?
 
-   db.preface.info = db._info
+   db.preface.info = db._info.title.req
 
    db.preface =
       element preface {
