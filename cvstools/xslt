@@ -129,7 +129,13 @@ my $startTime = time();
 if (! $quiet) {
     print "$cmd\n";
 }
-system($cmd);
+my $retVal = system($cmd);
 my $endTime = time();
 
 print "Time: ", $endTime - $startTime, "s\n" if $time;
+
+if ($retVal) {
+    exit $retVal / 256;
+} else {
+    exit 0;
+}
