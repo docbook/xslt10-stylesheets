@@ -262,6 +262,11 @@ body { background-image: url('</xsl:text>
 
 <!-- ============================================================ -->
 
+<xsl:template name="user.preroot">
+  <!-- Pre-root output, can be used to output comments and PIs. -->
+  <!-- This must not output any element content! -->
+</xsl:template>
+
 <xsl:template name="user.head.content">
   <xsl:param name="node" select="."/>
 </xsl:template>
@@ -343,6 +348,7 @@ body { background-image: url('</xsl:text>
 <xsl:template match="*" mode="process.root">
   <xsl:variable name="doc" select="self::*"/>
 
+  <xsl:call-template name="user.preroot"/>
   <xsl:call-template name="root.messages"/>
 
   <html>

@@ -480,6 +480,7 @@
         <xsl:with-param name="filename" select="$filename"/>
         <xsl:with-param name="quiet" select="$chunk.quietly"/>
         <xsl:with-param name="content">
+        <xsl:call-template name="user.preroot"/>
           <html>
             <head>
               <xsl:call-template name="system.head.content"/>
