@@ -44,6 +44,27 @@
       <xsl:text>???</xsl:text>
     </xsl:when>
 
+    <xsl:when test="@endterm">
+      <fo:basic-link internal-destination="{@linkend}"
+                     xsl:use-attribute-sets="xref.properties">
+        <xsl:variable name="etargets" select="key('id',@endterm)"/>
+        <xsl:variable name="etarget" select="$etargets[1]"/>
+        <xsl:choose>
+          <xsl:when test="count($etarget) = 0">
+            <xsl:message>
+              <xsl:value-of select="count($etargets)"/>
+              <xsl:text>Endterm points to nonexistent ID: </xsl:text>
+              <xsl:value-of select="@endterm"/>
+            </xsl:message>
+            <xsl:text>???</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="$etarget" mode="endterm"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </fo:basic-link>
+    </xsl:when>
+
     <xsl:when test="$target/@xreflabel">
       <fo:basic-link internal-destination="{@linkend}"
                      xsl:use-attribute-sets="xref.properties">
@@ -56,41 +77,19 @@
     <xsl:otherwise>
       <fo:basic-link internal-destination="{@linkend}"
                      xsl:use-attribute-sets="xref.properties">
-        <xsl:choose>
-	  <xsl:when test="@endterm">
-	    <xsl:variable name="etargets" select="key('id',@endterm)"/>
-	    <xsl:variable name="etarget" select="$etargets[1]"/>
-	    <xsl:choose>
-	      <xsl:when test="count($etarget) = 0">
-		<xsl:message>
-		  <xsl:value-of select="count($etargets)"/>
-		  <xsl:text>Endterm points to nonexistent ID: </xsl:text>
-		  <xsl:value-of select="@endterm"/>
-		</xsl:message>
-		<xsl:text>???</xsl:text>
-	      </xsl:when>
-	      <xsl:otherwise>
-		<xsl:apply-templates select="$etarget" mode="endterm"/>
-	      </xsl:otherwise>
-	    </xsl:choose>
-	  </xsl:when>
-
-          <xsl:otherwise>
-            <xsl:apply-templates select="$target" mode="xref-to">
-              <xsl:with-param name="referrer" select="."/>
-              <xsl:with-param name="xrefstyle">
-                <xsl:choose>
-                  <xsl:when test="$use.role.as.xrefstyle != 0">
-                    <xsl:value-of select="@role"/>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:value-of select="@xrefstyle"/>
-                  </xsl:otherwise>
-                </xsl:choose>
-              </xsl:with-param>
-            </xsl:apply-templates>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:apply-templates select="$target" mode="xref-to">
+          <xsl:with-param name="referrer" select="."/>
+          <xsl:with-param name="xrefstyle">
+            <xsl:choose>
+              <xsl:when test="$use.role.as.xrefstyle != 0">
+                <xsl:value-of select="@role"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="@xrefstyle"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:with-param>
+        </xsl:apply-templates>
       </fo:basic-link>
     </xsl:otherwise>
   </xsl:choose>
