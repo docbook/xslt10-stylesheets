@@ -221,9 +221,9 @@
     <xsl:with-param name="quiet" select="$quiet"/>
     <xsl:with-param name="method" select="$method"/>
     <xsl:with-param name="encoding" select="$encoding"/>
-    <xsl:with-param name="indent"/>
-    <xsl:with-param name="omit-xml-declaration"/>
-    <xsl:with-param name="standalone"/>
+    <xsl:with-param name="indent" select="'no'"/>
+    <xsl:with-param name="omit-xml-declaration" select="'yes'"/>
+    <xsl:with-param name="standalone" select="'no'"/>
     <xsl:with-param name="doctype-public"/>
     <xsl:with-param name="doctype-system"/>
     <xsl:with-param name="media-type" select="$media-type"/>
