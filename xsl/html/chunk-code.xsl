@@ -680,7 +680,6 @@
     </xsl:if>
   </xsl:variable>
 
-
   <xsl:if test="string($lots) != ''">
     <xsl:choose>
       <xsl:when test="$chunk.tocs.and.lots != 0 and not(parent::*)">
@@ -690,7 +689,9 @@
               <xsl:with-param name="base.dir" select="$base.dir"/>
               <xsl:with-param name="base.name">
                 <xsl:call-template name="dbhtml-dir"/>
-                <xsl:apply-templates select="." mode="recursive-chunk-filename"/>
+                <xsl:apply-templates select="." mode="recursive-chunk-filename">
+                  <xsl:with-param name="recursive" select="true()"/>
+                </xsl:apply-templates>
                 <xsl:text>-toc</xsl:text>
                 <xsl:value-of select="$html.ext"/>
               </xsl:with-param>
