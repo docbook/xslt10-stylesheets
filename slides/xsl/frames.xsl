@@ -520,7 +520,6 @@ if (selectBrowser() == "ie5") {
               </xsl:attribute>
             </script>
           </xsl:if>
-          <style type="text/css">div.section { margin-top: 3em }</style>
         </head>
         <xsl:apply-templates select="." mode="singleframe"/>
       </html>
