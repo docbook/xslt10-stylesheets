@@ -16,7 +16,10 @@
   <xsl:param name="placement" select="'before'"/>
 
   <div class="{name(.)}">
-    <xsl:call-template name="anchor"/>
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
+
     <xsl:choose>
       <xsl:when test="$placement = 'before'">
         <xsl:call-template name="formal.object.heading"/>
