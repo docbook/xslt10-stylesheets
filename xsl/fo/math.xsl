@@ -17,7 +17,7 @@
 <xsl:template match="inlineequation">
   <xsl:choose>
     <xsl:when test="$passivetex.extensions != 0 and $tex.math.in.alt != ''">
-      <xsl:apply-templates select="alt"/>
+      <xsl:apply-templates select="alt[@role='tex'] | inlinemediaobject/textobject[@role='tex']"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:apply-templates/>
@@ -42,7 +42,8 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="inlineequation/alt">
+<xsl:template match="inlineequation/alt[@role='tex'] | 
+                     inlineequation/inlinemediaobject/textobject[@role='tex']" priority="1">
   <xsl:if test="$passivetex.extensions != 0 and $tex.math.in.alt != ''">
     <xsl:processing-instruction name="xmltex">
       <xsl:text>$</xsl:text>
@@ -52,7 +53,9 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="equation/alt | informalequation/alt">
+<xsl:template match="equation/alt[@role='tex'] | informalequation/alt[@role='tex'] |
+                     equation/mediaobject/textobject[@role='tex'] |
+                     informalequation/mediaobject/textobject[@role='tex']" priority="1">
   <xsl:if test="$passivetex.extensions != 0 and $tex.math.in.alt != ''">
     <xsl:processing-instruction name="xmltex">
       <xsl:text>$$</xsl:text>
@@ -62,7 +65,7 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="alt">
+<xsl:template match="alt[@role='tex']">
   <xsl:if test="$passivetex.extensions != 0 and $tex.math.in.alt != ''">
     <xsl:message>
       Your equation is misplaced. It should be in inlineequation, equation or informalequation.
