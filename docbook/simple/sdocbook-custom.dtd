@@ -223,10 +223,11 @@
 <!ENTITY % systemitem.element "IGNORE">
 <!ENTITY % computeroutput.element "IGNORE">
 <!ENTITY % userinput.element "IGNORE">
+<!ENTITY % blockquote.element  "IGNORE">
 
 <!ENTITY % cals.table.module "INCLUDE">
-<!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
-                   "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+<!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.3CR2//EN"
+                   "http://docbook.org/xml/4.3CR2/docbookx.dtd"
 >
 %docbook;
 
@@ -282,7 +283,16 @@
 
 <!ENTITY % simple.informaltable.element "INCLUDE">
 <![%simple.informaltable.element;[
-<!ELEMENT informaltable (mediaobject+|tgroup+) %tbl.table.excep;>
+
+<![%allow.html.tables;[
+<!ENTITY % informaltable.table.mdl
+	"((mediaobject+|tgroup+)
+          |(caption, (col*|colgroup*), thead?, tfoot?, (tbody+|tr+)))">
+]]>
+<!ENTITY % informaltable.table.mdl
+	"(mediaobject+|tgroup+)">
+
+<!ELEMENT informaltable (%informaltable.table.mdl;) %tbl.table.excep;>
 ]]>
 
 <!ENTITY % simple.replaceable.element "INCLUDE">
@@ -403,6 +413,11 @@
 <!ENTITY % simple.userinput.element "INCLUDE">
 <![%simple.userinput.element;[
 <!ELEMENT userinput %ho; (%cptr.char.mix;)*>
+]]>
+
+<!ENTITY % simple.blockquote.element "INCLUDE">
+<![%simple.blockquote.element;[
+<!ELEMENT blockquote %ho; (title?, attribution?, (%component.mix;)+)>
 ]]>
 
 <!-- End of Simplified DocBook DTD V1.0 ................................... -->
