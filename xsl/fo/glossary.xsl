@@ -602,7 +602,12 @@ GlossEntry ::=
 </xsl:template>
 
 <xsl:template match="glossentry/glossterm" mode="glossary.as.list">
-  <xsl:apply-templates/>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+  <fo:inline id="{$id}">
+    <xsl:apply-templates/>
+  </fo:inline>
   <xsl:if test="following-sibling::glossterm">, </xsl:if>
 </xsl:template>
 
@@ -631,7 +636,10 @@ GlossEntry ::=
     </xsl:call-template>
     <xsl:choose>
       <xsl:when test="$target">
-        <xsl:apply-templates select="$target" mode="xref-to"/>
+        <fo:basic-link internal-destination="{$otherterm}"
+                       xsl:use-attribute-sets="xref.properties">
+          <xsl:apply-templates select="$target" mode="xref-to"/>
+        </fo:basic-link>
       </xsl:when>
       <xsl:when test="$otherterm != '' and not($target)">
         <xsl:message>
@@ -675,7 +683,10 @@ GlossEntry ::=
 
   <xsl:choose>
     <xsl:when test="$target">
-      <xsl:apply-templates select="$target" mode="xref-to"/>
+      <fo:basic-link internal-destination="{$otherterm}"
+                     xsl:use-attribute-sets="xref.properties">
+        <xsl:apply-templates select="$target" mode="xref-to"/>
+      </fo:basic-link>
     </xsl:when>
     <xsl:when test="$otherterm != '' and not($target)">
       <xsl:message>
@@ -730,8 +741,8 @@ GlossEntry ::=
   </xsl:variable>
 
   <fo:block xsl:use-attribute-sets="list.item.spacing"
- 	  keep-with-next.within-column="always" 
- 	  keep-together.within-column="always">
+           keep-with-next.within-column="always" 
+           keep-together.within-column="always">
     <xsl:call-template name="anchor">
       <xsl:with-param name="conditional">
         <xsl:choose>
@@ -781,7 +792,12 @@ GlossEntry ::=
 </xsl:template>
 
 <xsl:template match="glossentry/glossterm" mode="glossary.as.blocks">
-  <xsl:apply-templates/>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+  <fo:inline id="{$id}">
+    <xsl:apply-templates/>
+  </fo:inline>
   <xsl:if test="following-sibling::glossterm">, </xsl:if>
 </xsl:template>
 
@@ -806,7 +822,10 @@ GlossEntry ::=
   </xsl:call-template>
   <xsl:choose>
     <xsl:when test="$target">
-      <xsl:apply-templates select="$target" mode="xref-to"/>
+      <fo:basic-link internal-destination="{$otherterm}"
+                     xsl:use-attribute-sets="xref.properties">
+        <xsl:apply-templates select="$target" mode="xref-to"/>
+      </fo:basic-link>
     </xsl:when>
     <xsl:when test="$otherterm != '' and not($target)">
       <xsl:message>
@@ -855,7 +874,10 @@ GlossEntry ::=
 
   <xsl:choose>
     <xsl:when test="$target">
-      <xsl:apply-templates select="$target" mode="xref-to"/>
+      <fo:basic-link internal-destination="{$otherterm}"
+                     xsl:use-attribute-sets="xref.properties">
+        <xsl:apply-templates select="$target" mode="xref-to"/>
+      </fo:basic-link>
     </xsl:when>
     <xsl:when test="$otherterm != '' and not($target)">
       <xsl:message>
