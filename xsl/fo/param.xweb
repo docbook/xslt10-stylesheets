@@ -377,6 +377,12 @@ url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http:
 &profile.separator;
 </reference>
 
+<reference><title>Localization</title>
+&l10n.gentext.language;
+&l10n.gentext.default.language;
+&l10n.gentext.use.xref.language;
+</reference>
+
 <!--
 <reference><title></title>
 </reference>
@@ -475,6 +481,9 @@ around all these parameters.</para>
 <src:fragref linkend="hyphenate.frag"/>
 <src:fragref linkend="informal.object.properties.frag"/>
 <src:fragref linkend="insert.xref.page.number.frag"/>
+<src:fragref linkend="l10n.gentext.language.frag"/>
+<src:fragref linkend="l10n.gentext.default.language.frag"/>
+<src:fragref linkend="l10n.gentext.use.xref.language.frag"/>
 <src:fragref linkend="label.from.part.frag"/>
 <src:fragref linkend="line-height.frag"/>
 <src:fragref linkend="linenumbering.everyNth.frag"/>
