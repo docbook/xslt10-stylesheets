@@ -1,21 +1,38 @@
 VPATH=src
 
-AUGMENT=tools/augment.xsl
-CLEANUP=tools/cleanup.pl
-TMPFILE=/tmp/cleanup
+TMPFILE=/tmp/cleanup.rng
+TESTSRC=/sourceforge/docbook/testdocs/tests
+TESTFILES=$(subst $(TESTSRC)/,,$(wildcard $(TESTSRC)/*.xml))
 
 .SUFFIXES: .rnc .rng .rnx
+.PHONY: docbook.rng tests
 
 all: docbook.rng
 
-docbook.rng: docbook.rnx hier.rnx pool.rnx
+docbook.rng:
+	$(MAKE) -C build $@
+	cp build/$@ .
 
-dbmsg.rng: dbmsg.rnx hier.rnx pool.rnx msgset.rnx
+tests:
+	mkdir -p tests tests/passed
+	cd tests && ../tools/runtests
 
-.rnx.rng:
-	saxon $< $(AUGMENT) $(TMPFILE) src=$< use.extensions=1
-	@for f in `cat $(TMPFILE)`; do perl -i $(CLEANUP) $$f; done
+db5doc.xml: docbook.rng \
+            tools/group.xsl tools/expand.xsl tools/flatten.xsl tools/classify.xsl
+	xsltproc -output /tmp/gr1.xml  tools/group.xsl    $<
+	xsltproc -output /tmp/out1.xml tools/expand.xsl   /tmp/gr1.xml
+	xsltproc -output /tmp/out2.xml tools/expand.xsl   /tmp/out1.xml
+	xsltproc -output /tmp/out3.xml tools/expand.xsl   /tmp/out2.xml
+	xsltproc -output /tmp/out4.xml tools/expand.xsl   /tmp/out3.xml
+	xsltproc -output /tmp/out5.xml tools/expand.xsl   /tmp/out4.xml
+	xsltproc -output /tmp/out6.xml tools/classify.xsl /tmp/out5.xml
+	xsltproc -output /tmp/out7.xml tools/flatten.xsl     /tmp/out6.xml
+	xsltproc -output /tmp/out8.xml tools/flatten.xsl     /tmp/out7.xml
+	xsltproc -output $@ tools/flatten.xsl     /tmp/out8.xml
+	cp $@ /sourceforge/docbook/defguide/en/build/lib/
 
-.rnc.rnx:
-	trang -O rng $< $@
+out.html: db5doc.xml
+	saxon $< tools/html.xsl $@
 
+clean:
+	rm -f out*
