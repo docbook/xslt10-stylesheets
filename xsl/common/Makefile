@@ -7,38 +7,40 @@ SOURCES=af.xml \
         pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sr.xml sv.xml \
         tr.xml zh_cn.xml zh_tw.xml
 
+GENSTYLE=../../gentext/xsl/xsl.xsl
+
 all: $(SOURCES)
 
-af.xml: ../../gentext/locale/af.xml
-ca.xml: ../../gentext/locale/ca.xml
-cs.xml: ../../gentext/locale/cs.xml
-da.xml: ../../gentext/locale/da.xml
-de.xml: ../../gentext/locale/de.xml
-el.xml: ../../gentext/locale/el.xml
-en.xml: ../../gentext/locale/en.xml
-es.xml: ../../gentext/locale/es.xml
-et.xml: ../../gentext/locale/et.xml
-fi.xml: ../../gentext/locale/fi.xml
-fr.xml: ../../gentext/locale/fr.xml
-hu.xml: ../../gentext/locale/hu.xml
-id.xml: ../../gentext/locale/id.xml
-it.xml: ../../gentext/locale/it.xml
-ja.xml: ../../gentext/locale/ja.xml
-ko.xml: ../../gentext/locale/ko.xml
-nl.xml: ../../gentext/locale/nl.xml
-no.xml: ../../gentext/locale/no.xml
-pl.xml: ../../gentext/locale/pl.xml
-pt.xml: ../../gentext/locale/pt.xml
-pt_br.xml: ../../gentext/locale/pt_br.xml
-ro.xml: ../../gentext/locale/ro.xml
-ru.xml: ../../gentext/locale/ru.xml
-sk.xml: ../../gentext/locale/sk.xml
-sl.xml: ../../gentext/locale/sl.xml
-sr.xml: ../../gentext/locale/sr.xml
-sv.xml: ../../gentext/locale/sv.xml
-tr.xml: ../../gentext/locale/tr.xml
-zh_cn.xml: ../../gentext/locale/zh_cn.xml
-zh_tw.xml: ../../gentext/locale/zh_tw.xml
+af.xml: ../../gentext/locale/af.xml $(GENSTYLE)
+ca.xml: ../../gentext/locale/ca.xml $(GENSTYLE)
+cs.xml: ../../gentext/locale/cs.xml $(GENSTYLE)
+da.xml: ../../gentext/locale/da.xml $(GENSTYLE)
+de.xml: ../../gentext/locale/de.xml $(GENSTYLE)
+el.xml: ../../gentext/locale/el.xml $(GENSTYLE)
+en.xml: ../../gentext/locale/en.xml $(GENSTYLE)
+es.xml: ../../gentext/locale/es.xml $(GENSTYLE)
+et.xml: ../../gentext/locale/et.xml $(GENSTYLE)
+fi.xml: ../../gentext/locale/fi.xml $(GENSTYLE)
+fr.xml: ../../gentext/locale/fr.xml $(GENSTYLE)
+hu.xml: ../../gentext/locale/hu.xml $(GENSTYLE)
+id.xml: ../../gentext/locale/id.xml $(GENSTYLE)
+it.xml: ../../gentext/locale/it.xml $(GENSTYLE)
+ja.xml: ../../gentext/locale/ja.xml $(GENSTYLE)
+ko.xml: ../../gentext/locale/ko.xml $(GENSTYLE)
+nl.xml: ../../gentext/locale/nl.xml $(GENSTYLE)
+no.xml: ../../gentext/locale/no.xml $(GENSTYLE)
+pl.xml: ../../gentext/locale/pl.xml $(GENSTYLE)
+pt.xml: ../../gentext/locale/pt.xml $(GENSTYLE)
+pt_br.xml: ../../gentext/locale/pt_br.xml $(GENSTYLE)
+ro.xml: ../../gentext/locale/ro.xml $(GENSTYLE)
+ru.xml: ../../gentext/locale/ru.xml $(GENSTYLE)
+sk.xml: ../../gentext/locale/sk.xml $(GENSTYLE)
+sl.xml: ../../gentext/locale/sl.xml $(GENSTYLE)
+sr.xml: ../../gentext/locale/sr.xml $(GENSTYLE)
+sv.xml: ../../gentext/locale/sv.xml $(GENSTYLE)
+tr.xml: ../../gentext/locale/tr.xml $(GENSTYLE)
+zh_cn.xml: ../../gentext/locale/zh_cn.xml $(GENSTYLE)
+zh_tw.xml: ../../gentext/locale/zh_tw.xml $(GENSTYLE)
 
 %.xml:
 	$(XJPARSE) -w $<
