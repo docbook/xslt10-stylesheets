@@ -14,6 +14,7 @@
 	href		CDATA	#IMPLIED
 	id		ID	#IMPLIED
 	label		CDATA	#IMPLIED
+	lang		CDATA	#IMPLIED
 	arch		CDATA	#IMPLIED
 	conformance	CDATA	#IMPLIED
 	os		CDATA	#IMPLIED
