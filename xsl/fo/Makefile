@@ -1,7 +1,7 @@
 XSLT=../../cvstools/saxon
 XJPARSE=../../cvstools/xjparse
 
-all: titlepage.templates.xsl param.xml param.xxx param.html
+all: titlepage.templates.xsl param.xsl
 
 param.html: param.xml
 	$(XSLT) $< ../docsrc/lrefentry.xsl $@
