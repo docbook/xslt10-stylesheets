@@ -29,9 +29,8 @@
       </xsl:call-template>
     </xsl:variable>
 
-    <xsl:if test="(contains($toc.params, 'toc')
-                   and (count(ancestor::section)+1) &lt;= $generate.section.toc.level)
-                  or refentry">
+    <xsl:if test="contains($toc.params, 'toc')
+                  and (count(ancestor::section)+1) &lt;= $generate.section.toc.level">
       <xsl:call-template name="section.toc">
         <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
       </xsl:call-template>
@@ -81,9 +80,8 @@
         </xsl:call-template>
       </xsl:variable>
 
-      <xsl:if test="(contains($toc.params, 'toc')
-                     and (count(ancestor::section)+1) &lt;= $generate.section.toc.level)
-                    or refentry">
+      <xsl:if test="contains($toc.params, 'toc')
+                    and (count(ancestor::section)+1) &lt;= $generate.section.toc.level">
         <xsl:call-template name="section.toc"/>
         <xsl:call-template name="section.toc.separator"/>
       </xsl:if>
@@ -122,17 +120,22 @@
       </xsl:apply-templates>
     </xsl:variable>
 
+    <xsl:variable name="titleabbrev">
+      <xsl:apply-templates select="$section" mode="titleabbrev.markup"/>
+    </xsl:variable>
+
     <xsl:if test="$passivetex.extensions != 0">
       <fotex:bookmark xmlns:fotex="http://www.tug.org/fotex" 
                       fotex-bookmark-level="{$level + 2}" 
                       fotex-bookmark-label="{$id}">
-        <xsl:value-of select="$title"/>
+        <xsl:value-of select="$titleabbrev"/>
       </fotex:bookmark>
     </xsl:if>
 
     <xsl:call-template name="section.heading">
       <xsl:with-param name="level" select="$level"/>
       <xsl:with-param name="title" select="$title"/>
+      <xsl:with-param name="titleabbrev" select="$titleabbrev"/>
     </xsl:call-template>
   </fo:block>
 </xsl:template>
@@ -151,9 +154,8 @@
       </xsl:call-template>
     </xsl:variable>
 
-    <xsl:if test="(contains($toc.params, 'toc')
-                   and ($generate.section.toc.level &gt;= 1))
-                  or refentry">
+    <xsl:if test="contains($toc.params, 'toc')
+                  and $generate.section.toc.level &gt;= 1">
       <xsl:call-template name="section.toc"/>
       <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
@@ -201,9 +203,8 @@
         </xsl:call-template>
       </xsl:variable>
 
-      <xsl:if test="(contains($toc.params, 'toc')
-                     and ($generate.section.toc.level &gt;= 1))
-                    or refentry">
+      <xsl:if test="contains($toc.params, 'toc')
+                    and $generate.section.toc.level &gt;= 1">
         <xsl:call-template name="section.toc"/>
         <xsl:call-template name="section.toc.separator"/>
       </xsl:if>
@@ -227,9 +228,8 @@
       </xsl:call-template>
     </xsl:variable>
 
-    <xsl:if test="(contains($toc.params, 'toc')
-                   and ($generate.section.toc.level &gt;= 2))
-                  or refentry">
+    <xsl:if test="contains($toc.params, 'toc')
+                   and $generate.section.toc.level &gt;= 2">
       <xsl:call-template name="section.toc"/>
       <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
@@ -252,9 +252,8 @@
       </xsl:call-template>
     </xsl:variable>
 
-    <xsl:if test="(contains($toc.params, 'toc')
-                   and ($generate.section.toc.level &gt;= 3))
-                  or refentry">
+    <xsl:if test="contains($toc.params, 'toc')
+                  and $generate.section.toc.level &gt;= 3">
       <xsl:call-template name="section.toc"/>
       <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
@@ -277,9 +276,8 @@
       </xsl:call-template>
     </xsl:variable>
 
-    <xsl:if test="(contains($toc.params, 'toc')
-                   and ($generate.section.toc.level &gt;= 4))
-                  or refentry">
+    <xsl:if test="contains($toc.params, 'toc')
+                  and $generate.section.toc.level &gt;= 4">
       <xsl:call-template name="section.toc"/>
       <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
@@ -302,9 +300,8 @@
       </xsl:call-template>
     </xsl:variable>
 
-    <xsl:if test="(contains($toc.params, 'toc')
-                   and ($generate.section.toc.level &gt;= 5))
-                  or refentry">
+    <xsl:if test="contains($toc.params, 'toc')
+                  and $generate.section.toc.level &gt;= 5">
       <xsl:call-template name="section.toc"/>
       <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
@@ -362,12 +359,23 @@
 
 <xsl:template name="section.heading">
   <xsl:param name="level" select="1"/>
+  <xsl:param name="marker" select="1"/>
   <xsl:param name="title"/>
+  <xsl:param name="titleabbrev"/>
 
   <fo:block xsl:use-attribute-sets="section.title.properties">
-    <fo:marker marker-class-name="section.head.marker">
-      <xsl:value-of select="$title"/>
-    </fo:marker>
+    <xsl:if test="$marker != 0">
+      <fo:marker marker-class-name="section.head.marker">
+        <xsl:choose>
+          <xsl:when test="$titleabbrev = ''">
+            <xsl:value-of select="$title"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$titleabbrev"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </fo:marker>
+    </xsl:if>
     <xsl:choose>
       <xsl:when test="$level=1">
         <fo:block xsl:use-attribute-sets="section.title.level1.properties">
