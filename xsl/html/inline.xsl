@@ -923,6 +923,10 @@
   </xsl:for-each>
 </xsl:template>
 
+<xsl:template match="uri">
+  <xsl:call-template name="inline.monoseq"/>
+</xsl:template>
+
 <!-- ==================================================================== -->
 
 <xsl:template match="menuchoice">
