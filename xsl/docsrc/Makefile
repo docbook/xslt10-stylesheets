@@ -1,4 +1,4 @@
-DIRS=common lib html fo template tools
+DIRS=common html fo template tools
 
 all:
 	for i in $(DIRS) __bogus__; do \
