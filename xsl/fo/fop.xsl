@@ -62,7 +62,10 @@ translates characters with code>255 back to ASCII.
           <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
         </xsl:call-template>
       </xsl:variable>
-      <xsl:if test="contains($toc.params, 'toc')">
+      <xsl:if test="contains($toc.params, 'toc')
+                    and section|sect1|refentry
+                        |article|bibliography|glossary
+                        |appendix">
         <fox:outline internal-destination="toc...{$id}">
           <fox:label>
             <xsl:call-template name="gentext">
