@@ -59,23 +59,28 @@
       <xsl:text> png pdf jpg jpeg </xsl:text>
     </xsl:when>
     <xsl:when test="$fop.extensions != 0">
-      <xsl:text> gif svg png pdf jpg jpeg </xsl:text>
+      <xsl:text> bmp gif tif tiff svg png pdf jpg jpeg </xsl:text>
     </xsl:when>
     <xsl:when test="$arbortext.extensions != 0">
       <xsl:text> png pdf jpg jpeg gif tif tiff bmp </xsl:text>
     </xsl:when>
     <xsl:when test="$xep.extensions != 0">
-      <xsl:text> svg png pdf jpg jpeg gif tif tiff bmp </xsl:text>
+      <xsl:text> svg png pdf jpg jpeg gif tif tiff bmp eps </xsl:text>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:text> png pdf jpg jpeg gif tif tiff bmp </xsl:text>
+      <xsl:text> svg png pdf jpg jpeg gif tif tiff bmp eps </xsl:text>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:param>
 
 <xsl:template name="is.graphic.extension">
   <xsl:param name="ext"/>
-  <xsl:if test="contains($graphic.extensions, concat(' ', $ext, ' '))">1</xsl:if>
+  <xsl:variable name="lcext" select="translate($ext,
+                                       'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                                       'abcdefghijklmnopqrstuvwxyz')"/>
+
+  <xsl:if test="contains($graphic.extensions,
+                         concat(' ', $lcext, ' '))">1</xsl:if>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -329,7 +334,7 @@
 
   <xsl:variable name="olist" select="imageobject|imageobjectco
                      |videoobject|audioobject
-		     |textobject"/>
+                     |textobject"/>
 
   <xsl:variable name="object.index">
     <xsl:call-template name="select.mediaobject.index">
