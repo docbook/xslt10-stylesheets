@@ -7,9 +7,8 @@
 <xsl:param name="blank.image" select="'blank.gif'"/>
 <xsl:param name="arrow.image" select="'arrow.gif'"/>
 
-<xsl:param name="textbgcolor">white</xsl:param>
-<xsl:param name="navbgcolor">#6A719C</xsl:param>
-<xsl:param name="navtocwidth">220</xsl:param>
+<xsl:param name="toc.bg.color">#6A719C</xsl:param>
+<xsl:param name="toc.width">220</xsl:param>
 
 <!-- ============================================================ -->
 
@@ -26,7 +25,7 @@
           <title><xsl:value-of select="title"/></title>
           <link type="text/css" rel="stylesheet">
             <xsl:attribute name="href">
-              <xsl:call-template name="css-stylesheet"/>
+              <xsl:call-template name="css.stylesheet"/>
             </xsl:attribute>
           </link>
         </head>
@@ -51,9 +50,7 @@
                   <a href="foil01.html">
                     <img alt="Next" border="0">
                       <xsl:attribute name="src">
-                        <xsl:call-template name="graphics.dir"/>
-                        <xsl:text>/</xsl:text>
-                        <xsl:value-of select="$right.image"/>
+                        <xsl:call-template name="right.image"/>
                       </xsl:attribute>
                     </img>
                   </a>
@@ -104,7 +101,7 @@
         <title><xsl:value-of select="title"/></title>
         <link type="text/css" rel="stylesheet">
           <xsl:attribute name="href">
-            <xsl:call-template name="css-stylesheet"/>
+            <xsl:call-template name="css.stylesheet"/>
           </xsl:attribute>
         </link>
       </head>
@@ -113,7 +110,7 @@
         <table border="0" width="100%" summary="Navigation and body table"
                cellpadding="0" cellspacing="0">
           <tr>
-            <td bgcolor="{$navbgcolor}" width="{$navtocwidth}"
+            <td bgcolor="{$toc.bg.color}" width="{$toc.width}"
                 valign="top" align="center">
               <div class="ttoc">
                 <span class="ttoc-title">
@@ -123,20 +120,21 @@
                 </span>
               </div>
             </td>
-            <td bgcolor="{$textbgcolor}" valign="top" align="left">
+            <td>&#160;</td>
+            <td bgcolor="{$body.bg.color}" valign="top" align="left">
               <a name="{$id}"/>
               <xsl:call-template name="section-top-nav"/>
-              <hr/>
             </td>
           </tr>
           <tr>
-            <td bgcolor="{$navbgcolor}" width="{$navtocwidth}"
+            <td bgcolor="{$toc.bg.color}" width="{$toc.width}"
                 valign="top" align="left">
               <div class="ttoc">
                 <xsl:apply-templates select="." mode="toc"/>
               </div>
             </td>
-            <td bgcolor="{$textbgcolor}" valign="top" align="left">
+            <td>&#160;</td>
+            <td bgcolor="{$body.bg.color}" valign="top" align="left">
               <div class="{name(.)}">
 
                 <xsl:apply-templates/>
@@ -144,11 +142,11 @@
             </td>
           </tr>
           <tr>
-            <td bgcolor="{$navbgcolor}" width="{$navtocwidth}">
+            <td bgcolor="{$toc.bg.color}" width="{$toc.width}">
               <xsl:text>&#160;</xsl:text>
             </td>
-            <td bgcolor="{$textbgcolor}" valign="top" align="left">
-              <hr/>
+            <td>&#160;</td>
+            <td bgcolor="{$body.bg.color}" valign="top" align="left">
               <xsl:call-template name="section-bottom-nav"/>
             </td>
           </tr>
@@ -200,7 +198,7 @@
         <title><xsl:value-of select="title"/></title>
         <link type="text/css" rel="stylesheet">
           <xsl:attribute name="href">
-            <xsl:call-template name="css-stylesheet"/>
+            <xsl:call-template name="css.stylesheet"/>
           </xsl:attribute>
         </link>
       </head>
@@ -209,7 +207,7 @@
         <table border="0" width="100%" summary="Navigation and body table"
                cellpadding="0" cellspacing="0">
           <tr>
-            <td bgcolor="{$navbgcolor}" width="{$navtocwidth}"
+            <td bgcolor="{$toc.bg.color}" width="{$toc.width}"
                 valign="top" align="center">
               <div class="ttoc">
                 <span class="ttoc-title">
@@ -219,20 +217,21 @@
                 </span>
               </div>
             </td>
-            <td bgcolor="{$textbgcolor}" valign="top" align="left">
+            <td>&#160;</td>
+            <td bgcolor="{$body.bg.color}" valign="top" align="left">
               <a name="{$id}"/>
               <xsl:call-template name="foil-top-nav"/>
-              <hr/>
             </td>
           </tr>
           <tr>
-            <td bgcolor="{$navbgcolor}" width="{$navtocwidth}"
+            <td bgcolor="{$toc.bg.color}" width="{$toc.width}"
                 valign="top" align="left">
               <div class="ttoc">
                 <xsl:apply-templates select="." mode="toc"/>
               </div>
             </td>
-            <td bgcolor="{$textbgcolor}" valign="top" align="left">
+            <td>&#160;</td>
+            <td bgcolor="{$body.bg.color}" valign="top" align="left">
               <div class="{name(.)}" id="{$id}">
                 <a name="{$id}"/>
 
@@ -241,11 +240,11 @@
             </td>
           </tr>
           <tr>
-            <td bgcolor="{$navbgcolor}" width="{$navtocwidth}">
+            <td bgcolor="{$toc.bg.color}" width="{$toc.width}">
               <xsl:text>&#160;</xsl:text>
             </td>
-            <td bgcolor="{$textbgcolor}" valign="top" align="left">
-              <hr/>
+            <td>&#160;</td>
+            <td bgcolor="{$body.bg.color}" valign="top" align="left">
               <xsl:call-template name="foil-bottom-nav"/>
             </td>
           </tr>
@@ -269,18 +268,18 @@
       <xsl:when test="$thissection = .">
         <img alt="+">
           <xsl:attribute name="src">
-            <xsl:call-template name="graphics.dir"/>
-            <xsl:text>/</xsl:text>
-            <xsl:value-of select="$arrow.image"/>
+            <xsl:call-template name="graphics-file">
+              <xsl:with-param name="image" select="$arrow.image"/>
+            </xsl:call-template>
           </xsl:attribute>
         </img>
       </xsl:when>
       <xsl:otherwise>
         <img alt=" ">
           <xsl:attribute name="src">
-            <xsl:call-template name="graphics.dir"/>
-            <xsl:text>/</xsl:text>
-            <xsl:value-of select="$blank.image"/>
+            <xsl:call-template name="graphics-file">
+              <xsl:with-param name="image" select="$blank.image"/>
+            </xsl:call-template>
           </xsl:attribute>
         </img>
       </xsl:otherwise>
@@ -300,16 +299,16 @@
       <xsl:for-each select="foil">
         <img alt=" ">
           <xsl:attribute name="src">
-            <xsl:call-template name="graphics.dir"/>
-            <xsl:text>/</xsl:text>
-            <xsl:value-of select="$blank.image"/>
+            <xsl:call-template name="graphics-file">
+              <xsl:with-param name="image" select="$blank.image"/>
+            </xsl:call-template>
           </xsl:attribute>
         </img>
         <img alt=" ">
           <xsl:attribute name="src">
-            <xsl:call-template name="graphics.dir"/>
-            <xsl:text>/</xsl:text>
-            <xsl:value-of select="$blank.image"/>
+            <xsl:call-template name="graphics-file">
+              <xsl:with-param name="image" select="$blank.image"/>
+            </xsl:call-template>
           </xsl:attribute>
         </img>
 
@@ -335,9 +334,9 @@
       <xsl:for-each select="/slides/section">
         <img alt=" ">
           <xsl:attribute name="src">
-            <xsl:call-template name="graphics.dir"/>
-            <xsl:text>/</xsl:text>
-            <xsl:value-of select="$blank.image"/>
+            <xsl:call-template name="graphics-file">
+              <xsl:with-param name="image" select="$blank.image"/>
+            </xsl:call-template>
           </xsl:attribute>
         </img>
         <span class="ttoc-section">
@@ -354,9 +353,9 @@
           <xsl:for-each select="foil">
             <img alt=" ">
               <xsl:attribute name="src">
-                <xsl:call-template name="graphics.dir"/>
-                <xsl:text>/</xsl:text>
-                <xsl:value-of select="$blank.image"/>
+                <xsl:call-template name="graphics-file">
+                  <xsl:with-param name="image" select="$blank.image"/>
+                </xsl:call-template>
               </xsl:attribute>
             </img>
 
@@ -364,18 +363,18 @@
               <xsl:when test="$thisfoil = .">
                 <img alt="+">
                   <xsl:attribute name="src">
-                    <xsl:call-template name="graphics.dir"/>
-                    <xsl:text>/</xsl:text>
-                    <xsl:value-of select="$arrow.image"/>
+                    <xsl:call-template name="graphics-file">
+                      <xsl:with-param name="image" select="$arrow.image"/>
+                    </xsl:call-template>
                   </xsl:attribute>
                 </img>
               </xsl:when>
               <xsl:otherwise>
                 <img alt=" ">
                   <xsl:attribute name="src">
-                    <xsl:call-template name="graphics.dir"/>
-                    <xsl:text>/</xsl:text>
-                    <xsl:value-of select="$blank.image"/>
+                    <xsl:call-template name="graphics-file">
+                      <xsl:with-param name="image" select="$blank.image"/>
+                    </xsl:call-template>
                   </xsl:attribute>
                 </img>
               </xsl:otherwise>
