@@ -19,8 +19,8 @@
 
 <gentext key="Abstract" text="&#x6982;&#x8981;"/>
 <gentext key="abstract" text="&#x6982;&#x8981;"/>
-<gentext key="Answer" text="&#x554F;&#xFF1A;"/>
-<gentext key="answer" text="&#x554F;&#xFF1A;"/>
+<gentext key="Answer" text="&#x7B54;&#xFF1A;"/>
+<gentext key="answer" text="&#x7B54;&#xFF1A;"/>
 <gentext key="Appendix" text="&#x4ED8;&#x9332;"/>
 <gentext key="appendix" text="&#x4ED8;&#x9332;"/>
 <gentext key="Article" text="&#x9805;&#x76EE;"/>
@@ -85,8 +85,8 @@
 <gentext key="ProductionSet" text="&#x30d7;&#x30ed;&#x30c0;&#x30af;&#x30b7;&#x30e7;&#x30f3;"/>
 <gentext key="Published" text="&#x767A;&#x884C;"/>
 <gentext key="published" text="&#x767A;&#x884C;"/>
-<gentext key="Question" text="&#x7B54;&#xFF1A;"/>
-<gentext key="question" text="&#x7B54;&#xFF1A;"/>
+<gentext key="Question" text="&#x554F;&#xFF1A;"/>
+<gentext key="question" text="&#x554F;&#xFF1A;"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
 <gentext key="Reference" text="&#x53C2;&#x7167;"/>
