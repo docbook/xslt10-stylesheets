@@ -194,7 +194,6 @@
 	   fo:text-align="center"
 	   fo:font-size="&hsize3;"
 	   fo:font-weight="bold"
-	   fo:margin-left="{$title.margin.left}"
 	   fo:space-before="1em"
 	   fo:font-family="{$title.font.family}"/>
     <subtitle
