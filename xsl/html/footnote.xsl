@@ -95,14 +95,16 @@
     </xsl:call-template>
   </xsl:variable>
   <p>
-    <sup>
-      <xsl:text>[</xsl:text>
-      <a name="{$name}" href="{$href}">
-        <xsl:apply-templates select="ancestor::footnote"
-                             mode="footnote.number"/>
-      </a>
-      <xsl:text>] </xsl:text>
-    </sup>
+    <xsl:if test="not($html.cleanup != 0 and function-available('exsl:node-set'))">
+      <sup>
+        <xsl:text>[</xsl:text>
+        <a name="{$name}" href="{$href}">
+          <xsl:apply-templates select="ancestor::footnote"
+                               mode="footnote.number"/>
+        </a>
+        <xsl:text>] </xsl:text>
+      </sup>
+    </xsl:if>
     <xsl:apply-templates/>
   </p>
 </xsl:template>
