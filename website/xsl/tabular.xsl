@@ -121,12 +121,43 @@
 
         <xsl:call-template name="allpages.banner"/>
 
-        <table xsl:use-attribute-sets="table.properties">
+        <table xsl:use-attribute-sets="table.properties" border="0">
           <xsl:if test="$nav.table.summary!=''">
             <xsl:attribute name="summary">
               <xsl:value-of select="$nav.table.summary"/>
             </xsl:attribute>
           </xsl:if>
+          <tr>
+            <td><img src="{$table.spacer.image}" alt=" " width="1" height="1"/></td>
+            <xsl:call-template name="hspacer"/>
+            <td rowspan="2" xsl:use-attribute-sets="table.body.cell.properties">
+              <xsl:if test="$navbodywidth != ''">
+                <xsl:attribute name="width">
+                  <xsl:value-of select="$navbodywidth"/>
+                </xsl:attribute>
+              </xsl:if>
+
+              <xsl:if test="$autolayout/autolayout/toc[1]/@id = $id">
+                <table border="0" summary="home page extra headers"
+                       cellpadding="0" cellspacing="0" width="100%">
+                  <tr>
+                    <xsl:call-template name="home.navhead.cell"/>
+                    <xsl:call-template name="home.navhead.upperright.cell"/>
+                  </tr>
+                </table>
+                <xsl:call-template name="home.navhead.separator"/>
+              </xsl:if>
+
+              <xsl:if test="$autolayout/autolayout/toc[1]/@id != $id
+                            or $suppress.homepage.title = 0">
+                <xsl:apply-templates select="./head/title" mode="title.mode"/>
+              </xsl:if>
+
+              <xsl:apply-templates select="child::*[name(.) != 'webpage']"/>
+              <xsl:call-template name="process.footnotes"/>
+              <br/>
+            </td>
+          </tr>
           <tr>
             <td xsl:use-attribute-sets="table.navigation.cell.properties">
               <xsl:if test="$navtocwidth != ''">
@@ -155,36 +186,7 @@
                 <xsl:otherwise>&#160;</xsl:otherwise>
               </xsl:choose>
             </td>
-
             <xsl:call-template name="hspacer"/>
-
-            <td xsl:use-attribute-sets="table.body.cell.properties">
-              <xsl:if test="$navbodywidth != ''">
-                <xsl:attribute name="width">
-                  <xsl:value-of select="$navbodywidth"/>
-                </xsl:attribute>
-              </xsl:if>
-
-              <xsl:if test="$autolayout/autolayout/toc[1]/@id = $id">
-                <table border="0" summary="home page extra headers"
-                       cellpadding="0" cellspacing="0" width="100%">
-                  <tr>
-                    <xsl:call-template name="home.navhead.cell"/>
-                    <xsl:call-template name="home.navhead.upperright.cell"/>
-                  </tr>
-                </table>
-                <xsl:call-template name="home.navhead.separator"/>
-              </xsl:if>
-
-              <xsl:if test="$autolayout/autolayout/toc[1]/@id != $id
-                            or $suppress.homepage.title = 0">
-                <xsl:apply-templates select="./head/title" mode="title.mode"/>
-              </xsl:if>
-
-              <xsl:apply-templates select="child::*[name(.) != 'webpage']"/>
-              <xsl:call-template name="process.footnotes"/>
-              <br/>
-            </td>
           </tr>
           <xsl:call-template name="webpage.table.footer"/>
         </table>
