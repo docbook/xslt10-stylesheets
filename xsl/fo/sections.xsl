@@ -60,14 +60,16 @@
   </fo:page-sequence>
 </xsl:template>
 
-<xsl:template match="title" mode="section.titlepage.recto.mode">
-  <xsl:variable name="section" select="(ancestor::section
-                                        |ancestor::simplesect
-                                        |ancestor::sect1
-                                        |ancestor::sect2
-                                        |ancestor::sect3
-                                        |ancestor::sect4
-                                        |ancestor::sect5)[last()]"/>
+<xsl:template match="section/title
+                     |simplesect/title
+                     |sect1/title
+                     |sect2/title
+                     |sect3/title
+                     |sect4/title
+                     |sect5/title"
+              mode="titlepage.mode"
+              priority="2">
+  <xsl:variable name="section" select="parent::*"/>
   <fo:block keep-with-next.within-column="always">
     <xsl:variable name="id">
       <xsl:call-template name="object.id">
@@ -145,10 +147,6 @@
   </fo:page-sequence>
 </xsl:template>
 
-<xsl:template match="title" mode="sect1.titlepage.recto.mode">
-  <xsl:apply-templates select="." mode="section.titlepage.recto.mode"/>
-</xsl:template>
-
 <xsl:template match="sect2">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
@@ -158,10 +156,6 @@
     <xsl:call-template name="sect2.titlepage"/>
     <xsl:apply-templates/>
   </fo:block>
-</xsl:template>
-
-<xsl:template match="title" mode="sect2.titlepage.recto.mode">
-  <xsl:apply-templates select="." mode="section.titlepage.recto.mode"/>
 </xsl:template>
 
 <xsl:template match="sect3">
@@ -175,10 +169,6 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="title" mode="sect3.titlepage.recto.mode">
-  <xsl:apply-templates select="." mode="section.titlepage.recto.mode"/>
-</xsl:template>
-
 <xsl:template match="sect4">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
@@ -188,10 +178,6 @@
     <xsl:call-template name="sect4.titlepage"/>
     <xsl:apply-templates/>
   </fo:block>
-</xsl:template>
-
-<xsl:template match="title" mode="sect4.titlepage.recto.mode">
-  <xsl:apply-templates select="." mode="section.titlepage.recto.mode"/>
 </xsl:template>
 
 <xsl:template match="sect5">
@@ -205,10 +191,6 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="title" mode="sect5.titlepage.recto.mode">
-  <xsl:apply-templates select="." mode="section.titlepage.recto.mode"/>
-</xsl:template>
-
 <xsl:template match="simplesect">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
@@ -218,10 +200,6 @@
     <xsl:call-template name="simplesect.titlepage"/>
     <xsl:apply-templates/>
   </fo:block>
-</xsl:template>
-
-<xsl:template match="title" mode="simplesect.titlepage.recto.mode">
-  <xsl:apply-templates select="." mode="section.titlepage.recto.mode"/>
 </xsl:template>
 
 <xsl:template match="section/subtitle"></xsl:template>
