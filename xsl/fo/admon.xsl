@@ -102,12 +102,7 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
-  <fo:block space-before.minimum="0.8em"
-            space-before.optimum="1em"
-            space-before.maximum="1.2em"
-            start-indent="0.25in"
-            end-indent="0.25in"
-            id="{$id}">
+  <fo:block id="{$id}">
     <xsl:if test="$admon.textlabel != 0 or title">
       <fo:block keep-with-next='always'
                 xsl:use-attribute-sets="admonition.title.properties">
