@@ -134,10 +134,25 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$page.margin.inner}"
                            margin-right="{$page.margin.outer}">
-      <fo:region-body
-                      column-count="{$column.count}"
-                      margin-bottom="{$body.margin.bottom}"
-                      margin-top="{$body.margin.top}"/>
+      <fo:region-body margin-bottom="{$body.margin.bottom}"
+                      margin-top="{$body.margin.top}">
+        <xsl:attribute name="column-count">
+          <!-- FIXME: how bad is this hack? If the overall column.count is 1,
+               use 2 here. Otherwise, use whatever is specified. This allows
+               some pages to be 2 column and others to be 1 column. Perhaps
+               this should always be 2 and if you want a 3 column page, you should
+               make a new pagemaster? Or maybe if you want to mix single and multi-
+               column pages, you should write another pagemaster for the ones
+               you want to be two column... -->
+          <xsl:choose>
+            <xsl:when test="$column.count &lt; 2">2</xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$column.count"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+      </fo:region-body>
+
       <fo:region-before extent="{$region.before.extent}"
                         display-align="after"/>
       <fo:region-after extent="{$region.after.extent}"
@@ -278,6 +293,9 @@
 
 <xsl:template name="select.pagemaster">
   <xsl:param name="element" select="local-name(.)"/>
+  <!-- column.count is a param so it can be selected dynamically; see index.xsl -->
+  <xsl:param name="column.count" select="$column.count"/>
+
   <xsl:choose>
     <xsl:when test="$double.sided != 0">
       <xsl:choose>
