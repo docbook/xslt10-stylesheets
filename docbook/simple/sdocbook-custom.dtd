@@ -101,7 +101,7 @@
 <!-- Character-level classes .............................................. -->
 
 <!ENTITY % local.xref.char.class "">
-<!ENTITY % xref.char.class "">
+<!ENTITY % xref.char.class "footnotref|xref %local.xref.char.class;">
 
 <!ENTITY % local.gen.char.class "">
 <!ENTITY % gen.char.class
@@ -110,7 +110,7 @@
 
 <!ENTITY % local.link.char.class "">
 <!ENTITY % link.char.class
-		"footnoteref|xref|link|ulink %local.link.char.class;">
+		"link|ulink %local.link.char.class;">
 
 <!ENTITY % local.tech.char.class "">
 <!ENTITY % tech.char.class
@@ -198,7 +198,6 @@
 <!ENTITY % informaltable.element "IGNORE">
 <!ENTITY % replaceable.element "IGNORE">
 <!ENTITY % trademark.element "IGNORE">
-<!ENTITY % systemitem.element "IGNORE">
 <!ENTITY % article.element "IGNORE">
 <!ENTITY % articleinfo.element "IGNORE">
 <!ENTITY % appendix.element "IGNORE">
@@ -207,7 +206,7 @@
 <!ENTITY % programlisting.element "IGNORE">
 <!ENTITY % literallayout.element "IGNORE">
 
-<!ENTITY % cals.table.module "IGNORE">
+<!ENTITY % cals.table.module "INCLUDE">
 <!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                    "../xml/docbookx.dtd"
 >
@@ -267,11 +266,6 @@
 		| %tech.char.class;
 		| inlinemediaobject
 		| emphasis)*>
-]]>
-
-<!ENTITY % simple.systemitem.element "INCLUDE">
-<![%simple.systemitem.element;[
-<!ELEMENT systemitem (%cptr.char.mix;)*>
 ]]>
 
 <!ENTITY % simple.article.element "INCLUDE">
