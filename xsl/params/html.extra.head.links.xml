@@ -10,7 +10,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='html.extra.head.links.frag'>
-<xsl:param name="html.extra.head.links" select="1"/>
+<xsl:param name="html.extra.head.links" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 
