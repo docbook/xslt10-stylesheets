@@ -4,7 +4,7 @@
 <title>DocBook-WordML Conversion Specifications</title> 
 <articleinfo><author><firstname>Bob</firstname><surname>Stayton</surname><affiliation><orgname>Sagehill
 Enterprises</orgname></affiliation></author>
-<author><firstname>Steve</firstname><surname>Ball</surname><affiliation>Zveno</affiliation></author>
+<author><firstname>Steve</firstname><surname>Ball</surname><affiliation><orgname>Zveno</orgname></affiliation></author>
 <releaseinfo>Draft Version 1.0,
 dated 5 November, 2004</releaseinfo> 
 </articleinfo> 
@@ -53,21 +53,21 @@ dated 5 November, 2004</releaseinfo>
 <para>One problem facing this conversion project is the sheer number of DocBook elements, over 400 in DocBook 4.3. To support DocBook structural models, several of the elements will require more than one Word style. This could lead to a very long and unwieldy   list of styles in the Word interface. That would make authoring less efficient and discourage users.</para>
 <para>So this project assumes that authors who need the full set of DocBook elements will use an XML authoring tool that better supports them. This project will enable authors to write basic DocBook documents using Word. Because Word is so widespread, this project will help a lot of new DocBook users get started with familiar tools.  They can then graduate to more advanced tools as their needs develop.</para>
 </section>
-</section>
-<section>
-  <title>Project Non-Goals</title>
-  <para>The following goals <emphasis>do not</emphasis> for part of the scope of the project:</para>
-  <itemizedlist>
-    <listitem>
-      <para>Support of versions of Word that do not feature reading/writing WordML (XML).  That is, all versions prior to Word 11 (Office 2003).</para>
-    </listitem>
-    <listitem>
-      <para>Supporting user-defined style names.  However, this system should not prevent, or make difficult, adding such support via a customisation layer.</para>
-    </listitem>
-    <listitem>
-      <para>Support of arbitrarily defined styles.  This system may expect certain styles to be defined in a particular fashion (in particular, those defining the title of components and divisions).</para>
-    </listitem>
-  </itemizedlist>
+</section> 
+<section> 
+<title>Project Non-Goals</title> 
+<para>The following goals <emphasis>are not</emphasis> in the scope of this project:</para> 
+<itemizedlist> 
+<listitem> 
+<para>Support of versions of Word that do not feature reading/writing WordML (XML).  That is, all versions prior to Word 11 (Office 2003).</para> 
+</listitem> 
+<listitem> 
+<para>Supporting user-defined style names.  However, this system should not prevent, or make difficult, adding such support via a customisation layer.</para> 
+</listitem> 
+<listitem> 
+<para>Support of arbitrarily defined styles.  This system may expect certain styles to be defined in a particular fashion (in particular, those defining the title of components and divisions).</para> 
+</listitem> 
+</itemizedlist>
 </section>
 <section>
 <title>Mapping elements to styles</title> 
@@ -87,7 +87,7 @@ dated 5 November, 2004</releaseinfo>
 <para>Some style names will indicate a parent-child relationship.  For example, <literal>chapter-title</literal> indicates that the paragraph is a title whose DocBook parent is a chapter.</para>
 </listitem>
 <listitem>
-<para>Some style names are simplified to make them easier to use in Word. For example, a paragraph in an orderedlist requires three elements in DocBook: <sgmltag class="element">orderedlist</sgmltag>, <sgmltag class="element">listitem</sgmltag>, and <sgmltag class="element">para</sgmltag>. The paragraph style name in Word is shortened from <literal>orderedlist-listitem-para</literal> to just <literal>orderedlist</literal>.  NB. in the case of lists (see below), the list level is appended so this example becomes <literal>orderedlist1</literal></para>
+<para>Some style names are simplified to make them easier to use in Word. For example, a paragraph in an orderedlist requires three elements in DocBook: <sgmltag class="element">orderedlist</sgmltag>, <sgmltag class="element">listitem</sgmltag>, and <sgmltag class="element">para</sgmltag>. The paragraph style name in Word is shortened from <literal>orderedlist-listitem-para</literal> to just <literal>orderedlist</literal>.   In the case of lists (see below), the list level is appended so this example becomes <literal>orderedlist1</literal></para>
 </listitem>
 <listitem>
 <para>Style names with a number suffix indicate a nesting level, as described above.</para>
@@ -95,8 +95,8 @@ dated 5 November, 2004</releaseinfo>
 <listitem>
 <para>Style names with <literal>continue</literal> indicate that the paragraph is part of the preceding element. For example, a <literal>para</literal> paragraph is used for a single paragraph <sgmltag class="element">para</sgmltag> element. This would cause any preceding list to be closed. If a list item in the preceding list is to contain more than one paragraph, then the subsequent paragraphs in Word would get a <literal>para-continue</literal> style.</para>
 </listitem>
-<listitem>
-  <para>Empty paragraph and character styles are ignored.</para>
+<listitem> 
+<para>Empty paragraph and character styles are ignored.</para>
 </listitem>
 <listitem>
 <para>The first paragraph style in the Word document is used to define the root element of the DocBook document. For example, if a Word document starts with <literal>book-title</literal>, then the DocBook document will have <literal>book</literal> as its root element.  All the rest of the document content will be contained in that root element.</para>
@@ -226,7 +226,7 @@ colwidth="1.00*"/>
 </row>
 <row>
 <entry colname="col1">itemizedlist/listitem/para</entry>
-<entry colname="col2"><literallayout class="monospaced">itemizedlist
+<entry colname="col2"><literallayout class="monospaced">itemizedlist1
 itemizedlist1
 itemizedlist2
 itemizedlist3
@@ -235,7 +235,7 @@ itemizedlist4</literallayout></entry>
 </row>
 <row>
 <entry colname="col1">orderedlist/listitem/para</entry>
-<entry colname="col2"><literallayout class="monospaced">orderedlist
+<entry colname="col2"><literallayout class="monospaced">orderedlist1
 orderedlist1
 orderedlist2
 orderedlist3
@@ -244,16 +244,16 @@ orderedlist4</literallayout></entry>
 </row>
 <row>
 <entry colname="col1">variablelist/varlistentry/term</entry>
-<entry colname="col2"><literallayout class="monospaced">variablelist-term
-variablelist-term1
-variablelist-term2
-variablelist-term3
-variablelist-term4</literallayout></entry>
+<entry colname="col2"><literallayout class="monospaced">variablelist1-term
+variablelist2-term
+variablelist3-term
+variablelist4-term
+variablelist5-term</literallayout></entry>
 <entry colname="col3">A <sgmltag class="element">variablelist</sgmltag> in Word should be a sequence of alternating paragraphs styled as <literal>variablelist-term</literal> and <literal>variablelist</literal>.</entry>
 </row>
 <row>
 <entry colname="col1">variablelist/varlistentry/listitem/para</entry>
-<entry colname="col2"><literallayout class="monospaced">variablelist
+<entry colname="col2"><literallayout class="monospaced">variablelist1
 variablelist1
 variablelist2
 variablelist3
