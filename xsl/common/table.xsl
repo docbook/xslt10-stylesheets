@@ -314,22 +314,16 @@ or 0 (the empty string)</para>
   </xsl:variable>
 
   <xsl:variable name="default.value">
-    <!-- rowsep and colsep have defaults based ultimately on the frame setting -->
-    <!-- handle those here, for everything else, the default is the tgroup value -->
+    <!-- This section used to say that rowsep and colsep have defaults based -->
+    <!-- on the frame setting. Further reflection and closer examination of the -->
+    <!-- CALS spec reveals I was mistaken. The default is "1" for rowsep and colsep. -->
+    <!-- For everything else, the default is the tgroup value -->
     <xsl:choose>
       <xsl:when test="$tgroup.value != ''">
         <xsl:value-of select="$tgroup.value"/>
       </xsl:when>
-      <xsl:when test="$attribute = 'rowsep'">
-        <xsl:if test="$tgroup/parent::*/@frame = 'all'">
-          <xsl:value-of select="1"/>
-        </xsl:if>
-      </xsl:when>
-      <xsl:when test="$attribute = 'colsep'">
-        <xsl:if test="$tgroup/parent::*/@frame = 'all'">
-          <xsl:value-of select="1"/>
-        </xsl:if>
-      </xsl:when>
+      <xsl:when test="$attribute = 'rowsep'">1</xsl:when>
+      <xsl:when test="$attribute = 'colsep'">1</xsl:when>
       <xsl:otherwise><!-- empty --></xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
