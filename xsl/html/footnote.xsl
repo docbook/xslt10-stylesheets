@@ -141,7 +141,7 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="function-avialable('exsl:node-set')">
+    <xsl:when test="function-available('exsl:node-set')">
       <xsl:variable name="html-nodes" select="exsl:node-set($html)"/>
       <xsl:choose>
         <xsl:when test="$html-nodes//p">
