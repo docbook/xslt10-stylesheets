@@ -145,42 +145,48 @@
   <xsl:param name="blocks"/>
   <xsl:variable name="block" select="$blocks[1]"/>
 
-  <xsl:choose>
-    <xsl:when test="$blocks">
-      <xsl:variable name="leading" select="set:leading($nodes,$blocks)"/>
-      <xsl:variable name="trailing" select="set:trailing($nodes,$blocks)"/>
+  <!-- This template should never get called if these functions aren't available -->
+  <!-- but this test is still necessary so that processors don't choke on the -->
+  <!-- function calls if they don't support the set: functions -->
+  <xsl:if test="function-available('set:leading')
+                and function-available('set:trailing')">
+    <xsl:choose>
+      <xsl:when test="$blocks">
+        <xsl:variable name="leading" select="set:leading($nodes,$blocks)"/>
+        <xsl:variable name="trailing" select="set:trailing($nodes,$blocks)"/>
 
-      <xsl:element name="{local-name($wrap)}" namespace="{namespace-uri($wrap)}">
-        <xsl:for-each select="$wrap/@*">
-          <xsl:if test="$first != 0 or local-name(.) != 'id'">
-            <xsl:copy/>
-          </xsl:if>
-        </xsl:for-each>
-        <xsl:apply-templates select="$leading" mode="unwrap.p"/>
-      </xsl:element>
+        <xsl:element name="{local-name($wrap)}" namespace="{namespace-uri($wrap)}">
+          <xsl:for-each select="$wrap/@*">
+            <xsl:if test="$first != 0 or local-name(.) != 'id'">
+              <xsl:copy/>
+            </xsl:if>
+          </xsl:for-each>
+          <xsl:apply-templates select="$leading" mode="unwrap.p"/>
+        </xsl:element>
 
-      <xsl:apply-templates select="$block" mode="unwrap.p"/>
+        <xsl:apply-templates select="$block" mode="unwrap.p"/>
 
-      <xsl:if test="$trailing">
-        <xsl:call-template name="unwrap.nodes">
-          <xsl:with-param name="wrap" select="$wrap"/>
-          <xsl:with-param name="nodes" select="$trailing"/>
-          <xsl:with-param name="blocks" select="$blocks[position() &gt; 1]"/>
-        </xsl:call-template>
-      </xsl:if>
-    </xsl:when>
+        <xsl:if test="$trailing">
+          <xsl:call-template name="unwrap.nodes">
+            <xsl:with-param name="wrap" select="$wrap"/>
+            <xsl:with-param name="nodes" select="$trailing"/>
+            <xsl:with-param name="blocks" select="$blocks[position() &gt; 1]"/>
+          </xsl:call-template>
+        </xsl:if>
+      </xsl:when>
 
-    <xsl:otherwise>
-      <xsl:element name="{local-name($wrap)}" namespace="{namespace-uri($wrap)}">
-        <xsl:for-each select="$wrap/@*">
-          <xsl:if test="$first != 0 or local-name(.) != 'id'">
-            <xsl:copy/>
-          </xsl:if>
-        </xsl:for-each>
-        <xsl:apply-templates select="$nodes" mode="unwrap.p"/>
-      </xsl:element>
-    </xsl:otherwise>
-  </xsl:choose>
+      <xsl:otherwise>
+        <xsl:element name="{local-name($wrap)}" namespace="{namespace-uri($wrap)}">
+          <xsl:for-each select="$wrap/@*">
+            <xsl:if test="$first != 0 or local-name(.) != 'id'">
+              <xsl:copy/>
+            </xsl:if>
+          </xsl:for-each>
+          <xsl:apply-templates select="$nodes" mode="unwrap.p"/>
+        </xsl:element>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:if>
 </xsl:template>
 
 <!-- ==================================================================== -->
