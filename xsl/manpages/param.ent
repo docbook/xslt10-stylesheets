@@ -1,0 +1,2 @@
+<!ENTITY hyphenate SYSTEM "../params/hyphenate.xml">
+<!ENTITY alignment SYSTEM "../params/alignment.xml">
