@@ -303,25 +303,81 @@
 
 <!--end of xml.features-->]]>
 
+<![ %ISOamsa.module; [
 %ISOamsa;
+]]>
+
+<![ %ISOamsb.module; [
 %ISOamsb;
+]]>
+
+<![ %ISOamsc.module; [
 %ISOamsc;
+]]>
+
+<![ %ISOamsn.module; [
 %ISOamsn;
+]]>
+
+<![ %ISOamso.module; [
 %ISOamso;
+]]>
+
+<![ %ISOamsr.module; [
 %ISOamsr;
+]]>
+
+<![ %ISObox.module; [
 %ISObox;
+]]>
+
+<![ %ISOcyr1.module; [
 %ISOcyr1;
+]]>
+
+<![ %ISOcyr2.module; [
 %ISOcyr2;
+]]>
+
+<![ %ISOdia.module; [
 %ISOdia;
+]]>
+
+<![ %ISOgrk1.module; [
 %ISOgrk1;
+]]>
+
+<![ %ISOgrk2.module; [
 %ISOgrk2;
+]]>
+
+<![ %ISOgrk3.module; [
 %ISOgrk3;
+]]>
+
+<![ %ISOgrk4.module; [
 %ISOgrk4;
+]]>
+
+<![ %ISOlat1.module; [
 %ISOlat1;
+]]>
+
+<![ %ISOlat2.module; [
 %ISOlat2;
+]]>
+
+<![ %ISOnum.module; [
 %ISOnum;
+]]>
+
+<![ %ISOpub.module; [
 %ISOpub;
+]]>
+
+<![ %ISOtech.module; [
 %ISOtech;
+]]>
 
 <!-- End of DocBook character entity sets module V4.2b1 ..................... -->
 <!-- ...................................................................... -->
