@@ -115,7 +115,10 @@
   <xsl:apply-templates mode="italic" select="."/>
 </xsl:template>
 
-<xsl:template match="sbr" />
+<xsl:template match="sbr">
+  <xsl:text>&#10;.br&#10;</xsl:text>
+</xsl:template>
+
 
 <xsl:template match="cmdsynopsis">
   <xsl:text>.ad l&#10;.hy 0&#10;</xsl:text>
