@@ -107,6 +107,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &arbortext.extensions;
 &fop.extensions;
 &passivetex.extensions;
+&tex.math.in.alt;
 &xep.extensions;
 </reference>
 
@@ -380,6 +381,7 @@ around all these parameters.</para>
 <src:fragref linkend="table.entry.padding.frag"/>
 <src:fragref linkend="tablecolumns.extension.frag"/>
 <src:fragref linkend="textinsert.extension.frag"/>
+<src:fragref linkend="tex.math.in.alt.frag"/>
 <src:fragref linkend="title.font.family.frag"/>
 <src:fragref linkend="title.margin.left.frag"/>
 <src:fragref linkend="toc.indent.width.frag"/>

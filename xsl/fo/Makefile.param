@@ -110,6 +110,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/table.entry.padding.xml \
        ../params/tablecolumns.extension.xml \
        ../params/textinsert.extension.xml \
+       ../params/tex.math.in.alt.xml \
        ../params/title.font.family.xml \
        ../params/title.margin.left.xml \
        ../params/toc.indent.width.xml \
