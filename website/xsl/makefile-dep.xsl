@@ -3,6 +3,7 @@
                 version="1.0">
 
 <xsl:param name="filename-prefix" select="''"/>
+<xsl:param name="output-root" select="''"/>
 
 <xsl:output method="text"/>
 
@@ -29,6 +30,7 @@
 <!--
   <xsl:apply-templates select="." mode="calculate-dir"/>
 -->
+  <xsl:call-template name="output-root"/>
   <xsl:value-of select="@dir"/>
   <xsl:value-of select="$filename-prefix"/>
   <xsl:value-of select="@filename"/>
@@ -43,6 +45,7 @@
   <xsl:apply-templates select="." mode="calculate-dir"/>
 -->
   <xsl:if test="@filename">
+    <xsl:call-template name="output-root"/>
     <xsl:value-of select="@dir"/>
     <xsl:value-of select="$filename-prefix"/>
     <xsl:value-of select="@filename"/>
@@ -57,6 +60,7 @@
 <!--
   <xsl:apply-templates select="." mode="calculate-dir"/>
 -->
+  <xsl:call-template name="output-root"/>
   <xsl:value-of select="@dir"/>
   <xsl:value-of select="$filename-prefix"/>
   <xsl:value-of select="@filename"/>
@@ -68,6 +72,7 @@
   <xsl:apply-templates select="." mode="calculate-dir"/>
 -->
   <xsl:if test="@filename">
+    <xsl:call-template name="output-root"/>
     <xsl:value-of select="@dir"/>
     <xsl:value-of select="$filename-prefix"/>
     <xsl:value-of select="@filename"/>
@@ -108,5 +113,13 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+
+<xsl:template name="output-root">
+  <xsl:if test="$output-root != ''">
+    <xsl:value-of select="$output-root"/>
+    <xsl:text>/</xsl:text>
+  </xsl:if>
+</xsl:template>
+
 
 </xsl:stylesheet>
