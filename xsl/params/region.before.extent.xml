@@ -9,7 +9,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='region.before.extent.frag'><xsl:param name="region.before.extent" select="'12pt'"/></src:fragment>
+<src:fragment id='region.before.extent.frag'>
+<xsl:param name="region.before.extent" select="'0.5in'"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
