@@ -31,16 +31,32 @@
 
 <xsl:template name="admon.graphic">
   <xsl:param name="node" select="."/>
-  <xsl:value-of select="$admon.graphics.path"/>
+
+  <xsl:variable name="filename">
+    <xsl:value-of select="$admon.graphics.path"/>
+    <xsl:choose>
+      <xsl:when test="name($node)='note'">note</xsl:when>
+      <xsl:when test="name($node)='warning'">warning</xsl:when>
+      <xsl:when test="name($node)='caution'">caution</xsl:when>
+      <xsl:when test="name($node)='tip'">tip</xsl:when>
+      <xsl:when test="name($node)='important'">important</xsl:when>
+      <xsl:otherwise>note</xsl:otherwise>
+    </xsl:choose>
+    <xsl:value-of select="$admon.graphics.extension"/>
+  </xsl:variable>
+
   <xsl:choose>
-    <xsl:when test="name($node)='note'">note</xsl:when>
-    <xsl:when test="name($node)='warning'">warning</xsl:when>
-    <xsl:when test="name($node)='caution'">caution</xsl:when>
-    <xsl:when test="name($node)='tip'">tip</xsl:when>
-    <xsl:when test="name($node)='important'">important</xsl:when>
-    <xsl:otherwise>note</xsl:otherwise>
+    <xsl:when test="$passivetex.extensions != 0
+                    or $fop.extensions != 0
+                    or $arbortext.extensions != 0">
+      <xsl:value-of select="$filename"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>url(</xsl:text>
+      <xsl:value-of select="$filename"/>
+      <xsl:text>)</xsl:text>
+    </xsl:otherwise>
   </xsl:choose>
-  <xsl:value-of select="$admon.graphics.extension"/>
 </xsl:template>
 
 <xsl:template name="graphical.admonition">
