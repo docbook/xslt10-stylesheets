@@ -17,7 +17,7 @@
 <refsect1><title>Description</title>
 
 <para>If non-zero, the URL of each <sgmltag>ULink</sgmltag> will
-appear as a footnote. <emphasis>Not yet implemented!</emphasis>
+appear as a footnote.
 </para>
 
 </refsect1>
