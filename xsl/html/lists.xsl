@@ -16,6 +16,9 @@
 
 <xsl:template match="itemizedlist">
   <div class="{name(.)}">
+    <xsl:if test="@id">
+      <a name="{@id}"/>
+    </xsl:if>
     <xsl:if test="title">
       <xsl:apply-templates select="title"/>
     </xsl:if>
@@ -88,6 +91,9 @@
     </xsl:choose>
   </xsl:variable>
   <div class="{name(.)}">
+    <xsl:if test="@id">
+      <a name="{@id}"/>
+    </xsl:if>
     <xsl:if test="title">
       <xsl:apply-templates select="title"/>
     </xsl:if>
@@ -118,6 +124,9 @@
 
 <xsl:template match="variablelist">
   <div class="{name(.)}">
+    <xsl:if test="@id">
+      <a name="{@id}"/>
+    </xsl:if>
     <xsl:if test="title">
       <xsl:apply-templates select="title"/>
     </xsl:if>
@@ -223,11 +232,22 @@
 </xsl:template>
 
 <xsl:template match="varlistentry/term">
-  <span class="term"><xsl:apply-templates/>, </span>
+  <span class="term">
+    <xsl:if test="@id">
+      <a name="{@id}"/>
+    </xsl:if>
+    <xsl:apply-templates/>
+    <xsl:text>, </xsl:text>
+  </span>
 </xsl:template>
 
 <xsl:template match="varlistentry/term[position()=last()]" priority="2">
-  <span class="term"><xsl:apply-templates/></span>
+  <span class="term">
+    <xsl:if test="@id">
+      <a name="{@id}"/>
+    </xsl:if>
+    <xsl:apply-templates/>
+  </span>
 </xsl:template>
 
 <xsl:template match="varlistentry/listitem">
@@ -243,11 +263,13 @@
   </xsl:choose>
 </xsl:template>
 
-
 <!-- ==================================================================== -->
 
 <xsl:template match="simplelist">
   <!-- with no type specified, the default is 'vert' -->
+  <xsl:if test="@id">
+    <a name="{@id}"/>
+  </xsl:if>
   <table class="simplelist" border="0" summary="Simple list">
     <xsl:call-template name="simplelist.vert">
       <xsl:with-param name="cols">
@@ -263,10 +285,18 @@
 </xsl:template>
 
 <xsl:template match="simplelist[@type='inline']">
-  <span class="{name(.)}"><xsl:apply-templates/></span>
+  <span class="{name(.)}">
+    <xsl:if test="@id">
+      <a name="{@id}"/>
+    </xsl:if>
+    <xsl:apply-templates/>
+  </span>
 </xsl:template>
 
 <xsl:template match="simplelist[@type='horiz']">
+  <xsl:if test="@id">
+    <a name="{@id}"/>
+  </xsl:if>
   <table class="simplelist" border="0" summary="Simple list">
     <xsl:call-template name="simplelist.horiz">
       <xsl:with-param name="cols">
@@ -282,6 +312,9 @@
 </xsl:template>
 
 <xsl:template match="simplelist[@type='vert']">
+  <xsl:if test="@id">
+    <a name="{@id}"/>
+  </xsl:if>
   <table class="simplelist" border="0" summary="Simple list">
     <xsl:call-template name="simplelist.vert">
       <xsl:with-param name="cols">
@@ -428,6 +461,9 @@
 
 <xsl:template match="procedure">
   <div class="{name(.)}">
+    <xsl:if test="@id">
+      <a name="{@id}"/>
+    </xsl:if>
     <xsl:if test="title or $formal.procedures != 0">
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
@@ -457,6 +493,10 @@
     <xsl:call-template name="procedure.step.numeration"/>
   </xsl:variable>
 
+  <xsl:if test="@id">
+    <a name="{@id}"/>
+  </xsl:if>
+
   <ol type="{$numeration}">
     <xsl:apply-templates/>
   </ol>
@@ -480,6 +520,9 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="segmentedlist">
+  <xsl:if test="@id">
+    <a name="{@id}"/>
+  </xsl:if>
   <xsl:apply-templates/>
 </xsl:template>
 
