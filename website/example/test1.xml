@@ -1,5 +1,5 @@
 <!DOCTYPE webpage SYSTEM "../website.dtd">
-<webpage id="test1">
+<webpage id="test1" lang="de">
 <config param="rcsdate" value="$Date$"/>
 <head>
 <title>Test <emphasis>1</emphasis></title>
