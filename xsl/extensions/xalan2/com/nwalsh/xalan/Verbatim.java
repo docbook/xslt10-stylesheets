@@ -206,6 +206,7 @@ public class Verbatim {
     int numLines = 0;
 
     if (node.getNodeType() == Node.DOCUMENT_FRAGMENT_NODE
+	|| node.getNodeType() == Node.DOCUMENT_NODE
 	|| node.getNodeType() == Node.ELEMENT_NODE) {
       Node child = node.getFirstChild();
       while (child != null) {
@@ -248,7 +249,8 @@ public class Verbatim {
   private void lineNumberFragment(DOMBuilder rtf,
 				  Node node) {
     try {
-      if (node.getNodeType() == Node.DOCUMENT_FRAGMENT_NODE) {
+      if (node.getNodeType() == Node.DOCUMENT_FRAGMENT_NODE
+	  || node.getNodeType() == Node.DOCUMENT_NODE) {
 	Node child = node.getFirstChild();
 	while (child != null) {
 	  lineNumberFragment(rtf, child);
@@ -442,7 +444,6 @@ public class Verbatim {
   public DocumentFragment insertCallouts (ExpressionContext context,
 					  NodeIterator areaspecNodeSet,
 					  NodeIterator xalanNI) {
-
     String type = Params.getString(context, "stylesheet.result.type");
     boolean useFO = type.equals("fo");
     int defaultColumn = Params.getInt(context, "callout.defaultcolumn");
@@ -602,7 +603,8 @@ public class Verbatim {
 			       Node node,
 			       FormatCallout fCallout) {
     try {
-      if (node.getNodeType() == Node.DOCUMENT_FRAGMENT_NODE) {
+      if (node.getNodeType() == Node.DOCUMENT_FRAGMENT_NODE
+	|| node.getNodeType() == Node.DOCUMENT_NODE) {
 	Node child = node.getFirstChild();
 	while (child != null) {
 	  calloutFragment(rtf, child, fCallout);
