@@ -42,6 +42,7 @@ my @args  = ();
 my %param = ();
 
 $param{'use.extensions'} = 1 if $option{'extensions'};
+$param{'use.extensions'} = 0 if $option{'processor'} eq 'xsltproc';
 
 while ($_ = shift @ARGV) {
     if (/^([^\s=]+)=(.*)$/) {
