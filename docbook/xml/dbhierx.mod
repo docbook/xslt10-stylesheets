@@ -644,10 +644,10 @@
 <!ENTITY % lotentry.attlist "INCLUDE">
 <![%lotentry.attlist;[
 <!ATTLIST lotentry
-		srccredit	CDATA		#IMPLIED
-		%pagenum.attrib;
-		%common.attrib;
 		%linkend.attrib;
+		%pagenum.attrib;
+		srccredit	CDATA		#IMPLIED
+		%common.attrib;
 		%lotentry.role.attrib;
 		%local.lotentry.attrib;
 >
@@ -817,8 +817,8 @@ change will not be made after all. -->
 <!ATTLIST partintro
 		%label.attrib;
 		%common.attrib;
-		%local.partintro.attrib;
 		%partintro.role.attrib;
+		%local.partintro.attrib;
 >
 <!--end of partintro.attlist-->]]>
 <!--end of partintro.module-->]]>

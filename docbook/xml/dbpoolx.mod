@@ -967,8 +967,8 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <![%bibliomset.attlist;[
 <!ATTLIST bibliomset
 		relation	CDATA		#IMPLIED
-		%bibliomset.role.attrib;
 		%common.attrib;
+		%bibliomset.role.attrib;
 		%local.bibliomset.attrib;
 >
 <!--end of bibliomset.attlist-->]]>
@@ -1192,12 +1192,12 @@ d. Just Acronym, Emphasis, and Trademark; no other word elements.
 <!ENTITY % simplemsgentry.attlist "INCLUDE">
 <![ %simplemsgentry.attlist; [
 <!ATTLIST simplemsgentry
-		%common.attrib;
-		%simplemsgentry.role.attrib;
-		%local.simplemsgentry.attrib;
 		audience	CDATA	#IMPLIED
 		level		CDATA	#IMPLIED
 		origin		CDATA	#IMPLIED
+		%common.attrib;
+		%simplemsgentry.role.attrib;
+		%local.simplemsgentry.attrib;
 >
 <!--end of simplemsgentry.attlist-->]]>
 <!--end of simplemsgentry.module-->]]>
@@ -3127,8 +3127,6 @@ in the text (no (0) value, the default)
 <!--Scale: Conflation of CALS hscale and vscale-->
 <!--Scalefit: Same as CALS scalefit-->
 <!ATTLIST videodata
-		%common.attrib;
-		%objectdata.attrib;
 	width		CDATA		#IMPLIED
 	depth		CDATA		#IMPLIED
 	align		(left
@@ -3137,6 +3135,8 @@ in the text (no (0) value, the default)
 	scale		CDATA		#IMPLIED
 	scalefit	%yesorno.attvals;
 					#IMPLIED
+		%objectdata.attrib;
+		%common.attrib;
 		%videodata.role.attrib;
 		%local.videodata.attrib;
 >
@@ -3156,10 +3156,10 @@ in the text (no (0) value, the default)
 <!ENTITY % audiodata.attlist "INCLUDE">
 <![ %audiodata.attlist; [
 <!ATTLIST audiodata
-		%common.attrib;
 		%objectdata.attrib;
-		%local.audiodata.attrib;
+		%common.attrib;
 		%audiodata.role.attrib;
+		%local.audiodata.attrib;
 >
 <!--end of audiodata.attlist-->]]>
 <!--end of audiodata.module-->]]>
@@ -3184,8 +3184,6 @@ in the text (no (0) value, the default)
 <!--Scale: Conflation of CALS hscale and vscale-->
 <!--Scalefit: Same as CALS scalefit-->
 <!ATTLIST imagedata
-		%common.attrib;
-		%objectdata.attrib;
 	width		CDATA		#IMPLIED
 	depth		CDATA		#IMPLIED
 	align		(left
@@ -3194,8 +3192,10 @@ in the text (no (0) value, the default)
 	scale		CDATA		#IMPLIED
 	scalefit	%yesorno.attvals;
 					#IMPLIED
-		%local.imagedata.attrib;
+		%objectdata.attrib;
+		%common.attrib;
 		%imagedata.role.attrib;
+		%local.imagedata.attrib;
 >
 <!--end of imagedata.attlist-->]]>
 <!--end of imagedata.module-->]]>
@@ -3214,8 +3214,8 @@ in the text (no (0) value, the default)
 <![ %caption.attlist; [
 <!ATTLIST caption
 		%common.attrib;
-		%local.caption.attrib;
 		%caption.role.attrib;
+		%local.caption.attrib;
 >
 <!--end of caption.attlist-->]]>
 <!--end of caption.module-->]]>
@@ -3882,11 +3882,11 @@ in the text (no (0) value, the default)
 <!ENTITY % classsynopsis.attlist "INCLUDE">
 <![%classsynopsis.attlist;[
 <!ATTLIST classsynopsis
+	language	CDATA	#IMPLIED
+	class	(class|interface)	"class"
 	%common.attrib;
 	%classsynopsis.role.attrib;
 	%local.classsynopsis.attrib;
-	language	CDATA	#IMPLIED
-	class	(class|interface)	"class"
 >
 <!--end of classsynopsis.attlist-->]]>
 <!--end of classsynopsis.module-->]]>
@@ -4045,9 +4045,9 @@ in the text (no (0) value, the default)
 <!ENTITY % fieldsynopsis.attlist "INCLUDE">
 <![%fieldsynopsis.attlist;[
 <!ATTLIST fieldsynopsis
+	language	CDATA	#IMPLIED
 	%common.attrib;
 	%fieldsynopsis.role.attrib;
-	language	CDATA	#IMPLIED
 	%local.fieldsynopsis.attrib;
 >
 <!--end of fieldsynopsis.attlist-->]]>
@@ -4089,9 +4089,9 @@ in the text (no (0) value, the default)
 <!ENTITY % constructorsynopsis.attlist "INCLUDE">
 <![%constructorsynopsis.attlist;[
 <!ATTLIST constructorsynopsis
+	language	CDATA	#IMPLIED
 	%common.attrib;
 	%constructorsynopsis.role.attrib;
-	language	CDATA	#IMPLIED
 	%local.constructorsynopsis.attrib;
 >
 <!--end of constructorsynopsis.attlist-->]]>
@@ -4113,9 +4113,9 @@ in the text (no (0) value, the default)
 <!ENTITY % destructorsynopsis.attlist "INCLUDE">
 <![%destructorsynopsis.attlist;[
 <!ATTLIST destructorsynopsis
+	language	CDATA	#IMPLIED
 	%common.attrib;
 	%destructorsynopsis.role.attrib;
-	language	CDATA	#IMPLIED
 	%local.destructorsynopsis.attrib;
 >
 <!--end of destructorsynopsis.attlist-->]]>
@@ -4139,9 +4139,9 @@ in the text (no (0) value, the default)
 <!ENTITY % methodsynopsis.attlist "INCLUDE">
 <![%methodsynopsis.attlist;[
 <!ATTLIST methodsynopsis
+	language	CDATA	#IMPLIED
 	%common.attrib;
 	%methodsynopsis.role.attrib;
-	language	CDATA	#IMPLIED
 	%local.methodsynopsis.attrib;
 >
 <!--end of methodsynopsis.attlist-->]]>
@@ -4183,14 +4183,14 @@ in the text (no (0) value, the default)
 <!ENTITY % methodparam.attlist "INCLUDE">
 <![%methodparam.attlist;[
 <!ATTLIST methodparam
-	%common.attrib;
-	%methodparam.role.attrib;
-	%local.methodparam.attrib;
 	choice		(opt
 			|req
 			|plain)		"req"
 	rep		(norepeat
 			|repeat)	"norepeat"
+	%common.attrib;
+	%methodparam.role.attrib;
+	%local.methodparam.attrib;
 >
 <!--end of methodparam.attlist-->]]>
 <!--end of methodparam.module-->]]>
@@ -5061,9 +5061,9 @@ in the text (no (0) value, the default)
 <!ENTITY % biblioid.attlist "INCLUDE">
 <![%biblioid.attlist;[
 <!ATTLIST biblioid
-		%common.attrib;
 		class	(urn|doi|isbn|issn|pubnumber|other)	#IMPLIED
 		otherclass	CDATA	#IMPLIED
+		%common.attrib;
 		%biblioid.role.attrib;
 		%local.biblioid.attrib;
 >
@@ -5085,9 +5085,9 @@ in the text (no (0) value, the default)
 <!ENTITY % citebiblioid.attlist "INCLUDE">
 <![%citebiblioid.attlist;[
 <!ATTLIST citebiblioid
-		%common.attrib;
 		class	(urn|doi|isbn|issn|pubnumber|other)	#IMPLIED
 		otherclass	CDATA	#IMPLIED
+		%common.attrib;
 		%citebiblioid.role.attrib;
 		%local.citebiblioid.attrib;
 >
@@ -6403,10 +6403,10 @@ OtherCredit. -->
 <!ENTITY % constant.attlist "INCLUDE">
 <![ %constant.attlist; [
 <!ATTLIST constant
+		class	(limit)		#IMPLIED
 		%common.attrib;
 		%constant.role.attrib;
 		%local.constant.attrib;
-		class	(limit)		#IMPLIED
 >
 <!--end of constant.attlist-->]]>
 <!--end of constant.module-->]]>
