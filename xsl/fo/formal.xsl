@@ -161,20 +161,11 @@
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
+
   <xsl:variable name="prop-columns"
     select=".//colspec[contains(@colwidth, '*')]"/>
 
-  <fo:block>
-    <xsl:attribute name="span">
-      <xsl:choose>
-        <xsl:when test="@pgwide=1">all</xsl:when>
-        <xsl:otherwise>none</xsl:otherwise>
-      </xsl:choose>
-    </xsl:attribute>
-    <xsl:if test="@orient='land'">
-      <xsl:attribute name="reference-orientation">90</xsl:attribute>
-    </xsl:if>
-
+  <xsl:variable name="table.content">
     <fo:table-and-caption id="{$id}"
                           xsl:use-attribute-sets="formal.object.properties"
                           keep-together.within-column="1">
@@ -191,7 +182,34 @@
         <xsl:apply-templates select="tgroup"/>
       </fo:table>
     </fo:table-and-caption>
-  </fo:block>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="@orient='land'">
+      <fo:block-container reference-orientation="90">
+        <fo:block>
+          <xsl:attribute name="span">
+            <xsl:choose>
+              <xsl:when test="@pgwide=1">all</xsl:when>
+              <xsl:otherwise>none</xsl:otherwise>
+            </xsl:choose>
+          </xsl:attribute>
+          <xsl:copy-of select="$table.content"/>
+        </fo:block>
+      </fo:block-container>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:block>
+        <xsl:attribute name="span">
+          <xsl:choose>
+            <xsl:when test="@pgwide=1">all</xsl:when>
+            <xsl:otherwise>none</xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+        <xsl:copy-of select="$table.content"/>
+      </fo:block>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="equation">
@@ -218,17 +236,7 @@
   <xsl:variable name="prop-columns"
     select=".//colspec[contains(@colwidth, '*')]"/>
 
-  <fo:block>
-    <xsl:attribute name="span">
-      <xsl:choose>
-        <xsl:when test="@pgwide=1">all</xsl:when>
-        <xsl:otherwise>none</xsl:otherwise>
-      </xsl:choose>
-    </xsl:attribute>
-    <xsl:if test="@orient='land'">
-      <xsl:attribute name="reference-orientation">90</xsl:attribute>
-    </xsl:if>
-
+  <xsl:variable name="table.content">
     <fo:table id="{$id}"
               xsl:use-attribute-sets="informal.object.properties">
       <xsl:call-template name="table.frame"/>
@@ -237,7 +245,34 @@
       </xsl:if>
       <xsl:apply-templates select="tgroup"/>
     </fo:table>
-  </fo:block>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="@orient='land'">
+      <fo:block-container reference-orientation="90">
+        <fo:block>
+          <xsl:attribute name="span">
+            <xsl:choose>
+              <xsl:when test="@pgwide=1">all</xsl:when>
+              <xsl:otherwise>none</xsl:otherwise>
+            </xsl:choose>
+          </xsl:attribute>
+          <xsl:copy-of select="$table.content"/>
+        </fo:block>
+      </fo:block-container>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:block>
+        <xsl:attribute name="span">
+          <xsl:choose>
+            <xsl:when test="@pgwide=1">all</xsl:when>
+            <xsl:otherwise>none</xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+        <xsl:copy-of select="$table.content"/>
+      </fo:block>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="informalequation">
