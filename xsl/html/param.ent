@@ -235,6 +235,7 @@
 <!ENTITY bibliography.numbered SYSTEM "../params/bibliography.numbered.xml">
 <!ENTITY chunk.tocs.and.lots SYSTEM "../params/chunk.tocs.and.lots.xml">
 <!ENTITY graphicsize.extension SYSTEM "../params/graphicsize.extension.xml">
+<!ENTITY graphicsize.use.img.src.path SYSTEM "../params/graphicsize.use.img.src.path.xml">
 <!ENTITY l10n.gentext.language SYSTEM "../params/l10n.gentext.language.xml">
 <!ENTITY l10n.gentext.default.language SYSTEM "../params/l10n.gentext.default.language.xml">
 <!ENTITY l10n.gentext.use.xref.language SYSTEM "../params/l10n.gentext.use.xref.language.xml">

@@ -231,9 +231,10 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:variable name="filename.with.img.src.path">
+  <xsl:variable name="filename.for.graphicsize">
     <xsl:choose>
       <xsl:when test="$img.src.path != '' and
+                      $graphicsize.use.img.src.path != 0 and
                       $tag = 'img' and
                       not(starts-with($filename, '/')) and
                       not(contains($filename, '://'))">
@@ -251,11 +252,11 @@
       <xsl:when test="$use.extensions != 0 and $graphicsize.extension != 0">
         <xsl:choose>
           <xsl:when test="function-available('simg:getWidth')">
-            <xsl:value-of select="simg:getWidth(simg:new($filename.with.img.src.path),
+            <xsl:value-of select="simg:getWidth(simg:new($filename.for.graphicsize),
                                                 $nominal.image.width)"/>
           </xsl:when>
           <xsl:when test="function-available('ximg:getWidth')">
-            <xsl:value-of select="ximg:getWidth(ximg:new($filename.with.img.src.path),
+            <xsl:value-of select="ximg:getWidth(ximg:new($filename.for.graphicsize),
                                                 $nominal.image.width)"/>
           </xsl:when>
           <xsl:otherwise>
@@ -275,11 +276,11 @@
       <xsl:when test="$use.extensions != 0 and $graphicsize.extension != 0">
         <xsl:choose>
           <xsl:when test="function-available('simg:getDepth')">
-            <xsl:value-of select="simg:getDepth(simg:new($filename.with.img.src.path),
+            <xsl:value-of select="simg:getDepth(simg:new($filename.for.graphicsize),
                                                 $nominal.image.depth)"/>
           </xsl:when>
           <xsl:when test="function-available('ximg:getDepth')">
-            <xsl:value-of select="ximg:getDepth(ximg:new($filename.with.img.src.path),
+            <xsl:value-of select="ximg:getDepth(ximg:new($filename.for.graphicsize),
                                                 $nominal.image.depth)"/>
           </xsl:when>
           <xsl:otherwise>
