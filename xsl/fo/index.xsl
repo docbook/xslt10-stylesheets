@@ -36,10 +36,7 @@
   </xsl:variable>
 
   <xsl:variable name="master-reference">
-    <xsl:call-template name="select.pagemaster">
-      <xsl:with-param name="column.count"
-                      select="$column.count.of.index"/>
-    </xsl:call-template>
+    <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
 
   <fo:page-sequence id="{$id}"

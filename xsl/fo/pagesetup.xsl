@@ -15,13 +15,6 @@
 
 <!-- ==================================================================== -->
 
-<xsl:param name="column.count.titlepage" select="1"/>
-<xsl:param name="column.count.lot" select="1"/>
-<xsl:param name="column.count.front" select="1"/>
-<xsl:param name="column.count.body" select="1"/>
-<xsl:param name="column.count.back" select="1"/>
-<xsl:param name="column.count.index" select="2"/>
-
 <xsl:template name="setup.pagemasters">
   <fo:layout-master-set>
     <!-- blank pages -->
@@ -1164,13 +1157,39 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="*" mode="running.head.mode">
-  <xsl:param name="master-reference" select="'unknown'"/>
-  <!-- by default, nothing -->
+<xsl:template name="head.sep.rule">
+  <xsl:if test="$header.rule != 0">
+    <xsl:attribute name="border-bottom-width">1px</xsl:attribute>
+    <xsl:attribute name="border-bottom-style">solid</xsl:attribute>
+    <xsl:attribute name="border-bottom-color">black</xsl:attribute>
+  </xsl:if>
 </xsl:template>
 
-<xsl:template match="preface|chapter|appendix" mode="running.head.mode">
+<xsl:template name="foot.sep.rule">
+  <xsl:if test="$footer.rule != 0">
+    <xsl:attribute name="border-top-width">1px</xsl:attribute>
+    <xsl:attribute name="border-top-style">solid</xsl:attribute>
+    <xsl:attribute name="border-top-color">black</xsl:attribute>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="*" mode="running.head.mode">
   <xsl:param name="master-reference" select="'unknown'"/>
+  <xsl:param name="gentext-key" select="'TableofContents'"/>
+
+  <!-- remove -draft from reference -->
+  <xsl:variable name="flow-name">
+    <xsl:choose>
+      <xsl:when test="contains($master-reference, '-draft')">
+        <xsl:value-of select="substring-before($master-reference, '-draft')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$master-reference"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:message>running head for <xsl:value-of select="local-name(.)"/> with ref <xsl:value-of select="$flow-name"/></xsl:message>
 
   <xsl:variable name="draft">
     <xsl:choose>
@@ -1193,17 +1212,19 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:variable name="head-first">
+  <xsl:variable name="head-blank">
     <fo:table table-layout="fixed" width="100%">
       <fo:table-column column-number="1" column-width="33%"/>
       <fo:table-column column-number="2" column-width="34%"/>
       <fo:table-column column-number="3" column-width="33%"/>
       <fo:table-body>
-        <fo:table-row>
+        <fo:table-row height="14pt">
           <fo:table-cell text-align="left"
                          relative-align="baseline"
                          display-align="before">
-            <fo:block/>
+            <fo:block>
+              <xsl:value-of select="$draft"/>
+            </fo:block>
           </fo:table-cell>
           <fo:table-cell text-align="center"
                          relative-align="baseline"
@@ -1222,24 +1243,102 @@
     </fo:table>
   </xsl:variable>
 
-  <xsl:variable name="head-odd">
+  <xsl:variable name="head-empty">
     <fo:table table-layout="fixed" width="100%">
+      <xsl:call-template name="head.sep.rule"/>
       <fo:table-column column-number="1" column-width="33%"/>
       <fo:table-column column-number="2" column-width="34%"/>
       <fo:table-column column-number="3" column-width="33%"/>
       <fo:table-body>
-        <fo:table-row>
+        <fo:table-row height="14pt">
           <fo:table-cell text-align="left"
                          relative-align="baseline"
                          display-align="before">
+            <fo:block>
+              <xsl:value-of select="$draft"/>
+            </fo:block>
+          </fo:table-cell>
+          <fo:table-cell text-align="center"
+                         relative-align="baseline"
+                         display-align="before">
             <fo:block/>
+          </fo:table-cell>
+          <fo:table-cell text-align="right"
+                         relative-align="baseline"
+                         display-align="before">
+            <fo:block>
+              <xsl:value-of select="$draft"/>
+            </fo:block>
+          </fo:table-cell>
+        </fo:table-row>
+      </fo:table-body>
+    </fo:table>
+  </xsl:variable>
+
+  <xsl:variable name="head-even">
+    <fo:table table-layout="fixed" width="100%">
+      <xsl:call-template name="head.sep.rule"/>
+      <fo:table-column column-number="1" column-width="33%"/>
+      <fo:table-column column-number="2" column-width="34%"/>
+      <fo:table-column column-number="3" column-width="33%"/>
+      <fo:table-body>
+        <fo:table-row height="14pt">
+          <fo:table-cell text-align="left"
+                         relative-align="baseline"
+                         display-align="before">
+            <fo:block>
+              <xsl:value-of select="$draft"/>
+            </fo:block>
           </fo:table-cell>
           <fo:table-cell text-align="center"
                          relative-align="baseline"
                          display-align="before">
             <fo:block>
               <xsl:choose>
-                <xsl:when test="(/book or /set) and ($double.sided != 0)">
+                <xsl:when test="starts-with($master-reference, 'lot')">
+                  <xsl:call-template name="gentext">
+                    <xsl:with-param name="key" select="$gentext-key"/>
+                  </xsl:call-template>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:apply-templates select="." mode="object.title.markup"/>
+                </xsl:otherwise>
+              </xsl:choose>
+            </fo:block>
+          </fo:table-cell>
+          <fo:table-cell text-align="right"
+                         relative-align="baseline"
+                         display-align="before">
+            <fo:block>
+              <xsl:value-of select="$draft"/>
+            </fo:block>
+          </fo:table-cell>
+        </fo:table-row>
+      </fo:table-body>
+    </fo:table>
+  </xsl:variable>
+
+  <xsl:variable name="head-odd">
+    <fo:table table-layout="fixed" width="100%">
+      <xsl:call-template name="head.sep.rule"/>
+      <fo:table-column column-number="1" column-width="33%"/>
+      <fo:table-column column-number="2" column-width="34%"/>
+      <fo:table-column column-number="3" column-width="33%"/>
+      <fo:table-body>
+        <fo:table-row height="14pt">
+          <fo:table-cell text-align="left"
+                         relative-align="baseline"
+                         display-align="before">
+            <fo:block>
+              <xsl:value-of select="$draft"/>
+            </fo:block>
+          </fo:table-cell>
+          <fo:table-cell text-align="center"
+                         relative-align="baseline"
+                         display-align="before">
+            <fo:block>
+              <xsl:choose>
+                <xsl:when test="ancestor::book and ($double.sided != 0)">
                   <fo:retrieve-marker retrieve-class-name="section.head.marker"
                                       retrieve-position="first-including-carryover"
                                       retrieve-boundary="page"/>
@@ -1262,67 +1361,49 @@
     </fo:table>
   </xsl:variable>
 
-  <xsl:variable name="head-even">
-    <fo:table table-layout="fixed" width="100%">
-      <fo:table-column column-number="1" column-width="33%"/>
-      <fo:table-column column-number="2" column-width="34%"/>
-      <fo:table-column column-number="3" column-width="33%"/>
-      <fo:table-body>
-        <fo:table-row>
-          <fo:table-cell text-align="left"
-                         relative-align="baseline"
-                         display-align="before">
-            <fo:block>
-              <xsl:value-of select="$draft"/>
-            </fo:block>
-          </fo:table-cell>
-          <fo:table-cell text-align="center"
-                         relative-align="baseline"
-                         display-align="before">
-            <fo:block>
-              <xsl:apply-templates select="." mode="object.title.markup"/>
-            </fo:block>
-          </fo:table-cell>
-          <fo:table-cell text-align="right"
-                         relative-align="baseline"
-                         display-align="before">
-            <fo:block/>
-          </fo:table-cell>
-        </fo:table-row>
-      </fo:table-body>
-    </fo:table>
-  </xsl:variable>
-
   <xsl:choose>
     <xsl:when test="starts-with($master-reference, 'titlepage')">
-      <!-- no headers -->
-    </xsl:when>
-    <xsl:when test="$master-reference = 'lot'
-                    or $master-reference = 'front'
-                    or $master-reference = 'body'
-                    or $master-reference = 'back'
-                    or $master-reference = 'index'
-                    or $master-reference = 'lot-draft'
-                    or $master-reference = 'front-draft'
-                    or $master-reference = 'body-draft'
-                    or $master-reference = 'back-draft'
-                    or $master-reference = 'index-draft'">
-      <xsl:if test="$master-reference != 'blank'">
-        <fo:static-content flow-name="xsl-region-before-{$master-reference}-first">
-          <fo:block margin-left="{$title.margin.left}">
-            <xsl:copy-of select="$head-first"/>
-            <fo:block/>
-          </fo:block>
-        </fo:static-content>
-      </xsl:if>
-
-      <fo:static-content flow-name="xsl-region-before-{$master-reference}-odd">
+      <fo:static-content flow-name="xsl-region-before-{$flow-name}-first">
         <fo:block margin-left="{$title.margin.left}">
-          <xsl:copy-of select="$head-odd"/>
+          <xsl:copy-of select="$head-blank"/>
         </fo:block>
       </fo:static-content>
 
-      <fo:static-content flow-name="xsl-region-before-{$master-reference}-even">
+      <fo:static-content flow-name="xsl-region-before-{$flow-name}-odd">
+        <fo:block margin-left="{$title.margin.left}">
+          <xsl:copy-of select="$head-blank"/>
+        </fo:block>
+      </fo:static-content>
+
+      <fo:static-content flow-name="xsl-region-before-{$flow-name}-even">
+        <fo:block margin-left="{$title.margin.left}">
+          <xsl:copy-of select="$head-blank"/>
+        </fo:block>
+      </fo:static-content>
+
+      <fo:static-content flow-name="xsl-region-before-blank">
+        <fo:block margin-left="{$title.margin.left}">
+          <xsl:if test="$headers.on.blank.pages != 0">
+            <xsl:copy-of select="$head-empty"/>
+          </xsl:if>
+        </fo:block>
+      </fo:static-content>
+    </xsl:when>
+
+    <xsl:when test="starts-with($master-reference, 'lot')">
+      <fo:static-content flow-name="xsl-region-before-{$flow-name}-first">
+        <fo:block margin-left="{$title.margin.left}">
+          <xsl:copy-of select="$head-empty"/>
+        </fo:block>
+      </fo:static-content>
+
+      <fo:static-content flow-name="xsl-region-before-{$flow-name}-odd">
+        <fo:block margin-left="{$title.margin.left}">
+          <xsl:copy-of select="$head-even"/> <!-- yes, even -->
+        </fo:block>
+      </fo:static-content>
+
+      <fo:static-content flow-name="xsl-region-before-{$flow-name}-even">
         <fo:block margin-left="{$title.margin.left}">
           <xsl:copy-of select="$head-even"/>
         </fo:block>
@@ -1330,18 +1411,39 @@
 
       <fo:static-content flow-name="xsl-region-before-blank">
         <fo:block margin-left="{$title.margin.left}">
-          <!-- no headers on blank pages by default -->
+          <xsl:if test="$headers.on.blank.pages != 0">
+            <xsl:copy-of select="$head-empty"/>
+          </xsl:if>
         </fo:block>
       </fo:static-content>
     </xsl:when>
+
     <xsl:otherwise>
-      <xsl:message>
-        <xsl:text>Unexpected master-reference (</xsl:text>
-        <xsl:value-of select="$master-reference"/>
-        <xsl:text>) in running.head.mode for </xsl:text>
-        <xsl:value-of select="name(.)"/>
-        <xsl:text>. No header generated.</xsl:text>
-      </xsl:message>
+      <fo:static-content flow-name="xsl-region-before-{$flow-name}-first">
+        <fo:block margin-left="{$title.margin.left}">
+          <xsl:copy-of select="$head-empty"/>
+        </fo:block>
+      </fo:static-content>
+
+      <fo:static-content flow-name="xsl-region-before-{$flow-name}-odd">
+        <fo:block margin-left="{$title.margin.left}">
+          <xsl:copy-of select="$head-odd"/>
+        </fo:block>
+      </fo:static-content>
+
+      <fo:static-content flow-name="xsl-region-before-{$flow-name}-even">
+        <fo:block margin-left="{$title.margin.left}">
+          <xsl:copy-of select="$head-even"/>
+        </fo:block>
+      </fo:static-content>
+
+      <fo:static-content flow-name="xsl-region-before-blank">
+        <fo:block margin-left="{$title.margin.left}">
+          <xsl:if test="$headers.on.blank.pages != 0">
+            <xsl:copy-of select="$head-empty"/>
+          </xsl:if>
+        </fo:block>
+      </fo:static-content>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -1350,6 +1452,19 @@
 
 <xsl:template match="*" mode="running.foot.mode">
   <xsl:param name="master-reference" select="'unknown'"/>
+  <xsl:param name="gentext-key" select="'TableofContents'"/>
+
+  <!-- remove -draft from reference -->
+  <xsl:variable name="flow-name">
+    <xsl:choose>
+      <xsl:when test="contains($master-reference, '-draft')">
+        <xsl:value-of select="substring-before($master-reference, '-draft')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$master-reference"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <!-- by default, the page number -->
   <xsl:variable name="foot">
@@ -1372,7 +1487,15 @@
 
   <xsl:choose>
     <xsl:when test="starts-with($master-reference,'titlepage')">
-      <!-- no footers -->
+      <!-- no footers; but maybe footers on a following blank page -->
+      <fo:static-content flow-name="xsl-region-after-blank">
+        <fo:block text-align="{$align-even}" margin-left="{$title.margin.left}">
+          <xsl:if test="$footers.on.blank.pages != 0">
+            <xsl:call-template name="foot.sep.rule"/>
+            <xsl:copy-of select="$foot"/>
+          </xsl:if>
+        </fo:block>
+      </fo:static-content>
     </xsl:when>
     <xsl:when test="$master-reference = 'titlepage'
                     or $master-reference = 'lot'
@@ -1386,26 +1509,30 @@
                     or $master-reference = 'body-draft'
                     or $master-reference = 'back-draft'
                     or $master-reference = 'index-draft'">
-      <xsl:if test="$master-reference != 'blank'">
-        <fo:static-content flow-name="xsl-region-after-{$master-reference}-first">
-          <fo:block text-align="{$align-odd}" margin-left="{$title.margin.left}">
-            <xsl:copy-of select="$foot"/>
-          </fo:block>
-        </fo:static-content>
-      </xsl:if>
-      <fo:static-content flow-name="xsl-region-after-{$master-reference}-odd">
+      <fo:static-content flow-name="xsl-region-after-{$flow-name}-first">
         <fo:block text-align="{$align-odd}" margin-left="{$title.margin.left}">
+          <xsl:call-template name="foot.sep.rule"/>
           <xsl:copy-of select="$foot"/>
         </fo:block>
       </fo:static-content>
-      <fo:static-content flow-name="xsl-region-after-{$master-reference}-even">
+      <fo:static-content flow-name="xsl-region-after-{$flow-name}-odd">
+        <fo:block text-align="{$align-odd}" margin-left="{$title.margin.left}">
+          <xsl:call-template name="foot.sep.rule"/>
+          <xsl:copy-of select="$foot"/>
+        </fo:block>
+      </fo:static-content>
+      <fo:static-content flow-name="xsl-region-after-{$flow-name}-even">
         <fo:block text-align="{$align-even}" margin-left="{$title.margin.left}">
+          <xsl:call-template name="foot.sep.rule"/>
           <xsl:copy-of select="$foot"/>
         </fo:block>
       </fo:static-content>
       <fo:static-content flow-name="xsl-region-after-blank">
         <fo:block text-align="{$align-even}" margin-left="{$title.margin.left}">
-          <xsl:copy-of select="$foot"/>
+          <xsl:if test="$footers.on.blank.pages != 0">
+            <xsl:call-template name="foot.sep.rule"/>
+            <xsl:copy-of select="$foot"/>
+          </xsl:if>
         </fo:block>
       </fo:static-content>
     </xsl:when>
