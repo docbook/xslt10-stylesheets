@@ -5,6 +5,9 @@
                 version="1.0">
 
 <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/fo/docbook.xsl"/>
+
+<xsl:param name="alignment" select="'start'"/>
+
 <xsl:include href="plain-titlepage.xsl"/>
 
 <xsl:param name="local.l10n.xml" select="document('')"/>
@@ -394,6 +397,7 @@
         <xsl:call-template name="anchor">
           <xsl:with-param name="conditional" select="0"/>
         </xsl:call-template>
+	<xsl:call-template name="foilgroup.titlepage"/>
         <fo:block xsl:use-attribute-sets="foil.properties">
           <xsl:apply-templates select="*[not(self::foil)]"/>
         </fo:block>
