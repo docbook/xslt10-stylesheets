@@ -93,7 +93,7 @@
 <xsl:template match="epigraph">
   <fo:block>
     <xsl:call-template name="anchor"/>
-    <xsl:apply-templates select="para"/>
+    <xsl:apply-templates select="para|simpara|formalpara|literallayout"/>
     <fo:inline>
       <xsl:text>--</xsl:text>
       <xsl:apply-templates select="attribution"/>
