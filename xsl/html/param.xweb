@@ -94,6 +94,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &manual.toc;
 &toc.list.type;
 &toc.section.depth;
+&toc.max.depth;
 &generate.toc;
 &generate.section.toc.level;
 &generate.index;
@@ -603,6 +604,7 @@ around all these parameters.</para>
 <src:fragref linkend="textinsert.extension.frag"/>
 <src:fragref linkend="toc.list.type.frag"/>
 <src:fragref linkend="toc.section.depth.frag"/>
+<src:fragref linkend="toc.max.depth.frag"/>
 <src:fragref linkend="ulink.target.frag"/>
 <src:fragref linkend="use.embed.for.svg.frag"/>
 <src:fragref linkend="use.extensions.frag"/>

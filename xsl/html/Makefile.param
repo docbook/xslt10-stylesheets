@@ -194,6 +194,7 @@ PARAMS=../params/admon.graphics.xml \
        ../params/textinsert.extension.xml \
        ../params/toc.list.type.xml \
        ../params/toc.section.depth.xml \
+       ../params/toc.max.depth.xml \
        ../params/ulink.target.xml \
        ../params/use.embed.for.svg.xml \
        ../params/use.extensions.xml \
@@ -222,4 +223,12 @@ PARAMS=../params/admon.graphics.xml \
        ../params/table.cell.border.thickness.xml \
        ../params/table.frame.border.color.xml \
        ../params/table.frame.border.style.xml \
-       ../params/table.frame.border.thickness.xml
+       ../params/table.frame.border.thickness.xml \
+       ../params/ignore.image.scaling.xml \
+       ../params/footnote.number.format.xml \
+       ../params/table.footnote.number.format.xml \
+       ../params/footnote.number.symbols.xml \
+       ../params/table.footnote.number.symbols.xml \
+       ../params/entry.propagates.style.xml \
+       ../params/glossentry.show.acronym.xml \
+       ../params/xref.with.number.and.title.xml
