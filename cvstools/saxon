@@ -34,19 +34,7 @@ while [ "$DONE" = "0" ]; do
 	-d)	DEBUG=1;
 		shift;
 		;;
-	-652)	VERSION=652;
-		shift;
-		;;
-	-651)	VERSION=651;
-		shift;
-		;;
-	-65)	VERSION=65;
-		shift;
-		;;
-	-644)	VERSION=644;
-		shift;
-		;;
-	-643)	VERSION=643;
+	-6*)	VERSION=$1;
 		shift;
 		;;
 	-x)     shift;
@@ -108,7 +96,7 @@ case $VERSION in
 esac
 
 
-DOTTEDVERSION=`echo $VERSION | sed -e 's/\([0-9]\)\([0-9]\)/\1.\2/g;' | sed -e 's/\([0-9]\)\([0-9]\)/\1.\2/g;'`
+DOTTEDVERSION=`echo $VERSION | sed -e 's/\([0-9]\)\([0-9]\)/\1.\2/g; s/\([0-9]\)\([0-9]\)/\1.\2/g;'`
 
 ##
 ## locate saxon.jar
@@ -161,23 +149,29 @@ fi
 ##
 ## locate Xerces classpath
 ##
-XERCES=`findxerces`
-if [ ! "$XERCES" ]; then
-  echo "warning: cannot locate Xerces (xerces.jar)" 1>&2
+XERCES=`findxerces1`
+if [ "$XERCES" ]; then
+  DBFACTORY="-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"
+  SPFACTORY="-Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"
 fi
-
 
 ##
 ## locate JAXP classpath
 ##
 JAXP=`findjaxp`
-if [ ! "$JAXP" ]; then
-  echo "warning: cannot locate JAXP (jaxp.jar)" 1>&2
+if [ "$JAXP" ]; then
+  echo "don't know how to set javax.xml.parsers.DocumentBuilderFactory nor javax.xml.parsers.SAXParserFactory for Sun JAXP"
+fi
+
+if [ ! "$JAXP" -a ! "$XERCES" ]; then
+  echo "warning: cannot locate an alternate SAX parser, PEs may not work correctly" 1>&2
+  # FIXME: test that it works at all
 fi
 
 ##
 ## optionally replace the URI resolver with the Apache
 ## resolver classes
+## FIXME: do we specifically *not* want to use the sun resolver?
 ##
 for path in $RESOLVER \
 	    "/projects/apache/xml-commons/java/build/classes" ; do
@@ -188,15 +182,9 @@ for path in $RESOLVER \
 done
 if [ -f "$RESOLVER" -o -d "$RESOLVER" ]; then
   # use the apache resolver
-  if [ ! "$XARG" ]; then
-    XARG="-x org.apache.xml.resolver.tools.ResolvingXMLReader"
-  fi
-  if [ ! "$YARG" ]; then
-    YARG="-y org.apache.xml.resolver.tools.ResolvingXMLReader"
-  fi
-  if [ ! "$RARG" ]; then
-    RARG="-r org.apache.xml.resolver.tools.CatalogResolver"
-  fi
+  XARG=${XARG:--x org.apache.xml.resolver.tools.ResolvingXMLReader}
+  YARG=${YARG:--y org.apache.xml.resolver.tools.ResolvingXMLReader}
+  RARG=${RARG:--r org.apache.xml.resolver.tools.CatalogResolver}
 fi
 
 CLASSPATH=$SAXON:$NDWEXT:$JAXP:$RESOLVER:$XERCES:$CLASSPATH
@@ -213,10 +201,6 @@ fi
 
 TRANSFACTORY=com.icl.saxon.TransformerFactoryImpl
 
-# Force Saxon to use a decent parser (AElfred doesn't do PEs right)
-DBFACTORY=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl
-SPFACTORY=org.apache.xerces.jaxp.SAXParserFactoryImpl
-
 TFLAG=
 if [ "$DEBUG" != "0" ]; then
   TFLAG="-T"
@@ -224,8 +208,7 @@ fi
 
 exec java $MEMORY $FOO \
      -cp $CLASSPATH \
-     -Djavax.xml.parsers.DocumentBuilderFactory=$DBFACTORY \
-     -Djavax.xml.parsers.SAXParserFactory=$SPFACTORY \
+     $DBFACTORY $SPFACTORY \
      -Djavax.xml.transform.TransformerFactory=$TRANSFACTORY \
      com.icl.saxon.StyleSheet \
      $TFLAG \
