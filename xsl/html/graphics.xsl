@@ -924,6 +924,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 
       <xsl:variable name="phrases"
                     select="ancestor::mediaobject/textobject[phrase]
+                            |ancestor::inlinemediaobject/textobject[phrase]
                             |ancestor::mediaobjectco/textobject[phrase]"/>
 
       <xsl:call-template name="process.image">
