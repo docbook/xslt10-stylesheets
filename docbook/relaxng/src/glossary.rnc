@@ -12,8 +12,8 @@
 
 namespace rng  = "http://relaxng.org/ns/structure/1.0"
 namespace s = "http://www.ascc.net/xml/schematron"
-namespace db = "http://docbook.org/docbook-ng/absinthe"
-default namespace = "http://docbook.org/docbook-ng/absinthe"
+namespace db = "http://docbook.org/docbook-ng"
+default namespace = "http://docbook.org/docbook-ng"
 
 general.inlines |= glossary.inlines
 list.blocks |= db.glosslist
