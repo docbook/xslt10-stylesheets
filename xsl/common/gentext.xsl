@@ -574,6 +574,7 @@
   <xsl:param name="lang">
     <xsl:call-template name="l10n.language"/>
   </xsl:param>
+  <xsl:param name="target.elem" select="local-name(.)"/>
 
   <!-- parse xrefstyle to get parts -->
   <xsl:variable name="parts"
@@ -630,7 +631,18 @@
   <xsl:if test="$labeltype != ''">
     <xsl:choose>
       <xsl:when test="$labeltype = 'labelname'">
-        <xsl:call-template name="gentext"/>
+        <xsl:call-template name="gentext">
+          <xsl:with-param name="key">
+            <xsl:choose>
+              <xsl:when test="local-name($referrer) = 'olink'">
+                <xsl:value-of select="$target.elem"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="local-name(.)"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:with-param>
+        </xsl:call-template>
       </xsl:when>
       <xsl:when test="$labeltype = 'labelnumber'">
         <xsl:text>%n</xsl:text>
@@ -639,7 +651,14 @@
         <xsl:call-template name="gentext.template">
           <xsl:with-param name="context" select="'xref-number'"/>
           <xsl:with-param name="name">
-            <xsl:call-template name="xpath.location"/>
+            <xsl:choose>
+              <xsl:when test="local-name($referrer) = 'olink'">
+                <xsl:value-of select="$target.elem"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:call-template name="xpath.location"/>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:with-param>
           <xsl:with-param name="purpose" select="$purpose"/>
           <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
