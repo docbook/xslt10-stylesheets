@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:exsl="http://exslt.org/common"
+		xmlns:db = "http://docbook.org/docbook-ng/absinthe"
+                exclude-result-prefixes="exsl db"
                 version="1.0">
 
 <!-- ======================================================================
@@ -20,6 +23,13 @@
 
 <xsl:output method="xml" encoding="utf-8" indent="no"/>
 <xsl:preserve-space elements="*"/>
+
+<xsl:template match="/">
+  <xsl:variable name="converted">
+    <xsl:apply-templates/>
+  </xsl:variable>
+  <xsl:apply-templates select="exsl:node-set($converted)/*" mode="addNS"/>
+</xsl:template>
 
 <xsl:template match="bookinfo|chapterinfo|articleinfo|artheader|appendixinfo|blockinfo
                      |bibliographyinfo|glossaryinfo|indexinfo|setinfo|setindexinfo
@@ -303,10 +313,10 @@
 </xsl:template>
 
 <xsl:template match="sgmltag" priority="200">
-  <xmltag>
+  <tag>
     <xsl:call-template name="copy.attributes"/>
     <xsl:apply-templates/>
-  </xmltag>
+  </tag>
 </xsl:template>
 
 <xsl:template match="pubsnumber" priority="200">
@@ -648,5 +658,33 @@
 </xsl:template>
 
 <!-- ====================================================================== -->
+
+<xsl:template match="*" mode="addNS">
+  <xsl:choose>
+    <xsl:when test="namespace-uri(.) = ''">
+      <xsl:element name="{local-name(.)}"
+		   namespace="http://docbook.org/docbook-ng/absinthe">
+	<xsl:if test="not(parent::*)">
+	  <xsl:attribute name="version">absinthe</xsl:attribute>
+	</xsl:if>
+	<xsl:copy-of select="@*"/>
+	<xsl:apply-templates mode="addNS"/>
+      </xsl:element>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy>
+	<xsl:if test="not(parent::*)">
+	  <xsl:attribute name="version">absinthe</xsl:attribute>
+	</xsl:if>
+	<xsl:copy-of select="@*"/>
+	<xsl:apply-templates mode="addNS"/>
+      </xsl:copy>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="comment()|processing-instruction()|text()" mode="addNS">
+  <xsl:copy/>
+</xsl:template>
 
 </xsl:stylesheet>

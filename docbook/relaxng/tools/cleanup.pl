@@ -17,7 +17,8 @@ while (<>) {
     s/\s*xmlns:s=([\"\']).*?\1\s*//g;
 
     s/<(s:rule\s+.*?)>/<\1 xmlns:s=\"http:\/\/www.ascc.net\/xml\/schematron\">/g;
+    s/<(ctrl:\S+\s+.*?)(\/?>)/<\1 xmlns:ctrl=\"http:\/\/nwalsh.com\/xmlns\/schema-control\/\"\2/g;
 
     print $_;
-    print "\n" if /<\/define>/;
+    print "\n" if /<\/define>/ || /<ctrl:/ || /<\/start>/;
 }

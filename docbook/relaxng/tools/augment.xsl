@@ -4,7 +4,8 @@
                 xmlns:rng="http://relaxng.org/ns/structure/1.0"
                 xmlns:ctrl="http://nwalsh.com/xmlns/schema-control/"
 		xmlns:s="http://www.ascc.net/xml/schematron"
-                exclude-result-prefixes="exsl ctrl"
+		xmlns:db="http://docbook.org/docbook-ng/absinthe"
+                exclude-result-prefixes="exsl ctrl rng s db"
                 version="1.0">
 
   <xsl:output method="xml" encoding="utf-8" indent="yes"/>
@@ -14,11 +15,17 @@
 
   <xsl:variable name="exclusionsNS">
     <exclusions>
-      <xsl:apply-templates select="//ctrl:exclude"/>
+      <xsl:apply-templates select="//ctrl:exclude" mode="exclusions"/>
     </exclusions>
   </xsl:variable>
 
   <xsl:variable name="exclusions" select="exsl:node-set($exclusionsNS)/*"/>
+
+  <xsl:variable name="startNS">
+    <xsl:apply-templates select="//rng:start" mode="names"/>
+  </xsl:variable>
+
+  <xsl:variable name="start" select="exsl:node-set($startNS)/*"/>
 
   <xsl:template match="/">
     <xsl:apply-templates/>
@@ -30,6 +37,12 @@
       <xsl:attribute name="datatypeLibrary">
 	<xsl:value-of select="'http://www.w3.org/2001/XMLSchema-datatypes'"/>
       </xsl:attribute>
+
+      <!-- Make sure the ns is specified -->
+      <xsl:attribute name="ns">
+	<xsl:value-of select="'http://docbook.org/docbook-ng/absinthe'"/>
+      </xsl:attribute>
+
       <xsl:copy-of select="@*"/>
 
       <xsl:text>&#10;</xsl:text>
@@ -39,106 +52,11 @@
       <xsl:comment> See http://docbook.org/docbook-ng/ </xsl:comment>
       <xsl:text>&#10;</xsl:text>
 
-      <xsl:for-each select="*">
-	<xsl:choose>
-	  <xsl:when test="self::rng:define and rng:element[@name]">
-	    <xsl:variable name="name" select="@name"/>
-	    <xsl:variable name="basename">
-	      <xsl:choose>
-		<xsl:when test="starts-with(@name, 'db.')">
-		  <xsl:value-of select="substring-after(@name, 'db.')"/>
-		</xsl:when>
-		<xsl:otherwise>
-		  <xsl:value-of select="@name"/>
-		</xsl:otherwise>
-	      </xsl:choose>
-	    </xsl:variable>
+      <rng:define name="version.attribute">
+	<rng:attribute name="version"/>
+      </rng:define>
 
-	    <xsl:variable name="ctrl:common-attributes"
-			  select="(//ctrl:common-attributes[@element=$basename]
-			           |//ctrl:common-attributes[@define=$name])[1]"/>
-	    <xsl:variable name="ctrl:common-linking"
-			  select="(//ctrl:common-linking[@element=$basename]
-			           |//ctrl:common-linking[@define=$name])[1]"/>
-	    <xsl:variable name="ctrl:role"
-			  select="(//ctrl:role[@element=$basename]
-			           |//ctrl:role[@define=$name])[1]"/>
-
-	    <xsl:if test="not($ctrl:role/@suppress)">
-	      <rng:define name="{$basename}.role.attrib">
-		<rng:optional>
-		  <rng:ref name="role.attribute"/>
-		</rng:optional>
-	      </rng:define>
-	    </xsl:if>
-
-	    <rng:define name="local.{$basename}.attrib">
-	      <rng:empty/>
-	    </rng:define>
-
-	    <rng:define name="{$basename}.attlist">
-	      <xsl:choose>
-		<xsl:when test="$ctrl:common-attributes/@suppress">
-		  <!-- nop -->
-		</xsl:when>
-		<xsl:when test="$ctrl:common-attributes">
-		  <rng:ref name="{$ctrl:common-attributes/@attributes}"/>
-		</xsl:when>
-		<xsl:otherwise>
-		  <rng:ref name="common.attributes"/>
-		</xsl:otherwise>
-	      </xsl:choose>
-
-	      <xsl:choose>
-		<xsl:when test="$ctrl:common-linking/@suppress">
-		  <!-- nop -->
-		</xsl:when>
-		<xsl:when test="$ctrl:common-linking">
-		  <rng:ref name="{$ctrl:common-linking/@attributes}"/>
-		</xsl:when>
-		<xsl:when test="key('defs',concat($basename,'.linkend.attrib'))
-			        or key('defs',concat($basename,'.linkends.attrib'))">
-		  <!-- no common linking attributes -->
-		</xsl:when>
-		<xsl:otherwise>
-		  <rng:ref name="common.linking.attributes"/>
-		</xsl:otherwise>
-	      </xsl:choose>
-
-	      <xsl:if test="not($ctrl:role/@suppress)">
-		<rng:ref name="{$basename}.role.attrib"/>
-	      </xsl:if>
-
-	      <xsl:for-each select="/rng:grammar/rng:define[not(@combine)]">
-		<xsl:if test="string-length(@name) &gt; 7
-                              and starts-with(@name,concat($basename,'.'))
-			      and substring(@name, string-length(@name)-6)
-                                  = '.attrib'">
-		  <rng:ref name="{@name}"/>
-		</xsl:if>
-		<xsl:if test="string-length(@name) &gt; 8
-                              and starts-with(@name,concat($basename,'.'))
-			      and substring(@name, string-length(@name)-7)
-                                  = '.attribs'">
-		  <rng:ref name="{@name}"/>
-		</xsl:if>
-	      </xsl:for-each>
-
-	      <rng:ref name="local.{$basename}.attrib"/>
-	    </rng:define>
-
-	    <xsl:apply-templates select="."/>
-	  </xsl:when>
-
-	  <xsl:when test="self::ctrl:*">
-	    <!-- suppress -->
-	  </xsl:when>
-
-	  <xsl:otherwise>
-	    <xsl:apply-templates select="."/>
-	  </xsl:otherwise>
-	</xsl:choose>
-      </xsl:for-each>
+      <xsl:apply-templates/>
     </xsl:copy>
   </xsl:template>
 
@@ -168,8 +86,8 @@
 	  </xsl:message>
 	  -->
 
-	  <s:rule context="{$name}">
-	    <s:assert test="not(.//{name(.)})">
+	  <s:rule context="db:{$name}">
+	    <s:assert test="not(.//db:{name(.)})">
 	      <xsl:value-of select="name(.)"/>
 	      <xsl:text> must not occur in the descendants of </xsl:text>
 	      <xsl:value-of select="$name"/>
@@ -178,25 +96,29 @@
 	</xsl:for-each>
       </xsl:for-each>
 
-      <rng:ref name="{$basename}.attlist"/>
+      <xsl:variable name="isStart">
+	<xsl:value-of select="0"/>
+	<xsl:for-each select="$start">
+	  <xsl:if test="local-name(.) = $name">1</xsl:if>
+	</xsl:for-each>
+      </xsl:variable>
+
+      <xsl:if test="$isStart &gt; 0">
+	<rng:optional>
+	  <rng:ref name="version.attribute"/>
+	</rng:optional>
+	<s:rule context="/db:{$name}">
+	  <s:assert test="@version">
+	    <xsl:text>The root element must have a version attribute.</xsl:text>
+	  </s:assert>
+	</s:rule>
+      </xsl:if>
+
       <xsl:apply-templates/>
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="rng:include">
-    <xsl:copy>
-      <xsl:copy-of select="@*"/>
-
-      <xsl:attribute name="href">
-        <xsl:value-of select="substring-before(@href, '.rnx')"/>
-        <xsl:text>.rng</xsl:text>
-      </xsl:attribute>
-
-      <xsl:apply-templates/>
-    </xsl:copy>
-  </xsl:template>
-
-  <xsl:template match="ctrl:exclude">
+  <xsl:template match="ctrl:exclude" mode="exclusions">
     <ctrl:exclusion>
       <ctrl:from>
 	<xsl:apply-templates select="key('defs', @from)" mode="names"/>

@@ -3,7 +3,8 @@
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:rng="http://relaxng.org/ns/structure/1.0"
                 xmlns:ctrl="http://nwalsh.com/xmlns/schema-control/"
-                exclude-result-prefixes="exsl ctrl"
+		xmlns:s="http://www.ascc.net/xml/schematron"
+                exclude-result-prefixes="exsl ctrl s rng"
                 version="1.0">
 
   <xsl:output method="html" encoding="utf-8" indent="yes"/>
@@ -76,6 +77,14 @@
     <li><em>text</em></li>
   </xsl:template>
 
+  <xsl:template match="rng:empty">
+    <li><em>EMPTY</em></li>
+  </xsl:template>
+
+  <xsl:template match="rng:notAllowed">
+    <li><em>not allowed</em></li>
+  </xsl:template>
+
   <xsl:template match="rng:element">
     <div class="element">
       <xsl:text>&lt;</xsl:text>
@@ -98,7 +107,15 @@
 	  </ul>
 	</xsl:otherwise>
       </xsl:choose>
+
+      <xsl:if test="s:rule">
+	<p>Additional rules apply.</p>
+      </xsl:if>
     </div>
+  </xsl:template>
+
+  <xsl:template match="s:*">
+    <!-- nop -->
   </xsl:template>
 
   <xsl:template match="rng:attribute">
@@ -119,26 +136,36 @@
   </xsl:template>
 
   <xsl:template match="rng:ref">
-    <xsl:if test="not(contains(@name,'attrib'))">
-      <li>
-	<xsl:choose>
-	  <xsl:when test="key('defs', @name)/rng:element">
-	    <xsl:text>&lt;</xsl:text>
-	    <a href="#{@name}">
-	      <xsl:value-of select="key('defs', @name)/rng:element/@name"/>
-	    </a>
-	    <xsl:text>&gt;</xsl:text>
-	    <xsl:if test="parent::rng:optional">*</xsl:if>
-	  </xsl:when>
-	  <xsl:otherwise>
-	    <a href="#{@name}">
-	      <xsl:value-of select="@name"/>
-	    </a>
-	    <xsl:if test="parent::rng:optional">*</xsl:if>
-	  </xsl:otherwise>
-	</xsl:choose>
-      </li>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="contains(@name,'attrib')">
+	<li>
+	  <a href="#{@name}">
+	    <xsl:value-of select="@name"/>
+	  </a>
+	  <xsl:if test="ancestor::rng:optional">*</xsl:if>
+	</li>
+      </xsl:when>
+      <xsl:otherwise>
+	<li>
+	  <xsl:choose>
+	    <xsl:when test="key('defs', @name)/rng:element">
+	      <xsl:text>&lt;</xsl:text>
+	      <a href="#{@name}">
+		<xsl:value-of select="key('defs', @name)/rng:element/@name"/>
+	      </a>
+	      <xsl:text>&gt;</xsl:text>
+	      <xsl:if test="parent::rng:optional">*</xsl:if>
+	    </xsl:when>
+	    <xsl:otherwise>
+	      <a href="#{@name}">
+		<xsl:value-of select="@name"/>
+	      </a>
+	      <xsl:if test="parent::rng:optional">*</xsl:if>
+	    </xsl:otherwise>
+	  </xsl:choose>
+	</li>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="rng:optional">
