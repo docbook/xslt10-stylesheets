@@ -55,7 +55,7 @@ element label.</para>
     </xsl:when>
     <xsl:when test="$preface.autolabel != 0">
       <xsl:choose>
-        <xsl:when test="$label.from.part != 0">
+        <xsl:when test="$label.from.part != 0 and ancestor::part">
           <xsl:number from="part" count="preface" format="1" level="any"/>
         </xsl:when>
         <xsl:otherwise>
@@ -73,7 +73,7 @@ element label.</para>
     </xsl:when>
     <xsl:when test="$chapter.autolabel != 0">
       <xsl:choose>
-        <xsl:when test="$label.from.part != 0">
+        <xsl:when test="$label.from.part != 0 and ancestor::part">
           <xsl:number from="part" count="chapter" format="1" level="any"/>
         </xsl:when>
         <xsl:otherwise>
@@ -91,7 +91,7 @@ element label.</para>
     </xsl:when>
     <xsl:when test="$appendix.autolabel != 0">
       <xsl:choose>
-        <xsl:when test="$label.from.part != 0">
+        <xsl:when test="$label.from.part != 0 and ancestor::part">
           <xsl:number from="part" count="appendix" format="A" level="any"/>
         </xsl:when>
         <xsl:otherwise>
