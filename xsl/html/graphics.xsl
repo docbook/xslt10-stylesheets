@@ -192,7 +192,7 @@
   <xsl:variable name="intrinsicwidth">
     <!-- This funny compound test works around a bug in XSLTC -->
     <xsl:choose>
-      <xsl:when test="$use.extensions != 0">
+      <xsl:when test="$use.extensions != 0 and $graphicsize.extension != 0">
         <xsl:choose>
           <xsl:when test="function-available('simg:getWidth')">
             <xsl:value-of select="simg:getWidth(simg:new($filename),
@@ -216,7 +216,7 @@
   <xsl:variable name="intrinsicdepth">
     <!-- This funny compound test works around a bug in XSLTC -->
     <xsl:choose>
-      <xsl:when test="$use.extensions != 0">
+      <xsl:when test="$use.extensions != 0 and $graphicsize.extension != 0">
         <xsl:choose>
           <xsl:when test="function-available('simg:getDepth')">
             <xsl:value-of select="simg:getDepth(simg:new($filename),
