@@ -13,7 +13,7 @@ usage = "Usage: %s xmlfile.xml xslfile.xsl [outputfile] [param1=val [param2=val]
 
 xmlfile = None
 xslfile = None
-outfile = None
+outfile = "-"
 params  = {}
 
 try:
@@ -65,11 +65,8 @@ def adjustColumnWidths(ctx, nodeset):
     except:
         pass
 
-    node = libxml2.xmlCore(nodeset[0])
     print "called with nodeset: "
-    print nodeset[0].name
-    print node
-    print "---"
+    print nodeset
 
     return ""
 
@@ -88,6 +85,8 @@ style = libxslt.parseStylesheetDoc(styledoc)
 doc = libxml2.parseFile(xmlfile)
 
 result = style.applyStylesheet(doc, params)
+
+style.saveResultToFilename(outfile, result, 0)
 
 style.freeStylesheet()
 doc.freeDoc()
