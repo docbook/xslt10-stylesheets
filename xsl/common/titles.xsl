@@ -566,7 +566,22 @@ title of the element. This does not include the label.
 <!-- ============================================================ -->
 
 <xsl:template match="*" mode="no.anchor.mode">
-  <xsl:apply-templates mode="no.anchor.mode"/>
+  <!-- Switch to normal mode if no links -->
+  <xsl:choose>
+    <xsl:when test="descendant-or-self::footnote or
+                    descendant-or-self::anchor or
+                    descendant-or-self::ulink or
+                    descendant-or-self::link or
+                    descendant-or-self::olink or
+                    descendant-or-self::xref or
+                    descendant-or-self::indexterm">
+
+      <xsl:apply-templates mode="no.anchor.mode"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="."/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="footnote" mode="no.anchor.mode">
