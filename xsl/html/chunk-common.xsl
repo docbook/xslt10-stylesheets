@@ -951,9 +951,13 @@ its parent.
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates/>
+      <xsl:apply-templates select="/" mode="process.root"/>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template match="*" mode="process.root">
+  <xsl:apply-templates select="."/>
 </xsl:template>
 
 <xsl:template match="set|book|part|preface|chapter|appendix
