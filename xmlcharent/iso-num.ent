@@ -29,7 +29,7 @@
 <!ENTITY num	"&#x0023;"> <!-- NUMBER SIGN -->
 <!ENTITY percnt	"&#x0025;"> <!-- PERCENT SIGN -->
 <!ENTITY amp	"&#38;#38;"> <!-- AMPERSAND -->
-<!ENTITY ast	"&#x002A;"> <!-- ASTERISK OPERATOR -->
+<!ENTITY ast	"&#x002A;"> <!-- ASTERISK -->
 <!ENTITY commat	"&#x0040;"> <!-- COMMERCIAL AT -->
 <!ENTITY lsqb	"&#x005B;"> <!-- LEFT SQUARE BRACKET -->
 <!ENTITY bsol	"&#x005C;"> <!-- REVERSE SOLIDUS -->
@@ -46,8 +46,8 @@
 <!ENTITY sect	"&#x00A7;"> <!-- SECTION SIGN -->
 <!ENTITY para	"&#x00B6;"> <!-- PILCROW SIGN -->
 <!ENTITY middot	"&#x00B7;"> <!-- MIDDLE DOT -->
-<!ENTITY larr	"&#x2190;"> <!-- LEFTWARDS DOUBLE ARROW -->
-<!ENTITY rarr	"&#x2192;"> <!-- RIGHTWARDS DOUBLE ARROW -->
+<!ENTITY larr	"&#x2190;"> <!-- LEFTWARDS ARROW -->
+<!ENTITY rarr	"&#x2192;"> <!-- RIGHTWARDS ARROW -->
 <!ENTITY uarr	"&#x2191;"> <!-- UPWARDS ARROW -->
 <!ENTITY darr	"&#x2193;"> <!-- DOWNWARDS ARROW -->
 <!ENTITY copy	"&#x00A9;"> <!-- COPYRIGHT SIGN -->
