@@ -81,6 +81,7 @@
 <!ENTITY list.item.spacing SYSTEM "../params/list.item.spacing.xml">
 <!ENTITY make.single.year.ranges SYSTEM "../params/make.single.year.ranges.xml">
 <!ENTITY make.year.ranges SYSTEM "../params/make.year.ranges.xml">
+<!ENTITY marker.section.level SYSTEM "../params/marker.section.level.xml">
 <!ENTITY monospace.font.family SYSTEM "../params/monospace.font.family.xml">
 <!ENTITY monospace.verbatim.properties SYSTEM "../params/monospace.verbatim.properties.xml">
 <!ENTITY nominal.table.width SYSTEM "../params/nominal.table.width.xml">

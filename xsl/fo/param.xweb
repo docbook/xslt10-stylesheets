@@ -351,6 +351,7 @@ zero by default, so this is simply the page-master region-left.
 &footer.rule;
 &header.content.properties;
 &footer.content.properties;
+&marker.section.level;
 </reference>
 
 <reference><title>Font Families</title>
@@ -585,6 +586,7 @@ around all these parameters.</para>
 <src:fragref linkend="make.index.markup.frag"/>
 <src:fragref linkend="make.single.year.ranges.frag"/>
 <src:fragref linkend="make.year.ranges.frag"/>
+<src:fragref linkend="marker.section.level.frag"/>
 <src:fragref linkend="menuchoice.menu.separator.frag"/>
 <src:fragref linkend="menuchoice.separator.frag"/>
 <src:fragref linkend="monospace.font.family.frag"/>
