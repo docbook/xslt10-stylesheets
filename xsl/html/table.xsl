@@ -141,6 +141,12 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="tgroup" name="tgroup">
+  <xsl:if test="not(@cols)">
+    <xsl:message terminate="yes">
+      <xsl:text>Error: CALS tables must specify the number of columns.</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
   <xsl:variable name="summary">
     <xsl:call-template name="dbhtml-attribute">
       <xsl:with-param name="pis"

@@ -139,6 +139,12 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <!-- ==================================================================== -->
 
 <xsl:template match="tgroup" name="tgroup">
+  <xsl:if test="not(@cols)">
+    <xsl:message terminate="yes">
+      <xsl:text>Error: CALS tables must specify the number of columns.</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
   <xsl:variable name="explicit.table.width">
     <xsl:call-template name="dbfo-attribute">
       <xsl:with-param name="pis"
