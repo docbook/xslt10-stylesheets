@@ -2,10 +2,19 @@ include ../../cvstools/Makefile.incl
 
 OLDVER=
 NEWVER=
+FMGO=-N
 
 distrib:
 	$(MAKE) -C ../spec SPECVER=$(NEWVER)
 	$(DTDDISTRIB) -d -v $(OLDVER) -n $(NEWVER)
+
+freshmeat:
+ifeq ($(NEWVER),)
+	@echo "You must specify the version (NEWVER)"
+else
+	$(XSLT) freshmeat.xsl freshmeat.xsl /tmp/fm-docbook-dtd version=$(NEWVER)
+	grep -v "<?xml" /tmp/fm-docbook-dtd | freshmeat-submit $(FMGO)
+endif
 
 doc:
 ifeq ($(NEWVER),)
