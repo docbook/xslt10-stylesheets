@@ -81,20 +81,23 @@ in default.encoding, set this parameter to value <literal>native</literal>.
   <xsl:param name="encoding" select="$default.encoding"/>
   <xsl:param name="indent" select="'no'"/>
   <xsl:param name="content" select="''"/>
+  <xsl:param name="quiet" select="0"/>
 
-  <xsl:message>
-    <xsl:text>Writing </xsl:text>
-    <xsl:value-of select="$filename"/>
-    <xsl:if test="name(.) != ''">
-      <xsl:text> for </xsl:text>
-      <xsl:value-of select="name(.)"/>
-      <xsl:if test="@id">
-        <xsl:text>(</xsl:text>
-        <xsl:value-of select="@id"/>
-        <xsl:text>)</xsl:text>
+  <xsl:if test="$quiet = 0">
+    <xsl:message>
+      <xsl:text>Writing </xsl:text>
+      <xsl:value-of select="$filename"/>
+      <xsl:if test="name(.) != ''">
+        <xsl:text> for </xsl:text>
+        <xsl:value-of select="name(.)"/>
+        <xsl:if test="@id">
+          <xsl:text>(</xsl:text>
+          <xsl:value-of select="@id"/>
+          <xsl:text>)</xsl:text>
+        </xsl:if>
       </xsl:if>
-    </xsl:if>
-  </xsl:message>
+    </xsl:message>
+  </xsl:if>
 
   <xsl:choose>
     <xsl:when test="element-available('exsl:document')">
