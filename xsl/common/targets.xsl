@@ -217,6 +217,14 @@ document output.
   <xsl:call-template name="div"/>
 </xsl:template>
 
+<xsl:template match="bibliography|bibliodiv" mode="olink.mode">
+  <xsl:call-template name="div"/>
+</xsl:template>
+
+<xsl:template match="biblioentry|bibliomixed" mode="olink.mode">
+  <xsl:call-template name="obj"/>
+</xsl:template>
+
 <xsl:template match="refentry" mode="olink.mode">
   <xsl:call-template name="div"/>
 </xsl:template>
