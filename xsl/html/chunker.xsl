@@ -49,7 +49,7 @@
 
 <xsl:template name="write.chunk">
   <xsl:param name="filename" select="''"/>
-  <xsl:param name="method" select="'html'"/>
+  <xsl:param name="method" select="$output.method"/>
   <xsl:param name="encoding" select="$default.encoding"/>
   <xsl:param name="indent" select="'no'"/>
   <xsl:param name="content" select="''"/>
@@ -108,7 +108,7 @@
 
 <xsl:template name="write.chunk.with.doctype">
   <xsl:param name="filename" select="''"/>
-  <xsl:param name="method" select="'html'"/>
+  <xsl:param name="method" select="$output.method"/>
   <xsl:param name="encoding" select="$default.encoding"/>
   <xsl:param name="indent" select="'no'"/>
   <xsl:param name="doctype-public" select="''"/>
