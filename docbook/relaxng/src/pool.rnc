@@ -4576,7 +4576,7 @@ div {
 
 # ======================================================================
 
-db.computeroutput.contentmodel = (db.all.inlines*)
+db.computeroutput.inlines = db.all.inlines
 
 # ======================================================================
 
@@ -4596,7 +4596,7 @@ div {
    db.computeroutput =
       element computeroutput {
          db.computeroutput.attlist,
-         db.computeroutput.contentmodel
+         db.computeroutput.inlines*
       }
 }
 
@@ -5410,7 +5410,7 @@ div {
 
 # ======================================================================
 
-prompt.inlines = (db._text)
+db.prompt.inlines = db._text
 
 # ======================================================================
 
@@ -5431,9 +5431,13 @@ div {
    db.prompt =
       element prompt {
          db.prompt.attlist,
-         prompt.inlines*
+         db.prompt.inlines*
       }
 }
+
+# ======================================================================
+
+db.replaceable.inlines = db._text
 
 # ======================================================================
 
@@ -5457,7 +5461,7 @@ div {
    db.replaceable =
       element replaceable {
          db.replaceable.attlist,
-         db._text
+         db.replaceable.inlines*
       }
 }
 
@@ -5549,6 +5553,10 @@ div {
 
 # ======================================================================
 
+db.systemitem.inlines = db._text
+
+# ======================================================================
+
 [
    db:refname [ "systemitem" ]
    db:refpurpose [ "" ]
@@ -5590,7 +5598,7 @@ div {
    db.systemitem =
       element systemitem {
          db.systemitem.attlist,
-         db._text
+         db.systemitem.inlines*
       }
 }
 
@@ -5665,7 +5673,7 @@ div {
 
 # ======================================================================
 
-userinput.inlines = db.all.inlines
+db.userinput.inlines = db.all.inlines
 
 # ======================================================================
 
@@ -5685,7 +5693,7 @@ div {
    db.userinput =
       element userinput {
          db.userinput.attlist,
-         userinput.inlines*
+         db.userinput.inlines*
       }
 }
 
