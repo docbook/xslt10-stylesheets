@@ -72,6 +72,10 @@
   <xsl:variable name="key"
                 select="i:group-index(&primary;)"/>
 
+  <xsl:variable name="lang">
+    <xsl:call-template name="l10n.language"/>
+  </xsl:variable>
+
   <xsl:if test="key('group-code', $key)[&scope;]
                 [count(.|key('primary', &primary;)[&scope;][1]) = 1]">
     <div class="indexdiv">
@@ -82,7 +86,7 @@
         <xsl:apply-templates select="key('group-code', $key)[&scope;]
                                      [count(.|key('primary', &primary;)[&scope;][1])=1]"
                              mode="index-primary">
-          <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
+          <xsl:sort select="&primary;" lang="{$lang}"/>
           <xsl:with-param name="scope" select="$scope"/>
           <xsl:with-param name="role" select="$role"/>
           <xsl:with-param name="type" select="$type"/>
