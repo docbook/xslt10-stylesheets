@@ -1,0 +1,23 @@
+<refentry id="variablelist.as.table">
+<refmeta>
+<refentrytitle>variablelist.as.table</refentrytitle>
+<refmiscinfo role="type">boolean</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>variablelist.as.table</refname>
+<refpurpose>Format segmented lists as tables?</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='variablelist.as.table.frag'>
+<xsl:param name="variablelist.as.table" select="0"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>If non-zero, <sgmltag>variablelist</sgmltag>s will be formatted as
+tables.</para>
+
+</refsect1>
+</refentry>
