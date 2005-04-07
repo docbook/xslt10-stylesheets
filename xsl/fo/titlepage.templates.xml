@@ -37,7 +37,7 @@
 
     <title t:named-template="component.title"
 	   param:node="ancestor-or-self::article[1]"
-	   keep-with-next="always"
+	   keep-with-next.within-column="always"
 	   font-size="&hsize5;"
 	   font-weight="bold"/>
 
@@ -139,12 +139,12 @@
 		space-before="&hsize4space;"
 		font-family="{$title.fontset}"/>
       <corpauthor font-size="&hsize3;"
-		  keep-with-next="always"
+		  keep-with-next.within-column="always"
 		  space-before="2in"/>
       <authorgroup space-before="2in"/>
       <author font-size="&hsize3;"
 	      space-before="&hsize2space;"
-	      keep-with-next="always"/>
+	      keep-with-next.within-column="always"/>
     </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
