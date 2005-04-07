@@ -83,12 +83,12 @@
 <xsl:attribute-set name="colophon.titlepage.verso.style"/>
 
 <xsl:attribute-set name="section.titlepage.recto.style">
-  <xsl:attribute name="keep-together">always</xsl:attribute>
+  <xsl:attribute name="keep-together.within-column">always</xsl:attribute>
 </xsl:attribute-set>
 
 <xsl:attribute-set name="section.titlepage.verso.style">
-  <xsl:attribute name="keep-together">always</xsl:attribute>
-  <xsl:attribute name="keep-with-next">always</xsl:attribute>
+  <xsl:attribute name="keep-together.within-column">always</xsl:attribute>
+  <xsl:attribute name="keep-with-next.within-column">always</xsl:attribute>
 </xsl:attribute-set>
 
 <xsl:attribute-set name="sect1.titlepage.recto.style"

@@ -40,7 +40,7 @@
     <xsl:if test=".//footnote">
       <fo:block font-family="{$body.fontset}"
                 font-size="{$footnote.font.size}"
-                keep-with-previous="always">
+                keep-with-previous.within-column="always">
         <xsl:apply-templates select=".//footnote" mode="table.footnote.mode"/>
       </fo:block>
     </xsl:if>

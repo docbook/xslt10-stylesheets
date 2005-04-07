@@ -105,7 +105,7 @@
   <fo:block id="{$id}"
             xsl:use-attribute-sets="nongraphical.admonition.properties">
     <xsl:if test="$admon.textlabel != 0 or title">
-      <fo:block keep-with-next='always'
+      <fo:block keep-with-next.within-column='always'
                 xsl:use-attribute-sets="admonition.title.properties">
          <xsl:apply-templates select="." mode="object.title.markup"/>
       </fo:block>
