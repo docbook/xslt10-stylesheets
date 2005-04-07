@@ -33,7 +33,7 @@ website.rnc: ../dtd/website.dtd
 	$(SED) $(SED_OPTS) 's/start \+= \+webpage \+| \+article/start = webpage/' $@
 
 ../dtd/website.dtd:
-	make -C ../dtd
+	$(MAKE) -C ../dtd
 
 clean:
 	rm -f \
