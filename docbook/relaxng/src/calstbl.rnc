@@ -209,8 +209,22 @@ db.rowheader.attribute =
 db.align.attribute =
   attribute align { "center" | "char" | "justify" | "left" | "right" }
 db.valign.attribute = attribute valign { "bottom" | "middle" | "top" }
-db.spanname.attribute = attribute spanname { text }
+
+db.specify-col-by-colname.attributes = attribute colname { text }
+db.specify-col-by-namest.attributes = attribute namest { text }
+db.specify-span-by-spanspec.attributes = attribute spanname { text }
+db.specify-span-directly.attributes =
+   attribute namest {text }
+ & attribute nameend { text }
+
+db.column-spec.attributes =
+   db.specify-col-by-colname.attributes
+ | db.specify-col-by-namest.attributes
+ | db.specify-span-by-spanspec.attributes
+ | db.specify-span-directly.attributes
+
 db.colname.attribute = attribute colname { text }
+db.spanname.attribute = attribute spanname { text }
 
 # ======================================================================
 
@@ -289,9 +303,9 @@ div {
       db.spanspec.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
+    & db.spanname.attribute
     & attribute namest { text }
     & attribute nameend { text }
-    & db.spanname.attribute
     & db.char.attribute?
     & db.colsep.attribute?
     & db.charoff.attribute?
@@ -413,15 +427,12 @@ div {
       db.entry.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute nameend { text }?
     & db.valign.attribute?
     & db.char.attribute?
     & db.colsep.attribute?
     & db.charoff.attribute?
     & attribute morerows { xsd:integer }?
-    & attribute spanname { text }?
-    & attribute namest { text }?
-    & db.colname.attribute?
+    & db.column-spec.attributes?
     & db.rowsep.attribute?
     & attribute rotate { text }?
     & db.align.attribute?
@@ -446,16 +457,13 @@ div {
       db.entrytbl.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute nameend { text }?
     & db.char.attribute?
     & db.charoff.attribute?
-    & attribute spanname { text }?
-    & attribute namest { text }?
+    & db.column-spec.attributes?
     & attribute tgroupstyle { text }?
     & attribute cols { xsd:integer }?
     & db.colsep.attribute?
     & db.rowsep.attribute?
-    & db.colname.attribute?
     & db.align.attribute?
 
    db.entrytbl =
