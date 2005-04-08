@@ -13,13 +13,24 @@
 <keywords>Norman Walsh, DSSSL, SGML, XML, DocBook, Website</keywords>
 </head>
 
-<para> This small, somewhat contrived website demonstrates the
+<para>This small, somewhat contrived website demonstrates the
 Website document type. Website provides a system for building static
 Websites from XML content.</para>
 
-<para>A <ulink url="txtindex.html">text-only</ulink> version is also
-available, demonstrating how multiple presentations can be derived from
-the same sources.</para>
+<note>
+  <para>Though this "site" remains a good example of a Website
+  instance, the how-to information here is no longer actively
+  maintained. For more up-to-date information, see the <ulink
+  url="http://sagehill.net/docbookxsl/Website.html">Website</ulink>
+  chapter in Bob Stayton's book <ulink
+  url="http://sagehill.net/book-description.html">DocBook XSL: The
+  Complete Guide</ulink>.</para>
+</note>
+
+<para>Both <ulink url="index.html">tabular</ulink> and <ulink
+url="n-index.html">non-tabular</ulink> versions are available,
+demonstrating how multiple presentations can be derived from the same
+sources.</para>
 
 <webtoc/>
 
@@ -27,7 +38,7 @@ the same sources.</para>
 
 <para>A website is a collection of pages organized, for the purposes of
 navigation, into one or more hierarchies. In Website, each page is a
-separate XML document authored according to the Website DTD, a customization
+separate XML document authored according to the Website schema/DTD, a customization
 of <ulink url="http://www.oasis-open.org/docbook/">DocBook</ulink>.</para>
 
 <para>Website imposes the following additional constraints:</para>
@@ -46,19 +57,26 @@ that don't appear in the navigational hierarchy at all.</para>
 
 <section><title>Requirements</title>
 
-<para>In order to build a website with Website, you must have:</para>
+<para>In order to build a website with DocBook Website, you must have,
+at a minimum:</para>
 
 <itemizedlist>
-<listitem><para>The
-<ulink url="http://www.oasis-open.org/docbook/xml/4.1.2/">DocBook XML
-V4.1.2</ulink> DTD.
-</para></listitem>
-<listitem><para>An XSLT processor.
-</para></listitem>
-<listitem><para>The <ulink url="http://nwalsh.com/docbook/xsl/">DocBook
-XSL Stylesheets</ulink>.</para>
+<listitem><para>The Website DTD (either
+<filename>website.dtd</filename> or
+<filename>website-full.dtd</filename>) OR the Website RELAX NG schema
+(<filename>website.rnc</filename> or
+<filename>website-full.rnc</filename>).</para></listitem>
+<listitem><para>The <ulink
+url="http://www.oasis-open.org/docbook/xml/4.4/">DocBook XML
+V4.4</ulink> DTD (if you want to use
+<filename>website-full.dtd</filename>).</para></listitem>
+<listitem><para>The Website XSL stylesheets.</para></listitem>
+<listitem><para>The <ulink
+url="http://docbook.sourceforge.net/release/xsl/">DocBook XSL
+Stylesheets</ulink> (which are imported by the Website XSL
+stylesheets).</para>
 </listitem>
-<listitem><para>The Website DTD and stylesheets.
+<listitem><para>An XSLT engine such as Saxon or xsltproc.
 </para></listitem>
 </itemizedlist>
 
