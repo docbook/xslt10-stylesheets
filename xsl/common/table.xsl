@@ -256,7 +256,7 @@ or 0 (the empty string)</para>
   <xsl:variable name="tgroup" select="$row/ancestor::tgroup[1]"/>
 
   <xsl:variable name="table" select="($tgroup/ancestor::table
-                                     |$tgroup/ancestor::informaltable)[1]"/>
+                                     |$tgroup/ancestor::informaltable)[last()]"/>
 
   <xsl:variable name="entry.value">
     <xsl:call-template name="get-attribute">
@@ -357,6 +357,15 @@ or 0 (the empty string)</para>
     </xsl:choose>
   </xsl:variable>
 
+  <xsl:variable name="calc.colvalue">
+    <xsl:if test="$colnum &gt; 0">
+      <xsl:call-template name="colnum.colspec">
+        <xsl:with-param name="colnum" select="$colnum"/>
+        <xsl:with-param name="attribute" select="$attribute"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="$entry.value != ''">
       <xsl:value-of select="$entry.value"/>
@@ -364,33 +373,20 @@ or 0 (the empty string)</para>
     <xsl:when test="$row.value != ''">
       <xsl:value-of select="$row.value"/>
     </xsl:when>
-    <xsl:when test="$tgroup.value != ''">
-      <xsl:value-of select="$tgroup.value"/>
-    </xsl:when>
-    <xsl:when test="$table.value != ''">
-      <xsl:value-of select="$table.value"/>
-    </xsl:when>
     <xsl:when test="$span.value != ''">
       <xsl:value-of select="$span.value"/>
     </xsl:when>
     <xsl:when test="$namest.value != ''">
       <xsl:value-of select="$namest.value"/>
     </xsl:when>
-    <xsl:when test="$colnum &gt; 0">
-      <xsl:variable name="calc.colvalue">
-        <xsl:call-template name="colnum.colspec">
-          <xsl:with-param name="colnum" select="$colnum"/>
-          <xsl:with-param name="attribute" select="$attribute"/>
-        </xsl:call-template>
-      </xsl:variable>
-      <xsl:choose>
-        <xsl:when test="$calc.colvalue != ''">
-          <xsl:value-of select="$calc.colvalue"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$default.value"/>
-        </xsl:otherwise>
-      </xsl:choose>
+    <xsl:when test="$calc.colvalue != ''">
+      <xsl:value-of select="$calc.colvalue"/>
+    </xsl:when>
+    <xsl:when test="$tgroup.value != ''">
+      <xsl:value-of select="$tgroup.value"/>
+    </xsl:when>
+    <xsl:when test="$table.value != ''">
+      <xsl:value-of select="$table.value"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="$default.value"/>
