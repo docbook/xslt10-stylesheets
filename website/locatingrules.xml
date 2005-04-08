@@ -8,7 +8,7 @@
 <!-- "website.rnc". -->
 
 <locatingRules xmlns="http://thaiopensource.com/ns/locating-rules/1.0">
-  <documentElement prefix="" localName="webpage" uri="website.rnc"/>
+  <documentElement prefix="" localName="webpage" uri="./schema/relaxng/website.rnc"/>
 <!--   <documentElement prefix="" localName="webpage" uri="website-full.rnc"/> -->
 </locatingRules>
 
