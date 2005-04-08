@@ -13,9 +13,9 @@ RELEASE-NOTES.txt: RELEASE-NOTES.html
 distrib: all $(DISTRIB_DEPENDS)
 	$(CVS2LOG) -w
 ifeq ($(DIFFVER),)
-	$(MERGELOGS) > WhatsNew
+	$(MERGELOGS) > $(NEWSFILE)
 else
-	$(MERGELOGS) -v $(DIFFVER) > WhatsNew
+	$(MERGELOGS) -v $(DIFFVER) > $(NEWSFILE)
 endif
 
 newversion:
