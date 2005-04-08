@@ -15,6 +15,9 @@ DOC-LINK-STYLE=$(DOCBOOK_CVS)/xsl/docsrc/doc-link-docbook.xsl
 BROWSER=w3m
 BROWSER_OPTS=-dump
 
+# file containing "What's New" info generated from CVS log
+NEWSFILE=NEWS
+
 # determine RELVER automatically by:
 #
 #   - figuring out if VERSION file exists
@@ -75,9 +78,10 @@ ZIP_EXCLUDES = \
  \.\\\#.* \
  prj\.el \
  \.cvsignore \
- Makefile \
+ Makefile$$ \
+ Makefile[.] \
  README\.CVS
- 
+
 # specifies options to feed to "freshmeat-submit"
 FMGO=-N
 # SFRELID specifies Sourceforge release ID for current release.
