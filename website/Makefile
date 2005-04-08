@@ -7,7 +7,7 @@ DISTRO = website
 
 # value of DISTRIB_DEPENDS is a space-separated list of any
 # targets for this distro's "distrib" target to depend on
-DISTRIB_DEPENDS = example
+DISTRIB_DEPENDS = example RELEASE-NOTES.txt
 
 # value of DISTRIB_EXCLUDES is a space-separated list of any file
 # or directory names (regular expressions OK) that should be
