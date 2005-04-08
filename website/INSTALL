@@ -1,0 +1,25 @@
+$Id$
+
+INSTALL file for the DocBook Website distribution
+
+----------------------------------------------------------------------
+DTD installation
+----------------------------------------------------------------------
+Place the DTD files included in this distribution somewhere on
+your system. Adjust your XML and SGML catalog(s), if appropriate,
+such that they can find the included catalog.xml file.
+
+----------------------------------------------------------------------
+RELAX NG schema installation
+----------------------------------------------------------------------
+Place the *.rnc and *.rng files included in this distribution
+somewhere on your system. Adjust your schema locating rules, if
+appropriate, such that they can find the included
+locatingrules.xml file.
+
+----------------------------------------------------------------------
+XSL stylesheet installation
+----------------------------------------------------------------------
+Place the XSL files in this distribution somewhere on your
+system. Adjust your XML and SGML catalog(s), if appropriate, such
+that they can find the included catalog.xml file.
