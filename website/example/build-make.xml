@@ -17,8 +17,16 @@ you may have to tweak them a bit if you're using some other version of
 <listitem><para>Create your webpages and your <filename>layout.xml</filename>
 file.</para></listitem>
 
-<listitem><para>Create a skeletal <filename>Makefile</filename> like this:
-</para>
+<listitem><para>Create a skeletal <filename>Makefile</filename> like
+the one below.</para>
+
+<note>
+  <para>See the included <ulink
+  url="Makefile-example.txt">Makefile-example.txt</ulink> file for a
+  more detailed example of a real-world makefile. The
+  <filename>Makefile-example.txt</filename> file is the actual
+  makefile used to build the pages you are reading now.</para>
+</note>
 
 <programlisting><![CDATA[PROC=xsltproc
 STYLEDIR=../xsl

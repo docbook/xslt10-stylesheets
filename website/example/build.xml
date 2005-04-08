@@ -18,7 +18,7 @@
  <!-- Main stylesheets -->
  <property name="stylesheetHome" value="${docbookHome}/xsl"/>
 
- <!-- Website DTD and stylesheets -->
+ <!-- Website DTDs/schemas and stylesheets -->
  <property name="websiteHome" value="${docbookHome}/website"/>
 
  <!-- Main Docbook stylesheet -->

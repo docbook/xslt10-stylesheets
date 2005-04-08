@@ -7,9 +7,9 @@
 <para>This is just a test page.</para>
 <webtoc/>
 
-<para>This page uses <filename>website-full.dtd</filename><indexterm>
+<para>This page uses <filename>website-full.dtd</filename>/<filename>website-full.rnc</filename><indexterm>
 <primary><quote>Full</quote> website</primary></indexterm>. The <quote>full</quote>
-DTD is based on DocBook not Simplified DocBook. As such, it can include elements,
+DTD/RELAX NG schema is based on DocBook, not Simplified DocBook. As such, it can include elements,
 like <sgmltag>qandaset</sgmltag> and <sgmltag>index</sgmltag> not present in
 <quote>regular</quote> website.</para>
 

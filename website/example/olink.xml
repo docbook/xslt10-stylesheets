@@ -75,7 +75,16 @@ generated database file. If you use the default filename
 parameter on the command line.</para>
 </listitem>
 </orderedlist>
-<para>Here is a sample <filename>Makefile</filename> using xsltproc and XML catalogs:</para>
+<para>Below is a simple example <filename>Makefile</filename> (using
+xsltproc and XML catalogs) that does a olink-aware build of a
+website.</para>
+<note>
+  <para>See the included <ulink
+  url="Makefile-example.txt">Makefile-example.txt</ulink> file for a
+  more detailed example of a real-world makefile. The
+  <filename>Makefile-example.txt</filename> file is the actual
+  makefile used to build the pages you are reading now.</para>
+</note>
 <programlisting>
 PROC = XML_CATALOG_FILES=../catalog.xml  xsltproc
 
