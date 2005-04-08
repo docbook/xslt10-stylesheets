@@ -48,7 +48,7 @@
       </xsl:attribute>
       <xsl:attribute name="axf:outline-expand">false</xsl:attribute>
       <xsl:attribute name="axf:outline-title">
-        <xsl:value-of select="$title"/>
+        <xsl:value-of select="normalize-space($title)"/>
       </xsl:attribute>
     </xsl:if>
     <xsl:copy-of select="$title"/>
