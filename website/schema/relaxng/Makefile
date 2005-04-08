@@ -13,7 +13,7 @@ HTMLNS=http://www.w3.org/1999/xhtml
 SED=sed
 SED_OPTS=-i # edit files in place
 
-all: autolayout.rnc layout.rnc website.rnc website-full.rnc
+all: autolayout.rng layout.rng website.rng website-full.rng
 
 autolayout.rnc: autolayout.dtd
 	$(RUNTRANG) $< $@
@@ -35,19 +35,22 @@ website.rnc: ../dtd/website.dtd
 ../dtd/website.dtd:
 	$(MAKE) -C ../dtd
 
+%.rng: %.rnc
+	$(RUNTRANG) $< $@
+
 clean:
 	rm -f \
-	autolayout.rnc \
-	layout.rnc \
-	website.rnc \
-	website-full.rnc \
-	calstblx.rnc \
-	docbookx.rnc \
-	dbhierx.mod.rnc \
-	dbpoolx.mod.rnc \
-	extensions.mod.rnc \
-	forms.mod.rnc \
-	htmltblx.mod.rnc \
-	namespaces.mod.rnc \
-	rddl.mod.rnc \
-	website.mod.rnc
+	autolayout.rnc autolayout.rng\
+	layout.rnc layout.rng \
+	website.rnc website.rng \
+	website-full.rnc website-full.rng \
+	calstblx.rnc calstblx.rng \
+	docbookx.rnc docbookx.rng \
+	dbhierx.mod.rnc dbhierx.mod.rng \
+	dbpoolx.mod.rnc dbpoolx.mod.rng \
+	extensions.mod.rnc extensions.mod.rng \
+	forms.mod.rnc forms.mod.rng \
+	htmltblx.mod.rnc htmltblx.mod.rng \
+	namespaces.mod.rnc namespaces.mod.rng \
+	rddl.mod.rnc rddl.mod.rng \
+	website.mod.rnc website.mod.rng
