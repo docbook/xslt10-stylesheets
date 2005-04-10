@@ -80,10 +80,17 @@
         <fo:block id="{$id}">
           <xsl:call-template name="reference.titlepage"/>
         </fo:block>
+        <!-- Create one page sequence if no pagebreaks needed -->
+        <xsl:if test="$refentry.pagebreak = 0">
+          <xsl:apply-templates select="refentry"/>
+        </xsl:if>
       </fo:flow>
     </fo:page-sequence>
   </xsl:if>
-  <xsl:apply-templates select="partintro|refentry"/>
+  <xsl:apply-templates select="partintro"/>
+  <xsl:if test="$refentry.pagebreak != 0">
+    <xsl:apply-templates select="refentry"/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="reference" mode="reference.titlepage.mode">
@@ -151,7 +158,6 @@
         <xsl:with-param name="element" select="local-name(.)"/>
         <xsl:with-param name="master-reference" select="$master-reference"/>
       </xsl:call-template>
-
       <fo:block id="{$id}">
         <xsl:apply-templates select=".." mode="reference.titlepage.mode"/>
       </fo:block>
@@ -159,6 +165,10 @@
         <xsl:call-template name="partintro.titlepage"/>
       </xsl:if>
       <xsl:apply-templates/>
+      <!-- Create one page sequence if no pagebreaks needed -->
+      <xsl:if test="$refentry.pagebreak = 0">
+        <xsl:apply-templates select="../refentry"/>
+      </xsl:if>
     </fo:flow>
   </fo:page-sequence>
 </xsl:template>
@@ -186,7 +196,7 @@
 
   <xsl:choose>
     <xsl:when test="not(parent::*) or 
-                    parent::reference or 
+                    (parent::reference and $refentry.pagebreak != 0) or 
                     parent::part">
       <!-- make a page sequence -->
       <fo:page-sequence hyphenate="{$hyphenate}"
