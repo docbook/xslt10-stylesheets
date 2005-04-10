@@ -891,7 +891,9 @@
                   <a accesskey="t">
                     <xsl:attribute name="href">
                       <xsl:apply-templates select="/*[1]"
-                                           mode="recursive-chunk-filename"/>
+                                           mode="recursive-chunk-filename">
+                        <xsl:with-param name="recursive" select="true()"/>
+                      </xsl:apply-templates>
                       <xsl:text>-toc</xsl:text>
                       <xsl:value-of select="$html.ext"/>
                     </xsl:attribute>
