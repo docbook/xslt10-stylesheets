@@ -16,7 +16,12 @@
 
 <para>If non-zero (the default), each <sgmltag>refentry</sgmltag>
 element will start on a new page.  If zero, a page
-break will not be generated.
+break will not be generated between <sgmltag>refentry</sgmltag> elements.
+The exception is when the <sgmltag>refentry</sgmltag> elements are children of
+a <sgmltag>part</sgmltag> element, in which case the page breaks are always
+retained.  That is because a <sgmltag>part</sgmltag> element does not generate
+a page-sequence for its children, so each <sgmltag>refentry</sgmltag> must
+start its own page-sequence.
 </para>
 
 </refsect1>
