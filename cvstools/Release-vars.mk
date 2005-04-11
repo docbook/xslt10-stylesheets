@@ -78,6 +78,7 @@ ZIP_EXCLUDES = \
  \.\\\#.* \
  prj\.el \
  \.cvsignore \
+ MANIFEST.build \
  Makefile$$ \
  Makefile[.] \
  README\.CVS
