@@ -110,11 +110,16 @@ ifeq ($(shell test -d doc; echo $$?),0)
 	for file in $(ZIP_EXCLUDES); do \
 	  find . -print  | grep $$file   | cut -c3- >> $(TMP)/tar.exclude; \
 	done
-# tar up just the doc and docsrc dirs
-	tar cf - doc docsrc --exclude-from $(TMP)/tar.exclude | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); tar xf -)
-	cd $(TMP) && tar cf - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-doc-$(ZIPVER).tar.gz
-	cd $(TMP) && tar cf - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > docbook-$(DISTRO)-doc-$(ZIPVER).tar.bz2
-	cd $(TMP) && zip -q -rpD docbook-$(DISTRO)-doc-$(ZIPVER).zip docbook-$(DISTRO)-$(ZIPVER)
+# tar up just the doc and docsrc dirs & if an "images" dir exists,
+# mv it into the doc dir
+	tar cf - doc docsrc images --exclude-from $(TMP)/tar.exclude | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); tar xf -)
+	umask 022; cd $(TMP) && \
+	if [ -f docbook-$(DISTRO)-$(ZIPVER)/images ]; \
+	  then mv docbook-$(DISTRO)-$(ZIPVER)/images docbook-$(DISTRO)-$(ZIPVER)/doc; \
+	fi
+	umask 022; cd $(TMP) && tar cf - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-doc-$(ZIPVER).tar.gz
+	umask 022; cd $(TMP) && tar cf - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > docbook-$(DISTRO)-doc-$(ZIPVER).tar.bz2
+	umask 022; cd $(TMP) && zip -q -rpD docbook-$(DISTRO)-doc-$(ZIPVER).zip docbook-$(DISTRO)-$(ZIPVER)
 	rm -f $(TMP)/tar.exclude
 endif
 endif
