@@ -1,5 +1,5 @@
 <!-- ====================================================================== -->
-<!-- Website Extensions V2.5.0
+<!-- Website Extensions V2.6
      Copyright (C) 2002 Norman Walsh
      http://sourceforge.net/projects/docbook/
 
@@ -14,7 +14,7 @@
 <!ENTITY % local.para.class "|webtoc|rss">
 
 <!ENTITY % namespaces.mod
-           PUBLIC "-//Norman Walsh//DTD Website Namespaces Module V2.5.0//EN"
+           PUBLIC "-//Norman Walsh//DTD Website Namespaces Module V2.6//EN"
                   "namespaces.mod">
 %namespaces.mod;
 
@@ -47,5 +47,5 @@
 		| linespecific
 		%local.notation.class;">
 
-<!-- End of Website Extensions V2.5.0 ..................................... -->
+<!-- End of Website Extensions V2.6 ..................................... -->
 <!-- ...................................................................... -->
