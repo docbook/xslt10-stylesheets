@@ -36,8 +36,8 @@ website.dtd (based on Simplified DocBook) or website-full.dtd
 
 For example:
 
-  <!DOCTYPE website PUBLIC "-//Norman Walsh//DTD Website V2.5.1//EN"
-  "http://docbook.sourceforge.net/release/website/2.5.1/schema/dtd/website.dtd">
+  <!DOCTYPE website PUBLIC "-//Norman Walsh//DTD Website V2.6//EN"
+  "http://docbook.sourceforge.net/release/website/2.6/schema/dtd/website.dtd">
 
 IMPORTANT: The example above may not be up-to-date. For the
            current PUBLIC ID and URI see the actual website.dtd
