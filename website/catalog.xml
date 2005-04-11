@@ -1,147 +1,47 @@
 <?xml version="1.0"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
 
-<!--  XML Catalog file for Website. If you are already using
-      an XML catalog, you can just include this one by adding
-      an entry like this to your XML catalog file, editing the
-      path to match the location of your Website installation:
+<!--  XML Catalog file for DocBook Website -->
 
-    <nextCatalog catalog="/usr/share/xml/website-2.5.1/catalog.xml" />
--->
-
-<!-- Rewrite rules for the whole tree -->
-
-<rewriteURI uriStartString="http://docbook.sourceforge.net/release/website/2.5.1/schema/"
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.6/schema/"
             rewritePrefix="schema/"/>
 
-<rewriteURI uriStartString="http://docbook.sourceforge.net/release/website/2.5.1/xsl/"
+<rewriteURI uriStartString="http://docbook.sourceforge.net/release/website/current/xsl/"
             rewritePrefix="xsl/"/>
 
-<!-- Website DTD locations -->
+<rewriteURI uriStartString="http://docbook.sourceforge.net/release/website/2.6.0/xsl/"
+            rewritePrefix="xsl/"/>
 
-<group xml:base="schema/dtd/"
-       id="website-dtd"
-       prefer="public">
+<!-- the following are for older versions of Website DTD; the DTD is -->
+<!-- backward compatible, so we just remap the older URIs to the local URI -->
+<!-- of the current version; otherwise, users would need to manually change -->
+<!-- the URIs in all their existing Website document instances -->
 
-  <public
-    publicId="-//Norman Walsh//DTD Website V2.5.0//EN"
-    uri="website.dtd"/>
-    <!-- this could be the website-custom.dtd instead -->
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.5.0/schema/"
+            rewritePrefix="schema/"/>
 
-  <public
-    publicId="-//Norman Walsh//DTD Website Custom V2.5.0//EN"
-    uri="website-custom.dtd"/>
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.4.1/schema/"
+            rewritePrefix="schema/"/>
 
-  <public
-    publicId="-//Norman Walsh//DTD Website Full V2.5.1//EN"
-    uri="website-full.dtd"/>
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.4.0/schema/"
+            rewritePrefix="schema/"/>
 
-  <public
-    publicId="-//Norman Walsh//DTD Website Autolayout V2.5.0//EN"
-    uri="autolayout.dtd"/>
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.3/schema/"
+            rewritePrefix="schema/"/>
 
-  <public
-    publicId="-//Norman Walsh//DTD Website Layout V2.5.0//EN"
-    uri="layout.dtd"/>
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.2/schema/"
+            rewritePrefix="schema/"/>
 
-  <public
-    publicId="-//Norman Walsh//DTD Website Module V2.5.0//EN"
-    uri="website.mod"/>
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.1/schema/"
+            rewritePrefix="schema/"/>
 
-  <public
-    publicId="-//Norman Walsh//DTD Website Extensions Module V2.5.0//EN"
-    uri="extensions.mod"/>
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.1b1/schema/"
+            rewritePrefix="schema/"/>
 
-  <public
-    publicId="-//Norman Walsh//DTD Website Namespaces Module V2.5.0//EN"
-    uri="namespaces.mod"/>
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.0/schema/"
+            rewritePrefix="schema/"/>
 
-  <public
-    publicId="-//Norman Walsh//DTD Website RDDL Module V2.5.0//EN"
-    uri="rddl.mod"/>
-
-  <public
-    publicId="-//Norman Walsh//DTD Website Forms Module V2.5.0//EN"
-    uri="forms.mod"/>
-</group>
-
-<!-- Website RelaxNG locations -->
-
-<group xml:base="schema/relaxng/"
-       id="website-relaxng"
-       prefer="public">
-
-  <uri
-      name="autolayout.rng"
-      uri="autolayout.rng"/>
-
-  <uri
-      name="layout.rng"
-      uri="layout.rng"/>
-
-  <uri
-      name="website.rng"
-      uri="website.rng"/>
-
-  <uri
-      name="website-full.rng"
-      uri="website-full.rng"/>
-
-</group>
-
-<!-- website XSL locations -->
-
-<group xml:base="xsl/"
-       id="website-xsl">
-
-    <uri
-      name="autolayout.xsl"
-      uri="autolayout.xsl"/>
-
-    <uri
-      name="website.xsl"
-      uri="website.xsl"/>
-
-    <uri
-      name="tabular.xsl"
-      uri="tabular.xsl"/>
-
-    <uri
-      name="chunk-tabular.xsl"
-      uri="chunk-tabular.xsl"/>
-
-    <uri
-      name="chunk-common.xsl"
-      uri="chunk-common.xsl"/>
-
-    <uri
-      name="chunk-website.xsl"
-      uri="chunk-website.xsl"/>
-
-    <uri
-      name="makefile-dep.xsl"
-      uri="makefile-dep.xsl"/>
-
-</group>
-
-<!-- You can also put entries like these into your
-     main catalog.xml file to map web URLs to local
-     paths to avoid pulling docbook files over the web.
-     Change the '/usr/share/xml' path to match the
-     location on your local system.
--->
-
-<!-- Map web references to DocBook XSL -->
-<!--
-  <rewriteURI
-    uriStartString="http://docbook.sourceforge.net/release/xsl/current/"
-    rewritePrefix="/usr/share/xml/docbook-xsl-1.68.1/"/>
--->
-
-<!-- Map web references to DocBook 4.4 DTD -->
-<!--
-   <nextCatalog catalog="/usr/share/xml/docbook44/catalog.xml" />
-
--->
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.0b1/schema/"
+            rewritePrefix="schema/"/>
 
 </catalog>
