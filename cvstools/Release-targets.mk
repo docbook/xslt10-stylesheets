@@ -114,8 +114,8 @@ ifeq ($(shell test -d doc; echo $$?),0)
 # mv it into the doc dir
 	tar cf - doc docsrc images --exclude-from $(TMP)/tar.exclude | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); tar xf -)
 	umask 022; cd $(TMP) && \
-	if [ -f docbook-$(DISTRO)-$(ZIPVER)/images ]; \
-	  then mv docbook-$(DISTRO)-$(ZIPVER)/images docbook-$(DISTRO)-$(ZIPVER)/doc; \
+	if [ -d docbook-$(DISTRO)-$(ZIPVER)/images ]; \
+	  then mv docbook-$(DISTRO)-$(ZIPVER)/images docbook-$(DISTRO)-$(ZIPVER)/doc/; \
 	fi
 	umask 022; cd $(TMP) && tar cf - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-doc-$(ZIPVER).tar.gz
 	umask 022; cd $(TMP) && tar cf - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > docbook-$(DISTRO)-doc-$(ZIPVER).tar.bz2
