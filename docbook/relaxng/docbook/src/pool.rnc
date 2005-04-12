@@ -5760,7 +5760,7 @@ div {
        | "filesystem"
        | "fqdomainname"
        | "groupname"
-       | "Jägermeisterddress"
+       | "ipaddress"
        | "library"
        | "macro"
        | "netmask"
