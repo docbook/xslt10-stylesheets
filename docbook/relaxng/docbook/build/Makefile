@@ -6,13 +6,14 @@ MODULES=$(filter-out docbook.rnx,$(filter-out sdocbook.rnx,$(filter-out slides-n
 
 TMPDIR=/tmp/
 TMPFILE=$(TMPDIR)cleanup.rng
-AUGMENT=../tools/augment.xsl
-INCLUDE=../tools/include.xsl
-EXPAND=../tools/expand.xsl
-GROUP=../tools/group.xsl
-FLATTEN=../tools/flatten.xsl
-CLASSIFY=../tools/classify.xsl
-CLEANUP=../tools/cleanup.pl
+TOOLS=../../tools
+AUGMENT=$(TOOLS)/augment.xsl
+INCLUDE=$(TOOLS)/include.xsl
+EXPAND=$(TOOLS)/expand.xsl
+GROUP=$(TOOLS)/group.xsl
+FLATTEN=$(TOOLS)/flatten.xsl
+CLASSIFY=$(TOOLS)/classify.xsl
+CLEANUP=$(TOOLS)/cleanup.pl
 
 .SUFFIXES: .rnc .rng .rnx
 

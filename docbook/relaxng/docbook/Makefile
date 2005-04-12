@@ -4,6 +4,7 @@ VPATH=src
 .PHONY: tests html
 
 RNCFILES=$(subst $(VPATH)/,,$(wildcard $(VPATH)/*.rnc))
+TOOLS=../tools
 
 all: docbook.rng docbook.dtd
 
@@ -11,7 +12,7 @@ all: docbook.rng docbook.dtd
 
 tests:
 	mkdir -p tests tests/passed
-	cd tests && ../tools/runtests
+	cd tests && ../$(TOOLS)/runtests
 
 # ============================================================
 
@@ -19,14 +20,14 @@ docbook.rng: $(RNCFILES)
 	$(MAKE) -C build $@
 	trang $@ docbook.rnc
 
-docbook-rng.xml: docbook.rng tools/rngdocxml.xsl
-	xsltproc -output $@ tools/rngdocxml.xsl $<
+docbook-rng.xml: docbook.rng $(TOOLS)/rngdocxml.xsl
+	xsltproc -output $@ $(TOOLS)/rngdocxml.xsl $<
 
-docbook-dtd.xml: docbook-rng.xml tools/doc2dtd.xsl
-	xsltproc -output $@ tools/doc2dtd.xsl $<
+docbook-dtd.xml: docbook-rng.xml $(TOOLS)/doc2dtd.xsl
+	xsltproc -output $@ $(TOOLS)/doc2dtd.xsl $<
 
-docbook.dtd: docbook-dtd.xml tools/xml2dtd.xsl
-	xsltproc -output $@ tools/xml2dtd.xsl $<
+docbook.dtd: docbook-dtd.xml $(TOOLS)/xml2dtd.xsl
+	xsltproc -output $@ $(TOOLS)/xml2dtd.xsl $<
 
 # ============================================================
 

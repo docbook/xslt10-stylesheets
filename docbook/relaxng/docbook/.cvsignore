@@ -1,4 +1,6 @@
-*.rng
-html
-docbook-rng.xml
 RELEASES
+docbook-dtd.xml
+docbook-rng.xml
+docbook.dtd
+docbook.rnc
+docbook.rng
