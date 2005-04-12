@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bibliography xmlns="http://docbook.org/docbook-ng" version="hard cider">
+<info><title>Unit Test: bibliography.001</title>
+
+<releaseinfo role="CVS">$Id$</releaseinfo>
+<author><personname><firstname>Norman</firstname><surname>Walsh</surname></personname><affiliation><address><email>ndw@nwalsh.com</email></address></affiliation></author>
+</info>
+
+<biblioentry>
+  <abbrev>AhoSethiUllman96</abbrev>
+  <authorgroup>
+    <author><personname><firstname>Alfred V.</firstname><surname>Aho</surname></personname></author>  
+    <author><personname><firstname>Ravi</firstname><surname>Sethi</surname></personname></author>
+    <author><personname><firstname>Jeffrey D.</firstname><surname>Ullman</surname></personname></author>
+  </authorgroup>
+      
+  <publisher>
+    <publishername>Addison-Wesley Publishing Company</publishername>
+  </publisher>
+  <copyright><year>1996</year>
+             <holder>Bell Telephone Laboratories, Inc.</holder></copyright>
+  <biblioid class="isbn">0-201-10088-6</biblioid>    
+  <editor><personname><firstname>James T.</firstname><surname>DeWolf</surname></personname></editor>
+</biblioentry>
+
+<biblioentry>
+  <abbrev>AhoSethiUllman96</abbrev>
+  <authorgroup>
+    <author><personname><firstname>Alfred V.</firstname><surname>Aho</surname></personname></author>  
+    <author><personname><firstname>Ravi</firstname><surname>Sethi</surname></personname></author>
+    <author><personname><firstname>Jeffrey D.</firstname><surname>Ullman</surname></personname></author>
+  </authorgroup>
+  <citetitle>Compilers, Principles, Techniques, and Tools</citetitle>
+  <publisher>
+    <publishername>Addison-Wesley Publishing Company</publishername>
+  </publisher>
+  <copyright><year>1996</year>
+             <holder>Bell Telephone Laboratories, Inc.</holder></copyright>
+  <biblioid class="isbn">0-201-10088-6</biblioid>    
+  <editor><personname><firstname>James T.</firstname><surname>DeWolf</surname></personname></editor>
+</biblioentry>
+
+<biblioentry xml:id="Walsh97">
+  <abbrev>Walsh97</abbrev>
+  <biblioset relation="article">
+    
+    <author><personname><surname>Walsh</surname><firstname>Norman</firstname></personname></author>
+    <pubdate>1997</pubdate>
+    <copyright><year>1997</year><holder>ArborText, Inc.</holder></copyright>
+    <pagenums>97-108</pagenums>
+  </biblioset>
+  <biblioset relation="journal">
+    
+    <publisher>
+      <publishername>O'Reilly &amp; Associates, Inc.</publishername>
+    </publisher>
+    <biblioid class="issn">1085-2301</biblioid>
+    <editor><personname><firstname>Dan</firstname><surname>Connolly</surname></personname></editor>
+  </biblioset>
+</biblioentry>
+
+<biblioentry>
+<abbrev>Abbrev</abbrev>
+
+
+<abstract><para>
+Abstract, abstract, abstract. Abstract, abstract, abstract. 
+Abstract, abstract, abstract. Abstract, abstract, abstract. 
+Abstract, abstract, abstract. Abstract, abstract, abstract. 
+Abstract, abstract, abstract. Abstract, abstract, abstract. 
+Abstract, abstract, abstract. Abstract, abstract, abstract. 
+Abstract, abstract, abstract. Abstract, abstract, abstract. 
+</para></abstract>
+<address>Any Street
+Anywhere, XX 99999
+USA</address>
+<affiliation>
+<shortaffil>shortaffil</shortaffil>
+<jobtitle>jobtitle</jobtitle>
+<orgname>orgname</orgname>
+<orgdiv>orgdiv</orgdiv>
+<address>Any Street
+Anywhere, XX 99999
+USA</address>
+</affiliation>
+<artpagenums>ArtPageNums</artpagenums>
+<author><personname><firstname>AuthorFirstname</firstname><surname>AuthorSurname</surname></personname></author>
+<personblurb>
+<para>
+AuthorBlurb, authorblurb, authorblurb. AuthorBlurb, authorblurb, authorblurb. 
+AuthorBlurb, authorblurb, authorblurb. AuthorBlurb, authorblurb, authorblurb. 
+AuthorBlurb, authorblurb, authorblurb. AuthorBlurb, authorblurb, authorblurb. 
+AuthorBlurb, authorblurb, authorblurb. AuthorBlurb, authorblurb, authorblurb. 
+AuthorBlurb, authorblurb, authorblurb. AuthorBlurb, authorblurb, authorblurb. 
+</para></personblurb>
+<!--<authorgroup>AuthorGroup</authorgroup>-->
+<authorinitials>AuthorInitials</authorinitials>
+<collab><orgname role="collabname">The names of some collaborators</orgname>
+<affiliation>
+<shortaffil>shortaffil</shortaffil>
+<jobtitle>jobtitle</jobtitle>
+<orgname>orgname</orgname>
+<orgdiv>orgdiv</orgdiv>
+<address>Any Street
+Anywhere, XX 99999
+USA</address>
+</affiliation></collab>
+<confgroup>
+<confdates>confdates</confdates>
+<conftitle>conftitle</conftitle>
+<confnum>confnum</confnum>
+<address>Any Street
+Anywhere, XX 99999
+USA</address>
+<confsponsor>confsponsor</confsponsor>
+</confgroup>
+
+<othercredit role="contractsponsor"><orgname>ContractSponsor</orgname><contrib role="contractnum">ContractNum</contrib></othercredit>
+<othercredit><orgname>???</orgname><contrib>Contrib</contrib></othercredit>
+<copyright><year>1998</year><holder>Copyright holder</holder></copyright>
+<!--<corpauthor>CorpAuthor</corpauthor>-->
+<orgname>CorpName</orgname>
+<date>Date</date>
+<edition>Edition</edition>
+<editor><personname><firstname>EditorFirstName</firstname><surname>EditorSurname</surname></personname></editor>
+<personname><firstname>FirstName</firstname><honorific>Honorific</honorific><lineage>Lineage</lineage><othername>OtherName</othername><surname>Surname</surname></personname>
+
+<biblioid class="isbn">ISBN</biblioid>
+<biblioid class="issn">ISSN</biblioid>
+<biblioid class="other" otherclass="invpartnumber">InvPartNumber</biblioid>
+<issuenum>IssueNum</issuenum>
+
+<orgname>OrgName</orgname>
+<othercredit><personname><firstname>OCFirstName</firstname><surname>OCSurname</surname></personname></othercredit>
+
+<pagenums>PageNums</pagenums>
+<printhistory>
+<para>
+PrintHistory, printhistory, printhistory. PrintHistory, printhistory.
+PrintHistory, printhistory, printhistory. PrintHistory, printhistory.
+PrintHistory, printhistory, printhistory. PrintHistory, printhistory.
+PrintHistory, printhistory, printhistory. PrintHistory, printhistory.
+</para></printhistory>
+<productname>ProductName</productname>
+<productnumber>ProductNumber</productnumber>
+<pubdate>PubDate</pubdate>
+<publisher><publishername>PubPublisherName</publishername>
+<address><street>Any Street</street>
+<city>Anywhere</city>, <state>XX</state> <postcode>99999</postcode>
+<country>USA</country></address>
+</publisher>
+<publishername>PublisherName</publishername>
+<biblioid class="pubnumber">PubsNumber</biblioid>
+<releaseinfo>ReleaseInfo</releaseinfo>
+<revhistory>
+<revision>
+<revnumber>1.0</revnumber><date>1998-11-20</date>
+  <authorinitials>ndw</authorinitials>
+  <revremark>Some remark about the revision</revremark></revision>
+<revision>
+<revnumber>0.9</revnumber><date>1998-11-19</date>
+  <authorinitials>ndw</authorinitials>
+  <revremark>Some remark about the revision</revremark></revision>
+<revision>
+<revnumber>0.4</revnumber><date>1998-11-18</date>
+  <authorinitials>ndw</authorinitials>
+  <revremark>Some remark about the revision</revremark></revision>
+</revhistory>
+<seriesvolnums>SeriesVolNums</seriesvolnums>
+
+
+<volumenum>VolumeNum</volumenum>
+</biblioentry>
+
+<bibliomixed xml:id="Walsh96">
+  <bibliomset relation="article">
+    <personname><surname>Walsh</surname><firstname>Norman</firstname></personname>, .
+    .
+  </bibliomset>
+  <bibliomset relation="journal">
+    .
+    <volumenum>2</volumenum>(<issuenum>1</issuenum>).
+    <publishername>O'Reilly &amp; Associates, Inc.</publishername> and
+    <orgname>The World Wide Web Consortium</orgname>.
+    <pubdate>Winter, 1996</pubdate></bibliomset>.
+</bibliomixed>
+
+</bibliography>
