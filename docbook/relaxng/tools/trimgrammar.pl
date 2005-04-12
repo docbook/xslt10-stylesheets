@@ -5,6 +5,8 @@ use XML::DOM;
 use Getopt::Std;
 use vars qw($opt_o $opt_v $opt_r);
 use open ':utf8';
+use utf8;
+use Encode;
 
 my $usage = "Usage: $0 [-v] [-r] [-o file] file\n";
 
@@ -52,6 +54,8 @@ if ($verbose) {
 open (SAVEOUT, ">&STDOUT");
 close (STDOUT);
 open (STDOUT, ">$output");
+binmode STDOUT, ':utf8';
+print "<?xml version='1.0' encoding='utf-8'?>\n";
 printXML($root);
 close (STDOUT);
 open (STDOUT, ">&SAVEOUT");
@@ -115,24 +119,25 @@ sub recurse {
 
 sub printXML {
     my $node = shift;
+    local $_;
 
     if ($node->getNodeType() == XML::DOM::ELEMENT_NODE) {
 	my $child = $node->getFirstChild();
 	my $attrs = $node->getAttributes();
 
 	print "<";
-	print $node->getTagName();
+	print Encode::decode_utf8($node->getTagName());
 
 	for (my $count = 0; $count < $attrs->getLength(); $count++) {
 	    my $attr = $attrs->item($count);
 	    my $name = $attr->getName();
 	    my $value = $attr->getValue();
-	    print " $name=\"$value\"";
+	    print Encode::decode_utf8(" $name=\"$value\"");
 	}
 
 	if ($node->getTagName eq 'define'
 	    && !$used{$node->getAttribute('name')}) {
-	    print " unused=\"1\"";
+	    print Encode::decode_utf8(" unused=\"1\"");
 	}
 
 	if ($child) {
@@ -142,62 +147,21 @@ sub printXML {
 		$child = $child->getNextSibling();
 	    }
 	    print "</";
-	    print $node->getTagName();
+	    print Encode::decode_utf8($node->getTagName());
 	    print ">";
 	} else {
 	    print "/>";
 	}
     } elsif ($node->getNodeType() == XML::DOM::TEXT_NODE) {
-	print $node->getData();
+	print Encode::decode_utf8($node->getData());
     } elsif ($node->getNodeType() == XML::DOM::COMMENT_NODE) {
-	print "<!--", $node->getData(), "-->";
+	print "<!--", Encode::decode_utf8($node->getData()), "-->";
     } elsif ($node->getNodeType() == XML::DOM::PROCESSING_INSTRUCTION_NODE) {
-	print "<?", $node->getTarget(), " ", $node->getData(), "?>";
+	print "<?", Encode::decode_utf8($node->getTarget()), " ";
+	print Encode::decode_utf8($node->getData()), "?>";
     } else {
 	die "Unexpected node type: ", $node->getNodeType(), "\n";
     }
 }
 
-sub printXML_OLD {
-    my $node = shift;
-
-    if ($node->getNodeType() == XML::DOM::ELEMENT_NODE) {
-	if ($node->getTagName ne 'define'
-	    || $used{$node->getAttribute('name')}) {
-	    my $child = $node->getFirstChild();
-	    my $attrs = $node->getAttributes();
-
-	    print "<";
-	    print $node->getTagName();
-
-	    for (my $count = 0; $count < $attrs->getLength(); $count++) {
-		my $attr = $attrs->item($count);
-		my $name = $attr->getName();
-		my $value = $attr->getValue();
-		print " $name=\"$value\"";
-	    }
-
-	    if ($child) {
-		print ">";
-		while ($child) {
-		    printXML($child);
-		    $child = $child->getNextSibling();
-		}
-		print "</";
-		print $node->getTagName();
-		print ">";
-	    } else {
-		print "/>";
-	    }
-	}
-    } elsif ($node->getNodeType() == XML::DOM::TEXT_NODE) {
-	print $node->getData();
-    } elsif ($node->getNodeType() == XML::DOM::COMMENT_NODE) {
-	print "<!--", $node->getData(), "-->";
-    } elsif ($node->getNodeType() == XML::DOM::PROCESSING_INSTRUCTION_NODE) {
-	print "<?", $node->getTarget(), " ", $node->getData(), "?>";
-    } else {
-	die "Unexpected node type: ", $node->getNodeType(), "\n";
-    }
-}
 
