@@ -841,7 +841,16 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:if test="contains($toc.params, 'toc')">
+  <xsl:variable name="nodes" select="reference|
+                                     preface|
+                                     chapter|
+                                     appendix|
+                                     article|
+                                     bibliography|
+                                     glossary|
+                                     index"/>
+
+  <xsl:if test="count($nodes) &gt; 0 and contains($toc.params, 'toc')">
     <fo:page-sequence hyphenate="{$hyphenate}"
                       master-reference="{$lot-master-reference}">
       <xsl:attribute name="language">
