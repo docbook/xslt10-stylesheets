@@ -173,6 +173,136 @@ Technical Committee gave itself the freedom to make unannounced
 backwards-incompatible changes for this one release.</para>
 
 <section>
+<title>Removing Legacy Elements</title>
+
+<para>A number of elements have been removed from DocBook. Many of
+these have been replaced by simpler, more versatile alternatives.
+Others have simply been removed because they are no longer widely
+used.</para>
+
+<table id="elem.rmv">
+<title>DocBook Element Changes</title>
+<tgroup cols="2">
+<thead>
+<row>
+  <entry>Element(s)</entry>
+  <entry>Explanation</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry><simplelist type="inline">
+<member><sgmltag>articleinfo</sgmltag></member>
+<member><sgmltag>bookinfoinfo</sgmltag></member>
+<member>…</member>
+<member><sgmltag><replaceable>*</replaceable>info</sgmltag></member>
+</simplelist></entry>
+<entry><para>Replaced by <sgmltag>info</sgmltag>, see
+<xref linkend="s.unif.info"/>.
+</para></entry>
+</row>
+
+<row>
+<entry><simplelist type="inline">
+<member><sgmltag>authorblurb</sgmltag></member>
+</simplelist></entry>
+<entry><para>Replaced by <sgmltag>personblurb</sgmltag>.
+</para></entry>
+</row>
+
+<row>
+<entry><simplelist type="inline">
+<member><sgmltag>collabname</sgmltag></member>
+<member><sgmltag>corpauthor</sgmltag></member>
+<member><sgmltag>corpcredit</sgmltag></member>
+<member><sgmltag>corpname</sgmltag></member>
+</simplelist></entry>
+<entry><para>Replaced by <sgmltag>orgname</sgmltag> and the updated
+content models of <sgmltag>author</sgmltag>, <sgmltag>editor</sgmltag>,
+and <sgmltag>othercredit</sgmltag>.
+</para></entry>
+</row>
+
+<row>
+<entry><simplelist type="inline">
+<member><sgmltag>graphic</sgmltag></member>
+<member><sgmltag>graphicco</sgmltag></member>
+<member><sgmltag>inlinegraphic</sgmltag></member>
+<member><sgmltag>mediaobjectco</sgmltag></member>
+</simplelist></entry>
+<entry><para>Removed in favor of <sgmltag>mediaobject</sgmltag> and
+<sgmltag>inlinemediaobject</sgmltag>.
+</para></entry>
+</row>
+
+<row>
+<entry><simplelist type="inline">
+<member><sgmltag>isbn</sgmltag></member>
+<member><sgmltag>issn</sgmltag></member>
+<member><sgmltag>pubsnumber</sgmltag></member>
+</simplelist></entry>
+<entry><para>Replaced by <sgmltag>biblioid</sgmltag>.
+</para></entry>
+</row>
+
+<row>
+<entry><simplelist type="inline">
+<member><sgmltag>lot</sgmltag></member>
+<member><sgmltag>lotentry</sgmltag></member>
+<member><sgmltag>tocback</sgmltag></member>
+<member><sgmltag>tocchap</sgmltag></member>
+<member><sgmltag>tocfront</sgmltag></member>
+<member><sgmltag>toclevel1</sgmltag></member>
+<member><sgmltag>toclevel2</sgmltag></member>
+<member><sgmltag>toclevel3</sgmltag></member>
+<member><sgmltag>toclevel4</sgmltag></member>
+<member><sgmltag>toclevel5</sgmltag></member>
+<member><sgmltag>tocpart</sgmltag></member>
+</simplelist></entry>
+<entry><para>Replaced by simpler <sgmltag>tocdiv</sgmltag> element.
+</para></entry>
+</row>
+
+<row>
+<entry><simplelist type="inline">
+<member><sgmltag>olink</sgmltag></member>
+<member><sgmltag>ulink</sgmltag></member>
+</simplelist></entry>
+<entry><para>Replaced by ubiquitous linking, see
+<xref linkend="s.ubiq.link"/>.
+</para></entry>
+</row>
+
+<row>
+<entry><simplelist type="inline">
+<member><sgmltag>sgmltag</sgmltag></member>
+</simplelist></entry>
+<entry><para>Replaced by <sgmltag>tag</sgmltag>.
+</para></entry>
+</row>
+
+<row>
+<entry><simplelist type="inline">
+<member><sgmltag>action</sgmltag></member>
+<member><sgmltag>beginpage</sgmltag></member>
+<member><sgmltag>highlights</sgmltag></member>
+<member><sgmltag>interface</sgmltag></member>
+<member><sgmltag>invpartnumber</sgmltag></member>
+<member><sgmltag>medialabel</sgmltag></member>
+<member><sgmltag>modespec</sgmltag></member>
+<member><sgmltag>structfield</sgmltag></member>
+<member><sgmltag>structname</sgmltag></member>
+</simplelist></entry>
+<entry><para>Deleted.
+</para></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+</section>
+
+<section>
 <title>Smaller Content Models</title>
 
 <para>The content models of many inlines have been reduced, sometimes
@@ -184,7 +314,7 @@ example).</para>
 <para>DocBook V5.0 may be too restrictive in this area.</para>
 </section>
 
-<section>
+<section id="s.unif.info">
 <title>Uniform Info Elements</title>
 
 <para>DocBook V4.x has <sgmltag>setinfo</sgmltag>,
@@ -271,7 +401,7 @@ like <sgmltag>pubdate</sgmltag> include a proper date-time type, may
 prove controversial.</para>
 </section>
 
-<section>
+<section id="s.ubiq.link">
 <title>Universal Linking</title>
 
 <para>Starting with DocBook V5.0, the
@@ -284,11 +414,25 @@ ID/IDREF link within the document. The
 <sgmltag class="attribute">href</sgmltag> attribute provides a URI-based
 link.</para>
 
-<para>The <sgmltag>link</sgmltag> and <sgmltag>ulink</sgmltag> elements have
+<para>The <sgmltag>olink</sgmltag> and <sgmltag>ulink</sgmltag> elements have
 been removed from DocBook as these linking constructs can now be achieved
 directly from the appropriate inline (such as <sgmltag>productname</sgmltag>
 or <sgmltag>command</sgmltag>). For instances where no specific semantic
-inline is needed, use <sgmltag>phrase</sgmltag>.</para>
+inline is needed, <sgmltag>link</sgmltag> is still available.</para>
+
+<para>Support for extended links is provided through the
+<sgmltag>extendedlink</sgmltag>, <sgmltag>arc</sgmltag>, and
+<sgmltag>locator</sgmltag> elements.</para>
+
+</section>
+
+<section id="s.annot">
+<title>Improved Accessibility</title>
+
+<para>Accessibility is improved by allowing both inline and block
+annotations in most context. The <sgmltag>alt</sgmltag> element is now
+allowed in most places for inline annotations, the new element
+<sgmltag>annotation</sgmltag> supports block annotations.</para>
 
 </section>
 
