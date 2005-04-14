@@ -1,7 +1,7 @@
 # $Id$
 
 include ../cvstools/Makefile.incl
-include ../cvstools/Release-vars.mk
+include ../releasetools/Variables.mk
 
 DISTRO = website
 
@@ -32,4 +32,4 @@ realclean: clean
 	$(MAKE) -C extensions realclean
 	$(MAKE) -C example realclean
 
-include ../cvstools/Release-targets.mk
+include ../releasetools/Targets.mk
