@@ -1,6 +1,6 @@
 #!/bin/bash
 # $Id$
-# $Source #
+# $Source$ #
 
 # install.sh - Set up catalogs & locating rules for a XML/XSLT distribution
 
