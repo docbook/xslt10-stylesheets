@@ -8,6 +8,9 @@
 
 # $Id$
 
+CATALOGMANAGER=$(DOCBOOK_CVS)/releasetools/.CatalogManager.properties.example
+INSTALL_SH=$(DOCBOOK_CVS)/releasetools/install.sh
+
 # stylesheet for generating release notes
 DOC-LINK-STYLE=$(DOCBOOK_CVS)/xsl/docsrc/doc-link-docbook.xsl
 

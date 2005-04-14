@@ -10,7 +10,13 @@ RELEASE-NOTES.html: RELEASE-NOTES.xml
 RELEASE-NOTES.txt: RELEASE-NOTES.html
 	$(BROWSER) $(BROWSER_OPTS) $< > $@
 
-distrib: all $(DISTRIB_DEPENDS)
+.CatalogManager.properties.example:
+	cp -p $(CATALOGMANAGER) .CatalogManager.properties.example
+
+install.sh:
+	cp -p $(INSTALL_SH) install.sh
+
+distrib: all $(DISTRIB_DEPENDS) .CatalogManager.properties.example install.sh
 	$(CVS2LOG) -w
 ifeq ($(DIFFVER),)
 	$(MERGELOGS) > $(NEWSFILE)
