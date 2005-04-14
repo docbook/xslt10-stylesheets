@@ -1,0 +1,350 @@
+#!/bin/sh
+# vim: number
+
+# docbook-build - Build script for generating DocBook project snapshots
+# $Id$
+
+# fail if no CLASSPATH set
+if [ -z "$CLASSPATH" ]; then
+  cat <<- EOF
+`basename $0`: error: CLASSPATH not set. Stopping.
+
+Before invoking `basename $0`, you must set the Java CLASSPATH
+environment variable in the environment from which the script
+runs, and it must contain absolute pathnames for the following:
+
+  - Saxon or Xalan2 jar file or classes
+  - Xerces jar file(s) or classes
+  - Apache XML Commons Resolver jar file or classes
+  - directory containing CatalogManager.properties file
+EOF
+  exit 1
+fi
+
+# fail if no DOCBOOK_CVS set
+if [ -z "$DOCBOOK_CVS" ]; then
+  cat <<- EOF
+`basename $0`: error: DOCBOOK_CVS not set. Stopping.
+
+Before invoking `basename $0`, you must set the DOCBOOK_CVS
+environment variable in the environment from which the script
+runs. The value of DOCBOOK_CVS should be the absolute path to the
+base of a DocBook Project CVS working directory that contains the
+various DocBook Project modules; that is, such that the modules
+can be found in \$DOCBOOK_CVS/xsl, \$DOCBOOK_CVS/website, etc.
+EOF
+  exit 1
+fi
+
+umask 002
+# set up some defaults
+SITEUSER=`whoami`
+SITEBASE=/home/groups/d/do/docbook/htdocs/snapshots
+SITEHOST=docbook.sourceforge.net
+RELEASEVERSION=snapshot
+if [ -z "$TMP" ]; then
+  TMP=/tmp
+fi
+# default timeout waiting for lock file to clear is 1200 seconds (20 mins)
+LOCK_TIMEOUT=1200
+
+usage="Usage:
+
+  `basename $0` [-b BASEDIR] [-d DOMAIN] [-l LOGDIR] [-p PATH] [-r] [-s]
+                [-t TMPDIR] [-u USER] [-v VERSION] [-z ZONE] DISTRO...
+
+"
+opts_admon="Type '`basename $0` -h' for details about options.
+"
+
+help="
+Options:
+
+  -b BASEDIR  Specifies the location of the base directory containing the
+              CVS working directories for modules from the DocBook project
+              (directory containing 'xsl', 'dsssl', 'slides', etc. subdirs) 
+              Default: value of the DOCBOOK_CVS environment variable, if set;
+              otherwise, the directory from which the script is run.
+
+  -d DOMAIN   Specifies the remote host (domain) to which the snaphost is
+              uploaded
+              Default: 'docbook.sourceforge.net'
+
+  -l LOGDIR   Specifies the directory to which the script redirects its
+              standard output and standard error.
+              Default: none -- if not set, stdout and stderr are not
+              redirected to a log file.
+
+  -p PATH     Specifies the upload path on the remote host
+              Default: '/home/groups/d/do/docbook/htdocs/snapshots'
+
+  -r          If specified, read commit message from standard input.
+
+  -s          If specified, scp the distro to upload site (after tar/zipping).
+
+  -t TMPDIR   Specifies the directory to which the script writes temporary
+              files.
+              Default: /tmp
+
+  -u USER     Specifies the (Sourceforge) username with which to upload the
+              snapshot to the target (Sourceforge) website
+              Default: Username found in CVS/Root in working directory, if
+              found; otherwise, local username.
+
+  -v VERSION  Specifies the version name to put on the build.
+              Default: 'snapshot'
+
+  -z ZONE     Specifies timezone to use for date/time stamps
+              Default: none -- if not set, 'date' uses timezone configured on
+              local machine.
+
+  DISTRO...   Space-separated list of distros to build (e.g. 'xsl dsssl')
+
+"
+while getopts ":b:d:hl:p:rst:u:v:z:" opt; do
+  case $opt in
+    r  ) # parse commit message
+         while read -r LINE
+         do
+          if echo $LINE | grep "^Message-Id: " >/dev/null; then
+            MESSAGE_ID=`echo $LINE | sed 's/^Message-Id: <\([^@]\+\)@[^\>]\+>$/\1/'`
+          elif echo $LINE | grep "^Subject: " >/dev/null; then
+            CHANGE_DIR=`echo $LINE | sed 's/^.*CVS: \([^ ]\+\) .\+$/\1/'`
+            CHANGE_FILES=`echo $LINE | sed 's/^.*CVS: [^ ]\+ \(.\+\)$/\1/' | sed 's/ /:/g'`
+            break
+          fi
+         done ;;
+    b  ) BUILDDIR=$OPTARG ;;
+    l  ) LOGDIR=$OPTARG ;;
+    t  ) TMP=$OPTARG ;;
+    v  ) RELEASEVERSION=$OPTARG ;;
+    u  ) SITEUSER=$OPTARG
+         OVERRIDE_CVSUSER=1 ;;
+    d  ) SITEHOST=$OPTARG ;;
+    p  ) SITEBASE=$OPTARG ;;
+    s  ) UPLOAD="yes" ;;
+    z  ) TZ=$OPTARG
+         alias date="TZ=$TZ date"
+         alias cvs2cl="TZ=$TZ cvs2cl" ;;
+    h  ) printf "$usage"
+         printf "$help"
+         exit 0 ;;
+    \? ) printf "$usage"
+         printf "$opts_admon"
+         exit 1 ;;
+  esac
+done
+
+shift $(($OPTIND - 1))
+
+if [ -z "$BUILDDIR"  ]; then
+  BUILDDIR=`pwd`
+fi
+cd $BUILDDIR
+
+DISTROS="$@"
+
+if [ -z "$DISTROS" ]; then
+  echo
+  echo "`basename $0`: error: No DISTROS specified. Stopping."
+  echo
+  printf "$usage"
+  printf "$opts_admon"
+  exit 1;
+else
+  for DISTRO in $DISTROS; do
+    lock_timer=0
+    # wait for lock file (if any) to clear
+    printf "Waiting for $TMP/docbook-$DISTRO-$RELEASEVERSION.lock file to clear..." 1>&2
+    while [ -f $TMP/docbook-$DISTRO-$RELEASEVERSION.lock ]; do
+      if [ $lock_timer = $LOCK_TIMEOUT ]; then
+        # time out after reaching $LOCK_TIMEOUT seconds
+        # default is 1200 seconds (20 minutes)
+        echo
+        printf "Timed out after $LOCK_TIMEOUT seconds waiting for"
+        printf "$TMP/docbook-$DISTRO-$RELEASEVERSION.lock file to clear.\n"
+        echo "You probably have a stale $TMP/docbook-$DISTRO-$RELEASEVERSION.lock file that you need to delete."
+        exit 1
+      fi
+      printf "." 1>&2
+      sleep 1
+      let lock_timer=$lock_timer+1
+    done 
+    printf "Done.\n" 1>&2
+
+    printf "Doing some initialization..." 1>&2
+    # create new lock file
+    touch $TMP/docbook-$DISTRO-$RELEASEVERSION.lock
+    # remove old log file, if any
+    rm -f $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp
+
+    DATE=`date +%Y-%m-%d`
+    TIME=`date '+%H:%M'`
+    ZONE=`date '+%Z'`
+
+    UPPER_DISTRO=`echo $DISTRO | tr "[:lower:]" "[:upper:]"`
+
+    if [ -f $DISTRO/CVS/Root ]; then
+      CVSROOT=`cat $DISTRO/CVS/Root`
+      export CVSROOT
+      CVSUSER=`sed 's/^:.\+:\([^@]\+\)@.\+$/\1/' $DISTRO/CVS/Root`
+      if [ "$CVSUSER" != "anonymous" ]; then
+        CVS_RSH=ssh
+        export CVS_RSH
+      fi
+      if [ -z "$OVERRIDE_CVSUSER" ]; then
+        # if no value for USER has been specified via -u option, set
+        # SITEUSER for ssh uploads to same value as CVSUSER
+        SITEUSER=$CVSUSER
+      fi
+    fi
+
+    rm -f $DISTRO/VERSION
+    cvs update -C $DISTRO/VERSION 1>/dev/null 2>&1
+
+    printf "." 1>&2
+    if grep "<xsl:stylesheet" $DISTRO/VERSION >/dev/null; then 
+      DIFFVER=`grep "Version>.\+<" $DISTRO/VERSION \
+        | sed "s/^[^<]*<fm:Version>\(.\+\)<\/fm:Version>$/\1/" | tr -d "\n"`
+    else
+      DIFFVER=`cat $DISTRO/VERSION`
+    fi
+
+    DIFFTAG=`cvs status -v $DISTRO/VERSION | grep -C1 "Existing Tags:" \
+      | grep revision | sed 's/^[ \t]\+\([^ \t]\+\)[ \t]\+.\+$/\1/'`
+    if [ $MESSAGE_ID ]; then
+      BUILD_ID=$MESSAGE_ID
+    else
+      BUILD_ID=$DATE\_$TIME\_$$
+    fi
+    # done setting up environment
+
+    printf "Done.\n" 1>&2
+    # start re-directing stout and stderr to log file (if logging enabled)
+    if [ $LOGDIR ]; then
+      echo "Logging all further output to $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp"
+      exec 1> $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp
+      exec 2>&1
+    fi
+
+    date
+    echo
+    # echo selected variables
+    set | grep "BUILD_ID\|^CHANGE\|DIFFTAG\|DIFFVER\|^DISTRO=\|RELEASEVERSION"
+    echo
+
+    echo "Running cvs update in gentext and $DISTRO working directories..."
+    cvs update -d -P gentext || exit 1
+    cvs update -d -P $DISTRO || exit 1
+    echo
+
+    # if this module has a "common" dir, it means it's probably
+    # relying on the "gentext" stuff, so make "gentext" first
+    if [ -d $DISTRO/common ]; then
+      echo "Making gentext..."
+      echo
+      make -C gentext $DISTRO-files
+    fi
+
+    echo
+    date
+    echo "Building $DISTRO distribution..."
+    echo
+
+    make distrib -C $DISTRO DIFFVER=$DIFFVER
+
+    cat <<- EOF > HEADER.txt
+The snapshot for a particular distribution is re-built automatically each time
+a change is checked into the CVS source tree for the distribution. The most
+recent build was of the "$DISTRO" distribution, on $DATE at $TIME $ZONE.
+
+These snapshots are intended for testing purposes only and otherwise come with
+no guarantees. Any of them may in fact be broken at any given time.
+EOF
+
+    cat <<- EOF > $DISTRO/$DATE\_$RELEASEVERSION
+This directory contains a pre-release snapshot of the DocBook "$DISTRO"
+distribution, auto-built from the latest development sources in the DocBook
+project CVS repository on $DATE at $TIME $ZONE.
+
+The unique ID for this snapshot is $BUILD_ID.
+
+It is intended for testing purposes only and otherwise comes with no
+guarantees. It may in fact be broken.
+EOF
+    cvs2cl -S --delta $DIFFTAG:HEAD --stdout $DISTRO \
+      | expand -t2 > $DISTRO/LatestChanges
+
+    if grep "<xsl:stylesheet" $DISTRO/VERSION >/dev/null; then
+      cp -p $DISTRO/VERSION $DISTRO/VERSION.tmp
+      sed "s/Version>.\+</Version>$DATE\_$TIME\_$RELEASEVERSION</" $DISTRO/VERSION.tmp > $DISTRO/VERSION
+      rm $DISTRO/VERSION.tmp
+    else
+      echo "$DATE_$TIME_$RELEASEVERSION" > $DISTRO/VERSION
+    fi
+    if [ "$UPLOAD" = "yes" ]; then
+
+    make zip -C $DISTRO ZIPVER=$RELEASEVERSION TMP=$TMP || exit 1
+
+    cat <<- EOF > $TMP/line.tmp
+
+--------------------------------------------------------------------------------
+Latest Changes:
+--------------------------------------------------------------------------------
+
+EOF
+    cvs2cl -S -l -d ">3 months ago" --stdout \
+      | expand -t2 > LatestChanges
+
+    cat HEADER.txt $TMP/line.tmp LatestChanges > README.txt
+    rm $TMP/line.tmp
+
+    scp \
+      $TMP/docbook-$DISTRO*$RELEASEVERSION.zip \
+      $TMP/docbook-$DISTRO*$RELEASEVERSION.tar.gz \
+      $TMP/docbook-$DISTRO*$RELEASEVERSION.tar.bz2 \
+      README.txt \
+      LatestChanges \
+      $SITEUSER@$SITEHOST:$SITEBASE
+    ssh -l $SITEUSER $SITEHOST \
+     "( \
+      umask 002; \
+      cd $SITEBASE; \
+      rm -f docbook-$DISTRO-$RELEASEVERSION.log; \
+      rm -rf $DISTRO; \
+      for tarball in docbook-$DISTRO*$RELEASEVERSION.tar.gz; do \
+      cat \$tarball | gunzip | \
+      (cd /tmp; tar xf -); \
+      done; \
+      mkdir $DISTRO; \
+      cp -pR /tmp/docbook-$DISTRO-$RELEASEVERSION/* $DISTRO; \
+      rm -rf /tmp/docbook-$DISTRO-$RELEASEVERSION; \
+      rm -rf $DISTRO/tools; \
+      rm -rf $DISTRO/RELEASE-NOTES.* ; \
+      )"
+
+    rm -rf $TMP/docbook-$DISTRO*$RELEASEVERSION.tar.bz2
+    rm -rf $TMP/docbook-$DISTRO*$RELEASEVERSION.tar.gz
+    rm -rf $TMP/docbook-$DISTRO*$RELEASEVERSION.zip
+    rm -rf $TMP/docbook-$DISTRO-$RELEASEVERSION
+
+    rm -f $DISTRO/$DATE\_$RELEASEVERSION $DISTRO/LatestChanges HEADER.txt README.txt LatestChanges
+
+    date
+
+    if [ -f $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp ]; then
+      # filter raw log and copy to site
+      cat $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp \
+      | grep -v '^cvs log: \|cvs update\|^tar: \|^tar \|^  adding: \|^find \|^cd \|rm \|^mkdir \|^touch \|cvs2log\|mergechangelogs' \
+        > $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log
+      scp $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log $SITEUSER@$SITEHOST:$SITEBASE
+    fi
+    ssh -l $SITEUSER $SITEHOST "(cd $SITEBASE; chmod 664 *.tar.gz *.zip *.log)"
+    fi
+
+    rm -f $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log
+    rm -f $TMP/docbook-$DISTRO-$RELEASEVERSION.lock
+
+    cd -
+  done
+fi
