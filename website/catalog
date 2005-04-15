@@ -3,9 +3,11 @@ OVERRIDE YES
 
 PUBLIC "-//Norman Walsh//DTD Website V2.6//EN" "schema/dtd/website.dtd"
 SYSTEM "http://docbook.sourceforge.net/release/website/2.6/schema/website.dtd" "schema/dtd/website.dtd"/>
+SYSTEM "http://docbook.sourceforge.net/release/website/current/schema/website.dtd" "schema/dtd/website.dtd"/>
 
 PUBLIC "-//Norman Walsh//DTD Website Full V2.6//EN" "schema/dtd/website-full.dtd"
 SYSTEM "http://docbook.sourceforge.net/release/website/2.6/schema/website-full.dtd" "schema/dtd/website-full.dtd"/>
+SYSTEM "http://docbook.sourceforge.net/release/website/current/schema/website-full.dtd" "schema/dtd/website-full.dtd"/>
 
 PUBLIC "-//Norman Walsh//DTD Website Autolayout V2.5.0//EN" "schema/dtd/autolayout.dtd"
 SYSTEM "http://docbook.sourceforge.net/release/website/2.5.0/autolayout.dtd" "schema/dtd/autolayout.dtd"
