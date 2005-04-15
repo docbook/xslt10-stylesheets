@@ -80,7 +80,7 @@
 	%xlink-xmlns;	CDATA	#FIXED %xlink-namespace;
 	%rddl-xmlns;	CDATA	#FIXED %rddl-namespace;
 	navto		(yes|no)	"yes"
-        %common.attrib;
+        %idreq.common.attrib;
 >
 
 <!ELEMENT webtoc EMPTY>
