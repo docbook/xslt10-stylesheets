@@ -3,6 +3,9 @@
 
 <!--  XML Catalog file for DocBook Website -->
 
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/current/schema/"
+            rewritePrefix="schema/"/>
+
 <rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.6/schema/"
             rewritePrefix="schema/"/>
 
