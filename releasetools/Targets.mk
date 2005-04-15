@@ -13,10 +13,15 @@ RELEASE-NOTES.txt: RELEASE-NOTES.html
 .CatalogManager.properties.example:
 	cp -p $(CATALOGMANAGER) .CatalogManager.properties.example
 
+.urilist:
+	for uri in $(URILIST); do \
+	echo $$uri >> .urilist; \
+	done
+
 install.sh:
 	cp -p $(INSTALL_SH) install.sh
 
-distrib: all $(DISTRIB_DEPENDS) .CatalogManager.properties.example install.sh
+distrib: all $(DISTRIB_DEPENDS) .CatalogManager.properties.example install.sh .urilist
 	$(CVS2LOG) -w
 ifeq ($(DIFFVER),)
 	$(MERGELOGS) > $(NEWSFILE)
