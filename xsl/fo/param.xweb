@@ -456,6 +456,8 @@ zero by default, so this is simply the page-master region-left.
 &qanda.title.level5.properties;
 &qanda.title.level6.properties;
 &article.appendix.title.properties;
+&abstract.properties;
+&abstract.title.properties;
 </reference>
 
 <reference><title>Profiling</title>
@@ -519,6 +521,8 @@ around all these parameters.</para>
 
      ******************************************************************** -->
 
+<src:fragref linkend="abstract.properties.frag"/>
+<src:fragref linkend="abstract.title.properties.frag"/>
 <src:fragref linkend="admon.graphics.extension.frag"/>
 <src:fragref linkend="admon.graphics.frag"/>
 <src:fragref linkend="admon.graphics.path.frag"/>

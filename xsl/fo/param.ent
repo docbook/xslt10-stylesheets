@@ -275,3 +275,5 @@
 <!ENTITY margin.note.title.properties SYSTEM "../params/margin.note.title.properties.xml">
 <!ENTITY margin.note.float.type SYSTEM "../params/margin.note.float.type.xml">
 <!ENTITY margin.note.width SYSTEM "../params/margin.note.width.xml">
+<!ENTITY abstract.properties SYSTEM "../params/abstract.properties.xml">
+<!ENTITY abstract.title.properties SYSTEM "../params/abstract.title.properties.xml">

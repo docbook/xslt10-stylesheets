@@ -191,12 +191,12 @@
                 <xsl:choose>
                   <xsl:when test="ancestor::para">
                     <!-- Special case for handling inline floats
-		         in Antenna House-->
+                         in Antenna House-->
                     <xsl:value-of select="concat('-', $body.start.indent)"/>
                   </xsl:when>
                   <xsl:otherwise>0pt</xsl:otherwise>
                 </xsl:choose>
-	      </xsl:attribute>
+              </xsl:attribute>
               <fo:block start-indent="{$start.indent}"
                         end-indent="-{$start.indent} - {$width}">
                 <xsl:copy-of select="$content"/>
@@ -390,18 +390,18 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="abstract">
-  <fo:block>
+  <fo:block xsl:use-attribute-sets="abstract.properties">
     <xsl:if test="@id">
       <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
-    </xsl:if>
-    <xsl:if test="title">
-      <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
 
 <xsl:template match="abstract/title">
+  <fo:block xsl:use-attribute-sets="abstract.title.properties">
+    <xsl:apply-templates/>
+  </fo:block>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -549,9 +549,9 @@
         <xsl:for-each select="$revauthor">
           <xsl:apply-templates select="."/>
           <xsl:if test="position() != last()">
-	    <xsl:text>, </xsl:text>
-	  </xsl:if>
-	</xsl:for-each>
+            <xsl:text>, </xsl:text>
+          </xsl:if>
+        </xsl:for-each>
       </fo:block>
     </fo:table-cell>
   </fo:table-row>
