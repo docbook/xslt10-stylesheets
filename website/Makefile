@@ -18,6 +18,12 @@ DISTRIB_EXCLUDES = /tests$$
 # you need to explicitly list any executable files here
 EXECUTABLES = install.sh
 
+# list of pathname+URIs to test for catalog support
+URILIST = \
+	schema/dtd/website.dtd\ http://docbook.sourceforge.net/release/website/2.6/schema/dtd/website.dtd \
+	schema/dtd/website-full.dtd\ http://docbook.sourceforge.net/release/website/2.6/schema/dtd/website-full.dtd \
+	xsl/\ http://docbook.sourceforge.net/release/website/current/xsl/
+
 .PHONY : distrib clean example
 
 all:
