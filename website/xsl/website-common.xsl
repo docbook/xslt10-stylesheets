@@ -524,6 +524,9 @@ node.</para>
       <xsl:when test="$href != ''">
         <xsl:value-of select="$href"/>
       </xsl:when>
+      <xsl:when test="$page/@href">
+	<xsl:value-of select="$page/@href"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="concat($relpath,$dir,$filename-prefix)"/>
         <xsl:value-of select="$page/@filename"/>
