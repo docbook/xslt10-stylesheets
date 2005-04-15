@@ -23,7 +23,7 @@
 # It makes backup copies of any files it touches, and also
 # generates a uninstall.sh script for reverting its changes.
 #
-# In the same directory from it is run, it expects to find three
+# In the same directory from it is run, it expects to find four
 # files (below). And if it is unable to locate a
 # CatalogManager.properties file in the user environment, it
 # expects to find an "example" one in the same directory, which it
@@ -32,6 +32,8 @@
 thisLocatingRules=$PWD/locatingrules.xml
 thisXmlCatalog=$PWD/catalog.xml
 thisSgmlCatalog=$PWD/catalog
+# .urlist file contains a list of URIs to test
+thisUriList=$PWC/.urilist
 
 exampleCatalogManager=$PWD/.CatalogManager.properties.example 
 thisCatalogManager=$HOME/.resolver/CatalogManager.properties
@@ -45,6 +47,7 @@ main() {
   updateUserStartupFiles
   updateUserDotEmacs
   writeUninstallFile
+  writeTestFile
   printExitMessage
 }
 
@@ -582,17 +585,26 @@ uninstall() {
   done
   removeOldFiles
   echo "Done. Deleted uninstall.sh file."
+  rm -f ./test.sh      || exit 1
   rm -f ./uninstall.sh || exit 1
 }
 
 writeUninstallFile() {
   uninstallFile=./uninstall.sh
   echo "#!/bin/sh"                                > $uninstallFile || exit 1
-  echo "./install.sh --uninstall \\"             >> $uninstallFile || exit 1
+  echo "$PWD/install.sh --uninstall \\"             >> $uninstallFile || exit 1
   echo "  --catalogManager=$myCatalogManager \\" >> $uninstallFile || exit 1
   echo "  --dotEmacs=$myEmacsFile \\"            >> $uninstallFile || exit 1
   chmod 755 $uninstallFile || exit 1
 }
+
+writeTestFile() {
+  testFile=./test.sh
+  echo "#!/bin/sh"                                > $testFile || exit 1
+  echo "$PWD/install.sh --test \\"                  >> $testFile || exit 1
+  chmod 755 $testFile || exit 1
+}
+
 printExitMessage() {
   echo
   echo "Type the following to source your shell environment for the distriibution"
@@ -621,11 +633,60 @@ emitNoChangeMsg() {
   echo "      distribution, you will need to make the appropriate changes manually."
 }
 
-if [ "$1" = "--uninstall" ]; then
+testCatalogs() {
+  echo
+  echo "Testing with xmlcatalog..."
+  while read pair; do
+    path=$PWD/${pair%* *}
+    uri=${pair#* *}
+    echo
+    echo "  Tested:" $uri
+    for catalog in $XML_CATALOG_FILES; do
+      response="`xmlcatalog $catalog $uri| grep -v \"No entry\"`"
+      if [ $response ]; then
+        if [ "$response" = "$path" ]; then
+          echo "  Result: $path"
+        else
+          echo "  Result: FAILED"
+        fi
+      fi
+    done
+  done < .urilist
+
+  echo
+  echo "Testing with Apache XML Commons Resolver..."
+  while read pair; do
+    path=$PWD/${pair%* *}
+    uri=${pair#* *}
+    echo
+    echo "  Tested:" $uri
+    if [ ${uri%.dtd} != $uri ]; then
+      response="`java org.apache.xml.resolver.apps.resolver system -s $uri | grep \"Result\"`"
+    else
+      response="`java org.apache.xml.resolver.apps.resolver uri -u $uri | grep \"Result\"`"
+    fi
+    if [ "$response" ]; then
+      if [ "${response#*$path}" != "$response" ]; then
+        echo "  Result: $path"
+      else
+        echo "  Result: FAILED"
+      fi
+    fi
+  done < .urilist
+}
+
+# get opts and execute appropriate function
+case $1 in
+  *-uninstall)
   uninstall $2 $3 $4
-else
+  ;;
+  *-test)
+  testCatalogs
+  ;;
+  *)
   main
-fi
+  ;;
+esac
 
 # Copyright
 # ---------
