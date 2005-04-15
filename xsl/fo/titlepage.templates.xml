@@ -33,6 +33,7 @@
              font-family="{$title.fontset}">
 
   <t:titlepage-content t:side="recto"
+	     start-indent="0pt"
              text-align="center">
 
     <title t:named-template="component.title"
