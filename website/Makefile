@@ -14,6 +14,10 @@ DISTRIB_DEPENDS = example RELEASE-NOTES.txt
 # excluded from the zip file and tarball for the release
 DISTRIB_EXCLUDES = /tests$$
 
+# to make sure that executable bit is retained after packaging,
+# you need to explicitly list any executable files here
+EXECUTABLES = install.sh
+
 .PHONY : distrib clean example
 
 all:
