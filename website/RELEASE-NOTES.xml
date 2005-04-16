@@ -36,9 +36,10 @@
 	<para>RELAX NG schemas in RNC (compact-syntax) form as well as
 	in RNG (XML syntax) form are now included in the
 	distribution. You can use those to do context-sensitive
-	Website editing in a RELAX NG-aware editor such as Emacs/nXML
-	mode or oXygen XML Editor. (Note that the RELAX NG schemas are
-	currently generated from the DTDs).</para>
+	Website editing in a RELAX NG-aware editor such as Emacs/nXML,
+	oXygen XML Editor, or Exchanger XML Editor. (Note that the
+	RELAX NG schemas are currently generated from the
+	DTDs).</para>
       </listitem>
       <listitem>
 	<para>A <filename>locatingrules.xml</filename> file has been
