@@ -37,8 +37,8 @@
 	in RNG (XML syntax) form are now included in the
 	distribution. You can use those to do context-sensitive
 	Website editing in a RELAX NG-aware editor such as Emacs/nXML,
-	oXygen XML Editor, or Exchanger XML Editor. (Note that the
-	RELAX NG schemas are currently generated from the
+	oXygen XML Editor, XMLBuddy, or Exchanger XML Editor. (Note
+	that the RELAX NG schemas are currently generated from the
 	DTDs).</para>
       </listitem>
       <listitem>
