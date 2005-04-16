@@ -12,7 +12,19 @@ with <sgmltag>guimenuitem</sgmltag> or
 
 <refsynopsisdiv>
 <src:fragment id='menuchoice.menu.separator.frag'>
-<xsl:param name="menuchoice.menu.separator" select="'-&gt;'"/>
+<xsl:param name="menuchoice.menu.separator" xmlns:fo="http://www.w3.org/1999/XSL/Format">
+  <xsl:choose>
+    <xsl:when test="$stylesheet.result.type = 'fo' and $fop.extensions != 0">
+      <xsl:text> </xsl:text>
+      <!-- Right arrow symbol -->
+      <fo:inline font-family="Symbol">&#x2192;</fo:inline>
+      <xsl:text> </xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text> &#x2192; </xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
@@ -21,6 +33,16 @@ with <sgmltag>guimenuitem</sgmltag> or
 <para>Separator used to connect items of a <sgmltag>menuchoice</sgmltag> with
 <sgmltag>guimenuitem</sgmltag> or <sgmltag>guisubmenu</sgmltag>. Other elements
 are linked with <parameter>menuchoice.separator</parameter>.
+</para>
+<para>The default value is &amp;#x2192;, which is the
+&amp;rarr; (right arrow) character entity.  
+The current FOP (0.20.5) requires setting the font-family
+explicitly.
+</para>
+<para>The default value also includes spaces around the arrow,
+which will allow a line to break.  Replace the spaces with
+&amp;#xA0; (nonbreaking space) if you don't want those
+spaces to break.
 </para>
 
 </refsect1>
