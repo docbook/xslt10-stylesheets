@@ -47,10 +47,10 @@ IMPORTANT: The example above may not be up-to-date. For the
 Authoring with RELAX NG (website.rnc and website-full.rnc)
 ----------------------------------------------------------------------
 To do RNC-driven authoring of DocBook Website content with a
-"RELAX NG aware" XML editing application such as oXygen XML
-Editor, point your editing application at the included website.rnc
-(based on Simplified DocBook) or website-full.rnc (based on full
-DocBook) schema files.
+"RELAX NG aware" XML editing application such as Emacs/nXML,
+oXygen XML Editor, or Exchanger XML Editor, point your editing
+application at the included website.rnc (based on Simplified
+DocBook) or website-full.rnc (based on full DocBook) schema files.
 
 Alternatively, if you are authoring with an editor, such as
 Emacs/nXML mode, that supports schema "locating rules", use the
