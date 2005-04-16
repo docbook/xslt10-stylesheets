@@ -949,10 +949,10 @@
       <xsl:choose>
         <xsl:when test="name($node)='guimenuitem'
                         or name($node)='guisubmenu'">
-          <xsl:value-of select="$menuchoice.menu.separator"/>
+          <xsl:copy-of select="$menuchoice.menu.separator"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="$menuchoice.separator"/>
+          <xsl:copy-of select="$menuchoice.separator"/>
         </xsl:otherwise>
       </xsl:choose>
       <xsl:apply-templates select="$node"/>
