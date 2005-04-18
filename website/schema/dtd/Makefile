@@ -5,5 +5,7 @@ all: website.dtd
 website.dtd: website-custom.dtd forms.mod
 	$(FLATTEN) $< > $@
 
-realclean:
+clean:
+
+realclean: clean
 	rm -f website.dtd
