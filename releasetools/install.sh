@@ -32,11 +32,21 @@
 thisLocatingRules=$PWD/locatingrules.xml
 thisXmlCatalog=$PWD/catalog.xml
 thisSgmlCatalog=$PWD/catalog
-# .urlist file contains a list of URIs to test
+# .urlist file contains a list of pairs of local pathnames and
+# URIs to test for catalog resolution
 thisUriList=$PWC/.urilist
 
 exampleCatalogManager=$PWD/.CatalogManager.properties.example 
 thisCatalogManager=$HOME/.resolver/CatalogManager.properties
+
+osName=$(uname -o)
+classPathSeparator=":"
+if [ "$osName" = "Cygwin" ]; then
+  thisJavaXmlCatalog=$(cygpath -m $thisXmlCatalog)
+  classPathSeparator=";"
+else
+  thisJavaXmlCatalog=$thisXmlCatalog
+fi
 
 main() {
   removeOldFiles
@@ -58,12 +68,13 @@ removeOldFiles() {
 }
 
 checkRoot() {
-  myUid=`id -u`
-  if [ "$myUid" == "0" ]; then
-    echo
-    echo "WARNING: This install script is meant to be run as a"
-    echo "         non-root user, but you are running it as root."
-    echo
+  if [ $(id -u)  == "0" ]; then
+    cat <<EOF
+
+WARNING: This install script is meant to be run as a non-root
+         user, but you are running it as root.
+
+EOF
     read -s -n1 -p "Are you sure you want to continue? [No] "
     echo "$REPLY"
     case $REPLY in
@@ -86,16 +97,25 @@ updateCatalogManager() {
   #    CatalogManager.properties file found
 
   if [ -z "$CLASSPATH" ]; then
-    echo "NOTE: There is no CLASSPATH variable set in your environment."
-    echo "      No attempt was made to find a CatalogManager.properties file."
-    echo "      Using $thisCatalogManager instead."
+    cat <<EOF
+NOTE: There is no CLASSPATH variable set in your environment.
+      No attempt was made to find a CatalogManager.properties
+      file.  Using $thisCatalogManager instead
+EOF
   else
-    # split CLASSPATH in a list of pathnames by replacing all colon
+    # split CLASSPATH in a list of pathnames by replacing all separator
     # characters with spaces
-    pathnames=`echo $CLASSPATH | tr ":" " "`
+    if [ "$osName" = "Cygwin" ]; then
+      pathnames=$(echo $CLASSPATH | tr ";" " ")
+    else
+      pathnames=$(echo $CLASSPATH | tr ":" " ")
+    fi
     for path in $pathnames; do
+    if [ "$osName" = "Cygwin" ]; then
+      path=$(cygpath -u $path)
+    fi
       # strip out trailing slash from pathname
-      path=`echo $path | sed 's/\/$//'`
+      path=$(echo $path | sed 's/\/$//')
       # find CatalogManager.properties file
       if [ -f $path/CatalogManager.properties ];
       then
@@ -105,6 +125,7 @@ updateCatalogManager() {
     done
   fi
   # end of CLASSPATH check
+
   if [ -w "$existingCatalogManager" ]; then
     # existing CatalogManager.properties was found and it is
     # writeable, so use it
@@ -113,19 +134,23 @@ updateCatalogManager() {
     if [ -f "$existingCatalogManager" ]; then
       # a non-writeable CatalogManager.properties exists, so emit a
       # note sayig that it won't be used
-      echo "NOTE: $existingCatalogManager file found,"
-      echo "      but you don't have permission to write to it."
-      echo "      Will instead use $thisCatalogManager"
+      cat <<EOF
+NOTE: $existingCatalogManager file found,
+      but you don't have permission to write to it.
+      Will instead use $thisCatalogManager
+EOF
     else
       # CLASSPATH is set, but no CatalogManager.properties found
       if [ -n "$CLASSPATH" ]; then
-        echo "NOTE: No CatalogManager.properties found from CLASSPATH."
-        echo "      Will instead use $thisCatalogManager"
+        cat <<EOF
+NOTE: No CatalogManager.properties found from CLASSPATH.
+      Will instead use $thisCatalogManager
+EOF
       fi
     fi
     # end of check for existing writeable CatalogManager.properties
+
     if [ -f $thisCatalogManager ]; then
-      # otherwise, emit an error message saying that no
       myCatalogManager=$thisCatalogManager
     else
       echo
@@ -150,22 +175,25 @@ updateCatalogManager() {
     # end of check for "private" CatalogManager.properties
   fi
   # end of check finding/creating writeable CatalogManager.properties
+
   if [ -n "$myCatalogManager" ]; then
     etcXmlCatalog=
-    catalogsLine=`grep "^catalogs=" $myCatalogManager`
-    if [ -f /etc/xml/catalog ] \
+    catalogsLine=$(grep "^catalogs=" $myCatalogManager)
+    if [ -f /etc/xml/catalog ] && [ "$osName" != "Cygwin" ] \
       && [ "${catalogsLine#*/etc/xml/catalog*}" = "$catalogsLine" ]; then
-      echo
-      echo "WARNING: /etc/xml/catalog exists but was not found in the"
-      echo "         $myCatalogManager file. If the"
-      echo "         /etc/xml/catalog file has content, you probably should reference"
-      echo "         it in your $myCatalogManager"
-      echo "         file. This installer can automatitically add it for you,"
-      echo "         but BE WARNED that once it has been added, the uninstaller"
-      echo "         for this distribution CANNOT REMOVE IT automatically"
-      echo "         during uninstall. If you no longer want it included, you"
-      echo "         will need to remove it manually."
-      echo
+      cat <<EOF
+
+WARNING: /etc/xml/catalog exists but was not found in the
+         $myCatalogManager file. If the
+         /etc/xml/catalog file has content, you probably should reference
+         it in your $myCatalogManager
+         file. This installer can automatitically add it for you,
+         but BE WARNED that once it has been added, the uninstaller
+         for this distribution CANNOT REMOVE IT automatically
+         during uninstall. If you no longer want it included, you
+         will need to remove it manually.
+
+EOF
       read -s -n1 -p "Add /etc/xml/catalog to $myCatalogManager? [Yes] "
       echo "$REPLY"
       case $REPLY in
@@ -177,6 +205,7 @@ updateCatalogManager() {
         ;;
       esac
     fi
+
     catalogBackup="$myCatalogManager.$$.bak"
     if [ ! -w "${myCatalogManager%/*}" ]; then
       echo
@@ -185,7 +214,7 @@ updateCatalogManager() {
       emitNoChangeMsg
     else
       echo
-      read -s -n1 -p "Add $thisXmlCatalog to $myCatalogManager file? [Yes] "
+      read -s -n1 -p "Add $thisJavaXmlCatalog to $myCatalogManager file? [Yes] "
       echo "$REPLY"
       echo
       case $REPLY in
@@ -194,11 +223,11 @@ updateCatalogManager() {
         ;;
         *)
         if [ "$catalogsLine" ] ; then
-          if [ "${catalogsLine#*$thisXmlCatalog*}" != "$catalogsLine" ]; then
-            echo "NOTE: $thisXmlCatalog already in $myCatalogManager"
+          if [ "${catalogsLine#*$thisJavaXmlCatalog*}" != "$catalogsLine" ]; then
+            echo "NOTE: $thisJavaXmlCatalog already in $myCatalogManager"
           else
             mv $myCatalogManager $catalogBackup || exit 1
-            sed "s#^catalogs=\(.*\)\$#catalogs=$thisXmlCatalog;\1;$etcXmlCatalog#" $catalogBackup \
+            sed "s#^catalogs=\(.*\)\$#catalogs=$thisJavaXmlCatalog;\1;$etcXmlCatalog#" $catalogBackup \
             | sed 's/;\+/;/' | sed 's/;$//' > $myCatalogManager || exit 1
             echo "NOTE: $myCatalogManager file successfully updated."
             echo "      Backup written to $catalogBackup"
@@ -206,7 +235,7 @@ updateCatalogManager() {
         else
           mv $myCatalogManager $catalogBackup || exit 1
           cp $catalogBackup $myCatalogManager
-          echo "catalogs=$thisXmlCatalog;$etcXmlCatalog" \
+          echo "catalogs=$thisJavaXmlCatalog;$etcXmlCatalog" \
           | sed 's/;\+/;/' | sed 's/;$//' >> $myCatalogManager || exit 1
           echo "NOTE: \"catalogs=\" line added to $myCatalogManager."
           echo "      Backup written to $catalogBackup"
@@ -217,102 +246,113 @@ updateCatalogManager() {
     fi
   fi
   # end of CatalogManager.properties updates
+
+  if [ "$osName" = "Cygwin" ]; then
+    myCatalogManager=$(cygpath -m $myCatalogManager)
+  fi
   return 0
 }
 
 writeDotFiles() {
-  printf "`cat <<-EOF
-if [ -z "\\$XML_CATALOG_FILES" ]; then
+  while read; do
+    echo "$REPLY" >> .profile.incl
+  done <<EOF
+if [ -z "\$XML_CATALOG_FILES" ]; then
   XML_CATALOG_FILES="$thisXmlCatalog"
 else
   # $thisXmlCatalog is not in XML_CATALOG_FILES, so add it
-  if [ "\\${XML_CATALOG_FILES#*$thisXmlCatalog*}" = "\\$XML_CATALOG_FILES" ]; then
-    XML_CATALOG_FILES="$thisXmlCatalog \\$XML_CATALOG_FILES"
+  if [ "\${XML_CATALOG_FILES#*$thisXmlCatalog*}" = "\$XML_CATALOG_FILES" ]; then
+    XML_CATALOG_FILES="$thisXmlCatalog \$XML_CATALOG_FILES"
   fi
 fi
 # /etc/xml/catalog exists but is not in XML_CATALOG_FILES, so add it
 if [ -f /etc/xml/catalog ] && \
-  [ "\\${XML_CATALOG_FILES#*/etc/xml/catalog*}" = "\\$XML_CATALOG_FILES" ]; then
-  XML_CATALOG_FILES="\\$XML_CATALOG_FILES /etc/xml/catalog"
+  [ "\${XML_CATALOG_FILES#*/etc/xml/catalog*}" = "\$XML_CATALOG_FILES" ]; then
+  XML_CATALOG_FILES="\$XML_CATALOG_FILES /etc/xml/catalog"
 fi
 export XML_CATALOG_FILES
 
-if [ -z "\\$SGML_CATALOG_FILES" ]; then
+if [ -z "\$SGML_CATALOG_FILES" ]; then
   SGML_CATALOG_FILES="$thisSgmlCatalog"
 else
   # $thisSgmlCatalog is not in SGML_CATALOG_FILES, so add it
-  if [ "\\${SGML_CATALOG_FILES#*$thisSgmlCatalog}" = "\\$SGML_CATALOG_FILES" ]; then
-    SGML_CATALOG_FILES="$thisSgmlCatalog:\\$SGML_CATALOG_FILES"
+  if [ "\${SGML_CATALOG_FILES#*$thisSgmlCatalog}" = "\$SGML_CATALOG_FILES" ]; then
+    SGML_CATALOG_FILES="$thisSgmlCatalog:\$SGML_CATALOG_FILES"
   fi
 fi
 # /etc/sgml/catalog exists but is not in SGML_CATALOG_FILES, so add it
 if [ -f /etc/sgml/catalog ] && \
-  [ "\\${SGML_CATALOG_FILES#*/etc/sgml/catalog*}" = "\\$SGML_CATALOG_FILES" ]; then
-  SGML_CATALOG_FILES="\\$SGML_CATALOG_FILES:/etc/sgml/catalog"
+  [ "\${SGML_CATALOG_FILES#*/etc/sgml/catalog*}" = "\$SGML_CATALOG_FILES" ]; then
+  SGML_CATALOG_FILES="\$SGML_CATALOG_FILES:/etc/sgml/catalog"
 fi
 export SGML_CATALOG_FILES
 EOF
-`" > .profile.incl || exit 1
 
-  printf "`cat <<-EOF
+while read; do
+  echo "$REPLY" >> .cshrc.incl
+done <<EOF
 if ( ! $\?XML_CATALOG_FILES ) then
   setenv XML_CATALOG_FILES "$thisXmlCatalog"
 # $thisXmlCatalog is not in XML_CATALOG_FILES, so add it
-else if ( "\\\`echo \\$XML_CATALOG_FILES | grep -v $thisXmlCatalog\\\`" != "" ) then
-  setenv XML_CATALOG_FILES "$thisXmlCatalog \\$XML_CATALOG_FILES"
+else if ( "\$(echo \$XML_CATALOG_FILES | grep -v $thisXmlCatalog)" != "" ) then
+  setenv XML_CATALOG_FILES "$thisXmlCatalog \$XML_CATALOG_FILES"
 endif
 endif
 # /etc/xml/catalog exists but is not in XML_CATALOG_FILES, so add it
-if ( -f /etc/xml/catalog && "\\\`echo \\$XML_CATALOG_FILES | grep -v /etc/xml/catalog\\\`" != "" ) then
-  setenv XML_CATALOG_FILES "\\$XML_CATALOG_FILES /etc/xml/catalog"
+if ( -f /etc/xml/catalog && "\$(echo \$XML_CATALOG_FILES | grep -v /etc/xml/catalog)" != "" ) then
+  setenv XML_CATALOG_FILES "\$XML_CATALOG_FILES /etc/xml/catalog"
 endif
 
 endif
 if ( ! $\?SGML_CATALOG_FILES ) then
   setenv SGML_CATALOG_FILES "$thisSgmlCatalog"
-else if ( "\\\`echo \\$SGML_CATALOG_FILES | grep -v $thisSgmlCatalog\\\`" != "" ) then
-  setenv SGML_CATALOG_FILES "$thisSgmlCatalog \\$SGML_CATALOG_FILES"
+else if ( "\$(echo \$SGML_CATALOG_FILES | grep -v $thisSgmlCatalog)" != "" ) then
+  setenv SGML_CATALOG_FILES "$thisSgmlCatalog \$SGML_CATALOG_FILES"
 endif
 endif
 # /etc/SGML/catalog exists but is not in SGML_CATALOG_FILES, so add it
-if ( -f /etc/sgml/catalog && "\\\`echo \\$SGML_CATALOG_FILES | grep -v /etc/sgml/catalog\\\`" != "" ) then
-  setenv SGML_CATALOG_FILES "\\$SGML_CATALOG_FILES /etc/sgml/catalog"
+if ( -f /etc/sgml/catalog && "\$(echo \$SGML_CATALOG_FILES | grep -v /etc/sgml/catalog)" != "" ) then
+  setenv SGML_CATALOG_FILES "\$SGML_CATALOG_FILES /etc/sgml/catalog"
 endif
 EOF
-`" > .cshrc.incl || exit 1
 
 if [ -n "$myCatalogManager" ]; then
   myCatalogManagerDir=${myCatalogManager%/*}
-  printf "`cat <<-EOF
+  while read; do
+    echo "$REPLY" >> .profile.incl
+  done <<EOF
 
 
-if [ -z "\\$CLASSPATH" ]; then
+if [ -z "\$CLASSPATH" ]; then
   CLASSPATH="$myCatalogManagerDir"
 else
   # $myCatalogManagerDir is not in CLASSPATH, so add it
-  if [ "\\${CLASSPATH#*$myCatalogManagerDir*}" != "\\$myCatalogManagerDir" ]; then
-    CLASSPATH="$myCatalogManagerDir:\\$CLASSPATH"
+  if [ "\${CLASSPATH#*$myCatalogManagerDir*}" = "\$CLASSPATH" ]; then
+    CLASSPATH="$myCatalogManagerDir$classPathSeparator\$CLASSPATH"
   fi
 fi
 export CLASSPATH
 EOF
-`" >> .profile.incl || exit 1
 
-  printf "`cat <<-EOF
+  while read; do
+    echo "$REPLY" >> .cshrc.incl
+  done <<EOF
 
 
 if ( ! $\?CLASSPATH ) then
   setenv CLASSPATH "$myCatalogManagerDir"
 # $myCatalogManagerDir is not in CLASSPATH, so add it
-else if ( "\\\`echo \\$CLASSPATH | grep -v $myCatalogManagerDir\\\`" != "" ) then
-  setenv CLASSPATH "$myCatalogManagerDir:\\$CLASSPATH"
+else if ( "$(echo \$CLASSPATH | grep -v $myCatalogManagerDir)" != "" ) then
+  setenv CLASSPATH "$myCatalogManagerDir$classPathSeparator\$CLASSPATH"
 endif
 endif
 EOF
-`" >> .cshrc.incl || exit 1
+
 fi
 
-printf "`cat <<-EOF
+while read; do
+  echo "$REPLY" >> .emacs.el
+done <<EOF
 (add-hook
   'nxml-mode-hook
   (lambda ()
@@ -320,136 +360,161 @@ printf "`cat <<-EOF
           (append '("\$thisLocatingRules")
                   rng-schema-locating-files-default ))))
 EOF
-`" > .emacs.el || exit 1
 
 return 0
 }
 
 updateUserStartupFiles() {
-  echo
-  echo "NOTE: To source your environment correctly for using the catalog files"
-  echo "      in this distribution, you need to update one or more of your shell"
-  echo "      startup files. This installer can automatically make the necessary"
-  echo "      changes. Or, if you prefer, you can make the changes manually."
-  echo
+  cat <<EOF
 
-  read -s -n1 -p "Are you running a csh/tcsh shell? [No] "
-  echo "$REPLY"
-  case $REPLY in
-    [yY])
-    myStartupFiles=".cshrc .tcshrc"
-    appendLine="source $PWD/.cshrc.incl"
-    ;;
-    *)
-    myStartupFiles=".bash_profile .bash_login .profile .bashrc"
-    appendLine=". $PWD/.profile.incl"
-    ;;
-  esac
+NOTE: To source your environment correctly for using the catalog
+      files in this distribution, you need to update one or more
+      of your shell startup files. This installer can
+      automatically make the necessary changes. Or, if you prefer,
+      you can make the changes manually.
+
+EOF
+
+  # if user is running csh or tcsh, target .cshrc and .tcshrc
+  # files for update; otherwise, target .bash_* and .profiles
+  for process in $(ps -u $(id -u)); do
+    if [ "${process%/csh}" != "$process" ] && [ "${process%/tcsh}" != "$process" ]; then
+      myStartupFiles=".cshrc .tcshrc"
+      appendLine="source $PWD/.cshrc.incl"
+    else
+      myStartupFiles=".bash_profile .bash_login .profile .bashrc"
+      appendLine=". $PWD/.profile.incl"
+    fi
+  done
+
   for file in $myStartupFiles; do
     if [ -f "$HOME/$file" ]; then
+      dotFileBackup=$HOME/$file.$$.bak
       read -s -n1 -p "Update $HOME/$file? [Yes] "
       echo "$REPLY"
       case $REPLY in
         [nNqQ])
-        echo
-        echo "NOTE: No change made to $HOME/$file. You either need"
-        echo "      to add the following line to it, or manually source"
-        echo "      the shell environment for this distribuition each"
-        echo "      time you want use it."
-        echo 
-        echo $appendLine
-        echo
+        cat <<EOF
+
+NOTE: No change made to $HOME/$file. You either need
+      to add the following line to it, or manually source
+      the shell environment for this distribuition each
+      time you want use it.
+ 
+ $appendLine
+
+EOF
         ;;
         *)
-        lineExists="`grep \"$appendLine\" $HOME/$file `"
+        lineExists="$(grep "$appendLine" $HOME/$file )"
         if [ ! "$lineExists" ]; then
-          dotFileBackup=$HOME/$file.$$.bak
           mv $HOME/$file $dotFileBackup     || exit 1
           cp $dotFileBackup $HOME/$file     || exit 1
           echo "$appendLine" >> $HOME/$file || exit 1
-          echo
-          echo "NOTE: $HOME/$file file successfully updated."
-          echo "      Backup written to $dotFileBackup"
+          cat <<EOF
+
+NOTE: $HOME/$file file successfully updated.
+      Backup written to $dotFileBackup
+EOF
         else
-          echo
-          echo "NOTE: $HOME/$file already contains information for this distribution."
-          echo "      $HOME/$file not updated."
-          echo
+          cat <<EOF
+
+NOTE: $HOME/$file already contains information for this distribution.
+      $HOME/$file not updated.
+
+EOF
         fi
         ;;
       esac
     fi
   done
   if [ -z "$dotFileBackup" ]; then
-    echo
-    echo "NOTE: No shell startup files updated. You can source the environment for"
-    echo "      this distribution manually, each time you want to use it, by"
-    echo "      typing the following."
-    echo
-    echo "      $appendLine"
+    cat <<EOF
+
+NOTE: No shell startup files updated. You can source the
+      environment for this distribution manually, each time you
+      want to use it, by typing the following.
+
+      $appendLine
+EOF
   fi
 }
 
 updateUserDotEmacs() {
-  echo
-  echo "NOTE: This distribution includes a \"schema locating rules\" file for Emacs/nXML."
-  echo "      To use it, you should update either your .emacs or .emacs.el file."
-  echo "      This installer can automatically make the necessary changes. Or, if"
-  echo "      you prefer, you can make the changes manually."
-  echo
+  cat <<EOF
+
+NOTE: This distribution includes a "schema locating rules" file
+      for Emacs/nXML.  To use it, you should update either your
+      .emacs or .emacs.el file.  This installer can automatically
+      make the necessary changes. Or, i you prefer, you can make
+      the changes manually.
+
+EOF
 
   emacsAppendLine="(load-file \"$PWD/.emacs.el\")"
   myEmacsFile=
   for file in .emacs .emacs.el; do
-    if [ -e "$HOME/$file" ]; then
+    if [ -f "$HOME/$file" ]; then
       myEmacsFile=$HOME/$file
       break
-    else
-      read -s -n1 -p "No .emacs or .emacs.el file. Create one? [No] "
-      echo "$REPLY"
-      echo
-      case $REPLY in
-        [yY])
-        myEmacsFile=$HOME/.emacs
-        ;;
-        *)
-        echo "NOTE: No Emacs changes made. To use this distribution with,"
-        echo "      Emacs/nXML, you can create a .emacs file and manually"
-        echo "      add the following line to it, or you can run it as a"
-        echo "      command within Emacs."
-        echo $emacsAppendLine
-        ;;
-      esac
     fi
   done
+  if [ ! -f "$myEmacsFile" ]; then
+    read -s -n1 -p "No .emacs or .emacs.el file. Create one? [No] "
+    echo "$REPLY"
+    echo
+    case $REPLY in
+      [yY])
+      myEmacsFile=$HOME/.emacs
+      touch $myEmacsFile
+      ;;
+      *)
+      cat <<EOF
+NOTE: No Emacs changes made. To use this distribution with,
+      Emacs/nXML, you can create a .emacs file and manually add
+      the following line to it, or you can run it as a command
+      within Emacs.
+
+$emacsAppendLine
+EOF
+      ;;
+    esac
+  fi
   if [ -n "$myEmacsFile" ]; then
     read -s -n1 -p  "Update $myEmacsFile? [Yes] "
     echo "$REPLY"
     echo
     case $REPLY in
       [nNqQ])
-      echo
-      echo "NOTE: No change made to $myEmacsFile. To use this distribution with Emacs/nXML,"
-      echo "      you can manually add the following line to your $myEmacsFile, or"
-      echo "      you can run it as a command within Emacs."
-      echo 
-      echo $emacsAppendLine
-      echo
+      cat <<EOF
+
+NOTE: No change made to $myEmacsFile. To use this distribution
+      with Emacs/nXML, you can manually add the following line
+      to your $myEmacsFile, or you can run it as a command
+      within Emacs.
+ 
+ $emacsAppendLine
+
+EOF
       ;;
       *)
-      lineExists="`grep \"$emacsAppendLine\" $myEmacsFile`"
+      lineExists="$(grep "$emacsAppendLine" $myEmacsFile)"
       if [ ! "$lineExists" ]; then
         dotEmacsBackup=$myEmacsFile.$$.bak
         mv $myEmacsFile $dotEmacsBackup    || exit 1
         cp $dotEmacsBackup $myEmacsFile    || exit 1
         echo "$emacsAppendLine" >> $myEmacsFile || exit 1
-        echo "NOTE: $myEmacsFile file successfully updated."
-        echo "      Backup written to $dotEmacsBackup"
+        cat <<EOF
+NOTE: $myEmacsFile file successfully updated.
+      Backup written to $dotEmacsBackup
+EOF
       else
-        echo
-        echo "NOTE: $myEmacsFile already contains information for this distribution."
-        echo "      $myEmacsFile not updated."
-        echo
+        cat <<EOF
+
+NOTE: $myEmacsFile already contains information for this distribution.
+      $myEmacsFile not updated.
+
+EOF
       fi
       ;;
     esac
@@ -457,50 +522,62 @@ updateUserDotEmacs() {
 }
 
 uninstall() {
-  echo
-  echo "NOTE: To \"uninstall\" this distribution, the changes made to your"
-  echo "      CatalogManagers.properties, startup files, and/or .emacs file need to"
-  echo "      be reverted. This uninstaller can automatically revert them".
-  echo "      Or, if you prefer, you can revert them manually."
-  echo
+  cat <<EOF
+
+NOTE: To "uninstall" this distribution, the changes made to your
+      CatalogManagers.properties, startup files, and/or .emacs
+      file need to be reverted. This uninstaller can automatically
+      revert them.  Or, if you prefer, you can revert them manually.
+
+EOF
+
+  if [ "$osName" = "Cygwin" ]; then
+    thisXmlCatalog=$thisJavaXmlCatalog
+  fi
 
   # make "escaped" version of PWD to use with sed and grep
-  escapedPwd=`echo $PWD | sed "s#/#\\\\\/#g"`
+  escapedPwd=$(echo $PWD | sed "s#/#\\\\\/#g")
 
   # check to see if a non-empty value for catalogManager was fed
   # to uninstaller.
   if [ -n ${1#--catalogManager=} ]; then
     myCatalogManager=${1#--catalogManager=}
     catalogBackup="$myCatalogManager.$$.bak"
-    catalogsLine=`grep "^catalogs=" $myCatalogManager`
+    catalogsLine=$(grep "^catalogs=" $myCatalogManager)
     if [ "$catalogsLine" ] ; then
       if [ "${catalogsLine#*$thisXmlCatalog*}" != "$catalogsLine" ]; then
         read -s -n1 -p "Revert $myCatalogManager? [Yes] "
         echo "$REPLY"
         case $REPLY in
           [nNqQ]*)
-          echo
-          echo "NOTE: No change made to $myCatalogManager. You need to manually"
-          echo "      remove the following path from the \"catalog=\" line."
-          echo 
-          echo          $thisXmlCatalog
-          echo
+          cat <<EOF
+
+NOTE: No change made to $myCatalogManager. You need to manually
+      remove the following path from the "catalog=" line.
+ 
+          $thisXmlCatalog
+
+EOF
           ;;
           *)
           mv $myCatalogManager $catalogBackup || exit 1
           sed "s#^catalogs=\(.*\)$thisXmlCatalog\(.*\)\$#catalogs=\1\2#" $catalogBackup \
           | sed 's/;\+/;/' | sed 's/;$//' | sed 's/=;/=/' > $myCatalogManager || exit 1
-          echo
-          echo "NOTE: $myCatalogManager file successfully reverted."
-          echo "      Backup written to $catalogBackup"
+          cat <<EOF
+
+NOTE: $myCatalogManager file successfully reverted.
+      Backup written to $catalogBackup
+EOF
           ;;
         esac
       else
         echo "NOTE: No data for this distribution found in $myCatalogManager"
       fi
     else
-      echo "NOTE: No data for this distribution found in $myCatalogManager"
-      echo "      So, nothing to revert in $myCatalogManager"
+      cat <<EOF
+NOTE: No data for this distribution found in $myCatalogManager
+      So, nothing to revert in $myCatalogManager
+EOF
     fi
   fi
 
@@ -509,29 +586,33 @@ uninstall() {
   if [ -n ${2#--dotEmacs=} ]; then
     myEmacsFile=${2#--dotEmacs=}
     revertLine="(load-file \"$escapedPwd\/\.emacs\.el\")"
-    loadLine="`grep \"$revertLine\" $myEmacsFile`"
+    loadLine="$(grep "$revertLine" $myEmacsFile)"
     if [ -n "$loadLine" ]; then
       echo
       read -s -n1 -p "Revert $myEmacsFile? [Yes] "
       echo "$REPLY"
       case $REPLY in
         [nNqQ]*)
-        echo
-        echo "NOTE: No change made to $myEmacsFile. You need to manually"
-        echo "      remove the following line."
-        echo 
-        echo "      (load-file \"$PWD/.emacs.el\")"
-        echo
+        cat <<EOF
+
+NOTE: No change made to $myEmacsFile. You need to manually
+      remove the following line.
+ 
+      (load-file \"$PWD/.emacs.el\")
+
+EOF
         ;;
         *)
         dotEmacsBackup=$myEmacsFile.$$.bak
         mv $myEmacsFile $dotEmacsBackup       || exit 1
         cp $dotEmacsBackup $myEmacsFile       || exit 1
         sed -i "/$revertLine/d" $myEmacsFile  || exit 1
-        echo
-        echo "NOTE: $myEmacsFile file successfully reverted."
-        echo "      Backup written to $dotEmacsBackup"
-        echo
+        cat <<EOF
+
+NOTE: $myEmacsFile file successfully reverted.
+      Backup written to $dotEmacsBackup
+
+EOF
         ;;
       esac
     else
@@ -553,28 +634,32 @@ uninstall() {
         revertLineEsc="\. $escapedPwd\/\.profile\.incl"
         ;;
       esac
-      lineExists="`grep \"$revertLineEsc\" $HOME/$file `"
+      lineExists="$(grep "$revertLineEsc" $HOME/$file )"
       if [ "$lineExists" ]; then
         read -s -n1 -p "Update $HOME/$file? [Yes] "
         echo "$REPLY"
         case $REPLY in
           [nNqQ]*)
-          echo
-          echo "NOTE: No change made to $HOME/$file. You need to manually remove"
-          echo "      the following line from it."
-          echo 
-          echo $revertLine
-          echo
+          cat <<EOF
+
+NOTE: No change made to $HOME/$file. You need to manually remove
+      the following line from it.
+
+ $revertLine
+
+EOF
           ;;
           *)
           dotFileBackup=$HOME/$file.$$.bak
-          mv $HOME/$file $dotFileBackup         || exit 1
-          cp $dotFileBackup $HOME/$file         || exit 1
+          mv $HOME/$file $dotFileBackup           || exit 1
+          cp $dotFileBackup $HOME/$file           || exit 1
           sed -i "/$revertLineEsc/d" $HOME/$file  || exit 1
-          echo
-          echo "NOTE: $HOME/$file file successfully updated."
-          echo "      Backup written to $dotFileBackup"
-          echo
+          cat <<EOF
+
+NOTE: $HOME/$file file successfully updated.
+      Backup written to $dotFileBackup
+
+EOF
           ;;
         esac
       else
@@ -592,87 +677,120 @@ uninstall() {
 writeUninstallFile() {
   uninstallFile=./uninstall.sh
   echo "#!/bin/sh"                                > $uninstallFile || exit 1
-  echo "$PWD/install.sh --uninstall \\"             >> $uninstallFile || exit 1
+  echo "$PWD/install.sh --uninstall \\"          >> $uninstallFile || exit 1
   echo "  --catalogManager=$myCatalogManager \\" >> $uninstallFile || exit 1
-  echo "  --dotEmacs=$myEmacsFile \\"            >> $uninstallFile || exit 1
+  echo "  --dotEmacs=$myEmacsFile"               >> $uninstallFile || exit 1
   chmod 755 $uninstallFile || exit 1
 }
 
 writeTestFile() {
   testFile=./test.sh
   echo "#!/bin/sh"                                > $testFile || exit 1
-  echo "$PWD/install.sh --test \\"                  >> $testFile || exit 1
+  echo "$PWD/install.sh --test"                  >> $testFile || exit 1
   chmod 755 $testFile || exit 1
 }
 
 printExitMessage() {
-  echo
-  echo "Type the following to source your shell environment for the distriibution"
-  echo
-  echo $appendLine
+  cat <<EOF
+
+Type the following to source your shell environment for the distriibution
+
+ $appendLine
+EOF
 }
 
 checkForResolver() {
-  resolverResponse="`java org.apache.xml.resolver.apps.resolver uri -u foo 2>/dev/null`"
+  resolverResponse="$(java org.apache.xml.resolver.apps.resolver uri -u foo 2>/dev/null)"
   if [ -z "$resolverResponse" ]; then
-    echo
-    echo "NOTE: Your environment does not seem to contain the Apache XML Commons"
-    echo "      Resolver; without that, you can't use XML catalogs with Java."
-    echo "      For more information, see the \"How to use a catalog file\" section"
-    echo "      Bob Stayton's \"DocBook XSL: The Complete Guide\""
-    echo
-    echo "         http://sagehill.net/docbookxsl/UseCatalog.html"
-    echo
+    cat <<EOF
+
+NOTE: Your environment does not seem to contain the Apache XML Commons
+      Resolver; without that, you can't use XML catalogs with Java.
+      For more information, see the "How to use a catalog file" section
+      in Bob Stayton's "DocBook XSL: The Complete Guide"
+
+      http://sagehill.net/docbookxsl/UseCatalog.html
+
+EOF
   fi
 }
 
 emitNoChangeMsg() {
-  echo
-  echo "NOTE: No changes was made to CatalogManagers.properties."
-  echo "      To provide your Java tools with XML catalog information for this"
-  echo "      distribution, you will need to make the appropriate changes manually."
+  cat <<EOF
+
+NOTE: No changes was made to CatalogManagers.properties. To
+      provide your Java tools with XML catalog information for
+      this distribution, you will need to make the appropriate
+      changes manually.
+EOF
 }
 
 testCatalogs() {
-  echo
-  echo "Testing with xmlcatalog..."
-  while read pair; do
-    path=$PWD/${pair%* *}
-    uri=${pair#* *}
+  if [ -z "$XML_CATALOG_FILES" ]; then
     echo
-    echo "  Tested:" $uri
-    for catalog in $XML_CATALOG_FILES; do
-      response="`xmlcatalog $catalog $uri| grep -v \"No entry\"`"
-      if [ $response ]; then
-        if [ "$response" = "$path" ]; then
-          echo "  Result: $path"
-        else
-          echo "  Result: FAILED"
-        fi
-      fi
-    done
-  done < .urilist
+    echo "NOTE: XML_CATALOG_FILES not set. Not testing with xmlcatalog."
+  else
+    xmlCatalogResponse="$(xmlcatalog 2>/dev/null)"
+    if [ -z "$xmlCatalogResponse" ]; then
+    cat <<EOF
 
-  echo
-  echo "Testing with Apache XML Commons Resolver..."
-  while read pair; do
-    path=$PWD/${pair%* *}
-    uri=${pair#* *}
-    echo
-    echo "  Tested:" $uri
-    if [ ${uri%.dtd} != $uri ]; then
-      response="`java org.apache.xml.resolver.apps.resolver system -s $uri | grep \"Result\"`"
+NOTE: Cannot locate the "xmlcatalog" application. Make sure that
+      you have libxml2 and its associate utilities installed.
+
+      http://xmlsoft.org/
+
+EOF
     else
-      response="`java org.apache.xml.resolver.apps.resolver uri -u $uri | grep \"Result\"`"
+      echo
+      echo "Testing with xmlcatalog..."
+      while read pair; do
+        path=$PWD/${pair%* *}
+        uri=${pair#* *}
+        echo
+        echo "  Tested:" $uri
+        for catalog in $XML_CATALOG_FILES; do
+          response="$(xmlcatalog $catalog $uri| grep -v "No entry")"
+          if [ $response ]; then
+            if [ "$response" = "$path" ]; then
+              echo "  Result: $path"
+            else
+              echo "  Result: FAILED"
+            fi
+          fi
+        done
+      done < .urilist
     fi
-    if [ "$response" ]; then
-      if [ "${response#*$path}" != "$response" ]; then
-        echo "  Result: $path"
-      else
-        echo "  Result: FAILED"
-      fi
+  fi
+
+  if [ -z "$CLASSPATH" ]; then
+    echo
+    echo "NOTE: CLASSPATH not set. Not testing with Apache XML Commons Resolver."
+  else
+    if [ "$(checkForResolver)" ]; then
+      checkForResolver
+    else
+      echo
+      echo "Testing with Apache XML Commons Resolver..."
+      while read pair; do
+        path=$PWD/${pair%* *}
+        uri=${pair#* *}
+        echo
+        echo "  Tested:" $uri
+        if [ ${uri%.dtd} != $uri ]; then
+          response="$(java org.apache.xml.resolver.apps.resolver system -s $uri | grep "Result")"
+        else
+          response="$(java org.apache.xml.resolver.apps.resolver uri -u $uri | grep "Result")"
+        fi
+        if [ "$response" ]; then
+          if [ "${response#*$path}" != "$response" ]; then
+            echo "  Result: $path"
+          else
+            echo "  Result: FAILED"
+          fi
+        fi
+      done < .urilist
     fi
-  done < .urilist
+  fi
 }
 
 # get opts and execute appropriate function
