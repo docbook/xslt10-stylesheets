@@ -9,7 +9,7 @@
   </articleinfo> 
   <para>These are the release notes for the DocBook Website
   distribution. This file provides a high-level overview of features
-  and public API changes in each release.</para>
+  and API changes in each release.</para>
 
   <para>Bug fixes are (mostly) not documented here. For a complete
   list of changes, including descriptions of bug fixes, see the <ulink
@@ -20,7 +20,9 @@
     <title>Release 2.6.0</title>
     <para>This release includes some significant schema changes, as
     well as a few relatively minor changes to the Website XSL
-    stylesheets, and a handful of bug fixes.
+    stylesheets, and a handful of bug fixes. It also includes a new
+    (and still experimental) <filename>install.sh</filename> script to
+    facilitate XML catalog and locating-rules setup.
     <itemizedlist id="V260_schema">
       <title>Schemas</title>
       <listitem>
@@ -72,8 +74,9 @@
 	<para>gentext is now used for "Home" text</para>
       </listitem>
       <listitem>
-	<para>All types of nodes under
-	webpage (including PIs and comments) not only elements.</para>
+	<para>All types of nodes under <sgmltag>webpage</sgmltag>
+	(including PIs and comments, not only elements) are now
+	processed.</para>
       </listitem>
       <listitem>
 	<para><literal>baseuri</literal> attribute in
@@ -101,10 +104,20 @@
 	website builds.</para>
       </listitem>
     </itemizedlist>
+    <itemizedlist id="V260_install">
+      <title>Install</title>
+      <listitem>
+	<para>A new (and still experimental)
+	<filename>install.sh</filename> file has been added to the
+	Website distribution. For information on using it, see the
+	<filename>INSTALL</filename> file.</para>
+      </listitem>
+    </itemizedlist>
     </para>
   </section>
   <section>
     <title>Older releases</title>
-    <para>Sorry, there are no release notes for releases prior to the 2.6.0 release.</para>
+    <para>Sorry, there are no release notes for releases prior to the
+    2.6.0 release.</para>
   </section>
 </article>
