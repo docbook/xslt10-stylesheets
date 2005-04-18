@@ -139,11 +139,11 @@ endif
 
 install: zip
 	-$(FTP) $(FTP_OPTS) "mput -O $(SF_UPLOAD_DIR) $(TMP)/docbook-$(DISTRO)-$(ZIPVER).*; quit" $(SF_UPLOAD_HOST)
-	$(SCP) $(SCP_OPTS) $(TMP)/docbook-$(DISTRO)-$(ZIPVER).tar.bz2 $(PROJECT_USER)@$(PROJECT_HOST):$(PROJECT_BASE)/$(DISTRO)/
+	$(SCP) $(SCP_OPTS) $(TMP)/docbook-$(DISTRO)-$(ZIPVER).tar.bz2 $(PROJECT_USER)@$(PROJECT_HOST):$(RELEASE_DIR)/$(DISTRO)/
 	$(SSH) $(SSH_OPTS)-l $(PROJECT_USER) $(PROJECT_HOST) \
 	  "(\
 	   umask 002; \
-	   cd $(PROJECT_BASE)/$(DISTRO); \
+	   cd $(RELEASE_DIR)/$(DISTRO); \
 	   rm -rf $(ZIPVER); \
 	   tar xfj docbook-$(DISTRO)-$(ZIPVER).tar.bz2; \
 	   mv docbook-$(DISTRO)-$(ZIPVER) $(ZIPVER); \
