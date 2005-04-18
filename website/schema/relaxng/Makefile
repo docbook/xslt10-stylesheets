@@ -54,3 +54,5 @@ clean:
 	namespaces.mod.rnc namespaces.mod.rng \
 	rddl.mod.rnc rddl.mod.rng \
 	website.mod.rnc website.mod.rng
+
+realclean: clean

@@ -44,7 +44,7 @@ XSLT=java \
 	com.icl.saxon.StyleSheet \
 	-x org.apache.xml.resolver.tools.ResolvingXMLReader \
 	-y org.apache.xml.resolver.tools.ResolvingXMLReader \
-	-r org.apache.xml.resolver.tools.CatalogResolver \
+	-r org.apache.xml.resolver.tools.CatalogResolver
 
 # to use xsltproc as your XSLT engine, either uncomment the next
 # line or just run make like this: "make XSLT=xsltproc"
