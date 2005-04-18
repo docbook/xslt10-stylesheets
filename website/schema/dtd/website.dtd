@@ -140,6 +140,16 @@
 			|off)		#IMPLIED
 	%local.common.attrib;"
 >
+<!ENTITY % idreq.common.attrib
+	"id		ID		#REQUIRED
+	lang		CDATA		#IMPLIED
+        remap           CDATA           #IMPLIED
+	revisionflag	(changed
+			|added
+			|deleted
+			|off)		#IMPLIED
+	%local.common.attrib;"
+>
 <!ENTITY % local.person.ident.mix "">
 <!ENTITY % person.ident.mix
 		"honorific|firstname|surname|lineage|othername|affiliation
@@ -2082,7 +2092,7 @@ top|bottom|topbot|all|sides|none">
 	%xlink-xmlns;	CDATA	#FIXED %xlink-namespace;
 	%rddl-xmlns;	CDATA	#FIXED %rddl-namespace;
 	navto		(yes|no)	"yes"
-        %common.attrib;
+        %idreq.common.attrib;
 >
 <!ELEMENT webtoc EMPTY>
 <!ATTLIST webtoc
