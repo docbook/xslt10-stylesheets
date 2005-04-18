@@ -35,11 +35,13 @@ example:
 
 clean:
 	$(MAKE) -C extensions clean
+	$(MAKE) -C schema clean
 	$(MAKE) -C example clean
 	$(MAKE) -C example MAKENONTAB=1 clean
 
 realclean: clean
 	$(MAKE) -C extensions realclean
+	$(MAKE) -C schema realclean
 	$(MAKE) -C example realclean
 
 include ../releasetools/Targets.mk
