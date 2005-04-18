@@ -18,7 +18,7 @@
 #
 # It works by updating the user's shell startup files (e.g.,
 # .bashrc and .cshrc) and .emacs file and by finding or creating a
-# writeable CatalogManager.properties file to update.
+# writable CatalogManager.properties file to update.
 #
 # It makes backup copies of any files it touches, and also
 # generates a uninstall.sh script for reverting its changes.
@@ -32,9 +32,9 @@
 thisLocatingRules=$PWD/locatingrules.xml
 thisXmlCatalog=$PWD/catalog.xml
 thisSgmlCatalog=$PWD/catalog
-# .urlist file contains a list of pairs of local pathnames and
+# .urilist file contains a list of pairs of local pathnames and
 # URIs to test for catalog resolution
-thisUriList=$PWC/.urilist
+thisUriList=$PWD/.urilist
 
 exampleCatalogManager=$PWD/.CatalogManager.properties.example 
 thisCatalogManager=$HOME/.resolver/CatalogManager.properties
@@ -91,13 +91,14 @@ EOF
 
 updateCatalogManager() {
 
-  #  - finds or creates a writeable CatalogManager.properties file
+  #  - finds or creates a writable CatalogManager.properties file
   #
   #  - adds the catalog.xml file for this distribution to the
   #    CatalogManager.properties file found
 
   if [ -z "$CLASSPATH" ]; then
     cat <<EOF
+
 NOTE: There is no CLASSPATH variable set in your environment.
       No attempt was made to find a CatalogManager.properties
       file.  Using $thisCatalogManager instead
@@ -128,12 +129,12 @@ EOF
 
   if [ -w "$existingCatalogManager" ]; then
     # existing CatalogManager.properties was found and it is
-    # writeable, so use it
+    # writable, so use it
     myCatalogManager=$existingCatalogManager
   else
     if [ -f "$existingCatalogManager" ]; then
-      # a non-writeable CatalogManager.properties exists, so emit a
-      # note sayig that it won't be used
+      # a non-writable CatalogManager.properties exists, so emit a
+      # note saying that it won't be used
       cat <<EOF
 NOTE: $existingCatalogManager file found,
       but you don't have permission to write to it.
@@ -148,7 +149,7 @@ NOTE: No CatalogManager.properties found from CLASSPATH.
 EOF
       fi
     fi
-    # end of check for existing writeable CatalogManager.properties
+    # end of check for existing writable CatalogManager.properties
 
     if [ -f $thisCatalogManager ]; then
       myCatalogManager=$thisCatalogManager
@@ -174,7 +175,7 @@ EOF
     fi
     # end of check for "private" CatalogManager.properties
   fi
-  # end of check finding/creating writeable CatalogManager.properties
+  # end of check finding/creating writable CatalogManager.properties
 
   if [ -n "$myCatalogManager" ]; then
     etcXmlCatalog=
@@ -187,7 +188,7 @@ WARNING: /etc/xml/catalog exists but was not found in the
          $myCatalogManager file. If the
          /etc/xml/catalog file has content, you probably should reference
          it in your $myCatalogManager
-         file. This installer can automatitically add it for you,
+         file. This installer can automatically add it for you,
          but BE WARNED that once it has been added, the uninstaller
          for this distribution CANNOT REMOVE IT automatically
          during uninstall. If you no longer want it included, you
@@ -209,7 +210,7 @@ EOF
     catalogBackup="$myCatalogManager.$$.bak"
     if [ ! -w "${myCatalogManager%/*}" ]; then
       echo
-      echo "WARNING: ${myCatalogManager%/*} directory is not writeable."
+      echo "WARNING: ${myCatalogManager%/*} directory is not writable."
       echo
       emitNoChangeMsg
     else
@@ -294,24 +295,24 @@ done <<EOF
 if ( ! $\?XML_CATALOG_FILES ) then
   setenv XML_CATALOG_FILES "$thisXmlCatalog"
 # $thisXmlCatalog is not in XML_CATALOG_FILES, so add it
-else if ( "\$(echo \$XML_CATALOG_FILES | grep -v $thisXmlCatalog)" != "" ) then
+else if ( "\\\`echo \$XML_CATALOG_FILES | grep -v $thisXmlCatalog\\\`" != "" ) then
   setenv XML_CATALOG_FILES "$thisXmlCatalog \$XML_CATALOG_FILES"
 endif
 endif
 # /etc/xml/catalog exists but is not in XML_CATALOG_FILES, so add it
-if ( -f /etc/xml/catalog && "\$(echo \$XML_CATALOG_FILES | grep -v /etc/xml/catalog)" != "" ) then
+if ( -f /etc/xml/catalog && "\\\`echo \$XML_CATALOG_FILES | grep -v /etc/xml/catalog\\\`" != "" ) then
   setenv XML_CATALOG_FILES "\$XML_CATALOG_FILES /etc/xml/catalog"
 endif
 
 endif
 if ( ! $\?SGML_CATALOG_FILES ) then
   setenv SGML_CATALOG_FILES "$thisSgmlCatalog"
-else if ( "\$(echo \$SGML_CATALOG_FILES | grep -v $thisSgmlCatalog)" != "" ) then
+else if ( "\\\`echo \$SGML_CATALOG_FILES | grep -v $thisSgmlCatalog\\\`" != "" ) then
   setenv SGML_CATALOG_FILES "$thisSgmlCatalog \$SGML_CATALOG_FILES"
 endif
 endif
 # /etc/SGML/catalog exists but is not in SGML_CATALOG_FILES, so add it
-if ( -f /etc/sgml/catalog && "\$(echo \$SGML_CATALOG_FILES | grep -v /etc/sgml/catalog)" != "" ) then
+if ( -f /etc/sgml/catalog && "\\\`echo \$SGML_CATALOG_FILES | grep -v /etc/sgml/catalog\\\`" != "" ) then
   setenv SGML_CATALOG_FILES "\$SGML_CATALOG_FILES /etc/sgml/catalog"
 endif
 EOF
@@ -342,7 +343,7 @@ EOF
 if ( ! $\?CLASSPATH ) then
   setenv CLASSPATH "$myCatalogManagerDir"
 # $myCatalogManagerDir is not in CLASSPATH, so add it
-else if ( "$(echo \$CLASSPATH | grep -v $myCatalogManagerDir)" != "" ) then
+else if ( "\\\`echo \$CLASSPATH | grep -v $myCatalogManagerDir\\\`" != "" ) then
   setenv CLASSPATH "$myCatalogManagerDir$classPathSeparator\$CLASSPATH"
 endif
 endif
@@ -377,15 +378,15 @@ EOF
 
   # if user is running csh or tcsh, target .cshrc and .tcshrc
   # files for update; otherwise, target .bash_* and .profiles
-  for process in $(ps -u $(id -u)); do
-    if [ "${process%/csh}" != "$process" ] && [ "${process%/tcsh}" != "$process" ]; then
-      myStartupFiles=".cshrc .tcshrc"
-      appendLine="source $PWD/.cshrc.incl"
-    else
-      myStartupFiles=".bash_profile .bash_login .profile .bashrc"
-      appendLine=". $PWD/.profile.incl"
-    fi
-  done
+
+  parent=$(ps $PPID | grep "/")
+  if [ "${parent#*csh}" != "$parent" ] || [ "${parent#*tcsh}" != "$parent" ]; then
+    myStartupFiles=".cshrc .tcshrc"
+    appendLine="source $PWD/.cshrc.incl"
+  else
+    myStartupFiles=".bash_profile .bash_login .profile .bashrc"
+    appendLine=". $PWD/.profile.incl"
+  fi
 
   for file in $myStartupFiles; do
     if [ -f "$HOME/$file" ]; then
@@ -398,10 +399,10 @@ EOF
 
 NOTE: No change made to $HOME/$file. You either need
       to add the following line to it, or manually source
-      the shell environment for this distribuition each
+      the shell environment for this distribution each
       time you want use it.
- 
- $appendLine
+
+$appendLine
 
 EOF
         ;;
@@ -435,7 +436,8 @@ NOTE: No shell startup files updated. You can source the
       environment for this distribution manually, each time you
       want to use it, by typing the following.
 
-      $appendLine
+$appendLine
+
 EOF
   fi
 }
@@ -476,6 +478,7 @@ NOTE: No Emacs changes made. To use this distribution with,
       within Emacs.
 
 $emacsAppendLine
+
 EOF
       ;;
     esac
@@ -492,8 +495,8 @@ NOTE: No change made to $myEmacsFile. To use this distribution
       with Emacs/nXML, you can manually add the following line
       to your $myEmacsFile, or you can run it as a command
       within Emacs.
- 
- $emacsAppendLine
+
+$emacsAppendLine
 
 EOF
       ;;
@@ -554,7 +557,7 @@ EOF
 
 NOTE: No change made to $myCatalogManager. You need to manually
       remove the following path from the "catalog=" line.
- 
+
           $thisXmlCatalog
 
 EOF
@@ -597,7 +600,7 @@ EOF
 
 NOTE: No change made to $myEmacsFile. You need to manually
       remove the following line.
- 
+
       (load-file \"$PWD/.emacs.el\")
 
 EOF
@@ -693,9 +696,10 @@ writeTestFile() {
 printExitMessage() {
   cat <<EOF
 
-Type the following to source your shell environment for the distriibution
+Type the following to source your shell environment for the distribution
 
- $appendLine
+$appendLine
+
 EOF
 }
 
@@ -722,6 +726,7 @@ NOTE: No changes was made to CatalogManagers.properties. To
       provide your Java tools with XML catalog information for
       this distribution, you will need to make the appropriate
       changes manually.
+
 EOF
 }
 
