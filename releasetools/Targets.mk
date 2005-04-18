@@ -18,10 +18,12 @@ RELEASE-NOTES.txt: RELEASE-NOTES.html
 	echo $$uri >> .urilist; \
 	done
 
-install.sh:
+install.sh: .CatalogManager.properties.example .urilist
 	cp -p $(INSTALL_SH) install.sh
 
-distrib: all $(DISTRIB_DEPENDS) .CatalogManager.properties.example install.sh .urilist
+distrib: all $(DISTRIB_DEPENDS) $(NEWSFILE) install.sh
+
+$(NEWSFILE):
 	$(CVS2LOG) -w
 ifeq ($(DIFFVER),)
 	$(MERGELOGS) > $(NEWSFILE)
