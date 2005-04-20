@@ -32,9 +32,29 @@
 <para>This caution has no title.</para>
 </caution>
 
+<tip>
+<title>Tip Title</title>
+<para>This is a tip.</para>
+</tip>
+
 <note>
-<title>Who can do this</title>
-<para>All operators</para>
+<title>Note Title</title>
+<para>This is a note.</para>
 </note>
+
+<important>
+<title>Important Title</title>
+<para>This is an important.</para>
+</important>
+
+<warning>
+<title>Warning Title</title>
+<para>This is a warning.</para>
+</warning>
+
+<caution>
+<title>Caution Title</title>
+<para>This is a caution.</para>
+</caution>
 
 </article>
