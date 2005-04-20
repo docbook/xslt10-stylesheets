@@ -1,5 +1,7 @@
 WhatsNew
 RELEASE-NOTES.html
 RELEASE-NOTES.txt
-INSTALL
 catalog.xml
+.CatalogManager.properties.example
+NEWS
+install.sh
