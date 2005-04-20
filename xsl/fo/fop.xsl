@@ -23,6 +23,9 @@ translates characters with code>255 back to ASCII.
 "'aaaccccddeeeeeegggghhiiiiijklllllnnnnooorrrsssstttuuuuuuwyzzzAAACCCCDDEEEEEEGGGGHHIIIIIJKLLLLLNNNNOOORRRSSSSTTTUUUUUUWYYZZZ'"/>
 
 <xsl:template match="*" mode="fop.outline">
+  <xsl:if test="@id">
+    <fox:destination internal-destination="{@id}"/>
+  </xsl:if>
   <xsl:apply-templates select="*" mode="fop.outline"/>
 </xsl:template>
 
@@ -79,6 +82,7 @@ translates characters with code>255 back to ASCII.
       <xsl:apply-templates select="*" mode="fop.outline"/>
     </xsl:otherwise>
   </xsl:choose>
+  <fox:destination internal-destination="{$id}"/>
 </xsl:template>
 
 </xsl:stylesheet>
