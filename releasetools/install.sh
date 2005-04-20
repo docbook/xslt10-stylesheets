@@ -731,33 +731,43 @@ EOF
 }
 
 testCatalogs() {
+  readlinkResponse="$(readlink -f ./ 2>/dev/null)"
+  if [ -z "$readlinkResponse" ]; then
+    cat <<EOF
+
+FATAL: Cannot locate the "readlink" command. Stopping.
+EOF
+  exit
+  fi
+
   if [ -z "$XML_CATALOG_FILES" ]; then
     echo
-    echo "NOTE: XML_CATALOG_FILES not set. Not testing with xmlcatalog."
+    echo "WARNING: XML_CATALOG_FILES not set. Not testing with xmlcatalog."
   else
     xmlCatalogResponse="$(xmlcatalog 2>/dev/null)"
     if [ -z "$xmlCatalogResponse" ]; then
     cat <<EOF
 
-NOTE: Cannot locate the "xmlcatalog" application. Make sure that
-      you have libxml2 and its associate utilities installed.
+WARNING: Cannot locate the "xmlcatalog" command. Make sure that
+         you have libxml2 and its associated utilities installed.
 
-      http://xmlsoft.org/
+         http://xmlsoft.org/
 
 EOF
     else
       echo
       echo "Testing with xmlcatalog..."
       while read pair; do
-        path=$PWD/${pair%* *}
+        path=$(readlink -f "${pair%* *}")
         uri=${pair#* *}
         echo
         echo "  Tested:" $uri
         for catalog in $XML_CATALOG_FILES; do
-          response="$(xmlcatalog $catalog $uri| grep -v "No entry")"
-          if [ $response ]; then
+          response="$(readlink -f "$(xmlcatalog $catalog $uri| grep -v "No entry")")"
+          if [ -n "$response" ]; then
             if [ "$response" = "$path" ]; then
               echo "  Result: $path"
+              break
             else
               echo "  Result: FAILED"
             fi
@@ -777,7 +787,7 @@ EOF
       echo
       echo "Testing with Apache XML Commons Resolver..."
       while read pair; do
-        path=$PWD/${pair%* *}
+        path=$(readlink -f ${pair%* *})
         uri=${pair#* *}
         echo
         echo "  Tested:" $uri
