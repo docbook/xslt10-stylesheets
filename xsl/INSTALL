@@ -1,74 +1,78 @@
-#!/bin/bash
-# $Id$
+$Id$
 
-# To "install" this release, execute this INSTALL file by running
-# the following command:
-#
-#   sh INSTALL
-#
-# That creates a 'catalog.xml' file in the current directory and
-# generates some further instructions.
+INSTALL file for the DocBook XSL stylesheets distribution
 
-# code starts here
-if [ ! "$(xmlcatalog)" ]; then
-  cat <<- EOF
+----------------------------------------------------------------------
+Case #1: Installation using a package management system
+----------------------------------------------------------------------
+If you have installed the DocBook XSL distribution using "apt-get",
+"yum", "urpmi", or some similar package-management front-end,
+then, as part of the package installation, the XSL stylesheets
+have already been automatically installed in the appropriate
+location for your system, and your XML catalog environment was
+updated to use that location.
 
-$0: Error: Failed to find 'xmlcatalog' command. Stopping.
+----------------------------------------------------------------------
+Case #2: Installing manually
+----------------------------------------------------------------------
+If you have downloaded a docbook-xsl zip, tar.gz, or tar.bz2
+file, use the following steps to install it.
 
-You must have libxml2 and its associated 'xmlcatalog' utility
-on your system in order to create and use an XML catalog for this
-release. For more information about libxml2, see:
+  1. Move the zip, tar.gz, or tar.bz2 file to the directory where
+     you'd like to install it (not to a temporary directory).
 
-  http://xmlsoft.org/
-EOF
-  exit 1
-fi
+  2. unzip or untar/uncompress the file
 
-CATALOG=catalog.xml
-URI=http://docbook.sourceforge.net/release/xsl/current/
-DIR=`pwd`
-rm -f $CATALOG
-xmlcatalog --noout --create $CATALOG || exit 1
-xmlcatalog --noout --add rewriteURI $URI $DIR/ $CATALOG || exit 1
-xmlcatalog --noout --add rewriteSystem $URI $DIR/ $CATALOG || exit 1
-xmlcatalog --noout --add delegateURI $URI $DIR/$CATALOG $DIR/$CATALOG || exit 1
-xmlcatalog --noout --add delegateSystem $URI $DIR/$CATALOG $DIR/$CATALOG || exit 1
+     That will create a docbook-xsl-$VERSION directory (where
+     $VERSION is the version number for the release).
 
-if [ -n "$XML_CATALOG_FILES" ]; then
-  # if $XML_CATALOG_FILES already contains the filename for the
-  # catalog we are creating, remove that filename
-  if [ "$XML_CATALOG_FILES"//$DIR\/$CATALOG// != "$XML_CATALOG_FILES" ]; then
-    export XML_CATALOG_FILES="`echo $XML_CATALOG_FILES | sed "s#$DIR/$CATALOG *##"`";
-  fi
-else
-  XML_CATALOG_FILES=/etc/xml/catalog
-fi
+The remaining steps are all OPTIONAL. They are intended to
+automatically update your user environment with XML Catalog
+information about the DocBook XSL distribution. You are NOT
+REQUIRED to complete these remaining steps. However, if you do
+not, and you want to use XML catalogs with the DocBook XSL
+stylesheets, you will need to manually update your XML catalog
+environment
 
-JAVA_CATALOGS=`echo $XML_CATALOG_FILES | tr " " ";"`
+  3. Change to the docbook-xsl-$VERSION directory and execute the
+     install.sh script:
 
-cat <<- EOF
+       ./install.sh
 
- 1. Now edit either your ~/.bash_profile or ~/.cshrc file so it
-    sets the XML_CATALOG_FILES environment variable to include
-    $DIR/$CATALOG as its first item; example:
+     That will launch an interactive installer, which will emit a
+     series of prompts for you to respond to. After the process is
+     complete, the installer will emit a message with a command
+     you need to run in order to source your environment for use
+     with Website.
 
-      # set XML_CATALOG_FILES for bash/ksh shell
-      export XML_CATALOG_FILES="$DIR/$CATALOG $XML_CATALOG_FILES"
+  4. To test that he installation has updated your environment
+     correctly, execute the test.sh script:
 
-    IMPORTANT: Separate filenames in XML_CATALOG_FILES with spaces
+       ./test.sh
 
- 2. If you have a CatalogManager.properties file, change the
-    "catalogs=" line in that file to something like:
+     That will test your XML catalog environment, using both the
+     xmlcatalog application and the Apache XML Commons Resolver.
 
-      catalogs=$DIR/$CATALOG;$JAVA_CATALOGS
+     NOTE: The test.sh file is not created until the install.sh
+           file is run for the first time. So you need to run the
+           install.sh script before running the test.sh script.
 
-    IMPORTANT: In that file, separate filenames with a SEMICOLON.
-    Also, make sure that your Java CLASSPATH contains the pathname
-    to the _directory_ containing CatalogManager.properties file.
+  5. (UNINSTALLING) If/when you want to uninstall the release,
+     execute the uninstall.sh script.
 
- 3. If you're using a stylesheet customization layer, make sure
-    that it references the canonical URI for the DocBook
-    stylesheets; for example, use an xsl:import like this:
+       ./uninstall.sh
 
-      <xsl:import href="${URI}html/chunk.xsl"/>
-EOF
+     That will revert all changes made by the install.sh script.
+
+     NOTE: The uninstall.sh file is not created until the install.sh
+           file is run for the first time. So you need to run the
+
+
+----------------------------------------------------------------------
+Note to packagers
+----------------------------------------------------------------------
+The install.sh, .CatalogManager.properties.example, and .urilist
+files should not be packaged. They are useful only to users who
+are installing Website manually.
+
+The catalog.xml file should be packaged.
