@@ -30,7 +30,7 @@ db.nopara.blocks |= db.math.blocks
 
 # ======================================================================
 
-db.equation.content = (db.mediaobject+ | db.mathphrase+)
+db.equation.content = db.alt?, (db.mediaobject+ | db.mathphrase+)
 
 # ======================================================================
 

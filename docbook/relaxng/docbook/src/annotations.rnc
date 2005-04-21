@@ -16,27 +16,7 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
-db.ubiq.inlines |= db.alt | db.annotation
-
-# ======================================================================
-
-[
-   db:refname [ "alt" ]
-   db:refpurpose [ "A text-only annotation, often used for accessibility" ]
-]
-div {
-
-   db.alt.role.attribute = attribute role { text }
-
-   db.alt.attlist =
-      db.alt.role.attribute?
-    & db.common.attributes
-
-   db.alt = element alt {
-      db.alt.attlist,
-      (text | db.inlinemediaobject)*
-   }
-}
+db.ubiq.inlines |= db.annotation
 
 # ======================================================================
 

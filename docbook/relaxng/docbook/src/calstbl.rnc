@@ -612,8 +612,7 @@ div {
    db.cals.table = element table {
       db.cals.table.attlist,
       db.cals.table.info,
-      db.indexing.inlines*,
-      db.textobject*,
+      (db.alt? & db.indexing.inlines* & db.textobject*),
       (db.mediaobject+|db.tgroup+),
       db.caption?
    }
@@ -648,8 +647,8 @@ div {
       element informaltable {
          db.cals.informaltable.attlist,
          db.cals.informaltable.info,
-         db.indexing.inlines*,
-         db.textobject*,
+         (db.alt? & db.indexing.inlines* & db.textobject*),
          (db.mediaobject+|db.tgroup+)
+         db.caption?
       }
 }

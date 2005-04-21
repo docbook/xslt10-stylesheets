@@ -458,6 +458,7 @@ db.ubiq.inlines =
  | db.superscript
  | db.subscript
  | db.link.inlines
+ | db.alt
 
 db._text         = (text | db.ubiq.inlines | db._phrase | db.replaceable)*
 
@@ -2192,6 +2193,7 @@ div {
       element mediaobject {
          db.mediaobject.attlist,
          db.mediaobject.info,
+         db.alt?,
          db.mediaobject.content+,
          db.caption?
       }
@@ -2218,6 +2220,7 @@ div {
       element inlinemediaobject {
          db.inlinemediaobject.attlist,
          db.inlinemediaobject.info,
+         db.alt?,
          db.mediaobject.content+
       }
 }
@@ -6607,4 +6610,25 @@ div {
          empty
       }
 }
+
+# ======================================================================
+
+[
+   db:refname [ "alt" ]
+   db:refpurpose [ "A text-only annotation, often used for accessibility" ]
+]
+div {
+
+   db.alt.role.attribute = attribute role { text }
+
+   db.alt.attlist =
+      db.alt.role.attribute?
+    & db.common.attributes
+
+   db.alt = element alt {
+      db.alt.attlist,
+      (text | db.inlinemediaobject)*
+   }
+}
+
 
