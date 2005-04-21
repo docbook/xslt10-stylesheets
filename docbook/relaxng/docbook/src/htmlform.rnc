@@ -30,8 +30,8 @@ div {
 
    db.html.form.attlist =
       db.html.attrs
-    & attribute action { text }
-    & attribute method { "GET" | "POST" }?
+    & attribute action { xsd:anyURI }
+    & attribute method { "get" | "post" }?
     & attribute onsubmit { text }?
     & attribute onreset { text }?
 
