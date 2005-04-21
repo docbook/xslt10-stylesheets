@@ -16,6 +16,7 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 namespace dbx = "http://sourceforge.net/projects/docbook/defguide/schema/extra-markup"
 namespace xlink = "http://www.w3.org/1999/xlink"
+namespace html = "http://www.w3.org/1999/xhtml"
 default namespace = "http://docbook.org/docbook-ng"
 
 # ======================================================================
@@ -26,8 +27,8 @@ default namespace = "http://docbook.org/docbook-ng"
 ]
 div {
 
-  db._any           = element * - db:* { db._any.attribute*, (text, db._any)* }
-  db._any.attribute = attribute * { text }
+   db._any =
+      element * - (db:* | html:*) { (attribute * { text } | text | db._any)* }
 
 }
 
