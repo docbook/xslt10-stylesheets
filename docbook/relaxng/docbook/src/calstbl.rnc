@@ -574,6 +574,7 @@ div {
     & db.common.attributes
     & db.common.linking.attributes
     & db.tabstyle.attribute?
+    & db.floatstyle.attribute?
     & db.orient.attribute?
     & db.colsep.attribute?
     & db.rowsep.attribute?
@@ -633,6 +634,7 @@ div {
     & db.common.attributes
     & db.common.linking.attributes
     & db.tabstyle.attribute?
+    & db.floatstyle.attribute?
     & db.orient.attribute?
     & db.colsep.attribute?
     & db.rowsep.attribute?
