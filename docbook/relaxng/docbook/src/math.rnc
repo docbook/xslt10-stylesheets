@@ -50,7 +50,6 @@ div {
     & db.equation.label.attribute?
     & db.pgwide.attribute?
     & db.floatstyle.attribute?
-    & db.float.attribute?
 
    db.equation.info = db._info.title.only
 
@@ -58,7 +57,8 @@ div {
       element equation {
          db.equation.attlist,
          db.equation.info,
-         db.equation.content
+         db.equation.content,
+         db.caption?
       }
 }
 
@@ -83,7 +83,8 @@ div {
       element informalequation {
          db.informalequation.attlist,
          db.informalequation.info,
-         db.equation.content
+         db.equation.content,
+         db.caption?
       }
 }
 

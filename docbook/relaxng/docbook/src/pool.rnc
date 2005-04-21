@@ -258,7 +258,6 @@ db.verbatim.attributes =
 db.spacing.enumeration = "compact" | "normal"
 
 db.spacing.attribute  = attribute spacing { db.spacing.enumeration }
-db.float.attribute    = attribute float { text }
 
 db.pgwide.enumeration = "0" | "1"
 
@@ -1953,7 +1952,6 @@ div {
     & db.common.linking.attributes
     & db.example.label.attribute?
     & db.floatstyle.attribute?
-    & db.float.attribute?
     & db.example.width.attribute?
 
    db.example.info = db._info.title.onlyreq
@@ -1993,6 +1991,7 @@ div {
          db.informalexample.attlist,
          db.informalexample.info,
          db.all.blocks+
+         db.caption?
       }
 }
 
@@ -2125,7 +2124,6 @@ div {
     & db.figure.label.attribute?
     & db.pgwide.attribute?
     & db.floatstyle.attribute?
-    & db.float.attribute?
 
    db.figure.info = db._info.title.onlyreq
 
@@ -2156,7 +2154,6 @@ div {
     & db.informalfigure.label.attribute?
     & db.pgwide.attribute?
     & db.floatstyle.attribute?
-    & db.float.attribute?
 
    db.informalfigure.info = db._info.title.forbidden
 
@@ -2165,6 +2162,7 @@ div {
          db.informalfigure.attlist,
          db.informalfigure.info,
          db.all.blocks+
+         db.caption?
       }
 }
 

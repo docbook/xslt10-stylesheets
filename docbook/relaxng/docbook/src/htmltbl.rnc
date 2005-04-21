@@ -19,26 +19,26 @@ default namespace = "http://docbook.org/docbook-ng"
 db.table.choice |= db.html.table
 db.informaltable.choice |= db.html.informaltable
 
-db.html.coreattrs &=
-  attribute class { text }?,
-  attribute style { text }?,
-  attribute title { text }?
+db.html.coreattrs =
+   attribute class { text }?
+ & attribute style { text }?
+ & attribute title { text }?
 
-db.html.i18n &=
-  attribute lang { text }?,
-  attribute dir { "ltr" | "rtl" }?
+db.html.i18n =
+   attribute lang { text }?
+ & attribute dir { "ltr" | "rtl" }?
 
-db.html.events &=
-  attribute onclick { text }?,
-  attribute ondblclick { text }?,
-  attribute onmousedown { text }?,
-  attribute onmouseup { text }?,
-  attribute onmouseover { text }?,
-  attribute onmousemove { text }?,
-  attribute onmouseout { text }?,
-  attribute onkeypress { text }?,
-  attribute onkeydown { text }?,
-  attribute onkeyup { text }?
+db.html.events =
+   attribute onclick { text }?
+ & attribute ondblclick { text }?
+ & attribute onmousedown { text }?
+ & attribute onmouseup { text }?
+ & attribute onmouseover { text }?
+ & attribute onmousemove { text }?
+ & attribute onmouseout { text }?
+ & attribute onkeypress { text }?
+ & attribute onkeydown { text }?
+ & attribute onkeyup { text }?
 
 db.html.attrs =
    db.common.attributes
@@ -46,12 +46,12 @@ db.html.attrs =
  & db.html.i18n
  & db.html.events
 
-db.html.cellhalign &=
-  attribute align { "left" | "center" | "right" | "justify" | "char" }?,
-  attribute char { text }?,
-  attribute charoff { text }?
+db.html.cellhalign =
+   attribute align { "left" | "center" | "right" | "justify" | "char" }?
+ & attribute char { text }?
+ & attribute charoff { text }?
 
-db.html.cellvalign &=
+db.html.cellvalign =
   attribute valign { "top" | "middle" | "bottom" | "baseline" }?
 
 db.html.table.model =
