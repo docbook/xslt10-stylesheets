@@ -613,7 +613,8 @@ div {
       db.cals.table.info,
       db.indexing.inlines*,
       db.textobject*,
-      (db.mediaobject+|db.tgroup+)
+      (db.mediaobject+|db.tgroup+),
+      db.caption?
    }
 }
 

@@ -1959,7 +1959,8 @@ div {
       element example {
          db.example.attlist,
          db.example.info,
-         db.all.blocks+
+         db.all.blocks+,
+         db.caption?
       }
 }
 
@@ -2129,7 +2130,8 @@ div {
       element figure {
          db.figure.attlist,
          db.figure.info,
-         db.all.blocks+
+         db.all.blocks+,
+         db.caption?
       }
 }
 
@@ -2189,7 +2191,8 @@ div {
       element mediaobject {
          db.mediaobject.attlist,
          db.mediaobject.info,
-         db.mediaobject.content+
+         db.mediaobject.content+,
+         db.caption?
       }
 }
 
@@ -2476,6 +2479,35 @@ div {
       element textdata {
          db.textdata.attlist,
          db.textdata.info
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "caption" ]
+   db:refpurpose [ "A caption" ]
+]
+div {
+   ctrl:exclude [ from="db.caption" exclude="db.formal.blocks" ]
+   ctrl:exclude [ from="db.caption" exclude="db.admonition.blocks" ]
+   ctrl:exclude [ from="db.caption" exclude="db.sidebar" ]
+   ctrl:exclude [ from="db.caption" exclude="db.task" ]
+
+   db.caption.role.attribute = attribute role { text }
+
+   db.caption.attlist =
+      db.caption.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.caption.info = db._info.title.forbidden
+
+   db.caption =
+      element caption {
+         db.caption.attlist,
+         db.caption.info,
+         db.all.blocks+
       }
 }
 
