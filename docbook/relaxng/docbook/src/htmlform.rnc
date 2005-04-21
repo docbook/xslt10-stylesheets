@@ -18,7 +18,13 @@ namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
 db.extension.blocks |= db.html.form
-db.extension.inlines |= db.html.input | db.html.button | db.html.label | db.html.select | db.html.textarea
+db.extension.inlines |=
+   db.html.input
+ | db.html.button
+ | db.html.label
+ | db.html.select
+ | db.html.textarea
+ | db.html.fieldset
 
 # ======================================================================
 
@@ -34,6 +40,9 @@ div {
     & attribute method { "get" | "post" }?
     & attribute onsubmit { text }?
     & attribute onreset { text }?
+    & attribute enctype { text }?
+    & attribute accept { text }?
+    & attribute accept-charset { text }?
 
    db.html.form =
       element html:form {
@@ -43,7 +52,8 @@ div {
           | db.html.button
           | db.html.label
           | db.html.select
-          | db.html.textarea )+
+          | db.html.textarea
+          | db.html.fieldset)+
       }
 }
 
@@ -51,7 +61,7 @@ div {
 
 [
    db:refname [ "html:input" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An input element in an HTML form" ]
 ]
 div {
 
@@ -96,7 +106,7 @@ div {
 
 [
    db:refname [ "html:button" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A button in an HTML form" ]
 ]
 div {
 
@@ -122,7 +132,7 @@ div {
 
 [
    db:refname [ "html:label" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A label in an HTML form" ]
 ]
 div {
 
@@ -143,7 +153,7 @@ div {
 
 [
    db:refname [ "html:select" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A select element in an HTML form" ]
 ]
 div {
 
@@ -169,7 +179,7 @@ div {
 
 [
    db:refname [ "html:option" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "An option element in an HTML form" ]
 ]
 div {
 
@@ -190,7 +200,7 @@ div {
 
 [
    db:refname [ "html:textarea" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A textarea element in an HTML form" ]
 ]
 div {
 
@@ -212,5 +222,49 @@ div {
       element html:textarea {
          db.html.textarea.attlist,
          text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "html:fieldset" ]
+   db:refpurpose [ "A fieldset element in an HTML form" ]
+]
+div {
+
+   db.html.fieldset.attlist =
+      db.html.attrs
+
+   db.html.fieldset =
+      element html:fieldset {
+         db.html.fieldset.attlist,
+         db.html.legend?,
+         (db.all.blocks
+          | db.html.input
+          | db.html.button
+          | db.html.label
+          | db.html.select
+          | db.html.textarea
+          | db.html.fieldset)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "html:legend" ]
+   db:refpurpose [ "A legend in an HTML form fieldset" ]
+]
+div {
+
+   db.html.legend.attlist =
+      db.html.attrs
+    & attribute accesskey { text }?
+
+   db.html.legend =
+      element html:legend {
+         db.html.legend.attlist,
+         db.all.inlines*
       }
 }
