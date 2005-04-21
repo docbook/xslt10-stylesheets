@@ -647,6 +647,7 @@ db.keyboard.inlines =
 db.link.inlines =
    db.xref
  | db.link
+ | db.olink
  | db.anchor
 
 db.extension.inlines = notAllowed
@@ -6575,17 +6576,64 @@ div {
 div {
 
    db.link.role.attribute = attribute role { text }
+   db.link.xrefstyle.attribute = attribute xrefstyle { text }
    db.link.endterm.attribute = attribute endterm { xsd:IDREF }
 
    db.link.attlist =
       db.link.role.attribute?
     & db.common.attributes
     & db.common.req.linking.attributes
+    & db.link.xrefstyle.attribute?
     & db.link.endterm.attribute?
 
    db.link =
       element link {
          db.link.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "olink" ]
+   db:refpurpose [ "A link that addresses its target indirectly" ]
+   dbx:description [
+      db:para [
+         "The "
+         db:tag [ "olink" ]
+         " element provides a mechanism for establishing links across "
+         ~ "documents where ID/IDREF linking is not possible and "
+         db:tag [ "link" ]
+         " is inadequate."
+      ]
+   ]
+  dbx:expectations [
+    db:para [
+      dbx:format [ class = "inline" ]
+    ]
+  ]
+]
+div {
+   db.olink.role.attribute = attribute role { text }
+   db.olink.xrefstyle.attribute = attribute xrefstyle { xsd:IDREF }
+   db.olink.localinfo.attribute = attribute localinfo { text }
+   db.olink.targetdoc.attribute = attribute targetdoc { xsd:anyURI }
+   db.olink.targetptr.attribute = attribute targetptr { text }
+   db.olink.type.attribute = attribute type { text }
+
+   db.olink.attlist =
+      db.common.attributes
+    & db.olink.targetdoc.attribute
+    & db.olink.role.attribute?
+    & db.olink.xrefstyle.attribute?
+    & db.olink.localinfo.attribute?
+    & db.olink.targetptr.attribute?
+    & db.olink.type.attribute?
+
+   db.olink =
+      element olink {
+         db.olink.attlist,
          db.all.inlines*
       }
 }
