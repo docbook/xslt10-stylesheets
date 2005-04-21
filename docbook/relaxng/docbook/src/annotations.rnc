@@ -11,12 +11,19 @@
 #
 # ======================================================================
 
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 namespace rng  = "http://relaxng.org/ns/structure/1.0"
 namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 default namespace = "http://docbook.org/docbook-ng"
 
 db.ubiq.inlines |= db.annotation
+db.all.blocks |= db.annotation
+
+db.annotations.attribute = attribute annotations { text }
+
+db.common.attributes &= db.annotations.attribute?
+db.common.idreq.attributes &= db.annotations.attribute?
 
 # ======================================================================
 
@@ -25,11 +32,14 @@ db.ubiq.inlines |= db.annotation
    db:refpurpose [ "An annotation" ]
 ]
 div {
+   ctrl:exclude [ from="db.annotation" exclude="db.annotation" ]
 
    db.annotation.role.attribute = attribute role { text }
+   db.annotation.annotates.attribute = attribute annotates { text }
 
    db.annotation.attlist =
       db.annotation.role.attribute?
+    & db.annotation.annotates.attribute?
     & db.common.attributes
 
    db.annotation.info = db._info.title.only
