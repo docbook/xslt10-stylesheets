@@ -4650,7 +4650,7 @@ div {
 ]
 div {
 
-   application.class.attribute = attribute class { "hardware" | "software" }
+   db.application.class.attribute = attribute class { "hardware" | "software" }
 
    db.application.role.attribute = attribute role { text }
 
@@ -4658,7 +4658,7 @@ div {
       db.application.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & application.class.attribute?
+    & db.application.class.attribute?
 
    db.application =
       element application {
