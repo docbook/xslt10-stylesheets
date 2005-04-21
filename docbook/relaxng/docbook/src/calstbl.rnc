@@ -648,7 +648,7 @@ div {
          db.cals.informaltable.attlist,
          db.cals.informaltable.info,
          (db.alt? & db.indexing.inlines* & db.textobject*),
-         (db.mediaobject+|db.tgroup+)
+         (db.mediaobject+|db.tgroup+),
          db.caption?
       }
 }
