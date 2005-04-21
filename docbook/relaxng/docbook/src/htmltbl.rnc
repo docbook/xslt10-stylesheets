@@ -40,7 +40,11 @@ db.html.events &=
   attribute onkeydown { text }?,
   attribute onkeyup { text }?
 
-db.html.attrs &= db.html.coreattrs, db.html.i18n, db.html.events
+db.html.attrs =
+   db.common.attributes
+ & db.html.coreattrs
+ & db.html.i18n
+ & db.html.events
 
 db.html.cellhalign &=
   attribute align { "left" | "center" | "right" | "justify" | "char" }?,
@@ -73,6 +77,10 @@ div {
 
    db.html.table.attlist =
       db.html.attrs
+    & db.orient.attribute?
+    & db.pgwide.attribute?
+    & db.tabstyle.attribute?
+    & db.floatstyle.attribute?
     & attribute summary { text }?
     & attribute width { text }?
     & attribute border { text }?
@@ -326,4 +334,3 @@ div {
          (db.all.inlines* | db.all.blocks*)
       }
 }
-
