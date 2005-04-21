@@ -52,7 +52,7 @@ div {
     & db.floatstyle.attribute?
     & db.float.attribute?
 
-   db.equation.info = db._info.title.onlyreq
+   db.equation.info = db._info.title.only
 
    db.equation =
       element equation {
