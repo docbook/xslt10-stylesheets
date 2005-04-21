@@ -443,12 +443,13 @@ EOF
 }
 
 updateUserDotEmacs() {
+  if [ -f $thisLocatingRules ]; then
   cat <<EOF
 
 NOTE: This distribution includes a "schema locating rules" file
       for Emacs/nXML.  To use it, you should update either your
       .emacs or .emacs.el file.  This installer can automatically
-      make the necessary changes. Or, i you prefer, you can make
+      make the necessary changes. Or, if you prefer, you can make
       the changes manually.
 
 EOF
@@ -522,6 +523,7 @@ EOF
       ;;
     esac
   fi
+fi
 }
 
 uninstall() {
@@ -575,6 +577,7 @@ EOF
         esac
       else
         echo "NOTE: No data for this distribution found in $myCatalogManager"
+        echo
       fi
     else
       cat <<EOF
@@ -584,42 +587,44 @@ EOF
     fi
   fi
 
-  # check to see if a non-empty value for --dotEmacs file was fed
-  # to uninstaller.
-  if [ -n ${2#--dotEmacs=} ]; then
-    myEmacsFile=${2#--dotEmacs=}
-    revertLine="(load-file \"$escapedPwd\/\.emacs\.el\")"
-    loadLine="$(grep "$revertLine" $myEmacsFile)"
-    if [ -n "$loadLine" ]; then
-      echo
-      read -s -n1 -p "Revert $myEmacsFile? [Yes] "
-      echo "$REPLY"
-      case $REPLY in
-        [nNqQ]*)
-        cat <<EOF
+  if [ -n "$myEmacsFile" ]; then 
+    # check to see if a non-empty value for --dotEmacs file was fed
+    # to uninstaller.
+    if [ -n ${2#--dotEmacs=} ]; then
+      myEmacsFile=${2#--dotEmacs=}
+      revertLine="(load-file \"$escapedPwd\/\.emacs\.el\")"
+      loadLine="$(grep "$revertLine" "$myEmacsFile")"
+      if [ -n "$loadLine" ]; then
+        echo
+        read -s -n1 -p "Revert $myEmacsFile? [Yes] "
+        echo "$REPLY"
+        case $REPLY in
+          [nNqQ]*)
+          cat <<EOF
 
 NOTE: No change made to $myEmacsFile. You need to manually
-      remove the following line.
+remove the following line.
 
-      (load-file \"$PWD/.emacs.el\")
+(load-file \"$PWD/.emacs.el\")
 
 EOF
-        ;;
-        *)
-        dotEmacsBackup=$myEmacsFile.$$.bak
-        mv $myEmacsFile $dotEmacsBackup       || exit 1
-        cp $dotEmacsBackup $myEmacsFile       || exit 1
-        sed -i "/$revertLine/d" $myEmacsFile  || exit 1
-        cat <<EOF
+          ;;
+          *)
+          dotEmacsBackup=$myEmacsFile.$$.bak
+          mv $myEmacsFile $dotEmacsBackup       || exit 1
+          cp $dotEmacsBackup $myEmacsFile       || exit 1
+          sed -i "/$revertLine/d" $myEmacsFile  || exit 1
+          cat <<EOF
 
 NOTE: $myEmacsFile file successfully reverted.
-      Backup written to $dotEmacsBackup
+Backup written to $dotEmacsBackup
 
 EOF
-        ;;
-      esac
-    else
-      echo "NOTE: No data for this distribution found in $myEmacsFile"
+          ;;
+        esac
+      else
+        echo "NOTE: No data for this distribution found in $myEmacsFile"
+      fi
     fi
   fi
 
