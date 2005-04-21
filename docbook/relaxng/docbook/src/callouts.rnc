@@ -168,7 +168,7 @@ div {
       db.area.role.attribute?
     & db.common.idreq.attributes
     & db.area.units.attribute
-    & db.area.linkends.attribute?
+    & (db.area.linkends.attribute | db.href.attribute)?
     & db.area.label.attribute?
     & db.area.coords.attribute
 
