@@ -239,16 +239,21 @@ div {
 div {
 
    db.biblioref.role.attribute = attribute role { text }
+   db.biblioref.xrefstyle.attribute = attribute xrefstyle { text }
+   db.biblioref.endterm.attribute = attribute endterm { xsd:IDREF }
+   db.biblioref.units.attribute = attribute units { xsd:token }
+   db.biblioref.begin.attribute = attribute begin {xsd:token }
+   db.biblioref.end.attribute = attribute end { xsd:token }
 
    db.biblioref.attlist =
       db.biblioref.role.attribute?
     & db.common.attributes
     & db.common.req.linking.attributes
-    & attribute xrefstyle { text }?
-    & attribute endterm { xsd:IDREF }?
-    & attribute units { xsd:token }?
-    & attribute begin {xsd:token }?
-    & attribute end { xsd:token }?
+    & db.biblioref.xrefstyle.attribute?
+    & db.biblioref.endterm.attribute?
+    & db.biblioref.units.attribute?
+    & db.biblioref.begin.attribute?
+    & db.biblioref.end.attribute?
 
    db.biblioref =
       element biblioref {

@@ -15,7 +15,6 @@ namespace rng  = "http://relaxng.org/ns/structure/1.0"
 namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/docbook-ng"
 namespace dbx = "http://sourceforge.net/projects/docbook/defguide/schema/extra-markup"
-namespace dtd = "http://relaxng.org/ns/compatibility/annotations/1.0"
 namespace xlink = "http://www.w3.org/1999/xlink"
 default namespace = "http://docbook.org/docbook-ng"
 
@@ -161,36 +160,61 @@ db.linkend.attribute  = attribute linkend { xsd:IDREF }
 
 db.linkends.attribute = attribute linkends { xsd:IDREFS }
 
+db.xlink.href.attribute = attribute xlink:href { text }
+
+db.xlink.type.attribute    = attribute xlink:type { "simple" }
+db.xlink.role.attribute    = attribute xlink:role { xsd:anyURI }
+db.xlink.arcrole.attribute = attribute xlink:arcrole { xsd:anyURI }
+db.xlink.title.attribute   = attribute xlink:title { text }?
+
+db.xlink.show.enumeration = "new" | "replace" | "embed" | "other"
+db.xlink.show.attribute    = attribute xlink:show { db.xlink.show.enumeration }
+
+db.xlink.actuate.enumeration = "onLoad" | "onRequest" | "other" | "none"
+db.xlink.actuate.attribute =
+   attribute xlink:actuate { db.xlink.actuate.enumeration }
+
 db.href.attribute =
-   attribute xlink:href { text }
- & [ dtd:defaultValue="simple" ] attribute xlink:type { "simple" }?
- & attribute xlink:role { xsd:anyURI }?
- & attribute xlink:arcrole { xsd:anyURI }?
- & attribute xlink:title { text }?
- & attribute xlink:show { "new" | "replace" | "embed" | "other" }?
- & attribute xlink:actuate { "onLoad" | "onRequest" | "other" | "none" }?
+   db.xlink.href.attribute
+ & db.xlink.type.attribute?
+ & db.xlink.role.attribute?
+ & db.xlink.arcrole.attribute?
+ & db.xlink.title.attribute?
+ & db.xlink.show.attribute?
+ & db.xlink.actuate.attribute?
 
 # ======================================================================
 
+db.xml.id.attribute = attribute xml:id { xsd:ID }
+db.version.attribute = attribute version { text }
+db.xml.lang.attribute = attribute xml:lang { text }
+db.xml.base.attribute = attribute xml:base { text }
+db.remap.attribute = attribute remap { text }
+db.xreflabel.attribute = attribute xreflabel { text }
+
+db.revisionflag.enumeration = "changed" | "added" | "deleted" | "off"
+db.revisionflag.attribute =
+   attribute revisionflag { db.revisionflag.enumeration }
+
 db.common.attributes =
-  attribute xml:id { xsd:ID }?,
-  attribute version { text }?,
-  attribute xml:lang { text }?,
-  attribute xml:base { text }?,
-  attribute remap { text }?,
-  attribute xreflabel { text }?,
-  attribute revisionflag { "changed" | "added" | "deleted" | "off" }?,
-  db.effectivity.attributes
+   db.xml.id.attribute?
+ & db.version.attribute?
+ & db.xml.lang.attribute?
+ & db.xml.base.attribute?
+ & db.remap.attribute?
+ & db.xreflabel.attribute?
+ & db.revisionflag.attribute?
+ & db.effectivity.attributes
 
 db.common.idreq.attributes =
-  attribute xml:id { xsd:ID },
-  attribute version { text }?,
-  attribute xml:lang { text }?,
-  attribute xml:base { text }?,
-  attribute remap { text }?,
-  attribute xreflabel { text }?,
-  attribute revisionflag { "changed" | "added" | "deleted" | "off" }?,
-  db.effectivity.attributes
+   db.xml.id.attribute
+ & db.version.attribute?
+ & db.xml.lang.attribute?
+ & db.xml.base.attribute?
+ & db.remap.attribute?
+ & db.xreflabel.attribute?
+ & db.revisionflag.attribute?
+ & db.effectivity.attributes
 
 db.common.linking.attributes =
    (db.linkend.attribute | db.href.attribute)?
@@ -199,22 +223,43 @@ db.common.req.linking.attributes =
    db.linkend.attribute | db.href.attribute
 
 db.common.data.attributes =
-  attribute format { text }?,
-  (attribute fileref { text } | attribute entityref { xsd:ENTITY })
+   attribute format { text }?,
+   (attribute fileref { xsd:anyURI } | attribute entityref { xsd:ENTITY })
 
 # ======================================================================
+
+db.verbatim.continuation.enumeration = "continues" | "restarts"
+db.verbatim.continuation.attribute =
+   attribute continuation { db.verbatim.continuation.enumeration }
+
+db.verbatim.linenumbering.enumeration = "numbered" | "unnumbered"
+db.verbatim.linenumbering.attribute =
+   attribute linenumbering { db.verbatim.linenumbering.enumeration }
+
+db.verbatim.startinglinenumber.attribute =
+   attribute startinglinenumber { xsd:integer }
+
+db.verbatim.language.attribute =
+   attribute language { text }
+
+db.verbatim.xml.space.attribute =
+   attribute xml:space { "preserve" }
 
 db.verbatim.attributes =
-  attribute continuation { "continues" | "restarts" }?,
-  attribute linenumbering { "numbered" | "unnumbered" }?,
-  attribute startinglinenumber { xsd:integer }?,
-  attribute language { text }?,
-  attribute xml:space { "preserve" }?
+   db.verbatim.continuation.attribute?
+ & db.verbatim.linenumbering.attribute?
+ & db.verbatim.startinglinenumber.attribute?
+ & db.verbatim.language.attribute?
+ & db.verbatim.xml.space.attribute?
 
 # ======================================================================
 
-db.spacing.attribute  = attribute spacing { "compact" | "normal" }
+db.spacing.enumeration = "compact" | "normal"
+
+db.spacing.attribute  = attribute spacing { db.spacing.enumeration }
 db.float.attribute    = attribute float { text }
+
+db.pgwide.enumeration = "0" | "1"
 
 db.pgwide.attribute =
    [
@@ -229,17 +274,34 @@ db.pgwide.attribute =
          ]
       ]
    ]
-   attribute pgwide { "0" | "1" }
+   attribute pgwide { db.pgwide.enumeration }
 
-db.language.attribute = attribute language { text }?
-db.performance.attribute = attribute performance { "optional" | "required" }
+db.language.attribute = attribute language { text }
+
+db.performance.enumeration = "optional" | "required"
+db.performance.attribute = attribute performance { db.performance.enumeration }
+
 db.floatstyle.attribute = attribute floatstyle { text }
+
+# ======================================================================
+
+db.halign.enumeration = "center" | "char" | "justify" | "left" | "right"
+db.valign.enumeration = "bottom" | "middle" | "top"
 
 # ======================================================================
 
 ctrl:other-attribute [ name="db.biblio.class.attribute"
                        enum-name="db.biblio.class-enum.attribute"
                        other-name="db.biblio.class-other.attributes" ]
+
+db.biblio.class.enumeration =
+   "doi"
+ | "isbn"
+ | "isrn"
+ | "issn"
+ | "libraryofcongress"
+ | "pubnumber"
+ | "uri"
 
 db.biblio.class-enum.attribute =
    [
@@ -365,14 +427,7 @@ db.biblio.class-enum.attribute =
          ]
       ]
    ]
-   attribute class {
-      "doi"
-    | "isbn"
-    | "isrn"
-    | "issn"
-    | "libraryofcongress"
-    | "pubnumber"
-    | "uri" }?
+   attribute class { db.biblio.class.enumeration } ?
 
 db.biblio.class-other.attributes =
    attribute class { "other" }
@@ -913,12 +968,13 @@ div {
 div {
 
    db.subjectset.role.attribute = attribute role { text }
+   db.subjectset.scheme.attribute = attribute scheme { xsd:NMTOKEN }
 
    db.subjectset.attlist =
       db.subjectset.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute scheme { xsd:NMTOKEN }?
+    & db.subjectset.scheme.attribute?
 
    db.subjectset =
       element subjectset {
@@ -936,12 +992,13 @@ div {
 div {
 
    db.subject.role.attribute = attribute role { text }
+   db.subject.weight.attribute = attribute weight { text }
 
    db.subject.attlist =
       db.subject.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute weight { text }?
+    & db.subject.weight.attribute?
 
    db.subject =
       element subject {
@@ -1258,11 +1315,17 @@ div {
 
    db.bridgehead.role.attribute = attribute role { text }
 
+   db.bridgehead.renderas.enumeration =
+      "other"|"sect1"|"sect2"|"sect3"|"sect4"|"sect5"
+
+   db.bridgehead.renderas.attribute =
+      attribute renderas { db.bridgehead.renderas.enumeration }
+
    db.bridgehead.attlist =
       db.bridgehead.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute renderas { "other" | "sect1" | "sect2" | "sect3" | "sect4" | "sect5"  }?
+    & db.bridgehead.renderas.attribute?
 
    db.bridgehead =
       element bridgehead {
@@ -1336,11 +1399,13 @@ div {
 
    db.footnote.role.attribute = attribute role { text }
 
+   db.footnote.label.attribute = attribute label { text }
+
    db.footnote.attlist =
       db.footnote.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute label { text }?
+    & db.footnote.label.attribute?
 
    db.footnote =
       element footnote {
@@ -1549,12 +1614,14 @@ div {
 
    db.itemizedlist.role.attribute = attribute role { text }
 
+   db.itemizedlist.mark.attribute = attribute mark { text }
+
    db.itemizedlist.attlist =
       db.itemizedlist.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
     & db.spacing.attribute?
-    & attribute mark { text }?
+    & db.itemizedlist.mark.attribute?
 
    db.itemizedlist.info = db._info.title.only
 
@@ -1577,19 +1644,31 @@ div {
 
    db.orderedlist.role.attribute = attribute role { text }
 
+   db.orderedlist.continuation.enumeration = "continues" | "restarts"
+   db.orderedlist.continuation.attribute =
+      attribute continuation { db.orderedlist.continuation.enumeration }
+
+   db.orderedlist.inheritnum.enumeration = "ignore" | "inherit"
+   db.orderedlist.inheritnum.attribute =
+      attribute inheritnum { db.orderedlist.inheritnum.enumeration }
+
+   db.orderedlist.numeration.enumeration =
+      "arabic"
+    | "upperalpha"
+    | "loweralpha"
+    | "upperroman"
+    | "lowerroman"
+   db.orderedlist.numeration.attribute =
+      attribute numeration { db.orderedlist.numeration.enumeration }
+
    db.orderedlist.attlist =
       db.orderedlist.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
     & db.spacing.attribute?
-    & attribute continuation { "continues" | "restarts" }?
-    & attribute inheritnum { "ignore" | "inherit" }?
-    & attribute numeration {
-       "arabic"
-     | "upperalpha"
-     | "loweralpha"
-     | "upperroman"
-     | "lowerroman" }?
+    & db.orderedlist.continuation.attribute?
+    & db.orderedlist.inheritnum.attribute?
+    & db.orderedlist.numeration.attribute?
 
    db.orderedlist.info = db._info.title.only
 
@@ -1611,11 +1690,13 @@ div {
 
    db.listitem.role.attribute = attribute role { text }
 
+   db.listitem.override.attribute = attribute override { text }
+
    db.listitem.attlist =
       db.listitem.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute override { text }?
+    & db.listitem.override.attribute?
 
    db.listitem = element listitem {
       db.listitem.attlist,
@@ -1734,12 +1815,18 @@ div {
 
    db.simplelist.role.attribute = attribute role { text }
 
+   db.simplelist.type.enumeration = "horiz" | "vert" | "inline"
+   db.simplelist.type.attribute =
+      attribute type { db.simplelist.type.enumeration }
+
+   db.simplelist.columns.attribute = attribute columns { xsd:integer}
+
    db.simplelist.attlist =
       db.simplelist.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute type { "horiz" | "vert" | "inline" }?
-    & attribute columns { xsd:integer}?
+    & db.simplelist.type.attribute?
+    & db.simplelist.columns.attribute?
 
    db.simplelist =
       element simplelist {
@@ -1780,12 +1867,14 @@ div {
 
    db.variablelist.role.attribute = attribute role { text }
 
+   db.variablelist.termlength.attribute = attribute termlength { text }
+
    db.variablelist.attlist =
       db.variablelist.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
     & db.spacing.attribute?
-    & attribute termlength { text }?
+    & db.variablelist.termlength.attribute?
 
    db.variablelist.info = db._info.title.only
 
@@ -1852,15 +1941,17 @@ div {
 div {
 
    db.example.role.attribute = attribute role { text }
+   db.example.label.attribute = attribute label { text }
+   db.example.width.attribute = attribute width { text }
 
    db.example.attlist =
       db.example.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute label { text }?
+    & db.example.label.attribute?
     & db.floatstyle.attribute?
     & db.float.attribute?
-    & attribute width { text }?
+    & db.example.width.attribute?
 
    db.example.info = db._info.title.onlyreq
 
@@ -1882,12 +1973,14 @@ div {
 
    db.informalexample.role.attribute = attribute role { text }
 
+   db.informalexample.width.attribute = attribute width { text }
+
    db.informalexample.attlist =
       db.informalexample.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
     & db.floatstyle.attribute?
-    & attribute width { text }?
+    & db.informalexample.width.attribute?
 
    db.informalexample.info = db._info.title.forbidden
 
@@ -1916,12 +2009,14 @@ div {
 
    db.programlisting.role.attribute = attribute role { text }
 
+   db.programlisting.width.attribute = attribute width { text }
+
    db.programlisting.attlist =
       db.programlisting.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
     & db.verbatim.attributes
-    & attribute width { text }?
+    & db.programlisting.width.attribute?
 
    db.programlisting =
       element programlisting {
@@ -1940,12 +2035,16 @@ div {
 
    db.literallayout.role.attribute = attribute role { text }
 
+   db.literallayout.class.enumeration = "monospaced" | "normal"
+   db.literallayout.class.attribute =
+      attribute class { db.literallayout.class.enumeration }
+
    db.literallayout.attlist =
       db.literallayout.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
     & db.verbatim.attributes
-    & attribute class { "monospaced" | "normal" }?
+    & db.literallayout.class.attribute?
 
    db.literallayout =
       element literallayout {
@@ -1963,13 +2062,14 @@ div {
 div {
 
    db.screen.role.attribute = attribute role { text }
+   db.screen.width.attribute = attribute width { text }
 
    db.screen.attlist =
       db.screen.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
     & db.verbatim.attributes
-    & attribute width { text }?
+    & db.screen.width.attribute?
 
    db.screen =
       element screen {
@@ -2012,12 +2112,13 @@ div {
 div {
 
    db.figure.role.attribute = attribute role { text }
+   db.figure.label.attribute = attribute label { text }
 
    db.figure.attlist =
       db.figure.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute label { text }?
+    & db.figure.label.attribute?
     & db.pgwide.attribute?
     & db.floatstyle.attribute?
     & db.float.attribute?
@@ -2041,12 +2142,13 @@ div {
 div {
 
    db.informalfigure.role.attribute = attribute role { text }
+   db.informalfigure.label.attribute = attribute label { text }
 
    db.informalfigure.attlist =
       db.informalfigure.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute label { text }?
+    & db.informalfigure.label.attribute?
     & db.pgwide.attribute?
     & db.floatstyle.attribute?
     & db.float.attribute?
@@ -2230,18 +2332,40 @@ div {
 
    db.videodata.role.attribute = attribute role { text }
 
+   db.videodata.align.enumeration = db.halign.enumeration
+   db.videodata.align.attribute =
+      attribute align { db.videodata.align.enumeration }
+
+   db.videodata.valign.enumeration = db.valign.enumeration
+   db.videodata.valign.attribute =
+      attribute valign { db.videodata.valign.enumeration }
+
+   db.videodata.width.attribute = attribute width { text }
+
+   db.videodata.contentwidth.attribute = attribute contentwidth { text }
+
+   db.videodata.scalefit.enumeration = "0" | "1"
+   db.videodata.scalefit.attribute =
+      attribute scalefit { db.videodata.scalefit.enumeration }
+
+   db.videodata.scale.attribute = attribute scale { text }
+
+   db.videodata.depth.attribute = attribute depth { text }
+
+   db.videodata.contentdepth.attribute = attribute contentdepth { text }
+
    db.videodata.attlist =
       db.videodata.role.attribute?
     & db.common.attributes
     & db.common.data.attributes
-    & attribute align { "center" | "char" | "justify" | "left" | "right" }?
-    & attribute valign { "bottom" | "middle" | "top" }?
-    & attribute width { text }?
-    & attribute contentwidth { text }?
-    & attribute scalefit { "0" | "1" }?
-    & attribute scale { text }?
-    & attribute depth { text }?
-    & attribute contentdepth { text }?
+    & db.videodata.align.attribute?
+    & db.videodata.valign.attribute?
+    & db.videodata.width.attribute?
+    & db.videodata.contentwidth.attribute?
+    & db.videodata.scalefit.attribute?
+    & db.videodata.scale.attribute?
+    & db.videodata.depth.attribute?
+    & db.videodata.contentdepth.attribute?
 
    db.videodata.info = db._info.title.forbidden
 
@@ -2285,18 +2409,40 @@ div {
 
    db.imagedata.role.attribute = attribute role { text }
 
+   db.imagedata.align.enumeration = db.halign.enumeration
+   db.imagedata.align.attribute =
+      attribute align { db.imagedata.align.enumeration }
+
+   db.imagedata.valign.enumeration = db.valign.enumeration
+   db.imagedata.valign.attribute =
+      attribute valign { db.imagedata.valign.enumeration }
+
+   db.imagedata.width.attribute = attribute width { text }
+
+   db.imagedata.contentwidth.attribute = attribute contentwidth { text }
+
+   db.imagedata.scalefit.enumeration = "0" | "1"
+   db.imagedata.scalefit.attribute =
+      attribute scalefit { db.imagedata.scalefit.enumeration }
+
+   db.imagedata.scale.attribute = attribute scale { text }
+
+   db.imagedata.depth.attribute = attribute depth { text }
+
+   db.imagedata.contentdepth.attribute = attribute contentdepth { text }
+
    db.imagedata.attlist =
       db.imagedata.role.attribute?
     & db.common.attributes
     & db.common.data.attributes
-    & attribute align { "center" | "char" | "justify" | "left" | "right" }?
-    & attribute valign { "bottom" | "middle" | "top" }?
-    & attribute width { text }?
-    & attribute contentwidth { text }?
-    & attribute scalefit { "0" | "1" }?
-    & attribute scale { text }?
-    & attribute depth { text }?
-    & attribute contentdepth { text }?
+    & db.imagedata.align.attribute?
+    & db.imagedata.valign.attribute?
+    & db.imagedata.width.attribute?
+    & db.imagedata.contentwidth.attribute?
+    & db.imagedata.scalefit.attribute?
+    & db.imagedata.scale.attribute?
+    & db.imagedata.depth.attribute?
+    & db.imagedata.contentdepth.attribute?
 
    db.imagedata.info = db._info.title.forbidden
 
@@ -2316,12 +2462,13 @@ div {
 div {
 
    db.textdata.role.attribute = attribute role { text }
+   db.textdata.encoding.attribute = attribute encoding { text }
 
    db.textdata.attlist =
       db.textdata.role.attribute?
     & db.common.attributes
     & db.common.data.attributes
-    & attribute encoding { text }?
+    & db.textdata.encoding.attribute?
 
    db.textdata.info = db._info.title.forbidden
 
@@ -2341,13 +2488,14 @@ div {
 div {
 
    db.synopsis.role.attribute = attribute role { text }
+   db.synopsis.label.attribute = attribute label { text }
 
    db.synopsis.attlist =
       db.synopsis.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
     & db.verbatim.attributes
-    & attribute label { text }?
+    & db.synopsis.label.attribute?
 
    db.synopsis =
       element synopsis {
@@ -2365,14 +2513,17 @@ div {
 div {
 
    db.cmdsynopsis.role.attribute = attribute role { text }
+   db.cmdsynopsis.sepchar.attribute = attribute sepchar { text }
+   db.cmdsynopsis.cmdlength.attribute = attribute cmdlength { text }
+   db.cmdsynopsis.label.attribute = attribute label { text }
 
    db.cmdsynopsis.attlist =
       db.cmdsynopsis.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute sepchar { text }?
-    & attribute cmdlength { text }?
-    & attribute label { text }?
+    & db.cmdsynopsis.sepchar.attribute?
+    & db.cmdsynopsis.cmdlength.attribute?
+    & db.cmdsynopsis.label.attribute?
 
    db.cmdsynopsis.info = db._info.title.forbidden
 
@@ -2387,8 +2538,11 @@ div {
 
 # ======================================================================
 
-rep.attribute = attribute rep { "norepeat" | "repeat" }
-choice.attribute = attribute choice { "opt" | "plain" | "req" }
+db.rep.enumeration = "norepeat" | "repeat"
+db.rep.attribute = attribute rep { db.rep.enumeration }
+
+db.choice.enumeration = "opt" | "plain" | "req"
+db.choice.attribute = attribute choice { db.choice.enumeration }
 
 # ======================================================================
 
@@ -2404,8 +2558,8 @@ div {
       db.arg.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & rep.attribute?
-    & choice.attribute?
+    & db.rep.attribute?
+    & db.choice.attribute?
 
    db.arg =
       element arg {
@@ -2433,8 +2587,8 @@ div {
       db.group.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & rep.attribute?
-    & choice.attribute?
+    & db.rep.attribute?
+    & db.choice.attribute?
 
    db.group =
       element group {
@@ -2536,7 +2690,7 @@ div {
       db.funcsynopsis.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.language.attribute
+    & db.language.attribute?
 
    db.funcsynopsis.info = db._info.title.forbidden
 
@@ -2676,7 +2830,7 @@ div {
       db.paramdef.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    &  attribute choice { "opt" | "req" }?
+    & db.choice.attribute?
 
    db.paramdef =
       element paramdef {
@@ -2717,12 +2871,16 @@ div {
 
    db.classsynopsis.role.attribute = attribute role { text }
 
+   db.classsynopsis.class.enumeration = "class" | "interface"
+   db.classsynopsis.class.attribute =
+      attribute class { db.classsynopsis.class.enumeration }
+
    db.classsynopsis.attlist =
       db.classsynopsis.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.language.attribute
-    & attribute class { "class" | "interface" }?
+    & db.language.attribute?
+    & db.classsynopsis.class.attribute?
 
    db.classsynopsis =
       element classsynopsis {
@@ -2908,7 +3066,7 @@ div {
       db.fieldsynopsis.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.language.attribute
+    & db.language.attribute?
 
    db.fieldsynopsis =
       element fieldsynopsis {
@@ -2956,7 +3114,7 @@ div {
       db.constructorsynopsis.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.language.attribute
+    & db.language.attribute?
 
    db.constructorsynopsis =
       element constructorsynopsis {
@@ -2982,7 +3140,7 @@ div {
       db.destructorsynopsis.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.language.attribute
+    & db.language.attribute?
 
    db.destructorsynopsis =
       element destructorsynopsis {
@@ -3008,7 +3166,7 @@ div {
       db.methodsynopsis.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.language.attribute
+    & db.language.attribute?
 
    db.methodsynopsis =
       element methodsynopsis {
@@ -3058,8 +3216,8 @@ div {
       db.methodparam.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & rep.attribute?
-    & choice.attribute?
+    & db.rep.attribute?
+    & db.choice.attribute?
 
    db.methodparam =
       element methodparam {
@@ -3386,12 +3544,14 @@ div {
                           enum-name="db.orgname.class-enum.attribute"
                           other-name="db.orgname.class-other.attributes" ]
 
+   db.orgname.class.enumeration =
+      "consortium"
+    | "corporation"
+    | "informal"
+    | "nonprofit"
+
    db.orgname.class-enum.attribute =
-      attribute class {
-         "consortium"
-       | "corporation"
-       | "informal"
-       | "nonprofit" }?
+      attribute class { db.orgname.class.enumeration }
 
    db.orgname.class-other.attributes =
       attribute class { "other" }
@@ -3406,7 +3566,7 @@ div {
       db.orgname.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.orgname.class.attribute
+    & db.orgname.class.attribute?
 
    db.orgname =
       element orgname {
@@ -4023,10 +4183,11 @@ div {
                           enum-name="db.bibliocoverage.spatial-enum.attribute"
                           other-name="db.bibliocoverage.spatial-other.attributes" ]
 
+   db.bibliocoverage.spacial.enumeration =
+      "dcmipoint" | "iso3166" | "dcmibox" | "tgn"
+
    db.bibliocoverage.spatial-enum.attribute =
-      attribute spatial {
-         "dcmipoint" | "iso3166" | "dcmibox" | "tgn"
-      }?
+      attribute spatial { db.bibliocoverage.spacial.enumeration }?
 
    db.bibliocoverage.spatial-other.attributes =
       attribute spatial { "otherspatial" }?,
@@ -4040,10 +4201,10 @@ div {
                           enum-name="db.bibliocoverage.temporal-enum.attribute"
                           other-name="db.bibliocoverage.temporal-other.attributes" ]
 
+   db.bibliocoverage.temporal.enumeration = "dcmiperiod" | "w3c-dtf"
+
    db.bibliocoverage.temporal-enum.attribute =
-      attribute temporal {
-         "dcmiperiod" | "w3c-dtf"
-      }?
+      attribute temporal { db.bibliocoverage.temporal.enumeration }?
 
    db.bibliocoverage.temporal-other.attributes =
       attribute temporal { "othertemporal" }?,
@@ -4314,11 +4475,16 @@ div {
 
    db.productname.role.attribute = attribute role { text }
 
+   db.productname.class.enumeration =
+      "copyright" | "registered" | "service" | "trade"
+   db.productname.class.attribute =
+      attribute class { db.productname.class.enumeration }
+
    db.productname.attlist =
       db.productname.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute class { "copyright" | "registered" | "service" | "trade" }?
+    & db.productname.class.attribute?
 
    db.productname =
       element productname {
@@ -4650,7 +4816,9 @@ div {
 ]
 div {
 
-   db.application.class.attribute = attribute class { "hardware" | "software" }
+   db.application.class.enumeration = "hardware" | "software"
+   db.application.class.attribute =
+      attribute class { db.application.class.enumeration }
 
    db.application.role.attribute = attribute role { text }
 
@@ -5246,10 +5414,11 @@ div {
                           enum-name="db.keycombo.action-enum.attribute"
                           other-name="db.keycombo.action-other.attributes" ]
 
+   db.keycombo.action.enumeration =
+      "click" | "double-click" | "press" | "seq" | "simul"
+
    db.keycombo.action-enum.attribute =
-      attribute action {
-         "click" | "double-click" | "press" | "seq" | "simul"
-      }?
+      attribute action { db.keycombo.action.enumeration }?
 
    db.keycombo.action-other.attributes =
       attribute action { "other" }?,
@@ -5577,7 +5746,9 @@ div {
 ]
 div {
 
-   parameter.class.attribute = attribute class { "command" | "function" | "option" }
+   db.parameter.class.enumeration = "command" | "function" | "option"
+   db.parameter.class.attribute =
+      attribute class { db.parameter.class.enumeration }
 
    db.parameter.role.attribute = attribute role { text }
 
@@ -5585,7 +5756,7 @@ div {
       db.parameter.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & parameter.class.attribute?
+    & db.parameter.class.attribute?
 
    db.parameter =
       element parameter {
@@ -5633,8 +5804,11 @@ db.replaceable.inlines = db._text
 ]
 div {
 
+   db.replaceable.class.enumeration =
+      "command" | "function" | "option" | "parameter"
+
    db.replaceable.class.attribute =
-      attribute class { "command" | "function" | "option" | "parameter" }
+      attribute class { db.replaceable.class.enumeration }
 
    db.replaceable.role.attribute = attribute role { text }
 
@@ -5681,30 +5855,32 @@ div {
 ]
 div {
 
-   db.tag.class.attribute =
-      attribute class {
-         "attribute"
-       | "attvalue"
-       | "element"
-       | "emptytag"
-       | "endtag"
-       | "genentity"
-       | "numcharref"
-       | "paramentity"
-       | "pi"
-       | "sgmlcomment"
-       | "starttag"
-       | "xmlpi"
-      }
-
    db.tag.role.attribute = attribute role { text }
+
+   db.tag.class.enumeration =
+      "attribute"
+    | "attvalue"
+    | "element"
+    | "emptytag"
+    | "endtag"
+    | "genentity"
+    | "numcharref"
+    | "paramentity"
+    | "pi"
+    | "sgmlcomment"
+    | "starttag"
+    | "xmlpi"
+
+   db.tag.class.attribute = attribute class { db.tag.class.enumeration }
+
+   db.tag.namespace.attribute = attribute namespace { xsd:anyURI }
 
    db.tag.attlist =
       db.tag.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
     & db.tag.class.attribute?
-    & attribute namespace { text }?
+    & db.tag.namespace.attribute?
 
    db.tag =
       element tag {
@@ -6214,8 +6390,11 @@ div {
 ]
 div {
 
+   db.trademark.class.enumeration =
+      "copyright" | "registered" | "service" | "trade"
+
    db.trademark.class.attribute =
-      attribute class { "copyright" | "registered" | "service" | "trade" }
+      attribute class { db.trademark.class.enumeration }
 
    db.trademark.role.attribute = attribute role { text }
 
@@ -6263,12 +6442,13 @@ div {
 div {
 
    db.footnoteref.role.attribute = attribute role { text }
+   db.footnoteref.label.attribute = attribute label { text }
 
    db.footnoteref.attlist =
       db.footnoteref.role.attribute?
     & db.common.attributes
     & db.linkend.attribute
-    & attribute label { text }?
+    & db.footnoteref.label.attribute?
 
    db.footnoteref =
       [
@@ -6295,13 +6475,15 @@ div {
 div {
 
    db.xref.role.attribute = attribute role { text }
+   db.xref.xrefstyle.attribute = attribute xrefstyle { text }
+   db.xref.endterm.attribute = attribute endterm { xsd:IDREF }
 
    db.xref.attlist =
       db.xref.role.attribute?
     & db.common.attributes
     & db.common.req.linking.attributes
-    & attribute xrefstyle { text }?
-    & attribute endterm { xsd:IDREF }?
+    & db.xref.xrefstyle.attribute?
+    & db.xref.endterm.attribute?
 
    db.xref =
       element xref {
@@ -6357,12 +6539,13 @@ div {
 div {
 
    db.link.role.attribute = attribute role { text }
+   db.link.endterm.attribute = attribute endterm { xsd:IDREF }
 
    db.link.attlist =
       db.link.role.attribute?
     & db.common.attributes
     & db.common.req.linking.attributes
-    & attribute endterm { xsd:IDREF }?
+    & db.link.endterm.attribute?
 
    db.link =
       element link {

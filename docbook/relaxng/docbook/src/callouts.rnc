@@ -36,13 +36,14 @@ ctrl:other-attribute [ name="area.units.attrib"
                        enum-name="area.units-enum.attribute"
                        other-name="area.units-other.attributes" ]
 
+db.area.units.enumeration =
+   "calspair"
+ | "linecolumn"
+ | "linecolumnpair"
+ | "linerange"
+
 db.area.units-enum.attribute =
-   attribute units {
-      "calspair"
-    | "linecolumn"
-    | "linecolumnpair"
-    | "linerange"
-   }?
+   attribute units { db.area.units.enumeration }?
 
 db.area.units-other.attributes =
    attribute units { "other" }?,
@@ -86,11 +87,12 @@ div {
 div {
 
    db.callout.role.attribute = attribute role { text }
+   db.callout.arearefs.attribute = attribute arearefs { xsd:IDREFS }
 
    db.callout.attlist =
       db.callout.role.attribute?
     & db.common.attributes
-    & attribute arearefs { xsd:IDREFS }
+    & db.callout.arearefs.attribute
 
    db.callout =
       element callout {
@@ -158,14 +160,17 @@ div {
 div {
 
    db.area.role.attribute = attribute role { text }
+   db.area.linkends.attribute = attribute linkends { xsd:IDREFS }
+   db.area.label.attribute = attribute label { text }
+   db.area.coords.attribute = attribute coords { text }
 
    db.area.attlist =
       db.area.role.attribute?
     & db.common.idreq.attributes
     & db.area.units.attribute
-    & attribute linkends { xsd:IDREFS }?
-    & attribute label { text }?
-    & attribute coords { text }
+    & db.area.linkends.attribute?
+    & db.area.label.attribute?
+    & db.area.coords.attribute
 
    db.area =
       element area {
@@ -183,12 +188,13 @@ div {
 div {
 
    db.areaset.role.attribute = attribute role { text }
+   db.areaset.label.attribute = attribute label { text }
 
    db.areaset.attlist =
       db.areaset.role.attribute?
     & db.common.idreq.attributes
     & db.area.units.attribute
-    & attribute label { text }?
+    & db.areaset.label.attribute?
 
    db.areaset =
       element areaset {
@@ -260,12 +266,14 @@ div {
 div {
 
    db.co.role.attribute = attribute role { text }
+   db.co.linkends.attribute = attribute linkends { xsd:IDREFS }
+   db.co.label.attribute = attribute label { text }
 
    db.co.attlist =
       db.co.role.attribute?
     & db.common.idreq.attributes
-    & attribute linkends { xsd:IDREFS }?
-    & attribute label { text }?
+    & db.co.linkends.attribute?
+    & db.co.label.attribute?
 
    db.co =
       element co {
@@ -283,12 +291,13 @@ div {
 div {
 
    db.coref.role.attribute = attribute role { text }
+   db.coref.label.attribute = attribute label { text }
 
    db.coref.attlist =
       db.coref.role.attribute?
     & db.common.attributes
     & db.linkend.attribute
-    & attribute label { text }?
+    & db.coref.label.attribute?
 
    db.coref =
       element coref {

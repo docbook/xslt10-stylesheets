@@ -76,14 +76,17 @@ div {
 div {
 
    db.simplemsgentry.role.attribute = attribute role { text }
+   db.simplemsgentry.audience.attribute = attribute audience { text }
+   db.simplemsgentry.origin.attribute = attribute origin { text }
+   db.simplemsgentry.level.attribute = attribute level { text }
 
    db.simplemsgentry.attlist =
       db.simplemsgentry.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute audience { text }
-    & attribute origin { text }
-    & attribute level { text }
+    & db.simplemsgentry.audience.attribute
+    & db.simplemsgentry.origin.attribute
+    & db.simplemsgentry.level.attribute
 
    db.simplemsgentry =
       element simplemsgentry {

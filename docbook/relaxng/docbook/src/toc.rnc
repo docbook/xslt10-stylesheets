@@ -53,11 +53,12 @@ div {
 div {
 
    db.tocdiv.role.attribute = attribute role { text }
+   db.tocdiv.pagenum.attribute = attribute pagenum { text }
 
    db.tocdiv.attlist =
       db.tocdiv.role.attribute?
     & db.common.attributes
-    & attribute pagenum { text }?
+    & db.tocdiv.pagenum.attribute?
     & db.linkend.attribute?
 
    db.tocdiv.info = db._info
@@ -80,11 +81,12 @@ div {
 div {
 
    db.tocentry.role.attribute = attribute role { text }
+   db.tocentry.pagenum.attribute = attribute pagenum { text }
 
    db.tocentry.attlist =
       db.tocentry.role.attribute?
     & db.common.attributes
-    & attribute pagenum { text }?
+    & db.tocentry.pagenum.attribute?
     & db.linkend.attribute?
 
    db.tocentry =

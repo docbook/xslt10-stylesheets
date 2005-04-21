@@ -498,15 +498,16 @@ div {
          "Class identifies the type of article."
       ]
    ]
-   db.article.class.attribute =
-      attribute class {
-         "faq"
-       | "journalarticle"
-       | "productsheet"
-       | "specification"
-       | "techreport"
-       | "whitepaper"
-      }
+
+   db.article.class.enumeration =
+      "faq"
+    | "journalarticle"
+    | "productsheet"
+    | "specification"
+    | "techreport"
+    | "whitepaper"
+
+   db.article.class.attribute = attribute class { db.article.class.enumeration }
 
    db.article.role.attribute = attribute role { text }
 

@@ -29,11 +29,15 @@ div {
 
    db.qandaset.role.attribute = attribute role { text }
 
+   db.qandaset.defaultlabel.enumeration = "none" | "number" | "qanda"
+   db.qandaset.defaultlabel.attribute =
+      attribute defaultlabel { db.qandaset.defaultlabel.enumeration }
+
    db.qandaset.attlist =
       db.qandaset.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute defaultlabel { "none" | "number" | "qanda" }?
+    & db.qandaset.defaultlabel.attribute?
 
    db.qandaset.info = db._info.title.only
 

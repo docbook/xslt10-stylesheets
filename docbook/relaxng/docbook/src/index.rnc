@@ -75,6 +75,7 @@ db.indexterm.contentmodel =
 div {
 
    db.indexterm.singular.role.attribute = attribute role { text }
+   db.indexterm.singular.class.attribute = attribute class { "singular" }
 
    db.indexterm.singular.attlist =
       db.indexterm.singular.role.attribute?
@@ -84,7 +85,7 @@ div {
     & db.zone.attribute?
     & db.pagenum.attribute?
     & db.scope.attribute?
-    & attribute class { "singular" }?
+    & db.indexterm.singular.class.attribute?
 
    db.indexterm.singular =
       element indexterm {
@@ -102,6 +103,7 @@ div {
 div {
 
    db.indexterm.startofrange.role.attribute = attribute role { text }
+   db.indexterm.startofrange.class.attribute = attribute class { "startofrange" }
 
    db.indexterm.startofrange.attlist =
       db.indexterm.startofrange.role.attribute?
@@ -111,7 +113,7 @@ div {
     & db.zone.attribute?
     & db.pagenum.attribute?
     & db.scope.attribute?
-    & attribute class { "startofrange" }
+    & db.indexterm.startofrange.class.attribute
 
    db.indexterm.startofrange =
       element indexterm {
@@ -129,13 +131,15 @@ div {
 div {
 
    db.indexterm.endofrange.role.attribute = attribute role { text }
+   db.indexterm.endofrange.class.attribute = attribute class { "endofrange" }
+   db.indexterm.endofrange.startref.attribute = attribute startref { xsd:IDREF }
 
    db.indexterm.endofrange.attlist =
       db.indexterm.endofrange.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute class { "endofrange" }
-    & attribute startref { xsd:IDREF }
+    & db.indexterm.endofrange.class.attribute
+    & db.indexterm.endofrange.startref.attribute
 
    db.indexterm.endofrange =
       element indexterm {

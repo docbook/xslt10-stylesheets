@@ -235,6 +235,8 @@ db.spanname.attribute = attribute spanname { text }
 div {
 
    db.tgroup.role.attribute = attribute role { text }
+   db.tgroup.tgroupstyle.attribute = attribute tgroupstyle { text }
+   db.tgroup.cols.attribute = attribute cols { xsd:integer }
 
    db.tgroup.attlist =
       db.tgroup.role.attribute?
@@ -242,8 +244,8 @@ div {
     & db.common.linking.attributes
     & db.char.attribute?
     & db.charoff.attribute?
-    & attribute tgroupstyle { text }?
-    & attribute cols { xsd:integer }
+    & db.tgroup.tgroupstyle.attribute?
+    & db.tgroup.cols.attribute
     & db.colsep.attribute?
     & db.rowsep.attribute?
     & db.align.attribute?
@@ -268,15 +270,17 @@ div {
 div {
 
    db.colspec.role.attribute = attribute role { text }
+   db.colspec.colnum.attribute = attribute colnum { xsd:integer }
+   db.colspec.colwidth.attribute = attribute colwidth { text }
 
    db.colspec.attlist =
       db.colspec.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute colnum { xsd:integer }?
+    & db.colspec.colnum.attribute?
     & db.char.attribute?
     & db.colsep.attribute?
-    & attribute colwidth { text }?
+    & db.colspec.colwidth.attribute?
     & db.charoff.attribute?
     & db.colname.attribute?
     & db.rowsep.attribute?
@@ -298,14 +302,16 @@ div {
 div {
 
    db.spanspec.role.attribute = attribute role { text }
+   db.spanspec.namest.attribute = attribute namest { text }
+   db.spanspec.nameend.attribute = attribute nameend { text }
 
    db.spanspec.attlist =
       db.spanspec.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
     & db.spanname.attribute
-    & attribute namest { text }
-    & attribute nameend { text }
+    & db.spanspec.namest.attribute
+    & db.spanspec.nameend.attribute
     & db.char.attribute?
     & db.colsep.attribute?
     & db.charoff.attribute?
@@ -422,6 +428,8 @@ div {
 div {
 
    db.entry.role.attribute = attribute role { text }
+   db.entry.morerows.attribute = attribute morerows { xsd:integer }
+   db.entry.rotate.attribute = attribute rotate { text }
 
    db.entry.attlist =
       db.entry.role.attribute?
@@ -431,10 +439,10 @@ div {
     & db.char.attribute?
     & db.colsep.attribute?
     & db.charoff.attribute?
-    & attribute morerows { xsd:integer }?
+    & db.entry.morerows.attribute?
     & db.column-spec.attributes?
     & db.rowsep.attribute?
-    & attribute rotate { text }?
+    & db.entry.rotate.attribute?
     & db.align.attribute?
 
    db.entry = element entry {
@@ -452,6 +460,8 @@ div {
 div {
 
    db.entrytbl.role.attribute = attribute role { text }
+   db.entrytbl.tgroupstyle.attribute = attribute tgroupstyle { text }
+   db.entrytbl.cols.attribute = attribute cols { xsd:integer }
 
    db.entrytbl.attlist =
       db.entrytbl.role.attribute?
@@ -460,8 +470,8 @@ div {
     & db.char.attribute?
     & db.charoff.attribute?
     & db.column-spec.attributes?
-    & attribute tgroupstyle { text }?
-    & attribute cols { xsd:integer }?
+    & db.entrytbl.tgroupstyle.attribute?
+    & db.entrytbl.cols.attribute?
     & db.colsep.attribute?
     & db.rowsep.attribute?
     & db.align.attribute?

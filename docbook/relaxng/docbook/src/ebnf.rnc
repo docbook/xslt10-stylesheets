@@ -121,12 +121,13 @@ div {
 div {
 
    db.nonterminal.role.attribute = attribute role { text }
+   db.nonterminal.def.attribute = attribute def { text }
 
    db.nonterminal.attlist =
       db.nonterminal.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute def { text }
+    & db.nonterminal.def.attribute
 
    db.nonterminal =
       element nonterminal {

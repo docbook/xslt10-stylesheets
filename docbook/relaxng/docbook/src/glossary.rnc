@@ -62,12 +62,13 @@ div {
 div {
 
    db.glossentry.role.attribute = attribute role { text }
+   db.glossentry.sortas.attribute = attribute sortas { text }
 
    db.glossentry.attlist =
       db.glossentry.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute sortas { text }?
+    & db.glossentry.sortas.attribute?
 
    db.glossentry =
       element glossentry {
@@ -89,12 +90,13 @@ div {
 div {
 
    db.glossdef.role.attribute = attribute role { text }
+   db.glossdef.subject.attribute = attribute subject { text }
 
    db.glossdef.attlist =
       db.glossdef.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute subject { text }?
+    & db.glossdef.subject.attribute?
 
    db.glossdef =
       element glossdef {
@@ -113,12 +115,13 @@ div {
 div {
 
    db.glosssee.role.attribute = attribute role { text }
+   db.glosssee.otherterm.attribute = attribute otherterm { xsd:IDREF }
 
    db.glosssee.attlist =
       db.glosssee.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute otherterm { xsd:IDREF }?
+    & db.glosssee.otherterm.attribute?
 
    db.glosssee =
       [
@@ -145,12 +148,13 @@ div {
 div {
 
    db.glossseealso.role.attribute = attribute role { text }
+   db.glossseealso.otherterm.attribute = attribute otherterm { xsd:IDREF }
 
    db.glossseealso.attlist =
       db.glossseealso.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & attribute otherterm { xsd:IDREF }?
+    & db.glossseealso.otherterm.attribute?
 
    db.glossseealso =
       [
