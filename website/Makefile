@@ -22,6 +22,8 @@ EXECUTABLES = install.sh
 URILIST = \
 	schema/dtd/website.dtd\ http://docbook.sourceforge.net/release/website/2.6/schema/dtd/website.dtd \
 	schema/dtd/website-full.dtd\ http://docbook.sourceforge.net/release/website/2.6/schema/dtd/website-full.dtd \
+	schema/dtd/website.dtd\ http://docbook.sourceforge.net/release/website/current/schema/dtd/website.dtd \
+	schema/dtd/website-full.dtd\ http://docbook.sourceforge.net/release/website/current/schema/dtd/website-full.dtd \
 	xsl/\ http://docbook.sourceforge.net/release/website/current/xsl/
 
 .PHONY : distrib clean example
