@@ -1990,7 +1990,7 @@ div {
       element informalexample {
          db.informalexample.attlist,
          db.informalexample.info,
-         db.all.blocks+
+         db.all.blocks+,
          db.caption?
       }
 }
@@ -2161,7 +2161,7 @@ div {
       element informalfigure {
          db.informalfigure.attlist,
          db.informalfigure.info,
-         db.all.blocks+
+         db.all.blocks+,
          db.caption?
       }
 }
