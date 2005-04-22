@@ -1,12 +1,44 @@
 VPATH=src
 
-.SUFFIXES: .rnc .rng .rnx
+.SUFFIXES: .rnc .rng .rnx .dtx .dtd
 .PHONY: tests html
 
-RNCFILES=$(subst $(VPATH)/,,$(wildcard $(VPATH)/*.rnc))
+RNCFILES=$(wildcard $(VPATH)/*.rnc)
 TOOLS=../tools
 
 all: docbook.rng docbook.dtd
+
+# ============================================================
+#
+# N.B. We need an explicit dependency on src/*.rnc for each *.rng
+#      file because the build process produces an *output* RNC file
+#      in the current directory and that's not the one we want to
+#      depend on.
+#
+#      That's also the reason for the curious sleep/touch pattern
+#      in the build rules. We want to make sure that the output RNC
+#      file is older than the output RNG file so that make doesn't
+#      always think it needs to rebuild the RNG file.
+#
+#      If we could take "." out of VPATH, we wouldn't need to do this.
+
+docbook.rng: $(RNCFILES)
+
+.rnc.rng:
+	$(MAKE) -C build $@
+	cp build/$@ .
+	trang $@ docbook.rnc
+	sleep 2
+	touch $@
+
+.rng.rnx:
+	xsltproc -output $@ $(TOOLS)/rngdocxml.xsl $<
+
+.rnx.dtx:
+	xsltproc -output $@ $(TOOLS)/doc2dtd.xsl $<
+
+.dtx.dtd:
+	xsltproc -output $@ $(TOOLS)/xml2dtd.xsl $<
 
 # ============================================================
 
@@ -16,20 +48,7 @@ tests:
 
 # ============================================================
 
-docbook.rng: $(RNCFILES)
-	$(MAKE) -C build $@
-	trang $@ docbook.rnc
-
-docbook-rng.xml: docbook.rng $(TOOLS)/rngdocxml.xsl
-	xsltproc -output $@ $(TOOLS)/rngdocxml.xsl $<
-
-docbook-dtd.xml: docbook-rng.xml $(TOOLS)/doc2dtd.xsl
-	xsltproc -output $@ $(TOOLS)/doc2dtd.xsl $<
-
-docbook.dtd: docbook-dtd.xml $(TOOLS)/xml2dtd.xsl
-	xsltproc -output $@ $(TOOLS)/xml2dtd.xsl $<
-
-# ============================================================
-
 clean:
-	rm -f *-rng.xml *-dtd.xml
+	rm -f docbook*
+
+# EOF
