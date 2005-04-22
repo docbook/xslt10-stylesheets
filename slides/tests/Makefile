@@ -5,11 +5,15 @@ FRAMESTYLE=../xsl/html/frames.xsl
 FOSTYLE=../xsl/fo/plain.xsl
 VARS=chunker.output.doctype-system=1 draft.mode="no"
 FORMATTER=fop
+FORMATTER_OPTS=-q
 BROWSER=
 MULTIFRAME=0
 FRAMES=0
 OVERLAY=1
-TIDY=1
+TIDY=0
+XML_FILES=dbgentext.xml minimal.xml test-full.xml test.xml testcust.xml testfull.xml tr-862918.xml
+PDF_FILES  = $(foreach file,$(basename $(XML_FILES)),$(file).pdf)
+HTML_FILES = $(foreach file,$(basename $(XML_FILES)),$(file).html)
 
 ifeq ($(FRAMES),0)
   HTMLSTYLE=$(NOFRAMESTYLE)
@@ -23,43 +27,31 @@ else
   PARAMS=$(VARS) $(BROWSER)=1 multiframe=$(MULTIFRAME) overlay=$(OVERLAY)
 endif
 
-all: test dbgentext
+all: $(HTML_FILES) tidy $(PDF_FILES)
 #	@echo Select a target
-
-test: test.xml
-	$(XJPARSE) -w $<
-	$(XSLT) $< $(HTMLSTYLE) $(PARAMS)
-	make tidy
-	make $(basename $<).pdf
-
-dbgentext: dbgentext.xml
-	$(XJPARSE) $<
-	$(XSLT) $< $(HTMLSTYLE) $(PARAMS)
-	make tidy
-	make $(basename $<).pdf
 
 tidy:
 ifeq ($(TIDY),1)
 	for i in *.html; do \
 		if [ "$$i" != "ns4toc.html" ] ; then \
-			tidy -iq -latin1 -mn $$i; \
+			tidy -iq -latin0 -mn $$i; \
 		fi \
 	done
 endif
 
 %.html: %.xml
-	$(XJPARSE) -w $<
+	$(XJPARSE) $<
 	$(XSLT) $< $(HTMLSTYLE) - $(PARAMS)
-	make tidy
+	touch $@
 
 %.fo : %.xml
 ifeq ($(FORMATTER),tex)
-	$(XSLT) $< $(FOSTYLE) $@ passivetex.extensions=1 $(VARS)
+	$(XSLT) $< $(FOSTYLE) $(FORMATTER_OPTS) $@ passivetex.extensions=1 $(VARS)
 else
 ifeq ($(FORMATTER),fop)
-	$(XSLT) $< $(FOSTYLE) $@ fop.extensions=1 $(VARS)
+	$(XSLT) $< $(FOSTYLE) -q $(FORMATTER_OPTS) $@ fop.extensions=1 $(VARS)
 else
-	$(XSLT) $< $(FOSTYLE) $@ $(VARS)
+	$(XSLT) $< $(FOSTYLE) $(FORMATTER_OPTS) $@ $(VARS)
 endif
 endif
 
