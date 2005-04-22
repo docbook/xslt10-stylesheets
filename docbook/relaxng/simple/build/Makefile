@@ -1,26 +1,22 @@
-VPATH=rnx
+VPATH=../src
 
 TOOLS=../../tools
-
-RNXFILES=$(subst rnx/,,$(wildcard rnx/*.rnx))
-RNGFILES=$(subst .rnx,.rng,$(RNXFILES))
 
 AUGMENT=$(TOOLS)/augment.xsl
 INCLUDE=$(TOOLS)/include.xsl
 CLEANUP=$(TOOLS)/cleanup.pl
 
-.SUFFIXES: .rng .rnx
+.SUFFIXES: .rng .rnc
 
-all: $(RNGFILES)
+all:
+	@echo Make what?
 
-.rnx.rng:
-	saxon $< $(INCLUDE) ,$@ use.extensions=1
+.rnc.rng:
+	trang -O rng $< $@
+	saxon $@ $(INCLUDE) ,$@ use.extensions=1
 	saxon ,$@ $(AUGMENT) $@ use.extensions=1
 	perl -i $(CLEANUP) $@
 	rm -f ,$@
-
-.rnc.rnx:
-	trang -O rng $< $@
 
 clean:
 	rm -f *.rng

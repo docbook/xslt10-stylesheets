@@ -1,44 +1,49 @@
-.SUFFIXES: .rnc .rng .rnx
+VPATH=src
+
+.SUFFIXES: .rnc .rng .rnx .dtx .dtd
 .PHONY: tests html
 
 DOCBOOK=../docbook
 TOOLS=../tools
 RNGFILES=$(wildcard build/*.rng)
 
-all:
-	$(MAKE) TOOLS=../../$(TOOLS) DOCBOOK=../../$(DOCBOOK) -C build/rnx
-	$(MAKE) TOOLS=../$(TOOLS) DOCBOOK=../$(DOCBOOK) -C build
-	$(MAKE) sdocbook.rng sdocbook.dtd
+all: sdocbook.rng sdocbook.dtd
 
 # ============================================================
+#
+# N.B. We need an explicit dependency on src/*.rnc for each *.rng
+#      file because the build process produces an *output* RNC file
+#      in the current directory and that's not the one we want to
+#      depend on.
+#
+#      That's also the reason for the curious sleep/touch pattern
+#      in the build rules. We want to make sure that the output RNC
+#      file is older than the output RNG file so that make doesn't
+#      always think it needs to rebuild the RNG file.
+#
+#      If we could take "." out of VPATH, we wouldn't need to do this.
 
-sdocbook.rng: $(RNGFILES)
-	$(MAKE) TOOLS=../$(TOOLS) -C build $@
-	mv build/$@ .
-	perl $(TOOLS)/trimgrammar.pl -o ,$@ $@
+sdocbook.rng: src/sdocbook.rnc
+
+.rnc.rng:
+	$(MAKE) -C build $@
+	perl $(TOOLS)/trimgrammar.pl -o ,$@ build/$@
 	saxon ,$@ $(TOOLS)/trimgrammar.xsl $@ use.extensions=1
-	trang $@ sdocbook.rnc
+	trang $@ `basename $<`
+	sleep 2
+	touch $@
 	rm -f ,$@
 
-sdocbook-rng.xml: sdocbook.rng $(TOOLS)/rngdocxml.xsl
+.rng.rnx:
 	xsltproc -output $@ $(TOOLS)/rngdocxml.xsl $<
 
-sdocbook-dtd.xml: sdocbook-rng.xml $(TOOLS)/doc2dtd.xsl
+.rnx.dtx:
 	xsltproc -output $@ $(TOOLS)/doc2dtd.xsl $<
 
-sdocbook.dtd: sdocbook-dtd.xml $(TOOLS)/xml2dtd.xsl
+.dtx.dtd:
 	xsltproc -output $@ $(TOOLS)/xml2dtd.xsl $<
-
-diff: sdocbook.rng
-	saxon -8b $< alphalist-rng.xsl alphalist
-	diff dtdlist alphalist | more
-
-# ============================================================
-
-html: sdocbook-rng.xml
-	saxon $< $(TOOLS)/html.xsl /dev/null
 
 # ============================================================
 
 clean:
-	rm -f *-dtd.xml *-rng.xml
+	rm -f sdocbook*
