@@ -12,7 +12,7 @@ with <sgmltag>guimenuitem</sgmltag> or
 
 <refsynopsisdiv>
 <src:fragment id='menuchoice.menu.separator.frag'>
-<xsl:param name="menuchoice.menu.separator" xmlns:fo="http://www.w3.org/1999/XSL/Format"> &#x2192; </xsl:param>
+<xsl:param name="menuchoice.menu.separator"> &#x2192; </xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
