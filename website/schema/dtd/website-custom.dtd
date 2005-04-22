@@ -45,7 +45,7 @@
 <!-- simple subset for maximum utility in sending these pages across the -->
 <!-- web directly. -->
 <!ENTITY % sdocbook PUBLIC "-//OASIS//DTD Simplified DocBook XML Customization V1.1//EN"
-      "http://www.oasis-open.org/docbook/xml/simple/1.1/sdocbook-custom.dtd">
+      "http://docbook.org/xml/simple/1.1/sdocbook-custom.dtd">
 %sdocbook;
 
 <!ENTITY % website.mod SYSTEM "website.mod">
