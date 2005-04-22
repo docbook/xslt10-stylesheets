@@ -389,10 +389,14 @@
 
   <xsl:variable name="next" select="(/slides/foil|/slides/foilgroup)[1]"/>
   <xsl:variable name="tocfile" select="$toc.html"/>
+  <xsl:variable name="dir">
+    <xsl:call-template name="dbhtml-dir"/>
+  </xsl:variable>
+
 
   <xsl:call-template name="write.chunk">
     <xsl:with-param name="indent" select="$output.indent"/>
-    <xsl:with-param name="filename" select="concat($base.dir, $titlefoil.html)"/>
+    <xsl:with-param name="filename" select="concat($base.dir, $dir, $titlefoil.html)"/>
     <xsl:with-param name="content">
       <html>
         <head>
@@ -605,10 +609,13 @@
   <xsl:variable name="up" select="/slides"/>
   <xsl:variable name="next" select="(foil|foilgroup)[1]"/>
   <xsl:variable name="tocfile" select="''"/>
+  <xsl:variable name="dir"> <!-- MJ: added -->
+    <xsl:call-template name="dbhtml-dir"/>
+  </xsl:variable>
 
   <xsl:call-template name="write.chunk">
     <xsl:with-param name="indent" select="$output.indent"/>
-    <xsl:with-param name="filename" select="concat($base.dir, $toc.html)"/>
+    <xsl:with-param name="filename" select="concat($base.dir, $dir, $toc.html)"/>
     <xsl:with-param name="content">
       <html>
         <head>
@@ -813,7 +820,7 @@
 
 <xsl:template match="foil">
   <xsl:param name="thisfoil">
-    <xsl:apply-templates select="." mode="filename"/>
+    <xsl:apply-templates select="." mode="chunk-filename"/>
   </xsl:param>
 
   <xsl:variable name="id">
@@ -1000,7 +1007,7 @@
 
 <xsl:template match="foilgroup">
   <xsl:param name="thisfoilgroup">
-    <xsl:apply-templates select="." mode="filename"/>
+    <xsl:apply-templates select="." mode="chunk-filename"/>
   </xsl:param>
 
   <xsl:variable name="id">
@@ -1262,7 +1269,7 @@
 </xsl:template>
 
 <xsl:template match="foilgroup" mode="filename">
-  <xsl:text>foilgrp</xsl:text>
+  <xsl:text>foilgroup</xsl:text>
   <xsl:number count="foilgroup" level="any" format="01"/>
   <xsl:value-of select="$html.ext"/>
 </xsl:template>
@@ -1455,6 +1462,7 @@
 	<xsl:number count="foil" level="any"/>
       </xsl:variable>
 
+      <xsl:value-of select="$dir"/>
       <xsl:text>foil</xsl:text>
       <xsl:number value="$foilnumber" format="01"/>
       <xsl:value-of select="$html.ext"/>
@@ -1465,7 +1473,8 @@
         <xsl:number count="foilgroup" level="any" format="01"/>
       </xsl:variable>
 
-      <xsl:text>foilgrp</xsl:text>
+      <xsl:value-of select="$dir"/>
+      <xsl:text>foilgroup</xsl:text>
       <xsl:number value="$foilgroupnumber" format="01"/>
       <xsl:value-of select="$html.ext"/>
     </xsl:when>
