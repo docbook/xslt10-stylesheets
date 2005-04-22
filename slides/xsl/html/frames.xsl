@@ -971,7 +971,7 @@ function init() {
 
 <xsl:template match="foilgroup" mode="multiframe">
   <xsl:variable name="thisfoilgroup">
-    <xsl:text>foilgrp</xsl:text>
+    <xsl:text>foilgroup</xsl:text>
     <xsl:number count="foilgroup" level="any" format="01"/>
     <xsl:value-of select="$html.ext"/>
   </xsl:variable>
@@ -996,7 +996,7 @@ function init() {
 
 <xsl:template match="foilgroup" mode="multiframe-top">
   <xsl:variable name="foilgroup">
-    <xsl:text>foilgrp</xsl:text>
+    <xsl:text>foilgroup</xsl:text>
     <xsl:number count="foilgroup" level="any" format="01"/>
     <xsl:value-of select="$html.ext"/>
   </xsl:variable>
@@ -1084,7 +1084,7 @@ function init() {
   <xsl:variable name="prev" select="(preceding::foil|parent::foilgroup|/slides)[last()]"/>
 
   <xsl:variable name="thisfoilgroup">
-    <xsl:text>foilgrp</xsl:text>
+    <xsl:text>foilgroup</xsl:text>
     <xsl:number count="foilgroup" level="any" format="01"/>
     <xsl:value-of select="$html.ext"/>
   </xsl:variable>
@@ -1160,7 +1160,7 @@ function init() {
 
 <xsl:template match="foilgroup" mode="multiframe-bottom">
   <xsl:variable name="thisfoilgroup">
-    <xsl:text>foilgrp</xsl:text>
+    <xsl:text>foilgroup</xsl:text>
     <xsl:number count="foilgroup" level="any" format="01"/>
     <xsl:value-of select="$html.ext"/>
   </xsl:variable>
@@ -1816,7 +1816,7 @@ function init() {
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
   <xsl:variable name="thisfoilgroup">
-    <xsl:text>foilgrp</xsl:text>
+    <xsl:text>foilgroup</xsl:text>
     <xsl:number count="foilgroup" level="any" format="01"/>
     <xsl:value-of select="$html.ext"/>
   </xsl:variable>
