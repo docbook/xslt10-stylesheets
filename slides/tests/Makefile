@@ -3,8 +3,8 @@ STYLE=tables
 NOFRAMESTYLE=../xsl/html/$(STYLE).xsl
 FRAMESTYLE=../xsl/html/frames.xsl
 FOSTYLE=../xsl/fo/plain.xsl
-VARS=
-FORMATTER=xep
+VARS=chunker.output.doctype-system=1 draft.mode="no"
+FORMATTER=fop
 BROWSER=
 MULTIFRAME=0
 FRAMES=0
@@ -23,18 +23,20 @@ else
   PARAMS=$(VARS) $(BROWSER)=1 multiframe=$(MULTIFRAME) overlay=$(OVERLAY)
 endif
 
-all:
-	@echo Select a target
+all: test dbgentext
+#	@echo Select a target
 
 test: test.xml
 	$(XJPARSE) -w $<
 	$(XSLT) $< $(HTMLSTYLE) $(PARAMS)
 	make tidy
+	make $(basename $<).pdf
 
 dbgentext: dbgentext.xml
 	$(XJPARSE) $<
 	$(XSLT) $< $(HTMLSTYLE) $(PARAMS)
 	make tidy
+	make $(basename $<).pdf
 
 tidy:
 ifeq ($(TIDY),1)
@@ -52,12 +54,12 @@ endif
 
 %.fo : %.xml
 ifeq ($(FORMATTER),tex)
-	saxon $< $(FOSTYLE) $@ passivetex.extensions=1 $(VARS)
+	$(XSLT) $< $(FOSTYLE) $@ passivetex.extensions=1 $(VARS)
 else
 ifeq ($(FORMATTER),fop)
-	saxon $< $(FOSTYLE) $@ fop.extensions=1 $(VARS)
+	$(XSLT) $< $(FOSTYLE) $@ fop.extensions=1 $(VARS)
 else
-	saxon $< $(FOSTYLE) $@ $(VARS)
+	$(XSLT) $< $(FOSTYLE) $@ $(VARS)
 endif
 endif
 
