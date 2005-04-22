@@ -935,6 +935,20 @@
   <xsl:param name="nodelist" select="guibutton|guiicon|guilabel|guimenu|guimenuitem|guisubmenu|interface"/><!-- not(shortcut) -->
   <xsl:param name="count" select="1"/>
 
+  <xsl:variable name="mm.separator">
+    <xsl:choose>
+      <xsl:when test="$fop.extensions != 0 and
+                contains($menuchoice.menu.separator, '&#x2192;')">
+        <fo:inline font-family="Symbol">
+          <xsl:copy-of select="$menuchoice.menu.separator"/>
+        </fo:inline>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:copy-of select="$menuchoice.menu.separator"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="$count>count($nodelist)"></xsl:when>
     <xsl:when test="$count=1">
@@ -949,7 +963,7 @@
       <xsl:choose>
         <xsl:when test="name($node)='guimenuitem'
                         or name($node)='guisubmenu'">
-          <xsl:copy-of select="$menuchoice.menu.separator"/>
+          <xsl:copy-of select="$mm.separator"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:copy-of select="$menuchoice.separator"/>
