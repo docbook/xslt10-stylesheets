@@ -12,19 +12,7 @@ with <sgmltag>guimenuitem</sgmltag> or
 
 <refsynopsisdiv>
 <src:fragment id='menuchoice.menu.separator.frag'>
-<xsl:param name="menuchoice.menu.separator" xmlns:fo="http://www.w3.org/1999/XSL/Format">
-  <xsl:choose>
-    <xsl:when test="$stylesheet.result.type = 'fo' and $fop.extensions != 0">
-      <xsl:text> </xsl:text>
-      <!-- Right arrow symbol -->
-      <fo:inline font-family="Symbol">&#x2192;</fo:inline>
-      <xsl:text> </xsl:text>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:text> &#x2192; </xsl:text>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:param>
+<xsl:param name="menuchoice.menu.separator" xmlns:fo="http://www.w3.org/1999/XSL/Format"> &#x2192; </xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
