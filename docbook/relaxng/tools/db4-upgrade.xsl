@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
-		xmlns:db = "http://docbook.org/docbook-ng"
+		xmlns:db = "http://docbook.org/ns/docbook"
 		xmlns:xlink="http://www.w3.org/1999/xlink"
                 exclude-result-prefixes="exsl db"
                 version="1.0">
@@ -936,6 +936,21 @@
         </xsl:attribute>
       </xsl:when>
       <xsl:when test="$suppress = local-name(.)"/>
+      <xsl:when test="local-name(.) = 'float'">
+        <xsl:message>
+          <xsl:text>Discarding float on </xsl:text>
+          <xsl:value-of select="local-name($src)"/>
+        </xsl:message>
+	<xsl:if test="not($src/@floatstyle)">
+	  <xsl:message>
+	    <xsl:text>Adding floatstyle='normal' on </xsl:text>
+	    <xsl:value-of select="local-name($src)"/>
+	  </xsl:message>
+	  <xsl:attribute name="floatstyle">
+	    <xsl:text>normal</xsl:text>
+	  </xsl:attribute>
+	</xsl:if>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:copy/>
       </xsl:otherwise>
@@ -949,7 +964,7 @@
   <xsl:choose>
     <xsl:when test="namespace-uri(.) = ''">
       <xsl:element name="{local-name(.)}"
-		   namespace="http://docbook.org/docbook-ng">
+		   namespace="http://docbook.org/ns/docbook">
 	<xsl:if test="not(parent::*)">
 	  <xsl:attribute name="version">kahlúa</xsl:attribute>
 	</xsl:if>
