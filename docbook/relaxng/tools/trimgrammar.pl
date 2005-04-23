@@ -36,7 +36,9 @@ print STDERR "There are $#pats patterns in $xmlfile.\n";
 
 my %used = ();
 
-recurse($start ,1);
+foreach my $pat (@{$start}) {
+    recurse($pat ,1);
+}
 
 @pats = keys %used;
 my $usedPat = $#pats + 1;
@@ -70,9 +72,15 @@ sub findPatterns {
     while ($child) {
 	if ($child->getNodeType() == XML::DOM::ELEMENT_NODE) {
 	    if ($child->getTagName() eq 'define') {
-		$patterns{$child->getAttribute('name')} = $child;
+		my $name = $child->getAttribute('name');
+#		print "PAT $name\n";
+		$patterns{$name} = [] if ! exists $patterns{$name};
+		push(@{$patterns{$name}}, $child);
 	    } elsif ($child->getTagName() eq 'start') {
-		$patterns{"*start"} = $child;
+		my $name = "*start";
+#		print "PAT $name\n";
+		$patterns{$name} = [] if ! exists $patterns{$name};
+		push(@{$patterns{$name}}, $child);
 	    } elsif ($child->getTagName() eq 'div') {
 		findPatterns($child);
 	    }
@@ -88,7 +96,9 @@ sub recurse {
     my $child = $node->getFirstChild();
 
 #    print "X", " " x $depth, $node->getTagName();
-#    print " (", $node->getAttribute('name'), ")\n";
+#    print " (", $node->getAttribute('name'), ")";
+#    print " has children" if $child;
+#    print "\n";
 
     while ($child) {
 	if ($child->getNodeType() == XML::DOM::ELEMENT_NODE) {
@@ -98,7 +108,9 @@ sub recurse {
 		    $used{$name} = 1;
 		    print "D", " " x $depth, $name, "\n" if $showRecurse;
 		    die "No pattern for $name\n" if ! exists $patterns{$name};
-		    recurse($patterns{$name},$depth+1);
+		    foreach my $pat (@{$patterns{$name}}) {
+			recurse($pat,$depth+1);
+		    }
 		}
 	    } elsif ($child->getTagName() eq 'ref') {
 		my $name = $child->getAttribute('name');
@@ -106,10 +118,12 @@ sub recurse {
 		    $used{$name} = 1;
 		    print "R", " " x $depth, $name, "\n" if $showRecurse;
 		    die "No pattern for $name\n" if ! exists $patterns{$name};
-		    recurse($patterns{$name},$depth+1);
+		    foreach my $pat (@{$patterns{$name}}) {
+			recurse($pat,$depth+1);
+		    }
 		}
 	    } else {
-		recurse($child, $depth);
+		recurse($child, $depth+1);
 	    }
 	}
 

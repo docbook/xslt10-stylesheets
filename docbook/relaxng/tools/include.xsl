@@ -11,6 +11,9 @@
 
   <xsl:key name="defs" match="rng:define" use="@name"/>
   <xsl:key name="combines" match="rng:define[@combine='choice']" use="@name"/>
+  <xsl:key name="interleaves"
+	   match="rng:define[@combine='interleave']"
+	   use="@name"/>
   <xsl:key name="overrides" match="rng:define[@override]" use="@name"/>
 
   <xsl:template match="/">
@@ -87,18 +90,7 @@
   <xsl:template match="rng:define" mode="combine">
     <xsl:choose>
       <xsl:when test="@combine = 'choice'"/>
-      <xsl:when test="@combine = 'interleave'">
-	<!-- these are always attributes, right? -->
-	<xsl:message>
-	  <xsl:text>Interleaving attributes for </xsl:text>
-	  <xsl:value-of select="@name"/>
-	</xsl:message>
-
-	<xsl:copy>
-	  <xsl:copy-of select="@*"/>
-	  <xsl:apply-templates mode="combine"/>
-	</xsl:copy>
-      </xsl:when>
+      <xsl:when test="@combine = 'interleave'"/>
       <xsl:when test="@combine">
 	<!-- what's this!? -->
 	<xsl:message>
@@ -110,9 +102,39 @@
 	  <xsl:apply-templates mode="combine"/>
 	</xsl:copy>
       </xsl:when>
+
       <xsl:otherwise>
 	<xsl:variable name="choices" select="key('combines', @name)"/>
+	<xsl:variable name="ileaves" select="key('interleaves', @name)"/>
 	<xsl:choose>
+	  <xsl:when test="$choices and $ileaves">
+	    <xsl:message>
+	      <xsl:text>Warning: choice and interleave for </xsl:text>
+	      <xsl:value-of select="@name"/>
+	    </xsl:message>
+	  </xsl:when>
+	  <xsl:when test="$ileaves">
+	    <!-- these are always attributes, right? -->
+	    <xsl:message>
+	      <xsl:text>Interleaving definitions for </xsl:text>
+	      <xsl:value-of select="@name"/>
+	    </xsl:message>
+
+	    <xsl:if test="not(rng:interleave) or count(*) &gt; 1">
+	      <xsl:message>
+		<xsl:text>Unexpected content for </xsl:text>
+		<xsl:value-of select="@name"/>
+	      </xsl:message>
+	    </xsl:if>
+
+	    <xsl:copy>
+	      <xsl:copy-of select="@*"/>
+	      <rng:interleave>
+		<xsl:apply-templates select="rng:interleave/*" mode="combine"/>
+		<xsl:apply-templates select="$ileaves/*" mode="combine"/>
+	      </rng:interleave>
+	    </xsl:copy>
+	  </xsl:when>
 	  <xsl:when test="$choices">
 	    <xsl:message>
 	      <xsl:text>Combining definitions for </xsl:text>

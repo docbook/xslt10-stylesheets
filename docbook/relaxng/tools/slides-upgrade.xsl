@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
-		xmlns:db = "http://docbook.org/docbook-ng"
+		xmlns:db = "http://docbook.org/ns/docbook"
                 exclude-result-prefixes="exsl db"
                 version="1.0">
 

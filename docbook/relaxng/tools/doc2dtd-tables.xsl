@@ -104,5 +104,71 @@
   </dtd:element>
 </xsl:variable>
 
+<xsl:variable name="merged-caption">
+  <dtd:element name="caption">
+    <dtd:group>
+      <dtd:choice repeat="*">
+	<dtd:PCDATA/>
+        <dtd:ref name="itemizedlist"/>
+        <dtd:ref name="orderedlist"/>
+        <dtd:ref name="procedure"/>
+        <dtd:ref name="simplelist"/>
+        <dtd:ref name="variablelist"/>
+        <dtd:ref name="segmentedlist"/>
+        <dtd:ref name="glosslist"/>
+        <dtd:ref name="bibliolist"/>
+        <dtd:ref name="calloutlist"/>
+        <dtd:ref name="qandaset"/>
+        <dtd:ref name="caution"/>
+        <dtd:ref name="important"/>
+        <dtd:ref name="note"/>
+        <dtd:ref name="tip"/>
+        <dtd:ref name="warning"/>
+        <dtd:ref name="example"/>
+        <dtd:ref name="figure"/>
+        <dtd:ref name="table"/>
+        <dtd:ref name="informalexample"/>
+        <dtd:ref name="informalfigure"/>
+        <dtd:ref name="informaltable"/>
+        <dtd:ref name="sidebar"/>
+        <dtd:ref name="blockquote"/>
+        <dtd:ref name="address"/>
+        <dtd:ref name="epigraph"/>
+        <dtd:ref name="mediaobject"/>
+        <dtd:ref name="screenshot"/>
+        <dtd:ref name="task"/>
+        <dtd:ref name="productionset"/>
+        <dtd:ref name="constraintdef"/>
+        <dtd:ref name="msgset"/>
+        <dtd:ref name="programlisting"/>
+        <dtd:ref name="screen"/>
+        <dtd:ref name="literallayout"/>
+        <dtd:ref name="synopsis"/>
+        <dtd:ref name="programlistingco"/>
+        <dtd:ref name="screenco"/>
+        <dtd:ref name="cmdsynopsis"/>
+        <dtd:ref name="funcsynopsis"/>
+        <dtd:ref name="classsynopsis"/>
+        <dtd:ref name="methodsynopsis"/>
+        <dtd:ref name="constructorsynopsis"/>
+        <dtd:ref name="destructorsynopsis"/>
+        <dtd:ref name="fieldsynopsis"/>
+        <dtd:ref name="bridgehead"/>
+        <dtd:ref name="remark"/>
+        <dtd:ref name="revhistory"/>
+        <dtd:ref name="indexterm"/>
+        <dtd:ref name="equation"/>
+        <dtd:ref name="informalequation"/>
+        <dtd:ref name="anchor"/>
+        <dtd:ref name="para"/>
+        <dtd:ref name="formalpara"/>
+        <dtd:ref name="simpara"/>
+        <dtd:ref name="html:form"/>
+        <dtd:ref name="annotation"/>
+      </dtd:choice>
+    </dtd:group>
+  </dtd:element>
+</xsl:variable>
+
 </xsl:stylesheet>
 

@@ -4,7 +4,7 @@
 
 XMLFILES=$@
 SRCDIR=/sourceforge/docbook/testdocs/tests
-DB4UPG=../tools/db4-upgrade.xsl
+DB4UPG=../../tools/db4-upgrade.xsl
 
 if [ ! -d passed ]; then
     echo "Directory 'passed' must exist. Are you sure you're in the right place?"

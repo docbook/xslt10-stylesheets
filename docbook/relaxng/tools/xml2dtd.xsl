@@ -9,7 +9,7 @@
 
 <xsl:strip-space elements="*"/>
 
-<xsl:param name="ns" select="'http://docbook.org/docbook-ng'"/>
+<xsl:param name="ns" select="'http://docbook.org/ns/docbook'"/>
 
 <xsl:template match="/">
   <xsl:apply-templates/>

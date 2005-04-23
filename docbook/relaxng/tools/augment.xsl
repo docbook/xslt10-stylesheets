@@ -4,7 +4,7 @@
                 xmlns:rng="http://relaxng.org/ns/structure/1.0"
                 xmlns:ctrl="http://nwalsh.com/xmlns/schema-control/"
 		xmlns:s="http://www.ascc.net/xml/schematron"
-		xmlns:db="http://docbook.org/docbook-ng"
+		xmlns:db="http://docbook.org/ns/docbook"
 		xmlns:dbx = "http://sourceforge.net/projects/docbook/defguide/schema/extra-markup"
                 exclude-result-prefixes="exsl ctrl"
                 version="1.0">
@@ -35,7 +35,7 @@
   <xsl:template match="rng:grammar" priority="2">
     <grammar xmlns="http://relaxng.org/ns/structure/1.0"
 	     xmlns:s="http://www.ascc.net/xml/schematron"
-	     xmlns:db="http://docbook.org/docbook-ng"
+	     xmlns:db="http://docbook.org/ns/docbook"
 	     xmlns:dbx = "http://sourceforge.net/projects/docbook/defguide/schema/extra-markup">
 
       <!-- Make sure the datatypeLibrary is specified -->
@@ -45,7 +45,7 @@
 
       <!-- Make sure the ns is specified -->
       <xsl:attribute name="ns">
-	<xsl:value-of select="'http://docbook.org/docbook-ng'"/>
+	<xsl:value-of select="'http://docbook.org/ns/docbook'"/>
       </xsl:attribute>
 
       <xsl:copy-of select="@*"/>
@@ -54,7 +54,7 @@
       <xsl:text>&#10;</xsl:text>
       <xsl:comment> DocBook NG: The "Kahlúa" Release </xsl:comment>
       <xsl:text>&#10;</xsl:text>
-      <xsl:comment> See http://docbook.org/docbook-ng/ </xsl:comment>
+      <xsl:comment> See http://docbook.org/ns/docbook </xsl:comment>
       <xsl:text>&#10;</xsl:text>
 
       <xsl:apply-templates/>

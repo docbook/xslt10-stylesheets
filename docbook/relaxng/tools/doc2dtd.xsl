@@ -75,6 +75,11 @@
 
     <!-- Handle the thead patterns -->
 
+    <!-- Note: the extra testing in here for not(@name='xml:id') is necessary
+         because the attribute generation code uses the presence of xml:id
+	 to decide if common attributes should be output, so it mustn't appear
+	 twice. -->
+
     <xsl:when test="@name = 'db.cals.thead' and key('pattern', 'db.html.thead')">
       <xsl:variable name="html.thead"
 		    select="key('pattern', 'db.html.thead')"/>
@@ -84,7 +89,7 @@
       <dtd:attlist name="thead">
 	<xsl:apply-templates select="rng:element/doc:attributes"
 			     mode="attributes"/>
-	<xsl:apply-templates select="$html.thead/rng:element/doc:attributes"
+	<xsl:apply-templates select="$html.thead/rng:element/doc:attributes//rng:attribute[not(@name='xml:id')]"
 			     mode="attributes"/>
       </dtd:attlist>
     </xsl:when>
@@ -108,7 +113,7 @@
       <dtd:attlist name="tfoot">
 	<xsl:apply-templates select="rng:element/doc:attributes"
 			     mode="attributes"/>
-	<xsl:apply-templates select="$html.tfoot/rng:element/doc:attributes"
+	<xsl:apply-templates select="$html.tfoot/rng:element/doc:attributes//rng:attribute[not(@name='xml:id')]"
 			     mode="attributes"/>
       </dtd:attlist>
     </xsl:when>
@@ -128,7 +133,7 @@
       <dtd:attlist name="tbody">
 	<xsl:apply-templates select="rng:element/doc:attributes"
 			     mode="attributes"/>
-	<xsl:apply-templates select="$html.tbody/rng:element/doc:attributes"
+	<xsl:apply-templates select="$html.tbody/rng:element/doc:attributes//rng:attribute[not(@name='xml:id')]"
 			     mode="attributes"/>
       </dtd:attlist>
     </xsl:when>
@@ -153,7 +158,7 @@
       <dtd:attlist name="informaltable">
 	<xsl:apply-templates select="rng:element/doc:attributes"
 			     mode="attributes"/>
-	<xsl:apply-templates select="$html.informaltable/rng:element/doc:attributes"
+	<xsl:apply-templates select="$html.informaltable/rng:element/doc:attributes//rng:attribute[not(@name='xml:id')]"
 			     mode="attributes"/>
       </dtd:attlist>
     </xsl:when>
@@ -175,7 +180,7 @@
       <dtd:attlist name="table">
 	<xsl:apply-templates select="rng:element/doc:attributes"
 			     mode="attributes"/>
-	<xsl:apply-templates select="$html.table/rng:element/doc:attributes"
+	<xsl:apply-templates select="$html.table/rng:element/doc:attributes//rng:attribute[not(@name='xml:id')]"
 			     mode="attributes"/>
       </dtd:attlist>
     </xsl:when>
@@ -183,6 +188,25 @@
     <xsl:when test="@name = 'db.html.table'
 		    and key('pattern', 'db.cals.table')">
       <!-- nop; handled by the db.cals.table branch -->
+    </xsl:when>
+
+    <xsl:when test="@name = 'db.caption' and key('pattern', 'db.html.caption')">
+      <xsl:variable name="html.caption"
+		    select="key('pattern', 'db.html.caption')"/>
+
+      <xsl:copy-of select="$merged-caption"/>
+
+      <dtd:attlist name="caption">
+	<xsl:apply-templates select="rng:element/doc:attributes"
+			     mode="attributes"/>
+	<xsl:apply-templates select="$html.caption/rng:element/doc:attributes//rng:attribute[not(@name='xml:id')]"
+			     mode="attributes"/>
+      </dtd:attlist>
+    </xsl:when>
+
+    <xsl:when test="@name = 'db.html.caption'
+		    and key('pattern', 'db.caption')">
+      <!-- nop; handled by the db.caption branch -->
     </xsl:when>
 
     <xsl:otherwise>
@@ -344,6 +368,7 @@
 	<xsl:when test="@name = 'userlevel'"/>
 	<xsl:when test="@name = 'vendor'"/>
 	<xsl:when test="@name = 'wordsize'"/>
+	<xsl:when test="@name = 'annotations'"/>
 
 	<xsl:when test="@name = 'linkend'">
 	  <dtd:peref name="db.common.linking.attributes"/>
