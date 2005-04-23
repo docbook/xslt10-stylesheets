@@ -447,14 +447,6 @@
   </mediaobject>
 </xsl:template>
 
-<xsl:template match="mediaobject/caption" priority="200">
-  <xsl:message>
-    <xsl:text>Discarding caption (</xsl:text>
-    <xsl:value-of select="."/>
-    <xsl:text>).</xsl:text>
-  </xsl:message>
-</xsl:template>
-
 <xsl:template match="remark" priority="200">
   <!-- get rid of any embedded markup -->
   <remark>
@@ -532,6 +524,42 @@
 	</xsl:call-template>
 	<xsl:value-of select="@url"/>
       </uri>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="olink" priority="200">
+  <xsl:if test="@linkmode">
+    <xsl:message>
+      <xsl:text>Discarding linkmode on olink.</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
+  <xsl:choose>
+    <xsl:when test="@targetdocent">
+      <xsl:message>
+	<xsl:text>Converting olink targetdocent to targetdoc.</xsl:text>
+      </xsl:message>
+
+      <olink targetdoc="{unparsed-entity-uri(@targetdocent)}">
+	<xsl:for-each select="@*">
+	  <xsl:if test="name(.) != 'targetdocent'
+	                and name(.) != 'linkmode'">
+	    <xsl:copy/>
+	  </xsl:if>
+	</xsl:for-each>
+	<xsl:apply-templates/>
+      </olink>
+    </xsl:when>
+    <xsl:otherwise>
+      <olink>
+	<xsl:for-each select="@*">
+	  <xsl:if test="name(.) != 'linkmode'">
+	    <xsl:copy/>
+	  </xsl:if>
+	</xsl:for-each>
+	<xsl:apply-templates/>
+      </olink>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
