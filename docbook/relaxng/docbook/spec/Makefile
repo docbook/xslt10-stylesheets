@@ -1,4 +1,4 @@
-include ../../../cvstools/Makefile.incl
+include ../../../../cvstools/Makefile.incl
 
 XJPARSE=/home/ndw/bin/xjparse
 
