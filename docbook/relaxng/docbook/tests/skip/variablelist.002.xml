@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<article>
+<article xmlns="http://docbook.org/ns/docbook" version="kahlúa">
 <info><title>Unit Test: variablelist.002</title>
 
 <releaseinfo role="CVS">$Id$</releaseinfo>
@@ -16,7 +16,7 @@
         <type>void</type>
         <methodname>import</methodname>
 
-        <methodparam choice="req" rep="norepeat">
+        <methodparam>
           <type>HttpServletRequest</type>
           <parameter>req</parameter>
         </methodparam>

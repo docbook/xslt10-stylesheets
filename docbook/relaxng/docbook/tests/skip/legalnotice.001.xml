@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<book id="legalnotice.001">
+<book xmlns="http://docbook.org/ns/docbook" version="kahlúa" xml:id="legalnotice.001">
 <info><title>Unit Test: legalnotice.001</title>
 
 <releaseinfo role="CVS">$Id$</releaseinfo>
@@ -15,7 +15,7 @@
         available. It is available. It is available. It is available.
       </para>
       <para>
-        We're testing how <xmltag class="element">productname</xmltag> looks inside of <xmltag class="element">legalnotice</xmltag>.
+        We're testing how <tag class="element">productname</tag> looks inside of <tag class="element">legalnotice</tag>.
       </para>
     </legalnotice>
 </info>

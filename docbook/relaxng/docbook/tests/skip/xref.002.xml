@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<article id="article">
+<article xmlns="http://docbook.org/ns/docbook" version="kahlúa" xml:id="article">
 <info><title>Unit Test: xref.002.xml</title>
 
 <releaseinfo role="CVS">$Id$</releaseinfo>
@@ -19,14 +19,14 @@
 <para>Cross reference to section two with endterm:
 <xref linkend="s2" endterm="xreftext"/>.</para>
 
-<section id="s1"><info><title>Section One Title</title></info>
+<section xml:id="s1"><info><title>Section One Title</title></info>
 
 
 <para>This text is irrelevant.</para>
 
 </section>
 
-<section id="s2" xreflabel="Section Two XRefLabel"><info><title>Section Two Title</title></info>
+<section xml:id="s2" xreflabel="Section Two XRefLabel"><info><title>Section Two Title</title></info>
 
 
 <para>This text is irrelevant.</para>

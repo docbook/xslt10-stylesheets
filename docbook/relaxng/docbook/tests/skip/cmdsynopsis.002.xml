@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<article>
+<article xmlns="http://docbook.org/ns/docbook" version="kahlúa">
 <info><title>Unit test: cmdsynopsis.002</title>
 
 <releaseinfo role="CVS">$Id$</releaseinfo>
@@ -15,12 +15,12 @@
 
       <glossentry>
         <glossterm>
-          <cmdsynopsis sepchar=" ">
+          <cmdsynopsis>
             <command>command</command>
-            <arg choice="req" rep="norepeat">req</arg>
+            <arg choice="req">req</arg>
             <arg choice="req" rep="repeat">repeatandreq</arg>
-            <arg rep="repeat" choice="opt">repeat</arg>
-            <arg choice="opt" rep="norepeat">optional</arg>
+            <arg rep="repeat">repeat</arg>
+            <arg>optional</arg>
           </cmdsynopsis>
         </glossterm>
         <glossdef>
