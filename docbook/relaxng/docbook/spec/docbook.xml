@@ -177,8 +177,8 @@ backwards-incompatible changes for this one release.</para>
 
 <para>A number of elements have been removed from DocBook. Many of
 these have been replaced by simpler, more versatile alternatives.
-Others have simply been removed because they are no longer widely
-used.</para>
+Others have simply been removed because they are not believed to be
+widely used.</para>
 
 <table id="elem.rmv">
 <title>DocBook Element Changes</title>
@@ -308,8 +308,44 @@ and <sgmltag>othercredit</sgmltag>.
 <para>The content models of many inlines have been reduced, sometimes
 drastically. The parameter entity customization of DocBook V4.x and
 previous versions resulted in very broad content models for some
-inlines (consider <sgmltag>term</sgmltag> in DocBook V4.4, for
-example).</para>
+inlines.</para>
+
+<para>Consider, for example,
+<sgmltag>command</sgmltag> in DocBook V4.4:</para>
+
+<programlisting>command ::=
+   (#PCDATA|link|olink|ulink|action|application|classname|methodname|
+   interfacename|exceptionname|ooclass|oointerface|ooexception|
+   command|computeroutput|database|email|envar|errorcode|errorname|
+   errortype|errortext|filename|function|guibutton|guiicon|guilabel|
+   guimenu|guimenuitem|guisubmenu|hardware|interface|keycap|keycode|
+   keycombo|keysym|literal|code|constant|markup|medialabel|
+   menuchoice|mousebutton|option|optional|parameter|prompt|property|
+   replaceable|returnvalue|sgmltag|structfield|structname|symbol|
+   systemitem|uri|token|type|userinput|varname|nonterminal|anchor|
+   remark|subscript|superscript|inlinegraphic|inlinemediaobject|
+   indexterm|beginpage)*</programlisting>
+
+<para>In DocBook V5.0, <sgmltag>command</sgmltag> has a much smaller, more
+rational content model:</para>
+
+<programlisting>command ::=
+
+  * Zero or more of:
+      o <emphasis>text</emphasis>
+      o alt
+      o anchor
+      o annotation
+      o biblioref
+      o indexterm
+      o inlinemediaobject
+      o link
+      o phrase
+      o remark
+      o replaceable
+      o subscript
+      o superscript
+      o xref</programlisting>
 
 <para>DocBook V5.0 may be too restrictive in this area.</para>
 </section>
@@ -328,7 +364,7 @@ names: customizers might very well want to adjust the content models
 of info elements at different levels. For example, a copyright
 statement might be required at the book level, or an an author
 forbidden at the sub-section level. In DTDs, there’s only one content
-model allowed per element name. So in order to support independent
+model allowed per element name, so in order to support independent
 customization, each info element must have a different name.</para>
 
 <para>In RELAX NG, no such limitation exists. We can use patterns to
