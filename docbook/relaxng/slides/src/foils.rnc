@@ -1,0 +1,112 @@
+# This file is part of Slides NG
+
+# This schema is a reinterpretation of "Slides" in the NG framework.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from Slides 3.3.1
+# Release: $Id$
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+[
+   db:refname [ "slides" ]
+   db:refpurpose [ "A set of slides (or foils)" ]
+]
+div {
+
+   sl.slides.role.attribute = attribute role { text }
+
+   sl.slides.attlist =
+      sl.slides.role.attribute?
+    & db.common.attributes
+
+   sl.slides.info = db._info.title.req
+
+   sl.slides =
+      element slides {
+         sl.slides.attlist,
+         sl.slides.info,
+         db.all.blocks*,
+         sl.foil*,
+         sl.foilgroup*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "foilgroup" ]
+   db:refpurpose [ "A group of slides (or foils)" ]
+]
+div {
+
+   sl.foilgroup.role.attribute = attribute role { text }
+
+   sl.foilgroup.attlist =
+      sl.foilgroup.role.attribute?
+    & db.status.attribute?
+    & db.common.attributes
+
+   sl.foilgroup.info = db._info.title.req
+
+   sl.foilgroup =
+      element foilgroup {
+         sl.foilgroup.attlist,
+         sl.foilgroup.info,
+         (db.all.blocks|db.navigation.components)*,
+         sl.foil+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "foil" ]
+   db:refpurpose [ "A slide (or foil)" ]
+]
+div {
+
+   sl.foil.role.attribute = attribute role { text }
+
+   sl.foil.attlist =
+      sl.foil.role.attribute?
+    & db.status.attribute?
+    & db.common.attributes
+
+   sl.foil.info = db._info.title.req
+
+   sl.foil =
+      element foil {
+         sl.foil.attlist,
+         sl.foil.info,
+         (db.all.blocks|db.navigation.components)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "speakernotes" ]
+   db:refpurpose [ "Speaker notes" ]
+]
+div {
+
+   sl.speakernotes.role.attribute = attribute role { text }
+
+   sl.speakernotes.attlist =
+      sl.speakernotes.role.attribute?
+    & db.status.attribute?
+    & db.common.attributes
+
+   sl.speakernotes =
+      element speakernotes {
+         sl.speakernotes.attlist,
+         db.all.blocks+
+      }
+}

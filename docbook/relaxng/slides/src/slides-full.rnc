@@ -1,0 +1,22 @@
+# This file is part of Slides NG
+
+# This schema is a reinterpretation of "Slides" in the NG framework.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from Slides 3.3.1
+# Release: $Id$
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+include "../../docbook/src/docbook.rnc" {
+   start = sl.slides
+   db.all.blocks |= sl.speakernotes
+}
+
+include "foils.rnc"

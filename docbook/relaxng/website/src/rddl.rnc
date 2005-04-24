@@ -1,0 +1,50 @@
+# This file is part of Website NG
+
+# This schema is a reinterpretation of "Website" in the NG framework.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from Website 2.6.0
+# Release: $Id$
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+namespace rddl = "http://www.rddl.org/"
+namespace xlink = "http://www.w3.org/1999/xlink"
+default namespace = "http://docbook.org/ns/docbook"
+
+[
+   db:refname [ "rddl:resource" ]
+   db:refpurpose [ "A RDDL resource" ]
+]
+div {
+
+   rddl.resource.type.attribute = db.xlink.type.attribute
+   rddl.resource.arcrole.attribute = db.xlink.arcrole.attribute
+   rddl.resource.role.attribute = db.xlink.role.attribute
+   rddl.resource.href.attribute = db.xlink.href.attribute
+   rddl.resource.title.attribute = db.xlink.title.attribute?
+   rddl.resource.show.attribute = attribute xlink:show { "none" }
+   rddl.resource.actuate.attribute = attribute xlink:actuate { "none" }
+
+   # role default = "http://www.rddl.org/#resource"
+
+   rddl.resource.attlist =
+      rddl.resource.type.attribute?
+    & rddl.resource.arcrole.attribute?
+    & rddl.resource.role.attribute?
+    & rddl.resource.href.attribute?
+    & rddl.resource.title.attribute?
+    & rddl.resource.show.attribute?
+    & rddl.resource.actuate.attribute?
+    & db.common.idreq.attributes
+
+   rddl.resource =
+      element rddl:resource {
+         rddl.resource.attlist,
+         db.all.inlines*
+      }
+}

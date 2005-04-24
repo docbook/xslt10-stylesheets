@@ -1,0 +1,24 @@
+# This file is part of Website NG
+
+# This schema is a reinterpretation of "Website" in the NG framework.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from Website 2.6.0
+# Release: $Id$
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+include "../../docbook/src/docbook.rnc" {
+   start = ws.webpage
+   db.all.blocks |= ws.webtoc
+}
+
+include "webpages.rnc"
+include "rddl.rnc"
+include "../../docbook/src/htmlform.rnc"

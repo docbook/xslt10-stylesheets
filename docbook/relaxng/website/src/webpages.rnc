@@ -1,0 +1,289 @@
+# This file is part of Website NG
+
+# This schema is a reinterpretation of "Website" in the NG framework.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from Website 2.6.0
+# Release: $Id$
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+[
+   db:refname [ "webpage" ]
+   db:refpurpose [ "A page in a website" ]
+]
+div {
+
+   ws.webpage.role.attribute = attribute role { text }
+   ws.webpage.navto.attribute = attribute navto { "yes" | "no" }
+
+   ws.webpage.optional.components = db.section*
+   ws.webpage.required.components = db.section+
+
+   ws.webpage.attlist =
+      ws.webpage.role.attribute?
+    & ws.webpage.navto.attribute?
+    & db.common.idreq.attributes
+
+   ws.webpage =
+      element webpage {
+         ws.webpage.attlist,
+         ws.config*,
+         ws.head,
+         ((db.all.blocks+,
+            ws.webpage.optional.components)
+          | ws.webpage.required.components),
+         db.appendix*,
+         db.bibliography*
+      }
+}
+
+# ============================================================
+
+ws.head.optional.components =
+   db.abstract
+ | db.author
+ | db.copyright
+ | db.edition
+ | ws.headlink
+ | ws.meta
+ | ws.script
+ | ws.style
+ | db.revhistory
+
+[
+   db:refname [ "head" ]
+   db:refpurpose [ "The head in a webpage" ]
+]
+div {
+
+   ws.head.role.attribute = attribute role { text }
+
+   ws.head.attlist =
+      ws.head.role.attribute?
+    & db.common.attributes
+
+   ws.head =
+      element head {
+         ws.head.attlist,
+         db.title,
+         db.titleabbrev?,
+         db.subtitle?,
+         ws.summary?,
+         ws.keywords?,
+         ws.head.optional.components*
+      }
+}
+
+# ============================================================
+
+[
+   db:refname [ "meta" ]
+   db:refpurpose [ "The meta in a webpage head" ]
+]
+div {
+
+   ws.meta.role.attribute = attribute role { text }
+   ws.meta.http-equiv.attribute = attribute http-equiv { text }
+   ws.meta.name.attribute = attribute name { text }
+   ws.meta.content.attribute = attribute content { text }
+
+   ws.meta.attlist =
+      ws.meta.role.attribute?
+    & (ws.meta.http-equiv.attribute | ws.meta.name.attribute)
+    & ws.meta.content.attribute
+    & db.common.attributes
+
+   ws.meta =
+      element meta {
+         ws.meta.attlist,
+         empty
+      }
+}
+
+# ============================================================
+
+[
+   db:refname [ "link" ]
+   db:refpurpose [ "A link in the head of a webpage" ]
+]
+div {
+
+   ws.headlink.role.attribute = attribute role { text }
+
+   ws.headlink.href.attribute = attribute href { text }
+   ws.headlink.media.attribute = attribute media { text }
+   ws.headlink.name.attribute = attribute name { text }
+   ws.headlink.rel.attribute = attribute rel { text }
+   ws.headlink.rev.attribute = attribute rev { text }
+   ws.headlink.src.attribute = attribute src { text }
+   ws.headlink.title.attribute = attribute title { text }
+   ws.headlink.type.attribute = attribute type { text }
+
+   ws.headlink.attlist =
+      ws.headlink.role.attribute?
+    & ws.headlink.href.attribute?
+    & ws.headlink.media.attribute?
+    & ws.headlink.name.attribute?
+    & ws.headlink.rel.attribute?
+    & ws.headlink.rev.attribute?
+    & ws.headlink.src.attribute?
+    & ws.headlink.title.attribute?
+    & ws.headlink.type.attribute?
+    & db.common.attributes
+
+   ws.headlink =
+      element link {
+         ws.headlink.attlist,
+         empty
+      }
+}
+
+# ============================================================
+
+[
+   db:refname [ "script" ]
+   db:refpurpose [ "A script in the head of a webpage" ]
+]
+div {
+
+   ws.script.role.attribute = attribute role { text }
+
+   ws.script.src.attribute = attribute src { text }
+   ws.script.language.attribute = attribute language { text }
+   ws.script.type.attribute = attribute type { text }
+
+   ws.script.attlist =
+      ws.script.role.attribute?
+    & ws.script.language.attribute?
+    & ws.script.type.attribute?
+    & db.common.attributes
+
+   ws.script =
+      element script {
+         ws.script.attlist,
+         (ws.script.src.attribute | text)
+      }
+}
+
+# ============================================================
+
+[
+   db:refname [ "style" ]
+   db:refpurpose [ "A style section in the head of a webpage" ]
+]
+div {
+
+   ws.style.role.attribute = attribute role { text }
+
+   ws.style.src.attribute = attribute src { text }
+   ws.style.type.attribute = attribute type { text }
+
+   ws.style.attlist =
+      ws.style.role.attribute?
+    & ws.style.type.attribute?
+    & db.common.attributes
+
+   ws.style =
+      element style {
+         ws.style.attlist,
+         (ws.style.src.attribute | text)
+      }
+}
+
+# ============================================================
+
+[
+   db:refname [ "style" ]
+   db:refpurpose [ "A style section in the head of a webpage" ]
+]
+div {
+
+   ws.config.role.attribute = attribute role { text }
+
+   ws.config.param.attribute = attribute param { text }
+   ws.config.value.attribute = attribute value { text }
+   ws.config.altvalue.attribute = attribute altvalue { text }
+
+   ws.config.attlist =
+      ws.config.role.attribute?
+    & ws.config.param.attribute?
+    & ws.config.value.attribute?
+    & ws.config.altvalue.attribute?
+    & db.common.attributes
+
+   ws.config =
+      element config {
+         ws.config.attlist,
+         empty
+      }
+}
+
+# ============================================================
+
+[
+   db:refname [ "summary" ]
+   db:refpurpose [ "A short summary of a webpage" ]
+]
+div {
+
+   ws.summary.role.attribute = attribute role { text }
+
+   ws.summary.attlist =
+      ws.summary.role.attribute?
+    & db.common.attributes
+
+   ws.summary =
+      element summary {
+         ws.summary.attlist,
+         db.all.inlines*
+      }
+}
+
+# ============================================================
+
+[
+   db:refname [ "keywords" ]
+   db:refpurpose [ "The keywords for a webpage" ]
+]
+div {
+
+   ws.keywords.role.attribute = attribute role { text }
+
+   ws.keywords.attlist =
+      ws.keywords.role.attribute?
+    & db.common.attributes
+
+   ws.keywords =
+      element keywords {
+         ws.keywords.attlist,
+         text
+      }
+}
+
+# ============================================================
+
+[
+   db:refname [ "webtoc" ]
+   db:refpurpose [ "Marks the location of a TOC in a webpage" ]
+]
+div {
+
+   ws.webtoc.role.attribute = attribute role { text }
+
+   ws.webtoc.attlist =
+      ws.webtoc.role.attribute?
+    & db.common.attributes
+
+   ws.webtoc =
+      element webtoc {
+         ws.webtoc.attlist,
+         empty
+      }
+}

@@ -1,0 +1,123 @@
+<?xml version='1.0'?>
+<?dbhtml graphics-dir="../graphics"?>
+<?dbhtml css-stylesheet="../browser/slides.css"?>
+<?dbhtml script-dir="../browser"?>
+<slides xmlns="http://docbook.org/ns/docbook">
+<info>
+  <title>Test Slides Title That's Really Really Long and Would Never Really Be Used Exactly Like This</title>
+  <copyright><year>2001</year><holder>Norman Walsh</holder></copyright>
+</info>
+
+<speakernotes>
+<para>Welcome the audience</para>
+</speakernotes>
+
+<foilgroup><title>Foilgroup 1</title>
+
+<speakernotes>
+<para>Introduce the foilgroup</para>
+</speakernotes>
+
+<foil><title>Test Slides Title 1</title>
+
+<speakernotes>
+<para>Tell a funny joke. Remember, I said a funny one.</para>
+</speakernotes>
+
+<para>...</para>
+</foil>
+
+<foil><title>Test Slides Title 2</title>
+<para>...</para>
+<programlisting>
+this is a programlisting
+</programlisting>
+
+<programlisting>
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+this is a long programlisting
+</programlisting>
+</foil>
+
+</foilgroup>
+<foilgroup><title>Foilgroup 2</title>
+
+<foil><title>Test Slides Title 1</title>
+<para>...<footnote><para>This is a footnote.</para></footnote></para>
+</foil>
+
+<foil><title>Test Slides Title 2</title>
+<para>...</para>
+<programlisting>
+this is a programlisting
+</programlisting>
+</foil>
+
+</foilgroup>
+
+</slides>

@@ -1,0 +1,37 @@
+<?xml version='1.0'?>
+<slides xmlns="http://docbook.org/ns/docbook">
+<info>
+  <title>Test Slides Title</title>
+  <copyright><year>2001</year><holder>Norman Walsh</holder></copyright>
+</info>
+
+<foilgroup><title>Section 1</title>
+
+<foil><title>Test Slides Title 1</title>
+<para>...<keycombo><keycap>X</keycap></keycombo></para>
+</foil>
+
+<foil><title>Test Slides Title 2</title>
+<para>...</para>
+<screen>
+this is a screen
+</screen>
+</foil>
+
+</foilgroup>
+<foilgroup><title>Section 2</title>
+
+<foil><title>Test Slides Title 1</title>
+<para>...</para>
+</foil>
+
+<foil><title>Test Slides Title 2</title>
+<para>...</para>
+<screen>
+this is a screen
+</screen>
+</foil>
+
+</foilgroup>
+
+</slides>
