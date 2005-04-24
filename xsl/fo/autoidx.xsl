@@ -475,6 +475,13 @@
         <xsl:with-param name="type" select="$type"/>
       </xsl:call-template>
     </xsl:when>
+    <xsl:when test="ancestor::*[contains(local-name(),'info')]">
+      <xsl:call-template name="info.reference">
+        <xsl:with-param name="scope" select="$scope"/>
+        <xsl:with-param name="role" select="$role"/>
+        <xsl:with-param name="type" select="$type"/>
+      </xsl:call-template>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:variable name="id">
         <xsl:call-template name="object.id"/>
@@ -543,6 +550,31 @@
       </fo:basic-link>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template name="info.reference">
+  <!-- This is not perfect. It doesn't treat indexterm inside info element as a range covering whole parent of info.
+       It also not work when there is no ID generated for parent element. But it works in the most common cases. -->
+  <xsl:param name="scope" select="."/>
+  <xsl:param name="role" select="''"/>
+  <xsl:param name="type" select="''"/>
+
+  <xsl:variable name="target" select="(ancestor::appendix|ancestor::article|ancestor::bibliography|ancestor::book|
+                                       ancestor::chapter|ancestor::glossary|ancestor::part|ancestor::preface|
+                                       ancestor::refentry|ancestor::reference|ancestor::refsect1|ancestor::refsect2|
+                                       ancestor::refsect3|ancestor::refsection|ancestor::refsynopsisdiv|
+                                       ancestor::sect1|ancestor::sect2|ancestor::sect3|ancestor::sect4|ancestor::sect5|
+                                       ancestor::section|ancestor::setindex|ancestor::set|ancestor::sidebar)[&scope;]"/>
+  
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id">
+      <xsl:with-param name="object" select="$target[1]"/>
+    </xsl:call-template>
+  </xsl:variable>
+  
+  <fo:basic-link internal-destination="{$id}">
+    <fo:page-number-citation ref-id="{$id}"/>
+  </fo:basic-link>
 </xsl:template>
 
 <xsl:template match="indexterm" mode="index-see">
