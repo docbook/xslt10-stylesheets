@@ -7,7 +7,7 @@
                 version="1.0">
 
 <!-- ======================================================================
-# This file is part of DocBook NG: The "Kahlúa" Release.
+# This file is part of DocBook NG: The "Lillet" Release.
 # A prototype DocBook V4.2 to DocBoook V.next converter.
 #
 # This stylesheet is a "work-in-progress". It converts (some) valid
@@ -966,7 +966,7 @@
       <xsl:element name="{local-name(.)}"
 		   namespace="http://docbook.org/ns/docbook">
 	<xsl:if test="not(parent::*)">
-	  <xsl:attribute name="version">kahlúa</xsl:attribute>
+	  <xsl:attribute name="version">lillet</xsl:attribute>
 	</xsl:if>
 	<xsl:copy-of select="@*"/>
 	<xsl:apply-templates mode="addNS"/>
@@ -975,7 +975,7 @@
     <xsl:otherwise>
       <xsl:copy>
 	<xsl:if test="not(parent::*)">
-	  <xsl:attribute name="version">kahlúa</xsl:attribute>
+	  <xsl:attribute name="version">lillet</xsl:attribute>
 	</xsl:if>
 	<xsl:copy-of select="@*"/>
 	<xsl:apply-templates mode="addNS"/>
