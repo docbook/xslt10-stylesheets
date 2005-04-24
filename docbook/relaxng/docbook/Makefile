@@ -6,7 +6,7 @@ VPATH=src
 RNCFILES=$(wildcard $(VPATH)/*.rnc)
 TOOLS=../tools
 
-all: docbook.rng docbook.dtd
+all: docbook.rng docbook.dtd dbforms.rng dbforms.dtd
 
 # ============================================================
 #
@@ -23,6 +23,7 @@ all: docbook.rng docbook.dtd
 #      If we could take "." out of VPATH, we wouldn't need to do this.
 
 docbook.rng: $(RNCFILES)
+dbforms.rng: $(RNCFILES)
 
 .rnc.rng:
 	$(MAKE) -C build $@

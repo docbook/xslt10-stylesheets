@@ -1,6 +1,7 @@
 RELEASES
-docbook-dtd.xml
-docbook-rng.xml
 docbook.dtd
 docbook.rnc
 docbook.rng
+dbforms.dtd
+dbforms.rnc
+dbforms.rng
