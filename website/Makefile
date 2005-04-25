@@ -14,14 +14,14 @@ DISTRIB_DEPENDS = example RELEASE-NOTES.txt
 # excluded from the zip file and tarball for the release
 DISTRIB_EXCLUDES = /tests$$
 
-# to make sure that executable bit is retained after packaging,
-# you need to explicitly list any executable files here
-EXECUTABLES = install.sh test.sh uninstall.sh
-
 # value of DISTRIB_PACKAGES is a space-separated list of any
 # directory names that should be packaged as separate zip/tar
 # files for the release
 DISTRIB_PACKAGES =
+
+# to make sure that executable bit is retained after packaging,
+# you need to explicitly list any executable files here
+DISTRIB_EXECUTABLES =
 
 # list of pathname+URIs to test for catalog support
 URILIST = \
