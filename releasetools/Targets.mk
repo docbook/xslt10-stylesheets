@@ -67,13 +67,17 @@ else
 # normalize perms/filemodes for all files and dirs
 	find . -type f | xargs chmod 0644
 	find . -type d | xargs chmod 0755
-# set executable bit on anything that should be executable
+# set executable bit on executables that are in all distributions
 ifneq ($(EXECUTABLES),)
 	chmod 0755 $(EXECUTABLES)
 endif
+# set executable bit on distro-specific executables
+ifneq ($(DISTRIB_EXECUTABLES),)
+	chmod 0755 $(DISTRIB_EXECUTABLES)
+endif
 
 # -----------------------------------------------------------------
-#     Prepare *zip files for main (NON-doc) part of distro
+#          Prepare *zip files for main part of distro
 # -----------------------------------------------------------------
 	rm -rf $(TMP)/docbook-$(DISTRO)-$(ZIPVER)
 	rm -f  $(TMP)/tar.exclude
@@ -83,20 +87,21 @@ endif
 	umask 022; mkdir -p $(TMP)/docbook-$(DISTRO)-$(ZIPVER)
 	touch $(TMP)/tar.exclude
 # distro-specific excludes
+ifneq ($(DISTRIB_EXCLUDES),)
 	for file in $(DISTRIB_EXCLUDES); do \
 	  find . -print  | grep $$file   | cut -c3- >> $(TMP)/tar.exclude; \
 	done
-# specific excludes for distros with docs
-	if [ -d doc ]; then \
-	  find . -print  | grep /doc/    | cut -c3- >> $(TMP)/tar.exclude; \
-	fi
-	if [ -d docsrc ]; then \
-	  find . -print  | grep /docsrc/ | cut -c3- >> $(TMP)/tar.exclude; \
-	fi
+endif
 # global excludes
 	for file in $(ZIP_EXCLUDES); do \
 	  find . -print  | grep $$file   | cut -c3- >> $(TMP)/tar.exclude; \
 	done
+# excludes for distros that end up as multiple packages
+ifneq ($(DISTRIB_PACKAGES),)
+	for part in $(DISTRIB_PACKAGES); do \
+	  find . -print  | grep "^./$$part\|^./$${part}src" | cut -c3- >> $(TMP)/tar.exclude; \
+	done
+endif
 # tar up distro, then gzip/bzip/zip it
 	tar cf - * .[^.]* --exclude-from $(TMP)/tar.exclude | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); tar xf -)
 	umask 022; cd $(TMP) && tar cf - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-$(ZIPVER).tar.gz
@@ -105,35 +110,35 @@ endif
 	rm -f $(TMP)/tar.exclude
 
 # -----------------------------------------------------------------
-#     Prepare *zip files for DOC part of distro (if any)
+#     Prepare *zip files for other parts of distro (if any)
 # -----------------------------------------------------------------
-ifeq ($(shell test -d doc; echo $$?),0)
-	rm -rf $(TMP)/docbook-$(DISTRO)-$(ZIPVER)
-	rm -f  $(TMP)/tar.exclude
-	rm -f  $(TMP)/docbook-$(DISTRO)-doc-$(ZIPVER).tar.gz
-	rm -f  $(TMP)/docbook-$(DISTRO)-doc-$(ZIPVER).tar.bz2
-	rm -f  $(TMP)/docbook-$(DISTRO)-doc-$(ZIPVER).zip
-	umask 022; mkdir -p $(TMP)/docbook-$(DISTRO)-$(ZIPVER)
-	touch $(TMP)/tar.exclude
-# distro-specific excludes
+ifneq ($(DISTRIB_PACKAGES),)
+	for part in $(DISTRIB_PACKAGES); do \
+	rm -rf $(TMP)/docbook-$(DISTRO)-$(ZIPVER); \
+	rm -f  $(TMP)/tar.exclude; \
+	rm -f  $(TMP)/docbook-$(DISTRO)-$$part-$(ZIPVER).tar.gz; \
+	rm -f  $(TMP)/docbook-$(DISTRO)-$$part-$(ZIPVER).tar.bz2; \
+	rm -f  $(TMP)/docbook-$(DISTRO)-$$part-$(ZIPVER).zip; \
+	umask 022; mkdir -p $(TMP)/docbook-$(DISTRO)-$(ZIPVER); \
+	touch $(TMP)/tar.exclude; \
+	if [ -n "$(DISTRIB_EXCLUDES)" ]; then \
 	for file in $(DISTRIB_EXCLUDES); do \
 	  find . -print  | grep $$file   | cut -c3- >> $(TMP)/tar.exclude; \
-	done
-# global excludes
+	done; \
+	fi; \
 	for file in $(ZIP_EXCLUDES); do \
 	  find . -print  | grep $$file   | cut -c3- >> $(TMP)/tar.exclude; \
-	done
-# tar up just the doc and docsrc dirs & if an "images" dir exists,
-# mv it into the doc dir
-	tar cf - doc docsrc images --exclude-from $(TMP)/tar.exclude | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); tar xf -)
-	umask 022; cd $(TMP) && \
+	done; \
+	tar cf - --ignore-failed-read $$part $${part}src images --exclude-from $(TMP)/tar.exclude | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); tar xf -); \
+	umask 022; (cd $(TMP) && \
 	if [ -d docbook-$(DISTRO)-$(ZIPVER)/images ]; \
 	  then mv docbook-$(DISTRO)-$(ZIPVER)/images docbook-$(DISTRO)-$(ZIPVER)/doc/; \
-	fi
-	umask 022; cd $(TMP) && tar cf - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-doc-$(ZIPVER).tar.gz
-	umask 022; cd $(TMP) && tar cf - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > docbook-$(DISTRO)-doc-$(ZIPVER).tar.bz2
-	umask 022; cd $(TMP) && zip -q -rpD docbook-$(DISTRO)-doc-$(ZIPVER).zip docbook-$(DISTRO)-$(ZIPVER)
-	rm -f $(TMP)/tar.exclude
+	fi) ; \
+	umask 022; (cd $(TMP) && tar cf - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-$$part-$(ZIPVER).tar.gz); \
+	umask 022; (cd $(TMP) && tar cf - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > docbook-$(DISTRO)-$$part-$(ZIPVER).tar.bz2); \
+	umask 022; (cd $(TMP) && zip -q -rpD docbook-$(DISTRO)-$$part-$(ZIPVER).zip docbook-$(DISTRO)-$(ZIPVER)); \
+	rm -f $(TMP)/tar.exclude; \
+	done
 endif
 endif
 
@@ -151,8 +156,4 @@ install: zip
 	   chmod -R g+w $(ZIPVER); \
 	   rm -f current; \
 	   ln -s $(ZIPVER) current; \
-	   if [ -d $(ZIPVER)/doc ] || [ -d $(ZIPVER)/images ]; then \
-	   cd $(ZIPVER)/doc; \
-	   ln -s ../images; \
-	   fi \
 	   )"
