@@ -16,7 +16,7 @@ DISTRIB_EXCLUDES = /tests$$
 
 # to make sure that executable bit is retained after packaging,
 # you need to explicitly list any executable files here
-EXECUTABLES = install.sh
+EXECUTABLES = install.sh test.sh uninstall.sh
 
 # list of pathname+URIs to test for catalog support
 URILIST = \
