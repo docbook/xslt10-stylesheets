@@ -86,6 +86,9 @@ ZIP_EXCLUDES = \
  Makefile[.] \
  README\.CVS
 
+# list of executables that are included in all distributions
+EXECUTABLES = install.sh test.sh uninstall.sh
+
 # specifies options to feed to "freshmeat-submit"
 FMGO=-N
 # SFRELID specifies Sourceforge release ID for current release.
