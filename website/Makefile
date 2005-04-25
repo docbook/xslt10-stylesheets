@@ -18,6 +18,11 @@ DISTRIB_EXCLUDES = /tests$$
 # you need to explicitly list any executable files here
 EXECUTABLES = install.sh test.sh uninstall.sh
 
+# value of DISTRIB_PACKAGES is a space-separated list of any
+# directory names that should be packaged as separate zip/tar
+# files for the release
+DISTRIB_PACKAGES =
+
 # list of pathname+URIs to test for catalog support
 URILIST = \
 	schema/dtd/website.dtd\ http://docbook.sourceforge.net/release/website/2.6/schema/dtd/website.dtd \
