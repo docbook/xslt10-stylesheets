@@ -27,3 +27,6 @@ param.xsl: param.xweb
 	$(XSLT) $(PARAMSTRIP) ../../../litprog/xtangle.xsl $@
 	$(RM) $(PARAMPROF) $(PARAMSTRIP)
 
+clean:
+	rm -f param.xsl param.xml param.html
+
