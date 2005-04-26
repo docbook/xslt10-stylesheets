@@ -1,6 +1,5 @@
 <?xml version='1.0'?>
-<!DOCTYPE slides PUBLIC "-//Norman Walsh//DTD Slides XML V3.1.0//EN"
-                 "http://docbook.sourceforge.net/release/slides/3.0.1/schema/dtd/slides.dtd">
+<!DOCTYPE slides SYSTEM "../schema/dtd/slides.dtd">
 <slides>
 <slidesinfo>
 <title>Presentation Title</title>

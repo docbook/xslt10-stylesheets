@@ -1,4 +1,5 @@
 <?xml version='1.0'?>
+<!DOCTYPE slides SYSTEM "../schema/dtd/slides-full.dtd">
 <?dbhtml graphics-dir="../graphics"?>
 <?dbhtml css-stylesheet="../browser/slides.css"?>
 <?dbhtml script-dir="../browser"?>
