@@ -2,13 +2,21 @@ include ../../cvstools/Makefile.incl
 
 .PHONY: fo xhtml html
 
-all: fo xhtml
+DIRS = fo xhtml html
 
-fo:
-	$(MAKE) -C fo
+all: base
 
-xhtml: html
-	$(MAKE) -C xhtml
+base:
+	for i in $(DIRS) __bogus__; do \
+		if [ $$i != __bogus__ ] ; then \
+			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
+		fi \
+	done
 
-html:
-	$(MAKE) -C html
+clean: 
+	for i in $(DIRS) __bogus__; do \
+		if [ $$i != __bogus__ ] ; then \
+			echo "$(MAKE) -C $$i clean"; $(MAKE) -C $$i clean; \
+		fi \
+	done
+
