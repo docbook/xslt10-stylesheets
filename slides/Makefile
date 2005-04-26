@@ -1,16 +1,42 @@
+# $Id$
+
 include ../cvstools/Makefile.incl
+include ../releasetools/Variables.mk
 
-CVS2LOG=../cvstools/cvs2log
-NEXTVER=
-DIFFVER=
-ZIPVER=
-CVSCHECK := $(shell cvs -n update 2>&1 | grep -v ^cvs | cut -c3-)
-RELVER := $(shell grep "<fm:Version" VERSION | sed "s/ *<\/\?fm:Version>//g")
-TAGVER := $(shell echo "V$(RELVER)" | sed "s/\.//g")
-SFRELID=
-FMGO=-N
+DISTRO = slides
 
-all:
+# value of DISTRIB_DEPENDS is a space-separated list of any
+# targets for this distro's "distrib" target to depend on
+DISTRIB_DEPENDS = doc demo tests
+
+# value of DISTRIB_EXCLUDES is a space-separated list of any file
+# or directory names (regular expressions OK) that should be
+# excluded from the zip file and tarball for the release
+DISTRIB_EXCLUDES = /tests$$
+
+# value of DISTRIB_PACKAGES is a space-separated list of any
+# directory names that should be packaged as separate zip/tar
+# files for the release
+DISTRIB_PACKAGES = demo
+
+# to make sure that executable bit is retained after packaging,
+# you need to explicitly list any special executable files here
+DISTRIB_EXECUTABLES =
+
+# list of pathname+URIs to test for catalog support
+URILIST = \
+	schema/dtd/slides.dtd\ http://docbook.sourceforge.net/release/slides/3.4/schema/dtd/slides.dtd \
+	schema/dtd/slides-full.dtd\ http://docbook.sourceforge.net/release/slides/3.4/schema/dtd/slides-full.dtd \
+	schema/dtd/slides.dtd\ http://docbook.sourceforge.net/release/slides/current/schema/dtd/slides.dtd \
+	schema/dtd/slides-full.dtd\ http://docbook.sourceforge.net/release/slides/current/schema/dtd/slides-full.dtd \
+	xsl/\ http://docbook.sourceforge.net/release/slides/3.4.0/xsl/ \
+	xsl/\ http://docbook.sourceforge.net/release/slides/current/xsl/
+
+.PHONY: doc demo tests
+
+all: base doc demo tests
+
+base:
 	$(MAKE) -C schema
 	$(MAKE) -C xsl
 
@@ -19,78 +45,20 @@ check:
 	$(XJPARSE) tests/testcust.xml
 	$(XJPARSE) tests/testfull.xml
 
-distrib: check
-	$(MAKE) -C doc all
-	$(CVS2LOG) -w
-ifeq ($(DIFFVER),)
-	$(MERGELOGS) > WhatsNew
-else
-	$(MERGELOGS) -v $(DIFFVER) > WhatsNew
-endif
+clean:
+	$(MAKE) -C doc clean
+	$(MAKE) -C demo clean
+	$(MAKE) -C schema clean
+	$(MAKE) -C tests clean
+	$(MAKE) -C xsl clean
 
-newversion:
-ifeq ($(CVSCHECK),)
-ifeq ($(DIFFVER),)
-	@echo "DIFFVER must be specified."
-else
-ifeq ($(NEXTVER),$(RELVER))
-	cvs tag $(TAGVER)
-	$(MAKE) DIFFVER=$(DIFFVER) distrib
-else
-	@echo "VERSION $(RELVER) doesn't match specified version $(NEXTVER)."
-endif
-endif
-else
-	@echo "CVS is not up-to-date! ($(CVSCHECK))"
-endif
+demo:
+	make -C demo
 
-freshmeat:
-ifeq ($(SFRELID),)
-	@echo "You must specify the sourceforge release identifier in SFRELID"
-else
-	$(XSLT) VERSION VERSION /tmp/fm-docbook-slides sf-relid=$(SFRELID)
-	grep -v "<?xml" /tmp/fm-docbook-slides | freshmeat-submit $(FMGO)
-endif
+doc:
+	make -C doc
 
-zip:
-ifeq ($(ZIPVER),)
-	@echo You must specify ZIPVER for the zip target
-else
-	make -C tests clean
-	rm -rf /tmp/slides-$(ZIPVER)
-	rm -f /tmp/slides-$(ZIPVER).tar.gz
-	rm -f /tmp/slides-$(ZIPVER).zip
-	mkdir /tmp/slides-$(ZIPVER)
-	rm -f /tmp/tar.exclude
-	touch /tmp/tar.exclude
-	find . -print | grep /CVS$$ | cut -c3- >> /tmp/tar.exclude
-	find . -print | grep /CVS/ | cut -c3- >> /tmp/tar.exclude
-	find . -print | grep .classes | cut -c3- >> /tmp/tar.exclude
-	find . -print | grep .cvskeep | cut -c3- >> /tmp/tar.exclude
-	find . -print | grep demo/ | cut -c3- >> /tmp/tar.exclude
-	find . -print | grep "~$$" | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name "#*"  | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name ".cvsignore"  | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name "Makefile*"   | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name "README.CVS"   | cut -c3- >> /tmp/tar.exclude
-	tar cf - * --exclude-from /tmp/tar.exclude | (cd /tmp/slides-$(ZIPVER); tar xf -)
-	cd /tmp && tar cf - slides-$(ZIPVER) | gzip > slides-$(ZIPVER).tar.gz
-	cd /tmp && zip -rpD slides-$(ZIPVER).zip slides-$(ZIPVER)
-	rm -rf /tmp/slides-demo-$(ZIPVER)
-	rm -f /tmp/slides-demo-$(ZIPVER).zip
-	mkdir /tmp/slides-demo-$(ZIPVER)
-	rm -f /tmp/tar.exclude
-	touch /tmp/tar.exclude
-	-find demo -print | grep /CVS$$    >> /tmp/tar.exclude
-	-find demo -print | grep /CVS/     >> /tmp/tar.exclude
-	-find demo -print | grep .classes  >> /tmp/tar.exclude
-	-find demo -print | grep .cvskeep  >> /tmp/tar.exclude
-	-find demo -print | grep "~$$"     >> /tmp/tar.exclude
-	-find demo -type f -name "#*"      >> /tmp/tar.exclude
-	-find demo -type f -name ".cvsignore" >> /tmp/tar.exclude
-	-find demo -type f -name "Makefile*"  >> /tmp/tar.exclude
-	-find demo -type f -name "README.CVS" >> /tmp/tar.exclude
-	tar cf - demo --exclude-from /tmp/tar.exclude | (cd /tmp/slides-demo-$(ZIPVER); tar xf -)
-	cd /tmp && zip -rpD slides-demo-$(ZIPVER).zip slides-demo-$(ZIPVER)
-	rm -f tar.exclude
-endif
+tests:
+	make -C tests
+
+include ../releasetools/Targets.mk
