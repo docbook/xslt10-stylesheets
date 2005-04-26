@@ -19,6 +19,7 @@
   <xsl:attribute name="space-before.maximum"><xsl:value-of
             select="concat($body.font.master, 'pt * 1.2')"/></xsl:attribute>
   <xsl:attribute name="hyphenate">false</xsl:attribute>
+  <xsl:attribute name="text-align">left</xsl:attribute>
   <xsl:attribute name="start-indent"><xsl:value-of 
                  select="$title.margin.left"/></xsl:attribute>
 </xsl:attribute-set>
