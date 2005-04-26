@@ -1,15 +1,13 @@
 include ../../cvstools/Makefile.incl
 
-CP=cp
-
 all: index.html param.html
-
-param.html:
-	make -C ../xsl param.html
-	$(CP) ../xsl/param.html .
 
 index.html: slides.xml
 	$(XSLT) $< ../../xsl/html/docbook.xsl $@
+
+param.html:
+	$(MAKE) -C ../xsl/html param.html
+	cp ../xsl/html/param.html .
 
 clean:
 	rm -f *.html
