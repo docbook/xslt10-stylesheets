@@ -1,0 +1,216 @@
+<?xml version='1.0'?>
+<!DOCTYPE slides SYSTEM "../schema/dtd/slides.dtd">
+<!--
+<?dbhtml graphics-dir="../graphics" css-stylesheet-dir="../browser"?>
+<?dbhtml script-dir="../browser"?>
+-->
+<slides><?dbhtml dir="dbhtml-dir-test" ?>
+<slidesinfo>
+  <title>Supporting Localized Generated Text</title>
+  <titleabbrev>Generated Text</titleabbrev>
+  <author><firstname>Norman</firstname><surname>Walsh</surname></author>
+  <pubdate>Sunday, 08 Apr 2001</pubdate>
+  <confgroup>
+    <conftitle>XSLTUK-01</conftitle>
+    <confdates>08 Apr - 09 Apr 2001</confdates>
+    <conftitle role="address">Keble College, Oxford, UK</conftitle>
+    <confnum>1</confnum>
+  </confgroup>
+  <releaseinfo role="version">Version TEST</releaseinfo>
+  <copyright><year>2001</year>
+             <holder>Sun Microsystems, Inc.</holder></copyright>
+</slidesinfo>
+
+<foil><title>Introduction</title>
+
+<speakernotes>
+<para>Say something pithy in the introduction</para>
+</speakernotes>
+
+<para>This is the introductory slide</para>
+</foil>
+
+<foilgroup><title>The Problem</title>
+
+<para>This is on the foilgroup slide.</para>
+
+<speakernotes>
+<para>Remember to describe the use-caess</para>
+</speakernotes>
+
+<foil><title>Generated Text</title>
+<itemizedlist>
+<listitem><para>Semantic markup often omits text that can be generated
+automatically
+</para></listitem>
+<listitem><para>Different contexts require different generated text,
+naturally
+</para></listitem>
+<listitem><para>Generated text is locale-specific
+</para></listitem>
+</itemizedlist>
+</foil>
+
+<foil><title>An Example</title>
+<para>An obvious, common example is chapter title markup. Consider:</para>
+
+<programlisting><emphasis
+>&lt;chapter label="3">&lt;title>Some Title&lt;/title></emphasis> ...</programlisting>
+
+<para>The title page for a chapter varies by location:</para>
+
+<itemizedlist>
+<listitem><para>English:
+</para>
+<para><emphasis>Chapter 3. Some Title</emphasis></para>
+</listitem>
+<listitem><para>French:
+</para>
+<para><emphasis>Chapitre 3. Some Title</emphasis></para>
+</listitem>
+</itemizedlist>
+</foil>
+
+</foilgroup>
+<foilgroup><title>A Solution</title>
+
+<foil><title>The Old Solution</title>
+
+<para>Replace this</para>
+
+<screen><![CDATA[<xsl:template match="chapter">
+  <h1>
+    ]]><?Pub _font blue?><![CDATA[Chapter ]]><?Pub /_font?><![CDATA[
+    <xsl:number from="book" format="1."/>
+    ]]><?Pub _font green?><![CDATA[<xsl:text> </xsl:text>]]><?Pub /_font?><![CDATA[
+    <xsl:apply-templates select="title"/>
+  </h1>
+</xsl:template>]]></screen>
+
+<para>with this</para>
+
+<screen><![CDATA[<xsl:template match="chapter">
+  <h1>
+    ]]><?Pub _font blue?><![CDATA[<xsl:call-template name="gentext">
+      <xsl:with-param name="key">Chapter</xsl:with-param>
+    </xsl:call-template>]]><?Pub /_font?><![CDATA[
+    ]]><?Pub _font green?><![CDATA[<xsl:call-template name="gentext.space"/>]]><?Pub /_font?><![CDATA[
+    <xsl:number from="book" format="1."/>
+    ]]><?Pub _font green?><![CDATA[<xsl:call-template name="gentext.space"/>]]><?Pub /_font?><![CDATA[
+    <xsl:apply-templates select="title"/>
+  </h1>
+</xsl:template>]]></screen>
+</foil>
+
+<foil><title>Generated from Localization Data</title>
+<titleabbrev>L10N Data</titleabbrev>
+
+<para>Where the generated text for words like <quote>Chapter</quote>
+is taken from an independently maintained lookup table:</para>
+
+<screen><![CDATA[<internationalization>
+
+<localization language="ca">
+<gentext key="Appendix" text="Ap&#x00E8;ndix"/>
+<gentext key="Chapter" text="Cap&iacute;tol"/>
+...
+<localization language="cs">
+...]]></screen>
+</foil>
+
+<foil><title>Problems</title>
+<itemizedlist>
+<listitem><para>Single-word localization (doesn't support Japanese)
+</para></listitem>
+<listitem><para>Hard-coded presentation elements (number and title)
+</para></listitem>
+<listitem><para>Hard-coded presentation order (gentext, number, title)
+</para></listitem>
+<listitem><para>Hard-coded number format
+</para></listitem>
+</itemizedlist>
+</foil>
+
+</foilgroup>
+<foilgroup><title>A Better Solution</title>
+
+<foil><title>Use Markup Templates</title>
+
+<para>Use a lookup function to determine the markup template in addition
+to the keywords. For example, the <quote>markup template</quote> lookup
+table for a chapter title looks something like this:</para>
+
+<informaltable frame="none" pgwide="1">
+<tgroup cols="2">
+<?dbhtml table-summary="Template lookup table"?>
+<thead>
+<row><entry align="left">Localization</entry><entry align="left">Template Returned</entry></row>
+</thead>
+<tbody>
+<row><entry>English</entry><entry><literal>Chapter %n. %t</literal></entry></row>
+<row><entry>French</entry><entry><literal>Chapitre %n. %t</literal></entry></row>
+</tbody>
+</tgroup>
+</informaltable>
+
+<para>The markers, <literal>%n</literal>, <literal>%t</literal>, and
+<literal>%s</literal> (not shown) are replaced by the lable, title, and
+subtitle of the component, respectively.</para>
+
+</foil>
+
+<foil><title>The <quote>New</quote> Solution</title>
+
+<para>Find the template and fill it in:</para>
+
+<screen><![CDATA[<xsl:template match="*" mode="object.title.markup">
+  <xsl:variable name="template">
+    <xsl:apply-templates select="." mode="object.title.template"/>
+  </xsl:variable>
+
+  <xsl:call-template name="substitute-markup">
+    <xsl:with-param name="allow-anchors" select="1"/>
+    <xsl:with-param name="template" select="$template"/>
+  </xsl:call-template>
+</xsl:template>]]></screen>
+</foil>
+
+<foil><title>Generated from Localization Data</title>
+<titleabbrev>L10N Data</titleabbrev>
+
+<para>In order to make this work, the localization data is extended:</para>
+
+<screen><![CDATA[<internationalization>
+
+<localization language="ca">
+<gentext key="Appendix" text="Ap&#x00E8;ndix"/>
+<gentext key="Chapter"  text="Cap&iacute;tol"/>
+...
+]]><?Pub _font blue?><![CDATA[<context name="title">
+<template name="appendix">]]><?Pub _font green?><![CDATA[<Appendix/>]]><?Pub /_font?><![CDATA[ %n. %t</template>
+<template name="chapter">]]><?Pub _font green?><![CDATA[<Chapter/>]]><?Pub /_font?><![CDATA[ %n. %t</template>
+]]><?Pub /_font?><![CDATA[...
+]]></screen>
+</foil>
+
+</foilgroup>
+
+<foilgroup><title>Resources</title>
+<foil><title>Resources</title>
+<itemizedlist>
+<listitem><para><ulink url="http://www.oasis-open.org/docbook/"/>, the
+DocBook Home Page.
+</para></listitem>
+<listitem><para><ulink url="http://sourceforge.net/projects/docbook/"/>, the
+stylesheets and related document types (including the slides layer that
+was used to produce this presentation.)
+</para></listitem>
+<listitem><para>Mailing lists: <email>docbook@lists.oasis-open.org</email>,
+for questions about DocBook; <email>docbook-apps@lists.oasis-open.org</email>,
+for questions about DocBook applications, stylesheets, and other tool-related
+queries.
+</para></listitem>
+</itemizedlist>
+</foil>
+</foilgroup>
+</slides>
