@@ -35,7 +35,7 @@
 	  DocBook 1.1</ulink> and Slides "full" is now based on <ulink
 	  url="http://docbook.org/xml/4.4/index.html" >DocBook
 	  4.4</ulink>. The main benefit this provides is the ability to
-	  use HTML tables in your Slide XML source (instead of just CALS
+	  use HTML tables in your Slides XML source (instead of just CALS
 	  tables).</para>
 	</listitem>
 	<listitem>
@@ -127,7 +127,7 @@
       </itemizedlist>
     </section>
   </section>
-  <section>
+  <section id="old">
     <title>Older releases</title>
     <para>Sorry, there are no release notes for releases prior to the
     3.4.0 release.</para>
