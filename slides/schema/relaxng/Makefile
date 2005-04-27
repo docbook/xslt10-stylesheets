@@ -34,5 +34,3 @@ clean:
 	dbpoolx.mod.rnc dbpoolx.mod.rng \
 	htmltblx.mod.rnc htmltblx.mod.rng \
 	slides.mod.rnc slides.mod.rng
-
-realclean: clean

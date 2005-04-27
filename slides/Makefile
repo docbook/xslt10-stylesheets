@@ -34,7 +34,7 @@ URILIST = \
 
 .PHONY: doc demo tests
 
-all: base doc demo tests
+all: base
 
 base:
 	$(MAKE) -C schema
@@ -51,6 +51,9 @@ clean:
 	$(MAKE) -C schema clean
 	$(MAKE) -C tests clean
 	$(MAKE) -C xsl clean
+
+maintainer-clean: clean
+	$(MAKE) -C schema maintainer-clean
 
 demo:
 	make -C demo

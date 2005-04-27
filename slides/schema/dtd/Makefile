@@ -7,5 +7,5 @@ slides.dtd: slides-custom.dtd slides.mod
 
 clean:
 
-realclean: clean
+maintainer-clean: clean
 	rm -f slides.dtd
