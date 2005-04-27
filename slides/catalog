@@ -44,7 +44,7 @@ SYSTEM "http://docbook.sourceforge.net/release/slides/3.0b1/schema/slides.dtd" "
 PUBLIC "-//Norman Walsh//DTD Slides Full V3.0b1//EN" "schema/dtd/slides-full.dtd"
 SYSTEM "http://docbook.sourceforge.net/release/slides/3.0b1/schema/slides-full.dtd" "schema/dtd/slides-full.dtd"/>
 
-PUBLIC "-//Norman Walsh//DTD Slides V/2.1/EN" "schema/dtd/slides.dtd"
+PUBLIC "-//Norman Walsh//DTD Slides V2.1/EN" "schema/dtd/slides.dtd"
 SYSTEM "http://docbook.sourceforge.net/release/slides/2.1/schema/slides.dtd" "schema/dtd/slides.dtd"/>
 
 PUBLIC "-//Norman Walsh//DTD Slides Full V2.1//EN" "schema/dtd/slides-full.dtd"
