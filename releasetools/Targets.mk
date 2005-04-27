@@ -21,7 +21,7 @@ RELEASE-NOTES.txt: RELEASE-NOTES.html
 install.sh: .CatalogManager.properties.example .urilist
 	cp -p $(INSTALL_SH) install.sh
 
-distrib: all $(DISTRIB_DEPENDS) $(NEWSFILE) install.sh
+distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt $(NEWSFILE) install.sh
 
 $(NEWSFILE):
 	$(CVS2LOG) -w
@@ -157,3 +157,11 @@ install: zip
 	   rm -f current; \
 	   ln -s $(ZIPVER) current; \
 	   )"
+
+release-clean: clean
+	rm -f NEWS
+	rm -f RELEASE-NOTES.txt
+	rm -f RELEASE-NOTES.html
+	rm -f install.sh
+	rm -f .CatalogManager.properties.example
+	rm -f .urilist
