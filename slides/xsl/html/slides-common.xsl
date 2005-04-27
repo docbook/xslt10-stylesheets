@@ -405,6 +405,8 @@
           <xsl:call-template name="system.head.content">
             <xsl:with-param name="node" select=".."/>
           </xsl:call-template>
+	  
+	  <meta name="generator" content="DocBook Slides Stylesheets V{$VERSION}"/>
 
           <!-- Links -->
           <xsl:if test="$css.stylesheet != ''">
@@ -622,6 +624,8 @@
           <title><xsl:value-of select="slidesinfo/title"/></title>
 
           <xsl:call-template name="system.head.content"/>
+
+	  <meta name="generator" content="DocBook Slides Stylesheets V{$VERSION}"/>
 
           <!-- Links -->
           <xsl:if test="$css.stylesheet != ''">
@@ -845,6 +849,8 @@
 
           <xsl:call-template name="system.head.content"/>
 
+	  <meta name="generator" content="DocBook Slides Stylesheets V{$VERSION}"/>
+
           <!-- Links -->
           <xsl:if test="$css.stylesheet != ''">
             <link type="text/css" rel="stylesheet">
@@ -1028,6 +1034,8 @@
           <title><xsl:value-of select="title"/></title>
 
           <xsl:call-template name="system.head.content"/>
+
+	  <meta name="generator" content="DocBook Slides Stylesheets V{$VERSION}"/>
 
           <!-- Links -->
           <xsl:if test="$css.stylesheet != ''">

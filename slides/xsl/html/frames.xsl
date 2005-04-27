@@ -135,6 +135,7 @@
         <head>
           <title>TOC - <xsl:value-of select="$title"/></title>
           <xsl:call-template name="system.head.content"/>
+	  <meta name="generator" content="DocBook Slides Stylesheets V{$VERSION}"/>
           <xsl:if test="$css.stylesheet != ''">
             <link type="text/css" rel="stylesheet">
               <xsl:attribute name="href">
@@ -292,6 +293,8 @@ function init() {
             <xsl:with-param name="node" select=".."/>
           </xsl:call-template>
 
+	  <meta name="generator" content="DocBook Slides Stylesheets V{$VERSION}"/>
+
           <xsl:if test="$css.stylesheet != ''">
             <link type="text/css" rel="stylesheet">
               <xsl:attribute name="href">
@@ -409,6 +412,8 @@ function init() {
             <xsl:with-param name="node" select=".."/>
           </xsl:call-template>
 
+	  <meta name="generator" content="DocBook Slides Stylesheets V{$VERSION}"/>
+
           <xsl:if test="$css.stylesheet != ''">
             <link type="text/css" rel="stylesheet">
               <xsl:attribute name="href">
@@ -491,6 +496,8 @@ function init() {
             <xsl:with-param name="node" select=".."/>
           </xsl:call-template>
 
+	  <meta name="generator" content="DocBook Slides Stylesheets V{$VERSION}"/>
+
           <xsl:if test="$css.stylesheet != ''">
             <link type="text/css" rel="stylesheet">
               <xsl:attribute name="href">
@@ -562,6 +569,8 @@ function init() {
           <xsl:call-template name="system.head.content">
             <xsl:with-param name="node" select=".."/>
           </xsl:call-template>
+
+	  <meta name="generator" content="DocBook Slides Stylesheets V{$VERSION}"/>
 
           <xsl:if test="$css.stylesheet != ''">
             <link type="text/css" rel="stylesheet">
@@ -895,6 +904,8 @@ function init() {
 
 	  <xsl:call-template name="system.head.content"/>
 	  
+	  <meta name="generator" content="DocBook Slides Stylesheets V{$VERSION}"/>
+
 	  <xsl:if test="$css.stylesheet != ''">
 	    <link type="text/css" rel="stylesheet">
 	      <xsl:attribute name="href">
@@ -1016,6 +1027,8 @@ function init() {
 
           <xsl:call-template name="system.head.content"/>
 
+	  <meta name="generator" content="DocBook Slides Stylesheets V{$VERSION}"/>
+
           <xsl:if test="$css.stylesheet != ''">
             <link type="text/css" rel="stylesheet">
               <xsl:attribute name="href">
@@ -1099,6 +1112,8 @@ function init() {
 
           <xsl:call-template name="system.head.content"/>
 
+	  <meta name="generator" content="DocBook Slides Stylesheets V{$VERSION}"/>
+
           <xsl:if test="$css.stylesheet != ''">
             <link type="text/css" rel="stylesheet">
               <xsl:attribute name="href">
@@ -1179,6 +1194,8 @@ function init() {
           <title>Navigation</title>
 
           <xsl:call-template name="system.head.content"/>
+
+	  <meta name="generator" content="DocBook Slides Stylesheets V{$VERSION}"/>
 
           <xsl:if test="$css.stylesheet != ''">
             <link type="text/css" rel="stylesheet">
@@ -1366,7 +1383,9 @@ function init() {
 
 	  <xsl:call-template name="system.head.content"/>
 
-	  <xsl:if test="$css.stylesheet != ''">
+	  <meta name="generator" content="DocBook Slides Stylesheets V{$VERSION}"/>
+
+ 	  <xsl:if test="$css.stylesheet != ''">
 	    <link type="text/css" rel="stylesheet">
 	      <xsl:attribute name="href">
 		<xsl:call-template name="css.stylesheet"/>
@@ -1489,6 +1508,8 @@ function init() {
 
           <xsl:call-template name="system.head.content"/>
 
+	  <meta name="generator" content="DocBook Slides Stylesheets V{$VERSION}"/>
+
           <xsl:if test="$css.stylesheet != ''">
             <link type="text/css" rel="stylesheet">
               <xsl:attribute name="href">
@@ -1562,6 +1583,8 @@ function init() {
           <title>Body</title>
 
           <xsl:call-template name="system.head.content"/>
+
+	  <meta name="generator" content="DocBook Slides Stylesheets V{$VERSION}"/>
 
           <xsl:if test="$css.stylesheet != ''">
             <link type="text/css" rel="stylesheet">
@@ -1653,6 +1676,8 @@ function init() {
           <title>Navigation</title>
 
           <xsl:call-template name="system.head.content"/>
+
+	  <meta name="generator" content="DocBook Slides Stylesheets V{$VERSION}"/>
 
           <xsl:if test="$css.stylesheet != ''">
             <link type="text/css" rel="stylesheet">

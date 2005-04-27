@@ -16,5 +16,5 @@ add-new:
 xsl-files: remove-old add-new
 	for f in *.xsl; do if [ ../html/$$f -nt $$f ]; then $(XSLT) ../html/$$f html2xhtml.xsl $$f; fi; done
 
-clean:
+clean: remove-old
 
