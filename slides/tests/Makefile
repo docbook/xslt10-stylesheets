@@ -79,5 +79,5 @@ endif
 clean:
 	rm -f *.html *.fo *.pdf *.ps
 	rm -f *.log *.aux *.out
-	rm dbhtml-dir-test/*.html
+	rm -f dbhtml-dir-test/*.html
 
