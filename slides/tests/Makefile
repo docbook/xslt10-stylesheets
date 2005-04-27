@@ -11,7 +11,7 @@ MULTIFRAME=0
 FRAMES=0
 OVERLAY=1
 TIDY=0
-XML_FILES=dbgentext.xml minimal.xml test-full.xml test.xml testcust.xml testfull.xml tr-862918.xml
+XML_FILES=dbgentext.xml dbhtml-dir.xml minimal.xml test-full.xml test.xml testcust.xml testfull.xml tr-862918.xml
 PDF_FILES  = $(foreach file,$(basename $(XML_FILES)),$(file).pdf)
 HTML_FILES = $(foreach file,$(basename $(XML_FILES)),$(file).html)
 
@@ -79,4 +79,5 @@ endif
 clean:
 	rm -f *.html *.fo *.pdf *.ps
 	rm -f *.log *.aux *.out
+	rm dbhtml-dir-test/*.html
 
