@@ -86,7 +86,7 @@ are installing Slides manually.
 
 The catalog, catalog.xml, and locatingrules.xml file should be
 packaged, and your package installation should automatically
-update your system configuration to make use of of them.
+update your system configuration to make use of them.
 
 If your package doesn't automatically update your system Emacs
 configuration to make use of the locatingrules.xml file, the
