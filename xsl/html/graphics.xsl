@@ -231,8 +231,19 @@
     </xsl:choose>
   </xsl:variable>
 
+  <xsl:variable name="img.src.path.pi">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+                      select="../processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'img.src.path'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:variable name="filename.for.graphicsize">
     <xsl:choose>
+      <xsl:when test="$img.src.path.pi != ''">
+        <xsl:value-of select="concat($img.src.path.pi, $filename)"/>
+      </xsl:when>
       <xsl:when test="$img.src.path != '' and
                       $graphicsize.use.img.src.path != 0 and
                       $tag = 'img' and
@@ -732,6 +743,13 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 
 	    <xsl:message>
 	      <xsl:text>      </xsl:text>
+	      <xsl:value-of select="$intrinsicwidth"/>
+	      <xsl:text>, </xsl:text>
+	      <xsl:value-of select="$intrinsicdepth"/>
+	    </xsl:message>
+
+	    <xsl:message>
+	      <xsl:text>      </xsl:text>
 	      <xsl:value-of select="$units"/>
 	      <xsl:text> </xsl:text>
 	      <xsl:value-of select="round($x1p * $intrinsicwidth div 100.0)"/>
@@ -747,29 +765,42 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 -->
 
 	    <area shape="rect">
-	      <xsl:if test="@linkends">
-		<xsl:variable name="linkends"
-			      select="normalize-space(@linkends)"/>
-		<xsl:variable name="linkend">
-		  <xsl:choose>
-		    <xsl:when test="contains($linkends, ' ')">
-		      <xsl:value-of select="substring-before($linkends, ' ')"/>
-		    </xsl:when>
-		    <xsl:otherwise>
-		      <xsl:value-of select="$linkends"/>
-		    </xsl:otherwise>
-		  </xsl:choose>
-		</xsl:variable>
+	      <xsl:choose>
+		<xsl:when test="@linkends">
+		  <xsl:variable name="linkends"
+				select="normalize-space(@linkends)"/>
+		  <xsl:variable name="linkend">
+		    <xsl:choose>
+		      <xsl:when test="contains($linkends, ' ')">
+			<xsl:value-of select="substring-before($linkends, ' ')"/>
+		      </xsl:when>
+		      <xsl:otherwise>
+			<xsl:value-of select="$linkends"/>
+		      </xsl:otherwise>
+		    </xsl:choose>
+		  </xsl:variable>
 
-		<xsl:variable name="target" select="key('id', $linkend)[1]"/>
+		  <xsl:variable name="target" select="key('id', $linkend)[1]"/>
 		
-		<xsl:if test="$target">
+		  <xsl:if test="$target">
+		    <xsl:attribute name="href">
+		      <xsl:call-template name="href.target">
+			<xsl:with-param name="object" select="$target"/>
+		      </xsl:call-template>
+		    </xsl:attribute>
+		  </xsl:if>
+		</xsl:when>
+		<xsl:when test="@xlink:href">
 		  <xsl:attribute name="href">
-		    <xsl:call-template name="href.target">
-		      <xsl:with-param name="object" select="$target"/>
-		    </xsl:call-template>
+		    <xsl:value-of select="@xlink:href"/>
 		  </xsl:attribute>
-		</xsl:if>
+		</xsl:when>
+	      </xsl:choose>
+
+	      <xsl:if test="alt">
+		<xsl:attribute name="alt">
+		  <xsl:value-of select="alt[1]"/>
+		</xsl:attribute>
 	      </xsl:if>
 
 	      <xsl:attribute name="coords">
