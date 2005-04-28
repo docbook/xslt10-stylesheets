@@ -87,7 +87,7 @@ ZIP_EXCLUDES = \
  README\.CVS
 
 # list of executables that are included in all distributions
-EXECUTABLES = install.sh test.sh uninstall.sh
+EXECUTABLES = install.sh
 
 # specifies options to feed to "freshmeat-submit"
 FMGO=-N
