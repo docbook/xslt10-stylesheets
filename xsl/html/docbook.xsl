@@ -1,8 +1,9 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-		xmlns:db="http://docbook.org/docbook-ng"
+		xmlns:ng="http://docbook.org/docbook-ng"
+		xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:exsl="http://exslt.org/common"
-                exclude-result-prefixes="db exsl"
+                exclude-result-prefixes="db ng exsl"
                 version='1.0'>
 
 <xsl:output method="html"
@@ -292,12 +293,13 @@ body { background-image: url('</xsl:text>
 <xsl:template match="/">
   <xsl:choose>
     <xsl:when test="function-available('exsl:node-set')
-                    and namespace-uri(*[1]) = 'http://docbook.org/docbook-ng'">
-      <!-- Hack! If someone hands us a DocBook NG document, toss the namespace -->
-      <!-- and continue. Someday we may reverse this logic and add the namespace -->
-      <!-- to documents that don't have one. But not before the whole stylesheet -->
-      <!-- has been converted to use namespaces. i.e., don't hold your breath -->
-      <xsl:message>Stripping NS from DocBook-NG document.</xsl:message>
+		    and (*/self::ng:* or */self::db:*)">
+      <!-- Hack! If someone hands us a DocBook V5.x or DocBook NG document,
+	   toss the namespace and continue. Someday we'll reverse this logic
+	   and add the namespace to documents that don't have one.
+	   But not before the whole stylesheet has been converted to use
+	   namespaces. i.e., don't hold your breath -->
+      <xsl:message>Stripping NS from DocBook 5/NG document.</xsl:message>
       <xsl:variable name="nons">
 	<xsl:apply-templates mode="stripNS"/>
       </xsl:variable>
@@ -398,7 +400,7 @@ body { background-image: url('</xsl:text>
 
 <xsl:template match="*" mode="stripNS">
   <xsl:choose>
-    <xsl:when test="namespace-uri(.) = 'http://docbook.org/docbook-ng'">
+    <xsl:when test="self::ng:* or self::db:*">
       <xsl:element name="{local-name(.)}">
 	<xsl:copy-of select="@*"/>
 	<xsl:apply-templates mode="stripNS"/>
@@ -413,7 +415,7 @@ body { background-image: url('</xsl:text>
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="db:link" mode="stripNS">
+<xsl:template match="ng:link|db:link" mode="stripNS">
   <xsl:variable xmlns:xlink="http://www.w3.org/1999/xlink"
 		name="href" select="@xlink:href|@href"/>
   <xsl:choose>

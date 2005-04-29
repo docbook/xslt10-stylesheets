@@ -2,7 +2,9 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
-                exclude-result-prefixes="exsl"
+		xmlns:ng="http://docbook.org/docbook-ng"
+		xmlns:db="http://docbook.org/ns/docbook"
+                exclude-result-prefixes="db ng exsl"
                 version='1.0'>
 
 <!-- It is important to use indent="no" here, otherwise verbatim -->
@@ -112,11 +114,12 @@
 <xsl:template match="/">
   <xsl:choose>
     <xsl:when test="function-available('exsl:node-set')
-                    and namespace-uri(*[1]) = 'http://docbook.org/docbook-ng'">
-      <!-- Hack! If someone hands us a DocBook NG document, toss the namespace -->
-      <!-- and continue. Someday we may reverse this logic and add the namespace -->
-      <!-- to documents that don't have one. But not before the whole stylesheet -->
-      <!-- has been converted to use namespaces. i.e., don't hold your breath -->
+		    and (*/self::ng:* or */self::db:*)">
+      <!-- Hack! If someone hands us a DocBook V5.x or DocBook NG document,
+	   toss the namespace and continue. Someday we'll reverse this logic
+	   and add the namespace to documents that don't have one.
+	   But not before the whole stylesheet has been converted to use
+	   namespaces. i.e., don't hold your breath -->
       <xsl:variable name="nons">
         <xsl:apply-templates mode="stripNS"/>
       </xsl:variable>
@@ -261,7 +264,7 @@
 
 <xsl:template match="*" mode="stripNS">
   <xsl:choose>
-    <xsl:when test="namespace-uri(.) = 'http://docbook.org/docbook-ng'">
+    <xsl:when test="self::ng:* or self::db:*">
       <xsl:element name="{local-name(.)}">
         <xsl:copy-of select="@*"/>
         <xsl:apply-templates mode="stripNS"/>
@@ -272,6 +275,39 @@
         <xsl:copy-of select="@*"/>
         <xsl:apply-templates mode="stripNS"/>
       </xsl:copy>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="ng:link|db:link" mode="stripNS">
+  <xsl:variable xmlns:xlink="http://www.w3.org/1999/xlink"
+		name="href" select="@xlink:href|@href"/>
+  <xsl:choose>
+    <xsl:when test="$href != '' and not(starts-with($href,'#'))">
+      <ulink url="{$href}">
+	<xsl:for-each select="@*">
+	  <xsl:if test="local-name(.) != 'href'">
+	    <xsl:copy/>
+	  </xsl:if>
+	</xsl:for-each>
+	<xsl:apply-templates mode="stripNS"/>
+      </ulink>
+    </xsl:when>
+    <xsl:when test="$href != '' and starts-with($href,'#')">
+      <link linkend="{substring-after($href,'#')}">
+	<xsl:for-each select="@*">
+	  <xsl:if test="local-name(.) != 'href'">
+	    <xsl:copy/>
+	  </xsl:if>
+	</xsl:for-each>
+	<xsl:apply-templates mode="stripNS"/>
+      </link>
+    </xsl:when>
+    <xsl:otherwise>
+      <link>
+	<xsl:copy-of select="@*"/>
+	<xsl:apply-templates mode="stripNS"/>
+      </link>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
