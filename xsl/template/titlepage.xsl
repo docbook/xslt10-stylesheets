@@ -4,7 +4,8 @@
                 xmlns:param="http://nwalsh.com/docbook/xsl/template/1.0/param"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
-                exclude-result-prefixes="doc t param"
+                xmlns:exsl="http://exslt.org/common"
+                exclude-result-prefixes="doc t param exsl"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -74,7 +75,9 @@ set of templates. This template creates an appropriate
 
 <xsl:template match="t:templates">
   <xsl:element name="xsl:stylesheet">
+    <xsl:copy-of select="document('')/xsl:stylesheet/namespace::exsl"/>
     <xsl:attribute name="version">1.0</xsl:attribute>
+    <xsl:attribute name="exclude-result-prefixes">exsl</xsl:attribute>
 
     <xsl:text>&#xA;&#xA;</xsl:text>
     <xsl:comment>
@@ -201,8 +204,28 @@ and <quote>verso</quote> sides of the title page.</para>
         <xsl:text>&#xA;    </xsl:text>
       </xsl:element>
       <xsl:text>&#xA;    </xsl:text>
+      <xsl:element name="xsl:variable">
+	<xsl:attribute name="name">recto.elements.count</xsl:attribute>
+	<xsl:text>&#xA;      </xsl:text>
+	<xsl:element name="xsl:choose">
+	  <xsl:text>&#xA;        </xsl:text>
+	  <xsl:element name="xsl:when">
+	    <xsl:attribute name="test">function-available('exsl:node-set')</xsl:attribute>
+	    <xsl:element name="xsl:value-of">
+	      <xsl:attribute name="select">count(exsl:node-set($recto.content)/*)</xsl:attribute>
+	    </xsl:element>
+	  </xsl:element>
+	  <xsl:text>&#xA;        </xsl:text>
+	  <xsl:element name="xsl:otherwise">
+	    <xsl:text>1</xsl:text>
+	  </xsl:element>
+	  <xsl:text>&#xA;      </xsl:text>
+	</xsl:element>
+	<xsl:text>&#xA;    </xsl:text>
+      </xsl:element>
+      <xsl:text>&#xA;    </xsl:text>
       <xsl:element name="xsl:if">
-        <xsl:attribute name="test">normalize-space($recto.content) != ''</xsl:attribute>
+        <xsl:attribute name="test">(normalize-space($recto.content) != '') or ($recto.elements.count > 0)</xsl:attribute>
         <xsl:text>&#xA;      </xsl:text>
         <xsl:element name="{@t:wrapper}">
           <xsl:apply-templates select="t:titlepage-content[@t:side='recto']/@*"
@@ -233,8 +256,28 @@ and <quote>verso</quote> sides of the title page.</para>
         <xsl:text>&#xA;    </xsl:text>
       </xsl:element>
       <xsl:text>&#xA;    </xsl:text>
+      <xsl:element name="xsl:variable">
+	<xsl:attribute name="name">verso.elements.count</xsl:attribute>
+	<xsl:text>&#xA;      </xsl:text>
+	<xsl:element name="xsl:choose">
+	  <xsl:text>&#xA;        </xsl:text>
+	  <xsl:element name="xsl:when">
+	    <xsl:attribute name="test">function-available('exsl:node-set')</xsl:attribute>
+	    <xsl:element name="xsl:value-of">
+	      <xsl:attribute name="select">count(exsl:node-set($verso.content)/*)</xsl:attribute>
+	    </xsl:element>
+	  </xsl:element>
+	  <xsl:text>&#xA;        </xsl:text>
+	  <xsl:element name="xsl:otherwise">
+	    <xsl:text>1</xsl:text>
+	  </xsl:element>
+	  <xsl:text>&#xA;      </xsl:text>
+	</xsl:element>
+	<xsl:text>&#xA;    </xsl:text>
+      </xsl:element>
+      <xsl:text>&#xA;    </xsl:text>
       <xsl:element name="xsl:if">
-        <xsl:attribute name="test">normalize-space($verso.content) != ''</xsl:attribute>
+        <xsl:attribute name="test">(normalize-space($verso.content) != '') or ($verso.elements.count > 0)</xsl:attribute>
         <xsl:text>&#xA;      </xsl:text>
         <xsl:element name="{@t:wrapper}">
           <xsl:apply-templates select="t:titlepage-content[@t:side='verso']/@*"
@@ -923,29 +966,29 @@ names.</para>
             </xsl:if>
 
             <!-- info -->
-	    <xsl:text>&#xA;    </xsl:text>
-	    <xsl:element name="xsl:when">
-	      <xsl:attribute name="test">
-		<xsl:value-of select="'info'"/>
-		<xsl:text>/</xsl:text>
-		<xsl:value-of select="name(.)"/>
-	      </xsl:attribute>
-	      <xsl:text>&#xA;      </xsl:text>
-	      <xsl:element name="xsl:apply-templates">
-		<xsl:attribute name="mode">
-		  <xsl:value-of select="$mode"/>
-		</xsl:attribute>
-		<xsl:attribute name="select">
-		  <xsl:value-of select="'info'"/>
-		  <xsl:text>/</xsl:text>
-		  <xsl:value-of select="name(.)"/>
-		  <xsl:if test="@t:predicate">
-		    <xsl:value-of select="@t:predicate"/>
-		  </xsl:if>
-		</xsl:attribute>
-	      </xsl:element>
-	      <xsl:text>&#xA;    </xsl:text>
-	    </xsl:element>
+            <xsl:text>&#xA;    </xsl:text>
+            <xsl:element name="xsl:when">
+              <xsl:attribute name="test">
+                <xsl:value-of select="'info'"/>
+                <xsl:text>/</xsl:text>
+                <xsl:value-of select="name(.)"/>
+              </xsl:attribute>
+              <xsl:text>&#xA;      </xsl:text>
+              <xsl:element name="xsl:apply-templates">
+                <xsl:attribute name="mode">
+                  <xsl:value-of select="$mode"/>
+                </xsl:attribute>
+                <xsl:attribute name="select">
+                  <xsl:value-of select="'info'"/>
+                  <xsl:text>/</xsl:text>
+                  <xsl:value-of select="name(.)"/>
+                  <xsl:if test="@t:predicate">
+                    <xsl:value-of select="@t:predicate"/>
+                  </xsl:if>
+                </xsl:attribute>
+              </xsl:element>
+              <xsl:text>&#xA;    </xsl:text>
+            </xsl:element>
 
             <xsl:text>&#xA;    </xsl:text>
             <xsl:element name="xsl:when">
@@ -1005,21 +1048,21 @@ names.</para>
             </xsl:element>
           </xsl:if>
 
-	  <!-- info -->
-	  <xsl:text>&#xA;  </xsl:text>
-	  <xsl:element name="xsl:apply-templates">
-	    <xsl:attribute name="mode">
-	      <xsl:value-of select="$mode"/>
-	    </xsl:attribute>
-	    <xsl:attribute name="select">
-	      <xsl:value-of select="'info'"/>
-	      <xsl:text>/</xsl:text>
-	      <xsl:value-of select="name(.)"/>
-	      <xsl:if test="@t:predicate">
-		<xsl:value-of select="@t:predicate"/>
-	      </xsl:if>
-	    </xsl:attribute>
-	  </xsl:element>
+          <!-- info -->
+          <xsl:text>&#xA;  </xsl:text>
+          <xsl:element name="xsl:apply-templates">
+            <xsl:attribute name="mode">
+              <xsl:value-of select="$mode"/>
+            </xsl:attribute>
+            <xsl:attribute name="select">
+              <xsl:value-of select="'info'"/>
+              <xsl:text>/</xsl:text>
+              <xsl:value-of select="name(.)"/>
+              <xsl:if test="@t:predicate">
+                <xsl:value-of select="@t:predicate"/>
+              </xsl:if>
+            </xsl:attribute>
+          </xsl:element>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
