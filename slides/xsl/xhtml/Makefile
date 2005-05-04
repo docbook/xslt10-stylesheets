@@ -1,6 +1,9 @@
 include ../../../cvstools/Makefile.incl
 
-all: xsl-files
+all: html2xhtml.xsl xsl-files
+
+html2xhtml.xsl:
+	cp -p ../../../xsl/xhtml/html2xhtml.xsl .
 
 remove-old:
 	for f in *.xsl; do if [ ! -f ../html/$$f -a "$$f" != "html2xhtml.xsl" ]; then rm $$f; fi; done
@@ -17,4 +20,5 @@ xsl-files: remove-old add-new
 	for f in *.xsl; do if [ ../html/$$f -nt $$f ]; then $(XSLT) ../html/$$f html2xhtml.xsl $$f; fi; done
 
 clean: remove-old
+	rm -f html2xhtml.xsl
 
