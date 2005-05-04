@@ -485,8 +485,7 @@
             </xsl:attribute>
           </xsl:if>
 
-          <div class="titlepage">
-            <a name="{$id}"/>
+          <div class="titlepage" id="{$id}">
             <xsl:call-template name="titlepage-top-nav">
               <xsl:with-param name="next" select="$next"/>
               <xsl:with-param name="tocfile" select="$tocfile"/>
@@ -696,8 +695,7 @@
             </xsl:attribute>
           </xsl:if>
 
-          <div>
-            <a name="{$id}.toc"/>
+          <div id="{$id}">
             <xsl:call-template name="toc-top-nav">
               <xsl:with-param name="home" select="$home"/>
               <xsl:with-param name="up" select="$up"/>
@@ -927,8 +925,7 @@
             </xsl:attribute>
           </xsl:if>
 
-          <div class="{name(.)}">
-            <a name="{$id}"/>
+          <div class="{name(.)}" id="{$id}">
             <xsl:call-template name="foil-top-nav">
               <xsl:with-param name="home" select="$home"/>
               <xsl:with-param name="up" select="$up"/>
@@ -1113,8 +1110,7 @@
             </xsl:attribute>
           </xsl:if>
 
-          <div class="{name(.)}">
-            <a name="{$id}"/>
+          <div class="{name(.)}" id="{$id}">
             <xsl:call-template name="foilgroup-top-nav">
               <xsl:with-param name="home" select="$home"/>
               <xsl:with-param name="up" select="$up"/>
