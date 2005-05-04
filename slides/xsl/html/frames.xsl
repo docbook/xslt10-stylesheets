@@ -1303,7 +1303,6 @@ function init() {
     </xsl:if>
 
     <div class="{name(.)}" id="{$id}">
-      <a name="{$id}"/>
       <xsl:if test="$multiframe=0">
         <xsl:call-template name="foilgroup-top-nav">
           <xsl:with-param name="home" select="$home"/>
@@ -1314,7 +1313,6 @@ function init() {
       </xsl:if>
 
       <div class="foilgroup-body" id="{$id}">
-	<a name="{$id}"/>
 	<xsl:call-template name="foilgroup-body">
 	  <xsl:with-param name="home" select="$home"/>
 	  <xsl:with-param name="up" select="$up"/>
@@ -1781,7 +1779,6 @@ function init() {
     </xsl:if>
 
     <div class="{name(.)}" id="{$id}">
-      <a name="{$id}"/>
       <xsl:if test="$multiframe=0">
         <xsl:call-template name="foil-top-nav">
           <xsl:with-param name="home" select="$home"/>
