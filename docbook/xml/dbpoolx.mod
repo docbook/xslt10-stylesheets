@@ -3540,8 +3540,8 @@ in the text (no (0) value, the default)
 
 <!-- This PE provides a mechanism for replacing equation content, -->
 <!-- perhaps adding a new or different model (e.g., MathML) -->
-<!ENTITY % equation.content "(alt?, (graphic+|mediaobject+))">
-<!ENTITY % inlineequation.content "(alt?, (graphic+|inlinemediaobject+))">
+<!ENTITY % equation.content "(alt?, (graphic+|mediaobject+|mathphrase+))">
+<!ENTITY % inlineequation.content "(alt?, (graphic+|inlinemediaobject+|mathphrase+))">
 
 <!ENTITY % equation.module "INCLUDE">
 <![%equation.module;[
@@ -3626,6 +3626,26 @@ in the text (no (0) value, the default)
 >
 <!--end of alt.attlist-->]]>
 <!--end of alt.module-->]]>
+
+<!ENTITY % mathphrase.module "INCLUDE">
+<![%mathphrase.module;[
+<!ENTITY % local.mathphrase.attrib "">
+<!ENTITY % mathphrase.role.attrib "%role.attrib;">
+
+<!ENTITY % mathphrase.element "INCLUDE">
+<![%mathphrase.element;[
+<!ELEMENT mathphrase %ho; (#PCDATA|subscript|superscript|emphasis)*>
+<!--end of mathphrase.element-->]]>
+
+<!ENTITY % mathphrase.attlist "INCLUDE">
+<![%mathphrase.attlist;[
+<!ATTLIST mathphrase
+		%common.attrib;
+		%mathphrase.role.attrib;
+		%local.mathphrase.attrib;
+>
+<!--end of mathphrase.attlist-->]]>
+<!--end of mathphrase.module-->]]>
 
 <!-- Tables ........................... -->
 
