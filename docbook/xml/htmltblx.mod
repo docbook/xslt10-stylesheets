@@ -56,7 +56,7 @@
 <!--======================= XHTML Tables =======================================-->
 
 <!ENTITY % html.coreattrs
- "id          ID             #IMPLIED
+ "%common.attrib;
   class       CDATA          #IMPLIED
   style       CDATA          #IMPLIED
   title       CDATA         #IMPLIED"

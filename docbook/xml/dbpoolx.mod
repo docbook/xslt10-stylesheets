@@ -3805,14 +3805,6 @@ in the text (no (0) value, the default)
 <![ %allow.html.tables; [
 <!-- common.attrib, but without ID because ID is in attrs -->
 <!ENTITY % caption.attlist.content "
-	%lang.attrib;
-	%remap.attrib;
-	%xreflabel.attrib;
-	%revisionflag.attrib;
-	%effectivity.attrib;
-	%dir.attrib;
-	%xml-base.attrib;
-	%local.common.attrib;
 		%caption.role.attrib;
 		%attrs;
 		align	(top|bottom|left|right)	#IMPLIED
