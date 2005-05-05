@@ -303,6 +303,7 @@ f. Just BlockQuote; no other informal objects.
 		|%linespecific.class;	|%synop.class;
 		|%para.class;		|%informal.class;
 		|%ndxterm.class;        |beginpage
+		|procedure
 		%forms.hook;
                 %local.example.mix;">
 
