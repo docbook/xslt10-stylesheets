@@ -107,7 +107,9 @@
   <xsl:variable name="scalefit">
     <xsl:choose>
       <xsl:when test="$ignore.image.scaling != 0">0</xsl:when>
-      <xsl:when test="@contentwidth or @contentdepth">0</xsl:when>
+      <xsl:when test="@contentwidth">0</xsl:when>
+      <xsl:when test="@contentdepth and 
+                      @contentdepth != '100%'">0</xsl:when>
       <xsl:when test="@scale">0</xsl:when>
       <xsl:when test="@scalefit"><xsl:value-of select="@scalefit"/></xsl:when>
       <xsl:when test="@width or @depth">1</xsl:when>
