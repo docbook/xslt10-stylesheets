@@ -160,8 +160,9 @@
 <!ENTITY % local.gen.char.class "">
 <!ENTITY % gen.char.class
 		"abbrev|acronym|citation|citerefentry|citetitle|emphasis
-		|firstterm|foreignphrase|glossterm|footnote|phrase|orgname
-		|quote|trademark|wordasword|personname %local.gen.char.class;">
+		|firstterm|foreignphrase|glossterm|termdef|footnote|phrase
+		|orgname|quote|trademark|wordasword
+		|personname %local.gen.char.class;">
 
 <!ENTITY % local.link.char.class "">
 <!ENTITY % link.char.class
@@ -7589,6 +7590,26 @@ OtherCredit. -->
 >
 <!--end of userinput.attlist-->]]>
 <!--end of userinput.module-->]]>
+
+<!ENTITY % termdef.module "INCLUDE">
+<![%termdef.module;[
+<!ENTITY % local.termdef.attrib "">
+<!ENTITY % termdef.role.attrib "%role.attrib;">
+
+<!ENTITY % termdef.element "INCLUDE">
+<![%termdef.element;[
+<!ELEMENT termdef %ho; (%para.char.mix;)*>
+<!--end of termdef.element-->]]>
+
+<!ENTITY % termdef.attlist "INCLUDE">
+<![%termdef.attlist;[
+<!ATTLIST termdef
+		%common.attrib;
+		%termdef.role.attrib;
+		%local.termdef.attrib;
+>
+<!--end of termdef.attlist-->]]>
+<!--end of termdef.module-->]]>
 
 <!-- General words and phrases ............................................ -->
 
