@@ -2081,7 +2081,7 @@ change will not be made after all. -->
 <![%article.element;[
 <!ELEMENT article %ho; ((%div.title.content;)?, articleinfo?, tocchap?, lot*,
 			(%bookcomponent.content;),
-			((%nav.class;) | (%appendix.class;) | ackno)*)
+			(%nav.class;|%appendix.class;|colophon|ackno)*)
 		%ubiq.inclusion;>
 <!--end of article.element-->]]>
 
