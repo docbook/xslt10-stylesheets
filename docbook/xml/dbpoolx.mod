@@ -5444,6 +5444,7 @@ in the text (no (0) value, the default)
 		"class	(uri
                          |doi
                          |isbn
+			 |isrn
                          |issn
                          |libraryofcongress
                          |pubnumber
