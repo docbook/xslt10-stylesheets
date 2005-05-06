@@ -812,7 +812,7 @@
 
           <xsl:variable name="template">
             <xsl:call-template name="gentext.template">
-              <xsl:with-param name="context" select="'title'"/>
+              <xsl:with-param name="context" select="'xref'"/>
               <xsl:with-param name="name" select="$target.elem"/>
               <xsl:with-param name="lang" select="$lang"/>
             </xsl:call-template>
