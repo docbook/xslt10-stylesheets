@@ -1342,7 +1342,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 <xsl:template match="caption">
   <div class="{name(.)}">
     <xsl:if test="@align = 'right' or @align = 'left' or @align='center'">
-      <xsl:attribute name="text-align"><xsl:value-of
+      <xsl:attribute name="align"><xsl:value-of
                          select="@align"/></xsl:attribute>
     </xsl:if>
     <xsl:apply-templates/>
