@@ -91,7 +91,9 @@
         </xsl:call-template>
       </xsl:variable>
 
-      <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
+      <xsl:if test="not(parent::citation)">
+        <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
+      </xsl:if>
 
       <a href="{$href}">
         <xsl:if test="$target/title or $target/*/title">
@@ -114,7 +116,113 @@
         </xsl:apply-templates>
       </a>
 
-      <xsl:apply-templates select="$target" mode="xref-to-suffix"/>
+      <xsl:if test="not(parent::citation)">
+        <xsl:apply-templates select="$target" mode="xref-to-suffix"/>
+      </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<!-- biblioref handled largely like an xref -->
+<!-- To be done: add support for begin, end, and units attributes -->
+<xsl:template match="biblioref">
+  <xsl:variable name="targets" select="key('id',@linkend)"/>
+  <xsl:variable name="target" select="$targets[1]"/>
+  <xsl:variable name="refelem" select="local-name($target)"/>
+
+  <xsl:call-template name="check.id.unique">
+    <xsl:with-param name="linkend" select="@linkend"/>
+  </xsl:call-template>
+
+  <xsl:call-template name="anchor"/>
+
+  <xsl:choose>
+    <xsl:when test="count($target) = 0">
+      <xsl:message>
+        <xsl:text>XRef to nonexistent id: </xsl:text>
+        <xsl:value-of select="@linkend"/>
+      </xsl:message>
+      <xsl:text>???</xsl:text>
+    </xsl:when>
+
+    <xsl:when test="@endterm">
+      <xsl:variable name="href">
+        <xsl:call-template name="href.target">
+          <xsl:with-param name="object" select="$target"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:variable name="etargets" select="key('id',@endterm)"/>
+      <xsl:variable name="etarget" select="$etargets[1]"/>
+      <xsl:choose>
+        <xsl:when test="count($etarget) = 0">
+          <xsl:message>
+            <xsl:value-of select="count($etargets)"/>
+            <xsl:text>Endterm points to nonexistent ID: </xsl:text>
+            <xsl:value-of select="@endterm"/>
+          </xsl:message>
+          <a href="{$href}">
+            <xsl:text>???</xsl:text>
+          </a>
+        </xsl:when>
+        <xsl:otherwise>
+          <a href="{$href}">
+            <xsl:apply-templates select="$etarget" mode="endterm"/>
+          </a>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+
+    <xsl:when test="$target/@xreflabel">
+      <a>
+        <xsl:attribute name="href">
+          <xsl:call-template name="href.target">
+            <xsl:with-param name="object" select="$target"/>
+          </xsl:call-template>
+        </xsl:attribute>
+        <xsl:call-template name="xref.xreflabel">
+          <xsl:with-param name="target" select="$target"/>
+        </xsl:call-template>
+      </a>
+    </xsl:when>
+
+    <xsl:otherwise>
+      <xsl:variable name="href">
+        <xsl:call-template name="href.target">
+          <xsl:with-param name="object" select="$target"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:if test="not(parent::citation)">
+        <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
+      </xsl:if>
+
+      <a href="{$href}">
+        <xsl:if test="$target/title or $target/*/title">
+          <xsl:attribute name="title">
+            <xsl:apply-templates select="$target" mode="xref-title"/>
+          </xsl:attribute>
+        </xsl:if>
+        <xsl:apply-templates select="$target" mode="xref-to">
+          <xsl:with-param name="referrer" select="."/>
+          <xsl:with-param name="xrefstyle">
+            <xsl:choose>
+              <xsl:when test="@role and not(@xrefstyle) and $use.role.as.xrefstyle != 0">
+                <xsl:value-of select="@role"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="@xrefstyle"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:with-param>
+        </xsl:apply-templates>
+      </a>
+
+      <xsl:if test="not(parent::citation)">
+        <xsl:apply-templates select="$target" mode="xref-to-suffix"/>
+      </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
