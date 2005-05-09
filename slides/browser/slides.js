@@ -53,18 +53,20 @@ function navigate (evt) {
 	kc = evt.which;
     }
 
-    // These do look like odd values, what was the story?
-    //var forward = (kc == 34);	/* '"' ? */
-    //var backward = (kc == 33); /* '!' */
-    //var home = (kc == 36); /* '$' */
-    //var toc = (kc == 112) || (kc == 224);
-
     var forward = (kc == 110) || (kc == 78) || (kc == 32)
-	          || (kc == 10) || (kc == 13); /* n, N, SPACE, ENTER, RETURN */
-    var backward = (kc == 112) || (kc == 80) || (kc == 8); /* p, P, BACKSPACE */
-    var up = (kc == 117) || (kc == 85);	  /* u, U */
-    var home = (kc == 104) || (kc == 72); /* h, H */
-    var toc = (kc == 116) || (kc == 84);  /* t, T */
+          || (kc == 10) || (kc == 13) || (kc == 34)
+          || (kc == 39);
+          /* n, N, SPACE, ENTER, RETURN, PAGE UP, RIGHT ARROW */
+    var backward = (kc == 112) || (kc == 80) || (kc == 8)
+          || (kc == 33) || (kc == 37);
+          /* p, P, BACKSPACE, PAGE DOWN, LEFT ARROW */
+    var up = (kc == 117) || (kc == 85) || (kc == 38);
+          /* u, U, UP ARROW */
+    var home = (kc == 104) || (kc == 72) || (kc == 36);
+          /* h, H, HOME */
+    var toc = (kc == 116) || (kc == 84);
+          /* t, T */
+          /* previously included META (kc == 244) */
 
     var links = document.getElementsByTagName("link");
 
