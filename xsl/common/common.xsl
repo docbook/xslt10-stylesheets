@@ -1767,5 +1767,46 @@ node location.</para>
   </xsl:if>
 </xsl:template>
 
+<!-- ===================================== -->
+
+<doc:template name="string.upper" xmlns="">
+<refpurpose>Converts a string to all uppercase letters.</refpurpose>
+
+<refdescription>
+<para>Given a string, this template does a language-aware conversion
+of that string to all uppercase letters, based on the values of the
+<code>lowercase.alpha</code> and <code>uppercase.alpha</code> gentext
+keys for the current locale. It affects only those characters found in
+the values of <code>lowercase.alpha</code> and
+<code>uppercase.alpha</code>. All other characters are left
+unchanged.</para>
+</refdescription>
+
+<refparameter>
+<variablelist>
+<varlistentry><term>string</term>
+<listitem>
+<para>The string to convert to uppercase.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refparameter>
+</doc:template>
+
+<xsl:template name="string.upper">
+  <xsl:param name="string" select="''"/>
+  <xsl:variable name="lowercase.alpha">
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="'lowercase.alpha'"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="uppercase.alpha">
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="'uppercase.alpha'"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:value-of select="translate($string,$lowercase.alpha,$uppercase.alpha)"/>
+</xsl:template>
+
 </xsl:stylesheet>
 
