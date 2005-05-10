@@ -413,14 +413,14 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
       </xsl:when>
       <xsl:otherwise>
         <td>
-          <xsl:apply-templates select="parameter/preceding-sibling::node()"
+          <xsl:apply-templates select="parameter/preceding-sibling::node()[not(self::parameter)]"
                                mode="kr-tabular-funcsynopsis-mode"/>
           <xsl:text>&#160;</xsl:text>
         </td>
         <td>
           <xsl:apply-templates select="parameter"
                                mode="kr-tabular"/>
-          <xsl:apply-templates select="parameter/following-sibling::node()"
+          <xsl:apply-templates select="parameter/following-sibling::node()[not(self::parameter)]"
                                mode="kr-tabular-funcsynopsis-mode"/>
           <xsl:text>;</xsl:text>
         </td>
@@ -591,14 +591,14 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
     </xsl:when>
     <xsl:otherwise>
       <td>
-        <xsl:apply-templates select="parameter/preceding-sibling::node()"
+        <xsl:apply-templates select="parameter/preceding-sibling::node()[not(self::parameter)]"
                              mode="ansi-tabular"/>
         <xsl:text>&#160;</xsl:text>
       </td>
       <td>
         <xsl:apply-templates select="parameter"
                              mode="ansi-tabular"/>
-        <xsl:apply-templates select="parameter/following-sibling::node()"
+        <xsl:apply-templates select="parameter/following-sibling::node()[not(self::parameter)]"
                              mode="ansi-tabular"/>
         <xsl:choose>
           <xsl:when test="following-sibling::*">
