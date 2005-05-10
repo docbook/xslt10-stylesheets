@@ -2,7 +2,7 @@
 <!-- there is no doctype for these files, they are WF only -->
 <!DOCTYPE locale [
 <!ENTITY % cyr1 PUBLIC "ISO 8879:1986//ENTITIES Russian Cyrillic//EN//XML"
-                "../../xmlcharent/iso-cyr1.ent">
+                "http://www.w3.org/2003/entities/iso8879/isocyr1.ent">
 %cyr1;
 ]>
 <locale language="ru"
@@ -32,6 +32,7 @@
 <gentext key="article" text="&Scy;&tcy;&acy;&tcy;&softcy;&yacy;"/>
 <gentext key="Audience" text="&Acy;&ucy;&dcy;&icy;&tcy;&ocy;&rcy;&icy;&yacy;"/>
 <gentext key="audience" text="&Acy;&ucy;&dcy;&icy;&tcy;&ocy;&rcy;&icy;&yacy;"/>
+<gentext key="Author" text="&Acy;&vcy;&tcy;&ocy;&rcy;"/>
 <gentext key="Bibliography" text="&Lcy;&icy;&tcy;&iecy;&rcy;&acy;&tcy;&ucy;&rcy;&acy;"/>
 <gentext key="bibliography" text="&Lcy;&icy;&tcy;&iecy;&rcy;&acy;&tcy;&ucy;&rcy;&acy;"/>
 <gentext key="Book" text="&Kcy;&ncy;&icy;&gcy;&acy;"/>
