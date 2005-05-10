@@ -41,17 +41,10 @@
 
 <xsl:template match="caution|important|note|tip|warning">
   <xsl:text>&#10;.RS&#10;.Sh "</xsl:text>
-  <!-- capitalize word -->
-  <xsl:value-of
-    select="translate (substring (name(.), 1, 1), 'cintw', 'CINTW')" />
-  <xsl:value-of select="substring (name(), 2)" />
-  <xsl:if test="title">
-    <xsl:text>: </xsl:text>
-    <xsl:value-of select="title[1]"/>
-  </xsl:if>
-  <xsl:text>"&#10;</xsl:text>
-  <xsl:apply-templates/>
-  <xsl:text>&#10;.RE&#10;</xsl:text>
+    <xsl:apply-templates select="." mode="object.title.markup.textonly"/>
+    <xsl:text>"&#10;</xsl:text>
+    <xsl:apply-templates/>
+    <xsl:text>&#10;.RE&#10;</xsl:text>
 </xsl:template> 
 
 <xsl:template match="refsection|refsect1">
@@ -77,10 +70,17 @@
 </xsl:template>
 
 <xsl:template match="refsynopsisdiv">
-  <xsl:text>&#10;.SH "SYNOPSIS"&#10;</xsl:text>
+  <xsl:text>.SH "</xsl:text>
+  <xsl:call-template name="string.upper">
+    <xsl:with-param name="string">
+      <xsl:call-template name="gentext">
+	<xsl:with-param name="key" select="'RefSynopsisDiv'"/>
+      </xsl:call-template>
+    </xsl:with-param>
+  </xsl:call-template>
+  <xsl:text>"&#10;</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
-
 
 <xsl:template match="para">
   <xsl:text>&#10;.PP&#10;</xsl:text>
@@ -264,11 +264,15 @@
 <xsl:template match="abstract"></xsl:template>
 
 <xsl:template match="articleinfo|bookinfo|refentryinfo" mode="authorsect">
-  <xsl:text>.SH AUTHOR</xsl:text>
-  <xsl:if test="count(.//author)>1">
-    <xsl:text>S</xsl:text>
-  </xsl:if>
-  <xsl:text>&#10;</xsl:text>
+  <xsl:text>.SH "</xsl:text>
+  <xsl:call-template name="string.upper">
+    <xsl:with-param name="string">
+      <xsl:call-template name="gentext">
+	<xsl:with-param name="key" select="'Author'"/>
+      </xsl:call-template>
+    </xsl:with-param>
+  </xsl:call-template>
+  <xsl:text>"&#10;</xsl:text>
 
   <xsl:for-each select=".//author">
     <xsl:if test="position() > 1">
@@ -305,7 +309,15 @@
 </xsl:template>
 
 <xsl:template match="refnamediv">
-  <xsl:text>.SH NAME&#10;</xsl:text>
+  <xsl:text>.SH "</xsl:text>
+  <xsl:call-template name="string.upper">
+    <xsl:with-param name="string">
+      <xsl:call-template name="gentext">
+	<xsl:with-param name="key" select="'RefName'"/>
+      </xsl:call-template>
+    </xsl:with-param>
+  </xsl:call-template>
+  <xsl:text>"&#10;</xsl:text>
   <xsl:for-each select="refname">
     <xsl:if test="position()>1">
       <xsl:text>, </xsl:text>
@@ -314,6 +326,7 @@
   </xsl:for-each>
   <xsl:text> \- </xsl:text>
   <xsl:value-of select="normalize-space (refpurpose)"/>
+  <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="refentry/refentryinfo"></xsl:template>
