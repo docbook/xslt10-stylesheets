@@ -279,10 +279,24 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
   <xsl:text>;</xsl:text>
 </xsl:template>
 
-<xsl:template match="type|parameter|funcparams" mode="kr-funcsynopsis-mode">
-  <code>
-    <xsl:apply-templates mode="kr-funcsynopsis-mode"/>
-  </code>
+<xsl:template match="paramdef/parameter" mode="kr-funcsynopsis-mode">
+  <xsl:choose>
+    <xsl:when test="$funcsynopsis.decoration != 0">
+      <var class="pdparam">
+        <xsl:apply-templates mode="kr-funcsynopsis-mode"/>
+      </var>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates mode="kr-funcsynopsis-mode"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="funcparams" mode="kr-funcsynopsis-mode">
+  <code>(</code>
+  <xsl:apply-templates mode="kr-funcsynopsis-mode"/>
+  <code>)</code>
+  <xsl:text>;</xsl:text>
 </xsl:template>
 
 <!-- ====================================================================== -->
