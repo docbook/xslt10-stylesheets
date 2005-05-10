@@ -70,7 +70,7 @@ mediaobject mediaobjectco menuchoice msg msgentry msgexplan msginfo
 msgmain msgrel msgset msgsub msgtext note objectinfo
 orderedlist othercredit part partintro preface printhistory procedure
 programlistingco publisher qandadiv qandaentry qandaset question
-refentry reference refmeta refnamediv refsect1 refsect1info refsect2
+refentry reference refmeta refnamediv refsection refsect1 refsect1info refsect2
 refsect2info refsect3 refsect3info refsynopsisdiv refsynopsisdivinfo
 revhistory revision row sbr screenco screenshot sect1 sect1info sect2
 sect2info sect3 sect3info sect4 sect4info sect5 sect5info section
