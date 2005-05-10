@@ -91,6 +91,7 @@ ooclass
 ooexception
 oointerface
 simplemsgentry
+manvolnum
 "/>
 
 <!-- ====================================================================== -->
