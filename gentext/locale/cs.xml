@@ -77,8 +77,12 @@
 <gentext key="Procedure" text="Postup"/>
 <gentext key="procedure" text="Postup"/>
 <gentext key="ProductionSet" text="Produkce"/>
+<gentext key="PubDate" text="Datum vydání"/>
+<gentext key="pubdate" text="Datum vydání"/>
 <gentext key="Published" text="Vydáno"/>
 <gentext key="published" text="Vydáno"/>
+<gentext key="Qandadiv" text="Otázky a odpovědi"/>
+<gentext key="qandadiv" text="Otázky a odpovědi"/>
 <gentext key="Question" text="Otázka:"/>
 <gentext key="question" text="Otázka:"/>
 <gentext key="RefEntry" text=""/>
@@ -154,6 +158,8 @@
 <gentext key="listofexamples" text="Seznam příkladů"/>
 <gentext key="ListofFigures" text="Seznam obrázků"/>
 <gentext key="listoffigures" text="Seznam obrázků"/>
+<gentext key="ListofProcedures" text="Seznam postupů"/>
+<gentext key="listofprocedures" text="Seznam postupů"/>
 <gentext key="listoftables" text="Seznam tabulek"/>
 <gentext key="ListofTables" text="Seznam tabulek"/>
 <gentext key="ListofUnknown" text="Seznam neznámého"/>
@@ -165,6 +171,7 @@
 <gentext key="nav-prev" text="Předcházející"/>
 <gentext key="nav-prev-sibling" text="Rychle zpět"/>
 <gentext key="nav-up" text="Nahoru"/>
+<gentext key="nav-toc" text="Obsah"/>
 
 <gentext key="sectioncalled"  text="oddíl nazvaný"/>
 <gentext key="Draft"         text="Návrh"/> 
@@ -179,6 +186,8 @@
 <dingbat key="endquote" text="&#x201c;"/>
 <dingbat key="nestedstartquote" text="&#x201a;"/>
 <dingbat key="nestedendquote" text="&#x2018;"/>
+<dingbat key="singlestartquote" text="&#x201a;"/>
+<dingbat key="singleendquote" text="&#x2018;"/>
 <dingbat key="bullet" text="&#x2022;"/>
 
 <context name="styles">
@@ -394,7 +403,15 @@
 <template name="variablelist">%t</template>
 <template name="varlistentry">%n</template>
 <template name="warning">%t</template>
+
+<template name="olink.document.citation">v&#160;%o</template>
+<template name="olink.page.citation"> (strana %p)</template>
 <template name="page.citation"> [%p]</template>
+<template name="page">(strana %p)</template>
+<template name="docname"> v&#160;%o</template>
+<template name="docnamelong"> v&#160;dokumentu nazvaném %o</template>
+<template name="pageabbrev">(str. %p)</template>
+<template name="Page">Strana %p</template>
 
 <template name="bridgehead"><startquote/>%t<endquote/></template>
 <template name="refsection"><startquote/>%t<endquote/></template>
