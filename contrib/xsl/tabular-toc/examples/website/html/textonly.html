@@ -1,0 +1,55 @@
+<html xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="generator" content="DocBook HTML XSL Stylesheet V1.66.0">
+<link rel="stylesheet" href="website.css" type="text/css">
+<link rel="icon" href="http://nwalsh.com/images/nwalsh-icon16.png" type="image/png">
+<link rel="stylesheet" href="example.css" type="text/css">
+<title>Building Text-only Websites</title>
+
+
+</head>
+<body class="tabular" bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<a class="skiplink" href="#startcontent">Skip over navigation</a><div class="webpage">
+<a name="textonly"></a><table border="0" cellpadding="0" cellspacing="0" width="100%" summary="Navigation">
+<tr>
+<td valign="top" align="left" bgcolor="#4080FF"><img src="graphics/spacer.gif" alt=" " width="1" height="1"></td>
+<td class="webpage-body" rowspan="2" valign="top" align="left" bgcolor="white">
+<a name="startcontent"></a><h1>Building Text-only Websites</h1>
+<p>The <tt class="filename">tabular.xsl</tt> and
+<tt class="filename">chunk-tabular.xsl</tt> stylesheets produce a two-column
+tabular website. If you wish to produce a purely text-only presentation
+more suitable for text-only or audio browsing, use the
+<tt class="filename">website.xsl</tt> or
+<tt class="filename">chunk-website.xsl</tt> stylesheets.</p>
+<p>It's possible to generate both tabular and text-only presentations
+in the same directory(ies). Use the <tt class="literal">filename-prefix</tt>
+parameter to put a prefix (such as &#8220;<span class="quote"><tt class="literal">txt</tt></span>&#8221;)
+on the text-only versions (or put a prefix on the tabular versions,
+if you prefer).</p>
+<br>
+</td>
+</tr>
+<tr><td valign="top" align="left" bgcolor="#4080FF" width="220"><p class="navtoc"><a href="index.html"><img align="left" border="0" src="graphics/banner.png" alt="Banner"></a><br clear="all"><br><span class="toplevel"><a href="layout.html" title="Site Navigation Layout Setup"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="layout.html" title="Site Navigation Layout Setup">Site Layout</a></span><br></span><span class="toplevel"><a href="linking.html" title="Linking across Pages"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="linking.html" title="Linking across Pages">Linking</a></span><br></span><span class="toplevel"><a href="custom.html" title="Stylesheet customization instructions"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="custom.html" title="Stylesheet customization instructions">Customization</a></span><br></span><span class="toplevel"><a href="buildmake.html" title="Building strategies"><img src="graphics/navicons/triangle/other/open.gif" alt="-" border="0"></a><span class="ancestor"><a href="buildmake.html" title="Building with Make">Building</a></span><br></span><span class="shrink1"><img src="graphics/blank.gif" alt="   "><a href="buildmake.html" title="Building strategies"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="buildmake.html" title="Building with Make">Using Make</a> <img src="graphics/navicons/triangle/changed.gif" alt="Changed"></span><br></span><span class="shrink1"><img src="graphics/blank.gif" alt="   "><a href="buildext.html" title="Building strategies"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="buildext.html" title="Building with XSLT Extensions">Using XSLT</a></span><br></span><span class="shrink1"><img src="graphics/blank.gif" alt="   "><a href="textonly.html" title="Building strategies"><img src="graphics/navicons/triangle/current/leaf.gif" alt="+" border="0"></a><span class="curpage">Text-only <img src="graphics/navicons/triangle/current/pointer.gif" alt="&lt;-"></span><br></span><span class="toplevel"><a href="formtest.html" title="Form Test Page"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="formtest.html" title="Form Test Page">Form Test</a></span><br></span><span class="toplevel"><a href="test3.html" title="XBEL Bookmark test"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="test3.html" title="XBEL Bookmark test">XBEL Bookmarks</a></span><br></span><span class="toplevel"><a href="rddl.html" title="RDDL"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="rddl.html" title="RDDL">RDDL</a></span><br></span><span class="toplevel"><a href="php.html" title="PHP"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="php.html" title="PHP">PHP</a></span><br></span><span class="toplevel"><a href="rss.html"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="rss.html">RSS</a> <img src="graphics/navicons/triangle/added.gif" alt="New"></span><br></span><span class="toplevel"><a href="full.html" title="Full Website"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="full.html" title="Full Website">Website-Full</a> <img src="graphics/navicons/triangle/added.gif" alt="New"></span><br></span><span class="toplevel"><a href="book/index.html" title="Chunking Augmented by Website (or seemingly
+      vice-versa)"><img src="graphics/navicons/triangle/other/closed.gif" alt="+" border="0"></a><span class="otherpage"><a href="book/index.html" title="Chunking Augmented by Website (or seemingly
+      vice-versa)">Chunked Book test</a> <img src="graphics/navicons/triangle/added.gif" alt="New"></span><br></span><span class="toplevel"><a href="revflag.html" title="Revision Flags"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="revflag.html" title="Revision Flags">Revision Flags</a></span><br></span><span class="toplevel"><a href="http://nwalsh.com/" target="$framelink"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="http://nwalsh.com/" target="$framelink">nwalsh.com</a></span><br></span><br></p></td></tr>
+</table>
+<a name="pagefooter"></a><div class="navfoot">
+<hr>
+<table width="100%" border="0" summary="Footer navigation">
+<tr>
+<td width="33%" align="left"><span class="footdate">$Date$</span></td>
+<td width="34%" align="center"><span class="foothome"><a href="index.html">Home</a></span></td>
+<td width="33%" align="right"> </td>
+</tr>
+<tr><td colspan="3" align="right"><span class="footcopy"><span class="copyright">Copyright © 1999, 2000, 2001 Norman Walsh. </span></span></td></tr>
+<tr>
+<td align="left" valign="top"><a href="textonly.html">Prev</a></td>
+<td> </td>
+<td align="right" valign="top"><a href="textonly.html">Next</a></td>
+</tr>
+</table>
+</div>
+</div>
+</body>
+</html>
