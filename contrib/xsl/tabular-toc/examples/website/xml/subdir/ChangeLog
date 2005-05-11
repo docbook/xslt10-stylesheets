@@ -1,0 +1,15 @@
+2001-09-06  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* .cvsignore: Merge V2-branch back onto the trunk; I'm abandoning V1-branch and V2-branch henceforth
+
+2001-06-17  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* .cvsignore: branches:  1.1.2;
+	file .cvsignore was initially added on branch V2-branch.
+
+	* .cvsignore: New file.
+
+2001-04-15  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* .cvskeepemptydir: New file.
+
