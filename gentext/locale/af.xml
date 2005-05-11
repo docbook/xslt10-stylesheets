@@ -80,6 +80,8 @@
 <gentext key="ProductionSet" text="ProduksieStel"/>
 <gentext key="Published" text="Uitgegee"/>
 <gentext key="published" text="uitgegee"/>
+<gentext key="Qandadiv" text="Vraag et Antwoord"/>
+<gentext key="qandadiv" text="Vraag et Antwoord"/>
 <gentext key="Question" text="Vraag:"/>
 <gentext key="question" text="vraag:"/>
 <gentext key="RefEntry" text="Verwysingslemma"/>

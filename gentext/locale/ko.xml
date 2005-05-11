@@ -77,6 +77,8 @@
 <gentext key="ProductionSet" text="Production"/> <!-- en -->
 <gentext key="Published" text="&#xD3B4;&#xB0C4;"/>
 <gentext key="published" text="&#xD3B4;&#xB0C4;"/>
+<gentext key="Qandadiv" text="&#xC9C8;&#xBB38;&#xADF8;&#xB9AC;&#xACE0;&#xB2F5;&#xBCC0;"/>
+<gentext key="qandadiv" text="&#xC9C8;&#xBB38;&#xADF8;&#xB9AC;&#xACE0;&#xB2F5;&#xBCC0;"/>
 <gentext key="Question" text="&#xC9C8;&#xBB38;"/>
 <gentext key="question" text="&#xC9C8;&#xBB38;"/>
 <gentext key="RefEntry" text=""/>

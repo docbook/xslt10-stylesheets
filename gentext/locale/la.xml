@@ -77,6 +77,8 @@
 <gentext key="ProductionSet" text="Compositio"/>
 <gentext key="Published" text="Editum"/>
 <gentext key="published" text="editum"/>
+<gentext key="Qandadiv" text="Q &amp; R"/>
+<gentext key="qandadiv" text="Q &amp; R"/>
 <gentext key="Question" text="Q:"/>
 <gentext key="question" text="q:"/>
 <gentext key="RefEntry" text="Mentionis descriptio"/>
