@@ -2,9 +2,9 @@
 <!-- there is no doctype for these files, they are WF only -->
 <!DOCTYPE locale [
 <!ENTITY % cyr1 PUBLIC "ISO 8879:1986//ENTITIES Russian Cyrillic//EN//XML"
-                "../../xmlcharent/iso-cyr1.ent">
+                "http://www.w3.org/2003/entities/iso8879/iso-cyr1.ent">
 <!ENTITY % cyr2 PUBLIC "ISO 8879:1986//ENTITIES Non-Russian Cyrillic//EN//XML"
-                "../../xmlcharent/iso-cyr2.ent">
+                "http://www.w3.org/2003/entities/iso8879/iso-cyr2.ent">
 %cyr1;
 %cyr2;
 
