@@ -1,0 +1,209 @@
+<html xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="generator" content="DocBook HTML XSL Stylesheet V1.66.0">
+<link rel="stylesheet" href="website.css" type="text/css">
+<link rel="icon" href="http://nwalsh.com/images/nwalsh-icon16.png" type="image/png">
+<link rel="stylesheet" href="example.css" type="text/css">
+<title>Site Layout</title>
+
+</head>
+<body class="tabular" bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<a class="skiplink" href="#startcontent">Skip over navigation</a><div class="webpage">
+<a name="layout"></a><table border="0" cellpadding="0" cellspacing="0" width="100%" summary="Navigation">
+<tr>
+<td valign="top" align="left" bgcolor="#4080FF"><img src="graphics/spacer.gif" alt=" " width="1" height="1"></td>
+<td class="webpage-body" rowspan="2" valign="top" align="left" bgcolor="white">
+<a name="startcontent"></a><h1>Site Layout</h1>
+<p>Breaking all of the web pages into separate XML documents
+introduces a significant problem: the hierarchical structure of the website
+is no longer manifest in the source document.</p>
+<p>In order for the stylesheets to construct the navigation system,
+you must describe the desired hierarchy explicitly in a
+<span class="emphasis"><em>layout</em></span> file. The layout file, which must
+conform to <tt class="filename">layout.dtd</tt>, identifies all of the
+pages in the website and defines how they fit into the navigational
+hierarchy. Here is simple layout file:
+</p>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;layout&gt;
+  &lt;toc page="website.xml" filename="index.html"&gt;
+    &lt;tocentry page="doc1.xml" filename="page1.html"/&gt;
+    &lt;tocentry page="doc2.xml" filename="page2.html"/&gt;
+  &lt;/toc&gt;
+&lt;/layout&gt;</pre>
+<p>This website has three pages:</p>
+<div class="orderedlist"><ol type="1">
+<li><p><tt class="filename">index.html</tt>,
+generated from <tt class="filename">website.xml</tt>;
+</p></li>
+<li><p><tt class="filename">page1.html</tt>,
+generated from <tt class="filename">doc1.xml</tt>; and
+</p></li>
+<li><p><tt class="filename">page2.html</tt>,
+generated from <tt class="filename">doc2.xml</tt>
+</p></li>
+</ol></div>
+<p>(See also: <a href="revflag.html" target="_top">revision flags</a>)</p>
+<p>Using this layout file, the hierarchical structure of the website
+is a main page <tt class="filename">index.html</tt> with two subordinate
+pages that are siblings:</p>
+<pre class="programlisting">
+  + index.html
+    + page1.html
+    + page2.html
+</pre>
+<p>Here's a slightly more complicated example:</p>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;layout&gt;
+  &lt;toc page="website.xml" filename="index.html"&gt;
+    &lt;tocentry page="doc1.xml" dir="subdir"
+              filename="index.html"&gt;
+      &lt;tocentry page="doc1.1.xml" filename="page2.html"/&gt;
+      &lt;tocentry page="doc1.2.xml" filename="page3.html"/&gt;
+    &lt;/tocentry&gt;
+    &lt;tocentry page="doc2.xml" filename="page2.html"/&gt;
+  &lt;/toc&gt;
+&lt;/layout&gt;</pre>
+<p>This website has five pages:</p>
+<div class="orderedlist"><ol type="1">
+<li><p><tt class="filename">index.html</tt>,
+generated from <tt class="filename">website.xml</tt>;
+</p></li>
+<li><p><tt class="filename">subdir/index.html</tt>,
+generated from <tt class="filename">doc1.xml</tt>;
+</p></li>
+<li><p><tt class="filename">subdir/page2.html</tt>,
+generated from <tt class="filename">doc1.1.xml</tt>;
+</p></li>
+<li><p><tt class="filename">subdir/page3.html</tt>,
+generated from <tt class="filename">doc1.2.xml</tt>; and
+</p></li>
+<li><p><tt class="filename">page2.html</tt>,
+generated from <tt class="filename">doc2.xml</tt>
+</p></li>
+</ol></div>
+<p>Using this layout file, the hierarchical structure of the website
+is a main page <tt class="filename">index.html</tt> with two subordinate
+pages that are siblings (<tt class="filename">subdir/index.html</tt>
+and <tt class="filename">page2.html</tt>). The first sibling page has
+two siblings of its own (<tt class="filename">subdir/page2.html</tt>
+and <tt class="filename">subdir/page3.html</tt>):</p>
+<pre class="programlisting">
+  + index.html
+    + subdir/index.html
+      + subdir/page2.html
+      + subdir/page3.html
+    + page2.html
+</pre>
+<p>In brief, the hierarchy of <tt class="sgmltag-element">tocentry</tt> elements
+in a <tt class="sgmltag-element">toc</tt> describes the logical navigation hierarchy
+of the website. Each entry must identify the XML document (containing
+a <tt class="sgmltag-starttag">&lt;webpage&gt;</tt>) that it represents and
+may identify the directory and filename where the file will appear in
+the HTML website.</p>
+<p>By default, directories are inherited (hence
+<tt class="filename">page2.html</tt> and <tt class="filename">page3.html</tt>
+will appear in the <tt class="filename">subdir</tt> directory) which makes
+it easy to build a website that has similar logical and physical
+organization. It is not necessary for the logical and physical
+hierarchy of your website to be consistent; you can specify an absolute
+directory at any level and on any file by beginning the name with a
+slash.</p>
+<p>If a directory is not specified, the files will appear in the currently
+inherited directory (or in the root, if no directory is specified anywhere
+in the <tt class="sgmltag-element">tocentry</tt> ancestry).</p>
+<p>If a filename is not specified, <tt class="filename">index.html</tt> will
+be used.</p>
+<p>It is possible to map two different XML documents to the same HTML
+filename. At present, the stylesheets do not detect this, but the result
+will be a broken website. Exercise caution.</p>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id2494897"></a>Global Parameters</h2></div></div></div>
+
+<p>The layout file can also contain a number of global parameters:
+<tt class="sgmltag-element">config</tt>,
+<tt class="sgmltag-element">script</tt>,
+<tt class="sgmltag-element">style</tt>, and
+<tt class="sgmltag-element">copyright</tt>. For the most part, these elements behave
+as they do on individual pages, except that they apply to every page.
+</p>
+
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id2494922"></a>Multiple <tt class="sgmltag-element">toc</tt>s</h2></div></div></div>
+
+<p>If you put multiple <tt class="sgmltag-element">toc</tt> elements in your
+layout file, the result will be completely separate navigational hierarchies.
+Note, however, that the restriction that a page can only appear once in
+a website prevents a page from appearing in more than one hierarchy.
+</p>
+
+<p>Navigation between hierarchies is only possible if you insert
+<a href="/cgi-bin/olink?sysid=olink.xml">links between pages</a>
+across hierarchies.
+</p>
+
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id2494951"></a>Standalone Pages</h2></div></div></div>
+
+<p>Pages identified with <tt class="sgmltag-element">notoc</tt> elements instead
+of <tt class="sgmltag-element">tocentry</tt>s will be in the website but will not appear
+in any hierarchy. The <a href="/cgi-bin/olink?sysid=about.xml">about page</a>
+of this example website uses <tt class="sgmltag-element">notoc</tt>.
+</p>
+
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id2494975"></a>&#8220;<span class="quote">Dummy</span>&#8221; Pages</h2></div></div></div>
+
+<p>Sometimes it's useful to have a page in the hierarchy in order to
+make the TOC clearer, without actually wanting to construct the page.
+Consider the &#8220;<span class="quote">Building</span>&#8221; page in this website. It's really
+just a hierarchy placeholder for the different sorts of building that
+are possible.</p>
+
+<p>If you click on &#8220;<span class="quote">Building</span>&#8221; in the TOC, you'll discover
+that you don't actually go to that page, instead you go to that page's
+first child.</p>
+
+<p>This effect is achieved by using the
+<tt class="sgmltag-attribute">tocskip</tt> attribute on the
+<tt class="sgmltag-element">tocentry</tt> for the building page.</p>
+
+<p>Note, however, that the skipped page must exist and it is still
+possible to link directly to
+<a href="/cgi-bin/olink?sysid=building.xml">the page</a>.</p>
+
+</div>
+<br>
+</td>
+</tr>
+<tr><td valign="top" align="left" bgcolor="#4080FF" width="220"><p class="navtoc"><a href="index.html"><img align="left" border="0" src="graphics/banner.png" alt="Banner"></a><br clear="all"><br><span class="toplevel"><a href="layout.html" title="Site Navigation Layout Setup"><img src="graphics/navicons/triangle/current/leaf.gif" alt="+" border="0"></a><span class="curpage">Site Layout <img src="graphics/navicons/triangle/current/pointer.gif" alt="&lt;-"></span><br></span><span class="toplevel"><a href="linking.html" title="Linking across Pages"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="linking.html" title="Linking across Pages">Linking</a></span><br></span><span class="toplevel"><a href="custom.html" title="Stylesheet customization instructions"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="custom.html" title="Stylesheet customization instructions">Customization</a></span><br></span><span class="toplevel"><a href="buildmake.html" title="Building strategies"><img src="graphics/navicons/triangle/other/closed.gif" alt="+" border="0"></a><span class="otherpage"><a href="buildmake.html" title="Building with Make">Building</a></span><br></span><span class="toplevel"><a href="formtest.html" title="Form Test Page"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="formtest.html" title="Form Test Page">Form Test</a></span><br></span><span class="toplevel"><a href="test3.html" title="XBEL Bookmark test"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="test3.html" title="XBEL Bookmark test">XBEL Bookmarks</a></span><br></span><span class="toplevel"><a href="rddl.html" title="RDDL"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="rddl.html" title="RDDL">RDDL</a></span><br></span><span class="toplevel"><a href="php.html" title="PHP"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="php.html" title="PHP">PHP</a></span><br></span><span class="toplevel"><a href="rss.html"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="rss.html">RSS</a> <img src="graphics/navicons/triangle/added.gif" alt="New"></span><br></span><span class="toplevel"><a href="full.html" title="Full Website"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="full.html" title="Full Website">Website-Full</a> <img src="graphics/navicons/triangle/added.gif" alt="New"></span><br></span><span class="toplevel"><a href="book/index.html" title="Chunking Augmented by Website (or seemingly
+      vice-versa)"><img src="graphics/navicons/triangle/other/closed.gif" alt="+" border="0"></a><span class="otherpage"><a href="book/index.html" title="Chunking Augmented by Website (or seemingly
+      vice-versa)">Chunked Book test</a> <img src="graphics/navicons/triangle/added.gif" alt="New"></span><br></span><span class="toplevel"><a href="revflag.html" title="Revision Flags"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="revflag.html" title="Revision Flags">Revision Flags</a></span><br></span><span class="toplevel"><a href="http://nwalsh.com/" target="$framelink"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="http://nwalsh.com/" target="$framelink">nwalsh.com</a></span><br></span><br></p></td></tr>
+</table>
+<a name="pagefooter"></a><div class="navfoot">
+<hr>
+<table width="100%" border="0" summary="Footer navigation">
+<tr>
+<td width="33%" align="left"><span class="footdate">$Date$</span></td>
+<td width="34%" align="center"><span class="foothome"><a href="index.html">Home</a></span></td>
+<td width="33%" align="right"> </td>
+</tr>
+<tr><td colspan="3" align="right"><span class="footcopy"><span class="copyright">Copyright © 1999, 2000, 2001 Norman Walsh. </span></span></td></tr>
+<tr>
+<td align="left" valign="top"><a href="layout.html">Prev</a></td>
+<td> </td>
+<td align="right" valign="top"><a href="layout.html">Next</a></td>
+</tr>
+</table>
+</div>
+</div>
+</body>
+</html>
