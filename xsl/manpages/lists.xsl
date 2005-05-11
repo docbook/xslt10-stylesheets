@@ -113,31 +113,35 @@
   <xsl:text>.LP&#10;.RE&#10;.IP&#10;</xsl:text>
 </xsl:template>
 
-<!-- simplelist -->
-
+<!-- for simplelist type="inline", render it as a comma-separated list, -->
+<!-- with "and" before the last item -->
 <xsl:template match="simplelist[@type='inline']">
-  <xsl:apply-templates/>
+  <xsl:for-each select="member">
+    <xsl:apply-templates/>
+    <xsl:choose>
+      <xsl:when test="position() = last()"/> <!-- do nothing -->
+      <xsl:otherwise>
+	<xsl:text>, </xsl:text>
+	<xsl:if test="position() = last() - 1">
+	  <xsl:call-template name="gentext">
+	    <xsl:with-param name="key" select="'and'"/>
+	  </xsl:call-template>
+	  <xsl:text> </xsl:text>
+	</xsl:if>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:for-each>
+  <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
-<xsl:template match="simplelist[@type='inline']/member">
-  <xsl:apply-templates/>
-  <xsl:text>, </xsl:text>
-</xsl:template>
-
-<xsl:template match="simplelist[@type='inline']/member[position()=last()]"
-	      priority="2">
-  <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="simplelist[@type='vert' and @columns='1']">
-  <xsl:text>&#10;.IP&#10;</xsl:text>
-  <xsl:apply-templates/>
-  <xsl:text>.LP&#10;</xsl:text>
-</xsl:template>
-
-<xsl:template match="simplelist[@type='vert' and @columns='1']/member">
-  <xsl:apply-templates/>
-  <xsl:text>&#10;&#10;</xsl:text>
+<!-- if simplelist type is not inline, render it as a one-column vertical -->
+<!-- list (ignoring the values of the type and columns attributes) -->
+<xsl:template match="simplelist">
+  <xsl:for-each select="member">
+    <xsl:text>.IP&#10;</xsl:text>
+    <xsl:apply-templates/>
+  <xsl:text>&#10;</xsl:text>
+  </xsl:for-each>
 </xsl:template>
 
 </xsl:stylesheet>
