@@ -4,7 +4,7 @@
                 version='1.0'>
 
 <xsl:template match="synopfragment">
-<xsl:text>&#10;.PP&#10;</xsl:text>
+<xsl:text>.PP&#10;</xsl:text>
 <xsl:apply-templates/>
 </xsl:template>
 <!--
@@ -116,7 +116,7 @@
 </xsl:template>
 
 <xsl:template match="sbr">
-  <xsl:text>&#10;.br&#10;</xsl:text>
+  <xsl:text>.br&#10;</xsl:text>
 </xsl:template>
 
 
@@ -126,13 +126,13 @@
   <xsl:value-of select="string-length (normalize-space (command)) + 1"/>
   <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>&#10;.ad&#10;.hy&#10;</xsl:text>
+  <xsl:text>.ad&#10;.hy&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="synopsis">
-  <xsl:text>&#10;.nf&#10;</xsl:text>
+  <xsl:text>.nf&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>&#10;.fi&#10;</xsl:text>
+  <xsl:text>.fi&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="void">
@@ -146,7 +146,7 @@
 <xsl:template match="funcsynopsisinfo">
   <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>&#10;.sp&#10;</xsl:text>
+  <xsl:text>.sp&#10;</xsl:text>
 </xsl:template>
 
 <!-- disable hyphenation, and use left-aligned filling for the duration
