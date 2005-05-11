@@ -2,7 +2,7 @@
 <!-- there is no doctype for these files, they are WF only -->
 <!DOCTYPE locale [
 <!ENTITY % lat1 PUBLIC "-//ISO 8879-1986//ENTITIES Added Latin 1//EN//XML"
-                "../../xmlcharent/iso-lat1.ent">
+                "http://www.w3.org/2003/entities/iso8879/iso-lat1.ent">
 %lat1;
 ]>
 <locale language="hu"
