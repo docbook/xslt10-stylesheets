@@ -79,6 +79,8 @@
 <gentext key="ProductionSet" text="Production"/> <!-- en -->
 <gentext key="Published" text="Avaldatud"/>
 <gentext key="published" text="Avaldatud"/>
+<gentext key="Qandadiv" text="K ja V"/>
+<gentext key="qandadiv" text="K ja V"/>
 <gentext key="Question" text="K:"/>
 <gentext key="question" text="K:"/>
 <gentext key="RefEntry" text=""/>

@@ -82,6 +82,8 @@
 <gentext key="ProductionSet" text="Produktion"/>
 <gentext key="Published" text="Udgivet"/>
 <gentext key="published" text="udgivet"/>
+<gentext key="Qandadiv" text="Sp&#xF8;rgsm&#xE5;l og Svar"/>
+<gentext key="qandadiv" text="Sp&#xF8;rgsm&#xE5;l og Svar"/>
 <gentext key="Question" text="Sp&#xF8;rgsm&#xE5;l"/>
 <gentext key="question" text="sp&#xF8;rgsm&#xE5;l"/>
 <gentext key="RefEntry" text="Punkt"/>

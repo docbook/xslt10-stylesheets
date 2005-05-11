@@ -83,6 +83,8 @@
 <gentext key="ProductionSet" text="Elemcsoport"/>
 <gentext key="Published" text="Megjelent"/>
 <gentext key="published" text="megjelent"/>
+<gentext key="Qandadiv" text="K &#x00E9;s V"/>
+<gentext key="qandadiv" text="K &#x00E9;s V"/>
 <gentext key="Question" text="K:"/>
 <gentext key="question" text="k:"/>
 <gentext key="RefEntry" text="Bejegyz&#x00E9;s"/>

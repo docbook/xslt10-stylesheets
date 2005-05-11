@@ -80,6 +80,8 @@
 <gentext key="ProductionSet" text="Production"/> <!-- en -->
 <gentext key="Published" text="Diterbitkan"/>
 <gentext key="published" text="Diterbitkan"/>
+<gentext key="Qandadiv" text="Tanya dan Jawab"/>
+<gentext key="qandadiv" text="Tanya dan Jawab"/>
 <gentext key="Question" text="Tanya:"/>
 <gentext key="question" text="Tanya:"/>
 <gentext key="RefEntry" text=""/>

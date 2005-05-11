@@ -76,6 +76,8 @@
 <gentext key="ProductionSet" text="Ekoizpena"/>
 <gentext key="Published" text="Argitaratua"/>
 <gentext key="published" text="Argitaratua"/>
+<gentext key="Qandadiv" text="Galdera eta E"/>
+<gentext key="qandadiv" text="Galdera eta E"/>
 <gentext key="Question" text="Galdera"/>
 <gentext key="question" text="galdera"/>
 <gentext key="RefEntry" text="Sarrera"/>

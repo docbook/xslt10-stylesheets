@@ -46,6 +46,8 @@
 <gentext key="ProductionSet" text="Production"/> <!-- en -->
 <gentext key="Published" text="&#916;&#951;&#956;&#959;&#963;&#953;&#949;&#965;&#956;&#941;&#957;&#959;"/>
 <gentext key="Question" text="&#917;:"/>
+<gentext key="Qandadiv" text="&#917; &#954;&#945;&#953; &#913;"/>
+<gentext key="qandadiv" text="&#917; &#954;&#945;&#953; &#913;"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="RefName" text="&#908;&#957;&#959;&#956;&#945;"/>
 <gentext key="RefSection" text=""/>

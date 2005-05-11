@@ -78,6 +78,8 @@
 <gentext key="ProductionSet" text="Izdelava"/>
 <gentext key="Published" text="Izdano"/>
 <gentext key="published" text="Izdano"/>
+<gentext key="Qandadiv" text="V in O"/>
+<gentext key="qandadiv" text="V in O"/>
 <gentext key="Question" text="V:"/>
 <gentext key="question" text="V:"/>
 <gentext key="RefEntry" text=""/>

@@ -85,6 +85,8 @@
 <gentext key="pubdate" text="Data de publicaci&oacute;"/>
 <gentext key="Published" text="Publicat"/>
 <gentext key="published" text="Publicat"/>
+<gentext key="Qandadiv" text="Pregunta i Resposta"/>
+<gentext key="qandadiv" text="Pregunta i Resposta"/>
 <gentext key="Question" text="Pregunta"/>
 <gentext key="question" text="Pregunta"/>
 <gentext key="RefEntry" text="Entrada de refer&egrave;ncia"/>

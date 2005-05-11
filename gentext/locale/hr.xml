@@ -88,6 +88,8 @@
 <gentext key="ProductionSet" text="Produkcija"/><!-- ? -->
 <gentext key="Published" text="Objavljeno"/>
 <gentext key="published" text="Objavljeno"/>
+<gentext key="Qandadiv" text="Pitanje i Odgovor"/>
+<gentext key="qandadiv" text="Pitanje i Odgovor"/>
 <gentext key="Question" text="Pitanje:"/>
 <gentext key="question" text="Pitanje:"/>
 <gentext key="RefEntry" text=""/>

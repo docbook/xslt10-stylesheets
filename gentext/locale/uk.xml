@@ -112,6 +112,8 @@
 <gentext key="ProductionSet" text="Production"/> <!-- en -->
 <gentext key="Published" text="&Ocy;&pcy;&ucy;&bcy;&lcy;&iukcy;&kcy;&ocy;&vcy;&acy;&ncy;&ocy;"/>
 <gentext key="published" text="&ocy;&pcy;&ucy;&bcy;&lcy;&iukcy;&kcy;&ocy;&vcy;&acy;&ncy;&ocy;"/>
+<gentext key="Qandadiv" text="&Pcy; &icy; &Vcy;"/>
+<gentext key="qandadiv" text="&Pcy; &icy; &Vcy;"/>
 <gentext key="Question" text="&Pcy;"/>
 <gentext key="question" text="&pcy;"/>
 <gentext key="RefEntry" text=""/>

@@ -80,6 +80,8 @@
 <gentext key="ProductionSet" text="ผลิต"/>
 <gentext key="Published" text="ตีพิมพ์"/>
 <gentext key="published" text="ตีพิมพ์"/>
+<gentext key="Qandadiv" text="ถามีและีตอบ"/>
+<gentext key="qandadiv" text="ถามีและีตอบ"/>
 <gentext key="Question" text="ถาม:"/>
 <gentext key="question" text="ถาม:"/>
 <gentext key="RefEntry" text=""/>
