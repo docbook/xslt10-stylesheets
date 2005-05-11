@@ -49,15 +49,15 @@
 </xsl:template>
 
 <xsl:template match="varlistentry|glossentry">
-  <xsl:text>&#10;.TP&#10;</xsl:text>
+  <xsl:text>.TP&#10;</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="variablelist[ancestor::listitem or ancestor::step]|
 	             glosslist[ancestor::listitem or ancestor::step]">
-  <xsl:text>&#10;.RS&#10;</xsl:text>
+  <xsl:text>.RS&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>&#10;.RE&#10;.IP&#10;</xsl:text>
+  <xsl:text>.RE&#10;.IP&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="varlistentry/term|glossterm">
@@ -100,7 +100,7 @@
 </xsl:template>
 
 <xsl:template match="itemizedlist|orderedlist|procedure">
-  <xsl:text>&#10;.TP 3&#10;</xsl:text>
+  <xsl:text>.TP 3&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>.LP&#10;</xsl:text>
 </xsl:template>
@@ -108,7 +108,7 @@
 <xsl:template match="itemizedlist[ancestor::listitem or ancestor::step]|
 	             orderedlist[ancestor::listitem or ancestor::step]|
 		     procedure[ancestor::listitem or ancestor::step]">
-  <xsl:text>&#10;.RS&#10;.TP 3&#10;</xsl:text>
+  <xsl:text>.RS&#10;.TP 3&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>.LP&#10;.RE&#10;.IP&#10;</xsl:text>
 </xsl:template>

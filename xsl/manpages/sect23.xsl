@@ -3,7 +3,7 @@
                 version='1.0'>
 
 <xsl:template match="refsect2">
-  <xsl:text>&#10;.Sh "</xsl:text>
+  <xsl:text>.Sh "</xsl:text>
   <xsl:value-of select="substring-before(title[1],' ')"/>
   <xsl:text>"&#10;</xsl:text>
   <xsl:apply-templates/>
@@ -12,7 +12,7 @@
 <xsl:template match="refsect2/programlisting"></xsl:template>
 
 <xsl:template match="funcsynopsis">
-  <xsl:text>&#10;.BI "</xsl:text>
+  <xsl:text>.BI "</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
 
@@ -49,14 +49,14 @@
 </xsl:template>
 
 <xsl:template match="refsect1">
-  <xsl:text>&#10;.SH "</xsl:text>
+  <xsl:text>.SH "</xsl:text>
   <xsl:value-of select="translate(title[1],'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
   <xsl:text>"&#10;</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="refsynopsisdiv">
-  <xsl:text>&#10;.SH "</xsl:text>
+  <xsl:text>.SH "</xsl:text>
   <xsl:value-of select="translate(title[1],'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
   <xsl:text>"&#10;</xsl:text>
   <xsl:apply-templates/>
@@ -119,7 +119,7 @@
 </xsl:template>
 
 <xsl:template match="varlistentry">
-  <xsl:text>&#10;.TP&#10;</xsl:text>
+  <xsl:text>.TP&#10;</xsl:text>
 <xsl:apply-templates select="./term"/>
 <xsl:apply-templates select="./listitem"/>
 </xsl:template>
@@ -129,11 +129,11 @@
 </xsl:template>
 
 <xsl:template match="filename">
-  <xsl:text>&#10;.FN </xsl:text><xsl:apply-templates/>
+  <xsl:text>.FN </xsl:text><xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="userinput">
-  <xsl:text>&#10;.IP&#10;.B </xsl:text><xsl:apply-templates/>
+  <xsl:text>.IP&#10;.B </xsl:text><xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="envar">
