@@ -40,21 +40,21 @@
 </xsl:template>
 
 <xsl:template match="caution|important|note|tip|warning">
-  <xsl:text>&#10;.RS&#10;.Sh "</xsl:text>
+  <xsl:text>.RS&#10;.Sh "</xsl:text>
     <xsl:apply-templates select="." mode="object.title.markup.textonly"/>
     <xsl:text>"&#10;</xsl:text>
     <xsl:apply-templates/>
-    <xsl:text>&#10;.RE&#10;</xsl:text>
+    <xsl:text>.RE&#10;</xsl:text>
 </xsl:template> 
 
 <xsl:template match="refsection|refsect1">
   <xsl:choose>
     <xsl:when test="ancestor::refsection">
-      <xsl:text>&#10;.SS "</xsl:text>
+      <xsl:text>.SS "</xsl:text>
       <xsl:value-of select="title[1]"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:text>&#10;.SH "</xsl:text>
+      <xsl:text>.SH "</xsl:text>
       <xsl:value-of select="translate(title[1],'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
     </xsl:otherwise>
   </xsl:choose>
@@ -63,7 +63,7 @@
 </xsl:template>
 
 <xsl:template match="refsect2">
-  <xsl:text>&#10;.SS "</xsl:text>
+  <xsl:text>.SS "</xsl:text>
   <xsl:value-of select="title[1]"/>
   <xsl:text>"&#10;</xsl:text>
   <xsl:apply-templates/>
@@ -83,7 +83,7 @@
 </xsl:template>
 
 <xsl:template match="para">
-  <xsl:text>&#10;.PP&#10;</xsl:text>
+  <xsl:text>.PP&#10;</xsl:text>
   <xsl:for-each select="node()">
     <xsl:choose>
       <xsl:when test="self::literallayout|self::informaltable|self::screen|
@@ -122,7 +122,6 @@
   <xsl:variable name="content">
     <xsl:apply-templates/>
   </xsl:variable>
-  <xsl:text>&#10;&#10;</xsl:text>
   <xsl:value-of select="normalize-space($content)"/>
   <xsl:text>
 </xsl:text>
@@ -201,7 +200,6 @@
 .br
 .if t .Sp
 .ne 5
-.PP
 \fB\\$1\fR
 .PP
 ..
@@ -228,7 +226,6 @@
       <xsl:text>"
 </xsl:text>
       <xsl:apply-templates/>
-      <xsl:text>&#10;</xsl:text>
 
       <!-- Author section -->
       <xsl:choose>
@@ -304,7 +301,7 @@
 <xsl:template match="copyright">
   <xsl:text>Copyright \(co  </xsl:text>
   <xsl:apply-templates select="./year" />
-  <xsl:text>&#10;.Sp&#10;</xsl:text>
+  <xsl:text>.Sp&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="email">
@@ -337,7 +334,7 @@
 <xsl:template match="refentry/refentryinfo"></xsl:template>
 
 <xsl:template match="informalexample|screen">
-  <xsl:text>&#10;.IP&#10;</xsl:text>
+  <xsl:text>.IP&#10;</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
 
@@ -367,9 +364,9 @@
 </xsl:template>
 
 <xsl:template match="programlisting|literallayout">
-  <xsl:text>&#10;.nf&#10;</xsl:text>
+  <xsl:text>.nf&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>&#10;.fi&#10;</xsl:text>
+  <xsl:text>.fi&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="optional">
