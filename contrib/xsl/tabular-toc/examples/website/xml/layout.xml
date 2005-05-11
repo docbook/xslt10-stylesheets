@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE layout PUBLIC "-//Norman Walsh//DTD Website Layout V2.4.0//EN"
+          "http://docbook.sourceforge.net/release/website/2.4.0/schema/dtd/layout.dtd">
+<layout>
+  <config param="text-prefix" value="txt"/>
+
+  <config param="homebanner-tabular" value="graphics/homebanner.png"
+	  altval="Home Banner"/>
+  <config param="banner-tabular"     value="graphics/banner.png"
+	  altval="Banner"/>
+
+  <config param="homebanner" value="graphics/homebanner.png"
+	  altval="Home Banner"/>
+  <config param="banner"     value="graphics/icons/iconhome.gif"
+	  altval="Banner"/>
+
+  <copyright>
+    <year>1999</year><year>2000</year><year>2001</year>
+    <holder role="http://nwalsh.com/~ndw/">Norman Walsh</holder>
+  </copyright>
+
+  <headlink rel="icon" href="http://nwalsh.com/images/nwalsh-icon16.png" type="image/png"/>
+  <style src="example.css" type="text/css"/>
+
+  <toc page="website.xml" filename="index.html">
+    <tocentry page="wslayout.xml" filename="layout.html"/>
+    <tocentry page="olink.xml" filename="linking.html"/>
+    <tocentry page="custom.xml" filename="custom.html"/>
+    <tocentry page="building.xml" filename="building.html" tocskip='1'>
+      <tocentry page="build-make.xml" filename="buildmake.html" revisionflag="changed"/>
+      <tocentry page="build-ext.xml" filename="buildext.html"/>
+      <tocentry page="build-textonly.xml" filename="textonly.html"/>
+    </tocentry>
+    <tocentry page="test2.xml" filename="formtest.html"/>
+    <tocentry page="test3.xml" filename="test3.html"/>
+    <tocentry page="rddl.xml" filename="rddl.html"/>
+    <tocentry page="php.xml" filename="php.html"/>
+    <tocentry page="rss.xml" filename="rss.html" revisionflag="added"/>
+    <tocentry page="full.xml" filename="full.html" revisionflag="added"/>
+    <tocentry page="revflag.xml" filename="revflag.html"/>
+    <tocentry id="nwalsh.com" href="http://nwalsh.com/">
+      <title>nwalsh.com</title>
+    </tocentry>
+  </toc>
+
+  <toc page="test1.xml" filename="test1.html">
+    <tocentry page="test1a.xml" dir="subdir" filename="test1a.html"/>
+    <tocentry page="test1b.xml" dir="subdir" filename="test1b.html"/>
+  </toc>
+
+  <notoc page="about.xml" filename="about.html"/>
+</layout>
+

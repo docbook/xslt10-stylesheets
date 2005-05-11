@@ -1,0 +1,54 @@
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd">
+<webpage id="rddl"
+	 xmlns:rddl='http://www.rddl.org/'>
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>RDDL</title>
+<summary>RDDL</summary>
+<rddl:resource id="rddl.outofline"
+      xlink:title="Test Out of Line RDDL"/>
+</head>
+
+<para>This test page
+<rddl:resource
+      xlink:title="Test Inline RDDL">demonstrates</rddl:resource>
+how to incorporate
+<ulink url="http://www.rddl.org/">RDDL</ulink> into
+your web pages.
+</para>
+
+<para>To apply RDDL resources to inline elements, just wrap the
+<sgmltag>rddl:resource</sgmltag> element around them.
+</para>
+
+<section rddl="rddl.outofline">
+<title>Out Of Line RDDL</title>
+
+<para>Apply RDDL to an entire section requires an <quote>out of line</quote>
+RDDL resource. (Allowing <sgmltag>rddl:resource</sgmltag> elements to
+wrap sections would interrupt the structure of the document more than
+I'm willing to allow.)</para>
+
+<itemizedlist>
+<listitem>
+<para>Put an empty <sgmltag>rddl:resource</sgmltag> element in the
+<sgmltag>head</sgmltag> of your <sgmltag>webpage</sgmltag>.</para>
+</listitem>
+<listitem>
+<para>Assign an ID value to the <sgmltag>rddl:resource</sgmltag>.</para>
+</listitem>
+<listitem>
+<para>Refer to the ID of the <sgmltag>rddl:resource</sgmltag> with the
+<sgmltag class="attribute">rddl</sgmltag> attribute on
+<sgmltag>section</sgmltag>.
+</para>
+</listitem>
+</itemizedlist>
+
+<para>The stylesheets will wrap the <sgmltag>rddl:resource</sgmltag>
+around the section in the resulting HTML.</para>
+
+</section>
+
+</webpage>
+
