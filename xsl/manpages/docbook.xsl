@@ -278,22 +278,27 @@
     <xsl:if test="position() > 1">
       <xsl:text>, </xsl:text>
     </xsl:if>
-    <xsl:variable name="author">
-      <xsl:apply-templates select="."/>
-    </xsl:variable>
-    <xsl:value-of select="normalize-space($author)"/>    
+    <xsl:apply-templates select="."/>
   </xsl:for-each>
-  <xsl:text>.&#10;</xsl:text>
+  <xsl:text>. &#10;</xsl:text>
   <xsl:if test=".//editor">
-    <xsl:text>.br&#10;Man page edited by </xsl:text>
+    <xsl:text>.br&#10;</xsl:text>
     <xsl:apply-templates select=".//editor"/>
-    <xsl:text>.&#10;</xsl:text>
+    <xsl:text>. (man page)&#10;</xsl:text>
   </xsl:if>
+  <xsl:for-each select="address">
+  <xsl:text>.br&#10;</xsl:text>
+    <xsl:apply-templates/>
+    <xsl:text>&#10;</xsl:text>
+  </xsl:for-each>
 </xsl:template>
 
 <xsl:template match="author|editor">
   <xsl:call-template name="person.name"/>
-  <xsl:apply-templates select="./affiliation/address/email" />
+  <xsl:if test=".//email">
+    <xsl:text> </xsl:text>
+    <xsl:apply-templates select=".//email"/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="copyright">
@@ -303,7 +308,7 @@
 </xsl:template>
 
 <xsl:template match="email">
-  <xsl:text> &lt;</xsl:text>
+  <xsl:text>&lt;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>&gt;</xsl:text>
 </xsl:template>
