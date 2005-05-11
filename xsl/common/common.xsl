@@ -1775,10 +1775,11 @@ node location.</para>
 <refdescription>
 <para>Given a string, this template does a language-aware conversion
 of that string to all uppercase letters, based on the values of the
-<code>lowercase.alpha</code> and <code>uppercase.alpha</code> gentext
-keys for the current locale. It affects only those characters found in
-the values of <code>lowercase.alpha</code> and
-<code>uppercase.alpha</code>. All other characters are left
+<literal>lowercase.alpha</literal>> and
+<literal>uppercase.alpha</literal> gentext keys for the current
+locale. It affects only those characters found in the values of
+<literal>lowercase.alpha</literal> and
+<literal>uppercase.alpha</literal>. All other characters are left
 unchanged.</para>
 </refdescription>
 
