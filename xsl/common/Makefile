@@ -2,10 +2,10 @@ include ../../cvstools/Makefile.incl
 
 SOURCES=af.xml ar.xml bg.xml bn.xml bs.xml \
         ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml et.xml eu.xml fa.xml \
-        fi.xml fr.xml he.xml hu.xml id.xml it.xml ja.xml ko.xml lt.xml nl.xml \
-        nn.xml no.xml pl.xml hr.xml la.xml \
+        fi.xml fr.xml gu.xml he.xml hu.xml id.xml it.xml ja.xml ko.xml lt.xml nl.xml \
+        nn.xml no.xml pa.xml pl.xml hr.xml la.xml \
         pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sr.xml sr_Latn.xml sv.xml \
-        th.xml tr.xml uk.xml vi.xml xh.xml zh_cn.xml zh_tw.xml
+        ta.xml th.xml tr.xml uk.xml vi.xml xh.xml zh_cn.xml zh_tw.xml
 
 GENSTYLE=../../gentext/xsl/xsl.xsl ../../gentext/locale/en.xml
 
@@ -28,6 +28,7 @@ eu.xml: ../../gentext/locale/eu.xml $(GENSTYLE)
 fa.xml: ../../gentext/locale/fa.xml $(GENSTYLE)
 fi.xml: ../../gentext/locale/fi.xml $(GENSTYLE)
 fr.xml: ../../gentext/locale/fr.xml $(GENSTYLE)
+gu.xml: ../../gentext/locale/gu.xml $(GENSTYLE)
 he.xml: ../../gentext/locale/he.xml $(GENSTYLE)
 hr.xml: ../../gentext/locale/hr.xml $(GENSTYLE)
 hu.xml: ../../gentext/locale/hu.xml $(GENSTYLE)
@@ -40,6 +41,7 @@ lt.xml: ../../gentext/locale/lt.xml $(GENSTYLE)
 nl.xml: ../../gentext/locale/nl.xml $(GENSTYLE)
 nn.xml: ../../gentext/locale/nn.xml $(GENSTYLE)
 no.xml: ../../gentext/locale/no.xml $(GENSTYLE)
+pa.xml: ../../gentext/locale/pa.xml $(GENSTYLE)
 pl.xml: ../../gentext/locale/pl.xml $(GENSTYLE)
 pt.xml: ../../gentext/locale/pt.xml $(GENSTYLE)
 pt_br.xml: ../../gentext/locale/pt_br.xml $(GENSTYLE)
@@ -50,6 +52,7 @@ sl.xml: ../../gentext/locale/sl.xml $(GENSTYLE)
 sr.xml: ../../gentext/locale/sr.xml $(GENSTYLE)
 sr_Latn.xml: ../../gentext/locale/sr_Latn.xml $(GENSTYLE)
 sv.xml: ../../gentext/locale/sv.xml $(GENSTYLE)
+ta.xml: ../../gentext/locale/ta.xml $(GENSTYLE)
 th.xml: ../../gentext/locale/th.xml $(GENSTYLE)
 tr.xml: ../../gentext/locale/tr.xml $(GENSTYLE)
 uk.xml: ../../gentext/locale/uk.xml $(GENSTYLE)
