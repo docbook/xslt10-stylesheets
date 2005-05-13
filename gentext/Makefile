@@ -2,7 +2,7 @@ XSLT=../cvstools/saxon
 XJPARSE=../cvstools/xjparse
 
 SOURCES=af.xml bg.xml bn.xml bs.xml ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml \
-	et.xml fa.xml fi.xml fr.xml gu.xml hi.com hu.xml id.xml it.xml ja.xml ko.xml lt.xml \
+	et.xml fa.xml fi.xml fr.xml gu.xml hi.xml hu.xml id.xml it.xml ja.xml ko.xml lt.xml \
 	nl.xml no.xml pa.xml pl.xml pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml \
 	sr.xml sr_Latn.xml sv.xml ta.xml tr.xml zh_cn.xml zh_tw.xml
 
