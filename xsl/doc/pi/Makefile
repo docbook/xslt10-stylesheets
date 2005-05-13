@@ -12,6 +12,7 @@ all: $(HTMLFILES)
 
 pi.html: pi.xml
 	$(XSLT) $< ../../docsrc/pirefentry.xsl
+	touch pi.html
 
 clean:
 	rm -f *.html
