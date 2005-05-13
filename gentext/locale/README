@@ -14,7 +14,7 @@ en.xml file from here:
 
   http://cvs.sourceforge.net/viewcvs.py/*checkout*/docbook/gentext/locale/en.xml
 
-If you want to make changes to an exiting locale file,
+If you want to make changes to an existing locale file,
 copy the appropriate locale file from:
 
   http://cvs.sourceforge.net/viewcvs.py/docbook/gentext/locale/
@@ -95,12 +95,20 @@ part, post a request to docbook-apps@lists.oasis-open.org
 -------------------------------------------------------
 ABOUT ENCODINGS
 -------------------------------------------------------
-If you are using native characters instead of Unicode
-numerical character entities, be sure to set the
+If possible, please encode your locale file into UTF-8
+(or convert it to UTF-8 before submitting it).  You can
+use either "real" Unicode characters or Unicode
+numerical character entities (hexadecimal or decimal)
+
+But if that is not possible, please be sure to set the
 correct value for the file's encoding in the XML
 prolog. For example,
 
   <?xml version='1.0' encoding="EUC-JP"?>
+
+A DocBook developer will then attempt to convert the
+file encoding to UTF-8 before checking it into the
+project source-code repository.
 
 -------------------------------------------------------
 SUBMITTING A NEW OR CHANGED LOCALE FILE
@@ -127,7 +135,7 @@ But If you want more info, read on.
 -------------------------------------------------------
                 BACKGROUND INFORMATION
 -------------------------------------------------------
-The purpose of these files is to provie localizations
+The purpose of these files is to provide localizations
 of certain text used in output from the DocBook
 stylesheets. The files are used in building both the
 DSSSL and XSL stylesheet distributions.
