@@ -695,9 +695,9 @@ lang="en</template>
 
 <context name="glossary">
 
-<template name="see">&#1042;&#1080;&#1076;&#1080; </template>
+<template name="see">&#1042;&#1080;&#1076;&#1080; %t</template>
 <template name="seealso">&#1042;&#1080;&#1076;&#1080; 
-&#1090;&#1072;&#1082;&#1086;&#1106;&#1077; </template>
+&#1090;&#1072;&#1082;&#1086;&#1106;&#1077; %t</template>
 
 </context>
 

@@ -599,12 +599,8 @@
     </template>
   </context>
   <context name="glossary">
-    <template name="see">
-      <GlossSee/>
-    </template>
-    <template name="seealso">
-      <GlossSeeAlso/>
-    </template>
+    <template name="see"><GlossSee/> %t</template>
+    <template name="seealso"><GlossSeeAlso/> %t</template>
   </context>
   <context name="msgset">
     <template name="MsgAud">
