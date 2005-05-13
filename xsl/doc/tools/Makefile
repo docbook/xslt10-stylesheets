@@ -5,7 +5,7 @@ VPATH=../../docsrc/tools
 
 HTMLFILES = profiling.html
 
-all: $(HTMLFILES) profile-chain.png 
+all: profile-chain.png $(HTMLFILES)
 
 %.html : %.xml $(STYLE)
 	$(XSLT) $< $(STYLE) $@
