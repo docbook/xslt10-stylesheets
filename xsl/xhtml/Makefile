@@ -25,3 +25,5 @@ profile-chunk.xsl: chunk.xsl ../profiling/xsl2profile.xsl
 profile-onechunk.xsl: onechunk.xsl ../profiling/xsl2profile.xsl
 	$(XSLT) $< ../profiling/xsl2profile.xsl $@
 
+clean: remove-old
+	rm -rf profile-docbook.xsl profile-chunk.xsl profile-onechunk.xsl
