@@ -20,3 +20,6 @@ lib.xsl: lib.xweb
 	$(XSLT) $(PARAMPROF) ../profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
 	$(XSLT) $(PARAMSTRIP) ../../litprog/xtangle.xsl $@
 	$(RM) $(PARAMPROF) $(PARAMSTRIP)
+
+clean:
+	rm -f lib.html lib.xml lib.xsl
