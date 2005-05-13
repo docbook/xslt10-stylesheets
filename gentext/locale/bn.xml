@@ -549,10 +549,10 @@
 </context>
 
 <context name="htmlhelp">
-<template name="langcode"> 0x0439 Bangla (Bangladesh and India)</template>
+<template name="langcode">0x0439 Bangla (Bangladesh and India)</template>
+<!-- 0x0439 is actually the langcode of HIndi. As there is no htmlhelp
+     langcode for Bangla at this moment, Hindi's code has been used as
+     Hindi is the nearest language to have an htmlhelp langcode -->
 </context>
-
-<!-- 0x0439 is actually the langcode of HIndi. As there is no htmlhelp langcode for Bangla at this moment, Hindi's code has been 
-   used as Hindi is the nearest language to have an htmlhelp langcode -->
 
 </locale>

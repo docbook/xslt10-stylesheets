@@ -574,7 +574,7 @@
 </context>
 
 <context name="htmlhelp">
-<template name="langcode">0x0409 English (UNITED STATES)</template>
+<template name="langcode">0x0439 Hindi</template>
 </context>
 
 </locale>
