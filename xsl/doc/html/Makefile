@@ -12,6 +12,7 @@ all: $(HTMLFILES)
 
 param.html: param.xml
 	$(XSLT) $< ../../docsrc/clrefentry.xsl
+	touch param.html
 
 clean:
 	rm -f *.html
