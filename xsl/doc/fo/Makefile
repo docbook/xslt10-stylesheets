@@ -4,6 +4,7 @@ STYLE=../jrefhtml.xsl
 VPATH=../../docsrc/fo
 
 HTMLFILES = param.html table.html
+PARAMFILES = $(foreach file,$(basename $(shell find ../../params/*.xml)),$(file).html)
 
 all: $(HTMLFILES)
 
@@ -15,3 +16,4 @@ param.html: param.xml
 
 clean:
 	rm -f $(HTMLFILES)
+	rm -f $(PARAMFILES)
