@@ -479,6 +479,11 @@
   <xsl:param name="terms" select="."/>
   <xsl:param name="maxlength" select="-1"/>
 
+  <!-- Process out any indexterms in the term -->
+  <xsl:variable name="term.text">
+    <xsl:apply-templates select="$terms[1]"/>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="$longest &gt; $maxlength and $maxlength &gt; 0">
       <xsl:value-of select="$maxlength"/>
@@ -486,10 +491,10 @@
     <xsl:when test="not($terms)">
       <xsl:value-of select="$longest"/>
     </xsl:when>
-    <xsl:when test="string-length($terms[1]/node()[not(indexterm)]) &gt; $longest">
+    <xsl:when test="string-length($term.text) &gt; $longest">
       <xsl:call-template name="longest.term">
         <xsl:with-param name="longest" 
-            select="string-length($terms[1]/node()[not(indexterm)])"/>
+            select="string-length($term.text)"/>
         <xsl:with-param name="maxlength" select="$maxlength"/>
         <xsl:with-param name="terms" select="$terms[position() &gt; 1]"/>
       </xsl:call-template>
