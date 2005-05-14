@@ -2,16 +2,16 @@ XSLT=../cvstools/saxon
 XJPARSE=../cvstools/xjparse
 
 SOURCES=af.xml bg.xml bn.xml bs.xml ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml \
-	et.xml fa.xml fi.xml fr.xml gu.xml hi.xml hu.xml id.xml it.xml ja.xml ko.xml lt.xml \
-	nl.xml no.xml pa.xml pl.xml pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml \
+	et.xml fa.xml fi.xml fr.xml ga.xml gu.xml hi.xml hu.xml id.xml it.xml ja.xml ko.xml \
+	lt.xml nl.xml no.xml pa.xml pl.xml pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml \
 	sq.xml sr.xml sr_Latn.xml sv.xml ta.xml tr.xml zh_cn.xml zh_tw.xml
 
 DSSSLENT=dbl1af.ent dbl1bg.ent dbl1bn.ent dbl1bs.ent dbl1ca.ent dbl1cs.ent dbl1da.ent \
-	 dbl1de.ent dbl1el.ent dbl1en.ent dbl1es.ent dbl1et.ent dbl1fa.ent dbl1fi.ent \
-	 dbl1fr.ent dblgu.ent dbl1hi.ent dbl1hu.ent dbl1id.ent dbl1it.ent dbl1ja.ent dbl1ko.ent \
-         dbl1lt.ent dbl1nl.ent dbl1no.ent dbl1pa.ent dbl1pl.ent dbl1pt.ent dbl1ro.ent \
-         dbl1ru.ent dbl1sk.ent dbl1sl.ent dbl1sq.ent dbl1sr.ent dbl1srLatn.ent dbl1sv.ent \
-         dbl1ta.ent dbl1ptbr.ent dbl1zhcn.ent dbl1zhtw.ent
+	dbl1de.ent dbl1el.ent dbl1en.ent dbl1es.ent dbl1et.ent dbl1fa.ent dbl1fi.ent \
+	dbl1fr.ent dblga.ent dblgu.ent dbl1hi.ent dbl1hu.ent dbl1id.ent dbl1it.ent dbl1ja.ent \
+	dbl1ko.ent dbl1lt.ent dbl1nl.ent dbl1no.ent dbl1pa.ent dbl1pl.ent dbl1pt.ent dbl1ro.ent \
+	dbl1ru.ent dbl1sk.ent dbl1sl.ent dbl1sq.ent dbl1sr.ent dbl1srLatn.ent dbl1sv.ent \
+dbl1ta.ent dbl1ptbr.ent dbl1zhcn.ent dbl1zhtw.ent
 
 all:
 	@echo ""
@@ -37,6 +37,7 @@ dbl1et.ent: locale/et.xml
 dbl1fa.ent: locale/fa.xml
 dbl1fi.ent: locale/fi.xml
 dbl1fr.ent: locale/fr.xml
+dbl1ga.ent: locale/ga.xml
 dbl1gu.ent: locale/gu.xml
 dbl1hi.ent: locale/hi.xml
 dbl1hu.ent: locale/hu.xml
