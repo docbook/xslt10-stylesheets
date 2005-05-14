@@ -2,8 +2,8 @@ include ../../cvstools/Makefile.incl
 
 SOURCES=af.xml ar.xml bg.xml bn.xml bs.xml \
         ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml et.xml eu.xml fa.xml \
-        fi.xml fr.xml gu.xml hi.xml he.xml hu.xml id.xml it.xml ja.xml ko.xml \
-        lt.xml nl.xml nn.xml no.xml pa.xml pl.xml hr.xml la.xml \
+        fi.xml fr.xml ga.xml gu.xml hi.xml he.xml hu.xml id.xml it.xml ja.xml \
+        ko.xml lt.xml nl.xml nn.xml no.xml pa.xml pl.xml hr.xml la.xml \
         pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sq.xml sr.xml sr_Latn.xml \
         sv.xml ta.xml th.xml tr.xml uk.xml vi.xml xh.xml zh_cn.xml zh_tw.xml
 
@@ -28,6 +28,7 @@ eu.xml: ../../gentext/locale/eu.xml $(GENSTYLE)
 fa.xml: ../../gentext/locale/fa.xml $(GENSTYLE)
 fi.xml: ../../gentext/locale/fi.xml $(GENSTYLE)
 fr.xml: ../../gentext/locale/fr.xml $(GENSTYLE)
+ga.xml: ../../gentext/locale/ga.xml $(GENSTYLE)
 gu.xml: ../../gentext/locale/gu.xml $(GENSTYLE)
 he.xml: ../../gentext/locale/he.xml $(GENSTYLE)
 hi.xml: ../../gentext/locale/hi.xml $(GENSTYLE)
