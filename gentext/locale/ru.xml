@@ -10,14 +10,12 @@
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo xmlns="">
-<!-- 
 <authorgroup>
     <author><firstname>Vitaly</firstname><surname>Ostanin</surname>
           <affiliation><address><email>vyt@vzljot.ru</email></address>
           </affiliation>
   </author>
 </authorgroup>
--->
 </doc:localeinfo>
 
 <gentext key="Abstract" text="&Acy;&ncy;&ncy;&ocy;&tcy;&acy;&tscy;&icy;&yacy;"/>

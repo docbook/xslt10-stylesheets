@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- there is no doctype for these files, they are WF only -->
 <locale language="fa" english-language-name="Farsi" xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
-  <doc:localeinfo xmlns="http://docbook.org/docbook-ng">
+  <doc:localeinfo xmlns="">
     <authorgroup>
       <author>
         <firstname>Sina</firstname>

@@ -6,10 +6,6 @@
 
 <doc:localeinfo xmlns="">
 <authorgroup>
-  <author><firstname>Norman</firstname><surname>Walsh</surname>
-          <affiliation><address><email>ndw@nwalsh.com</email></address>
-          </affiliation>
-  </author>
   <author><firstname>Bernd</firstname><surname>Groh</surname>
           <affiliation><address><email>bgroh@redhat.com</email></address>
           </affiliation>

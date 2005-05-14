@@ -5,14 +5,12 @@
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo xmlns="">
-<!-- FIXME: list the real contributors
 <authorgroup>
-  <author><firstname>Norman</firstname><surname>Walsh</surname>
-          <affiliation><address><email>ndw@nwalsh.com</email></address>
+  <author><firstname>Larsson</firstname><surname>Daniel</surname>
+          <affiliation><address><email>Daniel.Larsson@servicefactory.se</email></address>
           </affiliation>
   </author>
 </authorgroup>
--->
 </doc:localeinfo>
 
 <gentext key="Abstract" text="Sammanfattning"/>
