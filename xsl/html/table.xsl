@@ -683,6 +683,10 @@
                           or ancestor-or-self::tbody/preceding-sibling::tfoot)">
         <xsl:value-of select="0"/>
       </xsl:when>
+      <xsl:when test="@morerows and not(@morerows &lt; 
+                 count(ancestor-or-self::row[1]/following-sibling::row))">
+        <xsl:value-of select="0"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="inherited.table.attribute">
           <xsl:with-param name="entry" select="."/>
