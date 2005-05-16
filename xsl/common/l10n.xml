@@ -2,11 +2,13 @@
 <!DOCTYPE l:i18n SYSTEM "l10n.dtd" [
 <!ENTITY af SYSTEM "af.xml">
 <!ENTITY ar SYSTEM "ar.xml">
+<!ENTITY az SYSTEM "az.xml">
 <!ENTITY bg SYSTEM "bg.xml">
 <!ENTITY bn SYSTEM "bn.xml">
 <!ENTITY bs SYSTEM "bs.xml">
 <!ENTITY ca SYSTEM "ca.xml">
 <!ENTITY cs SYSTEM "cs.xml">
+<!ENTITY cy SYSTEM "cy.xml">
 <!ENTITY da SYSTEM "da.xml">
 <!ENTITY de SYSTEM "de.xml">
 <!ENTITY el SYSTEM "el.xml">
@@ -17,7 +19,10 @@
 <!ENTITY fa SYSTEM "fa.xml">
 <!ENTITY fi SYSTEM "fi.xml">
 <!ENTITY fr SYSTEM "fr.xml">
+<!ENTITY ga SYSTEM "ga.xml">
+<!ENTITY gu SYSTEM "gu.xml">
 <!ENTITY he SYSTEM "he.xml">
+<!ENTITY hi SYSTEM "hi.xml">
 <!ENTITY hr SYSTEM "hr.xml">
 <!ENTITY hu SYSTEM "hu.xml">
 <!ENTITY id SYSTEM "id.xml">
@@ -29,6 +34,8 @@
 <!ENTITY nl SYSTEM "nl.xml">
 <!ENTITY nn SYSTEM "nn.xml">
 <!ENTITY no SYSTEM "no.xml">
+<!ENTITY or SYSTEM "or.xml">
+<!ENTITY pa SYSTEM "pa.xml">
 <!ENTITY pl SYSTEM "pl.xml">
 <!ENTITY pt SYSTEM "pt.xml">
 <!ENTITY pt_br SYSTEM "pt_br.xml">
@@ -36,9 +43,11 @@
 <!ENTITY ru SYSTEM "ru.xml">
 <!ENTITY sk SYSTEM "sk.xml">
 <!ENTITY sl SYSTEM "sl.xml">
+<!ENTITY sq SYSTEM "sq.xml">
 <!ENTITY sr SYSTEM "sr.xml">
 <!ENTITY sr_Latn SYSTEM "sr_Latn.xml">
 <!ENTITY sv SYSTEM "sv.xml">
+<!ENTITY ta SYSTEM "ta.xml">
 <!ENTITY th SYSTEM "th.xml">
 <!ENTITY tr SYSTEM "tr.xml">
 <!ENTITY uk SYSTEM "uk.xml">
@@ -50,11 +59,13 @@
 <l:i18n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
 &af;
 &ar;
+&az;
 &bg;
 &bn;
 &bs;
 &ca;
 &cs;
+&cy;
 &da;
 &de;
 &el;
@@ -65,6 +76,8 @@
 &fa;
 &fi;
 &fr;
+&ga;
+&gu;
 &he;
 &hr;
 &hu;
@@ -77,6 +90,8 @@
 &nl;
 &nn;
 &no;
+&or;
+&pa;
 &pl;
 &pt;
 &pt_br;
@@ -84,9 +99,11 @@
 &ru;
 &sk;
 &sl;
+&sq;
 &sr;
 &sr_Latn;
 &sv;
+&ta;
 &th;
 &tr;
 &uk;
