@@ -356,7 +356,7 @@
   <xsl:variable name="object" select="$olist[position() = $object.index]"/>
 
   <xsl:variable name="align">
-    <xsl:value-of select="$object/imagedata[@align][1]/@align"/>
+    <xsl:value-of select="$object/descendant::imagedata[@align][1]/@align"/>
   </xsl:variable>
 
   <xsl:variable name="id">
