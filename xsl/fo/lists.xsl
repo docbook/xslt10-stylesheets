@@ -1107,7 +1107,9 @@
   <xsl:call-template name="object.id"/>
   </xsl:variable>
 
-  <fo:block id="{$id}">
+  <fo:block id="{$id}"
+            text-align="{$alignment}">
+    <!-- The above restores alignment altered by image align attribute -->
     <xsl:if test="title">
       <xsl:apply-templates select="title" mode="list.title.mode"/>
     </xsl:if>

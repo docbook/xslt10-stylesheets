@@ -258,9 +258,9 @@
 
   <!-- Get align value from internal mediaobject -->
   <xsl:variable name="align">
-    <xsl:if test="mediaobject">
+    <xsl:if test="mediaobject|mediaobjectco">
       <xsl:variable name="olist" select="mediaobject/imageobject
-                     |mediaobject/imageobjectco
+                     |mediaobjectco/imageobjectco
                      |mediaobject/videoobject
                      |mediaobject/audioobject
                      |mediaobject/textobject"/>
@@ -274,7 +274,7 @@
 
       <xsl:variable name="object" select="$olist[position() = $object.index]"/>
 
-      <xsl:value-of select="$object/imagedata[@align][1]/@align"/>
+      <xsl:value-of select="$object/descendant::imagedata[@align][1]/@align"/>
     </xsl:if>
   </xsl:variable>
 
