@@ -180,8 +180,8 @@
 <gentext key="sectioncalled" text="yr adran o'r enw"/>
 <gentext key="index symbols" text="Symbolau"/>
 
-<gentext key="lowercase.alpha" text="abcchdddefffgnghilllmnopphrrhstthuwy"/>
-<gentext key="uppercase.alpha" text="ABCCHDDDEFFGNGHILLLMNOPPHRRHSTTHUWY"/>
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
