@@ -10,30 +10,30 @@
 <title lang="en">Swedish</title>
 
 <para lang="sv">
-DocBook &auml;r en <ulink url="http://www.ucc.ie/xml/#doctype">
+DocBook &#xE4;r en <ulink url="http://www.ucc.ie/xml/#doctype">
 Dokument Typ Definition</ulink> (DTD) utvecklad av <ulink
 url="mailto:docbook-tc@oasis-open.org">DocBooks tekiska
-kommitt&eacute;</ulink> p&aring; <ulink
+kommitt&#xE9;</ulink> p&#xE5; <ulink
 url="http://www.oasis-open.org/">OASIS</ulink>.
-Den &auml;r s&auml;rskillt v&auml; l&auml;mpad f&ouml;r b&ouml;cker och
-artiklar om dator h&aring;rdvara och mjukvara. (Den &auml;r dock inte
-begr&auml;nsad till dessa anv&auml;ndningsomr&aring;den).
+Den &#xE4;r s&#xE4;rskillt v&#xE4; l&#xE4;mpad f&#xF6;r b&#xF6;cker och
+artiklar om dator h&#xE5;rdvara och mjukvara. (Den &#xE4;r dock inte
+begr&#xE4;nsad till dessa anv&#xE4;ndningsomr&#xE5;den).
 </para>
 
 <para lang="sv">
-Eftersom det &auml;r en stor och robust DTD, och eftersom huvudstrukturen
-&ouml;verenst&auml;mmer med vad som i allm&auml;nnhet innefattar en
-<quote>bok</quote>, s&aring; har DocBook blivit anv&auml;nd av en
-stor och v&auml;xande f&ouml;rsamling f&ouml;rfattare som skriver
-alla m&ouml;jliga typer av dokument.
-DocBook har <quote>out of the box</quote> st&ouml;d av flera
-komersiella verktyg, och det finns ett snabbt v&auml;xande st&ouml;d
-i flera milj&ouml;er som anv&auml;nder fri mjukvara.
-Dessa egenskaper har kombinerats f&ouml;r att g&ouml;ra DocBook en
-l&auml;tt f&ouml;rst&aring;lig, brett anv&auml;ndbar och popul&auml;r DTD.
-Dussintals organisationer anv&auml;nder DocBook f&ouml;r milliontals sidor
-dokumentation, i olika tryck och online format, &ouml;ver hela
-v&auml;rlden.
+Eftersom det &#xE4;r en stor och robust DTD, och eftersom huvudstrukturen
+&#xF6;verenst&#xE4;mmer med vad som i allm&#xE4;nnhet innefattar en
+<quote>bok</quote>, s&#xE5; har DocBook blivit anv&#xE4;nd av en
+stor och v&#xE4;xande f&#xF6;rsamling f&#xF6;rfattare som skriver
+alla m&#xF6;jliga typer av dokument.
+DocBook har <quote>out of the box</quote> st&#xF6;d av flera
+komersiella verktyg, och det finns ett snabbt v&#xE4;xande st&#xF6;d
+i flera milj&#xF6;er som anv&#xE4;nder fri mjukvara.
+Dessa egenskaper har kombinerats f&#xF6;r att g&#xF6;ra DocBook en
+l&#xE4;tt f&#xF6;rst&#xE5;lig, brett anv&#xE4;ndbar och popul&#xE4;r DTD.
+Dussintals organisationer anv&#xE4;nder DocBook f&#xF6;r milliontals sidor
+dokumentation, i olika tryck och online format, &#xF6;ver hela
+v&#xE4;rlden.
 </para>
 
 </chapter>
