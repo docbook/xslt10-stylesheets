@@ -6,6 +6,9 @@ include ../../cvstools/Makefile.incl
 XSLHTML=../../xsl/html/docbook.xsl
 XSLFO=i18n-fo.xsl
 XSLCHUNK=../../xsl/html/chunk.xsl
+LOCALESDIR=../../gentext/locale
+WGET=wget
+XSLTPROC=xsltproc
 
 CHUNK=0
 USETIDY=1
@@ -13,26 +16,48 @@ XSLPARAM=
 
 FORMATTER=xep
 
-XMLFILES=book.xml af.xml ar.xml ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml \
+XMLFILES=af.xml ar.xml ca.xml cs.xml da.xml de.xml el.xml en.xml es.xml \
   et.xml eu.xml fi.xml fr.xml he.xml hu.xml id.xml it.xml ja.xml ko.xml \
   lt.xml nl.xml nn.xml no.xml pl.xml pt.xml pt_br.xml ro.xml ru.xml \
   sk.xml sl.xml sr.xml sv.xml th.xml tr.xml uk.xml vi.xml xh.xml \
   zh_cn.xml zh_tw.xml
 
+HTMLFILES = $(foreach file,$(XMLFILES),$(basename $(file)).html)
+
 all: book.html book.pdf
 
-book.html: $(XMLFILES)
+book.html: book.xml $(XMLFILES)
 
-book.pdf: $(XMLFILES) titlepage-fo.xsl $(XSLFO)
+book.pdf: book.xml $(XMLFILES) titlepage-fo.xsl $(XSLFO)
+
+locales: translators.xml combined.xml $(HTMLFILES) source.xml
+
+translators.xml: localefiles.xml
+	$(XSLT) $< translators.xsl $@
+
+combined.xml: translators.xml source.xml
+	$(XSLTPROC) --xinclude identity.xsl source.xml > combined.xml
 
 titlepage-fo.xsl: titlepage-fo.xml
 	$(XSLT) $< ../../xsl/template/titlepage.xsl $@
 
 clean:
 	rm -f *.html *.htm *.fo *.pdf *.ps *.rtf
-	rm -f *.log *.aux *.out *.tex *.dvi
+
+localefiles.xml:
+	echo "<localefiles>" >> $@
+	for file in $$(find $(LOCALESDIR)/*.xml); do \
+	  echo "  <file path='$$file'/>" >> localefiles.xml; \
+	done
+	echo "</localefiles>" >> $@
 
 ######################################################################
+
+%.html: %.xml combined.xml
+	$(XSLT) combined.xml localize.xsl -output $@\
+	l10n.gentext.default.language=$(notdir $(basename $<)) \
+	blurb-file=$(notdir $<) \
+	locale-file=$(LOCALESDIR)/$(notdir $<) \
 
 .xml.html:
 	$(XJPARSE) $<
