@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
 
-<!--  XML Catalog file for DocBook Website -->
+<!--  XML Catalog file for DocBook Slides -->
 
 <rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/slides/current/schema/"
             rewritePrefix="schema/"/>
@@ -15,10 +15,10 @@
 <rewriteURI uriStartString="http://docbook.sourceforge.net/release/slides/3.4.0/xsl/"
             rewritePrefix="xsl/"/>
 
-<!-- the following are for older versions of Website DTD; the DTD is -->
+<!-- the following are for older versions of Slides DTD; the DTD is -->
 <!-- backward compatible, so we just remap the older URIs to the local URI -->
 <!-- of the current version; otherwise, users would need to manually change -->
-<!-- the URIs in all their existing Website document instances -->
+<!-- the URIs in all their existing Slides document instances -->
 
 <rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/slides/3.3.1/schema/"
             rewritePrefix="schema/"/>
