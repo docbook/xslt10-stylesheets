@@ -6,42 +6,28 @@
 <xsl:template match="para[ancestor::listitem or ancestor::step]|
 	             simpara[ancestor::listitem or ancestor::step]|
 		     remark[ancestor::listitem or ancestor::step]">
-  <xsl:for-each select="node()">
-    <xsl:choose>
-      <xsl:when test="self::literallayout|self::screen|self::programlisting|
-		      self::itemizedlist|self::orderedlist|self::variablelist|
-		      self::simplelist">
-        <xsl:text>&#10;</xsl:text>
-        <xsl:apply-templates select="."/>
-      </xsl:when>
-      <xsl:when test="self::text()">
-	<xsl:if test="starts-with(translate(.,'&#10;',' '), ' ') and
-		      preceding-sibling::node()[name(.)!='']">
-	  <xsl:text> </xsl:text>
-	</xsl:if>
-        <xsl:variable name="content">
-	  <xsl:apply-templates select="."/>
-	</xsl:variable>
-	<xsl:value-of select="normalize-space($content)"/>
-	<xsl:if
-        test="translate(substring(., string-length(.), 1),'&#10;',' ') = ' '
-	      and following-sibling::node()[name(.)!='']">
-	  <xsl:text> </xsl:text>
-	</xsl:if>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:variable name="content">
-          <xsl:apply-templates select="."/>
-        </xsl:variable>
-        <xsl:value-of select="normalize-space($content)"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:for-each>
+  <xsl:call-template name="mixed-block"/>
   <xsl:text>&#10;</xsl:text>
 
   <xsl:if test="following-sibling::para or
 	  following-sibling::simpara or
 	  following-sibling::remark">
+    <!-- Make sure multiple paragraphs within a list item don't -->
+    <!-- merge together.                                        -->
+    <xsl:text>&#10;</xsl:text>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="simpara[ancestor::listitem or ancestor::step]|
+		     remark[ancestor::listitem or ancestor::step]">
+  <xsl:variable name="content">
+    <xsl:apply-templates/>
+  </xsl:variable>
+  <xsl:value-of select="normalize-space($content)"/>
+  <xsl:text>&#10;</xsl:text>
+  <xsl:if test="following-sibling::para or
+		following-sibling::simpara or
+		following-sibling::remark">
     <!-- Make sure multiple paragraphs within a list item don't -->
     <!-- merge together.                                        -->
     <xsl:text>&#10;</xsl:text>

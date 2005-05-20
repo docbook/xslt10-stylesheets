@@ -1,14 +1,16 @@
 <?xml version='1.0'?>
-<!-- vim:set sts=2 shiftwidth=2 syntax=sgml: -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version='1.0'>
+
+  <!-- the synopsis element is a verbatim environment; you won't find any -->
+  <!-- code for handling it here -->
 
 <xsl:template match="synopfragment">
 <xsl:text>.PP&#10;</xsl:text>
 <xsl:apply-templates/>
 </xsl:template>
 <!--
-  there's a bug were an <arg> that's not inside a <group> isn't made bold
+  there's a bug where an <arg> that's not inside a <group> isn't made bold
 -->
 
 <xsl:template match="group|arg">
@@ -127,12 +129,6 @@
   <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>.ad&#10;.hy&#10;</xsl:text>
-</xsl:template>
-
-<xsl:template match="synopsis">
-  <xsl:text>.nf&#10;</xsl:text>
-  <xsl:apply-templates/>
-  <xsl:text>.fi&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="void">
