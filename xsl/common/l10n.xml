@@ -28,6 +28,7 @@
 <!ENTITY id SYSTEM "id.xml">
 <!ENTITY it SYSTEM "it.xml">
 <!ENTITY ja SYSTEM "ja.xml">
+<!ENTITY ko SYSTEM "kn.xml">
 <!ENTITY ko SYSTEM "ko.xml">
 <!ENTITY la SYSTEM "la.xml">
 <!ENTITY lit SYSTEM "lt.xml">
@@ -86,6 +87,7 @@
 &id;
 &it;
 &ja;
+&kn;
 &ko;
 &la;
 &lit;
