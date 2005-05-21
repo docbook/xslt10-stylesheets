@@ -91,13 +91,13 @@
       <xsl:when test="self::address|self::literallayout|self::programlisting|
 		      self::screen|self::synopsis">
 	<!-- Check to see if this node is a verbatim environment. -->
-	<!-- If so, put line breaks before and after it. -->
+	<!-- If so, put a line break before it. -->
 	
 	<!-- Yes, address and synopsis are vertabim environments. -->
 	
 	<!-- The code here previously also treated informaltable as a -->
 	<!-- verbatim, presumably to support some kludge; I removed it -->
-	<xsl:text> &#10;</xsl:text>
+	<xsl:text>&#10;</xsl:text>
         <xsl:apply-templates select="."/>
 	<!-- we don't need an extra line break after verbatim environments
         <xsl:text> &#10;</xsl:text>
@@ -106,8 +106,8 @@
       <xsl:when test="self::itemizedlist|self::orderedlist|
 		      self::variablelist|self::simplelist">
 	<!-- Check to see if this node is a list; if so, -->
-	<!-- put line breaks before and after it. -->
-        <xsl:text> &#10;</xsl:text>
+	<!-- put a line break before it. -->
+        <xsl:text>&#10;</xsl:text>
         <xsl:apply-templates select="."/>
 	<!-- we don't need an extra line break after lists
         <xsl:text> &#10;</xsl:text>
@@ -123,17 +123,28 @@
 	<!-- source. But it ensures the whitespace around text nodes in mixed -->
 	<!-- content gets preserved; without the hack, that whitespace -->
 	<!-- effectively gets gobbled. -->
-	<xsl:if test="starts-with(translate(.,'&#9;&#10;&#13; ','    '),
-		      ' ') and preceding-sibling::node()[name(.)!='']">
-	  <xsl:text> &#10;</xsl:text>
-	</xsl:if>
+
+	<!-- Note the last part of the two tests below; if the node is just -->
+	<!-- space, we just pass it through without doing our special magic -->
+	<!-- on it. -->
+	
+	<!-- There must be a better way to do with this...  -->
         <xsl:variable name="content">
 	  <xsl:apply-templates select="."/>
 	</xsl:variable>
+	<xsl:if
+	    test="starts-with(translate(.,'&#9;&#10;&#13; ','    '), ' ')
+		  and preceding-sibling::node()[name(.)!='']
+		  and normalize-space($content) != ''
+		  ">
+	  <xsl:text> &#10;</xsl:text>
+	</xsl:if>
 	<xsl:value-of select="normalize-space($content)"/>
 	<xsl:if
-	    test="translate(substring(., string-length(.), 1),'&#x9;&#10;&#13; ','    ')
-		  = ' ' and following-sibling::node()[name(.)!='']">
+	    test="translate(substring(., string-length(.), 1),'&#x9;&#10;&#13; ','    ')  = ' '
+		  and following-sibling::node()[name(.)!='']
+		  and normalize-space($content) != ''
+		  ">
 	  <xsl:text> &#10;</xsl:text>
 	</xsl:if>
       </xsl:when>
