@@ -61,11 +61,12 @@
     <xsl:apply-templates/>
   </xsl:variable>
   <xsl:value-of select="normalize-space($content)"/>
+  <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="varlistentry/listitem|glossdef">
-  <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
+  <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="itemizedlist/listitem">
