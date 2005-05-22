@@ -124,9 +124,8 @@
 	<!-- content gets preserved; without the hack, that whitespace -->
 	<!-- effectively gets gobbled. -->
 
-	<!-- Note the last part of the two tests below; if the node is just -->
-	<!-- space, we just pass it through without doing our special magic -->
-	<!-- on it. -->
+	<!-- Note if the node is just space, we just pass it through -->
+	<!-- without (re)adding a line break. -->
 	
 	<!-- There must be a better way to do with this...  -->
         <xsl:variable name="content">
@@ -143,9 +142,11 @@
 	<xsl:if
 	    test="translate(substring(., string-length(.), 1),'&#x9;&#10;&#13; ','    ')  = ' '
 		  and following-sibling::node()[name(.)!='']
-		  and normalize-space($content) != ''
 		  ">
-	  <xsl:text> &#10;</xsl:text>
+	  <xsl:text> </xsl:text>
+	  <xsl:if test="normalize-space($content) != ''">
+	    <xsl:text>&#10;</xsl:text>
+	  </xsl:if>
 	</xsl:if>
       </xsl:when>
       <xsl:otherwise>
