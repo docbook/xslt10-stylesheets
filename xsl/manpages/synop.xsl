@@ -54,7 +54,7 @@
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:value-of select="normalize-space($arg)"/>
+      <xsl:value-of select="$arg"/>
     </xsl:otherwise>
   </xsl:choose>
   <xsl:choose>
@@ -118,6 +118,7 @@
 </xsl:template>
 
 <xsl:template match="sbr">
+  <xsl:text>&#10;</xsl:text>
   <xsl:text>.br&#10;</xsl:text>
 </xsl:template>
 
@@ -128,6 +129,7 @@
   <xsl:value-of select="string-length (normalize-space (command)) + 1"/>
   <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
+  <xsl:text>&#10;</xsl:text>
   <xsl:text>.ad&#10;.hy&#10;</xsl:text>
 </xsl:template>
 
@@ -142,6 +144,7 @@
 <xsl:template match="funcsynopsisinfo">
   <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
+  <xsl:text>&#10;</xsl:text>
   <xsl:text>.sp&#10;</xsl:text>
 </xsl:template>
 
