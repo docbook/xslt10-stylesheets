@@ -10,6 +10,7 @@
   <year>2000</year>
   <year>2001</year>
   <year>2002</year>
+  <year>2005</year>
   <holder>Norman Walsh</holder>
 </copyright>
 </bookinfo>
@@ -348,7 +349,7 @@ number.
 <literal>em</literal>. It relies on the default <parameter>em.size</parameter>
 which is initially <literal>10</literal> (for 10pt).</para>
 
-<para>Similarly, converting pixesl to points relies on the
+<para>Similarly, converting pixels to points relies on the
 <parameter>pixels.per.inch</parameter> parameter which is initially
 <literal>90</literal>.
 </para>
@@ -624,6 +625,99 @@ by <function>comment-escape-string</function>.</para>
 </refsect1>
 </refentry>
 
+<!-- ================================================================== -->
+
+<refentry id="str.tokenize.keep.delimiters">
+<refnamediv>
+<refname>str.tokenize.keep.delimiters</refname>
+<refpurpose>Tokenize a string while preserving any delimiters</refpurpose>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
+<para>Based on the occurrence of one or more delimiter characters,
+this function breaks a string into a list of tokens and delimiters,
+marking up each of the tokens with a <sgmltag>token</sgmltag> element
+and preserving the delimiters as text nodes between the tokens.</para>
+
+<note>
+  <para>This function is a very slightly modified version of a
+  function from the <ulink url="http://www.exslt.org/">EXSLT
+  site</ulink>. The original is available at:
+
+  <blockquote><para><ulink url="http://www.exslt.org/str/functions/tokenize/str.tokenize.template.xsl"/></para></blockquote>
+
+  The <function>str.tokenize.keep.delimiters</function> function
+  differs only in that it preserves the delimiters instead of
+  discarding them.</para>
+</note>
+
+<programlisting><src:fragment id='str.tokenize.keep.delimiters.frag'>
+
+  <xsl:template name="str.tokenize.keep.delimiters">
+    <xsl:param name="string" select="''" />
+    <xsl:param name="delimiters" select="' '" />
+    <xsl:choose>
+      <xsl:when test="not($string)" />
+      <xsl:when test="not($delimiters)">
+	<xsl:call-template name="str.tokenize.keep.delimiters-characters">
+	  <xsl:with-param name="string" select="$string" />
+	</xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:call-template name="str.tokenize.keep.delimiters-delimiters">
+	  <xsl:with-param name="string" select="$string" />
+	  <xsl:with-param name="delimiters" select="$delimiters" />
+	</xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  
+  <xsl:template name="str.tokenize.keep.delimiters-characters">
+    <xsl:param name="string" />
+    <xsl:if test="$string">
+      <token><xsl:value-of select="substring($string, 1, 1)" /></token>
+      <xsl:call-template name="str.tokenize.keep.delimiters-characters">
+	<xsl:with-param name="string" select="substring($string, 2)" />
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>
+  
+  <xsl:template name="str.tokenize.keep.delimiters-delimiters">
+    <xsl:param name="string" />
+    <xsl:param name="delimiters" />
+    <xsl:variable name="delimiter" select="substring($delimiters, 1, 1)" />
+    <xsl:choose>
+      <xsl:when test="not($delimiter)">
+	<token><xsl:value-of select="$string" /></token>
+      </xsl:when>
+      <xsl:when test="contains($string, $delimiter)">
+	<xsl:if test="not(starts-with($string, $delimiter))">
+	  <xsl:call-template name="str.tokenize.keep.delimiters-delimiters">
+	    <xsl:with-param name="string" select="substring-before($string, $delimiter)" />
+	    <xsl:with-param name="delimiters" select="substring($delimiters, 2)" />
+	  </xsl:call-template>
+	</xsl:if>
+	<!-- output each delimiter -->
+	<xsl:value-of select="$delimiter"/>
+	<xsl:call-template name="str.tokenize.keep.delimiters-delimiters">
+	  <xsl:with-param name="string" select="substring-after($string, $delimiter)" />
+	  <xsl:with-param name="delimiters" select="$delimiters" />
+	</xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:call-template name="str.tokenize.keep.delimiters-delimiters">
+	  <xsl:with-param name="string" select="$string" />
+	  <xsl:with-param name="delimiters" select="substring($delimiters, 2)" />
+	</xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+</src:fragment></programlisting>
+
+</refsect1>
+</refentry>
+
 </reference>
 
 <reference>
@@ -764,6 +858,7 @@ around these functions.</para>
 <src:fragref linkend="comment-escape-string.recursive"/>
 <src:fragref linkend="count.uri.path.depth.frag"/>
 <src:fragref linkend="trim.common.uri.paths.frag"/>
+<src:fragref linkend="str.tokenize.keep.delimiters.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>
