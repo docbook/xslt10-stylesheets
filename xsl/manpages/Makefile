@@ -1,16 +1,18 @@
-XSLT=../../cvstools/saxon
-XJPARSE=../../cvstools/xjparse
+include ../../cvstools/Makefile.incl
 
 PARAMPROF=.param.profiled
 PARAMSTRIP=.param.stripped
 
 include Makefile.param
 
-all: param.xsl profile-docbook.xsl
+all: xref.xsl param.xsl profile-docbook.xsl
 
 xml: param.xml
 
 html: param.html
+
+xref.xsl: ../html/xref.xsl
+	$(XSLT) $< textify.xsl $@
 
 param.html: param.xml
 	$(XSLT) $< ../docsrc/lrefentry.xsl $@
