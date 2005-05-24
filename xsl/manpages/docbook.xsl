@@ -22,21 +22,19 @@
   <xsl:apply-templates mode="bold" select="node-you-want" />
 -->
 <xsl:template mode="bold" match="*">
-  <xsl:variable name="content">
-    <xsl:apply-templates/>
-  </xsl:variable>
-  <xsl:text>\fB</xsl:text>
-  <xsl:value-of select="$content"/>
-  <xsl:text>\fR</xsl:text>
+  <xsl:for-each select="child::node()">
+    <xsl:text>\fB</xsl:text>
+    <xsl:apply-templates select="."/>
+    <xsl:text>\fR</xsl:text>
+  </xsl:for-each>
 </xsl:template>
 
 <xsl:template mode="italic" match="*">
-  <xsl:variable name="content">
-    <xsl:apply-templates/>
-  </xsl:variable>
-  <xsl:text>\fI</xsl:text>
-  <xsl:value-of select="$content"/>
-  <xsl:text>\fR</xsl:text>
+  <xsl:for-each select="node()">
+    <xsl:text>\fI</xsl:text>
+    <xsl:apply-templates select="."/>
+    <xsl:text>\fR</xsl:text>
+  </xsl:for-each>
 </xsl:template>
 
 <xsl:template match="caution|important|note|tip|warning">
@@ -104,7 +102,7 @@
 	-->
       </xsl:when>
       <xsl:when test="self::itemizedlist|self::orderedlist|
-		      self::variablelist|self::simplelist">
+		      self::variablelist|self::simplelist[@type !='inline']">
 	<!-- Check to see if this node is a list; if so, -->
 	<!-- put a line break before it. -->
         <xsl:text>&#10;</xsl:text>
@@ -387,20 +385,20 @@
 </xsl:template>
 
 <xsl:template match="filename|replaceable|varname">
-  <xsl:text>\fI</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
+  <xsl:apply-templates mode="italic" select="."/>
 </xsl:template>
 
 <xsl:template match="option|userinput|envar|errorcode|constant|type">
-  <xsl:text>\fB</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
+  <xsl:apply-templates mode="bold" select="."/>
 </xsl:template>
 
 <xsl:template match="emphasis">
   <xsl:choose>
     <xsl:when test="@role = 'bold' or @role = 'strong'">
-      <xsl:text>\fB</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
+      <xsl:apply-templates mode="bold" select="."/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:text>\fI</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
+      <xsl:apply-templates mode="italic" select="."/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

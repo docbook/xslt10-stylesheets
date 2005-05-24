@@ -115,7 +115,7 @@
 <xsl:template match="article/articleinfo/*"></xsl:template>
 
 <xsl:template match="term/option">
-  <xsl:text>\fB</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
+  <xsl:apply-templates mode="bold" select="."/>
 </xsl:template>
 
 <xsl:template match="varlistentry">
@@ -137,11 +137,11 @@
 </xsl:template>
 
 <xsl:template match="envar">
-  <xsl:text>\fB</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
+  <xsl:apply-templates mode="bold" select="."/>
 </xsl:template>
 
 <xsl:template match="filename">
-  <xsl:text>\fI</xsl:text><xsl:apply-templates/><xsl:text>\fR</xsl:text>
+  <xsl:apply-templates mode="italic" select="."/>
 </xsl:template>
 
 </xsl:stylesheet>
