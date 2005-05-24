@@ -1,5 +1,4 @@
 <?xml version='1.0'?>
-<!-- vim:set sts=2 shiftwidth=2 syntax=sgml: -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version='1.0'>
 
@@ -558,6 +557,24 @@
   </xsl:call-template>
 </xsl:template>
 
+<xsl:template name="replace-ldquo">
+  <xsl:param name="content" select="''"/>
+  <xsl:call-template name="replace-string">
+    <xsl:with-param name="content" select="$content"/>
+    <xsl:with-param name="replace" select="'&#8220;'"/>
+    <xsl:with-param name="with" select="'\(lq'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="replace-rdquo">
+  <xsl:param name="content" select="''"/>
+  <xsl:call-template name="replace-string">
+    <xsl:with-param name="content" select="$content"/>
+    <xsl:with-param name="replace" select="'&#8221;'"/>
+    <xsl:with-param name="with" select="'\(rq'"/>
+  </xsl:call-template>
+</xsl:template>
+
 <xsl:template name="replace-backslash">
   <xsl:param name="content" select="''"/>
   <xsl:call-template name="replace-string">
@@ -597,9 +614,17 @@
                             <xsl:with-param name="content">
                               <xsl:call-template name="replace-nbsp">
 		                <xsl:with-param name="content">
-		                  <xsl:call-template name="replace-backslash">
-		                    <xsl:with-param name="content" select="$content"/>
-			          </xsl:call-template>
+				  <xsl:call-template name="replace-ldquo">
+				    <xsl:with-param name="content">
+				      <xsl:call-template name="replace-rdquo">
+					<xsl:with-param name="content">
+					  <xsl:call-template name="replace-backslash">
+					    <xsl:with-param name="content" select="$content"/>
+					  </xsl:call-template>
+					</xsl:with-param>
+				      </xsl:call-template>
+				    </xsl:with-param>
+				  </xsl:call-template>
 			        </xsl:with-param>
 			      </xsl:call-template>
 			    </xsl:with-param>
