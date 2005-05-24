@@ -100,9 +100,23 @@
   <xsl:text>.LP&#10;.RE&#10;.IP&#10;</xsl:text>
 </xsl:template>
 
-<!-- for simplelist type="inline", render it as a comma-separated list, -->
-<!-- with "and" before the last item -->
+<!-- for simplelist type="inline", render it as a comma-separated list -->
 <xsl:template match="simplelist[@type='inline']">
+
+  <!-- if dbchoice PI exists, use that to determine the choice separator -->
+  <!-- (that is, equivalent of "and" or "or" in current locale), or literal -->
+  <!-- value of "choice" otherwise -->
+  <xsl:variable name="localized-choice-separator">
+    <xsl:choose>
+      <xsl:when test="processing-instruction('dbchoice')">
+	<xsl:call-template name="select.choice.separator"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<!-- empty -->
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:for-each select="member">
     <xsl:apply-templates/>
     <xsl:choose>
@@ -110,10 +124,10 @@
       <xsl:otherwise>
 	<xsl:text>, </xsl:text>
 	<xsl:if test="position() = last() - 1">
-	  <xsl:call-template name="gentext">
-	    <xsl:with-param name="key" select="'and'"/>
-	  </xsl:call-template>
-	  <xsl:text> </xsl:text>
+	  <xsl:if test="$localized-choice-separator != ''">
+	    <xsl:value-of select="$localized-choice-separator"/>
+	    <xsl:text> </xsl:text>
+	  </xsl:if>
 	</xsl:if>
       </xsl:otherwise>
     </xsl:choose>
@@ -127,7 +141,7 @@
   <xsl:for-each select="member">
     <xsl:text>.IP&#10;</xsl:text>
     <xsl:apply-templates/>
-  <xsl:text>&#10;</xsl:text>
+    <xsl:text>&#10;</xsl:text>
   </xsl:for-each>
 </xsl:template>
 
