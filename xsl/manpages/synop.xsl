@@ -1,5 +1,7 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:exsl="http://exslt.org/common"
+                exclude-result-prefixes="exsl"
                 version='1.0'>
 
   <!-- the synopsis element is a verbatim environment; you won't find any -->
@@ -90,19 +92,17 @@
   <xsl:if test="position()>1">
     <xsl:value-of select="$arg.or.sep"/>
   </xsl:if>
-  <!-- Don't use the 'bold' named template here since there may be -->
-  <!-- child elements that require different markup (such as       -->
-  <!-- <replaceable>).                                             -->
-  <xsl:text>\fB</xsl:text>
   <xsl:variable name="arg">
     <xsl:apply-templates/>
   </xsl:variable>
-  <xsl:call-template name="replace-string">
-    <xsl:with-param name="content" select="normalize-space($arg)"/>
-    <xsl:with-param name="replace" select="' '"/>
-    <xsl:with-param name="with" select="'\ '"/>
-  </xsl:call-template>
-  <xsl:text>\fR</xsl:text>
+  <xsl:variable name="space-escaped-arg">
+    <xsl:call-template name="replace-string">
+      <xsl:with-param name="content" select="normalize-space($arg)"/>
+      <xsl:with-param name="replace" select="' '"/>
+      <xsl:with-param name="with" select="'\ '"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:apply-templates mode="bold" select="exsl:node-set($space-escaped-arg)"/>
 </xsl:template>
 
 <xsl:template match="command">
