@@ -488,8 +488,35 @@
 
 <xsl:template match="simplelist[@type='inline']">
   <span class="{name(.)}">
-    <xsl:call-template name="anchor"/>
+  <!-- if dbchoice PI exists, use that to determine the choice separator -->
+  <!-- (that is, equivalent of "and" or "or" in current locale), or literal -->
+  <!-- value of "choice" otherwise -->
+  <xsl:variable name="localized-choice-separator">
+    <xsl:choose>
+      <xsl:when test="processing-instruction('dbchoice')">
+	<xsl:call-template name="select.choice.separator"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<!-- empty -->
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:for-each select="member">
     <xsl:apply-templates/>
+    <xsl:choose>
+      <xsl:when test="position() = last()"/> <!-- do nothing -->
+      <xsl:otherwise>
+	<xsl:text>, </xsl:text>
+	<xsl:if test="position() = last() - 1">
+	  <xsl:if test="$localized-choice-separator != ''">
+	    <xsl:value-of select="$localized-choice-separator"/>
+	    <xsl:text> </xsl:text>
+	  </xsl:if>
+	</xsl:if>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:for-each>
   </span>
 </xsl:template>
 
@@ -637,16 +664,6 @@
 
 <xsl:template match="member">
   <xsl:call-template name="anchor"/>
-  <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="simplelist[@type='inline']/member">
-  <xsl:apply-templates/>
-  <xsl:text>, </xsl:text>
-</xsl:template>
-
-<xsl:template match="simplelist[@type='inline']/member[position()=last()]"
-              priority="2">
   <xsl:apply-templates/>
 </xsl:template>
 

@@ -180,7 +180,7 @@ manvolnum
 <!-- ====================================================================== -->
 
 <doc:template name="section.level" xmlns="">
-<refpurpose>Returns the hierarchical level of a section.</refpurpose>
+<refpurpose>Returns the hierarchical level of a section</refpurpose>
 
 <refdescription>
 <para>This template calculates the hierarchical level of a section.
@@ -257,7 +257,7 @@ Defaults to the context node.</para>
 </xsl:template><!-- section.level -->
 
 <doc:template name="qanda.section.level" xmlns="">
-<refpurpose>Returns the hierarchical level of a QandASet.</refpurpose>
+<refpurpose>Returns the hierarchical level of a QandASet</refpurpose>
 
 <refdescription>
 <para>This template calculates the hierarchical level of a QandASet.
@@ -1033,7 +1033,7 @@ recursive process.</para>
 </xsl:template>
 
 <doc:template name="is.acceptable.mediaobject" xmlns="">
-<refpurpose>Returns '1' if the specified media object is recognized.</refpurpose>
+<refpurpose>Returns '1' if the specified media object is recognized</refpurpose>
 
 <refdescription>
 <para>This template examines a media object and returns '1' if the
@@ -1770,7 +1770,7 @@ node location.</para>
 <!-- ===================================== -->
 
 <doc:template name="string.upper" xmlns="">
-<refpurpose>Converts a string to all uppercase letters.</refpurpose>
+<refpurpose>Converts a string to all uppercase letters</refpurpose>
 
 <refdescription>
 <para>Given a string, this template does a language-aware conversion
@@ -1809,5 +1809,71 @@ unchanged.</para>
   <xsl:value-of select="translate($string,$lowercase.alpha,$uppercase.alpha)"/>
 </xsl:template>
 
-</xsl:stylesheet>
+<!-- ===================================== -->
 
+<doc:template name="select.choice.separator" xmlns="">
+  <refpurpose>Returns localized choice separator</refpurpose>
+  <refdescription>
+    <para>This template enables auto-generation of an appropriate
+    localized "choice" separator (for example, "and" or "or") before
+    the final item in an inline list (though it could also be useful
+    for generating choice separators for non-inline lists).</para>
+
+    <para>It currently works by evaluating a processing instruction
+    (PI) of the form &lt;?dbchoice&#xa0;choice="foo"?> :
+
+    <itemizedlist>
+      <listitem>
+	<simpara>if the value of the <sgmltag>choice</sgmltag>
+	pseudo-attribute is "and" or "or", returns a localized "and"
+	or "or"</simpara>
+      </listitem>
+      <listitem>
+	<simpara>otherwise returns the literal value of the
+	<sgmltag>choice</sgmltag> pseudo-attribute</simpara>
+      </listitem>
+    </itemizedlist>
+
+    The latter is provided only as a temporary workaround because the
+    locale files do not currently have translations for the word
+    <wordasword>or</wordasword>. So if you want to generate a a
+    logical "or" separator in French (for example), you currently need
+    to do this:
+
+    <literallayout>&lt;?dbchoice choice="ou"?></literallayout>
+    </para>
+
+    <warning>
+      <para>The <sgmltag>dbchoice</sgmltag> processing instruction is
+      an unfortunate hack; support for it may disappear in the future
+      (particularly if and when a more appropriate means for marking
+      up "choice" lists becomes available in DocBook).</para>
+    </warning>
+  </refdescription>
+</doc:template>
+
+<xsl:template name="select.choice.separator">
+  
+  <xsl:variable name="choice">
+    <xsl:call-template name="pi-attribute">
+      <xsl:with-param name="pis" select="processing-instruction('dbchoice')"/>
+      <xsl:with-param name="attribute">choice</xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
+  
+  <xsl:choose>
+    <!-- if value of $choice is "and" or "or", translate to equivalent in -->
+    <!-- current locale -->
+    <xsl:when test="$choice = 'and' or $choice = 'or'">
+      <xsl:call-template name="gentext">
+	<xsl:with-param name="key" select="$choice"/>
+      </xsl:call-template>
+    </xsl:when>
+    <!--  otherwise, just output value of $choice, whatever it is -->
+    <xsl:otherwise>
+      <xsl:value-of select="$choice"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+</xsl:stylesheet>
