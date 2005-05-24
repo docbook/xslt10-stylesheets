@@ -14,7 +14,11 @@
 <!-- ==================================================================== -->
 <!-- Customizations of standard HTML stylesheet parameters -->
 
+<!-- no navigation on pages by default, HTML Help provides its own navigation controls -->
 <xsl:param name="suppress.navigation" select="1"/>
+
+<!-- no separate HTML page with index, index is built inside CHM index pane -->
+<xsl:param name="generate.index" select="0"/>
 
 <!-- ==================================================================== -->
 
@@ -869,12 +873,6 @@ Enhanced decompilation=</xsl:text>
 </xsl:template>
 
 <!-- ==================================================================== -->
-
-<!-- no separate HTML page with index -->
-<xsl:template match="index"/>   
-<xsl:template match="setindex"/>   
-<xsl:template match="index" mode="toc"/>
-<xsl:template match="setindex" mode="toc"/>
 
 <xsl:template match="indexterm">
   <xsl:choose>
