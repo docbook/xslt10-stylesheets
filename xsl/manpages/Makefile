@@ -39,7 +39,8 @@ profile-docbook.xsl: docbook.xsl ../profiling/xsl2profile.xsl
 	$(XSLT) $< ../profiling/xsl2profile.xsl $@
 
 clean:
+	$(RM) xref.xsl
 	$(RM) param.xml param.html param.xsl \
-              profile-docbook.xsl profile-chunk.xsl profile-onechunk.xsl \
+	profile-docbook.xsl profile-chunk.xsl profile-onechunk.xsl
 	$(RM) Makefile.param
 	echo "# foo" > Makefile.param
