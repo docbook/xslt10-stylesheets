@@ -71,7 +71,7 @@
   <xsl:call-template name="string.upper">
     <xsl:with-param name="string">
       <xsl:call-template name="gentext">
-	<xsl:with-param name="key" select="'RefSynopsisDiv'"/>
+        <xsl:with-param name="key" select="'RefSynopsisDiv'"/>
       </xsl:call-template>
     </xsl:with-param>
   </xsl:call-template>
@@ -86,71 +86,71 @@
   <xsl:for-each select="node()">
     <xsl:choose>
       <xsl:when test="self::address|self::literallayout|self::programlisting|
-		      self::screen|self::synopsis">
-	<!-- Check to see if this node is a verbatim environment. -->
-	<!-- If so, put a line break before it. -->
-	
-	<!-- Yes, address and synopsis are vertabim environments. -->
-	
-	<!-- The code here previously also treated informaltable as a -->
-	<!-- verbatim, presumably to support some kludge; I removed it -->
-	<xsl:text>&#10;</xsl:text>
-        <xsl:apply-templates select="."/>
-	<!-- we don't need an extra line break after verbatim environments
-        <xsl:text> &#10;</xsl:text>
-	-->
-      </xsl:when>
-      <xsl:when test="self::itemizedlist|self::orderedlist|
-		      self::variablelist|self::simplelist[@type !='inline']">
-	<!-- Check to see if this node is a list; if so, -->
-	<!-- put a line break before it. -->
+                      self::screen|self::synopsis">
+        <!-- Check to see if this node is a verbatim environment. -->
+        <!-- If so, put a line break before it. -->
+        
+        <!-- Yes, address and synopsis are vertabim environments. -->
+        
+        <!-- The code here previously also treated informaltable as a -->
+        <!-- verbatim, presumably to support some kludge; I removed it -->
         <xsl:text>&#10;</xsl:text>
         <xsl:apply-templates select="."/>
-	<!-- we don't need an extra line break after lists
+        <!-- we don't need an extra line break after verbatim environments
         <xsl:text> &#10;</xsl:text>
-	-->
+        -->
+      </xsl:when>
+      <xsl:when test="self::itemizedlist|self::orderedlist|
+                      self::variablelist|self::simplelist[@type !='inline']">
+        <!-- Check to see if this node is a list; if so, -->
+        <!-- put a line break before it. -->
+        <xsl:text>&#10;</xsl:text>
+        <xsl:apply-templates select="."/>
+        <!-- we don't need an extra line break after lists
+        <xsl:text> &#10;</xsl:text>
+        -->
       </xsl:when>
       <xsl:when test="self::text()">
-	<!-- Check to see if this is a text node. -->
-	
-	<!-- If so, take any multiple whitespace at the beginning or end of -->
-	<!-- it, and replace it with a space plus a linebreak. -->
-	
-	<!-- This hack results in some ugliness in the generated roff -->
-	<!-- source. But it ensures the whitespace around text nodes in mixed -->
-	<!-- content gets preserved; without the hack, that whitespace -->
-	<!-- effectively gets gobbled. -->
+        <!-- Check to see if this is a text node. -->
+        
+        <!-- If so, take any multiple whitespace at the beginning or end of -->
+        <!-- it, and replace it with a space plus a linebreak. -->
+        
+        <!-- This hack results in some ugliness in the generated roff -->
+        <!-- source. But it ensures the whitespace around text nodes in mixed -->
+        <!-- content gets preserved; without the hack, that whitespace -->
+        <!-- effectively gets gobbled. -->
 
-	<!-- Note if the node is just space, we just pass it through -->
-	<!-- without (re)adding a line break. -->
-	
-	<!-- There must be a better way to do with this...  -->
+        <!-- Note if the node is just space, we just pass it through -->
+        <!-- without (re)adding a line break. -->
+        
+        <!-- There must be a better way to do with this...  -->
         <xsl:variable name="content">
-	  <xsl:apply-templates select="."/>
-	</xsl:variable>
-	<xsl:if
-	    test="starts-with(translate(.,'&#9;&#10;&#13; ','    '), ' ')
-		  and preceding-sibling::node()[name(.)!='']
-		  and normalize-space($content) != ''
-		  ">
-	  <xsl:text> &#10;</xsl:text>
-	</xsl:if>
-	<xsl:value-of select="normalize-space($content)"/>
-	<xsl:if
-	    test="translate(substring(., string-length(.), 1),'&#x9;&#10;&#13; ','    ')  = ' '
-		  and following-sibling::node()[name(.)!='']
-		  ">
-	  <xsl:text> </xsl:text>
-	  <xsl:if test="normalize-space($content) != ''">
-	    <xsl:text>&#10;</xsl:text>
-	  </xsl:if>
-	</xsl:if>
+          <xsl:apply-templates select="."/>
+        </xsl:variable>
+        <xsl:if
+            test="starts-with(translate(.,'&#9;&#10;&#13; ','    '), ' ')
+                  and preceding-sibling::node()[name(.)!='']
+                  and normalize-space($content) != ''
+                  ">
+          <xsl:text> &#10;</xsl:text>
+        </xsl:if>
+        <xsl:value-of select="normalize-space($content)"/>
+        <xsl:if
+            test="translate(substring(., string-length(.), 1),'&#x9;&#10;&#13; ','    ')  = ' '
+                  and following-sibling::node()[name(.)!='']
+                  ">
+          <xsl:text> </xsl:text>
+          <xsl:if test="normalize-space($content) != ''">
+            <xsl:text>&#10;</xsl:text>
+          </xsl:if>
+        </xsl:if>
       </xsl:when>
       <xsl:otherwise>
-	<!-- At this point, we know that this node is not a verbatim -->
-	<!-- environment, list, or text node; so we can safely -->
-	<!-- normailize-space() it. -->
-	<xsl:variable name="content">
+        <!-- At this point, we know that this node is not a verbatim -->
+        <!-- environment, list, or text node; so we can safely -->
+        <!-- normailize-space() it. -->
+        <xsl:variable name="content">
           <xsl:apply-templates select="."/>
         </xsl:variable>
         <xsl:value-of select="normalize-space($content)"/>
@@ -192,7 +192,7 @@
   <xsl:variable name="twidth" select="(56 - string-length(refmeta/refentrytitle)) div 2"/>
 
   <xsl:variable name="reftitle" 
-		select="substring(refmeta/refentrytitle, 1, $twidth)"/>
+                select="substring(refmeta/refentrytitle, 1, $twidth)"/>
 
   <xsl:variable name="title">
     <xsl:choose>
@@ -292,10 +292,10 @@
   <xsl:for-each select="refnamediv/refname">
     <xsl:if test=". != $name">
       <xsl:call-template name="write.text.chunk">
-	<xsl:with-param name="filename"
-		        select="concat(normalize-space(.), '.', $section)"/>
-	<xsl:with-param name="content" select="concat('.so man',
-	      $section, '/', $name, '.', $section, '&#10;')"/>
+        <xsl:with-param name="filename"
+                        select="concat(normalize-space(.), '.', $section)"/>
+        <xsl:with-param name="content" select="concat('.so man',
+              $section, '/', $name, '.', $section, '&#10;')"/>
       </xsl:call-template>
     </xsl:if>
   </xsl:for-each>
@@ -310,7 +310,7 @@
   <xsl:call-template name="string.upper">
     <xsl:with-param name="string">
       <xsl:call-template name="gentext">
-	<xsl:with-param name="key" select="'Author'"/>
+        <xsl:with-param name="key" select="'Author'"/>
       </xsl:call-template>
     </xsl:with-param>
   </xsl:call-template>
@@ -360,7 +360,7 @@
   <xsl:call-template name="string.upper">
     <xsl:with-param name="string">
       <xsl:call-template name="gentext">
-	<xsl:with-param name="key" select="'RefName'"/>
+        <xsl:with-param name="key" select="'RefName'"/>
       </xsl:call-template>
     </xsl:with-param>
   </xsl:call-template>
@@ -422,7 +422,7 @@
     <!-- If it is not within a mixed-content parent, then we need to add a -->
     <!-- line break before it. -->
     <xsl:when test="parent::caption|parent::entry|parent::para|
-		    parent::td|parent::th" /> <!-- do nothing -->
+                    parent::td|parent::th" /> <!-- do nothing -->
     <xsl:otherwise>
       <xsl:text>&#10;</xsl:text>
     </xsl:otherwise>
@@ -610,29 +610,29 @@
                     <xsl:with-param name="content">
                       <xsl:call-template name="replace-setmn">
                         <xsl:with-param name="content">
-        		  <xsl:call-template name="replace-period">
+                          <xsl:call-template name="replace-period">
                             <xsl:with-param name="content">
                               <xsl:call-template name="replace-nbsp">
-		                <xsl:with-param name="content">
-				  <xsl:call-template name="replace-ldquo">
-				    <xsl:with-param name="content">
-				      <xsl:call-template name="replace-rdquo">
-					<xsl:with-param name="content">
-					  <xsl:call-template name="replace-backslash">
-					    <xsl:with-param name="content" select="$content"/>
-					  </xsl:call-template>
-					</xsl:with-param>
-				      </xsl:call-template>
-				    </xsl:with-param>
-				  </xsl:call-template>
-			        </xsl:with-param>
-			      </xsl:call-template>
-			    </xsl:with-param>
-			  </xsl:call-template>
-			</xsl:with-param>
+                                <xsl:with-param name="content">
+                                  <xsl:call-template name="replace-ldquo">
+                                    <xsl:with-param name="content">
+                                      <xsl:call-template name="replace-rdquo">
+                                        <xsl:with-param name="content">
+                                          <xsl:call-template name="replace-backslash">
+                                            <xsl:with-param name="content" select="$content"/>
+                                          </xsl:call-template>
+                                        </xsl:with-param>
+                                      </xsl:call-template>
+                                    </xsl:with-param>
+                                  </xsl:call-template>
+                                </xsl:with-param>
+                              </xsl:call-template>
+                            </xsl:with-param>
+                          </xsl:call-template>
+                        </xsl:with-param>
                       </xsl:call-template>
                     </xsl:with-param>
-		  </xsl:call-template>
+                  </xsl:call-template>
                 </xsl:with-param>
               </xsl:call-template>
             </xsl:with-param>
