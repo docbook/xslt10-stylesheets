@@ -615,7 +615,7 @@
         </xsl:choose>
       </xsl:with-param>
     </xsl:call-template>
-    <fo:table-body>
+    <fo:table-body start-indent="0pt" end-indent="0pt">
       <xsl:call-template name="simplelist.vert">
         <xsl:with-param name="cols">
           <xsl:choose>
@@ -711,7 +711,7 @@
         </xsl:choose>
       </xsl:with-param>
     </xsl:call-template>
-    <fo:table-body>
+    <fo:table-body start-indent="0pt" end-indent="0pt">
       <xsl:call-template name="simplelist.horiz">
         <xsl:with-param name="cols">
           <xsl:choose>
@@ -738,7 +738,7 @@
         </xsl:choose>
       </xsl:with-param>
     </xsl:call-template>
-    <fo:table-body>
+    <fo:table-body start-indent="0pt" end-indent="0pt">
       <xsl:call-template name="simplelist.vert">
         <xsl:with-param name="cols">
           <xsl:choose>
@@ -1082,12 +1082,12 @@
   <fo:table>
     <fo:table-column column-number="1" column-width="proportional-column-width(1)"/>
     <fo:table-column column-number="2" column-width="proportional-column-width(1)"/>
-    <fo:table-header>
+    <fo:table-header start-indent="0pt" end-indent="0pt">
       <fo:table-row>
         <xsl:apply-templates select="segtitle" mode="seglist-table"/>
       </fo:table-row>
     </fo:table-header>
-    <fo:table-body>
+    <fo:table-body start-indent="0pt" end-indent="0pt">
       <xsl:apply-templates select="seglistitem" mode="seglist-table"/>
     </fo:table-body>
   </fo:table>
