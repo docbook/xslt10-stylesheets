@@ -239,6 +239,7 @@
 <!ENTITY l10n.gentext.language SYSTEM "../params/l10n.gentext.language.xml">
 <!ENTITY l10n.gentext.default.language SYSTEM "../params/l10n.gentext.default.language.xml">
 <!ENTITY l10n.gentext.use.xref.language SYSTEM "../params/l10n.gentext.use.xref.language.xml">
+<!ENTITY l10n.lang.value.rfc.compliant SYSTEM "../params/l10n.lang.value.rfc.compliant.xml">
 <!ENTITY default.image.width SYSTEM "../params/default.image.width.xml">
 <!ENTITY default.float.class SYSTEM "../params/default.float.class.xml">
 <!ENTITY funcsynopsis.tabular.threshold SYSTEM "../params/funcsynopsis.tabular.threshold.xml">

@@ -137,7 +137,14 @@
 
   <xsl:if test="$language != ''">
     <xsl:attribute name="lang">
-      <xsl:value-of select="$language"/>
+      <xsl:choose>
+        <xsl:when test="$l10n.lang.value.rfc.compliant != 0">
+          <xsl:value-of select="translate($language, '_', '-')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$language"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:attribute>
   </xsl:if>
 
