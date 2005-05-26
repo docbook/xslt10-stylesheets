@@ -109,32 +109,34 @@
       </xsl:call-template>
     </xsl:when>
 
-    <xsl:when test="name($node)='preface'">1</xsl:when>
-    <xsl:when test="name($node)='chapter'">1</xsl:when>
-    <xsl:when test="name($node)='appendix'">1</xsl:when>
-    <xsl:when test="name($node)='article'">1</xsl:when>
-    <xsl:when test="name($node)='part'">1</xsl:when>
-    <xsl:when test="name($node)='reference'">1</xsl:when>
-    <xsl:when test="name($node)='refentry'">1</xsl:when>
-    <xsl:when test="name($node)='index' and $generate.index != 0
-                    and (name($node/parent::*) = 'article'
-                    or name($node/parent::*) = 'book'
-                    or name($node/parent::*) = 'part'
+    <xsl:when test="local-name($node)='preface'">1</xsl:when>
+    <xsl:when test="local-name($node)='chapter'">1</xsl:when>
+    <xsl:when test="local-name($node)='appendix'">1</xsl:when>
+    <xsl:when test="local-name($node)='article'">1</xsl:when>
+    <xsl:when test="local-name($node)='part'">1</xsl:when>
+    <xsl:when test="local-name($node)='reference'">1</xsl:when>
+    <xsl:when test="local-name($node)='refentry'">1</xsl:when>
+    <xsl:when test="local-name($node)='index' and $generate.index != 0
+                    and (local-name($node/parent::*) = 'article'
+                    or local-name($node/parent::*) = 'book'
+                    or local-name($node/parent::*) = 'part'
                     )">1</xsl:when>
-    <xsl:when test="name($node)='bibliography'
-                    and (name($node/parent::*) = 'article'
-                    or name($node/parent::*) = 'book'
-                    or name($node/parent::*) = 'part'
+    <xsl:when test="local-name($node)='bibliography'
+                    and (local-name($node/parent::*) = 'article'
+                    or local-name($node/parent::*) = 'book'
+                    or local-name($node/parent::*) = 'part'
                     )">1</xsl:when>
-    <xsl:when test="name($node)='glossary'
-                    and (name($node/parent::*) = 'article'
-                    or name($node/parent::*) = 'book'
-                    or name($node/parent::*) = 'part'
+    <xsl:when test="local-name($node)='glossary'
+                    and (local-name($node/parent::*) = 'article'
+                    or local-name($node/parent::*) = 'book'
+                    or local-name($node/parent::*) = 'part'
                     )">1</xsl:when>
-    <xsl:when test="name($node)='colophon'">1</xsl:when>
-    <xsl:when test="name($node)='book'">1</xsl:when>
-    <xsl:when test="name($node)='set'">1</xsl:when>
-    <xsl:when test="name($node)='setindex'">1</xsl:when>
+    <xsl:when test="local-name($node)='colophon'">1</xsl:when>
+    <xsl:when test="local-name($node)='book'">1</xsl:when>
+    <xsl:when test="local-name($node)='set'">1</xsl:when>
+    <xsl:when test="local-name($node)='setindex'">1</xsl:when>
+    <xsl:when test="local-name($node)='legalnotice'
+                    and $generate.legalnotice.link != 0">1</xsl:when>
     <xsl:otherwise>0</xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -201,6 +203,13 @@
       <xsl:when test="not(parent::*) and $root.filename != ''">
         <xsl:value-of select="$root.filename"/>
         <xsl:value-of select="$html.ext"/>
+      </xsl:when>
+      <!-- Special case -->
+      <xsl:when test="self::legalnotice and $generate.legalnotice.link != 0">
+        <xsl:variable name="id">
+          <xsl:call-template name="object.id"/>
+        </xsl:variable>
+        <xsl:value-of select="concat('ln-',$id,$html.ext)"/>
       </xsl:when>
       <!-- if there's no dbhtml filename, and if we're to use IDs as -->
       <!-- filenames, then use the ID to generate the filename. -->
@@ -708,7 +717,7 @@
   <xsl:variable name="row1" select="$navig.showtitles != 0"/>
   <xsl:variable name="row2" select="count($prev) &gt; 0
                                     or (count($up) &gt; 0 
-					and generate-id($up) != generate-id($home)
+                                        and generate-id($up) != generate-id($home)
                                         and $navig.showtitles != 0)
                                     or count($next) &gt; 0"/>
 
@@ -744,7 +753,7 @@
               <th width="60%" align="center">
                 <xsl:choose>
                   <xsl:when test="count($up) > 0
-				  and generate-id($up) != generate-id($home)
+                                  and generate-id($up) != generate-id($home)
                                   and $navig.showtitles != 0">
                     <xsl:apply-templates select="$up" mode="object.title.markup"/>
                   </xsl:when>
@@ -826,8 +835,8 @@
               <td width="20%" align="center">
                 <xsl:choose>
                   <xsl:when test="count($up)&gt;0
-		                  and generate-id($up) != generate-id($home)">
-		    <a accesskey="u">
+                                  and generate-id($up) != generate-id($home)">
+                    <a accesskey="u">
                       <xsl:attribute name="href">
                         <xsl:call-template name="href.target">
                           <xsl:with-param name="object" select="$up"/>
@@ -923,40 +932,40 @@
     <xsl:param name="direction" select="next"/>
     <xsl:variable name="navtext">
         <xsl:choose>
-	    <xsl:when test="$direction = 'prev'">
-		<xsl:call-template name="gentext.nav.prev"/>
-	    </xsl:when>
-	    <xsl:when test="$direction = 'next'">
-		<xsl:call-template name="gentext.nav.next"/>
-	    </xsl:when>
-	    <xsl:when test="$direction = 'up'">
-		<xsl:call-template name="gentext.nav.up"/>
-	    </xsl:when>
-	    <xsl:when test="$direction = 'home'">
-		<xsl:call-template name="gentext.nav.home"/>
-	    </xsl:when>
-	    <xsl:otherwise>
-		<xsl:text>xxx</xsl:text>
-	    </xsl:otherwise>
-	</xsl:choose>
+            <xsl:when test="$direction = 'prev'">
+                <xsl:call-template name="gentext.nav.prev"/>
+            </xsl:when>
+            <xsl:when test="$direction = 'next'">
+                <xsl:call-template name="gentext.nav.next"/>
+            </xsl:when>
+            <xsl:when test="$direction = 'up'">
+                <xsl:call-template name="gentext.nav.up"/>
+            </xsl:when>
+            <xsl:when test="$direction = 'home'">
+                <xsl:call-template name="gentext.nav.home"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>xxx</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:variable>
 
     <xsl:choose>
-	<xsl:when test="$navig.graphics != 0">
-	    <img>
-		<xsl:attribute name="src">
-		    <xsl:value-of select="$navig.graphics.path"/>
-		    <xsl:value-of select="$direction"/>
-		    <xsl:value-of select="$navig.graphics.extension"/>
-		</xsl:attribute>
-		<xsl:attribute name="alt">
-		    <xsl:value-of select="$navtext"/>
-		</xsl:attribute>
-	    </img>
-	</xsl:when>
-	<xsl:otherwise>
-	    <xsl:value-of select="$navtext"/>
-	</xsl:otherwise>
+        <xsl:when test="$navig.graphics != 0">
+            <img>
+                <xsl:attribute name="src">
+                    <xsl:value-of select="$navig.graphics.path"/>
+                    <xsl:value-of select="$direction"/>
+                    <xsl:value-of select="$navig.graphics.extension"/>
+                </xsl:attribute>
+                <xsl:attribute name="alt">
+                    <xsl:value-of select="$navtext"/>
+                </xsl:attribute>
+            </img>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:value-of select="$navtext"/>
+        </xsl:otherwise>
     </xsl:choose>
 </xsl:template>
 
@@ -989,9 +998,9 @@
       <xsl:call-template name="user.header.navigation"/>
 
       <xsl:call-template name="header.navigation">
-	<xsl:with-param name="prev" select="$prev"/>
-	<xsl:with-param name="next" select="$next"/>
-	<xsl:with-param name="nav.context" select="$nav.context"/>
+        <xsl:with-param name="prev" select="$prev"/>
+        <xsl:with-param name="next" select="$next"/>
+        <xsl:with-param name="nav.context" select="$nav.context"/>
       </xsl:call-template>
 
       <xsl:call-template name="user.header.content"/>
@@ -1001,9 +1010,9 @@
       <xsl:call-template name="user.footer.content"/>
 
       <xsl:call-template name="footer.navigation">
-	<xsl:with-param name="prev" select="$prev"/>
-	<xsl:with-param name="next" select="$next"/>
-	<xsl:with-param name="nav.context" select="$nav.context"/>
+        <xsl:with-param name="prev" select="$prev"/>
+        <xsl:with-param name="next" select="$next"/>
+        <xsl:with-param name="nav.context" select="$nav.context"/>
       </xsl:call-template>
 
       <xsl:call-template name="user.footer.navigation"/>
