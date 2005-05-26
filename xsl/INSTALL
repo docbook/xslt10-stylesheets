@@ -7,10 +7,10 @@ Case #1: Installation using a package management system
 ----------------------------------------------------------------------
 If you have installed the DocBook XSL distribution using "apt-get",
 "yum", "urpmi", or some similar package-management front-end,
-then, as part of the package installation, the XSL stylesheets
-have already been automatically installed in the appropriate
-location for your system, and your XML catalog environment was
-updated to use that location.
+then, as part of the package installation, the stylesheets have
+already been automatically installed in the appropriate location
+for your system, and your XML catalog environment has probably
+been updated to use that location.
 
 ----------------------------------------------------------------------
 Case #2: Installing manually
@@ -43,7 +43,7 @@ environment
      series of prompts for you to respond to. After the process is
      complete, the installer will emit a message with a command
      you need to run in order to source your environment for use
-     with Website.
+     with the stylesheets.
 
   4. To test that he installation has updated your environment
      correctly, execute the test.sh script:
@@ -73,6 +73,6 @@ Note to packagers
 ----------------------------------------------------------------------
 The install.sh, .CatalogManager.properties.example, and .urilist
 files should not be packaged. They are useful only to users who
-are installing Website manually.
+are installing the stylesheets manually.
 
 The catalog.xml file should be packaged.
