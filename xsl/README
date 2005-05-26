@@ -35,7 +35,7 @@ images/     images
 javahelp/   stylesheets that produce Java Help
 lib/        contains schema-independent functions
 manpages/   stylesheets for producing groff/nroff man pages
-profiling/  stylesheets for profiling (omitting/including conditional text) 
+profiling/  stylesheets for profiling (omitting/including conditional text)
 template/   contains templates for building stylesheet customization layers
 xhtml/      stylesheets that produce XHTML
 
