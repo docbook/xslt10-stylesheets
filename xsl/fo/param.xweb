@@ -487,6 +487,7 @@ url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http:
 &l10n.gentext.language;
 &l10n.gentext.default.language;
 &l10n.gentext.use.xref.language;
+&l10n.lang.value.rfc.compliant;
 </reference>
 
 <reference><title>EBNF</title>
@@ -644,6 +645,7 @@ around all these parameters.</para>
 <src:fragref linkend="l10n.gentext.default.language.frag"/>
 <src:fragref linkend="l10n.gentext.language.frag"/>
 <src:fragref linkend="l10n.gentext.use.xref.language.frag"/>
+<src:fragref linkend="l10n.lang.value.rfc.compliant.frag"/>
 <src:fragref linkend="label.from.part.frag"/>
 <src:fragref linkend="line-height.frag"/>
 <src:fragref linkend="linenumbering.everyNth.frag"/>
