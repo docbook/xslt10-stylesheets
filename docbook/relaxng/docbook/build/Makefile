@@ -1,6 +1,10 @@
+include ../../../../cvstools/Makefile.incl
+
 VPATH=../src
 
 RNCFILES=$(subst ../src/,,$(wildcard ../src/*.rnc))
+
+PERL=perl
 
 TOOLS=../../tools
 AUGMENT=$(TOOLS)/augment.xsl
@@ -18,11 +22,11 @@ all: docbook.rng
 docbook.rng: $(RNCFILES) $(AUGMENT) $(INCLUDE) $(CLEANUP)
 
 .rnc.rng:
-	trang -O rng $< $@
-	saxon $@ $(INCLUDE) ,$@ use.extensions=1
-	saxon ,$@ $(AUGMENT) $@ use.extensions=1
-	perl -i $(CLEANUP) $@
-	rm -f ,$@
+	$(RUNTRANG) -O rng $< $@
+	$(XSLT) $@ $(INCLUDE) ,$@ use.extensions=1
+	$(XSLT) ,$@ $(AUGMENT) $@ use.extensions=1
+	$(PERL) -i $(CLEANUP) $@
+	$(RM) ,$@
 
 clean:
-	rm -f *.rng
+	$(RM) *.rng
