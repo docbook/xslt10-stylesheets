@@ -9,9 +9,17 @@
               indent="yes"/>
   <xsl:preserve-space elements="*"/>
 
-  <!-- textify.xsl - Make "textified" copies of templates from a stylesheet. -->
+<!-- ********************************************************************
+     $Id$
+     ********************************************************************
 
-  <!-- $Id -->
+     This file is part of the XSL DocBook Stylesheet distribution.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
+
+     ******************************************************************** -->
+
+  <!-- textify.xsl - Make "textified" copies of templates from a stylesheet. -->
 
   <!-- This stylesheet is currently only used as part of the build for -->
   <!-- DocBook manpages releases. It creates a manpages/xref.xsl stylesheet -->

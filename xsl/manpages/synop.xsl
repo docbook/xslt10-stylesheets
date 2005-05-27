@@ -4,8 +4,18 @@
                 exclude-result-prefixes="exsl"
                 version='1.0'>
 
-  <!-- the synopsis element is a verbatim environment; you won't find any -->
-  <!-- code for handling it here -->
+<!-- ********************************************************************
+     $Id$
+     ********************************************************************
+
+     This file is part of the XSL DocBook Stylesheet distribution.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
+
+     ******************************************************************** -->
+
+<!-- the synopsis element is a verbatim environment; you won't find any -->
+<!-- code for handling it here -->
 
 <xsl:template match="synopfragment">
 <xsl:text>.PP&#10;</xsl:text>
