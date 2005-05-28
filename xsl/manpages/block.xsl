@@ -14,74 +14,19 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="refsection|refsect1">
-  <xsl:choose>
-    <xsl:when test="ancestor::refsection">
-      <xsl:text>.SS "</xsl:text>
-      <xsl:value-of select="title[1]"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:text>.SH "</xsl:text>
-      <xsl:value-of
-          select="translate(title[1],
-                  'abcdefghijklmnopqrstuvwxyz',
-                  'ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
-    </xsl:otherwise>
-  </xsl:choose>
-  <xsl:text>"&#10;</xsl:text>
-  <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="refsect2">
-  <xsl:text>.SS "</xsl:text>
-  <xsl:value-of select="title[1]"/>
-  <xsl:text>"&#10;</xsl:text>
-  <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="refsynopsisdiv">
-  <xsl:text>.SH "</xsl:text>
-  <xsl:call-template name="string.upper">
-    <xsl:with-param name="string">
-      <xsl:call-template name="gentext">
-        <xsl:with-param name="key" select="'RefSynopsisDiv'"/>
-      </xsl:call-template>
-    </xsl:with-param>
-  </xsl:call-template>
-  <xsl:text>"&#10;</xsl:text>
-  <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="refnamediv">
-  <xsl:text>.SH "</xsl:text>
-  <xsl:call-template name="string.upper">
-    <xsl:with-param name="string">
-      <xsl:call-template name="gentext">
-        <xsl:with-param name="key" select="'RefName'"/>
-      </xsl:call-template>
-    </xsl:with-param>
-  </xsl:call-template>
-  <xsl:text>"&#10;</xsl:text>
-  <xsl:for-each select="refname">
-    <xsl:if test="position()>1">
-      <xsl:text>, </xsl:text>
-    </xsl:if>
-    <xsl:value-of select="."/>
-  </xsl:for-each>
-  <xsl:text> \- </xsl:text>
-  <xsl:value-of select="normalize-space (refpurpose)"/>
-  <xsl:text>&#10;</xsl:text>
-</xsl:template>
-
-<xsl:template match="refentry/refentryinfo"></xsl:template>
-
 <xsl:template match="caution|important|note|tip|warning">
-  <xsl:text>.RS&#10;.Sh "</xsl:text>
-    <xsl:apply-templates select="." mode="object.title.markup.textonly"/>
-    <xsl:text>"&#10;</xsl:text>
-    <xsl:apply-templates/>
-    <xsl:text>.RE&#10;</xsl:text>
+  <xsl:call-template name="nested-section-title"/>
+  <xsl:text>&#10;</xsl:text>
+  <xsl:apply-templates/>
 </xsl:template> 
+
+<xsl:template match="formalpara">
+  <xsl:call-template name="nested-section-title"/>
+  <xsl:text>&#10;</xsl:text>
+  <xsl:text>.RS 3&#10;</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>.RE&#10;</xsl:text>
+</xsl:template>
 
 <xsl:template match="para">
   <xsl:text>.PP&#10;</xsl:text>
@@ -101,7 +46,7 @@
   <!-- Yes, address and synopsis are verbatim environments. -->
 
   <xsl:choose>
-    <!-- Check to see if this vertbatim item is within a parent element that -->
+    <!-- Check to see if this verbatim item is within a parent element that -->
     <!-- allows mixed content. -->
     
     <!-- If it is within a mixed-content parent, then a line break is -->
