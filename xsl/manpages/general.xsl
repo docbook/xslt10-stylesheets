@@ -46,6 +46,30 @@
     </xsl:for-each>
   </xsl:template>
 
+
+  <xsl:template name="nested-section-title">
+    <xsl:text>.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br</xsl:text>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:call-template name="string.upper">
+      <xsl:with-param name="string">
+        <xsl:choose>
+          <xsl:when test="title">
+            <xsl:value-of select="normalize-space(title[1])"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="." mode="object.title.markup.textonly"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+  
+
+
   <!-- jump through a few hoops to deal with mixed-content blocks, so that -->
   <!-- we don't end up munging verbatim environments or lists and so that we -->
   <!-- don't gobble up whitespace when we shouldn't -->
