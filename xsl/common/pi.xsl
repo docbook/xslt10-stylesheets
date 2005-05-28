@@ -111,84 +111,89 @@
 
   <xsl:choose>
     <xsl:when test="function-available('exsl:node-set')">
-    <xsl:for-each select="exsl:node-set($tokenized-format-string)/node()">
-      <xsl:variable name="token">
-	<xsl:value-of select="."/>
-      </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$token = 'a'">
-        <xsl:call-template name="gentext.template">
-          <xsl:with-param name="context" select="'datetime-abbrev'"/>
-          <xsl:with-param name="name" select="date:day-abbreviation($date)"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:when test="$token = 'A'">
-        <xsl:call-template name="gentext.template">
-          <xsl:with-param name="context" select="'datetime-full'"/>
-          <xsl:with-param name="name" select="date:day-name($date)"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:when test="$token = 'b'">
-        <xsl:call-template name="gentext.template">
-          <xsl:with-param name="context" select="'datetime-abbrev'"/>
-          <xsl:with-param name="name" select="date:month-abbreviation($date)"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:when test="$token = 'c'">
-        <xsl:value-of select="date:date($date)"/>
-        <xsl:text> </xsl:text>
-        <xsl:value-of select="date:time($date)"/>
-      </xsl:when>
-      <xsl:when test="$token = 'B'">
-        <xsl:call-template name="gentext.template">
-          <xsl:with-param name="context" select="'datetime-full'"/>
-          <xsl:with-param name="name" select="date:month-name($date)"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:when test="$token = 'd'">
-        <xsl:if test="$padding = 1 and
-        string-length(date:day-in-month($date)) = 1">0</xsl:if>
-        <xsl:value-of select="date:day-in-month($date)"/>
-      </xsl:when>
-      <xsl:when test="$token = 'H'">
-        <xsl:if test="$padding = 1 and string-length(date:hour-in-day($date)) = 1">0</xsl:if>
-        <xsl:value-of select="date:hour-in-day($date)"/>
-      </xsl:when>
-      <xsl:when test="$token = 'j'">
-        <xsl:value-of select="date:day-in-year($date)"/>
-      </xsl:when>
-      <xsl:when test="$token = 'm'">
-        <xsl:if test="$padding = 1 and string-length(date:month-in-year($date)) = 1">0</xsl:if>
-        <xsl:value-of select="date:month-in-year($date)"/>
-      </xsl:when>
-      <xsl:when test="$token = 'M'">
-        <xsl:if test="string-length(date:minute-in-hour($date)) = 1">0</xsl:if>
-        <xsl:value-of select="date:minute-in-hour($date)"/>
-      </xsl:when>
-      <xsl:when test="$token = 'S'">
-        <xsl:if test="string-length(date:second-in-minute($date)) = 1">0</xsl:if>
-        <xsl:value-of select="date:second-in-minute($date)"/>
-      </xsl:when>
-      <xsl:when test="$token = 'U'">
-        <xsl:value-of select="date:week-in-year($date)"/>
-      </xsl:when>
-      <xsl:when test="$token = 'w'">
-        <xsl:value-of select="date:day-in-week($date)"/>
-      </xsl:when>
-      <xsl:when test="$token = 'x'">
-        <xsl:value-of select="date:date($date)"/>
-      </xsl:when>
-      <xsl:when test="$token = 'X'">
-        <xsl:value-of select="date:time($date)"/>
-      </xsl:when>
-      <xsl:when test="$token = 'Y'">
-        <xsl:value-of select="date:year($date)"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$token"/>
-      </xsl:otherwise>
-    </xsl:choose>
-    </xsl:for-each>
+      <!-- We must preserve context node in order to get valid language -->
+      <xsl:variable name="context" select="."/>
+      <xsl:for-each select="exsl:node-set($tokenized-format-string)/node()">
+        <xsl:variable name="token">
+          <xsl:value-of select="."/>
+        </xsl:variable>
+        <!-- Restore context node -->
+        <xsl:for-each select="$context">
+          <xsl:choose>
+            <xsl:when test="$token = 'a'">
+              <xsl:call-template name="gentext.template">
+                <xsl:with-param name="context" select="'datetime-abbrev'"/>
+                <xsl:with-param name="name" select="date:day-abbreviation($date)"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$token = 'A'">
+              <xsl:call-template name="gentext.template">
+                <xsl:with-param name="context" select="'datetime-full'"/>
+                <xsl:with-param name="name" select="date:day-name($date)"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$token = 'b'">
+              <xsl:call-template name="gentext.template">
+                <xsl:with-param name="context" select="'datetime-abbrev'"/>
+                <xsl:with-param name="name" select="date:month-abbreviation($date)"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$token = 'c'">
+              <xsl:value-of select="date:date($date)"/>
+              <xsl:text> </xsl:text>
+              <xsl:value-of select="date:time($date)"/>
+            </xsl:when>
+            <xsl:when test="$token = 'B'">
+              <xsl:call-template name="gentext.template">
+                <xsl:with-param name="context" select="'datetime-full'"/>
+                <xsl:with-param name="name" select="date:month-name($date)"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$token = 'd'">
+              <xsl:if test="$padding = 1 and
+              string-length(date:day-in-month($date)) = 1">0</xsl:if>
+              <xsl:value-of select="date:day-in-month($date)"/>
+            </xsl:when>
+            <xsl:when test="$token = 'H'">
+              <xsl:if test="$padding = 1 and string-length(date:hour-in-day($date)) = 1">0</xsl:if>
+              <xsl:value-of select="date:hour-in-day($date)"/>
+            </xsl:when>
+            <xsl:when test="$token = 'j'">
+              <xsl:value-of select="date:day-in-year($date)"/>
+            </xsl:when>
+            <xsl:when test="$token = 'm'">
+              <xsl:if test="$padding = 1 and string-length(date:month-in-year($date)) = 1">0</xsl:if>
+              <xsl:value-of select="date:month-in-year($date)"/>
+            </xsl:when>
+            <xsl:when test="$token = 'M'">
+              <xsl:if test="string-length(date:minute-in-hour($date)) = 1">0</xsl:if>
+              <xsl:value-of select="date:minute-in-hour($date)"/>
+            </xsl:when>
+            <xsl:when test="$token = 'S'">
+              <xsl:if test="string-length(date:second-in-minute($date)) = 1">0</xsl:if>
+              <xsl:value-of select="date:second-in-minute($date)"/>
+            </xsl:when>
+            <xsl:when test="$token = 'U'">
+              <xsl:value-of select="date:week-in-year($date)"/>
+            </xsl:when>
+            <xsl:when test="$token = 'w'">
+              <xsl:value-of select="date:day-in-week($date)"/>
+            </xsl:when>
+            <xsl:when test="$token = 'x'">
+              <xsl:value-of select="date:date($date)"/>
+            </xsl:when>
+            <xsl:when test="$token = 'X'">
+              <xsl:value-of select="date:time($date)"/>
+            </xsl:when>
+            <xsl:when test="$token = 'Y'">
+              <xsl:value-of select="date:year($date)"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$token"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:for-each>
+      </xsl:for-each>
     </xsl:when>
     <xsl:otherwise>
       <xsl:message>
