@@ -9,7 +9,7 @@
                 exclude-result-prefixes="exsl ctrl s rng set"
                 version="1.0">
 
-  <xsl:include href="/sourceforge/docbook/xsl/html/chunker.xsl"/>
+  <xsl:include href="../../../xsl/html/chunker.xsl"/>
 
   <xsl:param name="home" select="'home.html'"/>
   <xsl:param name="title" select="'anonymous'"/>
