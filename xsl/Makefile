@@ -10,7 +10,7 @@ TAGVER := $(shell echo "V$(RELVER)" | sed "s/\.//g")
 SFRELID=
 FMGO=-N
 
-DIRS=common html fo manpages extensions htmlhelp javahelp
+DIRS=lib common html fo manpages extensions htmlhelp javahelp
 
 .PHONY : distrib clean doc xhtml
 
