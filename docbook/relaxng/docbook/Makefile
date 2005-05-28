@@ -1,3 +1,4 @@
+include ../../../cvstools/Makefile.incl
 VPATH=src
 
 .SUFFIXES: .rnc .rng .rnx .dtx .dtd
@@ -5,6 +6,7 @@ VPATH=src
 
 RNCFILES=$(wildcard $(VPATH)/*.rnc)
 TOOLS=../tools
+XSLTPROC=xsltproc
 
 all: docbook.rng docbook.dtd dbforms.rng dbforms.dtd
 
@@ -28,18 +30,18 @@ dbforms.rng: $(RNCFILES)
 .rnc.rng:
 	$(MAKE) -C build $@
 	cp build/$@ .
-	trang $@ docbook.rnc
+	$(RUNTRANG) $@ docbook.rnc
 	sleep 2
 	touch $@
 
 .rng.rnx:
-	xsltproc -output $@ $(TOOLS)/rngdocxml.xsl $<
+	$(XSLTPROC) -output $@ $(TOOLS)/rngdocxml.xsl $<
 
 .rnx.dtx:
-	xsltproc -output $@ $(TOOLS)/doc2dtd.xsl $<
+	$(XSLTPROC) -output $@ $(TOOLS)/doc2dtd.xsl $<
 
 .dtx.dtd:
-	xsltproc -output $@ $(TOOLS)/xml2dtd.xsl $<
+	$(XSLTPROC) -output $@ $(TOOLS)/xml2dtd.xsl $<
 
 # ============================================================
 
@@ -50,6 +52,8 @@ tests:
 # ============================================================
 
 clean:
-	rm -f docbook*
+	$(RM) docbook*
+	$(RM) dbforms*
+	$(MAKE) -C build clean
 
 # EOF
