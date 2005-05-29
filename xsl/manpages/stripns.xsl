@@ -23,7 +23,7 @@
 <!-- you can always run the process using a pipe if you want. Example: -->
 
 <!--   xsltproc ./manpages/stripns.xsl myRefEntry.xml \ -->
-<!--     | xsltproc ./manpages/docbook.xsl -->
+<!--     | xsltproc ./manpages/docbook.xsl - -->
 
 <!-- It may be that there is actually some way to set it up as a -->
 <!-- single-pass XSLT process, as is done with the HTML stylesheets. But -->
