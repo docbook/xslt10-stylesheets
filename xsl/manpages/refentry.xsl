@@ -48,32 +48,23 @@
     <xsl:apply-templates/>
   </xsl:template>
 
-  <xsl:template match="refsection|refsect1">
-    <xsl:choose>
-      <xsl:when test="ancestor::refsection">
-        <xsl:text>.SS "</xsl:text>
-        <xsl:value-of select="title[1]"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>.SH "</xsl:text>
-        <xsl:value-of
-            select="translate(title[1],
-                    'abcdefghijklmnopqrstuvwxyz',
-                    'ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
-      </xsl:otherwise>
-    </xsl:choose>
+  <xsl:template match="refsect1|refentry/refsection">
+    <xsl:text>.SH "</xsl:text>
+    <xsl:call-template name="string.upper">
+      <xsl:with-param name="string" select="title"/>
+    </xsl:call-template>
     <xsl:text>"&#10;</xsl:text>
     <xsl:apply-templates/>
   </xsl:template>
 
-  <xsl:template match="refsect2">
+  <xsl:template match="refsect2|refentry/refsection/refsection">
     <xsl:text>.SS "</xsl:text>
     <xsl:value-of select="title[1]"/>
     <xsl:text>"&#10;</xsl:text>
     <xsl:apply-templates/>
   </xsl:template>
 
-  <xsl:template match="refsect3">
+  <xsl:template match="refsect3|refsection">
     <xsl:call-template name="nested-section-title"/>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>.RS 3&#10;</xsl:text>
