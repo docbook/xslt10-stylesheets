@@ -207,6 +207,13 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <xsl:template match="colspec"></xsl:template>
 
 <xsl:template name="table.width">
+
+  <xsl:variable name="numcols">
+    <xsl:call-template name="widest-html-row">
+      <xsl:with-param name="rows" select=".//tr"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:variable name="explicit.table.width">
     <xsl:choose>
       <xsl:when test="self::entrytbl">
@@ -233,10 +240,58 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     </xsl:choose>
   </xsl:variable>
 
+  <xsl:variable name="column.sum">
+    <xsl:choose>
+      <!-- CALS table -->
+      <xsl:when test="tgroup[1][@cols]">
+        <xsl:if test="count(tgroup[1]/colspec) = tgroup/@cols">
+          <xsl:for-each select="tgroup[1]/colspec">
+            <xsl:if test="position() != 1">
+              <xsl:text> + </xsl:text>
+            </xsl:if>
+            <xsl:choose>
+              <xsl:when test="not(@colwidth)">NOWIDTH</xsl:when>
+              <xsl:when test="contains(@colwidth, '*')">NOWIDTH</xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="@colwidth"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:for-each>
+        </xsl:if>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- HTML table -->
+        <xsl:if test="count(col|colgroup/col) = $numcols">
+          <xsl:for-each select="col|colgroup/col">
+            <xsl:if test="position() != 1">
+              <xsl:text> + </xsl:text>
+            </xsl:if>
+            <xsl:choose>
+              <xsl:when test="not(@width)">NOWIDTH</xsl:when>
+              <xsl:when test="contains(@width, '%')">NOWIDTH</xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="@width"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:for-each>
+        </xsl:if>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="column.sum.width">
+    <xsl:if test="not(contains($column.sum, 'NOWIDTH'))">
+      <xsl:value-of select="$column.sum"/>
+    </xsl:if>
+  </xsl:variable>
+
   <xsl:variable name="table.width">
     <xsl:choose>
       <xsl:when test="$explicit.table.width != ''">
         <xsl:value-of select="$explicit.table.width"/>
+      </xsl:when>
+      <xsl:when test="$column.sum.width != ''">
+        <xsl:value-of select="$column.sum.width"/>
       </xsl:when>
       <xsl:when test="$default.table.width = ''">
         <xsl:choose>
