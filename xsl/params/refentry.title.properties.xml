@@ -25,19 +25,32 @@
   <xsl:attribute name="space-after.optimum">0.5em</xsl:attribute>
   <xsl:attribute name="space-after.minimum">0.4em</xsl:attribute>
   <xsl:attribute name="space-after.maximum">0.6em</xsl:attribute>
+  <xsl:attribute name="start-indent"><xsl:value-of 
+                 select="$title.margin.left"/></xsl:attribute>
 </xsl:attribute-set>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
 
-<para>Formatting properties applied to refentry titles,
-including refnamediv, refsect1 through 3, and refsection.
-The font size is supplied by the appropriate 
-<parameter>section.level<replaceable>X</replaceable>.title.properties</parameter>
-attribute-set,
-computed from its location in the section hierarchy.
-</para>
+<para>Formatting properties applied to the title generated for the
+<sgmltag>refnamediv</sgmltag> part of output for
+<sgmltag>refentry</sgmltag> when the value of the
+<parameter>refentry.generate.title</parameter> parameter is
+non-zero. The font size is supplied by the appropriate <parameter
+>section.level<replaceable>X</replaceable>.title.properties</parameter>
+attribute-set, computed from the location of the
+<sgmltag>refentry</sgmltag> in the section hierarchy.</para>
+
+<note>
+  <para>This parameter has no effect on the the title generated for
+  the <sgmltag>refnamediv</sgmltag> part of output for
+  <sgmltag>refentry</sgmltag> when the value of the
+  <parameter>refentry.generate.name</parameter> parameter is
+  non-zero. By default, that title is formatted with the same
+  properties as the titles for all other first-level children of
+  <sgmltag>refentry</sgmltag>.</para>
+</note>
 
 </refsect1>
 </refentry>
