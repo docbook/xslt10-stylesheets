@@ -511,7 +511,7 @@
       </xsl:attribute>
     </xsl:if>
 
-    <xsl:apply-templates select="row">
+    <xsl:apply-templates select="row[1]">
       <xsl:with-param name="spans">
         <xsl:call-template name="blank.spans">
           <xsl:with-param name="cols" select="../@cols"/>
@@ -523,16 +523,7 @@
 </xsl:template>
 
 <xsl:template match="row">
-  <xsl:param name="spans">
-    <!-- Doing it this way in attempt to work around StackOverflowError -->
-    <!-- encountered when processing tables with ~700 rows with Xalan. -->
-    <!-- See #1211477. -->
-    <xsl:if test="preceding-sibling::row">
-      <xsl:apply-templates select="(preceding-sibling::row/entry|preceding-sibling::row/entrytbl)[1]" mode="span">
-        <xsl:with-param name="spans" select="$spans"/>
-      </xsl:apply-templates>
-    </xsl:if>
-  </xsl:param>
+  <xsl:param name="spans"/>
 
   <xsl:variable name="row-height">
     <xsl:if test="processing-instruction('dbhtml')">
@@ -622,7 +613,17 @@
     </xsl:apply-templates>
   </tr>
 
+  <xsl:if test="following-sibling::row">
+    <xsl:variable name="nextspans">
+      <xsl:apply-templates select="(entry|entrytbl)[1]" mode="span">
+        <xsl:with-param name="spans" select="$spans"/>
+      </xsl:apply-templates>
+    </xsl:variable>
 
+    <xsl:apply-templates select="following-sibling::row[1]">
+      <xsl:with-param name="spans" select="$nextspans"/>
+    </xsl:apply-templates>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="entry|entrytbl" name="entry">
