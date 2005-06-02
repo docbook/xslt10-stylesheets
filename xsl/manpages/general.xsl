@@ -46,6 +46,22 @@
     </xsl:for-each>
   </xsl:template>
 
+  <!-- * currently called by funcdef and paramdef templates, to prevent their -->
+  <!-- * contents from being broken across linss -->
+  <xsl:template mode="convert.spaces.to.nobreak.spaces" match="*">
+    <xsl:variable name="rcontent">
+      <xsl:apply-templates/>
+    </xsl:variable>
+    <xsl:variable name="content">
+      <xsl:value-of select="normalize-space($rcontent)"/>
+    </xsl:variable>
+    <xsl:call-template name="replace-string">
+      <xsl:with-param name="content" select="$content"/>
+      <xsl:with-param name="replace" select="' '"/>
+      <xsl:with-param name="with" select="'\ '"/>
+    </xsl:call-template>
+  </xsl:template>
+
   <xsl:template name="nested-section-title">
     <xsl:text>.sp
 .it 1 an-trap
