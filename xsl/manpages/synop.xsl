@@ -14,8 +14,9 @@
 
      ******************************************************************** -->
 
-<!-- the synopsis element is a verbatim environment; you won't find any -->
-<!-- code for handling it here -->
+<!-- * Note: If you are looking for the <synopsis> element, you won't find -->
+<!-- * any code here for handling it. It is a verbatim environment; check the -->
+<!-- * block.xsl file instead. -->
 
 <xsl:template match="synopfragment">
 <xsl:text>.PP&#10;</xsl:text>
@@ -24,6 +25,10 @@
 <!--
   there's a bug where an <arg> that's not inside a <group> isn't made bold
 -->
+
+<!-- * 2005-06-02: Check to see if above comment (arg not inside group -->
+<!-- * doesn't get bolded) is still true or not. If turns out it is not, -->
+<!-- * remove the comment -->
 
 <xsl:template match="group|arg">
   <xsl:variable name="choice" select="@choice"/>
@@ -132,7 +137,6 @@
   <xsl:text>.br&#10;</xsl:text>
 </xsl:template>
 
-
 <xsl:template match="cmdsynopsis">
   <xsl:text>.ad l&#10;.hy 0&#10;</xsl:text>
   <xsl:text>.HP </xsl:text>
@@ -141,14 +145,6 @@
   <xsl:apply-templates/>
   <xsl:text>&#10;</xsl:text>
   <xsl:text>.ad&#10;.hy&#10;</xsl:text>
-</xsl:template>
-
-<xsl:template match="void">
-  <xsl:text>void</xsl:text>
-</xsl:template>
-
-<xsl:template match="varargs">
-  <xsl:text>...</xsl:text>
 </xsl:template>
 
 <xsl:template match="funcsynopsisinfo">
@@ -162,35 +158,11 @@
      of the synopsis, so that line breaks only occur between 
      separate paramdefs. -->
 <xsl:template match="funcsynopsis">
-  <xsl:text>.ad l&#10;.hy 0&#10;</xsl:text>
+  <xsl:text>.ad l&#10;</xsl:text>
+  <xsl:text>.hy 0&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>.ad&#10;.hy&#10;</xsl:text>
-</xsl:template>
-
-<!-- TODO: Handle K&R-style parameter lists
-           Comment that used to go with the paramdef template, which
-	   is now obsolete and thus deleted
--->
-
-
-<!-- replaces all spaces within the funcdef/paramdef with non-breaking
-     spaces -->
-<xsl:template match="paramdef|funcdef">
-  <xsl:variable name="rcontent">
-    <xsl:apply-templates select="*|./*|text()"/>
-  </xsl:variable>
-  <xsl:variable name="content">
-    <xsl:value-of select="normalize-space($rcontent)"/>
-  </xsl:variable>
-  <xsl:call-template name="replace-string">
-    <xsl:with-param name="content" select="$content"/>
-    <xsl:with-param name="replace" select="' '"/>
-    <xsl:with-param name="with" select="'\ '"/>
-  </xsl:call-template>
-  <xsl:if test="local-name(.) = 'paramdef' and 
-	  (following-sibling::paramdef or following-sibling::varargs)">
-    <xsl:text>, </xsl:text>
-  </xsl:if>
+  <xsl:text>.ad&#10;</xsl:text>
+  <xsl:text>.hy&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="funcprototype">
@@ -198,12 +170,62 @@
     <xsl:apply-templates select="funcdef"/>
   </xsl:variable>
   <xsl:text>.HP </xsl:text>
-  <xsl:value-of select="string-length (normalize-space ($funcprototype)) - 5"/>
+  <xsl:value-of select="string-length (normalize-space ($funcprototype)) - 6"/>
   <xsl:text>&#10;</xsl:text>
   <xsl:value-of select="normalize-space ($funcprototype)"/>
-  <xsl:text>\ (</xsl:text>
-  <xsl:apply-templates select="void|paramdef|varargs"/>
-  <xsl:text>);&#10;</xsl:text>
+  <xsl:text>(</xsl:text>
+  <xsl:apply-templates select="*[local-name() != 'funcdef']"/>
+  <xsl:text>&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template match="funcdef">
+  <xsl:apply-templates select="." mode="convert.spaces.to.nobreak.spaces"/>
+</xsl:template>
+
+<xsl:template match="funcdef/function">
+  <xsl:apply-templates mode="bold" select="."/>
+</xsl:template>
+
+<xsl:template match="void">
+  <xsl:text>void);</xsl:text>
+</xsl:template>
+
+<xsl:template match="varargs">
+  <xsl:text>...);</xsl:text>
+</xsl:template>
+
+<xsl:template match="paramdef">
+  <xsl:apply-templates select="." mode="convert.spaces.to.nobreak.spaces"/>
+  <xsl:choose>
+    <xsl:when test="following-sibling::*">
+      <xsl:text>, </xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>);</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="paramdef/parameter">
+  <xsl:apply-templates mode="italic" select="."/>
+</xsl:template>
+
+<xsl:template match="funcparams">
+  <xsl:text>(</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>)</xsl:text>
+</xsl:template>
+
+<!-- * By default, contents of the <type> element are rendered in bold. But we -->
+<!-- * don't want them bolded if theu are inside a funcdef or paramdef; the -->
+<!-- * following two templates cause them to be rendered without any special -->
+<!-- * formatting when they are inside funcdef or paramdef. -->
+<xsl:template match="funcdef/type">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="paramdef/type">
+  <xsl:apply-templates/>
 </xsl:template>
 
 </xsl:stylesheet>
