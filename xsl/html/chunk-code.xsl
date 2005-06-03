@@ -1,5 +1,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
+                xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0"
                 version="1.0"
                 exclude-result-prefixes="exsl">
 
@@ -47,9 +48,9 @@
 
   <xsl:choose>
     <xsl:when test="$chunk != 0">
-      <div class="{local-name(.)}" id="{generate-id()}">
+      <cf:div class="{local-name(.)}" id="{generate-id()}">
         <xsl:apply-templates select="*" mode="find.chunks"/>
-      </div>
+      </cf:div>
     </xsl:when>
     <xsl:otherwise>
       <xsl:apply-templates select="*" mode="find.chunks"/>
@@ -66,17 +67,17 @@
 
   <xsl:choose>
     <xsl:when test="$chunk.fast != 0 and function-available('exsl:node-set')">
-      <xsl:variable name="chunks" select="exsl:node-set($chunk.hierarchy)//div"/>
+      <xsl:variable name="chunks" select="exsl:node-set($chunk.hierarchy)//cf:div"/>
       <xsl:variable name="genid" select="generate-id()"/>
 
       <xsl:variable name="div" select="$chunks[@id=$genid]"/>
 
       <xsl:variable name="prevdiv"
-                    select="($div/preceding-sibling::div|$div/preceding::div|$div/parent::div)[last()]"/>
+                    select="($div/preceding-sibling::cf:div|$div/preceding::cf:div|$div/parent::cf:div)[last()]"/>
       <xsl:variable name="prev" select="key('genid', $prevdiv/@id)"/>
 
       <xsl:variable name="nextdiv"
-                    select="($div/following-sibling::div|$div/following::div|$div/div)[1]"/>
+                    select="($div/following-sibling::cf:div|$div/following::cf:div|$div/cf:div)[1]"/>
       <xsl:variable name="next" select="key('genid', $nextdiv/@id)"/>
 
       <xsl:choose>
