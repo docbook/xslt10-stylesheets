@@ -72,4 +72,63 @@
     <xsl:text>.RE&#10;</xsl:text>
   </xsl:template>
 
+  <!-- ==================================================================== -->
+
+  <!-- * Use uppercase to render titles of all instances of Refsect1 or -->
+  <!-- * top-level Refsection, including in cross-references -->
+  <xsl:template match="refsect1|refentry/refsection"
+                mode="title.markup">
+    <xsl:param name="allow-anchors" select="0"/>
+    <xsl:variable name="title" select="(info/title
+                                       |refsectioninfo/title
+                                       |refsect1info/title
+                                       |title)[1]"/>
+    <xsl:call-template name="string.upper">
+      <xsl:with-param name="string">
+        <xsl:apply-templates select="$title" mode="title.markup">
+          <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+        </xsl:apply-templates>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
+  <!-- * Use uppercase to render titles of all instances of Refsynopsisdiv, -->
+  <!-- * including in cross-references -->
+  <xsl:template match="refsynopsisdiv" mode="title.markup">
+    <xsl:param name="allow-anchors" select="0"/>
+    <xsl:call-template name="string.upper">
+      <xsl:with-param name="string">
+        <xsl:choose>
+          <xsl:when test="title">
+            <xsl:apply-templates select="title" mode="title.markup">
+              <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+            </xsl:apply-templates>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="gentext">
+              <xsl:with-param name="key" select="'RefSynopsisDiv'"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
+  <!-- * For cross-references to Refnamediv, use localized gentext Refnamediv -->
+  <!-- * title (instead of using first Refname, as HTML and FO stylesheets do), -->
+  <!-- * and make it uppercase -->
+  <xsl:template match="refnamediv" mode="xref-to">
+    <xsl:param name="referrer"/>
+    <xsl:param name="xrefstyle"/>
+    <xsl:param name="verbose" select="1"/>
+
+    <xsl:call-template name="string.upper">
+      <xsl:with-param name="string">
+        <xsl:call-template name="gentext">
+          <xsl:with-param name="key" select="'RefName'"/>
+        </xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
 </xsl:stylesheet>
