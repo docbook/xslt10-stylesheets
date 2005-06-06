@@ -1,6 +1,7 @@
 <?xml version='1.0'?>
 <!DOCTYPE l:i18n SYSTEM "l10n.dtd" [
 <!ENTITY af SYSTEM "af.xml">
+<!ENTITY am SYSTEM "am.xml">
 <!ENTITY ar SYSTEM "ar.xml">
 <!ENTITY az SYSTEM "az.xml">
 <!ENTITY bg SYSTEM "bg.xml">
@@ -60,6 +61,7 @@
 ]>
 <l:i18n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
 &af;
+&am;
 &ar;
 &az;
 &bg;

@@ -1,17 +1,18 @@
 include ../../cvstools/Makefile.incl
 
-SOURCES=af.xml ar.xml az.xml bg.xml bn.xml bs.xml ca.xml cs.xml cy.xml da.xml \
+SOURCES=af.xml am.xml ar.xml az.xml bg.xml bn.xml bs.xml ca.xml cs.xml cy.xml da.xml \
         de.xml el.xml en.xml es.xml et.xml eu.xml fa.xml fi.xml fr.xml ga.xml \
-        gu.xml hi.xml he.xml hu.xml id.xml it.xml ja.xml kn.xml ko.xml lt.xml \
+        gu.xml hi.xml he.xml hu.xml id.xml it.xml ja.xml kn.xml ko.xml la.xml lt.xml \
         mn.xml nl.xml nn.xml no.xml pa.xml pl.xml hr.xml la.xml or.xml pt.xml \
         pt_br.xml ro.xml ru.xml sk.xml sl.xml sq.xml sr.xml sr_Latn.xml sv.xml \
-        ta.xml th.xml tr.xml uk.xml vi.xml xh.xml zh_cn.xml zh_tw.xml
+        ta.xml th.xml tl.xml tr.xml uk.xml vi.xml xh.xml zh_cn.xml zh_tw.xml
 
 GENSTYLE=../../gentext/xsl/xsl.xsl ../../gentext/locale/en.xml
 
 all: $(SOURCES)
 
 af.xml: ../../gentext/locale/af.xml $(GENSTYLE)
+am.xml: ../../gentext/locale/am.xml $(GENSTYLE)
 ar.xml: ../../gentext/locale/ar.xml $(GENSTYLE)
 az.xml: ../../gentext/locale/az.xml $(GENSTYLE)
 bg.xml: ../../gentext/locale/bg.xml $(GENSTYLE)
@@ -61,6 +62,7 @@ sr.xml: ../../gentext/locale/sr.xml $(GENSTYLE)
 sr_Latn.xml: ../../gentext/locale/sr_Latn.xml $(GENSTYLE)
 sv.xml: ../../gentext/locale/sv.xml $(GENSTYLE)
 ta.xml: ../../gentext/locale/ta.xml $(GENSTYLE)
+tl.xml: ../../gentext/locale/tl.xml $(GENSTYLE)
 th.xml: ../../gentext/locale/th.xml $(GENSTYLE)
 tr.xml: ../../gentext/locale/tr.xml $(GENSTYLE)
 uk.xml: ../../gentext/locale/uk.xml $(GENSTYLE)
