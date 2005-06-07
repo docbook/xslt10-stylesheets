@@ -44,33 +44,37 @@
 </xsl:template>
 
 <xsl:template match="varlistentry|glossentry">
-  <xsl:text>.TP&#10;</xsl:text>
+  <xsl:text>.TP&#10;</xsl:text> 
+  <!-- * read in contents of all terms or glossterms so that we can run -->
+  <!-- * normalize-space on them as a set before rendering -->
+  <xsl:variable name="content">
+    <!-- * check each term/glossterm to see if it is the last one in the set; -->
+    <!-- * if not last, render a comma and space after it so that multiple -->
+    <!-- * terms/glossterms are displayed as a comma-separated list -->
+    <xsl:for-each select="term|glossterm">
+      <xsl:apply-templates/>
+      <xsl:choose>
+        <xsl:when test="position() = last()"/> <!-- do nothing -->
+        <xsl:otherwise>
+          <xsl:text>, </xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:value-of select="normalize-space($content)"/>
+  <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
+
+<xsl:template match="varlistentry/term"/>
+<xsl:template match="glossentry/glossterm"/>
 
 <xsl:template match="variablelist[ancestor::listitem or ancestor::step]|
 	             glosslist[ancestor::listitem or ancestor::step]">
   <xsl:text>.RS&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>.RE&#10;.IP&#10;</xsl:text>
-</xsl:template>
-
-<xsl:template match="varlistentry/term|glossterm">
-  <xsl:variable name="content">
-    <xsl:apply-templates/>
-  </xsl:variable>
-  <xsl:value-of select="normalize-space($content)"/>
-  <xsl:text>, </xsl:text>
-</xsl:template>
-
-<xsl:template
-     match="varlistentry/term[position()=last()]|glossterm[position()=last()]"
-     priority="2">
-  <xsl:variable name="content">
-    <xsl:apply-templates/>
-  </xsl:variable>
-  <xsl:value-of select="normalize-space($content)"/>
-  <xsl:text>&#10;</xsl:text>
+  <xsl:text>.RE&#10;</xsl:text>
+  <xsl:text>.IP&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="varlistentry/listitem|glossdef">
