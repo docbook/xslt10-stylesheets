@@ -15,15 +15,23 @@
 <!-- ==================================================================== -->
 
   <xsl:template match="refnamediv">
-    <xsl:text>.SH "</xsl:text>
-    <xsl:call-template name="string.upper">
-      <xsl:with-param name="string">
-        <xsl:call-template name="gentext">
-          <xsl:with-param name="key" select="'RefName'"/>
+    <xsl:choose>
+      <xsl:when test="preceding-sibling::refnamediv">
+        <!-- no title on secondary refnamedivs! -->
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>.SH "</xsl:text>
+        <xsl:call-template name="string.upper">
+          <xsl:with-param name="string">
+            <xsl:call-template name="gentext">
+              <xsl:with-param name="key" select="'RefName'"/>
+            </xsl:call-template>
+          </xsl:with-param>
         </xsl:call-template>
-      </xsl:with-param>
-    </xsl:call-template>
-    <xsl:text>"&#10;</xsl:text>
+        <xsl:text>"</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>&#10;</xsl:text>
     <xsl:for-each select="refname">
       <xsl:if test="position()>1">
         <xsl:text>, </xsl:text>
