@@ -52,10 +52,40 @@
 
   <xsl:template match="refentry">
 
-    <xsl:variable name="get.metadata">
-      <xsl:call-template name="get.metadata"/>
-    </xsl:variable>
+    <!-- * Because there are several times when we need to check *info of -->
+    <!-- * this refentry and *info of its parent, we get those and store -->
+    <!-- * as node-sets in memory. -->
 
+    <!-- * Make a node-set with contents of *info -->
+    <xsl:variable name="get.info" select="(info|refentryinfo|docinfo)[1]"/>
+    <xsl:variable name="info" select="exsl:node-set($get.info)"/>
+    <!-- * Make a node-set with contents of parent's *info -->
+    <xsl:variable name="get.parentinfo"
+                  select="(../info
+                          |../referenceinfo
+                          |../articleinfo
+                          |../sectioninfo
+                          |../appendixinfo
+                          |../chapterinfo
+                          |../sect1info
+                          |../sect2info
+                          |../sect3info
+                          |../sect4info
+                          |../sect5info
+                          |../partinfo
+                          |../prefaceinfo
+                          |../docinfo)[1]"/>
+    <xsl:variable name="parentinfo" select="exsl:node-set($get.parentinfo)"/>
+
+    <!-- * The get.metadata template looks for metadata in $info and/or -->
+    <!-- * $parentinfo and in various other places and then puts it into -->
+    <!-- * a form that's easier for us to digest. -->
+    <xsl:variable name="get.metadata">
+      <xsl:call-template name="get.metadata">
+        <xsl:with-param name="info" select="$info"/>
+        <xsl:with-param name="parentinfo" select="$parentinfo"/>
+      </xsl:call-template>
+    </xsl:variable>
     <xsl:variable name="metadata" select="exsl:node-set($get.metadata)"/>
 
     <xsl:call-template name="write.text.chunk">
@@ -92,7 +122,10 @@
         <xsl:apply-templates/>
 
         <!-- * AUTHOR section (at end of man page) -->
-        <xsl:call-template name="author.section"/>
+        <xsl:call-template name="author.section">
+          <xsl:with-param name="info" select="$info"/>
+          <xsl:with-param name="parentinfo" select="$parentinfo"/>
+        </xsl:call-template>
         
       </xsl:with-param>
     </xsl:call-template>

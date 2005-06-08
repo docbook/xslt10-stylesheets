@@ -18,6 +18,22 @@
 <!-- ==================================================================== -->
 
   <xsl:template name="get.metadata">
+    <xsl:param name="info"/>
+    <xsl:param name="parentinfo"/>
+
+    <!-- ******************************************************************** -->
+    <!-- *  -->
+    <!-- * The get.metadata template returns a node-set with the following: -->
+    <!-- *  -->
+    <!-- * <name>          = "real name" of the documented item -->
+    <!-- * <section>       = the man "section" that the documented item is in -->
+    <!-- * <filename>      = <name>.<section>; for example: xsltproc.1 -->
+    <!-- * <title>         = often same as <name> but not necessarily -->
+    <!-- * <date>          = a date or maybe a pubdate -->
+    <!-- * <versionorname> = a version no. or product name. Or something else. -->
+    <!-- * <othermetadata> = other metadata :-) -->
+    <!-- *  -->
+    <!-- ******************************************************************** -->
 
     <!-- * $name & <name> = "real name" of the documented item; for example, in -->
     <!-- * the case of a command, the <name> is what you would type in on the -->
@@ -78,44 +94,18 @@
       <xsl:call-template name="replace-entities">
         <xsl:with-param name="content">
           <xsl:choose>
-            <xsl:when test="info/date">
+            <!-- look for date or pubdate in *info -->
+            <xsl:when test="$info/date|$info/pubdate">
               <xsl:copy>
-                <xsl:apply-templates select="info/date/node()"/>
+                <xsl:apply-templates
+                    select="($info/date/node()|$info/pubdate/node())[1]"/>
               </xsl:copy>
             </xsl:when>
-            <xsl:when test="info/pubdate">
+            <!-- look for date or pubdate in parent's *info -->
+            <xsl:when test="$parentinfo/date|$parentinfo/pubdate">
               <xsl:copy>
-                <xsl:apply-templates select="info/pubdate/node()"/>
-              </xsl:copy>
-            </xsl:when>
-            <xsl:when test="refentryinfo/date">
-              <xsl:copy>
-                <xsl:apply-templates select="refentryinfo/date/node()"/>
-              </xsl:copy>
-            </xsl:when>
-            <xsl:when test="refentryinfo/pubdate">
-              <xsl:copy>
-                <xsl:apply-templates select="refentryinfo/pubdate/node()"/>
-              </xsl:copy>
-            </xsl:when>
-            <xsl:when test="../info/date">
-              <xsl:copy>
-                <xsl:apply-templates select="../info/date/node()"/>
-              </xsl:copy>
-            </xsl:when>
-            <xsl:when test="../info/pubdate">
-              <xsl:copy>
-                <xsl:apply-templates select="../info/pubdate/node()"/>
-              </xsl:copy>
-            </xsl:when>
-            <xsl:when test="../referenceinfo/date">
-              <xsl:copy>
-                <xsl:apply-templates select="../referenceinfo/date/node()"/>
-              </xsl:copy>
-            </xsl:when>
-            <xsl:when test="../referenceinfo/pubdate">
-              <xsl:copy>
-                <xsl:apply-templates select="../referenceinfo/pubdate/node()"/>
+                <xsl:apply-templates
+                    select="($parentinfo/date/node()|$parentinfo/pubdate/node())[1]"/>
               </xsl:copy>
             </xsl:when>
             <!-- * If we can't find a date, then we generate a date. -->
@@ -152,38 +142,23 @@
     <!-- * And if that fails, well, then we just leave it empty. -->
     <versionorname>
       <xsl:choose>
-        <xsl:when test="info/productnumber">
-          <xsl:apply-templates select="info/productnumber/node()"/>
-        </xsl:when>
-        <xsl:when test="refentryinfo/productnumber">
-          <xsl:apply-templates select="refentryinfo/productnumber/node()"/>
+        <xsl:when test="$info/productnumber">
+          <xsl:apply-templates select="$info/productnumber/node()"/>
         </xsl:when>
         <xsl:when test="refmeta/refmiscinfo[@class = 'version']">
           <xsl:apply-templates select="refmeta/refmiscinfo/node()"/>
         </xsl:when>
-        <xsl:when test="../info/productnumber">
-          <xsl:apply-templates select="../info/productnumber/node()"/>
+        <xsl:when test="$parentinfo/productnumber">
+          <xsl:apply-templates select="$parentinfo/productnumber/node()"/>
         </xsl:when>
-        <xsl:when test="../referenceinfo/productnumber">
-          <xsl:apply-templates select="../referenceinfo/productnumber/node()"/>
+        <xsl:when test="$info/productname">
+          <xsl:apply-templates select="$info/productname/node()"/>
         </xsl:when>
-        <xsl:when test="info/productname">
-          <xsl:apply-templates select="info/productname/node()"/>
-        </xsl:when>
-        <xsl:when test="refentryinfo/productname">
-          <xsl:apply-templates select="refentryinfo/productnam/node()"/>
-        </xsl:when>
-        <xsl:when test="../info/productname">
-          <xsl:apply-templates select="../info/productnam/node()"/>
-        </xsl:when>
-        <xsl:when test="../referenceinfo/productname">
-          <xsl:apply-templates select="../referenceinfo/productname/node()"/>
+        <xsl:when test="$parentinfo/productname">
+          <xsl:apply-templates select="$parentinfo/productname/node()"/>
         </xsl:when>
         <xsl:when test="refmeta/refmiscinfo">
           <xsl:apply-templates select="refmeta/refmiscinfo[1]/node()"/>
-        </xsl:when>
-        <xsl:when test="refnamediv/refclass">
-          <xsl:apply-templates select="refnamediv[1]/refclass[1]/node()"/>
         </xsl:when>
         <xsl:otherwise>
           <!-- found nothing, so leave it empty -->
@@ -214,17 +189,11 @@
     <!-- * We just leave it empty if we can't find anything to use -->
     <othermetadata>
       <xsl:choose>
-        <xsl:when test="../info/title">
-          <xsl:apply-templates select="../info/title/node()"/>
-        </xsl:when>
-        <xsl:when test="../referenceinfo/title">
-          <xsl:apply-templates select="../referenceinfo/title/node()"/>
+        <xsl:when test="$parentinfo/title">
+          <xsl:apply-templates select="$parentinfo/title/node()"/>
         </xsl:when>
         <xsl:when test="../title">
           <xsl:apply-templates select="../title/node()"/>
-        </xsl:when>
-        <xsl:when test="refnamediv/refclass">
-          <xsl:apply-templates select="refnamediv[1]/refclass[1]/node()"/>
         </xsl:when>
         <xsl:when test="refmeta/refmiscinfo">
           <xsl:apply-templates select="refmeta/refmiscinfo[1]/node()"/>
@@ -240,18 +209,14 @@
   <!-- * ============================================================== -->
 
   <xsl:template name="author.section">
+    <xsl:param name="info"/>
+    <xsl:param name="parentinfo"/>
     <xsl:choose>
-      <xsl:when test="info//author">
-        <xsl:apply-templates select="info" mode="authorsect"/>
+      <xsl:when test="$info//author">
+        <xsl:apply-templates select="$info" mode="authorsect"/>
       </xsl:when>
-      <xsl:when test="refentryinfo//author">
-        <xsl:apply-templates select="refentryinfo" mode="authorsect"/>
-      </xsl:when>
-      <xsl:when test="/book/bookinfo//author">
-        <xsl:apply-templates select="/book/bookinfo" mode="authorsect"/>
-      </xsl:when>
-      <xsl:when test="/article/articleinfo//author">
-        <xsl:apply-templates select="/article/articleinfo" mode="authorsect"/>
+      <xsl:when test="$parentinfo//author">
+        <xsl:apply-templates select="$parentinfo" mode="authorsect"/>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
