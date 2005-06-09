@@ -5008,7 +5008,7 @@
   <!-- * -->
   <!-- * [1] http://www.unicode.org/reports/tr14/ -->
   <!-- * -->
-We include it here anyway, and map it to the roff zero-width
+  <!-- * We include it here anyway & map to the roff zero-width no-break -->
   <xsl:output-character
    char="&#xfeff;"
    unichar:name="ZERO WIDTH NO-BREAK SPACE"
