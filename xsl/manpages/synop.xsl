@@ -64,10 +64,10 @@
   <xsl:choose>
     <xsl:when test="local-name(.) = 'arg' and not(ancestor::arg)">
       <!-- Prevent breaking up an argument by wrapping it -->
-      <xsl:call-template name="replace-string">
-        <xsl:with-param name="content" select="normalize-space($arg)"/>
-        <xsl:with-param name="replace" select="' '"/>
-        <xsl:with-param name="with" select="'\ '"/>
+      <xsl:call-template name="string.subst">
+        <xsl:with-param name="string" select="normalize-space($arg)"/>
+        <xsl:with-param name="target" select="' '"/>
+        <xsl:with-param name="replacement" select="'\ '"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
@@ -111,10 +111,10 @@
     <xsl:apply-templates/>
   </xsl:variable>
   <xsl:variable name="space-escaped-arg">
-    <xsl:call-template name="replace-string">
-      <xsl:with-param name="content" select="normalize-space($arg)"/>
-      <xsl:with-param name="replace" select="' '"/>
-      <xsl:with-param name="with" select="'\ '"/>
+    <xsl:call-template name="string.subst">
+      <xsl:with-param name="string" select="normalize-space($arg)"/>
+      <xsl:with-param name="target" select="' '"/>
+      <xsl:with-param name="replacement" select="'\ '"/>
     </xsl:call-template>
   </xsl:variable>
   <xsl:apply-templates mode="bold" select="exsl:node-set($space-escaped-arg)"/>

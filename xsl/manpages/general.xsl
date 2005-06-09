@@ -47,7 +47,7 @@
   </xsl:template>
 
   <!-- * currently called by funcdef and paramdef templates, to prevent their -->
-  <!-- * contents from being broken across linss -->
+  <!-- * contents from being broken across lines -->
   <xsl:template mode="convert.spaces.to.nobreak.spaces" match="*">
     <xsl:variable name="rcontent">
       <xsl:apply-templates/>
@@ -55,10 +55,10 @@
     <xsl:variable name="content">
       <xsl:value-of select="normalize-space($rcontent)"/>
     </xsl:variable>
-    <xsl:call-template name="replace-string">
-      <xsl:with-param name="content" select="$content"/>
-      <xsl:with-param name="replace" select="' '"/>
-      <xsl:with-param name="with" select="'\ '"/>
+    <xsl:call-template name="string.subst">
+      <xsl:with-param name="string" select="$content"/>
+      <xsl:with-param name="target" select="' '"/>
+      <xsl:with-param name="replacement" select="'\ '"/>
     </xsl:call-template>
   </xsl:template>
 
@@ -241,46 +241,46 @@
 
   <xsl:template name="replace-dash">
     <xsl:param name="content" select="''"/>
-    <xsl:call-template name="replace-string">
-      <xsl:with-param name="content" select="$content"/>
-      <xsl:with-param name="replace" select="'-'"/>
-      <xsl:with-param name="with" select="'\-'"/>
+    <xsl:call-template name="string.subst">
+      <xsl:with-param name="string" select="$content"/>
+      <xsl:with-param name="target" select="'-'"/>
+      <xsl:with-param name="replacement" select="'\-'"/>
     </xsl:call-template>
   </xsl:template>
 
   <xsl:template name="replace-ndash">
     <xsl:param name="content" select="''"/>
-    <xsl:call-template name="replace-string">
-      <xsl:with-param name="content" select="$content"/>
-      <xsl:with-param name="replace" select="'&#8211;'"/>
-      <xsl:with-param name="with" select="'-'"/>
+    <xsl:call-template name="string.subst">
+      <xsl:with-param name="string" select="$content"/>
+      <xsl:with-param name="target" select="'&#8211;'"/>
+      <xsl:with-param name="replacement" select="'-'"/>
     </xsl:call-template>
   </xsl:template>
 
   <xsl:template name="replace-mdash">
     <xsl:param name="content" select="''"/>
-    <xsl:call-template name="replace-string">
-      <xsl:with-param name="content" select="$content"/>
-      <xsl:with-param name="replace" select="'&#8212;'"/>
-      <xsl:with-param name="with" select="'--'"/>
+    <xsl:call-template name="string.subst">
+      <xsl:with-param name="string" select="$content"/>
+      <xsl:with-param name="target" select="'&#8212;'"/>
+      <xsl:with-param name="replacement" select="'--'"/>
     </xsl:call-template>
   </xsl:template>
 
   <xsl:template name="replace-hellip">
     <xsl:param name="content" select="''"/>
-    <xsl:call-template name="replace-string">
-      <xsl:with-param name="content" select="$content"/>
-      <xsl:with-param name="replace" select="'&#8230;'"/>
-      <xsl:with-param name="with" select="'...'"/>
+    <xsl:call-template name="string.subst">
+      <xsl:with-param name="string" select="$content"/>
+      <xsl:with-param name="target" select="'&#8230;'"/>
+      <xsl:with-param name="replacement" select="'...'"/>
     </xsl:call-template>
   </xsl:template>
 
   <xsl:template name="replace-setmn">
     <xsl:param name="content" select="''"/>
-    <xsl:call-template name="replace-string">
-      <xsl:with-param name="content" select="$content"/>
-      <xsl:with-param name="replace" select="'&#8726;'"/>
-      <xsl:with-param name="with" select="'\\'"/>
+    <xsl:call-template name="string.subst">
+      <xsl:with-param name="string" select="$content"/>
+      <xsl:with-param name="target" select="'&#8726;'"/>
+      <xsl:with-param name="replacement" select="'\\'"/>
     </xsl:call-template>
   </xsl:template>
 
@@ -291,37 +291,37 @@
 
   <xsl:template name="replace-nbsp">
     <xsl:param name="content" select="''"/>
-    <xsl:call-template name="replace-string">
-      <xsl:with-param name="content" select="$content"/>
-      <xsl:with-param name="replace" select="'&#x00a0;'"/>
-      <xsl:with-param name="with" select="'\~'"/>
+    <xsl:call-template name="string.subst">
+      <xsl:with-param name="string" select="$content"/>
+      <xsl:with-param name="target" select="'&#x00a0;'"/>
+      <xsl:with-param name="replacement" select="'\~'"/>
     </xsl:call-template>
   </xsl:template>
 
   <xsl:template name="replace-ldquo">
     <xsl:param name="content" select="''"/>
-    <xsl:call-template name="replace-string">
-      <xsl:with-param name="content" select="$content"/>
-      <xsl:with-param name="replace" select="'&#8220;'"/>
-      <xsl:with-param name="with" select="'\(lq'"/>
+    <xsl:call-template name="string.subst">
+      <xsl:with-param name="string" select="$content"/>
+      <xsl:with-param name="target" select="'&#8220;'"/>
+      <xsl:with-param name="replacement" select="'\(lq'"/>
     </xsl:call-template>
   </xsl:template>
 
   <xsl:template name="replace-rdquo">
     <xsl:param name="content" select="''"/>
-    <xsl:call-template name="replace-string">
-      <xsl:with-param name="content" select="$content"/>
-      <xsl:with-param name="replace" select="'&#8221;'"/>
-      <xsl:with-param name="with" select="'\(rq'"/>
+    <xsl:call-template name="string.subst">
+      <xsl:with-param name="string" select="$content"/>
+      <xsl:with-param name="target" select="'&#8221;'"/>
+      <xsl:with-param name="replacement" select="'\(rq'"/>
     </xsl:call-template>
   </xsl:template>
 
   <xsl:template name="replace-backslash">
     <xsl:param name="content" select="''"/>
-    <xsl:call-template name="replace-string">
-      <xsl:with-param name="content" select="$content"/>
-      <xsl:with-param name="replace" select="'\'"/>
-      <xsl:with-param name="with" select="'\\'"/>
+    <xsl:call-template name="string.subst">
+      <xsl:with-param name="string" select="$content"/>
+      <xsl:with-param name="target" select="'\'"/>
+      <xsl:with-param name="replacement" select="'\\'"/>
     </xsl:call-template>
   </xsl:template>
 
@@ -330,35 +330,11 @@
        with "\&", a zero-width space. -->
   <xsl:template name="replace-period">
     <xsl:param name="content" select="''"/>
-    <xsl:call-template name="replace-string">
-      <xsl:with-param name="content" select="$content"/>
-      <xsl:with-param name="replace" select="'.'"/>
-      <xsl:with-param name="with" select="'\&#38;.'"/>
+    <xsl:call-template name="string.subst">
+      <xsl:with-param name="string" select="$content"/>
+      <xsl:with-param name="target" select="'.'"/>
+      <xsl:with-param name="replacement" select="'\&#38;.'"/>
     </xsl:call-template>
-  </xsl:template>
-
-<!-- ==================================================================== -->
-
-  <!-- general string-replacement function -->
-  <xsl:template name="replace-string">
-    <xsl:param name="content" select="''"/>
-    <xsl:param name="replace" select="''"/>
-    <xsl:param name="with" select="''"/>
-    <xsl:choose>
-      <xsl:when test="not(contains($content,$replace))">
-        <xsl:value-of select="$content"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="substring-before($content,$replace)"/>
-        <xsl:value-of select="$with"/>
-        <xsl:call-template name="replace-string">
-          <xsl:with-param name="content"
-                          select="substring-after($content,$replace)"/>
-          <xsl:with-param name="replace" select="$replace"/>
-          <xsl:with-param name="with" select="$with"/>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
   </xsl:template>
 
 </xsl:stylesheet>

@@ -63,12 +63,12 @@
     
     <!-- * <filename> = name.section; for example: xsltproc.1 -->
     <filename>
-      <xsl:call-template name="replace-string">
+      <xsl:call-template name="string.subst">
         <!-- replace spaces in source filename with underscores in output filename -->
-        <xsl:with-param name="content"
+        <xsl:with-param name="string"
                         select="concat(normalize-space ($name), '.', $section)"/>
-        <xsl:with-param name="replace" select="' '"/>
-        <xsl:with-param name="with" select="'_'"/>
+        <xsl:with-param name="target" select="' '"/>
+        <xsl:with-param name="replacement" select="'_'"/>
       </xsl:call-template>
     </filename>
 
