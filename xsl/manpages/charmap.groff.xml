@@ -15,14 +15,25 @@
 <!-- * *************************************************************** -->
 <!-- *    Commentary -->
 <!-- * *************************************************************** -->
-<!-- * This file maps a small subset of Unicode characters (around 800 -->
-<!-- * or so) to corresponding roff escape sequences. Use it when you -->
-<!-- * need to convert Unicode (UTF-8 or UTF-16) encoded XML content -->
-<!-- * to roff (e.g., to generate "portable" man-page output). -->
 <!-- * -->
-<!-- * Although the format follows the "character map" format -->
-<!-- * specified in the XSLT 2.0 working draft[1], it can be used with -->
-<!-- * an appropriate XSLT 1.0 stylesheet and any XSLT 1.0 processor. -->
+<!-- * This file maps a selected subset of Unicode symbols and special -->
+<!-- * characters (around 800 or so) to corresponding groff escape -->
+<!-- * sequences. Use it when you need to convert Unicode (UTF-8 or -->
+<!-- * UTF-16) encoded XML content to groff output for an environment -->
+<!-- * that uses a good, modern groff instead of nroff (for example, a -->
+<!-- * GNU/Linux system, FreeBSD system, or Cygwin environment). -->
+<!-- * -->
+<!-- * If, on the other hand, you aren't sure what OSes or -->
+<!-- * environments your man-page output might end up being viewed on, -->
+<!-- * and not sure what version of nroff/groff those environments -->
+<!-- * might have, you should probably instead use the accompanying -->
+<!-- * charmap.roff.min.xml file; it has a much smaller and "safer" -->
+<!-- * set of mappings (only about 40 characters). -->
+<!-- * -->
+<!-- * Although the format of this file follows the "character map" -->
+<!-- * format specified in the XSLT 2.0 working draft[1], the file can -->
+<!-- * also be used with an appropriate XSLT 1.0 stylesheet and any -->
+<!-- * XSLT 1.0 processor. -->
 <!-- * -->
 <!-- *   [1] http://www.w3.org/TR/xslt20/#character-maps -->
 <!-- * -->
@@ -2617,12 +2628,12 @@
    unichar:name="DIVISION SLASH"
    string="@esc@(f/"
    />
-  <!-- * not in roff -->
-  <!-- *      <xsl:output-character -->
-  <!-- *      char="&#x2216;" -->
-  <!-- *      unichar:name="SET MINUS" -->
-  <!-- *      unichar:entity="setmn" -->
-  <!-- *      /> -->
+  <xsl:output-character
+    char="&#x2216;"
+    unichar:name="SET MINUS"
+    unichar:entity="setmn"
+    string="@esc@@esc@"
+   />
   <xsl:output-character
    char="&#x2217;"
    unichar:name="ASTERISK OPERATOR"
