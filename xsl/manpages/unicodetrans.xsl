@@ -1,6 +1,5 @@
 <xsl:stylesheet version="1.0"
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:str="http://xsltsl.org/string">
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <!-- ********************************************************************
      $Id$
@@ -14,13 +13,21 @@
 
 <!-- ==================================================================== -->
 
-  <xsl:param name="charmap.filename">roff.charmap.min.xml</xsl:param>
-
   <!-- * The following function is a modified version of Jeni -->
   <!-- * Tennison's 'replace_strings' in the 'multiple string -->
   <!-- * replacements' section of Dave Pawson's XSLT FAQ: -->
   <!-- *  -->
   <!-- *   http://www.dpawson.co.uk/xsl/sect2/StringReplace.html -->
+  <!-- *  -->
+  <!-- * This stylesheet is meant to be used as part of the DocBook -->
+  <!-- * stylesheets, where the value of the $charmap.filename param -->
+  <!-- * is specified in a separate params.xsl file which gets -->
+  <!-- * included, along with this file, by the docbook.xsl driver. -->
+  <!-- *  -->
+  <!-- * If you instead want to use it as a standalone stylesheet, you -->
+  <!-- * need to add an xsl:param for $charmap.filename; for example: -->
+  <!-- *  -->
+  <!-- *   <xsl:param name="charmap.filename">charmap.groff.xml</xsl:param> -->
 
   <xsl:template name="replace.unicode.chars">
     <xsl:param name="content" />

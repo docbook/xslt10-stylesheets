@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<xsl:character-map xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+		   xmlns:unichar="http://docbook.sourceforge.net/xmlns/unichar/1.0">
+
+<!-- ********************************************************************
+     $Id$
+     ********************************************************************
+
+     This file is part of the XSL DocBook Stylesheet distribution.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
+
+     ******************************************************************** -->
+
+<!-- * *************************************************************** -->
+<!-- *   Commentary -->
+<!-- * *************************************************************** -->
+<!-- * This file maps a minimal subset of Unicode characters to -->
+<!-- * corresponding roff escape sequences. The subset is limited to -->
+<!-- * less than 40 characters - basically, just a few common symbols, -->
+<!-- * special spaces and dashes, and "curly" quotation marks. -->
+<!-- * -->
+<!-- * The mappings are basically intended just for generating man -->
+<!-- * pages that will look acceptable on a TTY, without any concern -->
+<!-- * for how the same man pages will look if output to a different -->
+<!-- * device (to a postscript printer, for example). -->
+<!-- * -->
+<!-- * Use this file when you aren't sure what OSes or environments -->
+<!-- * your man-page output might end up being viewed on, and not sure -->
+<!-- * what version of nroff/groff those environments might have. -->
+<!-- * -->
+<!-- * If you're instead generating output for an environment that -->
+<!-- * uses a good, modern groff instead of nroff (for example, a -->
+<!-- * GNU/Linux system, FreeBSD system, or Cygwin environment), see -->
+<!-- * the accompanying charmap.groff.xml file; it has a much richer -->
+<!-- * set of mappings (it maps more than 800 characters). -->
+<!-- * -->
+<!-- * Although the format of this file follows the "character map" -->
+<!-- * format specified in the XSLT 2.0 working draft[1], the file can -->
+<!-- * also be used with an appropriate XSLT 1.0 stylesheet and any -->
+<!-- * XSLT 1.0 processor. -->
+<!-- * -->
+<!-- *   [1] http://www.w3.org/TR/xslt20/#character-maps -->
+<!-- * -->
+<!-- * For more details, see the accompanying charmap.groff.xml file. -->
+<!-- * -->
+<!-- * Note: In place of the literal backlash "\" character used in roff -->
+<!-- * to indicate the start of an escape sequence, this file uses -->
+<!-- * "@esc@". So an additional string-substition step needs to be done -->
+<!-- * on any output generated using the data from this file, before -->
+<!-- * final roff output, to replace the "@esc@" instances with the -->
+<!-- * literal backslash characters that roff expects. -->
+
+<!-- * ################################################################# -->
+
+  <!-- * ***************************************************************** -->
+  <!-- *   Begin: Latin-1/ISO-8859-1 -->
+  <!-- *     x00a0 to x00ff -->
+  <!-- * ***************************************************************** -->
+
+  <xsl:output-character
+   char="&#x00a0;"
+   unichar:name="NO-BREAK SPACE"
+   unichar:entity="nbsp"
+   string="@esc@ "
+   />
+  <xsl:output-character
+   char="&#x00a9;"
+   unichar:name="COPYRIGHT SIGN"
+   unichar:entity="copy"
+   string="@esc@(co"
+   />
+  <xsl:output-character
+   char="&#x00ae;"
+   unichar:name="REGISTERED SIGN"
+   unichar:entity="reg"
+   string="@esc@(rg"
+   />
+  <xsl:output-character
+   char="&#x00d7;"
+   unichar:name="MULTIPLICATION SIGN"
+   unichar:entity="times"
+   string="@esc@(mu"
+   />
+  <xsl:output-character
+   char="&#x00f7;"
+   unichar:name="DIVISION SIGN"
+   unichar:entity="divide"
+   string="@esc@(di"
+   />
+
+  <!-- * ***************************************************************** -->
+  <!-- *   Begin: General Punctuation -->
+  <!-- *     x2000 to x206f -->
+  <!-- * **************************************************************** -->
+
+  <!-- * first, spaces of various widths -->
+
+  <!-- * Note: There does not seem to be either a real em space or en space -->
+  <!-- * in roff; to approximate them, this character map assumes that in -->
+  <!-- * most fonts, an en space is about the same as the width of a digit -->
+  <!-- * (in roff, "\0"), so an em space (which by definition is -->
+  <!-- * equal to the width of two en spaces) is about the same as the width -->
+  <!-- * of two digits (thus, in roff, "\0\0") -->
+  <!-- * first, Spaces of various widths -->
+
+  <xsl:output-character
+   char="&#x2000;"
+   unichar:name="EN QUAD"
+   string="@esc@0"
+   />
+  <xsl:output-character
+   char="&#x2001;"
+   unichar:name="EM QUAD"
+   string="@esc@0@esc@0"
+   />
+  <xsl:output-character
+   char="&#x2002;"
+   unichar:name="EN SPACE"
+   unichar:entity="ensp"
+   string="@esc@0"
+   />
+  <xsl:output-character
+   char="&#x2003;"
+   unichar:name="EM SPACE"
+   unichar:entity="emsp"
+   string="@esc@0@esc@0"
+   />
+  <!-- * same as roff "digit" space -->
+  <xsl:output-character
+   char="&#x2007;"
+   unichar:name="FIGURE SPACE"
+   unichar:entity="numsp"
+   string="@esc@0"
+   />
+  <!-- * punctuation space in most fonts is actually closer to a normal -->
+  <!-- * space than it is to a thin space -->
+  <xsl:output-character
+   char="&#x2008;"
+   unichar:name="PUNCTUATION SPACE"
+   unichar:entity="puncsp"
+   string=" "
+   />
+  <!-- * Note: Not sure how best to deal with thin space, because the roff -->
+  <!-- * thin space, "\^", prints as a zero-width space in TTY -->
+  <!-- * output. However, it seems that, unlike a hair space, a thin space, -->
+  <!-- * at 1/12 of an em, is still recognizable to most people as a space, -->
+  <!-- * so treating it as zero-width seems wrong. So, for the sake of making -->
+  <!-- * TTY output look OK, just substitute with a normal space; but real -->
+  <!-- * roff escape is "\(\^" -->
+  <xsl:output-character
+   char="&#x2009;"
+   unichar:name="THIN SPACE"
+   unichar:entity="thinsp"
+   string=" "
+   />
+  <!-- * I don't think there's a standard definition of what a hair -->
+  <!-- * space is; some guides just say it's "less than 1/5 of an em" or -->
+  <!-- * that it's "narrower than a thin space"; seems like in practice, -->
+  <!-- * it's *a lot* narrower than a thin space, to the point where -->
+  <!-- * it's close to being a non-space, so here it's substituted with -->
+  <!-- * roff equivalent of a zero-width no-break space -->
+  <xsl:output-character
+   char="&#x200a;"
+   unichar:name="HAIR SPACE"
+   unichar:entity="hairsp"
+   string="@esc@&amp;"
+   />
+  <!-- * map to roff "zero-width break point"  -->
+  <xsl:output-character
+   char="&#x200b;"
+   unichar:name="ZERO WIDTH SPACE"
+   string="@esc@:"
+   />
+  <!-- * .................................................... -->
+  <!-- * next, hyphens and various dashes, bars, underscores  -->
+  <xsl:output-character
+   char="&#x2010;"
+   unichar:name="HYPHEN"
+   unichar:entity="hyphen"
+   string="@esc@(hy"
+   />
+  <xsl:output-character
+   char="&#x2011;"
+   unichar:name="NON-BREAKING HYPHEN"
+   string="@esc@&amp;-@esc@&amp;"
+   />
+  <!-- * roughly same width as en dash -->
+  <xsl:output-character
+   char="&#x2012;"
+   unichar:name="FIGURE DASH"
+   string="@esc@(en"
+   />
+  <xsl:output-character
+   char="&#x2013;"
+   unichar:name="EN DASH"
+   unichar:entity="ndash"
+   string="@esc@(en"
+   />
+  <xsl:output-character
+   char="&#x2014;"
+   unichar:name="EM DASH"
+   unichar:entity="mdash"
+   string="@esc@(em"
+   />
+  <!-- * seems roughly same width as em dash -->
+  <xsl:output-character
+   char="&#x2015;"
+   unichar:name="HORIZONTAL BAR"
+   unichar:entity="horbar"
+   string="@esc@(em"
+   />
+
+  <!-- * .................................................... -->
+  <!-- * various quotation marks -->
+  <xsl:output-character
+   char="&#x2018;"
+   unichar:name="LEFT SINGLE QUOTATION MARK"
+   unichar:entity="lsquo"
+   string="@esc@(oq"
+   />
+  <xsl:output-character
+   char="&#x2019;"
+   unichar:name="RIGHT SINGLE QUOTATION MARK"
+   unichar:entity="rsquo"
+   string="@esc@(cq"
+   />
+
+  <xsl:output-character
+   char="&#x201c;"
+   unichar:name="LEFT DOUBLE QUOTATION MARK"
+   unichar:entity="ldquo"
+   string="@esc@(lq"
+   />
+  <xsl:output-character
+   char="&#x201d;"
+   unichar:name="RIGHT DOUBLE QUOTATION MARK"
+   unichar:entity="rdquo"
+   string="@esc@(rq"
+   />
+
+  <!-- * .................................................... -->
+  <!-- * various symbols -->
+  <xsl:output-character
+   char="&#x2020;"
+   unichar:name="DAGGER"
+   unichar:entity="dagger"
+   string="@esc@(dg"
+   />
+  <xsl:output-character
+   char="&#x2021;"
+   unichar:name="DOUBLE DAGGER"
+   unichar:entity="Dagger"
+   string="@esc@(dd"
+   />
+  <xsl:output-character
+   char="&#x2022;"
+   unichar:name="BULLET"
+   unichar:entity="bull"
+   string="@esc@(bu"
+   />
+  <xsl:output-character
+   char="&#x2026;"
+   unichar:name="HORIZONTAL ELLIPSIS"
+   unichar:entity="hellip"
+   string="@esc@&amp;..."
+   />
+  <xsl:output-character
+   char="&#x2027;"
+   unichar:name="HYPHENATION POINT"
+   string="@esc@%"
+   />
+  <!-- * seems like "narrow" nbsp is basically the same as a no-break -->
+  <!-- * space -->
+  <xsl:output-character
+   char="&#x202f;"
+   unichar:name="NARROW NO-BREAK SPACE"
+   string="@esc@ "
+   />
+  <xsl:output-character
+   char="&#x2032;"
+   unichar:name="PRIME"
+   unichar:entity="prime"
+   string="@esc@(fm"
+   />
+  <xsl:output-character
+   char="&#x2033;"
+   unichar:name="DOUBLE PRIME"
+   unichar:entity="Prime"
+   string="@esc@(sd"
+   />
+  <!-- * Regarding x2060 vs. xFEFF, the document "Unicode Standard Annex #14, -->
+  <!-- * Line Breaking Properties"[1] says: -->
+  <!-- * -->
+  <!-- *   The word joiner character [x2060 a.k.a "WJ"] is the preferred -->
+  <!-- *   choice for an invisible character to keep other characters -->
+  <!-- *   together that would otherwise be split across the line at a direct -->
+  <!-- *   break. The character FEFF has the same effect, but because it is -->
+  <!-- *   also used in an unrelated way as a byte order mark, the use of the -->
+  <!-- *   WJ as the preferred interword glue simplifies the handling of FEFF. -->
+  <!-- * -->
+  <!-- * [1] http://www.unicode.org/reports/tr14/ -->
+  <!-- * -->
+  <!-- * The groff docs seem ambiguous about whether \& is a joiner and -->
+  <!-- * prevents breaks, but, based on testing, seems like it does -->
+  <xsl:output-character
+   char="&#x2060;"
+   unichar:name="WORD JOINER"
+   string="@esc@&amp;"
+   />
+  <xsl:output-character
+   char="&#x2120;"
+   unichar:name="SERVICE MARK"
+   string="sm"
+   />
+  <xsl:output-character
+   char="&#x2122;"
+   unichar:name="TRADE MARK SIGN"
+   unichar:entity="trade"
+   string="@esc@(tm"
+   />
+  <xsl:output-character
+   char="&#x2216;"
+   unichar:name="SET MINUS"
+   unichar:entity="setmn"
+   string="@esc@@esc@"
+   />
+  <xsl:output-character
+   char="&#xfeff;"
+   unichar:name="ZERO WIDTH NO-BREAK SPACE"
+   string="@esc@&amp;"
+   />
+</xsl:character-map>
