@@ -5,14 +5,11 @@ PARAMSTRIP=.param.stripped
 
 include Makefile.param
 
-all: xref.xsl param.xsl profile-docbook.xsl
+all: param.xsl
 
 xml: param.xml
 
 html: param.html
-
-xref.xsl: ../html/xref.xsl
-	$(XSLT) $< textify.xsl $@
 
 param.html: param.xml
 	$(XSLT) $< ../docsrc/lrefentry.xsl $@
@@ -35,12 +32,7 @@ Makefile.param:
 	../../cvstools/paramchk -m $@ param.xweb
 	make
 
-profile-docbook.xsl: docbook.xsl ../profiling/xsl2profile.xsl
-	$(XSLT) $< ../profiling/xsl2profile.xsl $@
-
 clean:
-	$(RM) xref.xsl
-	$(RM) param.xml param.html param.xsl \
-	profile-docbook.xsl profile-chunk.xsl profile-onechunk.xsl
+	$(RM) param.xml param.html param.xsl
 	$(RM) Makefile.param
 	echo "# foo" > Makefile.param
