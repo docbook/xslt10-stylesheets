@@ -645,11 +645,24 @@
 
 <xsl:template match="trademark">
   <xsl:call-template name="inline.charseq"/>
-  <xsl:if test="@class">
-    <xsl:call-template name="dingbat">
-      <xsl:with-param name="dingbat" select="@class"/>
-    </xsl:call-template>
-  </xsl:if>
+  <xsl:choose>
+    <xsl:when test="@class = 'copyright'
+                    or @class = 'registered'">
+      <xsl:call-template name="dingbat">
+        <xsl:with-param name="dingbat" select="@class"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="@class = 'service'">
+      <xsl:call-template name="inline.superscriptseq">
+        <xsl:with-param name="content" select="'SM'"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="dingbat">
+        <xsl:with-param name="dingbat" select="'trademark'"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="firstterm">
