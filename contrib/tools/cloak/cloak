@@ -33,9 +33,21 @@ my $lines = <$handle>;
 # if the document has already been cloaked, uncloak it
 if ($lines =~ m/$comment/ || $0 =~ m/uncloak/) {
 
-    $lines =~ s/<\?$comment \?>//;                         # remove comment added by cloak
-    $lines =~ s/<\?ENT_ (.*?)_ENT\?>/$1/g;                 # uncloak all cloaked entities
-    $lines =~ s/\?DOCTYPE(.*)_END_SUBSET\?/!DOCTYPE$1/s; # uncloak DOCTYPE, subset
+# NOTE: We do [\?]+ intead of just \? because some tools (osx
+# and/or sgml2xml, for one) add an extra question mark in PIs
+# during processing (because SGML PI syntax is different than XML
+# PI syntax in that SGML PIs don't have the closing question mark
+
+    $lines =~ s/<\?$comment [\?]+>//;                                        # remove comment added by cloak
+    $lines =~ s/<\?ENT_ (.*?)_ENT[\?]+>/$1/g;                                # uncloak all cloaked entities
+    if ($lines =~ /<\?DOCTYPE(.*)_END_SUBSET[\?]+>/s) {
+      $doctype = $1;
+      $doctype =~ s/xxLESS_THANxx/</sg;
+      $doctype =~ s/xxGREATER_THANxx/>/sg;
+      $doctype =~ s/xxLEFT_SQUARE_BRACKETxx/[/sg;
+      $doctype =~ s/xxRIGHT_SQUARE_BRACKETxx/]/sg;
+      $lines =~ s/\?DOCTYPE(.*)_END_SUBSET[\?]+>/!DOCTYPE$doctype>\n/s;          # uncloak DOCTYPE, subset
+    }
 
 } else {
 
@@ -55,11 +67,16 @@ if ($lines =~ m/$comment/ || $0 =~ m/uncloak/) {
 # test to see if there is an internal subset or not, then
 # cloak DOCTYPE declaration and internal subset (if there is one)
 
-    if ($lines =~ /<!DOCTYPE(.*]\s*)>/s) {
-        $lines =~ s/<!DOCTYPE(.*]\s*)>/<\?DOCTYPE$1_END_SUBSET\?>/s
+    if ($lines =~ /<!(DOCTYPE.*]\s*)>/s) {
+        $doctype = $1;
+        $doctype =~ s/\[/xxLEFT_SQUARE_BRACKETxx/sg;
+        $doctype =~ s/\]/xxRIGHT_SQUARE_BRACKETxx/sg;
+        $doctype =~ s/>/xxGREATER_THANxx/sg;
+        $doctype =~ s/</xxLESS_THANxx/sg;
+        $lines =~ s/<!DOCTYPE.*]\s*>/<\?$doctype\_END_SUBSET\?>/s
 
     } else { 
-        $lines =~ s/<!DOCTYPE([^>]*)>/<\?DOCTYPE$1_END_SUBSET\?>/s
+        $lines =~ s/<!DOCTYPE([^>]*)>/<\?DOCTYPE$1_END_SUBSET\?>/s;
     }
 }
 
