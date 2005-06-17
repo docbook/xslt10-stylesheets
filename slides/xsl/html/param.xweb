@@ -1,7 +1,7 @@
 <book xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <bookinfo>
-<title>Slides Parameter Reference</title>
+<title>Slides HTML Parameter Reference</title>
 <releaseinfo role="meta">
 $Id$
 </releaseinfo>
@@ -17,7 +17,7 @@ $Id$
 
 <preface><title>Introduction</title>
 
-<para>This is reference documentation for the Slides stylesheet parameters.
+<para>This is reference documentation for the Slides HTML stylesheet parameters.
 </para>
 
 <para>This reference describes each of the parameters.
