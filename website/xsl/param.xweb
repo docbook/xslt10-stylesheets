@@ -175,7 +175,7 @@ be distinguished. That's accomplished by adding the
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='feedback.href.frag'>
+<src:fragment id='autolayout-file.frag'>
 <xsl:param name="autolayout-file" select="'autolayout.xml'"/>
 </src:fragment>
 </refsynopsisdiv>
@@ -741,42 +741,42 @@ around all these parameters.</para>
      $Id$
      ********************************************************************
 
-     This file is part of the DocBook Slides Stylesheet distribution.
+     This file is part of the DocBook XSL Stylesheets distribution.
      See ../README or http://docbook.sf.net/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
 
-<src:fragment id='header.hr.frag'/>
-<src:fragment id='footer.hr.frag'/>
-<src:fragment id='feedback.href.frag'/>
-<src:fragment id='feedback.with.ids.frag'/>
-<src:fragment id='feedback.link.text.frag'/>
-<src:fragment id='filename-prefix.frag'/>
-<src:fragment id='feedback.href.frag'/>
-<src:fragment id='output-root.frag'/>
-<src:fragment id='dry-run.frag'/>
-<src:fragment id='rebuild-all.frag'/>
-<src:fragment id='nav.table.summary.frag'/>
-<src:fragment id='navtocwidth.frag'/>
-<src:fragment id='navbodywidth.frag'/>
-<src:fragment id='textbgcolor.frag'/>
-<src:fragment id='navbgcolor.frag'/>
-<src:fragment id='toc.spacer.graphic.frag'/>
-<src:fragment id='toc.spacer.text.frag'/>
-<src:fragment id='toc.spacer.image.frag'/>
-<src:fragment id='toc.pointer.graphic.frag'/>
-<src:fragment id='toc.pointer.textfrag'/>
-<src:fragment id='toc.pointer.image.frag'/>
-<src:fragment id='toc.blank.graphic.frag'/>
-<src:fragment id='toc.blank.text.frag'/>
-<src:fragment id='toc.blank.image.frag'/>
-<src:fragment id='suppress.homepage.title.frag'/>
-<src:fragment id='body.attributes.frag'/>
-<src:fragment id='sequential.links.frag'/>
-<src:fragment id='currentpage.marker.frag'/>
-<src:fragment id='banner.before.navigation.frag'/>
-<src:fragment id='table.spacer.image.frag'/>
+<src:fragref linkend='header.hr.frag'/>
+<src:fragref linkend='footer.hr.frag'/>
+<src:fragref linkend='feedback.href.frag'/>
+<src:fragref linkend='feedback.with.ids.frag'/>
+<src:fragref linkend='feedback.link.text.frag'/>
+<src:fragref linkend='filename-prefix.frag'/>
+<src:fragref linkend='feedback.href.frag'/>
+<src:fragref linkend='output-root.frag'/>
+<src:fragref linkend='dry-run.frag'/>
+<src:fragref linkend='rebuild-all.frag'/>
+<src:fragref linkend='nav.table.summary.frag'/>
+<src:fragref linkend='navtocwidth.frag'/>
+<src:fragref linkend='navbodywidth.frag'/>
+<src:fragref linkend='textbgcolor.frag'/>
+<src:fragref linkend='navbgcolor.frag'/>
+<src:fragref linkend='toc.spacer.graphic.frag'/>
+<src:fragref linkend='toc.spacer.text.frag'/>
+<src:fragref linkend='toc.spacer.image.frag'/>
+<src:fragref linkend='toc.pointer.graphic.frag'/>
+<src:fragref linkend='toc.pointer.textfrag'/>
+<src:fragref linkend='toc.pointer.image.frag'/>
+<src:fragref linkend='toc.blank.graphic.frag'/>
+<src:fragref linkend='toc.blank.text.frag'/>
+<src:fragref linkend='toc.blank.image.frag'/>
+<src:fragref linkend='suppress.homepage.title.frag'/>
+<src:fragref linkend='body.attributes.frag'/>
+<src:fragref linkend='sequential.links.frag'/>
+<src:fragref linkend='currentpage.marker.frag'/>
+<src:fragref linkend='banner.before.navigation.frag'/>
+<src:fragref linkend='table.spacer.image.frag'/>
 
 </xsl:stylesheet>
 </src:fragment>
