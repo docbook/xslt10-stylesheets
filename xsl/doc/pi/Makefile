@@ -2,16 +2,17 @@ include ../../../cvstools/Makefile.incl
 
 STYLE=../jrefhtml.xsl
 VPATH=../../docsrc/pi
+XSLTOPT=
 
 HTMLFILES = pi.html
 
 all: $(HTMLFILES)
 
 %.html : %.xml $(STYLE)
-	$(XSLT) $< $(STYLE) $@
+	$(XSLT) $< $(STYLE) $@ $(XSLTOPT)
 
 pi.html: pi.xml
-	$(XSLT) $< ../../docsrc/pirefentry.xsl
+	$(XSLT) $< ../../docsrc/pirefentry.xsl $(XSLTOPT)
 	touch pi.html
 
 clean:

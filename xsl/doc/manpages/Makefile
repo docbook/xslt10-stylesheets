@@ -2,16 +2,17 @@ include ../../../cvstools/Makefile.incl
 
 STYLE=../jrefhtml.xsl
 VPATH=../../docsrc/manpages
+XSLTOPT=
 
 HTMLFILES = param.html
 
 all: $(HTMLFILES)
 
 %.html : %.xml $(STYLE)
-	$(XSLT) $< $(STYLE) $@
+	$(XSLT) $< $(STYLE) $@ $(XSLTOPT)
 
-param.html: param.xml
-	$(XSLT) $< ../../docsrc/clrefentry.xsl
+param.html: docparam.xml
+	$(XSLT) $< ../../docsrc/clrefentry.xsl $(XSLTOPT)
 	touch param.html
 
 clean:
