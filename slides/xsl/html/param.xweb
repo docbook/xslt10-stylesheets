@@ -1,7 +1,7 @@
 <book xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <bookinfo>
-<title>Slides HTML Parameter Reference</title>
+<title>Slides (HTML) Parameter Reference</title>
 <releaseinfo role="meta">
 $Id$
 </releaseinfo>
@@ -17,8 +17,9 @@ $Id$
 
 <preface><title>Introduction</title>
 
-<para>This is reference documentation for the Slides HTML stylesheet parameters.
-</para>
+<para>This is reference documentation for the Slides stylesheet
+parameters for HTML output. (There currently are not Slides parameters
+for FO output).</para>
 
 <para>This reference describes each of the parameters.
 These are the <quote>easily customizable</quote> parts of the stylesheet.
@@ -43,10 +44,8 @@ stylesheet like this:</para>
 <literal>&lt;xsl:import&gt;</literal> to point to the stylesheet
 on your system.</para>
 
-<para>This is not intended to be <quote>user</quote> documentation.
-It is provided for developers writing customization layers for the
-stylesheets, and for anyone who's interested in <quote>how it
-works</quote>.</para>
+<para>This documentation is intended for users writing customization
+layers for the stylesheets.</para>
 
 <para>Although I am trying to be thorough, this documentation is known
 to be incomplete. Don't forget to read the source, too :-)</para>
