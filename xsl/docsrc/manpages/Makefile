@@ -15,6 +15,6 @@ clean:
 	$(XSLT) $< $(JSTYLE) /dev/null output-file=$@
 	$(XJPARSE) $@
 
-param.xml: param.xweb
+param.xml: ../../manpages/param.xsl
 	$(MAKE) -C ../../manpages param.xml
 	cp ../../manpages/param.xml .

@@ -1,8 +1,6 @@
 DIRS=common html fo manpages template tools pi
 
-PARAMS=$(shell find ../params/*.xml)
-
-all: xsl-params.xsl $(PARAMS)
+all: xsl-params.xsl
 	for i in $(DIRS) __bogus__; do \
 		if [ $$i != __bogus__ ] ; then \
 			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
