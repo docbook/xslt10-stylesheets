@@ -9,7 +9,7 @@ CRSTYLE=creference.xsl
 BSTYLE=book.xsl
 VPATH=../docsrc
 
-DIRS=common lib html fo manpages tools template pi
+DIRS=common lib html fo manpages slides/html website tools template pi
 
 all: copyright.html warranty.html reference.html index.html
 	for i in $(DIRS) __bogus__; do \
@@ -31,7 +31,7 @@ reference.html: reference.xml $(RSTYLE)
 	$(XSLT) $(PROCOPT) $< $(RSTYLE) $@ $(XSLTOPT)
 
 index.html: documentation.xml $(BSTYLE) reference.xml \
-            publishing.xml extensions.xml templates.xml html/param.xml \
+            publishing.xml extensions.xml templates.xml \
             tools/profiling.xml htmlhelp.xml
 	$(XJPARSE) $(VPATH)/$<
 	$(XSLT) $(PROCOPT) $< $(BSTYLE) $(XSLTOPT)

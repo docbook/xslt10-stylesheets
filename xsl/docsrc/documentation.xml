@@ -5,7 +5,6 @@
 <!ENTITY publishing.xml SYSTEM "publishing.xml">
 <!ENTITY extensions.xml SYSTEM "extensions.xml">
 <!ENTITY templates.xml SYSTEM "templates.xml">
-<!ENTITY html-param.xml SYSTEM "html/param.xml" NDATA SGML>
 <!ENTITY tools-profiling.xml SYSTEM "tools/profiling.xml" NDATA SGML>
 <!ENTITY htmlhelp.xml SYSTEM "htmlhelp.xml">
 ]>

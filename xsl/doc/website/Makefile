@@ -1,10 +1,10 @@
 include ../../../cvstools/Makefile.incl
 
 STYLE=../jrefhtml.xsl
-VPATH=../../docsrc/fo
+VPATH=../../docsrc/website
 XSLTOPT=
 
-HTMLFILES = param.html table.html
+HTMLFILES = param.html
 
 all: $(HTMLFILES)
 

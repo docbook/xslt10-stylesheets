@@ -1,10 +1,9 @@
-XSLT=../../../cvstools/saxon
-XJPARSE=../../../cvstools/xjparse
+include ../../../cvstools/Makefile.incl
 
 JSTYLE=../../docsrc/xsl2jref.xsl
 VPATH=../../fo
 
-XMLFILES = param.xml table.xml
+XMLFILES = docparam.xml table.xml
 
 all: $(XMLFILES)
 
@@ -15,6 +14,6 @@ clean:
 	$(XSLT) $< $(JSTYLE) /dev/null output-file=$@
 	$(XJPARSE) $@
 
-param.xml: ../../fo/param.xsl
+docparam.xml: ../../fo/param.xsl
 	$(MAKE) -C ../../fo param.xml
-	cp ../../fo/param.xml .
+	cp ../../fo/param.xml docparam.xml
