@@ -9,12 +9,12 @@ XMLFILES = param.xml
 all: $(XMLFILES)
 
 clean:
-	rm -f $(XMLFILES)
+	$(RM) $(XMLFILES)
 
 %.xml : %.xsl $(JSTYLE)
 	$(XSLT) $< $(JSTYLE) /dev/null output-file=$@
 	$(XJPARSE) $@
 
-param.xml: param.xweb
+param.xml: ../../html/param.xsl
 	$(MAKE) -C ../../html param.xml
 	cp ../../html/param.xml .
