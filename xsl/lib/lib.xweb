@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <book xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <bookinfo>
@@ -594,6 +595,8 @@ trailing space will be added to the string, if necessary.</para>
 </refsect1>
 </refentry>
 
+<!-- ================================================================== -->
+
 <refentry id="comment-escape-string.recursive">
 <refnamediv>
 <refname>comment-escape-string.recursive</refname>
@@ -718,7 +721,140 @@ and preserving the delimiters as text nodes between the tokens.</para>
 </refsect1>
 </refentry>
 
+<!-- ================================================================== -->
+
+<refentry id="replace-chars-with-strings">
+  <refnamediv>
+    <refname>replace-chars-with-strings</refname>
+    <refpurpose>Replace (special) characters with strings</refpurpose>
+  </refnamediv>
+
+  <refsect1><title>Description</title>
+
+  <para>This function replaces individual characters with strings of
+  one or more characters. It is useful mainly for replacing "special"
+  chararacters or symbols. It reads in <parameter>content</parameter>,
+  the content on which to perform the character replacement, and
+  <parameter>character-mappings</parameter>, a node set of elements
+  (the names of the elements don't matter), with each element having
+  the following attributes:
+  <itemizedlist>
+    <listitem>
+      <simpara><tag class="attribute">character</tag>, a character to
+      be replaced</simpara>
+    </listitem>
+    <listitem>
+      <simpara><tag class="attribute">string</tag>, a string with
+      which to replace the character specified by the <tag
+      class="attribute">character</tag> attribute</simpara>
+    </listitem>
+  </itemizedlist>
+  This function uses <parameter>character-mappings</parameter> to do
+  character replacement on <parameter>content </parameter>, and then
+  returns the modified contents.</para>
+
+  <note>
+    <para>This function is a very slightly modified version of Jeni
+    Tennison's <function>replace_strings</function> function in the
+    <ulink
+        url="http://www.dpawson.co.uk/xsl/sect2/StringReplace.html#d9351e13"
+        >multiple string replacements</ulink> section of Dave Pawson's
+    <ulink url="http://www.dpawson.co.uk/xsl/index.html" >XSLT
+    FAQ</ulink>.</para>
+  </note>
+
+  <programlisting><src:fragment id='replace-chars-with-strings.frag'>
+    <xsl:template name="replace-chars-with-strings">
+      <xsl:param name="content"/>
+      <xsl:param name="character-mappings"/>
+      <xsl:variable name="replaced_text">
+        <xsl:call-template name="string.subst">
+          <xsl:with-param name="string" select="$content" />
+          <xsl:with-param name="target" 
+                          select="$character-mappings[1]/@character" />
+          <xsl:with-param name="replacement" 
+                          select="$character-mappings[1]/@string" />
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="$character-mappings[2]">
+          <xsl:call-template name="replace-chars-with-strings">
+            <xsl:with-param name="content" select="$replaced_text" />
+            <xsl:with-param name="character-mappings"
+                            select="$character-mappings[position() > 1]" />
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$replaced_text" />
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:template>
+
+  </src:fragment></programlisting>
+  </refsect1>
+</refentry>
+
+<!-- ================================================================== -->
+
+<refentry id="apply-character-map">
+<refnamediv>
+<refname>apply-character-map</refname>
+<refpurpose>Apply an XSLT character map</refpurpose>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
+<para>The XSLT 2.0 specification describes <ulink
+url="http://www.w3.org/TR/xslt20/#character-maps">character
+maps</ulink> and explains how they may be used to allow a specific
+character appearing in a text or attribute node in a final results
+tree to be substituted by a specified string of characters during
+serialization. The <function>apply-character-map</function> provides a
+means for reading and using character maps with XSLT 1.0-based XSLT
+engines. It reads the character-map contents from
+<parameter>uri</parameter>, then passes contents (in full or in part,
+depending on the value of the <parameter>use.subset</parameter>
+parameter) to the
+<function>replace-chars-with-strings</function> function,
+along with <parameter>content</parameter>, the contents on which to
+perform the character substition.</para>
+
+<para>Using the character map "in part" means that it uses only those
+<tag>output-character</tag> elements that have a <tag
+class="attribute" >class</tag> attribute whose value matches that of
+the <parameter>subset.name</parameter>.</para>
+
+<programlisting><src:fragment id='apply-character-map.frag'>
+  <xsl:template name="apply-character-map">
+    <xsl:param name="content"/>
+    <xsl:param name="use.subset"/>
+    <xsl:param name="subset.name"/>
+    <xsl:param name="uri"/>
+    <xsl:choose>
+      <xsl:when test="$use.subset != 0">
+        <xsl:call-template name="replace-chars-with-strings">
+          <xsl:with-param name="content" select="$content"/>
+          <xsl:with-param name="character-mappings"
+                          select="document($uri)//*[local-name()='output-character']
+                                  [@*[local-name() = 'class'] = $subset.name]"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="replace-chars-with-strings">
+          <xsl:with-param name="content" select="$content"/>
+          <xsl:with-param name="character-mappings"
+                          select="document($uri)//*[local-name()='output-character']"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+</src:fragment></programlisting>
+</refsect1>
+</refentry>
 </reference>
+
+<!-- ==================================================================  -->
 
 <reference>
 <title>Relative URI Functions</title>
@@ -742,6 +878,8 @@ which would effectively move <quote>up</quote> the hierarchy.</para>
 <para>If these assumptions do not hold, the results are unpredictable.</para>
 
 </partintro>
+
+<!-- ================================================================== -->
 
 <refentry id="count.uri.path.depth">
 <refnamediv>
@@ -774,6 +912,8 @@ which would effectively move <quote>up</quote> the hierarchy.</para>
 
 </refsect1>
 </refentry>
+
+<!-- ================================================================== -->
 
 <refentry id="trim.common.uri.paths">
 <refnamediv>
@@ -819,6 +959,8 @@ which would effectively move <quote>up</quote> the hierarchy.</para>
 
 </reference>
 
+<!-- ================================================================== -->
+
 <appendix><title>The Stylesheet</title>
 
 <para>The <filename>lib.xsl</filename> stylesheet is just a wrapper
@@ -856,9 +998,11 @@ around these functions.</para>
 <src:fragref linkend="xpath.location.frag"/>
 <src:fragref linkend="comment-escape-string"/>
 <src:fragref linkend="comment-escape-string.recursive"/>
+<src:fragref linkend="str.tokenize.keep.delimiters.frag"/>
+<src:fragref linkend="replace-chars-with-strings.frag"/>
+<src:fragref linkend="apply-character-map.frag"/>
 <src:fragref linkend="count.uri.path.depth.frag"/>
 <src:fragref linkend="trim.common.uri.paths.frag"/>
-<src:fragref linkend="str.tokenize.keep.delimiters.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>
