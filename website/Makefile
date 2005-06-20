@@ -36,6 +36,7 @@ URILIST = \
 all:
 	$(MAKE) -C schema all
 	$(MAKE) -C extensions all
+	$(MAKE) -C xsl all
 
 example:
 	$(MAKE) -C example DOCBOOK_WEBSITE=$(WEBSITEROOT)
@@ -45,6 +46,7 @@ clean:
 	$(MAKE) -C schema clean
 	$(MAKE) -C example clean
 	$(MAKE) -C example MAKENONTAB=1 clean
+	$(MAKE) -C xsl clean
 
 realclean: clean
 	$(MAKE) -C extensions realclean
