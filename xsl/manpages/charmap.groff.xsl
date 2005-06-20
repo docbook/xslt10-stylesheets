@@ -30,22 +30,18 @@
 <!-- * -->
 <!-- *   [1] http://www.w3.org/TR/xslt20/#character-maps -->
 <!-- * -->
-<!-- * In order to make the character map more readable, it uses the -->
+<!-- * In order to make the character map more readable, and to make -->
+<!-- * it possible to create subsets of it at run time, it uses the -->
 <!-- * following "extension attributes" (in the "unichar" namespace): -->
 <!-- * -->
-<!-- *   - u:name   = ISO character name (e.g., "YEN SIGN") -->
-<!-- *   - u:entity = ISO entity name (e.g., "yen") -->
+<!-- *   - u:name   = ISO character name (e.g., "OHM SIGN") -->
+<!-- *   - u:entity = ISO entity name (e.g., "ohm") -->
+<!-- *   - u:class  = modified Unicode block name (e.g., "LetterlikeSymbols") -->
 <!-- * -->
 <!-- * Use of such extension attributes is permitted by the XSLT 2.0 -->
 <!-- * spec; see the "Extension Attributes" section[2]. -->
 <!-- * -->
 <!-- *   [2] http://www.w3.org/TR/xslt20/#extension-attributes -->
-<!-- * -->
-<!-- * It also uses a u:class="default" attribute and value to mark a -->
-<!-- * small "default" subset of the most commonly used Unicode symbols -->
-<!-- * and special characters (around 40), for use in cases where it's -->
-<!-- * judged not to be worthwhile to take the performance hit necessary -->
-<!-- * to process the "full" set of more than 800 characters. -->
 <!-- * -->
 <!-- * Note: In place of the literal backlash "\" character used in roff -->
 <!-- *       to indicate the start of an escape sequence, this file uses -->
@@ -88,17 +84,17 @@
   <xsl:output-character
    character="-"
    string="@esc@-"
-   u:class="default"
+   u:class="roffControl"
    />
   <xsl:output-character
    character="."
    string="@esc@&amp;."
-   u:class="default"
+   u:class="roffControl"
    />
   <xsl:output-character
    character="\"
    string="@esc@\"
-   u:class="default"
+   u:class="roffControl"
    />
 
   <!-- * ***************************************************************** -->
@@ -125,80 +121,91 @@
    u:name="NO-BREAK SPACE"
    u:entity="nbsp"
    string="@esc@ "
-   u:class="default"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00a1;"
    u:name="INVERTED EXCLAMATION MARK"
    u:entity="iexcl"
    string="@esc@(r!"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00a2;"
    u:name="CENT SIGN"
    u:entity="cent"
    string="@esc@(ct"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00a3;"
    u:name="POUND SIGN"
    u:entity="pound"
    string="@esc@(Po"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00a4;"
    u:name="CURRENCY SIGN"
    u:entity="curren"
    string="@esc@(Cs"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00a5;"
    u:name="YEN SIGN"
    u:entity="yen"
    string="@esc@(Ye"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00a6;"
    u:name="BROKEN BAR"
    u:entity="brvbar"
    string="@esc@(bb"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00a7;"
    u:name="SECTION SIGN"
    u:entity="sect"
    string="@esc@(sc"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00a8;"
    u:name="DIAERESIS"
    u:entity="Dot"
    string="@esc@(ad"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00a9;"
    u:name="COPYRIGHT SIGN"
    u:entity="copy"
    string="@esc@(co"
-   u:class="default"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00aa;"
    u:name="FEMININE ORDINAL INDICATOR"
    u:entity="ordf"
    string="@esc@(Of"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00ab;"
    u:name="LEFT-POINTING DOUBLE ANGLE QUOTATION MARK"
    u:entity="laquo"
    string="@esc@(Fo"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00ac;"
    u:name="NOT SIGN"
    u:entity="not"
    string="@esc@(no"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <!-- * groff_char(7) man page sayxsl: "the soft hyphen control character -->
   <!-- * (prints as itself).  groff never use this character for output -->
@@ -209,61 +216,70 @@
    u:name="SOFT HYPHEN"
    u:entity="shy"
    string="@esc@%"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00ae;"
    u:name="REGISTERED SIGN"
    u:entity="reg"
    string="@esc@(rg"
-   u:class="default"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00af;"
    u:name="MACRON"
    u:entity="macr"
    string="@esc@(a-"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00b0;"
    u:name="DEGREE SIGN"
    u:entity="deg"
    string="@esc@(de"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00b1;"
    u:name="PLUS-MINUS SIGN"
    u:entity="plusmn"
    string="@esc@(+-"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00b2;"
    u:name="SUPERSCRIPT TWO"
    u:entity="sup2"
    string="@esc@(S2"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00b3;"
    u:name="SUPERSCRIPT THREE"
    u:entity="sup3"
    string="@esc@(S3"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00b4;"
    u:name="ACUTE ACCENT"
    u:entity="acute"
    string="@esc@(aa"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00b5;"
    u:name="MICRO SIGN"
    u:entity="micro"
    string="@esc@(mc"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00b6;"
    u:name="PILCROW SIGN"
    u:entity="para"
    string="@esc@(ps"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <!-- * according to groff_char(7), I think the escape string \(pc -->
   <!-- * "periodcentered" could also be used for middot; not sure which -->
@@ -273,440 +289,511 @@
    u:name="MIDDLE DOT"
    u:entity="middot"
    string="@esc@(md"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00b8;"
    u:name="CEDILLA"
    u:entity="cedil"
    string="@esc@(ac"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00b9;"
    u:name="SUPERSCRIPT ONE"
    u:entity="sup1"
    string="@esc@(S1"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00ba;"
    u:name="MASCULINE ORDINAL INDICATOR"
    u:entity="ordm"
    string="@esc@(Om"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00bb;"
    u:name="RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK"
    u:entity="raquo"
    string="@esc@(Fc"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00bc;"
    u:name="VULGAR FRACTION ONE QUARTER"
    u:entity="frac14"
    string="@esc@(14"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00bd;"
    u:name="VULGAR FRACTION ONE HALF"
    u:entity="frac12"
    string="@esc@(12"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00be;"
    u:name="VULGAR FRACTION THREE QUARTERS"
    u:entity="frac34"
    string="@esc@(34"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00bf;"
    u:name="INVERTED QUESTION MARK"
    u:entity="iquest"
    string="@esc@(r?"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00c0;"
    u:name="LATIN CAPITAL LETTER A WITH GRAVE"
    u:entity="Agrave"
    string="@esc@(`A"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00c1;"
    u:name="LATIN CAPITAL LETTER A WITH ACUTE"
    u:entity="Aacute"
    string="@esc@('A"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00c2;"
    u:name="LATIN CAPITAL LETTER A WITH CIRCUMFLEX"
    u:entity="Acirc"
    string="@esc@(^A"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00c3;"
    u:name="LATIN CAPITAL LETTER A WITH TILDE"
    u:entity="Atilde"
    string="@esc@(~A"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00c4;"
    u:name="LATIN CAPITAL LETTER A WITH DIAERESIS"
    u:entity="Auml"
    string="@esc@(:A"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00c5;"
    u:name="LATIN CAPITAL LETTER A WITH RING ABOVE"
    u:entity="Aring"
    string="@esc@(oA"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00c6;"
    u:name="LATIN CAPITAL LETTER AE"
    u:entity="AElig"
    string="@esc@(AE"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00c7;"
    u:name="LATIN CAPITAL LETTER C WITH CEDILLA"
    u:entity="Ccedil"
    string="@esc@(,C"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00c8;"
    u:name="LATIN CAPITAL LETTER E WITH GRAVE"
    u:entity="Egrave"
    string="@esc@(`E"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00c9;"
    u:name="LATIN CAPITAL LETTER E WITH ACUTE"
    u:entity="Eacute"
    string="@esc@('E"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00ca;"
    u:name="LATIN CAPITAL LETTER E WITH CIRCUMFLEX"
    u:entity="Ecirc"
    string="@esc@(^E"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00cb;"
    u:name="LATIN CAPITAL LETTER E WITH DIAERESIS"
    u:entity="Euml"
    string="@esc@(:E"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00cc;"
    u:name="LATIN CAPITAL LETTER I WITH GRAVE"
    u:entity="Igrave"
    string="@esc@(`I"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00cd;"
    u:name="LATIN CAPITAL LETTER I WITH ACUTE"
    u:entity="Iacute"
    string="@esc@('I"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00ce;"
    u:name="LATIN CAPITAL LETTER I WITH CIRCUMFLEX"
    u:entity="Icirc"
    string="@esc@(^I"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00cf;"
    u:name="LATIN CAPITAL LETTER I WITH DIAERESIS"
    u:entity="Iuml"
    string="@esc@(:I"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00d0;"
    u:name="LATIN CAPITAL LETTER ETH"
    u:entity="ETH"
    string="@esc@(-D"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00d1;"
    u:name="LATIN CAPITAL LETTER N WITH TILDE"
    u:entity="Ntilde"
    string="@esc@(~N"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00d2;"
    u:name="LATIN CAPITAL LETTER O WITH GRAVE"
    u:entity="Ograve"
    string="@esc@(`O"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00d3;"
    u:name="LATIN CAPITAL LETTER O WITH ACUTE"
    u:entity="Oacute"
    string="@esc@('O"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00d4;"
    u:name="LATIN CAPITAL LETTER O WITH CIRCUMFLEX"
    u:entity="Ocirc"
    string="@esc@(^O"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00d5;"
    u:name="LATIN CAPITAL LETTER O WITH TILDE"
    u:entity="Otilde"
    string="@esc@(~O"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00d6;"
    u:name="LATIN CAPITAL LETTER O WITH DIAERESIS"
    u:entity="Ouml"
    string="@esc@(:O"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00d7;"
    u:name="MULTIPLICATION SIGN"
    u:entity="times"
    string="@esc@(mu"
-   u:class="default"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00d8;"
    u:name="LATIN CAPITAL LETTER O WITH STROKE"
    u:entity="Oslash"
    string="@esc@(/O"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00d9;"
    u:name="LATIN CAPITAL LETTER U WITH GRAVE"
    u:entity="Ugrave"
    string="@esc@(`U"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00da;"
    u:name="LATIN CAPITAL LETTER U WITH ACUTE"
    u:entity="Uacute"
    string="@esc@('U"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00db;"
    u:name="LATIN CAPITAL LETTER U WITH CIRCUMFLEX"
    u:entity="Ucirc"
    string="@esc@(^U"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00dc;"
    u:name="LATIN CAPITAL LETTER U WITH DIAERESIS"
    u:entity="Uuml"
    string="@esc@(:U"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00dd;"
    u:name="LATIN CAPITAL LETTER Y WITH ACUTE"
    u:entity="Yacute"
    string="@esc@('Y"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00de;"
    u:name="LATIN CAPITAL LETTER THORN"
    u:entity="THORN"
    string="@esc@(TP"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00df;"
    u:name="LATIN SMALL LETTER SHARP S"
    u:entity="szlig"
    string="@esc@(ss"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00e0;"
    u:name="LATIN SMALL LETTER A WITH GRAVE"
    u:entity="agrave"
    string="@esc@(`a"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00e1;"
    u:name="LATIN SMALL LETTER A WITH ACUTE"
    u:entity="aacute"
    string="@esc@('a"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00e2;"
    u:name="LATIN SMALL LETTER A WITH CIRCUMFLEX"
    u:entity="acirc"
    string="@esc@(^a"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00e3;"
    u:name="LATIN SMALL LETTER A WITH TILDE"
    u:entity="atilde"
    string="@esc@(~a"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00e4;"
    u:name="LATIN SMALL LETTER A WITH DIAERESIS"
    u:entity="auml"
    string="@esc@(:a"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00e5;"
    u:name="LATIN SMALL LETTER A WITH RING ABOVE"
    u:entity="aring"
    string="@esc@(oa"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00e6;"
    u:name="LATIN SMALL LETTER AE"
    u:entity="aelig"
    string="@esc@(ae"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00e7;"
    u:name="LATIN SMALL LETTER C WITH CEDILLA"
    u:entity="ccedil"
    string="@esc@(,c"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00e8;"
    u:name="LATIN SMALL LETTER E WITH GRAVE"
    u:entity="egrave"
    string="@esc@(`e"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00e9;"
    u:name="LATIN SMALL LETTER E WITH ACUTE"
    u:entity="eacute"
    string="@esc@('e"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00ea;"
    u:name="LATIN SMALL LETTER E WITH CIRCUMFLEX"
    u:entity="ecirc"
    string="@esc@(^e"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00eb;"
    u:name="LATIN SMALL LETTER E WITH DIAERESIS"
    u:entity="euml"
    string="@esc@(:e"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00ec;"
    u:name="LATIN SMALL LETTER I WITH GRAVE"
    u:entity="igrave"
    string="@esc@(`i"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00ed;"
    u:name="LATIN SMALL LETTER I WITH ACUTE"
    u:entity="iacute"
    string="@esc@('i"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00ee;"
    u:name="LATIN SMALL LETTER I WITH CIRCUMFLEX"
    u:entity="icirc"
    string="@esc@(^i"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00ef;"
    u:name="LATIN SMALL LETTER I WITH DIAERESIS"
    u:entity="iuml"
    string="@esc@(:i"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00f0;"
    u:name="LATIN SMALL LETTER ETH"
    u:entity="eth"
    string="@esc@(Sd"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00f1;"
    u:name="LATIN SMALL LETTER N WITH TILDE"
    u:entity="ntilde"
    string="@esc@(~n"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00f2;"
    u:name="LATIN SMALL LETTER O WITH GRAVE"
    u:entity="ograve"
    string="@esc@(`o"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00f3;"
    u:name="LATIN SMALL LETTER O WITH ACUTE"
    u:entity="oacute"
    string="@esc@('o"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00f4;"
    u:name="LATIN SMALL LETTER O WITH CIRCUMFLEX"
    u:entity="ocirc"
    string="@esc@(^o"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00f5;"
    u:name="LATIN SMALL LETTER O WITH TILDE"
    u:entity="otilde"
    string="@esc@(~o"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00f6;"
    u:name="LATIN SMALL LETTER O WITH DIAERESIS"
    u:entity="ouml"
    string="@esc@(:o"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00f7;"
    u:name="DIVISION SIGN"
    u:entity="divide"
    string="@esc@(di"
-   u:class="default"
+   u:class="C1ControlsAndLatin-1Supplement_symbols"
    />
   <xsl:output-character
    character="&#x00f8;"
    u:name="LATIN SMALL LETTER O WITH STROKE"
    u:entity="oslash"
    string="@esc@(/o"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00f9;"
    u:name="LATIN SMALL LETTER U WITH GRAVE"
    u:entity="ugrave"
    string="@esc@(`u"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00fa;"
    u:name="LATIN SMALL LETTER U WITH ACUTE"
    u:entity="uacute"
    string="@esc@('u"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00fb;"
    u:name="LATIN SMALL LETTER U WITH CIRCUMFLEX"
    u:entity="ucirc"
    string="@esc@(^u"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00fc;"
    u:name="LATIN SMALL LETTER U WITH DIAERESIS"
    u:entity="uuml"
    string="@esc@(:u"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00fd;"
    u:name="LATIN SMALL LETTER Y WITH ACUTE"
    u:entity="yacute"
    string="@esc@('y"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00fe;"
    u:name="LATIN SMALL LETTER THORN"
    u:entity="thorn"
    string="@esc@(Tp"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <xsl:output-character
    character="&#x00ff;"
    u:name="LATIN SMALL LETTER Y WITH DIAERESIS"
    u:entity="yuml"
    string="@esc@(:y"
+   u:class="C1ControlsAndLatin-1Supplement_letters"
    />
   <!-- * **************************************************************** -->
   <!-- *   End: Latin-1/ISO-8859-1 -->
@@ -730,71 +817,83 @@
    u:name="LATIN SMALL LETTER DOTLESS I"
    u:entity="inodot"
    string="@esc@(.i"
+   u:class="LatinExtended-A"
    />
   <xsl:output-character
    character="&#x0132;"
    u:name="LATIN CAPITAL LIGATURE IJ"
    u:entity="IJlig"
    string="@esc@(IJ"
+   u:class="LatinExtended-A"
    />
   <xsl:output-character
    character="&#x0133;"
    u:name="LATIN SMALL LIGATURE IJ"
    u:entity="ijlig"
    string="@esc@(ij"
+   u:class="LatinExtended-A"
    />
   <xsl:output-character
    character="&#x0141;"
    u:name="LATIN CAPITAL LETTER L WITH STROKE"
    u:entity="Lstrok"
    string="@esc@(/L"
+   u:class="LatinExtended-A"
    />
   <xsl:output-character
    character="&#x0142;"
    u:name="LATIN SMALL LETTER L WITH STROKE"
    u:entity="lstrok"
    string="@esc@(/l"
+   u:class="LatinExtended-A"
    />
   <xsl:output-character
    character="&#x0152;"
    u:name="LATIN CAPITAL LIGATURE OE"
    u:entity="OElig"
    string="@esc@(OE"
+   u:class="LatinExtended-A"
    />
   <xsl:output-character
    character="&#x0153;"
    u:name="LATIN SMALL LIGATURE OE"
    u:entity="oelig"
    string="@esc@(oe"
+   u:class="LatinExtended-A"
    />
   <xsl:output-character
    character="&#x0192;"
    u:name="LATIN SMALL LETTER F WITH HOOK"
    u:entity="fnof"
    string="@esc@(Fn"
+   u:class="LatinExtended-B"
    />
   <xsl:output-character
    character="&#x02c6;"
    u:name="MODIFIER LETTER CIRCUMFLEX ACCENT"
    u:entity="circ"
    string="@esc@(a^"
+   u:class="SpacingModifierLetters"
    />
   <xsl:output-character
    character="&#x02c7;"
    u:name="CARON"
    u:entity="caron"
    string="@esc@(ac"
+   u:class="SpacingModifierLetters"
    />
   <xsl:output-character
    character="&#x02c9;"
    u:name="MODIFIER LETTER MACRON"
    string="@esc@(a-"
+   u:class="SpacingModifierLetters"
    />
   <xsl:output-character
    character="&#x02d8;"
    u:name="BREVE"
    u:entity="breve"
    string="@esc@(ab"
+   u:class="SpacingModifierLetters"
    />
 <!-- * there does not seem to by any roff equivalent for "dot above" -->
 <!-- * <xsl:output-character -->
@@ -807,12 +906,14 @@
    u:name="RING ABOVE"
    u:entity="ring"
    string="@esc@(ao"
+   u:class="SpacingModifierLetters"
    />
   <xsl:output-character
    character="&#x02db;"
    u:name="OGONEK"
    u:entity="ogon"
    string="@esc@(ho"
+   u:class="SpacingModifierLetters"
    />
   <!-- groff_char(7) calls Unicode x02dd a "Hungarian umlaut"  -->
   <xsl:output-character
@@ -820,6 +921,7 @@
    u:name="DOUBLE ACUTE ACCENT"
    u:entity="dblac"
    string='@esc@(a"'
+   u:class="SpacingModifierLetters"
    />
 
   <!-- * **************************************************************** -->
@@ -841,405 +943,473 @@
    u:name="GREEK CAPITAL LETTER ALPHA"
    u:entity="Agr"
    string="@esc@(*A)"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x0392;"
    u:name="GREEK CAPITAL LETTER BETA"
    u:entity="Bgr"
    string="@esc@(*B"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x0393;"
    u:name="GREEK CAPITAL LETTER GAMMA"
    u:entity="Gamma"
    string="@esc@(*G"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x0394;"
    u:name="GREEK CAPITAL LETTER DELTA"
    u:entity="Delta"
    string="@esc@(*D"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x0395;"
    u:name="GREEK CAPITAL LETTER EPSILON"
    u:entity="Egr"
    string="@esc@(*E"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x0396;"
    u:name="GREEK CAPITAL LETTER ZETA"
    u:entity="Zgr"
    string="@esc@(*Z"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x0397;"
    u:name="GREEK CAPITAL LETTER ETA"
    u:entity="EEgr"
    string="@esc@(*Y"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x0398;"
    u:name="GREEK CAPITAL LETTER THETA"
    u:entity="THgr"
    string="@esc@(*H"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x0399;"
    u:name="GREEK CAPITAL LETTER IOTA"
    u:entity="Igr"
    string="@esc@(*I"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x039a;"
    u:name="GREEK CAPITAL LETTER KAPPA"
    u:entity="Kgr"
    string="@esc@(*K"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x039b;"
    u:name="GREEK CAPITAL LETTER LAMDA"
    u:entity="Lambda"
    string="@esc@(*L"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x039c;"
    u:name="GREEK CAPITAL LETTER MU"
    u:entity="Mgr"
    string="@esc@(*M"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x039d;"
    u:name="GREEK CAPITAL LETTER NU"
    u:entity="Ngr"
    string="@esc@(*N"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x039e;"
    u:name="GREEK CAPITAL LETTER XI"
    u:entity="Xgr"
    string="@esc@(*C"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x039f;"
    u:name="GREEK CAPITAL LETTER OMICRON"
    u:entity="Ogr"
    string="@esc@(*O"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03a0;"
    u:name="GREEK CAPITAL LETTER PI"
    u:entity="Pgr"
    string="@esc@(*P"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03a1;"
    u:name="GREEK CAPITAL LETTER RHO"
    u:entity="Rgr"
    string="@esc@(*R"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03a3;"
    u:name="GREEK CAPITAL LETTER SIGMA"
    u:entity="Sgr"
    string="@esc@(*S"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03a4;"
    u:name="GREEK CAPITAL LETTER TAU"
    u:entity="Tgr"
    string="@esc@(*T"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03a5;"
    u:name="GREEK CAPITAL LETTER UPSILON"
    u:entity="Ugr"
    string="@esc@(*U"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03a6;"
    u:name="GREEK CAPITAL LETTER PHI"
    u:entity="PHgr"
    string="@esc@(*F"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03a7;"
    u:name="GREEK CAPITAL LETTER CHI"
    u:entity="KHgr"
    string="@esc@(*X"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03a8;"
    u:name="GREEK CAPITAL LETTER PSI"
    u:entity="PSgr"
    string="@esc@(*Q"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03a9;"
    u:name="GREEK CAPITAL LETTER OMEGA"
    u:entity="OHgr"
    string="@esc@(*W"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03aa;"
    u:name="GREEK CAPITAL LETTER IOTA WITH DIALYTIKA"
    u:entity="Idigr"
    string="@esc@(*I"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03ab;"
    u:name="GREEK CAPITAL LETTER UPSILON WITH DIALYTIKA"
    u:entity="Udigr"
    string="@esc@(*U"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03ac;"
    u:name="GREEK SMALL LETTER ALPHA WITH TONOS"
    u:entity="aacgr"
    string="@esc@(*a"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03ad;"
    u:name="GREEK SMALL LETTER EPSILON WITH TONOS"
    u:entity="eacgr"
    string="@esc@(*e"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03ae;"
    u:name="GREEK SMALL LETTER ETA WITH TONOS"
    u:entity="eeacgr"
    string="@esc@(*y"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03af;"
    u:name="GREEK SMALL LETTER IOTA WITH TONOS"
    u:entity="iacgr"
    string="@esc@(*i"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03b0;"
    u:name="GREEK SMALL LETTER UPSILON WITH DIALYTIKA AND TONOS"
    u:entity="udiagr"
    string="@esc@(*u"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03b1;"
    u:name="GREEK SMALL LETTER ALPHA"
    u:entity="agr"
    string="@esc@(*a"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03b2;"
    u:name="GREEK SMALL LETTER BETA"
    u:entity="beta"
    string="@esc@(*b"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03b3;"
    u:name="GREEK SMALL LETTER GAMMA"
    u:entity="gamma"
    string="@esc@(*g"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03b4;"
    u:name="GREEK SMALL LETTER DELTA"
    u:entity="delta"
    string="@esc@(*d"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03b5;"
    u:name="GREEK SMALL LETTER EPSILON"
    u:entity="epsi"
    string="@esc@(*e"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03b6;"
    u:name="GREEK SMALL LETTER ZETA"
    u:entity="zeta"
    string="@esc@(*z"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03b7;"
    u:name="GREEK SMALL LETTER ETA"
    u:entity="eegr"
    string="@esc@(*y"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03b8;"
    u:name="GREEK SMALL LETTER THETA"
    u:entity="thetas"
    string="@esc@(*h"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03b9;"
    u:name="GREEK SMALL LETTER IOTA"
    u:entity="igr"
    string="@esc@(*i"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03ba;"
    u:name="GREEK SMALL LETTER KAPPA"
    u:entity="kappa"
    string="@esc@(*k"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03bb;"
    u:name="GREEK SMALL LETTER LAMDA"
    u:entity="lambda"
    string="@esc@(*l"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03bc;"
    u:name="GREEK SMALL LETTER MU"
    u:entity="mgr"
    string="@esc@(*m"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03bd;"
    u:name="GREEK SMALL LETTER NU"
    u:entity="ngr"
    string="@esc@(*n"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03be;"
    u:name="GREEK SMALL LETTER XI"
    u:entity="xgr"
    string="@esc@(*c"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03bf;"
    u:name="GREEK SMALL LETTER OMICRON"
    u:entity="ogr"
    string="@esc@(*o"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03c0;"
    u:name="GREEK SMALL LETTER PI"
    u:entity="pgr"
    string="@esc@(*p"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03c1;"
    u:name="GREEK SMALL LETTER RHO"
    u:entity="rgr"
    string="@esc@(*r"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03c2;"
    u:name="GREEK SMALL LETTER FINAL SIGMA"
    u:entity="sfgr"
    string="@esc@(ts"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03c3;"
    u:name="GREEK SMALL LETTER SIGMA"
    u:entity="sgr"
    string="@esc@(*s"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03c4;"
    u:name="GREEK SMALL LETTER TAU"
    u:entity="tau"
    string="@esc@(*t"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03c5;"
    u:name="GREEK SMALL LETTER UPSILON"
    u:entity="ugr"
    string="@esc@(*u"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03c6;"
    u:name="GREEK SMALL LETTER PHI"
    u:entity="phgr"
    string="@esc@(*f"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03c7;"
    u:name="GREEK SMALL LETTER CHI"
    u:entity="chi"
    string="@esc@(*x"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03c8;"
    u:name="GREEK SMALL LETTER PSI"
    u:entity="psgr"
    string="@esc@(*q"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03c9;"
    u:name="GREEK SMALL LETTER OMEGA"
    u:entity="ohgr"
    string="@esc@(*w"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03ca;"
    u:name="GREEK SMALL LETTER IOTA WITH DIALYTIKA"
    u:entity="idigr"
    string="@esc@(*i"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03cb;"
    u:name="GREEK SMALL LETTER UPSILON WITH DIALYTIKA"
    u:entity="udigr"
    string="@esc@(*u"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03cc;"
    u:name="GREEK SMALL LETTER OMICRON WITH TONOS"
    u:entity="oacgr"
    string="@esc@(*o"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03cd;"
    u:name="GREEK SMALL LETTER UPSILON WITH TONOS"
    u:entity="uacgr"
    string="@esc@(*u"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03ce;"
    u:name="GREEK SMALL LETTER OMEGA WITH TONOS"
    u:entity="ohacgr"
    string="@esc@(*w"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03d0;"
    u:name="GREEK BETA SYMBOL"
    string="@esc@(*B"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03d1;"
    u:name="GREEK THETA SYMBOL"
    u:entity="thetav"
    string="@esc@(+h"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03d2;"
    u:name="GREEK UPSILON WITH HOOK SYMBOL"
    u:entity="Upsi"
    string="@esc@(*U"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03d3;"
    u:name="GREEK UPSILON WITH ACUTE AND HOOK SYMBOL"
    string="@esc@(*U"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03d4;"
    u:name="GREEK UPSILON WITH DIAERESIS AND HOOK SYMBOL"
    string="@esc@(*U"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03d5;"
    u:name="GREEK PHI SYMBOL"
    u:entity="phis"
    string="@esc@(+f"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03d6;"
    u:name="GREEK PI SYMBOL"
    u:entity="piv"
    string="@esc@(+p"
+   u:class="GreekandCoptic"
    />
   <!-- no mappings for remaining chars x03d7 to x03ef -->
   <xsl:output-character
@@ -1247,33 +1417,39 @@
    u:name="GREEK KAPPA SYMBOL"
    u:entity="kappav"
    string="(*k"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03f1;"
    u:name="GREEK RHO SYMBOL"
    u:entity="rhov"
    string="@esc@(*r"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03f2;"
    u:name="GREEK LUNATE SIGMA SYMBOL"
    string="@esc@(*s"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03f4;"
    u:name="GREEK CAPITAL THETA SYMBOL"
    string="@esc@(*H"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03f5;"
    u:name="GREEK LUNATE EPSILON SYMBOL"
    string="@esc@(*e"
+   u:class="GreekandCoptic"
    />
   <xsl:output-character
    character="&#x03f6;"
    u:name="GREEK REVERSED LUNATE EPSILON SYMBOL"
    u:entity="bepsi"
    string="@esc@(*e"
+   u:class="GreekandCoptic"
    />
 
   <!-- * ***************************************************************** -->
@@ -1304,27 +1480,27 @@
    character="&#x2000;"
    u:name="EN QUAD"
    string="@esc@0"
-   u:class="default"
+   u:class="GeneralPunctuation_spaces"
    />
   <xsl:output-character
    character="&#x2001;"
    u:name="EM QUAD"
    string="@esc@0@esc@0"
-   u:class="default"
+   u:class="GeneralPunctuation_spaces"
    />
   <xsl:output-character
    character="&#x2002;"
    u:name="EN SPACE"
    u:entity="ensp"
    string="@esc@0"
-   u:class="default"
+   u:class="GeneralPunctuation_spaces"
    />
   <xsl:output-character
    character="&#x2003;"
    u:name="EM SPACE"
    u:entity="emsp"
    string="@esc@0@esc@0"
-   u:class="default"
+   u:class="GeneralPunctuation_spaces"
    />
   <!-- * roughly same width as a normal space -->
   <xsl:output-character
@@ -1332,6 +1508,7 @@
    u:name="THREE-PER-EM SPACE"
    u:entity="emsp13"
    string=" "
+   u:class="GeneralPunctuation_spaces"
    />
   <!-- * roughly same width as a normal space -->
   <xsl:output-character
@@ -1339,12 +1516,14 @@
    u:name="FOUR-PER-EM SPACE"
    u:entity="emsp14"
    string=" "
+   u:class="GeneralPunctuation_spaces"
    />
   <!-- * roughly same width as a normal space -->
   <xsl:output-character
    character="&#x2006;"
    u:name="SIX-PER-EM SPACE"
    string=" "
+   u:class="GeneralPunctuation_spaces"
    />
   <!-- * same as roff "digit" space -->
   <xsl:output-character
@@ -1352,7 +1531,7 @@
    u:name="FIGURE SPACE"
    u:entity="numsp"
    string="@esc@0"
-   u:class="default"
+   u:class="GeneralPunctuation_spaces"
    />
   <!-- * punctuation space in most fonts is actually closer to a normal -->
   <!-- * space than it is to a thin space -->
@@ -1361,7 +1540,7 @@
    u:name="PUNCTUATION SPACE"
    u:entity="puncsp"
    string=" "
-   u:class="default"
+   u:class="GeneralPunctuation_spaces"
    />
   <!-- * Note: Not sure how best to deal with thin space, because the roff -->
   <!-- * thin space, "\^", prints as a zero-width space in TTY -->
@@ -1375,6 +1554,7 @@
    u:name="THIN SPACE"
    u:entity="thinsp"
    string=" "
+   u:class="GeneralPunctuation_spaces"
    />
   <!-- * I don't think there's a standard definition of what a hair -->
   <!-- * space is; some guides just say it's "less than 1/5 of an em" or -->
@@ -1387,14 +1567,14 @@
    u:name="HAIR SPACE"
    u:entity="hairsp"
    string="@esc@&amp;"
-   u:class="default"
+   u:class="GeneralPunctuation_spaces"
    />
   <!-- * map to roff "zero-width break point"  -->
   <xsl:output-character
    character="&#x200b;"
    u:name="ZERO WIDTH SPACE"
    string="@esc@:"
-   u:class="default"
+   u:class="GeneralPunctuation_spaces"
    />
 
   <!-- *   x200c and x200d have special purposes in some Indic languages (I -->
@@ -1427,34 +1607,34 @@
    u:name="HYPHEN"
    u:entity="hyphen"
    string="@esc@(hy"
-   u:class="default"
+   u:class="GeneralPunctuation_dashes"
    />
   <xsl:output-character
    character="&#x2011;"
    u:name="NON-BREAKING HYPHEN"
    string="@esc@&amp;-@esc@&amp;"
-   u:class="default"
+   u:class="GeneralPunctuation_dashes"
    />
   <!-- * roughly same width as en dash -->
   <xsl:output-character
    character="&#x2012;"
    u:name="FIGURE DASH"
    string="@esc@(en"
-   u:class="default"
+   u:class="GeneralPunctuation_dashes"
    />
   <xsl:output-character
    character="&#x2013;"
    u:name="EN DASH"
    u:entity="ndash"
    string="@esc@(en"
-   u:class="default"
+   u:class="GeneralPunctuation_dashes"
    />
   <xsl:output-character
    character="&#x2014;"
    u:name="EM DASH"
    u:entity="mdash"
    string="@esc@(em"
-   u:class="default"
+   u:class="GeneralPunctuation_dashes"
    />
   <!-- * seems roughly same width as em dash -->
   <xsl:output-character
@@ -1462,13 +1642,14 @@
    u:name="HORIZONTAL BAR"
    u:entity="horbar"
    string="@esc@(em"
-   u:class="default"
+   u:class="GeneralPunctuation_dashes"
    />
   <xsl:output-character
    character="&#x2016;"
    u:name="DOUBLE VERTICAL LINE"
    u:entity="Verbar"
    string="@esc@(bv@esc@(bv"
+   u:class="GeneralPunctuation_other"
    />
   <!-- * no double-underscore in roff; so just make it a single -->
   <!-- * underscore -->
@@ -1476,6 +1657,7 @@
    character="&#x2017;"
    u:name="DOUBLE LOW LINE"
    string="_"
+   u:class="GeneralPunctuation_other"
    />
 
   <!-- * .................................................... -->
@@ -1485,52 +1667,56 @@
    u:name="LEFT SINGLE QUOTATION MARK"
    u:entity="lsquo"
    string="@esc@(oq"
-   u:class="default"
+   u:class="GeneralPunctuation_quotes"
    />
   <xsl:output-character
    character="&#x2019;"
    u:name="RIGHT SINGLE QUOTATION MARK"
    u:entity="rsquo"
    string="@esc@(cq"
-   u:class="default"
+   u:class="GeneralPunctuation_quotes"
    />
   <xsl:output-character
    character="&#x201a;"
    u:name="SINGLE LOW-9 QUOTATION MARK"
    u:entity="lsquor"
    string="@esc@(bq"
+   u:class="GeneralPunctuation_quotes"
    />
   <!-- * no roff equiv; treat same as lsquo -->
   <xsl:output-character
    character="&#x201b;"
    u:name="SINGLE HIGH-REVERSED-9 QUOTATION MARK"
    string="@esc@(oq"
+   u:class="GeneralPunctuation_quotes"
    />
   <xsl:output-character
    character="&#x201c;"
    u:name="LEFT DOUBLE QUOTATION MARK"
    u:entity="ldquo"
    string="@esc@(lq"
-   u:class="default"
+   u:class="GeneralPunctuation_quotes"
    />
   <xsl:output-character
    character="&#x201d;"
    u:name="RIGHT DOUBLE QUOTATION MARK"
    u:entity="rdquo"
    string="@esc@(rq"
-   u:class="default"
+   u:class="GeneralPunctuation_quotes"
    />
   <xsl:output-character
    character="&#x201e;"
    u:name="DOUBLE LOW-9 QUOTATION MARK"
    u:entity="ldquor"
    string="@esc@(Bq"
+   u:class="GeneralPunctuation_quotes"
    />
   <!-- * no roff equiv; treat same as rdquo -->
   <xsl:output-character
    character="&#x201f;"
    u:name="DOUBLE HIGH-REVERSED-9 QUOTATION MARK"
    string="@esc@(rq"
+   u:class="GeneralPunctuation_quotes"
    />
 
   <!-- * .................................................... -->
@@ -1540,33 +1726,35 @@
    u:name="DAGGER"
    u:entity="dagger"
    string="@esc@(dg"
-   u:class="default"
+   u:class="GeneralPunctuation_daggers"
    />
   <xsl:output-character
    character="&#x2021;"
    u:name="DOUBLE DAGGER"
    u:entity="Dagger"
    string="@esc@(dd"
-   u:class="default"
+   u:class="GeneralPunctuation_daggers"
    />
   <xsl:output-character
    character="&#x2022;"
    u:name="BULLET"
    u:entity="bull"
    string="@esc@(bu"
-   u:class="default"
+   u:class="GeneralPunctuation_bullets"
    />
   <!-- * no roff equiv -->
   <xsl:output-character
    character="&#x2023;"
    u:name="TRIANGULAR BULLET"
    string=">@esc@&amp;"
+   u:class="GeneralPunctuation_bullets"
    />
   <!-- * no roff equiv -->
   <xsl:output-character
    character="&#x2024;"
    u:name="ONE DOT LEADER"
    string="@esc@&amp;."
+   u:class="GeneralPunctuation_leaders"
    />
   <!-- * no roff equiv -->
   <xsl:output-character
@@ -1574,6 +1762,7 @@
    u:name="TWO DOT LEADER"
    u:entity="nldr"
    string="@esc@&amp;.."
+   u:class="GeneralPunctuation_leaders"
    />
   <!-- * no roff equiv -->
   <xsl:output-character
@@ -1581,13 +1770,14 @@
    u:name="HORIZONTAL ELLIPSIS"
    u:entity="hellip"
    string="@esc@&amp;..."
-   u:class="default"
+   u:class="GeneralPunctuation_ellipses"
    />
+  <!-- what is "hyphenation point" used for? looks like middot to me... -->
   <xsl:output-character
    character="&#x2027;"
    u:name="HYPHENATION POINT"
-   string="@esc@%"
-   u:class="default"
+   string="@esc@(md"
+   u:class="GeneralPunctuation_other"
    />
   <!-- * Begin x2028 to x202e - no idea what to do with these -->
   <!-- *      <xsl:output-character -->
@@ -1626,13 +1816,14 @@
    character="&#x202f;"
    u:name="NARROW NO-BREAK SPACE"
    string="@esc@ "
-   u:class="default"
+   u:class="GeneralPunctuation_spaces"
    />
   <xsl:output-character
    character="&#x2030;"
    u:name="PER MILLE SIGN"
    u:entity="permil"
    string="@esc@(%0"
+   u:class="GeneralPunctuation_other"
    />
   <!-- * no roff equiv; no idea what to do with it -->
   <!-- *      <xsl:output-character -->
@@ -1644,20 +1835,21 @@
    u:name="PRIME"
    u:entity="prime"
    string="@esc@(fm"
-   u:class="default"
+   u:class="GeneralPunctuation_primes"
    />
   <xsl:output-character
    character="&#x2033;"
    u:name="DOUBLE PRIME"
    u:entity="Prime"
    string="@esc@(sd"
-   u:class="default"
+   u:class="GeneralPunctuation_primes"
    />
   <xsl:output-character
    character="&#x2034;"
    u:name="TRIPLE PRIME"
    u:entity="tprime"
    string="@esc@(sd@esc@(fm"
+   u:class="GeneralPunctuation_primes"
    />
   <!-- * no idea for these  -->
   <!-- *      <xsl:output-character -->
@@ -1679,48 +1871,57 @@
    character="&#x2038;"
    u:name="CARET"
    string="^"
+   u:class="GeneralPunctuation_other"
    />
   <xsl:output-character
    character="&#x2039;"
    u:name="SINGLE LEFT-POINTING ANGLE QUOTATION MARK"
    string="@esc@(fo"
+   u:class="GeneralPunctuation_quotes"
    />
   <xsl:output-character
    character="&#x203a;"
    u:name="SINGLE RIGHT-POINTING ANGLE QUOTATION MARK"
    string="@esc@(fc"
+   u:class="GeneralPunctuation_quotes"
    />
   <!-- * not in roff -->
   <xsl:output-character
    character="&#x203b;"
    u:name="REFERENCE MARK"
    string="*"
+   u:class="GeneralPunctuation_other"
    />
   <xsl:output-character
    character="&#x203c;"
    u:name="DOUBLE EXCLAMATION MARK"
    string="!!"
+   u:class="GeneralPunctuation_other"
    />
   <xsl:output-character
    character="&#x203d;"
    u:name="INTERROBANG"
    string="?!"
+   u:class="GeneralPunctuation_other"
    />
   <xsl:output-character
    character="&#x203e;"
    u:name="OVERLINE"
    string="@esc@(rn"
+   u:class="GeneralPunctuation_other"
    />
   <xsl:output-character
    character="&#x203f;"
    u:name="UNDERTIE"
    string="@esc@(ul"
+   u:class="GeneralPunctuation_other"
    />
   <!-- * not in roff -->
   <xsl:output-character
    character="&#x2040;"
    u:name="CHARACTER TIE"
    string="@esc@(rn"
+   u:class="GeneralPunctuation_other"
    />
   <!-- * not in roff -->
   <xsl:output-character
@@ -1728,12 +1929,14 @@
    u:name="CARET INSERTION POINT"
    u:entity="caret"
    string="^"
+   u:class="GeneralPunctuation_other"
    />
   <!-- * not in roff -->
   <xsl:output-character
    character="&#x2042;"
    u:name="ASTERISM"
    string="*"
+   u:class="GeneralPunctuation_other"
    />
   <!-- * not in roff; just make bold hyphen -->
   <xsl:output-character
@@ -1741,67 +1944,79 @@
    u:name="HYPHEN BULLET"
    u:entity="hybull"
    string="@esc@fB-@esc@fR"
+   u:class="GeneralPunctuation_bullets"
    />
   <xsl:output-character
    character="&#x2044;"
    u:name="FRACTION SLASH"
    string="@esc@(sl"
+   u:class="GeneralPunctuation_other"
    />
   <!-- * not in roff -->
   <xsl:output-character
    character="&#x2045;"
    u:name="LEFT SQUARE BRACKET WITH QUILL"
    string="["
+   u:class="GeneralPunctuation_other"
    />
   <!-- * not in roff -->
   <xsl:output-character
    character="&#x2046;"
    u:name="RIGHT SQUARE BRACKET WITH QUILL"
    string="]"
+   u:class="GeneralPunctuation_other"
    />
   <xsl:output-character
    character="&#x2047;"
    u:name="DOUBLE QUESTION MARK"
    string="??"
+   u:class="GeneralPunctuation_other"
    />
   <xsl:output-character
    character="&#x2048;"
    u:name="QUESTION EXCLAMATION MARK"
    string="?!"
+   u:class="GeneralPunctuation_other"
    />
   <xsl:output-character
    character="&#x2049;"
    u:name="EXCLAMATION QUESTION MARK"
    string="!?"
+   u:class="GeneralPunctuation_other"
    />
   <!-- * not in roff -->
   <xsl:output-character
    character="&#x204a;"
    u:name="TIRONIAN SIGN ET"
    string="7"
+   u:class="GeneralPunctuation_other"
    />
   <!-- * not in roff; just replace with un-reversed pilcrow -->
   <xsl:output-character
    character="&#x204b;"
    u:name="REVERSED PILCROW SIGN"
    string="@esc@(ps"
+   u:class="GeneralPunctuation_other"
    />
   <!-- * not in roff; just make regular bullet -->
   <xsl:output-character
    character="&#x204c;"
    u:name="BLACK LEFTWARDS BULLET"
    string="@esc@(bu"
+   u:class="GeneralPunctuation_other"
    />
   <!-- * not in roff; just make regular bullet -->
   <xsl:output-character
    character="&#x204d;"
    u:name="BLACK RIGHTWARDS BULLET"
    string="@esc@(bu"
+   u:class="GeneralPunctuation_other"
    />
   <xsl:output-character
    character="&#x204e;"
    u:name="LOW ASTERISK"
    string="*"
+   u:class="GeneralPunctuation_other"
    />
 
   <!-- * ............................................................... -->
@@ -1815,9 +2030,10 @@
    character="&#x205f;"
    u:name="MEDIUM MATHEMATICAL SPACE"
    string=" "
+   u:class="GeneralPunctuation_spaces"
    />
   <!-- * Regarding x2060 vs. xFEFF, the document "Unicode Standard Annex #14, -->
-  <!-- * Line Breaking Properties"[1] sayxsl: -->
+  <!-- * Line Breaking Properties"[1] says: -->
   <!-- * -->
   <!-- *   The word joiner character [x2060 a.k.a "WJ"] is the preferred -->
   <!-- *   choice for an invisible character to keep other characters -->
@@ -1834,7 +2050,7 @@
    character="&#x2060;"
    u:name="WORD JOINER"
    string="@esc@&amp;"
-   u:class="default"
+   u:class="GeneralPunctuation_wordjoiner"
    />
 
   <!-- * ***************************************************************** -->
@@ -1852,146 +2068,175 @@
    character="&#x2070;"
    u:name="SUPERSCRIPT ZERO"
    string="^0"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x2071;"
    u:name="SUPERSCRIPT LATIN SMALL LETTER I"
    string="^i"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x2074;"
    u:name="SUPERSCRIPT FOUR"
    string="^4"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x2075;"
    u:name="SUPERSCRIPT FIVE"
    string="^5"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x2076;"
    u:name="SUPERSCRIPT SIX"
    string="^6"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x2077;"
    u:name="SUPERSCRIPT SEVEN"
    string="^7"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x2078;"
    u:name="SUPERSCRIPT EIGHT"
    string="^8"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x2079;"
    u:name="SUPERSCRIPT NINE"
    string="^9"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x207a;"
    u:name="SUPERSCRIPT PLUS SIGN"
    string="^+"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x207b;"
    u:name="SUPERSCRIPT MINUS"
    string="^-"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x207c;"
    u:name="SUPERSCRIPT EQUALS SIGN"
    string="^="
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x207d;"
    u:name="SUPERSCRIPT LEFT PARENTHESIS"
    string="^("
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x207e;"
    u:name="SUPERSCRIPT RIGHT PARENTHESIS"
    string="^)"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x207f;"
    u:name="SUPERSCRIPT LATIN SMALL LETTER N"
    string="^n"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x2080;"
    u:name="SUBSCRIPT ZERO"
    string="_0"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x2081;"
    u:name="SUBSCRIPT ONE"
    string="_1"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x2082;"
    u:name="SUBSCRIPT TWO"
    string="_2"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x2083;"
    u:name="SUBSCRIPT THREE"
    string="_3"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x2084;"
    u:name="SUBSCRIPT FOUR"
    string="_4"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x2085;"
    u:name="SUBSCRIPT FIVE"
    string="_5"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x2086;"
    u:name="SUBSCRIPT SIX"
    string="_6"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x2087;"
    u:name="SUBSCRIPT SEVEN"
    string="_7"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x2088;"
    u:name="SUBSCRIPT EIGHT"
    string="_8"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x2089;"
    u:name="SUBSCRIPT NINE"
    string="_9"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x208a;"
    u:name="SUBSCRIPT PLUS SIGN"
    string="_+"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x208b;"
    u:name="SUBSCRIPT MINUS"
    string="_-"
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x208c;"
    u:name="SUBSCRIPT EQUALS SIGN"
    string="_="
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x208d;"
    u:name="SUBSCRIPT LEFT PARENTHESIS"
    string="_("
+   u:class="SuperscriptsandSubscripts"
    />
   <xsl:output-character
    character="&#x208e;"
    u:name="SUBSCRIPT RIGHT PARENTHESIS"
    string="_)"
+   u:class="SuperscriptsandSubscripts"
    />
   <!-- * ***************************************************************** -->
   <!-- *   End: Superscripts and Subscripts -->
@@ -2008,91 +2253,109 @@
    character="&#x20a0;"
    u:name="EURO-CURRENCY SIGN"
    string="EUR"
+   u:class="CurrencySymbols"
    />
   <xsl:output-character
    character="&#x20a1;"
    u:name="COLON SIGN"
    string="COLON"
+   u:class="CurrencySymbols"
    />
   <xsl:output-character
    character="&#x20a2;"
    u:name="CRUZEIRO SIGN"
    string="CRUZEIRO"
+   u:class="CurrencySymbols"
    />
   <xsl:output-character
    character="&#x20a3;"
    u:name="FRENCH FRANC SIGN"
    string="FRANC"
+   u:class="CurrencySymbols"
    />
   <xsl:output-character
    character="&#x20a4;"
    u:name="LIRA SIGN"
    string="LIRA"
+   u:class="CurrencySymbols"
    />
   <xsl:output-character
    character="&#x20a5;"
    u:name="MILL SIGN"
    string="MILL"
+   u:class="CurrencySymbols"
    />
   <xsl:output-character
    character="&#x20a6;"
    u:name="NAIRA SIGN"
    string="NAIRA"
+   u:class="CurrencySymbols"
    />
   <xsl:output-character
    character="&#x20a7;"
    u:name="PESETA SIGN"
    string="PESETA"
+   u:class="CurrencySymbols"
    />
   <xsl:output-character
    character="&#x20a8;"
    u:name="RUPEE SIGN"
    string="RUPEE"
+   u:class="CurrencySymbols"
    />
   <xsl:output-character
    character="&#x20a9;"
    u:name="WON SIGN"
    string="WON"
+   u:class="CurrencySymbols"
    />
   <xsl:output-character
    character="&#x20aa;"
    u:name="NEW SHEQEL SIGN"
    string="SHEQEL"
+   u:class="CurrencySymbols"
    />
   <xsl:output-character
    character="&#x20ab;"
    u:name="DONG SIGN"
    string="DONG"
+   u:class="CurrencySymbols"
    />
   <xsl:output-character
    character="&#x20ac;"
    u:name="EURO SIGN"
    string="EUR"
+   u:class="CurrencySymbols"
    />
   <xsl:output-character
    character="&#x20ad;"
    u:name="KIP SIGN"
    string="KIP"
+   u:class="CurrencySymbols"
    />
   <xsl:output-character
    character="&#x20ae;"
    u:name="TUGRIK SIGN"
    string="TUGRIK"
+   u:class="CurrencySymbols"
    />
   <xsl:output-character
    character="&#x20af;"
    u:name="DRACHMA SIGN"
    string="DRACHMA"
+   u:class="CurrencySymbols"
    />
-  <xsl:output-character
-   character="&#x20b0;"
-   u:name="GERMAN PENNY SIGN"
-   string="?"
-   />
+  <!-- <xsl:output-character -->
+  <!--  character="&#x20b0;" -->
+  <!--  u:name="GERMAN PENNY SIGN" -->
+  <!--  string="?" -->
+  <!--  u:class="CurrencySymbols" -->
+  <!--  /> -->
   <xsl:output-character
    character="&#x20b1;"
    u:name="PESO SIGN"
    string="PESO"
+   u:class="CurrencySymbols"
    />
 
   <!-- * ***************************************************************** -->
@@ -2102,7 +2365,7 @@
 
   <!-- * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
   <!-- *   Combining Diacritical Marks for Symbols -->
-  <!-- *     x20do to x20ff -->
+  <!-- *     x20d0 to x20ff -->
   <!-- *     - do nothing - -->
   <!-- * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 
@@ -2118,89 +2381,102 @@
    character="&#x2103;"
    u:name="DEGREE CELSIUS"
    string="@esc@(deC"
+   u:class="LetterlikeSymbols"
    />
   <xsl:output-character
    character="&#x2105;"
    u:name="CARE OF"
    u:entity="incare"
    string="c/o"
+   u:class="LetterlikeSymbols"
    />
   <xsl:output-character
    character="&#x2109;"
    u:name="DEGREE FAHRENHEIT"
    string="@esc@(deF"
+   u:class="LetterlikeSymbols"
    />
   <!-- roff Ifraktur -->
   <xsl:output-character
    character="&#x2111;"
    u:name="BLACK-LETTER CAPITAL I"
    string="@esc@(Im"
+   u:class="LetterlikeSymbols"
    />
   <xsl:output-character
    character="&#x2113;"
    u:name="SCRIPT SMALL L"
    u:entity="ell"
    string="l"
+   u:class="LetterlikeSymbols"
    />
   <xsl:output-character
    character="&#x2116;"
    u:name="NUMERO SIGN"
    u:entity="numero"
    string="No."
+   u:class="LetterlikeSymbols"
    />
   <xsl:output-character
    character="&#x2118;"
    u:name="SCRIPT CAPITAL P"
    u:entity="weierp"
    string="@esc@(wp"
+   u:class="LetterlikeSymbols"
    />
   <xsl:output-character
    character="&#x211c;"
    u:name="BLACK-LETTER CAPITAL R"
    u:entity="real"
    string="@esc@(Re"
+   u:class="LetterlikeSymbols"
    />
   <xsl:output-character
    character="&#x211e;"
    u:name="PRESCRIPTION TAKE"
    u:entity="rx"
    string="Rx"
+   u:class="LetterlikeSymbols"
    />
   <xsl:output-character
    character="&#x2120;"
    u:name="SERVICE MARK"
    string="sm"
-   u:class="default"
+   u:class="LetterlikeSymbols_servicemark"
    />
   <xsl:output-character
    character="&#x2122;"
    u:name="TRADE MARK SIGN"
    u:entity="trade"
    string="@esc@(tm"
-   u:class="default"
+   u:class="LetterlikeSymbols_trademark"
    />
   <xsl:output-character
    character="&#x2126;"
    u:name="OHM SIGN"
    u:entity="ohm"
    string="@esc@(*W"
+   u:class="LetterlikeSymbols"
    />
   <xsl:output-character
    character="&#x212a;"
    u:name="KELVIN SIGN"
    string="K"
+   u:class="LetterlikeSymbols"
    />
   <xsl:output-character
    character="&#x212b;"
    u:name="ANGSTROM SIGN"
    u:entity="angst"
    string="@esc@(oA"
+   u:class="LetterlikeSymbols"
    />
   <xsl:output-character
    character="&#x2135;"
    u:name="ALEF SYMBOL"
    u:entity="aleph"
    string="@esc@(Ah"
+   u:class="LetterlikeSymbols"
    />
 
   <!-- * ***************************************************************** -->
@@ -2221,242 +2497,288 @@
    u:name="VULGAR FRACTION ONE THIRD"
    u:entity="frac13"
    string="1/3"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2154;"
    u:name="VULGAR FRACTION TWO THIRDS"
    u:entity="frac23"
    string="2/3"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2155;"
    u:name="VULGAR FRACTION ONE FIFTH"
    u:entity="frac15"
    string="1/5"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2156;"
    u:name="VULGAR FRACTION TWO FIFTHS"
    u:entity="frac25"
    string="2/5"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2157;"
    u:name="VULGAR FRACTION THREE FIFTHS"
    u:entity="frac35"
    string="3/5"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2158;"
    u:name="VULGAR FRACTION FOUR FIFTHS"
    u:entity="frac45"
    string="4/5"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2159;"
    u:name="VULGAR FRACTION ONE SIXTH"
    u:entity="frac16"
    string="1/6"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x215a;"
    u:name="VULGAR FRACTION FIVE SIXTHS"
    u:entity="frac56"
    string="5/6"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x215b;"
    u:name="VULGAR FRACTION ONE EIGHTH"
    u:entity="frac18"
    string="1/8"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x215c;"
    u:name="VULGAR FRACTION THREE EIGHTHS"
    u:entity="frac38"
    string="3/8"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x215d;"
    u:name="VULGAR FRACTION FIVE EIGHTHS"
    u:entity="frac58"
    string="5/8"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x215e;"
    u:name="VULGAR FRACTION SEVEN EIGHTHS"
    u:entity="frac78"
    string="7/8"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x215f;"
    u:name="FRACTION NUMERATOR ONE"
    string="1/"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2160;"
    u:name="ROMAN NUMERAL ONE"
    string="I"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2161;"
    u:name="ROMAN NUMERAL TWO"
    string="II"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2162;"
    u:name="ROMAN NUMERAL THREE"
    string="III"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2163;"
    u:name="ROMAN NUMERAL FOUR"
    string="IV"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2164;"
    u:name="ROMAN NUMERAL FIVE"
    string="V"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2165;"
    u:name="ROMAN NUMERAL SIX"
    string="VI"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2166;"
    u:name="ROMAN NUMERAL SEVEN"
    string="VII"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2167;"
    u:name="ROMAN NUMERAL EIGHT"
    string="VIII"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2168;"
    u:name="ROMAN NUMERAL NINE"
    string="IX"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2169;"
    u:name="ROMAN NUMERAL TEN"
    string="X"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x216a;"
    u:name="ROMAN NUMERAL ELEVEN"
    string="XI"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x216b;"
    u:name="ROMAN NUMERAL TWELVE"
    string="XII"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x216c;"
    u:name="ROMAN NUMERAL FIFTY"
    string="L"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x216d;"
    u:name="ROMAN NUMERAL ONE HUNDRED"
    string="C"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x216e;"
    u:name="ROMAN NUMERAL FIVE HUNDRED"
    string="D"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x216f;"
    u:name="ROMAN NUMERAL ONE THOUSAND"
    string="M"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2170;"
    u:name="SMALL ROMAN NUMERAL ONE"
    string="i"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2171;"
    u:name="SMALL ROMAN NUMERAL TWO"
    string="ii"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2172;"
    u:name="SMALL ROMAN NUMERAL THREE"
    string="iii"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2173;"
    u:name="SMALL ROMAN NUMERAL FOUR"
    string="iv"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2174;"
    u:name="SMALL ROMAN NUMERAL FIVE"
    string="v"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2175;"
    u:name="SMALL ROMAN NUMERAL SIX"
    string="vi"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2176;"
    u:name="SMALL ROMAN NUMERAL SEVEN"
    string="vii"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2177;"
    u:name="SMALL ROMAN NUMERAL EIGHT"
    string="viii"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2178;"
    u:name="SMALL ROMAN NUMERAL NINE"
    string="ix"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2179;"
    u:name="SMALL ROMAN NUMERAL TEN"
    string="x"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x217a;"
    u:name="SMALL ROMAN NUMERAL ELEVEN"
    string="xi"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x217b;"
    u:name="SMALL ROMAN NUMERAL TWELVE"
    string="xii"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x217c;"
    u:name="SMALL ROMAN NUMERAL FIFTY"
    string="l"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x217d;"
    u:name="SMALL ROMAN NUMERAL ONE HUNDRED"
    string="c"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x217e;"
    u:name="SMALL ROMAN NUMERAL FIVE HUNDRED"
    string="d"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x217f;"
    u:name="SMALL ROMAN NUMERAL ONE THOUSAND"
    string="m"
+   u:class="NumberForms"
    />
   <xsl:output-character
    character="&#x2180;"
    u:name="ROMAN NUMERAL ONE THOUSAND C D"
    string="CD"
+   u:class="NumberForms"
    />
 
   <!-- * ***************************************************************** -->
@@ -2474,72 +2796,84 @@
    u:name="LEFTWARDS ARROW"
    u:entity="larr"
    string="@esc@(&lt;-"
+   u:class="Arrows"
    />
   <xsl:output-character
    character="&#x2191;"
    u:name="UPWARDS ARROW"
    u:entity="uarr"
    string="@esc@(ua"
+   u:class="Arrows"
    />
   <xsl:output-character
    character="&#x2192;"
    u:name="RIGHTWARDS ARROW"
    u:entity="rarr"
    string="@esc@(->"
+   u:class="Arrows"
    />
   <xsl:output-character
    character="&#x2193;"
    u:name="DOWNWARDS ARROW"
    u:entity="darr"
    string="@esc@(da"
+   u:class="Arrows"
    />
   <xsl:output-character
    character="&#x2194;"
    u:name="LEFT RIGHT ARROW"
    u:entity="harr"
    string="@esc@(&lt;>"
+   u:class="Arrows"
    />
   <xsl:output-character
    character="&#x2195;"
    u:name="UP DOWN ARROW"
    u:entity="varr"
    string="@esc@(va"
+   u:class="Arrows"
    />
   <xsl:output-character
    character="&#x21b5;"
    u:name="DOWNWARDS ARROW WITH CORNER LEFTWARDS"
    u:entity="crarr"
    string="@esc@(CR"
+   u:class="Arrows"
    />
   <xsl:output-character
    character="&#x21d0;"
    u:name="LEFTWARDS DOUBLE ARROW"
    u:entity="lArr"
    string="@esc@(la"
+   u:class="Arrows"
    />
   <xsl:output-character
    character="&#x21d1;"
    u:name="UPWARDS DOUBLE ARROW"
    u:entity="uArr"
    string="@esc@(uA"
+   u:class="Arrows"
    />
   <xsl:output-character
    character="&#x21d2;"
    u:name="RIGHTWARDS DOUBLE ARROW"
    u:entity="rArr"
    string="@esc@(rA"
+   u:class="Arrows"
    />
   <xsl:output-character
    character="&#x21d3;"
    u:name="DOWNWARDS DOUBLE ARROW"
    u:entity="dArr"
    string="@esc@(dA"
+   u:class="Arrows"
    />
   <xsl:output-character
    character="&#x21d4;"
    u:name="LEFT RIGHT DOUBLE ARROW"
    u:entity="hArr"
    string="@esc@(hA"
+   u:class="Arrows"
    />
   <!-- no roff equiv; render same as single arrow -->
   <xsl:output-character
@@ -2547,6 +2881,7 @@
    u:name="UP DOWN DOUBLE ARROW"
    u:entity="vArr"
    string="@esc@(va"
+   u:class="Arrows"
    />
 
   <!-- * ***************************************************************** -->
@@ -2559,24 +2894,28 @@
    u:name="FOR ALL"
    u:entity="forall"
    string="@esc@(fa"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2201;"
    u:name="COMPLEMENT"
    u:entity="comp"
    string="C"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2202;"
    u:name="PARTIAL DIFFERENTIAL"
    u:entity="part"
    string="@esc@(pd"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2203;"
    u:name="THERE EXISTS"
    u:entity="exist"
    string="@esc@(te"
+   u:class="MathematicalOperators"
    />
   <!-- * no roff equiv  -->
   <!-- *      <xsl:output-character -->
@@ -2589,34 +2928,40 @@
    u:name="EMPTY SET"
    u:entity="empty"
    string="@esc@(es"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2206;"
    u:name="INCREMENT"
    string="@esc@(*D"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2207;"
    u:name="NABLA"
    u:entity="nabla"
    string="@esc@(gr"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2208;"
    u:name="ELEMENT OF"
    u:entity="isin"
    string="@esc@(mo"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2209;"
    u:name="NOT AN ELEMENT OF"
    u:entity="notin"
    string="@esc@(nm"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x220a;"
    u:name="SMALL ELEMENT OF"
    string="@esc@(mo"
+   u:class="MathematicalOperators"
    />
 
   <xsl:output-character
@@ -2624,6 +2969,7 @@
    u:name="CONTAINS AS MEMBER"
    u:entity="ni"
    string="@esc@(st"
+   u:class="MathematicalOperators"
    />
   <!-- * not in roff  -->
   <!-- *      <xsl:output-character -->
@@ -2634,6 +2980,7 @@
    character="&#x220d;"
    u:name="SMALL CONTAINS AS MEMBER"
    string="@esc@(st"
+   u:class="MathematicalOperators"
    />
   <!-- * not in roff -->
   <!-- *      <xsl:output-character -->
@@ -2645,6 +2992,7 @@
    u:name="N-ARY PRODUCT"
    u:entity="prod"
    string="@esc@(product"
+   u:class="MathematicalOperators"
    />
   <!-- * not in roff -->
   <!-- *      <xsl:output-character -->
@@ -2657,18 +3005,21 @@
    u:name="N-ARY SUMMATION"
    u:entity="sum"
    string="@esc@(sum"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2212;"
    u:name="MINUS SIGN"
    u:entity="minus"
    string="@esc@-"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2213;"
    u:name="MINUS-OR-PLUS SIGN"
    u:entity="mnplus"
    string="@esc@(+-"
+   u:class="MathematicalOperators"
    />
   <!-- * not in roff -->
   <!-- *      <xsl:output-character -->
@@ -2680,19 +3031,21 @@
    character="&#x2215;"
    u:name="DIVISION SLASH"
    string="@esc@(f/"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
-    character="&#x2216;"
-    u:name="SET MINUS"
-    u:entity="setmn"
-    string="@esc@@esc@"
-    u:class="default"
+   character="&#x2216;"
+   u:name="SET MINUS"
+   u:entity="setmn"
+   string="@esc@@esc@"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2217;"
    u:name="ASTERISK OPERATOR"
    u:entity="lowast"
    string="@esc@(**"
+   u:class="MathematicalOperators"
    />
   <!-- * not in roff -->
   <!-- *      <xsl:output-character -->
@@ -2704,12 +3057,14 @@
    character="&#x2219;"
    u:name="BULLET OPERATOR"
    string="@esc@(bu"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x221a;"
    u:name="SQUARE ROOT"
    u:entity="radic"
    string="@esc@(sr"
+   u:class="MathematicalOperators"
    />
   <!-- * not in roff -->
   <!-- *      <xsl:output-character -->
@@ -2725,12 +3080,14 @@
    u:name="PROPORTIONAL TO"
    u:entity="prop"
    string="@esc@(pt"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x221e;"
    u:name="INFINITY"
    u:entity="infin"
    string="@esc@(if"
+   u:class="MathematicalOperators"
    />
   <!-- * not in roff -->
   <!-- *      <xsl:output-character -->
@@ -2743,6 +3100,7 @@
    u:name="ANGLE"
    u:entity="ang"
    string="@esc@(/_"
+   u:class="MathematicalOperators"
    />
 
   <!-- * 0x2221 to 0x2226 not in roff; -->
@@ -2753,6 +3111,7 @@
    u:name="PARALLEL TO"
    u:entity="par"
    string="@esc@(bv@esc@(bv"
+   u:class="MathematicalOperators"
    />
 
   <xsl:output-character
@@ -2760,40 +3119,47 @@
    u:name="LOGICAL AND"
    u:entity="and"
    string="@esc@(AN"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2228;"
    u:name="LOGICAL OR"
    u:entity="or"
    string="@esc@(OR"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2229;"
    u:name="INTERSECTION"
    u:entity="cap"
    string="@esc@(ca"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x222a;"
    u:name="UNION"
    u:entity="cup"
    string="@esc@(cu"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x222b;"
    u:name="INTEGRAL"
    u:entity="int"
    string="@esc@(is"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x222c;"
    u:name="DOUBLE INTEGRAL"
    string="@esc@(is@esc@(is"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x222d;"
    u:name="TRIPLE INTEGRAL"
    string="@esc@(is@esc@(is@esc@(is"
+   u:class="MathematicalOperators"
    />
 
   <!-- * 0x222e to 0x2233 not in roff -->
@@ -2803,6 +3169,7 @@
    u:name="THEREFORE"
    u:entity="there4"
    string="@esc@(tf"
+   u:class="MathematicalOperators"
    />
 
   <!-- * not in roff -->
@@ -2815,11 +3182,13 @@
    character="&#x2236;"
    u:name="RATIO"
    string=":"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2237;"
    u:name="PROPORTION"
    string="::"
+   u:class="MathematicalOperators"
    />
 
   <!-- * 0x2238 to 0x223b not in roff -->
@@ -2829,6 +3198,7 @@
    u:name="TILDE OPERATOR"
    u:entity="sim"
    string="@esc@(ti"
+   u:class="MathematicalOperators"
    />
 
   <!-- * 0x223d to 0x224b not in roff -->
@@ -2838,6 +3208,7 @@
    u:name="APPROXIMATELY EQUAL TO"
    u:entity="cong"
    string="@esc@(=~"
+   u:class="MathematicalOperators"
    />
 
   <!-- * not in roff -->
@@ -2856,6 +3227,7 @@
    u:name="ALMOST EQUAL TO"
    u:entity="asymp"
    string="@esc@(~~"
+   u:class="MathematicalOperators"
    />
 
   <!-- * x2249 to x2253 not in roff -->
@@ -2865,12 +3237,14 @@
    u:name="COLON EQUALS"
    u:entity="colone"
    string=":="
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2255;"
    u:name="EQUALS COLON"
    u:entity="ecolon"
    string="=:"
+   u:class="MathematicalOperators"
    />
 
   <!-- * x2256 to x2255 not in roff -->
@@ -2879,18 +3253,21 @@
    character="&#x225f;"
    u:name="QUESTIONED EQUAL TO"
    string="?="
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2260;"
    u:name="NOT EQUAL TO"
    u:entity="ne"
    string="@esc@(!="
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2261;"
    u:name="IDENTICAL TO"
    u:entity="equiv"
    string="@esc@(=="
+   u:class="MathematicalOperators"
    />
   <!-- * not in roff -->
   <!-- *      <xsl:output-character -->
@@ -2907,12 +3284,14 @@
    u:name="LESS-THAN OR EQUAL TO"
    u:entity="le"
    string="@esc@(&lt;="
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2265;"
    u:name="GREATER-THAN OR EQUAL TO"
    u:entity="ge"
    string="@esc@(>="
+   u:class="MathematicalOperators"
    />
   <!-- * x2266 to x2269 not in roff -->
 
@@ -2921,12 +3300,14 @@
    u:name="MUCH LESS-THAN"
    u:entity="Lt"
    string="&lt;&lt;"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x226b;"
    u:name="MUCH GREATER-THAN"
    u:entity="Gt"
    string=">>"
+   u:class="MathematicalOperators"
    />
   <!-- * x226c to x2281 not in roff -->
 
@@ -2935,18 +3316,21 @@
    u:name="SUBSET OF"
    u:entity="sub"
    string="@esc@(sb"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2283;"
    u:name="SUPERSET OF"
    u:entity="sup"
    string="@esc@(sp"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2284;"
    u:name="NOT A SUBSET OF"
    u:entity="nsub"
    string="@esc@(nb"
+   u:class="MathematicalOperators"
    />
   <!-- * not in roff -->
   <!-- *      <xsl:output-character -->
@@ -2959,12 +3343,14 @@
    u:name="SUBSET OF OR EQUAL TO"
    u:entity="sube"
    string="@esc@(ib"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2287;"
    u:name="SUPERSET OF OR EQUAL TO"
    u:entity="supe"
    string="@esc@(ip"
+   u:class="MathematicalOperators"
    />
   <!-- * x2288 to x2294 not in roff -->
 
@@ -2973,18 +3359,21 @@
    u:name="CIRCLED PLUS"
    u:entity="oplus"
    string="@esc@(c+"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2296;"
    u:name="CIRCLED MINUS"
    u:entity="ominus"
    string="@esc@(c*"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x2297;"
    u:name="CIRCLED TIMES"
    u:entity="otimes"
    string="@esc@(c*"
+   u:class="MathematicalOperators"
    />
 
   <!-- * x2298 to x22a4 not in roff -->
@@ -2994,6 +3383,7 @@
    u:name="UP TACK"
    u:entity="bottom"
    string="@esc@(pp"
+   u:class="MathematicalOperators"
    />
 
   <!-- * x22a6 to x22bf not in roff -->
@@ -3002,21 +3392,25 @@
    character="&#x22c0;"
    u:name="N-ARY LOGICAL AND"
    string="@esc@(AN"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x22c1;"
    u:name="N-ARY LOGICAL OR"
    string="@esc@(OR"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x22c2;"
    u:name="N-ARY INTERSECTION"
    string="@esc@(ca"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x22c3;"
    u:name="N-ARY UNION"
    string="@esc@(cu"
+   u:class="MathematicalOperators"
    />
 
   <!-- * not in roff -->
@@ -3030,12 +3424,14 @@
    u:name="DOT OPERATOR"
    u:entity="sdot"
    string="@esc@(md"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x22c6;"
    u:name="STAR OPERATOR"
    u:entity="sstarf"
    string="@esc@(**"
+   u:class="MathematicalOperators"
    />
   <!-- * x22c7 to x22cd not in roff -->
 
@@ -3044,12 +3440,14 @@
    u:name="CURLY LOGICAL OR"
    u:entity="cuvee"
    string="@esc@(OR"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x22cf;"
    u:name="CURLY LOGICAL AND"
    u:entity="cuwed"
    string="@esc@(AN"
+   u:class="MathematicalOperators"
    />
 
   <!-- * x22d0 to x22d7 not in roff -->
@@ -3059,12 +3457,14 @@
    u:name="VERY MUCH LESS-THAN"
    u:entity="Ll"
    string="&lt;&lt;&lt;"
+   u:class="MathematicalOperators"
    />
   <xsl:output-character
    character="&#x22d9;"
    u:name="VERY MUCH GREATER-THAN"
    u:entity="Gg"
    string=">>>"
+   u:class="MathematicalOperators"
    />
 
   <!-- * x22da to x22ee not in roff -->
@@ -3073,6 +3473,7 @@
    character="&#x22ef;"
    u:name="MIDLINE HORIZONTAL ELLIPSIS"
    string="@esc@&amp;..."
+   u:class="MathematicalOperators"
    />
 
   <!-- * x22fo to x22ff not in roff -->
@@ -3092,12 +3493,14 @@
    u:name="LEFT-POINTING ANGLE BRACKET"
    u:entity="lang"
    string="@esc@(la"
+   u:class="MiscellaneousTechnical"
    />
   <xsl:output-character
    character="&#x232a;"
    u:name="RIGHT-POINTING ANGLE BRACKET"
    u:entity="rang"
    string="@esc@(ra"
+   u:class="MiscellaneousTechnical"
    />
 
   <!-- * ***************************************************************** -->
@@ -3109,189 +3512,227 @@
    character="&#x2400;"
    u:name="SYMBOL FOR NULL"
    string="NUL"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2401;"
    u:name="SYMBOL FOR START OF HEADING"
    string="SOH"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2402;"
    u:name="SYMBOL FOR START OF TEXT"
    string="STX"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2403;"
    u:name="SYMBOL FOR END OF TEXT"
    string="ETX"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2404;"
    u:name="SYMBOL FOR END OF TRANSMISSION"
    string="EOT"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2405;"
    u:name="SYMBOL FOR ENQUIRY"
    string="ENQ"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2406;"
    u:name="SYMBOL FOR ACKNOWLEDGE"
    string="ACK"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2407;"
    u:name="SYMBOL FOR BELL"
    string="BEL"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2408;"
    u:name="SYMBOL FOR BACKSPACE"
    string="BS"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2409;"
    u:name="SYMBOL FOR HORIZONTAL TABULATION"
    string="HT"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x240a;"
    u:name="SYMBOL FOR LINE FEED"
    string="LF"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x240b;"
    u:name="SYMBOL FOR VERTICAL TABULATION"
    string="VT"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x240c;"
    u:name="SYMBOL FOR FORM FEED"
    string="FF"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x240d;"
    u:name="SYMBOL FOR CARRIAGE RETURN"
    string="CR"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x240e;"
    u:name="SYMBOL FOR SHIFT OUT"
    string="SO"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x240f;"
    u:name="SYMBOL FOR SHIFT IN"
    string="SI"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2410;"
    u:name="SYMBOL FOR DATA LINK ESCAPE"
    string="DLE"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2411;"
    u:name="SYMBOL FOR DEVICE CONTROL ONE"
    string="DC1"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2412;"
    u:name="SYMBOL FOR DEVICE CONTROL TWO"
    string="DC2"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2413;"
    u:name="SYMBOL FOR DEVICE CONTROL THREE"
    string="DC3"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2414;"
    u:name="SYMBOL FOR DEVICE CONTROL FOUR"
    string="DC4"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2415;"
    u:name="SYMBOL FOR NEGATIVE ACKNOWLEDGE"
    string="NAK"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2416;"
    u:name="SYMBOL FOR SYNCHRONOUS IDLE"
    string="SYN"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2417;"
    u:name="SYMBOL FOR END OF TRANSMISSION BLOCK"
    string="ETB"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2418;"
    u:name="SYMBOL FOR CANCEL"
    string="CAN"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2419;"
    u:name="SYMBOL FOR END OF MEDIUM"
    string="EM"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x241a;"
    u:name="SYMBOL FOR SUBSTITUTE"
    string="SUB"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x241b;"
    u:name="SYMBOL FOR ESCAPE"
    string="ESC"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x241c;"
    u:name="SYMBOL FOR FILE SEPARATOR"
    string="FS"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x241d;"
    u:name="SYMBOL FOR GROUP SEPARATOR"
    string="GS"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x241e;"
    u:name="SYMBOL FOR RECORD SEPARATOR"
    string="RS"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x241f;"
    u:name="SYMBOL FOR UNIT SEPARATOR"
    string="US"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2420;"
    u:name="SYMBOL FOR SPACE"
    string="SP"
+   u:class="ControlPictures"
    />
   <xsl:output-character
    character="&#x2421;"
    u:name="SYMBOL FOR DELETE"
    string="DEL"
+   u:class="ControlPictures"
    />
-  <!-- * no roff equiv; just use real space -->
-  <xsl:output-character
-   character="&#x2422;"
-   u:name="BLANK SYMBOL"
-   string=" "
-   />
-  <!-- * no roff equiv; just use real space -->
-  <xsl:output-character
-   character="&#x2423;"
-   u:name="OPEN BOX"
-   u:entity="blank"
-   string=" "
-   />
+  <!-- * no roff equivs for x2422 and x2423 -->
+  <!-- *   <xsl:output-character -->
+  <!-- *    character="&#x2422;" -->
+  <!-- *    u:name="BLANK SYMBOL" -->
+  <!-- *    string="?" -->
+  <!-- *    u:class="ControlPictures" -->
+  <!-- *    /> -->
+  <!-- * I think there should be a roff equiv for &blank;, but as far as I -->
+  <!-- * know, there is not... -->
+  <!-- *   <xsl:output-character -->
+  <!-- *    character="&#x2423;" -->
+  <!-- *    u:name="OPEN BOX" -->
+  <!-- *    u:entity="blank" -->
+  <!-- *    string="?" -->
+  <!-- *    u:class="ControlPictures" -->
+  <!-- *    /> -->
   <xsl:output-character
    character="&#x2424;"
    u:name="SYMBOL FOR NEWLINE"
    string="NL"
+   u:class="ControlPictures"
    />
 
   <!-- * ***************************************************************** -->
@@ -3313,797 +3754,956 @@
    character="&#x2460;"
    u:name="CIRCLED DIGIT ONE"
    string="1"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2461;"
    u:name="CIRCLED DIGIT TWO"
    string="2"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2462;"
    u:name="CIRCLED DIGIT THREE"
    string="3"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2463;"
    u:name="CIRCLED DIGIT FOUR"
    string="4"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2464;"
    u:name="CIRCLED DIGIT FIVE"
    string="5"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2465;"
    u:name="CIRCLED DIGIT SIX"
    string="6"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2466;"
    u:name="CIRCLED DIGIT SEVEN"
    string="7"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2467;"
    u:name="CIRCLED DIGIT EIGHT"
    string="8"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2468;"
    u:name="CIRCLED DIGIT NINE"
    string="9"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2469;"
    u:name="CIRCLED NUMBER TEN"
    string="10"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x246a;"
    u:name="CIRCLED NUMBER ELEVEN"
    string="11"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x246b;"
    u:name="CIRCLED NUMBER TWELVE"
    string="12"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x246c;"
    u:name="CIRCLED NUMBER THIRTEEN"
    string="13"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x246d;"
    u:name="CIRCLED NUMBER FOURTEEN"
    string="14"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x246e;"
    u:name="CIRCLED NUMBER FIFTEEN" 
    string="15"
-  />
+   u:class="EnclosedAlphanumerics"
+   />
   <xsl:output-character
    character="&#x246f;"
    u:name="CIRCLED NUMBER SIXTEEN"
    string="16"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2470;"
    u:name="CIRCLED NUMBER SEVENTEEN"
    string="17"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2471;"
    u:name="CIRCLED NUMBER EIGHTEEN"
    string="18"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2472;"
    u:name="CIRCLED NUMBER NINETEEN"
    string="19"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2473;"
    u:name="CIRCLED NUMBER TWENTY"
    string="20"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2474;"
    u:name="PARENTHESIZED DIGIT ONE"
    string="(1)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2475;"
    u:name="PARENTHESIZED DIGIT TWO"
    string="(2)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2476;"
    u:name="PARENTHESIZED DIGIT THREE"
    string="(3)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2477;"
    u:name="PARENTHESIZED DIGIT FOUR"
    string="(4)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2478;"
    u:name="PARENTHESIZED DIGIT FIVE"
    string="(5)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2479;"
    u:name="PARENTHESIZED DIGIT SIX"
    string="(6)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x247a;"
    u:name="PARENTHESIZED DIGIT SEVEN"
    string="(7)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x247b;"
    u:name="PARENTHESIZED DIGIT EIGHT"
    string="(8)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x247c;"
    u:name="PARENTHESIZED DIGIT NINE"
    string="(9)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x247d;"
    u:name="PARENTHESIZED NUMBER TEN"
    string="(10)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x247e;"
    u:name="PARENTHESIZED NUMBER ELEVEN"
    string="(11)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x247f;"
    u:name="PARENTHESIZED NUMBER TWELVE"
    string="(12)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2480;"
    u:name="PARENTHESIZED NUMBER THIRTEEN"
    string="(13)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2481;"
    u:name="PARENTHESIZED NUMBER FOURTEEN"
    string="(14)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2482;"
    u:name="PARENTHESIZED NUMBER FIFTEEN"
    string="(15)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2483;"
    u:name="PARENTHESIZED NUMBER SIXTEEN"
    string="(16)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2484;"
    u:name="PARENTHESIZED NUMBER SEVENTEEN"
    string="(17)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2485;"
    u:name="PARENTHESIZED NUMBER EIGHTEEN"
    string="(18)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2486;"
    u:name="PARENTHESIZED NUMBER NINETEEN"
    string="(19)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2487;"
    u:name="PARENTHESIZED NUMBER TWENTY"
    string="(20)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2488;"
    u:name="DIGIT ONE FULL STOP"
    string="1."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2489;"
    u:name="DIGIT TWO FULL STOP"
    string="2."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x248a;"
    u:name="DIGIT THREE FULL STOP"
    string="3."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x248b;"
    u:name="DIGIT FOUR FULL STOP"
    string="4."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x248c;"
    u:name="DIGIT FIVE FULL STOP"
    string="5."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x248d;"
    u:name="DIGIT SIX FULL STOP"
    string="6."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x248e;"
    u:name="DIGIT SEVEN FULL STOP"
    string="7."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x248f;"
    u:name="DIGIT EIGHT FULL STOP"
    string="8."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2490;"
    u:name="DIGIT NINE FULL STOP"
    string="9."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2491;"
    u:name="NUMBER TEN FULL STOP"
    string="10."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2492;"
    u:name="NUMBER ELEVEN FULL STOP"
    string="11."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2493;"
    u:name="NUMBER TWELVE FULL STOP"
    string="12."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2494;"
    u:name="NUMBER THIRTEEN FULL STOP"
    string="13."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2495;"
    u:name="NUMBER FOURTEEN FULL STOP"
    string="14."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2496;"
    u:name="NUMBER FIFTEEN FULL STOP"
    string="15."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2497;"
    u:name="NUMBER SIXTEEN FULL STOP"
    string="16."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2498;"
    u:name="NUMBER SEVENTEEN FULL STOP"
    string="17."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x2499;"
    u:name="NUMBER EIGHTEEN FULL STOP"
    string="18."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x249a;"
    u:name="NUMBER NINETEEN FULL STOP"
    string="19."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x249b;"
    u:name="NUMBER TWENTY FULL STOP"
    string="20."
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x249c;"
    u:name="PARENTHESIZED LATIN SMALL LETTER A"
    string="(a)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x249d;"
    u:name="PARENTHESIZED LATIN SMALL LETTER B"
    string="(b)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x249e;"
    u:name="PARENTHESIZED LATIN SMALL LETTER C"
    string="(c)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x249f;"
    u:name="PARENTHESIZED LATIN SMALL LETTER D"
    string="(d)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24a0;"
    u:name="PARENTHESIZED LATIN SMALL LETTER E"
    string="(e)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24a1;"
    u:name="PARENTHESIZED LATIN SMALL LETTER F"
    string="(f)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24a2;"
    u:name="PARENTHESIZED LATIN SMALL LETTER G"
    string="(g)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24a3;"
    u:name="PARENTHESIZED LATIN SMALL LETTER H"
    string="(h)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24a4;"
    u:name="PARENTHESIZED LATIN SMALL LETTER I"
    string="(i)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24a5;"
    u:name="PARENTHESIZED LATIN SMALL LETTER J"
    string="(j)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24a6;"
    u:name="PARENTHESIZED LATIN SMALL LETTER K"
    string="(k)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24a7;"
    u:name="PARENTHESIZED LATIN SMALL LETTER L"
    string="(l)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24a8;"
    u:name="PARENTHESIZED LATIN SMALL LETTER M"
    string="(m)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24a9;"
    u:name="PARENTHESIZED LATIN SMALL LETTER N"
    string="(n)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24aa;"
    u:name="PARENTHESIZED LATIN SMALL LETTER O"
    string="(o)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24ab;"
    u:name="PARENTHESIZED LATIN SMALL LETTER P"
    string="(p)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24ac;"
    u:name="PARENTHESIZED LATIN SMALL LETTER Q"
    string="(q)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24ad;"
    u:name="PARENTHESIZED LATIN SMALL LETTER R"
    string="(r)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24ae;"
    u:name="PARENTHESIZED LATIN SMALL LETTER S"
    string="(s)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24af;"
    u:name="PARENTHESIZED LATIN SMALL LETTER T"
    string="(t)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24b0;"
    u:name="PARENTHESIZED LATIN SMALL LETTER U"
    string="(u)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24b1;"
    u:name="PARENTHESIZED LATIN SMALL LETTER V"
    string="(v)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24b2;"
    u:name="PARENTHESIZED LATIN SMALL LETTER W"
    string="(w)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24b3;"
    u:name="PARENTHESIZED LATIN SMALL LETTER X"
    string="(x)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24b4;"
    u:name="PARENTHESIZED LATIN SMALL LETTER Y"
    string="(y)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24b5;"
    u:name="PARENTHESIZED LATIN SMALL LETTER Z"
    string="(z)"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24b6;"
    u:name="CIRCLED LATIN CAPITAL LETTER A"
    string="A"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24b7;"
    u:name="CIRCLED LATIN CAPITAL LETTER B"
    string="B"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24b8;"
    u:name="CIRCLED LATIN CAPITAL LETTER C"
    string="C"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24b9;"
    u:name="CIRCLED LATIN CAPITAL LETTER D"
    string="D"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24ba;"
    u:name="CIRCLED LATIN CAPITAL LETTER E"
    string="E"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24bb;"
    u:name="CIRCLED LATIN CAPITAL LETTER F"
    string="F"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24bc;"
    u:name="CIRCLED LATIN CAPITAL LETTER G"
    string="G"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24bd;"
    u:name="CIRCLED LATIN CAPITAL LETTER H"
    string="H"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24be;"
    u:name="CIRCLED LATIN CAPITAL LETTER I"
    string="I"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24bf;"
    u:name="CIRCLED LATIN CAPITAL LETTER J"
    string="J"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24c0;"
    u:name="CIRCLED LATIN CAPITAL LETTER K"
    string="K"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24c1;"
    u:name="CIRCLED LATIN CAPITAL LETTER L"
    string="L"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24c2;"
    u:name="CIRCLED LATIN CAPITAL LETTER M"
    string="M"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24c3;"
    u:name="CIRCLED LATIN CAPITAL LETTER N"
    string="N"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24c4;"
    u:name="CIRCLED LATIN CAPITAL LETTER O"
    string="O"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24c5;"
    u:name="CIRCLED LATIN CAPITAL LETTER P"
    string="P"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24c6;"
    u:name="CIRCLED LATIN CAPITAL LETTER Q"
    string="Q"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24c7;"
    u:name="CIRCLED LATIN CAPITAL LETTER R"
    string="R"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24c8;"
    u:name="CIRCLED LATIN CAPITAL LETTER S"
    u:entity="oS"
    string="S"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24c9;"
    u:name="CIRCLED LATIN CAPITAL LETTER T"
    string="T"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24ca;"
    u:name="CIRCLED LATIN CAPITAL LETTER U"
    string="U"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24cb;"
    u:name="CIRCLED LATIN CAPITAL LETTER V"
    string="V"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24cc;"
    u:name="CIRCLED LATIN CAPITAL LETTER W"
    string="W"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24cd;"
    u:name="CIRCLED LATIN CAPITAL LETTER X"
    string="X"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24ce;"
    u:name="CIRCLED LATIN CAPITAL LETTER Y"
    string="Y"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24cf;"
    u:name="CIRCLED LATIN CAPITAL LETTER Z"
    string="Z"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24d0;"
    u:name="CIRCLED LATIN SMALL LETTER A"
    string="a"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24d1;"
    u:name="CIRCLED LATIN SMALL LETTER B"
    string="b"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24d2;"
    u:name="CIRCLED LATIN SMALL LETTER C"
    string="c"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24d3;"
    u:name="CIRCLED LATIN SMALL LETTER D"
    string="d"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24d4;"
    u:name="CIRCLED LATIN SMALL LETTER E"
    string="e"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24d5;"
    u:name="CIRCLED LATIN SMALL LETTER F"
    string="f"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24d6;"
    u:name="CIRCLED LATIN SMALL LETTER G"
    string="g"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24d7;"
    u:name="CIRCLED LATIN SMALL LETTER H"
    string="h"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24d8;"
    u:name="CIRCLED LATIN SMALL LETTER I"
    string="i"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24d9;"
    u:name="CIRCLED LATIN SMALL LETTER J"
    string="j"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24da;"
    u:name="CIRCLED LATIN SMALL LETTER K"
    string="k"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24db;"
    u:name="CIRCLED LATIN SMALL LETTER L"
    string="l"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24dc;"
    u:name="CIRCLED LATIN SMALL LETTER M"
    string="m"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24dd;"
    u:name="CIRCLED LATIN SMALL LETTER N"
    string="n"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24de;"
    u:name="CIRCLED LATIN SMALL LETTER O"
    string="o"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24df;"
    u:name="CIRCLED LATIN SMALL LETTER P"
    string="p"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24e0;"
    u:name="CIRCLED LATIN SMALL LETTER Q"
    string="q"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24e1;"
    u:name="CIRCLED LATIN SMALL LETTER R"
    string="r"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24e2;"
    u:name="CIRCLED LATIN SMALL LETTER S"
    string="s"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24e3;"
    u:name="CIRCLED LATIN SMALL LETTER T"
    string="t"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24e4;"
    u:name="CIRCLED LATIN SMALL LETTER U"
    string="u"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24e5;"
    u:name="CIRCLED LATIN SMALL LETTER V"
    string="b"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24e6;"
    u:name="CIRCLED LATIN SMALL LETTER W"
    string="w"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24e7;"
    u:name="CIRCLED LATIN SMALL LETTER X"
    string="x"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24e8;"
    u:name="CIRCLED LATIN SMALL LETTER Y"
    string="y"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24e9;"
    u:name="CIRCLED LATIN SMALL LETTER Z"
    string="z"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24ea;"
    u:name="CIRCLED DIGIT ZERO"
    string="0"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24eb;"
    u:name="NEGATIVE CIRCLED NUMBER ELEVEN"
    string="11"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24ec;"
    u:name="NEGATIVE CIRCLED NUMBER TWELVE"
    string="12"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24ed;"
    u:name="NEGATIVE CIRCLED NUMBER THIRTEEN"
    string="13"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24ee;"
    u:name="NEGATIVE CIRCLED NUMBER FOURTEEN"
    string="14"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24ef;"
    u:name="NEGATIVE CIRCLED NUMBER FIFTEEN"
    string="15"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24f0;"
    u:name="NEGATIVE CIRCLED NUMBER SIXTEEN"
    string="16"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24f1;"
    u:name="NEGATIVE CIRCLED NUMBER SEVENTEEN"
    string="17"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24f2;"
    u:name="NEGATIVE CIRCLED NUMBER EIGHTEEN"
    string="18"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24f3;"
    u:name="NEGATIVE CIRCLED NUMBER NINETEEN"
    string="19"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24f4;"
    u:name="NEGATIVE CIRCLED NUMBER TWENTY"
    string="20"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24f5;"
    u:name="DOUBLE CIRCLED DIGIT ONE"
    string="1"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24f6;"
    u:name="DOUBLE CIRCLED DIGIT TWO"
    string="2"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24f7;"
    u:name="DOUBLE CIRCLED DIGIT THREE"
    string="3"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24f8;"
    u:name="DOUBLE CIRCLED DIGIT FOUR"
    string="4"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24f9;"
    u:name="DOUBLE CIRCLED DIGIT FIVE"
    string="5"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24fa;"
    u:name="DOUBLE CIRCLED DIGIT SIX"
    string="6"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24fb;"
    u:name="DOUBLE CIRCLED DIGIT SEVEN"
    string="7"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24fc;"
    u:name="DOUBLE CIRCLED DIGIT EIGHT"
    string="8"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24fd;"
    u:name="DOUBLE CIRCLED DIGIT NINE"
    string="9"
+   u:class="EnclosedAlphanumerics"
    />
   <xsl:output-character
    character="&#x24fe;"
    u:name="DOUBLE CIRCLED NUMBER TEN"
    string="10"
+   u:class="EnclosedAlphanumerics"
    />
 
   <!-- * ***************************************************************** -->
@@ -4128,85 +4728,101 @@
    u:name="WHITE SQUARE"
    u:entity="squ"
    string="@esc@(sq"
+   u:class="GeometricShapes"
    />
   <xsl:output-character
    character="&#x25a2;"
    u:name="WHITE SQUARE WITH ROUNDED CORNERS"
    string="@esc@(sq"
+   u:class="GeometricShapes"
    />
   <xsl:output-character
    character="&#x25ab;"
    u:name="WHITE SMALL SQUARE"
    string="@esc@(sq"
+   u:class="GeometricShapes"
    />
   <xsl:output-character
    character="&#x25ba;"
    u:name="BLACK RIGHT-POINTING POINTER"
    string="@esc@fB>@esc@fR"
+   u:class="GeometricShapes"
    />
   <xsl:output-character
    character="&#x25bb;"
    u:name="WHITE RIGHT-POINTING POINTER"
    string=">"
+   u:class="GeometricShapes"
    />
   <xsl:output-character
    character="&#x25bc;"
    u:name="BLACK DOWN-POINTING TRIANGLE"
    string="@esc@fBv@esc@fR"
+   u:class="GeometricShapes"
    />
   <xsl:output-character
    character="&#x25bd;"
    u:name="WHITE DOWN-POINTING TRIANGLE"
    u:entity="xdtri"
    string="v"
+   u:class="GeometricShapes"
    />
   <xsl:output-character
    character="&#x25c4;"
    u:name="BLACK LEFT-POINTING POINTER"
    string="@esc@fB&lt;@esc@fR"
+   u:class="GeometricShapes"
    />
   <xsl:output-character
    character="&#x25c5;"
    u:name="WHITE LEFT-POINTING POINTER"
    string="&lt;"
+   u:class="GeometricShapes"
    />
   <xsl:output-character
    character="&#x25c6;"
    u:name="BLACK DIAMOND"
    string="@esc@(DI"
+   u:class="GeometricShapes"
    />
   <xsl:output-character
    character="&#x25c7;"
    u:name="WHITE DIAMOND"
    string="@esc@(lz"
+   u:class="GeometricShapes"
    />
   <xsl:output-character
    character="&#x25ca;"
    u:name="LOZENGE"
    u:entity="loz"
    string="@esc@(lz"
+   u:class="GeometricShapes"
    />
   <xsl:output-character
    character="&#x25cb;"
    u:name="WHITE CIRCLE"
    u:entity="cir"
    string="@esc@(ci"
+   u:class="GeometricShapes"
    />
   <xsl:output-character
    character="&#x25cf;"
    u:name="BLACK CIRCLE"
    string="@esc@(bu"
+   u:class="GeometricShapes"
    />
   <xsl:output-character
    character="&#x25e6;"
    u:name="WHITE BULLET"
    string="@esc@(ci"
+   u:class="GeometricShapes"
    />
   <xsl:output-character
    character="&#x25ef;"
    u:name="LARGE CIRCLE"
    u:entity="xcirc"
    string="@esc@(ci"
+   u:class="GeometricShapes"
    />
   <!-- * ***************************************************************** -->
   <!-- *   End: Geometric Shapes -->
@@ -4222,65 +4838,77 @@
    character="&#x261a;"
    u:name="BLACK LEFT POINTING INDEX"
    string="@esc@(lh"
+   u:class="MiscellaneousSymbols"
    />
   <xsl:output-character
    character="&#x261b;"
    u:name="BLACK RIGHT POINTING INDEX"
    string="@esc@(rh)"
+   u:class="MiscellaneousSymbols"
    />
   <xsl:output-character
    character="&#x261c;"
    u:name="WHITE LEFT POINTING INDEX"
    string="@esc@(lh"
+   u:class="MiscellaneousSymbols"
    />
   <xsl:output-character
    character="&#x261e;"
    u:name="WHITE RIGHT POINTING INDEX"
    string="@esc@(rh)"
+   u:class="MiscellaneousSymbols"
    />
   <xsl:output-character
    character="&#x2660;"
    u:name="BLACK SPADE SUIT"
    u:entity="spades"
    string="@esc@(SP"
+   u:class="MiscellaneousSymbols"
    />
   <xsl:output-character
    character="&#x2661;"
    u:name="WHITE HEART SUIT"
    string="@esc@(HE"
+   u:class="MiscellaneousSymbols"
    />
   <xsl:output-character
    character="&#x2662;"
    u:name="WHITE DIAMOND SUIT"
    string="@esc@(DI"
+   u:class="MiscellaneousSymbols"
    />
   <xsl:output-character
    character="&#x2663;"
    u:name="BLACK CLUB SUIT"
    u:entity="clubs"
    string="@esc@(CL"
+   u:class="MiscellaneousSymbols"
    />
   <xsl:output-character
    character="&#x2664;"
    u:name="WHITE SPADE SUIT"
    string="@esc@(SP"
+   u:class="MiscellaneousSymbols"
    />
   <xsl:output-character
    character="&#x2665;"
    u:name="BLACK HEART SUIT"
    u:entity="hearts"
    string="@esc@(HE"
+   u:class="MiscellaneousSymbols"
    />
   <xsl:output-character
    character="&#x2666;"
    u:name="BLACK DIAMOND SUIT"
    u:entity="diams"
    string="@esc@(DI"
+   u:class="MiscellaneousSymbols"
    />
   <xsl:output-character
    character="&#x2667;"
    u:name="WHITE CLUB SUIT"
    string="@esc@(CL"
+   u:class="MiscellaneousSymbols"
    />
 
   <!-- * ***************************************************************** -->
@@ -4298,709 +4926,850 @@
    u:name="CHECK MARK"
    u:entity="check"
    string="@esc@(OK"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2714;"
    u:name="HEAVY CHECK MARK"
    string="@esc@fB@esc@(OK@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2715;"
    u:name="MULTIPLICATION X"
    string="@esc@(mu"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2716;"
    u:name="HEAVY MULTIPLICATION X"
    string="@esc@fB@esc@(mu@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2717;"
    u:name="BALLOT X"
    u:entity="cross"
    string="@esc@(mu"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2718;"
    u:name="HEAVY BALLOT X"
    string="@esc@fB@esc@(mu@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2719;"
    u:name="OUTLINED GREEK CROSS"
    string="@esc@fB+@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x271a;"
    u:name="HEAVY GREEK CROSS"
    string="@esc@fB+@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x271b;"
    u:name="OPEN CENTRE CROSS"
    string="@esc@fB+@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x271c;"
    u:name="HEAVY OPEN CENTRE CROSS"
    string="@esc@fB+@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x271d;"
    u:name="LATIN CROSS"
    string="@esc@fB+@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x271e;"
    u:name="SHADOWED WHITE LATIN CROSS"
    string="@esc@fB+@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x271f;"
    u:name="OUTLINED LATIN CROSS"
    string="@esc@fB+@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2720;"
    u:name="MALTESE CROSS"
    u:entity="malt"
    string="@esc@fB+@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2721;"
    u:name="STAR OF DAVID"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2722;"
    u:name="FOUR TEARDROP-SPOKED ASTERISK"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2723;"
    u:name="FOUR BALLOON-SPOKED ASTERISK"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2724;"
    u:name="HEAVY FOUR BALLOON-SPOKED ASTERISK"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2725;"
    u:name="FOUR CLUB-SPOKED ASTERISK"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2726;"
    u:name="BLACK FOUR POINTED STAR"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2727;"
    u:name="WHITE FOUR POINTED STAR"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2729;"
    u:name="STRESS OUTLINED WHITE STAR"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x272a;"
    u:name="CIRCLED WHITE STAR"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x272b;"
    u:name="OPEN CENTRE BLACK STAR"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x272c;"
    u:name="BLACK CENTRE WHITE STAR"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x272d;"
    u:name="OUTLINED BLACK STAR"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x272e;"
    u:name="HEAVY OUTLINED BLACK STAR"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x272f;"
    u:name="PINWHEEL STAR"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2730;"
    u:name="SHADOWED WHITE STAR"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2731;"
    u:name="HEAVY ASTERISK"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2732;"
    u:name="OPEN CENTRE ASTERISK"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2733;"
    u:name="EIGHT SPOKED ASTERISK"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2734;"
    u:name="EIGHT POINTED BLACK STAR"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2735;"
    u:name="EIGHT POINTED PINWHEEL STAR"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2736;"
    u:name="SIX POINTED BLACK STAR"
    u:entity="sext"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2737;"
    u:name="EIGHT POINTED RECTILINEAR BLACK STAR"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2738;"
    u:name="HEAVY EIGHT POINTED RECTILINEAR BLACK STAR"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2739;"
    u:name="TWELVE POINTED BLACK STAR"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x273a;"
    u:name="SIXTEEN POINTED ASTERISK"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x273b;"
    u:name="TEARDROP-SPOKED ASTERISK"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x273c;"
    u:name="OPEN CENTRE TEARDROP-SPOKED ASTERISK"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x273d;"
    u:name="HEAVY TEARDROP-SPOKED ASTERISK"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x273e;"
    u:name="SIX PETALLED BLACK AND WHITE FLORETTE"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x273f;"
    u:name="BLACK FLORETTE"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2740;"
    u:name="WHITE FLORETTE"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2741;"
    u:name="EIGHT PETALLED OUTLINED BLACK FLORETTE"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2742;"
    u:name="CIRCLED OPEN CENTRE EIGHT POINTED STAR"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2743;"
    u:name="HEAVY TEARDROP-SPOKED PINWHEEL ASTERISK"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2744;"
    u:name="SNOWFLAKE"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2745;"
    u:name="TIGHT TRIFOLIATE SNOWFLAKE"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2746;"
    u:name="HEAVY CHEVRON SNOWFLAKE"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2747;"
    u:name="SPARKLE"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2748;"
    u:name="HEAVY SPARKLE"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2749;"
    u:name="BALLOON-SPOKED ASTERISK"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x274a;"
    u:name="EIGHT TEARDROP-SPOKED PROPELLER ASTERISK"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x274b;"
    u:name="HEAVY EIGHT TEARDROP-SPOKED PROPELLER ASTERISK"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x274d;"
    u:name="SHADOWED WHITE CIRCLE"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x274f;"
    u:name="LOWER RIGHT DROP-SHADOWED WHITE SQUARE"
    string="@esc@(sq"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2750;"
    u:name="UPPER RIGHT DROP-SHADOWED WHITE SQUARE"
    string="@esc@(sq"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2751;"
    u:name="LOWER RIGHT SHADOWED WHITE SQUARE"
    string="@esc@(sq"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2752;"
    u:name="UPPER RIGHT SHADOWED WHITE SQUARE"
    string="@esc@(sq"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2756;"
    u:name="BLACK DIAMOND MINUS WHITE X"
    string="*"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2758;"
    u:name="LIGHT VERTICAL BAR"
    string="@esc@(bv"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2759;"
    u:name="MEDIUM VERTICAL BAR"
    string="@esc@fB@esc@(bv@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x275a;"
    u:name="HEAVY VERTICAL BAR"
    string="@esc@fB@esc@(bv@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x275b;"
    u:name="HEAVY SINGLE TURNED COMMA QUOTATION MARK ORNAMENT"
    string="@esc@fB@esc@(oq@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x275c;"
    u:name="HEAVY SINGLE COMMA QUOTATION MARK ORNAMENT"
    string="@esc@fB@esc@(cq@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x275d;"
    u:name="HEAVY DOUBLE TURNED COMMA QUOTATION MARK ORNAMENT"
    string="@esc@fB@esc@(lq@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x275e;"
    u:name="HEAVY DOUBLE COMMA QUOTATION MARK ORNAMENT"
    string="@esc@fB@esc@(rq@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2761;"
    u:name="CURVED STEM PARAGRAPH SIGN ORNAMENT"
    string="@esc@(ps"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2762;"
    u:name="HEAVY EXCLAMATION MARK ORNAMENT"
    string="@esc@fB!@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2763;"
    u:name="HEAVY HEART EXCLAMATION MARK ORNAMENT"
    string="@esc@fB!@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2764;"
    u:name="HEAVY BLACK HEART"
    string="@esc@fB@esc@(HE@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2765;"
    u:name="ROTATED HEAVY BLACK HEART BULLET"
    string="@esc@fB@esc@(HE@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2766;"
    u:name="FLORAL HEART"
    string="@esc@fB@esc@(HE@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2767;"
    u:name="ROTATED FLORAL HEART BULLET"
    string="@esc@fB@esc@(HE@esc@fR"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2776;"
    u:name="DINGBAT NEGATIVE CIRCLED DIGIT ONE"
    string="1"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2777;"
    u:name="DINGBAT NEGATIVE CIRCLED DIGIT TWO"
    string="2"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2778;"
    u:name="DINGBAT NEGATIVE CIRCLED DIGIT THREE"
    string="3"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2779;"
    u:name="DINGBAT NEGATIVE CIRCLED DIGIT FOUR"
    string="4"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x277a;"
    u:name="DINGBAT NEGATIVE CIRCLED DIGIT FIVE"
    string="5"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x277b;"
    u:name="DINGBAT NEGATIVE CIRCLED DIGIT SIX"
    string="6"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x277c;"
    u:name="DINGBAT NEGATIVE CIRCLED DIGIT SEVEN"
    string="7"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x277d;"
    u:name="DINGBAT NEGATIVE CIRCLED DIGIT EIGHT"
    string="8"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x277e;"
    u:name="DINGBAT NEGATIVE CIRCLED DIGIT NINE"
    string="9"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x277f;"
    u:name="DINGBAT NEGATIVE CIRCLED NUMBER TEN"
    string="10"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2780;"
    u:name="DINGBAT CIRCLED SANS-SERIF DIGIT ONE"
    string="1"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2781;"
    u:name="DINGBAT CIRCLED SANS-SERIF DIGIT TWO"
    string="2"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2782;"
    u:name="DINGBAT CIRCLED SANS-SERIF DIGIT THREE"
    string="3"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2783;"
    u:name="DINGBAT CIRCLED SANS-SERIF DIGIT FOUR"
    string="4"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2784;"
    u:name="DINGBAT CIRCLED SANS-SERIF DIGIT FIVE"
    string="5"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2785;"
    u:name="DINGBAT CIRCLED SANS-SERIF DIGIT SIX"
    string="6"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2786;"
    u:name="DINGBAT CIRCLED SANS-SERIF DIGIT SEVEN"
    string="7"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2787;"
    u:name="DINGBAT CIRCLED SANS-SERIF DIGIT EIGHT"
    string="8"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2788;"
    u:name="DINGBAT CIRCLED SANS-SERIF DIGIT NINE"
    string="9"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2789;"
    u:name="DINGBAT CIRCLED SANS-SERIF NUMBER TEN"
    string="10"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x278a;"
    u:name="DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ONE"
    string="1"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x278b;"
    u:name="DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT TWO"
    string="2"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x278c;"
    u:name="DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT THREE"
    string="3"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x278d;"
    u:name="DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT FOUR"
    string="4"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x278e;"
    u:name="DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT FIVE"
    string="5"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x278f;"
    u:name="DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT SIX"
    string="6"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2790;"
    u:name="DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT SEVEN"
    string="7"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2791;"
    u:name="DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT EIGHT"
    string="8"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2792;"
    u:name="DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT NINE"
    string="9"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2793;"
    u:name="DINGBAT NEGATIVE CIRCLED SANS-SERIF NUMBER TEN"
    string="10"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2794;"
    u:name="HEAVY WIDE-HEADED RIGHTWARDS ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x2799;"
    u:name="HEAVY RIGHTWARDS ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x279b;"
    u:name="DRAFTING POINT RIGHTWARDS ARROW"
    string="@esc@(->"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x279c;"
    u:name="HEAVY ROUND-TIPPED RIGHTWARDS ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x279d;"
    u:name="TRIANGLE-HEADED RIGHTWARDS ARROW"
    string="@esc@(->"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x279e;"
    u:name="HEAVY TRIANGLE-HEADED RIGHTWARDS ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x279f;"
    u:name="DASHED TRIANGLE-HEADED RIGHTWARDS ARROW"
    string="@esc@(->"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27a0;"
    u:name="HEAVY DASHED TRIANGLE-HEADED RIGHTWARDS ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27a1;"
    u:name="BLACK RIGHTWARDS ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27a2;"
    u:name="THREE-D TOP-LIGHTED RIGHTWARDS ARROWHEAD"
    string="@esc@(->"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27a3;"
    u:name="THREE-D BOTTOM-LIGHTED RIGHTWARDS ARROWHEAD"
    string="@esc@(->"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27a4;"
    u:name="BLACK RIGHTWARDS ARROWHEAD"
    string="@esc@(->"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27a7;"
    u:name="SQUAT BLACK RIGHTWARDS ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27a8;"
    u:name="HEAVY CONCAVE-POINTED BLACK RIGHTWARDS ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27a9;"
    u:name="RIGHT-SHADED WHITE RIGHTWARDS ARROW"
    string="@esc@(rA"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27aa;"
    u:name="LEFT-SHADED WHITE RIGHTWARDS ARROW"
    string="@esc@(rA"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27ab;"
    u:name="BACK-TILTED SHADOWED WHITE RIGHTWARDS ARROW"
    string="@esc@(rA"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27ac;"
    u:name="FRONT-TILTED SHADOWED WHITE RIGHTWARDS ARROW"
    string="@esc@(rA"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27ad;"
    u:name="HEAVY LOWER RIGHT-SHADOWED WHITE RIGHTWARDS ARROW"
    string="@esc@(rA"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27ae;"
    u:name="HEAVY UPPER RIGHT-SHADOWED WHITE RIGHTWARDS ARROW"
    string="@esc@(rA"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27af;"
    u:name="NOTCHED LOWER RIGHT-SHADOWED WHITE RIGHTWARDS ARROW"
    string="@esc@(rA"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27b1;"
    u:name="NOTCHED UPPER RIGHT-SHADOWED WHITE RIGHTWARDS ARROW"
    string="@esc@(rA"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27b2;"
    u:name="CIRCLED HEAVY WHITE RIGHTWARDS ARROW"
    string="@esc@(rA"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27b3;"
    u:name="WHITE-FEATHERED RIGHTWARDS ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27b4;"
    u:name="BLACK-FEATHERED SOUTH EAST ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27b5;"
    u:name="BLACK-FEATHERED RIGHTWARDS ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27b6;"
    u:name="BLACK-FEATHERED NORTH EAST ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27b7;"
    u:name="HEAVY BLACK-FEATHERED SOUTH EAST ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27b8;"
    u:name="HEAVY BLACK-FEATHERED RIGHTWARDS ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27b9;"
    u:name="HEAVY BLACK-FEATHERED NORTH EAST ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27ba;"
    u:name="TEARDROP-BARBED RIGHTWARDS ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27bb;"
    u:name="HEAVY TEARDROP-SHANKED RIGHTWARDS ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27bc;"
    u:name="WEDGE-TAILED RIGHTWARDS ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27bd;"
    u:name="HEAVY WEDGE-TAILED RIGHTWARDS ARROW"
    string="@esc@fR@esc@(->@esc@fB"
+   u:class="Dingbats"
    />
   <xsl:output-character
    character="&#x27be;"
    u:name="OPEN-OUTLINED RIGHTWARDS ARROW"
    string="@esc@fR@esc@(rA@esc@fB"
+   u:class="Dingbats"
    />
 
   <!-- * ***************************************************************** -->
@@ -5029,40 +5798,45 @@
    u:name="LATIN SMALL LIGATURE FF"
    u:entity="fflig"
    string="@esc@(ff"
+   u:class="AlphabeticPresentationForms"
    />
   <xsl:output-character
    character="&#xfb01;"
    u:name="LATIN SMALL LIGATURE FI"
    u:entity="filig"
    string="@esc@(fi"
+   u:class="AlphabeticPresentationForms"
    />
   <xsl:output-character
    character="&#xfb02;"
    u:name="LATIN SMALL LIGATURE FL"
    u:entity="fllig"
    string="@esc@(fl"
+   u:class="AlphabeticPresentationForms"
    />
   <xsl:output-character
    character="&#xfb03;"
    u:name="LATIN SMALL LIGATURE FFI"
    u:entity="ffilig"
    string="@esc@(Fi"
+   u:class="AlphabeticPresentationForms"
    />
   <xsl:output-character
    character="&#xfb04;"
    u:name="LATIN SMALL LIGATURE FFL"
    u:entity="ffllig"
    string="@esc@(Fl"
+   u:class="AlphabeticPresentationForms"
    />
 
   <!-- * ***************************************************************** -->
-  <!-- *   End: Alphabetic Presentation Forms -->
+  <!-- *   End: AlphabeticPresentationForms -->
   <!-- * ***************************************************************** -->
 
   <!-- * ================================================================= -->
 
   <!-- * Regarding x2060 vs. xFEFF, the document "Unicode Standard Annex #14, -->
-  <!-- * Line Breaking Properties"[1] sayxsl: -->
+  <!-- * Line Breaking Properties"[1] says: -->
   <!-- * -->
   <!-- *   The word joiner character [x2060 a.k.a "WJ"] is the preferred -->
   <!-- *   choice for an invisible character to keep other characters -->
@@ -5078,7 +5852,7 @@
    character="&#xfeff;"
    u:name="ZERO WIDTH NO-BREAK SPACE"
    string="@esc@&amp;"
-   u:class="default"
+   u:class="ArabicPresentationForms-B_wordjoiner"
    />
 </xsl:character-map>
 </xsl:stylesheet>
