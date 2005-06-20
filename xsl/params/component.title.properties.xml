@@ -21,7 +21,8 @@
   <xsl:attribute name="hyphenate">false</xsl:attribute>
   <xsl:attribute name="text-align">
     <xsl:choose>
-      <xsl:when test="(parent::article | parent::articleinfo) and not(ancestor::book)">center</xsl:when>
+      <xsl:when test="((parent::article | parent::articleinfo) and not(ancestor::book))
+		      or (parent::slides | parent::slidesinfo)">center</xsl:when>
       <xsl:otherwise>left</xsl:otherwise>
     </xsl:choose>
   </xsl:attribute>
