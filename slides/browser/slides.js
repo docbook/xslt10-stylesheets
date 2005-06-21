@@ -42,7 +42,7 @@ function newPage(filename, overlay) {
 function navigate (evt) {
     var kc = -1;
 
-    if (navigator.org == 'microsoft') {
+    if (navigator.org == 'microsoft' || navigator.family == 'opera') {
 	kc = window.event.keyCode;
     } else if (navigator.family == 'gecko') {
 	kc = evt.keyCode;
