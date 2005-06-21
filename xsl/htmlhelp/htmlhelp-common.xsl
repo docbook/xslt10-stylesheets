@@ -365,7 +365,7 @@ Enhanced decompilation=</xsl:text>
   <xsl:call-template name="select.mediaobject.enumerate-images"/>
 </xsl:template>
 
-<xsl:template name="select.mediaobject.enumerate-images" mode="enumerate-images">
+<xsl:template name="select.mediaobject.enumerate-images">
   <xsl:param name="olist"
              select="imageobject|imageobjectco
                      |videoobject|audioobject|textobject"/>
@@ -427,7 +427,7 @@ Enhanced decompilation=</xsl:text>
   </xsl:if>
 </xsl:template>
 
-<xsl:template name="mediaobject.filename.enumerate-images" mode="enumerate-images">
+<xsl:template name="mediaobject.filename.enumerate-images">
   <xsl:param name="object"/>
 
   <xsl:variable name="urifilename">
@@ -454,7 +454,7 @@ Enhanced decompilation=</xsl:text>
 <xsl:template match="text()" mode="enumerate-images">
 </xsl:template>
 
-<xsl:template name="write.filename.enumerate-images" mode="enumerate-images">
+<xsl:template name="write.filename.enumerate-images">
   <xsl:param name="filename"/>
   <xsl:choose>
     <xsl:when test="function-available('exsl:node-set') and function-available('set:distinct')">
