@@ -1,0 +1,23 @@
+<refentry id="man.output.encoding">
+<refmeta>
+<refentrytitle>man.output.encoding</refentrytitle>
+<refmiscinfo role="type">string</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>man.output.encoding</refname>
+<refpurpose>Encoding used for man-page output</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='man.output.encoding.frag'>
+<xsl:param name="man.output.encoding" select="'ISO-8859-1'"/></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>This parameter specifies the encoding to use for files generated
+by the manpages stylesheet. Not all processors support specification
+of this parameter.</para>
+
+</refsect1>
+</refentry>
