@@ -10,7 +10,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='man.output.encoding.frag'>
-<xsl:param name="man.output.encoding" select="'ISO-8859-1'"/></src:fragment>
+<xsl:param name="man.output.encoding" select="'UTF-8'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
@@ -18,6 +18,16 @@
 <para>This parameter specifies the encoding to use for files generated
 by the manpages stylesheet. Not all processors support specification
 of this parameter.</para>
+
+<warning>
+  <para>If you set a value for the
+  <parameter>man.output.encoding</parameter> parameter that is other
+  than <literal>UTF-8</literal> or <literal>UTF-16</literal>, you may
+  also need to also disable character-map processing, by setting the
+  value of the <parameter>man.charmap.enabled</parameter> parameter to
+  zero. Character-map processing is based on Unicode character values
+  may not work with other output encodings</para>
+</warning>
 
 </refsect1>
 </refentry>
