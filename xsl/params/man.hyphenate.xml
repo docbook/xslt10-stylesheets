@@ -1,0 +1,21 @@
+<refentry id="hyphenate">
+<refmeta>
+<refentrytitle>man.hyphenate</refentrytitle>
+
+</refmeta>
+<refnamediv>
+<refname>man.hyphenate</refname>
+<refpurpose>Specifies hyphenation behavior for man-page output</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='man.hyphenate.frag'><xsl:param name="man.hyphenate">false</xsl:param></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>If the value of this parameter is <literal>true</literal>, words
+may be hyphenated in man output. Otherwise, they may not.</para>
+
+</refsect1>
+</refentry>

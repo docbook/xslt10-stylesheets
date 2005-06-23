@@ -1,0 +1,22 @@
+<refentry id="man.alignment">
+<refmeta>
+<refentrytitle>man.alignment</refentrytitle>
+
+</refmeta>
+<refnamediv>
+<refname>man.alignment</refname>
+<refpurpose>Specifies default text alignment for man-page output</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='man.alignment.frag'><xsl:param name="man.alignment">left</xsl:param></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>This parameter controls the alignment (roff
+"filling-and-adjusting" behavior) used for most body text in man-page
+output.</para>
+
+</refsect1>
+</refentry>
