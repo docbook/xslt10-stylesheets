@@ -657,22 +657,76 @@
     </xsl:choose>
   </xsl:variable>
 
-  <div class="{name(.)}">
-    <table border="1" width="100%" summary="Revision history">
-      <tr>
-        <th align="left" valign="top" colspan="{$numcols}">
-          <b>
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key" select="'RevHistory'"/>
-            </xsl:call-template>
-          </b>
-        </th>
-      </tr>
-      <xsl:apply-templates mode="titlepage.mode">
-        <xsl:with-param name="numcols" select="$numcols"/>
-      </xsl:apply-templates>
-    </table>
-  </div>
+  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+
+  <xsl:variable name="title">
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key">RevHistory</xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="contents">
+    <div class="{name(.)}">
+      <table border="1" width="100%" summary="Revision history">
+        <tr>
+          <th align="left" valign="top" colspan="{$numcols}">
+            <b>
+              <xsl:call-template name="gentext">
+                <xsl:with-param name="key" select="'RevHistory'"/>
+              </xsl:call-template>
+            </b>
+          </th>
+        </tr>
+        <xsl:apply-templates mode="titlepage.mode">
+          <xsl:with-param name="numcols" select="$numcols"/>
+        </xsl:apply-templates>
+      </table>
+    </div>
+  </xsl:variable>
+  
+  <xsl:choose>
+    <xsl:when test="$generate.revhistory.link != 0">
+      <xsl:variable name="filename">
+        <xsl:call-template name="make-relative-filename">
+          <xsl:with-param name="base.dir" select="$base.dir"/>
+          <xsl:with-param name="base.name" select="concat($id,$html.ext)"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <a href="{concat($id,$html.ext)}">
+        <xsl:copy-of select="$title"/>
+      </a>
+
+      <xsl:call-template name="write.chunk">
+        <xsl:with-param name="filename" select="$filename"/>
+        <xsl:with-param name="quiet" select="$chunk.quietly"/>
+        <xsl:with-param name="content">
+        <xsl:call-template name="user.preroot"/>
+          <html>
+            <head>
+              <xsl:call-template name="system.head.content"/>
+              <xsl:call-template name="head.content">
+                <xsl:with-param name="title">
+                    <xsl:value-of select="$title"/>
+                    <xsl:if test="../../title">
+                        <xsl:value-of select="concat(' (', ../../title, ')')"/>
+                    </xsl:if>
+                </xsl:with-param>
+              </xsl:call-template>
+              <xsl:call-template name="user.head.content"/>
+            </head>
+            <body>
+              <xsl:call-template name="body.attributes"/>
+              <xsl:copy-of select="$contents"/>
+            </body>
+          </html>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy-of select="$contents"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="revhistory/revision" mode="titlepage.mode">

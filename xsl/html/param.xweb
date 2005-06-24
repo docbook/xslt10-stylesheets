@@ -23,9 +23,9 @@ $Id$
 
 <preface><title>Introduction</title>
 
-<para>This is technical reference documentation for the DocBook XSL
-Stylesheets; it documents (some of) the parameters, templates, and
-other elements of the stylesheets.</para>
+<para>This is reference documentation for all user-configurable
+parameters in the DocBook XSL HTML stylesheets (for generating
+HTML output).</para>
 
 <para>This reference describes each of the HTML Stylesheet parameters.
 These are the <quote>easily customizable</quote> parts of the stylesheet.
@@ -50,14 +50,6 @@ stylesheet like this:</para>
 <literal>&lt;xsl:import&gt;</literal> to point to
 <filename>docbook.xsl</filename> on your system. (Or
 <filename>chunk.xsl</filename>, if you're using chunking.)</para>
-
-<para>This is not intended to be <quote>user</quote> documentation.
-It is provided for developers writing customization layers for the
-stylesheets, and for anyone who's interested in <quote>how it
-works</quote>.</para>
-
-<para>Although I am trying to be thorough, this documentation is known
-to be incomplete. Don't forget to read the source, too :-)</para>
 </preface>
 
 <reference><title>Admonitions</title>
@@ -173,6 +165,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 &make.year.ranges;
 &author.othername.in.middle;
 &generate.legalnotice.link;
+&generate.revhistory.link;
 </reference>
 
 <reference><title>Reference Pages</title>
@@ -497,6 +490,7 @@ around all these parameters.</para>
 <src:fragref linkend="generate.id.attributes.frag"/>
 <src:fragref linkend="generate.index.frag"/>
 <src:fragref linkend="generate.legalnotice.link.frag"/>
+<src:fragref linkend="generate.revhistory.link.frag"/>
 <src:fragref linkend="generate.manifest.frag"/>
 <src:fragref linkend="generate.meta.abstract.frag"/>
 <src:fragref linkend="generate.section.toc.level.frag"/>

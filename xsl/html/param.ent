@@ -57,6 +57,7 @@
 <!ENTITY generate.id.attributes SYSTEM "../params/generate.id.attributes.xml">
 <!ENTITY generate.index SYSTEM "../params/generate.index.xml">
 <!ENTITY generate.legalnotice.link SYSTEM "../params/generate.legalnotice.link.xml">
+<!ENTITY generate.revhistory.link SYSTEM "../params/generate.revhistory.link.xml">
 <!ENTITY generate.manifest SYSTEM "../params/generate.manifest.xml">
 <!ENTITY generate.meta.abstract SYSTEM "../params/generate.meta.abstract.xml">
 <!ENTITY generate.section.toc.level SYSTEM "../params/generate.section.toc.level.xml">
