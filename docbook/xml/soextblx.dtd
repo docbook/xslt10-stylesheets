@@ -200,6 +200,7 @@ in useability, presentation, and possible structure information degradation.
                         pgwide          %yesorno;       #IMPLIED "
 -->
 
+<!--doc:???-->
 <!ELEMENT %tbl.table.name; (%tbl.table.mdl;)>
 
 <!ATTLIST %tbl.table.name;
@@ -217,6 +218,7 @@ in useability, presentation, and possible structure information degradation.
      ENTITY % tbl.tgroup.att    ""
 -->
 
+<!--doc:A wrapper for the main content of a table, or part of a table.-->
 <!ELEMENT tgroup (%tbl.tgroup.mdl;) >
 
 <!ATTLIST tgroup
@@ -233,6 +235,7 @@ in useability, presentation, and possible structure information degradation.
      ENTITY % tbl.colspec.att   ""
 -->
 
+<!--doc:Specifications for a column in a table.-->
 <!ELEMENT colspec EMPTY >
 
 <!ATTLIST colspec
@@ -253,6 +256,7 @@ in useability, presentation, and possible structure information degradation.
      ENTITY % tbl.thead.att      ""
 -->
 
+<!--doc:A table header consisting of one or more rows.-->
 <!ELEMENT thead (row+)>
 
 <!ATTLIST thead
@@ -266,6 +270,7 @@ in useability, presentation, and possible structure information degradation.
      ENTITY % tbl.tbody.att     ""
 -->
 
+<!--doc:A wrapper for the rows of a table or informal table.-->
 <!ELEMENT tbody (%tbl.tbody.mdl;)>
 
 <!ATTLIST tbody
@@ -280,6 +285,7 @@ in useability, presentation, and possible structure information degradation.
      ENTITY % tbl.row.att       ""
 -->
 
+<!--doc:A row in a table.-->
 <!ELEMENT row (%tbl.row.mdl;)>
 
 <!ATTLIST row
@@ -297,6 +303,7 @@ in useability, presentation, and possible structure information degradation.
      ENTITY % tbl.entry.att     ""
 -->
 
+<!--doc:A cell in a table.-->
 <!ELEMENT entry (%tbl.entry.mdl;)*>
 
 <!ATTLIST entry

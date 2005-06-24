@@ -89,6 +89,7 @@ of the current application.
 
 <!-- =====  Element and attribute declarations follow. =====  -->
 
+<!--doc:A formal table in a document.-->
 <!ELEMENT table %ho; (%tbl.table.mdl;)>
 
 <!ATTLIST table
@@ -100,6 +101,7 @@ of the current application.
         %secur;
 >
 
+<!--doc:A wrapper for the main content of a table, or part of a table.-->
 <!ELEMENT tgroup %ho; (%tbl.tgroup.mdl;) >
 
 <!ATTLIST tgroup
@@ -113,6 +115,7 @@ of the current application.
         %secur;
 >
 
+<!--doc:Specifications for a column in a table.-->
 <!ELEMENT colspec %ho; EMPTY >
 
 <!ATTLIST colspec
@@ -126,6 +129,7 @@ of the current application.
         charoff         CDATA                                   #IMPLIED
 >
 
+<!--doc:Formatting information for a spanned column in a table.-->
 <!ELEMENT spanspec %ho; EMPTY >
 
 <!ATTLIST spanspec
@@ -139,18 +143,21 @@ of the current application.
         charoff         CDATA                                   #IMPLIED
 >
 
+<!--doc:A table header consisting of one or more rows.-->
 <!ELEMENT thead %ho; (%tbl.hdft.mdl;)>
 <!ATTLIST thead
         valign          (top|middle|bottom)                     #IMPLIED
         %secur;
 >
 
+<!--doc:A table footer consisting of one or more rows.-->
 <!ELEMENT tfoot %ho; (%tbl.hdft.mdl;)>
 <!ATTLIST tfoot
         valign          (top|middle|bottom)                     #IMPLIED
         %secur;
 >
 
+<!--doc:A wrapper for the rows of a table or informal table.-->
 <!ELEMENT tbody %ho; (%tbl.tbody.mdl;)>
 
 <!ATTLIST tbody
@@ -158,6 +165,7 @@ of the current application.
         %secur;
 >
 
+<!--doc:A row in a table.-->
 <!ELEMENT row %ho; (%tbl.row.mdl;)>
 
 <!ATTLIST row
@@ -166,6 +174,7 @@ of the current application.
         %secur;
 >
 
+<!--doc:A subtable appearing in place of an Entry in a table.-->
 <!ELEMENT entrytbl %ho; (%tbl.entrytbl.mdl;)>
 
 <!ATTLIST entrytbl
@@ -183,6 +192,7 @@ of the current application.
         %secur;
 >
 
+<!--doc:A cell in a table.-->
 <!ELEMENT entry %ho; (%tbl.entry.mdl;)*>
 
 <!ATTLIST entry
