@@ -116,6 +116,7 @@
     </xsl:call-template>
   </xsl:param>
   <span class="{local-name(.)}">
+    <xsl:call-template name="generate.html.title"/>
     <xsl:if test="@dir">
       <xsl:attribute name="dir">
         <xsl:value-of select="@dir"/>
@@ -135,6 +136,7 @@
     </xsl:call-template>
   </xsl:param>
   <code class="{local-name(.)}">
+    <xsl:call-template name="generate.html.title"/>
     <xsl:if test="@dir">
       <xsl:attribute name="dir">
         <xsl:value-of select="@dir"/>
@@ -155,6 +157,7 @@
   </xsl:param>
 
   <span>
+    <xsl:call-template name="generate.html.title"/>
     <xsl:if test="@dir">
       <xsl:attribute name="dir">
         <xsl:value-of select="@dir"/>
@@ -188,6 +191,7 @@
     </xsl:call-template>
   </xsl:param>
   <em class="{local-name(.)}">
+    <xsl:call-template name="generate.html.title"/>
     <xsl:if test="@dir">
       <xsl:attribute name="dir">
         <xsl:value-of select="@dir"/>
@@ -215,6 +219,7 @@
                          or local-name(../..) = 'table'
                          or local-name(../..) = 'formalpara')">
       <code class="{local-name(.)}">
+        <xsl:call-template name="generate.html.title"/>
         <xsl:if test="@dir">
           <xsl:attribute name="dir">
             <xsl:value-of select="@dir"/>
@@ -226,6 +231,7 @@
     <xsl:otherwise>
       <strong class="{local-name(.)}">
         <code>
+          <xsl:call-template name="generate.html.title"/>
           <xsl:if test="@dir">
             <xsl:attribute name="dir">
               <xsl:value-of select="@dir"/>
@@ -249,6 +255,7 @@
   </xsl:param>
   <em class="{local-name(.)}">
     <code>
+      <xsl:call-template name="generate.html.title"/>
       <xsl:if test="@dir">
         <xsl:attribute name="dir">
           <xsl:value-of select="@dir"/>
@@ -269,6 +276,7 @@
     </xsl:call-template>
   </xsl:param>
   <sup>
+    <xsl:call-template name="generate.html.title"/>
     <xsl:if test="@dir">
       <xsl:attribute name="dir">
         <xsl:value-of select="@dir"/>
@@ -288,6 +296,7 @@
     </xsl:call-template>
   </xsl:param>
   <sub>
+    <xsl:call-template name="generate.html.title"/>
     <xsl:if test="@dir">
       <xsl:attribute name="dir">
         <xsl:value-of select="@dir"/>
@@ -667,6 +676,7 @@
 
 <xsl:template match="phrase">
   <span>
+    <xsl:call-template name="generate.html.title"/>
     <xsl:if test="@lang or @xml:lang">
       <xsl:call-template name="language.attribute"/>
     </xsl:if>
@@ -919,6 +929,7 @@
 
 <xsl:template match="termdef">
   <span class="{local-name(.)}">
+    <xsl:call-template name="generate.html.title"/>
     <xsl:call-template name="gentext.template">
       <xsl:with-param name="context" select="'termdef'"/>
       <xsl:with-param name="name" select="'prefix'"/>
@@ -946,6 +957,7 @@
   </xsl:param>
 
   <code class="sgmltag-{$class}">
+    <xsl:call-template name="generate.html.title"/>
     <xsl:choose>
       <xsl:when test="$class='attribute'">
         <xsl:apply-templates/>
