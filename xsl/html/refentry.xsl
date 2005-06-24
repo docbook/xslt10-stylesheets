@@ -17,9 +17,12 @@
 <xsl:template match="reference">
   <div class="{name(.)}">
     <xsl:call-template name="language.attribute"/>
-    <xsl:call-template name="anchor">
-      <xsl:with-param name="conditional" select="0"/>
-    </xsl:call-template>
+    <xsl:if test="$generate.id.attributes != 0">
+      <xsl:attribute name="id">
+        <xsl:call-template name="object.id"/>
+      </xsl:attribute>
+    </xsl:if>
+
     <xsl:call-template name="reference.titlepage"/>
 
     <xsl:variable name="toc.params">
