@@ -12,6 +12,21 @@
 
      ******************************************************************** -->
 
+<!-- The generate.html.title template is currently used for generating HTML -->
+<!-- "title" attributes for some inline elements only, but not for any -->
+<!-- block elements. It is called in eleven places in the inline.xsl -->
+<!-- file. But it's called by all the inline.* templates (e.g., -->
+<!-- inline.boldseq), which in turn are called by other (element) -->
+<!-- templates, so it results, currently, in supporting generation of the -->
+<!-- HTML "title" attribute for a total of about 92 elements. -->
+<xsl:template name="generate.html.title">
+  <xsl:if test="alt">
+    <xsl:attribute name="title">
+      <xsl:value-of select="alt"/>
+    </xsl:attribute>
+  </xsl:if>
+</xsl:template>
+
 <xsl:template name="anchor">
   <xsl:param name="node" select="."/>
   <xsl:param name="conditional" select="1"/>
