@@ -26,12 +26,8 @@ db.charoff.attribute = attribute charoff { text }
 
 db.frame.attribute =
   [
+    db:refpurpose [ "Specifies how the table is to be framed" ]
     dbx:description [
-       db:para [
-          "The "
-          db:tag [ class="atribute" "frame" ]
-          " specifies how the table is to be framed:"
-       ]
        db:informaltable [
           db:tgroup [
              cols="2"
@@ -116,6 +112,7 @@ db.frame.attribute =
 
 db.colsep.attribute =
   [
+    db:refpurpose [ "Specifies the presence or absence of the column separator" ]
     dbx:description [
       db:para [
          "If "
@@ -135,6 +132,7 @@ db.colsep.attribute =
 
 db.rowsep.attribute =
   [
+    db:refpurpose [ "Specifies the presence or absence of the row separator" ]
     dbx:description [
       db:para [
          "If "
@@ -154,6 +152,7 @@ db.rowsep.attribute =
 
 db.orient.attribute =
    [
+      db:refpurpose [ "Specifies the orientation of the table" ]
       dbx:description [
          db:para [
             "The "
@@ -174,6 +173,7 @@ db.orient.attribute =
 
 db.tabstyle.attribute =
    [
+      db:refpurpose [ "Specifies the table style" ]
       dbx:description [
          db:para [
             "The "
@@ -187,6 +187,7 @@ db.tabstyle.attribute =
 
 db.rowheader.attribute =
    [
+      db:refpurpose [ "Indicates whether or not the entries in the first column should be considered row headers" ]
       dbx:description [
          db:para [
             "The "
@@ -581,6 +582,7 @@ div {
     & db.frame.attribute?
     & db.pgwide.attribute?
     & [
+       db:refpurpose [ "Indicates if the short or long title should be used in a List of Tables" ]
        dbx:description [
           db:para [
              "If "
@@ -595,6 +597,7 @@ div {
        ]
     ] attribute shortentry { "0" | "1" }?
     & [
+       db:refpurpose [ "Indicates if the table should appear in a List of Tables" ]
        dbx:description [
           db:para [
              "If "
