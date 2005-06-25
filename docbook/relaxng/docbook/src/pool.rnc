@@ -36,25 +36,13 @@ div {
 
 db.effectivity.attributes =
   [
-    dbx:description [
-      db:para [
-        "The "
-        db:tag [ class="attribute" "arch" ]
-        " attribute designates the computer or chip architecture" ~
-        " to which the element applies."
-      ]
-    ]
+    db:refpurpose [ "Designates the computer or chip architecture to which the element applies" ]
   ]
   attribute arch        { text }?,
 
   [
+    db:refpurpose [ "provides a standard place for application-specific effectivity" ]
     dbx:description [
-      db:para [
-        "The "
-        db:tag [ class="attribute" "condition" ]
-        " attribute provides a standard place for" ~
-        " application-specific effectivity."
-      ]
       db:para [
         "Many DocBook users observed that in order to add an" ~
         " effectivity condition that was unique to their environment" ~
@@ -73,106 +61,104 @@ db.effectivity.attributes =
   attribute condition   { text }?,
 
   [
+    db:refpurpose [ "Indicates standards conformance characteristics of the element" ]
     dbx:description [
-      "The "
-      db:tag [ class="attribute" "conformance" ]
-      " attribute indicates standards conformance characteristics" ~
-      " of the item contained in the element. These characteristics" ~
-      " are application-specific; DocBook provides no default semantics."
+      db:para [
+        "These characteristics" ~
+        " are application-specific; DocBook provides no default semantics."
+      ]
     ]
   ]
   attribute conformance { text }?,
 
   [
-    dbx:description [
-      db:para [
-        "The "
-        db:tag [ class="attribute" "os" ]
-        " attribute indicates the operating" ~
-        " system to which the element is applicable."
-      ]
+    db:refpurpose [ "Indicates the operating system to which the element is applicable"
     ]
   ]
   attribute os          { text }?,
 
   [
-    dbx:description [
-      db:para [
-        "The "
-        db:tag [ class="attribute" "revision" ]
-        " attribute indicates the" ~
-        " editorial revision to which the element belongs."
-      ]
-    ]
+    db:refpurpose [ "Indicates the editorial revision to which the element belongs" ]
   ]
   attribute revision    { text }?,
 
   [
-    dbx:description [
-      db:para [
-        "The "
-        db:tag [ class="attribute" "security" ]
-        " attribute indicates something about" ~
-        " the security level associated with the element to which it applies."
-      ]
-    ]
+    db:refpurpose [ "Indicates something about the security level associated with the element to which it applies" ]
   ]
   attribute security    { text }?,
 
   [
-    dbx:description [
-      db:para [
-        "The "
-        db:tag [ class="attribute" "userlevel" ]
-        " attribute indicates the" ~
-        " level of user experience to which element applies."
-      ]
-    ]
+    db:refpurpose [ "Indicates the level of user experience for which the element applies" ]
   ]
   attribute userlevel   { text }?,
 
   [
-    dbx:description [
-      db:para [
-        "The "
-        db:tag [ class="attribute" "vendor" ]
-        " attribute indicates the" ~
-        " computer vendor to which the element applies."
-      ]
-    ]
+    db:refpurpose [ "Indicates the computer vendor to which the element applies." ]
   ]
   attribute vendor      { text }?,
 
   [
-    dbx:description [
-      db:para [
-        "The "
-        db:tag [ class="attribute" "wordsize" ]
-        " attribute indicates the word size (width in bits)" ~
-        " of the computer architecture to which the element applies."
-      ]
-    ]
+    db:refpurpose [ "Indicates the word size (width in bits) of the computer architecture to which the element applies" ]
   ]
   attribute wordsize    { text }?
 
 # ======================================================================
 
-db.linkend.attribute  = attribute linkend { xsd:IDREF }
+db.linkend.attribute =
+   [
+      db:refpurpose [ "Points to an internal link target by identifying the value of its xml:id attribute" ]
+   ]
+   attribute linkend { xsd:IDREF }
 
-db.linkends.attribute = attribute linkends { xsd:IDREFS }
+db.linkends.attribute =
+   [
+      db:refpurpose [ "Points to one or more internal link targets by identifying the value of their xml:id attributes" ]
+   ]
+   attribute linkends { xsd:IDREFS }
 
-db.xlink.href.attribute = attribute xlink:href { text }
+db.xlink.href.attribute =
+   [
+      db:refpurpose [ "Identifies a link target with a URI" ]
+   ]
+   attribute xlink:href { text }
 
-db.xlink.type.attribute    = attribute xlink:type { "simple" }
-db.xlink.role.attribute    = attribute xlink:role { xsd:anyURI }
-db.xlink.arcrole.attribute = attribute xlink:arcrole { xsd:anyURI }
-db.xlink.title.attribute   = attribute xlink:title { text }?
+db.xlink.type.attribute =
+   [
+      db:refpurpose [ "Identifies the element as an XLink simple link" ]
+   ]
+   attribute xlink:type { "simple" }
+
+db.xlink.role.attribute =
+   [
+      db:refpurpose [ "Identifies the XLink role of the link" ]
+   ]
+   attribute xlink:role { xsd:anyURI }
+
+db.xlink.arcrole.attribute =
+   [
+      db:refpurpose [ "Identifies the XLink arcrole of the link" ]
+   ]
+   attribute xlink:arcrole { xsd:anyURI }
+
+db.xlink.title.attribute =
+   [
+      db:refpurpose [ "Identifies the XLink title of the link" ]
+   ]
+   attribute xlink:title { text }?
 
 db.xlink.show.enumeration = "new" | "replace" | "embed" | "other"
-db.xlink.show.attribute    = attribute xlink:show { db.xlink.show.enumeration }
+
+db.xlink.show.attribute =
+   [
+      db:refpurpose [ "Identifies the XLink show behavior of the link" ]
+   ]
+   attribute xlink:show { db.xlink.show.enumeration }
 
 db.xlink.actuate.enumeration = "onLoad" | "onRequest" | "other" | "none"
 db.xlink.actuate.attribute =
+   [
+      db:refpurpose [ "Identifies the XLink actuate behavior of the link" ]
+   ]
    attribute xlink:actuate { db.xlink.actuate.enumeration }
 
 db.href.attribute =
@@ -186,15 +172,47 @@ db.href.attribute =
 
 # ======================================================================
 
-db.xml.id.attribute = attribute xml:id { xsd:ID }
-db.version.attribute = attribute version { text }
-db.xml.lang.attribute = attribute xml:lang { text }
-db.xml.base.attribute = attribute xml:base { text }
-db.remap.attribute = attribute remap { text }
-db.xreflabel.attribute = attribute xreflabel { text }
+db.xml.id.attribute =
+   [
+      db:refpurpose [ "Identifies the unique ID value of the element" ]
+   ]
+   attribute xml:id { xsd:ID }
+
+db.version.attribute =
+   [
+      db:refpurpose [ "Specifies the DocBook version of the element and its descendants" ]
+   ]
+   attribute version { text }
+
+db.xml.lang.attribute =
+   [
+      db:refpurpose [ "Specifies the natural language of the element and its descendants" ]
+   ]
+   attribute xml:lang { text }
+
+db.xml.base.attribute =
+   [
+      db:refpurpose [ "Specifies the base URI of the element and its descendants" ]
+   ]
+   attribute xml:base { text }
+
+db.remap.attribute =
+   [
+      db:refpurpose [ "Provides the name or similar semantic identifier assigned to the content in some previous markup scheme" ]
+   ]
+   attribute remap { text }
+
+db.xreflabel.attribute =
+   [
+      db:refpurpose [ "Provides the text that is to be generated for a cross reference to the element" ]
+   ]
+   attribute xreflabel { text }
 
 db.revisionflag.enumeration = "changed" | "added" | "deleted" | "off"
 db.revisionflag.attribute =
+   [
+      db:refpurpose [ "Identifies the revision status of the element" ]
+   ]
    attribute revisionflag { db.revisionflag.enumeration }
 
 db.common.attributes =
@@ -262,19 +280,20 @@ db.spacing.attribute  = attribute spacing { db.spacing.enumeration }
 db.pgwide.enumeration = "0" | "1"
 
 db.pgwide.attribute =
-   [
-      dbx:description [
-         db:para [
-            "If "
-            db:tag [ class="attribute" "pgwide" ]
-            " has the value 0 (false), then the element " ~
-            " is rendered in the current text flow (with flow column width)." ~
-            " A value of 1 (true) specifies that the element should be" ~
-            " rendered across the full text page."
-         ]
+  [
+    db:refpurpose [ "Indicates if the element is rendered across the column or the page" ]
+    dbx:description [
+      db:para [
+        "If "
+        db:tag [ class="attribute" "pgwide" ]
+        " has the value 0 (false), then the element " ~
+        " is rendered in the current text flow (with flow column width)." ~
+        " A value of 1 (true) specifies that the element should be" ~
+        " rendered across the full text page."
       ]
-   ]
-   attribute pgwide { db.pgwide.enumeration }
+    ]
+  ]
+  attribute pgwide { db.pgwide.enumeration }
 
 db.language.attribute = attribute language { text }
 
@@ -304,147 +323,148 @@ db.biblio.class.enumeration =
  | "uri"
 
 db.biblio.class-enum.attribute =
-   [
-      dbx:description [
-         db:para [
-            "The "
-            db:tag [ class="atribute" "class" ]
-            " identifies the kind of bibliographic identifier:"
-         ]
-         db:informaltable [
-            db:tgroup [
-               cols="2"
-               db:thead [
-                  db:row [
-                     db:entry [ "Value" ]
-                     db:entry [ "Identifier" ]
-                  ]
-               ]
-               db:tbody [
-                  db:row [
-                     db:entry [
-                        db:tag [ class="attvalue" "doi" ]
-                     ]
-                     db:entry [
-                        db:para [
-                           "A "
-                           db:link [
-                              xlink:href="http://www.doi.org/"
-                              "Digital Object Identifier"
-                           ]
-                           "."
-                        ]
-                     ]
-                  ]
-                  db:row [
-                     db:entry [
-                        db:tag [ class="attvalue" "isbn" ]
-                     ]
-                     db:entry [
-                        db:para [
-                           "An "
-                           db:link [
-                              xlink:href="http://www.isbn.org/"
-                              "International Standard Book Number"
-                           ]
-                           "."
-                        ]
-                     ]
-                  ]
-                  db:row [
-                     db:entry [
-                        db:tag [ class="attvalue" "isrn" ]
-                     ]
-                     db:entry [
-                        db:para [
-                           "An International Standard Technical Report Number" ~
-                           " as defined by ISO 10444:1994."
-                        ]
-                     ]
-                  ]
-                  db:row [
-                     db:entry [
-                        db:tag [ class="attvalue" "issn" ]
-                     ]
-                     db:entry [
-                        db:para [
-                           "An "
-                           db:link [
-                              xlink:href="http://www.issn.org/"
-                              "International Standard Serial Number"
-                           ]
-                           "."
-                        ]
-                     ]
-                  ]
-                  db:row [
-                     db:entry [
-                        db:tag [ class="attvalue" "libraryofcongress" ]
-                     ]
-                     db:entry [
-                        db:para [
-                           "A Library of Congress subject identifer"
-                        ]
-                     ]
-                  ]
-                  db:row [
-                     db:entry [
-                        db:tag [ class="attvalue" "pubnumber" ]
-                     ]
-                     db:entry [
-                        db:para [
-                           "A publication number, for example from a private" ~
-                           " or corporate numbering scheme."
-                        ]
-                     ]
-                  ]
-                  db:row [
-                     db:entry [
-                        db:tag [ class="attvalue" "uri" ]
-                     ]
-                     db:entry [
-                        db:para [
-                           "A Uniform Resource Identifier."
-                        ]
-                     ]
-                  ]
-                  db:row [
-                     db:entry [
-                        db:tag [ class="attvalue" "other" ]
-                     ]
-                     db:entry [
-                        db:para [
-                           "Some other kind of identifier. If the value "
-                           db:tag [ class="attvalue" "other" ]
-                           " is specified, the "
-                           db:tag [ class="attribute" "otherclass" ]
-                           " attribute must also be provided."
-                        ]
-                     ]
-                  ]
-               ]
+  [
+    db:refpurpose [ "Identifies the kind of bibliographic identifier" ]
+    dbx:description [
+      db:informaltable [
+        db:tgroup [
+          cols="2"
+          db:thead [
+            db:row [
+              db:entry [ "Value" ]
+              db:entry [ "Identifier" ]
             ]
-         ]
+          ]
+          db:tbody [
+            db:row [
+              db:entry [
+                db:tag [ class="attvalue" "doi" ]
+              ]
+              db:entry [
+                db:para [
+                  "A "
+                  db:link [
+                    xlink:href="http://www.doi.org/"
+                    "Digital Object Identifier"
+                  ]
+                  "."
+                ]
+              ]
+            ]
+            db:row [
+              db:entry [
+                db:tag [ class="attvalue" "isbn" ]
+              ]
+              db:entry [
+                db:para [
+                  "An "
+                  db:link [
+                    xlink:href="http://www.isbn.org/"
+                    "International Standard Book Number"
+                  ]
+                  "."
+                ]
+              ]
+            ]
+            db:row [
+              db:entry [
+                db:tag [ class="attvalue" "isrn" ]
+              ]
+              db:entry [
+                db:para [
+                  "An International Standard Technical Report Number" ~
+                  " as defined by ISO 10444:1994."
+                ]
+              ]
+            ]
+            db:row [
+              db:entry [
+                db:tag [ class="attvalue" "issn" ]
+              ]
+              db:entry [
+                db:para [
+                  "An "
+                  db:link [
+                    xlink:href="http://www.issn.org/"
+                    "International Standard Serial Number"
+                  ]
+                  "."
+                ]
+              ]
+            ]
+            db:row [
+              db:entry [
+                db:tag [ class="attvalue" "libraryofcongress" ]
+              ]
+              db:entry [
+                db:para [
+                  "A Library of Congress subject identifer"
+                ]
+              ]
+            ]
+            db:row [
+              db:entry [
+                db:tag [ class="attvalue" "pubnumber" ]
+              ]
+              db:entry [
+                db:para [
+                  "A publication number, for example from a private" ~
+                  " or corporate numbering scheme."
+                ]
+              ]
+            ]
+            db:row [
+              db:entry [
+                db:tag [ class="attvalue" "uri" ]
+              ]
+              db:entry [
+                db:para [
+                  "A Uniform Resource Identifier."
+                ]
+              ]
+            ]
+            db:row [
+              db:entry [
+                db:tag [ class="attvalue" "other" ]
+              ]
+              db:entry [
+                db:para [
+                  "Some other kind of identifier. If the value "
+                  db:tag [ class="attvalue" "other" ]
+                  " is specified, the "
+                  db:tag [ class="attribute" "otherclass" ]
+                  " attribute must also be provided."
+                ]
+              ]
+            ]
+          ]
+        ]
       ]
-   ]
-   attribute class { db.biblio.class.enumeration } ?
+    ]
+  ]
+  attribute class { db.biblio.class.enumeration } ?
+
+db.biblio.class-other.attribute =
+  [
+    db:refpurpose [ "Provides an identifier for elements with the class 'other'" ]
+    dbx:description [
+      db:para [
+        "The value of the "
+        db:tag [ class="attribute" "otherclass" ]
+        " attribute specifies some identifier for the class. It is required" ~
+        " when the value "
+        db:tag [ class="attvalue" "other" ]
+        " is specified for the "
+        db:tag [ class="attribute" "class" ]
+        " attribute; it is forbidden otherwise."
+      ]
+    ]
+  ]
+  attribute otherclass { xsd:NMTOKEN }
 
 db.biblio.class-other.attributes =
    attribute class { "other" }
- & [
-    dbx:description [
-       db:para [
-          "The value of the "
-          db:tag [ class="attribute" "otherclass" ]
-          " attribute specifies some identifier for the class. It is required" ~
-          " when the value "
-          db:tag [ class="attvalue" "other" ]
-          " is specified for the "
-          db:tag [ class="attribute" "class" ]
-          " attribute; it is forbidden otherwise."
-       ]
-    ]
- ] attribute otherclass { xsd:NMTOKEN }
+ & db.biblio.class-other.attribute
 
 db.biblio.class.attribute =
   (db.biblio.class-enum.attribute | db.biblio.class-other.attributes)
