@@ -5,18 +5,22 @@
 </refmeta>
 <refnamediv>
 <refname>man.charmap.subset.profile</refname>
-<refpurpose>Profile of character map subset to use in place of full map</refpurpose>
+<refpurpose>Profile of character map subset</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 <src:fragment id='man.charmap.subset.profile.frag'>
 <xsl:param name="man.charmap.subset.profile">
-@*[local-name() = 'class'] = 'roffControl' or
-@*[local-name() = 'class'] = 'C1ControlsAndLatin-1Supplement_symbols' or
-@*[local-name() = 'class'] = 'GeneralPunctuation_spaces' or
-@*[local-name() = 'class'] = 'GeneralPunctuation_dashes' or
-@*[local-name() = 'class'] = 'GeneralPunctuation_quotes' or
-@*[local-name() = 'class'] = 'GeneralPunctuation_bullets' or
+(@*[local-name() = 'block'] = 'C1 Controls And Latin-1 Supplement (Latin-1 Supplement)' and
+ @*[local-name() = 'class'] = 'symbols'
+) or
+(@*[local-name() = 'block'] = 'General Punctuation' and
+ (@*[local-name() = 'class'] = 'spaces' or
+  @*[local-name() = 'class'] = 'dashes' or
+  @*[local-name() = 'class'] = 'quotes' or
+  @*[local-name() = 'class'] = 'bullets'
+ )
+) or
 @*[local-name() = 'name'] = 'HORIZONTAL ELLIPSIS' or
 @*[local-name() = 'name'] = 'WORD JOINER' or
 @*[local-name() = 'name'] = 'SERVICE MARK' or
@@ -59,15 +63,23 @@ url="http://docbook.sourceforge.net/snapshot/xsl/manpages/charmap.groff.xsl"
     </listitem>
   </varlistentry>
   <varlistentry>
+    <term>block</term>
+    <listitem>
+      <simpara>a standard Unicode "block" name (e.g., "General
+      Punctuation"); all characters have this attribute. For the full
+      list of Unicode block names supported in the standard roff
+      character map, see <xref
+      linkend="BlocksAndClasses"/>.</simpara>
+    </listitem>
+  </varlistentry>
+  <varlistentry>
     <term>class</term>
     <listitem>
-      <simpara>a "block" name, which consists of a standard Unicode
-      block name but with spaces removed and with, in some cases, a
-      _<replaceable>something</replaceable> string appended; all
-      characters have this attribute</simpara>
-      <simpara>For the full list of block names supported in the
-      standard roff character map, see <xref
-      linkend="supported_blocknames"/>.</simpara>
+      <simpara>a class of characters (e.g., "spaces"). Not all
+      characters have this attribute; currently, it is used only with
+      certain characters within the "C1 Controls And Latin-1
+      Supplement" and "General Punctuation" blocks. For details, see
+      <xref linkend="BlocksAndClasses"/>.</simpara>
     </listitem>
   </varlistentry>
   <varlistentry>
@@ -99,7 +111,7 @@ or removing parts. For example, if you need to use a wide range of
 mathematical operators in a document, and you want to have them
 converted into roff markup properly, you might add the following:
 
-<literallayout class="monospaced" >  @*[local-name() = 'class'] ='MathematicalOperators' </literallayout>
+<literallayout class="monospaced" >  @*[local-name() = 'block'] ='MathematicalOperators' </literallayout>
 
 That will cause a additional set of around 67 additional "math"
 characters to be converted into roff markup. </para>
@@ -157,144 +169,140 @@ and add any of the supported Unicode block names to the value of
 <para>For other details, see the documentation for the
 <parameter>man.charmap.use.subset</parameter> parameter.</para>
 
-<refsect2 id="supported_blocknames">
-  <title>Supported "block" names</title>
+<refsect2 id="BlocksAndClasses">
+  <title>Supported Unicode block names and "class" values</title>
 
-  <para>Below is the full list of "block" names supported in the
-  standard roff stylesheet provided in the distribution, along with a
-  description of which codepoints from the Unicode range corresponding
-  to that block name are supported.</para>
+  <para>Below is the full list of Unicode block names and "class"
+  values supported in the standard roff stylesheet provided in the
+  distribution, along with a description of which codepoints from the
+  Unicode range corresponding to that block name or block/class
+  combination are supported.</para>
 
-<itemizedlist>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=160&amp;end=255"
-    >C1ControlsAndLatin-1Supplement_symbols</ulink> (x00a0 to x00ff,
-    symbols)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=160&amp;end=255"
-    >C1ControlsAndLatin-1Supplement_letters</ulink> (x00a0 to x00ff, letters)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=256&amp;end=383"
-    >LatinExtended-A</ulink> (x0100 to x017f, partial)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Spacing%20Modifier%20Letters"
-    >SpacingModifierLetters</ulink> (x02b0 to x02ee, partial)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Greek%20and%20Coptic"
-    >GreekandCoptic</ulink> (x0370 to x03ff, partial)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=8192&amp;end=8203"
-    >GeneralPunctuation_spaces</ulink> (x2000 to x206f, spaces)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=8208&amp;end=8213"
-    >GeneralPunctuation_dashes</ulink> (x2010 to x2015, dashes and
-    hyphens)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=8214&amp;end=8269"
-    >GeneralPunctuation_quotes</ulink> (x2000 to x206f, quotation
-    marks)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=8214&amp;end=8269"
-    >GeneralPunctuation_daggers</ulink> (x2000 to x206f, daggers)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=8214&amp;end=8269"
-    >GeneralPunctuation_bullets</ulink> (x2000 to x206f, bullets)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=8214&amp;end=8269"
-    >GeneralPunctuation_leaders</ulink> (x2024 and x2025)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=8214&amp;end=8269"
-    >GeneralPunctuation_primes</ulink> (x2032 to x2034)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=8214&amp;end=8269"
-    >GeneralPunctuation_other</ulink> (x2000 to x206f, others, partial)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Superscripts%20and%20Subscripts"
-    >SuperscriptsandSubscripts</ulink> (x2070 to x209f)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=8352&amp;end=8367"
-    >CurrencySymbols</ulink> (x20a0 to x20b1)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Letterlike%20Symbols"
-    >LetterlikeSymbols</ulink> (x2100 to x214b)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Number%20Forms"
-    >NumberForms</ulink> (x2150 to x218f)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=8592&amp;end=8691"
-    >Arrows</ulink> (x2190 to x21ff, partial)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=8704&amp;end=8945"
-    >MathematicalOperators</ulink> (x2200 to x22ff, partial)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=9216&amp;end=9254"
-    >ControlPictures</ulink> (x2400 to x243f)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Enclosed%20Alphanumerics"
-    >EnclosedAlphanumerics</ulink> (x2460 to x24ff)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Geometric%20Shapes"
-    >GeometricShapes</ulink> (x25a0 to x25f7, partial)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Miscellaneous%20Symbols"
-    >MiscellaneousSymbols</ulink> (x2600 to x26ff, partial)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Dingbats"
-    >Dingbats</ulink> (x2700 to x27be, partial)</para>
-  </listitem>
-  <listitem>
-    <para><ulink
-    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Alphabetic%20Presentation%20Forms"
-    >AlphabeticPresentationForms</ulink> (xfb00 to xfb04 only)</para>
-  </listitem>
-</itemizedlist>
+  <itemizedlist>
+    <listitem>
+      <para><ulink
+                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=C1%20Controls%20and%20Latin-1%20Supplement%20(Latin-1%20Supplement)"
+                >C1 Controls And Latin-1 Supplement (Latin-1 Supplement)</ulink> (x00a0 to x00ff)
+      <itemizedlist>
+        <title>class values</title>
+        <listitem>
+          <para>symbols</para>
+        </listitem>
+        <listitem>
+          <para>letters</para>
+        </listitem>
+      </itemizedlist></para>
+    </listitem>
+    <listitem>
+      <para><ulink
+                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Latin%20Extended-A"
+                >Latin Extended-A</ulink> (x0100 to x017f, partial)</para>
+    </listitem>
+    <listitem>
+      <para><ulink
+                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Spacing%20Modifier%20Letters"
+                >Spacing Modifier Letters</ulink> (x02b0 to x02ee, partial)</para>
+    </listitem>
+    <listitem>
+      <para><ulink
+                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Greek%20and%20Coptic"
+                >Greek and Coptic</ulink> (x0370 to x03ff, partial)</para>
+    </listitem>
+    <listitem>
+      <para><ulink
+                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=General%20Punctuation"
+                >General Punctuation</ulink> (x2000 to x206f, partial)
+      <itemizedlist>
+        <title>class values</title>
+        <listitem>
+          <para><ulink
+                    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=8192&amp;end=8203"
+                    >spaces</ulink></para>
+        </listitem>
+        <listitem>
+          <para><ulink
+                    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=8208&amp;end=8213"
+                    >dashes</ulink></para>
+        </listitem>
+        <listitem>
+          <para>quotes</para>
+        </listitem>
+        <listitem>
+          <para>daggers</para>
+        </listitem>
+        <listitem>
+          <para>bullets</para>
+        </listitem>
+        <listitem>
+          <para>leaders</para>
+        </listitem>
+        <listitem>
+          <para>primes</para>
+        </listitem>
+      </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para><ulink
+                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Superscripts%20and%20Subscripts"
+                >Superscripts and Subscripts</ulink> (x2070 to x209f)</para>
+    </listitem>
+    <listitem>
+      <para><ulink
+                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Currency%20Symbols"
+                >Currency Symbols</ulink> (x20a0 to x20b1)</para>
+    </listitem>
+    <listitem>
+      <para><ulink
+                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Letterlike%20Symbols"
+                >Letterlike Symbols</ulink> (x2100 to x214b)</para>
+    </listitem>
+    <listitem>
+      <para><ulink
+                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Number%20Forms"
+                >Number Forms</ulink> (x2150 to x218f)</para>
+    </listitem>
+    <listitem>
+      <para><ulink
+                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Arrows"
+                >Arrows</ulink> (x2190 to x21ff, partial)</para>
+    </listitem>
+    <listitem>
+      <para><ulink
+                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Mathematical%20Operators"
+                >Mathematical Operators</ulink> (x2200 to x22ff, partial)</para>
+    </listitem>
+    <listitem>
+      <para><ulink
+                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Control%20Pictures"
+                >Control Pictures</ulink> (x2400 to x243f)</para>
+    </listitem>
+    <listitem>
+      <para><ulink
+                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Enclosed%20Alphanumerics"
+                >Enclosed Alphanumerics</ulink> (x2460 to x24ff)</para>
+    </listitem>
+    <listitem>
+      <para><ulink
+                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Geometric%20Shapes"
+                >Geometric Shapes</ulink> (x25a0 to x25f7, partial)</para>
+    </listitem>
+    <listitem>
+      <para><ulink
+                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Miscellaneous%20Symbols"
+                >Miscellaneous Symbols</ulink> (x2600 to x26ff, partial)</para>
+    </listitem>
+    <listitem>
+      <para><ulink
+                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Dingbats"
+                >Dingbats</ulink> (x2700 to x27be, partial)</para>
+    </listitem>
+    <listitem>
+      <para><ulink
+                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Alphabetic%20Presentation%20Forms"
+                >Alphabetic Presentation Forms</ulink> (xfb00 to xfb04 only)</para>
+    </listitem>
+  </itemizedlist>
 </refsect2>
 </refsect1>
 </refentry>
