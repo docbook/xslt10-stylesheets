@@ -15,7 +15,7 @@ namespace rng  = "http://relaxng.org/ns/structure/1.0"
 namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 namespace xlink = "http://www.w3.org/1999/xlink"
-namespace dtd = "http://relaxng.org/ns/compatibility/annotations/1.0"
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
 default namespace = "http://docbook.org/ns/docbook"
 
 db.info.elements |= db.extendedlink
@@ -33,7 +33,7 @@ div {
    db.extendedlink.attlist =
       db.extendedlink.role.attribute?
     & db.common.attributes
-    & [ dtd:defaultValue="extended" ] attribute xlink:type { "extended" }?
+    & [ a:defaultValue="extended" ] attribute xlink:type { "extended" }?
     & attribute xlink:role { xsd:anyURI }?
     & attribute xlink:title { text }?
 
@@ -57,7 +57,7 @@ div {
    db.locator.attlist =
       db.locator.role.attribute?
     & db.common.attributes
-    & [ dtd:defaultValue="locator" ] attribute xlink:type { "locator" }?
+    & [ a:defaultValue="locator" ] attribute xlink:type { "locator" }?
     & attribute xlink:href { text }
     & attribute xlink:role { xsd:anyURI }?
     & attribute xlink:title { text }?
@@ -83,7 +83,7 @@ div {
    db.arc.attlist =
       db.arc.role.attribute?
     & db.common.attributes
-    & [ dtd:defaultValue="arc" ] attribute xlink:type { "arc" }?
+    & [ a:defaultValue="arc" ] attribute xlink:type { "arc" }?
     & attribute xlink:arcrole { xsd:anyURI }?
     & attribute xlink:title { text }?
     & attribute xlink:show { "new" | "replace" | "embed" | "other" }?
