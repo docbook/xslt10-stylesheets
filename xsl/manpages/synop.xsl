@@ -14,21 +14,14 @@
 
      ******************************************************************** -->
 
-<!-- * Note: If you are looking for the <synopsis> element, you won't find -->
-<!-- * any code here for handling it. It is a verbatim environment; check the -->
-<!-- * block.xsl file instead. -->
+<!-- * Note: If you are looking for the <synopsis> element, you won't -->
+<!-- * find any code here for handling it. It is a _verbatim_ -->
+<!-- * environment; check the block.xsl file instead. -->
 
 <xsl:template match="synopfragment">
-<xsl:text>.PP&#10;</xsl:text>
-<xsl:apply-templates/>
+  <xsl:text>.PP&#10;</xsl:text>
+  <xsl:apply-templates/>
 </xsl:template>
-<!--
-  there's a bug where an <arg> that's not inside a <group> isn't made bold
--->
-
-<!-- * 2005-06-02: Check to see if above comment (arg not inside group -->
-<!-- * doesn't get bolded) is still true or not. If turns out it is not, -->
-<!-- * remove the comment -->
 
 <xsl:template match="group|arg">
   <xsl:variable name="choice" select="@choice"/>
@@ -46,7 +39,7 @@
   <xsl:if test="position()>1"><xsl:value-of select="$sepchar"/></xsl:if>
   <xsl:choose>
     <xsl:when test="$choice='plain'">
-      <!-- do nothing -->
+      <!-- * do nothing -->
     </xsl:when>
     <xsl:when test="$choice='req'">
       <xsl:value-of select="$arg.choice.req.open.str"/>
@@ -63,12 +56,12 @@
   </xsl:variable>
   <xsl:choose>
     <xsl:when test="local-name(.) = 'arg' and not(ancestor::arg)">
-      <!-- Prevent breaking up an argument by wrapping it -->
-      <xsl:call-template name="string.subst">
-        <xsl:with-param name="string" select="normalize-space($arg)"/>
-        <xsl:with-param name="target" select="' '"/>
-        <xsl:with-param name="replacement" select="'\ '"/>
-      </xsl:call-template>
+      <!-- * Prevent arg contents from getting wrapped and broken up -->
+      <xsl:variable name="arg.wrapper">
+        <Arg><xsl:value-of select="normalize-space($arg)"/></Arg>
+      </xsl:variable>
+      <xsl:apply-templates mode="prevent.line.breaking"
+                           select="exsl:node-set($arg.wrapper)"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="$arg"/>
@@ -103,23 +96,6 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="group/arg">
-  <xsl:if test="position()>1">
-    <xsl:value-of select="$arg.or.sep"/>
-  </xsl:if>
-  <xsl:variable name="arg">
-    <xsl:apply-templates/>
-  </xsl:variable>
-  <xsl:variable name="space-escaped-arg">
-    <xsl:call-template name="string.subst">
-      <xsl:with-param name="string" select="normalize-space($arg)"/>
-      <xsl:with-param name="target" select="' '"/>
-      <xsl:with-param name="replacement" select="'\ '"/>
-    </xsl:call-template>
-  </xsl:variable>
-  <xsl:apply-templates mode="bold" select="exsl:node-set($space-escaped-arg)"/>
-</xsl:template>
-
 <xsl:template match="command">
   <xsl:apply-templates mode="bold" select="."/>
 </xsl:template>
@@ -138,13 +114,15 @@
 </xsl:template>
 
 <xsl:template match="cmdsynopsis">
-  <xsl:text>.ad l&#10;.hy 0&#10;</xsl:text>
+  <xsl:text>.ad l&#10;</xsl:text>
+  <xsl:text>.hy 0&#10;</xsl:text>
   <xsl:text>.HP </xsl:text>
   <xsl:value-of select="string-length (normalize-space (command)) + 1"/>
   <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>&#10;</xsl:text>
-  <xsl:text>.ad&#10;.hy&#10;</xsl:text>
+  <xsl:text>.ad&#10;</xsl:text>
+  <xsl:text>.hy&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="funcsynopsisinfo">
@@ -154,9 +132,9 @@
   <xsl:text>.sp&#10;</xsl:text>
 </xsl:template>
 
-<!-- disable hyphenation, and use left-aligned filling for the duration
-     of the synopsis, so that line breaks only occur between 
-     separate paramdefs. -->
+<!-- * Within funcsynopis output, disable hyphenation, and use -->
+<!-- * left-aligned filling for the duration of the synopsis, so that -->
+<!-- * line breaks only occur between separate paramdefs. -->
 <xsl:template match="funcsynopsis">
   <xsl:text>.ad l&#10;</xsl:text>
   <xsl:text>.hy 0&#10;</xsl:text>
@@ -179,7 +157,7 @@
 </xsl:template>
 
 <xsl:template match="funcdef">
-  <xsl:apply-templates select="." mode="convert.spaces.to.nobreak.spaces"/>
+  <xsl:apply-templates select="." mode="prevent.line.breaking"/>
 </xsl:template>
 
 <xsl:template match="funcdef/function">
@@ -195,7 +173,7 @@
 </xsl:template>
 
 <xsl:template match="paramdef">
-  <xsl:apply-templates select="." mode="convert.spaces.to.nobreak.spaces"/>
+  <xsl:apply-templates select="." mode="prevent.line.breaking"/>
   <xsl:choose>
     <xsl:when test="following-sibling::*">
       <xsl:text>, </xsl:text>

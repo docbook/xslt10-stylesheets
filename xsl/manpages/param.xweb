@@ -30,14 +30,23 @@
   </preface>
 
   <reference>
-  <title>Parameters</title>
-&alignment;
-&hyphenate;
+  <title>General</title>
+&man.alignment;
+&man.hyphenate;
+&man.output.quietly;
+&man.output.encoding;
+  </reference>
+  <reference>
+  <title>Character map</title>
+&man.charmap.uri;
+&man.charmap.use.subset;
+&man.charmap.subset.profile;
   </reference>
   <appendix>
     <title>The Stylesheet</title>
 
-    <para>The <filename>param.xsl</filename> stylesheet is just a wrapper around all of these parameters.</para>
+    <para>The <filename>param.xsl</filename> stylesheet is just a
+    wrapper around all of these parameters.</para>
 
     <src:fragment id='top' mundane-result-prefixes='xsl'>
 <xsl:stylesheet xmlns='http://www.w3.org/1999/XSL/Transform'
@@ -56,8 +65,13 @@
 
      ******************************************************************** -->
 
-<src:fragref linkend="alignment.frag"/>
-<src:fragref linkend="hyphenate.frag"/>
+<src:fragref linkend="man.alignment.frag"/>
+<src:fragref linkend="man.hyphenate.frag"/>
+<src:fragref linkend="man.output.quietly.frag"/>
+<src:fragref linkend="man.output.encoding.frag"/>
+<src:fragref linkend="man.charmap.uri.frag"/>
+<src:fragref linkend="man.charmap.use.subset.frag"/>
+<src:fragref linkend="man.charmap.subset.profile.frag"/>
 </xsl:stylesheet>
     </src:fragment>
 
