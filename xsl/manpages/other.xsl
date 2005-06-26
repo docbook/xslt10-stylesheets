@@ -23,21 +23,16 @@
 <!-- ==================================================================== -->
 
   <xsl:template name="top.comment">
-    <xsl:text>@dot@@esc@" ** You probably do not want to</xsl:text>
+    <xsl:text>.\" ** You probably do not want to</xsl:text>
     <xsl:text> edit this file directly **&#10;</xsl:text>
-    <xsl:text>@dot@@esc@" It was generated using the DocBook</xsl:text>
+    <xsl:text>.\" It was generated using the DocBook</xsl:text>
     <xsl:text> XSL Stylesheets (version </xsl:text>
-    <xsl:call-template name="string.subst">
-      <xsl:with-param name="string" select="$VERSION" />
-      <xsl:with-param name="target" select="'.'" />
-      <xsl:with-param name="replacement" select="'@dot@'" />
-    </xsl:call-template>
-    <xsl:text>)@dot@</xsl:text>
-    <xsl:text>&#10;</xsl:text>
-    <xsl:text>@dot@@esc@" Instead of manually editing it, you</xsl:text>
+    <xsl:value-of select="$VERSION"/>
+    <xsl:text>).&#10;</xsl:text>
+    <xsl:text>.\" Instead of manually editing it, you</xsl:text>
     <xsl:text> probably should edit the DocBook XML&#10;</xsl:text>
-    <xsl:text>@dot@@esc@" source for it and then use the DocBook</xsl:text>
-    <xsl:text> XSL Stylesheets to regenerate it@dot@&#10;</xsl:text>
+    <xsl:text>.\" source for it and then use the DocBook</xsl:text>
+    <xsl:text> XSL Stylesheets to regenerate it.&#10;</xsl:text>
   </xsl:template>
 
 <!-- ==================================================================== -->
@@ -75,7 +70,7 @@
     <!-- * user-configurable parameter -->
     <xsl:variable name="th.title.max.length" select="'20'"/>
 
-    <xsl:text>@dot@TH "</xsl:text>
+    <xsl:text>.TH "</xsl:text>
     <xsl:value-of select="translate(
                           substring($title, 1, $th.title.max.length),
                           'abcdefghijklmnopqrstuvwxyz',

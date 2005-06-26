@@ -1,5 +1,6 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:exsl="http://exslt.org/common"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -33,12 +34,6 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="quote">
-  <xsl:text>``</xsl:text>
-  <xsl:apply-templates/>
-  <xsl:text>''</xsl:text>
-</xsl:template>
-
 <xsl:template match="optional">
   <xsl:value-of select="$arg.choice.opt.open.str"/>
   <xsl:apply-templates/>
@@ -48,8 +43,10 @@
 <xsl:template name="do-citerefentry">
   <xsl:param name="refentrytitle" select="''"/>
   <xsl:param name="manvolnum" select="''"/>
-
-  <xsl:apply-templates mode="bold" select="$refentrytitle"/>
+  <xsl:variable name="title">
+    <bold><xsl:value-of select="$refentrytitle"/></bold>
+  </xsl:variable>
+  <xsl:apply-templates mode="bold" select="exsl:node-set($title)"/>
   <xsl:text>(</xsl:text>
   <xsl:value-of select="$manvolnum"/>
   <xsl:text>)</xsl:text>
@@ -70,19 +67,14 @@
     <xsl:apply-templates/>
   </xsl:variable>
   <xsl:variable name="url" select="@url"/>
-  <xsl:choose>
-    <xsl:when test="$url=$content or $content=''">
-      <xsl:text>\fI</xsl:text>
-      <xsl:value-of select="$url"/>
-      <xsl:text>\fR</xsl:text>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="$content"/>
-      <xsl:text>: \fI</xsl:text>
-      <xsl:value-of select="$url"/>
-      <xsl:text>\fR</xsl:text>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:if test="$url != $content and $content != ''">
+    <xsl:value-of select="$content"/>
+    <xsl:text>: </xsl:text>
+  </xsl:if>
+  <xsl:variable name="url.wrapper">
+    <italic><xsl:value-of select="@url"/></italic>
+  </xsl:variable>
+  <xsl:apply-templates mode="italic" select="exsl:node-set($url.wrapper)"/>
 </xsl:template>
 
 </xsl:stylesheet>

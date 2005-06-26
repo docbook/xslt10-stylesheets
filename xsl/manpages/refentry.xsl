@@ -38,7 +38,7 @@
       </xsl:if>
       <xsl:value-of select="."/>
     </xsl:for-each>
-    <xsl:text> \- </xsl:text>
+    <xsl:text> - </xsl:text>
     <xsl:value-of select="normalize-space (refpurpose)"/>
     <xsl:text>&#10;</xsl:text>
   </xsl:template>

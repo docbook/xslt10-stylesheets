@@ -1,8 +1,7 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:exsl="http://exslt.org/common"
                 xmlns:date="http://exslt.org/dates-and-times"
-                exclude-result-prefixes="exsl date"
+                exclude-result-prefixes="date"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -15,7 +14,7 @@
 
      ******************************************************************** -->
 
-<!-- ==================================================================== -->
+  <!-- ==================================================================== -->
 
   <xsl:template name="get.metadata">
     <xsl:param name="info"/>
@@ -91,49 +90,45 @@
 
     <!-- * <date> is a date :-) If we can't find one, we add one; see below -->
     <date>
-      <xsl:call-template name="replace-entities">
-        <xsl:with-param name="content">
-          <xsl:choose>
-            <!-- look for date or pubdate in *info -->
-            <xsl:when test="$info/date|$info/pubdate">
-              <xsl:copy>
-                <xsl:apply-templates
-                    select="($info/date/node()|$info/pubdate/node())[1]"/>
-              </xsl:copy>
-            </xsl:when>
-            <!-- look for date or pubdate in parent's *info -->
-            <xsl:when test="$parentinfo/date|$parentinfo/pubdate">
-              <xsl:copy>
-                <xsl:apply-templates
-                    select="($parentinfo/date/node()|$parentinfo/pubdate/node())[1]"/>
-              </xsl:copy>
-            </xsl:when>
-            <!-- * If we can't find a date, then we generate a date. -->
-            <!-- * And we make it an appropriately localized date. -->
-            <xsl:otherwise>
-              <xsl:call-template name="datetime.format">
-                <xsl:with-param name="date">
-                  <xsl:choose>
-                    <xsl:when test="function-available('date:date-time')">
-                      <xsl:value-of select="date:date-time()"/>
-                    </xsl:when>
-                    <xsl:when test="function-available('date:dateTime')">
-                      <!-- Xalan quirk -->
-                      <xsl:value-of select="date:dateTime()"/>
-                    </xsl:when>
-                  </xsl:choose>
-                </xsl:with-param>
-                <xsl:with-param name="format">
-                  <xsl:call-template name="gentext.template">
-                    <xsl:with-param name="context" select="'datetime'"/>
-                    <xsl:with-param name="name" select="'format'"/>
-                  </xsl:call-template>
-                </xsl:with-param>
+      <xsl:choose>
+        <!-- look for date or pubdate in *info -->
+        <xsl:when test="$info/date|$info/pubdate">
+          <xsl:copy>
+            <xsl:apply-templates
+                select="($info/date/node()|$info/pubdate/node())[1]"/>
+          </xsl:copy>
+        </xsl:when>
+        <!-- look for date or pubdate in parent's *info -->
+        <xsl:when test="$parentinfo/date|$parentinfo/pubdate">
+          <xsl:copy>
+            <xsl:apply-templates
+                select="($parentinfo/date/node()|$parentinfo/pubdate/node())[1]"/>
+          </xsl:copy>
+        </xsl:when>
+        <!-- * If we can't find a date, then we generate a date. -->
+        <!-- * And we make it an appropriately localized date. -->
+        <xsl:otherwise>
+          <xsl:call-template name="datetime.format">
+            <xsl:with-param name="date">
+              <xsl:choose>
+                <xsl:when test="function-available('date:date-time')">
+                  <xsl:value-of select="date:date-time()"/>
+                </xsl:when>
+                <xsl:when test="function-available('date:dateTime')">
+                  <!-- Xalan quirk -->
+                  <xsl:value-of select="date:dateTime()"/>
+                </xsl:when>
+              </xsl:choose>
+            </xsl:with-param>
+            <xsl:with-param name="format">
+              <xsl:call-template name="gentext.template">
+                <xsl:with-param name="context" select="'datetime'"/>
+                <xsl:with-param name="name" select="'format'"/>
               </xsl:call-template>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:with-param>
-      </xsl:call-template>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
     </date>
 
     <!-- * <versionorname> = (in the best case) we just want to find some kind -->
@@ -263,12 +258,6 @@
     <xsl:text>&lt;</xsl:text>
     <xsl:apply-templates/>
     <xsl:text>&gt;</xsl:text>
-  </xsl:template>
-
-  <xsl:template match="copyright">
-    <xsl:text>Copyright \(co  </xsl:text>
-    <xsl:apply-templates select="./year" />
-    <xsl:text>.Sp&#10;</xsl:text>
   </xsl:template>
 
 </xsl:stylesheet>

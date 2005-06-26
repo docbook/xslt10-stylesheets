@@ -4,6 +4,12 @@
                 exclude-result-prefixes="exsl"
                 version='1.0'>
 
+  <xsl:import href="../html/docbook.xsl"/>
+
+  <xsl:output method="text"
+              encoding="UTF-8"
+              indent="no"/>
+
 <!-- ********************************************************************
      $Id$
      ********************************************************************
@@ -16,7 +22,6 @@
 
 <!-- ==================================================================== -->
 
-  <xsl:import href="../html/docbook.xsl"/>
   <xsl:include href="param.xsl"/>
   <xsl:include href="general.xsl"/>
   <xsl:include href="info.xsl"/>
@@ -27,13 +32,27 @@
   <xsl:include href="synop.xsl"/>
   <xsl:include href="lists.xsl"/>
 
-  <!-- * Needed for chunker.xsl (for now): -->
-  <xsl:param name="chunker.output.method" select="'text'"/>
-  <xsl:param name="chunker.output.encoding" select="'ISO-8859-1'"/>
-
-  <xsl:output method="text"
-              encoding="ISO-8859-1"
-              indent="no"/>
+  <!-- * Read the character-map contents in only once per document, no -->
+  <!-- * matter how many Refentry elements it contains. For documentst -->
+  <!-- * that contain a large number or Refentry elements, this can -->
+  <!-- * result in a significant performance gain over the alternative -->
+  <!-- * (that is, reading it in once for every Refentry processed) -->
+  <xsl:variable name="man.charmap.contents">
+    <xsl:call-template name="read-character-map">
+      <xsl:with-param name="use.subset" select="$man.charmap.use.subset"/>
+      <xsl:with-param name="subset.profile" select="$man.charmap.subset.profile"/>
+      <xsl:with-param name="uri">
+        <xsl:choose>
+          <xsl:when test="$man.charmap.uri != ''">
+            <xsl:value-of select="$man.charmap.uri"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="'../manpages/charmap.groff.xsl'"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
 
   <!-- * if document does not contain at least one refentry, then emit a -->
   <!-- * message and stop -->
@@ -53,7 +72,7 @@
   <xsl:template match="refentry">
 
     <!-- * Because there are several times when we need to check *info of -->
-    <!-- * this refentry and *info of its parent, we get those and store -->
+    <!-- * each refentry and *info of its parent, we get those and store -->
     <!-- * as node-sets in memory. -->
 
     <!-- * Make a node-set with contents of *info -->
@@ -89,8 +108,8 @@
     <xsl:variable name="metadata" select="exsl:node-set($get.metadata)"/>
 
     <!-- * Assemble the various parts into a complete page, then store into -->
-    <!-- * $page.contents so that we can manipluate further. -->
-    <xsl:variable name="page.contents">
+    <!-- * $manpage.contents so that we can manipluate them further. -->
+    <xsl:variable name="manpage.contents">
       <!-- * top.comment = commented-out section at top of roff source -->
       <xsl:call-template name="top.comment"/>
       <!-- * TH.title.line = title line in header/footer of man page -->
@@ -123,18 +142,20 @@
     </xsl:variable>
 
     <!-- * Prepare the page contents for final output, then store in -->
-    <!-- * $page.contents.prepared so the we can pass it on to the -->
+    <!-- * $manpage.contents.prepared so the we can pass it on to the -->
     <!-- * write.text.chunk() function -->
-    <xsl:variable name="page.contents.prepared">
+    <xsl:variable name="manpage.contents.prepared">
       <!-- * "Preparing" the page contents involves, at a minimum, -->
-      <!-- * converting our internal @dot@, @esc & @dash@ pseudo-markup -->
-      <!-- * into real roff; that is: literal . and \ and - characters. -->
+      <!-- * doubling any backslashes found (so they aren't interpreted -->
+      <!-- * as roff escapes). But it does not any longer involve adding -->
+      <!-- * backslashes in front of periods/dots or dashes/hyphens. See -->
+      <!-- * the note in the general.xsl file about that. -->
       <!-- * -->
       <!-- * If $charmap.enabled is true, "preparing" the page contents also -->
       <!-- * involves applying a character map to convert Unicode symbols and -->
       <!-- * special characters into corresponding roff escape sequences. -->
-      <xsl:call-template name="prepare.page.contents">
-        <xsl:with-param name="content" select="$page.contents"/>
+      <xsl:call-template name="prepare.manpage.contents">
+        <xsl:with-param name="content" select="$manpage.contents"/>
       </xsl:call-template>
     </xsl:variable>
     
@@ -142,7 +163,9 @@
     <!-- * the final man page. -->
     <xsl:call-template name="write.text.chunk">
       <xsl:with-param name="filename" select="$metadata/filename"/>
-      <xsl:with-param name="content" select="$page.contents.prepared"/>
+      <xsl:with-param name="quiet" select="$man.output.quietly"/>
+      <xsl:with-param name="encoding" select="$man.output.encoding"/>
+      <xsl:with-param name="content" select="$manpage.contents.prepared"/>
     </xsl:call-template>
 
     <!-- * Finish up by generating "stub" (alias) pages (if any needed) -->

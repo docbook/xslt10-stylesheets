@@ -21,8 +21,8 @@
   <xsl:if test="following-sibling::para or
 	  following-sibling::simpara or
 	  following-sibling::remark">
-    <!-- Make sure multiple paragraphs within a list item don't -->
-    <!-- merge together.                                        -->
+    <!-- * Make sure multiple paragraphs within a list item don't -->
+    <!-- * merge together.                                        -->
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
@@ -37,8 +37,8 @@
   <xsl:if test="following-sibling::para or
 		following-sibling::simpara or
 		following-sibling::remark">
-    <!-- Make sure multiple paragraphs within a list item don't -->
-    <!-- merge together.                                        -->
+    <!-- * Make sure multiple paragraphs within a list item don't -->
+    <!-- * merge together.                                        -->
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
@@ -83,7 +83,11 @@
 </xsl:template>
 
 <xsl:template match="itemizedlist/listitem">
-  <xsl:text>\(bu&#10;</xsl:text>
+  <!-- * We output a real bullet here (rather than, "\(bu", -->
+  <!-- * the roff bullet) because, when we do character-map -->
+  <!-- * processing before final output, the character-map will -->
+  <!-- * handle conversion of the &#x2022; to "\(bu" for us -->
+  <xsl:text>&#x2022;&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:if test="following-sibling::listitem">
     <xsl:text>.TP&#10;</xsl:text>
@@ -108,24 +112,27 @@
 <xsl:template match="itemizedlist[ancestor::listitem or ancestor::step]|
 	             orderedlist[ancestor::listitem or ancestor::step]|
 		     procedure[ancestor::listitem or ancestor::step]">
-  <xsl:text>.RS&#10;.TP 3&#10;</xsl:text>
+  <xsl:text>.RS&#10;</xsl:text>
+  <xsl:text>.TP 3&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>.LP&#10;.RE&#10;.IP&#10;</xsl:text>
+  <xsl:text>.LP&#10;</xsl:text>
+  <xsl:text>.RE&#10;</xsl:text>
+  <xsl:text>.IP&#10;</xsl:text>
 </xsl:template>
 
-<!-- for simplelist type="inline", render it as a comma-separated list -->
+<!-- * for simplelist type="inline", render it as a comma-separated list -->
 <xsl:template match="simplelist[@type='inline']">
 
-  <!-- if dbchoice PI exists, use that to determine the choice separator -->
-  <!-- (that is, equivalent of "and" or "or" in current locale), or literal -->
-  <!-- value of "choice" otherwise -->
+  <!-- * if dbchoice PI exists, use that to determine the choice separator -->
+  <!-- * (that is, equivalent of "and" or "or" in current locale), or literal -->
+  <!-- * value of "choice" otherwise -->
   <xsl:variable name="localized-choice-separator">
     <xsl:choose>
       <xsl:when test="processing-instruction('dbchoice')">
 	<xsl:call-template name="select.choice.separator"/>
       </xsl:when>
       <xsl:otherwise>
-	<!-- empty -->
+	<!-- * empty -->
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -148,8 +155,8 @@
   <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
-<!-- if simplelist type is not inline, render it as a one-column vertical -->
-<!-- list (ignoring the values of the type and columns attributes) -->
+<!-- * if simplelist type is not inline, render it as a one-column vertical -->
+<!-- * list (ignoring the values of the type and columns attributes) -->
 <xsl:template match="simplelist">
   <xsl:for-each select="member">
     <xsl:text>.IP&#10;</xsl:text>
