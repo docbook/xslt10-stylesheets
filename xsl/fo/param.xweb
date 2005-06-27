@@ -23,9 +23,9 @@ $Id$
 
 <preface><title>Introduction</title>
 
-<para>This is technical reference documentation for the DocBook XSL
-Stylesheets; it documents (some of) the parameters, templates, and
-other elements of the stylesheets.</para>
+<para>This is reference documentation for all user-configurable
+parameters in the DocBook XSL FO stylesheets (for generating
+XSL-FO output destined for final print/PDF otutput).</para>
 
 <para>This reference describes each of the XSL FO Stylesheet parameters.
 These are the <quote>easily customizable</quote> parts of the stylesheet.
@@ -51,13 +51,6 @@ stylesheet like this:</para>
 <filename>docbook.xsl</filename> on your system. (Or
 <filename>chunk.xsl</filename>, if you're using chunking.)</para>
 
-<para>This is not intended to be <quote>user</quote> documentation.
-It is provided for developers writing customization layers for the
-stylesheets, and for anyone who's interested in <quote>how it
-works</quote>.</para>
-
-<para>Although I am trying to be thorough, this documentation is known
-to be incomplete. Don't forget to read the source, too :-)</para>
 </preface>
 
 <reference><title>Admonitions</title>
