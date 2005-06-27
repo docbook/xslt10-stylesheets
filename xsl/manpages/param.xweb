@@ -28,7 +28,7 @@
 
   </preface>
 
-  <reference>
+  <reference id="general">
   <title>General</title>
 &man.alignment;
 &man.hyphenate;
@@ -36,7 +36,7 @@
 &man.output.encoding;
 &man.string.subst.map;
   </reference>
-  <reference>
+  <reference id="charmap">
   <title>Character map</title>
 &man.charmap.enabled;
 &man.charmap.uri;
