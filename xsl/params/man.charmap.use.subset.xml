@@ -42,9 +42,11 @@ UTF-8 or UTF-16 encoded XML source to appropriate groff/roff
 equivalents in man-page output, the DocBook XSL Stylesheets
 distribution includes a <ulink
 url="http://docbook.sourceforge.net/snapshot/xsl/manpages/charmap.groff.xsl"
->roff character map</ulink> that contains more than 800 character
-mappings. That character map can be considered the standard roff
-character map for the distribution.</para>
+>roff character map</ulink> that is compliant with the <ulink
+url="http://www.w3.org/TR/xslt20/#character-maps" >XSLT character
+map</ulink> format as detailed in the XSLT 2.0 specification. The map
+contains more than 800 character mappings and can be considered the
+standard roff character map for the distribution.</para>
 
 <note>
 <para>You can use the <parameter>man.charmap.uri</parameter>
