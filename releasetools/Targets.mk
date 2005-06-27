@@ -38,8 +38,17 @@ ifeq ($(DIFFVER),)
 	exit 1
 else
 ifeq ($(NEXTVER),$(RELVER))
-	cvs tag $(TAGVER)
-	$(MAKE) DIFFVER=$(DIFFVER) distrib
+	read -s -n1 -p "OK to create cvs tag $(TAGVER)? [No] "; \
+	    echo "$$REPLY"; \
+	    case $$REPLY in \
+	      [yY]) \
+	      cvs tag $(TAGVER); \
+	      $(MAKE) DIFFVER=$(DIFFVER) distrib; \
+	      ;; \
+	      *) echo "OK, exiting without making creating tag."; \
+	      exit \
+	      ;; \
+	    esac
 else
 	@echo "VERSION $(RELVER) doesn't match specified version $(NEXTVER)."
 	exit 1
@@ -143,7 +152,7 @@ endif
 endif
 
 install: zip
-	-$(FTP) $(FTP_OPTS) "mput -O $(SF_UPLOAD_DIR) $(TMP)/docbook-$(DISTRO)-$(ZIPVER).*; quit" $(SF_UPLOAD_HOST)
+	-$(FTP) $(FTP_OPTS) "mput -O $(SF_UPLOAD_DIR) $(TMP)/docbook-$(DISTRO)-*-$(ZIPVER).*; quit" $(SF_UPLOAD_HOST)
 	$(SCP) $(SCP_OPTS) $(TMP)/docbook-$(DISTRO)-$(ZIPVER).tar.bz2 $(PROJECT_USER)@$(PROJECT_HOST):$(RELEASE_DIR)/$(DISTRO)/
 	$(SSH) $(SSH_OPTS)-l $(PROJECT_USER) $(PROJECT_HOST) \
 	  "(\

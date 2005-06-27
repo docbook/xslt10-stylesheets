@@ -358,7 +358,7 @@ done <<EOF
   'nxml-mode-hook
   (lambda ()
     (setq rng-schema-locating-files-default
-          (append '("\$thisLocatingRules")
+          (append '("$thisLocatingRules")
                   rng-schema-locating-files-default ))))
 EOF
 
