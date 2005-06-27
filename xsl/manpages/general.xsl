@@ -15,8 +15,8 @@
 
 <!-- ==================================================================== -->
 
-<!-- This file contains named and "non element" templates that are called -->
-<!-- by templates in the other manpages stylesheet files. -->
+<!-- * This file contains named and "non element" templates that are -->
+<!-- * called by templates in the other manpages stylesheet files. -->
 
 <!-- ==================================================================== -->
 
@@ -193,42 +193,41 @@
 
   <!-- ================================================================== -->
 
+  <!-- * The prepare.manpage.contents template is called after -->
+  <!-- * everything else has been done, just before writing the actual -->
+  <!-- * man-page files to the filesystem. It works on the entire roff -->
+  <!-- * source for each man page (not just the visible contents). -->
   <xsl:template name="prepare.manpage.contents">
     <xsl:param name="content" select="''"/>
-    <xsl:call-template name="apply-character-map">
-      <xsl:with-param name="content" select="$content"/>
-      <xsl:with-param name="character.map.contents"
-                      select="exsl:node-set($man.charmap.contents)/*"/>
-    </xsl:call-template>
+
+    <!-- * First do "essential" string/character substitutions; for -->
+    <!-- * example, the backslash character _must_ be substituted with -->
+    <!-- * a double backslash, to prevent it from being interpreted as -->
+    <!-- * a roff escape -->
+    <xsl:variable name="adjusted.content">
+      <xsl:call-template name="apply-string-subst-map">
+        <xsl:with-param name="content" select="$content"/>
+        <xsl:with-param name="map.contents"
+                        select="exsl:node-set($man.string.subst.map)/*"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <!-- * Optionally, apply a character map to replace Unicode -->
+    <!-- * symbols and special characters. -->
+    <xsl:choose>
+      <xsl:when test="$man.charmap.enabled != '0'">
+        <xsl:call-template name="apply-character-map">
+          <xsl:with-param name="content" select="$adjusted.content"/>
+          <xsl:with-param name="map.contents"
+                          select="exsl:node-set($man.charmap.contents)/*"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- * if we reach here, value of $man.charmap.enabled is zero, -->
+        <!-- * so we just pass the adjusted contents through "as is" -->
+        <xsl:value-of select="$adjusted.content"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
-
-  <!-- * We don't add backslashes before periods/dots or hyphens (&#45;) -->
-  <!-- * Here's why: -->
-  <!-- * -->
-  <!-- * - Backslashes in front of periods/dots are needed only in the very -->
-  <!-- *   rare case where a period is the very first character in a line, -->
-  <!-- *   without any space in front of it. A better way to deal with that -->
-  <!-- *   rare case is for authors to add a zero-width space in front of -->
-  <!-- *   the offending dot(s) in their source -->
-  <!-- * -->
-  <!-- * - Backslashes in front of (&#45;/&#x2D;) are needed... when? -->
-  <!-- *   Myself, I don't know, so the current stylesheet does not add -->
-  <!-- *   backslashes in front of them, ever. If there is a specific case -->
-  <!-- *   where they are necessary or desirable, then we need to add code -->
-  <!-- *   for that case, not just do a blanket conversion. -->
-  <!-- * -->
-  <!-- *   And, anyway, my understanding from reading the groff docs -->
-  <!-- *   is that \- is, specifically, a _minus sign_. So if users -->
-  <!-- *   have places where they want a minus sign to be output -->
-  <!-- *   instead of (&#45;), then they should use (&#8722;/&#x2212;) -->
-  <!-- *   in their source instead. And if they have a place where -->
-  <!-- *   they want an en dash, (&#8211;/&#x2013;). Or if there are -->
-  <!-- *   places where the stylesheets are internally generating -->
-  <!-- *   (&#45;) where they should be generating &#8722; or &#8211;, -->
-  <!-- *   then we need to fix those, not just do blanket conversion. -->
-
-<!--   TODO: We do need to add backslash in front of single-quote if it is -->
-<!--   the first character in a line. And escaping of -->
-<!--   backslashes need to be restored before release. -->
 
 </xsl:stylesheet>

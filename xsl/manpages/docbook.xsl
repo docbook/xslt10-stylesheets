@@ -33,25 +33,27 @@
   <xsl:include href="lists.xsl"/>
 
   <!-- * Read the character-map contents in only once per document, no -->
-  <!-- * matter how many Refentry elements it contains. For documentst -->
+  <!-- * matter how many Refentry elements it contains. For documents -->
   <!-- * that contain a large number or Refentry elements, this can -->
   <!-- * result in a significant performance gain over the alternative -->
   <!-- * (that is, reading it in once for every Refentry processed) -->
   <xsl:variable name="man.charmap.contents">
-    <xsl:call-template name="read-character-map">
-      <xsl:with-param name="use.subset" select="$man.charmap.use.subset"/>
-      <xsl:with-param name="subset.profile" select="$man.charmap.subset.profile"/>
-      <xsl:with-param name="uri">
-        <xsl:choose>
-          <xsl:when test="$man.charmap.uri != ''">
-            <xsl:value-of select="$man.charmap.uri"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="'../manpages/charmap.groff.xsl'"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:with-param>
-    </xsl:call-template>
+    <xsl:if test="$man.charmap.enabled != '0'">
+      <xsl:call-template name="read-character-map">
+        <xsl:with-param name="use.subset" select="$man.charmap.use.subset"/>
+        <xsl:with-param name="subset.profile" select="$man.charmap.subset.profile"/>
+        <xsl:with-param name="uri">
+          <xsl:choose>
+            <xsl:when test="$man.charmap.uri != ''">
+              <xsl:value-of select="$man.charmap.uri"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="'../manpages/charmap.groff.xsl'"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:if>
   </xsl:variable>
 
   <!-- * if document does not contain at least one refentry, then emit a -->
@@ -147,9 +149,7 @@
     <xsl:variable name="manpage.contents.prepared">
       <!-- * "Preparing" the page contents involves, at a minimum, -->
       <!-- * doubling any backslashes found (so they aren't interpreted -->
-      <!-- * as roff escapes). But it does not any longer involve adding -->
-      <!-- * backslashes in front of periods/dots or dashes/hyphens. See -->
-      <!-- * the note in the general.xsl file about that. -->
+      <!-- * as roff escapes). -->
       <!-- * -->
       <!-- * If $charmap.enabled is true, "preparing" the page contents also -->
       <!-- * involves applying a character map to convert Unicode symbols and -->
