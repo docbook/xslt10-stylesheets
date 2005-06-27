@@ -27,8 +27,8 @@
 <para>The <parameter>man.string.subst.map</parameter> parameter
 contains a "map" that specifies a set of string substitutions to
 perform over the entire roff source for each man page, either just
-before generating final man-page output (that is, before writing man
-page files to disk) or, if the value of the
+before generating final man-page output (that is, before writing
+man-page files to disk) or, if the value of the
 <parameter>man.charmap.enabled</parameter> parameter is non-zero,
 before applying the roff character map.</para>
 
@@ -44,11 +44,8 @@ before applying the roff character map.</para>
 
   <para>In particular, do not attempt to add mappings for the
   dot/period character or hyphen/minus character
-  (&amp;#45;/&amp;#x2D;). Doing so will break your output, because it
-  will replace, for example, the <literal>.TH</literal> roff macro
-  with <literal>\.TH</literal>, as well as replacing some hyphens that
-  are used within other roff requests that the manpages stylesheets
-  generate.</para>
+  (&amp;#45;/&amp;#x2D;). Doing so will break your output. For an
+  explanation, see <xref linkend="DotsAndHyphens"/>.</para>
 
 </warning>
 
@@ -70,5 +67,48 @@ each of which has two attributes:
   </varlistentry>
 </variablelist>
 </para>
+
+<refsect2 id="DotsAndHyphens">
+  <title>About adding backslashes before dots and hyphens</title>
+  <para>The stylesheets do not add backslashes before periods/dots or
+  hyphens (&amp;#45;). One reason is that, because string substitution
+  is performed over the entire roff source of each man page, it would
+  be complicated to replace dots and hyphens in visible contents
+  without also causing them to be replaced in roff requests and
+  escapes; for example, without causing, say, the
+  <literal>.TH</literal> roff macro to be replaced with
+  <literal>\.TH</literal>. Additionally:
+
+  <itemizedlist>
+
+    <listitem>
+      <para>Backslashes in front of periods/dots are needed only in
+      the very rare case where a period is the very first character in
+      a line, without any space in front of it. A better way to deal
+      with that rare case is to add a zero-width space in front of the
+      offending dot(s) in your source</para>
+    </listitem>
+    <listitem>
+      <para>Backslashes in front of &amp;#45;/&amp;#x2D; are
+      needed... when?  Myself, I don't know, so the current
+      stylesheets do not add backslashes in front of them, ever. If
+      there is a specific case where they are necessary or desirable,
+      then we need to add code for that case, not just do a blanket
+      conversion.</para>
+      <para>And, anyway, my understanding from reading the groff docs
+      is that <literal>\-</literal> is, specifically, a
+      <emphasis>minus sign</emphasis>. So if you have places where you
+      want a minus sign to be output instead of &amp;#45;, then use
+      &amp;#8722;/&amp;#x2212; in your source instead. And if you have
+      places where you want an en dash, &amp;#8211;/&amp;#x2013;. Or
+      if there are places where the stylesheets are internally
+      generating &amp;#45; where they should be generating &amp;#8722;
+      or &amp;#8211;, then we need to fix those, not just do blanket
+      conversion.</para>
+    </listitem>
+  </itemizedlist>
+</para>
+</refsect2>
+
 </refsect1>
 </refentry>
