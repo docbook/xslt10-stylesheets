@@ -1,0 +1,74 @@
+<refentry id="man.string.subst.map">
+<refmeta>
+<refentrytitle>man.string.subst.map</refentrytitle>
+<refmiscinfo role="type">string</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>man.string.subst.map</refname>
+<refpurpose>Specifies a set of string substitutions</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='man.string.subst.map.frag'>
+<xsl:param name="man.string.subst.map">
+  <substitution oldstring="\" newstring="\\"/>
+  <substitution oldstring="\\fB" newstring="\fB"/>
+  <substitution oldstring="\\fI" newstring="\fI"/>
+  <substitution oldstring="\\fR" newstring="\fR"/>
+  <substitution oldstring='.\\"' newstring='.\"'/>
+  <!-- add backslash before any apostrophe at start of a line -->
+  <substitution oldstring="&#10;'" newstring="&#10;\'"/>
+</xsl:param>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>The <parameter>man.string.subst.map</parameter> parameter
+contains a "map" that specifies a set of string substitutions to
+perform over the entire roff source for each man page, either just
+before generating final man-page output (that is, before writing man
+page files to disk) or, if the value of the
+<parameter>man.charmap.enabled</parameter> parameter is non-zero,
+before applying the roff character map.</para>
+
+<warning>
+  <para>Do you not change value of the
+  <parameter>man.string.subst.map</parameter> parameter unless
+  you are sure what you are doing. If you remove any of the default
+  mappings, you are likely to end up with broken output. And be very
+  careful about adding anything to it. Because it is used for doing
+  string substitution over the entire roff source of each man page, it
+  causes target strings to be replaced in roff requests and escapes,
+  not just in the visible contents.</para>
+
+  <para>In particular, do not attempt to add mappings for the
+  dot/period character or hyphen/minus character
+  (&amp;#45;/&amp;#x2D;). Doing so will break your output, because it
+  will replace, for example, the <literal>.TH</literal> roff macro
+  with <literal>\.TH</literal>, as well as replacing some hyphens that
+  are used within other roff requests that the manpages stylesheets
+  generate.</para>
+
+</warning>
+
+<para>The map contains one or more <tag>substitution</tag> elements,
+each of which has two attributes:
+<variablelist>
+  <varlistentry>
+    <term>oldstring</term>
+    <listitem>
+      <simpara>string to replace</simpara>
+    </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term>newstring</term>
+    <listitem>
+      <simpara>string with which to replace <tag class="attribute"
+      >oldstring</tag></simpara>
+    </listitem>
+  </varlistentry>
+</variablelist>
+</para>
+</refsect1>
+</refentry>
