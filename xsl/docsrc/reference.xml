@@ -1,4 +1,4 @@
-<!DOCTYPE article
+<!DOCTYPE book
 PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY common.xml SYSTEM "common/common.xml" NDATA SGML>
@@ -11,8 +11,8 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
 <!ENTITY website-param.xml SYSTEM "website/docparam.xml" NDATA SGML>
 <!ENTITY titlepage.xml SYSTEM "template/titlepage.xml" NDATA SGML>
 ]>
-<article>
-  <articleinfo>
+<book>
+  <bookinfo>
     <title>DocBook XSL Stylesheet Reference Documentation</title>
     <releaseinfo role="meta">
       $Id$
@@ -22,7 +22,10 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     <copyright><year>1999</year><year>2005</year>
     <holder>Norman Walsh</holder>
     </copyright>
-  </articleinfo>
+  </bookinfo>
+
+  <preface>
+    <title>Preface</title>
 
   <para>This is reference documentation for the DocBook XSL
   stylesheets. It is divided into two sections: documentation for
@@ -62,5 +65,6 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
       targetdocent="titlepage.xml"/></para>
       </listitem>
     </itemizedlist>
-</article>
+</preface>
+</book>
 

@@ -11,12 +11,11 @@
       $Id$
     </releaseinfo>
     <author>
-      <surname>Smith</surname>
-      <firstname>Michael</firstname>
+      <orgname>The DocBook Project</orgname>
     </author>
     <copyright>
       <year>2005</year>
-      <holder>Michael Smith</holder>
+      <holder>The DocBook Project</holder>
     </copyright>
   </bookinfo>
 
@@ -35,9 +34,11 @@
 &man.hyphenate;
 &man.output.quietly;
 &man.output.encoding;
+&man.string.subst.map;
   </reference>
   <reference>
   <title>Character map</title>
+&man.charmap.enabled;
 &man.charmap.uri;
 &man.charmap.use.subset;
 &man.charmap.subset.profile;
@@ -69,6 +70,8 @@
 <src:fragref linkend="man.hyphenate.frag"/>
 <src:fragref linkend="man.output.quietly.frag"/>
 <src:fragref linkend="man.output.encoding.frag"/>
+<src:fragref linkend="man.string.subst.map.frag"/>
+<src:fragref linkend="man.charmap.enabled.frag"/>
 <src:fragref linkend="man.charmap.uri.frag"/>
 <src:fragref linkend="man.charmap.use.subset.frag"/>
 <src:fragref linkend="man.charmap.subset.profile.frag"/>
