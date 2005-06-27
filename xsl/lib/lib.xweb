@@ -725,6 +725,88 @@ and preserving the delimiters as text nodes between the tokens.</para>
 
 <!-- ================================================================== -->
 
+<refentry id="apply-string-subst-map">
+  <refnamediv>
+    <refname>apply-string-subst-map</refname>
+    <refpurpose>Apply a string-substitution map</refpurpose>
+  </refnamediv>
+
+  <refsect1><title>Description</title>
+
+  <para>This function applies a "string substitution" map. Use it when
+  you want to do multiple string substitutions on the same target
+  content. It reads in two things: <parameter>content</parameter>, the
+  content on which to perform the substitution, and
+  <parameter>map.contents</parameter>, a node set of
+  elements (the names of the elements don't matter), with each element
+  having the following attributes:
+  <itemizedlist>
+    <listitem>
+      <simpara><tag class="attribute">oldstring</tag>, a string to
+      be replaced</simpara>
+    </listitem>
+    <listitem>
+      <simpara><tag class="attribute">newstring</tag>, a string with
+      which to replace <tag class="attribute">oldstring</tag></simpara>
+    </listitem>
+  </itemizedlist>
+  The function uses <parameter>map.contents</parameter> to
+  do substitution on <parameter>content</parameter>, and then
+  returns the modified contents.</para>
+
+  <note>
+    <para>This function is a very slightly modified version of Jeni
+    Tennison's <function>replace_strings</function> function in the
+    <ulink
+    url="http://www.dpawson.co.uk/xsl/sect2/StringReplace.html#d9351e13"
+    >multiple string replacements</ulink> section of Dave Pawson's
+    <ulink url="http://www.dpawson.co.uk/xsl/index.html" >XSLT
+    FAQ</ulink>.</para>
+
+    <para>The <function>apply-string-subst-map</function> function is
+    essentially the same function as the
+    <function>apply-character-map</function> function; the only
+    difference is that in the map that
+    <function>apply-string-subst-map</function> expects, <tag
+    class="attribute">oldstring</tag> and <tag
+    class="attribute">newstring</tag> attributes are used instead of
+    <tag class="attribute">character</tag> and <tag
+    class="attribute">string</tag> attributes.</para>
+  </note>
+
+  <programlisting><src:fragment id='apply-string-subst-map.frag'>
+    <xsl:template name="apply-string-subst-map">
+      <xsl:param name="content"/>
+      <xsl:param name="map.contents"/>
+      <xsl:variable name="replaced_text">
+        <xsl:call-template name="string.subst">
+          <xsl:with-param name="string" select="$content" />
+          <xsl:with-param name="target" 
+                          select="$map.contents[1]/@oldstring" />
+          <xsl:with-param name="newstring" 
+                          select="$map.contents[1]/@newstring" />
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="$map.contents[2]">
+          <xsl:call-template name="apply-string-subst-map">
+            <xsl:with-param name="content" select="$replaced_text" />
+            <xsl:with-param name="map.contents"
+                            select="$map.contents[position() > 1]" />
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$replaced_text" />
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:template>
+
+  </src:fragment></programlisting>
+  </refsect1>
+</refentry>
+
+<!-- ================================================================== -->
+
 <refentry id="apply-character-map">
   <refnamediv>
     <refname>apply-character-map</refname>
@@ -735,14 +817,14 @@ and preserving the delimiters as text nodes between the tokens.</para>
 
   <para>This function applies an <ulink
   url="http://www.w3.org/TR/xslt20/#character-maps">XSLT character
-  maps</ulink>; that is, it cause certain individual characters to be
+  map</ulink>; that is, it cause certain individual characters to be
   substituted with strings of one or more characters. It is useful
-  mainly for replacing "special" chararacters or symbols. It reads in
-  two things: <parameter>content</parameter>, the content on which to
-  perform the character replacement, and
-  <parameter>character.map.contents</parameter>, a node set of
-  elements (the names of the elements don't matter), with each element
-  having the following attributes:
+  mainly for replacing multiple "special" chararacters or symbols in
+  the same target content. It reads in two things:
+  <parameter>content</parameter>, the content on which to perform the
+  substitution, and <parameter>map.contents</parameter>, a
+  node set of elements (the names of the elements don't matter), with
+  each element having the following attributes:
   <itemizedlist>
     <listitem>
       <simpara><tag class="attribute">character</tag>, a character to
@@ -750,13 +832,12 @@ and preserving the delimiters as text nodes between the tokens.</para>
     </listitem>
     <listitem>
       <simpara><tag class="attribute">string</tag>, a string with
-      which to replace the character specified by the <tag
-      class="attribute">character</tag> attribute</simpara>
+      which to replace <tag class="attribute">character</tag></simpara>
     </listitem>
   </itemizedlist>
-  This function uses <parameter>character.map.contents</parameter> to
-  do character replacement on <parameter>content</parameter>, and then
-  returns the modified contents.</para>
+  This function uses <parameter>map.contents</parameter> to
+  do substitution on <parameter>content</parameter>, and then returns
+  the modified contents.</para>
 
   <note>
     <para>This function is a very slightly modified version of Jeni
@@ -766,27 +847,37 @@ and preserving the delimiters as text nodes between the tokens.</para>
         >multiple string replacements</ulink> section of Dave Pawson's
     <ulink url="http://www.dpawson.co.uk/xsl/index.html" >XSLT
     FAQ</ulink>.</para>
+
+    <para>The <function>apply-string-subst-map</function> function is
+    essentially the same function as the
+    <function>apply-character-map</function> function; the only
+    difference is that in the map that
+    <function>apply-string-subst-map</function> expects, <tag
+    class="attribute">oldstring</tag> and <tag
+    class="attribute">newstring</tag> attributes are used instead of
+    <tag class="attribute">character</tag> and <tag
+    class="attribute">string</tag> attributes.</para>
   </note>
 
   <programlisting><src:fragment id='apply-character-map.frag'>
     <xsl:template name="apply-character-map">
       <xsl:param name="content"/>
-      <xsl:param name="character.map.contents"/>
+      <xsl:param name="map.contents"/>
       <xsl:variable name="replaced_text">
         <xsl:call-template name="string.subst">
           <xsl:with-param name="string" select="$content" />
           <xsl:with-param name="target" 
-                          select="$character.map.contents[1]/@character" />
+                          select="$map.contents[1]/@character" />
           <xsl:with-param name="replacement" 
-                          select="$character.map.contents[1]/@string" />
+                          select="$map.contents[1]/@string" />
         </xsl:call-template>
       </xsl:variable>
       <xsl:choose>
-        <xsl:when test="$character.map.contents[2]">
+        <xsl:when test="$map.contents[2]">
           <xsl:call-template name="apply-character-map">
             <xsl:with-param name="content" select="$replaced_text" />
-            <xsl:with-param name="character.map.contents"
-                            select="$character.map.contents[position() > 1]" />
+            <xsl:with-param name="map.contents"
+                            select="$map.contents[position() > 1]" />
           </xsl:call-template>
         </xsl:when>
         <xsl:otherwise>
@@ -1017,6 +1108,7 @@ around these functions.</para>
 <src:fragref linkend="comment-escape-string"/>
 <src:fragref linkend="comment-escape-string.recursive"/>
 <src:fragref linkend="str.tokenize.keep.delimiters.frag"/>
+<src:fragref linkend="apply-string-subst-map.frag"/>
 <src:fragref linkend="apply-character-map.frag"/>
 <src:fragref linkend="read-character-map.frag"/>
 <src:fragref linkend="count.uri.path.depth.frag"/>
