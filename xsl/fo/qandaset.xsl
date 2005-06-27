@@ -134,7 +134,7 @@
                                  and name(.) != 'titleabbrev'
                                  and name(.) != 'qandadiv'
                                  and name(.) != 'qandaentry']"/>
-    <fo:block start-indent="{count(ancestor::qandadiv)*2}pc">
+    <fo:block>
       <xsl:apply-templates select="qandadiv"/>
 
       <xsl:if test="qandaentry">
