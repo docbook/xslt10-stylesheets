@@ -45,7 +45,7 @@ profile-chunk-code.xsl: chunk-code.xsl ../profiling/xsl2profile.xsl
 
 clean:
 	$(RM) param.xml param.html param.xsl \
-              profile-docbook.xsl profile-chunk.xsl profile-onechunk.xsl \
-              titlepage.templates.xsl
+	profile-docbook.xsl profile-chunk-code.xsl \
+	titlepage.templates.xsl
 	$(RM) Makefile.param
 	echo "# foo" > Makefile.param
