@@ -1,5 +1,5 @@
 <!ENTITY man.hyphenate SYSTEM "../params/man.hyphenate.xml">
-<!ENTITY man.alignment SYSTEM "../params/man.alignment.xml">
+<!ENTITY man.justify SYSTEM "../params/man.justify.xml">
 <!ENTITY man.output.quietly SYSTEM "../params/man.output.quietly.xml">
 <!ENTITY man.output.encoding SYSTEM "../params/man.output.encoding.xml">
 <!ENTITY man.string.subst.map SYSTEM "../params/man.string.subst.map.xml">

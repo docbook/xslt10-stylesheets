@@ -1,21 +1,46 @@
-<refentry id="hyphenate">
+<refentry id="man.hyphenate">
 <refmeta>
 <refentrytitle>man.hyphenate</refentrytitle>
-
+<refmiscinfo role="type">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.hyphenate</refname>
-<refpurpose>Specifies hyphenation behavior for man-page output</refpurpose>
+<refpurpose>Enable hyphenation?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.hyphenate.frag'><xsl:param name="man.hyphenate">false</xsl:param></src:fragment>
+<src:fragment id='man.hyphenate.frag'>
+<xsl:param name="man.hyphenate">0</xsl:param></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
 
-<para>If the value of this parameter is <literal>true</literal>, words
-may be hyphenated in man output. Otherwise, they may not.</para>
+<para>If non-zero, hyphenation is enabled.</para>
+
+<note>
+<para>The default value for this parameter is zero because groff is
+not particularly smart about how it does hyphenation; it can end up
+hyphenating a lot of things that you don't want hyphenated (names of
+symbols, for example), and it is difficult and tiresome work to
+prevent it from doing that.</para>
+
+<para>That said, justified text can look very bad unless you also
+hyphenate it; to quote the "Hypenation" node from the groff info page:
+
+<blockquote>
+  <para><emphasis>Since the odds are not great for finding a set of
+  words, for every output line, which fit nicely on a line without
+  inserting excessive amounts of space between words, `gtroff'
+  hyphenates words so that it can justify lines without inserting too
+  much space between words.</emphasis></para>
+</blockquote>
+
+So, if you set a non-zero value for the
+<parameter>man.justify</parameter> parameter (to enable
+justification), then you should probably also set a non-zero value for
+<parameter>man.hyphenate</parameter> (to enable hyphenation).</para>
+</note>
+
 
 </refsect1>
 </refentry>

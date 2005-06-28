@@ -114,15 +114,27 @@
 </xsl:template>
 
 <xsl:template match="cmdsynopsis">
-  <xsl:text>.ad l&#10;</xsl:text>
-  <xsl:text>.hy 0&#10;</xsl:text>
+  <!-- * if justification is enabled by default, turn it off temporarily -->
+  <xsl:if test="$man.justify != 0">
+    <xsl:text>.ad l&#10;</xsl:text>
+  </xsl:if>
+  <!-- * if hyphenation is enabled by default, turn it off temporarily -->
+  <xsl:if test="$man.hyphenate != 0">
+    <xsl:text>.hy 0&#10;</xsl:text>
+  </xsl:if>
   <xsl:text>.HP </xsl:text>
   <xsl:value-of select="string-length (normalize-space (command)) + 1"/>
   <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>&#10;</xsl:text>
-  <xsl:text>.ad&#10;</xsl:text>
-  <xsl:text>.hy&#10;</xsl:text>
+  <!-- * if justification is enabled by default, turn it back on -->
+  <xsl:if test="$man.justify != 0">
+    <xsl:text>.ad&#10;</xsl:text>
+  </xsl:if>
+  <!-- * if hyphenation is enabled by default, turn it back on -->
+  <xsl:if test="$man.hyphenate != 0">
+    <xsl:text>.hy&#10;</xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="funcsynopsisinfo">
@@ -136,11 +148,23 @@
 <!-- * left-aligned filling for the duration of the synopsis, so that -->
 <!-- * line breaks only occur between separate paramdefs. -->
 <xsl:template match="funcsynopsis">
-  <xsl:text>.ad l&#10;</xsl:text>
-  <xsl:text>.hy 0&#10;</xsl:text>
+  <!-- * if justification is enabled by default, turn it off temporarily -->
+  <xsl:if test="$man.justify != 0">
+    <xsl:text>.ad l&#10;</xsl:text>
+  </xsl:if>
+  <!-- * if hyphenation is enabled by default, turn it off temporarily -->
+  <xsl:if test="$man.hyphenate != 0">
+    <xsl:text>.hy 0&#10;</xsl:text>
+  </xsl:if>
   <xsl:apply-templates/>
-  <xsl:text>.ad&#10;</xsl:text>
-  <xsl:text>.hy&#10;</xsl:text>
+  <!-- * if justification is enabled by default, turn it back on -->
+  <xsl:if test="$man.justify != 0">
+    <xsl:text>.ad&#10;</xsl:text>
+  </xsl:if>
+  <!-- * if hyphenation is enabled by default, turn it back on -->
+  <xsl:if test="$man.hyphenate != 0">
+    <xsl:text>.hy&#10;</xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="funcprototype">
