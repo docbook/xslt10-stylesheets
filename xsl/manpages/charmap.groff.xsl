@@ -1697,10 +1697,16 @@
    u:block="General Punctuation"
    u:class="dashes"
    />
+  <!-- * although the groff docs do not make it clear, testing -->
+  <!-- * indicates that the only reliable way to make a non-breaking -->
+  <!-- * hyphen is to put just a backslash in front of it. -->
+  <!-- * -->
+  <!-- * based on testing, it also appears that no character is needed -->
+  <!-- * after the hyphen in order to make it non-breaking -->
   <xsl:output-character
    character="&#x2011;"
    u:name="NON-BREAKING HYPHEN"
-   string="\&amp;-\&amp;"
+   string="\-"
    u:block="General Punctuation"
    u:class="dashes"
    />
