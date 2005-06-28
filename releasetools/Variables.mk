@@ -11,12 +11,19 @@
 CATALOGMANAGER=$(DOCBOOK_CVS)/releasetools/.CatalogManager.properties.example
 INSTALL_SH=$(DOCBOOK_CVS)/releasetools/install.sh
 
-# stylesheet for generating release notes
+# stylesheet for generating HTML version of release notes
 DOC-LINK-STYLE=$(DOCBOOK_CVS)/xsl/docsrc/doc-link-docbook.xsl
+
+# stylesheet for generating FO version of release notes
+FO-STYLE=$(DOCBOOK_CVS)/xsl/fo/docbook.xsl
 
 # browser to use for making text version of release notes
 BROWSER=w3m
 BROWSER_OPTS=-dump
+
+# XSL-FO engine to use for coverting XSL-FO output to PDF
+FO_ENGINE=xep
+FO_ENGINE_OPTS=
 
 # file containing "What's New" info generated from CVS log
 NEWSFILE=NEWS
@@ -84,7 +91,8 @@ ZIP_EXCLUDES = \
  MANIFEST.build \
  Makefile$$ \
  Makefile[.] \
- README\.CVS
+ README\.CVS \
+ .*\.fo$$
 
 # list of executables that are included in all distributions
 EXECUTABLES = install.sh
