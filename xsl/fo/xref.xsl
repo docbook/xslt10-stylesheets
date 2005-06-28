@@ -32,6 +32,18 @@
     <xsl:with-param name="linkend" select="@linkend"/>
   </xsl:call-template>
 
+  <xsl:variable name="xrefstyle">
+    <xsl:choose>
+      <xsl:when test="@role and not(@xrefstyle) 
+                      and $use.role.as.xrefstyle != 0">
+        <xsl:value-of select="@role"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="@xrefstyle"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="$refelem=''">
       <xsl:message>
@@ -80,16 +92,7 @@
                      xsl:use-attribute-sets="xref.properties">
         <xsl:apply-templates select="$target" mode="xref-to">
           <xsl:with-param name="referrer" select="."/>
-          <xsl:with-param name="xrefstyle">
-            <xsl:choose>
-              <xsl:when test="@role and not(@xrefstyle) and $use.role.as.xrefstyle != 0">
-                <xsl:value-of select="@role"/>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:value-of select="@xrefstyle"/>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:with-param>
+          <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
         </xsl:apply-templates>
       </fo:basic-link>
 
@@ -101,18 +104,15 @@
   </xsl:choose>
 
   <!-- Add standard page reference? -->
-  <xsl:if test="not(starts-with(normalize-space(@xrefstyle), 'select:') 
-                and (contains(@xrefstyle, 'page')
-                     or contains(@xrefstyle, 'Page')))
+  <xsl:if test="not(starts-with(normalize-space($xrefstyle), 'select:') 
+                and (contains($xrefstyle, 'page')
+                     or contains($xrefstyle, 'Page')))
                 and ( $insert.xref.page.number = 'yes' 
                    or $insert.xref.page.number = '1')
                 or local-name($target) = 'para'">
-    <fo:basic-link internal-destination="{@linkend}"
-                   xsl:use-attribute-sets="xref.properties">
-      <xsl:apply-templates select="$target" mode="page.citation">
-        <xsl:with-param name="id" select="@linkend"/>
-      </xsl:apply-templates>
-    </fo:basic-link>
+    <xsl:apply-templates select="$target" mode="page.citation">
+      <xsl:with-param name="id" select="@linkend"/>
+    </xsl:apply-templates>
   </xsl:if>
 </xsl:template>
 
@@ -1154,16 +1154,19 @@
 <xsl:template match="*" mode="page.citation">
   <xsl:param name="id" select="'???'"/>
 
-  <fo:inline keep-together.within-line="always">
-    <xsl:call-template name="substitute-markup">
-      <xsl:with-param name="template">
-        <xsl:call-template name="gentext.template">
-          <xsl:with-param name="name" select="'page.citation'"/>
-          <xsl:with-param name="context" select="'xref'"/>
-        </xsl:call-template>
-      </xsl:with-param>
-    </xsl:call-template>
-  </fo:inline>
+  <fo:basic-link internal-destination="{$id}"
+                 xsl:use-attribute-sets="xref.properties">
+    <fo:inline keep-together.within-line="always">
+      <xsl:call-template name="substitute-markup">
+        <xsl:with-param name="template">
+          <xsl:call-template name="gentext.template">
+            <xsl:with-param name="name" select="'page.citation'"/>
+            <xsl:with-param name="context" select="'xref'"/>
+          </xsl:call-template>
+        </xsl:with-param>
+      </xsl:call-template>
+    </fo:inline>
+  </fo:basic-link>
 </xsl:template>
 
 <xsl:template match="*" mode="pagenumber.markup">
