@@ -2552,14 +2552,24 @@
   <xsl:output-character
    character="&#x2120;"
    u:name="SERVICE MARK"
-   string="sm"
+   string="(SM)"
    u:block="Letterlike Symbols"
    />
+  <!-- * We don't do "\(tm" for &#x2122; because for console output, groff -->
+  <!-- * just renders that as "tm", without any preceding space, parens, -->
+  <!-- * or anything. So it just gets run into the preceding word; i.e.: -->
+  <!-- * -->
+  <!-- *  Product&#x2122; -> Producttm -->
+  <!-- * -->
+  <!-- * That it probably not what most people would want. So we just -->
+  <!-- * render it as (TM) instead, Thus: -->
+  <!-- * -->
+  <!-- *  Product&#x2122; -> Product(TM) -->
   <xsl:output-character
    character="&#x2122;"
    u:name="TRADE MARK SIGN"
    u:entity="trade"
-   string="\(tm"
+   string="(TM)"
    u:block="Letterlike Symbols"
    />
   <xsl:output-character
