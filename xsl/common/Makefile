@@ -76,4 +76,4 @@ zh_tw.xml: ../../gentext/locale/zh_tw.xml $(GENSTYLE)
 	$(XSLT) ../../gentext/locale/en.xml ../../gentext/xsl/xsl.xsl $@ locale.file=$@
 
 clean:
-	rm -f *.ent *.xml
+	$(RM) $(SOURCES)
