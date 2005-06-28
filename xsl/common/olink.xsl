@@ -1004,6 +1004,19 @@
     <xsl:value-of select="substring-before($olink.key, '/')"/>
   </xsl:variable>
 
+  <xsl:variable name="targetptr">
+    <xsl:value-of 
+          select="substring-before(substring-after($olink.key, '/'), '/')"/>
+  </xsl:variable>
+
+  <!-- Don't add docname if pointing to root element -->
+  <xsl:variable name="rootptr">
+    <xsl:for-each select="$target.database" >
+      <xsl:value-of 
+             select="key('targetdoc-key', $targetdoc)/div[1]/@targetptr" />
+    </xsl:for-each>
+  </xsl:variable>
+
   <xsl:variable name="docname">
     <xsl:for-each select="$target.database" >
       <xsl:value-of 
@@ -1015,6 +1028,7 @@
               and (contains($xrefstyle, 'docname')))
               and ($olink.doctitle = 'yes' or $olink.doctitle = '1')
               and $current.docid != '' 
+              and $rootptr != $targetptr
               and $current.docid != $targetdoc
               and $docname != ''">
     <xsl:call-template name="substitute-markup">
