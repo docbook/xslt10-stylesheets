@@ -28,7 +28,7 @@ relative-catalogs=yes
 # messages. The higher the number, the more messages.
 # Example: verbosity = [0..99]
 
-verbosity=2
+verbosity=0
 
 #######################################################################
 # Prefer:
