@@ -19,7 +19,7 @@
     </copyright>
   </bookinfo>
 
-  <preface>
+  <preface id="preface">
     <title>Introduction</title>
 
     <para>This is reference documentation for all user-configurable
@@ -30,7 +30,7 @@
 
   <reference id="general">
   <title>General</title>
-&man.alignment;
+&man.justify;
 &man.hyphenate;
 &man.output.quietly;
 &man.output.encoding;
@@ -43,7 +43,7 @@
 &man.charmap.use.subset;
 &man.charmap.subset.profile;
   </reference>
-  <appendix>
+  <appendix id="stylesheet">
     <title>The Stylesheet</title>
 
     <para>The <filename>param.xsl</filename> stylesheet is just a
@@ -66,7 +66,7 @@
 
      ******************************************************************** -->
 
-<src:fragref linkend="man.alignment.frag"/>
+<src:fragref linkend="man.justify.frag"/>
 <src:fragref linkend="man.hyphenate.frag"/>
 <src:fragref linkend="man.output.quietly.frag"/>
 <src:fragref linkend="man.output.encoding.frag"/>

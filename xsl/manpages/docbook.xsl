@@ -112,9 +112,13 @@
     <!-- * Assemble the various parts into a complete page, then store into -->
     <!-- * $manpage.contents so that we can manipluate them further. -->
     <xsl:variable name="manpage.contents">
+      <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!-- * top.comment = commented-out section at top of roff source -->
+      <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <xsl:call-template name="top.comment"/>
+      <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!-- * TH.title.line = title line in header/footer of man page -->
+      <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <xsl:call-template name="TH.title.line">
         <!-- * .TH "TITLE" "SECTION" "extra1" "extra2" "extra3" -->
         <!-- *  -->
@@ -134,9 +138,27 @@
         <xsl:with-param name="extra2"  select="$metadata/versionorname"/>
         <xsl:with-param name="extra3"  select="$metadata/othermetadata"/>
       </xsl:call-template>
-      <!-- * main body of man page -->
+      <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!-- * Now deal with setting default hyphenation and justification -->
+      <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!-- * -->
+      <!-- * If the value of man.hypenate is zero (the default), then -->
+      <!-- * disable hyphenation (".nh" means "no hyphenation", I guess) -->
+      <xsl:if test="$man.hyphenate = 0">
+        <xsl:text>.nh&#10;</xsl:text>
+      </xsl:if>
+      <!-- * If the value of man.justify is zero (the default), then -->
+      <!-- * disable justification (".ad l" means "adjust to left only" -->
+      <xsl:if test="$man.justify = 0">
+        <xsl:text>.ad l&#10;</xsl:text>
+      </xsl:if>
+      <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!-- * Main body of man page -->
+      <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <xsl:apply-templates/>
+      <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!-- * AUTHOR section (at end of man page) -->
+      <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <xsl:call-template name="author.section">
         <xsl:with-param name="info" select="$info"/>
         <xsl:with-param name="parentinfo" select="$parentinfo"/>
