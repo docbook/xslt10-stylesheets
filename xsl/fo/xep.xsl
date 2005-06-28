@@ -18,7 +18,7 @@
 
 <xsl:template name="xep-document-information">
   <rx:meta-info>
-    <xsl:variable name="authors" select="(//author|//editor|//authorgroup)[1]"/>
+    <xsl:variable name="authors" select="(//author|//editor|//corpauthor|//authorgroup)[1]"/>
     <xsl:if test="$authors">
       <xsl:element name="rx:meta-field">
         <xsl:attribute name="name">author</xsl:attribute>
@@ -28,6 +28,9 @@
               <xsl:call-template name="person.name.list">
                 <xsl:with-param name="person.list" select="$authors/*[self::author|self::corpauthor|self::othercredit|self::editor]"/>
               </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$authors[self::corpauthor]">
+              <xsl:value-of select="$authors"/>
             </xsl:when>
             <xsl:otherwise>
               <xsl:call-template name="person.name">
@@ -43,6 +46,14 @@
       <xsl:apply-templates select="/*[1]" mode="label.markup"/>
       <xsl:apply-templates select="/*[1]" mode="title.markup"/>
     </xsl:variable>
+
+    <xsl:element name="rx:meta-field">
+      <xsl:attribute name="name">creator</xsl:attribute>
+      <xsl:attribute name="value">
+        <xsl:text>DocBook XSL Stylesheets V</xsl:text>
+        <xsl:value-of select="$VERSION"/>
+      </xsl:attribute>
+    </xsl:element>
 
     <xsl:element name="rx:meta-field">
       <xsl:attribute name="name">title</xsl:attribute>
