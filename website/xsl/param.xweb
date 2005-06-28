@@ -747,13 +747,13 @@ around all these parameters.</para>
 
      ******************************************************************** -->
 
+<src:fragref linkend='autolayout-file.frag'/>
 <src:fragref linkend='header.hr.frag'/>
 <src:fragref linkend='footer.hr.frag'/>
 <src:fragref linkend='feedback.href.frag'/>
 <src:fragref linkend='feedback.with.ids.frag'/>
 <src:fragref linkend='feedback.link.text.frag'/>
 <src:fragref linkend='filename-prefix.frag'/>
-<src:fragref linkend='feedback.href.frag'/>
 <src:fragref linkend='output-root.frag'/>
 <src:fragref linkend='dry-run.frag'/>
 <src:fragref linkend='rebuild-all.frag'/>
