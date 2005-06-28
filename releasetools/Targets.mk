@@ -4,11 +4,14 @@
 # $Id$
 
 RELEASE-NOTES.html: RELEASE-NOTES.xml
-	$(XJPARSE) $<
 	$(XSLT) $< $(DOC-LINK-STYLE) $@
 
 RELEASE-NOTES.txt: RELEASE-NOTES.html
 	$(BROWSER) $(BROWSER_OPTS) $< > $@
+
+RELEASE-NOTES.pdf: RELEASE-NOTES.xml
+	$(XSLT) $< $(FO-STYLE) $@ -output $(basename $<).fo $(FO_ENGINE).extensions=1 \
+	&& $(FO_ENGINE) $(FO_ENGINE_OPTS) $(basename $<).fo
 
 .CatalogManager.properties.example:
 	cp -p $(CATALOGMANAGER) .CatalogManager.properties.example
@@ -21,7 +24,7 @@ RELEASE-NOTES.txt: RELEASE-NOTES.html
 install.sh: .CatalogManager.properties.example .urilist
 	cp -p $(INSTALL_SH) install.sh
 
-distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt $(NEWSFILE) install.sh
+distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE) install.sh
 
 $(NEWSFILE):
 	$(CVS2LOG) -w
@@ -171,6 +174,8 @@ release-clean: clean
 	rm -f NEWS
 	rm -f RELEASE-NOTES.txt
 	rm -f RELEASE-NOTES.html
+	rm -f RELEASE-NOTES.fo
+	rm -f RELEASE-NOTES.pdf
 	rm -f install.sh
 	rm -f .CatalogManager.properties.example
 	rm -f .urilist
