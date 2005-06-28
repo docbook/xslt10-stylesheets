@@ -783,7 +783,7 @@ and preserving the delimiters as text nodes between the tokens.</para>
           <xsl:with-param name="string" select="$content" />
           <xsl:with-param name="target" 
                           select="$map.contents[1]/@oldstring" />
-          <xsl:with-param name="newstring" 
+          <xsl:with-param name="replacement" 
                           select="$map.contents[1]/@newstring" />
         </xsl:call-template>
       </xsl:variable>
