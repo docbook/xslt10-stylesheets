@@ -32,7 +32,12 @@ character map. The profile of the subset used is specified by the
   not. For example, if you set it and run it with xsltproc, it seems
   to dramatically increase processing time; on the other hand, if you
   set it and run it with Saxon, it does not seem to increase
-  processing time significantly</para>
+  processing time nearly as much.</para>
+
+  <para>If processing time is not a important concern and/or you can
+  tolerate the increase in processing time imposed by using the full
+  character map, set <parameter>man.charmap.use.subset</parameter> to
+  zero.</para>
 </note>
 
 <refsect2>
