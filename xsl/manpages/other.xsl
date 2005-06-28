@@ -38,16 +38,21 @@
 <!-- ==================================================================== -->
 
   <xsl:template name="TH.title.line">
-    
-    <!-- * FYI: Here is how the .TH contents show up in a rendered man page: -->
+
+    <!-- * The exact way that .TH contents are displayed is system- -->
+    <!-- * dependent; it varies somewhat between OSes and roff -->
+    <!-- * versions. Below is a description of how Linux systems with -->
+    <!-- * a modern groff seem to render .TH contents. -->
     <!-- * -->
     <!-- *   title(section)      extra3      title(section)  <- page header -->
     <!-- * -->
     <!-- *   extra2              extra1      title(section)  <- page footer-->
     <!-- * -->
     <!-- * Note the while extra1, extra2, and extra3 are all optional, almost all -->
-    <!-- * pages include an "extra1", which is almost always a date. -->
-
+    <!-- * pages include an "extra1", which is almost always a date, -->
+    <!-- * and it is almost always rendered in the same place (the -->
+    <!-- * middle column of the footer), across all OSes and roff versions. -->
+    <!-- * -->
     <!-- * Here are a couple of examples of real-world man pages that have -->
     <!-- * useful page headers/footers: -->
     <!-- * -->
@@ -111,6 +116,7 @@
           <xsl:with-param name="filename"
                           select="concat(normalize-space(.), '.',
                                   $metadata/section)"/>
+          <xsl:with-param name="quiet" select="$man.output.quietly"/>
           <xsl:with-param
               name="content"
               select="concat('.so man', $metadata/section, '/',
