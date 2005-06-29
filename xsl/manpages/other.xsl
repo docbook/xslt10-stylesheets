@@ -100,7 +100,7 @@
     <!-- * If the value of man.hypenate is zero (the default), then -->
     <!-- * disable hyphenation (".nh" = "no hyphenation") -->
     <xsl:if test="$man.hyphenate = 0">
-      <xsl:text>.\" disable hypenation&#10;</xsl:text>
+      <xsl:text>.\" disable hyphenation&#10;</xsl:text>
       <xsl:text>.nh&#10;</xsl:text>
     </xsl:if>
     <!-- * If the value of man.justify is zero (the default), then -->
