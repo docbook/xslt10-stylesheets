@@ -48,13 +48,7 @@
   <xsl:template match="refsynopsisdiv">
     <xsl:call-template name="mark.subheading"/>
     <xsl:text>.SH "</xsl:text>
-    <xsl:call-template name="string.upper">
-      <xsl:with-param name="string">
-        <xsl:call-template name="gentext">
-          <xsl:with-param name="key" select="'RefSynopsisDiv'"/>
-        </xsl:call-template>
-      </xsl:with-param>
-    </xsl:call-template>
+    <xsl:apply-templates select="." mode="title.markup"/>
     <xsl:text>"&#10;</xsl:text>
     <xsl:call-template name="mark.subheading"/>
     <xsl:apply-templates/>
@@ -64,7 +58,10 @@
     <xsl:call-template name="mark.subheading"/>
     <xsl:text>.SH "</xsl:text>
     <xsl:call-template name="string.upper">
-      <xsl:with-param name="string" select="title"/>
+      <xsl:with-param name="string" select="(info/title
+                                            |refsectioninfo/title
+                                            |refsect1info/title
+                                            |title)[1]"/>
     </xsl:call-template>
     <xsl:text>"&#10;</xsl:text>
     <xsl:call-template name="mark.subheading"/>
@@ -74,7 +71,10 @@
   <xsl:template match="refsect2|refentry/refsection/refsection">
     <xsl:call-template name="mark.subheading"/>
     <xsl:text>.SS "</xsl:text>
-    <xsl:value-of select="title[1]"/>
+    <xsl:value-of select="(info/title
+                          |refsectioninfo/title
+                          |refsect1info/title
+                          |title)[1]"/>
     <xsl:text>"&#10;</xsl:text>
     <xsl:call-template name="mark.subheading"/>
     <xsl:apply-templates/>
@@ -114,8 +114,13 @@
     <xsl:call-template name="string.upper">
       <xsl:with-param name="string">
         <xsl:choose>
-          <xsl:when test="title">
-            <xsl:apply-templates select="title" mode="title.markup">
+          <xsl:when test="info/title
+                          |refsynopsisdivinfo/title
+                          |title">
+            <xsl:apply-templates
+                select="(info/title
+                        |refsynopsisdivinfo/title
+                        |title)[1]" mode="title.markup">
               <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
             </xsl:apply-templates>
           </xsl:when>

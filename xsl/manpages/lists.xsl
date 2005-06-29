@@ -79,7 +79,6 @@
 
 <xsl:template match="varlistentry/listitem|glossdef">
   <xsl:apply-templates/>
-  <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="itemizedlist/listitem">
