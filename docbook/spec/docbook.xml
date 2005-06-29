@@ -1,6 +1,6 @@
 <!DOCTYPE article [
 <!ENTITY name "wd-docbook-docbook">
-<!ENTITY version "4.5b1">
+<!ENTITY version "4.5CR1">
 <!ENTITY standard "Working Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
@@ -34,7 +34,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>5 May 2005</pubdate>
+<pubdate>29 June 2005</pubdate>
 
 <copyright>
 <year>2001</year>
@@ -144,12 +144,26 @@ document.</para>
 from the
 <ulink url="http://www.oasis-open.org/docbook/">DocBook site</ulink> at
 <ulink url="http://www.oasis-open.org/">OASIS</ulink>.
-DocBook is also available from
-the mirror on
+It is also available in <ulink url="&root;rng/">RELAX NG</ulink> and
+<ulink url="&root;xsd/">W3C XML Schema</ulink> formats.
+The DocBook site is mirrored on
 <ulink url="http://docbook.org/"/>.
 </para>
 
-<section id="s.cs">
+<section id="s.cr1">
+<title>Changes in DocBook V4.5CR1</title>
+
+<para>There are no backwards-incompatible changes in this release.
+</para>
+
+<para>Each of the changes made between DocBook V4.5b1 and DocBook V4.5CR1
+is summarized here. For complete details, consult the individual RFEs and
+the <ulink url="&root;minutes">meeting minutes</ulink>.</para>
+
+<para>There are no technical changes in DocBook V4.5CR1.</para>
+</section>
+
+<section id="s.b1">
 <title>Changes in DocBook V4.5b1</title>
 
 <para>There are no backwards-incompatible changes in this release.
@@ -512,8 +526,12 @@ of the DocBook web page
 
 <para>
 <revhistory>
+<revision role="&root;specs/wd-docbook-docbook-4.5CR1.html">
+  <revnumber>Working Draft CR1</revnumber>
+  <date>29 June 2005</date>
+</revision>
 <revision role="&root;specs/wd-docbook-docbook-4.5b1.html">
-  <revnumber>Working Draft</revnumber>
+  <revnumber>Working Draft b1</revnumber>
   <date>05 May 2005</date>
 </revision>
 </revhistory>
