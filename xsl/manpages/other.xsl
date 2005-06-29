@@ -72,6 +72,7 @@
     <xsl:param name="extra2"/>
     <xsl:param name="extra3"/>
 
+    <xsl:call-template name="mark.subheading"/>
     <xsl:text>.TH "</xsl:text>
     <xsl:call-template name="string.upper">
       <xsl:with-param name="string">
@@ -88,6 +89,7 @@
     <xsl:text>" "</xsl:text>
     <xsl:value-of select="normalize-space($extra3)"/>
     <xsl:text>"&#10;</xsl:text>
+    <xsl:call-template name="mark.subheading"/>
   </xsl:template>
 
   <!-- ============================================================== -->

@@ -16,13 +16,11 @@
 
 <xsl:template match="caution|important|note|tip|warning">
   <xsl:call-template name="nested-section-title"/>
-  <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
 </xsl:template> 
 
 <xsl:template match="formalpara">
   <xsl:call-template name="nested-section-title"/>
-  <xsl:text>&#10;</xsl:text>
   <xsl:text>.RS 3&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>.RE&#10;</xsl:text>
@@ -43,18 +41,18 @@
 </xsl:template>
 
 <xsl:template match="address|literallayout|programlisting|screen|synopsis">
-  <!-- Yes, address and synopsis are verbatim environments. -->
+  <!-- * Yes, address and synopsis are verbatim environments. -->
 
   <xsl:choose>
-    <!-- Check to see if this verbatim item is within a parent element that -->
-    <!-- allows mixed content. -->
-    
-    <!-- If it is within a mixed-content parent, then a line break is -->
-    <!-- already added before it by the mixed-block template, so we don't -->
-    <!-- need to add one here. -->
-    
-    <!-- If it is not within a mixed-content parent, then we need to add a -->
-    <!-- line break before it. -->
+    <!-- * Check to see if this verbatim item is within a parent element that -->
+    <!-- * allows mixed content. -->
+    <!-- * -->
+    <!-- * If it is within a mixed-content parent, then a line break is -->
+    <!-- * already added before it by the mixed-block template, so we don't -->
+    <!-- * need to add one here. -->
+    <!-- * -->
+    <!-- * If it is not within a mixed-content parent, then we need to add a -->
+    <!-- * line break before it. -->
     <xsl:when test="parent::caption|parent::entry|parent::para|
                     parent::td|parent::th" /> <!-- do nothing -->
     <xsl:otherwise>

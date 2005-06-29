@@ -13,6 +13,9 @@
 
      ******************************************************************** -->
 
+<xsl:param name="man.subheading.divider"
+>========================================================================</xsl:param>
+
 <!-- ==================================================================== -->
 
 <!-- * This file contains named and "non element" templates that are -->
@@ -107,9 +110,12 @@
         </xsl:otherwise>
       </xsl:choose></bold>
     </xsl:variable>
+    <xsl:call-template name="mark.subheading"/>
     <xsl:apply-templates mode="bold" select="exsl:node-set($title.wrapper)"/>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:call-template name="mark.subheading"/>
   </xsl:template>
-
+  
   <!-- ================================================================== -->
 
   <!-- * The mixed-block template jumps through a few hoops to deal with -->
@@ -230,4 +236,16 @@
     </xsl:choose>
   </xsl:template>
 
+  <!-- ================================================================== -->
+  
+  <!-- * Put a horizontal rule or other divider around section titles -->
+  <!-- * in roff source (just to make things easier to read). -->
+  <xsl:template name="mark.subheading">
+    <xsl:if test="$man.subheading.divider != ''">
+      <xsl:text>.\" </xsl:text>
+      <xsl:value-of select="$man.subheading.divider"/>
+      <xsl:text>&#10;</xsl:text>
+    </xsl:if>
+  </xsl:template>
+  
 </xsl:stylesheet>
