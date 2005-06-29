@@ -12,13 +12,14 @@
 
      ******************************************************************** -->
 
-<!-- * This file contains named templates for generating content other than -->
-<!-- * what appears in the main text flow of each man page. This "other" -->
-<!-- * stuff currently amounts to: -->
+<!-- * This file contains named templates that are related to things -->
+<!-- * other than just generating the actual text of the main text flow -->
+<!-- * of each man page. This "other" stuff currently amounts to: -->
 <!-- * -->
-<!-- *  - a commented-out section in top part of roff source of each page -->
-<!-- *  - the .TH title line for controlling the page header/footer -->
-<!-- *  - any related "stub" pages (which end up getting read by soelim(1) -->
+<!-- *  - adding a comment to top part of roff source of each page -->
+<!-- *  - making a .TH title line (for controlling page header/footer) -->
+<!-- *  - setting hyphenation, alignment, & line-breaking defaults -->
+<!-- *  - writing any related "stub" pages -->
 
 <!-- ==================================================================== -->
 
@@ -71,16 +72,13 @@
     <xsl:param name="extra2"/>
     <xsl:param name="extra3"/>
 
-    <!-- * FIXME: th.title.max.length needs to be made into a documented -->
-    <!-- * user-configurable parameter -->
-    <xsl:variable name="th.title.max.length" select="'20'"/>
-
     <xsl:text>.TH "</xsl:text>
-    <xsl:value-of select="translate(
-                          substring($title, 1, $th.title.max.length),
-                          'abcdefghijklmnopqrstuvwxyz',
-                          'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-                          )"/>
+    <xsl:call-template name="string.upper">
+      <xsl:with-param name="string">
+        <!-- * truncate title if it exceeds max. length (user-configurable) -->
+        <xsl:value-of select="substring($title, 1, $man.th.title.max.length)"/>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:text>" </xsl:text>
     <xsl:value-of select="$section"/>
     <xsl:text> "</xsl:text>
@@ -90,6 +88,33 @@
     <xsl:text>" "</xsl:text>
     <xsl:value-of select="normalize-space($extra3)"/>
     <xsl:text>"&#10;</xsl:text>
+  </xsl:template>
+
+  <!-- ============================================================== -->
+
+  <xsl:template name="set.default.formatting">
+    <!-- * Set default hyphenation, justification, and line-breaking -->
+    <!-- * -->
+    <!-- * If the value of man.hypenate is zero (the default), then -->
+    <!-- * disable hyphenation (".nh" = "no hyphenation") -->
+    <xsl:if test="$man.hyphenate = 0">
+      <xsl:text>.\" disable hypenation&#10;</xsl:text>
+      <xsl:text>.nh&#10;</xsl:text>
+    </xsl:if>
+    <!-- * If the value of man.justify is zero (the default), then -->
+    <!-- * disable justification (".ad l" means "adjust to left only") -->
+    <xsl:if test="$man.justify = 0">
+      <xsl:text>.\" disable justification</xsl:text>
+      <xsl:text> (adjust text to left margin only)&#10;</xsl:text>
+      <xsl:text>.ad l&#10;</xsl:text>
+    </xsl:if>
+    <!-- * Unless the value of man.break.after.slash is zero (the -->
+    <!-- * default), tell groff that it is OK to break a line -->
+    <!-- * after a slash when needed. -->
+    <xsl:if test="$man.break.after.slash != 0">
+      <xsl:text>.\" enable line breaks after slashes&#10;</xsl:text>
+      <xsl:text>.cflags 4 /&#10;</xsl:text>
+    </xsl:if>
   </xsl:template>
 
   <!-- ============================================================== -->

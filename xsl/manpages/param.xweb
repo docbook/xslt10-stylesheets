@@ -30,11 +30,13 @@
 
   <reference id="general">
   <title>General</title>
-&man.justify;
+&man.break.after.slash;
 &man.hyphenate;
+&man.justify;
 &man.output.quietly;
 &man.output.encoding;
 &man.string.subst.map;
+&man.th.title.max.length;
   </reference>
   <reference id="charmap">
   <title>Character map</title>
@@ -66,8 +68,9 @@
 
      ******************************************************************** -->
 
-<src:fragref linkend="man.justify.frag"/>
+<src:fragref linkend="man.break.after.slash.frag"/>
 <src:fragref linkend="man.hyphenate.frag"/>
+<src:fragref linkend="man.justify.frag"/>
 <src:fragref linkend="man.output.quietly.frag"/>
 <src:fragref linkend="man.output.encoding.frag"/>
 <src:fragref linkend="man.string.subst.map.frag"/>
@@ -75,6 +78,7 @@
 <src:fragref linkend="man.charmap.uri.frag"/>
 <src:fragref linkend="man.charmap.use.subset.frag"/>
 <src:fragref linkend="man.charmap.subset.profile.frag"/>
+<src:fragref linkend="man.th.title.max.length.frag"/>
 </xsl:stylesheet>
     </src:fragment>
 
