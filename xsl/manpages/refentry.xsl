@@ -20,6 +20,7 @@
         <!-- no title on secondary refnamedivs! -->
       </xsl:when>
       <xsl:otherwise>
+        <xsl:call-template name="mark.subheading"/>
         <xsl:text>.SH "</xsl:text>
         <xsl:call-template name="string.upper">
           <xsl:with-param name="string">
@@ -32,6 +33,7 @@
       </xsl:otherwise>
     </xsl:choose>
     <xsl:text>&#10;</xsl:text>
+    <xsl:call-template name="mark.subheading"/>
     <xsl:for-each select="refname">
       <xsl:if test="position()>1">
         <xsl:text>, </xsl:text>
@@ -44,6 +46,7 @@
   </xsl:template>
 
   <xsl:template match="refsynopsisdiv">
+    <xsl:call-template name="mark.subheading"/>
     <xsl:text>.SH "</xsl:text>
     <xsl:call-template name="string.upper">
       <xsl:with-param name="string">
@@ -53,28 +56,32 @@
       </xsl:with-param>
     </xsl:call-template>
     <xsl:text>"&#10;</xsl:text>
+    <xsl:call-template name="mark.subheading"/>
     <xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match="refsect1|refentry/refsection">
+    <xsl:call-template name="mark.subheading"/>
     <xsl:text>.SH "</xsl:text>
     <xsl:call-template name="string.upper">
       <xsl:with-param name="string" select="title"/>
     </xsl:call-template>
     <xsl:text>"&#10;</xsl:text>
+    <xsl:call-template name="mark.subheading"/>
     <xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match="refsect2|refentry/refsection/refsection">
+    <xsl:call-template name="mark.subheading"/>
     <xsl:text>.SS "</xsl:text>
     <xsl:value-of select="title[1]"/>
     <xsl:text>"&#10;</xsl:text>
+    <xsl:call-template name="mark.subheading"/>
     <xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match="refsect3|refsection">
     <xsl:call-template name="nested-section-title"/>
-    <xsl:text>&#10;</xsl:text>
     <xsl:text>.RS 3&#10;</xsl:text>
     <xsl:apply-templates/>
     <xsl:text>.RE&#10;</xsl:text>
