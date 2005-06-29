@@ -1,6 +1,6 @@
 <!DOCTYPE article [
 <!ENTITY name "wd-docbook-docbook">
-<!ENTITY version "5.0b1">
+<!ENTITY version "5.0a1">
 <!ENTITY standard "Working Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
@@ -34,22 +34,30 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>09 Jul 2004</pubdate>
+<pubdate>29 June 2005</pubdate>
 
-<copyright><year>2001</year><year>2002</year><year>2003</year><year>2004</year>
-<holder>
-The Organization for the Advancement of Structured Information
-Standards [OASIS]. All Rights Reserved.
-</holder></copyright>
+<copyright>
+<year>2001</year><year>2002</year><year>2003</year>
+<year>2004</year><year>2005</year>
+<holder>The Organization for the Advancement of Structured Information
+Standards [OASIS]. All Rights Reserved. </holder></copyright>
 
 <abstract><title>Abstract</title>
 <para>DocBook is general purpose <xref linkend="xml-rec"/> schema
 particularly well suited to books and papers about computer hardware
 and software (though it is by no means limited to these applications).
 </para>
-<para>The Version 5.0 release is a complete rewrite of DocBook in RELAX NG.
-Although other forms will also be provided, including W3C XML Schema and
-XML and SGML DTDs, the RELAX NG Schema is now the normative schema.</para>
+<para>The Version 5.0 release is a complete rewrite of DocBook in
+RELAX NG. The intent of this rewrite is to produce a schema that is
+true to the spirit of DocBook while simultaneously removing
+inconsistencies that have arisen as a natural consequence of DocBook's
+long, slow evolution. The Technical Committee has taken this
+opportunity to simplify a number of content models and tighten
+constraints where RELAX NG makes that possible.
+</para>
+<para>The Technical Committee provides the DocBook 5.0 schema in other
+schema languages, including W3C XML Schema and an
+XML DTD, but the RELAX NG Schema is now the normative schema.</para>
 </abstract>
 
 <legalnotice role="status"><title>Status</title>
@@ -93,10 +101,13 @@ linkend="relaxng"/> Schema. W3C XML Schema and Document Type
 Definition (DTD) versions are also available.
 </para>
 
-<para>The Version 5.0 release is a complete rewrite. It introduces
-a large number of backwards-incompatible changes. Essentially all 
-DocBook V4.x documents will have to be modified to validate against
-DocBook V5.0. An XSLT 1.0 stylesheet is provided to ease this transition.</para>
+<para>The Version 5.0 release is a complete rewrite. In
+programming-language terms, think of it as a code refactoring.</para>
+
+<para>This rewrite introduces a large number of backwards-incompatible
+changes. Essentially all DocBook V4.x documents will have to be
+modified to validate against DocBook V5.0. An XSLT 1.0 stylesheet is
+provided to ease this transition.</para>
 
 <para>The DocBook Technical Committee welcomes bug reports and
 requests for enhancement (RFEs) from the user community. The current list
@@ -130,16 +141,17 @@ document.</para>
 <para>The DocBook <ulink url="&root;rng/">RELAX NG Schema</ulink> is distributed
 from the
 <ulink url="http://www.oasis-open.org/docbook/">DocBook site</ulink> at
-<ulink url="http://www.oasis-open.org/">OASIS</ulink>. DocBook is also available from
-the mirror on
+<ulink url="http://www.oasis-open.org/">OASIS</ulink>.
+DocBook is also available from the mirror on
 <ulink url="http://docbook.org/"/>.
 </para>
 
 <section id="s.cs">
 <title>Changes in DocBook V5.0</title>
 
-<para>In V5.0, DocBook has been redesigned as a native RELAX NG
-grammar. The goals of this redesign were to produce a schema that:</para>
+<para>In V5.0, DocBook has been rewritten as a native RELAX NG
+grammar. The goals of this redesign were to produce a schema
+that:</para>
 
 <orderedlist>
 <listitem>
@@ -168,9 +180,12 @@ easy and straightforward way.
 </listitem>
 </orderedlist>
 
-<para>In light of the fact that this is a complete rewrite, the
-Technical Committee gave itself the freedom to make unannounced
-backwards-incompatible changes for this one release.</para>
+<para>Under the ordinary operating rules of DocBook evolution, the
+only backwards incompatible changes that could be made in DocBook V5.0
+were those announced in DocBook V4.0. In light of the fact that this
+is a complete rewrite, the Technical Committee gave itself the freedom
+to make <quote>unannounced</quote> backwards-incompatible changes for
+this one release.</para>
 
 <section>
 <title>Removing Legacy Elements</title>
@@ -189,34 +204,36 @@ widely used.</para>
   <entry>Explanation</entry>
 </row>
 </thead>
-<tbody>
+<tbody valign="top">
 <row>
-<entry><simplelist type="inline">
+<entry><para><simplelist type="inline">
 <member><sgmltag>articleinfo</sgmltag></member>
 <member><sgmltag>bookinfoinfo</sgmltag></member>
 <member>…</member>
 <member><sgmltag><replaceable>*</replaceable>info</sgmltag></member>
-</simplelist></entry>
+</simplelist></para></entry>
 <entry><para>Replaced by <sgmltag>info</sgmltag>, see
 <xref linkend="s.unif.info"/>.
 </para></entry>
 </row>
 
 <row>
-<entry><simplelist type="inline">
+<entry><para><simplelist type="inline">
 <member><sgmltag>authorblurb</sgmltag></member>
-</simplelist></entry>
-<entry><para>Replaced by <sgmltag>personblurb</sgmltag>.
+</simplelist></para></entry>
+<entry><para>Replaced by <sgmltag>personblurb</sgmltag>. This more general
+name better reflects the fact that it is available in elements other
+than <sgmltag>author</sgmltag> (e.g., <sgmltag>editor</sgmltag>).
 </para></entry>
 </row>
 
 <row>
-<entry><simplelist type="inline">
+<entry><para><simplelist type="inline">
 <member><sgmltag>collabname</sgmltag></member>
 <member><sgmltag>corpauthor</sgmltag></member>
 <member><sgmltag>corpcredit</sgmltag></member>
 <member><sgmltag>corpname</sgmltag></member>
-</simplelist></entry>
+</simplelist></para></entry>
 <entry><para>Replaced by <sgmltag>orgname</sgmltag> and the updated
 content models of <sgmltag>author</sgmltag>, <sgmltag>editor</sgmltag>,
 and <sgmltag>othercredit</sgmltag>.
@@ -224,29 +241,29 @@ and <sgmltag>othercredit</sgmltag>.
 </row>
 
 <row>
-<entry><simplelist type="inline">
+<entry><para><simplelist type="inline">
 <member><sgmltag>graphic</sgmltag></member>
 <member><sgmltag>graphicco</sgmltag></member>
 <member><sgmltag>inlinegraphic</sgmltag></member>
 <member><sgmltag>mediaobjectco</sgmltag></member>
-</simplelist></entry>
+</simplelist></para></entry>
 <entry><para>Removed in favor of <sgmltag>mediaobject</sgmltag> and
 <sgmltag>inlinemediaobject</sgmltag>.
 </para></entry>
 </row>
 
 <row>
-<entry><simplelist type="inline">
+<entry><para><simplelist type="inline">
 <member><sgmltag>isbn</sgmltag></member>
 <member><sgmltag>issn</sgmltag></member>
 <member><sgmltag>pubsnumber</sgmltag></member>
-</simplelist></entry>
+</simplelist></para></entry>
 <entry><para>Replaced by <sgmltag>biblioid</sgmltag>.
 </para></entry>
 </row>
 
 <row>
-<entry><simplelist type="inline">
+<entry><para><simplelist type="inline">
 <member><sgmltag>lot</sgmltag></member>
 <member><sgmltag>lotentry</sgmltag></member>
 <member><sgmltag>tocback</sgmltag></member>
@@ -258,31 +275,30 @@ and <sgmltag>othercredit</sgmltag>.
 <member><sgmltag>toclevel4</sgmltag></member>
 <member><sgmltag>toclevel5</sgmltag></member>
 <member><sgmltag>tocpart</sgmltag></member>
-</simplelist></entry>
+</simplelist></para></entry>
 <entry><para>Replaced by simpler <sgmltag>tocdiv</sgmltag> element.
 </para></entry>
 </row>
 
 <row>
-<entry><simplelist type="inline">
-<member><sgmltag>olink</sgmltag></member>
+<entry><para><simplelist type="inline">
 <member><sgmltag>ulink</sgmltag></member>
-</simplelist></entry>
+</simplelist></para></entry>
 <entry><para>Replaced by ubiquitous linking, see
 <xref linkend="s.ubiq.link"/>.
 </para></entry>
 </row>
 
 <row>
-<entry><simplelist type="inline">
+<entry><para><simplelist type="inline">
 <member><sgmltag>sgmltag</sgmltag></member>
-</simplelist></entry>
+</simplelist></para></entry>
 <entry><para>Replaced by <sgmltag>tag</sgmltag>.
 </para></entry>
 </row>
 
 <row>
-<entry><simplelist type="inline">
+<entry><para><simplelist type="inline">
 <member><sgmltag>action</sgmltag></member>
 <member><sgmltag>beginpage</sgmltag></member>
 <member><sgmltag>highlights</sgmltag></member>
@@ -292,8 +308,8 @@ and <sgmltag>othercredit</sgmltag>.
 <member><sgmltag>modespec</sgmltag></member>
 <member><sgmltag>structfield</sgmltag></member>
 <member><sgmltag>structname</sgmltag></member>
-</simplelist></entry>
-<entry><para>Deleted.
+</simplelist></para></entry>
+<entry><para>Removed.
 </para></entry>
 </row>
 </tbody>
@@ -347,7 +363,11 @@ rational content model:</para>
       o superscript
       o xref</programlisting>
 
-<para>DocBook V5.0 may be too restrictive in this area.</para>
+<para>DocBook V5.0 may be overzealous in its simplification of content
+models. The Technical Committee expects to adjust these simplifications
+during user testing. Users are encouraged to report places where formally
+valid documents can no longer be made valid because content models have
+been reduced.</para>
 </section>
 
 <section id="s.unif.info">
@@ -369,7 +389,9 @@ customization, each info element must have a different name.</para>
 
 <para>In RELAX NG, no such limitation exists. We can use patterns to
 achieve both a single <sgmltag>info</sgmltag> element while still allowing
-customizers to change its content model in different contexts.</para>
+customizers to change its content model in different contexts. In light
+of this functionality, we've replaced all the various flavors of info
+with a single element name.</para>
 </section>
 
 <section>
@@ -395,15 +417,16 @@ vast majority of DocBook documents.</para>
 declaration might still be present, it seems likely that this will not usually
 be the case.</para>
 
-<para>Nevertheless, downstream processors may need to have some indication
+<para>Nevertheless, downstream processors may benefit from some indication
 of the version of DocBook being used. As a result DocBook V5.0 adds a new
 <sgmltag class="attribute">version</sgmltag> attribute which
 <glossterm>must</glossterm> be present on the document element of a DocBook
 document.</para>
 
-<para>Mixing versions is explicitly allowed and the version attribute may be
-used on other elements as well. This might be the case, for example, in a compound
-document.</para>
+<para>Mixing versions is explicitly allowed and the version attribute
+may be used on other elements as well. This might be the case, for
+example, in a compound document constructed from multiple documents each
+with its own version.</para>
 
 </section>
 
@@ -420,8 +443,8 @@ attributes on <sgmltag>biblioid</sgmltag>.</para>
 <title>Improved HTML and CALS Table Support</title>
 
 <para>In DocBook V5.0, HTML tables and CALS tables are independently specified.
-Where the DTD of DocBook V4.x allows for incoherent models, DocBook V5.0 forbids
-them.</para>
+Where the DTD of DocBook V4.x allows for incoherent mixing of the two
+models, DocBook V5.0 forbids such mixtures.</para>
 
 </section>
 
@@ -434,7 +457,10 @@ must be a positive integer.</para>
 
 <para>Some of these constraints, such as the requirement that elements
 like <sgmltag>pubdate</sgmltag> include a proper date-time type, may
-prove controversial.</para>
+prove controversial. Users are encouraged to report places where formally
+valid documents can no longer be made valid because data types have been
+introduced.
+</para>
 </section>
 
 <section id="s.ubiq.link">
@@ -442,21 +468,26 @@ prove controversial.</para>
 
 <para>Starting with DocBook V5.0, the
 <sgmltag class="attribute">linkend</sgmltag> and
-<sgmltag class="attribute">href</sgmltag> attributes are available on
+<sgmltag class="attribute">xlink:href</sgmltag> attributes are available on
 almost all elements.</para>
 
 <para>The <sgmltag class="attribute">linkend</sgmltag> attribute provides an
 ID/IDREF link within the document. The
-<sgmltag class="attribute">href</sgmltag> attribute provides a URI-based
+<sgmltag class="attribute">xlink:href</sgmltag> attribute provides a URI-based
 link.</para>
 
-<para>The <sgmltag>olink</sgmltag> and <sgmltag>ulink</sgmltag> elements have
-been removed from DocBook as these linking constructs can now be achieved
-directly from the appropriate inline (such as <sgmltag>productname</sgmltag>
-or <sgmltag>command</sgmltag>). For instances where no specific semantic
-inline is needed, <sgmltag>link</sgmltag> is still available.</para>
+<para>The <sgmltag>ulink</sgmltag> element has been removed from
+DocBook as URI-based links can now be achieved directly from
+the appropriate inline (such as <sgmltag>productname</sgmltag> or
+<sgmltag>command</sgmltag>). For instances where no specific semantic
+inline is needed, <sgmltag>link</sgmltag> is still available. Where
+<sgmltag>link</sgmltag> used to be limited to ID/IDREF linking, it now
+sports an <sgmltag class="attribute">xlink:href</sgmltag> attribute as
+well.</para>
 
-<para>Support for extended links is provided through the
+<para>Support for
+<ulink url="http://www.w3.org/TR/xlink11/#extended-link">extended links</ulink>
+are provided through the
 <sgmltag>extendedlink</sgmltag>, <sgmltag>arc</sgmltag>, and
 <sgmltag>locator</sgmltag> elements.</para>
 
@@ -472,7 +503,26 @@ allowed in most places for inline annotations, the new element
 
 </section>
 
-<section>
+<section id="s.toc">
+<title>Simplified Table of Contents Markup</title>
+
+<para>The DocBook V4.x markup for Tables of Contents, or more generally for
+Lists of Titles, was complex and had not evolved quite in step with the
+rest of DocBook. In DocBook V5.0, it has all been replaced by a quite
+simple, recursive
+<sgmltag>toc</sgmltag>/<sgmltag>tocdiv</sgmltag>/<sgmltag>tocentry</sgmltag>
+structure.</para>
+
+<para>While most Tables of Contents and Lists of Titles are generated
+automatically and authors never have to produce markup for them by
+hand, this simplified content model should make it easier for authors
+to generate when necessary. One possible application of hand-authored
+<sgmltag>toc</sgmltag> markup is to generate custom hierarchies which
+can be assembled on-the-fly from a library of topics marked up in
+DocBook.</para>
+</section>
+
+<section id="s.schematron">
 <title>Extra-Grammatical Constraints</title>
 
 <para>Grammar based validation technologies (like RELAX NG) and rule based
@@ -480,35 +530,106 @@ validation technologies (like Schematron) are naturally complementary. Mixing
 them allows us to play to the strengths of each without stretching either
 to enforce constraints that they aren’t readily designed to enforce.</para>
 
-<para>For example, DocBook NG requires that the root element of a document
-have an explicit version attribute. Because there are a great many
-elements that can be root elements in DocBook, and because they can almost all appear
-as descendants of a root element as well, it would be tedious to express this constraint
-in RELAX NG. But it would be easy in a rule-based schema language.</para>
+<para>For example, DocBook NG requires that the root element of a
+document have an explicit version attribute. Because there are a great
+many elements that can be root elements in DocBook, and because they
+can almost all appear as descendants of a root element as well, it
+would be tedious to express this constraint in RELAX NG. But it is
+easy in a rule-based schema language.</para>
 
 <para>DocBook V5.0 uses Schematron where appropriate.</para>
 </section>
 
-<section>
+<section id="s.custom">
 <title>Customization</title>
 
-<para>TBD. RELAX NG patterns enable easy customization.</para>
+<para>From the very beginning, one of the goals of DocBook has been
+that users should be able to produce customizations that are either
+subsets of extensions of DocBook.</para>
 
+<para>For users familiar with the intricacies of XML DTD syntax and
+the rather complex and highly stylized patterns of parameter entity
+usage in DocBook, this is possible in DocBook V4.x.</para>
+
+<para>In DocBook V5.0, we hope to take advantage of RELAX NGs more
+robust design (and it's lack of pernicious determinism rules) to make
+customization easier.</para>
+
+<para>Three schema design patterns get us most of the way there.</para>
+
+<section id="s.patnames">
+<title>Logical Groupings</title>
+
+<para>DocBook elements, particularly the inlines, can be divided into
+broad classes: general purpose, technical, error-related, operating-system
+related, bibliographic, publishing, etc. In DocBook V5.0, these are collected
+together in named patterns.</para>
+
+<para>To add a new inline, <literal>endpoint</literal> for example,
+to the list of technical inlines, one need only extend the appropriate
+pattern. If an element should appear in several classes, they can all
+be extended in the same way:</para>
+
+<programlisting>db.technical.inlines |= endpoint
+db.programming.inlines |= endpoint
+db.os.inlines |= endpoint
+</programlisting>
+
+<para>Much the same concept was used in DocBook V4.x, where instead of
+patterns we had parameter entities. However, the constraints of DTD
+validation severely limit the circumstances under which an element can
+appear twice in a content model. That meant that adding an element to
+one parameter entity might make it an error to add it to another. Such
+constraints do not exist in RELAX NG which greatly simplifies the
+customization.</para>
+</section>
+
+<section id="s.elemdefs">
+<title>Element Definitions</title>
+
+<para>Each element in DocBook V5.0 is defined by its own pattern. To
+change the content model of an element, only that pattern need be
+redefined. To remove an element from DocBook, that pattern can be
+redefined as <quote><literal>notAllowed</literal></quote>.</para>
+
+</section>
+
+<section id="s.attrdefs">
+<title>Attribute Definitions</title>
+
+<para>Each attribute list in DocBook V5.0 is defined by its own
+pattern. To change the list of attributes available on an element,
+only that pattern need be redefined. To remove all the attributes,
+that pattern can be redefined as
+<quote><literal>empty</literal></quote>.</para>
+
+</section>
 </section>
 
 <section>
 <title>Conversion</title>
 
-<para>TBD. There’s an XSLT 1.0 stylesheet for performing conversion from DocBook V4.x
-to DocBook V5.0.</para>
+<para>There’s an XSLT 1.0 stylesheet for performing conversion from
+DocBook V4.x to DocBook V5.0. Presented with a valid DocBook V4.x document,
+it attempts to produce a valid DocBook V5.0 document.</para>
 
+<para>It succeeds entirely automatically for the most part, though human
+intervention is suggested for constructs that might have multiple
+interpretations (and therefore multiple possible transformations).</para>
+
+<para>Users are encouraged to report documents that are not
+successfully transformed by the stylesheet, especially those which do
+have valid DocBook V5.0 representations.
+</para>
 </section>
 </section>
 </section>
 
 <section><title>Release Notes</title>
 
-<para>TBD.</para>
+<para>See <ulink url="http://www.relaxng.org/"/> for a list of tools that
+can validate an XML document using RELAX NG. Note that not all products
+are capable of evaluating the Schematron assertions in the schema.</para>
 
 </section>
 
@@ -687,18 +808,19 @@ as specified in <xref linkend="rfc3023"/> or its successors.</para>
 the formulation of this &standard;:</para>
 
 <itemizedlist spacing="compact">
-<listitem><para>Steve Cogorno</para></listitem>
-<listitem><para>Adam Di Carlo</para></listitem>
-<listitem><para>Paul Grosso</para></listitem>
-<listitem><para>Dick Hamilton</para></listitem>
-<listitem><para>Nancy Harrison</para></listitem>
-<listitem><para>Scott Hudson</para></listitem>
-<listitem><para>Mark Johnson</para></listitem>
-<listitem><para>Jirka Kosek</para></listitem>
-<listitem><para>Larry Rowland</para></listitem>
-<listitem><para>Michael Smith</para></listitem>
-<listitem><para>Robert Stayton, Secretary</para></listitem>
-<listitem><para>Norman Walsh, Chair, Editor</para></listitem>
+<listitem><para>Steve Cogorno, Sun Microsystems</para></listitem>
+<listitem><para>Gary Cornelius, Individual</para></listitem>
+<listitem><para>Adam Di Carlo, Debian</para></listitem>
+<listitem><para>Paul Grosso, Arbortext</para></listitem>
+<listitem><para>Dick Hamilton, Hewlett-Packard</para></listitem>
+<listitem><para>Nancy Harrison, IBM</para></listitem>
+<listitem><para>Scott Hudson, Individual</para></listitem>
+<listitem><para>Mark Johnson, Debian</para></listitem>
+<listitem><para>Jirka Kosek, Individual</para></listitem>
+<listitem><para>Larry Rowland, Hewlett-Packardn</para></listitem>
+<listitem><para>Michael Smith, Individual</para></listitem>
+<listitem><para>Robert Stayton, Individual (Secretary)</para></listitem>
+<listitem><para>Norman Walsh, Sun Microsystems (Chair, Editor)</para></listitem>
 </itemizedlist>
 </appendix>
 
@@ -706,8 +828,8 @@ the formulation of this &standard;:</para>
 <title>Notices</title>
 
 <para>Copyright &#169; The Organization for the Advancement of
-Structured Information Standards [OASIS] 2001, 2002, 2003, 2004. All Rights
-Reserved.</para>
+Structured Information Standards [OASIS] 2001, 2002, 2003, 2004, 2005.
+All Rights Reserved.</para>
 
 <para>OASIS takes no position regarding the validity
 or scope of any intellectual property or other rights
@@ -782,9 +904,9 @@ of the DocBook web page
 
 <para>
 <revhistory>
-<revision role="&root;specs/wd-docbook-docbook-4.4b1.html">
-  <revnumber>Working Draft “Beta 1”</revnumber>
-  <date>09 Jun 2004</date>
+<revision role="&root;specs/wd-docbook-docbook-5.0a1.html">
+  <revnumber>Working Draft “Alpha 1”</revnumber>
+  <date>26 June 2005</date>
 </revision>
 </revhistory>
 </para>
@@ -797,6 +919,7 @@ of the DocBook web page
 
 <bibliomixed id="relaxng"/>
 <bibliomixed id="xml-rec"/>
+<bibliomixed id="xlink11"/>
 <bibliomixed id="rfc2119"/>
 <bibliomixed id="rfc3023"/>
 <bibliomixed id="bib.docbooktdg"/>
