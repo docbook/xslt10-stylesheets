@@ -216,7 +216,13 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="info|articleinfo|bookinfo|refentryinfo" mode="authorsect">
+  <!-- * Match only the direct *info children of Refentry, along with -->
+  <!-- * any *info for the valid direct parents of Refentry -->
+  <xsl:template match="info|refentryinfo|referenceinfo
+                       |articleinfo|chapterinfo|sectioninfo
+                       |sect1info|sect2info|sect3info|sect4info|sect5info
+                       |partinfo|prefaceinfo|appendixinfo|docinfo"
+                mode="authorsect">
     <xsl:text>.SH "</xsl:text>
     <xsl:call-template name="string.upper">
       <xsl:with-param name="string">
@@ -227,16 +233,16 @@
     </xsl:call-template>
     <xsl:text>"&#10;</xsl:text>
 
-    <xsl:for-each select=".//author">
+    <xsl:for-each select=".//author" >
       <xsl:if test="position() > 1">
         <xsl:text>, </xsl:text>
       </xsl:if>
-      <xsl:apply-templates select="."/>
+      <xsl:apply-templates select="." mode="authorsect"/>
     </xsl:for-each>
     <xsl:text>. &#10;</xsl:text>
     <xsl:if test=".//editor">
       <xsl:text>.br&#10;</xsl:text>
-      <xsl:apply-templates select=".//editor"/>
+      <xsl:apply-templates select=".//editor" mode="authorsect"/>
       <xsl:text>. (man page)&#10;</xsl:text>
     </xsl:if>
     <xsl:for-each select="address">
@@ -246,18 +252,27 @@
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:template match="author|editor">
+  <xsl:template match="author|editor" mode="authorsect">
     <xsl:call-template name="person.name"/>
     <xsl:if test=".//email">
       <xsl:text> </xsl:text>
-      <xsl:apply-templates select=".//email"/>
+      <xsl:apply-templates select=".//email" mode="authorsect"/>
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="email">
+  <xsl:template match="email" mode="authorsect">
     <xsl:text>&lt;</xsl:text>
     <xsl:apply-templates/>
     <xsl:text>&gt;</xsl:text>
   </xsl:template>
+
+  <!-- * ============================================================== -->
+
+  <!-- * suppress all *info (we grab what we need from it elsewhere -->
+  <xsl:template match="info|refentryinfo|referenceinfo|refsynopsisdivinfo
+                       |refsectioninfo|refsect1info|refsect2info|refsect3info
+                       |articleinfo|chapterinfo|sectioninfo
+                       |sect1info|sect2info|sect3info|sect4info|sect5info
+                       |partinfo|prefaceinfo|appendixinfo|docinfo"/>
 
 </xsl:stylesheet>
