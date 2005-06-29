@@ -25,9 +25,9 @@
   <fm:Version>{VERSION}</fm:Version>
   <fm:Release-Focus>
   <!-- initial freshmeat announcement -->
-  <!-- Documentation -->
+  Documentation
   <!-- code cleanup -->
-  Minor feature enhancements
+  <!-- Minor feature enhancements -->
   <!-- major feature enhancements -->
   <!-- Minor bugfixes -->
   <!-- major bugfixes -->
@@ -41,10 +41,8 @@
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook/</fm:Mailing-List-URL>
   <fm:Changes>There are no backwards-incompatible changes in this release.
 
-Minor updates: added termdef, added mathphrase, added isrn to biblio*
-class attribute values, made revnumber optional, allow colophon in
-article, allow procedure in example, allow common attributes on HTML
-table elements.
+Added documentation comments, updated version number for CR release.
+There are no technical changes from DocBook V4.5b1.
   </fm:Changes>  
 </fm:project>
 
