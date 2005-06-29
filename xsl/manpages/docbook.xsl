@@ -139,19 +139,9 @@
         <xsl:with-param name="extra3"  select="$metadata/othermetadata"/>
       </xsl:call-template>
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <!-- * Now deal with setting default hyphenation and justification -->
+      <!-- * Set default hyphenation, justification, and line-breaking -->
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <!-- * -->
-      <!-- * If the value of man.hypenate is zero (the default), then -->
-      <!-- * disable hyphenation (".nh" means "no hyphenation", I guess) -->
-      <xsl:if test="$man.hyphenate = 0">
-        <xsl:text>.nh&#10;</xsl:text>
-      </xsl:if>
-      <!-- * If the value of man.justify is zero (the default), then -->
-      <!-- * disable justification (".ad l" means "adjust to left only" -->
-      <xsl:if test="$man.justify = 0">
-        <xsl:text>.ad l&#10;</xsl:text>
-      </xsl:if>
+      <xsl:call-template name="set.default.formatting"/>
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!-- * Main body of man page -->
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
