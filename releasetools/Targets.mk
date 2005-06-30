@@ -7,7 +7,7 @@ RELEASE-NOTES.html: RELEASE-NOTES.xml
 	$(XSLT) $< $(DOC-LINK-STYLE) $@
 
 RELEASE-NOTES.txt: RELEASE-NOTES.html
-	$(BROWSER) $(BROWSER_OPTS) $< > $@
+	LANG=C $(BROWSER) $(BROWSER_OPTS) $< > $@
 
 RELEASE-NOTES.pdf: RELEASE-NOTES.xml
 	$(XSLT) $< $(FO-STYLE) $@ -output $(basename $<).fo $(FO_ENGINE).extensions=1 \
