@@ -549,7 +549,7 @@ element label.</para>
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="figure|table|example|procedure" mode="label.markup">
+<xsl:template match="figure|table|example" mode="label.markup">
   <xsl:variable name="pchap"
                 select="ancestor::chapter
                         |ancestor::appendix
@@ -565,10 +565,6 @@ element label.</para>
     <xsl:when test="@label">
       <xsl:value-of select="@label"/>
     </xsl:when>
-    <xsl:when test="local-name() = 'procedure' and
-                    $formal.procedures = 0">
-      <!-- No label -->
-    </xsl:when>
     <xsl:otherwise>
       <xsl:choose>
         <xsl:when test="count($pchap)>0">
@@ -580,6 +576,44 @@ element label.</para>
         </xsl:when>
         <xsl:otherwise>
           <xsl:number format="1" from="book|article" level="any"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="procedure" mode="label.markup">
+  <xsl:variable name="pchap"
+                select="ancestor::chapter
+                        |ancestor::appendix
+                        |ancestor::article[ancestor::book]"/>
+
+  <xsl:variable name="prefix">
+    <xsl:if test="count($pchap) &gt; 0">
+      <xsl:apply-templates select="$pchap" mode="label.markup"/>
+    </xsl:if>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="@label">
+      <xsl:value-of select="@label"/>
+    </xsl:when>
+    <xsl:when test="$formal.procedures = 0">
+      <!-- No label -->
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:choose>
+        <xsl:when test="count($pchap)>0">
+          <xsl:if test="$prefix != ''">
+            <xsl:apply-templates select="$pchap" mode="label.markup"/>
+            <xsl:apply-templates select="$pchap" mode="intralabel.punctuation"/>
+          </xsl:if>
+          <xsl:number count="procedure[title]" format="1" 
+	              from="chapter|appendix" level="any"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:number count="procedure[title]" format="1" 
+	              from="book|article" level="any"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
