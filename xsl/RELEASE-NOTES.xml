@@ -25,6 +25,55 @@
     particularly in the <link linkend="V1690_MAN">manpages
     stylesheets</link>, as well as a large number of bug fixes.</para>
 
+    <para>As with all DocBook Project "dot zero" releases, this is an
+    <link linkend="dot0">experimental release </link>.</para>
+   
+    <section id="V1690_GENERAL">
+      <title>General</title>
+      <itemizedlist>
+        <listitem>
+          <para>This release adds localizations for the following
+          languages:
+            <simplelist type="inline">
+              <?dbchoice choice="and"?>
+              <member>Albanian</member>
+              <member>Amharic</member>
+              <member>Azerbaijani</member>
+              <member>Hindi</member>
+              <member>Irish (Gaelic)</member>
+              <member>Gujarati</member>
+              <member>Kannada</member>
+              <member>Mongolian</member>
+              <member>Oriya</member>
+              <member>Punjabi</member>
+              <member>Tagalog</member>
+              <member>Tamil</member>
+              <member>Welsh</member>
+          </simplelist>.</para>
+        </listitem>
+        <listitem>
+          <para>EXPERIMENTAL: Incorporated the Slides and Website
+          stylesheets into the DocBook XSL stylesheets package. So,
+          for example, Website documents can now be processed using
+          the following URI for the driver Website
+          <filename>tabular.xsl</filename> file: <literallayout
+          class="monospaced"
+          ><uri>http://docbook.sourceforge.net/release/xsl/current/website/tabular.xsl</uri
+          ></literallayout></para>
+        </listitem>
+        <listitem>
+          <para>A <tag>procedure</tag> without a <tag>title</tag> is
+          now treated as an "informal" procedure (meaning that it is
+          not added to any generated "list of procedures" and has no
+          affect on numbering of generated labels for other
+          procedures.</para>
+        </listitem>
+        <listitem>
+          <para><tag>docname</tag> is no longer added to
+          <tag>olink</tag> when pointing to a root element.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
     <section id="V1690_MAN">
       <title>man</title>
       <itemizedlist>
@@ -1854,4 +1903,16 @@ XHTML chunker to output HTML instead of XHTML.
   aware that there were no release notes for releases prior to the
   1.50.0 release.</para>
 </section>
+<section id="dot0">
+  <title>About "dot zero" releases</title>
+    <para>DocBook Project "dot zero" releases should be considered
+    <emphasis>experimental</emphasis> and are always followed by
+    stable "dot one" releases, usually within two or three
+    weeks. Please help to ensure the stability of "dot one" releases
+    by carefully testing each "dot zero" release and reporting back
+    about any problems you find. </para>
+    <para>It is not recommended that you use a "dot zero" release in a
+    production system, or package it for an OS distro. Instead, you
+    should wait for the "dot one" version.</para>
+  </section>
 </article>
