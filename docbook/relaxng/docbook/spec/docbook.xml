@@ -817,7 +817,7 @@ the formulation of this &standard;:</para>
 <listitem><para>Scott Hudson, Individual</para></listitem>
 <listitem><para>Mark Johnson, Debian</para></listitem>
 <listitem><para>Jirka Kosek, Individual</para></listitem>
-<listitem><para>Larry Rowland, Hewlett-Packardn</para></listitem>
+<listitem><para>Larry Rowland, Hewlett-Packard</para></listitem>
 <listitem><para>Michael Smith, Individual</para></listitem>
 <listitem><para>Robert Stayton, Individual (Secretary)</para></listitem>
 <listitem><para>Norman Walsh, Sun Microsystems (Chair, Editor)</para></listitem>
@@ -931,6 +931,7 @@ of the DocBook web page
 <bibliomixed id="iso8879"/>
 <bibliomixed id="xmlschema-1"/>
 <bibliomixed id="xmlschema-2"/>
+<bibliomixed id="schematron2000"/>
 
 </bibliodiv>
 
