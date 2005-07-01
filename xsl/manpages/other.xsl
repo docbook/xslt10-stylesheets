@@ -45,27 +45,29 @@
     <!-- * versions. Below is a description of how Linux systems with -->
     <!-- * a modern groff seem to render .TH contents. -->
     <!-- * -->
-    <!-- *   title(section)      extra3      title(section)  <- page header -->
+    <!-- *   title(section)  extra3  title(section)  <- page header -->
+    <!-- *   extra2          extra1  title(section)  <- page footer-->
     <!-- * -->
-    <!-- *   extra2              extra1      title(section)  <- page footer-->
+    <!-- * Or, using the names with which the man(7) man page refers -->
+    <!-- * to the various fields: -->
     <!-- * -->
-    <!-- * Note the while extra1, extra2, and extra3 are all optional, almost all -->
-    <!-- * pages include an "extra1", which is almost always a date, -->
-    <!-- * and it is almost always rendered in the same place (the -->
-    <!-- * middle column of the footer), across all OSes and roff versions. -->
+    <!-- *   title(section)  manual  title(section)  <- page header -->
+    <!-- *   source          date    title(section)  <- page footer-->
     <!-- * -->
-    <!-- * Here are a couple of examples of real-world man pages that have -->
-    <!-- * useful page headers/footers: -->
+    <!-- * Note that while extra1, extra2, and extra3 are all (nominally) -->
+    <!-- * optional, in practice almost all pages include an "extra1" -->
+    <!-- * field, which is, universally, a date (in some form), and it is -->
+    <!-- * always rendered in the same place (the middle footer position) -->
     <!-- * -->
-    <!-- *   GIMP(1)           GIMP Manual Pages           GIMP(1) -->
-    <!-- *   Version 2.2.6     March 23 2004               GIMP(1) -->
+    <!-- * Here are a couple of examples of real-world man pages that -->
+    <!-- * have somewhat useful page headers/footers: -->
     <!-- * -->
-    <!-- *   QT2KDOC(1)        KDOC Documentation System   QT2KDOC(1) -->
-    <!-- *   2.0a54            2002-03-18                  QT2KDOC(1) -->
+    <!-- *   gtk-options(7)    GTK+ User's Manual   gtk-options(7) -->
+    <!-- *   GTK+ 1.2              2003-10-20       gtk-options(7) -->
     <!-- * -->
-    <!-- * In those examples, extra2 has version data, while extra3 has "context" -->
-    <!-- * data about some larger system the documented item belongs to -->
-
+    <!-- *   svgalib(7)       Svgalib User Manual       svgalib(7) -->
+    <!-- *   Svgalib 1.4.1      16 December 1999        svgalib(7) -->
+    <!-- * -->
     <xsl:param name="title"/>
     <xsl:param name="section"/>
     <xsl:param name="extra1"/>
@@ -73,16 +75,23 @@
     <xsl:param name="extra3"/>
 
     <xsl:call-template name="mark.subheading"/>
+    <!-- * Note that we generate quotes around _every_ field in the -->
+    <!-- * .TH title line, including the "title" and "section" -->
+    <!-- * fields. That is because we use the contents of those "as -->
+    <!-- * is", unchanged from the DocBook source; and DTD-based -->
+    <!-- * validation does not provide a way to constrain them to be -->
+    <!-- * "space free" -->
     <xsl:text>.TH "</xsl:text>
     <xsl:call-template name="string.upper">
       <xsl:with-param name="string">
         <!-- * truncate title if it exceeds max. length (user-configurable) -->
-        <xsl:value-of select="substring($title, 1, $man.th.title.max.length)"/>
+        <xsl:value-of
+            select="normalize-space(substring($title, 1, $man.th.title.max.length))"/>
       </xsl:with-param>
     </xsl:call-template>
-    <xsl:text>" </xsl:text>
-    <xsl:value-of select="$section"/>
-    <xsl:text> "</xsl:text>
+    <xsl:text>" "</xsl:text>
+    <xsl:value-of select="normalize-space($section)"/>
+    <xsl:text>" "</xsl:text>
     <xsl:value-of select="normalize-space($extra1)"/>
     <xsl:text>" "</xsl:text>
     <xsl:value-of select="normalize-space($extra2)"/>
@@ -134,7 +143,6 @@
   <!-- * -->
   <!-- * If a refentry has multiple refnames, we generate a "stub" page for -->
   <!-- * each additional refname found. -->
-
   <xsl:template name="write.stubs">
     <xsl:param name="metadata"/>
     <xsl:for-each select="refnamediv/refname">
