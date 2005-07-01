@@ -1,6 +1,9 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
+                xmlns:dyn="http://exslt.org/dynamic"
+                xmlns:saxon="http://icl.com/saxon"
+                exclude-result-prefixes="exsl dyn saxon"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -244,5 +247,42 @@
       <xsl:text>&#10;</xsl:text>
     </xsl:if>
   </xsl:template>
-  
+
+  <!-- ================================================================== -->
+
+  <!-- * This function finds the first ocurrence of a anything -->
+  <!-- * matching the XPath expression given $profile. It relies on -->
+  <!-- * the XSLT evaluate() extension function. It appears to slow -->
+  <!-- * down processing with Saxon signficantly, but doesn't seem to -->
+  <!-- * slow down xsltproc at all. -->
+
+  <!--          The value of $profile can include the strings "$info" and -->
+  <!--          "$parentinfo". If found in the value of $profile, those are -->
+  <!--          evaluated using -->
+
+  <xsl:template name="find.first.profile.occurence">
+    <xsl:param name="profile"/>
+    <xsl:param name="info"/>
+    <xsl:param name="parentinfo"/>
+    <xsl:choose>
+      <!-- xsltproc and Xalan both support dyn:evaluate() -->
+      <xsl:when test="function-available('dyn:evaluate')">
+        <xsl:apply-templates
+            select="dyn:evaluate($profile)[1]/node()"/>
+      </xsl:when>
+      <!-- Saxon has its own evaluate() & doesn't support dyn:evaluate() -->
+      <xsl:when test="function-available('saxon:evaluate')">
+        <xsl:apply-templates
+            select="saxon:evaluate($profile)[1]/node()"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:message terminate="yes">
+Error: The manpages stylesheets currently require an XSLT engine that
+supports the evaluate() XSLT extension function. Your XSLT engine does
+not support it.
+</xsl:message>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>

@@ -120,23 +120,24 @@
       <!-- * TH.title.line = title line in header/footer of man page -->
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <xsl:call-template name="TH.title.line">
-        <!-- * .TH "TITLE" "SECTION" "extra1" "extra2" "extra3" -->
+        <!-- * .TH TITLE  section  extra1  extra2  extra3 -->
         <!-- *  -->
-        <!-- * extra1 = date of publication of the man page (almost universally) -->
-        <!-- * extra2 = version and/or name of some kind (usually) -->
-        <!-- * extra3 = context description (e.g., often a description of the -->
-        <!-- *          group of related applications that the item documented -->
-        <!-- *          in the man page belongs to -->
+        <!-- * According to the man(7) man page: -->
+        <!-- *  -->
+        <!-- * extra1 = date,   "the date of the last revision" -->
+        <!-- * extra2 = source, "the source of the command" -->
+        <!-- * extra3 = manual, "the title of the manual -->
+        <!-- *                  (e.g., Linux Programmer's Manual)" -->
         <!-- * -->
-        <!-- * .TH TITLE SECTION DATE VERSION/NAME CONTEXT -->
+        <!-- * So, we end up with: -->
+        <!-- *  -->
+        <!-- * .TH TITLE  section  date  source  manual -->
         <!-- * -->
-        <!-- * If you want to chenge how the .TH line is constructed, change the -->
-        <!-- * order/content of the values of the "select" attributes below. -->
         <xsl:with-param name="title"   select="$metadata/title"/>
         <xsl:with-param name="section" select="$metadata/section"/>
         <xsl:with-param name="extra1"  select="$metadata/date"/>
-        <xsl:with-param name="extra2"  select="$metadata/versionorname"/>
-        <xsl:with-param name="extra3"  select="$metadata/othermetadata"/>
+        <xsl:with-param name="extra2"  select="$metadata/source"/>
+        <xsl:with-param name="extra3"  select="$metadata/manual"/>
       </xsl:call-template>
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!-- * Set default hyphenation, justification, and line-breaking -->
