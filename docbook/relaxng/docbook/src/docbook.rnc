@@ -28,6 +28,7 @@ start = db.set
 include "pool.rnc"
 include "annotations.rnc"
 include "xlink.rnc"
+include "xinclude.rnc"
 include "hier.rnc"
 include "sect1.rnc"
 include "refentry.rnc"

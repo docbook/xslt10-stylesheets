@@ -1,0 +1,56 @@
+# This file is part of DocBook NG: The "Lillet" Release.
+
+# This schema is a "work-in-progress". It validates a DocBook-like grammar that
+# may, in some incarnation, form the basis for DocBook V.next. Or it may not.
+# At the moment, it's just an exploration by Norm. It has utterly no normative
+# value at all.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.3
+# Release: $Id$
+#
+
+namespace xi = "http://www.w3.org/2001/XInclude"
+namespace db = "http://docbook.org/ns/docbook"
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+
+db.all.blocks |= db.xi.include
+db.all.inlines |= db.xi.include
+
+# ======================================================================
+
+[
+   db:refname [ "xi:include" ]
+   db:refpurpose [ "An XInclude" ]
+]
+div {
+
+   db.xi.include.attlist =
+     attribute href { xsd:anyURI { pattern = "^[#]+" } }?,
+     [ a:defaultValue="xml" ] attribute parse { "xml" | "text" }?,
+     attribute xpointer { text }?,
+     attribute encoding { text }?,
+     attribute accept { text }?,
+     attribute accept-language { text }?
+
+   db.xi.include =
+      element xi:include {
+        db.xi.include.attlist,
+        db.xi.fallback?
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "xi:fallback" ]
+   db:refpurpose [ "An XInclude fallback" ]
+]
+div {
+  # The fallback element has no attributes
+
+  db.xi.fallback =
+      element xi:fallback {
+        db.all.blocks+ | db.all.inlines+ | db._any*
+      }
+}
