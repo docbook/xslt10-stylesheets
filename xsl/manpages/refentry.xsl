@@ -17,11 +17,13 @@
   <xsl:template match="refnamediv">
     <xsl:choose>
       <xsl:when test="preceding-sibling::refnamediv">
-        <!-- no title on secondary refnamedivs! -->
+        <!-- * no title on secondary refnamedivs! -->
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="mark.subheading"/>
         <xsl:text>.SH "</xsl:text>
+        <!-- * Use gentext to generate tiel for Refnamediv section, and -->
+        <!-- * make it uppercase -->
         <xsl:call-template name="string.upper">
           <xsl:with-param name="string">
             <xsl:call-template name="gentext">
@@ -34,12 +36,17 @@
     </xsl:choose>
     <xsl:text>&#10;</xsl:text>
     <xsl:call-template name="mark.subheading"/>
+    <!-- * if we have multiple Refname instances, separate the names -->
+    <!-- * with commas -->
     <xsl:for-each select="refname">
       <xsl:if test="position()>1">
         <xsl:text>, </xsl:text>
       </xsl:if>
       <xsl:value-of select="."/>
     </xsl:for-each>
+    <!-- * We don't precede the hyphen with a backslash here because -->
+    <!-- * the backslash gets added later, by the apply-string-subst-map -->
+    <!-- * template, before we generate final output -->
     <xsl:text> - </xsl:text>
     <xsl:value-of select="normalize-space (refpurpose)"/>
     <xsl:text>&#10;</xsl:text>
@@ -48,6 +55,8 @@
   <xsl:template match="refsynopsisdiv">
     <xsl:call-template name="mark.subheading"/>
     <xsl:text>.SH "</xsl:text>
+    <!-- * 'match="refsynopsisdiv" mode="title.markup' template does -->
+    <!-- * uppercasing for this -->
     <xsl:apply-templates select="." mode="title.markup"/>
     <xsl:text>"&#10;</xsl:text>
     <xsl:call-template name="mark.subheading"/>
