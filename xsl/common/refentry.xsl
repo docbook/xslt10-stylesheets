@@ -26,7 +26,7 @@
     <holder>The DocBook Project</holder>
     </copyright>
   </referenceinfo>
-  <title>Refentry Metadata Gathering</title>
+  <title>Refentry Metadata-Gathering Template Reference</title>
 
   <partintro>
     <section><title>Introduction</title>
