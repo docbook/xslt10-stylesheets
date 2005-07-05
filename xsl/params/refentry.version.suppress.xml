@@ -31,7 +31,7 @@ then you might consider setting a non-zero value for
 
 <para>Note that the terms "source", "source name", and "version" have
 special meanings in this context. For details, see the documentation
-for the <parameter>refentry.source.profile</parameter>
+for the <parameter>refentry.source.name.profile</parameter>
 parameter.</para>
 
 </refsect1>

@@ -49,12 +49,18 @@
   </reference>
   <reference id="charmap">
   <title>Refentry metadata gathering</title>
+&refentry.date.profile;
 &refentry.date.profile.enabled;
+&refentry.manual.profile;
 &refentry.manual.profile.enabled;
-&refentry.source.name.profile.enabled;
-&refentry.version.profile.enabled;
 &refentry.source.name.suppress;
+&refentry.source.name.profile;
+&refentry.source.name.profile.enabled;
 &refentry.version.suppress;
+&refentry.version.profile;
+&refentry.version.profile.enabled;
+&refentry.manual.fallback.profile;
+&refentry.source.fallback.profile;
   </reference>
   <appendix id="stylesheet">
     <title>The Stylesheet</title>
@@ -98,6 +104,12 @@
 <src:fragref linkend="refentry.version.profile.enabled.frag"/>
 <src:fragref linkend="refentry.source.name.suppress.frag"/>
 <src:fragref linkend="refentry.version.suppress.frag"/>
+<src:fragref linkend="refentry.date.profile.frag"/>
+<src:fragref linkend="refentry.manual.fallback.profile.frag"/>
+<src:fragref linkend="refentry.manual.profile.frag"/>
+<src:fragref linkend="refentry.source.fallback.profile.frag"/>
+<src:fragref linkend="refentry.source.name.profile.frag"/>
+<src:fragref linkend="refentry.version.profile.frag"/>
 </xsl:stylesheet>
     </src:fragment>
 
