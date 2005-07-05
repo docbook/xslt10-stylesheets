@@ -22,6 +22,7 @@
 
 <!-- ==================================================================== -->
 
+  <xsl:include href="../common/refentry.xsl"/>
   <xsl:include href="param.xsl"/>
   <xsl:include href="general.xsl"/>
   <xsl:include href="info.xsl"/>
@@ -32,13 +33,21 @@
   <xsl:include href="synop.xsl"/>
   <xsl:include href="lists.xsl"/>
 
-  <!-- * Read the character-map contents in only once per document, no -->
-  <!-- * matter how many Refentry elements it contains. For documents -->
-  <!-- * that contain a large number or Refentry elements, this can -->
-  <!-- * result in a significant performance gain over the alternative -->
-  <!-- * (that is, reading it in once for every Refentry processed) -->
+<!-- ==================================================================== -->
+<!-- * Set global variables -->
+<!-- ==================================================================== -->
+
+  <xsl:variable name="get.refentry.metadata.prefs">
+    <xsl:call-template name="get.refentry.metadata.prefs"/>
+  </xsl:variable>
+
+  <xsl:variable name="refentry.metadata.prefs"
+                select="exsl:node-set($get.refentry.metadata.prefs)"/>
+  
+<!-- ==================================================================== -->
+
   <xsl:variable name="man.charmap.contents">
-    <xsl:if test="$man.charmap.enabled != '0'">
+    <xsl:if test="$man.charmap.enabled != 0">
       <xsl:call-template name="read-character-map">
         <xsl:with-param name="use.subset" select="$man.charmap.use.subset"/>
         <xsl:with-param name="subset.profile" select="$man.charmap.subset.profile"/>
@@ -56,6 +65,10 @@
     </xsl:if>
   </xsl:variable>
 
+<!-- ==================================================================== -->
+<!-- * End global variables -->
+<!-- ==================================================================== -->
+
   <!-- * if document does not contain at least one refentry, then emit a -->
   <!-- * message and stop -->
   <xsl:template match="/">
@@ -72,6 +85,10 @@
   <!-- ============================================================== -->
 
   <xsl:template match="refentry">
+
+    <!-- * Just use the first refname found as the "name" of the man -->
+    <!-- * page (which may different from the "title"...) -->
+    <xsl:variable name="first.refname" select="refnamediv[1]/refname[1]"/>
 
     <!-- * Because there are several times when we need to check *info of -->
     <!-- * each refentry and *info of its parent, we get those and store -->
@@ -98,16 +115,19 @@
                           |../docinfo)[1]"/>
     <xsl:variable name="parentinfo" select="exsl:node-set($get.parentinfo)"/>
 
-    <!-- * The get.metadata template looks for metadata in $info and/or -->
-    <!-- * $parentinfo and in various other places and then puts it into -->
-    <!-- * a form that's easier for us to digest. -->
-    <xsl:variable name="get.metadata">
-      <xsl:call-template name="get.metadata">
+    <!-- * The get.refentry.metadata template is in -->
+    <!-- * ../common/refentry.xsl. It looks for metadata in $info -->
+    <!-- * and/or $parentinfo and in various other places and -->
+    <!-- * then puts it into a form that's easier for us to digest. -->
+    <xsl:variable name="get.refentry.metadata">
+      <xsl:call-template name="get.refentry.metadata">
+        <xsl:with-param name="refname" select="$first.refname"/>
         <xsl:with-param name="info" select="$info"/>
         <xsl:with-param name="parentinfo" select="$parentinfo"/>
+        <xsl:with-param name="prefs" select="$refentry.metadata.prefs"/>
       </xsl:call-template>
     </xsl:variable>
-    <xsl:variable name="metadata" select="exsl:node-set($get.metadata)"/>
+    <xsl:variable name="refentry.metadata" select="exsl:node-set($get.refentry.metadata)"/>
 
     <!-- * Assemble the various parts into a complete page, then store into -->
     <!-- * $manpage.contents so that we can manipluate them further. -->
@@ -133,11 +153,11 @@
         <!-- *  -->
         <!-- * .TH TITLE  section  date  source  manual -->
         <!-- * -->
-        <xsl:with-param name="title"   select="$metadata/title"/>
-        <xsl:with-param name="section" select="$metadata/section"/>
-        <xsl:with-param name="extra1"  select="$metadata/date"/>
-        <xsl:with-param name="extra2"  select="$metadata/source"/>
-        <xsl:with-param name="extra3"  select="$metadata/manual"/>
+        <xsl:with-param name="title"   select="$refentry.metadata/title"/>
+        <xsl:with-param name="section" select="$refentry.metadata/section"/>
+        <xsl:with-param name="extra1"  select="$refentry.metadata/date"/>
+        <xsl:with-param name="extra2"  select="$refentry.metadata/source"/>
+        <xsl:with-param name="extra3"  select="$refentry.metadata/manual"/>
       </xsl:call-template>
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!-- * Set default hyphenation, justification, and line-breaking -->
@@ -172,26 +192,20 @@
       </xsl:call-template>
     </xsl:variable>
     
-    <!-- * At last: Write the prepared page contents to disk to create -->
+    <!-- * Write the prepared page contents to disk to create -->
     <!-- * the final man page. -->
-    <xsl:call-template name="write.text.chunk">
-      <xsl:with-param name="filename" select="$metadata/filename"/>
-      <xsl:with-param name="quiet" select="$man.output.quietly"/>
-      <xsl:with-param name="encoding" select="$man.output.encoding"/>
+    <xsl:call-template name="write.man.file">
+      <xsl:with-param name="name" select="$first.refname"/>
+      <xsl:with-param name="section" select="$refentry.metadata/section"/>
       <xsl:with-param name="content" select="$manpage.contents.prepared"/>
     </xsl:call-template>
 
-    <!-- * Finish up by generating "stub" (alias) pages (if any needed) -->
+    <!-- * Generate "stub" (alias) pages (if any needed) -->
     <xsl:call-template name="write.stubs">
-      <xsl:with-param name="metadata" select="$metadata"/>
+      <xsl:with-param name="first.refname" select="$first.refname"/>
+      <xsl:with-param name="section" select="$refentry.metadata/section"/>
     </xsl:call-template>
 
   </xsl:template>
-
-  <!-- ============================================================== -->
-
-  <xsl:template match="refmeta"></xsl:template>
-  <xsl:template match="title"></xsl:template>
-  <xsl:template match="abstract"></xsl:template>
 
 </xsl:stylesheet>
