@@ -2,6 +2,7 @@
 PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY common.xml SYSTEM "common/common.xml" NDATA SGML>
+<!ENTITY refentry.xml SYSTEM "refentry/refentry.xml" NDATA SGML>
 <!ENTITY lib.xml SYSTEM "../lib/lib.xml" NDATA SGML>
 <!ENTITY html-param.xml SYSTEM "html/docparam.xml" NDATA SGML>
 <!ENTITY fo-param.xml SYSTEM "fo/docparam.xml" NDATA SGML>
@@ -57,6 +58,9 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
       </listitem>
       <listitem><para><olink type="title" localinfo="common/common.html"
       targetdocent="common.xml"/></para>
+      </listitem>
+      <listitem><para><olink type="title" localinfo="refentry/refentry.html"
+      targetdocent="refentry.xml"/></para>
       </listitem>
       <listitem><para><olink type="title" localinfo="fo/table.html"
       targetdocent="fo-table.xml"/></para>
