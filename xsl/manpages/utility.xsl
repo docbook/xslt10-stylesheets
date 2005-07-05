@@ -18,9 +18,8 @@
 
 <!-- ==================================================================== -->
 
-<!-- * This file contains named and "non element" templates that are -->
-<!-- * called multiple times per each Refentry, by templates in the other -->
-<!-- * manpages stylesheet files. -->
+<!-- * This file contains "utility" templates that are called multiple -->
+<!-- * times per each Refentry. -->
 
 <!-- ==================================================================== -->
 
