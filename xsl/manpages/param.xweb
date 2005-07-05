@@ -47,6 +47,15 @@
 &man.charmap.use.subset;
 &man.charmap.subset.profile;
   </reference>
+  <reference id="charmap">
+  <title>Refentry metadata gathering</title>
+&refentry.date.profile.enabled;
+&refentry.manual.profile.enabled;
+&refentry.source.name.profile.enabled;
+&refentry.version.profile.enabled;
+&refentry.source.name.suppress;
+&refentry.version.suppress;
+  </reference>
   <appendix id="stylesheet">
     <title>The Stylesheet</title>
 
@@ -83,6 +92,12 @@
 <src:fragref linkend="man.subheading.divider.frag"/>
 <src:fragref linkend="man.subheading.divider.enabled.frag"/>
 <src:fragref linkend="man.th.title.max.length.frag"/>
+<src:fragref linkend="refentry.date.profile.enabled.frag"/>
+<src:fragref linkend="refentry.manual.profile.enabled.frag"/>
+<src:fragref linkend="refentry.source.name.profile.enabled.frag"/>
+<src:fragref linkend="refentry.version.profile.enabled.frag"/>
+<src:fragref linkend="refentry.source.name.suppress.frag"/>
+<src:fragref linkend="refentry.version.suppress.frag"/>
 </xsl:stylesheet>
     </src:fragment>
 
