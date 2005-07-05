@@ -70,4 +70,7 @@
   <xsl:apply-templates/>
 </xsl:template>
 
+<!-- * suppress abstract -->
+<xsl:template match="abstract"/>
+
 </xsl:stylesheet>
