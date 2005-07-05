@@ -59,9 +59,9 @@
   </xsl:call-template>
 </xsl:template>
 
-<!-- handle ulink here instead of in xref.xsl, because xref.xsl is -->
-<!-- auto-generated from html/xref.xsl, and we need to do something a -->
-<!-- little different for ulink in manpages output -->
+<!-- * handle ulink here instead of in xref.xsl, because xref.xsl is -->
+<!-- * auto-generated from html/xref.xsl, and we need to do something -->
+<!-- * a little different for ulink in manpages output -->
 <xsl:template match="ulink">
   <xsl:variable name="content">
     <xsl:apply-templates/>
@@ -75,6 +75,46 @@
     <italic><xsl:value-of select="@url"/></italic>
   </xsl:variable>
   <xsl:apply-templates mode="italic" select="exsl:node-set($url.wrapper)"/>
+</xsl:template>
+
+<xsl:template match="trademark|productname">
+  <xsl:apply-templates/>
+  <xsl:choose>
+    <!-- * Just use true Unicode chars for copyright and registered -->
+    <!-- * symbols (by default, we later automatically translate them -->
+    <!-- * with the apply-string-subst-map template, or with the -->
+    <!-- * default character map, if man.charmap.enabled is true). -->
+    <xsl:when test="@class = 'copyright'">
+      <xsl:text>&#x00a9;</xsl:text>
+    </xsl:when>
+    <xsl:when test="@class = 'registered'">
+      <xsl:text>&#x00ae;</xsl:text>
+    </xsl:when>
+    <!-- * There is no groff equivalent for the servicemark symbol. -->
+    <xsl:when test="@class = 'service'">
+      <xsl:text>(SM)</xsl:text>
+    </xsl:when>
+    <xsl:when test="self::trademark" >
+      <!-- * by default, render trademark symbol for <trademark> -->
+      <!-- * -->
+      <!-- * We don't do "\(tm" for &#x2122; because for console -->
+      <!-- * output, groff just renders that as "tm", without any -->
+      <!-- * preceding space, parens, or anything. So it just gets -->
+      <!-- * run into the preceding word; i.e.: -->
+      <!-- * -->
+      <!-- *  Product&#x2122; -> Producttm -->
+      <!-- * -->
+      <!-- * That it probably not what most people would want. So -->
+      <!-- * we just render it as (TM) instead, Thus: -->
+      <!-- * -->
+      <!-- *  Product&#x2122; -> Product(TM) -->
+      <!-- * -->
+      <xsl:text>(TM)</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- * don't render any default symbol after productname -->
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
