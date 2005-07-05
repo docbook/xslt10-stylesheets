@@ -1,7 +1,9 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
-                exclude-result-prefixes="doc"
+                xmlns:dyn="http://exslt.org/dynamic"
+                xmlns:saxon="http://icl.com/saxon"
+                exclude-result-prefixes="doc dyn saxon"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -1875,5 +1877,78 @@ unchanged.</para>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+
+<!-- ===================================== -->
+
+<doc:template name="evaluate.info.profile" xmlns="">
+  <refpurpose>Evaluates an info profile</refpurpose>
+  <refdescription>
+    <para>This function evaluates an "info profile" matching the XPath
+    expression given by the <parameter>profile</parameter>
+    parameter. It relies on the XSLT <function>evaluate()</function>
+    extension function.</para>
+
+    <para>The value of the <parameter>profile</parameter> parameter
+    can include the strings <literal>$info</literal> and
+    <literal>$parentinfo</literal>. If found in the value of the
+    <parameter>profile</parameter> parameter, those strings are
+    evaluated using the <parameter>info</parameter> and
+    <parameter>parentinfo</parameter> parameters, the values of which
+    should be DocBook <replaceable>*info</replaceable> element node
+    sets.</para>
+  </refdescription>
+  <refparameter>
+    <variablelist>
+       <varlistentry>
+        <term>profile</term>
+        <listitem>
+          <para>A string representing an XPath expression </para>
+        </listitem>
+      </varlistentry>
+       <varlistentry>
+        <term>info</term>
+        <listitem>
+          <para>A DocBook info node</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>parentinfo</term>
+        <listitem>
+          <para>A DocBook info node (from a parent element)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+
+  <refreturn>
+    <para>Returns a node (the result of evaluating the
+    <parameter>profile</parameter> parameter)</para>
+  </refreturn>
+</doc:template>
+
+  <xsl:template name="evaluate.info.profile">
+    <xsl:param name="profile"/>
+    <xsl:param name="info"/>
+    <xsl:param name="parentinfo"/>
+    <xsl:choose>
+      <!-- xsltproc and Xalan both support dyn:evaluate() -->
+      <xsl:when test="function-available('dyn:evaluate')">
+        <xsl:apply-templates
+            select="dyn:evaluate($profile)"/>
+      </xsl:when>
+      <!-- Saxon has its own evaluate() & doesn't support dyn:evaluate() -->
+      <xsl:when test="function-available('saxon:evaluate')">
+        <xsl:apply-templates
+            select="saxon:evaluate($profile)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:message terminate="yes">
+Error: The "info profiling" mechanism currently requires an XSLT
+engine that supports the evaluate() XSLT extension function. Your XSLT
+engine does not support it.
+</xsl:message>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 
 </xsl:stylesheet>
