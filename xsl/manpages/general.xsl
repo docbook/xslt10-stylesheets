@@ -19,7 +19,8 @@
 <!-- ==================================================================== -->
 
 <!-- * This file contains named and "non element" templates that are -->
-<!-- * called by templates in the other manpages stylesheet files. -->
+<!-- * called multiple times per each Refentry, by templates in the other -->
+<!-- * manpages stylesheet files. -->
 
 <!-- ==================================================================== -->
 
@@ -198,91 +199,15 @@
   </xsl:template>
 
   <!-- ================================================================== -->
-
-  <!-- * The prepare.manpage.contents template is called after -->
-  <!-- * everything else has been done, just before writing the actual -->
-  <!-- * man-page files to the filesystem. It works on the entire roff -->
-  <!-- * source for each man page (not just the visible contents). -->
-  <xsl:template name="prepare.manpage.contents">
-    <xsl:param name="content" select="''"/>
-
-    <!-- * First do "essential" string/character substitutions; for -->
-    <!-- * example, the backslash character _must_ be substituted with -->
-    <!-- * a double backslash, to prevent it from being interpreted as -->
-    <!-- * a roff escape -->
-    <xsl:variable name="adjusted.content">
-      <xsl:call-template name="apply-string-subst-map">
-        <xsl:with-param name="content" select="$content"/>
-        <xsl:with-param name="map.contents"
-                        select="exsl:node-set($man.string.subst.map)/*"/>
-      </xsl:call-template>
-    </xsl:variable>
-
-    <!-- * Optionally, apply a character map to replace Unicode -->
-    <!-- * symbols and special characters. -->
-    <xsl:choose>
-      <xsl:when test="$man.charmap.enabled != '0'">
-        <xsl:call-template name="apply-character-map">
-          <xsl:with-param name="content" select="$adjusted.content"/>
-          <xsl:with-param name="map.contents"
-                          select="exsl:node-set($man.charmap.contents)/*"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>
-        <!-- * if we reach here, value of $man.charmap.enabled is zero, -->
-        <!-- * so we just pass the adjusted contents through "as is" -->
-        <xsl:value-of select="$adjusted.content"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-
-  <!-- ================================================================== -->
   
   <!-- * Put a horizontal rule or other divider around section titles -->
   <!-- * in roff source (just to make things easier to read). -->
   <xsl:template name="mark.subheading">
-    <xsl:if test="$man.subheading.divider != ''">
+    <xsl:if test="$man.subheading.divider.enabled != 0">
       <xsl:text>.\" </xsl:text>
       <xsl:value-of select="$man.subheading.divider"/>
       <xsl:text>&#10;</xsl:text>
     </xsl:if>
-  </xsl:template>
-
-  <!-- ================================================================== -->
-
-  <!-- * This function finds the first ocurrence of a anything -->
-  <!-- * matching the XPath expression given $profile. It relies on -->
-  <!-- * the XSLT evaluate() extension function. It appears to slow -->
-  <!-- * down processing with Saxon signficantly, but doesn't seem to -->
-  <!-- * slow down xsltproc at all. -->
-
-  <!--          The value of $profile can include the strings "$info" and -->
-  <!--          "$parentinfo". If found in the value of $profile, those are -->
-  <!--          evaluated using -->
-
-  <xsl:template name="find.first.profile.occurence">
-    <xsl:param name="profile"/>
-    <xsl:param name="info"/>
-    <xsl:param name="parentinfo"/>
-    <xsl:choose>
-      <!-- xsltproc and Xalan both support dyn:evaluate() -->
-      <xsl:when test="function-available('dyn:evaluate')">
-        <xsl:apply-templates
-            select="dyn:evaluate($profile)[1]/node()"/>
-      </xsl:when>
-      <!-- Saxon has its own evaluate() & doesn't support dyn:evaluate() -->
-      <xsl:when test="function-available('saxon:evaluate')">
-        <xsl:apply-templates
-            select="saxon:evaluate($profile)[1]/node()"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:message terminate="yes">
-Error: The manpages stylesheets currently require an XSLT engine that
-supports the evaluate() XSLT extension function. Your XSLT engine does
-not support it.
-</xsl:message>
-      </xsl:otherwise>
-    </xsl:choose>
   </xsl:template>
 
 </xsl:stylesheet>

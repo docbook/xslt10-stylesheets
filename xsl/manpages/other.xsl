@@ -1,5 +1,7 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:exsl="http://exslt.org/common"
+                exclude-result-prefixes="exsl"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -13,13 +15,19 @@
      ******************************************************************** -->
 
 <!-- * This file contains named templates that are related to things -->
-<!-- * other than just generating the actual text of the main text flow -->
+<!-- * other than just assembling the actual text of the main text flow -->
 <!-- * of each man page. This "other" stuff currently amounts to: -->
 <!-- * -->
 <!-- *  - adding a comment to top part of roff source of each page -->
 <!-- *  - making a .TH title line (for controlling page header/footer) -->
 <!-- *  - setting hyphenation, alignment, & line-breaking defaults -->
-<!-- *  - writing any related "stub" pages -->
+<!-- *  - "preparing" the complete man page contents for final output -->
+<!-- *  - writing the actual man file to the filesystem -->
+<!-- *  - writing any "stub" pages to the filesystem -->
+<!-- * -->
+<!-- * The templates in this file are actually called only once per -->
+<!-- * each Refentry; they are just in a separate file for the purpose -->
+<!-- * of keeping things modular. -->
 
 <!-- ==================================================================== -->
 
@@ -128,6 +136,68 @@
     </xsl:if>
   </xsl:template>
 
+  <!-- ================================================================== -->
+
+  <!-- * The prepare.manpage.contents template is called after -->
+  <!-- * everything else has been done, just before writing the actual -->
+  <!-- * man-page files to the filesystem. It works on the entire roff -->
+  <!-- * source for each man page (not just the visible contents). -->
+  <xsl:template name="prepare.manpage.contents">
+    <xsl:param name="content" select="''"/>
+
+    <!-- * First do "essential" string/character substitutions; for -->
+    <!-- * example, the backslash character _must_ be substituted with -->
+    <!-- * a double backslash, to prevent it from being interpreted as -->
+    <!-- * a roff escape -->
+    <xsl:variable name="adjusted.content">
+      <xsl:call-template name="apply-string-subst-map">
+        <xsl:with-param name="content" select="$content"/>
+        <xsl:with-param name="map.contents"
+                        select="exsl:node-set($man.string.subst.map)/*"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <!-- * Optionally, apply a character map to replace Unicode -->
+    <!-- * symbols and special characters. -->
+    <xsl:choose>
+      <xsl:when test="$man.charmap.enabled != 0">
+        <xsl:call-template name="apply-character-map">
+          <xsl:with-param name="content" select="$adjusted.content"/>
+          <xsl:with-param name="map.contents"
+                          select="exsl:node-set($man.charmap.contents)/*"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- * if we reach here, value of $man.charmap.enabled is zero, -->
+        <!-- * so we just pass the adjusted contents through "as is" -->
+        <xsl:value-of select="$adjusted.content"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- ================================================================== -->
+  
+  <xsl:template name="write.man.file">
+    <xsl:param name="name"/>
+    <xsl:param name="section"/>
+    <xsl:param name="content"/>
+    <xsl:param name="filename">
+      <xsl:call-template name="string.subst">
+        <!-- replace spaces in source filename with underscores in output filename -->
+        <xsl:with-param name="string"
+                        select="concat(normalize-space($name), '.', normalize-space($section))"/>
+        <xsl:with-param name="target" select="' '"/>
+        <xsl:with-param name="replacement" select="'_'"/>
+      </xsl:call-template>
+    </xsl:param>
+    <xsl:call-template name="write.text.chunk">
+      <xsl:with-param name="filename" select="$filename"/>
+      <xsl:with-param name="quiet" select="$man.output.quietly"/>
+      <xsl:with-param name="encoding" select="$man.output.encoding"/>
+      <xsl:with-param name="content" select="$content"/>
+    </xsl:call-template>
+  </xsl:template>
+
   <!-- ============================================================== -->
 
   <!-- * A "stub" is sort of alias for another file, intended to be read -->
@@ -137,25 +207,26 @@
   <!-- *  .so manX/realname.X -->
   <!-- * -->
   <!-- * "realname" is a name of another man-page file. That .so line is -->
-  <!-- * basically a *roff "include" statement.  When the man command finds -->
-  <!-- * it, it calls soelim(1) (I think) and includes and displays the -->
-  <!-- * contents of the manX/realqname.X file. -->
+  <!-- * basically a roff "include" statement.  When the man command finds -->
+  <!-- * it, it calls soelim(1) and includes and displays the contents of -->
+  <!-- * the manX/realqname.X file. -->
   <!-- * -->
   <!-- * If a refentry has multiple refnames, we generate a "stub" page for -->
-  <!-- * each additional refname found. -->
+  <!-- * each refname found, except for the first one. -->
   <xsl:template name="write.stubs">
-    <xsl:param name="metadata"/>
+    <xsl:param name="first.refname"/>
+    <xsl:param name="section"/>
     <xsl:for-each select="refnamediv/refname">
-      <xsl:if test=". != $metadata/name">
+      <xsl:if test=". != $first.refname">
         <xsl:call-template name="write.text.chunk">
           <xsl:with-param name="filename"
                           select="concat(normalize-space(.), '.',
-                                  $metadata/section)"/>
+                                  $section)"/>
           <xsl:with-param name="quiet" select="$man.output.quietly"/>
           <xsl:with-param
               name="content"
-              select="concat('.so man', $metadata/section, '/',
-                      $metadata/name, '.', $metadata/section, '&#10;')"/>
+              select="concat('.so man', $section, '/',
+                      $first.refname, '.', $section, '&#10;')"/>
         </xsl:call-template>
       </xsl:if>
     </xsl:for-each>
