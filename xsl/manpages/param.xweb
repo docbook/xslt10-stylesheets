@@ -38,7 +38,6 @@
 &man.string.subst.map;
 &man.subheading.divider.enabled;
 &man.subheading.divider;
-&man.th.title.max.length;
   </reference>
   <reference id="charmap">
   <title>Character map</title>
@@ -61,6 +60,15 @@
 &refentry.version.profile.enabled;
 &refentry.manual.fallback.profile;
 &refentry.source.fallback.profile;
+  </reference>
+  <reference id="charmap">
+  <title>Page header/footer</title>
+&man.th.extra1.suppress;
+&man.th.extra2.suppress;
+&man.th.extra3.suppress;
+&man.th.title.max.length;
+&man.th.extra2.max.length;
+&man.th.extra3.max.length;
   </reference>
   <appendix id="stylesheet">
     <title>The Stylesheet</title>
@@ -97,7 +105,6 @@
 <src:fragref linkend="man.charmap.subset.profile.frag"/>
 <src:fragref linkend="man.subheading.divider.frag"/>
 <src:fragref linkend="man.subheading.divider.enabled.frag"/>
-<src:fragref linkend="man.th.title.max.length.frag"/>
 <src:fragref linkend="refentry.date.profile.enabled.frag"/>
 <src:fragref linkend="refentry.manual.profile.enabled.frag"/>
 <src:fragref linkend="refentry.source.name.profile.enabled.frag"/>
@@ -110,6 +117,12 @@
 <src:fragref linkend="refentry.source.fallback.profile.frag"/>
 <src:fragref linkend="refentry.source.name.profile.frag"/>
 <src:fragref linkend="refentry.version.profile.frag"/>
+<src:fragref linkend="man.th.title.max.length.frag"/>
+<src:fragref linkend="man.th.extra2.max.length.frag"/>
+<src:fragref linkend="man.th.extra3.max.length.frag"/>
+<src:fragref linkend="man.th.extra1.suppress.frag"/>
+<src:fragref linkend="man.th.extra2.suppress.frag"/>
+<src:fragref linkend="man.th.extra3.suppress.frag"/>
 </xsl:stylesheet>
     </src:fragment>
 
