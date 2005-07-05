@@ -24,7 +24,7 @@
 
   <xsl:include href="../common/refentry.xsl"/>
   <xsl:include href="param.xsl"/>
-  <xsl:include href="general.xsl"/>
+  <xsl:include href="utility.xsl"/>
   <xsl:include href="info.xsl"/>
   <xsl:include href="other.xsl"/>
   <xsl:include href="refentry.xsl"/>
