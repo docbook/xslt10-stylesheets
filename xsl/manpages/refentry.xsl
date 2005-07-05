@@ -22,15 +22,7 @@
       <xsl:otherwise>
         <xsl:call-template name="mark.subheading"/>
         <xsl:text>.SH "</xsl:text>
-        <!-- * Use gentext to generate tiel for Refnamediv section, and -->
-        <!-- * make it uppercase -->
-        <xsl:call-template name="string.upper">
-          <xsl:with-param name="string">
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key" select="'RefName'"/>
-            </xsl:call-template>
-          </xsl:with-param>
-        </xsl:call-template>
+        <xsl:apply-templates select="." mode="title.markup"/>
         <xsl:text>"</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
@@ -44,8 +36,23 @@
       </xsl:if>
       <xsl:value-of select="."/>
     </xsl:for-each>
-    <!-- * We don't precede the hyphen with a backslash here because -->
-    <!-- * the backslash gets added later, by the apply-string-subst-map -->
+    <!-- * The man(7) man pages says: -->
+    <!-- * -->
+    <!-- *   The only required heading is NAME, which should be the -->
+    <!-- *   first section and be followed on the next line by a one -->
+    <!-- *   line description of the program: -->
+    <!-- * -->
+    <!-- *      .SH NAME chess \- the game of chess -->
+    <!-- * -->
+    <!-- *   It is extremely important that this format is followed, -->
+    <!-- *   and that there is a backslash before the single dash -->
+    <!-- *   which follows the command name.  This syntax is used by -->
+    <!-- *   the makewhatis(8) program to create a database of short -->
+    <!-- *   command descriptions for the whatis(1) and apropos(1) -->
+    <!-- *   commands. -->
+    <!-- * -->
+    <!-- * So why don't we precede the hyphen with a backslash here? -->
+    <!-- * Well, because it's added later, by the apply-string-subst-map -->
     <!-- * template, before we generate final output -->
     <xsl:text> - </xsl:text>
     <xsl:value-of select="normalize-space (refpurpose)"/>
@@ -55,8 +62,6 @@
   <xsl:template match="refsynopsisdiv">
     <xsl:call-template name="mark.subheading"/>
     <xsl:text>.SH "</xsl:text>
-    <!-- * 'match="refsynopsisdiv" mode="title.markup' template does -->
-    <!-- * uppercasing for this -->
     <xsl:apply-templates select="." mode="title.markup"/>
     <xsl:text>"&#10;</xsl:text>
     <xsl:call-template name="mark.subheading"/>
@@ -66,12 +71,7 @@
   <xsl:template match="refsect1|refentry/refsection">
     <xsl:call-template name="mark.subheading"/>
     <xsl:text>.SH "</xsl:text>
-    <xsl:call-template name="string.upper">
-      <xsl:with-param name="string" select="(info/title
-                                            |refsectioninfo/title
-                                            |refsect1info/title
-                                            |title)[1]"/>
-    </xsl:call-template>
+    <xsl:apply-templates select="." mode="title.markup"/>
     <xsl:text>"&#10;</xsl:text>
     <xsl:call-template name="mark.subheading"/>
     <xsl:apply-templates/>
@@ -102,16 +102,13 @@
   <!-- * top-level Refsection, including in cross-references -->
   <xsl:template match="refsect1|refentry/refsection"
                 mode="title.markup">
-    <xsl:param name="allow-anchors" select="0"/>
     <xsl:variable name="title" select="(info/title
                                        |refsectioninfo/title
                                        |refsect1info/title
                                        |title)[1]"/>
     <xsl:call-template name="string.upper">
       <xsl:with-param name="string">
-        <xsl:apply-templates select="$title" mode="title.markup">
-          <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
-        </xsl:apply-templates>
+        <xsl:apply-templates select="$title" mode="title.markup"/>
       </xsl:with-param>
     </xsl:call-template>
   </xsl:template>
@@ -143,14 +140,9 @@
     </xsl:call-template>
   </xsl:template>
 
-  <!-- * For cross-references to Refnamediv, use localized gentext Refnamediv -->
-  <!-- * title (instead of using first Refname, as HTML and FO stylesheets do), -->
-  <!-- * and make it uppercase -->
-  <xsl:template match="refnamediv" mode="xref-to">
-    <xsl:param name="referrer"/>
-    <xsl:param name="xrefstyle"/>
-    <xsl:param name="verbose" select="1"/>
-
+  <!-- * Use uppercase to render titles of all instances of Refnamediv, -->
+  <!-- * including in cross-references -->
+  <xsl:template match="refnamediv" mode="title.markup">
     <xsl:call-template name="string.upper">
       <xsl:with-param name="string">
         <xsl:call-template name="gentext">
@@ -159,5 +151,15 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:template>
+
+  <xsl:template match="refnamediv" mode="xref-to">
+    <xsl:apply-templates select="." mode="title.markup"/>
+  </xsl:template>
+
+  <!-- ==================================================================== -->
+
+  <!-- * suppress any title we don't otherwise process elsewhere -->
+
+  <xsl:template match="title"/>
 
 </xsl:stylesheet>
