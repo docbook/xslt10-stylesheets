@@ -5,7 +5,7 @@
 </refmeta>
 <refnamediv>
 <refname>man.th.title.max.length</refname>
-<refpurpose>Maximum length of title in TH title line</refpurpose>
+<refpurpose>Maximum length of title in header/footer</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -17,8 +17,9 @@
 <refsect1><title>Description</title>
 
 <para>Specifies the maximum permitted length of the title part of the
-man-page TH title line. If the title exceeds the maxiumum specified,
-it is truncated down to the maximum permitted length.</para>
+man-page <literal>.TH</literal> title line header/footer. If the title
+exceeds the maxiumum specified, it is truncated down to the maximum
+permitted length.</para>
 
 <refsect2>
   <title>Details</title>

@@ -14,6 +14,12 @@
 
      ******************************************************************** -->
 
+<xsl:param name="man.th.extra1.suppress">0</xsl:param>
+<xsl:param name="man.th.extra2.suppress">0</xsl:param>
+<xsl:param name="man.th.extra3.suppress">0</xsl:param>
+<xsl:param name="man.th.extra2.max.length">30</xsl:param>
+<xsl:param name="man.th.extra3.max.length">40</xsl:param>
+
 <!-- * This file contains named templates that are related to things -->
 <!-- * other than just assembling the actual text of the main text flow -->
 <!-- * of each man page. This "other" stuff currently amounts to: -->
@@ -92,19 +98,52 @@
     <xsl:text>.TH "</xsl:text>
     <xsl:call-template name="string.upper">
       <xsl:with-param name="string">
-        <!-- * truncate title if it exceeds max. length (user-configurable) -->
-        <xsl:value-of
-            select="normalize-space(substring($title, 1, $man.th.title.max.length))"/>
+        <xsl:choose>
+          <xsl:when test="$man.th.title.max.length != ''">
+            <xsl:value-of
+                select="normalize-space(substring($title, 1, $man.th.title.max.length))"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="normalize-space($title)"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:with-param>
     </xsl:call-template>
     <xsl:text>" "</xsl:text>
     <xsl:value-of select="normalize-space($section)"/>
     <xsl:text>" "</xsl:text>
-    <xsl:value-of select="normalize-space($extra1)"/>
+    <xsl:if test="$man.th.extra1.suppress = 0">
+      <!-- * there is no max.length for the extra1 field; the reason -->
+      <!-- * is, it is almost always a date, and it is not possible -->
+      <!-- * to truncate dates without changing their meaning -->
+      <xsl:value-of select="normalize-space($extra1)"/>
+    </xsl:if>
     <xsl:text>" "</xsl:text>
-    <xsl:value-of select="normalize-space($extra2)"/>
+    <xsl:if test="$man.th.extra2.suppress = 0">
+      <xsl:choose>
+        <!-- * if max.length is non-empty, use value to truncate field -->
+        <xsl:when test="$man.th.extra2.max.length != ''">
+          <xsl:value-of
+              select="normalize-space(substring($extra2, 1, $man.th.extra2.max.length))"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="normalize-space($extra2)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
     <xsl:text>" "</xsl:text>
-    <xsl:value-of select="normalize-space($extra3)"/>
+    <xsl:if test="$man.th.extra3.suppress = 0">
+      <xsl:choose>
+        <!-- * if max.length is non-empty, use value to truncate field -->
+        <xsl:when test="$man.th.extra3.max.length != ''">
+          <xsl:value-of
+              select="normalize-space(substring($extra3, 1, $man.th.extra3.max.length))"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="normalize-space($extra3)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
     <xsl:text>"&#10;</xsl:text>
     <xsl:call-template name="mark.subheading"/>
   </xsl:template>
