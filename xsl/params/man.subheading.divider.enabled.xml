@@ -1,17 +1,16 @@
-<refentry id="man.subheading.divider">
+<refentry id="man.subheading.divider.enabled">
 <refmeta>
-<refentrytitle>man.subheading.divider</refentrytitle>
+<refentrytitle>man.subheading.divider.enabled</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
 </refmeta>
 <refnamediv>
-<refname>man.subheading.divider</refname>
-<refpurpose>Specifies string to use as divider comment before/after subheadings</refpurpose>
+<refname>man.subheading.divider.enabled</refname>
+<refpurpose>Add divider comment to roff source before/after subheadings?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.subheading.divider.frag'>
-<xsl:param name="man.subheading.divider"
->========================================================================</xsl:param>
+<src:fragment id='man.subheading.divider.enabled.frag'>
+<xsl:param name="man.subheading.divider.enabled">0</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

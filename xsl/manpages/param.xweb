@@ -36,6 +36,7 @@
 &man.output.quietly;
 &man.output.encoding;
 &man.string.subst.map;
+&man.subheading.divider.enabled;
 &man.subheading.divider;
 &man.th.title.max.length;
   </reference>
@@ -80,6 +81,7 @@
 <src:fragref linkend="man.charmap.use.subset.frag"/>
 <src:fragref linkend="man.charmap.subset.profile.frag"/>
 <src:fragref linkend="man.subheading.divider.frag"/>
+<src:fragref linkend="man.subheading.divider.enabled.frag"/>
 <src:fragref linkend="man.th.title.max.length.frag"/>
 </xsl:stylesheet>
     </src:fragment>
