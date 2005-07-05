@@ -21,5 +21,12 @@ with the name of the file is emitted. If non-zero, the files are
 output "quietly" -- that is, the filename messages are
 suppressed.</para>
 
+<tip>
+  <para>If you are processing a large number of <tag>refentry</tag>
+  content, you may be able to speed up processing significatnly by
+  setting a non-zero value for
+  <parameter>man.output.quietly</parameter>.</para>
+</tip>
+
 </refsect1>
 </refentry>
