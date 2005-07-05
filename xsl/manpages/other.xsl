@@ -14,12 +14,6 @@
 
      ******************************************************************** -->
 
-<xsl:param name="man.th.extra1.suppress">0</xsl:param>
-<xsl:param name="man.th.extra2.suppress">0</xsl:param>
-<xsl:param name="man.th.extra3.suppress">0</xsl:param>
-<xsl:param name="man.th.extra2.max.length">30</xsl:param>
-<xsl:param name="man.th.extra3.max.length">40</xsl:param>
-
 <!-- * This file contains named templates that are related to things -->
 <!-- * other than just assembling the actual text of the main text flow -->
 <!-- * of each man page. This "other" stuff currently amounts to: -->
