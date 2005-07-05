@@ -22,8 +22,8 @@ output "quietly" -- that is, the filename messages are
 suppressed.</para>
 
 <tip>
-  <para>If you are processing a large number of <tag>refentry</tag>
-  content, you may be able to speed up processing significatnly by
+  <para>If you are processing a large amount of <tag>refentry</tag>
+  content, you may be able to speed up processing significantly by
   setting a non-zero value for
   <parameter>man.output.quietly</parameter>.</para>
 </tip>
