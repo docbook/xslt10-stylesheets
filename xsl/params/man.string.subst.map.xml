@@ -63,10 +63,10 @@
 <refsect1><title>Description</title>
 
 <para>The <parameter>man.string.subst.map</parameter> parameter
-contains a "map" that specifies a set of string substitutions to
-perform over the entire roff source for each man page, either just
-before generating final man-page output (that is, before writing
-man-page files to disk) or, if the value of the
+contains <link linkend="map">a map</link> that specifies a set of
+string substitutions to perform over the entire roff source for each
+man page, either just before generating final man-page output (that
+is, before writing man-page files to disk) or, if the value of the
 <parameter>man.charmap.enabled</parameter> parameter is non-zero,
 before applying the roff character map.</para>
 
@@ -97,24 +97,30 @@ particular customization of the DocBook XSL stylesheets.</para>
 
 </warning>
 
-<para>The map contains one or more <tag>substitution</tag> elements,
-each of which has two attributes:
-<variablelist>
-  <varlistentry>
-    <term>oldstring</term>
-    <listitem>
-      <simpara>string to replace</simpara>
-    </listitem>
-  </varlistentry>
-  <varlistentry>
-    <term>newstring</term>
-    <listitem>
-      <simpara>string with which to replace <tag class="attribute"
-      >oldstring</tag></simpara>
-    </listitem>
-  </varlistentry>
-</variablelist>
-</para>
+<refsect2 id="map">
+  <title>Contents of the substitution map</title>
+  <para>The string-substitution map contains one or more <tag
+  namespace="http://docbook.sf.net/xmlns/string.subst/1.0"
+  >substitution</tag> elements, each of which has two attributes:
+  <variablelist>
+    <varlistentry>
+      <term>oldstring</term>
+      <listitem>
+        <simpara>string to replace</simpara>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term>newstring</term>
+      <listitem>
+        <simpara>string with which to replace <tag class="attribute"
+        >oldstring</tag></simpara>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  It may also include XML comments (that is, delimited with
+  "<literal>&lt;!--</literal>" and "<literal>--></literal>").
+  </para>
+</refsect2>
 
 <refsect2 id="Dots">
   <title>About adding backslashes before dots</title>
