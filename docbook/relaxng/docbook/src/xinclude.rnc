@@ -10,12 +10,267 @@
 # Release: $Id$
 #
 
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
 namespace xi = "http://www.w3.org/2001/XInclude"
 namespace db = "http://docbook.org/ns/docbook"
 namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
 
+db.divisions |= db.xi.include
+db.components |= db.xi.include
+
+db.toplevel.sections |=
+   ((db.section|db.xi.include)+, (db.simplesect|db.xi.include)*)
+ | (db.simplesect|db.xi.include)+
+
+db.recursive.sections |=
+   ((db.section|db.xi.include)+, (db.simplesect|db.xi.include)*)
+ | (db.simplesect|db.xi.include)+
+
+db.part.components |= db.xi.include
+
+db.article.components |=
+   ((db.section|db.xi.include)+, (db.simplesect|db.xi.include)*)
+ | (db.simplesect|db.xi.include)+
+
 db.all.blocks |= db.xi.include
 db.all.inlines |= db.xi.include
+
+ctrl:conditional [
+  pattern="db.refentry"
+
+  rng:define [
+    name = "db.toplevel.sections"
+    combine = "choice"
+    rng:oneOrMore [
+      rng:choice [
+        rng:ref [ name = "db.refentry" ]
+        rng:ref [ name = "db.xi.include" ]
+      ]
+    ]
+  ]
+
+  rng:define [
+    name = "db.recursive.sections"
+    combine = "choice"
+    rng:oneOrMore [
+      rng:choice [
+        rng:ref [ name = "db.refentry" ]
+        rng:ref [ name = "db.xi.include" ]
+      ]
+    ]
+  ]
+
+  rng:define [
+    name = "db.article.components"
+    combine = "choice"
+    rng:oneOrMore [
+      rng:choice [
+        rng:ref [ name = "db.refentry" ]
+        rng:ref [ name = "db.xi.include" ]
+      ]
+    ]
+  ]
+
+  rng:define [
+    name = "db.toplevel.refsection"
+    combine = "choice"
+    rng:oneOrMore [
+      rng:choice [
+        rng:ref [ name = "db.refentry" ]
+        rng:ref [ name = "db.xi.include" ]
+      ]
+    ]
+  ]
+
+  rng:define [
+    name = "db.secondlevel.refsection"
+    combine = "choice"
+    rng:oneOrMore [
+      rng:choice [
+        rng:ref [ name = "db.refentry" ]
+        rng:ref [ name = "db.xi.include" ]
+      ]
+    ]
+  ]
+]
+
+ctrl:conditional [
+  pattern="db.sect1"
+
+  rng:define [
+    name = "db.toplevel.sections"
+    combine = "choice"
+    rng:choice [
+       rng:group [
+          rng:oneOrMore [
+             rng:choice [
+                rng:ref [ name = "db.sect1" ]
+                rng:ref [ name = "db.xi.include" ]
+             ]
+          ]
+          rng:zeroOrMore [
+             rng:choice [
+                rng:ref [ name = "db.simplesect" ]
+                rng:ref [ name = "db.xi.include" ]
+             ]
+          ]
+       ]
+       rng:oneOrMore [
+          rng:choice [
+             rng:ref [ name = "db.simplesect" ]
+             rng:ref [ name = "db.xi.include" ]
+          ]
+       ]
+    ]
+  ]
+
+  rng:define [
+    name = "db.article.components"
+    combine = "choice"
+    rng:choice [
+       rng:group [
+          rng:oneOrMore [
+             rng:choice [
+                rng:ref [ name = "db.sect1" ]
+                rng:ref [ name = "db.xi.include" ]
+             ]
+          ]
+          rng:zeroOrMore [
+             rng:choice [
+                rng:ref [ name = "db.simplesect" ]
+                rng:ref [ name = "db.xi.include" ]
+             ]
+          ]
+       ]
+       rng:oneOrMore [
+          rng:choice [
+             rng:ref [ name = "db.simplesect" ]
+             rng:ref [ name = "db.xi.include" ]
+          ]
+       ]
+    ]
+  ]
+
+  rng:define [
+    name = "db.sect1.sections"
+    combine = "choice"
+    rng:choice [
+       rng:group [
+          rng:oneOrMore [
+             rng:choice [
+                rng:ref [ name = "db.sect2" ]
+                rng:ref [ name = "db.xi.include" ]
+             ]
+          ]
+          rng:zeroOrMore [
+             rng:choice [
+                rng:ref [ name = "db.simplesect" ]
+                rng:ref [ name = "db.xi.include" ]
+             ]
+          ]
+       ]
+       rng:oneOrMore [
+          rng:choice [
+             rng:ref [ name = "db.simplesect" ]
+             rng:ref [ name = "db.xi.include" ]
+          ]
+       ]
+    ]
+  ]
+
+  rng:define [
+    name = "db.sect2.sections"
+    combine = "choice"
+    rng:choice [
+       rng:group [
+          rng:oneOrMore [
+             rng:choice [
+                rng:ref [ name = "db.sect3" ]
+                rng:ref [ name = "db.xi.include" ]
+             ]
+          ]
+          rng:zeroOrMore [
+             rng:choice [
+                rng:ref [ name = "db.simplesect" ]
+                rng:ref [ name = "db.xi.include" ]
+             ]
+          ]
+       ]
+       rng:oneOrMore [
+          rng:choice [
+             rng:ref [ name = "db.simplesect" ]
+             rng:ref [ name = "db.xi.include" ]
+          ]
+       ]
+    ]
+  ]
+
+  rng:define [
+    name = "db.sect3.sections"
+    combine = "choice"
+    rng:choice [
+       rng:group [
+          rng:oneOrMore [
+             rng:choice [
+                rng:ref [ name = "db.sect4" ]
+                rng:ref [ name = "db.xi.include" ]
+             ]
+          ]
+          rng:zeroOrMore [
+             rng:choice [
+                rng:ref [ name = "db.simplesect" ]
+                rng:ref [ name = "db.xi.include" ]
+             ]
+          ]
+       ]
+       rng:oneOrMore [
+          rng:choice [
+             rng:ref [ name = "db.simplesect" ]
+             rng:ref [ name = "db.xi.include" ]
+          ]
+       ]
+    ]
+  ]
+
+  rng:define [
+    name = "db.sect4.sections"
+    combine = "choice"
+    rng:choice [
+       rng:group [
+          rng:oneOrMore [
+             rng:choice [
+                rng:ref [ name = "db.sect5" ]
+                rng:ref [ name = "db.xi.include" ]
+             ]
+          ]
+          rng:zeroOrMore [
+             rng:choice [
+                rng:ref [ name = "db.simplesect" ]
+                rng:ref [ name = "db.xi.include" ]
+             ]
+          ]
+       ]
+       rng:oneOrMore [
+          rng:choice [
+             rng:ref [ name = "db.simplesect" ]
+             rng:ref [ name = "db.xi.include" ]
+          ]
+       ]
+    ]
+  ]
+
+  rng:define [
+    name = "db.sect5.sections"
+    combine = "choice"
+    rng:oneOrMore [
+       rng:choice [
+          rng:ref [ name = "db.simplesect" ]
+          rng:ref [ name = "db.xi.include" ]
+       ]
+    ]
+  ]
+]
 
 # ======================================================================
 
