@@ -40,8 +40,9 @@ instead of the full roff character map.</para>
 
 <para>The value of <parameter>man.charmap.subset.profile</parameter>
 is a string representating an XPath expression that matches attribute
-names and values for <tag>output-character</tag> elements in the
-character map.</para>
+names and values for <tag
+namespace="http://docbook.sf.net/xmlns/unichar/1.0"
+>output-character</tag> elements in the character map.</para>
 
 <para>The attributes supported in the <ulink
 url="http://docbook.sourceforge.net/snapshot/xsl/manpages/charmap.groff.xsl"
