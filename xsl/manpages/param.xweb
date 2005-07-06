@@ -46,7 +46,7 @@
 &man.charmap.use.subset;
 &man.charmap.subset.profile;
   </reference>
-  <reference id="charmap">
+  <reference id="refmeta">
   <title>Refentry metadata gathering</title>
 &refentry.date.profile;
 &refentry.date.profile.enabled;
@@ -61,7 +61,7 @@
 &refentry.manual.fallback.profile;
 &refentry.source.fallback.profile;
   </reference>
-  <reference id="charmap">
+  <reference id="th">
   <title>Page header/footer</title>
 &man.th.extra1.suppress;
 &man.th.extra2.suppress;
