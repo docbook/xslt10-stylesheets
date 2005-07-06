@@ -104,9 +104,18 @@
   </a>
 </xsl:template>
 
-<xsl:template match="sgmltag[(not(@class) or @class='element')
-                             and (not(@role) or @role != 'html')]">
-  <!-- link sgmltags to thier reference pages -->
+<!-- * Check for both <sgmltag> and <tag>, but ignore those -->
+<!-- * with role="html" or namespace="http://docbook.sf.net/*" -->
+<!-- * or namespace="http://docbook.sourceforge.net/*" -->
+<xsl:template match="*[name() = 'sgmltag' or name() = 'tag']
+                     [(not(@class) or @class='element')
+                       and (not(@role) or @role != 'html')
+                       and (not(@namespace)
+                         or not(
+                         contains(@namespace, 'http://docbook.sf.net/')
+                         or contains(@namespace, 'http://docbook.sourceforge.net/')
+                         ))]">
+  <!-- link sgmltags to their reference pages -->
   <a href="http://docbook.org/tdg/en/html/{.}.html">
     <xsl:apply-imports/>
   </a>
