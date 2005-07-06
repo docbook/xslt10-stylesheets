@@ -20,9 +20,7 @@
 <note>
 <para>The default value for this parameter is zero because groff is
 not particularly smart about how it does hyphenation; it can end up
-hyphenating a lot of things that you don't want hyphenated (names of
-symbols, for example), and it is difficult and tiresome work to
-prevent it from doing that.</para>
+hyphenating a lot of things that you don't want hyphenated.</para>
 
 <para>That said, justified text can look very bad unless you also
 hyphenate it; to quote the "Hypenation" node from the groff info page:
