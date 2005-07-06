@@ -21,13 +21,22 @@ while (<>) {
     s/\s+xmlns:xlink=([\"\']).*?\1\s+/ /g;
     s/\s*xmlns:xlink=([\"\']).*?\1\s*//g;
 
-    s/\s+xmlns:dtd=([\"\']).*?\1\s+/ /g;
-    s/\s*xmlns:dtd=([\"\']).*?\1\s*//g;
+    s/\s+xmlns:a=([\"\']).*?\1\s+/ /g;
+    s/\s*xmlns:a=([\"\']).*?\1\s*//g;
 
-    s/<grammar /<grammar xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" xmlns:dtd=\"http:\/\/relaxng.org\/ns\/compatibility\/annotations\/1.0\" /g;
+    s/\s+xmlns:html=([\"\']).*?\1\s+/ /g;
+    s/\s*xmlns:html=([\"\']).*?\1\s*//g;
+
+    s/\s+xmlns:dbx=([\"\']).*?\1\s+/ /g;
+    s/\s*xmlns:dbx=([\"\']).*?\1\s*//g;
+
+    s/<grammar /<grammar xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" xmlns:a=\"http:\/\/relaxng.org\/ns\/compatibility\/annotations\/1.0\" xmlns:html=\"http:\/\/www.w3.org\/1999\/xhtml\" /g;
 
     s/<(s:rule\s+.*?)>/<\1 xmlns:s=\"http:\/\/www.ascc.net\/xml\/schematron\">/g;
     s/<(ctrl:\S+\s+.*?)(\/?>)/<\1 xmlns:ctrl=\"http:\/\/nwalsh.com\/xmlns\/schema-control\/\"\2/g;
+
+    s/<(dbx:\S+\s+.*?)(\/?>)/<\1 xmlns:dbx=\"http:\/\/sourceforge\.net\/projects\/docbook\/defguide\/schema\/extra-markup\"\2/g;
+    s/<(dbx:\S+)(\/?>)/<\1 xmlns:dbx=\"http:\/\/sourceforge\.net\/projects\/docbook\/defguide\/schema\/extra-markup\"\2/g;
 
     print $_;
     print "\n" if /<\/define>/ || /<ctrl:/ || /<\/start>/;

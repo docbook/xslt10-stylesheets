@@ -21,17 +21,23 @@
       <xsl:apply-templates mode="include"/>
     </xsl:variable>
 
-    <xsl:variable name="overridden">
-      <xsl:apply-templates select="exsl:node-set($expanded)/*" mode="override"/>
+    <xsl:variable name="conditional">
+      <xsl:apply-templates select="exsl:node-set($expanded)/*"
+			   mode="conditional"/>
     </xsl:variable>
 
-    <xsl:apply-templates select="exsl:node-set($overridden)/*" mode="combine"/>
+    <xsl:variable name="overridden">
+      <xsl:apply-templates select="exsl:node-set($conditional)/*"
+			   mode="override"/>
+    </xsl:variable>
+
+    <xsl:apply-templates select="exsl:node-set($overridden)/*"
+			 mode="combine"/>
   </xsl:template>
 
   <!-- ====================================================================== -->
 
   <xsl:template match="rng:include" mode="include">
-    <xsl:message>Including <xsl:value-of select="@href"/></xsl:message>
     <xsl:variable name="doc" select="document(@href,.)"/>
 
     <xsl:variable name="nestedGrammar">
@@ -39,9 +45,10 @@
       <xsl:apply-templates mode="markOverride"/>
     </xsl:variable>
 
-    <xsl:apply-templates select="exsl:node-set($nestedGrammar)/*" mode="override"/>
+    <xsl:apply-templates select="exsl:node-set($nestedGrammar)/*"
+			 mode="override"/>
 
-    <xsl:message>Done including <xsl:value-of select="@href"/></xsl:message>
+    <xsl:message>Included <xsl:value-of select="@href"/></xsl:message>
   </xsl:template>
 
   <xsl:template match="*" mode="include">
@@ -213,6 +220,40 @@
 
   <!-- ====================================================================== -->
 
+  <xsl:template match="ctrl:conditional" mode="conditional">
+    <xsl:variable name="pat" select="@pattern"/>
+
+    <xsl:choose>
+      <xsl:when test="//rng:define[@name = $pat]">
+	<xsl:message>
+	  <xsl:text>Including conditional pattern=</xsl:text>
+	  <xsl:value-of select="$pat"/>
+	</xsl:message>
+	<xsl:apply-templates mode="conditional"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:message>
+	  <xsl:text>Excluding conditional pattern=</xsl:text>
+	  <xsl:value-of select="$pat"/>
+	</xsl:message>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="*" mode="conditional">
+    <xsl:copy>
+      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates mode="conditional"/>
+    </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match="comment()|processing-instruction()|text()"
+		mode="conditional">
+    <xsl:copy/>
+  </xsl:template>
+
+  <!-- ====================================================================== -->
+
   <xsl:template match="rng:start" mode="override">
     <xsl:choose>
       <xsl:when test="@override">
@@ -266,7 +307,8 @@
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="comment()|processing-instruction()|text()" mode="override">
+  <xsl:template match="comment()|processing-instruction()|text()"
+		mode="override">
     <xsl:copy/>
   </xsl:template>
 
