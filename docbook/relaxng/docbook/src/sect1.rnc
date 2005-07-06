@@ -16,11 +16,11 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 default namespace = "http://docbook.org/ns/docbook"
 
-db.toplevel.optional.sections |= db.sect1*
-db.toplevel.required.sections |= db.sect1+
+db.toplevel.optional.sections |= (db.sect1*, db.simplesect*)
+db.toplevel.required.sections |= (db.sect1+, db.simplesect*) | db.simplesect+
 
-db.article.optional.components |= db.sect1*
-db.article.required.components |= db.sect1+
+db.article.optional.components |= (db.sect1*, db.simplesect*)
+db.article.required.components |= (db.sect1+, db.simplesect*) | db.simplesect+
 
 # ======================================================================
 
