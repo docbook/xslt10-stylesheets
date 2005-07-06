@@ -16,13 +16,13 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 default namespace = "http://docbook.org/ns/docbook"
 
-db.toplevel.optional.sections |= (db.sect1*, db.simplesect*)
-db.toplevel.required.sections |= (db.sect1+, db.simplesect*) | db.simplesect+
+db.toplevel.sections |= (db.sect1+, db.simplesect*) | db.simplesect+
 
-db.article.optional.components |= (db.sect1*, db.simplesect*)
-db.article.required.components |= (db.sect1+, db.simplesect*) | db.simplesect+
+db.article.components |= (db.sect1+, db.simplesect*) | db.simplesect+
 
 # ======================================================================
+
+db.sect1.sections = (db.sect2+, db.simplesect*) | db.simplesect+
 
 [
    db:refname [ "sect1" ]
@@ -47,15 +47,15 @@ div {
       element sect1 {
          db.sect1.attlist,
          db.sect1.info,
-         ((db.all.blocks+, (db.optional.refentry | (db.sect2*, db.simplesect*)))
-          | db.required.refentry
-          | (db.sect2+, db.simplesect*)
-          | db.simplesect+),
+         ((db.all.blocks+, db.sect1.sections?)
+          | db.sect1.sections),
          db.navigation.components*
       }
 }
 
 # ======================================================================
+
+db.sect2.sections = (db.sect3+, db.simplesect*) | db.simplesect+
 
 [
    db:refname [ "sect2" ]
@@ -80,15 +80,15 @@ div {
       element sect2 {
          db.sect2.attlist,
          db.sect2.info,
-         ((db.all.blocks+, (db.optional.refentry | (db.sect3*, db.simplesect*)))
-          | db.required.refentry
-          | (db.sect3+, db.simplesect*)
-          | db.simplesect+),
+         ((db.all.blocks+, db.sect2.sections?)
+          | db.sect2.sections),
          db.navigation.components*
       }
 }
 
 # ======================================================================
+
+db.sect3.sections = (db.sect4+, db.simplesect*) | db.simplesect+
 
 [
    db:refname [ "sect3" ]
@@ -113,15 +113,15 @@ div {
       element sect3 {
          db.sect3.attlist,
          db.sect3.info,
-         ((db.all.blocks+, (db.optional.refentry | (db.sect4*, db.simplesect*)))
-          | db.required.refentry
-          | (db.sect4+, db.simplesect*)
-          | db.simplesect+),
+         ((db.all.blocks+, db.sect3.sections?)
+          | db.sect3.sections),
          db.navigation.components*
       }
 }
 
 # ======================================================================
+
+db.sect4.sections = (db.sect5+, db.simplesect*) | db.simplesect+
 
 [
    db:refname [ "sect4" ]
@@ -146,15 +146,15 @@ div {
       element sect4 {
          db.sect4.attlist,
          db.sect4.info,
-         ((db.all.blocks+, (db.optional.refentry | (db.sect5*, db.simplesect*)))
-          | db.required.refentry
-          | (db.sect5+, db.simplesect*)
-          | db.simplesect+),
+         ((db.all.blocks+, db.sect4.sections?)
+          | db.sect4.sections),
          db.navigation.components*
       }
 }
 
 # ======================================================================
+
+db.sect5.sections = db.simplesect+
 
 [
    db:refname [ "sect5" ]
@@ -179,9 +179,8 @@ div {
       element sect5 {
          db.sect5.attlist,
          db.sect5.info,
-         ((db.all.blocks+, (db.optional.refentry | db.simplesect*))
-          | db.required.refentry
-          | db.simplesect+),
+         ((db.all.blocks+, db.sect5.sections?)
+          | db.sect5.sections),
          db.navigation.components*
       }
 }

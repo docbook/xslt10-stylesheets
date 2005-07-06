@@ -22,23 +22,15 @@ db.divisions |= db.reference
 
 db.part.components |= db.refentry | db.reference
 
-db.article.optional.components |= db.refentry*
-db.article.required.components |= db.refentry+
+db.article.components |= db.refentry+
 
-db.toplevel.optional.sections |= db.refentry*
-db.toplevel.required.sections |= db.refentry+
+db.toplevel.sections |= db.refentry+
 
-db.recursive.optional.sections |= db.refentry*
-db.recursive.required.sections |= db.refentry+
+db.recursive.sections |= db.refentry+
 
-db.optional.refentry |= db.refentry*
-db.required.refentry |= db.refentry+
+db.toplevel.refsection = db.refsection+
 
-db.toplevel.optional.refsection = db.refsection*
-db.toplevel.required.refsection = db.refsection+
-
-db.secondlevel.optional.refsection = db.refsection*
-db.secondlevel.required.refsection = db.refsection+
+db.secondlevel.refsection = db.refsection+
 
 # ======================================================================
 
@@ -95,7 +87,7 @@ div {
          db.refmeta?,
          db.refnamediv+,
          db.refsynopsisdiv?,
-         db.toplevel.required.refsection
+         db.toplevel.refsection
       }
 }
 
@@ -283,8 +275,8 @@ div {
       element refsynopsisdiv {
          db.refsynopsisdiv.attlist,
          db.refsynopsisdiv.info,
-         ((db.all.blocks+, db.secondlevel.optional.refsection)
-          | db.secondlevel.required.refsection)
+         ((db.all.blocks+, db.secondlevel.refsection?)
+          | db.secondlevel.refsection)
       }
 }
 

@@ -16,11 +16,9 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 default namespace = "http://docbook.org/ns/docbook"
 
-db.toplevel.optional.refsection |= db.refsect1*
-db.toplevel.required.refsection |= db.refsect1+
+db.toplevel.refsection |= db.refsect1+
 
-db.secondlevel.optional.refsection |= db.refsect2*
-db.secondlevel.required.refsection |= db.refsect2+
+db.secondlevel.refsection |= db.refsect2+
 
 # ======================================================================
 

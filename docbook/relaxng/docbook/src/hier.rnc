@@ -60,22 +60,15 @@ db.label.attribute = attribute label { text }
 
 # ======================================================================
 
-db.toplevel.optional.sections = (db.section*, db.simplesect*)
-
-db.toplevel.required.sections = (db.section+, db.simplesect*) | db.simplesect+
+db.toplevel.sections = (db.section+, db.simplesect*) | db.simplesect+
 
 db.toplevel.blocks.or.sections =
-  (db.all.blocks+, db.toplevel.optional.sections) | db.toplevel.required.sections
+  (db.all.blocks+, db.toplevel.sections?) | db.toplevel.sections
 
-db.recursive.optional.sections = (db.section*, db.simplesect*)
-
-db.recursive.required.sections = (db.section+, db.simplesect*) | db.simplesect+
+db.recursive.sections = (db.section+, db.simplesect*) | db.simplesect+
 
 db.recursive.blocks.or.sections =
-  (db.all.blocks+, db.recursive.optional.sections) | db.recursive.required.sections
-
-db.optional.refentry = notAllowed
-db.required.refentry = notAllowed
+  (db.all.blocks+, db.recursive.sections?) | db.recursive.sections
 
 # ======================================================================
 
@@ -450,8 +443,7 @@ div {
 
 # ======================================================================
 
-db.article.optional.components = db.section* | db.simplesect*
-db.article.required.components = db.section+ | db.simplesect+
+db.article.components = (db.section+, db.simplesect*) | db.simplesect+
 
 # ======================================================================
 
@@ -526,9 +518,8 @@ div {
          db.article.attlist,
          db.article.info,
          db.navigation.components*,
-         ((db.all.blocks+,
-            db.article.optional.components)
-          | db.article.required.components),
+         ((db.all.blocks+, db.article.components?)
+          | db.article.components),
          (db.appendix | db.navigation.components | db.ackno | db.colophon)*
       }
 }
