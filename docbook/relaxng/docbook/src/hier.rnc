@@ -60,16 +60,16 @@ db.label.attribute = attribute label { text }
 
 # ======================================================================
 
-db.toplevel.optional.sections = db.section* | db.simplesect*
+db.toplevel.optional.sections = (db.section*, db.simplesect*)
 
-db.toplevel.required.sections = db.section+ | db.simplesect+
+db.toplevel.required.sections = (db.section+, db.simplesect*) | db.simplesect+
 
 db.toplevel.blocks.or.sections =
   (db.all.blocks+, db.toplevel.optional.sections) | db.toplevel.required.sections
 
-db.recursive.optional.sections = db.section* | db.simplesect*
+db.recursive.optional.sections = (db.section*, db.simplesect*)
 
-db.recursive.required.sections = db.section+ | db.simplesect+
+db.recursive.required.sections = (db.section+, db.simplesect*) | db.simplesect+
 
 db.recursive.blocks.or.sections =
   (db.all.blocks+, db.recursive.optional.sections) | db.recursive.required.sections
