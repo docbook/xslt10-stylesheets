@@ -6,6 +6,10 @@ XMLFILES=$@
 SRCDIR=/sourceforge/docbook/testdocs/tests
 DB4UPG=../../tools/db4-upgrade.xsl
 
+if [ ! -d passed -a -d tests ]; then
+    cd tests
+fi
+
 if [ ! -d passed ]; then
     echo "Directory 'passed' must exist. Are you sure you're in the right place?"
     exit 1
@@ -52,3 +56,6 @@ for f in $XMLFILES; do
     fi
 done
 
+TESTCOUNT=`echo $XMLFILES | wc -w`
+
+echo "$TESTCOUNT tests done"
