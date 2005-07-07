@@ -16,11 +16,15 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 default namespace = "http://docbook.org/ns/docbook"
 
+start |= db.refsect1 | db.refsect2 | db.refsect3
+
 db.toplevel.refsection |= db.refsect1+
 
 db.secondlevel.refsection |= db.refsect2+
 
 # ======================================================================
+
+db.refsect1.sections = db.refsect2+
 
 [
    db:refname [ "refsect1" ]
@@ -45,12 +49,14 @@ div {
       element refsect1 {
          db.refsect1.attlist,
          db.refsect1.info,
-         ((db.all.blocks+, db.refsect2*)
-          | db.refsect2+)
+         ((db.all.blocks+, db.refsect1.sections?)
+          | db.refsect1.sections)
       }
 }
 
 # ======================================================================
+
+db.refsect2.sections = db.refsect3+
 
 [
    db:refname [ "refsect2" ]
@@ -75,8 +81,8 @@ div {
       element refsect2 {
          db.refsect2.attlist,
          db.refsect2.info,
-         ((db.all.blocks+, db.refsect3*)
-          | db.refsect3+)
+         ((db.all.blocks+, db.refsect2.sections?)
+          | db.refsect2.sections)
       }
 }
 

@@ -22,8 +22,6 @@ db.divisions |= db.reference
 
 db.part.components |= db.refentry | db.reference
 
-db.article.components |= db.refentry+
-
 db.toplevel.sections |= db.refentry+
 
 db.recursive.sections |= db.refentry+
