@@ -52,7 +52,7 @@
 
       <xsl:text>&#10;</xsl:text>
       <xsl:text>&#10;</xsl:text>
-      <xsl:comment> DocBook NG: The "Lillet" Release </xsl:comment>
+      <xsl:comment> DocBook NG: The "Mezcal" Release </xsl:comment>
       <xsl:text>&#10;</xsl:text>
       <xsl:comment> See http://docbook.org/ns/docbook </xsl:comment>
       <xsl:text>&#10;</xsl:text>

@@ -7,7 +7,7 @@
                 version="1.0">
 
 <!-- ======================================================================
-# This file is part of DocBook NG: The "Lillet" Release.
+# This file is part of DocBook NG: The "Mezcal" Release.
 # A prototype DocBook V4.2 to DocBoook V.next converter.
 #
 # This stylesheet is a "work-in-progress". It converts (some) valid
