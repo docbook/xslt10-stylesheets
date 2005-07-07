@@ -26,3 +26,8 @@ docbook.rnc: docbook.rng
 
 docbook.dtd: $(basename $(docbook_BINARY)).dtx docbook.rnc
 	$(XSLTPROC) -output $@ $(TOOLS)/xml2dtd.xsl $<
+
+.PHONY: tests
+
+tests:
+	$(TOOLS)/runtests
