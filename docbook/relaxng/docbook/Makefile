@@ -24,7 +24,7 @@ _OUTTOP := $(_OUTTOP)/build
 
 .PHONY: clean
 
-clean:: ; @rm -rf $(_OUTTOP)
+clean:: ; rm -rf $(_OUTTOP)
 
 .SUFFIXES:
 

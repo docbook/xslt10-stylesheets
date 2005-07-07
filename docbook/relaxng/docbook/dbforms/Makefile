@@ -6,6 +6,8 @@ BINARY = dbforms.rnd
 
 all:: dbforms.rng dbforms.rnc dbforms.dtd
 
+clean:: ; rm -f dbforms.rng dbforms.rnc dbforms.dtd
+
 $(_OUTTOP)/dbforms/dbforms.rng: dbforms/htmlform.rnc \
              src/annotations.rnc src/bibliography.rnc \
              src/callouts.rnc src/calstbl.rnc src/dbforms.rnc \

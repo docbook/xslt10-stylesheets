@@ -6,6 +6,8 @@ BINARY = docbook.rnd
 
 all:: docbook.rng docbook.rnc docbook.dtd
 
+clean:: ; rm -f docbook.rng docbook.rnc docbook.dtd
+
 $(_OUTTOP)/docbook/docbook.rng: src/annotations.rnc src/bibliography.rnc \
              src/callouts.rnc src/calstbl.rnc src/dbforms.rnc \
              src/docbook.rnc src/ebnf.rnc src/glossary.rnc \
