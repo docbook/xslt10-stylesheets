@@ -82,7 +82,7 @@ div {
 
 [
    db:refname [ "callout" ]
-   db:refpurpose [ "A &#8220;called out&#8221; description of a marked Area" ]
+   db:refpurpose [ "A " db:quote [ "called out" ] " description of a marked Area" ]
 ]
 div {
 
