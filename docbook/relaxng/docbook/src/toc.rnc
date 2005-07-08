@@ -48,7 +48,7 @@ div {
 
 [
    db:refname [ "tocdiv" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A division in a table of contents" ]
 ]
 div {
 
