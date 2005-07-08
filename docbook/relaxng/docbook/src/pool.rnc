@@ -481,18 +481,6 @@ db.ubiq.inlines =
 
 db._text         = (text | db.ubiq.inlines | db._phrase | db.replaceable)*
 
-db._phrase =
-   element phrase {
-      db.phrase.attlist,
-      db._text
-   }
-
-db._emphasis =
-   element emphasis {
-      db.emphasis.attlist,
-      (db._text | db._emphasis)*
-   }
-
 db._title         = db.title? & db.titleabbrev? & db.subtitle?
 db._title.req     = db.title  & db.titleabbrev? & db.subtitle?
 db._title.only    = db.title? & db.titleabbrev?
@@ -6330,6 +6318,21 @@ div {
 # ======================================================================
 
 [
+   db:refname [ "emphasis" ]
+   db:refpurpose [ "A limited span of emphasized text" ]
+]
+div {
+
+   db._emphasis =
+      element emphasis {
+         db.emphasis.attlist,
+         (db._text | db._emphasis)*
+      }
+}
+
+# ======================================================================
+
+[
    db:refname [ "foreignphrase" ]
    db:refpurpose [ "A word or phrase in a language other than the primary language of the document" ]
 ]
@@ -6368,6 +6371,21 @@ div {
       element phrase {
          db.phrase.attlist,
          db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "phrase" ]
+   db:refpurpose [ "A limited span of text" ]
+]
+div {
+
+   db._phrase =
+      element phrase {
+         db.phrase.attlist,
+         db._text
       }
 }
 
