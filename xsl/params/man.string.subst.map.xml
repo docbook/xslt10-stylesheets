@@ -36,18 +36,14 @@
   <!-- * found at the start of a line -->
   <substitution oldstring="&#10;'" newstring="&#10;\'"/>
   <!-- * -->
-  <!-- * The remaining characters are all characters that the DocBook -->
-  <!-- * XSL stylesheets themselves generate under certain -->
-  <!-- * circumstances; so we deal with them here so that we can -->
-  <!-- * ensure they will always be replaced, even if -->
-  <!-- * man.charmap.enabled is zero. -->
+  <!-- * The remaining characters are all characters that the -->
+  <!-- * DpcBook XSL stylesheets themselves generate under -->
+  <!-- * certain circumstances; so we deal with them here so -->
+  <!-- * that we can ensure they will always be replaced, -->
+  <!-- * even if man.charmap.enabled is zero. -->
   <!-- * -->
   <!-- * non-breaking space -->
   <substitution oldstring="&#x00a0;" newstring="\ "/>
-  <!-- * copyright sign -->
-  <substitution oldstring="&#x00a9;" newstring="\(co"/>
-  <!-- * registered sign -->
-  <substitution oldstring="&#x00ae;" newstring="\(rg"/>
   <!-- * left double quote -->
   <substitution oldstring="&#x201c;" newstring="\(lq"/>
   <!-- * right double quote -->
@@ -56,6 +52,23 @@
   <substitution oldstring="&#x2018;" newstring="\(oq"/>
   <!-- * right single quote -->
   <substitution oldstring="&#x2019;" newstring="\(cq"/>
+  <!-- * copyright sign -->
+  <substitution oldstring="&#x00a9;" newstring="\(co"/>
+  <!-- * registered sign -->
+  <substitution oldstring="&#x00ae;" newstring="\(rg"/>
+  <!-- * servicemark -->
+  <!-- * there is no groff equivalent for it -->
+  <substitution oldstring="&#x2120;" newstring="(SM)"/>
+  <!-- * trademark -->
+  <!-- * we don't do "\(tm" because for console output -->
+  <!-- * because groff just renders that as "tm"; that is: -->
+  <!-- * -->
+  <!-- *  Product&#x2122; -> Producttm -->
+  <!-- * -->
+  <!-- * So we just make it to "(TM)" instead; thus: -->
+  <!-- * -->
+  <!-- *  Product&#x2122; -> Product(TM) -->
+  <substitution oldstring="&#x2122;" newstring="(TM)"/>
 </xsl:param>
 </src:fragment>
 </refsynopsisdiv>
