@@ -234,7 +234,7 @@ div {
 
 [
    db:refname [ "biblioref" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "A cross-reference to a bibliographic entry" ]
 ]
 div {
 
