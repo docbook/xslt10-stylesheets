@@ -632,6 +632,57 @@ by <function>comment-escape-string</function>.</para>
 
 <!-- ================================================================== -->
 
+<refentry id="prepend-pad">
+<refnamediv>
+<refname>prepend-pad</refname>
+<refpurpose>Right-pad a string out to a certain length</refpurpose>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
+<para>This function takes string <parameter>padVar</parameter> and
+pads it out to the string-length <parameter>length</parameter>, using
+string <parameter>padChar</parameter> (a space character by default)
+as the padding string (note that <parameter>padChar</parameter> can be
+a string; it is not limited to just being a single character).</para>
+
+  <note>
+    <para>This function is a copy of Nate Austin's
+    <function>prepend-pad</function> function in the <ulink
+    url="http://www.dpawson.co.uk/xsl/sect2/padding.html" >Padding
+    Content</ulink> section of Dave Pawson's <ulink
+    url="http://www.dpawson.co.uk/xsl/index.html" >XSLT
+    FAQ</ulink>.</para>
+  </note>
+
+<programlisting><src:fragment id='prepend-pad.frag'>
+  <xsl:template name="prepend-pad">    
+  <!-- recursive template to right justify and prepend-->
+  <!-- the value with whatever padChar is passed in   -->
+    <xsl:param name="padChar" select="' '"/>
+    <xsl:param name="padVar"/>
+    <xsl:param name="length"/>
+    <xsl:choose>
+      <xsl:when test="string-length($padVar) &lt; $length">
+        <xsl:call-template name="prepend-pad">
+          <xsl:with-param name="padChar" select="$padChar"/>
+          <xsl:with-param name="padVar" select="concat($padChar,$padVar)"/>
+          <xsl:with-param name="length" select="$length"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of 
+	  select="substring($padVar,string-length($padVar) - $length + 1)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+</src:fragment></programlisting>
+
+</refsect1>
+</refentry>
+
+<!-- ================================================================== -->
+
 <refentry id="str.tokenize.keep.delimiters">
 <refnamediv>
 <refname>str.tokenize.keep.delimiters</refname>
@@ -1107,6 +1158,7 @@ around these functions.</para>
 <src:fragref linkend="xpath.location.frag"/>
 <src:fragref linkend="comment-escape-string"/>
 <src:fragref linkend="comment-escape-string.recursive"/>
+<src:fragref linkend="prepend-pad.frag"/>
 <src:fragref linkend="str.tokenize.keep.delimiters.frag"/>
 <src:fragref linkend="apply-string-subst-map.frag"/>
 <src:fragref linkend="apply-character-map.frag"/>
