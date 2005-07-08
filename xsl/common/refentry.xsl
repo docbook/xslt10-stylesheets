@@ -1,7 +1,8 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
-                exclude-result-prefixes="doc"
+                xmlns:date="http://exslt.org/dates-and-times"
+                exclude-result-prefixes="doc date"
                 version='1.0'>
 
 <!-- ********************************************************************
