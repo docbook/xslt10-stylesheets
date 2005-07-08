@@ -1,7 +1,7 @@
 <refentry id="man.charmap.uri">
 <refmeta>
 <refentrytitle>man.charmap.uri</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo role="type">uri</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.charmap.uri</refname>
