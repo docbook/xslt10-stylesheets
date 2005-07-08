@@ -119,7 +119,7 @@ div {
 
 [
    db:refname [ "db.refmiscinfo" ]
-   db:refpurpose [ "" ]
+   db:refpurpose [ "Meta-information for a reference entry other than the title and volume number" ]
 ]
 div {
 
