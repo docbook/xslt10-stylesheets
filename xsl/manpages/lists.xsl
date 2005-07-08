@@ -19,24 +19,8 @@
   <xsl:text>&#10;</xsl:text>
 
   <xsl:if test="following-sibling::para or
-	  following-sibling::simpara or
-	  following-sibling::remark">
-    <!-- * Make sure multiple paragraphs within a list item don't -->
-    <!-- * merge together.                                        -->
-    <xsl:text>&#10;</xsl:text>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template match="simpara[ancestor::listitem or ancestor::step]|
-		     remark[ancestor::listitem or ancestor::step]">
-  <xsl:variable name="content">
-    <xsl:apply-templates/>
-  </xsl:variable>
-  <xsl:value-of select="normalize-space($content)"/>
-  <xsl:text>&#10;</xsl:text>
-  <xsl:if test="following-sibling::para or
-		following-sibling::simpara or
-		following-sibling::remark">
+                following-sibling::simpara or
+                following-sibling::remark">
     <!-- * Make sure multiple paragraphs within a list item don't -->
     <!-- * merge together.                                        -->
     <xsl:text>&#10;</xsl:text>
