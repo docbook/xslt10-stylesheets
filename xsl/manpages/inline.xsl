@@ -144,6 +144,9 @@
   <!-- * content gets moved to the end of the page. So, if we were to -->
   <!-- * number links in the Author content, it would "throw off" the -->
   <!-- * numbering at the beginning of the main text flow. -->
+  <xsl:variable name="url">
+    <xsl:value-of select="@url"/>
+  </xsl:variable>
   <xsl:variable name="link">
     <xsl:choose>
       <!-- * check to see if the element is empty or not; if it's non-empty, -->
@@ -154,14 +157,37 @@
       <xsl:otherwise>
         <!-- * the element is empty, so we just get the value of the URL; -->
         <!-- * note that we don't number empty links -->
-        <xsl:value-of select="@url"/>
+        <xsl:value-of select="$url"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
   <!-- * if link is non-empty AND user wants links numbered, output -->
   <!-- * a number for it -->
   <xsl:if test="node() and $man.links.are.numbered != 0">
-    <xsl:apply-templates select="." mode="link.number"/>
+    <xsl:choose>
+      <xsl:when test="$url = preceding::ulink[node()
+                     and not(ancestor::refentryinfo)
+                     and not(ancestor::info)
+                     and not(ancestor::docinfo)
+                     and not(ancestor::refmeta)
+                     and not(ancestor::refnamediv)
+                     and not(ancestor::indexterm)
+                     and not(@url = preceding::ulink/@url)]/@url">
+        <xsl:apply-templates
+            select="preceding::ulink[node()
+                    and not(ancestor::refentryinfo)
+                    and not(ancestor::info)
+                    and not(ancestor::docinfo)
+                    and not(ancestor::refmeta)
+                    and not(ancestor::refnamediv)
+                    and not(ancestor::indexterm)
+                    and not(@url = preceding::ulink/@url)][@url = $url]"
+            mode="link.number"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="." mode="link.number"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:if>
   <xsl:choose>
     <!-- * if user wants links underlined, underline (ital) it -->
@@ -192,7 +218,8 @@
                      and not(ancestor::docinfo)
                      and not(ancestor::refmeta)
                      and not(ancestor::refnamediv)
-                     and not(ancestor::indexterm)]"
+                     and not(ancestor::indexterm)
+                     and not(@url = preceding::ulink/@url)]"
               from="refentry"
               format="{$format}"/>
   <!-- * Note that we don't do anything for Ulinks in *info sections -->
@@ -214,7 +241,8 @@
                      and not(ancestor::docinfo)
                      and not(ancestor::refmeta)
                      and not(ancestor::refnamediv)
-                     and not(ancestor::indexterm)]"/>
+                     and not(ancestor::indexterm)
+                     and not(@url = preceding::ulink/@url)]"/>
   <xsl:if test="$links/node()">
     <xsl:call-template name="format.links.list">
       <xsl:with-param name="links" select="$links"/>
@@ -283,7 +311,8 @@
                      and not(ancestor::docinfo)
                      and not(ancestor::refmeta)
                      and not(ancestor::refnamediv)
-                     and not(ancestor::indexterm)]"
+                     and not(ancestor::indexterm)
+                     and not(@url = preceding::ulink/@url)]"
               mode="links.list">
   <xsl:param name="padding.length"/>
   <xsl:variable name="link.number">
