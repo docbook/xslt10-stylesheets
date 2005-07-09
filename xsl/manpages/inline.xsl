@@ -164,24 +164,19 @@
   <!-- * if link is non-empty AND user wants links numbered, output -->
   <!-- * a number for it -->
   <xsl:if test="node() and $man.links.are.numbered != 0">
+    <xsl:variable name="preceding.numbered.links"
+                  select="preceding::ulink[node()
+                          and not(ancestor::refentryinfo)
+                          and not(ancestor::info)
+                          and not(ancestor::docinfo)
+                          and not(ancestor::refmeta)
+                          and not(ancestor::refnamediv)
+                          and not(ancestor::indexterm)
+                          and not(@url = preceding::ulink)]"/>
     <xsl:choose>
-      <xsl:when test="$url = preceding::ulink[node()
-                     and not(ancestor::refentryinfo)
-                     and not(ancestor::info)
-                     and not(ancestor::docinfo)
-                     and not(ancestor::refmeta)
-                     and not(ancestor::refnamediv)
-                     and not(ancestor::indexterm)
-                     and not(@url = preceding::ulink/@url)]/@url">
+      <xsl:when test="$url = $preceding.numbered.links/@url">
         <xsl:apply-templates
-            select="preceding::ulink[node()
-                    and not(ancestor::refentryinfo)
-                    and not(ancestor::info)
-                    and not(ancestor::docinfo)
-                    and not(ancestor::refmeta)
-                    and not(ancestor::refnamediv)
-                    and not(ancestor::indexterm)
-                    and not(@url = preceding::ulink/@url)][@url = $url]"
+            select="$preceding.numbered.links[@url = $url][1]"
             mode="link.number"/>
       </xsl:when>
       <xsl:otherwise>
@@ -219,7 +214,14 @@
                      and not(ancestor::refmeta)
                      and not(ancestor::refnamediv)
                      and not(ancestor::indexterm)
-                     and not(@url = preceding::ulink/@url)]"
+                     and not(@url = preceding::ulink[node()
+                          and not(ancestor::refentryinfo)
+                          and not(ancestor::info)
+                          and not(ancestor::docinfo)
+                          and not(ancestor::refmeta)
+                          and not(ancestor::refnamediv)
+                          and not(ancestor::indexterm)
+                          and not(@url = preceding::ulink)]/@url)]"
               from="refentry"
               format="{$format}"/>
   <!-- * Note that we don't do anything for Ulinks in *info sections -->
@@ -242,7 +244,14 @@
                      and not(ancestor::refmeta)
                      and not(ancestor::refnamediv)
                      and not(ancestor::indexterm)
-                     and not(@url = preceding::ulink/@url)]"/>
+                     and not(@url = preceding::ulink[node()
+                          and not(ancestor::refentryinfo)
+                          and not(ancestor::info)
+                          and not(ancestor::docinfo)
+                          and not(ancestor::refmeta)
+                          and not(ancestor::refnamediv)
+                          and not(ancestor::indexterm)
+                          and not(@url = preceding::ulink)]/@url)]"/>
   <xsl:if test="$links/node()">
     <xsl:call-template name="format.links.list">
       <xsl:with-param name="links" select="$links"/>
@@ -312,7 +321,14 @@
                      and not(ancestor::refmeta)
                      and not(ancestor::refnamediv)
                      and not(ancestor::indexterm)
-                     and not(@url = preceding::ulink/@url)]"
+                     and not(@url = preceding::ulink[node()
+                          and not(ancestor::refentryinfo)
+                          and not(ancestor::info)
+                          and not(ancestor::docinfo)
+                          and not(ancestor::refmeta)
+                          and not(ancestor::refnamediv)
+                          and not(ancestor::indexterm)
+                          and not(@url = preceding::ulink)]/@url)]"
               mode="links.list">
   <xsl:param name="padding.length"/>
   <xsl:variable name="link.number">
