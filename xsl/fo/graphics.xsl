@@ -1,4 +1,8 @@
 <?xml version='1.0'?>
+<!DOCTYPE xsl:stylesheet [
+<!ENTITY lowercase "'abcdefghijklmnopqrstuvwxyz'">
+<!ENTITY uppercase "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'">
+ ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -83,6 +87,33 @@
                          concat(' ', $lcext, ' '))">1</xsl:if>
 </xsl:template>
 
+<xsl:template name="graphic.format.content-type">
+  <xsl:param name="format"/>
+  <xsl:variable name="is.graphic.format">
+    <xsl:call-template name="is.graphic.format">
+      <xsl:with-param name="format" select="$format"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:if test="$is.graphic.format">
+    <xsl:choose>
+      <xsl:when test="$format = ''"></xsl:when>
+      <xsl:when test="$format = 'linespecific'"></xsl:when>
+      <xsl:when test="$format = 'PS'">application/postscript</xsl:when>
+      <xsl:when test="$format = 'PDF'">application/pdf</xsl:when>
+      <xsl:when test="$format = 'PNG'">image/png</xsl:when>
+      <xsl:when test="$format = 'SVG'">image/svg+xml</xsl:when>
+      <xsl:when test="$format = 'JPG'">image/jpeg</xsl:when>
+      <xsl:when test="$format = 'GIF87a'">image/gif</xsl:when>
+      <xsl:when test="$format = 'GIF89a'">image/gif</xsl:when>
+      <xsl:otherwise>
+          <xsl:value-of select="concat('image/', 
+            translate($format, &uppercase;, &lowercase;))"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:if>
+</xsl:template>
+
+
 <!-- ==================================================================== -->
 
 <xsl:template match="screenshot">
@@ -144,6 +175,14 @@
         </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="content-type">
+    <xsl:if test="@format">
+      <xsl:call-template name="graphic.format.content-type">
+        <xsl:with-param name="format" select="@format"/>
+      </xsl:call-template>
+    </xsl:if>
   </xsl:variable>
 
   <xsl:variable name="bgcolor">
@@ -247,6 +286,12 @@
         <xsl:otherwise>auto</xsl:otherwise>
       </xsl:choose>
     </xsl:attribute>
+
+    <xsl:if test="$content-type != ''">
+      <xsl:attribute name="content-type">
+        <xsl:value-of select="concat('content-type:',$content-type)"/>
+      </xsl:attribute>
+    </xsl:if>
 
     <xsl:if test="$bgcolor != ''">
       <xsl:attribute name="background-color">
