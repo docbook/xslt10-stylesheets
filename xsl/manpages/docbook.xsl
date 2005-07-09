@@ -34,40 +34,6 @@
   <xsl:include href="lists.xsl"/>
 
 <!-- ==================================================================== -->
-<!-- * Set global variables -->
-<!-- ==================================================================== -->
-
-  <xsl:variable name="get.refentry.metadata.prefs">
-    <xsl:call-template name="get.refentry.metadata.prefs"/>
-  </xsl:variable>
-
-  <xsl:variable name="refentry.metadata.prefs"
-                select="exsl:node-set($get.refentry.metadata.prefs)"/>
-  
-<!-- ==================================================================== -->
-
-  <xsl:variable name="man.charmap.contents">
-    <xsl:if test="$man.charmap.enabled != 0">
-      <xsl:call-template name="read-character-map">
-        <xsl:with-param name="use.subset" select="$man.charmap.use.subset"/>
-        <xsl:with-param name="subset.profile" select="$man.charmap.subset.profile"/>
-        <xsl:with-param name="uri">
-          <xsl:choose>
-            <xsl:when test="$man.charmap.uri != ''">
-              <xsl:value-of select="$man.charmap.uri"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:value-of select="'../manpages/charmap.groff.xsl'"/>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:if>
-  </xsl:variable>
-
-<!-- ==================================================================== -->
-<!-- * End global variables -->
-<!-- ==================================================================== -->
 
   <!-- * if document does not contain at least one refentry, then emit a -->
   <!-- * message and stop -->
@@ -168,12 +134,18 @@
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <xsl:apply-templates/>
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <!-- * AUTHOR section (at end of man page) -->
+      <!-- * AUTHOR section -->
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <xsl:call-template name="author.section">
         <xsl:with-param name="info" select="$info"/>
         <xsl:with-param name="parentinfo" select="$parentinfo"/>
       </xsl:call-template>
+      <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!-- * LINKS list (only generate if user wants links numbered) -->
+      <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <xsl:if test="$man.links.list.enabled != 0">
+        <xsl:call-template name="links.list"/>
+      </xsl:if>
     </xsl:variable>
 
     <!-- * Prepare the page contents for final output, then store in -->

@@ -1,7 +1,8 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:date="http://exslt.org/dates-and-times"
-                exclude-result-prefixes="date"
+                xmlns:exsl="http://exslt.org/common"
+                exclude-result-prefixes="date exsl"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -14,7 +15,18 @@
 
      ******************************************************************** -->
 
-  <!-- * ============================================================== -->
+  <!-- ================================================================== -->
+  <!-- * Get user "refentry metadata" preferences -->
+  <!-- ================================================================== -->
+
+  <xsl:variable name="get.refentry.metadata.prefs">
+    <xsl:call-template name="get.refentry.metadata.prefs"/>
+  </xsl:variable>
+
+  <xsl:variable name="refentry.metadata.prefs"
+                select="exsl:node-set($get.refentry.metadata.prefs)"/>
+  
+  <!-- * =============================================================== -->
 
   <xsl:template name="author.section">
     <!-- * WARNING: The author.section API is slated for a rewrite and -->

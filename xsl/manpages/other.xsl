@@ -30,6 +30,29 @@
 <!-- * of keeping things modular. -->
 
 <!-- ==================================================================== -->
+<!-- * Get character map contents -->
+<!-- ==================================================================== -->
+
+  <xsl:variable name="man.charmap.contents">
+    <xsl:if test="$man.charmap.enabled != 0">
+      <xsl:call-template name="read-character-map">
+        <xsl:with-param name="use.subset" select="$man.charmap.use.subset"/>
+        <xsl:with-param name="subset.profile" select="$man.charmap.subset.profile"/>
+        <xsl:with-param name="uri">
+          <xsl:choose>
+            <xsl:when test="$man.charmap.uri != ''">
+              <xsl:value-of select="$man.charmap.uri"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="'../manpages/charmap.groff.xsl'"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+
+<!-- ==================================================================== -->
 
   <xsl:template name="top.comment">
     <xsl:text>.\" ** You probably do not want to</xsl:text>
