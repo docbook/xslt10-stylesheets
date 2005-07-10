@@ -124,8 +124,13 @@
   <!-- * number links in the Author content, it would "throw off" the -->
   <!-- * numbering at the beginning of the main text flow. -->
 
+  <!--      this is what sucks up the most time - for each ulink, this checks -->
+  <!--      every other ulink that has the same Refentry ancestor as itself; -->
+  <!--      so if you have 100 ulinks, this check will end up getting run a -->
+  <!--      total of 100 x 100 times = 10,000 times. It really only needs to -->
+  <!--      be run once for each refentry; this needs to be fixed. -->
   <xsl:variable name="unique.links"
-           select=".//ulink[node()
+           select="ancestor::refentry//ulink[node()
                   and not(ancestor::refentryinfo)
                   and not(ancestor::info)
                   and not(ancestor::docinfo)
@@ -142,7 +147,6 @@
                   and not(ancestor::indexterm)
                   and (generate-id(ancestor::refentry)
                   = generate-id(current()))]/@url)]"/>
-
   <xsl:variable name="url">
     <xsl:value-of select="@url"/>
   </xsl:variable>
@@ -167,7 +171,7 @@
     <xsl:choose>
       <xsl:when test="$url = $unique.links/@url">
         <xsl:apply-templates
-            select="$unique.links[@url = $url]"
+            select="$unique.links[@url = $url][1]"
             mode="link.number"/>
       </xsl:when>
       <xsl:otherwise>
