@@ -171,5 +171,22 @@
   <xsl:number from="book" count="part" format="I."/>
 </xsl:template>
 
+<!-- ==================================================================== -->
+
+<xsl:template name="division.title">
+  <xsl:param name="node" select="."/>
+
+  <h1>
+    <xsl:attribute name="class">title</xsl:attribute>
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
+    <xsl:apply-templates select="$node" mode="object.title.markup">
+      <xsl:with-param name="allow-anchors" select="1"/>
+    </xsl:apply-templates>
+  </h1>
+</xsl:template>
+
 </xsl:stylesheet>
 
