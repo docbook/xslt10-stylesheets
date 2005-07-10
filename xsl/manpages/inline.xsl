@@ -17,6 +17,61 @@
 
 <!-- ==================================================================== -->
 
+<!-- * Make per-Refentry sets of all links in each Refentry which do not -->
+<!-- * have the same URL as any preceding link in that same Refentry -->
+<!-- * -->
+<!-- * Note that we don't get links in *info sections -->
+<!-- * or Refmeta or Refnamediv or Indexterm, because, in manpages -->
+<!-- * output, contents of those are either suppressed or are -->
+<!-- * displayed out of document order - for example, the Info/Author -->
+<!-- * content gets moved to the end of the page. So, if we were to -->
+<!-- * number links in the Author content, it would "throw off" the -->
+<!-- * numbering at the beginning of the main text flow. -->
+<xsl:variable name="get.all.unique.links">
+  <xsl:if test="$man.links.are.numbered != 0">
+    <xsl:for-each select="//refentry">
+      <refentry.link.set>
+        <xsl:attribute name="idref">
+          <xsl:value-of select="generate-id()"/>
+        </xsl:attribute>
+        <xsl:for-each
+            select=".//ulink[node()
+                    and not(ancestor::refentryinfo)
+                    and not(ancestor::info)
+                    and not(ancestor::docinfo)
+                    and not(ancestor::refmeta)
+                    and not(ancestor::refnamediv)
+                    and not(ancestor::indexterm)
+                    and not(@url =
+                    preceding::ulink[node()
+                    and not(ancestor::refentryinfo)
+                    and not(ancestor::info)
+                    and not(ancestor::docinfo)
+                    and not(ancestor::refmeta)
+                    and not(ancestor::refnamediv)
+                    and not(ancestor::indexterm)
+                    and (generate-id(ancestor::refentry)=generate-id(current()))]/@url)]">
+          <link>
+            <xsl:attribute name="idref">
+              <xsl:value-of select="generate-id()"/>
+            </xsl:attribute>
+            <xsl:attribute name="url">
+              <xsl:value-of select="@url"/>
+            </xsl:attribute>
+            <xsl:copy>
+              <xsl:copy-of select="node()"/>
+            </xsl:copy>
+          </link>
+        </xsl:for-each>
+      </refentry.link.set>
+    </xsl:for-each>
+  </xsl:if>
+</xsl:variable>
+
+<xsl:variable name="all.unique.links" select="exsl:node-set($get.all.unique.links)"/>
+
+<!-- ==================================================================== -->
+
 <xsl:template match="filename|replaceable|varname">
   <xsl:apply-templates mode="italic" select="."/>
 </xsl:template>
@@ -116,37 +171,14 @@
 <!-- * at the end of the page. -->
 
 <xsl:template match="ulink">
-  <!-- * Note that we don't do anything for Ulinks in *info sections -->
-  <!-- * or Refmeta or Refnamediv or Indexterm, because, in manpages -->
-  <!-- * output, contents of those are either suppressed or are -->
-  <!-- * displayed out of document order - for example, the Info/Author -->
-  <!-- * content gets moved to the end of the page. So, if we were to -->
-  <!-- * number links in the Author content, it would "throw off" the -->
-  <!-- * numbering at the beginning of the main text flow. -->
 
-  <!--      this is what sucks up the most time - for each ulink, this checks -->
-  <!--      every other ulink that has the same Refentry ancestor as itself; -->
-  <!--      so if you have 100 ulinks, this check will end up getting run a -->
-  <!--      total of 100 x 100 times = 10,000 times. It really only needs to -->
-  <!--      be run once for each refentry; this needs to be fixed. -->
-  <xsl:variable name="unique.links"
-           select="ancestor::refentry//ulink[node()
-                  and not(ancestor::refentryinfo)
-                  and not(ancestor::info)
-                  and not(ancestor::docinfo)
-                  and not(ancestor::refmeta)
-                  and not(ancestor::refnamediv)
-                  and not(ancestor::indexterm)
-                  and not(@url =
-                  preceding::ulink[node()
-                  and not(ancestor::refentryinfo)
-                  and not(ancestor::info)
-                  and not(ancestor::docinfo)
-                  and not(ancestor::refmeta)
-                  and not(ancestor::refnamediv)
-                  and not(ancestor::indexterm)
-                  and (generate-id(ancestor::refentry)
-                  = generate-id(current()))]/@url)]"/>
+<xsl:variable name="get.unique.links">
+  <xsl:copy-of
+      select="$all.unique.links/refentry.link.set
+              [@idref = generate-id(current()/ancestor::refentry)]/link"/>
+</xsl:variable>
+<xsl:variable name="unique.links" select="exsl:node-set($get.unique.links)"/>
+
   <xsl:variable name="url">
     <xsl:value-of select="@url"/>
   </xsl:variable>
@@ -169,9 +201,9 @@
   <xsl:if test="node() and $man.links.are.numbered != 0">
     <xsl:text>[</xsl:text>
     <xsl:choose>
-      <xsl:when test="$url = $unique.links/@url">
+      <xsl:when test="$url = $unique.links/link/@url">
         <xsl:apply-templates
-            select="$unique.links[@url = $url][1]"
+            select="$unique.links/link[@url = $url][1]"
             mode="link.number"/>
       </xsl:when>
       <xsl:otherwise>
@@ -199,9 +231,16 @@
 
 <xsl:template match="*" mode="link.number">
   
-  <!-- * we only number links that have child content and that aren't -->
-  <!-- * in suppressed content or in content that gets rendered out of -->
-  <!-- * document order -->
+  <!-- * Count all links in this Refentry which do not -->
+  <!-- * have the same URL as any preceding link in this same Refentry -->
+  <!-- * -->
+  <!-- * Note that we don't get links in *info sections -->
+  <!-- * or Refmeta or Refnamediv or Indexterm, because, in manpages -->
+  <!-- * output, contents of those are either suppressed or are -->
+  <!-- * displayed out of document order - for example, the Info/Author -->
+  <!-- * content gets moved to the end of the page. So, if we were to -->
+  <!-- * number links in the Author content, it would "throw off" the -->
+  <!-- * numbering at the beginning of the main text flow. -->
   <xsl:value-of select="count(preceding::ulink[node()
                         and not(ancestor::refentryinfo)
                         and not(ancestor::info)
@@ -220,19 +259,21 @@
                         = generate-id(current()/ancestor::refentry))]/@url)]
                         [generate-id(ancestor::refentry)
                         = generate-id(current()/ancestor::refentry)]) + 1"/>
-  <!-- * Note that we don't do anything for Ulinks in *info sections
-       -->
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template name="links.list">
+  <!-- * Get all links in this Refentry which do not -->
+  <!-- * have the same URL as any preceding link in this same Refentry -->
+  <!-- * -->
+  <!-- * Note that we don't get links in *info sections -->
   <!-- * or Refmeta or Refnamediv or Indexterm, because, in manpages -->
   <!-- * output, contents of those are either suppressed or are -->
   <!-- * displayed out of document order - for example, the Info/Author -->
   <!-- * content gets moved to the end of the page. So, if we were to -->
   <!-- * number links in the Author content, it would "throw off" the -->
   <!-- * numbering at the beginning of the main text flow. -->
-</xsl:template>
-
-<!-- ==================================================================== -->
-
-<xsl:template name="links.list">
   <xsl:variable name="links"
                 select=".//ulink[node()
                   and not(ancestor::refentryinfo)
