@@ -28,7 +28,7 @@
 
 <xsl:template match="chapter" mode="object.title.template">
   <xsl:choose>
-    <xsl:when test="$chapter.autolabel != 0">
+    <xsl:when test="string($chapter.autolabel) != 0">
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'title-numbered'"/>
         <xsl:with-param name="name">
@@ -49,7 +49,7 @@
 
 <xsl:template match="appendix" mode="object.title.template">
   <xsl:choose>
-    <xsl:when test="$appendix.autolabel != 0">
+    <xsl:when test="string($appendix.autolabel) != 0">
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'title-numbered'"/>
         <xsl:with-param name="name">
@@ -208,12 +208,12 @@
 
   <xsl:variable name="context">
     <xsl:choose>
-      <xsl:when test="$autonumber != 0 
+      <xsl:when test="string($autonumber) != 0 
                       and $number-and-title-template != 0
                       and $xref.with.number.and.title != 0">
          <xsl:value-of select="'xref-number-and-title'"/>
       </xsl:when>
-      <xsl:when test="$autonumber != 0 
+      <xsl:when test="string($autonumber) != 0 
                       and $number-template != 0">
          <xsl:value-of select="'xref-number'"/>
       </xsl:when>
