@@ -13,22 +13,6 @@
 
      ******************************************************************** -->
 
-  <!-- * Grab the set of all Ulinks in the document -->
-  <!-- * and that have -->
-  <!-- * child content and that aren't in suppressed content or in -->
-  <!-- * content that gets rendered out of document order -->
-  <!-- * Only generate a LINKS section if we actually have at least -->
-  <!-- * one Ulink node to process -->
-<xsl:key name="link"
-         match="*"
-         use="ulink[node()
-              and not(ancestor::refentryinfo)
-              and not(ancestor::info)
-              and not(ancestor::docinfo)
-              and not(ancestor::refmeta)
-              and not(ancestor::refnamediv)
-              and not(ancestor::indexterm)]"/>
-
 <xsl:param name="man.links.list.enabled">1</xsl:param>
 
 <!-- ==================================================================== -->
@@ -131,12 +115,7 @@
 <!-- * the corresponding number, in a generated section -->
 <!-- * at the end of the page. -->
 
-<xsl:template match="ulink[not(ancestor::refentryinfo)
-                     and not(ancestor::info)
-                     and not(ancestor::docinfo)
-                     and not(ancestor::refmeta)
-                     and not(ancestor::refnamediv)
-                     and not(ancestor::indexterm)]">
+<xsl:template match="ulink">
   <!-- * Note that we don't do anything for Ulinks in *info sections -->
   <!-- * or Refmeta or Refnamediv or Indexterm, because, in manpages -->
   <!-- * output, contents of those are either suppressed or are -->
@@ -144,6 +123,26 @@
   <!-- * content gets moved to the end of the page. So, if we were to -->
   <!-- * number links in the Author content, it would "throw off" the -->
   <!-- * numbering at the beginning of the main text flow. -->
+
+  <xsl:variable name="unique.links"
+           select=".//ulink[node()
+                  and not(ancestor::refentryinfo)
+                  and not(ancestor::info)
+                  and not(ancestor::docinfo)
+                  and not(ancestor::refmeta)
+                  and not(ancestor::refnamediv)
+                  and not(ancestor::indexterm)
+                  and not(@url =
+                  preceding::ulink[node()
+                  and not(ancestor::refentryinfo)
+                  and not(ancestor::info)
+                  and not(ancestor::docinfo)
+                  and not(ancestor::refmeta)
+                  and not(ancestor::refnamediv)
+                  and not(ancestor::indexterm)
+                  and (generate-id(ancestor::refentry)
+                  = generate-id(current()))]/@url)]"/>
+
   <xsl:variable name="url">
     <xsl:value-of select="@url"/>
   </xsl:variable>
@@ -164,25 +163,18 @@
   <!-- * if link is non-empty AND user wants links numbered, output -->
   <!-- * a number for it -->
   <xsl:if test="node() and $man.links.are.numbered != 0">
-    <xsl:variable name="preceding.numbered.links"
-                  select="preceding::ulink[node()
-                          and not(ancestor::refentryinfo)
-                          and not(ancestor::info)
-                          and not(ancestor::docinfo)
-                          and not(ancestor::refmeta)
-                          and not(ancestor::refnamediv)
-                          and not(ancestor::indexterm)
-                          and not(@url = preceding::ulink)]"/>
+    <xsl:text>[</xsl:text>
     <xsl:choose>
-      <xsl:when test="$url = $preceding.numbered.links/@url">
+      <xsl:when test="$url = $unique.links/@url">
         <xsl:apply-templates
-            select="$preceding.numbered.links[@url = $url][1]"
+            select="$unique.links[@url = $url]"
             mode="link.number"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates select="." mode="link.number"/>
       </xsl:otherwise>
     </xsl:choose>
+    <xsl:text>]</xsl:text>
   </xsl:if>
   <xsl:choose>
     <!-- * if user wants links underlined, underline (ital) it -->
@@ -202,29 +194,30 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="*" mode="link.number">
-  <xsl:param name="format">[1]</xsl:param>
+  
   <!-- * we only number links that have child content and that aren't -->
   <!-- * in suppressed content or in content that gets rendered out of -->
   <!-- * document order -->
-  <xsl:number level="any"
-              count="ulink[node()
-                     and not(ancestor::refentryinfo)
-                     and not(ancestor::info)
-                     and not(ancestor::docinfo)
-                     and not(ancestor::refmeta)
-                     and not(ancestor::refnamediv)
-                     and not(ancestor::indexterm)
-                     and not(@url = preceding::ulink[node()
-                          and not(ancestor::refentryinfo)
-                          and not(ancestor::info)
-                          and not(ancestor::docinfo)
-                          and not(ancestor::refmeta)
-                          and not(ancestor::refnamediv)
-                          and not(ancestor::indexterm)
-                          and not(@url = preceding::ulink)]/@url)]"
-              from="refentry"
-              format="{$format}"/>
-  <!-- * Note that we don't do anything for Ulinks in *info sections -->
+  <xsl:value-of select="count(preceding::ulink[node()
+                        and not(ancestor::refentryinfo)
+                        and not(ancestor::info)
+                        and not(ancestor::docinfo)
+                        and not(ancestor::refmeta)
+                        and not(ancestor::refnamediv)
+                        and not(ancestor::indexterm)
+                        and not(@url = preceding::ulink[node()
+                        and not(ancestor::refentryinfo)
+                        and not(ancestor::info)
+                        and not(ancestor::docinfo)
+                        and not(ancestor::refmeta)
+                        and not(ancestor::refnamediv)
+                        and not(ancestor::indexterm)
+                        and (generate-id(ancestor::refentry)
+                        = generate-id(current()/ancestor::refentry))]/@url)]
+                        [generate-id(ancestor::refentry)
+                        = generate-id(current()/ancestor::refentry)]) + 1"/>
+  <!-- * Note that we don't do anything for Ulinks in *info sections
+       -->
   <!-- * or Refmeta or Refnamediv or Indexterm, because, in manpages -->
   <!-- * output, contents of those are either suppressed or are -->
   <!-- * displayed out of document order - for example, the Info/Author -->
@@ -238,20 +231,22 @@
 <xsl:template name="links.list">
   <xsl:variable name="links"
                 select=".//ulink[node()
-                     and not(ancestor::refentryinfo)
-                     and not(ancestor::info)
-                     and not(ancestor::docinfo)
-                     and not(ancestor::refmeta)
-                     and not(ancestor::refnamediv)
-                     and not(ancestor::indexterm)
-                     and not(@url = preceding::ulink[node()
-                          and not(ancestor::refentryinfo)
-                          and not(ancestor::info)
-                          and not(ancestor::docinfo)
-                          and not(ancestor::refmeta)
-                          and not(ancestor::refnamediv)
-                          and not(ancestor::indexterm)
-                          and not(@url = preceding::ulink)]/@url)]"/>
+                  and not(ancestor::refentryinfo)
+                  and not(ancestor::info)
+                  and not(ancestor::docinfo)
+                  and not(ancestor::refmeta)
+                  and not(ancestor::refnamediv)
+                  and not(ancestor::indexterm)
+                  and not(@url =
+                  preceding::ulink[node()
+                  and not(ancestor::refentryinfo)
+                  and not(ancestor::info)
+                  and not(ancestor::docinfo)
+                  and not(ancestor::refmeta)
+                  and not(ancestor::refnamediv)
+                  and not(ancestor::indexterm)
+                  and (generate-id(ancestor::refentry)
+                  = generate-id(current()))]/@url)]"/>
   <xsl:if test="$links/node()">
     <xsl:call-template name="format.links.list">
       <xsl:with-param name="links" select="$links"/>
@@ -273,89 +268,66 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:param>
-    <!-- * The value of $padding.length is used for determining how much -->
-    <!-- * to right-pad numbers in the LINKS list. So, for $length, we -->
-    <!-- * count how many links there are, then take the number of digits -->
-    <!-- * in that count, and add 2 to it. The reason we add 2 is that we -->
-    <!-- * also prepend a dot and no-break space to each link number in -->
-    <!-- * the list, so we need to consider what length to pad out to. -->
-    <xsl:param name="padding.length">
+  <!-- * The value of $padding.length is used for determining how much -->
+  <!-- * to right-pad numbers in the LINKS list. So, for $length, we -->
+  <!-- * count how many links there are, then take the number of digits -->
+  <!-- * in that count, and add 2 to it. The reason we add 2 is that we -->
+  <!-- * also prepend a dot and no-break space to each link number in -->
+  <!-- * the list, so we need to consider what length to pad out to. -->
+  <xsl:param name="padding.length">
+    <xsl:choose>
+      <xsl:when test="$man.links.are.numbered != 0">
+        <xsl:value-of select="string-length(count($links)) + 2"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="0"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
+  <xsl:call-template name="mark.subheading"/>
+  <!-- * make the LINKS section heading -->
+  <xsl:text>.SH "</xsl:text>
+  <xsl:call-template name="string.upper">
+    <xsl:with-param name="string">
       <xsl:choose>
-        <xsl:when test="$man.links.are.numbered != 0">
-          <xsl:value-of select="string-length(count($links)) + 2"/>
+        <xsl:when test="$man.links.section.heading != ''">
+          <xsl:value-of select="$man.links.section.heading"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="0"/>
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'Links'"/>
+          </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
-    </xsl:param>
-    <xsl:call-template name="mark.subheading"/>
-    <!-- * make the LINKS section heading -->
-    <xsl:text>.SH "</xsl:text>
-    <xsl:call-template name="string.upper">
-      <xsl:with-param name="string">
-        <xsl:choose>
-          <xsl:when test="$man.links.section.heading != ''">
-            <xsl:value-of select="$man.links.section.heading"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key" select="'Links'"/>
-            </xsl:call-template>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:with-param>
+    </xsl:with-param>
+  </xsl:call-template>
+  <xsl:text>"&#10;</xsl:text>
+  <xsl:for-each select="$links">
+    <xsl:variable name="link.number">
+      <xsl:apply-templates select="." mode="link.number"/>
+      <xsl:text>.&#160;</xsl:text>
+    </xsl:variable>
+    <xsl:text>.PP&#10;</xsl:text>
+    <!-- * right-pad each number out to the correct length -->
+    <xsl:call-template name="prepend-pad">
+      <xsl:with-param name="padVar" select="$link.number"/>
+      <xsl:with-param name="length" select="$padding.length"/>
     </xsl:call-template>
-    <xsl:text>"&#10;</xsl:text>
-    <xsl:apply-templates select="$links" mode="links.list">
-      <xsl:with-param name="padding.length" select="$padding.length"/>
-    </xsl:apply-templates>
-</xsl:template>
-
-<!-- ==================================================================== -->
-
-<xsl:template match="ulink[node()
-                     and not(ancestor::refentryinfo)
-                     and not(ancestor::info)
-                     and not(ancestor::docinfo)
-                     and not(ancestor::refmeta)
-                     and not(ancestor::refnamediv)
-                     and not(ancestor::indexterm)
-                     and not(@url = preceding::ulink[node()
-                          and not(ancestor::refentryinfo)
-                          and not(ancestor::info)
-                          and not(ancestor::docinfo)
-                          and not(ancestor::refmeta)
-                          and not(ancestor::refnamediv)
-                          and not(ancestor::indexterm)
-                          and not(@url = preceding::ulink)]/@url)]"
-              mode="links.list">
-  <xsl:param name="padding.length"/>
-  <xsl:variable name="link.number">
-    <xsl:apply-templates select="." mode="link.number">
-      <xsl:with-param name="format">1.&#160;</xsl:with-param>
-    </xsl:apply-templates>
-  </xsl:variable>
-  <xsl:text>.PP&#10;</xsl:text>
-  <!-- * right-pad each number out to the correct length -->
-  <xsl:call-template name="prepend-pad">
-    <xsl:with-param name="padVar" select="$link.number"/>
-    <xsl:with-param name="length" select="$padding.length"/>
-  </xsl:call-template>
-  <xsl:variable name="link.contents">
-    <xsl:apply-templates/>
-  </xsl:variable>
-  <xsl:value-of select="normalize-space($link.contents)"/>
-  <xsl:text>&#10;</xsl:text>
-  <xsl:text>.br&#10;</xsl:text>
-  <!-- * pad leader for URL -->
-  <xsl:call-template name="prepend-pad">
-    <xsl:with-param name="padVar" select="' '"/>
-    <xsl:with-param name="length" select="$padding.length"/>
-  </xsl:call-template>
-  <!-- * print the Ulink's URL -->
-  <xsl:value-of select="@url"/>
-  <xsl:text>&#10;</xsl:text>
+    <xsl:variable name="link.contents">
+      <xsl:apply-templates/>
+    </xsl:variable>
+    <xsl:value-of select="normalize-space($link.contents)"/>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:text>.br&#10;</xsl:text>
+    <!-- * pad leader for URL -->
+    <xsl:call-template name="prepend-pad">
+      <xsl:with-param name="padVar" select="' '"/>
+      <xsl:with-param name="length" select="$padding.length"/>
+    </xsl:call-template>
+    <!-- * print the Ulink's URL -->
+    <xsl:value-of select="@url"/>
+    <xsl:text>&#10;</xsl:text>
+  </xsl:for-each>
 </xsl:template>
 
 </xsl:stylesheet>
