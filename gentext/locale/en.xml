@@ -295,6 +295,7 @@
 <template name="sect5">%t</template>
 <template name="section">%t</template>
 <template name="simplesect">%t</template>
+<template name="part">%t</template>
 
 </context>
 
@@ -311,6 +312,7 @@
 <template name="sect5">%n.&#160;%t</template>
 <template name="section">%n.&#160;%t</template>
 <template name="simplesect">%t</template>
+<template name="part"><Part/>&#160;%n.&#160;%t</template>
 
 </context>
 
