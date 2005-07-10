@@ -68,6 +68,27 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="part" mode="object.title.template">
+  <xsl:choose>
+    <xsl:when test="string($part.autolabel) != 0">
+      <xsl:call-template name="gentext.template">
+        <xsl:with-param name="context" select="'title-numbered'"/>
+        <xsl:with-param name="name">
+          <xsl:call-template name="xpath.location"/>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="gentext.template">
+        <xsl:with-param name="context" select="'title-unnumbered'"/>
+        <xsl:with-param name="name">
+          <xsl:call-template name="xpath.location"/>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="section|sect1|sect2|sect3|sect4|sect5|simplesect
                      |bridgehead"
               mode="object.title.template">
