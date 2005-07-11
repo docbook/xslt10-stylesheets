@@ -18,7 +18,10 @@ DOC-LINK-STYLE=$(DOCBOOK_CVS)/xsl/docsrc/doc-link-docbook.xsl
 FO-STYLE=$(DOCBOOK_CVS)/xsl/fo/docbook.xsl
 
 # browser to use for making text version of release notes
-BROWSER=w3m
+# w3mmee is a fork of w3m; it provides a lot more options for
+# charset handling; other possible values for BROWSER include
+# "w3m" and "lynx" and "links" and "elinks"
+BROWSER=w3mmee
 BROWSER_OPTS=-dump
 
 # XSL-FO engine to use for coverting XSL-FO output to PDF
@@ -92,7 +95,7 @@ ZIP_EXCLUDES = \
  Makefile$$ \
  Makefile[.] \
  README\.CVS \
- .*\.fo$$
+ RELEASE-NOTES\.fo
 
 # list of executables that are included in all distributions
 EXECUTABLES = install.sh
