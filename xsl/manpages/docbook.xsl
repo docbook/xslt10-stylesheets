@@ -32,6 +32,7 @@
   <xsl:include href="inline.xsl"/>
   <xsl:include href="synop.xsl"/>
   <xsl:include href="lists.xsl"/>
+  <xsl:include href="links.xsl"/>
 
 <!-- ==================================================================== -->
 
@@ -141,12 +142,13 @@
         <xsl:with-param name="parentinfo" select="$parentinfo"/>
       </xsl:call-template>
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <!-- * LINKS list (only generate if user wants links numbered) -->
+      <!-- * LINKS list (only if user wants links numbered and/or listed) -->
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <xsl:if test="$man.links.list.enabled != 0">
+      <xsl:if test="$man.links.list.enabled != 0 or
+                    $man.links.are.numbered != 0">
         <xsl:call-template name="links.list"/>
       </xsl:if>
-    </xsl:variable>
+    </xsl:variable> <!-- * end of manpage.contents -->
 
     <!-- * Prepare the page contents for final output, then store in -->
     <!-- * $manpage.contents.prepared so the we can pass it on to the -->

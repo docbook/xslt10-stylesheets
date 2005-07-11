@@ -29,20 +29,17 @@
   </preface>
 
   <reference id="general">
-  <title>General</title>
+  <title>General formatting</title>
 &man.break.after.slash;
 &man.hyphenate;
 &man.justify;
-&man.output.quietly;
-&man.output.encoding;
-&man.subheading.divider.enabled;
-&man.subheading.divider;
   </reference>
   <reference id="links">
   <title>Link handling</title>
 &man.links.are.numbered;
 &man.links.are.underlined;
-&man.links.section.heading;
+&man.links.list.enabled;
+&man.links.list.heading;
   </reference>
   <reference id="charmap">
   <title>Character/string substitution</title>
@@ -76,6 +73,13 @@
 &man.th.extra2.max.length;
 &man.th.extra3.max.length;
   </reference>
+  <reference id="other">
+  <title>Other</title>
+&man.output.quietly;
+&man.output.encoding;
+&man.subheading.divider.enabled;
+&man.subheading.divider;
+  </reference>
   <appendix id="stylesheet">
     <title>The Stylesheet</title>
 
@@ -107,7 +111,8 @@
 <src:fragref linkend="man.string.subst.map.frag"/>
 <src:fragref linkend="man.links.are.numbered.frag"/>
 <src:fragref linkend="man.links.are.underlined.frag"/>
-<src:fragref linkend="man.links.section.heading.frag"/>
+<src:fragref linkend="man.links.list.enabled.frag"/>
+<src:fragref linkend="man.links.list.heading.frag"/>
 <src:fragref linkend="man.charmap.enabled.frag"/>
 <src:fragref linkend="man.charmap.uri.frag"/>
 <src:fragref linkend="man.charmap.use.subset.frag"/>
