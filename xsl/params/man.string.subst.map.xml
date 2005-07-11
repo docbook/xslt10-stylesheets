@@ -36,13 +36,22 @@
   <!-- * found at the start of a line -->
   <substitution oldstring="&#10;'" newstring="&#10;\'"/>
   <!-- * -->
-  <!-- * The remaining characters are all characters that the -->
-  <!-- * DpcBook XSL stylesheets themselves generate under -->
-  <!-- * certain circumstances; so we deal with them here so -->
-  <!-- * that we can ensure they will always be replaced, -->
-  <!-- * even if man.charmap.enabled is zero. -->
-  <!-- * -->
   <!-- * non-breaking space -->
+  <!-- * -->
+  <!-- * A no-break space can be written two ways in roff; the difference, -->
+  <!-- * according to the "Page Motions" node in the groff info page, ixsl: -->
+  <!-- * -->
+  <!-- *   "\ " = -->
+  <!-- *   An unbreakable and unpaddable (i.e. not expanded during filling) -->
+  <!-- *   space. -->
+  <!-- * -->
+  <!-- *   "\~" = -->
+  <!-- *   An unbreakable space that stretches like a normal -->
+  <!-- *   inter-word space when a line is adjusted."  -->
+  <!-- * -->
+  <!-- * Unfortunately, roff seems to do some weird things with long -->
+  <!-- * lines that only have words separated by "\~" spaces, so it's -->
+  <!-- * safer just to stick with the "\ " space -->
   <substitution oldstring="&#x00a0;" newstring="\ "/>
   <!-- * left double quote -->
   <substitution oldstring="&#x201c;" newstring="\(lq"/>
@@ -63,11 +72,11 @@
   <!-- * we don't do "\(tm" because for console output -->
   <!-- * because groff just renders that as "tm"; that is: -->
   <!-- * -->
-  <!-- *  Product&#x2122; -> Producttm -->
+  <!-- *   Product&#x2122; -> Producttm -->
   <!-- * -->
   <!-- * So we just make it to "(TM)" instead; thus: -->
   <!-- * -->
-  <!-- *  Product&#x2122; -> Product(TM) -->
+  <!-- *   Product&#x2122; -> Product(TM) -->
   <substitution oldstring="&#x2122;" newstring="(TM)"/>
 </xsl:param>
 </src:fragment>
