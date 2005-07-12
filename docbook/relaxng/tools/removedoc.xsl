@@ -22,26 +22,24 @@
 <xsl:template match="rng:element">
   <xsl:copy>
     <xsl:copy-of select="@*"/>
-    <xsl:apply-templates/>
-
     <xsl:if test="ancestor::rng:div/db:refpurpose">
       <xsl:element name="a:documentation">
 	<xsl:value-of select="ancestor::rng:div/db:refpurpose"/>
       </xsl:element>
     </xsl:if>
+    <xsl:apply-templates/>
   </xsl:copy>
 </xsl:template>
 
 <xsl:template match="rng:attribute">
   <xsl:copy>
     <xsl:copy-of select="@*"/>
-    <xsl:apply-templates/>
-
     <xsl:if test="db:refpurpose">
       <xsl:element name="a:documentation">
 	<xsl:value-of select="db:refpurpose"/>
       </xsl:element>
     </xsl:if>
+    <xsl:apply-templates/>
   </xsl:copy>
 </xsl:template>
 
