@@ -17,6 +17,8 @@
   <substitution oldstring="\\fB" newstring="\fB"/>
   <substitution oldstring="\\fI" newstring="\fI"/>
   <substitution oldstring="\\fR" newstring="\fR"/>
+  <substitution oldstring='\\%' newstring='\%'/>
+  <substitution oldstring='\\&amp;' newstring='\&amp;'/>
   <substitution oldstring='.\\"' newstring='.\"'/>
   <!-- * although the groff docs do not make it clear, it appears that -->
   <!-- * the only way to get a non-breaking hyphen in roff is to put a -->
