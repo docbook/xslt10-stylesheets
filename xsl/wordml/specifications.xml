@@ -394,6 +394,11 @@ variablelist4</literallayout></entry>
 <entry colname="col3">with no figure-title above or below</entry>
 </row>
 <row>
+<entry colname="col1">informalfigure/mediaobject/imageobject/imagedata/@fileref</entry>
+<entry colname="col2">informalfigure-imagedata</entry>
+<entry colname="col3">The content of the paragraph is taken as the URI for the image.  For use in cases where the image is not embedded in the Word document.</entry>
+</row>
+<row>
 <entry colname="col1">table</entry>
 <entry colname="col2">Word table</entry>
 <entry colname="col3"></entry>

@@ -4,8 +4,18 @@
 <!ENTITY para "w:p[w:pPr/w:pStyle[@w:val='para' or @w:val='Normal']]">
 <!ENTITY continue "w:p[w:pPr/w:pStyle/@w:val='para-continue']">
 
-<!ENTITY itemizedlist "w:p[w:pPr/w:pStyle[starts-with(@w:val,'itemizedlist')]]">
-<!ENTITY itemizedlist1 "w:p[w:pPr/w:pStyle[@w:val = 'itemizedlist']]">
+<!ENTITY wordlist 'w:p[w:pPr/w:listPr/w:ilvl/@w:val = "0" and
+		   w:pPr/w:listPr/wx:t/@wx:val = "&#183;" and
+		   w:pPr/w:listPr/wx:font/@wx:val = "Symbol"]'>
+
+<!ENTITY itemizedlist 'w:p[starts-with(w:pPr/w:pStyle/@w:val,"itemizedlist") or
+		       (w:pPr/w:listPr/w:ilvl/@w:val = "0" and
+		       w:pPr/w:listPr/wx:t/@wx:val = "&#183;" and
+		       w:pPr/w:listPr/wx:font/@wx:val = "Symbol")]'>
+<!ENTITY itemizedlist1 'w:p[w:pPr/w:pStyle/@w:val = "itemizedlist" or
+			(w:pPr/w:listPr/w:ilvl/@w:val = "0" and
+			w:pPr/w:listPr/wx:t/@wx:val = "&#183;" and
+			w:pPr/w:listPr/wx:font/@wx:val = "Symbol")]'>
 <!ENTITY orderedlist "w:p[w:pPr/w:pStyle[starts-with(@w:val,'orderedlist')]]">
 <!ENTITY orderedlist1 "w:p[w:pPr/w:pStyle[@w:val = 'orderedlist']]">
 
@@ -165,16 +175,17 @@
 
   <!-- sub-section title paragraph -->
   <xsl:template match="wx:sub-section/w:p[1]" mode="group">
+    <xsl:variable name='parent'>
+      <xsl:call-template name='component-name'/>
+    </xsl:variable>
+
     <xsl:choose>
       <xsl:when test='../&releaseinfo;|../&author;|../&editor;|../&othercredit;'>
-        <xsl:variable name='parent'>
-          <xsl:call-template name='component-name'/>
-        </xsl:variable>
-
         <xsl:element name='{$parent}info'>
           <title>
             <xsl:apply-templates select="w:r|w:hlink"/>
           </title>
+	  <xsl:apply-templates select='following-sibling::*[1][self::w:p][w:pPr/w:pStyle/@w:val = concat($parent, "-subtitle")]' mode='subtitle'/>
           <xsl:apply-templates select='../&releaseinfo;|../&author;|../&editor;|../&othercredit;' mode='metadata'/>
         </xsl:element>
       </xsl:when>
@@ -182,8 +193,56 @@
         <title>
           <xsl:apply-templates select="w:r|w:hlink"/>
         </title>
+	<xsl:apply-templates select='following-sibling::*[1][self::w:p][w:pPr/w:pStyle/@w:val = concat($parent, "-subtitle")]' mode='subtitle'/>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match='w:p[w:pPr/w:pStyle/@w:val = "book-subtitle" or
+		       w:pPr/w:pStyle/@w:val = "article-subtitle" or
+		       w:pPr/w:pStyle/@w:val = "section-subtitle" or
+		       w:pPr/w:pStyle/@w:val = "sect1-subtitle" or
+		       w:pPr/w:pStyle/@w:val = "sect2-subtitle" or
+		       w:pPr/w:pStyle/@w:val = "sect3-subtitle" or
+		       w:pPr/w:pStyle/@w:val = "sect4-subtitle" or
+		       w:pPr/w:pStyle/@w:val = "sect5-subtitle" or
+		       w:pPr/w:pStyle/@w:val = "appendix-subtitle" or
+		       w:pPr/w:pStyle/@w:val = "bibliography-subtitle" or
+		       w:pPr/w:pStyle/@w:val = "chapter-subtitle" or
+		       w:pPr/w:pStyle/@w:val = "glossary-subtitle" or
+		       w:pPr/w:pStyle/@w:val = "part-subtitle" or
+		       w:pPr/w:pStyle/@w:val = "preface-subtitle" or
+		       w:pPr/w:pStyle/@w:val = "reference-subtitle" or
+		       w:pPr/w:pStyle/@w:val = "set-subtitle"]' mode='group'>
+
+    <xsl:variable name='parent' select='substring-before(w:pPr/w:pStyle/@w:val, "-")'/>
+
+    <xsl:if test='preceding-sibling::*[1][not(self::w:p) or
+		  (self::w:p and w:pPr/w:pStyle/@w:val != concat($parent, "-title"))]'>
+      <xsl:call-template name='report-error'>
+	<xsl:with-param name='message'>
+	  <xsl:text>paragraph style "</xsl:text>
+	  <xsl:value-of select='w:pPr/w:pStyle/@w:val'/>
+	  <xsl:text>" found without a preceding title</xsl:text>
+	</xsl:with-param>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match='w:p' mode='subtitle'>
+    <subtitle>
+      <xsl:call-template name='attributes'/>
+      <xsl:apply-templates select='w:r|w:hlink'/>
+    </subtitle>
+  </xsl:template>
+  <xsl:template match='*' mode='subtitle'>
+    <xsl:call-template name='report-error'>
+      <xsl:with-param name='message'>
+	<xsl:text>paragraph style "</xsl:text>
+	<xsl:value-of select='w:pPr/w:pStyle/@w:val'/>
+	<xsl:text>" found in subtitle context</xsl:text>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
 
   <!-- metadata -->
@@ -250,6 +309,19 @@
         <otheraddr>
           <xsl:apply-templates select='.'/>
         </otheraddr>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match='wordlist'
+		priority='2'
+		mode='group'>
+    <xsl:choose>
+      <xsl:when test='preceding-sibling::*[1][self::&wordlist;]'>
+	<xsl:comment> wordlist subsequent item </xsl:comment>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:comment> wordlist first item </xsl:comment>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -484,7 +556,8 @@
   </xref>
 </xsl:template>
 
-<xsl:template match="w:r[w:rPr/w:rStyle[@w:val = 'emphasis']]">
+<xsl:template match="w:r[w:rPr/w:rStyle/@w:val = 'emphasis' or
+		     w:rPr/w:i]">
   <emphasis>
     <xsl:apply-templates select="w:t"/>
   </emphasis>
@@ -603,6 +676,22 @@
         
 </xsl:template>
 
+  <xsl:template match='w:p[w:pPr/w:pStyle/@w:val = "informalfigure-imagedata"]' mode='group'>
+    <!-- Simple form of figure with no captions, titles, etc -->
+    <!-- TODO: allow setting of width and height -->
+    <informalfigure>
+      <xsl:call-template name="object.id"/>
+      <mediaobject>
+        <imageobject>
+          <imagedata>
+            <xsl:attribute name='fileref'>
+              <xsl:apply-templates select='w:r|w:hlink' mode='textonly'/>
+            </xsl:attribute>
+          </imagedata>
+        </imageobject>
+      </mediaobject>
+    </informalfigure>
+  </xsl:template>
 <xsl:template match="&figure;" mode="group">
 
   <!-- Get title and caption from siblings -->
@@ -1064,5 +1153,16 @@
   <xsl:template match='aml:annotation'/>
   <xsl:template match='w:r[w:rPr/w:rStyle/@w:val = "attributes"]'/>
   <xsl:template match='w:r[w:rPr/w:rStyle/@w:val = "CommentReference"]'/>
+
+  <!-- utilities -->
+
+  <!-- This template is invoked whenever an error condition is detected in the conversion of a WordML document.
+    -->
+  <xsl:template name='report-error'>
+    <xsl:param name='node' select='.'/>
+    <xsl:param name='message'/>
+
+    <xsl:message><xsl:value-of select='$message'/></xsl:message>
+  </xsl:template>
 
 </xsl:stylesheet>
