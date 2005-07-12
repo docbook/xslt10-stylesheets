@@ -127,8 +127,16 @@
         <xsl:apply-templates/>
       </xsl:when>
       <xsl:otherwise>
-        <!-- * the element is empty, so we just get the value of the URL; -->
+        <!-- * The element is empty, so we just get the value of the URL; -->
         <!-- * note that we don't number empty links -->
+        <!-- * -->
+        <!-- * Add hyphenation suppression in URL output only if -->
+        <!-- * break.after.slash is also non-zero -->
+        <xsl:if test="$man.hyphenate.urls = 0 and
+                      $man.break.after.slash = 0">
+          <xsl:call-template name="suppress.hyphenation"/>
+          <xsl:text>\%</xsl:text>
+        </xsl:if>
         <xsl:value-of select="$url"/>
       </xsl:otherwise>
     </xsl:choose>
@@ -154,9 +162,31 @@
     <!-- * formatting could be made user-configurable - something -->
     <!-- * other than square brackets. But what else would work? -->
     <!-- * <10> Angle brackets? {10} Braces? -->
-    <xsl:text>[</xsl:text> 
+    <xsl:text>[</xsl:text>
     <xsl:value-of select="$link.number"/>
-    <xsl:text>]</xsl:text>
+    <xsl:text>]\&amp;</xsl:text>
+    <!-- * Note that the reason for the \& after the closing bracket -->
+    <!-- * is to prevent a hyphen character from being rendered -->
+    <!-- * between the closing bracket and the following text - even -->
+    <!-- * when the following text is preceded by a "hyphenation -->
+    <!-- * character"; for example: -->
+    <!-- * -->
+    <!-- *  [26]\&\fI\%COUNTRY\fR\fR -->
+    <!-- * -->
+    <!-- * Where COUNTRY is marked up with as <envar>COUNTRY</envar> -->
+    <!-- * in the source (we generate \% before all Envar output (and -->
+    <!-- * all other "computer inlines") to prevent it from being -->
+    <!-- * broken across lines. -->
+    <!-- * -->
+    <!-- * Without the \& after the closing bracket, if the -->
+    <!-- * [26]\fI\%COUNTRY\fR\fR instance fell at the end of a line, -->
+    <!-- * a hyphen could end up being inserted; for example: -->
+    <!-- * -->
+    <!-- *   if you are uncertain, check the value of the [26]- -->
+    <!-- *   COUNTRY environment variable -->
+    <!-- * -->
+    <!-- * The \& causes [26]COUNTRY to be treated as a unit, -->
+    <!-- * preventing insertion of the stray hyphen. -->
   </xsl:if>
   <xsl:choose>
     <!-- * if user wants links underlined, underline (ital) it -->
@@ -321,6 +351,13 @@
     <xsl:text>&#10;</xsl:text>
     <xsl:text>.br&#10;</xsl:text>
     <!-- * Print the link's URL -->
+    <!-- * Add hyphenation suppression in URL output only if -->
+    <!-- * break.after.slash is also non-zero -->
+    <xsl:if test="$man.hyphenate.urls = 0 and
+                  $man.break.after.slash = 0">
+      <xsl:call-template name="suppress.hyphenation"/>
+      <xsl:text>\%</xsl:text>
+    </xsl:if>
     <xsl:value-of select="@url"/>
     <xsl:text>&#10;</xsl:text>
   </xsl:for-each>

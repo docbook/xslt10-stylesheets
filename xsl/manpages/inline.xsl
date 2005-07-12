@@ -13,14 +13,41 @@
 
      ******************************************************************** -->
 
+<xsl:param name="man.hyphenate.computer.inlines">0</xsl:param>
+<xsl:param name="man.hyphenate.filenames">0</xsl:param>
+<xsl:param name="man.hyphenate.urls">0</xsl:param>
+
 <!-- ==================================================================== -->
 
-<xsl:template match="filename|replaceable|varname">
+<xsl:template match="replaceable|varname">
+  <xsl:if test="$man.hyphenate.computer.inlines = 0">
+    <xsl:call-template name="suppress.hyphenation"/>
+  </xsl:if>
   <xsl:apply-templates mode="italic" select="."/>
 </xsl:template>
 
 <xsl:template match="option|userinput|envar|errorcode|constant|type">
+  <xsl:if test="$man.hyphenate.computer.inlines = 0">
+    <xsl:call-template name="suppress.hyphenation"/>
+  </xsl:if>
   <xsl:apply-templates mode="bold" select="."/>
+</xsl:template>
+
+<xsl:template match="classname">
+  <xsl:if test="$man.hyphenate.computer.inlines = 0">
+    <xsl:call-template name="suppress.hyphenation"/>
+  </xsl:if>
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="filename">
+  <!-- * add hyphenation suppression in Filename output only if -->
+  <!-- * break.after.slash is also non-zero -->
+  <xsl:if test="$man.hyphenate.filenames = 0 and
+                $man.break.after.slash = 0">
+    <xsl:call-template name="suppress.hyphenation"/>
+  </xsl:if>
+  <xsl:apply-templates mode="italic" select="."/>
 </xsl:template>
 
 <xsl:template match="emphasis">
