@@ -140,6 +140,8 @@
   </xsl:if>
 </xsl:template>
 
+<!-- ==================================================================== -->
+
 <xsl:template match="funcsynopsisinfo">
   <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
@@ -170,21 +172,57 @@
   </xsl:if>
 </xsl:template>
 
+<!-- * NOTE TO DEVELOPERS: Below you will find many "bold" calls. -->
+<!-- * -->
+<!-- * The reason is that we need to bold each bit of Funcsynopsis -->
+<!-- * separately, to get around the limitations of not being able -->
+<!-- * to do \fBfoo \fBbar\fI baz\fR and have "baz" get bolded. -->
+<!-- * -->
+<!-- * And the reason we need to bold so much stuff is that the -->
+<!-- * man(7) man page says this: -->
+<!-- * -->
+<!-- *   For functions, the arguments are always specified using -->
+<!-- *   italics, even in the SYNOPSIS section, where the rest of -->
+<!-- *   the function is specified in bold: -->
+<!-- * -->
+<!-- * And if you take a look through the contents of the man/man2 -->
+<!-- * directory on your system, you'll see that most existing pages -->
+<!-- * do follow this "bold everything in function synopsis " rule. -->
+<!-- * -->
+<!-- * So even if you don't personally like the way it looks, please -->
+<!-- * don't change it to be non-bold - because it is a convention -->
+<!-- * that is followed is the vast majority of existing man pages -->
+<!-- * that document functions, and there's no good reason for us to -->
+<!-- * be following it. -->
+
 <xsl:template match="funcprototype">
+  <xsl:variable name="funcprototype.string.value">
+    <xsl:value-of select="funcdef"/>
+  </xsl:variable>
   <xsl:variable name="funcprototype">
     <xsl:apply-templates select="funcdef"/>
   </xsl:variable>
   <xsl:text>.HP </xsl:text>
-  <xsl:value-of select="string-length (normalize-space ($funcprototype)) - 6"/>
+  <!-- * Hang Paragraph by length of string value of <funcdef> + 1 -->
+  <!-- * (because funcdef is always followed by one open paren char) -->
+  <xsl:value-of select="string-length (normalize-space ($funcprototype.string.value)) + 1"/>
   <xsl:text>&#10;</xsl:text>
   <xsl:value-of select="normalize-space ($funcprototype)"/>
-  <xsl:text>(</xsl:text>
+  <xsl:variable name="funcdef.suffix">
+    <Funcdef.Suffix>(</Funcdef.Suffix>
+  </xsl:variable>
+  <xsl:apply-templates mode="bold" select="exsl:node-set($funcdef.suffix)"/>
   <xsl:apply-templates select="*[local-name() != 'funcdef']"/>
   <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="funcdef">
-  <xsl:apply-templates select="." mode="prevent.line.breaking"/>
+  <xsl:variable name="funcdef">
+    <Funcdef>
+      <xsl:apply-templates select="." mode="prevent.line.breaking"/>
+    </Funcdef>
+  </xsl:variable>
+  <xsl:apply-templates mode="bold" select="exsl:node-set($funcdef)"/>
 </xsl:template>
 
 <xsl:template match="funcdef/function">
@@ -192,23 +230,39 @@
 </xsl:template>
 
 <xsl:template match="void">
-  <xsl:text>void);</xsl:text>
+  <xsl:variable name="void">
+    <Void>void);</Void>
+  </xsl:variable>
+  <xsl:apply-templates mode="bold" select="exsl:node-set($void)"/>
 </xsl:template>
 
 <xsl:template match="varargs">
-  <xsl:text>...);</xsl:text>
+  <xsl:variable name="varargs">
+    <Varargs>...);</Varargs>
+  </xsl:variable>
+  <xsl:apply-templates mode="bold" select="exsl:node-set($varargs)"/>
 </xsl:template>
 
 <xsl:template match="paramdef">
-  <xsl:apply-templates select="." mode="prevent.line.breaking"/>
-  <xsl:choose>
-    <xsl:when test="following-sibling::*">
-      <xsl:text>, </xsl:text>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:text>);</xsl:text>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:variable name="paramdef">
+    <Paramdef>
+      <xsl:apply-templates mode="bold" select="." />
+    </Paramdef>
+  </xsl:variable>
+  <xsl:apply-templates mode="prevent.line.breaking" select="exsl:node-set($paramdef)"/>
+  <xsl:variable name="paramdef.suffix">
+    <Paramdef.Suffix>
+      <xsl:choose>
+        <xsl:when test="following-sibling::*">
+          <xsl:text>, </xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>);</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </Paramdef.Suffix>
+  </xsl:variable>
+  <xsl:apply-templates mode="bold" select="exsl:node-set($paramdef.suffix)"/>
 </xsl:template>
 
 <xsl:template match="paramdef/parameter">
@@ -216,21 +270,15 @@
 </xsl:template>
 
 <xsl:template match="funcparams">
-  <xsl:text>(</xsl:text>
-  <xsl:apply-templates/>
-  <xsl:text>)</xsl:text>
-</xsl:template>
-
-<!-- * By default, contents of the <type> element are rendered in bold. But we -->
-<!-- * don't want them bolded if theu are inside a funcdef or paramdef; the -->
-<!-- * following two templates cause them to be rendered without any special -->
-<!-- * formatting when they are inside funcdef or paramdef. -->
-<xsl:template match="funcdef/type">
-  <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="paramdef/type">
-  <xsl:apply-templates/>
+  <xsl:variable name="funcparams.prefix">
+    <Funcparams.Prefix>(</Funcparams.Prefix>
+  </xsl:variable>
+  <xsl:apply-templates mode="bold" select="exsl:node-set($funcparams.prefix)"/>
+  <xsl:apply-templates mode="bold" select="."/>
+  <xsl:variable name="funcparams.suffix">
+    <Funcparams.Suffix>)</Funcparams.Suffix>
+  </xsl:variable>
+  <xsl:apply-templates mode="bold" select="exsl:node-set($funcparams.suffix)"/>
 </xsl:template>
 
 </xsl:stylesheet>
