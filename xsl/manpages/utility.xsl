@@ -88,6 +88,19 @@
 
   <!-- ================================================================== -->
 
+  <xsl:template name="suppress.hyphenation">
+    <!-- * we need to suppress hyphenation inline only if hyphenation is -->
+    <!-- * actually on, and even then only outside of Cmdsynopsis and -->
+    <!-- * Funcsynopsis, where it is already always turned off -->
+    <xsl:if test="$man.hyphenate != 0 and
+                  not(ancestor::cmdsynopsis) and
+                  not(ancestor::funcsynopsis)">
+      <xsl:text>\%</xsl:text>
+    </xsl:if>
+  </xsl:template>
+
+  <!-- ================================================================== -->
+
   <!-- * The nested-section-title template is called for refsect3, and any -->
   <!-- * refsection nested more than 2 levels deep, and for formalpara. -->
   <xsl:template name="nested-section-title">

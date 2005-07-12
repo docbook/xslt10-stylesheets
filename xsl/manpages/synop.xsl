@@ -97,14 +97,17 @@
 </xsl:template>
 
 <xsl:template match="command">
+  <xsl:call-template name="suppress.hyphenation"/>
   <xsl:apply-templates mode="bold" select="."/>
 </xsl:template>
 
 <xsl:template match="function[not(ancestor::command)]">
+  <xsl:call-template name="suppress.hyphenation"/>
   <xsl:apply-templates mode="bold" select="."/>
 </xsl:template>
 
 <xsl:template match="parameter[not(ancestor::command)]">
+  <xsl:call-template name="suppress.hyphenation"/>
   <xsl:apply-templates mode="italic" select="."/>
 </xsl:template>
 
