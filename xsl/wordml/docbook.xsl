@@ -29,7 +29,8 @@
 
   <xsl:variable name='templatedoc' select='document($wordml.template)'/>
 
-  <xsl:template match="/">
+  <xsl:template match="/" name='wordml.top'>
+    <xsl:param name='doc' select='/'/>
 
     <xsl:if test='not($wordml.template)'>
       <xsl:message terminate='yes'>Please specify the template document with the "wordml.template" parameter</xsl:message>
@@ -44,7 +45,8 @@
     <xsl:text>
 </xsl:text>
 
-    <xsl:variable name='info' select='book/bookinfo|article/articleinfo'/>
+    <xsl:variable name='info'
+      select='$doc/book/bookinfo|$doc/article/articleinfo'/>
     <xsl:variable name='authors' select='$info/author|$info/authorinitials|$info/authorgroup/author|$info/authorgroup/editor'/>
 
     <w:wordDocument
@@ -152,7 +154,7 @@
         </w:docVars>
       </w:docPr>
 
-      <xsl:apply-templates select='*' mode='toplevel'/>
+      <xsl:apply-templates select='$doc/*' mode='toplevel'/>
 
     </w:wordDocument>
   </xsl:template>
@@ -394,8 +396,8 @@
         <w:rPr>
           <w:rStyle w:val='Hyperlink'/>
         </w:rPr>
+	<xsl:apply-templates mode='text-run'/>
       </w:r>
-      <xsl:apply-templates mode='text-run'/>
     </w:hlink>
   </xsl:template>
 

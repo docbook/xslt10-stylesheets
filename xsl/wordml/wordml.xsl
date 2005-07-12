@@ -146,20 +146,21 @@
   </xsl:element>
 </xsl:template>
 
-<!-- Ordinary para -->
-<xsl:template match="&para;|w:p[not(w:pPr/w:pStyle)]" mode="group">
-  <para>
-    <xsl:call-template name="object.id"/>
-    <xsl:apply-templates select="w:r|w:hlink"/>
-  </para>
-</xsl:template>
+  <!-- Ordinary para -->
+  <xsl:template match="&para;|w:p[not(w:pPr/w:pStyle)]" mode="group">
+    <para>
+      <xsl:call-template name="object.id"/>
+      <xsl:apply-templates select="w:r|w:hlink"/>
+    </para>
+  </xsl:template>
 
-<!-- Unmatched para style -->
-<xsl:template match="w:p" mode="group">
-  <nomatch>
-    <xsl:apply-templates select="w:r|w:hlink"/>
-  </nomatch>
-</xsl:template>
+  <!-- Unmatched para style -->
+  <xsl:template match="w:p" mode="group">
+    <nomatch>
+      <xsl:comment> style "<xsl:value-of select='w:pPr/w:pStyle/@w:val'/>" </xsl:comment>
+      <xsl:apply-templates select="w:r|w:hlink"/>
+    </nomatch>
+  </xsl:template>
 
 <!-- unused elements are bypassed -->
 <xsl:template match="*" mode="group">
@@ -498,84 +499,96 @@
         
 </xsl:template>
 
-<xsl:template match="&figure;" mode="group">
+  <xsl:template match='w:p[w:pPr/w:pStyle/@w:val = "informalfigure-imagedata"]' mode='group'>
+    <!-- Simple form of figure with no captions, titles, etc -->
+    <!-- TODO: allow setting of width and height -->
+    <informalfigure>
+      <xsl:call-template name="object.id"/>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref='{w:r|w:hlink}'/>
+        </imageobject>
+      </mediaobject>
+    </informalfigure>
+  </xsl:template>
+  <xsl:template match="&figure;" mode="group">
 
-  <!-- Get title and caption from siblings -->
-  <xsl:variable name="title">
-    <xsl:choose>
-      <xsl:when test="following-sibling::*[1][self::&figuretitle;]">
-        <xsl:apply-templates 
-                 mode="figuretitle"
-                 select="following-sibling::*[1][self::&figuretitle;]"/>
-      </xsl:when>
-      <xsl:when test="preceding-sibling::*[1][self::&figuretitle;]">
-        <xsl:apply-templates 
-                 mode="figuretitle"
-                 select="preceding-sibling::*[1][self::&figuretitle;]"/>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:variable>
+    <!-- Get title and caption from siblings -->
+    <xsl:variable name="title">
+      <xsl:choose>
+        <xsl:when test="following-sibling::*[1][self::&figuretitle;]">
+          <xsl:apply-templates 
+            mode="figuretitle"
+            select="following-sibling::*[1][self::&figuretitle;]"/>
+        </xsl:when>
+        <xsl:when test="preceding-sibling::*[1][self::&figuretitle;]">
+          <xsl:apply-templates 
+            mode="figuretitle"
+            select="preceding-sibling::*[1][self::&figuretitle;]"/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
 
-  <!-- FIXME -->
-  <xsl:variable name="caption"/>
+    <!-- FIXME -->
+    <xsl:variable name="caption"/>
 
-  <xsl:variable name="shape" select="w:r/w:pict/v:shape"/>
-  <xsl:variable name="style" select="$shape/@style"/>
+    <xsl:variable name="shape" select="w:r/w:pict/v:shape"/>
+    <xsl:variable name="style" select="$shape/@style"/>
 
-  <xsl:variable name="src" select="$shape/v:imagedata/@src"/>
-  <xsl:variable name="width"
-                select="substring-before(
-                        substring-after($style, 'width:'), ';')"/>
-  <xsl:variable name="height">
-    <xsl:variable name="candidate" 
-                  select="substring-before(
-                          substring-after($style, 'height:'), ';') != ''"/>
-    <xsl:choose>
-      <xsl:when test="$candidate != ''">
-        <xsl:value-of select="$candidate"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="substring-after($style, 'height:')"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
+    <xsl:variable name="src" select="$shape/v:imagedata/@src"/>
+    <xsl:variable name="width"
+      select="substring-before(
+              substring-after($style, 'width:'), ';')"/>
+    <xsl:variable name="height">
+      <xsl:variable name="candidate" 
+        select="substring-before(
+                substring-after($style, 'height:'), ';') != ''"/>
+      <xsl:choose>
+        <xsl:when test="$candidate != ''">
+          <xsl:value-of select="$candidate"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="substring-after($style, 'height:')"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
 
-  <xsl:variable name="element">
-    <xsl:choose>
-      <xsl:when test="$title != ''">figure</xsl:when>
-      <xsl:otherwise>informalfigure</xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
+    <xsl:variable name="element">
+      <xsl:choose>
+        <xsl:when test="$title != ''">figure</xsl:when>
+        <xsl:otherwise>informalfigure</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
 
-  <xsl:element name="{$element}">
-    <xsl:call-template name="object.id"/>
-    <xsl:if test="$title != ''">
-      <title>
-        <xsl:copy-of select="$title"/>
-      </title>
-    </xsl:if>
-    <mediaobject>
-      <imageobject>
-        <imagedata>
-          <xsl:attribute name="fileref">
-            <xsl:value-of select="$src"/>
-          </xsl:attribute>
-          <xsl:if test="$width != ''">
-            <xsl:attribute name="contentwidth">
-              <xsl:value-of select="$width"/>
+    <xsl:element name="{$element}">
+      <xsl:call-template name="object.id"/>
+      <xsl:if test="$title != ''">
+        <title>
+          <xsl:copy-of select="$title"/>
+        </title>
+      </xsl:if>
+      <mediaobject>
+        <imageobject>
+          <imagedata>
+            <xsl:attribute name="fileref">
+              <xsl:value-of select="$src"/>
             </xsl:attribute>
-          </xsl:if>
-          <xsl:if test="$height != ''">
-            <xsl:attribute name="contentdepth">
-              <xsl:value-of select="$height"/>
-            </xsl:attribute>
-          </xsl:if>
-        </imagedata>
-      </imageobject>
-    </mediaobject>
-  </xsl:element>
+            <xsl:if test="$width != ''">
+              <xsl:attribute name="contentwidth">
+                <xsl:value-of select="$width"/>
+              </xsl:attribute>
+            </xsl:if>
+            <xsl:if test="$height != ''">
+              <xsl:attribute name="contentdepth">
+                <xsl:value-of select="$height"/>
+              </xsl:attribute>
+            </xsl:if>
+          </imagedata>
+        </imageobject>
+      </mediaobject>
+    </xsl:element>
 
-</xsl:template>
+  </xsl:template>
 
 <xsl:template match="&figuretitle;" mode="group"/>
 
