@@ -142,13 +142,6 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="funcsynopsisinfo">
-  <xsl:text>&#10;</xsl:text>
-  <xsl:apply-templates/>
-  <xsl:text>&#10;</xsl:text>
-  <xsl:text>.sp&#10;</xsl:text>
-</xsl:template>
-
 <!-- * Within funcsynopis output, disable hyphenation, and use -->
 <!-- * left-aligned filling for the duration of the synopsis, so that -->
 <!-- * line breaks only occur between separate paramdefs. -->
@@ -194,6 +187,12 @@
 <!-- * that is followed is the vast majority of existing man pages -->
 <!-- * that document functions, and there's no good reason for us to -->
 <!-- * be following it. -->
+
+<xsl:template match="funcsynopsisinfo">
+  <xsl:text>.PP&#10;</xsl:text>
+  <xsl:apply-templates mode="bold" select="."/>
+  <xsl:text>&#10;</xsl:text>
+</xsl:template>
 
 <xsl:template match="funcprototype">
   <xsl:variable name="funcprototype.string.value">
