@@ -146,7 +146,17 @@ db.xlink.title.attribute =
    ]
    attribute xlink:title { text }?
 
-db.xlink.show.enumeration = "new" | "replace" | "embed" | "other"
+db.xlink.show.enumeration =
+   ## An application traversing to the ending resource should load it in a new window, frame, pane, or other relevant presentation context.
+   "new"
+ | ## An application traversing to the ending resource should load the resource in the same window, frame, pane, or other relevant presentation context in which the starting resource was loaded.
+   "replace"
+ | ## An application traversing to the ending resource should load its presentation in place of the presentation of the starting resource.
+   "embed"
+ | ## The behavior of an application traversing to the ending resource is unconstrained by XLink. The application should look for other markup present in the link to determine the appropriate behavior.
+   "other"
+ | ## The behavior of an application traversing to the ending resource is unconstrained by this specification. No other markup is present to help the application determine the appropriate behavior.
+   "none"
 
 db.xlink.show.attribute =
    [
@@ -154,7 +164,16 @@ db.xlink.show.attribute =
    ]
    attribute xlink:show { db.xlink.show.enumeration }
 
-db.xlink.actuate.enumeration = "onLoad" | "onRequest" | "other" | "none"
+db.xlink.actuate.enumeration =
+   ## An application should traverse to the ending resource immediately on loading the starting resource.
+   "onLoad"
+ | ## An application should traverse from the starting resource to the ending resource only on a post-loading event triggered for the purpose of traversal.
+   "onRequest"
+ | ## The behavior of an application traversing to the ending resource is unconstrained by this specification. The application should look for other markup present in the link to determine the appropriate behavior.
+   "other"
+ | ## The behavior of an application traversing to the ending resource is unconstrained by this specification. No other markup is present to help the application determine the appropriate behavior.
+   "none"
+
 db.xlink.actuate.attribute =
    [
       db:refpurpose [ "Identifies the XLink actuate behavior of the link" ]
@@ -208,7 +227,16 @@ db.xreflabel.attribute =
    ]
    attribute xreflabel { text }
 
-db.revisionflag.enumeration = "changed" | "added" | "deleted" | "off"
+db.revisionflag.enumeration =
+   ## The element has been changed.
+   "changed"
+ | ## The element is new (has been added to the document).
+   "added"
+ | ## The element has been deleted.
+   "deleted"
+ | ## Explicitly turns off revision markup for this element.
+   "off"
+
 db.revisionflag.attribute =
    [
       db:refpurpose [ "Identifies the revision status of the element" ]
@@ -242,26 +270,62 @@ db.common.req.linking.attributes =
    db.linkend.attribute | db.href.attribute
 
 db.common.data.attributes =
+   [
+      db:refpurpose [ "Specifies the format of the data" ]
+   ]
    attribute format { text }?,
-   (attribute fileref { xsd:anyURI } | attribute entityref { xsd:ENTITY })
+   (
+      [
+         db:refpurpose [ "Indentifies the location of the data by URI" ]
+      ]
+      attribute fileref { xsd:anyURI }
+    | [
+         db:refpurpose [ "Identifies the location of the data by external identifier (entity name)" ]
+      ]
+      attribute entityref { xsd:ENTITY })
 
 # ======================================================================
 
-db.verbatim.continuation.enumeration = "continues" | "restarts"
+db.verbatim.continuation.enumeration =
+   ## Line numbering continues from the immediately preceding element with the same name.
+   "continues"
+ | ## Line numbering restarts (begins at 1, usually).
+   "restarts"
+
 db.verbatim.continuation.attribute =
+   [
+      db:refpurpose [ "Determines whether line numbering continues from the previous element or restarts." ]
+   ]
    attribute continuation { db.verbatim.continuation.enumeration }
 
-db.verbatim.linenumbering.enumeration = "numbered" | "unnumbered"
+db.verbatim.linenumbering.enumeration =
+   ## Lines are numbered.
+   "numbered"
+ | ## Lines are not numbered
+   "unnumbered"
+
 db.verbatim.linenumbering.attribute =
+   [
+      db:refpurpose [ "Determines whether lines are numbered." ]
+   ]
    attribute linenumbering { db.verbatim.linenumbering.enumeration }
 
 db.verbatim.startinglinenumber.attribute =
+   [
+      db:refpurpose [ "Specifies the initial line number." ]
+   ]
    attribute startinglinenumber { xsd:integer }
 
 db.verbatim.language.attribute =
+   [
+      db:refpurpose [ "Identifies the language (i.e. programming language) of the verbatim content" ]
+   ]
    attribute language { text }
 
 db.verbatim.xml.space.attribute =
+   [
+      db:refpurpose [ "Specifies that whitespace in the verbatim environment is preserved" ]
+   ]
    attribute xml:space { "preserve" }
 
 db.verbatim.attributes =
@@ -273,39 +337,75 @@ db.verbatim.attributes =
 
 # ======================================================================
 
-db.spacing.enumeration = "compact" | "normal"
+db.spacing.enumeration =
+   ## The spacing should be "compact".
+   "compact"
+ | ## The spacing should be "normal".
+   "normal"
 
-db.spacing.attribute  = attribute spacing { db.spacing.enumeration }
+db.spacing.attribute =
+   [
+      db:refpurpose [ "Specifies (a hint about) the spacing of the content" ]
+   ]
+   attribute spacing { db.spacing.enumeration }
 
-db.pgwide.enumeration = "0" | "1"
+db.pgwide.enumeration =
+   ## The element should be rendered in the current text flow (with the flow column width).
+   "0"
+ | ## The element should be rendered across the full text page.
+   "1"
 
 db.pgwide.attribute =
   [
     db:refpurpose [ "Indicates if the element is rendered across the column or the page" ]
-    dbx:description [
-      db:para [
-        "If "
-        db:tag [ class="attribute" "pgwide" ]
-        " has the value 0 (false), then the element " ~
-        " is rendered in the current text flow (with flow column width)." ~
-        " A value of 1 (true) specifies that the element should be" ~
-        " rendered across the full text page."
-      ]
-    ]
   ]
   attribute pgwide { db.pgwide.enumeration }
 
-db.language.attribute = attribute language { text }
+db.language.attribute =
+   [
+      db:refpurpose [ "Identifies the language (i.e. programming language) of the content" ]
+   ]
+   attribute language { text }
 
-db.performance.enumeration = "optional" | "required"
-db.performance.attribute = attribute performance { db.performance.enumeration }
+db.performance.enumeration =
+   ## The content describes an optional step or steps.
+   "optional"
+ | ## The content describes a required step or steps.
+   "required"
 
-db.floatstyle.attribute = attribute floatstyle { text }
+db.performance.attribute =
+   [
+      db:refpurpose [ "Specifies if the content is required or optional." ]
+   ]
+   attribute performance { db.performance.enumeration }
+
+db.floatstyle.attribute =
+   [
+      db:refpurpose [ "Specifies style information to be used when rendering the float" ]
+   ]
+   attribute floatstyle { text }
 
 # ======================================================================
 
-db.halign.enumeration = "center" | "char" | "justify" | "left" | "right"
-db.valign.enumeration = "bottom" | "middle" | "top"
+db.halign.enumeration =
+   ## Centered horizontally
+   "center"
+ | ## Aligned horizontally on the specified character
+   "char"
+ | ## Fully justified (left and right margins or edges)
+   "justify"
+ | ## Left aligned
+   "left"
+ | ## Right aligned
+   "right"
+
+db.valign.enumeration =
+   ## Aligned on the bottom of the region
+   "bottom"
+ | ## Centered vertically
+   "middle"
+ | ## Aligned on the top of the region
+   "top"
 
 # ======================================================================
 
@@ -314,13 +414,20 @@ ctrl:other-attribute [ name="db.biblio.class.attribute"
                        other-name="db.biblio.class-other.attributes" ]
 
 db.biblio.class.enumeration =
+   ## A document object identifier.
    "doi"
- | "isbn"
- | "isrn"
- | "issn"
- | "libraryofcongress"
- | "pubnumber"
- | "uri"
+ | ## An international standard book number.
+   "isbn"
+ | ## An international standard technical report number (ISO 10444).
+   "isrn"
+ | ## An international standard serial number.
+   "issn"
+ | ## A Library of Congress reference number.
+   "libraryofcongress"
+ | ## A publication number (an internal number or possibly organizational standard).
+   "pubnumber"
+ | ## A Uniform Resource Identifier
+   "uri"
 
 db.biblio.class-enum.attribute =
   [
