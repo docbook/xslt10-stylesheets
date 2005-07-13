@@ -20,15 +20,25 @@
 <note>
 <para>The default value for this parameter is zero because groff is
 not particularly smart about how it does hyphenation; it can end up
-hyphenating a lot of things that you don't want hyphenated.</para>
+hyphenating a lot of things that you don't want hyphenated. To
+mitigate that, the default behavior of the stylesheets is to suppress
+hyphenation of computer inlines, filenames, and URLs. (You can
+override the default behavior by setting non-zero values for the
+<parameter>man.hyphenate.urls</parameter>,
+<parameter>man.hyphenate.filenames</parameter>, and
+<parameter>man.hyphenate.computer.inlines</parameter> parameters.) But
+the best way is still to just globally disable hyphenation, as the
+stylesheets do by default.</para>
 
-<para>That said, justified text can look very bad unless you also
-hyphenate it; to quote the "Hypenation" node from the groff info page:
+<para>The only good reason to enabled hyphenation is if you have also
+enabled justification (which is disabled by default). The reason is
+that justified text can look very bad unless you also hyphenate it; to
+quote the <quote>Hypenation</quote> node from the groff info page:
 
 <blockquote>
   <para><emphasis>Since the odds are not great for finding a set of
   words, for every output line, which fit nicely on a line without
-  inserting excessive amounts of space between words, `gtroff'
+  inserting excessive amounts of space between words, 'gtroff'
   hyphenates words so that it can justify lines without inserting too
   much space between words.</emphasis></para>
 </blockquote>

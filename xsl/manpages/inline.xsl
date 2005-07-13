@@ -13,10 +13,6 @@
 
      ******************************************************************** -->
 
-<xsl:param name="man.hyphenate.computer.inlines">0</xsl:param>
-<xsl:param name="man.hyphenate.filenames">0</xsl:param>
-<xsl:param name="man.hyphenate.urls">0</xsl:param>
-
 <!-- ==================================================================== -->
 
 <xsl:template match="replaceable|varname">
