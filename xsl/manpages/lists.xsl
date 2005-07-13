@@ -89,7 +89,6 @@
 <xsl:template match="itemizedlist|orderedlist|procedure">
   <xsl:text>.TP 3&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>.LP&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="itemizedlist[ancestor::listitem or ancestor::step]|
@@ -98,7 +97,6 @@
   <xsl:text>.RS&#10;</xsl:text>
   <xsl:text>.TP 3&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>.LP&#10;</xsl:text>
   <xsl:text>.RE&#10;</xsl:text>
   <xsl:text>.IP&#10;</xsl:text>
 </xsl:template>
