@@ -29,10 +29,13 @@
   </preface>
 
   <reference id="general">
-  <title>General formatting</title>
-&man.break.after.slash;
+  <title>Hyphenation, justification, and breaking</title>
 &man.hyphenate;
+&man.hyphenate.urls;
+&man.hyphenate.filenames;
+&man.hyphenate.computer.inlines;
 &man.justify;
+&man.break.after.slash;
   </reference>
   <reference id="links">
   <title>Link handling</title>
@@ -105,6 +108,9 @@
 
 <src:fragref linkend="man.break.after.slash.frag"/>
 <src:fragref linkend="man.hyphenate.frag"/>
+<src:fragref linkend="man.hyphenate.urls.frag"/>
+<src:fragref linkend="man.hyphenate.filenames.frag"/>
+<src:fragref linkend="man.hyphenate.computer.inlines.frag"/>
 <src:fragref linkend="man.justify.frag"/>
 <src:fragref linkend="man.output.quietly.frag"/>
 <src:fragref linkend="man.output.encoding.frag"/>
