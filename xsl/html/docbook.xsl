@@ -283,44 +283,7 @@ body { background-image: url('</xsl:text>
     </script>
 
     <style type="text/css">
-/* ======================================================================
-   Annotations
-*/
-
-div.annotation-list  { visibility: hidden;
-                     }
-
-div.annotation-nocss { position: absolute;
-                       visibility: hidden;
-                     }
-
-div.annotation-popup { position: absolute;
-                       z-index: 4;
-                       visibility: hidden;
-                       padding: 0px;
-                       margin: 2px;
-                       border-style: solid;
-                       border-width: 1px;
-                       width: 200px
-                     }
-
-div.annotation-title { padding: 1px;
-                       font-weight: bold;
-                       border-bottom-style: solid;
-                       border-bottom-width: 1px;
-                     }
-
-div.annotation-body  { padding: 2px;
-                     }
-
-div.annotation-body p { margin-top: 0px;
-                        padding-top: 0px;
-                      }
-
-div.annotation-close { position: absolute;
-                       top: 2px;
-                       right: 2px;
-                     }
+      <xsl:value-of select="$annotation.css"/>
     </style>
   </xsl:if>
 
