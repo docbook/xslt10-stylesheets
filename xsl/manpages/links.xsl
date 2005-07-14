@@ -345,7 +345,7 @@
     <!-- * with the same URL, this gets the contents of the _first -->
     <!-- * instance_ of the link in this Refentry with that URL -->
     <xsl:variable name="link.contents">
-      <xsl:apply-templates/>
+      <xsl:value-of select="."/>
     </xsl:variable>
     <xsl:value-of select="normalize-space($link.contents)"/>
     <xsl:text>&#10;</xsl:text>
