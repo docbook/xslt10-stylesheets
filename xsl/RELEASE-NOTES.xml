@@ -25,7 +25,7 @@
     particularly in the <link linkend="V1690_MAN">manpages
     stylesheets</link>, as well as a large number of bug fixes.</para>
 
-    <para>As with all DocBook Project "dot zero" releases, this is an
+    <para>As with all DocBook Project <quote>dot zero</quote> releases, this is an
     <link linkend="dot0">experimental release </link>.</para>
    
     <section id="V1690_GENERAL">
@@ -52,6 +52,11 @@
           </simplelist>.</para>
         </listitem>
         <listitem>
+          <para>Added support for specifying number format for auto
+          labels for <tag>chapter</tag>, <tag>appendix</tag>,
+          <tag>part</tag>, and <tag>preface</tag>.</para>
+        </listitem>
+        <listitem>
           <para>EXPERIMENTAL: Incorporated the Slides and Website
           stylesheets into the DocBook XSL stylesheets package. So,
           for example, Website documents can now be processed using
@@ -63,29 +68,237 @@
         </listitem>
         <listitem>
           <para>A <tag>procedure</tag> without a <tag>title</tag> is
-          now treated as an "informal" procedure (meaning that it is
-          not added to any generated "list of procedures" and has no
-          affect on numbering of generated labels for other
-          procedures.</para>
+          now treated as an <quote>informal</quote> procedure (meaning
+          that it is not added to any generated <quote>list of
+          procedures</quote> and has no affect on numbering of
+          generated labels for other procedures).</para>
         </listitem>
         <listitem>
           <para><tag>docname</tag> is no longer added to
           <tag>olink</tag> when pointing to a root element.</para>
+        </listitem>
+      <!-- ======================================================= -->
+      <listitem>
+        <para>Added support for generation of choice separator in
+        inline simplelist. This enables auto-generation of an
+        appropriate localized <quote>choice separator</quote> (for
+        example, <quote>and</quote> or <quote>or</quote>) before the
+        final item in an inline <tag>simplelist</tag>.</para>
+        <para>To indicate that you want a choice separator
+        generated for a particular list, you need to put a processing
+        instruction (PI) of the form
+        <tag class="xmlpi">dbchoice&#160;choice="foo"</tag> as a
+        child of the list. For example:
+        <literallayout class="monospaced"
+>  &lt;para>Choose from
+  ONE and ONLY ONE of the following: 
+  &lt;simplelist type="inline">
+  &lt;?dbchoice choice="or" ?>
+  &lt;member>A&lt;/member>
+  &lt;member>B&lt;/member>
+  &lt;member>C&lt;/member>.&lt;/simplelist>&lt;/para></literallayout>
+
+        Output (for English):
+        <blockquote>
+          <para>Choose from ONE and only ONE of the
+          following choices: A, B, or C.</para>
+        </blockquote>
+        As a temporary workaround for the fact that most of the
+        DocBook non-English locale files don't have a localization for
+        the word <quote>or</quote>, you can put in a literal string to
+        be used; example for French: <tag
+        class="pi">dbchoice&#160;choice="ou"</tag>.  That is, use
+        <quote>ou</quote> instead of <quote>or</quote>.</para>
+      </listitem>
+      </itemizedlist>
+    </section>
+
+    <section id="V1690_HELP">
+      <title>Help</title>
+      <itemizedlist>
+        <listitem>
+          <para>Eclipse Help: Added support for generating olink
+          database.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section id="V1690_HTML">
+      <title>HTML</title>
+      <itemizedlist>
+        <listitem>
+          <para>Generate client-side image map for
+          <tag>imageobjectco</tag> with areas using
+          <literal>calspair</literal> units</para>
+        </listitem>
+        <listitem>
+          <para>Added support for <tag
+          class="xmlpi">img.src.path</tag> PI. Added support for (not
+          valid for DocBook 4) <tag class="attribute">xlink:href</tag>
+          on <tag>area</tag> and (not valid for DocBook 4)
+          <tag>alt</tag> in <tag>area</tag>.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for passing
+          <parameter>img.src.path</parameter> to DocBook Java XSLT
+          image extensions when appropriate. Controlled using the
+          <parameter>graphicsize.use.img.src.path</parameter>
+          parameter.</para>
+        </listitem>
+        <listitem>
+          <para>Added basic support for <tag>biblioref</tag> cross
+          referencing.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for <tag class="attribute">align</tag>
+          on <tag>caption</tag> in <tag>mediaobject</tag>.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for processing documents that use the
+          DocBook V5 namespace.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for <tag>termdef</tag> and
+          <tag>mathphrase</tag>.</para>
+        </listitem>
+        <listitem>
+          <para>Added new parameter
+          <parameter>default.table.frame</parameter> to control table
+          framing if there is no <tag class="attribute">frame</tag>
+          attribute on a table.</para>
+        </listitem>
+        <listitem>
+          <para>Added initial, experimental support for generating
+          content for the HTML <literal>title</literal> attribute from
+          content of the <tag>alt</tag> element. This change adds
+          support for the following inline elements only (none of them
+          are block elements):
+          <simplelist type="inline">
+            <?dbchoice choice="and"?>
+            <member><tag>abbrev</tag></member>
+            <member><tag>accel</tag></member>
+            <member><tag>acronym</tag></member>
+            <member><tag>action</tag></member>
+            <member><tag>application</tag></member>
+            <member><tag>authorinitials</tag></member>
+            <member><tag>beginpage</tag></member>
+            <member><tag>citation</tag></member>
+            <member><tag>citerefentry</tag></member>
+            <member><tag>citetitle</tag></member>
+            <member><tag>city</tag></member>
+            <member><tag>classname</tag></member>
+            <member><tag>code</tag></member>
+            <member><tag>command</tag></member>
+            <member><tag>computeroutput</tag></member>
+            <member><tag>constant</tag></member>
+            <member><tag>country</tag></member>
+            <member><tag>database</tag></member>
+            <member><tag>email</tag></member>
+            <member><tag>envar</tag></member>
+            <member><tag>errorcode</tag></member>
+            <member><tag>errorname</tag></member>
+            <member><tag>errortext</tag></member>
+            <member><tag>errortype</tag></member>
+            <member><tag>exceptionname</tag></member>
+            <member><tag>fax</tag></member>
+            <member><tag>filename</tag></member>
+            <member><tag>firstname</tag></member>
+            <member><tag>firstterm</tag></member>
+            <member><tag>foreignphrase</tag></member>
+            <member><tag>function</tag></member>
+            <member><tag>glossterm</tag></member>
+            <member><tag>guibutton</tag></member>
+            <member><tag>guiicon</tag></member>
+            <member><tag>guilabel</tag></member>
+            <member><tag>guimenu</tag></member>
+            <member><tag>guimenuitem</tag></member>
+            <member><tag>guisubmenu</tag></member>
+            <member><tag>hardware</tag></member>
+            <member><tag>honorific</tag></member>
+            <member><tag>interface</tag></member>
+            <member><tag>interfacename</tag></member>
+            <member><tag>keycap</tag></member>
+            <member><tag>keycode</tag></member>
+            <member><tag>keysym</tag></member>
+            <member><tag>lineage</tag></member>
+            <member><tag>lineannotation</tag></member>
+            <member><tag>literal</tag></member>
+            <member><tag>markup</tag></member>
+            <member><tag>medialabel</tag></member>
+            <member><tag>methodname</tag></member>
+            <member><tag>mousebutton</tag></member>
+            <member><tag>option</tag></member>
+            <member><tag>optional</tag></member>
+            <member><tag>otheraddr</tag></member>
+            <member><tag>othername</tag></member>
+            <member><tag>package</tag></member>
+            <member><tag>parameter</tag></member>
+            <member><tag>personname</tag></member>
+            <member><tag>phone</tag></member>
+            <member><tag>pob</tag></member>
+            <member><tag>postcode</tag></member>
+            <member><tag>productname</tag></member>
+            <member><tag>productnumber</tag></member>
+            <member><tag>prompt</tag></member>
+            <member><tag>property</tag></member>
+            <member><tag>quote</tag></member>
+            <member><tag>refentrytitle</tag></member>
+            <member><tag>remark</tag></member>
+            <member><tag>replaceable</tag></member>
+            <member><tag>returnvalue</tag></member>
+            <member><tag>sgmltag</tag></member>
+            <member><tag>shortcut</tag></member>
+            <member><tag>state</tag></member>
+            <member><tag>street</tag></member>
+            <member><tag>structfield</tag></member>
+            <member><tag>structname</tag></member>
+            <member><tag>subscript</tag></member>
+            <member><tag>superscript</tag></member>
+            <member><tag>surname</tag></member>
+            <member><tag>symbol</tag></member>
+            <member><tag>systemitem</tag></member>
+            <member><tag>tag</tag></member>
+            <member><tag>termdef</tag></member>
+            <member><tag>token</tag></member>
+            <member><tag>trademark</tag></member>
+            <member><tag>type</tag></member>
+            <member><tag>uri</tag></member>
+            <member><tag>userinput</tag></member>
+            <member><tag>varname</tag></member>
+            <member><tag>wordasword</tag></member>
+          </simplelist>
+        </para>
+        </listitem>
+        <listitem>
+          <para>Added support for chunking <tag>revhistory</tag> into
+          separate file (similar to the support for doing same with
+          <tag>legalnotice</tag>). Patch from Thomas
+          Schraitle. Controlled through <parameter>new
+          generate.revhistory.link</parameter> parameter.</para>
+        </listitem>
+        <listitem>
+          <para>l10n.xsl: Made language codes RFC compliant. Added a
+          new boolean config parameter,
+          <parameter>l10n.lang.value.rfc.compliant</parameter>. If it
+          is non-zero (the default), any underscore in a language code
+          will be converted to a hyphen in HTML output. If it is zero,
+          the language code will be left as-is.</para>
         </listitem>
       </itemizedlist>
     </section>
     <section id="V1690_MAN">
       <title>man</title>
       <itemizedlist>
+        <!-- ======================================================= -->
         <listitem>
-          <para>New options for globablly disabling/enabling
+          <para>New options for globally disabling/enabling
           hyphenation and justification:
           <parameter>man.justify</parameter> and
           <parameter>man.hyphenate</parameter>.</para>
           <para>Note that the default
           for the both of those is zero (off), because justified text
           looks good only when it is also hyphenated; to quote the
-          "Hypenation" node from the groff info page:
+          <quote>Hyphenation</quote> node from the groff info page:
           <blockquote>
             <para><emphasis>Since the odds are not great for finding a
             set of words, for every output line, which fit nicely on a
@@ -106,52 +319,73 @@
           pages are formatted. But there are some notable exceptions,
           such as the perl man pages.</para>
         </listitem>
+        <!-- ======================================================= -->
         <listitem>
-          <para>Implemented a new "character map" system for replacing
-          Unicode characters. This fixes all problems with literal
-          Unicode numbered entities such as &amp;#8220; and
+          <para>Implemented a new system for replacing Unicode
+          characters. There are two parts to the new system: a
+          <quote>string substitution map</quote> for doing what might
+          be considered <quote>essential</quote> replacements, and a
+          <quote>character map</quote> that can optionally be disabled
+          and enabled.</para>
+          <para>The new system fixes all open bugs that had to do with
+          literal Unicode numbered entities such as &amp;#8220; and
           &amp;#8221; showing up in output, and greatly expands the
-          ability of the stylesheets to generate "good" roff
+          ability of the stylesheets to generate <quote>good</quote> roff
           equivalents for Unicode symbols and special
           characters.</para>
-
+          <para>Here are some details...</para>
           <para>The previous manpages mechanism for replacing Unicode
-          symbols and special characters with roff equivalents was not
-          scalable and not complete. The mechanism handled a (somewhat
-          arbitrary) selection of less than 20 or so Unicode
+          symbols and special characters with roff equivalents (the
+          <function>replace-entities</function> template) was not
+          scalable and not complete. The mechanism handled a somewhat
+          arbitrary selection of less than 20 or so Unicode
           characters. But there are potentially more than
-          <emphasis>800</emphasis> Unicode special characters that have
-          some groff equivalent they can be mapped to. And there are
-          about 34 symbols in the Latin-1 (ISO-8859-1) block
-          alone. Users might reasonably expect that if they include any
-          of those Latin-1 characters in their DocBook source documents,
-          they will get correctly convered to known roff equivalents in
-          output.</para>
+          <emphasis>800</emphasis> Unicode special characters that
+          have some groff equivalent they can be mapped to. And there
+          are about 34 symbols in the Latin-1 (ISO-8859-1) block
+          alone. Users might reasonably expect that if they include
+          any of those Latin-1 characters in their DocBook source
+          documents, they will get correctly converted to known roff
+          equivalents in output.</para>
           <para>In addition to those common symbols, certain users may
           have a need to use symbols from other Unicode blocks. Say,
           somebody who is documenting an application related to math
-          might need to use a bunch of symbols from the "Mathematical
-          Operators" Unicode block (there are about 65 characters in
-          that block that have reasonable roff equivalents). Or somebody
-          else might really like Dingbats -- such as the checkmark
-          character -- and so might use a bunch of things from the
-          "Dingbat" block (141 characters in that that have roff
-          equivalents or that can at least be "degraded" somewhat
-          gracefully into roff).</para>
-          <para>So, the old Unicode character-substitution mechanism was
-          replaced with a completely different character-substitution
-          mechanism that is based on use of a "character map" (in a
-          format compliant with the XSLT 2.0 spec and therefore
-          completely "forward compatible" with XSLT 2.0). By default,
-          the new "character map" mechanism does replacement of all
-          Latin-1 symbols, along with most special spaces, dashes, and
-          quotes (about 75 characters by default). And the "full"
-          character map included in the distribution provides support
-          for converting all 800 or so of the characters that have some
-          reasonable groff equivalent.</para>
+          might need to use a bunch of symbols from the
+          <quote>Mathematical Operators</quote> Unicode block (there
+          are about 65 characters in that block that have reasonable
+          roff equivalents). Or somebody else might really like
+          Dingbats -- such as the checkmark character -- and so might
+          use a bunch of things from the <quote>Dingbat</quote> block
+          (141 characters in that that have roff equivalents or that
+          can at least be <quote>degraded</quote> somewhat gracefully
+          into roff).</para>
+          <para>So, the old <function>replace-entities</function>
+          mechanism was replaced with a completely different mechanism
+          that is based on use of two <quote>maps</quote>: a
+          <quote>substitution map</quote> and a <quote>character
+          map</quote> (the latter in a format compliant with the XSLT
+          2.0 spec and therefore completely <quote>forward
+          compatible</quote> with XSLT 2.0).</para>
+          <para>The substitution map is controlled through the
+          <parameter>man.string.subst.map</parameter> parameter, and
+          is used to replace things like the backslash character
+          (which needs special handling to prevent it from being
+          interpreted as a roff escape). The substitution map cannot
+          be disabled, because disabling it will cause the output to
+          be broken. However, you can add to it and change it if
+          needed.</para>
 
-          <para>The mechanism is controlled through the following
-          parameters:
+          <para>The <quote>character map</quote> mechanism, on the
+          other hand, can be completely disabled. It is enabled by
+          default, and, by default, does replacement of all Latin-1
+          symbols, along with most special spaces, dashes, and quotes
+          (about 75 characters by default). Also, you can optionally
+          enable a <quote>full</quote> character map that provides
+          support for converting all 800 or so of the characters that
+          have some reasonable groff equivalent.</para>
+
+          <para>The character-map mechanism is controlled through the
+          following parameters:
           <variablelist>
             <varlistentry>
               <term><parameter>man.charmap.enabled</parameter></term>
@@ -170,25 +404,28 @@
             </varlistentry>
             <varlistentry>
               <term><parameter>man.charmap.uri</parameter></term>
-              <listitem><para>specifies an alternate character
-              map to use instead of the "standard" character map
+              <listitem><para>specifies an alternate character map to
+              use instead of the <quote>standard</quote> character map
               provided in the distribution</para></listitem>
             </varlistentry>
           </variablelist>
           </para>
         </listitem>
+        <!-- ======================================================= -->
         <listitem>
           <para>Changed default output encoding to UTF-8. <emphasis
           role="bold">This does not mean that man pages are output in
-          raw UTF-8</emphasis>, because the character-map is applied
+          raw UTF-8</emphasis>, because the character map is applied
           before final output, causing all UTF-8 characters covered in
           the map to be converted to roff equivalents.</para>
         </listitem>
+        <!-- ======================================================= -->
         <listitem>
           <para>Added support for processing <tag>refsect3</tag> and
           <tag>formalpara</tag> and nested <tag>refsection</tag>
           elements, down to any arbitrary level of nesting.</para>
         </listitem>
+        <!-- ======================================================= -->
         <listitem>
           <para>Output of the <literal>NAME</literal> and
           <literal>SYNOPSIS</literal> and <literal>AUTHOR</literal>
@@ -198,68 +435,202 @@
           correct locale (just as the FO and HTML stylesheets
           do).</para>
         </listitem>
+        <!-- ======================================================= -->
         <listitem>
-          <para>Re-worked construction of <literal>.TH</literal> title
-          line.</para>
+          <para>Re-worked mechanism for assembling page
+          headers/footers (the contents of the <literal>.TH</literal>
+          macro <quote>title line</quote>).</para>
+
+          <para>Here are some details...</para>
 
           <para>All man pages contain a <literal>.TH</literal> roff
-          macro whose contents are used for rendering the "title line"
-          displayed in the header and footer of each page. Here are a
-          couple of examples of real-world man pages that have useful
-          page headers/footers:<literallayout class="monospaced"
+          macro whose contents are used for rendering the <quote>title
+          line</quote> displayed in the header and footer of each
+          page. Here are a couple of examples of real-world man pages
+          that have useful page headers/footers: <literallayout class="monospaced"
 >
-  GIMP(1)         GIMP Manual Pages          GIMP(1)    &lt;-- header
-  Version 2.2.6   March 23 2004              GIMP(1)    &lt;-- footer
+  gtk-options(7)    GTK+ User's Manual   gtk-options(7) &lt;-- header
+  GTK+ 1.2              2003-10-20       gtk-options(7) &lt;-- footer
 
-  QT2KDOC(1)      KDOC Documentation System  QT2KDOC(1) &lt;-- header
-  2.0a54          2002-03-18                 QT2KDOC(1) &lt;-- footer</literallayout
+  svgalib(7)       Svgalib User Manual       svgalib(7) &lt;-- header
+  Svgalib 1.4.1      16 December 1999        svgalib(7) &lt;-- footer</literallayout
 ></para>
 
-          <para>Notice that headers contain short descriptions of the
-          "context" for the item documented in the page ("GIMP Manual
-          Pages" and "KDOC Documentation System"), while the footers
-          contain application version information ("Version 2.2.6"),
-          along with a date in some from.</para>
+          <para>And here are the terms with which the
+          <literal>groff_man(7)</literal> man page refers to the
+          various parts of the header/footer: <literallayout class="monospaced"
+>
+  title(section)  extra3  title(section)  &lt;- header
+  extra2          extra1  title(section)  &lt;- footer</literallayout
+></para>
+  <para> Or, using the names with which the <literal>man(7)</literal>
+   man page refers to those same fields: <literallayout class="monospaced"
 
-          <para>Below are explanations of the steps the stylesheets
-          take to attempt to construct a "good" <literal>.TH</literal>
-          title line similar to the ones above. [In the descriptions, note that
-          <replaceable>*info</replaceable> is the <tag>refentry</tag>
-          "info" child (whatever its name), and
-          <replaceable>parentinfo</replaceable> is the "info" child of
-          its parent (again, whatever its name).]
+>
+  title(section)  manual  title(section)  &lt;- page header
+  source          date    title(section)  &lt;- page footer</literallayout
+></para>
+  
+            <para>The easiest way to control the contents of those
+            fields is to mark up your <tag>refentry</tag> content like
+            the following (note that this is a <quote>minimal</quote>
+            example). <programlisting
+>
+  &lt;refentry>
+    &lt;info>
+      &lt;date>2003-10-20&lt;/date> <co id="V1690_date-co" linkends="V168_date"/>
+    &lt;/info>
+    &lt;refmeta>
+      &lt;refentrytitle>gtk-options&lt;/refentrytitle> <co id="V1690_title-co" linkends="V168_title"/>
+      &lt;manvolnum>7&lt;/manvolnum> <co id="V1690_manvolnum-co" linkends="V168_manvolnum"/>
+      &lt;refmiscinfo class="source-name">GTK+&lt;/refmiscinfo> <co id="V1690_source-name-co" linkends="V168_source-name"/>
+      &lt;refmiscinfo class="version">1.2&lt;/refmiscinfo> <co id="V1690_version-co" linkends="V168_dversion"/>
+      &lt;refmiscinfo class="manual">GTK+ User's Manual&lt;/refmiscinfo> <co id="V1690_manual-co" linkends="V168_manual"/>
+    &lt;/refmeta>
+    &lt;refnamediv>
+      &lt;refname>gtk-options&lt;/refname>
+      &lt;refpurpose>Standard Command Line Options for GTK+ Programs&lt;/refpurpose>
+    &lt;/refnamediv>
+    &lt;refsect1>
+      &lt;title>Description&lt;/title>
+      &lt;para>This manual page describes the command line options, which
+      are common to all GTK+ based applications.&lt;/para>
+    &lt;/refsect1>
+  &lt;/refentry></programlisting>
+  <calloutlist>
+    <callout arearefs="V1690_date-co" id="V1690_date">
+      <para>Sets the <quote>date</quote> part of the header/footer.</para>
+    </callout>
+    <callout arearefs="V1690_title-co" id="V1690_title">
+      <para>Sets the <quote>title</quote> part.</para>
+    </callout>
+    <callout arearefs="V1690_manvolnum-co" id="V1690_manvolnum">
+      <para>Sets the <quote>section</quote> part.</para>
+  </callout>
+  <callout arearefs="V1690_source-name-co" id="V1690_source-name">
+    <para>Sets the <quote>source name</quote> part.</para>
+  </callout>
+  <callout arearefs="V1690_version-co" id="V1690_version">
+    <para>Sets the <quote>version</quote> part.</para>
+  </callout>
+  <callout arearefs="V1690_manual-co" id="V1690_manual">
+    <para>Sets the <quote>manual</quote> part.</para>
+  </callout>
+  </calloutlist>
+            </para>
+            <para>Below are explanations of the steps the stylesheets
+            take to attempt to assemble and display
+            <quote>good</quote> headers and footer. [In the
+            descriptions, note that <replaceable>*info</replaceable>
+            is the <tag>refentry</tag> <quote>info</quote> child
+            (whatever its name), and
+            <replaceable>parentinfo</replaceable> is the
+            <quote>info</quote> child of its parent (again, whatever
+            its name).]
           <variablelist>
             <varlistentry>
-              <term>"extra1" field</term>
+              <term>extra1 field (date)</term>
               <listitem>
-                <para>Content of the "extra1" field is what shows up
-                in the <emphasis role="bold">center footer</emphasis>
-                position of each page. Almost all man pages have
-                content for this, and, almost universally, it is a
-                date. To provide this content, the stylesheets check
-                for a <tag>date</tag> or <tag>pubdate</tag> not only
-                in the <replaceable>*info</replaceable> contents, but
-                also in the <replaceable>parentinfo</replaceable>
-                contents. If a date cannot be found in the source, the
-                stylesheets now automatically generate a localized
-                "long format" date, ensuring that this field always
+                <para>Content of the <quote>extra1</quote> field is
+                what shows up in the <emphasis role="bold">center
+                footer</emphasis> position of each page. The
+                <literal>man(7)</literal> man page describes it as
+                <quote>the date of the last revision</quote>.</para>
+                <para>To provide this content, if the
+                <parameter>refentry.date.profile.enabled</parameter>
+                is non-zero, the stylesheets check the value of
+                <parameter>refentry.date.profile</parameter>.</para>
+                <para>Otherwise, by default, they check for a
+                <tag>date</tag> or <tag>pubdate</tag> not only in the
+                <replaceable>*info</replaceable> contents, but also in
+                the <replaceable>parentinfo</replaceable>
+                contents.</para>
+                <para>If a date cannot be found, the stylesheets now
+                automatically generate a localized <quote>long
+                format</quote> date, ensuring that this field always
                 has content in output.</para>
+                <para>However, if for some reason you want to suppress
+                this field, you can do so by setting a non-zero value
+                for <parameter>man.th.extra1.suppress</parameter>.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
-              <term>"extra2" field</term>
+              <term>extra2 field (source)</term>
               <listitem>
                 <para>On Linux systems and on systems with a modern
-                groff, the content of the "extra2" field are what
-                shows up in the <emphasis role="bold">left
-                footer</emphasis> position of each page. Some man
-                pages have "extra2" content, some don't. If a
-                particular man page has it, it is most often a version
-                number or product/application name. The stylesheets
-                now check the following places, in the following
-                order, to look for content to add to the "extra2"
-                field.
+                groff, the content of the <quote>extra2</quote> field
+                are what shows up in the <emphasis role="bold">left
+                footer</emphasis> position of each page.</para>
+
+                <para>The <literal>man(7)</literal> man page describes
+                this as <quote>the source of the command</quote>, and
+                provides the following examples:
+                <itemizedlist>
+                  <listitem>
+                    <para>For binaries, use somwething like: GNU,
+                    NET-2, SLS Distribution, MCC Distribution.</para>
+                  </listitem>
+                  <listitem>
+                    <para>For system calls, use the version of the
+                    kernel that you are currently looking at: Linux
+                    0.99.11.</para>
+                  </listitem>
+                  <listitem>
+                    <para>For library calls, use the source of the
+                    function: GNU, BSD 4.3, Linux DLL 4.4.1.</para>
+                  </listitem>
+                </itemizedlist>
+                </para>
+
+                <para>In practice, there are many pages that simply
+                have a version number in the <quote>source</quote>
+                field. So, it looks like what we have is a two-part
+                field,
+                <replaceable>Name</replaceable>&#160;<replaceable>Version</replaceable>,
+                where:
+                <variablelist>
+                  <varlistentry>
+                    <term>Name</term>
+                    <listitem>
+                      <para>product name (e.g., BSD) or org. name
+                      (e.g., GNU)</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>Version</term>
+                    <listitem>
+                      <para>version name</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+                Each part is optional. If the
+                <replaceable>Name</replaceable> is a product name,
+                then the <replaceable>Version</replaceable> is
+                probably the version of the product. Or there may be
+                no <replaceable>Name</replaceable>, in which case, if
+                there is a <replaceable>Version</replaceable>, it is
+                probably the version of the item itself, not the
+                product it is part of. Or, if the
+                <replaceable>Name</replaceable> is an organization
+                name, then there probably will be no
+                <replaceable>Version</replaceable>.
+                </para>
+                <para>To provide this content, if the
+                <parameter>refentry.source.name.profile.enabled</parameter>
+                and
+                <parameter>refentry.version.profile.enabled</parameter>
+                parameter are non-zero, the stylesheets check the
+                value of <parameter>refentry.source.name.profile</parameter>
+                <parameter>refentry.version.profile</parameter>.</para>
+
+                <para>Otherwise, by default, they check the following
+                places, in the following order:
                 <orderedlist>
+                  <listitem>
+                    <literallayout class="monospaced"
+                                   ><replaceable>*info</replaceable
+                                   >/<tag>productnumber</tag></literallayout>
+                  </listitem>
                   <listitem>
                     <literallayout class="monospaced"
                                    ><replaceable>*info</replaceable
@@ -299,19 +670,20 @@
               </listitem>
             </varlistentry>
             <varlistentry>
-              <term>"extra3" field</term>
+              <term>extra3 field</term>
               <listitem>
                 <para>On Linux systems and on systems with a modern
-                groff, the content of the "extra3" field are what
-                shows up in the <emphasis role="bold">center
+                groff, the content of the <quote>extra3</quote> field
+                are what shows up in the <emphasis role="bold">center
                 header</emphasis> position of each page. Some man
-                pages have "extra2" content, some don't. If a
-                particular man page has it, it is most often "context"
-                data about some larger system the documented item
-                belongs to (for example, the name or description of a
-                group of related applications). The stylesheets now
-                check the following places, in the following order, to
-                look for content to add to the "extra3" field.</para>
+                pages have <quote>extra2</quote> content, some
+                don't. If a particular man page has it, it is most
+                often <quote>context</quote> data about some larger
+                system the documented item belongs to (for example,
+                the name or description of a group of related
+                applications). The stylesheets now check the following
+                places, in the following order, to look for content to
+                add to the <quote>extra3</quote> field.</para>
                 <orderedlist>
                   <listitem>
                     <literallayout class="monospaced"
@@ -336,53 +708,61 @@
           </variablelist>
         </para>
       </listitem>
-        <listitem>
-          <para>Reworked <replaceable>*info</replaceable> gathering. For
-          each <tag>refentry</tag> found, the stylesheets now cache its
-          <replaceable>*info</replaceable> content, then check for any
-          valid parent of it that might have metainfo content and cache
-          that, if found; they then then do all further matches against
-          those node-sets (rather than re-selecting the original
-          <replaceable>*info</replaceable> nodes each time they are
-          needed).</para>
-        </listitem>
-        <listitem>
-          <para>New option for breaking strings after forward
-          slashes. This enables long URLs and pathnames to be broken
-          across lines. Controlled through
-          <parameter>man.break.after.slash</parameter> parameter.</para>
-        </listitem>
-        <listitem>
-          <para>Output for servicemark and trademark are now
-          <literal>(SM)</literal> and <literal>(TM)</literal>. There is
-          a groff <literal>"\(tm"</literal> escape, but output from that
-          is not acceptable.</para>
-        </listitem>
-        <listitem>
-          <para>New option for controlling the length of the title part
-          of the <literal>.TH</literal>title line. Controlled through
-          the <parameter>man.th.title.max.length</parameter>
-          parameter.</para>
-        </listitem>
-        <listitem>
-          <para>New option for specifying output encoding of each man
-          page; controlled with
-          <parameter>man.output.encoding</parameter> (similar to the
-          HTML <parameter>chunker.output.encoding </parameter>
-          parameter).</para>
-        </listitem>
-        <listitem>
-          <para>New option for suppressing filename messages when
-          generating output; controlled with
-          <parameter>man.output.quietly</parameter> (similar to the HTML
-          <parameter>chunk.quietly</parameter> parameter).</para>
-        </listitem>
+      <!-- ======================================================= -->
+      <listitem>
+        <para>Reworked <replaceable>*info</replaceable> gathering. For
+        each <tag>refentry</tag> found, the stylesheets now cache its
+        <replaceable>*info</replaceable> content, then check for any
+        valid parent of it that might have metainfo content and cache
+        that, if found; they then then do all further matches against
+        those node-sets (rather than re-selecting the original
+        <replaceable>*info</replaceable> nodes each time they are
+        needed).</para>
+      </listitem>
+      <!-- ======================================================= -->
+      <listitem>
+        <para>New option for breaking strings after forward
+        slashes. This enables long URLs and pathnames to be broken
+        across lines. Controlled through
+        <parameter>man.break.after.slash</parameter> parameter.</para>
+      </listitem>
+      <!-- ======================================================= -->
+      <listitem>
+        <para>Output for servicemark and trademark are now
+        <literal>(SM)</literal> and <literal>(TM)</literal>. There is
+        a groff <literal>"\(tm"</literal> escape, but output from that
+        is not acceptable.</para>
+      </listitem>
+      <!-- ======================================================= -->
+      <listitem>
+        <para>New option for controlling the length of the title
+        part of the <literal>.TH</literal> title line. Controlled
+        through the <parameter>man.th.title.max.length</parameter>
+        parameter.</para>
+      </listitem>
+      <!-- ======================================================= -->
+      <listitem>
+        <para>New option for specifying output encoding of each man
+        page; controlled with
+        <parameter>man.output.encoding</parameter> (similar to the
+        HTML <parameter>chunker.output.encoding </parameter>
+        parameter).</para>
+      </listitem> 
+      <!-- ======================================================= -->
+     <listitem>
+        <para>New option for suppressing filename messages when
+        generating output; controlled with
+        <parameter>man.output.quietly</parameter> (similar to the HTML
+        <parameter>chunk.quietly</parameter> parameter).</para>
+      </listitem>
+      <!-- ======================================================= -->
       <listitem>
         <para>The text of cross-references to first-level
-        <tag>refentry</tag>(<tag>refsect1</tag>, top-level
+        <tag>refentry</tag> (<tag>refsect1</tag>, top-level
         <tag>refsection</tag>, <tag>refnamediv</tag>, and
         <tag>refsynopsisdiv</tag>) are now capitalized.</para>
       </listitem>
+      <!-- ======================================================= -->
       <listitem>
         <para>Cross-references to <tag>refnamediv</tag> now use the
         localized <literal>NAME</literal> title instead of using the
@@ -392,77 +772,52 @@
         <literal>NAME</literal>. (It may actually make better sense to
         do it that way in HTML and FO output as well...)</para>
       </listitem>
+      <!-- ======================================================= -->
       <listitem>
         <para>Added support for processing <tag>funcparams</tag>.</para>
       </listitem>
+      <!-- ======================================================= -->
       <listitem>
         <para>Removed the space that was being output between
         <tag>funcdef</tag> and <tag>paramdef</tag>; example: was:
         <literal>float&#160;rand&#160;(void)</literal>; now:
         <literal>float&#160;rand(void)</literal></para>
       </listitem>
+      <!-- ======================================================= -->
       <listitem>
         <para>Turned off bold formatting for the <tag>type</tag>
         element when it occurs within a <tag>funcdef</tag> or
         <tag>paramdef</tag></para>
       </listitem>
+      <!-- ======================================================= -->
       <listitem>
-        <para>Corrected rendering of simplelist. Any
+        <para>Corrected rendering of <tag>simplelist</tag>. Any
         <literal>&lt;simplelist&#160;type="inline"</literal> instance
         is now rendered as a comma-separated list (also with an
-        optional localized "and" or "or" before the last item -- see
-        description elswhere in these release notes). Any simplelist
+        optional localized <quote>and</quote> or <quote>or</quote> before the last item -- see
+        description elsewhere in these release notes). Any simplelist
         instance whose <tag class="attribute">type</tag> is not
         <literal>inline</literal> is rendered as a one-column vertical
         list (ignoring the values of the <tag
         class="attribute">type</tag> and <tag
         class="attribute">columns</tag> attributes if present)</para>
       </listitem>
+      <!-- ======================================================= -->
       <listitem>
         <para>Comment added at top of roff source for each page now
         includes DocBook XSL stylesheets version number (as in the
         HTML stylesheets)</para>
       </listitem>
+      <!-- ======================================================= -->
       <listitem>
-        <para>Made change to prevent "sticky" fonts changes. Now, when
+        <para>Made change to prevent <quote>sticky</quote> fonts changes. Now, when
         the manpages stylesheets encounter node sets that need to be
         boldfaced or italicized, they put the
         <literal>\fBfoo\fR</literal> and <literal>\fIbar\fR</literal>
         groff bold/italic instructions separately around each node in
         the set.</para>
       </listitem>
-      <listitem>
-        <para>Added support for generation of choice separator in
-        inline simplelist. This enables auto-generation of
-        an appropriate localized "choice separator" (for example,
-        "and" or "or") before the final item in an inline
-        <tag>simplelist</tag>.</para>
-        <para>To indicate that you want a choice separator
-        generated for a particular list, you need to put a processing
-        instruction (PI) of the form
-        <tag class="pi">dbchoice&#160;choice="foo"</tag> as a
-        child of the list. For example:
-        <literallayout class="monospaced"
->  &lt;para>Choose from
-    ONE and ONLY ONE of the following: 
-    &lt;simplelist type="inline">
-    &lt;?dbchoice choice="or" ?>
-    &lt;member>A&lt;/member>
-    &lt;member>B&lt;/member>
-    &lt;member>C&lt;/member>.&lt;/simplelist>&lt;/para></literallayout>
-
-    Output (for English):
-    <blockquote>
-      <para>Choose from ONE and only ONE of the
-      following choices: A, B, or C.</para>
-    </blockquote>
-    As a temporary workaround for the fact that most of the
-    DocBook non-English locale files don't have a localization for
-    the word "or", you can put in a literal string to be used;
-    example for French: <tag
-    class="pi">dbchoice&#160;choice="ou"</tag>.  That is, use "ou"
-        instead of "or".</para>
-      </listitem>
+      <!-- ======================================================= -->
       <listitem>
         <para>Removed code for adding backslashes before periods/dots
         in roff source, because backslashes in front of periods/dots
@@ -472,16 +827,32 @@
         is for you to add a zero-width space in front of the offending
         dot(s) in your source</para>
       </listitem>
+      <!-- ======================================================= -->
       <listitem>
         <para>Removed special handling of the <tag>quote</tag>
-        element. In output, that was causing anything marked up with
-        the <tag>quote</tag> element to be preceded by two backticks
-        and followed by two apostrophes -- that is, that old-school
-        hack for generating "curly" quotes in Emacs and in X-Windows
-        fonts. While Emacs still seems to support that, I don't think
-        X-Windows has for a long time now. And, anyway, it looks (and
-        has always looked) like complete crap when viewed on a normal
-        tty/console.</para>
+        element. That was hard-coded to cause anything marked up with
+        the <tag>quote</tag> element to be output preceded by two
+        backticks and followed by two apostrophes -- that is, that
+        old-school kludge for generating <quote>curly</quote> quotes in Emacs and
+        in X-Windows fonts. While Emacs still seems to support that, I
+        don't think X-Windows has for a long time now. And, anyway, it
+        looks (and has always looked) like crap when viewed on a
+        normal tty/console. In addition, it breaks localiztion of
+        <tag>quote</tag>. By default, <tag>quote</tag> content is
+        output with localized quotation marks, which, depending on the
+        locale, may or may not be left and right double quotation
+        marks.</para>
+      </listitem>
+      <!-- ======================================================= -->
+      <listitem>
+        <para>Changed mappings for left and right single quotation
+        marks. Those had previously been incorrectly mapped to the
+        backtick (&amp;#96;) and apostrophe (&amp;39;) characters (for
+        kludgy reasons -- see above). They are now correctly mapped to
+        the <literal>\(oq</literal> and <literal>\(cq</literal> roff
+        escapes. If you want the old (broken) behavior, you need to
+        manually change the mappings for those in the value of the
+        <parameter>man.string.subst.map</parameter> parameter.</para>
       </listitem>
       <listitem>
         <para>Removed <filename>xref.xsl</filename> file. Now, of the
@@ -491,24 +862,15 @@
         links are generated. (Because there is no equivalent hypertext
         mechanism is man pages.)</para>
       </listitem>
+      <!-- ======================================================= -->
       <listitem>
-        <para>New option for specifying "essential" character
-        replacements. Controlled through the
-        <parameter>man.string.subst.map</parameter> parameter. In
-        contast to the character-substitutions done via the optional
-        character-map mechanism, these are substitutions that are
-        <emphasis>always</emphasis> performed, because not performing
-        them will cause roff output to be broken or sub-optimal. An
-        example is replacement of backslashes, which must be doubled
-        to prevent them from being interpreted as roff escapes.</para>
-      </listitem>
-      <listitem>
-        <para>New option for making "subheading dividers" in generated
+        <para>New option for making <quote>subheading dividers</quote> in generated
         roff source. The dividers are not visible in the rendered man
         page; they are just there to make the source
         readable. Controlled using
         <parameter>man.subheading.divider</parameter>.</para>
       </listitem>
+      <!-- ======================================================= -->
       <listitem>
         <para>Fixed many places where too much space was being added
         between lines.</para>
@@ -1904,15 +2266,17 @@ XHTML chunker to output HTML instead of XHTML.
   1.50.0 release.</para>
 </section>
 <section id="dot0">
-  <title>About "dot zero" releases</title>
-    <para>DocBook Project "dot zero" releases should be considered
-    <emphasis>experimental</emphasis> and are always followed by
-    stable "dot one" releases, usually within two or three
-    weeks. Please help to ensure the stability of "dot one" releases
-    by carefully testing each "dot zero" release and reporting back
-    about any problems you find. </para>
-    <para>It is not recommended that you use a "dot zero" release in a
-    production system, or package it for an OS distro. Instead, you
-    should wait for the "dot one" version.</para>
+  <title>About dot-zero releases</title>
+    <para>DocBook Project <quote>dot zero</quote> releases should be
+    considered <emphasis>experimental</emphasis> and are always
+    followed by stable <quote>dot one</quote> releases, usually within
+    two or three weeks. Please help to ensure the stability of
+    <quote>dot one</quote> releases by carefully testing each
+    <quote>dot zero</quote> release and reporting back about any
+    problems you find. </para>
+    <para>It is not recommended that you use a <quote>dot zero</quote>
+    release in a production system, or package it for an OS
+    distro. Instead, you should wait for the <quote>dot one</quote>
+    version.</para>
   </section>
 </article>
