@@ -55,6 +55,8 @@
   <!-- * lines that only have words separated by "\~" spaces, so it's -->
   <!-- * safer just to stick with the "\ " space -->
   <substitution oldstring="&#x00a0;" newstring="\ "/>
+  <!-- * bullet -->
+  <substitution oldstring="&#x2022;" newstring="\(bu"/>
   <!-- * left double quote -->
   <substitution oldstring="&#x201c;" newstring="\(lq"/>
   <!-- * right double quote -->
