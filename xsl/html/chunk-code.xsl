@@ -1,8 +1,10 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0"
+		xmlns:ng="http://docbook.org/docbook-ng"
+		xmlns:db="http://docbook.org/ns/docbook"
                 version="1.0"
-                exclude-result-prefixes="exsl">
+                exclude-result-prefixes="exsl ng db">
 
 <!-- ********************************************************************
      $Id$
@@ -465,53 +467,71 @@
 
 <xsl:template match="/">
   <xsl:choose>
-    <xsl:when test="$rootid != ''">
-      <xsl:choose>
-        <xsl:when test="count(key('id',$rootid)) = 0">
-          <xsl:message terminate="yes">
-            <xsl:text>ID '</xsl:text>
-            <xsl:value-of select="$rootid"/>
-            <xsl:text>' not found in document.</xsl:text>
-          </xsl:message>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:if test="$collect.xref.targets = 'yes' or
-                        $collect.xref.targets = 'only'">
-            <xsl:apply-templates select="key('id', $rootid)"
-                        mode="collect.targets"/>
-          </xsl:if>
-          <xsl:if test="$collect.xref.targets != 'only'">
-            <xsl:apply-templates select="key('id',$rootid)"
-                        mode="process.root"/>
-            <xsl:if test="$tex.math.in.alt != ''">
-              <xsl:apply-templates select="key('id',$rootid)"
-                          mode="collect.tex.math"/>
-            </xsl:if>
-            <xsl:if test="$generate.manifest != 0">
-              <xsl:call-template name="generate.manifest">
-                <xsl:with-param name="node" select="key('id',$rootid)"/>
-              </xsl:call-template>
-            </xsl:if>
-          </xsl:if>
-        </xsl:otherwise>
-      </xsl:choose>
+    <xsl:when test="function-available('exsl:node-set')
+		    and (*/self::ng:* or */self::db:*)">
+      <!-- Hack! If someone hands us a DocBook V5.x or DocBook NG document,
+	   toss the namespace and continue. Someday we'll reverse this logic
+	   and add the namespace to documents that don't have one.
+	   But not before the whole stylesheet has been converted to use
+	   namespaces. i.e., don't hold your breath -->
+      <xsl:message>Stripping NS from DocBook 5/NG document.</xsl:message>
+      <xsl:variable name="nons">
+	<xsl:apply-templates mode="stripNS"/>
+      </xsl:variable>
+      <xsl:message>Processing stripped document.</xsl:message>
+      <xsl:apply-templates select="exsl:node-set($nons)"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:if test="$collect.xref.targets = 'yes' or
-                    $collect.xref.targets = 'only'">
-        <xsl:apply-templates select="/" mode="collect.targets"/>
-      </xsl:if>
-      <xsl:if test="$collect.xref.targets != 'only'">
-        <xsl:apply-templates select="/" mode="process.root"/>
-        <xsl:if test="$tex.math.in.alt != ''">
-          <xsl:apply-templates select="/" mode="collect.tex.math"/>
-        </xsl:if>
-        <xsl:if test="$generate.manifest != 0">
-          <xsl:call-template name="generate.manifest">
-            <xsl:with-param name="node" select="/"/>
-          </xsl:call-template>
-        </xsl:if>
-      </xsl:if>
+      <xsl:choose>
+	<xsl:when test="$rootid != ''">
+	  <xsl:choose>
+	    <xsl:when test="count(key('id',$rootid)) = 0">
+	      <xsl:message terminate="yes">
+		<xsl:text>ID '</xsl:text>
+		<xsl:value-of select="$rootid"/>
+		<xsl:text>' not found in document.</xsl:text>
+	      </xsl:message>
+	    </xsl:when>
+	    <xsl:otherwise>
+	      <xsl:if test="$collect.xref.targets = 'yes' or
+			    $collect.xref.targets = 'only'">
+		<xsl:apply-templates select="key('id', $rootid)"
+				     mode="collect.targets"/>
+	      </xsl:if>
+	      <xsl:if test="$collect.xref.targets != 'only'">
+		<xsl:apply-templates select="key('id',$rootid)"
+				     mode="process.root"/>
+		<xsl:if test="$tex.math.in.alt != ''">
+		  <xsl:apply-templates select="key('id',$rootid)"
+				       mode="collect.tex.math"/>
+		</xsl:if>
+		<xsl:if test="$generate.manifest != 0">
+		  <xsl:call-template name="generate.manifest">
+		    <xsl:with-param name="node" select="key('id',$rootid)"/>
+		  </xsl:call-template>
+		</xsl:if>
+	      </xsl:if>
+	    </xsl:otherwise>
+	  </xsl:choose>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:if test="$collect.xref.targets = 'yes' or
+			$collect.xref.targets = 'only'">
+	    <xsl:apply-templates select="/" mode="collect.targets"/>
+	  </xsl:if>
+	  <xsl:if test="$collect.xref.targets != 'only'">
+	    <xsl:apply-templates select="/" mode="process.root"/>
+	    <xsl:if test="$tex.math.in.alt != ''">
+	      <xsl:apply-templates select="/" mode="collect.tex.math"/>
+	    </xsl:if>
+	    <xsl:if test="$generate.manifest != 0">
+	      <xsl:call-template name="generate.manifest">
+		<xsl:with-param name="node" select="/"/>
+	      </xsl:call-template>
+	    </xsl:if>
+	  </xsl:if>
+	</xsl:otherwise>
+      </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -964,6 +984,23 @@
         <xsl:with-param name="node" select="."/>
         <xsl:with-param name="footnotes" select="$footnotes"/>
       </xsl:call-template>
+    </div>
+  </xsl:if>
+
+  <!-- FIXME: When chunking, only the annotations actually used
+              in this chunk should be referenced. I don't think it
+	      does any harm to reference them all, but it adds
+	      unnecessary bloat to each chunk. -->
+  <xsl:if test="$annotation.support != 0 and //annotation">
+    <div class="annotation-list">
+      <div class="annotation-nocss">
+	<p>The following annotations are from this essay. You are seeing
+	them here because your browser doesn’t support the user-interface
+	techniques used to make them appear as ‘popups’ on modern browsers.</p>
+      </div>
+
+      <xsl:apply-templates select="//annotation"
+			   mode="annotation-popup"/>
     </div>
   </xsl:if>
 </xsl:template>

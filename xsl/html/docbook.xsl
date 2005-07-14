@@ -70,6 +70,7 @@
 <xsl:include href="chunker.xsl"/>
 <xsl:include href="html-rtf.xsl"/>
 <xsl:include href="docbookng.xsl"/>
+<xsl:include href="annotations.xsl"/>
 
 <xsl:param name="stylesheet.result.type" select="'html'"/>
 <xsl:param name="htmlhelp.output" select="0"/>
@@ -77,6 +78,7 @@
 <!-- ==================================================================== -->
 
 <xsl:key name="id" match="*" use="@id|@xml:id"/>
+<xsl:key name="gid" match="*" use="generate-id()"/>
 
 <!-- ==================================================================== -->
 
@@ -256,6 +258,71 @@ body { background-image: url('</xsl:text>
 
 <xsl:template name="system.head.content">
   <xsl:param name="node" select="."/>
+
+  <!-- FIXME: When chunking, only the annotations actually used
+              in this chunk should be referenced. I don't think it
+	      does any harm to reference them all, but it adds
+	      unnecessary bloat to each chunk. -->
+  <xsl:if test="$annotation.support != 0 and //annotation">
+    <xsl:call-template name="add.annotation.links"/>
+    <script type="text/javascript">
+      <xsl:text>&#10;// Create PopupWindow objects</xsl:text>
+      <xsl:for-each select="//annotation">
+	<xsl:text>&#10;var popup_</xsl:text>
+	<xsl:value-of select="generate-id(.)"/>
+	<xsl:text> = new PopupWindow("popup-</xsl:text>
+	<xsl:value-of select="generate-id(.)"/>
+	<xsl:text>");&#10;</xsl:text>
+	<xsl:text>popup_</xsl:text>
+	<xsl:value-of select="generate-id(.)"/>
+	<xsl:text>.offsetY = 15;&#10;</xsl:text>
+	<xsl:text>popup_</xsl:text>
+	<xsl:value-of select="generate-id(.)"/>
+	<xsl:text>.autoHide();&#10;</xsl:text>
+      </xsl:for-each>
+    </script>
+
+    <style type="text/css">
+/* ======================================================================
+   Annotations
+*/
+
+div.annotation-list  { visibility: hidden;
+                     }
+
+div.annotation-nocss { position: absolute;
+                       visibility: hidden;
+                     }
+
+div.annotation-popup { position: absolute;
+                       z-index: 4;
+                       visibility: hidden;
+                       padding: 0px;
+                       margin: 2px;
+                       border-style: solid;
+                       border-width: 1px;
+                       width: 200px
+                     }
+
+div.annotation-title { padding: 1px;
+                       font-weight: bold;
+                       border-bottom-style: solid;
+                       border-bottom-width: 1px;
+                     }
+
+div.annotation-body  { padding: 2px;
+                     }
+
+div.annotation-body p { margin-top: 0px;
+                        padding-top: 0px;
+                      }
+
+div.annotation-close { position: absolute;
+                       top: 2px;
+                       right: 2px;
+                     }
+    </style>
+  </xsl:if>
 
   <!-- system.head.content is like user.head.content, except that
        it is called before head.content. This is important because it
