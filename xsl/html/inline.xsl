@@ -123,6 +123,7 @@
       </xsl:attribute>
     </xsl:if>
     <xsl:copy-of select="$content"/>
+    <xsl:call-template name="apply-annotations"/>
   </span>
 </xsl:template>
 
@@ -143,6 +144,7 @@
       </xsl:attribute>
     </xsl:if>
     <xsl:copy-of select="$content"/>
+    <xsl:call-template name="apply-annotations"/>
   </code>
 </xsl:template>
 
@@ -178,6 +180,7 @@
         </strong>
       </xsl:otherwise>
     </xsl:choose>
+    <xsl:call-template name="apply-annotations"/>
   </span>
 </xsl:template>
 
@@ -198,6 +201,7 @@
       </xsl:attribute>
     </xsl:if>
     <xsl:copy-of select="$content"/>
+    <xsl:call-template name="apply-annotations"/>
   </em>
 </xsl:template>
 
@@ -226,6 +230,7 @@
           </xsl:attribute>
         </xsl:if>
         <xsl:copy-of select="$content"/>
+	<xsl:call-template name="apply-annotations"/>
       </code>
     </xsl:when>
     <xsl:otherwise>
@@ -239,6 +244,7 @@
           </xsl:if>
           <xsl:copy-of select="$content"/>
         </code>
+	<xsl:call-template name="apply-annotations"/>
       </strong>
     </xsl:otherwise>
   </xsl:choose>
@@ -262,6 +268,7 @@
         </xsl:attribute>
       </xsl:if>
       <xsl:copy-of select="$content"/>
+      <xsl:call-template name="apply-annotations"/>
     </code>
   </em>
 </xsl:template>
@@ -283,6 +290,7 @@
       </xsl:attribute>
     </xsl:if>
     <xsl:copy-of select="$content"/>
+    <xsl:call-template name="apply-annotations"/>
   </sup>
 </xsl:template>
 
@@ -303,6 +311,7 @@
       </xsl:attribute>
     </xsl:if>
     <xsl:copy-of select="$content"/>
+    <xsl:call-template name="apply-annotations"/>
   </sub>
 </xsl:template>
 
@@ -313,6 +322,7 @@
   <span class="{name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="person.name"/>
+    <xsl:call-template name="apply-annotations"/>
   </span>
 </xsl:template>
 
@@ -320,6 +330,7 @@
   <span class="{name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="person.name"/>
+    <xsl:call-template name="apply-annotations"/>
   </span>
 </xsl:template>
 
@@ -327,6 +338,7 @@
   <span class="{name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="person.name"/>
+    <xsl:call-template name="apply-annotations"/>
   </span>
 </xsl:template>
 
@@ -691,6 +703,7 @@
         <xsl:apply-templates/>
       </xsl:with-param>
     </xsl:call-template>
+    <xsl:call-template name="apply-annotations"/>
   </span>
 </xsl:template>
 

@@ -225,6 +225,19 @@
       <xsl:apply-templates select="$footnotes" mode="process.footnote.mode"/>
     </div>
   </xsl:if>
+
+  <xsl:if test="$annotation.support != 0 and //annotation">
+    <div class="annotation-list">
+      <div class="annotation-nocss">
+	<p>The following annotations are from this essay. You are seeing
+	them here because your browser doesn’t support the user-interface
+	techniques used to make them appear as ‘popups’ on modern browsers.</p>
+      </div>
+
+      <xsl:apply-templates select="//annotation"
+			   mode="annotation-popup"/>
+    </div>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template name="process.chunk.footnotes">

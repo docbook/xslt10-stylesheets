@@ -271,3 +271,7 @@
 <!ENTITY insert.xref.page.number SYSTEM "../params/insert.xref.page.number.xml">
 <!ENTITY component.label.includes.part.label SYSTEM "../params/component.label.includes.part.label.xml">
 <!ENTITY simplesect.in.toc SYSTEM "../params/simplesect.in.toc.xml">
+<!ENTITY annotation.support SYSTEM "../params/annotation.support.xml">
+<!ENTITY annotation.js SYSTEM "../params/annotation.js.xml">
+<!ENTITY annotation.graphic.open SYSTEM "../params/annotation.graphic.open.xml">
+<!ENTITY annotation.graphic.close SYSTEM "../params/annotation.graphic.close.xml">

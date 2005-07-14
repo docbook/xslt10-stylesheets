@@ -269,6 +269,13 @@ stylesheet like this:</para>
 &insert.xref.page.number;
 </reference>
 
+<reference><title>Annotations</title>
+&annotation.support;
+&annotation.js;
+&annotation.graphic.open;
+&annotation.graphic.close;
+</reference>
+
 <reference><title>Graphics</title>
 &img.src.path;
 &graphic.default.extension;
@@ -431,6 +438,10 @@ around all these parameters.</para>
 <src:fragref linkend="admon.style.frag"/>
 <src:fragref linkend="admon.textlabel.frag"/>
 <src:fragref linkend="annotate.toc.frag"/>
+<src:fragref linkend="annotation.js.frag"/>
+<src:fragref linkend="annotation.graphic.open.frag"/>
+<src:fragref linkend="annotation.graphic.close.frag"/>
+<src:fragref linkend="annotation.support.frag"/>
 <src:fragref linkend="appendix.autolabel.frag"/>
 <src:fragref linkend="author.othername.in.middle.frag"/>
 <src:fragref linkend="autotoc.label.separator.frag"/>
