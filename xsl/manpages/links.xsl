@@ -349,7 +349,6 @@
     </xsl:variable>
     <xsl:value-of select="normalize-space($link.contents)"/>
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>.br&#10;</xsl:text>
     <!-- * Print the link's URL -->
     <!-- * Add hyphenation suppression in URL output only if -->
     <!-- * break.after.slash is also non-zero -->
