@@ -301,7 +301,7 @@ db.verbatim.continuation.attribute =
 db.verbatim.linenumbering.enumeration =
    ## Lines are numbered.
    "numbered"
- | ## Lines are not numbered
+ | ## Lines are not numbered.
    "unnumbered"
 
 db.verbatim.linenumbering.attribute =
@@ -318,15 +318,18 @@ db.verbatim.startinglinenumber.attribute =
 
 db.verbatim.language.attribute =
    [
-      db:refpurpose [ "Identifies the language (i.e. programming language) of the verbatim content" ]
+      db:refpurpose [ "Identifies the language (i.e. programming language) of the verbatim content." ]
    ]
    attribute language { text }
 
 db.verbatim.xml.space.attribute =
    [
-      db:refpurpose [ "Specifies that whitespace in the verbatim environment is preserved" ]
+      db:refpurpose [ "Can be used to indicate explicitly that whitespace in the verbatim environment is preserved. Whitespace must always be preserved in verbatim environments whether this attribute is specified or not." ]
    ]
-   attribute xml:space { "preserve" }
+   attribute xml:space {
+      ## Whitespace must be preserved.
+      "preserve"
+   }
 
 db.verbatim.attributes =
    db.verbatim.continuation.attribute?
@@ -363,7 +366,7 @@ db.pgwide.attribute =
 
 db.language.attribute =
    [
-      db:refpurpose [ "Identifies the language (i.e. programming language) of the content" ]
+      db:refpurpose [ "Identifies the language (i.e. programming language) of the content." ]
    ]
    attribute language { text }
 
@@ -2180,7 +2183,11 @@ div {
 div {
 
    db.screen.role.attribute = attribute role { text }
-   db.screen.width.attribute = attribute width { text }
+   db.screen.width.attribute =
+      [
+         db:refpurpose [ "Specifies the width (in characters) of the longest line (formatters may use this value to determine scaling or rotation)." ]
+      ]
+      attribute width { text }
 
    db.screen.attlist =
       db.screen.role.attribute?
