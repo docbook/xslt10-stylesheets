@@ -19,6 +19,7 @@ default namespace = "http://docbook.org/ns/docbook"
 
 db.ubiq.inlines |= db.annotation
 db.all.blocks |= db.annotation
+db.info.elements |= db.annotation
 
 db.annotations.attribute = attribute annotations { text }
 
