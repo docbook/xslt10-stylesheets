@@ -272,6 +272,7 @@ stylesheet like this:</para>
 <reference><title>Annotations</title>
 &annotation.support;
 &annotation.js;
+&annotation.css;
 &annotation.graphic.open;
 &annotation.graphic.close;
 </reference>
@@ -438,6 +439,7 @@ around all these parameters.</para>
 <src:fragref linkend="admon.style.frag"/>
 <src:fragref linkend="admon.textlabel.frag"/>
 <src:fragref linkend="annotate.toc.frag"/>
+<src:fragref linkend="annotation.css.frag"/>
 <src:fragref linkend="annotation.js.frag"/>
 <src:fragref linkend="annotation.graphic.open.frag"/>
 <src:fragref linkend="annotation.graphic.close.frag"/>
