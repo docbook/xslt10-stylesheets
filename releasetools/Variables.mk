@@ -83,7 +83,7 @@ endif
 ZIP_EXCLUDES = \
  /CVS$$ \
  /CVS/ \
- /debian/ \
+ /debian \
  \.classes \
  ~$$ \
  \..*\.pyc \
