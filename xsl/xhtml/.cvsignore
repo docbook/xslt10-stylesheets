@@ -1,6 +1,7 @@
 .cvsignore
 xslfiles.gen
 admon.xsl
+annotations.xsl
 autoidx.xsl
 autotoc.xsl
 biblio.xsl
