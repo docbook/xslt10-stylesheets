@@ -156,15 +156,19 @@ endif
 
 install: zip
 	-$(FTP) $(FTP_OPTS) "mput -O $(SF_UPLOAD_DIR) $(TMP)/docbook-$(DISTRO)-*-$(ZIPVER).*; quit" $(SF_UPLOAD_HOST)
+	-$(FTP) $(FTP_OPTS) "mput -O $(SF_UPLOAD_DIR) $(TMP)/docbook-$(DISTRO)-$(ZIPVER).*; quit" $(SF_UPLOAD_HOST)
 	$(SCP) $(SCP_OPTS) $(TMP)/docbook-$(DISTRO)-$(ZIPVER).tar.bz2 $(PROJECT_USER)@$(PROJECT_HOST):$(RELEASE_DIR)/$(DISTRO)/
+	$(SCP) $(SCP_OPTS) $(TMP)/docbook-$(DISTRO)-*-$(ZIPVER).tar.bz2 $(PROJECT_USER)@$(PROJECT_HOST):$(RELEASE_DIR)/$(DISTRO)/
 	$(SSH) $(SSH_OPTS)-l $(PROJECT_USER) $(PROJECT_HOST) \
 	  "(\
 	   umask 002; \
 	   cd $(RELEASE_DIR)/$(DISTRO); \
 	   rm -rf $(ZIPVER); \
 	   tar xfj docbook-$(DISTRO)-$(ZIPVER).tar.bz2; \
+	   tar xfj docbook-$(DISTRO)-*-$(ZIPVER).tar.bz2; \
 	   mv docbook-$(DISTRO)-$(ZIPVER) $(ZIPVER); \
 	   rm -rf docbook-$(DISTRO)-$(ZIPVER).tar.bz2; \
+	   rm -rf docbook-$(DISTRO)-*-$(ZIPVER).tar.bz2; \
 	   chmod -R g+w $(ZIPVER); \
 	   rm -f current; \
 	   ln -s $(ZIPVER) current; \
