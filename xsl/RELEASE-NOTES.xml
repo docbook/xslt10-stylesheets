@@ -21,15 +21,15 @@
 
   <section>
     <title>Release 1.69.0</title>
-    <para>The release includes some major feature changes,
+    <para>The release includes major feature changes,
     particularly in the <link linkend="V1690_MAN">manpages
     stylesheets</link>, as well as a large number of bug fixes.</para>
 
     <para>As with all DocBook Project <quote>dot zero</quote> releases, this is an
     <link linkend="dot0">experimental release </link>.</para>
    
-    <section id="V1690_GENERAL">
-      <title>General</title>
+    <section id="V1690_COMMON">
+      <title>Common</title>
       <itemizedlist>
         <listitem>
           <para>This release adds localizations for the following
@@ -54,7 +54,27 @@
         <listitem>
           <para>Added support for specifying number format for auto
           labels for <tag>chapter</tag>, <tag>appendix</tag>,
-          <tag>part</tag>, and <tag>preface</tag>.</para>
+          <tag>part</tag>, and <tag>preface</tag>. Contolled with the
+          <parameter>appendix.autolabel</parameter>,
+          <parameter>chapter.autolabel</parameter>,
+          <parameter>part.autolabel</parameter>, and
+          <parameter>preface.autolabel</parameter> parameters.</para>
+        </listitem>
+        <listitem>
+          <para>Added basic support for <tag>biblioref</tag> cross
+          referencing.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for <tag class="attribute">align</tag>
+          on <tag>caption</tag> in <tag>mediaobject</tag>.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for processing documents that use the
+          DocBook V5 namespace.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for <tag>termdef</tag> and
+          <tag>mathphrase</tag>.</para>
         </listitem>
         <listitem>
           <para>EXPERIMENTAL: Incorporated the Slides and Website
@@ -112,7 +132,95 @@
       </listitem>
       </itemizedlist>
     </section>
-
+    <section id="V1690_FO">
+      <title>FO</title>
+      <itemizedlist>
+        <listitem>
+          <para> Added <literal>content-type</literal> property to
+          <literal>external-graphic</literal> element, based on
+          <tag>imagedata</tag> <tag class="attribute">format</tag>
+          attribute.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for generating
+          <literal>&lt;rx:meta-field&#160;creator="$VERSION"/></literal>
+          field for XEP output. This makes the DocBook XSL
+          stylesheet version information available through the
+          <guimenu>Document Properties</guimenu> menu in Acrobat
+          Reader and other PDF viewers.</para>
+        </listitem>
+        <listitem>
+          <para>Trademark symbol handling made consistent with
+          handling of same in HTML stylesheets. Prior to this change,
+          if you processed a document that contained no value for the
+          <tag class="attribute">class</tag> attribute on the
+          <tag>trademark</tag> element, the HTML stylesheets would
+          default to rendering a superscript <literal>TM
+          </literal>symbol after the <tag>trademark</tag> contents,
+          but the FO stylesheets would render nothing.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for generating XEP bookmarks for
+          <tag>refentry</tag>.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for HTML markup <tag>table</tag> <tag
+          class="attribute">border</tag> attribute, applied to each
+          table cell.</para>
+        </listitem>
+        <listitem>
+          <para>The <function>table.width</function> template can now
+          sum column specs if none use <literal>%</literal> or
+          <literal>*</literal>.</para>
+        </listitem>
+        <listitem>
+          <para>Added <literal>fox:destination</literal> extension
+          inside <literal>fox:outline</literal> to support linking to
+          internal destinations.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for customizing
+          <literal>abstract</literal> with property sets. Controlled
+          with the <parameter>abstract.properties</parameter> and
+          <parameter>abstract.title.properties</parameter>
+          parameters.</para>
+        </listitem>
+        <listitem>
+          <para>Add <tag>footnote</tag>s in <tag>table</tag> title to
+          table footnote set, and add support for table footnotes to
+          HTML table markup.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for <tag>title</tag> in
+          <tag>glosslist</tag>.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for <tag>itemizedlist</tag> symbol
+          <literal>none</literal>.</para>
+        </listitem>
+        <listitem>
+          <para>Implemented the new
+          <parameter>graphical.admonition.properties</parameter> and
+          <parameter>nongraphical.admonition.properties</parameter>
+          attribute sets.</para>
+        </listitem>
+        <listitem>
+          <para>Added <tag class="attribute">id</tag> to
+          <tag>formalpara</tag> and some other blocks that were
+          missing it.</para>
+        </listitem>
+        <listitem>
+          <para>Changed the anchor template to output
+          <literal>fo:inline</literal> instead of
+          <literal>fo:wrapper</literal>.</para>
+        </listitem>
+        <listitem>
+          <para>Added support for <parameter>toc.max.depth</parameter>
+          parameter.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+    
     <section id="V1690_HELP">
       <title>Help</title>
       <itemizedlist>
@@ -127,16 +235,25 @@
       <title>HTML</title>
       <itemizedlist>
         <listitem>
+          <para>Added a first cut at support in HTML output for
+          DocBook 5 style <tag>annotation</tag>s. Controlled using the
+          <parameter>annotation.support</parameter> parameter, and
+          implemented using JavaScript and CSS styling. For more
+          details, see the documentation for the
+          <parameter>annotation.js</parameter>,
+          <parameter>annotation.css</parameter>,
+          <parameter>annotation.graphic.open</parameter>, and
+          <parameter>annotation.graphic.close</parameter>
+          parameters.</para>
+        </listitem>
+        <listitem>
           <para>Generate client-side image map for
           <tag>imageobjectco</tag> with areas using
           <literal>calspair</literal> units</para>
         </listitem>
         <listitem>
           <para>Added support for <tag
-          class="xmlpi">img.src.path</tag> PI. Added support for (not
-          valid for DocBook 4) <tag class="attribute">xlink:href</tag>
-          on <tag>area</tag> and (not valid for DocBook 4)
-          <tag>alt</tag> in <tag>area</tag>.</para>
+          class="xmlpi">img.src.path</tag> PI.</para>
         </listitem>
         <listitem>
           <para>Added support for passing
@@ -146,20 +263,10 @@
           parameter.</para>
         </listitem>
         <listitem>
-          <para>Added basic support for <tag>biblioref</tag> cross
-          referencing.</para>
-        </listitem>
-        <listitem>
-          <para>Added support for <tag class="attribute">align</tag>
-          on <tag>caption</tag> in <tag>mediaobject</tag>.</para>
-        </listitem>
-        <listitem>
-          <para>Added support for processing documents that use the
-          DocBook V5 namespace.</para>
-        </listitem>
-        <listitem>
-          <para>Added support for <tag>termdef</tag> and
-          <tag>mathphrase</tag>.</para>
+          <para>Added support for (not
+          valid for DocBook 4) <tag class="attribute">xlink:href</tag>
+          on <tag>area</tag> and (not valid for DocBook 4)
+          <tag>alt</tag> in <tag>area</tag>.</para>
         </listitem>
         <listitem>
           <para>Added new parameter
@@ -288,6 +395,12 @@
     </section>
     <section id="V1690_MAN">
       <title>man</title>
+      <para>This release closes out 44 manpages stylesheet bug reports
+      and feature requests. It adds more than 35 new configuration
+      parameters for controlling aspects of man-page output --
+      including hyphenation and justification, handling of links,
+      conversion of Unicode characters, and contents of man-page
+      headers and footers.</para>
       <itemizedlist>
         <!-- ======================================================= -->
         <listitem>
@@ -307,24 +420,37 @@
             lines without inserting too much space between
             words.</emphasis></para>
           </blockquote>
-          The problem is that groff is not particularly smart about how
-          it does hyphenation; it can end up hyphenating a lot of things
-          that you don't want hyphenated (variable names and command
-          names, for example), and it is difficult and tiresome work to
-          prevent it from doing that. So, disabling both justification
-          and hyphenation ensures that hyphens won't get inserted where
-          you don't want to them, and you don't end up with lines
-          containing excessive amounts of space between words. Yes,
-          these default settings run counter to how most existing man
-          pages are formatted. But there are some notable exceptions,
-          such as the perl man pages.</para>
+          The problem is that groff can end up hyphenating a lot of
+          things that you don't want hyphenated (variable names and
+          command names, for example). Keeping both justification and
+          hyphenation disabled ensures that hyphens won't get inserted
+          where you don't want to them, and you don't end up with
+          lines containing excessive amounts of space between
+          words. These default settings run counter to how most
+          existing man pages are formatted. But there are some notable
+          exceptions, such as the perl man pages.</para>
+        </listitem>
+        <listitem>
+          <para> Added parameters for controlling hyphenation of
+          computer inlines, filenames, and URLs. By default, even when
+          hyphenation is enabled (globally), hyphenation is now
+          suppressed for "computer inlines" (currently, just
+          <tag>classname</tag>, <tag>constant</tag>, <tag>envar</tag>,
+          <tag>errorcode</tag>, <tag>option</tag>,
+          <tag>replaceable</tag>, <tag>userinput</tag>,
+          <tag>type</tag>, and <tag>varname</tag>, and for
+          <tag>filenames</tag>, and for URLs from <tag>link</tag>. It
+          can be (re)enabled using the
+          <parameter>man.hyphenate.computer.inlines</parameter>,
+          <parameter>man.hyphenate.filenames</parameter>, and
+          <parameter>man.hyphenate.urls parameters</parameter>.</para>
         </listitem>
         <!-- ======================================================= -->
         <listitem>
           <para>Implemented a new system for replacing Unicode
           characters. There are two parts to the new system: a
-          <quote>string substitution map</quote> for doing what might
-          be considered <quote>essential</quote> replacements, and a
+          <quote>string substitution map</quote> for doing
+          <quote>essential</quote> replacements, and a
           <quote>character map</quote> that can optionally be disabled
           and enabled.</para>
           <para>The new system fixes all open bugs that had to do with
@@ -412,6 +538,38 @@
           </para>
         </listitem>
         <!-- ======================================================= -->
+        <listitem>
+          <para>Implemented out-of-line handling of display of URLs
+          for links (currently, only for <tag>ulink</tag>). This gives
+          you three choices for handling of links:
+          <orderedlist>
+            <listitem>
+              <para>Number and list links. Each link is numbered
+              inline, with a number in square brackets preceding the
+              link contents, and a numbered list of all links is added
+              to the end of the document.</para>
+            </listitem>
+            <listitem>
+              <para>Only list links. Links are not numbered, but an
+              (unnumbered) list of links is added to the end of the
+              document.</para>
+            </listitem>
+            <listitem>
+              <para>Suppress links. Don't number links and don't add
+              any list of links to the end of the document.</para>
+            </listitem>
+          </orderedlist>
+          You can also choose whether links should be underlined. The
+          default is <quote>the works</quote> -- list, number, and
+          underline links. You can use the
+          <parameter>man.links.list.enabled</parameter>, <parameter>
+          man.links.are.numbered</parameter>, and
+          <parameter>man.links.are.underlined</parameter> parameters
+          to change the defaults. The default heading for the link
+          list is REFERENCES. You can be change that using the
+          <parameter>man.links.list.heading</parameter>
+          parameter.</para>
+        </listitem>
         <listitem>
           <para>Changed default output encoding to UTF-8. <emphasis
           role="bold">This does not mean that man pages are output in
@@ -506,16 +664,16 @@
     </callout>
     <callout arearefs="V1690_manvolnum-co" id="V1690_manvolnum">
       <para>Sets the <quote>section</quote> part.</para>
-  </callout>
-  <callout arearefs="V1690_source-name-co" id="V1690_source-name">
-    <para>Sets the <quote>source name</quote> part.</para>
-  </callout>
-  <callout arearefs="V1690_version-co" id="V1690_version">
-    <para>Sets the <quote>version</quote> part.</para>
-  </callout>
-  <callout arearefs="V1690_manual-co" id="V1690_manual">
-    <para>Sets the <quote>manual</quote> part.</para>
-  </callout>
+    </callout>
+    <callout arearefs="V1690_source-name-co" id="V1690_source-name">
+      <para>Sets the <quote>source name</quote> part.</para>
+    </callout>
+    <callout arearefs="V1690_version-co" id="V1690_version">
+      <para>Sets the <quote>version</quote> part.</para>
+    </callout>
+    <callout arearefs="V1690_manual-co" id="V1690_manual">
+      <para>Sets the <quote>manual</quote> part.</para>
+    </callout>
   </calloutlist>
             </para>
             <para>Below are explanations of the steps the stylesheets
@@ -810,12 +968,28 @@
       </listitem>
       <!-- ======================================================= -->
       <listitem>
-        <para>Made change to prevent <quote>sticky</quote> fonts changes. Now, when
-        the manpages stylesheets encounter node sets that need to be
-        boldfaced or italicized, they put the
+        <para>Made change to prevent <quote>sticky</quote> fonts
+        changes. Now, when the manpages stylesheets encounter node
+        sets that need to be boldfaced or italicized, they put the
         <literal>\fBfoo\fR</literal> and <literal>\fIbar\fR</literal>
         groff bold/italic instructions separately around each node in
         the set.</para>
+      </listitem>
+      <listitem>
+        <para>synop.xsl: Boldface everything in
+        <tag>funcsynopsis</tag> output except parameters (which are in
+        ital). The <literal>man(7)</literal> man page says:
+        <blockquote>
+          <para>For functions, the arguments are always specified
+          using italics, even in the SYNOPSIS section, where the rest
+          of the function is specified in bold.</para>
+          </blockquote>
+          A look through the contents of the
+          <filename>man/man2</filename> directory shows that most
+          (all) existing pages do follow this <quote>everything in
+          funcsynopsis bold</quote> rule. That means the
+          <tag>type</tag> content and any punctuation (parens,
+          semicolons, <tag>vararg</tag>s) also must be bolded.</para>
       </listitem>
       <!-- ======================================================= -->
       <listitem>
