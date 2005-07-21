@@ -12,11 +12,7 @@ BINARY = defguide.rnd
 
 all:: defguide.rng defguide.rnc defguide.dtd
 
-clean:: ; rm -f $(_MODULE)/defguide.rnc
-
-$(_MODULE)/defguide.rnc: src/docbook.rnc
-	cat $< | sed "s/include \"/include \"..\/src\//" > $@
-	echo 'include "../dbforms/htmlform.rnc"' >> $@
+clean:: ; rm -f defguide.rng defguide.rnc defguide.dtd
 
 $(_OUTTOP)/defguide/defguide.rng: src/annotations.rnc src/bibliography.rnc \
              src/callouts.rnc src/calstbl.rnc dbforms/htmlform.rnc \
