@@ -2,7 +2,13 @@ RELEASES
 docbook.dtd
 docbook.rnc
 docbook.rng
+docbookxi.dtd
+docbookxi.rnc
+docbookxi.rng
 dbforms.dtd
 dbforms.rnc
 dbforms.rng
+defguide.dtd
+defguide.rnc
+defguide.rng
 build
