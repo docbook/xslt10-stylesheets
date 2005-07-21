@@ -60,12 +60,12 @@ db.label.attribute = attribute label { text }
 
 # ======================================================================
 
-db.toplevel.sections = db.section+ | db.simplesect+
+db.toplevel.sections = (db.section+, db.simplesect*) | db.simplesect+
 
 db.toplevel.blocks.or.sections =
   (db.all.blocks+, db.toplevel.sections?) | db.toplevel.sections
 
-db.recursive.sections = db.section+ | db.simplesect+
+db.recursive.sections = (db.section+, db.simplesect*) | db.simplesect+
 
 db.recursive.blocks.or.sections =
   (db.all.blocks+, db.recursive.sections?) | db.recursive.sections

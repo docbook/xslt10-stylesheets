@@ -22,7 +22,7 @@ db.toplevel.sections |= db.sect1+
 
 # ======================================================================
 
-db.sect1.sections = db.sect2+ | db.simplesect+
+db.sect1.sections = (db.sect2+, db.simplesect*) | db.simplesect+
 
 [
    db:refname [ "sect1" ]
@@ -55,7 +55,7 @@ div {
 
 # ======================================================================
 
-db.sect2.sections = db.sect3+ | db.simplesect+
+db.sect2.sections = (db.sect3+, db.simplesect*) | db.simplesect+
 
 [
    db:refname [ "sect2" ]
@@ -88,7 +88,7 @@ div {
 
 # ======================================================================
 
-db.sect3.sections = db.sect4+ | db.simplesect+
+db.sect3.sections = (db.sect4+, db.simplesect*) | db.simplesect+
 
 [
    db:refname [ "sect3" ]
@@ -121,7 +121,7 @@ div {
 
 # ======================================================================
 
-db.sect4.sections = db.sect5+ | db.simplesect+
+db.sect4.sections = (db.sect5+, db.simplesect*) | db.simplesect+
 
 [
    db:refname [ "sect4" ]
