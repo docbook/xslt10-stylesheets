@@ -17,33 +17,5 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 default namespace = "http://docbook.org/ns/docbook"
 
-start = db.set
-        | db.book
-	| db.divisions
-	| db.components
-	| db.navigation.components
-	| db.section
-	| db.para
-
-include "pool.rnc"
-include "annotations.rnc"
-include "xlink.rnc"
-include "hier.rnc"
-include "sect1.rnc"
-include "refentry.rnc"
-include "refsect1.rnc"
-include "glossary.rnc"
-include "bibliography.rnc"
-include "index.rnc"
-include "toc.rnc"
-include "tasks.rnc"
-include "callouts.rnc"
-include "ebnf.rnc"
-include "calstbl.rnc"
-include "htmltbl.rnc"
-include "msgset.rnc"
-include "qandaset.rnc"
-include "math.rnc"
-include "mathml.rnc"
-include "svg.rnc"
-
+include "../src/docbook/rnc"
+include "xinclude.rnc"

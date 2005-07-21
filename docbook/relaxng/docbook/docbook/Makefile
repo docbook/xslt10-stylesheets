@@ -9,14 +9,14 @@ all:: docbook.rng docbook.rnc docbook.dtd
 clean:: ; rm -f docbook.rng docbook.rnc docbook.dtd
 
 $(_OUTTOP)/docbook/docbook.rng: src/annotations.rnc src/bibliography.rnc \
-             src/callouts.rnc src/calstbl.rnc src/dbforms.rnc \
+             src/callouts.rnc src/calstbl.rnc \
              src/docbook.rnc src/ebnf.rnc src/glossary.rnc \
-             src/hier.rnc src/htmlform.rnc src/htmltbl.rnc \
+             src/hier.rnc src/htmltbl.rnc \
              src/index.rnc src/math.rnc src/mathml.rnc \
              src/msgset.rnc src/pool.rnc src/qandaset.rnc \
              src/refentry.rnc src/refsect1.rnc src/sect1.rnc \
              src/svg.rnc src/tasks.rnc src/toc.rnc \
-             src/xinclude.rnc src/xlink.rnc
+             src/xlink.rnc
 
 include _footer.mak
 

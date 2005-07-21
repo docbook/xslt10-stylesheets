@@ -28,6 +28,6 @@ clean:: ; rm -rf $(_OUTTOP)
 
 .SUFFIXES:
 
-MODULES=docbook dbforms defguide
+MODULES=docbook dbforms defguide docbookxi
 
 include $(addsuffix /Makefile,$(MODULES))
