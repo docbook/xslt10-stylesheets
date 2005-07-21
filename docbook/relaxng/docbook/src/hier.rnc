@@ -17,46 +17,48 @@ namespace db = "http://docbook.org/ns/docbook"
 namespace dbx = "http://sourceforge.net/projects/docbook/defguide/schema/extra-markup"
 default namespace = "http://docbook.org/ns/docbook"
 
-[
-   db:refpurpose [
-      "Identifies the editorial or publication status of the element " ~
-      "on which it occurs"
-   ]
-   dbx:description [
-      db:para [
-         "Publication status might be used to control formatting " ~
-         "(for example, printing a “draft” watermark on drafts) " ~
-         "or processing (perhaps a document with a status of " ~
-         "“final” should not include any components that are not " ~
-         "final)."
+db.status.attribute =
+   [
+      db:refpurpose [
+         "Identifies the editorial or publication status of the element " ~
+         "on which it occurs"
+      ]
+      dbx:description [
+         db:para [
+            "Publication status might be used to control formatting " ~
+            "(for example, printing a “draft” watermark on drafts) " ~
+            "or processing (perhaps a document with a status of " ~
+               "“final” should not include any components that are not " ~
+               "final)."
+         ]
       ]
    ]
-]
-db.status.attribute = attribute status { text }
+   attribute status { text }
 
-[
-   db:refpurpose [
-      "Specifies an identifying string for presentation purposes"
-   ]
-   dbx:description [
-      db:para [
-         "Generally, an explicit Label attribute is used only if the " ~
-         "processing system is incapable of generating the label automatically. " ~
-         "Under such circumstances, the third "
-         db:tag [ "book" ]
-         " in a "
-         db:tag [ "set" ]
-         " might be labeled “Volume III”, for example."
+db.label.attribute =
+   [
+      db:refpurpose [
+         "Specifies an identifying string for presentation purposes"
       ]
-      db:para [
-         "If present, the "
-         db:tag [ class = "attribute" "label" ]
-         " is normative; it will used even if the " ~
-         "processing system is capable of automatic labelling."
+      dbx:description [
+         db:para [
+            "Generally, an explicit Label attribute is used only if the " ~
+            "processing system is incapable of generating the label " ~
+            "automatically. Under such circumstances, the third "
+            db:tag [ "book" ]
+            " in a "
+            db:tag [ "set" ]
+            " might be labeled “Volume III”, for example."
+         ]
+         db:para [
+            "If present, the "
+            db:tag [ class = "attribute" "label" ]
+            " is normative; it will used even if the " ~
+            "processing system is capable of automatic labelling."
+         ]
       ]
    ]
-]
-db.label.attribute = attribute label { text }
+   attribute label { text }
 
 # ======================================================================
 
@@ -450,56 +452,33 @@ db.article.components = db.toplevel.sections
 [
    db:refname [ "article" ]
    db:refpurpose [ "An article" ]
-   dbx:description [
-      db:para [
-         "The "
-         db:tag [ "article" ]
-         " element is a general-purpose container for " ~
-         " articles.  The content model is both quite complex and rather loose in " ~
-         "order to accommodate the wide range of possible "
-         db:tag [ "article" ]
-         " structures.  Although changes to the "
-         db:tag [ "article" ]
-         " element have been discussed on several occasions, " ~
-         "no better model has been presented."
-      ]
-      db:para [
-         "An "
-         db:tag [ "article" ]
-         " is composed of a header and a body.  The body " ~
-         " may include a table of contents and multiple lists of tables, figures, " ~
-         " and so on, before the main text of the article and may include a number of" ~
-         " common end-matter components at the end."
-      ]
-   ]
-   dbx:expectations [
-      db:para [
-         dbx:format [ class="block" ]
-         "Formatted as a displayed block. " ~
-         "Frequently causes a forced page break in print media. " ~
-         "May be numbered separately and presented in the table of contents."
-      ]
-   ]
 ]
 div {
 
    db.article.status.attribute = db.status.attribute
 
-   [
-      db:refpurpose [
-         "Class identifies the type of article."
-      ]
-   ]
 
    db.article.class.enumeration =
+      ## A collection of frequently asked questions.
       "faq"
-    | "journalarticle"
-    | "productsheet"
-    | "specification"
-    | "techreport"
-    | "whitepaper"
+    | ## An article in a journal or other periodical.
+      "journalarticle"
+    | ## A description of a product.
+      "productsheet"
+    | ## A specification.
+      "specification"
+    | ## A technical report.
+      "techreport"
+    | ## A white paper.
+      "whitepaper"
 
-   db.article.class.attribute = attribute class { db.article.class.enumeration }
+   db.article.class.attribute =
+      [
+         db:refpurpose [
+            "Class identifies the type of article."
+         ]
+      ]
+      attribute class { db.article.class.enumeration }
 
    db.article.role.attribute = attribute role { text }
 
