@@ -8,7 +8,7 @@ BINARY = docbookxi.rnd
 
 all:: docbookxi.rng docbookxi.rnc docbookxi.dtd
 
-clean:: ; rm -f $(_MODULE)/docbookxi.rnc
+clean:: ; rm -f docbookxi.rng docbookxi.rnc docbookxi.dtd
 
 $(_OUTTOP)/docbookxi/docbookxi.rng: src/annotations.rnc src/bibliography.rnc \
              src/callouts.rnc src/calstbl.rnc dbforms/htmlform.rnc \
