@@ -18,7 +18,7 @@ default namespace = "http://docbook.org/ns/docbook"
 
 start |= db.sect1 | db.sect2 | db.sect3 | db.sect4 | db.sect5
 
-db.toplevel.sections |= db.sect1+
+db.toplevel.sections |= (db.sect1+, db.simplesect*)
 
 # ======================================================================
 
