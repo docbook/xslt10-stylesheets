@@ -159,6 +159,12 @@
       <xsl:when test="$ref and $ref/rng:empty">
 	<!-- just discard it -->
       </xsl:when>
+      <xsl:when test="$ref and count($ref/*) &gt; 1">
+	<!-- deal with the case where the pattern has an implicit group -->
+	<rng:group>
+	  <xsl:copy-of select="$ref/*"/>
+	</rng:group>
+      </xsl:when>
       <xsl:when test="$ref">
 	<xsl:copy-of select="$ref/*"/>
       </xsl:when>
