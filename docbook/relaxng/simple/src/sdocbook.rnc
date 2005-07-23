@@ -17,14 +17,11 @@ default namespace = "http://docbook.org/ns/docbook"
 start = db.article
 
 include "../../docbook/src/hier.rnc" {
-   db.toplevel.optional.sections = db.section*
-   db.toplevel.required.sections = db.section+
+   db.toplevel.sections = db.section+
 
-   db.recursive.optional.sections = db.section*
-   db.recursive.required.sections = db.section+
+   db.recursive.sections = db.section+
 
-   db.article.optional.components = db.section*
-   db.article.required.components = db.section+
+   db.article.components = db.section+
 
    db.ackno = notAllowed
 
@@ -32,9 +29,8 @@ include "../../docbook/src/hier.rnc" {
       element article {
          db.article.attlist,
          db.article.info,
-         ((db.all.blocks+,
-            db.article.optional.components)
-          | db.article.required.components),
+         ((db.all.blocks+, db.article.components?)
+          | db.article.components),
          (db.appendix | db.navigation.components | db.ackno)*
       }
 }
