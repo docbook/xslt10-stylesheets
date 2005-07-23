@@ -15,7 +15,6 @@ $($(_MODULE)_OUTPUT)/%.rne: $($(_MODULE)_OBJS) $($(_MODULE)_OUTPUT)/.f
 	$(PERL) -i $(CLEANUP) $@
 	$(RM) $@,
 
-
 #$($(_MODULE)_OUTPUT)/%.rng: $(_MODULE)/%.rnc $($(_MODULE)_OUTPUT)/.f
 #	$(RUNTRANG) $< $@
 #
