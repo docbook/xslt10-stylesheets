@@ -152,7 +152,19 @@
 	      <xsl:copy-of select="@*"/>
 	      <rng:choice>
 		<xsl:apply-templates mode="combine"/>
-		<xsl:apply-templates select="$choices/*" mode="combine"/>
+		<xsl:for-each select="$choices">
+		  <xsl:choose>
+		    <xsl:when test="count(*) &gt; 1">
+		      <!-- implicit group -->
+		      <rng:group>
+			<xsl:apply-templates select="*" mode="combine"/>
+		      </rng:group>
+		    </xsl:when>
+		    <xsl:otherwise>
+		      <xsl:apply-templates select="*" mode="combine"/>
+		    </xsl:otherwise>
+		  </xsl:choose>
+		</xsl:for-each>
 	      </rng:choice>
 	    </xsl:copy>
 	  </xsl:when>
