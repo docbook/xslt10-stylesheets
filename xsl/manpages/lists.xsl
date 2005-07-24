@@ -12,9 +12,9 @@
 
      ******************************************************************** -->
 
-<xsl:template match="para[ancestor::listitem or ancestor::step]|
-	             simpara[ancestor::listitem or ancestor::step]|
-		     remark[ancestor::listitem or ancestor::step]">
+<xsl:template match="para[ancestor::listitem or ancestor::step or ancestor::glossdef]|
+	             simpara[ancestor::listitem or ancestor::step or ancestor::glossdef]|
+		     remark[ancestor::listitem or ancestor::step or ancestor::glossdef]">
   <xsl:call-template name="mixed-block"/>
   <xsl:text>&#10;</xsl:text>
 
@@ -25,6 +25,15 @@
     <!-- * merge together.                                        -->
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
+</xsl:template>
+
+<xsl:template match="variablelist|glosslist">
+  <xsl:if test="title">
+    <xsl:text>.PP&#10;</xsl:text>
+    <xsl:apply-templates mode="bold" select="title"/>
+    <xsl:text>&#10;</xsl:text>
+  </xsl:if>
+  <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="varlistentry|glossentry">
@@ -53,15 +62,20 @@
 <xsl:template match="varlistentry/term"/>
 <xsl:template match="glossentry/glossterm"/>
 
-<xsl:template match="variablelist[ancestor::listitem or ancestor::step]|
-	             glosslist[ancestor::listitem or ancestor::step]">
+<xsl:template match="variablelist[ancestor::listitem or ancestor::step or ancestor::glossdef]|
+	             glosslist[ancestor::listitem or ancestor::step or ancestor::glossdef]">
   <xsl:text>.RS&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>.RE&#10;</xsl:text>
-  <xsl:text>.IP&#10;</xsl:text>
+  <xsl:if test="following-sibling::node() or
+                parent::para[following-sibling::node()] or
+                parent::simpara[following-sibling::node()] or
+                parent::remark[following-sibling::node()]">
+    <xsl:text>.IP&#10;</xsl:text>
+  </xsl:if>
 </xsl:template>
 
-<xsl:template match="varlistentry/listitem|glossdef">
+<xsl:template match="varlistentry/listitem|glossentry/glossdef">
   <xsl:apply-templates/>
 </xsl:template>
 
@@ -91,16 +105,23 @@
   <xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="itemizedlist[ancestor::listitem or ancestor::step]|
-	             orderedlist[ancestor::listitem or ancestor::step]|
-		     procedure[ancestor::listitem or ancestor::step]">
+<xsl:template match="itemizedlist[ancestor::listitem or ancestor::step  or ancestor::glossdef]|
+	             orderedlist[ancestor::listitem or ancestor::step or ancestor::glossdef]|
+		     procedure[ancestor::listitem or ancestor::step or ancestor::glossdef]">
   <xsl:text>.RS&#10;</xsl:text>
   <xsl:text>.TP 3&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>.RE&#10;</xsl:text>
-  <xsl:text>.IP&#10;</xsl:text>
+  <xsl:if test="following-sibling::node() or
+                parent::para[following-sibling::node()] or
+                parent::simpara[following-sibling::node()] or
+                parent::remark[following-sibling::node()]">
+    <xsl:text>.IP&#10;</xsl:text>
+  </xsl:if>
 </xsl:template>
 
+<!-- ================================================================== -->
+  
 <!-- * for simplelist type="inline", render it as a comma-separated list -->
 <xsl:template match="simplelist[@type='inline']">
 

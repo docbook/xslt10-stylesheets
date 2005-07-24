@@ -47,16 +47,16 @@
     <!-- * Check to see if this verbatim item is within a parent element that -->
     <!-- * allows mixed content. -->
     <!-- * -->
-    <!-- * If it is within a mixed-content parent, then a line break is -->
+    <!-- * If it is within a mixed-content parent, then a line space is -->
     <!-- * already added before it by the mixed-block template, so we don't -->
     <!-- * need to add one here. -->
     <!-- * -->
     <!-- * If it is not within a mixed-content parent, then we need to add a -->
-    <!-- * line break before it. -->
+    <!-- * line space before it. -->
     <xsl:when test="parent::caption|parent::entry|parent::para|
                     parent::td|parent::th" /> <!-- do nothing -->
     <xsl:otherwise>
-      <xsl:text>&#10;</xsl:text>
+      <xsl:text>.sp&#10;</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
   <xsl:text>.nf&#10;</xsl:text>
