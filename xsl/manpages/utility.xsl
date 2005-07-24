@@ -128,7 +128,7 @@
     <xsl:text>&#10;</xsl:text>
     <xsl:call-template name="mark.subheading"/>
   </xsl:template>
-  
+
   <!-- ================================================================== -->
 
   <!-- * The mixed-block template jumps through a few hoops to deal with -->
@@ -138,28 +138,24 @@
   <xsl:template name="mixed-block">
     <xsl:for-each select="node()">
       <xsl:choose>
+        <!-- * Check to see if this node is a verbatim environment. -->
+        <!-- * If so, put a line of space before it. -->
+        <!-- * -->
+        <!-- * Yes, address and synopsis are vertabim environments. -->
+        <!-- * -->
+        <!-- * The code here previously also treated informaltable as a -->
+        <!-- * verbatim, presumably to support some kludge; I removed it -->
         <xsl:when test="self::address|self::literallayout|self::programlisting|
                         self::screen|self::synopsis">
-          <!-- * Check to see if this node is a verbatim environment. -->
-          <!-- * If so, put a line break before it. -->
-          <!-- * -->
-          <!-- * Yes, address and synopsis are vertabim environments. -->
-          <!-- * -->
-          <!-- * The code here previously also treated informaltable as a -->
-          <!-- * verbatim, presumably to support some kludge; I removed it -->
-          <xsl:text>&#10;</xsl:text>
+          <xsl:text>.sp&#10;</xsl:text>
           <xsl:apply-templates select="."/>
-          <!-- * we don't need an extra line break after verbatim environments -->
-          <!-- * <xsl:text> &#10;</xsl:text> -->
         </xsl:when>
-        <xsl:when test="self::itemizedlist|self::orderedlist|
-                        self::variablelist|self::simplelist[@type !='inline']">
-          <!-- * Check to see if this node is a list; if so, -->
-          <!-- * put a line break before it. -->
-          <xsl:text>&#10;</xsl:text>
+        <!-- * Check to see if this node is a list; if it is, we don't -->
+        <!-- * want to normalize-space(), so we just apply-templates -->
+        <xsl:when test="(self::itemizedlist|self::orderedlist|
+                        self::variablelist|self::glosslist|
+                        self::simplelist[@type !='inline'])">
           <xsl:apply-templates select="."/>
-          <!-- * we don't need an extra line break after lists -->
-          <!-- * <xsl:text> &#10;</xsl:text> -->
         </xsl:when>
         <xsl:when test="self::text()">
           <!-- * Check to see if this is a text node. -->
@@ -183,6 +179,13 @@
               test="starts-with(translate(.,'&#9;&#10;&#13; ','    '), ' ')
                     and preceding-sibling::node()[name(.)!='']
                     and normalize-space($content) != ''
+                    and not(
+                    preceding-sibling::variablelist[1] or
+                    preceding-sibling::glosslistlist[1] or
+                    preceding-sibling::itemizedlist[1] or
+                    preceding-sibling::orderededlist[1] or
+                    preceding-sibling::procedure[1]
+                    )
                     ">
             <xsl:text> &#10;</xsl:text>
           </xsl:if>
