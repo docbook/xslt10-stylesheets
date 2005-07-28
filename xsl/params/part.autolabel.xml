@@ -9,7 +9,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='part.autolabel.frag'><xsl:param name="part.autolabel" select="1"/></src:fragment>
+<src:fragment id='part.autolabel.frag'><xsl:param name="part.autolabel" select="'I'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
