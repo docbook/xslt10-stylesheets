@@ -1,7 +1,7 @@
 <!DOCTYPE article [
 <!ENTITY name "wd-docbook-docbook">
-<!ENTITY version "4.5CR1">
-<!ENTITY standard "Working Draft">
+<!ENTITY version "4.5">
+<!ENTITY standard "Public Review Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
 <!ENTITY root "http://www.oasis-open.org/docbook/">
@@ -34,7 +34,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>29 June 2005</pubdate>
+<pubdate>28 July 2005</pubdate>
 
 <copyright>
 <year>2001</year>
@@ -149,6 +149,13 @@ It is also available in <ulink url="&root;rng/">RELAX NG</ulink> and
 The DocBook site is mirrored on
 <ulink url="http://docbook.org/"/>.
 </para>
+
+<section id="s.pr">
+<title>Changes in the Public Review Draft of DocBook V4.5</title>
+
+<para>There are no technical changes in this release.
+</para>
+</section>
 
 <section id="s.cr1">
 <title>Changes in DocBook V4.5CR1</title>
@@ -526,6 +533,10 @@ of the DocBook web page
 
 <para>
 <revhistory>
+<revision role="&root;specs/pr-docbook-docbook-4.5.html">
+  <revnumber>Public Review Draft</revnumber>
+  <date>28 July 2005</date>
+</revision>
 <revision role="&root;specs/wd-docbook-docbook-4.5CR1.html">
   <revnumber>Working Draft CR1</revnumber>
   <date>29 June 2005</date>
