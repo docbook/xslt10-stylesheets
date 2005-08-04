@@ -2,7 +2,7 @@
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0"
 		version="1.0"
-                exclude-result-prefixes="exsl">
+                exclude-result-prefixes="cf exsl">
 
 <!-- ********************************************************************
      $Id$
