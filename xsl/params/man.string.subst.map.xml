@@ -30,11 +30,14 @@
   <!-- * now, we need to restore single-hypens in all roff requests -->
   <!-- * (because the substitution above added backslashes before them) -->
   <substitution oldstring=".sp \-" newstring=".sp -"/>
+  <substitution oldstring=".PP&#10;.sp" newstring=".PP"/>
   <substitution oldstring=".it 1 an\-trap" newstring=".it 1 an-trap"/>
   <substitution oldstring=".nr an\-no\-space\-flag 1" newstring=".nr an-no-space-flag 1"/>
   <substitution oldstring=".nr an\-break\-flag 1" newstring=".nr an-break-flag 1"/>
   <!-- * squeeze multiple newlines before a roff request  -->
   <substitution oldstring="&#10;&#10;." newstring="&#10;."/>
+  <!-- * remove any .sp occurences that directly follow a .PP  -->
+  <substitution oldstring=".PP&#10;.sp" newstring=".PP"/>
   <!-- * squeeze multiple newlines after start of no-fill (verbatim) env. -->
   <substitution oldstring=".nf&#10;&#10;" newstring=".nf&#10;"/>
   <!-- * an apostrophe at the beginning of a line gets interpreted as a -->
