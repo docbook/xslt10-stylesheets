@@ -147,6 +147,7 @@
         <!-- * verbatim, presumably to support some kludge; I removed it -->
         <xsl:when test="self::address|self::literallayout|self::programlisting|
                         self::screen|self::synopsis">
+          <xsl:text>&#10;</xsl:text>
           <xsl:text>.sp&#10;</xsl:text>
           <xsl:apply-templates select="."/>
         </xsl:when>
@@ -160,18 +161,9 @@
         <xsl:when test="self::text()">
           <!-- * Check to see if this is a text node. -->
           <!-- * -->
-          <!-- * If so, take any multiple whitespace at the beginning or end of -->
-          <!-- * it, and replace it with a space plus a linebreak. -->
+          <!-- * If so, replace all whitespace at the beginning or end of it -->
+          <!-- * with a single linebreak. -->
           <!-- * -->
-          <!-- * This hack results in some ugliness in the generated roff -->
-          <!-- * source. But it ensures the whitespace around text nodes in mixed -->
-          <!-- * content gets preserved; without the hack, that whitespace -->
-          <!-- * effectively gets gobbled. -->
-          <!-- * -->
-          <!-- * Note if the node is just space, we just pass it through -->
-          <!-- * without (re)adding a line break. -->
-          <!-- * -->
-          <!-- * There must be a better way to do with this...  -->
           <xsl:variable name="content">
             <xsl:apply-templates select="."/>
           </xsl:variable>
@@ -187,14 +179,13 @@
                     preceding-sibling::procedure[1]
                     )
                     ">
-            <xsl:text> &#10;</xsl:text>
+            <xsl:text>&#10;</xsl:text>
           </xsl:if>
           <xsl:value-of select="normalize-space($content)"/>
           <xsl:if
               test="translate(substring(., string-length(.), 1),'&#9;&#10;&#13; ','    ')  = ' '
                     and following-sibling::node()[name(.)!='']
                     ">
-            <xsl:text> </xsl:text>
             <xsl:if test="normalize-space($content) != ''">
               <xsl:text>&#10;</xsl:text>
             </xsl:if>
