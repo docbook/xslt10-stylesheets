@@ -475,7 +475,7 @@
         <xsl:with-param name="type" select="$type"/>
       </xsl:call-template>
     </xsl:when>
-    <xsl:when test="ancestor::*[contains(local-name(),'info')]">
+    <xsl:when test="ancestor::*[contains(local-name(),'info') and not(starts-with(local-name(),'info'))]">
       <xsl:call-template name="info.reference">
         <xsl:with-param name="scope" select="$scope"/>
         <xsl:with-param name="role" select="$role"/>
