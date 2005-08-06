@@ -15,6 +15,7 @@
       <firstname>Steve</firstname>
     </author>
     <copyright>
+      <year>2005</year>
       <year>2004</year>
       <holder>Steve Ball</holder>
     </copyright>
@@ -23,7 +24,7 @@
   <preface>
     <title>Introduction</title>
 
-    <para>This is technical documentation for the DocBook XSL Stylesheets to produce WordML output; it documents the parameters, templates and usage of the stylesheet(s).</para>
+    <para>This is technical documentation for the DocBook XSL Stylesheets to produce WordML output (or Apple Pages); it documents the parameters, templates and usage of the stylesheet(s).</para>
 
     <para>This is not intended to be <quote>user</quote> documentation.  It is provided for developers writing customisation layers for the stylesheets, and for anyone who's interested in <quote>how it works</quote>.</para>
   </preface>
@@ -53,6 +54,7 @@
      ******************************************************************** -->
 
 <src:fragref linkend="wordml.template.frag"/>
+<src:fragref linkend="pages.template.frag"/>
 </xsl:stylesheet>
     </src:fragment>
 
