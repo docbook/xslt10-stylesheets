@@ -319,7 +319,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <xsl:template match="thead">
   <xsl:variable name="tgroup" select="parent::*"/>
 
-  <fo:table-header start-indent="0pt">
+  <fo:table-header start-indent="0pt" end-indent="0pt">
     <xsl:apply-templates select="row[1]">
       <xsl:with-param name="spans">
         <xsl:call-template name="blank.spans">
@@ -333,7 +333,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <xsl:template match="tfoot">
   <xsl:variable name="tgroup" select="parent::*"/>
 
-  <fo:table-footer start-indent="0pt">
+  <fo:table-footer start-indent="0pt" end-indent="0pt">
     <xsl:apply-templates select="row[1]">
       <xsl:with-param name="spans">
         <xsl:call-template name="blank.spans">
@@ -348,7 +348,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <xsl:template match="tbody">
   <xsl:variable name="tgroup" select="parent::*"/>
 
-  <fo:table-body start-indent="0pt">
+  <fo:table-body start-indent="0pt" end-indent="0pt">
     <xsl:apply-templates select="row[1]">
       <xsl:with-param name="spans">
         <xsl:call-template name="blank.spans">
