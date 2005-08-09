@@ -169,14 +169,20 @@
           </xsl:variable>
           <xsl:if
               test="starts-with(translate(.,'&#9;&#10;&#13; ','    '), ' ')
-                    and preceding-sibling::node()[name(.)!='']
+                    and preceding-sibling::node()[1][name(.)!='']
                     and normalize-space($content) != ''
                     and not(
-                    preceding-sibling::variablelist[1] or
-                    preceding-sibling::glosslistlist[1] or
-                    preceding-sibling::itemizedlist[1] or
-                    preceding-sibling::orderededlist[1] or
-                    preceding-sibling::procedure[1]
+                    preceding-sibling::*[1][
+                    self::variablelist or
+                    self::glosslistlist or
+                    self::itemizedlist or
+                    self::orderededlist or
+                    self::procedure or
+                    self::address or
+                    self::literallayout or
+                    self::programlisting or
+                    self::screen
+                    ]
                     )
                     ">
             <xsl:text>&#10;</xsl:text>
@@ -184,7 +190,7 @@
           <xsl:value-of select="normalize-space($content)"/>
           <xsl:if
               test="translate(substring(., string-length(.), 1),'&#9;&#10;&#13; ','    ')  = ' '
-                    and following-sibling::node()[name(.)!='']
+                    and following-sibling::node()[1][name(.)!='']
                     ">
             <xsl:if test="normalize-space($content) != ''">
               <xsl:text>&#10;</xsl:text>

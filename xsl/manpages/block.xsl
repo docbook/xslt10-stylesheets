@@ -37,7 +37,7 @@
     <xsl:apply-templates/>
   </xsl:variable>
   <xsl:value-of select="normalize-space($content)"/>
-  <xsl:text>&#10;</xsl:text>
+  <xsl:text>.sp&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="address|literallayout|programlisting|screen|synopsis">
@@ -63,6 +63,11 @@
   <xsl:apply-templates/>
   <xsl:text>&#10;</xsl:text>
   <xsl:text>.fi&#10;</xsl:text>
+  <!-- * if first following sibling node of this verbatim -->
+  <!-- * environment is a text node, output a line of space before it -->
+  <xsl:if test="following-sibling::node()[1][name(.) = '']">
+    <xsl:text>.sp&#10;</xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="informalexample">
