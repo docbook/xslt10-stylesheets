@@ -67,7 +67,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
           <fo:table-column column-number="3" column-width="5%"/>
           <fo:table-column column-number="4" column-width="52%"/>
           <fo:table-column column-number="5" column-width="25%"/>
-          <fo:table-body>
+          <fo:table-body start-indent="0pt" end-indent="0pt">
             <xsl:apply-templates select="production|productionrecap"/>
           </fo:table-body>
         </fo:table>
@@ -80,7 +80,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
         <fo:table-column column-number="3" column-width="5%"/>
         <fo:table-column column-number="4" column-width="52%"/>
         <fo:table-column column-number="5" column-width="25%"/>
-        <fo:table-body>
+        <fo:table-body start-indent="0pt" end-indent="0pt">
           <xsl:apply-templates select="production|productionrecap"/>
         </fo:table-body>
       </fo:table>
