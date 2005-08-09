@@ -23,7 +23,7 @@
                 following-sibling::remark">
     <!-- * Make sure multiple paragraphs within a list item don't -->
     <!-- * merge together.                                        -->
-    <xsl:text>&#10;</xsl:text>
+    <xsl:text>.sp&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
 
