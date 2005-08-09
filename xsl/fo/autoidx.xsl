@@ -163,7 +163,7 @@
   <xsl:variable name="key"
                 select="translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;)"/>
 
-  <fo:block>
+  <fo:block xsl:use-attribute-sets="index.entry.properties">
     <xsl:apply-templates select="key('letter', $key)[&scope;][count(.|key('primary', &primary;)[&scope;][1]) = 1]"
                          mode="index-primary">
       <xsl:with-param name="scope" select="$scope"/>
