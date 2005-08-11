@@ -17,10 +17,11 @@
 		     remark[ancestor::listitem or ancestor::step or ancestor::glossdef]">
   <xsl:call-template name="mixed-block"/>
   <xsl:text>&#10;</xsl:text>
-
-  <xsl:if test="following-sibling::para or
-                following-sibling::simpara or
-                following-sibling::remark">
+  <xsl:if test="following-sibling::*[1][
+                self::para or
+                self::simpara or
+                self::remark
+                ]">
     <!-- * Make sure multiple paragraphs within a list item don't -->
     <!-- * merge together.                                        -->
     <xsl:text>.sp&#10;</xsl:text>
