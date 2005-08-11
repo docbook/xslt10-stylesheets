@@ -10,7 +10,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='annotation.support.frag'>
-<xsl:param name="annotation.support" select="1"/>
+<xsl:param name="annotation.support" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 

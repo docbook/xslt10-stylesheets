@@ -20,6 +20,7 @@
 <xsl:template match="annotation"/>
 
 <xsl:template name="apply-annotations">
+  <xsl:if test="$annotation.support != 0">
   <!-- do any annotations apply to the context node? -->
   <xsl:variable name="id" select="(@id|@xml:id)[1]"/>
 
@@ -46,6 +47,7 @@
     <xsl:call-template name="apply-annotations-by-gid">
       <xsl:with-param name="gids" select="normalize-space($aids)"/>
     </xsl:call-template>
+  </xsl:if>
   </xsl:if>
 </xsl:template>
 
