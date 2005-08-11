@@ -20,6 +20,19 @@
   descriptions for changes in the project CVS repository.</para>
 
   <section>
+    <title>Release 1.69.1</title>
+    <para>This release is a minor bug-fix update to the 1.69.0
+    release. Along with bug fixes, it includes one
+    configuration-parameter change: The default value of the
+    <parameter>annotation.support</parameter> parameter is now
+    <literal>0</literal> (off). The reason for that change is that
+    there have been reports that <tag>annotation</tag> handling is
+    causing a significant performance degradation in processing of
+    large documents with <command>xsltproc</command>.</para>
+  </section>
+  <!-- end of notes for 1.69.1 release -->
+
+  <section>
     <title>Release 1.69.0</title>
     <para>The release includes major feature changes,
     particularly in the <link linkend="V1690_MAN">manpages
