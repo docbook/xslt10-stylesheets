@@ -749,17 +749,19 @@ to be incomplete. Don't forget to read the source, too :-)</para>
         </xsl:attribute>
       </xsl:if>
 
-      <xsl:if test="$align.inherit != ''">
-        <xsl:attribute name="text-align">
-          <xsl:value-of select="$align.inherit"/>
-        </xsl:attribute>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="$align.inherit = 'char' and $char.inherit != ''">
+          <xsl:attribute name="text-align">
+            <xsl:value-of select="$char.inherit"/>
+          </xsl:attribute>
+        </xsl:when>
+        <xsl:when test="$align.inherit != ''">
+          <xsl:attribute name="text-align">
+            <xsl:value-of select="$align.inherit"/>
+          </xsl:attribute>
+        </xsl:when>
+      </xsl:choose>
 
-      <xsl:if test="$char.inherit != ''">
-        <xsl:attribute name="text-align">
-          <xsl:value-of select="$char.inherit"/>
-        </xsl:attribute>
-      </xsl:if>
     </xsl:when>
     <xsl:otherwise>
       <!-- HTML table -->
