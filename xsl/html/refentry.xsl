@@ -16,6 +16,9 @@
 
 <xsl:template match="reference">
   <div class="{name(.)}">
+    <xsl:call-template name="dir">
+      <xsl:with-param name="inherit" select="1"/>
+    </xsl:call-template>
     <xsl:call-template name="language.attribute"/>
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
@@ -79,6 +82,9 @@
 
 <xsl:template match="refentry">
   <div class="{name(.)}">
+    <xsl:call-template name="dir">
+      <xsl:with-param name="inherit" select="1"/>
+    </xsl:call-template>
     <xsl:call-template name="language.attribute"/>
     <xsl:if test="$refentry.separator != 0 and preceding-sibling::refentry">
       <div class="refentry.separator">
@@ -120,6 +126,9 @@
 
 <xsl:template match="refnamediv">
   <div class="{name(.)}">
+    <xsl:call-template name="dir">
+      <xsl:with-param name="inherit" select="1"/>
+    </xsl:call-template>
     <xsl:call-template name="anchor"/>
 
     <xsl:choose>
@@ -189,6 +198,9 @@
 
 <xsl:template match="refsynopsisdiv">
   <div class="{name(.)}">
+    <xsl:call-template name="dir">
+      <xsl:with-param name="inherit" select="1"/>
+    </xsl:call-template>
     <xsl:call-template name="anchor"/>
     <h2>
       <xsl:choose>
@@ -218,6 +230,9 @@
 
 <xsl:template match="refsection|refsect1|refsect2|refsect3">
   <div class="{name(.)}">
+    <xsl:call-template name="dir">
+      <xsl:with-param name="inherit" select="1"/>
+    </xsl:call-template>
     <xsl:call-template name="language.attribute"/>
     <xsl:call-template name="anchor">
       <xsl:with-param name="conditional" select="0"/>

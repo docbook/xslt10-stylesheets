@@ -56,6 +56,7 @@
 
   <xsl:variable name="p">
     <p>
+      <xsl:call-template name="dir"/>
       <xsl:if test="$class != ''">
         <xsl:attribute name="class">
           <xsl:value-of select="$class"/>

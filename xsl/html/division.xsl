@@ -16,6 +16,9 @@
 
 <xsl:template match="set">
   <div class="{name(.)}">
+    <xsl:call-template name="dir">
+      <xsl:with-param name="inherit" select="1"/>
+    </xsl:call-template>
     <xsl:call-template name="language.attribute"/>
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
@@ -49,6 +52,9 @@
 
 <xsl:template match="book">
   <div class="{name(.)}">
+    <xsl:call-template name="dir">
+      <xsl:with-param name="inherit" select="1"/>
+    </xsl:call-template>
     <xsl:call-template name="language.attribute"/>
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
@@ -84,6 +90,9 @@
 
 <xsl:template match="part">
   <div class="{name(.)}">
+    <xsl:call-template name="dir">
+      <xsl:with-param name="inherit" select="1"/>
+    </xsl:call-template>
     <xsl:call-template name="language.attribute"/>
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
@@ -121,6 +130,9 @@
 
 <xsl:template match="partintro">
   <div class="{name(.)}">
+    <xsl:call-template name="dir">
+      <xsl:with-param name="inherit" select="1"/>
+    </xsl:call-template>
     <xsl:call-template name="language.attribute"/>
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
