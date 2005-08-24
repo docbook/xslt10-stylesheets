@@ -116,12 +116,8 @@
     </xsl:call-template>
   </xsl:param>
   <span class="{local-name(.)}">
+    <xsl:call-template name="dir"/>
     <xsl:call-template name="generate.html.title"/>
-    <xsl:if test="@dir">
-      <xsl:attribute name="dir">
-        <xsl:value-of select="@dir"/>
-      </xsl:attribute>
-    </xsl:if>
     <xsl:copy-of select="$content"/>
     <xsl:call-template name="apply-annotations"/>
   </span>
@@ -137,12 +133,8 @@
     </xsl:call-template>
   </xsl:param>
   <code class="{local-name(.)}">
+    <xsl:call-template name="dir"/>
     <xsl:call-template name="generate.html.title"/>
-    <xsl:if test="@dir">
-      <xsl:attribute name="dir">
-        <xsl:value-of select="@dir"/>
-      </xsl:attribute>
-    </xsl:if>
     <xsl:copy-of select="$content"/>
     <xsl:call-template name="apply-annotations"/>
   </code>
@@ -160,11 +152,7 @@
 
   <span>
     <xsl:call-template name="generate.html.title"/>
-    <xsl:if test="@dir">
-      <xsl:attribute name="dir">
-        <xsl:value-of select="@dir"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="dir"/>
 
     <!-- don't put <strong> inside figure, example, or table titles -->
     <xsl:choose>
@@ -195,11 +183,7 @@
   </xsl:param>
   <em class="{local-name(.)}">
     <xsl:call-template name="generate.html.title"/>
-    <xsl:if test="@dir">
-      <xsl:attribute name="dir">
-        <xsl:value-of select="@dir"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="dir"/>
     <xsl:copy-of select="$content"/>
     <xsl:call-template name="apply-annotations"/>
   </em>
@@ -224,11 +208,7 @@
                          or local-name(../..) = 'formalpara')">
       <code class="{local-name(.)}">
         <xsl:call-template name="generate.html.title"/>
-        <xsl:if test="@dir">
-          <xsl:attribute name="dir">
-            <xsl:value-of select="@dir"/>
-          </xsl:attribute>
-        </xsl:if>
+	<xsl:call-template name="dir"/>
         <xsl:copy-of select="$content"/>
 	<xsl:call-template name="apply-annotations"/>
       </code>
@@ -237,11 +217,7 @@
       <strong class="{local-name(.)}">
         <code>
           <xsl:call-template name="generate.html.title"/>
-          <xsl:if test="@dir">
-            <xsl:attribute name="dir">
-              <xsl:value-of select="@dir"/>
-            </xsl:attribute>
-          </xsl:if>
+	  <xsl:call-template name="dir"/>
           <xsl:copy-of select="$content"/>
         </code>
 	<xsl:call-template name="apply-annotations"/>
@@ -262,11 +238,7 @@
   <em class="{local-name(.)}">
     <code>
       <xsl:call-template name="generate.html.title"/>
-      <xsl:if test="@dir">
-        <xsl:attribute name="dir">
-          <xsl:value-of select="@dir"/>
-        </xsl:attribute>
-      </xsl:if>
+      <xsl:call-template name="dir"/>
       <xsl:copy-of select="$content"/>
       <xsl:call-template name="apply-annotations"/>
     </code>
@@ -284,11 +256,7 @@
   </xsl:param>
   <sup>
     <xsl:call-template name="generate.html.title"/>
-    <xsl:if test="@dir">
-      <xsl:attribute name="dir">
-        <xsl:value-of select="@dir"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="dir"/>
     <xsl:copy-of select="$content"/>
     <xsl:call-template name="apply-annotations"/>
   </sup>
@@ -305,11 +273,7 @@
   </xsl:param>
   <sub>
     <xsl:call-template name="generate.html.title"/>
-    <xsl:if test="@dir">
-      <xsl:attribute name="dir">
-        <xsl:value-of select="@dir"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="dir"/>
     <xsl:copy-of select="$content"/>
     <xsl:call-template name="apply-annotations"/>
   </sub>
@@ -697,6 +661,7 @@
         <xsl:value-of select="@role"/>
       </xsl:attribute>
     </xsl:if>
+    <xsl:call-template name="dir"/>
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
       <xsl:with-param name="content">
@@ -710,7 +675,9 @@
 <xsl:template match="quote">
   <xsl:variable name="depth">
     <xsl:call-template name="dot.count">
-      <xsl:with-param name="string"><xsl:number level="multiple"/></xsl:with-param>
+      <xsl:with-param name="string">
+	<xsl:number level="multiple"/>
+      </xsl:with-param>
     </xsl:call-template>
   </xsl:variable>
   <xsl:choose>

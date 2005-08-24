@@ -27,6 +27,27 @@
   </xsl:if>
 </xsl:template>
 
+<xsl:template name="dir">
+  <xsl:param name="inherit" select="0"/>
+
+  <xsl:variable name="dir">
+    <xsl:choose>
+      <xsl:when test="@dir">
+	<xsl:value-of select="@dir"/>
+      </xsl:when>
+      <xsl:when test="$inherit != 0">
+	<xsl:value-of select="ancestor::*/@dir[1]"/>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:if test="$dir != ''">
+    <xsl:attribute name="dir">
+      <xsl:value-of select="$dir"/>
+    </xsl:attribute>
+  </xsl:if>
+</xsl:template>
+
 <xsl:template name="anchor">
   <xsl:param name="node" select="."/>
   <xsl:param name="conditional" select="1"/>
