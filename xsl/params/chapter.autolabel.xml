@@ -5,7 +5,7 @@
 </refmeta>
 <refnamediv>
 <refname>chapter.autolabel</refname>
-<refpurpose>Are chapters automatically enumerated?</refpurpose>
+<refpurpose>Specifies the labeling format from Chapter titles</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -53,7 +53,7 @@ as the number format if the value matches one of the following:
 </variablelist>
 
 <para>Any nonzero value other than the above will generate
-the default number format arabic.
+the default number format (arabic).
 </para>
 
 </refsect1>

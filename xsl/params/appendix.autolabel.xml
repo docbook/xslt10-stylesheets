@@ -5,7 +5,7 @@
 </refmeta>
 <refnamediv>
 <refname>appendix.autolabel</refname>
-<refpurpose>Are Appendixes automatically enumerated?</refpurpose>
+<refpurpose>Specifies the labeling format for Appendix titles</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -55,7 +55,7 @@ as the number format if the value matches one of the following:
 </variablelist>
 
 <para>Any nonzero value other than the above will generate
-the default number format upperalpha.
+the default number format (upperalpha).
 </para>
 
 </refsect1>

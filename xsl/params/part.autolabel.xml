@@ -5,7 +5,7 @@
 </refmeta>
 <refnamediv>
 <refname>part.autolabel</refname>
-<refpurpose>Are parts and references enumerated?</refpurpose>
+<refpurpose>Specifies the labeling format for Part titles</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -53,7 +53,7 @@ as the number format if the value matches one of the following:
 </variablelist>
 
 <para>Any nonzero value other than the above will generate
-the default number format upperroman.
+the default number format (upperroman).
 </para>
 
 
