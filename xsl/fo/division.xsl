@@ -230,7 +230,7 @@
                 select="title|subtitle|titleabbrev|bookinfo"/>
 
   <xsl:variable name="content"
-                select="*[not(self::title or self::subtitle
+                select="node()[not(self::title or self::subtitle
                             or self::titleabbrev
                             or self::bookinfo)]"/>
 
