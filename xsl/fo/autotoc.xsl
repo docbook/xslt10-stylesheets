@@ -340,7 +340,7 @@
 
   <xsl:variable name="nodes" select="section|sect1
                                      |simplesect[$simplesect.in.toc != 0]
-                                     |refentry"/>
+                                     |refentry|appendix"/>
 
   <xsl:variable name="depth.from.context" select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
 
