@@ -593,8 +593,7 @@
 
   <xsl:choose>
     <xsl:when test="$passivetex.extensions != 0
-                    or $fop.extensions != 0
-                    or $arbortext.extensions != 0">
+                    or $fop.extensions != 0">
       <xsl:value-of select="$filename"/>
     </xsl:when>
     <xsl:otherwise>
