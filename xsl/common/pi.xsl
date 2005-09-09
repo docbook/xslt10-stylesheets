@@ -105,7 +105,7 @@
     <xsl:variable name="tokenized-format-string">
       <xsl:call-template name="str.tokenize.keep.delimiters">
 	<xsl:with-param name="string" select="$format-nbsp"/>
-	<xsl:with-param name="delimiters" select="'&#xa0;,./-()[]'"/>
+	<xsl:with-param name="delimiters" select="'&#xa0;,./-()[]:'"/>
       </xsl:call-template>
     </xsl:variable>
 
