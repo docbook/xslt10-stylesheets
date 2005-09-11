@@ -141,7 +141,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="tgroup" name="tgroup">
-  <xsl:if test="not(@cols)">
+  <xsl:if test="not(@cols) or @cols = ''">
     <xsl:message terminate="yes">
       <xsl:text>Error: CALS tables must specify the number of columns.</xsl:text>
     </xsl:message>
