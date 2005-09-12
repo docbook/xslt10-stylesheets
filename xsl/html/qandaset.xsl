@@ -159,14 +159,14 @@
   </xsl:variable>
 
   <xsl:if test="(contains($toc.params, 'toc') and $toc != '0') or $toc = '1'">
-    <tr class="toc" colspan="2">
+    <tr class="toc">
       <td align="left" valign="top" colspan="2">
         <xsl:call-template name="process.qanda.toc"/>
       </td>
     </tr>
   </xsl:if>
   <xsl:if test="$preamble">
-    <tr class="toc" colspan="2">
+    <tr class="toc">
       <td align="left" valign="top" colspan="2">
         <xsl:apply-templates select="$preamble"/>
       </td>
