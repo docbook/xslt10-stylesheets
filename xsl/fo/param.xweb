@@ -488,6 +488,13 @@ url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http:
 &ebnf.statement.terminator;
 </reference>
 
+<reference><title>Prepress</title>
+&crop.marks;
+&crop.mark.width;
+&crop.mark.offset;
+&crop.mark.bleed;
+</reference>
+
 <!--
 <reference><title></title>
 </reference>
@@ -571,6 +578,10 @@ around all these parameters.</para>
 <src:fragref linkend="compact.list.item.spacing.frag"/>
 <src:fragref linkend="component.label.includes.part.label.frag"/>
 <src:fragref linkend="component.title.properties.frag"/>
+<src:fragref linkend="crop.marks.frag"/>
+<src:fragref linkend="crop.mark.width.frag"/>
+<src:fragref linkend="crop.mark.offset.frag"/>
+<src:fragref linkend="crop.mark.bleed.frag"/>
 <src:fragref linkend="current.docid.frag"/>
 <src:fragref linkend="default.float.class.frag"/>
 <src:fragref linkend="default.image.width.frag"/>

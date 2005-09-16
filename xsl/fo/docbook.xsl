@@ -219,6 +219,7 @@
     </xsl:attribute>
 
     <xsl:if test="$xep.extensions != 0">
+      <xsl:call-template name="xep-pis"/>
       <xsl:call-template name="xep-document-information"/>
     </xsl:if>
     <xsl:if test="$axf.extensions != 0">
