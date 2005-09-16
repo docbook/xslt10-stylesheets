@@ -156,4 +156,17 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template name="xep-pis">
+  <xsl:if test="$crop.marks != 0">
+    <xsl:processing-instruction name="xep-pdf-crop-mark-width"><xsl:value-of select="$crop.mark.width"/></xsl:processing-instruction>
+    <xsl:processing-instruction name="xep-pdf-crop-offset"><xsl:value-of select="$crop.mark.offset"/></xsl:processing-instruction>
+    <xsl:processing-instruction name="xep-pdf-bleed"><xsl:value-of select="$crop.mark.bleed"/></xsl:processing-instruction>
+  </xsl:if>
+
+  <xsl:call-template name="user-xep-pis"/>
+</xsl:template>
+
+<!-- Placeholder for user defined PIs -->
+<xsl:template name="user-xep-pis"/>
+
 </xsl:stylesheet>
