@@ -1,8 +1,14 @@
 package com.nwalsh.saxon;
 
-import java.io.*;
-import java.awt.*;
-import java.awt.image.*;
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URL;
+import java.net.MalformedURLException;
+import java.awt.Toolkit;
+import java.awt.Image;
+import java.awt.image.ImageObserver;
 import java.lang.Thread;
 import java.util.StringTokenizer;
 
@@ -41,7 +47,30 @@ public class ImageIntrinsics implements ImageObserver {
    */
   public ImageIntrinsics(String imageFn) {
     System.setProperty("java.awt.headless","true");
-    image = Toolkit.getDefaultToolkit().getImage (imageFn);
+
+    // Hack. I expect the right way to do this is to always use a URL.
+    // However, that means getting the base URI correct and dealing
+    // with the various permutations of the file: URI scheme on different
+    // platforms. So instead, what we're going to do is cheat. If it
+    // starts with http: or ftp:, call it a URI. Otherwise, call it
+    // a file. Also call it a file if the URI is malformed.
+
+    URL imageUrl = null;
+
+    if (imageFn.startsWith("http:") || imageFn.startsWith("ftp:")) {
+	try {
+	    imageUrl = new URL(imageFn);
+	} catch (MalformedURLException mue) {
+	    imageUrl = null;
+	}
+    }
+
+    if (imageUrl != null) {
+	image = Toolkit.getDefaultToolkit().getImage (imageUrl);
+    } else {
+	image = Toolkit.getDefaultToolkit().getImage (imageFn);
+    }
+
     width = image.getWidth(this);
 
     while (!imageFailed && (width == -1 || depth == -1)) {
@@ -56,7 +85,7 @@ public class ImageIntrinsics implements ImageObserver {
 
     if (imageFailed) {
       // Maybe it's an EPS or PDF?
-      // FIXME: this code is crude
+      // FIXME: this code is crude (and doesn't handle the URL case!!!)
       BufferedReader ir = null;
       String line = null;
       int lineLimit = 100;
