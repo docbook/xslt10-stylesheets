@@ -313,13 +313,9 @@
         </w:t>
       </w:r>
     </xsl:if>
-    <w:r>
-      <w:rPr>
-        <w:rStyle w:val='{name()}'/>
-      </w:rPr>
-
-      <xsl:apply-templates mode='text-run'/>
-    </w:r>
+    <xsl:call-template name='handle-linebreaks'>
+      <xsl:with-param name='style' select='name()'/>
+    </xsl:call-template>
   </xsl:template>
   <xsl:template match='email'>
     <xsl:variable name='address'>
@@ -334,12 +330,9 @@
       </xsl:choose>
     </xsl:variable>
     <w:hlink w:dest='{$address}'>
-      <w:r>
-        <w:rPr>
-          <w:rStyle w:val='Hyperlink'/>
-        </w:rPr>
-        <xsl:apply-templates mode='text-run'/>
-      </w:r>
+      <xsl:call-template name='handle-linebreaks'>
+	<xsl:with-param name='style'>Hyperlink</xsl:with-param>
+      </xsl:call-template>
     </w:hlink>
   </xsl:template>
   <!-- otheraddr often contains ulink -->
@@ -352,52 +345,39 @@
             <xsl:when test='$prev'>
               <xsl:for-each
                 select='preceding-sibling::node()[generate-id(following-sibling::ulink[1]) = generate-id(current())]'>
-                <w:r>
-                  <w:rPr>
-                    <w:rStyle w:val='otheraddr'/>
-                  </w:rPr>
-                  <xsl:apply-templates select='.' mode='text-run'/>
-                </w:r>
+		<xsl:call-template name='handle-linebreaks'>
+		  <xsl:with-param name='style'>otheraddr</xsl:with-param>
+		</xsl:call-template>
               </xsl:for-each>
             </xsl:when>
             <xsl:when test='preceding-sibling::node()'>
-              <w:r>
-                <w:rPr>
-                  <w:rStyle w:val='otheraddr'/>
-                </w:rPr>
-                <xsl:apply-templates mode='text-run'/>
-              </w:r>
+	      <xsl:call-template name='handle-linebreaks'>
+		<xsl:with-param name='style'>otheraddr</xsl:with-param>
+	      </xsl:call-template>
             </xsl:when>
           </xsl:choose>
           <xsl:apply-templates select='.'/>
         </xsl:for-each>
         <xsl:if test='ulink[last()]/following-sibling::node()'>
-          <w:r>
-            <w:rPr>
-              <w:rStyle w:val='otheraddr'/>
-            </w:rPr>
-            <xsl:apply-templates select='ulink[last()]/following-sibling::node()' mode='text-run'/>
-          </w:r>
+	  <xsl:call-template name='handle-linebreaks'>
+	    <xsl:with-param name='text'
+	      select='ulink[last()]/following-sibling::node()'/>
+	    <xsl:with-param name='style'>otheraddr</xsl:with-param>
+	  </xsl:call-template>
         </xsl:if>
       </xsl:when>
       <xsl:otherwise>
-        <w:r>
-          <w:rPr>
-            <w:rStyle w:val='otheraddr'/>
-          </w:rPr>
-          <xsl:apply-templates mode='text-run'/>
-        </w:r>
+	<xsl:call-template name='handle-linebreaks'>
+	  <xsl:with-param name='style'>otheraddr</xsl:with-param>
+	</xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
   <xsl:template match='ulink'>
     <w:hlink w:dest='{@url}'>
-      <w:r>
-        <w:rPr>
-          <w:rStyle w:val='Hyperlink'/>
-        </w:rPr>
-	<xsl:apply-templates mode='text-run'/>
-      </w:r>
+      <xsl:call-template name='handle-linebreaks'>
+	<xsl:with-param name='style'>Hyperlink</xsl:with-param>
+      </xsl:call-template>
     </w:hlink>
   </xsl:template>
 
@@ -517,9 +497,8 @@
           <w:i/>
         </xsl:if>
       </w:rPr>
-    </w:r>
-    <w:r>
       <w:t>
+	<!-- TODO: use handle-linebreaks -->
         <xsl:value-of select='.'/>
       </w:t>
     </w:r>
@@ -688,36 +667,29 @@
   </xsl:template>
 
   <xsl:template match='*[self::para|self::simpara]/text()[string-length(normalize-space(.)) != 0]'>
-    <w:r>
-      <w:t>
-        <xsl:value-of select='.'/>
-      </w:t>
-    </w:r>
+    <xsl:call-template name='handle-linebreaks'/>
   </xsl:template>
 
   <xsl:template match='text()[not(parent::para|parent::simpara|parent::literallayout)][string-length(normalize-space(.)) != 0]'>
-    <w:r>
-      <w:t>
-        <xsl:value-of select='.'/>
-      </w:t>
-    </w:r>
+    <xsl:call-template name='handle-linebreaks'/>
   </xsl:template>
   <xsl:template match='text()[string-length(normalize-space(.)) = 0]'/>
-  <xsl:template match='text()' mode='text-run'>
-    <w:t>
-      <xsl:value-of select='.'/>
-    </w:t>
-  </xsl:template>
   <xsl:template match='literallayout/text()'>
     <xsl:call-template name='handle-linebreaks'/>
   </xsl:template>
   <xsl:template name='handle-linebreaks'>
     <xsl:param name='text' select='.'/>
+    <xsl:param name='style'/>
 
     <xsl:choose>
       <xsl:when test='not($text)'/>
       <xsl:when test='contains($text, "&#xa;")'>
         <w:r>
+	  <xsl:if test='$style != ""'>
+	    <w:rPr>
+	      <w:rStyle w:val='{$style}'/>
+	    </w:rPr>
+	  </xsl:if>
           <w:t>
             <xsl:value-of select='substring-before($text, "&#xa;")'/>
           </w:t>
@@ -725,10 +697,16 @@
         <xsl:call-template name='handle-linebreaks-aux'>
           <xsl:with-param name='text'
             select='substring-after($text, "&#xa;")'/>
+	  <xsl:with-param name='style' select='$style'/>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
         <w:r>
+	  <xsl:if test='$style != ""'>
+	    <w:rPr>
+	      <w:rStyle w:val='{$style}'/>
+	    </w:rPr>
+	  </xsl:if>
           <w:t>
             <xsl:value-of select='$text'/>
           </w:t>
@@ -740,10 +718,16 @@
   <!-- pre-condition: leading linefeed has been stripped -->
   <xsl:template name='handle-linebreaks-aux'>
     <xsl:param name='text'/>
+    <xsl:param name='style'/>
 
     <xsl:choose>
       <xsl:when test='contains($text, "&#xa;")'>
         <w:r>
+	  <xsl:if test='$style != ""'>
+	    <w:rPr>
+	      <w:rStyle w:val='{$style}'/>
+	    </w:rPr>
+	  </xsl:if>
           <w:br/>
           <w:t>
             <xsl:value-of select='substring-before($text, "&#xa;")'/>
@@ -751,10 +735,16 @@
         </w:r>
         <xsl:call-template name='handle-linebreaks-aux'>
           <xsl:with-param name='text' select='substring-after($text, "&#xa;")'/>
+	  <xsl:with-param name='style' select='$style'/>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
         <w:r>
+	  <xsl:if test='$style != ""'>
+	    <w:rPr>
+	      <w:rStyle w:val='{$style}'/>
+	    </w:rPr>
+	  </xsl:if>
           <w:br/>
           <w:t>
             <xsl:value-of select='$text'/>
