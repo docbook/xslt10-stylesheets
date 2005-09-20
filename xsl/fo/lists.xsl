@@ -50,30 +50,22 @@
   <!-- nested lists don't add extra list-block spacing -->
   <xsl:choose>
     <xsl:when test="ancestor::listitem">
-      <fo:list-block id="{$id}" 
-                     provisional-label-separation="0.2em">
-        <xsl:attribute name="provisional-distance-between-starts">
-          <xsl:choose>
-            <xsl:when test="$label-width != ''">
-              <xsl:value-of select="$label-width"/>
-            </xsl:when>
-            <xsl:otherwise>1.5em</xsl:otherwise>
-          </xsl:choose>
-        </xsl:attribute>
+      <fo:list-block id="{$id}" xsl:use-attribute-sets="itemizedlist.properties">
+	<xsl:if test="$label-width != ''">
+	  <xsl:attribute name="provisional-distance-between-starts">
+	    <xsl:value-of select="$label-width"/>
+	  </xsl:attribute>
+	</xsl:if>
         <xsl:copy-of select="$content"/>
       </fo:list-block>
     </xsl:when>
     <xsl:otherwise>
-      <fo:list-block id="{$id}" xsl:use-attribute-sets="list.block.spacing"
-                     provisional-label-separation="0.2em">
-        <xsl:attribute name="provisional-distance-between-starts">
-          <xsl:choose>
-            <xsl:when test="$label-width != ''">
-              <xsl:value-of select="$label-width"/>
-            </xsl:when>
-            <xsl:otherwise>1.5em</xsl:otherwise>
-          </xsl:choose>
-        </xsl:attribute>
+      <fo:list-block id="{$id}" xsl:use-attribute-sets="list.block.spacing itemizedlist.properties">
+	<xsl:if test="$label-width != ''">
+	  <xsl:attribute name="provisional-distance-between-starts">
+	    <xsl:value-of select="$label-width"/>
+	  </xsl:attribute>
+	</xsl:if>
         <xsl:copy-of select="$content"/>
       </fo:list-block>
     </xsl:otherwise>
@@ -113,7 +105,7 @@
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
   <xsl:variable name="item.contents">
-    <fo:list-item-label end-indent="label-end()">
+    <fo:list-item-label end-indent="label-end()" xsl:use-attribute-sets="itemizedlist.label.properties">
       <fo:block>
         <xsl:call-template name="itemizedlist.label.markup">
           <xsl:with-param name="itemsymbol">
@@ -210,30 +202,22 @@
   <!-- nested lists don't add extra list-block spacing -->
   <xsl:choose>
     <xsl:when test="ancestor::listitem">
-      <fo:list-block id="{$id}" 
-                     provisional-label-separation="0.2em">
-        <xsl:attribute name="provisional-distance-between-starts">
-          <xsl:choose>
-            <xsl:when test="$label-width != ''">
-              <xsl:value-of select="$label-width"/>
-            </xsl:when>
-            <xsl:otherwise>2em</xsl:otherwise>
-          </xsl:choose>
-        </xsl:attribute>
+      <fo:list-block id="{$id}" xsl:use-attribute-sets="orderedlist.properties">
+	<xsl:if test="$label-width != ''">
+	  <xsl:attribute name="provisional-distance-between-starts">
+	    <xsl:value-of select="$label-width"/>
+	  </xsl:attribute>
+	</xsl:if>
         <xsl:copy-of select="$content"/>
       </fo:list-block>
     </xsl:when>
     <xsl:otherwise>
-      <fo:list-block id="{$id}" xsl:use-attribute-sets="list.block.spacing"
-                     provisional-label-separation="0.2em">
-        <xsl:attribute name="provisional-distance-between-starts">
-          <xsl:choose>
-            <xsl:when test="$label-width != ''">
-              <xsl:value-of select="$label-width"/>
-            </xsl:when>
-            <xsl:otherwise>2em</xsl:otherwise>
-          </xsl:choose>
-        </xsl:attribute>
+      <fo:list-block id="{$id}" xsl:use-attribute-sets="list.block.spacing orderedlist.properties">
+	<xsl:if test="$label-width != ''">
+	  <xsl:attribute name="provisional-distance-between-starts">
+	    <xsl:value-of select="$label-width"/>
+	  </xsl:attribute>
+	</xsl:if>
         <xsl:copy-of select="$content"/>
       </fo:list-block>
     </xsl:otherwise>
@@ -282,7 +266,7 @@
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
   <xsl:variable name="item.contents">
-    <fo:list-item-label end-indent="label-end()">
+    <fo:list-item-label end-indent="label-end()" xsl:use-attribute-sets="orderedlist.label.properties">
       <fo:block>
         <xsl:apply-templates select="." mode="item-number"/>
       </fo:block>

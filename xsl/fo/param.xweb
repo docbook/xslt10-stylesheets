@@ -391,6 +391,11 @@ zero by default, so this is simply the page-master region-left.
 &list.item.spacing;
 &compact.list.item.spacing;
 &variablelist.max.termlength;
+&list.block.properties;
+&itemizedlist.properties;
+&itemizedlist.label.properties;
+&orderedlist.properties;
+&orderedlist.label.properties;
 </reference>
 
 <reference><title>Cross References</title>
@@ -646,6 +651,8 @@ around all these parameters.</para>
 <src:fragref linkend="index.div.title.properties.frag"/>
 <src:fragref linkend="index.entry.properties.frag"/>
 <src:fragref linkend="insert.xref.page.number.frag"/>
+<src:fragref linkend="itemizedlist.properties.frag"/>
+<src:fragref linkend="itemizedlist.label.properties.frag"/>
 <src:fragref linkend="l10n.gentext.default.language.frag"/>
 <src:fragref linkend="l10n.gentext.language.frag"/>
 <src:fragref linkend="l10n.gentext.use.xref.language.frag"/>
@@ -656,6 +663,7 @@ around all these parameters.</para>
 <src:fragref linkend="linenumbering.extension.frag"/>
 <src:fragref linkend="linenumbering.separator.frag"/>
 <src:fragref linkend="linenumbering.width.frag"/>
+<src:fragref linkend="list.block.properties.frag"/>
 <src:fragref linkend="list.block.spacing.frag"/>
 <src:fragref linkend="list.item.spacing.frag"/>
 <src:fragref linkend="make.index.markup.frag"/>
@@ -678,6 +686,8 @@ around all these parameters.</para>
 <src:fragref linkend="olink.debug.frag"/>
 <src:fragref linkend="olink.properties.frag"/>
 <src:fragref linkend="olink.lang.fallback.sequence.frag"/>
+<src:fragref linkend="orderedlist.properties.frag"/>
+<src:fragref linkend="orderedlist.label.properties.frag"/>
 <src:fragref linkend="prefer.internal.olink.frag"/>
 <src:fragref linkend="insert.olink.page.number.frag"/>
 <src:fragref linkend="insert.olink.pdf.frag.frag"/>
