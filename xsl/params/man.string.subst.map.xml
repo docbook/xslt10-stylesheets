@@ -17,6 +17,11 @@
   <substitution oldstring="\\fB" newstring="\fB"/>
   <substitution oldstring="\\fI" newstring="\fI"/>
   <substitution oldstring="\\fR" newstring="\fR"/>
+  <!-- * requests in .SH sectsions output from Refsect1-level source -->
+  <!-- * end up getting capitalized... -->
+  <substitution oldstring="\\FB" newstring="\fB"/>
+  <substitution oldstring="\\FI" newstring="\fI"/>
+  <substitution oldstring="\\FR" newstring="\fR"/>
   <substitution oldstring='\\%' newstring='\%'/>
   <substitution oldstring='\\&amp;' newstring='\&amp;'/>
   <substitution oldstring='.\\"' newstring='.\"'/>
