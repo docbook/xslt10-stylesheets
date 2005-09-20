@@ -42,6 +42,10 @@ while (<F>) {
     $date = $1 if /^(\d+-\d+-\d+)/;
     $found = 1 if /^\s+\* \S+: Version $version\s+/;
     $found = 1 if /^\s+\* \S+: Version $version\s*$/;
+    # following match needed because Changelog might have
+    # "* VERSION, VERSION: Version 1.69.1 released." (if same
+    # change description was entered twice). -Mike
+    $found = 1 if /^\s+\* [^:]+: Version $version\s+/;
     last if $found;
 }
 
@@ -150,7 +154,10 @@ sub last_version {
 	my $minor = $3;
 
 	if ($minor == 0) {
-	    die "Can\'t calculate preceding from $version.\n";
+	# do the following in order to get useful merged changelog
+	# for snapshot builds --Mike
+	    $middle--;
+	    $minor++;
 	} else {
 	    $minor--;
 	}
