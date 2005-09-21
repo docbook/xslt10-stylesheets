@@ -9,7 +9,7 @@
 
 </refnamediv> 
 <refsynopsisdiv> <src:fragment id="olink.doctitle.frag">
-<xsl:param name="olink.doctitle" select="no"/> </src:fragment> 
+<xsl:param name="olink.doctitle" select="'no'"/> </src:fragment> 
 </refsynopsisdiv> 
 <refsect1> 
 <title>Description</title> 
