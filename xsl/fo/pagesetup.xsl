@@ -2084,11 +2084,11 @@
     <xsl:when test="$fop.extensions != 0 or $passivetex.extensions != 0">
       <!-- body.start.indent does not work well with these processors -->
     </xsl:when>
-    <xsl:when test="$master-reference = 'body' or
-                    $master-reference = 'lot' or
-                    $master-reference = 'front' or
+    <xsl:when test="starts-with($master-reference, 'body') or
+                    starts-with($master-reference, 'lot') or
+                    starts-with($master-reference, 'front') or
                     $element = 'preface' or
-                    ($master-reference = 'back' and
+                    (starts-with($master-reference, 'back') and
                     $element = 'appendix')">
       <xsl:attribute name="start-indent">
         <xsl:value-of select="$body.start.indent"/>
