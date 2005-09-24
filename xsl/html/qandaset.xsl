@@ -136,9 +136,6 @@
   <xsl:if test="blockinfo/title|title">
     <tr class="qandadiv">
       <td align="left" valign="top" colspan="2">
-        <xsl:call-template name="anchor">
-          <xsl:with-param name="conditional" select="0"/>
-        </xsl:call-template>
         <xsl:apply-templates select="(blockinfo/title|title)[1]"/>
       </td>
     </tr>
@@ -224,12 +221,18 @@
         <xsl:with-param name="conditional" select="0"/>
       </xsl:call-template>
 
-      <b>
+      <xsl:variable name="label.content">
         <xsl:apply-templates select="." mode="label.markup"/>
         <xsl:if test="$deflabel = 'number' and not(label)">
           <xsl:apply-templates select="." mode="intralabel.punctuation"/>
-	</xsl:if>
-      </b>
+        </xsl:if>
+      </xsl:variable>
+
+      <xsl:if test="string-length($label.content) &gt; 0">
+        <b>
+          <xsl:copy-of select="$label.content"/>
+        </b>
+      </xsl:if>
     </td>
     <td align="left" valign="top">
       <xsl:choose>
@@ -260,12 +263,14 @@
   <tr class="{name(.)}">
     <td align="left" valign="top">
       <xsl:call-template name="anchor"/>
-      <b>
-        <xsl:variable name="answer.label">
-          <xsl:apply-templates select="." mode="label.markup"/>
-        </xsl:variable>
-        <xsl:copy-of select="$answer.label"/>
-      </b>
+      <xsl:variable name="answer.label">
+        <xsl:apply-templates select="." mode="label.markup"/>
+      </xsl:variable>
+      <xsl:if test="string-length($answer.label) &gt; 0">
+        <b>
+          <xsl:copy-of select="$answer.label"/>
+        </b>
+      </xsl:if>
     </td>
     <td align="left" valign="top">
       <xsl:apply-templates select="*[name(.) != 'label']"/>
