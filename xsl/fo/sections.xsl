@@ -249,15 +249,10 @@
       </xsl:apply-templates>
     </xsl:variable>
 
-    <xsl:variable name="titleabbrev">
-      <xsl:apply-templates select="$section" mode="titleabbrev.markup"/>
-    </xsl:variable>
-
-    <!-- Use for running head only if actual titleabbrev element -->
-    <xsl:variable name="titleabbrev.elem">
-      <xsl:if test="$section/titleabbrev">
-        <xsl:apply-templates select="$section" mode="titleabbrev.markup"/>
-      </xsl:if>
+    <xsl:variable name="marker.title">
+      <xsl:apply-templates select="$section" mode="titleabbrev.markup">
+        <xsl:with-param name="allow-anchors" select="0"/>
+      </xsl:apply-templates>
     </xsl:variable>
 
     <xsl:if test="$passivetex.extensions != 0">
@@ -282,7 +277,7 @@
       <xsl:with-param name="level" select="$level"/>
       <xsl:with-param name="title" select="$title"/>
       <xsl:with-param name="marker" select="$marker"/>
-      <xsl:with-param name="titleabbrev" select="$titleabbrev.elem"/>
+      <xsl:with-param name="marker.title" select="$marker.title"/>
     </xsl:call-template>
   </fo:block>
 </xsl:template>
@@ -547,21 +542,15 @@
   <xsl:param name="level" select="1"/>
   <xsl:param name="marker" select="1"/>
   <xsl:param name="title"/>
-  <xsl:param name="titleabbrev"/>
+  <xsl:param name="marker.title"/>
 
   <fo:block xsl:use-attribute-sets="section.title.properties">
     <xsl:if test="$marker != 0">
       <fo:marker marker-class-name="section.head.marker">
-        <xsl:choose>
-          <xsl:when test="$titleabbrev = ''">
-            <xsl:value-of select="$title"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="$titleabbrev"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:copy-of select="$marker.title"/>
       </fo:marker>
     </xsl:if>
+
     <xsl:choose>
       <xsl:when test="$level=1">
         <fo:block xsl:use-attribute-sets="section.title.level1.properties">
