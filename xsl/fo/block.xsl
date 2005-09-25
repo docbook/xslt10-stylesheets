@@ -259,12 +259,9 @@
     <xsl:otherwise>
       <xsl:variable name="content">
         <fo:block xsl:use-attribute-sets="sidebar.properties">
-          <xsl:if test="./title">
-            <fo:block xsl:use-attribute-sets="sidebar.title.properties">
-              <xsl:apply-templates select="./title" mode="sidebar.title.mode"/>
-            </fo:block>
-          </xsl:if>
-          <xsl:apply-templates/>
+	  <xsl:call-template name="sidebar.titlepage"/>
+          <xsl:apply-templates select="node()[not(title) and
+	                                 not(sidebarinfo)]"/>
         </fo:block>
       </xsl:variable>
     
@@ -322,11 +319,13 @@
 
 </xsl:template>
 
-<xsl:template match="sidebar/title">
-</xsl:template>
+<xsl:template match="sidebar/title|sidebarinfo"/>
 
-<xsl:template match="sidebar/title" mode="sidebar.title.mode">
-  <xsl:apply-templates/>
+<xsl:template match="sidebar/title|sidebarinfo|title"
+              mode="titlepage.mode" priority="1">
+  <fo:block xsl:use-attribute-sets="sidebar.title.properties">
+    <xsl:apply-templates/>
+  </fo:block>
 </xsl:template>
 
 <xsl:template name="margin.note">
