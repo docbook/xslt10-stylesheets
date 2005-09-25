@@ -324,7 +324,9 @@
 </xsl:template>
 
 <xsl:template match="question" mode="qandatoc.mode">
-  <xsl:variable name="firstch" select="(*[name(.)!='label'])[1]"/>
+  <xsl:variable name="firstch">
+    <xsl:apply-templates select="(*[name(.)!='label'])[1]"/>
+  </xsl:variable>
   <xsl:variable name="deflabel">
     <xsl:choose>
       <xsl:when test="ancestor-or-self::*[@defaultlabel]">
