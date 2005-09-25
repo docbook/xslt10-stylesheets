@@ -82,6 +82,9 @@
 <xsl:attribute-set name="colophon.titlepage.recto.style"/>
 <xsl:attribute-set name="colophon.titlepage.verso.style"/>
 
+<xsl:attribute-set name="sidebar.titlepage.recto.style"/>
+<xsl:attribute-set name="sidebar.titlepage.verso.style"/>
+
 <xsl:attribute-set name="section.titlepage.recto.style">
   <xsl:attribute name="keep-together.within-column">always</xsl:attribute>
 </xsl:attribute-set>
