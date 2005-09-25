@@ -1240,4 +1240,66 @@
   <xsl:copy-of select="$direction"/>
 </xsl:template>
 
+<xsl:template match="olink" mode="pagenumber.markup">
+  <!-- Local olinks can use page-citation -->
+  <xsl:variable name="targetdoc.att" select="@targetdoc"/>
+  <xsl:variable name="targetptr.att" select="@targetptr"/>
+
+  <xsl:variable name="olink.lang">
+    <xsl:call-template name="l10n.language">
+      <xsl:with-param name="xref-context" select="true()"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="target.database.filename">
+    <xsl:call-template name="select.target.database">
+      <xsl:with-param name="targetdoc.att" select="$targetdoc.att"/>
+      <xsl:with-param name="targetptr.att" select="$targetptr.att"/>
+      <xsl:with-param name="olink.lang" select="$olink.lang"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="target.database" 
+      select="document($target.database.filename, /)"/>
+
+  <xsl:if test="$olink.debug != 0">
+    <xsl:message>
+      <xsl:text>Olink debug: root element of target.database is '</xsl:text>
+      <xsl:value-of select="local-name($target.database/*[1])"/>
+      <xsl:text>'.</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
+  <xsl:variable name="olink.key">
+    <xsl:call-template name="select.olink.key">
+      <xsl:with-param name="targetdoc.att" select="$targetdoc.att"/>
+      <xsl:with-param name="targetptr.att" select="$targetptr.att"/>
+      <xsl:with-param name="olink.lang" select="$olink.lang"/>
+      <xsl:with-param name="target.database" select="$target.database"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <!-- Olink that points to internal id can be a link -->
+  <xsl:variable name="linkend">
+    <xsl:call-template name="olink.as.linkend">
+      <xsl:with-param name="olink.key" select="$olink.key"/>
+      <xsl:with-param name="olink.lang" select="$olink.lang"/>
+      <xsl:with-param name="target.database" select="$target.database"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$linkend != ''">
+      <fo:page-number-citation ref-id="{$linkend}"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message>
+        <xsl:text>Olink error: no page number linkend for local olink '</xsl:text>
+        <xsl:value-of select="$olink.key"/>
+        <xsl:text>'</xsl:text>
+      </xsl:message>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 </xsl:stylesheet>
