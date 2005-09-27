@@ -115,12 +115,19 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:param>
-  <span class="{local-name(.)}">
+  <!-- * if you want output from the inline.charseq template wrapped in -->
+  <!-- * something other than a Span, call the template with some value -->
+  <!-- * for the 'wrapper-name' param -->
+  <xsl:param name="wrapper-name">span</xsl:param>
+  <xsl:element name="{$wrapper-name}">
+    <xsl:attribute name="class">
+      <xsl:value-of select="local-name(.)"/>
+    </xsl:attribute>
     <xsl:call-template name="dir"/>
     <xsl:call-template name="generate.html.title"/>
     <xsl:copy-of select="$content"/>
     <xsl:call-template name="apply-annotations"/>
-  </span>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template name="inline.monoseq">
@@ -543,11 +550,15 @@
 </xsl:template>
 
 <xsl:template match="abbrev">
-  <xsl:call-template name="inline.charseq"/>
+  <xsl:call-template name="inline.charseq">
+    <xsl:with-param name="wrapper-name">abbr</xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="acronym">
-  <xsl:call-template name="inline.charseq"/>
+  <xsl:call-template name="inline.charseq">
+    <xsl:with-param name="wrapper-name">acronym</xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="citerefentry">
