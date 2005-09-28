@@ -565,10 +565,7 @@
 </xsl:template>
 
 <xsl:template match="varlistentry/term">
-  <xsl:variable name="content">
-    <xsl:apply-templates/>
-  </xsl:variable>
-  <fo:inline><xsl:value-of select="normalize-space($content)"/></fo:inline>
+  <fo:inline><xsl:apply-templates/></fo:inline>
   <xsl:choose>
     <xsl:when test="position() = last()"/> <!-- do nothing -->
     <xsl:otherwise>

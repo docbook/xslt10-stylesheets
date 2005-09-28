@@ -442,10 +442,7 @@
 <xsl:template match="varlistentry/term">
   <span class="term">
     <xsl:call-template name="anchor"/>
-    <xsl:variable name="content">
-      <xsl:apply-templates/>
-    </xsl:variable>
-    <xsl:value-of select="normalize-space($content)"/>
+    <xsl:apply-templates/>
     <xsl:choose>
       <xsl:when test="position() = last()"/> <!-- do nothing -->
       <xsl:otherwise>
