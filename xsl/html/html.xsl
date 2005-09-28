@@ -22,7 +22,7 @@
 <xsl:template name="generate.html.title">
   <xsl:if test="alt">
     <xsl:attribute name="title">
-      <xsl:value-of select="alt"/>
+      <xsl:value-of select="normalize-space(alt)"/>
     </xsl:attribute>
   </xsl:if>
 </xsl:template>
