@@ -223,6 +223,13 @@ stylesheet like this:</para>
 &olink.resolver;
 </reference>
 
+<reference id="lists"><title>Lists</title>
+&segmentedlist.as.table;
+&variablelist.as.table;
+&variablelist.term.separator;
+&variablelist.term.break.after;
+</reference>
+
 <reference><title>Bibliography</title>
 &biblioentry.item.separator;
 &bibliography.collection;
@@ -246,8 +253,6 @@ stylesheet like this:</para>
 &shade.verbatim;
 &shade.verbatim.style;
 &punct.honorific;
-&segmentedlist.as.table;
-&variablelist.as.table;
 &tex.math.in.alt;
 &tex.math.file;
 &tex.math.delims;
@@ -696,6 +701,8 @@ around all these parameters.</para>
 <src:fragref linkend="use.role.for.mediaobject.frag"/>
 <src:fragref linkend="use.svg.frag"/>
 <src:fragref linkend="variablelist.as.table.frag"/>
+<src:fragref linkend="variablelist.term.separator.frag"/>
+<src:fragref linkend="variablelist.term.break.after.frag"/>
 <src:fragref linkend="xref.with.number.and.title.frag"/>
 <src:fragref linkend="xref.label-title.separator.frag"/>
 <src:fragref linkend="xref.label-page.separator.frag"/>

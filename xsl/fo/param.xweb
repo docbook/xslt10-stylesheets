@@ -387,15 +387,17 @@ zero by default, so this is simply the page-master region-left.
 </reference>
 
 <reference><title>Lists</title>
-&list.block.spacing;
-&list.item.spacing;
 &compact.list.item.spacing;
-&variablelist.max.termlength;
-&list.block.properties;
 &itemizedlist.properties;
 &itemizedlist.label.properties;
+&list.block.properties;
+&list.block.spacing;
+&list.item.spacing;
 &orderedlist.properties;
 &orderedlist.label.properties;
+&variablelist.max.termlength;
+&variablelist.term.separator;
+&variablelist.term.break.after;
 </reference>
 
 <reference><title>Cross References</title>
@@ -808,6 +810,8 @@ around all these parameters.</para>
 <src:fragref linkend="use.svg.frag"/>
 <src:fragref linkend="variablelist.as.blocks.frag"/>
 <src:fragref linkend="variablelist.max.termlength.frag"/>
+<src:fragref linkend="variablelist.term.separator.frag"/>
+<src:fragref linkend="variablelist.term.break.after.frag"/>
 <src:fragref linkend="verbatim.properties.frag"/>
 <src:fragref linkend="xep.extensions.frag"/>
 <src:fragref linkend="xep.index.item.properties.frag"/>

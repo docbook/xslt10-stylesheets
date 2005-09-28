@@ -44,6 +44,11 @@
 &man.links.list.enabled;
 &man.links.list.heading;
   </reference>
+  <reference id="lists">
+  <title>Lists</title>
+&variablelist.term.separator;
+&variablelist.term.break.after;
+  </reference>
   <reference id="charmap">
   <title>Character/string substitution</title>
 &man.charmap.enabled;
@@ -119,6 +124,8 @@
 <src:fragref linkend="man.links.are.underlined.frag"/>
 <src:fragref linkend="man.links.list.enabled.frag"/>
 <src:fragref linkend="man.links.list.heading.frag"/>
+<src:fragref linkend="variablelist.term.separator.frag"/>
+<src:fragref linkend="variablelist.term.break.after.frag"/>
 <src:fragref linkend="man.charmap.enabled.frag"/>
 <src:fragref linkend="man.charmap.uri.frag"/>
 <src:fragref linkend="man.charmap.use.subset.frag"/>
