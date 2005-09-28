@@ -2004,30 +2004,37 @@
   <xsl:param name="element" select="local-name(.)"/>
   <xsl:param name="master-reference" select="''"/>
 
+  <!-- Select the first content that the stylesheet places
+       after the TOC -->
+  <xsl:variable name="first.book.content" 
+                select="ancestor::book/*[
+                          not(self::title or
+                              self::subtitle or
+                              self::titleabbrev or
+                              self::bookinfo or
+                              self::info or
+                              self::dedication or
+                              self::toc or
+                              self::lot)][1]"/>
   <xsl:choose>
     <!-- double-sided output -->
     <xsl:when test="$double.sided != 0">
       <xsl:choose>
         <xsl:when test="$element = 'toc'">auto-odd</xsl:when>
         <xsl:when test="$element = 'book'">1</xsl:when>
+	<!-- preface typically continues TOC roman numerals -->
+	<!-- Change page.number.format if not -->
         <xsl:when test="$element = 'preface'">auto-odd</xsl:when>
-        <xsl:when test="$element = 'part' and not(preceding::chapter)
-                        and not(preceding::part)">1</xsl:when>
-        <xsl:when test="($element = 'dedication' or $element = 'article') and
-                        not(preceding::chapter
+        <xsl:when test="($element = 'dedication' or $element = 'article') 
+	            and not(preceding::chapter
                             or preceding::preface
                             or preceding::appendix
                             or preceding::article
                             or preceding::dedication
                             or parent::part
                             or parent::reference)">1</xsl:when>
-        <xsl:when test="($element = 'chapter' or $element = 'appendix') and
-                        not(preceding::chapter
-                            or preceding::appendix
-                            or preceding::article
-                            or preceding::dedication
-                            or parent::part
-                            or parent::reference)">1</xsl:when>
+	<xsl:when test="generate-id($first.book.content) =
+	                generate-id(.)">1</xsl:when>
         <xsl:otherwise>auto-odd</xsl:otherwise>
       </xsl:choose>
     </xsl:when>
@@ -2038,9 +2045,7 @@
         <xsl:when test="$element = 'toc'">auto</xsl:when>
         <xsl:when test="$element = 'book'">1</xsl:when>
         <xsl:when test="$element = 'preface'">auto</xsl:when>
-        <xsl:when test="$element = 'part' and not(preceding::chapter)
-                        and not(preceding::part)">1</xsl:when>
-        <xsl:when test="($element = 'dedication' or $element = 'article') and
+       <xsl:when test="($element = 'dedication' or $element = 'article') and
                         not(preceding::chapter
                             or preceding::preface
                             or preceding::appendix
@@ -2048,13 +2053,8 @@
                             or preceding::dedication
                             or parent::part
                             or parent::reference)">1</xsl:when>
-        <xsl:when test="($element = 'chapter' or $element = 'appendix') and
-                        not(preceding::chapter
-                            or preceding::appendix
-                            or preceding::article
-                            or preceding::dedication
-                            or parent::part
-                            or parent::reference)">1</xsl:when>
+	<xsl:when test="generate-id($first.book.content) =
+	                generate-id(.)">1</xsl:when>
         <xsl:otherwise>auto</xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
