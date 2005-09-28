@@ -38,26 +38,54 @@
 </xsl:template>
 
 <xsl:template match="varlistentry|glossentry">
-  <xsl:text>.TP&#10;</xsl:text> 
-  <!-- * read in contents of all terms or glossterms so that we can run -->
-  <!-- * normalize-space on them as a set before rendering -->
-  <xsl:variable name="content">
-    <!-- * check each term/glossterm to see if it is the last one in the set; -->
-    <!-- * if not last, render a comma and space after it so that multiple -->
-    <!-- * terms/glossterms are displayed as a comma-separated list -->
-    <xsl:for-each select="term|glossterm">
+  <xsl:choose>
+    <!-- * if we have multiple terms in the same varlistentry, we can't -->
+    <!-- * use the .TP macro; we need to use .PP instead, then manually -->
+    <!-- * indent the listitem using .RS and .RE (see further down)-->
+    <xsl:when test="count(term) > 1">
+      <xsl:text>.PP&#10;</xsl:text> 
+    </xsl:when>
+    <xsl:otherwise> <!-- * we only have one term, so use .TP -->
+      <xsl:text>.TP&#10;</xsl:text> 
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:for-each select="term|glossterm">
+    <xsl:variable name="content">
       <xsl:apply-templates/>
-      <xsl:choose>
-        <xsl:when test="position() = last()"/> <!-- do nothing -->
-        <xsl:otherwise>
-          <xsl:text>, </xsl:text>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:for-each>
-  </xsl:variable>
-  <xsl:value-of select="normalize-space($content)"/>
+    </xsl:variable>
+    <xsl:value-of select="normalize-space($content)"/>
+    <xsl:choose>
+      <xsl:when test="position() = last()"/> <!-- do nothing -->
+      <xsl:otherwise>
+        <!-- * if we have multiple terms in the same varlistentry, generate -->
+        <!-- * a separator (", " by default) and/or an additional line -->
+        <!-- * break after each one except the last -->
+        <!-- * -->
+        <!-- * note that it is not valid to have multiple glossterms -->
+        <!-- * within a glossentry, so this logic never gets exercised -->
+        <!-- * for glossterms (every glossterm is always the last in -->
+        <!-- * its parent glossentry) -->
+        <xsl:value-of select="$variablelist.term.separator"/>
+        <xsl:if test="not($variablelist.term.break.after = '0')">
+          <xsl:text>&#10;</xsl:text>
+          <xsl:text>.br&#10;</xsl:text>
+        </xsl:if>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:for-each>
   <xsl:text>&#10;</xsl:text>
-  <xsl:apply-templates/>
+  <xsl:choose>
+    <!-- * if we have multiple terms in the same varlistentry, we need to-->
+    <!-- *  manually indent the listitem using .RS and .RE -->
+    <xsl:when test="count(term) > 1">
+      <xsl:text>.RS&#10;</xsl:text>
+      <xsl:apply-templates/>
+      <xsl:text>.RE&#10;</xsl:text>
+    </xsl:when>
+    <xsl:otherwise> <!-- * we only have one term, so just apply-templates -->
+      <xsl:apply-templates/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="varlistentry/term"/>

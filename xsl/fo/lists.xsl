@@ -565,11 +565,22 @@
 </xsl:template>
 
 <xsl:template match="varlistentry/term">
-  <fo:inline><xsl:apply-templates/>, </fo:inline>
-</xsl:template>
-
-<xsl:template match="varlistentry/term[position()=last()]" priority="2">
-  <fo:inline><xsl:apply-templates/></fo:inline>
+  <xsl:variable name="content">
+    <xsl:apply-templates/>
+  </xsl:variable>
+  <fo:inline><xsl:value-of select="normalize-space($content)"/></fo:inline>
+  <xsl:choose>
+    <xsl:when test="position() = last()"/> <!-- do nothing -->
+    <xsl:otherwise>
+      <!-- * if we have multiple terms in the same varlistentry, generate -->
+      <!-- * a separator (", " by default) and/or an additional line -->
+      <!-- * break after each one except the last -->
+      <fo:inline><xsl:value-of select="$variablelist.term.separator"/></fo:inline>
+      <xsl:if test="not($variablelist.term.break.after = '0')">
+        <fo:block/>
+      </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="varlistentry/listitem">

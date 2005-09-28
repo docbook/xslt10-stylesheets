@@ -442,15 +442,22 @@
 <xsl:template match="varlistentry/term">
   <span class="term">
     <xsl:call-template name="anchor"/>
-    <xsl:apply-templates/>
-    <xsl:text>, </xsl:text>
-  </span>
-</xsl:template>
-
-<xsl:template match="varlistentry/term[position()=last()]" priority="2">
-  <span class="term">
-    <xsl:call-template name="anchor"/>
-    <xsl:apply-templates/>
+    <xsl:variable name="content">
+      <xsl:apply-templates/>
+    </xsl:variable>
+    <xsl:value-of select="normalize-space($content)"/>
+    <xsl:choose>
+      <xsl:when test="position() = last()"/> <!-- do nothing -->
+      <xsl:otherwise>
+        <!-- * if we have multiple terms in the same varlistentry, generate -->
+        <!-- * a separator (", " by default) and/or an additional line -->
+        <!-- * break after each one except the last -->
+        <xsl:value-of select="$variablelist.term.separator"/>
+        <xsl:if test="not($variablelist.term.break.after = '0')">
+          <br/>
+        </xsl:if>
+      </xsl:otherwise>
+    </xsl:choose>
   </span>
 </xsl:template>
 
