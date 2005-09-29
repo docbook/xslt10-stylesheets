@@ -465,6 +465,31 @@
   </xsl:variable>
 
   <fo:block id="{$id}">
+    <xsl:if test="not(refsynopsisdivinfo/title|docinfo/title|info/title|title)">
+      <!-- * if we there is no appropriate title for this Refsynopsisdiv, -->
+      <!-- * then we need to call format.refentry.subheading to generate one -->
+      <fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                xsl:use-attribute-sets="refsynopsisdiv.titlepage.recto.style"
+                font-family="{$title.fontset}">
+        <!-- Contents of what is now the format.refentry.subheading -->
+        <!-- template were formerly intended to be used only to -->
+        <!-- process those subsections of Refentry that have "real" -->
+        <!-- title children. So as a kludge to get around the fact -->
+        <!-- that the template still basically "expects" to be -->
+        <!-- processing that kind of a node, when we call the -->
+        <!-- template to process generated titles, we must call it -->
+        <!-- with values for the "offset" and "section" parameters -->
+        <!-- that are different from the default values in the -->
+        <!-- format.refentry.subheading template itself. Because -->
+        <!-- those defaults are the values appropriate for processing -->
+        <!-- "real" title nodes. -->
+        <xsl:call-template name="format.refentry.subheading">
+          <xsl:with-param name="section" select="parent::*"/>
+          <xsl:with-param name="offset" select="1"/>
+          <xsl:with-param name="gentext.key" select="'RefSynopsisDiv'"/>
+        </xsl:call-template>
+      </fo:block>
+    </xsl:if>
     <xsl:call-template name="refsynopsisdiv.titlepage"/>
     <xsl:apply-templates/>
   </fo:block>
