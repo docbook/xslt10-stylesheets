@@ -190,10 +190,11 @@
     <xsl:choose>
       <xsl:when test="$xep.extensions != 0">
         <xsl:if test="$refs[not(see) and not(secondary)]">
-          <xsl:text>, </xsl:text>
+          <xsl:copy-of select="$index.term.separator"/>
           <xsl:variable name="primary" select="&primary;"/>
           <xsl:variable name="primary.significant" select="concat(&primary;, $significant.flag)"/>
-          <rx:page-index>
+          <rx:page-index list-separator="{$index.number.separator}"
+                         range-separator="{$index.range.separator}">
             <xsl:if test="$refs[@significance='preferred'][not(see) and not(secondary)]">
               <rx:index-item xsl:use-attribute-sets="index.preferred.page.properties xep.index.item.properties"
                 ref-key="{$primary.significant}"/>
@@ -213,6 +214,7 @@
               <xsl:with-param name="scope" select="$scope"/>
               <xsl:with-param name="role" select="$role"/>
               <xsl:with-param name="type" select="$type"/>
+              <xsl:with-param name="position" select="position()"/>
             </xsl:apply-templates>
           </xsl:for-each>
         </xsl:variable>
@@ -278,11 +280,12 @@
     <xsl:choose>
       <xsl:when test="$xep.extensions != 0">
         <xsl:if test="$refs[not(see) and not(tertiary)]">
-          <xsl:text>, </xsl:text>
+          <xsl:copy-of select="$index.term.separator"/>
           <xsl:variable name="primary" select="&primary;"/>
           <xsl:variable name="secondary" select="&secondary;"/>
           <xsl:variable name="primary.significant" select="concat(&primary;, $significant.flag)"/>
-          <rx:page-index>
+          <rx:page-index list-separator="{$index.number.separator}"
+                         range-separator="{$index.range.separator}">
             <xsl:if test="$refs[@significance='preferred'][not(see) and not(tertiary)]">
               <rx:index-item xsl:use-attribute-sets="index.preferred.page.properties xep.index.item.properties">
                 <xsl:attribute name="ref-key">
@@ -376,12 +379,13 @@
     <xsl:choose>
       <xsl:when test="$xep.extensions != 0">
         <xsl:if test="$refs[not(see)]">
-          <xsl:text>, </xsl:text>
+          <xsl:copy-of select="$index.term.separator"/>
           <xsl:variable name="primary" select="&primary;"/>
           <xsl:variable name="secondary" select="&secondary;"/>
           <xsl:variable name="tertiary" select="&tertiary;"/>
           <xsl:variable name="primary.significant" select="concat(&primary;, $significant.flag)"/>
-          <rx:page-index>
+          <rx:page-index list-separator="{$index.number.separator}"
+                         range-separator="{$index.range.separator}">
             <xsl:if test="$refs[@significance='preferred'][not(see)]">
               <rx:index-item xsl:use-attribute-sets="index.preferred.page.properties xep.index.item.properties">
                 <xsl:attribute name="ref-key">
@@ -460,11 +464,20 @@
   <xsl:param name="scope" select="."/>
   <xsl:param name="role" select="''"/>
   <xsl:param name="type" select="''"/>
-  <xsl:param name="separator" select="', '"/>
+  <xsl:param name="position" select="0"/>
+  <xsl:param name="separator" select="''"/>
 
-  <xsl:if test="$passivetex.extensions = '0'">
-    <xsl:value-of select="$separator"/>
-  </xsl:if>
+  <xsl:choose>
+    <xsl:when test="$separator != ''">
+      <xsl:value-of select="$separator"/>
+    </xsl:when>
+    <xsl:when test="$position = 1">
+      <xsl:value-of select="$index.term.separator"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$index.number.separator"/>
+    </xsl:otherwise>
+  </xsl:choose>
 
   <xsl:choose>
     <xsl:when test="@zone and string(@zone)">
@@ -497,7 +510,7 @@
           <xsl:with-param name="scope" select="$scope"/>
           <xsl:with-param name="role" select="$role"/>
           <xsl:with-param name="type" select="$type"/>
-          <xsl:with-param name="separator" select="'-'"/>
+          <xsl:with-param name="separator" select="$index.range.separator"/>
         </xsl:apply-templates>
       </xsl:if>
     </xsl:otherwise>
@@ -526,7 +539,7 @@
       </fo:basic-link>
 
       <xsl:if test="$passivetex.extensions = '0'">
-        <xsl:text>, </xsl:text>
+        <xsl:copy-of select="$index.number.separator"/>
       </xsl:if>
       <xsl:call-template name="reference">
         <xsl:with-param name="zones" select="substring-after($zones, ' ')"/>
