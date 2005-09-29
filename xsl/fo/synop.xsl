@@ -24,7 +24,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="cmdsynopsis">
-  <fo:block>
+  <fo:block xsl:use-attribute-sets="normal.para.spacing">
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
