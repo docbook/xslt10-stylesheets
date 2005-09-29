@@ -1,0 +1,49 @@
+<refentry id="index.term.separator">
+<refmeta>
+<refentrytitle>index.term.separator</refentrytitle>
+<refmiscinfo role="type">string</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>index.term.separator</refname>
+<refpurpose>Punctuation separating an index term 
+from its list of page references in an index</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='index.term.separator.frag'>
+<xsl:param name="index.term.separator">
+  <xsl:call-template name="gentext.template">
+    <xsl:with-param name="context">index</xsl:with-param>
+    <xsl:with-param name="name">term-separator</xsl:with-param>
+  </xsl:call-template>
+</xsl:param>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>This parameter contains the text to insert between
+the end of an index term and its list of page references.
+Typically that might be a comma and a space.
+</para>
+
+<para>Because this text may be locale dependent,
+this parameter's value is taken from a gentext
+template named 'term-separator' in the
+context 'index' in the stylesheet
+locale file for the language
+of the current document.
+</para>
+
+<para>So this text string can be customized in two ways.
+You can override the default gentext string using
+the <parameter>local.l10n.xml</parameter> parameter, or you can
+directly replace the content of this parameter.
+The content can be a simple string, or it can be
+something more complex such as a call-template.
+For fo output, it could be an <sgmltag>fo:leader</sgmltag>
+element to provide space of a specific length, or a dot leader.
+</para>
+
+</refsect1>
+</refentry>
