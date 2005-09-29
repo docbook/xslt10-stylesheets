@@ -53,7 +53,7 @@ stylesheet like this:</para>
 
 </preface>
 
-<reference><title>Admonitions</title>
+<reference id="admons"><title>Admonitions</title>
 &admon.graphics;
 &admon.graphics.extension;
 &admon.graphics.path;
@@ -64,7 +64,7 @@ stylesheet like this:</para>
 &nongraphical.admonition.properties;
 </reference>
 
-<reference><title>Callouts</title>
+<reference id="callouts"><title>Callouts</title>
 &callout.defaultcolumn;
 &callout.graphics;
 &callout.graphics.extension;
@@ -77,7 +77,7 @@ stylesheet like this:</para>
 &callouts.extension;
 </reference>
 
-<reference><title>ToC/LoT/Index Generation</title>
+<reference id="toc_index"><title>ToC/LoT/Index Generation</title>
 &autotoc.label.separator;
 &process.empty.source.toc;
 &process.source.toc;
@@ -107,7 +107,7 @@ generate.section.toc.level;
 
 </reference>
 
-<reference><title>Processor Extensions</title>
+<reference id="fo_ext"><title>Processor Extensions</title>
 &arbortext.extensions;
 &axf.extensions;
 &fop.extensions;
@@ -117,7 +117,7 @@ generate.section.toc.level;
 &xep.extensions;
 </reference>
 
-<reference><title>Stylesheet Extensions</title>
+<reference id="dbk_ext"><title>Stylesheet Extensions</title>
 &linenumbering.everyNth;
 &linenumbering.extension;
 &linenumbering.separator;
@@ -128,7 +128,7 @@ generate.section.toc.level;
 &use.extensions;
 </reference>
 
-<reference><title>Automatic labelling</title>
+<reference id="labels"><title>Automatic labelling</title>
 &appendix.autolabel;
 &chapter.autolabel;
 &part.autolabel;
@@ -140,17 +140,17 @@ generate.section.toc.level;
 &component.label.includes.part.label;
 </reference>
 
-<reference><title>XSLT Processing</title>
+<reference id="xslt"><title>XSLT Processing</title>
 &rootid;
 </reference>
 
-<reference><title>Meta/*Info</title>
+<reference id="meta"><title>Meta/*Info</title>
 &make.single.year.ranges;
 &make.year.ranges;
 &author.othername.in.middle;
 </reference>
 
-<reference><title>Reference Pages</title>
+<reference id="refentry"><title>Reference Pages</title>
 &funcsynopsis.decoration;
 &funcsynopsis.style;
 &function.parens;
@@ -161,7 +161,7 @@ generate.section.toc.level;
 &refentry.xref.manvolnum;
 </reference>
 
-<reference><title>Tables</title>
+<reference id="tables"><title>Tables</title>
 &default.table.width;
 &nominal.table.width;
 &table.cell.padding;
@@ -174,7 +174,7 @@ generate.section.toc.level;
 &table.table.properties;
 </reference>
 
-<reference><title>Linking</title>
+<reference id="links"><title>Linking</title>
 &current.docid;
 &collect.xref.targets;
 &insert.olink.page.number;
@@ -190,19 +190,19 @@ generate.section.toc.level;
 &use.local.olink.style;
 </reference>
 
-<reference><title>QAndASet</title>
+<reference id="qa"><title>QAndASet</title>
 &qandadiv.autolabel;
 &qanda.inherit.numeration;
 &qanda.defaultlabel;
 </reference>
 
-<reference><title>Bibliography</title>
+<reference id="biblio"><title>Bibliography</title>
 &biblioentry.item.separator;
 &bibliography.collection;
 &bibliography.numbered;
 </reference>
 
-<reference><title>Glossary</title>
+<reference id="glossary"><title>Glossary</title>
 &glossterm.auto.link;
 &firstterm.only.link;
 &glossary.collection;
@@ -213,7 +213,7 @@ generate.section.toc.level;
 &glossentry.show.acronym;
 </reference>
 
-<reference><title>Miscellaneous</title>
+<reference id="misc"><title>Miscellaneous</title>
 &formal.procedures;
 &formal.title.placement;
 &runinhead.default.title.end.punct;
@@ -247,7 +247,7 @@ generate.section.toc.level;
 &subscript.properties;
 </reference>
 
-<reference><title>Graphics</title>
+<reference id="graphics"><title>Graphics</title>
 &graphic.default.extension;
 &default.image.width;
 &preferred.mediaobject.role;
@@ -256,7 +256,7 @@ generate.section.toc.level;
 &img.src.path;
 </reference>
 
-<reference><title>Pagination and General Styles</title>
+<reference id="general"><title>Pagination and General Styles</title>
 <partintro>
 <section><title>Understanding XSL FO Margins</title>
 
@@ -377,7 +377,7 @@ zero by default, so this is simply the page-master region-left.
 &marker.section.level;
 </reference>
 
-<reference><title>Font Families</title>
+<reference id="fonts"><title>Font Families</title>
 &body.font.family;
 &dingbat.font.family;
 &monospace.font.family;
@@ -386,7 +386,7 @@ zero by default, so this is simply the page-master region-left.
 &symbol.font.family;
 </reference>
 
-<reference><title>Lists</title>
+<reference id="lists"><title>Lists</title>
 &compact.list.item.spacing;
 &itemizedlist.properties;
 &itemizedlist.label.properties;
@@ -400,7 +400,7 @@ zero by default, so this is simply the page-master region-left.
 &variablelist.term.break.after;
 </reference>
 
-<reference><title>Cross References</title>
+<reference id="xrefs"><title>Cross References</title>
 &insert.xref.page.number;
 &xref.properties;
 &xref.label-title.separator;
@@ -408,7 +408,7 @@ zero by default, so this is simply the page-master region-left.
 &xref.title-page.separator;
 </reference>
 
-<reference><title>Property Sets</title>
+<reference id="propsets"><title>Property Sets</title>
 &formal.object.properties;
 &formal.title.properties;
 &informal.object.properties;
@@ -460,7 +460,7 @@ zero by default, so this is simply the page-master region-left.
 &abstract.title.properties;
 </reference>
 
-<reference><title>Profiling</title>
+<reference id="profiling"><title>Profiling</title>
 <partintro>
 <para>Following parameters can be used for attribute value based
 profiling of your document. For more info about profiling look at
@@ -483,19 +483,19 @@ url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http:
 &profile.separator;
 </reference>
 
-<reference><title>Localization</title>
+<reference id="l10n"><title>Localization</title>
 &l10n.gentext.language;
 &l10n.gentext.default.language;
 &l10n.gentext.use.xref.language;
 &l10n.lang.value.rfc.compliant;
 </reference>
 
-<reference><title>EBNF</title>
+<reference id="ebnf"><title>EBNF</title>
 &ebnf.assignment;
 &ebnf.statement.terminator;
 </reference>
 
-<reference><title>Prepress</title>
+<reference id="prepress"><title>Prepress</title>
 &crop.marks;
 &crop.mark.width;
 &crop.mark.offset;
