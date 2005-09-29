@@ -89,6 +89,9 @@ stylesheet like this:</para>
 &index.preferred.page.properties;
 &index.entry.properties;
 &index.div.title.properties;
+&index.number.separator;
+&index.range.separator;
+&index.term.separator;
 &xep.index.item.properties;
 &toc.section.depth;
 &toc.max.depth;
@@ -652,6 +655,9 @@ around all these parameters.</para>
 <src:fragref linkend="index.preferred.page.properties.frag"/>
 <src:fragref linkend="index.div.title.properties.frag"/>
 <src:fragref linkend="index.entry.properties.frag"/>
+<src:fragref linkend="index.number.separator.frag"/>
+<src:fragref linkend="index.range.separator.frag"/>
+<src:fragref linkend="index.term.separator.frag"/>
 <src:fragref linkend="insert.xref.page.number.frag"/>
 <src:fragref linkend="itemizedlist.properties.frag"/>
 <src:fragref linkend="itemizedlist.label.properties.frag"/>
