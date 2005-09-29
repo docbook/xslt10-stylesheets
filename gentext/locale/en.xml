@@ -572,6 +572,12 @@
 <template name="langcode">0x0409 English (UNITED STATES)</template>
 </context>
 
+<context name="index">
+<template name="term-separator">, </template>
+<template name="number-separator">, </template>
+<template name="range-separator">-</template>
+</context>
+
 <letters>
   <l i="-1"/>
   <l i="0">Symbols</l>
