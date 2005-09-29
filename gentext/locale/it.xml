@@ -490,50 +490,50 @@
 </context>
 
 <context name="datetime">
-   <template name="format" text="d/m/Y"/>
+   <template name="format">d/m/Y</template>
 </context>
 
 <context name="datetime-full">
-   <template name="January" text="gennaio"/>
-   <template name="February" text="febbraio"/>
-   <template name="March" text="marzo"/>
-   <template name="April" text="aprile"/>
-   <template name="May" text="maggio"/>
-   <template name="June" text="giugno"/>
-   <template name="July" text="luglio"/>
-   <template name="August" text="agosto"/>
-   <template name="September" text="settebre"/>
-   <template name="October" text="ottobre"/>
-   <template name="November" text="novembre"/>
-   <template name="December" text="dicembre"/>
-   <template name="Monday" text="luned&#236;"/>
-   <template name="Tuesday" text="marted&#236;"/>
-   <template name="Wednesday" text="mercoled&#236;"/>
-   <template name="Thursday" text="gioved&#236;"/>
-   <template name="Friday" text="venerd&#236;"/>
-   <template name="Saturday" text="sabato"/>
-   <template name="Sunday" text="domenica"/>
+   <template name="January">gennaio</template>
+   <template name="February">febbraio</template>
+   <template name="March">marzo</template>
+   <template name="April">aprile</template>
+   <template name="May">maggio</template>
+   <template name="June">giugno</template>
+   <template name="July">luglio</template>
+   <template name="August">agosto</template>
+   <template name="September">settebre</template>
+   <template name="October">ottobre</template>
+   <template name="November">novembre</template>
+   <template name="December">dicembre</template>
+   <template name="Monday">luned&#236;</template>
+   <template name="Tuesday">marted&#236;</template>
+   <template name="Wednesday">mercoled&#236;</template>
+   <template name="Thursday">gioved&#236;</template>
+   <template name="Friday">venerd&#236;</template>
+   <template name="Saturday">sabato</template>
+   <template name="Sunday">domenica</template>
 </context>
 
 <context name="datetime-abbrev">
-   <template name="Jan" text="gen"/>
-   <template name="Feb" text="feb"/>
-   <template name="Mar" text="mar"/>
-   <template name="Apr" text="apr"/>
-   <template name="May" text="mag"/>
-   <template name="Jun" text="giu"/>
-   <template name="Jul" text="ago"/>
-   <template name="Sep" text="set"/>
-   <template name="Oct" text="ott"/>
-   <template name="Nov" text="nov"/>
-   <template name="Dec" text="dic"/>
-   <template name="Mon" text="lun"/>
-   <template name="Tue" text="mar"/>
-   <template name="Wed" text="mer"/>
-   <template name="Thu" text="gio"/>
-   <template name="Fri" text="ven"/>
-   <template name="Sat" text="sab"/>
-   <template name="Sun" text="dom"/>
+   <template name="Jan">gen</template>
+   <template name="Feb">feb</template>
+   <template name="Mar">mar</template>
+   <template name="Apr">apr</template>
+   <template name="May">mag</template>
+   <template name="Jun">giu</template>
+   <template name="Jul">ago</template>
+   <template name="Sep">set</template>
+   <template name="Oct">ott</template>
+   <template name="Nov">nov</template>
+   <template name="Dec">dic</template>
+   <template name="Mon">lun</template>
+   <template name="Tue">mar</template>
+   <template name="Wed">mer</template>
+   <template name="Thu">gio</template>
+   <template name="Fri">ven</template>
+   <template name="Sat">sab</template>
+   <template name="Sun">dom</template>
 </context>
 
 
