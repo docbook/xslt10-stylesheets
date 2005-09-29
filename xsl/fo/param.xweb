@@ -190,6 +190,28 @@ generate.section.toc.level;
 &use.local.olink.style;
 </reference>
 
+<reference id="xrefs"><title>Cross References</title>
+&insert.xref.page.number;
+&xref.properties;
+&xref.label-title.separator;
+&xref.label-page.separator;
+&xref.title-page.separator;
+</reference>
+
+<reference id="lists"><title>Lists</title>
+&compact.list.item.spacing;
+&itemizedlist.properties;
+&itemizedlist.label.properties;
+&list.block.properties;
+&list.block.spacing;
+&list.item.spacing;
+&orderedlist.properties;
+&orderedlist.label.properties;
+&variablelist.max.termlength;
+&variablelist.term.separator;
+&variablelist.term.break.after;
+</reference>
+
 <reference id="qa"><title>QAndASet</title>
 &qandadiv.autolabel;
 &qanda.inherit.numeration;
@@ -384,28 +406,6 @@ zero by default, so this is simply the page-master region-left.
 &sans.font.family;
 &title.font.family;
 &symbol.font.family;
-</reference>
-
-<reference id="lists"><title>Lists</title>
-&compact.list.item.spacing;
-&itemizedlist.properties;
-&itemizedlist.label.properties;
-&list.block.properties;
-&list.block.spacing;
-&list.item.spacing;
-&orderedlist.properties;
-&orderedlist.label.properties;
-&variablelist.max.termlength;
-&variablelist.term.separator;
-&variablelist.term.break.after;
-</reference>
-
-<reference id="xrefs"><title>Cross References</title>
-&insert.xref.page.number;
-&xref.properties;
-&xref.label-title.separator;
-&xref.label-page.separator;
-&xref.title-page.separator;
 </reference>
 
 <reference id="propsets"><title>Property Sets</title>

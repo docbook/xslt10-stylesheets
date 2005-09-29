@@ -203,7 +203,6 @@ stylesheet like this:</para>
 <reference id="links"><title>Linking</title>
 &target.database.document;
 &targets.filename;
-&collect.xref.targets;
 &olink.base.uri;
 &use.local.olink.style;
 &current.docid;
@@ -221,6 +220,16 @@ stylesheet like this:</para>
 &olink.pubid;
 &olink.sysid;
 &olink.resolver;
+</reference>
+
+<reference id="xrefs"><title>Cross References</title>
+&collect.xref.targets;
+&insert.xref.page.number;
+&use.role.as.xrefstyle;
+&xref.with.number.and.title;
+&xref.label-page.separator;
+&xref.label-title.separator;
+&xref.title-page.separator;
 </reference>
 
 <reference id="lists"><title>Lists</title>
@@ -259,7 +268,6 @@ stylesheet like this:</para>
 &pixels.per.inch;
 &points.per.em;
 &use.svg;
-&use.role.as.xrefstyle;
 &menuchoice.separator;
 &menuchoice.menu.separator;
 &default.float.class;
@@ -267,11 +275,6 @@ stylesheet like this:</para>
 &table.footnote.number.format;
 &footnote.number.symbols;
 &table.footnote.number.symbols;
-&xref.with.number.and.title;
-&xref.label-page.separator;
-&xref.label-title.separator;
-&xref.title-page.separator;
-&insert.xref.page.number;
 </reference>
 
 <reference id="annos"><title>Annotations</title>
