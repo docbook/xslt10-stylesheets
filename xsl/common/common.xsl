@@ -514,6 +514,10 @@ Defaults to the context node.</para>
 
     <xsl:otherwise>
       <xsl:choose>
+	<!-- Handle case when personname contains only general markup (DocBook 5.0) -->
+	<xsl:when test="$node/self::personname and not($node/firstname or $node/honorific or $node/lineage or $node/othername or $node/surname)">
+	  <xsl:apply-templates select="$node/node()"/>
+	</xsl:when>
         <xsl:when test="$style = 'family-given'">
           <xsl:call-template name="person.name.family-given">
             <xsl:with-param name="node" select="$node"/>
