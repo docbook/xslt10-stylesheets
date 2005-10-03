@@ -265,6 +265,11 @@ It is intended for testing purposes only and otherwise comes with no
 guarantees. It may in fact be broken.
 EOF
 
+    if [ $DIFFTAG ]; then
+      cvs2cl -S --delta $DIFFTAG:HEAD --stdout $DISTRO \
+      | expand -t2 > $DISTRO/LatestChanges
+    fi
+
     if grep "<xsl:stylesheet" $DISTRO/VERSION >/dev/null; then
       cp -p $DISTRO/VERSION $DISTRO/VERSION.tmp
       sed "s/Version>.\+</Version>$DATE\_$TIME\_$RELEASEVERSION</" $DISTRO/VERSION.tmp > $DISTRO/VERSION
