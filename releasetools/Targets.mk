@@ -21,14 +21,14 @@ RELEASE-NOTES.pdf: RELEASE-NOTES.xml
 	echo $$uri >> .urilist; \
 	done
 
-install.sh: .CatalogManager.properties.example .urilist
-	cp $(INSTALL_SH) install.sh
-
 .make-catalog.xsl: $(MAKECATALOG)
 	cp $< $@
 
 catalog.xml: .make-catalog.xsl
 	$(XSLT) -output $@ $< $< DISTRO="$(DISTRO)"
+
+install.sh: .CatalogManager.properties.example .urilist catalog.xml
+	cp $(INSTALL_SH) install.sh
 
 distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE) install.sh
 
