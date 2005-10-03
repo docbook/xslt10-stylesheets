@@ -10,6 +10,7 @@
 
 CATALOGMANAGER=$(DOCBOOK_CVS)/releasetools/.CatalogManager.properties.example
 INSTALL_SH=$(DOCBOOK_CVS)/releasetools/install.sh
+MAKECATALOG=$(DOCBOOK_CVS)/releasetools/make-catalog.xsl
 
 # stylesheet for generating HTML version of release notes
 DOC-LINK-STYLE=$(DOCBOOK_CVS)/xsl/docsrc/doc-link-docbook.xsl
@@ -95,7 +96,8 @@ ZIP_EXCLUDES = \
  Makefile$$ \
  Makefile[.] \
  README\.CVS \
- RELEASE-NOTES\.fo
+ RELEASE-NOTES\.fo \
+ \.make-catalog\.xsl
 
 # list of executables that are included in all distributions
 EXECUTABLES = install.sh
