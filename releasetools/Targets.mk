@@ -22,10 +22,13 @@ RELEASE-NOTES.pdf: RELEASE-NOTES.xml
 	done
 
 install.sh: .CatalogManager.properties.example .urilist
-	cp -p $(INSTALL_SH) install.sh
+	cp $(INSTALL_SH) install.sh
 
-catalog.xml: $(DISTRIB_MAKECATALOG)
-	$(XSLT) -output catalog.xml $(DISTRIB_MAKECATALOG) $(DISTRIB_MAKECATALOG)
+.make-catalog.xsl: $(MAKECATALOG)
+	cp $< $@
+
+catalog.xml: .make-catalog.xsl
+	$(XSLT) -output $@ $< $< DISTRO="$(DISTRO)"
 
 distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE) install.sh
 
@@ -186,3 +189,4 @@ release-clean: clean
 	rm -f install.sh
 	rm -f .CatalogManager.properties.example
 	rm -f .urilist
+	rm -f .make-catalog.xsl
