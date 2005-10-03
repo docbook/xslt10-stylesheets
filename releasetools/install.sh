@@ -745,6 +745,14 @@ EOF
   exit
   fi
 
+  if [ ! -f "$thisXmlCatalog" ]; then
+    cat <<EOF
+
+FATAL: $thisXmlCatalog file needed but not found. Stopping.
+EOF
+  exit
+  fi
+
   if [ -z "$XML_CATALOG_FILES" ]; then
     echo
     echo "WARNING: XML_CATALOG_FILES not set. Not testing with xmlcatalog."
