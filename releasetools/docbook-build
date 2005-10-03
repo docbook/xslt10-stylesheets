@@ -334,7 +334,7 @@ EOF
         > $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log
       scp $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log $SITEUSER@$SITEHOST:$SITEBASE
     fi
-    ssh -l $SITEUSER $SITEHOST "(cd $SITEBASE; chmod 664 *.tar.gz *.zip *.log)"
+    ssh -l $SITEUSER $SITEHOST "(cd $SITEBASE; chmod 664 *.zip *.log)"
     fi
 
     rm -f $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log
