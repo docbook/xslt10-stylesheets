@@ -238,14 +238,6 @@ else
     cvs update -d -P $DISTRO || exit 1
     echo
 
-    # if this module has a "common" dir, it means it's probably
-    # relying on the "gentext" stuff, so make "gentext" first
-    if [ -d $DISTRO/common ]; then
-      echo "Making gentext..."
-      echo
-      make -C gentext $DISTRO-files
-    fi
-
     echo
     date
     echo "Building $DISTRO distribution..."
