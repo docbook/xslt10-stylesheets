@@ -5,6 +5,7 @@ RELEASE-NOTES.pdf
 RELEASE-NOTES.fo
 .CatalogManager.properties.example
 .urilist
+.make-catalog.xsl
 NEWS
 install.sh
 catalog.xml
