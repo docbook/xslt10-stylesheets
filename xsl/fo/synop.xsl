@@ -267,7 +267,9 @@
     </xsl:choose>
   </xsl:param>
 
+  <!--
   <xsl:message>process <xsl:value-of select="name(.)"/> in <xsl:value-of select="$language"/></xsl:message>
+  -->
 
   <xsl:choose>
     <xsl:when test="$language='java'">
