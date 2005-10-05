@@ -205,11 +205,13 @@ generate.section.toc.level;
 &compact.list.item.spacing;
 &itemizedlist.properties;
 &itemizedlist.label.properties;
+&itemizedlist.label.width;
 &list.block.properties;
 &list.block.spacing;
 &list.item.spacing;
 &orderedlist.properties;
 &orderedlist.label.properties;
+&orderedlist.label.width;
 &variablelist.max.termlength;
 &variablelist.term.separator;
 &variablelist.term.break.after;
@@ -661,6 +663,7 @@ around all these parameters.</para>
 <src:fragref linkend="insert.xref.page.number.frag"/>
 <src:fragref linkend="itemizedlist.properties.frag"/>
 <src:fragref linkend="itemizedlist.label.properties.frag"/>
+<src:fragref linkend="itemizedlist.label.width.frag"/>
 <src:fragref linkend="l10n.gentext.default.language.frag"/>
 <src:fragref linkend="l10n.gentext.language.frag"/>
 <src:fragref linkend="l10n.gentext.use.xref.language.frag"/>
@@ -696,6 +699,7 @@ around all these parameters.</para>
 <src:fragref linkend="olink.lang.fallback.sequence.frag"/>
 <src:fragref linkend="orderedlist.properties.frag"/>
 <src:fragref linkend="orderedlist.label.properties.frag"/>
+<src:fragref linkend="orderedlist.label.width.frag"/>
 <src:fragref linkend="prefer.internal.olink.frag"/>
 <src:fragref linkend="insert.olink.page.number.frag"/>
 <src:fragref linkend="insert.olink.pdf.frag.frag"/>

@@ -292,3 +292,5 @@
 <!ENTITY margin.note.width SYSTEM "../params/margin.note.width.xml">
 <!ENTITY abstract.properties SYSTEM "../params/abstract.properties.xml">
 <!ENTITY abstract.title.properties SYSTEM "../params/abstract.title.properties.xml">
+<!ENTITY itemizedlist.label.width SYSTEM "../params/itemizedlist.label.width.xml">
+<!ENTITY orderedlist.label.width SYSTEM "../params/orderedlist.label.width.xml">
