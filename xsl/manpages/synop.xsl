@@ -18,8 +18,49 @@
 <!-- * find any code here for handling it. It is a _verbatim_ -->
 <!-- * environment; check the block.xsl file instead. -->
 
+<xsl:template match="synopfragmentref">
+  <xsl:variable name="target" select="key('id',@linkend)"/>
+  <xsl:variable name="snum">
+    <xsl:apply-templates select="$target" mode="synopfragment.number"/>
+  </xsl:variable>
+  <xsl:text>(</xsl:text>
+  <xsl:value-of select="$snum"/>
+  <xsl:text>)</xsl:text>
+  <xsl:text>&#160;</xsl:text>
+  <xsl:variable name="synopfragmentref">
+    <FragRefContents><xsl:value-of select="normalize-space(.)"/></FragRefContents>
+  </xsl:variable>
+  <xsl:apply-templates select="exsl:node-set($synopfragmentref)" mode="italic"/>
+</xsl:template>
+
+<xsl:template match="synopfragment" mode="synopfragment.number">
+  <xsl:number format="1"/>
+</xsl:template>
+
 <xsl:template match="synopfragment">
-  <xsl:text>.PP&#10;</xsl:text>
+  <xsl:variable name="snum">
+    <xsl:apply-templates select="." mode="synopfragment.number"/>
+  </xsl:variable>
+  <xsl:text>&#10;</xsl:text>
+  <!-- * If we have a group of Synopgfragments, we only want to output a -->
+  <!-- * line of space before the first; so when we find a Synopfragment -->
+  <!-- * whose first preceding sibling is another Synopfragment, we back -->
+  <!-- * up one line vertically to negate the line of vertical space -->
+  <!-- * that's added by the .HP macro -->
+  <xsl:if test="preceding-sibling::*[1][self::synopfragment]">
+    <xsl:text>.sp -1&#10;</xsl:text>
+  </xsl:if>
+  <xsl:text>.HP </xsl:text>
+  <!-- * For each Synopfragment, make a hanging paragraph, with the -->
+  <!-- * indent calculated from the length of the generated number -->
+  <!-- * used as a reference + pluse 3 characters (for the open and -->
+  <!-- * close parens around the number, plus a space). -->
+  <xsl:value-of select="string-length (normalize-space ($snum)) + 3"/>
+  <xsl:text>&#10;</xsl:text>
+  <xsl:text>(</xsl:text>
+  <xsl:value-of select="$snum"/>
+  <xsl:text>)</xsl:text>
+  <xsl:text> </xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
 
