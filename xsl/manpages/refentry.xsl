@@ -113,6 +113,19 @@
     </xsl:call-template>
   </xsl:template>
 
+  <!-- * Output of Titles from Xref with Endterm needs to be handled -->
+  <!-- * separately from output for Endterm-less Xref -->
+  <xsl:template match="refsect1/title
+                       |refentry/refsection/title
+                       |refsynopsisdiv/title"
+                mode="endterm">
+    <xsl:call-template name="string.upper">
+      <xsl:with-param name="string">
+        <xsl:apply-templates/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
   <!-- * Use uppercase to render titles of all instances of Refsynopsisdiv, -->
   <!-- * including in cross-references -->
   <xsl:template match="refsynopsisdiv" mode="title.markup">
