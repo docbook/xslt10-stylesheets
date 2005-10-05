@@ -36,7 +36,9 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:if test="position()>1"><xsl:value-of select="$sepchar"/></xsl:if>
+  <xsl:if test="position()>1 and
+                not(preceding-sibling::*[1][self::sbr])"
+          ><xsl:value-of select="$sepchar"/></xsl:if>
   <xsl:choose>
     <xsl:when test="$choice='plain'">
       <!-- * do nothing -->
