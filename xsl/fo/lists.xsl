@@ -20,12 +20,23 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
-  <xsl:variable name="label-width">
+  <xsl:variable name="pi-label-width">
     <xsl:call-template name="dbfo-attribute">
       <xsl:with-param name="pis"
                       select="processing-instruction('dbfo')"/>
       <xsl:with-param name="attribute" select="'label-width'"/>
     </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="label-width">
+    <xsl:choose>
+      <xsl:when test="$pi-label-width = ''">
+	<xsl:value-of select="$itemizedlist.label.width"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="$pi-label-width"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
 
   <xsl:if test="title">
@@ -51,22 +62,18 @@
   <xsl:choose>
     <xsl:when test="ancestor::listitem">
       <fo:list-block id="{$id}" xsl:use-attribute-sets="itemizedlist.properties">
-	<xsl:if test="$label-width != ''">
-	  <xsl:attribute name="provisional-distance-between-starts">
-	    <xsl:value-of select="$label-width"/>
-	  </xsl:attribute>
-	</xsl:if>
+	<xsl:attribute name="provisional-distance-between-starts">
+	  <xsl:value-of select="$label-width"/>
+	</xsl:attribute>
         <xsl:copy-of select="$content"/>
       </fo:list-block>
     </xsl:when>
     <xsl:otherwise>
       <fo:list-block id="{$id}" xsl:use-attribute-sets="list.block.spacing itemizedlist.properties">
-	<xsl:if test="$label-width != ''">
-	  <xsl:attribute name="provisional-distance-between-starts">
-	    <xsl:value-of select="$label-width"/>
-	  </xsl:attribute>
-	</xsl:if>
-        <xsl:copy-of select="$content"/>
+	<xsl:attribute name="provisional-distance-between-starts">
+	  <xsl:value-of select="$label-width"/>
+	</xsl:attribute>
+	<xsl:copy-of select="$content"/>
       </fo:list-block>
     </xsl:otherwise>
   </xsl:choose>
@@ -172,12 +179,23 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
-  <xsl:variable name="label-width">
+  <xsl:variable name="pi-label-width">
     <xsl:call-template name="dbfo-attribute">
       <xsl:with-param name="pis"
                       select="processing-instruction('dbfo')"/>
       <xsl:with-param name="attribute" select="'label-width'"/>
     </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="label-width">
+    <xsl:choose>
+      <xsl:when test="$pi-label-width = ''">
+	<xsl:value-of select="$itemizedlist.label.width"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="$pi-label-width"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
 
   <xsl:if test="title">
@@ -203,21 +221,17 @@
   <xsl:choose>
     <xsl:when test="ancestor::listitem">
       <fo:list-block id="{$id}" xsl:use-attribute-sets="orderedlist.properties">
-	<xsl:if test="$label-width != ''">
-	  <xsl:attribute name="provisional-distance-between-starts">
-	    <xsl:value-of select="$label-width"/>
-	  </xsl:attribute>
-	</xsl:if>
+	<xsl:attribute name="provisional-distance-between-starts">
+	  <xsl:value-of select="$label-width"/>
+	</xsl:attribute>
         <xsl:copy-of select="$content"/>
       </fo:list-block>
     </xsl:when>
     <xsl:otherwise>
       <fo:list-block id="{$id}" xsl:use-attribute-sets="list.block.spacing orderedlist.properties">
-	<xsl:if test="$label-width != ''">
-	  <xsl:attribute name="provisional-distance-between-starts">
-	    <xsl:value-of select="$label-width"/>
-	  </xsl:attribute>
-	</xsl:if>
+	<xsl:attribute name="provisional-distance-between-starts">
+	  <xsl:value-of select="$label-width"/>
+	</xsl:attribute>
         <xsl:copy-of select="$content"/>
       </fo:list-block>
     </xsl:otherwise>
