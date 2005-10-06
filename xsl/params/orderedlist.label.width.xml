@@ -6,7 +6,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='orderedlist.label.width.frag'>
-<xsl:param name="orderedlist.label.width" select="'1.8em'"/>
+<xsl:param name="orderedlist.label.width" select="'1.2em'"/>
 </src:fragment>
 </refsynopsisdiv>
 

@@ -6,7 +6,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='itemizedlist.label.width.frag'>
-<xsl:param name="itemizedlist.label.width" select="'1.8em'"/>
+<xsl:param name="itemizedlist.label.width" select="'1.0em'"/>
 </src:fragment>
 </refsynopsisdiv>
 
