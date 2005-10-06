@@ -71,6 +71,7 @@
 <xsl:include href="html-rtf.xsl"/>
 <xsl:include href="docbookng.xsl"/>
 <xsl:include href="annotations.xsl"/>
+<xsl:include href="../common/stripns.xsl"/>
 
 <xsl:param name="stylesheet.result.type" select="'html'"/>
 <xsl:param name="htmlhelp.output" select="0"/>
@@ -424,62 +425,6 @@ body { background-image: url('</xsl:text>
 
   <!-- The default is that we are not chunking... -->
   <xsl:text>0</xsl:text>
-</xsl:template>
-
-<!-- ==================================================================== -->
-
-<xsl:template match="*" mode="stripNS">
-  <xsl:choose>
-    <xsl:when test="self::ng:* or self::db:*">
-      <xsl:element name="{local-name(.)}">
-	<xsl:copy-of select="@*"/>
-	<xsl:apply-templates mode="stripNS"/>
-      </xsl:element>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:copy>
-	<xsl:copy-of select="@*"/>
-	<xsl:apply-templates mode="stripNS"/>
-      </xsl:copy>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-<xsl:template match="ng:link|db:link" mode="stripNS">
-  <xsl:variable xmlns:xlink="http://www.w3.org/1999/xlink"
-		name="href" select="@xlink:href|@href"/>
-  <xsl:choose>
-    <xsl:when test="$href != '' and not(starts-with($href,'#'))">
-      <ulink url="{$href}">
-	<xsl:for-each select="@*">
-	  <xsl:if test="local-name(.) != 'href'">
-	    <xsl:copy/>
-	  </xsl:if>
-	</xsl:for-each>
-	<xsl:apply-templates mode="stripNS"/>
-      </ulink>
-    </xsl:when>
-    <xsl:when test="$href != '' and starts-with($href,'#')">
-      <link linkend="{substring-after($href,'#')}">
-	<xsl:for-each select="@*">
-	  <xsl:if test="local-name(.) != 'href'">
-	    <xsl:copy/>
-	  </xsl:if>
-	</xsl:for-each>
-	<xsl:apply-templates mode="stripNS"/>
-      </link>
-    </xsl:when>
-    <xsl:otherwise>
-      <link>
-	<xsl:copy-of select="@*"/>
-	<xsl:apply-templates mode="stripNS"/>
-      </link>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-<xsl:template match="comment()|processing-instruction()|text()" mode="stripNS">
-  <xsl:copy/>
 </xsl:template>
 
 <!-- ==================================================================== -->
