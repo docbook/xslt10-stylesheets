@@ -190,7 +190,7 @@
   <xsl:variable name="label-width">
     <xsl:choose>
       <xsl:when test="$pi-label-width = ''">
-	<xsl:value-of select="$itemizedlist.label.width"/>
+	<xsl:value-of select="$orderedlist.label.width"/>
       </xsl:when>
       <xsl:otherwise>
 	<xsl:value-of select="$pi-label-width"/>
