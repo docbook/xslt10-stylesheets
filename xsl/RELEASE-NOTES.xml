@@ -649,14 +649,14 @@
 >
   &lt;refentry>
     &lt;info>
-      &lt;date>2003-10-20&lt;/date> <co id="V1690_date-co" linkends="V168_date"/>
+      &lt;date>2003-10-20&lt;/date> <co id="V1690_date-co" linkends="V1690_date"/>
     &lt;/info>
     &lt;refmeta>
-      &lt;refentrytitle>gtk-options&lt;/refentrytitle> <co id="V1690_title-co" linkends="V168_title"/>
-      &lt;manvolnum>7&lt;/manvolnum> <co id="V1690_manvolnum-co" linkends="V168_manvolnum"/>
-      &lt;refmiscinfo class="source-name">GTK+&lt;/refmiscinfo> <co id="V1690_source-name-co" linkends="V168_source-name"/>
-      &lt;refmiscinfo class="version">1.2&lt;/refmiscinfo> <co id="V1690_version-co" linkends="V168_dversion"/>
-      &lt;refmiscinfo class="manual">GTK+ User's Manual&lt;/refmiscinfo> <co id="V1690_manual-co" linkends="V168_manual"/>
+      &lt;refentrytitle>gtk-options&lt;/refentrytitle> <co id="V1690_title-co" linkends="V1690_title"/>
+      &lt;manvolnum>7&lt;/manvolnum> <co id="V1690_manvolnum-co" linkends="V1690_manvolnum"/>
+      &lt;refmiscinfo class="source-name">GTK+&lt;/refmiscinfo> <co id="V1690_source-name-co" linkends="V1690_source-name"/>
+      &lt;refmiscinfo class="version">1.2&lt;/refmiscinfo> <co id="V1690_version-co" linkends="V1690_version"/>
+      &lt;refmiscinfo class="manual">GTK+ User's Manual&lt;/refmiscinfo> <co id="V1690_manual-co" linkends="V1690_manual"/>
     &lt;/refmeta>
     &lt;refnamediv>
       &lt;refname>gtk-options&lt;/refname>
