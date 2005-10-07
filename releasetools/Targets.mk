@@ -30,7 +30,7 @@ catalog.xml: .make-catalog.xsl
 install.sh: .CatalogManager.properties.example .urilist catalog.xml
 	cp $(INSTALL_SH) install.sh
 
-distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE) install.sh
+distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE)
 
 $(NEWSFILE):
 	$(CVS2LOG) -w
