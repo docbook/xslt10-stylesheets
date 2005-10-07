@@ -13,6 +13,9 @@
 <xsl:param name="manpages-baseuri"
            select="'http://docbook.sourceforge.net/release/xsl/current/doc/manpages/'"/>
 
+<xsl:param name="wordml-baseuri"
+           select="'http://docbook.sourceforge.net/release/xsl/current/doc/wordml/'"/>
+
 <xsl:template match="parameter">
   <xsl:variable name="markup">
     <xsl:apply-imports/>
@@ -36,6 +39,12 @@
     </xsl:call-template>
   </xsl:variable>
 
+  <xsl:variable name="iswordml">
+    <xsl:call-template name="is-wordml-parameter">
+      <xsl:with-param name="param" select="normalize-space(.)"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="$ishtml != 0">
       <a href="{concat($html-baseuri, normalize-space(.))}.html">
@@ -49,6 +58,11 @@
     </xsl:when>
     <xsl:when test="$ismanpages != 0">
       <a href="{concat($manpages-baseuri, normalize-space(.))}.html">
+        <xsl:copy-of select="$markup"/>
+      </a>
+    </xsl:when>
+    <xsl:when test="$iswordml != 0">
+      <a href="{concat($wordml-baseuri, normalize-space(.))}.html">
         <xsl:copy-of select="$markup"/>
       </a>
     </xsl:when>

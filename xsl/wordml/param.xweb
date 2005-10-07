@@ -21,7 +21,7 @@
     </copyright>
   </bookinfo>
 
-  <preface>
+  <preface id="preface">
     <title>Introduction</title>
 
     <para>This is technical documentation for the DocBook XSL Stylesheets to produce WordML output (or Apple Pages); it documents the parameters, templates and usage of the stylesheet(s).</para>
@@ -30,6 +30,7 @@
   </preface>
 
 &wordml.template;
+&pages.template;
 
   <appendix>
     <title>The Stylesheet</title>

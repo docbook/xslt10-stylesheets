@@ -1,3 +1,5 @@
+include ../../cvstools/Makefile.incl
+
 # Change this to where you are storing your roundtripping stylesheets
 STYLESHEETDIR = .
 
@@ -19,6 +21,20 @@ include Makefile.param
 
 all:	param.xsl
 
+xml: param.xml
+
+html: param.html
+
+param.html: param.xml
+	$(XSLT) $< ../docsrc/lrefentry.xsl $@
+
+param.xml: param.xweb $(PARAMS)
+	../../cvstools/paramchk -m Makefile.param $<
+	$(XSLT) $< ../profiling/profile.xsl $(PARAMPROF) profile.condition=html
+	$(XSLT) $(PARAMPROF) ../profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
+	$(XSLT) $(PARAMSTRIP) ../../litprog/w2docbook.xsl $@
+	$(RM) $(PARAMPROF) $(PARAMSTRIP)
+
 param.xsl:	param.xweb
 	../../cvstools/paramchk -m Makefile.param $<
 	$(XSLT) $< ../profiling/profile.xsl $(PARAMPROF) profile.condition=wordml
@@ -30,7 +46,7 @@ Makefile.param:
 	../../cvstools/paramchk -m $@ param.xweb
 
 clean:
-	$(RM) param.xsl
+	$(RM) param.xml param.html param.xsl
 	$(RM) Makefile.param
 	echo "# foo" > Makefile.param
 
