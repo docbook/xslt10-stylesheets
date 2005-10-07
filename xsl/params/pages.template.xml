@@ -9,7 +9,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='pages.template.frag'>
-<xsl:param name="pages.template" select=""/>
+<xsl:param name="pages.template" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
