@@ -8,6 +8,15 @@ VPATH=.:tests/
 # testing mode, either dsssl or xsl
 MODE		?= xsl
 
+XEP = xep
+XEP_OPTS ?= -quiet
+
+DBLATEX = dblatex
+DBLATEX_OPTS ?= 
+
+FOP = fop
+FOP_OPTS ?=
+
 # stylesheets to use
 XSLHTML		?= ../xsl/html/docbook.xsl
 XSLFO		?= ../xsl/fo/docbook.xsl
@@ -25,14 +34,21 @@ VALIDATE	?= 0
 # how to make DSSSL indexes
 DSSSLINDEXER	?= perl $(DSSSLROOT)/bin/collateindex.pl
 
-# additional XSL parameters, if any
-XSLPARAM	?=
+# additional HTML and XSL-FO stylsheet parameters, if any
+XSL_HTML_PARAMS	?= glossary.collection="glossary.002.data.xml"
+XSL_FO_PARAMS	?= glossary.collection="glossary.002.data.xml"
 
 # additional Jade/DSSSL parameters, if any
 DSSSLPARAM	?= -V%generate-article-toc%
 
-# what to use to format XSL FO
-FO_FORMATTER	?= tex
+# should we make HTML output?
+MAKE_HTML ?= yes
+
+# which formatters to use to create PDFs
+MAKE_XEP ?= yes
+MAKE_DBLATEX ?= yes
+MAKE_FOP ?= no
+MAKE_PASSIVETEX ?= no
 
 TESTS		:= $(basename $(wildcard tests/*.xml))
 TESTBASE	:= $(shell ls -1 tests/*.xml | sed -e 's/\.[0-9][0-9][0-9]\.xml$$//' | sort | uniq)
@@ -46,10 +62,26 @@ test:
 
 .PHONY: $(TESTS)
 $(TESTS):
+
+ifeq ($(MAKE_HTML),yes)
+	$(MAKE) $(notdir $@).html
+endif
+
 ifeq ($(MODE),xsl)
-	$(MAKE) $(notdir $@).html $(notdir $@).pdf
+ifeq ($(MAKE_XEP),yes)
+	$(MAKE) $(notdir $@).xep.pdf
+endif
+ifeq ($(MAKE_DBLATEX),yes)
+	$(MAKE) $(notdir $@).dbx.pdf
+endif
+ifeq ($(MAKE_FOP),yes)
+	$(MAKE) $(notdir $@).fop.pdf
+endif
+ifeq ($(MAKE_PASSIVETEX),yes)
+	$(MAKE) $(notdir $@).ptx.pdf
+endif
 else
-	$(MAKE) $(notdir $@).html $(notdir $@).dvi
+	$(MAKE) $(notdir $@).dvi
 endif
 
 # run all tests in a given category
@@ -59,7 +91,12 @@ $(TESTBASE):
 
 # run all tests
 .PHONY: alltests
-alltests: $(TESTS)
+alltests: tests/images $(TESTS)
+
+tests/images:
+	if [ ! -h tests/images ]; then \
+	  ln -s ../../xsl/images tests/images; \
+	fi
 
 # ======================================================================
 
@@ -69,9 +106,9 @@ ifeq ($(VALIDATE),1)
 endif
 ifeq ($(MODE),xsl)
 ifeq ($(CHUNK),1)
-	$(XSLT) $< $(XSLCHUNK) $@ $(XSLPARAM)
+	$(XSLT) $< $(XSLCHUNK) $@ $(XSL_HTML_PARAMS)
 else
-	$(XSLT)  $< $(XSLHTML) $@ $(XSLPARAM)
+	$(XSLT)  $< $(XSLHTML) $@ $(XSL_HTML_PARAMS)
 endif				# chunk
 else				# mode is DSSSL
 ifeq ($(CHUNK),1)
@@ -106,15 +143,26 @@ else
 	$(DSSSLINDEXER) -o $@ $<
 endif
 
-.xml.fo:
+%.xep.fo: %.xml
 ifeq ($(VALIDATE),1)
 	$(XJPARSE) $<
 endif
-ifeq ($(MODE),xsl)
-	$(XSLT) $< $(XSLFO) $@ $(FO_FORMATTER).extensions=1 $(XSLPARAM)
-else
-	$(JADE) fo $(DSSSLPRINT) $< -o $@ $(DSSSLPARAM)
+	$(XSLT) $< $(XSLFO) $@ xep.extensions=1 $(XSL_FO_PARAMS)
+
+%.fop.fo: %.xml
+ifeq ($(VALIDATE),1)
+	$(XJPARSE) $<
 endif
+	$(XSLT) $< $(XSLFO) $@.fo fop.extensions=1 $(XSL_FO_PARAMS)
+
+%.ptx.fo: %.xml
+ifeq ($(VALIDATE),1)
+	$(XJPARSE) $<
+endif
+	$(XSLT) $< $(XSLFO) $@ passivetex.extensions=1 $(XSL_FO_PARAMS)
+
+%.jade.fo: %.xml
+	$(JADE) fo $(DSSSLPRINT) $< -o $@ $(DSSSLPARAM)
 
 .xml.rtf:
 ifeq ($(VALIDATE),1)
@@ -143,9 +191,16 @@ ifeq ($(MODE),dsssl)
 	pdfjadetex $<
 endif
 
-ifeq ($(MODE),xsl)
-.fo.pdf:
-ifeq ($(FO_FORMATTER),tex)
+%.xep.pdf: %.xep.fo
+	$(XEP) $(XEP_OPTS) $< $@
+
+%.dbx.pdf: %.xml
+	-$(DBLATEX) $(DBLATEX_OPTS) -o $@ $<
+
+%.fop.pdf: %.fop.fo
+	$(FOP) $(FOP_OPTS) $< $@
+
+%.ptx.pdf: %.ptx.fo
 	pdftex "&pdfxmltex" $<
 	@if [ `grep Rerun $(basename $@).log | wc -l` -gt 0 ]; then \
 		pdftex "&pdfxmltex" $< ; \
@@ -153,19 +208,6 @@ ifeq ($(FO_FORMATTER),tex)
 	@if [ `grep Rerun $(basename $@).log | wc -l` -gt 0 ]; then \
 		pdftex "&pdfxmltex" $< ; \
 	fi
-else
-ifeq ($(FO_FORMATTER),fop)
-	fop $< $@
-else
-ifeq ($(FO_FORMATTER),xep)
-	xep $<
-else
-	echo No formatter specified. How would you like me to make the PDF file?
-endif				# xep
-endif				# fop
-endif				# tex
-endif				# xsl
-
 
 # ======================================================================
 
