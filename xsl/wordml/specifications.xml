@@ -5,8 +5,7 @@
 <articleinfo><author><firstname>Bob</firstname><surname>Stayton</surname><affiliation><orgname>Sagehill
 Enterprises</orgname></affiliation></author>
 <author><firstname>Steve</firstname><surname>Ball</surname><affiliation><orgname>Zveno</orgname></affiliation></author>
-<releaseinfo>Draft Version 1.0,
-dated 5 November, 2004</releaseinfo> 
+<releaseinfo>Version 1.1, dated 28 September 2005</releaseinfo> 
 </articleinfo> 
 <abstract>
 <para>This document specifies how DocBook  elements can be mapped to Microsoft Word styles. The specifications will be used to write conversions between DocBook XML and Microsoft's WordProcessingML (WordML).</para>
@@ -22,7 +21,7 @@ dated 5 November, 2004</releaseinfo>
 <para>DocBook XML documents could be styled for output using the typesetting features of Word.</para>
 </listitem>
 </itemizedlist>
-<para>This specification describes how DocBook elements could map to a set of Word paragraph and character styles. It defines a specific set of style names for which a Word style template can be created. The style names would also be used in XSLT template match patterns for conversion. </para>
+<para>This specification describes how DocBook elements could map to a set of Word paragraph and character styles. It defines a specific set of style names for which a Word style template can be created. The style names would also be used in XSLT template match patterns for conversion.  Although originally targetted to MS Word, the system has subsequently been extended to use other word processors, notably Apple's Pages.</para>
 </section>
 <section>
 <title>Project goals</title>
@@ -50,7 +49,7 @@ dated 5 November, 2004</releaseinfo>
 <section>
 <title>Why basic DocBook?</title>
 <para>It isn't clear that this project will ever be able to support all DocBook elements and structure. The project will initially focus on a basic set of commonly used DocBook elements to demonstrate the feasibility and usefulness of using Word with DocBook. </para>
-<para>One problem facing this conversion project is the sheer number of DocBook elements, over 400 in DocBook 4.3. To support DocBook structural models, several of the elements will require more than one Word style. This could lead to a very long and unwieldy   list of styles in the Word interface. That would make authoring less efficient and discourage users.</para>
+<para>One problem facing this conversion project is the sheer number of DocBook elements, over 400 in DocBook 4.3. To support DocBook structural models, several of the elements will require more than one Word style. This could lead to a very long and unwieldy list of styles in the Word interface. That would make authoring less efficient and discourage users.</para>
 <para>So this project assumes that authors who need the full set of DocBook elements will use an XML authoring tool that better supports them. This project will enable authors to write basic DocBook documents using Word. Because Word is so widespread, this project will help a lot of new DocBook users get started with familiar tools.  They can then graduate to more advanced tools as their needs develop.</para>
 </section>
 </section> 
@@ -78,6 +77,7 @@ dated 5 November, 2004</releaseinfo>
 <para>Nesting of block elements is another commonly used feature of DocBook.  It is not possible to use Word's outline mode for blocks if it is being used for components and sections.  So in this specification, nesting of block elements is indicated by adding a number suffix to a style. So a Word paragraph with style <literal>orderedlist2</literal> is considered to be contained within a preceding paragraph with style <literal>listitem</literal>. In Word, paragraph indent levels will be used to visually indicate nesting of blocks. </para>
 <para>Nesting of inline DocBook elements is particularly difficult to support because  Word does not nest character styles. That means a nested inline would require a separate Word style to indicate the parent-child relationship. Given the large number of combinations possible, a prohibitively large number of character styles would have to be created. In this project, nesting of character styles will not be supported in the first release. Nested inlines being imported from DocBook will be converted to a sequence of single-name  Word character styles.</para>
 <para>In many cases, DocBook structure can be derived from the flat Word sequence of paragraphs based on sibling relationships. For example, when a paragraph styled as <literal>para</literal> is followed by a paragraph styled as  <literal>itemizedlist</literal>,   the conversion to DocBook will output a <sgmltag class="element">para</sgmltag> element and then start an <sgmltag class="element">itemizedlist</sgmltag> element, with the second paragraph as its first <sgmltag class="element">listitem</sgmltag>. All <literal>itemizedlist</literal> paragraphs that follow without interruption are put in the same <sgmltag class="element">itemizedlist</sgmltag> element.</para>
+<para>Some combinations of elements cannot be supported (at least not with the techniques as described in this document).  An example is <sgmltag class="element">informalexample</sgmltag> and its permitted content; there is no title to mark the beginning of the element and no marker for the end of the element, also there are too many parent-child combinations to reasonably define style names.</para>
 <para>Here are the design principles used in this project for selecting Word style names:</para>
 <itemizedlist>
 <listitem>
@@ -437,6 +437,46 @@ variablelist4</literallayout></entry>
 <entry colname="col1">blockquote/attribution</entry>
 <entry colname="col2">blockquote-attribution</entry>
 <entry colname="col3">Should immediately follow a <literal>blockquote</literal> paragraph in Word.</entry>
+</row>
+<row>
+<entry colname="col1">highlights/para</entry>
+<entry colname="col2">highlights</entry>
+<entry colname="col3">Consecutive highlights paragraphs are coalesced into a single highlights parent.</entry>
+</row>
+<row>
+<entry colname="col1">highlights/itemizedlist/listitem/para</entry>
+<entry colname="col2">highlights-itemizedlist</entry>
+<entry colname="col3">Nested lists are not currently supported.</entry>
+</row>
+<row>
+<entry colname="col1">highlights/orderedlist/listitem/para</entry>
+<entry colname="col2">highlights-orderedlist</entry>
+<entry colname="col3">Nested lists are not currently supported.</entry>
+</row>
+<row>
+<entry colname="col1">highlights/caution</entry>
+<entry colname="col2">highlights-caution</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">highlights/important</entry>
+<entry colname="col2">highlights-important</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">highlights/note</entry>
+<entry colname="col2">highlights-note</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">highlights/tip</entry>
+<entry colname="col2">highlights-tip</entry>
+<entry colname="col3"></entry>
+</row>
+<row>
+<entry colname="col1">highlights/warning</entry>
+<entry colname="col2">highlights-warning</entry>
+<entry colname="col3"></entry>
 </row>
 <row>
 <entry namest="col1" nameend="col3"><emphasis role="bold">Inline elements</emphasis></entry>

@@ -5,11 +5,12 @@
   xmlns:sf="http://developer.apple.com/namespaces/sf"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:sl="http://developer.apple.com/namespaces/sl"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:w='urn:not-yet-implemented'
   xmlns:wx='urn:not-yet-implemented'
   xmlns:aml='urn:not-yet-implemented'
   xmlns:doc='http://www.oasis-open.org/docbook/xml/4.0'
-  exclude-result-prefixes='doc'>
+  exclude-result-prefixes='doc xi w wx aml'>
 
   <xsl:output method="xml" indent='no' encoding='ascii'/>
 
@@ -27,6 +28,12 @@
   <xsl:include href='param.xsl'/>
 
   <xsl:variable name='templatedoc' select='document($pages.template)'/>
+
+  <!-- Lookup style identifiers from their user-visible name -->
+  <xsl:variable name='paragraph-styles'
+		select='$templatedoc//sf:paragraphstyle'/>
+  <xsl:variable name='character-styles'
+		select='$templatedoc//sf:characterstyle'/>
 
   <xsl:template match="/" name='pages.top'>
     <xsl:param name='doc' select='/'/>
@@ -58,6 +65,7 @@
       <sf:text-body>
         <sf:page-start sf:page-index='0'/>
         <sf:container-hint sf:page-index="0" sf:cindex="0" sf:sindex="0" sf:lindex="0" sf:frame-x="56.692913055419922" sf:frame-y="56.692913055419922" sf:frame-w="481.61416625976562" sf:frame-h="714" sf:anchor-loc="0"/>
+
         <sf:section sf:name="Chapter 1" sf:style="section-style-0">
           <sf:layout sf:style="layout-style-20">
             <xsl:apply-templates select='*'/>
@@ -67,42 +75,111 @@
     </sf:text-storage>
   </xsl:template>
 
-  <xsl:template match='book|article|section|sect1|sect2|sect3|sect4|sect5|simplesect'>
+  <xsl:template match='book|article|part|section|sect1|sect2|sect3|sect4|sect5|simplesect'>
     <xsl:apply-templates select='*'/>
   </xsl:template>
 
   <xsl:template match='articleinfo|bookinfo'>
     <xsl:apply-templates select='title|subtitle|titleabbrev'/>
-    <xsl:apply-templates select='author|releaseinfo'/>
+    <xsl:apply-templates select='author|releaseinfo|revhistory|abstract'/>
     <!-- current implementation ignores all other metadata -->
-    <xsl:for-each select='*[not(self::title|self::subtitle|self::titleabbrev|self::author|self::releaseinfo)]'>
+    <xsl:for-each select='*[not(self::title|self::subtitle|self::titleabbrev|self::author|self::releaseinfo|self::revhistory|self::abstract)]'>
       <xsl:call-template name='nomatch'/>
     </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match='sectioninfo|sect1info|sect2info|sect3info|sect4info|sect5info'>
+    <xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match='title|subtitle|titleabbrev'>
     <sf:p>
       <xsl:attribute name='sf:style'>
-        <xsl:text>paragraph-style-</xsl:text>
         <xsl:choose>
           <xsl:when test='(parent::section or
                           parent::sectioninfo/parent::section) and
                           count(ancestor::section) > 5'>
             <xsl:message>section nested deeper than 5 levels</xsl:message>
-            <xsl:text>50</xsl:text>
+	    <xsl:call-template name='lookup-paragraph-style'>
+	      <xsl:with-param name='name'>
+		<xsl:text>sect5-</xsl:text>
+		<xsl:value-of select='name()'/>
+	      </xsl:with-param>
+	    </xsl:call-template>
           </xsl:when>
-          <xsl:when test='parent::section or
-                          parent::sectioninfo/parent::section'>
-            <xsl:text>52</xsl:text>
+	  <xsl:when test='parent::sectioninfo'>
+	    <xsl:call-template name='lookup-paragraph-style'>
+	      <xsl:with-param name='name'>
+		<xsl:text>sect</xsl:text>
+		<xsl:value-of select='count(ancestor::section)'/>
+		<xsl:text>-</xsl:text>
+		<xsl:value-of select='name()'/>
+	      </xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:when>
+          <xsl:when test='parent::sect1info |
+			  parent::sect2info |
+			  parent::sect3info |
+			  parent::sect4info |
+			  parent::sect5info'>
+	    <xsl:call-template name='lookup-paragraph-style'>
+	      <xsl:with-param name='name'>
+		<xsl:value-of select='substring-before(name(..), "info")'/>
+		<xsl:text>-</xsl:text>
+		<xsl:value-of select='name()'/>
+	      </xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:when>
+	  <xsl:when test='parent::section'>
+	    <xsl:call-template name='lookup-paragraph-style'>
+	      <xsl:with-param name='name'>
+		<xsl:text>sect</xsl:text>
+		<xsl:value-of select='count(ancestor::section)'/>
+		<xsl:text>-</xsl:text>
+		<xsl:value-of select='name()'/>
+	      </xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:when>
+          <xsl:when test='parent::sect1 |
+			  parent::sect2 |
+			  parent::sect3 |
+			  parent::sect4 |
+			  parent::sect5 |
+			  parent::qandaset |
+			  parent::qandadiv'>
+	    <xsl:call-template name='lookup-paragraph-style'>
+	      <xsl:with-param name='name'>
+		<xsl:value-of select='name(..)'/>
+		<xsl:text>-</xsl:text>
+		<xsl:value-of select='name()'/>
+	      </xsl:with-param>
+	    </xsl:call-template>
           </xsl:when>
-          <xsl:when test='parent::book|../parent::book'>
-            <xsl:text>3</xsl:text>
+          <xsl:when test='parent::book|../parent::book |
+			  parent::article|../parent::article |
+			  parent::part|../parent::part|
+			  parent::formalpara'>
+	    <xsl:call-template name='lookup-paragraph-style'>
+	      <xsl:with-param name='name'>
+		<xsl:value-of select='name(ancestor::*[self::book|self::article|self::part|self::formalpara][1])'/>
+		<xsl:text>-</xsl:text>
+		<xsl:value-of select='name()'/>
+	      </xsl:with-param>
+	    </xsl:call-template>
           </xsl:when>
-          <xsl:when test='parent::article|../parent::article'>
-            <xsl:text>38</xsl:text>
-          </xsl:when>
+	  <xsl:when test='parent::objectinfo|parent::blockinfo'>
+	    <xsl:call-template name='lookup-paragraph-style'>
+	      <xsl:with-param name='name'>
+		<xsl:value-of select='name(../..)'/>
+		<xsl:text>-</xsl:text>
+		<xsl:value-of select='name()'/>
+	      </xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:when>
           <xsl:otherwise>
-            <xsl:text>38</xsl:text>
+	    <xsl:call-template name='lookup-paragraph-style'>
+	      <xsl:with-param name='name'>Title</xsl:with-param>
+	    </xsl:call-template>
           </xsl:otherwise>
         </xsl:choose>
        </xsl:attribute>
@@ -119,40 +196,51 @@
   </doc:template>
   <xsl:template match='*[contains(name(), "info")]/*[not(self::title|self::subtitle|self::titleabbrev)]' priority='0'/>
 
-  <xsl:template match='author|editor|othercredit' mode='not-yet-implemented'>
-    <w:p>
-      <w:pPr>
-        <w:pStyle w:val='{name()}'/>
-      </w:pPr>
+  <xsl:template match='author|editor|othercredit'>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-paragraph-style'>
+	  <xsl:with-param name='name'>
+	    <xsl:value-of select='name()'/>
+	  </xsl:with-param>
+	</xsl:call-template>
+      </xsl:attribute>
 
       <xsl:call-template name='attributes'/>
 
       <xsl:apply-templates select='personname|surname|firstname|honorific|lineage|othername|contrib'/>
-    </w:p>
+      <sf:br/>
+    </sf:p>
     <xsl:apply-templates select='affiliation|address'/>
     <xsl:apply-templates select='authorblurb|personblurb'/>
   </xsl:template>
-  <xsl:template match='affiliation' mode='not-yet-implemented'>
-    <w:p>
-      <w:pPr>
-        <w:pStyle w:val='affiliation'/>
-      </w:pPr>
+  <xsl:template match='affiliation'>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-paragraph-style'>
+	  <xsl:with-param name='name'>affiliation</xsl:with-param>
+	</xsl:call-template>
+      </xsl:attribute>
 
       <xsl:call-template name='attributes'/>
 
       <xsl:apply-templates/>
-    </w:p>
+      <sf:br/>
+    </sf:p>
   </xsl:template>
-  <xsl:template match='address[parent::author|parent::editor|parent::othercredit]' mode='not-yet-implemented'>
-    <w:p>
-      <w:pPr>
-        <w:pStyle w:val='para-continue'/>
-      </w:pPr>
+  <xsl:template match='address[parent::author|parent::editor|parent::othercredit]'>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-paragraph-style'>
+	  <xsl:with-param name='name'>para-continue</xsl:with-param>
+	</xsl:call-template>
+      </xsl:attribute>
 
       <xsl:call-template name='attributes'/>
 
       <xsl:apply-templates/>
-    </w:p>
+      <sf:br/>
+    </sf:p>
   </xsl:template>
   <!-- do not attempt to handle recursive structures -->
   <xsl:template match='address[not(parent::author|parent::editor|parent::othercredit)]'>
@@ -162,23 +250,23 @@
   <xsl:template match='authorblurb|personblurb'/>
 
   <!-- TODO: handle inline markup (eg. emphasis) -->
-  <xsl:template match='surname|firstname|honorific|lineage|othername|contrib|email|shortaffil|jobtitle|orgname|orgdiv|street|pob|postcode|city|state|country|phone|fax' mode='not-yet-implemented'>
+  <xsl:template match='surname|firstname|honorific|lineage|othername|contrib|email|shortaffil|jobtitle|orgname|orgdiv|street|pob|postcode|city|state|country|phone|fax'>
     <xsl:if test='preceding-sibling::*'>
-      <w:r>
-        <w:t>
-          <xsl:text> </xsl:text>
-        </w:t>
-      </w:r>
+      <xsl:text> </xsl:text>
     </xsl:if>
-    <w:r>
-      <w:rPr>
-        <w:rStyle w:val='{name()}'/>
-      </w:rPr>
+    <sf:span>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-character-style'>
+	  <xsl:with-param name='name'>
+	    <xsl:value-of select='name()'/>
+	  </xsl:with-param>
+	</xsl:call-template>
+      </xsl:attribute>
 
       <xsl:apply-templates mode='text-run'/>
-    </w:r>
+    </sf:span>
   </xsl:template>
-  <xsl:template match='email' mode='not-yet-implemented'>
+  <xsl:template match='email'>
     <xsl:variable name='address'>
       <xsl:choose>
         <xsl:when test='starts-with(., "mailto:")'>
@@ -190,14 +278,16 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <w:hlink w:dest='{$address}'>
-      <w:r>
-        <w:rPr>
-          <w:rStyle w:val='Hyperlink'/>
-        </w:rPr>
+    <sf:link href='{$address}'>
+      <sf:span>
+	<xsl:attribute name='sf:style'>
+	  <xsl:call-template name='lookup-character-style'>
+	    <xsl:with-param name='name'>email</xsl:with-param>
+	  </xsl:call-template>
+	</xsl:attribute>
         <xsl:apply-templates mode='text-run'/>
-      </w:r>
-    </w:hlink>
+      </sf:span>
+    </sf:link>
   </xsl:template>
   <!-- otheraddr often contains ulink -->
   <xsl:template match='otheraddr' mode='not-yet-implemented'>
@@ -247,15 +337,17 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  <xsl:template match='ulink' mode='not-yet-implemented'>
-    <w:hlink w:dest='{@url}'>
-      <w:r>
-        <w:rPr>
-          <w:rStyle w:val='Hyperlink'/>
-        </w:rPr>
-      </w:r>
+  <xsl:template match='ulink'>
+    <sf:link href='{@url}'>
+      <sf:span>
+	<xsl:attribute name='sf:style'>
+	  <xsl:call-template name='lookup-character-style'>
+	    <xsl:with-param name='name'>ulink</xsl:with-param>
+	  </xsl:call-template>
+	</xsl:attribute>
+      </sf:span>
       <xsl:apply-templates mode='text-run'/>
-    </w:hlink>
+    </sf:link>
   </xsl:template>
 
   <!-- Cannot round-trip this element -->
@@ -263,16 +355,76 @@
     <xsl:apply-templates/>
   </xsl:template>
 
-  <xsl:template match='releaseinfo' mode='not-yet-implemented'>
-    <w:p>
-      <w:pPr>
-        <w:pStyle w:val='releaseinfo'/>
-      </w:pPr>
+  <xsl:template match='releaseinfo'>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-paragraph-style'>
+	  <xsl:with-param name='name'>releaseinfo</xsl:with-param>
+	</xsl:call-template>
+      </xsl:attribute>
 
       <xsl:call-template name='attributes'/>
 
       <xsl:apply-templates/>
-    </w:p>
+      <sf:br/>
+    </sf:p>
+  </xsl:template>
+
+  <xsl:template match='revhistory'>
+    <xsl:apply-templates/>
+  </xsl:template>
+  <xsl:template match='revision'>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-paragraph-style'>
+	  <xsl:with-param name='name'>revision</xsl:with-param>
+	</xsl:call-template>
+      </xsl:attribute>
+
+      <xsl:call-template name='attributes'/>
+
+      <!-- not currently supporting author -->
+      <xsl:apply-templates select='revnumber|date|authorinitials'/>
+      <sf:br/>
+    </sf:p>
+    <!-- not currently supporting revdescription -->
+    <xsl:apply-templates select='revremark'/>
+  </xsl:template>
+  <xsl:template match='revnumber|date|authorinitials'>
+    <xsl:if test='preceding-sibling::*'>
+      <xsl:text> </xsl:text>
+    </xsl:if>
+    <sf:span>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-character-style'>
+	  <xsl:with-param name='name'>
+	    <xsl:value-of select='name()'/>
+	  </xsl:with-param>
+	</xsl:call-template>
+      </xsl:attribute>
+
+      <xsl:apply-templates/>
+    </sf:span>
+  </xsl:template>
+  <xsl:template match='revremark'>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-paragraph-style'>
+	  <xsl:with-param name='name'>revremark</xsl:with-param>
+	</xsl:call-template>
+      </xsl:attribute>
+
+      <xsl:call-template name='attributes'/>
+
+      <xsl:apply-templates/>
+      <sf:br/>
+    </sf:p>
+  </xsl:template>
+
+  <xsl:template match='abstract'>
+    <xsl:apply-templates>
+      <xsl:with-param name='class'>abstract</xsl:with-param>
+    </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match='para'>
@@ -282,28 +434,37 @@
 
     <xsl:choose>
       <xsl:when test='$block'>
-        <sf:p sf:style='paragraph-style-32'>
+        <sf:p>
+	  <xsl:call-template name='para-style'>
+	    <xsl:with-param name='class' select='$class'/>
+	  </xsl:call-template>
 
-          <!-- <xsl:call-template name='attributes'/> -->
+          <xsl:call-template name='attributes'/>
 
           <xsl:apply-templates select='$block[1]/preceding-sibling::node()'/>
           <sf:br/>
         </sf:p>
         <xsl:for-each select='$block'>
           <xsl:apply-templates select='.'/>
-          <sf:p sf:style='paragraph-style-32'>
+          <sf:p>
+	    <xsl:call-template name='para-style'>
+	      <xsl:with-param name='class' select='$class'/>
+	    </xsl:call-template>
             <xsl:apply-templates select='following-sibling::node()[generate-id(preceding-sibling::*[self::blockquote|self::calloutlist|self::figure|self::glosslist|self::graphic|self::informalfigure|self::informaltable|self::itemizedlist|self::literallayout|self::mediaobject|self::note|self::caution|self::warning|self::important|self::tip|self::orderedlist|self::programlisting|self::revhistory|self::segmentedlist|self::simplelist|self::table|self::variablelist][1]) = generate-id(current())]'/>
             <sf:br/>
           </sf:p>
         </xsl:for-each>
       </xsl:when>
       <xsl:otherwise>
-        <sf:p sf:style='paragraph-style-32'>
+        <sf:p>
+	  <xsl:call-template name='para-style'>
+	    <xsl:with-param name='class' select='$class'/>
+	  </xsl:call-template>
 
-          <!-- <xsl:call-template name='attributes'/> -->
+          <xsl:call-template name='attributes'/>
 
-          <sf:br/>
           <xsl:apply-templates/>
+          <sf:br/>
         </sf:p>
       </xsl:otherwise>
     </xsl:choose>
@@ -311,31 +472,217 @@
   <xsl:template match='simpara'>
     <xsl:param name='class'/>
 
-    <sf:p sf:style='paragraph-style-55'>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-paragraph-style'>
+	  <xsl:with-param name='name'>simpara</xsl:with-param>
+	</xsl:call-template>
+      </xsl:attribute>
 
-      <!-- <xsl:call-template name='attributes'/> -->
+      <xsl:call-template name='attributes'/>
 
       <xsl:apply-templates/>
       <sf:br/>
     </sf:p>
   </xsl:template>
+  <xsl:template name='para-style'>
+    <xsl:param name='class'/>
 
-  <xsl:template match='emphasis' mode='not-yet-implemented'>
-    <w:r>
-      <w:rPr>
-        <xsl:if test='@role = "bold" or @role = "strong"'>
-          <w:b/>
-        </xsl:if>
-        <xsl:if test='not(@role)'>
-          <w:i/>
-        </xsl:if>
-      </w:rPr>
-    </w:r>
-    <w:r>
-      <w:t>
-        <xsl:value-of select='.'/>
-      </w:t>
-    </w:r>
+    <xsl:variable name='style' select='$paragraph-styles[@sf:name = $class]'/>
+
+    <xsl:attribute name='sf:style'>
+      <xsl:choose>
+	<xsl:when test='$style'>
+	  <xsl:value-of select='$style/@sf:ident'/>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:call-template name='lookup-paragraph-style'>
+	    <xsl:with-param name='name'>para</xsl:with-param>
+	  </xsl:call-template>
+	</xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
+  </xsl:template>
+
+  <xsl:template match='emphasis'>
+    <sf:span>
+      <xsl:attribute name='sf:style'>
+	<xsl:choose>
+          <xsl:when test='@role = "underline"'>
+            <xsl:call-template name='lookup-character-style'>
+	      <xsl:with-param name='name'>emphasis-underline</xsl:with-param>
+	    </xsl:call-template>
+          </xsl:when>
+          <xsl:when test='@role = "bold" or @role = "strong"'>
+            <xsl:call-template name='lookup-character-style'>
+	      <xsl:with-param name='name'>emphasis-bold</xsl:with-param>
+	    </xsl:call-template>
+          </xsl:when>
+          <xsl:when test='not(@role) or @role="italic"'>
+            <xsl:call-template name='lookup-character-style'>
+	      <xsl:with-param name='name'>emphasis</xsl:with-param>
+	    </xsl:call-template>
+          </xsl:when>
+	</xsl:choose>
+      </xsl:attribute>
+
+      <xsl:apply-templates/>
+    </sf:span>
+  </xsl:template>
+
+  <xsl:template match='filename|sgmltag|application'>
+    <sf:span>
+      <xsl:attribute name='sf:style'>
+        <xsl:call-template name='lookup-character-style'>
+	  <xsl:with-param name='name'>
+	    <xsl:value-of select='name()'/>
+	  </xsl:with-param>
+	</xsl:call-template>
+      </xsl:attribute>
+
+      <xsl:apply-templates/>
+    </sf:span>
+  </xsl:template>
+
+  <xsl:template match='example|figure'>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-paragraph-style'>
+	  <xsl:with-param name='name'>
+	    <xsl:value-of select='name()'/>
+	    <xsl:text>-title</xsl:text>
+	  </xsl:with-param>
+	</xsl:call-template>
+      </xsl:attribute>
+
+      <xsl:apply-templates select='title' mode='textonly'/>
+      <sf:br/>
+    </sf:p>
+    <xsl:apply-templates select='*[not(self::title)][1]'/>
+    <xsl:apply-templates select='*[not(self::title)][position() != 1]'
+			 mode='error'/>
+  </xsl:template>
+
+  <xsl:template match='informalfigure'>
+    <xsl:if test='mediaobject/imageobject/imagedata'>
+      <sf:p>
+	<xsl:attribute name='sf:style'>
+	  <xsl:call-template name='lookup-paragraph-style'>
+	    <xsl:with-param name='name'>informalfigure-imagedata</xsl:with-param>
+	  </xsl:call-template>
+	</xsl:attribute>
+
+	<xsl:apply-templates select='mediaobject/imageobject/imagedata/@fileref'
+			     mode='textonly'/>
+	<sf:br/>
+      </sf:p>
+    </xsl:if>
+    <xsl:for-each select='*[not(self::mediaobject)]'>
+      <xsl:call-template name='nomatch'/>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match='mediaobject'>
+    <xsl:apply-templates select='objectinfo/title'/>
+    <xsl:apply-templates select='objectinfo/subtitle'/>
+    <!-- TODO: indicate error for other children of objectinfo -->
+
+    <xsl:apply-templates select='*[not(self::objectinfo)]'/>
+  </xsl:template>
+  <xsl:template match='imageobject|audioobject|videoobject'>
+    <xsl:apply-templates select='objectinfo/title'/>
+    <xsl:apply-templates select='objectinfo/subtitle'/>
+    <!-- TODO: indicate error for other children of objectinfo -->
+
+    <xsl:if test='imagedata|audiodata|videodata'>
+      <sf:p>
+	<xsl:attribute name='sf:style'>
+	  <xsl:call-template name='lookup-paragraph-style'>
+	    <xsl:with-param name='name'>
+	      <xsl:value-of select='name()'/>
+	      <xsl:text>-</xsl:text>
+	      <xsl:value-of select='name(imagedata|audiodata|videodata)'/>
+	    </xsl:with-param>
+	  </xsl:call-template>
+	</xsl:attribute>
+
+	<xsl:apply-templates select='*/@fileref'
+			     mode='textonly'/>
+	<sf:br/>
+      </sf:p>
+    </xsl:if>
+    <xsl:for-each select='*[not(self::imagedata|self::audiodata|self::videodata)]'>
+      <xsl:call-template name='nomatch'/>
+    </xsl:for-each>
+  </xsl:template>
+  <xsl:template match='textobject'>
+    <xsl:choose>
+      <xsl:when test='objectinfo/title|objectinfo|subtitle'>
+	<xsl:apply-templates select='objectinfo/title'/>
+	<xsl:apply-templates select='objectinfo/subtitle'/>
+	<!-- TODO: indicate error for other children of objectinfo -->
+      </xsl:when>
+      <xsl:otherwise>
+	<!-- synthesize a title so that the parent textobject
+	     can be recreated.
+	  -->
+	<sf:p>
+	  <xsl:attribute name='sf:style'>
+	    <xsl:call-template name='lookup-paragraph-style'>
+	      <xsl:with-param name='name'>textobject-title</xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:attribute>
+
+	  <xsl:text>Text Object </xsl:text>
+	  <xsl:number level='any'/>
+	  <sf:br/>
+	</sf:p>
+      </xsl:otherwise>
+    </xsl:choose>
+
+    <xsl:apply-templates select='*[not(self::objectinfo)]'/>
+  </xsl:template>
+
+  <xsl:template match='qandaset|qandadiv'>
+    <xsl:apply-templates/>
+  </xsl:template>
+  <xsl:template match='qandaentry'>
+    <xsl:for-each select='revhistory'>
+      <xsl:call-template name='nomatch'/>
+    </xsl:for-each>
+    <xsl:apply-templates select='*[not(self::revhistory)]'/>
+  </xsl:template>
+  <xsl:template match='question|answer'>
+    <xsl:choose>
+      <xsl:when test='*[1][self::para]'>
+	<sf:p>
+	  <xsl:attribute name='sf:style'>
+	    <xsl:call-template name='lookup-paragraph-style'>
+	      <xsl:with-param name='name'>
+		<xsl:value-of select='name()'/>
+	      </xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:attribute>
+
+	  <xsl:apply-templates select='*[1]/node()'/>
+	  <sf:br/>
+	</sf:p>
+
+	<xsl:apply-templates select='*[position() != 1]' mode='question'/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:message>first element in a question must be a paragraph</xsl:message>
+	<xsl:apply-templates mode='error'/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  <xsl:template match='para' mode='question'>
+    <xsl:apply-templates select='.'>
+      <xsl:with-param name='class' select='"para-continue"'/>
+    </xsl:apply-templates>
+  </xsl:template>
+  <xsl:template match='*' mode='question'>
+    <xsl:apply-templates select='.'/>
   </xsl:template>
 
   <xsl:template match='table|informaltable' mode='not-yet-implemented'>
@@ -500,28 +847,11 @@
 
   </xsl:template>
 
-  <xsl:template match='*[self::para|self::simpara]/text()[string-length(normalize-space(.)) != 0]' mode='not-yet-implemented'>
-    <w:r>
-      <w:t>
-        <xsl:value-of select='.'/>
-      </w:t>
-    </w:r>
-  </xsl:template>
-
-  <xsl:template match='text()[not(parent::para|parent::simpara|parent::literallayout)][string-length(normalize-space(.)) != 0]' mode='not-yet-implemented'>
-    <w:r>
-      <w:t>
-        <xsl:value-of select='.'/>
-      </w:t>
-    </w:r>
-  </xsl:template>
   <xsl:template match='text()[string-length(normalize-space(.)) = 0]'/>
   <xsl:template match='text()' mode='text-run'>
-    <w:t>
-      <xsl:value-of select='.'/>
-    </w:t>
+    <xsl:value-of select='.'/>
   </xsl:template>
-  <xsl:template match='literallayout/text()'>
+  <xsl:template match='literallayout/text()|programlisting/text()'>
     <xsl:call-template name='handle-linebreaks'/>
   </xsl:template>
   <xsl:template name='handle-linebreaks'>
@@ -530,22 +860,14 @@
     <xsl:choose>
       <xsl:when test='not($text)'/>
       <xsl:when test='contains($text, "&#xa;")'>
-        <w:r>
-          <w:t>
-            <xsl:value-of select='substring-before($text, "&#xa;")'/>
-          </w:t>
-        </w:r>
+        <xsl:value-of select='substring-before($text, "&#xa;")'/>
         <xsl:call-template name='handle-linebreaks-aux'>
           <xsl:with-param name='text'
             select='substring-after($text, "&#xa;")'/>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-        <w:r>
-          <w:t>
-            <xsl:value-of select='$text'/>
-          </w:t>
-        </w:r>
+        <xsl:value-of select='$text'/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -556,31 +878,27 @@
 
     <xsl:choose>
       <xsl:when test='contains($text, "&#xa;")'>
-        <w:r>
-          <w:br/>
-          <w:t>
-            <xsl:value-of select='substring-before($text, "&#xa;")'/>
-          </w:t>
-        </w:r>
+        <sf:lnbr/>
+        <xsl:value-of select='substring-before($text, "&#xa;")'/>
         <xsl:call-template name='handle-linebreaks-aux'>
           <xsl:with-param name='text' select='substring-after($text, "&#xa;")'/>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-        <w:r>
-          <w:br/>
-          <w:t>
-            <xsl:value-of select='$text'/>
-          </w:t>
-        </w:r>
+        <sf:lnbr/>
+        <xsl:value-of select='$text'/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match='authorblurb|formalpara|legalnotice|note|caution|warning|important|tip'>
+  <xsl:template match='authorblurb|formalpara|highlights|legalnotice|note|caution|warning|important|tip'>
     <xsl:apply-templates select='*'>
       <xsl:with-param name='class'>
-        <xsl:value-of select='name()'/>
+        <xsl:if test='parent::highlights'>
+	  <xsl:value-of select='name(..)'/>
+	  <xsl:text>-</xsl:text>
+	</xsl:if>
+	<xsl:value-of select='name()'/>
       </xsl:with-param>
     </xsl:apply-templates>
   </xsl:template>
@@ -607,18 +925,25 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match='literallayout'>
+  <xsl:template match='literallayout|programlisting'>
     <xsl:param name='class'/>
 
-    <w:p>
-      <w:pPr>
-        <w:pStyle w:val='literallayout'/>
-      </w:pPr>
-
-      <xsl:call-template name='attributes'/>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-paragraph-style'>
+	  <xsl:with-param name='name'>
+	    <xsl:if test='$class != ""'>
+	      <xsl:value-of select='$class'/>
+	      <xsl:text>-</xsl:text>
+	    </xsl:if>
+	    <xsl:value-of select='name()'/>
+	  </xsl:with-param>
+	</xsl:call-template>
+      </xsl:attribute>
 
       <xsl:apply-templates/>
-    </w:p>
+      <sf:br/>
+    </sf:p>
   </xsl:template>
 
   <xsl:template match='itemizedlist|orderedlist'>
@@ -626,18 +951,32 @@
   </xsl:template>
 
   <xsl:template match='listitem'>
-    <w:p>
-      <w:pPr>
-        <!-- variablelist listitems are not handled here -->
-        <w:pStyle w:val='{name(..)}{count(ancestor::itemizedlist|ancestor::orderedlist)}'/>
-        <w:listPr>
-          <wx:t wx:val='&#xB7;'/>
-          <wx:font wx:val='Symbol'/>
-        </w:listPr>
-      </w:pPr>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:choose>
+	  <xsl:when test='../parent::highlights'>
+	    <xsl:call-template name='lookup-paragraph-style'>
+	      <xsl:with-param name='name'>
+		<xsl:text>highlights-</xsl:text>
+		<xsl:value-of select='name(..)'/>
+	      </xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:call-template name='lookup-paragraph-style'>
+	      <xsl:with-param name='name'>
+		<xsl:value-of select='name(..)'/>
+		<xsl:value-of select='count(ancestor::itemizedlist|ancestor::orderedlist)'/>
+	      </xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:attribute>
+
       <!-- Normally a para would be the first child of a listitem -->
       <xsl:apply-templates select='*[1][self::para]/node()' mode='list'/>
-    </w:p>
+      <sf:br/>
+    </sf:p>
     <!-- This is to catch the case where a listitem's first child is not a paragraph.
        - We may not be able to represent this properly.
       -->
@@ -699,6 +1038,19 @@
     </w:tr>
   </xsl:template>
 
+  <xsl:template match='xi:include'>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-paragraph-style'>
+	  <xsl:with-param name='name'>xinclude</xsl:with-param>
+	</xsl:call-template>
+      </xsl:attribute>
+
+      <xsl:value-of select='@href'/>
+      <sf:br/>
+    </sf:p>
+  </xsl:template>
+
   <!-- These elements are not displayed.
      - However, they may need to be added (perhaps as hidden text)
      - for round-tripping.
@@ -710,6 +1062,24 @@
                        keywordset|
                        msg'/>
 
+  <xsl:template match='*' mode='error'>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-paragraph-style'>
+	  <xsl:with-param name='name'>blockerror</xsl:with-param>
+	</xsl:call-template>
+      </xsl:attribute>
+
+      <xsl:value-of select='name()'/>
+      <xsl:text> encountered</xsl:text>
+      <xsl:if test='parent::*'>
+        <xsl:text> in </xsl:text>
+        <xsl:value-of select='name(parent::*)'/>
+      </xsl:if>
+      <xsl:text> cannot be supported.</xsl:text>
+      <sf:br/>
+    </sf:p>
+  </xsl:template>
   <xsl:template match='*' name='nomatch'>
     <xsl:message>
       <xsl:value-of select='name()'/>
@@ -746,8 +1116,6 @@
                       self::dedication |
                       self::epigraph |
                       self::equation |
-                      self::example |
-                      self::figure |
                       self::funcsynopsis |
                       self::glossary |
                       self::glossdef |
@@ -755,7 +1123,6 @@
                       self::glossentry |
                       self::glosslist |
                       self::graphic |
-                      self::highlights |
                       self::imageobject |
                       self::imageobjectco |
                       self::index |
@@ -766,7 +1133,6 @@
                       self::informalfigure |
                       self::lot |
                       self::lotentry |
-                      self::mediaobject |
                       self::mediaobjectco |
                       self::member |
                       self::msgentry |
@@ -777,7 +1143,6 @@
                       self::preface |
                       self::printhistory |
                       self::procedure |
-                      self::programlisting |
                       self::programlistingco |
                       self::publisher |
                       self::qandadiv |
@@ -819,22 +1184,22 @@
                       self::videodata |
                       self::videoobject |
                       self::*[not(starts-with(name(), "informal")) and contains(name(), "info")]'>
-        <w:p>
-          <w:pPr>
-            <w:pStyle w:val='blockerror'/>
-          </w:pPr>
-          <w:r>
-            <w:t>
-              <xsl:value-of select='name()'/>
-              <xsl:text> encountered</xsl:text>
-              <xsl:if test='parent::*'>
-                <xsl:text> in </xsl:text>
-                <xsl:value-of select='name(parent::*)'/>
-              </xsl:if>
-              <xsl:text>, but no template matches.</xsl:text>
-            </w:t>
-          </w:r>
-        </w:p>
+        <sf:p>
+	  <xsl:attribute name='sf:style'>
+	    <xsl:call-template name='lookup-paragraph-style'>
+	      <xsl:with-param name='name'>blockerror</xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:attribute>
+
+          <xsl:value-of select='name()'/>
+          <xsl:text> encountered</xsl:text>
+          <xsl:if test='parent::*'>
+            <xsl:text> in </xsl:text>
+            <xsl:value-of select='name(parent::*)'/>
+          </xsl:if>
+          <xsl:text>, but no template matches.</xsl:text>
+	  <sf:br/>
+        </sf:p>
       </xsl:when>
       <!-- Some elements are sometimes blocks, sometimes inline
       <xsl:when test='self::affiliation |
@@ -863,20 +1228,21 @@
       </xsl:when>
       -->
       <xsl:otherwise>
-        <w:r>
-          <w:rPr>
-            <w:rStyle w:val='inlineerror'/>
-          </w:rPr>
-          <w:t>
-            <xsl:value-of select='name()'/>
-            <xsl:text> encountered</xsl:text>
-            <xsl:if test='parent::*'>
-              <xsl:text> in </xsl:text>
-              <xsl:value-of select='name(parent::*)'/>
-            </xsl:if>
-            <xsl:text>, but no template matches.</xsl:text>
-          </w:t>
-        </w:r>
+        <sf:span>
+	  <xsl:attribute name='sf:style'>
+	    <xsl:call-template name='lookup-character-style'>
+	      <xsl:with-param name='name'>inlineerror</xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:attribute>
+
+          <xsl:value-of select='name()'/>
+          <xsl:text> encountered</xsl:text>
+          <xsl:if test='parent::*'>
+            <xsl:text> in </xsl:text>
+            <xsl:value-of select='name(parent::*)'/>
+          </xsl:if>
+          <xsl:text>, but no template matches.</xsl:text>
+        </sf:span>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -884,59 +1250,35 @@
   <xsl:template name='attributes'>
     <xsl:param name='node' select='.'/>
 
-    <xsl:if test='$node/@*'>
-      <aml:annotation aml:id='{count(preceding::*) + 1}' w:type='Word.Comment.Start'/>
-      <w:r>
-        <w:rPr>
-          <w:rStyle w:val='attributes'/>
-        </w:rPr>
-        <w:t>
-          <xsl:text> </xsl:text>
-        </w:t>
-      </w:r>
-      <aml:annotation aml:id='{count(preceding::*) + 1}' w:type='Word.Comment.End'/>
-      <w:r>
-        <w:rPr>
-          <w:rStyle w:val='CommentReference'/>
-        </w:rPr>
-        <aml:annotation aml:id='{count(preceding::*) + 1}' aml:author="DocBook" aml:createdate='2004-12-23T00:01:00' w:type='Word.Comment' w:initials='DBK'>
-          <aml:content>
-            <w:p>
-              <w:pPr>
-                <w:pStyle w:val='CommentText'/>
-              </w:pPr>
-              <w:r>
-                <w:rPr>
-                  <w:rStyle w:val='CommentReference'/>
-                </w:rPr>
-                <w:annotationRef/>
-              </w:r>
-              <xsl:for-each select='$node/@*'>
-                <w:r>
-                  <w:rPr>
-                    <w:rStyle w:val='attribute-name'/>
-                  </w:rPr>
-                  <w:t>
-                    <xsl:value-of select='name()'/>
-                  </w:t>
-                </w:r>
-                <w:r>
-                  <w:t>=</w:t>
-                </w:r>
-                <w:r>
-                  <w:rPr>
-                    <w:rStyle w:val='attribute-value'/>
-                  </w:rPr>
-                  <w:t>
-                    <xsl:value-of select='.'/>
-                  </w:t>
-                </w:r>
-              </xsl:for-each>
-            </w:p>
-          </aml:content>
-        </aml:annotation>
-      </w:r>
-    </xsl:if>
+    <xsl:for-each select='$node/@*'>
+      <sf:span>
+	<xsl:attribute name='sf:style'>
+	  <xsl:call-template name='lookup-character-style'>
+	    <xsl:with-param name='name'>attribute-name</xsl:with-param>
+	  </xsl:call-template>
+	</xsl:attribute>
+	<xsl:value-of select='name()'/>
+      </sf:span>
+      <sf:span>
+	<xsl:attribute name='sf:style'>
+	  <xsl:call-template name='lookup-character-style'>
+	    <xsl:with-param name='name'>attribute-value</xsl:with-param>
+	  </xsl:call-template>
+	</xsl:attribute>
+	<xsl:value-of select='.'/>
+      </sf:span>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template name='lookup-paragraph-style'>
+    <xsl:param name='name'/>
+
+    <xsl:value-of select='$paragraph-styles[@sf:name = $name]/@sf:ident'/>
+  </xsl:template>
+  <xsl:template name='lookup-character-style'>
+    <xsl:param name='name'/>
+
+    <xsl:value-of select='$character-styles[@sf:name = $name]/@sf:ident'/>
   </xsl:template>
 
   <xsl:template match='*' mode='copy'>

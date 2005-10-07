@@ -80,6 +80,21 @@
     </w:r>
   </xsl:template>
 
+  <xsl:template match='sf:br'/>
+  <xsl:template match='sf:lnbr'>
+    <w:r>
+      <w:br/>
+    </w:r>
+  </xsl:template>
+  <xsl:template match='sf:tab'>
+    <xsl:text>        </xsl:text>
+  </xsl:template>
+  <xsl:template match='sf:link'>
+    <w:hlink w:dest='{@href}'>
+      <xsl:apply-templates/>
+    </w:hlink>
+  </xsl:template>
+
   <xsl:template match='text()'>
     <xsl:choose>
       <xsl:when test='ancestor::sf:span'>

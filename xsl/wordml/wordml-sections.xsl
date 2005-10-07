@@ -9,6 +9,8 @@
 <!--= mapping specification.           =-->
 <!--=                                  =-->
 <!--= Revision history:                =-->
+<!--=  1.2 2005-10-03 SRB              =-->
+<!--=   Change XML Namespace URI.      =-->
 <!--=  1.1 2004-12-08 SRB              =-->
 <!--=   Implement multiple elements... =-->
 <!--=  1.0.1 2004-12-01 SRB            =-->
@@ -66,13 +68,13 @@
       <axsl:when test="$books and (w:pPr/w:pStyle/@w:val = &quot;book&quot; or w:pPr/w:pStyle/@w:val = &quot;book-title&quot;)">
         <axsl:call-template name="make-book">
           <axsl:with-param name="books" select="$books"/>
-          <axsl:with-param name="book-components" select="$books[1]/preceding-sibling::w:p[w:pPr/w:pStyle/@w:val = &quot;article&quot; or w:pPr/w:pStyle/@w:val = &quot;article-title&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix-title&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter-title&quot; or w:pPr/w:pStyle/@w:val = &quot;preface&quot; or w:pPr/w:pStyle/@w:val = &quot;preface-title&quot;]"/>
+          <axsl:with-param name="book-components" select="$books[1]/preceding-sibling::w:p[w:pPr/w:pStyle/@w:val = &quot;part&quot; or w:pPr/w:pStyle/@w:val = &quot;part-title&quot; or w:pPr/w:pStyle/@w:val = &quot;article&quot; or w:pPr/w:pStyle/@w:val = &quot;article-title&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix-title&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter-title&quot; or w:pPr/w:pStyle/@w:val = &quot;preface&quot; or w:pPr/w:pStyle/@w:val = &quot;preface-title&quot;]"/>
         </axsl:call-template>
       </axsl:when>
       <axsl:otherwise>
         <axsl:call-template name="make-book">
           <axsl:with-param name="books" select="$books"/>
-          <axsl:with-param name="book-components" select="following-sibling::w:p[w:pPr/w:pStyle/@w:val = &quot;article&quot; or w:pPr/w:pStyle/@w:val = &quot;article-title&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix-title&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter-title&quot; or w:pPr/w:pStyle/@w:val = &quot;preface&quot; or w:pPr/w:pStyle/@w:val = &quot;preface-title&quot;]"/>
+          <axsl:with-param name="book-components" select="following-sibling::w:p[w:pPr/w:pStyle/@w:val = &quot;part&quot; or w:pPr/w:pStyle/@w:val = &quot;part-title&quot; or w:pPr/w:pStyle/@w:val = &quot;article&quot; or w:pPr/w:pStyle/@w:val = &quot;article-title&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix-title&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter-title&quot; or w:pPr/w:pStyle/@w:val = &quot;preface&quot; or w:pPr/w:pStyle/@w:val = &quot;preface-title&quot;]"/>
         </axsl:call-template>
       </axsl:otherwise>
     </axsl:choose>
@@ -189,8 +191,8 @@
     <axsl:param select="/.." name="book-components"/>
     <axsl:choose>
       <axsl:when test="generate-id() = generate-id($nextbook)"/>
-      <axsl:when test="w:pPr/w:pStyle/@w:val = &quot;article&quot; or w:pPr/w:pStyle/@w:val = &quot;article-title&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix-title&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter-title&quot; or w:pPr/w:pStyle/@w:val = &quot;preface&quot; or w:pPr/w:pStyle/@w:val = &quot;preface-title&quot;">
-        <axsl:variable name="nextbook-component" select="following-sibling::w:p[w:pPr/w:pStyle/@w:val = &quot;article&quot; or w:pPr/w:pStyle/@w:val = &quot;article-title&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix-title&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter-title&quot; or w:pPr/w:pStyle/@w:val = &quot;preface&quot; or w:pPr/w:pStyle/@w:val = &quot;preface-title&quot;][1]"/>
+      <axsl:when test="w:pPr/w:pStyle/@w:val = &quot;part&quot; or w:pPr/w:pStyle/@w:val = &quot;part-title&quot; or w:pPr/w:pStyle/@w:val = &quot;article&quot; or w:pPr/w:pStyle/@w:val = &quot;article-title&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix-title&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter-title&quot; or w:pPr/w:pStyle/@w:val = &quot;preface&quot; or w:pPr/w:pStyle/@w:val = &quot;preface-title&quot;">
+        <axsl:variable name="nextbook-component" select="following-sibling::w:p[w:pPr/w:pStyle/@w:val = &quot;part&quot; or w:pPr/w:pStyle/@w:val = &quot;part-title&quot; or w:pPr/w:pStyle/@w:val = &quot;article&quot; or w:pPr/w:pStyle/@w:val = &quot;article-title&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix-title&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter-title&quot; or w:pPr/w:pStyle/@w:val = &quot;preface&quot; or w:pPr/w:pStyle/@w:val = &quot;preface-title&quot;][1]"/>
         <axsl:choose>
           <axsl:when test="$nextbook-component">
             <axsl:variable name="sect1s" select="$nextbook-component/preceding-sibling::w:p[w:pPr/w:pStyle/@w:val = &quot;sect1&quot; or w:pPr/w:pStyle/@w:val = &quot;sect1-title&quot;]"/>
