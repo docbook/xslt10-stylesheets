@@ -1,6 +1,7 @@
-<group:root xmlns:group='http://www.zveno.com/grouping'>
+<group:root xmlns:group='http://www.explain.com.au/grouping'>
   <book styles='book book-title'>
     <group:level>
+      <group:element name='part' styles='part part-title'/>
       <group:element name='article' styles='article article-title'/>
       <group:element name='appendix' styles='appendix appendix-title'/>
       <group:element name='chapter' styles='chapter chapter-title'/>
