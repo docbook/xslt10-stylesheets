@@ -53,6 +53,22 @@ foreach my $param (/<xsl:param name="[^\"]+"/gs) {
     print "    <member>$1</member>\n", 
 }
 
+print <<EOF5;
+  </simplelist>
+</xsl:variable>
+
+<xsl:variable name="xsl-wordml-parameters-list">
+  <simplelist>
+EOF5
+
+open (F, "../wordml/param.xsl");
+read (F, $_, -s "../wordml/param.xsl");
+close (F);
+foreach my $param (/<xsl:param name="[^\"]+"/gs) {
+    $param =~ /name=\"(.*)\"/;
+    print "    <member>$1</member>\n", 
+}
+
 print <<EOF4;
   </simplelist>
 </xsl:variable>

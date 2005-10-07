@@ -1,4 +1,4 @@
-DIRS=common refentry html fo manpages slides/html website template tools pi
+DIRS=common refentry html fo manpages wordml slides/html website template tools pi
 
 all: xsl-params.xsl
 	for i in $(DIRS) __bogus__; do \
