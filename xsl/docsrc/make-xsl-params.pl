@@ -82,6 +82,9 @@ print <<EOF4;
 <xsl:variable name="xsl-manpages-parameters"
               select="exsl:node-set(\$xsl-manpages-parameters-list)/simplelist"/>
 
+<xsl:variable name="xsl-wordml-parameters"
+              select="exsl:node-set(\$xsl-wordml-parameters-list)/simplelist"/>
+
 <xsl:template name="is-html-parameter">
   <xsl:param name="param" select="''"/>
 
@@ -109,5 +112,13 @@ print <<EOF4;
   </xsl:choose>
 </xsl:template>
 
+<xsl:template name="is-wordml-parameter">
+  <xsl:param name="param" select="''"/>
+
+  <xsl:choose>
+    <xsl:when test="\$xsl-wordml-parameters/member[. = \$param]">1</xsl:when>
+    <xsl:otherwise>0</xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
 </xsl:stylesheet>
 EOF4
