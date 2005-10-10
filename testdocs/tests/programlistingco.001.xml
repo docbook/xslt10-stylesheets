@@ -18,7 +18,7 @@
 <area coords="9" id="require1"/>
 <area coords="10" id="require2"/>
 </areaset>
-<area coords="11 12" id="use"/>
+<area coords="11 50" id="use"/>
 <area coords="27" id="funccall"/>
 </areaspec>
 <programlisting>@rem = '--*-Perl-*--
@@ -60,7 +60,7 @@ exit;</programlisting>
 <para>The <literal>goto</literal> statement, interpreted by the DOS batch
 file interpreter, skips over the body of the Perl script.</para>
 </callout>
-<callout arearefs="require1">
+<callout arearefs="require1 require2">
 <para>The <literal>require</literal> statement sources in external program
 fragments.</para>
 </callout>
