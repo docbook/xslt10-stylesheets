@@ -100,7 +100,7 @@ ZIP_EXCLUDES = \
  \.make-catalog\.xsl
 
 # list of executables that are included in all distributions
-EXECUTABLES = install.sh
+EXECUTABLES =
 
 # specifies options to feed to "freshmeat-submit"
 FMGO=-N
