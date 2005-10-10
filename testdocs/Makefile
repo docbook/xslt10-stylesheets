@@ -1,5 +1,27 @@
 # -*- Makefile -*-
 include ../cvstools/Makefile.incl
+include ../releasetools/Variables.mk
+
+DISTRO=testdocs
+
+# value of DISTRIB_DEPENDS is a space-separated list of any
+# targets for this distro's "distrib" target to depend on
+DISTRIB_DEPENDS =
+
+# value of ZIP_EXCLUDES is a space-separated list of any file or
+# directory names (shell wildcards OK) that should be excluded
+# from the zip file and tarball for the release
+DISTRIB_EXCLUDES =
+
+# value of DISTRIB_PACKAGES is a space-separated list of any
+# directory names that should be packaged as separate zip/tar
+# files for the release
+DISTRIB_PACKAGES =
+
+# to make sure that executable bit is retained after packaging,
+# you need to explicitly list any executable files here
+DISTRIB_EXECUTABLES =
+
 
 VPATH=.:tests/
 
@@ -56,8 +78,8 @@ TESTBASE	:= $(shell ls -1 tests/*.xml | sed -e 's/\.[0-9][0-9][0-9]\.xml$$//' | 
 # ======================================================================
 
 # default rule
-.PHONY: test
-test:
+.PHONY: all
+all:
 	@echo "no default rule; try 'make xref.001.html' or 'make alltests'"
 
 .PHONY: $(TESTS)
@@ -90,12 +112,17 @@ $(TESTBASE):
 	$(MAKE) $(basename $(notdir $(wildcard $@.[0-9][0-9][0-9].xml)))
 
 # run all tests
-.PHONY: alltests
-alltests: tests/images $(TESTS)
+.PHONY: alltests tests/images images
+alltests: tests/images images $(TESTS)
 
 tests/images:
 	if [ ! -h tests/images ]; then \
 	  ln -s ../../xsl/images tests/images; \
+	fi
+
+images:
+	if [ ! -h images ]; then \
+	  ln -s ../xsl/images images; \
 	fi
 
 # ======================================================================
@@ -220,51 +247,8 @@ clean:
 	rm -f jhelpidx.xml jhelpmap.jhm jhelpset.hs jhelptoc.xml
 	find . -name '*~' -o -name '*.bak' -o -name '.#*' -o -name core | xargs rm -f
 
-.PHONY: distrib
-distrib:
-	$(CVS2LOG) -w
-ifeq ($(DIFFVER),)
-	$(MERGELOGS) > WhatsNew
-else
-	$(MERGELOGS) -v $(DIFFVER) > WhatsNew
-endif
-
-.PHONY: newversion
-newversion:
-ifeq ($(NEXTVER),)
-	$(NEXTVERSION)
-else
-	$(NEXTVERSION) -v $(NEXTVER)
-endif
-	make DIFFVER=$(DIFFVER) distrib
-
-.PHONY: zip
-zip:
-ifeq ($(ZIPVER),)
-	@echo You must specify ZIPVER for the zip target
-else
-	rm -rf /tmp/docbook-testdocs-$(ZIPVER)
-	rm -f /tmp/tar.exclude
-	rm -f /tmp/docbook-testdocs-$(ZIPVER).tar.gz
-	rm -f /tmp/docbook-testdocs-$(ZIPVER).zip
-	mkdir /tmp/docbook-testdocs-$(ZIPVER)
-	touch /tmp/tar.exclude
-	find . -print  | grep /CVS$$ | cut -c3- >> /tmp/tar.exclude
-	find . -print  | grep /CVS/ | cut -c3- >> /tmp/tar.exclude
-	find . -print  | grep .classes | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name "*~"  | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name ".*~"  | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name "#*"  | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name ".cvsignore"  | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name "Makefile*"   | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name "README.CVS"   | cut -c3- >> /tmp/tar.exclude
-	tar cf - * --exclude-from /tmp/tar.exclude | (cd /tmp/docbook-testdocs-$(ZIPVER); tar xf -)
-	cd /tmp && tar cf - docbook-testdocs-$(ZIPVER) | gzip > docbook-testdocs-$(ZIPVER).tar.gz
-	cd /tmp && zip -rpD docbook-testdocs-$(ZIPVER).zip docbook-testdocs-$(ZIPVER)
-	rm -f tar.exclude
-endif
-
 # remove target if error in the rule
 .DELETE_ON_ERROR:
 
+include ../releasetools/Targets.mk
 # EOF
