@@ -6,7 +6,7 @@
     <title>Release Notes</title>
     <subtitle>DocBook Project XSL Stylesheets</subtitle>
     <pubdate><?dbtimestamp format="Y-m-d"?></pubdate>
-    <releaseinfo role="cvs">$Revision $ $Date $</releaseinfo>
+    <releaseinfo role="cvs">$Revision$ $Date$</releaseinfo>
     <corpauthor>DocBook Project Development Team</corpauthor> 
   </articleinfo> 
 
