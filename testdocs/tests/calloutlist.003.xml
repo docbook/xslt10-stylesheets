@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+          "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<article>
+  <articleinfo>
+    <title>Unit Test: calloutlist.003</title>
+    <releaseinfo role="CVS">$Id$</releaseinfo>
+    <author><firstname>Benoit</firstname><surname>Guillon</surname>
+    </author>
+  </articleinfo>
+
+<section><title>Callouts</title>
+
+<section><title>Embedded <sgmltag>Co</sgmltag>s</title>
+
+<programlisting>
+  &lt;refentry>
+    &lt;info>
+      &lt;date>2003-10-20&lt;/date> <co id="V1690_date-co" linkends="V1690_date"/>
+    &lt;/info>
+    &lt;refmeta>
+      &lt;refentrytitle>gtk&lt;:-options&lt;/refentrytitle> <co id="V1690_title-co" linkends="V1690_title"/>
+      &lt;manvolnum>7&lt;/manvolnum> <co id="V1690_manvolnum-co" linkends="V1690_manvolnum"/>
+      &lt;refmiscinfo class="source-name">&lt;1:GTK+&lt;/refmiscinfo> <co id="V1690_source-name-co" linkends="V1690_source-name"/>
+      &lt;refmiscinfo class="version">1.2&lt;/refmiscinfo> <co id="V1690_version-co" linkends="V1690_version"/>
+      &lt;refmiscinfo class="manual">GTK+ User's Manual&lt;/refmiscinfo> <co id="V1690_manual-co" linkends="V1690_manual"/>
+    &lt;/refmeta>
+    &lt;refnamediv>
+      &lt;refname>gtk-options&lt;/refname>
+      &lt;refpurpose>Standard Command Line Options for GTK+ Programs&lt;/refpurpose>
+    &lt;/refnamediv>
+    &lt;refsect1>
+      &lt;title>Description&lt;/title>
+      &lt;para>This manual page describes the command line options, which
+      are common to all GTK+ based applications.&lt;/para>
+    &lt;/refsect1>
+  &lt;/refentry>
+</programlisting>
+
+<calloutlist>
+  <callout arearefs="V1690_date-co" id="V1690_date">
+    <para>Sets the <quote>date</quote> part of the header/footer.</para>
+  </callout>
+  <callout arearefs="V1690_title-co" id="V1690_title">
+    <para>Sets the <quote>title</quote> part.</para>
+  </callout>
+  <callout arearefs="V1690_manvolnum-co" id="V1690_manvolnum">
+    <para>Sets the <quote>section</quote> part.</para>
+  </callout>
+  <callout arearefs="V1690_source-name-co" id="V1690_source-name">
+    <para>Sets the <quote>source name</quote> part.</para>
+  </callout>
+  <callout arearefs="V1690_version-co" id="V1690_version">
+    <para>Sets the <quote>version</quote> part.</para>
+  </callout>
+  <callout arearefs="V1690_manual-co" id="V1690_manual">
+    <para>Sets the <quote>manual</quote> part.</para>
+  </callout>
+</calloutlist>
+
+<para>
+Another <sgmltag>screen</sgmltag> including <sgmltag>coref</sgmltag> too. The
+first <sgmltag>coref</sgmltag> is not valid, the second one is valid. It checks
+also that several items in co/@linkends are correctly handled.
+</para>
+
+<screen> Volume in drive C is SYSTEM         Serial number is 2350:717C
+ Directory of  C:\
+
+10/17/97   9:04         &lt;DIR>    bin
+10/16/97  14:11         &lt;DIR>    DOS <co id="dos" linkends=" firstco lastco  "/>
+10/16/97  14:40         &lt;DIR>    Program Files
+10/16/97  14:46         &lt;DIR>    TEMP <coref linkend="unknown"/>
+10/17/97   9:04         &lt;DIR>    tmp <coref linkend="dos"/>
+10/16/97  14:37         &lt;DIR>    WINNT
+10/16/97  14:25             119  AUTOEXEC.BAT <co linkends="startup" id="autoexec.bat"/>
+ 2/13/94   6:21          54,619  COMMAND.COM <co linkends="startup" id="command.com"/>
+10/16/97  14:25             115  CONFIG.SYS <co id="config.sys"/>
+11/16/97  17:17      61,865,984  pagefile.sys
+ 2/13/94   6:21           9,349  WINA20.386 <co id="wina20.386"/></screen>
+
+<calloutlist>
+<callout arearefs="dos" id="firstco">
+  <para>
+  This directory holds <trademark>MS-DOS</trademark>, the
+  operating system that was installed before <trademark>Windows
+  NT</trademark>.
+  </para>
+</callout>
+<callout id="startup" arearefs="  autoexec.bat command.com config.sys ">
+  <para>
+  System startup code for DOS.
+  </para>
+</callout>
+<callout arearefs="wina20.386" id="lastco">
+  <para>
+  Some sort of <trademark>Windows 3.1</trademark> hack for some 386 processors,
+  as I recall.
+  </para>
+</callout>
+</calloutlist>
+
+</section>
+
+<section><title>Programlistingco</title>
+
+<para>In this case the markups are all at the end of the lines, except for line
+11. It checks that enough spaces are added to reach the specified column. It
+checks also that the area linkends coords hotspot appears.</para>
+
+<programlistingco>
+<areaspec>
+<area coords="1" id="prologue"/>
+<area coords="4" id="skipeof" linkends="skipeof-desc"/>
+<areaset coords="" id="xreq">
+<area coords="9" id="require1"/>
+<area coords="10" id="require2"/>
+</areaset>
+<area coords="11 12" id="use"/>
+<area coords="27" id="funccall"/>
+</areaspec>
+<programlisting>@rem = '--*-Perl-*--
+@echo off
+perl.exe %_batchname %$
+goto endofperl
+@rem ';
+
+# Compress mail...
+
+require 'n:/home/nwalsh/lib/cygnus.pl';
+require 'timelocal.pl';
+use Cwd;
+
+select (STDERR); $| = 1;
+select (STDOUT); $| = 1;
+
+@DIRS = ("/home/nwalsh/Mail");
+while (@DIRS) {
+    $dir = shift @DIRS;
+    opendir (DIR, $dir);
+    while ($fname = readdir(DIR)) {
+        $file = "$dir/$fname";
+        next if ! -d $file;
+        next if $fname =~ /^\.\.?$/;
+
+        print "$file\n";
+        push (@DIRS, $file);
+        &amp;compress ($file);
+    }
+}
+
+exit;</programlisting>
+<calloutlist>
+<callout arearefs="prologue">
+<para>The prologue handles embedding a Perl script in a DOS batch file.</para>
+</callout>
+<callout arearefs="skipeof" id="skipeof-desc">
+<para>The <literal>goto</literal> statement, interpreted by the DOS batch
+file interpreter, skips over the body of the Perl script.</para>
+</callout>
+<callout arearefs="require1">
+<para>The <literal>require</literal> statement sources in external program
+fragments.</para>
+</callout>
+<callout arearefs="use">
+<para>The <literal>use</literal> statement is similar, but has additional
+utility.  It is a Perl5 function.  (Note that this callout area specifies
+both a line and a column.)</para>
+</callout>
+<callout arearefs="funccall">
+<para>This is a user subroutine call.</para>
+</callout>
+</calloutlist>
+</programlistingco>
+
+<para>This case checks that spaces are added to reach the expected
+column.</para>
+
+<programlistingco>
+<areaspec>
+<area id="hermite1" coords="2 55"/>
+<area id="hermite2" coords="4 55"/>
+</areaspec>
+<programlisting>
+This is a line
+This is another line
+This is a third lien
+
+
+...
+</programlisting>
+<calloutlist>
+<callout arearefs="hermite1 hermite2">
+<para>
+here <function>HermiteNormalFormIntegerMat</function>
+is used
+</para>
+</callout>
+</calloutlist>
+</programlistingco>
+
+<para>This programlistingco checks that you can put several markups at different
+column positions into the same line, and that several markups with no column
+specification are both put at the end of the line. The special case of a markup at
+the end of the last line is checked too.</para>
+ 
+<programlistingco>
+<areaspec>
+<area id="pos10" coords="2 10"/>
+<area id="pos12" coords="2 12"/>
+<area id="posend1" coords="2"/>
+<area id="posend2" coords="2"/>
+<area id="poslast" coords="8"/>
+</areaspec>
+<programlisting>
+This is a line
+This is another line
+This is a third lien
+
+
+...
+The very last line</programlisting>
+<calloutlist>
+<callout arearefs="pos10 pos12">
+<para>
+here <function>HermiteNormalFormIntegerMat</function>
+is used
+</para>
+</callout>
+</calloutlist>
+</programlistingco>
+ 
+</section>
+</section>
+</article>
