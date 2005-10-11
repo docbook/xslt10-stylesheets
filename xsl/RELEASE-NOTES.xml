@@ -1,10 +1,12 @@
 <?xml version='1.0'?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
-<article>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
+<article lang="en">
   <articleinfo>
-    <title>DocBook XSL Stylesheet Release Notes</title>
+    <title>Release Notes</title>
+    <subtitle>DocBook Project XSL Stylesheets</subtitle>
     <pubdate><?dbtimestamp format="Y-m-d"?></pubdate>
-    <releaseinfo role="cvs">$Id$</releaseinfo> 
+    <releaseinfo role="cvs">$Revision $ $Date $</releaseinfo>
     <corpauthor>DocBook Project Development Team</corpauthor> 
   </articleinfo> 
 
