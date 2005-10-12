@@ -16,8 +16,9 @@
 
 <para revisionflag="deleted">This paragraph was deleted.</para>
 
-<para>This paragraph contains <phrase role="changed">changed</phrase>,
-<phrase role="added">and </phrase>
-added<phrase role="deleted">, and deleted</phrase> inlines.</para>
+<para>This paragraph contains
+<phrase revisionflag="changed">changed</phrase><phrase revisionflag="deleted">,</phrase>
+<phrase revisionflag="added">and </phrase>
+added<phrase revisionflag="deleted">, and deleted</phrase> inlines.</para>
 
 </article>
