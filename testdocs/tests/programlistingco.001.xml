@@ -13,7 +13,7 @@
 <programlistingco>
 <areaspec>
 <area coords="1" id="prologue"/>
-<area coords="4" id="skipeof"/>
+<area coords="4" id="skipeof" linkends="skipeof-desc"/>
 <areaset coords="" id="xreq">
 <area coords="9" id="require1"/>
 <area coords="10" id="require2"/>
@@ -56,9 +56,11 @@ exit;</programlisting>
 <callout arearefs="prologue">
 <para>The prologue handles embedding a Perl script in a DOS batch file.</para>
 </callout>
-<callout arearefs="skipeof">
-<para>The <literal>goto</literal> statement, interpreted by the DOS batch
-file interpreter, skips over the body of the Perl script.</para>
+<callout arearefs="skipeof" id="skipeof-desc">
+<para>The <literal>goto</literal> statement, interpreted by the DOS
+batch file interpreter, skips over the body of the Perl script. (Note
+that this callout has an “id” attribute that is referenced by a
+“linkends” attribute on the callout bug for line 4 above.)</para>
 </callout>
 <callout arearefs="require1 require2">
 <para>The <literal>require</literal> statement sources in external program
