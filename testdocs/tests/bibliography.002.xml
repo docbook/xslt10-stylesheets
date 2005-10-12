@@ -29,7 +29,7 @@
   <editor><firstname>James T.</firstname><surname>DeWolf</surname></editor>
 </biblioentry>
 
-<biblioentry id="Walsh97">
+<biblioentry id="Walsh97-2">
   <abbrev>Walsh97</abbrev>
   <biblioset relation="article">
     <title>A Guide to XML</title>
@@ -164,7 +164,7 @@ PrintHistory, printhistory, printhistory. PrintHistory, printhistory.
 </bibliodiv>
 <bibliodiv><title>Entries using bibliomixed</title>
 
-<bibliomixed id="Walsh96">
+<bibliomixed id="Walsh96-2">
   <bibliomset relation="article">
     <surname>Walsh</surname>, <firstname>Norman</firstname>.
     <title role="article">Introduction to Cascading Style Sheets</title>.
