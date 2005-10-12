@@ -403,7 +403,9 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="book/glossary[@role='auto']|/glossary[@role='auto']" priority="2.5">
+<xsl:template match="book/glossary[@role='auto']|
+                     part/glossary[@role='auto']|
+		     /glossary[@role='auto']" priority="2.5">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
   <xsl:variable name="master-reference">
