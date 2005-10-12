@@ -215,7 +215,10 @@
 
 <xsl:template match="formalpara|figure|table[tgroup]|example|blockquote
                      |caution|important|note|warning|tip
-                     |bibliodiv|glossarydiv|indexdiv" priority="200">
+                     |bibliodiv|glossarydiv|indexdiv
+		     |orderedlist|itemizedlist|variablelist|procedure
+		     |task|tasksummary|taskprerequisites|taskrelated"
+	      priority="200">
   <xsl:choose>
     <xsl:when test="blockinfo">
       <xsl:copy>
@@ -937,19 +940,46 @@
       </xsl:when>
       <xsl:when test="$suppress = local-name(.)"/>
       <xsl:when test="local-name(.) = 'float'">
-        <xsl:message>
-          <xsl:text>Discarding float on </xsl:text>
-          <xsl:value-of select="local-name($src)"/>
-        </xsl:message>
-	<xsl:if test="not($src/@floatstyle)">
-	  <xsl:message>
-	    <xsl:text>Adding floatstyle='normal' on </xsl:text>
-	    <xsl:value-of select="local-name($src)"/>
-	  </xsl:message>
-	  <xsl:attribute name="floatstyle">
-	    <xsl:text>normal</xsl:text>
-	  </xsl:attribute>
-	</xsl:if>
+	<xsl:choose>
+	  <xsl:when test=". = '1'">
+	    <xsl:message>
+	      <xsl:text>Discarding float on </xsl:text>
+	      <xsl:value-of select="local-name($src)"/>
+	    </xsl:message>
+	    <xsl:if test="not($src/@floatstyle)">
+	      <xsl:message>
+		<xsl:text>Adding floatstyle='normal' on </xsl:text>
+		<xsl:value-of select="local-name($src)"/>
+	      </xsl:message>
+	      <xsl:attribute name="floatstyle">
+		<xsl:text>normal</xsl:text>
+	      </xsl:attribute>
+	    </xsl:if>
+	  </xsl:when>
+	  <xsl:when test=". = '0'">
+	    <xsl:message>
+	      <xsl:text>Discarding float on </xsl:text>
+	      <xsl:value-of select="local-name($src)"/>
+	    </xsl:message>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:message>
+	      <xsl:text>Discarding float on </xsl:text>
+	      <xsl:value-of select="local-name($src)"/>
+	    </xsl:message>
+	    <xsl:if test="not($src/@floatstyle)">
+	      <xsl:message>
+		<xsl:text>Adding floatstyle='</xsl:text>
+		<xsl:value-of select="."/>
+		<xsl:text>' on </xsl:text>
+		<xsl:value-of select="local-name($src)"/>
+	      </xsl:message>
+	      <xsl:attribute name="floatstyle">
+		<xsl:value-of select="."/>
+	      </xsl:attribute>
+	    </xsl:if>
+	  </xsl:otherwise>
+	</xsl:choose>
       </xsl:when>
       <xsl:otherwise>
         <xsl:copy/>
