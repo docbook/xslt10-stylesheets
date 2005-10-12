@@ -16,7 +16,7 @@
 
 <bibliography>
   <title>Bibliography in a Section</title>
- <biblioentry id="xml">
+ <biblioentry id="xml-1">
    <abbrev>XML 1.0</abbrev>
    <editor>
       <firstname>Tim</firstname>
@@ -49,7 +49,7 @@
 
 <bibliography>
   <title>Bibliography in a Subsection</title>
- <biblioentry id="xml11">
+ <biblioentry id="xml11-1">
    <abbrev>XML 1.1</abbrev>
    <editor>
       <firstname>Tim</firstname>
@@ -72,7 +72,7 @@
 
 <bibliography>
   <title>Bibliography in a Chapter</title>
- <biblioentry id="flynn-xml-faq">
+ <biblioentry id="flynn-xml-faq-1">
    <abbrev>Fl01</abbrev>
    <author>
      <firstname>Peter</firstname>
