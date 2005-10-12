@@ -18,9 +18,11 @@
 <book id="book">
   <bookinfo>
     <title>Unit Test: book.001</title>
+    <title>Wrapper for all bibiliography.nnn.xml files</title>
     <releaseinfo role="CVS">$Id$</releaseinfo>
     <corpauthor>DocBook Project Development Team</corpauthor>
   </bookinfo>
+  <xi:include href="bibliography.005.xml"/>
   <xi:include href="bibliography.001.xml"/>
   <xi:include href="bibliography.002.xml"/>
   <xi:include href="bibliography.003.xml"/>
