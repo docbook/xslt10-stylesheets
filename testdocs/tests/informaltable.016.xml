@@ -24,11 +24,11 @@
   the last 3 columns.</para>
 
 <informaltable frame="all" id="informaltable">
-      <tgroup cols="4" colsep="1" rowsep="1" align="center">
-        <colspec colname="one"/>
-        <colspec colname="two"/>
-        <colspec colname="three"/>
-        <colspec colname="four"/>
+      <tgroup cols="4" colsep="1" rowsep="1">
+        <colspec colname="one" align="center"/>
+        <colspec colname="two" align="center"/>
+        <colspec colname="three" align="center"/>
+        <colspec colname="four" align="center"/>
         <spanspec namest="two" nameend="four" spanname="thespan"
           align="right"/>
         <tbody>
