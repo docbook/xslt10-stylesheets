@@ -42,5 +42,10 @@
     </para>
   </section>
 
-  &index;
+  <index/>
+  <!-- * Note: To test DSSSL index support, comment out the <index/> above -->
+  <!-- * and uncomment the entity ref below -->
+  <!-- * --> 
+  <!-- * &index; -->
+  <!-- * -->
 </article>
