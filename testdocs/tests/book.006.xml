@@ -18,7 +18,7 @@
 <book id="book">
   <bookinfo>
     <title>Unit Test: book.001</title>
-    <title>Wrapper for all bibiliography.nnn.xml files</title>
+    <subtitle>Wrapper for all bibiliography.nnn.xml files</subtitle>
     <releaseinfo role="CVS">$Id$</releaseinfo>
     <corpauthor>DocBook Project Development Team</corpauthor>
   </bookinfo>
