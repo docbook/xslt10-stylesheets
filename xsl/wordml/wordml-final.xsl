@@ -12,7 +12,7 @@
 		       (w:pPr/w:listPr/w:ilvl/@w:val = "0" and
 		       w:pPr/w:listPr/wx:t/@wx:val = "&#183;" and
 		       w:pPr/w:listPr/wx:font/@wx:val = "Symbol")]'>
-<!ENTITY itemizedlist1 'w:p[w:pPr/w:pStyle/@w:val = "itemizedlist" or
+<!ENTITY itemizedlist1 'w:p[w:pPr/w:pStyle/@w:val = "itemizedlist1" or
 			(w:pPr/w:listPr/w:ilvl/@w:val = "0" and
 			w:pPr/w:listPr/wx:t/@wx:val = "&#183;" and
 			w:pPr/w:listPr/wx:font/@wx:val = "Symbol")]'>
@@ -54,6 +54,9 @@
 <!ENTITY editor "w:p[w:pPr/w:pStyle/@w:val='editor']">
 <!ENTITY othercredit "w:p[w:pPr/w:pStyle/@w:val='othercredit']">
 <!ENTITY authorblurb "w:p[w:pPr/w:pStyle/@w:val='authorblurb']">
+
+<!ENTITY abstracttitle "w:p[w:pPr/w:pStyle/@w:val='abstract-title']">
+<!ENTITY abstract "w:p[w:pPr/w:pStyle/@w:val='abstract']">
 
 <!ENTITY xinclude "w:p[w:pPr/w:pStyle/@w:val='xinclude']">
 
@@ -211,7 +214,8 @@
 		      ../&editor; |
 		      ../&othercredit; |
 		      ../&revhistory; |
-		      ../&revision;'>
+		      ../&revision; |
+		      ../&abstract;'>
         <xsl:element name='{$parent}info'>
           <title>
             <xsl:apply-templates select="w:r|w:hlink"/>
@@ -222,7 +226,8 @@
 				       ../&editor; |
 				       ../&othercredit; |
 				       ../&revhistory; |
-				       ../&revision;'
+				       ../&revision; |
+				       ../&abstract;'
 			       mode='metadata'/>
         </xsl:element>
       </xsl:when>
@@ -290,7 +295,36 @@
 		       &affiliation; |
 		       &revhistory; |
 		       &revision; |
-		       &revremark;" mode='group'/>
+		       &revremark; |
+		       &abstracttitle; |
+		       &abstract;" mode='group'/>
+  <xsl:template match='&abstracttitle;' mode='metadata'/>
+  <xsl:template match='&abstract;' mode='metadata'>
+    <xsl:choose>
+      <xsl:when test='preceding-sibling::*[1][self::&abstracttitle;]'>
+	<abstract>
+	  <title>
+	    <xsl:apply-templates
+	       select='preceding-sibling::*[1]/*[self::w:r|self::w:hlink]'/>
+	  </title>
+	  <xsl:apply-templates select='.' mode='abstract'/>
+	</abstract>
+      </xsl:when>
+      <xsl:when test='preceding-sibling::*[1][not(self::&abstract;)]'>
+	<abstract>
+	  <xsl:apply-templates select='.' mode='abstract'/>
+	</abstract>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  <xsl:template match='*' mode='abstract'/>
+  <xsl:template match='&abstract;' mode='abstract'>
+    <para>
+      <xsl:call-template name='object.id'/>
+      <xsl:apply-templates select="w:r|w:hlink"/>
+    </para>
+    <xsl:apply-templates select='following-sibling::*[1]' mode='abstract'/>
+  </xsl:template>
   <xsl:template match="&releaseinfo;" mode='metadata'>
     <releaseinfo>
       <xsl:call-template name='attributes'/>
@@ -519,22 +553,33 @@
 
     <!-- Identify the node that follows all the listitems -->
     <xsl:variable name="stop.node"
-      select="generate-id(following-sibling::*[not(self::&itemizedlist;
+      select="following-sibling::*[not(self::&itemizedlist;
               or self::&continue;
-              or self::&orderedlist;)][1])"/>
+              or self::&orderedlist;)][1]"/>
+    <xsl:variable name='stop.node.id' select='generate-id($stop.node)'/>
 
     <!-- Start the list and process all the level 1 listitems -->
     <itemizedlist>
-      <xsl:apply-templates mode="item" 
-        select=".|following-sibling::&itemizedlist;[&listlevel; = '']
-                [following-sibling::*[generate-id() = $stop.node]]">
-        <xsl:with-param name="depth" select="1"/>
-      </xsl:apply-templates>
+      <xsl:choose>
+	<xsl:when test='$stop.node'>
+	  <xsl:apply-templates
+	     mode="item" 
+	     select=".|following-sibling::&itemizedlist;[&listlevel; = '' or &listlevel; = '1']
+		     [following-sibling::*[generate-id() = $stop.node.id]]">
+            <xsl:with-param name="depth" select="1"/>
+	  </xsl:apply-templates>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:apply-templates
+	     mode='item'
+	     select='.|following-sibling::&itemizedlist;[&listlevel; = "" or &listlevel; = "1"]'/>
+	</xsl:otherwise>
+      </xsl:choose>
     </itemizedlist>
 
   </xsl:template>
 
-  <xsl:template match="&itemizedlist;" mode="item">
+  <xsl:template match="&itemizedlist;|&itemizedlist1;" mode="item">
     <xsl:param name="depth" select="1"/>
 
     <listitem>
@@ -552,7 +597,6 @@
         <xsl:with-param name="depth" select="$depth + 1"/>
       </xsl:apply-templates>
     </listitem>
-
   </xsl:template>
 
   <xsl:template match="&itemizedlist;" mode="subgroup">
@@ -693,7 +737,8 @@
   </link>
 </xsl:template>
 
-<xsl:template match="w:hlink[w:r/w:rPr/w:rStyle[@w:val='ulink' or @w:val='Hyperlink']]">
+<xsl:template match="w:hlink[w:r/w:rPr/w:u |
+		     w:r/w:rPr/w:rStyle[@w:val='ulink' or @w:val='Hyperlink']]">
   <ulink url='{@w:dest}'>
     <xsl:apply-templates select="w:r"/>
   </ulink>
@@ -719,6 +764,9 @@
   <xsl:template match='w:r[starts-with(w:rPr/w:rStyle/@w:val, "emphasis")]'
 		priority='2'>
     <xsl:choose>
+      <xsl:when test='ancestor::w:hlink'>
+	<xsl:apply-templates select='w:t'/>
+      </xsl:when>
       <xsl:when test='w:rPr/w:rStyle/@w:val = "emphasis-bold"'>
 	<emphasis role='bold'>
 	  <xsl:apply-templates select="w:t"/>

@@ -5,7 +5,7 @@
 <articleinfo><author><firstname>Bob</firstname><surname>Stayton</surname><affiliation><orgname>Sagehill
 Enterprises</orgname></affiliation></author>
 <author><firstname>Steve</firstname><surname>Ball</surname><affiliation><orgname>Zveno</orgname></affiliation></author>
-<releaseinfo>Version 1.1, dated 28 September 2005</releaseinfo> 
+<releaseinfo>Version 1.2, dated 13 Octobber 2005</releaseinfo> 
 </articleinfo> 
 <abstract>
 <para>This document specifies how DocBook  elements can be mapped to Microsoft Word styles. The specifications will be used to write conversions between DocBook XML and Microsoft's WordProcessingML (WordML).</para>
@@ -286,6 +286,11 @@ colwidth="1.00*"/>
 <entry colname="col1">para</entry>
 <entry colname="col2">para, Normal</entry>
 <entry colname="col3">Any Word paragraph with style <literal>Normal</literal> will also be converted to a <sgmltag class="element">para</sgmltag> element.</entry>
+</row>
+<row>
+<entry colname="col1">abstract</entry>
+<entry colname="col2">abstract,abstract-title</entry>
+<entry colname="col3"><sgmltag>abstract</sgmltag>/<sgmltag>para</sgmltag>.</entry>
 </row>
 <row>
 <entry colname="col1">note/para</entry>
