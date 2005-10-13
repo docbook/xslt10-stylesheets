@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
           "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<article>
-<articleinfo>
+<book>
+<bookinfo>
 <title>Unit Test: refentry.007</title>
 <releaseinfo role="CVS">$Id$</releaseinfo>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
 </author>
-</articleinfo>
-
+</bookinfo>
+<reference>
 <refentry>
 <refnamediv>
 <refname>FirstName</refname>
@@ -89,6 +89,45 @@ And it ends with a line of space.
 that does not start with a line of space. [break here]
 And does not end with a line of space.</screen>
 
+<para>This is a normal paragraph that contains a screen.
+<screen>This is a screen within a normal paragraph [break here]
+that does not start with a line of space. [break here]
+And does not end with a line of space but is followed
+by a line of space.</screen>
+</para>
+
+<para>This is another  normal paragraph that contains a screen.
+<screen>This is a screen within a normal paragraph [break here]
+that does not start with a line of space. [break here]
+And does not end with a line of space and is not followed
+by a line of space.</screen></para>
+
+<para>This is another  normal paragraph that contains a screen.
+<screen>
+This is a screen within a normal paragraph [break here]
+that starts with a line of space. [break here]
+And ends with a line of space but is not followed by a line of space.
+</screen></para>
+
+<para>This is another  normal paragraph that contains a screen.
+<screen>
+This is a screen within a normal paragraph [break here]
+that starts with a line of space. [break here]
+And ends with a line of space and is followed by a line of space.
+</screen>
+</para>
+
+<para>This is another  normal paragraph that contains a screen.
+<screen>
+
+This is a screen within a normal paragraph [break here]
+that starts with a 2 lines of space. [break here]
+And ends with 3 lines of space and is followed by a line of space.
+
+
+</screen>
+</para>
+
 <para>The following is a Variablelist with a title and with a nested itemizedlist.
 <variablelist>
   <title>My variablelist</title>
@@ -150,4 +189,5 @@ nested Varlistentry that contains multiple Terms
 </refsect1>
 
 </refentry>
-</article>
+</reference>
+</book>
