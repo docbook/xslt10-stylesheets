@@ -2,9 +2,9 @@
 
 use Getopt::Std;
 
-$usage = "Usage: $0 [-l logfile] [-w] [-c date]\n";
+$usage = "Usage: $0 [-l logfile] [-w] [-c date] [-n]\n";
 
-die $usage if ! getopts('c:l:w');
+die $usage if ! getopts('c:l:wn');
 
 # yes, the trailing blank is significant
 my %authorName = ('adicarlo' => 'Adam Di Carlo ',
@@ -119,7 +119,11 @@ sub show_messages {
     my $author = shift;
     my $msgs = shift;
 
-    print F "$date  ", $authorName{$author}, "<$author\@users.sourceforge.net>\n\n";
+    if ($opt_n) {
+      print F "$date  ", $authorName{$author}, "$author\n\n";
+    } else {
+      print F "$date  ", $authorName{$author}, "<$author\@users.sourceforge.net>\n\n";
+    }
 
     foreach $msg (sort fnsort keys %{$msgs}) {
 	$files = $msgs->{$msg};
