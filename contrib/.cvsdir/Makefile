@@ -1,3 +1,5 @@
+# $Id$
+
 DATE ?= $(shell date +"%Y-%m-%d")
 
 WGET ?= wget
