@@ -1,0 +1,230 @@
+# $Id$
+#
+# -----------------------------------------------------------------
+#   A standard makefile for generating output from DocBook source
+# -----------------------------------------------------------------
+#
+#   This file is part of the DocBook Project XSL Stylesheet
+#   distribution.
+#
+#   See http://docbook.sourceforge.net/release/xsl/current/
+#   for copyright and other information.
+#
+
+TMPNUM := $(shell echo $$$$)
+
+XSLTPROC = xsltproc
+XSLTPROC_FLAGS = --xinclude
+
+PDF_MAKER = fop
+
+DBLATEX = dblatex
+DBLATEX_FLAGS = 
+
+FOP = fop
+FOP_FLAGS = 
+
+XEP = xep
+XEP_FLAGS =
+
+XMLROFF = xmlroff
+XMLROFF_FLAGS =
+
+PDFTEX = pdftex
+PDFTEX_FLAGS =
+
+PDFXMLTEX = pdfxmltex
+
+XMLROFF = xmlroff
+XMLROFF_FLAGS =
+
+DB2X_XSLTPROC = db2x_xsltproc
+DB2X_XSLTPROC_FLAGS = 
+DB2X_TEXIXML = db2x_texixml
+DB2X_TEXIXML_FLAGS = 
+
+MAN = man
+MAN_FLAGS = -l
+
+PS2PDF = ps2pdf
+PS2PDF_FLAGS =
+
+XSL_STYLESHEETS = http://docbook.sourceforge.net/release/xsl/current
+#XSL_STYLESHEETS = docbook-xsl
+
+MAN_MANIFEST = MANIFEST.man
+
+DOCBOOK_XSL_MAN  = $(XSL_STYLESHEETS)/manpages/docbook.xsl
+DOCBOOK_XSL_HTML = $(XSL_STYLESHEETS)/html/docbook.xsl
+DOCBOOK_XSL_CHNK = $(XSL_STYLESHEETS)/html/chunk.xsl
+DOCBOOK_XSL_FO   = $(XSL_STYLESHEETS)/fo/docbook.xsl
+
+FO_PARAMS = --stringparam $(PDF_MAKER).extensions 1 
+HTML_PARAMS = 
+MAN_PARAMS = --stringparam generate.manifest 1 --stringparam man.manifest.filename $(MAN_MANIFEST)
+
+DOCBOOK_FILE_EXTENSION = .xml
+
+SOURCE_FILES_DBK = $(wildcard *$(DOCBOOK_FILE_EXTENSION))
+
+FILES_FO   = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).fo)
+FILES_PDF  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).pdf)
+FILES_LOG  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).log)
+FILES_OUT  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).out)
+FILES_AUX  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).aux)
+FILES_MAN  = $(shell if [ -f $(MAN_MANIFEST) ]; then cat $(MAN_MANIFEST); fi)
+FILES_MANP = $(foreach manpage,$(shell if [ -f $(MAN_MANIFEST) ]; then cat $(MAN_MANIFEST); fi),$(manpage).pdf)
+FILES_DMAN = $(foreach base,$(basename $(SOURCE_FILES_DBK)),.$(base).man)
+FILES_HTML = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).html)
+FILES_INFO = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).info)
+
+all: man html pdf
+
+debug:
+	echo $(TMPNUM)
+
+man: $(FILES_DMAN)
+
+man-pdf: man $(foreach base,$(wildcard *.1),$(base).pdf)
+
+html: $(FILES_HTML)
+
+html-chunk: index.html
+	$(XSLTPROC) $(XSLTPROC_FLAGS) $(DOCBOOK_XSL_CHNK) $<
+
+pdf: $(FILES_PDF)
+
+info: $(FILES_INFO)
+
+.%.man: %.xml
+	@if [ -f $(MAN_MANIFEST) ]; then \
+	mv $(MAN_MANIFEST) $(MAN_MANIFEST).$(TMPNUM).old; \
+	fi
+	$(XSLTPROC) $(XSLTPROC_FLAGS) \
+	    $(MAN_PARAMS) \
+	    $(DOCBOOK_XSL_MAN) \
+	    $< \
+	    && touch $@
+	@if [ -f $(MAN_MANIFEST).$(TMPNUM).old ]; then \
+	mv $(MAN_MANIFEST) $(MAN_MANIFEST).$(TMPNUM).new; \
+	cat $(MAN_MANIFEST).$(TMPNUM).old $(MAN_MANIFEST).$(TMPNUM).new > $(MAN_MANIFEST); \
+	fi
+	@$(RM) $(MAN_MANIFEST).$(TMPNUM).old 
+	@$(RM) $(MAN_MANIFEST).$(TMPNUM).new
+
+%.html: %.xml
+	$(XSLTPROC) $(XSLTPROC_FLAGS) $(DOCBOOK_XSL_HTML) $< > $@
+
+%.fo: %.xml
+	$(XSLTPROC) $(XSLTPROC_FLAGS) $(FO_PARAMS) $(DOCBOOK_XSL_FO) $< > $@
+
+ifeq ($(PDF_MAKER),dblatex)
+%.pdf: %.xml
+	$(DBLATEX) $(DBLATEX_FLAGS) -o $@ $<
+endif
+
+%.pdf: %.fo
+ifeq ($(PDF_MAKER),)
+	$(error No PDF_MAKER specified. Cannot make pdf)
+else
+ifeq ($(PDF_MAKER),xep)
+	$(XEP) $(XEP_FLAGS) $< $@
+else
+ifeq ($(PDF_MAKER),fop)
+	$(FOP) $(FOP_FLAGS) $< $@
+else
+ifeq ($(PDF_MAKER),xmlroff)
+	$(XMLROFF) $(XMLROFF_FLAGS) $< -o $@
+else
+ifeq ($(PDF_MAKER),passivetex)
+	$(PDFTEX) $(PDFTEX_FLAGS) &$(PDFXMLTEX) $<
+	@if [ `egrep Rerun $(basename $@).log | wc -l` -gt 0 ]; then \
+		$(PDFTEX) $(PDFTEX_FLAGS) &$(PDFXMLTEX) $< ; \
+	fi
+	@if [ `egrep Rerun $(basename $@).log | wc -l` -gt 0 ]; then \
+		$(PDFTEX) $(PDFTEX_FLAGS) &$(PDFXMLTEX) $< ; \
+	fi
+	$(RM) $(basename $@).log
+	$(RM) $(basename $@).aux
+	$(RM) $(basename $@).out
+else
+	$(error I do not know how to make a PDF using "$(PDF_MAKER)")
+endif
+endif
+endif
+endif
+endif
+
+%.txml: %.xml
+	$(DB2X_XSLTPROC) $(DB2X_XSLTPROC_FLAGS) -s texi -o $@ $<
+
+%.texi: %.txml
+	$(DB2X_TEXIXML) $(DB2X_TEXIXML_FLAGS) $<
+
+%.info: %.texi
+	$(MAKEINFO) $(MAKEINFO_FLAGS) $< -o $@
+
+%.1.ps: %.1
+	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+
+%.2.ps: %.2
+	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+
+%.3.ps: %.3
+	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+
+%.4.ps: %.4
+	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+
+%.5.ps: %.5
+	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+
+%.6.ps: %.6
+	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+
+%.7.ps: %.7
+	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+
+%.8.ps: %.8
+	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+
+%.9.ps: %.9
+	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+
+%.pdf: %.ps
+	$(PS2PDF) $(PS2PDF_FLAGS) $<
+
+clean:
+ifneq ($(FILES_PDF),)
+	$(RM) $(FILES_PDF)
+endif
+ifneq ($(FILES_FO),)
+	$(RM) $(FILES_FO)
+endif
+ifneq ($(FILES_LOG),)
+	$(RM) $(FILES_LOG)
+endif
+ifneq ($(FILES_OUT),)
+	$(RM) $(FILES_OUT)
+endif
+ifneq ($(FILES_AUX),)
+	$(RM) $(FILES_AUX)
+endif
+ifneq ($(FILES_HTML),)
+	$(RM) $(FILES_HTML)
+endif
+ifneq ($(FILES_MAN),)
+	$(RM) $(FILES_MAN)
+endif
+ifneq ($(FILES_DMAN),)
+	$(RM) $(FILES_DMAN)
+endif
+ifneq ($(FILES_MANP),)
+	$(RM) $(FILES_MAN)
+endif
+ifneq ($(MAN_MANIFEST),)
+	$(RM) $(MAN_MANIFEST)
+endif
+ifneq ($(FILES_INFO),)
+	$(RM) $(FILES_INFO)
+endif
