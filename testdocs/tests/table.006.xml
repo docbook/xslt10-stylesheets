@@ -158,7 +158,7 @@
 <para>Tic Tac Toe (the perverse way, using colsep on colspec and rowsep on rows):</para>
 
 <informaltable frame="none">
-<tgroup cols="3" rowsep="0" colsep="0">
+<tgroup cols="3">
 <colspec colnum="1" colsep="1"/>
 <colspec colnum="2" colsep="1"/>
 <tbody>
@@ -185,7 +185,7 @@
 <para>Box in the middle:</para>
 
 <informaltable frame="none">
-<tgroup cols="3">
+<tgroup cols="3" rowsep="0" colsep="0">
 <tbody>
 <row>
 <entry>a foo</entry>
