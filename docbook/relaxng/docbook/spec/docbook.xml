@@ -43,7 +43,7 @@ $Id$
 Standards [OASIS]. All Rights Reserved. </holder></copyright>
 
 <abstract><title>Abstract</title>
-<para>DocBook is general purpose <xref linkend="xml-rec"/> schema
+<para>DocBook is a general purpose <xref linkend="xml-rec"/> schema
 particularly well suited to books and papers about computer hardware
 and software (though it is by no means limited to these applications).
 </para>
@@ -97,7 +97,8 @@ and software (though it is by no means limited to these applications).
 <para>The <ulink url="mailto:docbook-tc@oasis-open.org">DocBook
 Technical Committee</ulink> maintains the DocBook schema. Starting
 with V5.0, DocBook is normatively available as a <xref
-linkend="relaxng"/> Schema. W3C XML Schema and Document Type
+linkend="relaxng"/> Schema (with some additional Schematron assertions).
+W3C XML Schema and Document Type
 Definition (DTD) versions are also available.
 </para>
 
@@ -382,7 +383,7 @@ DocBook would be smaller and simpler if it had a single
 <para>There’s an historical reason for the large number of unique
 names: customizers might very well want to adjust the content models
 of info elements at different levels. For example, a copyright
-statement might be required at the book level, or an an author
+statement might be required at the book level, or an author
 forbidden at the sub-section level. In DTDs, there’s only one content
 model allowed per element name, so in order to support independent
 customization, each info element must have a different name.</para>
@@ -449,7 +450,7 @@ models, DocBook V5.0 forbids such mixtures.</para>
 </section>
 
 <section>
-<title>Datatypes</title>
+<title>Data Types</title>
 
 <para>DocBook V5.0 adds a few simple data types. For example, the
 <sgmltag class="attribute">cols</sgmltag> attribute on <sgmltag>tgroup</sgmltag>
@@ -516,7 +517,7 @@ structure.</para>
 <para>While most Tables of Contents and Lists of Titles are generated
 automatically and authors never have to produce markup for them by
 hand, this simplified content model should make it easier for authors
-to generate when necessary. One possible application of hand-authored
+to generate them when necessary. One possible application of hand-authored
 <sgmltag>toc</sgmltag> markup is to generate custom hierarchies which
 can be assembled on-the-fly from a library of topics marked up in
 DocBook.</para>
@@ -547,9 +548,10 @@ easy in a rule-based schema language.</para>
 that users should be able to produce customizations that are either
 subsets of extensions of DocBook.</para>
 
-<para>For users familiar with the intricacies of XML DTD syntax and
-the rather complex and highly stylized patterns of parameter entity
-usage in DocBook, this is possible in DocBook V4.x.</para>
+<para>Customization is possible in DocBook V4.x, but because of the
+intricacies of XML DTD syntax and the complex and highly stylized
+patterns of parameter entitiy usage in DocBook, it's not as easy as we
+would like it to be.</para>
 
 <para>In DocBook V5.0, we hope to take advantage of RELAX NGs more
 robust design (and it's lack of pernicious determinism rules) to make
@@ -890,7 +892,7 @@ the online list of claimed rights.</para>
 <appendix id="a.ipr">
 <title>Intellectual Property Rights</title>
 
-<para>For information on wether any patents have been disclosed that may be
+<para>For information on whether any patents have been disclosed that may be
 essential to implementing this specification, and any offers of patent
 licensing terms, please refer to the Intellectual Property Rights section
 of the DocBook web page
