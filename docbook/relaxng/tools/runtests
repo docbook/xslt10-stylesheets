@@ -49,7 +49,12 @@ for f in $XMLFILES; do
 		echo "passed"
 		mv $f passed/
 	    else
-		echo "failed"
+		if jing ../docbookxi.rng $f; then
+		    echo "passed"
+		    mv $f passed/
+		else
+		    echo "failed"
+		fi
 	    fi
 	fi
 
