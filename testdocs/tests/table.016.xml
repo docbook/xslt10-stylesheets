@@ -40,14 +40,20 @@ $Id$
     </informaltable>
 
   </td>
-  <td></td>
+  <td>Four</td>
+</tr>
+<tr>
+  <td>One</td>
   <td>Four</td>
 </tr>
 <tr>
   <td>One</td>
   <td colspan="2" rowspan="2">
   </td>
-  <td></td>
+  <td>Four</td>
+</tr>
+<tr>
+  <td>One</td>
   <td>Four</td>
 </tr>
 <tr>
