@@ -13,10 +13,15 @@
 
 TMPNUM := $(shell echo $$$$)
 
+PDF_MAKER = fop
+
+TXT_MAKER = links
+#TXT_MAKER = lynx
+
+TXT_MAKER_FLAGS = -dump
+
 XSLTPROC = xsltproc
 XSLTPROC_FLAGS = --xinclude
-
-PDF_MAKER = fop
 
 DBLATEX = dblatex
 DBLATEX_FLAGS = 
@@ -68,6 +73,7 @@ DOCBOOK_FILE_EXTENSION = .xml
 SOURCE_FILES_DBK = $(wildcard *$(DOCBOOK_FILE_EXTENSION))
 
 FILES_FO   = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).fo)
+FILES_TXT  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).txt)
 FILES_PDF  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).pdf)
 FILES_LOG  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).log)
 FILES_OUT  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).out)
@@ -78,7 +84,7 @@ FILES_DMAN = $(foreach base,$(basename $(SOURCE_FILES_DBK)),.$(base).man)
 FILES_HTML = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).html)
 FILES_INFO = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).info)
 
-all: man html pdf
+all: man html txt pdf
 
 debug:
 	echo $(TMPNUM)
@@ -114,6 +120,12 @@ info: $(FILES_INFO)
 
 %.html: %.xml
 	$(XSLTPROC) $(XSLTPROC_FLAGS) $(DOCBOOK_XSL_HTML) $< > $@
+
+%.txt: %.html
+	$(TXT_MAKER) $(TXT_MAKER_FLAGS) ./$< \
+	  | sed "s/^\(\s\+[0-9]\+\. \)file:\/\/.\+$$/\\1(local)/g" \
+	  | egrep -v '^	file:///.+$$' \
+	  > $@
 
 %.fo: %.xml
 	$(XSLTPROC) $(XSLTPROC_FLAGS) $(FO_PARAMS) $(DOCBOOK_XSL_FO) $< > $@
