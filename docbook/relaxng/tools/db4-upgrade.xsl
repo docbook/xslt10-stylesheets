@@ -217,7 +217,8 @@
                      |caution|important|note|warning|tip
                      |bibliodiv|glossarydiv|indexdiv
 		     |orderedlist|itemizedlist|variablelist|procedure
-		     |task|tasksummary|taskprerequisites|taskrelated"
+		     |task|tasksummary|taskprerequisites|taskrelated
+		     |sidebar"
 	      priority="200">
   <xsl:choose>
     <xsl:when test="blockinfo">
@@ -273,7 +274,7 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="sect1|sect2|sect3|sect4|sect5|section|simplesect"
+<xsl:template match="sect1|sect2|sect3|sect4|sect5|section"
 	      priority="200">
   <section>
     <xsl:call-template name="copy.attributes"/>
@@ -287,6 +288,22 @@
     </xsl:if>
     <xsl:apply-templates/>
   </section>
+</xsl:template>
+
+<xsl:template match="simplesect"
+	      priority="200">
+  <simplesect>
+    <xsl:call-template name="copy.attributes"/>
+
+    <xsl:if test="not(sect1info|sect2info|sect3info|sect4info|sect5info|sectioninfo)">
+      <info>
+        <xsl:apply-templates select="title" mode="copy"/>
+        <xsl:apply-templates select="titleabbrev" mode="copy"/>
+        <xsl:apply-templates select="subtitle" mode="copy"/>
+      </info>
+    </xsl:if>
+    <xsl:apply-templates/>
+  </simplesect>
 </xsl:template>
 
 <xsl:template match="refsect1|refsect2|refsect3|refsection" priority="200">
