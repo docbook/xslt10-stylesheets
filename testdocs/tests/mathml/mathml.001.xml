@@ -9,10 +9,10 @@
 
 <para>The following equation is in MathML:</para>
 
-<informalequation>
-  <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML">
-    <mml:apply><mml:divide/></mml:apply>
-  </mml:math>
-</informalequation>
+ <informalequation>
+   <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML">
+     <mml:apply><mml:divide/><mml:ci>1</mml:ci><mml:ci>6</mml:ci></mml:apply>
+   </mml:math>
+ </informalequation>
 
 </article>
