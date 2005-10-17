@@ -5,6 +5,7 @@
                 version='1.0'>
 
   <xsl:import href="../html/docbook.xsl"/>
+  <xsl:import href="../html/manifest.xsl"/>
 
   <xsl:output method="text"
               encoding="UTF-8"
@@ -34,6 +35,9 @@
   <xsl:include href="lists.xsl"/>
   <xsl:include href="links.xsl"/>
 
+  <xsl:param name="generate.manifest">0</xsl:param>
+  <xsl:param name="man.manifest.filename">MANIFEST.man</xsl:param>
+
 <!-- ==================================================================== -->
 
   <!-- * if document does not contain at least one refentry, then emit a -->
@@ -42,6 +46,24 @@
     <xsl:choose>
       <xsl:when test="//refentry">
         <xsl:apply-templates select="//refentry"/>
+        <!-- * if $generate.manifest is non-zero, generate a manifest file -->
+        <xsl:if test="not($generate.manifest = '0')">
+          <xsl:call-template name="generate.manifest">
+            <xsl:with-param name="filename">
+              <xsl:choose>
+                <xsl:when test="not($man.manifest.filename = '')">
+                  <xsl:value-of select="$man.manifest.filename"/>
+                </xsl:when>
+                <!-- * we must have a manifest filename; so if user has -->
+                <!-- * unset $man.manifest.filename, default to using -->
+                <!-- * “MAN.MANIFEST” as the filename -->
+                <xsl:otherwise>
+                  <xsl:text>MAN.MANIFEST</xsl:text>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
       </xsl:when>
       <xsl:otherwise>
         <xsl:message>No refentry elements!</xsl:message>
@@ -102,7 +124,14 @@
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!-- * top.comment = commented-out section at top of roff source -->
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <xsl:call-template name="top.comment"/>
+      <xsl:call-template name="top.comment">
+        <xsl:with-param name="info"       select="$info"/>
+        <xsl:with-param name="parentinfo" select="$parentinfo"/>
+        <xsl:with-param name="date"       select="$refentry.metadata/date"/>
+        <xsl:with-param name="title"      select="$refentry.metadata/title"/>
+        <xsl:with-param name="manual"     select="$refentry.metadata/manual"/>
+        <xsl:with-param name="source"     select="$refentry.metadata/source"/>
+      </xsl:call-template>
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!-- * TH.title.line = title line in header/footer of man page -->
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

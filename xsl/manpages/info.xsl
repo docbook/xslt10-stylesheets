@@ -28,9 +28,44 @@
   
   <!-- * =============================================================== -->
 
+  <xsl:template name="author.names">
+    <xsl:param name="info"/>
+    <xsl:param name="parentinfo"/>
+    <xsl:choose>
+      <xsl:when test="$info//author">
+        <xsl:apply-templates select="$info" mode="author.names"/>
+      </xsl:when>
+      <xsl:when test="$parentinfo//author">
+        <xsl:apply-templates select="$parentinfo" mode="author.names"/>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="info|refentryinfo|referenceinfo
+                       |articleinfo|chapterinfo|sectioninfo
+                       |sect1info|sect2info|sect3info|sect4info|sect5info
+                       |partinfo|prefaceinfo|appendixinfo|docinfo"
+                mode="author.names">
+    <xsl:for-each select="author">
+      <xsl:apply-templates select="." mode="author.names"/>
+      <xsl:choose>
+        <xsl:when test="position() = last()"/> <!-- do nothing -->
+        <xsl:otherwise>
+          <xsl:text>, </xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="author" mode="author.names">
+    <xsl:call-template name="person.name"/>
+    <xsl:if test=".//email">
+      <xsl:text> </xsl:text>
+      <xsl:apply-templates select=".//email"/>
+    </xsl:if>
+  </xsl:template>
+
   <xsl:template name="author.section">
-    <!-- * WARNING: The author.section API is slated for a rewrite and -->
-    <!-- * should not be considered stable. -->
     <xsl:param name="info"/>
     <xsl:param name="parentinfo"/>
     <xsl:choose>
@@ -60,30 +95,23 @@
     </xsl:call-template>
     <xsl:text>"&#10;</xsl:text>
 
-    <xsl:for-each select=".//author" >
-      <xsl:if test="position() > 1">
-        <xsl:text>, </xsl:text>
-      </xsl:if>
+    <xsl:for-each select="author|editor|othercredit">
       <xsl:apply-templates select="." mode="authorsect"/>
     </xsl:for-each>
-    <xsl:text>. &#10;</xsl:text>
-    <xsl:if test=".//editor">
-      <xsl:text>.br&#10;</xsl:text>
-      <xsl:apply-templates select=".//editor" mode="authorsect"/>
-      <xsl:text>. (man page)&#10;</xsl:text>
-    </xsl:if>
-    <xsl:for-each select="address">
-      <xsl:text>.br&#10;</xsl:text>
-      <xsl:apply-templates/>
-      <xsl:text>&#10;</xsl:text>
-    </xsl:for-each>
-  </xsl:template>
 
-  <xsl:template match="author|editor" mode="authorsect">
+  </xsl:template>
+  
+  <xsl:template match="author|editor|othercredit" mode="authorsect">
+    <xsl:text>.PP&#10;</xsl:text>
     <xsl:call-template name="person.name"/>
     <xsl:if test=".//email">
       <xsl:text> </xsl:text>
       <xsl:apply-templates select=".//email" mode="authorsect"/>
+    </xsl:if>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:if test="contrib|personblurb|authorblurb">
+      <xsl:apply-templates select="(contrib|personblurb|authorblurb)" mode="authorsect"/>
+    <xsl:text>&#10;</xsl:text>
     </xsl:if>
   </xsl:template>
 
@@ -91,6 +119,25 @@
     <xsl:text>&lt;</xsl:text>
     <xsl:apply-templates/>
     <xsl:text>&gt;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="personblurb|authorblurb" mode="authorsect">
+      <xsl:text>&#10;.IP&#10;</xsl:text>
+      <xsl:for-each select="title">
+        <xsl:apply-templates/>
+        <xsl:text>.</xsl:text>
+        <xsl:if test="following-sibling::*[name() != '']">
+          <xsl:text> </xsl:text>
+        </xsl:if>
+      </xsl:for-each>
+      <xsl:for-each select="*[name() != 'title']">
+        <xsl:apply-templates/>
+      </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="contrib" mode="authorsect">
+    <xsl:text>&#10;.IP&#10;</xsl:text>
+    <xsl:apply-templates/>
   </xsl:template>
 
   <!-- * ============================================================== -->

@@ -54,17 +54,45 @@
 
 <!-- ==================================================================== -->
 
+<!-- * top.comment generates a comment containing metadata for the man -->
+<!-- * page; for example, Author, Generator, and Date information -->
+
   <xsl:template name="top.comment">
-    <xsl:text>.\" ** You probably do not want to</xsl:text>
-    <xsl:text> edit this file directly **&#10;</xsl:text>
-    <xsl:text>.\" It was generated using the DocBook</xsl:text>
-    <xsl:text> XSL Stylesheets (version </xsl:text>
+    <xsl:param name="info"/>
+    <xsl:param name="parentinfo"/>
+    <xsl:param name="date"/>
+    <xsl:param name="title"/>
+    <xsl:param name="manual"/>
+    <xsl:param name="source"/>
+    <xsl:text>.\"     Title: </xsl:text>
+    <xsl:value-of select="$title"/>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:text>.\"    Author: </xsl:text>
+      <xsl:call-template name="author.names">
+        <xsl:with-param name="info" select="$info"/>
+        <xsl:with-param name="parentinfo" select="$parentinfo"/>
+      </xsl:call-template>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:text>.\" Generator: DocBook XSL Stylesheets v</xsl:text>
     <xsl:value-of select="$VERSION"/>
-    <xsl:text>).&#10;</xsl:text>
-    <xsl:text>.\" Instead of manually editing it, you</xsl:text>
-    <xsl:text> probably should edit the DocBook XML&#10;</xsl:text>
-    <xsl:text>.\" source for it and then use the DocBook</xsl:text>
-    <xsl:text> XSL Stylesheets to regenerate it.&#10;</xsl:text>
+    <xsl:text> &lt;http://sourceforge.net/projects/docbook/></xsl:text>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:text>.\"      Date: </xsl:text>
+      <xsl:call-template name="string.subst">
+        <!-- * replace hyphens in date with dots -->
+        <xsl:with-param name="string" select="$date"/>
+        <xsl:with-param name="target" select="'-'"/>
+        <xsl:with-param name="replacement" select="'.'"/>
+      </xsl:call-template>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:text>.\"    Manual: </xsl:text>
+    <xsl:value-of select="$manual"/>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:text>.\"    Source: </xsl:text>
+    <xsl:value-of select="$source"/>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:text>.\"</xsl:text>
+    <xsl:text>&#10;</xsl:text>
   </xsl:template>
 
 <!-- ==================================================================== -->
@@ -238,12 +266,9 @@
     <xsl:param name="section"/>
     <xsl:param name="content"/>
     <xsl:param name="filename">
-      <xsl:call-template name="string.subst">
-        <!-- replace spaces in source filename with underscores in output filename -->
-        <xsl:with-param name="string"
-                        select="concat(normalize-space($name), '.', normalize-space($section))"/>
-        <xsl:with-param name="target" select="' '"/>
-        <xsl:with-param name="replacement" select="'_'"/>
+      <xsl:call-template name="make.adjusted.man.filename">
+        <xsl:with-param name="name" select="$name"/>
+        <xsl:with-param name="section" select="$section"/>
       </xsl:call-template>
     </xsl:param>
     <xsl:call-template name="write.text.chunk">
@@ -275,17 +300,65 @@
     <xsl:for-each select="refnamediv/refname">
       <xsl:if test=". != $first.refname">
         <xsl:call-template name="write.text.chunk">
-          <xsl:with-param name="filename"
-                          select="concat(normalize-space(.), '.',
-                                  $section)"/>
+          <xsl:with-param name="filename">
+            <xsl:call-template name="make.adjusted.man.filename">
+              <xsl:with-param name="name">
+                <xsl:apply-templates/>
+              </xsl:with-param>
+              <xsl:with-param name="section" select="$section"/>
+            </xsl:call-template>
+          </xsl:with-param>
           <xsl:with-param name="quiet" select="$man.output.quietly"/>
-          <xsl:with-param
-              name="content"
-              select="concat('.so man', $section, '/',
-                      $first.refname, '.', $section, '&#10;')"/>
+          <xsl:with-param name="content">
+            <xsl:value-of select="concat('.so man', $section, '/')"/>
+            <xsl:call-template name="make.adjusted.man.filename">
+              <xsl:with-param name="name" select="$first.refname"/>
+              <xsl:with-param name="section" select="$section"/>
+            </xsl:call-template>
+            <xsl:text>&#10;</xsl:text>
+          </xsl:with-param>
         </xsl:call-template>
       </xsl:if>
     </xsl:for-each>
+  </xsl:template>
+
+  <!-- ============================================================== -->
+
+  <!-- *  A manifest file is useful for doing “make clean” during -->
+  <!-- *  builds and for other purposes. When we make the manifest -->
+  <!-- *  file, we need to include in it a filename for each man-page -->
+  <!-- *  generated, including any “stub” pages. -->
+  <xsl:template name="generate.manifest">
+    <xsl:param name="filename">MAN.MANIFEST</xsl:param>
+    <xsl:variable name="filelist">
+      <xsl:for-each select="//refentry">
+        <!-- * all refname instances in a Refentry inherit their section -->
+        <!-- * numbers from the parent Refentry; so we only need to get -->
+        <!-- * the section once per Refentry, not once per Refname -->
+        <xsl:variable name="section">
+          <xsl:call-template name="get.refentry.section"/>
+        </xsl:variable>
+        <xsl:for-each select="refnamediv/refname">
+          <xsl:call-template name="make.adjusted.man.filename">
+            <xsl:with-param name="name" select="."/>
+            <xsl:with-param name="section" select="$section"/>
+          </xsl:call-template>
+          <xsl:text>&#10;</xsl:text>
+        </xsl:for-each>
+      </xsl:for-each>
+    </xsl:variable>
+
+    <!-- * we write the manifest file once per document, not once per -->
+    <!-- * Refentry -->
+    <xsl:call-template name="write.text.chunk">
+      <xsl:with-param name="filename">
+        <xsl:value-of select="$man.manifest.filename"/>
+      </xsl:with-param>
+      <xsl:with-param name="quiet" select="$man.output.quietly"/>
+      <xsl:with-param name="content">
+        <xsl:value-of select="$filelist"/>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
 
 </xsl:stylesheet>
