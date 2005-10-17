@@ -40,7 +40,7 @@
       <xsl:when test="$dingbat='rdquo'">"</xsl:when>
       <xsl:when test="$dingbat='lsquo'">'</xsl:when>
       <xsl:when test="$dingbat='rsquo'">'</xsl:when>
-      <xsl:when test="$dingbat='em-dash'">--</xsl:when>
+      <xsl:when test="$dingbat='em-dash'">&#x2014;</xsl:when>
       <xsl:when test="$dingbat='en-dash'">-</xsl:when>
       <xsl:otherwise>o</xsl:otherwise>
     </xsl:choose>
