@@ -1,7 +1,7 @@
 # $Id$
 #
 # -----------------------------------------------------------------
-#   A standard makefile for generating output from DocBook source
+#  ** Makefile.DocBook -- generate output from DocBook sources **
 # -----------------------------------------------------------------
 #
 #   This file is part of the DocBook Project XSL Stylesheet
@@ -9,9 +9,15 @@
 #
 #   See http://docbook.sourceforge.net/release/xsl/current/
 #   for copyright and other information.
-#
+
+# -----------------------------------------------------------------
+#                   *** Variables ***
+# -----------------------------------------------------------------
+TMP ?= /tmp
 
 TMPNUM := $(shell echo $$$$)
+
+DOCBOOK_TMP := $(TMP)/docbook-make-$(TMPNUM)
 
 PDF_MAKER = fop
 
@@ -54,19 +60,24 @@ MAN_FLAGS = -l
 PS2PDF = ps2pdf
 PS2PDF_FLAGS =
 
-XSL_STYLESHEETS = http://docbook.sourceforge.net/release/xsl/current
-#XSL_STYLESHEETS = docbook-xsl
+DOCBOOK_XSL = http://docbook.sourceforge.net/release/xsl/current
 
-MAN_MANIFEST = MANIFEST.man
+MAN_MANIFEST_EXT = man.manifest
+MAN_MANIFEST_MASTER = MAN.MANIFEST
+MAN_LOG = $(DOCBOOK_TMP)/MAN.log
 
-DOCBOOK_XSL_MAN  = $(XSL_STYLESHEETS)/manpages/docbook.xsl
-DOCBOOK_XSL_HTML = $(XSL_STYLESHEETS)/html/docbook.xsl
-DOCBOOK_XSL_CHNK = $(XSL_STYLESHEETS)/html/chunk.xsl
-DOCBOOK_XSL_FO   = $(XSL_STYLESHEETS)/fo/docbook.xsl
+HTML_STYLESHEET = style.css
+HTML_IMAGES = images/
+HTML_IMAGES_EXT = .png
 
-FO_PARAMS = --stringparam $(PDF_MAKER).extensions 1 
+DOCBOOK_XSL_MAN  := $(DOCBOOK_XSL_TMP)/manpages/docbook.xsl
+DOCBOOK_XSL_HTML := $(DOCBOOK_XSL_TMP)/html/docbook.xsl
+DOCBOOK_XSL_CHNK := $(DOCBOOK_XSL_TMP)/html/chunk.xsl
+DOCBOOK_XSL_FO   := $(DOCBOOK_XSL_TMP)/fo/docbook.xsl
+
+FO_PARAMS = 
 HTML_PARAMS = 
-MAN_PARAMS = --stringparam generate.manifest 1 --stringparam man.manifest.filename $(MAN_MANIFEST)
+MAN_PARAMS = 
 
 DOCBOOK_FILE_EXTENSION = .xml
 
@@ -78,48 +89,140 @@ FILES_PDF  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).pdf)
 FILES_LOG  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).log)
 FILES_OUT  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).out)
 FILES_AUX  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).aux)
-FILES_MAN  = $(shell if [ -f $(MAN_MANIFEST) ]; then cat $(MAN_MANIFEST); fi)
-FILES_MANP = $(foreach manpage,$(shell if [ -f $(MAN_MANIFEST) ]; then cat $(MAN_MANIFEST); fi),$(manpage).pdf)
-FILES_DMAN = $(foreach base,$(basename $(SOURCE_FILES_DBK)),.$(base).man)
+FILES_MAN  = $(shell if [ -f "$(MAN_MANIFEST_MASTER)" ]; then cat $(MAN_MANIFEST_MASTER); fi)
+FILES_MANM = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).$(MAN_MANIFEST_EXT))
+FILES_MANP = $(foreach manpage,$(shell if [ -f "$(MAN_MANIFEST_MASTER)" ]; then cat $(MAN_MANIFEST_MASTER); fi),$(manpage).pdf)
 FILES_HTML = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).html)
 FILES_INFO = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).info)
 
-all: man html txt pdf
+# -----------------------------------------------------------------
+#             ** Stylesheet Customization Layers ** 
+# -----------------------------------------------------------------
 
-debug:
-	echo $(TMPNUM)
+FO_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
+                xmlns:fo="http://www.w3.org/1999/XSL/Format" \
+                version="1.0"> \
+  <xsl:import href="$(DOCBOOK_XSL)/fo/docbook.xsl"/> \
+  <xsl:param name="$(PDF_MAKER).extensions">1</xsl:param> \
+  <xsl:param name="paper.type">A4</xsl:param> \
+  <xsl:param name="draft.watermark.image">0</xsl:param> \
+  <xsl:param name="hyphenation">false</xsl:param> \
+  <xsl:param name="alignment">left</xsl:param> \
+  <xsl:param name="refentry.generate.name">1</xsl:param> \
+  <xsl:param name="refentry.generate.title">0</xsl:param> \
+  <xsl:param name="refentry.pagebreak">1</xsl:param> \
+  <xsl:param name="shade.verbatim">1</xsl:param> \
+  <xsl:param name="variablelist.as.blocks">1</xsl:param> \
+  <xsl:param name="ulink.show">1</xsl:param> \
+  <xsl:param name="ulink.footnotes">1</xsl:param> \
+  <xsl:attribute-set name="xref.properties"> \
+    <xsl:attribute name="color">blue</xsl:attribute> \
+  </xsl:attribute-set> \
+  <xsl:attribute-set name="shade.verbatim.style"> \
+    <xsl:attribute name="background-color">\#E0E0E0</xsl:attribute> \
+    <xsl:attribute name="padding-left">4pt</xsl:attribute> \
+    <xsl:attribute name="padding-right">4pt</xsl:attribute> \
+    <xsl:attribute name="padding-top">4pt</xsl:attribute> \
+    <xsl:attribute name="padding-bottom">4pt</xsl:attribute> \
+  </xsl:attribute-set> \
+  <xsl:attribute-set name="section.title.level1.properties"> \
+    <xsl:attribute name="font-size"> \
+      <xsl:value-of select="$$body.font.master * 1.728"></xsl:value-of> \
+      <xsl:text>pt</xsl:text> \
+    </xsl:attribute> \
+  </xsl:attribute-set> \
+  <xsl:attribute-set name="section.title.level2.properties"> \
+    <xsl:attribute name="font-size"> \
+      <xsl:value-of select="$$body.font.master * 1.44"></xsl:value-of> \
+      <xsl:text>pt</xsl:text> \
+    </xsl:attribute> \
+  </xsl:attribute-set> \
+  <xsl:attribute-set name="section.title.level3.properties"> \
+    <xsl:attribute name="font-size"> \
+      <xsl:value-of select="$$body.font.master * 1.2"></xsl:value-of> \
+      <xsl:text>pt</xsl:text> \
+    </xsl:attribute> \
+  </xsl:attribute-set> \
+  <xsl:attribute-set name="section.title.level4.properties"> \
+    <xsl:attribute name="font-size"> \
+      <xsl:value-of select="$$body.font.master"></xsl:value-of> \
+      <xsl:text>pt</xsl:text> \
+    </xsl:attribute> \
+  </xsl:attribute-set> \
+  <xsl:attribute-set name="component.title.properties"> \
+    <xsl:attribute name="font-size"> \
+      <xsl:value-of select="$$body.font.master * 1.728"></xsl:value-of> \
+      <xsl:text>pt</xsl:text> \
+    </xsl:attribute> \
+  </xsl:attribute-set> \
+  <xsl:attribute-set name="monospace.verbatim.properties"> \
+    <xsl:attribute name="font-size"> \
+      <xsl:value-of select="$$body.font.master * 0.8"></xsl:value-of> \
+      <xsl:text>pt</xsl:text> \
+    </xsl:attribute> \
+  </xsl:attribute-set> \
+</xsl:stylesheet>
 
-man: $(FILES_DMAN)
+HTML_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
+                version="1.0"> \
+  <xsl:import href="$(DOCBOOK_XSL)/html/docbook.xsl"/> \
+  <xsl:param name="refentry.generate.name">1</xsl:param> \
+  <xsl:param name="refentry.generate.title">0</xsl:param> \
+  <xsl:param name="root.filename"></xsl:param> \
+  <xsl:param name="variablelist.as.table">0</xsl:param> \
+  <xsl:param name="html.stylesheet">$(HTML_STYLESHEET)</xsl:param> \
+  <xsl:param name="admon.graphics">0</xsl:param> \
+</xsl:stylesheet>
 
-man-pdf: man $(foreach base,$(wildcard *.1),$(base).pdf)
+
+CHNK_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
+                version="1.0"> \
+  <xsl:import href="$(DOCBOOK_XSL)/html/chunk.xsl"/> \
+  <xsl:param name="refentry.generate.name">0</xsl:param> \
+  <xsl:param name="refentry.generate.title">1</xsl:param> \
+  <xsl:param name="variablelist.as.table">0</xsl:param> \
+  <xsl:param name="html.stylesheet">$(HTML_STYLESHEET)</xsl:param> \
+  <xsl:param name="admon.graphics">1</xsl:param> \
+  <xsl:param name="admon.graphics.path">$(HTML_IMAGES)</xsl:param> \
+  <xsl:param name="admon.graphics.extension">$(HTML_IMAGES_EXT)</xsl:param> \
+  <xsl:param name="root.filename"></xsl:param> \
+  <xsl:param name="use.id.as.filename">1</xsl:param> \
+  <xsl:param name="chunker.output.indent">yes</xsl:param> \
+</xsl:stylesheet>
+
+
+MAN_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
+                version="1.0"> \
+  <xsl:import href="$(DOCBOOK_XSL)/manpages/docbook.xsl"/> \
+  <xsl:param name="generate.manifest">1</xsl:param> \
+</xsl:stylesheet>
+
+# -----------------------------------------------------------------
+#                  ** TARGETS START HERE ** 
+# -----------------------------------------------------------------
+docbook: man html txt pdf
+
+man: $(FILES_MANM)
+
+man-pdf: man
+	$(MAKE) $(FILES_MANP)
 
 html: $(FILES_HTML)
 
-html-chunk: index.html
+html-chunk: $(HTML_MANIFEST)
 	$(XSLTPROC) $(XSLTPROC_FLAGS) $(DOCBOOK_XSL_CHNK) $<
+
+txt: $(FILES_TXT)
 
 pdf: $(FILES_PDF)
 
 info: $(FILES_INFO)
 
-.%.man: %.xml
-	@if [ -f $(MAN_MANIFEST) ]; then \
-	mv $(MAN_MANIFEST) $(MAN_MANIFEST).$(TMPNUM).old; \
-	fi
-	$(XSLTPROC) $(XSLTPROC_FLAGS) \
-	    $(MAN_PARAMS) \
-	    $(DOCBOOK_XSL_MAN) \
-	    $< \
-	    && touch $@
-	@if [ -f $(MAN_MANIFEST).$(TMPNUM).old ]; then \
-	mv $(MAN_MANIFEST) $(MAN_MANIFEST).$(TMPNUM).new; \
-	cat $(MAN_MANIFEST).$(TMPNUM).old $(MAN_MANIFEST).$(TMPNUM).new > $(MAN_MANIFEST); \
-	fi
-	@$(RM) $(MAN_MANIFEST).$(TMPNUM).old 
-	@$(RM) $(MAN_MANIFEST).$(TMPNUM).new
-
+# -----------------------------------------------------------------
+#     pattern rule for making HTML and plain-text output
+# -----------------------------------------------------------------
 %.html: %.xml
-	$(XSLTPROC) $(XSLTPROC_FLAGS) $(DOCBOOK_XSL_HTML) $< > $@
+	echo '$(HTML_CUSTOM)' | $(XSLTPROC) $(XSLTPROC_FLAGS) $(HTML_PARAMS) - $< > $@
 
 %.txt: %.html
 	$(TXT_MAKER) $(TXT_MAKER_FLAGS) ./$< \
@@ -127,8 +230,12 @@ info: $(FILES_INFO)
 	  | egrep -v '^	file:///.+$$' \
 	  > $@
 
+# -----------------------------------------------------------------
+#     pattern rules for making FO and PDF stuff
+# -----------------------------------------------------------------
 %.fo: %.xml
-	$(XSLTPROC) $(XSLTPROC_FLAGS) $(FO_PARAMS) $(DOCBOOK_XSL_FO) $< > $@
+	echo '$(FO_CUSTOM)' \
+	  | $(XSLTPROC) $(XSLTPROC_FLAGS) $(FO_PARAMS) - $< > $@
 
 ifeq ($(PDF_MAKER),dblatex)
 %.pdf: %.xml
@@ -167,15 +274,40 @@ endif
 endif
 endif
 
+# -----------------------------------------------------------------
+#     pattern rules for making TeXinfo stuff
+# -----------------------------------------------------------------
 %.txml: %.xml
 	$(DB2X_XSLTPROC) $(DB2X_XSLTPROC_FLAGS) -s texi -o $@ $<
 
 %.texi: %.txml
 	$(DB2X_TEXIXML) $(DB2X_TEXIXML_FLAGS) $<
 
+# the following is actually a built-in rule, but it's redefined
+# here just for the sake of clarity
 %.info: %.texi
 	$(MAKEINFO) $(MAKEINFO_FLAGS) $< -o $@
 
+# -----------------------------------------------------------------
+#     pattern rule for making man pages
+# -----------------------------------------------------------------
+%.$(MAN_MANIFEST_EXT): %.xml
+	mkdir $(DOCBOOK_TMP)
+	echo '$(MAN_CUSTOM)' | $(XSLTPROC) $(XSLTPROC_FLAGS) $(MAN_PARAMS) \
+	  --stringparam man.manifest.filename $@ \
+	  - \
+	  $< \
+	  2>&1 | tee $(MAN_LOG);
+	if [ "`cat $(MAN_LOG)`" == "No refentry elements!" ]; then \
+	  touch $@; \
+	else \
+	  cat $@ >> $(MAN_MANIFEST_MASTER); \
+	fi;
+	$(RM) -r $(DOCBOOK_TMP)
+
+# -----------------------------------------------------------------
+#  pattern rules for making Postscript/PDF output from man pages
+# -----------------------------------------------------------------
 %.1.ps: %.1
 	$(MAN) $(MAN_FLAGS) -Tps $< > $@
 
@@ -206,7 +338,27 @@ endif
 %.pdf: %.ps
 	$(PS2PDF) $(PS2PDF_FLAGS) $<
 
+%.1 %.2 %.3 %.4 %.5 %.6 %.7: %.xml
+	if [ -f $(MAN_MANIFEST) ]; then \
+	  mkdir -p $(DOCBOOK_TMP); \
+	  mv $(MAN_MANIFEST) $(DOCBOOK_TMP)/$(MAN_MANIFEST).old; \
+	fi; \
+	echo '$(MAN_CUSTOM)' | $(XSLTPROC) $(XSLTPROC_FLAGS) $(MAN_PARAMS) \
+	  - \
+	  $<; \
+	if [ -f $(DOCBOOK_TMP)/$(MAN_MANIFEST).old ]; then \
+	  mv $(MAN_MANIFEST) $(DOCBOOK_TMP)/$(MAN_MANIFEST).new; \
+	  cat $(DOCBOOK_TMP)/$(MAN_MANIFEST).old $(DOCBOOK_TMP)/$(MAN_MANIFEST).new > $(MAN_MANIFEST); \
+	fi; \
+	$(RM) -r $(DOCBOOK_TMP)
+
+# -----------------------------------------------------------------
+#   targets for cleaning up the mess
+# -----------------------------------------------------------------
 clean:
+ifneq ($(FILES_TXT),)
+	$(RM) $(FILES_TXT)
+endif
 ifneq ($(FILES_PDF),)
 	$(RM) $(FILES_PDF)
 endif
@@ -228,14 +380,14 @@ endif
 ifneq ($(FILES_MAN),)
 	$(RM) $(FILES_MAN)
 endif
-ifneq ($(FILES_DMAN),)
-	$(RM) $(FILES_DMAN)
+ifneq ($(FILES_MANM),)
+	$(RM) $(FILES_MANM)
 endif
 ifneq ($(FILES_MANP),)
-	$(RM) $(FILES_MAN)
+	$(RM) $(FILES_MANP)
 endif
-ifneq ($(MAN_MANIFEST),)
-	$(RM) $(MAN_MANIFEST)
+ifneq ($(MAN_MANIFEST_MASTER),)
+	$(RM) $(MAN_MANIFEST_MASTER)
 endif
 ifneq ($(FILES_INFO),)
 	$(RM) $(FILES_INFO)
