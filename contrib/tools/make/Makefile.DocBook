@@ -356,7 +356,7 @@ endif
 #     pattern rules for making TeXinfo stuff
 # -----------------------------------------------------------------
 %.txml: %.xml
-	$(DB2X_XSLT) $(DB2X_XSLT_FLAGS) -s texi -o $@ $<
+	$(DB2X_XSLTPROC) $(DB2X_XSLTPROC_FLAGS) -s texi -o $@ $<
 
 %.texi: %.txml
 	$(DB2X_TEXIXML) $(DB2X_TEXIXML_FLAGS) $<
