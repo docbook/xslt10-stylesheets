@@ -14,75 +14,110 @@
 #   for copyright and other information.
 
 # -----------------------------------------------------------------
-#                   *** Variables ***
+#                *** TOOLS and other DEPENDENCIES ***
 # -----------------------------------------------------------------
-TMP ?= /tmp
-
-TMPNUM := $(shell echo $$$$)
-
-DOCBOOK_TMP := $(TMP)/docbook-make-$(TMPNUM)
-
+# possible values for PDF_MAKER are:
+#   dblatex|fop|xep|xmlroff|passivetex
 PDF_MAKER = fop
 
+# possible values for TXT_MAKER are:
+#   links|lynx|w3m|w3mmee
 TXT_MAKER = links
-#TXT_MAKER = lynx
-
 TXT_MAKER_FLAGS = -dump
 
-XSLTPROC = xsltproc
-XSLTPROC_FLAGS = --xinclude
+# xsl
+XSLT = xsltproc
+XSLT_FLAGS = --xinclude
 
+# http://dblatex.sourceforge.net/
 DBLATEX = dblatex
-DBLATEX_FLAGS = 
+DBLATEX_FLAGS = -b pdftex
 
 FOP = fop
-FOP_FLAGS = 
+FOP_FLAGS =
 
 XEP = xep
 XEP_FLAGS =
 
+# http://xmlroff.sourceforge.net/
 XMLROFF = xmlroff
 XMLROFF_FLAGS =
 
 PDFTEX = pdftex
 PDFTEX_FLAGS =
 
+# used by PassiveTeX
 PDFXMLTEX = pdfxmltex
 
-XMLROFF = xmlroff
-XMLROFF_FLAGS =
-
+# http://docbook2x.sourceforge.net/
 DB2X_XSLTPROC = db2x_xsltproc
 DB2X_XSLTPROC_FLAGS = 
 DB2X_TEXIXML = db2x_texixml
 DB2X_TEXIXML_FLAGS = 
 
+# we call the man(1) command to generate "foo.N.pdf output
+# (see the "man-pdf" target)
 MAN = man
 MAN_FLAGS = -l
 
+# part of GhostSript (gs) distro
 PS2PDF = ps2pdf
 PS2PDF_FLAGS =
 
+# value of DOCBOOK_XSL should eithe be the canonical
+# (docbook.sourceforge.net) URL for the DocBook Project XSL
+# stylesheets OR it can be a local system path
 DOCBOOK_XSL = http://docbook.sourceforge.net/release/xsl/current
 
+# -----------------------------------------------------------------
+#       names of some DIRECTORIES and FILES we need
+# -----------------------------------------------------------------
+# we create a tmp directory once-per-make invocation; it is needed
+# keeping track of what man pages have been generated and also for
+# holding a temporary copy of the customer DBLaTeX stylesheet
+# (because dblatex(1) currently can't read a stylesheet from stdin
+TMP ?= /tmp
+TMPNUM := $(shell echo $$$$)
+DOCBOOK_TMP := $(TMP)/docbook-make-$(TMPNUM)
+
+# MAN_MANIFEST_EXT is file extension added to individual manifest
+# files
 MAN_MANIFEST_EXT = man.manifest
 MAN_MANIFEST_MASTER = MAN.MANIFEST
 MAN_LOG = $(DOCBOOK_TMP)/MAN.log
 
+# -----------------------------------------------------------------
+#                        assorted OPTIONS
+# -----------------------------------------------------------------
+# HTML_STYLESHEET -> $html.stylesheet stylesheet param
+# http://docbook.sourceforge.net/snapshots/xsl/doc/html/html.stylesheet.html
 HTML_STYLESHEET = style.css
+# HTML_IMAGES -> $admon.graphics.path
+# http://docbook.sourceforge.net/snapshots/xsl/doc/html/admon.graphics.path.html
 HTML_IMAGES = images/
+# HTML_IMAGES_EXT -> $admon.graphics.extension
+# http://docbook.sourceforge.net/snapshots/xsl/doc/html/admon.graphics.extension.html
 HTML_IMAGES_EXT = .png
 
-DOCBOOK_XSL_MAN  := $(DOCBOOK_XSL_TMP)/manpages/docbook.xsl
-DOCBOOK_XSL_HTML := $(DOCBOOK_XSL_TMP)/html/docbook.xsl
-DOCBOOK_XSL_CHNK := $(DOCBOOK_XSL_TMP)/html/chunk.xsl
-DOCBOOK_XSL_FO   := $(DOCBOOK_XSL_TMP)/fo/docbook.xsl
+# use these to set params on the command-line
+# format is, e.g., HTML_PARAMS="--stringparam variablelist.as.table 1..."
+FO_PARAMS =
+HTML_PARAMS =
+MAN_PARAMS =
 
-FO_PARAMS = 
-HTML_PARAMS = 
-MAN_PARAMS = 
+# DBX_PARAMS is for dblatex(1); format uses "-p":
+# DBX_PARAMS="-p doc.publisher.show 1 -p term.breakline 1...
+DBX_PARAMS=
 
+# What file extension to you use for DocBook source files?
 DOCBOOK_FILE_EXTENSION = .xml
+
+# -----------------------------------------------------------------
+#       make(1) functions for building file lists
+# -----------------------------------------------------------------
+#
+#    the values of the following are used for determing what needs
+#    to be built and/or cleaned up
 
 SOURCE_FILES_DBK = $(wildcard *$(DOCBOOK_FILE_EXTENSION))
 
@@ -101,7 +136,39 @@ FILES_INFO = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).info)
 # -----------------------------------------------------------------
 #             ** Stylesheet Customization Layers ** 
 # -----------------------------------------------------------------
+#
+# for DBLaTeX
+DBX_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
+                 version="1.0"> \
+  <xsl:param name="co.linkends.show">0</xsl:param> \
+  <xsl:param name="callout.markup.circled">1</xsl:param> \
+  <xsl:param name="callout.linkends.hot">0</xsl:param> \
+  <xsl:param name="doc.publisher.show">1</xsl:param> \
+  <xsl:param name="term.breakline">1</xsl:param> \
+  <xsl:param name="doc.alignment">left</xsl:param> \
+  <xsl:param name="latex.hyperparam"/> \
+  <xsl:param name="latex.style">docbook</xsl:param> \
+  <xsl:param name="latex.biblio.output">all</xsl:param> \
+  <xsl:param name="latex.bibfiles">""</xsl:param> \
+  <xsl:param name="latex.bibwidelabel">WIDELABEL</xsl:param> \
+  <xsl:param name="latex.output.revhistory">0</xsl:param> \
+  <xsl:param name="latex.figure.position">[htbp]</xsl:param> \
+  <xsl:param name="latex.figure.boxed">0</xsl:param> \
+  <xsl:param name="latex.babel.use">1</xsl:param> \
+  <xsl:param name="latex.babel.language"></xsl:param> \
+  <xsl:param name="latex.class.options">twoside</xsl:param> \
+  <xsl:param name="biblioentry.item.separator">, </xsl:param> \
+  <xsl:param name="refentry.xref.manvolnum">1</xsl:param> \
+  <xsl:param name="refsynopsis.title">Synopsis</xsl:param> \
+  <xsl:param name="refnamediv.title"></xsl:param> \
+  <xsl:param name="funcsynopsis.style">ansi</xsl:param> \
+  <xsl:param name="funcsynopsis.decoration">1</xsl:param> \
+  <xsl:param name="function.parens">0</xsl:param> \
+  <xsl:param name="classsynopsis.default.language">java</xsl:param> \
+  <xsl:param name="show.comments">0</xsl:param> \
+</xsl:stylesheet>
 
+# for FO output
 FO_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
                 xmlns:fo="http://www.w3.org/1999/XSL/Format" \
                 version="1.0"> \
@@ -166,6 +233,7 @@ FO_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
   </xsl:attribute-set> \
 </xsl:stylesheet>
 
+# for single-file HTML outpout
 HTML_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
                 version="1.0"> \
   <xsl:import href="$(DOCBOOK_XSL)/html/docbook.xsl"/> \
@@ -177,7 +245,7 @@ HTML_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
   <xsl:param name="admon.graphics">0</xsl:param> \
 </xsl:stylesheet>
 
-
+# for chunked HTML output
 CHNK_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
                 version="1.0"> \
   <xsl:import href="$(DOCBOOK_XSL)/html/chunk.xsl"/> \
@@ -193,7 +261,7 @@ CHNK_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
   <xsl:param name="chunker.output.indent">yes</xsl:param> \
 </xsl:stylesheet>
 
-
+# for man-page output
 MAN_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
                 version="1.0"> \
   <xsl:import href="$(DOCBOOK_XSL)/manpages/docbook.xsl"/> \
@@ -207,13 +275,14 @@ docbook: man html txt pdf
 
 man: $(FILES_MANM)
 
+# we can generated PDFs from man pages if we want
 man-pdf: man
 	$(MAKE) $(FILES_MANP)
 
 html: $(FILES_HTML)
 
 html-chunk: $(HTML_MANIFEST)
-	$(XSLTPROC) $(XSLTPROC_FLAGS) $(DOCBOOK_XSL_CHNK) $<
+	$(XSLT) $(XSLT_FLAGS) $(DOCBOOK_XSL_CHNK) $<
 
 txt: $(FILES_TXT)
 
@@ -225,7 +294,7 @@ info: $(FILES_INFO)
 #     pattern rule for making HTML and plain-text output
 # -----------------------------------------------------------------
 %.html: %.xml
-	echo '$(HTML_CUSTOM)' | $(XSLTPROC) $(XSLTPROC_FLAGS) $(HTML_PARAMS) - $< > $@
+	echo '$(HTML_CUSTOM)' | $(XSLT) $(XSLT_FLAGS) $(HTML_PARAMS) - $< > $@
 
 %.txt: %.html
 	$(TXT_MAKER) $(TXT_MAKER_FLAGS) ./$< \
@@ -238,11 +307,17 @@ info: $(FILES_INFO)
 # -----------------------------------------------------------------
 %.fo: %.xml
 	echo '$(FO_CUSTOM)' \
-	  | $(XSLTPROC) $(XSLTPROC_FLAGS) $(FO_PARAMS) - $< > $@
+	  | $(XSLT) $(XSLT_FLAGS) $(FO_PARAMS) - $< > $@
 
 ifeq ($(PDF_MAKER),dblatex)
 %.pdf: %.xml
-	$(DBLATEX) $(DBLATEX_FLAGS) -o $@ $<
+	mkdir -p $(DOCBOOK_TMP)
+	echo '$(DBX_CUSTOM)' > $(DOCBOOK_TMP)/dblatex.xsl
+	$(DBLATEX) $(DBLATEX_FLAGS)\
+	  -p $(DOCBOOK_TMP)/dblatex.xsl \
+	  -o $@ \
+	  $<
+	$(RM) -r $(DOCBOOK_TMP)
 endif
 
 %.pdf: %.fo
@@ -281,7 +356,7 @@ endif
 #     pattern rules for making TeXinfo stuff
 # -----------------------------------------------------------------
 %.txml: %.xml
-	$(DB2X_XSLTPROC) $(DB2X_XSLTPROC_FLAGS) -s texi -o $@ $<
+	$(DB2X_XSLT) $(DB2X_XSLT_FLAGS) -s texi -o $@ $<
 
 %.texi: %.txml
 	$(DB2X_TEXIXML) $(DB2X_TEXIXML_FLAGS) $<
@@ -296,7 +371,7 @@ endif
 # -----------------------------------------------------------------
 %.$(MAN_MANIFEST_EXT): %.xml
 	mkdir $(DOCBOOK_TMP)
-	echo '$(MAN_CUSTOM)' | $(XSLTPROC) $(XSLTPROC_FLAGS) $(MAN_PARAMS) \
+	echo '$(MAN_CUSTOM)' | $(XSLT) $(XSLT_FLAGS) $(MAN_PARAMS) \
 	  --stringparam man.manifest.filename $@ \
 	  - \
 	  $< \
@@ -346,7 +421,7 @@ endif
 	  mkdir -p $(DOCBOOK_TMP); \
 	  mv $(MAN_MANIFEST) $(DOCBOOK_TMP)/$(MAN_MANIFEST).old; \
 	fi; \
-	echo '$(MAN_CUSTOM)' | $(XSLTPROC) $(XSLTPROC_FLAGS) $(MAN_PARAMS) \
+	echo '$(MAN_CUSTOM)' | $(XSLT) $(XSLT_FLAGS) $(MAN_PARAMS) \
 	  - \
 	  $<; \
 	if [ -f $(DOCBOOK_TMP)/$(MAN_MANIFEST).old ]; then \
@@ -356,7 +431,7 @@ endif
 	$(RM) -r $(DOCBOOK_TMP)
 
 # -----------------------------------------------------------------
-#   targets for cleaning up the mess
+#   target(s) for cleaning up the mess
 # -----------------------------------------------------------------
 clean:
 ifneq ($(FILES_TXT),)
