@@ -124,9 +124,17 @@
       </fo:block>
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
-      <fo:block>
-        <xsl:apply-templates/>
-      </fo:block>
+      <xsl:choose>
+        <!-- * work around broken passivetex list-item-body rendering -->
+        <xsl:when test="$passivetex.extensions = '1'">
+          <xsl:apply-templates/>
+        </xsl:when>
+        <xsl:otherwise>
+          <fo:block>
+            <xsl:apply-templates/>
+          </fo:block>
+        </xsl:otherwise>
+      </xsl:choose>
     </fo:list-item-body>
   </xsl:variable>
 
