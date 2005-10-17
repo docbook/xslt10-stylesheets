@@ -211,7 +211,23 @@
   </xsl:template>
 
   <!-- ================================================================== -->
+
+  <!-- * Replace any spaces in $name with underscores & then append -->
+  <!-- * .$section to create a man filename -->
+
+  <xsl:template name="make.adjusted.man.filename">
+    <xsl:param name="name"/>
+    <xsl:param name="section"/>
+    <xsl:call-template name="string.subst">
+      <xsl:with-param name="string"
+                      select="concat(normalize-space($name), '.', normalize-space($section))"/>
+      <xsl:with-param name="target" select="' '"/>
+      <xsl:with-param name="replacement" select="'_'"/>
+    </xsl:call-template>
+  </xsl:template>
   
+  <!-- ================================================================== -->
+
   <!-- * Put a horizontal rule or other divider around section titles -->
   <!-- * in roff source (just to make things easier to read). -->
   <xsl:template name="mark.subheading">
