@@ -1,4 +1,8 @@
-# $Id$
+# $Header$
+# $CVSHeader$
+# $Revision$
+# $Source$
+# $Date$
 #
 # -----------------------------------------------------------------
 #  ** Makefile.DocBook -- generate output from DocBook sources **
