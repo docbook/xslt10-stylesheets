@@ -146,6 +146,7 @@ DBX_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
   <xsl:param name="doc.publisher.show">1</xsl:param> \
   <xsl:param name="term.breakline">1</xsl:param> \
   <xsl:param name="doc.alignment">left</xsl:param> \
+  <xsl:param name="newtbl.use">1</xsl:param> \
   <xsl:param name="latex.hyperparam"/> \
   <xsl:param name="latex.style">docbook</xsl:param> \
   <xsl:param name="latex.biblio.output">all</xsl:param> \
