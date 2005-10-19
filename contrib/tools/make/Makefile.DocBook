@@ -55,14 +55,31 @@ DB2X_XSLTPROC_FLAGS =
 DB2X_TEXIXML = db2x_texixml
 DB2X_TEXIXML_FLAGS = 
 
-# we call the man(1) command to generate "foo.N.pdf output
-# (see the "man-pdf" target)
+# we call the man(1) command to generate "foo.N.pdf" and
+# "foo.N.txt" output (see "man-pdf" & "man-txt" targets)
 MAN = man
-MAN_FLAGS = -l
+MAN_FLAGS =
 
-# part of GhostSript (gs) distro
+# The "ps2pdf" command is part of GhostSript (gs) distro.
+# It is just a wrapper script around gs that does this:
+#
+#   gs -dCompatibilityLevel=1.2 -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite \
+#     "-sOutputFile=$outfile" -dCompatibilityLevel=1.2 -c .setpdfwrite -f "$infile"
+#
+# Where, for example: $outfile = foo.pdf and $infile = foo.1
 PS2PDF = ps2pdf
 PS2PDF_FLAGS =
+
+# The "col" command is needed for stripping backspaces and
+# underscores from man(1) output to get pure plain-text
+COL = col
+COL_FLAGS =
+
+# The "expand" command is needed for expanding tabs from files
+# generated from "man foo.1 | col -b" output
+# output to get pure plain-text
+EXPAND = expand
+EXPAND_FLAGS =
 
 # value of DOCBOOK_XSL should eithe be the canonical
 # (docbook.sourceforge.net) URL for the DocBook Project XSL
@@ -82,8 +99,8 @@ DOCBOOK_TMP := $(TMP)/docbook-make-$(TMPNUM)
 
 # MAN_MANIFEST_EXT is file extension added to individual manifest
 # files
-MAN_MANIFEST_EXT = man.manifest
-MAN_MANIFEST_MASTER = MAN.MANIFEST
+MAN_MANIFEST_EXT = man
+MAN_MANIFEST_MASTER = MAN.manifest
 MAN_LOG = $(DOCBOOK_TMP)/MAN.log
 
 # -----------------------------------------------------------------
@@ -130,6 +147,7 @@ FILES_AUX  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).aux)
 FILES_MAN  = $(shell if [ -f "$(MAN_MANIFEST_MASTER)" ]; then cat $(MAN_MANIFEST_MASTER); fi)
 FILES_MANM = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).$(MAN_MANIFEST_EXT))
 FILES_MANP = $(foreach manpage,$(shell if [ -f "$(MAN_MANIFEST_MASTER)" ]; then cat $(MAN_MANIFEST_MASTER); fi),$(manpage).pdf)
+FILES_MANT = $(foreach manpage,$(shell if [ -f "$(MAN_MANIFEST_MASTER)" ]; then cat $(MAN_MANIFEST_MASTER); fi),$(manpage).txt)
 FILES_HTML = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).html)
 FILES_INFO = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).info)
 
@@ -272,13 +290,21 @@ MAN_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
 # -----------------------------------------------------------------
 #                  ** TARGETS START HERE ** 
 # -----------------------------------------------------------------
+#  prevents make from deleting, e.g. foo.1, after making foo.1.pdf
+#  and foo.1.txt from it
+.PRECIOUS: %.1 %.2 %.3 %.4 %.5 %.6 %.7 %.8 %.9
+
 docbook: man html txt pdf
 
 man: $(FILES_MANM)
 
-# we can generated PDFs from man pages if we want
+# we can generate PDFs from man pages
 man-pdf: man
 	$(MAKE) $(FILES_MANP)
+
+# we can generate plain text from man pages
+man-txt: man
+	$(MAKE) $(FILES_MANT)
 
 html: $(FILES_HTML)
 
@@ -385,51 +411,77 @@ endif
 	$(RM) -r $(DOCBOOK_TMP)
 
 # -----------------------------------------------------------------
+#  pattern rule for enabling direct "make foo.1" to work
+# -----------------------------------------------------------------
+
+%.1 %.2 %.3 %.4 %.5 %.6 %.7: %.xml
+	$(MAKE) $(basename $<).$(MAN_MANIFEST_EXT)
+
+# -----------------------------------------------------------------
 #  pattern rules for making Postscript/PDF output from man pages
 # -----------------------------------------------------------------
 %.1.ps: %.1
-	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
 %.2.ps: %.2
-	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
 %.3.ps: %.3
-	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
 %.4.ps: %.4
-	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
 %.5.ps: %.5
-	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
 %.6.ps: %.6
-	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
 %.7.ps: %.7
-	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
 %.8.ps: %.8
-	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
 %.9.ps: %.9
-	$(MAN) $(MAN_FLAGS) -Tps $< > $@
+	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
+# -----------------------------------------------------------------
+#  pattern rule for converting Postscript to PDF
+# -----------------------------------------------------------------
 %.pdf: %.ps
 	$(PS2PDF) $(PS2PDF_FLAGS) $<
 
-%.1 %.2 %.3 %.4 %.5 %.6 %.7: %.xml
-	if [ -f $(MAN_MANIFEST) ]; then \
-	  mkdir -p $(DOCBOOK_TMP); \
-	  mv $(MAN_MANIFEST) $(DOCBOOK_TMP)/$(MAN_MANIFEST).old; \
-	fi; \
-	echo '$(MAN_CUSTOM)' | $(XSLT) $(XSLT_FLAGS) $(MAN_PARAMS) \
-	  - \
-	  $<; \
-	if [ -f $(DOCBOOK_TMP)/$(MAN_MANIFEST).old ]; then \
-	  mv $(MAN_MANIFEST) $(DOCBOOK_TMP)/$(MAN_MANIFEST).new; \
-	  cat $(DOCBOOK_TMP)/$(MAN_MANIFEST).old $(DOCBOOK_TMP)/$(MAN_MANIFEST).new > $(MAN_MANIFEST); \
-	fi; \
-	$(RM) -r $(DOCBOOK_TMP)
+# -----------------------------------------------------------------
+#  pattern rules for making plain-text output from man pages
+# -----------------------------------------------------------------
+%.1.txt: %.1
+	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
+
+%.2.txt: %.2
+	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
+
+%.3.txt: %.3
+	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
+
+%.4.txt: %.4
+	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
+
+%.5.txt: %.5
+	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
+
+%.6.txt: %.6
+	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
+
+%.7.txt: %.7
+	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
+
+%.8.txt: %.8
+	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
+
+%.9.txt: %.9
+	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
 
 # -----------------------------------------------------------------
 #   target(s) for cleaning up the mess
@@ -461,6 +513,9 @@ ifneq ($(FILES_MAN),)
 endif
 ifneq ($(FILES_MANM),)
 	$(RM) $(FILES_MANM)
+endif
+ifneq ($(FILES_MANT),)
+	$(RM) $(FILES_MANT)
 endif
 ifneq ($(FILES_MANP),)
 	$(RM) $(FILES_MANP)
