@@ -125,11 +125,14 @@ div {
 
    db.glosssee =
       [
-         s:rule [
-            context = "db:glosssee[@otherterm]"
-            s:assert [
-               test = "local-name(//*[@id=current()/@otherterm]) = 'glossentry' and namespace-uri(//*[@id=current()/@otherterm]) = 'http://docbook.org/ns/docbook'"
-               "@otherterm on glosssee must point to a glossentry."
+         s:pattern [
+            name = "Glosssary 'see' type constraint"
+            s:rule [
+               context = "db:glosssee[@otherterm]"
+               s:assert [
+                  test = "local-name(//*[@id=current()/@otherterm]) = 'glossentry' and namespace-uri(//*[@id=current()/@otherterm]) = 'http://docbook.org/ns/docbook'"
+                  "@otherterm on glosssee must point to a glossentry."
+               ]
             ]
          ]
       ]
@@ -158,11 +161,14 @@ div {
 
    db.glossseealso =
       [
-         s:rule [
-            context = "db:glossseealso[@otherterm]"
-            s:assert [
-               test = "local-name(//*[@id=current()/@otherterm]) = 'glossentry' and namespace-uri(//*[@id=current()/@otherterm]) = 'http://docbook.org/ns/docbook'"
-               "@otherterm on glossseealso must point to a glossentry."
+         s:pattern [
+            name = "Glossary 'seealso' type constraint"
+            s:rule [
+               context = "db:glossseealso[@otherterm]"
+               s:assert [
+                  test = "local-name(//*[@id=current()/@otherterm]) = 'glossentry' and namespace-uri(//*[@id=current()/@otherterm]) = 'http://docbook.org/ns/docbook'"
+                  "@otherterm on glossseealso must point to a glossentry."
+               ]
             ]
          ]
       ]
@@ -190,11 +196,14 @@ div {
 
    db.firstterm =
       [
-         s:rule [
-            context = "db:firstterm[@linkend]"
-            s:assert [
-               test = "local-name(//*[@id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
-               "@linkend on firstterm must point to a glossentry."
+         s:pattern [
+            name = "Glossary 'firstterm' type constraint"
+            s:rule [
+               context = "db:firstterm[@linkend]"
+               s:assert [
+                  test = "local-name(//*[@id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
+                  "@linkend on firstterm must point to a glossentry."
+               ]
             ]
          ]
       ]
@@ -222,11 +231,14 @@ div {
 
    db.glossterm =
       [
-         s:rule [
-            context = "db:glossterm[@linkend]"
-            s:assert [
-               test = "local-name(//*[@id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
-               "@linkend on glossterm must point to a glossentry."
+         s:pattern [
+            name = "Glossary 'glossterm' type constraint"
+            s:rule [
+               context = "db:glossterm[@linkend]"
+               s:assert [
+                  test = "local-name(//*[@id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
+                  "@linkend on glossterm must point to a glossentry."
+               ]
             ]
          ]
       ]
@@ -314,11 +326,14 @@ div {
 
    db.termdef =
       [
-         s:rule [
-            context = "db:termdef"
-            s:assert [
-               test = "count(db:glossterm) != 1"
-               "A termdef must contain a glossterm"
+         s:pattern [
+            name = "Glossary term definition constraint"
+            s:rule [
+               context = "db:termdef"
+               s:assert [
+                  test = "count(db:glossterm) != 1"
+                  "A termdef must contain a glossterm"
+               ]
             ]
          ]
       ]

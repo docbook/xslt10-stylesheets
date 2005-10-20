@@ -87,13 +87,15 @@
 	  </xsl:message>
 	  -->
 
-	  <s:rule context="db:{$name}">
-	    <s:assert test="not(.//db:{name(.)})">
-	      <xsl:value-of select="name(.)"/>
-	      <xsl:text> must not occur in the descendants of </xsl:text>
-	      <xsl:value-of select="$name"/>
-	    </s:assert>
-	  </s:rule>
+	  <s:pattern name="Element exclusion">
+	    <s:rule context="db:{$name}">
+	      <s:assert test="not(.//db:{name(.)})">
+		<xsl:value-of select="name(.)"/>
+		<xsl:text> must not occur in the descendants of </xsl:text>
+		<xsl:value-of select="$name"/>
+	      </s:assert>
+	    </s:rule>
+	  </s:pattern>
 	</xsl:for-each>
       </xsl:for-each>
 
@@ -105,11 +107,13 @@
       </xsl:variable>
 
       <xsl:if test="$isStart &gt; 0">
-	<s:rule context="/db:{$name}">
-	  <s:assert test="@version">
-	    <xsl:text>The root element must have a version attribute.</xsl:text>
-	  </s:assert>
-	</s:rule>
+	<s:pattern name="Root must have version">
+	  <s:rule context="/db:{$name}">
+	    <s:assert test="@version">
+	      <xsl:text>The root element must have a version attribute.</xsl:text>
+	    </s:assert>
+	  </s:rule>
+	</s:pattern>
       </xsl:if>
 
       <xsl:apply-templates/>

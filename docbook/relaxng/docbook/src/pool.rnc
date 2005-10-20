@@ -1890,11 +1890,14 @@ div {
 
    db.seglistitem =
       [
-         s:rule [
-            context = "db:seglistitem"
-            s:assert [
-               test = "count(db:seg) = count(../db:segtitle)"
-               "The number of seg elements must be the same as the number of segtitle elements in the parent segmentedlist"
+         s:pattern [
+            name = "Cardinality of segments and titles"
+            s:rule [
+               context = "db:seglistitem"
+               s:assert [
+                  test = "count(db:seg) = count(../db:segtitle)"
+                  "The number of seg elements must be the same as the number of segtitle elements in the parent segmentedlist"
+               ]
             ]
          ]
       ]
@@ -2819,11 +2822,14 @@ div {
 
    db.synopfragmentref =
       [
-         s:rule [
-            context = "db:synopfragmentref"
-            s:assert [
-               test = "local-name(//*[@id=current()/@linkend]) = 'synopfragment' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
-               "@linkend on synopfragmentref must point to a synopfragment."
+         s:pattern [
+            name = "Synopsis fragment type constraint"
+            s:rule [
+               context = "db:synopfragmentref"
+               s:assert [
+                  test = "local-name(//*[@id=current()/@linkend]) = 'synopfragment' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
+                  "@linkend on synopfragmentref must point to a synopfragment."
+               ]
             ]
          ]
       ]
@@ -6639,11 +6645,14 @@ div {
 
    db.footnoteref =
       [
-         s:rule [
-            context = "db:footnoteref"
-            s:assert [
-               test = "local-name(//*[@id=current()/@linkend]) = 'footnote' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
-               "@linkend on footnoteref must point to a footnote."
+         s:pattern [
+            name = "Footnote reference type constraint"
+            s:rule [
+               context = "db:footnoteref"
+               s:assert [
+                  test = "local-name(//*[@id=current()/@linkend]) = 'footnote' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
+                  "@linkend on footnoteref must point to a footnote."
+               ]
             ]
          ]
       ]
