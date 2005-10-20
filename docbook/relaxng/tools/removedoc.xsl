@@ -15,9 +15,20 @@
 
 <xsl:strip-space elements="*"/>
 
+<xsl:param name="remove-schematron" select="1"/>
+
 <xsl:template match="db:*"/>
 <xsl:template match="dbx:*"/>
 <xsl:template match="ctrl:*"/>
+
+<xsl:template match="s:*">
+  <xsl:if test="$remove-schematron = 0">
+    <xsl:copy>
+      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates/>
+    </xsl:copy>
+  </xsl:if>
+</xsl:template>
 
 <xsl:template match="rng:element">
   <xsl:copy>
