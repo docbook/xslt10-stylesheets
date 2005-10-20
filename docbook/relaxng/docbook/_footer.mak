@@ -12,7 +12,8 @@ $($(_MODULE)_OUTPUT)/%.rng: $(_MODULE)/%.rnc $($(_MODULE)_OUTPUT)/.f
 $($(_MODULE)_OUTPUT)/%.rnx: $($(_MODULE)_OBJS) $($(_MODULE)_OUTPUT)/.f
 	$(XSLT) $< $(INCLUDE) $@, use.extensions=1
 	$(XSLT) $@, $(AUGMENT) $@ use.extensions=1
-	$(PERL) -i $(CLEANUP) $@
+	$(PERL) $(CLEANUP) $@ > $@,
+	$(MV) $@, $@
 	$(RM) $@,
 
 #$($(_MODULE)_OUTPUT)/%.rng: $(_MODULE)/%.rnc $($(_MODULE)_OUTPUT)/.f
