@@ -115,7 +115,14 @@
       </xsl:choose>
     </xsl:for-each>
     <!-- * the following dot signals end of table "format" spec -->
-    <xsl:text> .&#10;</xsl:text>
+    <xsl:choose>
+      <xsl:when test="position() = last()">
+      <xsl:text> .&#10;</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>&#10;</xsl:text>
+    </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
 </xsl:stylesheet>
