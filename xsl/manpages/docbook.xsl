@@ -34,6 +34,7 @@
   <xsl:include href="synop.xsl"/>
   <xsl:include href="lists.xsl"/>
   <xsl:include href="links.xsl"/>
+  <xsl:include href="table.xsl"/>
 
   <xsl:param name="generate.manifest">0</xsl:param>
   <xsl:param name="man.manifest.filename">MANIFEST.man</xsl:param>
