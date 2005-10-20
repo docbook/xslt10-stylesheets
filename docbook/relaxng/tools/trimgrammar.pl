@@ -167,7 +167,9 @@ sub printXML {
 	    print "/>";
 	}
     } elsif ($node->getNodeType() == XML::DOM::TEXT_NODE) {
-	print Encode::decode_utf8($node->getData());
+	#print Encode::decode_utf8($node->getData());
+	# why did decoding_utf8 raise errors?
+	print $node->getData();
     } elsif ($node->getNodeType() == XML::DOM::COMMENT_NODE) {
 	print "<!--", Encode::decode_utf8($node->getData()), "-->";
     } elsif ($node->getNodeType() == XML::DOM::PROCESSING_INSTRUCTION_NODE) {
