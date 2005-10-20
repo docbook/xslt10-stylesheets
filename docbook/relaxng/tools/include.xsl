@@ -77,7 +77,8 @@
 	  </xsl:message>
 	</xsl:if>
 
-	<xsl:if test="not(@combine) or @combine != 'choice'">
+	<xsl:if test="not(@combine)
+		      or (@combine != 'choice' and @combine != 'interleave')">
 	  <xsl:message>Adding override to <xsl:value-of select="@name"/></xsl:message>
 	  <xsl:attribute name="override">
 	    <xsl:value-of select="parent::rng:include/@href"/>
