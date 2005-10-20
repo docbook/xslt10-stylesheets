@@ -4,9 +4,9 @@ SRCS = docbook.rnc
 
 BINARY = docbook.rnd
 
-all:: docbook.rng docbook.rnc docbook.dtd
+all:: docbook.rng docbook.rnc docbook.dtd docbook.sch
 
-clean:: ; rm -f docbook.rng docbook.rnc docbook.dtd
+clean:: ; rm -f docbook.rng docbook.rnc docbook.dtd docbook.sch
 
 $(_OUTTOP)/docbook/docbook.rng: src/annotations.rnc src/bibliography.rnc \
              src/callouts.rnc src/calstbl.rnc \
@@ -28,6 +28,9 @@ docbook.rnc: docbook.rng
 
 docbook.dtd: $(basename $(docbook_BINARY)).dtx docbook.rnc
 	$(XSLTPROC) -output $@ $(TOOLS)/xml2dtd.xsl $<
+
+docbook.sch: $(basename $(docbook_BINARY)).rnx
+	$(XSLTPROC) --output $@ $(TOOLS)/schematron.xsl $<
 
 .PHONY: tests
 
