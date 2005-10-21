@@ -1,0 +1,34 @@
+div.titlepage { font-family: Arial, monospaced;
+              }
+
+div.titlepage
+h1            { font-size: 36pt;
+                margin-bottom: 0px;
+                padding-bottom: 0px;
+              }
+
+div.titlepage
+h2            { font-size: 24pt;
+                margin-top: 0px;
+                padding-top: 0px;
+                margin-bottom: 0px;
+                padding-bottom: 0px;
+              }
+
+div.titlepage
+h3            { font-size: 18pt;
+                margin-top: 10px;
+                padding-top: 0px;
+              }
+
+div.titlepage
+h4            { font-size: 12pt;
+                margin-bottom: 0px;
+		padding-bottom: 0px;
+              }
+
+div.titlepage
+dl            { margin-left: 3em;
+                padding-top: 0px;
+		margin-top: 0px;
+              }
