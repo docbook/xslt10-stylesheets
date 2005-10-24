@@ -683,6 +683,78 @@ a string; it is not limited to just being a single character).</para>
 
 <!-- ================================================================== -->
 
+<refentry id="trim.text">
+<refnamediv>
+<refname>trim.text</refname>
+<refpurpose>Trim leading and trailing whitespace from a text node</refpurpose>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
+<para>Given a text node, this function trims leading and trailing
+whitespace from it and returns the trimmed contents.</para>
+
+<programlisting><src:fragment id='trim.text.frag'>
+
+  <xsl:template name="trim.text">
+    <xsl:param name="contents" select="."/>
+    <xsl:variable name="contents-left-trimmed">
+      <xsl:call-template name="trim-left">
+        <xsl:with-param name="contents" select="$contents"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="contents-trimmed">
+      <xsl:call-template name="trim-right">
+        <xsl:with-param name="contents" select="$contents-left-trimmed"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:value-of select="$contents-trimmed"/>
+  </xsl:template>
+
+  <xsl:template name="trim-left">
+    <xsl:param name="contents"/>
+    <xsl:choose>
+      <xsl:when test="starts-with($contents,'&#xA;') or
+                      starts-with($contents,'&#xA;') or
+                      starts-with($contents,'&#x20;') or
+                      starts-with($contents,'&#x9;')">
+        <xsl:call-template name="trim-left">
+          <xsl:with-param name="contents" select="substring($contents, 2)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$contents"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="trim-right">
+    <xsl:param name="contents"/>
+    <xsl:variable name="last-char">
+      <xsl:value-of select="substring($contents, string-length($contents), 1)"/>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="($last-char = '&#xA;') or
+                      ($last-char = '&#xD;') or
+                      ($last-char = '&#x20;') or
+                      ($last-char = '&#x9;')">
+        <xsl:call-template name="trim-right">
+          <xsl:with-param name="contents"
+                          select="substring($contents, 1, string-length($contents) - 1)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$contents"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+</src:fragment></programlisting>
+
+</refsect1>
+</refentry>
+
+<!-- ================================================================== -->
+
 <refentry id="str.tokenize.keep.delimiters">
 <refnamediv>
 <refname>str.tokenize.keep.delimiters</refname>
@@ -1003,7 +1075,7 @@ does not support it.
         </xsl:choose>
         </xsl:when>
         <xsl:otherwise>
-          <!-- value of $use.subet is non-zero, so use the full map -->
+          <!-- value of $use.subset is non-zero, so use the full map -->
         <xsl:copy-of select="document($uri)//*[local-name()='output-character']"/>
       </xsl:otherwise>
     </xsl:choose>
@@ -1165,6 +1237,7 @@ around these functions.</para>
 <src:fragref linkend="read-character-map.frag"/>
 <src:fragref linkend="count.uri.path.depth.frag"/>
 <src:fragref linkend="trim.common.uri.paths.frag"/>
+<src:fragref linkend="trim.text.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>
