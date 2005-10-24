@@ -50,7 +50,10 @@
         <!-- * the delimited contents are “text blocks” that groff(1) -->
         <!-- * needs to process -->
         <xsl:text>T{&#10;</xsl:text>
-        <xsl:apply-templates mode="trim" select="."/>
+        <!-- * trim any leading and trailing whitespace from cell contents -->
+        <xsl:call-template name="trim.text">
+          <xsl:with-param name="contents" select="."/>
+        </xsl:call-template>
         <xsl:text>&#10;T}</xsl:text>
         <xsl:choose>
           <!-- * tbl(1) treats tab characters as delimiters between -->
