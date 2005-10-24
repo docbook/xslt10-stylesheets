@@ -123,11 +123,11 @@
 
 <xsl:template match="authorgroup" mode="howto-titlepage">
   <h4>
-    <xsl:text>Editor</xsl:text>
+    <xsl:text>Author</xsl:text>
     <xsl:if test="count(author) &gt; 1">s</xsl:if>
     <xsl:text>:</xsl:text>
   </h4>
-  <dl class="editorlist">
+  <dl class="authorlist">
     <xsl:apply-templates select="author" mode="howto-titlepage"/>
   </dl>
 </xsl:template>
@@ -140,6 +140,22 @@
       <xsl:apply-templates select="email"/>
     </xsl:if>
   </dt>
+</xsl:template>
+
+<xsl:template match="tag[not(@class) or (@class='element')]
+		        [not(@condition = 'nolink')]">
+  <xsl:variable name="baseUri">
+    <xsl:choose>
+      <xsl:when test="@condition = 'v4'">
+	<xsl:text>http://docbook.org/tdg/en/html/</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>http://docbook.org/tdg5/en/html/</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <a href="{$baseUri}{.}.html">
+    <xsl:apply-imports/>
+  </a>
 </xsl:template>
 
 </xsl:stylesheet>

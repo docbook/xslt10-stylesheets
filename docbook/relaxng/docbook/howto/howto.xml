@@ -182,7 +182,9 @@ customized DocBook version then before with DTDs.</para>
 <title>Schema jungle</title>
 
 <para>Schemas for DocBook V5.0 are available in several formats at
-<link xl:href="FIXME: add link"/>. Only the RELAX NG schema is normative
+<link xl:href="http://www.oasis-open.org/docbook/xml/5.0b1/"/> (or the
+mirror at <link xl:href="http://docbook.org/xml/5.0b1/"/>).
+Only the RELAX NG schema is normative
 and it is preferred over the other schema languages. However, for your
 convenience there are also DTD and W3C XML Schema versions provided for DocBook
 V5.0. But please note that neither DTDs nor XML schemas are able to
@@ -206,21 +208,24 @@ following locations:</para>
 <variablelist>
 <varlistentry>
 <term>RELAX NG schema</term>
-<listitem><para><link xl:href="FIXME:"/></para></listitem>
+<listitem><para><link xl:href="http://www.oasis-open.org/docbook/xml/5.0b1/rng/docbook.rng"/></para></listitem>
 </varlistentry>
 <varlistentry>
 <term>RELAX NG schema in compact syntax</term>
-<listitem><para><link xl:href="FIXME:"/></para></listitem>
+<listitem><para><link xl:href="http://www.oasis-open.org/docbook/xml/5.0b1/rng/docbook.rnc"/></para></listitem>
 </varlistentry>
 <varlistentry>
 <term>DTD</term>
-<listitem><para><link xl:href="FIXME:"/></para></listitem>
+<listitem><para><link xl:href="http://www.oasis-open.org/docbook/xml/5.0b1/dtd/docbook.dtd"/></para></listitem>
 </varlistentry>
 <varlistentry>
 <term>W3C XML Schema</term>
-<listitem><para><link xl:href="FIXME:"/></para></listitem>
+<listitem><para><link xl:href="http://www.oasis-open.org/docbook/xml/5.0b1/xsd/docbook.xsd"/></para></listitem>
 </varlistentry>
 </variablelist>
+
+<para>These schemas are also available from the mirror at
+<link xlink:href="http://docbook.org/xml/5.0b1/"/>.</para>
 
 </section>
 
