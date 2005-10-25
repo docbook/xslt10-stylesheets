@@ -110,6 +110,11 @@
 	    </xsl:otherwise>
 	  </xsl:choose>
 	</xsl:when>
+	<xsl:when test="@occurs='fixed'">
+	  <xsl:text>CDATA&#9;#FIXED&#9;'</xsl:text>
+	  <xsl:value-of select="."/>
+	  <xsl:text>'</xsl:text>
+	</xsl:when>
 	<xsl:when test="string-length(.) != 0">
 	  <!-- handle the special case of duplicate lists, etc. -->
 	  <xsl:choose>
@@ -134,6 +139,9 @@
       <xsl:choose>
 	<xsl:when test="@occurs='optional'">
 	  <xsl:text>#IMPLIED</xsl:text>
+	</xsl:when>
+	<xsl:when test="@occurs='fixed'">
+	  <!-- nop; handled above -->
 	</xsl:when>
 	<xsl:otherwise>#REQUIRED</xsl:otherwise>
       </xsl:choose>
