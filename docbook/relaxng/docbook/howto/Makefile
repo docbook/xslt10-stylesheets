@@ -7,12 +7,12 @@ VARS=
 all: howto.html
 
 %.html : %.xml $(HTMLSTYLE)
-	xjparse $<
+	$(XJPARSE) $<
 	$(XSLT) $< $(HTMLSTYLE) $@ $(VARS)
 
 
 %.fo : %.xml $(FOSTYLE)
-	xjparse $<
+	$(XJPARSE) $<
 	$(XSLT) $< $(FOSTYLE) $@ xep.extensions=1 $(VARS)
 
 %.pdf : %.fo
