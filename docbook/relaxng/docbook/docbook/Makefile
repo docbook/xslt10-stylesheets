@@ -1,5 +1,7 @@
 include _header.mak
 
+REMOVESCHEMATRON=0
+
 SRCS = docbook.rnc
 
 BINARY = docbook.rnd
@@ -21,7 +23,7 @@ $(_OUTTOP)/docbook/docbook.rng: src/annotations.rnc src/bibliography.rnc \
 include _footer.mak
 
 docbook.rng: $(basename $(docbook_BINARY)).rnx
-	$(XSLTPROC) --output $@ $(TOOLS)/removedoc.xsl $<
+	$(XSLTPROC) --param remove-schematron $(REMOVESCHEMATRON) --output $@ $(TOOLS)/removedoc.xsl $<
 
 docbook.rnc: docbook.rng
 	$(RUNTRANG) $< $@
