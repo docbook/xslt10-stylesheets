@@ -6,8 +6,13 @@
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
 <!ENTITY root "http://docbook.org/">
 ]>
-<article status="&standard;">
-<articleinfo>
+<article xmlns="http://docbook.org/ns/docbook"
+	 xmlns:xlink="http://www.w3.org/1999/xlink"
+	 version="5.0"
+	 status="&standard;">
+<info>
+<title>The DocBook Schema</title>
+
 <releaseinfo role="cvs">
 $Id$
 </releaseinfo>
@@ -15,17 +20,18 @@ $Id$
 <productname>&name;</productname>
 <productnumber>&version;</productnumber>
 
-<releaseinfo role="product"><ulink url="&name;-&version;.xml">XML</ulink></releaseinfo>
-<releaseinfo role="product"><ulink url="&name;-&version;.html">HTML</ulink></releaseinfo>
-<releaseinfo role="product"><ulink url="&name;-&version;.pdf">PDF</ulink></releaseinfo>
+<releaseinfo role="product"><link xlink:href="&name;-&version;.xml">XML</link></releaseinfo>
+<releaseinfo role="product"><link xlink:href="&name;-&version;.html">HTML</link></releaseinfo>
+<releaseinfo role="product"><link xlink:href="&name;-&version;.pdf">PDF</link></releaseinfo>
 
 <releaseinfo role="location">&root;specs</releaseinfo>
 
-<title>The DocBook Schema</title>
-
 <authorgroup>
 <editor>
-  <firstname>Norman</firstname><surname>Walsh</surname>
+  <personname>
+    <firstname>Norman</firstname>
+    <surname>Walsh</surname>
+  </personname>
   <affiliation>
     <shortaffil>Sun</shortaffil>
     <orgname>Sun Microsystems, Inc.</orgname>
@@ -63,7 +69,7 @@ XML DTD, but the RELAX NG Schema is now the normative schema.</para>
 <legalnotice role="status"><title>Status</title>
 <!--
 <para>This &standard; was
-<ulink url="http://lists.oasis-open.org/archives/docbook-tc/200403/msg00010.html">approved</ulink>
+<link xlink:href="http://lists.oasis-open.org/archives/docbook-tc/200403/msg00010.html">approved</link>
 for publication by the
 OASIS DocBook Technical Committee. It represents the
 consensus of the committee.
@@ -77,16 +83,16 @@ represent the consensus of the committee.
 <para>Please send comments on this specification to the
 <email>docbook@lists.oasis-open.org</email> list. To subscribe, please
 use the
-<ulink url="http://lists.oasis-open.org/ob/adm.pl">OASIS Subscription
-Manager</ulink>.</para>
+<link xlink:href="http://lists.oasis-open.org/ob/adm.pl">OASIS Subscription
+Manager</link>.</para>
 
 <para>The errata page for this specification is at
-<ulink url="&root;specs/docbook-errata.html"/>.
+<link xlink:href="&root;specs/docbook-errata.html"/>.
 </para>
 </legalnotice>
-</articleinfo>
+</info>
 
-<section id="s.intro">
+<section xml:id="s.intro">
 <title>Introduction</title>
 
 <para>DocBook is general purpose XML schema
@@ -94,8 +100,8 @@ particularly well suited to books and papers about computer hardware
 and software (though it is by no means limited to these applications).
 </para>
 
-<para>The <ulink url="mailto:docbook-tc@oasis-open.org">DocBook
-Technical Committee</ulink> maintains the DocBook schema. Starting
+<para>The <link xlink:href="mailto:docbook-tc@oasis-open.org">DocBook
+Technical Committee</link> maintains the DocBook schema. Starting
 with V5.0, DocBook is normatively available as a <xref
 linkend="relaxng"/> Schema (with some additional Schematron assertions).
 W3C XML Schema and Document Type
@@ -113,16 +119,16 @@ provided to ease this transition.</para>
 <para>The DocBook Technical Committee welcomes bug reports and
 requests for enhancement (RFEs) from the user community. The current list
 of outstanding requests is available through the
-<ulink url="http://sourceforge.net/">SourceForge</ulink>
-<ulink url="&tracker;/?atid=384107&amp;group_id=21935&amp;func=browse">tracker</ulink>
+<link xlink:href="http://sourceforge.net/">SourceForge</link>
+<link xlink:href="&tracker;/?atid=384107&amp;group_id=21935&amp;func=browse">tracker</link>
 interface. This is also the preferred mechanism for submitting new requests.
 Old RFEs, from a previous legacy tracking system, are
-<ulink url="http://www.oasis-open.org/docbook/old-rfes.html">archived</ulink>
+<link xlink:href="http://www.oasis-open.org/docbook/old-rfes.html">archived</link>
 for reference.</para>
 
 </section>
 
-<section id="s.terminology"><title>Terminology</title>
+<section xml:id="s.terminology"><title>Terminology</title>
 
 <para>The key words <glossterm>must</glossterm>, <glossterm>must
 not</glossterm>, <glossterm>required</glossterm>,
@@ -136,18 +142,18 @@ document.</para>
 
 </section>
 
-<section id="docbook">
+<section xml:id="docbook">
 <title>The DocBook RELAX NG Schema V5.0</title>
 
-<para>The DocBook <ulink url="&root;rng/">RELAX NG Schema</ulink> is distributed
+<para>The DocBook <link xlink:href="&root;rng/">RELAX NG Schema</link> is distributed
 from the
-<ulink url="http://www.oasis-open.org/docbook/">DocBook site</ulink> at
-<ulink url="http://www.oasis-open.org/">OASIS</ulink>.
+<link xlink:href="http://www.oasis-open.org/docbook/">DocBook site</link> at
+<link xlink:href="http://www.oasis-open.org/">OASIS</link>.
 DocBook is also available from the mirror on
-<ulink url="http://docbook.org/"/>.
+<link xlink:href="http://docbook.org/"/>.
 </para>
 
-<section id="s.cs">
+<section xml:id="s.cs">
 <title>Changes in DocBook V5.0</title>
 
 <para>In V5.0, DocBook has been rewritten as a native RELAX NG
@@ -196,7 +202,7 @@ these have been replaced by simpler, more versatile alternatives.
 Others have simply been removed because they are not believed to be
 widely used.</para>
 
-<table id="elem.rmv">
+<table xml:id="elem.rmv">
 <title>DocBook Element Changes</title>
 <tgroup cols="2">
 <thead>
@@ -208,82 +214,82 @@ widely used.</para>
 <tbody valign="top">
 <row>
 <entry><para><simplelist type="inline">
-<member><sgmltag>articleinfo</sgmltag></member>
-<member><sgmltag>bookinfoinfo</sgmltag></member>
+<member><tag>articleinfo</tag></member>
+<member><tag>bookinfoinfo</tag></member>
 <member>…</member>
-<member><sgmltag><replaceable>*</replaceable>info</sgmltag></member>
+<member><tag><replaceable>*</replaceable>info</tag></member>
 </simplelist></para></entry>
-<entry><para>Replaced by <sgmltag>info</sgmltag>, see
+<entry><para>Replaced by <tag>info</tag>, see
 <xref linkend="s.unif.info"/>.
 </para></entry>
 </row>
 
 <row>
 <entry><para><simplelist type="inline">
-<member><sgmltag>authorblurb</sgmltag></member>
+<member><tag>authorblurb</tag></member>
 </simplelist></para></entry>
-<entry><para>Replaced by <sgmltag>personblurb</sgmltag>. This more general
+<entry><para>Replaced by <tag>personblurb</tag>. This more general
 name better reflects the fact that it is available in elements other
-than <sgmltag>author</sgmltag> (e.g., <sgmltag>editor</sgmltag>).
+than <tag>author</tag> (e.g., <tag>editor</tag>).
 </para></entry>
 </row>
 
 <row>
 <entry><para><simplelist type="inline">
-<member><sgmltag>collabname</sgmltag></member>
-<member><sgmltag>corpauthor</sgmltag></member>
-<member><sgmltag>corpcredit</sgmltag></member>
-<member><sgmltag>corpname</sgmltag></member>
+<member><tag>collabname</tag></member>
+<member><tag>corpauthor</tag></member>
+<member><tag>corpcredit</tag></member>
+<member><tag>corpname</tag></member>
 </simplelist></para></entry>
-<entry><para>Replaced by <sgmltag>orgname</sgmltag> and the updated
-content models of <sgmltag>author</sgmltag>, <sgmltag>editor</sgmltag>,
-and <sgmltag>othercredit</sgmltag>.
+<entry><para>Replaced by <tag>orgname</tag> and the updated
+content models of <tag>author</tag>, <tag>editor</tag>,
+and <tag>othercredit</tag>.
 </para></entry>
 </row>
 
 <row>
 <entry><para><simplelist type="inline">
-<member><sgmltag>graphic</sgmltag></member>
-<member><sgmltag>graphicco</sgmltag></member>
-<member><sgmltag>inlinegraphic</sgmltag></member>
-<member><sgmltag>mediaobjectco</sgmltag></member>
+<member><tag>graphic</tag></member>
+<member><tag>graphicco</tag></member>
+<member><tag>inlinegraphic</tag></member>
+<member><tag>mediaobjectco</tag></member>
 </simplelist></para></entry>
-<entry><para>Removed in favor of <sgmltag>mediaobject</sgmltag> and
-<sgmltag>inlinemediaobject</sgmltag>.
+<entry><para>Removed in favor of <tag>mediaobject</tag> and
+<tag>inlinemediaobject</tag>.
 </para></entry>
 </row>
 
 <row>
 <entry><para><simplelist type="inline">
-<member><sgmltag>isbn</sgmltag></member>
-<member><sgmltag>issn</sgmltag></member>
-<member><sgmltag>pubsnumber</sgmltag></member>
+<member><tag>isbn</tag></member>
+<member><tag>issn</tag></member>
+<member><tag>pubsnumber</tag></member>
 </simplelist></para></entry>
-<entry><para>Replaced by <sgmltag>biblioid</sgmltag>.
+<entry><para>Replaced by <tag>biblioid</tag>.
 </para></entry>
 </row>
 
 <row>
 <entry><para><simplelist type="inline">
-<member><sgmltag>lot</sgmltag></member>
-<member><sgmltag>lotentry</sgmltag></member>
-<member><sgmltag>tocback</sgmltag></member>
-<member><sgmltag>tocchap</sgmltag></member>
-<member><sgmltag>tocfront</sgmltag></member>
-<member><sgmltag>toclevel1</sgmltag></member>
-<member><sgmltag>toclevel2</sgmltag></member>
-<member><sgmltag>toclevel3</sgmltag></member>
-<member><sgmltag>toclevel4</sgmltag></member>
-<member><sgmltag>toclevel5</sgmltag></member>
-<member><sgmltag>tocpart</sgmltag></member>
+<member><tag>lot</tag></member>
+<member><tag>lotentry</tag></member>
+<member><tag>tocback</tag></member>
+<member><tag>tocchap</tag></member>
+<member><tag>tocfront</tag></member>
+<member><tag>toclevel1</tag></member>
+<member><tag>toclevel2</tag></member>
+<member><tag>toclevel3</tag></member>
+<member><tag>toclevel4</tag></member>
+<member><tag>toclevel5</tag></member>
+<member><tag>tocpart</tag></member>
 </simplelist></para></entry>
-<entry><para>Replaced by simpler <sgmltag>tocdiv</sgmltag> element.
+<entry><para>Replaced by simpler <tag>tocdiv</tag> element.
 </para></entry>
 </row>
 
 <row>
 <entry><para><simplelist type="inline">
-<member><sgmltag>ulink</sgmltag></member>
+<member><tag>ulink</tag></member>
 </simplelist></para></entry>
 <entry><para>Replaced by ubiquitous linking, see
 <xref linkend="s.ubiq.link"/>.
@@ -292,23 +298,23 @@ and <sgmltag>othercredit</sgmltag>.
 
 <row>
 <entry><para><simplelist type="inline">
-<member><sgmltag>sgmltag</sgmltag></member>
+<member><tag>sgmltag</tag></member>
 </simplelist></para></entry>
-<entry><para>Replaced by <sgmltag>tag</sgmltag>.
+<entry><para>Replaced by <tag>tag</tag>.
 </para></entry>
 </row>
 
 <row>
 <entry><para><simplelist type="inline">
-<member><sgmltag>action</sgmltag></member>
-<member><sgmltag>beginpage</sgmltag></member>
-<member><sgmltag>highlights</sgmltag></member>
-<member><sgmltag>interface</sgmltag></member>
-<member><sgmltag>invpartnumber</sgmltag></member>
-<member><sgmltag>medialabel</sgmltag></member>
-<member><sgmltag>modespec</sgmltag></member>
-<member><sgmltag>structfield</sgmltag></member>
-<member><sgmltag>structname</sgmltag></member>
+<member><tag>action</tag></member>
+<member><tag>beginpage</tag></member>
+<member><tag>highlights</tag></member>
+<member><tag>interface</tag></member>
+<member><tag>invpartnumber</tag></member>
+<member><tag>medialabel</tag></member>
+<member><tag>modespec</tag></member>
+<member><tag>structfield</tag></member>
+<member><tag>structname</tag></member>
 </simplelist></para></entry>
 <entry><para>Removed.
 </para></entry>
@@ -328,7 +334,7 @@ previous versions resulted in very broad content models for some
 inlines.</para>
 
 <para>Consider, for example,
-<sgmltag>command</sgmltag> in DocBook V4.4:</para>
+<tag>command</tag> in DocBook V4.4:</para>
 
 <programlisting>command ::=
    (#PCDATA|link|olink|ulink|action|application|classname|methodname|
@@ -343,7 +349,7 @@ inlines.</para>
    remark|subscript|superscript|inlinegraphic|inlinemediaobject|
    indexterm|beginpage)*</programlisting>
 
-<para>In DocBook V5.0, <sgmltag>command</sgmltag> has a much smaller, more
+<para>In DocBook V5.0, <tag>command</tag> has a much smaller, more
 rational content model:</para>
 
 <programlisting>command ::=
@@ -371,14 +377,14 @@ valid documents can no longer be made valid because content models have
 been reduced.</para>
 </section>
 
-<section id="s.unif.info">
+<section xml:id="s.unif.info">
 <title>Uniform Info Elements</title>
 
-<para>DocBook V4.x has <sgmltag>setinfo</sgmltag>,
-<sgmltag>bookinfo</sgmltag>, <sgmltag>chapterinfo</sgmltag>,
-<sgmltag>appendixinfo</sgmltag>, <sgmltag>sectioninfo</sgmltag>, etc.
+<para>DocBook V4.x has <tag>setinfo</tag>,
+<tag>bookinfo</tag>, <tag>chapterinfo</tag>,
+<tag>appendixinfo</tag>, <tag>sectioninfo</tag>, etc.
 DocBook would be smaller and simpler if it had a single
-<sgmltag>info</sgmltag> element in all these places.</para>
+<tag>info</tag> element in all these places.</para>
 
 <para>There’s an historical reason for the large number of unique
 names: customizers might very well want to adjust the content models
@@ -389,7 +395,7 @@ model allowed per element name, so in order to support independent
 customization, each info element must have a different name.</para>
 
 <para>In RELAX NG, no such limitation exists. We can use patterns to
-achieve both a single <sgmltag>info</sgmltag> element while still allowing
+achieve both a single <tag>info</tag> element while still allowing
 customizers to change its content model in different contexts. In light
 of this functionality, we've replaced all the various flavors of info
 with a single element name.</para>
@@ -399,7 +405,7 @@ with a single element name.</para>
 <title>Required Titles</title>
 
 <para>DocBook V5.0 enforces the constraint that titles are required on
-<sgmltag>article</sgmltag>s and other large structures where they are
+<tag>article</tag>s and other large structures where they are
 effectively optional in DocBook V4.x. (They are optional only in the sense
 that DTDs are unable to enforce the constraint that they be present, the
 documentation has always made it clear that titles were required.)</para>
@@ -420,7 +426,7 @@ be the case.</para>
 
 <para>Nevertheless, downstream processors may benefit from some indication
 of the version of DocBook being used. As a result DocBook V5.0 adds a new
-<sgmltag class="attribute">version</sgmltag> attribute which
+<tag class="attribute">version</tag> attribute which
 <glossterm>must</glossterm> be present on the document element of a DocBook
 document.</para>
 
@@ -435,8 +441,8 @@ with its own version.</para>
 <title>Co-Constraints</title>
 
 <para>DocBook V5.0 enforces attribute co-constraints such as the
-<sgmltag class="attribute">class</sgmltag>/<sgmltag class="attribute">otherclass</sgmltag>
-attributes on <sgmltag>biblioid</sgmltag>.</para>
+<tag class="attribute">class</tag>/<tag class="attribute">otherclass</tag>
+attributes on <tag>biblioid</tag>.</para>
 
 </section>
 
@@ -453,77 +459,77 @@ models, DocBook V5.0 forbids such mixtures.</para>
 <title>Data Types</title>
 
 <para>DocBook V5.0 adds a few simple data types. For example, the
-<sgmltag class="attribute">cols</sgmltag> attribute on <sgmltag>tgroup</sgmltag>
+<tag class="attribute">cols</tag> attribute on <tag>tgroup</tag>
 must be a positive integer.</para>
 
 <para>Some of these constraints, such as the requirement that elements
-like <sgmltag>pubdate</sgmltag> include a proper date-time type, may
+like <tag>pubdate</tag> include a proper date-time type, may
 prove controversial. Users are encouraged to report places where formally
 valid documents can no longer be made valid because data types have been
 introduced.
 </para>
 </section>
 
-<section id="s.ubiq.link">
+<section xml:id="s.ubiq.link">
 <title>Universal Linking</title>
 
 <para>Starting with DocBook V5.0, the
-<sgmltag class="attribute">linkend</sgmltag> and
-<sgmltag class="attribute">xlink:href</sgmltag> attributes are available on
+<tag class="attribute">linkend</tag> and
+<tag class="attribute">xlink:href</tag> attributes are available on
 almost all elements.</para>
 
-<para>The <sgmltag class="attribute">linkend</sgmltag> attribute provides an
+<para>The <tag class="attribute">linkend</tag> attribute provides an
 ID/IDREF link within the document. The
-<sgmltag class="attribute">xlink:href</sgmltag> attribute provides a URI-based
+<tag class="attribute">xlink:href</tag> attribute provides a URI-based
 link.</para>
 
-<para>The <sgmltag>ulink</sgmltag> element has been removed from
+<para>The <tag>ulink</tag> element has been removed from
 DocBook as URI-based links can now be achieved directly from
-the appropriate inline (such as <sgmltag>productname</sgmltag> or
-<sgmltag>command</sgmltag>). For instances where no specific semantic
-inline is needed, <sgmltag>link</sgmltag> is still available. Where
-<sgmltag>link</sgmltag> used to be limited to ID/IDREF linking, it now
-sports an <sgmltag class="attribute">xlink:href</sgmltag> attribute as
+the appropriate inline (such as <tag>productname</tag> or
+<tag>command</tag>). For instances where no specific semantic
+inline is needed, <tag>link</tag> is still available. Where
+<tag>link</tag> used to be limited to ID/IDREF linking, it now
+sports an <tag class="attribute">xlink:href</tag> attribute as
 well.</para>
 
 <para>Support for
-<ulink url="http://www.w3.org/TR/xlink11/#extended-link">extended links</ulink>
+<link xlink:href="http://www.w3.org/TR/xlink11/#extended-link">extended links</link>
 are provided through the
-<sgmltag>extendedlink</sgmltag>, <sgmltag>arc</sgmltag>, and
-<sgmltag>locator</sgmltag> elements.</para>
+<tag>extendedlink</tag>, <tag>arc</tag>, and
+<tag>locator</tag> elements.</para>
 
 </section>
 
-<section id="s.annot">
+<section xml:id="s.annot">
 <title>Improved Accessibility</title>
 
 <para>Accessibility is improved by allowing both inline and block
-annotations in most context. The <sgmltag>alt</sgmltag> element is now
+annotations in most context. The <tag>alt</tag> element is now
 allowed in most places for inline annotations, the new element
-<sgmltag>annotation</sgmltag> supports block annotations.</para>
+<tag>annotation</tag> supports block annotations.</para>
 
 </section>
 
-<section id="s.toc">
+<section xml:id="s.toc">
 <title>Simplified Table of Contents Markup</title>
 
 <para>The DocBook V4.x markup for Tables of Contents, or more generally for
 Lists of Titles, was complex and had not evolved quite in step with the
 rest of DocBook. In DocBook V5.0, it has all been replaced by a quite
 simple, recursive
-<sgmltag>toc</sgmltag>/<sgmltag>tocdiv</sgmltag>/<sgmltag>tocentry</sgmltag>
+<tag>toc</tag>/<tag>tocdiv</tag>/<tag>tocentry</tag>
 structure.</para>
 
 <para>While most Tables of Contents and Lists of Titles are generated
 automatically and authors never have to produce markup for them by
 hand, this simplified content model should make it easier for authors
 to generate them when necessary. One possible application of hand-authored
-<sgmltag>toc</sgmltag> markup is to generate custom hierarchies which
+<tag>toc</tag> markup is to generate custom hierarchies which
 can be assembled on-the-fly from a library of topics marked up in
 DocBook.</para>
 </section>
 
-<section id="s.schematron">
+<section xml:id="s.schematron">
 <title>Extra-Grammatical Constraints</title>
 
 <para>Grammar based validation technologies (like RELAX NG) and rule based
@@ -541,7 +547,7 @@ easy in a rule-based schema language.</para>
 <para>DocBook V5.0 uses Schematron where appropriate.</para>
 </section>
 
-<section id="s.custom">
+<section xml:id="s.custom">
 <title>Customization</title>
 
 <para>From the very beginning, one of the goals of DocBook has been
@@ -559,7 +565,7 @@ customization easier.</para>
 
 <para>Three schema design patterns get us most of the way there.</para>
 
-<section id="s.patnames">
+<section xml:id="s.patnames">
 <title>Logical Groupings</title>
 
 <para>DocBook elements, particularly the inlines, can be divided into
@@ -586,7 +592,7 @@ constraints do not exist in RELAX NG which greatly simplifies the
 customization.</para>
 </section>
 
-<section id="s.elemdefs">
+<section xml:id="s.elemdefs">
 <title>Element Definitions</title>
 
 <para>Each element in DocBook V5.0 is defined by its own pattern. To
@@ -596,7 +602,7 @@ redefined as <quote><literal>notAllowed</literal></quote>.</para>
 
 </section>
 
-<section id="s.attrdefs">
+<section xml:id="s.attrdefs">
 <title>Attribute Definitions</title>
 
 <para>Each attribute list in DocBook V5.0 is defined by its own
@@ -629,19 +635,19 @@ have valid DocBook V5.0 representations.
 
 <section><title>Release Notes</title>
 
-<para>See <ulink url="http://www.relaxng.org/"/> for a list of tools that
+<para>See <link xlink:href="http://www.relaxng.org/"/> for a list of tools that
 can validate an XML document using RELAX NG. Note that not all products
 are capable of evaluating the Schematron assertions in the schema.</para>
 
 </section>
 
-<appendix id="a.mimetype">
+<appendix xml:id="a.mimetype">
 <title>The DocBook Media Type</title>
 
 <para>This appendix registers a new MIME media type,
 <quote><code>application/docbook+xml</code></quote>.</para>
 
-<section id="media-type-registration">
+<section xml:id="media-type-registration">
 <title>Registration of MIME media type application/docbook+xml</title>
 
 <variablelist>
@@ -791,7 +797,7 @@ Technical Committee at OASIS.</para>
 </variablelist>
 </section>
 
-<section id="fragid">
+<section xml:id="fragid">
 <title>Fragment Identifiers</title>
 
 <para>For documents labeled as
@@ -803,7 +809,7 @@ as specified in <xref linkend="rfc3023"/> or its successors.</para>
 </section>
 </appendix>
 
-<appendix id="a.committee" role="non-normative">
+<appendix xml:id="a.committee" role="non-normative">
 <title>OASIS DocBook Technical Committee</title>
 
 <para>The following individuals were members of the committee during
@@ -826,7 +832,7 @@ the formulation of this &standard;:</para>
 </itemizedlist>
 </appendix>
 
-<appendix id="a.notices">
+<appendix xml:id="a.notices">
 <title>Notices</title>
 
 <para>Copyright &#169; The Organization for the Advancement of
@@ -889,19 +895,19 @@ the online list of claimed rights.</para>
 
 </appendix>
 
-<appendix id="a.ipr">
+<appendix xml:id="a.ipr">
 <title>Intellectual Property Rights</title>
 
 <para>For information on whether any patents have been disclosed that may be
 essential to implementing this specification, and any offers of patent
 licensing terms, please refer to the Intellectual Property Rights section
 of the DocBook web page
-(<ulink url="http://www.oasis-open.org/committees/docbook/"/>)
+(<link xlink:href="http://www.oasis-open.org/committees/docbook/"/>)
 </para>
 
 </appendix>
 
-<appendix id="a.revhistory">
+<appendix xml:id="a.revhistory">
 <title>Revision History</title>
 
 <para>
@@ -915,25 +921,25 @@ of the DocBook web page
 
 </appendix>
 
-<bibliography id="references"><title>References</title>
+<bibliography xml:id="references"><title>References</title>
 
 <bibliodiv><title>Normative</title>
 
-<bibliomixed id="relaxng"/>
-<bibliomixed id="xml-rec"/>
-<bibliomixed id="xlink11"/>
-<bibliomixed id="rfc2119"/>
-<bibliomixed id="rfc3023"/>
-<bibliomixed id="bib.docbooktdg"/>
+<bibliomixed xml:id="relaxng"/>
+<bibliomixed xml:id="xml-rec"/>
+<bibliomixed xml:id="xlink11"/>
+<bibliomixed xml:id="rfc2119"/>
+<bibliomixed xml:id="rfc3023"/>
+<bibliomixed xml:id="bib.docbooktdg"/>
 
 </bibliodiv>
 
 <bibliodiv><title>Non-Normative</title>
 
-<bibliomixed id="iso8879"/>
-<bibliomixed id="xmlschema-1"/>
-<bibliomixed id="xmlschema-2"/>
-<bibliomixed id="schematron2000"/>
+<bibliomixed xml:id="iso8879"/>
+<bibliomixed xml:id="xmlschema-1"/>
+<bibliomixed xml:id="xmlschema-2"/>
+<bibliomixed xml:id="schematron2000"/>
 
 </bibliodiv>
 
