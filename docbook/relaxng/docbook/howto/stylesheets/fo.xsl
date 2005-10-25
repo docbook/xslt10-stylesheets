@@ -105,7 +105,7 @@
 
 <xsl:template match="authorgroup" mode="howto-titlepage">
   <fo:block font-size="12pt" font-family="sans-serif">
-    <xsl:text>Editor</xsl:text>
+    <xsl:text>Author</xsl:text>
     <xsl:if test="count(author) &gt; 1">s</xsl:if>
     <xsl:text>:</xsl:text>
   </fo:block>
