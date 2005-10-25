@@ -1,21 +1,19 @@
 include ../../../../cvstools/Makefile.incl
 
-XJPARSE=/home/ndw/bin/xjparse
-
 HTMLSTYLE=/projects/oasis/spectools/stylesheets/oasis-docbook-html.xsl
 FOSTYLE=fo.xsl
 
 XSLPARAM=""
 
-all: docbook.html
+all: docbook.html docbook.pdf
 
 docbook.html: docbook.xml
-	$(XJPARSE) $<
+	jing ../docbook.rng $<
 	$(XSLT) $< $(HTMLSTYLE) $@ $(XSLPARAM)
 	tidy -q -utf8 -mn -asxml $@
 
 docbook.fo: docbook.xml
-	$(XJPARSE) $<
+	jing ../docbook.rng $<
 	$(XSLT) $< $(FOSTYLE) docbook.fo $(XSLPARAM)
 
 docbook.pdf: docbook.fo
