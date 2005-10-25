@@ -15,7 +15,7 @@
 
 <xsl:strip-space elements="*"/>
 
-<xsl:param name="remove-schematron" select="1"/>
+<xsl:param name="remove-schematron" select="0"/>
 
 <xsl:template match="db:*"/>
 <xsl:template match="dbx:*"/>
