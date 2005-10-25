@@ -414,11 +414,19 @@
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
+      <!-- HACK -->
+      <xsl:if test="@name = 'xlink:href'">
+	<dtd:attribute name="xmlns:xlink" occurs="fixed">
+	  <xsl:text>http://www.w3.org/1999/xlink</xsl:text>
+	</dtd:attribute>
+      </xsl:if>
+
       <dtd:attribute name="{@name}">
 	<xsl:attribute name="occurs">
 	  <xsl:choose>
 	    <xsl:when test="ancestor::rng:optional">optional</xsl:when>
 	    <xsl:when test="ancestor::rng:choice">optional</xsl:when>
+	    <xsl:when test="ancestor::rng:interleave">optional</xsl:when>
 	    <xsl:otherwise>required</xsl:otherwise>
 	  </xsl:choose>
 	</xsl:attribute>
@@ -474,6 +482,68 @@
 -->
   <xsl:apply-templates select="rng:group" mode="trim"/>
 </xsl:template>
+
+<!-- xxx -->
+
+<xsl:template
+    match="rng:choice[rng:group[rng:interleave[rng:ref[@name='db.title']]]
+	          and rng:group[rng:optional[rng:ref[contains(@name,'.info')]]]
+		  and rng:ref[contains(@name,'.info')]]"
+    priority="100"
+    mode="trim">
+<!--
+  Turn this: (((title|titleabbrev)*,info?)|info?)
+  into this:   (title|titleabbrev)*,info?)
+-->
+  <xsl:apply-templates select="rng:group" mode="trim"/>
+</xsl:template>
+
+<xsl:template
+    match="rng:choice[rng:group[rng:interleave[rng:optional[rng:ref[@name='db.title']]]]
+	          and rng:group[rng:optional[rng:ref[contains(@name,'.info')]]]
+		  and rng:ref[contains(@name,'.info')]]"
+    priority="100"
+    mode="trim">
+<!--
+  Turn this: (((title|titleabbrev)*,info?)|info?)
+  into this:   (title|titleabbrev)*,info?)
+-->
+  <xsl:apply-templates select="rng:group" mode="trim"/>
+</xsl:template>
+
+<!--
+    <xsl:message>trimming: <xsl:value-of select="ancestor::rng:define[1]/@name"/></xsl:message>
+            <choice>
+              <group>
+                <interleave>
+                  <optional>
+                    <ref name="db.title"/>
+                  </optional>
+                  <optional>
+                    <ref name="db.titleabbrev"/>
+                  </optional>
+                </interleave>
+                <optional>
+                  <ref name="db.titleforbidden.info"/>
+                </optional>
+              </group>
+              <ref name="db.titleonly.info"/>
+            </choice>
+
+-->
+
+<xsl:template
+    match="rng:choice[rng:group[rng:ref[@name='db.title']]
+	          and rng:group[rng:optional[rng:ref[contains(@name,'.info')]]]
+		  and rng:ref[contains(@name,'.info')]]"
+    mode="trim">
+<!--
+  Turn this: (((title|titleabbrev)*,info?)|info?)
+  into this:   (title|titleabbrev)*,info?)
+-->
+  <xsl:apply-templates select="rng:group" mode="trim"/>
+</xsl:template>
+
 
 <xsl:template match="rng:define" mode="trim">
   <!--xsl:message>Trimming <xsl:value-of select="@name"/></xsl:message-->
