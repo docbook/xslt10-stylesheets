@@ -785,7 +785,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <!-- Expand this template to add properties to any cell's block -->
 <xsl:template name="table.cell.block.properties">
   <!-- highlight this entry? -->
-  <xsl:if test="ancestor::thead">
+  <xsl:if test="ancestor::thead or ancestor::tfoot">
     <xsl:attribute name="font-weight">bold</xsl:attribute>
   </xsl:if>
 </xsl:template>
