@@ -4,7 +4,7 @@ HTMLSTYLE=stylesheets/html.xsl
 FOSTYLE=stylesheets/fo.xsl
 VARS=
 
-all: howto.html
+all: howto.html howto.pdf
 
 %.html : %.xml $(HTMLSTYLE)
 	$(XJPARSE) $<
@@ -17,4 +17,3 @@ all: howto.html
 
 %.pdf : %.fo
 	xep $<
-
