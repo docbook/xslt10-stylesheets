@@ -32,6 +32,7 @@ db.zone.attribute         = attribute zone { xsd:IDREFS }
 db.pagenum.attribute      = attribute pagenum { text }
 db.scope.attribute        = attribute scope { "all" | "global" | "local" }
 db.sortas.attribute       = attribute sortas { text }
+db.type.attribute         = attribute type { text }
 
 # ======================================================================
 
@@ -85,6 +86,7 @@ div {
     & db.zone.attribute?
     & db.pagenum.attribute?
     & db.scope.attribute?
+    & db.type.attribute?
     & db.indexterm.singular.class.attribute?
 
    db.indexterm.singular =
@@ -113,6 +115,7 @@ div {
     & db.zone.attribute?
     & db.pagenum.attribute?
     & db.scope.attribute?
+    & db.type.attribute?
     & db.indexterm.startofrange.class.attribute
 
    db.indexterm.startofrange =
@@ -295,6 +298,9 @@ div {
 
    db.index.info = db._info
 
+   # Yes, db.indexdiv* and db.indexentry*; that way an <index/> is valid.
+   # Authors can use an empty index to indicate where a generated index should
+   # appear.
    db.index =
       element index {
          db.index.attlist,
