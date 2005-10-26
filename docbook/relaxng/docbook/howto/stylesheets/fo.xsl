@@ -21,10 +21,8 @@
 <xsl:template match="info" mode="howto-titlepage">
   <xsl:apply-templates select="title" mode="howto-titlepage"/>
   <xsl:apply-templates select="subtitle" mode="howto-titlepage"/>
-  <xsl:apply-templates select="bibliocoverage[@temporal][1]"
-		       mode="howto-titlepage"/>
-  <xsl:apply-templates select="bibliocoverage[@temporal][1]"
-		       mode="version-list"/>
+  <xsl:apply-templates select="pubdate[1]" mode="howto-titlepage"/>
+  <xsl:apply-templates select="pubdate[1]" mode="version-list"/>
   <xsl:apply-templates select="authorgroup" mode="howto-titlepage"/>
 </xsl:template>
 
@@ -42,7 +40,7 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="bibliocoverage[@temporal]" mode="howto-titlepage">
+<xsl:template match="pubdate" mode="howto-titlepage">
   <fo:block font-size="16pt" font-weight="bold" margin-bottom="15pt"
 	    font-family="sans-serif">
     <xsl:call-template name="datetime.format">
@@ -52,7 +50,7 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="bibliocoverage[1]" priority="10"
+<xsl:template match="pubdate[1]" priority="10"
 	      mode="version-list">
   <fo:block font-size="12pt" font-family="sans-serif">This version:</fo:block>
 
@@ -65,29 +63,29 @@
     <fo:inline>http://docbook.org/docs/howto/</fo:inline>
   </fo:block>
 
-  <xsl:if test="following-sibling::bibliocoverage[@temporal]">
+  <xsl:if test="following-sibling::pubdate">
     <fo:block font-size="12pt" font-family="sans-serif">
       <xsl:text>Previous version</xsl:text>
-      <xsl:if test="count(following-sibling::bibliocoverage[@temporal]) &gt; 1">
+      <xsl:if test="count(following-sibling::pubdate) &gt; 1">
 	<xsl:text>s</xsl:text>
       </xsl:if>
       <xsl:text>:</xsl:text>
     </fo:block>
     <xsl:apply-templates
-	select="following-sibling::bibliocoverage[@temporal]"
+	select="following-sibling::pubdate"
 	mode="version-list"/>
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="bibliocoverage" mode="version-list">
-  <xsl:if test="count(preceding-sibling::bibliocoverage[@temporal]) &lt; 4">
+<xsl:template match="pubdate" mode="version-list">
+  <xsl:if test="count(preceding-sibling::pubdate) &lt; 4">
     <fo:block xsl:use-attribute-sets="urilist">
       <xsl:apply-templates select="." mode="datedURI"/>
     </fo:block>
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="bibliocoverage" mode="datedURI">
+<xsl:template match="pubdate" mode="datedURI">
   <xsl:variable name="uri">
     <xsl:text>http://docbook.org/docs/howto/</xsl:text>
     <xsl:value-of select="substring(.,1,4)"/>
