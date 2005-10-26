@@ -6,22 +6,30 @@
                 exclude-result-prefixes="exsl db"
                 version="1.0">
 
-<!-- ======================================================================
-# This file is part of DocBook NG: The "PTO" Release.
-# A prototype DocBook V4.2 to DocBoook V.next converter.
+<!--
+# ======================================================================
+# This file is part of DocBook V5.0b1
 #
-# This stylesheet is a "work-in-progress". It converts (some) valid
-# DocBook V4.2 instances to instances that are valid DocBook-like
-# instances as defined by docbook.rnc. It doesn't (yet) work for every
-# valid DocBook V4.2 instance and it may never.
+# Copyright 2005 Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
 #
-# At the moment, it's just an exploration by Norm. It has utterly no normative
-# value at all.
-#
-# Author: Norman Walsh, <ndw@nwalsh.com>
 # Release: $Id$
 #
-====================================================================== -->
+# Permission to use, copy, modify and distribute this stylesheet
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+-->
 
 <xsl:output method="xml" encoding="utf-8" indent="no"/>
 <xsl:preserve-space elements="*"/>
