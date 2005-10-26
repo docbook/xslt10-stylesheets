@@ -350,6 +350,44 @@
   </tag>
 </xsl:template>
 
+<xsl:template match="inlinegraphic[@format='linespecific']" priority="210">
+  <textobject>
+    <textdata>
+      <xsl:call-template name="copy.attributes"/>
+    </textdata>
+  </textobject>
+</xsl:template>
+
+<xsl:template match="inlinegraphic" priority="200">
+  <inlinemediaobject>
+    <imageobject>
+      <imagedata>
+	<xsl:call-template name="copy.attributes"/>
+      </imagedata>
+    </imageobject>
+  </inlinemediaobject>
+</xsl:template>
+
+<xsl:template match="graphic[@format='linespecific']" priority="210">
+  <mediaobject>
+    <textobject>
+      <textdata>
+	<xsl:call-template name="copy.attributes"/>
+      </textdata>
+    </textobject>
+  </mediaobject>
+</xsl:template>
+
+<xsl:template match="graphic" priority="200">
+  <mediaobject>
+    <imageobject>
+      <imagedata>
+	<xsl:call-template name="copy.attributes"/>
+      </imagedata>
+    </imageobject>
+  </mediaobject>
+</xsl:template>
+
 <xsl:template match="pubsnumber" priority="200">
   <biblioid class="pubnumber">
     <xsl:call-template name="copy.attributes"/>
@@ -905,6 +943,13 @@
       </uri>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template match="sgmltag" priority="200" mode="copy">
+  <tag>
+    <xsl:call-template name="copy.attributes"/>
+    <xsl:apply-templates/>
+  </tag>
 </xsl:template>
 
 <xsl:template match="*" mode="copy">
