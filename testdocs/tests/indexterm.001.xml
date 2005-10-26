@@ -72,6 +72,148 @@
 <seealso>dp1, dp1ds1</seealso>
 </indexterm></para>
 
+
+<section>
+  <title>Foo section</title>
+<para>Another test paragraph with type=”foo” indexterms
+
+<indexterm id="ffoo" type="foo">
+<primary>@ffoo</primary>
+</indexterm>
+
+<indexterm type="foo">
+<primary>&gt; hoge</primary>
+</indexterm>
+
+<indexterm type="foo">
+<primary>&lt; hoge</primary>
+</indexterm>
+
+<indexterm id="fap1.a" type="foo">
+<primary>fap1</primary>
+</indexterm>
+
+<indexterm id="fap1.b" type="foo">
+<primary>fap1</primary>
+</indexterm>
+
+<indexterm id="fap1.d" type="foo">
+<primary>fap1</primary>
+</indexterm>
+
+<indexterm type="foo">
+<primary>fap2</primary>
+</indexterm>
+
+<indexterm type="foo">
+<primary>fbp1</primary>
+<secondary>fbp1bs1</secondary>
+</indexterm>
+
+<indexterm type="foo">
+<primary>fbp2</primary>
+</indexterm>
+
+<indexterm type="foo">
+<primary>fcp1</primary>
+<secondary>fcp1cs1</secondary>
+<tertiary>fcp1cs1ct1</tertiary>
+</indexterm>
+
+<indexterm type="foo">
+<primary>fcp2</primary>
+</indexterm>
+
+<indexterm type="foo">
+<primary>fcp2see</primary><see>fcp2</see>
+</indexterm>
+
+<indexterm type="foo">
+<primary>fdp1</primary>
+<secondary>fdp1ds1</secondary>
+</indexterm>
+
+<indexterm type="foo">
+<primary>fdp1</primary>
+<secondary>fdp1ds2</secondary>
+</indexterm>
+
+<indexterm type="foo">
+<primary>fdp2</primary>
+<seealso>fdp1, fdp1ds1</seealso>
+</indexterm></para>
+</section>
+
+<section>
+  <title>Bar section</title>
+<para>Another test paragraph with type=”bar” indexterms
+
+<indexterm id="bar" type="bar">
+<primary>@bar</primary>
+</indexterm>
+
+<indexterm type="bar">
+<primary>&gt; moge</primary>
+</indexterm>
+
+<indexterm type="bar">
+<primary>&lt; moge</primary>
+</indexterm>
+
+<indexterm id="bap1.a" type="bar">
+<primary>bap1</primary>
+</indexterm>
+
+<indexterm id="bap1.b" type="bar">
+<primary>bap1</primary>
+</indexterm>
+
+<indexterm id="bap1.d" type="bar">
+<primary>bap1</primary>
+</indexterm>
+
+<indexterm type="bar">
+<primary>bap2</primary>
+</indexterm>
+
+<indexterm type="bar">
+<primary>bbp1</primary>
+<secondary>bbp1bs1</secondary>
+</indexterm>
+
+<indexterm type="bar">
+<primary>bbp2</primary>
+</indexterm>
+
+<indexterm type="bar">
+<primary>bcp1</primary>
+<secondary>bcp1cs1</secondary>
+<tertiary>bcp1cs1ct1</tertiary>
+</indexterm>
+
+<indexterm type="bar">
+<primary>bcp2</primary>
+</indexterm>
+
+<indexterm type="bar">
+<primary>bcp2see</primary><see>bcp2</see>
+</indexterm>
+
+<indexterm type="bar">
+<primary>bdp1</primary>
+<secondary>bdp1ds1</secondary>
+</indexterm>
+
+<indexterm type="bar">
+<primary>bdp1</primary>
+<secondary>bdp1ds2</secondary>
+</indexterm>
+
+<indexterm type="bar">
+<primary>bdp2</primary>
+<seealso>bdp1, bdp1ds1</seealso>
+</indexterm></para>
+</section>
 </chapter>
 
 <appendix id="app"><title>First Appendix</title>
@@ -131,5 +273,12 @@
 </appendix>
 
 <index id="idx"/>
+<index id="foo-idx" type="foo">
+  <title>Foo Index</title>
+</index>
+<index id="bar-idx" type="bar">
+  <title>Bar Index</title>
+</index>
+
 
 </book>
