@@ -17,14 +17,23 @@
 <xsl:output method="xml" indent="yes"/>
 <xsl:strip-space elements="*"/>
 
+<xsl:param name="debug" select="0"/>
+
 <xsl:template match="/">
   <xsl:variable name="trimmed">
     <xsl:apply-templates mode="trim"/>
   </xsl:variable>
 
-  <dtd:dtd>
-    <xsl:apply-templates select="exsl:node-set($trimmed)/*"/>
-  </dtd:dtd>
+  <xsl:choose>
+    <xsl:when test="$debug != 0">
+      <xsl:copy-of select="$trimmed"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <dtd:dtd>
+	<xsl:apply-templates select="exsl:node-set($trimmed)/*"/>
+      </dtd:dtd>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="rng:element">
@@ -463,6 +472,24 @@
   <xsl:apply-templates mode="trim"/>
 </xsl:template>
 
+<xsl:template match="rng:optional" mode="trim">
+  <!-- optional with multiple children needs a group? -->
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+
+    <xsl:choose>
+      <xsl:when test="count(*) &gt; 1">
+	<rng:group>
+	  <xsl:apply-templates mode="trim"/>
+	</rng:group>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:apply-templates mode="trim"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:copy>
+</xsl:template>
+
 <xsl:template match="rng:choice[rng:ref[@name='db.titlereq.info']
         and rng:group[rng:optional[rng:ref[@name='db.titleforbidden.info']]]]"
 	      mode="trim">
@@ -484,6 +511,30 @@
 </xsl:template>
 
 <!-- xxx -->
+
+<!-- fix step content model for UPA -->
+<!--
+<xsl:template match="doc:content-model[ancestor::rng:define[@name='db.step']]"
+	      mode="trim">
+  <xsl:copy>
+    <rng:group>
+      <xsl:apply-templates select="rng:group[1]/rng:choice[1]" mode="trim"/>
+      <rng:zeroOrMore>
+	<xsl:copy-of select="rng:group[1]/rng:zeroOrMore[1]/node()"/>
+	<rng:ref name="db.substeps"/>
+	<rng:ref name="db.stepalternatives"/>
+      </rng:zeroOrMore>
+    </rng:group>
+  </xsl:copy>
+</xsl:template>
+-->
+
+<xsl:template match="rng:ref[@name='db.segmentedlist'
+                             and parent::rng:zeroOrMore
+			     and ancestor::rng:define[starts-with(@name,'db.index')]]"
+	      mode="trim">
+  <!-- remove it to avoid UPA -->
+</xsl:template>
 
 <xsl:template
     match="rng:choice[rng:group[rng:interleave[rng:ref[@name='db.title']]]
@@ -510,27 +561,6 @@
 -->
   <xsl:apply-templates select="rng:group" mode="trim"/>
 </xsl:template>
-
-<!--
-    <xsl:message>trimming: <xsl:value-of select="ancestor::rng:define[1]/@name"/></xsl:message>
-            <choice>
-              <group>
-                <interleave>
-                  <optional>
-                    <ref name="db.title"/>
-                  </optional>
-                  <optional>
-                    <ref name="db.titleabbrev"/>
-                  </optional>
-                </interleave>
-                <optional>
-                  <ref name="db.titleforbidden.info"/>
-                </optional>
-              </group>
-              <ref name="db.titleonly.info"/>
-            </choice>
-
--->
 
 <xsl:template
     match="rng:choice[rng:group[rng:ref[@name='db.title']]
