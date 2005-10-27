@@ -453,6 +453,11 @@ size.</para>
 </step>
 </procedure>
 
+<para>There is also <link
+xl:href="http://badame.vse.cz/docbookvalidator/">on-line DocBook V5.0
+validator</link> which is also using RELAX NG with embedded Schematron
+for validation.</para>
+
 </section>
 
 <section xml:id="processing">
@@ -817,6 +822,12 @@ to the DocBook V5.0 DTD.</para>
 </step>
 </procedure>
 
+<tip>
+<para>Steps 2 and 5 from previous procedure can be automated using
+<link xl:href="http://docbook.sourceforge.net/outgoing/cloak">cloak
+script</link> by Michael Smith.</para>
+</tip>
+
 <section>
 <title>External Parsed Entities</title>
 
@@ -948,6 +959,29 @@ will be switched to XSLT 2.0 based implementation only. But this will
 not happen before all features of the current stylesheets are
 implemented in the new stylesheets and before there will be more than
 one usable XSLT 2.0 processor.</para>
+</answer>
+</qandaentry>
+
+</qandadiv>
+
+<qandadiv>
+<title>Tool specific problems</title>
+
+<qandaentry>
+<question>
+<para>I'm using Altova XMLSpy to validate DocBook V5.0 instances
+against W3C XML Schema (<filename>docbook.xsd</filename>). XMLSpy
+complains about undefined <tag class="attribute">xml:id</tag>
+attribute?</para>
+</question>
+<answer>
+<para>XMLSpy always uses its own version of
+<filename>xml.xsd</filename> which unfortunately doesn't define <tag
+class="attribute">xml:id</tag> attribute. To solve this problem, just
+grab the latest version of <filename>xml.xsd</filename> from <link
+xl:href="http://www.w3.org/2001/xml.xsd"/> and copy it over original
+file
+<filename><replaceable>XMLSpy_install_dir</replaceable>/Schemas/schema/W3C_2001/xml.xsd</filename>.</para>
 </answer>
 </qandaentry>
 
