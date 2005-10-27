@@ -260,6 +260,22 @@ db.revisionflag.attribute =
    ]
    attribute revisionflag { db.revisionflag.enumeration }
 
+db.dir.enumeration =
+   ## Left-to-right text
+   "ltr"
+ | ## Right-to-left text
+   "rtl"
+ | ## Left-to-right override
+   "lro"
+ | ## Right-to-left override
+   "rlo"
+
+db.dir.attribute =
+   [
+      db:refpurpose [ "Identifies the direction of text in an element" ]
+   ]
+   attribute dir { db.dir.enumeration }
+
 db.common.attributes =
    db.xml.id.attribute?
  & db.version.attribute?
@@ -268,6 +284,7 @@ db.common.attributes =
  & db.remap.attribute?
  & db.xreflabel.attribute?
  & db.revisionflag.attribute?
+ & db.dir.attribute?
  & db.effectivity.attributes
 
 db.common.idreq.attributes =
@@ -278,6 +295,7 @@ db.common.idreq.attributes =
  & db.remap.attribute?
  & db.xreflabel.attribute?
  & db.revisionflag.attribute?
+ & db.dir.attribute?
  & db.effectivity.attributes
 
 db.common.linking.attributes =

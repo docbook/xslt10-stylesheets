@@ -41,9 +41,9 @@ db.html.coreattrs =
  & attribute style { text }?
  & attribute title { text }?
 
+# dir isn't listed here because it's already a common attribute
 db.html.i18n =
    attribute lang { text }?
- & attribute dir { "ltr" | "rtl" }?
 
 db.html.events =
    attribute onclick { text }?
