@@ -377,6 +377,7 @@
 	<xsl:when test="@name = 'userlevel'"/>
 	<xsl:when test="@name = 'vendor'"/>
 	<xsl:when test="@name = 'wordsize'"/>
+	<xsl:when test="@name = 'dir'"/>
 	<xsl:when test="@name = 'annotations'"/>
 
 	<xsl:when test="@name = 'linkend'">
