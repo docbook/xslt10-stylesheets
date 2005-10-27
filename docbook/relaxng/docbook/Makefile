@@ -23,6 +23,8 @@ all::
 _OUTTOP ?= .
 _OUTTOP := $(_OUTTOP)/build
 
+DISTRIB=$(_OUTTOP)/docbook-$(VERSION)
+
 .PHONY: clean
 
 clean:: ; rm -rf $(_OUTTOP)
@@ -39,18 +41,18 @@ distrib: docbook.dtd docbook.rng   docbook.rnc   docbook.sch \
                      docbookxi.rng docbookxi.rnc
 	$(MAKE) -C howto
 	$(MAKE) -C spec
-	rm -rf $(VERSION)
-	mkdir -p $(VERSION)/{rng,dtd,xsd,sch,docs,tools}
-	mkdir $(VERSION)/docs/images
-	echo $(VERSION) > $(VERSION)/VERSION
-	cp docbook.{rng,rnc} docbookxi.{rng,rnc} $(VERSION)/rng/
-	cp docbook.dtd $(VERSION)/dtd/
-	cp docbook.sch $(VERSION)/sch/
-	trang docbook.dtd $(VERSION)/xsd/docbook.xsd
-	cp howto/howto.xml howto/howto.html howto/howto.pdf $(VERSION)/docs/
-	cp howto/images/*.png $(VERSION)/docs/images/
-	cp spec/docbook.xml spec/docbook.html spec/docbook.pdf $(VERSION)/docs/
-	saxon -8b ../tools/catalog.xsl ../tools/catalog.xsl $(VERSION)/catalog.xml version=$(VERSION)
-	cp ../tools/db4-upgrade.xsl $(VERSION)/tools/
-	cp ../tools/db4-entities.pl $(VERSION)/tools/
-	cp README $(VERSION)/
+	rm -rf $(DISTRIB)
+	mkdir -p $(DISTRIB)/{rng,dtd,xsd,sch,docs,tools}
+	mkdir $(DISTRIB)/docs/images
+	echo $(VERSION) > $(DISTRIB)/VERSION
+	cp docbook.{rng,rnc} docbookxi.{rng,rnc} $(DISTRIB)/rng/
+	cp docbook.dtd $(DISTRIB)/dtd/
+	cp docbook.sch $(DISTRIB)/sch/
+	trang docbook.dtd $(DISTRIB)/xsd/docbook.xsd
+	cp howto/howto.xml howto/howto.html howto/howto.pdf $(DISTRIB)/docs/
+	cp howto/images/*.png $(DISTRIB)/docs/images/
+	cp spec/docbook.xml spec/docbook.html spec/docbook.pdf $(DISTRIB)/docs/
+	saxon -8b ../tools/catalog.xsl ../tools/catalog.xsl $(DISTRIB)/catalog.xml version=$(VERSION)
+	cp ../tools/db4-upgrade.xsl $(DISTRIB)/tools/
+	cp ../tools/db4-entities.pl $(DISTRIB)/tools/
+	cp README $(DISTRIB)/
