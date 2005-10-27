@@ -1,6 +1,6 @@
 include ../../../../cvstools/Makefile.incl
 
-HTMLSTYLE=/projects/oasis/spectools/stylesheets/oasis-docbook-html.xsl
+HTMLSTYLE=html.xsl
 FOSTYLE=fo.xsl
 
 XSLPARAM=""
