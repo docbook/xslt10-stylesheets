@@ -287,6 +287,7 @@ stylesheet like this:</para>
 
 <reference id="graphics"><title>Graphics</title>
 &img.src.path;
+&keep.relative.image.uris;
 &graphic.default.extension;
 &default.image.width;
 &nominal.image.width;
@@ -588,6 +589,7 @@ around all these parameters.</para>
 <src:fragref linkend="index.prefer.titleabbrev.frag"/>
 <src:fragref linkend="ignore.image.scaling.frag"/>
 <src:fragref linkend="inherit.keywords.frag"/>
+<src:fragref linkend="keep.relative.image.uris.frag"/>
 <src:fragref linkend="l10n.gentext.default.language.frag"/>
 <src:fragref linkend="l10n.gentext.language.frag"/>
 <src:fragref linkend="l10n.gentext.use.xref.language.frag"/>
