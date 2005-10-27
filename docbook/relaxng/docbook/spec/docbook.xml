@@ -1,10 +1,10 @@
 <!DOCTYPE article [
 <!ENTITY name "wd-docbook-docbook">
-<!ENTITY version "5.0a1">
+<!ENTITY version "5.0b1">
 <!ENTITY standard "Working Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
-<!ENTITY root "http://docbook.org/">
+<!ENTITY root "http://www.oasis-open.org/docbook/">
 ]>
 <article xmlns="http://docbook.org/ns/docbook"
 	 xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -40,7 +40,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>29 June 2005</pubdate>
+<pubdate>2005-10-27</pubdate>
 
 <copyright>
 <year>2001</year><year>2002</year><year>2003</year>
@@ -723,7 +723,7 @@ should be considered.</para>
 <term>Published specification:</term>
 <listitem>
 <para>This media type registration is for DocBook documents as described by
-<xref linkend="bib.docbooktdg"/>.</para>
+<xref linkend="bib.docbooktdg5"/>.</para>
 </listitem>
 </varlistentry>
 
@@ -912,6 +912,10 @@ of the DocBook web page
 
 <para>
 <revhistory>
+<revision role="&root;specs/wd-docbook-docbook-5.0b1.html">
+  <revnumber>Working Draft “Beta 1”</revnumber>
+  <date>27 October 2005</date>
+</revision>
 <revision role="&root;specs/wd-docbook-docbook-5.0a1.html">
   <revnumber>Working Draft “Alpha 1”</revnumber>
   <date>26 June 2005</date>
@@ -930,7 +934,7 @@ of the DocBook web page
 <bibliomixed xml:id="xlink11"/>
 <bibliomixed xml:id="rfc2119"/>
 <bibliomixed xml:id="rfc3023"/>
-<bibliomixed xml:id="bib.docbooktdg"/>
+<bibliomixed xml:id="bib.docbooktdg5"/>
 
 </bibliodiv>
 
