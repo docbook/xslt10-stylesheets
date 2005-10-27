@@ -231,6 +231,20 @@
     </xsl:choose>
   </xsl:variable>
 
+  <xsl:variable name="output_filename">
+    <xsl:choose>
+      <xsl:when test="@entityref">
+        <xsl:value-of select="$filename"/>
+      </xsl:when>
+      <xsl:when test="$keep.relative.image.uris != 0">
+	<xsl:value-of select="@fileref"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$filename"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:variable name="img.src.path.pi">
     <xsl:call-template name="dbhtml-attribute">
       <xsl:with-param name="pis"
@@ -511,7 +525,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
   <xsl:variable name="img">
     <xsl:choose>
       <xsl:when test="@format = 'SVG'">
-        <object data="{$filename}" type="image/svg+xml">
+        <object data="{$output_filename}" type="image/svg+xml">
           <xsl:call-template name="process.image.attributes">
             <!--xsl:with-param name="alt" select="$alt"/ there's no alt here-->
             <xsl:with-param name="html.depth" select="$html.depth"/>
@@ -534,7 +548,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
             </xsl:attribute>
           </xsl:if>
           <xsl:if test="$use.embed.for.svg != 0">
-            <embed src="{$filename}" type="image/svg+xml">
+            <embed src="{$output_filename}" type="image/svg+xml">
               <xsl:call-template name="process.image.attributes">
                 <!--xsl:with-param name="alt" select="$alt"/ there's no alt here -->
                 <xsl:with-param name="html.depth" select="$html.depth"/>
@@ -575,12 +589,12 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 	    <xsl:choose>
 	      <xsl:when test="$img.src.path != '' and
 			      $tag = 'img' and
-	                      not(starts-with($filename, '/')) and
-			      not(contains($filename, '://'))">
+	                      not(starts-with($output_filename, '/')) and
+			      not(contains($output_filename, '://'))">
 	        <xsl:value-of select="$img.src.path"/>
 	      </xsl:when>
 	    </xsl:choose>
-            <xsl:value-of select="$filename"/>
+            <xsl:value-of select="$output_filename"/>
           </xsl:attribute>
 
           <xsl:if test="@align">
