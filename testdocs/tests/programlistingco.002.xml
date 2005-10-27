@@ -94,4 +94,44 @@
     </programlistingco>
   </section>
 
+  <section>
+    <title>imagedata/@fileref, absolute path</title>
+    <para>The listing is an external file with an absolute path.</para>
+
+    <programlistingco>
+    <areaspec>
+      <area coords="1" id="a1"/>
+      <area coords="4" id="a2"/>
+      <area coords="5 50" id="a3"/>
+    </areaspec>
+    <programlisting linenumbering="numbered"
+      ><?dbhtml linenumbering.everyNth="2" linenumbering.separator=" >"
+      ?><?dbfo linenumbering.everyNth="2" linenumbering.separator=" >"
+      ?><inlinemediaobject>
+      <imageobject>
+      <imagedata format="linespecific" fileref="/etc/hosts"/>
+      </imageobject>
+      </inlinemediaobject></programlisting>
+    </programlistingco>
+
+    <para>The listing is an external file with an absolute path using the URI scheme
+    "file".</para>
+
+    <programlistingco>
+    <areaspec>
+      <area coords="1" id="b1"/>
+      <area coords="4" id="b2"/>
+      <area coords="5 50" id="b3"/>
+    </areaspec>
+    <programlisting linenumbering="numbered"
+      ><?dbhtml linenumbering.everyNth="2" linenumbering.separator=" >"
+      ?><?dbfo linenumbering.everyNth="2" linenumbering.separator=" >"
+      ?><inlinemediaobject>
+      <imageobject>
+      <imagedata format="linespecific" fileref="file:/etc/hosts"/>
+      </imageobject>
+      </inlinemediaobject></programlisting>
+    </programlistingco>
+  </section>
+
 </article>
