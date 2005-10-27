@@ -229,7 +229,7 @@ following locations:</para>
 
 </section>
 
-<section>
+<section xml:id="docs">
 <title>DocBook documentation</title>
 
 <para>Detailed documentation about each DocBook V5.0 element is
@@ -765,7 +765,7 @@ be valid and your conversion process is finished.</para>
 that can go wrong and we'll update this document to reflect that
 experience.)</para>
 
-<section>
+<section xml:id="entities">
 <title>What About Entities?</title>
 
 <para>Using XSLT to transform existing documents to DocBook V5.0 has
@@ -828,7 +828,7 @@ to the DocBook V5.0 DTD.</para>
 script</link> by Michael Smith.</para>
 </tip>
 
-<section>
+<section xml:id="extparsedentities">
 <title>External Parsed Entities</title>
 
 <para>External parsed entities, entities which load part of a document
