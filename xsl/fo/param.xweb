@@ -281,6 +281,7 @@ generate.section.toc.level;
 &use.role.for.mediaobject;
 &ignore.image.scaling;
 &img.src.path;
+&keep.relative.image.uris;
 </reference>
 
 <reference id="general"><title>Pagination and General Styles</title>
@@ -664,6 +665,7 @@ around all these parameters.</para>
 <src:fragref linkend="itemizedlist.properties.frag"/>
 <src:fragref linkend="itemizedlist.label.properties.frag"/>
 <src:fragref linkend="itemizedlist.label.width.frag"/>
+<src:fragref linkend="keep.relative.image.uris.frag"/>
 <src:fragref linkend="l10n.gentext.default.language.frag"/>
 <src:fragref linkend="l10n.gentext.language.frag"/>
 <src:fragref linkend="l10n.gentext.use.xref.language.frag"/>

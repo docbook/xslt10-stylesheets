@@ -278,3 +278,4 @@
 <!ENTITY annotation.graphic.open SYSTEM "../params/annotation.graphic.open.xml">
 <!ENTITY annotation.graphic.close SYSTEM "../params/annotation.graphic.close.xml">
 <!ENTITY annotation.css SYSTEM "../params/annotation.css.xml">
+<!ENTITY keep.relative.image.uris SYSTEM "../params/keep.relative.image.uris.xml">
