@@ -13,7 +13,7 @@ This distribution contains:
   VERSION                The version of DocBook in this distribution
   docs/                  Documentation (see also http://docbook.org/tdg5/en/)
   docs/howto.*           A "HOWTO" describing how to upgrade from DocBook V4.x
-  docs/docbook.*         The DocBook specification
+  docs/*docbook.*        The DocBook specification
   tools/                 Tools for working with DocBook
   tools/db4-upgrade.xsl  An XSLT (1.0) stylesheet for upgrading DocBook V4.x
                            documents to DocBook V5.x
