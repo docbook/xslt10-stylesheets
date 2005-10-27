@@ -10,7 +10,10 @@ include ../../../cvstools/Makefile.incl
 
 XSLTPROC=xsltproc
 PERL=perl
+
+CLASS=wd
 VERSION=5.0b1
+SPECNAME=$(CLASS)-docbook-docbook-$(VERSION)
 
 TOOLS=../tools
 AUGMENT=$(TOOLS)/augment.xsl
@@ -51,7 +54,9 @@ distrib: docbook.dtd docbook.rng   docbook.rnc   docbook.sch \
 	trang docbook.dtd $(DISTRIB)/xsd/docbook.xsd
 	cp howto/howto.xml howto/howto.html howto/howto.pdf $(DISTRIB)/docs/
 	cp howto/images/*.png $(DISTRIB)/docs/images/
-	cp spec/docbook.xml spec/docbook.html spec/docbook.pdf $(DISTRIB)/docs/
+	cp spec/docbook.xml $(DISTRIB)/docs/$(SPECNAME).xml
+	cp spec/docbook.html $(DISTRIB)/docs/$(SPECNAME).html
+	cp spec/docbook.pdf $(DISTRIB)/docs/$(SPECNAME).pdf
 	saxon -8b ../tools/catalog.xsl ../tools/catalog.xsl $(DISTRIB)/catalog.xml version=$(VERSION)
 	cp ../tools/db4-upgrade.xsl $(DISTRIB)/tools/
 	cp ../tools/db4-entities.pl $(DISTRIB)/tools/
