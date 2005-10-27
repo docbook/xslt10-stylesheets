@@ -14,11 +14,11 @@
 
 <xsl:template name="article.titlepage">
   <fo:block text-align="left">
-    <xsl:apply-templates select="info" mode="howto-titlepage"/>
+    <xsl:apply-templates select="articleinfo" mode="howto-titlepage"/>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="info" mode="howto-titlepage">
+<xsl:template match="articleinfo" mode="howto-titlepage">
   <xsl:apply-templates select="title" mode="howto-titlepage"/>
   <xsl:apply-templates select="subtitle" mode="howto-titlepage"/>
   <xsl:apply-templates select="pubdate[1]" mode="howto-titlepage"/>
