@@ -340,6 +340,11 @@
   <xsl:call-template name="inline.charseq"/>
 </xsl:template>
 
+<xsl:template match="date">
+  <!-- should this support locale-specific formatting? how? -->
+  <xsl:call-template name="inline.charseq"/>
+</xsl:template>
+
 <xsl:template match="errorcode">
   <xsl:call-template name="inline.charseq"/>
 </xsl:template>
