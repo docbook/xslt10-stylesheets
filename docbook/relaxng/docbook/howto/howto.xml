@@ -94,7 +94,7 @@ the DocBook DTD (in this case 4.5) is indicated in the document type
 declaration (!DOCTYPE) which points to a particular version of the
 DTD.</para>
 
-<example>
+<example xml:id="ex.docbook45">
 <title>DocBook V4.5 document</title>
 <programlisting><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE article PUBLIC '-//OASIS//DTD DocBook XML V4.5//EN'
@@ -110,7 +110,7 @@ mean that there is no document type declaration and the version of DocBook
 used is indicated with the <tag class="attribute">version</tag>
 attribute instead.</para>
 
-<example>
+<example xml:id="ex.docbook5">
 <title>DocBook V5.0 document</title>
 <programlisting><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <article xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
@@ -282,7 +282,7 @@ Emacs</application> text editor. By installing nXML you can turn Emacs
 into a very powerful XML editor which will offer guided editing and
 validation of XML documents.</para>
 
-<figure>
+<figure xml:id="f.emacs">
 <title>Emacs with nXML mode is providing guided editing and validation</title>
 <mediaobject>
 <imageobject>
@@ -335,7 +335,7 @@ DocBook namespace, RELAX NG compact syntax schema location and choose
 appropriate type of schema and confirm it by pressing
 <guibutton>OK</guibutton>.</para>
 
-<figure>
+<figure xml:id="f.oxygen">
 <title>Adding new schema association in oXygen</title>
 <mediaobject>
 <imageobject>
@@ -350,7 +350,7 @@ newly added one to the top of the list
 (using <guibutton>Up</guibutton> button). That way you will be able to use
 oXygen with both DocBook V4.x and DocBook V5.0.</para>
 
-<figure>
+<figure xml:id="f.oxygen.assoc">
 <title>DocBook V5.0 association must precede associations for DocBook V4.x</title>
 <mediaobject>
 <imageobject>
@@ -362,7 +362,7 @@ oXygen with both DocBook V4.x and DocBook V5.0.</para>
 <para>Now you can close preference by clicking on
 <guibutton>OK</guibutton> button.</para>
 
-<figure>
+<figure xml:id="f.oxygen.open5">
 <title>DocBook V5.0 document opened in oXygen</title>
 <mediaobject>
 <imageobject>
@@ -382,7 +382,7 @@ provides word-processor like interface to users. It is available in
 two versions—Standard and Professional. Standard version is free and
 provides everything you need to edit DocBook V5.0 documents.</para>
 
-<figure>
+<figure xml:id="f.xmlmind">
 <title>XML Mind XML Editor – feels almost like MS Word but real DocBook V5.0 markup is created</title>
 <mediaobject>
 <imageobject>
@@ -657,7 +657,7 @@ XInclude boundaries.</para>
 <para>Some elements were renamed to better express their meaning or to
 reduce total number of elements available in DocBook.</para>
 
-<table>
+<table xml:id="t.renamed">
 <title>Renamed elements</title>
 <tgroup cols="2">
 <thead>
@@ -990,7 +990,7 @@ file
 </qandaset>
 </section>
 
-<bibliography>
+<bibliography xml:id="references">
 
 <bibliomixed>
 <abbrev>RNCTUT</abbrev>
