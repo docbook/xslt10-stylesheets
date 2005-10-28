@@ -52,6 +52,10 @@ distrib: docbook.dtd docbook.rng   docbook.rnc   docbook.sch \
 	cp docbook.dtd $(DISTRIB)/dtd/
 	cp docbook.sch $(DISTRIB)/sch/
 	trang docbook.dtd $(DISTRIB)/xsd/docbook.xsd
+	grep -v "xs:import" $(DISTRIB)/xsd/xlink.xsd > $(DISTRIB)/xsd/,xlink.xsd
+	mv $(DISTRIB)/xsd/,xlink.xsd $(DISTRIB)/xsd/xlink.xsd
+	grep -v "xs:import" $(DISTRIB)/xsd/xml.xsd > $(DISTRIB)/xsd/,xml.xsd
+	mv $(DISTRIB)/xsd/,xml.xsd $(DISTRIB)/xsd/xml.xsd
 	cp howto/howto.xml howto/howto.html howto/howto.pdf $(DISTRIB)/docs/
 	cp howto/images/*.png $(DISTRIB)/docs/images/
 	cp spec/docbook.xml $(DISTRIB)/docs/$(SPECNAME).xml
