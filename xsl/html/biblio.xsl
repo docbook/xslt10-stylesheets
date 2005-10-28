@@ -15,6 +15,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="bibliography">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
@@ -40,6 +42,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="bibliodiv">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:apply-templates/>
   </div>

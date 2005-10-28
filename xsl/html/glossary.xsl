@@ -15,6 +15,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="glossary">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
@@ -72,6 +74,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="glossdiv">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:apply-templates select="(glossentry[1]/preceding-sibling::*)"/>
 
@@ -296,6 +300,8 @@ GlossEntry ::=
 <xsl:template match="glossary[@role='auto']" priority="2">
   <xsl:variable name="terms" select="//glossterm[not(parent::glossdef)]|//firstterm"/>
   <xsl:variable name="collection" select="document($glossary.collection, .)"/>
+
+  <xsl:call-template name="id.warning"/>
 
   <xsl:if test="$glossary.collection = ''">
     <xsl:message>

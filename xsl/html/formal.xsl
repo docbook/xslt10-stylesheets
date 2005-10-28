@@ -16,6 +16,8 @@
   <xsl:param name="placement" select="'before'"/>
   <xsl:param name="class" select="local-name(.)"/>
 
+  <xsl:call-template name="id.warning"/>
+
   <div class="{$class}">
     <xsl:call-template name="anchor">
       <xsl:with-param name="conditional" select="0"/>

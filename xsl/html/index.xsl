@@ -21,6 +21,8 @@
   <!-- is non-zero, in which case, this is where the automatically -->
   <!-- generated index should go. -->
 
+  <xsl:call-template name="id.warning"/>
+
   <xsl:if test="count(*)>0 or $generate.index != '0'">
     <div class="{name(.)}">
       <xsl:if test="$generate.id.attributes != 0">
@@ -73,6 +75,8 @@
   <!-- is non-zero, in which case, this is where the automatically -->
   <!-- generated index should go. -->
 
+  <xsl:call-template name="id.warning"/>
+
   <xsl:if test="count(*)>0 or $generate.index != '0'">
     <div class="{name(.)}">
       <xsl:if test="$generate.id.attributes != 0">
@@ -104,6 +108,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="indexdiv">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">

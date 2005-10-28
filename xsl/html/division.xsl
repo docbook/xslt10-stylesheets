@@ -15,6 +15,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="set">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
@@ -51,6 +53,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="book">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
@@ -89,6 +93,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="part">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
@@ -129,6 +135,8 @@
 <xsl:template match="part/subtitle"></xsl:template>
 
 <xsl:template match="partintro">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>

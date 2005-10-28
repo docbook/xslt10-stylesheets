@@ -73,6 +73,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="dedication" mode="dedication">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
@@ -104,6 +106,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="colophon">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
@@ -131,6 +135,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="preface">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
@@ -186,6 +192,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="chapter">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
@@ -243,6 +251,8 @@
   <xsl:variable name="ischunk">
     <xsl:call-template name="chunk"/>
   </xsl:variable>
+
+  <xsl:call-template name="id.warning"/>
 
   <div class="{name(.)}">
     <xsl:call-template name="dir">
@@ -315,6 +325,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="article">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
