@@ -142,7 +142,7 @@ document.</para>
 
 </section>
 
-<section xml:id="docbook">
+<section xml:id="s.docbook">
 <title>The DocBook RELAX NG Schema V5.0</title>
 
 <para>The DocBook <link xlink:href="&root;rng/">RELAX NG Schema</link> is distributed
@@ -194,7 +194,7 @@ is a complete rewrite, the Technical Committee gave itself the freedom
 to make <quote>unannounced</quote> backwards-incompatible changes for
 this one release.</para>
 
-<section>
+<section xml:id="s.remvlegacy">
 <title>Removing Legacy Elements</title>
 
 <para>A number of elements have been removed from DocBook. Many of
@@ -325,7 +325,7 @@ and <tag>othercredit</tag>.
 
 </section>
 
-<section>
+<section xml:id="s.smaller.cm">
 <title>Smaller Content Models</title>
 
 <para>The content models of many inlines have been reduced, sometimes
@@ -401,7 +401,7 @@ of this functionality, we've replaced all the various flavors of info
 with a single element name.</para>
 </section>
 
-<section>
+<section xml:id="s.req.titles">
 <title>Required Titles</title>
 
 <para>DocBook V5.0 enforces the constraint that titles are required on
@@ -412,7 +412,7 @@ documentation has always made it clear that titles were required.)</para>
 
 </section>
 
-<section>
+<section xml:id="s.req.version">
 <title>Required Version</title>
 
 <para>In DocBook V4.x and earlier, the presence of a document type declaration
@@ -437,7 +437,7 @@ with its own version.</para>
 
 </section>
 
-<section>
+<section xml:id="s.co-constraints">
 <title>Co-Constraints</title>
 
 <para>DocBook V5.0 enforces attribute co-constraints such as the
@@ -446,7 +446,7 @@ attributes on <tag>biblioid</tag>.</para>
 
 </section>
 
-<section>
+<section xml:id="s.tables">
 <title>Improved HTML and CALS Table Support</title>
 
 <para>In DocBook V5.0, HTML tables and CALS tables are independently specified.
@@ -455,7 +455,7 @@ models, DocBook V5.0 forbids such mixtures.</para>
 
 </section>
 
-<section>
+<section xml:id="s.datatypes">
 <title>Data Types</title>
 
 <para>DocBook V5.0 adds a few simple data types. For example, the
@@ -614,7 +614,7 @@ that pattern can be redefined as
 </section>
 </section>
 
-<section>
+<section xml:id="s.conversion">
 <title>Conversion</title>
 
 <para>There’s an XSLT 1.0 stylesheet for performing conversion from
@@ -633,7 +633,8 @@ have valid DocBook V5.0 representations.
 </section>
 </section>
 
-<section><title>Release Notes</title>
+<section xml:id="s.relnotes">
+<title>Release Notes</title>
 
 <para>See <link xlink:href="http://www.relaxng.org/"/> for a list of tools that
 can validate an XML document using RELAX NG. Note that not all products
@@ -927,7 +928,7 @@ of the DocBook web page
 
 <bibliography xml:id="references"><title>References</title>
 
-<bibliodiv><title>Normative</title>
+<bibliodiv xml:id="normative.refs"><title>Normative</title>
 
 <bibliomixed xml:id="relaxng"/>
 <bibliomixed xml:id="xml-rec"/>
@@ -938,7 +939,7 @@ of the DocBook web page
 
 </bibliodiv>
 
-<bibliodiv><title>Non-Normative</title>
+<bibliodiv xml:id="non-normative.refs"><title>Non-Normative</title>
 
 <bibliomixed xml:id="iso8879"/>
 <bibliomixed xml:id="xmlschema-1"/>
