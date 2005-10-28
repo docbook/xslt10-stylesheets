@@ -17,6 +17,8 @@
 <xsl:template match="section">
   <xsl:variable name="depth" select="count(ancestor::section)+1"/>
 
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
@@ -92,6 +94,8 @@
 </xsl:template>
 
 <xsl:template match="sect1">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
@@ -139,6 +143,8 @@
 </xsl:template>
 
 <xsl:template match="sect2">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
@@ -182,10 +188,14 @@
 </xsl:template>
 
 <xsl:template match="sect2/title" mode="titlepage.mode" priority="2">
+  <xsl:call-template name="id.warning"/>
+
   <xsl:call-template name="section.title"/>
 </xsl:template>
 
 <xsl:template match="sect3">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
@@ -233,6 +243,8 @@
 </xsl:template>
 
 <xsl:template match="sect4">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
@@ -280,6 +292,8 @@
 </xsl:template>
 
 <xsl:template match="sect5">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
@@ -327,6 +341,8 @@
 </xsl:template>
 
 <xsl:template match="simplesect">
+  <xsl:call-template name="id.warning"/>
+
   <div class="{name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
