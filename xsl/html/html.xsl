@@ -129,7 +129,9 @@
 	<xsl:when test="title">
 	  <xsl:value-of select="title[1]"/>
 	</xsl:when>
-	<xsl:when test="ends-with(local-name(*[1]),'info') and *[1]/title">
+	<xsl:when test="substring(local-name(*[1]),
+			          string-length(local-name(*[1])-3) = 'info')
+			and *[1]/title">
 	  <xsl:value-of select="*[1]/title[1]"/>
 	</xsl:when>
 	<xsl:when test="refmeta/refentrytitle">
