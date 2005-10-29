@@ -194,7 +194,7 @@ FO_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
   <xsl:import href="$(DOCBOOK_XSL)/fo/docbook.xsl"/> \
   <xsl:param name="$(PDF_MAKER).extensions">1</xsl:param> \
   <xsl:param name="paper.type">A4</xsl:param> \
-  <xsl:param name="draft.watermark.image">0</xsl:param> \
+  <xsl:param name="draft.watermark.image"></xsl:param> \
   <xsl:param name="hyphenation">false</xsl:param> \
   <xsl:param name="alignment">left</xsl:param> \
   <xsl:param name="refentry.generate.name">1</xsl:param> \
@@ -204,6 +204,7 @@ FO_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
   <xsl:param name="variablelist.as.blocks">1</xsl:param> \
   <xsl:param name="ulink.show">1</xsl:param> \
   <xsl:param name="ulink.footnotes">1</xsl:param> \
+  <xsl:param name="index.on.type">1</xsl:param> \
   <xsl:attribute-set name="xref.properties"> \
     <xsl:attribute name="color">blue</xsl:attribute> \
   </xsl:attribute-set> \
@@ -262,6 +263,7 @@ HTML_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
   <xsl:param name="variablelist.as.table">0</xsl:param> \
   <xsl:param name="html.stylesheet">$(HTML_STYLESHEET)</xsl:param> \
   <xsl:param name="admon.graphics">0</xsl:param> \
+  <xsl:param name="index.on.type">1</xsl:param> \
 </xsl:stylesheet>
 
 # for chunked HTML output
@@ -278,6 +280,7 @@ CHNK_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
   <xsl:param name="root.filename"></xsl:param> \
   <xsl:param name="use.id.as.filename">1</xsl:param> \
   <xsl:param name="chunker.output.indent">yes</xsl:param> \
+  <xsl:param name="index.on.type">1</xsl:param> \
 </xsl:stylesheet>
 
 # for man-page output
