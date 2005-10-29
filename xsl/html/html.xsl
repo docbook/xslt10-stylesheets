@@ -129,7 +129,7 @@
 	<xsl:when test="title">
 	  <xsl:value-of select="title[1]"/>
 	</xsl:when>
-	<xsl:when test="contains(local-name(*[1]),'info')">
+	<xsl:when test="contains(local-name(*[1]),'info') and *[1]/title">
 	  <xsl:value-of select="*[1]/title[1]"/>
 	</xsl:when>
 	<xsl:when test="refmeta/refentrytitle">
