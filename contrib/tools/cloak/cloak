@@ -55,7 +55,7 @@ if ($lines =~ m/$comment/ || $0 =~ m/uncloak/) {
 
     $lines = $lines . "\n<?" . $comment . " ?>\n";
 
-    $lines =~ s/(\w*&\w+;\w*)/<?ENT_ $1_ENT?>/g;      # cloak all entities
+    $lines =~ s/(&\w+;)/<?ENT_ $1_ENT?>/g;      # cloak all entities
 
     # uncloak entities in subset
     while ($lines =~ /(<!ENTITY[^']*?'[^']*?)<\?ENT_ (.+?)_ENT\?>(.*?'\s*>)/s) {
