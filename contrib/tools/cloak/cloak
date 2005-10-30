@@ -39,7 +39,7 @@ if ($lines =~ m/$comment/ || $0 =~ m/uncloak/) {
 # PI syntax in that SGML PIs don't have the closing question mark
 
     $lines =~ s/<\?$comment [\?]+>//;                                        # remove comment added by cloak
-    $lines =~ s/<\?ENT_ (.*?)_ENT[\?]+>/$1/g;                                # uncloak all cloaked entities
+    $lines =~ s/##AMP_ENT##/\&/g;                                            # uncloak all cloaked entities
     if ($lines =~ /<\?DOCTYPE(.*)_END_SUBSET[\?]+>/s) {
       $doctype = $1;
       $doctype =~ s/xxLESS_THANxx/</sg;
@@ -56,14 +56,14 @@ if ($lines =~ m/$comment/ || $0 =~ m/uncloak/) {
     $lines = $lines . "\n<?" . $comment . " ?>\n";
 
     # cloak all entities
-    $lines =~ s/(\w*&[^;]+;\w*)|(&[^;]+;)/<?ENT_ $1_ENT?>/g;
+    $lines =~ s/&/##AMP_ENT##/g;
 
     # uncloak entities in subset
-    while ($lines =~ /(<!ENTITY[^']*?'[^']*?)<\?ENT_ (.+?)_ENT\?>(.*?'\s*>)/s) {
-        $lines =~ s/(<!ENTITY[^']*?'[^']*?)<\?ENT_ (.+?)_ENT\?>(.*?'\s*>)/$1$2$3/s
+    while ($lines =~ /(<!ENTITY[^']*?'[^']*?)##AMP_ENT##(.*?'\s*>)/s) {
+        $lines =~ s/(<!ENTITY[^']*?'[^']*?)##AMP_ENT##(.*?'\s*>)/$1\&$2/s
                           }
-                     while ($lines =~ /(<!ENTITY[^']*?'[^']*?)<\?ENT_ (.+?)_ENT\?>(.*?'\s*>)/s) {
-                         $lines =~ s/(<!ENTITY[^"]*?'[^"]*?)<\?ENT_ (.+?)_ENT\?>(.*?"\s*>)/$1$2$3/s
+                     while ($lines =~ /(<!ENTITY[^']*?'[^']*?)##AMP_ENT##(.*?'\s*>)/s) {
+                         $lines =~ s/(<!ENTITY[^"]*?'[^"]*?)##AMP_ENT##(.*?"\s*>)/$1\&$2/s
 }
 # test to see if there is an internal subset or not, then
 # cloak DOCTYPE declaration and internal subset (if there is one)
