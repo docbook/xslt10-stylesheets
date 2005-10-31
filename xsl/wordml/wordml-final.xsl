@@ -21,9 +21,16 @@
 
 <!ENTITY variablelist "w:tbl[w:tblPr/w:tblStyle[starts-with(@w:val,'variablelist')]]">
 
+<!ENTITY calloutlist "w:p[w:pPr/w:pStyle[@w:val = 'calloutlist']]">
+<!ENTITY callout "w:p[w:pPr/w:pStyle[@w:val = 'callout']]">
+<!ENTITY areaspec "w:p[w:pPr/w:pStyle[@w:val = 'areaspec']]">
+<!ENTITY area "w:p[w:pPr/w:pStyle[@w:val = 'area']]">
+
 <!ENTITY highlights "w:p[w:pPr/w:pStyle[starts-with(@w:val,'highlights')]]">
 
 <!ENTITY verbatim "w:p[w:pPr/w:pStyle[@w:val='programlisting' or @w:val='screen' or @w:val='literallayout']]">
+<!ENTITY programlisting "w:p[w:pPr/w:pStyle[@w:val='programlisting']]">
+<!ENTITY programlistingco "w:p[w:pPr/w:pStyle[@w:val='programlistingco']]">
 <!ENTITY admontitle "w:p[w:pPr/w:pStyle[@w:val='note-title' or @w:val='caution-title' or @w:val='important-title' or @w:val='tip-title' or @w:val='warning-title']]">
 <!ENTITY admon "w:p[w:pPr/w:pStyle[@w:val='note' or @w:val='caution' or @w:val='important' or @w:val='tip' or @w:val='warning']]">
 <!ENTITY figure "w:p[w:pPr/w:pStyle[@w:val='figure']]">
@@ -31,7 +38,10 @@
 <!ENTITY figurecaption "w:p[w:pPr/w:pStyle[@w:val='figure-title']]">
 <!ENTITY tabletitle "w:p[w:pPr/w:pStyle[@w:val='table-title']]">
 <!ENTITY exampletitle "w:p[w:pPr/w:pStyle[@w:val='example-title']]">
+<!ENTITY mediaobjecttitle "w:p[w:pPr/w:pStyle[@w:val='mediaobject-title']]">
+<!ENTITY mediaobjectcotitle "w:p[w:pPr/w:pStyle[@w:val='mediaobjectco-title']]">
 <!ENTITY imageobject "w:p[w:pPr/w:pStyle[@w:val='imageobject-imagedata']]">
+<!ENTITY imageobjectco "w:p[w:pPr/w:pStyle[@w:val='imageobjectco-imagedata']]">
 <!ENTITY audioobject "w:p[w:pPr/w:pStyle[@w:val='audioobject-audiodata']]">
 <!ENTITY videoobject "w:p[w:pPr/w:pStyle[@w:val='videoobject-videodata']]">
 <!ENTITY textobjecttitle "w:p[w:pPr/w:pStyle[@w:val='textobject-title']]">
@@ -85,6 +95,8 @@
 <!ENTITY filename "w:r[w:rPr/w:rStyle/@w:val='filename']">
 <!ENTITY sgmltag "w:r[w:rPr/w:rStyle/@w:val='sgmltag']">
 <!ENTITY application "w:r[w:rPr/w:rStyle/@w:val='application']">
+<!ENTITY literal "w:r[w:rPr/w:rStyle/@w:val='literal']">
+<!ENTITY inlinegraphic "w:r[w:rPr/w:rStyle/@w:val='inlinegraphic']">
 ]>
 
 <xsl:stylesheet version="1.0"
@@ -400,6 +412,7 @@
   </xsl:template>
   <xsl:template match='w:r' mode='metadata' priority='0'/>
   <xsl:template match='&surname;|&firstname;|&honorific;|&lineage;|&othername; |
+		       &orgname; |
                        &contrib; |
                        &street;|&pob;|&postcode;|&city;|&state;|&country;|&phone;|&fax;' mode='metadata'>
     <xsl:element name='{w:rPr/w:rStyle/@w:val}'>
@@ -821,10 +834,19 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match='&filename;|&sgmltag;|&application;'>
+  <xsl:template match='&filename;|&sgmltag;|&application;|&literal;'>
     <xsl:element name='{w:rPr/w:rStyle/@w:val}'>
       <xsl:apply-templates select='w:t'/>
     </xsl:element>
+  </xsl:template>
+
+  <xsl:template match='&inlinegraphic;'>
+    <inlinegraphic>
+      <xsl:attribute name='fileref'>
+	<xsl:apply-templates select='w:t'
+			     mode='textonly'/>
+      </xsl:attribute>
+    </inlinegraphic>
   </xsl:template>
 
 <xsl:template match="w:r[w:rPr/w:rStyle[@w:val = 'FootnoteReference']]">
@@ -957,20 +979,50 @@
     </informalfigure>
   </xsl:template>
 
-  <!-- consecutive imageobject, audioobject, videoobject and 
-       textobject elements are placed in a mediaobject container.
+  <xsl:template match='&mediaobjecttitle; |
+		       &mediaobjectcotitle;'
+		mode='group'>
+    <xsl:element name='{substring-before(w:pPr/w:pStyle/@w:val, "-title")}'>
+      <xsl:call-template name="object.id"/>
+      <objectinfo>
+	<title>
+	  <xsl:apply-templates select='w:r|w:hlink'/>
+	</title>
+      </objectinfo>
+
+      <xsl:apply-templates select='following-sibling::*[1]'
+			   mode='mediaobject'/>
+    </xsl:element>
+  </xsl:template>
+
+  <!-- consecutive image(co)object, audioobject, videoobject and 
+       textobject elements are placed in a mediaobject(co) container.
     -->
   <xsl:template match='&imageobject; |
+		       &imageobjectco; |
 		       &audioobject; |
 		       &videoobject; |
 		       &textobjecttitle;'
 		mode='group'>
     <xsl:choose>
+      <xsl:when test='self::&imageobjectco; and
+		      preceding-sibling::*[1][self::&areaspec; | self::&area;]'>
+	<mediaobjectco>
+	  <xsl:apply-templates select='.' mode='mediaobject'/>
+	</mediaobjectco>
+      </xsl:when>
       <xsl:when test='preceding-sibling::*[1]
 		      [self::&imageobject; |
+		       self::&imageobjectco; |
 		       self::&audioobject; |
 		       self::&videoobject; |
 		       self::&textobjecttitle;]'/>
+      <xsl:when test='self::&imageobjectco;'>
+	<mediaobjectco>
+	  <xsl:apply-templates select='.' mode='mediaobject'/>
+	  <xsl:call-template name='make-calloutlist'/>
+	</mediaobjectco>
+      </xsl:when>
       <xsl:otherwise>
 	<mediaobject>
 	  <xsl:apply-templates select='.' mode='mediaobject'/>
@@ -979,18 +1031,29 @@
     </xsl:choose>
   </xsl:template>
   <xsl:template match='&imageobject;' mode='mediaobject'>
-    <imageobject>
+    <xsl:element name='{substring-before(w:pPr/w:pStyle/@w:val, "-imagedata")}'>
       <imagedata>
 	<xsl:attribute name='fileref'>
 	  <xsl:apply-templates select='w:r|w:hlink' mode='textonly'/>
 	</xsl:attribute>
       </imagedata>
-    </imageobject>
-    <xsl:apply-templates select='following-sibling::*[1]
-				 [self::&imageobject; |
-				  self::&audioobject; |
-				  self::&videoobject; |
-				  self::&textobjecttitle;]'
+    </xsl:element>
+    <xsl:apply-templates select='following-sibling::*[1]'
+			 mode='mediaobject'/>
+  </xsl:template>
+  <xsl:template match='&imageobjectco;' mode='mediaobject'>
+    <xsl:element name='{substring-before(w:pPr/w:pStyle/@w:val, "-imagedata")}'>
+      <xsl:call-template name='make-areaspec'/>
+      <imageobject>
+	<imagedata>
+	  <xsl:attribute name='fileref'>
+	    <xsl:apply-templates select='w:r|w:hlink' mode='textonly'/>
+	  </xsl:attribute>
+	</imagedata>
+      </imageobject>
+      <xsl:call-template name='make-calloutlist'/>
+    </xsl:element>
+    <xsl:apply-templates select='following-sibling::*[1]'
 			 mode='mediaobject'/>
   </xsl:template>
   <xsl:template match='&audioobject;' mode='mediaobject'>
@@ -1001,11 +1064,7 @@
 	</xsl:attribute>
       </audiodata>
     </audioobject>
-    <xsl:apply-templates select='following-sibling::*[1]
-				 [self::&imageobject; |
-				  self::&audioobject; |
-				  self::&videoobject; |
-				  self::&textobjecttitle;]'
+    <xsl:apply-templates select='following-sibling::*[1]'
 			 mode='mediaobject'/>
   </xsl:template>
   <xsl:template match='&videoobject;' mode='mediaobject'>
@@ -1016,11 +1075,7 @@
 	</xsl:attribute>
       </videodata>
     </videoobject>
-    <xsl:apply-templates select='following-sibling::*[1]
-				 [self::&imageobject; |
-				  self::&audioobject; |
-				  self::&videoobject; |
-				  self::&textobjecttitle;]'
+    <xsl:apply-templates select='following-sibling::*[1]'
 			 mode='mediaobject'/>
   </xsl:template>
   <xsl:template match='&textobjecttitle;' mode='mediaobject'>
@@ -1035,9 +1090,105 @@
 			   mode='mediaobject'/>
     </textobject>
   </xsl:template>
-  <xsl:template match='*' mode='mediaobject'>
-    <xsl:apply-templates select='.' mode='example'/>
+  <xsl:template match='*' mode='mediaobject'/>
+
+  <!-- areaspec and area are handled by the imageobjectco -->
+  <xsl:template match='&areaspec;|&area;' mode='group'/>
+
+  <xsl:template name='make-areaspec'>
+    <xsl:variable name='areaspec' select='preceding-sibling::&areaspec;[1]'/>
+
+    <xsl:if test='$areaspec'>
+      <xsl:variable name='nodes' select='preceding-sibling::*[generate-id(preceding-sibling::&areaspec;[1]) = generate-id($areaspec)]'/>
+
+      <xsl:variable name='not.area'
+		    select='$nodes[not(self::w:p) or self::w:p/w:pPr/w:pStyle/@w:val != "area"]'/>
+
+      <xsl:choose>
+	<xsl:when test='$not.area'>
+	  <xsl:message>bad content (<xsl:value-of select='$not.area[1]/w:pPr/w:pStyle/@w:val'/>) in an areaspec</xsl:message>
+	  <xsl:comment> bad content (<xsl:value-of select='$not.area[1]/w:pPr/w:pStyle/@w:val'/>) in an areaspec </xsl:comment>
+	</xsl:when>
+	<xsl:otherwise>
+	  <areaspec>
+	    <xsl:call-template name='attributes'>
+	      <xsl:with-param name='node' select='$areaspec'/>
+	    </xsl:call-template>
+	    <xsl:apply-templates select='$nodes' mode='area'/>
+	  </areaspec>
+	</xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
   </xsl:template>
+  <xsl:template match='&area;' mode='area'>
+    <area>
+      <xsl:call-template name='attributes'/>
+    </area>
+  </xsl:template>
+
+  <!-- calloutlists are handled by the imageobjectco -->
+  <xsl:template match='&callout;|&calloutlist;' mode='group'/>
+  <xsl:template name='make-calloutlist'>
+    <xsl:if test='following-sibling::*[1][self::&callout;]'>
+      <xsl:variable
+	 name='stop.node'
+	 select='following-sibling::*[not(self::w:p) or 
+		 (self::w:p and not(self::&callout; or
+		 self::&continue; or
+		 self::&itemizedlist; or
+		 self::&orderedlist;))][1]'/>
+
+      <calloutlist>
+	<xsl:choose>
+	  <xsl:when test='$stop.node'>
+	    <xsl:apply-templates select='following-sibling::&callout;[generate-id(following-sibling::*[not(self::w:p) or 
+		 (self::w:p and not(self::&callout; or
+		 self::&continue; or
+		 self::&itemizedlist; or
+		 self::&orderedlist;))][1]) = generate-id($stop.node)]'
+				 mode='calloutlist'/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:apply-templates select='following-sibling::&callout;'
+				 mode='calloutlist'/>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </calloutlist>
+    </xsl:if>
+  </xsl:template>
+  <xsl:template match='&callout;' mode='calloutlist'>
+    <callout>
+      <xsl:call-template name='attributes'/>
+
+      <para>
+	<xsl:apply-templates/>
+      </para>
+
+      <xsl:apply-templates mode='item'
+			   select='following-sibling::*[1][self::&continue;]'/>
+      <!-- Now any nested list inside this callout -->
+      <xsl:apply-templates mode='find-subgroup'
+			   select='following-sibling::*[1][self::&continue;]'>
+	<xsl:with-param name='depth' select='2'/>
+      </xsl:apply-templates>
+    </callout>
+  </xsl:template>
+
+  <xsl:template match='&continue;' mode='find-subgroup'>
+    <xsl:param name='depth' select='0'/>
+
+    <xsl:apply-templates mode='find-subgroup'
+			 select='following-sibling::*[1][self::&continue;]'>
+      <xsl:with-param name='depth' select='$depth'/>
+    </xsl:apply-templates>
+    <xsl:apply-templates mode='subgroup'
+			 select='following-sibling::*[1]
+				 [self::&itemizedlist; or self::&orderedlist;]
+				 [&listlevel; &gt;= $depth]'>
+      <xsl:with-param name='depth' select='$depth'/>
+    </xsl:apply-templates>
+  </xsl:template>
+  <xsl:template match='*' mode='find-subgroup'/>
 
   <xsl:template match="&figure;" mode="group">
 
@@ -1303,15 +1454,6 @@
   </xsl:choose>
 </xsl:template>
 
-<!--
-<xsl:template match="w:p[w:pPr/w:pStyle[@w:val = 'tableheader']]">
-  <para>
-    <xsl:call-template name="object.id"/>
-    <xsl:apply-templates select="w:r|w:hlink"/>
-  </para>
-</xsl:template>
--->
-
 <!-- variablelist is a two-column table with table style='variablelist' -->
 <xsl:template match="&variablelist;" mode="group">
   <variablelist>
@@ -1552,46 +1694,78 @@
     </xsl:if>
   </xsl:template>
 
-<xsl:template match="&verbatim;[not(preceding-sibling::*[1]
-                     [self::&verbatim;])]" 
-                     mode="example">
+  <xsl:template match="&verbatim;[not(preceding-sibling::*[1]
+                       [self::&verbatim;])]" 
+                mode="example">
 
-  <xsl:variable name="element.name" select="w:pPr/w:pStyle/@w:val"/>
-  <!-- Start the listing and process all subsequent ones too -->
-  <xsl:element name="{$element.name}">
-    <xsl:call-template name="object.id"/>
-    <xsl:apply-templates select="." mode="item"/>
-  </xsl:element>
+    <xsl:variable name="element.name" select="w:pPr/w:pStyle/@w:val"/>
+    <!-- Start the listing and process all subsequent ones too -->
+    <xsl:element name="{$element.name}">
+      <xsl:call-template name="object.id"/>
+      <xsl:apply-templates select="." mode="item"/>
+    </xsl:element>
+  </xsl:template>
 
-</xsl:template>
+  <xsl:template match="&verbatim;[preceding-sibling::*[1]
+                       [self::&verbatim;]]" 
+                mode="group">
+    <!-- Non-first verbatims are handled in item mode -->
+  </xsl:template>
 
+  <xsl:template match="&verbatim;" mode="item">
 
-<xsl:template match="&verbatim;[preceding-sibling::*[1]
-                     [self::&verbatim;]]" 
-                     mode="group">
-  <!-- Non-first verbatims are handled in item mode -->
-</xsl:template>
+    <xsl:apply-templates select="w:r|w:hlink" />
+    <xsl:text>&#x0A;</xsl:text>
+    <xsl:apply-templates select="following-sibling::*[1][self::&verbatim;]"
+			 mode="item"/>
+  </xsl:template>
 
-<xsl:template match="&verbatim;" mode="item">
-  
-  <xsl:apply-templates select="w:r|w:hlink" />
-  <xsl:text>&#x0A;</xsl:text>
-  <xsl:apply-templates select="following-sibling::*[1][self::&verbatim;]"
-                       mode="item"/>
-</xsl:template>
-
-  <xsl:template match="w:br[ancestor::&verbatim;]">
+  <xsl:template match="w:br[ancestor::&verbatim;|ancestor::&programlistingco;]">
     <xsl:text>&#x0A;</xsl:text>
   </xsl:template>
   
   <xsl:template match="&verbatim;[preceding-sibling::*[1]
-                     [self::&exampletitle;]]" 
-              priority="2"
-              mode="group"/>
+                       [self::&exampletitle;]]" 
+		priority="2"
+		mode="group"/>
 
   <xsl:template match="w:tbl[preceding-sibling::*[1][self::&exampletitle;]]" 
-              priority="2"
-              mode="group"/>
+		priority="2"
+		mode="group"/>
+
+  <xsl:template match='&programlistingco;
+		       [not(preceding-sibling::*[1][self::&programlistingco;])]'
+		mode='group'>
+    <xsl:variable name='stop.node'
+		  select='following-sibling::*[not(self::&programlistingco;)][1]'/>
+
+    <programlistingco>
+      <xsl:call-template name='make-areaspec'/>
+      <programlisting>
+	<xsl:choose>
+	  <xsl:when test='$stop.node'>
+	    <xsl:apply-templates
+	       select='.|following-sibling::&programlistingco;
+		       [generate-id(following-sibling::*[not(self::&programlistingco;)][1]) = generate-id($stop.node)]'
+	       mode='programlistingco'/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:apply-templates select='.|following-sibling::&programlistingco;'
+				 mode='programlistingco'/>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </programlisting>
+      <xsl:call-template name='make-calloutlist'/>
+    </programlistingco>
+  </xsl:template>
+  <!-- Handled by first programlistingco -->
+  <xsl:template match='&programlistingco;
+		       [preceding-sibling::*[1][self::&programlistingco;]]'
+		mode='group'/>
+  <xsl:template match='&programlistingco;' mode='programlistingco'>
+    <xsl:apply-templates select='w:r|w:hlink'/>
+    <xsl:text>&#x0A;</xsl:text>
+  </xsl:template>
 
   <xsl:template match="&xinclude;"
 		xmlns:xi='http://www.w3.org/2001/XInclude'>
@@ -1606,7 +1780,7 @@
     <xsl:param name='node' select='.'/>
 
     <xsl:variable name='attr'
-      select='$node/w:r[1][w:rPr/w:rStyle/@w:val = "attributes"]'/>
+      select='$node/w:r[w:rPr/w:rStyle/@w:val = "attributes"]'/>
     <xsl:variable name='annotation' select='$attr/preceding-sibling::aml:annotation[1]'/>
 
     <xsl:if test='$attr and $annotation'>
