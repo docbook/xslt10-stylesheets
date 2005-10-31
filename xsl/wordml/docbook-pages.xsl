@@ -12,7 +12,7 @@
   xmlns:doc='http://www.oasis-open.org/docbook/xml/4.0'
   exclude-result-prefixes='doc xi w wx aml'>
 
-  <xsl:output method="xml" indent='no' encoding='ascii'/>
+  <xsl:output method="xml" indent='yes' encoding='ascii'/>
 
   <!-- ********************************************************************
        $Id$
@@ -350,6 +350,17 @@
     </sf:link>
   </xsl:template>
 
+  <xsl:template match='inlinegraphic'>
+    <sf:span>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-character-style'>
+	  <xsl:with-param name='name' select='name()'/>
+	</xsl:call-template>
+      </xsl:attribute>
+      <xsl:value-of select='@fileref'/>
+    </sf:span>
+  </xsl:template>
+
   <!-- Cannot round-trip this element -->
   <xsl:template match='personname'>
     <xsl:apply-templates/>
@@ -430,7 +441,7 @@
   <xsl:template match='para'>
     <xsl:param name='class'/>
 
-    <xsl:variable name='block' select='blockquote|calloutlist|classsynopsis|funcsynopsis|figure|glosslist|graphic|informalfigure|informaltable|itemizedlist|literallayout|mediaobject|note|caution|warning|important|tip|orderedlist|programlisting|revhistory|segmentedlist|simplelist|table|variablelist'/>
+    <xsl:variable name='block' select='blockquote|calloutlist|classsynopsis|funcsynopsis|figure|glosslist|graphic|informalfigure|informaltable|itemizedlist|literallayout|mediaobject|mediaobjectco|note|caution|warning|important|tip|orderedlist|programlisting|programlistingco|revhistory|segmentedlist|simplelist|table|variablelist'/>
 
     <xsl:choose>
       <xsl:when test='$block'>
@@ -450,7 +461,7 @@
 	    <xsl:call-template name='para-style'>
 	      <xsl:with-param name='class' select='$class'/>
 	    </xsl:call-template>
-            <xsl:apply-templates select='following-sibling::node()[generate-id(preceding-sibling::*[self::blockquote|self::calloutlist|self::figure|self::glosslist|self::graphic|self::informalfigure|self::informaltable|self::itemizedlist|self::literallayout|self::mediaobject|self::note|self::caution|self::warning|self::important|self::tip|self::orderedlist|self::programlisting|self::revhistory|self::segmentedlist|self::simplelist|self::table|self::variablelist][1]) = generate-id(current())]'/>
+            <xsl:apply-templates select='following-sibling::node()[generate-id(preceding-sibling::*[self::blockquote|self::calloutlist|self::figure|self::glosslist|self::graphic|self::informalfigure|self::informaltable|self::itemizedlist|self::literallayout|self::mediaobject|self::mediaobjectco|self::note|self::caution|self::warning|self::important|self::tip|self::orderedlist|self::programlisting|self::programlistingco|self::revhistory|self::segmentedlist|self::simplelist|self::table|self::variablelist][1]) = generate-id(current())]'/>
             <sf:br/>
           </sf:p>
         </xsl:for-each>
@@ -530,7 +541,7 @@
     </sf:span>
   </xsl:template>
 
-  <xsl:template match='filename|sgmltag|application'>
+  <xsl:template match='filename|sgmltag|application|literal'>
     <sf:span>
       <xsl:attribute name='sf:style'>
         <xsl:call-template name='lookup-character-style'>
@@ -582,36 +593,64 @@
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:template match='mediaobject'>
+  <xsl:template match='mediaobject|mediaobjectco'>
     <xsl:apply-templates select='objectinfo/title'/>
     <xsl:apply-templates select='objectinfo/subtitle'/>
     <!-- TODO: indicate error for other children of objectinfo -->
 
     <xsl:apply-templates select='*[not(self::objectinfo)]'/>
   </xsl:template>
-  <xsl:template match='imageobject|audioobject|videoobject'>
+  <xsl:template match='imageobject|imageobjectco|audioobject|videoobject'>
+
     <xsl:apply-templates select='objectinfo/title'/>
     <xsl:apply-templates select='objectinfo/subtitle'/>
     <!-- TODO: indicate error for other children of objectinfo -->
 
-    <xsl:if test='imagedata|audiodata|videodata'>
-      <sf:p>
-	<xsl:attribute name='sf:style'>
-	  <xsl:call-template name='lookup-paragraph-style'>
-	    <xsl:with-param name='name'>
-	      <xsl:value-of select='name()'/>
-	      <xsl:text>-</xsl:text>
-	      <xsl:value-of select='name(imagedata|audiodata|videodata)'/>
-	    </xsl:with-param>
-	  </xsl:call-template>
-	</xsl:attribute>
+    <xsl:apply-templates select='areaspec'/>
 
-	<xsl:apply-templates select='*/@fileref'
-			     mode='textonly'/>
-	<sf:br/>
-      </sf:p>
-    </xsl:if>
-    <xsl:for-each select='*[not(self::imagedata|self::audiodata|self::videodata)]'>
+    <xsl:choose>
+      <xsl:when test='imagedata|audiodata|videodata'>
+	<sf:p>
+	  <xsl:attribute name='sf:style'>
+	    <xsl:call-template name='lookup-paragraph-style'>
+	      <xsl:with-param name='name'>
+		<xsl:value-of select='name()'/>
+		<xsl:text>-</xsl:text>
+		<xsl:value-of select='name(imagedata|audiodata|videodata)'/>
+	      </xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:attribute>
+
+	  <xsl:apply-templates select='*/@fileref'
+			       mode='textonly'/>
+	  <sf:br/>
+	</sf:p>
+      </xsl:when>
+      <xsl:when test='self::imageobjectco/imageobject/imagedata'>
+	<sf:p>
+	  <xsl:attribute name='sf:style'>
+	    <xsl:call-template name='lookup-paragraph-style'>
+	      <xsl:with-param name='name'>
+		<xsl:value-of select='name()'/>
+		<xsl:text>-imagedata</xsl:text>
+	      </xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:attribute>
+
+	  <xsl:apply-templates select='imageobject/imagedata/@fileref'
+			       mode='textonly'/>
+	  <sf:br/>
+	</sf:p>
+      </xsl:when>
+    </xsl:choose>
+    <xsl:apply-templates select='calloutlist'/>
+
+    <xsl:for-each select='*[not(self::imageobject |
+			        self::imagedata |
+			        self::audiodata |
+				self::videodata |
+				self::areaspec  |
+				self::calloutlist)]'>
       <xsl:call-template name='nomatch'/>
     </xsl:for-each>
   </xsl:template>
@@ -925,6 +964,10 @@
     </xsl:if>
   </xsl:template>
 
+  <xsl:template match='programlistingco'>
+    <xsl:apply-templates/>
+  </xsl:template>
+
   <xsl:template match='literallayout|programlisting'>
     <xsl:param name='class'/>
 
@@ -936,7 +979,14 @@
 	      <xsl:value-of select='$class'/>
 	      <xsl:text>-</xsl:text>
 	    </xsl:if>
-	    <xsl:value-of select='name()'/>
+	    <xsl:choose>
+	      <xsl:when test='self::programlisting/parent::programlistingco'>
+		<xsl:value-of select='name(..)'/>
+	      </xsl:when>
+	      <xsl:otherwise>
+		<xsl:value-of select='name()'/>
+	      </xsl:otherwise>
+	    </xsl:choose>
 	  </xsl:with-param>
 	</xsl:call-template>
       </xsl:attribute>
@@ -944,6 +994,63 @@
       <xsl:apply-templates/>
       <sf:br/>
     </sf:p>
+  </xsl:template>
+
+  <xsl:template match='areaspec'>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-paragraph-style'>
+	  <xsl:with-param name='name' select='name()'/>
+	</xsl:call-template>
+      </xsl:attribute>
+
+      <xsl:call-template name='attributes'/>
+
+      <sf:br/>
+    </sf:p>
+    <xsl:apply-templates/>
+  </xsl:template>
+  <xsl:template match='area'>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-paragraph-style'>
+	  <xsl:with-param name='name' select='name()'/>
+	</xsl:call-template>
+      </xsl:attribute>
+
+      <xsl:call-template name='attributes'/>
+
+      <xsl:apply-templates/>
+      <sf:br/>
+    </sf:p>
+  </xsl:template>
+
+  <xsl:template match='calloutlist'>
+    <xsl:apply-templates select='callout'/>
+  </xsl:template>
+
+  <xsl:template match='callout'>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-paragraph-style'>
+	  <xsl:with-param name='name'>
+	    <xsl:value-of select='name()'/>
+	  </xsl:with-param>
+	</xsl:call-template>
+      </xsl:attribute>
+
+      <xsl:call-template name='attributes'/>
+
+      <!-- Normally a para would be the first child of a callout -->
+      <xsl:apply-templates select='*[1][self::para]/node()' mode='list'/>
+      <sf:br/>
+    </sf:p>
+    <!-- This is to catch the case where a listitem's first child is not a paragraph.
+       - We may not be able to represent this properly.
+      -->
+    <xsl:apply-templates select='*[1][not(self::para)]' mode='list'/>
+
+    <xsl:apply-templates select='*[position() != 1]' mode='list'/>
   </xsl:template>
 
   <xsl:template match='itemizedlist|orderedlist'>
@@ -966,7 +1073,7 @@
 	    <xsl:call-template name='lookup-paragraph-style'>
 	      <xsl:with-param name='name'>
 		<xsl:value-of select='name(..)'/>
-		<xsl:value-of select='count(ancestor::itemizedlist|ancestor::orderedlist)'/>
+		<xsl:value-of select='count(ancestor::itemizedlist|ancestor::orderedlist|ancestor::calloutlist)'/>
 	      </xsl:with-param>
 	    </xsl:call-template>
 	  </xsl:otherwise>
@@ -1055,9 +1162,9 @@
      - However, they may need to be added (perhaps as hidden text)
      - for round-tripping.
     -->
-  <xsl:template match='anchor|area|areaset|areaspec|audiodata|audioobject|
+  <xsl:template match='anchor|areaset|audiodata|audioobject|
                        beginpage|
-                       callout|constraint|
+                       constraint|
                        indexterm|itermset|
                        keywordset|
                        msg'/>

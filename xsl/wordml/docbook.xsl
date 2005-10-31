@@ -12,7 +12,7 @@
   xmlns:doc='http://www.oasis-open.org/docbook/xml/4.0'
   exclude-result-prefixes='doc'>
 
-  <xsl:output method="xml" indent='no' standalone='yes' encoding='UTF-8'/>
+  <xsl:output method="xml" indent='yes' standalone='yes' encoding='UTF-8'/>
 
   <!-- ********************************************************************
        $Id$
@@ -401,7 +401,7 @@
   <xsl:template match='para'>
     <xsl:param name='class'/>
 
-    <xsl:variable name='block' select='blockquote|calloutlist|classsynopsis|funcsynopsis|figure|glosslist|graphic|informalfigure|informaltable|itemizedlist|literallayout|mediaobject|note|caution|warning|important|tip|orderedlist|programlisting|revhistory|segmentedlist|simplelist|table|variablelist'/>
+    <xsl:variable name='block' select='blockquote|calloutlist|classsynopsis|funcsynopsis|figure|glosslist|graphic|informalfigure|informaltable|itemizedlist|literallayout|mediaobject|mediaobjectco|note|caution|warning|important|tip|orderedlist|programlisting|revhistory|segmentedlist|simplelist|table|variablelist'/>
 
     <xsl:choose>
       <xsl:when test='$block'>
@@ -438,7 +438,7 @@
                 </xsl:attribute>
               </w:pStyle>
             </w:pPr>
-            <xsl:apply-templates select='following-sibling::node()[generate-id(preceding-sibling::*[self::blockquote|self::calloutlist|self::figure|self::glosslist|self::graphic|self::informalfigure|self::informaltable|self::itemizedlist|self::literallayout|self::mediaobject|self::note|self::caution|self::warning|self::important|self::tip|self::orderedlist|self::programlisting|self::revhistory|self::segmentedlist|self::simplelist|self::table|self::variablelist][1]) = generate-id(current())]'/>
+            <xsl:apply-templates select='following-sibling::node()[generate-id(preceding-sibling::*[self::blockquote|self::calloutlist|self::figure|self::glosslist|self::graphic|self::informalfigure|self::informaltable|self::itemizedlist|self::literallayout|self::mediaobject|self::mediaobjectco|self::note|self::caution|self::warning|self::important|self::tip|self::orderedlist|self::programlisting|self::revhistory|self::segmentedlist|self::simplelist|self::table|self::variablelist][1]) = generate-id(current())]'/>
           </w:p>
         </xsl:for-each>
       </xsl:when>
@@ -502,6 +502,160 @@
         <xsl:value-of select='.'/>
       </w:t>
     </w:r>
+  </xsl:template>
+
+  <xsl:template match='informalfigure'>
+    <xsl:if test='mediaobject/imageobject/imagedata'>
+      <w:p>
+	<w:pPr>
+	  <w:pStyle w:val='informalfigure-imagedata'/>
+	</w:pPr>
+	<xsl:call-template name='attributes'/>
+
+	<w:r>
+	  <w:t>
+	    <xsl:apply-templates select='mediaobject/imageobject/imagedata/@fileref'
+				 mode='textonly'/>
+	  </w:t>
+	</w:r>
+      </w:p>
+    </xsl:if>
+    <xsl:for-each select='*[not(self::mediaobject)]'>
+      <xsl:call-template name='nomatch'/>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match='mediaobject|mediaobjectco'>
+    <xsl:apply-templates select='objectinfo/title'/>
+    <xsl:apply-templates select='objectinfo/subtitle'/>
+    <!-- TODO: indicate error for other children of objectinfo -->
+
+    <xsl:apply-templates select='*[not(self::objectinfo)]'/>
+  </xsl:template>
+  <xsl:template match='imageobject|imageobjectco|audioobject|videoobject'>
+    <xsl:apply-templates select='objectinfo/title'/>
+    <xsl:apply-templates select='objectinfo/subtitle'/>
+    <!-- TODO: indicate error for other children of objectinfo -->
+
+    <xsl:apply-templates select='areaspec'/>
+
+    <xsl:choose>
+      <xsl:when test='imagedata|audiodata|videodata'>
+	<w:p>
+	  <w:pPr>
+	    <w:pStyle w:val='{name()}-{name(imagedata|audiodata|videodata)}'/>
+	  </w:pPr>
+	  <xsl:call-template name='attributes'/>
+
+	  <w:r>
+	    <w:t>
+	      <xsl:apply-templates select='*/@fileref'
+				   mode='textonly'/>
+	    </w:t>
+	  </w:r>
+	</w:p>
+      </xsl:when>
+      <xsl:when test='self::imageobjectco/imageobject/imagedata'>
+	<w:p>
+	  <w:pPr>
+	    <w:pStyle w:val='{name()}-imagedata'/>
+	  </w:pPr>
+	  <xsl:call-template name='attributes'/>
+
+	  <w:r>
+	    <w:t>
+	      <xsl:apply-templates select='*/@fileref'
+				   mode='textonly'/>
+	    </w:t>
+	  </w:r>
+	</w:p>
+      </xsl:when>
+    </xsl:choose>
+    <xsl:apply-templates select='calloutlist'/>
+
+    <xsl:for-each select='*[not(self::imageobject |
+			        self::imagedata |
+			        self::audiodata |
+				self::videodata |
+				self::areaspec  |
+				self::calloutlist)]'>
+      <xsl:call-template name='nomatch'/>
+    </xsl:for-each>
+  </xsl:template>
+  <xsl:template match='textobject'>
+    <xsl:choose>
+      <xsl:when test='objectinfo/title|objectinfo|subtitle'>
+	<xsl:apply-templates select='objectinfo/title'/>
+	<xsl:apply-templates select='objectinfo/subtitle'/>
+	<!-- TODO: indicate error for other children of objectinfo -->
+      </xsl:when>
+      <xsl:otherwise>
+	<!-- synthesize a title so that the parent textobject
+	     can be recreated.
+	  -->
+	<w:p>
+	  <w:pPr>
+	    <w:pStyle w:val='textobject-title'/>
+	  </w:pPr>
+
+	  <w:r>
+	    <w:t>
+	      <xsl:text>Text Object </xsl:text>
+	      <xsl:number level='any'/>
+	    </w:t>
+	  </w:r>
+	</w:p>
+      </xsl:otherwise>
+    </xsl:choose>
+
+    <xsl:apply-templates select='*[not(self::objectinfo)]'/>
+  </xsl:template>
+
+  <xsl:template match='areaspec'>
+    <w:p>
+      <w:pPr>
+	<w:pStyle w:val='{name()}'/>
+      </w:pPr>
+      <xsl:call-template name='attributes'/>
+
+      <w:r>
+	<w:t></w:t>
+      </w:r>
+    </w:p>
+  </xsl:template>
+  <xsl:template match='area'>
+    <w:p>
+      <w:pPr>
+	<w:pStyle w:val='{name()}'/>
+      </w:pPr>
+      <xsl:call-template name='attributes'/>
+
+      <w:r>
+	<w:t></w:t>
+      </w:r>
+    </w:p>
+  </xsl:template>
+
+  <xsl:template match='calloutlist'>
+    <xsl:apply-templates select='callout'/>
+  </xsl:template>
+
+  <xsl:template match='callout'>
+    <w:p>
+      <w:pPr>
+	<w:pStyle w:val='callout'/>
+      </w:pPr>
+      <xsl:call-template name='attributes'/>
+
+      <!-- Normally a para would be the first child of a callout -->
+      <xsl:apply-templates select='*[1][self::para]/node()' mode='list'/>
+    </w:p>
+    <!-- This is to catch the case where a listitem's first child is not a paragraph.
+       - We may not be able to represent this properly.
+      -->
+    <xsl:apply-templates select='*[1][not(self::para)]' mode='list'/>
+
+    <xsl:apply-templates select='*[position() != 1]' mode='list'/>
   </xsl:template>
 
   <xsl:template match='table|informaltable'>
@@ -880,9 +1034,9 @@
      - However, they may need to be added (perhaps as hidden text)
      - for round-tripping.
     -->
-  <xsl:template match='anchor|area|areaset|areaspec|audiodata|audioobject|
+  <xsl:template match='anchor|areaset|audiodata|audioobject|
                        beginpage|
-                       callout|constraint|
+                       constraint|
                        indexterm|itermset|
                        keywordset|
                        msg'/>

@@ -36,7 +36,7 @@
        ******************************************************************** -->
 
   <xsl:strip-space elements='*'/>
-  <xsl:preserve-space elements='sf:p sf:span'/>
+  <xsl:preserve-space elements='sf:span'/>
 
   <xsl:key name='styles'
 	   match='sf:paragraphstyle[not(ancestor::appsl:section-prototypes)] |
@@ -73,11 +73,92 @@
   </xsl:template>
 
   <xsl:template match='sf:span'>
-    <w:r>
-      <xsl:call-template name='find-style'/>
+    <xsl:variable name='style-name'
+		  select='key("styles", @sf:style)/self::sf:characterstyle/@sf:name'/>
 
-      <xsl:apply-templates/>
-    </w:r>
+    <xsl:choose>
+      <xsl:when test='$style-name = "attribute-name"'>
+	<xsl:if test='not(preceding-sibling::node()[not(self::text()) or (self::text() and normalize-space() != "")])'>
+	  <aml:annotation aml:id='25' w:type='Word.Comment.Start'/>
+	  <w:r>
+	    <w:rPr>
+	      <w:rStyle w:val='attributes'/>
+	    </w:rPr>
+	    <w:t>
+	      <xsl:text> </xsl:text>
+	    </w:t>
+	  </w:r>
+	  <aml:annotation aml:id='25' w:type='Word.Comment.End'/>
+	  <w:r>
+	    <w:rPr>
+	      <w:rStyle w:val='CommentReference'/>
+	    </w:rPr>
+	    <aml:annotation aml:id='25' aml:author='DocBook' aml:createdate='2004-12-23T00:01:00' w:type='Word.Comment' w:initials='DBK'>
+	      <aml:content>
+		<w:p>
+		  <w:pPr>
+		    <w:pStyle w:val='CommentText'/>
+		  </w:pPr>
+                  <w:r>
+                    <w:rPr>
+                      <w:rStyle w:val="CommentReference"/>
+                    </w:rPr>
+                    <w:annotationRef/>
+                  </w:r>
+		  <xsl:call-template name='make-attributes'/>
+		</w:p>
+	      </aml:content>
+	    </aml:annotation>
+	  </w:r>
+	</xsl:if>
+      </xsl:when>
+      <xsl:when test='$style-name = "attribute-value"'/>
+      <xsl:otherwise>
+	<w:r>
+	  <xsl:call-template name='find-style'>
+	    <xsl:with-param name='char-style-name' select='$style-name'/>
+	  </xsl:call-template>
+
+	  <xsl:apply-templates/>
+	</w:r>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  <!-- Precondition: $node is a sf:span with style "attribute-name" -->
+  <xsl:template name='make-attributes'>
+    <xsl:param name='node' select='.'/>
+
+    <xsl:choose>
+      <xsl:when test='not($node)'/>
+      <xsl:when test='$node/following-sibling::node()[1][self::sf:span]'>
+	<xsl:if test='key("styles", $node/following-sibling::*[1]/@sf:style)/self::sf:characterstyle/@sf:name = "attribute-value"'>
+	  <w:r>
+	    <w:rPr>
+	      <w:rStyle w:val='attribute-name'/>
+	    </w:rPr>
+	    <w:t>
+	      <xsl:apply-templates select='$node' mode='textonly'/>
+	    </w:t>
+	  </w:r>
+	  <w:r><w:t>=</w:t></w:r>
+	  <w:r>
+	    <w:rPr>
+	      <w:rStyle w:val='attribute-value'/>
+	    </w:rPr>
+	    <w:t>
+	      <xsl:apply-templates select='$node/following-sibling::*[1]'
+				   mode='textonly'/>
+	    </w:t>
+	  </w:r>
+	  <xsl:if test='$node/following-sibling::node()[2][self::sf:span] and
+			key("styles", $node/following-sibling::*[2]/@sf:style)/self::sf:characterstyle/@sf:name = "attribute-name"'>
+	    <xsl:call-template name='make-attributes'>
+	      <xsl:with-param name='node' select='$node/following-sibling::*[2]'/>
+	    </xsl:call-template>
+	  </xsl:if>
+	</xsl:if>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match='sf:br'/>
@@ -128,11 +209,10 @@
 
   <xsl:template name='find-style'>
     <xsl:param name='ident' select='@sf:style'/>
-
-    <xsl:variable name='para-style-name'
-		  select='key("styles", $ident)/self::sf:paragraphstyle/@sf:name'/>
-    <xsl:variable name='char-style-name'
-		  select='key("styles", $ident)/self::sf:characterstyle/@sf:name'/>
+    <xsl:param name='para-style-name'
+	       select='key("styles", $ident)/self::sf:paragraphstyle/@sf:name'/>
+    <xsl:param name='char-style-name'
+	       select='key("styles", $ident)/self::sf:characterstyle/@sf:name'/>
 
     <xsl:choose>
       <xsl:when test='$para-style-name != ""'>
