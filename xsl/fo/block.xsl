@@ -321,7 +321,7 @@
 
 <xsl:template match="sidebar/title|sidebarinfo"/>
 
-<xsl:template match="sidebar/title|sidebarinfo|title"
+<xsl:template match="sidebar/title|sidebarinfo/title"
               mode="titlepage.mode" priority="1">
   <fo:block xsl:use-attribute-sets="sidebar.title.properties">
     <xsl:apply-templates/>
