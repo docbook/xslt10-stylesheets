@@ -14,6 +14,8 @@
 
      ******************************************************************** -->
 
+<xsl:variable name="arg.or.sep"> |</xsl:variable>
+
 <!-- * Note: If you are looking for the <synopsis> element, you won't -->
 <!-- * find any code here for handling it. It is a _verbatim_ -->
 <!-- * environment; check the block.xsl file instead. -->
@@ -64,7 +66,7 @@
   <xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="group|arg">
+<xsl:template match="group|arg" name="group-or-arg">
   <xsl:variable name="choice" select="@choice"/>
   <xsl:variable name="rep" select="@rep"/>
   <xsl:variable name="sepchar">
@@ -138,6 +140,14 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+
+<xsl:template match="group/arg">
+  <xsl:variable name="choice" select="@choice"/>
+  <xsl:variable name="rep" select="@rep"/>
+  <xsl:if test="position()>1"><xsl:value-of select="$arg.or.sep"/></xsl:if>
+  <xsl:call-template name="group-or-arg"/>
+</xsl:template>
+
 
 <xsl:template match="command">
   <xsl:call-template name="suppress.hyphenation"/>
