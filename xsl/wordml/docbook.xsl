@@ -611,6 +611,26 @@
     <xsl:apply-templates select='*[not(self::objectinfo)]'/>
   </xsl:template>
 
+  <xsl:template match='caption'>
+    <w:p>
+      <w:pPr>
+	<w:pStyle w:val='caption'/>
+      </w:pPr>
+
+      <xsl:choose>
+	<xsl:when test='not(*)'>
+	  <xsl:apply-templates/>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:apply-templates select='para[1]/node()'/>
+	  <xsl:for-each select='text()|*[not(self::para)]|para[position() != 1]'>
+	    <xsl:call-template name='nomatch'/>
+	  </xsl:for-each>
+	</xsl:otherwise>
+      </xsl:choose>
+    </w:p>
+  </xsl:template>
+
   <xsl:template match='areaspec'>
     <w:p>
       <w:pPr>

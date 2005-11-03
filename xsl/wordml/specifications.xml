@@ -439,6 +439,11 @@ variablelist4</literallayout>
             <entry colname="col2">informalfigure-imagedata</entry>
             <entry colname="col3">The content of the paragraph is taken as the URI for the image.  For use in cases where the image is not embedded in the Word document.</entry>
           </row>
+	  <row>
+	    <entry colname='col1'>mediaobject|imageobject</entry>
+	    <entry colname='col2'>imageobject-imagedata, caption</entry>
+	    <entry colname='col3'>The content of the imageobject-imagedata paragraph is taken as the URI for the image.  May be followed by a <sgmltag>caption</sgmltag> style paragraph.</entry>
+	  </row>
           <row>
             <entry colname="col1">mediaobjectco/imageobjectco/*[self::imagedata/@fileref|areaspec|calloutlist]</entry>
             <entry colname="col2">mediaobjectco-title, imageobjectco-imagedata, areaspec, area, callout</entry>
