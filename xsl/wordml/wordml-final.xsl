@@ -45,6 +45,7 @@
 <!ENTITY audioobject "w:p[w:pPr/w:pStyle[@w:val='audioobject-audiodata']]">
 <!ENTITY videoobject "w:p[w:pPr/w:pStyle[@w:val='videoobject-videodata']]">
 <!ENTITY textobjecttitle "w:p[w:pPr/w:pStyle[@w:val='textobject-title']]">
+<!ENTITY caption "w:p[w:pPr/w:pStyle[@w:val='caption']]">
 <!ENTITY listlevel "substring-after(w:pPr/w:pStyle/@w:val, 'edlist')">
 <!ENTITY listlabel "w:pPr/w:listPr/wx:t/@wx:val">
 <!ENTITY footnote "w:p[w:pPr/w:pStyle[@w:val='FootnoteText']]">
@@ -1090,7 +1091,17 @@
 			   mode='mediaobject'/>
     </textobject>
   </xsl:template>
+  <xsl:template match='&caption;' mode='mediaobject'>
+    <caption>
+      <para>
+	<xsl:apply-templates select='w:r|w:hlink'/>
+      </para>
+    </caption>
+  </xsl:template>
   <xsl:template match='*' mode='mediaobject'/>
+
+  <!-- caption is handled in mediaobject mode -->
+  <xsl:template match='&caption;' mode='group'/>
 
   <!-- areaspec and area are handled by the imageobjectco -->
   <xsl:template match='&areaspec;|&area;' mode='group'/>

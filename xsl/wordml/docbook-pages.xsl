@@ -682,6 +682,29 @@
     <xsl:apply-templates select='*[not(self::objectinfo)]'/>
   </xsl:template>
 
+  <xsl:template match='caption'>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-paragraph-style'>
+	  <xsl:with-param name='name'>caption</xsl:with-param>
+	</xsl:call-template>
+      </xsl:attribute>
+
+      <xsl:choose>
+	<xsl:when test='not(*)'>
+	  <xsl:apply-templates/>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:apply-templates select='para[1]/node()'/>
+	  <xsl:for-each select='text()|*[not(self::para)]|para[position() != 1]'>
+	    <xsl:call-template name='nomatch'/>
+	  </xsl:for-each>
+	</xsl:otherwise>
+      </xsl:choose>
+      <sf:br/>
+    </sf:p>
+  </xsl:template>
+
   <xsl:template match='qandaset|qandadiv'>
     <xsl:apply-templates/>
   </xsl:template>
