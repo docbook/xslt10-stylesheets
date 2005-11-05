@@ -243,6 +243,7 @@ document output.
 
 <xsl:template match="figure|example|table" mode="olink.mode">
   <xsl:call-template name="obj"/>
+  <xsl:apply-templates mode="olink.mode"/>
 </xsl:template>
 
 <xsl:template match="equation[title]" mode="olink.mode">
