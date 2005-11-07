@@ -104,16 +104,23 @@
   </xsl:choose>
 
   <!-- Add standard page reference? -->
-  <xsl:if test="not(starts-with(normalize-space($xrefstyle), 'select:') 
-                and (contains($xrefstyle, 'page')
-                     or contains($xrefstyle, 'Page')))
-                and ( $insert.xref.page.number = 'yes' 
-                   or $insert.xref.page.number = '1')
-                or local-name($target) = 'para'">
-    <xsl:apply-templates select="$target" mode="page.citation">
-      <xsl:with-param name="id" select="@linkend"/>
-    </xsl:apply-templates>
-  </xsl:if>
+  <xsl:choose>
+    <!-- negative xrefstyle in instance turns it off -->
+    <xsl:when test="starts-with(normalize-space($xrefstyle), 'select:') 
+                  and contains($xrefstyle, 'nopage')">
+    </xsl:when>
+    <!-- positive xrefstyle already handles it -->
+    <xsl:when test="not(starts-with(normalize-space($xrefstyle), 'select:') 
+                  and (contains($xrefstyle, 'page')
+                       or contains($xrefstyle, 'Page')))
+                  and ( $insert.xref.page.number = 'yes' 
+                     or $insert.xref.page.number = '1')
+                  or local-name($target) = 'para'">
+      <xsl:apply-templates select="$target" mode="page.citation">
+        <xsl:with-param name="id" select="@linkend"/>
+      </xsl:apply-templates>
+    </xsl:when>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
