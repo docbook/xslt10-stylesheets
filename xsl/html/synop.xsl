@@ -1401,4 +1401,27 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 
 <!-- ==================================================================== -->
 
+<!-- * DocBook 5 allows linking elements (link, olink, and xref) -->
+<!-- * within the OO *synopsis elements (classsynopsis, fieldsynopsis, -->
+<!-- * methodsynopsis, constructorsynopsis, destructorsynopsis) and -->
+<!-- * their children. So we need to have mode="java|cpp|idl|perl" -->
+<!-- * per-mode matches for those linking elements in order for them -->
+<!-- * to be processed as expected. -->
+
+<xsl:template match="link|olink|xref" mode="java">
+  <xsl:apply-templates select="."/>
+</xsl:template>
+
+<xsl:template match="link|olink|xref" mode="cpp">
+  <xsl:apply-templates select="."/>
+</xsl:template>
+
+<xsl:template match="link|olink|xref" mode="idl">
+  <xsl:apply-templates select="."/>
+</xsl:template>
+
+<xsl:template match="link|olink|xref" mode="perl">
+  <xsl:apply-templates select="."/>
+</xsl:template>
+
 </xsl:stylesheet>
