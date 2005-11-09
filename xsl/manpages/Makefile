@@ -2,10 +2,11 @@ include ../../cvstools/Makefile.incl
 
 PARAMPROF=.param.profiled
 PARAMSTRIP=.param.stripped
+MAKE_SYNOP=html2roff.xsl
 
 include Makefile.param
 
-all: param.xsl
+all: param.xsl html-synop.xsl
 
 xml: param.xml
 
@@ -32,7 +33,11 @@ Makefile.param:
 	../../cvstools/paramchk -m $@ param.xweb
 	make
 
+html-synop.xsl: ../xhtml/synop.xsl
+	$(XSLT) $< $(MAKE_SYNOP) $@
+
 clean:
 	$(RM) param.xml param.html param.xsl
+	$(RM) html-synop.xsl
 	$(RM) Makefile.param
 	echo "# foo" > Makefile.param
