@@ -33,7 +33,7 @@ Makefile.param:
 	../../cvstools/paramchk -m $@ param.xweb
 	make
 
-html-synop.xsl: ../xhtml/synop.xsl
+html-synop.xsl: ../html/synop.xsl
 	$(XSLT) $< $(MAKE_SYNOP) $@
 
 clean:
