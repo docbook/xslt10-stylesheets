@@ -3,3 +3,4 @@ param.xml
 param.xsl
 profile-docbook.xsl
 xref.xsl
+html-synop.xsl
