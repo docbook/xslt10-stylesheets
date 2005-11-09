@@ -36,7 +36,7 @@
   <!-- ==================================================================== -->
 
   <xsl:template match="br">
-    <xsl:element name="xsl:text">&#10;</xsl:element>
+    <xsl:element name="xsl:text">&#10;.&#10;</xsl:element>
   </xsl:template>
 
   <xsl:template match="pre">
