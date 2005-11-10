@@ -40,6 +40,7 @@
   </xsl:template>
 
   <xsl:template match="pre">
+    <xsl:element name="xsl:text">.sp&#10;</xsl:element>
     <xsl:element name="xsl:text">.nf&#10;</xsl:element>
     <xsl:copy>
       <xsl:apply-templates select="@* | node()"/>
