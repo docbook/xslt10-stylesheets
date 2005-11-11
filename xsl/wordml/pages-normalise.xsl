@@ -185,6 +185,11 @@
       </xsl:when>
       <xsl:otherwise>
 	<w:r>
+	  <xsl:if test='ancestor::sf:link'>
+	    <w:rPr>
+	      <w:rStyle w:val='Hyperlink'/>
+	    </w:rPr>
+	  </xsl:if>
 	  <w:t>
 	    <xsl:value-of select='.'/>
 	  </w:t>

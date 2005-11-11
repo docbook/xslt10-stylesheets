@@ -11,6 +11,7 @@ PAGES = $(STYLESHEETDIR)/docbook-pages.xsl
 DBKNORM = $(STYLESHEETDIR)/wordml-normalise.xsl
 PAGESNORM = $(STYLESHEETDIR)/pages-normalise.xsl
 DBKSECTS = $(STYLESHEETDIR)/wordml-sections.xsl
+DBKBLOCKS = $(STYLESHEETDIR)/wordml-blocks.xsl
 DBKFINAL = $(STYLESHEETDIR)/wordml-final.xsl
 TEMPLATE = $(STYLESHEETDIR)/template.xml
 TEMPLATEPAGES = $(STYLESHEETDIR)/template-pages.xml
@@ -51,8 +52,11 @@ clean:
 	echo "# foo" > Makefile.param
 
 # WordML-to-DocBook
-%.docbook.xml: %.sects.xml $(DBKFINAL) Makefile
+%.docbook.xml: %.blocks.xml $(DBKFINAL) Makefile
 	$(PROC) -o $@ $(DBKFINAL) $<
+
+%.blocks.xml: %.sects.xml $(DBKBLOCKS) Makefile
+	$(PROC) -o $@ $(DBKBLOCKS) $<
 
 %.sects.xml: %.norm.xml $(DBKSECTS) Makefile
 	$(PROC) -o $@ $(DBKSECTS) $<
@@ -61,8 +65,11 @@ clean:
 	$(PROC) -o $@ $(DBKNORM) $<
 
 # Pages-to-DocBook
-%.pdocbook.xml: %.psects.xml $(DBKFINAL) Makefile
+%.pdocbook.xml: %.pblocks.xml $(DBKFINAL) Makefile
 	$(PROC) -o $@ $(DBKFINAL) $<
+
+%.pblocks.xml: %.psects.xml $(DBKBLOCKS) Makefile
+	$(PROC) -o $@ $(DBKBLOCKS) $<
 
 %.psects.xml: %.pnorm.xml $(DBKSECTS) Makefile
 	$(PROC) -o $@ $(DBKSECTS) $<

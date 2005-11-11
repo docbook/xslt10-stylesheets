@@ -18,6 +18,12 @@
     </author>
     <revhistory>
       <revision>
+	<revnumber>1.4</revnumber>
+	<date>2005-11-11</date>
+	<authorinitials>SRB</authorinitials>
+	<revremark>Added bibliography.</revremark>
+      </revision>
+      <revision>
 	<revnumber>1.3</revnumber>
 	<date>2005-10-31</date>
 	<authorinitials>SRB</authorinitials>
@@ -214,6 +220,16 @@
             <entry colname="col1">bibliography/bibliographyinfo/title</entry>
             <entry colname="col2">bibliography-title</entry>
             <entry colname="col3">Assigned Word outline level 1.</entry>
+          </row>
+          <row>
+            <entry colname="col1">bibliography/bibliodiv</entry>
+            <entry colname="col2">bibliodiv-title</entry>
+            <entry colname="col3"></entry>
+          </row>
+          <row>
+            <entry colname="col1">biblioentry</entry>
+            <entry colname="col2">biblioentry-title</entry>
+            <entry colname="col3">Metadata elements after the biblioentry-title paragraph become part of the <sgmltag>biblioentry</sgmltag>.</entry>
           </row>
           <row>
             <entry colname="col1">glossary/glossaryinfo/title</entry>
@@ -637,6 +653,11 @@ variablelist4</literallayout>
           <row>
             <entry colname="col1">author</entry>
             <entry colname="col2">author</entry>
+            <entry colname="col3"/>
+          </row>
+          <row>
+            <entry colname="col1">bibliomisc</entry>
+            <entry colname="col2">bibliomisc</entry>
             <entry colname="col3"/>
           </row>
           <row>
