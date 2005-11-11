@@ -50,24 +50,62 @@
 <!ENTITY listlabel "w:pPr/w:listPr/wx:t/@wx:val">
 <!ENTITY footnote "w:p[w:pPr/w:pStyle[@w:val='FootnoteText']]">
 
+<!ENTITY biblioentrytitle "w:p[w:pPr/w:pStyle[@w:val='biblioentry-title']]">
+<!ENTITY bibliomisc.style "w:pPr/w:pStyle[@w:val='bibliomisc']">
+<!ENTITY bibliomisc "w:p[&bibliomisc.style;]">
+
+<!ENTITY glossterm "w:p[w:pPr/w:pStyle[@w:val='glossterm']]">
+
 <!ENTITY qandasettitle "w:p[w:pPr/w:pStyle[@w:val='qandaset-title']]">
 <!ENTITY qandadivtitle "w:p[w:pPr/w:pStyle[@w:val='qandadiv-title']]">
-<!ENTITY qandaentrytitle "w:p[w:pPr/w:pStyle[@w:val='qandaentry-title']]">
 <!ENTITY question "w:p[w:pPr/w:pStyle[@w:val='question']]">
 <!ENTITY answer "w:p[w:pPr/w:pStyle[@w:val='answer']]">
 
-<!ENTITY releaseinfo "w:p[w:pPr/w:pStyle/@w:val='releaseinfo']">
-<!ENTITY revhistory "w:p[w:pPr/w:pStyle/@w:val='revhistory']">
-<!ENTITY revision "w:p[w:pPr/w:pStyle/@w:val='revision']">
-<!ENTITY revremark "w:p[w:pPr/w:pStyle/@w:val='revremark']">
-<!ENTITY affiliation "w:p[w:pPr/w:pStyle/@w:val='affiliation']">
-<!ENTITY author "w:p[w:pPr/w:pStyle/@w:val='author']">
-<!ENTITY editor "w:p[w:pPr/w:pStyle/@w:val='editor']">
-<!ENTITY othercredit "w:p[w:pPr/w:pStyle/@w:val='othercredit']">
-<!ENTITY authorblurb "w:p[w:pPr/w:pStyle/@w:val='authorblurb']">
+<!ENTITY releaseinfo.style "w:pPr/w:pStyle/@w:val='releaseinfo'">
+<!ENTITY releaseinfo "w:p[&releaseinfo.style;]">
+<!ENTITY revhistory.style "w:pPr/w:pStyle/@w:val='revhistory'">
+<!ENTITY revhistory "w:p[&revhistory.style;]">
+<!ENTITY revision.style "w:pPr/w:pStyle/@w:val='revision'">
+<!ENTITY revision "w:p[&revision.style;]">
+<!ENTITY revremark.style "w:pPr/w:pStyle/@w:val='revremark'">
+<!ENTITY revremark "w:p[&revremark.style;]">
+<!ENTITY affiliation.style "w:pPr/w:pStyle/@w:val='affiliation'">
+<!ENTITY affiliation "w:p[&affiliation.style;]">
+<!ENTITY author.style "w:pPr/w:pStyle/@w:val='author'">
+<!ENTITY author "w:p[&author.style;]">
+<!ENTITY editor.style "w:pPr/w:pStyle/@w:val='editor'">
+<!ENTITY editor "w:p[&editor.style;]">
+<!ENTITY othercredit.style "w:pPr/w:pStyle/@w:val='othercredit'">
+<!ENTITY othercredit "w:p[&othercredit.style;]">
+<!ENTITY authorblurb.style "w:pPr/w:pStyle/@w:val='authorblurb'">
+<!ENTITY authorblurb "w:p[&authorblurb.style;]">
+<!ENTITY address.style "w:pPr/w:pStyle/@w:val='address'">
+<!ENTITY address "w:p[&address.style;]">
+<!ENTITY publishername.style "w:pPr/w:pStyle/@w:val='publishername'">
+<!ENTITY publishername "w:p[&publishername.style;]">
+<!ENTITY isbn.style "w:pPr/w:pStyle/@w:val='isbn'">
+<!ENTITY isbn "w:p[&isbn.style;]">
 
-<!ENTITY abstracttitle "w:p[w:pPr/w:pStyle/@w:val='abstract-title']">
-<!ENTITY abstract "w:p[w:pPr/w:pStyle/@w:val='abstract']">
+<!ENTITY abstracttitle.style "w:pPr/w:pStyle/@w:val='abstract-title'">
+<!ENTITY abstracttitle "w:p[&abstracttitle.style;]">
+<!ENTITY abstract.style "w:pPr/w:pStyle/@w:val='abstract'">
+<!ENTITY abstract "w:p[&abstract.style;]">
+
+<!ENTITY metadata.element.style "&releaseinfo.style; or
+			   &affiliation.style; or
+			   &authorblurb.style; or
+			   &author.style; or
+			   &editor.style; or
+			   &othercredit.style; or
+			   &revhistory.style; or
+			   &revision.style; or
+			   &abstracttitle.style; or
+			   &abstract.style; or
+			   &bibliomisc.style; or
+			   &address.style; or
+			   &publishername.style; or
+			   &isbn.style;">
+<!ENTITY metadata.elements "w:p[&metadata.element.style;]">
 
 <!ENTITY xinclude "w:p[w:pPr/w:pStyle/@w:val='xinclude']">
 
@@ -161,7 +199,43 @@
     </xsl:variable>
 
     <xsl:choose>
-      <xsl:when test='$element.name != "bogus"'>
+      <xsl:when test='$element.name = "bogus"'>
+        <xsl:apply-templates mode='group'/>
+      </xsl:when>
+      <xsl:when test='$element.name = "bibliography" or
+		      $element.name = "bibliodiv" or
+		      $element.name = "glossary" or
+		      $element.name = "glossdiv" or
+		      $element.name = "qandaset" or
+		      $element.name = "qandadiv"'>
+	<xsl:element name='{$element.name}'>
+          <xsl:call-template name="object.id"/>
+          <xsl:call-template name='attributes'>
+            <xsl:with-param name='node' select='$first.node'/>
+          </xsl:call-template>
+
+	  <xsl:variable name='entries'
+			select='*[1]/following-sibling::w:p[(starts-with($element.name, "biblio") and self::&biblioentrytitle;) or
+				(starts-with($element.name, "gloss") and self::&glossterm;) or
+				(starts-with($element.name, "qanda") and self::&question;)]'/>
+
+	  <xsl:variable name='components' select='wx:sub-section | $entries'/>
+
+	  <xsl:choose>
+	    <xsl:when test='not($components)'>
+	      <xsl:message> <xsl:value-of select='$parent'/> found with no divisions or entries </xsl:message>
+	      <xsl:comment> <xsl:value-of select='$parent'/> found with no divisions or entries </xsl:comment>
+	    </xsl:when>
+	    <xsl:otherwise>
+	      <xsl:apply-templates select='$components[1]/preceding-sibling::*'
+				   mode='group'/>
+	      <xsl:apply-templates select='wx:sub-section | $entries'
+				   mode='component-entries'/>
+	    </xsl:otherwise>
+	  </xsl:choose>
+	</xsl:element>
+      </xsl:when>
+      <xsl:otherwise>
         <xsl:element name="{$element.name}">
           <xsl:call-template name="object.id"/>
           <xsl:call-template name='attributes'>
@@ -169,14 +243,13 @@
           </xsl:call-template>
           <xsl:apply-templates mode="group"/>
         </xsl:element>
-      </xsl:when>
-
-      <xsl:otherwise>
-        <xsl:apply-templates mode='group'/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 
+  <!-- TODO: generate this template from sections-spec.xml and
+       blocks-spec.xml
+    -->
   <xsl:template name='component-name'>
     <xsl:param name='node' select='.'/>
     <xsl:variable name="style" select="$node/w:pPr/w:pStyle/@w:val"/>
@@ -186,6 +259,26 @@
                       $style = 'article-title'">article</xsl:when>
       <xsl:when test="$style = 'appendix' or
                       $style = 'appendix-title'">appendix</xsl:when>
+      <xsl:when test="$style = 'bibliography' or
+                      $style = 'bibliography-title'">bibliography</xsl:when>
+      <xsl:when test="$style = 'bibliodiv' or
+                      $style = 'bibliodiv-title'">bibliodiv</xsl:when>
+      <xsl:when test="$style = 'book' or
+                      $style = 'book-title'">book</xsl:when>
+      <xsl:when test="$style = 'chapter' or
+                      $style = 'chapter-title'">chapter</xsl:when>
+      <xsl:when test="$style = 'glossary' or
+                      $style = 'glossary-title'">glossary</xsl:when>
+      <xsl:when test="$style = 'glossdiv' or
+                      $style = 'glossdiv-title'">glossdiv</xsl:when>
+      <xsl:when test="$style = 'part' or
+                      $style = 'part-title'">part</xsl:when>
+      <xsl:when test="$style = 'preface' or
+                      $style = 'preface-title'">preface</xsl:when>
+      <xsl:when test="$style = 'qandaset' or
+                      $style = 'qandaset-title'">qandaset</xsl:when>
+      <xsl:when test="$style = 'qandadiv' or
+                      $style = 'qandadiv-title'">qandadiv</xsl:when>
       <xsl:when test="($style = 'sect1' or
                       $style = 'sect1-title') and 
                       $nest.sections != 0">section</xsl:when>
@@ -222,26 +315,34 @@
     </xsl:variable>
 
     <xsl:choose>
-      <xsl:when test='../&releaseinfo; |
+      <xsl:when test='$parent != "qandaset" and
+		      (../&releaseinfo; |
 		      ../&author; |
 		      ../&editor; |
 		      ../&othercredit; |
 		      ../&revhistory; |
 		      ../&revision; |
-		      ../&abstract;'>
+		      ../&abstract;)'>
         <xsl:element name='{$parent}info'>
           <title>
             <xsl:apply-templates select="w:r|w:hlink"/>
           </title>
 	  <xsl:apply-templates select='following-sibling::*[1][self::w:p][w:pPr/w:pStyle/@w:val = concat($parent, "-subtitle")]' mode='subtitle'/>
-          <xsl:apply-templates select='../&releaseinfo; |
-				       ../&author; |
-				       ../&editor; |
-				       ../&othercredit; |
-				       ../&revhistory; |
-				       ../&revision; |
-				       ../&abstract;'
-			       mode='metadata'/>
+
+	  <xsl:variable name='stop.node'
+			select='following-sibling::*[not(self::w:p and (
+				w:pPr/w:pStyle/@w:val = concat($parent, "-subtitle") or
+				&metadata.element.style;))][1]'/>
+	  <xsl:choose>
+	    <xsl:when test='$stop.node'>
+              <xsl:apply-templates select='../&metadata.elements;[count(following-sibling::*|$stop.node) = count(following-sibling::*)]'
+				   mode='metadata'/>
+	    </xsl:when>
+	    <xsl:otherwise>
+	      <xsl:apply-templates select='../&metadata.elements;'
+				   mode='metadata'/>
+	    </xsl:otherwise>
+	  </xsl:choose>
         </xsl:element>
       </xsl:when>
       <xsl:otherwise>
@@ -263,6 +364,8 @@
 		       w:pPr/w:pStyle/@w:val = "sect5-subtitle" or
 		       w:pPr/w:pStyle/@w:val = "appendix-subtitle" or
 		       w:pPr/w:pStyle/@w:val = "bibliography-subtitle" or
+		       w:pPr/w:pStyle/@w:val = "bibliodiv-subtitle" or
+		       w:pPr/w:pStyle/@w:val = "biblioentry-subtitle" or
 		       w:pPr/w:pStyle/@w:val = "chapter-subtitle" or
 		       w:pPr/w:pStyle/@w:val = "glossary-subtitle" or
 		       w:pPr/w:pStyle/@w:val = "part-subtitle" or
@@ -300,17 +403,34 @@
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template match='wx:sub-section' mode='component-entries'>
+    <xsl:apply-templates select='.' mode='group'/>
+  </xsl:template>
+
+  <xsl:template match='&biblioentrytitle;' mode='component-entries'>
+    <xsl:variable name='components'
+		  select='following-sibling::wx:sub-section |
+			  following-sibling::&biblioentrytitle;'/>
+
+    <biblioentry>
+      <title>
+	<xsl:apply-templates select='w:r|w:hlink'/>
+      </title>
+
+      <xsl:apply-templates select='following-sibling::*[generate-id(following-sibling::*[self::wx:sub-section | self::&biblioentrytitle;][1]) = generate-id($components[1])]'
+			   mode='metadata'/>
+    </biblioentry>
+  </xsl:template>
+
+  <xsl:template match='&glossterm;' mode='component-entries'>
+    <!-- TODO -->
+  </xsl:template>
+
+  <xsl:template match='&question;' mode='component-entries'>
+  </xsl:template>
+
   <!-- metadata -->
-  <xsl:template match="&releaseinfo; |
-		       &author; |
-		       &editor; |
-		       &othercredit; |
-		       &affiliation; |
-		       &revhistory; |
-		       &revision; |
-		       &revremark; |
-		       &abstracttitle; |
-		       &abstract;" mode='group'/>
+  <xsl:template match="&metadata.elements;|&revremark;" mode='group'/>
   <xsl:template match='&abstracttitle;' mode='metadata'/>
   <xsl:template match='&abstract;' mode='metadata'>
     <xsl:choose>
@@ -337,6 +457,21 @@
       <xsl:apply-templates select="w:r|w:hlink"/>
     </para>
     <xsl:apply-templates select='following-sibling::*[1]' mode='abstract'/>
+  </xsl:template>
+  <xsl:template match='&bibliomisc;' mode='metadata'>
+    <bibliomisc>
+      <xsl:apply-templates select='w:r|w:hlink'/>
+    </bibliomisc>
+  </xsl:template>
+  <xsl:template match='&publishername;' mode='metadata'>
+    <publishername>
+      <xsl:apply-templates select='w:r|w:hlink'/>
+    </publishername>
+  </xsl:template>
+  <xsl:template match='&isbn;' mode='metadata'>
+    <isbn>
+      <xsl:apply-templates select='w:r|w:hlink'/>
+    </isbn>
   </xsl:template>
   <xsl:template match="&releaseinfo;" mode='metadata'>
     <releaseinfo>
@@ -438,6 +573,11 @@
         </otheraddr>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
+  <xsl:template match='&address;' mode='metadata'>
+    <address>
+      <xsl:apply-templates select='w:r|w:hlink' mode='metadata'/>
+    </address>
   </xsl:template>
 
   <xsl:template match='wordlist'
@@ -740,40 +880,40 @@
     <xsl:apply-templates/>
   </xsl:template>
 
-<!-- =========================================================== -->
-<!--   Inline elements                                           -->
-<!-- =========================================================== -->
-<xsl:template match="w:hlink[w:r/w:rPr/w:rStyle[@w:val='link']]">
-  <link>
-    <xsl:attribute name="linkend"><xsl:value-of
-            select="@w:bookmark"/></xsl:attribute>
-    <xsl:apply-templates select="w:r"/>
-  </link>
-</xsl:template>
+  <!-- =========================================================== -->
+  <!--   Inline elements                                           -->
+  <!-- =========================================================== -->
+  <xsl:template match="w:hlink[w:r/w:rPr/w:rStyle[@w:val='link']]">
+    <link>
+      <xsl:attribute name="linkend"><xsl:value-of
+				       select="@w:bookmark"/></xsl:attribute>
+      <xsl:apply-templates select="w:r"/>
+    </link>
+  </xsl:template>
 
-<xsl:template match="w:hlink[w:r/w:rPr/w:u |
-		     w:r/w:rPr/w:rStyle[@w:val='ulink' or @w:val='Hyperlink']]">
-  <ulink url='{@w:dest}'>
-    <xsl:apply-templates select="w:r"/>
-  </ulink>
-</xsl:template>
+  <xsl:template match="w:hlink[w:r/w:rPr/w:u |
+		       w:r/w:rPr/w:rStyle[@w:val='ulink' or @w:val='Hyperlink']]">
+    <ulink url='{@w:dest}'>
+      <xsl:apply-templates select="w:r"/>
+    </ulink>
+  </xsl:template>
 
-<xsl:template match="w:hlink[w:r/w:rPr/w:rStyle[@w:val='olink']]">
-  <olink>
-    <xsl:attribute name="targetdoc"><xsl:value-of
-            select="@w:dest"/></xsl:attribute>
-    <xsl:attribute name="targetptr"><xsl:value-of
-            select="@w:bookmark"/></xsl:attribute>
-    <xsl:apply-templates select="w:r"/>
-  </olink>
-</xsl:template>
+  <xsl:template match="w:hlink[w:r/w:rPr/w:rStyle[@w:val='olink']]">
+    <olink>
+      <xsl:attribute name="targetdoc"><xsl:value-of
+					 select="@w:dest"/></xsl:attribute>
+      <xsl:attribute name="targetptr"><xsl:value-of
+					 select="@w:bookmark"/></xsl:attribute>
+      <xsl:apply-templates select="w:r"/>
+    </olink>
+  </xsl:template>
 
-<xsl:template match="w:hlink[w:r/w:rPr/w:rStyle[@w:val='xref']]">
-  <xref>
-    <xsl:attribute name="linkend"><xsl:value-of
-            select="@w:bookmark"/></xsl:attribute>
-  </xref>
-</xsl:template>
+  <xsl:template match="w:hlink[w:r/w:rPr/w:rStyle[@w:val='xref']]">
+    <xref>
+      <xsl:attribute name="linkend"><xsl:value-of
+				       select="@w:bookmark"/></xsl:attribute>
+    </xref>
+  </xsl:template>
 
   <xsl:template match='w:r[starts-with(w:rPr/w:rStyle/@w:val, "emphasis")]'
 		priority='2'>

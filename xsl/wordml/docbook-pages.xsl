@@ -75,7 +75,7 @@
     </sf:text-storage>
   </xsl:template>
 
-  <xsl:template match='book|article|part|section|sect1|sect2|sect3|sect4|sect5|simplesect'>
+  <xsl:template match='book|article|part|section|sect1|sect2|sect3|sect4|sect5|simplesect|bibliodiv'>
     <xsl:apply-templates select='*'/>
   </xsl:template>
 
@@ -88,8 +88,17 @@
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:template match='sectioninfo|sect1info|sect2info|sect3info|sect4info|sect5info'>
-    <xsl:apply-templates/>
+  <!-- It is easier for authors to have metadata for a component 
+       appearing after the corresponding title, rather than before it.
+       The reverse transformation will put things back the right way.
+    -->
+
+  <xsl:template match='sectioninfo|sect1info|sect2info|sect3info|sect4info|sect5info |
+		       appendix|bibliography|chapter'>
+    <xsl:apply-templates select='title|subtitle|titleabbrev'/>
+    <xsl:apply-templates select='*[local-name() = concat(local-name(current()), "info")]'/>
+    <xsl:apply-templates select='*[not(self::title|self::subtitle|self::titleabbrev) and
+				 local-name() != concat(local-name(current()), "info")]'/>
   </xsl:template>
 
   <xsl:template match='title|subtitle|titleabbrev'>
@@ -121,7 +130,10 @@
 			  parent::sect2info |
 			  parent::sect3info |
 			  parent::sect4info |
-			  parent::sect5info'>
+			  parent::sect5info |
+			  parent::appendixinfo |
+			  parent::bibliographyinfo |
+			  parent::chapterinfo'>
 	    <xsl:call-template name='lookup-paragraph-style'>
 	      <xsl:with-param name='name'>
 		<xsl:value-of select='substring-before(name(..), "info")'/>
@@ -145,6 +157,11 @@
 			  parent::sect3 |
 			  parent::sect4 |
 			  parent::sect5 |
+			  parent::appendix |
+			  parent::bibliography |
+			  parent::bibliodiv |
+			  parent::biblioentry |
+			  parent::chapter |
 			  parent::qandaset |
 			  parent::qandadiv'>
 	    <xsl:call-template name='lookup-paragraph-style'>
@@ -228,7 +245,7 @@
       <sf:br/>
     </sf:p>
   </xsl:template>
-  <xsl:template match='address[parent::author|parent::editor|parent::othercredit]'>
+  <xsl:template match='address[parent::author|parent::editor|parent::othercredit|parent::publisher]'>
     <sf:p>
       <xsl:attribute name='sf:style'>
 	<xsl:call-template name='lookup-paragraph-style'>
@@ -243,14 +260,21 @@
     </sf:p>
   </xsl:template>
   <!-- do not attempt to handle recursive structures -->
-  <xsl:template match='address[not(parent::author|parent::editor|parent::othercredit)]'>
-    <xsl:apply-templates select='node()[not(self::affiliation|self::authorblurb)]'/>
+  <xsl:template match='address[not(parent::author|parent::editor|parent::othercredit|parent::publisher)]'>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-paragraph-style'>
+	  <xsl:with-param name='name'>address</xsl:with-param>
+	</xsl:call-template>
+      </xsl:attribute>
+      <xsl:apply-templates select='node()[not(self::affiliation|self::authorblurb)]'/>
+      <sf:br/>
+    </sf:p>
   </xsl:template>
   <!-- TODO -->
   <xsl:template match='authorblurb|personblurb'/>
 
-  <!-- TODO: handle inline markup (eg. emphasis) -->
-  <xsl:template match='surname|firstname|honorific|lineage|othername|contrib|email|shortaffil|jobtitle|orgname|orgdiv|street|pob|postcode|city|state|country|phone|fax'>
+  <xsl:template match='surname|firstname|honorific|lineage|othername|contrib|email|shortaffil|jobtitle|orgname|orgdiv|street|pob|postcode|city|state|country|phone|fax|citetitle'>
     <xsl:if test='preceding-sibling::*'>
       <xsl:text> </xsl:text>
     </xsl:if>
@@ -290,7 +314,7 @@
     </sf:link>
   </xsl:template>
   <!-- otheraddr often contains ulink -->
-  <xsl:template match='otheraddr' mode='not-yet-implemented'>
+  <xsl:template match='otheraddr'>
     <xsl:choose>
       <xsl:when test='ulink'>
         <xsl:for-each select='ulink'>
@@ -299,41 +323,49 @@
             <xsl:when test='$prev'>
               <xsl:for-each
                 select='preceding-sibling::node()[generate-id(following-sibling::ulink[1]) = generate-id(current())]'>
-                <w:r>
-                  <w:rPr>
-                    <w:rStyle w:val='otheraddr'/>
-                  </w:rPr>
+                <sf:span>
+		  <xsl:attribute name='sf:style'>
+		    <xsl:call-template name='lookup-character-style'>
+		      <xsl:with-param name='name'>otheraddr</xsl:with-param>
+		    </xsl:call-template>
+		  </xsl:attribute>
                   <xsl:apply-templates select='.' mode='text-run'/>
-                </w:r>
+                </sf:span>
               </xsl:for-each>
             </xsl:when>
             <xsl:when test='preceding-sibling::node()'>
-              <w:r>
-                <w:rPr>
-                  <w:rStyle w:val='otheraddr'/>
-                </w:rPr>
+              <sf:span>
+		<xsl:attribute name='sf:style'>
+		  <xsl:call-template name='lookup-character-style'>
+		    <xsl:with-param name='name'>otheraddr</xsl:with-param>
+		  </xsl:call-template>
+		</xsl:attribute>
                 <xsl:apply-templates mode='text-run'/>
-              </w:r>
+              </sf:span>
             </xsl:when>
           </xsl:choose>
           <xsl:apply-templates select='.'/>
         </xsl:for-each>
         <xsl:if test='ulink[last()]/following-sibling::node()'>
-          <w:r>
-            <w:rPr>
-              <w:rStyle w:val='otheraddr'/>
-            </w:rPr>
+          <sf:span>
+	    <xsl:attribute name='sf:style'>
+	      <xsl:call-template name='lookup-character-style'>
+		<xsl:with-param name='name'>otheraddr</xsl:with-param>
+	      </xsl:call-template>
+	    </xsl:attribute>
             <xsl:apply-templates select='ulink[last()]/following-sibling::node()' mode='text-run'/>
-          </w:r>
+          </sf:span>
         </xsl:if>
       </xsl:when>
       <xsl:otherwise>
-        <w:r>
-          <w:rPr>
-            <w:rStyle w:val='otheraddr'/>
-          </w:rPr>
+        <sf:span>
+	  <xsl:attribute name='sf:style'>
+	    <xsl:call-template name='lookup-character-style'>
+	      <xsl:with-param name='name'>otheraddr</xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:attribute>
           <xsl:apply-templates mode='text-run'/>
-        </w:r>
+        </sf:span>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -366,11 +398,11 @@
     <xsl:apply-templates/>
   </xsl:template>
 
-  <xsl:template match='releaseinfo'>
+  <xsl:template match='releaseinfo|bibliomisc|publishername|isbn'>
     <sf:p>
       <xsl:attribute name='sf:style'>
 	<xsl:call-template name='lookup-paragraph-style'>
-	  <xsl:with-param name='name'>releaseinfo</xsl:with-param>
+	  <xsl:with-param name='name' select='name()'/>
 	</xsl:call-template>
       </xsl:attribute>
 
@@ -381,7 +413,7 @@
     </sf:p>
   </xsl:template>
 
-  <xsl:template match='revhistory'>
+  <xsl:template match='revhistory|biblioentry'>
     <xsl:apply-templates/>
   </xsl:template>
   <xsl:template match='revision'>
@@ -1403,10 +1435,18 @@
   <xsl:template name='lookup-paragraph-style'>
     <xsl:param name='name'/>
 
+    <xsl:if test='not($paragraph-styles[@sf:name = $name])'>
+      <xsl:message>unable to find character style "<xsl:value-of select='$name'/>"</xsl:message>
+    </xsl:if>
+
     <xsl:value-of select='$paragraph-styles[@sf:name = $name]/@sf:ident'/>
   </xsl:template>
   <xsl:template name='lookup-character-style'>
     <xsl:param name='name'/>
+
+    <xsl:if test='not($character-styles[@sf:name = $name])'>
+      <xsl:message>unable to find character style "<xsl:value-of select='$name'/>"</xsl:message>
+    </xsl:if>
 
     <xsl:value-of select='$character-styles[@sf:name = $name]/@sf:ident'/>
   </xsl:template>

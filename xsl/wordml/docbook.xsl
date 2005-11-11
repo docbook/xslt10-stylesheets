@@ -305,7 +305,7 @@
   <xsl:template match='authorblurb|personblurb'/>
 
   <!-- TODO: handle inline markup (eg. emphasis) -->
-  <xsl:template match='surname|firstname|honorific|lineage|othername|contrib|email|shortaffil|jobtitle|orgname|orgdiv|street|pob|postcode|city|state|country|phone|fax'>
+  <xsl:template match='surname|firstname|honorific|lineage|othername|contrib|email|shortaffil|jobtitle|orgname|orgdiv|street|pob|postcode|city|state|country|phone|fax|citetitle'>
     <xsl:if test='preceding-sibling::*'>
       <w:r>
         <w:t>

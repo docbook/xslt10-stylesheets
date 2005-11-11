@@ -29,8 +29,6 @@
       </axsl:for-each>
       <axsl:variable name="books" select="w:p[w:pPr/w:pStyle/@w:val = &quot;book&quot; or w:pPr/w:pStyle/@w:val = &quot;book-title&quot;]"/>
       <axsl:variable name="toplevel-components" select="w:p[w:pPr/w:pStyle/@w:val = &quot;article&quot; or w:pPr/w:pStyle/@w:val = &quot;article-title&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix&quot; or w:pPr/w:pStyle/@w:val = &quot;appendix-title&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter&quot; or w:pPr/w:pStyle/@w:val = &quot;chapter-title&quot; or w:pPr/w:pStyle/@w:val = &quot;preface&quot; or w:pPr/w:pStyle/@w:val = &quot;preface-title&quot;]"/>
-      <axsl:variable name="glossarys" select="w:p[w:pPr/w:pStyle/@w:val = &quot;glossary&quot; or w:pPr/w:pStyle/@w:val = &quot;glossary-title&quot;]"/>
-      <axsl:variable name="bibliographys" select="w:p[w:pPr/w:pStyle/@w:val = &quot;bibliography&quot; or w:pPr/w:pStyle/@w:val = &quot;bibliography-title&quot;]"/>
       <axsl:choose>
         <axsl:when test="$books">
           <axsl:apply-templates select="$books[1]/preceding-sibling::*"/>
@@ -42,18 +40,6 @@
           <axsl:apply-templates select="$toplevel-components[1]/preceding-sibling::*"/>
           <axsl:apply-templates select="$toplevel-components[1]" mode="toplevel-component">
             <axsl:with-param name="toplevel-components" select="$toplevel-components[position() != 1]"/>
-          </axsl:apply-templates>
-        </axsl:when>
-        <axsl:when test="$glossarys">
-          <axsl:apply-templates select="$glossarys[1]/preceding-sibling::*"/>
-          <axsl:apply-templates select="$glossarys[1]" mode="glossary">
-            <axsl:with-param name="glossarys" select="$glossarys[position() != 1]"/>
-          </axsl:apply-templates>
-        </axsl:when>
-        <axsl:when test="$bibliographys">
-          <axsl:apply-templates select="$bibliographys[1]/preceding-sibling::*"/>
-          <axsl:apply-templates select="$bibliographys[1]" mode="bibliography">
-            <axsl:with-param name="bibliographys" select="$bibliographys[position() != 1]"/>
           </axsl:apply-templates>
         </axsl:when>
         <axsl:otherwise>
@@ -122,68 +108,6 @@
     </wx:sub-section>
     <axsl:apply-templates select="$toplevel-components[1]" mode="toplevel-component">
       <axsl:with-param name="toplevel-components" select="$toplevel-components[position() != 1]"/>
-    </axsl:apply-templates>
-  </axsl:template>
-  <axsl:template match="w:p" mode="glossary">
-    <axsl:param name="glossarys" select="/.."/>
-    <axsl:choose>
-      <axsl:when test="$glossarys and (w:pPr/w:pStyle/@w:val = &quot;glossary&quot; or w:pPr/w:pStyle/@w:val = &quot;glossary-title&quot;)">
-        <axsl:call-template name="make-glossary">
-          <axsl:with-param name="glossarys" select="$glossarys"/>
-          <axsl:with-param name="glossdivs" select="$glossarys[1]/preceding-sibling::w:p[w:pPr/w:pStyle/@w:val = &quot;glossdiv&quot; or w:pPr/w:pStyle/@w:val = &quot;glossdiv-title&quot;]"/>
-        </axsl:call-template>
-      </axsl:when>
-      <axsl:otherwise>
-        <axsl:call-template name="make-glossary">
-          <axsl:with-param name="glossarys" select="$glossarys"/>
-          <axsl:with-param name="glossdivs" select="following-sibling::w:p[w:pPr/w:pStyle/@w:val = &quot;glossdiv&quot; or w:pPr/w:pStyle/@w:val = &quot;glossdiv-title&quot;]"/>
-        </axsl:call-template>
-      </axsl:otherwise>
-    </axsl:choose>
-  </axsl:template>
-  <axsl:template name="make-glossary">
-    <axsl:param name="glossarys" select="/.."/>
-    <axsl:param name="glossdivs" select="/.."/>
-    <wx:sub-section class="glossary">
-      <axsl:call-template name="copy"/>
-      <axsl:apply-templates select="following-sibling::*[1]" mode="glossary-glossdiv">
-        <axsl:with-param name="nextglossary" select="$glossarys[1]"/>
-        <axsl:with-param name="glossdivs" select="$glossdivs"/>
-      </axsl:apply-templates>
-    </wx:sub-section>
-    <axsl:apply-templates select="$glossarys[1]" mode="glossary">
-      <axsl:with-param name="glossarys" select="$glossarys[position() != 1]"/>
-    </axsl:apply-templates>
-  </axsl:template>
-  <axsl:template match="w:p" mode="bibliography">
-    <axsl:param name="bibliographys" select="/.."/>
-    <axsl:choose>
-      <axsl:when test="$bibliographys and (w:pPr/w:pStyle/@w:val = &quot;bibliography&quot; or w:pPr/w:pStyle/@w:val = &quot;bibliography-title&quot;)">
-        <axsl:call-template name="make-bibliography">
-          <axsl:with-param name="bibliographys" select="$bibliographys"/>
-          <axsl:with-param name="bibliodivs" select="$bibliographys[1]/preceding-sibling::w:p[w:pPr/w:pStyle/@w:val = &quot;bibliodiv&quot; or w:pPr/w:pStyle/@w:val = &quot;bibliodiv-title&quot;]"/>
-        </axsl:call-template>
-      </axsl:when>
-      <axsl:otherwise>
-        <axsl:call-template name="make-bibliography">
-          <axsl:with-param name="bibliographys" select="$bibliographys"/>
-          <axsl:with-param name="bibliodivs" select="following-sibling::w:p[w:pPr/w:pStyle/@w:val = &quot;bibliodiv&quot; or w:pPr/w:pStyle/@w:val = &quot;bibliodiv-title&quot;]"/>
-        </axsl:call-template>
-      </axsl:otherwise>
-    </axsl:choose>
-  </axsl:template>
-  <axsl:template name="make-bibliography">
-    <axsl:param name="bibliographys" select="/.."/>
-    <axsl:param name="bibliodivs" select="/.."/>
-    <wx:sub-section class="bibliography">
-      <axsl:call-template name="copy"/>
-      <axsl:apply-templates select="following-sibling::*[1]" mode="bibliography-bibliodiv">
-        <axsl:with-param name="nextbibliography" select="$bibliographys[1]"/>
-        <axsl:with-param name="bibliodivs" select="$bibliodivs"/>
-      </axsl:apply-templates>
-    </wx:sub-section>
-    <axsl:apply-templates select="$bibliographys[1]" mode="bibliography">
-      <axsl:with-param name="bibliographys" select="$bibliographys[position() != 1]"/>
     </axsl:apply-templates>
   </axsl:template>
   <axsl:template match="w:p" mode="book-component">
@@ -1032,68 +956,6 @@
       </axsl:otherwise>
     </axsl:choose>
   </axsl:template>
-  <axsl:template match="w:p" mode="glossary-glossdiv">
-    <axsl:param name="nextglossary" select="/.."/>
-    <axsl:param select="/.." name="glossdivs"/>
-    <axsl:choose>
-      <axsl:when test="generate-id() = generate-id($nextglossary)"/>
-      <axsl:when test="w:pPr/w:pStyle/@w:val = &quot;glossdiv&quot; or w:pPr/w:pStyle/@w:val = &quot;glossdiv-title&quot;">
-        <axsl:variable name="nextglossdiv" select="following-sibling::w:p[w:pPr/w:pStyle/@w:val = &quot;glossdiv&quot; or w:pPr/w:pStyle/@w:val = &quot;glossdiv-title&quot;][1]"/>
-        <wx:sub-section class="glossdiv">
-          <axsl:call-template name="copy"/>
-          <axsl:apply-templates select="following-sibling::*[1]" mode="glossary-terminal">
-            <axsl:with-param name="nextglossdiv" select="$nextglossdiv"/>
-            <axsl:with-param name="nextglossary" select="$nextglossary"/>
-            <axsl:with-param name="glossdivs" select="$glossdivs"/>
-          </axsl:apply-templates>
-        </wx:sub-section>
-        <axsl:if test="count($glossdivs|$nextglossdiv) = count($glossdivs)">
-          <axsl:apply-templates select="$nextglossdiv" mode="glossary-glossdiv">
-            <axsl:with-param name="nextglossary" select="$nextglossary"/>
-            <axsl:with-param name="glossdivs" select="$glossdivs"/>
-          </axsl:apply-templates>
-        </axsl:if>
-      </axsl:when>
-      <axsl:otherwise>
-        <axsl:call-template name="copy"/>
-        <axsl:apply-templates select="following-sibling::*[1]" mode="glossary-glossdiv">
-          <axsl:with-param name="nextglossary" select="$nextglossary"/>
-          <axsl:with-param name="glossdivs" select="$glossdivs"/>
-        </axsl:apply-templates>
-      </axsl:otherwise>
-    </axsl:choose>
-  </axsl:template>
-  <axsl:template match="w:p" mode="bibliography-bibliodiv">
-    <axsl:param name="nextbibliography" select="/.."/>
-    <axsl:param select="/.." name="bibliodivs"/>
-    <axsl:choose>
-      <axsl:when test="generate-id() = generate-id($nextbibliography)"/>
-      <axsl:when test="w:pPr/w:pStyle/@w:val = &quot;bibliodiv&quot; or w:pPr/w:pStyle/@w:val = &quot;bibliodiv-title&quot;">
-        <axsl:variable name="nextbibliodiv" select="following-sibling::w:p[w:pPr/w:pStyle/@w:val = &quot;bibliodiv&quot; or w:pPr/w:pStyle/@w:val = &quot;bibliodiv-title&quot;][1]"/>
-        <wx:sub-section class="bibliodiv">
-          <axsl:call-template name="copy"/>
-          <axsl:apply-templates select="following-sibling::*[1]" mode="bibliography-terminal">
-            <axsl:with-param name="nextbibliodiv" select="$nextbibliodiv"/>
-            <axsl:with-param name="nextbibliography" select="$nextbibliography"/>
-            <axsl:with-param name="bibliodivs" select="$bibliodivs"/>
-          </axsl:apply-templates>
-        </wx:sub-section>
-        <axsl:if test="count($bibliodivs|$nextbibliodiv) = count($bibliodivs)">
-          <axsl:apply-templates select="$nextbibliodiv" mode="bibliography-bibliodiv">
-            <axsl:with-param name="nextbibliography" select="$nextbibliography"/>
-            <axsl:with-param name="bibliodivs" select="$bibliodivs"/>
-          </axsl:apply-templates>
-        </axsl:if>
-      </axsl:when>
-      <axsl:otherwise>
-        <axsl:call-template name="copy"/>
-        <axsl:apply-templates select="following-sibling::*[1]" mode="bibliography-bibliodiv">
-          <axsl:with-param name="nextbibliography" select="$nextbibliography"/>
-          <axsl:with-param name="bibliodivs" select="$bibliodivs"/>
-        </axsl:apply-templates>
-      </axsl:otherwise>
-    </axsl:choose>
-  </axsl:template>
   <axsl:template match="w:p" mode="book-terminal">
     <axsl:param name="nextsect5" select="/.."/>
     <axsl:param name="nextsect4" select="/.."/>
@@ -1169,40 +1031,6 @@
           <axsl:with-param name="sect3s" select="$sect3s"/>
           <axsl:with-param name="sect2s" select="$sect2s"/>
           <axsl:with-param name="sect1s" select="$sect1s"/>
-        </axsl:apply-templates>
-      </axsl:otherwise>
-    </axsl:choose>
-  </axsl:template>
-  <axsl:template match="w:p" mode="glossary-terminal">
-    <axsl:param name="nextglossdiv" select="/.."/>
-    <axsl:param name="nextglossary" select="/.."/>
-    <axsl:param select="/.." name="glossdivs"/>
-    <axsl:choose>
-      <axsl:when test="generate-id() = generate-id($nextglossdiv)"/>
-      <axsl:when test="generate-id() = generate-id($nextglossary)"/>
-      <axsl:otherwise>
-        <axsl:call-template name="copy"/>
-        <axsl:apply-templates select="following-sibling::*[1]" mode="glossary-terminal">
-          <axsl:with-param name="nextglossdiv" select="$nextglossdiv"/>
-          <axsl:with-param name="nextglossary" select="$nextglossary"/>
-          <axsl:with-param name="glossdivs" select="$glossdivs"/>
-        </axsl:apply-templates>
-      </axsl:otherwise>
-    </axsl:choose>
-  </axsl:template>
-  <axsl:template match="w:p" mode="bibliography-terminal">
-    <axsl:param name="nextbibliodiv" select="/.."/>
-    <axsl:param name="nextbibliography" select="/.."/>
-    <axsl:param select="/.." name="bibliodivs"/>
-    <axsl:choose>
-      <axsl:when test="generate-id() = generate-id($nextbibliodiv)"/>
-      <axsl:when test="generate-id() = generate-id($nextbibliography)"/>
-      <axsl:otherwise>
-        <axsl:call-template name="copy"/>
-        <axsl:apply-templates select="following-sibling::*[1]" mode="bibliography-terminal">
-          <axsl:with-param name="nextbibliodiv" select="$nextbibliodiv"/>
-          <axsl:with-param name="nextbibliography" select="$nextbibliography"/>
-          <axsl:with-param name="bibliodivs" select="$bibliodivs"/>
         </axsl:apply-templates>
       </axsl:otherwise>
     </axsl:choose>
@@ -1415,32 +1243,6 @@
       <axsl:with-param name="sect3s" select="$sect3s"/>
       <axsl:with-param name="sect2s" select="$sect2s"/>
       <axsl:with-param name="sect1s" select="$sect1s"/>
-    </axsl:apply-templates>
-  </axsl:template>
-  <axsl:template match="*" mode="glossary">
-    <axsl:call-template name="copy"/>
-    <axsl:apply-templates select="following-sibling::*[1]" mode="glossary"/>
-  </axsl:template>
-  <axsl:template match="*" mode="glossary-glossdiv">
-    <axsl:param name="nextglossary" select="/.."/>
-    <axsl:param select="/.." name="glossdivs"/>
-    <axsl:call-template name="copy"/>
-    <axsl:apply-templates select="following-sibling::*[1]" mode="glossary-glossdiv">
-      <axsl:with-param name="nextglossary" select="$nextglossary"/>
-      <axsl:with-param name="glossdivs" select="$glossdivs"/>
-    </axsl:apply-templates>
-  </axsl:template>
-  <axsl:template match="*" mode="bibliography">
-    <axsl:call-template name="copy"/>
-    <axsl:apply-templates select="following-sibling::*[1]" mode="bibliography"/>
-  </axsl:template>
-  <axsl:template match="*" mode="bibliography-bibliodiv">
-    <axsl:param name="nextbibliography" select="/.."/>
-    <axsl:param select="/.." name="bibliodivs"/>
-    <axsl:call-template name="copy"/>
-    <axsl:apply-templates select="following-sibling::*[1]" mode="bibliography-bibliodiv">
-      <axsl:with-param name="nextbibliography" select="$nextbibliography"/>
-      <axsl:with-param name="bibliodivs" select="$bibliodivs"/>
     </axsl:apply-templates>
   </axsl:template>
   <axsl:template name="copy">

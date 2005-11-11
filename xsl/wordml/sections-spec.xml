@@ -34,10 +34,4 @@
       </sect2>
     </sect1>
   </group:level>
-  <glossary styles='glossary glossary-title'>
-    <glossdiv styles='glossdiv glossdiv-title'/>
-  </glossary>
-  <bibliography styles='bibliography bibliography-title'>
-    <bibliodiv styles='bibliodiv bibliodiv-title'/>
-  </bibliography>
 </group:root>
