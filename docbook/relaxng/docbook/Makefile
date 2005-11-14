@@ -10,6 +10,7 @@ include ../../../cvstools/Makefile.incl
 
 XSLTPROC=xsltproc
 PERL=perl
+MV ?= mv
 
 CLASS=wd
 VERSION=5.0b1
