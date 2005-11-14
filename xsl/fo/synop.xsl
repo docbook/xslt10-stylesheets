@@ -363,7 +363,9 @@
 
 <xsl:template match="modifier" mode="java">
   <xsl:apply-templates mode="java"/>
-  <xsl:text>&nbsp;</xsl:text>
+    <xsl:if test="following-sibling::*">
+      <xsl:text>&nbsp;</xsl:text>
+    </xsl:if>
 </xsl:template>
 
 <xsl:template match="classname" mode="java">
@@ -442,11 +444,12 @@
 
 <xsl:template mode="java"
   match="constructorsynopsis|destructorsynopsis|methodsynopsis">
-  <xsl:variable name="modifiers" select="modifier"/>
+  <xsl:variable name="start-modifiers" select="modifier[following-sibling::*[name(.) != 'modifier']]"/>
   <xsl:variable name="notmod" select="*[name(.) != 'modifier']"/>
+  <xsl:variable name="end-modifiers" select="modifier[preceding-sibling::*[name(.) != 'modifier']]"/>
   <xsl:variable name="decl">
     <xsl:text>  </xsl:text>
-    <xsl:apply-templates select="$modifiers" mode="java"/>
+    <xsl:apply-templates select="$start-modifiers" mode="java"/>
 
     <!-- type -->
     <xsl:if test="name($notmod[1]) != 'methodname'">
@@ -469,6 +472,10 @@
     <xsl:if test="exceptionname">
       <xsl:text>&RE;&nbsp;&nbsp;&nbsp;&nbsp;throws&nbsp;</xsl:text>
       <xsl:apply-templates select="exceptionname" mode="java"/>
+    </xsl:if>
+    <xsl:if test="modifier[preceding-sibling::*[name(.) != 'modifier']]">
+      <xsl:text> </xsl:text>
+      <xsl:apply-templates select="$end-modifiers" mode="java"/>
     </xsl:if>
     <xsl:text>;</xsl:text>
   </fo:block>
@@ -524,7 +531,9 @@
 
 <xsl:template match="modifier" mode="cpp">
   <xsl:apply-templates mode="cpp"/>
-  <xsl:text>&nbsp;</xsl:text>
+    <xsl:if test="following-sibling::*">
+      <xsl:text>&nbsp;</xsl:text>
+    </xsl:if>
 </xsl:template>
 
 <xsl:template match="classname" mode="cpp">
@@ -596,15 +605,16 @@
 
 <xsl:template mode="cpp"
   match="constructorsynopsis|destructorsynopsis|methodsynopsis">
-  <xsl:variable name="modifiers" select="modifier"/>
+  <xsl:variable name="start-modifiers" select="modifier[following-sibling::*[name(.) != 'modifier']]"/>
   <xsl:variable name="notmod" select="*[name(.) != 'modifier']"/>
+  <xsl:variable name="end-modifiers" select="modifier[preceding-sibling::*[name(.) != 'modifier']]"/>
 
   <fo:block wrap-option='no-wrap'
             white-space-collapse='false'
             linefeed-treatment="preserve"
             xsl:use-attribute-sets="monospace.verbatim.properties">
     <xsl:text>  </xsl:text>
-    <xsl:apply-templates select="$modifiers" mode="cpp"/>
+    <xsl:apply-templates select="$start-modifiers" mode="cpp"/>
 
     <!-- type -->
     <xsl:if test="name($notmod[1]) != 'methodname'">
@@ -618,6 +628,10 @@
     <xsl:if test="exceptionname">
       <xsl:text>&RE;&nbsp;&nbsp;&nbsp;&nbsp;throws&nbsp;</xsl:text>
       <xsl:apply-templates select="exceptionname" mode="cpp"/>
+    </xsl:if>
+    <xsl:if test="modifier[preceding-sibling::*[name(.) != 'modifier']]">
+      <xsl:text> </xsl:text>
+      <xsl:apply-templates select="$end-modifiers" mode="cpp"/>
     </xsl:if>
     <xsl:text>;</xsl:text>
   </fo:block>
@@ -674,7 +688,9 @@
 
 <xsl:template match="modifier" mode="idl">
   <xsl:apply-templates mode="idl"/>
-  <xsl:text>&nbsp;</xsl:text>
+    <xsl:if test="following-sibling::*">
+      <xsl:text>&nbsp;</xsl:text>
+    </xsl:if>
 </xsl:template>
 
 <xsl:template match="classname" mode="idl">
@@ -746,15 +762,16 @@
 
 <xsl:template mode="idl"
   match="constructorsynopsis|destructorsynopsis|methodsynopsis">
-  <xsl:variable name="modifiers" select="modifier"/>
+  <xsl:variable name="start-modifiers" select="modifier[following-sibling::*[name(.) != 'modifier']]"/>
   <xsl:variable name="notmod" select="*[name(.) != 'modifier']"/>
+  <xsl:variable name="end-modifiers" select="modifier[preceding-sibling::*[name(.) != 'modifier']]"/>
 
   <fo:block wrap-option='no-wrap'
             white-space-collapse='false'
             linefeed-treatment="preserve"
             xsl:use-attribute-sets="monospace.verbatim.properties">
     <xsl:text>  </xsl:text>
-    <xsl:apply-templates select="$modifiers" mode="idl"/>
+    <xsl:apply-templates select="$start-modifiers" mode="idl"/>
 
     <!-- type -->
     <xsl:if test="name($notmod[1]) != 'methodname'">
@@ -769,6 +786,10 @@
       <xsl:text>&RE;&nbsp;&nbsp;&nbsp;&nbsp;raises(</xsl:text>
       <xsl:apply-templates select="exceptionname" mode="idl"/>
       <xsl:text>)</xsl:text>
+    </xsl:if>
+    <xsl:if test="modifier[preceding-sibling::*[name(.) != 'modifier']]">
+      <xsl:text> </xsl:text>
+      <xsl:apply-templates select="$end-modifiers" mode="idl"/>
     </xsl:if>
     <xsl:text>;</xsl:text>
   </fo:block>
@@ -813,7 +834,9 @@
 
 <xsl:template match="modifier" mode="perl">
   <xsl:apply-templates mode="perl"/>
-  <xsl:text>&nbsp;</xsl:text>
+    <xsl:if test="following-sibling::*">
+      <xsl:text>&nbsp;</xsl:text>
+    </xsl:if>
 </xsl:template>
 
 <xsl:template match="classname" mode="perl">
@@ -885,8 +908,9 @@
 
 <xsl:template mode="perl"
   match="constructorsynopsis|destructorsynopsis|methodsynopsis">
-  <xsl:variable name="modifiers" select="modifier"/>
+  <xsl:variable name="start-modifiers" select="modifier[following-sibling::*[name(.) != 'modifier']]"/>
   <xsl:variable name="notmod" select="*[name(.) != 'modifier']"/>
+  <xsl:variable name="end-modifiers" select="modifier[preceding-sibling::*[name(.) != 'modifier']]"/>
 
   <fo:block wrap-option='no-wrap'
             white-space-collapse='false'
