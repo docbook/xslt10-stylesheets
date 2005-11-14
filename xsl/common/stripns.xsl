@@ -10,7 +10,8 @@
   <xsl:choose>
     <xsl:when test="self::ng:* or self::db:*">
       <xsl:element name="{local-name(.)}">
-        <xsl:copy-of select="@*[not(name(.) = 'xml:id')]"/>
+        <xsl:copy-of select="@*[not(name(.) = 'xml:id')
+			        and not(name(.) = 'version')]"/>
 	<xsl:if test="@xml:id">
 	  <xsl:attribute name="id">
 	    <xsl:value-of select="@xml:id"/>
@@ -21,7 +22,8 @@
     </xsl:when>
     <xsl:otherwise>
       <xsl:copy>
-        <xsl:copy-of select="@*[not(name(.) = 'xml:id')]"/>
+        <xsl:copy-of select="@*[not(name(.) = 'xml:id')
+			        and not(name(.) = 'version')]"/>
 	<xsl:if test="@xml:id">
 	  <xsl:attribute name="id">
 	    <xsl:value-of select="@xml:id"/>
@@ -60,6 +62,7 @@
 	              |parent::db:section
 	              |parent::db:setindex
 	              |parent::db:set
+	              |parent::db:slides
 	              |parent::db:sidebar">
 	<xsl:value-of select="local-name(parent::*)"/>
 	<xsl:text>info</xsl:text>
@@ -78,7 +81,8 @@
   </xsl:variable>
 
   <xsl:element name="{$info}">
-    <xsl:copy-of select="@*[not(name(.) = 'xml:id')]"/>
+    <xsl:copy-of select="@*[not(name(.) = 'xml:id')
+			 and not(name(.) = 'version')]"/>
     <xsl:if test="@xml:id">
       <xsl:attribute name="id">
 	<xsl:value-of select="@xml:id"/>
@@ -86,6 +90,25 @@
     </xsl:if>
     <xsl:apply-templates mode="stripNS"/>
   </xsl:element>
+
+  <xsl:if test="(not(../db:title) and not(../ng:title))
+		and ($info = 'prefaceinfo'
+		     or $info = 'chapterinfo'
+		     or $info = 'sectioninfo'
+		     or $info = 'sect1info'
+		     or $info = 'sect2info'
+		     or $info = 'sect3info'
+		     or $info = 'sect4info'
+		     or $info = 'sect5info'
+		     or $info = 'refsectioninfo'
+		     or $info = 'refsect1info'
+		     or $info = 'refsect2info'
+		     or $info = 'refsect3info'
+		     or $info = 'blockinfo'
+		     or $info = 'appendixinfo')">
+    <xsl:apply-templates select="db:title|ng:title" mode="stripNS"/>
+  </xsl:if>
+
 </xsl:template>
 
 <xsl:template match="ng:link|db:link" mode="stripNS">
@@ -95,7 +118,9 @@
     <xsl:when test="$href != '' and not(starts-with($href,'#'))">
       <ulink url="{$href}">
 	<xsl:for-each select="@*">
-	  <xsl:if test="local-name(.) != 'href' and name(.) != 'xml:id'">
+	  <xsl:if test="local-name(.) != 'href'
+			and name(.) != 'version'
+			and name(.) != 'xml:id'">
 	    <xsl:copy/>
 	  </xsl:if>
 	</xsl:for-each>
@@ -110,7 +135,9 @@
     <xsl:when test="$href != '' and starts-with($href,'#')">
       <link linkend="{substring-after($href,'#')}">
 	<xsl:for-each select="@*">
-	  <xsl:if test="local-name(.) != 'href' and name(.) != 'xml:id'">
+	  <xsl:if test="local-name(.) != 'href'
+			and name(.) != 'version'
+			and name(.) != 'xml:id'">
 	    <xsl:copy/>
 	  </xsl:if>
 	</xsl:for-each>
@@ -124,7 +151,8 @@
     </xsl:when>
     <xsl:otherwise>
       <link>
-        <xsl:copy-of select="@*[not(name(.) = 'xml:id')]"/>
+	<xsl:copy-of select="@*[not(name(.) = 'xml:id')
+			     and not(name(.) = 'version')]"/>
 	<xsl:if test="@xml:id">
 	  <xsl:attribute name="id">
 	    <xsl:value-of select="@xml:id"/>
@@ -136,12 +164,21 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="ng:tag|db:tag" mode="stripNS">
+  <sgmltag>
+    <xsl:copy-of select="@*[not(name(.) = 'xml:id')
+			 and not(name(.) = 'version')]"/>
+    <xsl:apply-templates mode="stripNS"/>
+  </sgmltag>
+</xsl:template>
+
 <xsl:template match="ng:textdata|db:textdata
 		     |ng:imagedata|db:imagedata
 		     |ng:videodata|db:videodata
 		     |ng:audiodata|db:audiodata" mode="stripNS">
   <xsl:element name="{local-name(.)}">
-    <xsl:copy-of select="@*[not(name(.) = 'xml:id')]"/>
+    <xsl:copy-of select="@*[not(name(.) = 'xml:id')
+			 and not(name(.) = 'version')]"/>
     <xsl:if test="@xml:id">
       <xsl:attribute name="id">
 	<xsl:value-of select="@xml:id"/>
