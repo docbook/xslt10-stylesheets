@@ -14,7 +14,6 @@ $($(_MODULE)_OUTPUT)/%.rnx: $($(_MODULE)_OBJS) $($(_MODULE)_OUTPUT)/.f
 	$(XSLT) $@, $(AUGMENT) $@ use.extensions=1
 	$(PERL) $(CLEANUP) $@ > $@,
 	$(MV) $@, $@
-	$(RM) $@,
 
 #$($(_MODULE)_OUTPUT)/%.rng: $(_MODULE)/%.rnc $($(_MODULE)_OUTPUT)/.f
 #	$(RUNTRANG) $< $@
