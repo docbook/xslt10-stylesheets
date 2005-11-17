@@ -8,10 +8,13 @@ EXTRACTED_DIR ?= $(basename $(basename $(DOWNLOAD_FILENAME)))
 WGET ?= wget
 WGET_OPTS ?=
 
+UNTAR ?= tar
+UNTAR_OPTS ?= xvfz
+
 all: $(EXTRACTED_DIR)
 
 $(EXTRACTED_DIR): $(DOWNLOAD_FILENAME)
-	tar xvfz $<
+	$(UNTAR) $(UNTAR_OPTS) $<
 
 $(DOWNLOAD_FILENAME):
 	$(WGET) $(DOWNLOAD_URL)/$@
