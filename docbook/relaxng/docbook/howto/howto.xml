@@ -975,13 +975,12 @@ complains about undefined <tag class="attribute">xml:id</tag>
 attribute?</para>
 </question>
 <answer>
-<para>XMLSpy always uses its own version of
+<para>XMLSpy always uses its own bundled version of
 <filename>xml.xsd</filename> which unfortunately doesn't define <tag
-class="attribute">xml:id</tag> attribute. To solve this problem, just
-grab the latest version of <filename>xml.xsd</filename> from <link
-xl:href="http://www.w3.org/2001/xml.xsd"/> and copy it over original
-file
-<filename><replaceable>XMLSpy_install_dir</replaceable>/Schemas/schema/W3C_2001/xml.xsd</filename>.</para>
+class="attribute">xml:id</tag> attribute. The bundled version of
+<filename>xml.xsd</filename> is hardwired into the program and can not
+be replaced by a newer version. To solve this problem you must upgrade
+to version 2006 SP1.</para>
 </answer>
 </qandaentry>
 
