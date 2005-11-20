@@ -16,14 +16,13 @@
 
   <!-- ==================================================================== -->
 
-  <!-- *  This stylesheet takes HTML output of table content from the -->
-  <!-- *  DocBook HTML stylesheets, and transforms it to tbl(1) markup. -->
+  <!-- * This stylesheet transforms DocBook source to tbl(1) markup. -->
   <!-- * -->
-  <!-- *  See M. E. Lesk, “Tbl – A Program to Format Tables” for details -->
-  <!-- *  on tbl(1) and its markup syntaxt. -->
+  <!-- * See M. E. Lesk, “Tbl – A Program to Format Tables” for details -->
+  <!-- * on tbl(1) and its markup syntaxt. -->
   <!-- * -->
-  <!-- *    http://cm.bell-labs.com/cm/cs/doc/76/tbl.ps.gz -->
-  <!-- *    http://www.snake.net/software/troffcvt/tbl.html -->
+  <!-- *   http://cm.bell-labs.com/cm/cs/doc/76/tbl.ps.gz -->
+  <!-- *   http://www.snake.net/software/troffcvt/tbl.html -->
 
   <!-- ==================================================================== -->
 
@@ -43,23 +42,83 @@
     <!-- * we can walk through it again and do further transformation -->
     <!-- * to generate correct markup for tbl(1) -->
     <xsl:param name="table" select="exsl:node-set($contents)"/>
+    <xsl:param name="total-rows" select="count($table//tr)"/>
+
+    <xsl:variable name="cells">
+      <xsl:call-template name="build.cell.list">
+        <xsl:with-param name="table" select="$table"/>
+      </xsl:call-template>
+    </xsl:variable>
+
     <!-- * .TS = "Table Start" -->
     <xsl:text>.TS&#10;</xsl:text>
     <!-- * put box around table and between all cells -->
     <xsl:text>allbox;&#10;</xsl:text>
+
     <!-- * create the table “format” spec, which tells tbl(1) how to -->
     <!-- * format each row and column -->
     <xsl:call-template name="create.table.format">
-      <xsl:with-param name="table" select="$table"/>
+      <xsl:with-param name="cells" select="exsl:node-set($cells)"/>
+      <xsl:with-param name="total-rows" select="$total-rows"/>
     </xsl:call-template>
+
     <xsl:for-each select="$table//tr">
-      <xsl:text>&#10;</xsl:text>
-      <!-- * embed a comment to show where each row starts -->
-      <xsl:text>.\" ==============================================&#10;</xsl:text>
-      <xsl:text>.\" ROW </xsl:text>
-      <xsl:value-of select="position()"/>
-      <xsl:text>&#10;</xsl:text>
-      <xsl:for-each select="td|th">
+      <xsl:call-template name="output.row">
+        <xsl:with-param name="cells" select="exsl:node-set($cells)"/>
+        <xsl:with-param name="row-number" select="position()"/>
+      </xsl:call-template>
+    </xsl:for-each>
+
+    <xsl:text>&#10;</xsl:text>
+    <!-- * .TE = "Table End" -->
+    <xsl:text>.TE&#10;</xsl:text>
+    <!-- * put a blank line of space below the table -->
+    <xsl:text>.sp&#10;</xsl:text>
+  </xsl:template>
+
+  <!-- ==================================================================== -->
+
+  <xsl:template name="output.row">
+    <xsl:param name="cells"/>
+    <xsl:param name="row-number"/>
+    <xsl:param name="total-columns" select="count(td|th)"/>
+    <xsl:text>&#10;</xsl:text>
+    <!-- * embed a comment to show where each row starts -->
+    <xsl:text>.\" ==============================================&#10;</xsl:text>
+    <xsl:text>.\" ROW </xsl:text>
+    <xsl:value-of select="$row-number"/>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:for-each select="td|th">
+      <xsl:call-template name="output.cell">
+        <xsl:with-param name="cells" select="exsl:node-set($cells)"/>
+        <xsl:with-param name="row-number" select="$row-number"/>
+        <xsl:with-param name="column-number" select="position()"/>
+        <xsl:with-param name="total-columns" select="$total-columns"/>
+      </xsl:call-template>
+    </xsl:for-each>
+    <xsl:text>&#10;</xsl:text>
+  </xsl:template>
+
+  <xsl:template name="output.cell">
+    <xsl:param name="cells"/>
+    <xsl:param name="row-number"/>
+    <xsl:param name="column-number"/>
+    <xsl:param name="total-columns"/>
+    <xsl:param name="format-letter">
+      <xsl:value-of
+          select="$cells//cell[@row = $row-number and @column = $column-number]"/>
+    </xsl:param>                            
+    <xsl:choose>
+      <xsl:when test="contains($format-letter,'^')">
+        <xsl:text>&#09;</xsl:text>
+        <xsl:call-template name="output.cell">
+          <xsl:with-param name="cells" select="exsl:node-set($cells)"/>
+          <xsl:with-param name="row-number" select="$row-number"/>
+          <xsl:with-param name="column-number" select="$column-number + 1"/>
+          <xsl:with-param name="total-columns" select="$total-columns"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
         <!-- * the “T{" and “T}” stuff are delimiters to tell tbl(1) that -->
         <!-- * the delimited contents are “text blocks” that groff(1) -->
         <!-- * needs to process -->
@@ -70,27 +129,21 @@
         </xsl:call-template>
         <xsl:text>&#10;T}</xsl:text>
         <xsl:choose>
-          <!-- * tbl(1) treats tab characters as delimiters between -->
-          <!-- * cells; so we need to output a tab after each <td> except -->
-          <!-- * the last one in the row -->
-          <xsl:when test="position() = last()"/> <!-- do nothing -->
+          <xsl:when test="$column-number = $total-columns"/> <!-- do nothing -->
           <xsl:otherwise>
+            <!-- * tbl(1) treats tab characters as delimiters between -->
+            <!-- * cells; so we need to output a tab after each <td> except -->
+            <!-- * the last one in the row -->
             <xsl:text>&#09;</xsl:text>
           </xsl:otherwise>
         </xsl:choose>
-      </xsl:for-each>
-      <xsl:text>&#10;</xsl:text>
-    </xsl:for-each>
-    <xsl:text>&#10;</xsl:text>
-    <!-- * .TE = "Table End" -->
-    <xsl:text>.TE&#10;</xsl:text>
-    <!-- * put a blank line of space below the table -->
-    <xsl:text>.sp&#10;</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <!-- ==================================================================== -->
 
-  <xsl:template name="create.table.format">
+  <xsl:template name="build.cell.list">
     <xsl:param name="table"/>
     <xsl:param name="row-counter">1</xsl:param>
     <xsl:param name="total-rows" select="count($table//tr)"/>
@@ -100,28 +153,30 @@
     <!-- * record of the table layout. That is necessary in order to -->
     <!-- * properly process Rowspan instances. -->
     <xsl:variable name="new-cell-data">
-      <xsl:call-template name="create.table.format.row">
+      <xsl:call-template name="process.source.row">
         <xsl:with-param name="content" select="$table//tr[$row-counter]"/>
         <xsl:with-param name="row-counter" select="$row-counter"/>
         <xsl:with-param name="total-rows" select="$total-rows"/>
         <xsl:with-param name="cell-data" select="exsl:node-set($cell-data)"/>
       </xsl:call-template>
     </xsl:variable>
+
     <xsl:choose>
-      <!-- * When the value of row counter  reaches the total number of -->
-      <!-- * rows, it means we have processed all rows; so next step is -->
-      <!-- * to sort and uniq-ify the list of cells we have generated. -->
+      <!-- * When the value of row counter reaches the total number of -->
+      <!-- * rows, it means we have processed all rows; so next steps are -->
+      <!-- * to sort it and pass the cell list on for processing. -->
       <xsl:when test="$row-counter = $total-rows">
-        <!-- * First, turn $new-cell-data into a node-set so that we -->
-        <!-- * can walk through it. -->
         <xsl:variable name="cell-list" select="exsl:node-set($new-cell-data)"/>
-        <!-- * Use set:distinct to remove duplicates from the cell list -->
-        <xsl:for-each select="set:distinct($cell-list//cell)">
-          <!-- * Sort the list by row and then by column within row -->
-          <xsl:sort select="@row"/>
-          <xsl:sort select="@column"/>
-          <xsl:message>Cell: Row="<xsl:value-of select="@row"/>", Column="<xsl:value-of select="@column"/>" - value: <xsl:value-of select="."/></xsl:message>
-        </xsl:for-each>
+        <!-- * Sort the cell list by row and then by column within row -->
+        <xsl:variable name="cell-list-sorted">
+          <xsl:for-each select="set:distinct($cell-list//cell)">
+            <xsl:sort select="@row"/>
+            <xsl:sort select="@column"/>
+            <xsl:copy-of select="."/>
+          </xsl:for-each>
+        </xsl:variable>
+
+        <xsl:copy-of select="exsl:node-set($cell-list-sorted)"/>
       </xsl:when>
       <xsl:otherwise>
         <!-- * Otherwise, the value of row counter is still less than the -->
@@ -129,7 +184,7 @@
         <!-- * and recursively re-call the current template to -->
         <!-- * process the next row. We pass the cell-data param so that -->
         <!-- * we will know the layout of rows we have processed so far. -->
-        <xsl:call-template name="create.table.format">
+        <xsl:call-template name="build.cell.list">
           <xsl:with-param name="table" select="$table"/>
           <xsl:with-param name="row-counter" select="$row-counter + 1"/>
           <xsl:with-param name="cell-data" select="exsl:node-set($new-cell-data)"/>
@@ -140,7 +195,7 @@
 
   <!-- ==================================================================== -->
 
-  <xsl:template name="create.table.format.row">
+  <xsl:template name="process.source.row">
     <xsl:param name="content"/>
     <xsl:param name="row-counter"/>
     <xsl:param name="cell-counter" select="1"/>
@@ -161,7 +216,7 @@
       <!-- * cell format data. -->
       <xsl:when test="$cell-counter &lt;= $total-cells">
         <xsl:variable name="new-cell-data">
-          <xsl:call-template name="create.table.format.cell">
+          <xsl:call-template name="assemble.cell.data">
             <xsl:with-param name="content" select="$content"/>
             <xsl:with-param name="cell-content" select="$content[1]/*[$cell-counter]"/>
             <xsl:with-param name="row-counter" select="$row-counter"/>
@@ -171,7 +226,7 @@
         </xsl:variable>
         <!-- * Now we increment the cell-counter count and recursively -->
         <!-- * re-call the current template to process the next cell. -->
-        <xsl:call-template name="create.table.format.row">
+        <xsl:call-template name="process.source.row">
           <xsl:with-param name="content" select="$content[1]"/>
           <xsl:with-param name="row-counter" select="$row-counter"/>
           <xsl:with-param name="cell-counter" select="$cell-counter + 1"/>
@@ -187,7 +242,7 @@
 
   <!-- ==================================================================== -->
 
-  <xsl:template name="create.table.format.cell">
+  <xsl:template name="assemble.cell.data">
     <xsl:param name="content"/>
     <xsl:param name="cell-content"/>
     <xsl:param name="row-counter"/>
@@ -210,9 +265,9 @@
       <!-- * current coordinates. -->
       <xsl:when test="$cell-data//cell[@row = $row-counter and @column = $cell-counter]">
         <!-- * If we already have a cell here, increment cell counter -->
-        <!-- * and then recursively call create.table.format.cell to -->
+        <!-- * and then recursively call the current template to -->
         <!-- * check the next column, until we find an “open” column. -->
-        <xsl:call-template name="create.table.format.cell">
+        <xsl:call-template name="assemble.cell.data">
           <xsl:with-param name="content" select="$content"/>
           <xsl:with-param name="cell-content" select="$content[1]/*[$cell-counter + 1]"/>
           <xsl:with-param name="row-counter" select="$row-counter"/>
@@ -227,8 +282,10 @@
         <!-- * ****************** HACK ALERT ************************* -->
         <!-- * We first re-copy the whole cell-data list. This results -->
         <!-- * in a potentially huge number of duplicates in the -->
-        <!-- * list. But I have not found a way around it. -Mike -->
-        <xsl:copy-of select="$cell-data"/>
+        <!-- * list. So, we need to run set:distinct() on it each -->
+        <!-- * time in order to get rid of the duplicates. I have not -->
+        <!-- * yet found a way around this. -Mike -->
+        <xsl:copy-of select="set:distinct($cell-data//cell)"/>
         <!-- * Now call the template that actually generates the Cell -->
         <!-- * instance for each “real” cell. -->
         <xsl:call-template name="cell">
@@ -311,6 +368,7 @@
     </xsl:choose>
   </xsl:template>
 
+
   <!-- ==================================================================== -->
 
   <!-- * The following templates generate the actual Cell instances that -->
@@ -330,8 +388,8 @@
       </xsl:call-template>
       <xsl:choose>
         <xsl:when test="local-name(.) = 'th'">
-          <!-- * h = "heading" (pseudo-markup; we change to "cfB" later) -->
-          <xsl:text>h</xsl:text>
+          <!-- * c = "centered" -->
+          <xsl:text>c</xsl:text>
         </xsl:when>
         <xsl:otherwise>
           <!-- * l = "left" -->
@@ -432,6 +490,41 @@
     <xsl:text>,</xsl:text>
     <xsl:value-of select="$column"/>
     <xsl:text>,</xsl:text>
+  </xsl:template>
+
+  <!-- ==================================================================== -->
+
+  <xsl:template name="create.table.format">
+    <xsl:param name="cells"/>
+    <xsl:param name="total-rows"/>
+    <xsl:param name="row-counter">1</xsl:param>
+    <xsl:choose>
+      <xsl:when test="$row-counter > $total-rows">
+        <xsl:text>.&#10;</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates
+            mode="create.table.format.row"
+            select="$cells//cell[@row = $row-counter]"/>
+        <xsl:call-template name="create.table.format">
+          <xsl:with-param name="cells" select="$cells"/>
+          <xsl:with-param name="total-rows" select="$total-rows"/>
+          <xsl:with-param name="row-counter" select="$row-counter + 1"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="cell" mode="create.table.format.row">
+    <xsl:value-of select="substring(.,string-length(.),1)"/>
+    <xsl:choose>
+    <xsl:when test="position() = last()">
+      <xsl:text>&#10;</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text> </xsl:text>
+    </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
 </xsl:stylesheet>
