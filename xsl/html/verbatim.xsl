@@ -234,37 +234,37 @@
 
   <xsl:variable name="linenumbering.startinglinenumber">
     <xsl:choose>
-      <xsl:when test="@startinglinenumber">
-        <xsl:value-of select="@startinglinenumber"/>
+      <xsl:when test="$pi.context/@startinglinenumber">
+        <xsl:value-of select="$pi.context/@startinglinenumber"/>
       </xsl:when>
-      <xsl:when test="@continuation='continues'">
+      <xsl:when test="$pi.context/@continuation='continues'">
         <xsl:variable name="lastLine">
           <xsl:choose>
-            <xsl:when test="self::programlisting">
+            <xsl:when test="$pi.context/self::programlisting">
               <xsl:call-template name="lastLineNumber">
                 <xsl:with-param name="listings"
                      select="preceding::programlisting[@linenumbering='numbered']"/>
               </xsl:call-template>
             </xsl:when>
-            <xsl:when test="self::screen">
+            <xsl:when test="$pi.context/self::screen">
               <xsl:call-template name="lastLineNumber">
                 <xsl:with-param name="listings"
                      select="preceding::screen[@linenumbering='numbered']"/>
               </xsl:call-template>
             </xsl:when>
-            <xsl:when test="self::literallayout">
+            <xsl:when test="$pi.context/self::literallayout">
               <xsl:call-template name="lastLineNumber">
                 <xsl:with-param name="listings"
                      select="preceding::literallayout[@linenumbering='numbered']"/>
               </xsl:call-template>
             </xsl:when>
-            <xsl:when test="self::address">
+            <xsl:when test="$pi.context/self::address">
               <xsl:call-template name="lastLineNumber">
                 <xsl:with-param name="listings"
                      select="preceding::address[@linenumbering='numbered']"/>
               </xsl:call-template>
             </xsl:when>
-            <xsl:when test="self::synopsis">
+            <xsl:when test="$pi.context/self::synopsis">
               <xsl:call-template name="lastLineNumber">
                 <xsl:with-param name="listings"
                      select="preceding::synopsis[@linenumbering='numbered']"/>
@@ -273,7 +273,7 @@
             <xsl:otherwise>
               <xsl:message>
                 <xsl:text>Unexpected verbatim environment: </xsl:text>
-                <xsl:value-of select="local-name(.)"/>
+                <xsl:value-of select="local-name($pi.context)"/>
               </xsl:message>
               <xsl:value-of select="0"/>
             </xsl:otherwise>
