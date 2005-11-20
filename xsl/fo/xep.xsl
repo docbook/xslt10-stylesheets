@@ -20,24 +20,29 @@
   <rx:meta-info>
     <xsl:variable name="authors" select="(//author|//editor|//corpauthor|//authorgroup)[1]"/>
     <xsl:if test="$authors">
+      <xsl:variable name="author">
+        <xsl:choose>
+          <xsl:when test="$authors[self::authorgroup]">
+            <xsl:call-template name="person.name.list">
+              <xsl:with-param name="person.list" 
+                        select="$authors/*[self::author|self::corpauthor|
+                               self::othercredit|self::editor]"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="$authors[self::corpauthor]">
+            <xsl:value-of select="$authors"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="person.name">
+              <xsl:with-param name="node" select="$authors"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
       <xsl:element name="rx:meta-field">
         <xsl:attribute name="name">author</xsl:attribute>
         <xsl:attribute name="value">
-          <xsl:choose>
-            <xsl:when test="$authors[self::authorgroup]">
-              <xsl:call-template name="person.name.list">
-                <xsl:with-param name="person.list" select="$authors/*[self::author|self::corpauthor|self::othercredit|self::editor]"/>
-              </xsl:call-template>
-            </xsl:when>
-            <xsl:when test="$authors[self::corpauthor]">
-              <xsl:value-of select="$authors"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:call-template name="person.name">
-                <xsl:with-param name="node" select="$authors"/>
-              </xsl:call-template>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:value-of select="normalize-space($author)"/>
         </xsl:attribute>
       </xsl:element>
     </xsl:if>
@@ -58,7 +63,7 @@
     <xsl:element name="rx:meta-field">
       <xsl:attribute name="name">title</xsl:attribute>
       <xsl:attribute name="value">
-        <xsl:value-of select="$title"/>
+        <xsl:value-of select="normalize-space($title)"/>
       </xsl:attribute>
     </xsl:element>
 
@@ -67,7 +72,7 @@
         <xsl:attribute name="name">keywords</xsl:attribute>
         <xsl:attribute name="value">
           <xsl:for-each select="//keyword">
-            <xsl:value-of select="."/>
+            <xsl:value-of select="normalize-space(.)"/>
             <xsl:if test="position() != last()">
               <xsl:text>, </xsl:text>
             </xsl:if>
@@ -81,7 +86,7 @@
         <xsl:attribute name="name">subject</xsl:attribute>
         <xsl:attribute name="value">
           <xsl:for-each select="//subjectterm">
-            <xsl:value-of select="."/>
+            <xsl:value-of select="normalize-space(.)"/>
             <xsl:if test="position() != last()">
               <xsl:text>, </xsl:text>
             </xsl:if>
@@ -120,7 +125,7 @@
     <xsl:when test="parent::*">
       <rx:bookmark internal-destination="{$id}">
         <rx:bookmark-label>
-          <xsl:value-of select="$bookmark-label"/>
+          <xsl:value-of select="normalize-space($bookmark-label)"/>
         </rx:bookmark-label>
         <xsl:apply-templates select="*" mode="xep.outline"/>
       </rx:bookmark>
@@ -129,7 +134,7 @@
       <xsl:if test="$bookmark-label != ''">
         <rx:bookmark internal-destination="{$id}">
           <rx:bookmark-label>
-            <xsl:value-of select="$bookmark-label"/>
+            <xsl:value-of select="normalize-space($bookmark-label)"/>
           </rx:bookmark-label>
         </rx:bookmark>
       </xsl:if>
