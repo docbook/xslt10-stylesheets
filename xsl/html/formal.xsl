@@ -12,6 +12,8 @@
 
      ******************************************************************** -->
 
+<xsl:param name="formal.object.break.after">1</xsl:param>
+
 <xsl:template name="formal.object">
   <xsl:param name="placement" select="'before'"/>
   <xsl:param name="class" select="local-name(.)"/>
@@ -26,8 +28,9 @@
     <xsl:choose>
       <xsl:when test="$placement = 'before'">
         <xsl:call-template name="formal.object.heading"/>
-        <xsl:apply-templates/>
-
+        <div class="{$class}-contents">
+          <xsl:apply-templates/>
+        </div>
         <!-- HACK: This doesn't belong inside formal.object; it should be done by -->
         <!-- the table template, but I want the link to be inside the DIV, so... -->
         <xsl:if test="local-name(.) = 'table'">
@@ -38,8 +41,7 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:if test="$spacing.paras != 0"><p/></xsl:if>
-        <xsl:apply-templates/>
-
+        <div class="{$class}-contents"><xsl:apply-templates/></div>
         <!-- HACK: This doesn't belong inside formal.object; it should be done by -->
         <!-- the table template, but I want the link to be inside the DIV, so... -->
         <xsl:if test="local-name(.) = 'table'">
@@ -50,6 +52,9 @@
       </xsl:otherwise>
     </xsl:choose>
   </div>
+  <xsl:if test="not($formal.object.break.after = '0')">
+    <br class="{$class}-break"/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template name="formal.object.heading">
