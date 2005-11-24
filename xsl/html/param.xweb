@@ -97,6 +97,9 @@ stylesheet like this:</para>
 &index.on.type;
 &index.on.role;
 &index.prefer.titleabbrev;
+&index.term.separator;
+&index.number.separator;
+&index.range.separator;
 </reference>
 
 <reference id="dbk_ext"><title>Stylesheet Extensions</title>
@@ -588,6 +591,9 @@ around all these parameters.</para>
 <src:fragref linkend="id.warnings.frag"/>
 <src:fragref linkend="index.on.role.frag"/>
 <src:fragref linkend="index.on.type.frag"/>
+<src:fragref linkend="index.number.separator.frag"/>
+<src:fragref linkend="index.term.separator.frag"/>
+<src:fragref linkend="index.range.separator.frag"/>
 <src:fragref linkend="index.prefer.titleabbrev.frag"/>
 <src:fragref linkend="ignore.image.scaling.frag"/>
 <src:fragref linkend="inherit.keywords.frag"/>
