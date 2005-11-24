@@ -181,6 +181,25 @@
 
   <xsl:variable name="key" select="&primary;"/>
   <xsl:variable name="refs" select="key('primary', $key)[&scope;]"/>
+
+  <xsl:variable name="term.separator">
+    <xsl:call-template name="index.separator">
+      <xsl:with-param name="key" select="'index.term.separator'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="range.separator">
+    <xsl:call-template name="index.separator">
+      <xsl:with-param name="key" select="'index.range.separator'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="number.separator">
+    <xsl:call-template name="index.separator">
+      <xsl:with-param name="key" select="'index.number.separator'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <fo:block>
     <xsl:if test="$axf.extensions != 0">
       <xsl:attribute name="axf:suppress-duplicate-page-number">true</xsl:attribute>
@@ -190,11 +209,11 @@
     <xsl:choose>
       <xsl:when test="$xep.extensions != 0">
         <xsl:if test="$refs[not(see) and not(secondary)]">
-          <xsl:copy-of select="$index.term.separator"/>
+          <xsl:copy-of select="$term.separator"/>
           <xsl:variable name="primary" select="&primary;"/>
           <xsl:variable name="primary.significant" select="concat(&primary;, $significant.flag)"/>
-          <rx:page-index list-separator="{$index.number.separator}"
-                         range-separator="{$index.range.separator}">
+          <rx:page-index list-separator="{$number.separator}"
+                         range-separator="{$range.separator}">
             <xsl:if test="$refs[@significance='preferred'][not(see) and not(secondary)]">
               <rx:index-item xsl:use-attribute-sets="index.preferred.page.properties xep.index.item.properties"
                 ref-key="{$primary.significant}"/>
@@ -271,6 +290,25 @@
 
   <xsl:variable name="key" select="concat(&primary;, &sep;, &secondary;)"/>
   <xsl:variable name="refs" select="key('secondary', $key)[&scope;]"/>
+
+  <xsl:variable name="term.separator">
+    <xsl:call-template name="index.separator">
+      <xsl:with-param name="key" select="'index.term.separator'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="range.separator">
+    <xsl:call-template name="index.separator">
+      <xsl:with-param name="key" select="'index.range.separator'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="number.separator">
+    <xsl:call-template name="index.separator">
+      <xsl:with-param name="key" select="'index.number.separator'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <fo:block>
     <xsl:if test="$axf.extensions != 0">
       <xsl:attribute name="axf:suppress-duplicate-page-number">true</xsl:attribute>
@@ -280,12 +318,12 @@
     <xsl:choose>
       <xsl:when test="$xep.extensions != 0">
         <xsl:if test="$refs[not(see) and not(tertiary)]">
-          <xsl:copy-of select="$index.term.separator"/>
+          <xsl:copy-of select="$term.separator"/>
           <xsl:variable name="primary" select="&primary;"/>
           <xsl:variable name="secondary" select="&secondary;"/>
           <xsl:variable name="primary.significant" select="concat(&primary;, $significant.flag)"/>
-          <rx:page-index list-separator="{$index.number.separator}"
-                         range-separator="{$index.range.separator}">
+          <rx:page-index list-separator="{$number.separator}"
+                         range-separator="{$range.separator}">
             <xsl:if test="$refs[@significance='preferred'][not(see) and not(tertiary)]">
               <rx:index-item xsl:use-attribute-sets="index.preferred.page.properties xep.index.item.properties">
                 <xsl:attribute name="ref-key">
@@ -370,6 +408,25 @@
   <xsl:param name="type" select="''"/>
   <xsl:variable name="key" select="concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;)"/>
   <xsl:variable name="refs" select="key('tertiary', $key)[&scope;]"/>
+
+  <xsl:variable name="term.separator">
+    <xsl:call-template name="index.separator">
+      <xsl:with-param name="key" select="'index.term.separator'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="range.separator">
+    <xsl:call-template name="index.separator">
+      <xsl:with-param name="key" select="'index.range.separator'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="number.separator">
+    <xsl:call-template name="index.separator">
+      <xsl:with-param name="key" select="'index.number.separator'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <fo:block>
     <xsl:if test="$axf.extensions != 0">
       <xsl:attribute name="axf:suppress-duplicate-page-number">true</xsl:attribute>
@@ -379,13 +436,13 @@
     <xsl:choose>
       <xsl:when test="$xep.extensions != 0">
         <xsl:if test="$refs[not(see)]">
-          <xsl:copy-of select="$index.term.separator"/>
+          <xsl:copy-of select="$term.separator"/>
           <xsl:variable name="primary" select="&primary;"/>
           <xsl:variable name="secondary" select="&secondary;"/>
           <xsl:variable name="tertiary" select="&tertiary;"/>
           <xsl:variable name="primary.significant" select="concat(&primary;, $significant.flag)"/>
-          <rx:page-index list-separator="{$index.number.separator}"
-                         range-separator="{$index.range.separator}">
+          <rx:page-index list-separator="{$number.separator}"
+                         range-separator="{$range.separator}">
             <xsl:if test="$refs[@significance='preferred'][not(see)]">
               <rx:index-item xsl:use-attribute-sets="index.preferred.page.properties xep.index.item.properties">
                 <xsl:attribute name="ref-key">
@@ -467,15 +524,33 @@
   <xsl:param name="position" select="0"/>
   <xsl:param name="separator" select="''"/>
 
+  <xsl:variable name="term.separator">
+    <xsl:call-template name="index.separator">
+      <xsl:with-param name="key" select="'index.term.separator'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="range.separator">
+    <xsl:call-template name="index.separator">
+      <xsl:with-param name="key" select="'index.range.separator'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="number.separator">
+    <xsl:call-template name="index.separator">
+      <xsl:with-param name="key" select="'index.number.separator'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="$separator != ''">
       <xsl:value-of select="$separator"/>
     </xsl:when>
     <xsl:when test="$position = 1">
-      <xsl:value-of select="$index.term.separator"/>
+      <xsl:value-of select="$term.separator"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:value-of select="$index.number.separator"/>
+      <xsl:value-of select="$number.separator"/>
     </xsl:otherwise>
   </xsl:choose>
 
@@ -510,7 +585,7 @@
           <xsl:with-param name="scope" select="$scope"/>
           <xsl:with-param name="role" select="$role"/>
           <xsl:with-param name="type" select="$type"/>
-          <xsl:with-param name="separator" select="$index.range.separator"/>
+          <xsl:with-param name="separator" select="$range.separator"/>
         </xsl:apply-templates>
       </xsl:if>
     </xsl:otherwise>
@@ -539,7 +614,7 @@
       </fo:basic-link>
 
       <xsl:if test="$passivetex.extensions = '0'">
-        <xsl:copy-of select="$index.number.separator"/>
+        <xsl:copy-of select="$number.separator"/>
       </xsl:if>
       <xsl:call-template name="reference">
         <xsl:with-param name="zones" select="substring-after($zones, ' ')"/>
@@ -1068,6 +1143,61 @@
     <xsl:otherwise>
       <xsl:value-of select="$text"/>
     </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="index.separator">
+  <xsl:param name="key" select="''"/>
+  <xsl:param name="lang">
+    <xsl:call-template name="l10n.language"/>
+  </xsl:param>
+
+  <xsl:choose>
+    <xsl:when test="$key = 'index.term.separator'">
+      <xsl:choose>
+        <!-- Use the override if not blank -->
+        <xsl:when test="$index.term.separator != ''">
+          <xsl:copy-of select="$index.term.separator"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="gentext.template">
+            <xsl:with-param name="lang" select="$lang"/>
+            <xsl:with-param name="context">index</xsl:with-param>
+            <xsl:with-param name="name">term-separator</xsl:with-param>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:when test="$key = 'index.number.separator'">
+      <xsl:choose>
+        <!-- Use the override if not blank -->
+        <xsl:when test="$index.number.separator != ''">
+          <xsl:copy-of select="$index.number.separator"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="gentext.template">
+            <xsl:with-param name="lang" select="$lang"/>
+            <xsl:with-param name="context">index</xsl:with-param>
+            <xsl:with-param name="name">number-separator</xsl:with-param>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:when test="$key = 'index.range.separator'">
+      <xsl:choose>
+        <!-- Use the override if not blank -->
+        <xsl:when test="$index.range.separator != ''">
+          <xsl:copy-of select="$index.range.separator"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="gentext.template">
+            <xsl:with-param name="lang" select="$lang"/>
+            <xsl:with-param name="context">index</xsl:with-param>
+            <xsl:with-param name="name">range-separator</xsl:with-param>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
   </xsl:choose>
 </xsl:template>
 
