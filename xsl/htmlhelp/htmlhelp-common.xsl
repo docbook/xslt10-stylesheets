@@ -736,6 +736,15 @@ Enhanced decompilation=</xsl:text>
           </xsl:call-template>
         </xsl:if>
       </xsl:if>
+
+      <xsl:if test="tertiary">
+        <xsl:if test="not(//indexterm[normalize-space(primary)=$primary and 
+		                      normalize-space(secondary)=$secondary and not(tertiary)])">
+          <xsl:call-template name="write.indexterm">
+            <xsl:with-param name="text" select="concat($primary, ', ', $secondary)"/>
+          </xsl:call-template>
+        </xsl:if>
+      </xsl:if>
       
       <xsl:call-template name="write.indexterm">
         <xsl:with-param name="text" select="$text"/>
