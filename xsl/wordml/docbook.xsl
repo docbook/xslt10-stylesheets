@@ -972,6 +972,18 @@
     </w:p>
   </xsl:template>
 
+  <xsl:template match='bridgehead'>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val='bridgehead'/>
+      </w:pPr>
+
+      <xsl:call-template name='attributes'/>
+
+      <xsl:apply-templates/>
+    </w:p>
+  </xsl:template>
+
   <xsl:template match='itemizedlist|orderedlist'>
     <xsl:apply-templates select='listitem'/>
   </xsl:template>
