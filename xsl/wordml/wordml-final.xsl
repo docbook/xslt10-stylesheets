@@ -49,10 +49,13 @@
 <!ENTITY listlevel "substring-after(w:pPr/w:pStyle/@w:val, 'edlist')">
 <!ENTITY listlabel "w:pPr/w:listPr/wx:t/@wx:val">
 <!ENTITY footnote "w:p[w:pPr/w:pStyle[@w:val='FootnoteText']]">
+<!ENTITY bridgehead "w:p[w:pPr/w:pStyle[@w:val='bridgehead']]">
 
 <!ENTITY biblioentrytitle "w:p[w:pPr/w:pStyle[@w:val='biblioentry-title']]">
 <!ENTITY bibliomisc.style "w:pPr/w:pStyle[@w:val='bibliomisc']">
 <!ENTITY bibliomisc "w:p[&bibliomisc.style;]">
+<!ENTITY bibliorelation.style "w:pPr/w:pStyle[@w:val='bibliorelation']">
+<!ENTITY bibliorelation "w:p[&bibliorelation.style;]">
 
 <!ENTITY glossterm "w:p[w:pPr/w:pStyle[@w:val='glossterm']]">
 
@@ -102,6 +105,7 @@
 			   &abstracttitle.style; or
 			   &abstract.style; or
 			   &bibliomisc.style; or
+			   &bibliorelation.style; or
 			   &address.style; or
 			   &publishername.style; or
 			   &isbn.style;">
@@ -223,8 +227,8 @@
 
 	  <xsl:choose>
 	    <xsl:when test='not($components)'>
-	      <xsl:message> <xsl:value-of select='$parent'/> found with no divisions or entries </xsl:message>
-	      <xsl:comment> <xsl:value-of select='$parent'/> found with no divisions or entries </xsl:comment>
+	      <xsl:message> <xsl:value-of select='$element.name'/> found with no divisions or entries </xsl:message>
+	      <xsl:comment> <xsl:value-of select='$element.name'/> found with no divisions or entries </xsl:comment>
 	    </xsl:when>
 	    <xsl:otherwise>
 	      <xsl:apply-templates select='$components[1]/preceding-sibling::*'
@@ -427,6 +431,45 @@
   </xsl:template>
 
   <xsl:template match='&question;' mode='component-entries'>
+    <xsl:variable name='components'
+		  select='following-sibling::wx:sub-section |
+			  following-sibling::&question; |
+			  following-sibling::&answer;'/>
+
+    <qandaentry>
+      <question>
+	<para>
+	  <xsl:apply-templates select='w:r|w:hlink'/>
+	</para>
+	<xsl:choose>
+	  <xsl:when test='$components'>
+	    <xsl:apply-templates select='following-sibling::*[generate-id(following-sibling::*[self::wx:sub-section | self::&question; | self::&answer;][1]) = generate-id($components[1])]'
+				 mode='group'/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:apply-templates select='following-sibling::*'
+				 mode='group'/>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </question>
+      <xsl:if test='$components[1]/self::&answer;'>
+	<answer>
+	  <para>
+	    <xsl:apply-templates select='$components[1]/*[self::w:r|self::w:hlink]'/>
+	  </para>
+	  <xsl:choose>
+	    <xsl:when test='$components[2]'>
+	      <xsl:apply-templates select='$components[1]/following-sibling::*[generate-id(following-sibling::*[self::wx:sub-section | self::&question; | self::&answer;][1]) = generate-id($components[2])]'
+				   mode='group'/>
+	    </xsl:when>
+	    <xsl:otherwise>
+	      <xsl:apply-templates select='$components[1]/following-sibling::*'
+				   mode='group'/>
+	    </xsl:otherwise>
+	  </xsl:choose>
+	</answer>
+      </xsl:if>
+    </qandaentry>
   </xsl:template>
 
   <!-- metadata -->
@@ -462,6 +505,11 @@
     <bibliomisc>
       <xsl:apply-templates select='w:r|w:hlink'/>
     </bibliomisc>
+  </xsl:template>
+  <xsl:template match='&bibliorelation;' mode='metadata'>
+    <bibliorelation>
+      <xsl:apply-templates select='w:r|w:hlink'/>
+    </bibliorelation>
   </xsl:template>
   <xsl:template match='&publishername;' mode='metadata'>
     <publishername>
@@ -878,6 +926,14 @@
 
   <xsl:template match="*" mode="item">
     <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="&bridgehead;" mode="group">
+    <bridgehead>
+      <xsl:call-template name="object.id"/>
+      <xsl:call-template name='attributes'/>
+      <xsl:apply-templates select="w:r|w:hlink"/>
+    </bridgehead>
   </xsl:template>
 
   <!-- =========================================================== -->
@@ -1701,117 +1757,6 @@
 			select='concat(" ", $element.name, " para-continue ")'/>
       </xsl:apply-templates>
     </xsl:element>
-  </xsl:template>
-
-  <!-- TODO: handle Q-and-A sets with a title -->
-  <!-- question without a qandaset/qandadiv/qandaentry title -->
-  <!-- This is a temporary solution; what is needed is another stylesheet
-       stage that marks block-level elements, such as qanda's.
-    -->
-  <xsl:template match='&question;' mode='group'>
-    <xsl:choose>
-      <xsl:when test='preceding-sibling::*[1][self::&question;]'/>
-      <xsl:when test='preceding-sibling::*[1][self::&answer;]'/>
-      <xsl:when test='preceding-sibling::*[1][self::&continue;]'/>
-      <xsl:otherwise>
-	<qandaset>
-	  <xsl:apply-templates select='.|following-sibling::&question;'
-			       mode='qandaentry'/>
-	</qandaset>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-  <!-- answers get handled by the corresponding question -->
-  <xsl:template match='&answer;' mode='group'/>
-
-  <xsl:template match='&question;' mode='qandaentry'>
-    <xsl:variable name='next.question'
-		  select='following-sibling::&question;[1]'/>
-    <qandaentry>
-      <xsl:choose>
-	<xsl:when test='$next.question'>
-	  <xsl:variable name='answers'
-			select='following-sibling::&answer;
-				[generate-id(following-sibling::&question;[1]) = generate-id($next.question)]'/>
-	  <question>
-	    <para>
-	      <xsl:apply-templates select='w:r|w:hlink'/>
-	    </para>
-	    <xsl:choose>
-	      <xsl:when test='$answers'>
-		<xsl:apply-templates select='following-sibling::*[1]'
-				     mode='question'>
-		  <xsl:with-param name='stop.node' select='$answers[1]'/>
-		</xsl:apply-templates>
-	      </xsl:when>
-	      <xsl:otherwise>
-		<xsl:apply-templates select='following-sibling::*[1]'
-				     mode='question'>
-		  <xsl:with-param name='stop.node' select='$next.question'/>
-		</xsl:apply-templates>
-	      </xsl:otherwise>
-	    </xsl:choose>
-	  </question>
-	  <xsl:apply-templates select='$answers' mode='answers'/>
-	</xsl:when>
-	<xsl:otherwise>
-	  <xsl:variable name='answers'
-			select='following-sibling::&answer;'/>
-	  <question>
-	    <para>
-	      <xsl:apply-templates select='w:r|w:hlink'/>
-	    </para>
-	    <xsl:choose>
-	      <xsl:when test='$answers'>
-		<xsl:apply-templates select='following-sibling::*[1]'
-				     mode='question'>
-		  <xsl:with-param name='stop.node' select='$answers[1]'/>
-		</xsl:apply-templates>
-	      </xsl:when>
-	      <xsl:otherwise>
-		<xsl:apply-templates select='following-sibling::*[1]'
-				     mode='question'/>
-	      </xsl:otherwise>
-	    </xsl:choose>
-	  </question>
-	  <xsl:apply-templates select='$answers' mode='answers'/>
-	</xsl:otherwise>
-      </xsl:choose>
-    </qandaentry>
-  </xsl:template>
-  <!-- This is deprecated; can do a better job with block-level stylesheet -->
-  <xsl:template match='&itemizedlist;|&itemizedlist1;' mode='question'>
-    <xsl:choose>
-      <xsl:when test='preceding-sibling::*[1][self::&itemizedlist;|self::&itemizedlist1;]'/>
-      <xsl:otherwise>
-	<xsl:variable name='stop.node'
-		      select='following-sibling::*[not(self::&itemizedlist;|self::&itemizedlist1;)][1]'/>
-	<itemizedlist>
-	  <xsl:apply-templates select='. |
-				       following-sibling::w:p[w:pPr/w:pStyle/@w:val = current()/w:pPr/w:pStyle/@w:val]'
-			       mode='question-listitem'/>
-	</itemizedlist>
-	<xsl:if test='$stop.node'>
-	  <xsl:apply-templates select='$stop.node' mode='question'/>
-	</xsl:if>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-  <xsl:template match='&continue;' mode='question'>
-    <para>
-      <xsl:call-template name="object.id"/>
-      <xsl:apply-templates select="w:r|w:hlink"/>
-    </para>
-    <xsl:apply-templates select='following-sibling::*[1]' mode='question'/>
-  </xsl:template>
-  <xsl:template match='*' mode='question'/>
-  <xsl:template match='*' mode='question-listitem'>
-    <listitem>
-      <para>
-	<xsl:call-template name='object.id'/>
-	<xsl:apply-templates select='w:r|w:hlink'/>
-      </para>
-    </listitem>
   </xsl:template>
 
   <xsl:template match="w:p" mode="continue">

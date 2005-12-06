@@ -398,7 +398,7 @@
     <xsl:apply-templates/>
   </xsl:template>
 
-  <xsl:template match='releaseinfo|bibliomisc|publishername|isbn'>
+  <xsl:template match='releaseinfo|bibliomisc|bibliorelation|publishername|isbn'>
     <sf:p>
       <xsl:attribute name='sf:style'>
 	<xsl:call-template name='lookup-paragraph-style'>
@@ -1198,6 +1198,21 @@
         <xsl:apply-templates select='listitem/node()'/>
       </w:tc>
     </w:tr>
+  </xsl:template>
+
+  <xsl:template match='bridgehead'>
+    <sf:p>
+      <xsl:attribute name='sf:style'>
+	<xsl:call-template name='lookup-paragraph-style'>
+	  <xsl:with-param name='name' select='name()'/>
+	</xsl:call-template>
+      </xsl:attribute>
+
+      <xsl:call-template name='attributes'/>
+
+      <xsl:apply-templates/>
+      <sf:br/>
+    </sf:p>
   </xsl:template>
 
   <xsl:template match='xi:include'>

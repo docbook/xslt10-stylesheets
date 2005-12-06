@@ -162,7 +162,7 @@
   </xsl:template>
 
   <xsl:template match='sf:br'/>
-  <xsl:template match='sf:lnbr'>
+  <xsl:template match='sf:lnbr|sf:crbr'>
     <w:r>
       <w:br/>
     </w:r>
