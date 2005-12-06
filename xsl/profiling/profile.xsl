@@ -2,7 +2,13 @@
                 version="1.0">
 
 <!-- Include common profiling stylesheet -->
-<xsl:include href="profile-mode.xsl"/>
+<xsl:import href="profile-mode.xsl"/>
+
+<!-- This file must be included, because profile-mode is using templates from it -->
+<xsl:import href="../common/stripns.xsl"/>
+
+<!-- In the two pass processing there is no need for base URI fixup -->
+<xsl:param name="profile.baseuri.fixup" select="false()"/>
 
 <!-- Generate DocBook instance with correct DOCTYPE -->
 <xsl:output method="xml" 

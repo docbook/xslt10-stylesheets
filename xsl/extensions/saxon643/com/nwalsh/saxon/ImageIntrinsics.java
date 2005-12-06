@@ -57,7 +57,7 @@ public class ImageIntrinsics implements ImageObserver {
 
     URL imageUrl = null;
 
-    if (imageFn.startsWith("http:") || imageFn.startsWith("ftp:")) {
+    if (imageFn.startsWith("http:") || imageFn.startsWith("ftp:") || imageFn.startsWith("file:")) {
 	try {
 	    imageUrl = new URL(imageFn);
 	} catch (MalformedURLException mue) {
