@@ -62,14 +62,13 @@
 <xsl:template match="xsl:template[@match='/' or @name='hhc-main' or @name='hhp-main']">
   <xsl:if test="@match='/'">
     <xslo:include href="../profiling/profile-mode.xsl"/>
+    <xslo:variable name="profiled-content">
+      <xslo:apply-templates select="/" mode="profile"/>
+    </xslo:variable>
+    <xslo:variable name="profiled-nodes" select="exslt:node-set($profiled-content)"/>
   </xsl:if>
   <xsl:copy>
     <xsl:copy-of select="@*"/>
-    <xslo:variable name="profiled-content">
-      <xslo:apply-templates select="." mode="profile"/>
-    </xslo:variable>
-    <xslo:variable name="profiled-nodes" select="exslt:node-set($profiled-content)"/>
-
     <xsl:apply-templates mode="correct"/>
   </xsl:copy>
 </xsl:template>
