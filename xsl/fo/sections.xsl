@@ -659,6 +659,17 @@
     </xsl:choose>
   </xsl:variable>
 
+  <xsl:variable name="marker">
+    <xsl:choose>
+      <xsl:when test="$level &lt;= $marker.section.level">1</xsl:when>
+      <xsl:otherwise>0</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="marker.title">
+    <xsl:apply-templates/>
+  </xsl:variable>
+
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -669,6 +680,8 @@
       <xsl:with-param name="title">
         <xsl:apply-templates/>
       </xsl:with-param>
+      <xsl:with-param name="marker" select="$marker"/>
+      <xsl:with-param name="marker.title" select="$marker.title"/>
     </xsl:call-template>
   </fo:block>
 </xsl:template>
