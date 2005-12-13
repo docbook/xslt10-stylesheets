@@ -157,13 +157,13 @@
 <xsl:template match="footnote" name="process.footnote" mode="table.footnote.mode">
   <xsl:choose>
     <xsl:when test="local-name(*[1]) = 'para' or local-name(*[1]) = 'simpara'">
-      <fo:block>
+      <fo:block xsl:use-attribute-sets="footnote.properties">
         <xsl:apply-templates/>
       </fo:block>
     </xsl:when>
 
     <xsl:when test="function-available('exsl:node-set')">
-      <fo:block>
+      <fo:block xsl:use-attribute-sets="footnote.properties">
         <xsl:apply-templates select="*[1]" mode="footnote.body.number"/>
         <xsl:apply-templates select="*[position() &gt; 1]"/>
       </fo:block>
@@ -176,7 +176,7 @@
         <xsl:value-of select="local-name(*[1])"/>
         <xsl:text> unexpected as first child of footnote.</xsl:text>
       </xsl:message>
-      <fo:block>
+      <fo:block xsl:use-attribute-sets="footnote.properties">
         <xsl:apply-templates/>
       </fo:block>
     </xsl:otherwise>
