@@ -848,12 +848,14 @@
       </xsl:choose>
     </xsl:when>
     <xsl:when test="@targetdoc != '' or @targetptr != ''">
-      <xsl:message>
-        <xsl:text>Olink error: no generated text for </xsl:text>
-        <xsl:text>targetdoc/targetptr/lang = '</xsl:text>
-        <xsl:value-of select="$olink.key"/>
-        <xsl:text>'.</xsl:text>
-      </xsl:message>
+      <xsl:if test="$olink.key != ''">
+        <xsl:message>
+          <xsl:text>Olink error: no generated text for </xsl:text>
+          <xsl:text>targetdoc/targetptr/lang = '</xsl:text>
+          <xsl:value-of select="$olink.key"/>
+          <xsl:text>'.</xsl:text>
+        </xsl:message>
+      </xsl:if>
       <xsl:text>????</xsl:text>
     </xsl:when>
     <xsl:otherwise>
