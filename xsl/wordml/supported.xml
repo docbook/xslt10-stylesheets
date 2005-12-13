@@ -17,6 +17,12 @@
 
     <revhistory>
       <revision>
+	<revnumber>1.1</revnumber>
+	<authorinitials>SRB</authorinitials>
+	<date>2005-12-14</date>
+	<revremark>Added contrib.</revremark>
+      </revision>
+      <revision>
 	<revnumber>1.0</revnumber>
 	<authorinitials>SRB</authorinitials>
 	<date>2005-12-06</date>
@@ -1503,16 +1509,16 @@
 	    <para><sgmltag>contrib</sgmltag></para>
 	  </entry>
 	  <entry>
-	    <para><literal>contrib</literal></para>
+	    <para></para>
 	  </entry>
 	  <entry>
-	    <para>dbk:no</para>
+	    <para>dbk:yes</para>
 	  </entry>
 	  <entry>
-	    <para>Paragraph</para>
+	    <para>None</para>
 	  </entry>
 	  <entry>
-	    <para><!-- Comments --></para>
+	    <para>Default element to use for metadata.</para>
 	  </entry>
 	</row>
 	<row>

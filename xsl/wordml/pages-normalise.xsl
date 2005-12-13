@@ -220,6 +220,11 @@
 	       select='key("styles", $ident)/self::sf:characterstyle/@sf:name'/>
 
     <xsl:choose>
+      <xsl:when test='$ident = "paragraph-style-default"'>
+	<w:pPr>
+	  <w:pStyle w:val='Normal'/>
+	</w:pPr>
+      </xsl:when>
       <xsl:when test='$para-style-name != ""'>
 	<w:pPr>
 	  <xsl:if test='$para-style-name != ""'>

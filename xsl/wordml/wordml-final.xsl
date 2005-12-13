@@ -594,7 +594,11 @@
       <xsl:apply-templates/>
     </revremark>
   </xsl:template>
-  <xsl:template match='w:r' mode='metadata' priority='0'/>
+  <xsl:template match='w:r|w:hlink' mode='metadata' priority='0'>
+    <contrib>
+      <xsl:apply-templates select='w:t'/>
+    </contrib>
+  </xsl:template>
   <xsl:template match='&surname;|&firstname;|&honorific;|&lineage;|&othername; |
 		       &orgname; |
                        &contrib; |
