@@ -123,7 +123,7 @@
 </xsl:template>
 
 <xsl:template name="id.warning">
-  <xsl:if test="not(@id) and not(@xml:id) and parent::*">
+  <xsl:if test="$id.warnings != 0 and not(@id) and not(@xml:id) and parent::*">
     <xsl:variable name="title">
       <xsl:choose>
 	<xsl:when test="title">
