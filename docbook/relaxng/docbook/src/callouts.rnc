@@ -191,7 +191,7 @@ div {
    db.area =
       element area {
          db.area.attlist,
-         empty
+         db.alt?
       }
 }
 
