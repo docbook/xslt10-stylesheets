@@ -134,7 +134,7 @@ div {
 # ======================================================================
 
 [
-   db:refname [ "db.refmiscinfo" ]
+   db:refname [ "refmiscinfo" ]
    db:refpurpose [ "Meta-information for a reference entry other than the title and volume number" ]
 ]
 div {
