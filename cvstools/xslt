@@ -1,149 +1,20 @@
-#!/usr/bin/perl -- # --*-Perl-*--
+#!/bin/bash
 
-use strict;
-use Getopt::Long;
+PROC=saxon
 
-my $defaultProc = $ENV{'XSLTPROC'} || 'saxon';
-my $defaultOpts = $ENV{'XSLTPROCOPTS'} || undef;
+case $1 in
+    -xsltproc)	PROC=xsltproc;
+		shift;
+		;;
+    -xalan)	PROC=xalan
+		shift;
+		;;
+    -saxon)	PROC=saxon
+		shift;
+		;;
+esac
 
-my $usage = "Usage: $0 [options] files\n";
+exec `dirname $0`/$PROC "$@"
 
-my %option = ('debug' => 0,
-	      'quiet' => 0,
-	      'verbose' => 0,
-	      'time' => 0,
-	      'extensions' => 1,
-	      'version' => undef,
-	      'memory' => undef,
-	      'xml' => undef,
-	      'xsl' => undef,
-	      'output' => undef,
-	      'opts' => $defaultOpts,
-	      'processor' => $defaultProc);
 
-my %opt = ();
-&GetOptions(\%opt,
-	    'debug+',
-	    'quiet+',
-	    'verbose',
-	    'time',
-	    'extensions!',
-	    'version=s',
-	    'memory=s',
-	    'xml=s',
-	    'xsl=s',
-	    'output=s',
-	    'opts=s',
-	    'processor=s') || die $usage;
 
-foreach my $key (keys %option) {
-    $option{$key} = $opt{$key} if exists($opt{$key});
-}
-
-my @args  = ();
-my %param = ();
-
-$param{'use.extensions'} = 1 if $option{'extensions'};
-$param{'use.extensions'} = 0 if $option{'processor'} eq 'xsltproc';
-
-while ($_ = shift @ARGV) {
-    if (/^([^\s=]+)=(.*)$/) {
-	$param{$1} = $2;
-    } else {
-	push (@args, $_);
-    }
-}
-
-my $processor = $option{'processor'};
-my $procopt = $option{'opts'};
-my $xmlFile = $option{'xml'} || shift @args;
-my $xslFile = $option{'xsl'} || shift @args;
-my $outFile = $option{'output'} || shift @args;
-my $time    = $option{'time'};
-my $version = $option{'version'};
-my $quiet   = $option{'quiet'};
-my $verbose = $option{'verbose'};
-my $memory  = $option{'memory'};
-my $debug   = $option{'debug'};
-
-my $cmd = "";
-my $exedir;
-($exedir = $0) =~ s/\/[^\/]+$//;
-
-if ($processor eq 'saxon') {
-    $cmd = "$exedir/saxon";
-    $cmd .= " $procopt" if $procopt;
-    $cmd .= " -q" if $quiet;
-    $cmd .= " -v" if $verbose;
-    $cmd .= " -d" if $debug;
-    $cmd .= " -$version" if $version;
-    $cmd .= " -m $memory" if $memory;
-    $cmd .= " $xmlFile $xslFile";
-    $outFile = "-" if $outFile eq '';
-    $cmd .= " $outFile" if $outFile;
-    foreach my $key (keys %param) {
-	$cmd .= " $key=\"" . $param{$key} . "\"";
-    }
-} elsif ($processor eq 'xalan') {
-    $cmd = "$exedir/xalan";
-    $cmd .= " $procopt" if $procopt;
-    $cmd .= " -q" if $quiet;
-    $cmd .= " -v" if $verbose;
-    $cmd .= " -d" if $debug;
-    $cmd .= " -$version" if $version;
-    $cmd .= " -m $memory" if $memory;
-    $cmd .= " -IN $xmlFile -XSL $xslFile";
-    $cmd .= " -OUT $outFile" if $outFile;
-    foreach my $key (keys %param) {
-	$cmd .= " -PARAM $key \"" . $param{$key} . "\"";
-    }
-} elsif ($processor eq 'xsltproc') {
-    $cmd = "$exedir/xsltproc";
-    $cmd .= " $procopt" if $procopt;
-    $cmd .= " -q" if $quiet;
-    $cmd .= " -v" if $verbose;
-    foreach my $key (keys %param) {
-	$cmd .= " -param $key \"'" . $param{$key} . "'\"";
-    }
-    $cmd .= " --output $outFile" if $outFile;
-    $cmd .= " $xslFile $xmlFile";
-} elsif ($processor eq '4xslt') {
-    $cmd = "$exedir/4xslt";
-    $cmd .= " $procopt" if $procopt;
-    $cmd .= " -q" if $quiet;
-    $cmd .= " -v" if $verbose;
-    foreach my $key (keys %param) {
-	$cmd .= " --define=$key=\"" . $param{$key} . "\"";
-    }
-    $cmd .= " --outfile $outFile" if $outFile;
-    $cmd .= " $xmlFile $xslFile";
-} elsif ($processor eq 'xt') {
-    $cmd = "$exedir/xt";
-    $cmd .= " $procopt" if $procopt;
-    $cmd .= " -q" if $quiet;
-    $cmd .= " -v" if $verbose;
-    $cmd .= " $xmlFile $xslFile";
-    $outFile = "-" if $outFile eq '';
-    $cmd .= " $outFile" if $outFile;
-    foreach my $key (keys %param) {
-	$cmd .= " $key=\"" . $param{$key} . "\"";
-    }
-} else {
-    print STDERR "Unknown processor: $processor\n";
-    exit 1;
-}
-
-my $startTime = time();
-if (! $quiet) {
-    print "$cmd\n";
-}
-my $retVal = system($cmd);
-my $endTime = time();
-
-print "Time: ", $endTime - $startTime, "s\n" if $time;
-
-if ($retVal) {
-    exit $retVal / 256;
-} else {
-    exit 0;
-}

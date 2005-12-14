@@ -1,320 +1,326 @@
-#!/bin/bash
-
-# This script is usually called by the xslt script.
+#!/usr/bin/perl -w -- #  -*- Perl -*-
 #
-# Usage: saxon [shellopts] src.xml style.xsl output.{xml|html} [styleopts]
+# This script runs the Saxon XSLT processor. It relies on a configuration
+# file to identify java versions, class paths, etc.
 #
+# Usage: saxon [opts] input style [output] [params]
+#
+# Options:
+#
+#    -6...     Specifies Saxon 6 or some specific version of Saxon 6
+#    -8...     Specifies Saxon 8 or some specific version of Saxon 8
+#    -8...sa   Specifies "Schema Aware" Saxon. Requires a license.
+#    -8...b    Specifies basic Saxon.
+#    -debug    Debugging
+#    -config   Where is the config file? Defaults to ~/.xmlc
+#    -opts id  Use additional options 'id' from the config file.
+#              The -opts option may be specified more than once
+#
+# Any other options are passed to Saxon unchanged
+#
+# Default version is calculated by looking at the stylesheet. So the
+# -6/-8 option is usually unnecessary.
 
-DONE=0
-VERSION=653
-EXTVERSION=643
-DEBUG=0
-XARG=""
-YARG=""
-RARG=""
-MEMORY=""
-VALIDATE=""
-# which parser to use
-PARSER=auto
+use strict;
+use English;
+use XML::XPath;
+use XML::XPath::XMLParser;
 
-MYDIR=`dirname $0`
-. $MYDIR/common-functions.sh
+my $usage = "saxon [opts] input style [output] [params]\n";
 
-# identify the directory for DocBook XSL
-for dir in "/sourceforge/docbook/xsl" \
-           "$MYDIR/xsl" \
-           "/usr/share/sgml/docbook/stylesheet/xsl/nwalsh" ; do
-  if [ -d "$dir" ]; then
-    DOCBOOKXSL="$dir"
-    break
-  fi
-done
+my $version = undef;
+my $saxonsa = undef;
+my $debug = 0;
+my $config = "~/.xmlc";
+my @opts = ();
 
-while [ "$DONE" = "0" ]; do
-    case $1 in
-	-d)	DEBUG=1;
-		shift;
-		;;
-	-6*)	VERSION=$1;
-		shift;
-		;;
-	-7*)	VERSION=$1;
-		shift;
-		;;
-	-8*)	VERSION=$1;
-	        EXTVERSION=8
-		shift;
-		;;
-	-x)     shift;
-		XARG="-x $1";
-		shift;
-		;;
-	-y)     shift;
-		YARG="-y $1";
-		shift;
-		;;
-	-r)     shift;
-		RARG="-r $1";
-		shift;
-		;;
-        -m)     shift
-		MEMORY="-Xmx$1";
-		shift;
-		;;
-        -parser) shift
-		PARSER="$1"
-                shift
-		;;
-        -q)     shift
-		VERBOSE=false
-		;;
-        -val)   shift
-		VALIDATE=-val
-		;;
-        -v)     shift
-		VERBOSE=true
-		;;
-        -X)     shift
-		DOCBOOKXSL="$1";
-		shift;
-		;;
-	-*)	DONE=1;
-		echo "unexpected argument: $*" 1>&2
-		exit 1
-		;;
-	*)	DONE=1
-    esac
-done
+while (@ARGV) {
+    if ($ARGV[0] =~ /^\-6/) {
+	$version = substr($ARGV[0],1);
+	shift @ARGV;
+    } elsif ($ARGV[0] =~ /^\-(8.*?)-?(sa|b)?$/) {
+	$version = $1;
+	$saxonsa = $2 if defined($2);
+	shift @ARGV;
+    } elsif ($ARGV[0] eq '-debug') {
+	$debug = 1;
+	shift @ARGV;
+    } elsif ($ARGV[0] eq '-config') {
+	shift @ARGV;
+	$config = shift @ARGV;
+    } elsif ($ARGV[0] eq '-opts') {
+	shift @ARGV;
+	push(@opts, shift @ARGV);
+    } else {
+	last;
+    }
+}
 
-XMLSRC=$1; shift
-XMLSTY=$1; shift
-OUTPUT=$1; shift
+my @params = ();
+while (@ARGV && $ARGV[$#ARGV] =~ /=/) {
+    unshift (@params, pop @ARGV);
+}
 
-if [ "$OUTPUT" = "-" ]; then
-    OUTPUT="";
-fi
+my $input = undef;
+my $style = undef;
+my $output = undef;
 
-if [ "$OUTPUT" != "" ]; then
-  OUTPUT="-o $OUTPUT"
-fi
+my $opt_a = 0;
+foreach my $opt (@ARGV) {
+    $opt_a = 1 if $opt eq '-a';
+    last if $opt_a;
+}
 
-if [ ! -d "$DOCBOOKXSL" ]; then
-  echo "DocBook XSL dir '$DOCBOOKXSL' doesn't exist" 1>&2
-  echo "  Try using the '-X <dir>' argument" 1>&2
-  exit 1
-fi
+if ($opt_a) {
+    $output = pop @ARGV;
+    $input = pop @ARGV;
 
-# Toss the leading hyphen
-VERSION=`echo $VERSION | sed -e 's/^-//'`
+    # What if the user didn't specify an output location?
+    if (!defined($input) || $input =~ /^-/) {
+	push (@ARGV, $input) if defined($input);
+	$input = $output;
+	$output = undef;
+    }
+} else {
+    $output = pop @ARGV;
+    $style = pop @ARGV;
+    $input = pop @ARGV;
 
-case $VERSION in
-    8a)
-	VERSION="sa-8.0";
-	;;
-    8b)
-	VERSION="b8.0";
-	;;
-    77|751|653|652|651|65|644|643)
-        :                       # handled normally below
-	;;
-    *)	echo "unexpected Saxon version $VERSION" 1>&2
-	exit 1
-	;;
-esac
+    # What if the user didn't specify an output location?
+    if (!defined($input) || $input =~ /^-/) {
+	push (@ARGV, $input) if defined($input);
+	$input = $style;
+	$style = $output;
+	$output = undef;
+    }
+}
 
-case $PARSER in
-    auto|xerces2|xerces1|crimson|native)
-        :                       # handled normally below
-	;;
-    *)	echo "unexpected parser selected, '$PARSER'" 1>&2
-        echo "must be one of 'auto', 'xerces2', 'xerces1', 'crimson', or 'native'" 1>&2
-	exit 1
-	;;
-esac
+# Everything else goes to Saxon
+my @saxonopts = @ARGV;
+push (@saxonopts, "-o $output") if defined($output) && $output ne '-';
 
+die $usage if !defined($input) || (!defined($style) && !$opt_a);
 
-DOTTEDVERSION=`echo $VERSION | sed -e 's/\([0-9]\)\([0-9]\)/\1.\2/g; s/\([0-9]\)\([0-9]\)/\1.\2/g;'`
+if (!defined($version)) {
+    if (defined($style)) {
+	open (F, $style) || die "Cannot open stylesheet: $style\n$usage";
+	read (F, $_, 4096);
+	close (F);
 
-##
-## locate saxon.jar
-##
-SAXON=
-for jar in "/usr/local/java/saxon-$DOTTEDVERSION/saxon.jar" \
-           "/usr/local/java/saxon-$DOTTEDVERSION/saxon7.jar" \
-           "/usr/local/java/saxon-$DOTTEDVERSION/saxon8sa.jar" \
-           "/usr/local/java/saxon$DOTTEDVERSION/saxon8sa.jar" \
-           "/usr/local/share/java/saxon-$DOTTEDVERSION/saxon.jar" \
-           "/usr/local/share/java/saxon-$DOTTEDVERSION/saxon7.jar" \
-           "/usr/local/share/java/saxon$DOTTEDVERSION/saxon8sa.jar" \
-           "/usr/share/java/saxon-$DOTTEDVERSION.jar" \
-           "/usr/local/java/saxon/saxon.jar" \
-           "/usr/local/share/java/saxon/saxon.jar" \
-           "/usr/share/java/saxon.jar"; do
-  if [ -f "$jar" -a "$SAXON" = "" ]; then
-    SAXON="$jar"
-    break
-  fi
-done
-if [ ! -f "$SAXON" ]; then
-  echo "warning: cannot locate Saxon JAR file" 1>&2
-fi
+	if (/<\S+:?import-schema/s) {
+	    $version = "8" if !defined($version);
+	    $saxonsa = "sa" if !defined($saxonsa);
+	} elsif (/<\S+:?stylesheet[^>]*\sversion=.2\.0/s
+		 || /<\S+:?transform[^>]*\sversion=.2\.0/s) {
+	    $version = "8" if !defined($version);
+	    $saxonsa = "b" if !defined($saxonsa) && $version =~ /^8/;
+	} else {
+	    $version = "6" if !defined($version);
+	}
+    } else {
+	$style = "";
+	$version = "6" if !defined($version);
+    }
+}
 
-##
-## DocBook extensions
-##
-if [ ! "$NDWEXT" ]; then
-  for ext in "$DOCBOOKXSL/extensions/saxon$EXTVERSION/.classes" \
-             "$DOCBOOKXSL/extensions/saxon$EXTVERSION.jar" \
-             "/usr/share/sgml/docbook/stylesheet/xsl/nwalsh/extensions/saxon$EXTVERSION.jar" ; do
-    if [ -d $ext -o -f $ext ]; then
-      NDWEXT=$ext;
-      break
-    fi
-  done
-  if [ ! "$NDWEXT" ]; then
-    echo "warning: cannot locate DocBook XSL Saxon extensions" 1>&2
-  fi
-fi
+my $optsname = "saxon";
+$optsname .= $saxonsa if defined($saxonsa);
+$optsname .= "-$version";
 
-##
-## Saxon debugging stuff
-##
-if [ "$DEBUG" = "1" ]; then
-  for try in "/usr/local/java/saxon-$DOTTEDVERSION/.classes" \
-             "/usr/local/share/java/saxon-$DOTTEDVERSION/.classes" \
-             "/usr/share/java/saxon-$DOTTEDVERSION/.classes"; do
-    if [ -d "$try" ]; then
-        SAXON="$try:$SAXON"
-    fi
-  done
-fi
+# Inelegantly, these are used as globals by several functions
+my %seenopts = ();
+my $classname = "";
+my $java = "";
+my @systemprops = ();
+my @javaopts = ();
+my @classpath = ();
 
-##
-## set the desired parser
-##
-## From SAXON documentation:
-##
-## SAXON comes with a bundled XML parser, a modified copy of the
-## AElred parser, adapted to notify comments to the application. SAXON
-## has been tested successfully in the past with Xerces, Lark, SUN
-## Project X, Crimson, Oracle XML, xerces, xml4j, and xp. Use of a
-## SAX2-compliant parser is preferred, as SAX1 does not allow XML
-## comments to be passed to the application. However, SAXON works with
-## either. All the relevant classes must be installed on your Java
-## CLASSPATH.
-##
-## These are the settings which control the parser:
-##   javax.xml.parsers.DocumentBuilderFactory
-##   javax.xml.parsers.SAXParserFactory
-##
+$config = (glob($config))[0]; # hack to expand ~/.xmlc to right place
 
-# first choice is xerces2
-if [ "$PARSER" = "xerces2" -o "$PARSER" = "auto" ]; then
-  PARSERCLASS=`findxerces2`
-  if [ "$PARSERCLASS" ]; then
-    DBFACTORY="-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"
-    SPFACTORY="-Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"
-  fi
-fi
+die "Cannot read config: $config\n$usage" if ! -f $config;
+my $xp = XML::XPath->new('filename' => $config);
+my $doc = ($xp->find("/config")->get_nodelist())[0];
+die "Unexpected root element in configuration file.\n" if !$doc;
 
-# next choice is xerces1
-if [ "$PARSER" = "xerces1" ] || [ ! "$PARSERCLASS" -a "$PARSER" = "auto" ]; then
-  PARSERCLASS=`findxerces1`
-  if [ "$PARSERCLASS" ]; then
-    DBFACTORY="-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"
-    SPFACTORY="-Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"
-  fi
-fi
+# Figure out the class path separator before we go any further
+my $cpseparator = $doc->getAttribute('classpath-separator');
+# Default to ';' if it appears in $CLASSPATH, otherwise ':'
+$cpseparator = ($ENV{'CLASSPATH'} =~ /;/ ? ";" : ":")
+    if !defined($cpseparator) or $cpseparator eq '';
 
-# next choice is crimson
-if [ "$PARSER" = "crimson" ] || [ ! "$PARSERCLASS" -a "$PARSER" = "auto" ]; then
-  PARSERCLASS=`findcrimson`
-  if [ "$PARSERCLASS" ]; then
-    DBFACTORY="-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.crimson.jaxp.DocumentBuilderFactoryImpl"
-    SPFACTORY="-Djavax.xml.parsers.SAXParserFactory=org.apache.crimson.jaxp.SAXParserFactoryImpl"
-  fi
-fi
+foreach my $name (@opts, $optsname) {
+    applyOpts($xp, $name);
+}
 
-if [ "$PARSER" != "native" -a ! "$PARSERCLASS" ]; then
-  echo "warning: cannot locate an alternate SAX parser, PEs may not work correctly" 1>&2
-fi
+$java = "java" if $java eq '';
 
-##
-## selecting the transformer not handled.  xalan2 can provide this, 
-## javax.xml.transform.TransformerFactory
-##  = org.apache.xalan.processor.TransformerFactoryImpl
-TRANSFACTORY=com.icl.saxon.TransformerFactoryImpl
+foreach my $path (reverse split(/$cpseparator/, $ENV{'CLASSPATH'})) {
+    unshift(@classpath, $path);
+}
 
-##
-## optionally replace the URI resolver with the Apache
-## resolver classes
-## FIXME: do we specifically *not* want to use the sun resolver?
-##
-RESOLVER=`findresolver`
-if [ -f "$RESOLVER" -o -d "$RESOLVER" ]; then
-  # use the apache resolver
-  XARG=${XARG:--x org.apache.xml.resolver.tools.ResolvingXMLReader}
-  YARG=${YARG:--y org.apache.xml.resolver.tools.ResolvingXMLReader}
-  RARG=${RARG:--r org.apache.xml.resolver.tools.CatalogResolver}
-fi
+showVars() if $debug;
 
-CLASSPATH=`fixclasspath "$SAXON:$NDWEXT:$RESOLVER:$PARSERCLASS:$CLASSPATH"`
+die "No classname?\n" if !defined($classname);
 
-TFLAG=
-if [ "$DEBUG" != "0" ]; then
-  TFLAG="-T"
-fi
+my $jopts = join(" ", @javaopts);
+my $jprops = join(" ", @systemprops);
+my $jcp = join($cpseparator, @classpath);
+my $sopts = join(" ", @saxonopts);
+my $sparam = join(" ", @params);
 
-HTTP_PROXY=
-HTTPS_PROXY=
+if ($cpseparator eq ';') {
+    # This must be cygwin or some windows flavor, let's try to make it work
+    $jcp =~ s/\//\\\\/sg; # turn / into \\ in classpath paths
+    $jcp =~ s/\;/\\\;/sg; # escape semicolons
+    if (@params) {
+	$sparam = "\"" . join("\" \"", @params) . "\"";
+    } else {
+	$sparam = "";
+    }
+}
 
-if [ "$http_proxy_host" != "" ]; then
-    HTTP_PROXY="-Dhttp.proxyHost=$http_proxy_host -Dhttp.proxyPort=$http_proxy_port"
-    HTTPS_PROXY="-Dhttps.proxyHost=$http_proxy_host -Dhttps.proxyPort=$http_proxy_port"
-fi
+print "$java $jopts $classname $sopts $input $style $sparam\n" if $debug;
+exec("$java $jopts -cp $jcp $jprops $classname $sopts $input $style $sparam");
 
-if [ ${VERBOSE} ] && ${VERBOSE}; then
-  echo java $MEMORY -cp $CLASSPATH $DBFACTORY $SPFACTORY \
-      -Djavax.xml.transform.TransformerFactory=$TRANSFACTORY \
-      com.icl.saxon.StyleSheet $TFLAG $VALIDATE \
-      $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY "$@"
-fi
+# ============================================================
 
-#echo VERSION=$VERSION
+sub applyOpts {
+    my $xp = shift;
+    my $id = shift;
 
-if [ "$VERSION" = "sa-8.0" ]; then
-  JAVA_HOME=/usr/local/jdk1.4.2
-  JAVA=$JAVA_HOME/bin/java
-#  exec $JAVA $HTTP_PROXY $HTTPS_PROXY $MEMORY -cp $CLASSPATH $DBFACTORY $SPFACTORY \
-#       -Djavax.xml.transform.TransformerFactory=$TRANSFACTORY \
-#       com.saxonica.Transform $TFLAG $VALIDATE $SAXONOPT \
-#       $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY "$@"
-  CLASSPATH=/usr/local/java/saxonsa-8.0/saxon8sa.jar:/home/ndw/java
-  exec $JAVA $HTTP_PROXY $HTTPS_PROXY $MEMORY -cp $CLASSPATH \
-       com.saxonica.Transform $TFLAG $VALIDATE $SAXONOPT \
-       $OUTPUT $XMLSRC $XMLSTY "$@"
-else if [ "$VERSION" = "b8.0" ]; then
-  JAVA_HOME=/usr/local/jdk1.4.2
-  JAVA=$JAVA_HOME/bin/java
-  CLASSPATH=/usr/local/java/saxonb-8.0/saxon8.jar:/home/ndw/java
-  echo $JAVA $HTTP_PROXY $HTTPS_PROXY $MEMORY -cp $CLASSPATH \
-       net.sf.saxon.Transform $TFLAG $VALIDATE $SAXONOPT \
-       $OUTPUT $XMLSRC $XMLSTY "$@"
-  exec $JAVA $HTTP_PROXY $HTTPS_PROXY $MEMORY -cp $CLASSPATH \
-       net.sf.saxon.Transform $TFLAG $VALIDATE $SAXONOPT \
-       $OUTPUT $XMLSRC $XMLSTY "$@"
-else if [ "$VERSION" = "77" ]; then
-  JAVA_HOME=/usr/local/jdk1.4.2
-  JAVA=$JAVA_HOME/bin/java
-  exec $JAVA $HTTP_PROXY $HTTPS_PROXY $MEMORY -cp $CLASSPATH $DBFACTORY $SPFACTORY \
-       -Djavax.xml.transform.TransformerFactory=$TRANSFACTORY \
-       net.sf.saxon.Transform $TFLAG \
-       $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY "$@"
-else
-  exec java $HTTP_PROXY $HTTPS_PROXY $MEMORY -cp $CLASSPATH $DBFACTORY $SPFACTORY \
-       -Djavax.xml.transform.TransformerFactory=$TRANSFACTORY \
-       com.icl.saxon.StyleSheet $TFLAG \
-       $XARG $YARG $RARG $OUTPUT $XMLSRC $XMLSTY "$@"
-fi
-fi
-fi
+    # Avoid loops
+    if ($seenopts{$id}) {
+	print STDERR "Skipping $id (already seen)\n" if $debug;
+	return;
+    }
+    $seenopts{$id} = 1;
+
+    my $saxon = ($xp->find("/config/*[\@xml:id='$id']")->get_nodelist())[0];
+
+    die "Config $config does not contain $id.\n" if !defined($saxon);
+
+    print STDERR "Loading $id from $config\n" if $debug;
+
+    $classname = $saxon->getAttribute('class')
+	if $classname eq '';
+
+    $java = $saxon->getAttribute('java')
+	if $java eq '';
+
+    foreach my $path (configPath($saxon, 'classpath', $cpseparator)) {
+	addOpt(\@classpath, $path);
+    }
+
+    foreach my $prop (configArgs($saxon, 'system-property', '-D', '=')) {
+	addOpt(\@systemprops, $prop, '=');
+    }
+
+    foreach my $arg (configArgs($saxon, 'arg', '-', ' ')) {
+	addOpt(\@saxonopts, $arg, ' ');
+    }
+
+    foreach my $opt (configArgs($saxon, 'java-option', '-', '=')) {
+	addOpt(\@javaopts, $opt, ' ');
+    }
+
+    foreach my $param (configArgs($saxon, 'param', '', '=')) {
+	addOpt(\@params, $param, '=');
+    }
+
+    my $extends = $saxon->getAttribute('extends');
+    applyOpts($xp, $extends) if $extends ne '';
+}
+
+sub configArgs {
+    my $context = shift;
+    my $elemname = shift;
+    my $prefix = shift;
+    my $sep = shift;
+    my @opts = ();
+
+    if ($context) {
+	my $args = $context->find($elemname);
+	foreach my $arg ($args->get_nodelist()) {
+	    my $name = $arg->getAttribute('name');
+	    my $value = $arg->getAttribute('value');
+	    if (defined($value) && $value ne '') {
+		push(@opts, "$prefix$name$sep$value");
+	    } else {
+		push(@opts, "$prefix$name");
+	    }
+	}
+    }
+
+    return @opts;
+}
+
+sub configPath {
+    my $context = shift;
+    my $elemname = shift;
+    my $sep = shift || ":";
+    my @path = ();
+
+    if ($context) {
+	my $args = $context->find($elemname);
+	foreach my $arg ($args->get_nodelist()) {
+	    my $dir = $arg->getAttribute('path');
+	    if ($dir ne '') {
+		foreach my $f (split(/$sep/, $dir)) {
+		    if (-d $f || -f $f) {
+			push (@path, $f);
+		    } else {
+			warn "Invalid path component: $f\n";
+		    }
+		}
+	    } else {
+		warn "Invalid path component (no \@dir)\n";
+	    }
+	}
+    }
+
+    return @path;
+}
+
+sub addOpt {
+    my $arrayref = shift;
+    my $newopt = shift;
+    my $sep = shift;
+    my $newname = $newopt;
+
+    $newname = $1 if defined($sep) && $newopt =~ /^(.*?)$sep/;
+
+    foreach my $opt (@{$arrayref}) {
+	my $name = $opt;
+	$name = $1 if defined($sep) && $opt =~ /^(.*?)$sep/;
+	return if $name eq $newname;
+    }
+
+    push(@{$arrayref}, $newopt);
+}
+
+sub showVars {
+    print STDERR "config: $config\n";
+    print STDERR "java: $java\n";
+    print STDERR "optsname: $optsname\n";
+    showArr("opts", @opts);
+    showArr("saxon opts", @saxonopts);
+    print STDERR "input: $input\n" if defined($input);
+    print STDERR "style: $style\n" if defined($style);
+    showArr("params", @params);
+    showArr("java opts", @javaopts);
+    showArr("system props", @systemprops);
+    print STDERR "cpseparator: $cpseparator\n";
+    showArr("classpath", @classpath);
+}
+
+sub showArr {
+    my $name = shift;
+    my @arr = @_;
+
+    if (@arr) {
+	print STDERR "$name:\n";
+	foreach my $p (@arr) {
+	    print STDERR "\t$p\n";
+	}
+    }
+}

@@ -1,38 +1,250 @@
-#!/bin/bash
+#!/usr/bin/perl -w -- #  -*- Perl -*-
+#
+# This script runs the xsltproc XSLT processor. It relies on a configuration
+# file to identify the specific executable, parameters, etc.
+#
+# Usage: xsltproc [opts] input style [output] [params]
+#
+# Options:
+#
+#    -2...     Specifies a particular version
+#    -debug    Debugging
+#    -config   Where is the config file? Defaults to ~/.xmlc
+#    -opts id  Use additional options 'id' from the config file.
+#              The -opts option may be specified more than once
+#
+# The default config is "xsltproc" or "xsltproc-{version}" if a version
+# is specified.
+#
+# Any other options are passed to xsltproc unchanged
 
-DONE=0
-DEBUG=0
-QUIET=0
-OPTS=""
+use strict;
+use English;
+use XML::XPath;
+use XML::XPath::XMLParser;
 
-while [ "$DONE" = "0" ]; do
-    case $1 in
-	-d)	DEBUG=1;
-		shift;
-		;;
-        -q)     shift
-		QUIET=1
-		;;
-	-*)	DONE=1;
-		;;
-	*)	DONE=1
-		;;
-    esac
-done
+my $usage = "xsltproc [opts] input style [output] [params]\n";
 
-if [ "$DEBUG" = "1" ]; then
-    OPTS="--verbose"
-fi
+my $version = "";
+my $debug = 0;
+my $config = "~/.xmlc";
+my @opts = ();
 
-if [ "$QUIET" = "0" ]; then
-    echo xsltproc $OPTS "$@"
-fi
+while (@ARGV) {
+    if ($ARGV[0] =~ /^-\d/) {
+	$version = substr($ARGV[0],1);
+	shift @ARGV;
+    } elsif ($ARGV[0] eq '-debug') {
+	$debug = 1;
+	shift @ARGV;
+    } elsif ($ARGV[0] eq '-config') {
+	shift @ARGV;
+	$config = shift @ARGV;
+    } elsif ($ARGV[0] eq '-opts') {
+	shift @ARGV;
+	push(@opts, shift @ARGV);
+    } else {
+	last;
+    }
+}
 
-/usr/bin/xsltproc --catalogs $OPTS "$@"
+my @params = ();
+while (@ARGV && $ARGV[$#ARGV] =~ /=/) {
+    unshift (@params, pop @ARGV);
+}
 
-if [ $? != 0 ]; then
-  echo ""
-  echo FAILED
-  echo ""
-fi
+my $output = pop @ARGV;
+my $style = pop @ARGV;
+my $input = pop @ARGV;
 
+# What if the user didn't specify an output location?
+if (!defined($input) || $input =~ /^-/) {
+    push (@ARGV, $input) if defined($input);
+    $input = $style;
+    $style = $output;
+    $output = undef;
+}
+
+# Everything else goes to xsltproc
+my @xsltprocopts = @ARGV;
+push (@xsltprocopts, "-o $output") if defined($output) && $output ne '-';
+
+die $usage if !defined($input) || !defined($style);
+
+my $optsname = "xsltproc";
+$optsname .= "-$version" if $version ne '';
+
+# Inelegantly, these are used as globals by several functions
+my %seenopts = ();
+my $execname = '';
+
+$config = (glob($config))[0]; # hack to expand ~/.xmlc to right place
+
+die "Cannot read config: $config\n$usage" if ! -f $config;
+my $xp = XML::XPath->new('filename' => $config);
+my $doc = ($xp->find("/config")->get_nodelist())[0];
+die "Unexpected root element in configuration file.\n" if !$doc;
+
+foreach my $name (@opts, $optsname) {
+    applyOpts($xp, $name);
+}
+
+showVars() if $debug;
+
+die "No execname?\n" if !defined($execname);
+
+my $xopts = join(" ", @xsltprocopts);
+
+my $xparam = "";
+foreach my $param (@params) {
+    my $name = "";
+    my $value = "";
+    if ($param =~ /^(.*?)=(.*)$/) {
+	$name = $1;
+	$value = $2;
+    } else {
+	$name = $param;
+    }
+
+    $xparam .= "-stringparam $name \"$value\" ";
+}
+
+print "$execname $xopts $style $input\n" if $debug;
+exec("$execname $xopts $style $input");
+
+# ============================================================
+
+sub applyOpts {
+    my $xp = shift;
+    my $id = shift;
+
+    # Avoid loops
+    if ($seenopts{$id}) {
+	print STDERR "Skipping $id (already seen)\n" if $debug;
+	return;
+    }
+    $seenopts{$id} = 1;
+
+    my $node = ($xp->find("/config/*[\@xml:id='$id']")->get_nodelist())[0];
+
+    die "Config $config does not contain $id.\n" if !defined($node);
+
+    print STDERR "Loading $id from $config\n" if $debug;
+
+    $execname = $node->getAttribute('exec')
+	if $execname eq '';
+
+    foreach my $arg (configArgs($node, 'arg', '-', ' ')) {
+	addOpt(\@xsltprocopts, $arg, ' ');
+    }
+
+    foreach my $param (configArgs($node, 'param', '', '=')) {
+	addOpt(\@params, $param, '=');
+    }
+
+    my $extends = $node->getAttribute('extends');
+    applyOpts($xp, $extends) if $extends ne '';
+}
+
+sub configArgs {
+    my $context = shift;
+    my $elemname = shift;
+    my $prefix = shift;
+    my $sep = shift;
+    my @opts = ();
+
+    if ($context) {
+	my $args = $context->find($elemname);
+	foreach my $arg ($args->get_nodelist()) {
+	    my $name = $arg->getAttribute('name');
+	    my $value = $arg->getAttribute('value');
+	    if (defined($value) && $value ne '') {
+		push(@opts, "$prefix$name$sep$value");
+	    } else {
+		push(@opts, "$prefix$name");
+	    }
+	}
+    }
+
+    return @opts;
+}
+
+sub configPath {
+    my $context = shift;
+    my $elemname = shift;
+    my $sep = shift || ":";
+    my @path = ();
+
+    if ($context) {
+	my $args = $context->find($elemname);
+	foreach my $arg ($args->get_nodelist()) {
+	    my $dir = $arg->getAttribute('path');
+	    if ($dir ne '') {
+		foreach my $f (split(/$sep/, $dir)) {
+		    if (-d $f || -f $f) {
+			push (@path, $f);
+		    } else {
+			warn "Invalid path component: $f\n";
+		    }
+		}
+	    } else {
+		warn "Invalid path component (no \@dir)\n";
+	    }
+	}
+    }
+
+    return @path;
+}
+
+sub addOpt {
+    my $arrayref = shift;
+    my $newopt = shift;
+    my $sep = shift;
+    my $newname = $newopt;
+
+    $newname = $1 if defined($sep) && $newopt =~ /^(.*?)$sep/;
+
+    foreach my $opt (@{$arrayref}) {
+	my $name = $opt;
+	$name = $1 if defined($sep) && $opt =~ /^(.*?)$sep/;
+	return if $name eq $newname;
+    }
+
+    push(@{$arrayref}, $newopt);
+}
+
+sub showVars {
+    print STDERR "config: $config\n";
+    print STDERR "optsname: $optsname\n";
+    showArr("opts", @opts);
+    showArr("xsltproc opts", @xsltprocopts);
+    print STDERR "input: $input\n" if defined($input);
+    print STDERR "style: $style\n" if defined($style);
+    if (@params) {
+	print STDERR "params:\n";
+	foreach my $param (@params) {
+	    my $name = "";
+	    my $value = "";
+	    if ($param =~ /^(.*?)=(.*)$/) {
+		$name = $1;
+		$value = $2;
+	    } else {
+		$name = $param;
+	    }
+
+	    print STDERR "\t-stringparam $name \"$value\"\n";
+	}
+    }
+}
+
+sub showArr {
+    my $name = shift;
+    my @arr = @_;
+
+    if (@arr) {
+	print STDERR "$name:\n";
+	foreach my $p (@arr) {
+	    print STDERR "\t$p\n";
+	}
+    }
+}
