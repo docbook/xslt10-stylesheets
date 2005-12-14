@@ -34,7 +34,7 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 default namespace = "http://docbook.org/ns/docbook"
 
-db.equation.content |= db._any.mml
+db.equation.content |= db._any.mml+
 
 [
    db:refname [ "mml:*" ]
@@ -43,6 +43,9 @@ db.equation.content |= db._any.mml
 div {
 
    db._any.mml =
-      element mml:* { db._any }
+      element mml:* {
+         attribute * { text }*,
+         (text | db._any)*
+      }
 
 }

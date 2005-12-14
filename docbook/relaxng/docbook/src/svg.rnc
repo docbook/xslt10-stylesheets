@@ -34,7 +34,7 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 default namespace = "http://docbook.org/ns/docbook"
 
-db.imageobject.content |= db._any.svg
+db.imageobject.content |= db._any.svg+
 
 [
    db:refname [ "svg:*" ]
@@ -43,7 +43,10 @@ db.imageobject.content |= db._any.svg
 div {
 
    db._any.svg =
-      element svg:* { db._any }
+      element svg:* {
+         attribute * { text }*,
+         (text | db._any)*
+      }
 
 }
 
