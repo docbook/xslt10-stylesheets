@@ -423,10 +423,6 @@
 <xsl:template match="legalnotice/title" mode="titlepage.mode">
 </xsl:template>
 
-<xsl:template match="legalnotice/title" mode="titlepage.legalnotice.title.mode">
-  <xsl:apply-templates mode="titlepage.mode"/>
-</xsl:template>
-
 <xsl:template match="lineage" mode="titlepage.mode">
   <xsl:apply-templates mode="titlepage.mode"/>
 </xsl:template>
