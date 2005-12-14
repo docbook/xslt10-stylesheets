@@ -6811,7 +6811,7 @@ div {
 ]
 div {
    db.olink.role.attribute = attribute role { text }
-   db.olink.xrefstyle.attribute = attribute xrefstyle { xsd:IDREF }
+   db.olink.xrefstyle.attribute = attribute xrefstyle { text }
    db.olink.localinfo.attribute = attribute localinfo { text }
    db.olink.targetdoc.attribute = attribute targetdoc { xsd:anyURI }
    db.olink.targetptr.attribute = attribute targetptr { text }
