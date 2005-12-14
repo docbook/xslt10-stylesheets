@@ -1,203 +1,304 @@
-#!/bin/bash
+#!/usr/bin/perl -w -- #  -*- Perl -*-
+#
+# This script runs the Xalan XSLT processor. It relies on a configuration
+# file to identify java versions, class paths, etc.
+#
+# Usage: xalan [opts] input style [output] [params]
+#
+# Options:
+#
+#    -2...     Specifies a particular version
+#    -debug    Debugging
+#    -config   Where is the config file? Defaults to ~/.xmlc
+#    -opts id  Use additional options 'id' from the config file.
+#              The -opts option may be specified more than once
+#
+# The default config is "xalan" or "xalan-{version}" if a version
+# is specified. If -xsltc is passed as a Xalan option, then the
+# default config is "xsltc" or "xsltc-{version}"
+#
+# Any other options are passed to Xalan unchanged
 
-DONE=0
-DEBUG=false                     # not used
-VERSION=2
-MEMORY=""
-USECRIMSON=false
-USERESOLVER=true
-RESOLVERS=""
+use strict;
+use English;
+use XML::XPath;
+use XML::XPath::XMLParser;
 
-MYDIR=`dirname $0`
-. $MYDIR/common-functions.sh
+my $usage = "xalan [opts] input style [output] [params]\n";
 
-while [ "$DONE" = "0" ]; do
-    case $1 in
-        -m)     shift
-		MEMORY="-Xmx$1"
-		shift
-		;;
-        -crimson)
-		shift
-		USECRIMSON=true
-		;;
-        -noresolver)
-		shift
-		USERESOLVER=false
-		;;
-        -d)     shift
-		DEBUG=true
-		;;
-        -q)     shift
-		VERBOSE=false
-		;;
-        -v)     shift
-		VERBOSE=true
-		;;
-        -1)     shift
-		VERSION=1
-		;;
-        -2*)    VERSION=${1#-}
-                shift
-		;;
-        -X)     shift
-		DOCBOOKXSL="$1"
-		shift
-		;;
-	-*)	DONE=1
-	        ;;
-	*)	DONE=1
-                ;;
-    esac
-done
+my $version = "";
+my $debug = 0;
+my $config = "~/.xmlc";
+my @opts = ();
 
+while (@ARGV) {
+    if ($ARGV[0] =~ /^-\d/) {
+	$version = substr($ARGV[0],1);
+	shift @ARGV;
+    } elsif ($ARGV[0] eq '-debug') {
+	$debug = 1;
+	shift @ARGV;
+    } elsif ($ARGV[0] eq '-config') {
+	shift @ARGV;
+	$config = shift @ARGV;
+    } elsif ($ARGV[0] eq '-opts') {
+	shift @ARGV;
+	push(@opts, shift @ARGV);
+    } else {
+	last;
+    }
+}
 
-##
-## optionally replace the SAXParser with crimson
-##
-if $USECRIMSON; then
-  CRIMSON=`findcrimson`
-  if [ ! "$CRIMSON" ]; then
-    echo "crimson requested but cannot be found" 1>&2
-    exit 1
-  else
-    SAXPARSER="-Djavax.xml.parsers.SAXParserFactory=org.apache.crimson.jaxp.SAXParserFactoryImpl"
-  fi
-fi
+my @params = ();
+while (@ARGV && $ARGV[$#ARGV] =~ /=/) {
+    unshift (@params, pop @ARGV);
+}
 
-# FIXME: do this right
-NDWEXT="/sourceforge/docbook/xsl/extensions/xalan2/.classes";
+my $output = pop @ARGV;
+my $style = pop @ARGV;
+my $input = pop @ARGV;
 
-if [ "$VERSION" = "1" ]; then
-  if [ ! "$XALAN" ]; then
-    ##
-    ## find xalan 1
-    ##
-    for path in "${XALANROOT}" \
-                "${XALANROOT}/xalan.jar" \
-                "/usr/local/java/xalan-1.2.2" \
-                "/usr/local/share/java/xalan-1.2.2" \
-                "/usr/share/java/xalan.jar"; do
-      if [ -f "$path" -o -d "$path" ]; then
-        XALAN="$path"
-        break
-      fi
-    done
-    # find bsf
-    for path in "${XALANROOT}/bsf.jar" \
-                "/usr/local/java/bsf.jar" \
-                "/usr/local/share/java/bsf.jar" \
-                "/usr/share/java/bsf.jar"; do
-      if [ -f "$path" ]; then
-        XALAN="$XALAN:$path"
-        break
-      fi
-    done
-  fi
+# What if the user didn't specify an output location?
+if (!defined($input) || $input =~ /^-/) {
+    push (@ARGV, $input) if defined($input);
+    $input = $style;
+    $style = $output;
+    $output = undef;
+}
 
-  # resolver isn't supported
-  RESOLVERS=
+# Everything else goes to Xalan
+my @xalanopts = @ARGV;
+push (@xalanopts, "-OUT $output") if defined($output) && $output ne '-';
 
-  ##
-  ## use the appropriate xerces
-  ##
-  XERCES=`findxerces1`
-  if [ ! "$XERCES" ]; then
-    echo "cannot locate Xerces (xerces.jar)" 1>&2
-    exit 1
-    # see http://xml.apache.org/xalan-j/usagepatterns.html#plug
-    # no need to set these
-    # -Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl
-    # -Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"
-  fi
+die $usage if !defined($input) || !defined($style);
 
-else
-  ##
-  ## xalan 2
-  ##
+my $optsname = "xalan";
+foreach my $opt (@xalanopts) {
+    $optsname = "xsltc" if $opt =~ /-xsltc/i;
+}
+$optsname .= "-$version" if $version ne '';
 
-  if [ ! "$XALAN" ]; then
-    STRIKEVERSION=`echo $VERSION | sed -e 's/\([0-9]\)\([0-9]\)/\1_\2/g; s/\([0-9]\)\([0-9D]\)/\1_\2/g;'`
-    DOTVERSION=`echo $VERSION | sed -e 's/\([0-9]\)\([0-9]\)/\1.\2/g; s/\([0-9]\)\([0-9D]\)/\1.\2/g;'`
-    ##
-    ## first find xalan2.jar or directory for compiled classes
-    ##
-    for path in "${XALANROOT}/build/classes" \
-                "${XALANROOT}" \
-                "${XALANROOT}/xalan2.jar" \
-                "${XALANROOT}/bin/xalan2.jar" \
-                "/projects/apache/xml-xalan/java/build/classes" \
-                "/usr/local/java/xalan-j_${STRIKEVERSION}/bin/xalan.jar" \
-                "/usr/local/share/java/xalan-j_${STRIKEVERSION}/bin/xalan.jar" \
-                "/usr/local/share/java/xalan-$STRIKEVERSION.jar" \
-                "/usr/local/share/java/xalan-$DOTVERSION.jar" \
-                "/usr/local/share/java/xalan2.jar" \
-                "/usr/local/java/xalan-$STRIKEVERSION.jar" \
-                "/usr/local/java/xalan-$DOTVERSION.jar" \
-                "/usr/local/java/xalan2.jar" \
-                "/usr/share/java/xalan-$STRIKEVERSION.jar" \
-                "/usr/share/java/xalan-$DOTVERSION.jar" \
-                "/usr/share/java/xalan2.jar"; do
-      if [ -f "$path" -o -d "$path" ]; then
-        if [ ${VERBOSE} ] && ${VERBOSE}; then
-          echo "found xalan2 in $path" 1>&2
-        fi
-        XALAN="$path"
-        break
-      fi
-    done
-    if [ ! "$XALAN" ]; then
-      echo "xalan $VERSION cannot be found" 1>&2
-      exit 1
-    fi
+# Inelegantly, these are used as globals by several functions
+my %seenopts = ();
+my $classname = "";
+my $java = "";
+my @systemprops = ();
+my @javaopts = ();
+my @classpath = ();
 
-    ##
-    ## we also need xml-apis.jar
-    ##
-    XALANDIR=`dirname $XALAN`
-    for path in "${XALANDIR}/xml-apis.jar" \
-                "${XALANROOT}/xml-apis.jar" \
-                "${XALANROOT}/bin/xml-apis.jar"; do
-      if [ -f "$path" -o -d "$path" ]; then
-        XALAN="${XALAN}:$path"
-        break
-      fi
-    done
-  fi
+$config = (glob($config))[0]; # hack to expand ~/.xmlc to right place
 
-  ##
-  ## use the appropriate xerces
-  ##
-  XERCES=`findxerces2`
-  if [ ! "$XERCES" ]; then
-    echo "cannot locate Xerces 2" 1>&2
-    exit 1
-  fi
+die "Cannot read config: $config\n$usage" if ! -f $config;
+my $xp = XML::XPath->new('filename' => $config);
+my $doc = ($xp->find("/config")->get_nodelist())[0];
+die "Unexpected root element in configuration file.\n" if !$doc;
 
-  ##
-  ## resolver
-  ##
-  if $USERESOLVER; then
-    RESOLVER=`findresolver`
-    if [ ${RESOLVER/sun/} != ${RESOLVER} ]; then
-      # guess this is the sun resolver
-      RESOLVERS="-URIRESOLVER com.sun.resolver.tools.CatalogResolver -ENTITYRESOLVER com.sun.resolver.tools.CatalogResolver"
-    else
-      # guess this is the Apache resolver
-      RESOLVERS="-URIRESOLVER org.apache.xml.resolver.tools.CatalogResolver -ENTITYRESOLVER org.apache.xml.resolver.tools.CatalogResolver"
-    fi
-  fi
-fi
+# Figure out the class path separator before we go any further
+my $cpseparator = $doc->getAttribute('classpath-separator');
+# Default to ';' if it appears in $CLASSPATH, otherwise ':'
+$cpseparator = ($ENV{'CLASSPATH'} =~ /;/ ? ";" : ":")
+    if !defined($cpseparator) or $cpseparator eq '';
 
-RESOLVERS=""
-echo java $MEMORY $SAXPARSER org.apache.xalan.xslt.Process $RESOLVERS $@
+foreach my $name (@opts, $optsname) {
+    applyOpts($xp, $name);
+}
 
-CLASSPATH=`fixclasspath "$NDWEXT:$XALAN:$JAXP:$RESOLVER:$XERCES:$CLASSPATH"`
+$java = "java" if $java eq '';
 
-#echo $CLASSPATH
+foreach my $path (reverse split(/$cpseparator/, $ENV{'CLASSPATH'})) {
+    unshift(@classpath, $path);
+}
 
-if [ ${VERBOSE} ] && ${VERBOSE}; then
-  echo java $MEMORY $SAXPARSER org.apache.xalan.xslt.Process $RESOLVERS $@
-fi
-exec java -cp $CLASSPATH $MEMORY $SAXPARSER org.apache.xalan.xslt.Process $RESOLVERS $@
+showVars() if $debug;
 
+die "No classname?\n" if !defined($classname);
+
+my $jopts = join(" ", @javaopts);
+my $jprops = join(" ", @systemprops);
+my $jcp = join($cpseparator, @classpath);
+my $xopts = join(" ", @xalanopts);
+
+my $xparam = "";
+foreach my $param (@params) {
+    my $name = "";
+    my $value = "";
+    if ($param =~ /^(.*?)=(.*)$/) {
+	$name = $1;
+	$value = $2;
+    } else {
+	$name = $param;
+    }
+
+    $xparam .= "-PARAM $name \"$value\" ";
+}
+
+if ($cpseparator eq ';') {
+    # This must be cygwin or some windows flavor, let's try to make it work
+    $jcp =~ s/\//\\\\/sg; # turn / into \\ in classpath paths
+    $jcp =~ s/\;/\\\;/sg; # escape semicolons
+    if (@params) {
+	$xparam = "\"" . join("\" \"", @params) . "\"";
+    } else {
+	$xparam = "";
+    }
+}
+
+print "$java $jopts $classname $xopts -IN $input -XSL $style $xparam\n" if $debug;
+exec("$java $jopts -cp $jcp $jprops $classname $xopts -IN $input -XSL $style $xparam");
+
+# ============================================================
+
+sub applyOpts {
+    my $xp = shift;
+    my $id = shift;
+
+    # Avoid loops
+    if ($seenopts{$id}) {
+	print STDERR "Skipping $id (already seen)\n" if $debug;
+	return;
+    }
+    $seenopts{$id} = 1;
+
+    my $node = ($xp->find("/config/*[\@xml:id='$id']")->get_nodelist())[0];
+
+    die "Config $config does not contain $id.\n" if !defined($node);
+
+    print STDERR "Loading $id from $config\n" if $debug;
+
+    $classname = $node->getAttribute('class')
+	if $classname eq '';
+
+    $java = $node->getAttribute('java')
+	if $java eq '';
+
+    foreach my $path (configPath($node, 'classpath', $cpseparator)) {
+	addOpt(\@classpath, $path);
+    }
+
+    foreach my $prop (configArgs($node, 'system-property', '-D', '=')) {
+	addOpt(\@systemprops, $prop, '=');
+    }
+
+    foreach my $arg (configArgs($node, 'arg', '-', ' ')) {
+	addOpt(\@xalanopts, $arg, ' ');
+    }
+
+    foreach my $opt (configArgs($node, 'java-option', '-', '=')) {
+	addOpt(\@javaopts, $opt, ' ');
+    }
+
+    foreach my $param (configArgs($node, 'param', '', '=')) {
+	addOpt(\@params, $param, '=');
+    }
+
+    my $extends = $node->getAttribute('extends');
+    applyOpts($xp, $extends) if $extends ne '';
+}
+
+sub configArgs {
+    my $context = shift;
+    my $elemname = shift;
+    my $prefix = shift;
+    my $sep = shift;
+    my @opts = ();
+
+    if ($context) {
+	my $args = $context->find($elemname);
+	foreach my $arg ($args->get_nodelist()) {
+	    my $name = $arg->getAttribute('name');
+	    my $value = $arg->getAttribute('value');
+	    if (defined($value) && $value ne '') {
+		push(@opts, "$prefix$name$sep$value");
+	    } else {
+		push(@opts, "$prefix$name");
+	    }
+	}
+    }
+
+    return @opts;
+}
+
+sub configPath {
+    my $context = shift;
+    my $elemname = shift;
+    my $sep = shift || ":";
+    my @path = ();
+
+    if ($context) {
+	my $args = $context->find($elemname);
+	foreach my $arg ($args->get_nodelist()) {
+	    my $dir = $arg->getAttribute('path');
+	    if ($dir ne '') {
+		foreach my $f (split(/$sep/, $dir)) {
+		    if (-d $f || -f $f) {
+			push (@path, $f);
+		    } else {
+			warn "Invalid path component: $f\n";
+		    }
+		}
+	    } else {
+		warn "Invalid path component (no \@dir)\n";
+	    }
+	}
+    }
+
+    return @path;
+}
+
+sub addOpt {
+    my $arrayref = shift;
+    my $newopt = shift;
+    my $sep = shift;
+    my $newname = $newopt;
+
+    $newname = $1 if defined($sep) && $newopt =~ /^(.*?)$sep/;
+
+    foreach my $opt (@{$arrayref}) {
+	my $name = $opt;
+	$name = $1 if defined($sep) && $opt =~ /^(.*?)$sep/;
+	return if $name eq $newname;
+    }
+
+    push(@{$arrayref}, $newopt);
+}
+
+sub showVars {
+    print STDERR "config: $config\n";
+    print STDERR "java: $java\n";
+    print STDERR "optsname: $optsname\n";
+    showArr("opts", @opts);
+    showArr("xalan opts", @xalanopts);
+    print STDERR "input: $input\n" if defined($input);
+    print STDERR "style: $style\n" if defined($style);
+    if (@params) {
+	print STDERR "params:\n";
+	foreach my $param (@params) {
+	    my $name = "";
+	    my $value = "";
+	    if ($param =~ /^(.*?)=(.*)$/) {
+		$name = $1;
+		$value = $2;
+	    } else {
+		$name = $param;
+	    }
+
+	    print STDERR "\t-PARAM $name \"$value\"\n";
+	}
+    }
+    showArr("java opts", @javaopts);
+    showArr("system props", @systemprops);
+    print STDERR "cpseparator: $cpseparator\n";
+    showArr("classpath", @classpath);
+}
+
+sub showArr {
+    my $name = shift;
+    my @arr = @_;
+
+    if (@arr) {
+	print STDERR "$name:\n";
+	foreach my $p (@arr) {
+	    print STDERR "\t$p\n";
+	}
+    }
+}
