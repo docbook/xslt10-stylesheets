@@ -598,6 +598,12 @@
   <xsl:param name="type" select="''"/>
   <xsl:param name="zones"/>
 
+  <xsl:variable name="number.separator">
+    <xsl:call-template name="index.separator">
+      <xsl:with-param name="key" select="'index.number.separator'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="contains($zones, ' ')">
       <xsl:variable name="zone" select="substring-before($zones, ' ')"/>
