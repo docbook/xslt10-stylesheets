@@ -965,6 +965,226 @@ one usable XSLT 2.0 processor.</para>
 </qandadiv>
 
 <qandadiv>
+<title>Schema customizations</title>
+
+<qandaentry>
+<question>
+<para>How can I extend DocBook schema with MathML elements?</para>
+</question>
+<answer>
+<para>Basic DocBook schema allows any elements from MathML namespace
+to appear inside <tag>equation</tag> element. This means that you can
+validate DocBook+MathML document, but MathML content will be ignored
+during the validation. You will also not be able to use guided editing
+for MathML content.</para>
+<para>If you need strict validation of MathML content or guided
+editing for MathML, you can easily extend the base DocBook schema with
+a MathML schema.</para>
+<procedure>
+<title>Extending the DocBook schema with MathML schema</title>
+<step>
+<para>Download MathML RELAX NG schema from <link
+xl:href="http://yupotan.sppd.ne.jp/relax-ng/mml2.html"/> and unpack it
+somewhere (e.g. into <filename>mathml</filename> subdirectory).</para>
+</step>
+<step>
+<para>Create easy schema customization
+<filename>dbmathml.rnc</filename>:</para>
+<programlisting>namespace html = "http://www.w3.org/1999/xhtml"
+namespace mml = "http://www.w3.org/1998/Math/MathML"
+namespace db = "http://docbook.org/ns/docbook"
+
+include "/path/to/docbook.rnc" {
+  db._any.mml = external "mathml/mathml2.rnc"
+  db._any =
+    element * - (db:* | html:* | mml:*) {
+      (attribute * { text }
+       | text
+       | db._any)*
+    }
+}</programlisting>
+<para>Or alternatively you can use XML syntax of RELAX NG—<filename>dbmathml.rng</filename>:</para>
+<programlisting><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0">
+
+<include href="/path/to/docbook.rng">
+  <define name="db._any.mml">
+    <externalRef href="mathml/mathml2.rng"/>
+  </define>
+
+  <define name="db._any">
+    <element>
+      <anyName>
+        <except>
+          <nsName ns="http://docbook.org/ns/docbook"/>
+          <nsName ns="http://www.w3.org/1999/xhtml"/>
+          <nsName ns="http://www.w3.org/1998/Math/MathML"/>
+        </except>
+      </anyName>
+      <zeroOrMore>
+        <choice>
+          <attribute>
+            <anyName/>
+          </attribute>
+          <text/>
+          <ref name="db._any"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+</include>
+
+</grammar>]]></programlisting>
+</step>
+<step>
+<para>Now use the customized schema (<filename>dbmathml.rnc</filename>
+or <filename>dbmathml.rng</filename>) instead of the original
+DocBook schema.</para>
+</step>
+</procedure>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How can I extend DocBook schema with SVG elements?</para>
+</question>
+<answer>
+<para>The situation is the same as with MathML support. You can use
+any elements from the SVG namespace inside <tag>imageobject</tag>
+element.</para>
+<procedure>
+<title>Extending the DocBook schema with SVG schema</title>
+<step>
+<para>Download SVG RELAX NG schema from <link
+xl:href="http://www.w3.org/Graphics/SVG/1.1/rng/rng.zip"/> and unpack it
+somewhere (e.g. into <filename>svg</filename> subdirectory).</para>
+</step>
+<step>
+<para>Create easy schema customization
+<filename>dbsvg.rnc</filename>:</para>
+<programlisting>namespace html = "http://www.w3.org/1999/xhtml"
+namespace db = "http://docbook.org/ns/docbook"
+namespace svg = "http://www.w3.org/2000/svg"
+
+include "/path/to/docbook.rnc" {
+  db._any.svg = external "svg/svg11.rnc"
+  db._any =
+    element * - (db:* | html:* | svg:*) {
+      (attribute * { text }
+       | text
+       | db._any)*
+    }
+}</programlisting>
+<para>Or alternatively you can use XML syntax of RELAX NG—<filename>dbsvg.rng</filename>:</para>
+<programlisting><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0">
+
+<include href="/path/to/docbook.rng">
+  <define name="db._any.svg">
+    <externalRef href="svg/svg11.rng"/>
+  </define>
+
+  <define name="db._any">
+    <element>
+      <anyName>
+        <except>
+          <nsName ns="http://docbook.org/ns/docbook"/>
+          <nsName ns="http://www.w3.org/1999/xhtml"/>
+          <nsName ns="http://www.w3.org/2000/svg"/>
+        </except>
+      </anyName>
+      <zeroOrMore>
+        <choice>
+          <attribute>
+            <anyName/>
+          </attribute>
+          <text/>
+          <ref name="db._any"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+</include>
+
+</grammar>]]></programlisting>
+</step>
+<step>
+<para>Now use the customized schema (<filename>dbsvg.rnc</filename>
+or <filename>dbsvg.rng</filename>) instead of the original
+DocBook schema.</para>
+</step>
+</procedure>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is it possible to use previous two customizations for MathML
+and SVG together?</para>
+</question>
+<answer>
+<para>Yes, you can create a special schema customization that combines
+both MathML and SVG with the DocBook schema. In compact syntax, merged
+schema is:</para>
+<programlisting>namespace html = "http://www.w3.org/1999/xhtml"
+namespace mml = "http://www.w3.org/1998/Math/MathML"
+namespace db = "http://docbook.org/ns/docbook"
+namespace svg = "http://www.w3.org/2000/svg"
+
+include "/path/to/docbook.rnc" {
+  db._any.mml = external "mahtml/mathml2.rnc"
+  db._any.svg = external "svg/svg11.rnc"
+  db._any =
+    element * - (db:* | html:* | mml:* | svg:*) {
+      (attribute * { text }
+       | text
+       | db._any)*
+    }
+}</programlisting>
+<para>Or alternatively in full RELAX NG syntax:</para>
+<programlisting><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0">
+
+<include href="/path/to/docbook.rng">
+  <define name="db._any.mml">
+    <externalRef href="mathml/mathml2.rng"/>
+  </define>
+
+  <define name="db._any.svg">
+    <externalRef href="svg/svg11.rng"/>
+  </define>
+
+  <define name="db._any">
+    <element>
+      <anyName>
+        <except>
+          <nsName ns="http://docbook.org/ns/docbook"/>
+          <nsName ns="http://www.w3.org/1999/xhtml"/>
+          <nsName ns="http://www.w3.org/1998/Math/MathML"/>
+          <nsName ns="http://www.w3.org/2000/svg"/>
+        </except>
+      </anyName>
+      <zeroOrMore>
+        <choice>
+          <attribute>
+            <anyName/>
+          </attribute>
+          <text/>
+          <ref name="db._any"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+</include>
+
+</grammar>]]></programlisting>
+</answer>
+</qandaentry>
+
+</qandadiv>
+
+<qandadiv>
 <title>Tool specific problems</title>
 
 <qandaentry>
