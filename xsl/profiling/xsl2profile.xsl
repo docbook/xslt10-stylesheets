@@ -59,26 +59,34 @@
   <xsl:copy/>
 </xsl:template>
 
-<xsl:template match="xsl:template[@match='/' or @name='hhc-main' or @name='hhp-main']">
-  <xsl:if test="@match='/'">
-    <xslo:include href="../profiling/profile-mode.xsl"/>
-    <xslo:variable name="profiled-content">
-      <xslo:apply-templates select="/" mode="profile"/>
-    </xslo:variable>
-    <xslo:variable name="profiled-nodes" select="exslt:node-set($profiled-content)"/>
-  </xsl:if>
+<xsl:template match="xsl:template[@match='/']">
+  <xslo:include href="../profiling/profile-mode.xsl"/>
+  <xslo:variable name="profiled-content">
+    <xslo:apply-templates select="/" mode="profile"/>
+  </xslo:variable>
+  <xslo:variable name="profiled-nodes" select="exslt:node-set($profiled-content)"/>
   <xsl:copy>
     <xsl:copy-of select="@*"/>
     <xsl:apply-templates mode="correct"/>
   </xsl:copy>
 </xsl:template>
 
-<xsl:template match="*[@select='/']" mode="correct">
+<xsl:template match="xsl:template[@name='hhc-main' or @name='hhp-main'] | xsl:variable[@name='raw.help.title']">
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates mode="correct"/>
+  </xsl:copy>
+</xsl:template>
+
+<xsl:template match="*[starts-with(@select, '/')]" mode="correct">
   <xsl:copy>
     <xsl:for-each select="@*">
       <xsl:choose>
-        <xsl:when test="local-name(.) = 'select' and string(.) = '/'">
+        <xsl:when test="local-name(.) = 'select' and string(.) =  '/'">
           <xsl:attribute name="{local-name(.)}">$profiled-nodes</xsl:attribute>
+        </xsl:when>
+        <xsl:when test="local-name(.) = 'select' and starts-with(., '/')">
+          <xsl:attribute name="{local-name(.)}">$profiled-nodes<xsl:value-of select="."/></xsl:attribute>
         </xsl:when>
         <xsl:otherwise>
           <xsl:attribute name="{local-name(.)}"><xsl:value-of select="."/></xsl:attribute>
