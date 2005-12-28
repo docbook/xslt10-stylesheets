@@ -13,6 +13,7 @@
         <email>ndw@nwalsh.com</email></author>
 </authorgroup>
 
+<pubdate>2005-12-28</pubdate>
 <pubdate>2005-10-27</pubdate>
 
 </info>
@@ -881,7 +882,7 @@ linkend="convert4to5"/>.
 <qandadiv>
 <title>Authoring</title>
 
-<qandaentry>
+<qandaentry xml:id="faq-authoring-schema-association">
 <question>
 <para>How do I attach a schema to a DocBook V5.0 document when I do not
 want to use DTDs and !DOCTYPE?</para>
@@ -895,7 +896,7 @@ edit/process your document.</para>
 </answer>
 </qandaentry>
 
-<qandaentry>
+<qandaentry xml:id="faq-authoring-general-entities">
 <question>
 <para>How do I use entities like <tag class="genentity">ndash</tag> in
 DocBook V5.0?</para>
@@ -924,7 +925,7 @@ imported entities. For example:</para>
 </answer>
 </qandaentry>
 
-<qandaentry>
+<qandaentry xml:id="faq-authoring-modularization">
 <question>
 <para>How to modularize documents?</para>
 </question>
@@ -944,7 +945,7 @@ happy. Name of these schemas ends with letters <quote>xi</quote>, e.g.
 <qandadiv>
 <title>Stylesheets</title>
 
-<qandaentry>
+<qandaentry xml:id="faq-stylesheets-future">
 <question>
 <para>Will be the current DocBook XSL stylesheets (XSLT 1.0 based
 implementation) maintained and improved in the future if a new work on
@@ -967,7 +968,7 @@ one usable XSLT 2.0 processor.</para>
 <qandadiv>
 <title>Schema customizations</title>
 
-<qandaentry>
+<qandaentry xml:id="faq-customization-mathml">
 <question>
 <para>How can I extend DocBook schema with MathML elements?</para>
 </question>
@@ -1045,7 +1046,7 @@ DocBook schema.</para>
 </answer>
 </qandaentry>
 
-<qandaentry>
+<qandaentry xml:id="faq-customization-svg">
 <question>
 <para>How can I extend DocBook schema with SVG elements?</para>
 </question>
@@ -1118,7 +1119,7 @@ DocBook schema.</para>
 </answer>
 </qandaentry>
 
-<qandaentry>
+<qandaentry xml:id="faq-customization-mathml-svg">
 <question>
 <para>Is it possible to use previous two customizations for MathML
 and SVG together?</para>
@@ -1187,7 +1188,7 @@ include "/path/to/docbook.rnc" {
 <qandadiv>
 <title>Tool specific problems</title>
 
-<qandaentry>
+<qandaentry xml:id="faq-tools-xmlspy-xmlid">
 <question>
 <para>I'm using Altova XMLSpy to validate DocBook V5.0 instances
 against W3C XML Schema (<filename>docbook.xsd</filename>). XMLSpy
