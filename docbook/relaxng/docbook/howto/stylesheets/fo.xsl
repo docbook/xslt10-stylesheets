@@ -120,4 +120,12 @@
   </fo:block>
 </xsl:template>
 
+<xsl:attribute-set name="monospace.properties">
+  <xsl:attribute name="font-stretch">narrower</xsl:attribute>
+</xsl:attribute-set>
+
+<xsl:param name="draft.watermark.image" select="''"/>
+
+<xsl:param name="ulink.footnotes" select="1"/>
+
 </xsl:stylesheet>
