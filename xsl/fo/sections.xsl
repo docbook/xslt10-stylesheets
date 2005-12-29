@@ -101,9 +101,11 @@
   </xsl:variable>
 
   <xsl:if test="contains($toc.params, 'toc')
-                and (count(ancestor::section)+1) &lt;= $generate.section.toc.level">
+                and (count(ancestor::section)+1) &lt;= 
+		$generate.section.toc.level">
     <xsl:call-template name="section.toc">
-      <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
+      <xsl:with-param name="toc.title.p" 
+                      select="contains($toc.params, 'title')"/>
     </xsl:call-template>
    <xsl:call-template name="section.toc.separator"/>
   </xsl:if>
@@ -185,8 +187,12 @@
       </xsl:variable>
 
       <xsl:if test="contains($toc.params, 'toc')
-                    and (count(ancestor::section)+1) &lt;= $generate.section.toc.level">
-        <xsl:call-template name="section.toc"/>
+                    and (count(ancestor::section)+1) &lt;= 
+		    $generate.section.toc.level">
+        <xsl:call-template name="section.toc">
+          <xsl:with-param name="toc.title.p" 
+                          select="contains($toc.params, 'title')"/>
+        </xsl:call-template>
         <xsl:call-template name="section.toc.separator"/>
       </xsl:if>
 
@@ -299,7 +305,10 @@
 
     <xsl:if test="contains($toc.params, 'toc')
                   and $generate.section.toc.level &gt;= 1">
-      <xsl:call-template name="section.toc"/>
+      <xsl:call-template name="section.toc">
+        <xsl:with-param name="toc.title.p" 
+                        select="contains($toc.params, 'title')"/>
+      </xsl:call-template>
       <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
 
@@ -382,7 +391,10 @@
 
       <xsl:if test="contains($toc.params, 'toc')
                     and $generate.section.toc.level &gt;= 1">
-        <xsl:call-template name="section.toc"/>
+        <xsl:call-template name="section.toc">
+          <xsl:with-param name="toc.title.p" 
+                          select="contains($toc.params, 'title')"/>
+        </xsl:call-template>
         <xsl:call-template name="section.toc.separator"/>
       </xsl:if>
 
@@ -408,7 +420,10 @@
 
     <xsl:if test="contains($toc.params, 'toc')
                    and $generate.section.toc.level &gt;= 2">
-      <xsl:call-template name="section.toc"/>
+      <xsl:call-template name="section.toc">
+        <xsl:with-param name="toc.title.p" 
+                        select="contains($toc.params, 'title')"/>
+      </xsl:call-template>
       <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
 
@@ -433,7 +448,10 @@
 
     <xsl:if test="contains($toc.params, 'toc')
                   and $generate.section.toc.level &gt;= 3">
-      <xsl:call-template name="section.toc"/>
+      <xsl:call-template name="section.toc">
+        <xsl:with-param name="toc.title.p" 
+                        select="contains($toc.params, 'title')"/>
+      </xsl:call-template>
       <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
 
@@ -458,7 +476,10 @@
 
     <xsl:if test="contains($toc.params, 'toc')
                   and $generate.section.toc.level &gt;= 4">
-      <xsl:call-template name="section.toc"/>
+      <xsl:call-template name="section.toc">
+        <xsl:with-param name="toc.title.p" 
+                        select="contains($toc.params, 'title')"/>
+      </xsl:call-template>
       <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
 
@@ -483,7 +504,10 @@
 
     <xsl:if test="contains($toc.params, 'toc')
                   and $generate.section.toc.level &gt;= 5">
-      <xsl:call-template name="section.toc"/>
+      <xsl:call-template name="section.toc">
+        <xsl:with-param name="toc.title.p" 
+                        select="contains($toc.params, 'title')"/>
+      </xsl:call-template>
       <xsl:call-template name="section.toc.separator"/>
     </xsl:if>
 

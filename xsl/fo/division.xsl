@@ -377,7 +377,10 @@
                           select="$lot-master-reference"/>
         </xsl:call-template>
 
-        <xsl:call-template name="division.toc"/>
+        <xsl:call-template name="division.toc">
+          <xsl:with-param name="toc.title.p" 
+                          select="contains($toc.params, 'title')"/>
+        </xsl:call-template>
       </fo:flow>
     </fo:page-sequence>
   </xsl:if>
@@ -910,7 +913,10 @@
 
         <xsl:call-template name="division.toc">
           <xsl:with-param name="toc-context" select="$part"/>
+          <xsl:with-param name="toc.title.p" 
+                          select="contains($toc.params, 'title')"/>
         </xsl:call-template>
+
       </fo:flow>
     </fo:page-sequence>
   </xsl:if>
