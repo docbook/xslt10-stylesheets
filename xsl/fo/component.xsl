@@ -39,7 +39,7 @@
   <xsl:variable name="level">
     <xsl:choose>
       <xsl:when test="ancestor::section">
-	<xsl:value-of select="count(ancestor::section)+1"/>
+        <xsl:value-of select="count(ancestor::section)+1"/>
       </xsl:when>
       <xsl:when test="ancestor::sect5">6</xsl:when>
       <xsl:when test="ancestor::sect4">5</xsl:when>
@@ -95,9 +95,9 @@
          font-size there... -->
     <xsl:choose>
       <xsl:when test="$level=2">
-	<fo:block xsl:use-attribute-sets="section.title.level2.properties">
-	  <xsl:copy-of select="$title"/>
-	</fo:block>
+        <fo:block xsl:use-attribute-sets="section.title.level2.properties">
+          <xsl:copy-of select="$title"/>
+        </fo:block>
       </xsl:when>
       <xsl:when test="$level=3">
         <fo:block xsl:use-attribute-sets="section.title.level3.properties">
@@ -115,13 +115,13 @@
         </fo:block>
       </xsl:when>
       <xsl:when test="$level=6">
-	<fo:block xsl:use-attribute-sets="section.title.level6.properties">
-	  <xsl:copy-of select="$title"/>
-	</fo:block>
+        <fo:block xsl:use-attribute-sets="section.title.level6.properties">
+          <xsl:copy-of select="$title"/>
+        </fo:block>
       </xsl:when>
       <xsl:otherwise>
-	<!-- not in a section: do nothing special -->
-	<xsl:copy-of select="$title"/>
+        <!-- not in a section: do nothing special -->
+        <xsl:copy-of select="$title"/>
       </xsl:otherwise>
     </xsl:choose>
   </fo:block>
@@ -348,11 +348,15 @@
 
       <xsl:variable name="toc.params">
         <xsl:call-template name="find.path.params">
-          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+          <xsl:with-param name="table" 
+                          select="normalize-space($generate.toc)"/>
         </xsl:call-template>
       </xsl:variable>
       <xsl:if test="contains($toc.params, 'toc')">
-        <xsl:call-template name="component.toc"/>
+        <xsl:call-template name="component.toc">
+          <xsl:with-param name="toc.title.p" 
+                          select="contains($toc.params, 'title')"/>
+        </xsl:call-template>
         <xsl:call-template name="component.toc.separator"/>
       </xsl:if>
 
@@ -439,7 +443,10 @@
         </xsl:call-template>
       </xsl:variable>
       <xsl:if test="contains($toc.params, 'toc')">
-        <xsl:call-template name="component.toc"/>
+        <xsl:call-template name="component.toc">
+          <xsl:with-param name="toc.title.p" 
+                          select="contains($toc.params, 'title')"/>
+        </xsl:call-template>
         <xsl:call-template name="component.toc.separator"/>
       </xsl:if>
       <xsl:apply-templates/>
@@ -526,7 +533,10 @@
       </xsl:variable>
 
       <xsl:if test="contains($toc.params, 'toc')">
-        <xsl:call-template name="component.toc"/>
+        <xsl:call-template name="component.toc">
+          <xsl:with-param name="toc.title.p" 
+                          select="contains($toc.params, 'title')"/>
+        </xsl:call-template>
         <xsl:call-template name="component.toc.separator"/>
       </xsl:if>
       <xsl:apply-templates/>
@@ -613,7 +623,10 @@
       </xsl:variable>
 
       <xsl:if test="contains($toc.params, 'toc')">
-        <xsl:call-template name="component.toc"/>
+        <xsl:call-template name="component.toc">
+          <xsl:with-param name="toc.title.p" 
+                          select="contains($toc.params, 'title')"/>
+        </xsl:call-template>
         <xsl:call-template name="component.toc.separator"/>
       </xsl:if>
       <xsl:apply-templates/>

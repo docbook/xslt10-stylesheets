@@ -53,6 +53,7 @@
 
 <xsl:template name="division.toc">
   <xsl:param name="toc-context" select="."/>
+  <xsl:param name="toc.title.p" select="true()"/>
 
   <xsl:variable name="cid">
     <xsl:call-template name="object.id">
@@ -83,7 +84,9 @@
           </xsl:call-template>
         </xsl:attribute>
       </xsl:if>
-      <xsl:call-template name="table.of.contents.titlepage"/>
+      <xsl:if test="$toc.title.p">
+        <xsl:call-template name="table.of.contents.titlepage"/>
+      </xsl:if>
       <xsl:apply-templates select="$nodes" mode="toc">
         <xsl:with-param name="toc-context" select="$toc-context"/>
       </xsl:apply-templates>
@@ -93,6 +96,7 @@
 
 <xsl:template name="component.toc">
   <xsl:param name="toc-context" select="."/>
+  <xsl:param name="toc.title.p" select="true()"/>
 
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
@@ -110,7 +114,9 @@
   <xsl:if test="$nodes">
     <fo:block id="toc...{$id}"
               xsl:use-attribute-sets="toc.margin.properties">
-      <xsl:call-template name="table.of.contents.titlepage"/>
+      <xsl:if test="$toc.title.p">
+        <xsl:call-template name="table.of.contents.titlepage"/>
+      </xsl:if>
       <xsl:apply-templates select="$nodes" mode="toc">
         <xsl:with-param name="toc-context" select="$toc-context"/>
       </xsl:apply-templates>
