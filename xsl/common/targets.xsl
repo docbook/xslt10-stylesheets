@@ -118,11 +118,18 @@ document output.
     </xsl:attribute>
   </xsl:if>
 
-  <xsl:if test="$nd/@id">
-    <xsl:attribute name="targetptr">
-      <xsl:value-of select="$nd/@id"/>
-    </xsl:attribute>
-  </xsl:if>
+  <xsl:choose>
+    <xsl:when test="$nd/@id">
+      <xsl:attribute name="targetptr">
+        <xsl:value-of select="$nd/@id"/>
+      </xsl:attribute>
+    </xsl:when>
+    <xsl:when test="$nd/@xml:id">
+      <xsl:attribute name="targetptr">
+        <xsl:value-of select="$nd/@xml:id"/>
+      </xsl:attribute>
+    </xsl:when>
+  </xsl:choose>
 
   <xsl:if test="$nd/@lang">
     <xsl:attribute name="lang">
@@ -255,7 +262,7 @@ document output.
 </xsl:template>
 
 <xsl:template match="*" mode="olink.mode">
-  <xsl:if test="@id">
+  <xsl:if test="@id or @xml:id">
     <xsl:call-template name="obj"/>
   </xsl:if> 
   <xsl:apply-templates mode="olink.mode"/>
