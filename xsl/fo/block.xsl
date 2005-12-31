@@ -303,6 +303,7 @@
                             $position = 'left'">0pt</xsl:when>
             <xsl:when test="$position = 'end' or 
                             $position = 'right'">0.5em</xsl:when>
+            <xsl:otherwise>0pt</xsl:otherwise>
           </xsl:choose>
         </xsl:with-param>
         <xsl:with-param name="end.indent">
@@ -311,6 +312,7 @@
                             $position = 'left'">0.5em</xsl:when>
             <xsl:when test="$position = 'end' or 
                             $position = 'right'">0pt</xsl:when>
+            <xsl:otherwise>0pt</xsl:otherwise>
           </xsl:choose>
         </xsl:with-param>
       </xsl:call-template>
@@ -369,6 +371,7 @@
                         $position = 'left'">0pt</xsl:when>
         <xsl:when test="$position = 'end' or 
                         $position = 'right'">0.5em</xsl:when>
+        <xsl:otherwise>0pt</xsl:otherwise>
       </xsl:choose>
     </xsl:with-param>
     <xsl:with-param name="end.indent">
@@ -377,6 +380,7 @@
                         $position = 'left'">0.5em</xsl:when>
         <xsl:when test="$position = 'end' or 
                         $position = 'right'">0pt</xsl:when>
+        <xsl:otherwise>0pt</xsl:otherwise>
       </xsl:choose>
     </xsl:with-param>
   </xsl:call-template>
