@@ -198,24 +198,49 @@ div {
 # ======================================================================
 
 [
+   db:refname [ "area" ]
+   db:refpurpose [ "A region defined for a Callout in a graphic or code example" ]
+]
+div {
+   # The only difference is that xml:id is optional
+   db.area.inareaset.attlist =
+      db.area.role.attribute?
+    & db.common.attributes
+    & db.area.units.attribute
+    & (db.area.linkends.attribute | db.href.attribute)?
+    & db.area.label.attribute?
+    & db.area.coords.attribute
+
+   db.area.inareaset =
+      element area {
+         db.area.inareaset.attlist,
+         db.alt?
+      }
+}
+
+# ======================================================================
+
+[
    db:refname [ "areaset" ]
    db:refpurpose [ "A set of related areas in a graphic or code example" ]
 ]
 div {
 
    db.areaset.role.attribute = attribute role { text }
+   db.areaset.linkends.attribute = attribute linkends { xsd:IDREFS }
    db.areaset.label.attribute = attribute label { text }
 
    db.areaset.attlist =
       db.areaset.role.attribute?
     & db.common.idreq.attributes
     & db.area.units.attribute
+    & (db.areaset.linkends.attribute | db.href.attribute)?
     & db.areaset.label.attribute?
 
    db.areaset =
       element areaset {
          db.areaset.attlist,
-         db.area+
+         db.area.inareaset+
       }
 }
 
