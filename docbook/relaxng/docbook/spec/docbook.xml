@@ -1,6 +1,6 @@
 <!DOCTYPE article [
 <!ENTITY name "wd-docbook-docbook">
-<!ENTITY version "5.0b1">
+<!ENTITY version "5.0b2">
 <!ENTITY standard "Working Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
@@ -40,11 +40,11 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>2005-10-27</pubdate>
+<pubdate>2006-01-12</pubdate>
 
 <copyright>
 <year>2001</year><year>2002</year><year>2003</year>
-<year>2004</year><year>2005</year>
+<year>2004</year><year>2005</year><year>2006</year>
 <holder>The Organization for the Advancement of Structured Information
 Standards [OASIS]. All Rights Reserved. </holder></copyright>
 
@@ -145,7 +145,8 @@ document.</para>
 <section xml:id="s.docbook">
 <title>The DocBook RELAX NG Schema V5.0</title>
 
-<para>The DocBook <link xlink:href="&root;rng/">RELAX NG Schema</link> is distributed
+<para>The DocBook
+<link xlink:href="&root;rng/">RELAX NG Schema</link> is distributed
 from the
 <link xlink:href="http://www.oasis-open.org/docbook/">DocBook site</link> at
 <link xlink:href="http://www.oasis-open.org/">OASIS</link>.
@@ -153,7 +154,46 @@ DocBook is also available from the mirror on
 <link xlink:href="http://docbook.org/"/>.
 </para>
 
-<section xml:id="s.cs">
+<section xml:id="s.50b2">
+<title>Changes in DocBook V5.0b2</title>
+
+<para>This release addresses several bugs identified in V5.0b1.</para>
+
+<orderedlist>
+<listitem xml:id="svg.mathml">
+<para>When SVG or MathML are used, allow more than one element from the
+respective namespace to be used in the appropriate location.
+</para>
+</listitem>
+<listitem xml:id="rfe.1356238">
+<para>Fixed <link xlink:href="&RFE;aid=1356238">RFE 1356238</link>:
+the <tag class="attribute">xrefstyle</tag> attribute on 
+<tag>olink</tag> is now “<literal>text</literal>” rather than
+“<literal>xsd:IDREF</literal>”.
+</para>
+</listitem>
+<listitem xml:id="rfe.1380477">
+<para>Fixed <link xlink:href="&RFE;aid=1380477">RFE 1380477</link>:
+Make <tag class="attribute">xml:id</tag> optional on
+<tag>area</tag>s within <tag>areaset</tag>; allow linking attributes on
+<tag>areaset</tag>; establish the semantics that an <tag>area</tag>
+inside an <tag>areaset</tag> inherits its linking attributes from the
+<tag>areaset</tag> if it doesn't have linking attributes of its own.</para>
+</listitem>
+<listitem>
+<para>Allow <tag>alt</tag> inside <tag>equation</tag>,
+<tag>informalequation</tag>, and <tag>inlineequation</tag>.
+</para>
+</listitem>
+<listitem xml:id="rfe.1356254">
+<para>Fixed <link xlink:href="&RFE;aid=1356254">RFE 1356254</link>:
+<uri>dbforms.rnc</uri> schema now supports the HTML form elements.
+</para>
+</listitem>
+</orderedlist>
+
+</section>
+<section xml:id="s.50b1">
 <title>Changes in DocBook V5.0</title>
 
 <para>In V5.0, DocBook has been rewritten as a native RELAX NG

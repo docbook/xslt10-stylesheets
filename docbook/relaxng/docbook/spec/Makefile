@@ -1,9 +1,10 @@
 include ../../../../cvstools/Makefile.incl
 
+XSLT=saxon
 HTMLSTYLE=html.xsl
 FOSTYLE=fo.xsl
 
-XSLPARAM=""
+XSLPARAM=
 
 all: docbook.html docbook.pdf
 
