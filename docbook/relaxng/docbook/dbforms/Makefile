@@ -21,11 +21,11 @@ $(_OUTTOP)/dbforms/dbforms.rng: dbforms/htmlform.rnc \
 
 include _footer.mak
 
-dbforms.rng: $(basename $(docbook_BINARY)).rnx
+dbforms.rng: $(basename $(dbforms_BINARY)).rnx
 	$(XSLTPROC) --output $@ $(TOOLS)/removedoc.xsl $<
 
 dbforms.rnc: dbforms.rng
 	$(RUNTRANG) $< $@
 
-dbforms.dtd: $(basename $(docbook_BINARY)).dtx dbforms.rnc
+dbforms.dtd: $(basename $(dbforms_BINARY)).dtx dbforms.rnc
 	$(XSLTPROC) -output $@ $(TOOLS)/xml2dtd.xsl $<
