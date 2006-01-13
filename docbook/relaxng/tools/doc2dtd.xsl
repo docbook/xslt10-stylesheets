@@ -76,6 +76,11 @@
       <!-- db.indexterm.singular handles all three cases -->
     </xsl:when>
 
+    <!-- Handle the duplicate area patterns -->
+    <xsl:when test="@name = 'db.area'">
+      <!-- db.area.inareaset is the "right" one; it has an optional id -->
+    </xsl:when>
+
     <!-- Handle the row patterns -->
 
     <xsl:when test="@name = 'db.entrytbl.row' and key('pattern', 'db.row')">
@@ -294,9 +299,18 @@
 
 <xsl:template match="rng:oneOrMore" mode="content-model">
   <xsl:param name="repeat" select="''"/>
-  <dtd:choice repeat="+">
+
+  <!-- make sure there's something in there... -->
+  <xsl:variable name="content">
     <xsl:apply-templates select="*" mode="content-model"/>
-  </dtd:choice>
+  </xsl:variable>
+  <xsl:variable name="contentNS" select="exsl:node-set($content)/*"/>
+
+  <xsl:if test="count($contentNS) &gt; 0">
+    <dtd:choice repeat="+">
+      <xsl:copy-of select="$content"/>
+    </dtd:choice>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="rng:text" mode="content-model">
@@ -328,6 +342,9 @@
     </xsl:when>
     <xsl:when test="@name = 'db.html.informaltable'
 		    and ../rng:ref[@name='db.cals.informaltable']">
+      <!-- suppress -->
+    </xsl:when>
+    <xsl:when test="@name = 'db._any.svg' or @name='db._any.mathml'">
       <!-- suppress -->
     </xsl:when>
     <xsl:when test="$def/rng:element">
