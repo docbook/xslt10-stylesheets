@@ -40,12 +40,18 @@ default namespace = "http://docbook.org/ns/docbook"
 
 [
    db:refname [ "*:*" ]
-   db:refpurpose [ "Any element from any namespace except the DocBook namespace" ]
+   db:refpurpose [ "Any element from almost any namespace" ]
 ]
 div {
 
+   db._any.attribute =
+      [
+         db:refpurpose [ "Any attribute including in any attribute in any namespace." ]
+      ]
+      attribute * { text }
+
    db._any =
-      element * - (db:* | html:*) { (attribute * { text } | text | db._any)* }
+      element * - (db:* | html:*) { (db._any.attribute | text | db._any)* }
 
 }
 
@@ -5614,13 +5620,34 @@ div {
                           other-name="db.keycombo.action-other.attributes" ]
 
    db.keycombo.action.enumeration =
-      "click" | "double-click" | "press" | "seq" | "simul"
+      ## A (single) mouse click.
+      "click"
+    | ## A double mouse click.
+      "double-click"
+    | ## A mouse or key press.
+      "press"
+    | ## Sequential clicks or presses.
+      "seq"
+    | ## Simultaneous clicks or presses.
+      "simul"
 
    db.keycombo.action-enum.attribute =
+      [
+         db:refpurpose [ "Identifies the nature of the action taken. If " db:tag [ "keycombo" ] " contains more than one element, " db:tag [ class="attvalue" "simul" ] " is the default, otherwise there is no default." ]
+      ]
       attribute action { db.keycombo.action.enumeration }?
 
    db.keycombo.action-other.attributes =
-      attribute action { "other" }?,
+      [
+         db:refpurpose [ "Indicates that some non-standard action is taken." ]
+      ]
+      attribute action {
+         ## Indicates a non-standard action.
+         "other"
+      }?,
+      [
+         db:refpurpose [ "Identifies the non-standard action in some unspecified way." ]
+      ]
       attribute otheraction { text }
 
    db.keycombo.action.attrib =

@@ -42,7 +42,11 @@ db.glossary.inlines =
 
 # ======================================================================
 
-db.baseform.attribute = attribute baseform { text }?
+db.baseform.attribute =
+   [
+      db:refpurpose [ "Specifies the base form of the term, the one that appears in the glossary. This allows adjectival, plural, and other variations of the term to appear in the element. The element content is the default base form." ]
+   ]
+   attribute baseform { text }?
 
 # ======================================================================
 

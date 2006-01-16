@@ -37,25 +37,67 @@ db.table.choice |= db.html.table
 db.informaltable.choice |= db.html.informaltable
 
 db.html.coreattrs =
+   [
+      db:refpurpose [ "This attribute assigns a class name or set of class names to an element. Any number of elements may be assigned the same class name or names. Multiple class names must be separated by white space characters." ]
+   ]
    attribute class { text }?
- & attribute style { text }?
- & attribute title { text }?
+ & [
+      db:refpurpose [ "This attribute specifies style information for the current element." ]
+   ]
+   attribute style { text }?
+ & [
+      db:refpurpose [ "This attribute offers advisory information about the element for which it is set." ]
+   ]
+   attribute title { text }?
 
 # dir isn't listed here because it's already a common attribute
 db.html.i18n =
+   [
+      db:refpurpose [ "This attribute specifies the base language of an element's attribute values and text content. The default value of this attribute is unknown." ]
+   ]
    attribute lang { text }?
 
 db.html.events =
+   [
+      db:refpurpose [ "Occurs when the pointing device button is clicked over an element." ]
+   ]
    attribute onclick { text }?
- & attribute ondblclick { text }?
- & attribute onmousedown { text }?
- & attribute onmouseup { text }?
- & attribute onmouseover { text }?
- & attribute onmousemove { text }?
- & attribute onmouseout { text }?
- & attribute onkeypress { text }?
- & attribute onkeydown { text }?
- & attribute onkeyup { text }?
+ & [
+      db:refpurpose [ "Occurs when the pointing device button is double clicked over an element." ]
+   ]
+   attribute ondblclick { text }?
+ & [
+      db:refpurpose [ "Occurs when the pointing device button is pressed over an element." ]
+   ]
+   attribute onmousedown { text }?
+ & [
+      db:refpurpose [ "Occurs when the pointing device button is released over an element." ]
+   ]
+   attribute onmouseup { text }?
+ & [
+      db:refpurpose [ "Occurs when the pointing device is moved onto an element." ]
+   ]
+   attribute onmouseover { text }?
+ & [
+      db:refpurpose [ "Occurs when the pointing device is moved while it is over an element." ]
+   ]
+   attribute onmousemove { text }?
+ & [
+      db:refpurpose [ "Occurs when the pointing device is moved away from an element." ]
+   ]
+   attribute onmouseout { text }?
+ & [
+      db:refpurpose [ "Occurs when a key is pressed and released over an element." ]
+   ]
+   attribute onkeypress { text }?
+ & [
+      db:refpurpose [ "Occurs when a key is pressed down over an element." ]
+   ]
+   attribute onkeydown { text }?
+ & [
+      db:refpurpose [ "Occurs when a key is released over an element." ]
+   ]
+   attribute onkeyup { text }?
 
 db.html.attrs =
    db.common.attributes
@@ -64,12 +106,136 @@ db.html.attrs =
  & db.html.events
 
 db.html.cellhalign =
-   attribute align { "left" | "center" | "right" | "justify" | "char" }?
- & attribute char { text }?
- & attribute charoff { text }?
+   [
+      db:refpurpose [ "Specifies the alignment of data and the justification of text in a cell." ]
+   ]
+   attribute align {
+      ## Left-flush data/Left-justify text. This is the default value for table data.
+      "left"
+    | ## Center data/Center-justify text. This is the default value for table headers.
+      "center"
+    | ## Right-flush data/Right-justify text.
+      "right"
+    | ## Double-justify text.
+      "justify"
+    | ## Align text around a specific character. If a user agent doesn't support character alignment, behavior in the presence of this value is unspecified.
+      "char" }?
+ & [
+      db:refpurpose [ "This attribute specifies a single character within a text fragment to act as an axis for alignment. The default value for this attribute is the decimal point character for the current language as set by the lang attribute (e.g., the period in English and the comma in French). User agents are not required to support this attribute." ]
+   ]
+   attribute char { text }?
+ & [
+      db:refpurpose [ "When present, this attribute specifies the offset to the first occurrence of the alignment character on each line. If a line doesn't include the alignment character, it should be horizontally shifted to end at the alignment position. When charoff is used to set the offset of an alignment character, the direction of offset is determined by the current text direction (set by the dir attribute). In left-to-right texts (the default), offset is from the left margin. In right-to-left texts, offset is from the right margin. User agents are not required to support this attribute." ]
+   ]
+   attribute charoff { text }?
 
 db.html.cellvalign =
-  attribute valign { "top" | "middle" | "bottom" | "baseline" }?
+   [
+      db:refpurpose [ "Specifies the vertical position of data within a cell." ]
+   ]
+   attribute valign {
+      ## Cell data is flush with the top of the cell.
+      "top"
+    | ## Cell data is centered vertically within the cell. This is the default value.
+      "middle"
+    | ## Cell data is flush with the bottom of the cell.
+      "bottom"
+    | ## All cells in the same row as a cell whose valign attribute has this value should have their textual data positioned so that the first text line occurs on a baseline common to all cells in the row. This constraint does not apply to subsequent text lines in these cells.
+      "baseline" }?
+
+db.html.table.attributes =
+   [
+      db:refpurpose [ "Provides a summary of the table's purpose and structure for user agents rendering to non-visual media such as speech and Braille." ]
+   ]
+   attribute summary { text }?
+ & [
+      db:refpurpose [ "Specifies the desired width of the entire table and is intended for visual user agents. When the value is a percentage value, the value is relative to the user agent's available horizontal space. In the absence of any width specification, table width is determined by the user agent." ]
+   ]
+   attribute width { text }?
+ & [
+      db:refpurpose [ "Specifies the width (in pixels only) of the frame around a table." ]
+   ]
+   attribute border { text }?
+ & [
+      db:refpurpose [ "Specifies which sides of the frame surrounding a table will be visible." ]
+   ]
+   attribute frame {
+      ## No sides. This is the default value.
+      "void"
+    | ## The top side only.
+      "above"
+    | ## The bottom side only.
+      "below"
+    | ## The top and bottom sides only.
+      "hsides"
+    | ## The left-hand side only.
+      "lhs"
+    | ## The right-hand side only.
+      "rhs"
+    | ## The right and left sides only.
+      "vsides"
+    | ## All four sides.
+      "box"
+    | ## All four sides.
+      "border"
+   }?
+ & [
+      db:refpurpose [ "Specifies which rules will appear between cells within a table. The rendering of rules is user agent dependent." ]
+   ]
+   attribute rules {
+      ## No rules. This is the default value.
+      "none"
+    | ## Rules will appear between row groups (see thead, tfoot, and tbody) and column groups (see colgroup and col) only.
+      "groups"
+    | ## Rules will appear between rows only.
+      "rows"
+    | ## Rules will appear between columns only.
+      "cols"
+    | ## Rules will appear between all rows and columns.
+      "all" }?
+ & [
+      db:refpurpose [ "Specifies how much space the user agent should leave between the left side of the table and the left-hand side of the leftmost column, the top of the table and the top side of the topmost row, and so on for the right and bottom of the table. The attribute also specifies the amount of space to leave between cells." ]
+   ]
+   attribute cellspacing { text }?
+ & [
+      db:refpurpose [ "Specifies the amount of space between the border of the cell and its contents. If the value of this attribute is a pixel length, all four margins should be this distance from the contents. If the value of the attribute is a percentage length, the top and bottom margins should be equally separated from the content based on a percentage of the available vertical space, and the left and right margins should be equally separated from the content based on a percentage of the available horizontal space." ]
+   ]
+   attribute cellpadding { text }?
+
+db.html.tablecell.attributes =
+   [
+      db:refpurpose [ "Provides an abbreviated form of the cell's content and may be rendered by user agents when appropriate in place of the cell's content. Abbreviated names should be short since user agents may render them repeatedly. For instance, speech synthesizers may render the abbreviated headers relating to a particular cell before rendering that cell's content." ]
+   ]
+   attribute abbr { text }?
+ & [
+      db:refpurpose [ "This attribute may be used to place a cell into conceptual categories that can be considered to form axes in an n-dimensional space. User agents may give users access to these categories (e.g., the user may query the user agent for all cells that belong to certain categories, the user agent may present a table in the form of a table of contents, etc.). Please consult an HTML reference for more details." ]
+   ]
+   attribute axis { text }?
+ & [
+      db:refpurpose [ "Specifies the list of header cells that provide header information for the current data cell. The value of this attribute is a space-separated list of cell names; those cells must be named by setting their id attribute. Authors generally use the headers attribute to help non-visual user agents render header information about data cells (e.g., header information is spoken prior to the cell data), but the attribute may also be used in conjunction with style sheets." ]
+   ]
+   attribute headers { text }?
+ & [
+      db:refpurpose [ "Specifies the set of data cells for which the current header cell provides header information. This attribute may be used in place of the headers attribute, particularly for simple tables." ]
+   ]
+   attribute scope {
+      ## The current cell provides header information for the rest of the row that contains it
+      "row"
+    | ## The current cell provides header information for the rest of the column that contains it.
+      "col"
+    | ## The header cell provides header information for the rest of the row group that contains it.
+      "rowgroup"
+    | ## The header cell provides header information for the rest of the column group that contains it.
+      "colgroup"
+   }?
+ & [
+      db:refpurpose [ "Specifies the number of rows spanned by the current cell. The default value of this attribute is one (" db:quote [ "1" ] "). The value zero (" db:quote [ "0" ] ") means that the cell spans all rows from the current row to the last row of the table section (" db:tag [ "thead" ] ", " db:tag [ "tbody" ] ", or " db:tag [ "tfoot" ] ") in which the cell is defined." ]
+   ]
+   attribute rowspan { text }?
+ & [
+      db:refpurpose [ "Specifies the number of columns spanned by the current cell. The default value of this attribute is one (" db:quote [ "1" ] "). The value zero (" db:quote [ "0" ] ") means that the cell spans all columns from the current column to the last column of the column group (" db:tag [ "colgroup" ] ") in which the cell is defined." ]
+   ]
+   attribute colspan { text }?
 
 db.html.table.model =
    db.html.caption,
@@ -94,27 +260,11 @@ div {
 
    db.html.table.attlist =
       db.html.attrs
+    & db.html.table.attributes
     & db.orient.attribute?
     & db.pgwide.attribute?
     & db.tabstyle.attribute?
     & db.floatstyle.attribute?
-    & attribute summary { text }?
-    & attribute width { text }?
-    & attribute border { text }?
-    & attribute frame {
-       "void"
-     | "above"
-     | "below"
-     | "hsides"
-     | "lhs"
-     | "rhs"
-     | "vsides"
-     | "box"
-     | "border"
-    }?
-    & attribute rules { "none" | "groups" | "rows" | "cols" | "all" }?
-    & attribute cellspacing { text }?
-    & attribute cellpadding { text }?
 
    db.html.table =
       element table {
@@ -133,23 +283,7 @@ div {
 
    db.html.informaltable.attlist =
       db.html.attrs
-    & attribute summary { text }?
-    & attribute width { text }?
-    & attribute border { text }?
-    & attribute frame {
-       "void"
-     | "above"
-     | "below"
-     | "hsides"
-     | "lhs"
-     | "rhs"
-     | "vsides"
-     | "box"
-     | "border"
-    }?
-    & attribute rules { "none" | "groups" | "rows" | "cols" | "all" }?
-    & attribute cellspacing { text }?
-    & attribute cellpadding { text }?
+    & db.html.table.attributes
 
    db.html.informaltable =
       element informaltable {
@@ -186,8 +320,14 @@ div {
 
    db.html.col.attlist =
       db.html.attrs
-    & attribute span { text }?
-    & attribute width { text }?
+ & [
+      db:refpurpose [ "This attribute, whose value must be an integer > 0, specifies the number of columns " db:quote [ "spanned" ] " by the " db:tag [ "col" ] " element; the " db:tag [ "col" ] " element shares its attributes with all the columns it spans. The default value for this attribute is 1 (i.e., a single column). If the span attribute is set to N > 1, the current " db:tag [ "col" ] " element shares its attributes with the next N-1 columns." ]
+   ]
+   attribute span { text }?
+ & [
+      db:refpurpose [ "Specifies a default width for each column spanned by the current " db:tag [ "col" ] " element. It has the same meaning as the " db:tag [ class="attribute" "width" ] " attribute for the " db:tag [ "colgroup" ] " element and overrides it." ]
+   ]
+   attribute width { text }?
     & db.html.cellhalign
     & db.html.cellvalign
 
@@ -208,8 +348,14 @@ div {
 
    db.html.colgroup.attlist =
       db.html.attrs
-    & attribute span { text }?
-    & attribute width { text }?
+ & [
+      db:refpurpose [ "This attribute, which must be an integer > 0, specifies the number of columns in a column group. In the absence of a span attribute, each " db:tag [ "colgroup" ] " defines a column group containing one column. If the span attribute is set to N > 0, the current " db:tag [ "colgroup" ] " element defines a column group containing N columns. User agents must ignore this attribute if the " db:tag [ "colgroup" ] " element contains one or more " db:tag [ "col" ] " elements." ]
+   ]
+   attribute span { text }?
+ & [
+      db:refpurpose [ "This attribute specifies a default width for each column in the current column group. In addition to the standard pixel, percentage, and relative values, this attribute allows the special form " db:quote [ "0*" ] " (zero asterisk) which means that the width of the each column in the group should be the minimum width necessary to hold the column's contents. This implies that a column's entire contents must be known before its width may be correctly computed. Authors should be aware that specifying " db:quote [ "0*" ] " will prevent visual user agents from rendering a table incrementally. This attribute is overridden for any column in the column group whose width is specified via a " db:tag [ "col" ] " element." ]
+   ]
+   attribute width { text }?
     & db.html.cellhalign
     & db.html.cellvalign
 
@@ -310,12 +456,7 @@ div {
 
    db.html.th.attlist =
       db.html.attrs
-    & attribute abbr { text }?
-    & attribute axis { text }?
-    & attribute headers { text }?
-    & attribute scope { text }?
-    & attribute rowspan { text }?
-    & attribute colspan { text }?
+    & db.html.tablecell.attributes
     & db.html.cellhalign
     & db.html.cellvalign
 
@@ -336,12 +477,7 @@ div {
 
    db.html.td.attlist =
       db.html.attrs
-    & attribute abbr { text }?
-    & attribute axis { text }?
-    & attribute headers { text }?
-    & attribute scope { text }?
-    & attribute rowspan { text }?
-    & attribute colspan { text }?
+    & db.html.tablecell.attributes
     & db.html.cellhalign
     & db.html.cellvalign
 

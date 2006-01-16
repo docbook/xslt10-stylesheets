@@ -53,13 +53,34 @@ div {
 
    db.html.form.attlist =
       db.html.attrs
-    & attribute action { xsd:anyURI }
-    & attribute method { "get" | "post" }?
-    & attribute onsubmit { text }?
-    & attribute onreset { text }?
-    & attribute enctype { text }?
-    & attribute accept { text }?
-    & attribute accept-charset { text }?
+ & [
+      db:purpose [ "Specifies a form processing agent. User agent behavior for a value other than an HTTP URI is undefined." ]
+   ]
+   attribute action { xsd:anyURI }
+ & [
+      db:purpose [ "Specifies which HTTP method will be used to submit the form data set. Possible (case-insensitive) values are " db:quote [ "get" ] " (the default) and " db:quote [ "post" ] ". " ]
+   ]
+   attribute method { "get" | "post" }?
+ & [
+      db:purpose [ "Ocurs when a form is submitted. It only applies to the " db:tag [ "html:form" ] " element." ]
+   ]
+   attribute onsubmit { text }?
+ & [
+      db:purpose [ "Ocurs when a form is reset. It only applies to the " db:tag [ "html:form" ] " element." ]
+   ]
+   attribute onreset { text }?
+ & [
+      db:purpose [ "Specifies the content type used to submit the form to the server (when the value of method is " db:quote [ "post" ] "). The default value for this attribute is " db:quote [ "application/x-www-form-urlencoded" ] ". The value " db:quote [ "multipart/form-data" ] " should be used in combination with the " db:tag [ "html:input" ] " element, type=" db:quote [ "file" ] "." ]
+   ]
+   attribute enctype { text }?
+ & [
+      db:purpose [ "Specifies a comma-separated list of content types that a server processing this form will handle correctly." ]
+   ]
+   attribute accept { text }?
+ & [
+      db:purpose [ "Specifies the list of character encodings for input data that is accepted by the server processing this form. The value is a space- and/or comma-delimited list of charset values. The client must interpret this list as an exclusive-or list, i.e., the server is able to accept any single character encoding per entity received." ]
+   ]
+   attribute accept-charset { text }?
 
    db.html.form =
       element html:form {

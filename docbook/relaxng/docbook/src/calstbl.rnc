@@ -37,94 +37,36 @@ default namespace = "http://docbook.org/ns/docbook"
 db.table.choice |= db.cals.table
 db.informaltable.choice |= db.cals.informaltable
 
-db.char.attribute = attribute char { text }
-db.charoff.attribute = attribute charoff { text }
+db.char.attribute =
+   [
+      db:refpurpose [ "Specifies the alignment character when " db:tag [ class="attribute" "align" ] " is set to " db:quote [ "char" ] "." ]
+   ]
+   attribute char { text }
+
+db.charoff.attribute =
+   [
+      db:refpurpose [ "Specifies the percentage of the column's total width that should appear to the left of the first occurance of the character identified in " db:tag [ class="attribute" "char" ] " when " db:tag [ class="attribute" "align" ] " is set to " db:quote [ "char" ] "." ]
+
+   ]
+   attribute charoff { text }
 
 db.frame.attribute =
-  [
-    db:refpurpose [ "Specifies how the table is to be framed" ]
-    dbx:description [
-       db:informaltable [
-          db:tgroup [
-             cols="2"
-             db:thead [
-                db:row [
-                   db:entry [ "Value" ]
-                   db:entry [ "Meaning" ]
-                ]
-             ]
-             db:tbody [
-                db:row [
-                   db:entry [
-                      db:tag [
-                         class="attvalue"
-                         "all"
-                      ]
-                   ]
-                   db:entry [
-                      db:para [
-                         "Frame all four sides of the table." ~
-                         " In some environments with limited control over" ~
-                         " table border formatting, such as HTML, this" ~
-                         " may imply additional borders."
-                      ]
-                   ]
-                ]
-                db:row [
-                   db:entry [
-                      db:tag [ class="attvalue" "bottom" ]
-                   ]
-                   db:entry [
-                      db:para [ "Frame only the bottom of the table." ]
-                   ]
-                ]
-                db:row [
-                   db:entry [
-                      db:tag [ class="attvalue" "none" ]
-                   ]
-                   db:entry [
-                      db:para [
-                         "Place no border on the table. In some environments" ~
-                         " with limited control over table border formatting," ~
-                         " such as HTML, this may disable other borders as" ~
-                         "well."
-                      ]
-                   ]
-                ]
-                db:row [
-                   db:entry [
-                      db:tag [ class="attvalue" "sides" ]
-                   ]
-                   db:entry [
-                      db:para [ "Frame the left and right sides of the table." ]
-                   ]
-                ]
-                db:row [
-                   db:entry [
-                      db:tag [ class="attvalue" "top" ]
-                   ]
-                   db:entry [
-                      db:para [ "Frame the top of the table."]
-                   ]
-                ]
-                db:row [
-                   db:entry [
-                      db:tag [ class="attvalue" "topbot" ]
-                   ]
-                   db:entry [
-                      db:para [ "Frame the top and bottom of the table." ]
-                   ]
-                ]
-             ]
-          ]
-       ]
-       db:para [
-          "There is no way to obtain a border on only the starting edge" ~
-          " (left, in left-to-right writing systems) of the table."
-       ]
-    ]
-  ]
-  attribute frame { "all" | "bottom" | "none" | "sides" | "top" | "topbot" }
+   [
+      db:refpurpose [ "Specifies how the table is to be framed. Note that there is no way to obtain a border on only the starting edge (left, in left-to-right writing systems) of the table." ]
+   ]
+   attribute frame {
+     ## Frame all four sides of the table. In some environments with limited control over table border formatting, such as HTML, this may imply additional borders.
+     "all"
+   | ## Frame only the bottom of the table.
+     "bottom"
+   | ## Place no border on the table. In some environments with limited control over table border formatting, such as HTML, this may disable other borders as well.
+     "none"
+   | ## Frame the left and right sides of the table.
+     "sides"
+   | ## Frame the top of the table.
+     "top"
+   | ## Frame the top and bottom of the table.
+     "topbot" }
 
 db.colsep.attribute =
   [
@@ -169,23 +111,12 @@ db.rowsep.attribute =
 db.orient.attribute =
    [
       db:refpurpose [ "Specifies the orientation of the table" ]
-      dbx:description [
-         db:para [
-            "The "
-            db:tag [ class="attribute" "orient" ]
-            " attribute specifies the orientation of the table." ~
-            ". An orientation of "
-            db:tag [ class="attvalue" "port" ]
-            " is "
-            db:quote [ "upright" ]
-            ", the same orientation as the rest of the text flow." ~
-            " An orientation of "
-            db:tag [ class="attvalue" "land" ]
-            " is 90 degrees counter-clockwise from the upright orientation."
-         ]
-      ]
    ]
-   attribute orient { "land" | "port" }
+   attribute orient {
+      ## 90 degrees counter-clockwise from the rest of the text flow.
+      "land"
+    | ## The same orientation as the rest of the text flow.
+      "port" }
 
 db.tabstyle.attribute =
    [
@@ -204,35 +135,69 @@ db.tabstyle.attribute =
 db.rowheader.attribute =
    [
       db:refpurpose [ "Indicates whether or not the entries in the first column should be considered row headers" ]
-      dbx:description [
-         db:para [
-            "The "
-            db:tag [ class="attribute" "rowheader" ]
-            " attribute indicates whether the entries in the first column" ~
-            " of the table" ~
-            " are functionally row headers (analagous to the way that" ~
-            " a "
-            db:tag [ "thead" ]
-            " provides column headers). A value of "
-            db:tag [ class="attvalue" "firstcol" ]
-            " indicates that they are, a value of "
-            db:tag [ class="attvalue" "norowheader" ]
-            " indicates that they are not."
-         ]
-      ]
    ]
-   attribute rowheader { "firstcol" | "norowheader" }
+   attribute rowheader {
+      ## Indicates that entries in the first column of the table are functionally row headers (analogous to the way that a thead provides column headers).
+      "firstcol"
+    | ## Indicates that entries in the first column have no special significance with respect to column headers.
+      "norowheader" }
 
 db.align.attribute =
-  attribute align { "center" | "char" | "justify" | "left" | "right" }
-db.valign.attribute = attribute valign { "bottom" | "middle" | "top" }
+   [
+      db:refpurpose [ "Specifies the horizontal alignment of text in an entry." ]
+   ]
+   attribute align {
+      ## Centered.
+      "center"
+    | ## Aligned on a particular character.
+      "char"
+    | ## Left and right justified.
+      "justify"
+    | ## Left justified.
+      "left"
+    | ## Right justified.
+      "right"
+   }
+db.valign.attribute =
+   [
+      db:refpurpose [ "Specifies the vertical alignment of text in an entry." ]
+   ]
+   attribute valign {
+      ## Aligned on the bottom of the entry.
+      "bottom"
+    | ## Aligned in the middle.
+      "middle"
+    | ## Aligned at the top of the entry.
+      "top"
+   }
 
-db.specify-col-by-colname.attributes = attribute colname { text }
-db.specify-col-by-namest.attributes = attribute namest { text }
-db.specify-span-by-spanspec.attributes = attribute spanname { text }
+db.specify-col-by-colname.attributes =
+   [
+      db:refpurpose [ "Specifies a column specification by name." ]
+   ]
+   attribute colname { text }
+
+db.specify-col-by-namest.attributes =
+   [
+      db:refpurpose [ "Specifies a starting column by name." ]
+   ]
+   attribute namest { text }
+
+db.specify-span-by-spanspec.attributes =
+   [
+      db:refpurpose [ "Specifies a span by name." ]
+   ]
+   attribute spanname { text }
+
 db.specify-span-directly.attributes =
+   [
+      db:refpurpose [ "Specifies a starting column by name." ]
+   ]
    attribute namest {text }
- & attribute nameend { text }
+ & [
+      db:refpurpose [ "Specifies an ending column by name." ]
+   ]
+   attribute nameend { text }
 
 db.column-spec.attributes =
    db.specify-col-by-colname.attributes
@@ -240,8 +205,17 @@ db.column-spec.attributes =
  | db.specify-span-by-spanspec.attributes
  | db.specify-span-directly.attributes
 
-db.colname.attribute = attribute colname { text }
-db.spanname.attribute = attribute spanname { text }
+db.colname.attribute =
+   [
+      db:refpurpose [ "Provides a name for a column specification." ]
+   ]
+   attribute colname { text }
+
+db.spanname.attribute =
+   [
+      db:refpurpose [ "Provides a name for a span specification." ]
+   ]
+   attribute spanname { text }
 
 # ======================================================================
 
@@ -252,8 +226,16 @@ db.spanname.attribute = attribute spanname { text }
 div {
 
    db.tgroup.role.attribute = attribute role { text }
-   db.tgroup.tgroupstyle.attribute = attribute tgroupstyle { text }
-   db.tgroup.cols.attribute = attribute cols { xsd:integer }
+   db.tgroup.tgroupstyle.attribute =
+      [
+         db:refpurpose [ "Additional style information for downstream processing; typically the name of a style." ]
+      ]
+      attribute tgroupstyle { text }
+   db.tgroup.cols.attribute =
+      [
+         db:refpurpose [ "The number of columns in the table. Must be an integer greater than zero." ]
+      ]
+      attribute cols { xsd:integer }
 
    db.tgroup.attlist =
       db.tgroup.role.attribute?
@@ -287,8 +269,16 @@ div {
 div {
 
    db.colspec.role.attribute = attribute role { text }
-   db.colspec.colnum.attribute = attribute colnum { xsd:integer }
-   db.colspec.colwidth.attribute = attribute colwidth { text }
+   db.colspec.colnum.attribute =
+      [
+         db:refpurpose [ "The number of the column to which this specification applies. Must be greater than any preceding column number. Defaults to one more than the number of the preceding column, if there is one, or one." ]
+      ]
+      attribute colnum { xsd:integer }
+   db.colspec.colwidth.attribute =
+      [
+         db:refpurpose [ "Specifies the width of the column." ]
+      ]
+      attribute colwidth { text }
 
    db.colspec.attlist =
       db.colspec.role.attribute?
@@ -319,8 +309,16 @@ div {
 div {
 
    db.spanspec.role.attribute = attribute role { text }
-   db.spanspec.namest.attribute = attribute namest { text }
-   db.spanspec.nameend.attribute = attribute nameend { text }
+   db.spanspec.namest.attribute =
+      [
+         db:refpurpose [ "Specifies a starting column by name." ]
+      ]
+      attribute namest { text }
+   db.spanspec.nameend.attribute =
+      [
+         db:refpurpose [ "Specifies an ending column by name." ]
+      ]
+      attribute nameend { text }
 
    db.spanspec.attlist =
       db.spanspec.role.attribute?
@@ -445,8 +443,16 @@ div {
 div {
 
    db.entry.role.attribute = attribute role { text }
-   db.entry.morerows.attribute = attribute morerows { xsd:integer }
-   db.entry.rotate.attribute = attribute rotate { text }
+   db.entry.morerows.attribute =
+      [
+         db:refpurpose [ "Specifies the number of additional rows which this entry occupies. Defaults to zero." ]
+      ]
+      attribute morerows { xsd:integer }
+   db.entry.rotate.attribute =
+      [
+         db:refpurpose [ "Specifies the rotation of this entry. FIXME: what are the legal values of this attribute?" ]
+      ]
+      attribute rotate { text }
 
    db.entry.attlist =
       db.entry.role.attribute?
@@ -477,8 +483,16 @@ div {
 div {
 
    db.entrytbl.role.attribute = attribute role { text }
-   db.entrytbl.tgroupstyle.attribute = attribute tgroupstyle { text }
-   db.entrytbl.cols.attribute = attribute cols { xsd:integer }
+   db.entrytbl.tgroupstyle.attribute =
+      [
+         db:refpurpose [ "Additional style information for downstream processing; typically the name of a style." ]
+      ]
+      attribute tgroupstyle { text }
+   db.entrytbl.cols.attribute =
+      [
+         db:refpurpose [ "The number of columns in the entry table. Must be an integer greater than zero." ]
+      ]
+      attribute cols { xsd:integer }
 
    db.entrytbl.attlist =
       db.entrytbl.role.attribute?
@@ -599,31 +613,20 @@ div {
     & db.pgwide.attribute?
     & [
        db:refpurpose [ "Indicates if the short or long title should be used in a List of Tables" ]
-       dbx:description [
-          db:para [
-             "If "
-             db:tag [ class="attribute" "shortentry" ]
-             " has the value 1 (true), then the table's "
-             db:tag [ "titleabbrev" ]
-             " will be used in the list of titles, index, etc." ~
-             " A value of 0 (false) indicates that the full "
-             db:tag [ "title" ]
-             " title should be used in those places."
-          ]
-       ]
-    ] attribute shortentry { "0" | "1" }?
+    ]
+      attribute shortentry {
+         ## Indicates that the full title should be used.
+         "0"
+       | ## Indicates that the short short title (titleabbrev) should be used.
+         "1" }?
     & [
        db:refpurpose [ "Indicates if the table should appear in a List of Tables" ]
-       dbx:description [
-          db:para [
-             "If "
-             db:tag [ class="attribute" "tocentry" ]
-             " has the value 1 (true), then the table will appear in a" ~
-             " generated list of tables. A value of 0 (false) indicates" ~
-             " that it should not."
-          ]
       ]
-    ] attribute tocentry { "0" | "1" }?
+      attribute tocentry {
+         ## Indicates that the table should not occur in the List of Tables.
+         "0"
+       | ## Indicates that the table should appear in the List of Tables.
+         "1" }?
     & db.rowheader.attribute?
 
    db.cals.table.info = db._info.title.onlyreq

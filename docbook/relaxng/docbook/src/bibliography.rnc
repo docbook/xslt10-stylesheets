@@ -258,9 +258,23 @@ div {
    db.biblioref.role.attribute = attribute role { text }
    db.biblioref.xrefstyle.attribute = attribute xrefstyle { text }
    db.biblioref.endterm.attribute = attribute endterm { xsd:IDREF }
-   db.biblioref.units.attribute = attribute units { xsd:token }
-   db.biblioref.begin.attribute = attribute begin {xsd:token }
-   db.biblioref.end.attribute = attribute end { xsd:token }
+   db.biblioref.units.attribute =
+      [
+         db:refpurpose [ "The units (for example, pages) used to identify the beginning and ending of a reference." ]
+      ]
+      attribute units { xsd:token }
+
+   db.biblioref.begin.attribute =
+      [
+         db:refpurpose [ "Identifies the beginning of a reference; the location within the work that is being referenced." ]
+      ]
+      attribute begin {xsd:token }
+
+   db.biblioref.end.attribute =
+      [
+         db:refpurpose [ "Identifies the end of a reference." ]
+      ]
+      attribute end { xsd:token }
 
    db.biblioref.attlist =
       db.biblioref.role.attribute?

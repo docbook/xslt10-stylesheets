@@ -43,9 +43,6 @@ db.equation.content |= db._any.mml+
 div {
 
    db._any.mml =
-      element mml:* {
-         attribute * { text }*,
-         (text | db._any)*
-      }
+      element mml:* { (db._any.attribute | text | db._any)* }
 
 }

@@ -53,16 +53,31 @@ ctrl:other-attribute [ name="area.units.attrib"
                        other-name="area.units-other.attributes" ]
 
 db.area.units.enumeration =
+   ## Coordinates expressed as a pair of CALS graphic coordinates.
    "calspair"
- | "linecolumn"
- | "linecolumnpair"
- | "linerange"
+ | ## Coordinates expressed as a line and column.
+   "linecolumn"
+ | ## Coordinates expressed as a pair of lines and columns.
+   "linecolumnpair"
+ | ## Coordinates expressed as a line range.
+   "linerange"
 
 db.area.units-enum.attribute =
+   [
+      db:refpurpose [ "Identifies the units used in the coords attribute The default units vary according to the type of callout specified: " db:tag [ class="attavlue" "calspair" ] " for graphics and " db:tag [ class="attavlue" "linecolumn" ] " for line-oriented elements." ]
+   ]
    attribute units { db.area.units.enumeration }?
 
 db.area.units-other.attributes =
-   attribute units { "other" }?,
+   [
+      db:refpurpose [ "Indicates that non-standard units are used for this " db:tag [ "area" ] ". In this case " db:tag [ class="attribute" "otherunits" ] " must be specified." ]
+   ]
+   attribute units {
+      ## Coordinates expressed in some non-standard units.
+      "other" }?,
+   [
+      db:refpurpose [ "Identifies the units used in the " db:tag [ class="attribute" "coords" ] " attribute when the " db:tag [ class="attribute" "units" ] " attribute is " db:quote [ "other" ] ". This attribute is forbidden otherwise." ]
+   ]
    attribute otherunits { xsd:NMTOKEN }
 
 db.area.units.attribute =
@@ -103,7 +118,11 @@ div {
 div {
 
    db.callout.role.attribute = attribute role { text }
-   db.callout.arearefs.attribute = attribute arearefs { xsd:IDREFS }
+   db.callout.arearefs.attribute =
+      [
+         db:refpurpose [ "Identifies the areas described by this callout." ]
+      ]
+      attribute arearefs { xsd:IDREFS }
 
    db.callout.attlist =
       db.callout.role.attribute?
@@ -176,9 +195,21 @@ div {
 div {
 
    db.area.role.attribute = attribute role { text }
-   db.area.linkends.attribute = attribute linkends { xsd:IDREFS }
-   db.area.label.attribute = attribute label { text }
-   db.area.coords.attribute = attribute coords { text }
+   db.area.linkends.attribute =
+      [
+         db:refpurpose [ "Point to the " db:tag [ "callout" ] "s which refer to this area. (This provides bidirectional linking which may be useful in online presentation.)" ]
+      ]
+      attribute linkends { xsd:IDREFS }
+   db.area.label.attribute =
+      [
+         db:refpurpose [ "Specifies an identifying number or string that may be used in presentation. The area label might be drawn on top of the figure, for example, at the position indicated by the coords attribute." ]
+      ]
+      attribute label { text }
+   db.area.coords.attribute =
+      [
+         db:refpurpose [ "Provides the coordinates of the area. The coordinates must be interpreted using the " db:tag [ class="attribute" "units" ] " specified." ]
+      ]
+      attribute coords { text }
 
    db.area.attlist =
       db.area.role.attribute?

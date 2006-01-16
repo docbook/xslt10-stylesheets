@@ -43,10 +43,7 @@ db.imageobject.content |= db._any.svg+
 div {
 
    db._any.svg =
-      element svg:* {
-         attribute * { text }*,
-         (text | db._any)*
-      }
+      element svg:* { (db._any.attribute | text | db._any)* }
 
 }
 
