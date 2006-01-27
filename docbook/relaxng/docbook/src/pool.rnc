@@ -1441,7 +1441,7 @@ div {
          db.blockquote.attlist,
          db.blockquote.info,
          db.attribution?,
-         db.all.blocks+
+         (db.para.blocks | db.literallayout)+
       }
 }
 
