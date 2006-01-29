@@ -34,6 +34,7 @@ namespace db = "http://docbook.org/ns/docbook"
 namespace dbx = "http://sourceforge.net/projects/docbook/defguide/schema/extra-markup"
 namespace xlink = "http://www.w3.org/1999/xlink"
 namespace html = "http://www.w3.org/1999/xhtml"
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
 default namespace = "http://docbook.org/ns/docbook"
 
 # ======================================================================
@@ -1980,8 +1981,19 @@ div {
 
    db.simplelist.role.attribute = attribute role { text }
 
-   db.simplelist.type.enumeration = "horiz" | "vert" | "inline"
+   db.simplelist.type.enumeration =
+   ## A tabular presentation in row-major order.
+   "horiz"
+ | ## A tabular presentation in column-major order.
+   "vert"
+ | ## An inline presentation, usually a comma-delimited list.
+   "inline"
+
    db.simplelist.type.attribute =
+      [
+         a:defaultValue="vert"
+         db:refpurpose [ "Specifies the type of list presentation." ]
+      ]
       attribute type { db.simplelist.type.enumeration }
 
    db.simplelist.columns.attribute = attribute columns { xsd:integer}
@@ -2740,11 +2752,40 @@ div {
 
 # ======================================================================
 
-db.rep.enumeration = "norepeat" | "repeat"
-db.rep.attribute = attribute rep { db.rep.enumeration }
+db.rep.enumeration =
+   ## Can not be repeated.
+   "norepeat"
+ | ## Can be repeated.
+   "repeat"
 
-db.choice.enumeration = "opt" | "plain" | "req"
-db.choice.attribute = attribute choice { db.choice.enumeration }
+db.rep.attribute =
+   [
+      a:defaultValue="norepeat"
+      db:refpurpose [ "Indicates whether or not repetition is possible." ]
+   ]
+   attribute rep { db.rep.enumeration }
+
+db.choice.enumeration =
+   ## Formatted to indicate that it is optional.
+   "opt"
+ | ## Formatted without indication.
+   "plain"
+ | ## Formatted to indicate that it is required.
+   "req"
+
+db.choice.opt.attribute =
+   [
+      a:defaultValue="opt"
+      db:refpurpose [ "Indicates optionality." ]
+   ]
+   attribute choice { db.choice.enumeration }
+
+db.choice.req.attribute =
+   [
+      a:defaultValue="req"
+      db:refpurpose [ "Indicates optionality." ]
+   ]
+   attribute choice { db.choice.enumeration }
 
 # ======================================================================
 
@@ -2761,7 +2802,7 @@ div {
     & db.common.attributes
     & db.common.linking.attributes
     & db.rep.attribute?
-    & db.choice.attribute?
+    & db.choice.opt.attribute?
 
    db.arg =
       element arg {
@@ -2790,7 +2831,7 @@ div {
     & db.common.attributes
     & db.common.linking.attributes
     & db.rep.attribute?
-    & db.choice.attribute?
+    & db.choice.opt.attribute?
 
    db.group =
       element group {
@@ -3031,11 +3072,25 @@ div {
 
    db.paramdef.role.attribute = attribute role { text }
 
+   db.paramdef.choice.enumeration =
+      ## Formatted to indicate that it is optional.
+      "opt"
+    | ## Formatted to indicate that it is required.
+      "req"
+
+   db.paramdef.choice.attribute =
+      [
+         a:defaultValue="opt"
+         db:refpurpose [ "Indicates optionality." ]
+      ]
+      attribute choice { db.paramdefl.choice.enumeration }
+
+
    db.paramdef.attlist =
       db.paramdef.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.choice.attribute?
+    & db.paramdef.choice.attribute?
 
    db.paramdef =
       element paramdef {
@@ -3422,7 +3477,7 @@ div {
     & db.common.attributes
     & db.common.linking.attributes
     & db.rep.attribute?
-    & db.choice.attribute?
+    & db.choice.req.attribute?
 
    db.methodparam =
       element methodparam {
