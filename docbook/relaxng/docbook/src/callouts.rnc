@@ -324,7 +324,7 @@ div {
          db.imageobjectco.attlist,
          db.imageobjectco.info,
          db.areaspec,
-         db.imageobject,
+         db.imageobject+,
          db.calloutlist*
       }
 }
