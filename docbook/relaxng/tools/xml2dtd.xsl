@@ -137,6 +137,11 @@
       </xsl:choose>
       <xsl:text>&#9;</xsl:text>
       <xsl:choose>
+	<xsl:when test="@default">
+	  <xsl:text>"</xsl:text>
+	  <xsl:value-of select="@default"/>
+	  <xsl:text>"</xsl:text>
+	</xsl:when>
 	<xsl:when test="@occurs='optional'">
 	  <xsl:text>#IMPLIED</xsl:text>
 	</xsl:when>

@@ -5,6 +5,7 @@
 		xmlns:doc="http://nwalsh.com/xmlns/schema-doc/"
 		xmlns:ctrl="http://nwalsh.com/xmlns/schema-control/"
 		xmlns:dtd="http://nwalsh.com/xmlns/dtd/"
+		xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
 		exclude-result-prefixes="exsl rng doc ctrl"
 		version="1.0">
 
@@ -410,6 +411,11 @@
 
 	<xsl:otherwise>
 	  <dtd:attribute name="{@name}">
+	    <xsl:if test="@a:defaultValue">
+	      <xsl:attribute name="default">
+		<xsl:value-of select="@a:defaultValue"/>
+	      </xsl:attribute>
+	    </xsl:if>
 	    <xsl:attribute name="occurs">
 	      <xsl:choose>
 		<xsl:when test="ancestor::rng:optional">optional</xsl:when>
