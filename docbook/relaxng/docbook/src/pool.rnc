@@ -3083,7 +3083,7 @@ div {
          a:defaultValue="opt"
          db:refpurpose [ "Indicates optionality." ]
       ]
-      attribute choice { db.paramdefl.choice.enumeration }
+      attribute choice { db.paramdef.choice.enumeration }
 
 
    db.paramdef.attlist =
