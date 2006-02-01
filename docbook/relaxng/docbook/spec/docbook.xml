@@ -1,6 +1,6 @@
 <!DOCTYPE article [
 <!ENTITY name "wd-docbook-docbook">
-<!ENTITY version "5.0b2">
+<!ENTITY version "5.0b3">
 <!ENTITY standard "Working Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
@@ -154,6 +154,44 @@ DocBook is also available from the mirror on
 <link xlink:href="http://docbook.org/"/>.
 </para>
 
+<section xml:id="s.50b3">
+<title>Changes in DocBook V5.0b3</title>
+
+<para>This release contains several small improvements over V5.0b2.</para>
+
+<orderedlist>
+<listitem xml:id="rfe.1358844">
+<para>Fixed <link xlink:href="&RFE;aid=1358844">RFE 1358844</link>:
+allow multiple <tag>imageobject</tag>s inside an
+<tag>imageobjectco</tag>. Updated reference documentation.
+</para>
+</listitem>
+
+<listitem xml:id="attribute.defaults">
+<para>Restored default values to the
+<tag class="attribute">type</tag> attribute on <tag>simplelist</tag>
+and the <tag class="attribute">choice</tag> and
+<tag class="attribute">rep</tag> attributes on
+<tag>methodparam</tag>,
+<tag>arg</tag>, and
+<tag>group</tag>. Fixed a bug in <tag>paramdef</tag> where
+<tag class="attvalue">plain</tag> was accidentally allowed as a
+<tag class="attribute">choice</tag>. These defaults are reflected in the
+generated XML DTD as well.</para>
+</listitem>
+
+<listitem xml:id="blockquote">
+<para>Reduced the content model of <tag>blockquote</tag> which seemed
+way too broad.</para>
+</listitem>
+
+<listitem xml:id="docs.b3">
+<para>Improved reference documentation for attributes on many elements.
+</para>
+</listitem>
+</orderedlist>
+
+</section>
 <section xml:id="s.50b2">
 <title>Changes in DocBook V5.0b2</title>
 
