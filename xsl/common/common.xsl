@@ -963,6 +963,12 @@ recursive process.</para>
         </xsl:if>
       </xsl:for-each>
     </xsl:when>
+
+    <!-- If no selection by role, and there is only one object, use it -->
+    <xsl:when test="count($olist) = 1 and $count = 1">
+      <xsl:value-of select="$count"/> 
+    </xsl:when>
+
     <xsl:otherwise>
       <!-- Otherwise select first acceptable object -->
       <xsl:if test="$count &lt;= count($olist)">
