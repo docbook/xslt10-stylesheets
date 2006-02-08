@@ -24,7 +24,10 @@
   </ul>
 </xsl:template>
 
-<xsl:template match="info">
+<!-- Only partial support for xbel elements -->
+<xsl:template match="xbel/info|xbel/title|xbel/desc|
+                     xbel/alias|xbel/separator">
+  <!-- No op -->
 </xsl:template>
 
 <xsl:template match="folder">
