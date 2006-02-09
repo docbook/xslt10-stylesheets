@@ -216,6 +216,15 @@ and <quote>verso</quote> sides of the title page.</para>
 	    </xsl:element>
 	  </xsl:element>
 	  <xsl:text>&#xA;        </xsl:text>
+	  <xsl:element name="xsl:when">
+	    <xsl:attribute name="test">contains(system-property('xsl:vendor'), 'Apache Software Foundation')</xsl:attribute>
+	    <xsl:text>&#xA;          </xsl:text>
+	    <xsl:comment>Xalan quirk</xsl:comment>
+	    <xsl:element name="xsl:value-of">
+	      <xsl:attribute name="select">count(exsl:node-set($recto.content)/*)</xsl:attribute>
+	    </xsl:element>
+	  </xsl:element>
+	  <xsl:text>&#xA;        </xsl:text>
 	  <xsl:element name="xsl:otherwise">
 	    <xsl:text>1</xsl:text>
 	  </xsl:element>
@@ -263,6 +272,15 @@ and <quote>verso</quote> sides of the title page.</para>
 	  <xsl:text>&#xA;        </xsl:text>
 	  <xsl:element name="xsl:when">
 	    <xsl:attribute name="test">function-available('exsl:node-set')</xsl:attribute>
+	    <xsl:element name="xsl:value-of">
+	      <xsl:attribute name="select">count(exsl:node-set($verso.content)/*)</xsl:attribute>
+	    </xsl:element>
+	  </xsl:element>
+	  <xsl:text>&#xA;        </xsl:text>
+	  <xsl:element name="xsl:when">
+	    <xsl:attribute name="test">contains(system-property('xsl:vendor'), 'Apache Software Foundation')</xsl:attribute>
+	    <xsl:text>&#xA;          </xsl:text>
+	    <xsl:comment>Xalan quirk</xsl:comment>
 	    <xsl:element name="xsl:value-of">
 	      <xsl:attribute name="select">count(exsl:node-set($verso.content)/*)</xsl:attribute>
 	    </xsl:element>
