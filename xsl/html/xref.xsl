@@ -401,6 +401,19 @@
   </xsl:apply-templates>
 </xsl:template>
 
+<xsl:template match="task" mode="xref-to">
+  <xsl:param name="referrer"/>
+  <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose"/>
+
+  <xsl:apply-templates select="." mode="object.xref.markup">
+    <xsl:with-param name="purpose" select="'xref'"/>
+    <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+    <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
+  </xsl:apply-templates>
+</xsl:template>
+
 <xsl:template match="cmdsynopsis" mode="xref-to">
   <xsl:apply-templates select="(.//command)[1]" mode="xref"/>
 </xsl:template>
