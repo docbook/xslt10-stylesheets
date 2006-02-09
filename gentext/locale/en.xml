@@ -119,8 +119,10 @@
 <gentext key="sidebar" text="sidebar"/>
 <gentext key="step" text="step"/>
 <gentext key="Step" text="Step"/>
-<gentext key="Table" text="Table"/>
 <gentext key="table" text="Table"/>
+<gentext key="Table" text="Table"/>
+<gentext key="task" text="Task"/>
+<gentext key="Task" text="Task"/>
 <gentext key="tip" text="Tip"/>
 <gentext key="TIP" text="TIP"/>
 <gentext key="Tip" text="Tip"/>
@@ -417,6 +419,7 @@
 <template name="setindex">%t</template>
 <template name="sidebar">%t</template>
 <template name="table">%t</template>
+<template name="task">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
