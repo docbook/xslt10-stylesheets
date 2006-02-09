@@ -375,6 +375,13 @@ title of the element. This does not include the label.
   </xsl:apply-templates>
 </xsl:template>
 
+<xsl:template match="task" mode="title.markup">
+  <xsl:param name="allow-anchors" select="0"/>
+  <xsl:apply-templates select="title" mode="title.markup">
+    <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+  </xsl:apply-templates>
+</xsl:template>
+
 <xsl:template match="abstract" mode="title.markup">
   <xsl:param name="allow-anchors" select="0"/>
   <xsl:choose>
