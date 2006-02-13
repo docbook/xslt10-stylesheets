@@ -77,6 +77,7 @@
 <xsl:include href="../common/stripns.xsl"/>
 
 <xsl:include href="fop.xsl"/>
+<xsl:include href="fop1.xsl"/>
 <xsl:include href="passivetex.xsl"/>
 <xsl:include href="xep.xsl"/>
 <xsl:include href="axf.xsl"/>
@@ -233,6 +234,19 @@
     <xsl:if test="$fop.extensions != 0">
       <xsl:apply-templates select="$document.element" mode="fop.outline"/>
     </xsl:if>
+
+    <xsl:if test="$fop1.extensions != 0">
+      <xsl:variable name="bookmarks">
+        <xsl:apply-templates select="$document.element" 
+	                     mode="fop1.outline"/>
+      </xsl:variable>
+      <xsl:if test="string($bookmarks) != ''">
+        <fo:bookmark-tree>
+          <xsl:copy-of select="$bookmarks"/>
+	</fo:bookmark-tree>
+      </xsl:if>
+    </xsl:if>
+
     <xsl:if test="$xep.extensions != 0">
       <xsl:variable name="bookmarks">
         <xsl:apply-templates select="$document.element" mode="xep.outline"/>
