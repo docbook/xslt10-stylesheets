@@ -114,6 +114,7 @@ generate.section.toc.level;
 &arbortext.extensions;
 &axf.extensions;
 &fop.extensions;
+&fop1.extensions;
 &passivetex.extensions;
 &tex.math.in.alt;
 &tex.math.delims;
@@ -621,6 +622,7 @@ around all these parameters.</para>
 <src:fragref linkend="footnote.properties.frag"/>
 <src:fragref linkend="footnote.sep.leader.properties.frag"/>
 <src:fragref linkend="fop.extensions.frag"/>
+<src:fragref linkend="fop1.extensions.frag"/>
 <src:fragref linkend="formal.object.properties.frag"/>
 <src:fragref linkend="formal.procedures.frag"/>
 <src:fragref linkend="formal.title.placement.frag"/>

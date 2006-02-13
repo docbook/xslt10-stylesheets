@@ -59,6 +59,7 @@
 <!ENTITY footnote.mark.properties SYSTEM "../params/footnote.mark.properties.xml">
 <!ENTITY footnote.sep.leader.properties SYSTEM "../params/footnote.sep.leader.properties.xml">
 <!ENTITY fop.extensions SYSTEM "../params/fop.extensions.xml">
+<!ENTITY fop1.extensions SYSTEM "../params/fop1.extensions.xml">
 <!ENTITY formal.object.properties SYSTEM "../params/formal.object.properties.xml">
 <!ENTITY formal.procedures SYSTEM "../params/formal.procedures.xml">
 <!ENTITY formal.title.placement SYSTEM "../params/formal.title.placement.xml">
