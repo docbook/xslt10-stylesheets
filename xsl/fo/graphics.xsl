@@ -36,6 +36,9 @@
     <xsl:when test="$passivetex.extensions != 0">
       <xsl:text> PNG PDF JPG JPEG linespecific </xsl:text>
     </xsl:when>
+    <xsl:when test="$fop1.extensions != 0">
+      <xsl:text> BMP GIF TIFF SVG PNG EPS JPG JPEG linespecific </xsl:text>
+    </xsl:when>
     <xsl:when test="$fop.extensions != 0">
       <xsl:text> BMP GIF TIFF SVG PNG EPS JPG JPEG linespecific </xsl:text>
     </xsl:when>
@@ -61,6 +64,9 @@
   <xsl:choose>
     <xsl:when test="$passivetex.extensions != 0">
       <xsl:text> png pdf jpg jpeg </xsl:text>
+    </xsl:when>
+    <xsl:when test="$fop1.extensions != 0">
+      <xsl:text> bmp gif tif tiff svg png pdf jpg jpeg eps </xsl:text>
     </xsl:when>
     <xsl:when test="$fop.extensions != 0">
       <xsl:text> bmp gif tif tiff svg png pdf jpg jpeg eps </xsl:text>

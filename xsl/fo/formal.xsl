@@ -526,6 +526,7 @@
             <xsl:attribute name="space-before.maximum">0pt</xsl:attribute>
           </xsl:if>
           <xsl:if test="count($prop-columns) != 0 or
+                        $fop1.extensions != 0 or
                         $fop.extensions != 0 or
                         $passivetex.extensions != 0">
             <xsl:attribute name="table-layout">fixed</xsl:attribute>
@@ -677,6 +678,7 @@
           </xsl:if>
           <xsl:if test="count($prop-columns) != 0 or
                         $fop.extensions != 0 or
+                        $fop1.extensions != 0 or
                         $passivetex.extensions != 0">
             <xsl:attribute name="table-layout">fixed</xsl:attribute>
           </xsl:if>

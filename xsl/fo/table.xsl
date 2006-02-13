@@ -297,6 +297,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
         <xsl:choose>
           <!-- These processors don't support table-layout="auto" -->
           <xsl:when test="$fop.extensions != 0 or
+                          $fop1.extensions != 0 or
                           $passivetex.extensions != 0">
             <xsl:text>100%</xsl:text>
           </xsl:when>
