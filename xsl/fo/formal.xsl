@@ -132,34 +132,62 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
+  <xsl:variable name="keep.together">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'keep-together'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="local-name(.) = 'equation'">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="equation.properties">
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                          select="$keep.together"/></xsl:attribute>
+        </xsl:if>
         <xsl:apply-templates/>
       </fo:block>
     </xsl:when>
     <xsl:when test="local-name(.) = 'procedure'">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="procedure.properties">
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                          select="$keep.together"/></xsl:attribute>
+        </xsl:if>
         <xsl:apply-templates/>
       </fo:block>
     </xsl:when>
     <xsl:when test="local-name(.) = 'informalfigure'">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="informalfigure.properties">
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                          select="$keep.together"/></xsl:attribute>
+        </xsl:if>
         <xsl:apply-templates/>
       </fo:block>
     </xsl:when>
     <xsl:when test="local-name(.) = 'informaltable'">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="informaltable.properties">
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                          select="$keep.together"/></xsl:attribute>
+        </xsl:if>
         <xsl:apply-templates/>
       </fo:block>
     </xsl:when>
     <xsl:when test="local-name(.) = 'informalexample'">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="informalexample.properties">
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                          select="$keep.together"/></xsl:attribute>
+        </xsl:if>
         <xsl:apply-templates/>
       </fo:block>
     </xsl:when>
@@ -170,7 +198,12 @@
       </fo:block>
     </xsl:when>
     <xsl:otherwise>
-      <fo:block id="{$id}" xsl:use-attribute-sets="informal.object.properties">
+      <fo:block id="{$id}" 
+                xsl:use-attribute-sets="informal.object.properties">
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                          select="$keep.together"/></xsl:attribute>
+        </xsl:if>
         <xsl:apply-templates/>
       </fo:block>
     </xsl:otherwise>
@@ -649,11 +682,23 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
+  <xsl:variable name="keep.together">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'keep-together'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:variable name="table.content">
     <xsl:for-each select="tgroup">
       <xsl:variable name="prop-columns"
                     select=".//colspec[contains(@colwidth, '*')]"/>
       <fo:block xsl:use-attribute-sets="informaltable.properties">
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                          select="$keep.together"/></xsl:attribute>
+        </xsl:if>
         <fo:table xsl:use-attribute-sets="table.table.properties">
           <xsl:call-template name="table.frame"/>
           <xsl:if test="following-sibling::tgroup">
