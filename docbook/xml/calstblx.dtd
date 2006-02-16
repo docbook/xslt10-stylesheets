@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook CALS Table Model V4.5CR1 ........................................ -->
+<!-- DocBook CALS Table Model V4.5 ........................................ -->
 <!-- File calstblx.mod .................................................... -->
 
 <!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
@@ -35,7 +35,7 @@
 
 <!-- This module contains the definitions for the CALS Table Model
      converted to XML. It has been modified slightly for use in the
-     combined HTML/CALS models supported by DocBook V4.5CR1.
+     combined HTML/CALS models supported by DocBook V4.5.
 -->
 
 <!-- These definitions are not directly related to the table model, but are
@@ -211,5 +211,5 @@ of the current application.
         %secur;
 >
 
-<!-- End of DocBook CALS Table Model V4.5CR1 ................................. -->
+<!-- End of DocBook CALS Table Model V4.5 ................................. -->
 <!-- ...................................................................... -->

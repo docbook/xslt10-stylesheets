@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook XML HTML Table Module V4.5CR1 ................................... -->
+<!-- DocBook XML HTML Table Module V4.5 ................................... -->
 <!-- File htmltblx.mod .................................................... -->
 
 <!-- Copyright 2003, 2004 ArborText, Inc., Norman Walsh, Sun Microsystems,
@@ -34,7 +34,7 @@
      HTML one is more like what browsers are likely to accept today
      and users are likely to use.
 
-     This module has been developed for use with the DocBook V4.5CR1
+     This module has been developed for use with the DocBook V4.5
      "union table model" in which elements and attlists common to both
      models are defined (as the union) in the CALS table module by
      setting various parameter entities appropriately in this file.
@@ -43,7 +43,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % htmltbl PUBLIC
-     "-//OASIS//ELEMENTS DocBook XML HTML Tables V4.5CR1//EN"
+     "-//OASIS//ELEMENTS DocBook XML HTML Tables V4.5//EN"
      "htmltblx.mod">
      %htmltbl;
 
@@ -238,5 +238,5 @@ top|bottom|topbot|all|sides|none">
 <!ENTITY % tbl.tbody.mdl       "(tr+|row+)">
 <!ENTITY % tbl.valign.attval   "top|middle|bottom|baseline">
 
-<!-- End of DocBook XML HTML Table Module V4.5CR1 ............................ -->
+<!-- End of DocBook XML HTML Table Module V4.5 ............................ -->
 <!-- ...................................................................... -->

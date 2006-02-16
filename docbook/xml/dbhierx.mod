@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- DocBook document hierarchy module V4.5CR1 ............................... -->
+<!-- DocBook document hierarchy module V4.5 ............................... -->
 <!-- File dbhierx.mod ..................................................... -->
 
 <!-- Copyright 1992-2004 HaL Computer Systems, Inc.,
@@ -44,7 +44,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbhier PUBLIC
-     "-//OASIS//ELEMENTS DocBook Document Hierarchy V4.5CR1//EN"
+     "-//OASIS//ELEMENTS DocBook Document Hierarchy V4.5//EN"
      "dbhierx.mod">
      %dbhier;
 
@@ -741,7 +741,7 @@
 <!ENTITY % part.module "INCLUDE">
 <![%part.module;[
 
-<!-- Note that Part was to have its content model reduced in V4.5CR1.  This
+<!-- Note that Part was to have its content model reduced in V4.5.  This
 change will not be made after all. -->
 
 <!ENTITY % local.part.attrib "">
@@ -2189,5 +2189,5 @@ change will not be made after all. -->
 <!--end of article.attlist-->]]>
 <!--end of article.module-->]]>
 
-<!-- End of DocBook document hierarchy module V4.5CR1 ........................ -->
+<!-- End of DocBook document hierarchy module V4.5 ........................ -->
 <!-- ...................................................................... -->

@@ -41,8 +41,8 @@
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook/</fm:Mailing-List-URL>
   <fm:Changes>There are no backwards-incompatible changes in this release.
 
-Added documentation comments, updated version number for CR release.
-There are no technical changes from DocBook V4.5b1.
+Updated version number for final release.
+There are no technical changes from DocBook V4.5CR1.
   </fm:Changes>  
 </fm:project>
 
