@@ -10,7 +10,7 @@ RELEASE-NOTES.txt: RELEASE-NOTES.html
 	LANG=C $(BROWSER) $(BROWSER_OPTS) $< > $@
 
 RELEASE-NOTES.pdf: RELEASE-NOTES.xml
-	$(XSLT) $< $(FO-STYLE) $@ -output $(basename $<).fo $(FO_ENGINE).extensions=1 \
+	$(XSLT) $< $(FO-STYLE) $(basename $<).fo $(FO_ENGINE).extensions=1 \
 	&& $(FO_ENGINE) $(FO_ENGINE_OPTS) $(basename $<).fo
 
 .CatalogManager.properties.example:
@@ -25,7 +25,7 @@ RELEASE-NOTES.pdf: RELEASE-NOTES.xml
 	cp $< $@
 
 catalog.xml: .make-catalog.xsl
-	$(XSLT) -output $@ $< $< DISTRO="$(DISTRO)"
+	$(XSLT) $< $< $@ DISTRO="$(DISTRO)"
 
 install.sh: .CatalogManager.properties.example .urilist catalog.xml
 	cp $(INSTALL_SH) install.sh
