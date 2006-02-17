@@ -374,6 +374,12 @@
 <xsl:template match="rng:attribute" mode="attributes">
   <xsl:param name="override" select="0"/>
 
+  <xsl:if test="ancestor::rng:define[1]/@name = 'db.indexterm.singular'
+		and @name = 'zone'">
+    <!-- hack; force the startref attribute to be there... -->
+    <dtd:attribute name="startref" occurs="optional" type="IDREF"/>
+  </xsl:if>
+
   <xsl:choose>
     <xsl:when test="$override = 0">
       <xsl:choose>
