@@ -17,7 +17,8 @@
 			w:pPr/w:listPr/wx:t/@wx:val = "&#183;" and
 			w:pPr/w:listPr/wx:font/@wx:val = "Symbol")]'>
 <!ENTITY orderedlist "w:p[w:pPr/w:pStyle[starts-with(@w:val,'orderedlist')]]">
-<!ENTITY orderedlist1 "w:p[w:pPr/w:pStyle[@w:val = 'orderedlist']]">
+<!ENTITY orderedlist1 "w:p[w:pPr/w:pStyle[@w:val = 'orderedlist' or
+		       @w:val = 'orderedlist1']]">
 
 <!ENTITY variablelist "w:tbl[w:tblPr/w:tblStyle[starts-with(@w:val,'variablelist')]]">
 
