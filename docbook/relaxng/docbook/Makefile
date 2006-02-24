@@ -42,7 +42,7 @@ include $(addsuffix /Makefile,$(MODULES))
 .PHONY: tests
 
 distrib: docbook.dtd docbook.rng   docbook.rnc   docbook.sch \
-                     docbookxi.rng docbookxi.rnc
+                     docbookxi.rng docbookxi.rnc docbook.xsd
 	$(MAKE) -C howto
 	$(MAKE) -C spec
 	rm -rf $(DISTRIB)
