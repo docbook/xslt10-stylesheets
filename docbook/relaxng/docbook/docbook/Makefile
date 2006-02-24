@@ -6,7 +6,7 @@ SRCS = docbook.rnc
 
 BINARY = docbook.rnd
 
-all:: docbook.rng docbook.rnc docbook.dtd docbook.sch
+all:: docbook.rng docbook.rnc docbook.dtd docbook.sch docbook.xsd
 
 clean:: ; rm -f docbook.rng docbook.rnc docbook.dtd docbook.sch
 
@@ -33,6 +33,9 @@ docbook.dtd: $(basename $(docbook_BINARY)).dtx docbook.rnc
 
 docbook.sch: $(basename $(docbook_BINARY)).rnx
 	$(XSLTPROC) --output $@ $(TOOLS)/schematron.xsl $<
+
+docbook.xsd: docbook.dtd
+	$(RUNTRANG) $< $@
 
 .PHONY: tests
 
