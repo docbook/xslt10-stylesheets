@@ -914,6 +914,7 @@ db.info.elements =
  | db.contractsponsor
  | db.contractnum
  | db.copyright
+ | db.cover
  | db.date
  | db.edition
  | db.editor
@@ -4237,6 +4238,42 @@ div {
       element holder {
          db.holder.attlist,
          db._text
+      }
+}
+
+# ======================================================================
+
+db.cover.contentmodel =
+   (db.para.blocks
+    | db.extension.blocks
+    | db.list.blocks
+    | db.informal.blocks
+    | db.publishing.blocks
+    | db.graphic.blocks
+    | db.technical.blocks
+    | db.verbatim.blocks
+    | db.bridgehead
+    | db.synopsis.blocks
+    | db.remark
+    | db.revhistory)+
+
+[
+   db:refname [ "cover" ]
+   db:refpurpose [ "Additional content for the cover of a publication" ]
+]
+div {
+
+   db.cover.role.attribute = attribute role { text }
+
+   db.cover.attlist =
+      db.cover.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.cover =
+      element cover {
+         db.cover.attlist,
+         db.cover.contentmodel
       }
 }
 
