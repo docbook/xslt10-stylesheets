@@ -20,6 +20,7 @@
         <contrib>§changes-removed, proofreading</contrib></author>
 </authorgroup>
 
+<pubdate>2006-03-01</pubdate>
 <pubdate>2005-12-28</pubdate>
 <pubdate>2005-10-27</pubdate>
 
@@ -44,7 +45,7 @@ series.</para>
 some aspects, but the basic idea behind DocBook is still the same and
 almost all element names are unchanged. Because of this it is very
 easy to become familiar with DocBook V5.0 if you know any previous version of
-DocBook. You can find complete list of changes in
+DocBook. You can find a complete list of changes in
 <citation>DB5SPEC</citation>, here we will discuss only the most
 fundamental changes.</para>
 
@@ -133,20 +134,18 @@ attribute instead.</para>
 </example>
 
 <para>As you can see, DocBook V5.0 is built on top of existing XML
-standards as much as possible and the <tag class="attribute">lang</tag>
-attribute is superseded by the standard <tag
-class="attribute">xml:lang</tag> attribute.</para>
+standards as much as possible, for example the
+<tag class="attribute">lang</tag> attribute is superseded by the
+standard <tag class="attribute">xml:lang</tag> attribute.</para>
 
-<para>Another fundamental change here is that there is no direct indication
+<para>Another fundamental change is that there is no direct indication
 of the schema used. Later in this document, you will learn how you can
 specify a schema to be used for document validation.</para>
 
 <note>
-<para>Although using the RELAX NG schema with DocBook
-V5.0 is recommended,
-there are also DTD and W3C XML Schema versions available (see <xref
-linkend="schemas"/>) to satisfy tools that do not yet support
-RELAX NG.</para>
+<para>Although we recommend the RELAX NG schema for DocBook
+V5.0, there are also DTD and W3C XML Schema versions available (see <xref
+linkend="schemas"/>) for tools that do not yet support RELAX NG.</para>
 </note>
 
 </section>
@@ -161,7 +160,7 @@ technical reasons:</para>
 <itemizedlist>
 <listitem>
 <para><emphasis>DocBook V4.x is feature frozen.</emphasis> At the time
-of this writing DocBook V4.5 is the last version of DocBook in V4.x
+of this writing DocBook V4.5 is the last version of DocBook in the V4.x
 series. Any new DocBook development, like the addition of new elements, will
 be done in DocBook V5.0. It is only matter of time before useful, new
 elements will be added into DocBook V5.0, but they are not likely to be
@@ -173,7 +172,8 @@ and errata will be published if necessary. </para>
 <para><emphasis>DocBook V5.0 offers new functionality.</emphasis> Even
 the current version of DocBook V5.0 provides significant improvements
 over DocBook V4.x. For example there is general markup for annotations,
-a new and flexible system for linking, …</para>
+a new and flexible system for linking, and unified markup for information
+sections using the <tag>info</tag> element.</para>
 </listitem>
 <listitem>
 <para><emphasis>DocBook V5.0 is more extensible.</emphasis> Having
@@ -286,7 +286,7 @@ schema.</para>
 <title>Emacs and nXML</title>
 
 <para><link xl:href="http://www.thaiopensource.com/nxml-mode/">nXML
-mode</link> is an addon for the <application
+mode</link> is an add-on for the <application
 xl:href="http://www.gnu.org/software/emacs/emacs.html">GNU
 Emacs</application> text editor. By installing nXML you can turn Emacs
 into a very powerful XML editor that offers guided editing and
@@ -317,13 +317,13 @@ schema:</para>
 <note>
 <para>Please note that nXML ships with a file named
 <filename>docbook.rnc</filename>. This file contains the RELAX NG grammar
-for DocBook V4.x. Be sure that you associate DocBook V5.0 namespace
+for DocBook V4.x. Be sure that you associate the DocBook V5.0 namespace
 with the corresponding DocBook V5.0 grammar.</para>
 </note>
 
-<para>If you can't edit global <filename>schemas.xml</filename> file,
+<para>If you can't edit the global <filename>schemas.xml</filename> file,
 you can create this file in a directory with your document. nXML will
-find associations placed here also. In this case you must create
+find associations placed there also. In this case you must create a
 complete configuration file like:</para>
 
 <programlisting>&lt;locatingRules xmlns="http://thaiopensource.com/ns/locating-rules/1.0">
@@ -435,10 +435,10 @@ documents before processing them. Only after successful validation you can be
 sure that your document is really DocBook V5.0 and that processing
 tools will be able to process it correctly.</para>
 
-<para>You can find list of RELAX NG validators at <link
+<para>You can find a list of RELAX NG validators at <link
 xl:href="http://relaxng.org/#validators"/>. It is best to use
 validators with support for embedded Schematron rules inside RELAX NG
-schema. Schematron is a rule-based validation language which is used
+schemas. Schematron is a rule-based validation language which is used
 to impose additional constraints on DocBook documents. Schematron rules
 assert conditions which cannot be expressed in a pure RELAX NG schema.</para>
 
@@ -449,13 +449,13 @@ To install and use MSV follow these steps:</para>
 
 <procedure>
 <step>
-<para>Download file <filename>relames.zip</filename> from <link xl:href="https://msv.dev.java.net/servlets/ProjectDocumentList?folderID=101"/>.</para>
+<para>Download <filename>relames.zip</filename> from <link xl:href="https://msv.dev.java.net/servlets/ProjectDocumentList?folderID=101"/>.</para>
 </step>
 <step>
-<para>Unpack the downloaded file into arbitrary directory.</para>
+<para>Unpack the downloaded file into an arbitrary directory.</para>
 </step>
 <step>
-<para>Validate your document by using the following command:</para>
+<para>Validate your document using the following command:</para>
 <screen><command>java</command> -Xss512K -jar <replaceable>/path/to/</replaceable>relames.jar <replaceable>/path/to/</replaceable>docbook.rng document.xml</screen>
 <note>
 <para>The switch <option>-Xss512K</option> increases the stack size
@@ -563,7 +563,7 @@ the stylesheets are developed in the limited free time the developers
 have, there's no specific schedule.</para>
 
 <para>There are not very many XSLT 2.0 implementations available.
-But, if you want to try the new stylesheets, grab snapshot of
+But, if you want to try the new stylesheets, grab a snapshot of
 the development version from <link
 xl:href="http://docbook.sourceforge.net/snapshots/docbook-xsl2-snapshot.zip"/>
 and unpack it somewhere. Then download and install Saxon 8 from <link
@@ -587,7 +587,7 @@ xl:href="http://saxon.sf.net"/>.</para>
 <title>Markup changes</title>
 
 <para>This section describes the most common markup changes
-between DocBook V4.x and V5.0 in several examples.
+between DocBook V4.x and V5.0.
 You can find a complete list of changes in
 <citation>DB5SPEC</citation>.</para>
 
@@ -650,7 +650,7 @@ element:</para>
 
 <programlisting><![CDATA[<link xl:href="http://docbook.org">DocBook site</link>]]></programlisting>
 
-<para>XLink links can contain a fragment identifier, which you can 
+<para>XLink links may contain a fragment identifier, which you can 
 use instead of <tag class="attribute">linkend</tag> to form
 cross-references inside a document; for example:</para>
 
@@ -1053,17 +1053,17 @@ one usable XSLT 2.0 processor available.</para>
 
 <qandaentry xml:id="faq-customization-mathml">
 <question>
-<para>How can I extend DocBook schema with MathML elements?</para>
+<para>How can I extend the DocBook schema with MathML elements?</para>
 </question>
 <answer>
-<para>The basic DocBook schema allows any elements from the MathML namespace
+<para>The basic DocBook schema allows elements from the MathML namespace
 to appear inside the <tag>equation</tag> element.  This means that you can
 validate a DocBook+MathML document, but MathML content will be ignored
 during the validation. You will also not be able to use guided editing
 for the MathML content.</para>
 <para>If you need strict validation of MathML content or guided
 editing for MathML, you can easily extend the base DocBook schema with
-a MathML schema.</para>
+the MathML schema.</para>
 <procedure>
 <title>Extending the DocBook schema with the MathML schema</title>
 <step>
