@@ -140,7 +140,8 @@
   </dt>
 </xsl:template>
 
-<xsl:template match="tag[not(@class) or (@class='element')]
+<!-- !!! Namespace stripping will rename db:tag to sgmltag -->
+<xsl:template match="sgmltag[not(@class) or (@class='element')]
 		        [not(@condition = 'nolink')]">
   <xsl:variable name="baseUri">
     <xsl:choose>
