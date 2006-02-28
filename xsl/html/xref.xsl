@@ -24,7 +24,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="xref" name="xref">
-  <xsl:variable name="targets" select="key('id',@linkend)"/>
+  <xsl:param name="targets" select="key('id',@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
   <xsl:variable name="refelem" select="local-name($target)"/>
 

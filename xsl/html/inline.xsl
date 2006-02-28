@@ -1106,10 +1106,25 @@
 </xsl:template>
 
 <xsl:template match="citation">
-  <!-- todo: biblio-citation-check -->
-  <xsl:text>[</xsl:text>
-  <xsl:call-template name="inline.charseq"/>
-  <xsl:text>]</xsl:text>
+  <!-- todo: integrate with bibliography collection -->
+  <xsl:variable name="targets" select="(//biblioentry | //bibliomixed)[abbrev = string(current())]"/>
+
+  <xsl:choose>
+    <xsl:when test="$targets">
+      <xsl:call-template name="xref">
+	<xsl:with-param name="targets" select="$targets"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message>
+	<xsl:text>Citation to nonexistent publication abbrev: </xsl:text>
+        <xsl:value-of select="."/>
+      </xsl:message>
+      <xsl:text>[</xsl:text>
+      <xsl:call-template name="inline.charseq"/>
+      <xsl:text>]</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
