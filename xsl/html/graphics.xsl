@@ -237,7 +237,7 @@
         <xsl:value-of select="$filename"/>
       </xsl:when>
       <xsl:when test="$keep.relative.image.uris != 0">
-	<xsl:value-of select="@fileref"/>
+       <xsl:value-of select="@fileref"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$filename"/>
@@ -285,7 +285,7 @@
                                                 $nominal.image.width)"/>
           </xsl:when>
           <xsl:otherwise>
-	    <xsl:value-of select="0"/>
+           <xsl:value-of select="0"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
@@ -298,10 +298,10 @@
   <xsl:variable name="intrinsicwidth">
     <xsl:choose>
       <xsl:when test="$realintrinsicwidth = 0">
-	<xsl:value-of select="$nominal.image.width"/>
+       <xsl:value-of select="$nominal.image.width"/>
       </xsl:when>
       <xsl:otherwise>
-	<xsl:value-of select="$realintrinsicwidth"/>
+       <xsl:value-of select="$realintrinsicwidth"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -519,7 +519,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 -->
 
   <xsl:variable name="scaled"
-		select="@width|@depth|@contentwidth|@contentdepth
+              select="@width|@depth|@contentwidth|@contentdepth
                         |@scale|@scalefit"/>
 
   <xsl:variable name="img">
@@ -566,34 +566,34 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
       </xsl:when>
       <xsl:otherwise>
         <xsl:element name="{$tag}">
-	  <xsl:if test="$tag = 'img' and ../../self::imageobjectco">
-	    <xsl:choose>
-	      <xsl:when test="$scaled">
-		<!-- It might be possible to handle some scaling; needs -->
-		<!-- more investigation -->
-		<xsl:message>
-		  <xsl:text>Warning: imagemaps not supported </xsl:text>
-		  <xsl:text>on scaled images</xsl:text>
-		</xsl:message>
-	      </xsl:when>
-	      <xsl:otherwise>
-		<xsl:attribute name="border">0</xsl:attribute>
-		<xsl:attribute name="usemap">
-		  <xsl:value-of select="generate-id(../..)"/>
-		</xsl:attribute>
-	      </xsl:otherwise>
-	    </xsl:choose>
-	  </xsl:if>
+         <xsl:if test="$tag = 'img' and ../../self::imageobjectco">
+           <xsl:choose>
+             <xsl:when test="$scaled">
+              <!-- It might be possible to handle some scaling; needs -->
+              <!-- more investigation -->
+              <xsl:message>
+                <xsl:text>Warning: imagemaps not supported </xsl:text>
+                <xsl:text>on scaled images</xsl:text>
+              </xsl:message>
+             </xsl:when>
+             <xsl:otherwise>
+              <xsl:attribute name="border">0</xsl:attribute>
+              <xsl:attribute name="usemap">
+                <xsl:value-of select="generate-id(../..)"/>
+              </xsl:attribute>
+             </xsl:otherwise>
+           </xsl:choose>
+         </xsl:if>
 
           <xsl:attribute name="src">
-	    <xsl:choose>
-	      <xsl:when test="$img.src.path != '' and
-			      $tag = 'img' and
-	                      not(starts-with($output_filename, '/')) and
-			      not(contains($output_filename, '://'))">
-	        <xsl:value-of select="$img.src.path"/>
-	      </xsl:when>
-	    </xsl:choose>
+           <xsl:choose>
+             <xsl:when test="$img.src.path != '' and
+                           $tag = 'img' and
+                             not(starts-with($output_filename, '/')) and
+                           not(contains($output_filename, '://'))">
+               <xsl:value-of select="$img.src.path"/>
+             </xsl:when>
+           </xsl:choose>
             <xsl:value-of select="$output_filename"/>
           </xsl:attribute>
 
@@ -714,129 +714,133 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
   <xsl:if test="$tag = 'img' and ../../self::imageobjectco and not($scaled)">
     <map name="{generate-id(../..)}">
       <xsl:for-each select="../../areaspec//area">
-	<xsl:variable name="units">
-	  <xsl:choose>
-	    <xsl:when test="@units">
-	      <xsl:value-of select="@units"/>
-	    </xsl:when>
-	    <xsl:when test="../@units">
-	      <xsl:value-of select="../@units"/>
-	    </xsl:when>
-	    <xsl:otherwise>calspair</xsl:otherwise>
-	  </xsl:choose>
-	</xsl:variable>
+       <xsl:variable name="units">
+         <xsl:choose>
+           <xsl:when test="@units">
+             <xsl:value-of select="@units"/>
+           </xsl:when>
+           <xsl:when test="../@units">
+             <xsl:value-of select="../@units"/>
+           </xsl:when>
+           <xsl:otherwise>calspair</xsl:otherwise>
+         </xsl:choose>
+       </xsl:variable>
 
-	<xsl:choose>
-	  <xsl:when test="$units = 'calspair'">
-	    <xsl:variable name="coords" select="normalize-space(@coords)"/>
-	    <xsl:variable name="p1"
-			  select="substring-before($coords, ' ')"/>
-	    <xsl:variable name="p2"
-			  select="substring-after($coords, ' ')"/>
+       <xsl:choose>
+         <xsl:when test="$units = 'calspair'">
+           <xsl:variable name="coords" select="normalize-space(@coords)"/>
+           <xsl:variable name="p1"
+                       select="substring-before($coords, ' ')"/>
+           <xsl:variable name="p2"
+                       select="substring-after($coords, ' ')"/>
 
-	    <xsl:variable name="x1" select="substring-before($p1,',')"/>
-	    <xsl:variable name="y1" select="substring-after($p1,',')"/>
-	    <xsl:variable name="x2" select="substring-before($p2,',')"/>
-	    <xsl:variable name="y2" select="substring-after($p2,',')"/>
+           <xsl:variable name="x1" select="substring-before($p1,',')"/>
+           <xsl:variable name="y1" select="substring-after($p1,',')"/>
+           <xsl:variable name="x2" select="substring-before($p2,',')"/>
+           <xsl:variable name="y2" select="substring-after($p2,',')"/>
 
-	    <xsl:variable name="x1p" select="$x1 div 100.0"/>
-	    <xsl:variable name="y1p" select="$y1 div 100.0"/>
-	    <xsl:variable name="x2p" select="$x2 div 100.0"/>
-	    <xsl:variable name="y2p" select="$y2 div 100.0"/>
+           <xsl:variable name="x1p" select="$x1 div 100.0"/>
+           <xsl:variable name="y1p" select="$y1 div 100.0"/>
+           <xsl:variable name="x2p" select="$x2 div 100.0"/>
+           <xsl:variable name="y2p" select="$y2 div 100.0"/>
 
 <!--
-	    <xsl:message>
-	      <xsl:text>units: </xsl:text>
-	      <xsl:value-of select="$units"/>
-	      <xsl:text> </xsl:text>
-	      <xsl:value-of select="$x1p"/><xsl:text>, </xsl:text>
-	      <xsl:value-of select="$y1p"/><xsl:text>, </xsl:text>
-	      <xsl:value-of select="$x2p"/><xsl:text>, </xsl:text>
-	      <xsl:value-of select="$y2p"/><xsl:text>, </xsl:text>
-	    </xsl:message>
+           <xsl:message>
+             <xsl:text>units: </xsl:text>
+             <xsl:value-of select="$units"/>
+             <xsl:text> </xsl:text>
+             <xsl:value-of select="$x1p"/><xsl:text>, </xsl:text>
+             <xsl:value-of select="$y1p"/><xsl:text>, </xsl:text>
+             <xsl:value-of select="$x2p"/><xsl:text>, </xsl:text>
+             <xsl:value-of select="$y2p"/><xsl:text>, </xsl:text>
+           </xsl:message>
 
-	    <xsl:message>
-	      <xsl:text>      </xsl:text>
-	      <xsl:value-of select="$intrinsicwidth"/>
-	      <xsl:text>, </xsl:text>
-	      <xsl:value-of select="$intrinsicdepth"/>
-	    </xsl:message>
+           <xsl:message>
+             <xsl:text>      </xsl:text>
+             <xsl:value-of select="$intrinsicwidth"/>
+             <xsl:text>, </xsl:text>
+             <xsl:value-of select="$intrinsicdepth"/>
+           </xsl:message>
 
-	    <xsl:message>
-	      <xsl:text>      </xsl:text>
-	      <xsl:value-of select="$units"/>
-	      <xsl:text> </xsl:text>
-	      <xsl:value-of select="round($x1p * $intrinsicwidth div 100.0)"/>
-	      <xsl:text>,</xsl:text>
-	      <xsl:value-of select="round($intrinsicdepth
-				    - ($y1p * $intrinsicdepth div 100.0))"/>
-	      <xsl:text>,</xsl:text>
-	      <xsl:value-of select="round($x2p * $intrinsicwidth div 100.0)"/>
-	      <xsl:text>,</xsl:text>
-	      <xsl:value-of select="round($intrinsicdepth
-				    - ($y2p * $intrinsicdepth div 100.0))"/>
-	    </xsl:message>
+           <xsl:message>
+             <xsl:text>      </xsl:text>
+             <xsl:value-of select="$units"/>
+             <xsl:text> </xsl:text>
+             <xsl:value-of select="round($x1p * $intrinsicwidth div 100.0)"/>
+             <xsl:text>,</xsl:text>
+             <xsl:value-of select="round($intrinsicdepth
+                                - ($y1p * $intrinsicdepth div 100.0))"/>
+             <xsl:text>,</xsl:text>
+             <xsl:value-of select="round($x2p * $intrinsicwidth div 100.0)"/>
+             <xsl:text>,</xsl:text>
+             <xsl:value-of select="round($intrinsicdepth
+                                - ($y2p * $intrinsicdepth div 100.0))"/>
+           </xsl:message>
 -->
 
-	    <area shape="rect">
-	      <xsl:choose>
-		<xsl:when test="@linkends">
-		  <xsl:variable name="linkends"
-				select="normalize-space(@linkends)"/>
-		  <xsl:variable name="linkend">
-		    <xsl:choose>
-		      <xsl:when test="contains($linkends, ' ')">
-			<xsl:value-of select="substring-before($linkends, ' ')"/>
-		      </xsl:when>
-		      <xsl:otherwise>
-			<xsl:value-of select="$linkends"/>
-		      </xsl:otherwise>
-		    </xsl:choose>
-		  </xsl:variable>
+           <area shape="rect">
+             <xsl:choose>
+              <xsl:when test="@linkends">
+                <xsl:variable name="linkends"
+                            select="normalize-space(@linkends)"/>
+                <xsl:variable name="linkend">
+                  <xsl:choose>
+                    <xsl:when test="contains($linkends, ' ')">
+                     <xsl:value-of select="substring-before($linkends, ' ')"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                     <xsl:value-of select="$linkends"/>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:variable>
 
-		  <xsl:variable name="target" select="key('id', $linkend)[1]"/>
-		
-		  <xsl:if test="$target">
-		    <xsl:attribute name="href">
-		      <xsl:call-template name="href.target">
-			<xsl:with-param name="object" select="$target"/>
-		      </xsl:call-template>
-		    </xsl:attribute>
-		  </xsl:if>
-		</xsl:when>
-		<xsl:when test="@xlink:href">
-		  <xsl:attribute name="href">
-		    <xsl:value-of select="@xlink:href"/>
-		  </xsl:attribute>
-		</xsl:when>
-	      </xsl:choose>
+                <xsl:variable name="target" select="key('id', $linkend)[1]"/>
+              
+                <xsl:if test="$target">
+                  <xsl:attribute name="href">
+                    <xsl:call-template name="href.target">
+                     <xsl:with-param name="object" select="$target"/>
+                    </xsl:call-template>
+                  </xsl:attribute>
+                </xsl:if>
+              </xsl:when>
+              <xsl:when test="@xlink:href">
+                <xsl:attribute name="href">
+                  <xsl:value-of select="@xlink:href"/>
+                </xsl:attribute>
+              </xsl:when>
+             </xsl:choose>
 
-	      <xsl:if test="alt">
-		<xsl:attribute name="alt">
-		  <xsl:value-of select="alt[1]"/>
-		</xsl:attribute>
-	      </xsl:if>
+             <xsl:if test="alt">
+              <xsl:variable name="alt.text">
+                <xsl:apply-templates select="alt[1]"/>
+              </xsl:variable>
 
-	      <xsl:attribute name="coords">
-		<xsl:value-of select="round($x1p * $intrinsicwidth div 100.0)"/>
-		<xsl:text>,</xsl:text>
+              <xsl:attribute name="alt">
+                <xsl:value-of select="normalize-space($alt.text)"/>
+              </xsl:attribute>
+             </xsl:if>
+
+             <xsl:attribute name="coords">
+              <xsl:value-of select="round($x1p * $intrinsicwidth div 100.0)"/>
+              <xsl:text>,</xsl:text>
                 <xsl:value-of select="round($intrinsicdepth
                                         - ($y1p * $intrinsicdepth div 100.0))"/>
-		<xsl:text>,</xsl:text>
-		<xsl:value-of select="round($x2p * $intrinsicwidth div 100.0)"/>
-		<xsl:text>,</xsl:text>
-		<xsl:value-of select="round($intrinsicdepth
-				        - ($y2p * $intrinsicdepth div 100.0))"/>
-	      </xsl:attribute>
-	    </area>
-	  </xsl:when>
-	  <xsl:otherwise>
-	    <xsl:message>
-	      <xsl:text>Warning: only calspair supported </xsl:text>
-	      <xsl:text>in imageobjectco</xsl:text>
-	    </xsl:message>
-	  </xsl:otherwise>
-	</xsl:choose>
+              <xsl:text>,</xsl:text>
+              <xsl:value-of select="round($x2p * $intrinsicwidth div 100.0)"/>
+              <xsl:text>,</xsl:text>
+              <xsl:value-of select="round($intrinsicdepth
+                                    - ($y2p * $intrinsicdepth div 100.0))"/>
+             </xsl:attribute>
+           </area>
+         </xsl:when>
+         <xsl:otherwise>
+           <xsl:message>
+             <xsl:text>Warning: only calspair supported </xsl:text>
+             <xsl:text>in imageobjectco</xsl:text>
+           </xsl:message>
+         </xsl:otherwise>
+       </xsl:choose>
       </xsl:for-each>
     </map>
   </xsl:if>
@@ -934,7 +938,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 
   <xsl:if test="$alt != ''">
     <xsl:attribute name="alt">
-      <xsl:value-of select="$alt"/>
+      <xsl:value-of select="normalize-space($alt)"/>
     </xsl:attribute>
   </xsl:if>
 
