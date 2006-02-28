@@ -127,7 +127,9 @@
     </xsl:when>
     <xsl:otherwise>
       <div class="{name(.)}">
-        <xsl:call-template name="anchor"/>
+        <xsl:call-template name="anchor">
+	  <xsl:with-param name="conditional" select="0"/>
+	</xsl:call-template>
         <p>
 	  <xsl:copy-of select="$label"/>
           <xsl:apply-templates mode="bibliography.mode"/>
@@ -185,7 +187,9 @@
     </xsl:when>
     <xsl:otherwise>
       <div class="{name(.)}">
-        <xsl:call-template name="anchor"/>
+        <xsl:call-template name="anchor">
+	  <xsl:with-param name="conditional" select="0"/>
+	</xsl:call-template>
         <p class="{name(.)}">
 	  <xsl:copy-of select="$label"/>
           <xsl:apply-templates mode="bibliomixed.mode"/>
