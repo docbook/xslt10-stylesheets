@@ -140,13 +140,18 @@ div {
 div {
 
    db.refmiscinfo.role.attribute = attribute role { text }
-   db.refmiscinfo.class.attribute = attribute class { text }
+
+   db.refmiscinfo.type.attribute =
+      [
+         db:refpurpose [ "The type of miscellaneous information" ]
+      ]
+      attribute type { text }
 
    db.refmiscinfo.attlist =
       db.refmiscinfo.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.refmiscinfo.class.attribute?
+    & db.refmiscinfo.type.attribute?
 
    db.refmiscinfo =
       element refmiscinfo {
