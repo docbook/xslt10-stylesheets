@@ -43,7 +43,11 @@ db.link.inlines |= db.biblioref
 
 # ======================================================================
 
-db.relation.attribute = attribute relation { text }
+db.relation.attribute =
+      [
+         db:refpurpose [ "Identifies the relationship between the bibliographic elemnts" ]
+      ]
+   attribute relation { text }
 
 # ======================================================================
 
@@ -97,7 +101,7 @@ div {
 ]
 div {
 
-   db.biblioset.relation.attrib = db.relation.attribute
+   db.biblioset.relation.attribute = db.relation.attribute
 
    db.biblioset.role.attribute = attribute role { text }
 
@@ -105,7 +109,7 @@ div {
       db.biblioset.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.biblioset.relation.attrib?
+    & db.biblioset.relation.attribute?
 
    db.biblioset =
       element biblioset {
@@ -122,7 +126,7 @@ div {
 ]
 div {
 
-   db.bibliomset.relation.attrib = db.relation.attribute
+   db.bibliomset.relation.attribute = db.relation.attribute
 
    db.bibliomset.role.attribute = attribute role { text }
 
@@ -130,7 +134,7 @@ div {
       db.bibliomset.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.bibliomset.relation.attrib?
+    & db.bibliomset.relation.attribute?
 
    db.bibliomset =
       element bibliomset {
@@ -256,8 +260,8 @@ div {
 div {
 
    db.biblioref.role.attribute = attribute role { text }
-   db.biblioref.xrefstyle.attribute = attribute xrefstyle { text }
-   db.biblioref.endterm.attribute = attribute endterm { xsd:IDREF }
+   db.biblioref.xrefstyle.attribute = db.xrefstyle.attribute
+   db.biblioref.endterm.attribute = db.endterm.attribute
    db.biblioref.units.attribute =
       [
          db:refpurpose [ "The units (for example, pages) used to identify the beginning and ending of a reference." ]
