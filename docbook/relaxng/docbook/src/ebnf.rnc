@@ -138,7 +138,11 @@ div {
 div {
 
    db.nonterminal.role.attribute = attribute role { text }
-   db.nonterminal.def.attribute = attribute def { text }
+   db.nonterminal.def.attribute =
+      [
+         db:refpurpose [ "Specifies a URI that points to a " db:tag [ "production" ] "where the " db:tag [ "nonterminal" ] " is defined" ]
+      ]
+      attribute def { text }
 
    db.nonterminal.attlist =
       db.nonterminal.role.attribute?
