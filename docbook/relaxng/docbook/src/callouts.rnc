@@ -258,8 +258,8 @@ div {
 div {
 
    db.areaset.role.attribute = attribute role { text }
-   db.areaset.linkends.attribute = attribute linkends { xsd:IDREFS }
-   db.areaset.label.attribute = attribute label { text }
+   db.areaset.linkends.attribute = db.linkends.attribute
+   db.areaset.label.attribute = db.label.attribute
 
    db.areaset.attlist =
       db.areaset.role.attribute?
@@ -338,8 +338,8 @@ div {
 div {
 
    db.co.role.attribute = attribute role { text }
-   db.co.linkends.attribute = attribute linkends { xsd:IDREFS }
-   db.co.label.attribute = attribute label { text }
+   db.co.linkends.attribute = db.linkends.attribute
+   db.co.label.attribute = db.label.attribute
 
    db.co.attlist =
       db.co.role.attribute?
@@ -363,7 +363,7 @@ div {
 div {
 
    db.coref.role.attribute = attribute role { text }
-   db.coref.label.attribute = attribute label { text }
+   db.coref.label.attribute = db.label.attribute
 
    db.coref.attlist =
       db.coref.role.attribute?
