@@ -45,8 +45,18 @@ div {
 
    db.qandaset.role.attribute = attribute role { text }
 
-   db.qandaset.defaultlabel.enumeration = "none" | "number" | "qanda"
+   db.qandaset.defaultlabel.enumeration =
+      ## No labels
+      "none"
+    | ## Numeric labels
+      "number"
+    | ## "Q:" and "A:" labels
+      "qanda"
+
    db.qandaset.defaultlabel.attribute =
+      [
+         db:refpurpose [ "Specifies the default labelling" ]
+      ]
       attribute defaultlabel { db.qandaset.defaultlabel.enumeration }
 
    db.qandaset.attlist =
