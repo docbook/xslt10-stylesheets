@@ -35,6 +35,12 @@ default namespace = "http://docbook.org/ns/docbook"
 db.navigation.components |= db.toc
 db.toc.components |= db.toc
 
+db.toc.pagenum.attribute =
+   [
+      db:refpurpose [ "Indicates the page on which this element occurs in some version of the printed document" ]
+      ]
+   attribute pagenum { text }
+
 # ======================================================================
 
 [
@@ -70,7 +76,7 @@ div {
 div {
 
    db.tocdiv.role.attribute = attribute role { text }
-   db.tocdiv.pagenum.attribute = attribute pagenum { text }
+   db.tocdiv.pagenum.attribute = db.toc.pagenum.attribute
 
    db.tocdiv.attlist =
       db.tocdiv.role.attribute?
@@ -98,7 +104,7 @@ div {
 div {
 
    db.tocentry.role.attribute = attribute role { text }
-   db.tocentry.pagenum.attribute = attribute pagenum { text }
+   db.tocentry.pagenum.attribute = db.toc.pagenum.attribute
 
    db.tocentry.attlist =
       db.tocentry.role.attribute?
