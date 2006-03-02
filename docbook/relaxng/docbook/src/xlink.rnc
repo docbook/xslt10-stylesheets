@@ -37,6 +37,24 @@ default namespace = "http://docbook.org/ns/docbook"
 
 db.info.elements |= db.extendedlink
 
+db.xlink.from.attribute =
+   [
+      db:refpurpose [ "Specifies the XLink traversal-from" ]
+   ]
+   attribute xlink:from { xsd:NMTOKEN }?
+
+db.xlink.label.attribute =
+   [
+      db:refpurpose [ "Specifies the XLink label" ]
+   ]
+   attribute xlink:label { xsd:NMTOKEN }?
+
+db.xlink.to.attribute =
+   [
+      db:refpurpose [ "Specifies the XLink traversal-to" ]
+   ]
+   attribute xlink:to { xsd:NMTOKEN }?
+
 # ======================================================================
 
 [
@@ -50,9 +68,15 @@ div {
    db.extendedlink.attlist =
       db.extendedlink.role.attribute?
     & db.common.attributes
-    & [ a:defaultValue="extended" ] attribute xlink:type { "extended" }?
-    & attribute xlink:role { xsd:anyURI }?
-    & attribute xlink:title { text }?
+    & [ a:defaultValue="extended"
+        db:refpurpose [ "Identifies the XLink link type " ]
+      ]
+      attribute xlink:type {
+         ## An XLink extended link
+         "extended"
+      }?
+    & db.xlink.role.attribute?
+    & db.xlink.title.attribute?
 
    db.extendedlink =
       element extendedlink {
@@ -74,11 +98,17 @@ div {
    db.locator.attlist =
       db.locator.role.attribute?
     & db.common.attributes
-    & [ a:defaultValue="locator" ] attribute xlink:type { "locator" }?
-    & attribute xlink:href { text }
-    & attribute xlink:role { xsd:anyURI }?
-    & attribute xlink:title { text }?
-    & attribute xlink:label { xsd:NMTOKEN }?
+    & [ a:defaultValue="locator"
+        db:refpurpose [ "Identifies the XLink link type " ]
+      ]
+      attribute xlink:type {
+         ## An XLink locator link
+         "locator"
+      }?
+    & db.xlink.href.attribute
+    & db.xlink.role.attribute?
+    & db.xlink.title.attribute?
+    & db.xlink.label.attribute?
 
    db.locator =
       element locator {
@@ -100,13 +130,19 @@ div {
    db.arc.attlist =
       db.arc.role.attribute?
     & db.common.attributes
-    & [ a:defaultValue="arc" ] attribute xlink:type { "arc" }?
-    & attribute xlink:arcrole { xsd:anyURI }?
-    & attribute xlink:title { text }?
-    & attribute xlink:show { "new" | "replace" | "embed" | "other" }?
-    & attribute xlink:actuate { "onLoad" | "onRequest" | "other" | "none" }?
-    & attribute xlink:from { xsd:NMTOKEN }?
-    & attribute xlink:to { xsd:NMTOKEN }?
+    & [ a:defaultValue="arc"
+        db:refpurpose [ "Identifies the XLink link type " ]
+      ]
+      attribute xlink:type {
+         ## An XLink arc link
+         "arc"
+      }?
+    & db.xlink.arcrole.attribute?
+    & db.xlink.title.attribute?
+    & db.xlink.show.attribute?
+    & db.xlink.actuate.attribute?
+    & db.xlink.from.attribute?
+    & db.xlink.to.attribute?
 
    db.arc =
       element arc {
