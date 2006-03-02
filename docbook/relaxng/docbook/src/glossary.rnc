@@ -83,7 +83,12 @@ div {
 div {
 
    db.glossentry.role.attribute = attribute role { text }
-   db.glossentry.sortas.attribute = attribute sortas { text }
+
+   db.glossentry.sortas.attribute =
+      [
+         db:refpurpose [ "Specifies the string by which the element's content is to be sorted; if unspecified, the content is used" ]
+      ]
+      attribute sortas { text }
 
    db.glossentry.attlist =
       db.glossentry.role.attribute?
@@ -111,7 +116,11 @@ div {
 div {
 
    db.glossdef.role.attribute = attribute role { text }
-   db.glossdef.subject.attribute = attribute subject { text }
+   db.glossdef.subject.attribute =
+      [
+         db:refpurpose [ "Specifies a list of keywords for the definition" ]
+      ]
+      attribute subject { text }
 
    db.glossdef.attlist =
       db.glossdef.role.attribute?
@@ -131,12 +140,16 @@ div {
 
 [
    db:refname [ "glosssee" ]
-   db:refpurpose [ "A cross-reference from one GlossEntry to another" ]
+   db:refpurpose [ "A cross-reference from one " db:tag [ "glossentry" ] " to another" ]
 ]
 div {
 
    db.glosssee.role.attribute = attribute role { text }
-   db.glosssee.otherterm.attribute = attribute otherterm { xsd:IDREF }
+   db.glosssee.otherterm.attribute =
+      [
+         db:refpurpose [ "Identifies the other term" ]
+      ]
+      attribute otherterm { xsd:IDREF }
 
    db.glosssee.attlist =
       db.glosssee.role.attribute?
@@ -172,7 +185,11 @@ div {
 div {
 
    db.glossseealso.role.attribute = attribute role { text }
-   db.glossseealso.otherterm.attribute = attribute otherterm { xsd:IDREF }
+   db.glossseealso.otherterm.attribute =
+      [
+         db:refpurpose [ "Identifies the other term" ]
+      ]
+      attribute otherterm { xsd:IDREF }
 
    db.glossseealso.attlist =
       db.glossseealso.role.attribute?
