@@ -58,7 +58,7 @@ db.equation.content = db.mediaobject+ | db.mathphrase+
 div {
 
    db.equation.role.attribute = attribute role { text }
-   db.equation.label.attribute = attribute label { text }
+   db.equation.label.attribute = db.label.attribute
 
    db.equation.attlist =
       db.equation.role.attribute?
