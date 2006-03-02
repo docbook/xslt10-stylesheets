@@ -128,6 +128,12 @@ db.effectivity.attributes =
 
 # ======================================================================
 
+db.endterm.attribute =
+   [
+      db:refpurpose [ "Points to the element whose content is to be used as the text of the link" ]
+   ]
+   attribute endterm { xsd:IDREF }
+
 db.linkend.attribute =
    [
       db:refpurpose [ "Points to an internal link target by identifying the value of its xml:id attribute" ]
@@ -148,9 +154,12 @@ db.xlink.href.attribute =
 
 db.xlink.type.attribute =
    [
-      db:refpurpose [ "Identifies the element as an XLink simple link" ]
+      db:refpurpose [ "Identifies the XLink link type" ]
    ]
-   attribute xlink:type { "simple" }
+   attribute xlink:type {
+      ## An XLink simple link
+      "simple"
+   }
 
 db.xlink.role.attribute =
    [
@@ -250,6 +259,12 @@ db.xreflabel.attribute =
       db:refpurpose [ "Provides the text that is to be generated for a cross reference to the element" ]
    ]
    attribute xreflabel { text }
+
+db.xrefstyle.attribute =
+   [
+      db:refpurpose [ "Specifies a keyword or keywords identifying additional style information" ]
+   ]
+   attribute xrefstyle { text }
 
 db.revisionflag.enumeration =
    ## The element has been changed.
@@ -382,6 +397,18 @@ db.verbatim.attributes =
 
 # ======================================================================
 
+db.label.attribute =
+   [
+      db:refpurpose [ "Specifies an identifying string for presentation purposes" ]
+   ]
+   attribute label { text }
+
+db.width.characters.attribute =
+   [
+      db:refpurpose [ "Specifies the width (in characters) of the element" ]
+   ]
+   attribute width { xsd:integer }
+
 db.spacing.enumeration =
    ## The spacing should be "compact".
    "compact"
@@ -430,6 +457,42 @@ db.floatstyle.attribute =
    ]
    attribute floatstyle { text }
 
+db.width.attribute =
+   [
+      db:refpurpose [ "Specifies the width of the element" ]
+   ]
+   attribute width { xsd:integer }
+
+db.depth.attribute =
+   [
+      db:refpurpose [ "Specifies the depth of the element" ]
+   ]
+   attribute depth { text }
+
+db.contentwidth.attribute =
+   [
+      db:refpurpose [ "Specifies the width of the content rectangle" ]
+   ]
+   attribute contentwidth { text }
+
+db.contentdepth.attribute =
+   [
+      db:refpurpose [ "Specifies the depth of the content rectangle" ]
+   ]
+   attribute contentdepth { text }
+
+db.scalefit.enumeration =
+   ## False (do not scale-to-fit; anamorphic scaling may occur)
+   "0"
+ | ## True (scale-to-fit; anamorphic scaling is forbidden)
+   "1"
+
+db.scale.attribute =
+   [
+      db:refpurpose [ "Specifies the scaling factor" ]
+   ]
+   attribute scale { text }
+
 # ======================================================================
 
 db.halign.enumeration =
@@ -470,152 +533,30 @@ db.biblio.class.enumeration =
  | ## A Library of Congress reference number.
    "libraryofcongress"
  | ## A publication number (an internal number or possibly organizational standard).
-   "pubnumber"
+   "pubsnumber"
  | ## A Uniform Resource Identifier
    "uri"
 
 db.biblio.class-enum.attribute =
-  [
-    db:refpurpose [ "Identifies the kind of bibliographic identifier" ]
-    dbx:description [
-      db:informaltable [
-        db:tgroup [
-          cols="2"
-          db:thead [
-            db:row [
-              db:entry [ "Value" ]
-              db:entry [ "Identifier" ]
-            ]
-          ]
-          db:tbody [
-            db:row [
-              db:entry [
-                db:tag [ class="attvalue" "doi" ]
-              ]
-              db:entry [
-                db:para [
-                  "A "
-                  db:link [
-                    xlink:href="http://www.doi.org/"
-                    "Digital Object Identifier"
-                  ]
-                  "."
-                ]
-              ]
-            ]
-            db:row [
-              db:entry [
-                db:tag [ class="attvalue" "isbn" ]
-              ]
-              db:entry [
-                db:para [
-                  "An "
-                  db:link [
-                    xlink:href="http://www.isbn.org/"
-                    "International Standard Book Number"
-                  ]
-                  "."
-                ]
-              ]
-            ]
-            db:row [
-              db:entry [
-                db:tag [ class="attvalue" "isrn" ]
-              ]
-              db:entry [
-                db:para [
-                  "An International Standard Technical Report Number" ~
-                  " as defined by ISO 10444:1994."
-                ]
-              ]
-            ]
-            db:row [
-              db:entry [
-                db:tag [ class="attvalue" "issn" ]
-              ]
-              db:entry [
-                db:para [
-                  "An "
-                  db:link [
-                    xlink:href="http://www.issn.org/"
-                    "International Standard Serial Number"
-                  ]
-                  "."
-                ]
-              ]
-            ]
-            db:row [
-              db:entry [
-                db:tag [ class="attvalue" "libraryofcongress" ]
-              ]
-              db:entry [
-                db:para [
-                  "A Library of Congress subject identifer"
-                ]
-              ]
-            ]
-            db:row [
-              db:entry [
-                db:tag [ class="attvalue" "pubnumber" ]
-              ]
-              db:entry [
-                db:para [
-                  "A publication number, for example from a private" ~
-                  " or corporate numbering scheme."
-                ]
-              ]
-            ]
-            db:row [
-              db:entry [
-                db:tag [ class="attvalue" "uri" ]
-              ]
-              db:entry [
-                db:para [
-                  "A Uniform Resource Identifier."
-                ]
-              ]
-            ]
-            db:row [
-              db:entry [
-                db:tag [ class="attvalue" "other" ]
-              ]
-              db:entry [
-                db:para [
-                  "Some other kind of identifier. If the value "
-                  db:tag [ class="attvalue" "other" ]
-                  " is specified, the "
-                  db:tag [ class="attribute" "otherclass" ]
-                  " attribute must also be provided."
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]
-  ]
-  attribute class { db.biblio.class.enumeration } ?
+   [
+      db:refpurpose [ "Identifies the kind of bibliographic identifier" ]
+   ]
+   attribute class { db.biblio.class.enumeration } ?
 
 db.biblio.class-other.attribute =
-  [
-    db:refpurpose [ "Provides an identifier for elements with the class 'other'" ]
-    dbx:description [
-      db:para [
-        "The value of the "
-        db:tag [ class="attribute" "otherclass" ]
-        " attribute specifies some identifier for the class. It is required" ~
-        " when the value "
-        db:tag [ class="attvalue" "other" ]
-        " is specified for the "
-        db:tag [ class="attribute" "class" ]
-        " attribute; it is forbidden otherwise."
-      ]
-    ]
-  ]
-  attribute otherclass { xsd:NMTOKEN }
+   [
+      db:refpurpose [ "Identifies the nature of the non-standard bibliographic identifier" ]
+   ]
+   attribute otherclass { xsd:NMTOKEN }
 
 db.biblio.class-other.attributes =
-   attribute class { "other" }
+   [
+      db:refpurpose [ "Identifies the kind of bibliographic identifier" ]
+   ]
+   attribute class {
+      ## Indicates that the identifier is some 'other' kind.
+      "other"
+   }
  & db.biblio.class-other.attribute
 
 db.biblio.class.attribute =
@@ -973,7 +914,7 @@ div {
 
 [
    db:refname [ "titleabbrev" ]
-   db:refpurpose [ "The abbreviation of a Title" ]
+   db:refpurpose [ "The abbreviation of a title" ]
 ]
 div {
 
@@ -1030,8 +971,7 @@ div {
    db.info =
       element info {
          db.info.attlist,
-         db._title,
-         db.info.elements*
+         (db._title & db.info.elements*)
       }
 }
 
@@ -1052,8 +992,7 @@ div {
    db.titlereq.info =
       element info {
          db.titlereq.info.attlist,
-         db._title.req,
-         db.info.elements*
+         (db._title.req & db.info.elements*)
       }
 }
 
@@ -1074,8 +1013,7 @@ div {
    db.titleonly.info =
       element info {
          db.titleonly.info.attlist,
-         db._title.only,
-         db.info.elements*
+         (db._title.only & db.info.elements*)
       }
 }
 
@@ -1096,8 +1034,7 @@ div {
    db.titleonlyreq.info =
       element info {
          db.titleonlyreq.info.attlist,
-         db._title.onlyreq,
-         db.info.elements*
+         (db._title.onlyreq & db.info.elements*)
       }
 }
 
@@ -1131,7 +1068,11 @@ div {
 div {
 
    db.subjectset.role.attribute = attribute role { text }
-   db.subjectset.scheme.attribute = attribute scheme { xsd:NMTOKEN }
+   db.subjectset.scheme.attribute =
+      [
+         db:refpurpose [ "Identifies the controlled vocabulary used by this set's terms" ]
+      ]
+      attribute scheme { xsd:NMTOKEN }
 
    db.subjectset.attlist =
       db.subjectset.role.attribute?
@@ -1155,7 +1096,11 @@ div {
 div {
 
    db.subject.role.attribute = attribute role { text }
-   db.subject.weight.attribute = attribute weight { text }
+   db.subject.weight.attribute =
+      [
+         db:refpurpose [ "Specifies a ranking for this subject relative to other subjects in the same set" ]
+      ]
+      attribute weight { text }
 
    db.subject.attlist =
       db.subject.role.attribute?
@@ -1477,13 +1422,49 @@ div {
 ]
 div {
 
-   db.bridgehead.role.attribute = attribute role { text }
+   ctrl:other-attribute [ name="db.bridgehead.renderas.attribute"
+                          enum-name="db.bridgehead.renderas-enum.attribute"
+                          other-name="db.bridgehead.renderas-other.attributes" ]
 
    db.bridgehead.renderas.enumeration =
-      "other"|"sect1"|"sect2"|"sect3"|"sect4"|"sect5"
+      ## Render as a first-level section
+      "sect1"
+    | ## Render as a second-level section
+      "sect2"
+    | ## Render as a third-level section
+      "sect3"
+    | ## Render as a fourth-level section
+      "sect4"
+    | ## Render as a fifth-level section
+      "sect5"
+
+   db.bridgehead.renderas-enum.attribute =
+      [
+         db:refpurpose [ "Indicates how the bridge head should be rendered" ]
+      ]
+      attribute renderas { db.bridgehead.renderas.enumeration } ?
+
+   db.bridgehead.renderas-other.attribute =
+      [
+         db:refpurpose [ "Identifies the nature of the non-standard rendering" ]
+      ]
+      attribute otherrenderas { xsd:NMTOKEN }
+
+   db.bridgehead.renderas-other.attributes =
+      [
+         db:refpurpose [ "Indicates how the bridge head should be rendered" ]
+      ]
+      attribute renderas {
+         ## Identifies a non-standard rendering
+         "other"
+      }
+    & db.bridgehead.renderas-other.attribute
 
    db.bridgehead.renderas.attribute =
-      attribute renderas { db.bridgehead.renderas.enumeration }
+      (db.bridgehead.renderas-enum.attribute
+       | db.bridgehead.renderas-other.attributes)
+
+   db.bridgehead.role.attribute = attribute role { text }
 
    db.bridgehead.attlist =
       db.bridgehead.role.attribute?
@@ -1563,7 +1544,11 @@ div {
 
    db.footnote.role.attribute = attribute role { text }
 
-   db.footnote.label.attribute = attribute label { text }
+   db.footnote.label.attribute =
+      [
+         db:refpurpose [ "Identifies the desired footnote mark" ]
+      ]
+      attribute label { xsd:NMTOKEN }
 
    db.footnote.attlist =
       db.footnote.role.attribute?
@@ -1778,7 +1763,11 @@ div {
 
    db.itemizedlist.role.attribute = attribute role { text }
 
-   db.itemizedlist.mark.attribute = attribute mark { text }
+   db.itemizedlist.mark.attribute =
+      [
+         db:refpurpose [ "Identifies the type of mark to be used on items in this list" ]
+      ]
+      attribute mark { xsd:NMTOKEN }
 
    db.itemizedlist.attlist =
       db.itemizedlist.role.attribute?
@@ -1808,21 +1797,46 @@ div {
 
    db.orderedlist.role.attribute = attribute role { text }
 
-   db.orderedlist.continuation.enumeration = "continues" | "restarts"
+   db.orderedlist.continuation.enumeration =
+      ## Specifies that numbering should begin where the preceding list left off
+      "continues"
+    | ## Specifies that numbering should begin again at 1
+      "restarts"
+
    db.orderedlist.continuation.attribute =
+      [
+         db:refpurpose [ "Indicates how list numbering should begin relative to the immediately preceding list" ]
+      ]
       attribute continuation { db.orderedlist.continuation.enumeration }
 
-   db.orderedlist.inheritnum.enumeration = "ignore" | "inherit"
+   db.orderedlist.inheritnum.enumeration =
+      ## Specifies that numbering should ignore list nesting
+      "ignore"
+    | ## Specifies that numbering should inherit from outer-level lists
+      "inherit"
+
    db.orderedlist.inheritnum.attribute =
+      [
+         db:refpurpose [ "Indicates whether or not item numbering should be influenced by list nesting" ]
+      ]
       attribute inheritnum { db.orderedlist.inheritnum.enumeration }
 
    db.orderedlist.numeration.enumeration =
+      ## Specifies Arabic numeration (1, 2, 3, …)
       "arabic"
-    | "upperalpha"
-    | "loweralpha"
-    | "upperroman"
-    | "lowerroman"
+    | ## Specifies upper-case alphabetic numeration (A, B, C, …)
+      "upperalpha"
+    | ## Specifies lower-case alphabetic numeration (a, b, c, …)
+      "loweralpha"
+    | ## Specifies upper-case Roman numeration (I, II, III, …)
+      "upperroman"
+    | ## Specifies lower-case Roman numeration (i, ii, iii …)
+      "lowerroman"
+
    db.orderedlist.numeration.attribute =
+      [
+         db:refpurpose [ "Indicates the desired numeration" ]
+      ]
       attribute numeration { db.orderedlist.numeration.enumeration }
 
    db.orderedlist.attlist =
@@ -1854,7 +1868,11 @@ div {
 
    db.listitem.role.attribute = attribute role { text }
 
-   db.listitem.override.attribute = attribute override { text }
+   db.listitem.override.attribute =
+      [
+         db:refpurpose [ "Specifies the keyword for the type of mark that should be used on " db:emphasis [ "this" ] " item, instead of the mark that would be used by default" ]
+      ]
+      attribute override { xsd:NMTOKEN }
 
    db.listitem.attlist =
       db.listitem.role.attribute?
@@ -1983,12 +2001,12 @@ div {
    db.simplelist.role.attribute = attribute role { text }
 
    db.simplelist.type.enumeration =
-   ## A tabular presentation in row-major order.
-   "horiz"
- | ## A tabular presentation in column-major order.
-   "vert"
- | ## An inline presentation, usually a comma-delimited list.
-   "inline"
+      ## A tabular presentation in row-major order.
+      "horiz"
+    | ## A tabular presentation in column-major order.
+      "vert"
+    | ## An inline presentation, usually a comma-delimited list.
+      "inline"
 
    db.simplelist.type.attribute =
       [
@@ -1997,7 +2015,11 @@ div {
       ]
       attribute type { db.simplelist.type.enumeration }
 
-   db.simplelist.columns.attribute = attribute columns { xsd:integer}
+   db.simplelist.columns.attribute =
+      [
+         db:refpurpose [ "Specifies the number of columns for horizontal or vertical presentation" ]
+      ]
+      attribute columns { xsd:integer}
 
    db.simplelist.attlist =
       db.simplelist.role.attribute?
@@ -2045,7 +2067,11 @@ div {
 
    db.variablelist.role.attribute = attribute role { text }
 
-   db.variablelist.termlength.attribute = attribute termlength { text }
+   db.variablelist.termlength.attribute =
+      [
+         db:refpurpose [ "Indicates a length beyond which the presentation system may consider a term too long and select an alternate presentation for that term, item, or list" ]
+      ]
+      attribute termlength { text }
 
    db.variablelist.attlist =
       db.variablelist.role.attribute?
@@ -2119,15 +2145,19 @@ div {
 div {
 
    db.example.role.attribute = attribute role { text }
-   db.example.label.attribute = attribute label { text }
-   db.example.width.attribute = attribute width { text }
+
+   db.example.label.attribute = db.label.attribute
+
+   db.example.width.attribute = db.width.characters.attribute
+
+   db.example.floatstyle.attribute = db.floatstyle.attribute
 
    db.example.attlist =
       db.example.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
     & db.example.label.attribute?
-    & db.floatstyle.attribute?
+    & db.example.floatstyle.attribute?
     & db.example.width.attribute?
 
    db.example.info = db._info.title.onlyreq
@@ -2151,13 +2181,15 @@ div {
 
    db.informalexample.role.attribute = attribute role { text }
 
-   db.informalexample.width.attribute = attribute width { text }
+   db.informalexample.width.attribute = db.width.characters.attribute
+
+   db.informalexample.floatstyle.attribute = db.floatstyle.attribute
 
    db.informalexample.attlist =
       db.informalexample.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.floatstyle.attribute?
+    & db.informalexample.floatstyle.attribute?
     & db.informalexample.width.attribute?
 
    db.informalexample.info = db._info.title.forbidden
@@ -2188,7 +2220,7 @@ div {
 
    db.programlisting.role.attribute = attribute role { text }
 
-   db.programlisting.width.attribute = attribute width { text }
+   db.programlisting.width.attribute = db.width.characters.attribute
 
    db.programlisting.attlist =
       db.programlisting.role.attribute?
@@ -2214,8 +2246,16 @@ div {
 
    db.literallayout.role.attribute = attribute role { text }
 
-   db.literallayout.class.enumeration = "monospaced" | "normal"
+   db.literallayout.class.enumeration =
+      ## The literal layout should be formatted with a monospaced font
+      "monospaced"
+    | ## The literal layout should be formatted with the current font
+      "normal"
+
    db.literallayout.class.attribute =
+      [
+         db:refpurpose [ "Specifies the class of literal layout" ]
+      ]
       attribute class { db.literallayout.class.enumeration }
 
    db.literallayout.attlist =
@@ -2241,11 +2281,8 @@ div {
 div {
 
    db.screen.role.attribute = attribute role { text }
-   db.screen.width.attribute =
-      [
-         db:refpurpose [ "Specifies the width (in characters) of the longest line (formatters may use this value to determine scaling or rotation)." ]
-      ]
-      attribute width { text }
+
+   db.screen.width.attribute = db.width.characters.attribute
 
    db.screen.attlist =
       db.screen.role.attribute?
@@ -2295,15 +2332,17 @@ div {
 div {
 
    db.figure.role.attribute = attribute role { text }
-   db.figure.label.attribute = attribute label { text }
+   db.figure.label.attribute = db.label.attribute
+   db.figure.pgwide.attribute = db.pgwide.attribute
+   db.figure.floatstyle.attribute = db.floatstyle.attribute
 
    db.figure.attlist =
       db.figure.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
     & db.figure.label.attribute?
-    & db.pgwide.attribute?
-    & db.floatstyle.attribute?
+    & db.figure.pgwide.attribute?
+    & db.figure.floatstyle.attribute?
 
    db.figure.info = db._info.title.onlyreq
 
@@ -2325,15 +2364,17 @@ div {
 div {
 
    db.informalfigure.role.attribute = attribute role { text }
-   db.informalfigure.label.attribute = attribute label { text }
+   db.informalfigure.label.attribute = db.label.attribute
+   db.informalfigure.pgwide.attribute = db.pgwide.attribute
+   db.informalfigure.floatstyle.attribute = db.floatstyle.attribute
 
    db.informalfigure.attlist =
       db.informalfigure.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
     & db.informalfigure.label.attribute?
-    & db.pgwide.attribute?
-    & db.floatstyle.attribute?
+    & db.informalfigure.pgwide.attribute?
+    & db.informalfigure.floatstyle.attribute?
 
    db.informalfigure.info = db._info.title.forbidden
 
@@ -2520,25 +2561,32 @@ div {
 
    db.videodata.align.enumeration = db.halign.enumeration
    db.videodata.align.attribute =
+      [
+         db:refpurpose [ "Specifies the (horizontal) alignment of the video data" ]
+      ]
       attribute align { db.videodata.align.enumeration }
 
    db.videodata.valign.enumeration = db.valign.enumeration
    db.videodata.valign.attribute =
+      [
+         db:refpurpose [ "Specifies the vertical alignment of the video data" ]
+      ]
       attribute valign { db.videodata.valign.enumeration }
 
-   db.videodata.width.attribute = attribute width { text }
+   db.videodata.width.attribute = db.width.attribute
+   db.videodata.depth.attribute = db.depth.attribute
 
-   db.videodata.contentwidth.attribute = attribute contentwidth { text }
+   db.videodata.contentwidth.attribute = db.contentwidth.attribute
+   db.videodata.contentdepth.attribute = db.contentdepth.attribute
 
-   db.videodata.scalefit.enumeration = "0" | "1"
+   db.videodata.scalefit.enumeration = db.scalefit.enumeration
    db.videodata.scalefit.attribute =
+      [
+         db:refpurpose [ "Determines if anamorphic scaling is forbidden" ]
+      ]
       attribute scalefit { db.videodata.scalefit.enumeration }
 
-   db.videodata.scale.attribute = attribute scale { text }
-
-   db.videodata.depth.attribute = attribute depth { text }
-
-   db.videodata.contentdepth.attribute = attribute contentdepth { text }
+   db.videodata.scale.attribute = db.scale.attribute
 
    db.videodata.attlist =
       db.videodata.role.attribute?
@@ -2597,25 +2645,32 @@ div {
 
    db.imagedata.align.enumeration = db.halign.enumeration
    db.imagedata.align.attribute =
+      [
+         db:refpurpose [ "Specifies the (horizontal) alignment of the image data" ]
+      ]
       attribute align { db.imagedata.align.enumeration }
 
    db.imagedata.valign.enumeration = db.valign.enumeration
    db.imagedata.valign.attribute =
+      [
+         db:refpurpose [ "Specifies the vertical alignment of the image data" ]
+      ]
       attribute valign { db.imagedata.valign.enumeration }
 
-   db.imagedata.width.attribute = attribute width { text }
+   db.imagedata.width.attribute = db.width.attribute
+   db.imagedata.depth.attribute = db.depth.attribute
 
-   db.imagedata.contentwidth.attribute = attribute contentwidth { text }
+   db.imagedata.contentwidth.attribute = db.contentwidth.attribute
+   db.imagedata.contentdepth.attribute = db.contentdepth.attribute
 
-   db.imagedata.scalefit.enumeration = "0" | "1"
+   db.imagedata.scalefit.enumeration = db.scalefit.enumeration
    db.imagedata.scalefit.attribute =
+      [
+         db:refpurpose [ "Determines if anamorphic scaling is forbidden" ]
+      ]
       attribute scalefit { db.imagedata.scalefit.enumeration }
 
-   db.imagedata.scale.attribute = attribute scale { text }
-
-   db.imagedata.depth.attribute = attribute depth { text }
-
-   db.imagedata.contentdepth.attribute = attribute contentdepth { text }
+   db.imagedata.scale.attribute = db.scale.attribute
 
    db.imagedata.attlist =
       db.imagedata.role.attribute?
@@ -2648,7 +2703,12 @@ div {
 div {
 
    db.textdata.role.attribute = attribute role { text }
-   db.textdata.encoding.attribute = attribute encoding { text }
+
+   db.textdata.encoding.attribute =
+      [
+         db:refpurpose [ "Identifies the encoding of the text in the external file" ]
+      ]
+      attribute encoding { text }
 
    db.textdata.attlist =
       db.textdata.role.attribute?
@@ -2703,7 +2763,7 @@ div {
 div {
 
    db.synopsis.role.attribute = attribute role { text }
-   db.synopsis.label.attribute = attribute label { text }
+   db.synopsis.label.attribute = db.label.attribute
 
    db.synopsis.attlist =
       db.synopsis.role.attribute?
@@ -2728,9 +2788,20 @@ div {
 div {
 
    db.cmdsynopsis.role.attribute = attribute role { text }
-   db.cmdsynopsis.sepchar.attribute = attribute sepchar { text }
-   db.cmdsynopsis.cmdlength.attribute = attribute cmdlength { text }
-   db.cmdsynopsis.label.attribute = attribute label { text }
+
+   db.cmdsynopsis.sepchar.attribute =
+      [
+         db:refpurpose [ "Specifies the character that should separate the command and its top-level arguments" ]
+      ]
+      attribute sepchar { text }
+
+   db.cmdsynopsis.cmdlength.attribute =
+      [
+         db:refpurpose [ "Indicates the displayed length of the command; this information may be used to intelligently indent command synopses which extend beyond one line" ]
+      ]
+      attribute cmdlength { text }
+
+   db.cmdsynopsis.label.attribute = db.label.attribute
 
    db.cmdsynopsis.attlist =
       db.cmdsynopsis.role.attribute?
@@ -2797,13 +2868,15 @@ db.choice.req.attribute =
 div {
 
    db.arg.role.attribute = attribute role { text }
+   db.arg.rep.attribute = db.rep.attribute
+   db.arg.choice.attribute = db.choice.opt.attribute
 
    db.arg.attlist =
       db.arg.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.rep.attribute?
-    & db.choice.opt.attribute?
+    & db.arg.rep.attribute?
+    & db.arg.choice.attribute?
 
    db.arg =
       element arg {
@@ -2826,13 +2899,15 @@ div {
 div {
 
    db.group.role.attribute = attribute role { text }
+   db.group.rep.attribute = db.rep.attribute
+   db.group.choice.attribute = db.choice.opt.attribute
 
    db.group.attlist =
       db.group.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.rep.attribute?
-    & db.choice.opt.attribute?
+    & db.group.rep.attribute?
+    & db.group.choice.attribute?
 
    db.group =
       element group {
@@ -3132,8 +3207,16 @@ div {
 
    db.classsynopsis.role.attribute = attribute role { text }
 
-   db.classsynopsis.class.enumeration = "class" | "interface"
+   db.classsynopsis.class.enumeration =
+      ## This is the synopsis of a class
+      "class"
+    | ## This is the synopsis of an interface
+      "interface"
+
    db.classsynopsis.class.attribute =
+      [
+         db:refpurpose [ "Specifies the nature of the synopsis" ]
+      ]
       attribute class { db.classsynopsis.class.enumeration }
 
    db.classsynopsis.attlist =
@@ -3472,13 +3555,15 @@ div {
 div {
 
    db.methodparam.role.attribute = attribute role { text }
+   db.methodparam.rep.attribute = db.rep.attribute
+   db.methodparam.choice.attribute = db.choice.req.attribute
 
    db.methodparam.attlist =
       db.methodparam.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.rep.attribute?
-    & db.choice.req.attribute?
+    & db.methodparam.rep.attribute?
+    & db.methodparam.choice.attribute?
 
    db.methodparam =
       element methodparam {
@@ -3806,17 +3891,33 @@ div {
                           other-name="db.orgname.class-other.attributes" ]
 
    db.orgname.class.enumeration =
+      ## A consortium
       "consortium"
-    | "corporation"
-    | "informal"
-    | "nonprofit"
+    | ## A corporation
+      "corporation"
+    | ## An informal organization
+      "informal"
+    | ## A non-profit organization
+      "nonprofit"
 
    db.orgname.class-enum.attribute =
+      [
+         db:refpurpose [ "Specifies the nature of the organization" ]
+      ]
       attribute class { db.orgname.class.enumeration }
 
    db.orgname.class-other.attributes =
-      attribute class { "other" }
-      & attribute otherclass { text }
+      [
+         db:refpurpose [ "Specifies the nature of the organization" ]
+      ]
+      attribute class {
+         ## Indicates a non-standard organization class
+         "other"
+      },
+      [
+         db:refpurpose [ "Identifies the non-standard nature of the organization" ]
+      ]
+      attribute otherclass { text }
 
    db.orgname.class.attribute =
       (db.orgname.class-enum.attribute | db.orgname.class-other.attributes)
@@ -4428,25 +4529,49 @@ div {
                           enum-name="db.bibliorelation.type-enum.attribute"
                           other-name="db.bibliorelation.type-other.attributes" ]
 
+   db.bibliorelation.type.enumeration =
+      ## The described resource pre-existed the referenced resource, which is essentially the same intellectual content presented in another format
+      "hasformat"
+    | ## The described resource includes the referenced resource either physically or logically
+      "haspart"
+    | ## The described resource has a version, edition, or adaptation, namely, the referenced resource
+      "hasversion"
+    | ## The described resource is the same intellectual content of the referenced resource, but presented in another format
+      "isformatof"
+    | ## The described resource is a physical or logical part of the referenced resource
+      "ispartof"
+    | ## The described resource is referenced, cited, or otherwise pointed to by the referenced resource
+      "isreferencedby"
+    | ## The described resource is supplanted, displaced, or superceded by the referenced resource
+      "isreplacedby"
+    | ## The described resource is required by the referenced resource, either physically or logically
+      "isrequiredby"
+    | ## The described resource is a version, edition, or adaptation of the referenced resource; changes in version imply substantive changes in content rather than differences in format
+      "isversionof"
+    | ## The described resource references, cites, or otherwise points to the referenced resource
+      "references"
+    | ## The described resource supplants, displaces, or supersedes the referenced resource
+      "replaces"
+    | ## The described resource requires the referenced resource to support its function, delivery, or coherence of content
+      "requires"
+
    db.bibliorelation.type-enum.attribute =
-      attribute type {
-         "hasformat"
-       | "haspart"
-       | "hasversion"
-       | "isformatof"
-       | "ispartof"
-       | "isreferencedby"
-       | "isreplacedby"
-       | "isrequiredby"
-       | "isversionof"
-       | "othertype"
-       | "references"
-       | "replaces"
-       | "requires"
-      }?
+      [
+         db:refpurpose [ "Identifies the type of relationship" ]
+      ]
+      attribute type { db.bibliorelation.type.enumeration }?
 
    db.bibliorelation.type-other.attributes =
-      attribute type { "othertype" }?,
+      [
+         db:refpurpose [ "Identifies the type of relationship" ]
+      ]
+      attribute type {
+         ## The described resource has a non-standard relationship with the referenced resource
+         "othertype"
+      }?,
+      [
+         db:refpurpose [ "A keyword that identififes the type of the non-standard relationship" ]
+      ]
       attribute othertype { xsd:NMTOKEN }
 
    db.bibliorelation.type.attribute =
@@ -4481,13 +4606,32 @@ div {
                           other-name="db.bibliocoverage.spatial-other.attributes" ]
 
    db.bibliocoverage.spacial.enumeration =
-      "dcmipoint" | "iso3166" | "dcmibox" | "tgn"
+      ## The DCMI Point identifies a point in space using its geographic coordinates
+      "dcmipoint"
+    | ## ISO 3166 Codes for the representation of names of countries
+      "iso3166"
+    | ## The DCMI Box identifies a region of space using its geographic limits
+      "dcmibox"
+    | ## The Getty Thesaurus of Geographic Names
+      "tgn"
 
    db.bibliocoverage.spatial-enum.attribute =
+      [
+         db:refpurpose [ "Specifies the type of spatial coverage" ]
+      ]
       attribute spatial { db.bibliocoverage.spacial.enumeration }?
 
    db.bibliocoverage.spatial-other.attributes =
-      attribute spatial { "otherspatial" }?,
+      [
+         db:refpurpose [ "Specifies the type of spatial coverage" ]
+      ]
+      attribute spatial {
+         ## Identifies a non-standard type of coverage
+         "otherspatial"
+      }?,
+      [
+         db:refpurpose [ "A keyword that identifies the type of non-standard coverage" ]
+      ]
       attribute otherspatial { xsd:NMTOKEN }
 
    db.bibliocoverage.spatial.attribute =
@@ -4498,13 +4642,29 @@ div {
                           enum-name="db.bibliocoverage.temporal-enum.attribute"
                           other-name="db.bibliocoverage.temporal-other.attributes" ]
 
-   db.bibliocoverage.temporal.enumeration = "dcmiperiod" | "w3c-dtf"
+   db.bibliocoverage.temporal.enumeration =
+      ## A specification of the limits of a time interval
+      "dcmiperiod"
+    | ## W3C Encoding rules for dates and times—a profile based on ISO 8601
+      "w3c-dtf"
 
    db.bibliocoverage.temporal-enum.attribute =
+      [
+         db:refpurpose [ "Specifies the type of temporal coverage" ]
+      ]
       attribute temporal { db.bibliocoverage.temporal.enumeration }?
 
    db.bibliocoverage.temporal-other.attributes =
-      attribute temporal { "othertemporal" }?,
+      [
+         db:refpurpose [ "Specifies the type of temporal coverage" ]
+      ]
+      attribute temporal {
+         ## Specifies a non-standard type of coverage
+         "othertemporal"
+      }?,
+      [
+         db:refpurpose [ "A keyword that identifies the type of non-standard coverage" ]
+      ]
       attribute othertemporal { xsd:NMTOKEN }
 
    db.bibliocoverage.temporal.attribute =
@@ -4562,14 +4722,25 @@ div {
 ]
 div {
 
-   db.othercredit.class.attribute = attribute class {
+   db.othercredit.class.enumeration =
+      ## A copy editor
       "copyeditor"
-    | "graphicdesigner"
-    | "other"
-    | "productioneditor"
-    | "technicaleditor"
-    | "translator"
-   }?
+    | ## A graphic designer
+      "graphicdesigner"
+    | ## Some other contributor
+      "other"
+    | ## A production editor
+      "productioneditor"
+    | ## A technical editor
+      "technicaleditor"
+    | ## A translator
+      "translator"
+
+   db.othercredit.class.attribute =
+      [
+         db:refpurpose [ "Identifies the nature of the contributor" ]
+      ]
+      attribute class { db.othercredit.class.enumeration }
 
    db.othercredit.role.attribute = attribute role { text }
 
@@ -4773,8 +4944,19 @@ div {
    db.productname.role.attribute = attribute role { text }
 
    db.productname.class.enumeration =
-      "copyright" | "registered" | "service" | "trade"
+      ## A name with a copyright
+      "copyright"
+    | ## A name with a registered copyright
+      "registered"
+    | ## A name of a service
+      "service"
+    | ## A name which is trademarked
+      "trade"
+
    db.productname.class.attribute =
+      [
+         db:refpurpose [ "Specifies the class of product name" ]
+      ]
       attribute class { db.productname.class.enumeration }
 
    db.productname.attlist =
@@ -5113,8 +5295,16 @@ div {
 ]
 div {
 
-   db.application.class.enumeration = "hardware" | "software"
+   db.application.class.enumeration =
+      ## A hardware application
+      "hardware"
+    | ## A software application
+      "software"
+
    db.application.class.attribute =
+      [
+         db:refpurpose [ "Identifies the class of application" ]
+      ]
       attribute class { db.application.class.enumeration }
 
    db.application.role.attribute = attribute role { text }
@@ -5237,27 +5427,49 @@ div {
 ]
 div {
 
+   db.database.class.enumeration =
+      ## An alternate or secondary key
+      "altkey"
+    | ## A constraint
+      "constraint"
+    | ## A data type
+      "datatype"
+    | ## A field
+      "field"
+    | ## A foreign key
+      "foreignkey"
+    | ## A group
+      "group"
+    | ## An index
+      "index"
+    | ## The first or primary key
+      "key1"
+    | ## An alternate or secondary key
+      "key2"
+    | ## A name
+      "name"
+    | ## The primary key
+      "primarykey"
+    | ## A (stored) procedure
+      "procedure"
+    | ## A record
+      "record"
+    | ## A rule
+      "rule"
+    | ## The secondary key
+      "secondarykey"
+    | ## A table
+      "table"
+    | ## A user
+      "user"
+    | ## A view
+      "view"
+
    db.database.class.attribute =
-      attribute class {
-         "altkey"
-       | "constraint"
-       | "datatype"
-       | "field"
-       | "foreignkey"
-       | "group"
-       | "index"
-       | "key1"
-       | "key2"
-       | "name"
-       | "primarykey"
-       | "procedure"
-       | "record"
-       | "rule"
-       | "secondarykey"
-       | "table"
-       | "user"
-       | "view"
-      }
+      [
+         db:refpurpose [ "Identifies the class of database artifact" ]
+      ]
+      attribute class { db.database.class.enumeration }
 
    db.database.role.attribute = attribute role { text }
 
@@ -5414,17 +5626,33 @@ div {
 ]
 div {
 
-   db.filename.path.attribute = attribute path { text }
+   db.filename.class.enumeration =
+      ## A device
+      "devicefile"
+    | ## A directory
+      "directory"
+    | ## A filename extension
+      "extension"
+    | ## A header file (as for a programming language)
+      "headerfile"
+    | ## A library file
+      "libraryfile"
+    | ## A partition (as of a hard disk)
+      "partition"
+    | ## A symbolic link
+      "symlink"
+
    db.filename.class.attribute =
-      attribute class {
-         "devicefile"
-       | "directory"
-       | "extension"
-       | "headerfile"
-       | "libraryfile"
-       | "partition"
-       | "symlink"
-      }
+      [
+         db:refpurpose [ "Identifies the class of filename" ]
+      ]
+      attribute class { db.filename.class.enumeration }
+
+   db.filename.path.attribute =
+      [
+         db:refpurpose [ "Specifies the path of the filename" ]
+      ]
+      attribute path { text }
 
    db.filename.role.attribute = attribute role { text }
 
@@ -5630,33 +5858,67 @@ div {
                           enum-name="db.keycap.function-enum.attribute"
                           other-name="db.keycap.function-other.attributes" ]
 
+   db.keycap.function.enumeration =
+      ## The "Alt" key
+      "alt"
+    | ## The "Backspace" key
+      "backspace"
+    | ## The "Command" key
+      "command"
+    | ## The "Control" key
+      "control"
+    | ## The "Delete" key
+      "delete"
+    | ## The down arrow
+      "down"
+    | ## The "End" key
+      "end"
+    | ## The "Enter" or "Return" key
+      "enter"
+    | ## The "Escape" key
+      "escape"
+    | ## The "Home" key
+      "home"
+    | ## The "Insert" key
+      "insert"
+    | ## The left arrow
+      "left"
+    | ## The "Meta" key
+      "meta"
+    | ## The "Option" key
+      "option"
+    | ## The page down key
+      "pagedown"
+    | ## The page up key
+      "pageup"
+    | ## The right arrow
+      "right"
+    | ## The "Shift" key
+      "shift"
+    | ## The spacebar
+      "space"
+    | ## The "Tab" key
+      "tab"
+    | ## The up arrow
+      "up"
+
    db.keycap.function-enum.attribute =
-      attribute function {
-         "alt"
-       | "backspace"
-       | "command"
-       | "control"
-       | "delete"
-       | "down"
-       | "end"
-       | "enter"
-       | "escape"
-       | "home"
-       | "insert"
-       | "left"
-       | "meta"
-       | "option"
-       | "pagedown"
-       | "pageup"
-       | "right"
-       | "shift"
-       | "space"
-       | "tab"
-       | "up"
-      }?
+      [
+         db:refpurpose [ "Identifies the function key" ]
+      ]
+      attribute function { db.keycap.function.enumeration }?
 
    db.keycap.function-other.attributes =
-      attribute function { "other" }?,
+      [
+         db:refpurpose [ "Identifies the function key" ]
+      ]
+      attribute function {
+         ## Indicates a non-standard function key
+         "other"
+      }?,
+      [
+         db:refpurpose [ "Specifies a keyword that identifies the non-standard key" ]
+      ]
       attribute otherfunction { text }
 
    db.keycap.function.attrib =
@@ -5731,10 +5993,10 @@ div {
 
    db.keycombo.action-other.attributes =
       [
-         db:refpurpose [ "Indicates that some non-standard action is taken." ]
+         db:refpurpose [ "Identifies the nature of the action taken" ]
       ]
       attribute action {
-         ## Indicates a non-standard action.
+         ## Indicates a non-standard action
          "other"
       }?,
       [
@@ -5834,7 +6096,11 @@ div {
 ]
 div {
 
-   code.language.attribute = attribute language { text }
+   code.language.attribute =
+      [
+         db:refpurpose [ "Identifies the (computer) language of the code fragment" ]
+      ]
+      attribute language { text }
 
    db.code.role.attribute = attribute role { text }
 
@@ -5859,7 +6125,14 @@ div {
 ]
 div {
 
-   constant.class.attribute = attribute class { "limit" }
+   db.constant.class.attribute =
+      [
+         db:refpurpose [ "Identifies the class of constant" ]
+      ]
+      attribute class {
+         ## The value is a limit of some kind
+         "limit"
+      }
 
    db.constant.role.attribute = attribute role { text }
 
@@ -5867,7 +6140,7 @@ div {
       db.constant.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & constant.class.attribute?
+    & db.constant.class.attribute?
 
    db.constant =
       element constant {
@@ -6064,8 +6337,18 @@ div {
 ]
 div {
 
-   db.parameter.class.enumeration = "command" | "function" | "option"
+   db.parameter.class.enumeration =
+      ## A command
+      "command"
+    | ## A function
+      "function"
+    | ## An option
+      "option"
+
    db.parameter.class.attribute =
+      [
+         db:refpurpose [ "Identifies the class of parameter" ]
+      ]
       attribute class { db.parameter.class.enumeration }
 
    db.parameter.role.attribute = attribute role { text }
@@ -6123,9 +6406,19 @@ db.replaceable.inlines = db._text
 div {
 
    db.replaceable.class.enumeration =
-      "command" | "function" | "option" | "parameter"
+      ## A command
+      "command"
+    | ## A function
+      "function"
+    | ## An option
+      "option"
+    | ## A parameter
+      "parameter"
 
    db.replaceable.class.attribute =
+      [
+         db:refpurpose [ "Identifies the nature of the replaceable text" ]
+      ]
       attribute class { db.replaceable.class.enumeration }
 
    db.replaceable.role.attribute = attribute role { text }
@@ -6176,22 +6469,42 @@ div {
    db.tag.role.attribute = attribute role { text }
 
    db.tag.class.enumeration =
+      ## An attribute
       "attribute"
-    | "attvalue"
-    | "element"
-    | "emptytag"
-    | "endtag"
-    | "genentity"
-    | "numcharref"
-    | "paramentity"
-    | "pi"
-    | "sgmlcomment"
-    | "starttag"
-    | "xmlpi"
+    | ## An attribute value
+      "attvalue"
+    | ## An element
+      "element"
+    | ## An empty element tag
+      "emptytag"
+    | ## An end tag
+      "endtag"
+    | ## A general entity
+      "genentity"
+    | ## A numeric character reference
+      "numcharref"
+    | ## A parameter entity
+      "paramentity"
+    | ## A processing instruction
+      "pi"
+    | ## An SGML comment
+      "comment"
+    | ## A start tag
+      "starttag"
+    | ## An XML processing instruction
+      "xmlpi"
 
-   db.tag.class.attribute = attribute class { db.tag.class.enumeration }
+   db.tag.class.attribute =
+      [
+         db:refpurpose [ "Identifies the nature of the tag content" ]
+      ]
+      attribute class { db.tag.class.enumeration }
 
-   db.tag.namespace.attribute = attribute namespace { xsd:anyURI }
+   db.tag.namespace.attribute =
+      [
+         db:refpurpose [ "Identifies the namespace of the tag content" ]
+      ]
+      attribute namespace { xsd:anyURI }
 
    db.tag.attlist =
       db.tag.role.attribute?
@@ -6215,7 +6528,14 @@ div {
 ]
 div {
 
-   db.symbol.class.attribute = attribute class { "limit" }?
+   db.symbol.class.attribute =
+      [
+         db:refpurpose [ "Identifies the class of symbol" ]
+      ]
+      attribute class {
+         ## The value is a limit of some kind
+         "limit"
+      }
 
    db.symbol.role.attribute = attribute role { text }
 
@@ -6244,30 +6564,55 @@ db.systemitem.inlines = db._text
 ]
 div {
 
+   db.systemitem.class.enumeration =
+      ## A daemon or other system process (syslogd)
+      "daemon"
+    | ## A domain name (example.com)
+      "domainname"
+    | ## An ethernet address (00:05:4E:49:FD:8E)
+      "etheraddress"
+    | ## An event of some sort (SIGHUP)
+      "event"
+    | ## An event handler of some sort (hangup)
+      "eventhandler"
+    | ## A filesystem (ext3)
+      "filesystem"
+    | ## A fully qualified domain name (my.example.com)
+      "fqdomainname"
+    | ## A group name (wheel)
+      "groupname"
+    | ## An IP address (127.0.0.1)
+      "ipaddress"
+    | ## A library (libncurses)
+      "library"
+    | ## A macro
+      "macro"
+    | ## A netmask (255.255.255.192)
+      "netmask"
+    | ## A newsgroup (comp.text.xml)
+      "newsgroup"
+    | ## An operating system name (Hurd)
+      "osname"
+    | ## A process (gnome-cups-icon)
+      "process"
+    | ## A protocol (ftp)
+      "protocol"
+    | ## A resource
+      "resource"
+    | ## A server (mail.example.com)
+      "server"
+    | ## A service (ppp)
+      "service"
+    | ## A system name (hephaistos)
+      "systemname"
+    | ## A user name (ndw)
+      "username"
+
    db.systemitem.class.attribute =
-      attribute class {
-         "daemon"
-       | "domainname"
-       | "etheraddress"
-       | "event"
-       | "eventhandler"
-       | "filesystem"
-       | "fqdomainname"
-       | "groupname"
-       | "ipaddress"
-       | "library"
-       | "macro"
-       | "netmask"
-       | "newsgroup"
-       | "osname"
-       | "process"
-       | "protocol"
-       | "resource"
-       | "server"
-       | "service"
-       | "systemname"
-       | "username"
-      }
+      [
+         db:refpurpose [ "Identifies the nature of the system item" ]
+      ]
+      attribute class { db.systemitem.class.enumeration }
 
    db.systemitem.role.attribute = attribute role { text }
 
@@ -6292,7 +6637,11 @@ div {
 ]
 div {
 
-   db.uri.type.attribute = attribute type { text }?
+   db.uri.type.attribute =
+      [
+         db:refpurpose [ "Identifies the type of URI specified" ]
+      ]
+      attribute type { text }?
 
    db.uri.role.attribute = attribute role { text }
 
@@ -6531,27 +6880,49 @@ div {
 ]
 div {
 
+   db.citetitle.pubwork.enumeration =
+      ## An article
+      "article"
+    | ## A bulletin board system
+      "bbs"
+    | ## A book
+      "book"
+    | ## A CD-ROM
+      "cdrom"
+    | ## A chapter (as of a book)
+      "chapter"
+    | ## A DVD
+      "dvd"
+    | ## An email message
+      "emailmessage"
+    | ## A gopher page
+      "gopher"
+    | ## A journal
+      "journal"
+    | ## A manuscript
+      "manuscript"
+    | ## A posting to a newsgroup
+      "newsposting"
+    | ## A part (as of a book)
+      "part"
+    | ## A reference entry
+      "refentry"
+    | ## A section (as of a book or article)
+      "section"
+    | ## A series
+      "series"
+    | ## A set (as of books)
+      "set"
+    | ## A web page
+      "webpage"
+    | ## A wiki page
+      "wiki"
+
    db.citetitle.pubwork.attribute =
-      attribute pubwork {
-         "article"
-       | "bbs"
-       | "book"
-       | "cdrom"
-       | "chapter"
-       | "dvd"
-       | "emailmessage"
-       | "gopher"
-       | "journal"
-       | "manuscript"
-       | "newsposting"
-       | "part"
-       | "refentry"
-       | "section"
-       | "series"
-       | "set"
-       | "webpage"
-       | "wiki"
-      }
+      [
+         db:refpurpose [ "Identifies the nature of the publication being cited" ]
+      ]
+      attribute pubwork { db.citetitle.pubwork.enumeration }
 
    db.citetitle.role.attribute = attribute role { text }
 
@@ -6690,7 +7061,7 @@ div {
 
 [
    db:refname [ "subscript" ]
-   db:refpurpose [ "A subscript (as in H2O, the molecular formula for water)" ]
+   db:refpurpose [ "A subscript (as in H" db:subscript [ "2" ] "O, the molecular formula for water)" ]
 ]
 div {
 
@@ -6739,9 +7110,19 @@ div {
 div {
 
    db.trademark.class.enumeration =
-      "copyright" | "registered" | "service" | "trade"
+      ## A copyright
+      "copyright"
+    | ## A registered copyright
+      "registered"
+    | ## A service
+      "service"
+    | ## A trademark
+      "trade"
 
    db.trademark.class.attribute =
+      [
+         db:refpurpose [ "Identifies the class of trade mark" ]
+      ]
       attribute class { db.trademark.class.enumeration }
 
    db.trademark.role.attribute = attribute role { text }
@@ -6790,7 +7171,7 @@ div {
 div {
 
    db.footnoteref.role.attribute = attribute role { text }
-   db.footnoteref.label.attribute = attribute label { text }
+   db.footnoteref.label.attribute = db.label.attribute
 
    db.footnoteref.attlist =
       db.footnoteref.role.attribute?
@@ -6826,8 +7207,8 @@ div {
 div {
 
    db.xref.role.attribute = attribute role { text }
-   db.xref.xrefstyle.attribute = attribute xrefstyle { text }
-   db.xref.endterm.attribute = attribute endterm { xsd:IDREF }
+   db.xref.xrefstyle.attribute = db.xrefstyle.attribute
+   db.xref.endterm.attribute = db.endterm.attribute
 
    db.xref.attlist =
       db.xref.role.attribute?
@@ -6848,50 +7229,12 @@ div {
 [
    db:refname [ "link" ]
    db:refpurpose [ "A hypertext link" ]
-   dbx:description [
-      db:para [
-      "The "
-      db:tag [ "link" ]
-      " element is a general purpose hypertext element. Usually, "
-      db:tag [ "link" ]
-      " surrounds the text that should be made “hot” (unlike "
-      db:tag [ "xref" ]
-      " which must generate the text) but the "
-      db:tag [ class = "attribute" "endterm" ]
-      " attribute can be used to copy text from another element."
-    ]
-  ]
-  dbx:expectations [
-    db:para [
-      dbx:format [ class = "inline" ]
-    ]
-    db:para [
-      "If the "
-      db:tag [ "link" ]
-      " element has content, then that content is processed for output " ~
-      "as the “hot” text. If the "
-      db:tag [ "link" ]
-      " element has content and an "
-      db:tag [ class = "attribute" "endterm" ]
-      " attribute, then the content is used and the "
-      db:tag [ class = "attribute" "endterm" ]
-      " is ignored. If the "
-      db:tag [ "link" ]
-      " element has an "
-      db:tag [ class = "attribute" "endterm" ]
-      " attribute and no content, then the content of the element pointed to by "
-      db:tag [ class = "attribute" "endterm" ]
-      "should be repeated at the location of the "
-      db:tag [ "link" ]
-      " and used as the “hot” text."
-    ]
-  ]
 ]
 div {
 
    db.link.role.attribute = attribute role { text }
-   db.link.xrefstyle.attribute = attribute xrefstyle { text }
-   db.link.endterm.attribute = attribute endterm { xsd:IDREF }
+   db.link.xrefstyle.attribute = db.xrefstyle.attribute
+   db.link.endterm.attribute = db.endterm.attribute
 
    db.link.attlist =
       db.link.role.attribute?
@@ -6912,29 +7255,35 @@ div {
 [
    db:refname [ "olink" ]
    db:refpurpose [ "A link that addresses its target indirectly" ]
-   dbx:description [
-      db:para [
-         "The "
-         db:tag [ "olink" ]
-         " element provides a mechanism for establishing links across "
-         ~ "documents where ID/IDREF linking is not possible and "
-         db:tag [ "link" ]
-         " is inadequate."
-      ]
-   ]
-  dbx:expectations [
-    db:para [
-      dbx:format [ class = "inline" ]
-    ]
-  ]
 ]
 div {
    db.olink.role.attribute = attribute role { text }
-   db.olink.xrefstyle.attribute = attribute xrefstyle { text }
-   db.olink.localinfo.attribute = attribute localinfo { text }
-   db.olink.targetdoc.attribute = attribute targetdoc { xsd:anyURI }
-   db.olink.targetptr.attribute = attribute targetptr { text }
-   db.olink.type.attribute = attribute type { text }
+
+   db.olink.xrefstyle.attribute = db.xrefstyle.attribute
+
+   db.olink.localinfo.attribute =
+      [
+         db:refpurpose [ "Holds additional information that may be used by the applicatoin when resolving the link" ]
+      ]
+      attribute localinfo { text }
+
+   db.olink.targetdoc.attribute =
+      [
+         db:refpurpose [ "Specifies the URI of the document in which the link target appears" ]
+      ]
+      attribute targetdoc { xsd:anyURI }
+
+   db.olink.targetptr.attribute =
+      [
+         db:refpurpose [ "Specifies the location of the link target in the document" ]
+      ]
+      attribute targetptr { text }
+
+   db.olink.type.attribute =
+      [
+         db:refpurpose [ "Identifies application-specific customization of the link behavior" ]
+      ]
+      attribute type { text }
 
    db.olink.attlist =
       db.common.attributes
