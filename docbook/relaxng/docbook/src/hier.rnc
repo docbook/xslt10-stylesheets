@@ -39,42 +39,8 @@ db.status.attribute =
          "Identifies the editorial or publication status of the element " ~
          "on which it occurs"
       ]
-      dbx:description [
-         db:para [
-            "Publication status might be used to control formatting " ~
-            "(for example, printing a “draft” watermark on drafts) " ~
-            "or processing (perhaps a document with a status of " ~
-               "“final” should not include any components that are not " ~
-               "final)."
-         ]
-      ]
    ]
    attribute status { text }
-
-db.label.attribute =
-   [
-      db:refpurpose [
-         "Specifies an identifying string for presentation purposes"
-      ]
-      dbx:description [
-         db:para [
-            "Generally, an explicit Label attribute is used only if the " ~
-            "processing system is incapable of generating the label " ~
-            "automatically. Under such circumstances, the third "
-            db:tag [ "book" ]
-            " in a "
-            db:tag [ "set" ]
-            " might be labeled “Volume III”, for example."
-         ]
-         db:para [
-            "If present, the "
-            db:tag [ class = "attribute" "label" ]
-            " is normative; it will used even if the " ~
-            "processing system is capable of automatic labelling."
-         ]
-      ]
-   ]
-   attribute label { text }
 
 # ======================================================================
 
@@ -492,9 +458,7 @@ div {
 
    db.article.class.attribute =
       [
-         db:refpurpose [
-            "Class identifies the type of article."
-         ]
+         db:refpurpose [ "Identifies the nature of the article" ]
       ]
       attribute class { db.article.class.enumeration }
 
