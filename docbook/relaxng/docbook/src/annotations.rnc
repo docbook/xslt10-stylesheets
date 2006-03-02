@@ -37,7 +37,11 @@ db.ubiq.inlines |= db.annotation
 db.all.blocks |= db.annotation
 db.info.elements |= db.annotation
 
-db.annotations.attribute = attribute annotations { text }
+db.annotations.attribute =
+      [
+         db:refpurpose [ "Identifies one or more annotations that apply to this element" ]
+      ]
+   attribute annotations { text }
 
 db.common.attributes &= db.annotations.attribute?
 db.common.idreq.attributes &= db.annotations.attribute?
@@ -52,7 +56,11 @@ div {
    ctrl:exclude [ from="db.annotation" exclude="db.annotation" ]
 
    db.annotation.role.attribute = attribute role { text }
-   db.annotation.annotates.attribute = attribute annotates { text }
+   db.annotation.annotates.attribute =
+      [
+         db:refpurpose [ "Identifies one ore more elements to which this annotation applies" ]
+      ]
+      attribute annotates { text }
 
    db.annotation.attlist =
       db.annotation.role.attribute?
