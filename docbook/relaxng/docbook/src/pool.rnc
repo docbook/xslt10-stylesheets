@@ -4722,6 +4722,10 @@ div {
 ]
 div {
 
+   ctrl:other-attribute [ name="db.othercredit.class.attribute"
+                          enum-name="db.othercredit.class-enum.attribute"
+                          other-name="db.othercredit.class-other.attributes" ]
+
    db.othercredit.class.enumeration =
       ## A copy editor
       "copyeditor"
@@ -4736,11 +4740,31 @@ div {
     | ## A translator
       "translator"
 
-   db.othercredit.class.attribute =
+   db.othercredit.class-enum.attribute =
       [
          db:refpurpose [ "Identifies the nature of the contributor" ]
       ]
-      attribute class { db.othercredit.class.enumeration }
+      attribute class { db.othercredit.class.enumeration } ?
+
+   db.othercredit.class-other.attribute =
+      [
+         db:refpurpose [ "Identifies the nature of the non-standard contribution" ]
+      ]
+      attribute otherclass { xsd:NMTOKEN }
+
+   db.othercredit.class-other.attributes =
+      [
+         db:refpurpose [ "Identifies the nature of the contributor" ]
+      ]
+      attribute class {
+         ## Identifies a non-standard contribution
+         "other"
+      }
+    & db.othercredit.class-other.attribute
+
+   db.othercredit.class.attribute =
+      (db.othercredit.class-enum.attribute
+       | db.othercredit.class-other.attributes)
 
    db.othercredit.role.attribute = attribute role { text }
 
