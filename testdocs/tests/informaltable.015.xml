@@ -18,7 +18,7 @@ should expand to fill entire horizontal space.</para>
     <tgroup cols="3" colsep="1" rowsep="1" align="left">
       <colspec colname="cat" colwidth="2in"/>
       <colspec colname="issue" colwidth="2in"/>
-      <colspec colname="response" colwidth="4in*"/>
+      <colspec colname="response" colwidth="4in"/>
       <thead>
         <row>
           <entry>Category</entry>
