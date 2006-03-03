@@ -217,6 +217,21 @@
   </info>
 </xsl:template>
 
+<xsl:template match="refmiscinfo"
+              priority="200">
+  <refmiscinfo>
+    <xsl:call-template name="copy.attributes">
+      <xsl:with-param name="suppress" select="'class'"/>
+    </xsl:call-template>
+    <xsl:if test="@class">
+      <xsl:attribute name="type">
+	<xsl:copy-of select="@class"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:apply-templates/>
+  </refmiscinfo>
+</xsl:template>
+
 <xsl:template match="corpauthor" priority="200">
   <author>
     <xsl:call-template name="copy.attributes"/>
@@ -266,10 +281,13 @@
 
 <xsl:template match="dedication|preface|chapter|appendix|part|partintro
                      |article|bibliography|glossary|glossdiv|index
+		     |reference[not(referenceinfo)]
                      |book" priority="200">
   <xsl:choose>
-    <xsl:when test="not(dedicationinfo|prefaceinfo|chapterinfo|appendixinfo|partinfo
-                        |articleinfo|artheader|bibliographyinfo|glossaryinfo|indexinfo
+    <xsl:when test="not(dedicationinfo|prefaceinfo|chapterinfo
+		        |appendixinfo|partinfo
+                        |articleinfo|artheader|bibliographyinfo
+			|glossaryinfo|indexinfo
                         |bookinfo)">
       <xsl:copy>
         <xsl:call-template name="copy.attributes"/>
@@ -408,10 +426,10 @@
     <xsl:if test="@srccredit">
       <xsl:message>
         <xsl:text>Check conversion of srccredit </xsl:text>
-        <xsl:text>(othercredit role="srccredit").</xsl:text>
+        <xsl:text>(othercredit="srccredit").</xsl:text>
       </xsl:message>
       <info>
-        <othercredit role="srccredit">
+        <othercredit class="other" otherclass="srccredit">
           <orgname>???</orgname>
           <contrib>
             <xsl:value-of select="@srccredit"/>
@@ -425,6 +443,9 @@
 <xsl:template match="sgmltag" priority="200">
   <tag>
     <xsl:call-template name="copy.attributes"/>
+    <xsl:if test="@class = 'sgmlcomment'">
+      <xsl:attribute name="class">comment</xsl:attribute>
+    </xsl:if>
     <xsl:apply-templates/>
   </tag>
 </xsl:template>
@@ -468,7 +489,7 @@
 </xsl:template>
 
 <xsl:template match="pubsnumber" priority="200">
-  <biblioid class="pubnumber">
+  <biblioid class="pubsnumber">
     <xsl:call-template name="copy.attributes"/>
     <xsl:apply-templates/>
   </biblioid>
@@ -489,10 +510,10 @@
                 select="preceding-sibling::contractnum|following-sibling::contractnum"/>
 
   <xsl:message>
-   <xsl:text>Converting contractsponsor to othercredit role="contractsponsor".</xsl:text>
+   <xsl:text>Converting contractsponsor to othercredit="contractsponsor".</xsl:text>
   </xsl:message>
 
-  <othercredit role="contractsponsor">
+  <othercredit class="other" otherclass="contractsponsor">
     <orgname>
       <xsl:call-template name="copy.attributes"/>
       <xsl:apply-templates/>
@@ -510,10 +531,10 @@
                     |following-sibling::contractsponsor)
                 and not(preceding-sibling::contractnum)">
     <xsl:message>
-      <xsl:text>Converting contractnum to othercredit role="contractnum".</xsl:text>
+      <xsl:text>Converting contractnum to othercredit="contractnum".</xsl:text>
     </xsl:message>
 
-    <othercredit role="contractnum">
+    <othercredit class="other" otherclass="contractnum">
       <orgname>???</orgname>
       <xsl:for-each select="self::contractnum
                             |preceding-sibling::contractnum
@@ -618,9 +639,9 @@
                      |bibliomixed/contrib" priority="200">
   <xsl:message>
     <xsl:text>Check conversion of contrib </xsl:text>
-    <xsl:text>(othercontrib role="contrib").</xsl:text>
+    <xsl:text>(othercontrib="contrib").</xsl:text>
   </xsl:message>
-  <othercredit>
+  <othercredit class="other" otherclass="contrib">
     <orgname>???</orgname>
     <contrib>
       <xsl:call-template name="copy.attributes"/>
@@ -1122,6 +1143,11 @@
 	  </xsl:otherwise>
 	</xsl:choose>
       </xsl:when>
+      <xsl:when test="local-name(.) = 'entityref'">
+	<xsl:attribute name="fileref">
+	  <xsl:value-of select="unparsed-entity-uri(@entityref)"/>
+	</xsl:attribute>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:copy/>
       </xsl:otherwise>
@@ -1137,7 +1163,7 @@
       <xsl:element name="{local-name(.)}"
 		   namespace="http://docbook.org/ns/docbook">
 	<xsl:if test="not(parent::*)">
-	  <xsl:attribute name="version">lillet</xsl:attribute>
+	  <xsl:attribute name="version">5.0</xsl:attribute>
 	</xsl:if>
 	<xsl:copy-of select="@*"/>
 	<xsl:apply-templates mode="addNS"/>
@@ -1146,7 +1172,7 @@
     <xsl:otherwise>
       <xsl:copy>
 	<xsl:if test="not(parent::*)">
-	  <xsl:attribute name="version">lillet</xsl:attribute>
+	  <xsl:attribute name="version">5.0</xsl:attribute>
 	</xsl:if>
 	<xsl:copy-of select="@*"/>
 	<xsl:apply-templates mode="addNS"/>
