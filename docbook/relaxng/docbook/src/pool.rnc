@@ -6567,7 +6567,7 @@ div {
       db.symbol.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.symbol.class.attribute
+    & db.symbol.class.attribute?
 
    db.symbol =
       element symbol {
