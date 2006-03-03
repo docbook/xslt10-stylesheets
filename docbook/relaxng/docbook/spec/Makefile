@@ -8,12 +8,12 @@ XSLPARAM=
 
 all: docbook.html docbook.pdf
 
-docbook.html: docbook.xml
+docbook.html: docbook.xml html.xsl
 	jing ../docbook.rng $<
 	$(XSLT) $< $(HTMLSTYLE) $@ $(XSLPARAM)
 	tidy -q -utf8 -mn -asxml $@
 
-docbook.fo: docbook.xml
+docbook.fo: docbook.xml fo.xsl
 	jing ../docbook.rng $<
 	$(XSLT) $< $(FOSTYLE) docbook.fo $(XSLPARAM)
 

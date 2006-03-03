@@ -1,6 +1,4 @@
 <!DOCTYPE article [
-<!ENTITY name "wd-docbook-docbook">
-<!ENTITY version "5.0b3">
 <!ENTITY standard "Working Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
@@ -9,22 +7,24 @@
 <article xmlns="http://docbook.org/ns/docbook"
 	 xmlns:xlink="http://www.w3.org/1999/xlink"
 	 version="5.0"
+	 xml:lang="en"
 	 status="&standard;">
 <info>
-<title>The DocBook Schema</title>
-
 <releaseinfo role="cvs">
 $Id$
 </releaseinfo>
 
-<productname>&name;</productname>
-<productnumber>&version;</productnumber>
-
-<releaseinfo role="product"><link xlink:href="&name;-&version;.xml">XML</link></releaseinfo>
-<releaseinfo role="product"><link xlink:href="&name;-&version;.html">HTML</link></releaseinfo>
-<releaseinfo role="product"><link xlink:href="&name;-&version;.pdf">PDF</link></releaseinfo>
+<!-- product -->        <productname>docbook</productname>
+<!-- productVersion --> <productnumber>5.0b4</productnumber>
+<!-- artifactType       spec; what else? :-) -->
+<!-- stage -->          <releaseinfo role="stage">wd</releaseinfo>
+<!-- revision -->       <biblioid class="pubsnumber">01</biblioid>
+<!-- language           en; see /article/@xml:lang -->
+<!-- form               xml -->
 
 <releaseinfo role="location">&root;specs</releaseinfo>
+
+<title>The DocBook Schema</title>
 
 <authorgroup>
 <editor>
@@ -40,7 +40,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>2006-01-12</pubdate>
+<pubdate>2006-03-03</pubdate>
 
 <copyright>
 <year>2001</year><year>2002</year><year>2003</year>
@@ -48,7 +48,7 @@ $Id$
 <holder>The Organization for the Advancement of Structured Information
 Standards [OASIS]. All Rights Reserved. </holder></copyright>
 
-<abstract><title>Abstract</title>
+<abstract>
 <para>DocBook is a general purpose <xref linkend="xml-rec"/> schema
 particularly well suited to books and papers about computer hardware
 and software (though it is by no means limited to these applications).
@@ -66,7 +66,7 @@ schema languages, including W3C XML Schema and an
 XML DTD, but the RELAX NG Schema is now the normative schema.</para>
 </abstract>
 
-<legalnotice role="status"><title>Status</title>
+<legalnotice role="status">
 <!--
 <para>This &standard; was
 <link xlink:href="http://lists.oasis-open.org/archives/docbook-tc/200403/msg00010.html">approved</link>
@@ -76,7 +76,7 @@ consensus of the committee.
 </para>
 -->
 
-<para>This &standard; is an editor's draft. It does not necessarily
+<para>This is a &standard;. It does not necessarily
 represent the consensus of the committee.
 </para>
 
@@ -87,7 +87,7 @@ use the
 Manager</link>.</para>
 
 <para>The errata page for this specification is at
-<link xlink:href="&root;specs/docbook-errata.html"/>.
+<link xlink:href="&root;specs/docbook5-errata.html"/>.
 </para>
 </legalnotice>
 </info>
@@ -153,6 +153,84 @@ from the
 DocBook is also available from the mirror on
 <link xlink:href="http://docbook.org/"/>.
 </para>
+
+<section xml:id="s.50b4">
+<title>Changes in DocBook V5.0b4</title>
+
+<para>This release contains several improvements over V5.0b3.</para>
+
+<orderedlist>
+<listitem xml:id="rfe.1416903">
+<para>Fixed <link xlink:href="&RFE;aid=1416903">RFE 1416903</link>:
+Added a <tag>cover</tag> element to hold additional material for
+document covers. Updated reference documentation.
+</para>
+</listitem>
+
+<listitem xml:id="pubsnumber">
+<para>Corrected a typo in the list of values allowed on the
+<tag class="attribute">class</tag> attribute of <tag>biblioid</tag>:
+changed “pubnumber” to “pubsnumber” (note the “s”). This is consistent
+with its use as a replacement for the <tag>pubsnumber</tag> tag that
+has been removed in DocBook V5.0.</para>
+</listitem>
+
+<listitem xml:id="titles">
+<para>Fixed a bug in the content model of the various “<tag>info</tag>”
+elements. In previous beta releases, the title-related elements
+(<tag>title</tag>, <tag>titleabbrev</tag>, and <tag>subtitle</tag>)
+were erroneously required to appear first. The requirement is only that
+they appear exactly or at most once, depending on the context.</para>
+</listitem>
+
+<listitem xml:id="sgmlcomment">
+<para>Renamed the “<tag class="attvalue">sgmlcomment</tag>” attribute
+value of the  <tag class="attribute">class</tag> attribute of
+<tag>tag</tag>. There's no significant difference between XML and
+SGML comments and the “SGML” name implies that there ought to be
+an “<tag class="attvalue">xmlcomment</tag>” value, which there is not.
+The new value is simply “<tag class="attvalue">comment</tag>”.
+</para>
+</listitem>
+
+<listitem xml:id="refmiscinfo">
+<para>Renamed the “<tag class="attribute">class</tag>” attribute of
+<tag>refmiscinfo</tag>. The DocBook semantics of class attributes is
+that they have enumerated values. This attribute should always have
+been called “<tag class="attribute">type</tag>” as it is now.
+</para>
+</listitem>
+
+<listitem xml:id="otherclass">
+<para>Updated <tag class="attribute">renderas</tag> on
+<tag>bridgehead</tag> and <tag class="attribute">class</tag> on
+<tag>othercredit</tag> to have “attribute/otherattribute” co-constraints.
+(In other words, if you select “other” for
+<tag class="attribute">renderas</tag> on <tag>bridgehead</tag>
+or <tag class="attribute">class</tag> on <tag>othercredit</tag>,
+you have to also provide a value for <tag class="attribute">otherrenderas</tag>
+or <tag class="attribute">othercredit</tag>, respectively.</para>
+</listitem>
+
+<listitem xml:id="width">
+<para>Changed <tag class="attribute">width</tag> attribute in media objects
+to be “text” instead of “<code>xs:integer</code>”.
+</para>
+</listitem>
+
+<listitem xml:id="xmlschema">
+<para>Fixed bug in the build process that resulted in unusable XML
+Schema versions of beta&#160;2 and beta&#160;3.
+</para>
+</listitem>
+
+<listitem xml:id="docs.b4">
+<para>Improved reference documentation for attributes on many elements.
+</para>
+</listitem>
+</orderedlist>
+
+</section>
 
 <section xml:id="s.50b3">
 <title>Changes in DocBook V5.0b3</title>
@@ -991,6 +1069,18 @@ of the DocBook web page
 
 <para>
 <revhistory>
+<revision role="&root;specs/docbook-5.0b4-spec-wd-01.html">
+  <revnumber>Working Draft “Beta 4”</revnumber>
+  <date>3 March 2006</date>
+</revision>
+<revision role="&root;specs/wd-docbook-docbook-5.0b3.html">
+  <revnumber>Working Draft “Beta 3”</revnumber>
+  <date>1 February 2006</date>
+</revision>
+<revision role="&root;specs/wd-docbook-docbook-5.0b2.html">
+  <revnumber>Working Draft “Beta 2”</revnumber>
+  <date>12 January 2006</date>
+</revision>
 <revision role="&root;specs/wd-docbook-docbook-5.0b1.html">
   <revnumber>Working Draft “Beta 1”</revnumber>
   <date>27 October 2005</date>

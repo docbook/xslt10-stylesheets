@@ -1,12 +1,69 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
+		xmlns:db="http://docbook.org/ns/docbook"
+		xmlns:xlink="http://www.w3.org/1999/xlink"
+		exclude-result-prefixes="db xlink"
                 version="1.0">
 
 <xsl:import href="/projects/oasis/spectools/stylesheets/oasis-docbook-fo.xsl"/>
 
 <xsl:param name="draft.watermark.image"
            select="'/sourceforge/docbook/xsl/images/draft.png'"/>
+
+<!-- These get evaluated before stripping! -->
+
+<xsl:variable name="tcProduct" 
+	      select="//db:info/db:productname[1]"/>
+<xsl:variable name="tcProductVersion"
+	      select="//db:info/db:productnumber[1]"/>
+<xsl:variable name="tcArtifactType" select="'spec'"/>
+<xsl:variable name="tcStage"
+	      select="//db:info/db:releaseinfo[@role='stage'][1]"/>
+<xsl:variable name="tcRevision"
+	      select="//db:info/db:biblioid[@class='pubsnumber'][1]"/>
+<xsl:variable name="tcLanguage" select="/@xml:lang"/>
+<xsl:variable name="tcForm" select="'xml'"/>
+
+<xsl:variable name="odnRoot">
+  <xsl:value-of select="$tcProduct"/>
+  <xsl:text>-</xsl:text>
+  <xsl:value-of select="$tcProductVersion"/>
+  <xsl:text>-</xsl:text>
+  <xsl:value-of select="$tcArtifactType"/>
+  <xsl:text>-</xsl:text>
+  <xsl:value-of select="$tcStage"/>
+  <xsl:text>-</xsl:text>
+  <xsl:value-of select="$tcRevision"/>
+  <xsl:if test="$tcLanguage != 'en' and $tcLanguage != ''">
+    <xsl:text>-</xsl:text>
+    <xsl:value-of select="$tcLanguage"/>
+  </xsl:if>
+</xsl:variable>
+
+<xsl:template match="productname" mode="titlepage.mode">
+  <xsl:variable name="pn" select="../productnumber[1]"/>
+
+  <fo:block>
+    <fo:block font-family="{$title.font.family}"
+              space-before="0.5em">Document identifier:</fo:block>
+    <fo:block margin-left="2em">
+      <xsl:value-of select="$odnRoot"/>
+    </fo:block>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="legalnotice[@role='status']" mode="titlepage.mode">
+  <fo:block>
+    <fo:block font-family="{$title.font.family}"
+              space-before="0.5em">
+      <xsl:text>Status:</xsl:text>
+    </fo:block>
+    <fo:block margin-left="2em">
+      <xsl:apply-templates mode="titlepage.mode"/>
+    </fo:block>
+  </fo:block>
+</xsl:template>
 
 <xsl:template match="pubdate" mode="titlepage.mode">
   <fo:block keep-with-next="always"
