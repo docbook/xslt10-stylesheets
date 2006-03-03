@@ -461,7 +461,7 @@ db.width.attribute =
    [
       db:refpurpose [ "Specifies the width of the element" ]
    ]
-   attribute width { xsd:integer }
+   attribute width { text }
 
 db.depth.attribute =
    [
