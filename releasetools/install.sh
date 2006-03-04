@@ -36,7 +36,7 @@ thisSgmlCatalog=$PWD/catalog
 # URIs to test for catalog resolution
 thisUriList=$PWD/.urilist
 
-exampleCatalogManager=$PWD/.CatalogManager.properties.example 
+exampleCatalogManager=$PWD/.CatalogManager.properties.example
 thisCatalogManager=$HOME/.resolver/CatalogManager.properties
 
 osName=$(uname -o)
