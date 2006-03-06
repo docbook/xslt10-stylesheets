@@ -62,7 +62,19 @@
 <xsl:template match="xsl:template[@match='/']">
   <xslo:include href="../profiling/profile-mode.xsl"/>
   <xslo:variable name="profiled-content">
-    <xslo:apply-templates select="/" mode="profile"/>
+    <xslo:choose>
+      <xslo:when test="*/self::ng:* or */self::db:*">
+	<xslo:message>Stripping NS from DocBook 5/NG document.</xslo:message>
+	<xslo:variable name="stripped-content">
+	  <xslo:apply-templates select="/" mode="stripNS"/>
+	</xslo:variable>
+	<xslo:message>Processing stripped document.</xslo:message>
+	<xslo:apply-templates select="exslt:node-set($stripped-content)" mode="profile"/>
+      </xslo:when>
+      <xslo:otherwise>
+	<xslo:apply-templates select="/" mode="profile"/>
+      </xslo:otherwise>
+    </xslo:choose>
   </xslo:variable>
   <xslo:variable name="profiled-nodes" select="exslt:node-set($profiled-content)"/>
   <xsl:copy>
@@ -125,6 +137,13 @@
     <xsl:copy-of select="@*"/>
     <xsl:attribute name="select">$profiled-nodes/node()</xsl:attribute>
     <xsl:apply-templates mode="correct"/>
+  </xsl:copy>
+</xsl:template>
+
+<!-- DB5 namespace stripping is already done  -->
+<xsl:template match="xsl:when[contains(@test, 'self::db')]" mode="correct">
+  <xsl:copy>
+    <xsl:attribute name="test">false()</xsl:attribute>
   </xsl:copy>
 </xsl:template>
 

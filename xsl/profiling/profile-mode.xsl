@@ -154,7 +154,7 @@
     <xsl:copy>
       <xsl:copy-of select="@*"/>
       <!-- Fix base URI of some elements -->
-      <xsl:if test="$profile.baseuri.fixup and (self::textdata or self::imagedata or self::videodata or self::audiodata or self::inlinegraphic or self::graphic)">
+      <xsl:if test="$profile.baseuri.fixup and (self::textdata or self::imagedata or self::videodata or self::audiodata or self::inlinegraphic or self::graphic) and not(@xml:base)">
 	<xsl:choose>
 	  <xsl:when test="@fileref
 			  and not(contains(@fileref,':'))
