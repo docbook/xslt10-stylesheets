@@ -21,7 +21,7 @@
       <xsl:with-param name="object" select="$node"/>
     </xsl:call-template>
   </xsl:variable>
-  <xsl:if test="$conditional = 0 or $node/@id">
+  <xsl:if test="$conditional = 0 or $node/@id or $node/@xml:id">
     <xsl:attribute name="id"><xsl:value-of select="$id"/></xsl:attribute>
   </xsl:if>
 </xsl:template>
