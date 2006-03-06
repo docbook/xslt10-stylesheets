@@ -627,11 +627,9 @@ element label.</para>
     </xsl:when>
     <xsl:otherwise>
       <xsl:choose>
-        <xsl:when test="count($pchap)>0">
-          <xsl:if test="$prefix != ''">
+        <xsl:when test="$prefix != ''">
             <xsl:apply-templates select="$pchap" mode="label.markup"/>
             <xsl:apply-templates select="$pchap" mode="intralabel.punctuation"/>
-          </xsl:if>
           <xsl:number format="1" from="chapter|appendix" level="any"/>
         </xsl:when>
         <xsl:otherwise>
