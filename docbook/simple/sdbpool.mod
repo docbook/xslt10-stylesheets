@@ -135,6 +135,11 @@
 		|%para.class;		|blockquote
 		%local.textobject.mix;">
 
+<!ENTITY % local.mediaobject.mix "">
+<!ENTITY % mediaobject.mix
+		"videoobject|audioobject|imageobject|textobject
+		 %local.mediaobject.mix;">
+
 <!ENTITY % local.listpreamble.mix "">
 <!ENTITY % listpreamble.mix
 		"                  	 %admon.class;

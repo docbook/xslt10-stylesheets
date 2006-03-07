@@ -7,10 +7,10 @@ FMGO=-N
 all: sdocbook.dtd sdocbookref.dtd
 
 test:
-	$(XJPARSE) tests/testcust.xml
-	$(XJPARSE) tests/testrefcust.xml
-	$(XJPARSE) tests/test.xml
-	$(XJPARSE) tests/testcss.xml
+	$(XJPARSE) -d tests/testcust.xml
+	$(XJPARSE) -d tests/testrefcust.xml
+	$(XJPARSE) -d tests/test.xml
+	$(XJPARSE) -d tests/testcss.xml
 
 freshmeat:
 ifeq ($(VERSION),)
@@ -21,11 +21,11 @@ else
 endif
 
 sdocbook.dtd: sdocbook-custom.dtd $(MODULES)
-	$(XJPARSE) tests/testcust.xml
+	$(XJPARSE) -d tests/testcust.xml
 	$(FLATTEN) sdocbook-custom.dtd > sdocbook.dtd
 
 sdocbookref.dtd: sdocbookref-custom.dtd $(MODULES)
-	$(XJPARSE) tests/testrefcust.xml
+	$(XJPARSE) -d tests/testrefcust.xml
 	$(FLATTEN) sdocbookref-custom.dtd > sdocbookref.dtd
 
 doc: sdocbook.dtd

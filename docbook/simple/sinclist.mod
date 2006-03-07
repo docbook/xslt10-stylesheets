@@ -319,5 +319,12 @@
 <!ENTITY % uri.module "IGNORE">
 <!ENTITY % allow.html.tables "INCLUDE">
 
+<!-- new in 4.4 or 4.5 -->
+<!ENTITY % bibliolist.module "IGNORE">
+<!ENTITY % mathphrase.module "IGNORE">
+<!ENTITY % termdef.module "IGNORE">
+<!ENTITY % biblioref.module "IGNORE">
+<!ENTITY % package.module "IGNORE">
+
 <!-- End of Simplified DocBook Include Module V1.1 ........................ -->
 <!-- ...................................................................... -->

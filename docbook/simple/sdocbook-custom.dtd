@@ -234,8 +234,8 @@
 <!ENTITY % superscript.element "IGNORE">
 
 <!ENTITY % cals.table.module "INCLUDE">
-<!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
-                   "http://docbook.org/xml/4.3/docbookx.dtd"
+<!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.5CR2//EN"
+                   "http://docbook.org/xml/4.5CR2/docbookx.dtd"
 >
 %docbook;
 
@@ -295,7 +295,7 @@
 <![%allow.html.tables;[
 <!ENTITY % informaltable.table.mdl
 	"((mediaobject+|tgroup+)
-          |(caption, (col*|colgroup*), thead?, tfoot?, (tbody+|tr+)))">
+          |((col*|colgroup*), thead?, tfoot?, (tbody+|tr+)))">
 ]]>
 <!ENTITY % informaltable.table.mdl
 	"(mediaobject+|tgroup+)">
