@@ -30,8 +30,8 @@
   <fm:Changelog-URL>http://docbook.org/xml/simple/{VERSION}/ChangeLog</fm:Changelog-URL>
   <fm:CVS-URL>http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/docbook/docbook/xml/simple/</fm:CVS-URL>
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook/</fm:Mailing-List-URL>
-  <fm:Changes>Simplified DocBook V1.1 is an official release. It contains
-no technical changes from V1.1CR2.
+  <fm:Changes>Simplified DocBook V1.2CR1 is a test release. It is based on
+DocBook V4.5 and fixes a bug with caption in informaltable.
   </fm:Changes>  
 </fm:project>
 

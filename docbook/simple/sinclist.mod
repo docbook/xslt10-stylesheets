@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- Simplified DocBook Include Module V1.1 ............................... -->
+<!-- Simplified DocBook Include Module V1.2CR1 ............................... -->
 <!-- File sinclist.mod .................................................... -->
 
 <!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
@@ -326,5 +326,5 @@
 <!ENTITY % biblioref.module "IGNORE">
 <!ENTITY % package.module "IGNORE">
 
-<!-- End of Simplified DocBook Include Module V1.1 ........................ -->
+<!-- End of Simplified DocBook Include Module V1.2CR1 ........................ -->
 <!-- ...................................................................... -->

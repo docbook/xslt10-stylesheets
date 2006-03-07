@@ -1,5 +1,5 @@
 <!-- ...................................................................... -->
-<!-- Simplified DocBook Information Pool V1.1 ............................. -->
+<!-- Simplified DocBook Information Pool V1.2CR1 ............................. -->
 <!-- File sdbpool.mod ..................................................... -->
 
 <!-- Copyright 1992-2002 HaL Computer Systems, Inc.,
@@ -216,5 +216,5 @@
 
 <!ENTITY % programlisting.content "%para.char.mix; | lineannotation">
 
-<!-- End of Simplified DocBook Information Pool V1.1 ...................... -->
+<!-- End of Simplified DocBook Information Pool V1.2CR1 ...................... -->
 <!-- ...................................................................... -->
