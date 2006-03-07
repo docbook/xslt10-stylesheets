@@ -42,7 +42,7 @@
   <fm:Changes>There are no backwards-incompatible changes in this release.
 
 Updated version number for final release.
-There are no technical changes from DocBook V4.5CR1.
+There are no technical changes from DocBook V4.5CR2.
   </fm:Changes>  
 </fm:project>
 
