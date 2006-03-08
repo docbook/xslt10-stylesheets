@@ -121,9 +121,9 @@ ifneq ($(DISTRIB_PACKAGES),)
 	done
 endif
 # tar up distro, then gzip/bzip/zip it
-	tar cf - * .[^.]* --exclude-from $(TMP)/tar.exclude | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); tar xf -)
-	umask 022; cd $(TMP) && tar cf - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-$(ZIPVER).tar.gz
-	umask 022; cd $(TMP) && tar cf - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > docbook-$(DISTRO)-$(ZIPVER).tar.bz2
+	$(TAR) cf$(TARFLAGS) - -X $(TMP)/tar.exclude * .[^.]* | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); $(TAR) xf$(TARFLAGS) -)
+	umask 022; cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-$(ZIPVER).tar.gz
+	umask 022; cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > docbook-$(DISTRO)-$(ZIPVER).tar.bz2
 	umask 022; cd $(TMP) && zip -q -rpD docbook-$(DISTRO)-$(ZIPVER).zip docbook-$(DISTRO)-$(ZIPVER)
 	rm -f $(TMP)/tar.exclude
 
@@ -147,13 +147,13 @@ ifneq ($(DISTRIB_PACKAGES),)
 	for file in $(ZIP_EXCLUDES); do \
 	  find . -print  | grep $$file   | cut -c3- >> $(TMP)/tar.exclude; \
 	done; \
-	tar cf - --ignore-failed-read $$part $${part}src images --exclude-from $(TMP)/tar.exclude | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); tar xf -); \
+	$(TAR) cf$(TARFLAGS) - -X $(TMP)/tar.exclude --ignore-failed-read $$part $${part}src images | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); $(TAR) xf$(TARFLAGS) -); \
 	umask 022; (cd $(TMP) && \
 	if [ -d docbook-$(DISTRO)-$(ZIPVER)/images ]; \
 	  then mv docbook-$(DISTRO)-$(ZIPVER)/images docbook-$(DISTRO)-$(ZIPVER)/doc/; \
 	fi) ; \
-	umask 022; (cd $(TMP) && tar cf - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-$$part-$(ZIPVER).tar.gz); \
-	umask 022; (cd $(TMP) && tar cf - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > docbook-$(DISTRO)-$$part-$(ZIPVER).tar.bz2); \
+	umask 022; (cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-$$part-$(ZIPVER).tar.gz); \
+	umask 022; (cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > docbook-$(DISTRO)-$$part-$(ZIPVER).tar.bz2); \
 	umask 022; (cd $(TMP) && zip -q -rpD docbook-$(DISTRO)-$$part-$(ZIPVER).zip docbook-$(DISTRO)-$(ZIPVER)); \
 	rm -f $(TMP)/tar.exclude; \
 	done
@@ -170,8 +170,8 @@ install: zip
 	   umask 002; \
 	   cd $(RELEASE_DIR)/$(DISTRO); \
 	   rm -rf $(ZIPVER); \
-	   tar xfj docbook-$(DISTRO)-$(ZIPVER).tar.bz2; \
-	   tar xfj docbook-$(DISTRO)-*-$(ZIPVER).tar.bz2; \
+	   $(TAR) xfj$(TARFLAGS) docbook-$(DISTRO)-$(ZIPVER).tar.bz2; \
+	   $(TAR) xfj$(TARFLAGS) docbook-$(DISTRO)-*-$(ZIPVER).tar.bz2; \
 	   mv docbook-$(DISTRO)-$(ZIPVER) $(ZIPVER); \
 	   rm -rf docbook-$(DISTRO)-$(ZIPVER).tar.bz2; \
 	   rm -rf docbook-$(DISTRO)-*-$(ZIPVER).tar.bz2; \
