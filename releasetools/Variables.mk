@@ -121,3 +121,5 @@ SF_UPLOAD_DIR=incoming
 PROJECT_HOST=docbook.sf.net
 RELEASE_DIR=/home/groups/d/do/docbook/htdocs/release
 PROJECT_USER:=`sed 's/^:.\+:\([^@]\+\)@.\+$$/\1/' CVS/Root`
+TAR=tar
+TARFLAGS=P
