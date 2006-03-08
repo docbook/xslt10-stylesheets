@@ -38,6 +38,8 @@ fi
 
 umask 002
 # set up some defaults
+TAR=tar
+TARFLAGS=P
 SITEUSER=`whoami`
 SITEBASE=/home/groups/d/do/docbook/htdocs/snapshots
 SITEHOST=docbook.sourceforge.net
@@ -294,29 +296,30 @@ EOF
     cat HEADER.txt $TMP/line.tmp LatestChanges > README.txt
     rm $TMP/line.tmp
 
+    # Uncompress tarball to local mirror directory.
+    # Previously, we uploaded and untarred it to the remote host
+    # (sourceforge.net web server), but 100Mb quota limit at
+    # Sourceforge made that a not-very-efficient use of the
+    # project disk space
+    cp $TMP/docbook-$DISTRO*$RELEASEVERSION.tar.bz2 $SITEBASE
+    (umask 002; \
+    cd $SITEBASE; \
+    rm -f docbook-$DISTRO-$RELEASEVERSION.log; \
+    rm -rf $DISTRO; \
+    for tarball in docbook-$DISTRO*$RELEASEVERSION.tar.bz2; do \
+    cat $tarball | bunzip2 | \
+    (cd $TMP; $TAR xf$TARFLAGS -); \
+    done; \
+    mkdir $DISTRO; \
+    cp -pR $TMP/docbook-$DISTRO-$RELEASEVERSION/* $DISTRO; \
+    rm -rf $DISTRO/tools; \
+    rm -rf $DISTRO/RELEASE-NOTES.*;)
+
     scp \
       $TMP/docbook-$DISTRO*$RELEASEVERSION.zip \
-      $TMP/docbook-$DISTRO*$RELEASEVERSION.tar.bz2 \
       README.txt \
       LatestChanges \
       $SITEUSER@$SITEHOST:$SITEBASE
-    ssh -l $SITEUSER $SITEHOST \
-     "( \
-      umask 002; \
-      cd $SITEBASE; \
-      rm -f docbook-$DISTRO-$RELEASEVERSION.log; \
-      rm -rf $DISTRO; \
-      for tarball in docbook-$DISTRO*$RELEASEVERSION.tar.bz2; do \
-      cat \$tarball | bunzip2 | \
-      (cd /tmp; tar xf -); \
-      done; \
-      mkdir $DISTRO; \
-      cp -pR /tmp/docbook-$DISTRO-$RELEASEVERSION/* $DISTRO; \
-      rm -rf /tmp/docbook-$DISTRO-$RELEASEVERSION; \
-      rm -rf docbook-$DISTRO*$RELEASEVERSION.tar.bz2; \
-      rm -rf $DISTRO/tools; \
-      rm -rf $DISTRO/RELEASE-NOTES.* ; \
-      )"
 
     rm -rf $TMP/docbook-$DISTRO*$RELEASEVERSION.tar.bz2
     rm -rf $TMP/docbook-$DISTRO*$RELEASEVERSION.tar.gz
