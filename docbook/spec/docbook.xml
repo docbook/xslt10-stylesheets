@@ -1,23 +1,22 @@
 <!DOCTYPE article [
-<!ENTITY name "wd-docbook-docbook">
-<!ENTITY version "4.5">
-<!ENTITY standard "Public Review Draft">
+<!ENTITY standard "Committee Specification">
 <!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
 <!ENTITY root "http://www.oasis-open.org/docbook/">
 ]>
-<article status="&standard;">
+<article lang="en" status="&standard;">
 <articleinfo>
 <releaseinfo role="cvs">
 $Id$
 </releaseinfo>
 
-<productname>&name;</productname>
-<productnumber>&version;</productnumber>
-
-<releaseinfo role="product"><ulink url="&name;-&version;.xml">XML</ulink></releaseinfo>
-<releaseinfo role="product"><ulink url="&name;-&version;.html">HTML</ulink></releaseinfo>
-<releaseinfo role="product"><ulink url="&name;-&version;.pdf">PDF</ulink></releaseinfo>
+<!-- product -->        <productname>docbook</productname>
+<!-- productVersion --> <productnumber>4.5</productnumber>
+<!-- artifactType       spec; what else? :-) -->
+<!-- stage -->          <releaseinfo role="stage">cs</releaseinfo>
+<!-- revision -->       <pubsnumber>01</pubsnumber>
+<!-- language           en; see /article/@xml:lang -->
+<!-- form               xml -->
 
 <releaseinfo role="location">&root;specs</releaseinfo>
 
@@ -34,7 +33,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>28 July 2005</pubdate>
+<pubdate>2006-03-09</pubdate>
 
 <copyright>
 <year>2001</year>
@@ -42,13 +41,14 @@ $Id$
 <year>2003</year>
 <year>2004</year>
 <year>2005</year>
+<year>2006</year>
 <holder>
 The Organization for the Advancement of Structured Information
 Standards [OASIS]. All Rights Reserved.
 </holder></copyright>
 
 <abstract><title>Abstract</title>
-<para>DocBook is general purpose <xref linkend="xml-rec"/> and
+<para>DocBook is a general purpose <xref linkend="xml-rec"/> and
 <xref linkend="iso8879"/> document type
 particularly well suited to books and papers about computer hardware
 and software (though it is by no means limited to these applications).
@@ -57,19 +57,19 @@ and software (though it is by no means limited to these applications).
 no backwards-incompatible changes.</para>
 </abstract>
 
-<legalnotice role="status"><title>Status</title>
-<!--
+<legalnotice role="status">
 <para>This &standard; was
-<ulink url="http://lists.oasis-open.org/archives/docbook/200501/msg00118.html">approved</ulink>
+<ulink url="http://www.oasis-open.org/committees/ballot.php?id=939">approved</ulink>
 for publication by the
 OASIS DocBook Technical Committee. It represents the
 consensus of the committee.
 </para>
--->
 
+<!--
 <para>This &standard; is an editor's draft. It does not necessarily
 represent the consensus of the committee.
 </para>
+-->
 
 <para>Please send comments on this specification to the
 <email>docbook@lists.oasis-open.org</email> list. To subscribe, please
@@ -149,6 +149,19 @@ It is also available in <ulink url="&root;rng/">RELAX NG</ulink> and
 The DocBook site is mirrored on
 <ulink url="http://docbook.org/"/>.
 </para>
+
+<section id="s.cs">
+<title>Changes in DocBook V4.5CR2</title>
+
+<para>There are no backwards-incompatible changes in this release.
+</para>
+
+<para>Version 4.5CR2 contains one small bug-fix applied after the
+Committee Specification was approved: the <sgmltag>citebiblioid</sgmltag>
+element is now allowed everywhere that the other citation elements are
+allowed. It had been accidentally excluded from some inline contexts
+in 4.5CR1.</para>
+</section>
 
 <section id="s.pr">
 <title>Changes in the Public Review Draft of DocBook V4.5</title>
@@ -251,7 +264,7 @@ meeting.
 </section>
 </section>
 
-<section><title>Release Notes</title>
+<section id="releasenotes"><title>Release Notes</title>
 
 <para>XML validation technologies have evolved rapidly in the last few
 years. The Technical Committee is exploring the possibility of using
@@ -457,7 +470,7 @@ the formulation of this &standard;:</para>
 
 <para>Copyright &#169; The Organization for the Advancement of
 Structured Information Standards [OASIS]
-2001, 2002, 2003, 2004, 2005.
+2001, 2002, 2003, 2004, 2005, 2006.
 All Rights Reserved.</para>
 
 <para>OASIS takes no position regarding the validity
@@ -533,6 +546,10 @@ of the DocBook web page
 
 <para>
 <revhistory>
+<revision role="&root;specs/docbook-4.5-spec-cs-01.html">
+  <revnumber>Committee Specification CR2</revnumber>
+  <date>09 March 2006</date>
+</revision>
 <revision role="&root;specs/pr-docbook-docbook-4.5.html">
   <revnumber>Public Review Draft</revnumber>
   <date>28 July 2005</date>
@@ -552,7 +569,7 @@ of the DocBook web page
 
 <bibliography id="references"><title>References</title>
 
-<bibliodiv><title>Normative</title>
+<bibliodiv id="normative-refs"><title>Normative</title>
 
 <bibliomixed id="iso8879"/>
 <bibliomixed id="xml-rec"/>
