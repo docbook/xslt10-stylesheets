@@ -152,10 +152,13 @@
           <xsl:apply-templates select="."/>
         </xsl:when>
         <!-- * Check to see if this node is a list; if it is, we don't -->
-        <!-- * want to normalize-space(), so we just apply-templates -->
+        <!-- * want to normalize-space(), so we just apply-templates. -->
+        <!-- * Do same for all admonitions -->
         <xsl:when test="(self::itemizedlist|self::orderedlist|
                         self::variablelist|self::glosslist|
-                        self::simplelist[@type !='inline'])">
+                        self::simplelist[@type !='inline']|
+                        self::caution|self::important|
+                        self::note|self::tip|self::warning)">
           <xsl:apply-templates select="."/>
         </xsl:when>
         <xsl:when test="self::text()">
@@ -173,6 +176,11 @@
                     and normalize-space($content) != ''
                     and not(
                     preceding-sibling::*[1][
+                    self::caution or
+                    self::important or
+                    self::note or
+                    self::tip or
+                    self::warning or
                     self::variablelist or
                     self::glosslistlist or
                     self::itemizedlist or
@@ -199,8 +207,8 @@
         </xsl:when>
         <xsl:otherwise>
           <!-- * At this point, we know that this node is not a verbatim -->
-          <!-- * environment, list, or text node; so we can safely -->
-          <!-- * normalize-space() it. -->
+          <!-- * environment, list, admonition, or text node; so we can -->
+          <!-- * safely normalize-space() it. -->
           <xsl:variable name="content">
             <xsl:apply-templates select="."/>
           </xsl:variable>
