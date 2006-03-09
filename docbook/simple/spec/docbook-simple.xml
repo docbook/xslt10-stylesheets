@@ -1,20 +1,24 @@
 <!DOCTYPE article [
-<!ENTITY standard "Committee Specification">
-<!ENTITY tracker "http://sourceforge.net/tracker/">
+<!ENTITY standard "Working Draft">
+<!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
+<!ENTITY root "http://www.oasis-open.org/docbook/">
 ]>
-
-<article status="&standard;">
-
+<article lang="en" status="&standard;">
 <articleinfo>
-<productname>cs-docbook-simple</productname>
-<productnumber>1.1</productnumber>
+<releaseinfo role="cvs">
+$Id$
+</releaseinfo>
 
-<releaseinfo role="product"><ulink url="cs-docbook-simple-1.1.xml">XML</ulink></releaseinfo>
-<releaseinfo role="product"><ulink url="cs-docbook-simple-1.1.html">HTML</ulink></releaseinfo>
-<releaseinfo role="product"><ulink url="cs-docbook-simple-1.1.pdf">PDF</ulink></releaseinfo>
+<!-- product -->        <productname>sdocbook</productname>
+<!-- productVersion --> <productnumber>1.2CR1</productnumber>
+<!-- artifactType       spec; what else? :-) -->
+<!-- stage -->          <releaseinfo role="stage">wd</releaseinfo>
+<!-- revision -->       <pubsnumber>01</pubsnumber>
+<!-- language           en; see /article/@xml:lang -->
+<!-- form               xml -->
 
-<releaseinfo role="location">http://docbook.org/specs</releaseinfo>
+<releaseinfo role="location">&root;specs</releaseinfo>
 
 <title>The Simplified DocBook Document Type</title>
 
@@ -29,10 +33,10 @@
 </editor>
 </authorgroup>
 
-<pubdate>01 Apr 2004</pubdate>
+<pubdate>2006-03-09</pubdate>
 
 <copyright><year>2001</year><year>2002</year><year>2003</year><year>2004</year>
-<year>2005</year>
+<year>2005</year><year>2006</year>
 <holder>The Organization for the Advancement of Structured Information
 Standards [OASIS]. All Rights Reserved.
 </holder></copyright>
@@ -40,14 +44,14 @@ Standards [OASIS]. All Rights Reserved.
 <abstract>
 
 <para>Simplified DocBook is a subset of
-<ulink url="http://www.oasis-open.org/docbook/xml/">DocBook XML V4.3</ulink>.
+<ulink url="http://www.oasis-open.org/docbook/xml/">DocBook XML V4.5</ulink>.
 It is a
 a general purpose XML document type suited to articles about computer hardware
 and software (though it is by no means limited to these applications).
 </para>
 </abstract>
 
-<legalnotice role="status"><title>Status</title>
+<legalnotice role="status">
 
 <para>This is a working draft constructed by the editor. It is not
 an official committee work product and may not reflect the consensus
@@ -99,7 +103,7 @@ Technical Committee</ulink> maintains the Simplified DocBook schema.
 Simplified DocBook is officially available as an <xref linkend="xml-rec"/> Document Type
 Definition (DTD).</para>
 
-<para>The Version 1.1 release is based on DocBook V4.3.</para>
+<para>The Version 1.2 release is based on DocBook V4.5.</para>
 
 <para>The DocBook Technical Committee welcomes bug reports and
 requests for enhancement (RFEs) from the user community. The current list
@@ -128,10 +132,10 @@ document.</para>
 </section>
 
 <section id="docbook">
-<title>The Simplified DocBook Document Type V1.1</title>
+<title>The Simplified DocBook Document Type V1.2CR1</title>
 
 <para>The Simplified DocBook document type is a subset of
-<xref linkend="bib.docbook43"/>.
+<xref linkend="bib.docbook45"/>.
 It is distributed from the
 <ulink url="http://www.oasis-open.org/docbook/">DocBook site</ulink> at
 <ulink url="http://www.oasis-open.org/">OASIS</ulink>.
@@ -143,8 +147,8 @@ It is distributed from the
 <para>To use this document type, specify the public and system identifiers
 in your document type declaration. For example:</para>
 
-<screen><![CDATA[<!DOCTYPE article PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.1//EN"
-                  "http://docbook.org/xml/simple/1.1/sdocbook.dtd">]]></screen>
+<screen><![CDATA[<!DOCTYPE article PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.2CR1//EN"
+                  "http://docbook.org/xml/simple/1.2CR1/sdocbook.dtd">]]></screen>
 
 <para>Naturally, you can include an internal subset if you wish.</para>
 
@@ -152,85 +156,26 @@ in your document type declaration. For example:</para>
 public and system identifiers of this module's customization layer in your own. For
 example:</para>
 
-<screen><![CDATA[<!DOCTYPE % sdocbook PUBLIC "-//OASIS//DTD Simplified DocBook XML Customization V1.1//EN"
-                  "http://docbook.org/xml/simple/1.1/sdocbook-custom.dtd">
+<screen><![CDATA[<!DOCTYPE % sdocbook PUBLIC "-//OASIS//DTD Simplified DocBook XML Customization V1.2CR1//EN"
+                  "http://docbook.org/xml/simple/1.2CR1/sdocbook-custom.dtd">
 %sdocbook;]]></screen>
 
 </section>
 </section>
 
-<section id="s.changes11">
-<title>Changes in Simplified DocBook V1.1</title>
+<section id="s.changes12CR1">
+<title>Changes in Simplified DocBook V1.2CR1</title>
 
-<para>There are no technical changes in the V1.1 official release.</para>
-
-</section>
-
-<section id="s.changescr2">
-<title>Changes in Simplified DocBook V1.1CR2</title>
-
-<para>Simplified DocBook V1.1CR2 fixes a few bugs present in V1.1CR1. Some of
-these bugs are the result of a build error; although V1.1 is
-based on DocBook XML V4.3, the V1.1CR1 release included bits of
-DocBook XML V4.4. This error has been corrected.</para>
+<para>Version 1.2CR1 is the first candidate release of Simplified DocBook
+based on DocBook V4.5. It fixes the following bugs in V1.1:</para>
 
 <itemizedlist>
 <listitem>
-<para>The <sgmltag>imageobjectco</sgmltag> tag has been removed; it should
-never have been present.</para>
-</listitem>
-<listitem>
-<para>The <sgmltag class="attribute">spacing</sgmltag> attribute has been
-removed from <sgmltag>variablelist</sgmltag>.</para>
-</listitem>
-<listitem>
-<para>The <sgmltag>package</sgmltag> element has been
-removed.</para>
-</listitem>
-<listitem>
-<para>The <sgmltag>biblioref</sgmltag> element has been
-removed.</para>
-</listitem>
-<listitem>
-<para>The content model of <sgmltag>subscript</sgmltag> and
-<sgmltag>superscript</sgmltag> have been adjusted so that they no longer
-contain references to elements not present in Simplified DocBook.</para>
+<para>The <sgmltag>caption</sgmltag> element is no longer required on
+<sgmltag>informaltable</sgmltag> (in fact, it is now forbidden, as it should
+always have been).</para>
 </listitem>
 </itemizedlist>
-
-</section>
-
-<section id="s.changescr1">
-<title>Changes in Simplified DocBook V1.1CR1</title>
-
-<para>Simplified DocBook V1.1CR1 adds the <sgmltag>subscript</sgmltag>
-and <sgmltag>superscript</sgmltag> elements.</para>
-
-</section>
-
-<section id="s.changesb3">
-<title>Changes in Simplified DocBook V1.1b3</title>
-
-<para>Simplified DocBook V1.1b3 adds the <sgmltag>anchor</sgmltag> element to a
-few more parameter entities, fixing the bug where it was not available in all the
-appropriate contexts in V1.1b2.</para>
-
-</section>
-
-<section id="s.changesb2">
-<title>Changes in Simplified DocBook V1.1b2</title>
-
-<para>Simplified DocBook V1.1b2 adds the <sgmltag>anchor</sgmltag> element and
-the <sgmltag class="attribute">remap</sgmltag> attribute.</para>
-
-</section>
-
-<section id="s.changes">
-<title>Changes in Simplified DocBook V1.1b1</title>
-
-<para>Simplified DocBook V1.1 is based on DocBook V4.3. It introduces
-HTML tables but no other additional markup.</para>
-
 </section>
 
 <section><title>Release Notes</title>
@@ -266,7 +211,7 @@ the formulation of this &standard;:</para>
 <appendix id="a.notices">
 <title>Notices</title>
 
-<para>Copyright &#169; 2001, 2002, 2003, 2004, 2005
+<para>Copyright &#169; 2001, 2002, 2003, 2004, 2005, 2006
 OASIS Open, Inc. All Rights Reserved.
 </para>
 
@@ -343,28 +288,8 @@ of the DocBook web page
 
 <para><revhistory>
 <revision>
-<revnumber>1.1</revnumber>
-<date>01 Apr 2005</date>
-</revision>
-<revision>
-<revnumber>1.1CR2</revnumber>
-<date>21 Oct 2004</date>
-</revision>
-<revision>
-<revnumber>1.1CR1</revnumber>
-<date>27 Jul 2004</date>
-</revision>
-<revision>
-<revnumber>1.1b3</revnumber>
-<date>31 Mar 2004</date>
-</revision>
-<revision>
-<revnumber>1.1b2</revnumber>
-<date>18 Mar 2004</date>
-</revision>
-<revision>
-<revnumber>1.1b1</revnumber>
-<date>21 Dec 2003</date>
+<revnumber>1.2CR1</revnumber>
+<date>09 Mar 2006</date>
 </revision>
 </revhistory>
 </para>
@@ -377,7 +302,7 @@ of the DocBook web page
 
 <bibliomixed id="xml-rec"/>
 <bibliomixed id="rfc2119"/>
-<bibliomixed id="bib.docbook43"/>
+<bibliomixed id="bib.docbook45"/>
 
 </bibliodiv>
 
