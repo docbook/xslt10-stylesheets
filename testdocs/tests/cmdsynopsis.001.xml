@@ -20,6 +20,9 @@
 <refsynopsisdiv>
 <cmdsynopsis>
   <command>cccp</command>
+  <!-- test for nested bold/italic, bug #1446015 -->
+  <arg choice="plain"><option>--path "<replaceable
+  class="option">PATHS</replaceable>"</option></arg>
   <arg>-$</arg>
   <arg>-C</arg>
   <arg rep='repeat'>-D<replaceable>name</replaceable>
