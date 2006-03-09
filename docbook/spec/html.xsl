@@ -99,7 +99,10 @@
 	</xsl:otherwise>
       </xsl:choose>
       <xsl:text>,&#160;</xsl:text>
-      <xsl:value-of select="//articleinfo/pubdate[1]"/>
+      <xsl:call-template name="datetime.format">
+	<xsl:with-param name="date" select="//articleinfo/pubdate[1]"/>
+	<xsl:with-param name="format" select="'d B Y'"/>
+      </xsl:call-template>
     </h2>
 
     <dl>
