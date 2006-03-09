@@ -187,6 +187,25 @@ nested Varlistentry that contains multiple Terms
 <refsect1>
 <title>Even More Description</title>
 <para>This is an even less minimal RefEntry.</para>
+
+<para>The following is a segmentedlist with two segtitle elements.</para>
+<segmentedlist><title>Gibbererish</title>
+<segtitle>Floober</segtitle>
+<segtitle>Buugler</segtitle>
+<segtitle>Sstangooo</segtitle>
+<segtitle>Borobinda</segtitle>
+<seglistitem><seg>Bamalalaboonda</seg><seg>Mondorotoluafu</seg><seg>Ganafutralinga</seg><seg>Patagularamakundra</seg></seglistitem>
+<seglistitem><seg>Cadraracondar</seg><seg>Hentirotomaambu</seg><seg>Bdomentriolaia</seg><seg>Candamalaturuanio</seg></seglistitem>
+</segmentedlist>
+
+
+<para>The following is an <sgmltag>important</sgmltag> admonition.
+<important>
+  <para>It is very important that you read this. That’s why it stands
+  out the way that it does.</para>
+</important>
+</para>
+
 </refsect1>
 
 </refentry>
