@@ -17,16 +17,18 @@
   <xsl:template match="refnamediv">
     <xsl:choose>
       <xsl:when test="preceding-sibling::refnamediv">
-        <!-- * no title on secondary refnamedivs! -->
+        <!-- * No title on secondary refnamedivs! -->
+        <!-- * Just put a single line break instead -->
+        <xsl:text>.br&#10;</xsl:text>
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="mark.subheading"/>
         <xsl:text>.SH "</xsl:text>
         <xsl:apply-templates select="." mode="title.markup"/>
         <xsl:text>"</xsl:text>
+        <xsl:text>&#10;</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:text>&#10;</xsl:text>
     <xsl:call-template name="mark.subheading"/>
     <!-- * if we have multiple Refname instances, separate the names -->
     <!-- * with commas -->
