@@ -30,12 +30,13 @@
   </refentryinfo>
 <refnamediv>
 <refname>FirstName</refname>
+<refname>SecondName</refname>
 <refpurpose>Purpose for FirstName</refpurpose>
 </refnamediv>
 
 <refnamediv>
-<refname>SecondName</refname>
-<refpurpose>Purpose for SecondName</refpurpose>
+<refname>ThirdName</refname>
+<refpurpose>Purpose for ThirdName</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -290,7 +291,7 @@ titled “Gibbererish”, with several segtitle elements.
   <segtitle>Sstangooo</segtitle>
   <segtitle>Borobinda</segtitle>
   <seglistitem>
-  <seg>Bamalalaboonda</seg>
+  <seg>Bamalalaboonda Bamalalaboonda Bamalalaboonda Bamalalaboonda Bamalalaboonda Bamalalaboonda</seg>
   <seg>Mondorotoluafu</seg>
   <seg>Ganafutralinga</seg>
   <seg>Patagularamakundra</seg>
@@ -298,7 +299,7 @@ titled “Gibbererish”, with several segtitle elements.
   <seglistitem>
   <seg>Cadraracondar</seg>
   <seg>Hentirotomaambu</seg>
-  <seg>Bdomentriolaia</seg>
+  <seg>BdomentriolaiaBdomentriolaiaBdomentriolaia</seg>
   <seg>Candamalaturuanio</seg>
   </seglistitem>
 </segmentedlist>
