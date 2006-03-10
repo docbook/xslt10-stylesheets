@@ -12,6 +12,22 @@
 <reference>
 <title>Reference</title>
 <refentry>
+  <refentryinfo>
+    <authorgroup>
+      <author>
+        <firstname>Norman</firstname><surname>Walsh</surname>
+        <email>ndw@nwalsh.com</email>
+        <personblurb>
+          <para>Wrote the original version of this document.</para>
+        </personblurb>
+      </author>
+      <editor>
+        <contrib>Added a bunch of test cases.</contrib>
+        <firstname>Michael(tm)</firstname><surname>Smith</surname>
+        <email>smith@sideshowbarker.net</email>
+      </editor>
+    </authorgroup>
+  </refentryinfo>
 <refnamediv>
 <refname>FirstName</refname>
 <refpurpose>Purpose for FirstName</refpurpose>
