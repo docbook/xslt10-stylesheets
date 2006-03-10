@@ -95,7 +95,7 @@
     </xsl:call-template>
     <xsl:text>"&#10;</xsl:text>
 
-    <xsl:for-each select="author|editor|othercredit">
+    <xsl:for-each select=".//author|.//editor|.//othercredit">
       <xsl:apply-templates select="." mode="authorsect"/>
     </xsl:for-each>
 
