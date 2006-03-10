@@ -132,14 +132,28 @@
 </xsl:template>
 
 <xsl:template match="itemizedlist|orderedlist|procedure">
+  <xsl:if test="title">
+    <xsl:text>.PP&#10;</xsl:text>
+    <xsl:apply-templates mode="bold" select="title"/>
+    <xsl:text>&#10;</xsl:text>
+  </xsl:if>
   <xsl:text>.TP 3&#10;</xsl:text>
   <xsl:apply-templates/>
+  <xsl:if test="following-sibling::node()">
+  <xsl:text>.sp&#10;</xsl:text>
+  <xsl:text>.RE&#10;</xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="itemizedlist[ancestor::listitem or ancestor::step  or ancestor::glossdef]|
 	             orderedlist[ancestor::listitem or ancestor::step or ancestor::glossdef]|
 		     procedure[ancestor::listitem or ancestor::step or ancestor::glossdef]">
   <xsl:text>.RS&#10;</xsl:text>
+  <xsl:if test="title">
+    <xsl:text>.PP&#10;</xsl:text>
+    <xsl:apply-templates mode="bold" select="title"/>
+    <xsl:text>&#10;</xsl:text>
+  </xsl:if>
   <xsl:text>.TP 3&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>.RE&#10;</xsl:text>
