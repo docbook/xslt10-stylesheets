@@ -11,7 +11,7 @@ multi-term <tag>varlistentry</tag>?</refpurpose>
 
 <refsynopsisdiv>
 <src:fragment id='variablelist.term.break.after.frag'>
-<xsl:param name="variablelist.term.break.after">, </xsl:param></src:fragment>
+<xsl:param name="variablelist.term.break.after">0</xsl:param></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
