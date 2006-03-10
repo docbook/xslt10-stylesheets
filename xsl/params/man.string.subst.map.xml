@@ -44,6 +44,8 @@
   <substitution oldstring=".PP&#10;.sp" newstring=".PP"/>
   <!-- * squeeze multiple newlines after start of no-fill (verbatim) env. -->
   <substitution oldstring=".nf&#10;&#10;" newstring=".nf&#10;"/>
+  <!-- * squeeze multiple newlines after REstoring margin -->
+  <substitution oldstring=".RE&#10;&#10;" newstring=".RE&#10;"/>
   <!-- * an apostrophe at the beginning of a line gets interpreted as a -->
   <!-- * roff request (groff(7) says it is "the non-breaking control -->
   <!-- * character"); so we must add backslash before any apostrophe -->
