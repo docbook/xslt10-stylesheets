@@ -16,9 +16,9 @@
 
 <xsl:variable name="arg.or.sep"> |</xsl:variable>
 
-<!-- * Note: If you are looking for the <synopsis> element, you won't -->
-<!-- * find any code here for handling it. It is a _verbatim_ -->
-<!-- * environment; check the block.xsl file instead. -->
+<!-- * Note: If you're looking for the *Synopsis* element, you won't -->
+<!-- * find any code here for handling it. It's a "verbatim" -->
+<!-- * environment; see the block.xsl file instead. -->
 
 <xsl:template match="synopfragmentref">
   <xsl:variable name="target" select="key('id',@linkend)"/>
@@ -194,6 +194,12 @@
 </xsl:template>
 
 <!-- ==================================================================== -->
+<!-- *  Funcsynopis hierarchy starts here -->
+<!-- ==================================================================== -->
+
+<!-- * Note: If you're looking for the *Funcsynopsisinfo* element, -->
+<!-- * you won't find any code here for handling it. It's a "verbatim" -->
+<!-- * environment; see the block.xsl file instead. -->
 
 <!-- * Within funcsynopis output, disable hyphenation, and use -->
 <!-- * left-aligned filling for the duration of the synopsis, so that -->
@@ -240,12 +246,6 @@
 <!-- * that is followed is the vast majority of existing man pages -->
 <!-- * that document functions, and there's no good reason for us to -->
 <!-- * be following it. -->
-
-<xsl:template match="funcsynopsisinfo">
-  <xsl:text>.PP&#10;</xsl:text>
-  <xsl:apply-templates mode="bold" select="."/>
-  <xsl:text>&#10;</xsl:text>
-</xsl:template>
 
 <xsl:template match="funcprototype">
   <xsl:variable name="funcprototype.string.value">

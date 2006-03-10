@@ -40,8 +40,9 @@
   <xsl:text>.sp&#10;</xsl:text>
 </xsl:template>
 
-<xsl:template match="address|literallayout|programlisting|screen|synopsis">
-  <!-- * Yes, address and synopsis are verbatim environments. -->
+<xsl:template match="literallayout|programlisting|screen|
+                     address|synopsis|funcsynopsisinfo">
+  <!-- * Yes, address, synopsis, and funcsynopsisinfo are verbatim environments. -->
 
   <xsl:choose>
     <!-- * Check to see if this verbatim item is within a parent element that -->
@@ -59,10 +60,36 @@
       <xsl:text>.sp&#10;</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
-  <xsl:text>.nf&#10;</xsl:text>
-  <xsl:apply-templates/>
-  <xsl:text>&#10;</xsl:text>
-  <xsl:text>.fi&#10;</xsl:text>
+  <xsl:choose>
+    <xsl:when test="self::funcsynopsisinfo">
+      <!-- * All funcsynopsisinfo content must be rendered in bold -->
+      <!-- * The man(7) man page says this: -->
+      <!-- * -->
+      <!-- *   For functions, the arguments are always specified using -->
+      <!-- *   italics, even in the SYNOPSIS section, where the rest of -->
+      <!-- *   the function is specified in bold. -->
+      <!-- * -->
+      <!-- * If you take a look through the contents of the man/man2 -->
+      <!-- * directory on your system, you'll see that most existing pages -->
+      <!-- * do follow that "bold everything in function synopsis " rule. -->
+      <!-- * -->
+      <xsl:text>.\" bold on&#10;</xsl:text>
+      <xsl:text>.ft B&#10;</xsl:text>
+      <xsl:text>.nf&#10;</xsl:text>
+      <xsl:apply-templates/>
+      <xsl:text>&#10;</xsl:text>
+      <xsl:text>.fi&#10;</xsl:text>
+      <xsl:text>.\" bold off&#10;</xsl:text>
+      <xsl:text>.ft&#10;</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- * Other verbatims do not need to get bolded -->
+      <xsl:text>.nf&#10;</xsl:text>
+      <xsl:apply-templates/>
+      <xsl:text>&#10;</xsl:text>
+      <xsl:text>.fi&#10;</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
   <!-- * if first following sibling node of this verbatim -->
   <!-- * environment is a text node, output a line of space before it -->
   <xsl:if test="following-sibling::node()[1][name(.) = '']">
