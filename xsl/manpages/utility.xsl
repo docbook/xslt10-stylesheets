@@ -157,6 +157,7 @@
         <xsl:when test="(self::itemizedlist|self::orderedlist|
                         self::variablelist|self::glosslist|
                         self::simplelist[@type !='inline']|
+                        self::segmentedlist|
                         self::caution|self::important|
                         self::note|self::tip|self::warning)">
           <xsl:apply-templates select="."/>
@@ -185,6 +186,7 @@
                     self::glosslistlist or
                     self::itemizedlist or
                     self::orderededlist or
+                    self::segmentedlist or
                     self::procedure or
                     self::address or
                     self::literallayout or

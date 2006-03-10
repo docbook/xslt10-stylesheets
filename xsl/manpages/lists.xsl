@@ -11,6 +11,8 @@
      copyright and other information.
 
      ******************************************************************** -->
+<!-- * FIXME: need to document the following parameter -->
+<xsl:param name="man.segtitle.suppress">0</xsl:param>
 
 <xsl:template match="para[ancestor::listitem or ancestor::step or ancestor::glossdef]|
 	             simpara[ancestor::listitem or ancestor::step or ancestor::glossdef]|
@@ -194,6 +196,85 @@
     <xsl:apply-templates/>
     <xsl:text>&#10;</xsl:text>
   </xsl:for-each>
+</xsl:template>
+
+<!-- ================================================================== -->
+
+<!-- * We output Segmentedlist as a table, using tbl(1) markup. There -->
+<!-- * is no option for outputting it in manpages in "list" form. -->
+<xsl:template match="segmentedlist">
+  <xsl:if test="title">
+    <xsl:text>.PP&#10;</xsl:text>
+    <xsl:apply-templates mode="bold" select="title"/>
+    <xsl:text>&#10;</xsl:text>
+  </xsl:if>
+  <!-- * .TS = "Table Start" -->
+  <xsl:text>.TS&#10;</xsl:text>
+    <!-- * first output the table "format" spec, which tells tbl(1) how -->
+    <!-- * how to format each row and column. -->
+  <xsl:for-each select=".//segtitle">
+    <!-- * l = "left", which hard-codes left-alignment for tabular -->
+    <!-- * output of all segmentedlist content -->
+    <xsl:text>l</xsl:text>
+  </xsl:for-each>
+  <xsl:text>.&#10;</xsl:text>
+  <!-- * optionally suppress output of segtitle -->
+  <xsl:choose>
+    <xsl:when test="$man.segtitle.suppress != 0">
+      <!-- * non-zero = "suppress", so do nothing -->
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- * "0" = "do not suppress", so output the segtitle(s) -->
+      <xsl:apply-templates select=".//segtitle" mode="table-title"/>
+      <xsl:text>&#10;</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:apply-templates/>
+  <!-- * .TE = "Table End" -->
+  <xsl:text>.TE&#10;</xsl:text>
+  <!-- * put a blank line of space below the table -->
+  <xsl:text>.sp&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template match="segmentedlist/segtitle" mode="table-title">
+  <!-- * italic makes titles stand out more reliably than bold (because -->
+  <!-- * some consoles do not actually support rendering of bold -->
+  <xsl:apply-templates mode="italic" select="."/>
+  <xsl:choose>
+      <xsl:when test="position() = last()"/> <!-- do nothing -->
+      <xsl:otherwise>
+        <!-- * tbl(1) treats tab characters as delimiters between -->
+        <!-- * cells; so we need to output a tab after each except -->
+        <!-- * segtitle except the last one -->
+        <xsl:text>&#09;</xsl:text>
+      </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="segmentedlist/seglistitem">
+  <xsl:apply-templates/>
+  <xsl:text>&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template match="segmentedlist/seglistitem/seg">
+  <!-- * the “T{" and “T}” stuff are delimiters to tell tbl(1) that -->
+  <!-- * the delimited contents are "text blocks" that groff(1) -->
+  <!-- * needs to process -->
+  <xsl:text>T{&#10;</xsl:text>
+  <!-- * trim any leading and trailing whitespace from cell contents -->
+  <xsl:call-template name="trim.text">
+    <xsl:with-param name="contents" select="."/>
+  </xsl:call-template>
+  <xsl:text>&#10;T}</xsl:text>
+  <xsl:choose>
+    <xsl:when test="position() = last()"/> <!-- do nothing -->
+    <xsl:otherwise>
+      <!-- * tbl(1) treats tab characters as delimiters between -->
+      <!-- * cells; so we need to output a tab after each except -->
+      <!-- * segtitle except the last one -->
+      <xsl:text>&#09;</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
