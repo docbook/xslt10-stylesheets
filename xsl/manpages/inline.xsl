@@ -98,11 +98,17 @@
     <xsl:when test="@class = 'service'">
       <xsl:text>&#x2120;</xsl:text>
     </xsl:when>
+    <xsl:when test="@class = 'trade'">
+      <xsl:text>&#x2122;</xsl:text>
+    </xsl:when>
+    <!-- * for Trademark element, render a trademark symbol by default -->
+    <!-- * even if no "class" value is specified -->
     <xsl:when test="self::trademark" >
       <xsl:text>&#x2122;</xsl:text>
     </xsl:when>
     <xsl:otherwise>
-      <!-- * don't render any default symbol after productname -->
+      <!-- * otherwise we have a Productname with no value for the -->
+      <!-- * "class" attribute, so don't render any symbol by default -->
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
