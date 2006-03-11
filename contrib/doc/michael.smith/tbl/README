@@ -1,0 +1,20 @@
+$Id$
+
+The source for the M. E. Lesk paper "Tbl - A Program to Format
+Tables" and for all other parts of the Unix Seventh Edition Manual
+are still under copyright and so cannot be freely distributed. See
+the following location:
+
+  http://cm.bell-labs.com/7thEdMan/
+
+The copyright statement there reads:
+
+  All of this material was copyrighted in 1979 by Bell Telephone
+  Laboratories, Incorporated. Currently the copyright is held
+  jointly by Lucent Technologies Inc. and AT&T Corporation. All
+  rights reserved. 
+
+But the troff sources for manual are available online at the
+location above. So the makefile is this directory is provided as
+a convenience for downloading and building plain-text and PDF
+output from the source for "Tbl - A Program to Format Tables".
