@@ -279,10 +279,10 @@
   <!-- * the delimited contents are "text blocks" that groff(1) -->
   <!-- * needs to process -->
   <xsl:text>T{&#10;</xsl:text>
-  <!-- * trim any leading and trailing whitespace from cell contents -->
-  <xsl:call-template name="trim.text">
-    <xsl:with-param name="contents" select="."/>
-  </xsl:call-template>
+  <xsl:variable name="contents">
+    <xsl:apply-templates/>
+  </xsl:variable>
+  <xsl:value-of select="normalize-space($contents)"/>
   <xsl:text>&#10;T}</xsl:text>
   <xsl:choose>
     <xsl:when test="position() = last()"/> <!-- do nothing -->
