@@ -15,10 +15,10 @@ PS2PDFFLAGS=
 
 all: tbl.txt tbl.pdf
 
-tbl:
+tbl.ms:
 	$(WGET) $(WGETFLAGS) -O $@ $(TBLSOURCE)
 
-tbl.txt: tbl
+tbl.txt: tbl.ms
 	cat $< \
 	| $(SED) $(SEDFLAGS) 's/^\.TM.*$$//' \
 	| $(SED) $(SEDFLAGS) 's/^gfont roman*$$//' \
@@ -32,7 +32,7 @@ tbl.txt: tbl
 	| $(SED) $(SEDFLAGS) "s/''/\"/g" \
 	> $@
 
-tbl.pdf: tbl
+tbl.pdf: tbl.ms
 	cat $< \
 	| $(SED) $(SEDFLAGS) 's/^\.TM.*$$//' \
 	| $(SED) $(SEDFLAGS) 's/^gfont roman*$$//' \
@@ -42,8 +42,8 @@ tbl.pdf: tbl
 	> $@
 
 clean:
-	$(RM) tbl
 	$(RM) tbl.txt
 	$(RM) tbl.pdf
+	$(RM) tbl.ms
 
 # vim: number
