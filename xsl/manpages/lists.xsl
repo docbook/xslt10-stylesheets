@@ -222,6 +222,8 @@
     <xsl:apply-templates mode="bold" select="title"/>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
+  <xsl:text>.\" line length increase to cope w/ tbl weirdness&#10;</xsl:text>
+  <xsl:text>.ll +(\n(LLu * 62u / 100u)&#10;</xsl:text>
   <!-- * .TS = "Table Start" -->
   <xsl:text>.TS&#10;</xsl:text>
     <!-- * first output the table "format" spec, which tells tbl(1) how -->
@@ -246,6 +248,8 @@
   <xsl:apply-templates/>
   <!-- * .TE = "Table End" -->
   <xsl:text>.TE&#10;</xsl:text>
+  <xsl:text>.\" line length decrease back to previous value&#10;</xsl:text>
+  <xsl:text>.ll -(\n(LLu * 62u / 100u)&#10;</xsl:text>
   <!-- * put a blank line of space below the table -->
   <xsl:text>.sp&#10;</xsl:text>
 </xsl:template>
