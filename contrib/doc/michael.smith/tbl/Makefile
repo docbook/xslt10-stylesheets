@@ -16,7 +16,7 @@ PS2PDFFLAGS=
 all: tbl.txt tbl.pdf
 
 tbl:
-	$(WGET) $(WGETFLAGS) $(TBLSOURCE)
+	$(WGET) $(WGETFLAGS) -O $@ $(TBLSOURCE)
 
 tbl.txt: tbl
 	cat $< \
