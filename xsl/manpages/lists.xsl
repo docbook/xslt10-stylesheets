@@ -11,9 +11,6 @@
      copyright and other information.
 
      ******************************************************************** -->
-<!-- * FIXME: need to document the following parameter -->
-<xsl:param name="man.segtitle.suppress">0</xsl:param>
-
 <xsl:template match="para[ancestor::listitem or ancestor::step or ancestor::glossdef]|
 	             simpara[ancestor::listitem or ancestor::step or ancestor::glossdef]|
 		     remark[ancestor::listitem or ancestor::step or ancestor::glossdef]">

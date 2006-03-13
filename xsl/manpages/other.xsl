@@ -196,7 +196,8 @@
   <!-- ============================================================== -->
 
   <xsl:template name="set.default.formatting">
-    <!-- * Set default hyphenation, justification, and line-breaking -->
+    <!-- * Set default hyphenation, justification, indentation and -->
+    <!-- * line-breaking -->
     <!-- * -->
     <!-- * If the value of man.hypenate is zero (the default), then -->
     <!-- * disable hyphenation (".nh" = "no hyphenation") -->
@@ -210,6 +211,16 @@
       <xsl:text>.\" disable justification</xsl:text>
       <xsl:text> (adjust text to left margin only)&#10;</xsl:text>
       <xsl:text>.ad l&#10;</xsl:text>
+    </xsl:if>
+    <xsl:if test="$man.indentation.default.adjust != 0">
+      <xsl:text>.\" store initial "default indentation value"&#10;</xsl:text>
+      <xsl:text>.nr zq \n(IN&#10;</xsl:text>
+      <xsl:text>.\" adjust default indentation&#10;</xsl:text>
+      <xsl:text>.nr IN </xsl:text>
+      <xsl:value-of select="$man.indentation.default.value"/>
+      <xsl:text>&#10;</xsl:text>
+      <xsl:text>.\" adjust indentation of SS headings&#10;</xsl:text>
+      <xsl:text>.nr SN \n(IN&#10;</xsl:text>
     </xsl:if>
     <!-- * Unless the value of man.break.after.slash is zero (the -->
     <!-- * default), tell groff that it is OK to break a line -->
