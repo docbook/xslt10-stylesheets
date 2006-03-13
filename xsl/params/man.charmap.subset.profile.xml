@@ -11,6 +11,7 @@
 <refsynopsisdiv>
 <src:fragment id='man.charmap.subset.profile.frag'>
 <xsl:param name="man.charmap.subset.profile">
+@*[local-name() = 'block'] = 'Miscellaneous Technical' or
 (@*[local-name() = 'block'] = 'C1 Controls And Latin-1 Supplement (Latin-1 Supplement)' and
  @*[local-name() = 'class'] = 'symbols'
 ) or
