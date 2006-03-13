@@ -201,8 +201,8 @@
           <xsl:if
               test="(translate(substring(., string-length(.), 1),'&#9;&#10;&#13; ','    ')  = ' '
                     and following-sibling::node()[1][name(.)!=''])
-                    or following-sibling::comment()
-                    or following-sibling::processing-instruction()
+                    or following-sibling::node()[1][self::comment()]
+                    or following-sibling::node()[1][self::processing-instruction()]
                     ">
             <xsl:if test="normalize-space($content) != ''
                           or concat(normalize-space($content), ' ') = ' '">
