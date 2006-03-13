@@ -17,6 +17,7 @@
   <substitution oldstring="\\fB" newstring="\fB"/>
   <substitution oldstring="\\fI" newstring="\fI"/>
   <substitution oldstring="\\fR" newstring="\fR"/>
+  <substitution oldstring="\\n"  newstring="\n"/>
   <!-- * requests in .SH sectsions output from Refsect1-level source -->
   <!-- * end up getting capitalized... -->
   <substitution oldstring="\\FB" newstring="\fB"/>
@@ -38,6 +39,7 @@
   <substitution oldstring=".it 1 an\-trap" newstring=".it 1 an-trap"/>
   <substitution oldstring=".nr an\-no\-space\-flag 1" newstring=".nr an-no-space-flag 1"/>
   <substitution oldstring=".nr an\-break\-flag 1" newstring=".nr an-break-flag 1"/>
+  <substitution oldstring=".ll \-" newstring=".ll -"/>
   <!-- * squeeze multiple newlines before a roff request  -->
   <substitution oldstring="&#10;&#10;." newstring="&#10;."/>
   <!-- * remove any .sp occurences that directly follow a .PP  -->
