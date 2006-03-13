@@ -48,7 +48,9 @@
 
 <xsl:template match="emphasis">
   <xsl:choose>
-    <xsl:when test="@role = 'bold' or @role = 'strong'">
+    <xsl:when test="@role = 'bold' or
+                    @role = 'strong' or
+                    @remap = 'B'">
       <xsl:apply-templates mode="bold" select="."/>
     </xsl:when>
     <xsl:otherwise>
