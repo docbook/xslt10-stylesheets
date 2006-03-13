@@ -1,5 +1,7 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:exsl="http://exslt.org/common"
+                exclude-result-prefixes="exsl"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -20,10 +22,20 @@
 </xsl:template> 
 
 <xsl:template match="formalpara">
-  <xsl:call-template name="nested-section-title"/>
-  <xsl:text>.RS 3&#10;</xsl:text>
+  <xsl:variable name="title.wrapper">
+    <bold><xsl:value-of select="normalize-space(title[1])"/></bold>
+  </xsl:variable>
+  <xsl:text>.PP&#10;</xsl:text>
+  <!-- * don't put linebreak after head; instead render it as a "run in" -->
+  <!-- * head, that is, inline, with a period and space following it -->
+  <xsl:apply-templates mode="bold" select="exsl:node-set($title.wrapper)"/>
+  <xsl:text>. </xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>.RE&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template match="formalpara/para">
+  <xsl:call-template name="mixed-block"/>
+  <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="para">
