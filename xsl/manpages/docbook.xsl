@@ -39,6 +39,9 @@
 
   <xsl:param name="generate.manifest">0</xsl:param>
   <xsl:param name="man.manifest.filename">MANIFEST.man</xsl:param>
+  <xsl:param name="man.segtitle.suppress">0</xsl:param>
+  <xsl:param name="man.indentation.default.adjust">1</xsl:param>
+  <xsl:param name="man.indentation.default.value">3n</xsl:param>
 
 <!-- ==================================================================== -->
 
@@ -158,7 +161,8 @@
         <xsl:with-param name="extra3"  select="$refentry.metadata/manual"/>
       </xsl:call-template>
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <!-- * Set default hyphenation, justification, and line-breaking -->
+      <!-- * Set default hyphenation, justification, indentation, and -->
+      <!-- * line-breaking -->
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <xsl:call-template name="set.default.formatting"/>
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
