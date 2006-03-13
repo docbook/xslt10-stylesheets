@@ -102,7 +102,7 @@
   <!-- ================================================================== -->
 
   <!-- * The nested-section-title template is called for refsect3, and any -->
-  <!-- * refsection nested more than 2 levels deep, and for formalpara. -->
+  <!-- * refsection nested more than 2 levels deep. -->
   <xsl:template name="nested-section-title">
     <!-- * The next few lines are some arcane roff code to control line -->
     <!-- * spacing after headings. -->
@@ -199,10 +199,13 @@
           </xsl:if>
           <xsl:value-of select="normalize-space($content)"/>
           <xsl:if
-              test="translate(substring(., string-length(.), 1),'&#9;&#10;&#13; ','    ')  = ' '
-                    and following-sibling::node()[1][name(.)!='']
+              test="(translate(substring(., string-length(.), 1),'&#9;&#10;&#13; ','    ')  = ' '
+                    and following-sibling::node()[1][name(.)!=''])
+                    or following-sibling::comment()
+                    or following-sibling::processing-instruction()
                     ">
-            <xsl:if test="normalize-space($content) != ''">
+            <xsl:if test="normalize-space($content) != ''
+                          or concat(normalize-space($content), ' ') = ' '">
               <xsl:text>&#10;</xsl:text>
             </xsl:if>
           </xsl:if>
