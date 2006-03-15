@@ -45,71 +45,71 @@
     <!-- * all others. -->
     <xsl:choose>
       <xsl:when test="$info//author">
-        <xsl:apply-templates select="$info/descendant::author[1]" mode="author.names"/>
+        <xsl:apply-templates select="($info//author)[1]" mode="author.names"/>
       </xsl:when>
       <xsl:when test="$parentinfo//author">
-        <xsl:apply-templates select="$parentinfo/descendant::author[1]" mode="author.names"/>
+        <xsl:apply-templates select="($parentinfo//author)[1]" mode="author.names"/>
       </xsl:when>
       <xsl:when test="$info//corpauthor">
-        <xsl:apply-templates select="$info/descendant::corpauthor[1]" mode="author.names"/>
+        <xsl:apply-templates select="($info//corpauthor)[1]" mode="author.names"/>
       </xsl:when>
       <xsl:when test="$parentinfo//corpauthor">
-        <xsl:apply-templates select="$parentinfo/descendant::corpauthor[1]" mode="author.names"/>
+        <xsl:apply-templates select="($parentinfo//corpauthor)[1]" mode="author.names"/>
       </xsl:when>
       <xsl:when test="$info//editor">
-        <xsl:apply-templates select="$info/descendant::editor[1]" mode="author.names"/>
+        <xsl:apply-templates select="($info//editor)[1]" mode="author.names"/>
       </xsl:when>
       <xsl:when test="$parentinfo//editor">
-        <xsl:apply-templates select="$parentinfo/descendant::editor[1]" mode="author.names"/>
+        <xsl:apply-templates select="($parentinfo//editor)[1]" mode="author.names"/>
       </xsl:when>
       <xsl:when test="$info//corpcredit">
-        <xsl:apply-templates select="$info/descendant::corpcredit[1]" mode="author.names"/>
+        <xsl:apply-templates select="($info//corpcredit)[1]" mode="author.names"/>
       </xsl:when>
       <xsl:when test="$parentinfo//corpcredit">
-        <xsl:apply-templates select="$parentinfo/descendant::corpcredit[1]" mode="author.names"/>
+        <xsl:apply-templates select="($parentinfo//corpcredit)[1]" mode="author.names"/>
       </xsl:when>
       <xsl:when test="$info//othercredit">
-        <xsl:apply-templates select="$info/descendant::othercredit[1]" mode="author.names"/>
+        <xsl:apply-templates select="($info//othercredit)[1]" mode="author.names"/>
       </xsl:when>
       <xsl:when test="$parentinfo//othercredit">
-        <xsl:apply-templates select="$parentinfo/descendant::othercredit[1]" mode="author.names"/>
+        <xsl:apply-templates select="($parentinfo//othercredit)[1]" mode="author.names"/>
       </xsl:when>
       <xsl:when test="$info//collab">
-        <xsl:apply-templates select="$info/descendant::collab[1]" mode="author.names"/>
+        <xsl:apply-templates select="($info//collab)[1]" mode="author.names"/>
       </xsl:when>
       <xsl:when test="$parentinfo//collab">
-        <xsl:apply-templates select="$parentinfo/descendant::collab[1]" mode="author.names"/>
+        <xsl:apply-templates select="($parentinfo//collab)[1]" mode="author.names"/>
       </xsl:when>
       <xsl:when test="$info//orgname">
-        <xsl:apply-templates select="$info/descendant::orgname[1]" mode="author.names"/>
+        <xsl:apply-templates select="($info//orgname)[1]" mode="author.names"/>
       </xsl:when>
       <xsl:when test="$parentinfo//orgname">
-        <xsl:apply-templates select="$parentinfo/descendant::orgname[1]" mode="author.names"/>
+        <xsl:apply-templates select="($parentinfo//orgname)[1]" mode="author.names"/>
       </xsl:when>
       <xsl:when test="$info//publishername">
-        <xsl:apply-templates select="$info/descendant::publishername[1]" mode="author.names"/>
+        <xsl:apply-templates select="($info//publishername)[1]" mode="author.names"/>
       </xsl:when>
       <xsl:when test="$parentinfo//publishername">
-        <xsl:apply-templates select="$parentinfo/descendant::publishername[1]" mode="author.names"/>
+        <xsl:apply-templates select="($parentinfo//publishername)[1]" mode="author.names"/>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
 
   <xsl:template match="author|editor|othercredit" mode="author.names">
     <xsl:call-template name="person.name"/>
-    <xsl:if test="./descendant::email">
+    <xsl:if test=".//email">
       <xsl:text> </xsl:text>
       <!-- * use only the first e-mail address for each author -->
-      <xsl:apply-templates select="./descendant::email[1]"/>
+      <xsl:apply-templates select="(.//email)[1]"/>
     </xsl:if>
   </xsl:template>
 
   <xsl:template match="collab" mode="author.names">
     <xsl:value-of select="collabname"/>
-    <xsl:if test="./descendant::email">
+    <xsl:if test=".//email">
       <xsl:text> </xsl:text>
       <!-- * use only the first e-mail address for each author -->
-      <xsl:apply-templates select="./descendant::email[1]"/>
+      <xsl:apply-templates select="(.//email)[1]"/>
     </xsl:if>
   </xsl:template>
 
