@@ -148,22 +148,6 @@
   <xsl:call-template name="group-or-arg"/>
 </xsl:template>
 
-
-<xsl:template match="command">
-  <xsl:call-template name="suppress.hyphenation"/>
-  <xsl:apply-templates mode="bold" select="."/>
-</xsl:template>
-
-<xsl:template match="function[not(ancestor::command)]">
-  <xsl:call-template name="suppress.hyphenation"/>
-  <xsl:apply-templates mode="bold" select="."/>
-</xsl:template>
-
-<xsl:template match="parameter[not(ancestor::command)]">
-  <xsl:call-template name="suppress.hyphenation"/>
-  <xsl:apply-templates mode="italic" select="."/>
-</xsl:template>
-
 <xsl:template match="sbr">
   <xsl:text>&#10;</xsl:text>
   <xsl:text>.br&#10;</xsl:text>
