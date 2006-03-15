@@ -36,6 +36,29 @@
   <xsl:apply-templates/>
 </xsl:template>
 
+<xsl:template match="command">
+  <xsl:if test="$man.hyphenate.computer.inlines = 0">
+    <xsl:call-template name="suppress.hyphenation"/>
+  </xsl:if>
+  <xsl:apply-templates mode="bold" select="."/>
+</xsl:template>
+
+<xsl:template match="function[not(ancestor::cmdsynopsis) and
+                     not(ancestor::funcsynopsis)]">
+  <xsl:if test="$man.hyphenate.computer.inlines = 0">
+    <xsl:call-template name="suppress.hyphenation"/>
+  </xsl:if>
+  <xsl:apply-templates mode="bold" select="."/>
+</xsl:template>
+
+<xsl:template match="parameter[not(ancestor::cmdsynopsis) and
+                     not(ancestor::funcsynopsis)]">
+  <xsl:if test="$man.hyphenate.computer.inlines = 0">
+    <xsl:call-template name="suppress.hyphenation"/>
+  </xsl:if>
+  <xsl:apply-templates mode="italic" select="."/>
+</xsl:template>
+
 <xsl:template match="filename">
   <!-- * add hyphenation suppression in Filename output only if -->
   <!-- * break.after.slash is also non-zero -->
