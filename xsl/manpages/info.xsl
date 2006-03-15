@@ -26,64 +26,117 @@
   <xsl:variable name="refentry.metadata.prefs"
                 select="exsl:node-set($get.refentry.metadata.prefs)"/>
   
-  <!-- * =============================================================== -->
+  <!-- * ============================================================== -->
+  <!-- *    Get content for Author metainfo field. -->
+  <!-- * ============================================================== -->
 
   <!-- * The author.names template and mode are used only for -->
   <!-- * populating the Author field in the metadata "top comment" -->
-  <!-- * we embed at the beginning of each man page -->
+  <!-- * we embed at the beginning of each man page. -->
 
   <xsl:template name="author.names">
     <xsl:param name="info"/>
     <xsl:param name="parentinfo"/>
+    <!-- * Try to find a "best match" for putting into metadata Author -->
+    <!-- * field; prefer Author, but keep looking in descending order of -->
+    <!-- * preference until we can find something usable. -->
+    <!-- * -->
+    <!-- * Note that will only use the *first* match found, and ignore -->
+    <!-- * all others. -->
     <xsl:choose>
       <xsl:when test="$info//author">
-        <xsl:apply-templates select="$info" mode="author.names"/>
+        <xsl:apply-templates select="$info/descendant::author[1]" mode="author.names"/>
       </xsl:when>
       <xsl:when test="$parentinfo//author">
-        <xsl:apply-templates select="$parentinfo" mode="author.names"/>
+        <xsl:apply-templates select="$parentinfo/descendant::author[1]" mode="author.names"/>
+      </xsl:when>
+      <xsl:when test="$info//corpauthor">
+        <xsl:apply-templates select="$info/descendant::corpauthor[1]" mode="author.names"/>
+      </xsl:when>
+      <xsl:when test="$parentinfo//corpauthor">
+        <xsl:apply-templates select="$parentinfo/descendant::corpauthor[1]" mode="author.names"/>
+      </xsl:when>
+      <xsl:when test="$info//editor">
+        <xsl:apply-templates select="$info/descendant::editor[1]" mode="author.names"/>
+      </xsl:when>
+      <xsl:when test="$parentinfo//editor">
+        <xsl:apply-templates select="$parentinfo/descendant::editor[1]" mode="author.names"/>
+      </xsl:when>
+      <xsl:when test="$info//corpcredit">
+        <xsl:apply-templates select="$info/descendant::corpcredit[1]" mode="author.names"/>
+      </xsl:when>
+      <xsl:when test="$parentinfo//corpcredit">
+        <xsl:apply-templates select="$parentinfo/descendant::corpcredit[1]" mode="author.names"/>
+      </xsl:when>
+      <xsl:when test="$info//othercredit">
+        <xsl:apply-templates select="$info/descendant::othercredit[1]" mode="author.names"/>
+      </xsl:when>
+      <xsl:when test="$parentinfo//othercredit">
+        <xsl:apply-templates select="$parentinfo/descendant::othercredit[1]" mode="author.names"/>
+      </xsl:when>
+      <xsl:when test="$info//collab">
+        <xsl:apply-templates select="$info/descendant::collab[1]" mode="author.names"/>
+      </xsl:when>
+      <xsl:when test="$parentinfo//collab">
+        <xsl:apply-templates select="$parentinfo/descendant::collab[1]" mode="author.names"/>
+      </xsl:when>
+      <xsl:when test="$info//orgname">
+        <xsl:apply-templates select="$info/descendant::orgname[1]" mode="author.names"/>
+      </xsl:when>
+      <xsl:when test="$parentinfo//orgname">
+        <xsl:apply-templates select="$parentinfo/descendant::orgname[1]" mode="author.names"/>
+      </xsl:when>
+      <xsl:when test="$info//publishername">
+        <xsl:apply-templates select="$info/descendant::publishername[1]" mode="author.names"/>
+      </xsl:when>
+      <xsl:when test="$parentinfo//publishername">
+        <xsl:apply-templates select="$parentinfo/descendant::publishername[1]" mode="author.names"/>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="info|refentryinfo|referenceinfo
-                       |articleinfo|chapterinfo|sectioninfo
-                       |sect1info|sect2info|sect3info|sect4info|sect5info
-                       |partinfo|prefaceinfo|appendixinfo|docinfo"
-                mode="author.names">
-    <xsl:for-each select=".//author">
-      <xsl:apply-templates select="." mode="author.names"/>
-      <xsl:choose>
-        <xsl:when test="position() = last()"/> <!-- do nothing -->
-        <xsl:otherwise>
-          <!-- * separate multiple author names with a comma -->
-          <xsl:text>, </xsl:text>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:for-each>
-  </xsl:template>
-
-  <xsl:template match="author" mode="author.names">
+  <xsl:template match="author|editor|othercredit" mode="author.names">
     <xsl:call-template name="person.name"/>
-    <xsl:if test=".//email">
+    <xsl:if test="./descendant::email">
       <xsl:text> </xsl:text>
       <!-- * use only the first e-mail address for each author -->
-      <xsl:apply-templates select=".//email[1]"/>
+      <xsl:apply-templates select="./descendant::email[1]"/>
     </xsl:if>
   </xsl:template>
 
-  <!-- * ============================================================== -->
+  <xsl:template match="collab" mode="author.names">
+    <xsl:value-of select="collabname"/>
+    <xsl:if test="./descendant::email">
+      <xsl:text> </xsl:text>
+      <!-- * use only the first e-mail address for each author -->
+      <xsl:apply-templates select="./descendant::email[1]"/>
+    </xsl:if>
+  </xsl:template>
 
-  <!-- * This is where we assemble the AUTHOR/AUTHORS section at the -->
-  <!-- * end of each man page. -->
+  <xsl:template match="corpauthor|corpcredit|orgname|publishername" mode="author.names">
+    <xsl:value-of select="."/>
+  </xsl:template>
+
+  <!-- * ============================================================== -->
+  <!-- *     Assemble the AUTHOR/AUTHORS section -->
+  <!-- * ============================================================== -->
 
   <xsl:template name="author.section">
     <xsl:param name="info"/>
     <xsl:param name="parentinfo"/>
     <xsl:choose>
-      <xsl:when test="$info//author">
+      <xsl:when test="$info//author|$info//editor|
+                      $info//collab|$info//corpauthor|
+                      $info//corpcredit|$info//othercredit|
+                      $info/orgname|$info/publishername|
+                      $info/publisher">
         <xsl:apply-templates select="$info" mode="authorsect"/>
       </xsl:when>
-      <xsl:when test="$parentinfo//author">
+      <xsl:when test="$parentinfo//author|$parentinfo//editor|
+                      $parentinfo//collab|$parentinfo//corpauthor|
+                      $parentinfo//corpcredit|$parentinfo//othercredit|
+                      $parentinfo/orgname|$parentinfo/publishername|
+                      $parentinfo/publisher">
         <xsl:apply-templates select="$parentinfo" mode="authorsect"/>
       </xsl:when>
     </xsl:choose>
@@ -96,20 +149,49 @@
                        |sect1info|sect2info|sect3info|sect4info|sect5info
                        |partinfo|prefaceinfo|appendixinfo|docinfo"
                 mode="authorsect">
-    <xsl:text>.SH "</xsl:text>
+    <!-- * Count to make see how many instances of attributable -->
+    <!-- * people/entities we actually have. -->
+    <xsl:variable name="authorcount">
+      <xsl:value-of select="count(.//author|.//editor|.//collab|
+                            .//corpauthor|.//corpcredit|.//othercredit)">
+      </xsl:value-of>
+    </xsl:variable>
+    <xsl:if test="$authorcount > 0">
+      <xsl:text>.SH "</xsl:text>
+      <xsl:call-template name="make.authorsecttitle">
+        <xsl:with-param name="authorcount" select="$authorcount"/>
+      </xsl:call-template>
+      <!-- * now output all the actual author, editor, etc. content -->
+      <xsl:for-each select=".//author|.//editor|.//collab|.//corpauthor|
+                            .//corpcredit|.//othercredit|
+                            orgname|publishername|publisher">
+        <xsl:apply-templates select="." mode="authorsect"/>
+      </xsl:for-each>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="make.authorsecttitle">
+    <!-- * if we have exactly one attributable person/entity, then output -->
+    <!-- * localized gentext for 'Author'; otherwise, output 'Authors’ -->
+    <xsl:param name="authorcount"/>
+    <xsl:param name="authorsecttitle">
+      <xsl:choose>
+        <xsl:when test="$authorcount = 1">
+          <xsl:text>Author</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>Authors</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:param>
     <xsl:call-template name="string.upper">
       <xsl:with-param name="string">
         <xsl:call-template name="gentext">
-          <xsl:with-param name="key" select="'Author'"/>
+          <xsl:with-param name="key" select="$authorsecttitle"/>
         </xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
     <xsl:text>"&#10;</xsl:text>
-    <xsl:for-each select=".//author|.//editor|.//collab|.//corpauthor|
-                          .//corpcredit|.//othercredit|
-                          orgname|publishername|publisher">
-      <xsl:apply-templates select="." mode="authorsect"/>
-    </xsl:for-each>
   </xsl:template>
   
   <xsl:template match="author|editor|othercredit" mode="authorsect">
@@ -140,7 +222,7 @@
     <xsl:apply-templates select="affiliation" mode="authorsect"/>
   </xsl:template>
 
-  <xsl:template match="corpauthor|orgname|publishername" mode="authorsect">
+  <xsl:template match="corpauthor|corpcredit|orgname|publishername" mode="authorsect">
     <xsl:text>.PP&#10;</xsl:text>
     <xsl:apply-templates mode="bold" select="."/>
     <xsl:text>&#10;</xsl:text>
