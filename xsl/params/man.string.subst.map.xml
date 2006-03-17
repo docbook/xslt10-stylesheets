@@ -71,6 +71,14 @@
   <!-- * lines that only have words separated by "\~" spaces, so it's -->
   <!-- * safer just to stick with the "\ " space -->
   <substitution oldstring="&#x00a0;" newstring="\ "/>
+  <!-- * x2008 is a "punctuation space"; we must replace it here because, -->
+  <!-- * for certain reasons, the stylesheets add it before and after -->
+  <!-- * every Parameter in Funcprototype output -->
+  <substitution oldstring="&#x2008;" newstring=" "/>
+  <!-- * -->
+  <!-- * Now deal with some other characters that are added by the -->
+  <!-- * stylesheets during processing. -->
+  <!-- * -->
   <!-- * bullet -->
   <substitution oldstring="&#x2022;" newstring="\(bu"/>
   <!-- * left double quote -->
@@ -85,12 +93,12 @@
   <substitution oldstring="&#x00a9;" newstring="\(co"/>
   <!-- * registered sign -->
   <substitution oldstring="&#x00ae;" newstring="\(rg"/>
-  <!-- * servicemark -->
-  <!-- * there is no groff equivalent for it -->
+  <!-- * servicemark... -->
+  <!-- * There is no groff equivalent for it. -->
   <substitution oldstring="&#x2120;" newstring="(SM)"/>
-  <!-- * trademark -->
-  <!-- * we don't do "\(tm" because for console output -->
-  <!-- * because groff just renders that as "tm"; that is: -->
+  <!-- * trademark... -->
+  <!-- * We don't do "\(tm" because for console output, -->
+  <!-- * groff just renders that as "tm"; that is: -->
   <!-- * -->
   <!-- *   Product&#x2122; -> Producttm -->
   <!-- * -->

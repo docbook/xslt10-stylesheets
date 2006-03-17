@@ -42,6 +42,8 @@
   <xsl:param name="man.segtitle.suppress">0</xsl:param>
   <xsl:param name="man.indentation.default.adjust">1</xsl:param>
   <xsl:param name="man.indentation.default.value">3n</xsl:param>
+  <xsl:param name="man.funcprototype.font">BI</xsl:param>
+  <xsl:param name="man.funcsynopsisinfo.font">B</xsl:param>
 
 <!-- ==================================================================== -->
 

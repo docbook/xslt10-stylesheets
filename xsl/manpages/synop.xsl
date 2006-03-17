@@ -208,29 +208,23 @@
   </xsl:if>
 </xsl:template>
 
-<!-- * NOTE TO DEVELOPERS: Below you will find many "bold" calls. -->
-<!-- * -->
-<!-- * The reason is that we need to bold each bit of Funcsynopsis -->
-<!-- * separately, to get around the limitations of not being able -->
-<!-- * to do \fBfoo \fBbar\fI baz\fR and have "baz" get bolded. -->
-<!-- * -->
-<!-- * And the reason we need to bold so much stuff is that the -->
-<!-- * man(7) man page says this: -->
+<!-- * All Funcprototype content is by default rendered in bold, -->
+<!-- * because the man(7) man page says this: -->
 <!-- * -->
 <!-- *   For functions, the arguments are always specified using -->
 <!-- *   italics, even in the SYNOPSIS section, where the rest of -->
-<!-- *   the function is specified in bold: -->
+<!-- *   the function is specified in bold -->
 <!-- * -->
-<!-- * And if you take a look through the contents of the man/man2 -->
-<!-- * directory on your system, you'll see that most existing pages -->
-<!-- * do follow this "bold everything in function synopsis " rule. -->
+<!-- * Look through the contents of the man/man2 and man3 directories -->
+<!-- * on your system, and you'll see that most existing pages do follow -->
+<!-- * this "bold everything in function synopsis" rule. -->
 <!-- * -->
-<!-- * So even if you don't personally like the way it looks, please -->
-<!-- * don't change it to be non-bold - because it is a convention -->
-<!-- * that is followed is the vast majority of existing man pages -->
-<!-- * that document functions, and there's no good reason for us to -->
-<!-- * be following it. -->
-
+<!-- * Users who don't want the bold output can choose to adjust the -->
+<!-- * man.funcprototype.font parameter on their own. So even if you -->
+<!-- * don't personally like the way it looks, please don't change the -->
+<!-- * default to be non-bold - because it's a convention that's -->
+<!-- * followed is the vast majority of existing man pages that document -->
+<!-- * functions, and we need to follow it by default, like it or no. -->
 <xsl:template match="funcprototype">
   <xsl:variable name="funcprototype.string.value">
     <xsl:value-of select="funcdef"/>
@@ -243,78 +237,69 @@
   <!-- * (because funcdef is always followed by one open paren char) -->
   <xsl:value-of select="string-length (normalize-space ($funcprototype.string.value)) + 1"/>
   <xsl:text>&#10;</xsl:text>
-  <xsl:value-of select="normalize-space ($funcprototype)"/>
-  <xsl:variable name="funcdef.suffix">
-    <Funcdef.Suffix>(</Funcdef.Suffix>
-  </xsl:variable>
-  <xsl:apply-templates mode="bold" select="exsl:node-set($funcdef.suffix)"/>
+  <xsl:text>.</xsl:text>
+  <xsl:value-of select="$man.funcprototype.font"/>
+  <xsl:text> </xsl:text>
+  <!-- * The following quotation mark (and the one further below) are -->
+  <!-- * needed to properly delimit the parts of the Funcprototype that -->
+  <!-- * should be rendered in the prevailing font (either Bold or Roman) -->
+  <!-- * from Parameter output that needs to be alternately rendered in -->
+  <!-- * italic. -->
+  <xsl:text>"</xsl:text>
+  <xsl:value-of select="normalize-space($funcprototype)"/>
+  <xsl:text>(</xsl:text>
   <xsl:apply-templates select="*[local-name() != 'funcdef']"/>
+  <xsl:text>"</xsl:text>
   <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="funcdef">
-  <xsl:variable name="funcdef">
-    <Funcdef>
-      <xsl:apply-templates select="." mode="prevent.line.breaking"/>
-    </Funcdef>
-  </xsl:variable>
-  <xsl:apply-templates mode="bold" select="exsl:node-set($funcdef)"/>
+  <xsl:apply-templates mode="prevent.line.breaking"/>
 </xsl:template>
 
 <xsl:template match="funcdef/function">
-  <xsl:apply-templates mode="bold" select="."/>
+  <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="void">
-  <xsl:variable name="void">
-    <Void>void);</Void>
-  </xsl:variable>
-  <xsl:apply-templates mode="bold" select="exsl:node-set($void)"/>
+  <xsl:text>void);</xsl:text>
 </xsl:template>
 
 <xsl:template match="varargs">
-  <xsl:variable name="varargs">
-    <Varargs>...);</Varargs>
-  </xsl:variable>
-  <xsl:apply-templates mode="bold" select="exsl:node-set($varargs)"/>
+  <xsl:text>...);</xsl:text>
 </xsl:template>
 
 <xsl:template match="paramdef">
-  <xsl:variable name="paramdef">
-    <Paramdef>
-      <xsl:apply-templates mode="bold" select="." />
-    </Paramdef>
-  </xsl:variable>
-  <xsl:apply-templates mode="prevent.line.breaking" select="exsl:node-set($paramdef)"/>
-  <xsl:variable name="paramdef.suffix">
-    <Paramdef.Suffix>
-      <xsl:choose>
-        <xsl:when test="following-sibling::*">
-          <xsl:text>, </xsl:text>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:text>);</xsl:text>
-        </xsl:otherwise>
-      </xsl:choose>
-    </Paramdef.Suffix>
-  </xsl:variable>
-  <xsl:apply-templates mode="bold" select="exsl:node-set($paramdef.suffix)"/>
+  <xsl:apply-templates mode="prevent.line.breaking" select="."/>
+  <xsl:choose>
+    <xsl:when test="following-sibling::*">
+      <xsl:text>, </xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>);</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="paramdef/parameter">
-  <xsl:apply-templates mode="italic" select="."/>
+  <!-- * x2008 is a "punctuation space"; we use it here because if we -->
+  <!-- * were to just use a normal space, it would get replaced with a -->
+  <!-- * non-breaking space when we run the whole Paramdef through the -->
+  <!-- * prevent.line.breaking template. And as far as why we're -->
+  <!-- * inserting the space an quotation marks around each Parameter to -->
+  <!-- * begin with, the reason is that we need to because we are -->
+  <!-- * outputting Funcsynopsis in either the "BI" or "RI" font, and -->
+  <!-- * the space and quotation marks delimit the text as the -->
+  <!-- * "alternate" or "I" text that needs to be rendered in italic. -->
+  <xsl:text>"&#x2008;"</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>"&#x2008;"</xsl:text>
 </xsl:template>
 
 <xsl:template match="funcparams">
-  <xsl:variable name="funcparams.prefix">
-    <Funcparams.Prefix>(</Funcparams.Prefix>
-  </xsl:variable>
-  <xsl:apply-templates mode="bold" select="exsl:node-set($funcparams.prefix)"/>
-  <xsl:apply-templates mode="bold" select="."/>
-  <xsl:variable name="funcparams.suffix">
-    <Funcparams.Suffix>)</Funcparams.Suffix>
-  </xsl:variable>
-  <xsl:apply-templates mode="bold" select="exsl:node-set($funcparams.suffix)"/>
+  <text>(</text>
+  <xsl:apply-templates/>
+  <text>)</text>
 </xsl:template>
 
 </xsl:stylesheet>

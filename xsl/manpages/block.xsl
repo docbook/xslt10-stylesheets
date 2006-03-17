@@ -74,24 +74,30 @@
   </xsl:choose>
   <xsl:choose>
     <xsl:when test="self::funcsynopsisinfo">
-      <!-- * All funcsynopsisinfo content must be rendered in bold -->
-      <!-- * The man(7) man page says this: -->
+      <!-- * All Funcsynopsisinfo content is by default rendered in bold, -->
+      <!-- * because the man(7) man page says this: -->
       <!-- * -->
       <!-- *   For functions, the arguments are always specified using -->
       <!-- *   italics, even in the SYNOPSIS section, where the rest of -->
-      <!-- *   the function is specified in bold. -->
+      <!-- *   the function is specified in bold -->
       <!-- * -->
-      <!-- * If you take a look through the contents of the man/man2 -->
-      <!-- * directory on your system, you'll see that most existing pages -->
-      <!-- * do follow that "bold everything in function synopsis " rule. -->
+      <!-- * Look through the contents of the man/man2 and man3 directories -->
+      <!-- * on your system, and you'll see that most existing pages do follow -->
+      <!-- * this "bold everything in function synopsis" rule. -->
       <!-- * -->
-      <xsl:text>.\" bold on&#10;</xsl:text>
-      <xsl:text>.ft B&#10;</xsl:text>
+      <!-- * Users who don't want the bold output can choose to adjust the -->
+      <!-- * man.funcsynopsisinfo.font parameter on their own. So even if you -->
+      <!-- * don't personally like the way it looks, please don't change the -->
+      <!-- * default to be non-bold - because it's a convention that's -->
+      <!-- * followed is the vast majority of existing man pages that document -->
+      <!-- * functions, and we need to follow it by default, like it or no. -->
+      <xsl:text>.ft </xsl:text>
+      <xsl:value-of select="$man.funcsynopsisinfo.font"/>
+      <xsl:text>&#10;</xsl:text>
       <xsl:text>.nf&#10;</xsl:text>
       <xsl:apply-templates/>
       <xsl:text>&#10;</xsl:text>
       <xsl:text>.fi&#10;</xsl:text>
-      <xsl:text>.\" bold off&#10;</xsl:text>
       <xsl:text>.ft&#10;</xsl:text>
     </xsl:when>
     <xsl:otherwise>

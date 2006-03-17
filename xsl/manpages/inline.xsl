@@ -22,7 +22,7 @@
   <xsl:apply-templates mode="italic" select="."/>
 </xsl:template>
 
-<xsl:template match="option|userinput|envar|errorcode|constant|type">
+<xsl:template match="option|userinput|envar|errorcode|constant">
   <xsl:if test="$man.hyphenate.computer.inlines = 0">
     <xsl:call-template name="suppress.hyphenation"/>
   </xsl:if>
@@ -37,6 +37,14 @@
 </xsl:template>
 
 <xsl:template match="command">
+  <xsl:if test="$man.hyphenate.computer.inlines = 0">
+    <xsl:call-template name="suppress.hyphenation"/>
+  </xsl:if>
+  <xsl:apply-templates mode="bold" select="."/>
+</xsl:template>
+
+<xsl:template match="type[not(ancestor::cmdsynopsis) and
+                     not(ancestor::funcsynopsis)]">
   <xsl:if test="$man.hyphenate.computer.inlines = 0">
     <xsl:call-template name="suppress.hyphenation"/>
   </xsl:if>
