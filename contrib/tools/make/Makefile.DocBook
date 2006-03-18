@@ -187,8 +187,6 @@ FILES_LOG  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).log)
 FILES_OUT  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).out)
 FILES_AUX  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).aux)
 FILES_MANM = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).$(MAN_MANIFEST_EXT))
-FILES_MANP = $(foreach manpage,$(shell if [ -f "$(MAN_MANIFEST_MASTER)" ]; then cat $(MAN_MANIFEST_MASTER); fi),$(manpage).pdf)
-FILES_MANT = $(foreach manpage,$(shell if [ -f "$(MAN_MANIFEST_MASTER)" ]; then cat $(MAN_MANIFEST_MASTER); fi),$(manpage).txt)
 FILES_HTML = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).html)
 FILES_INFO = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).info)
 DIRS_CHUNK = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base)$(BASEDIR_SUFFIX))
@@ -196,6 +194,8 @@ LISTS_HTML = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).$(HTML_MANIF
 LISTS_MAN  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).$(MAN_MANIFEST_EXT))
 FILES_CHNK = $(shell for manifest in $(LISTS_HTML); do if [ -f "$$manifest" ]; then cat $$manifest; fi done)
 FILES_MAN  = $(shell for manifest in $(LISTS_MAN);  do if [ -f "$$manifest" ]; then cat $$manifest; fi done)
+FILES_MANP = $(foreach base,$(FILES_MAN),$(base).pdf)
+FILES_MANT = $(foreach base,$(FILES_MAN),$(base).txt)
 
 # -----------------------------------------------------------------
 #             ** Stylesheet Customization Layers ** 
@@ -368,8 +368,9 @@ pdf: $(FILES_PDF)
 
 info: $(FILES_INFO)
 
+# use the "debug" target echo variables, etc., to
+# test/troubleshoot changes you make to this makefile
 debug:
-	echo $(FILES_MAN)
 
 # -----------------------------------------------------------------
 #     pattern rule for making HTML and plain-text output
