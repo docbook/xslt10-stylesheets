@@ -133,7 +133,6 @@ DOCBOOK_TMP := $(TMP)/docbook-make-$(TMPNUM)
 # MAN_MANIFEST_EXT is file extension added to individual manifest
 # files
 MAN_MANIFEST_EXT = manifest_man
-MAN_MANIFEST_MASTER = MAN.manifest
 MAN_LOG = $(DOCBOOK_TMP)/MAN.log
 
 # MAN_MANIFEST_EXT is file extension added to HTML manifest files
@@ -187,15 +186,16 @@ FILES_PDF  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).pdf)
 FILES_LOG  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).log)
 FILES_OUT  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).out)
 FILES_AUX  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).aux)
-FILES_MAN  = $(shell if [ -f "$(MAN_MANIFEST_MASTER)" ]; then cat $(MAN_MANIFEST_MASTER); fi)
 FILES_MANM = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).$(MAN_MANIFEST_EXT))
 FILES_MANP = $(foreach manpage,$(shell if [ -f "$(MAN_MANIFEST_MASTER)" ]; then cat $(MAN_MANIFEST_MASTER); fi),$(manpage).pdf)
 FILES_MANT = $(foreach manpage,$(shell if [ -f "$(MAN_MANIFEST_MASTER)" ]; then cat $(MAN_MANIFEST_MASTER); fi),$(manpage).txt)
 FILES_HTML = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).html)
-FILES_MFST = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).$(HTML_MANIFEST_EXT))
-FILES_BDIR = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base)$(BASEDIR_SUFFIX))
-FILES_CHNK = $(shell for manifest in $(FILES_MFST); do if [ -f "$$manifest" ]; then cat $$manifest; fi done)
 FILES_INFO = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).info)
+DIRS_CHUNK = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base)$(BASEDIR_SUFFIX))
+LISTS_HTML = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).$(HTML_MANIFEST_EXT))
+LISTS_MAN  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).$(MAN_MANIFEST_EXT))
+FILES_CHNK = $(shell for manifest in $(LISTS_HTML); do if [ -f "$$manifest" ]; then cat $$manifest; fi done)
+FILES_MAN  = $(shell for manifest in $(LISTS_MAN);  do if [ -f "$$manifest" ]; then cat $$manifest; fi done)
 
 # -----------------------------------------------------------------
 #             ** Stylesheet Customization Layers ** 
@@ -360,7 +360,7 @@ man-txt: man
 
 html: $(FILES_HTML)
 
-chunk: $(FILES_MFST)
+chunk: $(LISTS_HTML)
 
 txt: $(FILES_TXT)
 
@@ -369,7 +369,7 @@ pdf: $(FILES_PDF)
 info: $(FILES_INFO)
 
 debug:
-	echo $(findstring html,$(DOCBOOK_OUTPUT_FORMATS))
+	echo $(FILES_MAN)
 
 # -----------------------------------------------------------------
 #     pattern rule for making HTML and plain-text output
@@ -475,8 +475,6 @@ endif
 	  2>&1 | tee $(MAN_LOG);
 	if [ "`cat $(MAN_LOG)`" == "No refentry elements!" ]; then \
 	  touch $@; \
-	else \
-	  cat $@ >> $(MAN_MANIFEST_MASTER); \
 	fi;
 	$(RM) -r $(DOCBOOK_TMP)
 
@@ -593,19 +591,16 @@ endif
 ifneq ($(FILES_MANP),)
 	$(RM) $(FILES_MANP)
 endif
-ifneq ($(MAN_MANIFEST_MASTER),)
-	$(RM) $(MAN_MANIFEST_MASTER)
-endif
 ifneq ($(FILES_INFO),)
 	$(RM) $(FILES_INFO)
 endif
-ifneq ($(FILES_BDIR),)
-	for dir in $(FILES_BDIR); do \
+ifneq ($(DIRS_CHUNK),)
+	for dir in $(DIRS_CHUNK); do \
 	  if [ -d "$$dir" ]; then \
 	    $(RMDIR) $(RMDIR_FLAGS) $$dir; \
 	  fi \
 	done
 endif
-ifneq ($(FILES_MFST),)
-	$(RM) $(FILES_MFST)
+ifneq ($(LISTS_HTML),)
+	$(RM) $(LISTS_HTML)
 endif
