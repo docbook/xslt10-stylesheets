@@ -2,6 +2,7 @@
 # $Author$
 # $Date$
 # $Revision$
+# vim: number
 #
 # -----------------------------------------------------------------
 #  ** Makefile.DocBook -- generate output from DocBook sources **
@@ -13,9 +14,32 @@
 #   See http://docbook.sourceforge.net/release/xsl/current/
 #   for copyright and other information.
 
+# DOCBOOK_OUTPUT_FORMATS is the default set of targets (output
+# formats) that get built when you type "make" without any targets
+# explicitly specified. To generate a different set of output
+# formats, change the value of DOCBOOK_OUTPUT_FORMATS here or set
+# it in your environment; for example:
+#
+#   set DOCBOOK_OUTPUT_FORMATS="html pdf"; export DOCBOOK_OUTPUT_FORMATS
+#
+# Of course by explicitly specifying particular targets when you
+# invoke "make", you can always override generation of the default
+# set of targets; for example:
+#
+#   make html txt
+#
+# That would generate just HTML (unchunked) and plain-text output.
+#
+DOCBOOK_OUTPUT_FORMATS ?= man chunk txt pdf
+
 # -----------------------------------------------------------------
 #                *** TOOLS and other DEPENDENCIES ***
 # -----------------------------------------------------------------
+# we use rmdir(1) to remove dirs we create for chunked HTML output
+RMDIR = rmdir
+# "-p" causes empty parent dirs to be deleted as well
+RMDIR_FLAGS = --ignore-fail-on-non-empty -p
+
 # possible values for PDF_MAKER are:
 #   dblatex|fop|xep|xmlroff|passivetex
 PDF_MAKER = fop
@@ -81,10 +105,19 @@ COL_FLAGS =
 EXPAND = expand
 EXPAND_FLAGS =
 
-# value of DOCBOOK_XSL should eithe be the canonical
+# value of DOCBOOK_XSL should either be the canonical
 # (docbook.sourceforge.net) URL for the DocBook Project XSL
 # stylesheets OR it can be a local system path
 DOCBOOK_XSL = http://docbook.sourceforge.net/release/xsl/current
+
+# value of STRIP_NS should be path to "standalone" stripns.xsl
+# stylesheet for stripping DocBook NG/5 namespace from document
+# instance so that it can be processed by DocBook XSL stylesheets
+# (XSLT 1.0 ones, which aren't DocBook namespace-aware). This
+# manual namespace-stripping is currently needed only for
+# processing with the (xsl:output method="text") manpages
+# stylesheet; for other output formats, it is done automatically.
+STRIP_NS = $(DOCBOOK_XSL)/manpages/stripns.xsl
 
 # -----------------------------------------------------------------
 #       names of some DIRECTORIES and FILES we need
@@ -99,9 +132,19 @@ DOCBOOK_TMP := $(TMP)/docbook-make-$(TMPNUM)
 
 # MAN_MANIFEST_EXT is file extension added to individual manifest
 # files
-MAN_MANIFEST_EXT = man
+MAN_MANIFEST_EXT = manifest_man
 MAN_MANIFEST_MASTER = MAN.manifest
 MAN_LOG = $(DOCBOOK_TMP)/MAN.log
+
+# MAN_MANIFEST_EXT is file extension added to HTML manifest files
+HTML_MANIFEST_EXT = manifest_html
+
+# BASEDIR_SUFFIX is a what you need to set if you want a suffix
+# added to the end of each "base.dir" we create while generating
+# chunked HTML output
+#BASEDIR_SUFFIX = -html
+#BASEDIR_SUFFIX = _html
+BASEDIR_SUFFIX = 
 
 # -----------------------------------------------------------------
 #                        assorted OPTIONS
@@ -149,6 +192,9 @@ FILES_MANM = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).$(MAN_MANIFE
 FILES_MANP = $(foreach manpage,$(shell if [ -f "$(MAN_MANIFEST_MASTER)" ]; then cat $(MAN_MANIFEST_MASTER); fi),$(manpage).pdf)
 FILES_MANT = $(foreach manpage,$(shell if [ -f "$(MAN_MANIFEST_MASTER)" ]; then cat $(MAN_MANIFEST_MASTER); fi),$(manpage).txt)
 FILES_HTML = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).html)
+FILES_MFST = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).$(HTML_MANIFEST_EXT))
+FILES_BDIR = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base)$(BASEDIR_SUFFIX))
+FILES_CHNK = $(shell for manifest in $(FILES_MFST); do if [ -f "$$manifest" ]; then cat $$manifest; fi done)
 FILES_INFO = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).info)
 
 # -----------------------------------------------------------------
@@ -257,6 +303,8 @@ FO_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
 HTML_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
                 version="1.0"> \
   <xsl:import href="$(DOCBOOK_XSL)/html/docbook.xsl"/> \
+  <xsl:param name="gentext.custom">local.l10n.xml</xsl:param> \
+  <xsl:param name="local.l10n.xml" select="document($$gentext.custom)"/> \
   <xsl:param name="refentry.generate.name">1</xsl:param> \
   <xsl:param name="refentry.generate.title">0</xsl:param> \
   <xsl:param name="root.filename"></xsl:param> \
@@ -278,6 +326,7 @@ CHNK_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
   <xsl:param name="admon.graphics.path">$(HTML_IMAGES)</xsl:param> \
   <xsl:param name="admon.graphics.extension">$(HTML_IMAGES_EXT)</xsl:param> \
   <xsl:param name="root.filename"></xsl:param> \
+  <xsl:param name="generate.manifest">1</xsl:param> \
   <xsl:param name="use.id.as.filename">1</xsl:param> \
   <xsl:param name="chunker.output.indent">yes</xsl:param> \
   <xsl:param name="index.on.type">1</xsl:param> \
@@ -297,7 +346,7 @@ MAN_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
 #  and foo.1.txt from it
 .PRECIOUS: %.1 %.2 %.3 %.4 %.5 %.6 %.7 %.8 %.9
 
-docbook: man html txt pdf
+docbook: $(DOCBOOK_OUTPUT_FORMATS)
 
 man: $(FILES_MANM)
 
@@ -311,14 +360,16 @@ man-txt: man
 
 html: $(FILES_HTML)
 
-html-chunk: $(HTML_MANIFEST)
-	$(XSLT) $(XSLT_FLAGS) $(DOCBOOK_XSL_CHNK) $<
+chunk: $(FILES_MFST)
 
 txt: $(FILES_TXT)
 
 pdf: $(FILES_PDF)
 
 info: $(FILES_INFO)
+
+debug:
+	echo $(findstring html,$(DOCBOOK_OUTPUT_FORMATS))
 
 # -----------------------------------------------------------------
 #     pattern rule for making HTML and plain-text output
@@ -331,6 +382,21 @@ info: $(FILES_INFO)
 	  | sed "s/^\(\s\+[0-9]\+\. \)file:\/\/.\+$$/\\1(local)/g" \
 	  | egrep -v '^	file:///.+$$' \
 	  > $@
+# if DOCBOOK_OUTPUT_FORMATS does not contain "html", then we need
+# to remove the "intermediate" HTML files we used for generating
+# plain-text output
+ifeq ($(findstring html,$(DOCBOOK_OUTPUT_FORMATS)),)
+	$(RM) $<
+endif
+
+# -----------------------------------------------------------------
+#     pattern rule for making chunked HTML pages
+# -----------------------------------------------------------------
+%.$(HTML_MANIFEST_EXT): %.xml
+	echo '$(CHNK_CUSTOM)' | $(XSLT) $(XSLT_FLAGS) $(HTML_PARAMS) \
+	--stringparam manifest $@  \
+	--stringparam base.dir $(basename $@)$(BASEDIR_SUFFIX)/  \
+	- $< 
 
 # -----------------------------------------------------------------
 #     pattern rules for making FO and PDF stuff
@@ -343,7 +409,7 @@ ifeq ($(PDF_MAKER),dblatex)
 %.pdf: %.xml
 	mkdir -p $(DOCBOOK_TMP)
 	echo '$(DBX_CUSTOM)' > $(DOCBOOK_TMP)/dblatex.xsl
-	$(DBLATEX) $(DBLATEX_FLAGS)\
+	-$(DBLATEX) $(DBLATEX_FLAGS)\
 	  -p $(DOCBOOK_TMP)/dblatex.xsl \
 	  -o $@ \
 	  $<
@@ -401,10 +467,11 @@ endif
 # -----------------------------------------------------------------
 %.$(MAN_MANIFEST_EXT): %.xml
 	mkdir $(DOCBOOK_TMP)
-	echo '$(MAN_CUSTOM)' | $(XSLT) $(XSLT_FLAGS) $(MAN_PARAMS) \
+	echo '$(MAN_CUSTOM)' > $(DOCBOOK_TMP)/man.xsl
+	$(XSLT) $(XSLT_FLAGS) $(STRIP_NS) $< | $(XSLT) $(XSLT_FLAGS) $(MAN_PARAMS) \
 	  --stringparam man.manifest.filename $@ \
+	  $(DOCBOOK_TMP)/man.xsl \
 	  - \
-	  $< \
 	  2>&1 | tee $(MAN_LOG);
 	if [ "`cat $(MAN_LOG)`" == "No refentry elements!" ]; then \
 	  touch $@; \
@@ -511,6 +578,9 @@ endif
 ifneq ($(FILES_HTML),)
 	$(RM) $(FILES_HTML)
 endif
+ifneq ($(FILES_CHNK),)
+	$(RM) $(FILES_CHNK)
+endif
 ifneq ($(FILES_MAN),)
 	$(RM) $(FILES_MAN)
 endif
@@ -528,4 +598,14 @@ ifneq ($(MAN_MANIFEST_MASTER),)
 endif
 ifneq ($(FILES_INFO),)
 	$(RM) $(FILES_INFO)
+endif
+ifneq ($(FILES_BDIR),)
+	for dir in $(FILES_BDIR); do \
+	  if [ -d "$$dir" ]; then \
+	    $(RMDIR) $(RMDIR_FLAGS) $$dir; \
+	  fi \
+	done
+endif
+ifneq ($(FILES_MFST),)
+	$(RM) $(FILES_MFST)
 endif
