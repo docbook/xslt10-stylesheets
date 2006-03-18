@@ -198,6 +198,19 @@ FILES_MANP = $(foreach base,$(FILES_MAN),$(base).pdf)
 FILES_MANT = $(foreach base,$(FILES_MAN),$(base).txt)
 
 # -----------------------------------------------------------------
+#   ** stylesheet for testing whether a file has a refentry
+# -----------------------------------------------------------------
+REFENTRY_CHECK := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
+                version="1.0"> \
+  <xsl:output method="text"/> \
+  <xsl:template match="/"> \
+    <xsl:if test="//refentry"> \
+      <xsl:text>true</xsl:text> \
+    </xsl:if> \
+  </xsl:template> \
+</xsl:stylesheet>
+
+# -----------------------------------------------------------------
 #             ** Stylesheet Customization Layers ** 
 # -----------------------------------------------------------------
 #
@@ -467,17 +480,16 @@ endif
 #     pattern rule for making man pages
 # -----------------------------------------------------------------
 %.$(MAN_MANIFEST_EXT): %.xml
-	mkdir $(DOCBOOK_TMP)
-	echo '$(MAN_CUSTOM)' > $(DOCBOOK_TMP)/man.xsl
-	$(XSLT) $(XSLT_FLAGS) $(STRIP_NS) $< | $(XSLT) $(XSLT_FLAGS) $(MAN_PARAMS) \
-	  --stringparam man.manifest.filename $@ \
-	  $(DOCBOOK_TMP)/man.xsl \
-	  - \
-	  2>&1 | tee $(MAN_LOG);
-	if [ "`cat $(MAN_LOG)`" == "No refentry elements!" ]; then \
+	if [ "$(strip $(shell echo '$(REFENTRY_CHECK)' | $(XSLT) $(XSLT_FLAGS) - $<))" != "true" ]; then \
 	  touch $@; \
-	fi;
-	$(RM) -r $(DOCBOOK_TMP)
+	else \
+	  mkdir $(DOCBOOK_TMP); \
+	  echo '$(MAN_CUSTOM)' > $(DOCBOOK_TMP)/man.xsl; \
+	  $(XSLT) $(XSLT_FLAGS) $(STRIP_NS) $< | $(XSLT) $(XSLT_FLAGS) $(MAN_PARAMS) \
+	    --stringparam man.manifest.filename $@ \
+	    $(DOCBOOK_TMP)/man.xsl - ; \
+	  $(RM) -r $(DOCBOOK_TMP); \
+	fi
 
 # -----------------------------------------------------------------
 #  pattern rule for enabling direct "make foo.1" to work
