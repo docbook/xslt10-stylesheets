@@ -39,6 +39,7 @@
 <gentext key="dedication" text="Dedication"/>
 <gentext key="Edition" text="Edition"/>
 <gentext key="edition" text="Edition"/>
+<gentext key="Editor" text="Editor"/>
 <gentext key="Equation" text="Equation"/>
 <gentext key="equation" text="Equation"/>
 <gentext key="Example" text="Example"/>
@@ -80,6 +81,7 @@
 <gentext key="pubdate" text="Publication date"/>
 <gentext key="Published" text="Published"/>
 <gentext key="published" text="Published"/>
+<gentext key="Publisher" text="Publisher"/>
 <gentext key="Qandadiv" text="Q &amp; A"/>
 <gentext key="qandadiv" text="Q &amp; A"/>
 <gentext key="Question" text="Q:"/>
@@ -155,6 +157,18 @@
 <gentext key="unexpectedelementname" text="Unexpected element name"/>
 <gentext key="unsupported" text="unsupported"/>
 <gentext key="xrefto" text="xref to"/>
+
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="Authors"/>
+
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="Copy Editor"/>
+<gentext key="graphicdesigner" text="Graphic Designer"/>
+<gentext key="productioneditor" text="Production Editor"/>
+<gentext key="technicaleditor" text="Technical Editor"/>
+<gentext key="translator" text="Translator"/>
 
 <gentext key="listofequations" text="List of Equations"/>
 <gentext key="ListofEquations" text="List of Equations"/>
