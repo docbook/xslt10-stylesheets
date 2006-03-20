@@ -87,28 +87,20 @@
     <xsl:variable name="first.refname" select="refnamediv[1]/refname[1]"/>
 
     <!-- * Because there are several times when we need to check *info of -->
-    <!-- * each refentry and *info of its parent, we get those and store -->
-    <!-- * as node-sets in memory. -->
+    <!-- * each refentry and its ancestors, we get those and store the -->
+    <!-- * data from them as a node-set in memory. -->
 
     <!-- * Make a node-set with contents of *info -->
-    <xsl:variable name="get.info" select="(info|refentryinfo|docinfo)[1]"/>
+    <xsl:variable name="get.info"
+                  select="ancestor-or-self::*/*[substring(local-name(),
+                          string-length(local-name()) - 3) = 'info']"
+                  />
     <xsl:variable name="info" select="exsl:node-set($get.info)"/>
     <!-- * Make a node-set with contents of parent's *info -->
     <xsl:variable name="get.parentinfo"
-                  select="(../info
-                          |../referenceinfo
-                          |../articleinfo
-                          |../sectioninfo
-                          |../appendixinfo
-                          |../chapterinfo
-                          |../sect1info
-                          |../sect2info
-                          |../sect3info
-                          |../sect4info
-                          |../sect5info
-                          |../partinfo
-                          |../prefaceinfo
-                          |../docinfo)[1]"/>
+                  select="ancestor-or-self::*/*[substring(local-name(),
+                          string-length(local-name()) - 3) = 'info']"
+                  />
     <xsl:variable name="parentinfo" select="exsl:node-set($get.parentinfo)"/>
 
     <!-- * The get.refentry.metadata template is in -->
