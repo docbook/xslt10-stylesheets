@@ -42,20 +42,20 @@
     <!-- * put first-pass transformed output into a node-set so that -->
     <!-- * we can walk through it again and do further transformation -->
     <!-- * to generate correct markup for tbl(1) -->
-    <xsl:param name="root" select="exsl:node-set($contents)"/>
-    <xsl:param name="total-rows" select="count($root//tr)"/>
+    <xsl:param name="table" select="exsl:node-set($contents)/table"/>
+    <xsl:param name="total-rows" select="count($table//tr)"/>
 
     <xsl:variable name="rows-set">
-      <xsl:copy-of select="$root/table/thead/tr"/>
-      <xsl:copy-of select="$root/table/tbody/tr|$root/table/tr"/>
-      <xsl:copy-of select="$root/table/tfoot/tr"/>
+      <xsl:copy-of select="$table/thead/tr"/>
+      <xsl:copy-of select="$table/tbody/tr|$table/tr"/>
+      <xsl:copy-of select="$table/tfoot/tr"/>
     </xsl:variable>
 
     <xsl:variable name="rows" select="exsl:node-set($rows-set)"/>
 
     <xsl:variable name="cells">
       <xsl:call-template name="build.cell.list">
-        <xsl:with-param name="table" select="$rows"/>
+        <xsl:with-param name="rows" select="$rows"/>
       </xsl:call-template>
     </xsl:variable>
 
@@ -157,18 +157,18 @@
   <!-- ==================================================================== -->
 
   <xsl:template name="build.cell.list">
-    <xsl:param name="table"/>
-    <xsl:variable name="table-data-unsorted">
-      <xsl:apply-templates select="$table" mode="cell.list"/>
+    <xsl:param name="rows"/>
+    <xsl:variable name="cell-data-unsorted">
+      <xsl:apply-templates select="$rows" mode="cell.list"/>
     </xsl:variable>
-    <xsl:variable name="table-data-sorted">
-      <xsl:for-each select="exsl:node-set($table-data-unsorted)/cell">
+    <xsl:variable name="cell-data-sorted">
+      <xsl:for-each select="exsl:node-set($cell-data-unsorted)/cell">
         <xsl:sort select="@row"/>
         <xsl:sort select="@slot"/>
         <xsl:copy-of select="."/>
       </xsl:for-each>
     </xsl:variable>
-    <xsl:copy-of select="$table-data-sorted"/>
+    <xsl:copy-of select="$cell-data-sorted"/>
   </xsl:template>
 
   <xsl:template match="tr" mode="cell.list">
@@ -187,7 +187,9 @@
     <xsl:param name="slot">
       <xsl:value-of select="position()"/>
     </xsl:param>
-    <cell row="{$row}" slot="{$slot}"  type="l" colspan="{@colspan}"/>
+    <cell row="{$row}" slot="{$slot}" type="l" colspan="{@colspan}">
+      <xsl:apply-templates/>
+    </cell>
     <xsl:if test="@rowspan and @rowspan > 0">
       <xsl:call-template name="process.rowspan">
         <xsl:with-param name="row" select="$row + 1"/>
@@ -221,7 +223,6 @@
   <xsl:template name="create.table.format">
     <xsl:param name="cells"/>
     <xsl:apply-templates mode="table.format" select="$cells"/>
-    <xsl:copy-of select="$cells"/>
     <xsl:text>.</xsl:text>
   </xsl:template>
 
