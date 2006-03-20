@@ -14,16 +14,16 @@
 
      ******************************************************************** -->
 
-<!-- * This file contains named templates that are related to things -->
-<!-- * other than just assembling the actual text of the main text flow -->
-<!-- * of each man page. This "other" stuff currently amounts to: -->
+<!-- * This file contains named templates related to things other than -->
+<!-- * just assembling the actual text of the main text flow of each man -->
+<!-- * page. This "other" stuff currently amounts to these steps: -->
 <!-- * -->
-<!-- *  - adding a comment to top part of roff source of each page -->
-<!-- *  - making a .TH title line (for controlling page header/footer) -->
-<!-- *  - setting hyphenation, alignment, & line-breaking defaults -->
-<!-- *  - "preparing" the complete man page contents for final output -->
-<!-- *  - writing the actual man file to the filesystem -->
-<!-- *  - writing any "stub" pages to the filesystem -->
+<!-- *  - add a comment to top part of roff source of each page -->
+<!-- *  - make a .TH title line (for controlling page header/footer) -->
+<!-- *  - set hyphenation, alignment, indent & line-breaking defaults -->
+<!-- *  - "prepare" the complete man page contents for final output -->
+<!-- *  - write the actual man file to the filesystem -->
+<!-- *  - write any "stub" pages to the filesystem -->
 <!-- * -->
 <!-- * The templates in this file are actually called only once per -->
 <!-- * each Refentry; they are just in a separate file for the purpose -->
@@ -68,14 +68,13 @@
     <xsl:value-of select="$title"/>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>.\"    Author: </xsl:text>
-      <xsl:call-template name="author.names">
-        <xsl:with-param name="info" select="$info"/>
-        <xsl:with-param name="parentinfo" select="$parentinfo"/>
+      <xsl:call-template name="make.roff.metadata.author">
+        <xsl:with-param name="info" select="$parentinfo"/>
       </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>.\" Generator: DocBook XSL Stylesheets v</xsl:text>
     <xsl:value-of select="$VERSION"/>
-    <xsl:text> &lt;http://sourceforge.net/projects/docbook/></xsl:text>
+    <xsl:text> &lt;http://docbook.sf.net/></xsl:text>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>.\"      Date: </xsl:text>
       <xsl:call-template name="string.subst">
