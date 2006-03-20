@@ -61,24 +61,25 @@
     part of a "book" of some kind. Therefore, it is sometimes necessary to
     embed "context" information in output for each <tag>refentry</tag>.</para>
 
-    <para>However, one problem is that mark up that context information in
-    different ways. Often (usually), it is not actually part fo the
-    content of the <tag>refentry</tag> itself, but instead part of its
-    parent element's content. And even then, DocBook provides a variety of
-    elements that users might potentially use to mark up the same kind of
-    information. One user might use the <tag>productnumber</tag> element
-    to mark up version information about a particular product, while
-    another might use the <tag>releaseinfo</tag> element.</para>
+    <para>However, one problem is that different users mark up that
+    context information in different ways. Often (usually), it is not
+    actually part of the content of the <tag>refentry</tag> itself,
+    but instead part of its parent element's content. And even then,
+    DocBook provides a variety of elements that users might
+    potentially use to mark up the same kind of information. One user
+    might use the <tag>productnumber</tag> element to mark up version
+    information about a particular product, while another might use
+    the <tag>releaseinfo</tag> element.</para>
 
     <para>Taking all that in mind, the
-    <function>get.refentry.info</function> function tries to gather data
-    from a <tag>refentry</tag> element and its parent element in an
-    intelligent and user-configurable way.</para>
+    <function>get.refentry.info</function> function tries to gather
+    metadata from a <tag>refentry</tag> element and its parent element
+    in an intelligent and user-configurable way.</para>
 
     <note>
       <para>The <function>get.refentry.info</function> is actually just
-      sort of a "driver" function; it calls other function that do that
-      actual data collection, the returns the data as a set.</para>
+      sort of a "driver" function; it calls other function that do the
+      actual data collection, then returns the data as a set.</para>
     </note>
 
     <para>The manpages stylesheets are an application of these APIs.</para>
@@ -108,7 +109,7 @@
       <varlistentry>
         <term>prefs</term>
         <listitem>
-          <para>A node containing users preferences (from global
+          <para>A node containing user preferences (from global
           stylesheet parameters)</para>
         </listitem>
       </varlistentry>
@@ -262,8 +263,18 @@
     <xsl:when test="refmeta/manvolnum">
       <xsl:value-of select="refmeta/manvolnum"/>
     </xsl:when>
-    <xsl:when test=".//funcsynopsis">3</xsl:when>
-    <xsl:otherwise>1</xsl:otherwise>
+    <xsl:otherwise>
+      <xsl:message>Note: Missing manvolnum.</xsl:message>
+      <xsl:choose>
+        <xsl:when test=".//funcsynopsis">
+          <xsl:message>Note: Found funcsynopsis. Setting section number to 3.</xsl:message>
+          <xsl:text>3</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>1</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
@@ -328,6 +339,8 @@
           <!-- * look for date or pubdate in *info -->
           <xsl:when test="$info/date
                           |$info/pubdate">
+            <xsl:message>Note: Found date in</xsl:message>
+            <xsl:value-of select="$info"/>
             <xsl:copy>
               <xsl:apply-templates
                   select="($info/date
@@ -335,12 +348,18 @@
             </xsl:copy>
           </xsl:when>
           <!-- * look for date or pubdate in parentinfo -->
-          <xsl:otherwise>
+          <xsl:when test="$parentinfo/date
+                          |$parentinfo/pubdate">
+            <xsl:message>Note: Found date in</xsl:message>
+            <xsl:value-of select="$parentinfo"/>
             <xsl:copy>
               <xsl:apply-templates
                   select="($parentinfo/date
                           |$parentinfo/pubdate)[1]/node()"/>
             </xsl:copy>
+          </xsl:when>
+          <xsl:otherwise>
+            <!-- * found no Date or Pubdate -->
           </xsl:otherwise>
         </xsl:choose>
       </xsl:otherwise>
@@ -353,6 +372,7 @@
     <!-- * We couldn't find a date, so we generate a date. -->
     <!-- * And we make it an appropriately localized date. -->
     <xsl:otherwise>
+      <xsl:message>Note: Missing date. Generating localized date.</xsl:message>
       <xsl:call-template name="datetime.format">
         <xsl:with-param name="date">
           <xsl:choose>
@@ -504,7 +524,7 @@
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
-      <!-- * found nothing, so leave <source> empty -->
+      <xsl:message>Warn: Missing "source" metadata. No fallback found; leaving empty.</xsl:message>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -575,57 +595,62 @@
           <xsl:apply-templates 
               select="refmeta/refmiscinfo[@class = 'source'][1]/node()"/>
         </xsl:when>
-        <!-- * no <refmisc class="source"/> found, so we need to -->
-        <!-- * check *info and parentinfo -->
-        <xsl:when test="$info/productname">
-          <xsl:apply-templates select="$info/productname/node()"/>
-        </xsl:when>
-        <xsl:when test="$info/orgname">
-          <xsl:apply-templates select="$info/orgname/node()"/>
-        </xsl:when>
-        <xsl:when test="$info/corpname">
-          <xsl:apply-templates select="$info/corpname/node()"/>
-        </xsl:when>
-        <xsl:when test="$info/corpcredit">
-          <xsl:apply-templates select="$info/corpcredit/node()"/>
-        </xsl:when>
-        <xsl:when test="$info/corpauthor">
-          <xsl:apply-templates select="$info/corpauthor/node()"/>
-        </xsl:when>
-        <xsl:when test="$info/author/orgname">
-          <xsl:apply-templates select="$info/author/orgname/node()"/>
-        </xsl:when>
-        <xsl:when test="$info/author/publishername">
-          <xsl:apply-templates select="$info/author/publishername/node()"/>
-        </xsl:when>
-        <!-- * then check parentinfo -->
-        <xsl:when test="$parentinfo/productname">
-          <xsl:apply-templates select="$parentinfo/productname/node()"/>
-        </xsl:when>
-        <xsl:when test="$parentinfo/orgname">
-          <xsl:apply-templates select="$parentinfo/orgname/node()"/>
-        </xsl:when>
-        <xsl:when test="$parentinfo/corpname">
-          <xsl:apply-templates select="$parentinfo/corpname/node()"/>
-        </xsl:when>
-        <xsl:when test="$parentinfo/corpcredit">
-          <xsl:apply-templates select="$parentinfo/corpcredit/node()"/>
-        </xsl:when>
-        <xsl:when test="$parentinfo/corpauthor">
-          <xsl:apply-templates select="$parentinfo/corpauthor/node()"/>
-        </xsl:when>
-        <xsl:when test="$parentinfo/author/orgname">
-          <xsl:apply-templates select="$parentinfo/author/orgname/node()"/>
-        </xsl:when>
-        <xsl:when test="$parentinfo/author/publishername">
-          <xsl:apply-templates select="$parentinfo/author/publishername/node()"/>
-        </xsl:when>
         <xsl:otherwise>
-          <!-- * found nothing, so return nothing -->
+          <xsl:message>Note: Missing class="source" data on refmeta/refmiscinfo</xsl:message>
+          <xsl:choose>
+            <!-- * no <refmisc class="source"/> found, so we need to -->
+            <!-- * check *info and parentinfo -->
+            <xsl:when test="$info/productname">
+              <xsl:apply-templates select="$info/productname/node()"/>
+            </xsl:when>
+            <xsl:when test="$info/orgname">
+              <xsl:apply-templates select="$info/orgname/node()"/>
+            </xsl:when>
+            <xsl:when test="$info/corpname">
+              <xsl:apply-templates select="$info/corpname/node()"/>
+            </xsl:when>
+            <xsl:when test="$info/corpcredit">
+              <xsl:apply-templates select="$info/corpcredit/node()"/>
+            </xsl:when>
+            <xsl:when test="$info/corpauthor">
+              <xsl:apply-templates select="$info/corpauthor/node()"/>
+            </xsl:when>
+            <xsl:when test="$info/author/orgname">
+              <xsl:apply-templates select="$info/author/orgname/node()"/>
+            </xsl:when>
+            <xsl:when test="$info/author/publishername">
+              <xsl:apply-templates select="$info/author/publishername/node()"/>
+            </xsl:when>
+            <!-- * then check parentinfo -->
+            <xsl:when test="$parentinfo/productname">
+              <xsl:apply-templates select="$parentinfo/productname/node()"/>
+            </xsl:when>
+            <xsl:when test="$parentinfo/orgname">
+              <xsl:apply-templates select="$parentinfo/orgname/node()"/>
+            </xsl:when>
+            <xsl:when test="$parentinfo/corpname">
+              <xsl:apply-templates select="$parentinfo/corpname/node()"/>
+            </xsl:when>
+            <xsl:when test="$parentinfo/corpcredit">
+              <xsl:apply-templates select="$parentinfo/corpcredit/node()"/>
+            </xsl:when>
+            <xsl:when test="$parentinfo/corpauthor">
+              <xsl:apply-templates select="$parentinfo/corpauthor/node()"/>
+            </xsl:when>
+            <xsl:when test="$parentinfo/author/orgname">
+              <xsl:apply-templates select="$parentinfo/author/orgname/node()"/>
+            </xsl:when>
+            <xsl:when test="$parentinfo/author/publishername">
+              <xsl:apply-templates select="$parentinfo/author/publishername/node()"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:message>Note: Missing "source name" metadata.</xsl:message>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
-  </xsl:choose>
+      </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
