@@ -94,7 +94,7 @@
     <xsl:text>allbox;&#10;</xsl:text>
     </xsl:if>
 
-    <!-- * Output the table "format" spec, which tells tbl(1) how to -->
+    <!-- * Output the table "format section", which tells tbl(1) how to -->
     <!-- * format each row and column -->
     <xsl:call-template name="create.table.format">
       <xsl:with-param name="cells" select="$cells"/>
@@ -165,14 +165,14 @@
   </xsl:template>
 
   <!-- * ============================================================== -->
-  <!-- *    Build a restructured "cell list" copy of the table          -->
+  <!-- *   Build a restructured "cell list" copy of the entire table    -->
   <!-- * ============================================================== -->
   <xsl:template name="build.cell.list">
     <xsl:param name="rows"/>
     <xsl:param  name="cell-data-unsorted">
-      <!-- * This gets all the "real" cells from the table along with -->
-      <!-- * "dummy" rows that we generate for keeping track of Rowspan -->
-      <!-- * instances. -->
+      <!-- * This param collect all the "real" cells from the table, -->
+      <!-- * along with "dummy" rows that we generate for keeping -->
+      <!-- * track of Rowspan instances. -->
       <xsl:apply-templates select="$rows" mode="cell.list"/>
     </xsl:param>
     <xsl:param  name="cell-data-sorted">
@@ -184,6 +184,7 @@
         <xsl:copy-of select="."/>
       </xsl:for-each>
     </xsl:param>
+    <!-- * Return the sorted cell list -->
     <xsl:copy-of select="$cell-data-sorted"/>
   </xsl:template>
 
@@ -201,11 +202,14 @@
   <xsl:template name="td" mode="cell.list">
     <xsl:param name="row"/>
     <xsl:param name="slot">
+      <!-- * The "slot" is the horizontal position of this cell (usually -->
+      <!-- * just the same as its column, but not so when it is preceded -->
+      <!-- * by cells that have colspans or cells in preceding rows that -->
+      <!-- * that have rowspans). -->
       <xsl:value-of select="position()"/>
     </xsl:param>
-    <!-- * For each real cell, create a Cell instance; its contents are -->
-    <!-- * the roff-formatted contents of the corresponding original table -->
-    <!-- * cell. -->
+    <!-- * For each real TD cell, create a Cell instance; contents will -->
+    <!-- * be the roff-formatted contents of its original table cell. -->
     <cell row="{$row}" slot="{$slot}" type="l" colspan="{@colspan}">
       <xsl:choose>
         <xsl:when test=".//tr">
@@ -217,16 +221,44 @@
           <xsl:text>[so&#160;was&#160;discarded.]</xsl:text>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates/>
+          <!-- * Apply templates to the child contents of this cell, to -->
+          <!-- * transform them into marked-up roff. -->
+          <xsl:variable name="contents">
+            <xsl:apply-templates/>
+          </xsl:variable>
+          <!-- * We now have the contents in roff (plain-text) form, -->
+          <!-- * but we may also still have unnecessary whitespace at -->
+          <!-- * the beginning and/or end of it, so trim it off. -->
+          <xsl:call-template name="trim.text">
+            <xsl:with-param name="contents" select="$contents"/>
+          </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
     </cell>
+
+    <!-- * For each instance of a rowspan attribute found, we create N -->
+    <!-- * dummy cells, where N is equal to the value of the rowspan. -->
     <xsl:if test="@rowspan and @rowspan > 0">
-      <!-- * For each instance of a rowspan attribute found, we create N -->
-      <!-- * dummy cells, where N is equal to the value of the rowspan. -->
+      <!-- * If this cell is preceded in the same row by cells that -->
+      <!-- * have colspan attributes, then we need to calculate the -->
+      <!-- * "offset" caused by those colspan instances; the formula -->
+      <!-- * is to (1) check for all the preceding cells that have -->
+      <!-- * colspan attributes that are not empty and which have a -->
+      <!-- * value greater than 1, then (2) take the sum of the values -->
+      <!-- * of all those colspan attributes, and subtract from that -->
+      <!-- * the number such colspan instances found. -->
+      <xsl:variable name="colspan-offset">
+        <xsl:value-of
+            select="sum(preceding-sibling::td[@colspan != ''
+                    and @colspan > 1]/@colspan) -
+                    count(preceding-sibling::td[@colspan != ''
+                    and @colspan > 1]/@colspan)"/>
+      </xsl:variable>
       <xsl:call-template name="create.dummy.cells">
         <xsl:with-param name="row" select="$row + 1"/>
-        <xsl:with-param name="slot" select="$slot"/>
+        <!-- * The slot value on each dummy cell must be offset by the -->
+        <!-- * value of $colspan-offset to adjust for preceding colpans -->
+        <xsl:with-param name="slot" select="$slot + $colspan-offset"/>
         <xsl:with-param name="colspan" select="@colspan"/>
         <xsl:with-param name="rowspan" select="@rowspan"/>
       </xsl:call-template>
