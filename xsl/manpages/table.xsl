@@ -234,14 +234,18 @@
       <xsl:value-of select="count(preceding-sibling::tr) + 1"/>
     </xsl:variable>
     <xsl:for-each select="td|th">
-      <xsl:call-template name="td">
+      <xsl:call-template name="cell">
         <xsl:with-param name="row" select="$row"/>
+        <!-- * pass on the element name so we can select the appropriate -->
+        <!-- * font for styling the cell contents -->
+        <xsl:with-param name="class" select="name(.)"/>
       </xsl:call-template>
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:template name="td" mode="cell.list">
+  <xsl:template name="cell" mode="cell.list">
     <xsl:param name="row"/>
+    <xsl:param name="class"/>
     <xsl:param name="slot">
       <!-- * The "slot" is the horizontal position of this cell (usually -->
       <!-- * just the same as its column, but not so when it is preceded -->
@@ -251,7 +255,12 @@
     </xsl:param>
     <!-- * For each real TD cell, create a Cell instance; contents will -->
     <!-- * be the roff-formatted contents of its original table cell. -->
-    <cell row="{$row}" slot="{$slot}" type="l" colspan="{@colspan}">
+    <cell type=""
+          row="{$row}"
+          slot="{$slot}"
+          class="{$class}"
+          colspan="{@colspan}"
+          align="{@align}">
       <xsl:choose>
         <xsl:when test=".//tr">
           <xsl:message>Warn: Discarding nested table. Not supported in tbl(1).</xsl:message>
@@ -314,8 +323,10 @@
     <xsl:choose>
       <xsl:when test="$rowspan > 1">
         <!-- * Tail recurse until we have no more rowspans, creating an -->
-        <!-- * empty dummy cell each time -->
-        <cell row="{$row}" slot="{$slot}"  type="^" colspan="{@colspan}"/>
+        <!-- * empty dummy cell each time. The type value, '^' -->
+        <!-- * is the marker that tbl(1) uses for indicates a -->
+        <!-- * "vertically spanned heading". -->
+        <cell row="{$row}" slot="{$slot}" type="^" colspan="{@colspan}"/>
         <xsl:call-template name="create.dummy.cells">
           <xsl:with-param name="row" select="$row + 1"/>
           <xsl:with-param name="slot" select="$slot"/>
@@ -329,53 +340,91 @@
   <!-- * ============================================================== -->
   <!-- *    Build the "format section" for the table                    -->
   <!-- * ============================================================== -->
-
+  <!-- * Description from the tbl(1) guide: -->
+  <!-- * -->
+  <!-- * "The format section of the table specifies the layout of the -->
+  <!-- * columns.  Each line in this section corresponds to one line of -->
+  <!-- * the table... and each line contains a key-letter for each -->
+  <!-- * column of the table." -->
   <xsl:template name="create.table.format">
     <xsl:param name="cells"/>
     <xsl:apply-templates mode="table.format" select="$cells"/>
+    <!-- * last line of table format section must end with a dot -->
     <xsl:text>.</xsl:text>
   </xsl:template>
 
   <xsl:template match="cell" mode="table.format">
     <xsl:choose>
       <xsl:when test="preceding-sibling::cell[1]/@row != @row">
+        <!-- * If the value of the row attribute on this cell is -->
+        <!-- * different from the value of that on the previous cell, it -->
+        <!-- * means we have a new row. So output a line break. -->
         <xsl:text>&#xa;</xsl:text>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:if  test="position() != 1">
+        <!-- * If this isn't the first cell, output a space before it to -->
+        <!-- * separate it from the preceding key letter. -->
+        <xsl:if test="position() != 1">
           <xsl:text> </xsl:text>
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
+    <!--* Select an appropriate key letter based on this cell's attributes. -->
     <xsl:choose>
       <xsl:when test="@type = '^'">
         <xsl:text>^</xsl:text>
       </xsl:when>
+      <xsl:when test="@align = 'center'">
+        <xsl:text>c</xsl:text>
+      </xsl:when>
+      <xsl:when test="@align = 'right'">
+        <xsl:text>r</xsl:text>
+      </xsl:when>
+      <xsl:when test="@align = 'char'">
+        <xsl:text>n</xsl:text>
+      </xsl:when>
       <xsl:otherwise>
+        <!-- * Default to left alignment. -->
         <xsl:text>l</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:if test="@colspan > 0">
+    <xsl:if test="@class = 'th'">
+      <!-- * If this is a heading row, generate a font indicator (B or I), -->
+      <!-- * or if the value of $man.table.heading.font is empty, nothing. -->
+      <xsl:value-of select="$man.table.heading.font"/>
+    </xsl:if>
+    <!-- * We only need to deal with colspans whose value is greater -->
+    <!-- * than one (a colspan="1" is the same as having no colspan -->
+    <!-- * attribute at all. -->
+    <xsl:if test="@colspan > 1">
       <xsl:call-template name="process.colspan">
         <xsl:with-param name="colspan" select="@colspan - 1"/>
         <xsl:with-param name="type" select="@type"/>
       </xsl:call-template>
     </xsl:if>
   </xsl:template>
-
+  
   <xsl:template name="process.colspan">
     <xsl:param name="colspan"/>
     <xsl:param name="type"/>
+    <!-- * Output a space to separate this key letter from preceding one. -->
     <xsl:text> </xsl:text>
     <xsl:choose>
       <xsl:when test="$type = '^'">
+        <!-- * A '^' ("vertically spanned heading" marker) indicates -->
+        <!-- * that the "parent" of this spanned cell is a dummy cell; -->
+        <!-- * in this case, we need to generate a '^' instead of the -->
+        <!-- * normal 's'. -->
         <xsl:text>^</xsl:text>
       </xsl:when>
       <xsl:otherwise>
+        <!-- * s = 'spanned heading' -->
         <xsl:text>s</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
     <xsl:if test="$colspan > 1">
+      <!-- * Tail recurse until we have no more colspans, outputting -->
+      <!-- * another marker each time. -->
       <xsl:call-template name="process.colspan">
         <xsl:with-param name="colspan" select="$colspan - 1"/>
         <xsl:with-param name="type" select="$type"/>
@@ -383,12 +432,19 @@
     </xsl:if>
   </xsl:template>
 
+  <!-- * Not sure what if anything to do with colgroup -->
   <xsl:template match="colgroup"/>
   <xsl:template match="col"/>
-  <xsl:template match="sup"/>
-  <xsl:template match="a"/>
 
+  <!-- * The following templates are needed for dealing with -->
+  <!-- * table-footnote markup generated by the HTML stylesheets. -->
   <xsl:template match="div">
+    <xsl:apply-templates/>
+  </xsl:template>
+  <xsl:template match="sup">
+    <xsl:apply-templates/>
+  </xsl:template>
+  <xsl:template match="a">
     <xsl:apply-templates/>
   </xsl:template>
 
