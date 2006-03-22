@@ -22,6 +22,7 @@
   <!-- * See M. E. Lesk, "Tbl – A Program to Format Tables" for details -->
   <!-- * on tbl(1) and its markup syntaxt. -->
   <!-- * -->
+  <!-- *   http://cm.bell-labs.com/7thEdMan/vol2/tbl -->
   <!-- *   http://cm.bell-labs.com/cm/cs/doc/76/tbl.ps.gz -->
   <!-- *   http://www.snake.net/software/troffcvt/tbl.html -->
 
@@ -32,12 +33,28 @@
     <!-- * stylesheets (which we import) are used to process those; but -->
     <!-- * for the element child content of <entry> and <td>, the -->
     <!-- * templates in the manpages stylesheet get applied; so the result -->
-    <!-- * is a table marked up in HTML <tr><td>, etc., markup, but with -->
-    <!-- * all contents of each <td> cell marked up correctly in roff -->
-    <xsl:param name="contents-tree">
-      <xsl:apply-templates/>
+    <!-- * is a table marked up in HTML <tr><td>, etc., markup. -->
+    <xsl:param name="html-table-output">
+      <xsl:choose>
+        <xsl:when test=".//tr">
+          <!-- * If this table has a TR child, it means that it's an -->
+          <!-- * HTML table in the DocBook source, instead of a CALS -->
+          <!-- * table. So we just copy it as-is, while wrapping it -->
+          <!-- * in a Table element -->
+          <table>
+            <xsl:copy-of select="*"/>
+          </table>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- * Otherwise, this is a CALS table in the DocBook source, -->
+          <!-- * so we need to apply the templates in the HTML -->
+          <!-- * stylesheets to transform it into HTML before we do -->
+          <!-- * any further processing of it. -->
+          <xsl:apply-templates/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:param>
-    <xsl:param name="contents" select="exsl:node-set($contents-tree)"/>
+    <xsl:param name="contents" select="exsl:node-set($html-table-output)"/>
 
     <xsl:for-each select="$contents/table">
     <!-- * ============================================================== -->
@@ -190,7 +207,19 @@
     <!-- * the roff-formatted contents of the corresponding original table -->
     <!-- * cell. -->
     <cell row="{$row}" slot="{$slot}" type="l" colspan="{@colspan}">
-      <xsl:apply-templates/>
+      <xsl:choose>
+        <xsl:when test=".//tr">
+          <xsl:message>Warn: Discarding nested table. Not supported in tbl(1).</xsl:message>
+          <xsl:text>[Source&#160;had&#160;nested]&#10;</xsl:text>
+          <xsl:text>[table,&#160;but&#160;tbl(1)]&#10;</xsl:text>
+          <xsl:text>[lacks&#160;any&#160;support]&#10;</xsl:text>
+          <xsl:text>[for&#160;nested&#160;table;]&#10;</xsl:text>
+          <xsl:text>[so&#160;was&#160;discarded.]</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates/>
+        </xsl:otherwise>
+      </xsl:choose>
     </cell>
     <xsl:if test="@rowspan and @rowspan > 0">
       <!-- * For each instance of a rowspan attribute found, we create N -->
@@ -288,11 +317,6 @@
 
   <xsl:template match="div">
     <xsl:apply-templates/>
-  </xsl:template>
-
-  <xsl:template match="td/table">
-    <xsl:message>Warn: Discarding nested table. Not supported in tbl(1).</xsl:message>
-    <xsl:text>[Nested table. Not supported in tbl(1).]</xsl:text>
   </xsl:template>
 
 </xsl:stylesheet>
