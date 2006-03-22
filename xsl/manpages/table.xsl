@@ -1,4 +1,4 @@
-<?xml version='1.0'?>
+<?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:set="http://exslt.org/sets"
@@ -34,26 +34,23 @@
     <!-- * templates in the manpages stylesheet get applied; so the result -->
     <!-- * is a table marked up in HTML <tr><td>, etc., markup, but with -->
     <!-- * all contents of each <td> cell marked up correctly in roff -->
-    <xsl:param name="contents">
+    <xsl:param name="contents-tree">
       <xsl:apply-templates/>
     </xsl:param>
-    
+    <xsl:param name="contents" select="exsl:node-set($contents-tree)"/>
+
+    <xsl:for-each select="$contents/table">
     <!-- * ============================================================== -->
     <!-- *   Get all the table contents and restructure them              -->
     <!-- * ============================================================== -->
-    
-    <!-- * Put first-pass transformed output into a node-set so that -->
-    <!-- * we can walk through it again and do further transformation -->
-    <!-- * to generate correct markup for tbl(1) -->
-    <xsl:param name="table" select="exsl:node-set($contents)/table"/>
 
     <!-- * Flatten the structure into just a set of rows without any -->
     <!-- * thead, tbody, or tfoot parents. And reorder the rows in -->
     <!-- * such a way that the tfoot rows are at the end, -->
     <xsl:variable name="rows-set">
-      <xsl:copy-of select="$table/thead/tr"/>
-      <xsl:copy-of select="$table/tbody/tr|$table/tr"/>
-      <xsl:copy-of select="$table/tfoot/tr"/>
+      <xsl:copy-of select="thead/tr"/>
+      <xsl:copy-of select="tbody/tr|tr"/>
+      <xsl:copy-of select="tfoot/tr"/>
     </xsl:variable>
     <xsl:variable name="rows" select="exsl:node-set($rows-set)"/>
 
@@ -75,8 +72,10 @@
 
     <!-- * .TS = "Table Start" -->
     <xsl:text>.TS&#10;</xsl:text>
+    <xsl:if test="@border != '0'">
     <!-- * put box around table and between all cells -->
     <xsl:text>allbox;&#10;</xsl:text>
+    </xsl:if>
 
     <!-- * Output the table "format" spec, which tells tbl(1) how to -->
     <!-- * format each row and column -->
@@ -94,6 +93,7 @@
     <xsl:text>.TE&#10;</xsl:text>
     <!-- * put a blank line of space below the table -->
     <xsl:text>.sp&#10;</xsl:text>
+    </xsl:for-each>
   </xsl:template>
 
   <!-- * ============================================================== -->
@@ -279,6 +279,20 @@
         <xsl:with-param name="type" select="$type"/>
       </xsl:call-template>
     </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="colgroup"/>
+  <xsl:template match="col"/>
+  <xsl:template match="sup"/>
+  <xsl:template match="a"/>
+
+  <xsl:template match="div">
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="td/table">
+    <xsl:message>Warn: Discarding nested table. Not supported in tbl(1).</xsl:message>
+    <xsl:text>[Nested table. Not supported in tbl(1).]</xsl:text>
   </xsl:template>
 
 </xsl:stylesheet>
