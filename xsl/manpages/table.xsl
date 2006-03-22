@@ -27,13 +27,42 @@
   <!-- *   http://www.snake.net/software/troffcvt/tbl.html -->
 
   <xsl:template match="table|informaltable">
-    <!-- * We first process the table by applying templates to the whole -->
+    <!-- * ============================================================== -->
+    <!-- *    Set global table parameters                                 -->
+    <!-- * ============================================================== -->
+    <!-- * First, set a few parameters based on attributes specified in -->
+    <!-- * the table source. -->
+    <xsl:param name="allbox">
+    <xsl:if test="not(@frame = 'none') and not(@border = '0')">
+      <!-- * By default, put a box around table and between all cells - -->
+      <!-- * unless frame="none" or border="0" -->
+      <xsl:text>allbox </xsl:text>
+    </xsl:if>
+    </xsl:param>
+    <xsl:param name="center">
+    <!-- * If align="center", center the table. Otherwise, tbl(1) -->
+    <!-- * left-aligns it by default; note that there is no support -->
+    <!-- * in tbl(1) for specifying right alignment. -->
+    <xsl:if test="@align = 'center' or tgroup/@align = 'center'">
+      <xsl:text>center </xsl:text>
+    </xsl:if>
+    </xsl:param>
+    <xsl:param name="expand">
+    <!-- * If pgwide="1" or width="100%", then "expand" the table by -->
+    <!-- * making it "as wide as the current line length" (to quote -->
+    <!-- * the tbl(1) guide). -->
+    <xsl:if test="@pgwide = '1' or @width = '100%'">
+      <xsl:text>expand </xsl:text>
+    </xsl:if>
+    </xsl:param>
+
+    <!-- * ============================================================== -->
+    <!-- *    Convert table to HTML                                       -->
+    <!-- * ============================================================== -->
+    <!-- * Process the table by applying HTML templates to the whole -->
     <!-- * thing; because we don’t override any of the <row>, <entry>, -->
     <!-- * <tr>, <td>, etc. templates, the templates in the HTML -->
-    <!-- * stylesheets (which we import) are used to process those; but -->
-    <!-- * for the element child content of <entry> and <td>, the -->
-    <!-- * templates in the manpages stylesheet get applied; so the result -->
-    <!-- * is a table marked up in HTML <tr><td>, etc., markup. -->
+    <!-- * stylesheets (which we import) are used to process those. -->
     <xsl:param name="html-table-output">
       <xsl:choose>
         <xsl:when test=".//tr">
@@ -58,9 +87,8 @@
 
     <xsl:for-each select="$contents/table">
     <!-- * ============================================================== -->
-    <!-- *   Get all the table contents and restructure them              -->
+    <!-- *   Flatten table contents into row set                          -->
     <!-- * ============================================================== -->
-
     <!-- * Flatten the structure into just a set of rows without any -->
     <!-- * thead, tbody, or tfoot parents. And reorder the rows in -->
     <!-- * such a way that the tfoot rows are at the end, -->
@@ -71,27 +99,40 @@
     </xsl:variable>
     <xsl:variable name="rows" select="exsl:node-set($rows-set)"/>
 
+    <!-- * ============================================================== -->
+    <!-- *   Flatten row set into simple list of cells                    -->
+    <!-- * ============================================================== -->
     <!-- * Now we flatten the structure further into just a set of -->
     <!-- * cells without the row parents. This basically creates a -->
     <!-- * copy of the entire contents of the original table, but -->
     <!-- * restructured in such a way that we can more easily generate -->
     <!-- * the corresponding roff markup we need to output. -->
-    <xsl:variable name="cells-set">
+    <xsl:variable name="cells-list">
       <xsl:call-template name="build.cell.list">
         <xsl:with-param name="rows" select="$rows"/>
       </xsl:call-template>
     </xsl:variable>
-    <xsl:variable name="cells" select="exsl:node-set($cells-set)"/>
+    <xsl:variable name="cells" select="exsl:node-set($cells-list)"/>
 
     <!-- * ============================================================== -->
-    <!-- *         Output the table.                                      -->
+    <!-- *    Output the table.                                           -->
     <!-- * ============================================================== -->
+    <!-- * This is where we generate the actual roff output, including -->
+    <!-- * the optional "options line", required "format section", and -->
+    <!-- * finally, the actual contents of each cell. -->
 
     <!-- * .TS = "Table Start" -->
     <xsl:text>.TS&#10;</xsl:text>
-    <xsl:if test="@border != '0'">
-    <!-- * put box around table and between all cells -->
-    <xsl:text>allbox;&#10;</xsl:text>
+
+    <!-- * Output the "options line" with global attributes for the table -->
+    <xsl:variable name="options-line">
+      <xsl:value-of select="$allbox"/>
+      <xsl:value-of select="$center"/>
+      <xsl:value-of select="$expand"/>
+    </xsl:variable>
+    <xsl:if test="normalize-space($options-line) != ''">
+      <xsl:value-of select="normalize-space($options-line)"/>
+      <xsl:text>;&#10;</xsl:text>
     </xsl:if>
 
     <!-- * Output the table "format section", which tells tbl(1) how to -->
@@ -114,7 +155,7 @@
   </xsl:template>
 
   <!-- * ============================================================== -->
-  <!-- *    Output the actual cell contents and roff row/cell markup    -->
+  <!-- *    Output the roff-formatted contents of each cell.            -->
   <!-- * ============================================================== -->
   <xsl:template name="output.cell">
     <xsl:choose>
