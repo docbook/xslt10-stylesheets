@@ -339,8 +339,12 @@
           <!-- * look for date or pubdate in *info -->
           <xsl:when test="$info/date
                           |$info/pubdate">
-            <xsl:message>Note: Found date in</xsl:message>
-            <xsl:value-of select="$info"/>
+            <xsl:message
+                >Note: Found <xsl:value-of
+                select="local-name(($info/date|$info/pubdate)[1])"
+                /> in <xsl:value-of
+                select="local-name($info)"
+                /></xsl:message>
             <xsl:copy>
               <xsl:apply-templates
                   select="($info/date
@@ -350,8 +354,12 @@
           <!-- * look for date or pubdate in parentinfo -->
           <xsl:when test="$parentinfo/date
                           |$parentinfo/pubdate">
-            <xsl:message>Note: Found date in</xsl:message>
-            <xsl:value-of select="$parentinfo"/>
+            <xsl:message
+                >Note: Found <xsl:value-of
+                select="local-name(($parentinfo/date|$parentinfo/pubdate)[1])"
+                /> in <xsl:value-of
+                select="local-name($parentinfo)"
+                /></xsl:message>
             <xsl:copy>
               <xsl:apply-templates
                   select="($parentinfo/date
