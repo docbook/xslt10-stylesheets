@@ -282,7 +282,9 @@
           slot="{$slot}"
           class="{$class}"
           colspan="{@colspan}"
-          align="{@align}">
+          align="{@align}"
+          valign="{@valign}"
+          >
       <xsl:choose>
         <xsl:when test=".//tr">
           <xsl:message
@@ -388,7 +390,8 @@
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
-    <!--* Select an appropriate key letter based on this cell's attributes. -->
+    <!-- * Select an appropriate "alignment" key letter based on this -->
+    <!-- * cell's attributes. -->
     <xsl:choose>
       <xsl:when test="@type = '^'">
         <xsl:text>^</xsl:text>
@@ -407,6 +410,13 @@
         <xsl:text>l</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
+    <!-- * By default, tbl(1) vertically centers cell contents within -->
+    <!-- * their cells; the "t" key latter tells it to top-align the -->
+    <!-- * contents instead. Note that tbl(1) has no options for -->
+    <!-- * bottom or baseline alignment. -->
+    <xsl:if test="@valign = 'top'">
+      <xsl:text>t</xsl:text>
+    </xsl:if>
     <xsl:if test="@class = 'th'">
       <!-- * If this is a heading row, generate a font indicator (B or I), -->
       <!-- * or if the value of $man.table.headings.font is empty, nothing. -->
