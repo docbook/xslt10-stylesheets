@@ -44,7 +44,8 @@
   <xsl:param name="man.indentation.default.value">3n</xsl:param>
   <xsl:param name="man.funcprototype.font">BI</xsl:param>
   <xsl:param name="man.funcsynopsisinfo.font">B</xsl:param>
-  <xsl:param name="man.table.heading.font">B</xsl:param>
+  <xsl:param name="man.table.headings.font">B</xsl:param>
+  <xsl:param name="man.table.title.font">B</xsl:param>
 
 <!-- ==================================================================== -->
 
