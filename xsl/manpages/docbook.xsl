@@ -46,6 +46,7 @@
   <xsl:param name="man.funcsynopsisinfo.font">B</xsl:param>
   <xsl:param name="man.table.headings.font">B</xsl:param>
   <xsl:param name="man.table.title.font">B</xsl:param>
+  <xsl:param name="man.table.footnotes.separator.line">----</xsl:param>
 
 <!-- ==================================================================== -->
 

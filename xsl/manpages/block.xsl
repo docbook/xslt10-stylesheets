@@ -39,7 +39,9 @@
 </xsl:template>
 
 <xsl:template match="para">
-  <xsl:text>.PP&#10;</xsl:text>
+  <xsl:if test="not(ancestor::footnote[ancestor::table])">
+    <xsl:text>.PP&#10;</xsl:text>
+  </xsl:if>
   <xsl:call-template name="mixed-block"/>
   <xsl:text>&#10;</xsl:text>
 </xsl:template>
