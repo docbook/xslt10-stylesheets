@@ -27,6 +27,11 @@
   <!-- *   http://www.snake.net/software/troffcvt/tbl.html -->
 
   <xsl:template match="table|informaltable">
+    <xsl:param name="title">
+      <xsl:if test="local-name(.) = 'table'">
+        <xsl:apply-templates select="." mode="object.title.markup"/>
+      </xsl:if>
+    </xsl:param>
     <!-- * ============================================================== -->
     <!-- *    Set global table parameters                                 -->
     <!-- * ============================================================== -->
@@ -70,9 +75,11 @@
           <!-- * HTML table in the DocBook source, instead of a CALS -->
           <!-- * table. So we just copy it as-is, while wrapping it -->
           <!-- * in a Table element -->
-          <table>
+          <xsl:for-each select="descendant-or-self::table|descendant-or-self::informaltable">
+          <htmltable parent="{local-name(parent::*)}">
             <xsl:copy-of select="*"/>
-          </table>
+          </htmltable>
+          </xsl:for-each>
         </xsl:when>
         <xsl:otherwise>
           <!-- * Otherwise, this is a CALS table in the DocBook source, -->
@@ -85,7 +92,7 @@
     </xsl:param>
     <xsl:param name="contents" select="exsl:node-set($html-table-output)"/>
 
-    <xsl:for-each select="$contents/table">
+    <xsl:for-each select="$contents//table|$contents//htmltable">
     <!-- * ============================================================== -->
     <!-- *   Flatten table contents into row set                          -->
     <!-- * ============================================================== -->
@@ -120,6 +127,24 @@
     <!-- * This is where we generate the actual roff output, including -->
     <!-- * the optional "options line", required "format section", and -->
     <!-- * finally, the actual contents of each cell. -->
+
+    <xsl:if test="$title != '' or parent::td or self::htmltable[@parent = 'td']">
+      <xsl:text>.PP&#10;</xsl:text>
+      <xsl:text>.</xsl:text>
+      <xsl:value-of select="$man.table.title.font"/>
+      <xsl:text> </xsl:text>
+      <xsl:if test="self::htmltable">
+      <xsl:for-each select="ancestor-or-self::*">
+        <xsl:message><xsl:value-of select="@*"/></xsl:message>
+      </xsl:for-each>
+    </xsl:if>
+      <xsl:if test="parent::td|self::htmltable[@parent = 'td']">
+        <xsl:text>*[nested&#160;table]</xsl:text>
+      </xsl:if>
+      <xsl:value-of select="normalize-space($title)"/>
+      <xsl:text>&#10;</xsl:text>
+      <xsl:text>.sp -1&#10;</xsl:text>
+    </xsl:if>
 
     <!-- * .TS = "Table Start" -->
     <xsl:text>.TS&#10;</xsl:text>
@@ -263,12 +288,8 @@
           align="{@align}">
       <xsl:choose>
         <xsl:when test=".//tr">
-          <xsl:message>Warn: Discarding nested table. Not supported in tbl(1).</xsl:message>
-          <xsl:text>[Source&#160;had&#160;nested]&#10;</xsl:text>
-          <xsl:text>[table,&#160;but&#160;tbl(1)]&#10;</xsl:text>
-          <xsl:text>[lacks&#160;any&#160;support]&#10;</xsl:text>
-          <xsl:text>[for&#160;nested&#160;table;]&#10;</xsl:text>
-          <xsl:text>[so&#160;was&#160;discarded.]</xsl:text>
+          <xsl:message>Warn: Extracted a nested table. (No nesting support in tbl(1).)</xsl:message>
+          <xsl:text>[nested&#160;table]*&#10;</xsl:text>
         </xsl:when>
         <xsl:otherwise>
           <!-- * Apply templates to the child contents of this cell, to -->
@@ -390,8 +411,8 @@
     </xsl:choose>
     <xsl:if test="@class = 'th'">
       <!-- * If this is a heading row, generate a font indicator (B or I), -->
-      <!-- * or if the value of $man.table.heading.font is empty, nothing. -->
-      <xsl:value-of select="$man.table.heading.font"/>
+      <!-- * or if the value of $man.table.headings.font is empty, nothing. -->
+      <xsl:value-of select="$man.table.headings.font"/>
     </xsl:if>
     <!-- * We only need to deal with colspans whose value is greater -->
     <!-- * than one (a colspan="1" is the same as having no colspan -->
