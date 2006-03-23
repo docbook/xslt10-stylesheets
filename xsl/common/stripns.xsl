@@ -3,7 +3,8 @@
 		xmlns:ng="http://docbook.org/docbook-ng"
 		xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:saxon="http://icl.com/saxon"
-                exclude-result-prefixes="db ng saxon"
+                xmlns:exsl="http://exslt.org/common"
+                exclude-result-prefixes="db ng exsl saxon"
                 version='1.0'>
 
 <xsl:template match="*" mode="stripNS">
@@ -240,6 +241,23 @@
 
 <xsl:template match="comment()|processing-instruction()|text()" mode="stripNS">
   <xsl:copy/>
+</xsl:template>
+
+<xsl:template match="/">
+  <xsl:choose>
+    <xsl:when test="function-available('exsl:node-set')
+                    and (*/self::ng:* or */self::db:*)">
+      <xsl:message>Stripping NS from DocBook 5/NG document.</xsl:message>
+      <xsl:variable name="nons">
+        <xsl:apply-templates mode="stripNS"/>
+      </xsl:variable>
+      <xsl:message>Processing stripped document.</xsl:message>
+      <xsl:apply-templates select="exsl:node-set($nons)"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy-of select="@* | node()"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
