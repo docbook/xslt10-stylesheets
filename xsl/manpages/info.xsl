@@ -306,7 +306,8 @@
   </xsl:template>
 
   <xsl:template match="address" mode="authorsect">
-    <xsl:variable name="contents" select="node()[local-name() != 'email']"/>
+    <xsl:variable name="contents"
+                  select="normalize-space(node()[local-name() != 'email'])"/>
     <!-- * If this contents of this Address do not contain anything except -->
     <!-- * an Email child, then output nothing. -->
     <xsl:if test="$contents != ''">
