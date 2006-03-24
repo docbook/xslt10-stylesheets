@@ -110,22 +110,12 @@ EXPAND_FLAGS =
 # stylesheets OR it can be a local system path
 DOCBOOK_XSL = http://docbook.sourceforge.net/release/xsl/current
 
-# value of STRIP_NS should be path to "standalone" stripns.xsl
-# stylesheet for stripping DocBook NG/5 namespace from document
-# instance so that it can be processed by DocBook XSL stylesheets
-# (XSLT 1.0 ones, which aren't DocBook namespace-aware). This
-# manual namespace-stripping is currently needed only for
-# processing with the (xsl:output method="text") manpages
-# stylesheet; for other output formats, it is done automatically.
-STRIP_NS = $(DOCBOOK_XSL)/manpages/stripns.xsl
-
 # -----------------------------------------------------------------
 #       names of some DIRECTORIES and FILES we need
 # -----------------------------------------------------------------
-# we create a tmp directory once-per-make invocation; it is needed
-# keeping track of what man pages have been generated and also for
-# holding a temporary copy of the customer DBLaTeX stylesheet
-# (because dblatex(1) currently can't read a stylesheet from stdin
+# We create a tmp directory once per make invocation; it's needed
+# for holding a temporary copy of the custom DBLaTeX stylesheet
+# (because dblatex currently can't read a stylesheet from stdin)
 TMP ?= /tmp
 TMPNUM := $(shell echo $$$$)
 DOCBOOK_TMP := $(TMP)/docbook-make-$(TMPNUM)
@@ -133,9 +123,8 @@ DOCBOOK_TMP := $(TMP)/docbook-make-$(TMPNUM)
 # MAN_MANIFEST_EXT is file extension added to individual manifest
 # files
 MAN_MANIFEST_EXT = manifest_man
-MAN_LOG = $(DOCBOOK_TMP)/MAN.log
 
-# MAN_MANIFEST_EXT is file extension added to HTML manifest files
+# HTML_MANIFEST_EXT is file extension added to HTML manifest files
 HTML_MANIFEST_EXT = manifest_html
 
 # BASEDIR_SUFFIX is a what you need to set if you want a suffix
@@ -204,7 +193,7 @@ REFENTRY_CHECK := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transfor
                 version="1.0"> \
   <xsl:output method="text"/> \
   <xsl:template match="/"> \
-    <xsl:if test="//refentry"> \
+    <xsl:if test="//*[local-name() = 'refentry']"> \
       <xsl:text>true</xsl:text> \
     </xsl:if> \
   </xsl:template> \
@@ -483,12 +472,10 @@ endif
 	if [ "$(strip $(shell echo '$(REFENTRY_CHECK)' | $(XSLT) $(XSLT_FLAGS) - $<))" != "true" ]; then \
 	  touch $@; \
 	else \
-	  mkdir $(DOCBOOK_TMP); \
-	  echo '$(MAN_CUSTOM)' > $(DOCBOOK_TMP)/man.xsl; \
-	  $(XSLT) $(XSLT_FLAGS) $(STRIP_NS) $< | $(XSLT) $(XSLT_FLAGS) $(MAN_PARAMS) \
+	  echo '$(MAN_CUSTOM)' \
+	  | $(XSLT) $(XSLT_FLAGS) $(MAN_PARAMS) \
 	    --stringparam man.manifest.filename $@ \
-	    $(DOCBOOK_TMP)/man.xsl - ; \
-	  $(RM) -r $(DOCBOOK_TMP); \
+	    - $<; \
 	fi
 
 # -----------------------------------------------------------------
