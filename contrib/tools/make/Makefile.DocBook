@@ -345,8 +345,8 @@ MAN_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
 #                  ** TARGETS START HERE ** 
 # -----------------------------------------------------------------
 #  prevents make from deleting, e.g. foo.1, after making foo.1.pdf
-#  and foo.1.txt from it
-.PRECIOUS: %.1 %.2 %.3 %.4 %.5 %.6 %.7 %.8 %.9
+#  and foo.1.txt from it, or foo.html after making foo.txt
+.PRECIOUS: %.1 %.2 %.3 %.4 %.5 %.6 %.7 %.8 %.9 %.html
 
 docbook: $(DOCBOOK_OUTPUT_FORMATS)
 
@@ -370,7 +370,7 @@ pdf: $(FILES_PDF)
 
 info: $(FILES_INFO)
 
-# use the "debug" target echo variables, etc., to
+# use the "debug" target to echo variables, etc., to
 # test/troubleshoot changes you make to this makefile
 debug:
 
