@@ -114,6 +114,7 @@ ZIP_EXCLUDES = \
  MANIFEST.build \
  Makefile$$ \
  Makefile[.] \
+ LatestTag \
  README\.CVS \
  RELEASE-NOTES\.fo \
  \.make-catalog\.xsl
