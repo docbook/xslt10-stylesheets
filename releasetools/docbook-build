@@ -274,10 +274,10 @@ EOF
 
     if grep "<xsl:stylesheet" $DISTRO/VERSION >/dev/null; then
       cp -p $DISTRO/VERSION $DISTRO/VERSION.tmp
-      sed "s/Version>.\+</Version>$DATE\_$TIME\_$RELEASEVERSION</" $DISTRO/VERSION.tmp > $DISTRO/VERSION
+      sed "s/Version>.\+</Version>$RELEASEVERSION\_$DATE\_$TIME\</" $DISTRO/VERSION.tmp > $DISTRO/VERSION
       rm $DISTRO/VERSION.tmp
     else
-      echo "$DATE_$TIME_$RELEASEVERSION" > $DISTRO/VERSION
+      echo "$RELEASEVERSION_$DATE_$TIME" > $DISTRO/VERSION
     fi
     if [ "$UPLOAD" = "yes" ]; then
 
