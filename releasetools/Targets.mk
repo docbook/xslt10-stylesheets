@@ -3,15 +3,51 @@
 
 # $Id$
 
+debug:
+
+ifeq ($(TAGVER),$(shell if [ -f LatestTag ]; then cat LatestTag; fi))
 RELEASE-NOTES.html: RELEASE-NOTES.xml
+else
+RELEASE-NOTES.html: RELEASE-NOTES-$(TAGVER).xml
+endif
 	$(XSLT) $< $(DOC-LINK-STYLE) $@
 
 RELEASE-NOTES.txt: RELEASE-NOTES.html
 	LANG=C $(BROWSER) $(BROWSER_OPTS) $< > $@
 
+ifeq ($(TAGVER),$(shell if [ -f LatestTag ]; then cat LatestTag; fi))
 RELEASE-NOTES.pdf: RELEASE-NOTES.xml
+else
+RELEASE-NOTES.pdf: RELEASE-NOTES-$(TAGVER).xml
+endif
 	$(XSLT) $< $(FO-STYLE) $(basename $<).fo $(FO_ENGINE).extensions=1 \
 	&& $(FO_ENGINE) $(FO_ENGINE_OPTS) $(basename $<).fo
+
+RELEASE-NOTES-$(TAGVER).xml: RELEASE-NOTES.xml NEWS.xml
+	$(XINCLUDE) $< > $@
+
+NEWS.xml: ChangeLog.xml
+	$(XSLT) $< $(NEWS_MAKER) $@ \
+	latest-tag="'$(shell cat LatestTag)'" \
+	release-version="'$(RELVER)'"
+
+NEWS.html: NEWS.xml
+	$(XSLT) $< $(DOC-LINK-STYLE) $@
+
+$(NEWSFILE): NEWS.html
+	LANG=C $(BROWSER) $(BROWSER_OPTS) $< > $@
+
+ChangeLog.xml: LatestTag
+	$(CVS2CL) $(CVS2CL_OPTS) \
+	--delta $(shell cat LatestTag):HEAD --xml -f $@ -g -q
+
+LatestTag:
+# Note that one of the old commit messsage in the cvs log contains
+# a ^Z (x1a) character, which is not legal in XML, so it must
+# strip it out before using it with any XML processing apps
+	$(CVS2CL) $(CVS2CL_OPTS) --stdout --xml -g -q \
+	| $(SED) $(SED_OPTS) 's/\x1a//g' \
+	| $(XSLTPRC) $(GET_LATEST_TAG) - > $@
 
 .CatalogManager.properties.example:
 	cp -p $(CATALOGMANAGER) .CatalogManager.properties.example
@@ -31,14 +67,6 @@ install.sh: .CatalogManager.properties.example .urilist catalog.xml
 	cp $(INSTALL_SH) install.sh
 
 distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE)
-
-$(NEWSFILE):
-	$(CVS2LOG) -w
-ifeq ($(DIFFVER),)
-	$(MERGELOGS) > $(NEWSFILE)
-else
-	$(MERGELOGS) -v $(DIFFVER) > $(NEWSFILE)
-endif
 
 newversion:
 ifeq ($(CVSCHECK),)
@@ -98,10 +126,10 @@ endif
 #          Prepare *zip files for main part of distro
 # -----------------------------------------------------------------
 	rm -rf $(TMP)/docbook-$(DISTRO)-$(ZIPVER)
-	rm -f  $(TMP)/tar.exclude
-	rm -f  $(TMP)/docbook-$(DISTRO)-$(ZIPVER).tar.gz
-	rm -f  $(TMP)/docbook-$(DISTRO)-$(ZIPVER).tar.bz2
-	rm -f  $(TMP)/docbook-$(DISTRO)-$(ZIPVER).zip
+	$(RM)  $(TMP)/tar.exclude
+	$(RM)  $(TMP)/docbook-$(DISTRO)-$(ZIPVER).tar.gz
+	$(RM)  $(TMP)/docbook-$(DISTRO)-$(ZIPVER).tar.bz2
+	$(RM)  $(TMP)/docbook-$(DISTRO)-$(ZIPVER).zip
 	umask 022; mkdir -p $(TMP)/docbook-$(DISTRO)-$(ZIPVER)
 	touch $(TMP)/tar.exclude
 # distro-specific excludes
@@ -125,7 +153,7 @@ endif
 	umask 022; cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-$(ZIPVER).tar.gz
 	umask 022; cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > docbook-$(DISTRO)-$(ZIPVER).tar.bz2
 	umask 022; cd $(TMP) && zip -q -rpD docbook-$(DISTRO)-$(ZIPVER).zip docbook-$(DISTRO)-$(ZIPVER)
-	rm -f $(TMP)/tar.exclude
+	$(RM) $(TMP)/tar.exclude
 
 # -----------------------------------------------------------------
 #     Prepare *zip files for other parts of distro (if any)
@@ -133,10 +161,10 @@ endif
 ifneq ($(DISTRIB_PACKAGES),)
 	for part in $(DISTRIB_PACKAGES); do \
 	rm -rf $(TMP)/docbook-$(DISTRO)-$(ZIPVER); \
-	rm -f  $(TMP)/tar.exclude; \
-	rm -f  $(TMP)/docbook-$(DISTRO)-$$part-$(ZIPVER).tar.gz; \
-	rm -f  $(TMP)/docbook-$(DISTRO)-$$part-$(ZIPVER).tar.bz2; \
-	rm -f  $(TMP)/docbook-$(DISTRO)-$$part-$(ZIPVER).zip; \
+	$(RM)  $(TMP)/tar.exclude; \
+	$(RM)  $(TMP)/docbook-$(DISTRO)-$$part-$(ZIPVER).tar.gz; \
+	$(RM)  $(TMP)/docbook-$(DISTRO)-$$part-$(ZIPVER).tar.bz2; \
+	$(RM)  $(TMP)/docbook-$(DISTRO)-$$part-$(ZIPVER).zip; \
 	umask 022; mkdir -p $(TMP)/docbook-$(DISTRO)-$(ZIPVER); \
 	touch $(TMP)/tar.exclude; \
 	if [ -n "$(DISTRIB_EXCLUDES)" ]; then \
@@ -155,7 +183,7 @@ ifneq ($(DISTRIB_PACKAGES),)
 	umask 022; (cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-$$part-$(ZIPVER).tar.gz); \
 	umask 022; (cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > docbook-$(DISTRO)-$$part-$(ZIPVER).tar.bz2); \
 	umask 022; (cd $(TMP) && zip -q -rpD docbook-$(DISTRO)-$$part-$(ZIPVER).zip docbook-$(DISTRO)-$(ZIPVER)); \
-	rm -f $(TMP)/tar.exclude; \
+	$(RM) $(TMP)/tar.exclude; \
 	done
 endif
 endif
@@ -176,17 +204,22 @@ install: zip
 	   rm -rf docbook-$(DISTRO)-$(ZIPVER).tar.bz2; \
 	   rm -rf docbook-$(DISTRO)-*-$(ZIPVER).tar.bz2; \
 	   chmod -R g+w $(ZIPVER); \
-	   rm -f current; \
+	   $(RM) current; \
 	   ln -s $(ZIPVER) current; \
 	   )"
 
 release-clean: clean
-	rm -f NEWS
-	rm -f RELEASE-NOTES.txt
-	rm -f RELEASE-NOTES.html
-	rm -f RELEASE-NOTES.fo
-	rm -f RELEASE-NOTES.pdf
-	rm -f install.sh
-	rm -f .CatalogManager.properties.example
-	rm -f .urilist
-	rm -f .make-catalog.xsl
+	$(RM) $(NEWSFILE)
+	$(RM) NEWS.html
+	$(RM) NEWS.xml
+	$(RM) RELEASE-NOTES-$(TAGVER).xml
+	$(RM) ChangeLog.xml
+	$(RM) LatestTag
+	$(RM) RELEASE-NOTES.txt
+	$(RM) RELEASE-NOTES.html
+	$(RM) RELEASE-NOTES.fo
+	$(RM) RELEASE-NOTES.pdf
+	$(RM) install.sh
+	$(RM) .CatalogManager.properties.example
+	$(RM) .urilist
+	$(RM) .make-catalog.xsl
