@@ -48,6 +48,7 @@ formalpara|simpara|annotation)+,
 xmlns         CDATA  #FIXED   'http://docbook.org/ns/docbook'
 version       CDATA  #IMPLIED
 xmlns:xlink   CDATA  #FIXED   'http://www.w3.org/1999/xlink'
+xmlns:xi      CDATA  #FIXED   'http://www.w3.org/2001/XInclude'
 xlink:href    CDATA  #IMPLIED
 xlink:type    CDATA  #IMPLIED
 xlink:role    CDATA  #IMPLIED
@@ -66,10 +67,27 @@ xlink:actuate (onLoad|onRequest|other|none)	#IMPLIED
 endtag|genentity|numcharref|paramentity|
 pi|comment|starttag|xmlpi)    #IMPLIED>
 <!ATTLIST tag  namespace      CDATA #IMPLIED>
+<!-- * -->
+<!ELEMENT xi:include (xi:fallback?)>
+<!ATTLIST xi:include
+xmlns:xi        CDATA       #FIXED    "http://www.w3.org/2001/XInclude"
+href            CDATA       #IMPLIED
+parse           (xml|text)  "xml"
+xpointer        CDATA       #IMPLIED
+encoding        CDATA       #IMPLIED
+accept          CDATA       #IMPLIED
+accept-language CDATA       #IMPLIED
+>
+<!ELEMENT xi:fallback ANY>
+<!ATTLIST xi:fallback
+xmlns:xi   CDATA   #FIXED   "http://www.w3.org/2001/XInclude"
+>
 ]>
 <article xml:lang="en" xml:id="releasenotes"
   xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns="http://docbook.org/ns/docbook">
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns="http://docbook.org/ns/docbook"
+  >
   <info>
     <title>Release Notes</title>
     <subtitle>DocBook Project XSL Stylesheets</subtitle>
@@ -80,97 +98,21 @@ pi|comment|starttag|xmlpi)    #IMPLIED>
     <author><orgname>DocBook Project Development Team</orgname></author>
   </info> 
 
-  <para>These are the release notes for the DocBook XSL Stylesheets.
-  At a minimum, this file attempts to document changes to the public
-  APIs, particularly to user-configurable parameters. This file also
-  provides a high-level overview of the features added in each
-  release.</para>
+  <para>This is a pre-release "snapshot" of the DocBook XSL
+  Stylesheets. The information is this document is auto-generated from
+  change descriptions stored in the project source-code
+  repository. That means it contains descriptions both of bug fixes
+  and of feature changes. The release notes for the next official
+  release will be a manually edited subset of this document, trimmed
+  down to just those those descriptions that document enhancements and
+  changes to the public APIs (user-configurable parameters) – that is,
+  without the descriptions of bug fixes. So for now, it’s a lot of
+  information to wade through, but at least you can trust that it’s
+  complete…</para>
 
-  <para>Bug fixes are (mostly) not documented here. For a complete
-  list of changes, including descriptions of bug fixes, see the <uri
-  xlink:href="NEWS"/> file, which is auto-generated from the checkin
-  descriptions for changes in the project source-code repository.</para>
+  <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1)"/>
 
-  <section xml:id="snapshot">
-    <title>Current snapshot</title>
-    <para>The current snapshot includes changes related to… FIXME</para>
-
-    <section xml:id="snapshot_COMMON">
-      <title>Common</title>
-      <para>The following changes have been made to the
-      <filename>common</filename> code since the previous
-      release.</para>
-      <itemizedlist>
-        <listitem>
-          <para></para>
-        </listitem>
-      </itemizedlist>
-      <!-- end of Common changes for snapshot -->
-    </section>
-
-    <section xml:id="snapshot_FO">
-      <title>FO</title>
-      <para>The following changes have been made to the FO stylesheets
-      since the last release.</para>
-      <itemizedlist>
-        <listitem>
-          <para></para>
-        </listitem>
-      </itemizedlist>
-      <!-- end of FO changes for snapshot -->
-    </section>
-    
-    <section xml:id="snapshot_HTML">
-      <title>HTML</title>
-      <!-- end of HTML changes for snapshot -->
-      <para>The following changes have been made to the HTML
-      stylesheets since the last release.</para>
-      <itemizedlist>
-        <listitem>
-          <para></para>
-        </listitem>
-      </itemizedlist>
-    </section>
-
-    <section xml:id="snapshot_HELP">
-      <title>Help</title>
-      <para>The following changes have been made to the Help
-      stylesheets since the last release.</para>
-      <itemizedlist>
-        <listitem>
-          <para></para>
-        </listitem>
-      </itemizedlist>
-      <!-- end of Help changes for snapshot -->
-    </section>
-
-    <section xml:id="snapshot_WORDML">
-      <title>WordML</title>
-      <para>The following changes have been made to the Help
-      stylesheets since the last release.</para>
-      <itemizedlist>
-        <listitem>
-          <para></para>
-        </listitem>
-      </itemizedlist>
-      <!-- end of WordML changes for snapshot -->
-    </section>
-
-    <section xml:id="snapshot_MAN">
-      <title>man</title>
-      <para>The following changes have been made to the manpages
-      stylesheets since the last release.</para>
-      <itemizedlist>
-        <listitem>
-          <para></para>
-        </listitem>
-      </itemizedlist>
-      <!-- end of MAN changes for snapshot -->
-    </section>
-  </section>
-  <!-- end of notes for current snapshot -->
-
-  <section xml:id="V1691">
+  <sect1 xml:id="V1691">
     <title>Release 1.69.1</title>
     <para>This release is a minor bug-fix update to the 1.69.0
     release. Along with bug fixes, it includes one
@@ -180,10 +122,10 @@ pi|comment|starttag|xmlpi)    #IMPLIED>
     there have been reports that <tag>annotation</tag> handling is
     causing a significant performance degradation in processing of
     large documents with <command>xsltproc</command>.</para>
-  </section>
+  </sect1>
   <!-- end of notes for 1.69.1 release -->
 
-  <section xml:id="V1690">
+  <sect1 xml:id="V1690">
     <title>Release 1.69.0</title>
     <para>The release includes major feature changes,
     particularly in the <link linkend="V1690_MAN">manpages
@@ -192,7 +134,7 @@ pi|comment|starttag|xmlpi)    #IMPLIED>
     <para>As with all DocBook Project <quote>dot zero</quote> releases, this is an
     <link linkend="dot0">experimental release </link>.</para>
    
-    <section xml:id="V1690_COMMON">
+    <sect2 xml:id="V1690_COMMON">
       <title>Common</title>
       <itemizedlist>
         <listitem>
@@ -295,8 +237,8 @@ pi|comment|starttag|xmlpi)    #IMPLIED>
         <quote>ou</quote> instead of <quote>or</quote>.</para>
       </listitem>
       </itemizedlist>
-    </section>
-    <section xml:id="V1690_FO">
+    </sect2>
+    <sect2 xml:id="V1690_FO">
       <title>FO</title>
       <itemizedlist>
         <listitem>
@@ -383,9 +325,9 @@ pi|comment|starttag|xmlpi)    #IMPLIED>
           parameter.</para>
         </listitem>
       </itemizedlist>
-    </section>
+    </sect2>
     
-    <section xml:id="V1690_HELP">
+    <sect2 xml:id="V1690_HELP">
       <title>Help</title>
       <itemizedlist>
         <listitem>
@@ -393,9 +335,9 @@ pi|comment|starttag|xmlpi)    #IMPLIED>
           database.</para>
         </listitem>
       </itemizedlist>
-    </section>
+    </sect2>
 
-    <section xml:id="V1690_HTML">
+    <sect2 xml:id="V1690_HTML">
       <title>HTML</title>
       <itemizedlist>
         <listitem>
@@ -556,8 +498,8 @@ pi|comment|starttag|xmlpi)    #IMPLIED>
           the language code will be left as-is.</para>
         </listitem>
       </itemizedlist>
-    </section>
-    <section xml:id="V1690_MAN">
+    </sect2>
+    <sect2 xml:id="V1690_MAN">
       <title>man</title>
       <para>This release closes out 44 manpages stylesheet bug reports
       and feature requests. It adds more than 35 new configuration
@@ -1215,11 +1157,11 @@ pi|comment|starttag|xmlpi)    #IMPLIED>
       </listitem>
     </itemizedlist>
     <!-- end of MAN changes for 1.69.0 release -->
-  </section>
-</section>
+  </sect2>
+</sect1>
   <!-- end of notes for 1.69.0 release -->
 
-  <section>
+  <sect1>
     <title>Release 1.68.1</title>
     <para>The release adds localization support for Farsi (thanks to
     Sina Heshmati) and improved support for the XLink-based DocBook NG
@@ -1229,10 +1171,10 @@ pi|comment|starttag|xmlpi)    #IMPLIED>
     with the wrong package structure. Thanks to Jens Stavnstrup for
     quickly reporting the problem, and to Mauritz Jeanson for
     investigating and finding the cause.</para>
-  </section>
+  </sect1>
   <!-- end of notes for 1.68.1 release -->
 
-  <section>
+  <sect1>
     <title>Release 1.68.0</title>
     <para>This release includes some features changes, particularly
     for FO/PDF output, and a number of bug fixes.
@@ -1381,18 +1323,17 @@ pi|comment|starttag|xmlpi)    #IMPLIED>
         </listitem>
       </itemizedlist>
     </para>
-  </section>
+  </sect1>
   <!-- end of notes for 1.68.0 release -->
 
-  <section>
+  <sect1>
     <title>Release 1.67.2</title>
     <para>This release fixes a table bug introduced in the 1.67.1
     release.</para>
-  </section>
-  <section>
+  </sect1>
+  <sect1>
     <title>Release 1.67.1</title>
-    <para>This release includes a number of bug fixes; for details,
-    see the <uri xlink:href="WhatsNew"/> file.</para>
+    <para>This release includes a number of bug fixes.</para>
      <para>The following lists provide details about API and feature changes.
       <itemizedlist xml:id="V1671_FO">
         <title>FO</title>
@@ -1539,12 +1480,12 @@ pi|comment|starttag|xmlpi)    #IMPLIED>
         </listitem>
       </itemizedlist>
     </para>
-  </section>
-<section>
+  </sect1>
+<sect1>
   <title>Release 1.67.0</title>
   <itemizedlist>
   <listitem>
-    <para>A number of important bug fixes, documented in <uri xlink:href="WhatsNew"/>.</para>
+    <para>A number of important bug fixes.</para>
   </listitem>
   <listitem>
     <para>Added Saxon8 extensions</para>
@@ -1620,12 +1561,12 @@ pi|comment|starttag|xmlpi)    #IMPLIED>
     package</para>
   </listitem>
 </itemizedlist>
-</section>
-<section>
+</sect1>
+<sect1>
 <title>Release 1.66.1</title>
   <itemizedlist>
 <listitem>
-<para>A number of important bug fixes, documented in <uri xlink:href="WhatsNew"/>.
+<para>A number of important bug fixes.
 </para>
 </listitem>
 <listitem>
@@ -1889,12 +1830,12 @@ Added Bosnian locale file as common/bs.xml.
 </para>
 </listitem> 
 </itemizedlist>
-</section>
-<section>
+</sect1>
+<sect1>
 <title>Release 1.65.0</title> 
 <itemizedlist>
 <listitem>
-<para>A number of important bug fixes, documented in <uri xlink:href="WhatsNew"/>.
+<para>A number of important bug fixes.
 </para>
 </listitem> 
 <listitem>
@@ -1930,8 +1871,8 @@ with xsltproc 1.1.1 and later. Currently supported languages are
 English, Czech, German, French, Spanish and Danish.</para> 
 </listitem> 
 </itemizedlist> 
-</section>
-<section>
+</sect1>
+<sect1>
 <title>Release 1.64.1</title> 
 <itemizedlist>
 <para>General bug fixes and improvements. Sorry about the failure to produce
@@ -1944,8 +1885,8 @@ will work with older Xalan 2 implementations, <filename>xalan25.jar</filename>
 works with Xalan 2.5.</para>
 </listitem>
 </itemizedlist> 
-</section>
-<section>
+</sect1>
+<sect1>
 <title>Release 1.61.0</title> 
 <itemizedlist>
 <para>Lots of bug fixes and improvements.</para> 
@@ -2129,8 +2070,8 @@ and first varlistentry since DocBook 4.2 supports that now.
 </para>
 </listitem>
 </itemizedlist> 
-</section>
-<section>
+</sect1>
+<sect1>
 <title>Release 1.60.1</title> 
 <itemizedlist>
 <para>Lots of bug fixes.</para> 
@@ -2274,8 +2215,8 @@ with the <quote>dbhtml</quote> PI.
 </para>
 </listitem> 
 </itemizedlist> 
-</section>
-<section>
+</sect1>
+<sect1>
 <title>Release 1.59.2</title> 
 <itemizedlist>
 <para>The 1.59.2 fixes an FO bug in the page masters that causes FOP to fail.
@@ -2315,8 +2256,8 @@ the base font size, not a fixed "12pt".
 </para>
 </listitem>
 </itemizedlist> 
-</section>
-<section>
+</sect1>
+<sect1>
 <title>Release 1.59.1</title> 
 <itemizedlist>
 <para>The 1.59.1 fixes a few bugs.
@@ -2369,8 +2310,8 @@ and <tag>procedure</tag>s.
 </para>
 </listitem>
 </itemizedlist> 
-</section>
-<section>
+</sect1>
+<sect1>
 <title>Release 1.58.0</title> 
 <itemizedlist>
 <para>The 1.58.0 adds some initial support for extensions in xsltproc, adds
@@ -2418,8 +2359,8 @@ just a simple name.
 </para>
 </listitem>
 </itemizedlist> 
-</section>
-<section>
+</sect1>
+<sect1>
 <title>Release 1.57.0</title>
 <itemizedlist>
 <listitem>
@@ -2427,8 +2368,8 @@ just a simple name.
 </para>
 </listitem>
 </itemizedlist> 
-</section>
-<section>
+</sect1>
+<sect1>
 <title>Release 1.56.0</title> 
 <itemizedlist>
 <para>The 1.56.0 release fixes bugs.
@@ -2595,15 +2536,16 @@ XHTML chunker to output HTML instead of XHTML.
 </para>
 </listitem>
 </itemizedlist> 
-</section>
-<section>
+</sect1>
+<sect1>
   <title>Older releases</title>
   <para>To view the release notes for older releases, see <uri
-  xlink:href="http://cvs.sourceforge.net/viewcvs.py/docbook/xsl/RELEASE-NOTES.xml"/>. Be
+  xlink:href="http://cvs.sourceforge.net/viewcvs.py/docbook/xsl/RELEASE-NOTES.xml"
+  >http://cvs.sourceforge.net/viewcvs.py/docbook/xsl/RELEASE-NOTES.xml</uri>. Be
   aware that there were no release notes for releases prior to the
   1.50.0 release.</para>
-</section>
-<section xml:id="dot0">
+</sect1>
+<sect1 xml:id="dot0">
   <title>About dot-zero releases</title>
     <para>DocBook Project <quote>dot zero</quote> releases should be
     considered <emphasis>experimental</emphasis> and are always
@@ -2616,5 +2558,5 @@ XHTML chunker to output HTML instead of XHTML.
     release in a production system, or package it for an OS
     distro. Instead, you should wait for the <quote>dot one</quote>
     version.</para>
-  </section>
+  </sect1>
 </article>
