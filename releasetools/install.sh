@@ -23,20 +23,21 @@
 # It makes backup copies of any files it touches, and also
 # generates a uninstall.sh script for reverting its changes.
 #
-# In the same directory from it is run, it expects to find four
-# files (below). And if it is unable to locate a
+# In the same directory where it is located, it expects to find
+# four files (below). And if it is unable to locate a
 # CatalogManager.properties file in the user environment, it
 # expects to find an "example" one in the same directory, which it
 # copies over to the user's ~/.resolver directory.
 
-thisLocatingRules=$PWD/locatingrules.xml
-thisXmlCatalog=$PWD/catalog.xml
-thisSgmlCatalog=$PWD/catalog
+mydir=$(readlink -f $(dirname $0))
+thisLocatingRules=$mydir/locatingrules.xml
+thisXmlCatalog=$mydir/catalog.xml
+thisSgmlCatalog=$mydir/catalog
 # .urilist file contains a list of pairs of local pathnames and
 # URIs to test for catalog resolution
-thisUriList=$PWD/.urilist
+thisUriList=$mydir/.urilist
 
-exampleCatalogManager=$PWD/.CatalogManager.properties.example
+exampleCatalogManager=$mydir/.CatalogManager.properties.example
 thisCatalogManager=$HOME/.resolver/CatalogManager.properties
 
 osName=$(uname -o)
@@ -382,10 +383,10 @@ EOF
   parent=$(ps $PPID | grep "/")
   if [ "${parent#*csh}" != "$parent" ] || [ "${parent#*tcsh}" != "$parent" ]; then
     myStartupFiles=".cshrc .tcshrc"
-    appendLine="source $PWD/.cshrc.incl"
+    appendLine="source $mydir/.cshrc.incl"
   else
     myStartupFiles=".bash_profile .bash_login .profile .bashrc"
-    appendLine=". $PWD/.profile.incl"
+    appendLine=". $mydir/.profile.incl"
   fi
 
   for file in $myStartupFiles; do
@@ -454,7 +455,7 @@ NOTE: This distribution includes a "schema locating rules" file
 
 EOF
 
-  emacsAppendLine="(load-file \"$PWD/.emacs.el\")"
+  emacsAppendLine="(load-file \"$mydir/.emacs.el\")"
   myEmacsFile=
   for file in .emacs .emacs.el; do
     if [ -f "$HOME/$file" ]; then
@@ -541,7 +542,7 @@ EOF
   fi
 
   # make "escaped" version of PWD to use with sed and grep
-  escapedPwd=$(echo $PWD | sed "s#/#\\\\\/#g")
+  escapedPwd=$(echo $mydir | sed "s#/#\\\\\/#g")
 
   # check to see if a non-empty value for catalogManager was fed
   # to uninstaller.
@@ -605,7 +606,7 @@ EOF
 NOTE: No change made to $myEmacsFile. You need to manually
 remove the following line.
 
-(load-file \"$PWD/.emacs.el\")
+(load-file \"$mydir/.emacs.el\")
 
 EOF
           ;;
@@ -634,11 +635,11 @@ EOF
     if [ -e "$HOME/$file" ]; then
       case $file in
         .tcshrc|.cshrc)
-        revertLine="source $PWD/.cshrc.incl"
+        revertLine="source $mydir/.cshrc.incl"
         revertLineEsc="source $escapedPwd\/\.cshrc\.incl"
         ;;
         *)
-        revertLine=". $PWD/.profile.incl"
+        revertLine=". $mydir/.profile.incl"
         revertLineEsc="\. $escapedPwd\/\.profile\.incl"
         ;;
       esac
@@ -685,7 +686,7 @@ EOF
 writeUninstallFile() {
   uninstallFile=./uninstall.sh
   echo "#!/bin/sh"                                > $uninstallFile || exit 1
-  echo "$PWD/install.sh --uninstall \\"          >> $uninstallFile || exit 1
+  echo "$mydir/install.sh --uninstall \\"          >> $uninstallFile || exit 1
   echo "  --catalogManager=$myCatalogManager \\" >> $uninstallFile || exit 1
   echo "  --dotEmacs=$myEmacsFile"               >> $uninstallFile || exit 1
   chmod 755 $uninstallFile || exit 1
@@ -694,7 +695,7 @@ writeUninstallFile() {
 writeTestFile() {
   testFile=./test.sh
   echo "#!/bin/sh"                                > $testFile || exit 1
-  echo "$PWD/install.sh --test"                  >> $testFile || exit 1
+  echo "$mydir/install.sh --test"                  >> $testFile || exit 1
   chmod 755 $testFile || exit 1
 }
 
