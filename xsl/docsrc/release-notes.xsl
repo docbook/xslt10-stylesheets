@@ -18,7 +18,6 @@
   <!-- * XML-formatted ChangeLog output of the cvs2cl command -->
   <!-- *   http://www.red-bean.com/cvs2cl/ -->
 
-  <xsl:param name="l10n.gentext.language">en</xsl:param>
   <xsl:param name="release-version"/>
   <xsl:param name="latest-tag">VXXXX</xsl:param>
   <!-- * We get the value of $previous-release by chopping up the latest -->
@@ -33,10 +32,6 @@
       substring($latest-tag, 5, 1)
       )"/>
   </xsl:param>
-
-  <xsl:include href="../lib/lib.xsl"/>
-  <xsl:include href="../common/l10n.xsl"/>
-  <xsl:include href="../common/common.xsl"/>
 
   <xsl:strip-space elements="changelog entry"/>
 
@@ -120,13 +115,12 @@
     <!-- * param, popping them off until it depletes the list. -->
     <xsl:param name="subsection"/>
     <xsl:param name="remaining-subsections"/>
-    <xsl:param name="dirname">
       <!-- * dirname is a lowercase version of the "display name" for -->
       <!-- * each subsection -->
-      <xsl:call-template name="string.lower">
-        <xsl:with-param name="string" select="$subsection"/>
-      </xsl:call-template>
-    </xsl:param>
+    <xsl:param name="dirname"
+               select="translate($subsection,
+                       'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                       'abcdefghijklmnopqrstuvwxyz')"/>
     <!-- * if $subsection is empty it means we have walked through -->
     <!-- * the entire list and depleted it; so that's the point at which -->
     <!-- * the template stops recursing and returns -->
