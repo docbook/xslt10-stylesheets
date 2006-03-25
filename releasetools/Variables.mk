@@ -12,8 +12,27 @@ CATALOGMANAGER=$(DOCBOOK_CVS)/releasetools/.CatalogManager.properties.example
 INSTALL_SH=$(DOCBOOK_CVS)/releasetools/install.sh
 MAKECATALOG=$(DOCBOOK_CVS)/releasetools/make-catalog.xsl
 
+XSLTPROC=xsltproc
+XSLTPROC_OPTS=
+
+XMLLINT=xmllint
+XMLLINT_OPTS=
+XINCLUDE=$(XMLLINT) $(XMLLINT_OPTS) --xinclude
+
+CVS2CL=cvs2cl
+CVS2CL_OPTS=
+
+SED=sed
+SED_OPTS=
+
 # stylesheet for generating HTML version of release notes
 DOC-LINK-STYLE=$(DOCBOOK_CVS)/xsl/docsrc/doc-link-docbook.xsl
+
+# stylesheet used in making NEWS file(s) and releases notes
+NEWS_MAKER=docsrc/release-notes.xsl
+
+# stylesheet used for determining the latest cvs tag in cvs log
+GET_LATEST_TAG=docsrc/get-latest-tag.xsl
 
 # stylesheet for generating FO version of release notes
 FO-STYLE=$(DOCBOOK_CVS)/xsl/fo/docbook.xsl
