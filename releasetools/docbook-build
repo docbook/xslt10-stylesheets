@@ -181,7 +181,7 @@ else
     rm -f $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp
 
     DATE=`date +%Y-%m-%d`
-    TIME=`date '+%H:%M'`
+    TIME=`date '+%H%M'`
     ZONE=`date '+%Z'`
 
     UPPER_DISTRO=`echo $DISTRO | tr "[:lower:]" "[:upper:]"`
