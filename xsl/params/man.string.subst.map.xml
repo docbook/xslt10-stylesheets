@@ -75,6 +75,7 @@
   <!-- * for certain reasons, the stylesheets add it before and after -->
   <!-- * every Parameter in Funcprototype output -->
   <substitution oldstring="&#x2008;" newstring=" "/>
+  <substitution oldstring="&#x2302;" newstring="&#09;"/>
   <!-- * -->
   <!-- * Now deal with some other characters that are added by the -->
   <!-- * stylesheets during processing. -->
