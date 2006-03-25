@@ -47,7 +47,7 @@ LatestTag:
 # strip it out before using it with any XML processing apps
 	$(CVS2CL) $(CVS2CL_OPTS) --stdout --xml -g -q \
 	| $(SED) $(SED_OPTS) 's/\x1a//g' \
-	| $(XSLTPRC) $(GET_LATEST_TAG) - > $@
+	| $(XSLTPROC) $(GET_LATEST_TAG) - > $@
 
 .CatalogManager.properties.example:
 	cp -p $(CATALOGMANAGER) .CatalogManager.properties.example
