@@ -1826,6 +1826,48 @@ unchanged.</para>
 
 <!-- ===================================== -->
 
+<doc:template name="string.lower" xmlns="">
+<refpurpose>Converts a string to all lowercase letters</refpurpose>
+
+<refdescription>
+<para>Given a string, this template does a language-aware conversion
+of that string to all lowercase letters, based on the values of the
+<literal>uppercase.alpha</literal> and
+<literal>lowercase.alpha</literal> gentext keys for the current
+locale. It affects only those characters found in the values of
+<literal>uppercase.alpha</literal> and
+<literal>lowercase.alpha</literal>. All other characters are left
+unchanged.</para>
+</refdescription>
+
+<refparameter>
+<variablelist>
+<varlistentry><term>string</term>
+<listitem>
+<para>The string to convert to lowercase.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refparameter>
+</doc:template>
+
+<xsl:template name="string.lower">
+  <xsl:param name="string" select="''"/>
+  <xsl:variable name="uppercase.alpha">
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="'uppercase.alpha'"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="lowercase.alpha">
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="'lowercase.alpha'"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:value-of select="translate($string,$uppercase.alpha,$lowercase.alpha)"/>
+</xsl:template>
+
+<!-- ===================================== -->
+
 <doc:template name="select.choice.separator" xmlns="">
   <refpurpose>Returns localized choice separator</refpurpose>
   <refdescription>
