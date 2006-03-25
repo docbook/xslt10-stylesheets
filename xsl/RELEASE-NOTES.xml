@@ -1,14 +1,84 @@
 <?xml version='1.0'?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
-"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
-<article lang="en">
-  <articleinfo>
+"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!-- * This is a DocBook 5 instance. The purpose of the -->
+<!-- * internal subset is to make this it "backward compatible" -->
+<!-- * with DocBook 4.x -->
+<!-- * -->
+<!ENTITY % article.element "IGNORE">
+<!ELEMENT article (((title|titleabbrev|subtitle)*, info?),
+                  (glossary|bibliography|index|toc)*,
+(((itemizedlist|orderedlist|procedure|simplelist|variablelist|
+segmentedlist|glosslist|bibliolist|calloutlist|qandaset|caution|
+important|note|tip|warning|example|figure|table|informalexample|
+informalfigure|informaltable|sidebar|blockquote|address|epigraph|
+mediaobject|screenshot|task|productionset|constraintdef|msgset|
+programlisting|screen|literallayout|synopsis|programlistingco|
+screenco|cmdsynopsis|funcsynopsis|classsynopsis|methodsynopsis|
+constructorsynopsis|destructorsynopsis|fieldsynopsis|bridgehead|
+remark|revhistory|indexterm|equation|informalequation|anchor|para|
+formalpara|simpara|annotation)+,
+(((section)+, (simplesect)*)|(simplesect)+|((sect1)+,
+(simplesect)*)|(refentry)+)?)|((section)+,
+(simplesect)*)|(simplesect)+|((sect1)+, (simplesect)*)|(refentry)+),
+(appendix|glossary|bibliography|index|toc|ackno|colophon)*)>
+<!ATTLIST article  xml:lang   CDATA  #IMPLIED>
+<!-- * -->
+<!ELEMENT info ((title|titleabbrev|subtitle)*|(abstract|address|
+                artpagenums|author|authorgroup|authorinitials|
+                bibliocoverage|biblioid|bibliosource|collab|
+                confgroup|contractsponsor|contractnum|copyright|
+                cover|date|edition|editor|issuenum|keywordset|
+                legalnotice|mediaobject|orgname|othercredit|
+                pagenums|printhistory|productname|productnumber|
+                pubdate|publisher|publishername|releaseinfo|
+                revhistory|seriesvolnums|subjectset|volumenum|
+                annotation|extendedlink|bibliomisc|bibliomset|
+                bibliorelation|biblioset|itermset)*)*>
+<!-- * -->
+<!ENTITY % author.element "IGNORE">
+<!ELEMENT author ((personname,
+                  (personblurb|affiliation|email|address|contrib)*)|
+                  (orgname, (orgdiv|affiliation|email|address|contrib)*))>
+<!-- * -->
+<!ENTITY % id.attrib       "xml:id         ID  #IMPLIED">
+<!ENTITY % idreq.attrib    "xml:id         ID  #IMPLIED">
+<!ENTITY % xml-base.attrib "xml:base    CDATA  #IMPLIED">
+<!ENTITY % local.common.attrib "
+xmlns         CDATA  #FIXED   'http://docbook.org/ns/docbook'
+version       CDATA  #IMPLIED
+xmlns:xlink   CDATA  #FIXED   'http://www.w3.org/1999/xlink'
+xlink:href    CDATA  #IMPLIED
+xlink:type    CDATA  #IMPLIED
+xlink:role    CDATA  #IMPLIED
+xlink:arcrole CDATA  #IMPLIED
+xlink:title   CDATA  #IMPLIED
+xlink:show    (new|replace|embed|other|none)	#IMPLIED
+xlink:actuate (onLoad|onRequest|other|none)	#IMPLIED
+">
+<!ELEMENT tag (#PCDATA|inlinemediaobject|remark|superscript|
+               subscript|xref|link|olink|anchor|biblioref|alt|
+               annotation|indexterm|phrase|replaceable)*>
+<!ENTITY % local.tech.char.class "|tag">
+<!ATTLIST tag  xmlns          CDATA #FIXED "http://docbook.org/ns/docbook">
+<!ATTLIST tag  role           CDATA #IMPLIED>
+<!ATTLIST tag  class	      (attribute|attvalue|element|emptytag|
+endtag|genentity|numcharref|paramentity|
+pi|comment|starttag|xmlpi)    #IMPLIED>
+<!ATTLIST tag  namespace      CDATA #IMPLIED>
+]>
+<article xml:lang="en" xml:id="releasenotes"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns="http://docbook.org/ns/docbook">
+  <info>
     <title>Release Notes</title>
     <subtitle>DocBook Project XSL Stylesheets</subtitle>
     <pubdate><?dbtimestamp format="Y-m-d"?></pubdate>
-    <releaseinfo role="cvs">$Revision$ $Date$</releaseinfo>
-    <corpauthor>DocBook Project Development Team</corpauthor> 
-  </articleinfo> 
+    <releaseinfo
+        role="cvs"
+        >$Revision$ $Date$</releaseinfo>
+    <author><orgname>DocBook Project Development Team</orgname></author>
+  </info> 
 
   <para>These are the release notes for the DocBook XSL Stylesheets.
   At a minimum, this file attempts to document changes to the public
@@ -17,11 +87,90 @@
   release.</para>
 
   <para>Bug fixes are (mostly) not documented here. For a complete
-  list of changes, including descriptions of bug fixes, see the <ulink
-  url="NEWS"/> file, which is auto-generated from the checkin
-  descriptions for changes in the project CVS repository.</para>
+  list of changes, including descriptions of bug fixes, see the <uri
+  xlink:href="NEWS"/> file, which is auto-generated from the checkin
+  descriptions for changes in the project source-code repository.</para>
 
-  <section>
+  <section xml:id="snapshot">
+    <title>Current snapshot</title>
+    <para>The current snapshot includes changes related to… FIXME</para>
+
+    <section xml:id="snapshot_COMMON">
+      <title>Common</title>
+      <para>The following changes have been made to the
+      <filename>common</filename> code since the previous
+      release.</para>
+      <itemizedlist>
+        <listitem>
+          <para></para>
+        </listitem>
+      </itemizedlist>
+      <!-- end of Common changes for snapshot -->
+    </section>
+
+    <section xml:id="snapshot_FO">
+      <title>FO</title>
+      <para>The following changes have been made to the FO stylesheets
+      since the last release.</para>
+      <itemizedlist>
+        <listitem>
+          <para></para>
+        </listitem>
+      </itemizedlist>
+      <!-- end of FO changes for snapshot -->
+    </section>
+    
+    <section xml:id="snapshot_HTML">
+      <title>HTML</title>
+      <!-- end of HTML changes for snapshot -->
+      <para>The following changes have been made to the HTML
+      stylesheets since the last release.</para>
+      <itemizedlist>
+        <listitem>
+          <para></para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section xml:id="snapshot_HELP">
+      <title>Help</title>
+      <para>The following changes have been made to the Help
+      stylesheets since the last release.</para>
+      <itemizedlist>
+        <listitem>
+          <para></para>
+        </listitem>
+      </itemizedlist>
+      <!-- end of Help changes for snapshot -->
+    </section>
+
+    <section xml:id="snapshot_WORDML">
+      <title>WordML</title>
+      <para>The following changes have been made to the Help
+      stylesheets since the last release.</para>
+      <itemizedlist>
+        <listitem>
+          <para></para>
+        </listitem>
+      </itemizedlist>
+      <!-- end of WordML changes for snapshot -->
+    </section>
+
+    <section xml:id="snapshot_MAN">
+      <title>man</title>
+      <para>The following changes have been made to the manpages
+      stylesheets since the last release.</para>
+      <itemizedlist>
+        <listitem>
+          <para></para>
+        </listitem>
+      </itemizedlist>
+      <!-- end of MAN changes for snapshot -->
+    </section>
+  </section>
+  <!-- end of notes for current snapshot -->
+
+  <section xml:id="V1691">
     <title>Release 1.69.1</title>
     <para>This release is a minor bug-fix update to the 1.69.0
     release. Along with bug fixes, it includes one
@@ -34,7 +183,7 @@
   </section>
   <!-- end of notes for 1.69.1 release -->
 
-  <section>
+  <section xml:id="V1690">
     <title>Release 1.69.0</title>
     <para>The release includes major feature changes,
     particularly in the <link linkend="V1690_MAN">manpages
@@ -43,7 +192,7 @@
     <para>As with all DocBook Project <quote>dot zero</quote> releases, this is an
     <link linkend="dot0">experimental release </link>.</para>
    
-    <section id="V1690_COMMON">
+    <section xml:id="V1690_COMMON">
       <title>Common</title>
       <itemizedlist>
         <listitem>
@@ -147,7 +296,7 @@
       </listitem>
       </itemizedlist>
     </section>
-    <section id="V1690_FO">
+    <section xml:id="V1690_FO">
       <title>FO</title>
       <itemizedlist>
         <listitem>
@@ -236,7 +385,7 @@
       </itemizedlist>
     </section>
     
-    <section id="V1690_HELP">
+    <section xml:id="V1690_HELP">
       <title>Help</title>
       <itemizedlist>
         <listitem>
@@ -246,7 +395,7 @@
       </itemizedlist>
     </section>
 
-    <section id="V1690_HTML">
+    <section xml:id="V1690_HTML">
       <title>HTML</title>
       <itemizedlist>
         <listitem>
@@ -368,7 +517,7 @@
             <member><tag>remark</tag></member>
             <member><tag>replaceable</tag></member>
             <member><tag>returnvalue</tag></member>
-            <member><tag>sgmltag</tag></member>
+            <member><tag>tag</tag></member>
             <member><tag>shortcut</tag></member>
             <member><tag>state</tag></member>
             <member><tag>street</tag></member>
@@ -408,7 +557,7 @@
         </listitem>
       </itemizedlist>
     </section>
-    <section id="V1690_MAN">
+    <section xml:id="V1690_MAN">
       <title>man</title>
       <para>This release closes out 44 manpages stylesheet bug reports
       and feature requests. It adds more than 35 new configuration
@@ -651,14 +800,14 @@
 >
   &lt;refentry>
     &lt;info>
-      &lt;date>2003-10-20&lt;/date> <co id="V1690_date-co" linkends="V1690_date"/>
+      &lt;date>2003-10-20&lt;/date> <co xml:id="V1690_date-co" linkends="V1690_date"/>
     &lt;/info>
     &lt;refmeta>
-      &lt;refentrytitle>gtk-options&lt;/refentrytitle> <co id="V1690_title-co" linkends="V1690_title"/>
-      &lt;manvolnum>7&lt;/manvolnum> <co id="V1690_manvolnum-co" linkends="V1690_manvolnum"/>
-      &lt;refmiscinfo class="source-name">GTK+&lt;/refmiscinfo> <co id="V1690_source-name-co" linkends="V1690_source-name"/>
-      &lt;refmiscinfo class="version">1.2&lt;/refmiscinfo> <co id="V1690_version-co" linkends="V1690_version"/>
-      &lt;refmiscinfo class="manual">GTK+ User's Manual&lt;/refmiscinfo> <co id="V1690_manual-co" linkends="V1690_manual"/>
+      &lt;refentrytitle>gtk-options&lt;/refentrytitle> <co xml:id="V1690_title-co" linkends="V1690_title"/>
+      &lt;manvolnum>7&lt;/manvolnum> <co xml:id="V1690_manvolnum-co" linkends="V1690_manvolnum"/>
+      &lt;refmiscinfo class="source-name">GTK+&lt;/refmiscinfo> <co xml:id="V1690_source-name-co" linkends="V1690_source-name"/>
+      &lt;refmiscinfo class="version">1.2&lt;/refmiscinfo> <co xml:id="V1690_version-co" linkends="V1690_version"/>
+      &lt;refmiscinfo class="manual">GTK+ User's Manual&lt;/refmiscinfo> <co xml:id="V1690_manual-co" linkends="V1690_manual"/>
     &lt;/refmeta>
     &lt;refnamediv>
       &lt;refname>gtk-options&lt;/refname>
@@ -671,22 +820,22 @@
     &lt;/refsect1>
   &lt;/refentry></programlisting>
   <calloutlist>
-    <callout arearefs="V1690_date-co" id="V1690_date">
+    <callout arearefs="V1690_date-co" xml:id="V1690_date">
       <para>Sets the <quote>date</quote> part of the header/footer.</para>
     </callout>
-    <callout arearefs="V1690_title-co" id="V1690_title">
+    <callout arearefs="V1690_title-co" xml:id="V1690_title">
       <para>Sets the <quote>title</quote> part.</para>
     </callout>
-    <callout arearefs="V1690_manvolnum-co" id="V1690_manvolnum">
+    <callout arearefs="V1690_manvolnum-co" xml:id="V1690_manvolnum">
       <para>Sets the <quote>section</quote> part.</para>
     </callout>
-    <callout arearefs="V1690_source-name-co" id="V1690_source-name">
+    <callout arearefs="V1690_source-name-co" xml:id="V1690_source-name">
       <para>Sets the <quote>source name</quote> part.</para>
     </callout>
-    <callout arearefs="V1690_version-co" id="V1690_version">
+    <callout arearefs="V1690_version-co" xml:id="V1690_version">
       <para>Sets the <quote>version</quote> part.</para>
     </callout>
-    <callout arearefs="V1690_manual-co" id="V1690_manual">
+    <callout arearefs="V1690_manual-co" xml:id="V1690_manual">
       <para>Sets the <quote>manual</quote> part.</para>
     </callout>
   </calloutlist>
@@ -1074,7 +1223,7 @@
     <title>Release 1.68.1</title>
     <para>The release adds localization support for Farsi (thanks to
     Sina Heshmati) and improved support for the XLink-based DocBook NG
-    <sgmltag>db:link</sgmltag> element. Other than that, it is a minor
+    <tag>db:link</tag> element. Other than that, it is a minor
     bug-fix update to the 1.68.0 release. The main thing it fixes is a
     build error that caused the XSLT Java extensions to be jarred up
     with the wrong package structure. Thanks to Jens Stavnstrup for
@@ -1087,7 +1236,7 @@
     <title>Release 1.68.0</title>
     <para>This release includes some features changes, particularly
     for FO/PDF output, and a number of bug fixes.
-      <itemizedlist id="V1680_FO">
+      <itemizedlist xml:id="V1680_FO">
         <title>FO</title>
         <listitem>
           <para>Moved footnote properties to attribute-sets.</para>
@@ -1103,15 +1252,15 @@
           <parameter>set.flow.properties template</parameter>.</para>
         </listitem>
         <listitem>
-          <para>Added support for <sgmltag
-          class="attribute">xml:id</sgmltag></para>
+          <para>Added support for <tag
+          class="attribute">xml:id</tag></para>
         </listitem>
         <listitem>
           <para>Added support for
-          <sgmltag>refdescriptor</sgmltag>.</para>
+          <tag>refdescriptor</tag>.</para>
         </listitem>
         <listitem>
-          <para>Added support for multiple <sgmltag>refnamediv</sgmltag>s.</para>
+          <para>Added support for multiple <tag>refnamediv</tag>s.</para>
         </listitem>
         <listitem>
           <para>Added <parameter>index.entry.properties</parameter>
@@ -1120,12 +1269,12 @@
         </listitem>
         <listitem>
           <para>Added <parameter>set.flow.properties
-          template</parameter> call to each <sgmltag>fo:flow</sgmltag>
+          template</parameter> call to each <tag>fo:flow</tag>
           to support customizations entry point.</para>
         </listitem>
         <listitem>
           <para>Add support for <literal>@floatstyle</literal> in
-          <sgmltag>figure</sgmltag></para>
+          <tag>figure</tag></para>
         </listitem>
         <listitem>
           <para>Moved hardcoded properties for index division titles
@@ -1134,8 +1283,8 @@
         </listitem>
         <listitem>
           <para>Added support for
-          <sgmltag>table-layout</sgmltag>="<sgmltag
-          class="attvalue">auto</sgmltag>" for XEP.</para>
+          <tag>table-layout</tag>="<tag
+          class="attvalue">auto</tag>" for XEP.</para>
         </listitem>
         <listitem>
           <para>Added <parameter>index.div.title.properties</parameter>
@@ -1146,22 +1295,22 @@
           passed to most elements.</para>
         </listitem>
         <listitem>
-          <para>Added <sgmltag>refentry</sgmltag> to
-          <sgmltag>toc</sgmltag> in <sgmltag>part</sgmltag>, as it is
+          <para>Added <tag>refentry</tag> to
+          <tag>toc</tag> in <tag>part</tag>, as it is
           permitted by the DocBook schema/DTD.</para>
         </listitem>
         <listitem>
           <para>Added backmatter elements and
-          <sgmltag>article</sgmltag> to <sgmltag>toc</sgmltag> in
-          <sgmltag>part</sgmltag>, since they are permitted by the
+          <tag>article</tag> to <tag>toc</tag> in
+          <tag>part</tag>, since they are permitted by the
           DocBook schema/DTD.</para>
         </listitem>
         <listitem>
-          <para>Added <sgmltag
-          class="attribute">mode</sgmltag>="<sgmltag
-          class="attvalue">toc</sgmltag>" for
-          <sgmltag>simplesect</sgmltag>, since it is now permitted in
-          the <sgmltag>toc</sgmltag> if
+          <para>Added <tag
+          class="attribute">mode</tag>="<tag
+          class="attvalue">toc</tag>" for
+          <tag>simplesect</tag>, since it is now permitted in
+          the <tag>toc</tag> if
           <parameter>simplesect.in.toc</parameter> is set.</para>
         </listitem>
         <listitem>
@@ -1173,7 +1322,7 @@
         <listitem>
           <para>Added support for <literal>sidebar-width</literal> and
           <literal>float-type</literal> processing instructions in
-          <sgmltag>sidebar</sgmltag>.</para>
+          <tag>sidebar</tag>.</para>
         </listitem>
         <listitem>
           <para>For tables with HTML markup elements, added support
@@ -1186,8 +1335,8 @@
           <parameter>table.cell.properties</parameter> and
           <parameter>table.cell.block.properties</parameter> so that
           tabstyles can be implemented. Also added support for tables
-          containing only <sgmltag>tr</sgmltag> instead of
-          <sgmltag>tbody</sgmltag> with <sgmltag>tr</sgmltag>.</para>
+          containing only <tag>tr</tag> instead of
+          <tag>tbody</tag> with <tag>tr</tag>.</para>
         </listitem>
         <listitem>
           <para>Added new paramater
@@ -1207,25 +1356,25 @@
         </listitem>
       </itemizedlist>
 
-      <itemizedlist id="V1680_HTML">
+      <itemizedlist xml:id="V1680_HTML">
         <title>HTML</title>
         <listitem>
           <para>Added support for
-          <sgmltag>refdescriptor</sgmltag>.</para>
+          <tag>refdescriptor</tag>.</para>
         </listitem>
         <listitem>
-          <para>Added support for multiple <sgmltag>refnamediv</sgmltag>s.</para>
+          <para>Added support for multiple <tag>refnamediv</tag>s.</para>
         </listitem>
         <listitem>
-          <para>Added support for <sgmltag
-          class="attribute">xml:id</sgmltag></para>
+          <para>Added support for <tag
+          class="attribute">xml:id</tag></para>
         </listitem>
         <listitem>
-          <para><sgmltag>refsynopsisdiv</sgmltag> as a section for
+          <para><tag>refsynopsisdiv</tag> as a section for
           counting section levels</para>
         </listitem>
       </itemizedlist>
-      <itemizedlist id="V1680_images">
+      <itemizedlist xml:id="V1680_images">
         <title>Images</title>
         <listitem>
           <para>Added new SVG admonition graphics and navigation images.</para>
@@ -1243,9 +1392,9 @@
   <section>
     <title>Release 1.67.1</title>
     <para>This release includes a number of bug fixes; for details,
-    see the <ulink url="WhatsNew"/> file.</para>
+    see the <uri xlink:href="WhatsNew"/> file.</para>
      <para>The following lists provide details about API and feature changes.
-      <itemizedlist id="V1671_FO">
+      <itemizedlist xml:id="V1671_FO">
         <title>FO</title>
         <listitem>
           <para>Tables: Inherited cell properties are now passed to the
@@ -1260,7 +1409,7 @@
           <para>TOCs: Added new parameter
           <parameter>simplesect.in.toc</parameter>; default value of
           <literal>0</literal> causes simplesect to be omitted from TOCs; to
-          cause <sgmltag>simplesect</sgmltag> to be included in TOCs, you
+          cause <tag>simplesect</tag> to be included in TOCs, you
           must set the value of <parameter>simplesect.in.toc</parameter> to
           <literal>1</literal>.Comment from Norm:
 
@@ -1289,13 +1438,13 @@
           they can be customized.</para>
         </listitem>
         <listitem>
-          <para>Lists: Added <sgmltag>glossdef</sgmltag>'s first
-          <sgmltag>para</sgmltag> to special handling in
+          <para>Lists: Added <tag>glossdef</tag>'s first
+          <tag>para</tag> to special handling in
           <literal>fo:list-item-body</literal>.</para>
         </listitem>
       </itemizedlist>
 
-      <itemizedlist id="V1671_HTML">
+      <itemizedlist xml:id="V1671_HTML">
         <title>HTML</title>
         <listitem>
           <para>TOCs: Added new parameter
@@ -1307,8 +1456,8 @@
           <para>Indexing: Added new parameter
           <parameter>index.prefer.titleabbrev</parameter>; when set to
           <literal>1</literal>, index references will use
-          <sgmltag>titleabbrev</sgmltag> instead of
-          <sgmltag>title</sgmltag> when available.</para>
+          <tag>titleabbrev</tag> instead of
+          <tag>title</tag> when available.</para>
         </listitem>
       </itemizedlist>
       <itemizedlist>
@@ -1319,14 +1468,14 @@
           linkend="V1671_EXT"/> changes for this release.</para>
         </listitem>
       </itemizedlist>
-      <itemizedlist id="V1671_MAN">
+      <itemizedlist xml:id="V1671_MAN">
         <title>man pages</title>
         <listitem>
           <para>Replaced named/numeric character-entity references for
           non-breaking space with groff equivalent (backslash-tilde).</para>
         </listitem>
       </itemizedlist>
-      <itemizedlist id="V1671_EXT">
+      <itemizedlist xml:id="V1671_EXT">
         <title>XSL Java extensions</title>
         <listitem>
           <para>Saxon extensions: Added the
@@ -1347,7 +1496,7 @@
               <para>Create a DocBook XSL customization layer -- a file named
               <filename>mystylesheet.xsl</filename> or whatever -- that, at a
               minimum, contains the following:
-              <screen format="linespecific">  &lt;xsl:stylesheet
+              <screen>  &lt;xsl:stylesheet
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     version='1.0'>
     &lt;xsl:import href="http://docbook.sourceforge.net/release/xsl/current/htmlhelp/htmlhelp.xsl"/>
@@ -1360,14 +1509,14 @@
               <para>Invoke Saxon with the
               <literal>encoding.windows-1252</literal> Java system property set
               to <literal>com.nwalsh.saxon.Windows1252</literal>; for example
-              <screen format="linespecific">  java \
+              <screen>  java \
     -Dencoding.windows-1252=com.nwalsh.saxon.Windows1252 \
   com.icl.saxon.StyleSheet \
   mydoc.xml mystylesheet.xsl</screen>
 
               Or, for a more complete "real world" case showing other
               options you'll typically want to use:
-              <screen format="linespecific">  java \
+              <screen>  java \
     -Dencoding.windows-1252=com.nwalsh.saxon.Windows1252 \
     -Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl \
     -Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl \
@@ -1395,18 +1544,18 @@
   <title>Release 1.67.0</title>
   <itemizedlist>
   <listitem>
-    <para>A number of important bug fixes, documented in <ulink url="WhatsNew"/>.</para>
+    <para>A number of important bug fixes, documented in <uri xlink:href="WhatsNew"/>.</para>
   </listitem>
   <listitem>
     <para>Added Saxon8 extensions</para>
   </listitem>
   <listitem>
     <para>Enabled <literal>dbfo table-width</literal> on
-    <sgmltag>entrytbl</sgmltag> in FO output</para>
+    <tag>entrytbl</tag> in FO output</para>
   </listitem>
   <listitem>
     <para>Added support for <literal>role=strong</literal> on
-    <sgmltag>emphasis</sgmltag> in FO output</para>
+    <tag>emphasis</tag> in FO output</para>
   </listitem>
   <listitem>
     <para>Added new FO parameter
@@ -1428,8 +1577,8 @@
   </listitem>
   <listitem>
     <para>Wrapped ToC
-    <sgmltag>refentrytitle</sgmltag>/<sgmltag>refname</sgmltag> and
-    <sgmltag>refpurpose</sgmltag> in span with class values. This
+    <tag>refentrytitle</tag>/<tag>refname</tag> and
+    <tag>refpurpose</tag> in span with class values. This
     makes it possible to style them using a CSS stylesheet.</para>
   </listitem>
   <listitem>
@@ -1437,8 +1586,8 @@
     <literal>b/i</literal> in HTML output</para>
   </listitem>
   <listitem>
-    <para>Added support for converting <sgmltag>Emphasis</sgmltag> to
-    groff italic and <sgmltag>Emphasis role='bold'</sgmltag> to
+    <para>Added support for converting <tag>Emphasis</tag> to
+    groff italic and <tag>Emphasis role='bold'</tag> to
     bold. Controlled by
     <parameter>emphasis.propagates.style</parameter> param, but not
     documented yet using litprog system. Will do that next (planning
@@ -1476,7 +1625,7 @@
 <title>Release 1.66.1</title>
   <itemizedlist>
 <listitem>
-<para>A number of important bug fixes, documented in <ulink url="WhatsNew"/>.
+<para>A number of important bug fixes, documented in <uri xlink:href="WhatsNew"/>.
 </para>
 </listitem>
 <listitem>
@@ -1513,8 +1662,8 @@ information.</para>
 </listitem> 
 <listitem>
 <para>
-Added  <parameter>index.on.type</parameter> parameter for new <sgmltag
-class="attribute">type</sgmltag>
+Added  <parameter>index.on.type</parameter> parameter for new <tag
+class="attribute">type</tag>
 attribute introduced in DocBook 4.3 for indexterms and index.
 This allows you to create multiple indices containing
 different categories of entries.
@@ -1581,7 +1730,7 @@ properties to the fo:table element.
 <para>
 Added placeholder templates named <literal>table.cell.properties</literal>
 and <literal>table.cell.block.properties</literal> to enable adding properties
-to any <sgmltag>fo:table-cell</sgmltag> or the cell's <sgmltag>fo:block</sgmltag>, respectively.
+to any <tag>fo:table-cell</tag> or the cell's <tag>fo:block</tag>, respectively.
  These templates are a start for implementing table styles.</para>
 </listitem>
 </itemizedlist>
@@ -1595,10 +1744,10 @@ component's title formatting in FO output.
 </listitem>
 <listitem>
 <para>
-Added Saxon support for an <sgmltag class="attribute">encoding</sgmltag> attribute on the <sgmltag class="element">textdata</sgmltag> element. Added new parameter
+Added Saxon support for an <tag class="attribute">encoding</tag> attribute on the <tag class="element">textdata</tag> element. Added new parameter
 <parameter>textdata.default.encoding</parameter> which specifies encoding when
-<sgmltag class="attribute">encoding</sgmltag> attribute on
-<sgmltag class="element">textdata</sgmltag> is missing.
+<tag class="attribute">encoding</tag> attribute on
+<tag class="element">textdata</tag> is missing.
 </para>
 </listitem>
 <listitem>
@@ -1643,19 +1792,19 @@ Now ulink footnotes are mixed in with any other footnotes.</para>
 </listitem> 
 <listitem>
 <para>
-Added support for <sgmltag>renderas</sgmltag> attribute in section and
+Added support for <tag>renderas</tag> attribute in section and
 sect1 et al.
 This permits you to render a given section title as if it were a different level.</para>
 </listitem>
 <listitem>
 <para>
-Added support for <sgmltag>label</sgmltag> attribute in footnote to manually
+Added support for <tag>label</tag> attribute in footnote to manually
 supply the footnote mark.
 </para>
 </listitem>
 <listitem>
 <para>
-Added support for DocBook 4.3 <sgmltag>corpcredit</sgmltag> element.
+Added support for DocBook 4.3 <tag>corpcredit</tag> element.
 </para>
 </listitem>
 <listitem>
@@ -1674,7 +1823,7 @@ insensitive, and updated the list of graphics extensions.
 </listitem>
 <listitem>
 <para>
-Allow <sgmltag>calloutlist</sgmltag> to have block content before
+Allow <tag>calloutlist</tag> to have block content before
 the first callout
 </para>
 </listitem>
@@ -1692,7 +1841,7 @@ Added implementation of existing but unused
 </listitem>
 <listitem>
 <para>
-Support DocBook NG <sgmltag>tag</sgmltag> inline element.
+Support DocBook NG <tag>tag</tag> inline element.
 </para>
 </listitem> 
 <listitem>
@@ -1704,7 +1853,7 @@ characters.
 </listitem>
 <listitem>
 <para>
-Make <sgmltag>segmentedlist</sgmltag> HTML markup
+Make <tag>segmentedlist</tag> HTML markup
 more semantic and available to CSS styles.
 </para>
 </listitem>
@@ -1745,7 +1894,7 @@ Added Bosnian locale file as common/bs.xml.
 <title>Release 1.65.0</title> 
 <itemizedlist>
 <listitem>
-<para>A number of important bug fixes, documented in <ulink url="WhatsNew"/>.
+<para>A number of important bug fixes, documented in <uri xlink:href="WhatsNew"/>.
 </para>
 </listitem> 
 <listitem>
@@ -1807,7 +1956,7 @@ works with Xalan 2.5.</para>
 </para>
 </listitem> 
 <listitem>
-<para>Added level 6 to test for <sgmltag>section</sgmltag> depth in
+<para>Added level 6 to test for <tag>section</tag> depth in
 section.level template so that
 section.title.level6.properties will be used for sections
 that are 6 deep or deeper. This should also cause a h6 to be
@@ -1845,8 +1994,8 @@ validate.
 </para>
 </listitem> 
 <listitem>
-<para>Added hyphenation support. Added support for <sgmltag>coref</sgmltag>.
-Added <sgmltag>beginpage</sgmltag> support. (does nothing; see TDG).
+<para>Added hyphenation support. Added support for <tag>coref</tag>.
+Added <tag>beginpage</tag> support. (does nothing; see TDG).
 </para>
 </listitem> 
 <listitem>
@@ -1868,7 +2017,7 @@ column
 </para>
 </listitem> 
 <listitem>
-<para>Handle <sgmltag>othercredit</sgmltag> on titlepage a little
+<para>Handle <tag>othercredit</tag> on titlepage a little
 better
 </para>
 </listitem> 
@@ -1884,7 +2033,7 @@ with tertiary page numbers on secondary entries.
 </para>
 </listitem> 
 <listitem>
-<para>Make <sgmltag>footnote</sgmltag> formatting 'normal' even when it
+<para>Make <tag>footnote</tag> formatting 'normal' even when it
 occurs in a context that has special formatting
 </para>
 </listitem> 
@@ -1894,12 +2043,12 @@ blank, but it cannot open the specified file.
 </para>
 </listitem> 
 <listitem>
-<para>Pick up the frame attribute on <sgmltag>table</sgmltag> and
-<sgmltag>informaltable</sgmltag>.
+<para>Pick up the frame attribute on <tag>table</tag> and
+<tag>informaltable</tag>.
 </para>
 </listitem> 
 <listitem>
-<para><sgmltag>indexdiv</sgmltag>/<sgmltag>title</sgmltag>
+<para><tag>indexdiv</tag>/<tag>title</tag>
 in non-autogenerated indexes are
 now picked up.
 </para>
@@ -1916,7 +2065,7 @@ page-sequences down to titlepage blocks
 </listitem> 
 <listitem>
 <para>Use
-proportional-column-width(1) on more <sgmltag>table</sgmltag>s.
+proportional-column-width(1) on more <tag>table</tag>s.
 </para>
 <para>Use proportional-column-width() for
 header/footer tables; suppress relative-align when when
@@ -1933,8 +2082,8 @@ firstterms; don't output gl. prefix on glossterm links
 </para>
 </listitem> 
 <listitem>
-<para>Support <sgmltag>glossary</sgmltag>, <sgmltag>bibliography</sgmltag>,
-and <sgmltag>index</sgmltag> in component ToCs.
+<para>Support <tag>glossary</tag>, <tag>bibliography</tag>,
+and <tag>index</tag> in component ToCs.
 </para>
 </listitem> 
 <listitem>
@@ -1944,8 +2093,8 @@ practical
 </para>
 </listitem> 
 <listitem>
-<para>Support <sgmltag>textobject</sgmltag>/<sgmltag>phrase</sgmltag>
-on <sgmltag>inlinemediaobject</sgmltag>.
+<para>Support <tag>textobject</tag>/<tag>phrase</tag>
+on <tag>inlinemediaobject</tag>.
 </para>
 </listitem> 
 <listitem>
@@ -1969,7 +2118,7 @@ as requested by PHP-DOC group.
 </para>
 </listitem> 
 <listitem>
-<para>Exempted <sgmltag>titleabbrev</sgmltag> from preamble processing in
+<para>Exempted <tag>titleabbrev</tag> from preamble processing in
 lists, and fixed variablelist preamble code to use the same
 syntax as the other lists.
 </para>
@@ -2011,7 +2160,7 @@ to be <quote>fo:</quote> qualified:</para>
        font-size="&hsize5;"
        font-weight="bold"
        font-family="{$title.font.family}"/>]]></programlisting>
-<para>The <sgmltag>t:titlepage</sgmltag> and <sgmltag>t:titlepage-content</sgmltag>
+<para>The <tag>t:titlepage</tag> and <tag>t:titlepage-content</tag>
 elements both generate wrappers now. And unqualified attributes on those elements
 are passed through. This means that you can now make the title font apply to
 ane entire titlepage and make the entire <quote>recto</quote>
@@ -2028,7 +2177,7 @@ titlepage centered by specifying the font and alignment on the those elements:</
 
 </listitem> 
 <listitem>
-<para>Support use of <sgmltag>titleabbrev</sgmltag> in running
+<para>Support use of <tag>titleabbrev</tag> in running
 headers and footers.
 </para>
 </listitem> 
@@ -2040,7 +2189,7 @@ be just the number.
 </para>
 </listitem> 
 <listitem>
-<para>Generate <sgmltag>part</sgmltag> ToCs if they're requested.
+<para>Generate <tag>part</tag> ToCs if they're requested.
 </para>
 </listitem> 
 <listitem>
@@ -2048,28 +2197,28 @@ be just the number.
 </para>
 </listitem> 
 <listitem>
-<para>Handle alignment correctly when <sgmltag>screenshot</sgmltag>
-wraps a graphic in a <sgmltag>figure</sgmltag>.
+<para>Handle alignment correctly when <tag>screenshot</tag>
+wraps a graphic in a <tag>figure</tag>.
 </para>
 </listitem> 
 <listitem>
-<para>Format <sgmltag>chapter</sgmltag> and <sgmltag>appendix</sgmltag>
+<para>Format <tag>chapter</tag> and <tag>appendix</tag>
 cross references consistently.
 </para>
 </listitem> 
 <listitem>
-<para>Attempt to support tables with multiple <sgmltag>tgroup</sgmltag>s
+<para>Attempt to support tables with multiple <tag>tgroup</tag>s
 in FO.
 </para>
 </listitem> 
 <listitem>
-<para>Output <sgmltag>fo:table-columns</sgmltag> in
-<sgmltag>simplelist</sgmltag> tables.
+<para>Output <tag>fo:table-columns</tag> in
+<tag>simplelist</tag> tables.
 </para>
 </listitem> 
 <listitem>
 <para>Use <filename>titlepage.templates.xml</filename> for
-<sgmltag>indexdiv</sgmltag> and <sgmltag>glossdiv</sgmltag> formatting.
+<tag>indexdiv</tag> and <tag>glossdiv</tag> formatting.
 </para>
 </listitem> 
 <listitem>
@@ -2086,7 +2235,7 @@ footnote markers.
 </para>
 </listitem> 
 <listitem>
-<para>Added <sgmltag>glossentry.show.acronyms</sgmltag>.
+<para>Added <tag>glossentry.show.acronyms</tag>.
 </para>
 </listitem> 
 <listitem>
@@ -2099,7 +2248,7 @@ footnote markers.
 </para>
 </listitem> 
 <listitem>
-<para>Improved formatting of <sgmltag>ulink</sgmltag> footnotes.
+<para>Improved formatting of <tag>ulink</tag> footnotes.
 </para>
 </listitem> 
 <listitem>
@@ -2116,7 +2265,7 @@ with the <quote>dbhtml</quote> PI.
 </para>
 </listitem> 
 <listitem>
-<para>Don't force a ToC when sections contain <sgmltag>refentry</sgmltag>s.
+<para>Don't force a ToC when sections contain <tag>refentry</tag>s.
 </para>
 </listitem> 
 <listitem>
@@ -2147,12 +2296,12 @@ a mismatch that FOP detects.
 </listitem> 
 <listitem>
 <para>Attempt to prevent duplicated IDs from being produced when
-<sgmltag class="attribute">endterm</sgmltag> on <sgmltag>xref</sgmltag> points
+<tag class="attribute">endterm</tag> on <tag>xref</tag> points
 to something with nested structure.
 </para>
 </listitem> 
 <listitem>
-<para>Fix aligment problems in <sgmltag>equation</sgmltag>s.
+<para>Fix aligment problems in <tag>equation</tag>s.
 </para>
 </listitem> 
 <listitem>
@@ -2186,33 +2335,33 @@ to index an entire set.
 </para>
 </listitem> 
 <listitem>
-<para>Added support for <sgmltag>titleabbrev</sgmltag> (use them for cross
+<para>Added support for <tag>titleabbrev</tag> (use them for cross
 references).
 </para>
 </listitem> 
 <listitem>
-<para>Improvements to <sgmltag>mediaobject</sgmltag> for selecting print vs. online
+<para>Improvements to <tag>mediaobject</tag> for selecting print vs. online
 images.
 </para>
 </listitem> 
 <listitem>
-<para>Added seperate property sets for <sgmltag>figure</sgmltag>s,
-<sgmltag>example</sgmltag>s, <sgmltag>equation</sgmltag>s, <sgmltag>tables</sgmltag>s,
-and <sgmltag>procedure</sgmltag>s.
+<para>Added seperate property sets for <tag>figure</tag>s,
+<tag>example</tag>s, <tag>equation</tag>s, <tag>tables</tag>s,
+and <tag>procedure</tag>s.
 </para>
 </listitem> 
 <listitem>
-<para>Make <sgmltag>lineannotation</sgmltag>s italic.
+<para>Make <tag>lineannotation</tag>s italic.
 </para>
 </listitem> 
 <listitem>
-<para>Support <sgmltag class="attribute">xrefstyle</sgmltag> attribute.
+<para>Support <tag class="attribute">xrefstyle</tag> attribute.
 </para>
 </listitem> 
 <listitem>
-<para>Make <sgmltag class="attribute">endterm</sgmltag> on
-<sgmltag>xref</sgmltag> higher priority than
-<sgmltag class="attribute">xreflabel</sgmltag> target.
+<para>Make <tag class="attribute">endterm</tag> on
+<tag>xref</tag> higher priority than
+<tag class="attribute">xreflabel</tag> target.
 </para>
 </listitem> 
 <listitem>
@@ -2239,7 +2388,7 @@ errors.
 </para>
 </listitem> 
 <listitem>
-<para>Support nested <sgmltag>refsection</sgmltag> elements correctly.
+<para>Support nested <tag>refsection</tag> elements correctly.
 </para>
 </listitem> 
 <listitem>
@@ -2257,7 +2406,7 @@ just a simple name.
 </para>
 </listitem> 
 <listitem>
-<para>Added support for <sgmltag>entrytbl</sgmltag>.
+<para>Added support for <tag>entrytbl</tag>.
 </para>
 </listitem> 
 <listitem>
@@ -2265,7 +2414,7 @@ just a simple name.
 </para>
 </listitem> 
 <listitem>
-<para>Support <sgmltag>bibliosource</sgmltag>.
+<para>Support <tag>bibliosource</tag>.
 </para>
 </listitem>
 </itemizedlist> 
@@ -2292,7 +2441,7 @@ look at the new <quote>content</quote> parameter that's passed to
 </para>
 </listitem> 
 <listitem>
-<para>Support continued and inherited numeration in <sgmltag>orderedlist</sgmltag>
+<para>Support continued and inherited numeration in <tag>orderedlist</tag>
 formatting for FOs.
 </para>
 </listitem> 
@@ -2322,13 +2471,13 @@ Support tables of contents on sections.
 </para>
 </listitem> 
 <listitem>
-<para>Suppress formatting of <quote>endofrange</quote> <sgmltag>indexterm</sgmltag>s.
+<para>Suppress formatting of <quote>endofrange</quote> <tag>indexterm</tag>s.
 This is only half-right. They should generate a range, but I haven't figured out how
 to do that yet.
 </para>
 </listitem> 
 <listitem>
-<para>Support <sgmltag>revdescription</sgmltag>. (Bug #582192)
+<para>Support <tag>revdescription</tag>. (Bug #582192)
 </para>
 </listitem> 
 <listitem>
@@ -2337,7 +2486,7 @@ floats. (Bug #497603)
 </para>
 </listitem> 
 <listitem>
-<para>Fixed formatting of <sgmltag>sbr</sgmltag> in FOs.
+<para>Fixed formatting of <tag>sbr</tag> in FOs.
 </para>
 </listitem> 
 <listitem>
@@ -2345,7 +2494,7 @@ floats. (Bug #497603)
 </para>
 </listitem> 
 <listitem>
-<para>Process <sgmltag>arg</sgmltag> correctly in a <sgmltag>group</sgmltag>.
+<para>Process <tag>arg</tag> correctly in a <tag>group</tag>.
 (Bug #605150)
 </para>
 </listitem> 
@@ -2383,13 +2532,13 @@ of places where it is used. Improve use of HTML cleanup in XHTML stylesheets.
 </para>
 </listitem> 
 <listitem>
-<para>Support table of contents for <sgmltag>appendix</sgmltag> in
-<sgmltag>article</sgmltag>. (Bug #596599)
+<para>Support table of contents for <tag>appendix</tag> in
+<tag>article</tag>. (Bug #596599)
 </para>
 </listitem> 
 <listitem>
-<para>Don't duplicate footnotes in <sgmltag>bibliography</sgmltag>s and
-<sgmltag>glossary</sgmltag>s. (Bug #583282)
+<para>Don't duplicate footnotes in <tag>bibliography</tag>s and
+<tag>glossary</tag>s. (Bug #583282)
 </para>
 </listitem> 
 <listitem>
@@ -2397,7 +2546,7 @@ of places where it is used. Improve use of HTML cleanup in XHTML stylesheets.
 </para>
 </listitem> 
 <listitem>
-<para>Totally reworked <sgmltag>funcsynopsis</sgmltag> code; it now
+<para>Totally reworked <tag>funcsynopsis</tag> code; it now
 supports a 'tabular' presentation style for 'wide' prototypes; see
 <parameter>funcsynopsis.tabular.threshold</parameter>. (HTML only
 right now, I think, FO support, uh, real soon now.)
@@ -2415,16 +2564,16 @@ out long description chunks.
 </para>
 </listitem> 
 <listitem>
-<para>Make sure <sgmltag>legalnotice</sgmltag> link is correct even when
+<para>Make sure <tag>legalnotice</tag> link is correct even when
 chunking to a different <parameter>base.dir</parameter>.
 </para>
 </listitem> 
 <listitem>
 <para>Use CSS to set viewport characteristics if
 <parameter>css.decoration</parameter> is non-zero, use div instead of p for making
-graphic a block element; make figure <sgmltag>title</sgmltag>s the
+graphic a block element; make figure <tag>title</tag>s the
 default alt
-text for images in a <sgmltag>figure</sgmltag>.</para>
+text for images in a <tag>figure</tag>.</para>
 </listitem> 
 <listitem>
 <para>Added space-after to <parameter>list.block.spacing</parameter>.
@@ -2436,7 +2585,7 @@ instead of being off by one.
 </para>
 </listitem> 
 <listitem>
-<para>When processing tables, use the <sgmltag class="attribute">tabstyle</sgmltag>
+<para>When processing tables, use the <tag class="attribute">tabstyle</tag>
 attribute as the division class.
 </para>
 </listitem> 
@@ -2449,12 +2598,12 @@ XHTML chunker to output HTML instead of XHTML.
 </section>
 <section>
   <title>Older releases</title>
-  <para>To view the release notes for older releases, see <ulink
-  url="http://cvs.sourceforge.net/viewcvs.py/docbook/xsl/RELEASE-NOTES.xml"/>. Be
+  <para>To view the release notes for older releases, see <uri
+  xlink:href="http://cvs.sourceforge.net/viewcvs.py/docbook/xsl/RELEASE-NOTES.xml"/>. Be
   aware that there were no release notes for releases prior to the
   1.50.0 release.</para>
 </section>
-<section id="dot0">
+<section xml:id="dot0">
   <title>About dot-zero releases</title>
     <para>DocBook Project <quote>dot zero</quote> releases should be
     considered <emphasis>experimental</emphasis> and are always
