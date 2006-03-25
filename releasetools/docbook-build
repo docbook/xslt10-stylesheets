@@ -312,8 +312,7 @@ EOF
     done; \
     mkdir $DISTRO; \
     cp -pR $TMP/docbook-$DISTRO-$RELEASEVERSION/* $DISTRO; \
-    rm -rf $DISTRO/tools; \
-    rm -rf $DISTRO/RELEASE-NOTES.*;)
+    rm -rf $DISTRO/tools;)
 
     scp \
       $TMP/docbook-$DISTRO*$RELEASEVERSION.zip \
