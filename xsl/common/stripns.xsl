@@ -243,7 +243,7 @@
   <xsl:copy/>
 </xsl:template>
 
-<xsl:template match="/">
+<xsl:template match="/" priority="-1">
   <xsl:choose>
     <xsl:when test="function-available('exsl:node-set')
                     and (*/self::ng:* or */self::db:*)">
