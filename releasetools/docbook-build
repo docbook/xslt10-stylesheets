@@ -200,7 +200,7 @@ else
         SITEUSER=$CVSUSER
       fi
     fi
-
+    rm -f $DISTRO/LatestTag
     rm -f $DISTRO/VERSION
     cvs update -C $DISTRO/VERSION 1>/dev/null 2>&1
 
