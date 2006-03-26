@@ -5,9 +5,11 @@ RELEASE-NOTES.html
 RELEASE-NOTES.txt
 RELEASE-NOTES.pdf
 RELEASE-NOTES.fo
+ChangesSince*.xml
 NEWS.html
 NEWS.xml
 NEWS
+TERMS.xml
 .CatalogManager.properties.example
 .urilist
 .make-catalog.xsl
