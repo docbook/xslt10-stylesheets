@@ -90,7 +90,7 @@
             name="xml:id"><xsl:value-of
             select="$release-version-ncname"/></xsl:attribute>
         <xsl:text>&#xa;</xsl:text>
-        <title>Release: <xsl:value-of select="$release-version-ncname"/></title>
+        <title>Release: <xsl:value-of select="$release-version"/></title>
         <xsl:text>&#xa;</xsl:text>
         <para>The following is a list of changes that have been made
         since the <xsl:value-of select="$previous-release"/> release.</para>
@@ -161,7 +161,7 @@
       <!-- * for example, "end of FO changes for V1691" -->
       <xsl:comment>end of <xsl:value-of
       select="$subsection"/> changes for <xsl:value-of
-      select="$release-version-ncname"/></xsl:comment>
+      select="$release-version"/></xsl:comment>
       <xsl:text>&#xa;</xsl:text>
       <xsl:text>&#xa;</xsl:text>
       <xsl:call-template name="format.subsection">
