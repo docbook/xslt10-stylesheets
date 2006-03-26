@@ -34,6 +34,10 @@ NEWS_MAKER=docsrc/release-notes.xsl
 # stylesheet used for determining the latest cvs tag in cvs log
 GET_LATEST_TAG=docsrc/get-latest-tag.xsl
 
+GET_ELEMENT_NAMES=docsrc/get-element-names.xsl
+
+DOCBOOK_RNG=../docbook/relaxng/docbook/docbook.rng
+
 # stylesheet for generating FO version of release notes
 FO-STYLE=$(DOCBOOK_CVS)/xsl/fo/docbook.xsl
 

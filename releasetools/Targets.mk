@@ -30,6 +30,11 @@ NEWS.xml: ChangeLog.xml
 	$(XSLT) $< $(NEWS_MAKER) $@ \
 	latest-tag="'$(shell cat LatestTag)'" \
 	release-version="'$(RELVER)'"
+	for element in \
+	  $(shell $(XSLT) $(DOCBOOK_RNG) $(GET_ELEMENT_NAMES) | sort | uniq); \
+	do $(SED) $(SED_OPTS) -i \
+	  "s/\([^<\/A-Za-z0-9_\.\-]\)\($$element\)\([^A-Za-z0-9_\.\-]\)/\1<FOOM>\2<\/FOOM>\3/g" $@; done; \
+	$(SED) $(SED_OPTS) -i s/FOOM/tag/g $@
 
 NEWS.html: NEWS.xml
 	$(XSLT) $< $(DOC-LINK-STYLE) $@
