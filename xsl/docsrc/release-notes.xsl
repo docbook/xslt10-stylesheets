@@ -19,6 +19,10 @@
   <!-- *   http://www.red-bean.com/cvs2cl/ -->
 
   <xsl:param name="release-version"/>
+  <xsl:param name="release-version-ncname">
+    <xsl:text>V</xsl:text>
+    <xsl:value-of select="translate($release-version, '.', '')"/>
+  </xsl:param>
   <xsl:param name="latest-tag">VXXXX</xsl:param>
   <!-- * We get the value of $previous-release by chopping up the latest -->
   <!-- * tag, then putting it back together. With dots. -->
@@ -77,15 +81,16 @@
   <xsl:template match="cvs:changelog">
     <article>
       <xsl:text>&#xa;</xsl:text>
-      <title>Changes since the
-      <xsl:text>&#xa;</xsl:text>
-      <xsl:value-of select="$previous-release"/> release</title>
+      <title
+          >Changes since the <xsl:value-of
+          select="$previous-release"/> release</title>
+      <xsl:text>&#xa;</xsl:text> 
       <sect1>
         <xsl:attribute
             name="xml:id"><xsl:value-of
-            select="$release-version"/></xsl:attribute>
+            select="$release-version-ncname"/></xsl:attribute>
         <xsl:text>&#xa;</xsl:text>
-        <title>Release: <xsl:value-of select="$release-version"/></title>
+        <title>Release: <xsl:value-of select="$release-version-ncname"/></title>
         <xsl:text>&#xa;</xsl:text>
         <para>The following is a list of changes that have been made
         since the <xsl:value-of select="$previous-release"/> release.</para>
@@ -130,11 +135,11 @@
         <!-- * subsection name; for example, xml:id="snapshost_FO" -->
         <xsl:attribute
             name="xml:id"><xsl:value-of
-            select="$release-version"/>_<xsl:value-of select="$subsection"/></xsl:attribute>
+            select="$release-version-ncname"/>_<xsl:value-of select="$subsection"/></xsl:attribute>
         <xsl:text>&#xa;</xsl:text>
         <title><xsl:attribute
             name="xml:id"><xsl:value-of
-            select="$release-version"/>_<xsl:value-of
+            select="$release-version-ncname"/>_<xsl:value-of
             select="$subsection"/>_title</xsl:attribute><xsl:value-of
             select="$subsection"/></title>
         <xsl:text>&#xa;</xsl:text>
@@ -156,7 +161,7 @@
       <!-- * for example, "end of FO changes for V1691" -->
       <xsl:comment>end of <xsl:value-of
       select="$subsection"/> changes for <xsl:value-of
-      select="$release-version"/></xsl:comment>
+      select="$release-version-ncname"/></xsl:comment>
       <xsl:text>&#xa;</xsl:text>
       <xsl:text>&#xa;</xsl:text>
       <xsl:call-template name="format.subsection">
