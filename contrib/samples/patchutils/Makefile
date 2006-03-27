@@ -11,3 +11,6 @@ CVSFLAGS=
 $(FILE):
 	(cd $(TMP) && cvs -d:pserver:anoncvs@$(HOST):$(BASE) co $(MODULE))
 	cp $(TMP)/$(MODULE)/$(FILE) .
+
+clean:
+	$(RM) $(FILE)
