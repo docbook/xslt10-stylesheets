@@ -9,7 +9,7 @@ CVS=cvs
 CVSFLAGS=
 
 $(FILE):
-	(cd $(TMP) && cvs -d:pserver:anoncvs@$(HOST):$(BASE) co $(MODULE))
+	(cd $(TMP) && $(CVS) $(CVSFLAGS) -d:pserver:anoncvs@$(HOST):$(BASE) co $(MODULE))
 	cp $(TMP)/$(MODULE)/$(FILE) .
 
 clean:
