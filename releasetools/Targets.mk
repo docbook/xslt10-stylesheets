@@ -5,31 +5,24 @@
 
 debug:
 
-ifeq ($(TAGVER),$(shell if [ -f LatestTag ]; then cat LatestTag; fi))
-RELEASE-NOTES.html: RELEASE-NOTES.xml
-else
-RELEASE-NOTES.html: RELEASE-NOTES-$(TAGVER).xml
-endif
-	$(XSLT) $< $(DOC-LINK-STYLE) $@
+RELEASE-NOTES.html: RELEASE-NOTES.xml NEWS.xml
+	$(XINCLUDE) $< > RELEASE-NOTES-TMP.xml
+	$(XSLT) RELEASE-NOTES-TMP.xml $(DOC-LINK-STYLE) $@
+	$(RM) RELEASE-NOTES-TMP.xml
 
 RELEASE-NOTES.txt: RELEASE-NOTES.html
 	LANG=C $(BROWSER) $(BROWSER_OPTS) $< > $@
 
-ifeq ($(TAGVER),$(shell if [ -f LatestTag ]; then cat LatestTag; fi))
-RELEASE-NOTES.pdf: RELEASE-NOTES.xml
-else
-RELEASE-NOTES.pdf: RELEASE-NOTES-$(TAGVER).xml
-endif
-	$(XSLT) $< $(FO-STYLE) $(basename $<).fo $(FO_ENGINE).extensions=1 \
+RELEASE-NOTES.pdf: RELEASE-NOTES.xml NEWS.xml
+	$(XINCLUDE) $< > RELEASE-NOTES-TMP.xml
+	$(XSLT) RELEASE-NOTES-TMP.xml $(FO-STYLE) $(basename $<).fo $(FO_ENGINE).extensions=1 \
 	&& $(FO_ENGINE) $(FO_ENGINE_OPTS) $(basename $<).fo
-
-RELEASE-NOTES-$(TAGVER).xml: RELEASE-NOTES.xml NEWS.xml
-	$(XINCLUDE) $< > $@
+	$(RM) RELEASE-NOTES-TMP.xml
 
 $(MARKUP_XSL):
 	$(MAKE) -C $(dir $(MARKUP_XSL))
 
-NEWS.xml: ChangesSince$(LATEST_TAG).xml TERMS.xml
+NEWS.xml: ChangeLog.xml TERMS.xml
 	$(XSLT) $< $(CVS2CL2DOCBOOK) $@ \
 	latest-tag="'$(LATEST_TAG)'" \
 	release-version="'$(RELVER)'" \
@@ -41,7 +34,7 @@ NEWS.html: NEWS.xml
 $(NEWSFILE): NEWS.html
 	LANG=C $(BROWSER) $(BROWSER_OPTS) $< > $@
 
-ChangesSince$(LATEST_TAG).xml: LatestTag
+ChangeLog.xml: LatestTag
 	$(CVS2CL) $(CVS2CL_OPTS) \
 	--delta $(LATEST_TAG):HEAD --xml -f $@ -g -q
 
@@ -53,13 +46,13 @@ LatestTag:
 	| $(SED) $(SED_OPTS) 's/\x1a//g' \
 	| $(XSLTPROC) $(GET_LATEST_TAG) - > $@
 
-ChangeLog.xml.zip: ChangeLog.xml
+ChangeHistory.xml.zip: ChangeHistory.xml
 	$(ZIP) $(ZIP_OPTS) $@ $<
 	$(RM) $<
 
-# ChangeLog.xml holds the whole change history for the module,
+# ChangeHistory.xml holds the whole change history for the module,
 # including all subdirectories
-ChangeLog.xml:
+ChangeHistory.xml:
 	$(CVS2CL) $(CVS2CL_OPTS) \
 	--xml -f $@ -g -q
 
@@ -85,7 +78,7 @@ catalog.xml: .make-catalog.xsl
 install.sh: .CatalogManager.properties.example .urilist catalog.xml
 	cp $(INSTALL_SH) install.sh
 
-distrib: all $(DISTRIB_DEPENDS) ChangeLog.xml.zip RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE)
+distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE)
 
 newversion:
 ifeq ($(CVSCHECK),)
@@ -124,7 +117,7 @@ else
 	grep -v "<?xml" $(TMP)/fm-docbook-$(DISTRO) | freshmeat-submit $(FMGO)
 endif
 
-zip:
+zip: ChangeHistory.xml.zip
 ifeq ($(ZIPVER),)
 	@echo You must specify ZIPVER for the zip target
 	exit 1
@@ -232,9 +225,9 @@ release-clean: clean
 	$(RM) $(NEWSFILE)
 	$(RM) NEWS.html
 	$(RM) NEWS.xml
-	$(RM) RELEASE-NOTES-$(TAGVER).xml
-	$(RM) ChangeLog.xml.zip
-	$(RM) ChangesSince$(LATEST_TAG).xml
+	$(RM) RELEASE-NOTES-TMP.xml
+	$(RM) ChangeHistory.xml.zip
+	$(RM) ChangeLog.xml 
 	$(RM) LatestTag
 	$(RM) RELEASE-NOTES.txt
 	$(RM) RELEASE-NOTES.html
