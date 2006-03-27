@@ -11,18 +11,13 @@
 
        ******************************************************************** -->
 
-  <xsl:param name="docbook.rng"/>
-
   <xsl:output method="text"/>
 
   <xsl:template match="/">
     <!-- * Get the value of the first tagdatetag element in the document -->
     <!-- * that starts with a "V" (V1691, etc.). That is, hopefully, the -->
     <!-- * tag for the previous release. -->
-    <xsl:for-each select="//*[local-name() = 'element'][@name]">
-      <xsl:value-of select="@name"/>
-      <xsl:text>&#xa;</xsl:text>
-    </xsl:for-each>
+    <xsl:value-of select="(//*[local-name() = 'tagdatetag'][starts-with(.,'V')])[1]"/>
   </xsl:template>
 
 </xsl:stylesheet>

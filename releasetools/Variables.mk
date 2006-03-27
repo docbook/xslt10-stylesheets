@@ -12,31 +12,19 @@ CATALOGMANAGER=$(DOCBOOK_CVS)/releasetools/.CatalogManager.properties.example
 INSTALL_SH=$(DOCBOOK_CVS)/releasetools/install.sh
 MAKECATALOG=$(DOCBOOK_CVS)/releasetools/make-catalog.xsl
 
-XSLTPROC=xsltproc
-XSLTPROC_OPTS=
-
-XMLLINT=xmllint
-XMLLINT_OPTS=
-XINCLUDE=$(XMLLINT) $(XMLLINT_OPTS) --xinclude
-
-CVS2CL=cvs2cl
-CVS2CL_OPTS=
-
-SED=sed
-SED_OPTS=
-
 # stylesheet for generating HTML version of release notes
 DOC-LINK-STYLE=$(DOCBOOK_CVS)/xsl/docsrc/doc-link-docbook.xsl
 
-# stylesheet used in making NEWS file(s) and releases notes
-NEWS_MAKER=docsrc/release-notes.xsl
+# stylesheet used in taking XML output from the cvs2cl(1) perl
+# script, and using it to generate NEWS file(s) and releases notes
+CVS2CL2DOCBOOK=$(DOCBOOK_CVS)/releasetools/cvs2cl2docbook.xsl
 
 # stylesheet used for determining the latest cvs tag in cvs log
-GET_LATEST_TAG=docsrc/get-latest-tag.xsl
+GET_LATEST_TAG=$(DOCBOOK_CVS)/releasetools/get-latest-tag.xsl
 
-GET_ELEMENT_NAMES=docsrc/get-element-names.xsl
+GET_TERMS=$(DOCBOOK_CVS)/releasetools/get-terms.xsl
 
-DOCBOOK_RNG=../docbook/relaxng/docbook/docbook.rng
+DOCBOOK_RNG_FILES=$(DOCBOOK_CVS)/docbook/relaxng/docbook/docbook.rng
 
 # stylesheet for generating FO version of release notes
 FO-STYLE=$(DOCBOOK_CVS)/xsl/fo/docbook.xsl
@@ -54,6 +42,8 @@ FO_ENGINE_OPTS=
 
 # file containing "What's New" info generated from CVS log
 NEWSFILE=NEWS
+
+LATEST_TAG=$(shell if [ -f LatestTag ];then cat LatestTag; fi)
 
 # determine RELVER automatically by:
 #
@@ -147,3 +137,19 @@ RELEASE_DIR=/home/groups/d/do/docbook/htdocs/release
 PROJECT_USER:=`sed 's/^:.\+:\([^@]\+\)@.\+$$/\1/' CVS/Root`
 TAR=tar
 TARFLAGS=P
+ZIP=zip
+ZIPFLAGS=-q -rpD
+
+XSLTPROC=xsltproc
+XSLTPROC_OPTS=
+
+XMLLINT=xmllint
+XMLLINT_OPTS=
+XINCLUDE=$(XMLLINT) $(XMLLINT_OPTS) --xinclude
+
+CVS2CL=cvs2cl
+CVS2CL_OPTS=
+
+SED=sed
+SED_OPTS=
+

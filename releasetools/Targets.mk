@@ -26,15 +26,11 @@ endif
 RELEASE-NOTES-$(TAGVER).xml: RELEASE-NOTES.xml NEWS.xml
 	$(XINCLUDE) $< > $@
 
-NEWS.xml: ChangeLog.xml
-	$(XSLT) $< $(NEWS_MAKER) $@ \
-	latest-tag="'$(shell cat LatestTag)'" \
-	release-version="'$(RELVER)'"
-	for element in \
-	  $(shell $(XSLT) $(DOCBOOK_RNG) $(GET_ELEMENT_NAMES) | sort | uniq); \
-	do $(SED) $(SED_OPTS) -i \
-	  "s/\([^<\/A-Za-z0-9_\.\-]\)\($$element\)\([^A-Za-z0-9_\.\-]\)/\1<FOOM>\2<\/FOOM>\3/g" $@; done; \
-	$(SED) $(SED_OPTS) -i s/FOOM/tag/g $@
+NEWS.xml: ChangesSince$(LATEST_TAG).xml TERMS.xml
+	$(XSLT) $< $(CVS2CL2DOCBOOK) $@ \
+	latest-tag="'$(LATEST_TAG)'" \
+	release-version="'$(RELVER)'" \
+	terms.file="'$(shell readlink -f TERMS.xml)'"
 
 NEWS.html: NEWS.xml
 	$(XSLT) $< $(DOC-LINK-STYLE) $@
@@ -42,9 +38,9 @@ NEWS.html: NEWS.xml
 $(NEWSFILE): NEWS.html
 	LANG=C $(BROWSER) $(BROWSER_OPTS) $< > $@
 
-ChangeLog.xml: LatestTag
+ChangesSince$(LATEST_TAG).xml: LatestTag
 	$(CVS2CL) $(CVS2CL_OPTS) \
-	--delta $(shell cat LatestTag):HEAD --xml -f $@ -g -q
+	--delta $(LATEST_TAG):HEAD --xml -f $@ -g -q
 
 LatestTag:
 # Note that one of the old commit messsage in the cvs log contains
@@ -53,6 +49,21 @@ LatestTag:
 	$(CVS2CL) $(CVS2CL_OPTS) --stdout --xml -g -q \
 	| $(SED) $(SED_OPTS) 's/\x1a//g' \
 	| $(XSLTPROC) $(GET_LATEST_TAG) - > $@
+
+ChangeLog.xml.zip: ChangeLog.xml
+	$(ZIP) $(ZIP_OPTS) $@ $<
+	$(RM) $<
+
+# ChangeLog.xml holds the whole change history for the module,
+# including all subdirectories
+ChangeLog.xml:
+	$(CVS2CL) $(CVS2CL_OPTS) \
+	--xml -f $@ -g -q
+
+TERMS.xml: $(GET_TERMS) $(DISTRIB_PARAMS_FILES) $(DOCBOOK_RNG_FILES)
+	$(XSLT) $< $< $@ \
+	element.files="'$(DOCBOOK_RNG_FILES)'" \
+	param.files="'$(DISTRIB_PARAMS_FILES)'"
 
 .CatalogManager.properties.example:
 	cp -p $(CATALOGMANAGER) .CatalogManager.properties.example
@@ -71,7 +82,7 @@ catalog.xml: .make-catalog.xsl
 install.sh: .CatalogManager.properties.example .urilist catalog.xml
 	cp $(INSTALL_SH) install.sh
 
-distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE)
+distrib: all $(DISTRIB_DEPENDS) ChangeLog.xml.zip RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE)
 
 newversion:
 ifeq ($(CVSCHECK),)
@@ -157,7 +168,7 @@ endif
 	$(TAR) cf$(TARFLAGS) - -X $(TMP)/tar.exclude * .[^.]* | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); $(TAR) xf$(TARFLAGS) -)
 	umask 022; cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-$(ZIPVER).tar.gz
 	umask 022; cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > docbook-$(DISTRO)-$(ZIPVER).tar.bz2
-	umask 022; cd $(TMP) && zip -q -rpD docbook-$(DISTRO)-$(ZIPVER).zip docbook-$(DISTRO)-$(ZIPVER)
+	umask 022; cd $(TMP) && $(ZIP) $(ZIPFLAGS) docbook-$(DISTRO)-$(ZIPVER).zip docbook-$(DISTRO)-$(ZIPVER)
 	$(RM) $(TMP)/tar.exclude
 
 # -----------------------------------------------------------------
@@ -187,7 +198,7 @@ ifneq ($(DISTRIB_PACKAGES),)
 	fi) ; \
 	umask 022; (cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-$$part-$(ZIPVER).tar.gz); \
 	umask 022; (cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > docbook-$(DISTRO)-$$part-$(ZIPVER).tar.bz2); \
-	umask 022; (cd $(TMP) && zip -q -rpD docbook-$(DISTRO)-$$part-$(ZIPVER).zip docbook-$(DISTRO)-$(ZIPVER)); \
+	umask 022; (cd $(TMP) && $(ZIP) $(ZIPFLAGS) docbook-$(DISTRO)-$$part-$(ZIPVER).zip docbook-$(DISTRO)-$(ZIPVER)); \
 	$(RM) $(TMP)/tar.exclude; \
 	done
 endif
@@ -214,11 +225,13 @@ install: zip
 	   )"
 
 release-clean: clean
+	$(RM) TERMS.xml
 	$(RM) $(NEWSFILE)
 	$(RM) NEWS.html
 	$(RM) NEWS.xml
 	$(RM) RELEASE-NOTES-$(TAGVER).xml
-	$(RM) ChangeLog.xml
+	$(RM) ChangeLog.xml.zip
+	$(RM) ChangesSince$(LATEST_TAG).xml
 	$(RM) LatestTag
 	$(RM) RELEASE-NOTES.txt
 	$(RM) RELEASE-NOTES.html
