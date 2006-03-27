@@ -1,8 +1,9 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:exsl="http://exslt.org/common"
                 xmlns:sf="http://sourceforge.net/"
                 xmlns:cvs="http://www.red-bean.com/xmlns/cvs2cl/"
-                exclude-result-prefixes="sf cvs"
+                exclude-result-prefixes="exsl sf cvs"
                 version='1.0'>
   <!-- ********************************************************************
        $Id$
@@ -14,9 +15,42 @@
 
        ******************************************************************** -->
 
-  <!-- * This file auto-generates release-notes documentation from -->
-  <!-- * XML-formatted ChangeLog output of the cvs2cl command -->
+  <!-- * the markup.xsl file is Jeni Tennison's "Markup Utility" stylesheet -->
+  <!-- * -->
+  <!-- *   http://www.jenitennison.com/xslt/utilities/markup.html -->
+  <!-- * -->
+  <xsl:import href="../contrib/tools/tennison/markup.xsl" />
+  <xsl:include href="../xsl/lib/lib.xsl" />
+
+  <!-- * name of file that contains DocBook element names and DocBook -->
+  <!-- * param names -->
+  <xsl:param name="terms.file"/>
+
+  <!-- * This stylesheet converts XML-formatted ChangeLog output of the -->
+  <!-- * cvs2cl command into DocBook form. -->
+  <!-- * -->
   <!-- *   http://www.red-bean.com/cvs2cl/ -->
+  <!-- * -->
+  <!-- * Features :-->
+  <!-- * -->
+  <!-- * - groups commit messages by subdirectory name and generates -->
+  <!-- *   a Sect2 wrapper around each group (for example, all commit -->
+  <!-- *   messages for the "lib" subdirectory get grouped together -->
+  <!-- *   into a "Lib" Sect2 section -->
+  <!-- * -->
+  <!-- * - within each Sect2 section, generates an Itemizedlist, one -->
+  <!-- *   Listitem for each commit message -->
+  <!-- * -->
+  <!-- * - uses Jeni Tennison's "Markup Utility" stylesheet to -->
+  <!-- *   recognize special terms and mark them up; specifically, it -->
+  <!-- *   looks DocBook element names in commit messages and marks -->
+  <!-- *   them up with <tag>foo</tag> instances, an looks for DocBook -->
+  <!-- *   XSL stylesheet param names, and marks them up with -->
+  <!-- *   <parameter>hoge.moge.baz</parameter> instances -->
+  <!-- * -->
+  <!-- * - preserves newlines (by converting them to <sbr/> instances) -->
+  <!-- * -->
+  <!-- * - converts cvs usernames to corresponding users' real names -->
 
   <xsl:param name="release-version"/>
   <xsl:param name="release-version-ncname">
@@ -183,7 +217,7 @@
     <xsl:param name="dirname"/>
     <xsl:for-each select="cvs:entry[cvs:file/cvs:name[starts-with(.,concat($dirname,'/'))]]">
       
-      <!-- * each Listem corresponds to a single commit -->
+      <!-- * each Lisitem corresponds to a single commit -->
       <listitem>
         <xsl:text>&#xa;</xsl:text>
         <!-- * for each entry (commit), get just the commit message and -->
@@ -198,7 +232,32 @@
   </xsl:template>
 
   <xsl:template match="cvs:msg">
-    <xsl:apply-templates/>
+    <!-- * trim off any leading and trailing whitespace from this -->
+    <!-- * commit message -->
+    <xsl:variable name="trimmed">
+      <xsl:call-template name="trim.text">
+        <xsl:with-param name="contents" select="."/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="trimmed-contents" select="exsl:node-set($trimmed)"/>
+    <!-- * mask any periods in the contents -->
+    <xsl:variable name="masked-contents">
+      <xsl:apply-templates mode="mask.period" select="$trimmed-contents"/>
+    </xsl:variable>
+    <!-- * merk up the elements and params in the masked contents -->
+    <xsl:variable name="marked.up.contents">
+      <xsl:call-template name="markup">
+        <xsl:with-param name="text" select="$masked-contents" />
+        <xsl:with-param
+            name="phrases"
+            select="document($terms.file)//param|
+                    document($terms.file)//element"
+            />
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="marked.up" select="exsl:node-set($marked.up.contents)"/>
+    <!-- * return the marked-up contents, unmasked -->
+      <xsl:apply-templates select="$marked.up" mode="restore.period"/>
   </xsl:template>
 
   <xsl:template match="cvs:author">
@@ -208,6 +267,90 @@
     <xsl:value-of select="document('')//sf:users/sf:user[sf:username = $username]/sf:realname"/>
   </xsl:template>
 
-  <xsl:template match="*"/>
+  <xsl:template match="element" mode="markup">
+    <xsl:param name="word" />
+    <tag><xsl:value-of select="$word" /></tag>
+  </xsl:template>
+
+  <xsl:template match="param" mode="markup">
+    <xsl:param name="word" />
+    <parameter><xsl:value-of select="$word" /></parameter>
+  </xsl:template>
+
+  <!-- * ============================================================== -->
+  <!-- *    Kludges for dealing with dots in/after names                -->
+  <!-- * ============================================================== -->
+
+  <!-- * The mask.period and restore.period kludges are an attempt to -->
+  <!-- * deal with the need to make sure that parameters names that -->
+  <!-- * contain element names get marked up correctly -->
+
+  <!-- * The following mode "masks" periods by converting them to houses -->
+  <!-- * (that is, Unicode character x2302). It masks periods that are -->
+  <!-- * followed by a space or newline, or any period that is the last -->
+  <!-- * character in the given text node. -->
+  <xsl:template match="text()" mode="mask.period">
+    <xsl:call-template name="string.subst">
+      <xsl:with-param name="target">.&#xa;</xsl:with-param>
+      <xsl:with-param name="replacement">;&#x2302;&#xa;</xsl:with-param>
+      <xsl:with-param name="string">
+        <xsl:call-template name="string.subst">
+          <xsl:with-param name="target">. </xsl:with-param>
+          <xsl:with-param name="replacement">;&#x2302; </xsl:with-param>
+          <xsl:with-param name="string">
+              <xsl:choose>
+                <xsl:when test="substring(., string-length(.)) = '.'">
+                  <xsl:value-of
+                      select="concat(substring(.,1,string-length(.) - 1),';&#x2302;')"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:copy-of select="."/>
+                </xsl:otherwise>
+            </xsl:choose>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
+  <!-- * unwind results of mask.period - and, as a bonus, convert all -->
+  <!-- * newlines characters to instances of a"linebreak element" -->
+  <xsl:template match="text()" mode="restore.period">
+    <xsl:call-template name="newlines.to.linebreak.element">
+      <xsl:with-param name="string">
+        <xsl:call-template name="string.subst">
+          <xsl:with-param name="string" select="."/>
+          <xsl:with-param name="target">;&#x2302;</xsl:with-param>
+          <xsl:with-param name="replacement">.</xsl:with-param>
+        </xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="*" mode="restore.period">
+    <xsl:copy-of select="."/>
+  </xsl:template>
+
+  <!-- * ============================================================== -->
+  <!-- *    Utility template for preserving linebreaks in output        -->
+  <!-- * ============================================================== -->
+  <xsl:template name="newlines.to.linebreak.element">
+    <xsl:param name="string"/>
+    <xsl:param name="linebreak.element"><sbr /></xsl:param>
+    <xsl:choose>
+      <xsl:when test="contains($string, '&#xA;')">
+        <xsl:value-of select="substring-before($string, '&#xA;')" />
+        <xsl:copy-of select="$linebreak.element" />
+        <xsl:call-template name="newlines.to.linebreak.element">
+          <xsl:with-param name="string"
+                          select="substring-after($string, '&#xA;')" />
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$string" />
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 
 </xsl:stylesheet>
+
