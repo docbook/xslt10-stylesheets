@@ -15,6 +15,10 @@ MAKECATALOG=$(DOCBOOK_CVS)/releasetools/make-catalog.xsl
 # stylesheet for generating HTML version of release notes
 DOC-LINK-STYLE=$(DOCBOOK_CVS)/xsl/docsrc/doc-link-docbook.xsl
 
+# MARKUP_XSL is a modified version of Jeni Tennison's "Markup
+# Utility"
+MARKUP_XSL=$(DOCBOOK_CVS)/contrib/tools/tennison/modified-markup.xsl
+
 # stylesheet used in taking XML output from the cvs2cl(1) perl
 # script, and using it to generate NEWS file(s) and releases notes
 CVS2CL2DOCBOOK=$(DOCBOOK_CVS)/releasetools/cvs2cl2docbook.xsl
