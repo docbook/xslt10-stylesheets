@@ -15,11 +15,12 @@
 
        ******************************************************************** -->
 
-  <!-- * the markup.xsl file is Jeni Tennison's "Markup Utility" stylesheet -->
+  <!-- * the modified-markup.xsl file is a slightly modified version -->
+  <!-- * of Jeni Tennison's "Markup Utility" stylesheet -->
   <!-- * -->
   <!-- *   http://www.jenitennison.com/xslt/utilities/markup.html -->
   <!-- * -->
-  <xsl:import href="../contrib/tools/tennison/markup.xsl" />
+  <xsl:import href="../contrib/tools/tennison/modified-markup.xsl" />
   <xsl:include href="../xsl/lib/lib.xsl" />
 
   <!-- * name of file that contains DocBook element names and DocBook -->
