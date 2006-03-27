@@ -26,6 +26,9 @@ endif
 RELEASE-NOTES-$(TAGVER).xml: RELEASE-NOTES.xml NEWS.xml
 	$(XINCLUDE) $< > $@
 
+$(MARKUP_XSL):
+	$(MAKE) -C $(dir $(MARKUP_XSL))
+
 NEWS.xml: ChangesSince$(LATEST_TAG).xml TERMS.xml
 	$(XSLT) $< $(CVS2CL2DOCBOOK) $@ \
 	latest-tag="'$(LATEST_TAG)'" \
