@@ -27,6 +27,8 @@
 <xsl:template match="xsl:stylesheet">
   <xsl:copy>
     <xsl:attribute name="exslt:dummy" xmlns:exslt="http://exslt.org/common">dummy</xsl:attribute>
+    <xsl:attribute name="ng:dummy" xmlns:ng="http://docbook.org/docbook-ng">dummy</xsl:attribute>
+    <xsl:attribute name="db:dummy" xmlns:db="http://docbook.org/ns/docbook">dummy</xsl:attribute>
     <xsl:if test="not(@extension-element-prefixes)">
       <xsl:attribute name="extension-element-prefixes">exslt</xsl:attribute>
     </xsl:if>
