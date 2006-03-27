@@ -221,6 +221,14 @@ else
     fi
     # done setting up environment
 
+    if grep "<xsl:stylesheet" $DISTRO/VERSION >/dev/null; then
+      cp -p $DISTRO/VERSION $DISTRO/VERSION.tmp
+      sed "s/Version>.\+</Version>$RELEASEVERSION\_$DATE\_$TIME\</" $DISTRO/VERSION.tmp > $DISTRO/VERSION
+      rm $DISTRO/VERSION.tmp
+    else
+      echo "$RELEASEVERSION_$DATE_$TIME" > $DISTRO/VERSION
+    fi
+
     printf "Done.\n" 1>&2
     # start re-directing stout and stderr to log file (if logging enabled)
     if [ $LOGDIR ]; then
@@ -272,13 +280,6 @@ EOF
       | expand -t2 > $DISTRO/LatestChanges
     fi
 
-    if grep "<xsl:stylesheet" $DISTRO/VERSION >/dev/null; then
-      cp -p $DISTRO/VERSION $DISTRO/VERSION.tmp
-      sed "s/Version>.\+</Version>$RELEASEVERSION\_$DATE\_$TIME\</" $DISTRO/VERSION.tmp > $DISTRO/VERSION
-      rm $DISTRO/VERSION.tmp
-    else
-      echo "$RELEASEVERSION_$DATE_$TIME" > $DISTRO/VERSION
-    fi
     if [ "$UPLOAD" = "yes" ]; then
 
     make zip -C $DISTRO ZIPVER=$RELEASEVERSION TMP=$TMP || exit 1
