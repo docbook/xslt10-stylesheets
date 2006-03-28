@@ -476,8 +476,10 @@
     </span>
     <span class='refpurpose'>
       <xsl:if test="$annotate.toc != 0">
-        <xsl:text> - </xsl:text>
-        <xsl:value-of select="refnamediv/refpurpose"/>
+        <!-- * DocBook 5 says inlinemediaobject (among other things) -->
+        <!-- * is allowed in refpurpose; so we need to run -->
+        <!-- * apply-templates on refpurpose here, instead of value-of  -->
+        <xsl:apply-templates select="refnamediv/refpurpose"/>
       </xsl:if>
     </span>
   </xsl:element>
