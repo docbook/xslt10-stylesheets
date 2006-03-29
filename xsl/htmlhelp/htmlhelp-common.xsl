@@ -7,6 +7,8 @@
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:set="http://exslt.org/sets"
                 xmlns:h="urn:x-hex"
+		xmlns:ng="http://docbook.org/docbook-ng"
+		xmlns:db="http://docbook.org/ns/docbook"
 		version="1.0"
                 exclude-result-prefixes="doc exsl set h db ng">
 
