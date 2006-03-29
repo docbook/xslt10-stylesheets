@@ -538,11 +538,7 @@ Enhanced decompilation=</xsl:text>
         <xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
       </xsl:if>
     </xsl:if>
-    <xsl:call-template name="escape-attr">
-      <xsl:with-param name="value">
-        <xsl:apply-templates select="." mode="title.markup"/>
-      </xsl:with-param>
-    </xsl:call-template>
+    <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:param>
 
   <LI><OBJECT type="text/sitemap">&lf;
@@ -851,16 +847,11 @@ Enhanced decompilation=</xsl:text>
 <xsl:template name="write.indexterm.hhk">
   <xsl:param name="text"/>
   <xsl:param name="seealso"/>
-  <xsl:variable name="text.escaped">
-    <xsl:call-template name="escape-attr">
-      <xsl:with-param name="value" select="$text"/>
-    </xsl:call-template>
-  </xsl:variable>
 
   <LI> <OBJECT type="text/sitemap">&lf;
     <param name="Name">
       <xsl:attribute name="value">
-        <xsl:value-of select="$text.escaped"/>
+        <xsl:value-of select="$text"/>
       </xsl:attribute>
     </param>&lf;
 
@@ -869,13 +860,9 @@ Enhanced decompilation=</xsl:text>
           <xsl:call-template name="href.target.with.base.dir"/>
         </xsl:variable>
         <xsl:variable name="title">
-          <xsl:call-template name="escape-attr">
-            <xsl:with-param name="value">
-              <xsl:call-template name="nearest.title">
-                <xsl:with-param name="object" select=".."/>
-              </xsl:call-template>
-            </xsl:with-param>
-          </xsl:call-template>
+	  <xsl:call-template name="nearest.title">
+	    <xsl:with-param name="object" select=".."/>
+	  </xsl:call-template>
         </xsl:variable>
 
         <param name="Name">
@@ -1037,41 +1024,6 @@ Enhanced decompilation=</xsl:text>
     </xsl:if>
     <xsl:value-of select="document('')//h:hex/d[$digit+1]"/>
   </xsl:template>
-
-<!-- ==================================================================== -->
-<!-- Template for escaping <, & and " in attribute values. 
-     We aren't using HTML output method, so we must do this job ourselves -->
-
-<xsl:template name="escape-attr">
-  <xsl:param name="value"/>
-
-  <xsl:variable name="amp.escaped">
-    <xsl:call-template name="string.subst">
-      <xsl:with-param name="string" select="$value"/>
-      <xsl:with-param name="target" select="'&amp;'"/>
-      <xsl:with-param name="replacement" select="'&amp;amp;'"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:variable name="quot.escaped">
-    <xsl:call-template name="string.subst">
-      <xsl:with-param name="string" select="$amp.escaped"/>
-      <xsl:with-param name="target" select="'&quot;'"/>
-      <xsl:with-param name="replacement" select="'&amp;quot;'"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:variable name="angle.escaped">
-    <xsl:call-template name="string.subst">
-      <xsl:with-param name="string" select="$quot.escaped"/>
-      <xsl:with-param name="target" select="'&lt;'"/>
-      <xsl:with-param name="replacement" select="'&amp;lt;'"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:value-of select="$angle.escaped"/>
-
-</xsl:template>
 
 <!-- ==================================================================== -->
 <!-- Modification to standard HTML stylesheets -->
