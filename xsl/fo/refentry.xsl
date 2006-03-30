@@ -15,6 +15,8 @@
      ******************************************************************** -->
 
 <!-- ==================================================================== -->
+<!--* FIXME - need to document the following param -->
+<xsl:param name="refclass.suppress" select="0"/>
 
 <xsl:template match="reference">
    <xsl:if test="not(partintro)">
@@ -450,6 +452,7 @@
 </xsl:template>
 
 <xsl:template match="refclass">
+  <xsl:if test="$refclass.suppress = 0">
   <fo:block font-weight="bold">
     <xsl:if test="@role">
       <xsl:value-of select="@role"/>
@@ -457,6 +460,7 @@
     </xsl:if>
     <xsl:apply-templates/>
   </fo:block>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="refsynopsisdiv">

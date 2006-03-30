@@ -14,6 +14,9 @@
 
 <!-- ==================================================================== -->
 
+<!--* FIXME - need to document the following param -->
+<xsl:param name="refclass.suppress" select="0"/>
+
 <xsl:template match="reference">
   <xsl:call-template name="id.warning"/>
 
@@ -189,6 +192,7 @@
 </xsl:template>
 
 <xsl:template match="refclass">
+  <xsl:if test="$refclass.suppress = 0">
   <p>
     <b>
       <xsl:if test="@role">
@@ -198,6 +202,7 @@
       <xsl:apply-templates/>
     </b>
   </p>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="refsynopsisdiv">
