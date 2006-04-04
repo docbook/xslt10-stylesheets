@@ -17,9 +17,10 @@
         <contrib>§convert4to5, proofreading</contrib></author>
 <author><personname>Dick Hamilton</personname>
         <email>rlhamilton@frii.com</email>
-        <contrib>§changes-removed, proofreading</contrib></author>
+        <contrib>§changes-removed, customization, proofreading</contrib></author>
 </authorgroup>
 
+<pubdate>2006-04-04</pubdate>
 <pubdate>2006-03-01</pubdate>
 <pubdate>2005-12-28</pubdate>
 <pubdate>2005-10-27</pubdate>
@@ -941,20 +942,682 @@ linkend="convert4to5"/>.
 </section>
 
 <section xml:id="customizations">
-<title>Customizing DocBook V5.0</title>
+  <title>Customizing DocBook V5.0</title>
+  <!--
+      ** RNG schema organization
+      ** Removing attributes
+      ** Adding new attributes
+      ** Changing permitted content of attribute
+      ** Removing elements
+      ** Adding new elements
+      ** Customizing content models
+      ** Naming and versioning of DocBook customizations
+  -->
 
-<para>TBD</para>
+  <para>
+    It's much easier to customize DocBook V5.0 than it was to
+    customize earlier releases.  This is partly because RELAX NG
+    provides better support for modifications than DTDs and partly
+    because the DocBook schema is designed to take full advantage
+    of the capabilities RELAX NG provides.
+    This section describes the organization of the RELAX NG schema for
+    DocBook, methods and examples for adding, removing, and modifying elements
+    and attributes, and conventions for naming and versioning
+    DocBook customizations.
+    It assumes some familiarity with RELAX NG.  If you are unfamiliar
+    with RELAX NG, you can find a tutorial introduction in
+    <citation>RNCTUT</citation>.
+  </para>
+  <section xml:id="relaxngorg">
+    <title>DocBook RELAX NG schema organization</title>
+    <para>
+      The DocBook RELAX NG schema is highly modular, using named
+      patterns extensively.  Every element, attribute, attribute
+      list, and enumeration has its own named pattern.  In addition,
+      there are named patterns for logical combinations of elements
+      and attributes.  These named patterns provide <quote>hooks</quote>
+      into the schema that allow you to do a wide range of customization
+      by simply redefining one or more of the named patterns.
+    </para>
+    <para>
+      An important design characteristic of the schema is that
+      duplication is minimized.  This is done through the use of
+      named patterns for common groupings that can be re-used.
+      For example, the <tag>imagedata</tag> and <tag>videodata</tag>
+      elements each have an <tag class="attribute">align</tag> attribute
+      that takes the same set of enumerated values.  Rather than
+      repeating those values, a single pattern,
+      <varname>db.halign.enumeration</varname> is referenced by
+      the <varname>db.videodata.align.enumeration</varname>
+      and <varname>db.imagedata.align.enumeration</varname> patterns,
+      which are in turn referenced by the
+      <varname>db.videodata.align.attribute</varname>
+      and <varname>db.imagedata.align.attribute</varname> patterns.
+      While this may seem like overkill, it allows a customizer to modify
+      the allowed enumerations for these two attributes separately or together,
+      or to completely re-define the allowed content of either or both,
+      by redefining one or more of these named patterns.
+    </para>
+    <section xml:id="patternnames"><title>Pattern Names</title>
+    <para>
+      Because named patterns are used extensively, the RELAX NG schema uses
+      several naming conventions.  These are:
+      <itemizedlist spacing="compact">
+        <listitem>
+          <para>
+            Names have two or more parts, separated dots <quote>.</quote>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            The first part of each name is the prefix <quote>db</quote>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Each element has a named pattern in the form
+            <varname>db.<replaceable>elementname</replaceable></varname>.
+            Elements that have different content models in different
+            contexts will also have patterns in the form
+            <varname>db.<replaceable>context.elementname</replaceable></varname>.  For example, <varname>db.figure.info</varname>
+            defines the content model for the <tag>info</tag> element
+            when it appears as a child of the <tag>figure</tag> element.
+            <replaceable>Context</replaceable> may have several parts.
+            For example, <varname>db.cals.entrytbl.thead</varname>.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Most attributes have a named pattern in the form
+            <varname>db.<replaceable>attributename</replaceable>.attribute</varname>.
+            Attributes that have different content models in different
+            contexts will also have patterns in the form
+            <varname>db.<replaceable>context.attributename</replaceable>.attribute</varname>.
+            For example,
+            <varname>db.olink.localinfo.attribute</varname> defines the content
+            model of the <tag class="attribute">localinfo</tag> attribute when
+            it appears in <tag>olink</tag>.
+            There are a few attributes that do not have individual named
+            patterns.  For example, the effectivity attributes are grouped
+            into <varname>db.effectivity.attributes</varname> and not identified
+            separately.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Each element has a named pattern for its attribute list in
+            the form
+            <varname>db.<replaceable>elementname</replaceable>.attlist</varname>
 
-<!--
-** RNG schema organization
-** Removing attributes
-** Adding new attributes
-** Changing permitted content of attribute
-** Removing elements
-** Adding new elements
-** Customizing content models
-** Naming and versioning of DocBook customizations
--->
+            that defines the list of attributes for that element.
+            Elements that have different attribute lists in different
+            contexts will also have patterns in the form
+            <varname>db.<replaceable>context.elementname</replaceable>.attlist</varname>
+            For example, <varname>db.html.table.attlist</varname> defines
+            the attribute list for the html <tag condition="nolink">table</tag> element and
+            <varname>db.cals.table.attlist</varname> defines the attribute
+            list for a cals <tag condition="nolink">table</tag> element.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Each attribute that has enumerated values has a
+            named pattern in the form
+            <varname>db.<replaceable>[context.]attributename</replaceable>.enumeration</varname>.
+            If the enumeration for a particular attribute depends on
+            context, optional context is provided.
+            For example,
+            <varname>db.verbatim.continuation.enumeration</varname> defines
+            the enumeration values for the
+            <tag class="attribute">continuation</tag> attribute that is used
+            in verbatim contexts like <tag>screen</tag>.
+            Unlike elements and attributes, there is not necessarily a
+            named pattern for enumerated attributes outside their context.
+            For example, there is no <varname>db.class.enumeration</varname>
+            because the <tag class="attribute">class</tag> attribute has
+            a broad and non-intersecting range of uses.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            There are several different groupings of elements and attributes.
+            Here are the major ones:
+            <variablelist spacing="compact">
+              <varlistentry>
+                <term>inlines</term>
+                <listitem>
+                  <para>
+                    Combinations of inline elements, for example,
+                    <varname>db.error.inlines</varname>, which contains
+                    <varname>db.errorcode</varname>,
+                    <varname>db.errortext</varname>, etc.
+                  </para>
+                </listitem>
+              </varlistentry>
+              <varlistentry>
+                <term>blocks</term>
+                <listitem>
+                  <para>
+                    Combinations of block elements, for example,
+                    <varname>db.verbatim.blocks</varname>, which contains
+                    <varname>db.programlisting</varname>,
+                    <varname>db.screen</varname>, etc.
+                  </para>
+                </listitem>
+              </varlistentry>
+              <varlistentry>
+                <term>attributes</term>
+                <listitem>
+                  <para>
+                    Combinations of attributes, for example,
+                    <varname>db.effectivity.attributes</varname>,
+                    which contains the attributes
+                    <tag class="attribute">arch</tag>,
+                    <tag class="attribute">condition</tag>,
+                    <tag class="attribute">conformance</tag>, etc.
+                  </para>
+                </listitem>
+              </varlistentry>
+              <varlistentry>
+                <term>components</term>
+                <listitem>
+                  <para>
+                    High level components of the schema, for example,
+                    <varname>db.navigation.components</varname>, which contains
+                    <varname>db.glossary</varname>,
+                    <varname>db.bibliography</varname>,
+                    <varname>db.index</varname>, and
+                    <varname>db.toc</varname>, and is used inside the
+                    content model for <tag>chapter</tag>, <tag>appendix</tag>,
+                    and <tag>preface</tag>.
+                  </para>
+                </listitem>
+              </varlistentry>
+              <varlistentry>
+                <term>contentmodel</term>
+                <listitem>
+                  <para>
+                    Shared content models, for example,
+                    <varname>db.admonition.contentmodel</varname>, which contains
+                    the content model for <tag>tip</tag>, <tag>warning</tag>,
+                    <tag>note</tag>, etc.
+                  </para>
+                </listitem>
+              </varlistentry>
+            </variablelist>
+          </para>
+          <para>
+            There are a couple of other groupings designed to minimize
+            duplication, but these are the most important.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
+  </section>
+</section>
+<section xml:id="customconsiderations">
+  <title>General customization considerations</title>
+  <para>
+    Creating a customized schema is similar to
+    creating a customization layer for XSL.  The schema customization
+    layer is a new RELAX NG schema that defines your changes and
+    includes the standard docbook schema.  You then validate using
+    the schema customization as your schema.
+  </para>
+  <para>
+    <xref linkend="ex-empty" xrefstyle="select: label"/> is an empty
+    RELAX NG customization that does nothing
+    except define the name spaces and include the standard DocBook schema.
+    The <tag class="attribute">href</tag> attribute of the
+    <tag condition="nolink">include</tag> element points to
+    the location of the standard DocBook V5.0 schema.
+    All of the examples are given in both RNG and RNC form.
+<example xml:id="ex-empty"><title>Empty customization file</title>
+<para>RNG</para>
+<programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns:db="http://docbook.org/ns/docbook"
+         ns="http://docbook.org/ns/docbook"
+         xmlns="http://relaxng.org/ns/structure/1.0">
+  <include href="docbook.rng"/>
+
+  <!-- redefinitions of named patterns -->
+
+</grammar>]]></programlisting>
+<para>RNC</para>
+<programlisting language="rnc"><![CDATA[namespace db = "http://docbook.org/ns/docbook"
+
+include "docbook.rnc" inherit = db
+# redefinitions of named patterns]]></programlisting>
+</example>
+  </para>
+</section>
+  <section xml:id="cust-elements">
+    <title>Elements</title>
+    <section xml:id="cust-add-elements">
+      <title>Adding elements</title>
+      <para>
+        Adding an element typically takes two definitions.
+        The first defines the new element and
+        its content model, and the second adds the
+        new element into the schema.  We'll show two examples.
+      </para>
+      <para>
+        <xref linkend="ex-add-element-1"  xrefstyle="select: label"/>
+        adds a new element,
+        <tag condition="nolink">person</tag>, with the same
+        content model as <tag>author</tag>.  The new element will be
+        allowed to appear wherever <tag>author</tag> can appear.
+      </para>
+      <para>
+        The <varname>db.author</varname> pattern is copied
+        and renamed <varname>dbx.person</varname>, defining
+        a new element called <tag condition="nolink">person</tag>.
+        Then, the <varname>db.author</varname> pattern is redefined
+        to be a choice of the current value or <varname>dbx.person</varname>.
+        The <tag class="attribute">combine</tag> attribute tells
+        RELAX NG to combine this pattern with the existing named
+        pattern.  In this case, the value
+        of the <tag class="attribute">combine</tag> attribute is
+        <quote>choice</quote>, which tells the parser that either
+        the original pattern or this new pattern is a valid match.
+      </para>
+<example xml:id="ex-add-element-1"><title>Adding a new element by duplicating an existing one</title>
+<para>RNG</para>
+<programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns:db="http://docbook.org/ns/docbook"
+         ns="http://docbook.org/ns/docbook"
+         xmlns="http://relaxng.org/ns/structure/1.0">
+  <include href="docbook.rng"/>
+  <!-- define the new element -->
+  <define name="dbx.person">
+    <element name="person">
+        <ref name="db.author.attlist"/>
+        <ref name="db.credit.contentmodel"/>
+    </element>
+  </define>
+  <!-- redefine the db.author pattern to allow db.person in
+       the same places as db.author -->
+  <define name="db.author" combine="choice">
+    <ref name="dbx.person"/>
+  </define>
+</grammar>]]></programlisting>
+<para>RNC</para>
+<programlisting language="rnc"><![CDATA[default namespace db = "http://docbook.org/ns/docbook"
+
+include "docbook.rnc"
+# define the new element
+dbx.person =
+  element person { db.author.attlist, db.credit.contentmodel }
+# redefine the db.author pattern to allow db.person in
+# the same places as db.author
+db.author |= dbx.person]]></programlisting>
+</example>
+    <para>
+      The preceding method works well when you'd like a new element
+      to be a clone or near-clone of an existing element.  It gives
+      you complete control over the content model, but
+      only limited control over where the element is allowed.  It
+      works well when you want to allow the element in the same places
+      as an existing element, and for this example that works
+      nicely, since <tag>author</tag> is allowed in four different
+      named patterns, each of which would have had to be redefined to
+      allow <tag condition="nolink">person</tag>.
+      But, if you can't find an existing element that is allowed in
+      exactly the places you need, this method doesn't work as well.
+    </para>
+    <para>
+      <xref linkend="ex-add-element-2" xrefstyle="select: label"/>
+      adds two new elements by combining them into
+      a higher level pattern.  In this example, we'll add
+      two new inline elements for writing about assembly language,
+      <tag condition="nolink">register</tag> and 
+      <tag condition="nolink">instruction</tag>.
+      We will allow them whereever programming inlines
+      or operating system inlines are allowed.
+      <xref linkend="ex-add-element-2" xrefstyle="select: label"/>
+      defines the two elements, creates a new named pattern
+      (<varname>dbx.asm.inlines</varname>) that contains them, and adds
+      that pattern to <varname>db.programming.inlines</varname> and
+      <varname>db.os.inlines</varname>.  Since these two patterns
+      don't have any elements in common, the strategy used in 
+      <xref linkend="ex-add-element-1" xrefstyle="select: label"/>
+      would require selecting two different elements to <quote>clone</quote>,
+      which would be messy.
+    </para>
+<example xml:id="ex-add-element-2"><title>Adding new inline elements</title>
+<para>RNG</para>
+<programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns:db="http://docbook.org/ns/docbook"
+         ns="http://docbook.org/ns/docbook"
+         xmlns="http://relaxng.org/ns/structure/1.0">
+  <include href="docbook.rng"/>
+  <!-- define the new elements -->
+  <define name="dbx.register">
+    <element name="register">
+      <text/>
+    </element>
+  </define>
+  <define name="dbx.instruction">
+    <element name="instruction">
+      <text/>
+    </element>
+  </define>
+  <!-- create a new pattern that contains the new inlines -->
+  <define name="dbx.asm.inlines">
+    <choice>
+      <ref name="dbx.register"/>
+      <ref name="dbx.instruction"/>
+    </choice>
+  </define>
+  <!-- add the new inlines to programming and os inlines -->
+    <define name="db.programming.inlines" combine="choice">
+      <ref name="dbx.asm.inlines"/>
+    </define>
+    <define name="db.os.inlines" combine="choice">
+      <ref name="dbx.asm.inlines"/>
+    </define>
+</grammar>]]></programlisting>
+<para>RNC</para>
+<programlisting language="rnc"><![CDATA[default namespace db = "http://docbook.org/ns/docbook"
+
+include "docbook.rnc"
+# define the new elements
+dbx.register = element register { text }
+dbx.instruction = element instruction { text }
+# create a new pattern that contains the new inlines
+dbx.asm.inlines = dbx.register | dbx.instruction
+# add the new inlines to programming and os inlines
+db.programming.inlines |= dbx.asm.inlines
+db.os.inlines |= dbx.asm.inlines]]></programlisting>
+</example>
+    </section>
+    <section xml:id="cust-delete-elements">
+      <title>Deleting elements</title>
+      <para>
+        Deleting elements is straightforward, but takes some
+        care and planning.  <xref linkend="ex-delete-element"
+        xrefstyle="select: label"/> deletes
+        the <tag>important</tag> admonition element by redefining
+        it with a content model of <varname>notAllowed</varname>.
+        Note that in this example, the redefinition is inside
+        the <tag condition="nolink">include</tag> element.
+        This is required for
+        redefinitions that completely replace an existing pattern.
+      </para>
+      <para>
+        Be careful; If you delete an element that is a required part
+        of another element's content model, you can make it
+        impossible to create a valid document.
+        For example, if you delete the <tag>title</tag>
+        element, you won't be able to validate a <tag>book</tag>
+        because a <tag>book</tag> requires a <tag>title</tag>.
+      </para>
+<example xml:id="ex-delete-element"><title>Deleting an element</title>
+<para>RNG</para>
+<programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns:db="http://docbook.org/ns/docbook"
+         ns="http://docbook.org/ns/docbook"
+         xmlns="http://relaxng.org/ns/structure/1.0">
+  <include href="docbook.rng">
+    <!-- redefine important element as notAllowed -->
+    <define name="db.important">
+      <notAllowed/>
+    </define>
+  </include>
+</grammar>]]></programlisting>
+<para>RNC</para>
+<programlisting language="rnc"><![CDATA[namespace db = "http://docbook.org/ns/docbook"
+
+include "docbook.rnc" inherit = db {
+  # redefine important element as notAllowed
+  db.important = notAllowed
+}]]></programlisting>
+</example>
+    </section>
+    <section xml:id="cust-modify-elements">
+      <title>Customizing the content model of existing elements</title>
+      <para>
+         <xref linkend="ex-modify-element" xrefstyle="select: label"/>
+         expands the definition of <tag>author</tag> to include two
+         new elements, <tag condition="nolink">born</tag> and
+         <tag condition="nolink">died</tag>.
+         The <tag>author</tag> element allows two content models,
+         <varname>db.person.author.contentmodel</varname>, which
+         defines an author who is a person, and
+         <varname>db.org.author.contentmodel</varname>, which
+         defines an author that is an organization.  We will modify
+         <varname>db.person.author.contentmodel</varname> so that
+         only authors who are persons can have the new elements.
+<example xml:id="ex-modify-element"><title>Modifying the content model of an element</title>
+<para>RNG</para>
+<programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns:db="http://docbook.org/ns/docbook"
+         ns="http://docbook.org/ns/docbook"
+         xmlns="http://relaxng.org/ns/structure/1.0">
+  <include href="docbook.rng"/>
+
+  <define name="db.person.author.contentmodel" combine="interleave">
+    <interleave>
+      <optional>
+        <element name="born">
+          <ref name="db.date.contentmodel"/>
+        </element>
+      </optional>
+      <optional>
+        <element name="died">
+          <ref name="db.date.contentmodel"/>
+        </element>
+      </optional>
+    </interleave>
+  </define>
+</grammar>]]></programlisting>
+<para>RNC</para>
+<programlisting language="rnc"><![CDATA[default namespace = "http://docbook.org/ns/docbook"
+namespace db = "http://docbook.org/ns/docbook"
+
+include "docbook.rnc"
+
+db.person.author.contentmodel &=
+  element born { db.date.contentmodel }?
+  & element died { db.date.contentmodel }?]]></programlisting>
+</example>
+      </para>
+      <para>
+        This modification will allow instances like this:
+<programlisting language="rng"><![CDATA[<author>
+  <personname>Babe Ruth</personname>
+  <born>02/06/1895</born>
+  <died>08/16/1948</died>
+</author>]]></programlisting>
+but because we only modified the content model for authors
+who are human, it won't allow an instance like this, which
+uses <varname>db.org.author.contentmodel</varname>:
+<programlisting language="rng"><![CDATA[<!-- INVALID -->
+<author>
+  <orgname>Boston Red Sox</orgname>
+  <died>1919</died>
+  <born>2004</born>
+</author>]]></programlisting>
+      </para>
+    </section>
+  </section>
+  <section xml:id="cust-attributes">
+    <title>Attributes</title>
+    <section xml:id="cust-add-attributes">
+      <title>Adding attributes</title>
+      <para>
+        The simplest way to add an attribute to a single element
+        is to add it to the attlist pattern for that element.
+        <xref linkend="ex-add-attr" xrefstyle="select: label"/>
+        adds the optional attributes <tag class="attribute">born</tag>
+        and <tag class="attribute">died</tag> to the attribute
+        list for <tag>author</tag>.  The <varname>db.author.attlist</varname>
+        named pattern is redefined with the
+        <tag class="attribute">combine</tag> attribute set to
+        <quote>interleave</quote>, which interleaves the two new
+        optional attributes with the existing attributes on the list.
+      </para>
+<example xml:id="ex-add-attr"><title>Adding attributes</title>
+<para>RNG</para>
+<programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns:db="http://docbook.org/ns/docbook"
+         ns="http://docbook.org/ns/docbook"
+         xmlns="http://relaxng.org/ns/structure/1.0">
+  <include href="docbook.rng"/>
+
+  <define name="db.author.attlist" combine="interleave">
+    <interleave>
+      <optional>
+        <attribute name="born">
+          <ref name="db.date.contentmodel"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="died">
+          <ref name="db.date.contentmodel"/>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+</grammar>]]></programlisting>
+<para>RNC</para>
+<programlisting language="rnc"><![CDATA[namespace db = "http://docbook.org/ns/docbook"
+
+include "docbook.rnc" inherit = db
+
+db.author.attlist &=
+  attribute born { db.date.contentmodel }?
+  & attribute died { db.date.contentmodel }?]]></programlisting>
+</example>
+    <para>
+      Unlike
+      <xref linkend="ex-modify-element" xrefstyle="select: label"/>,
+      <xref linkend="ex-add-attr" xrefstyle="select: label"/> allows
+      the new attributes to appear on any <tag>author</tag>
+      element, not just those using the person content model.
+    </para>
+    <para>
+      <xref linkend="ex-add-attr-2" xrefstyle="select: label"/> shows
+      how you could limit the use of these attributes to authors who
+      are persons.  In this example, the new attributes are interleaved
+      with the <varname>db.person.author.contentmodel</varname>.  
+      The only difference between this example and 
+      <xref linkend="ex-modify-element" xrefstyle="select: label"/> is
+      that the added patterns are identified as attributes rather than
+      elements.  This shows some of the flexibility of RELAX NG, which
+      treats attributes and elements very consistently.
+<example xml:id="ex-add-attr-2"><title>Adding attributes; alternate method</title>
+<para>RNG</para>
+<programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns:db="http://docbook.org/ns/docbook"
+         ns="http://docbook.org/ns/docbook"
+         xmlns="http://relaxng.org/ns/structure/1.0">
+  <include href="docbook.rng"/>
+  <!-- redefinitions of named patterns -->
+  <define name="db.person.author.contentmodel" combine="interleave">
+    <interleave>
+      <optional>
+        <attribute name="born">
+          <ref name="db.date.contentmodel"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="died">
+          <ref name="db.date.contentmodel"/>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+</grammar>]]></programlisting>
+<para>RNC</para>
+<programlisting language="rnc"><![CDATA[namespace db = "http://docbook.org/ns/docbook"
+
+include "docbook.rnc" inherit = db
+# redefinitions of named patterns
+db.person.author.contentmodel &=
+  attribute born { db.date.contentmodel }?
+  & attribute died { db.date.contentmodel }?]]></programlisting>
+</example>
+There is one difference in the treatment of attributes and elements
+that is worth noting.  By the XML 1.0 definition, the relative order
+of attributes is not significant.  Therefore, the
+<tag condition="nolink">interleave</tag> block is not required for
+attributes, though it does no harm.  
+    </para>
+    </section>
+    <section xml:id="cust-delete-attributes">
+      <title>Deleting attributes</title>
+      <para>
+        Deleting an attribute is similar to deleting an element,
+        except that you use the RELAX NG <varname>empty</varname>
+        pattern rather than <varname>notAllowed</varname>.
+        <xref linkend="ex-delete-attr" xrefstyle="select: label"/>
+        deletes the linking attributes, which are collected in the
+        <varname>db.common.linking.attributes</varname> pattern,
+        by defining that pattern as <varname>empty</varname>.
+      </para>
+<example xml:id="ex-delete-attr"><title>Deleting an attribute</title>
+<para>RNG</para>
+<programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns:db="http://docbook.org/ns/docbook"
+         ns="http://docbook.org/ns/docbook"
+         xmlns="http://relaxng.org/ns/structure/1.0">
+  <include href="docbook.rng">
+    <define name="db.common.linking.attributes">
+      <empty/>
+    </define>
+  </include>
+</grammar>]]></programlisting>
+<para>RNC</para>
+<programlisting language="rnc"><![CDATA[namespace db = "http://docbook.org/ns/docbook"
+
+include "docbook.rnc" inherit = db {
+  db.common.linking.attributes = empty
+}]]></programlisting>
+</example>
+      <para>
+        Generally, <varname>empty</varname> is used when deleting
+        attributes and <varname>notAllowed</varname> is used when
+        deleting elements.
+      </para>
+    </section>
+    <section xml:id="cust-modify-attributes">
+      <title>Changing permitted content of attributes</title>
+      <para>
+        <xref linkend="ex-modify-attr" xrefstyle="select: label"/>
+        modifies <varname>db.spacing.enumeration</varname> to
+        add the additional value <quote>large</quote>.  Note
+        that to remove a value from an enumeration, you need
+        to redefine the entire enumeration, minus the values
+        you don't need.
+      </para>
+<example xml:id="ex-modify-attr"><title>Deleting an attribute</title>
+<para>RNG</para>
+<programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns:db="http://docbook.org/ns/docbook"
+         ns="http://docbook.org/ns/docbook"
+         xmlns="http://relaxng.org/ns/structure/1.0">
+  <include href="docbook.rng"/>
+  <!-- add value to an enumeration -->
+  <define name="db.spacing.enumeration" combine="choice">
+    <value>large</value>
+  </define>
+</grammar>]]></programlisting>
+<para>RNC</para>
+<programlisting language="rnc"><![CDATA[namespace db = "http://docbook.org/ns/docbook"
+
+include "docbook.rnc" inherit = db
+# add value to an enumeration
+db.spacing.enumeration |= "large"]]></programlisting>
+</example>
+    </section>
+  </section>
+  <section xml:id="cust-naming">
+    <title>Naming and versioning DocBook customizations</title>
+    <para>
+      TBD
+    </para>
+  </section>
 
 </section>
 
@@ -1073,7 +1736,7 @@ somewhere (e.g. into a <filename>mathml</filename> subdirectory).</para>
 </step>
 <step>
 <para>Create a schema customization in compact syntax—<filename>dbmathml.rnc</filename>:</para>
-<programlisting>namespace html = "http://www.w3.org/1999/xhtml"
+<programlisting language="rnc">namespace html = "http://www.w3.org/1999/xhtml"
 namespace mml = "http://www.w3.org/1998/Math/MathML"
 namespace db = "http://docbook.org/ns/docbook"
 
@@ -1087,7 +1750,7 @@ include "/path/to/docbook.rnc" {
     }
 }</programlisting>
 <para>Or, alternatively, you can use the XML syntax of RELAX NG—<filename>dbmathml.rng</filename>:</para>
-<programlisting><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0">
 
 <include href="/path/to/docbook.rng">
@@ -1145,7 +1808,7 @@ somewhere (e.g. into an <filename>svg</filename> subdirectory).</para>
 </step>
 <step>
 <para>Create a schema customization in compact syntax—<filename>dbsvg.rnc</filename>:</para>
-<programlisting>namespace html = "http://www.w3.org/1999/xhtml"
+<programlisting language="rnc">namespace html = "http://www.w3.org/1999/xhtml"
 namespace db = "http://docbook.org/ns/docbook"
 namespace svg = "http://www.w3.org/2000/svg"
 
@@ -1159,7 +1822,7 @@ include "/path/to/docbook.rnc" {
     }
 }</programlisting>
 <para>Or, alternatively, you can use the XML syntax of RELAX NG—<filename>dbsvg.rng</filename>:</para>
-<programlisting><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0">
 
 <include href="/path/to/docbook.rng">
@@ -1209,7 +1872,7 @@ and SVG together?</para>
 <para>Yes, you can create a special schema customization that combines
 both MathML and SVG with the DocBook schema. In compact syntax, the merged
 schema is:</para>
-<programlisting>namespace html = "http://www.w3.org/1999/xhtml"
+<programlisting language="rnc">namespace html = "http://www.w3.org/1999/xhtml"
 namespace mml = "http://www.w3.org/1998/Math/MathML"
 namespace db = "http://docbook.org/ns/docbook"
 namespace svg = "http://www.w3.org/2000/svg"
@@ -1225,7 +1888,7 @@ include "/path/to/docbook.rnc" {
     }
 }</programlisting>
 <para>Or alternatively in the full RELAX NG syntax:</para>
-<programlisting><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0">
 
 <include href="/path/to/docbook.rng">
