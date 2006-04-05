@@ -146,4 +146,10 @@
   </xsl:choose>
 </xsl:template>
 
+<!-- * span in seems to sneak through into output sometimes, possibly due -->
+<!-- * to failed Olink processing; so we need to catch it -->
+<xsl:template match="span">
+  <xsl:apply-templates/>
+</xsl:template>
+
 </xsl:stylesheet>
