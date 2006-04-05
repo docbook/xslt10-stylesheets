@@ -14,9 +14,9 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 default namespace = "http://docbook.org/ns/docbook"
 
-include "../../docbook/src/docbook.rnc" {
+include "../../simple/src/sdocbook.rnc" {
    start = sl.slides
    db.all.blocks |= sl.speakernotes
 }
 
-include "foils.rnc"
+include "../src/foils.rnc"

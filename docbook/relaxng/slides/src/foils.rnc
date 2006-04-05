@@ -32,7 +32,7 @@ div {
       element slides {
          sl.slides.attlist,
          sl.slides.info,
-         db.all.blocks*,
+         (db.all.blocks|sl.speakernotes)*,
          sl.foil*,
          sl.foilgroup*
       }
@@ -59,7 +59,7 @@ div {
       element foilgroup {
          sl.foilgroup.attlist,
          sl.foilgroup.info,
-         (db.all.blocks|db.navigation.components)*,
+         (db.all.blocks|db.navigation.components|sl.speakernotes)*,
          sl.foil+
       }
 }
@@ -85,7 +85,7 @@ div {
       element foil {
          sl.foil.attlist,
          sl.foil.info,
-         (db.all.blocks|db.navigation.components)+
+         (db.all.blocks|db.navigation.components|sl.speakernotes)+
       }
 }
 
