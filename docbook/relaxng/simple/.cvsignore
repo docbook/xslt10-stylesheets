@@ -1,5 +1,7 @@
-sdocbook-dtd.xml
-sdocbook-rng.xml
-sdocbook.dtd
-sdocbook.rnc
-sdocbook.rng
+build
+semantic.cache
+*.dtd
+*.rnc
+*.rng
+*.sch
+*.xsd
