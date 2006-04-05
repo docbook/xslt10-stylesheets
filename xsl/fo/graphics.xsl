@@ -219,7 +219,7 @@
         <xsl:when test="contains(@width,'%')">
           <xsl:value-of select="@width"/>
         </xsl:when>
-        <xsl:when test="@width">
+        <xsl:when test="@width and not(@width = '')">
           <xsl:call-template name="length-spec">
             <xsl:with-param name="length" select="@width"/>
             <xsl:with-param name="default.units" select="'px'"/>
