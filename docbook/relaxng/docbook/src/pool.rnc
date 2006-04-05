@@ -625,6 +625,7 @@ db.technical.inlines =
  | db.option
  | db.optional
  | db.package
+ | db.parameter
  | db.property
  | db.termdef
 
