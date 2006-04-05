@@ -1539,7 +1539,17 @@
       </fo:table-column>
 
       <fo:table-body>
-        <fo:table-row height="14pt">
+        <fo:table-row>
+          <xsl:choose>
+            <xsl:when test="not($fop1.extensions = 0)">
+              <!-- * for any explanation of why this is here, see -->
+              <!-- * http://wiki.apache.org/xmlgraphics-fop/Troubleshooting/CommonLogMessages -->
+              <xsl:attribute name="block-progression-dimension.minimum">14pt</xsl:attribute>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:attribute name="height">14pt</xsl:attribute>
+            </xsl:otherwise>
+          </xsl:choose>
           <fo:table-cell text-align="left"
                          display-align="before">
             <xsl:if test="$fop.extensions = 0">
@@ -1860,7 +1870,17 @@
       </fo:table-column>
 
       <fo:table-body>
-        <fo:table-row height="14pt">
+        <fo:table-row>
+          <xsl:choose>
+            <xsl:when test="not($fop1.extensions = 0)">
+              <!-- * for any explanation of why this is here, see -->
+              <!-- * http://wiki.apache.org/xmlgraphics-fop/Troubleshooting/CommonLogMessages -->
+              <xsl:attribute name="block-progression-dimension.minimum">14pt</xsl:attribute>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:attribute name="height">14pt</xsl:attribute>
+            </xsl:otherwise>
+          </xsl:choose>
           <fo:table-cell text-align="left"
                          display-align="after">
             <xsl:if test="$fop.extensions = 0">
