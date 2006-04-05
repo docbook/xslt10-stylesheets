@@ -10,6 +10,8 @@
 <xsl:strip-space elements="*"/>
 
 <xsl:param name="ns" select="'http://docbook.org/ns/docbook'"/>
+<xsl:param name="html-ns" select="'http://www.w3.org/1999/xhtml'"/>
+<xsl:param name="rddl-ns" select="'http://www.rddl.org/'"/>
 
 <xsl:template match="/">
   <xsl:apply-templates/>
@@ -62,9 +64,29 @@
   <xsl:value-of select="@name"/>
   <xsl:text>&#10;</xsl:text>
 
-  <xsl:text>&#9;xmlns&#9;CDATA&#9;#FIXED&#9;"</xsl:text>
-  <xsl:value-of select="$ns"/>
-  <xsl:text>"&#10;</xsl:text>
+  <xsl:choose>
+    <xsl:when test="starts-with(@name,'rddl:')">
+      <xsl:text>&#9;xmlns:rddl&#9;CDATA&#9;#FIXED&#9;"</xsl:text>
+      <xsl:value-of select="$rddl-ns"/>
+      <xsl:text>"&#10;</xsl:text>
+    </xsl:when>
+    <xsl:when test="starts-with(@name,'html:')">
+      <xsl:text>&#9;xmlns:html&#9;CDATA&#9;#FIXED&#9;"</xsl:text>
+      <xsl:value-of select="$html-ns"/>
+      <xsl:text>"&#10;</xsl:text>
+    </xsl:when>
+    <xsl:when test="contains(@name, ':')">
+      <xsl:message terminate="yes">
+	<xsl:text>Unexpected prefix on </xsl:text>
+	<xsl:value-of select="@name"/>
+      </xsl:message>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>&#9;xmlns&#9;CDATA&#9;#FIXED&#9;"</xsl:text>
+      <xsl:value-of select="$ns"/>
+      <xsl:text>"&#10;</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
 
   <xsl:apply-templates/>
   <xsl:text>&#10;&gt;&#10;&#10;</xsl:text>
