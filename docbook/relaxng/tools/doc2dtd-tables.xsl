@@ -45,7 +45,7 @@
 <xsl:variable name="merged-informaltable">
   <dtd:element name="informaltable">
     <dtd:group>
-      <dtd:ref name="info" occurs="optional"/>
+      <dtd:ref name="info" repeat="?"/>
       <dtd:choice>
 	<dtd:group>
 	  <dtd:ref name="textobject" repeat="*"/>
@@ -59,8 +59,8 @@
 	    <dtd:ref name="col" repeat="*"/>
 	    <dtd:ref name="colgroup" repeat="*"/>
 	  </dtd:choice>
-	  <dtd:ref name="thead" occurs="?"/>
-	  <dtd:ref name="tfoot" occurs="?"/>
+	  <dtd:ref name="thead" repeat="?"/>
+	  <dtd:ref name="tfoot" repeat="?"/>
 	  <dtd:choice>
 	    <dtd:ref name="tbody" repeat="+"/>
 	    <dtd:ref name="tr" repeat="+"/>
@@ -75,13 +75,13 @@
   <dtd:element name="table">
     <dtd:choice>
       <dtd:group>
-	<dtd:ref name="info" occurs="optional"/>
+	<dtd:ref name="info" repeat="?"/>
 	<dtd:group>
 	  <dtd:ref name="title"/>
-	  <dtd:ref name="titleabbrev" occurs="optional"/>
+	  <dtd:ref name="titleabbrev" repeat="?"/>
 	</dtd:group>
-	<dtd:ref name="indexterm" occurs="*"/>
-	<dtd:ref name="textobject" occurs="*"/>
+	<dtd:ref name="indexterm" repeat="*"/>
+	<dtd:ref name="textobject" repeat="*"/>
 	<dtd:choice>
 	  <dtd:ref name="mediaobject" repeat="+"/>
 	  <dtd:ref name="tgroup" repeat="+"/>
@@ -93,8 +93,8 @@
 	  <dtd:ref name="col" repeat="*"/>
 	  <dtd:ref name="colgroup" repeat="*"/>
 	</dtd:choice>
-	<dtd:ref name="thead" occurs="?"/>
-	<dtd:ref name="tfoot" occurs="?"/>
+	<dtd:ref name="thead" repeat="?"/>
+	<dtd:ref name="tfoot" repeat="?"/>
 	<dtd:choice>
 	  <dtd:ref name="tbody" repeat="+"/>
 	  <dtd:ref name="tr" repeat="+"/>
