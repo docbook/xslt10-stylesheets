@@ -23,9 +23,19 @@
   <xsl:import href="../contrib/tools/tennison/modified-markup.xsl" />
   <xsl:include href="../xsl/lib/lib.xsl" />
 
-  <!-- * name of file that contains DocBook element names and DocBook -->
-  <!-- * param names -->
-  <xsl:param name="terms.file"/>
+  <!-- * file containing DocBook XSL stylesheet param names -->
+  <xsl:param name="param.file"/>
+
+  <!-- * file containing DocBook element names-->
+  <xsl:param name="element.file"/>
+
+  <!-- * comma-separated list of terms that should not be -->
+  <!-- * automatically marked up -->
+  <xsl:param 
+      name="stopwords"
+      >code,example,markup,note,option,optional,part,parameter,set,step,type,warning</xsl:param>
+
+  <!-- ==================================================================== -->
 
   <!-- * This stylesheet converts XML-formatted ChangeLog output of the -->
   <!-- * cvs2cl command into DocBook form. -->
@@ -37,21 +47,22 @@
   <!-- * - groups commit messages by subdirectory name and generates -->
   <!-- *   a Sect2 wrapper around each group (for example, all commit -->
   <!-- *   messages for the "lib" subdirectory get grouped together -->
-  <!-- *   into a "Lib" Sect2 section -->
+  <!-- *   into a "Lib" Sect2 section) -->
   <!-- * -->
   <!-- * - within each Sect2 section, generates an Itemizedlist, one -->
   <!-- *   Listitem for each commit message -->
   <!-- * -->
   <!-- * - uses Jeni Tennison's "Markup Utility" stylesheet to -->
   <!-- *   recognize special terms and mark them up; specifically, it -->
-  <!-- *   looks DocBook element names in commit messages and marks -->
-  <!-- *   them up with <tag>foo</tag> instances, an looks for DocBook -->
+  <!-- *   looks for DocBook element names in commit messages and marks -->
+  <!-- *   them up with <tag>foo</tag> instances, and looks for DocBook -->
   <!-- *   XSL stylesheet param names, and marks them up with -->
   <!-- *   <parameter>hoge.moge.baz</parameter> instances -->
   <!-- * -->
   <!-- * - preserves newlines (by converting them to <sbr/> instances) -->
   <!-- * -->
   <!-- * - converts cvs usernames to corresponding users' real names -->
+  <!-- * -->
 
   <xsl:param name="release-version"/>
   <xsl:param name="release-version-ncname">
@@ -89,27 +100,33 @@
     <!-- * with the real names of the people they correspond to -->
     <sf:user>
       <sf:username>balls</sf:username>
-      <sf:realname>Steve&#xA0;Ball</sf:realname>
+      <sf:firstname>Steve</sf:firstname>
+      <sf:surname>Ball</sf:surname>
     </sf:user>
     <sf:user>
       <sf:username>bobstayton</sf:username>
-      <sf:realname>Robert&#xA0;Stayton</sf:realname>
+      <sf:firstname>Robert</sf:firstname>
+      <sf:surname>Stayton</sf:surname>
     </sf:user>
     <sf:user>
       <sf:username>dcramer</sf:username>
-      <sf:realname>David&#xA0;Cramer</sf:realname>
+      <sf:firstname>David</sf:firstname>
+      <sf:surname>Cramer</sf:surname>
     </sf:user>
     <sf:user>
       <sf:username>kosek</sf:username>
-      <sf:realname>Jirka&#xA0;Kosek</sf:realname>
+      <sf:firstname>Jirka</sf:firstname>
+      <sf:surname>Kosek</sf:surname>
     </sf:user>
     <sf:user>
       <sf:username>nwalsh</sf:username>
-      <sf:realname>Norman&#xA0;Walsh</sf:realname>
+      <sf:firstname>Norman</sf:firstname>
+      <sf:surname>Walsh</sf:surname>
     </sf:user>
     <sf:user>
       <sf:username>xmldoc</sf:username>
-      <sf:realname>Michael(tm)&#xA0;Smith</sf:realname>
+      <sf:firstname>Michael(tm)</sf:firstname>
+      <sf:surname>Smith</sf:surname>
     </sf:user>
   </sf:users>
 
@@ -217,15 +234,29 @@
   <xsl:template name="format.entries">
     <xsl:param name="dirname"/>
     <xsl:for-each select="cvs:entry[cvs:file/cvs:name[starts-with(.,concat($dirname,'/'))]]">
-      
       <!-- * each Lisitem corresponds to a single commit -->
       <listitem>
         <xsl:text>&#xa;</xsl:text>
-        <!-- * for each entry (commit), get just the commit message and -->
-        <!-- * username. Put the name of the committor in square brackets -->
-        <!-- * at the end of the commit description -->
-        <para><xsl:apply-templates
-        select="cvs:msg"/> [<xsl:apply-templates select="cvs:author"/>]</para>
+        <!-- * for each entry (commit), get the commit message. Also -->
+        <!-- * get the filename(s) + revision(s) and username, and -->
+        <!-- * put it into an Alt element, which will become a Title -->
+        <!-- * element in HTML output, generating "tooltip text"-->
+        <para>
+          <phrase role="commit-message">
+            <xsl:apply-templates
+                select="cvs:msg"/>
+            <alt>
+              <xsl:for-each select="cvs:file">
+                <xsl:apply-templates select="."/>
+                <xsl:if test="not(position() = last())">
+                  <xsl:text>, </xsl:text>
+                </xsl:if>
+              </xsl:for-each>
+              <xsl:text> - </xsl:text>
+              <xsl:apply-templates select="cvs:author"/>
+            </alt>
+          </phrase>
+        </para>
         <xsl:text>&#xa;</xsl:text>
       </listitem>
       <xsl:text>&#xa;</xsl:text>
@@ -251,8 +282,8 @@
         <xsl:with-param name="text" select="$masked-contents" />
         <xsl:with-param
             name="phrases"
-            select="document($terms.file)//param|
-                    document($terms.file)//element"
+            select="document($element.file)//member|
+                    document($param.file)//member"
             />
       </xsl:call-template>
     </xsl:variable>
@@ -261,21 +292,51 @@
       <xsl:apply-templates select="$marked.up" mode="restore.period"/>
   </xsl:template>
 
+  <!-- * template for matching DocBook element names -->
+  <xsl:template match="*[parent::*[@role = 'element']]" mode="markup">
+    <xsl:param name="word" />
+    <xsl:param
+        name="lowercased-word"
+        select="translate($word,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')"/>
+       <!-- * adjust the value of $stopwords by removing all whitepace -->
+       <!-- * from it and adding a comma to the beginning and end of it -->
+    <xsl:param
+        name="adjusted-stopwords"
+        select="concat(',',translate($stopwords,'&#9;&#10;&#13;&#32;',''),',')"/>
+    <xsl:choose>
+      <!-- * if $word is 'foo', generate a <tag>foo</tag> instance unless -->
+      <!-- * ',foo,' is found in the adjustedlist of stopwords. -->
+      <xsl:when
+          test="not(contains($adjusted-stopwords,concat(',',$lowercased-word,',')))">
+        <tag><xsl:value-of select="$word" /></tag>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$word"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- * template for matching DocBook XSL stylesheet param names -->
+  <xsl:template match="*[parent::*[@role = 'param']]" mode="markup">
+    <xsl:param name="word" />
+    <parameter><xsl:value-of select="$word" /></parameter>
+  </xsl:template>
+
+  <xsl:template match="cvs:file">
+    <xsl:value-of
+    select="cvs:name"/><xsl:text>#</xsl:text><xsl:value-of
+    select="cvs:revision"/>
+  </xsl:template>
+
   <xsl:template match="cvs:author">
     <xsl:variable name="username" select="."/>
     <!-- * based on Sourceforge cvs username, get a real name and use -->
     <!-- * that in the result document, instead of the username -->
-    <xsl:value-of select="document('')//sf:users/sf:user[sf:username = $username]/sf:realname"/>
-  </xsl:template>
-
-  <xsl:template match="element" mode="markup">
-    <xsl:param name="word" />
-    <tag><xsl:value-of select="$word" /></tag>
-  </xsl:template>
-
-  <xsl:template match="param" mode="markup">
-    <xsl:param name="word" />
-    <parameter><xsl:value-of select="$word" /></parameter>
+      <xsl:value-of
+      select="document('')//sf:users/sf:user[sf:username = $username]/sf:firstname"/>
+      <xsl:text> </xsl:text>
+      <xsl:value-of
+      select="document('')//sf:users/sf:user[sf:username = $username]/sf:surname"/>
   </xsl:template>
 
   <!-- * ============================================================== -->
