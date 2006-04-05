@@ -137,6 +137,12 @@
 
 <!-- ============================================================ -->
 
+<xsl:template match="/">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<!-- ============================================================ -->
+
 <xsl:param name="page.margin.top" select="'0.25in'"/>
 <xsl:param name="region.before.extent" select="'0.75in'"/>
 <xsl:param name="body.margin.top" select="'1in'"/>
