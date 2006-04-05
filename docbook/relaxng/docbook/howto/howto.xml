@@ -20,7 +20,6 @@
         <contrib>§changes-removed, customization, proofreading</contrib></author>
 </authorgroup>
 
-<pubdate>2006-04-04</pubdate>
 <pubdate>2006-03-01</pubdate>
 <pubdate>2005-12-28</pubdate>
 <pubdate>2005-10-27</pubdate>
@@ -1173,7 +1172,6 @@ linkend="convert4to5"/>.
     the location of the standard DocBook V5.0 schema.
     All of the examples are given in both RNG and RNC form.
 <example xml:id="ex-empty"><title>Empty customization file</title>
-<para>RNG</para>
 <programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns:db="http://docbook.org/ns/docbook"
          ns="http://docbook.org/ns/docbook"
@@ -1183,7 +1181,6 @@ linkend="convert4to5"/>.
   <!-- redefinitions of named patterns -->
 
 </grammar>]]></programlisting>
-<para>RNC</para>
 <programlisting language="rnc"><![CDATA[namespace db = "http://docbook.org/ns/docbook"
 
 include "docbook.rnc" inherit = db
@@ -1222,7 +1219,6 @@ include "docbook.rnc" inherit = db
         the original pattern or this new pattern is a valid match.
       </para>
 <example xml:id="ex-add-element-1"><title>Adding a new element by duplicating an existing one</title>
-<para>RNG</para>
 <programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns:db="http://docbook.org/ns/docbook"
          ns="http://docbook.org/ns/docbook"
@@ -1241,7 +1237,6 @@ include "docbook.rnc" inherit = db
     <ref name="dbx.person"/>
   </define>
 </grammar>]]></programlisting>
-<para>RNC</para>
 <programlisting language="rnc"><![CDATA[default namespace db = "http://docbook.org/ns/docbook"
 
 include "docbook.rnc"
@@ -1285,7 +1280,6 @@ db.author |= dbx.person]]></programlisting>
       which would be messy.
     </para>
 <example xml:id="ex-add-element-2"><title>Adding new inline elements</title>
-<para>RNG</para>
 <programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns:db="http://docbook.org/ns/docbook"
          ns="http://docbook.org/ns/docbook"
@@ -1317,7 +1311,6 @@ db.author |= dbx.person]]></programlisting>
       <ref name="dbx.asm.inlines"/>
     </define>
 </grammar>]]></programlisting>
-<para>RNC</para>
 <programlisting language="rnc"><![CDATA[default namespace db = "http://docbook.org/ns/docbook"
 
 include "docbook.rnc"
@@ -1353,7 +1346,6 @@ db.os.inlines |= dbx.asm.inlines]]></programlisting>
         because a <tag>book</tag> requires a <tag>title</tag>.
       </para>
 <example xml:id="ex-delete-element"><title>Deleting an element</title>
-<para>RNG</para>
 <programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns:db="http://docbook.org/ns/docbook"
          ns="http://docbook.org/ns/docbook"
@@ -1365,7 +1357,6 @@ db.os.inlines |= dbx.asm.inlines]]></programlisting>
     </define>
   </include>
 </grammar>]]></programlisting>
-<para>RNC</para>
 <programlisting language="rnc"><![CDATA[namespace db = "http://docbook.org/ns/docbook"
 
 include "docbook.rnc" inherit = db {
@@ -1389,7 +1380,6 @@ include "docbook.rnc" inherit = db {
          <varname>db.person.author.contentmodel</varname> so that
          only authors who are persons can have the new elements.
 <example xml:id="ex-modify-element"><title>Modifying the content model of an element</title>
-<para>RNG</para>
 <programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns:db="http://docbook.org/ns/docbook"
          ns="http://docbook.org/ns/docbook"
@@ -1411,7 +1401,6 @@ include "docbook.rnc" inherit = db {
     </interleave>
   </define>
 </grammar>]]></programlisting>
-<para>RNC</para>
 <programlisting language="rnc"><![CDATA[default namespace = "http://docbook.org/ns/docbook"
 namespace db = "http://docbook.org/ns/docbook"
 
@@ -1458,7 +1447,6 @@ uses <varname>db.org.author.contentmodel</varname>:
         optional attributes with the existing attributes on the list.
       </para>
 <example xml:id="ex-add-attr"><title>Adding attributes</title>
-<para>RNG</para>
 <programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns:db="http://docbook.org/ns/docbook"
          ns="http://docbook.org/ns/docbook"
@@ -1480,7 +1468,6 @@ uses <varname>db.org.author.contentmodel</varname>:
     </interleave>
   </define>
 </grammar>]]></programlisting>
-<para>RNC</para>
 <programlisting language="rnc"><![CDATA[namespace db = "http://docbook.org/ns/docbook"
 
 include "docbook.rnc" inherit = db
@@ -1507,7 +1494,6 @@ db.author.attlist &=
       elements.  This shows some of the flexibility of RELAX NG, which
       treats attributes and elements very consistently.
 <example xml:id="ex-add-attr-2"><title>Adding attributes; alternate method</title>
-<para>RNG</para>
 <programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns:db="http://docbook.org/ns/docbook"
          ns="http://docbook.org/ns/docbook"
@@ -1529,7 +1515,6 @@ db.author.attlist &=
     </interleave>
   </define>
 </grammar>]]></programlisting>
-<para>RNC</para>
 <programlisting language="rnc"><![CDATA[namespace db = "http://docbook.org/ns/docbook"
 
 include "docbook.rnc" inherit = db
@@ -1557,7 +1542,6 @@ attributes, though it does no harm.
         by defining that pattern as <varname>empty</varname>.
       </para>
 <example xml:id="ex-delete-attr"><title>Deleting an attribute</title>
-<para>RNG</para>
 <programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns:db="http://docbook.org/ns/docbook"
          ns="http://docbook.org/ns/docbook"
@@ -1568,7 +1552,6 @@ attributes, though it does no harm.
     </define>
   </include>
 </grammar>]]></programlisting>
-<para>RNC</para>
 <programlisting language="rnc"><![CDATA[namespace db = "http://docbook.org/ns/docbook"
 
 include "docbook.rnc" inherit = db {
@@ -1592,7 +1575,6 @@ include "docbook.rnc" inherit = db {
         you don't need.
       </para>
 <example xml:id="ex-modify-attr"><title>Deleting an attribute</title>
-<para>RNG</para>
 <programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns:db="http://docbook.org/ns/docbook"
          ns="http://docbook.org/ns/docbook"
@@ -1603,7 +1585,6 @@ include "docbook.rnc" inherit = db {
     <value>large</value>
   </define>
 </grammar>]]></programlisting>
-<para>RNC</para>
 <programlisting language="rnc"><![CDATA[namespace db = "http://docbook.org/ns/docbook"
 
 include "docbook.rnc" inherit = db
