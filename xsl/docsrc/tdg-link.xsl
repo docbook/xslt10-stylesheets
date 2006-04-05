@@ -37,7 +37,7 @@
 
       <xsl:choose>
         <xsl:when test="$isdocbook != 0">
-          <a href="{concat($tdg-baseuri, normalize-space(.))}.html">
+          <a href="{concat($tdg-baseuri, normalize-space($element))}.html">
             <xsl:copy-of select="$tagmarkup"/>
           </a>
         </xsl:when>
