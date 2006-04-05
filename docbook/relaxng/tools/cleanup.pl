@@ -11,7 +11,7 @@ use English;
 
 # 20 Oct 2005: I decided to simply move *all* namespace decls to the root
 # ant to make it an error if there are any collisions. Not as general,
-# but the result is nicer. It's too pass, though. So what.
+# but the result is nicer. It's two pass, though. So what.
 
 binmode(STDOUT, ":utf8");
 
