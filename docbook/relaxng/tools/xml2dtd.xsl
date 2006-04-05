@@ -12,6 +12,7 @@
 <xsl:param name="ns" select="'http://docbook.org/ns/docbook'"/>
 <xsl:param name="html-ns" select="'http://www.w3.org/1999/xhtml'"/>
 <xsl:param name="rddl-ns" select="'http://www.rddl.org/'"/>
+<xsl:param name="xi-ns" select="'http://www.w3.org/2001/XInclude'"/>
 
 <xsl:template match="/">
   <xsl:apply-templates/>
@@ -73,6 +74,11 @@
     <xsl:when test="starts-with(@name,'html:')">
       <xsl:text>&#9;xmlns:html&#9;CDATA&#9;#FIXED&#9;"</xsl:text>
       <xsl:value-of select="$html-ns"/>
+      <xsl:text>"&#10;</xsl:text>
+    </xsl:when>
+    <xsl:when test="starts-with(@name,'xi:')">
+      <xsl:text>&#9;xmlns:xi&#9;CDATA&#9;#FIXED&#9;"</xsl:text>
+      <xsl:value-of select="$xi-ns"/>
       <xsl:text>"&#10;</xsl:text>
     </xsl:when>
     <xsl:when test="contains(@name, ':')">
