@@ -245,6 +245,9 @@
     <xsl:when test=".//rng:group|.//rng:choice|.//rng:interleave">
       <xsl:apply-templates mode="content-model"/>
     </xsl:when>
+    <xsl:when test=".//rng:empty">
+      <xsl:apply-templates mode="content-model"/>
+    </xsl:when>
     <xsl:otherwise>
       <dtd:group>
 	<xsl:apply-templates mode="content-model"/>
@@ -526,6 +529,10 @@
 <!--
   Turn this: (((title|titleabbrev|subtitle)*,info?)|info)
   into this:   (title|titleabbrev|subtitle)*,info?)
+  <xsl:message>
+    <xsl:text>0001 for </xsl:text>
+    <xsl:value-of select="ancestor::rng:define[1]/@name"/>
+  </xsl:message>
 -->
   <xsl:apply-templates select="rng:group" mode="trim"/>
 </xsl:template>
@@ -536,6 +543,10 @@
 <!--
   Turn this: (((title|titleabbrev|subtitle)*,info?)|info?)
   into this:   (title|titleabbrev|subtitle)*,info?)
+  <xsl:message>
+    <xsl:text>0002 for </xsl:text>
+    <xsl:value-of select="ancestor::rng:define[1]/@name"/>
+  </xsl:message>
 -->
   <xsl:apply-templates select="rng:group" mode="trim"/>
 </xsl:template>
@@ -575,6 +586,10 @@
 <!--
   Turn this: (((title|titleabbrev)*,info?)|info?)
   into this:   (title|titleabbrev)*,info?)
+  <xsl:message>
+    <xsl:text>0003 for </xsl:text>
+    <xsl:value-of select="ancestor::rng:define[1]/@name"/>
+  </xsl:message>
 -->
   <xsl:apply-templates select="rng:group" mode="trim"/>
 </xsl:template>
@@ -588,6 +603,10 @@
 <!--
   Turn this: (((title|titleabbrev)*,info?)|info?)
   into this:   (title|titleabbrev)*,info?)
+  <xsl:message>
+    <xsl:text>0004 for </xsl:text>
+    <xsl:value-of select="ancestor::rng:define[1]/@name"/>
+  </xsl:message>
 -->
   <xsl:apply-templates select="rng:group" mode="trim"/>
 </xsl:template>
@@ -600,6 +619,10 @@
 <!--
   Turn this: (((title|titleabbrev)*,info?)|info?)
   into this:   (title|titleabbrev)*,info?)
+  <xsl:message>
+    <xsl:text>0005 for </xsl:text>
+    <xsl:value-of select="ancestor::rng:define[1]/@name"/>
+  </xsl:message>
 -->
   <xsl:apply-templates select="rng:group" mode="trim"/>
 </xsl:template>
