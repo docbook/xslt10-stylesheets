@@ -26,10 +26,6 @@ CVS2CL2DOCBOOK=$(DOCBOOK_CVS)/releasetools/cvs2cl2docbook.xsl
 # stylesheet used for determining the latest cvs tag in cvs log
 GET_LATEST_TAG=$(DOCBOOK_CVS)/releasetools/get-latest-tag.xsl
 
-GET_TERMS=$(DOCBOOK_CVS)/releasetools/get-terms.xsl
-
-DOCBOOK_RNG_FILES=$(DOCBOOK_CVS)/docbook/relaxng/docbook/docbook.rng
-
 # stylesheet for generating FO version of release notes
 FO-STYLE=$(DOCBOOK_CVS)/xsl/fo/docbook.xsl
 

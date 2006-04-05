@@ -22,11 +22,12 @@ RELEASE-NOTES.pdf: RELEASE-NOTES.xml NEWS.xml
 $(MARKUP_XSL):
 	$(MAKE) -C $(dir $(MARKUP_XSL))
 
-NEWS.xml: ChangeLog.xml TERMS.xml
+NEWS.xml: ChangeLog.xml
 	$(XSLT) $< $(CVS2CL2DOCBOOK) $@ \
 	latest-tag="'$(LATEST_TAG)'" \
 	release-version="'$(RELVER)'" \
-	terms.file="'$(shell readlink -f TERMS.xml)'"
+	element.file="'$(shell readlink -f ./docsrc/docbook-elements.xsl)'" \
+	param.file="'$(shell readlink -f ./docsrc/xsl-params.xsl)'"
 
 NEWS.html: NEWS.xml
 	$(XSLT) $< $(DOC-LINK-STYLE) $@
@@ -55,11 +56,6 @@ ChangeHistory.xml.zip: ChangeHistory.xml
 ChangeHistory.xml:
 	$(CVS2CL) $(CVS2CL_OPTS) \
 	--xml -f $@ -g -q
-
-TERMS.xml: $(GET_TERMS) $(DISTRIB_PARAMS_FILES) $(DOCBOOK_RNG_FILES)
-	$(XSLT) $< $< $@ \
-	element.files="'$(DOCBOOK_RNG_FILES)'" \
-	param.files="'$(DISTRIB_PARAMS_FILES)'"
 
 .CatalogManager.properties.example:
 	cp -p $(CATALOGMANAGER) .CatalogManager.properties.example
