@@ -19,6 +19,6 @@ include "../../docbook/src/docbook.rnc" {
    db.all.blocks |= ws.webtoc
 }
 
-include "webpages.rnc"
-include "rddl.rnc"
+include "../src/webpages.rnc"
+include "../src/rddl.rnc"
 include "../../docbook/dbforms/htmlform.rnc"
