@@ -158,6 +158,7 @@
       <authorgroup t:named-template="verso.authorgroup"/>
       <author/>
       <othercredit/>
+      <releaseinfo space-before="0.5em"/>
       <pubdate space-before="1em"/>
       <copyright/>
       <abstract/>
