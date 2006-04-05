@@ -4,6 +4,7 @@
                 exclude-result-prefixes="exsl"
                 version="1.0">
 
+<xsl:include href="http://docbook.sourceforge.net/release/xsl/current/lib/lib.xsl"/>
 <xsl:output method="xml" encoding="US-ASCII"/>
 <xsl:preserve-space elements="*"/>
 
@@ -36,6 +37,18 @@
     <xsl:attribute name="encoding">UTF-8</xsl:attribute>
     <xsl:attribute name="doctype-public">-//W3C//DTD XHTML 1.0 Transitional//EN</xsl:attribute>
     <xsl:attribute name="doctype-system">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</xsl:attribute>
+  </xsl:copy>
+</xsl:template>
+
+<xsl:template match="xsl:import">
+  <xsl:copy>
+    <xsl:attribute name="href">
+      <xsl:call-template name="string.subst">
+        <xsl:with-param name="string" select="@href"/>
+        <xsl:with-param name="target">/html/</xsl:with-param>
+        <xsl:with-param name="replacement">/xhtml/</xsl:with-param>
+      </xsl:call-template>
+    </xsl:attribute>
   </xsl:copy>
 </xsl:template>
 
