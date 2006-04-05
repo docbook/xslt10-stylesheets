@@ -165,7 +165,7 @@
       <meta name="description">
         <xsl:attribute name="content">
           <xsl:for-each select="$info/abstract[1]/*">
-            <xsl:value-of select="."/>
+            <xsl:value-of select="normalize-space(.)"/>
             <xsl:if test="position() &lt; last()">
               <xsl:text> </xsl:text>
             </xsl:if>
