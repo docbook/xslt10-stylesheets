@@ -14,12 +14,19 @@
        copyright and other information.
 
        ******************************************************************** -->
+  <!--
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl"/>
+  -->
+  <xsl:param name="tbl.running.header.from.thead" select="0"/>
+  <xsl:param name="tbl.column.separator.char">:</xsl:param>
+  <xsl:param name="tbl.title.font">B</xsl:param>
+  <xsl:param name="tbl.headings.font">B</xsl:param>
 
   <!-- ==================================================================== -->
 
-  <!-- * This stylesheet transforms DocBook source to tbl(1) markup. -->
+  <!-- * Transform DocBook and HTML table source to tbl(1) markup. -->
   <!-- * -->
-  <!-- * See M. E. Lesk, "Tbl – A Program to Format Tables" for details -->
+  <!-- * See M. E. Lesk, "Tbl "A Program to Format Tables" for details -->
   <!-- * on tbl(1) and its markup syntaxt. -->
   <!-- * -->
   <!-- *   http://cm.bell-labs.com/7thEdMan/vol2/tbl -->
@@ -64,21 +71,24 @@
     <!-- * ============================================================== -->
     <!-- *    Convert table to HTML                                       -->
     <!-- * ============================================================== -->
-    <!-- * Process the table by applying HTML templates to the whole -->
-    <!-- * thing; because we don’t override any of the <row>, <entry>, -->
-    <!-- * <tr>, <td>, etc. templates, the templates in the HTML -->
-    <!-- * stylesheets (which we import) are used to process those. -->
+    <!-- * Process the table by applying the HTML templates from the -->
+    <!-- * DocBook XSL stylesheets to the whole thing; because we don't -->
+    <!-- * override any of the <row>, <entry>, <tr>, <td>, etc. templates, -->
+    <!-- * the templates in the HTML stylesheets (which we import) are -->
+    <!-- * used to process those. -->
     <xsl:param name="html-table-output">
       <xsl:choose>
         <xsl:when test=".//tr">
           <!-- * If this table has a TR child, it means that it's an -->
           <!-- * HTML table in the DocBook source, instead of a CALS -->
           <!-- * table. So we just copy it as-is, while wrapping it -->
-          <!-- * in a Table element -->
+          <!-- * in an element with same name as its original parent. -->
           <xsl:for-each select="descendant-or-self::table|descendant-or-self::informaltable">
-          <htmltable parent="{local-name(parent::*)}">
-            <xsl:copy-of select="*"/>
-          </htmltable>
+            <xsl:element name="{local-name(..)}">
+              <table>
+                <xsl:copy-of select="*"/>
+              </table>
+            </xsl:element>
           </xsl:for-each>
         </xsl:when>
         <xsl:otherwise>
@@ -92,20 +102,121 @@
     </xsl:param>
     <xsl:param name="contents" select="exsl:node-set($html-table-output)"/>
 
-    <xsl:for-each select="$contents//table|$contents//htmltable">
-    <!-- * ============================================================== -->
-    <!-- *   Flatten table contents into row set                          -->
-    <!-- * ============================================================== -->
-    <!-- * Flatten the structure into just a set of rows without any -->
-    <!-- * thead, tbody, or tfoot parents. And reorder the rows in -->
-    <!-- * such a way that the tfoot rows are at the end, -->
-    <xsl:variable name="rows-set">
-      <xsl:copy-of select="thead/tr"/>
-      <xsl:copy-of select="tbody/tr|tr"/>
-      <xsl:copy-of select="tfoot/tr"/>
-    </xsl:variable>
-    <xsl:variable name="rows" select="exsl:node-set($rows-set)"/>
+    <!-- ==================================================================== -->
+    <!-- *                       Output the table -->
+    <!-- ==================================================================== -->
+    <!-- * -->
+    <!-- * This is the "driver" part of the code; it calls a series of named
+         * templates (further below) to generate the actual tbl(1) markup, -->
+    <!-- * including the optional "options line", required "format section", -->
+    <!-- * and then the actual contents of the table. -->
+    <!-- * -->
+    <!-- ==================================================================== -->
 
+    <xsl:for-each select="$contents//table">
+      <!-- * ============================================================== -->
+      <!-- *   Output table title                                           -->
+      <!-- * ============================================================== -->
+      <xsl:if test="$title != '' or parent::td">
+        <xsl:text>.PP&#10;</xsl:text>
+        <xsl:text>.</xsl:text>
+        <xsl:value-of select="$tbl.title.font"/>
+        <xsl:text> </xsl:text>
+        <xsl:if test="parent::td">
+          <xsl:text>*[nested&#160;table]</xsl:text>
+        </xsl:if>
+        <xsl:value-of select="normalize-space($title)"/>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:text>.sp -1n&#10;</xsl:text>
+      </xsl:if>
+      
+      <!-- * mark the start of the table -->
+      <!-- * "TS" = "table start" -->
+      <xsl:text>.TS</xsl:text>
+      <xsl:if test="thead and $tbl.running.header.from.thead">
+        <!-- * H = "has header" -->
+        <xsl:text> H</xsl:text>
+      </xsl:if>
+      <xsl:text>&#10;</xsl:text>
+
+      <!-- * ============================================================== -->
+      <!-- *   Output "options line"                                         -->
+      <!-- * ============================================================== -->
+      <xsl:variable name="options-line">
+        <xsl:value-of select="$allbox"/>
+        <xsl:value-of select="$center"/>
+        <xsl:value-of select="$expand"/>
+        <xsl:text>tab(</xsl:text>
+        <xsl:value-of select="$tbl.column.separator.char"/>
+        <xsl:text>)</xsl:text>
+      </xsl:variable>
+      <xsl:if test="normalize-space($options-line) != ''">
+        <xsl:value-of select="normalize-space($options-line)"/>
+        <xsl:text>;&#10;</xsl:text>
+      </xsl:if>
+
+      <!-- * ============================================================== -->
+      <!-- *   Output table header rows                                     -->
+      <!-- * ============================================================== -->
+      <xsl:if test="thead">
+        <xsl:call-template name="output.rows">
+          <xsl:with-param name="rows" select="thead/tr"/>
+        </xsl:call-template> 
+        <xsl:text>&#10;</xsl:text>
+
+        <!-- * mark the end of table-header rows -->
+        <xsl:choose>
+          <xsl:when test="$tbl.running.header.from.thead">
+            <!-- * "TH" = "table header end" -->
+            <xsl:text>.TH&#10;</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <!-- * "T&" = "table continuation" and is meant just as a kind -->
+            <!-- * of convenience macro and is sorta equivalent to a "TE" -->
+            <!-- * (table end) followed immediately by a "TS" (table start); -->
+            <!-- * in this case, it marks the end of a table "subsection" -->
+            <!-- * with header rows, and the start of a subsection with body -->
+            <!-- * rows. It's necessary to output it here because the "TH" -->
+            <!-- * macro is not being output, so there's otherwise no way -->
+            <!-- * for tbl(1) to know we have the table "sectioned". -->
+            <xsl:text>.T&amp;&#10;</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:if>
+      
+      <!-- * ============================================================== -->
+      <!-- *  Output table body rows                                        -->
+      <!-- * ============================================================== -->
+      <!-- * First create node set with all non-thead rows (tbody+tfoot), -->
+      <!-- * but reordered with the tfoot rows at the end of the node set -->
+      <xsl:variable name="rows-set">
+        <xsl:copy-of select="tbody/tr|tr"/>
+        <xsl:copy-of select="tfoot/tr"/>
+      </xsl:variable>
+      <xsl:call-template name="output.rows">
+        <xsl:with-param name="rows" select="exsl:node-set($rows-set)"/>
+      </xsl:call-template>
+
+      <!-- * mark the end of the table -->
+      <xsl:text>&#10;</xsl:text>
+      <!-- * .TE = "Table End" -->
+      <xsl:text>.TE&#10;</xsl:text>
+      <!-- * put a blank line of space below the table -->
+      <xsl:text>.sp&#10;</xsl:text>
+    </xsl:for-each>
+  </xsl:template>
+
+  <!-- ==================================================================== -->
+  <!-- *                        named templates -->
+  <!-- ==================================================================== -->
+  <!-- * -->
+  <!-- * All of the following are named templates that get called directly -->
+  <!-- * or indirectly by the main "driver" part of the code (above) -->
+  <!-- * -->
+  <!-- ==================================================================== -->
+  
+  <xsl:template name="output.rows">
+    <xsl:param name="rows"/>
     <!-- * ============================================================== -->
     <!-- *   Flatten row set into simple list of cells                    -->
     <!-- * ============================================================== -->
@@ -113,49 +224,13 @@
     <!-- * cells without the row parents. This basically creates a -->
     <!-- * copy of the entire contents of the original table, but -->
     <!-- * restructured in such a way that we can more easily generate -->
-    <!-- * the corresponding roff markup we need to output. -->
+    <!-- * the corresponding tbl(1) markup we need to output. -->
     <xsl:variable name="cells-list">
       <xsl:call-template name="build.cell.list">
         <xsl:with-param name="rows" select="$rows"/>
       </xsl:call-template>
     </xsl:variable>
     <xsl:variable name="cells" select="exsl:node-set($cells-list)"/>
-
-    <!-- * ============================================================== -->
-    <!-- *    Output the table.                                           -->
-    <!-- * ============================================================== -->
-    <!-- * This is where we generate the actual roff output, including -->
-    <!-- * the optional "options line", required "format section", and -->
-    <!-- * finally, the actual contents of each cell. -->
-
-    <xsl:if test="$title != '' or parent::td or self::htmltable[@parent = 'td']">
-      <xsl:text>.PP&#10;</xsl:text>
-      <xsl:text>.</xsl:text>
-      <xsl:value-of select="$man.table.title.font"/>
-      <xsl:text> </xsl:text>
-      <xsl:if test="self::htmltable">
-    </xsl:if>
-      <xsl:if test="parent::td|self::htmltable[@parent = 'td']">
-        <xsl:text>*[nested&#160;table]</xsl:text>
-      </xsl:if>
-      <xsl:value-of select="normalize-space($title)"/>
-      <xsl:text>&#10;</xsl:text>
-      <xsl:text>.sp -1&#10;</xsl:text>
-    </xsl:if>
-
-    <!-- * .TS = "Table Start" -->
-    <xsl:text>.TS&#10;</xsl:text>
-
-    <!-- * Output the "options line" with global attributes for the table -->
-    <xsl:variable name="options-line">
-      <xsl:value-of select="$allbox"/>
-      <xsl:value-of select="$center"/>
-      <xsl:value-of select="$expand"/>
-    </xsl:variable>
-    <xsl:if test="normalize-space($options-line) != ''">
-      <xsl:value-of select="normalize-space($options-line)"/>
-      <xsl:text>;&#10;</xsl:text>
-    </xsl:if>
 
     <!-- * Output the table "format section", which tells tbl(1) how to -->
     <!-- * format each row and column -->
@@ -167,17 +242,11 @@
     <xsl:for-each select="$cells/cell">
       <xsl:call-template name="output.cell"/>
     </xsl:for-each>
-
-    <xsl:text>&#10;</xsl:text>
-    <!-- * .TE = "Table End" -->
-    <xsl:text>.TE&#10;</xsl:text>
-    <!-- * put a blank line of space below the table -->
-    <xsl:text>.sp&#10;</xsl:text>
-    </xsl:for-each>
   </xsl:template>
 
+
   <!-- * ============================================================== -->
-  <!-- *    Output the roff-formatted contents of each cell.            -->
+  <!-- *    Output the tbl(1)-formatted contents of each cell.            -->
   <!-- * ============================================================== -->
   <xsl:template name="output.cell">
     <xsl:choose>
@@ -186,14 +255,14 @@
         <!-- * If the value of the row attribute on this cell is -->
         <!-- * different from the value of that on the previous cell, it -->
         <!-- * means we have a new row. So output a line break (as long -->
-        <!-- * as this isn’t the first cell in the table -->
+        <!-- * as this isn't the first cell in the table) -->
         <xsl:text>&#10;</xsl:text>
       </xsl:when>
       <xsl:otherwise>
         <!-- * Otherwise we are not at the start of a new row, so we -->
         <!-- * output a tab character to delmit the contents of this -->
         <!-- * cell from the contents of the next one. -->
-        <xsl:text>&#x2302;</xsl:text>
+        <xsl:value-of select="$tbl.column.separator.char"/>
       </xsl:otherwise>
     </xsl:choose>
     <xsl:choose>
@@ -206,7 +275,7 @@
           <!-- * we need to output a tab character for each column that -->
           <!-- * it spans. -->
           <xsl:call-template name="copy-string">
-            <xsl:with-param name="string">&#x2302;</xsl:with-param>
+            <xsl:with-param name="string" select="$tbl.column.separator.char"/>
             <xsl:with-param name="count">
               <xsl:value-of select="@colspan - 1"/>
             </xsl:with-param>
@@ -218,7 +287,7 @@
         <!-- * contents that we need to output, -->
         <!-- * -->
         <!-- * The "T{" and "T}" stuff are delimiters to tell tbl(1) that -->
-        <!-- * the delimited contents are "text blocks" that groff(1) -->
+        <!-- * the delimited contents are "text blocks" that roff -->
         <!-- * needs to process -->
         <xsl:text>T{&#10;</xsl:text>
         <xsl:copy-of select="."/>
@@ -288,8 +357,8 @@
       <xsl:choose>
         <xsl:when test=".//tr">
           <xsl:message
-              >Warn: Extracted a nested table. [tbl(1) does not support nesting]</xsl:message>
-          <xsl:text>[nested&#160;table]*&#10;</xsl:text>
+              >Warn: Extracted a nested table.</xsl:message>
+          <xsl:text>[\fInested&#160;table\fR]*&#10;</xsl:text>
         </xsl:when>
         <xsl:otherwise>
           <!-- * Apply templates to the child contents of this cell, to -->
@@ -317,7 +386,7 @@
       <!-- * colspan attributes that are not empty and which have a -->
       <!-- * value greater than 1, then (2) take the sum of the values -->
       <!-- * of all those colspan attributes, and subtract from that -->
-      <!-- * the number such colspan instances found. -->
+      <!-- * the number of such colspan instances found. -->
       <xsl:variable name="colspan-offset">
         <xsl:value-of
             select="sum(preceding-sibling::td[@colspan != ''
@@ -343,8 +412,8 @@
     <xsl:param name="rowspan"/>
     <xsl:choose>
       <xsl:when test="$rowspan > 1">
-        <!-- * Tail recurse until we have no more rowspans, creating an -->
-        <!-- * empty dummy cell each time. The type value, '^' -->
+        <!-- * Tail recurse until we have no more rowspans, creating -->
+        <!-- * an empty dummy cell each time. The type value, '^' -->
         <!-- * is the marker that tbl(1) uses for indicates a -->
         <!-- * "vertically spanned heading". -->
         <cell row="{$row}" slot="{$slot}" type="^" colspan="{@colspan}"/>
@@ -420,7 +489,7 @@
     <xsl:if test="@class = 'th'">
       <!-- * If this is a heading row, generate a font indicator (B or I), -->
       <!-- * or if the value of $man.table.headings.font is empty, nothing. -->
-      <xsl:value-of select="$man.table.headings.font"/>
+      <xsl:value-of select="$tbl.headings.font"/>
     </xsl:if>
     <!-- * We only need to deal with colspans whose value is greater -->
     <!-- * than one (a colspan="1" is the same as having no colspan -->
@@ -462,78 +531,10 @@
   </xsl:template>
 
   <!-- * ============================================================== -->
-  <!-- *    Handle table footnotes                                      -->
-  <!-- * ============================================================== -->
-  <xsl:template match="footnote" mode="table.footnote.mode">
-    <xsl:variable name="footnotes" select=".//footnote"/>
-    <xsl:variable name="table.footnotes"
-                  select=".//tgroup//footnote"/>
-    <xsl:value-of select="$man.table.footnotes.separator.line"/>
-    <xsl:text>&#10;</xsl:text>
-    <xsl:text>.br&#10;</xsl:text>
-    <xsl:apply-templates select="*[1]" mode="footnote.body.number"/>
-    <xsl:apply-templates select="*[position() &gt; 1]"/>
-  </xsl:template>
-
-  <!-- * The following template for footnote.body.number mode was just -->
-  <!-- * lifted from the HTML stylesheets with some minor adjustments -->
-  <xsl:template match="*"  mode="footnote.body.number">
-    <xsl:variable name="name">
-      <xsl:text>ftn.</xsl:text>
-      <xsl:call-template name="object.id">
-        <xsl:with-param name="object" select="ancestor::footnote"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="href">
-      <xsl:text>#</xsl:text>
-      <xsl:call-template name="object.id">
-        <xsl:with-param name="object" select="ancestor::footnote"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="footnote.mark">
-      <xsl:text>[</xsl:text>
-      <xsl:apply-templates select="ancestor::footnote"
-                           mode="footnote.number"/>
-      <xsl:text>]&#10;</xsl:text>
-    </xsl:variable>
-    <xsl:variable name="html">
-      <xsl:apply-templates select="."/>
-    </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="function-available('exsl:node-set')">
-        <xsl:variable name="html-nodes" select="exsl:node-set($html)"/>
-        <xsl:choose>
-          <xsl:when test="$html-nodes//p">
-            <xsl:apply-templates select="$html-nodes" mode="insert.html.p">
-              <xsl:with-param name="mark" select="$footnote.mark"/>
-            </xsl:apply-templates>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates select="$html-nodes" mode="insert.html.text">
-              <xsl:with-param name="mark" select="$footnote.mark"/>
-            </xsl:apply-templates>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:copy-of select="$html"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-
-  <!-- * The HTML stylesheets output <sup><a>...</a></sup> around -->
-  <!-- * footnote markers in tables -->
-  <xsl:template match="th/sup">
-    <xsl:apply-templates/>
-  </xsl:template>
-  <xsl:template match="a">
-    <xsl:apply-templates/>
-  </xsl:template>
-
-  <!-- * ============================================================== -->
   <!-- *    colgroup and col                                            -->
   <!-- * ============================================================== -->
-  <!-- * Not sure what if anything to do with colgroup... -->
+  <!-- * We currently don't do anything with colgroup. Not sure if it -->
+  <!-- * is widely used enough to bother adding support for it -->
   <xsl:template match="colgroup"/>
   <xsl:template match="col"/>
 

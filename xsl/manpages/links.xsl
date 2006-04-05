@@ -362,4 +362,73 @@
   </xsl:for-each>
 </xsl:template>
 
+  <!-- * ============================================================== -->
+  <!-- *    Handle table footnotes                                      -->
+  <!-- * ============================================================== -->
+  <xsl:template match="footnote" mode="table.footnote.mode">
+    <xsl:variable name="footnotes" select=".//footnote"/>
+    <xsl:variable name="table.footnotes"
+                  select=".//tgroup//footnote"/>
+    <xsl:value-of select="$man.table.footnotes.separator.line"/>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:text>.br&#10;</xsl:text>
+    <xsl:apply-templates select="*[1]" mode="footnote.body.number"/>
+    <xsl:apply-templates select="*[position() &gt; 1]"/>
+  </xsl:template>
+
+  <!-- * The following template for footnote.body.number mode was just -->
+  <!-- * lifted from the HTML stylesheets with some minor adjustments -->
+  <xsl:template match="*"  mode="footnote.body.number">
+    <xsl:variable name="name">
+      <xsl:text>ftn.</xsl:text>
+      <xsl:call-template name="object.id">
+        <xsl:with-param name="object" select="ancestor::footnote"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="href">
+      <xsl:text>#</xsl:text>
+      <xsl:call-template name="object.id">
+        <xsl:with-param name="object" select="ancestor::footnote"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="footnote.mark">
+      <xsl:text>[</xsl:text>
+      <xsl:apply-templates select="ancestor::footnote"
+                           mode="footnote.number"/>
+      <xsl:text>]&#10;</xsl:text>
+    </xsl:variable>
+    <xsl:variable name="html">
+      <xsl:apply-templates select="."/>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="function-available('exsl:node-set')">
+        <xsl:variable name="html-nodes" select="exsl:node-set($html)"/>
+        <xsl:choose>
+          <xsl:when test="$html-nodes//p">
+            <xsl:apply-templates select="$html-nodes" mode="insert.html.p">
+              <xsl:with-param name="mark" select="$footnote.mark"/>
+            </xsl:apply-templates>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="$html-nodes" mode="insert.html.text">
+              <xsl:with-param name="mark" select="$footnote.mark"/>
+            </xsl:apply-templates>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:copy-of select="$html"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- * The HTML stylesheets output <sup><a>...</a></sup> around -->
+  <!-- * footnote markers in tables -->
+  <xsl:template match="th/sup">
+    <xsl:apply-templates/>
+  </xsl:template>
+  <xsl:template match="a">
+    <xsl:apply-templates/>
+  </xsl:template>
+
 </xsl:stylesheet>
