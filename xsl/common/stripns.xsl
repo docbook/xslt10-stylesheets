@@ -196,6 +196,9 @@
 	    <xsl:with-param name="systemId">
 	      <xsl:choose>
 		<!-- file: seems to confuse some processors. -->
+		<xsl:when test="starts-with(saxon:systemId(), 'file:/') and substring(saxon:systemId(), 7, 2) != '//'">
+		  <xsl:value-of select="concat('file:///', substring-after(saxon:systemId(), 'file:/'))"/>
+		</xsl:when>
 		<xsl:when test="starts-with(saxon:systemId(), 'file:')">
 		  <xsl:value-of select="substring-after(saxon:systemId(),
 					                'file:')"/>
