@@ -40,7 +40,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>2006-03-03</pubdate>
+<pubdate>2006-03-09</pubdate>
 
 <copyright>
 <year>2001</year><year>2002</year><year>2003</year>
@@ -1071,7 +1071,7 @@ of the DocBook web page
 <revhistory>
 <revision role="&root;specs/docbook-5.0b4-spec-wd-01.html">
   <revnumber>Working Draft “Beta 4”</revnumber>
-  <date>3 March 2006</date>
+  <date>9 March 2006</date>
 </revision>
 <revision role="&root;specs/wd-docbook-docbook-5.0b3.html">
   <revnumber>Working Draft “Beta 3”</revnumber>
