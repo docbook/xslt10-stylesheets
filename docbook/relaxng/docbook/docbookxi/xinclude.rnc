@@ -47,6 +47,8 @@ db.part.components |= db.xi.include
 db.all.blocks |= db.xi.include
 db.all.inlines |= db.xi.include
 
+db.info.elements |= db.xi.include
+
 ctrl:conditional [
   pattern="db.refentry"
 
