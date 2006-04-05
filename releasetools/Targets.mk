@@ -37,7 +37,7 @@ $(NEWSFILE): NEWS.html
 
 ChangeLog.xml: LatestTag
 	$(CVS2CL) $(CVS2CL_OPTS) \
-	--delta $(LATEST_TAG):HEAD --xml -f $@ -g -q
+	--delta $(LATEST_TAG):HEAD --stdout --xml -g -q > $@
 
 LatestTag:
 # Note that one of the old commit messsage in the cvs log contains
@@ -55,7 +55,7 @@ ChangeHistory.xml.zip: ChangeHistory.xml
 # including all subdirectories
 ChangeHistory.xml:
 	$(CVS2CL) $(CVS2CL_OPTS) \
-	--xml -f $@ -g -q
+	--stdout --xml -g -q > $@
 
 .CatalogManager.properties.example:
 	cp -p $(CATALOGMANAGER) .CatalogManager.properties.example
