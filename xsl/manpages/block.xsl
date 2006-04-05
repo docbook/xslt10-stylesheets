@@ -71,6 +71,7 @@
     <xsl:when test="parent::caption|parent::entry|parent::para|
                     parent::td|parent::th" /> <!-- do nothing -->
     <xsl:otherwise>
+      <xsl:text>&#10;</xsl:text>
       <xsl:text>.sp&#10;</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
