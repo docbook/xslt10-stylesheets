@@ -21,17 +21,31 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     </releaseinfo>
     <author><surname>Walsh</surname>
     <firstname>Norman</firstname></author>
-    <copyright><year>1999</year><year>2005</year>
+    <copyright><year>1999</year><year>2006</year>
     <holder>Norman Walsh</holder>
     </copyright>
   </bookinfo>
 
   <preface>
-    <title>Preface</title>
+    <title/>
 
-  <para>This is reference documentation for the DocBook XSL
-  stylesheets. It is divided into two sections: documentation for
-  users and documentation for developers.</para>
+  <para>This is generated reference documentation for the DocBook XSL
+  stylesheets, primarily documentation on the parameters you can
+  adjust to control the behavior of the stylesheets.</para>
+  
+  <note>
+    <para>This is purely reference documentation&#xa0;–not how-to
+    documentation. For a thorough step-by-step how-to guide to
+    publishing content using the DocBook XSL stylesheets, see Bob
+    Stayton’s <ulink
+    url="http://www.sagehill.net/book-description.html" >DocBook
+    XSL:The Complete Guide</ulink>, available online at <ulink
+    url="http://www.sagehill.net/docbookxsl/index.html"
+    >http://www.sagehill.net/docbookxsl/index.html</ulink></para>
+  </note>
+
+  <para>This document is divided into two parts: the first provides
+  user documentation; the second, developer documentation.</para>
 
     <itemizedlist>
     <title>User documentation</title>
