@@ -15,9 +15,21 @@ RELEASE-NOTES.txt: RELEASE-NOTES.html
 
 RELEASE-NOTES.pdf: RELEASE-NOTES.xml NEWS.xml
 	$(XINCLUDE) $< > RELEASE-NOTES-TMP.xml
+ifeq ($(PDF_MAKER),xep)
 	$(XSLT) RELEASE-NOTES-TMP.xml $(FO-STYLE) $(basename $<).fo $(FO_ENGINE).extensions=1 \
-	&& $(FO_ENGINE) $(FO_ENGINE_OPTS) $(basename $<).fo
+	&& $(XEP) $(XEP_FLAGS) $(basename $<).fo
 	$(RM) RELEASE-NOTES-TMP.xml
+else
+ifeq ($(PDF_MAKER),dblatex)
+	$(XSLT) RELEASE-NOTES-TMP.xml $(STRIP_NS) RELEASE-NOTES-STRIPPED-TMP.xml
+	-$(DBLATEX) $(DBLATEX_FLAGS) \
+	  -p $(DBX-STYLE) \
+	  -o $@ \
+	  RELEASE-NOTES-STRIPPED-TMP.xml
+	$(RM) RELEASE-NOTES-STRIPPED-TMP.xml
+	$(RM) RELEASE-NOTES-TMP.xml
+endif
+endif
 
 $(MARKUP_XSL):
 	$(MAKE) -C $(dir $(MARKUP_XSL))
