@@ -188,8 +188,6 @@
 </xsl:template>
 
 <xsl:template match="sect2/title" mode="titlepage.mode" priority="2">
-  <xsl:call-template name="id.warning"/>
-
   <xsl:call-template name="section.title"/>
 </xsl:template>
 
