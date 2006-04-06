@@ -223,7 +223,7 @@
 <xsl:template match="paramdef/parameter">
   <xsl:choose>
     <xsl:when test="$funcsynopsis.decoration != 0">
-      <xsl:apply-templates/>
+      <xsl:call-template name="inline.italicseq"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:apply-templates/>
