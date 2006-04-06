@@ -26,8 +26,14 @@ CVS2CL2DOCBOOK=$(DOCBOOK_CVS)/releasetools/cvs2cl2docbook.xsl
 # stylesheet used for determining the latest cvs tag in cvs log
 GET_LATEST_TAG=$(DOCBOOK_CVS)/releasetools/get-latest-tag.xsl
 
+# stylesheet for stripping DB5 namespace
+STRIP_NS=$(DOCBOOK_CVS)/xsl/common/stripns.xsl
+
 # stylesheet for generating FO version of release notes
 FO-STYLE=$(DOCBOOK_CVS)/xsl/fo/docbook.xsl
+
+# stylesheet for generating PDF of release notes with dblatex
+DBX-STYLE=$(DOCBOOK_CVS)/xsl/docsrc/dblatex-release-notes.xsl
 
 # browser to use for making text version of release notes
 # w3mmee is a fork of w3m; it provides a lot more options for
@@ -36,9 +42,13 @@ FO-STYLE=$(DOCBOOK_CVS)/xsl/fo/docbook.xsl
 BROWSER=w3mmee
 BROWSER_OPTS=-dump
 
-# XSL-FO engine to use for coverting XSL-FO output to PDF
-FO_ENGINE=xep
-FO_ENGINE_OPTS=
+PDF_MAKER=dblatex
+
+XEP = xep
+XEP_FLAGS =
+
+DBLATEX = dblatex
+DBLATEX_FLAGS = -b pdftex
 
 # file containing "What's New" info generated from CVS log
 NEWSFILE=NEWS
