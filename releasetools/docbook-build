@@ -264,7 +264,7 @@ These snapshots are intended for testing purposes only and otherwise come with
 no guarantees. Any of them may in fact be broken at any given time.
 EOF
 
-    cat <<- EOF > $DISTRO/$RELEASEVERSION\_$DATE
+    cat <<- EOF > $DISTRO/$(echo $RELEASEVERSION | tr a-z A-Z)\_$DATE
 This directory contains a pre-release snapshot of the DocBook "$DISTRO"
 distribution, auto-built from the latest development sources in the DocBook
 project CVS repository on $DATE at $TIME $ZONE.
@@ -326,7 +326,7 @@ EOF
     rm -rf $TMP/docbook-$DISTRO*$RELEASEVERSION.zip
     rm -rf $TMP/docbook-$DISTRO-$RELEASEVERSION
 
-    rm -f $DISTRO/$RELEASEVERSION$\_DATE $DISTRO/LatestChanges HEADER.txt README.txt LatestChanges
+    rm -f $DISTRO/$(echo $RELEASEVERSION | tr a-z A-Z)\_DATE $DISTRO/LatestChanges HEADER.txt README.txt LatestChanges
 
     date
 
