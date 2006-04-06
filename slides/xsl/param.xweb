@@ -1,7 +1,8 @@
 <book xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
-      xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+      xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+      id="slides_doc">
 <bookinfo>
-<title>Slides (HTML) Parameter Reference</title>
+<title>Slides Parameter Reference</title>
 <releaseinfo role="meta">
 $Id$
 </releaseinfo>
@@ -18,13 +19,8 @@ $Id$
 <preface><title>Introduction</title>
 
 <para>This is reference documentation for all user-configurable
-parameters in the DocBook XSL Slides HTML stylesheets (for generating
-HTML output from DocBook Slides documents).</para>
-
-<note>
-  <para>There currently are no Slides parameters for FO
-  output.</para>
-</note>
+parameters in the DocBook XSL Slides stylesheets (for generating
+output from DocBook Slides documents).</para>
 
 <para>This reference describes each of the parameters.
 These are the <quote>easily customizable</quote> parts of the stylesheet.
@@ -49,8 +45,18 @@ stylesheet like this:</para>
 <literal>&lt;xsl:import&gt;</literal> to point to the stylesheet
 on your system.</para>
 </preface>
+<part id="html_output">
+<title>Slides FO Parameters</title>
+<preface>
+<title>[none]</title>
+  <para>There currently are no Slides parameters for FO
+  output.</para>
+</preface>
+</part>
 
-<reference>
+<part id="html_output">
+<title>Slides HTML Parameters</title>
+<reference id="html_general">
 <title>General Parameters</title>
 
 <refentry id="keyboard.nav">
@@ -1351,6 +1357,7 @@ that you will ever need to change this parameter.</para>
 -->
 
 </reference>
+</part>
 
 <appendix><title>The Stylesheet</title>
 
