@@ -1615,10 +1615,10 @@ class="attribute">version</tag> attribute on a root element.</para>
   …
 </book>]]></programlisting>
 
-<para>Future version of DocBook will start with the same markup, only
-version number will be raised like 5.1 or 6.0. The namespace will remain
-same until semantic of elements will change in a backward incompatible
-way which is very unlikely to happen.</para>
+<para>Future versions of DocBook documents will start with the same
+markup, only version number will be raised like 5.1 or 6.0. The
+namespace will remain same until semantic of elements will change in
+a backward incompatible way which is very unlikely to happen.</para>
 
 <para>If you create DocBook schema customization you must change <tag
 class="attribute">version</tag> attribute to distinguish your
