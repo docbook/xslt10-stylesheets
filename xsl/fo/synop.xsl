@@ -155,10 +155,18 @@
 </xsl:template>
 
 <xsl:template match="funcprototype">
-  <fo:block font-family="{$monospace.font.family}">
+  <fo:block font-family="{$monospace.font.family}"
+          space-before.minimum="0.8em"
+          space-before.optimum="1em"
+          space-before.maximum="1.2em">
     <xsl:apply-templates/>
     <xsl:if test="$funcsynopsis.style='kr'">
+      <fo:block
+          space-before.minimum="0.8em"
+          space-before.optimum="1em"
+          space-before.maximum="1.2em">
       <xsl:apply-templates select="./paramdef" mode="kr-funcsynopsis-mode"/>
+      </fo:block>
     </xsl:if>
   </fo:block>
 </xsl:template>
