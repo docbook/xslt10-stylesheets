@@ -131,6 +131,7 @@
   </sf:users>
 
   <xsl:template match="cvs:changelog">
+    <xsl:text>&#xa;</xsl:text>
     <article>
       <xsl:text>&#xa;</xsl:text>
       <title
@@ -189,11 +190,7 @@
             name="xml:id"><xsl:value-of
             select="$release-version-ncname"/>_<xsl:value-of select="$subsection"/></xsl:attribute>
         <xsl:text>&#xa;</xsl:text>
-        <title><xsl:attribute
-            name="xml:id"><xsl:value-of
-            select="$release-version-ncname"/>_<xsl:value-of
-            select="$subsection"/>_title</xsl:attribute><xsl:value-of
-            select="$subsection"/></title>
+        <title><xsl:value-of select="$subsection"/></title>
         <xsl:text>&#xa;</xsl:text>
         <para>The following changes have been made to the
         <filename><xsl:value-of select="$dirname"/></filename> code
@@ -206,7 +203,6 @@
           <xsl:call-template name="format.entries">
             <xsl:with-param name="dirname" select="$dirname"/>
           </xsl:call-template>
-          <xsl:text>&#xa;</xsl:text>
         </itemizedlist>
         <xsl:text>&#xa;</xsl:text>
       </sect2>
