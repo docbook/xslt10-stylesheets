@@ -82,6 +82,7 @@ accept-language CDATA       #IMPLIED
 <!ATTLIST xi:fallback
 xmlns:xi   CDATA   #FIXED   "http://www.w3.org/2001/XInclude"
 >
+<!ENTITY % local.other.char.class "|sbr|alt">
 ]>
 <article xml:lang="en" xml:id="releasenotes"
   xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -96,7 +97,7 @@ xmlns:xi   CDATA   #FIXED   "http://www.w3.org/2001/XInclude"
         role="cvs"
         >$Revision$ $Date$</releaseinfo>
     <author><orgname>DocBook Project Development Team</orgname></author>
-  </info> 
+  </info>
 
   <para>This is a pre-release "snapshot" of the DocBook XSL
   Stylesheets. The information is this document is auto-generated from
@@ -1161,7 +1162,7 @@ xmlns:xi   CDATA   #FIXED   "http://www.w3.org/2001/XInclude"
 </sect1>
   <!-- end of notes for 1.69.0 release -->
 
-  <sect1>
+  <sect1 xml:id="V1681">
     <title>Release 1.68.1</title>
     <para>The release adds localization support for Farsi (thanks to
     Sina Heshmati) and improved support for the XLink-based DocBook NG
@@ -1174,7 +1175,7 @@ xmlns:xi   CDATA   #FIXED   "http://www.w3.org/2001/XInclude"
   </sect1>
   <!-- end of notes for 1.68.1 release -->
 
-  <sect1>
+  <sect1 xml:id="V1680">
     <title>Release 1.68.0</title>
     <para>This release includes some features changes, particularly
     for FO/PDF output, and a number of bug fixes.
@@ -1326,12 +1327,12 @@ xmlns:xi   CDATA   #FIXED   "http://www.w3.org/2001/XInclude"
   </sect1>
   <!-- end of notes for 1.68.0 release -->
 
-  <sect1>
+  <sect1 xml:id="V1672">
     <title>Release 1.67.2</title>
     <para>This release fixes a table bug introduced in the 1.67.1
     release.</para>
   </sect1>
-  <sect1>
+  <sect1 xml:id="V1671">
     <title>Release 1.67.1</title>
     <para>This release includes a number of bug fixes.</para>
      <para>The following lists provide details about API and feature changes.
@@ -1401,7 +1402,7 @@ xmlns:xi   CDATA   #FIXED   "http://www.w3.org/2001/XInclude"
           <tag>title</tag> when available.</para>
         </listitem>
       </itemizedlist>
-      <itemizedlist>
+      <itemizedlist xml:id="V1671_HELP">
         <title>HTML Help</title>
         <listitem>
           <para>Added support for generating windows-1252-encoded
@@ -1481,7 +1482,7 @@ xmlns:xi   CDATA   #FIXED   "http://www.w3.org/2001/XInclude"
       </itemizedlist>
     </para>
   </sect1>
-<sect1>
+<sect1 xml:id="V1670">
   <title>Release 1.67.0</title>
   <itemizedlist>
   <listitem>
@@ -1562,7 +1563,7 @@ xmlns:xi   CDATA   #FIXED   "http://www.w3.org/2001/XInclude"
   </listitem>
 </itemizedlist>
 </sect1>
-<sect1>
+<sect1 xml:id="V1661">
 <title>Release 1.66.1</title>
   <itemizedlist>
 <listitem>
@@ -1831,7 +1832,7 @@ Added Bosnian locale file as common/bs.xml.
 </listitem> 
 </itemizedlist>
 </sect1>
-<sect1>
+<sect1 xml:id="V1650" >
 <title>Release 1.65.0</title> 
 <itemizedlist>
 <listitem>
@@ -1872,7 +1873,7 @@ English, Czech, German, French, Spanish and Danish.</para>
 </listitem> 
 </itemizedlist> 
 </sect1>
-<sect1>
+<sect1 xml:id="V1641">
 <title>Release 1.64.1</title> 
 <itemizedlist>
 <para>General bug fixes and improvements. Sorry about the failure to produce
@@ -1886,7 +1887,7 @@ works with Xalan 2.5.</para>
 </listitem>
 </itemizedlist> 
 </sect1>
-<sect1>
+<sect1 xml:id="V1610">
 <title>Release 1.61.0</title> 
 <itemizedlist>
 <para>Lots of bug fixes and improvements.</para> 
@@ -2071,7 +2072,7 @@ and first varlistentry since DocBook 4.2 supports that now.
 </listitem>
 </itemizedlist> 
 </sect1>
-<sect1>
+<sect1 xml:id="V1601">
 <title>Release 1.60.1</title> 
 <itemizedlist>
 <para>Lots of bug fixes.</para> 
@@ -2216,7 +2217,7 @@ with the <quote>dbhtml</quote> PI.
 </listitem> 
 </itemizedlist> 
 </sect1>
-<sect1>
+<sect1 xml:id="V1592">
 <title>Release 1.59.2</title> 
 <itemizedlist>
 <para>The 1.59.2 fixes an FO bug in the page masters that causes FOP to fail.
@@ -2257,7 +2258,7 @@ the base font size, not a fixed "12pt".
 </listitem>
 </itemizedlist> 
 </sect1>
-<sect1>
+<sect1 xml:id="V1591">
 <title>Release 1.59.1</title> 
 <itemizedlist>
 <para>The 1.59.1 fixes a few bugs.
@@ -2311,7 +2312,7 @@ and <tag>procedure</tag>s.
 </listitem>
 </itemizedlist> 
 </sect1>
-<sect1>
+<sect1 xml:id="V1580">
 <title>Release 1.58.0</title> 
 <itemizedlist>
 <para>The 1.58.0 adds some initial support for extensions in xsltproc, adds
@@ -2360,7 +2361,7 @@ just a simple name.
 </listitem>
 </itemizedlist> 
 </sect1>
-<sect1>
+<sect1 xml:id="V1570">
 <title>Release 1.57.0</title>
 <itemizedlist>
 <listitem>
@@ -2369,7 +2370,7 @@ just a simple name.
 </listitem>
 </itemizedlist> 
 </sect1>
-<sect1>
+<sect1 xml:id="V1560">
 <title>Release 1.56.0</title> 
 <itemizedlist>
 <para>The 1.56.0 release fixes bugs.
@@ -2537,7 +2538,7 @@ XHTML chunker to output HTML instead of XHTML.
 </listitem>
 </itemizedlist> 
 </sect1>
-<sect1>
+<sect1 xml:id="VOlder">
   <title>Older releases</title>
   <para>To view the release notes for older releases, see <uri
   xlink:href="http://cvs.sourceforge.net/viewcvs.py/docbook/xsl/RELEASE-NOTES.xml"
