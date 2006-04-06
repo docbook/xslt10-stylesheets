@@ -46,8 +46,9 @@
       <xsl:apply-templates select="/*[1]" mode="title.markup"/>
     </xsl:variable>
 
-    <axf:document-info>
-      <xsl:attribute name="title">
+    <!-- * see bug report #1465301 - mzjn -->
+    <axf:document-info name="title">
+      <xsl:attribute name="value">
         <xsl:value-of select="normalize-space($title)"/>
       </xsl:attribute>
     </axf:document-info>
