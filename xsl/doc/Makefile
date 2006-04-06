@@ -30,11 +30,8 @@ reference.html: reference.xml $(RSTYLE)
 	$(XJPARSE) $(VPATH)/$<
 	$(XSLT) $(PROCOPT) $< $(RSTYLE) $@ $(XSLTOPT)
 
-index.html: documentation.xml $(BSTYLE) reference.xml \
-            publishing.xml extensions.xml templates.xml \
-            tools/profiling.xml htmlhelp.xml
-	$(XJPARSE) $(VPATH)/$<
-	$(XSLT) $(PROCOPT) $< $(BSTYLE) $(XSLTOPT)
+index.html: reference.html
+	cp -pR $< $@
 
 clean:
 	rm -f *.html

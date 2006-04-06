@@ -5,6 +5,12 @@
 <xsl:import href="../html/docbook.xsl"/>
 
 <xsl:param name="html.stylesheet" select="'reference.css'"/>
+<xsl:param name="admon.graphics" select="1"></xsl:param>
+<xsl:param name="admon.textlabel" select="0"></xsl:param>
+<xsl:param name="admon.graphics.path">../images/</xsl:param>
+<xsl:param name="admon.graphics.extension" select="'.png'"></xsl:param>
+<xsl:param name="admon.style"/>
+<xsl:param name="generate.toc"/>
 
 <xsl:template match="/legalnotice">
   <xsl:apply-templates select="." mode="titlepage.mode"/>

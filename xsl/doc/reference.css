@@ -2,3 +2,11 @@
 
 div.legalnotice { font-size: 80%; }
 
+div.note {
+  border-left: solid #d5dee3 20px;
+  border-right: solid #d5dee3 20px;
+  margin-left: 5%;
+  margin-right: 10%;
+  padding: 5px;
+}
+
