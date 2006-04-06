@@ -245,7 +245,7 @@
               <xsl:for-each select="cvs:file">
                 <xsl:apply-templates select="."/>
                 <xsl:if test="not(position() = last())">
-                  <xsl:text>, </xsl:text>
+                  <xsl:text>; </xsl:text>
                 </xsl:if>
               </xsl:for-each>
               <xsl:text> - </xsl:text>
@@ -320,7 +320,7 @@
 
   <xsl:template match="cvs:file">
     <xsl:value-of
-    select="cvs:name"/><xsl:text>#</xsl:text><xsl:value-of
+    select="cvs:name"/><xsl:text>,</xsl:text><xsl:value-of
     select="cvs:revision"/>
   </xsl:template>
 
