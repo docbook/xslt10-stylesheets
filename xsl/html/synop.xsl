@@ -302,7 +302,6 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
   <code>(</code>
   <xsl:apply-templates mode="kr-funcsynopsis-mode"/>
   <code>)</code>
-  <xsl:text>;</xsl:text>
 </xsl:template>
 
 <!-- ====================================================================== -->
@@ -606,12 +605,21 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
   <xsl:choose>
     <xsl:when test="type and funcparams">
       <td>
-        <xsl:apply-templates select="type" mode="kr-tabular-funcsynopsis-mode"/>
+        <xsl:apply-templates select="type" mode="ansi-tabular"/>
         <xsl:text>&#160;</xsl:text>
       </td>
       <td>
         <xsl:apply-templates select="type/following-sibling::node()"
-                             mode="kr-tabular-funcsynopsis-mode"/>
+                             mode="ansi-tabular"/>
+        <xsl:choose>
+          <xsl:when test="following-sibling::*">
+            <xsl:text>, </xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <code>)</code>
+            <xsl:text>;</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
       </td>
     </xsl:when>
     <xsl:otherwise>
