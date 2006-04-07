@@ -155,22 +155,15 @@
                           string-length(local-name()) - 3) = 'info']"
                   />
     <xsl:variable name="info" select="exsl:node-set($get.info)"/>
-    <!-- * Make a node-set with contents of parent's *info -->
-    <xsl:variable name="get.parentinfo"
-                  select="ancestor-or-self::*/*[substring(local-name(),
-                          string-length(local-name()) - 3) = 'info']"
-                  />
-    <xsl:variable name="parentinfo" select="exsl:node-set($get.parentinfo)"/>
 
     <!-- * The get.refentry.metadata template is in -->
     <!-- * ../common/refentry.xsl. It looks for metadata in $info -->
-    <!-- * and/or $parentinfo and in various other places and -->
-    <!-- * then puts it into a form that's easier for us to digest. -->
+    <!-- * and in various other places and then puts it into a form -->
+    <!-- * that's easier for us to digest. -->
     <xsl:variable name="get.refentry.metadata">
       <xsl:call-template name="get.refentry.metadata">
         <xsl:with-param name="refname" select="$first.refname"/>
         <xsl:with-param name="info" select="$info"/>
-        <xsl:with-param name="parentinfo" select="$parentinfo"/>
         <xsl:with-param name="prefs" select="$refentry.metadata.prefs"/>
       </xsl:call-template>
     </xsl:variable>
@@ -184,7 +177,6 @@
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <xsl:call-template name="top.comment">
         <xsl:with-param name="info"       select="$info"/>
-        <xsl:with-param name="parentinfo" select="$parentinfo"/>
         <xsl:with-param name="date"       select="$refentry.metadata/date"/>
         <xsl:with-param name="title"      select="$refentry.metadata/title"/>
         <xsl:with-param name="manual"     select="$refentry.metadata/manual"/>
@@ -227,7 +219,6 @@
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <xsl:call-template name="author.section">
         <xsl:with-param name="info" select="$info"/>
-        <xsl:with-param name="parentinfo" select="$parentinfo"/>
       </xsl:call-template>
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!-- * LINKS list (only if user wants links numbered and/or listed) -->

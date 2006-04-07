@@ -59,7 +59,6 @@
 
   <xsl:template name="top.comment">
     <xsl:param name="info"/>
-    <xsl:param name="parentinfo"/>
     <xsl:param name="date"/>
     <xsl:param name="title"/>
     <xsl:param name="manual"/>
@@ -69,7 +68,7 @@
     <xsl:text>&#10;</xsl:text>
     <xsl:text>.\"    Author: </xsl:text>
       <xsl:call-template name="make.roff.metadata.author">
-        <xsl:with-param name="info" select="$parentinfo"/>
+        <xsl:with-param name="info" select="$info"/>
       </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>.\" Generator: DocBook XSL Stylesheets v</xsl:text>

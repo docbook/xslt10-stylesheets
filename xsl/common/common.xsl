@@ -1944,13 +1944,13 @@ unchanged.</para>
     extension function.</para>
 
     <para>The value of the <parameter>profile</parameter> parameter
-    can include the strings <literal>$info</literal> and
-    <literal>$parentinfo</literal>. If found in the value of the
-    <parameter>profile</parameter> parameter, those strings are
-    evaluated using the <parameter>info</parameter> and
-    <parameter>parentinfo</parameter> parameters, the values of which
-    should be DocBook <replaceable>*info</replaceable> element node
-    sets.</para>
+    can include the literal string <literal>$info</literal>. If found
+    in the value of the <parameter>profile</parameter> parameter, the
+    literal string <literal>$info</literal> string is replaced with
+    the value of the <parameter>info</parameter> parameter, which
+    should be a set of <replaceable>*info</replaceable> nodes; the
+    expression is then evaluated using the XSLT
+    <function>evaluate()</function> extension function.</para>
   </refdescription>
   <refparameter>
     <variablelist>
@@ -1963,13 +1963,7 @@ unchanged.</para>
        <varlistentry>
         <term>info</term>
         <listitem>
-          <para>A DocBook info node</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>parentinfo</term>
-        <listitem>
-          <para>A DocBook info node (from a parent element)</para>
+          <para>A set of *info nodes</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -1984,17 +1978,16 @@ unchanged.</para>
   <xsl:template name="evaluate.info.profile">
     <xsl:param name="profile"/>
     <xsl:param name="info"/>
-    <xsl:param name="parentinfo"/>
     <xsl:choose>
-      <!-- xsltproc and Xalan both support dyn:evaluate() -->
+      <!-- * xsltproc and Xalan both support dyn:evaluate() -->
       <xsl:when test="function-available('dyn:evaluate')">
         <xsl:apply-templates
-            select="dyn:evaluate($profile)"/>
+            select="dyn:evaluate($profile)" mode="get.refentry.metadata"/>
       </xsl:when>
-      <!-- Saxon has its own evaluate() & doesn't support dyn:evaluate() -->
+      <!-- * Saxon has its own evaluate() & doesn't support dyn:evaluate() -->
       <xsl:when test="function-available('saxon:evaluate')">
         <xsl:apply-templates
-            select="saxon:evaluate($profile)"/>
+            select="saxon:evaluate($profile)" mode="get.refentry.metadata"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:message terminate="yes">

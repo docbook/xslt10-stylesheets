@@ -11,12 +11,9 @@
 <refsynopsisdiv>
 <src:fragment id='refentry.version.profile.frag'>
 <xsl:param name="refentry.version.profile">
-  ($info/productnumber
-  |$parentinfo/productnumber
-  |$info/edition
-  |$parentinfo/edition
-  |$info/releaseinfo
-  |$parentinfo/releaseinfo)[1]/node()
+  (($info[//productnumber])[last()]/productnumber)[1]|
+  (($info[//edition])[last()]/edition)[1]|
+  (($info[//releaseinfo])[last()]/releaseinfo)[1]
 </xsl:param>
 </src:fragment>
 </refsynopsisdiv>

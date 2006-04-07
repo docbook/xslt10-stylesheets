@@ -10,7 +10,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='man.th.extra2.max.length.frag'>
-<xsl:param name="man.th.extra2.max.length">40</xsl:param>
+<xsl:param name="man.th.extra2.max.length">30</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
@@ -29,9 +29,9 @@ data, often in the form
 for example, "GTK+ 1.2" (from the <literal>gtk-options(7)</literal>
 man page).</para>
 
-<para>The default value for this parameter is reasonable (perhaps too
-liberal) but somewhat arbitrary. If you are processing pages with long
-"source" infromation, you may want to experiment with changing the
-value in order to achieve the correct aesthetic results.</para>
+<para>The default value for this parameter is reasonable but somewhat
+arbitrary. If you are processing pages with long "source" information,
+you may want to experiment with changing the value in order to achieve
+the correct aesthetic results.</para>
 </refsect1>
 </refentry>
