@@ -589,7 +589,7 @@
 <xsl:template match="varlistentry/term">
   <fo:inline><xsl:apply-templates/></fo:inline>
   <xsl:choose>
-    <xsl:when test="position() = last()"/> <!-- do nothing -->
+    <xsl:when test="not(following-sibling::term)"/> <!-- do nothing -->
     <xsl:otherwise>
       <!-- * if we have multiple terms in the same varlistentry, generate -->
       <!-- * a separator (", " by default) and/or an additional line -->
