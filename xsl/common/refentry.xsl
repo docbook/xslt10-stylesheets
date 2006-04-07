@@ -574,11 +574,6 @@
                   select="(($info[//productname])[last()]/productname)[1]"
                   mode="get.refentry.metadata"/>
             </xsl:when>
-            <xsl:when test="$info//orgname">
-              <xsl:apply-templates
-                  select="(($info[//orgname])[last()]/orgname)[1]"
-                  mode="get.refentry.metadata"/>
-            </xsl:when>
             <xsl:when test="$info//corpname">
               <xsl:apply-templates
                   select="(($info[//corpname])[last()]/corpname)[1]"
@@ -594,14 +589,14 @@
                   select="(($info[//corpauthor])[last()]/corpauthor)[1]"
                   mode="get.refentry.metadata"/>
             </xsl:when>
-            <xsl:when test="$info//author/orgname">
+            <xsl:when test="$info//orgname">
               <xsl:apply-templates
-                  select="(($info[//author/orgname])[last()]/author/orgname)[1]"
+                  select="(($info[//orgname])[last()]/orgname)[1]"
                   mode="get.refentry.metadata"/>
             </xsl:when>
-            <xsl:when test="$info//author/publishername">
+            <xsl:when test="$info//publishername">
               <xsl:apply-templates
-                  select="(($info[//author/publishername])[last()]/author/publishername)[1]"
+                  select="(($info[//publishername])[last()]/publishername)[1]"
                   mode="get.refentry.metadata"/>
             </xsl:when>
             <xsl:otherwise>

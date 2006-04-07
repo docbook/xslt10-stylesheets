@@ -12,12 +12,11 @@
 <src:fragment id='refentry.source.name.profile.frag'>
 <xsl:param name="refentry.source.name.profile">
   (($info[//productname])[last()]/productname)[1]|
-  (($info[//orgname])[last()]/orgname)[1]|
   (($info[//corpname])[last()]/corpname)[1]|
   (($info[//corpcredit])[last()]/corpcredit)[1]|
   (($info[//corpauthor])[last()]/corpauthor)[1]|
-  (($info[//author/orgname])[last()]/author/orgname)[1]|
-  (($info[//author/publishername])[last()]/author/publishername)[1]
+  (($info[//orgname])[last()]/orgname)[1]|
+  (($info[//publishername])[last()]/publishername)[1]
 </xsl:param>
 </src:fragment>
 </refsynopsisdiv>
