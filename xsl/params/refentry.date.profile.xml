@@ -11,10 +11,8 @@
 <refsynopsisdiv>
 <src:fragment id='refentry.date.profile.frag'>
 <xsl:param name="refentry.date.profile">
-  ($info/date
-  |$info/pubdate
-  |$parentinfo/date
-  |$parentinfo/pubdate)[1]/node()
+  (($info[//date])[last()]/date)[1]|
+  (($info[//pubdate])[last()]/pubdate)[1]
 </xsl:param>
 </src:fragment>
 </refsynopsisdiv>

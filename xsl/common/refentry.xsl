@@ -52,7 +52,7 @@
 <!-- ==================================================================== -->
 
 <doc:template name="get.refentry.metadata" xmlns="">
-  <refpurpose>Gathers metadata from a refentry and its parent</refpurpose>
+  <refpurpose>Gathers metadata from a refentry and its ancestors</refpurpose>
 
   <refdescription>
     <para>Reference documentation for particular commands, functions,
@@ -62,10 +62,11 @@
     embed "context" information in output for each <tag>refentry</tag>.</para>
 
     <para>However, one problem is that different users mark up that
-    context information in different ways. Often (usually), it is not
-    actually part of the content of the <tag>refentry</tag> itself,
-    but instead part of its parent element's content. And even then,
-    DocBook provides a variety of elements that users might
+    context information in different ways. Often (usually), the
+    context information is not actually part of the content of the
+    <tag>refentry</tag> itself, but instead part of the content of a
+    parent or ancestor element to the the <tag>refentry</tag>. And
+    even then, DocBook provides a variety of elements that users might
     potentially use to mark up the same kind of information. One user
     might use the <tag>productnumber</tag> element to mark up version
     information about a particular product, while another might use
@@ -73,16 +74,22 @@
 
     <para>Taking all that in mind, the
     <function>get.refentry.info</function> function tries to gather
-    metadata from a <tag>refentry</tag> element and its parent element
-    in an intelligent and user-configurable way.</para>
+    metadata from a <tag>refentry</tag> element and its ancestor
+    elements in an intelligent and user-configurable way. The basic
+    mechanism used in the XPath expressions throughout this stylesheet
+    is to select the relevant metadata from the *info element that is
+    closest to the actual <tag>refentry</tag>&#160;– either on the
+    <tag>refentry</tag> itself, or on its nearest ancestor.</para>
 
     <note>
-      <para>The <function>get.refentry.info</function> is actually just
-      sort of a "driver" function; it calls other function that do the
-      actual data collection, then returns the data as a set.</para>
+      <para>The <function>get.refentry.info</function> function is
+      actually just sort of a "driver" function; it calls other
+      functions that do the actual data collection, then returns the
+      data as a set.</para>
     </note>
 
-    <para>The manpages stylesheets are an application of these APIs.</para>
+    <para>The manpages stylesheets are an application of the “APIs” in
+    this stylesheet.</para>
   </refdescription>
 
   <refparameter>
@@ -96,14 +103,8 @@
       <varlistentry>
         <term>info</term>
         <listitem>
-          <para>An info node (from a <tag>refentry</tag> element)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>parentinfo</term>
-        <listitem>
-          <para>An info node (from a parent of a <tag>refentry</tag>
-          element)</para>
+          <para>A set of info nodes (from a <tag>refentry</tag>
+          element and its ancestors)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -161,7 +162,6 @@
 <xsl:template name="get.refentry.metadata">
   <xsl:param name="refname"/>
   <xsl:param name="info"/>
-  <xsl:param name="parentinfo"/>
   <xsl:param name="prefs"/>
   <title>
     <xsl:call-template name="get.refentry.title">
@@ -174,21 +174,18 @@
   <date>
     <xsl:call-template name="get.refentry.date">
       <xsl:with-param name="info" select="$info"/>
-      <xsl:with-param name="parentinfo" select="$parentinfo"/>
       <xsl:with-param name="prefs" select="$prefs/DatePrefs"/>
     </xsl:call-template>
   </date>
   <source>
     <xsl:call-template name="get.refentry.source">
       <xsl:with-param name="info" select="$info"/>
-      <xsl:with-param name="parentinfo" select="$parentinfo"/>
       <xsl:with-param name="prefs" select="$prefs/SourcePrefs"/>
     </xsl:call-template>
   </source>
   <manual>
     <xsl:call-template name="get.refentry.manual">
       <xsl:with-param name="info" select="$info"/>
-      <xsl:with-param name="parentinfo" select="$parentinfo"/>
       <xsl:with-param name="prefs" select="$prefs/ManualPrefs"/>
     </xsl:call-template>
   </manual>
@@ -294,13 +291,8 @@
       <varlistentry>
         <term>info</term>
         <listitem>
-          <para>An info node (from a <tag>refentry</tag> element)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>parentinfo</term>
-        <listitem>
-          <para>An info node (from a parent of a <tag>refentry</tag> element)</para>
+          <para>A set of info nodes (from a <tag>refentry</tag>
+          element and its ancestors)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -317,7 +309,6 @@
 
 <xsl:template name="get.refentry.date">
   <xsl:param name="info"/>
-  <xsl:param name="parentinfo"/>
   <xsl:param name="prefs"/>
   <xsl:variable name="Date">
     <xsl:choose>
@@ -328,42 +319,28 @@
         <xsl:call-template name="evaluate.info.profile">
           <xsl:with-param name="profile" select="$prefs/@profile"/>
           <xsl:with-param name="info" select="$info"/>
-          <xsl:with-param name="parentinfo" select="$parentinfo"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
         <!-- * either profiling is not enabled for date, or the-->
         <!-- * date profile is empty, so we need to look for date -->
-        <!-- * first in *info, then in parentinfo -->
+        <!-- * in *info -->
         <xsl:choose>
           <!-- * look for date or pubdate in *info -->
-          <xsl:when test="$info/date
-                          |$info/pubdate">
+          <xsl:when test="$info//date
+                          |$info//pubdate">
             <xsl:message
                 >Note: Found <xsl:value-of
-                select="local-name(($info/date|$info/pubdate)[1])"
-                /> in <xsl:value-of
-                select="local-name($info)"
+                select="local-name((($info[//date])[last()]/date)[1]|
+                          (($info[//pubdate])[last()]/pubdate)[1])"
+                          /> in <xsl:value-of select="local-name(
+                          ($info[//date])[last()]|
+                          ($info[//pubdate])[last()])"
                 /></xsl:message>
             <xsl:copy>
               <xsl:apply-templates
-                  select="($info/date
-                          |$info/pubdate)[1]/node()"/>
-            </xsl:copy>
-          </xsl:when>
-          <!-- * look for date or pubdate in parentinfo -->
-          <xsl:when test="$parentinfo/date
-                          |$parentinfo/pubdate">
-            <xsl:message
-                >Note: Found <xsl:value-of
-                select="local-name(($parentinfo/date|$parentinfo/pubdate)[1])"
-                /> in <xsl:value-of
-                select="local-name($parentinfo)"
-                /></xsl:message>
-            <xsl:copy>
-              <xsl:apply-templates
-                  select="($parentinfo/date
-                          |$parentinfo/pubdate)[1]/node()"/>
+                  select="(($info[//date])[last()]/date)[1]|
+                          (($info[//pubdate])[last()]/pubdate)[1]" mode="get.refentry.metadata"/>
             </xsl:copy>
           </xsl:when>
           <xsl:otherwise>
@@ -463,13 +440,8 @@
       <varlistentry>
         <term>info</term>
         <listitem>
-          <para>An info node (from a <tag>refentry</tag> element)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>parentinfo</term>
-        <listitem>
-          <para>An info node (from a parent of a <tag>refentry</tag> element)</para>
+          <para>A set of info nodes (from a <tag>refentry</tag>
+          element and its ancestors)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -487,13 +459,11 @@
 
 <xsl:template name="get.refentry.source">
   <xsl:param name="info"/>
-  <xsl:param name="parentinfo"/>
   <xsl:param name="prefs"/>
   <xsl:variable name="Name">
     <xsl:if test="$prefs/Name/@suppress = '0'">
       <xsl:call-template name="get.refentry.source.name">
         <xsl:with-param name="info" select="$info"/>
-        <xsl:with-param name="parentinfo" select="$parentinfo"/>
         <xsl:with-param name="prefs" select="$prefs/Name"/>
       </xsl:call-template>
     </xsl:if>
@@ -502,7 +472,6 @@
     <xsl:if test="$prefs/Version/@suppress = '0'">
       <xsl:call-template name="get.refentry.version">
         <xsl:with-param name="info" select="$info"/>
-        <xsl:with-param name="parentinfo" select="$parentinfo"/>
         <xsl:with-param name="prefs" select="$prefs/Version"/>
       </xsl:call-template>
     </xsl:if>
@@ -528,7 +497,6 @@
       <xsl:call-template name="evaluate.info.profile">
         <xsl:with-param name="profile" select="$prefs/@fallback"/>
         <xsl:with-param name="info" select="$info"/>
-        <xsl:with-param name="parentinfo" select="$parentinfo"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
@@ -554,13 +522,8 @@
       <varlistentry>
         <term>info</term>
         <listitem>
-          <para>An info node (from a <tag>refentry</tag> element)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>parentinfo</term>
-        <listitem>
-          <para>An info node (from a parent of a <tag>refentry</tag> element)</para>
+          <para>A set of info nodes (from a <tag>refentry</tag>
+          element and its ancestors)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -580,7 +543,6 @@
 
 <xsl:template name="get.refentry.source.name">
   <xsl:param name="info"/>
-  <xsl:param name="parentinfo"/>
   <xsl:param name="prefs"/>
   <xsl:choose>
     <!-- * if profiling is enabled for source.name, and the -->
@@ -591,7 +553,6 @@
       <xsl:call-template name="evaluate.info.profile">
         <xsl:with-param name="profile" select="$prefs/@profile"/>
         <xsl:with-param name="info" select="$info"/>
-        <xsl:with-param name="parentinfo" select="$parentinfo"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
@@ -607,49 +568,41 @@
           <xsl:message>Note: Missing class="source" data on refmeta/refmiscinfo</xsl:message>
           <xsl:choose>
             <!-- * no <refmisc class="source"/> found, so we need to -->
-            <!-- * check *info and parentinfo -->
-            <xsl:when test="$info/productname">
-              <xsl:apply-templates select="$info/productname/node()"/>
+            <!-- * check *info -->
+            <xsl:when test="$info//productname">
+              <xsl:apply-templates
+                  select="(($info[//productname])[last()]/productname)[1]"
+                  mode="get.refentry.metadata"/>
             </xsl:when>
-            <xsl:when test="$info/orgname">
-              <xsl:apply-templates select="$info/orgname/node()"/>
+            <xsl:when test="$info//orgname">
+              <xsl:apply-templates
+                  select="(($info[//orgname])[last()]/orgname)[1]"
+                  mode="get.refentry.metadata"/>
             </xsl:when>
-            <xsl:when test="$info/corpname">
-              <xsl:apply-templates select="$info/corpname/node()"/>
+            <xsl:when test="$info//corpname">
+              <xsl:apply-templates
+                  select="(($info[//corpname])[last()]/corpname)[1]"
+                  mode="get.refentry.metadata"/>
             </xsl:when>
-            <xsl:when test="$info/corpcredit">
-              <xsl:apply-templates select="$info/corpcredit/node()"/>
+            <xsl:when test="$info//corpcredit">
+              <xsl:apply-templates
+                  select="(($info[//corpcredit])[last()]/corpcredit)[1]"
+                  mode="get.refentry.metadata"/>
             </xsl:when>
-            <xsl:when test="$info/corpauthor">
-              <xsl:apply-templates select="$info/corpauthor/node()"/>
+            <xsl:when test="$info//corpauthor">
+              <xsl:apply-templates
+                  select="(($info[//corpauthor])[last()]/corpauthor)[1]"
+                  mode="get.refentry.metadata"/>
             </xsl:when>
-            <xsl:when test="$info/author/orgname">
-              <xsl:apply-templates select="$info/author/orgname/node()"/>
+            <xsl:when test="$info//author/orgname">
+              <xsl:apply-templates
+                  select="(($info[//author/orgname])[last()]/author/orgname)[1]"
+                  mode="get.refentry.metadata"/>
             </xsl:when>
-            <xsl:when test="$info/author/publishername">
-              <xsl:apply-templates select="$info/author/publishername/node()"/>
-            </xsl:when>
-            <!-- * then check parentinfo -->
-            <xsl:when test="$parentinfo/productname">
-              <xsl:apply-templates select="$parentinfo/productname/node()"/>
-            </xsl:when>
-            <xsl:when test="$parentinfo/orgname">
-              <xsl:apply-templates select="$parentinfo/orgname/node()"/>
-            </xsl:when>
-            <xsl:when test="$parentinfo/corpname">
-              <xsl:apply-templates select="$parentinfo/corpname/node()"/>
-            </xsl:when>
-            <xsl:when test="$parentinfo/corpcredit">
-              <xsl:apply-templates select="$parentinfo/corpcredit/node()"/>
-            </xsl:when>
-            <xsl:when test="$parentinfo/corpauthor">
-              <xsl:apply-templates select="$parentinfo/corpauthor/node()"/>
-            </xsl:when>
-            <xsl:when test="$parentinfo/author/orgname">
-              <xsl:apply-templates select="$parentinfo/author/orgname/node()"/>
-            </xsl:when>
-            <xsl:when test="$parentinfo/author/publishername">
-              <xsl:apply-templates select="$parentinfo/author/publishername/node()"/>
+            <xsl:when test="$info//author/publishername">
+              <xsl:apply-templates
+                  select="(($info[//author/publishername])[last()]/author/publishername)[1]"
+                  mode="get.refentry.metadata"/>
             </xsl:when>
             <xsl:otherwise>
               <xsl:message>Note: Missing "source name" metadata.</xsl:message>
@@ -678,13 +631,8 @@
       <varlistentry>
         <term>info</term>
         <listitem>
-          <para>An info node (from a <tag>refentry</tag> element)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>parentinfo</term>
-        <listitem>
-          <para>An info node (from a parent of a <tag>refentry</tag> element)</para>
+          <para>A set of info nodes (from a <tag>refentry</tag>
+          element and its ancestors)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -704,7 +652,6 @@
 
 <xsl:template name="get.refentry.version">
   <xsl:param name="info"/>
-  <xsl:param name="parentinfo"/>
   <xsl:param name="prefs"/>
   <xsl:choose>
     <!-- * if profiling is enabled for version, and the -->
@@ -715,7 +662,6 @@
       <xsl:call-template name="evaluate.info.profile">
         <xsl:with-param name="profile" select="$prefs/@profile"/>
         <xsl:with-param name="info" select="$info"/>
-        <xsl:with-param name="parentinfo" select="$parentinfo"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
@@ -728,28 +674,24 @@
               select="refmeta/refmiscinfo[@class = 'version'][1]/node()"/>
         </xsl:when>
         <!-- * no <refmisc class="version"/> found, so we need to -->
-        <!-- * check *info and parentinfo -->
-        <xsl:when test="$info/productnumber">
-          <xsl:apply-templates select="$info/productnumber/node()"/>
+        <!-- * check *info -->
+        <xsl:when test="$info//productnumber">
+          <xsl:apply-templates
+              select="(($info[//productnumber])[last()]/productnumber)[1]"
+              mode="get.refentry.metadata"/>
         </xsl:when>
-        <xsl:when test="$info/edition">
-          <xsl:apply-templates select="$info/edition/node()"/>
+        <xsl:when test="$info//edition">
+          <xsl:apply-templates
+              select="(($info[//edition])[last()]/edition)[1]"
+              mode="get.refentry.metadata"/>
         </xsl:when>
-        <xsl:when test="$info/releaseinfo">
-          <xsl:apply-templates select="$info/releaseinfo/node()"/>
-        </xsl:when>
-        <!-- * then check parentinfo -->
-        <xsl:when test="$parentinfo/productnumber">
-          <xsl:apply-templates select="$parentinfo/productnumber/node()"/>
-        </xsl:when>
-        <xsl:when test="$parentinfo/edition">
-          <xsl:apply-templates select="$parentinfo/edition/node()"/>
-        </xsl:when>
-        <xsl:when test="$parentinfo/releaseinfo">
-          <xsl:apply-templates select="$parentinfo/releaseinfo/node()"/>
+        <xsl:when test="$info//releaseinfo">
+          <xsl:apply-templates
+              select="(($info[//releaseinfo])[last()]/releaseinfo)[1]"
+              mode="get.refentry.metadata"/>
         </xsl:when>
         <xsl:otherwise>
-          <!-- *found nothing, so return nothing -->
+          <!-- * found nothing, so return nothing -->
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
@@ -803,13 +745,8 @@
       <varlistentry>
         <term>info</term>
         <listitem>
-          <para>An info node (from a <tag>refentry</tag> element)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>parentinfo</term>
-        <listitem>
-          <para>An info node (from a parent of a <tag>refentry</tag> element)</para>
+          <para>A set of info nodes (from a <tag>refentry</tag>
+          element and its ancestors)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -826,7 +763,6 @@
 </doc:template>
 <xsl:template name="get.refentry.manual">
   <xsl:param name="info"/>
-  <xsl:param name="parentinfo"/>
   <xsl:param name="prefs"/>
   <xsl:variable name="Manual">
     <xsl:choose>
@@ -838,7 +774,6 @@
         <xsl:call-template name="evaluate.info.profile">
           <xsl:with-param name="profile" select="$prefs/@profile"/>
           <xsl:with-param name="info" select="$info"/>
-          <xsl:with-param name="parentinfo" select="$parentinfo"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
@@ -851,12 +786,16 @@
                 select="refmeta/refmiscinfo[@class = 'manual'][1]/node()"/>
           </xsl:when>
           <!-- * no <refmisc class="manual"/> found, so we need to -->
-          <!-- * check title in parentinfo and parent title -->
-          <xsl:when test="$parentinfo/title">
-            <xsl:apply-templates select="$parentinfo/title/node()"/>
+          <!-- * check title in +info and parent title -->
+          <xsl:when test="$info//title">
+            <xsl:apply-templates
+                select="(($info[//title])[last()]/title)[1]"
+                mode="get.refentry.metadata"/>
           </xsl:when>
           <xsl:when test="../title">
-            <xsl:apply-templates select="../title/node()"/>
+            <xsl:apply-templates
+                select="../title/node()"
+                mode="get.refentry.metadata"/>
           </xsl:when>
           <xsl:otherwise>
             <!-- * found nothing, so return nothing -->
@@ -875,7 +814,6 @@
       <xsl:call-template name="evaluate.info.profile">
         <xsl:with-param name="profile" select="$prefs/@fallback"/>
         <xsl:with-param name="info" select="$info"/>
-        <xsl:with-param name="parentinfo" select="$parentinfo"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
@@ -959,5 +897,58 @@
     </xsl:attribute>
   </ManualPrefs>
 </xsl:template>
+
+<xsl:template match="date" mode="get.refentry.metadata">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="pubdate" mode="get.refentry.metadata">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="productname" mode="get.refentry.metadata">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="orgname" mode="get.refentry.metadata">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="corpname" mode="get.refentry.metadata">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="corpcredit" mode="get.refentry.metadata">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="corpauthor" mode="get.refentry.metadata">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="author/orgname" mode="get.refentry.metadata">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="author/publishername" mode="get.refentry.metadata">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="productnumber" mode="get.refentry.metadata">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="edition" mode="get.refentry.metadata">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="releaseinfo" mode="get.refentry.metadata">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="title" mode="get.refentry.metadata">
+  <xsl:apply-templates/>
+</xsl:template>
+
 
 </xsl:stylesheet>
