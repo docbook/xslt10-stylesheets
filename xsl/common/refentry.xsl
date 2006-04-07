@@ -261,7 +261,7 @@
       <xsl:value-of select="refmeta/manvolnum"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:message>Note: Missing manvolnum.</xsl:message>
+      <xsl:message>Note: manvolnum: Missing.</xsl:message>
       <xsl:choose>
         <xsl:when test=".//funcsynopsis">
           <xsl:message>Note: Found funcsynopsis. Setting section number to 3.</xsl:message>
@@ -314,8 +314,8 @@
     <xsl:choose>
       <!-- * if profiling is enabled for date, and the date -->
       <!-- * profile is non-empty, use it -->
-      <xsl:when test="$prefs/@profileEnabled != '0' and
-                      $prefs/@profile != ''">
+      <xsl:when test="not($prefs/@profileEnabled = 0) and
+                      not($prefs/@profile = '')">
         <xsl:call-template name="evaluate.info.profile">
           <xsl:with-param name="profile" select="$prefs/@profile"/>
           <xsl:with-param name="info" select="$info"/>
@@ -329,18 +329,17 @@
           <!-- * look for date or pubdate in *info -->
           <xsl:when test="$info//date
                           |$info//pubdate">
-            <xsl:message
-                >Note: Found <xsl:value-of
-                select="local-name((($info[//date])[last()]/date)[1]|
-                          (($info[//pubdate])[last()]/pubdate)[1])"
-                          /> in <xsl:value-of select="local-name(
-                          ($info[//date])[last()]|
-                          ($info[//pubdate])[last()])"
-                /></xsl:message>
             <xsl:copy>
-              <xsl:apply-templates
-                  select="(($info[//date])[last()]/date)[1]|
-                          (($info[//pubdate])[last()]/pubdate)[1]" mode="get.refentry.metadata"/>
+              <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param 
+                    name="info"
+                    select="($info[//date])[last()]"/>
+                <xsl:with-param 
+                    name="contents"
+                    select="(($info[//date])[last()]/date)[1]|
+                            (($info[//pubdate])[last()]/pubdate)[1]"/>
+                <xsl:with-param name="context">date</xsl:with-param>
+              </xsl:call-template>
             </xsl:copy>
           </xsl:when>
           <xsl:otherwise>
@@ -351,13 +350,13 @@
     </xsl:choose>
   </xsl:variable>
   <xsl:choose>
-    <xsl:when test="$Date != ''">
+    <xsl:when test="not($Date = '')">
       <xsl:value-of select="$Date"/>
     </xsl:when>
     <!-- * We couldn't find a date, so we generate a date. -->
     <!-- * And we make it an appropriately localized date. -->
     <xsl:otherwise>
-      <xsl:message>Note: Missing date. Generating localized date.</xsl:message>
+      <xsl:message>Note: meta "date"   : Missing. Generating localized date.</xsl:message>
       <xsl:call-template name="datetime.format">
         <xsl:with-param name="date">
           <xsl:choose>
@@ -461,7 +460,7 @@
   <xsl:param name="info"/>
   <xsl:param name="prefs"/>
   <xsl:variable name="Name">
-    <xsl:if test="$prefs/Name/@suppress = '0'">
+    <xsl:if test="$prefs/Name/@suppress = 0">
       <xsl:call-template name="get.refentry.source.name">
         <xsl:with-param name="info" select="$info"/>
         <xsl:with-param name="prefs" select="$prefs/Name"/>
@@ -469,7 +468,7 @@
     </xsl:if>
   </xsl:variable>
   <xsl:variable name="Version">
-    <xsl:if test="$prefs/Version/@suppress = '0'">
+    <xsl:if test="$prefs/Version/@suppress = 0">
       <xsl:call-template name="get.refentry.version">
         <xsl:with-param name="info" select="$info"/>
         <xsl:with-param name="prefs" select="$prefs/Version"/>
@@ -480,9 +479,9 @@
     <!-- * if we have a Name and/or Version, use either or both -->
     <!-- * of those, in the form "Name Version" or just "Name" -->
     <!-- * or just "Version" -->
-    <xsl:when test="$Name != '' or $Version != ''">
+    <xsl:when test="not($Name = '') or not($Version = '')">
       <xsl:choose>
-        <xsl:when test="$Name != '' and $Version != ''">
+        <xsl:when test="not($Name = '') and not($Version = '')">
           <xsl:copy-of select="$Name"/>
           <xsl:text> </xsl:text>
         </xsl:when>
@@ -493,14 +492,14 @@
       <xsl:copy-of select="$Version"/>
     </xsl:when>
     <!-- * if no Name and no Version, use fallback (if any) -->
-    <xsl:when test="$prefs/@fallback != ''">
+    <xsl:when test="not($prefs/@fallback = '')">
       <xsl:call-template name="evaluate.info.profile">
         <xsl:with-param name="profile" select="$prefs/@fallback"/>
         <xsl:with-param name="info" select="$info"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:message>Warn: Missing "source" metadata. No fallback found; leaving empty.</xsl:message>
+      <xsl:message>Warn: meta "source" : Missing. No fallback; leaving empty.</xsl:message>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -547,9 +546,8 @@
   <xsl:choose>
     <!-- * if profiling is enabled for source.name, and the -->
     <!-- * source.name profile is non-empty, use it -->
-    <xsl:when test="$prefs/@profileEnabled != '0' and
-                    $prefs/@profile != ''">
-      <xsl:message>using source.name profile</xsl:message>
+    <xsl:when test="not($prefs/@profileEnabled = 0) and
+                    not($prefs/@profile = '')">
       <xsl:call-template name="evaluate.info.profile">
         <xsl:with-param name="profile" select="$prefs/@profile"/>
         <xsl:with-param name="info" select="$info"/>
@@ -565,48 +563,82 @@
               select="refmeta/refmiscinfo[@class = 'source'][1]/node()"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:message>Note: Missing class="source" data on refmeta/refmiscinfo</xsl:message>
+          <xsl:message>Note: meta "source" : Missing refmiscinfo@class="source"</xsl:message>
           <xsl:choose>
-            <!-- * no <refmisc class="source"/> found, so we need to -->
-            <!-- * check *info -->
             <xsl:when test="$info//productname">
-              <xsl:apply-templates
-                  select="(($info[//productname])[last()]/productname)[1]"
-                  mode="get.refentry.metadata"/>
+              <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param
+                    name="info"
+                    select="($info[//productname])[last()]"/>
+                <xsl:with-param
+                    name="contents"
+                    select="(($info[//productname])[last()]/productname)[1]"/>
+                <xsl:with-param name="context">source</xsl:with-param>
+              </xsl:call-template>
             </xsl:when>
             <xsl:when test="$info//corpname">
-              <xsl:apply-templates
-                  select="(($info[//corpname])[last()]/corpname)[1]"
-                  mode="get.refentry.metadata"/>
+              <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param
+                    name="info"
+                    select="($info[//corpname])[last()]"/>
+                <xsl:with-param
+                    name="contents"
+                    select="(($info[//corpname])[last()]/corpname)[1]"/>
+                <xsl:with-param name="context">source</xsl:with-param>
+              </xsl:call-template>
             </xsl:when>
             <xsl:when test="$info//corpcredit">
-              <xsl:apply-templates
-                  select="(($info[//corpcredit])[last()]/corpcredit)[1]"
-                  mode="get.refentry.metadata"/>
+              <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param
+                    name="info"
+                    select="($info[//corpcredit])[last()]"/>
+                <xsl:with-param
+                    name="contents"
+                    select="(($info[//corpcredit])[last()]/corpcredit)[1]"/>
+                <xsl:with-param name="context">source</xsl:with-param>
+              </xsl:call-template>
             </xsl:when>
             <xsl:when test="$info//corpauthor">
-              <xsl:apply-templates
-                  select="(($info[//corpauthor])[last()]/corpauthor)[1]"
-                  mode="get.refentry.metadata"/>
+              <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param
+                    name="info"
+                    select="($info[//corpauthor])[last()]"/>
+                <xsl:with-param
+                    name="contents"
+                    select="(($info[//corpauthor])[last()]/corpauthor)[1]"/>
+                <xsl:with-param name="context">source</xsl:with-param>
+              </xsl:call-template>
             </xsl:when>
             <xsl:when test="$info//orgname">
-              <xsl:apply-templates
-                  select="(($info[//orgname])[last()]/orgname)[1]"
-                  mode="get.refentry.metadata"/>
+              <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param
+                    name="info"
+                    select="($info[//orgname])[last()]"/>
+                <xsl:with-param
+                    name="contents"
+                    select="(($info[//orgname])[last()]//orgname)[1]"/>
+                <xsl:with-param name="context">source</xsl:with-param>
+              </xsl:call-template>
             </xsl:when>
             <xsl:when test="$info//publishername">
-              <xsl:apply-templates
-                  select="(($info[//publishername])[last()]/publishername)[1]"
-                  mode="get.refentry.metadata"/>
+              <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param
+                    name="info"
+                    select="($info[//publishername])[last()]"/>
+                <xsl:with-param
+                    name="contents"
+                    select="(($info[//publishername])[last()]//publishername)[1]"/>
+                <xsl:with-param name="context">source</xsl:with-param>
+              </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:message>Note: Missing "source name" metadata.</xsl:message>
+              <xsl:message>Note: meta "source" :  Missing.</xsl:message>
             </xsl:otherwise>
           </xsl:choose>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
-      </xsl:choose>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -651,9 +683,8 @@
   <xsl:choose>
     <!-- * if profiling is enabled for version, and the -->
     <!-- * version profile is non-empty, use it -->
-    <xsl:when test="$prefs/@profileEnabled != '0' and
-                    $prefs/@profile != ''">
-      <xsl:message>using version profile</xsl:message>
+    <xsl:when test="not($prefs/@profileEnabled = 0) and
+                    not($prefs/@profile = '')">
       <xsl:call-template name="evaluate.info.profile">
         <xsl:with-param name="profile" select="$prefs/@profile"/>
         <xsl:with-param name="info" select="$info"/>
@@ -668,25 +699,46 @@
           <xsl:apply-templates 
               select="refmeta/refmiscinfo[@class = 'version'][1]/node()"/>
         </xsl:when>
-        <!-- * no <refmisc class="version"/> found, so we need to -->
-        <!-- * check *info -->
-        <xsl:when test="$info//productnumber">
-          <xsl:apply-templates
-              select="(($info[//productnumber])[last()]/productnumber)[1]"
-              mode="get.refentry.metadata"/>
-        </xsl:when>
-        <xsl:when test="$info//edition">
-          <xsl:apply-templates
-              select="(($info[//edition])[last()]/edition)[1]"
-              mode="get.refentry.metadata"/>
-        </xsl:when>
-        <xsl:when test="$info//releaseinfo">
-          <xsl:apply-templates
-              select="(($info[//releaseinfo])[last()]/releaseinfo)[1]"
-              mode="get.refentry.metadata"/>
-        </xsl:when>
         <xsl:otherwise>
-          <!-- * found nothing, so return nothing -->
+          <xsl:message>Note: meta "version": Missing refmiscinfo@class="version"</xsl:message>
+          <xsl:choose>
+            <xsl:when test="$info//productnumber">
+              <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param
+                    name="info"
+                    select="($info[//productnumber])[last()]"/>
+                <xsl:with-param
+                    name="contents"
+                    select="(($info[//productnumber])[last()]/productnumber)[1]"/>
+                <xsl:with-param name="context">version</xsl:with-param>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$info//edition">
+              <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param
+                    name="info"
+                    select="($info[//edition])[last()]"/>
+                <xsl:with-param
+                    name="contents"
+                    select="(($info[//edition])[last()]/edition)[1]"/>
+                <xsl:with-param name="context">version</xsl:with-param>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$info//releaseinfo">
+              <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param
+                    name="info"
+                    select="($info[//releaseinfo])[last()]"/>
+                <xsl:with-param
+                    name="contents"
+                    select="(($info[//releaseinfo])[last()]/releaseinfo)[1]"/>
+                <xsl:with-param name="context">version</xsl:with-param>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:message>Note: meta "version": Missing.</xsl:message>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
@@ -763,56 +815,67 @@
     <xsl:choose>
       <!-- * if profiling is enabled for manual, and the manual -->
       <!-- * profile is non-empty, use it -->
-      <xsl:when test="$prefs/@profileEnabled != '0' and
-                      $prefs/@profile != ''">
-        <xsl:message>using manual profile</xsl:message>
+      <xsl:when test="not($prefs/@profileEnabled = 0) and
+                      not($prefs/@profile = '')">
         <xsl:call-template name="evaluate.info.profile">
           <xsl:with-param name="profile" select="$prefs/@profile"/>
           <xsl:with-param name="info" select="$info"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-        <!-- * either profiling for source.name is not enabled, or-->
-        <!-- * the source.name profile is empty; so we need to look -->
-        <!-- * for a name to use -->
         <xsl:choose>
           <xsl:when test="refmeta/refmiscinfo[@class = 'manual']">
             <xsl:apply-templates 
                 select="refmeta/refmiscinfo[@class = 'manual'][1]/node()"/>
           </xsl:when>
-          <!-- * no <refmisc class="manual"/> found, so we need to -->
-          <!-- * check title in +info and parent title -->
-          <xsl:when test="$info//title">
-            <xsl:apply-templates
-                select="(($info[//title])[last()]/title)[1]"
-                mode="get.refentry.metadata"/>
-          </xsl:when>
-          <xsl:when test="../title">
-            <xsl:apply-templates
-                select="../title/node()"
-                mode="get.refentry.metadata"/>
-          </xsl:when>
           <xsl:otherwise>
-            <!-- * found nothing, so return nothing -->
+            <xsl:message>Note: meta "manual" : Missing refmiscinfo@class="manual"</xsl:message>
+            <xsl:choose>
+              <xsl:when test="$info//title">
+                <xsl:call-template name="set.refentry.metadata">
+                  <xsl:with-param
+                      name="info"
+                      select="($info[//title])[last()]"/>
+                  <xsl:with-param
+                      name="contents"
+                      select="(($info[//title])[last()]/title)[1]"/>
+                  <xsl:with-param name="context">manual</xsl:with-param>
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:when test="../title">
+                <xsl:call-template name="set.refentry.metadata">
+                  <xsl:with-param
+                      name="info"
+                      select="'..'"/>
+                  <xsl:with-param
+                      name="contents"
+                      select="../title"/>
+                  <xsl:with-param name="context">manual</xsl:with-param>
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:message>Note: meta "manual" : Missing.</xsl:message>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
   <xsl:choose>
-    <xsl:when test="$Manual != ''">
+    <xsl:when test="not($Manual = '')">
       <xsl:copy-of select="$Manual"/>
     </xsl:when>
     <!-- * if no Manual, use contents of specified -->
     <!-- * Fallback (if any) -->
-    <xsl:when test="$prefs/@fallback != ''">
+    <xsl:when test="not($prefs/@fallback = '')">
       <xsl:call-template name="evaluate.info.profile">
         <xsl:with-param name="profile" select="$prefs/@fallback"/>
         <xsl:with-param name="info" select="$info"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
-      <!-- * found nothing, so leave it empty -->
+      <xsl:message>Warn: meta "manual" : Missing. No fallback; leaving empty.</xsl:message>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -893,57 +956,61 @@
   </ManualPrefs>
 </xsl:template>
 
-<xsl:template match="date" mode="get.refentry.metadata">
+<!-- ====================================================================== -->
+
+<doc:template name="set.refentry.metadata" xmlns="">
+  <refpurpose>Sets content of a refentry metadata item</refpurpose>
+
+  <refdescription>
+    <para>The <function>set.refentry.metadata</function> function is
+    called each time a suitable source element is found for a certain
+    metadata field. It emits a message indicating what source element
+    it has found.</para>
+  </refdescription>
+
+  <refparameter>
+    <variablelist>
+      <varlistentry>
+        <term>info</term>
+        <listitem>
+          <para>A single *info node that contains the selected source element.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>contents</term>
+        <listitem>
+          <para>A node containing the selected source element.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>context</term>
+        <listitem>
+          <para>A string describing the metadata context in which the
+          <function>set.refentry.metadata</function> function was
+          called: either "date", "source", "version", or "manual".</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refreturn>
+  <para>Returns formatted contents of a selected source element.</para></refreturn>
+</doc:template>
+
+<xsl:template name="set.refentry.metadata">
+  <xsl:param name="info"/>
+  <xsl:param name="contents"/>
+  <xsl:param name="context"/>
+  <xsl:message>Note: meta "<xsl:value-of
+  select="$context"/>"<xsl:call-template
+  name="copy-string">
+  <xsl:with-param name="string" select="'&#x20;'"/>
+  <xsl:with-param
+      name="count"
+      select="7 - string-length($context)"/>
+  </xsl:call-template>: Using <xsl:value-of
+  select="local-name($info)"/>/<xsl:value-of
+  select="local-name($contents)"/></xsl:message>
   <xsl:apply-templates/>
 </xsl:template>
-
-<xsl:template match="pubdate" mode="get.refentry.metadata">
-  <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="productname" mode="get.refentry.metadata">
-  <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="orgname" mode="get.refentry.metadata">
-  <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="corpname" mode="get.refentry.metadata">
-  <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="corpcredit" mode="get.refentry.metadata">
-  <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="corpauthor" mode="get.refentry.metadata">
-  <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="author/orgname" mode="get.refentry.metadata">
-  <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="author/publishername" mode="get.refentry.metadata">
-  <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="productnumber" mode="get.refentry.metadata">
-  <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="edition" mode="get.refentry.metadata">
-  <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="releaseinfo" mode="get.refentry.metadata">
-  <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="title" mode="get.refentry.metadata">
-  <xsl:apply-templates/>
-</xsl:template>
-
 
 </xsl:stylesheet>
