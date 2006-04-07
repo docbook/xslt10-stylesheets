@@ -240,7 +240,7 @@
   </xsl:template>
 
   <xsl:template name="publisher.attribution">
-    <xsl:text>&#10;.sp -1&#10;</xsl:text>
+    <xsl:text>&#10;.sp -1n&#10;</xsl:text>
     <xsl:text>.IP&#10;</xsl:text>
     <xsl:call-template name="gentext">
       <xsl:with-param name="key" select="'Publisher'"/>
@@ -329,7 +329,7 @@
       <!-- * If we have no *blurb or contrib, but this is an Author or -->
       <!-- * Editor, then render the corresponding localized gentext -->
       <xsl:when test="self::author">
-        <xsl:text>&#10;.sp -1&#10;</xsl:text>
+        <xsl:text>&#10;.sp -1n&#10;</xsl:text>
         <xsl:text>.IP&#10;</xsl:text>
         <xsl:call-template name="gentext">
           <xsl:with-param name="key" select="'Author'"/>
@@ -337,7 +337,7 @@
         <xsl:text>.&#10;</xsl:text>
       </xsl:when>
       <xsl:when test="self::editor">
-        <xsl:text>&#10;.sp -1&#10;</xsl:text>
+        <xsl:text>&#10;.sp -1n&#10;</xsl:text>
         <xsl:text>.IP&#10;</xsl:text>
         <xsl:call-template name="gentext">
           <xsl:with-param name="key" select="'Editor'"/>
@@ -349,7 +349,7 @@
       <xsl:when test="self::othercredit">
         <xsl:choose>
           <xsl:when test="@class and @class != 'other'">
-            <xsl:text>&#10;.sp -1&#10;</xsl:text>
+            <xsl:text>&#10;.sp -1n&#10;</xsl:text>
             <xsl:text>.IP&#10;</xsl:text>
             <xsl:call-template name="gentext">
               <xsl:with-param name="key" select="@class"/>
@@ -370,7 +370,7 @@
   </xsl:template>
 
   <xsl:template match="personblurb|authorblurb" mode="authorsect">
-    <xsl:text>&#10;.sp -1&#10;</xsl:text>
+    <xsl:text>&#10;.sp -1n&#10;</xsl:text>
     <xsl:text>.IP&#10;</xsl:text>
     <!-- * yeah, it's possible for a *blurb to have a "title" -->
     <xsl:apply-templates select="title"/>
@@ -393,7 +393,7 @@
   <xsl:template match="contrib" mode="authorsect">
     <!-- * We treat Contrib the same as Personblurb/Authorblurb -->
     <!-- * except that we don't need to check for a title. -->
-    <xsl:text>&#10;.sp -1&#10;</xsl:text>
+    <xsl:text>&#10;.sp -1n&#10;</xsl:text>
     <xsl:text>&#10;.IP&#10;</xsl:text>
     <xsl:apply-templates/>
   </xsl:template>
