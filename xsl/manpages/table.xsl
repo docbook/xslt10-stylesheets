@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
-                xmlns:set="http://exslt.org/sets"
-                exclude-result-prefixes="exsl set"
+                exclude-result-prefixes="exsl"
                 version='1.0'>
 
   <!-- ********************************************************************
@@ -24,10 +23,11 @@
 
   <!-- ==================================================================== -->
 
-  <!-- * Transform DocBook and HTML table source to tbl(1) markup. -->
+  <!-- * This stylesheet transforms DocBook and HTML table source into -->
+  <!-- * tbl(1) markup. -->
   <!-- * -->
-  <!-- * See M. E. Lesk, "Tbl "A Program to Format Tables" for details -->
-  <!-- * on tbl(1) and its markup syntaxt. -->
+  <!-- * For details on tbl(1) and its markup syntaxt, see M. E. Lesk,-->
+  <!-- * "Tbl - A Program to Format Tables": -->
   <!-- * -->
   <!-- *   http://cm.bell-labs.com/7thEdMan/vol2/tbl -->
   <!-- *   http://cm.bell-labs.com/cm/cs/doc/76/tbl.ps.gz -->
@@ -46,7 +46,7 @@
     <!-- * the table source. -->
     <xsl:param name="allbox">
     <xsl:if test="not(@frame = 'none') and not(@border = '0')">
-      <!-- * By default, put a box around table and between all cells - -->
+      <!-- * By default, put a box around table and between all cells, -->
       <!-- * unless frame="none" or border="0" -->
       <xsl:text>allbox </xsl:text>
     </xsl:if>
@@ -252,7 +252,7 @@
     <xsl:choose>
       <xsl:when test="preceding-sibling::cell[1]/@row != @row or
                       not(preceding-sibling::cell)">
-        <!-- * If the value of the row attribute on this cell is -->
+        <!-- * If the value of the "row" attribute on this cell is -->
         <!-- * different from the value of that on the previous cell, it -->
         <!-- * means we have a new row. So output a line break (as long -->
         <!-- * as this isn't the first cell in the table) -->
@@ -260,7 +260,7 @@
       </xsl:when>
       <xsl:otherwise>
         <!-- * Otherwise we are not at the start of a new row, so we -->
-        <!-- * output a tab character to delmit the contents of this -->
+        <!-- * output a tab character to delimit the contents of this -->
         <!-- * cell from the contents of the next one. -->
         <xsl:value-of select="$tbl.column.separator.char"/>
       </xsl:otherwise>
@@ -302,7 +302,7 @@
   <xsl:template name="build.cell.list">
     <xsl:param name="rows"/>
     <xsl:param  name="cell-data-unsorted">
-      <!-- * This param collect all the "real" cells from the table, -->
+      <!-- * This param collects all the "real" cells from the table, -->
       <!-- * along with "dummy" rows that we generate for keeping -->
       <!-- * track of Rowspan instances. -->
       <xsl:apply-templates select="$rows" mode="cell.list"/>
@@ -328,7 +328,7 @@
       <xsl:call-template name="cell">
         <xsl:with-param name="row" select="$row"/>
         <!-- * pass on the element name so we can select the appropriate -->
-        <!-- * font for styling the cell contents -->
+        <!-- * roff font for styling the cell contents -->
         <xsl:with-param name="class" select="name(.)"/>
       </xsl:call-template>
     </xsl:for-each>
@@ -493,7 +493,7 @@
     </xsl:if>
     <!-- * We only need to deal with colspans whose value is greater -->
     <!-- * than one (a colspan="1" is the same as having no colspan -->
-    <!-- * attribute at all. -->
+    <!-- * attribute at all). -->
     <xsl:if test="@colspan > 1">
       <xsl:call-template name="process.colspan">
         <xsl:with-param name="colspan" select="@colspan - 1"/>
