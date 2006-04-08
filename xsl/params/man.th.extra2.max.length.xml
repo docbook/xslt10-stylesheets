@@ -24,7 +24,8 @@ is truncated down to the maximum permitted length.</para>
 
 <para>The content of the <literal>extra2</literal> field is usually
 displayed in the left footer of the page and is typically "source"
-data, often in the form
+data indicating the software system or product that the item
+documented in the man page belongs to, often in the form
 <replaceable>Name</replaceable>&#160;<replaceable>Version</replaceable>;
 for example, "GTK+ 1.2" (from the <literal>gtk-options(7)</literal>
 man page).</para>

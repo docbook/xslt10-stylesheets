@@ -404,6 +404,18 @@
     </itemizedlist>
     </para>
 
+    <para>The <literal>solbook(5)</literal> man page describes
+    something very much like what <literal>man(7)</literal> calls
+    "source", except that <literal>solbook(5)</literal> names it
+    "software" and describes it like this:
+    <blockquote>
+      <para>This is the name of the software product that the topic
+      discussed on the reference page belongs to. For example UNIX
+      commands are part of the <literal>SunOS x.x</literal>
+      release.</para>
+    </blockquote>
+    </para>
+
     <para>In practice, there are many pages that simply have a version
     number in the "source" field. So, it looks like what we have is a
     two-part field,
@@ -558,12 +570,13 @@
       <!-- * the source.name profile is empty; so we need to look -->
       <!-- * for a name to use -->
       <xsl:choose>
-        <xsl:when test="refmeta/refmiscinfo[@class = 'source']">
+        <xsl:when test="refmeta/refmiscinfo[@class = 'source' or @class = 'software']">
           <xsl:apply-templates 
-              select="refmeta/refmiscinfo[@class = 'source'][1]/node()"/>
+              select="refmeta/refmiscinfo[@class = 'source' or @class='software'][1]/node()"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:message>Note: meta "source" : Missing refmiscinfo@class="source"</xsl:message>
+          <xsl:message
+              >Note: meta "source" : Missing refmiscinfo@class="source"|"software"</xsl:message>
           <xsl:choose>
             <xsl:when test="$info//productname">
               <xsl:call-template name="set.refentry.metadata">
@@ -785,6 +798,17 @@
       </listitem>
     </itemizedlist>
     </para>
+
+    <para>The <literal>solbook(5)</literal> man page describes
+    something very much like what <literal>man(7)</literal> calls
+    "manual", except that <literal>solbook(5)</literal> names it
+    "sectdesc" and describes it like this:
+    <blockquote>
+      <para>This is the section title of the reference page; for
+      example <literal>User Commands</literal>.</para>
+    </blockquote>
+    </para>
+
   </refdescription>
 
   <refparameter>
@@ -824,12 +848,13 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:choose>
-          <xsl:when test="refmeta/refmiscinfo[@class = 'manual']">
+          <xsl:when test="refmeta/refmiscinfo[@class = 'manual' or @class = 'sectdesc']">
             <xsl:apply-templates 
-                select="refmeta/refmiscinfo[@class = 'manual'][1]/node()"/>
+                select="refmeta/refmiscinfo[@class = 'manual' or @class = 'sectdesc'][1]/node()"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:message>Note: meta "manual" : Missing refmiscinfo@class="manual"</xsl:message>
+            <xsl:message
+                >Note: meta "manual" : Missing refmiscinfo@class="manual"|"sectdesc"</xsl:message>
             <xsl:choose>
               <xsl:when test="$info//title">
                 <xsl:call-template name="set.refentry.metadata">

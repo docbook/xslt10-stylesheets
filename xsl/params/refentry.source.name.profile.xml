@@ -33,9 +33,10 @@ non-zero. Otherwise, the <tag>refentry</tag> metadata-gathering logic
 <para>A "source name" is one part of a (potentially) two-part
 <replaceable>Name</replaceable>&#160;<replaceable>Version</replaceable>
 "source" field. In man pages, it is usually displayed in the left
-footer of the page. The <literal>man(7)</literal> man page describes
-this as "the source of the command", and provides the following
-examples:
+footer of the page. It typically indicates the software system or
+product that the item documented in the man page belongs to. The
+<literal>man(7)</literal> man page describes it as "the source of
+the command", and provides the following examples:
 <itemizedlist>
   <listitem>
     <para>For binaries, use something like: GNU, NET-2, SLS
