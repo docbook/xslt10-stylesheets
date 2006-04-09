@@ -1035,7 +1035,7 @@
   </xsl:call-template>: Using <xsl:value-of
   select="local-name($info)"/>/<xsl:value-of
   select="local-name($contents)"/></xsl:message>
-  <xsl:apply-templates/>
+  <xsl:value-of select="$contents"/>
 </xsl:template>
 
 </xsl:stylesheet>
