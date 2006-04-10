@@ -15,11 +15,40 @@
 
      ******************************************************************** -->
 
+  <!-- * About the $info param used in this stylesheet -->
+  <!-- * -->
+  <!-- * The $info param is a "master info" node set that contains -->
+  <!-- * the entires contents of the *info child of the current -->
+  <!-- * Refentry, plus the entire contents of the *info children of -->
+  <!-- * all ancestors of the current Refentry, in document order. -->
+  <!-- * -->
+  <!-- * We try to find a "best match" for selecting content from -->
+  <!-- * $infor; we look through it in reverse document order until we -->
+  <!-- * can find something usable. -->
+  <!-- * -->
+  <!-- * Specifically what the basic metadata-gathering XPath expression -->
+  <!-- * in this stylesheet does is: -->
+  <!-- * -->
+  <!-- *   1. Look through the entire "master info" node set.-->
+  <!-- *   2. Get the last node in the set that contains, for -->
+  <!-- *      example, an Author element. That amounts to being the -->
+  <!-- *      closest *info node to the Refentry - either its *info -->
+  <!-- *      child, or the *info node of its closest ancestor that -->
+  <!-- *      contains an Author. -->
+
   <!-- ================================================================== -->
   <!-- * Get user "refentry metadata" preferences -->
   <!-- ================================================================== -->
+  <!-- * The DocBook XSL stylesheets include several user-configurable -->
+  <!-- * global stylesheet parameters for controlling refentry metadata -->
+  <!-- * gathering. Those parameters are not read directly by the other -->
+  <!-- * refentry metadata-gathering templates. Instead, they are read -->
+  <!-- * only by the get.refentry.metadata.prefs template, which -->
+  <!-- * assembles them into a structure that is then passed to the -->
+  <!-- * other refentry metadata-gathering template. -->
 
   <xsl:variable name="get.refentry.metadata.prefs">
+    <!-- * get.refentry.metadata.prefs is in common/refentry.xsl -->
     <xsl:call-template name="get.refentry.metadata.prefs"/>
   </xsl:variable>
 
@@ -36,28 +65,6 @@
 
   <xsl:template name="make.roff.metadata.author">
     <xsl:param name="info"/>
-    <!-- * The $info param is a "master info" node set that contains -->
-    <!-- * the entires contents of the *info child of the current -->
-    <!-- * Refentry, plus the entire contents of the *info children of -->
-    <!-- * all ancestors of the current Refentry, in document order. -->
-    <!-- * -->
-    <!-- * We try to find a "best match" for putting into metadata -->
-    <!-- * "Author" field in roff comment; we look in descending order -->
-    <!-- * of preference until we can find something usable. -->
-    <!-- * -->
-    <!-- * Note that what the following XPath expressions do is: -->
-    <!-- * -->
-    <!-- *   1. Look through the entire "master info" node set.-->
-    <!-- *   2. Get the last node in the set that contains, for -->
-    <!-- *      example, an Author element. That amounts to being the -->
-    <!-- *      closest *info node to the Refentry - either its *info -->
-    <!-- *      child, or the *info node of its closest ancestor that -->
-    <!-- *      contains an Author. -->
-    <!-- *   3. Get only the first Author (for example) from that -->
-    <!-- *      node. (The node may actually contain any arbitrary -->
-    <!-- *      number of Author instances, but for the purposes of -->
-    <!-- *      putting the "Author" field into our roff metadata, we -->
-    <!-- *      want only one name, not four or eleven or whatever.) -->
     <xsl:choose>
       <xsl:when test="$info//author">
         <xsl:apply-templates
@@ -99,6 +106,7 @@
             select="(($info[//publishername])[last()]//publishername)[1]"
             mode="metadata.author"/>
       </xsl:when>
+      <xsl:otherwise/> <!-- * do nothing, no author info found -->
     </xsl:choose>
   </xsl:template>
 
@@ -163,6 +171,7 @@
           <xsl:apply-templates select="." mode="authorsect"/>
         </xsl:for-each>
       </xsl:when>
+      <xsl:otherwise/> <!-- * do nothing, no author info found -->
     </xsl:choose>
   </xsl:template>
 
@@ -319,7 +328,7 @@
   </xsl:template>
 
   <xsl:template name="attribution">
-    <!-- * Determine appropriate attribution a particular person's role. -->
+    <!-- * Determine appropriate attribution for a particular person's role. -->
     <xsl:choose>
       <!-- * if we have a *blurb or contrib, just use that -->
       <xsl:when test="contrib|personblurb|authorblurb">
@@ -395,6 +404,42 @@
     <!-- * except that we don't need to check for a title. -->
     <xsl:text>&#10;.sp -1n&#10;</xsl:text>
     <xsl:text>&#10;.IP&#10;</xsl:text>
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <!-- * ============================================================== -->
+  <!-- *     Assemble the COPYRIGHT section -->
+  <!-- * ============================================================== -->
+  <!-- * The COPYRIGHT section is output only if a copyright or -->
+  <!-- * legalnotice is found. It contains the copyright contents -->
+  <!-- * followed by the legalnotice contents. -->
+  <xsl:template name="copyright.section">
+    <xsl:param name="info"/>
+    <xsl:choose>
+      <xsl:when test="$info//copyright|$info//legalnotice">
+        <xsl:text>.SH "</xsl:text>
+        <xsl:call-template name="string.upper">
+          <xsl:with-param name="string">
+            <xsl:call-template name="gentext">
+              <xsl:with-param name="key">Copyright</xsl:with-param>
+            </xsl:call-template>
+          </xsl:with-param>
+        </xsl:call-template>
+        <xsl:text>"&#10;</xsl:text>
+        <!-- * the copyright mode="titlepage.mode" template is -->
+        <!-- * imported from the HTML stylesheets -->
+        <xsl:apply-templates
+            select="(($info[//copyright])[last()]//copyright)[1]"
+            mode="titlepage.mode"/>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:apply-templates
+            select="(($info[//legalnotice])[last()]//legalnotice)[1]"/>
+      </xsl:when>
+      <xsl:otherwise/> <!-- * do nothing, no copyright or legalnotice found -->
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="legalnotice">
     <xsl:apply-templates/>
   </xsl:template>
 
