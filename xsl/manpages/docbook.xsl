@@ -221,6 +221,12 @@
         <xsl:with-param name="info" select="$info"/>
       </xsl:call-template>
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!-- * COPYRIGHT section -->
+      <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <xsl:call-template name="copyright.section">
+        <xsl:with-param name="info" select="$info"/>
+      </xsl:call-template>
+      <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!-- * LINKS list (only if user wants links numbered and/or listed) -->
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <xsl:if test="$man.links.list.enabled != 0 or
