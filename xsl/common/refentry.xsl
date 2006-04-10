@@ -165,12 +165,6 @@
   <xsl:param name="refname"/>
   <xsl:param name="info"/>
   <xsl:param name="prefs"/>
-  <xsl:call-template name="refentry.emit.message">
-    <xsl:with-param name="level">Note</xsl:with-param>
-    <xsl:with-param
-        name="message"
-        >To suppress "meta" messages, set $refentry.emit.messages to 0.</xsl:with-param>
-  </xsl:call-template>
   <title>
     <xsl:call-template name="get.refentry.title">
       <xsl:with-param name="refname" select="$refname"/>
@@ -197,6 +191,12 @@
       <xsl:with-param name="prefs" select="$prefs/ManualPrefs"/>
     </xsl:call-template>
   </manual>
+  <xsl:call-template name="refentry.emit.message">
+    <xsl:with-param name="level">Note</xsl:with-param>
+    <xsl:with-param
+        name="message"
+        >To suppress "meta" messages, set $refentry.emit.messages to 0.</xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- ====================================================================== -->
@@ -258,32 +258,46 @@
     commands"].</para>
   </refdescription>
 
-  <refparameter><para>[none]</para></refparameter>
+  <refparameter>
+    <variablelist>
+      <varlistentry>
+        <term>quiet</term>
+        <listitem>
+          <para>If non-zero, no "missing" message is emitted</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
 
   <refreturn>
-  <para>Returns a <tag>section</tag> node.</para></refreturn>
+  <para>Returns a string representing a section number.</para></refreturn>
 </doc:template>
 <xsl:template name="get.refentry.section">
+  <xsl:param name="quiet" select="0"/>
   <xsl:choose>
     <xsl:when test="refmeta/manvolnum">
       <xsl:value-of select="refmeta/manvolnum"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:call-template name="refentry.emit.message">
-        <xsl:with-param name="level">Note</xsl:with-param>
-        <xsl:with-param
-            name="message"
-            >meta manvolnum: No manvolnum.</xsl:with-param>
-      </xsl:call-template>
+      <xsl:if test="$quiet = 0">
+        <xsl:call-template name="refentry.emit.message">
+          <xsl:with-param name="level">Note</xsl:with-param>
+          <xsl:with-param
+              name="message"
+              >meta manvolnum: No manvolnum.</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <xsl:choose>
         <xsl:when test=".//funcsynopsis">
-          <xsl:call-template name="refentry.emit.message">
-            <xsl:with-param name="level">Note</xsl:with-param>
-            <xsl:with-param
-                name="message"
-                >meta manvolnum: Found funcsynopsis. Setting section number to 3.</xsl:with-param>
-          </xsl:call-template>
-          <xsl:text>3</xsl:text>
+          <xsl:if test="$quiet = 0">
+            <xsl:call-template name="refentry.emit.message">
+              <xsl:with-param name="level">Note</xsl:with-param>
+              <xsl:with-param
+                  name="message"
+                  >meta manvolnum: Found funcsynopsis. Setting man section to 3.</xsl:with-param>
+            </xsl:call-template>
+            <xsl:text>3</xsl:text>
+          </xsl:if>
         </xsl:when>
         <xsl:otherwise>
           <xsl:text>1</xsl:text>

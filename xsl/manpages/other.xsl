@@ -283,6 +283,7 @@
     <xsl:call-template name="write.text.chunk">
       <xsl:with-param name="filename" select="$filename"/>
       <xsl:with-param name="quiet" select="$man.output.quietly"/>
+      <xsl:with-param name="message-prolog">Note: </xsl:with-param>
       <xsl:with-param name="encoding" select="$man.output.encoding"/>
       <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
@@ -318,6 +319,9 @@
             </xsl:call-template>
           </xsl:with-param>
           <xsl:with-param name="quiet" select="$man.output.quietly"/>
+          <xsl:with-param name="suppress-context-node-name" select="1"/>
+          <xsl:with-param name="message-prolog">Note: </xsl:with-param>
+          <xsl:with-param name="message-epilog"> (soelim stub)</xsl:with-param>
           <xsl:with-param name="content">
             <xsl:value-of select="concat('.so man', $section, '/')"/>
             <xsl:call-template name="make.adjusted.man.filename">
@@ -333,10 +337,10 @@
 
   <!-- ============================================================== -->
 
-  <!-- *  A manifest file is useful for doing “make clean” during -->
+  <!-- *  A manifest file is useful for doing "make clean" during -->
   <!-- *  builds and for other purposes. When we make the manifest -->
   <!-- *  file, we need to include in it a filename for each man-page -->
-  <!-- *  generated, including any “stub” pages. -->
+  <!-- *  generated, including any "stub" pages. -->
   <xsl:template name="generate.manifest">
     <xsl:param name="filename">MAN.MANIFEST</xsl:param>
     <xsl:variable name="filelist">
@@ -345,7 +349,9 @@
         <!-- * numbers from the parent Refentry; so we only need to get -->
         <!-- * the section once per Refentry, not once per Refname -->
         <xsl:variable name="section">
-          <xsl:call-template name="get.refentry.section"/>
+          <xsl:call-template name="get.refentry.section">
+            <xsl:with-param name="quiet" select="1"/>
+          </xsl:call-template>
         </xsl:variable>
         <xsl:for-each select="refnamediv/refname">
           <xsl:call-template name="make.adjusted.man.filename">
@@ -364,6 +370,8 @@
         <xsl:value-of select="$man.manifest.filename"/>
       </xsl:with-param>
       <xsl:with-param name="quiet" select="$man.output.quietly"/>
+      <xsl:with-param name="message-prolog">Note: </xsl:with-param>
+      <xsl:with-param name="message-epilog"> (manifest file)</xsl:with-param>
       <xsl:with-param name="content">
         <xsl:value-of select="$filelist"/>
       </xsl:with-param>

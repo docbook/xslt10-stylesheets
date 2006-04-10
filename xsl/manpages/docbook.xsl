@@ -75,7 +75,7 @@
             <!-- * document; if so, process them. -->
             <xsl:apply-templates select="//refentry"/>
             <!-- * if $generate.manifest is non-zero, generate a manifest file -->
-            <xsl:if test="not($generate.manifest = '0')">
+            <xsl:if test="not($generate.manifest = 0)">
               <xsl:call-template name="generate.manifest">
                 <xsl:with-param name="filename">
                   <xsl:choose>
@@ -96,6 +96,10 @@
                   </xsl:choose>
                 </xsl:with-param>
               </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$man.output.quietly = 0">
+              <xsl:message
+              >Note: To suppress "Writing..." messages, set $man.output.quietly to 1.</xsl:message>
             </xsl:if>
           </xsl:when>
           <xsl:otherwise>
