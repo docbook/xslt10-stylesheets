@@ -13,7 +13,8 @@
 
 <refsect1><title>Description</title>
 
-<para>This attribute set is used on cross reference text.</para>
+<para>This attribute set is used to set properties
+on cross reference text.</para>
 
 </refsect1>
 </refentry>
