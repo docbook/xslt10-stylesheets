@@ -8,7 +8,7 @@
 
 <!--
 # ======================================================================
-# This file is part of DocBook V5.0b4
+# This file is part of DocBook V5.0b5
 #
 # Copyright 2005 Norman Walsh, Sun Microsystems, Inc., and the
 # Organization for the Advancement of Structured Information
@@ -224,9 +224,25 @@
       <xsl:with-param name="suppress" select="'class'"/>
     </xsl:call-template>
     <xsl:if test="@class">
-      <xsl:attribute name="type">
-	<xsl:copy-of select="@class"/>
-      </xsl:attribute>
+      <xsl:choose>
+	<xsl:when test="@class = 'source'
+		        or @class = 'version'
+		        or @class = 'manual'
+		        or @class = 'sectdesc'
+		        or @class = 'software'">
+	  <xsl:attribute name="class">
+	    <xsl:value-of select="@class"/>
+	  </xsl:attribute>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:attribute name="class">
+	    <xsl:value-of select="'other'"/>
+	  </xsl:attribute>
+	  <xsl:attribute name="otherclass">
+	    <xsl:value-of select="@class"/>
+	  </xsl:attribute>
+	</xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
     <xsl:apply-templates/>
   </refmiscinfo>

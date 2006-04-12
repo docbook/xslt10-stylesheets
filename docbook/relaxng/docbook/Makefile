@@ -13,7 +13,7 @@ PERL=perl
 MV ?= mv
 
 CLASS=wd
-VERSION=5.0b4
+VERSION=5.0b5
 SPECNAME=$(CLASS)-docbook-docbook-$(VERSION)
 
 TOOLS=../tools
