@@ -233,7 +233,7 @@ div {
       ]
       attribute alt { text }?
     & [
-       db:refpurpose [ "Identifies an image mpa to use with the graphical submit control" ]
+       db:refpurpose [ "Identifies an image map to use with the graphical submit control" ]
       ]
       attribute usemap { text }?
     & db.html.tabindex.attribute?
