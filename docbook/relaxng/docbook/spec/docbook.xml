@@ -15,7 +15,7 @@ $Id$
 </releaseinfo>
 
 <!-- product -->        <productname>docbook</productname>
-<!-- productVersion --> <productnumber>5.0b4</productnumber>
+<!-- productVersion --> <productnumber>5.0b5</productnumber>
 <!-- artifactType       spec; what else? :-) -->
 <!-- stage -->          <releaseinfo role="stage">wd</releaseinfo>
 <!-- revision -->       <biblioid class="pubsnumber">01</biblioid>
@@ -40,7 +40,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>2006-03-09</pubdate>
+<pubdate>2006-04-12</pubdate>
 
 <copyright>
 <year>2001</year><year>2002</year><year>2003</year>
@@ -154,6 +154,41 @@ DocBook is also available from the mirror on
 <link xlink:href="http://docbook.org/"/>.
 </para>
 
+<section xml:id="s.50b5">
+<title>Changes in DocBook V5.0b5</title>
+
+<para>This release contains several improvements over V5.0b4.</para>
+
+<orderedlist>
+<listitem xml:id="refmiscinfo2">
+<para>Restored the <tag class="attribute">class</tag> attribute on
+<tag>refmiscinfo</tag> (removing the <tag class="attribute">type</tag>
+attribute <link linkend="refmiscinfo">introduced</link> in
+<link linkend="s.50b4">V5.0b4</link>). The <tag class="attribute">class</tag>
+attribute is now an enumerated list with the standard
+<tag class="attribute">otherclass</tag> extension point.</para>
+</listitem>
+
+<listitem xml:id="parameter">
+<para>Added <tag>parameter</tag> to <literal>db.technical.inlines</literal>.
+This allows <tag>parameter</tag> to occur in places like
+<tag>userinput</tag> and <tag>computeroutput</tag>.
+</para>
+</listitem>
+
+<listitem xml:id="xinclude">
+<para>Allow XInclude elements in <tag>info</tag> elements (in the
+<filename>docbookxi</filename> schemas).
+</para>
+</listitem>
+
+<listitem xml:id="dtdgen">
+<para>Fixed bugs in the build process that resulted in broken DTD versions
+of beta 4 and earlier betas.</para>
+</listitem>
+</orderedlist>
+
+</section>
 <section xml:id="s.50b4">
 <title>Changes in DocBook V5.0b4</title>
 
