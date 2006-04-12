@@ -27,6 +27,7 @@
 #
 # ======================================================================
 
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 namespace rng  = "http://relaxng.org/ns/structure/1.0"
 namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
@@ -133,6 +134,49 @@ div {
 
 # ======================================================================
 
+ctrl:other-attribute [ name="db.refmiscinfo.class.attribute"
+                       enum-name="db.refmiscinfo.class-enum.attribute"
+                       other-name="db.refmiscinfo.class-other.attributes" ]
+
+db.refmiscinfo.class.enumeration =
+   ## The name of the software product or component to which this topic applies
+   "source"
+ | ## The version of the software product or component to which this topic applies
+   "version"
+ | ## The section title of the reference page (e.g., User Commands)
+   "manual"
+ | ## The section title of the reference page (believed synonymous with "manual" but in wide use)
+   "sectdesc"
+ | ## The name of the software product or component to which this topic applies (e.g., SunOS x.y; believed synonymous with "source" but in wide use)
+   "software"
+
+db.refmiscinfo.class-enum.attribute =
+   [
+      db:refpurpose [ "Identifies the kind of miscellaneous information" ]
+   ]
+   attribute class { db.refmiscinfo.class.enumeration } ?
+
+db.refmiscinfo.class-other.attribute =
+   [
+      db:refpurpose [ "Identifies the nature of non-standard miscellaneous information" ]
+   ]
+   attribute otherclass { text }
+
+db.refmiscinfo.class-other.attributes =
+   [
+      db:refpurpose [ "Identifies the kind of miscellaneious information" ]
+   ]
+   attribute class {
+      ## Indicates that the information is some 'other' kind.
+      "other"
+   }
+ & db.refmiscinfo.class-other.attribute
+
+db.refmiscinfo.class.attribute =
+  (db.refmiscinfo.class-enum.attribute | db.refmiscinfo.class-other.attributes)
+
+# ======================================================================
+
 [
    db:refname [ "refmiscinfo" ]
    db:refpurpose [ "Meta-information for a reference entry other than the title and volume number" ]
@@ -141,17 +185,11 @@ div {
 
    db.refmiscinfo.role.attribute = attribute role { text }
 
-   db.refmiscinfo.type.attribute =
-      [
-         db:refpurpose [ "The type of miscellaneous information" ]
-      ]
-      attribute type { text }
-
    db.refmiscinfo.attlist =
       db.refmiscinfo.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.refmiscinfo.type.attribute?
+    & db.refmiscinfo.class.attribute?
 
    db.refmiscinfo =
       element refmiscinfo {
