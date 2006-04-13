@@ -40,15 +40,19 @@ thisUriList=$mydir/.urilist
 exampleCatalogManager=$mydir/.CatalogManager.properties.example
 thisCatalogManager=$HOME/.resolver/CatalogManager.properties
 
+emit_message() {
+  echo $1 1>&2
+}
+
 if [ ! "${*#--batch}" = "$*" ]; then
   batchmode="Yes";
 else
   batchmode="No";
-  echo
+  emit_message
   if [ ! "$1" = "--test" ]; then 
-    echo "NOTE: For non-interactive installs/uninstalls, use --batch"
+    emit_message "NOTE: For non-interactive installs/uninstalls, use --batch"
     if [ ! "$1" = "--uninstall" ]; then
-      echo
+      emit_message
     fi
   fi
 fi
@@ -90,12 +94,12 @@ WARNING: This install script is meant to be run as a non-root
 
 EOF
     read -s -n1 -p "Are you sure you want to continue? [No] "
-    echo "$REPLY"
+    emit_message "$REPLY"
     case $REPLY in
       [yY])
-      echo
+      emit_message
       ;;
-      *) echo "OK, exiting without making changes."
+      *) emit_message "OK, exiting without making changes."
       exit
       ;;
     esac
@@ -164,7 +168,7 @@ EOF
       fi
     fi
     if [ "$batchmode" = "Yes" ]; then
-      echo
+      emit_message
     fi
     # end of check for existing writable CatalogManager.properties
 
@@ -173,10 +177,10 @@ EOF
     else
       REPLY=""
       if [ ! "$batchmode" = "Yes" ]; then
-        echo
+        emit_message
         read -s -n1 -p "Create $thisCatalogManager file? [Yes] "
-        echo "$REPLY"
-        echo
+        emit_message "$REPLY"
+        emit_message
       fi
       case $REPLY in
         [nNqQ])
@@ -187,7 +191,7 @@ EOF
           mkdir -p ${thisCatalogManager%/*}
         fi
         cp $mydir/.CatalogManager.properties.example $thisCatalogManager || exit 1
-        echo "NOTE: $thisCatalogManager file created"
+        emit_message "NOTE: $thisCatalogManager file created"
         myCatalogManager=$thisCatalogManager
         ;;
       esac
@@ -218,11 +222,11 @@ EOF
       REPLY=""
       if [ ! "$batchmode" = "Yes" ]; then
         read -s -n1 -p "Add /etc/xml/catalog to $myCatalogManager? [Yes] "
-        echo "$REPLY"
+        emit_message "$REPLY"
       fi
       case $REPLY in
         [nNqQ])
-        echo
+        emit_message
         ;;
         *)
         etcXmlCatalog=/etc/xml/catalog
@@ -232,18 +236,18 @@ EOF
 
     catalogBackup="$myCatalogManager.$$.bak"
     if [ ! -w "${myCatalogManager%/*}" ]; then
-      echo
-      echo "WARNING: ${myCatalogManager%/*} directory is not writable."
-      echo
+      emit_message
+      emit_message "WARNING: ${myCatalogManager%/*} directory is not writable."
+      emit_message
       emitNoChangeMsg
     else
       REPLY=""
       if [ ! "$batchmode" = "Yes" ]; then
-        echo
-        echo "Add $thisJavaXmlCatalog"
+        emit_message
+        emit_message "Add $thisJavaXmlCatalog"
         read -s -n1 -p "to $myCatalogManager file? [Yes] "
-        echo "$REPLY"
-        echo
+        emit_message "$REPLY"
+        emit_message
       fi
       case $REPLY in
         [nNqQ])
@@ -252,22 +256,22 @@ EOF
         *)
         if [ "$catalogsLine" ] ; then
           if [ "${catalogsLine#*$thisJavaXmlCatalog*}" != "$catalogsLine" ]; then
-            echo "NOTE: $thisJavaXmlCatalog already"
-            echo "      in $myCatalogManager"
+            emit_message "NOTE: $thisJavaXmlCatalog already"
+            emit_message "      in $myCatalogManager"
           else
             mv $myCatalogManager $catalogBackup || exit 1
             sed "s#^catalogs=\(.*\)\$#catalogs=$thisJavaXmlCatalog;\1;$etcXmlCatalog#" $catalogBackup \
             | sed 's/;\+/;/' | sed 's/;$//' > $myCatalogManager || exit 1
-            echo "NOTE: $myCatalogManager file successfully updated."
-            echo "      Backup written to $catalogBackup"
+            emit_message "NOTE: $myCatalogManager file successfully updated."
+            emit_message "      Backup written to $catalogBackup"
           fi
         else
           mv $myCatalogManager $catalogBackup || exit 1
           cp $catalogBackup $myCatalogManager
           echo "catalogs=$thisJavaXmlCatalog;$etcXmlCatalog" \
           | sed 's/;\+/;/' | sed 's/;$//' >> $myCatalogManager || exit 1
-          echo "NOTE: \"catalogs=\" line added to $myCatalogManager."
-          echo "      Backup written to $catalogBackup"
+          emit_message "NOTE: \"catalogs=\" line added to $myCatalogManager."
+          emit_message "      Backup written to $catalogBackup"
         fi
         ;;
       esac
@@ -405,7 +409,7 @@ NOTE: To source your environment correctly for using the catalog
 
 EOF
   else
-    echo
+    emit_message
   fi
 
   # if user is running csh or tcsh, target .cshrc and .tcshrc
@@ -426,7 +430,7 @@ EOF
       REPLY=""
       if [ ! "$batchmode" = "Yes" ]; then
         read -s -n1 -p "Update $HOME/$file? [Yes] "
-        echo "$REPLY"
+        emit_message "$REPLY"
       fi
       case $REPLY in
         [nNqQ])
@@ -465,7 +469,7 @@ EOF
   done
   if [ -z "$dotFileBackup" ]; then
     if [ ! "$batchmode" = "Yes" ]; then
-      echo
+      emit_message
     fi
     cat <<EOF
 NOTE: No shell startup files updated. You can source the
@@ -502,8 +506,8 @@ EOF
     REPLY=""
     if [ ! "$batchmode" = "Yes" ]; then
       read -s -n1 -p "No .emacs or .emacs.el file. Create one? [No] "
-      echo "$REPLY"
-      echo
+      emit_message "$REPLY"
+      emit_message
     fi
     case $REPLY in
       [yY])
@@ -527,8 +531,8 @@ EOF
     REPLY=""
     if [ ! "$batchmode" = "Yes" ]; then
       read -s -n1 -p  "Update $myEmacsFile? [Yes] "
-      echo "$REPLY"
-      echo
+      emit_message "$REPLY"
+      emit_message
     fi
     case $REPLY in
       [nNqQ])
@@ -598,7 +602,7 @@ EOF
         REPLY=""
         if [ ! "$batchmode" = "Yes" ]; then
           read -s -n1 -p "Revert $myCatalogManager? [Yes] "
-          echo "$REPLY"
+          emit_message "$REPLY"
         fi
         case $REPLY in
           [nNqQ]*)
@@ -623,8 +627,8 @@ EOF
           ;;
         esac
       else
-        echo "NOTE: No data for this distribution found in $myCatalogManager"
-        echo
+        emit_message "NOTE: No data for this distribution found in $myCatalogManager"
+        emit_message
       fi
     else
       cat <<EOF
@@ -642,11 +646,11 @@ EOF
       revertLine="(load-file \"$escapedPwd\/\.emacs\.el\")"
       loadLine="$(grep "$revertLine" "$myEmacsFile")"
       if [ -n "$loadLine" ]; then
-        echo
+        emit_message
         REPLY=""
         if [ ! "$batchmode" = "Yes" ]; then
           read -s -n1 -p "Revert $myEmacsFile? [Yes] "
-          echo "$REPLY"
+          emit_message "$REPLY"
         fi
         case $REPLY in
           [nNqQ]*)
@@ -672,7 +676,7 @@ EOF
           ;;
         esac
       else
-        echo "NOTE: No data for this distribution found in $myEmacsFile"
+        emit_message "NOTE: No data for this distribution found in $myEmacsFile"
       fi
     fi
   fi
@@ -696,7 +700,7 @@ EOF
         REPLY=""
         if [ ! "$batchmode" = "Yes" ]; then
           read -s -n1 -p "Update $HOME/$file? [Yes] "
-          echo "$REPLY"
+          emit_message "$REPLY"
         fi
         case $REPLY in
           [nNqQ]*)
@@ -722,13 +726,13 @@ EOF
           ;;
         esac
       else
-        echo "NOTE: No data for this distribution found in $HOME/$file"
-        echo
+        emit_message "NOTE: No data for this distribution found in $HOME/$file"
+        emit_message
       fi
     fi
   done
   removeOldFiles
-  echo "Done. Deleted uninstall.sh file."
+  emit_message "Done. Deleted uninstall.sh file."
   rm -f $mydir/test.sh      || exit 1
   rm -f $mydir/uninstall.sh || exit 1
 }
@@ -808,8 +812,8 @@ EOF
   fi
 
   if [ -z "$XML_CATALOG_FILES" ]; then
-    echo
-    echo "WARNING: XML_CATALOG_FILES not set. Not testing with xmlcatalog."
+    emit_message
+    emit_message "WARNING: XML_CATALOG_FILES not set. Not testing with xmlcatalog."
   else
     xmlCatalogResponse="$(xmlcatalog 2>/dev/null)"
     if [ -z "$xmlCatalogResponse" ]; then
@@ -822,20 +826,20 @@ WARNING: Cannot locate the "xmlcatalog" command. Make sure that
 
 EOF
     else
-      echo "Testing with xmlcatalog..."
+      emit_message "Testing with xmlcatalog..."
       while read pair; do
         path=$(readlink -f "$mydir/${pair%* *}")
         uri=${pair#* *}
-        echo
-        echo "  Tested:" $uri
+        emit_message
+        emit_message "  Tested: $uri"
         for catalog in $XML_CATALOG_FILES; do
           response="$(readlink -f "$(xmlcatalog $catalog $uri| grep -v "No entry")")"
           if [ -n "$response" ]; then
             if [ "$response" = "$path" ]; then
-              echo "  Result: $path"
+              emit_message "  Result: $path"
               break
             else
-              echo "  Result: FAILED"
+              emit_message "  Result: FAILED"
             fi
           fi
         done
@@ -844,19 +848,19 @@ EOF
   fi
 
   if [ -z "$CLASSPATH" ]; then
-    echo
-    echo "NOTE: CLASSPATH not set. Not testing with Apache XML Commons Resolver."
+    emit_message
+    emit_message "NOTE: CLASSPATH not set. Not testing with Apache XML Commons Resolver."
   else
     if [ "$(checkForResolver)" ]; then
       checkForResolver
     else
-      echo
-      echo "Testing with Apache XML Commons Resolver..."
+      emit_message
+      emit_message "Testing with Apache XML Commons Resolver..."
       while read pair; do
         path=$(readlink -f "$mydir/${pair%* *}")
         uri=${pair#* *}
-        echo
-        echo "  Tested:" $uri
+        emit_message
+        emit_message "  Tested: $uri"
         if [ ${uri%.dtd} != $uri ]; then
           response="$(java org.apache.xml.resolver.apps.resolver system -s $uri | grep "Result")"
         else
@@ -864,9 +868,9 @@ EOF
         fi
         if [ "$response" ]; then
           if [ "${response#*$path}" != "$response" ]; then
-            echo "  Result: $path"
+            emit_message "  Result: $path"
           else
-            echo "  Result: FAILED"
+            emit_message "  Result: FAILED"
           fi
         fi
       done < $mydir/.urilist
