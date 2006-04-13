@@ -17,7 +17,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:param name="refentry.emit.messages" select="1"/>
+<xsl:param name="refentry.meta.get.quietly" select="0"/>
 
 <doc:reference xmlns="">
   <referenceinfo>
@@ -90,8 +90,6 @@
       data as a set.</para>
     </note>
 
-    <para>The manpages stylesheets are an application of the “APIs” in
-    this stylesheet.</para>
   </refdescription>
 
   <refparameter>
@@ -171,32 +169,31 @@
     </xsl:call-template>
   </title>
   <section>
-    <xsl:call-template name="get.refentry.section"/>
+    <xsl:call-template name="get.refentry.section">
+      <xsl:with-param name="refname" select="$refname"/>
+    </xsl:call-template>
   </section>
   <date>
     <xsl:call-template name="get.refentry.date">
       <xsl:with-param name="info" select="$info"/>
+      <xsl:with-param name="refname" select="$refname"/>
       <xsl:with-param name="prefs" select="$prefs/DatePrefs"/>
     </xsl:call-template>
   </date>
   <source>
     <xsl:call-template name="get.refentry.source">
       <xsl:with-param name="info" select="$info"/>
+      <xsl:with-param name="refname" select="$refname"/>
       <xsl:with-param name="prefs" select="$prefs/SourcePrefs"/>
     </xsl:call-template>
   </source>
   <manual>
     <xsl:call-template name="get.refentry.manual">
       <xsl:with-param name="info" select="$info"/>
+      <xsl:with-param name="refname" select="$refname"/>
       <xsl:with-param name="prefs" select="$prefs/ManualPrefs"/>
     </xsl:call-template>
   </manual>
-  <xsl:call-template name="refentry.emit.message">
-    <xsl:with-param name="level">Note</xsl:with-param>
-    <xsl:with-param
-        name="message"
-        >To suppress "meta" messages, set $refentry.emit.messages to 0.</xsl:with-param>
-  </xsl:call-template>
 </xsl:template>
 
 <!-- ====================================================================== -->
@@ -261,6 +258,12 @@
   <refparameter>
     <variablelist>
       <varlistentry>
+        <term>refname</term>
+        <listitem>
+          <para>The first <tag>refname</tag> in the refentry</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>quiet</term>
         <listitem>
           <para>If non-zero, no "missing" message is emitted</para>
@@ -282,9 +285,10 @@
       <xsl:if test="$quiet = 0">
         <xsl:call-template name="refentry.emit.message">
           <xsl:with-param name="level">Note</xsl:with-param>
+          <xsl:with-param name="refname" select="$refname"/>
           <xsl:with-param
               name="message"
-              >meta manvolnum: No manvolnum.</xsl:with-param>
+              >meta manvol : No manvolnum</xsl:with-param>
         </xsl:call-template>
       </xsl:if>
       <xsl:choose>
@@ -292,9 +296,10 @@
           <xsl:if test="$quiet = 0">
             <xsl:call-template name="refentry.emit.message">
               <xsl:with-param name="level">Note</xsl:with-param>
+              <xsl:with-param name="refname" select="$refname"/>
               <xsl:with-param
                   name="message"
-                  >meta manvolnum: Found funcsynopsis. Setting man section to 3.</xsl:with-param>
+                  >meta manvol : Setting man section to 3</xsl:with-param>
             </xsl:call-template>
             <xsl:text>3</xsl:text>
           </xsl:if>
@@ -320,6 +325,12 @@
 
   <refparameter>
     <variablelist>
+      <varlistentry>
+        <term>refname</term>
+        <listitem>
+          <para>The first <tag>refname</tag> in the refentry</para>
+        </listitem>
+      </varlistentry>
       <varlistentry>
         <term>info</term>
         <listitem>
@@ -359,20 +370,11 @@
         <!-- * in *info -->
         <xsl:choose>
           <!-- * look for date or pubdate in *info -->
-          <xsl:when test="$info//date
-                          |$info//pubdate">
-            <xsl:copy>
-              <xsl:call-template name="set.refentry.metadata">
-                <xsl:with-param 
-                    name="info"
-                    select="($info[//date])[last()]"/>
-                <xsl:with-param 
-                    name="contents"
-                    select="(($info[//date])[last()]/date)[1]|
-                            (($info[//pubdate])[last()]/pubdate)[1]"/>
-                <xsl:with-param name="context">date</xsl:with-param>
-              </xsl:call-template>
-            </xsl:copy>
+          <xsl:when test="$info/date
+                          |$info/pubdate">
+            <xsl:value-of
+                select="(($info[date])[last()]/date)[1]|
+                        (($info[pubdate])[last()]/pubdate)[1]"/>
           </xsl:when>
           <xsl:otherwise>
             <!-- * found no Date or Pubdate -->
@@ -390,9 +392,10 @@
     <xsl:otherwise>
       <xsl:call-template name="refentry.emit.message">
         <xsl:with-param name="level">Note</xsl:with-param>
+        <xsl:with-param name="refname" select="$refname"/>
         <xsl:with-param
             name="message"
-            >meta "date"   : No date found. Generating localized date.</xsl:with-param>
+            >meta date   : No date. Using generated date</xsl:with-param>
       </xsl:call-template>
       <xsl:call-template name="datetime.format">
         <xsl:with-param name="date">
@@ -486,6 +489,12 @@
   <refparameter>
     <variablelist>
       <varlistentry>
+        <term>refname</term>
+        <listitem>
+          <para>The first <tag>refname</tag> in the refentry</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>info</term>
         <listitem>
           <para>A set of info nodes (from a <tag>refentry</tag>
@@ -512,6 +521,7 @@
     <xsl:if test="$prefs/Name/@suppress = 0">
       <xsl:call-template name="get.refentry.source.name">
         <xsl:with-param name="info" select="$info"/>
+        <xsl:with-param name="refname" select="$refname"/>
         <xsl:with-param name="prefs" select="$prefs/Name"/>
       </xsl:call-template>
     </xsl:if>
@@ -520,6 +530,7 @@
     <xsl:if test="$prefs/Version/@suppress = 0">
       <xsl:call-template name="get.refentry.version">
         <xsl:with-param name="info" select="$info"/>
+        <xsl:with-param name="refname" select="$refname"/>
         <xsl:with-param name="prefs" select="$prefs/Version"/>
       </xsl:call-template>
     </xsl:if>
@@ -555,9 +566,10 @@
         <xsl:otherwise>
           <xsl:call-template name="refentry.emit.message">
             <xsl:with-param name="level">Warn</xsl:with-param>
+            <xsl:with-param name="refname" select="$refname"/>
             <xsl:with-param
                 name="message"
-                >meta "source" : No valid fallback found. Leaving empty.</xsl:with-param>
+                >meta source : No valid fallback. Leaving empty</xsl:with-param>
           </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
@@ -565,9 +577,10 @@
     <xsl:otherwise>
       <xsl:call-template name="refentry.emit.message">
         <xsl:with-param name="level">Warn</xsl:with-param>
+        <xsl:with-param name="refname" select="$refname"/>
         <xsl:with-param
             name="message"
-            >meta "source" : No fallback specified; leaving empty.</xsl:with-param>
+            >meta source : No fallback specified; leaving empty.</xsl:with-param>
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
@@ -587,6 +600,12 @@
 
   <refparameter>
     <variablelist>
+      <varlistentry>
+        <term>refname</term>
+        <listitem>
+          <para>The first <tag>refname</tag> in the refentry</para>
+        </listitem>
+      </varlistentry>
       <varlistentry>
         <term>info</term>
         <listitem>
@@ -632,59 +651,61 @@
               select="refmeta/refmiscinfo[@class = 'source' or @class='software'][1]/node()"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:call-template name="refentry.emit.message">
-            <xsl:with-param name="level">Note</xsl:with-param>
-            <xsl:with-param
-                name="message"
-                >meta "source" : No refmiscinfo@class="source"|"software"</xsl:with-param>
-          </xsl:call-template>
           <xsl:choose>
-            <xsl:when test="$info//productname">
+            <xsl:when test="$info/productname">
               <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param name="refname" select="$refname"/>
                 <xsl:with-param
                     name="info"
-                    select="($info[//productname])[last()]"/>
+                    select="($info[productname])[last()]"/>
                 <xsl:with-param
                     name="contents"
-                    select="(($info[//productname])[last()]/productname)[1]"/>
+                    select="(($info[productname])[last()]/productname)[1]"/>
                 <xsl:with-param name="context">source</xsl:with-param>
               </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$info//corpname">
+            <xsl:when test="$info/corpname">
               <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param name="refname" select="$refname"/>
                 <xsl:with-param
                     name="info"
-                    select="($info[//corpname])[last()]"/>
+                    select="($info[corpname])[last()]"/>
                 <xsl:with-param
                     name="contents"
-                    select="(($info[//corpname])[last()]/corpname)[1]"/>
+                    select="(($info[corpname])[last()]/corpname)[1]"/>
                 <xsl:with-param name="context">source</xsl:with-param>
+                <xsl:with-param name="preferred">productname</xsl:with-param>
               </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$info//corpcredit">
+            <xsl:when test="$info/corpcredit">
               <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param name="refname" select="$refname"/>
                 <xsl:with-param
                     name="info"
-                    select="($info[//corpcredit])[last()]"/>
+                    select="($info[corpcredit])[last()]"/>
                 <xsl:with-param
                     name="contents"
-                    select="(($info[//corpcredit])[last()]/corpcredit)[1]"/>
+                    select="(($info[corpcredit])[last()]/corpcredit)[1]"/>
                 <xsl:with-param name="context">source</xsl:with-param>
+                <xsl:with-param name="preferred">productname</xsl:with-param>
               </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$info//corpauthor">
+            <xsl:when test="$info/corpauthor">
               <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param name="refname" select="$refname"/>
                 <xsl:with-param
                     name="info"
-                    select="($info[//corpauthor])[last()]"/>
+                    select="($info[corpauthor])[last()]"/>
                 <xsl:with-param
                     name="contents"
-                    select="(($info[//corpauthor])[last()]/corpauthor)[1]"/>
+                    select="(($info[corpauthor])[last()]/corpauthor)[1]"/>
                 <xsl:with-param name="context">source</xsl:with-param>
+                <xsl:with-param name="preferred">productname</xsl:with-param>
               </xsl:call-template>
             </xsl:when>
             <xsl:when test="$info//orgname">
               <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param name="refname" select="$refname"/>
                 <xsl:with-param
                     name="info"
                     select="($info[//orgname])[last()]"/>
@@ -692,10 +713,12 @@
                     name="contents"
                     select="(($info[//orgname])[last()]//orgname)[1]"/>
                 <xsl:with-param name="context">source</xsl:with-param>
+                <xsl:with-param name="preferred">productname</xsl:with-param>
               </xsl:call-template>
             </xsl:when>
             <xsl:when test="$info//publishername">
               <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param name="refname" select="$refname"/>
                 <xsl:with-param
                     name="info"
                     select="($info[//publishername])[last()]"/>
@@ -703,14 +726,23 @@
                     name="contents"
                     select="(($info[//publishername])[last()]//publishername)[1]"/>
                 <xsl:with-param name="context">source</xsl:with-param>
+                <xsl:with-param name="preferred">productname</xsl:with-param>
               </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
               <xsl:call-template name="refentry.emit.message">
                 <xsl:with-param name="level">Note</xsl:with-param>
+                <xsl:with-param name="refname" select="$refname"/>
                 <xsl:with-param
                     name="message"
-                    >meta "source" : No valid alternatives to refmiscinfo.</xsl:with-param>
+                    >meta source : No productname or alternative</xsl:with-param>
+              </xsl:call-template>
+              <xsl:call-template name="refentry.emit.message">
+                <xsl:with-param name="level">Note</xsl:with-param>
+                <xsl:with-param name="refname" select="$refname"/>
+                <xsl:with-param
+                    name="message"
+                    >meta source : No refmiscinfo@class=source</xsl:with-param>
               </xsl:call-template>
             </xsl:otherwise>
           </xsl:choose>
@@ -734,6 +766,12 @@
 
   <refparameter>
     <variablelist>
+      <varlistentry>
+        <term>refname</term>
+        <listitem>
+          <para>The first <tag>refname</tag> in the refentry</para>
+        </listitem>
+      </varlistentry>
       <varlistentry>
         <term>info</term>
         <listitem>
@@ -779,52 +817,59 @@
               select="refmeta/refmiscinfo[@class = 'version'][1]/node()"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:call-template name="refentry.emit.message">
-            <xsl:with-param name="level">Note</xsl:with-param>
-            <xsl:with-param
-                name="message"
-                >meta "version": No refmiscinfo@class="version"</xsl:with-param>
-          </xsl:call-template>
           <xsl:choose>
-            <xsl:when test="$info//productnumber">
+            <xsl:when test="$info/productnumber">
               <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param name="refname" select="$refname"/>
                 <xsl:with-param
                     name="info"
-                    select="($info[//productnumber])[last()]"/>
+                    select="($info[productnumber])[last()]"/>
                 <xsl:with-param
                     name="contents"
-                    select="(($info[//productnumber])[last()]/productnumber)[1]"/>
+                    select="(($info[productnumber])[last()]/productnumber)[1]"/>
                 <xsl:with-param name="context">version</xsl:with-param>
               </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$info//edition">
+            <xsl:when test="$info/edition">
               <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param name="refname" select="$refname"/>
                 <xsl:with-param
                     name="info"
-                    select="($info[//edition])[last()]"/>
+                    select="($info[edition])[last()]"/>
                 <xsl:with-param
                     name="contents"
-                    select="(($info[//edition])[last()]/edition)[1]"/>
+                    select="(($info[edition])[last()]/edition)[1]"/>
                 <xsl:with-param name="context">version</xsl:with-param>
+                <xsl:with-param name="preferred">productnumber</xsl:with-param>
               </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$info//releaseinfo">
+            <xsl:when test="$info/releaseinfo">
               <xsl:call-template name="set.refentry.metadata">
+                <xsl:with-param name="refname" select="$refname"/>
                 <xsl:with-param
                     name="info"
-                    select="($info[//releaseinfo])[last()]"/>
+                    select="($info[releaseinfo])[last()]"/>
                 <xsl:with-param
                     name="contents"
-                    select="(($info[//releaseinfo])[last()]/releaseinfo)[1]"/>
+                    select="(($info[releaseinfo])[last()]/releaseinfo)[1]"/>
                 <xsl:with-param name="context">version</xsl:with-param>
+                <xsl:with-param name="preferred">productnumber</xsl:with-param>
               </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
               <xsl:call-template name="refentry.emit.message">
                 <xsl:with-param name="level">Note</xsl:with-param>
+                <xsl:with-param name="refname" select="$refname"/>
                 <xsl:with-param
                     name="message"
-                    >meta "version": No valid alternatives to refmiscinfo.</xsl:with-param>
+                    >meta version: No productnumber or alternative</xsl:with-param>
+              </xsl:call-template>
+              <xsl:call-template name="refentry.emit.message">
+                <xsl:with-param name="level">Note</xsl:with-param>
+                <xsl:with-param name="refname" select="$refname"/>
+                <xsl:with-param
+                    name="message"
+                    >meta version: No refmiscinfo@class=version</xsl:with-param>
               </xsl:call-template>
             </xsl:otherwise>
           </xsl:choose>
@@ -890,6 +935,12 @@
   <refparameter>
     <variablelist>
       <varlistentry>
+        <term>refname</term>
+        <listitem>
+          <para>The first <tag>refname</tag> in the refentry</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>info</term>
         <listitem>
           <para>A set of info nodes (from a <tag>refentry</tag>
@@ -929,41 +980,49 @@
                 select="refmeta/refmiscinfo[@class = 'manual' or @class = 'sectdesc'][1]/node()"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:call-template name="refentry.emit.message">
-              <xsl:with-param name="level">Note</xsl:with-param>
-              <xsl:with-param
-                  name="message"
-                  >meta "manual" : No refmiscinfo@class="manual"|"sectdesc"</xsl:with-param>
-            </xsl:call-template>
+            <!-- * only in the case of choosing appropriate -->
+            <!-- * "manual" content do we select the furthest -->
+            <!-- * (first) matching element instead of the -->
+            <!-- * closest (last) matching one -->
             <xsl:choose>
-              <xsl:when test="$info//title">
+              <xsl:when test="ancestor::*/title">
                 <xsl:call-template name="set.refentry.metadata">
+                  <xsl:with-param name="refname" select="$refname"/>
                   <xsl:with-param
                       name="info"
-                      select="($info[//title])[last()]"/>
+                      select="(ancestor::*[title])[1]"/>
                   <xsl:with-param
                       name="contents"
-                      select="(($info[//title])[last()]/title)[1]"/>
+                      select="(ancestor::*[title])[1]/title"/>
                   <xsl:with-param name="context">manual</xsl:with-param>
                 </xsl:call-template>
               </xsl:when>
-              <xsl:when test="../title">
+              <xsl:when test="$info/title">
                 <xsl:call-template name="set.refentry.metadata">
+                  <xsl:with-param name="refname" select="$refname"/>
                   <xsl:with-param
                       name="info"
-                      select="'..'"/>
+                      select="($info[title])[1]"/>
                   <xsl:with-param
                       name="contents"
-                      select="../title"/>
+                      select="(($info[title])[1]/title)[1]"/>
                   <xsl:with-param name="context">manual</xsl:with-param>
                 </xsl:call-template>
               </xsl:when>
               <xsl:otherwise>
                 <xsl:call-template name="refentry.emit.message">
                   <xsl:with-param name="level">Note</xsl:with-param>
+                  <xsl:with-param name="refname" select="$refname"/>
                   <xsl:with-param
                       name="message"
-                      >meta "manual" : No valid alternatives to refmiscinfo.</xsl:with-param>
+                      >meta manual : No ancestor with title</xsl:with-param>
+                </xsl:call-template>
+                <xsl:call-template name="refentry.emit.message">
+                  <xsl:with-param name="level">Note</xsl:with-param>
+                  <xsl:with-param name="refname" select="$refname"/>
+                  <xsl:with-param
+                      name="message"
+                      >meta manual : No refmiscinfo@class=manual</xsl:with-param>
                 </xsl:call-template>
               </xsl:otherwise>
             </xsl:choose>
@@ -976,8 +1035,7 @@
     <xsl:when test="not($Manual = '')">
       <xsl:copy-of select="$Manual"/>
     </xsl:when>
-    <!-- * if no Manual, use contents of specified -->
-    <!-- * Fallback (if any) -->
+    <!-- * if no Manual, use contents of specified Fallback (if any) -->
     <xsl:when test="not($prefs/@fallback = '')">
       <xsl:variable name="manual.fallback">
         <xsl:call-template name="evaluate.info.profile">
@@ -992,9 +1050,10 @@
         <xsl:otherwise>
           <xsl:call-template name="refentry.emit.message">
             <xsl:with-param name="level">Warn</xsl:with-param>
+            <xsl:with-param name="refname" select="$refname"/>
             <xsl:with-param
                 name="message"
-                >meta "manual" : No valid fallback found. Leaving empty.</xsl:with-param>
+                >meta manual : No valid fallback. Leaving empty</xsl:with-param>
           </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
@@ -1003,9 +1062,10 @@
     <xsl:otherwise>
       <xsl:call-template name="refentry.emit.message">
         <xsl:with-param name="level">Warn</xsl:with-param>
+        <xsl:with-param name="refname" select="$refname"/>
         <xsl:with-param
             name="message"
-            >meta "manual" : No fallback specified; leaving empty.</xsl:with-param>
+            >meta manual : No fallback specified; leaving empty.</xsl:with-param>
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
@@ -1095,12 +1155,17 @@
   <refdescription>
     <para>The <function>set.refentry.metadata</function> function is
     called each time a suitable source element is found for a certain
-    metadata field. It emits a message indicating what source element
-    it has found.</para>
+    metadata field.</para>
   </refdescription>
 
   <refparameter>
     <variablelist>
+      <varlistentry>
+        <term>refname</term>
+        <listitem>
+          <para>The first <tag>refname</tag> in the refentry</para>
+        </listitem>
+      </varlistentry>
       <varlistentry>
         <term>info</term>
         <listitem>
@@ -1128,24 +1193,58 @@
 </doc:template>
 
 <xsl:template name="set.refentry.metadata">
+  <xsl:param name="refname"/>
   <xsl:param name="info"/>
   <xsl:param name="contents"/>
   <xsl:param name="context"/>
-  <xsl:call-template name="refentry.emit.message">
-    <xsl:with-param name="level">Note</xsl:with-param>
-    <xsl:with-param
-        name="message"
-        >meta "<xsl:value-of
-        select="$context"/>"<xsl:call-template
-        name="copy-string">
-    <xsl:with-param name="string" select="'&#x20;'"/>
-    <xsl:with-param
-        name="count"
-        select="7 - string-length($context)"/>
-    </xsl:call-template>: Using <xsl:value-of
-    select="local-name($info)"/>/<xsl:value-of
-    select="local-name($contents)"/></xsl:with-param>
-  </xsl:call-template>
+  <xsl:param name="preferred"/>
+  <xsl:if test="not($preferred = '')">
+    <xsl:call-template name="refentry.emit.message">
+      <xsl:with-param name="level">Note</xsl:with-param>
+      <xsl:with-param name="refname" select="$refname"/>
+      <xsl:with-param
+          name="message"
+          >meta <xsl:value-of
+          select="$context"/><xsl:call-template
+          name="copy-string">
+      <xsl:with-param name="string" select="'&#x20;'"/>
+      <xsl:with-param
+          name="count"
+          select="7 - string-length($context)"/>
+      </xsl:call-template>: No <xsl:value-of select="$preferred"
+      /></xsl:with-param>
+    </xsl:call-template>
+    <xsl:call-template name="refentry.emit.message">
+      <xsl:with-param name="level">Note</xsl:with-param>
+      <xsl:with-param name="refname" select="$refname"/>
+      <xsl:with-param
+          name="message"
+          >meta <xsl:value-of
+          select="$context"/><xsl:call-template
+          name="copy-string">
+      <xsl:with-param name="string" select="'&#x20;'"/>
+      <xsl:with-param
+          name="count"
+          select="7 - string-length($context)"/>
+      </xsl:call-template>: No refmiscinfo@class=<xsl:value-of
+      select="$context"/></xsl:with-param>
+    </xsl:call-template>
+    <xsl:call-template name="refentry.emit.message">
+      <xsl:with-param name="level">Note</xsl:with-param>
+      <xsl:with-param name="refname" select="$refname"/>
+      <xsl:with-param
+          name="message"
+          >meta <xsl:value-of
+          select="$context"/><xsl:call-template
+          name="copy-string">
+      <xsl:with-param name="string" select="'&#x20;'"/>
+      <xsl:with-param
+          name="count"
+          select="7 - string-length($context)"/>
+      </xsl:call-template>: Using <xsl:value-of
+      select="local-name($contents)"/></xsl:with-param>
+    </xsl:call-template>
+  </xsl:if>
   <xsl:value-of select="$contents"/>
 </xsl:template>
 
@@ -1171,6 +1270,12 @@
         </listitem>
       </varlistentry>
       <varlistentry>
+        <term>refname</term>
+        <listitem>
+          <para>The first <tag>refname</tag> in the refentry</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>message</term>
         <listitem>
           <para>The message to emit.</para>
@@ -1184,11 +1289,19 @@
 
 <xsl:template name="refentry.emit.message">
   <xsl:param name="level"/>
+  <xsl:param name="refname"/>
   <xsl:param name="message"/>
-  <xsl:if test="not($refentry.emit.messages = 0)">
+  <xsl:if test="$refentry.meta.get.quietly = 0">
     <xsl:message><xsl:value-of
     select="$level"/><xsl:text>: </xsl:text><xsl:value-of
-    select="$message"/></xsl:message>
+    select="$message"/><xsl:call-template
+        name="copy-string">
+    <xsl:with-param name="string" select="'&#x20;'"/>
+    <xsl:with-param
+        name="count"
+        select="50 - string-length($message)"/>
+    </xsl:call-template><xsl:value-of
+    select="$refname"/></xsl:message>
   </xsl:if>
 </xsl:template>
 

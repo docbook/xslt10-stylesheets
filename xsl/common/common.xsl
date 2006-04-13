@@ -1,10 +1,9 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
-                xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:dyn="http://exslt.org/dynamic"
                 xmlns:saxon="http://icl.com/saxon"
-                exclude-result-prefixes="db doc dyn saxon"
+                exclude-result-prefixes="doc dyn saxon"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -95,10 +94,7 @@ ooexception
 oointerface
 simplemsgentry
 manvolnum
-
-db:refentry
 "/>
-
 <!-- ====================================================================== -->
 
 <doc:template name="is.component" xmlns="">
