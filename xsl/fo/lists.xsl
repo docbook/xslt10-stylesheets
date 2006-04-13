@@ -1109,7 +1109,7 @@
 
 <xsl:template match="segtitle" mode="seglist-table">
   <fo:table-cell>
-    <fo:block>
+    <fo:block font-weight="bold">
       <xsl:apply-templates/>
     </fo:block>
   </fo:table-cell>
