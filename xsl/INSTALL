@@ -40,10 +40,17 @@ environment
        ./install.sh
 
      That will launch an interactive installer, which will emit a
-     series of prompts for you to respond to. After the process is
-     complete, the installer will emit a message with a command
-     you need to run in order to source your environment for use
-     with the stylesheets.
+     series of prompts for you to respond to.
+
+     To instead run it non-interactively without being prompted
+     for confirmation of the changes it makes, invoke it with the
+     "--batch" switch, like this:
+
+       ./install.sh --batch
+
+     After the process is complete, the installer will emit a
+     message with a command you need to run in order to source
+     your environment for use with the stylesheets.
 
   4. To test that he installation has updated your environment
      correctly, execute the test.sh script:
@@ -54,18 +61,21 @@ environment
      xmlcatalog application and the Apache XML Commons Resolver.
 
      NOTE: The test.sh file is not created until the install.sh
-           file is run for the first time. So you need to run the
-           install.sh script before running the test.sh script.
+           file is run for the first time.
 
   5. (UNINSTALLING) If/when you want to uninstall the release,
      execute the uninstall.sh script.
 
        ./uninstall.sh
 
-     That will revert all changes made by the install.sh script.
+     To instead run it non-interactively without being prompted
+     for confirmation of the changes it makes, invoke it with the
+     "--batch" switch, like this:
+
+       ./uninstall.sh --batch
 
      NOTE: The uninstall.sh file is not created until the install.sh
-           file is run for the first time. So you need to run the
+           file is run for the first time.
 
 
 ----------------------------------------------------------------------
