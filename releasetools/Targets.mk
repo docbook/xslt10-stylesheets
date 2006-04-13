@@ -83,8 +83,8 @@ ChangeHistory.xml:
 catalog.xml: .make-catalog.xsl
 	$(XSLT) $< $< $@ DISTRO="$(DISTRO)"
 
-install.sh: .CatalogManager.properties.example .urilist catalog.xml
-	cp $(INSTALL_SH) install.sh
+install.sh: $(INSTALL_SH) .CatalogManager.properties.example .urilist catalog.xml
+	cp $< $@
 
 distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE)
 
