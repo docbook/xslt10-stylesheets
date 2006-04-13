@@ -1,6 +1,7 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
+                xmlns:db="http://docbook.org/ns/docbook"
                 exclude-result-prefixes="exsl"
                 version='1.0'>
 
@@ -28,6 +29,91 @@
 <!-- * The templates in this file are actually called only once per -->
 <!-- * each Refentry; they are just in a separate file for the purpose -->
 <!-- * of keeping things modular. -->
+
+<!-- ==================================================================== -->
+
+<xsl:preserve-space elements="*"/>
+
+<xsl:strip-space elements="
+abstract affiliation anchor answer appendix area areaset areaspec
+artheader article audiodata audioobject author authorblurb authorgroup
+beginpage bibliodiv biblioentry bibliography biblioset blockquote book
+bookbiblio bookinfo callout calloutlist caption caution chapter
+citerefentry cmdsynopsis co collab colophon colspec confgroup
+copyright dedication docinfo editor entrytbl epigraph equation
+example figure footnote footnoteref formalpara funcprototype
+funcsynopsis glossary glossdef glossdiv glossentry glosslist graphicco
+group highlights imagedata imageobject imageobjectco important index
+indexdiv indexentry indexterm informalequation informalexample
+informalfigure informaltable inlineequation inlinemediaobject
+itemizedlist itermset keycombo keywordset legalnotice listitem lot
+mediaobject mediaobjectco menuchoice msg msgentry msgexplan msginfo
+msgmain msgrel msgset msgsub msgtext note objectinfo
+orderedlist othercredit part partintro preface printhistory procedure
+programlistingco publisher qandadiv qandaentry qandaset question
+refentry reference refmeta refnamediv refsection refsect1 refsect1info refsect2
+refsect2info refsect3 refsect3info refsynopsisdiv refsynopsisdivinfo
+revhistory revision row sbr screenco screenshot sect1 sect1info sect2
+sect2info sect3 sect3info sect4 sect4info sect5 sect5info section
+sectioninfo seglistitem segmentedlist seriesinfo set setindex setinfo
+shortcut sidebar simplelist simplesect spanspec step subject
+subjectset substeps synopfragment table tbody textobject tfoot tgroup
+thead tip toc tocchap toclevel1 toclevel2 toclevel3 toclevel4
+toclevel5 tocpart varargs variablelist varlistentry videodata
+videoobject void warning subjectset
+
+classsynopsis
+constructorsynopsis
+destructorsynopsis
+fieldsynopsis
+methodparam
+methodsynopsis
+ooclass
+ooexception
+oointerface
+simplemsgentry
+manvolnum
+
+db:abstract db:affiliation db:anchor db:answer db:appendix db:area db:areaset db:areaspec
+db:artheader db:article db:audiodata db:audioobject db:author db:authorblurb db:authorgroup
+db:beginpage db:bibliodiv db:biblioentry db:bibliography db:biblioset db:blockquote db:book
+db:bookbiblio db:bookinfo db:callout db:calloutlist db:caption db:caution db:chapter
+db:citerefentry db:cmdsynopsis db:co db:collab db:colophon db:colspec db:confgroup
+db:copyright db:dedication db:docinfo db:editor db:entrytbl db:epigraph db:equation
+db:example db:figure db:footnote db:footnoteref db:formalpara db:funcprototype
+db:funcsynopsis db:glossary db:glossdef db:glossdiv db:glossentry db:glosslist db:graphicco
+db:group db:highlights db:imagedata db:imageobject db:imageobjectco db:important db:index
+db:indexdiv db:indexentry db:indexterm db:informalequation db:informalexample
+db:informalfigure db:informaltable db:inlineequation db:inlinemediaobject
+db:itemizedlist db:itermset db:keycombo db:keywordset db:legalnotice db:listitem db:lot
+db:mediaobject db:mediaobjectco db:menuchoice db:msg db:msgentry db:msgexplan db:msginfo
+db:msgmain db:msgrel db:msgset db:msgsub db:msgtext db:note db:objectinfo
+db:orderedlist db:othercredit db:part db:partintro db:preface db:printhistory db:procedure
+db:programlistingco db:publisher db:qandadiv db:qandaentry db:qandaset db:question
+db:refentry db:reference db:refmeta db:refnamediv db:refsection db:refsect1 db:refsect1info
+db:refsect2
+db:refsect2info db:refsect3 db:refsect3info db:refsynopsisdiv db:refsynopsisdivinfo
+db:revhistory db:revision db:row db:sbr db:screenco db:screenshot db:sect1 db:sect1info db:sect2
+db:sect2info db:sect3 db:sect3info db:sect4 db:sect4info db:sect5 db:sect5info db:section
+db:sectioninfo db:seglistitem db:segmentedlist db:seriesinfo db:set db:setindex db:setinfo
+db:shortcut db:sidebar db:simplelist db:simplesect db:spanspec db:step db:subject
+db:subjectset db:substeps db:synopfragment db:table db:tbody db:textobject db:tfoot db:tgroup
+db:thead db:tip db:toc db:tocchap db:toclevel1 db:toclevel2 db:toclevel3 db:toclevel4
+db:toclevel5 db:tocpart db:varargs db:variablelist db:varlistentry db:videodata
+db:videoobject db:void db:warning db:subjectset
+
+db:classsynopsis
+db:constructorsynopsis
+db:destructorsynopsis
+db:fieldsynopsis
+db:methodparam
+db:methodsynopsis
+db:ooclass
+db:ooexception
+db:oointerface
+db:simplemsgentry
+db:manvolnum
+"/>
 
 <!-- ==================================================================== -->
 <!-- * Get character map contents -->
@@ -282,8 +368,11 @@
     </xsl:param>
     <xsl:call-template name="write.text.chunk">
       <xsl:with-param name="filename" select="$filename"/>
+      <xsl:with-param name="suppress-context-node-name" select="1"/>
       <xsl:with-param name="quiet" select="$man.output.quietly"/>
-      <xsl:with-param name="message-prolog">Note: </xsl:with-param>
+      <xsl:with-param
+          name="message-prolog"
+          >Note: </xsl:with-param>
       <xsl:with-param name="encoding" select="$man.output.encoding"/>
       <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
@@ -369,13 +458,14 @@
       <xsl:with-param name="filename">
         <xsl:value-of select="$man.manifest.filename"/>
       </xsl:with-param>
-      <xsl:with-param name="quiet" select="$man.output.quietly"/>
+      <xsl:with-param name="quiet" select="1"/>
       <xsl:with-param name="message-prolog">Note: </xsl:with-param>
       <xsl:with-param name="message-epilog"> (manifest file)</xsl:with-param>
       <xsl:with-param name="content">
         <xsl:value-of select="$filelist"/>
       </xsl:with-param>
     </xsl:call-template>
+    <xsl:message><xsl:text>&#10;</xsl:text></xsl:message>
   </xsl:template>
 
 </xsl:stylesheet>
