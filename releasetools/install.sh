@@ -42,9 +42,15 @@ thisCatalogManager=$HOME/.resolver/CatalogManager.properties
 
 if [ ! "${*#--batch}" = "$*" ]; then
   batchmode="Yes";
-  echo "Using batch mode."
 else
   batchmode="No";
+  echo
+  if [ ! "$1" = "--test" ]; then 
+    echo "NOTE: For non-interactive installs/uninstalls, use --batch"
+    if [ ! "$1" = "--uninstall" ]; then
+      echo
+    fi
+  fi
 fi
 
 osName=$(uname -o)
@@ -157,6 +163,9 @@ NOTE: No CatalogManager.properties found from CLASSPATH.
 EOF
       fi
     fi
+    if [ "$batchmode" = "Yes" ]; then
+      echo
+    fi
     # end of check for existing writable CatalogManager.properties
 
     if [ -f $thisCatalogManager ]; then
@@ -231,7 +240,8 @@ EOF
       REPLY=""
       if [ ! "$batchmode" = "Yes" ]; then
         echo
-        read -s -n1 -p "Add $thisJavaXmlCatalog to $myCatalogManager file? [Yes] "
+        echo "Add $thisJavaXmlCatalog"
+        read -s -n1 -p "to $myCatalogManager file? [Yes] "
         echo "$REPLY"
         echo
       fi
@@ -384,6 +394,7 @@ return 0
 }
 
 updateUserStartupFiles() {
+  if [ ! "$batchmode" = "Yes" ]; then
   cat <<EOF
 
 NOTE: To source your environment correctly for using the catalog
@@ -393,6 +404,9 @@ NOTE: To source your environment correctly for using the catalog
       you can make the changes manually.
 
 EOF
+  else
+    echo
+  fi
 
   # if user is running csh or tcsh, target .cshrc and .tcshrc
   # files for update; otherwise, target .bash_* and .profiles
@@ -434,13 +448,12 @@ EOF
           cp $dotFileBackup $HOME/$file     || exit 1
           echo "$appendLine" >> $HOME/$file || exit 1
           cat <<EOF
-
 NOTE: $HOME/$file file successfully updated.
       Backup written to $dotFileBackup
+
 EOF
         else
           cat <<EOF
-
 NOTE: $HOME/$file already contains information for this distribution.
       $HOME/$file not updated.
 
@@ -451,8 +464,10 @@ EOF
     fi
   done
   if [ -z "$dotFileBackup" ]; then
+    if [ ! "$batchmode" = "Yes" ]; then
+      echo
+    fi
     cat <<EOF
-
 NOTE: No shell startup files updated. You can source the
       environment for this distribution manually, each time you
       want to use it, by typing the following.
@@ -554,6 +569,7 @@ fi
 }
 
 uninstall() {
+  if [ ! "$batchmode" = "Yes" ]; then
   cat <<EOF
 
 NOTE: To "uninstall" this distribution, the changes made to your
@@ -562,6 +578,7 @@ NOTE: To "uninstall" this distribution, the changes made to your
       revert them.  Or, if you prefer, you can revert them manually.
 
 EOF
+  fi
 
   if [ "$osName" = "Cygwin" ]; then
     thisXmlCatalog=$thisJavaXmlCatalog
@@ -599,9 +616,9 @@ EOF
           sed "s#^catalogs=\(.*\)$thisXmlCatalog\(.*\)\$#catalogs=\1\2#" $catalogBackup \
           | sed 's/;\+/;/' | sed 's/;$//' | sed 's/=;/=/' > $myCatalogManager || exit 1
           cat <<EOF
-
 NOTE: $myCatalogManager file successfully reverted.
       Backup written to $catalogBackup
+
 EOF
           ;;
         esac
@@ -648,7 +665,6 @@ EOF
           cp $dotEmacsBackup $myEmacsFile       || exit 1
           sed -i "/$revertLine/d" $myEmacsFile  || exit 1
           cat <<EOF
-
 NOTE: $myEmacsFile file successfully reverted.
 Backup written to $dotEmacsBackup
 
@@ -699,7 +715,6 @@ EOF
           cp $dotFileBackup $HOME/$file           || exit 1
           sed -i "/$revertLineEsc/d" $HOME/$file  || exit 1
           cat <<EOF
-
 NOTE: $HOME/$file file successfully updated.
       Backup written to $dotFileBackup
 
@@ -733,13 +748,13 @@ writeUninstallFile() {
 writeTestFile() {
   testFile=$mydir/test.sh
   echo "#!/bin/bash"                                > $testFile || exit 1
-  echo "./install.sh --test"                       >> $testFile || exit 1
+  echo "mydir=\$(readlink -f \$(dirname \$0))"     >> $testFile || exit 1
+  echo "\$mydir/install.sh --test"                 >> $testFile || exit 1
   chmod 755 $testFile || exit 1
 }
 
 printExitMessage() {
   cat <<EOF
-
 Type the following to source your shell environment for the distribution
 
 $appendLine
@@ -807,10 +822,9 @@ WARNING: Cannot locate the "xmlcatalog" command. Make sure that
 
 EOF
     else
-      echo
       echo "Testing with xmlcatalog..."
       while read pair; do
-        path=$(readlink -f "${pair%* *}")
+        path=$(readlink -f "$mydir/${pair%* *}")
         uri=${pair#* *}
         echo
         echo "  Tested:" $uri
@@ -825,7 +839,7 @@ EOF
             fi
           fi
         done
-      done < .urilist
+      done < $mydir/.urilist
     fi
   fi
 
@@ -839,7 +853,7 @@ EOF
       echo
       echo "Testing with Apache XML Commons Resolver..."
       while read pair; do
-        path=$(readlink -f ${pair%* *})
+        path=$(readlink -f "$mydir/${pair%* *}")
         uri=${pair#* *}
         echo
         echo "  Tested:" $uri
@@ -855,7 +869,7 @@ EOF
             echo "  Result: FAILED"
           fi
         fi
-      done < .urilist
+      done < $mydir/.urilist
     fi
   fi
 }
