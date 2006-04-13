@@ -40,6 +40,13 @@ thisUriList=$mydir/.urilist
 exampleCatalogManager=$mydir/.CatalogManager.properties.example
 thisCatalogManager=$HOME/.resolver/CatalogManager.properties
 
+if [ ! "${*#--batch}" = "$*" ]; then
+  batchmode="Yes";
+  echo "Using batch mode."
+else
+  batchmode="No";
+fi
+
 osName=$(uname -o)
 classPathSeparator=":"
 if [ "$osName" = "Cygwin" ]; then
@@ -63,9 +70,9 @@ main() {
 }
 
 removeOldFiles() {
-  rm -f ./.profile.incl
-  rm -f ./.cshrc.incl
-  rm -f ./.emacs.el
+  rm -f $mydir/.profile.incl
+  rm -f $mydir/.cshrc.incl
+  rm -f $mydir/.emacs.el
 }
 
 checkRoot() {
@@ -155,10 +162,13 @@ EOF
     if [ -f $thisCatalogManager ]; then
       myCatalogManager=$thisCatalogManager
     else
-      echo
-      read -s -n1 -p "Create $thisCatalogManager file? [Yes] "
-      echo "$REPLY"
-      echo
+      REPLY=""
+      if [ ! "$batchmode" = "Yes" ]; then
+        echo
+        read -s -n1 -p "Create $thisCatalogManager file? [Yes] "
+        echo "$REPLY"
+        echo
+      fi
       case $REPLY in
         [nNqQ])
         emitNoChangeMsg
@@ -167,7 +177,7 @@ EOF
         if [ ! -d "${thisCatalogManager%/*}" ]; then
           mkdir -p ${thisCatalogManager%/*}
         fi
-        cp ./.CatalogManager.properties.example $thisCatalogManager || exit 1
+        cp $mydir/.CatalogManager.properties.example $thisCatalogManager || exit 1
         echo "NOTE: $thisCatalogManager file created"
         myCatalogManager=$thisCatalogManager
         ;;
@@ -196,8 +206,11 @@ WARNING: /etc/xml/catalog exists but was not found in the
          will need to remove it manually.
 
 EOF
-      read -s -n1 -p "Add /etc/xml/catalog to $myCatalogManager? [Yes] "
-      echo "$REPLY"
+      REPLY=""
+      if [ ! "$batchmode" = "Yes" ]; then
+        read -s -n1 -p "Add /etc/xml/catalog to $myCatalogManager? [Yes] "
+        echo "$REPLY"
+      fi
       case $REPLY in
         [nNqQ])
         echo
@@ -215,10 +228,13 @@ EOF
       echo
       emitNoChangeMsg
     else
-      echo
-      read -s -n1 -p "Add $thisJavaXmlCatalog to $myCatalogManager file? [Yes] "
-      echo "$REPLY"
-      echo
+      REPLY=""
+      if [ ! "$batchmode" = "Yes" ]; then
+        echo
+        read -s -n1 -p "Add $thisJavaXmlCatalog to $myCatalogManager file? [Yes] "
+        echo "$REPLY"
+        echo
+      fi
       case $REPLY in
         [nNqQ])
         emitNoChangeMsg
@@ -226,7 +242,8 @@ EOF
         *)
         if [ "$catalogsLine" ] ; then
           if [ "${catalogsLine#*$thisJavaXmlCatalog*}" != "$catalogsLine" ]; then
-            echo "NOTE: $thisJavaXmlCatalog already in $myCatalogManager"
+            echo "NOTE: $thisJavaXmlCatalog already"
+            echo "      in $myCatalogManager"
           else
             mv $myCatalogManager $catalogBackup || exit 1
             sed "s#^catalogs=\(.*\)\$#catalogs=$thisJavaXmlCatalog;\1;$etcXmlCatalog#" $catalogBackup \
@@ -257,7 +274,7 @@ EOF
 
 writeDotFiles() {
   while read; do
-    echo "$REPLY" >> .profile.incl
+    echo "$REPLY" >> $mydir/.profile.incl
   done <<EOF
 if [ -z "\$XML_CATALOG_FILES" ]; then
   XML_CATALOG_FILES="$thisXmlCatalog"
@@ -291,7 +308,7 @@ export SGML_CATALOG_FILES
 EOF
 
 while read; do
-  echo "$REPLY" >> .cshrc.incl
+  echo "$REPLY" >> $mydir/.cshrc.incl
 done <<EOF
 if ( ! $\?XML_CATALOG_FILES ) then
   setenv XML_CATALOG_FILES "$thisXmlCatalog"
@@ -321,7 +338,7 @@ EOF
 if [ -n "$myCatalogManager" ]; then
   myCatalogManagerDir=${myCatalogManager%/*}
   while read; do
-    echo "$REPLY" >> .profile.incl
+    echo "$REPLY" >> $mydir/.profile.incl
   done <<EOF
 
 
@@ -337,7 +354,7 @@ export CLASSPATH
 EOF
 
   while read; do
-    echo "$REPLY" >> .cshrc.incl
+    echo "$REPLY" >> $mydir/.cshrc.incl
   done <<EOF
 
 
@@ -353,7 +370,7 @@ EOF
 fi
 
 while read; do
-  echo "$REPLY" >> .emacs.el
+  echo "$REPLY" >> $mydir/.emacs.el
 done <<EOF
 (add-hook
   'nxml-mode-hook
@@ -392,8 +409,11 @@ EOF
   for file in $myStartupFiles; do
     if [ -f "$HOME/$file" ]; then
       dotFileBackup=$HOME/$file.$$.bak
-      read -s -n1 -p "Update $HOME/$file? [Yes] "
-      echo "$REPLY"
+      REPLY=""
+      if [ ! "$batchmode" = "Yes" ]; then
+        read -s -n1 -p "Update $HOME/$file? [Yes] "
+        echo "$REPLY"
+      fi
       case $REPLY in
         [nNqQ])
         cat <<EOF
@@ -464,9 +484,12 @@ EOF
     fi
   done
   if [ ! -f "$myEmacsFile" ]; then
-    read -s -n1 -p "No .emacs or .emacs.el file. Create one? [No] "
-    echo "$REPLY"
-    echo
+    REPLY=""
+    if [ ! "$batchmode" = "Yes" ]; then
+      read -s -n1 -p "No .emacs or .emacs.el file. Create one? [No] "
+      echo "$REPLY"
+      echo
+    fi
     case $REPLY in
       [yY])
       myEmacsFile=$HOME/.emacs
@@ -486,9 +509,12 @@ EOF
     esac
   fi
   if [ -n "$myEmacsFile" ]; then
-    read -s -n1 -p  "Update $myEmacsFile? [Yes] "
-    echo "$REPLY"
-    echo
+    REPLY=""
+    if [ ! "$batchmode" = "Yes" ]; then
+      read -s -n1 -p  "Update $myEmacsFile? [Yes] "
+      echo "$REPLY"
+      echo
+    fi
     case $REPLY in
       [nNqQ])
       cat <<EOF
@@ -552,8 +578,11 @@ EOF
     catalogsLine=$(grep "^catalogs=" $myCatalogManager)
     if [ "$catalogsLine" ] ; then
       if [ "${catalogsLine#*$thisXmlCatalog*}" != "$catalogsLine" ]; then
-        read -s -n1 -p "Revert $myCatalogManager? [Yes] "
-        echo "$REPLY"
+        REPLY=""
+        if [ ! "$batchmode" = "Yes" ]; then
+          read -s -n1 -p "Revert $myCatalogManager? [Yes] "
+          echo "$REPLY"
+        fi
         case $REPLY in
           [nNqQ]*)
           cat <<EOF
@@ -597,8 +626,11 @@ EOF
       loadLine="$(grep "$revertLine" "$myEmacsFile")"
       if [ -n "$loadLine" ]; then
         echo
-        read -s -n1 -p "Revert $myEmacsFile? [Yes] "
-        echo "$REPLY"
+        REPLY=""
+        if [ ! "$batchmode" = "Yes" ]; then
+          read -s -n1 -p "Revert $myEmacsFile? [Yes] "
+          echo "$REPLY"
+        fi
         case $REPLY in
           [nNqQ]*)
           cat <<EOF
@@ -645,8 +677,11 @@ EOF
       esac
       lineExists="$(grep "$revertLineEsc" $HOME/$file )"
       if [ "$lineExists" ]; then
-        read -s -n1 -p "Update $HOME/$file? [Yes] "
-        echo "$REPLY"
+        REPLY=""
+        if [ ! "$batchmode" = "Yes" ]; then
+          read -s -n1 -p "Update $HOME/$file? [Yes] "
+          echo "$REPLY"
+        fi
         case $REPLY in
           [nNqQ]*)
           cat <<EOF
@@ -679,23 +714,26 @@ EOF
   done
   removeOldFiles
   echo "Done. Deleted uninstall.sh file."
-  rm -f ./test.sh      || exit 1
-  rm -f ./uninstall.sh || exit 1
+  rm -f $mydir/test.sh      || exit 1
+  rm -f $mydir/uninstall.sh || exit 1
 }
 
 writeUninstallFile() {
-  uninstallFile=./uninstall.sh
-  echo "#!/bin/sh"                                > $uninstallFile || exit 1
-  echo "$mydir/install.sh --uninstall \\"          >> $uninstallFile || exit 1
-  echo "  --catalogManager=$myCatalogManager \\" >> $uninstallFile || exit 1
-  echo "  --dotEmacs=$myEmacsFile"               >> $uninstallFile || exit 1
+  uninstallFile=$mydir/uninstall.sh
+  echo "#!/bin/bash"                               > $uninstallFile || exit 1
+  echo "mydir=\$(readlink -f \$(dirname \$0))"    >> $uninstallFile || exit 1
+  echo "\$mydir/install.sh \\"                    >> $uninstallFile || exit 1
+  echo "  --uninstall \\"                         >> $uninstallFile || exit 1
+  echo "  --catalogManager=$myCatalogManager \\"  >> $uninstallFile || exit 1
+  echo "  --dotEmacs=$myEmacsFile \\"             >> $uninstallFile || exit 1
+  echo "  \$@"                                    >> $uninstallFile || exit 1
   chmod 755 $uninstallFile || exit 1
 }
 
 writeTestFile() {
-  testFile=./test.sh
-  echo "#!/bin/sh"                                > $testFile || exit 1
-  echo "$mydir/install.sh --test"                  >> $testFile || exit 1
+  testFile=$mydir/test.sh
+  echo "#!/bin/bash"                                > $testFile || exit 1
+  echo "./install.sh --test"                       >> $testFile || exit 1
   chmod 755 $testFile || exit 1
 }
 
@@ -737,7 +775,7 @@ EOF
 }
 
 testCatalogs() {
-  readlinkResponse="$(readlink -f ./ 2>/dev/null)"
+  readlinkResponse="$(readlink -f . 2>/dev/null)"
   if [ -z "$readlinkResponse" ]; then
     cat <<EOF
 
