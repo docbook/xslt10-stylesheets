@@ -87,7 +87,7 @@ removeOldFiles() {
 
 checkRoot() {
   if [ $(id -u)  == "0" ]; then
-    cat <<EOF
+    cat 1>&2 <<EOF
 
 WARNING: This install script is meant to be run as a non-root
          user, but you are running it as root.
@@ -115,7 +115,7 @@ updateCatalogManager() {
   #    CatalogManager.properties file found
 
   if [ -z "$CLASSPATH" ]; then
-    cat <<EOF
+    cat 1>&2 <<EOF
 
 NOTE: There is no CLASSPATH variable set in your environment.
       No attempt was made to find a CatalogManager.properties
@@ -153,7 +153,7 @@ EOF
     if [ -f "$existingCatalogManager" ]; then
       # a non-writable CatalogManager.properties exists, so emit a
       # note saying that it won't be used
-      cat <<EOF
+      cat 1>&2 <<EOF
 NOTE: $existingCatalogManager file found,
       but you don't have permission to write to it.
       Will instead use $thisCatalogManager
@@ -161,7 +161,7 @@ EOF
     else
       # CLASSPATH is set, but no CatalogManager.properties found
       if [ -n "$CLASSPATH" ]; then
-        cat <<EOF
+        cat 1>&2 <<EOF
 NOTE: No CatalogManager.properties found from CLASSPATH.
       Will instead use $thisCatalogManager
 EOF
@@ -206,7 +206,7 @@ EOF
     catalogsLine=$(grep "^catalogs=" $myCatalogManager)
     if [ -f /etc/xml/catalog ] && [ "$osName" != "Cygwin" ] \
       && [ "${catalogsLine#*/etc/xml/catalog*}" = "$catalogsLine" ]; then
-      cat <<EOF
+      cat 1>&2 <<EOF
 
 WARNING: /etc/xml/catalog exists but was not found in the
          $myCatalogManager file. If the
@@ -399,7 +399,7 @@ return 0
 
 updateUserStartupFiles() {
   if [ ! "$batchmode" = "Yes" ]; then
-  cat <<EOF
+  cat 1>&2 <<EOF
 
 NOTE: To source your environment correctly for using the catalog
       files in this distribution, you need to update one or more
@@ -434,7 +434,7 @@ EOF
       fi
       case $REPLY in
         [nNqQ])
-        cat <<EOF
+        cat 1>&2 <<EOF
 
 NOTE: No change made to $HOME/$file. You either need
       to add the following line to it, or manually source
@@ -451,13 +451,13 @@ EOF
           mv $HOME/$file $dotFileBackup     || exit 1
           cp $dotFileBackup $HOME/$file     || exit 1
           echo "$appendLine" >> $HOME/$file || exit 1
-          cat <<EOF
+          cat 1>&2 <<EOF
 NOTE: $HOME/$file file successfully updated.
       Backup written to $dotFileBackup
 
 EOF
         else
-          cat <<EOF
+          cat 1>&2 <<EOF
 NOTE: $HOME/$file already contains information for this distribution.
       $HOME/$file not updated.
 
@@ -471,7 +471,7 @@ EOF
     if [ ! "$batchmode" = "Yes" ]; then
       emit_message
     fi
-    cat <<EOF
+    cat 1>&2 <<EOF
 NOTE: No shell startup files updated. You can source the
       environment for this distribution manually, each time you
       want to use it, by typing the following.
@@ -484,7 +484,7 @@ EOF
 
 updateUserDotEmacs() {
   if [ -f $thisLocatingRules ]; then
-  cat <<EOF
+  cat 1>&2 <<EOF
 
 NOTE: This distribution includes a "schema locating rules" file
       for Emacs/nXML.  To use it, you should update either your
@@ -515,7 +515,7 @@ EOF
       touch $myEmacsFile
       ;;
       *)
-      cat <<EOF
+      cat 1>&2 <<EOF
 NOTE: No Emacs changes made. To use this distribution with,
       Emacs/nXML, you can create a .emacs file and manually add
       the following line to it, or you can run it as a command
@@ -536,7 +536,7 @@ EOF
     fi
     case $REPLY in
       [nNqQ])
-      cat <<EOF
+      cat 1>&2 <<EOF
 
 NOTE: No change made to $myEmacsFile. To use this distribution
       with Emacs/nXML, you can manually add the following line
@@ -554,12 +554,12 @@ EOF
         mv $myEmacsFile $dotEmacsBackup    || exit 1
         cp $dotEmacsBackup $myEmacsFile    || exit 1
         echo "$emacsAppendLine" >> $myEmacsFile || exit 1
-        cat <<EOF
+        cat 1>&2 <<EOF
 NOTE: $myEmacsFile file successfully updated.
       Backup written to $dotEmacsBackup
 EOF
       else
-        cat <<EOF
+        cat 1>&2 <<EOF
 
 NOTE: $myEmacsFile already contains information for this distribution.
       $myEmacsFile not updated.
@@ -574,7 +574,7 @@ fi
 
 uninstall() {
   if [ ! "$batchmode" = "Yes" ]; then
-  cat <<EOF
+  cat 1>&2 <<EOF
 
 NOTE: To "uninstall" this distribution, the changes made to your
       CatalogManagers.properties, startup files, and/or .emacs
@@ -606,7 +606,7 @@ EOF
         fi
         case $REPLY in
           [nNqQ]*)
-          cat <<EOF
+          cat 1>&2 <<EOF
 
 NOTE: No change made to $myCatalogManager. You need to manually
       remove the following path from the "catalog=" line.
@@ -619,7 +619,7 @@ EOF
           mv $myCatalogManager $catalogBackup || exit 1
           sed "s#^catalogs=\(.*\)$thisXmlCatalog\(.*\)\$#catalogs=\1\2#" $catalogBackup \
           | sed 's/;\+/;/' | sed 's/;$//' | sed 's/=;/=/' > $myCatalogManager || exit 1
-          cat <<EOF
+          cat 1>&2 <<EOF
 NOTE: $myCatalogManager file successfully reverted.
       Backup written to $catalogBackup
 
@@ -631,7 +631,7 @@ EOF
         emit_message
       fi
     else
-      cat <<EOF
+      cat 1>&2 <<EOF
 NOTE: No data for this distribution found in $myCatalogManager
       So, nothing to revert in $myCatalogManager
 EOF
@@ -654,7 +654,7 @@ EOF
         fi
         case $REPLY in
           [nNqQ]*)
-          cat <<EOF
+          cat 1>&2 <<EOF
 
 NOTE: No change made to $myEmacsFile. You need to manually
 remove the following line.
@@ -668,7 +668,7 @@ EOF
           mv $myEmacsFile $dotEmacsBackup       || exit 1
           cp $dotEmacsBackup $myEmacsFile       || exit 1
           sed -i "/$revertLine/d" $myEmacsFile  || exit 1
-          cat <<EOF
+          cat 1>&2 <<EOF
 NOTE: $myEmacsFile file successfully reverted.
 Backup written to $dotEmacsBackup
 
@@ -704,7 +704,7 @@ EOF
         fi
         case $REPLY in
           [nNqQ]*)
-          cat <<EOF
+          cat 1>&2 <<EOF
 
 NOTE: No change made to $HOME/$file. You need to manually remove
       the following line from it.
@@ -718,7 +718,7 @@ EOF
           mv $HOME/$file $dotFileBackup           || exit 1
           cp $dotFileBackup $HOME/$file           || exit 1
           sed -i "/$revertLineEsc/d" $HOME/$file  || exit 1
-          cat <<EOF
+          cat 1>&2 <<EOF
 NOTE: $HOME/$file file successfully updated.
       Backup written to $dotFileBackup
 
@@ -758,7 +758,7 @@ writeTestFile() {
 }
 
 printExitMessage() {
-  cat <<EOF
+  cat 1>&2 <<EOF
 Type the following to source your shell environment for the distribution
 
 $appendLine
@@ -769,7 +769,7 @@ EOF
 checkForResolver() {
   resolverResponse="$(java org.apache.xml.resolver.apps.resolver uri -u foo 2>/dev/null)"
   if [ -z "$resolverResponse" ]; then
-    cat <<EOF
+    cat 1>&2 <<EOF
 
 NOTE: Your environment does not seem to contain the Apache XML Commons
       Resolver; without that, you can't use XML catalogs with Java.
@@ -783,7 +783,7 @@ EOF
 }
 
 emitNoChangeMsg() {
-  cat <<EOF
+  cat 1>&2 <<EOF
 
 NOTE: No changes was made to CatalogManagers.properties. To
       provide your Java tools with XML catalog information for
@@ -796,7 +796,7 @@ EOF
 testCatalogs() {
   readlinkResponse="$(readlink -f . 2>/dev/null)"
   if [ -z "$readlinkResponse" ]; then
-    cat <<EOF
+    cat 1>&2 <<EOF
 
 FATAL: Cannot locate the "readlink" command. Stopping.
 EOF
@@ -804,7 +804,7 @@ EOF
   fi
 
   if [ ! -f "$thisXmlCatalog" ]; then
-    cat <<EOF
+    cat 1>&2 <<EOF
 
 FATAL: $thisXmlCatalog file needed but not found. Stopping.
 EOF
@@ -817,7 +817,7 @@ EOF
   else
     xmlCatalogResponse="$(xmlcatalog 2>/dev/null)"
     if [ -z "$xmlCatalogResponse" ]; then
-    cat <<EOF
+    cat 1>&2 <<EOF
 
 WARNING: Cannot locate the "xmlcatalog" command. Make sure that
          you have libxml2 and its associated utilities installed.
