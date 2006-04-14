@@ -413,6 +413,8 @@ references. In that case you can select appropriate encoding here.</para>
   </mapID>
 </xsl:template>
 
+<xsl:template match="indexterm[@class='endofrange']" mode="map"/>
+
 <xsl:template match="indexterm" mode="map">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
@@ -453,6 +455,8 @@ references. In that case you can select appropriate encoding here.</para>
     </xsl:choose>
   </index>
 </xsl:template>
+
+<xsl:template match="indexterm[@class='endofrange']" mode="idx"/>
 
 <xsl:template match="indexterm" mode="idx">
   <xsl:variable name="id">
