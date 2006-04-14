@@ -288,7 +288,7 @@ references. In that case you can select appropriate encoding here.</para>
   </tocitem>
 </xsl:template>
 
-<xsl:template match="sect5|colophon" mode="jhtoc">
+<xsl:template match="sect5|colophon|refentry" mode="jhtoc">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -392,7 +392,7 @@ references. In that case you can select appropriate encoding here.</para>
   </mapID>
 </xsl:template>
 
-<xsl:template match="part|reference|preface|chapter|appendix|article"
+<xsl:template match="part|reference|preface|chapter|appendix|refentry|article"
               mode="map">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
