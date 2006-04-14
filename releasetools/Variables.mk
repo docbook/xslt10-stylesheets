@@ -117,7 +117,9 @@ ZIP_EXCLUDES = \
  \.cvsignore \
  MANIFEST.build \
  Makefile$$ \
- Makefile[.] \
+ Makefile.common \
+ Makefile.incl \
+ Makefile.param \
  LatestTag \
  README\.CVS \
  RELEASE-NOTES\.fo \
