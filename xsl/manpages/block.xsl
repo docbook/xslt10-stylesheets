@@ -133,6 +133,17 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template match="table|informaltable">
+  <xsl:apply-templates select="." mode="to.tbl">
+    <!--* we call the to.tbl mode with the "source" param so that we can -->
+    <!--* preserve the context information and pass it down to the -->
+    <!--* named templates that do the actual table processing -->
+    <xsl:with-param name="source" select="ancestor::refentry/refnamediv[1]/refname[1]"/>
+  </xsl:apply-templates>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
 <xsl:template match="informalexample">
   <xsl:apply-templates/>
 </xsl:template>
