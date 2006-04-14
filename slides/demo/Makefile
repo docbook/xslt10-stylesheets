@@ -18,7 +18,7 @@ all: index.html slides.pdf
 	done
 
 index.html: index.xml
-	$(XSLT) -output $@ $< $(DOCSTYLE) 
+	$(XSLT) $< $(DOCSTYLE) $@
 
 %.fo : %.xml
 ifeq ($(FORMATTER),tex)
