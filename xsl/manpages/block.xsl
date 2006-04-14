@@ -123,6 +123,61 @@
   <xsl:apply-templates/>
 </xsl:template>
 
+
+<!-- ==================================================================== -->
+
+<xsl:template match="figure">
+  <xsl:variable name="param.placement"
+                select="substring-after(normalize-space($formal.title.placement),
+                        concat(local-name(.), ' '))"/>
+
+  <xsl:variable name="placement">
+    <xsl:choose>
+      <xsl:when test="contains($param.placement, ' ')">
+        <xsl:value-of select="substring-before($param.placement, ' ')"/>
+      </xsl:when>
+      <xsl:when test="$param.placement = ''">before</xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$param.placement"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:text>.PP&#10;</xsl:text>
+  <xsl:call-template name="formal.object">
+    <xsl:with-param name="placement" select="$placement"/>
+  </xsl:call-template>
+
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template name="formal.object">
+  <xsl:param name="placement" select="'before'"/>
+  <xsl:param name="class" select="local-name(.)"/>
+
+  <xsl:choose>
+    <xsl:when test="$placement = 'before'">
+      <xsl:call-template name="formal.object.heading"/>
+      <xsl:apply-templates/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates/>
+      <xsl:call-template name="formal.object.heading"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="formal.object.heading">
+  <xsl:param name="object" select="."/>
+  <xsl:param name="title">
+    <bold><xsl:apply-templates select="$object" mode="object.title.markup"/></bold>
+  </xsl:param>
+  <xsl:apply-templates mode="bold" select="exsl:node-set($title)"/>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
 <!-- * suppress abstract -->
 <xsl:template match="abstract"/>
 
