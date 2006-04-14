@@ -339,7 +339,8 @@ references. In that case you can select appropriate encoding here.</para>
                                      | key('id',$rootid)//sect3
                                      | key('id',$rootid)//sect4
                                      | key('id',$rootid)//sect5
-                                     | key('id',$rootid)//indexterm"
+                                     | key('id',$rootid)//indexterm
+				     | key('id',$rootid)//*[@id]"
                              mode="map"/>
       </xsl:when>
       <xsl:otherwise>
@@ -359,7 +360,8 @@ references. In that case you can select appropriate encoding here.</para>
                                      | //sect3
                                      | //sect4
                                      | //sect5
-                                     | //indexterm"
+                                     | //indexterm
+				     | //*[@id]"
                              mode="map"/>
       </xsl:otherwise>
     </xsl:choose>
@@ -420,6 +422,18 @@ references. In that case you can select appropriate encoding here.</para>
 <xsl:template match="indexterm[@class='endofrange']" mode="map"/>
 
 <xsl:template match="indexterm" mode="map">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <mapID target="{$id}">
+    <xsl:attribute name="url">
+      <xsl:call-template name="href.target.uri"/>
+    </xsl:attribute>
+  </mapID>
+</xsl:template>
+
+<xsl:template match="*[@id]" mode="map">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
