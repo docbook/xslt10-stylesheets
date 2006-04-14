@@ -15,6 +15,23 @@
 
      ******************************************************************** -->
 
+  <xsl:variable name="authors-indent">
+    <xsl:choose>
+      <xsl:when test="not($man.indentation.authors.adjust = 0)">
+        <xsl:value-of select="$man.indentation.authors.value"/>
+      </xsl:when>
+      <xsl:when test="not($man.indentation.default.adjust = 0)">
+        <!-- * "zq" is the name of a register we set for preserving the -->
+        <!-- * original default indent value when -->
+        <!-- * $man.indentation.default.adjust is non-zero; -->
+        <!-- * "u" is a roff unit specifier -->
+        <xsl:text>\n(zqu</xsl:text>
+      </xsl:when>
+      <xsl:otherwise/> <!-- * otherwise, just leave it empty -->
+    </xsl:choose>
+  </xsl:variable>
+
+  <!-- ================================================================== -->
   <!-- * About the $info param used in this stylesheet -->
   <!-- * -->
   <!-- * The $info param is a "master info" node set that contains -->
@@ -250,7 +267,12 @@
 
   <xsl:template name="publisher.attribution">
     <xsl:text>&#10;.sp -1n&#10;</xsl:text>
-    <xsl:text>.IP&#10;</xsl:text>
+    <xsl:text>.IP ""</xsl:text> 
+    <xsl:if test="not($authors-indent = '')">
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$authors-indent"/>
+    </xsl:if>
+    <xsl:text>&#10;</xsl:text>
     <xsl:call-template name="gentext">
       <xsl:with-param name="key" select="'Publisher'"/>
     </xsl:call-template>
@@ -339,7 +361,12 @@
       <!-- * Editor, then render the corresponding localized gentext -->
       <xsl:when test="self::author">
         <xsl:text>&#10;.sp -1n&#10;</xsl:text>
-        <xsl:text>.IP&#10;</xsl:text>
+        <xsl:text>.IP ""</xsl:text> 
+        <xsl:if test="not($authors-indent = '')">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="$authors-indent"/>
+        </xsl:if>
+        <xsl:text>&#10;</xsl:text>
         <xsl:call-template name="gentext">
           <xsl:with-param name="key" select="'Author'"/>
         </xsl:call-template>
@@ -347,7 +374,12 @@
       </xsl:when>
       <xsl:when test="self::editor">
         <xsl:text>&#10;.sp -1n&#10;</xsl:text>
-        <xsl:text>.IP&#10;</xsl:text>
+        <xsl:text>.IP ""</xsl:text> 
+        <xsl:if test="not($authors-indent = '')">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="$authors-indent"/>
+        </xsl:if>
+        <xsl:text>&#10;</xsl:text>
         <xsl:call-template name="gentext">
           <xsl:with-param name="key" select="'Editor'"/>
         </xsl:call-template>
@@ -359,7 +391,12 @@
         <xsl:choose>
           <xsl:when test="@class and @class != 'other'">
             <xsl:text>&#10;.sp -1n&#10;</xsl:text>
-            <xsl:text>.IP&#10;</xsl:text>
+            <xsl:text>.IP ""</xsl:text> 
+            <xsl:if test="not($authors-indent = '')">
+              <xsl:text> </xsl:text>
+              <xsl:value-of select="$authors-indent"/>
+            </xsl:if>
+            <xsl:text>&#10;</xsl:text>
             <xsl:call-template name="gentext">
               <xsl:with-param name="key" select="@class"/>
             </xsl:call-template>
@@ -380,7 +417,12 @@
 
   <xsl:template match="personblurb|authorblurb" mode="authorsect">
     <xsl:text>&#10;.sp -1n&#10;</xsl:text>
-    <xsl:text>.IP&#10;</xsl:text>
+    <xsl:text>.IP ""</xsl:text> 
+    <xsl:if test="not($authors-indent = '')">
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$authors-indent"/>
+    </xsl:if>
+    <xsl:text>&#10;</xsl:text>
     <!-- * yeah, it's possible for a *blurb to have a "title" -->
     <xsl:apply-templates select="title"/>
     <xsl:for-each select="*[name() != 'title']">
@@ -403,7 +445,12 @@
     <!-- * We treat Contrib the same as Personblurb/Authorblurb -->
     <!-- * except that we don't need to check for a title. -->
     <xsl:text>&#10;.sp -1n&#10;</xsl:text>
-    <xsl:text>&#10;.IP&#10;</xsl:text>
+    <xsl:text>&#10;.IP ""</xsl:text>
+    <xsl:if test="not($authors-indent = '')">
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$authors-indent"/>
+    </xsl:if>
+    <xsl:text>&#10;</xsl:text>
     <xsl:apply-templates/>
   </xsl:template>
 

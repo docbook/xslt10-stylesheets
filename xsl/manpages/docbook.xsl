@@ -37,11 +37,15 @@
   <xsl:include href="links.xsl"/>
   <xsl:include href="table.xsl"/>
 
-  <xsl:param name="man.manifest.enabled">0</xsl:param>
+  <xsl:param name="man.manifest.enabled" select="0"/>
   <xsl:param name="man.manifest.filename">MAN.MANIFEST</xsl:param>
-  <xsl:param name="man.segtitle.suppress">0</xsl:param>
-  <xsl:param name="man.indentation.default.adjust">0</xsl:param>
+  <xsl:param name="man.segtitle.suppress" select="0"/>
+  <xsl:param name="man.indentation.default.adjust" select="0"/>
   <xsl:param name="man.indentation.default.value">3n</xsl:param>
+  <xsl:param name="man.indentation.lists.adjust" select="1"/>
+  <xsl:param name="man.indentation.lists.value">3n</xsl:param>
+  <xsl:param name="man.indentation.authors.adjust" select="1"/>
+  <xsl:param name="man.indentation.authors.value">3n</xsl:param>
   <xsl:param name="man.funcprototype.font">BI</xsl:param>
   <xsl:param name="man.funcsynopsisinfo.font">B</xsl:param>
   <xsl:param name="man.table.headings.font">B</xsl:param>
