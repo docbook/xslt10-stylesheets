@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
+		xmlns:ng="http://docbook.org/docbook-ng"
+		xmlns:db="http://docbook.org/ns/docbook"
                 version="1.0"
-                exclude-result-prefixes="doc">
+                exclude-result-prefixes="doc ng db">
 
 <xsl:import href="../html/chunk.xsl"/>
 
@@ -53,10 +55,12 @@ references. In that case you can select appropriate encoding here.</para>
     </xsl:otherwise>
   </xsl:choose>
 
-  <xsl:call-template name="helpset"/>
-  <xsl:call-template name="helptoc"/>
-  <xsl:call-template name="helpmap"/>
-  <xsl:call-template name="helpidx"/>
+  <xsl:for-each select="/">    <!-- This is just a hook for building profiling stylesheets -->
+    <xsl:call-template name="helpset"/>
+    <xsl:call-template name="helptoc"/>
+    <xsl:call-template name="helpmap"/>
+    <xsl:call-template name="helpidx"/>
+  </xsl:for-each>
 </xsl:template>
 
 
