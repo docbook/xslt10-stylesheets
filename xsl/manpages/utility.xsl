@@ -225,15 +225,27 @@
 
   <!-- ================================================================== -->
 
-  <!-- * Replace any spaces in $name with underscores & then append -->
-  <!-- * .$section to create a man filename -->
-
   <xsl:template name="make.adjusted.man.filename">
     <xsl:param name="name"/>
     <xsl:param name="section"/>
+    <xsl:param name="dirname">
+      <xsl:choose>
+        <xsl:when test="not($man.subdirs.enabled = 0)">
+          <xsl:value-of
+              select="concat($man.base.dir, 'man', normalize-space($section), '/')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$man.base.dir"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:param>
     <xsl:call-template name="string.subst">
+      <!-- * Replace any spaces in filename with underscores & then append -->
+      <!-- * a dot plus a section number to create the man filename -->
       <xsl:with-param name="string"
-                      select="concat(normalize-space($name), '.', normalize-space($section))"/>
+                      select="concat($dirname,
+                              normalize-space($name),
+                              '.', normalize-space($section))"/>
       <xsl:with-param name="target" select="' '"/>
       <xsl:with-param name="replacement" select="'_'"/>
     </xsl:call-template>
