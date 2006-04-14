@@ -37,7 +37,7 @@
   <xsl:include href="links.xsl"/>
   <xsl:include href="table.xsl"/>
 
-  <xsl:param name="generate.manifest">0</xsl:param>
+  <xsl:param name="man.manifest.enabled">0</xsl:param>
   <xsl:param name="man.manifest.filename">MAN.MANIFEST</xsl:param>
   <xsl:param name="man.segtitle.suppress">0</xsl:param>
   <xsl:param name="man.indentation.default.adjust">0</xsl:param>
@@ -47,6 +47,8 @@
   <xsl:param name="man.table.headings.font">B</xsl:param>
   <xsl:param name="man.table.title.font">B</xsl:param>
   <xsl:param name="man.table.footnotes.separator.line">----</xsl:param>
+  <xsl:param name="man.base.dir">man/</xsl:param>
+  <xsl:param name="man.subdirs.enabled" select="1"/>
 
   <!-- ==================================================================== -->
 
@@ -72,8 +74,8 @@
             <!-- * Check to see if we have any refentry children in this -->
             <!-- * document; if so, process them. -->
             <xsl:apply-templates select="//refentry"/>
-            <!-- * if $generate.manifest is non-zero, generate a manifest file -->
-            <xsl:if test="not($generate.manifest = 0)">
+            <!-- * if $man.manifest.enabled is non-zero, generate a manifest file -->
+            <xsl:if test="not($man.manifest.enabled = 0)">
               <xsl:call-template name="generate.manifest">
                 <xsl:with-param name="filename">
                   <xsl:choose>
@@ -86,7 +88,7 @@
                       <!-- * Otherwise, if user has unset -->
                       <!-- * $man.manifest.filename, default to using -->
                       <!-- * "MAN.MANIFEST" as the filename. Because -->
-                      <!-- * $generate.manifest is non-zero and so we -->
+                      <!-- * $man.manifest.enabled is non-zero and so we -->
                       <!-- * must have a filename in order to generate -->
                       <!-- * the manifest. -->
                       <xsl:text>MAN.MANIFEST</xsl:text>
