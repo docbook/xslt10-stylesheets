@@ -124,7 +124,7 @@
   <!-- * if first following sibling node of this verbatim -->
   <!-- * environment is a text node, output a line of space before it -->
   <xsl:if test="not($man.indentation.verbatims.adjust = 0)">
-    <xsl:text>.RE</xsl:text> 
+    <xsl:text>.RE&#10;</xsl:text> 
   </xsl:if>
   <xsl:if test="following-sibling::node()[1][name(.) = '']">
     <xsl:text>.sp&#10;</xsl:text>
