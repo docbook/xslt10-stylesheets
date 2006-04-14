@@ -312,8 +312,7 @@ EOF
     (cd $TMP; $TAR xf$TARFLAGS -); \
     done; \
     mkdir $DISTRO; \
-    cp -pR $TMP/docbook-$DISTRO-$RELEASEVERSION/* $DISTRO; \
-    rm -rf $DISTRO/tools;)
+    cp -pR $TMP/docbook-$DISTRO-$RELEASEVERSION/* $DISTRO;)
 
     scp \
       $TMP/docbook-$DISTRO*$RELEASEVERSION.zip \
