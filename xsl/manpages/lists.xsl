@@ -11,6 +11,25 @@
      copyright and other information.
 
      ******************************************************************** -->
+
+<xsl:variable name="list-indent">
+  <xsl:choose>
+    <xsl:when test="not($man.indentation.lists.adjust = 0)">
+      <xsl:value-of select="$man.indentation.lists.value"/>
+    </xsl:when>
+    <xsl:when test="not($man.indentation.default.adjust = 0)">
+      <!-- * "zq" is the name of a register we set for preserving the -->
+      <!-- * original default indent value when -->
+      <!-- * $man.indentation.default.adjust is non-zero; -->
+      <!-- * "u" is a roff unit specifier -->
+      <xsl:text>\n(zqu</xsl:text>
+    </xsl:when>
+    <xsl:otherwise/> <!-- * otherwise, just leave it empty -->
+  </xsl:choose>
+</xsl:variable>
+
+<!-- ================================================================== -->
+
 <xsl:template match="para[ancestor::listitem or ancestor::step or ancestor::glossdef]|
 	             simpara[ancestor::listitem or ancestor::step or ancestor::glossdef]|
 		     remark[ancestor::listitem or ancestor::step or ancestor::glossdef]">
@@ -45,7 +64,12 @@
       <xsl:text>.PP&#10;</xsl:text> 
     </xsl:when>
     <xsl:otherwise> <!-- * we only have one term, so use .TP -->
-      <xsl:text>.TP&#10;</xsl:text> 
+      <xsl:text>.TP</xsl:text> 
+      <xsl:if test="not($list-indent = '')">
+        <xsl:text> </xsl:text>
+        <xsl:value-of select="$list-indent"/>
+      </xsl:if>
+      <xsl:text>&#10;</xsl:text> 
     </xsl:otherwise>
   </xsl:choose>
   <xsl:for-each select="term|glossterm">
@@ -77,7 +101,12 @@
     <!-- * if we have multiple terms in the same varlistentry, we need to-->
     <!-- *  manually indent the listitem using .RS and .RE -->
     <xsl:when test="count(term) > 1">
-      <xsl:text>.RS&#10;</xsl:text>
+      <xsl:text>.RS</xsl:text> 
+      <xsl:if test="not($list-indent = '')">
+        <xsl:text> </xsl:text>
+        <xsl:value-of select="$list-indent"/>
+      </xsl:if>
+      <xsl:text>&#10;</xsl:text>
       <xsl:apply-templates/>
       <xsl:text>.RE&#10;</xsl:text>
     </xsl:when>
@@ -91,15 +120,25 @@
 <xsl:template match="glossentry/glossterm"/>
 
 <xsl:template match="variablelist[ancestor::listitem or ancestor::step or ancestor::glossdef]|
-	             glosslist[ancestor::listitem or ancestor::step or ancestor::glossdef]">
-  <xsl:text>.RS&#10;</xsl:text>
+                     glosslist[ancestor::listitem or ancestor::step or ancestor::glossdef]">
+  <xsl:text>.RS</xsl:text> 
+  <xsl:if test="not($list-indent = '')">
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$list-indent"/>
+  </xsl:if>
+  <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>.RE&#10;</xsl:text>
   <xsl:if test="following-sibling::node() or
                 parent::para[following-sibling::node()] or
                 parent::simpara[following-sibling::node()] or
                 parent::remark[following-sibling::node()]">
-    <xsl:text>.IP&#10;</xsl:text>
+    <xsl:text>.IP ""</xsl:text> 
+    <xsl:if test="not($list-indent = '')">
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$list-indent"/>
+    </xsl:if>
+    <xsl:text>&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -115,7 +154,12 @@
   <xsl:text>&#x2022;&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:if test="following-sibling::listitem">
-    <xsl:text>.TP&#10;</xsl:text>
+    <xsl:text>.TP</xsl:text> 
+    <xsl:if test="not($list-indent = '')">
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$list-indent"/>
+    </xsl:if>
+    <xsl:text>&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -124,7 +168,12 @@
   <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:if test="position()!=last()">
-    <xsl:text>.TP&#10;</xsl:text>
+    <xsl:text>.TP</xsl:text> 
+    <xsl:if test="not($list-indent = '')">
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$list-indent"/>
+    </xsl:if>
+    <xsl:text>&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -134,31 +183,51 @@
     <xsl:apply-templates mode="bold" select="title"/>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
-  <xsl:text>.TP 3&#10;</xsl:text>
+  <xsl:text>.TP</xsl:text> 
+  <xsl:if test="not($list-indent = '')">
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$list-indent"/>
+  </xsl:if>
+  <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:if test="following-sibling::node()">
-  <xsl:text>.sp&#10;</xsl:text>
-  <xsl:text>.RE&#10;</xsl:text>
+    <xsl:text>.sp&#10;</xsl:text>
+    <xsl:text>.RE&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
 
 <xsl:template match="itemizedlist[ancestor::listitem or ancestor::step  or ancestor::glossdef]|
 	             orderedlist[ancestor::listitem or ancestor::step or ancestor::glossdef]|
-		     procedure[ancestor::listitem or ancestor::step or ancestor::glossdef]">
-  <xsl:text>.RS&#10;</xsl:text>
+                     procedure[ancestor::listitem or ancestor::step or ancestor::glossdef]">
+  <xsl:text>.RS</xsl:text> 
+  <xsl:if test="not($list-indent = '')">
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$list-indent"/>
+  </xsl:if>
+  <xsl:text>&#10;</xsl:text>
   <xsl:if test="title">
     <xsl:text>.PP&#10;</xsl:text>
     <xsl:apply-templates mode="bold" select="title"/>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
-  <xsl:text>.TP 3&#10;</xsl:text>
+  <xsl:text>.TP</xsl:text> 
+  <xsl:if test="not($list-indent = '')">
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$list-indent"/>
+  </xsl:if>
+  <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>.RE&#10;</xsl:text>
   <xsl:if test="following-sibling::node() or
                 parent::para[following-sibling::node()] or
                 parent::simpara[following-sibling::node()] or
                 parent::remark[following-sibling::node()]">
-    <xsl:text>.IP&#10;</xsl:text>
+    <xsl:text>.IP ""</xsl:text> 
+    <xsl:if test="not($list-indent = '')">
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$list-indent"/>
+    </xsl:if>
+    <xsl:text>&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -203,7 +272,12 @@
 <!-- * list (ignoring the values of the type and columns attributes) -->
 <xsl:template match="simplelist">
   <xsl:for-each select="member">
-    <xsl:text>.IP&#10;</xsl:text>
+    <xsl:text>.IP ""</xsl:text> 
+    <xsl:if test="not($list-indent = '')">
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$list-indent"/>
+    </xsl:if>
+    <xsl:text>&#10;</xsl:text>
     <xsl:apply-templates/>
     <xsl:text>&#10;</xsl:text>
   </xsl:for-each>

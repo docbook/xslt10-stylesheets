@@ -54,6 +54,8 @@
   <xsl:text>.sp&#10;</xsl:text>
 </xsl:template>
 
+<!-- ==================================================================== -->
+
 <xsl:template match="literallayout|programlisting|screen|
                      address|synopsis|funcsynopsisinfo">
   <!-- * Yes, address, synopsis, and funcsynopsisinfo are verbatim environments. -->
@@ -118,11 +120,11 @@
   </xsl:if>
 </xsl:template>
 
+<!-- ==================================================================== -->
+
 <xsl:template match="informalexample">
-  <xsl:text>.IP&#10;</xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
-
 
 <!-- ==================================================================== -->
 
