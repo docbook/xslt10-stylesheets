@@ -33,7 +33,14 @@
   <!-- *   http://cm.bell-labs.com/cm/cs/doc/76/tbl.ps.gz -->
   <!-- *   http://www.snake.net/software/troffcvt/tbl.html -->
 
-  <xsl:template match="table|informaltable">
+  <xsl:template match="table|informaltable" mode="to.tbl">
+    <!--* the "source" param is an optional param; it can be any -->
+    <!--* string you want to use that gives some indication of the -->
+    <!--* source context for a table; it gets passed down to the named -->
+    <!--* templates that do the actual table processing; this -->
+    <!--* stylesheet currently uses the "source" information for -->
+    <!--* logging purposes -->
+    <xsl:param name="source"/>
     <xsl:param name="title">
       <xsl:if test="local-name(.) = 'table'">
         <xsl:apply-templates select="." mode="object.title.markup"/>
@@ -194,6 +201,7 @@
         <xsl:copy-of select="tfoot/tr"/>
       </xsl:variable>
       <xsl:call-template name="output.rows">
+        <xsl:with-param name="source" select="$source"/>
         <xsl:with-param name="rows" select="exsl:node-set($rows-set)"/>
       </xsl:call-template>
 
@@ -216,6 +224,7 @@
   <!-- ==================================================================== -->
   
   <xsl:template name="output.rows">
+    <xsl:param name="source"/>
     <xsl:param name="rows"/>
     <!-- * ============================================================== -->
     <!-- *   Flatten row set into simple list of cells                    -->
@@ -227,6 +236,7 @@
     <!-- * the corresponding tbl(1) markup we need to output. -->
     <xsl:variable name="cells-list">
       <xsl:call-template name="build.cell.list">
+        <xsl:with-param name="source" select="$source"/>
         <xsl:with-param name="rows" select="$rows"/>
       </xsl:call-template>
     </xsl:variable>
@@ -300,12 +310,15 @@
   <!-- *   Build a restructured "cell list" copy of the entire table    -->
   <!-- * ============================================================== -->
   <xsl:template name="build.cell.list">
+    <xsl:param name="source"/>
     <xsl:param name="rows"/>
     <xsl:param  name="cell-data-unsorted">
       <!-- * This param collects all the "real" cells from the table, -->
       <!-- * along with "dummy" rows that we generate for keeping -->
       <!-- * track of Rowspan instances. -->
-      <xsl:apply-templates select="$rows" mode="cell.list"/>
+      <xsl:apply-templates select="$rows" mode="cell.list">
+        <xsl:with-param name="source" select="$source"/>
+      </xsl:apply-templates>
     </xsl:param>
     <xsl:param  name="cell-data-sorted">
       <!-- * Sort the cells so that the dummy cells get put where we -->
@@ -321,11 +334,13 @@
   </xsl:template>
 
   <xsl:template match="tr" mode="cell.list">
+    <xsl:param name="source"/>
     <xsl:variable name="row">
       <xsl:value-of select="count(preceding-sibling::tr) + 1"/>
     </xsl:variable>
     <xsl:for-each select="td|th">
       <xsl:call-template name="cell">
+        <xsl:with-param name="source" select="$source"/>
         <xsl:with-param name="row" select="$row"/>
         <!-- * pass on the element name so we can select the appropriate -->
         <!-- * roff font for styling the cell contents -->
@@ -334,7 +349,8 @@
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:template name="cell" mode="cell.list">
+  <xsl:template name="cell">
+    <xsl:param name="source"/>
     <xsl:param name="row"/>
     <xsl:param name="class"/>
     <xsl:param name="slot">
@@ -356,8 +372,14 @@
           >
       <xsl:choose>
         <xsl:when test=".//tr">
-          <xsl:message
-              >Warn: Extracted a nested table.</xsl:message>
+          <xsl:call-template name="log.message">
+            <xsl:with-param name="level">Warn</xsl:with-param>
+            <xsl:with-param name="source" select="$source"/>
+            <xsl:with-param name="message">
+              <xsl:text
+              >tbl convert : Extracted a nested table</xsl:text>
+            </xsl:with-param>
+          </xsl:call-template>
           <xsl:text>[\fInested&#160;table\fR]*&#10;</xsl:text>
         </xsl:when>
         <xsl:otherwise>
