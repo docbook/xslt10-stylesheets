@@ -14,7 +14,7 @@ $Id$
 <!-- productVersion --> <productnumber>4.5</productnumber>
 <!-- artifactType       spec; what else? :-) -->
 <!-- stage -->          <releaseinfo role="stage">cs</releaseinfo>
-<!-- revision -->       <pubsnumber>01</pubsnumber>
+<!-- revision -->       <pubsnumber>02</pubsnumber>
 <!-- language           en; see /article/@xml:lang -->
 <!-- form               xml -->
 
@@ -33,7 +33,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>2006-03-09</pubdate>
+<pubdate>2006-04-14</pubdate>
 
 <copyright>
 <year>2001</year>
@@ -59,7 +59,7 @@ no backwards-incompatible changes.</para>
 
 <legalnotice role="status">
 <para>This &standard; was
-<ulink url="http://www.oasis-open.org/committees/ballot.php?id=939">approved</ulink>
+<ulink url="http://www.oasis-open.org/committees/ballot.php?id=994">approved</ulink>
 for publication by the
 OASIS DocBook Technical Committee. It represents the
 consensus of the committee.
