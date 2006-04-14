@@ -1995,4 +1995,68 @@ engine does not support it.
     </xsl:choose>
   </xsl:template>
 
+<!-- ===================================== -->
+
+<doc:template name="log.message" xmlns="">
+  <refpurpose>Logs/emits formatted notes and warnings</refpurpose>
+
+  <refdescription>
+    <para>The <function>log.message</function> function is a utility
+    function for logging/emitting formatted messages&#xa0;– that is,
+    notes and warnings, along with a given log "level" and an
+    identifier for the "source" that the message relates to.</para>
+  </refdescription>
+
+  <refparameter>
+    <variablelist>
+      <varlistentry>
+        <term>level</term>
+        <listitem>
+          <para>Text to indicate the message level
+          (<literal>Note</literal> or
+          <literal>Warning</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>source</term>
+        <listitem>
+          <para>Text to identify source element the
+          notification/warning relates to</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>message</term>
+        <listitem>
+          <para>Message to lot/emit</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>message-width</term>
+        <listitem>
+          <para>Expected maximum message width</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refreturn>
+  <para>Outputs a message (generally, to standard error).</para></refreturn>
+</doc:template>
+
+<xsl:template name="log.message">
+  <xsl:param name="level"/>
+  <xsl:param name="source"/>
+  <xsl:param name="message"/>
+  <xsl:param name="message-width">50</xsl:param>
+  <xsl:message><xsl:value-of
+  select="$level"/><xsl:text>: </xsl:text><xsl:value-of
+  select="$message"/><xsl:call-template
+  name="copy-string">
+  <xsl:with-param name="string" select="'&#x20;'"/>
+  <xsl:with-param
+      name="count"
+      select="$message-width - string-length($message)"/>
+  </xsl:call-template><xsl:value-of
+  select="$source"/></xsl:message>
+</xsl:template>
+
 </xsl:stylesheet>
