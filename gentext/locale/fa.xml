@@ -22,8 +22,8 @@
   <gentext key="appendix" text="پيوست"/>
   <gentext key="Article" text="مقاله"/>
   <gentext key="article" text="مقاله"/>
-  <gentext key="Bibliography" text="كتاب شناسي"/>
-  <gentext key="bibliography" text="كتاب شناسي"/>
+  <gentext key="Bibliography" text="كتاب‌شناسی"/>
+  <gentext key="bibliography" text="كتاب‌شناسی"/>
   <gentext key="Book" text="كتاب"/>
   <gentext key="book" text="كتاب"/>
   <gentext key="CAUTION" text="احتياط"/>
@@ -31,8 +31,8 @@
   <gentext key="caution" text="احتياط"/>
   <gentext key="Chapter" text="فصل"/>
   <gentext key="chapter" text="فصل"/>
-  <gentext key="Colophon" text="در باره ی نشريه"/>
-  <gentext key="colophon" text="در باره ی نشريه"/>
+  <gentext key="Colophon" text="درباره‌ی نشريه"/>
+  <gentext key="colophon" text="درباره‌ی نشريه"/>
   <gentext key="Copyright" text="حق طبع ونشر"/>
   <gentext key="copyright" text="حق طبع ونشر"/>
   <gentext key="Dedication" text="اهداء"/>
@@ -45,8 +45,8 @@
   <gentext key="example" text="مثال"/>
   <gentext key="Figure" text="شكل"/>
   <gentext key="figure" text="شكل"/>
-  <gentext key="Glossary" text="واژه نامه"/>
-  <gentext key="glossary" text="واژه نامه"/>
+  <gentext key="Glossary" text="واژه‌نامه"/>
+  <gentext key="glossary" text="واژه‌نامه"/>
   <gentext key="GlossSee" text="ببیند"/>
   <gentext key="glosssee" text="ببیند"/>
   <gentext key="GlossSeeAlso" text="همچنین ببیند"/>
@@ -62,15 +62,15 @@
   <gentext key="legalnotice" text="اخطار قانونی"/>
   <gentext key="MsgAud" text="شنودگان"/>
   <gentext key="msgaud" text="شنودگان"/>
-  <gentext key="MsgLevel" text="سطح"/>
-  <gentext key="msglevel" text="سطح"/>
+  <gentext key="MsgLevel" text="سطح پیام"/>
+  <gentext key="msglevel" text="سطح پیام"/>
   <gentext key="MsgOrig" text="اصل"/>
   <gentext key="msgorig" text="اصل"/>
   <gentext key="NOTE" text="ياداشت"/>
   <gentext key="Note" text="ياداشت"/>
   <gentext key="note" text="ياداشت"/>
-  <gentext key="Part" text="قسمت"/>
-  <gentext key="part" text="قسمت"/>
+  <gentext key="Part" text="بخش"/>
+  <gentext key="part" text="بخش"/>
   <gentext key="Preface" text="ديباچه"/>
   <gentext key="preface" text="ديباچه"/>
   <gentext key="Procedure" text="رويه"/>
@@ -78,33 +78,33 @@
   <gentext key="ProductionSet" text="توليد"/>
   <gentext key="PubDate" text="تاریخ انتشار"/>
   <gentext key="pubdate" text="تاریخ انتشار"/>
-  <gentext key="Published" text="منتشر شد"/>
-  <gentext key="published" text="منتشر شد"/>
-  <gentext key="Qandadiv" text="پرسش و پاسخ"/>
+  <gentext key="Published" text="منتشر‌شده"/>
+  <gentext key="published" text="منتشر‌شده"/>
+  <gentext key="Qandadiv" text="پرسش و‌ پاسخ"/>
   <gentext key="qandadiv" text="پرسش و پاسخ"/>
   <gentext key="Question" text=":پرسش"/>
   <gentext key="question" text=":پرسش"/>
-  <gentext key="RefEntry" text=""/>
-  <gentext key="refentry" text=""/>
+  <gentext key="RefEntry" text="فقره"/>
+  <gentext key="refentry" text="فقره"/>
   <gentext key="Reference" text="ارجاع"/>
   <gentext key="reference" text="ارجاع"/>
   <gentext key="RefName" text="نام"/>
   <gentext key="refname" text="نام"/>
-  <gentext key="RefSection" text=""/>
-  <gentext key="refsection" text=""/>
+  <gentext key="RefSection" text="قسمت"/>
+  <gentext key="refsection" text="قسمت"/>
   <gentext key="RefSynopsisDiv" text="مختصر"/>
   <gentext key="refsynopsisdiv" text="مختصر"/>
-  <gentext key="RevHistory" text="تاريخ باز بيني"/>
-  <gentext key="revhistory" text="تاريخ باز بيني"/>
-  <gentext key="revision" text="باز بيني"/>
-  <gentext key="Revision" text="باز بيني"/>
-  <gentext key="sect1" text="بخش"/>
-  <gentext key="sect2" text="بخش"/>
-  <gentext key="sect3" text="بخش"/>
-  <gentext key="sect4" text="بخش"/>
-  <gentext key="sect5" text="بخش"/>
-  <gentext key="section" text="بخش"/>
-  <gentext key="Section" text="بخش"/>
+  <gentext key="RevHistory" text="تاريخ بازبينی"/>
+  <gentext key="revhistory" text="تاريخ بازبينی"/>
+  <gentext key="revision" text="بازبينی"/>
+  <gentext key="Revision" text="باز بينی"/>
+  <gentext key="sect1" text="قسمت"/>
+  <gentext key="sect2" text="قسمت"/>
+  <gentext key="sect3" text="قسمت"/>
+  <gentext key="sect4" text="قسمت"/>
+  <gentext key="sect5" text="قسمت"/>
+  <gentext key="section" text="قسمت"/>
+  <gentext key="Section" text="قسمت"/>
   <gentext key="see" text="ببیند"/>
   <!-- uncapitalized -->
   <gentext key="See" text="ببیند"/>
@@ -116,21 +116,21 @@
   <gentext key="Set" text="مجموعه"/>
   <gentext key="setindex" text="راهنمای مجموعه"/>
   <gentext key="SetIndex" text="راهنمای مجموعه"/>
-  <gentext key="Sidebar" text=""/>
-  <gentext key="sidebar" text="نوار جانبی"/>
+  <gentext key="Sidebar" text="نوار کناری"/>
+  <gentext key="sidebar" text="نوار کناری"/>
   <gentext key="step" text="گام"/>
   <gentext key="Step" text="گام"/>
   <gentext key="Table" text="جدول"/>
   <gentext key="table" text="جدول"/>
-  <gentext key="tip" text="نکله"/>
-  <gentext key="TIP" text="نکله"/>
-  <gentext key="Tip" text="نکله"/>
+  <gentext key="tip" text="نکته"/>
+  <gentext key="TIP" text="نکته"/>
+  <gentext key="Tip" text="نکته"/>
   <gentext key="Warning" text="هشدار"/>
   <gentext key="warning" text="هشدار"/>
   <gentext key="WARNING" text="هشدار"/>
   <gentext key="and" text="و"/>
   <gentext key="by" text="توسط"/>
-  <gentext key="called" text="فرا خوانده"/>
+  <gentext key="called" text="بنام"/>
   <gentext key="Edited" text="ویرایش شده"/>
   <gentext key="edited" text="ویرایش شده"/>
   <gentext key="Editedby" text="ویرایستار"/>
@@ -139,19 +139,19 @@
   <gentext key="lastlistcomma" text="،"/>
   <gentext key="listcomma" text="،"/>
   <gentext key="nonexistantelement" text="عنصر ناموجود"/>
-  <gentext key="notes" text="ياداشت ها"/>
-  <gentext key="Notes" text="ياداشت ها"/>
+  <gentext key="notes" text="ياداشت‌ها"/>
+  <gentext key="Notes" text="ياداشت‌ها"/>
   <gentext key="Pgs" text="صفحه"/>
   <gentext key="pgs" text="صفحه"/>
-  <gentext key="Revisedby" text=" :باز بيني شده بوسیله ی"/>
-  <gentext key="revisedby" text=" :باز بيني شده بوسیله ی"/>
-  <gentext key="TableNotes" text="ياداشت ها"/>
-  <gentext key="tablenotes" text="ياداشت ها"/>
+  <gentext key="Revisedby" text=" :بازبينی شده بوسیله‌ی"/>
+  <gentext key="revisedby" text=" :بازبينس شده بوسیله‌ی"/>
+  <gentext key="TableNotes" text="ياداشت‌ها"/>
+  <gentext key="tablenotes" text="ياداشت‌ها"/>
   <gentext key="TableofContents" text="فهرست"/>
   <gentext key="tableofcontents" text="فهرست"/>
   <gentext key="the" text=""/>
-  <gentext key="unexpectedelementname" text="اسم عنصر غيرمنتظره"/>
-  <gentext key="unsupported" text="پشتيباني نشده"/>
+  <gentext key="unexpectedelementname" text="نام عنصرغيرمنتظره"/>
+  <gentext key="unsupported" text="پشتيبانی نشده"/>
   <gentext key="xrefto" text="ارجاع به"/>
   <gentext key="listofequations" text="فهرست معادلات"/>
   <gentext key="ListofEquations" text="فهرست معادلات"/>
@@ -159,24 +159,24 @@
   <gentext key="listofexamples" text="فهرست امثال"/>
   <gentext key="ListofFigures" text="فهرست اشکال"/>
   <gentext key="listoffigures" text="فهرست اشکال"/>
-  <gentext key="ListofProcedures" text="فهرست روند ها"/>
-  <gentext key="listofprocedures" text="فهرست روند ها"/>
-  <gentext key="listoftables" text="فهرست جدول ها"/>
-  <gentext key="ListofTables" text="فهرست جدول ها"/>
-  <gentext key="ListofUnknown" text="فهرست نادانسته ها"/>
-  <gentext key="listofunknown" text="فهرست نادانسته ها"/>
+  <gentext key="ListofProcedures" text="فهرست روند‌ها"/>
+  <gentext key="listofprocedures" text="فهرست روند‌ها"/>
+  <gentext key="listoftables" text="فهرست جدول‌ها"/>
+  <gentext key="ListofTables" text="فهرست جدول‌ها"/>
+  <gentext key="ListofUnknown" text="فهرست نادانسته‌ها"/>
+  <gentext key="listofunknown" text="فهرست نادانسته‌ها"/>
   <gentext key="nav-home" text="خانه"/>
-  <gentext key="nav-next" text="بعد"/>
-  <gentext key="nav-next-sibling" text="هم نيای بعدی"/>
-  <gentext key="nav-prev" text="قبلي"/>
-  <gentext key="nav-prev-sibling" text="هم نيای قبلي"/>
+  <gentext key="nav-next" text="بعدی"/>
+  <gentext key="nav-next-sibling" text="هم‌نيای بعدی"/>
+  <gentext key="nav-prev" text="قبلی"/>
+  <gentext key="nav-prev-sibling" text="هم‌نيای قبلی"/>
   <gentext key="nav-up" text="بالا"/>
   <gentext key="nav-toc" text="فهرست"/>
-  <gentext key="Draft" text="پيش نويس"/>
-  <gentext key="above" text="در بالا"/>
-  <gentext key="below" text="در پایین"/>
+  <gentext key="Draft" text="پيش‌نويس"/>
+  <gentext key="above" text="در‌بالا"/>
+  <gentext key="below" text="در‌پایین"/>
   <gentext key="sectioncalled" text="بخشی بنام"/>
-  <gentext key="index symbols" text="نماد ها"/>
+  <gentext key="index symbols" text="سمبل‌های راهنما"/>
   <gentext key="lowercase.alpha" text="ا ب پ ت ث ج چ ح خ د ذ ر ز ژس ش ص ض ع غ ف ق ک گ ل م ن و ه ی"/>
   <gentext key="uppercase.alpha" text="ا ب پ ت ث ج چ ح خ د ذ ر ز ژس ش ص ض ع غ ف ق ک گ ل م ن و ه ی"/>
   <dingbat key="startquote" text="&#x201C;"/>
@@ -417,13 +417,13 @@
     <template name="varlistentry">%n</template>
     <template name="warning">%t</template>
     <template name="olink.document.citation"> in %o</template>
-    <template name="olink.page.citation"> (page %p)</template>
+    <template name="olink.page.citation"> (%p صفحه‌ی)</template>
     <template name="page.citation"> [%p]</template>
-    <template name="page">(page %p)</template>
-    <template name="docname"> in %o</template>
-    <template name="docnamelong"> in the document titled %o</template>
-    <template name="pageabbrev">(p. %p)</template>
-    <template name="Page">Page %p</template>
+    <template name="page">(%p صفحه‌ی)</template>
+    <template name="docname"> %oدر </template>
+    <template name="docnamelong">%o در مستندی بنام </template>
+    <template name="pageabbrev">(%p ص)</template>
+    <template name="Page">%p صفحه‌ی</template>
     <template name="bridgehead">
       <sectioncalled/>
       <startquote/>%t<endquote/>
@@ -599,8 +599,8 @@
     </template>
   </context>
   <context name="glossary">
-    <template name="see"><GlossSee/> %t</template>
-    <template name="seealso"><GlossSeeAlso/> %t</template>
+    <template name="see"> %t <GlossSee/></template>
+    <template name="seealso">%t <GlossSeeAlso/></template>
   </context>
   <context name="msgset">
     <template name="MsgAud">
@@ -619,20 +619,20 @@
     <template name="March">مارس</template>
     <template name="April">اوريل</template>
     <template name="May">مه</template>
-    <template name="June">ژوءن</template>
-    <template name="July">ژوءيه</template>
+    <template name="June">ژوئن</template>
+    <template name="July">ژوئیه</template>
     <template name="August">اوت</template>
     <template name="September">سپتامبر</template>
     <template name="October">اكتبر</template>
     <template name="November">نوامبر</template>
     <template name="December">دسامبر</template>
+    <template name="Saturday">شنبه</template>
+    <template name="Sunday">يك‌شنبه</template>
     <template name="Monday">دوشنبه</template>
     <template name="Tuesday">سه شنبه</template>
-    <template name="Wednesday">چهار شنبه</template>
-    <template name="Thursday">پنج شنبه</template>
+    <template name="Wednesday">چهار‌شنبه</template>
+    <template name="Thursday">پنج‌شنبه</template>
     <template name="Friday">جمعه</template>
-    <template name="Saturday">شنبه</template>
-    <template name="Sunday">يكشنبه</template>
   </context>
   <context name="datetime-abbrev">
     <template name="Jan">ژانويه</template>
@@ -640,20 +640,20 @@
     <template name="Mar">مارس</template>
     <template name="Apr">اوريل</template>
     <template name="May">مه</template>
-    <template name="Jun">ژوءن</template>
-    <template name="Jul">ژوءيه</template>
+    <template name="Jun">ژوئن</template>
+    <template name="Jul">ژوئيه</template>
     <template name="Aug">اوت</template>
     <template name="Sep">سپتامبر</template>
     <template name="Oct">اكتبر</template>
     <template name="Nov">نوامبر</template>
     <template name="Dec">دسامبر</template>
-    <template name="Mon">دوشنبه</template>
-    <template name="Tue">سه شنبه</template>
-    <template name="Wed">چهار شنبه</template>
-    <template name="Thu">پنج شنبه</template>
-    <template name="Fri">جمعه</template>
     <template name="Sat">شنبه</template>
-    <template name="Sun">يكشنبه</template>
+    <template name="Sun">يك‌شنبه</template>
+    <template name="Mon">دو‌شنبه</template>
+    <template name="Tue">سه‌شنبه</template>
+    <template name="Wed">چهار‌شنبه</template>
+    <template name="Thu">پنج‌شنبه</template>
+    <template name="Fri">جمعه</template>
   </context>
   <context name="htmlhelp">
     <template name="langcode">0x0429 Farsi</template>
