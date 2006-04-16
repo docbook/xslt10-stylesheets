@@ -276,6 +276,7 @@
   <para>Returns a string representing a section number.</para></refreturn>
 </doc:template>
 <xsl:template name="get.refentry.section">
+  <xsl:param name="refname"/>
   <xsl:param name="quiet" select="0"/>
   <xsl:choose>
     <xsl:when test="refmeta/manvolnum">
@@ -355,6 +356,7 @@
 </doc:template>
 
 <xsl:template name="get.refentry.date">
+  <xsl:param name="refname"/>
   <xsl:param name="info"/>
   <xsl:param name="prefs"/>
   <xsl:variable name="Date">
@@ -521,6 +523,7 @@
 </doc:template>
 
 <xsl:template name="get.refentry.source">
+  <xsl:param name="refname"/>
   <xsl:param name="info"/>
   <xsl:param name="prefs"/>
   <xsl:variable name="Name">
@@ -639,6 +642,7 @@
 </doc:template>
 
 <xsl:template name="get.refentry.source.name">
+  <xsl:param name="refname"/>
   <xsl:param name="info"/>
   <xsl:param name="prefs"/>
   <xsl:choose>
@@ -807,6 +811,7 @@
 </doc:template>
 
 <xsl:template name="get.refentry.version">
+  <xsl:param name="refname"/>
   <xsl:param name="info"/>
   <xsl:param name="prefs"/>
   <xsl:choose>
@@ -974,6 +979,7 @@
   <refreturn><para>Returns a <tag>manual</tag> node.</para></refreturn>
 </doc:template>
 <xsl:template name="get.refentry.manual">
+  <xsl:param name="refname"/>
   <xsl:param name="info"/>
   <xsl:param name="prefs"/>
   <xsl:variable name="Manual">
