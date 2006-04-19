@@ -58,12 +58,18 @@
   <xsl:call-template name="semiformal.object"/>
 </xsl:template>
 
+<xsl:template match="tasksummary/title"/>
+
 <xsl:template match="taskprerequisites">
   <xsl:call-template name="semiformal.object"/>
 </xsl:template>
 
+<xsl:template match="taskprerequisites/title"/>
+
 <xsl:template match="taskrelated">
   <xsl:call-template name="semiformal.object"/>
 </xsl:template>
+
+<xsl:template match="taskrelated/title"/>
 
 </xsl:stylesheet>
