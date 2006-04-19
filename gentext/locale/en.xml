@@ -291,6 +291,9 @@
 <template name="step">%t</template>
 <template name="table"><Table/>&#160;%n.&#160;%t</template>
 <template name="task">%t</template>
+<template name="tasksummary">%t</template>
+<template name="taskprerequisites">%t</template>
+<template name="taskrelated">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
