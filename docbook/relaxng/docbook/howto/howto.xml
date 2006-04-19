@@ -1630,14 +1630,14 @@ elements in the namespace.</para>
 <para>Your own version identifiers should use the following syntax in
 order to record their DocBook derivation:</para>
 
-<programlisting><replaceable>base_version</replaceable> [Subset|Extension|Variant]? [<replaceable>name</replaceable> [<replaceable>version</replaceable>]]+</programlisting>
+<programlisting><replaceable>base_version</replaceable>-[subset|extension|variant] [<replaceable>name</replaceable>[-<replaceable>version</replaceable>]?]+</programlisting>
 
 <para>For example:</para>
 
-<programlisting>5.0 Subset Simplified 1.0
-5.0 Variant ASMBook
-5.0 ASMBook 2006
-5.0 Extension MathML 2.0 SVG 1.1</programlisting>
+<programlisting>5.0-subset simplified-1.0
+5.0-variant ASMBook
+5.0-variant ASMBook-2006
+5.0-extension MathML-2.0 SVG-1.1</programlisting>
 
 <para>The first part of version identifier is a version number of the
 DocBook schema from which you derived your customization.</para>
