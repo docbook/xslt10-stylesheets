@@ -116,7 +116,7 @@
     <xsl:when test="local-name($node)='part'">1</xsl:when>
     <xsl:when test="local-name($node)='reference'">1</xsl:when>
     <xsl:when test="local-name($node)='refentry'">1</xsl:when>
-    <xsl:when test="local-name($node)='index' and $generate.index != 0
+    <xsl:when test="local-name($node)='index' and ($generate.index != 0 or count($node/*) > 0)
                     and (local-name($node/parent::*) = 'article'
                     or local-name($node/parent::*) = 'book'
                     or local-name($node/parent::*) = 'part'
