@@ -54,7 +54,10 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:if test="position()>1"><xsl:value-of select="$sepchar"/></xsl:if>
+
+  <xsl:if test="preceding-sibling::*">
+    <xsl:value-of select="$sepchar"/>
+  </xsl:if>
   <xsl:choose>
     <xsl:when test="$choice='plain'">
       <xsl:value-of select="$arg.choice.plain.open.str"/>
@@ -100,7 +103,9 @@
 <xsl:template match="group/arg">
   <xsl:variable name="choice" select="@choice"/>
   <xsl:variable name="rep" select="@rep"/>
-  <xsl:if test="position()>1"><xsl:value-of select="$arg.or.sep"/></xsl:if>
+  <xsl:if test="preceding-sibling::*">
+    <xsl:value-of select="$arg.or.sep"/>
+  </xsl:if>
   <xsl:call-template name="group-or-arg"/>
 </xsl:template>
 
@@ -316,7 +321,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
       </td>
       <xsl:apply-templates select="(void|varargs|paramdef)[1]" mode="kr-tabular"/>
     </tr>
-    <xsl:for-each select="(void|varargs|paramdef)[position() &gt; 1]">
+    <xsl:for-each select="(void|varargs|paramdef)[preceding-sibling::*]">
       <tr>
         <td>&#160;</td>
         <xsl:apply-templates select="." mode="kr-tabular"/>
@@ -413,7 +418,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
         </td>
         <td>
 	  <code>
-	    <xsl:apply-templates select="type/following-sibling::node()"
+	    <xsl:apply-templates select="type/following-sibling::*"
 				 mode="kr-tabular-funcsynopsis-mode"/>
 	  </code>
         </td>
@@ -430,7 +435,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
       <xsl:otherwise>
         <td>
 	  <code>
-	    <xsl:apply-templates select="parameter/preceding-sibling::node()[not(self::parameter)]"
+	    <xsl:apply-templates select="parameter/preceding-sibling::*[not(self::parameter)]"
 				 mode="kr-tabular-funcsynopsis-mode"/>
 	  </code>
           <xsl:text>&#160;</xsl:text>
@@ -439,7 +444,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 	  <code>
 	    <xsl:apply-templates select="parameter"
 				 mode="kr-tabular"/>
-	    <xsl:apply-templates select="parameter/following-sibling::node()[not(self::parameter)]"
+	    <xsl:apply-templates select="parameter/following-sibling::*[not(self::parameter)]"
 				 mode="kr-tabular-funcsynopsis-mode"/>
 	    <xsl:text>;</xsl:text>
 	  </code>
@@ -557,7 +562,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
       </td>
       <xsl:apply-templates select="(void|varargs|paramdef)[1]" mode="ansi-tabular"/>
     </tr>
-    <xsl:for-each select="(void|varargs|paramdef)[position() &gt; 1]">
+    <xsl:for-each select="(void|varargs|paramdef)[preceding-sibling::*]">
       <tr>
         <td>&#160;</td>
         <xsl:apply-templates select="." mode="ansi-tabular"/>
@@ -609,7 +614,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
         <xsl:text>&#160;</xsl:text>
       </td>
       <td>
-        <xsl:apply-templates select="type/following-sibling::node()"
+        <xsl:apply-templates select="type/following-sibling::*"
                              mode="ansi-tabular"/>
         <xsl:choose>
           <xsl:when test="following-sibling::*">
@@ -624,14 +629,14 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
     </xsl:when>
     <xsl:otherwise>
       <td>
-        <xsl:apply-templates select="parameter/preceding-sibling::node()[not(self::parameter)]"
+        <xsl:apply-templates select="parameter/preceding-sibling::*[not(self::parameter)]"
                              mode="ansi-tabular"/>
         <xsl:text>&#160;</xsl:text>
       </td>
       <td>
         <xsl:apply-templates select="parameter"
                              mode="ansi-tabular"/>
-        <xsl:apply-templates select="parameter/following-sibling::node()[not(self::parameter)]"
+        <xsl:apply-templates select="parameter/following-sibling::*[not(self::parameter)]"
                              mode="ansi-tabular"/>
         <xsl:choose>
           <xsl:when test="following-sibling::*">
@@ -732,9 +737,9 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 <xsl:template match="classsynopsis" mode="java">
   <pre class="{name(.)}">
     <xsl:apply-templates select="ooclass[1]" mode="java"/>
-    <xsl:if test="ooclass[position() &gt; 1]">
+    <xsl:if test="ooclass[preceding-sibling::*]">
       <xsl:text> extends</xsl:text>
-      <xsl:apply-templates select="ooclass[position() &gt; 1]" mode="java"/>
+      <xsl:apply-templates select="ooclass[preceding-sibling::*]" mode="java"/>
       <xsl:if test="oointerface|ooexception">
         <br/>
 	<xsl:text>&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
@@ -769,7 +774,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 
 <xsl:template match="ooclass|oointerface|ooexception" mode="java">
   <xsl:choose>
-    <xsl:when test="position() &gt; 1">
+    <xsl:when test="preceding-sibling::*">
       <xsl:text>, </xsl:text>
     </xsl:when>
     <xsl:otherwise>
@@ -863,7 +868,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 
 <xsl:template match="methodparam" mode="java">
   <xsl:param name="indent">0</xsl:param>
-  <xsl:if test="position() &gt; 1">
+  <xsl:if test="preceding-sibling::*">
     <xsl:text>,</xsl:text>
     <br/>
     <xsl:if test="$indent &gt; 0">
@@ -929,9 +934,9 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 <xsl:template match="classsynopsis" mode="cpp">
   <pre class="{name(.)}">
     <xsl:apply-templates select="ooclass[1]" mode="cpp"/>
-    <xsl:if test="ooclass[position() &gt; 1]">
+    <xsl:if test="ooclass[preceding-sibling::*]">
       <xsl:text>: </xsl:text>
-      <xsl:apply-templates select="ooclass[position() &gt; 1]" mode="cpp"/>
+      <xsl:apply-templates select="ooclass[preceding-sibling::*]" mode="cpp"/>
       <xsl:if test="oointerface|ooexception">
         <br/>
 	<xsl:text>&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
@@ -965,7 +970,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="ooclass|oointerface|ooexception" mode="cpp">
-  <xsl:if test="position() &gt; 1">
+  <xsl:if test="preceding-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <span class="{name(.)}">
@@ -1054,7 +1059,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="methodparam" mode="cpp">
-  <xsl:if test="position() &gt; 1">
+  <xsl:if test="preceding-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <span class="{name(.)}">
@@ -1109,9 +1114,9 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
   <pre class="{name(.)}">
     <xsl:text>interface </xsl:text>
     <xsl:apply-templates select="ooclass[1]" mode="idl"/>
-    <xsl:if test="ooclass[position() &gt; 1]">
+    <xsl:if test="ooclass[preceding-sibling::*]">
       <xsl:text>: </xsl:text>
-      <xsl:apply-templates select="ooclass[position() &gt; 1]" mode="idl"/>
+      <xsl:apply-templates select="ooclass[preceding-sibling::*]" mode="idl"/>
       <xsl:if test="oointerface|ooexception">
         <br/>
 	<xsl:text>&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
@@ -1145,7 +1150,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="ooclass|oointerface|ooexception" mode="idl">
-  <xsl:if test="position() &gt; 1">
+  <xsl:if test="preceding-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <span class="{name(.)}">
@@ -1234,7 +1239,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="methodparam" mode="idl">
-  <xsl:if test="position() &gt; 1">
+  <xsl:if test="preceding-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <span class="{name(.)}">
@@ -1292,9 +1297,9 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
     <xsl:text>;</xsl:text>
     <br/>
 
-    <xsl:if test="ooclass[position() &gt; 1]">
+    <xsl:if test="ooclass[preceding-sibling::*]">
       <xsl:text>@ISA = (</xsl:text>
-      <xsl:apply-templates select="ooclass[position() &gt; 1]" mode="perl"/>
+      <xsl:apply-templates select="ooclass[preceding-sibling::*]" mode="perl"/>
       <xsl:text>);</xsl:text>
       <br/>
     </xsl:if>
@@ -1312,7 +1317,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="ooclass|oointerface|ooexception" mode="perl">
-  <xsl:if test="position() &gt; 1">
+  <xsl:if test="preceding-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <span class="{name(.)}">
@@ -1401,7 +1406,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="methodparam" mode="perl">
-  <xsl:if test="position() &gt; 1">
+  <xsl:if test="preceding-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <span class="{name(.)}">
