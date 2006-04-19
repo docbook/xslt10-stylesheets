@@ -52,7 +52,9 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:if test="position()>1"><xsl:value-of select="$sepchar"/></xsl:if>
+  <xsl:if test="preceding-sibling::*">
+    <xsl:value-of select="$sepchar"/>
+  </xsl:if>
   <xsl:choose>
     <xsl:when test="$choice='plain'">
       <xsl:value-of select="$arg.choice.plain.open.str"/>
@@ -98,7 +100,9 @@
 <xsl:template match="group/arg">
   <xsl:variable name="choice" select="@choice"/>
   <xsl:variable name="rep" select="@rep"/>
-  <xsl:if test="position()>1"><xsl:value-of select="$arg.or.sep"/></xsl:if>
+  <xsl:if test="preceding-sibling::*">
+    <xsl:value-of select="$arg.or.sep"/>
+  </xsl:if>
   <xsl:call-template name="group-or-arg"/>
 </xsl:template>
 
@@ -328,9 +332,9 @@
             linefeed-treatment="preserve"
             xsl:use-attribute-sets="monospace.verbatim.properties">
     <xsl:apply-templates select="ooclass[1]" mode="java"/>
-    <xsl:if test="ooclass[position() &gt; 1]">
+    <xsl:if test="ooclass[preceding-sibling::*]">
       <xsl:text> extends</xsl:text>
-      <xsl:apply-templates select="ooclass[position() &gt; 1]" mode="java"/>
+      <xsl:apply-templates select="ooclass[preceding-sibling::*]" mode="java"/>
       <xsl:if test="oointerface|ooexception">
         <xsl:text>&RE;&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
       </xsl:if>
@@ -362,7 +366,7 @@
 
 <xsl:template match="ooclass|oointerface|ooexception" mode="java">
   <xsl:choose>
-    <xsl:when test="position() &gt; 1">
+    <xsl:when test="preceding-sibling::*">
       <xsl:text>, </xsl:text>
     </xsl:when>
     <xsl:otherwise>
@@ -437,7 +441,7 @@
 
 <xsl:template match="methodparam" mode="java">
   <xsl:param name="indent">0</xsl:param>
-  <xsl:if test="position() &gt; 1">
+  <xsl:if test="preceding-sibling::*">
     <xsl:text>,&RE;</xsl:text>
     <xsl:if test="$indent &gt; 0">
       <xsl:call-template name="copy-string">
@@ -501,9 +505,9 @@
             linefeed-treatment="preserve"
             xsl:use-attribute-sets="monospace.verbatim.properties">
     <xsl:apply-templates select="ooclass[1]" mode="cpp"/>
-    <xsl:if test="ooclass[position() &gt; 1]">
+    <xsl:if test="ooclass[preceding-sibling::*]">
       <xsl:text>: </xsl:text>
-      <xsl:apply-templates select="ooclass[position() &gt; 1]" mode="cpp"/>
+      <xsl:apply-templates select="ooclass[preceding-sibling::*]" mode="cpp"/>
       <xsl:if test="oointerface|ooexception">
 	<xsl:text>&RE;&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
       </xsl:if>
@@ -534,7 +538,7 @@
 </xsl:template>
 
 <xsl:template match="ooclass|oointerface|ooexception" mode="cpp">
-  <xsl:if test="position() &gt; 1">
+  <xsl:if test="preceding-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <xsl:apply-templates mode="cpp"/>
@@ -604,7 +608,7 @@
 </xsl:template>
 
 <xsl:template match="methodparam" mode="cpp">
-  <xsl:if test="position() &gt; 1">
+  <xsl:if test="preceding-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <xsl:apply-templates mode="cpp"/>
@@ -658,9 +662,9 @@
             xsl:use-attribute-sets="monospace.verbatim.properties">
     <xsl:text>interface </xsl:text>
     <xsl:apply-templates select="ooclass[1]" mode="idl"/>
-    <xsl:if test="ooclass[position() &gt; 1]">
+    <xsl:if test="ooclass[preceding-sibling::*]">
       <xsl:text>: </xsl:text>
-      <xsl:apply-templates select="ooclass[position() &gt; 1]" mode="idl"/>
+      <xsl:apply-templates select="ooclass[preceding-sibling::*]" mode="idl"/>
       <xsl:if test="oointerface|ooexception">
 	<xsl:text>&RE;&nbsp;&nbsp;&nbsp;&nbsp;</xsl:text>
       </xsl:if>
@@ -691,7 +695,7 @@
 </xsl:template>
 
 <xsl:template match="ooclass|oointerface|ooexception" mode="idl">
-  <xsl:if test="position() &gt; 1">
+  <xsl:if test="preceding-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <xsl:apply-templates mode="idl"/>
@@ -761,7 +765,7 @@
 </xsl:template>
 
 <xsl:template match="methodparam" mode="idl">
-  <xsl:if test="position() &gt; 1">
+  <xsl:if test="preceding-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <xsl:apply-templates mode="idl"/>
@@ -818,9 +822,9 @@
     <xsl:apply-templates select="ooclass[1]" mode="perl"/>
     <xsl:text>;&RE;</xsl:text>
 
-    <xsl:if test="ooclass[position() &gt; 1]">
+    <xsl:if test="ooclass[preceding-sibling::*]">
       <xsl:text>@ISA = (</xsl:text>
-      <xsl:apply-templates select="ooclass[position() &gt; 1]" mode="perl"/>
+      <xsl:apply-templates select="ooclass[preceding-sibling::*]" mode="perl"/>
       <xsl:text>);&RE;</xsl:text>
     </xsl:if>
 
@@ -837,7 +841,7 @@
 </xsl:template>
 
 <xsl:template match="ooclass|oointerface|ooexception" mode="perl">
-  <xsl:if test="position() &gt; 1">
+  <xsl:if test="preceding-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <xsl:apply-templates mode="perl"/>
@@ -907,7 +911,7 @@
 </xsl:template>
 
 <xsl:template match="methodparam" mode="perl">
-  <xsl:if test="position() &gt; 1">
+  <xsl:if test="preceding-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <xsl:apply-templates mode="perl"/>
