@@ -157,7 +157,7 @@ MAN_PARAMS =
 # DBX_PARAMS="-p doc.publisher.show 1 -p term.breakline 1...
 DBX_PARAMS=
 
-# What file extension to you use for DocBook source files?
+# What file extension do you use for DocBook source files?
 DOCBOOK_FILE_EXTENSION = .xml
 
 # -----------------------------------------------------------------
@@ -377,13 +377,13 @@ info: $(FILES_INFO)
 # use the "debug" target to echo variables, etc., to
 # test/troubleshoot changes you make to this makefile
 debug:
-	echo $(DIRS_MAN)
+	@echo $(DIRS_MAN)
 
 # -----------------------------------------------------------------
 #     pattern rule for making HTML and plain-text output
 # -----------------------------------------------------------------
 %.html: %.xml
-	echo '$(HTML_CUSTOM)' | $(XSLT) $(XSLT_FLAGS) $(HTML_PARAMS) - $< > $@
+	@echo '$(HTML_CUSTOM)' | $(XSLT) $(XSLT_FLAGS) $(HTML_PARAMS) - $< > $@
 
 %.txt: %.html
 	$(TXT_MAKER) $(TXT_MAKER_FLAGS) ./$< \
@@ -401,7 +401,7 @@ endif
 #     pattern rule for making chunked HTML pages
 # -----------------------------------------------------------------
 %.$(HTML_MANIFEST_EXT): %.xml
-	echo '$(CHNK_CUSTOM)' | $(XSLT) $(XSLT_FLAGS) $(HTML_PARAMS) \
+	@echo '$(CHNK_CUSTOM)' | $(XSLT) $(XSLT_FLAGS) $(HTML_PARAMS) \
 	--stringparam manifest $@  \
 	--stringparam base.dir $(basename $@)$(BASEDIR_SUFFIX)/  \
 	- $< 
@@ -410,7 +410,7 @@ endif
 #     pattern rules for making FO and PDF stuff
 # -----------------------------------------------------------------
 %.fo: %.xml
-	echo '$(FO_CUSTOM)' \
+	@echo '$(FO_CUSTOM)' \
 	  | $(XSLT) $(XSLT_FLAGS) $(FO_PARAMS) - $< > $@
 
 ifeq ($(PDF_MAKER),dblatex)
