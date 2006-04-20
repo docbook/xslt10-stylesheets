@@ -1004,7 +1004,7 @@
         <xsl:apply-templates/>
         <xsl:text>/&gt;</xsl:text>
       </xsl:when>
-      <xsl:when test="$class='sgmlcomment'">
+      <xsl:when test="$class='sgmlcomment' or $class='comment'">
         <xsl:text>&lt;!--</xsl:text>
         <xsl:apply-templates/>
         <xsl:text>--&gt;</xsl:text>
