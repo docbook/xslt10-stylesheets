@@ -883,7 +883,7 @@
         </xsl:with-param>
       </xsl:call-template>
     </xsl:when>
-    <xsl:when test="$class='sgmlcomment'">
+    <xsl:when test="$class='sgmlcomment' or $class='comment'">
       <xsl:call-template name="inline.monoseq">
         <xsl:with-param name="content">
           <xsl:text>&lt;!--</xsl:text>
