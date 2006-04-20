@@ -1643,12 +1643,11 @@ order to record their DocBook derivation:</para>
 DocBook schema from which you derived your customization.</para>
 
 <para>If your schema is a proper subset, you can advertise this status
-by using the <literal>Subset</literal> keyword in the description. If
+by using the <literal>subset</literal> keyword in the description. If
 your schema contains any markup model extensions, you can advertise
-this status by using the <literal>Extension</literal> keyword. If
+this status by using the <literal>extension</literal> keyword. If
 you'd rather not characterize your variant specifically as a subset or
-an extension, you can leave out this field entirely, or, if you
-prefer, use the <literal>Variant</literal> keyword.</para>
+an extension, use the <literal>variant</literal> keyword.</para>
 
 <para>After these keywords you can place whitespace separated list of
 customization identifiers. Each name can be optionally followed by its
