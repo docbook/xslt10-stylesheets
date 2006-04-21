@@ -153,49 +153,12 @@
                 and $userlevel.ok and $vendor.ok and $attribute.ok">
     <xsl:copy>
       <xsl:copy-of select="@*"/>
-      <!-- Fix base URI of some elements -->
-      <xsl:if test="$profile.baseuri.fixup and (self::textdata or self::imagedata or self::videodata or self::audiodata or self::inlinegraphic or self::graphic) and not(@xml:base)">
-	<xsl:choose>
-	  <xsl:when test="@fileref
-			  and not(contains(@fileref,':'))
-			  and not(starts-with(@fileref,'/'))
-			  and function-available('saxon:systemId')">
-	    <xsl:attribute name="xml:base">
-	      <xsl:call-template name="systemIdToBaseURI">
-		<xsl:with-param name="systemId">
-		  <xsl:choose>
-		    <!-- file: seems to confuse some processors. -->
-		    <xsl:when test="starts-with(saxon:systemId(), 'file:/') and substring(saxon:systemId(), 7, 2) != '//'">
-		      <xsl:value-of select="concat('file:///', substring-after(saxon:systemId(), 'file:/'))"/>
-		    </xsl:when>
-		    <xsl:when test="starts-with(saxon:systemId(), 'file:')">
-		      <xsl:value-of select="substring-after(saxon:systemId(),
-					    'file:')"/>
-		    </xsl:when>
-		    <xsl:otherwise>
-		      <xsl:value-of select="saxon:systemId()"/>
-		    </xsl:otherwise>
-		  </xsl:choose>
-		</xsl:with-param>
-	      </xsl:call-template>
-	    </xsl:attribute>
-	  </xsl:when>
-	  <xsl:otherwise>
-	    <xsl:attribute name="fileref">
-	      <xsl:value-of select="@fileref"/>
-	    </xsl:attribute>
-	  </xsl:otherwise>
-	</xsl:choose>
 
-	<xsl:choose>
-	  <xsl:when test="@entityref">
-	    <xsl:attribute name="xml:base">
-	      <xsl:value-of select="unparsed-entity-uri(@entityref)"/>
-	    </xsl:attribute>
-	  </xsl:when>
-	</xsl:choose>
+      <!-- xml:base is eventually added to the root element -->
+      <xsl:if test="not(../..) and $profile.baseuri.fixup">
+	<xsl:call-template name="add-xml-base"/>
       </xsl:if>
-      <!-- End of base URI fixup -->
+
       <xsl:apply-templates select="node()" mode="profile"/>
     </xsl:copy>
   </xsl:if>
