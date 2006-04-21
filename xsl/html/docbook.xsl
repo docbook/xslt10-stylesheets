@@ -334,6 +334,16 @@ body { background-image: url('</xsl:text>
       <xsl:variable name="nons">
 	<xsl:apply-templates mode="stripNS"/>
       </xsl:variable>
+      <!--
+      <xsl:message>Saving stripped document.</xsl:message>
+      <xsl:call-template name="write.chunk">
+	<xsl:with-param name="filename" select="'/tmp/stripped.xml'"/>
+	<xsl:with-param name="method" select="'xml'"/>
+	<xsl:with-param name="content">
+	  <xsl:copy-of select="exsl:node-set($nons)"/>
+	</xsl:with-param>
+      </xsl:call-template>
+      -->
       <xsl:message>Processing stripped document.</xsl:message>
       <xsl:apply-templates select="exsl:node-set($nons)"/>
     </xsl:when>
