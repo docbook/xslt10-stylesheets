@@ -7,6 +7,89 @@
                 exclude-result-prefixes="db ng exsl saxon"
                 version='1.0'>
 
+<!-- put an xml:base attribute on the root element -->
+<xsl:template match="/*" mode="stripNS">
+  <xsl:choose>
+    <xsl:when test="self::ng:* or self::db:*">
+      <xsl:element name="{local-name(.)}">
+        <xsl:copy-of select="@*[not(name(.) = 'xml:id')
+			        and not(name(.) = 'version')]"/>
+	<xsl:if test="@xml:id">
+	  <xsl:attribute name="id">
+	    <xsl:value-of select="@xml:id"/>
+	  </xsl:attribute>
+	</xsl:if>
+
+	<xsl:if test="not(@xml:base) and function-available('saxon:systemId')">
+	  <xsl:variable name="base" select="saxon:systemId()"/>
+	  <xsl:attribute name="xml:base">
+	    <xsl:call-template name="systemIdToBaseURI">
+	      <xsl:with-param name="systemId">
+		<!-- file: seems to confuse some processors. -->
+		<xsl:choose>
+		  <xsl:when test="starts-with($base, 'file:///')">
+		    <xsl:value-of select="substring-after($base,'file://')"/>
+		  </xsl:when>
+		  <xsl:when test="starts-with($base, 'file://')">
+		    <xsl:value-of select="substring-after($base,'file:/')"/>
+		  </xsl:when>
+		  <xsl:when test="starts-with($base, 'file:/')">
+		    <xsl:value-of select="substring-after($base,'file:')"/>
+		  </xsl:when>
+		  <xsl:otherwise>
+		    <xsl:value-of select="$base"/>
+		  </xsl:otherwise>
+		</xsl:choose>
+	      </xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:attribute>
+	</xsl:if>
+
+        <xsl:apply-templates mode="stripNS"/>
+      </xsl:element>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy>
+        <xsl:copy-of select="@*[not(name(.) = 'xml:id')
+			        and not(name(.) = 'version')]"/>
+	<xsl:if test="@xml:id">
+	  <xsl:attribute name="id">
+	    <xsl:value-of select="@xml:id"/>
+	  </xsl:attribute>
+	</xsl:if>
+
+	<xsl:if test="not(@xml:base) and function-available('saxon:systemId')">
+	  <xsl:attribute name="xml:base">
+	    <xsl:call-template name="systemIdToBaseURI">
+	      <xsl:with-param name="systemId">
+		<xsl:choose>
+		  <!-- file: seems to confuse some processors. -->
+		  <xsl:when test="starts-with(saxon:systemId(), 'file:/')
+				  and substring(saxon:systemId(), 7, 2) != '//'">
+		    <xsl:value-of
+			select="concat('file:///',
+				       substring-after(saxon:systemId(),
+				       'file:/'))"/>
+		  </xsl:when>
+		  <xsl:when test="starts-with(saxon:systemId(), 'file:')">
+		    <xsl:value-of select="substring-after(saxon:systemId(),
+					                  'file:')"/>
+		  </xsl:when>
+		  <xsl:otherwise>
+		    <xsl:value-of select="saxon:systemId()"/>
+		  </xsl:otherwise>
+		</xsl:choose>
+	      </xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:attribute>
+	</xsl:if>
+
+        <xsl:apply-templates mode="stripNS"/>
+      </xsl:copy>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="*" mode="stripNS">
   <xsl:choose>
     <xsl:when test="self::ng:* or self::db:*">
@@ -185,46 +268,6 @@
 	<xsl:value-of select="@xml:id"/>
       </xsl:attribute>
     </xsl:if>
-
-    <xsl:choose>
-      <xsl:when test="@fileref
-	              and not(contains(@fileref,':'))
-		      and not(starts-with(@fileref,'/'))
-		      and function-available('saxon:systemId')">
-	<xsl:attribute name="xml:base">
-	  <xsl:call-template name="systemIdToBaseURI">
-	    <xsl:with-param name="systemId">
-	      <xsl:choose>
-		<!-- file: seems to confuse some processors. -->
-		<xsl:when test="starts-with(saxon:systemId(), 'file:/') and substring(saxon:systemId(), 7, 2) != '//'">
-		  <xsl:value-of select="concat('file:///', substring-after(saxon:systemId(), 'file:/'))"/>
-		</xsl:when>
-		<xsl:when test="starts-with(saxon:systemId(), 'file:')">
-		  <xsl:value-of select="substring-after(saxon:systemId(),
-					                'file:')"/>
-		</xsl:when>
-		<xsl:otherwise>
-		  <xsl:value-of select="saxon:systemId()"/>
-		</xsl:otherwise>
-	      </xsl:choose>
-	    </xsl:with-param>
-	  </xsl:call-template>
-	</xsl:attribute>
-      </xsl:when>
-      <xsl:otherwise>
-	<xsl:attribute name="fileref">
-	  <xsl:value-of select="@fileref"/>
-	</xsl:attribute>
-      </xsl:otherwise>
-    </xsl:choose>
-
-    <xsl:choose>
-      <xsl:when test="@entityref">
-	<xsl:attribute name="xml:base">
-	  <xsl:value-of select="unparsed-entity-uri(@entityref)"/>
-	</xsl:attribute>
-      </xsl:when>
-    </xsl:choose>
 
     <xsl:apply-templates mode="stripNS"/>
   </xsl:element>
