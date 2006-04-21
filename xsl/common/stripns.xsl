@@ -20,35 +20,7 @@
 	  </xsl:attribute>
 	</xsl:if>
 
-	<xsl:if test="not(@xml:base) and function-available('saxon:systemId')">
-	  <xsl:variable name="base" select="saxon:systemId()"/>
-	  <xsl:attribute name="xml:base">
-	    <xsl:call-template name="systemIdToBaseURI">
-	      <xsl:with-param name="systemId">
-		<!-- file: seems to confuse some processors. -->
-		<xsl:choose>
-		  <xsl:when test="starts-with($base, 'file:///')">
-		    <xsl:value-of select="substring-after($base,'file://')"/>
-		  </xsl:when>
-		  <xsl:when test="starts-with($base, 'file://')">
-		    <xsl:value-of select="substring-after($base,'file:/')"/>
-		  </xsl:when>
-		  <xsl:when test="starts-with($base, 'file:/')
-				  and substring($base, 8, 1) = ':'">
-		    <!-- Stupid windows file:/c:/path... -->
-		    <xsl:value-of select="substring-after($base,'file:/')"/>
-		  </xsl:when>
-		  <xsl:when test="starts-with($base, 'file:/')">
-		    <xsl:value-of select="substring-after($base,'file:')"/>
-		  </xsl:when>
-		  <xsl:otherwise>
-		    <xsl:value-of select="$base"/>
-		  </xsl:otherwise>
-		</xsl:choose>
-	      </xsl:with-param>
-	    </xsl:call-template>
-	  </xsl:attribute>
-	</xsl:if>
+	<xsl:call-template name="add-xml-base"/>
 
         <xsl:apply-templates mode="stripNS"/>
       </xsl:element>
@@ -63,31 +35,7 @@
 	  </xsl:attribute>
 	</xsl:if>
 
-	<xsl:if test="not(@xml:base) and function-available('saxon:systemId')">
-	  <xsl:attribute name="xml:base">
-	    <xsl:call-template name="systemIdToBaseURI">
-	      <xsl:with-param name="systemId">
-		<xsl:choose>
-		  <!-- file: seems to confuse some processors. -->
-		  <xsl:when test="starts-with(saxon:systemId(), 'file:/')
-				  and substring(saxon:systemId(), 7, 2) != '//'">
-		    <xsl:value-of
-			select="concat('file:///',
-				       substring-after(saxon:systemId(),
-				       'file:/'))"/>
-		  </xsl:when>
-		  <xsl:when test="starts-with(saxon:systemId(), 'file:')">
-		    <xsl:value-of select="substring-after(saxon:systemId(),
-					                  'file:')"/>
-		  </xsl:when>
-		  <xsl:otherwise>
-		    <xsl:value-of select="saxon:systemId()"/>
-		  </xsl:otherwise>
-		</xsl:choose>
-	      </xsl:with-param>
-	    </xsl:call-template>
-	  </xsl:attribute>
-	</xsl:if>
+	<xsl:call-template name="add-xml-base"/>
 
         <xsl:apply-templates mode="stripNS"/>
       </xsl:copy>
@@ -285,6 +233,38 @@
 
     <xsl:apply-templates mode="stripNS"/>
   </xsl:element>
+</xsl:template>
+
+<xsl:template name="add-xml-base">
+  <xsl:if test="not(@xml:base) and function-available('saxon:systemId')">
+    <xsl:variable name="base" select="saxon:systemId()"/>
+    <xsl:attribute name="xml:base">
+      <xsl:call-template name="systemIdToBaseURI">
+	<xsl:with-param name="systemId">
+	  <!-- file: seems to confuse some processors. -->
+	  <xsl:choose>
+	    <xsl:when test="starts-with($base, 'file:///')">
+	      <xsl:value-of select="substring-after($base,'file://')"/>
+	    </xsl:when>
+	    <xsl:when test="starts-with($base, 'file://')">
+	      <xsl:value-of select="substring-after($base,'file:/')"/>
+	    </xsl:when>
+	    <xsl:when test="starts-with($base, 'file:/')
+			    and substring($base, 8, 1) = ':'">
+	      <!-- Stupid windows file:/c:/path... -->
+	      <xsl:value-of select="substring-after($base,'file:/')"/>
+	    </xsl:when>
+	    <xsl:when test="starts-with($base, 'file:/')">
+	      <xsl:value-of select="substring-after($base,'file:')"/>
+	    </xsl:when>
+	    <xsl:otherwise>
+	      <xsl:value-of select="$base"/>
+	    </xsl:otherwise>
+	  </xsl:choose>
+	</xsl:with-param>
+      </xsl:call-template>
+    </xsl:attribute>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template name="systemIdToBaseURI">
