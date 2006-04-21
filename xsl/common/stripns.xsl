@@ -267,12 +267,21 @@
 		     |ng:audiodata|db:audiodata" mode="stripNS">
   <xsl:element name="{local-name(.)}">
     <xsl:copy-of select="@*[not(name(.) = 'xml:id')
-			 and not(name(.) = 'version')]"/>
+			    and not(name(.) = 'version')
+			    and not(name(.) = 'entityref')]"/>
     <xsl:if test="@xml:id">
       <xsl:attribute name="id">
 	<xsl:value-of select="@xml:id"/>
       </xsl:attribute>
     </xsl:if>
+
+    <xsl:choose>
+      <xsl:when test="@entityref">
+	<xsl:attribute name="fileref">
+	  <xsl:value-of select="unparsed-entity-uri(@entityref)"/>
+	</xsl:attribute>
+      </xsl:when>
+    </xsl:choose>
 
     <xsl:apply-templates mode="stripNS"/>
   </xsl:element>
