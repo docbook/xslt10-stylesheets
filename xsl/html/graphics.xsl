@@ -234,13 +234,32 @@
   <xsl:variable name="output_filename">
     <xsl:choose>
       <xsl:when test="@entityref">
-        <xsl:value-of select="$filename"/>
+	<xsl:value-of select="$filename"/>
       </xsl:when>
       <xsl:when test="$keep.relative.image.uris != 0">
-       <xsl:value-of select="@fileref"/>
+	<!-- This works sometimes, but needs to take into account
+             1. When there is no /*/@xml:base
+             2. When the chunks are going somewhere else
+	<xsl:variable name="relpath">
+	  <xsl:call-template name="relative-uri">
+	    <xsl:with-param name="filename" select="@fileref"/>
+	  </xsl:call-template>
+	</xsl:variable>
+
+	<xsl:choose>
+	  <xsl:when test="/*/@xml:base
+	                  and starts-with($relpath,/*/@xml:base)">
+	    <xsl:value-of select="substring-after($relpath,/*/@xml:base)"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:value-of select="@fileref"/>
+	  </xsl:otherwise>
+	</xsl:choose>
+	-->
+	<xsl:value-of select="@fileref"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="$filename"/>
+	<xsl:value-of select="$filename"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
