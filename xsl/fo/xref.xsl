@@ -889,7 +889,10 @@
     <xsl:when test="contains($url, '/')">
       <xsl:value-of select="substring-before($url, '/')"/>
       <xsl:text>/</xsl:text>
-      <xsl:copy-of select="$ulink.hyphenate"/>
+      <!-- Do not hyphen in-between // -->
+      <xsl:if test="substring(substring-after($url, '/'), 1, 1) != '/'">
+	<xsl:copy-of select="$ulink.hyphenate"/>
+      </xsl:if>
       <xsl:call-template name="hyphenate-url">
         <xsl:with-param name="url" select="substring-after($url, '/')"/>
       </xsl:call-template>
