@@ -154,6 +154,13 @@
     <xsl:copy>
       <xsl:copy-of select="@*"/>
 
+      <!-- Entity references must be replaced with filereferences for temporary tree -->
+      <xsl:if test="@entityref and $profile.baseuri.fixup">
+	<xsl:attribute name="fileref">
+	  <xsl:value-of select="unparsed-entity-uri(@entityref)"/>
+	</xsl:attribute>
+      </xsl:if>
+
       <!-- xml:base is eventually added to the root element -->
       <xsl:if test="not(../..) and $profile.baseuri.fixup">
 	<xsl:call-template name="add-xml-base"/>
