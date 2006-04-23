@@ -194,6 +194,7 @@
 <template name="bibliodiv">%t</template>
 <template name="biblioentry">%t</template>
 <template name="bibliography">%t</template>
+<template name="bibliolist">%t</template>
 <template name="bibliomixed">%t</template>
 <template name="bibliomset">%t</template>
 <template name="biblioset">%t</template>
@@ -207,9 +208,13 @@
 <template name="equation"><Equation/> %n. %t</template>
 <template name="example"><Example/> %n. %t</template>
 <template name="figure"><Figure/> %n. %t</template>
+<template name="foil">%t</template>	<!-- For Slides document type -->
+<template name="foilgroup">%t</template>  <!-- For Slides document type -->
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
+<template name="glosslist">%t</template>
+<template name="glossentry">%t</template>
 <template name="important">%t</template>
 <template name="index">%t</template>
 <template name="indexdiv">%t</template>
@@ -250,9 +255,11 @@
 <template name="sidebar">%t</template>
 <template name="step">%t</template>
 <template name="table"><Table/> %n. %t</template>
+<template name="task">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
+<template name="varlistentry"/>
 <template name="warning">%t</template>
 
 </context>
@@ -260,6 +267,7 @@
 <context name="title-unnumbered">
 
 <template name="appendix">%t</template>
+<template name="article/appendix">%t</template>
 <template name="bridgehead">%t</template>
 <template name="chapter">%t</template>
 <template name="sect1">%t</template>
@@ -269,12 +277,14 @@
 <template name="sect5">%t</template>
 <template name="section">%t</template>
 <template name="simplesect">%t</template>
+<template name="part">%t</template>
 
 </context>
 
 <context name="title-numbered">
 
 <template name="appendix"><Appendix/> %n. %t</template>
+<template name="article/appendix">%n.&#160;%t</template>
 <template name="bridgehead">%n. %t</template>
 <template name="chapter">%n<Chapter/>. %t</template>
 <template name="sect1">%n. %t</template>
@@ -284,6 +294,7 @@
 <template name="sect5">%n. %t</template>
 <template name="section">%n. %t</template>
 <template name="simplesect">%n. %t</template>
+<template name="part"><Part/>&#160;%n.&#160;%t</template>
 
 </context>
 
@@ -351,6 +362,8 @@
 <template name="equation">%t</template>
 <template name="example">%t</template>
 <template name="figure">%t</template>
+<template name="foil">%t</template>	<!-- For Slides document type -->
+<template name="foilgroup">%t</template> <!-- For Slides document type -->
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
@@ -385,6 +398,7 @@
 <template name="setindex">%t</template>
 <template name="sidebar">%t</template>
 <template name="table">%t</template>
+<template name="task">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
