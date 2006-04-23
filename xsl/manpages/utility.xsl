@@ -229,15 +229,17 @@
     <xsl:param name="name"/>
     <xsl:param name="section"/>
     <xsl:param name="dirname">
-      <xsl:choose>
-        <xsl:when test="not($man.subdirs.enabled = 0)">
-          <xsl:value-of
-              select="concat($man.base.dir, 'man', normalize-space($section), '/')"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$man.base.dir"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:if test="not($man.output.in.separate.dir = 0)">
+        <xsl:choose>
+          <xsl:when test="not($man.subdirs.enabled = 0)">
+            <xsl:value-of
+                select="concat($man.base.dir, 'man', normalize-space($section), '/')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$man.base.dir"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:if>
     </xsl:param>
     <xsl:call-template name="string.subst">
       <!-- * Replace any spaces in filename with underscores & then append -->
