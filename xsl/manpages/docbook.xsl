@@ -53,8 +53,9 @@
   <xsl:param name="man.table.headings.font">B</xsl:param>
   <xsl:param name="man.table.title.font">B</xsl:param>
   <xsl:param name="man.table.footnotes.separator.line">----</xsl:param>
-  <xsl:param name="man.base.dir">man/</xsl:param>
-  <xsl:param name="man.subdirs.enabled" select="1"/>
+  <xsl:param name="man.output.in.separate.dir" select="0"/>
+  <xsl:param name="man.output.base.dir">man/</xsl:param>
+  <xsl:param name="man.output.subdirs.enabled" select="1"/>
 
   <!-- ==================================================================== -->
 
