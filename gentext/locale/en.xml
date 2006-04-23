@@ -134,7 +134,6 @@
 
 <gentext key="and" text="and"/>
 <gentext key="by" text="by"/>
-<gentext key="called" text="called"/>
 <gentext key="Edited" text="Edited"/>
 <gentext key="edited" text="Edited"/>
 <gentext key="Editedby" text="Edited by"/>
@@ -153,7 +152,6 @@
 <gentext key="tablenotes" text="Notes"/>
 <gentext key="TableofContents" text="Table of Contents"/>
 <gentext key="tableofcontents" text="Table of Contents"/>
-<gentext key="the" text=""/>
 <gentext key="unexpectedelementname" text="Unexpected element name"/>
 <gentext key="unsupported" text="unsupported"/>
 <gentext key="xrefto" text="xref to"/>
