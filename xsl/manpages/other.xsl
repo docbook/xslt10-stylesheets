@@ -296,12 +296,12 @@ db:manvolnum
       <xsl:text> (adjust text to left margin only)&#10;</xsl:text>
       <xsl:text>.ad l&#10;</xsl:text>
     </xsl:if>
-    <xsl:if test="$man.indentation.default.adjust != 0">
+    <xsl:if test="not($man.indent.headings = 0)">
       <xsl:text>.\" store initial "default indentation value"&#10;</xsl:text>
       <xsl:text>.nr zq \n(IN&#10;</xsl:text>
       <xsl:text>.\" adjust default indentation&#10;</xsl:text>
       <xsl:text>.nr IN </xsl:text>
-      <xsl:value-of select="$man.indentation.default.value"/>
+      <xsl:value-of select="$man.indent.width"/>
       <xsl:text>&#10;</xsl:text>
       <xsl:text>.\" adjust indentation of SS headings&#10;</xsl:text>
       <xsl:text>.nr SN \n(IN&#10;</xsl:text>

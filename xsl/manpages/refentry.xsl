@@ -94,7 +94,7 @@
     <xsl:choose>
       <!-- * If default-indentation adjustment is on, then indent the -->
       <!-- * child content of this Refsect2 -->
-      <xsl:when test="$man.indentation.default.adjust != 0">
+      <xsl:when test="not($man.indent.headings = 0)">
         <xsl:text>.RS&#10;</xsl:text>
         <xsl:apply-templates/>
         <xsl:text>.RE&#10;</xsl:text>
@@ -125,7 +125,7 @@
     <xsl:choose>
       <!-- * If default-indentation adjustment is on, then indent the -->
       <!-- * child content of this Refsect3 or Refsection. -->
-      <xsl:when test="$man.indentation.default.adjust != 0">
+      <xsl:when test="not($man.indent.headings != 0)">
         <xsl:call-template name="nested-section-title"/>
         <xsl:text>.RS&#10;</xsl:text>
         <xsl:apply-templates/>
@@ -161,7 +161,7 @@
                             |title)[1]"/>
     </xsl:variable>
     <xsl:variable name="indent-width">
-      <xsl:if test="$man.indentation.default.adjust != 0">
+      <xsl:if test="not($man.indent.headings = 0)">
         <!-- * If default-indentation adjustment is on, then indent the -->
         <!-- * child content of this Refsect3 or Refsection. -->
         <xsl:text>(\n(SNu)&#10;</xsl:text>
