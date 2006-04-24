@@ -56,9 +56,18 @@
 
 <!-- ==================================================================== -->
 
+<!-- * Yes, address, synopsis, and funcsynopsisinfo are verbatim environments. -->
 <xsl:template match="literallayout|programlisting|screen|
                      address|synopsis|funcsynopsisinfo">
-  <!-- * Yes, address, synopsis, and funcsynopsisinfo are verbatim environments. -->
+  <xsl:param name="indent">
+    <!-- * Only indent this verbatim if $man.indent.verbatims is -->
+    <!-- * non-zero and it is not a child of a *synopsis element -->
+    <xsl:if test="not($man.indent.verbatims = 0) and
+                  not(substring(local-name(..),
+                  string-length(local-name(..))-7) = 'synopsis')">
+      <xsl:text>Yes</xsl:text>
+    </xsl:if>
+  </xsl:param>
 
   <xsl:choose>
     <!-- * Check to see if this verbatim item is within a parent element that -->
@@ -77,11 +86,12 @@
       <xsl:text>.sp&#10;</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
-  <xsl:if test="not($man.indentation.verbatims.adjust = 0)">
+  <xsl:if test="$indent = 'Yes'">
+    <!-- * start indented section -->
     <xsl:text>.RS</xsl:text> 
-    <xsl:if test="not($man.indentation.verbatims.value = '')">
+    <xsl:if test="not($man.indent.width = '')">
       <xsl:text> </xsl:text>
-      <xsl:value-of select="$man.indentation.verbatims.value"/>
+      <xsl:value-of select="$man.indent.width"/>
     </xsl:if>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
@@ -121,11 +131,12 @@
       <xsl:text>.fi&#10;</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
-  <!-- * if first following sibling node of this verbatim -->
-  <!-- * environment is a text node, output a line of space before it -->
-  <xsl:if test="not($man.indentation.verbatims.adjust = 0)">
+  <xsl:if test="$indent = 'Yes'">
+    <!-- * end indented section -->
     <xsl:text>.RE&#10;</xsl:text> 
   </xsl:if>
+  <!-- * if first following sibling node of this verbatim -->
+  <!-- * environment is a text node, output a line of space before it -->
   <xsl:if test="following-sibling::node()[1][name(.) = '']">
     <xsl:text>.sp&#10;</xsl:text>
   </xsl:if>
