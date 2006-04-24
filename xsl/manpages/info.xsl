@@ -17,13 +17,13 @@
 
   <xsl:variable name="authors-indent">
     <xsl:choose>
-      <xsl:when test="not($man.indentation.authors.adjust = 0)">
-        <xsl:value-of select="$man.indentation.authors.value"/>
+      <xsl:when test="not($man.indent.authors.section = 0)">
+        <xsl:value-of select="$man.indent.width"/>
       </xsl:when>
-      <xsl:when test="not($man.indentation.default.adjust = 0)">
-        <!-- * "zq" is the name of a register we set for preserving the -->
-        <!-- * original default indent value when -->
-        <!-- * $man.indentation.default.adjust is non-zero; -->
+      <xsl:when test="not($man.indent.headings = 0)">
+        <!-- * "zq" is the name of a register we set for -->
+        <!-- * preserving the original default indent value -->
+        <!-- * when $man.indent.headings is non-zero; -->
         <!-- * "u" is a roff unit specifier -->
         <xsl:text>\n(zqu</xsl:text>
       </xsl:when>
