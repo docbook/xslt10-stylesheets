@@ -231,12 +231,12 @@
     <xsl:param name="dirname">
       <xsl:if test="not($man.output.in.separate.dir = 0)">
         <xsl:choose>
-          <xsl:when test="not($man.subdirs.enabled = 0)">
+          <xsl:when test="not($man.output.subdirs.enabled = 0)">
             <xsl:value-of
-                select="concat($man.base.dir, 'man', normalize-space($section), '/')"/>
+                select="concat($man.output.base.dir, 'man', normalize-space($section), '/')"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:value-of select="$man.base.dir"/>
+            <xsl:value-of select="$man.output.base.dir"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:if>
