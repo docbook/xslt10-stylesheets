@@ -17,8 +17,6 @@
 
 <!-- ==================================================================== -->
 
-<xsl:param name="refentry.meta.get.quietly" select="0"/>
-
 <doc:reference xmlns="">
   <referenceinfo>
     <releaseinfo role="meta">

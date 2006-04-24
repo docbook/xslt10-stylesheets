@@ -15,6 +15,7 @@
 <!ENTITY man.charmap.use.subset SYSTEM "../params/man.charmap.use.subset.xml">
 <!ENTITY man.charmap.uri SYSTEM "../params/man.charmap.uri.xml">
 <!ENTITY man.charmap.subset.profile SYSTEM "../params/man.charmap.subset.profile.xml">
+<!ENTITY refentry.meta.get.quietly SYSTEM "../params/refentry.meta.get.quietly.xml">
 <!ENTITY refentry.date.profile.enabled SYSTEM "../params/refentry.date.profile.enabled.xml">
 <!ENTITY refentry.manual.profile.enabled SYSTEM "../params/refentry.manual.profile.enabled.xml">
 <!ENTITY refentry.source.name.profile.enabled SYSTEM "../params/refentry.source.name.profile.enabled.xml">
