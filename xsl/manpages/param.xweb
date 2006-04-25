@@ -41,6 +41,8 @@
   <title>Fonts</title>
 &man.font.funcprototype;
 &man.font.funcsynopsisinfo;
+&man.font.table.headings;
+&man.font.table.title;
   </reference>
   <reference id="links">
   <title>Link handling</title>
@@ -131,6 +133,8 @@
 <src:fragref linkend="man.justify.frag"/>
 <src:fragref linkend="man.font.funcprototype.frag"/>
 <src:fragref linkend="man.font.funcsynopsisinfo.frag"/>
+<src:fragref linkend="man.font.table.headings.frag"/>
+<src:fragref linkend="man.font.table.title.frag"/>
 <src:fragref linkend="man.output.manifest.enabled.frag"/>
 <src:fragref linkend="man.output.manifest.filename.frag"/>
 <src:fragref linkend="man.output.quietly.frag"/>

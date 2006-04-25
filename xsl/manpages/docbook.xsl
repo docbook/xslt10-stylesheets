@@ -47,6 +47,9 @@
   <xsl:param name="man.output.base.dir">man/</xsl:param>
   <xsl:param name="man.output.subdirs.enabled" select="1"/>
 
+  <!-- * we rename the following just to avoid using params with "man" -->
+  <!-- * prefixes in the table.xsl stylesheet (because that stylesheet -->
+  <!-- * can potentially be reused for more than just man output -->
   <xsl:param name="tbl.font.headings" select="$man.font.table.headings"/>
   <xsl:param name="tbl.font.title" select="$man.font.table.title"/>
 

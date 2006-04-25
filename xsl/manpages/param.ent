@@ -43,3 +43,5 @@
 <!ENTITY man.segtitle.suppress SYSTEM "../params/man.segtitle.suppress.xml">
 <!ENTITY man.font.funcprototype SYSTEM "../params/man.font.funcprototype.xml">
 <!ENTITY man.font.funcsynopsisinfo SYSTEM "../params/man.font.funcsynopsisinfo.xml">
+<!ENTITY man.font.table.headings SYSTEM "../params/man.font.table.headings.xml">
+<!ENTITY man.font.table.title SYSTEM "../params/man.font.table.title.xml">
