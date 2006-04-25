@@ -369,7 +369,7 @@
     <xsl:variable name="footnotes" select=".//footnote"/>
     <xsl:variable name="table.footnotes"
                   select=".//tgroup//footnote"/>
-    <xsl:value-of select="$man.table.footnotes.separator.line"/>
+    <xsl:value-of select="$man.table.footnotes.divider"/>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>.br&#10;</xsl:text>
     <xsl:apply-templates select="*[1]" mode="footnote.body.number"/>
