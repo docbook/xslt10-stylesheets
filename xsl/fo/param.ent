@@ -161,6 +161,7 @@
 <!ENTITY refentry.pagebreak SYSTEM "../params/refentry.pagebreak.xml">
 <!ENTITY refentry.title.properties SYSTEM "../params/refentry.title.properties.xml">
 <!ENTITY refentry.xref.manvolnum SYSTEM "../params/refentry.xref.manvolnum.xml">
+<!ENTITY refclass.suppress SYSTEM "../params/refclass.suppress.xml">
 <!ENTITY region.after.extent SYSTEM "../params/region.after.extent.xml">
 <!ENTITY region.before.extent SYSTEM "../params/region.before.extent.xml">
 <!ENTITY rootid SYSTEM "../params/rootid.xml">

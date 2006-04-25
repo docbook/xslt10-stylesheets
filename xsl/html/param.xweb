@@ -182,6 +182,7 @@ stylesheet like this:</para>
 &refentry.xref.manvolnum;
 &citerefentry.link;
 &refentry.separator;
+&refclass.suppress;
 </reference>
 
 <reference id="tables"><title>Tables</title>
@@ -668,6 +669,7 @@ around all these parameters.</para>
 <src:fragref linkend="refentry.generate.title.frag"/>
 <src:fragref linkend="refentry.separator.frag"/>
 <src:fragref linkend="refentry.xref.manvolnum.frag"/>
+<src:fragref linkend="refclass.suppress.frag"/>
 <src:fragref linkend="root.filename.frag"/>
 <src:fragref linkend="rootid.frag"/>
 <src:fragref linkend="runinhead.default.title.end.punct.frag"/>

@@ -194,6 +194,7 @@
 <!ENTITY refentry.generate.title SYSTEM "../params/refentry.generate.title.xml">
 <!ENTITY refentry.separator SYSTEM "../params/refentry.separator.xml">
 <!ENTITY refentry.xref.manvolnum SYSTEM "../params/refentry.xref.manvolnum.xml">
+<!ENTITY refclass.suppress SYSTEM "../params/refclass.suppress.xml">
 <!ENTITY root.filename SYSTEM "../params/root.filename.xml">
 <!ENTITY rootid SYSTEM "../params/rootid.xml">
 <!ENTITY runinhead.default.title.end.punct SYSTEM "../params/runinhead.default.title.end.punct.xml">
