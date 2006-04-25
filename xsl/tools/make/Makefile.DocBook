@@ -340,7 +340,7 @@ CHNK_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
 MAN_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
                 version="1.0"> \
   <xsl:import href="$(DOCBOOK_XSL)/manpages/docbook.xsl"/> \
-  <xsl:param name="man.manifest.enabled" select="1"/> \
+  <xsl:param name="man.output.manifest.enabled" select="1"/> \
   <xsl:param name="man.output.in.separate.dir" select="1"/> \
   <xsl:param name="man.output.base.dir">man/</xsl:param> \
   <xsl:param name="man.output.subdirs.enabled" select="1"/> \
@@ -480,7 +480,7 @@ endif
 	else \
 	  echo '$(MAN_CUSTOM)' \
 	  | $(XSLT) $(XSLT_FLAGS) $(MAN_PARAMS) \
-	    --stringparam man.manifest.filename $@ \
+	    --stringparam man.output.manifest.filename $@ \
 	    - $<; \
 	fi
 

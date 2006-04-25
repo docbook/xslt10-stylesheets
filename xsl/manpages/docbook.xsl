@@ -37,8 +37,6 @@
   <xsl:include href="links.xsl"/>
   <xsl:include href="table.xsl"/>
 
-  <xsl:param name="man.manifest.enabled" select="0"/>
-  <xsl:param name="man.manifest.filename">MAN.MANIFEST</xsl:param>
   <xsl:param name="man.segtitle.suppress" select="0"/>
   <xsl:param name="man.indent.authors.section" select="1"/>
   <xsl:param name="man.indent.headings" select="0"/>
@@ -78,23 +76,24 @@
             <!-- * Check to see if we have any refentry children in this -->
             <!-- * document; if so, process them. -->
             <xsl:apply-templates select="//refentry"/>
-            <!-- * if $man.manifest.enabled is non-zero, generate a manifest file -->
-            <xsl:if test="not($man.manifest.enabled = 0)">
+            <!-- * if $man.output.manifest.enabled is non-zero, -->
+            <!-- * generate a manifest file -->
+            <xsl:if test="not($man.output.manifest.enabled = 0)">
               <xsl:call-template name="generate.manifest">
                 <xsl:with-param name="filename">
                   <xsl:choose>
-                    <xsl:when test="not($man.manifest.filename = '')">
+                    <xsl:when test="not($man.output.manifest.filename = '')">
                       <!-- * If a name for the manifest file is specified, -->
                       <!-- * use that name. -->
-                      <xsl:value-of select="$man.manifest.filename"/>
+                      <xsl:value-of select="$man.output.manifest.filename"/>
                     </xsl:when>
                     <xsl:otherwise>
                       <!-- * Otherwise, if user has unset -->
-                      <!-- * $man.manifest.filename, default to using -->
-                      <!-- * "MAN.MANIFEST" as the filename. Because -->
-                      <!-- * $man.manifest.enabled is non-zero and so we -->
-                      <!-- * must have a filename in order to generate -->
-                      <!-- * the manifest. -->
+                      <!-- * $man.output.manifest.filename, default to -->
+                      <!-- * using "MAN.MANIFEST" as the filename. Because -->
+                      <!-- * $man.output.manifest.enabled is non-zero and -->
+                      <!-- * so we must have a filename in order to -->
+                      <!-- * generate the manifest. -->
                       <xsl:text>MAN.MANIFEST</xsl:text>
                     </xsl:otherwise>
                   </xsl:choose>
